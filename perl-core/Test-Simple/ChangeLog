@@ -1,0 +1,134 @@
+# ChangeLog for perl-core/Test-Simple
+# Copyright 2002-2005 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Simple/ChangeLog,v 1.6 2005/06/17 21:01:08 hansmi Exp $
+
+  17 Jun 2005; Michael Hanselmann <hansmi@gentoo.org>
+  Test-Simple-0.54.ebuild:
+  Stable on ppc.
+
+  12 Jun 2005; Bryan Østergaard <kloeri@gentoo.org>
+  Test-Simple-0.54.ebuild:
+  Stable on alpha.
+
+  06 Jun 2005; Markus Rothe <corsair@gentoo.org> Test-Simple-0.54.ebuild:
+  Stable on ppc64
+
+  04 Jun 2005; Michael Cummings <mcummings@gentoo.org>
+  Test-Simple-0.54.ebuild:
+  Tested on raq2, bumping for mips
+
+*Test-Simple-0.54 (25 May 2005)
+
+  25 May 2005; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +Test-Simple-0.47-r1.ebuild, +Test-Simple-0.53.ebuild,
+  +Test-Simple-0.54.ebuild, +Test-Simple-0.60.ebuild:
+  dev-perl => perl-core migration
+
+  25 May 2005; Michael Cummings <mcummings@gentoo.org>
+  Test-Simple-0.60.ebuild:
+  dev-perl/Test-Harness => perl-core/Test-Harness migration
+
+  25 May 2005; Michael Cummings <mcummings@gentoo.org>
+  Test-Simple-0.54.ebuild:
+  dev-perl/Test-Harness => perl-core/Test-Harness migration
+
+  25 May 2005; Michael Cummings <mcummings@gentoo.org>
+  Test-Simple-0.53.ebuild:
+  dev-perl/Test-Harness => perl-core/Test-Harness migration
+
+  25 May 2005; Michael Cummings <mcummings@gentoo.org>
+  Test-Simple-0.47-r1.ebuild:
+  dev-perl/Test-Harness => perl-core/Test-Harness migration
+
+  23 May 2005; Guy Martin <gmsoft@gentoo.org> Test-Simple-0.54.ebuild:
+  Stable on hppa.
+
+  21 May 2005; Jan Brinkmann <luckyduck@gentoo.org> Test-Simple-0.54.ebuild:
+  stable on amd64
+
+*Test-Simple-0.60 (20 May 2005)
+
+  20 May 2005; Michael Cummings <mcummings@gentoo.org>
+  Test-Simple-0.54.ebuild, +Test-Simple-0.60.ebuild:
+  Version bump; marking 54 stable for x86 and sparc
+
+  08 May 2005; Aron Griffis <agriffis@gentoo.org> Test-Simple-0.53.ebuild:
+  stable on ia64
+
+*Test-Simple-0.54 (06 Mar 2005)
+
+  06 Mar 2005; Michael Cummings <mcummings@gentoo.org>
+  +Test-Simple-0.54.ebuild:
+  New version of test suite, fixes some probs, dep for new POE
+
+  06 Feb 2005; Markus Rothe <corsair@gentoo.org> Test-Simple-0.53.ebuild:
+  Stable on ppc64
+
+  22 Dec 2004; Yuta SATOH <nigoro@gentoo.org> Test-Simple-0.53.ebuild:
+  added ~ppc64
+
+*Test-Simple-0.53 (06 Dec 2004)
+
+  06 Dec 2004; Michael Cummings <mcummings@gentoo.org>
+  +Test-Simple-0.53.ebuild:
+  New version on CPAN
+
+  16 Apr 2004; Michael Cummings <mcummings@gentoo.org>
+  Test-Simple-0.47-r1.ebuild, Test-Simple-0.47.ebuild:
+  Syntax fix for newdepend, bug 29064
+
+  19 Mar 2004; Eric Sammer <esammer@gentoo.org> Test-Simple-0.47-r1.ebuild:
+  Fixed category-less dependencies as per bug #45110.
+
+  24 Feb 2004; Joshua Kinard <kumba@gentoo.org> Test-Simple-0.47-r1.ebuild:
+  Added ~mips to satisfy repoman deps.
+
+  16 Feb 2004; Michael Cummings,,, <mcummings@gentoo.org>
+  Test-Simple-0.42-r1.ebuild, Test-Simple-0.42.ebuild,
+  Test-Simple-0.47-r1.ebuild, Test-Simple-0.47.ebuild:
+  Cleaning house; 0.42 isn't available on cpan, and 47 is marked stable for all
+  archs anyway
+
+  25 Jul 2003; <rac@gentoo.org> Test-Simple-0.47-r1.ebuild:
+  Remove ~arch protection on all but hppa and arm
+
+*Test-Simple-0.47-r1 (19 Jul 2003)
+
+  04 Aug 2003; Guy Martin <gmsoft@gentoo.org> Test-Simple-0.47-r1.ebuild :
+  Marked stable on hppa.
+
+  19 Jul 2003; <rac@gentoo.org> Test-Simple-0.47-r1.ebuild:
+  Vendordir version
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*Test-Simple-0.47 (16 Nov 2002)
+
+  05 Apr 2003; Zach Welch <zwelch@gentoo.org> Test-Simple-0.47.ebuild:
+  add arm keyword
+
+  20 Mar 2003; Guy Martin <gmsoft@gentoo.org> Test-Simple-0.47.ebuild :
+  Added hppa to KEYWORDS.
+
+  16 Nov 2002; Matthew Kennedy <mkennedy@gentoo.org> ChangeLog,
+  Test-Simple-0.47.ebuild, files/digest-Test-Simple-0.47 :
+
+  New version (required by update to latest HTML-Mason). Tidied up
+  ChangeLog.
+
+*Test-Simple-0.42-r1 (14 Jun 2002)
+
+  29 Oct 2002; Seemant Kulleen <seemant@gentoo.org> ChangeLog  :
+  forced version bump to install into correct locations
+
+*Test-Simple-0.42 (14 Jun 2002)
+
+  1 Aug 2002; Calum Selkirk <cselkirk@gentoo.org> Test-Simple-0.42.ebuild :
+
+  Added ppc to KEYWORDS.
+
+  14 Jun 2002; Seemant Kulleen <seemant@gentoo.org> Test-Simple-0.42.ebuild
+  files/digest-Test-Simple-0.42 :
+
+  New package, submitted by: arutha@gmx.de (Alexander Gretencord) in bug
+  #3513

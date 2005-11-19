@@ -1,0 +1,23 @@
+revision 1.57
+date: 2005/07/25 03:38:41;  author: eggert;  state: Exp;  lines: +1 -1
+Fix core dump reported by Pablo De Napoli in
+<http://lists.gnu.org/archive/html/bug-bison/2005-07/msg00053.html>.
+* tests/regression.at (Invalid inputs with {}): New test.
+* src/parse-gram.y (token_name): Translate type before using
+it as an index.
+
+Index: src/parse-gram.y
+===================================================================
+RCS file: /cvsroot/bison/bison/src/parse-gram.y,v
+retrieving revision 1.56
+retrieving revision 1.57
+diff -u -p -r1.56 -r1.57
+--- src/parse-gram.c	24 Jul 2005 07:24:22 -0000	1.56
++++ src/parse-gram.c	25 Jul 2005 03:38:41 -0000	1.57
+@@ -538,5 +538,5 @@ gram_error (location const *loc, char co
+ char const *
+ token_name (int type)
+ {
+-  return yytname[type];
++  return yytname[YYTRANSLATE (type)];
+ }

@@ -1,0 +1,116 @@
+#!/bin/bash
+# Copyright 1999-2005 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/files/gentoo.config-0.9.7g,v 1.10 2005/08/13 14:20:47 flameeyes Exp $
+#
+# Openssl doesn't play along nicely with cross-compiling 
+# like autotools based projects, so let's teach it new tricks.
+#
+# Review the bundled 'config' script to see why kind of targets 
+# we can pass to the 'Configure' script.
+
+
+# Testing routines
+if [[ $1 == "test" ]] ; then
+	for c in \
+		"arm-gentoo-linux-uclibc      |linux-elf-arm -DL_ENDIAN" \
+		"armv5b-linux-gnu             |linux-elf-arm -DB_ENDIAN" \
+		"x86_64-pc-linux-gnu          |linux-x86_64" \
+		"alphaev56-unknown-linux-gnu  |linux-alpha+bwx-gcc" \
+		"whatever-gentoo-freebsdX.Y   |FreeBSD-elf" \
+		"sparc64-alpha-freebsdX.Y     |FreeBSD-sparc64" \
+		"ia64-gentoo-freebsd5.99234   |FreeBSD-ia64" \
+		"x86_64-gentoo-freebsdX.Y     |FreeBSD-amd64" \
+		"hppa64-aldsF-linux-gnu5.3    |linux-parisc" \
+		"powerpc-gentOO-linux-uclibc  |linux-ppc" \
+		"powerpc64-unk-linux-gnu      |linux-ppc64" \
+	;do
+		CHOST=${c/|*}
+		ret_want=${c/*|}
+		ret_got=$(CHOST=${CHOST} "$0")
+
+		if [[ ${ret_want} == "${ret_got}" ]] ; then
+			echo "PASS: ${CHOST}"
+		else
+			echo "FAIL: ${CHOST}"
+			echo -e "\twanted: ${ret_want}"
+			echo -e "\twe got: ${ret_got}"
+		fi
+	done
+	exit 0
+fi
+
+
+# Detect the operating system
+case ${CHOST} in
+	*-linux*)    system="linux";;
+	*-freebsd*)  system="FreeBSD";;
+	*)           exit 0;;
+esac
+
+
+# Compiler munging
+compiler="gcc"
+if [[ ${CC} == "ccc" ]] ; then
+	compiler=${CC}
+fi
+
+
+# Detect target arch
+machine=""
+chost_machine=${CHOST%%-*}
+case ${system} in
+linux)
+	case ${chost_machine} in
+		alphaev56*)   machine=alpha+bwx-${compiler};;
+		alphaev[67]*) machine=alpha+bwx-${compiler};;
+		alpha*)
+			# this pretty hack is because we have to make sure we
+			# maintain ABI on the system or things like ssh break
+			currmachine=""
+			if [[ ${ROOT} == "/" ]] && [[ -e /usr/lib/libcrypto.so ]] ; then
+				currmachine=$(strings /usr/lib/libcrypto.so | grep ^linux-alpha | sed -e s:linux-::)
+			fi
+			machine=${currmachine:-alpha-${compiler}}
+
+			# NOTE: drop this crap next time SSL changes ABI #'s
+			[[ ${PV:0:5} != "0.9.7" ]] && machine="plzupdatemekthxbye"
+			;;
+
+		arm*b*)       machine="elf-arm -DB_ENDIAN";;
+		arm*)         machine="elf-arm -DL_ENDIAN";;
+	#	hppa64*)      machine=parisc64;;
+		hppa*)        machine=parisc;;
+		i[0-5]86*)    machine=elf;;
+		i[6-9]86*)    machine=pentium;;
+		ia64*)        machine=ia64;;
+		m68*)         machine=m68k;;
+		mips*el*)     machine=mipsel;;
+		mips*)        machine=mips;;
+		powerpc64*)   machine=ppc64;;
+		powerpc*)     machine=ppc;;
+		sh64*)        machine=elf;;
+		sh*b*)        machine="elf-sh -DB_ENDIAN";;
+		sh*)          machine="elf-sh -DL_ENDIAN";;
+		sparc*v7*)    machine=sparcv7;;
+		sparc64*)     machine=sparcv9;;
+		sparc*)       machine=sparcv8;;
+		s390x*)       machine=s390x;;
+		s390*)        machine=s390;;
+		x86_64*)      machine=x86_64;;
+	esac
+	;;
+FreeBSD)
+	case ${chost_machine} in
+		sparc64*)     machine=sparc64;;
+		ia64*)        machine=ia64;;
+		alpha*)       machine=alpha;;
+		x86_64*)      machine=amd64;;
+		*)            machine=elf;;
+	esac
+	;;
+esac
+
+
+# If we have something, show it
+[[ -n ${machine} ]] && echo ${system}-${machine}

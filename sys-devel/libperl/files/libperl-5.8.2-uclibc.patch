@@ -1,0 +1,15 @@
+--- perl-5.8.2/perlio.c-dist	2003-12-03 14:30:24.000000000 -0700
++++ perl-5.8.2/perlio.c	2003-12-03 14:32:10.000000000 -0700
+@@ -2824,7 +2824,11 @@
+     /* XXX this could use PerlIO_canset_fileno() and
+      * PerlIO_set_fileno() support from Configure
+      */
+-#  if defined(__GLIBC__)
++#  if defined(__UCLIBC__)
++    /* uClibc must come before glibc because it defines __GLIBC__ as well. */
++    f->__filedes = -1;
++    return 1;
++#  elif defined(__GLIBC__)
+     /* There may be a better way for GLIBC:
+     	- libio.h defines a flag to not close() on cleanup
+      */	

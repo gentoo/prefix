@@ -1,0 +1,11 @@
+--- Completion/Unix/Command/_subversion.orig	2004-04-15 19:29:36.000000000 +0900
++++ Completion/Unix/Command/_subversion	2004-10-10 00:44:00.000000000 +0900
+@@ -41,7 +41,7 @@
+   if (( ! $+_svn_cmds )); then
+     typeset -gA _svn_cmds
+     _svn_cmds=(
+-      ${=${(f)${${"$(_call_program commands svn help)"#l#*Available subcommands:}%%Subversion is a tool*}}/(#s)[[:space:]]#(#b)([a-z]##)[[:space:]]#(\([a-z, ?]##\))#/$match[1] :$match[1]${match[2]:+:${${match[2]//[(),]}// /:}}:}
++      ${=${(f)${${"$(_call_program commands LC_ALL=C svn help)"#l#*Available subcommands:}%%Subversion is a tool*}}/(#s)[[:space:]]#(#b)([a-z]##)[[:space:]]#(\([a-z, ?]##\))#/$match[1] :$match[1]${match[2]:+:${${match[2]//[(),]}// /:}}:}
+     )
+   fi
+ 

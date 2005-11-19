@@ -1,0 +1,20 @@
+diff -urN groff-1.18.1-orig/tmac/docj.tmac groff-1.18.1/tmac/docj.tmac
+--- groff-1.18.1.orig/tmac/docj.tmac	2003-02-20 12:31:28.000000000 +0900
++++ groff-1.18.1/tmac/docj.tmac	2003-02-20 12:34:30.000000000 +0900
+@@ -49,14 +49,14 @@
+ .de sO
+ .mso mdoc/\\$1
+ ..
++.sO doc-doc-common
++.sO doc-doc-syms
+ .if t \{\
+ .       sO docj-ditroff
+ .\}
+ .if n \{\
+ .       sO docj-nroff
+ .\}
+-.sO doc-common
+-.sO doc-syms
+ .\" NS Db macro - start/stop DEBUG MODE
+ .\" NS Db register DEBUG MODE
+ .\" NS iN register DEBUG MODE (inline if 1, to stderr if 0 (default))

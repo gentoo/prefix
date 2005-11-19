@@ -1,0 +1,20 @@
+# tcl ebuild overwrites Apple's tcl, so we mask it (dev-lang/ruby)
+tcltk
+
+# gtk+ pulls in XML-Parser with USE="nls xml", so Perl issue should
+# be resolved first before keywording them
+gtk
+gtk2
+imlib
+
+# rxvt-unicode's tabs requires dev-perl/gtk2-perl
+tabs
+
+# wxwindows needs wxGTK which in turn needs gtk+
+wxwindows
+
+# see GCC man-page (-static): "This option will not work on Mac OS X..."
+static
+
+# pulls libidn, which has problems with java-config
+idn

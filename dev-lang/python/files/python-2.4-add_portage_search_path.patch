@@ -1,0 +1,11 @@
+--- Lib/site.py	2004-09-03 15:10:33.158488512 -0700
++++ Lib/site.py	2004-09-03 15:10:24.101865328 -0700
+@@ -183,6 +183,7 @@
+                                          "python" + sys.version[:3],
+                                          "site-packages"),
+                             os.path.join(prefix, "lib", "site-python")]
++                sitedirs = [os.path.join(prefix,"lib","portage","pym")] + sitedirs
+             else:
+                 sitedirs = [prefix, os.path.join(prefix, "lib", "site-packages")]
+             if sys.platform == 'darwin':
+

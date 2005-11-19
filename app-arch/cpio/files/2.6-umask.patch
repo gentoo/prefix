@@ -1,0 +1,38 @@
+Fix for a wicked old bug (we're talking 1999 here ... that's like 
+6 years ago ... we should party like it's 1999, but eh, you know).  
+It seems FreeBSD peeps fixed it in their tree and neglected to tell 
+the GNU peeps that this issue existed.  Not like it matters, who 
+the hell uses cpio anymore anyways ;).  Enough rambling:
+
+cpio -O ignores the current umask when creating output files.  
+The output file is being created with mode 0666.
+
+FreeBSD PR:       http://www.freebsd.org/cgi/query-pr.cgi?pr=bin/1391
+CAN-1999-1572:    http://cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-1999-1572
+FreeBSD CVS Diff: http://www.freebsd.org/cgi/cvsweb.cgi/src/contrib/cpio/main.c.diff?r1=1.1&r2=1.2
+Gentoo Bug:       http://bugs.gentoo.org/show_bug.cgi?id=79844
+GNU Bug:          http://savannah.gnu.org/patch/index.php?func=detailitem&item_id=3690
+
+Index: src/main.c
+===================================================================
+RCS file: /cvsroot/cpio/cpio/src/main.c,v
+retrieving revision 1.7
+diff -u -r1.7 main.c
+--- src/main.c	23 Nov 2004 02:05:27 -0000	1.7
++++ src/main.c	29 Jan 2005 04:37:18 -0000
+@@ -740,7 +740,6 @@
+   textdomain (PACKAGE);
+ 
+   program_name = argv[0];
+-  umask (0);
+ 
+ #ifdef __TURBOC__
+   _fmode = O_BINARY;		/* Put stdin and stdout in binary mode.  */
+@@ -751,6 +750,7 @@
+ #endif
+ 
+   process_args (argc, argv);
++  umask (0);
+ 
+   initialize_buffers ();
+ 

@@ -1,0 +1,35 @@
+--- setup.py.old	2003-11-01 09:44:51.725439600 +0000
++++ setup.py	2003-11-01 09:48:36.818220296 +0000
+@@ -12,7 +12,14 @@
+ from distutils.command.install import install
+ 
+ # This global variable is used to hold the list of modules to be disabled.
+-disabled_module_list = []
++try:
++	disabled_module_list = os.environ["PYTHON_DISABLE_MODULES"].split()
++except KeyError:
++	disabled_module_list = []
++try:
++	disable_ssl = os.environ["PYTHON_DISABLE_SSL"]
++except KeyError:
++	disable_ssl = 0
+ 
+ def find_file(filename, std_dirs, paths):
+     """Searches for the directory where a given file is located,
+@@ -210,6 +217,7 @@
+         return platform
+ 
+     def detect_modules(self):
++        global disable_ssl
+         # Ensure that /usr/local is always used
+         if '/usr/local/lib' not in self.compiler.library_dirs:
+             self.compiler.library_dirs.insert(0, '/usr/local/lib')
+@@ -378,7 +386,7 @@
+             if krb5_h:
+                 ssl_incs += krb5_h
+ 
+-        if ssl_incs is not None and ssl_libs is not None:
++        if ssl_incs is not None and ssl_libs is not None and not disable_ssl:
+             rtlibs = None
+             if platform.startswith('sunos'):
+                 rtlibs = ssl_libs

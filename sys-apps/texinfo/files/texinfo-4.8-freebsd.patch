@@ -1,0 +1,114 @@
+Adds a couple of commandline arguments which adds compatibility with fbsd's 
+install-info program.
+
+Patch by Diego Pettenò.
+
+http://bugs.gentoo.org/92434
+
+--- texinfo-4.8/util/install-info.c
++++ texinfo-4.8/util/install-info.c
+@@ -22,6 +22,8 @@
+ #include <getopt.h>
+ 
+ static char *progname = "install-info";
++/* Added for compatibility with FreeBSD texinfo */
++static char *default_section = NULL;
+ 
+ struct spec_entry;
+ struct spec_section;
+@@ -117,9 +119,13 @@
+ /* This table defines all the long-named options, says whether they
+    use an argument, and maps them into equivalent single-letter options.  */
+ 
++/* defentry and defsection added for compatibility with FreeBSD texinfo */
++
+ struct option longopts[] =
+ {
+   { "delete",    no_argument, NULL, 'r' },
++  { "defentry",  required_argument, NULL, 'E' },
++  { "defsection",  required_argument, NULL, 'S' },
+   { "dir-file",  required_argument, NULL, 'd' },
+   { "entry",     required_argument, NULL, 'e' },
+   { "help",      no_argument, NULL, 'h' },
+@@ -428,6 +434,7 @@
+   xexit (1);
+ }
+ 
++/* defentry and defsection added for compatibility with FreeBSD's texinfo */
+ void
+ print_help (void)
+ {
+@@ -439,6 +446,10 @@
+  --delete          delete existing entries for INFO-FILE from DIR-FILE;\n\
+                      don't insert any new entries.\n\
+  --dir-file=NAME   specify file name of Info directory file.\n\
++ --defentry=TEXT   same as --entry, but only use TEXT if an entry is not\n\
++                   present in INFO-FILE.\n\
++ --desection=SEC   same as --section, but only use TEXT if an entry is not\n\
++                   present in INFO-FILE.\n\
+                      This is equivalent to using the DIR-FILE argument.\n\
+  --entry=TEXT      insert TEXT as an Info directory entry.\n\
+                      TEXT should have the form of an Info menu item line\n\
+@@ -1143,6 +1154,10 @@
+   struct spec_entry *entries_to_add = NULL;
+   int n_entries_to_add = 0;
+ 
++  /* Added for compatibility w/ original texinfo in FBSD */
++  struct spec_entry *default_entries_to_add = NULL;
++  int n_default_entries_to_add = 0; 
++
+   /* Record the old text of the dir file, as plain characters,
+      as lines, and as nodes.  */
+   char *dir_data;
+@@ -1205,6 +1220,7 @@
+           dirfile = concat (optarg, "", "/dir");
+           break;
+ 
++	case 'E':
+         case 'e':
+           {
+             struct spec_entry *next
+@@ -1222,6 +1238,20 @@
+             next->next = entries_to_add;
+             entries_to_add = next;
+             n_entries_to_add++;
++
++           /* Added for compatibility with FreeBSD's texinfo */
++            if (opt == 'e')
++              {
++                next->next = entries_to_add;
++                entries_to_add = next;
++                n_entries_to_add++;
++              }
++            else
++             {
++                next->next = default_entries_to_add;
++                default_entries_to_add = next;
++                n_default_entries_to_add++;
++             }
+           }
+           break;
+ 
+@@ -1259,6 +1289,11 @@
+           }
+           break;
+ 
++        /* Added for compatibility with FreeBSD's texinfo */
++        case 'S':
++          default_section = optarg;
++          break;
++
+         case 'V':
+           printf ("install-info (GNU %s) %s\n", PACKAGE, VERSION);
+           puts ("");
+@@ -1332,7 +1367,9 @@
+             {
+               input_sections = (struct spec_section *)
+                 xmalloc (sizeof (struct spec_section));
+-              input_sections->name = "Miscellaneous";
++              /* Modified for compatibility with FreeBSD's texinfo */
++              input_sections->name = 
++                default_section ? default_section : "Miscellaneous";
+               input_sections->next = NULL;
+               input_sections->missing = 1;
+             }

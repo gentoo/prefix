@@ -1,0 +1,178 @@
+# ChangeLog for sys-apps/less
+# Copyright 1999-2005 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.44 2005/10/16 21:46:13 vapier Exp $
+
+*less-385_p4-r2 (16 Oct 2005)
+
+  16 Oct 2005; Mike Frysinger <vapier@gentoo.org> files/lesspipe.sh,
+  +less-385_p4-r2.ebuild:
+  Tweak the manpage case in lesspipe.sh to display compressed text files which
+  are named funny #109419.
+
+  17 Sep 2005; Ciaran McCreesh <ciaranm@gentoo.org> ChangeLog:
+  Converted to UTF-8, fixed encoding screwups
+
+*less-385_p4-r1 (24 Aug 2005)
+
+  24 Aug 2005; Mike Frysinger <vapier@gentoo.org> +files/code2color.patch,
+  +less-385_p4-r1.ebuild:
+  Add support for more filetypes and colorize support #46587 by José Romildo
+  Malaquias.
+
+  18 Aug 2005; Mike Frysinger <vapier@gentoo.org> less-382-r2.ebuild,
+  less-385.ebuild, less-385_p4.ebuild:
+  Add a PROVIDE for virtual/pager.
+
+*less-385_p4 (19 Jun 2005)
+
+  19 Jun 2005; Mike Frysinger <vapier@gentoo.org> +less-385_p4.ebuild:
+  Version bump with patch from Charles Levert.
+
+  18 Jun 2005; Mike Frysinger <vapier@gentoo.org> files/lesspipe.sh:
+  Import ideas from Redhats lesspipe.sh and add support for more files.
+
+*less-385 (23 May 2005)
+
+  23 May 2005; Mike Frysinger <vapier@gentoo.org> +less-385.ebuild:
+  Version bump which have UTF8 fixes #93656 by Eugene Pavlovsky.
+
+  02 Jan 2005; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  27 Sep 2004; Bart Lauwers <blauwers@gentoo.org> less-382-r2.ebuild:
+  Fix lesspipe error
+
+  11 Sep 2004; Tom Martin <slarti@gentoo.org> less-382-r2.ebuild:
+  Stable on amd64.
+
+  05 Sep 2004; Guy Martin <gmsoft@gentoo.org> less-382-r2.ebuild:
+  Stable on hppa.
+
+  03 Sep 2004; Pieter Van den Abeele <pvdabeel@gentoo.org> less-382-r2.ebuild,
+  less-382.ebuild:
+  Masked less-382.ebuild stable for ppc
+
+  03 Sep 2004; Pieter Van den Abeele <pvdabeel@gentoo.org> less-382-r2.ebuild:
+  Masked less-382-r2.ebuild stable for ppc
+
+  21 Aug 2004; Joshua Kinard <kumba@gentoo.org> less-382-r2.ebuild:
+  Marked stable on mips.
+
+  19 Aug 2004; Gustavo Zacarias <gustavoz@gentoo.org> less-382-r2.ebuild:
+  Stable on sparc
+
+  18 Aug 2004; Aron Griffis <agriffis@gentoo.org> less-382-r2.ebuild:
+  stable on alpha, ia64 and x86
+
+*less-382-r2 (16 Jun 2004)
+
+  16 Jun 2004; Aron Griffis <agriffis@gentoo.org> files/lesspipe.sh-r2,
+  -less-382-r1.ebuild:
+  Fix a quoting issue in lesspipe.sh-r2 and add a trap to prevent 'Broken pipe'
+  messages. Thanks to Glen in bug 38854
+
+*less-382-r1 (15 Jun 2004)
+
+  15 Jun 2004; Aron Griffis <agriffis@gentoo.org> +files/lesspipe.sh-r2,
+  +less-382-r1.ebuild:
+  Fix bugs 18823 (lesspipe.sh misdetects troff files) and 38854
+  (lesspipe enchancments + cannot see some files with spaces).  Thanks
+  to Niels Teglsbo and Glen for the suggestions.
+
+  11 Jun 2004; Bryan Østergaard <kloeri@gentoo.org> less-382.ebuild:
+  Stable on alpha.
+
+  05 Jun 2004; Travis Tilley <lv@gentoo.org> less-382.ebuild:
+  stable on amd64
+
+  02 Mar 2004; Brian Jackson <iggy@gentoo.org> less-382.ebuild:
+  adding initial s390 support
+
+*less-382 (16 Feb 2004)
+
+  16 Feb 2004; Brandon Low <lostlogic@gentoo.org> less-382.ebuild:
+  Bump
+
+*less-381 (26 Mar 2003)
+
+  06 Jul 2003; Joshua Kinard <kumba@gentoo.org> less-381.ebuild:
+  Changed ~mips to mips in KEYWORDS
+
+  23 Jun 2003; Aron Griffis <agriffis@gentoo.org> less-381.ebuild:
+  Mark stable on alpha
+
+  16 Apr 2003; Guy Martin <gmsoft@gentoo.org> less-381.ebuild :
+  Marked stable on hppa.
+
+  02 Apr 2003; Christian Birchinger <joker@gentoo.org> less-381.ebuild:
+  Added stable sparc keyword
+
+  26 Mar 2003; Daniel Robbins <drobbins@gentoo.org> less-381.ebuild:
+  New upstream release; marked ~x86.
+
+*less-378-r2 (08 Feb 2003)
+
+  20 Mar 2003; Rajiv Manglani <rajiv@gentoo.org> less-378-r2.ebuild :
+  Marked stable for ppc and sparc. This version of less (with LESS=-R
+  set in the environment) is needed by groff-1.18 and later. That version
+  of groff is needed by man-1.5l. man-1.5l is needed to fix a security
+  issue in previous versions of man.
+
+  28 Feb 2003; Zach Welch <zwelch@gentoo.org> less-378-r2.ebuild :
+  add arm keyword
+
+  25 Feb 2003; Guy Martin <gmsoft@gentoo.org> less-378-r2.ebuild :
+  Added hppa to keywords.
+
+  24 Feb 2003; Nicholas Wourms <dragon@gentoo.org> less-378-r2.ebuild :
+  Mark as stable for mips.
+
+  08 Feb 2003; Martin Schlemmer <azarah@gentoo.org> less-378-r2.ebuild :
+
+  Change the LESS="-r" env variable to "-R".  This should close bug #13882.
+
+*less-378-r1 (26 Dec 2002)
+
+  09 Feb 2003; Guy Martin <gmsoft@gentoo.org> less-378-r1.ebuild :
+  Added hppa to keywords.
+
+ 24 Feb 2003; Nicholas Wourms <dragon@gentoo.org> less-378-r1.ebuild :
+  Mark as stable for mips.
+
+  26 Dec 2002; Martin Schlemmer <azarah@gentoo.org> less-378-r1.ebuild :
+
+  Add /etc/env.d/70less containing 'LESS="-r"' for groff-1.18 and later support.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*less-378 (07 Jul 2002)
+
+  18 Jan 2003; Jan Seidel <tuxus@gentoo.org> :
+  Added mips to keywords
+
+  07 Oct 2002; Brandon Low <lostlogic@gentoo.org> less-378.ebuild :
+  
+  Version bump.
+
+*less-376 (03 Jul 2002)
+
+  03 Oct 2002; Brad Cowan <bcowan@gentoo.org> less-376.ebuild :
+  
+  Added --sysconfdir=/etc, fixes bug #8639
+
+  14 Jul 2002; phoen][x <phoenix@gentoo.org> less-376.ebuild :
+  Added KEYWORDS, SLOT.
+
+  03 Jul 2002; Grant Goodyear <g2boojum@gentoo.org> ChangeLog  :
+
+  New version; thanks to Terry Chan.
+
+*less-371-r1 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.

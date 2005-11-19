@@ -1,0 +1,27 @@
+--- Python-2.2.3/Python/import.c	2003-03-23 15:32:56.000000000 +0100
++++ Python-2.2.3/Python/import.c	2003-10-21 20:15:42.000000000 +0200
+@@ -719,6 +719,7 @@
+ write_compiled_module(PyCodeObject *co, char *cpathname, long mtime)
+ {
+ 	FILE *fp;
++	char *py_dontcompile;
+ 
+ 	if (CANT_WRITE(co->co_argcount) ||
+ 	    CANT_WRITE(co->co_nlocals) ||
+@@ -731,8 +732,14 @@
+ 				cpathname);
+ 		return;
+ 	}
+-
+-	fp = open_exclusive(cpathname);
++	if ((py_dontcompile = getenv("PYTHON_DONTCOMPILE")) == NULL)
++		fp = open_exclusive(cpathname);
++	else {
++		if (Py_VerboseFlag)
++			PySys_WriteStderr(
++				"# PYTHON_DONTCOMPILE is set: won't create %s\n", cpathname);
++		return;
++	}
+ 	if (fp == NULL) {
+ 		if (Py_VerboseFlag)
+ 			PySys_WriteStderr(

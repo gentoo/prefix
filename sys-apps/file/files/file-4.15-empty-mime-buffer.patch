@@ -1,0 +1,29 @@
+http://bugs.gentoo.org/106152
+
+--- src/magic.c
++++ src/magic.c
+@@ -316,12 +316,18 @@ magic_buffer(struct magic_set *ms, const
+ {
+ 	if (file_reset(ms) == -1)
+ 		return NULL;
+-	/*
+-	 * The main work is done here!
+-	 * We have the file name and/or the data buffer to be identified. 
+-	 */
+-	if (file_buffer(ms, -1, buf, nb) == -1) {
+-		return NULL;
++	if (nb == 0) {
++		if (file_printf(ms, (ms->flags & MAGIC_MIME) ?
++		    "application/x-empty" : "empty") == -1)
++			return NULL;
++	} else {
++		/*
++		 * The main work is done here!
++		 * We have the file name and/or the data buffer to be identified. 
++		 */
++		if (file_buffer(ms, -1, buf, nb) == -1) {
++			return NULL;
++		}
+ 	}
+ 	return file_getbuffer(ms);
+ }

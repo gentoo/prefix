@@ -1,0 +1,11 @@
+--- gawk-3.1.2.orig/regex.h	2003-02-25 09:58:52.000000000 +0000
++++ gawk-3.1.2/regex.h	2003-05-23 11:31:52.000000000 +0100
+@@ -552,7 +552,7 @@
+ 
+ extern int regexec _RE_ARGS ((const regex_t *__restrict __preg,
+ 			      const char *__restrict __string, size_t __nmatch,
+-			      regmatch_t __pmatch[__restrict_arr],
++			      regmatch_t __pmatch[__restrict],
+ 			      int __eflags));
+ 
+ extern size_t regerror _RE_ARGS ((int __errcode, const regex_t *__preg,

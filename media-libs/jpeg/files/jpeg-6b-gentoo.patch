@@ -1,0 +1,42 @@
+--- jpeg-6b/configure
++++ jpeg-6b/configure
+@@ -1529,7 +1529,7 @@
+ 
+ if test "x$LTSHARED" != xno  -o  "x$LTSTATIC" != xno; then
+   USELIBTOOL="yes"
+-  LIBTOOL="./libtool"
++  LIBTOOL="libtool"
+   O="lo"
+   A="la"
+   LN='$(LIBTOOL) --mode=link $(CC)'
+--- jpeg-6b/ltconfig
++++ jpeg-6b/ltconfig
+@@ -553,7 +553,7 @@
+     # On HP-UX, both CC and GCC only warn that PIC is supported... then they
+     # create non-PIC objects.  So, if there were any warnings, we assume that
+     # PIC is not supported.
+-    if test -s conftest.err; then
++    if test -s conftest.err -a $pic_flag -eq '+Z'; then
+       echo "$ac_t"no 1>&6
+       can_build_shared=no
+       pic_flag=
+--- jpeg-6b/makefile.cfg
++++ jpeg-6b/makefile.cfg
+@@ -11,13 +11,13 @@
+ # Where to install the programs and man pages.
+ prefix = @prefix@
+ exec_prefix = @exec_prefix@
+-bindir = $(exec_prefix)/bin
+-libdir = $(exec_prefix)/lib
+-includedir = $(prefix)/include
++bindir = @bindir@
++libdir = @libdir@
++includedir = @includedir@
+ binprefix =
+ manprefix =
+ manext = 1
+-mandir = $(prefix)/man/man$(manext)
++mandir = @mandir@/man$(manext)
+ 
+ # The name of your C compiler:
+ CC= @CC@

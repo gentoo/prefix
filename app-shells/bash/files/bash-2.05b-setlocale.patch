@@ -1,0 +1,17 @@
+Use NULL instead of "" to prevent overriding locale information set in
+the environment.  See
+	http://bugs.gentoo.org/show_bug.cgi?id=64266
+	http://lists.debian.or.jp/debian-devel/200210/msg00047.html
+
+diff -urN bash-2.05b.orig/lib/readline/nls.c bash-2.05b/lib/readline/nls.c
+--- bash-2.05b.orig/lib/readline/nls.c	2001-10-15 14:32:29.000000000 -0400
++++ bash-2.05b/lib/readline/nls.c	2004-09-29 12:25:24.585683597 -0400
+@@ -87,7 +87,7 @@
+   char *t;
+ 
+   /* Set the LC_CTYPE locale category from environment variables. */
+-  t = setlocale (LC_CTYPE, "");
++  t = setlocale (LC_CTYPE, NULL);
+   if (t && *t && (t[0] != 'C' || t[1]) && (STREQ (t, "POSIX") == 0))
+     {
+       _rl_meta_flag = 1;

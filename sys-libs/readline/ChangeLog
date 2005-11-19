@@ -1,0 +1,199 @@
+# ChangeLog for sys-libs/readline
+# Copyright 1999-2005 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.50 2005/09/10 17:07:07 kito Exp $
+
+  10 Sep 2005; Kito <kito@gentoo.org> readline-5.0-r2.ebuild:
+  ~ppc-macos keyword. Keep shlibs in /usr/lib and skip gen_usr_ldscript on
+  Darwin userland.
+
+  16 Jul 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/readline-5.0-darwin.patch, readline-5.0-r2.ebuild:
+  Fix support for Darwin8.  Patch by Kito #99143.
+
+  27 Jun 2005; Aron Griffis <agriffis@gentoo.org>
+  +files/readline-5.0-parallel.patch, readline-5.0-r2.ebuild:
+  Fix parallel build
+
+  09 Jun 2005; Mike Frysinger <vapier@gentoo.org> readline-5.0-r2.ebuild:
+  Stabilize for all arches.
+
+  14 Feb 2005; Michael Sterrett <mr_bones_@gentoo.org> readline-4.3-r6.ebuild:
+  macos went away
+
+*readline-5.0-r2 (12 Feb 2005)
+
+  12 Feb 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/readline-5.0-del-backspace-policy.patch,
+  +files/readline-5.0-no_rpath.patch, +files/readline-5.0-self-insert.patch,
+  +files/readline-5.0-solaris.patch, +readline-5.0-r2.ebuild:
+  Add some patches from Debian/Fedora fixing #74807 by Ivan Todoroski in the
+  process.
+
+  11 Feb 2005; Mike Frysinger <vapier@gentoo.org> +files/5.0-solaris.patch,
+  readline-5.0-r1.ebuild:
+  Add patch by Sunil to fix solaris linking #81058.
+
+  03 Jan 2005; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  24 Nov 2004; Mike Frysinger <vapier@gentoo.org> readline-5.0-r1.ebuild:
+  Force ncurses linking #71420.
+
+  30 Sep 2004; Gustavo Zacarias <gustavoz@gentoo.org> readline-4.3-r5.ebuild:
+  Stable on sparc
+
+*readline-5.0-r1 (29 Sep 2004)
+
+  29 Sep 2004; Mike Frysinger <vapier@gentoo.org>
+  +files/bash-3.0-etc-inputrc.patch, +readline-5.0-r1.ebuild:
+  Add more patches from upstream and add support for /etc/inputrc #38955.
+
+  29 Sep 2004; Lina Pezzella <j4rg0n@gentoo.org> readline-4.3-r6.ebuild:
+  Fixed collisions with history(3) on macos.
+
+  02 Sep 2004; Jeremy Huddleston <eradicator@gentoo.org> readline-5.0.ebuild:
+  get_libdir fixups for backwards compatibility with readline-4.
+
+  26 Aug 2004; Travis Tilley <lv@gentoo.org> readline-4.3-r5.ebuild,
+  readline-4.3-r6.ebuild, readline-5.0.ebuild:
+  readline failed to install correctly when lib64 was a directory, CONF_LIBDIR
+  wasnt set, and when using portage 2.0.50. to fix this i've converted the
+  ebuilds to using the new get_libdir function, set
+  --libdir=/usr/$(get_libdir), and changed einstall to make DESTDIR=${D}
+  install (since the version in 2.0.50 doesnt set libdir, breaking sandbox)
+
+  24 Aug 2004; Sven Wegener <swegener@gentoo.org> readline-4.1-r5.ebuild,
+  readline-4.3-r4.ebuild, readline-4.3-r5.ebuild, readline-4.3-r6.ebuild,
+  readline-5.0.ebuild:
+  Changed SRC_URI to use mirror:// syntax. Don't assign default to S and added
+  missing IUSE.
+
+  14 Aug 2004; Travis Tilley <lv@gentoo.org> readline-4.3-r5.ebuild,
+  readline-4.3-r6.ebuild, readline-5.0.ebuild:
+  added CONF_LIBDIR support and changed make install to einstall to avoid a
+  sandbox violation that occurs when CONF_LIBDIR is set
+
+*readline-5.0 (28 Jul 2004)
+
+  28 Jul 2004; Mike Frysinger <vapier@gentoo.org> readline-4.3-r4.ebuild,
+  readline-4.3-r5.ebuild, readline-4.3-r6.ebuild, +readline-5.0.ebuild:
+  Version bump #58648. Also add in support for upgrading from previous
+  incompatible versions #29865.
+
+  02 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  readline-4.1-r5.ebuild, readline-4.2a-r1.ebuild, readline-4.2a-r2.ebuild:
+  virtual/glibc -> virtual/libc
+
+  11 Jun 2004; Bryan Østergaard <kloeri@gentoo.org> readline-4.3-r5.ebuild:
+  Stable on alpha.
+
+  21 Mar 2004; Joshua Kinard <kumba@gentoo.org> readline-4.3-r5.ebuild:
+  Added gnuconfig support for mips
+
+  21 Feb 2004; Brad House <brad_mssw@gentoo.org> readline-4.3-r5.ebuild:
+  stable on amd64 for 2004.0 release
+
+*readline-4.3-r5 (28 Sep 2003)
+
+  28 Sep 2003; Martin Schlemmer <azarah@gentoo.org> readline-4.3-r5.ebuild:
+  Update to use official patches, which also have the multi-byte stuff.
+
+  17 Sep 2003; Jon Portnoy <avenj@gentoo.org> readline-4.3-r4.ebuild :
+  ia64 keywords.
+
+  24 Jun 2003; Aron Griffis <agriffis@gentoo.org> readline-4.3-r4.ebuild:
+  Mark stable on alpha
+
+  15 Mar 2003; Martin Schlemmer <azarah@gentoo.org> readline-4.3-r4.ebuild :
+  Remove /lib/*.old files, closing bug #16731.  Mark stable for x86.
+
+  13 Mar 2003; Olivier Reisch <doctomoe@gentoo.org> readline-4.2a-r2.ebuild:
+  Marked ppc stable.
+
+*readline-4.2a-r2 (13 Mar 2003)
+
+  13 Mar 2003; Seemant Kulleen <seemant@gentoo.org> readline-4.2a-r2.ebuild:
+  force upgrade to install the proper header
+
+  20 Feb 2003; Zach Welch <zwelch@gentoo.org> readline-4.3-r4.ebuild :
+  Added arm to keywords.
+
+  07 Feb 2003; Guy Martin <gmsoft@gentoo.org> readline-4.3-r4.ebuild :
+  Added hppa to keywords.
+
+  12 Dec 2002; Jan Seidel <tuxus@gentoo.org> readline-4.2a-r1.ebuild :
+  
+  Added mips to keywords.
+
+*readline-4.3-r4 (09 Dec 2002)
+
+  28 Mar 2003; Christian Birchinger <joker@gentoo.org> readline-4.3-r4.ebuild:
+  Added sparc stable keyword
+
+  24 Feb 2003; Nicholas Wourms <dragon@gentoo.org> readline-4.3-r4.ebuild :
+  Marked as stable for mips.
+
+  09 Dec 2002; Jon Portnoy <avenj@gentoo.org> readline-4.3-r4.ebuild :
+
+  Added a patch from upstream maintainer to fix bug:
+  
+    http://bugs.gentoo.org/show_bug.cgi?id=11762
+
+  (Python segfaults when using latin-1 chars in interactive mode)
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*readline-4.1-r5 (26 Oct 2002)
+*readline-4.2a-r1 (26 Oct 2002)
+
+  05 Mar 2003; Seemant Kulleen <seemant@gentoo.org> readline-4.2a-r1.ebuild:
+  fixed a problem with a broken include in the tilde.h file
+
+*readline-4.3-r3 (26 Oct 2002)
+
+  24 Feb 2003; Nicholas Wourms <dragon@gentoo.org> readline-4.3-r3.ebuild :
+  Marked as stable for mips.
+
+  26 Oct 2002; Martin Schlemmer <azarah@gentoo.org> readline*.ebuild :
+  Add linker scripts in /usr/lib to fix bug #4411.
+
+*readline-4.3-r2 (20 Oct 2002)
+
+  20 Oct 2002; Martin Schlemmer <azarah@gentoo.org> readline-4.3-r2.ebuild :
+  Add some official patches.
+
+*readline-4.3-r1 (1 Sep 2002)
+
+  1 Sep 2002; Martin Schlemmer <azarah@gentoo.org> readline-4.3-r1.ebuild :
+  Depend on bash that always link against internal readline, else bash
+  may break on readline update.
+
+*readline-4.3 (30 Aug 2002)
+
+  30 Aug 2002; Mark Guertin <gerk@gentoo.org> readline-4.3.ebuild :
+  set -ppc, inplace upgrade completely broke system
+
+  30 Aug 2002; Seemant Kulleen <seemant@gentoo.org> readline-4.3.ebuild
+  files/digest-readline-4.3 :
+
+  Version bump -- required by bash-2.05b (USE dependent, of course)
+
+*readline-4.1-r4 (21 Mar 2002)
+
+  15 Jul 2002; Mark Guertin <gerk@gentoo.org>
+  Added ppc to keywords
+
+  21 Mar 2002; Seemant Kulleen <seemant@gentoo.org> readline-4.1-r4.ebuild :
+
+  stefan@mdy.univie.ac.at discovered that html documentation was getting
+  gzipped.  This fixes that.
+
+*readline-4.1-r3 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.

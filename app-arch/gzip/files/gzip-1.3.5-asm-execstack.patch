@@ -1,0 +1,15 @@
+Ripped from Fedora.
+Include stack markings in the asm code so the final binary 
+isn't assumed to require executable markings.
+--- gzip-1.3.5/match.c
++++ gzip-1.3.5/match.c
+@@ -54,6 +54,9 @@
+ 	.globl	_match_init
+ 	.globl  _longest_match
+ 
++	.section .note.GNU-stack, "", @progbits
++	.previous
++	
+ 	.text
+ 
+ _match_init:

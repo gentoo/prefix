@@ -1,0 +1,17 @@
+Fix building with -fno-implicit-templates.
+
+http://bugs.gentoo.org/show_bug.cgi?id=90819
+
+Patch by Mike Frysinger (C++ sucks btw)
+
+--- c++/demo.cc
++++ c++/demo.cc
+@@ -152,6 +152,8 @@
+     return FALSE;
+   }
+ };
++template class MyAction<UserData>;
++template class NCURSES_IMPEXP NCursesUserItem<UserData>;
+ 
+ class QuitItem : public NCursesMenuItem
+ {

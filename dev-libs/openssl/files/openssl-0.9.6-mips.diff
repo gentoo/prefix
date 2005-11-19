@@ -1,0 +1,12 @@
+diff -ur openssl-0.9.6g-orig/Configure openssl-0.9.6g/Configure
+--- openssl-0.9.6g-orig/Configure	2002-08-08 23:12:40.000000000 +0200
++++ openssl-0.9.6g/Configure	2003-02-04 15:15:02.000000000 +0100
+@@ -341,7 +341,7 @@
+ "debug-linux-elf-noefence","gcc:-DBN_DEBUG -DREF_CHECK -DCONF_DEBUG -DBN_CTX_DEBUG -DCRYPTO_MDEBUG -DL_ENDIAN -DTERMIO -g -m486 -Wall::-D_REENTRANT:-ldl:BN_LLONG ${x86_gcc_des} ${x86_gcc_opts}:${x86_elf_asm}:dlfcn",
+ "linux-aout",	"gcc:-DL_ENDIAN -DTERMIO -O3 -fomit-frame-pointer -m486 -Wall::(unknown)::BN_LLONG ${x86_gcc_des} ${x86_gcc_opts}:${x86_out_asm}",
+ "linux-mipsel",   "gcc:-DL_ENDIAN -DTERMIO -O3 -fomit-frame-pointer -Wall::(unknown)::BN_LLONG:::",
+-"linux-mips",   "gcc:-DB_ENDIAN -DTERMIO -O3 -fomit-frame-pointer -Wall::(unknown)::BN_LLONG:::",
++"linux-mips",	"gcc:-DB_ENDIAN -DTERMIO -O3 -fomit-frame-pointer -Wall::-D_REENTRANT:-ldl:BN_LLONG RC4_CHAR RC4_CHUNK DES_RISC1 DES_UNROLL::::::::::dlfcn:linux-shared:-fPIC::.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR)",
+ "linux-ppc",	"gcc:-DB_ENDIAN -DTERMIO -O3 -fomit-frame-pointer -Wall::-D_REENTRANT:-ldl:BN_LLONG RC4_CHAR RC4_CHUNK DES_RISC1 DES_UNROLL::::::::::dlfcn:linux-shared:-fPIC::.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR)",
+ "linux-m68k",   "gcc:-DB_ENDIAN -DTERMIO -O2 -fomit-frame-pointer -Wall::-D_REENTRANT::BN_LLONG::",
+ "linux-s390",	"gcc:-DB_ENDIAN -DTERMIO -DNO_ASM -O3 -fomit-frame-pointer -Wall::-D_REENTRANT:-ldl:BN_LLONG::::::::::dlfcn:linux-shared:-fPIC::.so.\$(SHLIB_MAJOR),\$(SHLIB_MINOR)",

@@ -1,0 +1,22 @@
+The huft_build() function should return 2 if the input is invalid (such 
+as all zero length codes) and 0 if the input is valid.  The zero length 
+code check incorrectly returns 0 however causing gzip to segv on some 
+invalid input cases.
+
+Discovered & fixed by Tavis Ormandy.
+
+http://bugs.gentoo.org/94584
+
+--- inflate.c
++++ inflate.c
+@@ -336,9 +336,9 @@ int huft_build(b, n, s, d, e, t, m)
+   if (c[0] == n)                /* null input--all zero length codes */
+   {
+     *t = (struct huft *)NULL;
+     *m = 0;
+-    return 0;
++    return 2;
+   }
+ 
+ 
+   /* Find minimum and maximum length, bound *m by those */

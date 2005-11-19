@@ -1,0 +1,17 @@
+Support Darwin8 properly.
+
+Patch by Kito.
+
+http://bugs.gentoo.org/99143
+
+--- support/shobj-conf
++++ support/shobj-conf
+@@ -146,7 +146,7 @@
+ 	SHLIB_LIBSUFF='dylib'
+ 
+ 	case "${host_os}" in
+-	darwin7*)	SHOBJ_LDFLAGS=''
++	darwin[78]*)	SHOBJ_LDFLAGS=''
+ 			SHLIB_XLDFLAGS='-dynamiclib -arch_only `/usr/bin/arch` -install_name $(libdir)/$@ -current_version $(SHLIB_MAJOR)$(SHLIB_MINOR) -compatibility_version $(SHLIB_MAJOR) -v'
+ 			;;
+ 	*)		SHOBJ_LDFLAGS='-dynamic'

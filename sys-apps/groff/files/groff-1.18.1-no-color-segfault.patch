@@ -1,0 +1,33 @@
+--- groff-1.18.1/src/roff/troff/node.cc.orig	2003-01-08 20:29:35.000000000 +0200
++++ groff-1.18.1/src/roff/troff/node.cc	2003-01-08 22:37:46.000000000 +0200
+@@ -992,8 +992,10 @@
+   if (c == '\0') {
+     flush_tbuf();
+     do_motion();
+-    glyph_color(gcol);
+-    fill_color(fcol);
++    if (gcol)
++      glyph_color(gcol);
++    if (fcol)
++      fill_color(fcol);
+     check_charinfo(tf, ci);
+     if (ci->numbered()) {
+       put('N');
+@@ -1162,7 +1164,7 @@
+ 
+ void troff_output_file::fill_color(color *col)
+ {
+-  if ((current_fill_color == col) || !color_flag)
++  if ((current_fill_color == col) || !color_flag || !col)
+     return;
+   flush_tbuf();
+   put("DF");
+@@ -1210,7 +1212,7 @@
+ 
+ void troff_output_file::glyph_color(color *col)
+ {
+-  if ((current_glyph_color == col) || !color_flag)
++  if ((current_glyph_color == col) || !color_flag || !col)
+     return;
+   flush_tbuf();
+   put("m");

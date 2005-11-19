@@ -1,0 +1,40 @@
+--- perl.c.orig	2005-07-26 13:04:54.000000000 -0400
++++ perl.c	2005-07-26 13:05:05.000000000 -0400
+@@ -4397,9 +4397,9 @@ S_init_perllib(pTHX)
+     incpush(APPLLIB_EXP, TRUE, TRUE, TRUE);
+ #endif
+ 
+-#ifdef ARCHLIB_EXP
+-    incpush(ARCHLIB_EXP, FALSE, FALSE, TRUE);
+-#endif
++    /* for configuration where /usr is mounted ro (CPAN::Config, Net::Config) */
++    incpush("/etc/perl", FALSE, FALSE, TRUE);
++
+ #ifdef MACOS_TRADITIONAL
+     {
+ 	Stat_t tmpstatbuf;
+@@ -4426,8 +4426,6 @@ S_init_perllib(pTHX)
+ #endif
+ #if defined(WIN32)
+     incpush(PRIVLIB_EXP, TRUE, FALSE, TRUE);
+-#else
+-    incpush(PRIVLIB_EXP, FALSE, FALSE, TRUE);
+ #endif
+ 
+ #ifdef SITEARCH_EXP
+@@ -4471,6 +4469,15 @@ S_init_perllib(pTHX)
+     incpush(PERL_VENDORLIB_STEM, FALSE, TRUE, TRUE);
+ #endif
+ 
++    incpush(ARCHLIB_EXP, FALSE, FALSE, TRUE);
++    incpush(PRIVLIB_EXP, FALSE, FALSE, TRUE);
++
++    /* Non-versioned site directory for local modules and for
++       compatability with the previous packages' site dirs */
++
++    incpush("/usr/local/lib/site_perl", TRUE, FALSE, TRUE);
++
++
+ #ifdef PERL_OTHERLIBDIRS
+     incpush(PERL_OTHERLIBDIRS, TRUE, TRUE, TRUE);
+ #endif

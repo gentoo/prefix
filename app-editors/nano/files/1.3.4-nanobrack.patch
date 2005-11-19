@@ -1,0 +1,15 @@
+diff -ur nano-1.3.4/src/rcfile.c nano-1.3.4-fixed/src/rcfile.c
+--- nano-1.3.4/src/rcfile.c	2004-08-18 05:31:26.000000000 +0200
++++ nano-1.3.4-fixed/src/rcfile.c	2004-08-18 18:01:24.000000000 +0200
+@@ -611,9 +611,10 @@
+ 			    else
+ #endif
+ 			    if (strcasecmp(rcopts[i].name, "tabsize") == 0) {
+-				if (!parse_num(option, &tabsize) || tabsize <= 0)
++				if (!parse_num(option, &tabsize) || tabsize <= 0) {
+ 				    rcfile_error(N_("Requested tab size %s invalid"), option);
+ 				    tabsize = -1;
++				}
+ 			    }
+ 			} else
+ 			    SET(rcopts[i].flag);

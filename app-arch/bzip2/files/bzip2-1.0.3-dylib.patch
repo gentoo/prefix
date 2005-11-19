@@ -1,0 +1,49 @@
+--- Makefile	2005-02-17 05:28:24.000000000 -0600
++++ Makefile-new	2005-10-12 20:26:29.000000000 -0500
+@@ -39,15 +39,24 @@
+ 		$(RANLIB) libbz2.a ; \
+ 	fi
+ 
++libbz2.dylib: $(OBJS)
++	rm -f libbz2.dylib
++	$(CC) -dynamiclib $(OBJS) -o libbz2.1.0.3.dylib \
++		-install_name $(PREFIX)/lib/libbz2.1.0.dylib \
++		-compatibility_version 1.0 -current_version 1.0.3
++	ln -s libbz2.1.0.3.dylib libbz2.1.0.dylib
++	ln -s libbz2.1.0.dylib libbz2.1.dylib
++	ln -s libbz2.1.dylib libbz2.dylib
++
+ check: test
+ test: bzip2
+ 	@cat words1
+-	./bzip2 -1  < sample1.ref > sample1.rb2
+-	./bzip2 -2  < sample2.ref > sample2.rb2
+-	./bzip2 -3  < sample3.ref > sample3.rb2
+-	./bzip2 -d  < sample1.bz2 > sample1.tst
+-	./bzip2 -d  < sample2.bz2 > sample2.tst
+-	./bzip2 -ds < sample3.bz2 > sample3.tst
++	DYLD_LIBRARY_PATH=. ./bzip2 -1  < sample1.ref > sample1.rb2
++	DYLD_LIBRARY_PATH=. ./bzip2 -2  < sample2.ref > sample2.rb2
++	DYLD_LIBRARY_PATH=. ./bzip2 -3  < sample3.ref > sample3.rb2
++	DYLD_LIBRARY_PATH=. ./bzip2 -d  < sample1.bz2 > sample1.tst
++	DYLD_LIBRARY_PATH=. ./bzip2 -d  < sample2.bz2 > sample2.tst
++	DYLD_LIBRARY_PATH=. ./bzip2 -ds < sample3.bz2 > sample3.tst
+ 	cmp sample1.bz2 sample1.rb2 
+ 	cmp sample2.bz2 sample2.rb2
+ 	cmp sample3.bz2 sample3.rb2
+@@ -95,8 +104,14 @@
+ 	echo ".so man1/bzmore.1" > $(PREFIX)/man/man1/bzless.1
+ 	echo ".so man1/bzdiff.1" > $(PREFIX)/man/man1/bzcmp.1
+ 
++install-dylib: libbz2.dylib
++	cp -f libbz2.1.0.3.dylib $(PREFIX)/lib                                  
++	cp -f libbz2.1.0.dylib $(PREFIX)/lib                                    
++	cp -f libbz2.1.dylib $(PREFIX)/lib                                      
++	cp -f libbz2.dylib $(PREFIX)/lib                                        
++ 
+ clean: 
+-	rm -f *.o libbz2.a bzip2 bzip2recover \
++	rm -f *.o libbz2.a *.dylib bzip2 bzip2recover \
+ 	sample1.rb2 sample2.rb2 sample3.rb2 \
+ 	sample1.tst sample2.tst sample3.tst
+ 

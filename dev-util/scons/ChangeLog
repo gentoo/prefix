@@ -1,0 +1,118 @@
+# ChangeLog for dev-util/scons
+# Copyright 2002-2005 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.29 2005/07/10 10:26:57 twp Exp $
+
+*scons-0.96.90 (10 Jul 2005)
+
+  10 Jul 2005; Tom Payne <twp@gentoo.org> -scons-0.0.9.ebuild,
+  -scons-0.94-r1.ebuild, -scons-0.94-r2.ebuild, -scons-0.95.ebuild,
+  -scons-0.96.ebuild, +scons-0.96.90.ebuild:
+  Version bump. Bug # 93887. Remove old versions.
+
+  22 May 2005; Tobias Scherbaum <dertobi123@gentoo.org> scons-0.96.1.ebuild:
+  Stable on ppc.
+
+  21 Apr 2005; Michael Hanselmann <hansmi@gentoo.org> scons-0.96.ebuild:
+  Stable on ppc.
+
+  01 Apr 2005; Aron Griffis <agriffis@gentoo.org> scons-0.96.1.ebuild:
+  stable on ia64
+
+  06 Feb 2005; Kito <kito@gentoo.org> scons-0.96.1.ebuild:
+  keyword ~ppc-macos
+
+  31 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  30 Oct 2004; Jason Wever <weeve@gentoo.org> scons-0.96.1.ebuild:
+  Stable on sparc.
+
+  19 Oct 2004; Dylan Carlson <absinthe@gentoo.org> scons-0.94-r1.ebuild,
+  scons-0.95.ebuild, scons-0.96.1.ebuild, scons-0.96.ebuild:
+  Stable on amd64.
+
+  10 Oct 2004; Bryan Østergaard <kloeri@gentoo.org> scons-0.96.1.ebuild:
+  Stable on alpha.
+
+  04 Oct 2004; Tom Payne <twp@gentoo.org> +metadata.xml:
+  Now maintained by twp@g.o.
+
+*scons-0.96.1 (04 Oct 2004)
+
+  04 Oct 2004; Tom Payne <twp@gentoo.org> +scons-0.96.1.ebuild:
+  Version bump and stable on x86.
+
+*scons-0.96 (18 Aug 2004)
+
+  18 Aug 2004; Bryan Østergaard <kloeri@gentoo.org> +scons-0.96.ebuild:
+  Version bump.
+
+  24 Jun 2004; Jeremy Huddleston <eradicator@gentoo.org> scons-0.94-r2.ebuild:
+  Stable amd64.
+
+  04 Jun 2004; Bryan Østergaard <kloeri@gentoo.org> scons-0.95.ebuild:
+  Stable on alpha.
+
+  18 Apr 2004; Jason Wever <weeve@gentoo.org> scons-0.94-r2.ebuild:
+  Stable on sparc.
+
+*scons-0.95 (04 Apr 2004)
+
+  04 Apr 2004; Bryan Østergaard <kloeri@gentoo.org> scons-0.94-r2.ebuild,
+  scons-0.95.ebuild:
+  scons-0.94-r2 stable on x86, add scons-0.95.
+
+*scons-0.94-r2 (26 Feb 2004)
+
+  26 Feb 2004; <kloeri@gentoo.org> scons-0.94-r2.ebuild:
+  Byte-compile .py files, closing bug #42660.
+
+*scons-0.94-r1 (16 Dec 2003)
+
+  16 Dec 2003; Heinrich Wendel <lanius@gentoo.org> scons-0.93.ebuild,
+  scons-0.94-r1.ebuild, scons-0.94.ebuild:
+  - removed old ebuilds
+  - now uses distutils eclass
+  - marked 0.94 stable on x86, ppc
+
+*scons-0.93 (28 Oct 2003)
+
+  28 Oct 2003; Martin Holzer <mholzer@gentoo.org> scons-0.93.ebuild:
+  Version bumped. closes #31833.
+
+*scons-0.92 (13 Oct 2003)
+
+  13 Oct 2003; Heinrich Wendel <lanius@gentoo.org> scons-0.92.ebuild:
+  bump
+
+*scons-0.90 (10 Jul 2003)
+
+  10 Jul 2003; Yannick Koehler <ykoehler@gentoo.org> scons-0.90.ebuild files/digest-scons-0.90 ChangeLog :
+  Version bumped.
+
+*scons-0.0.9 (04 Jan 2003)
+
+  04 Jan 2003; Martin Holzer <mholzer@gentoo.org> scons-0.0.9.ebuild files/digest-scons-0.0.9 ChangeLog :
+  Version bumped. Closes #13236 
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*scons-0.0.7 (18 May 2002)
+
+  18 May 2002; M.Thibaut <murphy@gentoo.org> scons-0.0.7.ebuild :
+  
+  Add new revision. Several changes in commandline options.
+
+*scons-0.0.3 (3 Feb 2002)
+
+  3 Feb 2002; Karl Trygve Kalleberg <karltk@gentoo.org> scons-0.0.3.ebuild files/digest-scons-0.0.3
+
+  Added new revision. This one supports proper piping in the commands.
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.

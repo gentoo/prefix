@@ -1,0 +1,288 @@
+#!/bin/bash
+
+
+# sort of a changelog if you want to call it that...
+
+# version 1.2 - swtaylor gave some good pointers on making the tmp files, as well as reminding me of grep's -f functionality :)
+# version 1.1 - Mr. Bones gave a lot of good input on cleaning up the script
+# Version 1 - stuff
+
+# First and foremost - make sure we have a perl to work with...
+PERL=$(which perl)
+if [ "${PERL}x" == "x" ]; then
+   echo "NO PERL INSTALLED!! (at least not in your path)"
+   exit
+fi
+eval $(perl '-V:version')
+PERL_VERSION=${version}
+
+TMPDIR=${TMPDIR:-/tmp}
+
+PKGDIR=$(/usr/bin/portageq vdb_path)
+DATESTAMP=$(date +"%Y%m%d%H%M%S")
+LOG=$(mktemp ${TMPDIR}/perl-cleaner.log.$DATESTAMP.XXXXXXXXXX)
+PAGER=${PAGER:-more}
+
+# Set up our temporary files
+MODULES_LIST=$(mktemp ${TMPDIR}/modules.list.XXXXXXXXXX)
+EBUILDS_PREINSTALL=$(mktemp ${TMPDIR}/ebuilds.preinstall.XXXXXXXXXX)
+EBUILDS_ORDERED=$(mktemp ${TMPDIR}/ebuilds.ordered.XXXXXXXXXX)
+EBUILDS_REINSTALL=$(mktemp ${TMPDIR}/ebuilds.reinstall.XXXXXXXXXX)
+
+ASK=""
+
+if [ ! -z $2 ]; then
+   ASK="--ask"
+fi
+
+
+
+function postclean {
+   for FILE in ${MODULES_LIST} ${EBUILDS_PREINSTALL} ${EBUILDS_ORDERED} ${EBUILDS_REINSTALL}; do
+
+      if [ -f $FILE ]; then
+         rm -f $FILE
+      fi
+
+   done
+
+   if [ -s $LOG ]; then
+     echo
+     echo "For a complete log, please read $LOG"
+     echo
+   else
+      if [ -f $LOG ]; then
+	rm -f $LOG
+      fi
+   fi
+}
+
+# This is to clean out the old .ph files generated in our last perl install
+function ph_clean() {
+   echo "$(date) : Beginning a clean up of .ph files" | tee -a $LOG
+
+   INC=$(perl -e 'for $line (@INC) { next if $line eq "."; next if $line =~ m/'${PERL_VERSION}'/; print "$line\n" }')
+
+   echo "Locating ph files for removal"
+   for DIR in $INC; do
+      if [ -d $DIR ]; then
+         for file in $(find $DIR -name "*.ph" -type f); do
+            if [ ! $(echo "$file"|grep $PERL_VERSION) ]; then
+               echo "$(date) : Removing old ph file: $file" | tee -a $LOG
+               rm $file
+            fi
+         done
+      fi
+   done
+   for DIR in $INC; do
+	 for empty in $(find $DIR -type d); do
+		# Silently remove those dirs that we just emptied
+	 	rmdir $empty  >/dev/null 2>&1
+   	 done
+   done
+}
+
+# Generate ph files; this is useful if we've upgraded packages with headers so that perl knows the new info
+function ph_update() {
+   echo "$(date) : Updating ph files" | tee -a $LOG
+   cd /usr/include; h2ph * sys/* arpa/* netinet/* bits/* security/* asm/* gnu/* linux/* | tee -a $LOG
+   cd /usr/include/linux; h2ph * | tee -a $LOG
+}
+
+# Build a list of modules installed under older perls - only valid if the module was an ebuild :)
+function module_list() {
+# Reset INC - INC is dynamically generated, and if we removed any ph 
+# files - and they were the only thing left in a dir - then there's 
+# no sense in revisiting that dir
+   echo "$(date) : Building list of modules for reinstall" | tee -a $LOG
+   INC=$(perl -e 'for $line (@INC) { next if $line eq "."; next if $line =~ m/'${PERL_VERSION}'/; print "$line\n" }')
+   MODFIND=$(mktemp ${TMPDIR}/modules.found.XXXXXXXXXX)
+   echo "Locating modules for reinstall"
+   for DIR in $INC; do
+      if [ -d $DIR ]; then
+         for file in $(find $DIR -iname "*.pm" -type f|grep -v "${PERL_VERSION}"); do
+	    echo "$file" >>$MODFIND
+         done
+      fi
+   done
+   grep -f $MODFIND -l $PKGDIR/*/*/CONTENTS >${MODULES_LIST}
+   rm $MODFIND
+}
+
+# The meat of it - rebuilding the ebuilds
+# ALL emerges are oneshots - we don't want to mess with the world file
+# We first attempt to emerge the specific module that was installed last time
+# If that fails, we attempt to install a newer version
+
+function ebuild_rebuild() {
+
+   echo "$(date) : Rebuilding modules: Building list of ebuilds" | tee -a $LOG
+   if [ -s ${MODULES_LIST} ]; then
+      for line in $(sort -u ${MODULES_LIST}); do
+         echo "$line"|sed -e 's|.*pkg/||' -e 's|/CONTENTS||'|grep -v "dev-lang/perl" >>${EBUILDS_PREINSTALL}
+      done
+   fi
+
+
+# If they asked for interactive, let them see what will be reinstalled
+   if [ -s ${EBUILDS_PREINSTALL} ]; then
+  
+     if [ ! -z $ASK ]; then
+        echo "Press Enter to see the list of ebuilds we'll be avaluating"
+        read key
+        $PAGER ${EBUILDS_PREINSTALL}
+        printf "Continue? (Y/N) "
+        read ANSWER
+        if [ $(echo "${ANSWER}" | egrep -e "^n|N" ) ]; then
+           echo "$(date) : USER ABORTED REBUILD">>$LOG
+           exit
+        fi
+     fi
+  
+     for EBUILD in $(cat ${EBUILDS_PREINSTALL} ); do
+        if emerge --oneshot -p "=$EBUILD"|egrep -q ".*ebuilds.*satisfy"; then
+           if emerge --oneshot -p ">=$EBUILD"|egrep -q ".*ebuilds.*satisfy"; then
+              echo "$(date) : There are no unmasked ebuilds to satisfy $EBUILD. Skipping" | tee -a $LOG
+              sleep 2
+           else
+              if [ ! -z $ASK ]; then
+                 printf "${EBUILD} isn't available, but a new version is. Install? (Y/N) "
+                 read ANSWER
+                 if [ $(echo "${ANSWER}" | egrep -e "^y|Y" ) ]; then
+                    echo ">=$EBUILD" >> ${EBUILDS_ORDERED}
+	            echo "$(date) : User chose to install >=${EBUILD}">>$LOG
+                 fi
+              else
+                 echo ">=$EBUILD" >>${EBUILDS_ORDERED}
+              fi
+           fi
+     else
+        echo "=$EBUILD">>${EBUILDS_ORDERED}
+     fi
+     done
+
+    if [ -s ${EBUILDS_ORDERED} ]; then
+     if [ ! -z $ASK ]; then
+        echo "Press Enter to see the final list of ebuilds to install"
+        read key
+        $PAGER ${EBUILDS_ORDERED}
+        printf "Continue? (Y/N) "
+        read ANSWER
+        if [ $(echo "${ANSWER}" | egrep -e "^n|N" ) ]; then
+           echo "$(date) : USER ABORTED REBUILD">>$LOG
+           exit
+        fi
+     fi
+
+# Cut down to one line so portage can handle ordering these appropriately
+     emerge -p --oneshot $(cat ${EBUILDS_ORDERED} ) | grep ebuild | sed -e 's:\([^ ]\+\):=\1:g' -e 's:.*\] \([^ ]*\) .*:\1:'>>${EBUILDS_REINSTALL}
+
+     echo "Reinstalling ebuilds"
+     echo "$(date) : Ebuilds to reinstall: ">>$LOG
+     cat ${EBUILDS_REINSTALL}>>$LOG
+     echo >>$LOG
+
+# Now that we have them in the right order, emerge them one at a time
+# This is to avoid problems if one doesn't emerge correctly
+
+     for EBUILD in $(cat ${EBUILDS_REINSTALL}); do
+        emerge --oneshot ${ASK} "$EBUILD"
+     done
+    else
+	   echo
+	   echo "Nothing to reinstall!"
+	   echo
+    fi
+   else
+	   echo
+	   echo "Nothing to reinstall!"
+	   echo
+   fi
+
+}
+
+# Locate .so's and binaries linked against libperl.so
+# The coup is in ! -newer libperl.so - cut out anything that was obviously installed
+# after our last install of libperl, which should cut out the false positives.
+
+function libperl_list() {
+   echo "$(date) : Locating ebuilds linked against libperl" | tee -a $LOG
+   for i in $(find $(egrep -v ^# /etc/ld.so.conf) -type f -name '*.so*' ! -newer /usr/lib/libperl.so ) \
+         $(find $(echo $PATH | sed 's/:/ /g') -type f -perm +0111 ! -newer /usr/lib/libperl.so ) ;
+   do
+     if [ -f ${i} ]; then
+        ldd ${i} 2>&1 | grep "libperl" - >/dev/null && grep -l $i $PKGDIR/*/*/CONTENTS>>${MODULES_LIST};
+     fi
+   done 
+
+}
+
+# Assuming a successful module run, look to see whats left over
+function leftovers() {
+   echo "$(date) : Finding left over modules" | tee -a $LOG
+
+   echo "$(date) : The following files remain. These were either installed by hand" | tee -a $LOG
+   echo "$(date) : or edited. This script cannot deal with them." | tee -a $LOG
+   echo | tee -a $LOG
+
+
+   INC=$(perl -e 'for $line (@INC) { next if $line eq "."; next if $line =~ m/'${PERL_VERSION}'/; print "$line\n" }')
+   for DIR in $INC; do
+      if [ -d $DIR ]; then
+         for file in $(find $DIR -type f |grep -v  "${PERL_VERSION}" ) ; do
+            echo "$(date) : ${file}" | tee -a $LOG
+         done
+      fi
+   done
+}
+
+
+case "$1" in
+   leftovers)
+      leftovers
+      ;;
+   modules)
+      module_list
+      ebuild_rebuild
+      leftovers
+      ;;
+   libperl)
+      libperl_list
+      ebuild_rebuild
+      ;;
+   ph-clean)
+      ph_clean
+      ;;
+   phupdate)
+      ph_update
+      ;;
+   phall)
+      ph_clean
+      ph_update
+      ;;
+   all)
+      ph_clean
+      ph_update
+      module_list
+      libperl_list
+      ebuild_rebuild
+      leftovers
+      ;;
+   *)
+   echo "Usage: $0 [options] [ask]"
+   printf "\tmodules - rebuild perl modules\n"
+   printf "\tlibperl - rebuild anything linked against libperl\n"
+   printf "\tph-clean - clean out old ph files from a previous perl\n"
+   printf "\tphupdate - update existing ph files, useful after an upgrade to system parts like the kernel\n"
+   printf "\tphall - clean out old ph files and run phupdate\n"
+   printf "\tall - rebuild modules, libperl linkages, clean ph files, and rebuild them\n"
+   printf "\n"
+   printf "\task - ask for confirmation on each emerge"
+   printf "\n\n"
+   
+      ;;
+esac
+
+postclean
+
+exit

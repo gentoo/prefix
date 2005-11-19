@@ -1,0 +1,18 @@
+Make sure when we cast as a pointer we don't truncate.
+
+Patch by Daniel Gryniewicz.
+
+Index: ssl/ssltest.c
+===================================================================
+RCS file: /usr/local/src/openssl/cvs-tree/openssl/ssl/ssltest.c,v
+retrieving revision 1.91
+diff -u -U1 -r1.91 ssltest.c
+--- ssl/ssltest.c	9 Apr 2005 16:07:11 -0000	1.91
++++ ssl/ssltest.c	10 May 2005 02:07:38 -0000
+@@ -1988,4 +1988,4 @@
+ 		fprintf(stderr, "Arg is: %s\n", cb_arg->string);
+-		fprintf(stderr, "Finished printing do we have a context? 0x%x a cert? 0x%x\n",
+-			(unsigned int)ctx, (unsigned int)ctx->cert);
++		fprintf(stderr, "Finished printing do we have a context? 0x%p a cert? 0x%p\n",
++			ctx, ctx->cert);
+ 		if (ctx->cert)

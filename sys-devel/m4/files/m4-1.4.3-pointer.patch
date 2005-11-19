@@ -1,0 +1,43 @@
+Grab changes from upstream gnulib CVS.  We want to make sure 
+that when we deal with pointers, we never try and store a pointer 
+in a type that is smaller than the size of a pointer.
+
+http://bugs.gentoo.org/show_bug.cgi?id=87873
+
+--- lib/regex.c
++++ lib/regex.c
+@@ -1023,2 +1023,3 @@
+ 
++typedef unsigned long int active_reg_t;
+ #define PUSH_FAILURE_POINT(pattern_place, string_place, failure_code)	\
+@@ -1028,3 +1029,3 @@
+        of 0 + -1 isn't done as unsigned.  */				\
+-    int this_reg;							\
++    active_reg_t this_reg;							\
+     									\
+@@ -1135,3 +1136,3 @@
+   DEBUG_STATEMENT (fail_stack_elt_t failure_id;)			\
+-  int this_reg;								\
++  active_reg_t this_reg;								\
+   const unsigned char *string_temp;					\
+@@ -1166,6 +1167,6 @@
+   /* Restore register info.  */						\
+-  high_reg = (unsigned) POP_FAILURE_ITEM ();				\
++  high_reg = (active_reg_t) POP_FAILURE_ITEM ();				\
+   DEBUG_PRINT2 ("  Popping high active reg: %d\n", high_reg);		\
+ 									\
+-  low_reg = (unsigned) POP_FAILURE_ITEM ();				\
++  low_reg = (active_reg_t) POP_FAILURE_ITEM ();				\
+   DEBUG_PRINT2 ("  Popping  low active reg: %d\n", low_reg);		\
+@@ -3406,4 +3407,4 @@
+   /* The currently active registers.  */
+-  unsigned lowest_active_reg = NO_LOWEST_ACTIVE_REG;
+-  unsigned highest_active_reg = NO_HIGHEST_ACTIVE_REG;
++  active_reg_t lowest_active_reg = NO_LOWEST_ACTIVE_REG;
++  active_reg_t highest_active_reg = NO_HIGHEST_ACTIVE_REG;
+ 
+@@ -3992,3 +3993,3 @@
+                           /* xx why this test?  */
+-                          if ((int) old_regend[r] >= (int) regstart[r])
++                          if (old_regend[r] >= regstart[r])
+                             regend[r] = old_regend[r];

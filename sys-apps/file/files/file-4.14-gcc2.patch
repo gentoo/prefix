@@ -1,0 +1,13 @@
+--- file-4.14/src/readelf.c	2005-07-24 14:11:30 +0200
++++ file-4.14.az/src/readelf.c	2005-07-24 14:11:46 +0200
+@@ -490,9 +490,9 @@
+ 
+ 	if (namesz == 10 && strcmp((char *)&nbuf[noff], "DragonFly") == 0 &&
+ 	    nh_type == NT_DRAGONFLY_VERSION && descsz == 4) {
++		uint32_t desc;
+ 		if (file_printf(ms, ", for DragonFly") == -1)
+ 			return size;
+-		uint32_t desc;
+ 		(void)memcpy(&desc, &nbuf[doff], sizeof(desc));
+ 		desc = getu32(swap, desc);
+ 		if (file_printf(ms, " %d.%d.%d", desc / 100000,

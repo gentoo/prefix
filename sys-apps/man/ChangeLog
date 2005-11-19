@@ -1,0 +1,318 @@
+# ChangeLog for sys-apps/man
+# Copyright 1999-2005 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.76 2005/09/17 00:31:13 ciaranm Exp $
+
+  17 Sep 2005; Ciaran McCreesh <ciaranm@gentoo.org> ChangeLog:
+  Converted to UTF-8, fixed encoding screwups
+
+  03 Sep 2005; Mike Frysinger <vapier@gentoo.org> man-1.5p.ebuild,
+  man-1.6-r1.ebuild, man-1.6a.ebuild:
+  Create the man user/group.
+
+*man-1.6a (22 Aug 2005)
+
+  22 Aug 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/man-1.6a-parallel-make.patch, +man-1.6a.ebuild:
+  Version bump.
+
+  11 Aug 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/man-1.6-cross-compile.patch, man-1.6-r1.ebuild:
+  Fix cross-compile support.
+
+*man-1.6-r1 (09 Jul 2005)
+
+  09 Jul 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/man-1.6-message-order.patch, +man-1.6-r1.ebuild:
+  Add a patch by Martin von Gagern to fix segfaults for non-english users #97541.
+
+  02 Jul 2005; Mike Frysinger <vapier@gentoo.org> man-1.6.ebuild:
+  Only build/install languages as defined by $LINGUAS #97612 by Martin von
+  Gagern.
+
+  30 Jun 2005; Luca Barbato <lu_zero@gentoo.org>
+  +files/man-1.6-parallel-make.patch, man-1.6.ebuild:
+  Proper fix by Octavio Ruiz (Ta^3) fixes bug #97439.
+
+  30 Jun 2005; Luca Barbato <lu_zero@gentoo.org> man-1.6.ebuild:
+  Forced -j1 in the ebuild
+
+*man-1.6 (30 Jun 2005)
+
+  30 Jun 2005; Mike Frysinger <vapier@gentoo.org> +man-1.6.ebuild:
+  Version bump.
+
+  04 Mar 2005; Ciaran McCreesh <ciaranm@gentoo.org> man-1.5p.ebuild:
+  Move sys-apps/cronbase -> sys-process/cronbase
+
+*man-1.5p (12 Jan 2005)
+
+  12 Jan 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/man-1.5p-defmanpath-symlinks.patch,
+  +files/man-1.5p-parallel-make.patch, +files/man-1.5p-search-order.patch,
+  +man-1.5p.ebuild:
+  Version bump.
+
+*man-1.5o_p2 (07 Jan 2005)
+
+  07 Jan 2005; Mike Frysinger <vapier@gentoo.org>
+  files/man-1.5m-groff-1.18.patch, +man-1.5o_p2.ebuild:
+  Version bump.  Also fix the <B7> gremlins #44201 by Chris Smith.
+  Punt redhat fixes since they are outdated and not really useful anymore.
+
+*man-1.5o_p1 (13 Dec 2004)
+
+  13 Dec 2004; Mike Frysinger <vapier@gentoo.org>
+  files/man-1.5m-security.patch, +files/man-1.5o_p1-man2html-CFLAGS.patch,
+  +man-1.5o_p1.ebuild:
+  Version bump.
+
+  13 Dec 2004; Mike Frysinger <vapier@gentoo.org>
+  +files/man-1.5m-cross-compile.patch, man-1.5m-r2.ebuild:
+  Fix cross-compiling.
+
+  08 Nov 2004; Mike Frysinger <vapier@gentoo.org> man-1.5m-r2.ebuild:
+  Install manpath symlink #70278 by Heinrich Rebehn.
+
+*man-1.5m-r2 (03 Oct 2004)
+
+  03 Oct 2004; Mike Frysinger <vapier@gentoo.org>
+  +files/man-1.5m-locale-order.patch, +man-1.5m-r2.ebuild:
+  Add patch to fix locale support #37778 by Magnus Lind / Antti Mäkelä.
+
+  25 Sep 2004; Joshua Kinard <kumba@gentoo.org> man-1.5m-r1.ebuild:
+  Marked stable on mips.
+
+  03 Sep 2004; Pieter Van den Abeele <pvdabeel@gentoo.org> man-1.5m-r1.ebuild,
+  man-1.5m.ebuild:
+  Masked man-1.5m.ebuild stable for ppc
+
+  03 Sep 2004; Pieter Van den Abeele <pvdabeel@gentoo.org> man-1.5m-r1.ebuild:
+  Masked man-1.5m-r1.ebuild stable for ppc
+
+  04 Sep 2004; <solar@gentoo.org> man-1.5m-r1.ebuild:
+  use non-lazy bindings for +s apps installed by this package
+
+  21 Aug 2004; Joshua Kinard <kumba@gentoo.org> man-1.5m-r1.ebuild:
+  Added ~mips to KEYWORDS.
+
+  06 Aug 2004; Guy Martin <gmsoft@gentoo.org> man-1.5m-r1.ebuild:
+  Stable on hppa.
+
+  06 Aug 2004; Gustavo Zacarias <gustavoz@gentoo.org> man-1.5m-r1.ebuild:
+  Keyworded sparc
+
+  04 Aug 2004; Michael Sterrett <mr_bones_@gentoo.org> man-1.5m-r1.ebuild:
+  tidy; stablize for x86 to fix bug #40322
+
+  15 Jun 2004; <solar@gentoo.org> man-1.5l-r6.ebuild, man-1.5m-r1.ebuild:
+  fixed up nls usage for uclibc
+
+  11 Jun 2004; Bryan Østergaard <kloeri@gentoo.org> man-1.5m-r1.ebuild:
+  Stable on alpha.
+
+  02 Jun 2004; Travis Tilley <lv@gentoo.org> man-1.5m-r1.ebuild:
+  stable on amd64
+
+  10 May 2004; Michael McCabe <randy@gentoo.org> man-1.5m-r1.ebuild:
+  Stable on s390
+
+*man-1.5m-r1 (01 May 2004)
+
+  03 May 2004; Mike Frysinger <vapier@gentoo.org> :
+  Install cronjob as makewhatis instead of makewhatis.cron #40506 by Peter Simons.
+
+  01 May 2004; Bryan Østergaard <kloeri@gentoo.org> +man-1.5m-r1.ebuild:
+  Add posix sections to MANSECT, bug #47806.
+
+  17 Apr 2004; Travis Tilley <lv@gentoo.org> man-1.5m.ebuild:
+  added missing ~amd64 keyword
+
+  10 Feb 2004; Mike Frysinger <vapier@gentoo.org> :
+  Make sure cache directories are created with correct permissions #40322.
+
+  08 Feb 2004; Mike Frysinger <vapier@gentoo.org> :
+  Enable search database updating by default and move it to cron.weekly #38321.
+  Also run niced to help out desktop users #37872.
+
+  01 Oct 2003; Michael Sterrett <mr_bones_@gentoo.org> man-1.5i-r3.ebuild,
+  man-1.5k-r1.ebuild, man-1.5l-r5.ebuild, man-1.5l-r6.ebuild, man-1.5m.ebuild:
+  chown user.group -> chown user:group
+
+  17 Sep 2003; Jon Portnoy <avenj@gentoo.org> man-1.5m.ebuild :
+  ia64 keywords.
+
+  06 Sep 2003; Tavis Ormandy <taviso@gentoo.org> man-1.5m.ebuild,
+  files/man-1.5m-makewhatis.cron:
+  remove symlinked paths with a patch.
+
+*man-1.5m (06 Sep 2003)
+
+  23 Sep 2003; Martin Schlemmer <azarah@gentoo.org> man-1.5l-r4.ebuild,
+  man-1.5l-r5.ebuild, man-1.5l-r6.ebuild, man-1.5m.ebuild:
+  Add cache directories, bug #29306.
+
+  06 Sep 2003; Tavis Ormandy <taviso@gentoo.org> man-1.5m.ebuild:
+  a new release, which closes #23436
+  makewhatis.cron will usually traverse manpages twice, which 
+  is unnescessary, changing to traverse MANPATH. #23848
+  bump.
+
+  24 Jun 2003; Aron Griffis <agriffis@gentoo.org> man-1.5l-r6.ebuild:
+  Mark stable on alpha
+
+*man-1.5l-r6 (10 Jun 2003)
+
+  06 Jul 2003; Guy Martin <gmsoft@gentoo.org> man-1.5l-r6.ebuild :
+  Marked stable on hppa.
+
+  22 Jun 2003; Joshua Kinard <kumba@gentoo.org> man-1.5l-r6.ebuild:
+  Changed ~sparc & ~mips to sparc & mips in KEYWORDS
+
+  10 Jun 2003; Tavis Ormandy <taviso@gentoo.org> :
+  line length may be overridden by noff mandoc macros, applying 
+  oneliner patch from #21018
+
+*man-1.5l-r5 (08 Jun 2003)
+
+  08 Jun 2003; Daniel Ahlberg <aliz@gentoo.org> :
+  Security update.
+
+*man-1.5l-r4 (31 May 2003)
+
+  31 May 2003; <msterret@gentoo.org> man-1.5l-r4.ebuild:
+  Add nls to IUSE
+  Use sed -i and add sed to DEPEND
+  Use emake -j1 so it's clear it doesn't build right in parallel.
+  Error messages for die
+  Rearranged src_install() to cd less
+  Trim trailing white space
+  Masked all archs in case I messed something up
+
+  25 May 2003; Martin Holzer <mholzer@gentoo.org> man-1.5i-r3.ebuild,
+  man-1.5k-r1.ebuild, man-1.5l-r3.ebuild:
+  now uses mirror://kernel
+
+*man-1.5l-r3 (03 May 2003)
+
+  03 May 2003; Martin Schlemmer <azarah@gentoo.org> man-1.5l-r3.ebuild,
+  files/man-1.5l-wrong-quotes-v2.patch:
+  Remove the DEPEND on util-linux, fixing bug #20314.
+
+  28 Apr 2003; Martin Schlemmer <azarah@gentoo.org> man-1.5l-fix :
+  Updated this patch again.  I did it this time by rather using the hex
+  value than a quoted value, thanks to idea from giggles1 <bevdv@yahoo.com>,
+  bug #19039.
+
+  03 Apr 2003; Martin Schlemmer <azarah@gentoo.org> man-1.5l-r2.ebuild :
+  Mark stable for all other arch's, as -r1 that is, is broken.
+
+*man-1.5l-r2 (30 Mar 2003)
+
+  28 Apr 2003; Tavis Ormandy <taviso@gentoo.org> man-1.5l-r2.ebuild:
+  missing util-linux dependancy
+
+  02 Apr 2003; Christian Birchinger <joker@gentoo.org> man-1.5l-r2.ebuild:
+  Added stable sparc keyword
+
+  30 Mar 2003; Martin Schlemmer <azarah@gentoo.org> man-1.5l-r2.ebuild :
+  Cleanup the CC mess, fixing bug #18361.
+
+*man-1.5l-r1 (19 Mar 2003)
+
+  26 Mar 2003; Zach Welch <zwelch@gentoo.org> man-1.5l-r1.ebuild:
+  fix distcc compiles by using CC properly (bug 18242)
+
+  19 Mar 2003; root <root@gentoo.org> man-1.5l-r1.ebuild,
+  files/man-1.5l-redhat-patches.patch:
+  corrected patch. closes #17801.
+
+  18 Mar 2003; Martin Schlemmer <azarah@gentoo.org> *-wrong-quotes.patch :
+  Fix issue where 'man -K' just cause a lot of 'grep errors', bug #16581.
+
+*man-1.5l (18 Mar 2003)
+
+  18 Mar 2003; Daniel Ahlberg <aliz@gentoo.org> :
+  Security update.
+
+  13 mar 2003; Olivier Reisch <doctomoe@gentoo.org> man-1.5k-r1.ebuild :
+  Marked ppc stable
+
+  20 Feb 2003; Zach Welch <zwelch@gentoo.org> man-1.5k-r1.ebuild :
+  Added arm to keywords.
+
+  07 Feb 2003; Guy Martin <gmsoft@gentoo.org> man-1.5k-r1.ebuild :
+  Added hppa to keywords.
+
+  08 Jan 2003; Martin Schlemmer <azarah@gentoo.org> man-1.5k-r1.ebuild :
+
+  Mark stable for x86.
+
+  26 Dec 2002; Martin Schlemmer <azarah@gentoo.org> man-1.5k.ebuild,
+                                                    man-1.5k-r1.ebuild :
+
+  Bugfixes:
+  - Add man-1.5k-util_c-segfault.patch to fix a crash when calling man
+    with:  man -k "foo bar" (bug #9761).
+  - Add man-1.5k-locale-debug-info.patch to make man not print the
+    'man: No such file or directory' error if 'man -d' was called and
+    the NLS catalogue was not found, as it confuses people, and be
+	more informative ... (bug #6360)
+
+*man-1.5k-r1 (26 Dec 2002)
+
+  24 Feb 2003; Nicholas Wourms <dragon@gentoo.org> man-1.5k-r1.ebuild :
+  Mark as stable for mips.
+
+  26 Dec 2002; Martin Schlemmer <azarah@gentoo.org> man-1.5k-r1.ebuild :
+
+  Did the following updates and fixes (bug #12496 mostly):
+  - Add man-1.5k-redhat-patches.patch submited by Nicholas Wourms <dragon@gentoo.org>
+    that fixes various security issues.
+  - Add man-1.5k-search-order.patch submited by Nicholas Wourms <dragon@gentoo.org>
+    to fix man's directory search order.
+  - Add man-1.5k-groff-1.18.patch.  This is a patch I created from
+    Nicholas Wourms <dragon@gentoo.org> 's hack to make man work with groff-1.18
+    and later.
+  - Add man-1.5k-wrong-quotes.patch to fix a rare problem where gcc drops
+    the ' in a -D switch.  This closes bug #5887.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*man-1.5k (29 Jul 2002)
+
+  19 Jan 2003; Jan Seidel <tuxus@gentoo.org> :
+  Added mips to keywords
+
+  27 Sep 2002; Seemant Kulleen <seemant@gentoo.org> man-1.5k.ebuild :
+
+  Fixed compilation of gencat (when "nls" in USE).  Thanks to:
+  chrb@dcs.ed.ac.uk (Chris Bainbridge) in bug #8020.
+
+  29 Jul 2002; Martin Schlemmer <azarah@gentoo.org> :
+  Update version; cleanups.
+
+  24 Apr 2002; t.bangert <bangert@gentoo.org> :
+  
+  added makewhatis.cron and cronbase dependancy
+  
+
+*man-1.5i-r3 (15 Apr 2002)
+
+  15 Apr 2002; Jared H. Hudson <jhhudso@gentoo.org> man-1.5i-r3.ebuild :
+	
+  Changed man to used it's auto-configured man.conf file.
+  man-1.5i-r2's man.conf had paths that didn't exist and options that
+
+  14 Jul 2002; phoen][x <phoenix@gentoo.org> man-1.5i-r2.ebuild :
+  Added LICENSE, KEYWORDS, SLOT.
+  caused some man pages, like ps to not format correctly.
+	
+*man-1.5i-r2 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.

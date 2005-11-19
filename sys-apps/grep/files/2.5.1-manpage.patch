@@ -1,0 +1,10 @@
+--- doc/grep.1.orig	2004-06-10 16:59:31.000000000 -0700
++++ doc/grep.1	2004-06-10 16:59:56.000000000 -0700
+@@ -191,6 +191,7 @@
+ .I PATTERN
+ as a list of fixed strings, separated by newlines,
+ any of which is to be matched.
++.TP
+ .BR \-P ", " \-\^\-perl-regexp
+ Interpret
+ .I PATTERN

@@ -1,0 +1,24 @@
+# ChangeLog for app-admin/perl-cleaner
+# Copyright 1999-2005 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/perl-cleaner/ChangeLog,v 1.3 2005/07/03 11:39:06 mcummings Exp $
+
+  03 Jul 2005; Michael Cummings <mcummings@gentoo.org>
+  perl-cleaner-1.01.ebuild:
+  RDPEND -> RDEPEND - thanks jakub
+
+*perl-cleaner-1.01 (05 Jun 2005)
+
+  05 Jun 2005; Michael Cummings <mcummings@gentoo.org>
+  -perl-cleaner-1.0.ebuild, +perl-cleaner-1.01.ebuild:
+  Sad to have a version bump already, but the is a code addition to be able to
+  re-emerge everything, even those modules installed under our current version
+  of perl. Comes up if someone (ick) changes from a threaded perl to a
+  non-threaded perl - version doesn't change so perl-cleaner doesn't rebuild
+  anything (though it needs to)
+
+*perl-cleaner-1.0 (05 Jun 2005)
+
+  05 Jun 2005; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +perl-cleaner-1.0.ebuild:
+  Initial import, prepping so perl-cleaner can be called from revdep-rebuilder
+

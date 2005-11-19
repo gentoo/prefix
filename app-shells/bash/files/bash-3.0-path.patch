@@ -1,0 +1,24 @@
+diff -ru bash-3.0.orig/Makefile.in bash-3.0/Makefile.in
+--- bash-3.0.orig/Makefile.in	2005-04-19 11:11:43.550003000 +0200
++++ bash-3.0/Makefile.in	2005-04-19 11:10:54.970017000 +0200
+@@ -130,7 +130,7 @@
+ STATIC_LD = @STATIC_LD@
+ LOCAL_LDFLAGS = @LOCAL_LDFLAGS@
+ 
+-SYSTEM_FLAGS = -DPROGRAM='"$(Program)"' -DCONF_HOSTTYPE='"$(Machine)"' -DCONF_OSTYPE='"$(OS)"' -DCONF_MACHTYPE='"$(MACHTYPE)"' -DCONF_VENDOR='"$(VENDOR)"' $(LOCALE_DEFS)
++SYSTEM_FLAGS = -DPROGRAM='"$(Program)"' -DCONF_HOSTTYPE='"$(Machine)"' -DCONF_OSTYPE='"$(OS)"' -DCONF_MACHTYPE='"$(MACHTYPE)"' -DCONF_VENDOR='"$(VENDOR)"' $(LOCALE_DEFS) -DLOCAL_PREFIX=`test "$(prefix)" = "/usr" && echo '"/usr/local"' || echo '"$(prefix)"'`
+ 
+ BASE_CCFLAGS = $(PROFILE_FLAGS) $(SYSTEM_FLAGS) $(LOCAL_DEFS) \
+ 	  $(DEFS) $(LOCAL_CFLAGS) $(INCLUDES)
+diff -ru bash-3.0.orig/config-top.h bash-3.0/config-top.h
+--- bash-3.0.orig/config-top.h	2005-04-19 11:11:20.180002000 +0200
++++ bash-3.0/config-top.h	2005-04-19 11:12:23.160002000 +0200
+@@ -52,7 +52,7 @@
+ /* The default value of the PATH variable. */
+ #ifndef DEFAULT_PATH_VALUE
+ #define DEFAULT_PATH_VALUE \
+-  "/usr/local/bin:/usr/bin:/bin"
++  LOCAL_PREFIX"/bin:/usr/bin:/bin"
+ #endif
+ 
+ /* The value for PATH when invoking `command -p'.  This is only used when

@@ -1,0 +1,12 @@
+diff -urN readline-4.3.orig/support/shobj-conf readline-4.3/support/shobj-conf
+--- readline-4.3.orig/support/shobj-conf	Sun Jul 11 02:59:49 2004
++++ readline-4.3/support/shobj-conf	Sun Jul 11 03:00:16 2004
+@@ -148,7 +148,7 @@
+ 	SHOBJ_LDFLAGS='-dynamic'
+ 	SHLIB_XLDFLAGS='-arch_only `/usr/bin/arch` -install_name $(libdir)/$@ -current_version $(SHLIB_MAJOR)$(SHLIB_MINOR) -compatibility_version $(SHLIB_MAJOR) -v'
+ 
+-	SHLIB_LIBS='-lSystem'
++	SHLIB_LIBS='-lSystem -lncurses -lcc_dynamic'
+ 	;;
+ 
+ openbsd*)

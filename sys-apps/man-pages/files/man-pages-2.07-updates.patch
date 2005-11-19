@@ -1,0 +1,32 @@
+--- man2/stat.2
++++ man2/stat.2
+@@ -122,7 +122,7 @@
+ 
+ The
+ .I st_blocks
+-field gives the size of the file in 512-byte blocks.
++field gives the disk usage of the file in 512-byte blocks.
+ (This may be smaller than
+ .IR st_size /512,
+ for example, when the file has holes.)
+--- man3/strnlen.3
++++ man3/strnlen.3
+@@ -13,6 +13,7 @@
+ strnlen \- determine the length of a fixed-size string
+ .SH SYNOPSIS
+ .nf
++.B #define _GNU_SOURCE
+ .B #include <string.h>
+ .sp
+ .BI "size_t strnlen(const char *" s ", size_t " maxlen );
+--- man1p/ipcs.1p
++++ man1p/ipcs.1p
+@@ -544,7 +544,7 @@
+ None.
+ .SH SEE ALSO
+ .LP
+-The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fImsgrcv\fP(),
++\fIipcrm\fP , The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fImsgrcv\fP(),
+ \fImsgsnd\fP(), \fIsemget\fP(), \fIsemop\fP(), \fIshmat\fP(), \fIshmdt\fP(),
+ \fIshmget\fP()
+ .SH COPYRIGHT

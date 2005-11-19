@@ -1,0 +1,13 @@
+Rip out small change from upstream to fix building with GCC4.
+
+http://bugs.gentoo.org/show_bug.cgi?id=89123
+
+--- tests/genfile.c
++++ tests/genfile.c
+@@ -62,3 +69,3 @@
+ 
+-static const char *argp_program_version = "genfile (" PACKAGE ") " VERSION;
+-static const char *argp_program_bug_address = "<" PACKAGE_BUGREPORT ">";
++const char *argp_program_version = "genfile (" PACKAGE ") " VERSION;
++const char *argp_program_bug_address = "<" PACKAGE_BUGREPORT ">";
+ static char doc[] = N_("genfile generates data files for GNU paxutils test suite");

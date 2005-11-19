@@ -1,0 +1,85 @@
+Fix the tests so they don't fail :)
+http://bugs.gentoo.org/show_bug.cgi?id=79505
+
+insthook:
+update the head/tail syntax since coreutils has deprecated the old style
+
+dirname,ccnoco:
+rip patches from fedora
+
+--- automake-1.5/tests/insthook.test.orig	2005-01-30 09:02:48.622592064 -0500
++++ automake-1.5/tests/insthook.test	2005-01-30 09:03:00.332811840 -0500
+@@ -17 +17 @@
+-test x$lnum != x && tail +$lnum Makefile.in | head -3 | grep install-exec-hook
++test x$lnum != x && tail -n +$lnum Makefile.in | head -n 3 | grep install-exec-hook
+diff -u automake-1.5/tests/dirname.test automake-1.6.3/tests/dirname.test
+--- automake-1.5/tests/dirname.test	2003-04-25 15:44:56.000000000 +0900
++++ automake-1.6.3/tests/dirname.test	2003-04-25 15:44:56.000000000 +0900
+@@ -5,7 +5,7 @@
+ . $srcdir/defs || exit 1
+ 
+ cat > configure.in << 'END'
+-AC_PLAIN_SCRIPT
++AC_INIT
+ echo "1 /a/path/to/a/file      = _AM_DIRNAME([/a/path/to/a/file])"
+ echo "2 another/path/to/a/file = _AM_DIRNAME([another/path/to/a/file])"
+ echo "3 file                   = _AM_DIRNAME([file])"
+@@ -15,17 +15,13 @@
+ echo "7 /file                  = _AM_DIRNAME([/file])"
+ END
+ 
+-# Fail gracefully if no autoconf.
+-$needs_autoconf
+-
+ $ACLOCAL || exit 1
+-$AUTOCONF || exit 1
+-
+-# fail gracefully if autoconf didn't support AC_PLAIN_SCRIPT, because it won't
+-# support our regexps anyhow
+-test -s configure || exit 77
++# fail gracefully if autoconf didn't support support our regexps anyhow
++$AUTOCONF || exit 77
+ 
+-$SHELL ./configure >got || exit 1
++# Use --quiet otherwise unwelcome messages like "loading site script"
++# would cause a failure.
++./configure --quiet >got || exit 1
+ 
+ cat >wanted <<EOF
+ 1 /a/path/to/a/file      = /a/path/to/a
+@@ -40,4 +36,3 @@
+ diff wanted got || exit 1
+ 
+ exit 0
+-
+diff -u automake-1.5/tests/ccnoco.test automake-1.6.3/tests/ccnoco.test
+--- automake-1.5/tests/ccnoco.test	2003-06-07 06:34:18.000000000 +0900
++++ automake-1.6.3/tests/ccnoco.test	2003-06-07 06:34:18.000000000 +0900
+@@ -39,7 +39,6 @@
+ }
+ END
+ 
+-$needs_autoconf
+ gcc -v || exit 77
+ 
+ cat > Mycomp << 'END'
+@@ -51,7 +50,7 @@
+     ;;
+ esac
+ 
+-exec gcc ${1+"$@"}
++exec gcc "$@"
+ END
+ 
+ chmod +x Mycomp
+@@ -59,6 +58,10 @@
+ set -e
+ 
+ 
++# Ignore user CFLAGS.
++CFLAGS=
++export CFLAGS
++
+ for conf in configure.1 configure.3; do
+    cp $conf configure.in
+ 

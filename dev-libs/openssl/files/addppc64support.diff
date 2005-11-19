@@ -1,0 +1,21 @@
+--- openssl-0.9.7d/config.orig	2004-04-25 15:38:16.726152568 +0000
++++ openssl-0.9.7d/config	2004-04-25 15:38:21.308455952 +0000
+@@ -540,7 +540,7 @@
+   ppc64-*-linux2)
+ 	#Use the standard target for PPC architecture until we create a
+ 	#special one for the 64bit architecture.
+-	OUT="linux-ppc" ;;
++	OUT="linux-ppc64" ;;
+   ppc-*-linux2) OUT="linux-ppc" ;;
+   m68k-*-linux*) OUT="linux-m68k" ;;
+   ia64-*-linux?) OUT="linux-ia64" ;;
+--- openssl-0.9.7d/Configure.orig	2004-03-12 21:24:44.000000000 +0000
++++ openssl-0.9.7d/Configure	2004-05-07 16:11:06.000000000 +0000
+@@ -404,6 +404,7 @@
+ "bsdi-elf-gcc",     "gcc:-DPERL5 -DL_ENDIAN -fomit-frame-pointer -O3 -m486 -Wall::(unknown)::-ldl:BN_LLONG ${x86_gcc_des} ${x86_gcc_opts}:${x86_elf_asm}:dlfcn:bsd-gcc-shared:-fPIC::.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR)",
+ "nextstep",	"cc:-O -Wall:<libc.h>:(unknown):::BN_LLONG ${x86_gcc_des} ${x86_gcc_opts}:::",
+ "nextstep3.3",	"cc:-O3 -Wall:<libc.h>:(unknown):::BN_LLONG ${x86_gcc_des} ${x86_gcc_opts}:::",
++"linux-ppc64", "gcc:-DB_ENDIAN -DNO_ASM -DTERMIO  -Wall  ::-D_REENTRANT::-ldl:SIXTY_FOUR_BIT_LONG ::::::::::dlfcn:linux-shared:-fPIC::.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR)",
+ 
+ # NCR MP-RAS UNIX ver 02.03.01
+ "ncr-scde","cc:-O6 -Xa -Hoff=BEHAVED -686 -Hwide -Hiw::(unknown)::-lsocket -lnsl -lc89:${x86_gcc_des} ${x86_gcc_opts}:::",

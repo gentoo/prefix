@@ -1,0 +1,10 @@
+diff -ur groff-1.18.1.orig/tmac/man.local groff-1.18.1/tmac/man.local
+--- groff-1.18.1.orig/tmac/man.local	2000-10-26 16:15:17.000000000 +0200
++++ groff-1.18.1/tmac/man.local	2003-03-16 02:15:50.000000000 +0100
+@@ -1,2 +1,6 @@
+ .\" This file is loaded after an-old.tmac.
+ .\" Put any local modifications to an-old.tmac here.
++.if '\*[.T]'utf8' \{\
++.  char \- \N'45'
++.  char  - \N'45'
++.\}

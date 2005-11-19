@@ -1,0 +1,11 @@
+# ChangeLog for sys-libs/libsystem
+# Copyright 1999-2004 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libsystem/ChangeLog,v 1.1 2004/07/11 00:34:43 pvdabeel Exp $
+
+*libsystem-7.1 (11 Jul 2004)
+
+  11 Jul 2004; Pieter Van den Abeele <pvdabeel@gentoo.org> everything :
+  Initial import of libsystem, a collection of Darwin libs: 
+  Libc, Libinfo, Libkvm, Libm, Libwrappers, Libnotify, Libstreams, keymgr, 
+  UserNotification
+

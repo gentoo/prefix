@@ -1,0 +1,41 @@
+--- groff-1.19.1/Makefile.in.orig	2004-12-13 17:08:22.845281534 -0500
++++ groff-1.19.1/Makefile.in	2004-12-13 17:11:14.903873176 -0500
+@@ -541,3 +541,3 @@
+ 
+-$(LIBDIRS): FORCE
++$(LIBDIRS): FORCE $(INCDIRS) $(PROGDEPDIRS)
+ 	@$(ENVSETUP); \
+@@ -557,3 +557,3 @@
+ 
+-$(CPROGDIRS): FORCE
++$(CPROGDIRS): FORCE $(LIBDIRS)
+ 	@$(ENVSETUP); \
+@@ -573,3 +573,3 @@
+ 
+-$(CCPROGDIRS): FORCE
++$(CCPROGDIRS): FORCE $(LIBDIRS)
+ 	@$(ENVSETUP); \
+@@ -589,3 +589,3 @@
+ 
+-$(DEVDIRS) $(OTHERDEVDIRS) $(TTYDEVDIRS): FORCE
++$(DEVDIRS) $(OTHERDEVDIRS) $(TTYDEVDIRS): FORCE $(PROGDIRS)
+ 	@$(ENVSETUP); \
+@@ -603,3 +603,17 @@
+ 
+-$(INCDIRS) $(PROGDEPDIRS) $(OTHERDIRS): FORCE
++$(OTHERDIRS): FORCE $(PROGDIRS)
++	@$(ENVSETUP); \
++	if test $(srcdir) = .; then \
++	  srcdir=.; \
++	else \
++	  srcdir=`cd $(srcdir); pwd`/$@; \
++	fi; \
++	test -d $@ || $(mkinstalldirs) $@; \
++	cd $@; \
++	$(MAKE) $(MDEFINES) srcdir=$$srcdir VPATH=$$srcdir \
++	  -f $(top_srcdir)/Makefile.comm \
++	  -f $$srcdir/Makefile.sub \
++	  -f $(top_srcdir)/Makefile.man $(do)
++
++$(INCDIRS) $(PROGDEPDIRS): FORCE
+ 	@$(ENVSETUP); \

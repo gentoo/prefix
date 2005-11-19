@@ -1,0 +1,4 @@
+#!/usr/bin/python
+import distutils.sysconfig, string
+print "-lpython2.4 -lm -L/usr/lib/python2.4/config",string.join(string.split(distutils.sysconfig.get_config_var("MODLIBS")))
+

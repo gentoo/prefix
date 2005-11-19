@@ -1,0 +1,11 @@
+--- ncftp-3.1.8/DNSUtil.c.orig	2005-09-11 09:08:34.000000000 +0200
++++ ncftp-3.1.8/sio/DNSUtil.c	2005-09-11 09:08:45.000000000 +0200
+@@ -16,7 +16,7 @@
+ 	}
+ #endif
+ 
+-#if (((defined(MACOSX)) && (MACSOX < 10300)) || (defined(AIX) && (AIX < 430)) || (defined(DIGITAL_UNIX)) || (defined(SOLARIS)) || (defined(SCO)) || (defined(HPUX)))
++#if (((defined(MACOSX)) && (MACOSX < 10300)) || (defined(AIX) && (AIX < 430)) || (defined(DIGITAL_UNIX)) || (defined(SOLARIS)) || (defined(SCO)) || (defined(HPUX)))
+ extern int getdomainname(char *name, gethostname_size_t namelen);
+ #endif
+ 

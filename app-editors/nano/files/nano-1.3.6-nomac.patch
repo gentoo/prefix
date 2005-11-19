@@ -1,0 +1,22 @@
+--- src/global.c.orig	2005-03-22 00:58:51.000000000 -0500
++++ src/global.c	2005-03-22 00:59:09.000000000 -0500
+@@ -349,7 +349,6 @@
+ #endif
+ #ifndef NANO_SMALL
+     const char *nano_dos_msg = N_("Write file out in DOS format");
+-    const char *nano_mac_msg = N_("Write file out in Mac format");
+ #endif
+     const char *nano_append_msg = N_("Append to the current file");
+     const char *nano_prepend_msg = N_("Prepend to the current file");
+@@ -859,11 +858,6 @@
+ 		IFHELP(nano_dos_msg, TOGGLE_DOS_KEY), NANO_NO_KEY,
+ 		NANO_NO_KEY, NOVIEW, NULL);
+ 
+-    /* Translators: try to keep this string under 16 characters long */
+-    if (!ISSET(RESTRICTED))
+-	sc_init_one(&writefile_list, NANO_NO_KEY, N_("Mac Format"),
+-		IFHELP(nano_mac_msg, TOGGLE_MAC_KEY), NANO_NO_KEY,
+-		NANO_NO_KEY, NOVIEW, NULL);
+ #endif
+ 
+     /* Translators: try to keep this string under 16 characters long */

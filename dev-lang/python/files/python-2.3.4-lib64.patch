@@ -1,0 +1,263 @@
+diff -Nru Python-2.3.4.old/Lib/distutils/command/install.py Python-2.3.4/Lib/distutils/command/install.py
+--- Python-2.3.4.old/Lib/distutils/command/install.py	2004-08-14 21:38:57.318696000 -0400
++++ Python-2.3.4/Lib/distutils/command/install.py	2004-08-14 21:39:41.285012104 -0400
+@@ -39,14 +39,14 @@
+ INSTALL_SCHEMES = {
+     'unix_prefix': {
+         'purelib': '$base/lib/python$py_version_short/site-packages',
+-        'platlib': '$platbase/lib/python$py_version_short/site-packages',
++        'platlib': '$platbase/lib64/python$py_version_short/site-packages',
+         'headers': '$base/include/python$py_version_short/$dist_name',
+         'scripts': '$base/bin',
+         'data'   : '$base',
+         },
+     'unix_home': {
+         'purelib': '$base/lib/python',
+-        'platlib': '$base/lib/python',
++        'platlib': '$base/lib64/python',
+         'headers': '$base/include/python/$dist_name',
+         'scripts': '$base/bin',
+         'data'   : '$base',
+diff -Nru Python-2.3.4.old/Lib/distutils/sysconfig.py Python-2.3.4/Lib/distutils/sysconfig.py
+--- Python-2.3.4.old/Lib/distutils/sysconfig.py	2004-08-14 21:38:57.367688552 -0400
++++ Python-2.3.4/Lib/distutils/sysconfig.py	2004-08-14 21:39:41.300009824 -0400
+@@ -99,8 +99,12 @@
+         prefix = plat_specific and EXEC_PREFIX or PREFIX
+ 
+     if os.name == "posix":
++        if plat_specific or standard_lib:
++            lib = "lib64"
++        else:
++            lib = "lib"
+         libpython = os.path.join(prefix,
+-                                 "lib", "python" + get_python_version())
++                                 lib, "python" + get_python_version())
+         if standard_lib:
+             return libpython
+         else:
+diff -Nru Python-2.3.4.old/Lib/site.py Python-2.3.4/Lib/site.py
+--- Python-2.3.4.old/Lib/site.py	2004-08-14 21:38:57.565658456 -0400
++++ Python-2.3.4/Lib/site.py	2004-08-14 21:39:41.318007088 -0400
+@@ -166,9 +166,14 @@
+             sitedirs = [os.path.join(prefix, "Lib", "site-packages")]
+         elif os.sep == '/':
+             sitedirs = [os.path.join(prefix,
++                                     "lib64",
++                                     "python" + sys.version[:3],
++                                     "site-packages"),
++                        os.path.join(prefix,
+                                      "lib",
+                                      "python" + sys.version[:3],
+                                      "site-packages"),
++                        os.path.join(prefix, "lib64", "site-python"),
+                         os.path.join(prefix, "lib", "site-python")]
+         else:
+             sitedirs = [prefix, os.path.join(prefix, "lib", "site-packages")]
+diff -Nru Python-2.3.4.old/Lib/test/test_re.py Python-2.3.4/Lib/test/test_re.py
+--- Python-2.3.4.old/Lib/test/test_re.py	2004-08-14 21:38:56.631800424 -0400
++++ Python-2.3.4/Lib/test/test_re.py	2004-08-14 21:39:34.240083096 -0400
+@@ -497,6 +497,15 @@
+         self.assert_(re.compile('bug_926075') is not
+                      re.compile(eval("u'bug_926075'")))
+ 
++    def test_bug_931848(self):
++        try:
++            unicode
++        except NameError:
++            pass
++        pattern = eval('u"[\u002E\u3002\uFF0E\uFF61]"')
++        self.assertEqual(re.compile(pattern).split("a.b.c"),
++                         ['a','b','c'])
++
+ def run_re_tests():
+     from test.re_tests import benchmarks, tests, SUCCEED, FAIL, SYNTAX_ERROR
+     if verbose:
+diff -Nru Python-2.3.4.old/Makefile.pre.in Python-2.3.4/Makefile.pre.in
+--- Python-2.3.4.old/Makefile.pre.in	2004-08-14 21:39:00.506211424 -0400
++++ Python-2.3.4/Makefile.pre.in	2004-08-14 21:39:41.341003592 -0400
+@@ -79,11 +79,11 @@
+ 
+ # Expanded directories
+ BINDIR=		$(exec_prefix)/bin
+-LIBDIR=		$(exec_prefix)/lib
++LIBDIR=		$(exec_prefix)/lib64
+ MANDIR=		@mandir@
+ INCLUDEDIR=	@includedir@
+ CONFINCLUDEDIR=	$(exec_prefix)/include
+-SCRIPTDIR=	$(prefix)/lib
++SCRIPTDIR=	$(prefix)/lib64
+ 
+ # Detailed destination directories
+ BINLIBDEST=	$(LIBDIR)/python$(VERSION)
+diff -Nru Python-2.3.4.old/Modules/Setup.dist Python-2.3.4/Modules/Setup.dist
+--- Python-2.3.4.old/Modules/Setup.dist	2004-08-14 21:39:00.761172664 -0400
++++ Python-2.3.4/Modules/Setup.dist	2004-08-14 21:42:09.073544832 -0400
+@@ -343,7 +343,7 @@
+ # *** Uncomment and edit to reflect your Tcl/Tk versions:
+ #	-ltk8.2 -ltcl8.2 \
+ # *** Uncomment and edit to reflect where your X11 libraries are:
+-#	-L/usr/X11R6/lib \
++	-L/usr/X11R6/lib64 \
+ # *** Or uncomment this for Solaris:
+ #	-L/usr/openwin/lib \
+ # *** Uncomment these for TOGL extension only:
+@@ -417,7 +417,7 @@
+ #DB=/usr/local/BerkeleyDB.4.0
+ #DBLIBVER=4.0
+ #DBINC=$(DB)/include
+-#DBLIB=$(DB)/lib
++DBLIB=$(DB)/lib64
+ #_bsddb _bsddb.c -I$(DBINC) -L$(DBLIB) -ldb-$(DBLIBVER)
+ 
+ # Historical Berkeley DB 1.85
+@@ -463,7 +463,7 @@
+ # Andrew Kuchling's zlib module.
+ # This require zlib 1.1.3 (or later).
+ # See http://www.cdrom.com/pub/infozip/zlib/
+-#zlib zlibmodule.c -I$(prefix)/include -L$(exec_prefix)/lib -lz
++zlib zlibmodule.c -I$(prefix)/include -L$(exec_prefix)/lib64 -lz
+ 
+ # Interface to the Expat XML parser
+ #
+diff -Nru Python-2.3.4.old/Modules/getpath.c Python-2.3.4/Modules/getpath.c
+--- Python-2.3.4.old/Modules/getpath.c	2004-08-14 21:39:00.750174336 -0400
++++ Python-2.3.4/Modules/getpath.c	2004-08-14 21:39:41.319006936 -0400
+@@ -112,8 +112,8 @@
+ #endif
+ 
+ #ifndef PYTHONPATH
+-#define PYTHONPATH PREFIX "/lib/python" VERSION ":" \
+-              EXEC_PREFIX "/lib/python" VERSION "/lib-dynload"
++#define PYTHONPATH PREFIX "/lib64/python" VERSION ":" \
++              EXEC_PREFIX "/lib64/python" VERSION "/lib-dynload"
+ #endif
+ 
+ #ifndef LANDMARK
+@@ -124,7 +124,7 @@
+ static char exec_prefix[MAXPATHLEN+1];
+ static char progpath[MAXPATHLEN+1];
+ static char *module_search_path = NULL;
+-static char lib_python[] = "lib/python" VERSION;
++static char lib_python[] = "lib64/python" VERSION;
+ 
+ static void
+ reduce(char *dir)
+@@ -492,7 +492,7 @@
+     }
+     else
+         strncpy(zip_path, PREFIX, MAXPATHLEN);
+-    joinpath(zip_path, "lib/python00.zip");
++    joinpath(zip_path, "lib64/python00.zip");
+     bufsz = strlen(zip_path);	/* Replace "00" with version */
+     zip_path[bufsz - 6] = VERSION[0];
+     zip_path[bufsz - 5] = VERSION[2];
+@@ -502,7 +502,7 @@
+             fprintf(stderr,
+                 "Could not find platform dependent libraries <exec_prefix>\n");
+         strncpy(exec_prefix, EXEC_PREFIX, MAXPATHLEN);
+-        joinpath(exec_prefix, "lib/lib-dynload");
++        joinpath(exec_prefix, "lib64/lib-dynload");
+     }
+     /* If we found EXEC_PREFIX do *not* reduce it!  (Yet.) */
+ 
+diff -Nru Python-2.3.4.old/setup.py Python-2.3.4/setup.py
+--- Python-2.3.4.old/setup.py	2004-08-14 21:39:00.575200936 -0400
++++ Python-2.3.4/setup.py	2004-08-14 21:39:41.340003744 -0400
+@@ -241,7 +241,7 @@
+ 
+     def detect_modules(self):
+         # Ensure that /usr/local is always used
+-        add_dir_to_list(self.compiler.library_dirs, '/usr/local/lib')
++        add_dir_to_list(self.compiler.library_dirs, '/usr/local/lib64')
+         add_dir_to_list(self.compiler.include_dirs, '/usr/local/include')
+ 
+         # fink installs lots of goodies in /sw/... - make sure we
+@@ -264,7 +264,7 @@
+         # lib_dirs and inc_dirs are used to search for files;
+         # if a file is found in one of those directories, it can
+         # be assumed that no additional -I,-L directives are needed.
+-        lib_dirs = self.compiler.library_dirs + ['/lib', '/usr/lib']
++        lib_dirs = self.compiler.library_dirs + ['/lib64', '/usr/lib64']
+         inc_dirs = self.compiler.include_dirs + ['/usr/include']
+         exts = []
+ 
+@@ -413,11 +413,11 @@
+             elif self.compiler.find_library_file(lib_dirs, 'curses'):
+                 readline_libs.append('curses')
+             elif self.compiler.find_library_file(lib_dirs +
+-                                               ['/usr/lib/termcap'],
++                                               ['/usr/lib64/termcap'],
+                                                'termcap'):
+                 readline_libs.append('termcap')
+             exts.append( Extension('readline', ['readline.c'],
+-                                   library_dirs=['/usr/lib/termcap'],
++                                   library_dirs=['/usr/lib64/termcap'],
+                                    libraries=readline_libs) )
+         if platform not in ['mac']:
+                 # crypt module.
+@@ -446,8 +446,8 @@
+             if krb5_h:
+                 ssl_incs += krb5_h
+         ssl_libs = find_library_file(self.compiler, 'ssl',lib_dirs,
+-                                     ['/usr/local/ssl/lib',
+-                                      '/usr/contrib/ssl/lib/'
++                                     ['/usr/local/ssl/lib64',
++                                      '/usr/contrib/ssl/lib64/'
+                                      ] )
+ 
+         if (ssl_incs is not None and
+@@ -481,12 +481,12 @@
+         # order you wish to search - e.g., search for db4 before db3
+         db_try_this = {
+             'db4': {'libs': ('db-4.2', 'db42', 'db-4.1', 'db41', 'db-4.0', 'db4',),
+-                    'libdirs': ('/usr/local/BerkeleyDB.4.2/lib',
+-                                '/usr/local/BerkeleyDB.4.1/lib',
+-                                '/usr/local/BerkeleyDB.4.0/lib',
+-                                '/usr/local/lib',
++                    'libdirs': ('/usr/local/BerkeleyDB.4.2/lib64',
++                                '/usr/local/BerkeleyDB.4.1/lib64',
++                                '/usr/local/BerkeleyDB.4.0/lib64',
++                                '/usr/local/lib64',
+                                 '/opt/sfw',
+-                                '/sw/lib',
++                                '/sw/lib64',
+                                 ),
+                     'incdirs': ('/usr/local/BerkeleyDB.4.2/include',
+                                 '/usr/local/include/db42',
+@@ -499,12 +499,12 @@
+                                 '/usr/include/db4',
+                                 )},
+             'db3': {'libs': ('db-3.3', 'db-3.2', 'db-3.1', 'db3',),
+-                    'libdirs': ('/usr/local/BerkeleyDB.3.3/lib',
+-                                '/usr/local/BerkeleyDB.3.2/lib',
+-                                '/usr/local/BerkeleyDB.3.1/lib',
+-                                '/usr/local/lib',
+-                                '/opt/sfw/lib',
+-                                '/sw/lib',
++                    'libdirs': ('/usr/local/BerkeleyDB.3.3/lib64',
++                                '/usr/local/BerkeleyDB.3.2/lib64',
++                                '/usr/local/BerkeleyDB.3.1/lib64',
++                                '/usr/local/lib64',
++                                '/opt/sfw/lib64',
++                                '/sw/lib64',
+                                 ),
+                     'incdirs': ('/usr/local/BerkeleyDB.3.3/include',
+                                 '/usr/local/BerkeleyDB.3.2/include',
+@@ -986,14 +986,14 @@
+             added_lib_dirs.append('/usr/openwin/lib')
+         elif os.path.exists('/usr/X11R6/include'):
+             include_dirs.append('/usr/X11R6/include')
+-            added_lib_dirs.append('/usr/X11R6/lib')
++            added_lib_dirs.append('/usr/X11R6/lib64')
+         elif os.path.exists('/usr/X11R5/include'):
+             include_dirs.append('/usr/X11R5/include')
+-            added_lib_dirs.append('/usr/X11R5/lib')
++            added_lib_dirs.append('/usr/X11R5/lib64')
+         else:
+             # Assume default location for X11
+             include_dirs.append('/usr/X11/include')
+-            added_lib_dirs.append('/usr/X11/lib')
++            added_lib_dirs.append('/usr/X11/lib64')
+ 
+         # If Cygwin, then verify that X is installed before proceeding
+         if platform == 'cygwin':

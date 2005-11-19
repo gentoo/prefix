@@ -1,0 +1,23 @@
+diff -Naur openssl-0.9.7g.orig/Configure openssl-0.9.7g/Configure
+--- openssl-0.9.7g.orig/Configure	2005-04-08 01:06:01.000000000 +0900
++++ openssl-0.9.7g/Configure	2005-08-06 20:21:25.000000000 +0900
+@@ -438,6 +438,7 @@
+ # ARM comes in both little- and big-endian flavors. The following line is
+ # endian neutral, but ./config is free to throw in -D[BL]_ENDIAN...
+ "linux-elf-arm","gcc:-DTERMIO -O3 -fomit-frame-pointer -Wall::-D_REENTRANT::-ldl:BN_LLONG::::::::::dlfcn:linux-shared:-fPIC::.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR)",
++"linux-elf-sh","gcc:-DTERMIO -O3 -fomit-frame-pointer -Wall::-D_REENTRANT::-ldl:BN_LLONG::::::::::dlfcn:linux-shared:-fPIC::.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR)",
+ 
+ # SCO/Caldera targets.
+ #
+diff -Naur openssl-0.9.7g.orig/config openssl-0.9.7g/config
+--- openssl-0.9.7g.orig/config	2005-04-08 05:26:10.000000000 +0900
++++ openssl-0.9.7g/config	2005-08-06 20:23:09.000000000 +0900
+@@ -604,6 +604,8 @@
+   arm*b-*-linux2) OUT="linux-elf-arm"; options="$options -DB_ENDIAN" ;;
+   arm*l-*-linux2) OUT="linux-elf-arm"; options="$options -DL_ENDIAN" ;;
+   arm*-*-linux2)  OUT="linux-elf-arm" ;;
++  sh*b-*-linux2) OUT="linux-elf-sh"; options="$options -DB_ENDIAN" ;;
++  sh*-*-linux2)  OUT="linux-elf-sh"; options="$options -DL_ENDIAN" ;;
+   s390-*-linux2) OUT="linux-s390" ;;
+   s390x-*-linux?) OUT="linux-s390x" ;;
+   x86_64-*-linux?) OUT="linux-x86_64" ;;

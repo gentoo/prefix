@@ -1,0 +1,10 @@
+--- ext/NDBM_File/hints/linux.pl 2001-07-02 20:22:18 +0000
++++ ext/NDBM_File/hints/linux.pl 2004-05-21 22:05:18 +0000
+@@ -3,4 +3,6 @@
+ # (no null key support)
+ # Jonathan Stowe <gellyfish@gellyfish.com>
+ use Config;
+-$self->{LIBS} = ['-lgdbm'] if $Config{libs} =~ /(?:^|\s)-lgdbm(?:\s|$)/;
++use ExtUtils::Liblist;
++($self->{LIBS}) = ExtUtils::Liblist->ext('-lgdbm -lgdbm_compat')
++ if $Config{libs} =~ /(?:^|\s)-lgdbm(?:\s|$)/;

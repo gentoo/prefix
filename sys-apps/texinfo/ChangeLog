@@ -1,0 +1,229 @@
+# ChangeLog for sys-apps/texinfo
+# Copyright 1999-2005 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.68 2005/10/08 17:24:42 vapier Exp $
+
+*texinfo-4.8-r2 (08 Oct 2005)
+
+  08 Oct 2005; Mike Frysinger <vapier@gentoo.org>
+  files/texinfo-4.8-tempfile.patch, +texinfo-4.8-r2.ebuild:
+  Fix segfault in previous tempfile fix #108416.
+
+*texinfo-4.8-r1 (29 Sep 2005)
+
+  29 Sep 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/texinfo-4.8-tempfile.patch, +texinfo-4.8-r1.ebuild:
+  Fix insecure tempfile usage #106105.
+
+  17 Sep 2005; Ciaran McCreesh <ciaranm@gentoo.org> ChangeLog:
+  Converted to UTF-8, fixed encoding screwups
+
+  29 Jun 2005; Joshua Kinard <kumba@gentoo.org> texinfo-4.8.ebuild:
+  Marked stable on mips.
+
+  17 Jun 2005; Michael Hanselmann <hansmi@gentoo.org> texinfo-4.8.ebuild:
+  Stable on ppc.
+
+  13 May 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/texinfo-4.8-freebsd.patch, texinfo-4.8.ebuild:
+  Add a FreeBSD compatibility patch by Diego Pettenò #92434.
+
+  25 Apr 2005; Mike Frysinger <vapier@gentoo.org> texinfo-4.8.ebuild:
+  Add a workaround for broken dependencies until it can be fixed properly in
+  the makefile #85540.
+
+  09 Apr 2005; Markus Rothe <corsair@gentoo.org> texinfo-4.8.ebuild:
+  Stable on ppc64
+
+  08 Apr 2005; Marcus D. Hanwell <cryos@gentoo.org> texinfo-4.8.ebuild:
+  Marked stable on amd64.
+
+  19 Mar 2005; Bryan Østergaard <kloeri@gentoo.org> texinfo-4.8.ebuild:
+  Stable on alpha.
+
+  15 Mar 2005; Christian Birchinger <joker@gentoo.org> texinfo-4.8.ebuild:
+  Added sparc stable keyword
+
+  15 Feb 2005; Kito <kito@gentoo.org> texinfo-4.8.ebuild:
+  ~ppc-macos keyword
+
+  30 Jan 2005; Mike Frysinger <vapier@gentoo.org> texinfo-4.8.ebuild:
+  Don't install texi2pdf anymore since tetex does #76812 by Marius Mauch.
+
+*texinfo-4.8 (03 Jan 2005)
+
+  03 Jan 2005; Mike Frysinger <vapier@gentoo.org> +texinfo-4.8.ebuild:
+  Version bump.  Magically fixes #74926 by spiritus in the process.
+
+  24 Aug 2004; Sven Wegener <swegener@gentoo.org> texinfo-4.6.ebuild,
+  texinfo-4.7-r1.ebuild, texinfo-4.7.ebuild:
+  WANT_AUTOMAKE_1_6=1 -> WANT_AUTOMAKE=1.6
+
+  17 Aug 2004; Aron Griffis <agriffis@gentoo.org> texinfo-4.7-r1.ebuild:
+  stable on alpha and ia64
+
+*texinfo-4.7-r1 (22 Jul 2004)
+
+  22 Jul 2004; Jon Portnoy <avenj@gentoo.org> texinfo-4.7.ebuild,
+  texinfo-4.7-r1.ebuild, files/makeinfo.patch :
+  Added patch from bug #57960 to fix groff compilation.
+
+*texinfo-4.7 (19 Jul 2004)
+
+  19 Jul 2004; <solar@gentoo.org> texinfo-4.7.ebuild:
+  version bump and added gnuconfig_update call, needed for atleast uclibc and
+  maybe others
+
+  04 Jul 2004; <solar@gentoo.org> texinfo-4.6.ebuild:
+  added static USE flag to help assist when porting to new arches/libc's
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org> texinfo-4.5.ebuild,
+  texinfo-4.6.ebuild:
+  virtual/glibc -> virtual/libc
+
+  30 Jun 2004; Guy Martin <gmsoft@gentoo.org> texinfo-4.6.ebuild:
+  Marked stable on hppa.
+
+  29 Jun 2004; Joshua Kinard <kumba@gentoo.org> texinfo-4.6.ebuild:
+  Marked stable on sparc and mips.
+
+  27 Jun 2004; Aron Griffis <agriffis@gentoo.org> texinfo-4.3-r1.ebuild,
+  texinfo-4.5.ebuild:
+  QA - fix use invocation
+
+  28 May 2004; Aron Griffis <agriffis@gentoo.org> texinfo-4.6.ebuild:
+  Stable on alpha and x86
+
+  09 Apr 2004; Travis Tilley <lv@gentoo.org> texinfo-4.6.ebuild:
+  stable on amd64
+
+  22 Oct 2003; Bartosch Pixa <darkspecter@gentoo.org> texinfo-4.6.ebuild:
+  set ppc in keywords
+
+  08 Sep 2003; Martin Schlemmer <azarah@gentoo.org> texinfo-4.3-r1.ebuild,
+  texinfo-4.5.ebuild, texinfo-4.6.ebuild:
+  Bootstrap fixes
+
+*texinfo-4.6 (02 Sep 2003)
+
+  02 Sep 2003; Martin Holzer <mholzer@gentoo.org> texinfo-4.5.ebuild,
+  texinfo-4.6.ebuild:
+  Version bumped.
+
+  16 Jul 2003; root <root@gentoo.org> texinfo-4.5.ebuild:
+  Mark stable on ppc
+
+  24 Jun 2003; Aron Griffis <agriffis@gentoo.org> texinfo-4.5.ebuild:
+  Mark stable on alpha
+
+*texinfo-4.5 (19 Feb 2003)
+
+  06 Jul 2003; Guy Martin <gmsoft@gentoo.org> texinfo-4.5.ebuild :
+  Marked stable on hppa.
+
+  22 Jun 2003; Joshua Kinard <kumba@gentoo.org> texinfo-4.5.ebuild:
+  Changed ~sparc to sparc in KEYWORDS
+
+  24 Feb 2003; Nicholas Wourms <dragon@gentoo.org> texinfo-4.5.ebuild :
+  Marked ebuild as stable for mips.
+
+  20 Feb 2003; Zach Welch <zwelch@gentoo.org> texinfo-4.3-r1.ebuild :
+  Added arm to keywords.
+
+  19 Feb 2003; Martin Schlemmer <azarah@gentoo.org texinfo-4.5.ebuild :
+  Update version, closing bug #15075.
+
+  15 Feb 2003; Jan Seidel <tuxus@gentoo.org> texinfo-4.3.ebuild :
+  Added mips to keywords
+
+  07 Feb 2003; Guy Martin <gmsoft@gentoo.org> texinfo-4.3-r1.ebuild :
+  Added hppa to keywords.
+
+  08 Jan 2003; Jared Hudson <jhhudso@gentoo.org> texinfo-4.3-r1.ebuild : Fixed
+  bug where install-info wasn't being installed during bootstrap
+  (when USE contained 'build')
+	
+  07 Jan 2003; Martin Schlemmer <azarah@gentoo.org> texinfo-4.3-r1.ebuild :
+  Mark stable for all.  Sorry guys (other arch devs), I have a few bugs for
+  things that fails with earlier texinfo, so please forgive me for this :-)
+
+*texinfo-4.3-r1 (21 Nov 2002)
+
+  10 Mar 2003; Seemant Kulleen <seemant@gentoo.org> texinfo-4.2-r5.ebuild,
+  texinfo-4.2-r5.ebuild, texinfo-4.3-r1.ebuild, texinfo-4.3.ebuild,
+  texinfo-4.3.ebuild:
+  use epatch instead
+
+  24 Feb 2003; Nicholas Wourms <dragon@gentoo.org> texinfo-4.3-r1.ebuild :
+  Marked ebuild as stable for mips.
+
+  20 Nov 2002; Ingo Krabbe <ikrabbe@dokom.net> :
+  apply localization bugfix for install-info.
+  committed by satai@gentoo.org.
+
+*texinfo-4.3 (18 Nov 2002)
+
+  18 Nov 2002; Martin Schlemmer <azarah@gentoo.org> :
+  Update version.
+
+*texinfo-4.2b (20 Oct 2002)
+
+  20 Oct 2002; Martin Schlemmer <azarah@gentoo.org> :
+  Update version.
+
+*texinfo-4.2-r5 (8 Jul 2002)
+
+  06 Jan 2003; Jan Seidel <tuxus@gentoo.org> texinfo-4.2-r5.ebuild :
+  Added mips to keywords.
+
+  1 Aug 2002; Martin Schlemmer <azarah@gentoo.org> texinfo-4.2-r5.ebuild :
+  Fix DEPEND.
+
+  24 Jul 2002; Mark Guertin <gerk@gentoo.org> :
+  Added ppc to keywords
+
+  14 Jul 2002; phoen][x <phoenix@gentoo.org> texinfo-4.2-r5.ebuild :
+  Added KEYWORDS.
+
+  5 Jul 2002; Martin Schlemmer <azarah@gentoo.org> texinfo-4.2-r5.ebuild :
+
+  Remove the part in src_install() that renames "texinfo" and "texinfo-*"
+  (the info files) to "texinfo.info" and "texinfo.info-*".  This is replaced
+  by changing the Makefile.in to update the files that should be installed,
+  and modifying texinfo.txi to change the files being generated.  This should
+  resolve an issue where the info pages was not readable, closing bug #4672.
+
+*texinfo-4.2-r4 (1 Jul 2002)
+
+  14 Jul 2002; phoen][x <phoenix@gentoo.org> texinfo-4.2-r4.ebuild :
+  Added KEYWORDS.
+
+  Remove automake DEPEND, as it is not needed, and pulls in perl during
+  bootstrap.
+
+*texinfo-4.2-r3 (27 Jun 2002)
+
+  27 Jun 2002; Seemant Kulleen <seemant@gentoo.org> texinfo-4.2-r3.ebuild
+  files/digest-texinfo-4.2-r3 :
+
+  info pages now get merged into /usr/share/info instead of /var/tmp/..
+  Thanks to vadim@berezniker.com (Vadim Berezniker) in bug #4241
+
+*texinfo-4.2-r2 (5 June 2002)
+  5 June 2002; Verwilst <verwilst@gentoo.org> texinfo-4.2-r2.ebuild
+  activated the use build stuff, so i could enable texinfo in our gcc 3.1 
+  stage1 tarball. try/die fixes as well.
+
+*texinfo-4.2-r1 (22 May 2002)
+  22 May 2002; Spider <spider@gentoo.org> texinfo-4.2-r1.ebuild
+  Comment out all "use build" stuff and fix tabulation
+
+*texinfo-4.2 (18 May 2002)
+  18 May 2002; Spider <spider@gentoo.org> texinfo-4.2.ebuild :
+  updated some deps for automake stuff
+
+  
+*texinfo-4.0-r3 (18 May 2002)
+  18 May 2002; Spider <spider@gentoo.org> texinfo-4.0-r3.ebuild :
+  revival of the old ebuild. broken
+
+ 

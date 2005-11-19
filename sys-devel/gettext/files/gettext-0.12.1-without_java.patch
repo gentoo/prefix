@@ -1,0 +1,104 @@
+Submitted By: Tushar Teredesai <tushar@linuxfromscratch.org>
+Date: 2003-11-15
+Initial Package Version: 0.12.1
+Origin: None
+Description: Adds logic to bypass checking for java/gcj. This is useful
+when building gettext in Ch 5 (If java is found on the host, gettext build
+libs that link to the host and also causes failure of some tests during make check).
+To bypass Java checks, pass the option --without-java to configure.
+diff -ur gettext-0.12.1.orig/gettext-runtime/configure gettext-0.12.1/gettext-runtime/configure
+--- gettext-0.12.1.orig/gettext-runtime/configure	2003-05-22 08:38:47.000000000 -0500
++++ gettext-0.12.1/gettext-runtime/configure	2003-10-15 18:20:49.000000000 -0600
+@@ -3268,6 +3268,16 @@
+ 
+ 
+ 
++if test "${with_java+set}" = set; then
++  withval="$with_java"
++  test "$withval" = no || with_java=yes
++else
++  with_java=yes
++fi;
++if test "$with_java" = no ; then
++    echo "Skipping Java compiler checks..."
++else
++
+   echo "$as_me:$LINENO: checking for Java compiler" >&5
+ echo $ECHO_N "checking for Java compiler... $ECHO_C" >&6
+   cat >conftest.$ac_ext <<_ACEOF
+@@ -3490,6 +3500,7 @@
+   echo "$as_me:$LINENO: result: no" >&5
+ echo "${ECHO_T}no" >&6
+ fi
++fi
+ 
+ if test -n "$HAVE_JAVACOMP" && test -n "$JAR"; then
+   BUILDJAVA=yes
+diff -ur gettext-0.12.1.orig/gettext-tools/configure gettext-0.12.1/gettext-tools/configure
+--- gettext-0.12.1.orig/gettext-tools/configure	2003-05-22 08:40:24.000000000 -0500
++++ gettext-0.12.1/gettext-tools/configure	2003-10-15 18:21:15.000000000 -0600
+@@ -3070,6 +3070,16 @@
+ 
+ 
+ 
++if test "${with_java+set}" = set; then
++  withval="$with_java"
++  test "$withval" = no || with_java=yes
++else
++  with_java=yes
++fi;
++if test "$with_java" = no ; then
++    echo "Skipping Java native compiler checks..."
++else
++
+   echo "$as_me:$LINENO: checking for Java to native code compiler" >&5
+ echo $ECHO_N "checking for Java to native code compiler... $ECHO_C" >&6
+   # Search for the gcj command or use the one provided by the user.
+@@ -3161,6 +3171,7 @@
+     HAVE_GCJ=
+   fi
+ 
++fi
+ 
+ 
+ 
+@@ -3423,6 +3434,10 @@
+ 
+ 
+ 
++if test "$with_java" = no ; then
++    echo "Skipping Java compiler checks..."
++else
++
+   echo "$as_me:$LINENO: checking for Java compiler" >&5
+ echo $ECHO_N "checking for Java compiler... $ECHO_C" >&6
+   cat >conftest.$ac_ext <<_ACEOF
+@@ -3646,6 +3661,8 @@
+ echo "${ECHO_T}no" >&6
+ fi
+ 
++fi
++
+ if test -n "$HAVE_JAVACOMP" && test -n "$JAR"; then
+   BUILDJAVA=yes
+ else
+@@ -3653,6 +3670,10 @@
+ fi
+ 
+ 
++if test "$with_java" = no ; then
++    echo "Skipping Java VM checks..."
++else
++
+ 
+   echo "$as_me:$LINENO: checking for Java virtual machine" >&5
+ echo $ECHO_N "checking for Java virtual machine... $ECHO_C" >&6
+@@ -3840,7 +3861,7 @@
+ echo "${ECHO_T}$ac_result" >&6
+ 
+ 
+-
++fi
+ 
+ 
+ 

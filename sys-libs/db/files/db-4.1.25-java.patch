@@ -1,0 +1,16 @@
+diff -urN db-4.1.25.orig/java/src/com/sleepycat/db/DbEnv.java db-4.1.25/java/src/com/sleepycat/db/DbEnv.java
+--- db-4.1.25.orig/java/src/com/sleepycat/db/DbEnv.java	2002-08-30 20:12:26.000000000 +0200
++++ db-4.1.25/java/src/com/sleepycat/db/DbEnv.java	2004-11-30 19:54:37.979221908 +0100
+@@ -78,9 +78,9 @@
+     //
+     /*package*/ void _notify_dbs()
+     {
+-        Enumeration enum = dblist_.elements();
+-        while (enum.hasMoreElements()) {
+-            Db db = (Db)enum.nextElement();
++        Enumeration myEnum = dblist_.elements();
++        while (myEnum.hasMoreElements()) {
++            Db db = (Db)myEnum.nextElement();
+             db._notify_dbenv_close();
+         }
+         dblist_.removeAllElements();

@@ -1,0 +1,29 @@
+--- dist/configure.mps	2004-03-03 18:35:23.000000000 +0100
++++ dist/configure	2004-03-03 18:35:57.000000000 +0100
+@@ -5065,7 +5065,7 @@
+   ;;
+ 
+ # This must be Linux ELF.
+-linux-gnu*)
++linux-gnu*|linux-uclibc*)
+   case $host_cpu in
+   alpha* | hppa* | i*86 | powerpc* | sparc* | ia64* )
+     lt_cv_deplibs_check_method=pass_all ;;
+@@ -6331,7 +6331,7 @@
+ 
+ # Transform linux* to *-*-linux-gnu*, to support old configure scripts.
+ case $host_os in
+-linux-gnu*) ;;
++linux-gnu*|linux-uclibc*) ;;
+ linux*) host=`echo $host | sed 's/^\(.*-.*-linux\)\(.*\)$/\1-gnu\2/'`
+ esac
+ 
+@@ -7953,7 +7953,7 @@
+   ;;
+ 
+ # This must be Linux ELF.
+-linux-gnu*)
++linux-gnu*|linux-uclibc*)
+   version_type=linux
+   need_lib_prefix=no
+   need_version=no

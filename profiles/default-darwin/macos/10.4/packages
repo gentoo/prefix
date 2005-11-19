@@ -1,0 +1,26 @@
+*app-arch/cpio
+*sys-apps/coreutils
+-*sys-apps/coreutils-darwin
+*sys-apps/which
+*sys-devel/autoconf-wrapper
+*sys-devel/automake-wrapper
+*sys-devel/odcctools
+*sys-devel/gcc-apple
+*sys-libs/readline
+
+## Begin Linux specific packages
+-*sys-apps/kbd
+-*sys-apps/man
+-*sys-apps/man-pages
+-*sys-apps/net-tools
+-*sys-process/procps
+-*sys-process/psmisc
+-*net-misc/iputils
+-*sys-apps/shadow
+-*sys-devel/binutils
+-*sys-fs/e2fsprogs
+-*sys-libs/cracklib
+-*sys-fs/udev
+-*virtual/dev-manager
+-*virtual/modutils
+## End Linux specific packages

@@ -1,0 +1,15 @@
+diff -urN findutils-4.1.20.orig/xargs/xargs.c findutils-4.1.20/xargs/xargs.c
+--- findutils-4.1.20.orig/xargs/xargs.c	2003-10-23 11:36:08.000000000 +0200
++++ findutils-4.1.20/xargs/xargs.c	2003-10-23 11:38:04.000000000 +0200
+@@ -300,8 +300,9 @@
+      have it at 1 meg).  Things will work fine with a large ARG_MAX but it
+      will probably hurt the system more than it needs to; an array of this
+      size is allocated.  */
+-  if (arg_max > 20 * 1024)
+-    arg_max = 20 * 1024;
++/* Make this 50 k as ebuild.sh is too big */
++  if (arg_max > 50 * 1024)
++    arg_max = 50 * 1024;
+ 
+   /* Take the size of the environment into account.  */
+   arg_max -= env_size (environ);

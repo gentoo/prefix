@@ -1,0 +1,102 @@
+Collection of fixes from mandrake
+
+--- bash-3.0/doc/builtins.1
++++ bash-3.0/doc/builtins.1
+@@ -8,8 +8,5 @@
+ let, local, logout, popd, printf, pushd, pwd, read, readonly, return, set,
+ shift, shopt, source, suspend, test, times, trap, type, typeset,
+ ulimit, umask, unalias, unset, wait \- bash built-in commands, see \fBbash\fR(1)
+-.SH BASH BUILTIN COMMANDS
+-.nr zZ 1
+-.so bash.1
+ .SH SEE ALSO
+ bash(1), sh(1)
+--- bash-3.0/lib/readline/complete.c
++++ bash-3.0/lib/readline/complete.c
+@@ -1529,9 +1529,7 @@
+   if (rl_filename_completion_desired)
+     {
+       filename = tilde_expand (text);
+-      s = (nontrivial_match && rl_completion_mark_symlink_dirs == 0)
+-		? LSTAT (filename, &finfo)
+-		: stat (filename, &finfo);
++      s = stat (filename, &finfo);
+       if (s == 0 && S_ISDIR (finfo.st_mode))
+ 	{
+ 	  if (_rl_complete_mark_directories)
+--- bash-3.0/lib/readline/terminal.c
++++ bash-3.0/lib/readline/terminal.c
+@@ -313,7 +313,7 @@
+   { "ei", &_rl_term_ei },
+   { "ic", &_rl_term_ic },
+   { "im", &_rl_term_im },
+-  { "kH", &_rl_term_kH },	/* home down ?? */
++  { "@", &_rl_term_kH },	/* home down ?? */
+   { "kI", &_rl_term_kI },	/* insert */
+   { "kd", &_rl_term_kd },
+   { "ke", &_rl_term_ke },	/* end keypad mode */
+--- bash-3.0/lib/readline/text.c
++++ bash-3.0/lib/readline/text.c
+@@ -1113,6 +1113,9 @@
+       rl_delete_text (start, rl_point);
+       rl_point = start;
+     }
++  /* check for arithmetic overflow */
++  if (rl_point < 0)
++    rl_point = 0;
+   return 0;
+ }
+ 
+--- bash-3.0/Makefile.in
++++ bash-3.0/Makefile.in
+@@ -656,7 +656,7 @@
+ 
+ config.h:	stamp-h 
+ 
+-stamp-h:	config.status $(srcdir)/config.h.in $(srcdir)/config-top.h $(srcdir)/config-bot.h
++stamp-h:	version.h config.status $(srcdir)/config.h.in $(srcdir)/config-top.h $(srcdir)/config-bot.h
+ 	CONFIG_FILES= CONFIG_HEADERS=config.h $(SHELL) ./config.status
+ 
+ config.status:	$(srcdir)/configure
+@@ -664,7 +664,7 @@
+ 
+ # comment out for distribution
+ $(srcdir)/configure:	$(srcdir)/configure.in $(srcdir)/aclocal.m4 $(srcdir)/config.h.in
+-	cd $(srcdir) && autoconf
++	cd $(srcdir)
+ 
+ # for chet
+ reconfig: force
+--- bash-3.0/parse.y
++++ bash-3.0/parse.y
+@@ -388,7 +388,9 @@
+ 			}
+ 	;
+ 
+-word_list:	WORD
++word_list:
++			{ $$ = (WORD_LIST *)NULL; }
++	|	WORD
+ 			{ $$ = make_word_list ($1, (WORD_LIST *)NULL); }
+ 	|	word_list WORD
+ 			{ $$ = make_word_list ($2, $1); }
+@@ -1180,7 +1182,7 @@
+ 
+ #if defined (READLINE)
+ char *current_readline_prompt = (char *)NULL;
+-char *current_readline_line = (char *)NULL;
++unsigned char *current_readline_line = (unsigned char *)NULL;
+ int current_readline_line_index = 0;
+ 
+ static int
+--- bash-3.0/shell.c
++++ bash-3.0/shell.c
+@@ -1089,7 +1089,7 @@
+   if (restricted)
+     return 1;
+   temp = base_pathname (name);
+-  return (STREQ (temp, RESTRICTED_SHELL_NAME));
++  return ( (STREQ (temp, RESTRICTED_SHELL_NAME)) || (STREQ (temp, ("-"RESTRICTED_SHELL_NAME))) );
+ }
+ 
+ /* Perhaps make this shell a `restricted' one, based on NAME.  If the

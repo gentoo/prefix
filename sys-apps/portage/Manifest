@@ -1,0 +1,6 @@
+MD5 bee328fe9e36c1f64e2052f82a84caa3 ChangeLog 1231
+MD5 d5d5b818347fd87b290ecb0b17516b34 files/05portage.envd 34
+MD5 a754ca9e2eea9f8484bf5f93d339043a files/README.RESCUE 1911
+MD5 ec38bb077b3f9c8eaa7adb187120a91e files/digest-portage-2.0.53.03 69
+MD5 e57748276505fab96a2ab4e64de45366 metadata.xml 220
+MD5 9bad1cb450294294478b5f25027221d1 portage-2.0.53.03.ebuild 2262

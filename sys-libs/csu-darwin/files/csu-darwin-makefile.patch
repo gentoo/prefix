@@ -1,0 +1,31 @@
+--- Csu-57/Makefile	2004-12-19 12:15:16 -0600
++++ Csu-57-new/Makefile	2005-11-17 11:16:44 -0600
+@@ -13,19 +13,19 @@
+ LOCLIBDIR = /usr/local/lib
+ DSTDIRS = $(DSTROOT)$(USRLIBDIR) $(DSTROOT)$(LOCLIBDIR)
+ DYLD = $(NEXT_ROOT)/usr/lib/dyld
+-CC = /usr/bin/gcc-3.5
+-ifneq "$(wildcard /bin/pax)" ""
+-PAX = /bin/pax -rw
++CC = $(CC)
++ifneq "$(wildcard pax)" ""
++PAX = pax -rw
+ else
+-PAX = /bin/cp -p
++PAX = cp -p
+ endif
+-ifneq "$(wildcard /bin/mkdirs)" ""
+-MKDIR = /bin/mkdirs
++ifneq "$(wildcard mkdirs)" ""
++MKDIR = mkdirs
+ else
+-MKDIR = /bin/mkdir -p
++MKDIR = mkdir -p
+ endif
+-CHMOD = /bin/chmod
+-INSTALL = /usr/bin/install
++CHMOD = chmod
++INSTALL = install
+ 
+ ifeq (,$(RC_ARCHS))
+ # build for the local arch only

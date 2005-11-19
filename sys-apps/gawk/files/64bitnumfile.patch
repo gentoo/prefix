@@ -1,0 +1,11 @@
+--- gawk-3.1.3/awkgram.y.orig	2004-04-26 02:14:03.126892264 -0500
++++ gawk-3.1.3/awkgram.y	2004-04-26 02:14:47.071001704 -0500
+@@ -90,7 +90,7 @@
+ extern char *source;
+ extern int sourceline;
+ extern struct src *srcfiles;
+-extern int numfiles;
++extern long numfiles;
+ extern int errcount;
+ extern NODE *begin_block;
+ extern NODE *end_block;

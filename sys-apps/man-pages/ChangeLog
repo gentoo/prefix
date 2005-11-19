@@ -1,0 +1,173 @@
+# ChangeLog for sys-apps/man-pages
+# Copyright 1999-2005 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/ChangeLog,v 1.37 2005/10/17 22:13:53 vapier Exp $
+
+*man-pages-2.09 (17 Oct 2005)
+
+  17 Oct 2005; Mike Frysinger <vapier@gentoo.org> +man-pages-2.09.ebuild:
+  Version bump.
+
+*man-pages-2.08 (05 Oct 2005)
+
+  05 Oct 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/man-pages-2.08-updates.patch, +man-pages-2.08.ebuild:
+  Version bump.
+
+*man-pages-2.07 (20 Jul 2005)
+
+  20 Jul 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/man-pages-2.07-updates.patch, +man-pages-2.07.ebuild:
+  Version bump.
+
+*man-pages-2.05 (29 Jun 2005)
+
+  29 Jun 2005; Mike Frysinger <vapier@gentoo.org> +man-pages-2.05.ebuild:
+  Version bump.
+
+*man-pages-2.03 (17 Jun 2005)
+
+  17 Jun 2005; Mike Frysinger <vapier@gentoo.org> +man-pages-2.03.ebuild:
+  Version bump.
+
+*man-pages-2.02 (15 Apr 2005)
+
+  15 Apr 2005; Mike Frysinger <vapier@gentoo.org> +man-pages-2.02.ebuild:
+  Version bump.
+
+*man-pages-2.01 (12 Jan 2005)
+
+  12 Jan 2005; Mike Frysinger <vapier@gentoo.org> +man-pages-2.01.ebuild:
+  Version bump.
+
+*man-pages-2.00 (19 Dec 2004)
+
+  19 Dec 2004; Mike Frysinger <vapier@gentoo.org> +man-pages-2.00.ebuild:
+  Version bump.
+
+*man-pages-1.70 (15 Nov 2004)
+
+  15 Nov 2004; Mike Frysinger <vapier@gentoo.org> +man-pages-1.70.ebuild:
+  Version bump.
+
+  30 Jun 2004; Aron Griffis <agriffis@gentoo.org> man-pages-1.65.ebuild,
+  man-pages-1.66.ebuild:
+  sync IUSE (missing)
+
+*man-pages-1.67 (21 May 2004)
+
+  25 May 2004; Nicholas Jones <carpaski@gentoo.org> man-pages-1.67.ebuild:
+  Fix for portage-2.0.51_pre9's new default make in src_compile via true.
+
+  21 May 2004; Jon Portnoy <avenj@gentoo.org> man-pages-1.67.ebuild :
+  Version bump.
+
+*man-pages-1.66 (18 Mar 2004)
+
+  18 Mar 2004; Seemant Kulleen <seemant@gentoo.org> man-pages-1.64.ebuild,
+  man-pages-1.66.ebuild:
+  version bump
+
+  02 Mar 2004; Brian Jackson <iggy@gentoo.org> man-pages-1.65.ebuild:
+  adding initial s390 support
+
+*man-pages-1.65 (24 Jan 2004)
+
+  24 Jan 2004; Mike Frysinger <vapier@gentoo.org> :
+  Version bumpage.
+
+*man-pages-1.64 (09 Dec 2003)
+
+  09 Dec 2003; Seemant Kulleen <seemant@gentoo.org> man-pages-1.60.ebuild,
+  man-pages-1.64.ebuild:
+  version bump
+
+*man-pages-1.61 (13 Nov 2003)
+
+  13 Nov 2003; Seemant Kulleen <seemant@gentoo.org> man-pages-1.61.ebuild:
+  version bump
+
+*man-pages-1.60 (13 Oct 2003)
+
+  13 Oct 2003; Mike Frysinger <vapier@gentoo.org> :
+  Version bumpage.
+
+*man-pages-1.56 (25 Mar 2003)
+
+  25 May 2003; Martin Holzer <mholzer@gentoo.org> man-pages-1.54.ebuild,
+  man-pages-1.55.ebuild, man-pages-1.56.ebuild:
+  SRC_URI="mirror://kernel/linux/docs/${MY_PN}/${P}.tar.bz2"now uses
+  mirror://kernel
+
+  25 Mar 2003; Daniel Robbins <drobbins@gentoo.org> man-pages-1.56.ebuild:
+  new upstream release; unmasked on all arches.
+
+  21 Feb 2003; Zach Welch <zwelch@gentoo.org> man-pages-1.54.ebuild
+  man-pages-1.55.ebuild : Added arm to keywords.
+
+*man-pages-1.55 (09 Feb 2003)
+
+  24 Feb 2003; Nicholas Wourms <dragon@gentoo.org> man-pages-1.55.ebuild :
+  Mark as stable for mips.  Can man-pages really break?
+
+  22 Feb 2003; Aron Griffis <agriffis@gentoo.org> man-pages-1.55.ebuild :
+  Mark stable on alpha
+
+  09 Feb 2003; Seemant Kulleen <seemant@gentoo.org> man-pages-1.55.ebuild
+  files/digest-man-pages-1.55 :
+
+  Version bump.
+
+*man-pages-1.54 (30 Dec 2002)
+
+  09 Feb 2003; Guy Martin <gmsoft@gentoo.org> man-pages-1.54.ebuild :
+  Added hppa to keywords.
+
+  19 Jan 2003; Jan Seidel <tuxus@gentoo.org> :
+  Added mips to keywords
+
+  30 Dec 2002; Daniel Robbins <drobbins@gentoo.org> man-pages-1.54.ebuild: new
+  release, version bump.
+
+*man-pages-1.53 (29 Dec 2002)
+
+  29 Dec 2002; Daniel Robbins <drobbins@gentoo.org> man-pages-1.53.ebuild: new
+  release, version bump.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*man-pages-1.52 (29 Jul 2002)
+
+  29 Jul 2002; Seemant Kulleen <seemant@gentoo.org> man-pages-1.52.ebuild
+  files/digest-man-pages-1.52 :
+  
+  Version bump.
+
+*man-pages-1.51 (11 Jun 2002)
+
+  14 Jul 2002; phoen][x <phoenix@gentoo.org> man-pages-1.51.ebuild :
+  Added KEYWORDS.
+
+  11 Jun 2002; Seemant Kulleen <seemant@gentoo.org> man-pages-1.51.ebuild
+  files/digtest-man-pages-1.51 :
+
+  Version bump.
+
+*man-pages-1.50 (5 Jun 2002)
+
+  14 Jul 2002; phoen][x <phoenix@gentoo.org> man-pages-1.50.ebuild :
+  Added LICENSE, KEYWORDS, SLOT.
+
+  5 Jun 2002; Seemant Kulleen <seemant@gentoo.org> man-pages-1.50.ebuild
+  files/digest-man-pages-1.50 :
+
+  Version bump.
+
+*man-pages-1.43-r1 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.

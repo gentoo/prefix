@@ -1,0 +1,133 @@
+--- python2.3-2.3.5.orig/debian/patches/pcre-security_CAN-2005-2491.dpatch
++++ python2.3-2.3.5/debian/patches/pcre-security_CAN-2005-2491.dpatch
+@@ -0,0 +1,130 @@
++#! /bin/sh -
++## pcre-security_CAN-2005-2491.dpatch by  <martin.pitt@ubuntu.com>
++##
++## All lines beginning with `## DP:' are a description of the patch.
++## DP: No description.
++
++dir=
++if [ $# -eq 3 -a "$2" = '-d' ]; then
++    pdir="-d $3"
++    dir="$3/"
++elif [ $# -ne 1 ]; then
++    echo >&2 "usage: `basename $0`: -patch|-unpatch [-d <srcdir>]"
++    exit 1
++fi
++case "$1" in
++    -patch)
++        patch $pdir -f --no-backup-if-mismatch -p0 < $0
++        ;;
++    -unpatch)
++        patch $pdir -f --no-backup-if-mismatch -R -p0 < $0
++        #rm ${dir}gcc/configure
++        ;;
++    *)
++	echo >&2 "usage: `basename $0`: -patch|-unpatch [-d <srcdir>]"
++        exit 1
++esac
++exit 0
++
++@DPATCH@
++diff -urNad --exclude=CVS --exclude=.svn ./Modules/pcre.h /tmp/dpep-work.MjIRvP/python2.3-2.3.5/Modules/pcre.h
++--- ./Modules/pcre.h	2000-06-28 22:56:30.000000000 +0200
+++++ /tmp/dpep-work.MjIRvP/python2.3-2.3.5/Modules/pcre.h	2005-08-30 14:32:46.000000000 +0200
++@@ -40,6 +40,7 @@
++ #ifdef FOR_PYTHON
++ #define PCRE_LOCALE          0x0200
++ #endif
+++#define PCRE_NO_AUTO_CAPTURE    0x1000
++ 
++ /* Exec-time error codes */
++ 
++diff -urNad --exclude=CVS --exclude=.svn ./Modules/pcre-int.h /tmp/dpep-work.MjIRvP/python2.3-2.3.5/Modules/pcre-int.h
++--- ./Modules/pcre-int.h	1998-05-07 17:32:38.000000000 +0200
+++++ /tmp/dpep-work.MjIRvP/python2.3-2.3.5/Modules/pcre-int.h	2005-08-30 14:32:46.000000000 +0200
++@@ -81,11 +81,12 @@
++ #define PUBLIC_OPTIONS \
++   (PCRE_CASELESS|PCRE_EXTENDED|PCRE_ANCHORED|PCRE_MULTILINE| \
++    PCRE_DOTALL|PCRE_DOLLAR_ENDONLY|PCRE_EXTRA|PCRE_UNGREEDY| \
++-   PCRE_LOCALE)
+++   PCRE_NO_AUTO_CAPTURE|PCRE_LOCALE)
++ #else
++ #define PUBLIC_OPTIONS \
++   (PCRE_CASELESS|PCRE_EXTENDED|PCRE_ANCHORED|PCRE_MULTILINE| \
++-   PCRE_DOTALL|PCRE_DOLLAR_ENDONLY|PCRE_EXTRA|PCRE_UNGREEDY)
+++   PCRE_DOTALL|PCRE_DOLLAR_ENDONLY|PCRE_EXTRA|PCRE_UNGREEDY| \
+++   PCRE_NO_AUTO_CAPTURE)
++ #endif
++ #define PUBLIC_EXEC_OPTIONS \
++   (PCRE_CASELESS|PCRE_ANCHORED|PCRE_MULTILINE|PCRE_NOTBOL|PCRE_NOTEOL| \
++diff -urNad --exclude=CVS --exclude=.svn ./Modules/pypcre.c /tmp/dpep-work.MjIRvP/python2.3-2.3.5/Modules/pypcre.c
++--- ./Modules/pypcre.c	2003-10-20 16:34:47.000000000 +0200
+++++ /tmp/dpep-work.MjIRvP/python2.3-2.3.5/Modules/pypcre.c	2005-08-30 14:32:46.000000000 +0200
++@@ -1163,14 +1163,31 @@
++ int min = 0;
++ int max = -1;
++ 
+++/* Read the minimum value and do a paranoid check: a negative value indicates
+++an integer overflow. */
+++
++ while ((pcre_ctypes[*p] & ctype_digit) != 0) min = min * 10 + *p++ - '0';
++ 
+++if (min < 0 || min > 65535)
+++  {
+++  *errorptr = ERR5;
+++  return p;
+++  }
+++
+++/* Read the maximum value if there is one, and again do a paranoid on its size
+++. Also, max must not be less than min. */
+++
++ if (*p == '}') max = min; else
++   {
++   if (*(++p) != '}')
++     {
++     max = 0;
++     while((pcre_ctypes[*p] & ctype_digit) != 0) max = max * 10 + *p++ - '0';
+++    if (max < 0 || max > 65535)
+++      {
+++      *errorptr = ERR5;
+++      return p;
+++      }
++     if (max < min)
++       {
++       *errorptr = ERR4;
++@@ -2267,6 +2284,7 @@
++ int bracount = 0;
++ int brastack[200];
++ int top_backref = 0;
+++BOOL capturing;
++ unsigned int brastackptr = 0;
++ uschar *code;
++ const uschar *ptr;
++@@ -2446,7 +2464,8 @@
++     /* Brackets may be genuine groups or special things */
++ 
++     case '(':
++-
+++    capturing = FALSE;
+++    
++     /* Handle special forms of bracket, which all start (? */
++ 
++     if (ptr[1] == '?') switch (c = ptr[2])
++@@ -2542,11 +2561,16 @@
++         }
++       continue;                      /* End of this bracket handling */
++       }
+++    
+++    /* Ordinary parentheses, not followed by '?', are capturing unless
+++    PCRE_NO_AUTO_CAPTURE is set. */
++ 
+++    else capturing = (options & PCRE_NO_AUTO_CAPTURE) == 0;
+++    
++     /* Extracting brackets must be counted so we can process escapes in a
++     Perlish way. */
++-
++-    else bracount++;
+++    
+++    if (capturing) bracount++;
++ 
++     /* Non-special forms of bracket. Save length for computing whole length
++     at end if there's a repeat that requires duplication of the group. */

@@ -1,0 +1,76 @@
+# ChangeLog for dev-perl/Locale-gettext
+# Copyright 2002-2005 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Locale-gettext/ChangeLog,v 1.20 2005/06/17 20:17:40 mcummings Exp $
+
+*Locale-gettext-1.05 (17 Jun 2005)
+
+  17 Jun 2005; Michael Cummings <mcummings@gentoo.org>
+  +Locale-gettext-1.05.ebuild:
+  version bump
+
+  06 Jun 2005; Markus Rothe <corsair@gentoo.org> Locale-gettext-1.03.ebuild:
+  Stable on ppc64
+
+  25 May 2005; Michael Cummings <mcummings@gentoo.org>
+  Locale-gettext-1.04.ebuild:
+  dev-perl/Test-Simple => perl-core/Test-Simple migration
+
+  30 Apr 2005; Michael Hanselmann <hansmi@gentoo.org>
+  Locale-gettext-1.03.ebuild:
+  Stable on ppc.
+
+  30 Apr 2005; Bryan Østergaard <kloeri@gentoo.org>
+  Locale-gettext-1.03.ebuild:
+  Stable on alpha.
+
+  28 Apr 2005; Michael Cummings <mcummings@gentoo.org>
+  Locale-gettext-1.04.ebuild:
+  Disabling tests in 1.04 - sad. Should finish bug 90756
+
+  28 Apr 2005; Michael Cummings <mcummings@gentoo.org>
+  Locale-gettext-1.04.ebuild:
+  Tests
+
+*Locale-gettext-1.04 (28 Apr 2005)
+
+  28 Apr 2005; Michael Cummings <mcummings@gentoo.org>
+  -Locale-gettext-1.01.ebuild, Locale-gettext-1.03.ebuild,
+  +Locale-gettext-1.04.ebuild:
+  Cleaning
+
+  12 Feb 2005; <solar@gentoo.org> Locale-gettext-1.03.ebuild:
+  - marked stable for bug 77440
+
+  13 Feb 2005; <plasmaroo@gentoo.org> Locale-gettext-1.03.ebuild:
+  Marking 1.03 stable; fixes {#77440|#79478} symptoms on IA64.
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+*Locale-gettext-1.03 (09 Oct 2004)
+
+  09 Oct 2004; Michael Cummings <mcummings@gentoo.org>
+  +Locale-gettext-1.03.ebuild:
+  Newer version
+
+  04 May 2004; Bryan Østergaard <kloeri@gentoo.org>
+  Locale-gettext-1.01-r1.ebuild:
+  Stable on alpha.
+
+  02 Mar 2004; Brian Jackson <iggy@gentoo.org> Locale-gettext-1.01-r1.ebuild:
+  added s390 to keywords
+
+*Locale-gettext-1.01-r1 (24 Oct 2002)
+                                                                                                   
+  08 Dec 2002; Jack Morgan <jmorgan@gentoo.org> : 
+  Removed sparc64 keyword                                                                        
+
+  29 Oct 2002; Seemant Kulleen <seemant@gentoo.org> ChangeLog  :
+  forced version bump to install into correct locations
+
+# ChangeLog for dev-perl/Locale-gettext
+
+*Locale-gettext-1.01 (24 Oct 2002)
+
+  24 Oct 2002; <mcummings@gentoo.org> Locale-gettext-1.01.ebuild ChangeLog:
+  Initial import. Ebuild submitted by ryan.shaw@standfordalumni.org.

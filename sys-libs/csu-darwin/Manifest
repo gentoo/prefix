@@ -1,0 +1,5 @@
+MD5 7a108a7607cacf7f72759e512162a356 ChangeLog 420
+MD5 aa1fa87dc81eb9a96795399d1dfc773a csu-darwin-57.ebuild 903
+MD5 150f42b32013ad5e6521c9aa3643b04d files/csu-darwin-makefile.patch 706
+MD5 032d5ceef77264cdf63d0f952ececa4b files/digest-csu-darwin-57 57
+MD5 e526e84277cb8eb1bcf73840117ff45a metadata.xml 220

@@ -1,0 +1,3 @@
+ARCH=ppc
+FEATURES="collision-protect"
+USE="bzip2 opengl"

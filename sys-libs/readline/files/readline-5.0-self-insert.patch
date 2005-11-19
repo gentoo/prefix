@@ -1,0 +1,77 @@
+ripped from Debian's readline5_5.0-10.diff
+
+From: Thomas Glanzmann <sithglan@stud.uni-erlangen.de>
+To: Debian Bug Tracking System <submit@bugs.debian.org>
+Subject: Bug#290103: readline provided with bash: self-insert doesn't work correctly
+Date: Wed, 12 Jan 2005 20:35:17 +0100
+
+Package: bash3
+Version: 3.0-10
+Severity: normal
+Tags: patch
+
+Hello,
+having the following in .inputrc:
+
+$if Bash
+    ",2": " 2>&1"
+    ",n": " 2>/dev/null"
+    ",t": "/var/tmp/sithglan/"
+    ",b": "/opt/build/thomas/"
+    ",": self-insert
+$endif
+
+should expand ,2 to " 2>&1" but , still to ','. This isn't the case and
+I asked bash maintainer Chet Ramey to fix it and he did it. :-) The
+following patch will ship with the next version of bash.
+
+> > That is a bug in the released version of readline-5.0.  Shadow keymaps
+> > are implemented by using an extra character.  When a `shadowed' key
+> > (the `,' in your case) is bound to self-insert, the 5.0 code was
+> > trying to insert the extra character (256) rather than the `,'.
+
+*** bash-20050106.orig/lib/readline/readline.c	Fri Oct 15 14:36:55 2004
+--- bash/lib/readline/readline.c	Sat Jan  8 23:51:44 2005
+***************
+*** 657,665 ****
+  	       the input queue with _rl_unget_char. */
+  	    {
+- #if 0
+- 	      r = _rl_dispatch (ANYOTHERKEY, FUNCTION_TO_KEYMAP (map, key));
+- #else
+- 	      /* XXX - experimental code -- might never be executed.  Save
+- 		 for later. */
+  	      Keymap m = FUNCTION_TO_KEYMAP (map, key);
+  	      int type = m[ANYOTHERKEY].type;
+--- 657,660 ----
+***************
+*** 667,673 ****
+  	      if (type == ISFUNC && func == rl_do_lowercase_version)
+  		r = _rl_dispatch (_rl_to_lower (key), map);
+  	      else
+  		r = _rl_dispatch (ANYOTHERKEY, m);
+- #endif
+  	    }
+  	  else if (r && map[ANYOTHERKEY].function)
+--- 662,681 ----
+  	      if (type == ISFUNC && func == rl_do_lowercase_version)
+  		r = _rl_dispatch (_rl_to_lower (key), map);
++ 	      else if (type == ISFUNC && func == rl_insert)
++ 		{
++ 		  /* If the function that was shadowed was self-insert, we
++ 		     somehow need a keymap with map[key].func == self-insert.
++ 		     Let's use this one. */
++ 		  int nt = m[key].type;
++ 		  rl_command_func_t *nf = m[key].function;
++ 
++ 		  m[key].type = type;
++ 		  m[key].function = func;
++ 		  r = _rl_dispatch (key, m);
++ 		  m[key].type = nt;
++ 		  m[key].function = nf;
++ 		}
+  	      else
+  		r = _rl_dispatch (ANYOTHERKEY, m);
+  	    }
+  	  else if (r && map[ANYOTHERKEY].function)
+

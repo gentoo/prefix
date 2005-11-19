@@ -1,0 +1,29 @@
+Grabbed from Debian:
+http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=249245
+
+To fix Gentoo bug:
+http://bugs.gentoo.org/show_bug.cgi?id=76192
+
+--- grep-2.5.1.orig/src/dfa.c	2004-10-19 02:07:23.000000000 +0900
++++ grep-2.5.1/src/dfa.c	2004-10-19 02:24:28.000000000 +0900
+@@ -652,6 +652,20 @@
+ 	  REALLOC_IF_NECESSARY(work_mbc->chars, wchar_t, chars_al,
+ 			       work_mbc->nchars + 1);
+ 	  work_mbc->chars[work_mbc->nchars++] = (wchar_t)wc;
++	  if (case_fold && (iswlower((wint_t) wc) || iswupper((wint_t) wc)))
++	    {
++		wint_t altcase;
++
++		altcase = wc;		/* keeps compiler happy */
++		if (iswlower((wint_t) wc))
++		  altcase = towupper((wint_t) wc);
++		else if (iswupper((wint_t) wc))
++		  altcase = towlower((wint_t) wc);
++
++		REALLOC_IF_NECESSARY(work_mbc->chars, wchar_t, chars_al,
++			       work_mbc->nchars + 1);
++		work_mbc->chars[work_mbc->nchars++] = (wchar_t) altcase;
++	    }
+ 	}
+     }
+   while ((wc = wc1) != L']');

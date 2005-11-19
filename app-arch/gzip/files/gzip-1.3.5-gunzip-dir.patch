@@ -1,0 +1,17 @@
+Fix a bug reported by Ulf Harnhammar (patch by him too):
+gzip: dir traversal bug when using "gunzip -N"
+
+http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=305255
+http://bugs.gentoo.org/show_bug.cgi?id=89946
+
+--- gzip-1.3.5/gzip.c
++++ gzip-1.3.5/gzip.c
+@@ -1344,6 +1344,8 @@
+ 			error("corrupted input -- file name too large");
+ 		    }
+ 		}
++		{ char *base2 = base_name (base);   /* strip any paths that may exists */
++		strcpy(base, base2); }              /* in the output name */
+                 /* If necessary, adapt the name to local OS conventions: */
+                 if (!list) {
+                    MAKE_LEGAL_NAME(base);

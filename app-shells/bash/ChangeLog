@@ -1,0 +1,430 @@
+# ChangeLog for app-shells/bash
+# Copyright 1999-2005 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.78 2005/10/20 16:51:39 flameeyes Exp $
+
+  20 Oct 2005; Diego Pettenò <flameeyes@gentoo.org>
+  +files/bash-3.0-strnlen.patch, bash-3.0-r13.ebuild:
+  Add patch to provide strnlen when it does not exists, as one of the last
+  patches needs it to work on FreeBSD and other non-glibc systems.
+
+*bash-3.0-r13 (16 Oct 2005)
+
+  16 Oct 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/bash-3.0-configs.patch, +files/bash-3.0-gentoo.patch,
+  +files/bash-3.0-histtimeformat.patch, +files/bash-3.0-locale.patch,
+  +files/bash-3.0-multibyteifs.patch, +files/bash-3.0-rl-display.patch,
+  +files/bash-3.0-rl-self-insert.patch, +files/bash-3.0-prompt.patch,
+  +files/bash-3.0-utf8.patch, +bash-3.0-r13.ebuild:
+  Add some more patches from Debian/SuSe/Fedora/Pardus and add a workaround 
+  for UTF8 mishaps #69407.
+
+  03 Oct 2005; Mike Frysinger <vapier@gentoo.org> files/bashrc:
+  Add an alias for colored output to global bashrc.
+
+  03 Sep 2005; Stefan Briesenick <sbriesen@gentoo.org> bash-3.0-r12.ebuild:
+  fixing parallel build problems using 'emake -j1' (see bug 102426)
+
+  06 Aug 2005; Kito <kito@gentoo.org> bash-3.0-r12.ebuild:
+  ~ppc-macos
+
+  03 Aug 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/bash-3.0-force-static-linking.patch, bash-3.0-r12.ebuild:
+  Make sure Darwin links properly against included readline #100138.
+
+  07 Jul 2005; Martin Schlemmer <azarah@gentoo.org> bash-3.0-r12.ebuild:
+  Add parallel build fix patch back again.
+
+  06 Jul 2005; Martin Schlemmer <azarah@gentoo.org> files/dot-bashrc:
+  Add support for rxvt-unicode in the window title code, bug #98090.
+
+*bash-3.0-r12 (05 Jul 2005)
+
+  05 Jul 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/bash-3.0-pgrp-pipe-fix.patch, +bash-3.0-r12.ebuild:
+  Fix from upstream for pipe code when PGRP_PIPE is enabled #92349 by Harald
+  van Dijk.
+
+  27 Jun 2005; Aron Griffis <agriffis@gentoo.org>
+  +files/bash-3.0-parallel.patch, bash-3.0-r11.ebuild:
+  Fix parallel builds #87247
+
+  09 Jun 2005; Mike Frysinger <vapier@gentoo.org> bash-3.0-r11.ebuild:
+  Stabilize for all arches.
+
+  29 May 2005; <solar@gentoo.org> bash-2.05b-r11.ebuild, bash-3.0-r7.ebuild,
+  bash-3.0-r8.ebuild:
+  update package to use libc expanded variable elibc_uclibc vs uclibc so USE=-*
+  works
+
+  04 May 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/bash-3.0-bash-logger.patch, bash-3.0-r11.ebuild:
+  Add support for logging in the shell #91327 by Kevin Landreth.
+
+  30 Apr 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/bash-3.0-trap-fg-signals.patch, bash-3.0-r11.ebuild:
+  Add patch to handle trapped signals in scripts better.
+
+  30 Apr 2005; Mike Frysinger <vapier@gentoo.org> +files/dot-bash_logout,
+  +files/dot-bash_profile, +files/dot-bashrc, bash-3.0-r11.ebuild:
+  Move /etc/skel/.bash* files from baselayout to bash.
+
+*bash-3.0-r11 (29 Apr 2005)
+
+  29 Apr 2005; Mike Frysinger <vapier@gentoo.org> -bash-3.0-r10.ebuild,
+  +bash-3.0-r11.ebuild:
+  Remove preexec patch since it can cause segfaults under some test cases:
+  alias blah="ls;ls" then do `blah`.
+
+*bash-3.0-r10 (29 Apr 2005)
+
+  29 Apr 2005; Mike Frysinger <vapier@gentoo.org> +files/bash-3.0-afs.patch,
+  +files/bash-3.0-crash.patch, +files/bash-3.0-darwin-conn.patch,
+  +files/bash-3.0-manpage.patch, +files/bash-3.0-pwd.patch,
+  +files/bash-3.0-read-e-segfault.patch, +files/bash-3.0-ulimit.patch,
+  +files/bash_logout, +bash-3.0-r10.ebuild:
+  Add a bunch of fixes from Fedora. Add patch to fix Darwin support #79124 by
+  Sune Foldager. Dont install /bin/sh symlink on non-gnu systems (like BSD)
+  #84777 by Diego Pettenò. Add global bash_logout support #90488 by Andre
+  Kloth. Add support for PREEXEC #31414 by M3Dlor and all. Move /etc/bashrc
+  back to /etc/bash/bashrc sine we now have /etc/bash/bash_logout too.
+
+*bash-3.0-r9 (30 Mar 2005)
+
+  30 Mar 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/bash-3.0-read-builtin-pipe.patch, +bash-3.0-r9.ebuild:
+  Move /etc/bash/bashrc to /etc/bashrc and fix built-in read with -u pipes
+  #87093 by Michael Haubenwallner.
+
+*bash-3.0-r8 (09 Feb 2005)
+
+  09 Feb 2005; Mike Frysinger <vapier@gentoo.org> +bash-3.0-r8.ebuild:
+  Version bump to include 2 new upstream patches.
+
+*bash-3.0-r7 (13 Oct 2004)
+
+  13 Oct 2004; Aron Griffis <agriffis@gentoo.org> +files/bash30-014,
+  -bash-3.0-r5.ebuild, -bash-3.0-r6.ebuild, +bash-3.0-r7.ebuild:
+  Add patch 014 to fix brace expansion #67075
+
+*bash-2.05b-r11 (29 Sep 2004)
+
+  29 Sep 2004; Aron Griffis <agriffis@gentoo.org>
+  +files/bash-2.05b-setlocale.patch, -bash-2.05b-r10.ebuild,
+  +bash-2.05b-r11.ebuild:
+  Fix bash-2 initialization wrt setlocale #64266. Arch devs, please do *not*
+  stable this package until I say so since the newer bashrc stuff needs to be
+  synchronized with stabilization of newer baselayout versions
+
+  28 Sep 2004; Aron Griffis <agriffis@gentoo.org> files/bashrc:
+  Enable checkwinsize in system bashrc #65623
+
+  28 Sep 2004; Travis Tilley <lv@gentoo.org> +files/bash-2.05b-jobs.patch,
+  +files/bash-3.0-jobs.patch, bash-2.05b-r10.ebuild, bash-2.05b-r9.ebuild,
+  bash-3.0-r5.ebuild, bash-3.0-r6.ebuild:
+  added a fix from fedora for using bash with post-20040808 glibc snapshots.
+
+*bash-3.0-r6 (27 Sep 2004)
+
+  27 Sep 2004; Aron Griffis <agriffis@gentoo.org> +bash-3.0-r6.ebuild:
+  Update to patchlevel 13 #65410 and others
+
+  08 Sep 2004; Mike Frysinger <vapier@gentoo.org> bash-2.05b-r10.ebuild,
+  bash-2.05b-r9.ebuild, bash-3.0-r5.ebuild:
+  Make sure we statically link with ncurses #51901 and turn on emake since it
+  seems to work fine for me.
+
+*bash-3.0-r5 (18 Aug 2004)
+
+  18 Aug 2004; Aron Griffis <agriffis@gentoo.org>
+  +files/bash-3.0-array-stripping.patch, -bash-3.0-r4.ebuild,
+  +bash-3.0-r5.ebuild:
+  Fix array stripping with patch from Chet #60127
+
+  13 Aug 2004; Aron Griffis <agriffis@gentoo.org> files/bashrc:
+  Don't export PS1.  Continuation of bug 26951, comments 60-62
+
+  07 Aug 2004; Aron Griffis <agriffis@gentoo.org> files/bashrc:
+  Restore red prompt for root #59678
+
+  02 Aug 2004; Aron Griffis <agriffis@gentoo.org>
+  files/bash-3.0-invisible.patch:
+  Fix bash-3.0-invisible.patch to work for more than the simple test case I used
+  last time ;-)
+
+*bash-3.0-r4 (02 Aug 2004)
+
+  02 Aug 2004; Aron Griffis <agriffis@gentoo.org>
+  +files/bash-3.0-local-array.patch, -bash-3.0-r3.ebuild, +bash-3.0-r4.ebuild:
+  Fix bug 58961 with patch from Chet Ramey to prevent segfault
+
+*bash-3.0-r3 (02 Aug 2004)
+
+  02 Aug 2004; Aron Griffis <agriffis@gentoo.org>
+  +files/bash-3.0-etc-inputrc.patch, -bash-3.0-r1.ebuild, -bash-3.0-r2.ebuild,
+  +bash-3.0-r3.ebuild, -bash-3.0.ebuild:
+  Add patch to use /etc/inputrc automatically as a last resort if ~/.inputrc is
+  unavailable. This is better than using INPUTRC since that will override even
+  after the user creates ~/.inputrc. #38955
+
+*bash-3.0-r2 (02 Aug 2004)
+
+  02 Aug 2004; Aron Griffis <agriffis@gentoo.org>
+  +files/bash-3.0-invisible.patch, +bash-3.0-r2.ebuild:
+  Fix the bug reported by Alexander in bug 36393: bash applies all invisible
+  characters to the first line instead of the ones that actually (dis)appear in
+  that line. I've also pushed this upstream
+
+  29 Jul 2004; Ciaran McCreesh <ciaranm@gentoo.org> bash-3.0-r1.ebuild:
+  Add ~sparc back in
+
+*bash-3.0-r1 (28 Jul 2004)
+
+  28 Jul 2004; Aron Griffis <agriffis@gentoo.org>
+  +files/bash-3.0-posixtrap.patch, +bash-3.0-r1.ebuild:
+  Fix bug 58703: Revert trap behavior for the sake of autoconf-generated
+  configure scripts. The problem here is that bash -c 'trap 0' works, but sh -c
+  'trap 0' doesn't work because the bash developers are trying to adhere to
+  POSIX in that case. Since all the configure scripts are #!/bin/sh, this breaks
+  them... That's bad news and will need some time to fix, so it's easier to fix
+  here for the moment
+
+  29 Jul 2004; Ciaran McCreesh <ciaranm@gentoo.org> bash-3.0.ebuild:
+  Remove ~sparc for now, see bug #58703
+
+*bash-3.0 (28 Jul 2004)
+
+  28 Jul 2004; <agriffis@gentoo.org> +bash-3.0.ebuild:
+  Bump to version 3.0. All patches from files/ have been either integrated into
+  gentoo patch or dropped appropriately
+
+*bash-2.05b-r10 (21 Jul 2004)
+
+  21 Jul 2004; Aron Griffis <agriffis@gentoo.org> +files/bashrc,
+  +bash-2.05b-r10.ebuild, -bash-2.05b-r5.ebuild, -bash-2.05b-r7.ebuild,
+  -bash-2.05b-r8.ebuild:
+  Install and use /etc/bash/bashrc; half of fix for bug 26952. Thanks to Toby
+  Dickenson for the dircolors tip
+
+  15 Jun 2004; <solar@gentoo.org> bash-2.05b-r9.ebuild:
+  remove *bashbug* when using uclibc
+
+  17 Apr 2004; Travis Tilley <lv@gentoo.org> bash-2.05b-r9.ebuild:
+  marked stable on amd64
+
+  09 Mar 2004; <agriffis@gentoo.org> bash-2.05b-r9.ebuild:
+  stable on alpha and ia64
+
+  07 Mar 2004; Joshua Kinard <kumba@gentoo.org> bash-2.05b-r9.ebuild:
+  Marked stable on mips.
+
+  02 Mar 2004; Brian Jackson <iggy@gentoo.org> bash-2.05b-r9.ebuild:
+  s390 keywords
+
+  15 Feb 2004; Martin Schlemmer <azarah@gentoo.org> bash-2.05b-r9.ebuild:
+  Fix parallel make, bug #41002.
+
+  09 Feb 2004; <gustavoz@gentoo.org> bash-2.05b-r9.ebuild:
+  stable on sparc
+
+  08 Feb 2004; Martin Schlemmer <azarah@gentoo.org> bash-2.05b-r9.ebuild:
+  Bump to stable for x86.
+
+  13 Jan 2004; Jon Portnoy <avenj@gentoo.org> bash-2.05b-r7.ebuild :
+  Stable on AMD64.
+
+  28 Dec 2003; Joshua Kinard <kumba@gentoo.org> bash-2.05b-r7.ebuild:
+  Move to mips stable (~mips -> mips)
+
+*bash-2.05b-r9 (27 Dec 2003)
+
+  27 Dec 2003; Martin Schlemmer <azarah@gentoo.org> bash-2.05b-r9.ebuild:
+  Force pgrp synchronization
+  (https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=81653)
+  
+  The session will hang cases where you 'su' (not 'su -') and then run a piped
+  command in emacs. This problem seem to happen due to scheduler changes kernel
+  side - although reproduceble with later 2.4 kernels, it is especially easy
+  with 2.6 kernels.
+
+  13 Dec 2003; Guy Martin <gmsoft@gentoo.org> bash-2.05b-r7.ebuild:
+  Marked stable on hppa.
+
+  22 Oct 2003; Bartosch Pixa <darkspecter@gentoo.org> bash-2.05b-r7.ebuild:
+  set ppc in keywords
+
+*bash-2.05b-r8 (13 Oct 2003)
+
+  20 Oct 2003; Joshua Kinard <kumba@gentoo.org> bash-2.05b-r8.ebuild:
+  Added gnuconfig support for mips64
+
+  13 Oct 2003; Daniel Ahlberg <aliz@gentoo.org bash-2.05b-r8.ebuild:
+  Enable SSH_SOURCE_BASHRC, closing #24762
+
+  03 Oct 2003; Christian Birchinger <joker@gentoo.org> bash-2.05b-r7.ebuild:
+  Added sparc stable keyword
+
+  01 Oct 2003; Tavis Ormandy <taviso@gentoo.org> bash-2.05b-r7.ebuild:
+  Stable on alpha
+
+*bash-2.05b-r7 (19 Aug 2003)
+
+  30 Sep 2003; Joshua Kinard <kumba@gentoo.org> bash-2.05b-r7.ebuild:
+  Added ~mips to KEYWORDS
+
+  27 Sep 2003; <solar@gentoo.org> bash-2.05b-r7.ebuild:
+  bumping bash-2.05b-r7 to stable on x86
+
+  17 Sep 2003; Jon Portnoy <avenj@gentoo.org> bash-2.05b-r7.ebuild :
+  Added ia64 keywords.
+
+  02 Sep 2003; Martin Holzer <mholzer@gentoo.org> bash-2.05a-r3.ebuild,
+  bash-2.05b-r3.ebuild, bash-2.05b-r4.ebuild, bash-2.05b-r5.ebuild,
+  bash-2.05b-r6.ebuild, bash-2.05b-r7.ebuild:
+  Now uses mirror://gnu.
+
+  19 Aug 2003; <solar@gentoo.org> bash-2.05b-r7.ebuild,
+  files/bash-2.05b-rbash.patch:
+  Update to add support for restricted bash when invoked from /etc/passwd as
+  /bin/rbash Bug #26854
+
+*bash-2.05b-r6 (09 Jul 2003)
+ 
+  03 Sep 2003; Jason Wever <weeve@gentoo.org> bash-2.05b-r6.ebuild,
+  bash-2.05b-r7.ebuild:
+  Added ~sparc keyword.
+
+  11 Jul 2003; Daniel Ahlberg <aliz@gentoo.org> :
+  Added missing changelog entry.
+
+  09 Jul 2003; Tavis Ormandy <taviso@gentoo.org> :
+  some new official patches released.
+
+*bash-2.05b-r5 (01 May 2003)
+
+  06 Jul 2003; Joshua Kinard <kumba@gentoo.org> bash-2.05b-r5.ebuild:
+  Changed ~mips to mips in KEYWORDS
+  Cleaned up Changelog
+
+  02 Jul 2003; Guy Martin <gmsoft@gentoo.org> bash-2.05b-r5.ebuild :
+  Marked stable on hppa.
+
+  01 Jul 2003; Todd Sunderlin <todd@gentoo.org> bash-2.05b-r5.ebuild:
+  set stable on sparc
+
+  15 Jun 2003; Seemant Kulleen <seemant@gentoo.org> bash-2.05b-r5.ebuild:
+  added a symlink bashref.info.gz->bash.info.gz -- closes bug #22168 by Chris
+  Kelso <devkelso@cox.net>
+
+  01 May 2003; Tavis Ormandy <taviso@gentoo.org> bash-2.05b-r5.ebuild,
+  files/bash-2.05b-empty-herestring.patch:
+  Fixing segfault on empty herestring.
+
+*bash-2.05b-r4 (27 Apr 2003)
+
+  27 Apr 2003; Martin Schlemmer <azarah@gentoo.org> bash-2.05b-r4.ebuild :
+  Readline is slow with multibyte locale, bug #19762.  Add a patch.
+
+  13 Mar 2003; Olivier Reisch <doctomoe@gentoo.org> bash-2.05b-r3.ebuild :
+  Marked ppc stable
+
+*bash-2.05b-r3 (11 Mar 2003)
+
+  27 Mar 2003; Christian Birchinger <joker@gentoo.org> bash-2.05b-r3.ebuild :
+  Added stable sparc keyword
+
+  12 Mar 2003; Martin Holzer <mholzer@gentoo.org> bash-2.05b-r3.ebuild :
+  removed dodoc man/*.3 (doesn't exist)
+
+  11 Mar 2003; Seemant Kulleen <seemant@gentoo.org> bash-2.05a-r3.ebuild,
+  bash-2.05b-r3.ebuild, files/config-top.h.diff:
+  moved to app-shells
+
+  20 Feb 2003; Zach Welch <zwelch@gentoo.org> bash-2.05b-r3.ebuild :
+  Added arm to keywords.
+
+  07 Feb 2003; Guy Martin <gmsoft@gentoo.org> bash-2.05b-r3.ebuild :
+  Added hppa to keywords.
+
+  03 Dec 2002; Martin Schlemmer <azarah@gentoo.org> bash-2.05b-r3.ebuild :
+  Remove autoconf dependency, resolving stage0 -> stage1 breakage, thanks
+  to Daniel Robbins.
+
+*bash-2.05a-r3 (20 Dec 2002)
+
+  20 Dec 2002; Jan Seidel <tuxus@gentoo.org> bash-2.05a-r3.ebuild :
+  Added mips to keywords
+
+  17 Dec 2002; Mark Guertin <gerk@gentoo.org> bsh-2.05b-r3.ebuild :
+  Downgraded back to testing, the DEPEND for autoconf breaks the build
+  order for making stage1's (pulls in many unmatchable deps that require
+  g++ to build).  
+
+  10 Dec 2002; Martin Schlemmer <azarah@gentoo.org> bash-2.05b-r3.ebuild :
+
+  Mark stable.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> :
+  
+  Changed sparc ~sparc keywords
+ 
+*bash-2.05b-r3 (25 Sep 2002)
+
+  24 Feb 2003; Nicholas Wourms <dragon@gentoo.org> bash-2.05b-r3.ebuild :
+  Marked as stable for mips.
+
+  18 Jan 2003; Jan Seidel <tuxus@gentoo.org> :
+  Added ~mips to keywords
+
+  25 Sep 2002; Martin Schlemmer <azarah@gentoo.org> bash-2.05b-r3.ebuild :
+  Added a few patches.
+
+*bash-2.05b-r2 (1 Sep 2002)
+*bash-2.05a-r3 (1 Sep 2002)
+
+  1 Sep 2002; Seemant Kulleen <seemant@gentoo.org> bash-2.05a-r3 bash-2.05b-r2 :
+
+  ska-fan in #gentoo-dev offered insight into bug #7332 by
+  Jan.Schubert@GMX.li (Jan Schubert).  Note that ska-fan is:
+  twanger@bluetwanger.de
+
+  1 Sep 2002; Martin Schlemmer <azarah@gentoo.org> bash-2.05a-r3 bash-2.05b-r2 :
+  Update to use internal readline.  This fixes problems where bash stops
+  working if readline (external) is updated.
+
+*bash-2.05b-r1 (30 Aug 2002)
+
+  30 Aug 2002; mark Guertin <gerk@gentoo.org> bash-2.05b.ebuild bash-2.05b-r1.ebuild :
+  set -ppc as readline 4.3 (required) breaks system with inplace upgrade
+
+  30 Aug 2002; Seemant Kulleen <seemant@gentoo.org> bash-2.05b-r1.ebuild
+  files/digest-bash-2.05b-r1 :
+
+  Applied Mandrake's patchset to this, which fixes readline bugs, command
+  completion, gcc-3 compilation.  Patchset compiled by Thierry Vignaud of
+  Mandrake (tvignaud@mandrakesoft.com)
+
+  31 Aug 2002; Bart Verwilst <verwilst@gentoo.org> bash-2.05b-r1.ebuild :
+
+  Added autoconf to DEPEND 
+
+*bash-2.05b (23 Jul 2002)
+
+  23 Jul 2002; Seemant Kulleen <seemant@gentoo.org> bash-2.05b.ebuild :
+
+  Version bump.  Thanks to christian-neumair@web.de (Christian - Manny
+  Calavera - Neumair) in bug #5422
+
+*bash-2.05a-r1.ebuild (14 July 2002)
+
+  14 Jul 2002; phoen][x <phoenix@gentoo.org> bash-2.05a-r1.ebuild :
+  Added KEYWORDS, SLOT.
+
+*bash-2.05a-r2 (09 Apr 2002)
+
+  14 Jul 2002; phoen][x <phoenix@gentoo.org> bash-2.05a-r2.ebuild :
+  Added KEYWORDS, SLOT.
+
+  09 Apr 2002; Daniel Robbins <drobbins@gentoo.org> : New bash release that has
+  a patch to allow non-interactive login shells to inherit their environment.
+  This allows your prompt to be preserved after you start X.  This closes bug
+  #1579.

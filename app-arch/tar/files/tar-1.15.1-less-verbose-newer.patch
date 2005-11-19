@@ -1,0 +1,20 @@
+http://bugs.gentoo.org/show_bug.cgi?id=86467
+http://lists.gnu.org/archive/html/bug-tar/2005-03/msg00001.html
+
+Index: src/create.c
+===================================================================
+RCS file: /cvsroot/tar/tar/src/create.c,v
+retrieving revision 1.92
+retrieving revision 1.93
+diff -u -p -r1.92 -r1.93
+--- src/create.c	15 Feb 2005 15:24:35 -0000	1.92
++++ src/create.c	3 Mar 2005 23:13:14 -0000	1.93
+@@ -1397,7 +1397,7 @@ dump_file0 (struct tar_stat_info *st, ch
+       && OLDER_STAT_TIME (st->stat, m)
+       && (!after_date_option || OLDER_STAT_TIME (st->stat, c)))
+     {
+-      if (!incremental_option)
++      if (!incremental_option && verbose_option)
+ 	WARN ((0, 0, _("%s: file is unchanged; not dumped"),
+ 	       quotearg_colon (p)));
+       return;

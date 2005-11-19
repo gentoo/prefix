@@ -1,0 +1,38 @@
+Use configure options rather than hard coding in Makefiles
+
+--- m4-1.4.3/doc/Makefile.in
++++ m4-1.4.3/doc/Makefile.in
+@@ -27,8 +27,7 @@
+ MAKEINFO = makeinfo
+ TEXI2DVI = texi2dvi
+ 
+-prefix = @prefix@
+-infodir = $(prefix)/info
++infodir = @infodir@
+ 
+ .SUFFIXES:
+ 
+--- m4-1.4.3/Makefile.in
++++ m4-1.4.3/Makefile.in
+@@ -40,8 +40,8 @@
+ 
+ prefix = @prefix@
+ exec_prefix = @exec_prefix@
+-bindir = $(exec_prefix)/bin
+-infodir = $(prefix)/info
++bindir = @bindir@
++infodir = @infodir@
+ 
+ MDEFINES = CC='$(CC)' CFLAGS='$(CFLAGS)' LDFLAGS='$(LDFLAGS)' LIBS='$(LIBS)' \
+ prefix='$(prefix)' exec_prefix='$(exec_prefix)' \
+--- m4-1.4.3/src/Makefile.in
++++ m4-1.4.3/src/Makefile.in
+@@ -35,7 +35,7 @@
+ prefix = @prefix@
+ exec_prefix = @exec_prefix@
+ transform = @program_transform_name@
+-bindir = $(exec_prefix)/bin
++bindir = @bindir@
+ 
+ COMPILE = $(CC) -c $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
+ LINK = $(CC) $(LDFLAGS) -o $@

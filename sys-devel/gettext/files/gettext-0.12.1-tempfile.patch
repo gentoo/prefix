@@ -1,0 +1,65 @@
+diff -ur gettext-0.14.1.orig/gettext-tools/misc/autopoint.in gettext-0.14.1/gettext-tools/misc/autopoint.in
+--- gettext-0.14.1.orig/gettext-tools/misc/autopoint.in	2004-01-29 20:17:27.000000000 +0100
++++ gettext-0.14.1/gettext-tools/misc/autopoint.in	2004-09-20 10:26:14.000000000 +0200
+@@ -39,14 +39,7 @@
+     */* | *\\*) ;;
+     *) # Need to look in the PATH.
+       if test "${PATH_SEPARATOR+set}" != set; then
+-        { echo "#! /bin/sh"; echo "exit 0"; } > /tmp/conf$$.sh
+-        chmod +x /tmp/conf$$.sh
+-        if (PATH="/nonexistent;/tmp"; conf$$.sh) >/dev/null 2>&1; then
+-          PATH_SEPARATOR=';'
+-        else
+-          PATH_SEPARATOR=:
+-        fi
+-        rm -f /tmp/conf$$.sh
++        PATH_SEPARATOR=:
+       fi
+       save_IFS="$IFS"; IFS="$PATH_SEPARATOR"
+       for dir in $PATH; do
+@@ -318,7 +311,15 @@
+ cvs_dir=tmpcvs$$
+ work_dir=tmpwrk$$
+ mkdir "$cvs_dir"
++if [ $? -ne 0 ]; then
++  echo "ERROR making $cvs_dir"
++  exit 1
++fi
+ mkdir "$work_dir"
++if [ $? -ne 0 ]; then
++  echo "ERROR making $work_dir"
++  exit 1
++fi
+ CVSROOT="$srcdir/$cvs_dir"
+ export CVSROOT
+ unset CVS_CLIENT_LOG
+@@ -417,6 +417,10 @@
+     # Recompute base. It was clobbered by the recursive call.
+     base=`echo "$1" | sed -e 's,/[^/]*$,,'`
+     test -d "$base" || { echo "Creating directory $base"; mkdir "$base"; }
++    if [ $? -ne 0 ]; then
++      echo "ERROR making directory $base"
++      exit 1
++    fi
+   fi
+ }
+ 
+diff -ur gettext-0.14.1.orig/gettext-tools/misc/gettextize.in gettext-0.14.1/gettext-tools/misc/gettextize.in
+--- gettext-0.14.1.orig/gettext-tools/misc/gettextize.in	2004-01-20 12:30:06.000000000 +0100
++++ gettext-0.14.1/gettext-tools/misc/gettextize.in	2004-09-20 10:22:39.000000000 +0200
+@@ -39,14 +39,7 @@
+     */* | *\\*) ;;
+     *) # Need to look in the PATH.
+       if test "${PATH_SEPARATOR+set}" != set; then
+-        { echo "#! /bin/sh"; echo "exit 0"; } > /tmp/conf$$.sh
+-        chmod +x /tmp/conf$$.sh
+-        if (PATH="/nonexistent;/tmp"; conf$$.sh) >/dev/null 2>&1; then
+-          PATH_SEPARATOR=';'
+-        else
+-          PATH_SEPARATOR=:
+-        fi
+-        rm -f /tmp/conf$$.sh
++        PATH_SEPARATOR=:
+       fi
+       save_IFS="$IFS"; IFS="$PATH_SEPARATOR"
+       for dir in $PATH; do

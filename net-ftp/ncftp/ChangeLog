@@ -1,0 +1,159 @@
+# ChangeLog for net-ftp/ncftp
+# Copyright 2002-2005 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/ncftp/ChangeLog,v 1.39 2005/09/11 07:25:14 grobian Exp $
+
+  11 Sep 2005; Fabian Groffen <grobian@gentoo.org>
+  +files/ncftp-3.1.8-macos.patch, ncftp-3.1.8-r1.ebuild:
+  Adding a patch which fixes a typo and allows for compilation on OSX Tiger
+  (10.4).  This fixes bug #91689.
+
+  11 Aug 2005; Aaron Walker <ka0ttic@gentoo.org> ncftp-3.1.8-r1.ebuild:
+  Stable on mips.
+
+*ncftp-3.1.9 (17 Jul 2005)
+
+  17 Jul 2005; Mike Frysinger <vapier@gentoo.org> +ncftp-3.1.9.ebuild:
+  Version bump.
+
+*ncftp-3.1.8-r2 (17 Jul 2005)
+
+  17 Jul 2005; Mike Frysinger <vapier@gentoo.org> -ncftp-3.1.8.ebuild,
+  +ncftp-3.1.8-r2.ebuild:
+  Update the ipv6 patch #51756.
+
+  09 Apr 2005; Markus Rothe <corsair@gentoo.org> ncftp-3.1.8-r1.ebuild:
+  Stable on ppc64
+
+  07 Apr 2005; Simon Stelling <blubb@gentoo.org> ncftp-3.1.8-r1.ebuild:
+  stable on amd64
+
+  28 Mar 2005; Michael Hanselmann <hansmi@gentoo.org> ncftp-3.1.8-r1.ebuild:
+  Stable on ppc.
+
+  17 Mar 2005; Lina Pezzella <j4rg0n@gentoo.org> ncftp-3.1.8-r1.ebuild:
+  Stable ppc-macos
+
+  14 Mar 2005; Gustavo Zacarias <gustavoz@gentoo.org> ncftp-3.1.8-r1.ebuild:
+  Stable on sparc
+
+  12 Mar 2005; Aron Griffis <agriffis@gentoo.org> ncftp-3.1.8-r1.ebuild:
+  Stable on alpha, ia64, x86
+
+*ncftp-3.1.8-r1 (07 Jan 2005)
+
+  07 Jan 2005; Mike Frysinger <vapier@gentoo.org> +ncftp-3.1.8-r1.ebuild:
+  Add third party patch to make editing remote files easy #77026 by Alessandro
+  Lepore.
+
+*ncftp-3.1.8 (24 Aug 2004)
+
+  24 Aug 2004; Mike Frysinger <vapier@gentoo.org> -ncftp-3.1.5-r1.ebuild,
+  +ncftp-3.1.8.ebuild:
+  Version bump #61507 by Anthony Giorgio.
+
+  11 Aug 2004; Hasan Khalil <gongloo@gentoo.org> ncftp-3.1.7.ebuild:
+  Stable on macos.
+
+  15 Jul 2004; Tom Gall <tgall@gentoo.org> ncftp-3.1.7.ebuild:
+  stable on ppc64, bug #55564
+
+  27 Apr 2004; Aron Griffis <agriffis@gentoo.org> ncftp-3.1.5-r1.ebuild:
+  Add inherit eutils
+
+  25 Apr 2004; Michael McCabe <randy@gentoo.org> ncftp-3.1.7.ebuild:
+  added s390 keywords
+
+  13 Apr 2004; Chris Gianelloni <wolf31o2@gentoo.org> ncftp-3.1.7.ebuild:
+  Added inherit eutils.
+
+  26 Feb 2004; Aron Griffis <agriffis@gentoo.org> ncftp-3.1.7.ebuild:
+  stable on alpha and ia64
+
+  12 Jan 2004; <augustus@gentoo.org> ncftp-3.1.7.ebuild:
+  Added ~amd64 keyword.  Bug 37571.  Works for me and others.
+
+*ncftp-3.1.7 (07 Jan 2004)
+
+  11 Jan 2004; Guy Martin <gmsoft@gentoo.org> ncftp-3.1.7.ebuild :
+ Marked stable on hppa.
+
+  07 Jan 2004; Mike Frysinger <vapier@gentoo.org> :
+  Version bumpage.
+
+*ncftp-3.1.6 (16 Oct 2003)
+
+  07 Jan 2004; Mike Frysinger <vapier@gentoo.org> :
+  The ipv6 patch has been updated, add back in.  Also move to stable because
+  of security issue (sorry other arches).
+
+  17 Oct 2003; Nick Hadaway <raker@gentoo.org> ncftp-3.1.6.ebuild:
+  The ipv6 patch has not been updated yet.  Removing for now.
+
+  16 Oct 2003; Masatomo Nakano <nakano@gentoo.org> ncftp-3.1.6.ebuild:
+  Removed CJK patch because the patch is already included in 
+  the original tar ball.
+ 
+  16 Oct 2003; Nick Hadaway <raker@gentoo.org> ncftp-3.1.6.ebuild:
+  Version bump.  This updates the previous exploit fix for better
+  compatibility with serv-u and wsftpd servers.  Other bug fixes as
+  well.
+
+*ncftp-3.1.5-r1 (17 Jun 2003)
+
+  17 Jun 2003; Guy Martin <gmsoft@gentoo.org> ncftp-3.1.5-r1.ebuild :
+  Added ipv6 support to this version. Thanks to Tero Pelander
+  <tpeland@tkukoulu.fi>. Fix 21334.
+
+  01 Jun 2003; Martin Holzer <mholzer@gentoo.org> ncftp-3.1.5.ebuild:
+  Fixing doc issue. Closes #22051.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*ncftp-3.1.5 (20 Oct 2002)
+
+  14 Feb 2003; Guy Martin <gmsoft@gentoo.org> ncftp-3.1.5.ebuild :
+  Added hppa to keywords.
+
+  04 May 2003; Jungmin Seo <seo@gentoo.org> ncftp-3.1.5.ebuild,
+  files/ncftp-3.1.5-cjk.patch:
+  added a cjk patch, in order to write 2-byte characters.
+  This patch is temporary.
+
+  09 Mar 2003; Aron Griffis <agriffis@gentoo.org> ncftp-3.1.5.ebuild:
+  Mark stable on alpha
+
+  06 Mar 2003; Jason Wever <weeve@gentoo.org> ncftp-3.1.5.ebuild:
+  Changed ~sparc keyword to sparc.
+
+  15 Dec 2002; Bjoern Brauel <bjb@gentoo.org> ncftp-3.1.5.ebuild :
+  Add ~alpha to KEYWORDS
+
+  20 Oct 2002; Seemant Kulleen <seemant@gentoo.org> ncftp-3.1.5.ebuild
+  files/digest-ncftp-3.1.5 :
+
+  Version bump, thanks to: rigo@home.nl (Rigo Ketelings) in bug #9341.
+
+*ncftp-3.1.4 (07 Jul 2002)
+
+  15 Dec 2002; Bjoern Brauel <bjb@gentoo.org> ncftp-3.1.4.ebuild :
+  Add alpha to KEYWORDS
+
+  07 Jul 2002; Gabriele Giorgetti <stroke@gentoo.org> ncftp-3.1.4.ebuild :
+  
+  new version
+
+*ncftp-3.1.3 (19 Jun 2002)
+
+  19 Jun 2002; Thilo Bangert <bangert@gentoo.org> ncftp-3.1.3.ebuild :
+  
+  version bump - added LICENSE
+
+*ncftp-3.0.4 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.

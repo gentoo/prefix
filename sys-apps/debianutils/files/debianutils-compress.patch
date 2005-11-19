@@ -1,0 +1,22 @@
+--- savelog.orig	2003-03-07 16:07:01.000000000 -0800
++++ savelog	2003-03-07 16:08:13.000000000 -0800
+@@ -2,6 +2,8 @@
+ # savelog - save a log file
+ #    Copyright (C) 1987, 1988 Ronald S. Karr and Landon Curt Noll
+ #    Copyright (C) 1992  Ronald S. Karr
++# Slight modifications by Low Zhen Lin <lowzl@hotmail.com>:  
++#   * Uses `bzip2' rather than `gzip'
+ # Slight modifications by Ian A. Murdock <imurdock@gnu.ai.mit.edu>:
+ #	* uses `gzip' rather than `compress'
+ #	* doesn't use $savedir; keeps saved log files in the same directory
+@@ -69,8 +71,8 @@
+ 
+ # common location
+ export PATH=$PATH:/sbin:/bin:/usr/sbin:/usr/bin
+-COMPRESS="gzip -9f"
+-DOT_Z=".gz"
++COMPRESS="bzip2 -9f"
++DOT_Z=".bz2"
+ 
+ # parse args
+ exitcode=0	# no problems to far

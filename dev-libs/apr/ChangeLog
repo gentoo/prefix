@@ -1,0 +1,172 @@
+# ChangeLog for dev-libs/apr
+# Copyright 2000-2005 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.45 2005/10/22 21:00:50 vericgar Exp $
+
+*apr-0.9.7 (22 Oct 2005)
+
+  22 Oct 2005; Michael Stewart <vericgar@gentoo.org> +apr-0.9.7.ebuild:
+  Version Bump
+
+  21 Oct 2005; Aaron Walker <ka0ttic@gentoo.org> apr-0.9.6-r3.ebuild:
+  Stable on mips.
+
+  10 Oct 2005; Danny van Dyk <kugelfang@gentoo.org> apr-0.9.6-r4.ebuild:
+  Marked ~ppc-macos.
+
+  29 Sep 2005; MATSUU Takuto <matsuu@gentoo.org> apr-0.9.6-r3.ebuild:
+  Stable on sh.
+
+  19 Sep 2005; Michael Hanselmann <hansmi@gentoo.org> apr-0.9.6-r3.ebuild:
+  Stable on hppa and ppc.
+
+  18 Sep 2005; Marcus D. Hanwell <cryos@gentoo.org> apr-0.9.6-r3.ebuild:
+  Stable on amd64, bug 105516.
+
+  18 Sep 2005; Jason Wever <weeve@gentoo.org> apr-0.9.6-r3.ebuild:
+  Added ~sparc keyword wrt bug #105516.
+
+  18 Sep 2005; Michael Stewart <vericgar@gentoo.org> -apr-0.9.5.ebuild,
+  -apr-0.9.5-r1.ebuild, -apr-0.9.5-r2.ebuild, -apr-0.9.5-r3.ebuild,
+  -apr-0.9.6.ebuild, -apr-0.9.6-r1.ebuild, -apr-0.9.6-r2.ebuild:
+  Removing old revisions that use broken LFS-support
+
+*apr-0.9.6-r4 (17 Sep 2005)
+
+  17 Sep 2005; Michael Stewart <vericgar@gentoo.org> +apr-0.9.6-r4.ebuild:
+  Added support for using /dev/urandom instead of /dev/random if the urandom
+  USE-flag is set. Fixes bug 102587
+
+  17 Sep 2005; Aron Griffis <agriffis@gentoo.org> apr-0.9.6-r3.ebuild:
+  Mark 0.9.6-r3 stable on ia64
+
+  11 Sep 2005; Markus Rothe <corsair@gentoo.org> apr-0.9.6-r3.ebuild:
+  Stable on ppc64
+
+  10 Sep 2005; Aron Griffis <agriffis@gentoo.org> apr-0.9.6-r3.ebuild:
+  Mark 0.9.6-r3 stable on alpha
+
+  10 Sep 2005; Michael Stewart <vericgar@gentoo.org> apr-0.9.6-r3.ebuild:
+  Stable on x86
+
+  10 Sep 2005; Aron Griffis <agriffis@gentoo.org> apr-0.9.5.ebuild:
+  Mark 0.9.5 stable on alpha
+
+  17 Jul 2005; Kito <kito@gentoo.org> apr-1.1.1.ebuild:
+  ~ppc-macos Keyword
+
+  13 Jul 2005; bret curtis <psi29a@gentoo.org> apr-1.1.1.ebuild apr-0.9.6-r3:
+  added ~mips
+
+  10 May 2005; Bret Curtis <psi29a@gentoo.org> apr-0.9.5.ebuild:
+  marked for testing, ~mips
+
+*apr-0.9.6-r3 (09 May 2005)
+*apr-0.9.5-r3 (09 May 2005)
+
+  09 May 2005; Elfyn McBratney <beu@gentoo.org> +apr-0.9.5-r3.ebuild,
+  +apr-0.9.6-r3.ebuild:
+  Rev bumps that remove LFS support from APR (has caused too many issues for
+  mid-release introduction). The Apache tool-stack (net-www/apache,
+  devs-libs/apr (this package) and dev-libs/apr-util) will need to be rebuilt
+  once emerging this update.
+
+*apr-1.1.1 (10 Apr 2005)
+
+  10 Apr 2005; Christian Parpart <trapni@gentoo.org> +apr-1.1.1.ebuild:
+  adding apr-1 (1.1.1) ebuilds to the series of apr versions which is the base
+  requirement for forthcoming apache httpd 2.1.x series ;)
+
+  31 Mar 2005; Aron Griffis <agriffis@gentoo.org> apr-0.9.5.ebuild:
+  stable on ia64
+
+  21 Mar 2005; Elfyn McBratney <beu@gentoo.org> apr-0.9.5-r2.ebuild,
+  apr-0.9.6-r2.ebuild:
+  Add elibtoolize call for bug #77455.
+
+*apr-0.9.6-r2 (14 Mar 2005)
+
+  14 Mar 2005; Elfyn McBratney <beu@gentoo.org> +apr-0.9.5-r2.ebuild,
+  +apr-0.9.6-r2.ebuild:
+  Rev bumps which specify which random device node (--with-devrandom) to use.
+  These two are hard masked in case this changes breaks stuff.
+
+  14 Mar 2005; Elfyn McBratney <beu@gentoo.org> apr-0.9.5-r1.ebuild,
+  apr-0.9.5.ebuild:
+  Drop extranous 'ipv6' arg to use_enable.
+
+  05 Mar 2005; Markus Rothe <corsair@gentoo.org> apr-0.9.5.ebuild:
+  Stable on ppc64
+
+*apr-0.9.6-r1 (05 Mar 2005)
+
+  05 Mar 2005; Elfyn McBratney <beu@gentoo.org> +apr-0.9.5-r1.ebuild,
+  +apr-0.9.6-r1.ebuild:
+  LFS-enabled apr breaks Apache on sparc; disabling until fixed.
+
+  03 Mar 2005; Elfyn McBratney <beu@gentoo.org> -apr-0.9.2.ebuild,
+  -apr-0.9.4.ebuild:
+  Remove old versions.
+
+*apr-0.9.6 (02 Mar 2005)
+
+  02 Mar 2005; Elfyn McBratney <beu@gentoo.org> +apr-0.9.6.ebuild:
+  Version bump.
+
+  28 Feb 2005; Jeremy Huddleston <eradicator@gentoo.org> apr-0.9.5.ebuild:
+  Killed einstall usage.  Back to using econf to fix multilib problems.
+
+  20 Feb 2005; Aron Griffis <agriffis@gentoo.org> apr-0.9.5.ebuild:
+  add ~ia64 #77455
+
+  05 Feb 2005; Bryan Østergaard <kloeri@gentoo.org> apr-0.9.5.ebuild:
+  ~alpha keyword, bug 77455.
+
+  28 Jan 2005; Michael Hanselmann <hansmi@gentoo.org> apr-0.9.5.ebuild:
+  Added to ~ppc.
+
+  11 Jan 2005; Mike Doty <kingtaco@gentoo.org> apr-0.9.5.ebuild:
+  ~amd64 keyword added, bug 77455
+
+  11 Jan 2005; Guy Martin <gmsoft@gentoo.org> apr-0.9.5.ebuild:
+  Added ~hppa to KEYWORDS.
+
+  11 Jan 2005; Markus Rothe <corsair@gentoo.org> apr-0.9.5.ebuild:
+  Added ~ppc64 to KEYWORDS
+
+  10 Jan 2005; Jason Wever <weeve@gentoo.org> apr-0.9.5.ebuild:
+  Added ~sparc keyword wrt bug #77455.
+
+*apr-0.9.5 (08 Jan 2005)
+
+  08 Jan 2005; Michael Stewart <vericgar@gentoo.org> +metadata.xml,
+  +apr-0.9.5.ebuild:
+  Apache herd package refresh
+
+  22 Jul 2004; David Holm <dholm@gentoo.org> apr-0.9.4.ebuild:
+  Added to ~ppc.
+
+  20 Apr 2004; Daniel Black <dragonheart@gentoo.org> apr-0.9.2.ebuild:
+  QA - removed runtime dependance on autoconf and automake. More dependancy work
+  required
+
+  16 Apr 2004; Jason Wever <weeve@gentoo.org> apr-0.9.4.ebuild:
+  Added ~sparc keyword.
+
+  14 Mar 2004; Michael Sterrett <mr_bones_@gentoo.org> apr-0.9.2.ebuild,
+  apr-0.9.4.ebuild:
+  Don't assign default to S; header fix
+
+  09 Feb 2004; Dylan Carlson <absinthe@gentoo.org> apr-0.9.4.ebuild:
+  added amd64 keyword.
+
+*apr-0.9.4 (13 Oct 2003)
+
+  13 Oct 2003; Martin Holzer <mholzer@gentoo.org> apr-0.9.4.ebuild:
+  Version bumped. Ebuild submitted by 
+  Hattya <hattya@inter7.jp> in #30810.
+
+*apr-0.9.2 (29 Mar 2003)
+
+  29 Mar 2003; Dylan Carlson <absinthe@gentoo.org> apr-0.9.2.ebuild:
+  Initial import.
+

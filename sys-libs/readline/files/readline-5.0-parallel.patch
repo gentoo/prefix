@@ -1,0 +1,28 @@
+--- readline-5.0/shlib/Makefile.in.old	2003-12-10 12:02:47 -0500
++++ readline-5.0/shlib/Makefile.in	2005-06-27 18:06:02 -0400
+@@ -145,7 +145,10 @@
+ 
+ all: $(SHLIB_STATUS)
+ 
+-supported: $(SHARED_LIBS)
++# Since the libs share some objects, make sure they're built separately
++# and not in parallel
++supported:
++	set -e; for x in $(SHARED_LIBS); do $(MAKE) $$x; done
+ 
+ unsupported:
+ 	@echo "Your system and compiler (${host_os}-${CC}) are not supported by the"
+--- readline-5.0/Makefile.in.old	2004-04-22 16:44:37 -0400
++++ readline-5.0/Makefile.in	2005-06-27 18:05:29 -0400
+@@ -145,7 +145,10 @@
+ 
+ everything: all examples
+ 
+-static: $(STATIC_LIBS)
++# Since the libs share some objects, make sure they're built separately
++# and not in parallel
++static:
++	set -e; for x in $(STATIC_LIBS); do $(MAKE) $$x; done
+ 
+ libreadline.a: $(OBJECTS)
+ 	$(RM) $@

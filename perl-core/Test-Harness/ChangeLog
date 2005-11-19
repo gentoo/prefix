@@ -1,0 +1,162 @@
+# ChangeLog for perl-core/Test-Harness
+# Copyright 2002-2005 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Harness/ChangeLog,v 1.3 2005/07/17 23:56:21 mcummings Exp $
+
+*Test-Harness-2.52 (17 Jul 2005)
+
+  17 Jul 2005; Michael Cummings <mcummings@gentoo.org>
+  +Test-Harness-2.52.ebuild:
+  Upstream bump
+
+*Test-Harness-2.30 (25 May 2005)
+
+  25 May 2005; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +Test-Harness-2.30.ebuild, +Test-Harness-2.42.ebuild:
+  dev-perl => perl-core migration
+
+  25 May 2005; Michael Cummings <mcummings@gentoo.org>
+  Test-Harness-2.30.ebuild:
+  dev-perl/File-Spec => perl-core/File-Spec migration
+
+  27 Apr 2005; Michael Cummings <mcummings@gentoo.org>
+  -Test-Harness-2.24-r1.ebuild, -Test-Harness-2.24.ebuild,
+  -Test-Harness-2.28-r1.ebuild, -Test-Harness-2.28.ebuild:
+  Cleaning up
+
+  25 Apr 2005; Bryan Østergaard <kloeri@gentoo.org>
+  Test-Harness-2.42.ebuild:
+  Stable on alpha.
+
+  11 Apr 2005; Marcus D. Hanwell <cryos@gentoo.org>
+  Test-Harness-2.42.ebuild:
+  Stable on amd64.
+
+  07 Apr 2005; Michael Hanselmann <hansmi@gentoo.org>
+  Test-Harness-2.42.ebuild:
+  Stable on ppc.
+
+  02 Apr 2005; Michael Cummings <mcummings@gentoo.org>
+  Test-Harness-2.42.ebuild:
+  Marking stable for x86 and sparc
+
+  02 Apr 2005; Michael Hanselmann <hansmi@gentoo.org>
+  Test-Harness-2.30.ebuild:
+  Stable on ppc.
+
+  06 Feb 2005; Markus Rothe <corsair@gentoo.org> Test-Harness-2.42.ebuild:
+  Stable on ppc64
+
+  30 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  22 Dec 2004; Yuta SATOH <nigoro@gentoo.org> Test-Harness-2.42.ebuild:
+  added ~ppc64
+
+  19 Oct 2004; Dylan Carlson <absinthe@gentoo.org> Test-Harness-2.30.ebuild:
+  Stable on amd64.
+
+  06 Aug 2004; Michael Cummings <mcummings@gentoo.org>
+  Test-Harness-2.42.ebuild:
+  Removed tests and dep for test-pod. The dependancy, which only satisfied
+  testing, was resulting in a loop of
+  test-harness->test-pod->test-builder-tester->test-simple->test-harness.
+  Esammer found this bug, just committing since I was on.
+
+*Test-Harness-2.42 (05 Jun 2004)
+
+  05 Jun 2004; Michael Cummings <mcummings@gentoo.org>
+  Test-Harness-2.42.ebuild:
+  new version on cpan
+
+  26 May 2004; Bryan Østergaard <kloeri@gentoo.org> Test-Harness-2.30.ebuild:
+  Stable on alpha.
+
+  26 Mar 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  Test-Harness-2.30.ebuild:
+  stable on hppa
+
+  20 Mar 2004; Joshua Kinard <kumba@gentoo.org> Test-Harness-2.30.ebuild:
+  Marked stable on mips.
+
+  03 Mar 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  Test-Harness-2.30.ebuild:
+  stable on sparc
+
+  27 Feb 2004; Michael Cummings <mcummings@gentoo.org>
+  Test-Harness-2.30.ebuild:
+  Unmasking for x86 after 196 days
+
+  27 Feb 2004; Michael Cummings <mcummings@gentoo.org>
+  Test-Harness-2.29-r1.ebuild, Test-Harness-2.29.ebuild:
+  Removing old versions not in use
+
+  24 Feb 2004; Joshua Kinard <kumba@gentoo.org> Test-Harness-2.30.ebuild:
+  Added ~mips to satisfy repoman deps.
+
+*Test-Harness-2.30 (15 Aug 2003)
+
+  15 Aug 2003; Michael Cummings <mcummings@gentoo.org>
+  Test-Harness-2.30.ebuild:
+  CPAN Version bump - doc fixes
+
+*Test-Harness-2.29-r1 (28 Jul 2003)
+*Test-Harness-2.28-r1 (28 Jul 2003)
+
+  28 Jul 2003; <rac@gentoo.org> Test-Harness-2.28-r1.ebuild,
+  Test-Harness-2.29-r1.ebuild:
+  Allow >=perl-5.8.0-r12 to fulfill the Test-Simple dependency.
+
+*Test-Harness-2.29 (17 Jul 2003)
+
+  17 Jul 2003; Michael Cummings <mcummings@gentoo.org>
+  Test-Harness-2.29.ebuild:
+  CPAN version bump
+
+  24 Jun 2003; Aron Griffis <agriffis@gentoo.org> Test-Harness-2.28.ebuild:
+  Mark stable on alpha
+
+  03 Jun 2003; Christian Birchinger <joker@gentoo.org>
+  Test-Harness-2.28.ebuild:
+  Added sparc stable keyword
+
+  31 May 2003; Michael Cummings <mcummings@gentoo.org>
+  Test-Harness-2.28.ebuild:
+  Fixed SRC_URI - thanks Weeve!
+
+*Test-Harness-2.28 (31 May 2003)
+
+  02 Jul 2003; Guy Martin <gmsoft@gentoo.org> Test-Harness-2.28.ebuild :
+  Marked stable on hppa.
+
+  31 May 2003; Michael Cummings <mcummings@gentoo.org>
+  Test-Harness-2.28.ebuild:
+  New version from CPAN
+
+  30 May 2003; Seemant Kulleen <seemant@gentoo.org>
+  Test-Harness-2.24-r1.ebuild:
+  took out make test
+
+*Test-Harness-2.24-r1 (29 Oct 2002)
+
+  05 Apr 2003; Zach Welch <zwelch@gentoo.org> Test-Harness-2.24-r1.ebuild:
+  add arm keyword
+
+  20 Mar 2003; Guy Martin <gmsoft@gentoo.org> Test-Harness-2.24-r1.ebuild :
+  Added hppa to KEYWORDS.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+  29 Oct 2002; Seemant Kulleen <seemant@gentoo.org> ChangeLog  :
+  forced version bump to install into correct locations
+
+*Test-Harness-2.24 (14 Jun 2002)
+
+  1 Aug 2002; Calum Selkirk <cselkirk@gentoo.org> Test-Harness-2.24.ebuild :
+
+  Added ppc to KEYWORDS.
+
+  14 Jun 2002; Seemant Kulleen <seemant@gentoo.org> Test-Harness-2.24.ebuild
+  files/digest-Test-Harness-2.24 :
+
+  Initial package for testing perl modules during their compilation.
+  Submitted by Alexander Gretencord <arutha@gmx.de> in bug #3513

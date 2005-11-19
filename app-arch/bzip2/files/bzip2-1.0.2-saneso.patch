@@ -1,0 +1,13 @@
+taken from fedora
+
+--- bzip2-1.0.2/Makefile-libbz2_so.saneso	Wed Jan 30 15:44:10 2002
++++ bzip2-1.0.2/Makefile-libbz2_so	Wed Jan 30 15:44:26 2002
+@@ -20,7 +20,7 @@
+       bzlib.o
+ 
+ all: $(OBJS)
+-	$(CC) -shared -Wl,-soname -Wl,libbz2.so.1.0 -o libbz2.so.1.0.2 $(OBJS)
++	$(CC) -shared -Wl,-soname -Wl,libbz2.so.1 -o libbz2.so.1.0.2 $(OBJS)
+ 	$(CC) $(CFLAGS) -o bzip2-shared bzip2.c libbz2.so.1.0.2
+ 	rm -f libbz2.so.1.0
+ 	ln -s libbz2.so.1.0.2 libbz2.so.1.0

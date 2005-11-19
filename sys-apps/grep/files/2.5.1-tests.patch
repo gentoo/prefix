@@ -1,0 +1,45 @@
+glibc has changed the error code it returns from '1' to '2'.  The 
+included grep regex library returns '1' still though, so spencer 
+test #55 incorrectly fails.  For now, we update the test to match 
+the glibc regex since that is what we're using ;).
+
+http://bugs.gentoo.org/show_bug.cgi?id=76192
+http://linuxfromscratch.org/pipermail/lfs-dev/2003-February/032543.html
+
+
+glibc has a sweet bug where it can go to town (and never come back) 
+with some complicated regex's.  this has been fixed in glibc cvs, 
+but our latest releases don't have the patch.  so let's add a simple 
+workaround from upstream grep cvs.
+
+http://bugs.gentoo.org/show_bug.cgi?id=76879
+
+Index: tests/spencer1.tests
+===================================================================
+RCS file: /cvsroot/grep/grep/tests/spencer1.tests,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -u -r1.1 -r1.2
+--- tests/spencer1.tests	3 Nov 1998 21:39:05 -0000	1.1
++++ tests/spencer1.tests	12 Jun 2003 15:26:15 -0000	1.2
+@@ -52,3 +52,3 @@
+ 0@$*@-
+-1@(*)b@-
++2@(*)b@-
+ 1@$b@b
+Index: tests/backref.sh
+===================================================================
+RCS file: /cvsroot/grep/grep/tests/backref.sh,v
+retrieving revision 1.3
+retrieving revision 1.4
+diff -u -r1.3 -r1.4
+--- tests/backref.sh	23 Jul 2003 05:15:51 -0000	1.3
++++ tests/backref.sh	19 Nov 2004 14:00:18 -0000	1.4
+@@ -14,5 +14,6 @@
+ 
+ # hit hard with the `Bond' tests
+-echo "civic" | ${GREP} -E -e '^(.?)(.?)(.?)(.?)(.?)(.?)(.?)(.?)(.?).?\9\8\7\6\5\4\3\2\1$' > /dev/null 2>&1
++# For now, remove the ``?'' in the last parentheses, so that new glibc can do it.  --Stepan
++echo "civic" | ${GREP} -E -e '^(.?)(.?)(.?)(.?)(.?)(.?)(.?)(.?)(.).?\9\8\7\6\5\4\3\2\1$' > /dev/null 2>&1
+ if test $? -ne 0 ; then
+         echo "Options: Bond, test \#2 failed"

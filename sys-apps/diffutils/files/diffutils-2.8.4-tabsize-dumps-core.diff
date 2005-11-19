@@ -1,0 +1,20 @@
+############################################################
+# Added by Tavis Ormandy <taviso@gentoo.org> 01/08/2003
+# Reproduce with
+#
+#  $ diff --tabsize
+#  Segmentation fault.
+#
+###############################
+diff -ruN diffutils-2.8.4.orig/src/diff.c diffutils-2.8.4/src/diff.c
+--- diffutils-2.8.4.orig/src/diff.c	2002-06-17 06:55:42.000000000 +0100
++++ diffutils-2.8.4/src/diff.c	2003-08-01 17:51:58.000000000 +0100
+@@ -234,7 +234,7 @@
+   {"starting-file", 1, 0, 'S'},
+   {"strip-trailing-cr", 0, 0, STRIP_TRAILING_CR_OPTION},
+   {"suppress-common-lines", 0, 0, SUPPRESS_COMMON_LINES_OPTION},
+-  {"tabsize", 0, 0, TABSIZE_OPTION},
++  {"tabsize", 1, 0, TABSIZE_OPTION},
+   {"text", 0, 0, 'a'},
+   {"to-file", 1, 0, TO_FILE_OPTION},
+   {"unchanged-group-format", 1, 0, UNCHANGED_GROUP_FORMAT_OPTION},

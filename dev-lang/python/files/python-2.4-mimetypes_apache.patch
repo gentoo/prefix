@@ -1,0 +1,11 @@
+--- Lib/mimetypes.py.old	2004-01-24 21:48:39.957577048 +0000
++++ Lib/mimetypes.py	2004-01-24 21:49:27.023421952 +0000
+@@ -33,6 +33,8 @@
+ 
+ knownfiles = [
+     "/etc/mime.types",
++     "/etc/apache/conf/mime.types",   # Apache 1.x for Gentoo
++     "/etc/apache2/conf/mime.types",  # Apache 2.x for Gentoo
+     "/usr/local/etc/httpd/conf/mime.types",
+     "/usr/local/lib/netscape/mime.types",
+     "/usr/local/etc/httpd/conf/mime.types",     # Apache 1.2

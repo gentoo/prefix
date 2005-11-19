@@ -1,0 +1,13 @@
+Make sure when we cast as a pointer we don't truncate.
+
+Patch by Daniel Gryniewicz.
+
+--- ssl/ssltest.c
++++ ssl/ssltest.c
+@@ -1541,4 +1541,4 @@
+ 	fprintf(stderr, "Arg is: %s\n", (char *)arg);
+-	fprintf(stderr, "Finished printing do we have a context? 0x%x a cert? 0x%x\n",
+-			(unsigned int)ctx, (unsigned int)ctx->cert);
++	fprintf(stderr, "Finished printing do we have a context? 0x%p a cert? 0x%p\n",
++			ctx, ctx->cert);
+ 	if (ctx->cert)

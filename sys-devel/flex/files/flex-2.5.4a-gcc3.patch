@@ -1,0 +1,11 @@
+--- flex-2.5.4/skel.c.orig	Tue Nov  6 17:29:12 2001
++++ flex-2.5.4/skel.c	Tue Nov  6 17:28:49 2001
+@@ -31,7 +31,7 @@
+   "",
+   "#include <stdlib.h>",
+   "%+",
+-  "class istream;",
++  "#include <iostream.h>",
+   "%*",
+   "",
+   "/* Use prototypes in function declarations. */",

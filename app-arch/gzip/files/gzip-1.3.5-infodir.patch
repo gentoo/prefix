@@ -1,0 +1,38 @@
+Taken from Debian.
+
+--- gzip-1.3.5/gzip.texi
++++ gzip-1.3.5/gzip.texi
+@@ -6,7 +6,14 @@
+ @finalout
+ @setchapternewpage odd
+ @c %**end of header
++@dircategory Utilities
++@direntry
++* gzip: (gzip). 	The gzip command for compressing files.
++@end direntry
++
+ @copying
++This file documents the GNU `gzip' command for compressing files.
++
+ This manual is for Gzip
+ (version @value{VERSION}, @value{UPDATED}),
+ and documents commands for compressing and decompressing data.
+@@ -31,18 +38,6 @@
+ @end quotation
+ @end copying
+ 
+-@c Debian install-info (up through at least version 1.9.20) uses only the
+-@c first dircategory.  Put this one first, as it is more useful in practice.
+-@dircategory Individual utilities
+-@direntry
+-* gzip: (gzip)Invoking gzip.                    Compress files.
+-@end direntry
+-
+-@dircategory Utilities
+-@direntry
+-* Gzip: (gzip).                 The gzip command for compressing files.
+-@end direntry
+-
+ @titlepage
+ @title gzip
+ @subtitle The data compression program

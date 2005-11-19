@@ -1,0 +1,5 @@
+MD5 893b34bd914ab4b81e0df07da6818acf ChangeLog 4848
+MD5 c7bef9bbd37f161be399c58c61edef94 files/digest-gdbm-1.8.3-r2 62
+MD5 9ed34cb95efec19c95fbf28a2e7e0986 files/gdbm-1.8.3-fix-install-ownership.patch 1567
+MD5 f4f7df239fa7a57b2bcef5b64477e9cb gdbm-1.8.3-r2.ebuild 1471
+MD5 9a09f8d531c582e78977dbfd96edc1f2 metadata.xml 164
