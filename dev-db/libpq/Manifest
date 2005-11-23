@@ -1,0 +1,5 @@
+MD5 7c0a0bb342c0df13103cfcb9df5e09d5 ChangeLog 5869
+MD5 c65318050cafd5c0bdf6ed7d39862269 files/digest-libpq-8.1.0 75
+MD5 4d194eeac76cacf47c7b941be2c27df9 files/libpq-8.1.0-gentoo.patch 2400
+MD5 b757db3c94f98bab68e57ae3e7a01d55 libpq-8.1.0.ebuild 3126
+MD5 f8d3d207746da2a3cd14dcaab8daab76 metadata.xml 163
