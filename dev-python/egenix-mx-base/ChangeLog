@@ -1,0 +1,108 @@
+# ChangeLog for dev-python/egenix-mx-base
+# Copyright 2002-2005 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/egenix-mx-base/ChangeLog,v 1.30 2005/08/17 22:35:37 matsuu Exp $
+
+  17 Aug 2005; MATSUU Takuto <matsuu@gentoo.org>
+  egenix-mx-base-2.0.5.ebuild:
+  Stable on sh.
+
+  13 Jan 2005; Alastair Tse <liquidx@gentoo.org>
+  egenix-mx-base-2.0.6.ebuild:
+  removing pytag.py as it breaks with -fstack-protector (#63762)
+
+  30 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  29 Dec 2004; Bryan Østergaard <kloeri@gentoo.org>
+  -egenix-mx-base-2.0.3.ebuild, -egenix-mx-base-2.0.4.ebuild:
+  Remove old ebuilds.
+
+*egenix-mx-base-2.0.6 (29 Dec 2004)
+
+  29 Dec 2004; Bryan Østergaard <kloeri@gentoo.org>
+  +egenix-mx-base-2.0.6.ebuild:
+  Version bump.
+
+  19 Oct 2004; Dylan Carlson <absinthe@gentoo.org>
+  egenix-mx-base-2.0.5.ebuild:
+  Stable on amd64.
+
+  01 Jun 2004; Tom Gall <tgall@gentoo.org> egenix-mx-base-2.0.5.ebuild:
+  stable on ppc64, bug #52709
+
+  07 May 2004; Bryan Østergaard <kloeri@gentoo.org>
+  egenix-mx-base-2.0.3.ebuild:
+  Add missing IUSE.
+
+  01 Apr 2004; Brian Jackson <iggy@gentoo.org> egenix-mx-base-2.0.5.ebuild:
+  add s390 to keywords
+
+  21 Mar 2004; Joshua Kinard <kumba@gentoo.org> egenix-mx-base-2.0.5.ebuild:
+  Marked stable on mips.
+
+  16 Mar 2004; Bryan Østergaard,,, <kloeri@gentoo.org>
+  egenix-mx-base-2.0.3.ebuild, egenix-mx-base-2.0.4.ebuild,
+  egenix-mx-base-2.0.5.ebuild:
+  Corrected SRC_URI, bug #44788.
+
+  27 Feb 2004; Joshua Kinard <kumba@gentoo.org> egenix-mx-base-2.0.5.ebuild:
+  Added ~mips to KEYWORDS to satisfy repoman deps.
+
+  30 Jan 2004; <gustavoz@gentoo.org> egenix-mx-base-2.0.5.ebuild:
+  stable on sparc
+
+  09 Jan 2004; root <root@gentoo.org> egenix-mx-base-2.0.5.ebuild:
+  Marked stable on hppa.
+
+  06 Jan 2004; <agriffis@gentoo.org> egenix-mx-base-2.0.5.ebuild:
+  stable on ia64 and alpha
+
+  14 Dec 2003; Lars Weiler <pylon@gentoo.org> egenix-mx-base-2.0.5.ebuild:
+  Make stable on ppc
+
+*egenix-mx-base-2.0.5 (06 Sep 2003)
+
+  06 Sep 2003; Alastair Tse <liquidx@gentoo.org> egenix-mx-base-2.0.5.ebuild:
+  version bump
+
+  19 Jul 2003; Alastair Tse <liquidx@gentoo.org> egenix-mx-base-2.0.3.ebuild,
+  egenix-mx-base-2.0.4.ebuild:
+  filter excessive optmisations thanks to bug #24168 by Priit Laes <amd@tt.ee>
+
+  11 Feb 2003; Bryon Roche <kain@kain.org> egenix-mx-base-2.0.4.ebuild :
+
+  ~ppcing this as it is required for blender
+
+*egenix-mx-base-2.0.4 (12 Dec 2002)
+
+  06 Aug 2003; Guy Martin <gmsoft@gentoo.org> egenix-mx-base-2.0.4.ebuild :
+  Added hppa to KEYWORDS.
+
+  05 Apr 2003; Alastair Tse <liquidx@gentoo.org> egenix-mx-base-2.0.4.ebuild:
+  bump to stable
+
+  12 Dec 2002; B.Lauwers <blauwers@gentoo.org> egenix-mx-base-2.0.4.ebuild, Changelog :
+
+  Version bump, cleanups
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*egenix-mx-base-2.0.3 (1 Feb 2002)
+
+  27 Jul 2002; George Shapovalov <george@gentoo.org> egenix-mx-base-2.0.2.ebuild, egenix-mx-base-2.0.3.ebuild :
+
+  added KEYWORDS,SLOT,LICENSE
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
+
+*egenix-mx-base-2.0.2 (22 Jun 2003)
+ 
+  12 Jul 2003; Daniel Ahlberg <aliz@gentoo.org> :
+  Added missing changelog entry.
+
