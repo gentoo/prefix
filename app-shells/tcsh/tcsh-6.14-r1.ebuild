@@ -4,6 +4,16 @@
 
 EAPI="prefix"
 
+# porting note:
+# installation was done with double prefix, solved with einstall and
+# overriding bindir and libdir.
+# tcsh needs, like other shells some special treatment with regard to
+# the prefixed install it is in, since it has to fetch its configuration
+# files (/etc/csh.*) from the prefix as well.  This is now being catered
+# for in the ebuild.
+
+inherit eutils
+
 MY_P="${P}.00"
 DESCRIPTION="Enhanced version of the Berkeley C shell (csh)"
 HOMEPAGE="http://www.tcsh.org/"
@@ -23,6 +33,12 @@ DEPEND="virtual/libc
 
 S="${WORKDIR}/${MY_P}"
 
+
+src_unpack() {
+	unpack ${A}
+	# the following patch makes tcsh prefix aware for it's config files
+	epatch "${FILESDIR}/${P}"-prefix.patch
+}
 
 src_compile() {
 	econf \

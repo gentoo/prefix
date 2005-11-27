@@ -1,4 +1,5 @@
 MD5 d59d6555fb565176d2dadcb32a8e5d78 ChangeLog 6442
 MD5 1bfdccdc07585790a1a9b1ac52fd71ef files/digest-tcsh-6.14-r1 135
+MD5 272c57d439bbd686dfbbea467e114981 files/tcsh-6.14-prefix.patch 675
 MD5 57ae68ef95b893d172203de06faf380d metadata.xml 655
-MD5 3687ff7ea2b6ee193dd64f7de43104fc tcsh-6.14-r1.ebuild 2686
+MD5 401cbc673bb0774c65e4524f61e6f147 tcsh-6.14-r1.ebuild 3197
