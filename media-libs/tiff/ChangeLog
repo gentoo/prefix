@@ -1,0 +1,256 @@
+# ChangeLog for media-libs/tiff
+# Copyright 1999-2005 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.66 2005/09/30 02:38:24 vapier Exp $
+
+*tiff-3.7.4 (30 Sep 2005)
+
+  30 Sep 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/tiff-3.7.4-assign-dont-compare.patch, +tiff-3.7.4.ebuild:
+  Version bump #106827 by Francisco Javier.
+
+*tiff-3.7.3 (03 Aug 2005)
+
+  03 Aug 2005; <sekretarz@gentoo.org> +tiff-3.7.3.ebuild:
+  Version bump, bug #100793
+
+  02 Aug 2005; MATSUU Takuto <matsuu@gentoo.org> tiff-3.7.2.ebuild:
+  Stable on sh.
+
+  12 Jul 2005; Stephen P. Becker <geoman@gentoo.org> tiff-3.7.2.ebuild:
+  stable on mips
+
+  06 Jun 2005; Markus Rothe <corsair@gentoo.org> tiff-3.7.2.ebuild:
+  Stable on ppc64
+
+  27 May 2005; Lina Pezzella <j4rg0n@gentoo.org> tiff-3.7.2.ebuild:
+  Fix for Bug 93296
+
+  13 May 2005; Rene Nussbaumer <killerfox@gentoo.org> tiff-3.7.2.ebuild:
+  stable on hppa
+
+  10 May 2005; Joseph Jezak <josejx@gentoo.org> :
+  Marked ppc stable for bug #91584.
+
+  10 May 2005; Tavis Ormandy <taviso@gentoo.org> tiff-3.7.2.ebuild:
+  stable on x86 and alpha
+
+  09 May 2005; Aron Griffis <agriffis@gentoo.org> tiff-3.7.2.ebuild:
+  stable on ia64
+
+  08 May 2005; Jeremy Huddleston <eradicator@gentoo.org> tiff-3.7.2.ebuild:
+  Stable amd64, sparc for security bug #91584.
+
+  08 May 2005; Steve Arnold <nerdboy@gentoo.org> -files/config.site,
+  -files/tiff-3.6.1-r1-man.so.patch,
+  -files/tiff-3.7.0-sharedlibsnamefix.patch,
+  -files/tiff-3.7.0-tiff2ps_float.patch, -tiff-3.6.1-r2.ebuild,
+  tiff-3.7.2.ebuild:
+  more cleanup for stablizing on 3.7.2
+
+*tiff-3.7.2 (08 May 2005)
+
+  08 May 2005; Steve Arnold <nerdboy@gentoo.org>
+  +files/tiff-3.7.2-buffer_check.patch, -tiff-3.7.0.ebuild,
+  -tiff-3.7.1.ebuild, +tiff-3.7.2.ebuild:
+  bump, cleanup, and patch for bug 91584
+
+  04 Jan 2005; Lina Pezzella <j4rg0n@gentoo.org> tiff-3.7.1-r1.ebuild:
+  Stable ppc-macos.
+
+  04 Jan 2005; Jeremy Huddleston <eradicator@gentoo.org>
+  tiff-3.7.1-r1.ebuild:
+  Stable amd64
+
+  04 Jan 2005; Hardave Riar <hardave@gentoo.org> tiff-3.7.1-r1.ebuild:
+  Stable on mips, bug #75213.
+
+  04 Jan 2005; Olivier CrÃªte <tester@gentoo.org> tiff-3.7.1-r1.ebuild:
+  Stable in x86 wrt security bug #75213
+
+  03 Jan 2005; Bryan Østergaard <kloeri@gentoo.org> tiff-3.7.1-r1.ebuild:
+  Stable on alpha.
+
+  03 Jan 2005; Gustavo Zacarias <gustavoz@gentoo.org> tiff-3.7.1-r1.ebuild:
+  Stable on sparc wrt #75213
+
+  04 Jan 2005; Joseph Jezak <josejx@gentoo.org> tiff-3.7.1-r1.ebuild:
+  Marked ppc stable for bug #75213.
+
+  03 Jan 2005; Markus Rothe <corsair@gentoo.org> tiff-3.7.1-r1.ebuild:
+  Stable on ppc64
+
+*tiff-3.7.1-r1 (02 Jan 2005)
+
+  02 Jan 2005; Steve Arnold <nerdboy@gentoo.org>
+  +files/tiff-3.7.1-tiffdump.patch, +files/tiff-3.7.1-trans.patch,
+  +tiff-3.7.1-r1.ebuild:
+  bumped and added patches for bugs #75423 and #75316 (all ~)
+
+  02 Jan 2005; Bryan Østergaard <kloeri@gentoo.org> tiff-3.7.1.ebuild:
+  Stable on alpha, bug 75213.
+
+  02 Jan 2005; Markus Rothe <corsair@gentoo.org> tiff-3.7.1.ebuild:
+  Stable on ppc64
+
+  22 Dec 2004; Gustavo Zacarias <gustavoz@gentoo.org> tiff-3.7.1.ebuild:
+  Stable on sparc wrt #75213
+
+  21 Dec 2004; Steve Arnold <nerdboy@gentoo.org> tiff-3.7.1.ebuild:
+  tested and marked stable on x86
+
+  21 Dec 2004; Mike Doty <kingtaco@gentoo.org> tiff-3.7.1.ebuild:
+  stable on amd64 bug #75213
+
+  21 Dec 2004; Steve Arnold <nerdboy@gentoo.org> +tiff-3.7.1.ebuild:
+  added 3.7.1 to address bug #75213
+
+*tiff-3.7.1 (21 Dec 2004)
+
+  17 Dec 2004; Mike Frysinger <vapier@gentoo.org> tiff-3.7.0.ebuild:
+  Remove useless C++ checks #74496.
+
+  16 Dec 2004; Dylan Carlson <absinthe@gentoo.org> tiff-3.7.0.ebuild:
+  Stable on amd64.
+
+  23 Nov 2004; Bryan Østergaard <kloeri@gentoo.org> tiff-3.7.0.ebuild:
+  Stable on alpha.
+
+  16 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org> tiff-3.7.0.ebuild:
+  Stable on sparc
+
+  15 Nov 2004; Steve Arnold <nerdboy@gentoo.org> tiff-3.7.0.ebuild:
+  bumped to stable on x86 due to broken parts in 3.6.x as well as
+  positive feedback from users and testing.  Earlier tiff versions
+  have issues with faxing, and the 3.7.0 release has several other
+  changes:
+    1) lzw compression is now integrated (no more patant issues)
+       so the local USE flag has been removed
+    2) the intall-private option is gone (please file an upstream
+       bug if you need it) and the extra headers have changed. The
+       private USE flag will remain for now.
+    3) fax conversions work correctly !!!
+
+*tiff-3.7.0 (23 Oct 2004)
+
+  23 Oct 2004; Steve Arnold <nerdboy@gentoo.org> metadata.xml,
+  +files/tiff-3.7.0-sharedlibsnamefix.patch,
+  +files/tiff-3.7.0-tiff2ps_float.patch, +tiff-3.7.0.ebuild:
+  new version to address bug 68096 (thanks to stan <stan@saticed.me.uk> for the
+  ebuild and patches). Should work with new hylafax 4.2-r1 ebuild.
+
+  18 Oct 2004; Tom Gall <tgall@gentoo.org> tiff-3.6.1-r2.ebuild:
+  stable on ppc64
+
+  13 Oct 2004; <solar@gentoo.org> tiff-3.6.1-r2.ebuild:
+  SRC_URI fix. Thanks spyderous
+
+*tiff-3.6.1-r2 (13 Oct 2004)
+
+  13 Oct 2004; <solar@gentoo.org> -files/config.site-3.5.6_beta,
+  -files/config.site-3.6.1-r1, -tiff-3.5.5.ebuild, -tiff-3.5.7-r1.ebuild,
+  -tiff-3.5.7-r2.ebuild, -tiff-3.6.0.ebuild, -tiff-3.6.0_beta2.ebuild,
+  -tiff-3.6.1-r1.ebuild, +tiff-3.6.1-r2.ebuild, -tiff-3.6.1.ebuild:
+  security bump. - libtiff has memory allocation problems and numerous integer
+  overflows. Due to the nature of this and the way it could be abused 3.6.1-r2
+  is is being marked stable on all arches and older ebuilds have been removed.
+  Testing was preformed by vapier/sejo/kloeri for every arch we have except
+  ppc64 who failed to have anybody test.
+
+  10 Oct 2004; Hasan Khalil <gongloo@gentoo.org> tiff-3.6.1-r1.ebuild:
+  fix for non-gnu make.
+
+  08 Oct 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  +files/config.site-3.6.1-r1:
+  multilib fixes
+
+  19 Sep 2004; Steve Arnold <nerdboy@gentoo.org>
+  +files/tiff-3.6.1-r1-man.so.patch, tiff-3.6.1-r1.ebuild:
+  added patch to fix bug 35778
+
+*tiff-3.5.7-r2 (16 Sep 2004)
+
+  16 Sep 2004; Steve Arnold <nerdboy@gentoo.org> tiff-3.5.5.ebuild,
+  tiff-3.5.7-r1.ebuild, +tiff-3.5.7-r2.ebuild, tiff-3.6.0.ebuild,
+  tiff-3.6.0_beta2.ebuild, tiff-3.6.1-r1.ebuild, tiff-3.6.1.ebuild:
+  updated all (slapped bug 64132) and the latest x86 and ~x86 (bugs 53328 and
+  58699).  3.5.7-r2 has new local USE flag for bug 58699.
+
+  18 Aug 2004; Aron Griffis <agriffis@gentoo.org> tiff-3.6.1-r1.ebuild:
+  stable on alpha and ia64
+
+  26 Jul 2004; Hasan Khalil <gongloo@gentoo.org> tiff-3.6.1-r1.ebuild:
+  Added ~macos keyword, modified install statement for compatibility
+
+  11 May 2004; Michael McCabe <randy@gentoo.org> tiff-3.6.1-r1.ebuild:
+  Added s390 keywords
+
+  25 Apr 2004; Steve Arnold <nerdboy@gentoo.org> tiff-3.5.5.ebuild:
+  more analysis and einfo to clarify the issues
+
+*tiff-3.5.5 (25 Apr 2004)
+*tiff-3.6.1-r1 (25 Apr 2004)
+
+  25 Apr 2004; Steve Arnold <nerdboy@gentoo.org> tiff-3.5.5.ebuild, 
+  tiff-3.6.1-r1.ebuild:
+  added lzw-compression to 3.6.1-r1 and resurrected 3.5.5 for hylafax
+  addresses bugs 48694 and 48077
+
+  17 Apr 2004; Travis Tilley <lv@gentoo.org> tiff-3.6.1.ebuild:
+  marked stable on amd64
+
+  15 Mar 2004; Stephen P. Becker <geoman@gentoo.org> tiff-3.6.1.ebuild:
+  Added to stable on mips.
+
+  05 Mar 2004; Bret Curtis <psi29a@gentoo.org> tiff-3.5.7-r1.ebuild:
+  Added ~mips to tiff-3.5.7-r1.ebuild keywords
+
+  02 Mar 2004; Tom Gall <tgall@gentoo.org> tiff-3.6.0.ebuild:
+  Stable on ppc64
+
+*tiff-3.6.1 (19 Feb 2004)
+
+  19 Feb 2004; Brandon Low <lostlogic@gentoo.org> tiff-3.5.7-r1.ebuild,
+  tiff-3.6.0.ebuild, tiff-3.6.0_beta2.ebuild, tiff-3.6.1.ebuild:
+  Bump and strip arm keywords
+
+  14 Nov 2003; Aron Griffis <agriffis@gentoo.org> tiff-3.6.0.ebuild:
+  Stable on ia64
+
+*tiff-3.6.0 (07 Oct 2003)
+
+  07 Oct 2003; Seemant Kulleen <seemant@gentoo.org> tiff-3.6.0.ebuild:
+  version bump
+
+*tiff-3.6.0_beta2 (06 Sep 2003)
+
+  06 Sep 2003; Martin Holzer <mholzer@gentoo.org> tiff-3.6.0_beta2.ebuild:
+  Version bumped.
+
+  19 Jun 2003; <msterret@gentoo.org> tiff-3.5.7-r1.ebuild:
+  clear ROOT on install (bug 23102); patch by Martin Gadbois
+  Added IUSE=""
+
+  12 Feb 2003; Guy Martin <gmsoft@gentoo.org> tiff-3.5.7-r1.ebuild :
+  Added hppa to keywords.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*tiff-3.5.7-r1 (21 Mar 2002)
+
+  06 Apr 2003; Zach Welch <zwelch@gentoo.org> tiff-3.5.7-r1.ebuild:
+  add arm keyword
+
+  21 Mar 2002; Seemant Kulleen <seemant@gentoo.org> tiff-3.5.7-r1.ebuild :
+
+  HTML documentation was getting gzipped.  This is no longer the case, thanks
+  to stefan@mdy.univie.ac.at who pointed it out.
+
+*tiff-3.5.7 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
