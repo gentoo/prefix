@@ -1,0 +1,22 @@
+--- dialog-1.0-20051107/checklist.c
++++ dialog-1.0-20051107/checklist.c
+@@ -258,7 +258,7 @@
+ 	if (fkey && (key >= (M_EVENT + KEY_MAX))) {
+ 	    getyx(dialog, cur_y, cur_x);
+ 	    i = (key - (M_EVENT + KEY_MAX));
+-	    if (scrollamt + i < max_choice) {
++	    if (i < max_choice) {
+ 		/* De-highlight current item */
+ 		print_item(list,
+ 			   ItemData(scrollamt + choice),
+--- dialog-1.0-20051107/menubox.c
++++ dialog-1.0-20051107/menubox.c
+@@ -422,7 +422,7 @@
+ 	    if (key >= (M_EVENT + KEY_MAX)) {
+ 		key -= (M_EVENT + KEY_MAX);
+ 		i = RowToItem(key);
+-		if (scrollamt + i < max_choice) {
++		if (i < max_choice) {
+ 		    found = TRUE;
+ 		} else {
+ 		    beep();
