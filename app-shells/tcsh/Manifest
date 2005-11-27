@@ -5,4 +5,4 @@ MD5 272c57d439bbd686dfbbea467e114981 files/tcsh-6.14-prefix.patch 675
 MD5 dc3f6395569049b5f3a1547364be0260 files/tcsh-6.14-r2.patch 2057
 MD5 57ae68ef95b893d172203de06faf380d metadata.xml 655
 MD5 401cbc673bb0774c65e4524f61e6f147 tcsh-6.14-r1.ebuild 3197
-MD5 c80a5f93222966dd5510a248360bb9b5 tcsh-6.14-r2.ebuild 2946
+MD5 a1f811bcaac08cee2c3dc8646a37127f tcsh-6.14-r2.ebuild 2933
