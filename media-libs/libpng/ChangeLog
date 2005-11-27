@@ -1,0 +1,306 @@
+# ChangeLog for media-libs/libpng
+# Copyright 1999-2005 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.70 2005/10/30 09:14:06 grobian Exp $
+
+  30 Oct 2005; Fabian Groffen <grobian@gentoo.org>
+  files/libpng-1.2.8-build.patch:
+  Added patching of makefile.darwin to libpng-1.2.8-build.patch.  Solves bug
+  #109957
+
+*libpng-1.2.8-r1 (11 Oct 2005)
+
+  11 Oct 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/libpng-1.2.8-build.patch, +files/libpng-1.2.8-strnlen.patch,
+  +libpng-1.2.8-r1.ebuild:
+  Clean up build system for cross-compile sake.
+
+  27 May 2005; Mike Frysinger <vapier@gentoo.org> libpng-1.2.8.ebuild:
+  Add support for USE=doc to pull in the manual #94029 by Laurence Withers.
+
+  16 May 2005; Stephen P. Becker <geoman@gentoo.org> libpng-1.2.8.ebuild:
+  stable on mips
+
+  08 Apr 2005; Markus Rothe <corsair@gentoo.org> libpng-1.2.8.ebuild:
+  Stable on ppc64
+
+  20 Feb 2005; Mamoru KOMACHI <usata@gentoo.org> libpng-1.2.8.ebuild:
+  Stable on ppc-macos.
+
+  07 Feb 2005; Bryan Østergaard <kloeri@gentoo.org> libpng-1.2.8.ebuild:
+  Stable on alpha.
+
+  05 Feb 2005; Michael Hanselmann <hansmi@gentoo.org> libpng-1.2.8.ebuild:
+  Stable on ppc.
+
+  03 Feb 2005; Gustavo Zacarias <gustavoz@gentoo.org> libpng-1.2.8.ebuild:
+  Stable on sparc
+
+  18 Jan 2005; <gongloo@gentoo.org> libpng-1.2.8.ebuild:
+  Fix for ppc-macos.
+
+*libpng-1.2.8 (03 Jan 2005)
+
+  03 Jan 2005; Mike Frysinger <vapier@gentoo.org> +libpng-1.2.8.ebuild:
+  Version bump #74456 by Ryan Hill.
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+*libpng-1.2.7-r1 (20 Nov 2004)
+
+  20 Nov 2004; Mamoru KOMACHI <usata@gentoo.org>
+  +files/libpng-1.2.7-png_do_strip_filler.diff, +libpng-1.2.7-r1.ebuild:
+  Extracted png_do_strip_filler patch from libpng-1.2.8beta4.
+  This fixes bug #67069.
+
+  12 Nov 2004; Joshua Kinard <kumba@gentoo.org> libpng-1.2.7.ebuild:
+  Marked stable on mips.
+
+  06 Nov 2004; Michael Sterrett <mr_bones_@gentoo.org> libpng-1.2.5-r8.ebuild,
+  libpng-1.2.7.ebuild:
+  removed use macos
+
+  23 Sep 2004; Gustavo Zacarias <gustavoz@gentoo.org> libpng-1.2.7.ebuild:
+  Stable on sparc
+
+  23 Sep 2004; Jeremy Huddleston <eradicator@gentoo.org> libpng-1.2.7.ebuild:
+  get_libdir fixes.  Atable on amd64.
+
+  22 Sep 2004; Heinrich Wendel <lanius@gentoo.org> libpng-1.2.7.ebuild:
+  stable on x86, fixes some nasty rendering bugs in khtml
+
+  22 Sep 2004; Michael Sterrett <mr_bones_@gentoo.org> libpng-1.2.5-r8.ebuild:
+  save the shells
+
+  22 Sep 2004; Mamoru KOMACHI <usata@gentoo.org> libpng-1.2.5-r7.ebuild,
+  libpng-1.2.5-r8.ebuild, libpng-1.2.7.ebuild:
+  Added to ~ppc-macos. Fixed use invocation wrt macos/ppc-macos.
+
+*libpng-1.2.7 (11 Sep 2004)
+
+  11 Sep 2004; Michael Sterrett <mr_bones_@gentoo.org>
+  +files/1.2.7-gentoo.diff, +libpng-1.2.7.ebuild:
+  version bump
+
+  12 Aug 2004; Joshua Kinard <kumba@gentoo.org> libpng-1.2.5-r8.ebuild:
+  Bumped 1.2.5-r8 to mips stable to fix Bug #59424.
+
+  06 Aug 2004; foser <foser@gentoo.org> libpng-1.0* :
+  Remove all traces of libpng-1.0* (#59424)
+
+  06 Aug 2004; Bryan Østergaard,,, <kloeri@gentoo.org> libpng-1.2.5-r8.ebuild:
+  Stable on alpha, bug #59424.
+
+  05 Aug 2004; Ciaran McCreesh <ciaranm@gentoo.org> libpng-1.2.5-r8.ebuild:
+  Stable on sparc, bug #59424
+
+  05 Aug 2004; Luca Barbato <lu_zero@gentoo.org> libpng-1.2.5-r8.ebuild:
+  Marked ppc
+
+*libpng-1.2.5-r8 (05 Aug 2004)
+
+  05 Aug 2004; <plasmaroo@gentoo.org> +libpng-1.2.5-r8.ebuild,
+  +files/libpng-1.2.5-security.diff:
+  Security bump for bug #59424.
+
+*libpng-1.2.5-r7 (07 Jul 2004)
+
+  07 Jul 2004; Mike Frysinger <vapier@gentoo.org>
+  files/libpng-1.2.5-gentoo.diff, -libpng-1.2.5-r6.ebuild,
+  +libpng-1.2.5-r7.ebuild:
+  Version bump to fix security bug #56307.
+
+*libpng-1.2.5-r6 (13 May 2004)
+
+  13 May 2004; Mike Frysinger <vapier@gentoo.org>
+  -files/libpng-1.0.12-gentoo.diff, files/libpng-1.2.5-gentoo.diff,
+  -files/libpng-update-bins.sh, -files/libpng-update-libs.sh,
+  -libpng-1.0.12-r2.ebuild, -libpng-1.0.15-r1.ebuild, libpng-1.0.15-r2.ebuild,
+  -libpng-1.0.15.ebuild, -libpng-1.2.5-r2.ebuild, -libpng-1.2.5-r3.ebuild,
+  -libpng-1.2.5-r4.ebuild, -libpng-1.2.5-r5.ebuild, +libpng-1.2.5-r6.ebuild:
+  Add small patch from netbsd #49263 by Anders Rune Jensen. Re-add the
+  flag-o-matic stuff for k6 cpus and gcc-3.2/3.3 #50931 by Viperlin.
+  Clean out the old versions of libpng for the security fix #49887 by Olivier.
+
+*libpng-1.2.5-r5 (11 May 2004)
+*libpng-1.0.15-r2 (11 May 2004)
+
+  11 May 2004; <solar@gentoo.org> libpng-1.0.15-r2.ebuild,
+  libpng-1.2.5-r5.ebuild:
+  bump ebuild revisions to force user updates for GLSA process. No change in the
+  .ebuild so no need to call for arch maintiners. By request of koon@g.o
+
+  09 May 2004; <solar@gentoo.org> files/libpng-1.0.15-gentoo.diff,
+  files/libpng-1.2.5-gentoo.diff:
+  The library provides 2 calls png_chunk_error and png_chunk_warning for default
+  error and warning messages handling. Inside the code a fixed size buffer is
+  used and 64 bytes are used to store the caller supplied message. But there are
+  no bounds checking and this limitation is not documented. Programs linked
+  against libpng may crash or even execute arbitrary code if the caller message
+  is dependent on external inputs. Bugzilla bug #49887
+
+  02 Apr 2004; <randy@gentoo.org> libpng-1.2.5-r4.ebuild:
+  adding s390 keywords
+
+  16 Nov 2003; Brad House <brad_mssw@gentoo.org> libpng-1.0.15-r1.ebuild:
+  mark stable on amd64
+
+  01 Jul 2003; Todd Sunderlin <todd@gentoo.org> libpng-1.2.5-r4.ebuild:
+  set stable on sparc
+
+  18 maj 2003; <spider@gentoo.org>libpng-1.0.15-r1.ebuild :
+  update to make libpng not overwrite libpng.pc, which broke fbdesk
+
+  24 Apr 2003; Martin Schlemmer <azarah@gentoo.org> libpng-1.2.5-r4.ebuild :
+  Fix it to default CC to "gcc" if not set, else build borks.
+
+*libpng-1.2.5-r4 (21 Jan 2003)
+
+  15 Mar 2003; Jan Seidel <tuxus@gentoo.org> :
+  Added mips to KEYWORDS
+
+  12 Mar 2003; Zach Welch <zwelch@gentoo.org> libpng-1.2.5-r4.ebuild:
+  add arm keyword
+
+  01 Mar 2003; Brandon Low <lostlogic@gentoo.org> libpng-1.2.5-r4.ebuild:
+  Various ebuild fixes, better errors, use of einstall, and make the package use
+  the proper CC and CXXs from the portage environment
+
+  12 Feb 2003; Guy Martin <gmsoft@gentoo.org> libpng-1.2.5-r4.ebuild :
+  Added hppa to keywords.
+
+  21 Jan 2003; Mike Frysinger <vapier@gentoo.org> libpng-1.2.5-r4.ebuild :
+  fixed doman #14303
+
+*libpng-1.2.5-r3 (13 Feb 2003)
+ 
+  12 Jul 2003; Daniel Ahlberg <aliz@gentoo.org> :
+  Added missing changelog entry.
+
+*libpng-1.0.15-r1 (18 May 2003)
+ 
+  12 Jul 2003; Daniel Ahlberg <aliz@gentoo.org> :
+  Added missing changelog entry.
+
+*libpng-1.0.15 (14 Jan 2003)
+
+  09 Feb 2003; Seemant Kulleen <seemant@gentoo.org> *.ebuild :
+
+  Sed delimiter to : from /, closing bug #15006 by Blu3
+  <david+gentoo.org@blue-labs.org>
+
+  15 Jan 2003; Seemant Kulleen <seemant@gentoo.org>
+  files/libpng-1.0.15-gentoo.diff :
+
+  Forgot to add to cvs yesterday.
+
+  14 Jan 2003; Seemant Kulleen <seemant@gentoo.org> libpng-1.0.15.ebuild
+  files/digest-libpng-1.0.15 :
+
+  Version bump of the libpng-10 series.  This should not clobber libpng-12
+  from being the default.  Closes bug #10726 by : jk@xylema.org (John Kozak)
+
+
+*libpng-1.2.5-r2 (08 Jan 2003)
+*libpng-1.0.12-r2 (08 Jan 2003)
+
+  21 Jan 2003; Mike Frysinger <vapier@gentoo.org> libpng-1.2.5-r4.ebuild :
+  Fixed 'doman' so that in doesn't mistakenly install library files.
+
+  19 Jan 2003; George Shapovalov <george@gentoo.org> libpng-1.2.5-r3.ebuild, libpng-1.0.15.ebuild :
+  update to libpng-1.0.15 may cause autocleaning of png.h if user did not remerge libpng-1.2.5 after
+  emerging 1.0.12. Revision bumped libpng-1.2.5-r3.ebuild to force remerge.
+  Also added warning to libpng-1.0.15.ebuild about this issue.
+
+  17 Jan 2003; Daniel Ahlberg <aliz@gentoo.org> libpng-1.2.5-r2.ebuild :
+  Changed sed "/" to ":".
+
+  16 Jan 2003; Seemant Kulleen <seemant@gentoo.org> libpng-1.0.15.ebuild
+  libpng-1.2.5-r2.ebuild files/libpng-1.0.15-gentoo.diff :
+
+  fixed the diff and using epatch
+
+  08 Jan 2003; Daniel Ahlberg <aliz@gentoo.rg> libpng-1.0.12-r2.ebuild, libpng-1.2.5-r2.ebuild :
+  Applied Debian patch to fix buffer overflows.
+
+*libpng-1.2.5-r1 (21 Dec 2002)
+
+  22 Dec 2002; foser <foser@gentoo.org> libpng-1.2.5-r1.ebuild :
+  Fixed problems with -march=k6 (bug #12561)
+
+  22 Dec 2002; Martin Holzer <mholzer@gentoo.org> libpng-1.2.5-r1.ebuild files/digest-libpng-1.2.5-r1 Changelog :       
+  Changed SRC_URI to sf and .tar.gz to tar.bz2 
+
+  21 Dec 2002; foser <foser@gentoo.org> libpng-1.2.5-r1.ebuild :
+  Add fix for linker issues (bug #9792), revision bump to make sure everybody gets it
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*libpng-1.2.5 (25 Oct 2002)
+
+  25 Oct 2002; Mike Frysinger <vapier@gentoo.org> :
+  Version bump per #9651
+
+*libpng-1.2.4 libpng-1.2.3-r1 (09 Jul 2002)
+
+  22 Dec 2002; Martin Holzer <mholzer@gentoo.org> libpng-1.2.4.ebuild files/digest-libpng-1.2.4 Changelog : 
+  Changed SRC_URI to sf and .tar.gz to tar.bz2 
+
+  09 Jul 2002; Seemant Kulleen <seemant@gentoo.org> libpng-1.2.4.ebuild,
+  libpng-1.2.3-r1.ebuild files/digest-libpng-1.2.3-r1 :
+
+  added a check to see if /usr/lib/libpng.so.3.1.2.1 exists, and to remove
+  it if it does, in pkg_postinst(). This is because upstream screwed up
+  somehow between 1.2.1 and 1.2.3
+
+*libpng-1.2.4 (08 Jul 2002)
+
+  08 Jul 2002; Gabriele Giorgetti <stroke@gentoo.org> libpng-1.2.4.ebuild
+  files/digest-libpng-1.2.4 :
+
+  new version, I've been testing it for a while, but I'm leaving it masked 
+  untill someone wiser (Seemant ? :) than me decides it is ready to go live.
+ 
+
+*libpng-1.2.3 (26 May 2002)
+
+  26 May 2002; Seemant Kulleen <seemant@gentoo.org> libpng-1.2.3.ebuild
+  files/digest-libpng-1.2.3 :
+
+  Version bump, masked for now
+
+
+  20 Apr 2002; Seemant Kulleen <seemant@gentoo.org>
+   
+   This has been masked for testing.  testing shows that it stinks worse than
+   1.2.1, so it is being killed.
+
+*libpng-1.2.2 (16 Apr 2002)
+
+  16 Apr 2002; Seemant Kulleen <seemant@gentoo.org>
+
+  Quick version update (new version fixes many bugs; whatever).  Kaali in 
+  #gentoo is to be thanked for finding the two bogus symlinks that the make
+  install process installs.  Those are fixed with the two dosym operations
+  in src_install()
+
+*libpng-1.0.12-r1 and libpng-1.2.1-r1 (13 April 2002)
+
+  22 Dec 2002; Martin Holzer <mholzer@gentoo.org> libpng-1.0.12-r1.ebuild files/digest-libpng-1.0.12-r1 Changelog :
+  Changed SRC_URI to sf and .tar.gz to tar.bz2 
+
+  13 April 2002; Bart Verwilst <verwilst@gentoo.org> ChangeLog :
+
+  In order to prevent users from having to almost completely rebuild their 
+  system after they upgraded to 1.2.1, i'm adding SLOT's to 1.0.x and 
+  1.2.x, so they can happily live together :o)
+
+*libpng-1.0.12 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.

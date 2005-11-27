@@ -1,0 +1,7 @@
+MD5 1701d4b3e63ec0be1e0851bdb6199201 ChangeLog 11271
+MD5 3338fff0166374e14ae138e6a1f4cd21 files/1.2.7-gentoo.diff 464
+MD5 cfc3cad1942561090fafce6a25a23bf0 files/digest-libpng-1.2.8-r1 127
+MD5 2a7e38438ec298bb296fdb07c8666559 files/libpng-1.2.8-build.patch 3789
+MD5 029ec280f20678b76004c1a0a0270111 files/libpng-1.2.8-strnlen.patch 580
+MD5 40db53f9666e2e1eaa968e944555e2c5 libpng-1.2.8-r1.ebuild 1728
+MD5 9a09f8d531c582e78977dbfd96edc1f2 metadata.xml 164
