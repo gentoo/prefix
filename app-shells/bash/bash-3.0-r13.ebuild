@@ -33,7 +33,7 @@ RDEPEND=""
 
 src_unpack() {
 	unpack ${P}.tar.gz
-	cd "${S}"
+	cd ${S}
 	epatch "${FILESDIR}"/${P}-gentoo.patch
 
 	# Remove autoconf dependency
@@ -86,9 +86,12 @@ src_unpack() {
 	# requires it.
 	epatch "${FILESDIR}"/${P}-strnlen.patch
 
-	#epatch "${FILESDIR}"/${P}-path.patch
+	epatch "${FILESDIR}"/${P}-pathnames.patch
 
 	sed -i 's:-lcurses:-lncurses:' configure || die "sed configure"
+
+	sed -i -e "s:\@PREFIX\@:${PREFIX}:g" config-top.h pathnames.h.in \
+		|| die "sed failed."
 }
 
 src_compile() {

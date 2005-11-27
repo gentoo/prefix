@@ -1,5 +1,5 @@
 MD5 88a51efef2d1978e42f43b78224b3c82 ChangeLog 15907
-MD5 ed3cd46a05a561ed6df58c3cf7a599ec bash-3.0-r13.ebuild 5012
+MD5 a3e7d6f930aad49735267525d74a4b64 bash-3.0-r13.ebuild 5106
 MD5 edf95b873162f4548435c379e4998b4e files/bash-2.05b-empty-herestring.patch 836
 MD5 ca64aff9caa582e07e0b34ed87d60d80 files/bash-2.05b-jobs.patch 876
 MD5 90ba92c981c1d26e45d88ecd23a1fbf5 files/bash-2.05b-multibyte-locale.patch 1897
@@ -9,7 +9,8 @@ MD5 3d73159ab671b57a3f488c044e1a1f47 files/bash-2.05b-setlocale.patch 694
 MD5 5b271ebb6e2c7fa763e2b7614b5a6be4 files/bash-3.0-afs.patch 633
 MD5 fb4d7310d9e0a05744f27d03958bd39d files/bash-3.0-array-stripping.patch 383
 MD5 b802ce25d76787d8c9b4484ca66b17be files/bash-3.0-bash-logger.patch 2197
-MD5 49f41ffbc5249811bb4e134a746737a5 files/bash-3.0-configs.patch 2538
+MD5 9389de220c1a0f5720ef62d7dda9b96c files/bash-3.0-config-top.patch 460
+MD5 9bda4f6c8ee877de48c16bbde5e0de18 files/bash-3.0-configs.patch 2642
 MD5 ccc195288edb06eb44f4d5e2a9c1da62 files/bash-3.0-crash.patch 1191
 MD5 d9f3ac9936b8f633c8cada36820e7419 files/bash-3.0-darwin-conn.patch 970
 MD5 d687545889dacb43e121f4932d99a534 files/bash-3.0-etc-inputrc.patch 1443
@@ -24,6 +25,7 @@ MD5 2cb2e2808cdef5be2c06f7b0e5e6933d files/bash-3.0-manpage.patch 498
 MD5 5eb765b627bf72c3e0ca6c4261e9f4db files/bash-3.0-multibyteifs.patch 6099
 MD5 3b706b4e822e0480f1ba098db4b292f6 files/bash-3.0-parallel.patch 378
 MD5 974e81964cb9fd64ccc3287fa9f5461c files/bash-3.0-path.patch 1265
+MD5 aabd6d4f8695adef1e37f358be4fb113 files/bash-3.0-pathnames.patch 556
 MD5 b518c92ffb4ee61be7e4b1d27264a652 files/bash-3.0-pgrp-pipe-fix.patch 462
 MD5 92aa5d2ebd4b97eaea0073451bb670b9 files/bash-3.0-posixtrap.patch 1212
 MD5 83c872f8c494e1e9c5b68f44e7791730 files/bash-3.0-prompt.patch 785
