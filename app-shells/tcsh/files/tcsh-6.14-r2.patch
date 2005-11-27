@@ -1,0 +1,59 @@
+--- gentoo/csh.cshrc
++++ gentoo/csh.cshrc
+@@ -1,6 +1,9 @@
+ ## Gentoo csh.cshrc
+ ##
+-## 2005-09-29 -- Fabian Groffen (grobian@gentoo.org)
++## 2005-11-10 -- Fabian Groffen (grobian@gentoo.org)
++##   * Disabled sourcing environment defaults and additional settings
++##     when having a non-interactive shell.  Bug #104763
++## 2005-09-29 -- Fabian Groffen
+ ##   * Initial version of a complete redo of this file to fix many bugs
+ ##     and resolve many annoyances experienced by numerous users
+ ##
+@@ -8,7 +11,7 @@
+ ##
+ ## Load the environment defaults.
+ ##
+-if ( -r /etc/csh.env ) then
++if ( $?prompt && -r /etc/csh.env ) then
+     source /etc/csh.env
+ endif
+ 
+@@ -55,7 +58,7 @@
+ ##
+ ## Source extensions
+ ##
+-if ( -d /etc/profile.d ) then
++if ( $?prompt && -d /etc/profile.d ) then
+ 	set nonomatch
+ 	foreach i ( /etc/profile.d/*.csh )
+ 		if ( -r $i ) then
+--- gentoo/tcsh-complete
++++ gentoo/tcsh-complete
+@@ -3,8 +3,11 @@
+ ## Based on the TCSH complete.tcsh script, with changed from the TCSHRC
+ ## package (http://tcshrc.sourceforge.net)
+ ##
+-## Please do not change this file!  Place your personal customizations in
+-## ~/.tcshrc and system-wide customizations in /etc/profiles.d/local.csh
++## Please note that the tcsh-complete file is a large set of examples
++## that is not meant to be used in its exact form, as it defines an
++## excessive -- sometimes conflicting -- amount of completion scripts.
++## It is highly encouraged to copy over the desired auto completion
++## scripts to the personal ~/.tcshrc file.
+ ##
+ ## 2005-09-27  --  Fabian Groffen (grobian@gentoo.org)
+ ##     fixed some bugs reported by users and cleaned it a bit
+--- gentoo/tcsh-gentoo_legacy
++++ gentoo/tcsh-gentoo_legacy
+@@ -4,6 +4,9 @@
+ ## by gentoo ebuilds prior to 6.14-r1.  If you wonder what it does, you
+ ## probably don't want this at all, so stay away from it.
+ ##
++## Remember that you have to copy over these files into their
++## appropriate places, such as /etc/profile.d and /etc/skel.
++##
+ 
+ ##
+ ## Start by unsetting all our variables.  This is needed to prevent
