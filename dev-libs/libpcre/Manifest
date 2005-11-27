@@ -1,0 +1,5 @@
+MD5 611237f83988cc004444009adfd0582e ChangeLog 8372
+MD5 7aefa27b2326ddccbebd14a6c845b726 files/digest-libpcre-6.3 61
+MD5 17042ca451c3bcc9cefd3f3738b4c7f7 files/pcre-6.3-uclibc-tuple.patch 1606
+MD5 57ede46f5ecfd56a6ea2c361b85897e6 libpcre-6.3.ebuild 1309
+MD5 c1e212329f9083e2405b16dd382d6632 metadata.xml 259
