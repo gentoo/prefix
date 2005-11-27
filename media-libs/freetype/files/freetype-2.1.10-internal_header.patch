@@ -1,0 +1,12 @@
+diff -uNr freetype-2.1.10/include/freetype/internal/ftmemory.h freetype-2.1.10.patched/include/freetype/internal/ftmemory.h
+--- freetype-2.1.10/include/freetype/internal/ftmemory.h	2005-06-04 07:17:10.000000000 +0200
++++ freetype-2.1.10.patched/include/freetype/internal/ftmemory.h	2005-07-12 18:57:44.000000000 +0200
+@@ -430,7 +430,7 @@
+           FT_ALLOC( _pointer_, (_count_) * sizeof ( _type_ ) )
+ 
+ #define FT_REALLOC_ARRAY( _pointer_, _old_, _new_, _type_ )   \
+-          FT_REALLOC( _pointer, (_old_) * sizeof ( _type_ ),  \
++          FT_REALLOC( _pointer_, (_old_) * sizeof ( _type_ ),  \
+                                 (_new_) * sizeof ( _type_ ) )
+ 
+ 

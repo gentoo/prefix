@@ -1,0 +1,328 @@
+# ChangeLog for media-libs/freetype
+# Copyright 2002-2005 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.78 2005/10/09 16:04:25 foser Exp $
+
+*freetype-1.3.1-r5 (09 Oct 2005)
+
+  09 Oct 2005; Marinus Schraal <foser@gentoo.org> freetype-1.3.1-r5.ebuild :
+  Add patch to remove redundant header inclusions that break bsd (#104016)
+  Fix uclibctoolize -> elibtoolize
+
+  07 Sep 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  freetype-1.3.1-r4.ebuild:
+  Stable on sparc
+
+  28 Aug 2005; MATSUU Takuto <matsuu@gentoo.org> freetype-2.1.9-r1.ebuild:
+  Stable on sh.
+
+*freetype-2.1.10 (12 Jul 2005)
+
+  12 Jul 2005; Marinus Schraal <foser@gentoo.org> freetype-2.1.10.ebuild :
+  New release (#95969)
+
+  26 Mar 2005; Lina Pezzella <j4rg0n@gentoo.org> freetype-2.1.9-r1.ebuild:
+  Stable ppc-macos
+
+  23 Mar 2005; Seemant Kulleen <seemant@gentoo.org>
+  freetype-2.1.9-r1.ebuild:
+  change dep from net-www/mozilla to www-client/mozilla
+
+  18 Mar 2005; Seemant Kulleen <seemant@gentoo.org>
+  freetype-2.1.9-r1.ebuild:
+  Dependency update: net-www/mozilla-firefox -> www-client/mozilla-firefox.
+
+  13 Mar 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  freetype-2.1.9-r1.ebuild:
+  Stable x86 so xorg-x11-6.8.2 can go stable.
+
+  11 Mar 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  freetype-2.1.9-r1.ebuild:
+  Stable on sparc
+
+  10 Mar 2005; Danny van Dyk <kugelfang@gentoo.org>
+  freetype-2.1.9-r1.ebuild:
+  Marked stable on amd64.
+
+  09 Mar 2005; Stephen P. Becker <geoman@gentoo.org>
+  freetype-2.1.9-r1.ebuild:
+  stable on mips - bug 83598
+
+  08 Mar 2005; Bryan Østergaard <kloeri@gentoo.org>
+  freetype-2.1.9-r1.ebuild:
+  Stable on alpha, bug 83598.
+
+  20 Feb 2005; Hardave Riar <hardave@gentoo.org> freetype-1.3.1-r4.ebuild:
+  Stable on mips
+
+  17 Feb 2005; Markus Rothe <corsair@gentoo.org> freetype-2.1.9-r1.ebuild:
+  Stable on ppc64
+
+  17 Feb 2005; Luca Barbato <lu_zero@gentoo.org> freetype-2.1.9-r1.ebuild:
+  Marked ppc
+
+  16 Jan 2005; Mike Frysinger <vapier@gentoo.org> freetype-2.1.5-r1.ebuild,
+  freetype-2.1.9-r1.ebuild:
+  Get rid of useless C++ checks.
+
+  15 Jan 2005; Lina Pezzella <j4rg0n@gentoo.org> freetype-2.1.9-r1.ebuild:
+  Unstable ppc-macos.
+
+*freetype-2.1.9-r1 (24 Dec 2004)
+
+  24 Dec 2004; foser <foser@gentoo.org> freetype-2.1.9-r1.ebuild :
+  Add a patch to fix a bytecode interpreter bug (#75424)
+
+  22 Dec 2004; foser <foser@gentoo.org> freetype-2.1.9.ebuild :
+  Add block for libwmf which wont build with this version
+
+  20 Nov 2004; Aron Griffis <agriffis@gentoo.org> freetype-2.1.9.ebuild:
+  Add RDEPEND to block versions of moz/ff/tb lacking the freetype-2.1.8+ binary
+  compatibility patch
+
+  03 Nov 2004; Bret Curtis <psi29a@gentoo.org> freetype-1.3.1-r4.ebuild,
+  freetype-2.1.9.ebuild:
+  marked ~mips for testing
+
+  17 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> freetype-1.3.1-r3.ebuild,
+  freetype-1.3.1-r4.ebuild:
+  Don't install t1asm and getafm. They conflict with t1lib (t1asm) and
+  psutils (getafm). This closes bug #53261. Marked -r4 stable on x86,
+  alpha and ppc.
+
+  10 Oct 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  freetype-2.1.5-r1.ebuild, freetype-2.1.9.ebuild:
+  multilib fixes.
+
+  05 Oct 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  freetype-1.3.1-r4.ebuild:
+  multilib fixups.
+
+  01 Aug 2004; Tom Gall <tgall@gentoo.org> freetype-1.3.1-r4.ebuild:
+  stable on ppc64, bug #57583
+
+  01 Aug 2004; <solar@gentoo.org> freetype-2.1.5-r1.ebuild,
+  freetype-2.1.7.ebuild, freetype-2.1.9.ebuild:
+  added gnuconfig_update for 2.1.5-r1 2.1.7 2.1.9
+
+  23 Jul 2004; Mamoru KOMACHI <usata@gentoo.org> freetype-2.1.5-r1.ebuild,
+  freetype-2.1.5.ebuild:
+  Added to macos.
+
+*freetype-2.1.9 (20 Jul 2004)
+
+  20 Jul 2004; foser <foser@gentoo.org> freetype-2.1.9.ebuild :
+  New release
+  Add -fno-strict-aliasing (https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=118021)
+  Disabled cjk patch, it doesn't apply anymore
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  freetype-1.3.1-r3.ebuild, freetype-1.3.1-r4.ebuild,
+  freetype-2.1.3-r2.ebuild, freetype-2.1.4-r1.ebuild, freetype-2.1.4.ebuild,
+  freetype-2.1.5-r1.ebuild, freetype-2.1.5.ebuild, freetype-2.1.7.ebuild:
+  virtual/glibc -> virtual/libc
+
+  20 Jun 2004; Mamoru KOMACHI <usata@gentoo.org> freetype-1.3.1-r4.ebuild:
+  Removed ~s390 keyword due to broken dep to tetex
+
+*freetype-1.3.1-r4 (19 Jun 2004)
+
+  19 Jun 2004; Mamoru KOMACHI <usata@gentoo.org> freetype-1.3.1-r4.ebuild:
+  Added tetex IUSE flag. This closes bug #23167 and and #53396
+
+  11 May 2004; Michael McCabe <randy@gentoo.org> freetype-1.3.1-r3.ebuild,
+  freetype-2.1.5-r1.ebuild:
+  Added s390 fixes and keywords
+
+  03 Apr 2004; Donnie Berkholz <spyderous@gentoo.org>;
+  freetype-1.3.1-r3.ebuild:
+  Change XFree86 references to X11.
+
+  09 Mar 2004; <agriffis@gentoo.org> freetype-2.1.5-r1.ebuild:
+  stable on alpha and ia64
+
+  26 Feb 2004; Guy Martin <gmsoft@gentoo.org> freetype-2.1.5-r1.ebuild:
+  Marked stable on hppa.
+
+*freetype-2.1.7 (24 Feb 2004)
+
+  24 Feb 2004; foser <foser@gentoo.org> freetype-2.1.7.ebuild :
+  New release, readded docs, updated cjk patch
+  This release is in p.mask and needs extensive testing
+  header changes break a lot of (older) source builds
+
+  23 Feb 2004; Sven Blumenstein <bazik@gentoo.org> freetype-2.1.5-r1.ebuild:
+  Stable on sparc. At least for me :P
+
+  21 Feb 2004; Guy Martin <gmsoft@gentoo.org> :
+  Marked stable on hppa.
+
+*freetype-2.1.5-r1 (15 Feb 2004)
+
+  15 Feb 2004; foser <foser@gentoo.org> freetype-2.1.5-r1.ebuild :
+  Add cjk USE ing autohint patch requested in #31347 & #36068
+
+  29 Nov 2003; Brad House <brad_mssw@gentoo.org> freetype-2.1.5.ebuild:
+  add ~amd64 flag
+
+*freetype-2.1.5 (23 Nov 2003)
+
+  13 Nov 2003; foser <foser@gentoo.org> freetype-2.1.5.ebuild ;
+  New release
+  disabled docs, not available for this release
+
+  16 Nov 2003; Brad House <brad_mssw@gentoo.org> freetype-2.1.4-r1.ebuild:
+  mark stable on amd64
+
+  13 Nov 2003; <tuxus@gentoo.org> freetype-2.1.4.ebuild:
+  added mips to KEYWORDS
+
+*freetype-2.1.4-r1 (10 Aug 2003)
+
+  04 Nov 2003; Joshua Kinard <kumba@gentoo.org> freetype-2.1.4-r1.ebuild:
+  Added ~mips to KEYWORDS
+
+  22 Oct 2003; Aron Griffis <agriffis@gentoo.org> freetype-2.1.4-r1.ebuild:
+  Stable on alpha
+
+  22 Oct 2003; Bartosch Pixa <darkspecter@gentoo.org>
+  freetype-2.1.4-r1.ebuild:
+  set ppc in keywords
+
+  10 Aug 2003; foser <foser@gentoo.org> freetype-2.1.4-r1.ebuild :
+  Added proper configure step (#18160)
+
+  28 Jul 2003; Will Woods <wwoods@gentoo.org> freetype-1.3.1-r3.ebuild:
+  Added gnuconfig_update for alpha
+
+  13 Jul 2003; Jon Portnoy <avenj@gentoo.org> freetype-2.1.4.ebuild :
+  Trivial change, moved prebuilt -> bindist to reflect USE flag
+  name change.
+
+  20 Jun 2003; Jason Wever <weeve@gentoo.org> freetype-2.1.4.ebuild:
+  Changed ~sparc keyword to sparc.
+
+  20 May 2003; Tavis Ormandy <taviso@gentoo.org> freetype-2.1.3-r2.ebuild:
+  bytecode check fails if you didnt build the .so (ccc on alpha)
+
+*freetype-2.1.4 (09 Apr 2003)
+
+  04 Aug 2003; Guy Martin <gmsoft@gentoo.org> freetype-2.1.4.ebuild :
+  Marked stable on hppa.
+
+  10 Apr 2003; foser <foser@gentoo.org> freetype-2.1.4.ebuild :
+  Changed bytecode to be only disabled when prebuilt in USE
+ 
+  09 Apr 2003; foser <foser@gentoo.org> freetype-2.1.4.ebuild :
+  New version, disabled smooth patch, cause it doesn't seem to work
+  Disabled bytcode interpreter for anything but cjk use flag, using
+  the autohinter instead as suggested by the freetype team.
+  Added zlib use flag
+
+  23 Mar 2003; Guy Martin <gmsoft@gentoo.org> freetype-1.3.1-r3.ebuild :
+  Added hppa to KEYWORDS.
+
+  10 Jan 2003; Aron Griffis <agriffis@gentoo.org> freetype-1.3.1-r3.ebuild :
+  Add alpha to KEYWORDS
+
+*freetype-2.1.3-r2 (15 Dec 2002)
+
+  16 Mar 2003; Guy Martin <gmsoft@gentoo.org> freetype-2.1.3-r2.ebuild :
+  Changed ~hppa to hppa.
+
+  15 Mar 2003; Mark Guertin <gerk@gentoo.org> freetype-2.1.3-r2.ebuild:
+  set ppc in keywords
+
+  12 Mar 2003; Zach Welch <zwelch@gentoo.org> freetype-2.1.3-r2.ebuild:
+  add arm keyword
+
+  28 Feb 2003; Guy Martin <gmsoft@gentoo.org> freetype-2.1.3-r2.ebuild :
+  Added ~hppa to keywords.
+
+  21 Feb 2003; Aron Griffis <agriffis@gentoo.org> freetype-2.1.3-r2.ebuild :
+  Mark stable on alpha
+
+  15 Dec 2002; Martin Schlemmer <azarah@gentoo.org> freetype-2.1.3-r2.ebuild :
+  Add back missing bits of the Slight Hint patch, closing bug #12098.
+
+*freetype-2.1.3-r1 (14 Dec 2002)
+
+  14 Dec 2002; Martin Schlemmer <azarah@gentoo.org> freetype-2.1.3-r1.ebuild :
+  Only apply the FT Smooth patch if 'smooth' in USE.  I should really use a
+  better USE flag, but until a more generic one is found ...  I did this,
+  as not everybody wants this, and it makes some fonts look worse ...
+
+*freetype-2.1.3 (13 Dec 2002)
+
+  13 Dec 2002; Martin Schlemmer <azarah@gentoo.org> freetype-2.1.3.ebuild :
+  New version:
+  - Update to add '-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER' to CFLAGS.  This
+    invalidate the patch/sed to enable the Bytecode Interpreter.
+  - Add check to verify we have the Bytecode Interpreter enabled.
+  - Add the FT Smooth patches from http://www.cs.mcgill.ca/~dchest/xfthack/.
+    This closes bug #12016.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> :
+  Changed sparc ~sparc keywords
+ 
+  02 Dec 2002; M.Schlemmer <azarah@gentoo.org> freetype-2.1.2-r2.ebuild :
+
+  Mark as stable, as it seems it could be a fix for bug #10028.
+
+*freetype-2.1.2-r2 (21 Nov 2002)
+
+  28 Feb 2003; Guy Martin <gmsoft@gentoo.org> freetype-2.1.2-r2.ebuild :
+  Adde hppa to keywords.
+
+  21 Nov 2002; M.Schlemmer <azarah@gentoo.org> freetype-2.1.2-r2.ebuild :
+
+  Add some Redhat patches.
+
+*freetype-2.1.2-r1 (21 Sep 2002)
+
+  21 Sep 2002; M.Schlemmer <azarah@gentoo.org> freetype-2.1.2-r1.ebuild :
+
+  Add html docs if "doc" in USE, thanks to Rigo Ketelings <rigo@home.nl>.
+  This closes bug #7416.
+
+*freetype-1.3.1-r3 (28 Aug 2002)
+
+  09 Dec 2002; Martin Holzer <mholzer@gentoo.org> freetype-1.3.1-r3.ebuild Changelog :
+  Added SRC_URI cause ftp.freetype.org is permanent down.
+
+  28 Aug 2002; Seemant Kulleen <seemant@gentoo.org> freetype-1.3.1-r3.ebuild :
+  SRC_URI fix by: tobias@databoogie.net (Tobias Eichert) in bug #7147
+
+*freetype-2.1.2 (16 Jul 2002)
+
+  03 Aug 2002; Nick Hadaway <raker@gentoo.org> freetype-2.1.2.ebuild :
+  Still masked in portage.  Added a fix from Nicholas Wourms to enable
+  font hinting.  This should be stable enough for release now.
+
+  16 Jul 2002; Nick Hadaway <raker@gentoo.org> freetype-2.1.2.ebuild :
+  Added latest build of freetype.
+  Quoted directly from freetype homepage...
+  "That's probably the first release of FreeType in the 2.1.x
+  development branch that can safely replace 2.0.9 on any
+  system."
+
+*freetype-2.0.9 (04 Apr 2002)
+
+  04 Apr 2002; M.Schlemmer <azarah@gentoo.org> freetype-2.0.9.ebuild :
+
+  Resolve "file not found" in dodoc; bug #1065.
+
+*freetype-2.0.9 (30 Mar 2002)
+  30 Mar 2002; Spider <spider@gentoo.org> 
+  routine update to new version. 
+
+*freetype-2.0.8 (17 Feb 2002)
+
+*freetype-2.0.5-r1 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
