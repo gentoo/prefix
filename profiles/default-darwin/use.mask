@@ -57,6 +57,7 @@ nas
 on-the-fly-crypt
 pike
 qdbm
+scanner
 socks5
 xmms
 
