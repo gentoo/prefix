@@ -13,5 +13,5 @@ MD5 334e1cf92033c20c5e401f5ae5f498cc files/gawk-3.1.4-nextc.patch 716
 MD5 513af85f3e12197f97b42c3fee7c491c files/gawk-3.1.4-uplow.patch 5636
 MD5 89145324fea9791b0caa1b09f5cee0cb files/gawk-3.1.5-core.patch 643
 MD5 499e2881f167a17f2123ca338836e91d files/gawk-3.1.5-gcc4.patch 826
-MD5 f88b55febbb9c74115eeced4d6737ac5 gawk-3.1.5.ebuild 3127
+MD5 052a92cd367ba96efa9d4e7e8c384f80 gawk-3.1.5.ebuild 3157
 MD5 9a09f8d531c582e78977dbfd96edc1f2 metadata.xml 164

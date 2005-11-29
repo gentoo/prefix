@@ -13,7 +13,8 @@ SRC_URI="mirror://gnu/gawk/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc-macos ~ppc64 ~s390 ~sh ~sparc ~x86"
-IUSE="nls build"
+IUSE="nls build gnuprefix"
+#todo: gnuprefix should become global I think
 
 RDEPEND=""
 DEPEND="${RDEPEND}
@@ -82,7 +83,7 @@ src_install() {
 	dosym /bin/gawk-${PV} /usr/bin/gawk
 	dosym gawk-${PV} /bin/awk
 	dosym /bin/gawk-${PV} /usr/bin/awk
-	[[ ${USERLAND} != "GNU" ]] && rm -f "${D}"/{,usr/}bin/awk{,-${PV}}
+	use gnuprefix && rm -f "${D}"/{,usr/}bin/awk{,-${PV}}
 
 	# Install headers
 	insinto /usr/include/awk
@@ -94,7 +95,7 @@ src_install() {
 		cd "${S}"
 		rm -f "${D}"/usr/share/man/man1/pgawk.1
 		dosym gawk.1.gz /usr/share/man/man1/pgawk.1.gz
-		[[ ${USERLAND} == "GNU" ]] && dosym gawk.1.gz /usr/share/man/man1/awk.1.gz
+		use gnuprefix || dosym gawk.1.gz /usr/share/man/man1/awk.1.gz
 		dodoc AUTHORS ChangeLog FUTURES LIMITATIONS NEWS PROBLEMS POSIX.STD README
 		docinto README_d
 		dodoc README_d/*
