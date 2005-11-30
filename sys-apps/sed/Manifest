@@ -6,4 +6,4 @@ MD5 c78a7215447859226a24305ab7eebb24 files/sed-4.1.4-fix-invalid-ref-error.patch
 MD5 3ea67fdbcfe6288bb7e03a47b5801a04 files/sed-4.1.4-makeinfo-c-locale.patch 617
 MD5 2502535e2cc93fa49d1c2fdc31eff1b2 files/unix2dos 56
 MD5 9a09f8d531c582e78977dbfd96edc1f2 metadata.xml 164
-MD5 6a58c9dad5f0ff9ef4ef68ffe61c8ee9 sed-4.1.4.ebuild 2134
+MD5 56f8adc654f278e30a4d7b98ee08ad44 sed-4.1.4.ebuild 2041

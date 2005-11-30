@@ -13,7 +13,7 @@ SRC_URI="mirror://gnu/sed/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="alpha arm amd64 hppa ia64 m68k mips ppc ppc64 ppc-macos s390 sh sparc x86"
-IUSE="nls static build bootstrap"
+IUSE="nls static build bootstrap gnuprefix"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
@@ -51,9 +51,7 @@ src_compile() {
 	src_bootstrap_sed
 
 	local myconf=""
-	if ! use userland_GNU; then
-		myconf="--program-prefix=g"
-	fi
+	use gnuprefix && myconf="--program-prefix=g"
 	econf \
 		$(use_enable nls) \
 		${myconf} \
@@ -66,11 +64,7 @@ src_compile() {
 
 src_install() {
 	into /
-	#if ! use userland_GNU; then
-	#	newbin sed/sed gsed || die "dobin"
-	#else
-		dobin sed/sed || die "dobin"
-	#fi
+	dobin sed/sed || die "dobin"
 
 	if ! use build ; then
 		make install DESTDIR="${DEST}" || die "Install failed"
@@ -81,7 +75,7 @@ src_install() {
 		dodir /usr/bin
 	fi
 
-	if ! use userland_GNU; then
+	if use gnuprefix; then
 		cd "${D}"
 		rm -f "${D}"/usr/bin/gsed
 		dosym /bin/gsed /usr/bin/gsed
