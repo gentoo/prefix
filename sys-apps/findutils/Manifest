@@ -7,5 +7,5 @@ MD5 df65fc9a616feac9570c654f02b2edcc files/findutils-4.2.18-gcc295.patch 457
 MD5 6d52de5b305608054e88b17c5b282048 files/findutils-4.2.20-man.patch 331
 MD5 0b8c5e1bc2e54e46c292ad6a90729f75 files/findutils-4.2.24-selinux.diff 14356
 MD5 0315b5033cf65d15f24b1c252070db45 files/findutils-env-size.patch 672
-MD5 bf1f717de1c17a3a48c4cce8210a1b8a findutils-4.2.25.ebuild 1753
+MD5 6d35640a9f20eb30cdeaf38aad298cde findutils-4.2.25.ebuild 1806
 MD5 1f7197b778d47c773d19430261c84f49 metadata.xml 261

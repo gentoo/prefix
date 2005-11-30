@@ -16,7 +16,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc-macos ~ppc64 ~s390 ~sh ~sparc ~x86"
-IUSE="nls build selinux static"
+IUSE="nls build selinux static gnuprefix"
 
 RDEPEND="selinux? ( sys-libs/libselinux )"
 DEPEND="${RDEPEND}
@@ -37,8 +37,9 @@ src_unpack() {
 src_compile() {
 	use static && append-ldflags -static
 
-	[[ "${USERLAND}" != "Darwin" ]] && myconf="--without-included-regex"
-	[[ "${USERLAND}" == "BSD" ]] && myconf=" --program-prefix=g"
+	# grobian: is this still necessary outside the prefix? 
+	#[[ "${USERLAND}" != "Darwin" ]] && myconf="--without-included-regex"
+	use gnuprefix && myconf=" --program-prefix=g"
 
 	econf $(use_enable nls) ${myconf} || die "configure failed"
 	emake libexecdir=/usr/lib/find AR="$(tc-getAR)" || die "make failed"
