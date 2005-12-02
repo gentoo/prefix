@@ -14,4 +14,15 @@
 		editor, programmable word completion, spelling correction, a
 		history mechanism, job control and a C-like syntax.
 	</longdescription>
+	<portnotes>
+		<note version="6.14-r2">
+			installation was done with double prefix, solved with
+			einstall and overriding bindir and libdir.  tcsh needs, like
+			other shells some special treatment with regard to the
+			prefixed install it is in, since it has to fetch its
+			configuration files (/etc/csh.*) from the prefix as well.
+			The contents of these files also needs to reflect the
+			prefix.  This is now being catered for in the ebuild.
+		</note>
+	</portnotes>
 </pkgmetadata>
