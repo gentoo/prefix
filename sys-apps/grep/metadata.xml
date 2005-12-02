@@ -7,5 +7,5 @@
 			replaced --bindir=/bin with $(bin_dir) in configure call
 			replaced make DESTDIR=${D} with make DESTDIR=${DEST}
 		</note>
-	</portnote>
+	</portnotes>
 </pkgmetadata>
