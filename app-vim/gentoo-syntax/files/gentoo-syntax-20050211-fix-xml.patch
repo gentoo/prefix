@@ -1,0 +1,52 @@
+Index: ftdetect/gentoo.vim
+===================================================================
+--- ftdetect/gentoo.vim	(revision 140)
++++ ftdetect/gentoo.vim	(revision 142)
+@@ -84,4 +84,6 @@
+     \        getline(7) =~ "<!DOCTYPE guide " ||
+     \        getline(8) =~ "<!DOCTYPE guide " ||
+     \        getline(9) =~ "<!DOCTYPE guide " |
+-    \     set filetype=guidexml
++    \     set filetype=guidexml		      |
++    \	 endif
++
+Index: doc/gentoo-syntax.txt
+===================================================================
+--- doc/gentoo-syntax.txt	(revision 140)
++++ doc/gentoo-syntax.txt	(revision 142)
+@@ -264,6 +264,13 @@
+ ==============================================================================
+ 3. ChangeLog					     *gentoo-syntax-changelog*
+ 
++	20050221 ka0ttic
++	    * Fixed missing endif in ftdetect/gentoo.vim that caused some XML
++	      ftdetect funkyness.
++
++	20050216 ka0ttic
++	    * Updated cron and eutils eclass functions.
++
+ 	20050211 ciaranm (Release)
+ 
+ 	20050210 ciaranm
+Index: syntax/ebuild.vim
+===================================================================
+--- syntax/ebuild.vim	(revision 140)
++++ syntax/ebuild.vim	(revision 142)
+@@ -52,7 +52,7 @@
+ syn keyword EbuildEutilsKeyword cdrom_locate_file_on_cd strip-linguas epause ebeep built_with_use
+ syn keyword EbuildEutilsKeyword make_session_desktop domenu doicon find_unpackable_file unpack_pdv
+ syn keyword EbuildEutilsKeyword set_arch_to_kernel set_arch_to_portage preserve_old_lib
+-syn keyword EbuildEutilsKeyword preserve_old_lib_notify built_with_use epunt_cxx
++syn keyword EbuildEutilsKeyword preserve_old_lib_notify built_with_use epunt_cxx dopamd newpamd
+ 
+ " flag-o-matic
+ syn keyword EbuildFlagoKeyword setup-allowed-flags filter-flags filter-lfs-flags append-lfs-flags
+@@ -119,7 +119,7 @@
+ syn keyword EbuildToolFuncsKeyword gcc-minor-version gcc-micro-version
+ 
+ " cron
+-syn keyword EbuildCronKeyword docrondir docron docrontab dopamd cron-pkg_postinst
++syn keyword EbuildCronKeyword docrondir docron docrontab cron-pkg_postinst
+ 
+ " games
+ syn keyword EbuildGamesKeyword egamesconf egamesinstall gameswrapper dogamesbin dogamessbin dogameslib
