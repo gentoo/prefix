@@ -1,6 +1,0 @@
-#!/bin/sh
-# this is part of the man package
-# it updates the searchly database
-# for manpages
-
-/bin/nice /usr/sbin/makewhatis

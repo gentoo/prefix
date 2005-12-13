@@ -1,5 +1,0 @@
-MD5 d4bb55eb615472df88df21c16e275345 ChangeLog 9092
-MD5 3b53108102459e2f91dd97698367ac4d files/digest-tiff-3.7.4 63
-MD5 94f0e7d5e8a574073ec05f7c24c81fc1 files/tiff-3.7.4-assign-dont-compare.patch 404
-MD5 085bf925a1dc6f9756f484ac688a92f9 metadata.xml 447
-MD5 a6a9a4157b2f32feffe5aca73f1b7c8b tiff-3.7.4.ebuild 1021

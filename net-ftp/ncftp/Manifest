@@ -1,7 +1,0 @@
-MD5 181b99f496aa0b96ab08ed4a6ddb76d0 ChangeLog 5256
-MD5 227dd25b59511575f40096932da897f1 files/digest-ncftp-3.1.8-r1 210
-MD5 8b830a0b00ba44486f82bcd625c4ffa5 files/digest-ncftp-3.1.8-r2 210
-MD5 3dd28625eb7fc17b027c7e64b3d9098d files/digest-ncftp-3.1.9 136
-MD5 3da92593217392b2d7744f7ff55a52a1 files/ncftp-3.1.8-macos.patch 574
-MD5 2f4035e2a68bf680d7e936f9f4676b0c metadata.xml 715
-MD5 2e43e4c4aa2f5ff4a9936b6f53aa969e ncftp-3.1.9.ebuild 982

@@ -1,8 +1,0 @@
---- find/find.1.orig	2005-05-21 18:44:47.368567761 -0500
-+++ find/find.1	2005-05-21 18:45:37.454529983 -0500
-@@ -648,3 +648,4 @@
- .IP %b
--File's size in 512-byte blocks (rounded up).
-+The amount of disk space used for this file in 512-byte blocks (rounded
-+up).  This is different from %s/512 if the file is a sparse file.
- .IP %c

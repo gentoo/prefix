@@ -1,6 +1,0 @@
-MD5 f30a4a38b70983f2fe82d02e8e4ca2a1 ChangeLog 13171
-MD5 7a36e0deda24735775c38e0d2a84a122 files/digest-wget-1.10.2 137
-MD5 9da83719265c58f22ba93bcb2e8d299f files/digest-wget-1.9.1-r5 136
-MD5 8e4630728c37bc391e699cd91c848d5f files/wgetrc-ipv6 54
-MD5 bc1353abf3bc2339ee85980675343fdf metadata.xml 252
-MD5 6babf3ba0e9828e00e597713c9446439 wget-1.10.2.ebuild 1806

@@ -1,7 +1,0 @@
-MD5 141bf88882ef9000e2898ba83573d27e ChangeLog 5645
-MD5 232dd13c6edffa89c6ccd5f911bbac64 files/digest-jpeg-6b-r4 63
-MD5 232dd13c6edffa89c6ccd5f911bbac64 files/digest-jpeg-6b-r5 63
-MD5 894900ea905728906cdb0adfe2ed369f files/digest-jpeg-6b-r6 134
-MD5 5db275bc0a1f7084ba8855a3210e32b2 files/jpeg-6b-gentoo.patch 1132
-MD5 8e7ffa4c5292b2f31eb6d6f1770ad253 jpeg-6b-r6.ebuild 1270
-MD5 3637cbaea842b04f1aa4693a1f68e286 metadata.xml 224

@@ -1,6 +1,0 @@
-MD5 d59d6555fb565176d2dadcb32a8e5d78 ChangeLog 6442
-MD5 1bfdccdc07585790a1a9b1ac52fd71ef files/digest-tcsh-6.14-r2 135
-MD5 d98e364fd690b39aed8cc5ff10d3e599 files/tcsh-6.14-prefix.patch 2411
-MD5 dc3f6395569049b5f3a1547364be0260 files/tcsh-6.14-r2.patch 2057
-MD5 89f5ecd35e82618f05e4f63c8947fb51 metadata.xml 1129
-MD5 3bba07262f9ca285775310b950bef897 tcsh-6.14-r2.ebuild 2649

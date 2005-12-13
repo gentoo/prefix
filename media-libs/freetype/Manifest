@@ -1,7 +1,0 @@
-MD5 0137513c803ccdff538ea938a4ef5c9b ChangeLog 11396
-MD5 10bd432787c1a182edece351dbf82809 files/config.mk 1240
-MD5 f9a58f527647abffba59f1db219693a4 files/digest-freetype-2.1.10 141
-MD5 f96e5959658f100cb8d1af8a197b8c45 files/freetype-2.1.10-internal_header.patch 667
-MD5 6c404648e3cb8f86b329f7dac5d70cc8 files/freetype-2.1.9-fix_bci.patch 643
-MD5 0d0f6b641966d5f8e8f579c2354486dd freetype-2.1.10.ebuild 1839
-MD5 68a04e23ccfb7971cff8ce012aee659c metadata.xml 221

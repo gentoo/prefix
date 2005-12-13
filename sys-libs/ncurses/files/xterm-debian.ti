@@ -1,7 +1,0 @@
-# xterm-debian is identical to xterm-xfree86 except that it more strictly
-# conforms to DEC VT220 behavior in the case of the backspace key; this is
-# mandated by the Section 3.8 of the Debian Policy Manual.  Also see
-# <http://vt100.net/docs/vt220-rm/>.
-xterm-debian|Debian xterm (VT220-conformant backspace),
-	kbs=\177,
-	use=xterm-xfree86,
