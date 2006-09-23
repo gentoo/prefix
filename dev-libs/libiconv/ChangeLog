@@ -1,0 +1,108 @@
+# ChangeLog for dev-libs/libiconv
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libiconv/ChangeLog,v 1.25 2006/08/05 13:19:36 dertobi123 Exp $
+
+  05 Aug 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libiconv-1.11.ebuild:
+  remove ~ppc keyword, bug #141312
+
+  03 Aug 2006; Gustavo Zacarias <gustavoz@gentoo.org> libiconv-1.11.ebuild:
+  Nuke teh ~sparc keyword wrt #141312
+
+  28 Jul 2006; Diego Pettenò <flameeyes@gentoo.org> libiconv-1.11.ebuild:
+  Remove ~amd64 keyword.
+
+  24 Jul 2006; Andrej Kacian <ticho@gentoo.org> libiconv-1.11.ebuild:
+  Removed ~x86 from KEYWORDS, see bug #141312.
+
+  22 Jul 2006; Diego Pettenò <flameeyes@gentoo.org>
+  -files/libiconv-1.9.2-RPATH-fix.patch, -libiconv-1.9.2-r3.ebuild:
+  Drop old version, removing amd64 and x86 stable keywords. See bug #141312.
+
+*libiconv-1.11 (21 Jul 2006)
+
+  21 Jul 2006; Diego Pettenò <flameeyes@gentoo.org> -libiconv-1.10.ebuild,
+  -libiconv-1.10-r1.ebuild, +libiconv-1.11.ebuild:
+  Version bump and remove old versions. The new version uses hidden visibility
+  when available (GCC 4.1).
+
+  30 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  libiconv-1.10-r1.ebuild:
+  Add ~x86-fbsd keyword.
+
+*libiconv-1.10-r1 (10 Feb 2006)
+
+  10 Feb 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +libiconv-1.10-r1.ebuild:
+  Make sure both static and shared variables are present so that linking to
+  libiconv in static binaries does not break.
+
+  15 Sep 2005; Diego Pettenò <flameeyes@gentoo.org> metadata.xml:
+  Don't assign this to me directly, leave to bsd herd.
+
+*libiconv-1.10 (04 Sep 2005)
+
+  04 Sep 2005; Diego Pettenò <flameeyes@gentoo.org>
+  +files/libiconv-1.10-link.patch, +libiconv-1.10.ebuild:
+  Updated libiconv to latest upstream version.
+
+  11 Aug 2005; Diego Pettenò <flameeyes@gentoo.org>
+  libiconv-1.9.2-r3.ebuild:
+  Filter -static ldflag, that makes libiconv fail to build.
+
+  27 Jun 2005; Diego Pettenò <flameeyes@gentoo.org>
+  libiconv-1.9.2-r3.ebuild:
+  Marked stable for amd64 and x86 as for request, now that all the issues with
+  G/FBSD are sorted out.
+
+  24 Jun 2005; Diego Pettenò <flameeyes@gentoo.org>
+  libiconv-1.9.2-r3.ebuild:
+  Avoid .la files mangling for some bad-behaving software.
+
+*libiconv-1.9.2-r3 (17 Jun 2005)
+
+  17 Jun 2005; Diego Pettenò <flameeyes@gentoo.org>
+  -libiconv-1.9.2-r2.ebuild, +libiconv-1.9.2-r3.ebuild:
+  Install library in /lib for utils like gnutar which is installed in /lib.
+  Disable nls to avoid circular dependency between libiconv and gettext.
+  Install docs in the right place. Added build useflag to remove /usr data.
+
+*libiconv-1.9.2-r2 (30 Apr 2005)
+
+  30 Apr 2005; Diego Pettenò <flameeyes@gentoo.org>
+  +files/libiconv-1.9.2-RPATH-fix.patch, -libiconv-1.9.2.ebuild,
+  -libiconv-1.9.2-r1.ebuild, +libiconv-1.9.2-r2.ebuild:
+  Added a proper fix for rpath issue, thanks to Azarah.
+
+*libiconv-1.9.2-r1 (30 Apr 2005)
+
+  30 Apr 2005; Diego Pettenò <flameeyes@gentoo.org> libiconv-1.9.2.ebuild,
+  +libiconv-1.9.2-r1.ebuild:
+  Added a new revision which is masked on fbsd systems and which uses chrpath
+  to remove rpath from iconv binary.
+
+*libiconv-1.9.2 (18 Apr 2005)
+
+  18 Apr 2005; Diego Pettenò <flameeyes@gentoo.org> +metadata.xml,
+  -libiconv-1.7.ebuild, +libiconv-1.9.2.ebuild:
+  Added 1.9.2 libiconv's ebuild, and removed previous 1.7.x one. I'm going 
+  to maintain libiconv in future for non-glibc systems like *bsd.
+  
+  New ebuild also blocks on glibc so that it can't be installed on glibc 
+  systems without have to remove glibc before (which is quite 
+  unpractical).
+
+  25 Apr 2004; Aron Griffis <agriffis@gentoo.org> libiconv-1.7.ebuild:
+  Add die following econf for bug 48950
+
+  01 May 2003; Lars Weiler <pylon@gentoo.org> libiconv-1.7.ebuild:
+  Tested it on ppc for quite a long time and set KEYWORD now to ppc.
+
+  04 Jan 2003; Spider <spider@gentoo.org> : updated DESCRIPTION to be more truthful
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*libiconv-1-7 (01 May 2002)
+  01 May 2002; Spider <spider@gentoo.org> ChangeLog libiconv-1.7.ebuild :
+  Added libiconv to portage for the first time, this is needed for glib
+in ppc
