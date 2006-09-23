@@ -1,0 +1,249 @@
+#!/usr/bin/env bash
+
+# <grobian@gentoo.org> -- 2006-09-22
+# eupdate: a not yet fully complete bucket of voodoo to sync a the
+# prefix tree with the mainline tree.  Strategies followed are largerly
+# based on cvs revision numbers and diffs between those revisions.  For
+# the real internals, please look at the comments below in the code.  In
+# general, this script checks if an ebuild contains the most recent
+# changes to it, and if there is a newer ebuild available.  In both
+# cases (cross) diffing techniques are used to maintain the manually
+# made changes.
+#
+# This script doesn't run out of the box, you have to feed it some paths
+# so it can do it's magic stuff.  Also, you have to be a gentoo
+# developer with cvs access.  (Or when anoncvs is available, every user
+# can do it.)  For your convenience it is intended that you rename this
+# file to something without the .in and change the paths below.
+
+# Main Tree Directory, an rsynced portage tree is fine
+MTREEDIR='/usr/portage'
+# Prefix Tree Directory
+PTREEDIR="`cd /my/prefix/usr/portage && pwd -P`"
+# How to reach the CVS server for retrieving revision diffs
+CVSROOT=':ext:developer@cvs.gentoo.org:/var/cvsroot/'
+# Don't touch this.  You really don't want to.
+CVSMODULE='gentoo-x86'
+# Voodoo to figure out what package you're currently messing with
+EPACKAGE="`pwd -P`"; EPACKAGE=${EPACKAGE#*${PTREEDIR}/}
+
+get_cvsversion() {
+	if [[ -z $1 ]];
+	then
+		echo 0
+		return
+	fi
+
+	ver=`egrep '^# \\\$Header:' "$1" | egrep -o "v [0-9.]+"`
+	if [[ $ver == "" ]];
+	then
+		echo 0
+		return
+	fi
+	echo ${ver#v }
+}
+
+get_ebuildversion() {
+	if [[ -z $1 ]];
+	then
+		echo 0
+		return
+	fi
+
+	# strip extention
+	t=${1%.ebuild}
+	# strip package name
+	t=${t#*-}
+	# sometimes there are dashes in the package name
+	while [[ ${t:0:1} < "0" || ${t:0:1} > "9" ]];
+	do
+		t=${t#*-}
+	done
+
+	ver=`echo $t | cut -d'-' -f1`
+	rev=`echo ${t#$ver} | cut -d'-' -f2`
+	t=$ver
+	ver=`echo $t | cut -d'_' -f1`
+	suf=`echo ${t#$ver} | cut -d'_' -f2`
+
+	# somehow "normalise" ver to a value like 0000.0000.0000.0000.0000
+	ver=`echo $ver | awk -F'.' '{
+		printf("%4s.%4s.%4s.%4s.%4s", $1, $2, $3, $4, $5);
+	}' | sed 's| |-|g'`
+	# turn suf into a int, keeping precedence rules
+	# alpha   100000
+	# beta    200000
+	# pre     300000
+	# rc      400000
+	# (none)  500000
+	# p       600000
+	case $suf in
+		alpha*)
+			suf=$((${suf#alpha} + 100000))
+		;;
+		beta*)
+			suf=$((${suf#beta} + 200000))
+		;;
+		pre*)
+			suf=$((${suf#pre} + 300000))
+		;;
+		rc*)
+			suf=$((${suf#rc} + 400000))
+		;;
+		p*)
+			suf=$((${suf#p} + 600000))
+		;;
+		*)
+			suf=500000
+		;;
+	esac
+	# turn rev into a normal int, starting with 1000
+	rev=$((${rev#r} + 1000))
+#	echo "ver: $ver, suf: $suf, rev: $rev"
+	echo "$ver.$suf.$rev"
+}
+
+get_versionebuild() {
+	if [[ -z $1 ]];
+	then
+		echo 0
+		return
+	fi
+
+	echo $1 | sed 's|-||g' | awk -F'.' '{
+		out = $1;
+		# should only have empty ones at the end, never inbetween
+		if ($2 != "") { out = out "." $2; }
+		if ($3 != "") { out = out "." $3; }
+		if ($4 != "") { out = out "." $4; }
+		if ($5 != "") { out = out "." $5; }
+
+		if ($6 == 100000) {
+			out = out "_alpha";
+		} else if ($6 > 100000 && $6 < 200000) {
+			out = out "_alpha" ($6 - 100000);
+		} else if ($6 == 200000) {
+			out = out "_beta";
+		} else if ($6 > 200000 && $6 < 300000) {
+			out = out "_beta" ($6 - 200000);
+		} else if ($6 == 300000) {
+			out = out "_pre";
+		} else if ($6 > 300000 && $6 < 400000) {
+			out = out "_pre" ($6 - 300000);
+		} else if ($6 == 400000) {
+			out = out "_rc";
+		} else if ($6 > 400000 && $6 < 500000) {
+			out = out "_rc" ($6 - 400000);
+		} else if ($6 == 600000) {
+			out = out "_p";
+		} else if ($6 > 600000 && $6 < 700000) {
+			out = out "_p" ($6 - 600000);
+		}
+		if ($7 > 1000) {
+			out = out "-r" ($7 - 1000);
+		}
+
+		print out;
+	}'
+}
+
+if [[ ! -d ${MTREEDIR}/${EPACKAGE} ]];
+then
+	echo "no such package in main tree: ${EPACKAGE}"
+	exit -1
+fi
+
+echo "Processing ${EPACKAGE}"
+mt=`cd "${MTREEDIR}"/${EPACKAGE}/ && ls *.ebuild`
+pt=`ls *.ebuild`
+# do a nested loop join, where we know that both sides are sorted and
+# that pt is more important, because we're not interested in older
+# versions
+for mte in $mt;
+do
+	mtev=$(get_ebuildversion $mte)
+	[[ $mtev > $mtelv ]] && mtelv=$mtev
+	for pte in $pt;
+	do
+		if [[ $mte == $pte ]];
+		then
+			# look inside the files to see if the file was updated or not
+			echo -n "  found $mte in both ... "
+			mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$mte)
+			ptecv=$(get_cvsversion $pte)
+			# Gentoo never increments the major, and branches are not
+			# allowed, so we can make things easy and only use the minor
+			if [[ ${mtecv#1.} -eq ${ptecv#1.} ]];
+			then
+				echo "up-to-date (rev: $mtecv)"
+			elif [[ ${mtecv#1.} -gt ${ptecv#1.} ]];
+			then
+				echo "out-of-date, applying diff -r$ptecv -r$mtecv"
+				# checkout both original versions and make the diffs,
+				# ignoring keywords
+				cvs -d"${CVSROOT}" \
+					checkout -r$ptecv -p ${CVSMODULE}/${EPACKAGE}/$pte \
+					2> /dev/null \
+					> /var/tmp/$pte-$ptecv.tmp
+				cvs -d"${CVSROOT}" \
+					checkout -r$mtecv -p ${CVSMODULE}/${EPACKAGE}/$mte \
+					2> /dev/null \
+					> /var/tmp/$mte-$mtecv.tmp
+				# make KEYWORDS and EAPI void in the diff
+				sed -i \
+					-e 's|^KEYWORDS=.*$|'"`egrep '^KEYWORDS=' $pte`"'|' \
+					-e 's|^# \$Header:.*$|&\n\nEAPI="prefix"|' \
+					/var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp
+				# show what's going to change
+				diff -U 1 /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp
+				# (attempt to) do it!
+				diff -u /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp \
+					| patch --no-backup-if-mismatch $pte
+				rm /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp
+			fi
+		fi
+	done
+done
+for pte in $pt;
+do
+	ptev=$(get_ebuildversion $pte)
+	[[ $ptev > $ptelv ]] && ptelv=$ptev
+done
+if [[ $mtelv > $ptelv ]];
+then
+	mver=$(get_versionebuild $mtelv)
+	pver=$(get_versionebuild $ptelv)
+	echo -n "  new version in main tree: ${mver} [${pver}] ... "
+	mte=`basename "${MTREEDIR}/${EPACKAGE}"/*${mver}.ebuild`
+	pte=`echo *${pver}.ebuild`
+	mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$mte)
+	ptecv=$(get_cvsversion $pte)
+	echo "cross diff from $ptecv to $mtecv"
+	# checkout both original versions and make the diffs,
+	# ignoring keywords
+	cvs -d"${CVSROOT}" \
+		checkout -r$ptecv -p ${CVSMODULE}/${EPACKAGE}/$pte \
+		2> /dev/null \
+		> /var/tmp/$pte-$ptecv.tmp
+	cvs -d"${CVSROOT}" \
+		checkout -r$mtecv -p ${CVSMODULE}/${EPACKAGE}/$mte \
+		2> /dev/null \
+		> /var/tmp/$mte-$mtecv.tmp
+	# create the new file to patch against
+	cp $pte $mte
+	# sanitise the $Header line, because it may differ being in the
+	# Attic or something
+	sed -i \
+		-e 's|^# \$Header: .*/'$pte',v \(.*\)$|# $Header: '$pte',v \1|' \
+		$mte /var/tmp/$pte-$ptecv.tmp
+	# make KEYWORDS and EAPI void in the diff
+	sed -i \
+		-e 's|^KEYWORDS=.*$|'"`egrep '^KEYWORDS=' $pte`"'|' \
+		-e 's|^# \$Header:.*$|&\n\nEAPI="prefix"|' \
+		/var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp
+	# (attempt to) do it!
+	diff -u /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp \
+		| patch --no-backup-if-mismatch $mte
+	rm /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp
+fi
+echo "done"
