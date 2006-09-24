@@ -21,11 +21,12 @@
  else
  	echo "Could not find functions.sh"
  	exit 1
-@@ -19,6 +19,7 @@
+@@ -19,6 +19,8 @@
  EXPORT_FUNCTIONS() { :; }
  
  ALTERNATIVES="$(portageq portdir)/eclass/alternatives.eclass"
-+MULTILIB="$(portageq portdir)/eclass/multilib.eclass
++MULTILIB="$(portageq portdir)/eclass/multilib.eclass"
++CHOST="$(portageq envvar CHOST)"
  
  if [ -r "${ALTERNATIVES}" ] ; then
  	source ${ALTERNATIVES}
@@ -43,7 +44,7 @@
  usage() {
  cat << "USAGE_END"
  Usage: ruby-config [Option] [Ruby Profile]
-@@ -52,66 +60,45 @@
+@@ -52,66 +60,42 @@
  fi
  
  switch_profile() {
@@ -64,10 +65,10 @@
 -			done
 -			alternatives_makesym \
 -				/usr/lib/libruby.so /usr/lib/libruby{$suf,18,16,19}.so
-+	if [[ ${EPREFIX/\//} == "" ]] && [ "$EUID" != 0 ] ; then
-+		eerror "You need root privilege to switch profile."
-+		exit 1
-+	fi
++#	if [[ ${EPREFIX/\//} == "" ]] && [ "$EUID" != 0 ] ; then
++#		eerror "You need root privilege to switch profile."
++#		exit 1
++#	fi
 +	if [ "`expr $1 : ruby`" != 0 -a "$1" != "ruby" ] ; then
 +		local suf=${1/ruby/}
 +		for i in ruby irb erb testrb rdoc ri ; do
@@ -83,10 +84,7 @@
 +		done
 +		alternatives_makesym \
 +			"@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libruby$(get_libname) \
-+			"@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libruby$(get_libname $suf) \
-+			"@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libruby$(get_libname 18) \
-+			"@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libruby$(get_libname 16) \
-+			"@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libruby$(get_libname 19)
++			"@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libruby{$suf,18,16,19}$(get_libname)
 +		alternatives_makesym \
 +			"@GENTOO_PORTAGE_EPREFIX@"/usr/share/man/man1/ruby.1.gz \
 +			"@GENTOO_PORTAGE_EPREFIX@"/usr/share/man/man1/ruby{$suf,18,16,19}.1.gz
