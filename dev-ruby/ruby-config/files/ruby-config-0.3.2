@@ -1,0 +1,143 @@
+#!/bin/bash
+
+# Copyright 1999-2004 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-config/files/ruby-config-0.3.2,v 1.1 2006/01/02 23:41:07 caleb Exp $
+
+# Author: Mamoru KOMACHI <usata@gentoo.org>
+
+if [ -r /etc/init.d/functions.sh ] ; then
+	source /etc/init.d/functions.sh
+elif [ -r /usr/lib/portage/bin/functions.sh ] ; then
+	source /usr/lib/portage/bin/functions.sh
+else
+	echo "Could not find functions.sh"
+	exit 1
+fi
+
+#dummy function
+EXPORT_FUNCTIONS() { :; }
+
+ALTERNATIVES="$(portageq portdir)/eclass/alternatives.eclass"
+
+if [ -r "${ALTERNATIVES}" ] ; then
+	source ${ALTERNATIVES}
+else
+	echo "Could not find ${ALTERNATIVES}"
+	exit 1
+fi
+
+usage() {
+cat << "USAGE_END"
+Usage: ruby-config [Option] [Ruby Profile]
+Change the current ruby profile, or give info about profiles.
+
+Options:
+
+  -c, --get-current-profile
+                         Print current used ruby profile.
+  -l, --list-profiles
+                         List available ruby profiles.
+  -h, --show-help
+                         Print this help.
+
+The profile name is either ruby16, ruby18 or ruby19.
+
+USAGE_END
+exit 1
+}
+
+if [ "$#" -lt 1 ] ; then
+	usage
+fi
+
+switch_profile() {
+	case "$(portageq envvar ARCH)" in
+	macos)
+		eerror "Switching ruby profiles are not supported on Gentoo for Mac OS X."
+		;;
+	*)
+		if [ "$EUID" != 0 ] ; then
+			eerror "You need root privilege to switch profile."
+			exit 1
+		fi
+		if [ "`expr $1 : ruby`" != 0 -a "$1" != "ruby" ] ; then
+			local suf=${1/ruby/}
+			for i in ruby irb erb testrb rdoc ri ; do
+				alternatives_makesym \
+					/usr/bin/$i /usr/bin/${i}{$suf,18,16,19}
+			done
+			alternatives_makesym \
+				/usr/lib/libruby.so /usr/lib/libruby{$suf,18,16,19}.so
+			alternatives_makesym \
+				/usr/share/man/man1/ruby.1.gz \
+				/usr/share/man/man1/ruby{$suf,18,16,19}.1.gz
+		else
+			eerror "Unsupported profile."
+		fi
+		;;
+	esac
+}
+
+get_current_profile() {
+	case "$(portageq envvar ARCH)" in
+	macos)
+		einfo "/usr/bin/ruby is ruby 1.6.8."
+		;;
+	*)
+		if [ ! -L /usr/bin/ruby ] ; then
+			eerror "Your ruby doesn't seem to support SLOT."
+			exit 1
+		fi
+		einfo "Your current profile refers to $(readlink /usr/bin/ruby)."
+		;;
+	esac
+}
+
+list_profiles() {
+	case "$(portageq envvar ARCH)" in
+	macos)
+		einfo "You cannot switch between profiles on Mac OS X."
+		einfo "Installed profiles are:"
+		for f in /usr/bin/ruby[0-9][0-9]* ; do
+			einfo "\t${f#/usr/bin/}"
+		done
+		;;
+	*)
+		einfo "Supported profiles are:"
+		for f in /usr/bin/ruby[0-9][0-9]* ; do
+			einfo "\t${f#/usr/bin/}"
+		done
+		einfo "You can specify one of the profiles listed above."
+		einfo "e.g.) ruby-config ruby18"
+		;;
+	esac
+}
+
+for x in $* ; do
+	if [ "$#" -gt 1 ] ; then
+		eerror "ruby-config accepts only one argument."
+		eerror "Run $0 -h for help."
+		exit 1
+	fi
+	case "${x}" in
+		-c|--get-current-profile)
+			get_current_profile 
+			;;
+		-h|--show-help)
+			usage
+			;;
+		-l|--list-profiles)
+			list_profiles
+			;;
+		-*)
+			eerror "Invalid option. Run $0 -h for help."
+			exit 1
+			;;
+		*)
+			switch_profile $*
+			;;
+	esac
+
+	exit 0
+done

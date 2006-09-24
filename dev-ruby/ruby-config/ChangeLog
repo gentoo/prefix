@@ -1,0 +1,112 @@
+# ChangeLog for dev-ruby/ruby-config
+# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-config/ChangeLog,v 1.30 2006/03/31 21:02:42 flameeyes Exp $
+
+  31 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  ruby-config-0.3.2.ebuild:
+  Add ~x86-fbsd keyword.
+
+*ruby-config-0.3.2 (02 Jan 2006)
+
+  02 Jan 2006; Caleb Tennis <caleb@gentoo.org> +files/ruby-config-0.3.2,
+  +ruby-config-0.3.2.ebuild:
+  New version, which allows us to specify config versions like 'ruby18_with_gems'
+
+  23 Jul 2005; MATSUU Takuto <matsuu@gentoo.org> ruby-config-0.3.1.ebuild:
+  Stable on sh.
+
+  08 Apr 2005; Markus Rothe <corsair@gentoo.org> ruby-config-0.3.1.ebuild:
+  Stable on ppc64
+
+  20 Feb 2005; Mamoru KOMACHI <usata@gentoo.org> -ruby-config-0.2.ebuild,
+  ruby-config-0.3.1.ebuild:
+  Stable on ppc-macos.
+
+  31 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  04 Dec 2004; Tom Martin <slarti@gentoo.org> ruby-config-0.3.1.ebuild:
+  Stable on amd64.
+
+  12 Nov 2004; Joshua Kinard <kumba@gentoo.org> ruby-config-0.3.1.ebuild:
+  Marked stable on mips.
+
+  07 Nov 2004; Ferris McCormick <fmccor@gentoo.org> ruby-config-0.3.1.ebuild:
+  Mark stable for sparc.
+
+  05 Nov 2004; Mamoru KOMACHI <usata@gentoo.org> ruby-config-0.3.1.ebuild:
+  Stable on x86, alpha and ppc.
+
+  04 Sep 2004; Mamoru KOMACHI <usata@gentoo.org> ruby-config-0.2.ebuild,
+  ruby-config-0.3.1.ebuild, ruby-config-0.3.ebuild:
+  Moved virtual/ruby from DEPEND to PDEPEND to avoid circular dependency.
+  Thanks to Park Ji-In <mithrandir@electrang.net>.
+
+*ruby-config-0.3.1 (31 Aug 2004)
+
+  31 Aug 2004; Mamoru KOMACHI <usata@gentoo.org>
+  +files/ruby-config-0.3.1.diff, +ruby-config-0.3.1.ebuild:
+  Make a symlink to /usr/bin/ri from /usr/bin/ri*
+
+  25 Aug 2004; Danny van Dyk <kugelfang@gentoo.org> ruby-config-0.3.ebuild:
+  Marked stable on amd64.
+
+  22 Aug 2004; Joshua Kinard <kumba@gentoo.org> ruby-config-0.3.ebuild:
+  Marked stable on mips.
+
+  21 Aug 2004; Jason Wever <weeve@gentoo.org> ruby-config-0.3.ebuild:
+  Stable on sparc wrt security bug #60525.
+
+  20 Aug 2004; Bryan Østergaard <kloeri@gentoo.org> ruby-config-0.3.ebuild:
+  Stable on alpha, bug 60525.
+
+  20 Aug 2004; Mamoru KOMACHI <usata@gentoo.org> ruby-config-0.3.ebuild:
+  Stable on x86.
+
+  08 Aug 2004; Tom Gall <tgall@gentoo.org> ruby-config-0.3.ebuild:
+  stable on ppc64, bug #57676
+
+*ruby-config-0.3 (01 Aug 2004)
+
+  01 Aug 2004; Mamoru KOMACHI <usata@gentoo.org> +files/ruby-config-0.2,
+  +files/ruby-config-0.3, -files/ruby-config.sh, ruby-config-0.2.ebuild,
+  +ruby-config-0.3.ebuild:
+  Added macos support.
+
+  12 Apr 2004; Mamoru KOMACHI <usata@gentoo.org> ruby-config-0.2.ebuild:
+  Marked stable on all arches to satisfy dev-lang/ruby dep
+
+  10 Apr 2004; Mamoru KOMACHI <usata@gentoo.org> ruby-config-0.2.ebuild:
+  Changed DEPEND to virtual/ruby
+
+  09 Apr 2004; Brian Jackson <iggy@gentoo.org> ruby-config-0.2.ebuild:
+  add s390 keywords
+
+  25 Mar 2004; Joshua Kinard <kumba@gentoo.org> ruby-config-0.2.ebuild:
+  Marked stable on mips.
+
+  10 Mar 2004; <agriffis@gentoo.org> ruby-config-0.2.ebuild:
+  stable on ia64
+
+  29 Feb 2004; Ciaran McCreesh <ciaranm@gentoo.org> ruby-config-0.2.ebuild:
+  Stable on sparc
+
+  29 Feb 2004; Mamoru KOMACHI <usata@gentoo.org> ruby-config-0.2.ebuild:
+  Marked stable on x86 and alpha
+
+  23 Feb 2004; Lars Weiler <pylon@gentoo.org> :
+  Added ~ppc to keywords
+
+*ruby-config-0.2 (30 Jan 2004)
+
+  30 Jan 2004; Mamoru KOMACHI <usata@gentoo.org> ruby-config-0.1.ebuild,
+  ruby-config-0.2.ebuild, files/ruby-config.sh:
+  Fixed bulk makesym mishandling and corrected typo. Removed ri from symlink
+  target. Added all the arches listed in dev-lang/ruby.
+
+*ruby-config-0.1 (30 Jan 2004)
+
+  30 Jan 2004; Mamoru KOMACHI <usata@gentoo.org> metadata.xml,
+  ruby-config-0.1.ebuild, files/ruby-config.sh:
+  Initial import. Derived from dev-lang/ruby to cope with dev-lang/ruby-cvs
+

@@ -1,0 +1,144 @@
+--- ruby-config-0.3.2.orig	2006-09-24 15:48:53 +0200
++++ ruby-config-0.3.2	2006-09-24 16:02:22 +0200
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+ # Copyright 1999-2004 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+@@ -6,10 +6,10 @@
+ 
+ # Author: Mamoru KOMACHI <usata@gentoo.org>
+ 
+-if [ -r /etc/init.d/functions.sh ] ; then
+-	source /etc/init.d/functions.sh
+-elif [ -r /usr/lib/portage/bin/functions.sh ] ; then
+-	source /usr/lib/portage/bin/functions.sh
++if [ -r "@GENTOO_PORTAGE_EPREFIX@"/etc/init.d/functions.sh ] ; then
++	source "@GENTOO_PORTAGE_EPREFIX@"/etc/init.d/functions.sh
++elif [ -r "@GENTOO_PORTAGE_EPREFIX@"/usr/lib/portage/bin/functions.sh ] ; then
++	source "@GENTOO_PORTAGE_EPREFIX@"/usr/lib/portage/bin/functions.sh
+ else
+ 	echo "Could not find functions.sh"
+ 	exit 1
+@@ -19,6 +19,7 @@
+ EXPORT_FUNCTIONS() { :; }
+ 
+ ALTERNATIVES="$(portageq portdir)/eclass/alternatives.eclass"
++MULTILIB="$(portageq portdir)/eclass/multilib.eclass
+ 
+ if [ -r "${ALTERNATIVES}" ] ; then
+ 	source ${ALTERNATIVES}
+@@ -27,6 +28,13 @@
+ 	exit 1
+ fi
+ 
++if [ -r "${MULTILIB}" ] ; then
++	source ${MULTILIB}
++else
++	echo "Could not find ${MULTILIB}"
++	exit 1
++fi
++
+ usage() {
+ cat << "USAGE_END"
+ Usage: ruby-config [Option] [Ruby Profile]
+@@ -52,66 +60,45 @@
+ fi
+ 
+ switch_profile() {
+-	case "$(portageq envvar ARCH)" in
+-	macos)
+-		eerror "Switching ruby profiles are not supported on Gentoo for Mac OS X."
+-		;;
+-	*)
+-		if [ "$EUID" != 0 ] ; then
+-			eerror "You need root privilege to switch profile."
+-			exit 1
+-		fi
+-		if [ "`expr $1 : ruby`" != 0 -a "$1" != "ruby" ] ; then
+-			local suf=${1/ruby/}
+-			for i in ruby irb erb testrb rdoc ri ; do
+-				alternatives_makesym \
+-					/usr/bin/$i /usr/bin/${i}{$suf,18,16,19}
+-			done
+-			alternatives_makesym \
+-				/usr/lib/libruby.so /usr/lib/libruby{$suf,18,16,19}.so
++	if [[ ${EPREFIX/\//} == "" ]] && [ "$EUID" != 0 ] ; then
++		eerror "You need root privilege to switch profile."
++		exit 1
++	fi
++	if [ "`expr $1 : ruby`" != 0 -a "$1" != "ruby" ] ; then
++		local suf=${1/ruby/}
++		for i in ruby irb erb testrb rdoc ri ; do
+ 			alternatives_makesym \
+-				/usr/share/man/man1/ruby.1.gz \
+-				/usr/share/man/man1/ruby{$suf,18,16,19}.1.gz
+-		else
+-			eerror "Unsupported profile."
+-		fi
+-		;;
+-	esac
++				"@GENTOO_PORTAGE_EPREFIX@"/usr/bin/$i "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/${i}{$suf,18,16,19}
++		done
++		alternatives_makesym \
++			"@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libruby$(get_libname) \
++			"@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libruby$(get_libname $suf) \
++			"@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libruby$(get_libname 18) \
++			"@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libruby$(get_libname 16) \
++			"@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libruby$(get_libname 19)
++		alternatives_makesym \
++			"@GENTOO_PORTAGE_EPREFIX@"/usr/share/man/man1/ruby.1.gz \
++			"@GENTOO_PORTAGE_EPREFIX@"/usr/share/man/man1/ruby{$suf,18,16,19}.1.gz
++	else
++		eerror "Unsupported profile."
++	fi
+ }
+ 
+ get_current_profile() {
+-	case "$(portageq envvar ARCH)" in
+-	macos)
+-		einfo "/usr/bin/ruby is ruby 1.6.8."
+-		;;
+-	*)
+-		if [ ! -L /usr/bin/ruby ] ; then
+-			eerror "Your ruby doesn't seem to support SLOT."
+-			exit 1
+-		fi
+-		einfo "Your current profile refers to $(readlink /usr/bin/ruby)."
+-		;;
+-	esac
++	if [ ! -L "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/ruby ] ; then
++		eerror "Your ruby doesn't seem to support SLOT."
++		exit 1
++	fi
++	einfo "Your current profile refers to $(readlink @GENTOO_PORTAGE_EPREFIX@/usr/bin/ruby)."
+ }
+ 
+ list_profiles() {
+-	case "$(portageq envvar ARCH)" in
+-	macos)
+-		einfo "You cannot switch between profiles on Mac OS X."
+-		einfo "Installed profiles are:"
+-		for f in /usr/bin/ruby[0-9][0-9]* ; do
+-			einfo "\t${f#/usr/bin/}"
+-		done
+-		;;
+-	*)
+-		einfo "Supported profiles are:"
+-		for f in /usr/bin/ruby[0-9][0-9]* ; do
+-			einfo "\t${f#/usr/bin/}"
+-		done
+-		einfo "You can specify one of the profiles listed above."
+-		einfo "e.g.) ruby-config ruby18"
+-		;;
+-	esac
++	einfo "Supported profiles are:"
++	for f in "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/ruby[0-9][0-9]* ; do
++		einfo "\t${f#/usr/bin/}"
++	done
++	einfo "You can specify one of the profiles listed above."
++	einfo "e.g.) ruby-config ruby18"
+ }
+ 
+ for x in $* ; do
