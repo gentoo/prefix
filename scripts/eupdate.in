@@ -221,20 +221,21 @@ then
 	echo "cross diff from $ptecv to $mtecv"
 	# checkout both original versions and make the diffs,
 	# ignoring keywords
-	cvs -d"${CVSROOT}" \
+	cvs -Q -d"${CVSROOT}" \
 		checkout -r$ptecv -p ${CVSMODULE}/${EPACKAGE}/$pte \
 		2> /dev/null \
 		> /var/tmp/$pte-$ptecv.tmp
-	cvs -d"${CVSROOT}" \
+	cvs -Q -d"${CVSROOT}" \
 		checkout -r$mtecv -p ${CVSMODULE}/${EPACKAGE}/$mte \
 		2> /dev/null \
 		> /var/tmp/$mte-$mtecv.tmp
 	# create the new file to patch against
 	cp $pte $mte
-	# sanitise the $Header line, because it may differ being in the
-	# Attic or something
+	# Sanitise the $Header line, because it may differ being in the
+	# Attic or something.  Use version of main tree, to keep updates
+	# working.
 	sed -i \
-		-e 's|^# \$Header: .*/'$pte',v \(.*\)$|# $Header: '$pte',v \1|' \
+		-e 's|^# \$Header:.*$|'"`egrep '^# \\\$Header: ' /var/tmp/$mte-$mtecv.tmp`"'|' \
 		$mte /var/tmp/$pte-$ptecv.tmp
 	# make KEYWORDS and EAPI void in the diff
 	sed -i \
