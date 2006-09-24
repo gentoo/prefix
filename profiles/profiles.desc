@@ -1,0 +1,31 @@
+#############################################
+# This is a list of valid profiles for each architecture.  This file is used by
+# repoman when doing a repoman scan or repoman full.
+# DO NOT ADD PROFILES WITH A "die" or "exit" IN THEM OR IT KILLS REPOMAN
+#
+#layout:
+#arch		profile_directory				status
+
+# AMD64 Profiles
+#amd64		default-linux/amd64/2006.0			stable
+amd64		default-linux/amd64/2006.1			stable
+amd64		default-linux/amd64/2006.1/desktop	stable
+#amd64		default-linux/amd64/2006.1/server	stable
+amd64		default-linux/amd64/2006.0/no-symlinks	dev
+#amd64		default-linux/amd64/2006.1/no-symlinks	dev
+#amd64		default-linux/amd64/2006.0/no-multilib	stable
+amd64		default-linux/amd64/2006.1/no-multilib	stable
+
+# Mac OS X Profiles
+ppc-macos	default-darwin/macos/10.4			dev
+x86-macos	default-darwin/macos/10.4			dev
+
+# x86 Profiles
+#x86		default-linux/x86/2005.0			stable
+#x86		default-linux/x86/2005.1			stable
+#x86		default-linux/x86/2006.0			stable
+x86		default-linux/x86/2006.1			stable
+x86		default-linux/x86/no-nptl			stable
+x86		default-linux/x86/no-nptl/2.4			stable
+x86		default-linux/x86/2006.1/desktop		stable
+#x86		default-linux/x86/2006.1/server		stable
