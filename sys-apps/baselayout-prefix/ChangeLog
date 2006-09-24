@@ -1,0 +1,19 @@
+# ChangeLog for sys-apps/baselayout-darwin
+# Copyright 1999-2005 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/baselayout-darwin/ChangeLog,v 1.3 2005/08/07 00:39:17 josejx Exp $
+
+*baselayout-darwin-1.11.11-r1 (07 Aug 2005)
+
+  07 Aug 2005; Joseph Jezak <josejx@gentoo.org>
+  +files/dont-destroy-path.patch, +baselayout-darwin-1.11.11-r1.ebuild:
+  Fixed less than stellar profile handling of PATH.
+
+  13 May 2005; <gongloo@gentoo.org> baselayout-darwin-1.11.11.ebuild:
+  Fixed xargs command-line argument (--null to -0).
+
+*baselayout-darwin-1.11.11 (12 May 2005)
+
+  12 May 2005; Joseph Jezak <josejx@gentoo.org> +metadata.xml,
+  +baselayout-darwin-1.11.11.ebuild:
+  Initial commit.
+
