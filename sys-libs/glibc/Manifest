@@ -1,0 +1,457 @@
+AUX 2.3.1/glibc-2.3.1-ctype-compat-v3.patch 2823 RMD160 f1162b7f313f7ea18fb178157d3bd6205d818e3a SHA1 d1dceb79689e9c627ebd630389ec1948d7a0a6e4 SHA256 0bc07eb47578d5bfb98774b18bf07aee2af44a7ccd947602c223b34e0d88394a
+MD5 941f13d27badc76c1e3704c59acaff26 files/2.3.1/glibc-2.3.1-ctype-compat-v3.patch 2823
+RMD160 f1162b7f313f7ea18fb178157d3bd6205d818e3a files/2.3.1/glibc-2.3.1-ctype-compat-v3.patch 2823
+SHA256 0bc07eb47578d5bfb98774b18bf07aee2af44a7ccd947602c223b34e0d88394a files/2.3.1/glibc-2.3.1-ctype-compat-v3.patch 2823
+AUX 2.3.1/glibc-2.3.1-fpu-cw-mips.patch 433 RMD160 4eda3122052714ea216ab402ea5a3a7f4654f48e SHA1 afb44c9a12e3d4ee28c61dd62522244c09776da4 SHA256 8e68949febc8b14941d15b9afd914b158db11d282d19c528f75a0b58c379dcce
+MD5 67b125cec4f1f0d26ce4df706451fee6 files/2.3.1/glibc-2.3.1-fpu-cw-mips.patch 433
+RMD160 4eda3122052714ea216ab402ea5a3a7f4654f48e files/2.3.1/glibc-2.3.1-fpu-cw-mips.patch 433
+SHA256 8e68949febc8b14941d15b9afd914b158db11d282d19c528f75a0b58c379dcce files/2.3.1/glibc-2.3.1-fpu-cw-mips.patch 433
+AUX 2.3.1/glibc-2.3.1-libc_wait-compat.patch 1053 RMD160 429e2065d45c4c68aa5f39eacf6d8ae5fbda63c8 SHA1 001a4af11de2029bcbb01a0afc4051cb4119807a SHA256 db4c92f86d3404ba4cc2f4d28e17517ed09124efcb518394d9c1df27d8540962
+MD5 1c4e567ed001f9489e11ee06c1ced0b7 files/2.3.1/glibc-2.3.1-libc_wait-compat.patch 1053
+RMD160 429e2065d45c4c68aa5f39eacf6d8ae5fbda63c8 files/2.3.1/glibc-2.3.1-libc_wait-compat.patch 1053
+SHA256 db4c92f86d3404ba4cc2f4d28e17517ed09124efcb518394d9c1df27d8540962 files/2.3.1/glibc-2.3.1-libc_wait-compat.patch 1053
+AUX 2.3.1/glibc-2.3.1-libgcc-compat-mips.patch 5222 RMD160 96fff2e999e03dded0624205ece4ede76fce103d SHA1 f745f534032e44e927b56c39523a9996ab3c3670 SHA256 bae5b0e114e78e6c5bfc4f0f1d22b6eb18eb2dbf61f973a3b70a199fe3732872
+MD5 23bbb51d1008f3009e6f1867b284c9bc files/2.3.1/glibc-2.3.1-libgcc-compat-mips.patch 5222
+RMD160 96fff2e999e03dded0624205ece4ede76fce103d files/2.3.1/glibc-2.3.1-libgcc-compat-mips.patch 5222
+SHA256 bae5b0e114e78e6c5bfc4f0f1d22b6eb18eb2dbf61f973a3b70a199fe3732872 files/2.3.1/glibc-2.3.1-libgcc-compat-mips.patch 5222
+AUX 2.3.1/glibc-2.3.1-librt-mips.patch 396 RMD160 98e5d050cc4ffb81177bb75211bddee51577e15c SHA1 751b2fb92bd2d622ce1a2bcd22639f6ebdbe66b8 SHA256 34602422eaeff7aa6f237e1b5d6510c3bc0a6dfa7ed98db3a98a77ed602474a2
+MD5 f15c6dec40cefa86dae48a7dcb3b779a files/2.3.1/glibc-2.3.1-librt-mips.patch 396
+RMD160 98e5d050cc4ffb81177bb75211bddee51577e15c files/2.3.1/glibc-2.3.1-librt-mips.patch 396
+SHA256 34602422eaeff7aa6f237e1b5d6510c3bc0a6dfa7ed98db3a98a77ed602474a2 files/2.3.1/glibc-2.3.1-librt-mips.patch 396
+AUX 2.3.1/glibc-2.3.1-stack_end-compat.patch 751 RMD160 44bab511adb3c1280e394d46eeaa481156527279 SHA1 6e45a7080903670a845091227ff0f1faedcf833e SHA256 75bbe459830bc15ba7a4a11369d425e96ddfbde20a74566272e0ccefe2336021
+MD5 d84791059f1b4e7b157b3bbefe783208 files/2.3.1/glibc-2.3.1-stack_end-compat.patch 751
+RMD160 44bab511adb3c1280e394d46eeaa481156527279 files/2.3.1/glibc-2.3.1-stack_end-compat.patch 751
+SHA256 75bbe459830bc15ba7a4a11369d425e96ddfbde20a74566272e0ccefe2336021 files/2.3.1/glibc-2.3.1-stack_end-compat.patch 751
+AUX 2.3.1/glibc23-07-hppa-atomicity.dpatch 2519 RMD160 0cb103e3d870ae0c2c19ad412e586abb07a0fb83 SHA1 ef282b4b2625675498694529c11235fc672fe155 SHA256 4d82ab616cdfc617bd0a1aa0e58577c1dfa098c842cd44e3d464ade9c685fe6b
+MD5 dc18731db5bd28b8bd2074fc9177fd35 files/2.3.1/glibc23-07-hppa-atomicity.dpatch 2519
+RMD160 0cb103e3d870ae0c2c19ad412e586abb07a0fb83 files/2.3.1/glibc23-07-hppa-atomicity.dpatch 2519
+SHA256 4d82ab616cdfc617bd0a1aa0e58577c1dfa098c842cd44e3d464ade9c685fe6b files/2.3.1/glibc23-07-hppa-atomicity.dpatch 2519
+AUX 2.3.2/glibc-2.3.2-alpha-crti.patch 378 RMD160 cbf3783316c54696fa6f06cfe80a127a703081e8 SHA1 d1302f16b58141c6fabe36b013559c33b1526934 SHA256 41b6ea3f2916cbfa13e53f5638f79de3f841f78237113949c77999c689a4c2bc
+MD5 080146d608b878d517b5cf4c29f0ef08 files/2.3.2/glibc-2.3.2-alpha-crti.patch 378
+RMD160 cbf3783316c54696fa6f06cfe80a127a703081e8 files/2.3.2/glibc-2.3.2-alpha-crti.patch 378
+SHA256 41b6ea3f2916cbfa13e53f5638f79de3f841f78237113949c77999c689a4c2bc files/2.3.2/glibc-2.3.2-alpha-crti.patch 378
+AUX 2.3.2/glibc-2.3.2-alpha-pwrite.patch 918 RMD160 215e52ac558c1dc0755378241f18378f5399f5ce SHA1 9704ddb18411838c7800bebea33b45a8c2b9a842 SHA256 465cf1778398cf8ccb2d890060b81d2aa0ad12bbdc488c850304b8ea06646cf2
+MD5 9ef93639d5016677d41e5ec986fcb7f5 files/2.3.2/glibc-2.3.2-alpha-pwrite.patch 918
+RMD160 215e52ac558c1dc0755378241f18378f5399f5ce files/2.3.2/glibc-2.3.2-alpha-pwrite.patch 918
+SHA256 465cf1778398cf8ccb2d890060b81d2aa0ad12bbdc488c850304b8ea06646cf2 files/2.3.2/glibc-2.3.2-alpha-pwrite.patch 918
+AUX 2.3.2/glibc-2.3.2-alpha-sysdeps.patch 939 RMD160 e374abb899168a146cbb6e314d5b4cb0a026e8c1 SHA1 54aaad0a92fce9886cd4de2ae4498943c9f93f41 SHA256 9550d9c7302e3b36cd58a355961534a0bed359a760a95b3cdd32aa1365783047
+MD5 d7097bf7fe910f2cba6ec69f86eb1958 files/2.3.2/glibc-2.3.2-alpha-sysdeps.patch 939
+RMD160 e374abb899168a146cbb6e314d5b4cb0a026e8c1 files/2.3.2/glibc-2.3.2-alpha-sysdeps.patch 939
+SHA256 9550d9c7302e3b36cd58a355961534a0bed359a760a95b3cdd32aa1365783047 files/2.3.2/glibc-2.3.2-alpha-sysdeps.patch 939
+AUX 2.3.2/glibc-2.3.2-amd64-nomultilib.patch 506 RMD160 66039aba71e565b42c6a11fb1b4fe84f57608c6d SHA1 a46e9c2f989d75687bd3ad0dbee7f9e9315fb44e SHA256 11d597671ca97e12025889e50e67a8164b3b690bfa8c62fb0a577a60cf7f8bc3
+MD5 afa967d5fea8e467dda9c588f5600ed1 files/2.3.2/glibc-2.3.2-amd64-nomultilib.patch 506
+RMD160 66039aba71e565b42c6a11fb1b4fe84f57608c6d files/2.3.2/glibc-2.3.2-amd64-nomultilib.patch 506
+SHA256 11d597671ca97e12025889e50e67a8164b3b690bfa8c62fb0a577a60cf7f8bc3 files/2.3.2/glibc-2.3.2-amd64-nomultilib.patch 506
+AUX 2.3.2/glibc-2.3.2-arm-bus-defines.patch 276 RMD160 5b59f475a1b4b7552bae2a9f36a31f964796b105 SHA1 40d672db6cb73973bd136420f406c7227b06f9b9 SHA256 a229585089f00361627a7073780a33a3e00a4e1cd6531bea70365383312b46ea
+MD5 523558956091d4ffcd33b72c57ac4bac files/2.3.2/glibc-2.3.2-arm-bus-defines.patch 276
+RMD160 5b59f475a1b4b7552bae2a9f36a31f964796b105 files/2.3.2/glibc-2.3.2-arm-bus-defines.patch 276
+SHA256 a229585089f00361627a7073780a33a3e00a4e1cd6531bea70365383312b46ea files/2.3.2/glibc-2.3.2-arm-bus-defines.patch 276
+AUX 2.3.2/glibc-2.3.2-armformat.patch 416 RMD160 16c89ed087a2dc63c5e34b7f43093d26af5bce5e SHA1 be5f32787f7f34b4b5d0f2e8e0077c5c18d3ca3d SHA256 9cc953a60de08b4c8493a1319d251c29681ac161098abd55cde3620ec8490595
+MD5 cfce14f1f90a3903ed076a5209198ce5 files/2.3.2/glibc-2.3.2-armformat.patch 416
+RMD160 16c89ed087a2dc63c5e34b7f43093d26af5bce5e files/2.3.2/glibc-2.3.2-armformat.patch 416
+SHA256 9cc953a60de08b4c8493a1319d251c29681ac161098abd55cde3620ec8490595 files/2.3.2/glibc-2.3.2-armformat.patch 416
+AUX 2.3.2/glibc-2.3.2-assert.patch 1596 RMD160 bd09cff097118e9c3822a29e3c4c6bd3dc604658 SHA1 c945b7004e5d57f418103dcfab75d3f4c9d58708 SHA256 d89c1a8b7cc7a502c6e059c039a41e9da294958eaa9242e6b96f1e56203c8a28
+MD5 fa3bf332c71b0b5af56b536564abc480 files/2.3.2/glibc-2.3.2-assert.patch 1596
+RMD160 bd09cff097118e9c3822a29e3c4c6bd3dc604658 files/2.3.2/glibc-2.3.2-assert.patch 1596
+SHA256 d89c1a8b7cc7a502c6e059c039a41e9da294958eaa9242e6b96f1e56203c8a28 files/2.3.2/glibc-2.3.2-assert.patch 1596
+AUX 2.3.2/glibc-2.3.2-cispeed-cospeed-fix.patch 2424 RMD160 0ef2658017b182a78c8f10e8209afe4a34354556 SHA1 3e15261dcff48cadb5f281523bea44753a8639f5 SHA256 3bf1d4d59fadf21ef3e034d0ad40e8408061fa1637af9008df1bec9485b7c805
+MD5 855edac3c5abd21b4617408d4e3b5ae3 files/2.3.2/glibc-2.3.2-cispeed-cospeed-fix.patch 2424
+RMD160 0ef2658017b182a78c8f10e8209afe4a34354556 files/2.3.2/glibc-2.3.2-cispeed-cospeed-fix.patch 2424
+SHA256 3bf1d4d59fadf21ef3e034d0ad40e8408061fa1637af9008df1bec9485b7c805 files/2.3.2/glibc-2.3.2-cispeed-cospeed-fix.patch 2424
+AUX 2.3.2/glibc-2.3.2-decc-compaq.patch 1422 RMD160 29f46fc5dba4f8b7b8638e73193a88e893b730cd SHA1 9d1dda111ac5680247b695aeeb1f4297e7da7eeb SHA256 7f6834ec4ba96d7ddd07d758361373506cd064b6b6d88342057a6845fe62ac72
+MD5 2f6605aae9bc4e538af783c0b2be3a7f files/2.3.2/glibc-2.3.2-decc-compaq.patch 1422
+RMD160 29f46fc5dba4f8b7b8638e73193a88e893b730cd files/2.3.2/glibc-2.3.2-decc-compaq.patch 1422
+SHA256 7f6834ec4ba96d7ddd07d758361373506cd064b6b6d88342057a6845fe62ac72 files/2.3.2/glibc-2.3.2-decc-compaq.patch 1422
+AUX 2.3.2/glibc-2.3.2-dl-reloc-calc-fix.patch 1405 RMD160 8469c60cf082525619bfeeadeedd41287c8348a2 SHA1 0a5653e665c64b14c6c2709fd2de56eee5add4df SHA256 6d9bb28882b1a574494ab1da5ee74aa7be004a55a4663a03971fdd6d1aeb65fc
+MD5 1a926f1adc2f321abb31b1e11024e3ac files/2.3.2/glibc-2.3.2-dl-reloc-calc-fix.patch 1405
+RMD160 8469c60cf082525619bfeeadeedd41287c8348a2 files/2.3.2/glibc-2.3.2-dl-reloc-calc-fix.patch 1405
+SHA256 6d9bb28882b1a574494ab1da5ee74aa7be004a55a4663a03971fdd6d1aeb65fc files/2.3.2/glibc-2.3.2-dl-reloc-calc-fix.patch 1405
+AUX 2.3.2/glibc-2.3.2-dl_execstack-PaX-support.patch 1945 RMD160 99a52e18df5ff6eb4733509f12636baa2194c0b5 SHA1 2144ac7a126596f2d4d6be8af16a3b989c0815dd SHA256 6d1ecc01d018ff78f3b59a7fc68ee1eb29f55793003c6e47ee96b103d18de486
+MD5 8d75a288ff9aa450717048b43497c82c files/2.3.2/glibc-2.3.2-dl_execstack-PaX-support.patch 1945
+RMD160 99a52e18df5ff6eb4733509f12636baa2194c0b5 files/2.3.2/glibc-2.3.2-dl_execstack-PaX-support.patch 1945
+SHA256 6d1ecc01d018ff78f3b59a7fc68ee1eb29f55793003c6e47ee96b103d18de486 files/2.3.2/glibc-2.3.2-dl_execstack-PaX-support.patch 1945
+AUX 2.3.2/glibc-2.3.2-fix-omitted-operand-in-mathinline_h.patch 680 RMD160 9b122e59fccca53a447ee1d7126ad1bfc731f0b3 SHA1 763dfdb288cff424d7feb0fb8899378362a3dc27 SHA256 deae90efe1892b8e69f2ee88586cc4b134405cbe42ae0590bb2bc53afca034f5
+MD5 0c85c7ef9fbb066ad30ce8b6eb1c6228 files/2.3.2/glibc-2.3.2-fix-omitted-operand-in-mathinline_h.patch 680
+RMD160 9b122e59fccca53a447ee1d7126ad1bfc731f0b3 files/2.3.2/glibc-2.3.2-fix-omitted-operand-in-mathinline_h.patch 680
+SHA256 deae90efe1892b8e69f2ee88586cc4b134405cbe42ae0590bb2bc53afca034f5 files/2.3.2/glibc-2.3.2-fix-omitted-operand-in-mathinline_h.patch 680
+AUX 2.3.2/glibc-2.3.2-framestate-USING_SJLJ_EXCEPTIONS.patch 440 RMD160 3c963846f8dadad6376043819ac7d8e07e221f43 SHA1 411f2d6980775a368b7cda850041fa84aa9954c6 SHA256 7d7090fc4a62aa97e2a61661f02fb06bf581a0c49dc9cb6d3199c462ec6eff80
+MD5 026be2442305eef0a3e3ff897a14768e files/2.3.2/glibc-2.3.2-framestate-USING_SJLJ_EXCEPTIONS.patch 440
+RMD160 3c963846f8dadad6376043819ac7d8e07e221f43 files/2.3.2/glibc-2.3.2-framestate-USING_SJLJ_EXCEPTIONS.patch 440
+SHA256 7d7090fc4a62aa97e2a61661f02fb06bf581a0c49dc9cb6d3199c462ec6eff80 files/2.3.2/glibc-2.3.2-framestate-USING_SJLJ_EXCEPTIONS.patch 440
+AUX 2.3.2/glibc-2.3.2-frandom-detect.patch 1770 RMD160 58794c72a6257a4cebc66f7ae5e910451c22e3fa SHA1 07660c642ba1af9462b7d3f58ed77141c6f1e007 SHA256 c8eaf1e3e8c56e9d5189da18b5604bb8e92b646d3a0ee614da904ab75cc81a25
+MD5 62f7e62583aaa70645d9c847b6a84299 files/2.3.2/glibc-2.3.2-frandom-detect.patch 1770
+RMD160 58794c72a6257a4cebc66f7ae5e910451c22e3fa files/2.3.2/glibc-2.3.2-frandom-detect.patch 1770
+SHA256 c8eaf1e3e8c56e9d5189da18b5604bb8e92b646d3a0ee614da904ab75cc81a25 files/2.3.2/glibc-2.3.2-frandom-detect.patch 1770
+AUX 2.3.2/glibc-2.3.2-gcc33-sscanf.patch 671 RMD160 953876f55be0eda6789afe6ef48d9a2f51b7fbf2 SHA1 7f9ab3721147ea5e03698f2e1732469e6c034f94 SHA256 ec44d5302063203b09455af8d704a0280f8956abbd3f0956415f27904d34bff3
+MD5 a505a59f53c5e068728d0aba44007a10 files/2.3.2/glibc-2.3.2-gcc33-sscanf.patch 671
+RMD160 953876f55be0eda6789afe6ef48d9a2f51b7fbf2 files/2.3.2/glibc-2.3.2-gcc33-sscanf.patch 671
+SHA256 ec44d5302063203b09455af8d704a0280f8956abbd3f0956415f27904d34bff3 files/2.3.2/glibc-2.3.2-gcc33-sscanf.patch 671
+AUX 2.3.2/glibc-2.3.2-got-fix.diff 752 RMD160 addd458c45c4a781563a92e67f2b806de8f051b9 SHA1 229db39b5e5eb58971f809ae8ea75c320538b93b SHA256 f4abc4d6d12afb15bff78aefdf95d19633a1977b1651f9dcc675197e8a5c03df
+MD5 175bde9b0017d4deb63cf55f38173e11 files/2.3.2/glibc-2.3.2-got-fix.diff 752
+RMD160 addd458c45c4a781563a92e67f2b806de8f051b9 files/2.3.2/glibc-2.3.2-got-fix.diff 752
+SHA256 f4abc4d6d12afb15bff78aefdf95d19633a1977b1651f9dcc675197e8a5c03df files/2.3.2/glibc-2.3.2-got-fix.diff 752
+AUX 2.3.2/glibc-2.3.2-ia64-LOAD_ARGS-fixup.patch 4445 RMD160 97f4f3b012a137525e35c6bf927ab4136866acb1 SHA1 17ea521bb91e337485d36ac5d439bd0be791da2e SHA256 4393c4c37ba88dfa2cfcf149df6ce231d46412048f9d4c106fb9ef1b26507700
+MD5 cd0306085902d8629f2a77061cacdfd2 files/2.3.2/glibc-2.3.2-ia64-LOAD_ARGS-fixup.patch 4445
+RMD160 97f4f3b012a137525e35c6bf927ab4136866acb1 files/2.3.2/glibc-2.3.2-ia64-LOAD_ARGS-fixup.patch 4445
+SHA256 4393c4c37ba88dfa2cfcf149df6ce231d46412048f9d4c106fb9ef1b26507700 files/2.3.2/glibc-2.3.2-ia64-LOAD_ARGS-fixup.patch 4445
+AUX 2.3.2/glibc-2.3.2-iconvconfig-name_insert.patch 2262 RMD160 73a12aaf43f064002d2d04dc4410b6bafffc214c SHA1 83d6a14bb8c3475bcc5a64e7fa206a786fdc2d7b SHA256 7a051f53bf632ee2f2686dcf01c39e07013e8f273a60bdd41bdc9aabd5f2f555
+MD5 15ac94e1ccc48f31120960dfe006818a files/2.3.2/glibc-2.3.2-iconvconfig-name_insert.patch 2262
+RMD160 73a12aaf43f064002d2d04dc4410b6bafffc214c files/2.3.2/glibc-2.3.2-iconvconfig-name_insert.patch 2262
+SHA256 7a051f53bf632ee2f2686dcf01c39e07013e8f273a60bdd41bdc9aabd5f2f555 files/2.3.2/glibc-2.3.2-iconvconfig-name_insert.patch 2262
+AUX 2.3.2/glibc-2.3.2-ipv6-bytestring-fix.patch 4088 RMD160 f0e4a8fbc3ec5e5740f2003d1afdb3fd53c1e7f4 SHA1 6e991958cefb70b94722f51f4dd9faf037524548 SHA256 8d7c3cec4d5247cc07f5054c70bd0430c6d29a18419bb301fcc9019a9fa370d5
+MD5 45b1fda5b64866e837a825d0add0b31c files/2.3.2/glibc-2.3.2-ipv6-bytestring-fix.patch 4088
+RMD160 f0e4a8fbc3ec5e5740f2003d1afdb3fd53c1e7f4 files/2.3.2/glibc-2.3.2-ipv6-bytestring-fix.patch 4088
+SHA256 8d7c3cec4d5247cc07f5054c70bd0430c6d29a18419bb301fcc9019a9fa370d5 files/2.3.2/glibc-2.3.2-ipv6-bytestring-fix.patch 4088
+AUX 2.3.2/glibc-2.3.2-mips-add-n32-n64-sysdep-cancel.patch 6344 RMD160 f2b87f81b46c965fbb1b2aa369805fe2a74617f2 SHA1 69f9d0e785a520e0264194eeaeb7b40007c0d835 SHA256 51920083d34e36d60f275fa1cba2cf6fec2457b2cadace8d873edadab5a2d81e
+MD5 bfb5e3c2c46359a8c426e98fe0e39838 files/2.3.2/glibc-2.3.2-mips-add-n32-n64-sysdep-cancel.patch 6344
+RMD160 f2b87f81b46c965fbb1b2aa369805fe2a74617f2 files/2.3.2/glibc-2.3.2-mips-add-n32-n64-sysdep-cancel.patch 6344
+SHA256 51920083d34e36d60f275fa1cba2cf6fec2457b2cadace8d873edadab5a2d81e files/2.3.2/glibc-2.3.2-mips-add-n32-n64-sysdep-cancel.patch 6344
+AUX 2.3.2/glibc-2.3.2-mips-configure-for-n64-symver.patch 741 RMD160 02c73f356c0b13e8f95c664556c46e76c072545c SHA1 1b2c4ee140f704ed0857b940461e7b44591c9ef7 SHA256 6ba3f58d3ffb3feda338555144cc253a0517827c8d0476f623da409cea225e6c
+MD5 03cbfe983ca93434ae6698f13d14c0e8 files/2.3.2/glibc-2.3.2-mips-configure-for-n64-symver.patch 741
+RMD160 02c73f356c0b13e8f95c664556c46e76c072545c files/2.3.2/glibc-2.3.2-mips-configure-for-n64-symver.patch 741
+SHA256 6ba3f58d3ffb3feda338555144cc253a0517827c8d0476f623da409cea225e6c files/2.3.2/glibc-2.3.2-mips-configure-for-n64-symver.patch 741
+AUX 2.3.2/glibc-2.3.2-mips-fix-n32-n64-sysdep-headers.patch 4398 RMD160 3c480d14054fe3c9aefec8a29ada460f34cb709d SHA1 0f0217a60d38224046c04b727ed7e73012d61d67 SHA256 5ad8fa08003e6745ea0dfb9406d6cb22c789512b81c9fe262df1adf4a01ac23d
+MD5 4e99301d9cb2865f14d82595f3b7bc0a files/2.3.2/glibc-2.3.2-mips-fix-n32-n64-sysdep-headers.patch 4398
+RMD160 3c480d14054fe3c9aefec8a29ada460f34cb709d files/2.3.2/glibc-2.3.2-mips-fix-n32-n64-sysdep-headers.patch 4398
+SHA256 5ad8fa08003e6745ea0dfb9406d6cb22c789512b81c9fe262df1adf4a01ac23d files/2.3.2/glibc-2.3.2-mips-fix-n32-n64-sysdep-headers.patch 4398
+AUX 2.3.2/glibc-2.3.2-mips-fix-nested-entend-pairs.patch 612 RMD160 9eaa7d6b257a8c198e240495db32542de37ac9ab SHA1 b97c841a50f013213cbd13abff6def3091c01e70 SHA256 5b58552b5cbbe2d9171f55590df31e110a61dfffd9c659c724e9106de57aa327
+MD5 df41c3a20ead370c2208599cf4251f3d files/2.3.2/glibc-2.3.2-mips-fix-nested-entend-pairs.patch 612
+RMD160 9eaa7d6b257a8c198e240495db32542de37ac9ab files/2.3.2/glibc-2.3.2-mips-fix-nested-entend-pairs.patch 612
+SHA256 5b58552b5cbbe2d9171f55590df31e110a61dfffd9c659c724e9106de57aa327 files/2.3.2/glibc-2.3.2-mips-fix-nested-entend-pairs.patch 612
+AUX 2.3.2/glibc-2.3.2-mips-pread-linux2.5.patch 5310 RMD160 43e97ec565eabdec535e45dc79338cb8e101ca71 SHA1 46a46b143c723dd47c13c0db3a5df904c1463b5c SHA256 506d256a7531bc3729a396d05846b4bfecc7a24f2930e64ca317fded66c3bc19
+MD5 d21659e6aa8802290d6734ec118bbb81 files/2.3.2/glibc-2.3.2-mips-pread-linux2.5.patch 5310
+RMD160 43e97ec565eabdec535e45dc79338cb8e101ca71 files/2.3.2/glibc-2.3.2-mips-pread-linux2.5.patch 5310
+SHA256 506d256a7531bc3729a396d05846b4bfecc7a24f2930e64ca317fded66c3bc19 files/2.3.2/glibc-2.3.2-mips-pread-linux2.5.patch 5310
+AUX 2.3.2/glibc-2.3.2-nptl-fix-include.patch 247 RMD160 52fed74abfb434ee3077afa3ed836c784462a429 SHA1 f751cec5449f347cc6d9ef9d1af9c7a926535170 SHA256 fad574563c3c714cc31c50237b90be423531318ccada0d02cb5cbdda64b8bcd2
+MD5 f62924cbf762eb230514a9859522f5e7 files/2.3.2/glibc-2.3.2-nptl-fix-include.patch 247
+RMD160 52fed74abfb434ee3077afa3ed836c784462a429 files/2.3.2/glibc-2.3.2-nptl-fix-include.patch 247
+SHA256 fad574563c3c714cc31c50237b90be423531318ccada0d02cb5cbdda64b8bcd2 files/2.3.2/glibc-2.3.2-nptl-fix-include.patch 247
+AUX 2.3.2/glibc-2.3.2-owl-malloc-unlink-sanity-check.diff 1425 RMD160 354715c62330b52d917b8af226fe4111f2764817 SHA1 25d5b6763893c1c383664c7332a27701efaf7fbf SHA256 4832ae591e07c028996911e486205ddca9323ab0967f5a197c63150456b640d5
+MD5 0bfc56be86acec8ec52fe29249e267a4 files/2.3.2/glibc-2.3.2-owl-malloc-unlink-sanity-check.diff 1425
+RMD160 354715c62330b52d917b8af226fe4111f2764817 files/2.3.2/glibc-2.3.2-owl-malloc-unlink-sanity-check.diff 1425
+SHA256 4832ae591e07c028996911e486205ddca9323ab0967f5a197c63150456b640d5 files/2.3.2/glibc-2.3.2-owl-malloc-unlink-sanity-check.diff 1425
+AUX 2.3.2/glibc-2.3.2-propolice-guard-functions-v2.patch 5107 RMD160 1b90c60b37301619e2e570de93b4f65bb4ceeffd SHA1 11cf6dc40b1b3c72680130fd7ade8427a9cb3f6e SHA256 48a37c8415359dbc3423d79b8e404cd8a4b327ef6a3d18cb86cae68df1a32764
+MD5 578d3e5ff83cca218279a7a094fd0dad files/2.3.2/glibc-2.3.2-propolice-guard-functions-v2.patch 5107
+RMD160 1b90c60b37301619e2e570de93b4f65bb4ceeffd files/2.3.2/glibc-2.3.2-propolice-guard-functions-v2.patch 5107
+SHA256 48a37c8415359dbc3423d79b8e404cd8a4b327ef6a3d18cb86cae68df1a32764 files/2.3.2/glibc-2.3.2-propolice-guard-functions-v2.patch 5107
+AUX 2.3.2/glibc-2.3.2-propolice-guard-functions-v3.patch 1986 RMD160 bc170f598926964188d1a3c00fbd97bfcd07bf6a SHA1 549afaf6b879836b949e57d668de9c3f7d60bfcd SHA256 aeb4ccfce4283951d3bbdd4ec582d6901416fbaceb9fc899795758937007618c
+MD5 0e27dbd2a3b85a0e14625294296fad9a files/2.3.2/glibc-2.3.2-propolice-guard-functions-v3.patch 1986
+RMD160 bc170f598926964188d1a3c00fbd97bfcd07bf6a files/2.3.2/glibc-2.3.2-propolice-guard-functions-v3.patch 1986
+SHA256 aeb4ccfce4283951d3bbdd4ec582d6901416fbaceb9fc899795758937007618c files/2.3.2/glibc-2.3.2-propolice-guard-functions-v3.patch 1986
+AUX 2.3.2/glibc-2.3.2-propolice-guard-functions.patch 5069 RMD160 ee713cf1a15f80462799736fa20a40438b75a270 SHA1 de85375938a394bc06cd09f3c1e877a19fedc26b SHA256 d233ffde002735447e9a440716036a66ba305026edc3f9b512b4609ec8c58695
+MD5 b27417338a4cd9906e2917701f0be575 files/2.3.2/glibc-2.3.2-propolice-guard-functions.patch 5069
+RMD160 ee713cf1a15f80462799736fa20a40438b75a270 files/2.3.2/glibc-2.3.2-propolice-guard-functions.patch 5069
+SHA256 d233ffde002735447e9a440716036a66ba305026edc3f9b512b4609ec8c58695 files/2.3.2/glibc-2.3.2-propolice-guard-functions.patch 5069
+AUX 2.3.2/glibc-2.3.2-pt_pax.diff 1470 RMD160 db0fc8e78f65e88886331aa0cbb7e7c5b2a51eca SHA1 c6d53462588c4c9a717a1dcc3665f7c1b1e2ce8f SHA256 8133d90ef77d54b3dc2711bec836881da5081d724c192cdb7dc1ac8cfbd66115
+MD5 a3eb98943bc9db66df33bfc08dea4c2e files/2.3.2/glibc-2.3.2-pt_pax.diff 1470
+RMD160 db0fc8e78f65e88886331aa0cbb7e7c5b2a51eca files/2.3.2/glibc-2.3.2-pt_pax.diff 1470
+SHA256 8133d90ef77d54b3dc2711bec836881da5081d724c192cdb7dc1ac8cfbd66115 files/2.3.2/glibc-2.3.2-pt_pax.diff 1470
+AUX 2.3.2/glibc-2.3.2-redhat-linuxthreads-fixes.patch 2532 RMD160 81b4ffe919e9dad5111f87421a6f6345d2de42c8 SHA1 20dd6a17ba46e5ff0dbc31474f66d7fe221dea12 SHA256 14c04633d168ae4bf3d440719898b10adf8b09517004f2b62d1a7f8665dc1ace
+MD5 ba477be20da9885349e4599de7a08c18 files/2.3.2/glibc-2.3.2-redhat-linuxthreads-fixes.patch 2532
+RMD160 81b4ffe919e9dad5111f87421a6f6345d2de42c8 files/2.3.2/glibc-2.3.2-redhat-linuxthreads-fixes.patch 2532
+SHA256 14c04633d168ae4bf3d440719898b10adf8b09517004f2b62d1a7f8665dc1ace files/2.3.2/glibc-2.3.2-redhat-linuxthreads-fixes.patch 2532
+AUX 2.3.2/glibc-2.3.2-redhat-nptl-fixes.patch 1077 RMD160 44e4c6249321d7d0776600a5a356d3b0f0c5e746 SHA1 40ce5d282f1fa3ace73da06f9627f5ffff7ee6df SHA256 90c66ab0ec9afe72b377762ab399bc840970ead67ced8402100083bcadac5696
+MD5 9bc5a914b9625c662544785a4a685086 files/2.3.2/glibc-2.3.2-redhat-nptl-fixes.patch 1077
+RMD160 44e4c6249321d7d0776600a5a356d3b0f0c5e746 files/2.3.2/glibc-2.3.2-redhat-nptl-fixes.patch 1077
+SHA256 90c66ab0ec9afe72b377762ab399bc840970ead67ced8402100083bcadac5696 files/2.3.2/glibc-2.3.2-redhat-nptl-fixes.patch 1077
+AUX 2.3.2/glibc-2.3.2-rtld-assert-fix.patch 1153 RMD160 8b2b8fd03c26e61c6a07d8f6b7cee911b75f130e SHA1 d0fc4838c748a2e6bcebbcb8e5a4b925bfb9429f SHA256 12ca6b529a7da9f3dd1076a8b8e8ac89b51bc34d49123966ca9e23361a6239e9
+MD5 3d32067de612f477862e9b24c158a7ce files/2.3.2/glibc-2.3.2-rtld-assert-fix.patch 1153
+RMD160 8b2b8fd03c26e61c6a07d8f6b7cee911b75f130e files/2.3.2/glibc-2.3.2-rtld-assert-fix.patch 1153
+SHA256 12ca6b529a7da9f3dd1076a8b8e8ac89b51bc34d49123966ca9e23361a6239e9 files/2.3.2/glibc-2.3.2-rtld-assert-fix.patch 1153
+AUX 2.3.2/glibc-2.3.2-s390-deprecated-ustat-fixup.patch 6638 RMD160 ca1ee40cd6552ea85182678a226e86b4a9332c58 SHA1 f61049b99b1d2df54931094ef6fa2e5edae92b6d SHA256 26f4664cf67b70cb5c4675f0c9e03feae3a5c49d6992c5d6abbd8f66495b334d
+MD5 3eeb5a5b2f01b1fdb7a4af923e5b0cec files/2.3.2/glibc-2.3.2-s390-deprecated-ustat-fixup.patch 6638
+RMD160 ca1ee40cd6552ea85182678a226e86b4a9332c58 files/2.3.2/glibc-2.3.2-s390-deprecated-ustat-fixup.patch 6638
+SHA256 26f4664cf67b70cb5c4675f0c9e03feae3a5c49d6992c5d6abbd8f66495b334d files/2.3.2/glibc-2.3.2-s390-deprecated-ustat-fixup.patch 6638
+AUX 2.3.2/glibc-2.3.2-signal-ssp.diff 1431 RMD160 fa128a533a0b2faf0395b5fa99898d669755aae9 SHA1 31935dccd26221642681ee43a5c2d152fc7b9af9 SHA256 e6c4f3f5bf458b79cb6f51ff56d49b188e6c2bc6d0b6c09294f4054bbdb05598
+MD5 7b6054c2e8ec654341690586bc2028c5 files/2.3.2/glibc-2.3.2-signal-ssp.diff 1431
+RMD160 fa128a533a0b2faf0395b5fa99898d669755aae9 files/2.3.2/glibc-2.3.2-signal-ssp.diff 1431
+SHA256 e6c4f3f5bf458b79cb6f51ff56d49b188e6c2bc6d0b6c09294f4054bbdb05598 files/2.3.2/glibc-2.3.2-signal-ssp.diff 1431
+AUX 2.3.2/posix_fadvise64.c 2752 RMD160 9e478c37513997fdf7fad5578805d27335e97eb1 SHA1 6c8e5d8fb23e079e0d50153f4cf592190a63c158 SHA256 a67e1672df99b8955c80fd2ac46992e972a7552ea58126261e0f2660c8dd9b78
+MD5 048d54dd8fc9e895cac6b1b53de4b730 files/2.3.2/posix_fadvise64.c 2752
+RMD160 9e478c37513997fdf7fad5578805d27335e97eb1 files/2.3.2/posix_fadvise64.c 2752
+SHA256 a67e1672df99b8955c80fd2ac46992e972a7552ea58126261e0f2660c8dd9b78 files/2.3.2/posix_fadvise64.c 2752
+AUX 2.3.2/ssp.c 3935 RMD160 48acf2f8607b750e56745836af7fdebbfa603aa7 SHA1 2e5fe75a8119f2669c9782ce11cfa9068c0c79cb SHA256 7c0db663bc8f55d27cbcab117731dc7b72a33b1a25fbc00e36bc273e31a42b9d
+MD5 0e3ced9c3c484f502dcade7ffffa15f4 files/2.3.2/ssp.c 3935
+RMD160 48acf2f8607b750e56745836af7fdebbfa603aa7 files/2.3.2/ssp.c 3935
+SHA256 7c0db663bc8f55d27cbcab117731dc7b72a33b1a25fbc00e36bc273e31a42b9d files/2.3.2/ssp.c 3935
+AUX 2.3.2/sysmacros.h 2443 RMD160 53418fd7a312fee1a131be935dc8a2359b4dd84d SHA1 3cdfa1ad2a5e77b9d56800289c6073750c5635b8 SHA256 bcf0f0ee379f08f63e3f9c5804ab6346af39b89a80009823d46bf3fcf6c2955b
+MD5 250d09cb52d2c3c7f6b0c4e0a1bf47f2 files/2.3.2/sysmacros.h 2443
+RMD160 53418fd7a312fee1a131be935dc8a2359b4dd84d files/2.3.2/sysmacros.h 2443
+SHA256 bcf0f0ee379f08f63e3f9c5804ab6346af39b89a80009823d46bf3fcf6c2955b files/2.3.2/sysmacros.h 2443
+AUX 2.3.3/glibc-2.3.2-propolice-guard-functions-v3.patch 1986 RMD160 bc170f598926964188d1a3c00fbd97bfcd07bf6a SHA1 549afaf6b879836b949e57d668de9c3f7d60bfcd SHA256 aeb4ccfce4283951d3bbdd4ec582d6901416fbaceb9fc899795758937007618c
+MD5 0e27dbd2a3b85a0e14625294296fad9a files/2.3.3/glibc-2.3.2-propolice-guard-functions-v3.patch 1986
+RMD160 bc170f598926964188d1a3c00fbd97bfcd07bf6a files/2.3.3/glibc-2.3.2-propolice-guard-functions-v3.patch 1986
+SHA256 aeb4ccfce4283951d3bbdd4ec582d6901416fbaceb9fc899795758937007618c files/2.3.3/glibc-2.3.2-propolice-guard-functions-v3.patch 1986
+AUX 2.3.3/glibc-2.3.3-dl_execstack-PaX-support.patch 1791 RMD160 5181360f36dc34acbf4dcb701cf36daa93b0e554 SHA1 3868a78c27f26a5503ef5ef9a4b7652a6de1417e SHA256 f713681ec83c4aa359911fb2c8c1d813233647168b34b16db14efd49e98a123d
+MD5 1b5df7c58ad160593192704cece47347 files/2.3.3/glibc-2.3.3-dl_execstack-PaX-support.patch 1791
+RMD160 5181360f36dc34acbf4dcb701cf36daa93b0e554 files/2.3.3/glibc-2.3.3-dl_execstack-PaX-support.patch 1791
+SHA256 f713681ec83c4aa359911fb2c8c1d813233647168b34b16db14efd49e98a123d files/2.3.3/glibc-2.3.3-dl_execstack-PaX-support.patch 1791
+AUX 2.3.3/glibc-2.3.3-frandom-detect.patch 1770 RMD160 58794c72a6257a4cebc66f7ae5e910451c22e3fa SHA1 07660c642ba1af9462b7d3f58ed77141c6f1e007 SHA256 c8eaf1e3e8c56e9d5189da18b5604bb8e92b646d3a0ee614da904ab75cc81a25
+MD5 62f7e62583aaa70645d9c847b6a84299 files/2.3.3/glibc-2.3.3-frandom-detect.patch 1770
+RMD160 58794c72a6257a4cebc66f7ae5e910451c22e3fa files/2.3.3/glibc-2.3.3-frandom-detect.patch 1770
+SHA256 c8eaf1e3e8c56e9d5189da18b5604bb8e92b646d3a0ee614da904ab75cc81a25 files/2.3.3/glibc-2.3.3-frandom-detect.patch 1770
+AUX 2.3.3/glibc-2.3.3-localedef-fix-trampoline.patch 2329 RMD160 de6ba25b8330e6ee720355e8541235d265a461cd SHA1 cf869cbd74793cb579b42d734884f10d4cadcdde SHA256 b5cf51d1ff5479d09fbc82992f126ca4969006c90c3a2ae94ad586d4902d791b
+MD5 ec83f3d86f23243a1fb334b8872d454f files/2.3.3/glibc-2.3.3-localedef-fix-trampoline.patch 2329
+RMD160 de6ba25b8330e6ee720355e8541235d265a461cd files/2.3.3/glibc-2.3.3-localedef-fix-trampoline.patch 2329
+SHA256 b5cf51d1ff5479d09fbc82992f126ca4969006c90c3a2ae94ad586d4902d791b files/2.3.3/glibc-2.3.3-localedef-fix-trampoline.patch 2329
+AUX 2.3.3/glibc-2.3.3-mips-addabi.diff 1720 RMD160 c099261c359635046121718ade146d76a9410fa9 SHA1 493f17eaa26082a992654ea874f9bb01c2cab0d2 SHA256 6536add1d26ceee20f59245eeea372ceb19beecfe1fa559738f0fbd8457671ef
+MD5 ca1d4648f72e5fea2858fdb6ea3d39a0 files/2.3.3/glibc-2.3.3-mips-addabi.diff 1720
+RMD160 c099261c359635046121718ade146d76a9410fa9 files/2.3.3/glibc-2.3.3-mips-addabi.diff 1720
+SHA256 6536add1d26ceee20f59245eeea372ceb19beecfe1fa559738f0fbd8457671ef files/2.3.3/glibc-2.3.3-mips-addabi.diff 1720
+AUX 2.3.3/glibc-2.3.3-mips-nolib3264.diff 1166 RMD160 8a9db675ad7e6e08f29e62b41756d4e3525d3121 SHA1 ad735ee79c37c65c405812c1d23ad17fa65db3c4 SHA256 ad932aecfb8031b0f721576bb7f76473fed91a05892bd5dc91d77dd5d77a90a9
+MD5 f9343413b90877edfcaeedf89b3dec77 files/2.3.3/glibc-2.3.3-mips-nolib3264.diff 1166
+RMD160 8a9db675ad7e6e08f29e62b41756d4e3525d3121 files/2.3.3/glibc-2.3.3-mips-nolib3264.diff 1166
+SHA256 ad932aecfb8031b0f721576bb7f76473fed91a05892bd5dc91d77dd5d77a90a9 files/2.3.3/glibc-2.3.3-mips-nolib3264.diff 1166
+AUX 2.3.3/glibc-2.3.3-mips-semtimedop.diff 602 RMD160 ccd60a0996c37599c761bda8b421135da45e1336 SHA1 0f965ca6bdec14fb664d82179807ea9ac1dbb6dd SHA256 4822fda370fe74b9f6af402869236ad55e47ad26a4efed7bf39f244dc9da92b1
+MD5 81d95470c5766e56e27ad8b6967d2a16 files/2.3.3/glibc-2.3.3-mips-semtimedop.diff 602
+RMD160 ccd60a0996c37599c761bda8b421135da45e1336 files/2.3.3/glibc-2.3.3-mips-semtimedop.diff 602
+SHA256 4822fda370fe74b9f6af402869236ad55e47ad26a4efed7bf39f244dc9da92b1 files/2.3.3/glibc-2.3.3-mips-semtimedop.diff 602
+AUX 2.3.3/glibc-2.3.3-mips-syscall.h.diff 1199 RMD160 2b41b0c5eda1d8c01d1053538c0a43ac102f75d4 SHA1 34d4c05e2f826f1cde268e4f2375ea6d92969aa7 SHA256 223d7c37dc342577b88281385087ec01f35ea506cbc2b4768033c686b8f16686
+MD5 847afe57e19abff1d5c49f6bb7084a3d files/2.3.3/glibc-2.3.3-mips-syscall.h.diff 1199
+RMD160 2b41b0c5eda1d8c01d1053538c0a43ac102f75d4 files/2.3.3/glibc-2.3.3-mips-syscall.h.diff 1199
+SHA256 223d7c37dc342577b88281385087ec01f35ea506cbc2b4768033c686b8f16686 files/2.3.3/glibc-2.3.3-mips-syscall.h.diff 1199
+AUX 2.3.3/glibc-2.3.3-mips-sysify.diff 2138 RMD160 205aa658400c4d1b1403f1dc0b79c5216b42f8e1 SHA1 03e9099ecdc86e313139211b8cefeacd553a6e77 SHA256 638768e4f5a56bbc9bbe39b0cd17e54a3aab78d58d2682048b709f871f029731
+MD5 84fa9a725c22975d735a2f91543a5cca files/2.3.3/glibc-2.3.3-mips-sysify.diff 2138
+RMD160 205aa658400c4d1b1403f1dc0b79c5216b42f8e1 files/2.3.3/glibc-2.3.3-mips-sysify.diff 2138
+SHA256 638768e4f5a56bbc9bbe39b0cd17e54a3aab78d58d2682048b709f871f029731 files/2.3.3/glibc-2.3.3-mips-sysify.diff 2138
+AUX 2.3.3/glibc-2.3.3-owl-malloc-unlink-sanity-check.diff 1425 RMD160 354715c62330b52d917b8af226fe4111f2764817 SHA1 25d5b6763893c1c383664c7332a27701efaf7fbf SHA256 4832ae591e07c028996911e486205ddca9323ab0967f5a197c63150456b640d5
+MD5 0bfc56be86acec8ec52fe29249e267a4 files/2.3.3/glibc-2.3.3-owl-malloc-unlink-sanity-check.diff 1425
+RMD160 354715c62330b52d917b8af226fe4111f2764817 files/2.3.3/glibc-2.3.3-owl-malloc-unlink-sanity-check.diff 1425
+SHA256 4832ae591e07c028996911e486205ddca9323ab0967f5a197c63150456b640d5 files/2.3.3/glibc-2.3.3-owl-malloc-unlink-sanity-check.diff 1425
+AUX 2.3.3/glibc-2.3.3-tempfile.patch 1787 RMD160 7009918fb18ec7bf138d0c67fe7b0c149a5e76fe SHA1 bd6fe6a7198ea9d94449d4313ce6ba9470af506f SHA256 6e8245494f8cb4623f0911bc24b192748d0f2763a7935970621a38f72f6b3a9c
+MD5 ff0a2716aebc6fb8a2e3b3f2c9be8bba files/2.3.3/glibc-2.3.3-tempfile.patch 1787
+RMD160 7009918fb18ec7bf138d0c67fe7b0c149a5e76fe files/2.3.3/glibc-2.3.3-tempfile.patch 1787
+SHA256 6e8245494f8cb4623f0911bc24b192748d0f2763a7935970621a38f72f6b3a9c files/2.3.3/glibc-2.3.3-tempfile.patch 1787
+AUX 2.3.3/glibc-2.3.3_pre20040117-got-fix.diff 752 RMD160 addd458c45c4a781563a92e67f2b806de8f051b9 SHA1 229db39b5e5eb58971f809ae8ea75c320538b93b SHA256 f4abc4d6d12afb15bff78aefdf95d19633a1977b1651f9dcc675197e8a5c03df
+MD5 175bde9b0017d4deb63cf55f38173e11 files/2.3.3/glibc-2.3.3_pre20040117-got-fix.diff 752
+RMD160 addd458c45c4a781563a92e67f2b806de8f051b9 files/2.3.3/glibc-2.3.3_pre20040117-got-fix.diff 752
+SHA256 f4abc4d6d12afb15bff78aefdf95d19633a1977b1651f9dcc675197e8a5c03df files/2.3.3/glibc-2.3.3_pre20040117-got-fix.diff 752
+AUX 2.3.3/glibc-2.3.3_pre20040117-pt_pax.diff 1470 RMD160 db0fc8e78f65e88886331aa0cbb7e7c5b2a51eca SHA1 c6d53462588c4c9a717a1dcc3665f7c1b1e2ce8f SHA256 8133d90ef77d54b3dc2711bec836881da5081d724c192cdb7dc1ac8cfbd66115
+MD5 a3eb98943bc9db66df33bfc08dea4c2e files/2.3.3/glibc-2.3.3_pre20040117-pt_pax.diff 1470
+RMD160 db0fc8e78f65e88886331aa0cbb7e7c5b2a51eca files/2.3.3/glibc-2.3.3_pre20040117-pt_pax.diff 1470
+SHA256 8133d90ef77d54b3dc2711bec836881da5081d724c192cdb7dc1ac8cfbd66115 files/2.3.3/glibc-2.3.3_pre20040117-pt_pax.diff 1470
+AUX 2.3.3/glibc-2.3.3_pre20040117-signal-ssp.diff 1431 RMD160 fa128a533a0b2faf0395b5fa99898d669755aae9 SHA1 31935dccd26221642681ee43a5c2d152fc7b9af9 SHA256 e6c4f3f5bf458b79cb6f51ff56d49b188e6c2bc6d0b6c09294f4054bbdb05598
+MD5 7b6054c2e8ec654341690586bc2028c5 files/2.3.3/glibc-2.3.3_pre20040117-signal-ssp.diff 1431
+RMD160 fa128a533a0b2faf0395b5fa99898d669755aae9 files/2.3.3/glibc-2.3.3_pre20040117-signal-ssp.diff 1431
+SHA256 e6c4f3f5bf458b79cb6f51ff56d49b188e6c2bc6d0b6c09294f4054bbdb05598 files/2.3.3/glibc-2.3.3_pre20040117-signal-ssp.diff 1431
+AUX 2.3.3/glibc-2.3.3_pre20040420-mips-dl-machine-calls.diff 1497 RMD160 a84bc7c082643984ba61183548e34e9609ce602c SHA1 f5933d7e3339e51d42a8fea009f3c6826e1ddd01 SHA256 9d8078970c78f5b007bc0ee5dfdaf476d3700a54a0c718eb5e4537f3ab4db355
+MD5 86626ba8df9cac083bb3e1cfe23ec07e files/2.3.3/glibc-2.3.3_pre20040420-mips-dl-machine-calls.diff 1497
+RMD160 a84bc7c082643984ba61183548e34e9609ce602c files/2.3.3/glibc-2.3.3_pre20040420-mips-dl-machine-calls.diff 1497
+SHA256 9d8078970c78f5b007bc0ee5dfdaf476d3700a54a0c718eb5e4537f3ab4db355 files/2.3.3/glibc-2.3.3_pre20040420-mips-dl-machine-calls.diff 1497
+AUX 2.3.3/glibc-2.3.3_pre20040420-mips-incl-sgidefs.diff 8287 RMD160 4638ea91406c9078d485cf7fc2c667250080338d SHA1 6f90285c9acac1a84e97e82c445675c44c3ee7db SHA256 d0155031d68a2d12ff958f78b442c73f0bcc017684d693b6749bc442d766c754
+MD5 ab91cb5bad07e1e79f990d4933741d42 files/2.3.3/glibc-2.3.3_pre20040420-mips-incl-sgidefs.diff 8287
+RMD160 4638ea91406c9078d485cf7fc2c667250080338d files/2.3.3/glibc-2.3.3_pre20040420-mips-incl-sgidefs.diff 8287
+SHA256 d0155031d68a2d12ff958f78b442c73f0bcc017684d693b6749bc442d766c754 files/2.3.3/glibc-2.3.3_pre20040420-mips-incl-sgidefs.diff 8287
+AUX 2.3.3/ssp.c 4041 RMD160 7044685a01288ce54e06640f1f927db73c7d8280 SHA1 ba35ef21708ba7d67b33118b79371d907a0dc41c SHA256 398e397e4b2dde42ad85a740bf272a8d03cfdc675960de6405f5bd268a1311af
+MD5 ae9425cd4199cccd69c6d22633583dc1 files/2.3.3/ssp.c 4041
+RMD160 7044685a01288ce54e06640f1f927db73c7d8280 files/2.3.3/ssp.c 4041
+SHA256 398e397e4b2dde42ad85a740bf272a8d03cfdc675960de6405f5bd268a1311af files/2.3.3/ssp.c 4041
+AUX 2.3.4/glibc-2.3.3-mdns-resolver2.diff 12272 RMD160 d91f14f75a3ca86396242870dd2a5f5112a61bfc SHA1 2dc4ac0463aaba55a3d2842e33af739383853056 SHA256 186446593831bb62b92879d7dc6fda6ffff0fb53f3618b30cbeb5cba1558a08d
+MD5 9db90105eb74d75834d25a599cba97ea files/2.3.4/glibc-2.3.3-mdns-resolver2.diff 12272
+RMD160 d91f14f75a3ca86396242870dd2a5f5112a61bfc files/2.3.4/glibc-2.3.3-mdns-resolver2.diff 12272
+SHA256 186446593831bb62b92879d7dc6fda6ffff0fb53f3618b30cbeb5cba1558a08d files/2.3.4/glibc-2.3.3-mdns-resolver2.diff 12272
+AUX 2.3.4/glibc-2.3.4-arm-ioperm.patch 4037 RMD160 cd3831205bc59ecc1a47744164d16e280d3c1c93 SHA1 654682fbc865a2fc117d4763e124d3b3b955f06c SHA256 9146fd6eed255545501dce4c898d3c1a7bc158b5ae091e82f895245baef032dd
+MD5 89a6d0d924c8b05c4e06bdffb7c69b41 files/2.3.4/glibc-2.3.4-arm-ioperm.patch 4037
+RMD160 cd3831205bc59ecc1a47744164d16e280d3c1c93 files/2.3.4/glibc-2.3.4-arm-ioperm.patch 4037
+SHA256 9146fd6eed255545501dce4c898d3c1a7bc158b5ae091e82f895245baef032dd files/2.3.4/glibc-2.3.4-arm-ioperm.patch 4037
+AUX 2.3.4/glibc-2.3.4-dl_execstack-PaX-support.patch 1443 RMD160 f0027946dcd8da3a1bcd47ce872b20ee060e7d79 SHA1 e603c312908381a942151e8f367b96548040fbbe SHA256 8dad8afec4a9815d41466a01daf8af38c753eab8a8ed1ede61f86ca6b84ee8fc
+MD5 9ee1438ba6ac30363130330c996dbb84 files/2.3.4/glibc-2.3.4-dl_execstack-PaX-support.patch 1443
+RMD160 f0027946dcd8da3a1bcd47ce872b20ee060e7d79 files/2.3.4/glibc-2.3.4-dl_execstack-PaX-support.patch 1443
+SHA256 8dad8afec4a9815d41466a01daf8af38c753eab8a8ed1ede61f86ca6b84ee8fc files/2.3.4/glibc-2.3.4-dl_execstack-PaX-support.patch 1443
+AUX 2.3.4/glibc-2.3.4-features-header-fix.patch 449 RMD160 622ee88546240628283dfafd2eb3694423b17a21 SHA1 1f0416dec77a4ee1dd4d80623054604dc3d1b91c SHA256 e3b634d450e7f6ad6aa2df221f3d28b3f4a58c7c2b29c4d2f331828c23dcadf1
+MD5 d902a9d990ee2970dd55dd805f352fa7 files/2.3.4/glibc-2.3.4-features-header-fix.patch 449
+RMD160 622ee88546240628283dfafd2eb3694423b17a21 files/2.3.4/glibc-2.3.4-features-header-fix.patch 449
+SHA256 e3b634d450e7f6ad6aa2df221f3d28b3f4a58c7c2b29c4d2f331828c23dcadf1 files/2.3.4/glibc-2.3.4-features-header-fix.patch 449
+AUX 2.3.4/glibc-2.3.4-fedora-branch-no-force-nontls.patch 2337 RMD160 ade2e03e847f0b526764f8980f60484632182a9a SHA1 4ab729ee4200499a58909d60982078f1ec28c5ca SHA256 c1e36f67cf3f0123d6fd0c0ac4e80cc6fad9c5bcbd68e4148d8d1fc5347395d8
+MD5 ad71dc5c3f84f026c6e28865b2e90fbb files/2.3.4/glibc-2.3.4-fedora-branch-no-force-nontls.patch 2337
+RMD160 ade2e03e847f0b526764f8980f60484632182a9a files/2.3.4/glibc-2.3.4-fedora-branch-no-force-nontls.patch 2337
+SHA256 c1e36f67cf3f0123d6fd0c0ac4e80cc6fad9c5bcbd68e4148d8d1fc5347395d8 files/2.3.4/glibc-2.3.4-fedora-branch-no-force-nontls.patch 2337
+AUX 2.3.4/glibc-2.3.4-fedora-branch-no-libnoversion.patch 2288 RMD160 bbc1498498eb5c4b321e9b9af2f49646271836a1 SHA1 7b85a4972ff4cbe2daddde20adb1afd9981c319f SHA256 6c6bbc17e9d5faa86d9ade82dcd07c2513d2c260537327b4ddf1030b3d5292de
+MD5 973e31ce24c9622234c4293b367de6b3 files/2.3.4/glibc-2.3.4-fedora-branch-no-libnoversion.patch 2288
+RMD160 bbc1498498eb5c4b321e9b9af2f49646271836a1 files/2.3.4/glibc-2.3.4-fedora-branch-no-libnoversion.patch 2288
+SHA256 6c6bbc17e9d5faa86d9ade82dcd07c2513d2c260537327b4ddf1030b3d5292de files/2.3.4/glibc-2.3.4-fedora-branch-no-libnoversion.patch 2288
+AUX 2.3.4/glibc-2.3.4-fedora-branch-nomalloccheck.patch 372 RMD160 5ffee93ba7acbc4ca9f5a76df1e99b322a89573f SHA1 3705d199f32872aea693344fac9097d0557a63b9 SHA256 9e6b3462c1c3fe0037485a7b894d80c6da4349fedc73586395c5032e8c60abd2
+MD5 1974267b1382fb38be7495b12c847f70 files/2.3.4/glibc-2.3.4-fedora-branch-nomalloccheck.patch 372
+RMD160 5ffee93ba7acbc4ca9f5a76df1e99b322a89573f files/2.3.4/glibc-2.3.4-fedora-branch-nomalloccheck.patch 372
+SHA256 9e6b3462c1c3fe0037485a7b894d80c6da4349fedc73586395c5032e8c60abd2 files/2.3.4/glibc-2.3.4-fedora-branch-nomalloccheck.patch 372
+AUX 2.3.4/glibc-2.3.4-fix-_dl_next_tls_modid-assert.patch 9140 RMD160 9d4a3fe184adeed5a8886efc110f46b4bc2f1464 SHA1 c5b351327fb7c5c6946de604ecb73a5240e8328c SHA256 285fca201ac16f3c7c1fe131d6f4f437bd8b5fb65c3f2720ab29704bd087e56f
+MD5 b80890f83185acef8aeff622a1574e0b files/2.3.4/glibc-2.3.4-fix-_dl_next_tls_modid-assert.patch 9140
+RMD160 9d4a3fe184adeed5a8886efc110f46b4bc2f1464 files/2.3.4/glibc-2.3.4-fix-_dl_next_tls_modid-assert.patch 9140
+SHA256 285fca201ac16f3c7c1fe131d6f4f437bd8b5fb65c3f2720ab29704bd087e56f files/2.3.4/glibc-2.3.4-fix-_dl_next_tls_modid-assert.patch 9140
+AUX 2.3.4/glibc-2.3.4-getcontext.patch 9854 RMD160 e7059e73595771bece8bded5074da749ffa5b0f9 SHA1 2789bdf10d3786f6462701f4dd0f94f891b95d70 SHA256 521dff9f4c3c81f88710abab72809bcac63f4c17bbc6c1ce9edac4757c124b7a
+MD5 7fca8a203196513f13e519903dedbfd5 files/2.3.4/glibc-2.3.4-getcontext.patch 9854
+RMD160 e7059e73595771bece8bded5074da749ffa5b0f9 files/2.3.4/glibc-2.3.4-getcontext.patch 9854
+SHA256 521dff9f4c3c81f88710abab72809bcac63f4c17bbc6c1ce9edac4757c124b7a files/2.3.4/glibc-2.3.4-getcontext.patch 9854
+AUX 2.3.4/glibc-2.3.4-hardened-sysdep-shared.patch 382 RMD160 c89d75606c14aaba32a13b307fd6f8d1e6bc8f6c SHA1 5bf11155da5f7d13d6d27523f35282076b6b3318 SHA256 580dc1a3967586541e78b7e1a5acba95834086c2fd790d766bff2138482b1820
+MD5 03e0e9a2235886c0abbe98bdafd0d5ce files/2.3.4/glibc-2.3.4-hardened-sysdep-shared.patch 382
+RMD160 c89d75606c14aaba32a13b307fd6f8d1e6bc8f6c files/2.3.4/glibc-2.3.4-hardened-sysdep-shared.patch 382
+SHA256 580dc1a3967586541e78b7e1a5acba95834086c2fd790d766bff2138482b1820 files/2.3.4/glibc-2.3.4-hardened-sysdep-shared.patch 382
+AUX 2.3.4/glibc-2.3.4-hppa-hardened-disable__init_arrays.patch 2310 RMD160 f000d2a35e5b852d9058c3a5f6a6302bda4134cf SHA1 74a85379871c98c13daf5acc784b1faf80c9c350 SHA256 1a7fa31a9efbdc742993b8ee46c14356659f29221127664dc08316d197d41e21
+MD5 659a9d64935d67a5938d0cb4e5fe4899 files/2.3.4/glibc-2.3.4-hppa-hardened-disable__init_arrays.patch 2310
+RMD160 f000d2a35e5b852d9058c3a5f6a6302bda4134cf files/2.3.4/glibc-2.3.4-hppa-hardened-disable__init_arrays.patch 2310
+SHA256 1a7fa31a9efbdc742993b8ee46c14356659f29221127664dc08316d197d41e21 files/2.3.4/glibc-2.3.4-hppa-hardened-disable__init_arrays.patch 2310
+AUX 2.3.4/glibc-2.3.4-ld.so-brk-fix.patch 2562 RMD160 fe646cc4527f5b608b0bacec8a61ea497405d156 SHA1 8a929a9e8d97a8757117575360bd5d220ec44e4a SHA256 29803fc15fc9214d7b536b9511c2413a1e7a09aafd70f523830f92fc4a2322c1
+MD5 16f18501efd56811e724231470dc5d00 files/2.3.4/glibc-2.3.4-ld.so-brk-fix.patch 2562
+RMD160 fe646cc4527f5b608b0bacec8a61ea497405d156 files/2.3.4/glibc-2.3.4-ld.so-brk-fix.patch 2562
+SHA256 29803fc15fc9214d7b536b9511c2413a1e7a09aafd70f523830f92fc4a2322c1 files/2.3.4/glibc-2.3.4-ld.so-brk-fix.patch 2562
+AUX 2.3.4/glibc-2.3.4-mdns-resolver-20041102.diff 12809 RMD160 fabb6c145302f0cc66a18dbc02f70473cafcb59f SHA1 6e4a45d80c1c6ff8997975e81b6968650353848e SHA256 5c2b82b11e96f8535d3bcfb2c6cf791b7ccf1a52a17597642e83911564adc749
+MD5 076484ade8a834efb73190b687196392 files/2.3.4/glibc-2.3.4-mdns-resolver-20041102.diff 12809
+RMD160 fabb6c145302f0cc66a18dbc02f70473cafcb59f files/2.3.4/glibc-2.3.4-mdns-resolver-20041102.diff 12809
+SHA256 5c2b82b11e96f8535d3bcfb2c6cf791b7ccf1a52a17597642e83911564adc749 files/2.3.4/glibc-2.3.4-mdns-resolver-20041102.diff 12809
+AUX 2.3.4/glibc-2.3.4-mips-add-missing-sgidefs_h.patch 1196 RMD160 77acb28f5d63aa99dcad89e3174db9959213b201 SHA1 5481c6f108bda250afe1a2f44ce90c910074a318 SHA256 a5b19098aa74fa3830e8f783861ba293cb5b6b1655110578e6f2f6d2ef3b0ca8
+MD5 41cec3deb89ffdbd670024a2b615b819 files/2.3.4/glibc-2.3.4-mips-add-missing-sgidefs_h.patch 1196
+RMD160 77acb28f5d63aa99dcad89e3174db9959213b201 files/2.3.4/glibc-2.3.4-mips-add-missing-sgidefs_h.patch 1196
+SHA256 a5b19098aa74fa3830e8f783861ba293cb5b6b1655110578e6f2f6d2ef3b0ca8 files/2.3.4/glibc-2.3.4-mips-add-missing-sgidefs_h.patch 1196
+AUX 2.3.4/glibc-2.3.4-mips-generate-syscall_h.patch 8230 RMD160 bc10c04abb729811cadc663a14aed507672b1a31 SHA1 fc6ed283e15c95b8f7a95f1fb0ff0b15bcbf33a4 SHA256 00551e655acfa2d0748894cb56ef37d605adb18f412bfb9339eb5caab9555efe
+MD5 d490f38bd9ca9c48a9799f1e48629f6e files/2.3.4/glibc-2.3.4-mips-generate-syscall_h.patch 8230
+RMD160 bc10c04abb729811cadc663a14aed507672b1a31 files/2.3.4/glibc-2.3.4-mips-generate-syscall_h.patch 8230
+SHA256 00551e655acfa2d0748894cb56ef37d605adb18f412bfb9339eb5caab9555efe files/2.3.4/glibc-2.3.4-mips-generate-syscall_h.patch 8230
+AUX 2.3.4/glibc-2.3.4-mips-prot_grows-undefined.patch 1410 RMD160 9ff69a319b6ec0b30c23ae27b40419fbb5aa61ec SHA1 487953182d9c642a1c50280aa4720c839da7bf60 SHA256 94d260e531eb057f714a852ae14a2d5b5af607010e697b65f4077b98f7b487c9
+MD5 03b2b9cfe46d287c2a28df70e7a9e9a1 files/2.3.4/glibc-2.3.4-mips-prot_grows-undefined.patch 1410
+RMD160 9ff69a319b6ec0b30c23ae27b40419fbb5aa61ec files/2.3.4/glibc-2.3.4-mips-prot_grows-undefined.patch 1410
+SHA256 94d260e531eb057f714a852ae14a2d5b5af607010e697b65f4077b98f7b487c9 files/2.3.4/glibc-2.3.4-mips-prot_grows-undefined.patch 1410
+AUX 2.3.4/glibc-2.3.4-mips-rtld_deepbind-undefined.patch 1425 RMD160 73ea789e48b0b0bbb67b2081b90d1ecf14ecdf81 SHA1 795062c851ebb4901445e4aa4fbdb0f971ee2bd0 SHA256 245b8b95d62a763a8111efba76bad2b749660c3a183088a81efd196ea5527c86
+MD5 8d43dc97fe220048ade220f23e84f006 files/2.3.4/glibc-2.3.4-mips-rtld_deepbind-undefined.patch 1425
+RMD160 73ea789e48b0b0bbb67b2081b90d1ecf14ecdf81 files/2.3.4/glibc-2.3.4-mips-rtld_deepbind-undefined.patch 1425
+SHA256 245b8b95d62a763a8111efba76bad2b749660c3a183088a81efd196ea5527c86 files/2.3.4/glibc-2.3.4-mips-rtld_deepbind-undefined.patch 1425
+AUX 2.3.4/glibc-2.3.4-mips-sysdep-cancel.diff 2402 RMD160 fc09a94a9f71eadb42e29620a285a4e78365bee9 SHA1 8f096a8b491f2523b7726b50d85f80371534e732 SHA256 14b507752480c2cbe2fc2caae0b358dfb3e8d568da979827ad56b54caacf2034
+MD5 1185022e9a50560d1bf9116a0461e011 files/2.3.4/glibc-2.3.4-mips-sysdep-cancel.diff 2402
+RMD160 fc09a94a9f71eadb42e29620a285a4e78365bee9 files/2.3.4/glibc-2.3.4-mips-sysdep-cancel.diff 2402
+SHA256 14b507752480c2cbe2fc2caae0b358dfb3e8d568da979827ad56b54caacf2034 files/2.3.4/glibc-2.3.4-mips-sysdep-cancel.diff 2402
+AUX 2.3.4/glibc-2.3.4-mips-update-__throw.patch 1975 RMD160 bf96df13049983368abd5f60030ff0882f9f88fe SHA1 047e24610e66644dc97f7ba67dd4cc8b0f6333f4 SHA256 d0e6ac3dc3a59a55854553481e1ddf22025b1d91c0f1da10b87ef428da88f309
+MD5 039f62650037a4a15cef3066b26d27c9 files/2.3.4/glibc-2.3.4-mips-update-__throw.patch 1975
+RMD160 bf96df13049983368abd5f60030ff0882f9f88fe files/2.3.4/glibc-2.3.4-mips-update-__throw.patch 1975
+SHA256 d0e6ac3dc3a59a55854553481e1ddf22025b1d91c0f1da10b87ef428da88f309 files/2.3.4/glibc-2.3.4-mips-update-__throw.patch 1975
+AUX 2.3.4/glibc-2.3.4-nptl-altivec.patch 6140 RMD160 9d7257cfea2d3cb5ac91229c5f555db506707834 SHA1 6dd72f844d02fbed530828c8101e5c33e2946304 SHA256 aaf78f5378303443e1aaefb11db4bd312d91801753d66b9ade080611f1237e1b
+MD5 207e313566b3fc24e0a5ca2ffd2da1d9 files/2.3.4/glibc-2.3.4-nptl-altivec.patch 6140
+RMD160 9d7257cfea2d3cb5ac91229c5f555db506707834 files/2.3.4/glibc-2.3.4-nptl-altivec.patch 6140
+SHA256 aaf78f5378303443e1aaefb11db4bd312d91801753d66b9ade080611f1237e1b files/2.3.4/glibc-2.3.4-nptl-altivec.patch 6140
+AUX 2.3.4/glibc-2.3.4-nptl-pthread.h-g++-fix.patch 3304 RMD160 bde103e605dd953baabab03b5aa31320462e2e3c SHA1 ede6ebddfd1bd748a20cd151b3174e976dcae6db SHA256 71efa50989d3c68c855ae6c8e0f686ba2d2b3418486da9924f3f365dd3783ea7
+MD5 7960564130a698073bdd3597a781e39b files/2.3.4/glibc-2.3.4-nptl-pthread.h-g++-fix.patch 3304
+RMD160 bde103e605dd953baabab03b5aa31320462e2e3c files/2.3.4/glibc-2.3.4-nptl-pthread.h-g++-fix.patch 3304
+SHA256 71efa50989d3c68c855ae6c8e0f686ba2d2b3418486da9924f3f365dd3783ea7 files/2.3.4/glibc-2.3.4-nptl-pthread.h-g++-fix.patch 3304
+AUX 2.3.4/glibc-2.3.4-res_init.patch 3417 RMD160 ed66680ef9bbdc9a1aaf22c7237778fb865f2a62 SHA1 9550b6ce63603fb689ccc3e4b2f5f0293cc7403c SHA256 928c7291094d59800823344a34c6aab6b25f921b53db64e8fe95bbc68e5b4c68
+MD5 fe21fd44628b90f50e5024462cf4c348 files/2.3.4/glibc-2.3.4-res_init.patch 3417
+RMD160 ed66680ef9bbdc9a1aaf22c7237778fb865f2a62 files/2.3.4/glibc-2.3.4-res_init.patch 3417
+SHA256 928c7291094d59800823344a34c6aab6b25f921b53db64e8fe95bbc68e5b4c68 files/2.3.4/glibc-2.3.4-res_init.patch 3417
+AUX 2.3.4/glibc-2.3.4.20040808-i386-got-fix.diff 4203 RMD160 ffbf96d9d471ce6582c6e32db4a87446ba67d33e SHA1 cb3e4670de182b526ac4934fdc1f69961e73a8a4 SHA256 e634c0d04d6896650a62db2d5985b3728b32f406d907f022ef0ee642252b3e64
+MD5 340825c77e38e88e0ceaa12f154cbfa3 files/2.3.4/glibc-2.3.4.20040808-i386-got-fix.diff 4203
+RMD160 ffbf96d9d471ce6582c6e32db4a87446ba67d33e files/2.3.4/glibc-2.3.4.20040808-i386-got-fix.diff 4203
+SHA256 e634c0d04d6896650a62db2d5985b3728b32f406d907f022ef0ee642252b3e64 files/2.3.4/glibc-2.3.4.20040808-i386-got-fix.diff 4203
+AUX 2.3.4/glibc-gentoo-libdir.patch 1347 RMD160 7ca1a159d74a615246d2e1b45e0911ac463daa21 SHA1 1c62821482722c606426b2dbc286bd798debbc28 SHA256 f8e5729b904b7592897bfa11bc268d65c5689bdef83b74c572fbb1fbee2f826c
+MD5 e109c03013bd08a2b96e2c2ca9017a4b files/2.3.4/glibc-gentoo-libdir.patch 1347
+RMD160 7ca1a159d74a615246d2e1b45e0911ac463daa21 files/2.3.4/glibc-gentoo-libdir.patch 1347
+SHA256 f8e5729b904b7592897bfa11bc268d65c5689bdef83b74c572fbb1fbee2f826c files/2.3.4/glibc-gentoo-libdir.patch 1347
+AUX 2.3.4/glibc-sec-hotfix-20040916.patch 3080 RMD160 3419ab628d16045042f5df9e487386e03c8d979d SHA1 b69cfa5115746f2d38fa301a55d68efe88f7bcff SHA256 9f48a55f4207bdf4a9496680f09661a06d4a4bd11dad11cb0986949c0d3cc35d
+MD5 bbe355d94c5a36e11f543d12b70b5702 files/2.3.4/glibc-sec-hotfix-20040916.patch 3080
+RMD160 3419ab628d16045042f5df9e487386e03c8d979d files/2.3.4/glibc-sec-hotfix-20040916.patch 3080
+SHA256 9f48a55f4207bdf4a9496680f09661a06d4a4bd11dad11cb0986949c0d3cc35d files/2.3.4/glibc-sec-hotfix-20040916.patch 3080
+AUX 2.3.4/glibc234-alpha-xstat.patch 7653 RMD160 6264e9a9c7ff7a95120994985113fce0bd7b5f43 SHA1 c23097a40527399fd26128e7336ed00571a9d5d1 SHA256 541ac8a6532f7fd5a30b5c65451fe7122b4d04a3dd4dc85601216d6d185c3d70
+MD5 ee692cfc6e7c810a2785093948638bbc files/2.3.4/glibc234-alpha-xstat.patch 7653
+RMD160 6264e9a9c7ff7a95120994985113fce0bd7b5f43 files/2.3.4/glibc234-alpha-xstat.patch 7653
+SHA256 541ac8a6532f7fd5a30b5c65451fe7122b4d04a3dd4dc85601216d6d185c3d70 files/2.3.4/glibc234-alpha-xstat.patch 7653
+AUX 2.3.4/host.conf 1302 RMD160 84c89e4c5934b024a4a14c0e0d876600493cc7c8 SHA1 35aa49ce270c694bd1856e124dd294eff50cc5aa SHA256 83ede694aa7f4cd79b0c64592f0ef9d338ba1fed4b02f26ee1534372d19c0c7f
+MD5 b72e5aca6d834026a6f5fb87623e6fd3 files/2.3.4/host.conf 1302
+RMD160 84c89e4c5934b024a4a14c0e0d876600493cc7c8 files/2.3.4/host.conf 1302
+SHA256 83ede694aa7f4cd79b0c64592f0ef9d338ba1fed4b02f26ee1534372d19c0c7f files/2.3.4/host.conf 1302
+AUX 2.3.4/hppa-no-pie.patch 1265 RMD160 a7b0b172f5d5269c980747c7fee0e5341306a402 SHA1 c90936a5f1fea9d925556e9f12e119d373bb11fc SHA256 c7c01f35eed933b63ed25061d617e414aeb0826ad100d78e5cd9b1e56461273b
+MD5 76185820806d5641f0314281ceb4790b files/2.3.4/hppa-no-pie.patch 1265
+RMD160 a7b0b172f5d5269c980747c7fee0e5341306a402 files/2.3.4/hppa-no-pie.patch 1265
+SHA256 c7c01f35eed933b63ed25061d617e414aeb0826ad100d78e5cd9b1e56461273b files/2.3.4/hppa-no-pie.patch 1265
+AUX 2.3.5/glibc-2.3.5-frandom-detect.patch 3080 RMD160 7d0824edc14f9bfdde07eb7d1ac0d0281e55e343 SHA1 d62af2e590920d8fb07a977ce3f2d5bf3a62c064 SHA256 910a95fe5cf46402fcf865c5d759002e4a54ec979e3a70147f5ac8620e01f3f1
+MD5 04bcec718f2883f28bf862b7e390d1b0 files/2.3.5/glibc-2.3.5-frandom-detect.patch 3080
+RMD160 7d0824edc14f9bfdde07eb7d1ac0d0281e55e343 files/2.3.5/glibc-2.3.5-frandom-detect.patch 3080
+SHA256 910a95fe5cf46402fcf865c5d759002e4a54ec979e3a70147f5ac8620e01f3f1 files/2.3.5/glibc-2.3.5-frandom-detect.patch 3080
+AUX 2.3.5/glibc-2.3.5-propolice-guard-functions.patch 1302 RMD160 0db04ddd5b4356fe111affcec278db0e0607fa8a SHA1 f5b1154f933ca86a01910beca3119e83a44e7546 SHA256 b4b7f0b82f7cb1b76f2e78deb9f64f252e5a9146729aa53fc6176a14cd175668
+MD5 13dd059e6383c7cac94d1bda126af21d files/2.3.5/glibc-2.3.5-propolice-guard-functions.patch 1302
+RMD160 0db04ddd5b4356fe111affcec278db0e0607fa8a files/2.3.5/glibc-2.3.5-propolice-guard-functions.patch 1302
+SHA256 b4b7f0b82f7cb1b76f2e78deb9f64f252e5a9146729aa53fc6176a14cd175668 files/2.3.5/glibc-2.3.5-propolice-guard-functions.patch 1302
+AUX 2.3.5/ssp.c 4297 RMD160 cbedfaed1440e23c076dd8a883ea3c707623d61c SHA1 0700fe3a6a91d1c8fe08daf4ef04fbfbcb9db5cd SHA256 77367f274b85926791741d6014f3b068b31cb9c8dbf056716c972eae7cf03237
+MD5 b3ce53b86060b6209a182366c501a0f1 files/2.3.5/ssp.c 4297
+RMD160 cbedfaed1440e23c076dd8a883ea3c707623d61c files/2.3.5/ssp.c 4297
+SHA256 77367f274b85926791741d6014f3b068b31cb9c8dbf056716c972eae7cf03237 files/2.3.5/ssp.c 4297
+AUX fix-sysctl_h.patch 376 RMD160 b5dd68158224b09ddc42986be02351c74f81e0a0 SHA1 5601fbea6961368bcc192aef78e96ee2c5310713 SHA256 3a589f63fd1f3f6c5a00c66a10943d3d64630aefb1eb5b37e7f2a856fcea234a
+MD5 e4393f4721a207750581d6265d5f7f40 files/fix-sysctl_h.patch 376
+RMD160 b5dd68158224b09ddc42986be02351c74f81e0a0 files/fix-sysctl_h.patch 376
+SHA256 3a589f63fd1f3f6c5a00c66a10943d3d64630aefb1eb5b37e7f2a856fcea234a files/fix-sysctl_h.patch 376
+AUX glibc-2.2.2-test-lfs-timeout.patch 320 RMD160 c8baab8326b4aebf642dd5ab512fbebf2371e9d9 SHA1 df2a868fba86adba184ae9750e9dee3b2ec300a5 SHA256 28e7ebc92ed93a12daf5357f07537be3daed5f4717a075c77a3ad248ec99dcf0
+MD5 52cfc7627fc62dfb26d8d163aac361f6 files/glibc-2.2.2-test-lfs-timeout.patch 320
+RMD160 c8baab8326b4aebf642dd5ab512fbebf2371e9d9 files/glibc-2.2.2-test-lfs-timeout.patch 320
+SHA256 28e7ebc92ed93a12daf5357f07537be3daed5f4717a075c77a3ad248ec99dcf0 files/glibc-2.2.2-test-lfs-timeout.patch 320
+AUX glibc-manpages-2.2.5.tar.bz2 14610 RMD160 24f9249a5a2338893a80bc7d2e31f71fe5402fce SHA1 6a17e014e2481dca1b37782bade4eeb76f4cb54b SHA256 09ebe8c0a8a3d49a0d3a89f4fb7b7a19b072c7839b7692065f7ef07a2e9f758c
+MD5 b712a49b5113fccb4c8b0ada2a30d390 files/glibc-manpages-2.2.5.tar.bz2 14610
+RMD160 24f9249a5a2338893a80bc7d2e31f71fe5402fce files/glibc-manpages-2.2.5.tar.bz2 14610
+SHA256 09ebe8c0a8a3d49a0d3a89f4fb7b7a19b072c7839b7692065f7ef07a2e9f758c files/glibc-manpages-2.2.5.tar.bz2 14610
+AUX glibc-manpages-2.3.2.tar.bz2 14700 RMD160 052f2203b7170034c07466d0d9f3a0688267f4c0 SHA1 c01ed962ef934b2ddf29776e6b9cbb9a1dd27a2e SHA256 6a410d295de9cd69560f1521f84b17c7ed678a2af3e53f6a077eb2c36c544f6a
+MD5 184eddb92615fb991dce41b9edbfa690 files/glibc-manpages-2.3.2.tar.bz2 14700
+RMD160 052f2203b7170034c07466d0d9f3a0688267f4c0 files/glibc-manpages-2.3.2.tar.bz2 14700
+SHA256 6a410d295de9cd69560f1521f84b17c7ed678a2af3e53f6a077eb2c36c544f6a files/glibc-manpages-2.3.2.tar.bz2 14700
+AUX glibc-sec-hotfix-20040804.patch 4319 RMD160 6f7f58794273ed0736653a09e823e8ac3031ed29 SHA1 1d86c62d5c52b59881eab006b36e3a9891607887 SHA256 9d950b2f45cfbdae6df590137e4aae938380673449fe4507536557fb4c797393
+MD5 13701e6cc0de584680502c0cd958f2cf files/glibc-sec-hotfix-20040804.patch 4319
+RMD160 6f7f58794273ed0736653a09e823e8ac3031ed29 files/glibc-sec-hotfix-20040804.patch 4319
+SHA256 9d950b2f45cfbdae6df590137e4aae938380673449fe4507536557fb4c797393 files/glibc-sec-hotfix-20040804.patch 4319
+AUX glibc-sec-hotfix-20040916.patch 3080 RMD160 3419ab628d16045042f5df9e487386e03c8d979d SHA1 b69cfa5115746f2d38fa301a55d68efe88f7bcff SHA256 9f48a55f4207bdf4a9496680f09661a06d4a4bd11dad11cb0986949c0d3cc35d
+MD5 bbe355d94c5a36e11f543d12b70b5702 files/glibc-sec-hotfix-20040916.patch 3080
+RMD160 3419ab628d16045042f5df9e487386e03c8d979d files/glibc-sec-hotfix-20040916.patch 3080
+SHA256 9f48a55f4207bdf4a9496680f09661a06d4a4bd11dad11cb0986949c0d3cc35d files/glibc-sec-hotfix-20040916.patch 3080
+AUX locales.build 602 RMD160 121548e0ad367fee30f3bded5d4a7d6dca9a6ce0 SHA1 1f59c139b65c48505465551634a6886fc59a7be9 SHA256 429e6bd22bc0870f4220e430e4ce3910c334f17972303f84edafcc6e54be1fba
+MD5 c4300e2f8808cb38a308745ed8b77367 files/locales.build 602
+RMD160 121548e0ad367fee30f3bded5d4a7d6dca9a6ce0 files/locales.build 602
+SHA256 429e6bd22bc0870f4220e430e4ce3910c334f17972303f84edafcc6e54be1fba files/locales.build 602
+AUX nscd 1379 RMD160 9c0a17bace0ced3cc4cb4ef98ecdda52703a1b4f SHA1 99e695e56c064560d01d46cd0a271fe89a812711 SHA256 f4659e9b5b4d38940df561ccdb1027d4a95993cb99beec7d4c0b3c17d16c3afa
+MD5 afafe9d4d5925c8de0f3145faf32c4a8 files/nscd 1379
+RMD160 9c0a17bace0ced3cc4cb4ef98ecdda52703a1b4f files/nscd 1379
+SHA256 f4659e9b5b4d38940df561ccdb1027d4a95993cb99beec7d4c0b3c17d16c3afa files/nscd 1379
+AUX nscd.conf 1158 RMD160 50651e89a0cb206b1d37dae8840527694fe561b5 SHA1 5f5166aa6e0bffa57c52c39d3ec51ad3b0efa607 SHA256 378b7953adf5aa0e03bff49b7c654cae67b3efee7c92361b385fe7d3e9fb57c7
+MD5 2013443f5192d4b999953ba4248d288c files/nscd.conf 1158
+RMD160 50651e89a0cb206b1d37dae8840527694fe561b5 files/nscd.conf 1158
+SHA256 378b7953adf5aa0e03bff49b7c654cae67b3efee7c92361b385fe7d3e9fb57c7 files/nscd.conf 1158
+AUX nsswitch.conf 503 RMD160 f375f92f6b41029c93382c39cef896261b140cfc SHA1 42f7f5cc3de75c69bf60d806ac8490106ea63326 SHA256 6c38b8642d5da884327ad678d0351d57be3621562253bd9711394bad87e45e2d
+MD5 8d58079469aedb014a800101ef60558f files/nsswitch.conf 503
+RMD160 f375f92f6b41029c93382c39cef896261b140cfc files/nsswitch.conf 503
+SHA256 6c38b8642d5da884327ad678d0351d57be3621562253bd9711394bad87e45e2d files/nsswitch.conf 503
+AUX test-__thread.c 53 RMD160 dcc9960f3bf26c935f41dc5c408613963885ad58 SHA1 dcb60595b2730a8a05eb045563f13cd615830acf SHA256 28a7836b810cf21f6071126d6b19dbdbf567f2544f9283700d125ad653d7519e
+MD5 d8830438ea871dbfd1acf7a3d0299159 files/test-__thread.c 53
+RMD160 dcc9960f3bf26c935f41dc5c408613963885ad58 files/test-__thread.c 53
+SHA256 28a7836b810cf21f6071126d6b19dbdbf567f2544f9283700d125ad653d7519e files/test-__thread.c 53
+AUX test-sysctl_h.c 54 RMD160 b7c2e5956e0a232193610701ccc57a8d56615a36 SHA1 d727fbe809fbec9157661fbdb6c8077a68d95044 SHA256 19337cae62f1ebc23ca8d8de8a98e7f03c9dd77a671100995d6e7c8a3833e759
+MD5 4404ee4b6e3017819d8f36082e0265e5 files/test-sysctl_h.c 54
+RMD160 b7c2e5956e0a232193610701ccc57a8d56615a36 files/test-sysctl_h.c 54
+SHA256 19337cae62f1ebc23ca8d8de8a98e7f03c9dd77a671100995d6e7c8a3833e759 files/test-sysctl_h.c 54
+DIST glibc-2.3.5-patches-1.13.tar.bz2 24793 RMD160 1940f068e05222738a95baa566a0da78ca8eb3ab SHA1 68f663738e5523f5039eac99348d197f9856ca7f SHA256 167da2eba108780b54e6f6ec8e9c2f4caf30eb65121e916c6d8813bbb46a2216
+DIST glibc-2.3.5.tar.bz2 13583139 RMD160 ebdda60cd848fd5b30b5e3345fb481d3c5663540 SHA1 465cb1f4708dfa88606379cc1ebecb724c65f027 SHA256 de97b9c15d75ac86b7a079a20315100a5c9833bb3c217b448913041a5bd988a5
+DIST glibc-2.4-patches-1.17.tar.bz2 179314 RMD160 a537434c85cb9bd96c77f0bfeba8d7134f54d7ff SHA1 209e89b54aa70a6a785d9b8abbe07372741fe3cf SHA256 255c900f4b9e24e65ecefc6e65040a15122901f2482f98e29b1e361cb2d4faa9
+DIST glibc-2.4.tar.bz2 15202445 RMD160 ee2712a0e6fab8e086958c1f23221f8d07af3de1 SHA1 35c636e4b474cda0f06e361d5e9caec092fd73d3 SHA256 27aaaaa78b4ab5da76bb29385dc9be087ba7b855a9102eaaa78ce3ec5e2e7fcd
+DIST glibc-fedora-20041219T2331.tar.bz2 761998 RMD160 cfc859a7e0a904cfb340c832267d3377e850cf6e SHA1 31e10b882bb9288831e1a1b2ed0ddece7099ffbd SHA256 e36ffa84388ebb746cb80c37d6fd1acc9e45e07b85c30b0a2ad9f511fae59cec
+DIST glibc-infopages-2.3.5.tar.bz2 1273846 RMD160 14a587e5df98ad113fa1499d2a958efbb47c437a SHA1 bb974b6dacd02161532717a9d8f97248acd6da14 SHA256 79a602955e3cf4288fa9967240b397281594acab18c263d2ef864e7d71aa54e1
+DIST glibc-libidn-2.3.5.tar.bz2 101118 RMD160 d54fd0351a4e0dc2c2ea1211bc94b04872addc48 SHA1 971638c53302ad4183cd79efb20ebf10e64b64ba SHA256 8e06f030b5980a285a33a2b2c0783c36afbf614d5d5925358112d288479275ec
+DIST glibc-libidn-2.4.tar.bz2 102305 RMD160 76b2e15e7613c4ac8db3bf90e90929c0e369ab04 SHA1 09981bb5f15812caa5824b3946b30cf030afc255 SHA256 2f29ec2b2b2f75f787a1eed8fdea20aff212dc3bad97651ca376914c49181977
+DIST glibc-linuxthreads-2.3.5.tar.bz2 236946 RMD160 b86afc7e2359165704d09c4c3b0d84826c636890 SHA1 bfc44a76a708f905fe9c414162d5efcd3d47355f SHA256 3fec798bb944c2f89f1d95ec7bb38f60e1393c9db0da6bdbb922606e023108b5
+DIST glibc-linuxthreads-20060605.tar.bz2 247200 RMD160 aaa0a150eec4d63787f86ae04ded4d92a10c6f29 SHA1 1e0cf861de45f22d01d7d305482bacb0a869262f SHA256 1d15e236926fff6daa81e6af34e7903206b67f849f828ca976ab077b4677fb52
+DIST glibc-manpages-2.3.5.tar.bz2 22148 RMD160 ecd70af5f77deaa15a1f97df5c9ba6151e988d86 SHA1 a2872baf7c3123e8d4615a18b38104b84bbc5aca SHA256 b49a5cf3996e2671bc8246c9a077016b7d74cdbb8a4f6a6410247fcbe34d2b5a
+DIST glibc-ports-2.4.tar.bz2 381472 RMD160 72987098f9fbd5a1ad617bf2136081c0db80a429 SHA1 8b4d93bfbcd5b6a36e09ff08fe0c2a08adc1b886 SHA256 2fbbcaad8a9f8560485c398a9066959fe2713c8bc7e653ec476fb56fed21d19a
+DIST glibc-powerpc-cpu-addon-v0.01.tgz 22422 RMD160 3483c94ec55819b36aa66fc60462317f8d15e4df SHA1 fd30cde7c7cb42baa2c8fa1ac88eeeeb509cac29 SHA256 0ffa9a432fffb9bfed99c529b631a27534ba848c7ec1d707732338b73a4a8ce9
+EBUILD glibc-2.3.5-r2.ebuild 38855 RMD160 4b050f55ebc15d359637662231b362a79cdb5509 SHA1 08b567e8963e7407af3ededb61f09a9e56b051e8 SHA256 78653e2a0b3f9f91656ae275e20355e3617b3123ecaca1464cdd913c6d672463
+MD5 8f846fa778e2f7175b046d38d8882243 glibc-2.3.5-r2.ebuild 38855
+RMD160 4b050f55ebc15d359637662231b362a79cdb5509 glibc-2.3.5-r2.ebuild 38855
+SHA256 78653e2a0b3f9f91656ae275e20355e3617b3123ecaca1464cdd913c6d672463 glibc-2.3.5-r2.ebuild 38855
+EBUILD glibc-2.4-r3.ebuild 38802 RMD160 3804894817b3d54f9bf82b0e9b43638196650f0f SHA1 835bbce2bae0195c0a05d727b9ed5b6de7e6162e SHA256 56b123aff47b56e1387012502270f06d8e97b6794aebbda67b0242138a8a3ca1
+MD5 3ae29aa56c74c396a69a44d75bf4349f glibc-2.4-r3.ebuild 38802
+RMD160 3804894817b3d54f9bf82b0e9b43638196650f0f glibc-2.4-r3.ebuild 38802
+SHA256 56b123aff47b56e1387012502270f06d8e97b6794aebbda67b0242138a8a3ca1 glibc-2.4-r3.ebuild 38802
+MISC ChangeLog 87156 RMD160 3985db99cf7c656a96ab7e2b72d7fd332d0218c7 SHA1 0d83c15ab8d851e96744b28f5d2bf82fc0ac5ca1 SHA256 19c682a5eeefdfc5eb03cef10d681af9dce8caacc4dd02b5cee90163e9201cec
+MD5 79b13b98ded87551125446ce8710f18f ChangeLog 87156
+RMD160 3985db99cf7c656a96ab7e2b72d7fd332d0218c7 ChangeLog 87156
+SHA256 19c682a5eeefdfc5eb03cef10d681af9dce8caacc4dd02b5cee90163e9201cec ChangeLog 87156
+MISC metadata.xml 162 RMD160 d002486a43522f2116b1d9d59828c484956d66e2 SHA1 d6b4923897f6ae673b4f93646f5b4ba61d5a2c3c SHA256 65a915d44de1f01d4b7f72d313b4192c38374a9835d24988c00c1e73dca5805a
+MD5 567094e03359ffc1c95af7356395228d metadata.xml 162
+RMD160 d002486a43522f2116b1d9d59828c484956d66e2 metadata.xml 162
+SHA256 65a915d44de1f01d4b7f72d313b4192c38374a9835d24988c00c1e73dca5805a metadata.xml 162
+size 1575 files/digest-glibc-2.4-r3 1575
+RMD160 c82aed2e0f3f556b051d7e3a1fc13c202f67bf2f files/digest-glibc-2.4-r3 1575
+SHA256 f22d43e9647ef7c83b51e5102caaca7e38b3d16783e6097b1a3cbe4b0957070e files/digest-glibc-2.4-r3 1575
+MD5 0839b75709d53cb72b9a3f6039d220a5 files/digest-glibc-2.4-r3 1575
+size 1870 files/digest-glibc-2.3.5-r2 1870
+RMD160 ad47a68d940e0b791901aa14c3730dad545e486e files/digest-glibc-2.3.5-r2 1870
+SHA256 cd6b1397b89ea59e164f262fe07f94422fd10ef58b1de2d68204d96781fd2bbd files/digest-glibc-2.3.5-r2 1870
+MD5 e92c657d23aa2cc0d2beadc6ae315ad0 files/digest-glibc-2.3.5-r2 1870
