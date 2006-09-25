@@ -1,0 +1,35 @@
+diff -ru binutils-2.16.1.orig/bfd/elflink.c binutils-2.16.1/bfd/elflink.c
+--- binutils-2.16.1.orig/bfd/elflink.c	2005-04-29 15:40:22.000000000 +0200
++++ binutils-2.16.1/bfd/elflink.c	2006-03-08 10:50:20.000000000 +0100
+@@ -3683,11 +3683,12 @@
+ 
+ 	  /* If this is a hidden symbol, or if it is not version
+ 	     1, we append the version name to the symbol name.
+-	     However, we do not modify a non-hidden absolute
+-	     symbol, because it might be the version symbol
+-	     itself.  FIXME: What if it isn't?  */
++	     However, we do not modify a non-hidden absolute symbol
++	     if it is not a function, because it might be the version
++	     symbol itself.  FIXME: What if it isn't?  */
+ 	  if ((iver.vs_vers & VERSYM_HIDDEN) != 0
+-	      || (vernum > 1 && ! bfd_is_abs_section (sec)))
++	      || (vernum > 1 && (! bfd_is_abs_section (sec)
++				 || ELF_ST_TYPE (isym->st_info) == STT_FUNC)))
+ 	    {
+ 	      const char *verstr;
+ 	      size_t namelen, verlen, newlen;
+--- binutils-2.16.1.orig/ld/configure.tgt	2006-09-18 13:57:01.000000000 +0200
++++ binutils-2.16.1/ld/configure.tgt	2006-09-18 13:57:45.000000000 +0200
+@@ -171,10 +171,12 @@
+ i[3-7]86-*-sysv[45]*)	targ_emul=elf_i386 ;;
+ i[3-7]86-*-solaris2*)	targ_emul=elf_i386_ldso
+                         targ_extra_emuls="elf_i386 elf_x86_64"
++			targ_extra_libpath=$targ_extra_emuls
+                         ;;
+ i[3-7]86-*-unixware)	targ_emul=elf_i386 ;;
+ i[3-7]86-*-solaris*)	targ_emul=elf_i386_ldso
+                         targ_extra_emuls="elf_i386"
++			targ_extra_libpath=$targ_extra_emuls
+                         ;;
+ i[3-7]86-*-netbsdelf* | \
+ i[3-7]86-*-netbsd*-gnu* | \
