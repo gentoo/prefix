@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+# <grobian@gentoo.org> -- 2006-09-22
+# ecleankw weeds out all keywords in $KEYWORDS of an ebuild that are not
+# in $my_keywords.  Next to that, it currently drops all left over
+# keywords back to ~arch.  (The script basically performs a full inner
+# join, based on the nested loop algorithm.)
+# For exg: this script does in fact the intersection of my_keywords and
+# KEYWORDS and drops the intersection to ~arch.  In this case it's equal
+# to the full inner join, because in theory we have (unique) sets.
+
+# these need to reflect the keywords that are valid for the tree
+my_keywords="amd64 ppc-macos x86 x86-macos"
+
+if [ -z $1 ];
+then
+	files="*.ebuild"
+else
+	files="$*"
+fi
+
+for f in $files;
+do
+	echo -n "Processing $f ... "
+	newkw=""
+	eval `egrep "^KEYWORDS=" "$f"`
+	for kw in $KEYWORDS;
+	do
+		for mkw in $my_keywords;
+		do
+			if [[ $kw == $mkw || $kw == ~$mkw  ]];
+			then
+				newkw="$newkw ~$mkw"
+				break
+			fi
+		done
+	done
+	sed -i \
+		-e "s|^KEYWORDS=.*$|KEYWORDS=\"${newkw:1}\"|" \
+		"$f"
+	echo "${newkw:1}"
+done
