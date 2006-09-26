@@ -147,6 +147,42 @@ get_versionebuild() {
 	}'
 }
 
+cross_diff() {
+	mver=$1
+	pver=$2
+	echo -n "  new version in main tree: ${mver} [${pver}] ... "
+	mte=`basename "${MTREEDIR}/${EPACKAGE}"/*${mver}.ebuild`
+	pte=`echo *${pver}.ebuild`
+	mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$mte)
+	ptecv=$(get_cvsversion $pte)
+	echo "cross diff from $ptecv to $mtecv"
+	# checkout both original versions and make the diffs,
+	# ignoring keywords
+	cvs -Q -d"${CVSROOT}" \
+		checkout -r$ptecv -p ${CVSMODULE}/${EPACKAGE}/$pte \
+		> /var/tmp/$pte-$ptecv.tmp
+	cvs -Q -d"${CVSROOT}" \
+		checkout -r$mtecv -p ${CVSMODULE}/${EPACKAGE}/$mte \
+		> /var/tmp/$mte-$mtecv.tmp
+	# create the new file to patch against
+	cp $pte $mte
+	# Sanitise the $Header line, because it may differ being in the
+	# Attic or something.  Use version of main tree, to keep updates
+	# working.
+	sed -i \
+		-e 's|^# \$Header:.*$|'"`egrep '^# \\\$Header: ' /var/tmp/$mte-$mtecv.tmp`"'|' \
+		$mte /var/tmp/$pte-$ptecv.tmp
+	# make KEYWORDS and EAPI void in the diff
+	sed -i \
+		-e 's|^KEYWORDS=.*$|'"`egrep '^KEYWORDS=' $pte`"'|' \
+		-e 's|^# \$Header:.*$|&\n\nEAPI="prefix"|' \
+		/var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp
+	# (attempt to) do it!
+	diff -u /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp \
+		| patch --no-backup-if-mismatch $mte
+	rm /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp
+}
+
 if [[ ! -d ${MTREEDIR}/${EPACKAGE} ]];
 then
 	echo "no such package in main tree: ${EPACKAGE}"
@@ -159,14 +195,42 @@ pt=`ls *.ebuild`
 # do a nested loop join, where we know that both sides are sorted and
 # that pt is more important, because we're not interested in older
 # versions
-for mte in $mt;
+for pte in $pt;
 do
-	mtev=$(get_ebuildversion $mte)
-	[[ $mtev > $mtelv ]] && mtelv=$mtev
-	for pte in $pt;
+	had_match=0
+	ptev=$(get_ebuildversion $pte)
+	[[ $ptev > $ptelv ]] && ptelv=$ptev
+	for mte in $mt;
 	do
+		if [[ $had_match != 0 ]];
+		then
+			# try and see if there is a revision higher than the one we
+			# just matched
+			mtev=$(get_ebuildversion $mte)
+			# look at version only first
+			ptevn=${ptev%.*}
+			mtevn=${mtev%.*}
+			if [[ $ptevn == $mtevn ]];
+			then
+				# look at revision numbers
+				ptevnr=${ptev##*.}
+				mtevnr=${mtev##*.}
+				vdiff=$((ptevnr - mtevnr))
+				if [[ $vdiff > 0 ]];
+				then
+					# due to sortedness, vdiff cannot be negative here, so
+					# it is a newer revision, save it for later
+					had_match=$mtev
+				fi
+			else
+				# we have a totally new version, stop looking for
+				# updates
+				continue
+			fi
+		fi
 		if [[ $mte == $pte ]];
 		then
+			had_match=1
 			# look inside the files to see if the file was updated or not
 			echo -n "  found $mte in both ... "
 			mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$mte)
@@ -203,48 +267,25 @@ do
 			fi
 		fi
 	done
+	if [[ $had_match > 1 ]];
+	then
+		# we have to apply an update from $ptev to $had_match
+		cross_diff $(get_versionebuild $ptev) $(get_versionebuild $had_match)
+	elif [[ $had_match == 0 ]];
+	then
+		# stale entry
+		echo "  warning: $pte no longer in the main tree"
+	fi
 done
-for pte in $pt;
+for mte in $mt;
 do
-	ptev=$(get_ebuildversion $pte)
-	[[ $ptev > $ptelv ]] && ptelv=$ptev
+	mtev=$(get_ebuildversion $mte)
+	[[ $mtev > $mtelv ]] && mtelv=$mtev
 done
 if [[ $mtelv > $ptelv ]];
 then
 	mver=$(get_versionebuild $mtelv)
 	pver=$(get_versionebuild $ptelv)
-	echo -n "  new version in main tree: ${mver} [${pver}] ... "
-	mte=`basename "${MTREEDIR}/${EPACKAGE}"/*${mver}.ebuild`
-	pte=`echo *${pver}.ebuild`
-	mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$mte)
-	ptecv=$(get_cvsversion $pte)
-	echo "cross diff from $ptecv to $mtecv"
-	# checkout both original versions and make the diffs,
-	# ignoring keywords
-	cvs -Q -d"${CVSROOT}" \
-		checkout -r$ptecv -p ${CVSMODULE}/${EPACKAGE}/$pte \
-		2> /dev/null \
-		> /var/tmp/$pte-$ptecv.tmp
-	cvs -Q -d"${CVSROOT}" \
-		checkout -r$mtecv -p ${CVSMODULE}/${EPACKAGE}/$mte \
-		2> /dev/null \
-		> /var/tmp/$mte-$mtecv.tmp
-	# create the new file to patch against
-	cp $pte $mte
-	# Sanitise the $Header line, because it may differ being in the
-	# Attic or something.  Use version of main tree, to keep updates
-	# working.
-	sed -i \
-		-e 's|^# \$Header:.*$|'"`egrep '^# \\\$Header: ' /var/tmp/$mte-$mtecv.tmp`"'|' \
-		$mte /var/tmp/$pte-$ptecv.tmp
-	# make KEYWORDS and EAPI void in the diff
-	sed -i \
-		-e 's|^KEYWORDS=.*$|'"`egrep '^KEYWORDS=' $pte`"'|' \
-		-e 's|^# \$Header:.*$|&\n\nEAPI="prefix"|' \
-		/var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp
-	# (attempt to) do it!
-	diff -u /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp \
-		| patch --no-backup-if-mismatch $mte
-	rm /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp
+	cross_diff $mver $pver
 fi
 echo "done"
