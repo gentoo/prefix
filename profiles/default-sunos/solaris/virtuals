@@ -1,0 +1,15 @@
+# Copyright 2004 Gentoo Foundation.
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+# Use this virtuals file to either override the Darwin base profile's defined
+# virtuals, or add virtuals that are specific to the Mac OS X profiles
+
+# TODO: does this make sense for Solaris?
+
+virtual/commonlisp	dev-lisp/clisp
+virtual/blackbox	x11-wm/fluxbox
+virtual/mta			mail-mta/ssmtp
+virtual/jdk			dev-java/sun-jdk
+virtual/jre			dev-java/sun-jdk
+virtual/kerberos	app-crypt/mit-krb5

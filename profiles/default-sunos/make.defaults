@@ -1,0 +1,17 @@
+# Copyright 1999-2005 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+# System-wide defaults for all SunOS profiles
+# This file should rarely need to be changed
+
+# ccache settings for avoiding /root (non-prefix aware)
+CCACHE_DIR="/var/root/.ccache"
+CFLAGS="-O2 -pipe"
+CXXFLAGS=${CFLAGS}
+MAKEOPTS="-j2"
+PLATFORM=$CHOST
+
+FEATURES="-sandbox -userpriv"
+
+USE="berkdb bzip2 emboss python zlib"
+USE_EXPAND="PLATFORM"

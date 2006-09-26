@@ -1,0 +1,61 @@
+# TODO: review/add/modify this list
+
+# these will more than likely never work on solaris
+3dfx
+3dnow
+3dnowext
+acpi
+alsa
+apm
+cap
+caps
+directfb
+divx4linux
+djbfft
+emul-linux-x86
+fbcon
+fdftk
+fmod
+ggi
+gpm
+hardened
+icc
+icc-pgo
+mmx
+mmx2
+on-the-fly-crypt  # requires device-mapper
+oss
+solid
+sse
+sse2
+svga
+sybase
+sybase-ct
+rtc
+uclibc
+voodoo3
+pvm
+v4l
+v4l2
+
+# see email to gentoo-dev with subject "use.mask and PHP5's crazy IUSE"
+# Dated Sat, 31 Jul 2004 14:49:28 -0700, from robbat2@gentoo.org
+# all of these are binary-only, and not presently available on this
+# architecture.
+adabas
+birdstep
+cpdflib
+db2
+dbmaker
+empress
+empress-bcs
+esoob
+filepro
+frontbase
+hyperwave
+informix
+ingres
+oci8
+oracle7
+pfpro
+solid

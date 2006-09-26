@@ -1,0 +1,7 @@
+USE_EXPAND="LINGUAS USERLAND KERNEL ELIBC"
+USERLAND="Solaris"
+KERNEL="Solaris"
+ELIBC="Solaris"
+
+FEATURES="collision-protect"
+
