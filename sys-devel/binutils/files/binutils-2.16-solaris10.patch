@@ -1,6 +1,5 @@
-diff -ru binutils-2.16.1.orig/bfd/elflink.c binutils-2.16.1/bfd/elflink.c
---- binutils-2.16.1.orig/bfd/elflink.c	2005-04-29 15:40:22.000000000 +0200
-+++ binutils-2.16.1/bfd/elflink.c	2006-03-08 10:50:20.000000000 +0100
+--- bfd/elflink.c
++++ bfd/elflink.c
 @@ -3683,11 +3683,12 @@
  
  	  /* If this is a hidden symbol, or if it is not version
@@ -18,8 +17,8 @@ diff -ru binutils-2.16.1.orig/bfd/elflink.c binutils-2.16.1/bfd/elflink.c
  	    {
  	      const char *verstr;
  	      size_t namelen, verlen, newlen;
---- binutils-2.16.1.orig/ld/configure.tgt	2006-09-18 13:57:01.000000000 +0200
-+++ binutils-2.16.1/ld/configure.tgt	2006-09-18 13:57:45.000000000 +0200
+--- ld/configure.tgt
++++ ld/configure.tgt
 @@ -171,10 +171,12 @@
  i[3-7]86-*-sysv[45]*)	targ_emul=elf_i386 ;;
  i[3-7]86-*-solaris2*)	targ_emul=elf_i386_ldso
