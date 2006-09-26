@@ -1,0 +1,5 @@
+MACOSX_DEPLOYMENT_TARGET="10.3"
+ARCH=ppc
+CHOST="powerpc-apple-darwin7"
+ACCEPT_KEYWORDS="ppc-macos"
+USE=""ppc-macos"

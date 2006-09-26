@@ -1,0 +1,7 @@
+USE_EXPAND="LINGUAS USERLAND KERNEL ELIBC"
+USERLAND="Darwin"
+KERNEL="Darwin"
+ELIBC="Darwin"
+
+FEATURES="collision-protect"
+

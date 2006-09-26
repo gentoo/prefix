@@ -1,0 +1,5 @@
+ARCH=x86
+CHOST="i686-apple-darwin8"
+ACCEPT_KEYWORDS="x86-macos"
+USE="x86-macos"
+
