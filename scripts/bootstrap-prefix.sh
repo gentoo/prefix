@@ -106,6 +106,14 @@ setup_portage() {
 			profile="${PORTDIR}/profiles/default-linux/amd64/2005.1/no-multilib"
 			keywords="~amd64 amd64"
 			;;
+		i386-sun-solaris2.10)
+			profile="${PORTDIR}/profiles/default-sunos/solaris/5.10/x86"
+			keywords="~x86-solaris x86-solaris"
+			;;
+		sparc-sun-solaris2.10)
+			profile="${PORTDIR}/profiles/default-sunos/solaris/5.10/sparc"
+			keywords="~sparc-solaris sparc-solaris"
+			;;
 		*)	
 			einfo "You might need to set up a make.profile symlink to a profile in ${PORTDIR}"
 			;;
