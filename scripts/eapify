@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# <grobian@gentoo.org> -- 2006-09-22
+# eapify is a small hackish script that usually does fine in adding
+# EAPI="prefix" if there is not yet a EAPI=something line in the ebuild.
+# Next to this, it applies ${D} -> ${EDEST} transformation to "make
+# DESTDIR=${D} install".  Because of the nature of this script, running
+# it multiple times should not harm.  It might, however, do wrong
+# things, so always check the result.  You have been warned.
+
+if [ -z $1 ];
+then
+	files="*.ebuild"
+else
+	files="$*"
+fi
+
+for f in $files;
+do
+	echo "Processing $f"
+
+	unset EAPI
+	echo -n "  EAPI ... "
+	eval "`egrep "^EAPI=" "$f"`"
+
+	if [[ $EAPI != "" ]];
+	then
+		echo "already $EAPI"
+	else
+		sed -i \
+			-e 's|^# \$Header:.*$|&\n\nEAPI="prefix"|' \
+			"$f"
+		echo 'added EAPI="prefix"'
+	fi
+
+	echo -n "  make install ... "
+	k="`egrep 'e?make( .*)? DESTDIR="?\\\${D}"?' "$f"`"
+	if [[ $k != "" ]];
+	then
+		sed -i \
+			-e 's|DESTDIR="\?${D}"\?|DESTDIR="${EDEST}"|' \
+			"$f"
+		echo $k "->" `grep 'DESTDIR="${EDEST}"' "$f"`
+	else
+		echo "not applicable"
+	fi
+done
