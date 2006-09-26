@@ -1,0 +1,34 @@
+diff -ur emacs-21.4.orig/configure.in emacs-21.4/configure.in
+--- emacs-21.4.orig/configure.in	2003-03-16 16:06:05.000000000 -0600
++++ emacs-21.4/configure.in	2006-08-12 17:15:44.000000000 -0500
+@@ -1927,7 +1927,7 @@
+     AC_CHECK_HEADER(gif_lib.h,
+ # EGifPutExtensionLast only exists from version libungif-4.1.0b1.
+ # Earlier versions can crash Emacs.
+-      AC_CHECK_LIB(ungif, EGifPutExtensionLast, HAVE_GIF=yes))
++      AC_CHECK_LIB(gif, EGifPutExtensionLast, HAVE_GIF=yes))
+   fi
+ 
+   if test "${HAVE_GIF}" = "yes"; then
+@@ -2283,7 +2283,7 @@
+ echo "  Does Emacs use -lXpm?                                   ${HAVE_XPM}"
+ echo "  Does Emacs use -ljpeg?                                  ${HAVE_JPEG}"
+ echo "  Does Emacs use -ltiff?                                  ${HAVE_TIFF}"
+-echo "  Does Emacs use -lungif?                                 ${HAVE_GIF}"
++echo "  Does Emacs use -lgif?                                   ${HAVE_GIF}"
+ echo "  Does Emacs use -lpng?                                   ${HAVE_PNG}"
+ echo "  Does Emacs use X toolkit scroll bars?                   ${USE_TOOLKIT_SCROLL_BARS}"
+ echo
+diff -ur emacs-21.4.orig/src/Makefile.in emacs-21.4/src/Makefile.in
+--- emacs-21.4.orig/src/Makefile.in	2003-01-23 04:34:06.000000000 -0600
++++ emacs-21.4/src/Makefile.in	2006-08-12 17:23:30.000000000 -0500
+@@ -402,7 +402,7 @@
+ 
+ #if HAVE_GIF
+ #ifndef LIBGIF
+-#define LIBGIF -lungif
++#define LIBGIF -lgif
+ #endif /* not defined LIBGIF */
+ #else /* not HAVE_GIF */
+ #define LIBGIF
+Only in emacs-21.4/src: Makefile.in~

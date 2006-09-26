@@ -1,0 +1,32 @@
+--- Makefile.in	2002-10-19 10:21:01.000000000 +0900
++++ Makefile.in.subdirs-el	2004-08-02 17:01:35.852417016 +0900
+@@ -387,18 +387,21 @@
+ 	then true; \
+ 	else \
+ 	  (echo "(if (fboundp 'normal-top-level-add-subdirs-to-load-path)"; \
++	   echo "    (normal-top-level-add-subdirs-to-load-path))"; \
++	   echo "(setq default-directory \"/usr/share/emacs/site-lisp\")"; \
++	   echo "(if (fboundp 'normal-top-level-add-subdirs-to-load-path)"; \
+ 	   echo "    (normal-top-level-add-subdirs-to-load-path))") \
+ 	    > ${datadir}/emacs/${version}/site-lisp/subdirs.el; \
+ 	fi
+ 	chmod a+r ${datadir}/emacs/${version}/site-lisp/subdirs.el
+-	-if [ -f ${datadir}/emacs/site-lisp/subdirs.el ]; \
+-	then true; \
+-	else \
+-	  (echo "(if (fboundp 'normal-top-level-add-subdirs-to-load-path)"; \
+-	   echo "    (normal-top-level-add-subdirs-to-load-path))") \
+-	    > ${datadir}/emacs/site-lisp/subdirs.el; \
+-	fi
+-	-chmod a+r ${datadir}/emacs/site-lisp/subdirs.el
++#	-if [ -f ${datadir}/emacs/site-lisp/subdirs.el ]; \
++#	then true; \
++#	else \
++#	  (echo "(if (fboundp 'normal-top-level-add-subdirs-to-load-path)"; \
++#	   echo "    (normal-top-level-add-subdirs-to-load-path))") \
++#	    > ${datadir}/emacs/site-lisp/subdirs.el; \
++#	fi
++#	-chmod a+r ${datadir}/emacs/site-lisp/subdirs.el
+ 	-unset CDPATH; \
+ 	if [ `(cd ./etc; /bin/pwd)` != `(cd ${docdir}; /bin/pwd)` ]; \
+ 	then \

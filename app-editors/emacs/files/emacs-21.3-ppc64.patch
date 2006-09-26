@@ -1,0 +1,51 @@
+--- emacs-21.3/src/m/macppc.h.sopwith	2001-10-23 02:43:33.000000000 -0400
++++ emacs-21.3/src/m/macppc.h	2003-05-02 09:17:37.000000000 -0400
+@@ -95,11 +95,47 @@
+ 
+ #ifdef LINUX
+ #define LINKER $(CC) -nostdlib
+-#define LD_SWITCH_MACHINE -Xlinker -m -Xlinker elf32ppc
++#ifdef __powerpc64__
++#define LD_SWITCH_MACHINE -m64 -Xlinker -m -Xlinker elf64ppc
++#else
++#define LD_SWITCH_MACHINE -m32 -Xlinker -m -Xlinker elf32ppc
++#endif
+ /* s/gnu-linux.h defines this to `-z nocombreloc' which does not work here
+    because prefix-args is not used.  */
+ #undef LD_SWITCH_SYSTEM_TEMACS
+ #define LD_SWITCH_MACHINE_TEMACS -Xlinker -znocombreloc
++
++#ifdef __powerpc64__
++/* Misc 64-bit fixups, patterned after the x86_64 file */
++#undef BITS_PER_LONG
++#undef BITS_PER_EMACS_INT
++#undef VALBITS
++#undef PNTR_COMPARISON_TYPE
++#undef MARKBIT
++#undef XINT
++#undef XUINT
++#undef XPNTR
++#undef START_FILES
++#undef LIB_STANDARD
++#undef EMACS_INT
++#undef EMACS_UINT
++#undef SPECIAL_EMACS_INT
++
++#define BITS_PER_LONG 64
++#define BITS_PER_EMACS_INT 64
++#define VALBITS 60
++#define PNTR_COMPARISON_TYPE unsigned long
++#define MARKBIT         0x8000000000000000L
++
++#define XINT(a)  (((long) (a) << (BITS_PER_LONG - VALBITS)) >> (BITS_PER_LONG - VALBITS))
++#define XUINT(a) ((long) (a) & VALMASK)
++#define XPNTR(a) XUINT (a)
++#define START_FILES pre-crt0.o /usr/lib64/crt1.o /usr/lib64/crti.o
++#define LIB_STANDARD -lgcc -lc -lgcc /usr/lib64/crtn.o
++#define EMACS_INT               long
++#define EMACS_UINT              unsigned long
++#define SPECIAL_EMACS_INT
++#endif
+ #endif
+ 
+ #if 0  /* This breaks things on PPC GNU/Linux ecept for Yellowdog,

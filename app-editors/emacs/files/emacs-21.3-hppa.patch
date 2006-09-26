@@ -1,0 +1,98 @@
+diff -uNr emacs-21.3.orig/configure emacs-21.3/configure
+--- emacs-21.3.orig/configure	2003-12-20 15:03:19.622159984 +0000
++++ emacs-21.3/configure	2003-12-20 15:13:56.550332184 +0000
+@@ -1179,6 +1179,10 @@
+     machine=hp800 opsys=nextstep
+   ;;
+ 
++  hppa*-*-linux-gnu* )
++    machine=hp800 psys=gnu-linux
++  ;;
++  
+   ## Orion machines
+   orion-orion-bsd* )
+     machine=orion opsys=bsd4-2
+diff -uNr emacs-21.3.orig/configure.in emacs-21.3/configure.in
+--- emacs-21.3.orig/configure.in	2003-12-20 15:03:19.624159680 +0000
++++ emacs-21.3/configure.in	2003-12-20 15:15:22.825216408 +0000
+@@ -553,6 +553,10 @@
+     machine=hp800 opsys=nextstep
+   ;;
+ 
++  hppa*-*-linux-gnu* )
++    machine=hp800 opsys=gnu-linux
++  ;;
++
+   ## Orion machines
+   orion-orion-bsd* )
+     machine=orion opsys=bsd4-2
+--- emacs21-21.2.orig/src/m/hp800.h
++++ emacs21-21.2/src/m/hp800.h
+@@ -85,7 +85,7 @@
+ #define bcmp		memcmp
+ #endif
+ 
+-#ifdef __hpux
++#if defined(__hpux) || defined(__linux__)
+ /* Now define a symbol for the cpu type, if your compiler
+    does not define it automatically:
+    Ones defined so far include vax, m68000, ns16000, pyramid,
+@@ -94,6 +94,15 @@
+ #     define hp9000s800
+ #endif
+ 
++#ifdef __linux__
++/* Data type of load average, as read out of kmem.  */
++
++#define LOAD_AVE_TYPE long
++
++/* Convert that into an integer that is 100 for a load average of 1.0  */
++
++#define LOAD_AVE_CVT(x) (int) (((double) (x)) * 100.0 / FSCALE)
++#else
+ /* Data type of load average, as read out of kmem.  */
+ 
+ #define LOAD_AVE_TYPE double
+@@ -101,7 +110,7 @@
+ /* Convert that into an integer that is 100 for a load average of 1.0  */
+ 
+ #define LOAD_AVE_CVT(x) ((int) (x * 100.0))
+-
++#endif
+ 
+ /* Define CANNOT_DUMP on machines where unexec does not work.
+    Then the function dump-emacs will not be defined
+@@ -116,6 +125,7 @@
+    Otherwise Emacs assumes that text space precedes data space,
+    numerically.  */
+ 
++#ifdef __hpux
+ #define VIRT_ADDR_VARIES
+ 
+ /* Define C_ALLOCA if this machine does not support a true alloca
+@@ -134,6 +144,9 @@
+ 
+ #define DATA_START    0x40000000
+ #define TEXT_START    0x00000000
++#else
++#define HAVE_ALLOCA
++#endif
+ 
+ #define STACK_DIRECTION 1 
+ 
+@@ -147,6 +160,7 @@
+ /* This machine requires completely different unexec code
+    which lives in a separate file.  Specify the file name.  */
+ 
++#ifdef __hpux
+ #define UNEXEC unexhp9k800.o
+ 
+ #define LIBS_MACHINE
+@@ -179,5 +193,5 @@
+ 
+ #define index strchr
+ #define rindex strrchr
+-
+-#endif /* __hpux */
++#endif
++#endif

@@ -1,0 +1,12 @@
+diff -Naur emacs-21.3-old/src/xterm.h emacs-21.3/src/xterm.h
+--- emacs-21.3-old/src/xterm.h  2002-02-22 11:41:44.000000000 +0100
++++ emacs-21.3/src/xterm.h      2004-10-30 12:33:12.000000000 +0200
+@@ -21,8 +21,8 @@
+ 
+ #include <X11/Xlib.h>
+ #include <X11/cursorfont.h>
+-#include <X11/Xutil.h>
+ #include <X11/keysym.h>
++#include <X11/Xutil.h>
+ #include <X11/Xatom.h>
+ #include <X11/Xresource.h>
