@@ -73,10 +73,10 @@ fetch() {
 
 # 	einfo "Compiling ${A%-*}"
 # 	econf
-# 	make || exit 1
+# 	$MAKE || exit 1
 
 # 	einfo "Installing ${A%-*}"
-# 	make install || exit 1
+# 	$MAKE install || exit 1
 
 # 	einfo "${A%-*} succesfully bootstrapped"
 # }
@@ -148,7 +148,7 @@ bootstrap_tree() {
 	if [ ! -e ${ROOT}/usr/portage/.unpacked ]; then
 		cd ${ROOT}/usr
 		${FETCH_COMMAND} "${GENTOO_URL}/experimental/snapshots/portage-alt-prefix-latest.tar.bz2"
-		tar -jxf portage-alt-prefix-latest.tar.bz2
+		bzip2 -dc portage-alt-prefix-latest.tar.bz2 | tar -xf - || exit 1
 		mv portage{-alt-prefix,}
 		touch portage/.unpacked
 		mkdir portage/distfiles
@@ -170,7 +170,7 @@ bootstrap_portage() {
 	rm -rf "${S}" >& /dev/null
 	mkdir -p "${S}" >& /dev/null
 	cd "${S}"
-	tar -jxf "${DISTDIR}/${A}" || exit 1
+	bzip2 -dc "${DISTDIR}/${A}" | tar -xf - || exit 1
 	S="${S}/prefix-portage-${PV}"
 	cd "${S}"
 
@@ -181,10 +181,10 @@ bootstrap_portage() {
 		--with-group=`id -gn` \
 		--with-wheelgid=`id -g` \
 		--with-rootuser=`id -un`
-	make || exit 1
+	$MAKE || exit 1
 
  	einfo "Installing ${A%-*}"
-	make install || exit 1
+	$MAKE install || exit 1
 
 	setup_portage
 
@@ -211,9 +211,9 @@ bootstrap_odcctools() {
 		--prefix="${ROOT}"/usr \
 		--mandir="${ROOT}"/usr/share/man \
 		|| exit 1
-	make || exit 1
+	$MAKE || exit 1
 
-	make install || exit 1
+	$MAKE install || exit 1
 }
 
 prep_gcc-apple() {
@@ -274,9 +274,9 @@ bootstrap_gcc() {
 	${S}/gcc-${GCC_PV}/configure \
 		${gcc_config_opts} \
 		|| exit 1
-	make ${MAKEOPTS} bootstrap-lean || exit 1
+	$MAKE ${MAKEOPTS} bootstrap-lean || exit 1
 
-	make install || exit 1
+	$MAKE install || exit 1
 }
 
 bootstrap_gnu() {
@@ -293,17 +293,17 @@ bootstrap_gnu() {
 	rm -rf ${S}
 	mkdir -p ${S}
 	cd ${S}
-	tar -zxf ${DISTDIR}/${A} || exit 1
+	gzip -dc ${DISTDIR}/${A} | tar -xf - || exit 1
 	S=${S}/${PN}-${PV}
 	cd ${S}
 
 	einfo "Compiling ${A%-*}"
 	econf \
 		--disable-nls
-	make || exit 1
+	$MAKE || exit 1
 
 	einfo "Installing ${A%-*}"
-	make install || exit 1
+	$MAKE install || exit 1
 
 	einfo "${A%-*} succesfully bootstrapped"
 }
@@ -337,10 +337,10 @@ bootstrap_python() {
 		--disable-ipv6 \
 		--with-threads \
 		--with-cxx=no
-	make ${MAKEOPTS} || exit 1
+	$MAKE ${MAKEOPTS} || exit 1
 
 	einfo "Installing ${A%-*}"
-	make altinstall || exit 1
+	$MAKE altinstall || exit 1
 	cd ${ROOT}/usr/bin
 	ln -sf python2.4 python
 
@@ -357,6 +357,18 @@ bootstrap_findutils() {
 
 bootstrap_wget() {
 	bootstrap_gnu wget 1.10.2
+}
+
+bootstrap_grep() {
+	bootstrap_gnu grep 2.5.1a
+}
+
+bootstrap_coreutils() {
+	bootstrap_gnu coreutils 5.94
+}
+
+bootstrap_tar() {
+	bootstrap_gnu tar 1.15.1
 }
 
 bootstrap_all() {
@@ -389,12 +401,16 @@ then
 		case `uname -s` in
 			Linux)
 				CHOST="`uname -m`-pc-linux-gnu"
+				MAKE=make
 				;;
 			Darwin)
 				CHOST="`uname -p`-apple-darwin`sysctl kern.osrelease | cut -d'=' -f 2 | cut -d' ' -f 2- | cut -d'.' -f 1`"
+				MAKE=make
 				;;
 			SunOS)
-				CHOST="`uname -p`"-sun-solaris"`uname -r | sed 's|5|2|'`"
+				CHOST="`uname -p`-sun-solaris`uname -r | sed 's|5|2|'`"
+				# make needs to know it is gmake
+				MAKE=gmake
 				;;
 			*)
 				eerror "Nothing known about platform `uname -s`."
