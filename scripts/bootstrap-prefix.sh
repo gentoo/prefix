@@ -371,6 +371,10 @@ bootstrap_tar() {
 	bootstrap_gnu tar 1.15.1
 }
 
+bootstrap_patch() {
+	bootstrap_gnu patch 2.5.9
+}
+
 bootstrap_all() {
 	bootstrap_tree	
 	case ${CHOST} in
