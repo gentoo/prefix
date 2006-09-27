@@ -55,11 +55,11 @@ src_install() {
 
 	# Move static libs and creates ldscripts into /usr/lib
 	dodir /$(get_libdir)
-	[[ ${USERLAND} == "Darwin" ]] \
-		&& mv "${D}"/usr/$(get_libdir)/*.dylib "${D}/$(get_libdir)" \
-		|| mv "${D}"/usr/$(get_libdir)/*.so* "${D}/$(get_libdir)"
-	gen_usr_ldscript libiconv$(get_libname)
-	gen_usr_ldscript libcharset$(get_libname)
+	if [[ ${USERLAND} != "Darwin" ]] ; then
+		mv "${D}"/usr/$(get_libdir)/*.so* "${D}/$(get_libdir)"
+		gen_usr_ldscript libiconv$(get_libname)
+		gen_usr_ldscript libcharset$(get_libname)
+	fi
 
 	use build && rm -rf "${D}/usr"
 
