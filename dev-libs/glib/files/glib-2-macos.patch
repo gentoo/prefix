@@ -1,0 +1,35 @@
+--- glib-2.4.8/configure.orig	Thu Dec  2 15:36:40 2004
++++ glib-2.4.8/configure	Sat Feb 12 14:28:37 2005
+@@ -31712,9 +31712,9 @@
+          # skip cygwin -pthread or -pthreads test
+          ;;
+       *)
+-        for flag in pthread pthreads; do
++        for flag in '-pthread' '-pthreads' ''; do
+           glib_save_CFLAGS="$CFLAGS"
+-          CFLAGS="$CFLAGS -$flag"
++          CFLAGS="$CFLAGS $flag"
+           if test "$cross_compiling" = yes; then
+   cat >conftest.$ac_ext <<_ACEOF
+ 
+@@ -31803,8 +31803,8 @@
+ fi
+           CFLAGS="$glib_save_CFLAGS"
+           if test $glib_flag_works = yes ; then
+-             G_THREAD_CFLAGS=-$flag
+-	     G_THREAD_LIBS=-$flag
++             G_THREAD_CFLAGS=$flag
++	     G_THREAD_LIBS=$flag
+           fi
+         done
+          ;;
+@@ -31861,6 +31861,9 @@
+ 	*-mingw*)
+ 		# No flag needed when using MSVCRT.DLL
+ 		G_THREAD_CFLAGS=""
++		;;
++	*-darwin*)
++		# Nothing needed.
+ 		;;
+ 	*)
+ 		G_THREAD_CFLAGS="-D_REENTRANT" # good default guess otherwise

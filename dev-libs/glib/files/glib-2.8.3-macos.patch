@@ -1,0 +1,11 @@
+--- glib/gmain.c	2005-10-22 18:30:01.000000000 +0200
++++ glib/gmain.c	2005-10-22 18:28:46.000000000 +0200
+@@ -52,7 +52,7 @@
+ /* The poll() emulation on OS/X doesn't handle fds=NULL, nfds=0,
+  * so we prefer our own poll emulation.
+  */
+-#ifdef _POLL_EMUL_H_
++#ifdef __APPLE__
+ #undef HAVE_POLL
+ #endif
+    
