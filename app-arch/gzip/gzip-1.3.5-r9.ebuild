@@ -39,7 +39,7 @@ src_unpack() {
 src_compile() {
 	use static && append-flags -static
 	# avoid text relocation in gzip
-	use pic || use ppc-macos && export DEFS="NO_ASM"
+	use pic || [[ $USERLAND == "Darwin" ]] && export DEFS="NO_ASM"
 	append-ldflags -L${EPREFIX}/lib -lz
 	econf --exec-prefix=${EPREFIX}/ $(use_enable nls) || die
 	emake || die
