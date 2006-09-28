@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.1.4-r3.ebuild,v 1.13 2006/06/20 21:25:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.2.1.ebuild,v 1.11 2006/09/16 14:26:26 corsair Exp $
 
 EAPI="prefix"
 
@@ -22,11 +22,12 @@ DEPEND=""
 src_unpack () {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PV}/*.diff
-	epatch "${FILESDIR}"/${P}-noexecstack.patch
-	use ppc64 && epatch "${FILESDIR}"/${P}-asm-dots.patch
+	local p
+	for p in x86-fat configure-ppc aix.m4-RW ia64-popcount ; do
+		epatch "${FILESDIR}"/${PV}/${p}.diff
+	done
+	epatch "${FILESDIR}"/${PN}-4.1.4-noexecstack.patch
 	epatch "${FILESDIR}"/${P}-ABI-multilib.patch
-	epatch "${FILESDIR}"/${PN}-hppa-2.0.patch
 
 	# note: we cannot run autotools here as gcc depends on this package
 	elibtoolize
@@ -36,18 +37,17 @@ src_compile() {
 	filter-flags -ffast-math
 
 
-	# GMP beleives hppa2.0 is 64bit
+	# GMP believes hppa2.0 is 64bit
 	if [[ ${CHOST} == hppa2.0-* ]] ; then
 		is_hppa_2_0=1
 		export CHOST="${CHOST/2.0/1.1}"
 	fi
 
-	# FreeBSD libc already have bsdmp
 	econf \
 		$(with_localstatedir /var/state/gmp) \
 		--disable-mpfr \
+		--disable-mpbsd \
 		$(use_enable !nocxx cxx) \
-		$(use_enable !elibc_FreeBSD mpbsd) \
 		|| die "configure failed"
 
 	# Fix the ABI for hppa2.0

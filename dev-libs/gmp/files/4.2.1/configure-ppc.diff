@@ -1,0 +1,58 @@
+Index: configure
+===================================================================
+RCS file: /home/cvsfiles/gmp42/configure,v
+retrieving revision 1.11
+retrieving revision 1.13
+diff -p -2 -r1.11 -r1.13
+*** configure	4 May 2006 16:25:33 -0000	1.11
+--- configure	12 May 2006 16:00:27 -0000	1.13
+*************** _ACEOF
+*** 2963,2969 ****
+      cc_cflags="-O2"
+      gcc_cflags="-O2 -mpowerpc"
+!     gcc_cflags_optlist="precomp subtype cpu"
+      gcc_cflags_precomp="-no-cpp-precomp"
+      gcc_cflags_subtype="-force_cpusubtype_ALL"	# for vmx on darwin
+  
+      # grab this object, though it's not a true cycle counter routine
+--- 2963,2971 ----
+      cc_cflags="-O2"
+      gcc_cflags="-O2 -mpowerpc"
+!     gcc_cflags_optlist="precomp subtype asm cpu"
+      gcc_cflags_precomp="-no-cpp-precomp"
+      gcc_cflags_subtype="-force_cpusubtype_ALL"	# for vmx on darwin
++     gcc_cflags_asm=""
++     gcc_cflags_cpu=""
+  
+      # grab this object, though it's not a true cycle counter routine
+*************** _ACEOF
+*** 2976,2980 ****
+        powerpc7400)
+          path="powerpc32/vmx powerpc32/750 powerpc32" ;;
+!       powerpc745?)
+          path="powerpc32/vmx powerpc32 powerpc32" ;;
+        *)
+--- 2978,2982 ----
+        powerpc7400)
+          path="powerpc32/vmx powerpc32/750 powerpc32" ;;
+!       powerpc74[45]?)
+          path="powerpc32/vmx powerpc32 powerpc32" ;;
+        *)
+*************** _ACEOF
+*** 3010,3015 ****
+        powerpc740)   gcc_cflags_cpu="-mcpu=740" ;;
+        powerpc7400 | powerpc7410)
+  		    gcc_cflags_cpu="-mcpu=7400 -mcpu=750" ;;
+!       powerpc745?)  gcc_cflags_cpu="-mcpu=7450" ;;
+        powerpc750)   gcc_cflags_cpu="-mcpu=750" ;;
+        powerpc801)   gcc_cflags_cpu="-mcpu=801" ;;
+--- 3012,3020 ----
+        powerpc740)   gcc_cflags_cpu="-mcpu=740" ;;
+        powerpc7400 | powerpc7410)
++ 		    gcc_cflags_asm="-Wa,-maltivec"
+  		    gcc_cflags_cpu="-mcpu=7400 -mcpu=750" ;;
+!       powerpc74[45]?)
+! 		    gcc_cflags_asm="-Wa,-maltivec"
+! 		    gcc_cflags_cpu="-mcpu=7450" ;;
+        powerpc750)   gcc_cflags_cpu="-mcpu=750" ;;
+        powerpc801)   gcc_cflags_cpu="-mcpu=801" ;;
