@@ -1,0 +1,113 @@
+--- binutils-config-1.9
++++ binutils-config-1.9
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ # Copyright 1999-2006 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ # $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-1.9,v 1.3 2006/08/27 21:43:54 vapier Exp $
+@@ -7,13 +7,14 @@
+ #  config-TARGET:	CURRENT=version for TARGET
+ #  TARGET-VER:		has a TARGET and VER variable
+ 
+-cd /
++EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
++cd ${EPREFIX}
+ 
+ trap ":" INT QUIT TSTP
+ 
+ argv0=${0##*/}
+-source /etc/init.d/functions.sh || {
+-	echo "${argv0}: Could not source /etc/init.d/functions.sh!" 1>&2
++source ${EPREFIX}/etc/init.d/functions.sh || {
++	echo "${argv0}: Could not source ${EPREFIX}/etc/init.d/functions.sh!" 1>&2
+ 	exit 1
+ }
+ esyslog() { :; }
+@@ -87,7 +88,7 @@
+ 		# Newer paths: /usr/${HOST}/${TARGET}/...
+ 		# Older paths: /usr/${TARGET}/...
+ 		#
+-		if [[ -d /usr/${HOST}/${TARGET}/binutils-bin/${VER} ]] ; then
++		if [[ -d ${EPREFIX}/usr/${HOST}/${TARGET}/binutils-bin/${VER} ]] ; then
+ 			BINPATH=/usr/${HOST}/${TARGET}/binutils-bin/${VER}
+ 			BINPATH_LINKS=/usr/libexec/gcc/${TARGET}
+ 		fi
+@@ -99,11 +100,11 @@
+ 	cd "${ROOT}/${BINPATH}" || exit 1
+ 	mkdir -p "${ROOT}/${BINPATH_LINKS}"
+ 	for x in * ; do
+-		ln -sf "${BINPATH}/${x}" "${ROOT}/${BINPATH_LINKS}/${x}"
+-		ln -sf "${BINPATH_LINKS}/${x}" "${ROOT}"/usr/bin/${TARGET}-${x}
++		ln -sf "${EPREFIX}/${BINPATH}/${x}" "${ROOT}/${BINPATH_LINKS}/${x}"
++		ln -sf "${EPREFIX}/${BINPATH_LINKS}/${x}" "${ROOT}"/usr/bin/${TARGET}-${x}
+ 		for fake in ${FAKE_TARGETS} ; do
+ 			[[ -f ${ENV_D}/config-${fake} ]] && continue
+-			ln -sf "${BINPATH_LINKS}/${x}" "${ROOT}"/usr/bin/${fake}-${x}
++			ln -sf "${EPREFIX}/${BINPATH_LINKS}/${x}" "${ROOT}"/usr/bin/${fake}-${x}
+ 		done
+ 		if [[ ${TARGET} == ${HOST} ]] ; then
+ 			ln -sf ${TARGET}-${x} "${ROOT}"/usr/bin/${x}
+@@ -113,6 +114,7 @@
+ 	#
+ 	# Generate library / ldscripts symlinks
+ 	#
++	LIBPATH=$(echo "${LIBPATH}" | sed -e "s|${EPREFIX}|/|g" )
+ 	LIBPATH=${LIBPATH:-/usr/lib/binutils/${TARGET}/${VER}}
+ 	cd "${ROOT}/${LIBPATH}" || exit 1
+ 	if [[ ${TARGET} == ${HOST} ]] ; then
+@@ -127,9 +129,9 @@
+ 	rm -rf "${dstlib}/ldscripts"
+ 	mkdir -p "${dstlib}"
+ 	find "${dstlib}" -xtype l -exec rm {} \;
+-	ln -sf "${LIBPATH}/ldscripts" "${dstlib}/ldscripts"
++	ln -sf "${EPREFIX}/${LIBPATH}/ldscripts" "${dstlib}/ldscripts"
+ 	for x in lib* ; do
+-		ln -sf "${LIBPATH}/${x}" "${dstlib}/${x}"
++		ln -sf "${EPREFIX}/${LIBPATH}/${x}" "${dstlib}/${x}"
+ 	done
+ 
+ 	#
+@@ -141,7 +143,7 @@
+ 		if [[ ${HOST} == ${TARGET} ]] ; then
+ 			mkdir -p "${ROOT}/usr/include"
+ 			for x in * ; do
+-				ln -sf "${INCPATH}/${x}" "${ROOT}/usr/include/${x}"
++				ln -sf "${EPREFIX}/${INCPATH}/${x}" "${ROOT}/usr/include/${x}"
+ 			done
+ 		else
+ 			# Clean out old path
+@@ -156,13 +158,13 @@
+ 	# Make sure proper paths get updated
+ 	#
+ 	if [[ ${TARGET} == ${HOST} ]] ; then
+-		DATAPATH=/usr/share/binutils-data/${TARGET}/${VER}
++		DATAPATH=${EPREFIX}/usr/share/binutils-data/${TARGET}/${VER}
+ 		[[ -d ${DATAPATH}/man ]] && \
+ 		echo "MANPATH=${DATAPATH}/man" > "${ROOT}"/etc/env.d/05binutils
+ 		[[ -d ${DATAPATH}/info ]] && \
+ 		echo "INFOPATH=${DATAPATH}/info" >> "${ROOT}"/etc/env.d/05binutils
+ 		# hmm, `ld` has this in SEARCH_DIR(), but ld.so does not ...
+-		echo "LDPATH=/usr/${TARGET}/lib" >> "${ROOT}"/etc/env.d/05binutils
++		echo "LDPATH=${EPREFIX}/usr/${TARGET}/lib" >> "${ROOT}"/etc/env.d/05binutils
+ 	fi
+ 
+ 	eend 0
+@@ -177,7 +179,7 @@
+ 		echo
+ 		ewarn "Please remember to run:"
+ 		echo
+-		ewarn "  # source /etc/profile"
++		ewarn "  # source i${EPREFIX}/etc/profile"
+ 		echo
+ 	fi
+ 
+@@ -288,7 +290,7 @@
+ 	fi
+ }
+ 
+-[[ -z ${ROOT} ]] && ROOT="/"
++[[ -z ${ROOT} ]] && ROOT="${EPREFIX}"
+ [[ ${ROOT:0-1} != "/" ]] && ROOT="${ROOT}/"
+ ENV_D="${ROOT}etc/env.d/binutils"
+ 
