@@ -1,0 +1,44 @@
+Index: find/parser.c
+===================================================================
+RCS file: /cvsroot/findutils/findutils/find/parser.c,v
+retrieving revision 1.92
+diff -u -r1.92 parser.c
+--- find/parser.c	20 Aug 2006 20:45:09 -0000	1.92
++++ find/parser.c	21 Aug 2006 22:33:21 -0000
+@@ -1642,8 +1642,8 @@
+ 				      re);
+   if (error_message)
+     error (1, 0, "%s", error_message);
+-  (*arg_ptr)++;
+   our_pred->est_success_rate = estimate_pattern_match_rate(argv[*arg_ptr], 1);
++  (*arg_ptr)++;
+   return true;
+ }
+ 
+Index: find/testsuite/Makefile.am
+===================================================================
+RCS file: /cvsroot/findutils/findutils/find/testsuite/Makefile.am,v
+retrieving revision 1.32
+diff -u -r1.32 Makefile.am
+--- find/testsuite/Makefile.am	20 Aug 2006 20:39:48 -0000	1.32
++++ find/testsuite/Makefile.am	21 Aug 2006 22:33:21 -0000
+@@ -137,6 +137,7 @@
+ find.gnu/wholename.exp \
+ find.gnu/xtype-symlink.exp \
+ find.gnu/sv-bug-12230.exp \
++find.gnu/sv-bug-17490.exp \
+ find.gnu/quit.exp \
+ find.gnu/xtype.exp \
+ find.posix/and.exp \
+Index: find/testsuite/find.gnu/sv-bug-17490.exp
+===================================================================
+RCS file: find/testsuite/find.gnu/sv-bug-17490.exp
+diff -N find/testsuite/find.gnu/sv-bug-17490.exp
+--- /dev/null	1 Jan 1970 00:00:00 -0000
++++ find/testsuite/find.gnu/sv-bug-17490.exp	21 Aug 2006 22:33:21 -0000
+@@ -0,0 +1,5 @@
++# test for Savannah bug #17490
++#
++# That bug was a coredump if the argument to -regex was the final argument.
++find_start p {. -maxdepth 0 -regex x }
++
