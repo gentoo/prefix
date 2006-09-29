@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.6.ebuild,v 1.2 2006/09/25 13:11:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.7.ebuild,v 1.1 2006/09/25 13:12:36 vapier Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,8 @@ RDEPEND=""
 
 src_compile() {
 	local myconf=""
-	[[ ${USERLAND} != "GNU" ]] && [[ ${PREFIX/\//} != "" ]] && myconf="--program-prefix=g"
+	[[ ${USERLAND} != "GNU" ]] && [[ ${PREFIX/\//} != "" ]] && \
+		myconf="--program-prefix=g"
 	econf \
 		$(use_enable nls) \
 		--enable-changeword \
@@ -32,5 +33,9 @@ src_compile() {
 
 src_install() {
 	make install DESTDIR="${EDEST}" || die
+	# autoconf-2.60 for instance, first checks gm4, then m4.  If we don't have
+	# gm4, it might find gm4 from outside the prefix on for instance Darwin
+	[[ ${USERLAND} != "GNU" ]] && [[ ${PREFIX/\//} != "" ]] || \
+		dosym /usr/bin/m4 /usr/bin/gm4
 	dodoc BACKLOG ChangeLog NEWS README* THANKS TODO
 }
