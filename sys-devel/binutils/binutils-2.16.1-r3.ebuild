@@ -4,12 +4,12 @@
 
 EAPI="prefix"
 
-PATCHVER="1.10"
+PATCHVER="1.11"
 UCLIBC_PATCHVER="1.1"
 ELF2FLT_VER=""
 inherit toolchain-binutils
 
-KEYWORDS="~x86"
+KEYWORDS="~x86 ~x86-solaris"
 
 src_unpack() {
 	tc-binutils_unpack
