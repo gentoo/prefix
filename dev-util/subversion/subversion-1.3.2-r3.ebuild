@@ -83,7 +83,7 @@ src_unpack() {
 
 src_compile() {
 	local myconf
-	myconf="--with-apr=/usr --with-apr-util=/usr"
+	myconf="--with-apr=${EPREFIX}/usr --with-apr-util=${EPREFIX}/usr"
 
 	use apache2 && myconf="${myconf} --with-apxs=${APXS2}"
 	use apache2 || myconf="${myconf} --without-apxs"
@@ -100,7 +100,7 @@ src_compile() {
 	if use nowebdav; then
 		myconf="${myconf} --without-neon"
 	else
-		myconf="${myconf} --with-neon=/usr"
+		myconf="${myconf} --with-neon=${EPREFIX}/usr"
 	fi
 
 	append-flags `/usr/bin/apr-config --cppflags`
@@ -110,8 +110,8 @@ src_compile() {
 		$(use_with zlib) \
 		$(use_with python) \
 		$(use_enable nls) \
-		--with-apr=/usr \
-		--with-apr-util=/usr \
+		--with-apr="${EPREFIX}"/usr \
+		--with-apr-util="${EPREFIX}"/usr \
 		--disable-experimental-libtool \
 		--disable-mod-activation || die "econf failed"
 
