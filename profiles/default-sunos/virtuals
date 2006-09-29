@@ -20,7 +20,7 @@ virtual/logger		app-admin/sysklogd
 virtual/lpr			net-print/cups
 virtual/mda			mail-filter/procmail
 virtual/mta			mail-mta/postfix
-virtual/os-headers	sys-darwin/libsystem
+virtual/os-headers	sys-sunos/libsystem
 virtual/php			dev-php/mod_php
 virtual/python		dev-lang/python
 virtual/ruby		dev-lang/ruby
