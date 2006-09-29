@@ -1,0 +1,318 @@
+# ChangeLog for media-libs/fontconfig
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.78 2006/09/26 21:50:10 gustavoz Exp $
+
+  26 Sep 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  fontconfig-2.3.2-r1.ebuild:
+  Stable on hppa
+
+  23 Sep 2006; Seemant Kulleen <seemant@gentoo.org>
+  fontconfig-2.3.2-r1.ebuild:
+  fix for bug #138346 -- explicitly set the automake version
+
+*fontconfig-2.3.2-r2 (18 Sep 2006)
+
+  18 Sep 2006; Marinus Schraal <foser@gentoo.org> fontconfig-2.3.2-r2.ebuild,
+  fontconfig-2.3.2-noftinternals.patch :
+  Don't break on freetype 2.2 (#140359)
+
+*fontconfig-2.4.1 (17 Sep 2006)
+
+  17 Sep 2006; Marinus Schraal <foser@gentoo.org> fontconfig-2.4.1.ebuild :
+  New release (#108150)
+  Re-enable optional doc generation (needed for manpages)
+
+  04 Sep 2006; Joshua Kinard <kumba@gentoo.org> fontconfig-2.3.2-r1.ebuild:
+  Marked stable on mips.
+
+  16 Aug 2006; Markus Rothe <corsair@gentoo.org> fontconfig-2.3.2-r1.ebuild:
+  Stable on ppc64
+
+  03 Aug 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  fontconfig-2.3.2-r1.ebuild:
+  Stable on sparc
+
+  19 Jul 2006; Danny van Dyk <kugelfang@gentoo.org>
+  fontconfig-2.3.2-r1.ebuild:
+  Marked stable on amd64.
+
+  14 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  fontconfig-2.3.2-r1.ebuild:
+  ppc stable, bug #139612
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org>
+  fontconfig-2.3.2-r1.ebuild:
+  Mark 2.3.2-r1 stable on ia64
+
+  12 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  fontconfig-2.3.2-r1.ebuild:
+  Stable on x86 wrt bug #139612.
+
+*fontconfig-2.3.2-r1 (07 Apr 2006)
+
+  07 Apr 2006; Marinus Schraal <foser@gentoo.org> fontconfig-2.3.2-r1.ebuild,
+  files/fontconfig-2.3.2-pkg_config.patch, files/fontconfig-2.3.2-symbol_alias.patch :
+  Fix pkgconfig includes crudely (#83623)
+  Remove reference to /usr/X11R6 in configure (#122526)
+  Install more docs (#124287, thanks to Andy Kittner)
+  Add aliases for symbol and dingbats fonts (#124238, thanks to Florian Mickler)
+  Add docbook switch, so we can disable it hard (#124287, thanks exg)
+
+  31 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  fontconfig-2.3.2.ebuild:
+  Add elibtoolize and ~x86-fbsd keyword.
+
+*fontconfig-2.3.2 (29 May 2005)
+
+  29 May 2005; foser <foser@gentoo.org> fontconfig-2.3.2.ebuild :
+  New release (#84757)
+
+  17 Feb 2005; Lina Pezzella <j4rg0n@gentoo.org> fontconfig-2.2.3.ebuild:
+  Stable ppc-macos
+
+  15 Jan 2005; Lina Pezzella <j4rg0n@gentoo.org> fontconfig-2.2.2.ebuild,
+  fontconfig-2.2.3.ebuild:
+  v. 2.2.2 stable ppc-macos.
+  v. 2.2.3 unstable ppc-macos.
+
+  21 Dec 2004; Markus Rothe <corsair@gentoo.org> fontconfig-2.2.3.ebuild:
+  Stable on ppc64; bug #44116
+
+  21 Dec 2004; Luca Barbato <lu_zero@gentoo.org> fontconfig-2.2.2.ebuild,
+  fontconfig-2.2.3.ebuild:
+  Marked ppc
+
+  11 Dec 2004; Mike Frysinger <vapier@gentoo.org> fontconfig-2.2.3.ebuild:
+  Remove C++ checks from configure since we dont need C++ #74077.
+
+  19 Oct 2004; Dylan Carlson <absinthe@gentoo.org> fontconfig-2.2.3.ebuild:
+  Stable on amd64.
+
+  18 Oct 2004; Gustavo Zacarias <gustavoz@gentoo.org> fontconfig-2.2.3.ebuild:
+  Stable on sparc
+
+  5 Sep 2004; Alexander Plank <alexander@gentoo.org> fontconfig-2.2.2.ebuild:
+  ~macos - if freetype isn't already merged, compilation fails
+
+  20 Aug 2004; Gustavo Zacarias <gustavoz@gentoo.org> fontconfig-2.2.2.ebuild:
+  Stable on sparc
+
+  18 Aug 2004; Aron Griffis <agriffis@gentoo.org> fontconfig-2.2.3.ebuild:
+  stable on alpha and ia64
+
+*fontconfig-2.2.3 (19 Jul 2004)
+
+  19 Jul 2004; foser <foser@gentoo.org> fontconfig-2.2.3.ebuild :
+  New release
+
+  13 Jul 2004; Stephen P. Becker <geoman@gentoo.org> fontconfig-2.2.2.ebuild:
+  Stable on mips - bug 56886
+
+  01 Jul 2004; Aron Griffis <agriffis@gentoo.org> fontconfig-2.2.2.ebuild:
+  stable on alpha and ia64
+
+  19 Jun 2004; foser <foser@gentoo.org> fontconfig-2.2.2.ebuild :
+  Build with DESTDIR to fix libtool problems (#50076)
+
+*fontconfig-2.1-r1 (02 Jun 2004)
+
+  02 Jun 2004; Michael Sterrett <mr_bones_@gentoo.org>
+  fontconfig-2.1-r1.ebuild:
+  resurrect fontconfig-2.1-r1 for keywords
+
+  02 Jun 2004; foser <foser@gentoo.org> fontconfig-2.2* :
+  Don't force fc-cache update, it breaks portage removal of fonts (#13808)
+  2.2.2 : remove ed dep (#42805)
+
+  17 Apr 2004; Travis Tilley <lv@gentoo.org> fontconfig-2.2.1.ebuild,
+  fontconfig-2.2.2.ebuild:
+  marked stable on amd64
+
+*fontconfig-2.2.2 (11 Mar 2004)
+
+  11 Mar 2004; <matsuu@gentoo.org> fontconfig-2.2.2.ebuild, metadata.xml:
+  Version bumped.
+
+  13 Jan 2004; <gustavoz@gentoo.org> fontconfig-2.2.1.ebuild:
+  marked stable on hppa
+
+  26 Nov 2003; Brandy Westcott brandy@gentoo.org fontconfig-2.2.1.ebuild:
+  Fixed SRC_URI.
+
+  01 Nov 2003; Seemant Kulleen <seemant@gentoo.org> fontconfig-2.2.1.ebuild:
+  SRC_URI and HOMEPAGE update, thanks to: Stony Yakovac <stonyy@tek.com> in bug
+  #32423
+
+  22 Oct 2003; Aron Griffis <agriffis@gentoo.org> fontconfig-2.2.1.ebuild:
+  Stable on alpha
+
+  22 Oct 2003; Bartosch Pixa <darkspecter@gentoo.org> fontconfig-2.2.1.ebuild:
+  set ppc in keywords
+
+  01 Jul 2003; Todd Sunderlin <todd@gentoo.org> fontconfig-2.1.4.ebuild:
+  set stable on sparc
+
+  17 Jun 2003; foser <foser@gentoo.org> fontconfig-2.2.0-r2.ebuild :
+  backport disable docs fix (#21195)
+ 
+*fontconfig-2.2.1 (11 Jun 2003)
+
+  11 Jun 2003; foser <foser@gentoo.org> fontconfig-2.2.1.ebuild, fontconfig-2.2-local_fontdir-r1.patch :
+  Always disable docs building (#21195)
+  Update fotndir patch to include /usr/local/share/fonts for local fonts
+ 
+  11 Jun 2003; Seemant Kulleen <seemant@gentoo.org> fontconfig-2.1-r1.ebuild,
+  fontconfig-2.2.0-r2.ebuild,
+  files/patch/fontconfig-0.0.1.020826.1330-blacklist.patch,
+  files/patch/fontconfig-2.0-defaultconfig.patch,
+  files/patch/fontconfig-2.0-x11fontpath-date-configure.patch,
+  files/patch/fontconfig-2.1-cvs-update-20021221.patch,
+  files/patch/fontconfig-2.1-fixedwidth.patch,
+  files/patch/fontconfig-2.1-slighthint.patch,
+  files/patch/fontconfig-2.1-x11fontpath-date-configure-v2.patch,
+  files/patch/fontconfig-2.1-x11fontpath-date-configure.patch,
+  files/patch/fontconfig-2.2-blacklist.patch,
+  files/patch/fontconfig-2.2-local_fontdir-r1.patch,
+  files/patch/fontconfig-2.2-remove_subpixel_test.patch,
+  files/patch/fontconfig-2.2.0-cvs_bugfixes.patch:
+  restored to its previous state. sorry about that, foser
+
+  21 May 2003; Tavis Ormandy <taviso@gentoo.org> fontconfig-2.1-r1.ebuild,
+  fontconfig-2.2.0-r2.ebuild:
+  die if using ccc.
+
+*fontconfig-2.2.0-r2 (14 May 2003)
+
+  04 Aug 2003; Guy Martin <gmsoft@gentoo.org> fontconfig-2.2.0-r2.ebuild :
+  Marked stable on hppa.
+
+  17 May 2003; foser <foser@gentoo.org> fontconfig-2.2.0-r2.ebuild :
+  small fix to install devel docs and usual docs together
+
+  16 May 2003; foser <foser@gentoo.org> fontconfig-2.2.0-r2.ebuild :
+  Added MAKEOPTS to fix possible parallel make problems with docs building
+
+  15 May 2003; foser <foser@gentoo.org> fontconfig-2.2-cvs_bugfixes.patch :
+  Remove cvs Id stuff from patch (#12035)
+
+  14 May 2003; foser <foser@gentoo.org> fontconfig-2.2.0-r2.ebuild, 
+  fontconfig-2.2-cvs_bugfixes.patch, fontconfig-2.2-remove_subpixel_test.patch :
+  Removed defaultconfig patch, its font preferences is suboptimal
+  Added some minor bugfixes from stable cvs, should fix docs problems as well
+  reenable docs USE flag, doesn't seem to work correctly though
+  Removed subpixel test from local.conf trying to fix #12757
+
+*fontconfig-2.2.0-r1 (27 Apr 2003)
+
+  27 Apr 2003; Martin Schlemmer <azarah@gentoo.org> fontconfig-2.2.0-r1.ebuild,
+  fontconfig-2.2-blacklist.patch, fontconfig-2.2-defaultconfig.patch :
+  Add blacklist patch from MDK to filter known fonts that borks.  Add
+  defaultconfig patch from MDK that add more font family's.
+
+*fontconfig-2.2.0 (23 Apr 2003)
+
+  23 Apr 2003; foser <foser@gentoo.org> fontconfig-2.2.0.ebuild :
+  New version, added some more standard fontpaths on request (#19564)
+
+*fontconfig-2.1.94-r1 (18 Apr 2003)
+
+  19 Apr 2003; foser <foser@gentoo.org> fontconfig-2.1.94-r1.ebuild :
+  Fixed freetype dep (#19576)
+
+  18 Apr 2003; foser <foser@gentoo.org> fontconfig-2.1.94-r1.ebuild :
+  Added patch to add our local userdir to fonts.conf, bad mess up on my side
+  Now people can really enjoy the vera fonts ;)
+ 
+*fontconfig-2.1.94 (17 Apr 2003)
+
+  17 Apr 2003; foser <foser@gentoo.org> fontconfig-2.1.94.ebuild :
+  Pre 2.2 release, supports Bitstream Vera fonts
+
+  08 Apr 2003; Martin Schlemmer <azarah@gentoo.org> fontconfig-2.1-r1.ebuild :
+  Mark stable for x86 and mips.  It has been in testing for long, and stable
+  for other arch's for a while.  Bug #18972.
+
+  08 Feb 2003; Jason Wever <weeve@gentoo.org> fontconfig-2.1-r1.ebuild :
+  Changed ~sparc keyword to sparc
+
+  04 Feb 2003; Olivier Reisch <doctomoe@gentoo.org> fontconfig-2.1-r1.ebuild :
+  Putting back to ~ppc. Warn ppl to recompile qt and kdelibs after install...
+
+  03 Feb 2003; Aron Griffis <agriffis@gentoo.org> fontconfig-2.1-r1.ebuild :
+  Mark stable on alpha (needed for gnome)
+
+  27 Jan 2002; Olivier Reisch <doctomoe@gentoo.org> fontconfig-2.1-r1.ebuild :
+  Masked -ppc  Breaks fonts on PPC platform.
+
+*fontconfig-2.1-r1 (23 Dec 2002)
+
+  15 Mar 2003; Mark Guertin <gerk@gentoo.org> fontconfig-2.1-r1.ebuild:
+  set ppc in keywords
+
+  12 Mar 2003; Jungmin Seo <seo@gentoo.org> fontconfig-2.1-r1.ebuild,
+  files/patch/fontconfig-2.1-fixedwidth.patch:
+
+  the patch fixes a font fixedwith bug, it has been applied in cvs,
+  so not required for the next version. Thanks to ganadist@mizi.com for
+  the patch.
+
+  12 Mar 2003; Zach Welch <zwelch@gentoo.org> fontconfig-2.1-r1.ebuild:
+  add arm keyword
+
+  11 Mar 2003; Guy Martin <gmsoft@gentoo.org> fontconfig-2.1-r1.ebuild :
+  Added hppa to keywords.
+
+  23 Dec 2002; Martin Schlemmer <azarah@gentoo.org> fontconfig-2.1-r1.ebuild :
+  Update from XFree86 cvs.
+
+  13 Dec 2002; Martin Schlemmer <azarah@gentoo.org> fontconfig-2.1.ebuild :
+  Bump to stable.  Initial testing seems fine, and we need to resove the
+  fonts.conf issue which are handled IMHO much better in this release.
+
+*fontconfig-2.1 (11 Dec 2002)
+
+  11 Dec 2002; Martin Schlemmer <azarah@gentoo.org> fontconfig-2.1.ebuild :
+  New version.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> :
+  Changed sparc ~sparc keywords
+ 
+  02 Dec 2002; foser <foser@gentoo.org> fontconfig-2.0-r3.ebuild :
+  Depend on freetype-2.1.2-r2, as it fixes bug #10028.
+
+*fontconfig-2.0-r4 (26 Nov 2002)
+
+  26 Nov 2002; foser <foser@gentoo.org> fontconfig-2.0-r3.ebuild :
+  New patch to fix both date and x11 fontdir problem in bug #11086
+
+*fontconfig-2.0-r3 (31 Oct 2002)
+
+  31 Oct 2002; Martin Schlemmer <azarah@gentoo.org> fontconfig-2.0-r3.ebuild :
+  Add patch to close bug #10028.
+
+*fontconfig-2.0-r2 (29 Oct 2002)
+
+  29 Oct 2002; Martin Schlemmer <azarah@gentoo.org> fontconfig-2.0-r2.ebuild :
+  Do not include date in generated /etc/fonts/fonts.conf, as users do not
+  seem to know how to set their timezone, or what to do with 'zic' for that
+  matter.  Bugs #9473, #9705 and #9768.
+
+*fontconfig-2.0-r1 (26 Oct 2002)
+
+  26 Oct 2002; Martin Schlemmer <azarah@gentoo.org> fontconfig-2.0-r1.ebuild :
+  Add some patches from Redhat.
+
+*fontconfig-2.0 (30 Sep 2002)
+
+  24 Oct 2002; Jack Morgan <jmorgan@gentoo.org> fontconfig-2.0.ebuild :
+  Added sparc/sparc64 keywords
+
+  21 Oct 2002; Calum Selkirk <cselkirk@gentoo.org> fontconfig-2.0.ebuild :
+  Added ppc to KEYWORDS.
+
+  01 Oct 2002; Martin Schlemmer <azarah@gentoo.org> fontconfig-2.0.ebuild :
+  Fix sandbox issues.
+
+  30 Sep 2002; Martin Schlemmer <azarah@gentoo.org> fontconfig-2.0.ebuild :
+  Initial version.
+
