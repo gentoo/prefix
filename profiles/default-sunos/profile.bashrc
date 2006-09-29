@@ -1,6 +1,7 @@
-# TODO: fix this for Solaris
-
-export DYLD_LIBRARY_PATH="${EPREFIX}/lib:${EPREFIX}/lib64:${EPREFIX}/usr/lib:${EPREFIX}/usr/lib64"
+# unfortunately the two below do not work (i.e. they don't result in the
+# same as setting -L and -R in the LDFLAGS)
+#export LD_LIBRARY_PATH="${EPREFIX}/lib:${EPREFIX}/usr/lib"
+#export LD_RUN_PATH="${EPREFIX}/lib:${EPREFIX}/usr/lib"
 
 # The linker in a prefixed system should look first in the prefix
 # directories (search path), then the (foreign) system directories
@@ -11,8 +12,9 @@ LDFLAGS=""
 for dir in lib64 lib usr/lib64 usr/lib;
 do
 	dir=${EPREFIX}/${dir}
+# note this is Solaris linker only, GNU=-rpath ${dir}
 	[[ -d ${dir} ]] && \
-		LDFLAGS="${LDFLAGS} -L${dir}"
+		LDFLAGS="${LDFLAGS} -L${dir} -R${dir}"
 done
 
 export LDFLAGS="${LDFLAGS} ${OLDLDFLAGS/${LDFLAGS}/}"
