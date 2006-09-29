@@ -34,7 +34,10 @@ src_compile() {
 		dbver="$(db_findver sys-libs/db)" || die "Unable to find db version"
 		dbver="$(db_ver_to_slot "$dbver")"
 		dbver="${dbver/\./}"
-		myconf="${myconf} --with-dbm=db${dbver}
+		# grobian: this results in 44, and the max supported version in the
+		# configure script is 43, so skip it, it seems to work fine without
+#		myconf="${myconf} --with-dbm=db${dbver}
+		myconf="${myconf}
 		--with-berkeley-db=$(db_includedir):${EPREFIX}/usr/$(get_libdir)"
 	else
 		myconf="${myconf} --without-berkeley-db"
