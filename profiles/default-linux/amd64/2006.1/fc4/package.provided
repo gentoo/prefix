@@ -1,0 +1,25 @@
+sys-process/cronbase-0.3.2
+sys-process/vixie-cron-4.1
+sys-process/procps-3.2.5
+sys-process/psmisc-21.6
+sys-apps/sysvinit-2.86-r3
+sys-apps/kbd-1.12
+sys-apps/net-tools-1.60
+sys-apps/shadow-4.0.7
+sys-apps/man-1.6a
+sys-apps/module-init-tools-3.2.1
+sys-apps/busybox-1.00-r4
+sys-apps/hdparm-6.1
+sys-apps/util-linux-2.12
+sys-apps/linux32-1.0
+sys-libs/glibc-2.3.6
+sys-libs/gpm-1.20.1-r5
+sys-libs/pwdb-0.62
+sys-libs/pam-0.78
+sys-fs/e2fsprogs-1.38
+sys-fs/udev-077
+#net-misc/openssh-4.2_p1
+net-misc/iputils-021109
+
+# X11 stuff
+x11-libs/libXv-1.0.1
