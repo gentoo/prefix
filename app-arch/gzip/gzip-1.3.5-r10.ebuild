@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/gzip-1.3.5-r9.ebuild,v 1.5 2006/09/20 23:09:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/gzip-1.3.5-r10.ebuild,v 1.1 2006/09/27 14:30:11 taviso Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ppc-macos x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="nls build static pic"
 
 RDEPEND=""
@@ -23,7 +23,7 @@ PROVIDE="virtual/gzip"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-CVE-2006-4334-8.patch
+	epatch "${FILESDIR}"/${P}-CVE-2006-4334-8.2.patch
 	epatch "${FILESDIR}"/${P}-debian.patch
 	epatch "${FILESDIR}"/${P}-znew-tempfile-2.patch
 	epatch "${FILESDIR}"/${P}-gunzip-dir.patch
