@@ -1,0 +1,50 @@
+This is a hack to provide stpcpy on systems where the system libc does
+not provide the function.  Upstream has incorporated a proper fix that
+utilizes gnulib; we use this version instead because it is much smaller.
+
+Patch by Benigno B. Junior
+
+http://bugs.gentoo.org/123237
+
+--- cpio-2.6/configure
++++ cpio-2.6/configure
+@@ -11727,7 +11726,7 @@
+ 
+ 
+ 
+-for ac_func in bcopy mkdir strdup strerror
++for ac_func in bcopy mkdir strdup strerror stpcpy
+ do
+ as_ac_var=`echo "ac_cv_func_$ac_func" | $as_tr_sh`
+ echo "$as_me:$LINENO: checking for $ac_func" >&5
+--- cpio-2.6/config.h.in
++++ cpio-2.6/config.h.in
+@@ -251,6 +251,9 @@
+ /* Define to 1 if you have the <stdlib.h> header file. */
+ #undef HAVE_STDLIB_H
+ 
++/* Define to 1 if you have the `stpcpy' function. */
++#undef HAVE_STPCPY
++
+ /* Define to 1 if you have the `strcasecmp' function. */
+ #undef HAVE_STRCASECMP
+ 
+--- cpio-2.6/src/copyout.c
++++ cpio-2.6/src/copyout.c
+@@ -356,7 +356,16 @@
+   char ascii_header[110];
+   char *p;
+ 
++#ifdef HAVE_STPCPY
+   p = stpcpy (ascii_header, magic_string);
++#else
++  {
++    unsigned long __length = strlen (magic_string);
++    memcpy (ascii_header, magic_string, __length);
++    p += __length;
++  }
++#endif 
++  
+   to_ascii_or_warn (p, file_hdr->c_ino, 8, LG_16,
+ 		    file_hdr->c_name, _("inode number"));
+   p += 8;

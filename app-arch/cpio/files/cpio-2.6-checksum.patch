@@ -1,0 +1,35 @@
+Ripped from Fedora
+
+--- cpio-2.6/src/extern.h.checksum	2005-10-26 11:17:11.000000000 +0200
++++ cpio-2.6/src/extern.h	2005-10-26 11:15:42.000000000 +0200
+@@ -66,7 +66,7 @@
+ extern int archive_des;
+ extern char *archive_name;
+ extern char *rsh_command_option;
+-extern unsigned long crc;
++extern unsigned int crc;
+ extern int delayed_seek_count;
+ #ifdef DEBUG_CPIO
+ extern int debug_flag;
+--- cpio-2.6/src/copyout.c.checksum	2005-10-26 11:17:11.000000000 +0200
++++ cpio-2.6/src/copyout.c	2005-10-26 11:20:01.000000000 +0200
+@@ -311,7 +311,7 @@
+ 	       file_hdr->c_gid, file_hdr->c_nlink, file_hdr->c_mtime,
+ 	     file_hdr->c_filesize, file_hdr->c_dev_maj, file_hdr->c_dev_min,
+ 	   file_hdr->c_rdev_maj, file_hdr->c_rdev_min, file_hdr->c_namesize,
+-	       file_hdr->c_chksum);
++	       file_hdr->c_chksum & 0xffffffff);
+       tape_buffered_write (ascii_header, out_des, 110L);
+ 
+       /* Write file name to output.  */
+--- cpio-2.6/src/global.c.checksum	2005-10-26 11:17:11.000000000 +0200
++++ cpio-2.6/src/global.c	2005-10-26 11:15:29.000000000 +0200
+@@ -139,7 +139,7 @@
+ char *rsh_command_option = NULL;
+ 
+ /* CRC checksum.  */
+-unsigned long crc;
++unsigned int crc;
+ 
+ /* Input and output buffers.  */
+ char *input_buffer, *output_buffer;
