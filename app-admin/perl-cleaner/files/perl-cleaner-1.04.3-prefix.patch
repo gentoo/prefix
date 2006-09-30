@@ -1,0 +1,82 @@
+--- perl-cleaner
++++ perl-cleaner
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+ # Version 1.4
+ #- patches from Wade Fitzpatrick for equery and fgrep suggestions (bug 125674), 
+@@ -11,6 +11,8 @@
+ # version 1.1 - Mr. Bones gave a lot of good input on cleaning up the script
+ # Version 1 - stuff
+ 
++EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
++
+ # First and foremost - make sure we have a perl to work with...
+ PERL=$(which perl)
+ if [ "${PERL}x" == "x" ]; then
+@@ -20,14 +22,14 @@
+ eval $(perl '-V:version')
+ PERL_VERSION=${version}
+ gPERL_VERSION=`echo $PERL_VERSION|sed -e 's|\.|\\\.|g'`
+-source /sbin/functions.sh || {
+-        echo "$0: Could not source /sbin/functions.sh!"
++source "${EPREFIX}"/sbin/functions.sh || {
++        echo "$0: Could not source ${EPREFIX}/sbin/functions.sh!"
+         exit 1
+ }
+ 
+-TMPDIR=${TMPDIR:-/tmp}
++TMPDIR=${TMPDIR:-${EPREFIX}/tmp}
+ 
+-PKGDIR=$(/usr/bin/portageq vdb_path)
++PKGDIR=$(${EPREFIX}/usr/bin/portageq vdb_path)
+ DATESTAMP=$(date +"%Y%m%d%H%M%S")
+ LOG=$(mktemp ${TMPDIR}/perl-cleaner.log.$DATESTAMP.XXXXXXXXXX)
+ PAGER=${PAGER:-more}
+@@ -87,9 +89,9 @@
+ function ph_update() {
+    echo ""
+    echo "$(date) : Updating ph files" | tee -a $LOG
+-   cd /usr/include; h2ph * | tee -a $LOG
+-   cd /usr/include; h2ph -r sys/* arpa/* netinet/* bits/* security/* asm/* gnu/* linux/* gentoo* | tee -a $LOG
+-   cd /usr/include/linux; h2ph * | tee -a $LOG
++   cd "${EPREFIX}"/usr/include; h2ph * | tee -a $LOG
++   cd "${EPREFIX}"/usr/include; h2ph -r sys/* arpa/* netinet/* bits/* security/* asm/* gnu/* linux/* gentoo* | tee -a $LOG
++   cd "${EPREFIX}"/usr/include/linux; h2ph * | tee -a $LOG
+ }
+ 
+ 
+@@ -98,7 +100,8 @@
+    echo ""
+    echo "$(date) : Building list of modules for reinstall" | tee -a $LOG
+    echo "Locating modules for reinstall"
+-    for checkfile in `find $PKGDIR -maxdepth 3 -mindepth 3 -name "CONTENTS" |xargs grep -El '/usr/lib*/perl5/' `; do 
++    for checkfile in `find $PKGDIR -maxdepth 3 -mindepth 3 -name
++       "CONTENTS" |xargs grep -El "${EPREFIX}"'/usr/lib*/perl5/' `; do 
+ 	if [ "`grep -l "${gPERL_VERSION}" $checkfile`x" = "x" ]; then
+ 		 echo "$checkfile" >> ${MODULES_LIST} 
+ 	fi; 
+@@ -160,9 +163,9 @@
+ 
+       for EBUILD in $(cat ${EBUILDS_PREINSTALL} ); do
+ # Use the esync cache if available
+-         if [ -x /usr/bin/esearch ]; then
++         if [ -x "${EPREFIX}"/usr/bin/esearch ]; then
+             EBUILD=`echo $EBUILD | sed -e 's/-[0-9].*//'`
+-            INFO=$(/usr/bin/esearch --fullname --instonly --own='%p:%vi:%va:%m' $EBUILD)
++            INFO=$("${EPREFIX}"/usr/bin/esearch --fullname --instonly --own='%p:%vi:%va:%m' $EBUILD)
+             #FULLNAME=`echo $INFO | cut -d':' -f1`
+             INSTALLED=`echo $INFO | cut -d':' -f2`
+             AVAILABLE=`echo $INFO | cut -d':' -f3`
+@@ -260,8 +263,8 @@
+ function libperl_list() {
+    echo ""
+    echo "$(date) : Locating ebuilds linked against libperl" | tee -a $LOG
+-   for i in $(find $(egrep -v "^#" /etc/ld.so.conf) -type f -name '*.so*' ! -newer /usr/lib/libperl.so 2>/dev/null) \
+-            $(find $(echo $PATH | sed 's/:/ /g') -type f -perm +0111 ! -newer /usr/lib/libperl.so 2>/dev/null) ;
++   for i in $(find $(egrep -v "^#" "${EPREFIX}"/etc/ld.so.conf) -type f -name '*.so*' ! -newer "${EPREFIX}"/usr/lib/libperl.so 2>/dev/null) \
++            $(find $(echo $PATH | sed 's/:/ /g') -type f -perm +0111 !  -newer "${EPREFIX}"/usr/lib/libperl.so 2>/dev/null) ;
+    do
+       if [ -f ${i} ]; then
+          if ldd ${i} 2>&1 | fgrep "libperl" - >/dev/null; then
