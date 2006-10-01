@@ -47,13 +47,12 @@
  }
  
  
-@@ -98,7 +100,8 @@
+@@ -98,7 +100,7 @@
     echo ""
     echo "$(date) : Building list of modules for reinstall" | tee -a $LOG
     echo "Locating modules for reinstall"
 -    for checkfile in `find $PKGDIR -maxdepth 3 -mindepth 3 -name "CONTENTS" |xargs grep -El '/usr/lib*/perl5/' `; do 
-+    for checkfile in `find $PKGDIR -maxdepth 3 -mindepth 3 -name
-+       "CONTENTS" |xargs grep -El "${EPREFIX}"'/usr/lib*/perl5/' `; do 
++    for checkfile in `find $PKGDIR -maxdepth 3 -mindepth 3 -name "CONTENTS" |xargs grep -El "${EPREFIX}"'/usr/lib*/perl5/' `; do 
  	if [ "`grep -l "${gPERL_VERSION}" $checkfile`x" = "x" ]; then
  		 echo "$checkfile" >> ${MODULES_LIST} 
  	fi; 
