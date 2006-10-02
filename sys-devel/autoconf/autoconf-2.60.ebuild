@@ -12,7 +12,9 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="2.5"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+# mask till I know how this is supposed to work
+KEYWORDS="-*"
+#KEYWORDS="~amd64 ~ppc-macos ~x86"
 IUSE="emacs"
 
 DEPEND=">=sys-apps/texinfo-4.3
