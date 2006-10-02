@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>no-herd</herd>
+<maintainer>
+	<email>las0mbra@ig.com.br</email>
+	<name>Ingo -LaSombra- Hoffmann</name>
+    <description>Ingo is the third party maintainer</description>
+</maintainer>
+<maintainer>
+    <email>vanquirius@gentoo.org</email>
+    <name>Marcelo Goes</name>
+    <description>Marcelo is the official Gentoo maintainer</description>
+</maintainer>
+</pkgmetadata>

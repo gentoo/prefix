@@ -1,0 +1,566 @@
+# ChangeLog for www-client/links
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-client/links/ChangeLog,v 1.71 2006/08/24 00:06:12 mr_bones_ Exp $
+
+  24 Aug 2006; Michael Sterrett <mr_bones_@gentoo.org>
+  -files/links-2.1pre18-no-javascript-fix.patch, -links-2.1_pre18.ebuild,
+  -links-2.1_pre19.ebuild:
+  clean out more old ebuilds
+
+  22 Aug 2006; Stephen P. Becker <geoman@gentoo.org> links-2.1_pre20.ebuild:
+  stable on mips, bug 140992
+
+  21 Aug 2006; Michael Sterrett <mr_bones_@gentoo.org>
+  -links-2.1_pre17-r1.ebuild:
+  clean oldest ebuild
+
+  19 Jul 2006; Fabian Groffen <grobian@gentoo.org> links-2.1_pre20.ebuild:
+  Marked ppc-macos stable (bug #140992)
+
+*links-2.1_pre22 (19 Jul 2006)
+
+  19 Jul 2006; Marcelo Goes <vanquirius@gentoo.org> -links-2.1_pre21.ebuild,
+  +links-2.1_pre22.ebuild:
+  2.1_pre22 version bump.
+
+  14 May 2006; Thomas Cort <tcort@gentoo.org> links-2.1_pre20.ebuild:
+  Stable on alpha.
+
+*links-2.1_pre21 (21 Apr 2006)
+
+  21 Apr 2006; Marcelo Goes <vanquirius@gentoo.org> +links-2.1_pre21.ebuild:
+  2.1_pre21 version bump. Currently in package.mask, since the utf8 patch
+  still needs to be ported.
+
+  21 Apr 2006; Marcelo Goes <vanquirius@gentoo.org>
+  links-2.1_pre17-r1.ebuild, links-2.1_pre18.ebuild, links-2.1_pre19.ebuild,
+  links-2.1_pre20.ebuild:
+  Remove virtual/textbrowser PROVIDE for bug 130746, reported by Carsten
+  Lohrke <carlo at gentoo dot org>.
+
+  07 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> links-2.1_pre20.ebuild:
+  Add ~x86-fbsd keyword.
+
+  05 Apr 2006; Marcelo Goes <vanquirius@gentoo.org> links-2.1_pre20.ebuild:
+  Fix dependencies so that it doesn't fail in non-interactive builds. Thanks
+  to Gustavo Zacarias <gustavoz at gentoo dot org> in bug 128252.
+
+  21 Feb 2006; Scott Stoddard <deltacow@gentoo.org> links-2.1_pre20.ebuild:
+  Stable on amd64.
+
+  20 Feb 2006; Markus Rothe <corsair@gentoo.org> links-2.1_pre20.ebuild:
+  Stable on ppc64
+
+  17 Feb 2006; Michael Hanselmann <hansmi@gentoo.org>
+  links-2.1_pre20.ebuild:
+  Stable on ppc.
+
+  16 Feb 2006; Marcelo Goes <vanquirius@gentoo.org>
+  links-2.1_pre17-r1.ebuild, links-2.1_pre18.ebuild, links-2.1_pre19.ebuild,
+  links-2.1_pre20.ebuild:
+  Move sys-devel/flex from RDEPEND to DEPEND for bug 122999. Thanks to Diego
+  Petteno <flameeyes at gentoo dot org>.
+
+  15 Feb 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  links-2.1_pre20.ebuild:
+  Stable on sparc
+
+  14 Feb 2006; Marcelo Goes <vanquirius@gentoo.org> links-2.1_pre20.ebuild:
+  Mark 2.1_pre20 x86 stable.
+
+  15 Jan 2006; Marcelo Goes <vanquirius@gentoo.org> links-2.1_pre18.ebuild,
+  links-2.1_pre20.ebuild:
+  Take my devspace out of SRC_URI.
+
+  24 Dec 2005; Michael Hanselmann <hansmi@gentoo.org>
+  links-2.1_pre19.ebuild:
+  Stable on ppc.
+
+  21 Dec 2005; Marcus D. Hanwell <cryos@gentoo.org> links-2.1_pre19.ebuild:
+  Stable on amd64.
+
+  19 Dec 2005; Bryan Østergaard <kloeri@gentoo.org links-2.1_pre19.ebuild:
+  Stable on alpha.
+
+  18 Dec 2005; Markus Rothe <corsair@gentoo.org> links-2.1_pre19.ebuild:
+  Stable on ppc64
+
+  12 Dec 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  links-2.1_pre19.ebuild:
+  Stable on sparc
+
+  12 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  links-2.1_pre20.ebuild:
+  Clean up modular X deps.
+
+  11 Dec 2005; Doug Goldstein <cardoe@gentoo.org> links-2.1_pre20.ebuild:
+  Adding modular X depends. Also added SDL depends since links clearly has SDL
+  deps from the ./configure and the compile log. sh needs libsdl marked and vapier
+  refuses... so it won't repoman
+
+*links-2.1_pre20 (10 Dec 2005)
+
+  10 Dec 2005; Marcelo Goes <vanquirius@gentoo.org> links-2.1_pre19.ebuild,
+  +links-2.1_pre20.ebuild:
+  Mark 2.1_pre19 x86 stable and 2.1_pre20 version bump.
+
+  03 Dec 2005; Tom Gall <tgall@gentoo.org> links-2.1_pre18.ebuild:
+  stable on ppc64
+
+*links-2.1_pre19 (26 Oct 2005)
+
+  26 Oct 2005; Marcelo Goes <vanquirius@gentoo.org> +links-2.1_pre19.ebuild:
+  Version bump for bug 110502. Thanks to Daniel Webert <rockoo at gmail dot com>.
+
+  18 Oct 2005; Marcelo Goes <vanquirius@gentoo.org> links-2.1_pre18.ebuild:
+  Use mirror://gentoo since the main server seems to be having some problems.
+  Should fix bug 109686, thanks to Stuart Guthrie <sfg at eurekait dot com>.
+
+  18 Oct 2005; Aron Griffis <agriffis@gentoo.org> links-2.1_pre18.ebuild:
+  Mark 2.1_pre18 stable on alpha
+
+  10 Oct 2005; Hardave Riar <hardave@gentoo.org> links-2.1_pre18.ebuild:
+  Stable on mips.
+
+  09 Oct 2005; MATSUU Takuto <matsuu@gentoo.org> links-2.1_pre18.ebuild:
+  Stable on sh.
+
+  07 Oct 2005; Simon Stelling <blubb@gentoo.org> links-2.1_pre18.ebuild:
+  stable on amd64
+
+  06 Oct 2005; Michael Hanselmann <hansmi@gentoo.org>
+  links-2.1_pre18.ebuild:
+  Stable on hppa, ppc.
+
+  03 Oct 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  links-2.1_pre18.ebuild:
+  Stable on sparc
+
+  03 Oct 2005; Aron Griffis <agriffis@gentoo.org> links-2.1_pre18.ebuild:
+  Mark 2.1_pre18 stable on ia64
+
+  02 Oct 2005; Marcelo Goes <vanquirius@gentoo.org> -links-2.1_pre15.ebuild,
+  links-2.1_pre18.ebuild:
+  Remove old ebuild, mark 2.1_pre18 x86 stable.
+
+  19 Sep 2005; Marcelo Goes <vanquirius@gentoo.org> links-2.1_pre15.ebuild,
+  links-2.1_pre17-r1.ebuild:
+  Update HOMEPAGE and SRC_URI.
+
+  17 Sep 2005; Marcelo Goes <vanquirius@gentoo.org> links-2.1_pre18.ebuild:
+  Minor ebuild fixes.
+
+  29 Aug 2005; Marcelo Goes <vanquirius@gentoo.org> links-2.1_pre18.ebuild:
+  Fix typo in DESCRIPTION, update HOMEPAGE, use mirror://gentoo for utf-8 patch.
+
+  29 Aug 2005; Seemant Kulleen <seemant@gentoo.org>
+  +files/links-2.1pre18-no-javascript-fix.patch, links-2.1_pre18.ebuild:
+  fix for no javascript compile failure. Reported upstream with the patch that
+  Az made in files/
+
+*links-2.1_pre18 (28 Aug 2005)
+
+  28 Aug 2005; Marcelo Goes <vanquirius@gentoo.org>
+  -files/links-2.1_pre17-auth.patch, -links-2.1_pre17.ebuild,
+  -links-2.1_pre17-r2.ebuild, +links-2.1_pre18.ebuild:
+  Version bump. Fixes javascript problem reported in bug 100545. Thanks to
+  bkgood@gmail.com, Ciaran Hamilton <gentoo-bugs@theblob.org>, Mrugesh Karnik
+  <floyd_n_milan@yahoo.com> and Andrea Barisani<lcars@gentoo.org>.
+
+  02 Aug 2005; MATSUU Takuto <matsuu@gentoo.org> links-2.1_pre17-r1.ebuild:
+  Stable on sh.
+
+  03 Jul 2005; Rene Nussbaumer <killerfox@gentoo.org>
+  links-2.1_pre17-r1.ebuild:
+  Stable on hppa. bug 97071
+
+  02 Jul 2005; Bryan Østergaard <kloeri@gentoo.org>
+  links-2.1_pre17-r1.ebuild:
+  Stable on alpha.
+
+  29 Jun 2005; Herbie Hopkins <herbs@gentoo.org> links-2.1_pre17-r1.ebuild:
+  Stable on amd64 wrt bug #97071.
+
+  28 Jun 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  links-2.1_pre17-r1.ebuild:
+  Stable on sparc wrt #97071
+
+  27 Jun 2005; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  links-2.1_pre17-r1.ebuild:
+  Stable on ppc. Bug 97071
+
+  26 Jun 2005; Lina Pezzella <j4rg0n@gentoo.org> links-2.1_pre17-r1.ebuild:
+  Stable ppc-macos. Bug 97071
+
+  26 Jun 2005; Markus Rothe <corsair@gentoo.org> links-2.1_pre17-r1.ebuild:
+  Stable on ppc64 (bug #97071)
+
+  25 Jun 2005; Marcelo Goes <vanquirius@gentoo.org>
+  links-2.1_pre17-r1.ebuild:
+  x86 stable.
+
+*links-2.1_pre17-r2 (07 Jun 2005)
+
+  07 Jun 2005; Marcelo Goes <vanquirius@gentoo.org>
+  +files/links-2.1_pre17-auth.patch, +links-2.1_pre17-r2.ebuild:
+  Two things. Cross-compilation fix for bug 92693, thanks to Radek Podgorny
+  <radek@podgorny.cz> for reporting. Authentication patch for bug 92660
+  upstream would like to have tested. In package.mask for testing.
+
+  25 May 2005; Markus Rothe <corsair@gentoo.org> links-2.1_pre17.ebuild:
+  Stable on ppc64
+
+  14 May 2005; Guy Martin <gmsoft@gentoo.org> links-2.1_pre17.ebuild:
+  Stable on hppa.
+
+  13 May 2005; Bryan Østergaard <kloeri@gentoo.org> links-2.1_pre17.ebuild:
+  Stable on ia64.
+
+  13 May 2005; Marcelo Goes <vanquirius@gentoo.org> links-2.1_pre17-r1.ebuild:
+  Changed RDEPEND to allow ppc-macos to work again, changed src_compile to fix
+  bug 91946 regarding failure to display jpeg images.
+
+  09 May 2005; Marcelo Goes <vanquirius@gentoo.org> links-2.1_pre17-r1.ebuild:
+  This ebuild is broken (see bug 91946) and should have been tested in the first
+  place. It was my mistake to put it as stable and I apologize for it. Marked
+  ~arches, added to package.mask.
+
+  07 May 2005; Marcelo Goes <vanquirius@gentoo.org> links-2.1_pre17-r1.ebuild:
+  Fix bug with livecd USE flag and --with-fb. Thanks to j-kidd and Mamour on the
+  Forums.
+
+  05 May 2005; Michael Hanselmann <hansmi@gentoo.org>
+  links-2.1_pre17-r1.ebuild:
+  Stable on hppa.
+
+*links-2.1_pre17-r1 (04 May 2005)
+
+  04 May 2005; Marcelo Goes <vanquirius@gentoo.org>
+  +links-2.1_pre17-r1.ebuild:
+  Adding livecd USE flag, on Chris Gianelloni's <wolf31o2@gentoo.org> request.
+  Fixes bug 91335.
+
+  01 May 2005; Michael Hanselmann <hansmi@gentoo.org>
+  links-2.1_pre17.ebuild:
+  Stable on ppc.
+
+  01 May 2005; Tom Martin <slarti@gentoo.org> links-2.1_pre17.ebuild:
+  Stable on amd64.
+
+  27 Apr 2005; Bryan Østergaard <kloeri@gentoo.org> links-2.1_pre17.ebuild:
+  Stable on alpha.
+
+  25 Apr 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  links-2.1_pre17.ebuild:
+  Stable on sparc
+
+  24 Apr 2005; Marcelo Goes <vanquirius@gentoo.org> links-2.1_pre17.ebuild:
+  Marking x86 stable.
+
+*links-2.1_pre17 (23 Mar 2005)
+
+  23 Mar 2005; Seemant Kulleen <seemant@gentoo.org> links-2.1_pre15.ebuild,
+  +links-2.1_pre17.ebuild:
+  version bump thanks to: Alessandro Lepore <legion@birra.it> in bug #80401.
+  The utf8 patch was adjusted to work with this version by the lovely Marcelo
+  Goes <vanquirius@gentoo.org> in the same bug.  Additionally, the patch for
+  pre15 was moved onto the mirrors.  And finally, FlameEyes and iFlame (Diego
+  Pettenò <dgp85@users.sourceforge.net>) submitted massive ebuild cleanups in
+  bug #86596.  Not only are use_{enable,with} liberally employed, bug gpm
+  autodetection is disabled as well.  Oh, the final thing is links will now
+  install a links binary (and for a while, a links2 symlink).  Thanks to
+  everyone over the past years, especially Ingo, for helping me maintain this
+  package in Gentoo.  This is my last bug as official maintainer, because
+  Marcelo Goes <vanquiris@gentoo.org> is now the new maintainer.
+
+*links-2.1_pre15 (14 Mar 2005)
+
+  14 Mar 2005; Seemant Kulleen <seemant@gentoo.org>
+  +files/links-0.96-r2-gentoo.patch, +files/links-2.1pre15-utf8.diff.bz2,
+  +metadata.xml, +links-2.1_pre15.ebuild:
+  Moved from net-www/links to www-client/links.
+
+  11 Jan 2005; Heinrich Wendel <lanius@gentoo.org>
+  files/links-2.1pre15-utf8.diff.bz2:
+  update utf8 patch, bug #67528
+
+  24 Oct 2004; Heinrich Wendel <lanius@gentoo.org> -links-0.96-r2.ebuild,
+  -links-2.1_pre11.ebuild, -links-2.1_pre13.ebuild, -links-2.1_pre14.ebuild,
+  links-2.1_pre15.ebuild, -links-2.1_pre9.ebuild:
+  remove old versions; commit a fix for bug 67528
+
+  17 Oct 2004; Dylan Carlson <absinthe@gentoo.org> links-2.1_pre15.ebuild:
+  stable on amd64.
+
+  22 Sep 2004; Gustavo Zacarias <gustavoz@gentoo.org> links-2.1_pre15.ebuild:
+  Stable on sparc
+
+  21 Sep 2004; Heinrich Wendel <lanius@gentoo.org> links-2.1_pre15.ebuild:
+  stable on x86
+
+  21 Sep 2004; Heinrich Wendel <lanius@gentoo.org>
+  +files/links-2.1pre15-utf8.diff.bz2, links-2.1_pre15.ebuild:
+  enhance unicode support, bug #61682
+
+  04 Sep 2004; Pieter Van den Abeele <pvdabeel@gentoo.org>
+  links-2.1_pre11.ebuild, links-2.1_pre13.ebuild, links-2.1_pre14.ebuild,
+  links-2.1_pre15.ebuild:
+  Masked links-2.1_pre15.ebuild stable for ppc
+
+  04 Sep 2004; Pieter Van den Abeele <pvdabeel@gentoo.org>
+  links-2.1_pre11.ebuild, links-2.1_pre13.ebuild, links-2.1_pre14.ebuild:
+  Masked links-2.1_pre14.ebuild stable for ppc
+
+  04 Sep 2004; Pieter Van den Abeele <pvdabeel@gentoo.org>
+  links-2.1_pre11.ebuild, links-2.1_pre13.ebuild:
+  Masked links-2.1_pre13.ebuild stable for ppc
+
+  04 Sep 2004; Pieter Van den Abeele <pvdabeel@gentoo.org>
+  links-2.1_pre11.ebuild:
+  Masked links-2.1_pre11.ebuild stable for ppc
+
+  15 Jul 2004; Tom Gall <tgall@gentoo.org> links-2.1_pre15.ebuild:
+  added ~ppc64, bug #55430
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  links-2.1_pre15.ebuild:
+  virtual/glibc -> virtual/libc
+
+  25 Jun 2004; Aron Griffis <agriffis@gentoo.org> links-2.1_pre11.ebuild,
+  links-2.1_pre13.ebuild, links-2.1_pre14.ebuild, links-2.1_pre15.ebuild,
+  links-2.1_pre9.ebuild:
+  QA - fix use invocation
+
+  23 Jun 2004; <malc@gentoo.org> links-2.1_pre11.ebuild:
+  Mark stable on amd64
+
+  08 Jun 2004; Bryan Østergaard <kloeri@gentoo.org> links-2.1_pre15.ebuild:
+  Stable on alpha.
+
+*links-2.1_pre15 (06 May 2004)
+
+  06 May 2004; Daniel Black <dragonheart@gentoo.org> +links-2.1_pre15.ebuild:
+  version bump. Thanks to Marcin Kryczek <aye@gentoo.pl> in bug #49632
+
+  26 Apr 2004; Aron Griffis <agriffis@gentoo.org> links-2.1_pre9.ebuild:
+  Add die following econf for bug 48950
+
+  09 Jan 2004; Jason Wever <weeve@gentoo.org> links-2.1_pre11.ebuild:
+  Marked stable on sparc.
+
+  21 Dec 2003; Guy Martin <gmsoft@gentoo.org> links-2.1_pre13.ebuild:
+  Marked stable on hppa.
+
+  08 Dec 2003; Michael Sterrett <mr_bones_@gentoo.org> links-2.1_pre11.ebuild,
+  links-2.1_pre13.ebuild, links-2.1_pre14.ebuild:
+  added directfb to IUSE (bug 35410)
+
+*links-2.1_pre14 (03 Dec 2003)
+
+  03 Dec 2003; Seemant Kulleen <seemant@gentoo.org> links-2.1_pre14.ebuild:
+  version bump thanks to: Ingo -LaSombra- Hoffmann <las0mbra@ig.com.br> in bug
+  #34995
+
+*links-2.1_pre13 (29 Oct 2003)
+
+  29 Oct 2003; Seemant Kulleen <seemant@gentoo.org> links-2.1_pre13.ebuild:
+  I took so much time with the last update, that pre13 got released in the
+  meantime, so here it is. Thanks again to Ingo -LaSombra- Hoffmann
+  <las0mbra@ig.com.br> in bug #29575
+
+  29 Oct 2003; Brandy Westcott brandy@gentoo.org links-2.1_pre11.ebuild,
+  links-2.1_pre12.ebuild, links-2.1_pre9.ebuild:
+  Added gpm as a dependency of fbcon; gpm is needed in order to compile the
+  framebuffer graphics driver. See bug #29230
+
+*links-2.1_pre12 (28 Oct 2003)
+
+  28 Oct 2003; Seemant Kulleen <seemant@gentoo.org> links-2.1_pre12.ebuild:
+  Version bump, thanks to: Ingo -LaSombra- Hoffmann <las0mbra@ig.com.br> in bug
+  #29575
+
+  21 Sep 2003; Seemant Kulleen <seemant@gentoo.org> links-2.1_pre11.ebuild,
+  links-2.1_pre9.ebuild:
+  due to popular demand, removing gpm requirement from fbcon
+
+  20 Sep 2003; Seemant Kulleen <seemant@gentoo.org> links-2.1_pre11.ebuild:
+  graphics not needed for ssl -- sheesh at me. Thanks spanky <vapier@gentoo.org>
+  in bug #29086
+
+  09 Sep 2003; Seemant Kulleen <seemant@gentoo.org> links-2.1_pre11.ebuild,
+  links-2.1_pre9.ebuild:
+  added gpm to dependency list with fbcon. Thanks to Brandy Westcott
+  <brandy@gentoo.org> for the providing the fix in bug #23703 opened by 
+  Paul Slinski <pauls@globaliqx.com>.  Also added DirectFB support thanks
+  to Florian Löding <flonai@gmx.de> in bug #26464 opened by: Evan Langlois
+  <ekl@crc.homelinux.org>
+
+*links-2.1_pre11 (11 Jun 2003)
+
+  11 Jun 2003; Seemant Kulleen <seemant@gentoo.org> links-2.1_pre11.ebuild:
+  version bump thanks to: Ingo -LaSombra- Hoffmann <las0mbra@ig.com.br> in bug
+  #22557
+
+*links-2.1_pre9 (04 Mar 2003)
+
+  25 Mar 2003; <rac@gentoo.org> links-2.1_pre9.ebuild:
+  mark 2.1_pre9 stable on x86/ppc/sparc/hppa, as these were all stable on pre2
+  and <pre7 is now gone from upstream source
+
+  03 Mar 2003; Aron Griffis <agriffis@gentoo.org> links-2.1_pre9.ebuild:
+  stable on alpha
+
+  04 Mar 2003; Seemant Kulleen <seemant@gentoo.org> links-2.1_pre9.ebuild
+  files/digest-links-2.1_pre9 :
+
+  Version bump thanks to: Ingo -LaSombra- Hoffmann <las0mbra@ig.com.br> in
+  bug #16473.
+
+*links-2.1_pre7 (30 Jan 2003)
+
+  29 Feb 2003; Guy Martin <gmsoft@gentoo.org> links-2.1_pre7.ebuild :
+  Added ~hppa to keywords.
+
+  30 Jan 2003; foser <foser@gentoo.org> links-2.1_pre7.ebuild :
+  New version
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*links-2.1_pre6 (04 Nov 2002)
+
+  29 Feb 2003; Guy Martin <gmsoft@gentoo.org> links-2.1_pre6.ebuild :
+  Added ~hppa to keywords.
+
+  15 Dec 2002; Bjoern Brauel <bjb@gentoo.org> links-2.1_pre6.ebuild :
+  Add alpha to KEYWORDS
+
+  04 Nov 2002; Seemant Kulleen <seemant@gentoo.org> links-2.1_pre6.ebuild
+  files/digest-links-2.1_pre6 :
+
+  Version bump thanks to: autobot@midsouth.rr.com (AutoBot) in bug #10226.
+
+*links-2.1_pre3 (30 Sep 2002)
+
+  29 Feb 2003; Guy Martin <gmsoft@gentoo.org> links-2.1_pre3.ebuild :
+  Added hppa to keywords.
+
+  30 Sep 2002; Seemant Kulleen <seemant@gentoo.org> links-2.1_pre3.ebuild
+  files/digest-links-2.1_pre3 :
+
+  Version bump + security fix.  If the user wishes to run links2 in svga
+  mode, they must now enable the suid bit themselves.  Closes bug #8556 by
+  vapier@gentoo.org
+
+  24 Oct 2002; Michael Nazaroff <naz@gentoo.org> links-2.1_pre3.ebuild
+
+  Added a fix for bug #9272, Thanks goes to Scott Beck for noticing the problem
+  and fixing it.
+
+*links-2.1_pre2 (11 Sep 2002)
+
+  11 Sep 2002; Seemant Kulleen <seemant@gentoo.org> links-2.1_pre2-r2.ebuild
+  files/digest-links-2.1_pre2-r2 :
+
+  From: kevin@aptbasilicata.it (Maurizio Disimino) in bug # 7809
+
+  at the moment, links will be compiled with --enable-graphics only if
+  USE="png". If --enable-graphics is not supplied, fb WILL NOT WORK.
+  Moreover, --enable-graphis should be enabled for 'X' or 'fbcon'.
+
+  Note: if X or fbcon usegflag are enabled, links will be built in 
+  graphic mode. libpng is required to compile links in graphic mode 
+  not required in textmode),so let's add libpng for X? and fbcon?
+
+     X? ( virtual/x11 >=media-libs/libpng-1.2.1 )
+	    fbcon? ( >=media-libs/libpng-1.2.1 )"
+
+		- Fixed DEPEND and src_compile().
+		- Some cosmetic changes.
+
+
+  29 Aug 2002; Seemant Kulleen <seemant@gentoo.org> links-0.96-r2.ebuild
+  links-2.1_pre2-r1.ebuild :
+
+  PROVIDE="virtual/textbrowser"
+
+  22 Jul 2002; Michael Nazaroff <naz@gentoo.org> links-0.96-r2.ebuild :
+
+  Added a patch to fix links 0.96 compiling against gpm, since the previous
+  version still did even with -gpm set in USE.  Thanx to Christopher Horler for
+  the excellent patch and ebuild. This fix's bug 5351.
+  
+  21 Jul 2002; Seemant Kulleen <seemant@gentoo.org> links-2.1_pre2-r1.ebuild
+
+  changed --disable-graphics to --without-graphics.  Fix submitted by:
+  eroper@wanfear.com (Edward Roper) in bug #5193.
+
+  11 Jul 2002; Seemant Kulleen <seemant@gentoo.org> links-2.1_pre2-r1.ebuild
+  files/digest-links-2.1_pre2-r1 :
+
+  Adjusted permissions on executable if svga is in USE.  Thanks to:
+  hielvc@cox.net (Hiel Van Campen) in bug #4891.
+
+*links-2.1_pre2 (09 Jul 2002)
+
+  09 Jul 2002; Seemant Kulleen <seemant@gentoo.org> links-2.1_pre2.ebuild
+  files/digest-links-2.1_pre2 :
+
+  Version bump, which should solve the png issue. Thanks to:
+  j_r_fonseca@yahoo.co.uk (Jose' Fonseca) in bug #4764
+
+*links-2.0 (11 Jun 2002)
+
+  11 Jun 2002; Seemant Kulleen <seemant@gentoo.org> links-2.0.ebuild
+  files/digest-links-2.0 :
+
+  Version bump to final release.
+
+*links-2.0_pre6 (4 Jun 2002)
+
+  4 Jun 2002; Seemant Kulleen <seemant@gentoo.org> links-2.0_pre6.ebuild
+  files/digest-links-2.0_pre6 :
+
+  Version bump.
+
+*links-2.0_pre4-r2 (29 May 2002)
+
+  29 May 2002: Michael M Nazaroff <naz@gentoo.org> links-2.0_pre4-r2.ebuild :
+
+  Applied patch that hopefully seems to fix the gpm-1.20.0 problem, and also
+  adds some other little features to links.
+  
+*links-2.0_pre4-r1 (27 May 2002)
+
+  27 May 2002; Mike Jones <ashmodai@gentoo.org> links-2.0_pre4-r1.ebuild :
+
+  Changed the dependency to gpm-1.19.6 as gpm-1.20.0 was masked and was
+  breaking.
+
+*links-2.0_pre4 (27 May 2002)
+
+  27 May 2002; Martin Schlemmer <azarah@gentoo.org> links-2.0_pre4.ebuild :
+
+  Version bump.
+
+*links-2.0_pre3 (26 May 2002)
+
+  26 May 2002; Seemant Kulleen <seemant@gentoo.org> links-2.0_pre3.ebuild :
+  files/digest-links-2.0_pre3 :
+
+  Version bump thanks to kamisama@free.fr (Defresne Sylvain (keiichi)) in
+  bug #3015
+
+*links-0.96-r2 (13 Feb 2003)
+ 
+  13 Jul 2003; Daniel Ahlberg <aliz@gentoo.org> :
+  Added missing changelog entry.
+
+*links-0.96-r1 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
