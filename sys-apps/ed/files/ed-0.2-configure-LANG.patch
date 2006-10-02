@@ -1,0 +1,48 @@
+The LANG vars aren't reset early enough so when sed tries to use [a-zA-Z] in 
+option parsing, it may break.
+
+http://bugs.gentoo.org/126041
+
+--- configure
++++ configure
+@@ -34,6 +34,16 @@
+ x_includes=NONE
+ x_libraries=NONE
+ 
++# NLS nuisances.
++# Only set these to C if already set.  These must not be set unconditionally
++# because not all systems understand e.g. LANG=C (notably SCO).
++# Fixing LC_MESSAGES prevents Solaris sh from translating var values in `set'!
++# Non-C LC_CTYPE values break the ctype check.
++if test "${LANG+set}"   = set; then LANG=C;   export LANG;   fi
++if test "${LC_ALL+set}" = set; then LC_ALL=C; export LC_ALL; fi
++if test "${LC_MESSAGES+set}" = set; then LC_MESSAGES=C; export LC_MESSAGES; fi
++if test "${LC_CTYPE+set}"    = set; then LC_CTYPE=C;    export LC_CTYPE;    fi
++
+ # Initialize some other variables.
+ subdirs=
+ 
+@@ -316,13 +326,6 @@
+   esac
+ done
+ 
+-# NLS nuisances.
+-# Only set LANG and LC_ALL to C if already set.
+-# These must not be set unconditionally because not all systems understand
+-# e.g. LANG=C (notably SCO).
+-if test "${LC_ALL+set}" = set; then LC_ALL=C; export LC_ALL; fi
+-if test "${LANG+set}"   = set; then LANG=C;   export LANG;   fi
+-
+ # confdefs.h avoids OS command line length limits that DEFS can exceed.
+ rm -rf conftest* confdefs.h
+ # AIX cpp loses on an empty file, so make sure it contains at least a newline.
+--- configure.orig	2006-03-13 20:46:45.000000000 -0500
++++ configure	2006-03-13 20:47:17.000000000 -0500
+@@ -1600,6 +1600,7 @@
+ fi; done
+ 
+ 
++touch stamp-h
+ 
+ exit 0
+ EOF

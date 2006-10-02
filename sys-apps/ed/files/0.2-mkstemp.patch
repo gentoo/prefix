@@ -1,0 +1,32 @@
+This is based on the following:
+===
+Submitted By: LFS Book <lfs-book@linuxfromscratch.org>
+Date: 2003-10-05
+Initial Package Version: 0.2
+Origin: Slackware Source
+Description: Use mkstemp instead of mktemp.
+===
+However the original patch contained an error.
+mkstemp returns a file description, so when fopen ran, the file was opened twice.
+The correct change is to use fdopen with mkstemp.
+See gentoo bug #73858.
+diff -Naur ed-0.2/buf.c ed-0.2-2/buf.c
+--- ed-0.2/buf.c	Sat Nov 19 04:37:59 1994
++++ ed-0.2-2/buf.c	Tue May 28 18:38:23 2002
+@@ -200,13 +200,13 @@
+ int
+ open_sbuf ()
+ {
+-  char *mktemp ();
+-  int u;
++  int u, sfd;
+ 
+   isbinary = newline_added = 0;
+   u = umask(077);
+   strcpy (sfn, "/tmp/ed.XXXXXX");
+-  if (mktemp (sfn) == NULL || (sfp = fopen (sfn, "w+")) == NULL)
++  sfd = mkstemp(sfn);
++  if ((sfd == -1) || (sfp = fdopen (sfd, "w+")) == NULL)
+     {
+       fprintf (stderr, "%s: %s\n", sfn, strerror (errno));
+       sprintf (errmsg, "Cannot open temp file");
