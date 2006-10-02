@@ -1,0 +1,603 @@
+# ChangeLog for app-text/tetex
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.129 2006/06/15 15:44:32 ehmsen Exp $
+
+  15 Jun 2006; Martin Ehmsen <ehmsen@gentoo.org> tetex-3.0_p1-r3.ebuild:
+  Removed the *virtex symlinks, since they don't make any sense anymore. Use
+  *tex -ini ... instead for both initex and virtex, see bug #135548.
+
+  24 May 2006; Martin Ehmsen <ehmsen@gentoo.org>
+  files/tetex-3.0-kpathsea-pic.patch:
+  Fixed kpathsea-pic USERLAND comparison, using = instead of -eq, bug #134149.
+
+  23 May 2006; Fabian Groffen <grobian@gentoo.org> tetex-2.0.2-r8.ebuild:
+  Marked ppc-macos stable (bug #115775)
+
+  23 May 2006; Martin Ehmsen <ehmsen@gentoo.org>
+  +files/tetex-3.0_p1-dvipdfm-timezone.patch, tetex-3.0_p1-r3.ebuild:
+  Fixed buffer overrun in dvipdfm resulting in segfault, bug #94901.
+
+  27 Apr 2006; Marien Zwart <marienz@gentoo.org>
+  files/digest-tetex-2.0.2-r9, files/digest-tetex-3.0-r3,
+  files/digest-tetex-3.0-r4, files/digest-tetex-3.0_p1, Manifest:
+  Fixing SHA256 digest, pass four
+
+  14 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> tetex-3.0_p1-r3.ebuild:
+  Add ~x86-fbsd keyword.
+
+  13 Apr 2006; Martin Ehmsen <ehmsen@gentoo.org>
+  files/tetex-3.0-kpathsea-pic.patch, tetex-3.0_p1-r3.ebuild:
+  Fixed libtool and symlink problems on MacOS, bug #106886.
+
+*tetex-3.0_p1-r3 (10 Apr 2006)
+
+  10 Apr 2006; Martin Ehmsen <ehmsen@gentoo.org>
+  +files/tetex-3.0_p1-create-empty-files.patch,
+  +files/tetex-3.0_p1-texmf-site.patch, +tetex-3.0_p1-r3.ebuild:
+  Removed dvipng from tetex, it is provided in it own ebuild app-text/dvipng
+  (bug #129044). Added a Gentoo site texmf directory (latex-package still
+  needs to take advantage of it). Altered the way Makefiles create empty files
+  (bug #126918).
+
+  24 Mar 2006; Aron Griffis <agriffis@gentoo.org> tetex-2.0.2-r9.ebuild:
+  Mark 2.0.2-r9 stable on ia64
+
+  19 Mar 2006; Martin Ehmsen <ehmsen@gentoo.org>
+  files/digest-tetex-3.0_p1-r2, Manifest:
+  Fixed bad digest and Mainfest, bug #126723.
+
+  16 Mar 2006; Patrick McLean <chutzpah@gentoo.org> tetex-2.0.2-r9.ebuild:
+  Stable on amd64.
+
+  16 Mar 2006; Martin Ehmsen <ehmsen@gentoo.org>
+  -files/tetex-no-readlink-manpage.diff, -files/tetex-texdoctk-gentoo.patch,
+  -tetex-1.0.7-r13.ebuild:
+  Removed tetex-1.
+
+  16 Mar 2006; Martin Ehmsen <ehmsen@gentoo.org>
+  +files/tetex-3.0_p1-pdftosrc-install.patch, tetex-3.0_p1-r2.ebuild:
+  Added pdftosrc binary and man page, bug #94860.
+
+  02 Mar 2006; Martin Ehmsen <ehmsen@gentoo.org> tetex-2.0.2-r8.ebuild,
+  tetex-2.0.2-r9.ebuild:
+  Removed usage of missing tetex-2.0.2-flex-compile.patch, bug #124580.
+
+  28 Feb 2006; Martin Ehmsen <ehmsen@gentoo.org> +files/pst-circ.pro,
+  tetex-3.0_p1-r2.ebuild:
+  Added pst-circ.pro to /usr/share/texmf/dvips/pstricks thanks to
+  Henning Gunther <der_eq@freenet.de>, bug #123714.
+
+*tetex-2.0.2-r9 (01 Mar 2006)
+
+  01 Mar 2006; Alexandre Buisse <nattfodd@gentoo.org>
+  +files/tetex-2.0.2-use-system-libtool.patch, tetex-2.0.2-r8.ebuild,
+  +tetex-2.0.2-r9.ebuild:
+  Make tetex-2 use the system libtool so it can build a shared version of
+  libkpathsea and evince is happy. Thanks to Patrick McLean for the patch.
+  Closes bug #124134.
+
+  15 Feb 2006; Martin Ehmsen <ehmsen@gentoo.org> tetex-3.0_p1-r2.ebuild:
+  Use virtualx eclass to fix make test, bug #69439.
+
+  13 Feb 2006; Martin Ehmsen <ehmsen@gentoo.org>
+  +files/tetex-2.0.2-flex-unput.patch, tetex-2.0.2-r5.ebuild,
+  tetex-2.0.2-r8.ebuild:
+  Using supplied lexer rather than generating our own for omegafonts,
+  thanks to Chris Torske <ct85711@gmail.com> and caleb, bug #122365.
+
+*tetex-3.0_p1-r2 (08 Feb 2006)
+
+  08 Feb 2006; Martin Ehmsen <ehmsen@gentoo.org> +tetex-3.0_p1-r2.ebuild:
+  Added tete-3.0_p1-r2 which removes now uses pkg_postinst from the eclasses.
+  It also pushes the changes made in the eclasses to fix bug #120515, #121811,
+  and possible many more.
+
+  08 Feb 2006; Alexandre Buisse <nattfodd@gentoo.org>
+  tetex-3.0_p1-r1.ebuild:
+  Changed einfo in big ewarn with procedure from bug #120515.
+
+  07 Feb 2006; Aron Griffis <agriffis@gentoo.org> tetex-2.0.2-r8.ebuild:
+  Mark 2.0.2-r8 stable on alpha
+
+  02 Feb 2006; Martin Ehmsen <ehmsen@gentoo.org> +tetex-1.0.7-r13.ebuild:
+  Readded tetex-1.0.7-r13 because stuff depends on it (which they shouldn't).
+
+  02 Feb 2006; Martin Ehmsen <ehmsen@gentoo.org> -tetex-1.0.7-r13.ebuild,
+  tetex-3.0_p1-r1.ebuild:
+  added export LC_ALL=C to tetex-3 to fix bug #119856.
+  Removed tetex-1 since it is old, not used and not ported to modular X.
+
+  25 Jan 2006; Joshua Jackson <tsunam@gentoo.org> tetex-2.0.2-r8.ebuild:
+  stable on x86; bug #115775
+
+  25 Jan 2006; Mike Doty <kingtaco@gentoo.org> tetex-2.0.2-r8.ebuild:
+  amd64 stable #115775
+
+  24 Jan 2006; Markus Rothe <corsair@gentoo.org> tetex-2.0.2-r8.ebuild:
+  Stable on ppc64; bug #115775
+
+  24 Jan 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  tetex-2.0.2-r8.ebuild:
+  ppc stable, bug #115775
+
+  24 Jan 2006; Rene Nussbaumer <killerfox@gentoo.org> tetex-2.0.2-r8.ebuild:
+  Stable on hppa. See bug #115775.
+
+  24 Jan 2006; Gustavo Zacarias <gustavoz@gentoo.org> tetex-2.0.2-r8.ebuild:
+  Stable on sparc wrt security #115775
+
+*tetex-2.0.2-r8 (23 Jan 2006)
+
+  23 Jan 2006; Alexandre Buisse <nattfodd@gentoo.org>
+  +files/xpdf-2.02pl1-CAN-2005-3191-3.patch, -tetex-2.0.2-r6.ebuild,
+  -tetex-2.0.2-r7.ebuild, +tetex-2.0.2-r8.ebuild:
+  Added security fixes from bug #115775 (xpdf buffer overflow)
+
+*tetex-3.0_p1-r1 (22 Jan 2006)
+
+  22 Jan 2006; Alexandre Buisse <nattfodd@gentoo.org>
+  +files/tetex-3.0_p1-fmtutil-etex.patch,
+  +files/tetex-3.0_p1-xpdf-vulnerabilities.patch, +tetex-3.0_p1-r1.ebuild:
+  Fixes fmtutil problems with elatex not being found and texi2dvi/etex
+  complaining about being stymied, closing bug #98029. Thanks to Tupone
+  Alfredo for one of the patches. Also security fixes of xpdf code from bug
+  #115775.
+
+  21 Jan 2006; Alexandre Buisse <nattfodd@gentoo.org>
+  +files/tetex-2.0.2-dvi-draw-conflicting-types.patch,
+  tetex-2.0.2-r5.ebuild, tetex-2.0.2-r6.ebuild, tetex-2.0.2-r7.ebuild:
+  Added a patch to fix a compilation error in texk/xdvik/dvi-draw.c for
+  tetex-2.0.2, closing bug #118264. Credit goes to GerbilSoft.
+
+*tetex-3.0_p1 (13 Jan 2006)
+
+  13 Jan 2006; Alexandre Buisse <nattfodd@gentoo.org>
+  +files/tetex-3.0_p1-amd64-xdvik-wp.patch,
+  +files/tetex-3.0_p1-mptest.patch, +tetex-3.0_p1.ebuild:
+  Use a new tarball provided by upstream with regeneration of autotools files
+  with newer version. Corrects bug 113024 with libtool complaining about
+  missing --tag. Added a patch to correct a typo for amd64 and skip a broken
+  test with metapost (more investigation of that one is needed).
+
+*tetex-3.0-r4 (02 Dec 2005)
+*tetex-2.0.2-r7 (02 Dec 2005)
+
+  02 Dec 2005; Alexandre Buisse <nattfodd@gentoo.org>
+  +files/tetex-2.0.2-epstopdf-wrong-rotation.patch,
+  +files/tetex-3.0-epstopdf-wrong-rotation.patch, +tetex-2.0.2-r7.ebuild,
+  +tetex-3.0-r4.ebuild:
+  Bump to fix wrong rotation and handling of filenames with spaces in epstopdf
+  (bug #85404). Thanks to Fabio Rossi and Horst Schirmeier for the patch.
+
+  30 Sep 2005; MATSUU Takuto <matsuu@gentoo.org> tetex-2.0.2-r5.ebuild:
+  Stable on sh.
+
+*tetex-3.0-r3 (13 Sep 2005)
+
+  13 Sep 2005; <dang@gentoo.org> +files/tetex-3.0-kpathsea-pic.patch,
+  +tetex-3.0-r3.ebuild:
+  Revbump to make a shared version of libkpathsea.  Bug #105418
+
+*tetex-3.0-r2 (09 Apr 2005)
+
+  09 Apr 2005; Mamoru KOMACHI <usata@gentoo.org> +tetex-3.0-r2.ebuild:
+  Added virtex symlink. This closes bug #88187.
+
+  05 Apr 2005; Mamoru KOMACHI <usata@gentoo.org> -tetex-2.0.2-r4.ebuild,
+  tetex-2.0.2-r5.ebuild, tetex-2.0.2-r6.ebuild, tetex-3.0-r1.ebuild:
+  Changed to use tetex-2 and tetex-3, respectively.
+
+  02 Apr 2005; Mamoru KOMACHI <usata@gentoo.org> tetex-3.0-r1.ebuild:
+  Fixed xdvi toolkit dependency; bug #87375. Removed ~mips for now;
+  bug #87627.
+
+  30 Mar 2005; Mamoru KOMACHI <usata@gentoo.org> tetex-3.0-r1.ebuild:
+  Blocks latex-beamer; bug #60835.
+
+*tetex-2.0.2-r6 (21 Feb 2005)
+
+  21 Feb 2005; Mamoru KOMACHI <usata@gentoo.org> +tetex-2.0.2-r6.ebuild,
+  tetex-3.0-r1.ebuild, -tetex-3.0.ebuild:
+  Revbump to push out fixed texmf-update. Removed 3.0.
+
+  20 Feb 2005; Aron Griffis <agriffis@gentoo.org> tetex-2.0.2-r5.ebuild:
+  stable on ia64 #75801
+
+  13 Feb 2005; Mamoru KOMACHI <usata@gentoo.org> tetex-3.0-r1.ebuild:
+  (Hopefully) fixes sandbox violation; bug #81703.
+
+*tetex-3.0-r1 (11 Feb 2005)
+
+  11 Feb 2005; Mamoru KOMACHI <usata@gentoo.org> +tetex-3.0-r1.ebuild:
+  Fixed sandbox issue (bug #81533). Uses -sys variants of updmap, texconfig
+  and fmtutil. Moved updmap.cfg from /usr/share/texmf/web2c to
+  /var/lib/texmf/web2c.
+
+*tetex-3.0 (09 Feb 2005)
+
+  09 Feb 2005; Mamoru KOMACHI <usata@gentoo.org>
+  -tetex-2.99.9.20050111.ebuild, +tetex-3.0.ebuild:
+  Version bumped. See bug #60835.
+
+  26 Jan 2005; Guy Martin <gmsoft@gentoo.org> tetex-2.0.2-r5.ebuild:
+  Stable on hppa.
+
+  21 Jan 2005; Lars Weiler <pylon@gentoo.org> tetex-2.0.2-r5.ebuild:
+  Stable on ppc; bug #75801.
+
+*tetex-2.99.9.20050111 (21 Jan 2005)
+
+  21 Jan 2005; Mamoru KOMACHI <usata@gentoo.org> -tetex-2.0.2-r3.ebuild,
+  -tetex-2.99.3.20041109-r1.ebuild, -tetex-2.99.5.20041207.ebuild,
+  +tetex-2.99.9.20050111.ebuild:
+  Version bumped.
+
+  21 Jan 2005; Hardave Riar <hardave@gentoo.org> tetex-2.0.2-r5.ebuild:
+  Stable on mips, bug #75801.
+
+  20 Jan 2005; Ferris McCormick <fmccor@gentoo.org> tetex-2.0.2-r5.ebuild:
+  Stable for sparc, bug 75801. Builds, installs, and seems to create documents
+  correctly.
+
+  20 Jan 2005; Markus Rothe <corsair@gentoo.org> tetex-2.0.2-r5.ebuild:
+  Stable on ppc64; bug #75801
+
+  20 Jan 2005; Olivier Cr?te <tester@gentoo.org> tetex-2.0.2-r5.ebuild:
+  Stable on x86 bug 75801
+
+  20 Jan 2005; Bryan Østergaard <kloeri@gentoo.org> tetex-2.0.2-r5.ebuild:
+  Stable on alpha, bug 75801.
+
+  19 Jan 2005; Mike Doty <kingtaco@gentoo.org> tetex-2.0.2-r5.ebuild:
+  stable on amd64 bug 75801
+
+*tetex-2.0.2-r5 (19 Jan 2005)
+
+  19 Jan 2005; MATSUU Takuto <matsuu@gentoo.org> +files/xdvizilla.patch,
+  +files/xpdf-3.00pl2-CAN-2004-1125.patch,
+  +files/xpdf-3.00pl3-CAN-2005-0064.patch,
+  +files/xpdf-CESA-2004-007-xpdf2-newer.diff, +files/xpdf-goo-sizet.patch,
+  +files/xpdf2-underflow.patch, +tetex-2.0.2-r5.ebuild:
+  security bump; bug #75801
+
+*tetex-2.99.5.20041207 (09 Dec 2004)
+
+  09 Dec 2004; Mamoru KOMACHI <usata@gentoo.org>
+  -tetex-2.99.3.20041109.ebuild, +tetex-2.99.5.20041207.ebuild:
+  Version bumepd.
+
+*tetex-2.99.3.20041109-r1 (21 Nov 2004)
+
+  21 Nov 2004; Mamoru KOMACHI <usata@gentoo.org>
+  -tetex-2.99.1.20041026.ebuild, +tetex-2.99.3.20041109-r1.ebuild:
+  Added neXt USE flag.
+
+*tetex-2.99.3.20041109 (19 Nov 2004)
+
+  19 Nov 2004; Mamoru KOMACHI <usata@gentoo.org>
+  +tetex-2.99.3.20041109.ebuild:
+  Added new beta version.
+
+  07 Nov 2004; Mamoru KOMACHI <usata@gentoo.org> +files/iso-8859-7.def,
+  tetex-2.0.2-r4.ebuild:
+  Added iso-8859-7.def. Thanks to Pantelis Panayiotou <oss@hyperlife.com.cy>;
+  bug #65093.
+
+*tetex-2.99.1.20041026 (28 Oct 2004)
+*tetex-2.0.2-r4 (28 Oct 2004)
+
+  28 Oct 2004; Mamoru KOMACHI <usata@gentoo.org>
+  -files/tetex-2.96.7.20040721-dont-run-config.diff,
+  -files/tetex-2.96.7.20040721.diff,
+  +files/tetex-2.99.1.20041026-dont-run-config.diff,
+  +files/tetex-2.99.1.20041026-etex.diff, +files/tetex-2.99.1.20041026.diff,
+  +tetex-2.0.2-r4.ebuild, -tetex-2.96.7.20040721.ebuild,
+  +tetex-2.99.1.20041026.ebuild:
+  Version bumped (bug #60835). Added 2.0.2-r4 to push out xdvi fix(bug #68883).
+
+*tetex-2.96.7.20040721 (17 Oct 2004)
+
+  17 Oct 2004; Mamoru KOMACHI <usata@gentoo.org>
+  +files/tetex-2.96.7.20040721-dont-run-config.diff,
+  +files/tetex-2.96.7.20040721.diff, +tetex-2.96.7.20040721.ebuild:
+  Added tetex-beta distribution; bug #60835.
+
+  17 Aug 2004; Mamoru KOMACHI <usata@gentoo.org> tetex-1.0.7-r13.ebuild:
+  Corrected missing dvips-secure.diff. (It was in patch archive but not
+  applied.) This closes bug #60603.
+
+  04 Aug 2004; Daniel Black <dragonheart@gentoo.org> :
+  Manifest fix - contained removed patch
+
+  31 Jul 2004; Mamoru KOMACHI <usata@gentoo.org> -files/teTeX-1.0-dvips.diff,
+  -files/teTeX-1.0-gentoo.diff, -files/tetex-1.0.7-dont-run-config.diff,
+  -files/tetex-1.0.7-dvips-secure.diff, -files/tetex-1.0.7-picins.diff,
+  tetex-1.0.7-r13.ebuild:
+  Archived patches in files directory and put them on Gentoo mirrors.
+
+  01 Jul 2004; Tom Gall <tgall@gentoo.org> tetex-2.0.2-r3.ebuild:
+  stable on ppc64, bug #54799
+
+  08 May 2004; Danny van Dyk <kugelfang@gentoo.org> tetex-2.0.2-r3.ebuild:
+  Workaround for BUG #50417. Replacing -O3 by -O2 on amd64.
+
+  25 Mar 2004; Joshua Kinard <kumba@gentoo.org> tetex-2.0.2-r3.ebuild:
+  Marked stable on mips.
+
+  09 Mar 2004; <agriffis@gentoo.org> tetex-2.0.2-r3.ebuild:
+  stable on alpha and ia64
+
+  25 Feb 2004; Joshua Kinard <kumba@gentoo.org> tetex-2.0.2-r3.ebuild:
+  Added ~mips to KEYWORDS to satisfy repoman deps.
+
+  21 Feb 2004; Jason Wever <weeve@gentoo.org> tetex-2.0.2-r3.ebuild:
+  Marked stable on sparc, fixes bug #37110.
+
+  21 Feb 2004; Mamoru KOMACHI <usata@gentoo.org> tetex-1.0.7-r13.ebuild,
+  tetex-2.0.2-r1.ebuild, tetex-2.0.2-r3.ebuild:
+  Removed inherit eutils and flag-o-matic since epatch and filter-flags
+  are now part of portage.  Also moved filter-flags to src_compile() to
+  kill "has_version() in global scope" warning.
+
+  31 Dec 2003; Mike Gardiner <obz@gentoo.org> tetex-2.0.2-r1.ebuild,
+  tetex-2.0.2-r3.ebuild:
+  Removed ~mips and ~arm, as a dependency (libwww) is not available on those
+  architectures
+
+  09 Dec 2003; Seemant Kulleen <seemant@gentoo.org> tetex-1.0.7-r13.ebuild,
+  tetex-2.0.2-r1.ebuild, tetex-2.0.2-r3.ebuild:
+  tetex has NO reason to install a crap readlink man page. man-pages provides a
+  superior version anyway, so added patch to disable installing it
+
+*tetex-2.0.2-r3 (13 Nov 2003)
+
+  11 Jan 2004; Guy Martin <gmsoft@gentoo.org> tetex-2.0.2-r3.ebuild :
+  Marked stable on hppa.
+
+  13 Nov 2003; Mamoru KOMACHI <usata@gentoo.org> tetex-2.0.2-r3.ebuild:
+  inherit tetex.eclass (app-text/ptex and app-text/cstetex inherit it
+  too). Mostly identical to tetex-2.0.2-r2, but take care of symlinks
+  left behind /usr/bin after unmerge. See bug #31657.
+
+*tetex-2.0.2-r2 (04 Nov 2003)
+
+  04 Nov 2003; Mike Gardiner <obz@gentoo.org> tetex-2.0.2-r2.ebuild:
+  Added fix for hyperref, see bug #31967. A few small ebuild changes
+
+  07 Oct 2003; John Mylchreest <johnm@gentoo.org>; tetex-2.0.2-r1.ebuild:
+  fixing POSIX 1003.1-2001 chown change. '.' now ':'
+
+  30 Sep 2003; Mamoru KOMACHI <usata@gentoo.org> tetex-1.0.7-r12.ebuild,
+  tetex-1.0.7-r13.ebuild:
+  Removed control character from picins.sty. Thanks to Jan Fikar
+  <jan.fikar@ext.univ-poitiers.fr> for reporting the bug on #28180.
+
+  27 Sep 2003; Mike Gardiner <obz@gentoo.org> tetex-2.0.2-r1.ebuild,
+  tetex-2.0.2.ebuild:
+  Fixed listings.sty location, and marked stable on x86. Thanks to John Steele
+  Scott <toojays@toojays.net> for help on bug #29723
+
+  18 Sep 2003; Mamoru KOMACHI <usata@gentoo.org> tetex-1.0.7-r12.ebuild,
+  tetex-1.0.7-r13.ebuild, tetex-2.0.2-r1.ebuild, tetex-2.0.2.ebuild:
+  Explicitly specify !app-text/ptex in DEPEND list.
+
+  09 Sep 2003; Mamoru KOMACHI <usata@gentoo.org> tetex-1.0.7-r12.ebuild,
+  tetex-1.0.7-r13.ebuild, tetex-2.0.2-r1.ebuild, tetex-2.0.2.ebuild,
+  files/tetex-1.0.7-dvips-secure.diff, files/tetex-1.0.7-r11-gentoo.diff,
+  files/tetex-1.0.7-r12-gentoo.diff, files/tetex-2.0-dont-run-config.diff,
+  files/tetex-2.0.diff, files/texmf.dif:
+  Simplified tetex-1.0.7-r??-gentoo.diff.  This closes Bug #28136.
+  Removed old unnecessary patches.
+
+*tetex-2.0.2-r1 (06 Sep 2003)
+*tetex-1.0.7-r13 (06 Sep 2003)
+
+  06 Sep 2003; Daniel Robbins <drobbins@gentoo.org> tetex-2.0.2-r1.ebuild,
+  tetex-1.0.7-r13.ebuild: removed png, libwww and ncurses USE variables, which
+  were off by default.  This fixes bugs 14709 and 20843.  We want tetex to use
+  *our* libpng, libwww and ncurses packages so that we can track dependencies
+  correctly. The internal libwww was using mysql sometimes, resulting in fried
+  compiles since it seemed to often mis-detect mysql availability. Our libwww
+  ebuild does much better. Also added an RDEPEND fix (tons of stuff was
+  missing.)
+  
+  14 Aug 2003; Mamoru KOMACHI <usata@gentoo.org> tetex-1.0.7-r12.ebuild: Added
+  virtual/tetex PROVIDE
+
+  02 Aug 2003; Todd Sunderlin <todd@gentoo.org> tetex-2.0.2.ebuild:
+  Marked stable for sparc
+
+*tetex-2.0.2 (14 Mar 2003)
+
+  29 Jul 2003; Mamoru KOMACHI <usata@gentoo.org> tetex-2.0.2.ebuild:
+  Added virtual/tetex. app-text/ptex (Japanized teTeX) also provides
+  virtual/tetex.
+
+  12 Apr 2003; Joshua Brindle <method@gentoo.org> tetex-1.0.7-r12.ebuild,
+  tetex-2.0.2.ebuild:
+  added filter-flag -fstack-protector
+
+  09 Apr 2003; Matthew Turk <satai@gentoo.org> tetex-1.0.7-r12.ebuild,
+  tetex-2.0.2.ebuild:
+  Updated homepage variable.  Thanks to Eric Sammer!
+
+  14 Mar 2003; Matthew Turk <satai@gentoo.org> tetex-2.0.2.ebuild,
+  files/tetex-2.0.2-dont-run-config.diff, files/tetex-2.0.2.diff:
+  Version bump.  Not many changes.  Still not using texmf-gg.
+
+  25 Feb 2003; Guy Martin <gmsoft@gentoo.org> tetex-1.0.7-r10.ebuild :
+  Added hppa to keywords.
+
+  07 Feb 2003; Matthew Turk <satai@gentoo.org> :
+  Config protect /usr/share/texmf/tex/generic/config/
+  /usr/share/texmf/tex/platex/config/ in order to keep hyphenation patterns
+  between updates.
+
+  06 Feb 2003; Matthew Turk <satai@gentoo.org> :
+  Re-enable vardir font creation.  This fixes letting ordinary users generate
+  font metrics.
+
+*tetex-2.0-r1 (05 Feb 2003)
+
+  21 Feb 2003; Aron Griffis <agriffis@gentoo.org> tetex-2.0-r1.ebuild :
+  Mark stable on Alpha
+
+  05 Feb 2003; Matthew Turk <satai@gentoo.org> :
+  Revision bump.  Added a patch to fix the local tree.  Also enabled a number
+  of Babel formats.  Installation should be all fixed now, too.
+
+  04 Feb 2003; Matthew Turk <satai@gentoo.org> : tetex-2.0.ebuild
+  Fixed installation woes; will now manually remove /usr/share/texmf/dvipdfm if
+  it exists.  This should clear up problems with conflicts between versions of
+  dvipdfm storing configuration in slightly different fashions.
+
+  05 Feb 2003; Martin Schlemmer <azarah@gentoo.org> tetex-2.0.ebuild :
+  Updated to use epatch.
+
+  03 Feb 2003; Matthew Turk <satai@gentoo.org> tetex-1.0.7-r12.ebuild :
+  Fixed tetex-1.0.7-r12 to install manpages in correct location.  The make
+  install function seems to be broken in 1.0.7, so I had to hardcode man1 into
+  it.  This is not the case in 2.0.  Didn't bump revision so as to encourage
+  testing of 2.0.
+
+*tetex-2.0 (02 Feb 2003)
+
+  02 Feb 2003; Matthew Turk <satai@gentoo.org> tetex-2.0.ebuild :
+  teTeX-2.0 is released!  This should fix *so* many bugs it's just
+  unbelievable...  Still leaving marked unstable for the freeze, however.
+
+  18 Jan 2003; Aron Griffis <agriffis@gentoo.org> tetex-1.0.7-r12.ebuild :
+  Fix bug 13789 again, this time by taking Felix's suggestion.  Thought I had
+  it fixed the first time, this time I'm even more thinkful.
+
+  18 Jan 2003; Aron Griffis <agriffis@gentoo.org> tetex-1.0.7-r12.ebuild :
+  Fix bug 13789 by pulling in a couple hints from the RH rpm, specifically the
+  texmfmain=... part.  Fixed a typo in the specification of datadir and use
+  econf/emake/einstall.  Also check for USE=zlib.
+
+*tetex-20030112 (13 Jan 2003)
+
+  13 Jan 2003; Matthew Turk <satai@gentoo.org> tetex-20030112.ebuild :
+  Version bump to a pretest, for those who wish to help out.  Masked in
+  package.mask.
+
+  07 Jan 2003; Aron Griffis <agriffis@gentoo.org> tetex-1.0.7-r11.ebuild :
+  Add alpha to KEYWORDS
+
+  03 Jan 2003; Matthew Turk <satai@gentoo.org> :
+  Uncommented the scrollmode fix, which should allow fmtutil to work properly.
+
+  02 Jan 2003; Matthew Turk <satai@gentoo.org> :
+  Added a fix to generate all missing format files upon installation.
+
+  02 Jan 2003; Matthew Turk <satai@gentoo.org> :
+  Added a fix to allow dvips to recognize when secure mode is turned off.
+  Closes 11579.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*tetex-1.0.7-r12 (12 Apr 2003)
+ 
+  11 Jul 2003; Daniel Ahlberg <aliz@gentoo.org> :
+  Added missing changelog entry.
+
+*tetex-1.0.7-r11 (18 Oct 2002)
+
+  07 Nov 2002; Nicholas Jones <carpaski@gentoo.org> :
+	unpack line fix.
+
+  18 Oct 2002; Daniel Ahlberg <aliz@gentoo.org> :
+  Security update.
+
+  21 Sep 2002; Martin Schlemmer <azarah@gentoo.org> tetex-1.0.7-r10.ebuild :
+
+    Backport all the fixes in tetex-20020901-r1.ebuild.  Only problem now is
+    that it seems that portage do not change permissions on a directory if
+    it already exists ...
+
+  19 Sep 2002; Martin Schlemmer <azarah@gentoo.org> tetex-20020901-r1.ebuild :
+
+    Ok, this stupid thing still had problems with ownership and unpacking
+    on one of my boxes.  Should be fixed now.
+
+  16 Sep 2002; Martin Schlemmer <azarah@gentoo.org> tetex-20020901-r1.ebuild :
+
+    Some cleanups and <tab> fixes.  Fix permissions on /usr/share/texmf
+    (fowners is not recursive).  Add a patch for not running the config
+    stuff during 'make install', as we should rather do it in src_unpack().
+
+*tetex-20020901-r1 (11 Sep 2002)
+
+  11 Sep 2002; satai <satai@gentoo.org> tetex-20020901-r1.ebuild :
+
+    Added patch to change TEXMFLOCAL to /usr/local/share/texmf .
+
+*tetex-20020901 (11 Sep 2002)
+
+  11 Sep 2002; satai <satai@gentoo.org> tetex-20020901-r1.ebuild :
+
+    Fixed (kludgy) texconfig problem by replacing tcdialog with dialog from
+    ncurses.  Remains unchanged for USE=-ncurses.
+
+*tetex-20020901 (05 Sep 2002)
+
+  05 Sep 2002; satai <satai@gentoo.org> tetex-20020901.ebuild :
+
+    Added new, pretest version.  Should fix LOTS of problems...
+
+*tetex-1.0.7-r11 (22 Aug 2002)
+
+  22 Aug 2002; satai <satai@gentoo.org> tetex-1.0.7-r11.ebuild :
+
+  Changed default behavior to fix numerous bugs - now font generation is, by
+  default, available for all users.
+
+*tetex-1.0.7-r10 (20 Jun 2002)
+
+  2 Aug 2002; phoen][x <phoenix@gentoo.org> tetex-1.0.7-r10.ebuild :
+  Added SLOT.
+
+  15 Jul 2002; Owen Stampflee <owen@gentoo.org> :
+
+  Added KEYWORDS.
+
+  20 Jun 2002; Seemant Kulleen <seemant@gentoo.org> tetex-1.0.7-r10.ebuild
+  files/digest-tetex-1.0.7-r10 :
+
+  Fixed libwww configure option, so it now knows where to look for the
+  headers.  This closes bug #3928 by fatwreckfan@hotmail.com (Mark Trolley)
+
+*tetex-1.0.7-r9 (24 Apr 2002)
+
+  25 Mar 2003; Seemant Kulleen <seemant@gentoo.org> tetex-1.0.7-r9.ebuild:
+  removed ncurse from IUSE
+
+  2 Aug 2002; phoen][x <phoenix@gentoo.org> tetex-1.0.7-r9.ebuild :
+  Added SLOT.
+
+  24 Apr 2002; Seemant Kulleen <seemant@gentoo.org> tetex-1.0.7-r9.ebuild
+  files/digest-tetex-1.0.7-r9 :
+
+  Fixed the permissions problem so that 501.501 is not the owner on
+  /usr/share/texmf files.  The solution was presented in bug #1901 by
+  bardur-gta@odense.kollegienet.dk (Bardur Arantsson)
+
+  13 Apr 2002; M.Schlemmer <azarah@gentoo.org> tetex-1.0.7-r8.ebuild :
+
+  Fix the DEPEND and RDEPEND to actually specify libpng-1.2.1.
+
+*tetex-1.0.7-r8 (12 Apr 2002)
+
+  12 Apr 2002; Seemant Kulleen <seemant@gentoo.org> tetex-1.0.7-r8.ebuild :
+
+  Compile against newest libpng
+
+*tetex-1.0.7-r7 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.

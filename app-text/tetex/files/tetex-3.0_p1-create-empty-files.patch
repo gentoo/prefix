@@ -1,0 +1,24 @@
+diff -urN tetex-src-3.0.orig/texk/kpathsea/mktexlsr tetex-src-3.0/texk/kpathsea/mktexlsr
+--- tetex-src-3.0.orig/texk/kpathsea/mktexlsr	2005-12-06 16:03:40.000000000 +0100
++++ tetex-src-3.0/texk/kpathsea/mktexlsr	2006-03-20 17:27:53.000000000 +0100
+@@ -108,7 +108,7 @@
+   test -w "$db_dir" || { echo "$progname: $db_dir: directory not writable. Skipping..." >&2; continue; }
+ 
+   if test ! -f "$db_file"; then
+-    cp /dev/null "$db_file"
++    touch "$db_file"
+     # Use same permissions as parent directory, minus x,s, or t bits.
+     chmod `kpsestat -xst "$db_dir"` "$db_file"
+   elif test -s "$db_file" \
+diff -urN tetex-src-3.0.orig/texk/make/man.mk tetex-src-3.0/texk/make/man.mk
+--- tetex-src-3.0.orig/texk/make/man.mk	2005-12-06 16:03:42.000000000 +0100
++++ tetex-src-3.0/texk/make/man.mk	2006-03-20 17:23:45.000000000 +0100
+@@ -28,7 +28,7 @@
+ # Makefile can change for reasons that do not affect the man pages.
+ # At present, all but VERSION should be unused.
+ sedscript:
+-	cp /dev/null sedscript
++	touch sedscript
+ 	for f in $(kpathsea_dir)/paths.h; do \
+ 	  sed -n -e '/^#define/s/#define[ 	][ 	]*\([A-Z_a-z][A-Z_a-z]*\)[ 	][ 	]*\(.*\)/s%@\1@%\2%/p' \
+ 		$$f \

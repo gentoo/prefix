@@ -1,0 +1,10 @@
+--- tetex-src-3.0/texk/web2c/tests/mptest.mp.old	2006-01-12 18:52:17.000000000 +0100
++++ tetex-src-3.0/texk/web2c/tests/mptest.mp	2006-01-12 18:52:42.000000000 +0100
+@@ -40,6 +40,6 @@
+ 
+ message("* Test for big numbers in btex...etex:");
+ picture q;
+-q = btex $2^{12} = 4096 \qquad 2^{15} = 32768$ etex;
++%q = btex $2^{12} = 4096 \qquad 2^{15} = 32768$ etex;
+ 
+ end.

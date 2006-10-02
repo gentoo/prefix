@@ -1,0 +1,19 @@
+diff -urN tetex-src-3.0.orig/texk/web2c/Makefile.in tetex-src-3.0/texk/web2c/Makefile.in
+--- tetex-src-3.0.orig/texk/web2c/Makefile.in	2006-03-16 12:53:24.000000000 +0100
++++ tetex-src-3.0/texk/web2c/Makefile.in	2006-03-16 12:52:08.000000000 +0100
+@@ -562,13 +562,13 @@
+ # Common
+ programs = bibtex ctangle ctie cweave dvicopy dvitomp dvitype gftodvi gftopk \
+  gftype mft $(odvicopy) $(odvitype) $(otangle) patgen pktogf pktype pltotf \
+- pooltype tangle tftopl tie $(ttf2afm) vftovp vptovf weave
++ pooltype tangle tftopl tie $(ttf2afm) vftovp vptovf weave pdftosrc
+ engines = $(tex) $(etex) $(mf) $(mfn) $(mpost) \
+           $(omega) $(aleph) \
+           $(pdftex) $(pdfetex)
+ 
+ programs: $(programs) $(engines) $(mpware_programs) \
+-          $(omegafonts_programs) $(otps_programs) $(pdftosrc)
++          $(omegafonts_programs) $(otps_programs)
+ 
+ # Additional dependencies for relinking.
+ # Note that each program and engine already depends on $(web2c_programs).

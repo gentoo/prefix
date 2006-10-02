@@ -1,0 +1,50 @@
+diff --exclude-from=/home/dang/.diffrc -u -ruN tetex-src-3.0.orig/texk/kpathsea/configure tetex-src-3.0/texk/kpathsea/configure
+--- tetex-src-3.0.orig/texk/kpathsea/configure	2005-02-06 13:27:03.000000000 -0500
++++ tetex-src-3.0/texk/kpathsea/configure	2005-09-09 00:25:48.000000000 -0400
+@@ -5546,7 +5546,11 @@
+ LIBTOOL_DEPS="$ac_aux_dir/ltmain.sh"
+ 
+ # Always use our own libtool.
+-LIBTOOL='$(SHELL) $(top_builddir)/libtool'
++if [ "${USERLAND}" = "Darwin" ]; then
++LIBTOOL='glibtool'
++else
++LIBTOOL='libtool'
++fi
+ 
+ # Prevent multiple expansion
+ 
+diff --exclude-from=/home/dang/.diffrc -u -ruN tetex-src-3.0.orig/texk/libtool.m4 tetex-src-3.0/texk/libtool.m4
+--- tetex-src-3.0.orig/texk/libtool.m4	2003-02-15 08:03:23.000000000 -0500
++++ tetex-src-3.0/texk/libtool.m4	2005-09-09 00:17:12.000000000 -0400
+@@ -30,8 +30,12 @@
+ # This can be used to rebuild libtool when needed
+ LIBTOOL_DEPS="$ac_aux_dir/ltmain.sh"
+ 
+-# Always use our own libtool.
+-LIBTOOL='$(SHELL) $(top_builddir)/libtool'
++# Use the system libtool
++if [ "${USERLAND}" = "Darwin" ]; then
++LIBTOOL='glibtool'
++else
++LIBTOOL='libtool'
++fi
+ AC_SUBST(LIBTOOL)dnl
+ 
+ # Prevent multiple expansion
+diff --exclude-from=/home/dang/.diffrc -u -ruN tetex-src-3.0.orig/texk/make/common.mk tetex-src-3.0/texk/make/common.mk
+--- tetex-src-3.0.orig/texk/make/common.mk	2004-08-06 14:40:50.000000000 -0400
++++ tetex-src-3.0/texk/make/common.mk	2005-09-09 15:02:35.000000000 -0400
+@@ -12,7 +12,11 @@
+ LDFLAGS = @LDFLAGS@ $(XLDFLAGS)
+ 
+ # Kpathsea needs this for compiling, programs need it for linking.
+-LIBTOOL = $(SHELL) $(kpathsea_parent)/libtool
++ifeq ($(USERLAND),Darwin)
++LIBTOOL='glibtool'
++else
++LIBTOOL='libtool'
++endif
+ 
+ # You can change [X]CPPFLAGS, [X]CFLAGS, or [X]DEFS, but
+ # please don't change ALL_CPPFLAGS or ALL_CFLAGS.

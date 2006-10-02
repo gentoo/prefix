@@ -1,0 +1,26 @@
+diff -ur tetex-src-3.0.orig/texk/kpathsea/texmf.in tetex-src-3.0/texk/kpathsea/texmf.in
+--- tetex-src-3.0.orig/texk/kpathsea/texmf.in	2005-12-06 16:21:17.000000000 +0100
++++ tetex-src-3.0/texk/kpathsea/texmf.in	2006-01-22 19:33:42.000000000 +0100
+@@ -61,6 +61,9 @@
+ % The main distribution tree:
+ TEXMFDIST = /usr/share/texmf
+ 
++% The Gentoo site tree:
++TEXMFSITE = /usr/share/texmf-site
++
+ % A place for local additions to a "standard" texmf tree.
+ % This tree is not used for local configuration maintained by
+ % texconfig, it uses TEXMFCONFIG below.
+@@ -111,10 +114,10 @@
+ %
+ % For texconfig to work properly, TEXMFCONGIG and TEXMFVAR should be named
+ % explicitly and before all other trees.
+-TEXMF = {!!$TEXMFCONFIG,!!$TEXMFVAR,$TEXMFHOME,!!$TEXMFSYSCONFIG,!!$TEXMFSYSVAR,!!$TEXMFMAIN,!!$TEXMFLOCAL,!!$TEXMFDIST}
++TEXMF = {!!$TEXMFCONFIG,!!$TEXMFVAR,$TEXMFHOME,!!$TEXMFSYSCONFIG,!!$TEXMFSYSVAR,!!$TEXMFMAIN,!!$TEXMFLOCAL,!!$TEXMFSITE,!!$TEXMFDIST}
+ 
+ % The system trees.  These are the trees that are shared by all the users.
+-SYSTEXMF = $TEXMFLOCAL;$TEXMFMAIN;$TEXMFDIST
++SYSTEXMF = $TEXMFLOCAL;$TEXMFMAIN;$TEXMFDIST;$TEXMFSITE
+ 
+ % Where generated fonts may be written.  This tree is used when the sources
+ % were found in a system tree and either that tree wasn't writable, or the
