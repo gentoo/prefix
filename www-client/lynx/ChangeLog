@@ -1,0 +1,318 @@
+# ChangeLog for www-client/lynx
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.43 2006/10/01 20:53:49 exg Exp $
+
+*lynx-2.8.6_rc4 (01 Oct 2006)
+
+  01 Oct 2006; Emanuele Giaquinta <exg@gentoo.org> +lynx-2.8.6_rc4.ebuild:
+  Version bump.
+
+*lynx-2.8.6_rc3 (11 Sep 2006)
+
+  11 Sep 2006; Emanuele Giaquinta <exg@gentoo.org> +lynx-2.8.6_rc3.ebuild:
+  Version bump.
+
+*lynx-2.8.6_rc2 (10 Sep 2006)
+
+  10 Sep 2006; Emanuele Giaquinta <exg@gentoo.org> +lynx-2.8.6_rc2.ebuild:
+  Version bump.
+
+  10 Sep 2006; Emanuele Giaquinta <exg@gentoo.org> -lynx-2.8.5-r2.ebuild,
+  lynx-2.8.5-r3.ebuild, -lynx-2.8.6_pre18.ebuild:
+  Stable on ppc-macos. Cleanup.
+
+  04 Sep 2006; Joshua Kinard <kumba@gentoo.org> lynx-2.8.5-r3.ebuild:
+  Marked stable on mips.
+
+*lynx-2.8.6_rc1 (01 Sep 2006)
+
+  01 Sep 2006; Emanuele Giaquinta <exg@gentoo.org> +lynx-2.8.6_rc1.ebuild:
+  Version bump.
+
+*lynx-2.8.5-r4 (31 Aug 2006)
+
+  31 Aug 2006; Emanuele Giaquinta <exg@gentoo.org>
+  +files/lynx-2.8.5-embedded-url.patch, +lynx-2.8.5-r4.ebuild:
+  Add patch to fix bug #145739.
+
+  10 Aug 2006; Emanuele Giaquinta <exg@gentoo.org> lynx-2.8.5-r3.ebuild,
+  lynx-2.8.6_pre18.ebuild:
+  Limit emake to -j1, see bug #124562.
+
+  10 Jun 2006; Michael Hanselmann <hansmi@gentoo.org> lynx-2.8.5-r3.ebuild:
+  Stable on ppc.
+
+  06 Jun 2006; Simon Stelling <blubb@gentoo.org> lynx-2.8.5-r3.ebuild:
+  stable on amd64
+
+  31 May 2006; Guy Martin <gmsoft@gentoo.org> lynx-2.8.5-r3.ebuild:
+  Stable on hppa.
+
+  31 May 2006; Markus Rothe <corsair@gentoo.org> lynx-2.8.5-r3.ebuild:
+  Stable on ppc64; bug #135046
+
+  31 May 2006; <antarus@gentoo.org> lynx-2.8.5-r3.ebuild:
+  Stable on x86, bug # 135046
+
+  31 May 2006; Thomas Cort <tcort@gentoo.org> lynx-2.8.5-r3.ebuild:
+  Stable on alpha wrt Bug #135046.
+
+  31 May 2006; Gustavo Zacarias <gustavoz@gentoo.org> lynx-2.8.5-r3.ebuild:
+  Stable on sparc wrt #135046
+
+*lynx-2.8.6_pre18 (31 May 2006)
+
+  31 May 2006; Emanuele Giaquinta <exg@gentoo.org> +lynx-2.8.6_pre18.ebuild:
+  Version bump.
+
+  30 May 2006; Emanuele Giaquinta <exg@gentoo.org> metadata.xml,
+  -lynx-2.8.5-r1.ebuild:
+  Take over maintainership. Remove vulnerable version.
+
+  25 May 2006; Emanuele Giaquinta <exg@gentoo.org> lynx-2.8.5-r1.ebuild,
+  lynx-2.8.5-r2.ebuild, lynx-2.8.5-r3.ebuild:
+  Drop virtual/textbrowser, bug #130746.
+
+  02 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> lynx-2.8.5-r3.ebuild:
+  Add ~x86-fbsd keyword.
+
+  24 Mar 2006; Aron Griffis <agriffis@gentoo.org> lynx-2.8.5-r3.ebuild:
+  Mark 2.8.5-r3 stable on ia64
+
+  30 Nov 2005; Scott Hadfield <hadfield@gentoo.org>
+  files/lynx-2.8.5-tab_to.patch
+  Added patch to fix lynx crashing on bad <TAB ...>. Patch was submitted
+  by adobriyan@gmail.com fixing bug #113775.
+
+*lynx-2.8.5-r3 (21 Nov 2005)
+
+  21 Nov 2005; Scott Hadfield <hadfield@gentoo.org> +lynx-2.8.5-r3.ebuild:
+  Revision bump to rel5 - bug 109168. Thanks to vanquirius for the patch.
+  Incorporated vanquirius's patch from bug 97952 adding bzip2 support.
+
+  20 Nov 2005; Hardave Riar <hardave@gentoo.org> lynx-2.8.5-r2.ebuild:
+  Stable on mips, bug #112213.
+
+  15 Nov 2005; Seemant Kulleen <seemant@gentoo.org> lynx-2.8.5-r2.ebuild:
+  stabled on s390
+
+  15 Nov 2005; <solar@gentoo.org> lynx-2.8.5-r2.ebuild:
+  - stable on arm
+
+  13 Nov 2005; Michael Hanselmann <hansmi@gentoo.org> lynx-2.8.5-r2.ebuild:
+  Stable on hppa, ppc. See bug #112213.
+
+  13 Nov 2005; Fernando J. Pereda <ferdy@gentoo.org> lynx-2.8.5-r2.ebuild:
+  stable on alpha wrt bug #112213
+
+  13 Nov 2005; Fabian Groffen <grobian@gentoo.org>
+  files/lynx-2.8.5-darwin.patch, lynx-2.8.5-r1.ebuild, lynx-2.8.5-r2.ebuild:
+  Changed darwin patch so it can be applied unconditional.  Marked 2.8.5-r2
+  stable (bug #112213)
+
+  13 Nov 2005; Homer Parker <hparker@gentoo.org> lynx-2.8.5-r2.ebuild:
+  Stable on amd64 fixing bug 112213
+
+  13 Nov 2005; Jason Wever <weeve@gentoo.org> lynx-2.8.5-r2.ebuild:
+  Stable on SPARC wrt security bug #112213.
+
+  13 Nov 2005; <ranger@gentoo.org> lynx-2.8.5-r2.ebuild:
+  Marking lynx-2.8.5-r2 ppc64 stable for bug 112213
+
+  12 Nov 2005; <solar@gentoo.org> lynx-2.8.5-r2.ebuild:
+  - multiarch keyword revert. stable on x86
+
+*lynx-2.8.5-r2 (13 Nov 2005)
+
+  13 Nov 2005; Seemant Kulleen <seemant@gentoo.org> lynx-2.8.5-r1.ebuild,
+  +lynx-2.8.5-r2.ebuild:
+  Revision bump to fix CVE-2005-2929 -- bug #112213. The backported patch is
+  from Mandriva's src.rpm -- thanks to Ticho for alerting us to that available
+  patch
+
+  17 Oct 2005; Seemant Kulleen <seemant@gentoo.org>
+  -files/lynx2.8.4rel.1a.patch:
+  cruft removal
+
+*lynx-2.8.5-r1 (17 Oct 2005)
+
+  17 Oct 2005; Seemant Kulleen <seemant@gentoo.org> -lynx-2.8.5.ebuild,
+  +lynx-2.8.5-r1.ebuild:
+  Security fix for CAN-2005-3120, see bug #108451
+
+  12 Oct 2005; Seemant Kulleen <seemant@gentoo.org>
+  -files/lynx-2.8.4.1c-gentoo.patch, -files/lynx-2.8.4.1d-gentoo.patch,
+  -files/lynx-2.8.4a-LYStrings.c-gentoo.patch, lynx-2.8.5.ebuild:
+  remove old crufty patches as well
+
+  12 Oct 2005; Seemant Kulleen <seemant@gentoo.org> -lynx-2.8.4.1c.ebuild,
+  -lynx-2.8.4.1d.ebuild, -lynx-2.8.4.1d-r1.ebuild:
+  removed crufty versions
+
+  12 Aug 2005; Fabian Groffen <grobian@gentoo.org>
+  +files/lynx-2.8.5-darwin.patch, lynx-2.8.5.ebuild:
+  Adding a patch that actually allows to compile on ppc-macos (was already
+  marked stable! :( )
+
+*lynx-2.8.5 (15 Mar 2005)
+*lynx-2.8.4.1d-r1 (15 Mar 2005)
+*lynx-2.8.4.1d (15 Mar 2005)
+*lynx-2.8.4.1c (15 Mar 2005)
+
+  15 Mar 2005; Seemant Kulleen <seemant@gentoo.org>
+  +files/lynx-2.8.4.1c-gentoo.patch, +files/lynx-2.8.4.1d-gentoo.patch,
+  +files/lynx-2.8.4a-LYStrings.c-gentoo.patch, +files/lynx2.8.4rel.1a.patch,
+  +metadata.xml, +lynx-2.8.4.1c.ebuild, +lynx-2.8.4.1d.ebuild,
+  +lynx-2.8.4.1d-r1.ebuild, +lynx-2.8.5.ebuild:
+  Moved from net-www/lynx to www-client/lynx.
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  04 Sep 2004; Pieter Van den Abeele <pvdabeel@gentoo.org> lynx-2.8.5.ebuild:
+  Masked lynx-2.8.5.ebuild stable for ppc
+
+  13 Aug 2004; Rob Holland <tigger@gentoo.org> lynx-2.8.4.1c.ebuild,
+  lynx-2.8.4.1d-r1.ebuild, lynx-2.8.4.1d.ebuild, lynx-2.8.5.ebuild:
+  Fix SRC_URIs
+
+  11 Jun 2004; Bryan Østergaard <kloeri@gentoo.org> lynx-2.8.5.ebuild:
+  Stable on alpha.
+
+  05 Jun 2004; <tuxus@gentoo.org> lynx-2.8.5.ebuild:
+  Stable on mips
+
+  27 Apr 2004; Aron Griffis <agriffis@gentoo.org> lynx-2.8.4.1d-r1.ebuild,
+  lynx-2.8.5.ebuild:
+  Add inherit eutils
+
+  13 Apr 2004; Guy Martin <gmsoft@gentoo.org> lynx-2.8.5.ebuild:
+  Marked stable on hppa.
+
+  11 Apr 2004; Gustavo Zacarias <gustavoz@gentoo.org> lynx-2.8.5.ebuild:
+  stable on sparc
+
+  08 Apr 2004; Deedra Waters,,, <dmwaters@gentoo.org> lynx-2.8.5.ebuild:
+  Marked 2.8.5 2.8.5 stable on x86. Gave it a metadata.xml listing me as the
+  maintainer since it doesn't have a regular maintainer. Added
+  --enable-EXP_PERSISTENT_COOKIES--enable-EXP_PERSISTENT_COOKIES in the econf
+  part of the ebuild so that lynx could handle certain webpages's cookies.
+
+  15 Mar 2004; Joshua Kinard <kumba@gentoo.org> lynx-2.8.4.1d-r1.ebuild:
+  Marked stable on mips.
+
+  07 Mar 2004; Tom Gall <tgall@gentoo.org> lynx-2.8.5.ebuild:
+  stable on ppc64
+
+*lynx-2.8.5 (11 Feb 2004)
+
+  11 Feb 2004; Brian Jackson <iggy@gentoo.org> lynx-2.8.5.ebuild:
+  version bump
+
+  10 Feb 2004; Gustavo Zacarias <gustavoz@gentoo.org> lynx-2.8.4.1d-r1.ebuild:
+  stable on sparc
+
+  07 Feb 2004; Brian Jackson <iggy@gentoo.org> lynx-2.8.4.1c.ebuild,
+  lynx-2.8.4.1d-r1.ebuild, lynx-2.8.4.1d.ebuild:
+  marking x86
+
+  19 Jan 2004; Daniel Ahlberg <aliz@gentoo.org> lynx-2.8.4.1d-r1.ebuild:
+  Various updates, removed an old version so that I could remove an old entry
+  from packages.mask.
+
+  18 Sep 2003; Jon Portnoy <avenj@gentoo.org> lynx-2.8.4.1d-r1.ebuild :
+  ia64 keywords.
+
+*lynx-2.8.4.1d-r1 (04 Jul 2003)
+
+  06 Jul 2003; Guy Martin <gmsoft@gentoo.org> lynx-2.8.4.1d-r1.ebuild :
+  Marked stable on hppa.
+
+  04 Jul 2003; Patrick Kursawe <phosphan@gentoo.org> lynx-2.8.4.1d-r1.ebuild:
+  fixing bug 23898
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+
+ 
+*lynx-2.8.4.1d (20 Nov 2002)
+
+  16 Jul 2003; Jan Seidel <tuxus@gentoo.org> lynx-2.8.4.1d-r1.ebuild :
+  Marked stable on mips
+
+  01 Jun 2003; Joshua Kinard <kumba@gentoo.org> lynx-2.8.4.1d.ebuild:
+  Added ~mips to KEYWORDS
+
+  16 Apr 2003; Guy Martin <gmsoft@gentoo.org> lynx-2.8.4.1d.ebuild :
+  Marked stable on hppa.
+
+  03 Mar 2003; Aron Griffis <agriffis@gentoo.org> lynx-2.8.4.1d.ebuild:
+  Mark stable on alpha
+
+  03 Dec 2002; Will Woods <wwoods@gentoo.org> :
+  Added ~alpha to keywords.
+
+  20 Nov 2002; Daniel Ahlberg <aliz@gentoo.org> :
+  Version bump
+
+*lynx-2.8.4.1c (26 Aug 2002)
+
+  11 Feb 2003; Guy Martin <gmsoft@gentoo.org> lynx-2.8.4.1c.ebuild :
+  Added hppa to keywords.
+
+  14 Sept 2002; Maarten Thibaut <murphy@gentoo.org> lynx-2.8.4.1c.ebuild :
+  Added sparc/sparc64 to keywords.
+  
+  07 Sept 2002; Calum Selkirk <cselkirk@gentoo.org> lynx-2.8.4.1c.ebuild :
+  Added ppc to KEYWORDS.
+
+  28 Aug 2002; Seemant Kulleen <seemant@gentoo.org> lynx-2.8.4.1c.ebuild
+  lynx-2.8.4a-r4.ebuild :
+  PROVIDE=virtual/textbrowser
+
+  26 Aug 2002; Daniel Ahlberg <aliz@gentoo.org> lynx-2.8.4.1c.ebuild :
+  Updated to latest patchlevel to fix CRLF injection. More info availabe
+  at http://online.securityfocus.com/archive/1/288054/2002-08-16/2002-08-22/0 
+  and http://online.securityfocus.com/archive/1/288620/2002-08-16/2002-08-22/0
+
+*lynx-2.8.4a-r4 (2 June 2002)
+
+  14 Jul 2002; Daniel Ahlberg <aliz@gentoo.org> lynx-2.8.4a-r4.ebuild :
+  Added LICENSE, KEYWORDS, SLOT.
+
+  2 June 2002; Matthew Kennedy <mkennedy@gentoo.org> lynx-2.8.4a-r4.ebuild,
+  files/digest-lynx-2.8.4a-r4, files/lynx-2.8.4a-LYStrings.c-gentoo.patch, ChangeLog :
+  Patch for GCC3.1 support. Some users report success with -r3, some
+  don't.
+
+*lynx-2.8.4a-r3 (29 May 2002)
+
+  14 Jul 2002; Daniel Ahlberg <aliz@gentoo.org> lynx-2.8.4a-r3.ebuild :
+  Added LICENSE, KEYWORDS, SLOT.
+
+  29 May 2002; Preston A. Elder <prez@gentoo.org> lynx-2.8.4a-r3.ebuild :
+  Fixed the ebuild to just pass --with-ssl=yes, not --with-ssl=/usr.
+  The configure fails to do the right thing with the path version.
+
+*lynx-2.8.4a-r3 (08 May 2002)
+
+  08 May 2002; Carl Perry <edolnx@gentoo.org> lynx-2.8.4a-r3.ebuild :
+  Fixed the alternate SRC_URI link so that it works.  Found during
+  ibiblio.org outage yesterday.
+
+*lynx-2.8.4a-r3 (21 Mar 2002)
+
+  21 Mar 2002; Seemant Kulleen <seemant@gentoo.org> lynx-2.8.4a-r3.ebuild :
+  HTML documentation will no longer be gzipped.  This bug located by
+  stefan@mdy.univie.ac.at
+
+*lynx-2.8.4a-r2 (1 Feb 2002)
+
+  14 Jul 2002; Daniel Ahlberg <aliz@gentoo.org> lynx-2.8.4a-r2.ebuild :
+  Added LICENSE, KEYWORDS, SLOT.
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
