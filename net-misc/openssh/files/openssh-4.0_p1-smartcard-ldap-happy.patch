@@ -1,0 +1,14 @@
+Make sure the SecurID and the LDAP patch get along
+
+--- Makefile.in
++++ Makefile.in
+@@ -81,3 +81,3 @@
+ 	auth.o auth1.o auth2.o auth-options.o session.o \
+-	auth-chall.o auth2-chall.o groupaccess.o \
++	auth-chall.o auth2-chall.o groupaccess.o auth-securid.o \
+ 	auth-skey.o auth-bsdauth.o auth2-hostbased.o auth2-kbdint.o \
+@@ -87,3 +87,3 @@
+ 	auth2-gss.o gss-serv.o gss-serv-krb5.o \
+-	loginrec.o auth-pam.o auth-shadow.o auth-sia.o auth-securid.o md5crypt.o \
++	loginrec.o auth-pam.o auth-shadow.o auth-sia.o md5crypt.o \
+ 	audit.o audit-bsm.o

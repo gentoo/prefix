@@ -1,0 +1,54 @@
+http://chrootssh.sourceforge.net/
+
+--- openssh-4.3p1/session.c
++++ openssh-4.3p1/session.c
+@@ -59,6 +59,8 @@
+ #include "kex.h"
+ #include "monitor_wrap.h"
+ 
++#define CHROOT
++
+ #if defined(KRB5) && defined(USE_AFS)
+ #include <kafs.h>
+ #endif
+@@ -1251,6 +1253,11 @@
+ void
+ do_setusercontext(struct passwd *pw)
+ {
++#ifdef CHROOT
++	char *user_dir;
++	char *new_root;
++#endif /* CHROOT */
++
+ #ifndef HAVE_CYGWIN
+ 	if (getuid() == 0 || geteuid() == 0)
+ #endif /* HAVE_CYGWIN */
+@@ -1308,6 +1315,27 @@
+ 			restore_uid();
+ 		}
+ #endif
++
++#ifdef CHROOT
++	user_dir = xstrdup(pw->pw_dir);
++	new_root = user_dir + 1;
++
++	while ((new_root = strchr(new_root, '.')) != NULL) {
++		new_root--;
++		if (strncmp(new_root, "/./", 3) == 0) {
++			*new_root = '\0';
++			new_root += 2;
++
++			if(chroot(user_dir) != 0)
++				fatal("Couldn't chroot to user's directory %s", user_dir);
++			pw->pw_dir = new_root;
++			break;
++		}
++
++		new_root += 2;
++	}
++#endif /* CHROOT */
++
+ # ifdef USE_PAM
+ 		/*
+ 		 * PAM credentials may take the form of supplementary groups.
+

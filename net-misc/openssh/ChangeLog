@@ -1,0 +1,871 @@
+# ChangeLog for net-misc/openssh
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.204 2006/09/30 13:08:09 flameeyes Exp $
+
+  30 Sep 2006; Diego Pettenò <flameeyes@gentoo.org>
+  openssh-4.4_p1-r1.ebuild:
+  Make sure pam is the latest eclass called.
+
+  29 Sep 2006; Markus Rothe <corsair@gentoo.org> openssh-4.3_p2-r5.ebuild:
+  Stable on ppc64
+
+*openssh-4.4_p1-r1 (29 Sep 2006)
+
+  29 Sep 2006; Andrea Barisani <lcars@gentoo.org> +openssh-4.4_p1-r1.ebuild:
+  Revision bump for new ldap patch.
+
+*openssh-4.4_p1 (28 Sep 2006)
+
+  28 Sep 2006; Mike Frysinger <vapier@gentoo.org> +openssh-4.4_p1.ebuild:
+  Version bump.
+
+  27 Sep 2006; Fernando J. Pereda <ferdy@gentoo.org>
+  openssh-4.3_p2-r5.ebuild:
+  Stable on alpha wrt bug #148228
+
+  26 Sep 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  openssh-4.3_p2-r5.ebuild:
+  Stable on hppa wrt security #148228
+
+  26 Sep 2006; Simon Stelling <blubb@gentoo.org> openssh-4.3_p2-r5.ebuild:
+  stable on amd64; bug 148228
+
+  26 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  openssh-4.3_p2-r5.ebuild:
+  ppc stable, bug #148228
+
+  25 Sep 2006; Jason Wever <weeve@gentoo.org> openssh-4.3_p2-r5.ebuild:
+  Stable on SPARC wrt security bug #148228.
+
+  25 Sep 2006; Paul Varner <fuzzyray@gentoo.org> openssh-4.3_p2-r5.ebuild:
+  Stable on x86. Bug #148228
+
+*openssh-4.3_p2-r5 (25 Sep 2006)
+
+  25 Sep 2006; Tavis Ormandy <taviso@gentoo.org> +openssh-4.3_p2-r5.ebuild,
+  +files/openssh-4.3_p2-identical-simple-dos-2.patch:
+  Tweak DOS patch #148228.
+
+  23 Sep 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.3_p2-opensc-libs.patch, openssh-4.3_p2-r4.ebuild:
+  Fix building with --as-needed #148538 by Mart Raudsepp.
+
+  23 Sep 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.3_p2-ldap-updates.patch, openssh-4.3_p2-r4.ebuild:
+  Fixup ldap configure code #148723 by sfp-a7x.
+
+*openssh-4.3_p2-r4 (22 Sep 2006)
+
+  22 Sep 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.3_p2-securid-updates.patch, +openssh-4.3_p2-r4.ebuild:
+  Force rebuilding of all autotools instead of just cheating with autoconf
+  #148639 by Alex K.
+
+  22 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  openssh-4.3_p2-r3.ebuild:
+  hppa stable, bug #148228
+
+  21 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  openssh-4.3_p2-r3.ebuild:
+  ppc stable, bug #148228
+
+  21 Sep 2006; Mike Doty <kingtaco@gentoo.org> openssh-4.3_p2-r3.ebuild:
+  amd64 stable, bug 148228
+
+  21 Sep 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  openssh-4.3_p2-r3.ebuild:
+  Stable on sparc wrt #148228
+
+  21 Sep 2006; <ticho@gentoo.org> openssh-4.3_p2-r3.ebuild:
+  Stable on x86, security bug #148228.
+
+  21 Sep 2006; Markus Rothe <corsair@gentoo.org> openssh-4.3_p2-r3.ebuild:
+  Stable on ppc64; bug #148228
+
+*openssh-4.3_p2-r3 (20 Sep 2006)
+
+  20 Sep 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.3_p1-chroot.patch,
+  +files/openssh-4.3_p2-identical-simple-dos.patch, files/sshd.confd,
+  files/sshd.rc6, +openssh-4.3_p2-r3.ebuild:
+  Fixes from upstream for minor DOS #148228.
+
+  08 Sep 2006; Mike Frysinger <vapier@gentoo.org> openssh-4.3_p2-r2.ebuild:
+  Remove ugly flag mangling and fix building with USE=static #146654 by
+  Alexander Skwar.
+
+  05 Jul 2006; Andrea Barisani <lcars@gentoo.org> metadata.xml:
+  Making my metadata entry a bit more clear.
+
+  04 Jul 2006; Mike Frysinger <vapier@gentoo.org> openssh-4.3_p2-r2.ebuild:
+  Add x11-apps/xauth to RDEPEND for USE=X #139235 by Ian Stakenvicius.
+
+  02 Jul 2006; Robin H. Johnson <robbat2@gentoo.org>
+  files/digest-openssh-3.9_p1-r3, files/digest-openssh-4.0_p1-r2,
+  files/digest-openssh-4.1_p1-r1, files/digest-openssh-4.2_p1-r1,
+  files/digest-openssh-4.3_p1, files/digest-openssh-4.3_p2-r1,
+  files/digest-openssh-4.3_p2-r2, Manifest:
+  Fix digest weirdness.
+
+  30 Jun 2006; Robin H. Johnson <robbat2@gentoo.org>
+  files/digest-openssh-4.3_p1, files/digest-openssh-4.3_p2-r1,
+  files/digest-openssh-4.3_p2-r2, Manifest:
+  Upstream changed the openssh-lpk-4.3p1-0.3.7.patch file, and didn't alter
+  the filename! Re-digest as needed.
+
+  27 Jun 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.3_p2-configure.patch, openssh-4.3_p1.ebuild,
+  openssh-4.3_p2-r1.ebuild, openssh-4.3_p2-r2.ebuild:
+  Fix broken configure script #137921 by Adam Potter.
+
+  24 Jun 2006; Diego Pettenò <flameeyes@gentoo.org>
+  openssh-4.3_p2-r1.ebuild:
+  Remove x86-fbsd keyword from an older rev, just to be safe.
+
+  24 Jun 2006; Diego Pettenò <flameeyes@gentoo.org>
+  openssh-4.3_p2-r2.ebuild:
+  Put shadow under conditional userland_GNU, unbreak non-GNU userlands.
+
+  24 Jun 2006; Joshua Kinard <kumba@gentoo.org> openssh-4.3_p2-r2.ebuild:
+  Eh, shadow belongs in RDEPEND instead, duh.
+
+  24 Jun 2006; Joshua Kinard <kumba@gentoo.org> openssh-4.3_p2-r2.ebuild:
+  Added shadow as a DEPEND so that groupadd is available.
+
+*openssh-4.3_p2-r2 (08 Jun 2006)
+
+  08 Jun 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.3_p2-securid-hpn-glue.patch,
+  +files/openssh-4.3_p2-x509-hpn-glue.patch, openssh-4.2_p1-r1.ebuild,
+  +openssh-4.3_p2-r2.ebuild:
+  Update hpn and x509 patches #135691 by Scott Jones.
+
+  07 Jun 2006; Joshua Kinard <kumba@gentoo.org> openssh-4.3_p2-r1.ebuild:
+  Add sys-apps/shadow to RDEPEND/DEPEND so group/useradd is available. Fixes
+  Bug #135966.
+
+  29 Apr 2006; Joshua Kinard <kumba@gentoo.org> openssh-4.3_p2-r1.ebuild:
+  Marked stable on mips.
+
+  19 Apr 2006; Andrea Barisani <lcars@gentoo.org> openssh-4.3_p1.ebuild,
+  openssh-4.3_p2-r1.ebuild:
+  Ok that last commit was stupid, going back and waiting for updated mirrors.
+
+  19 Apr 2006; <lcars@gentoo.org> openssh-4.3_p1.ebuild,
+  openssh-4.3_p2-r1.ebuild:
+  Moving ldap patch to dev.gentoo.org waiting for mirror to get the updated version
+  and fixing digest issues. bug #130354
+
+  17 Apr 2006; Markus Rothe <corsair@gentoo.org> openssh-4.3_p2-r1.ebuild:
+  Stable on ppc64; bug #130027
+
+  17 Apr 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  openssh-4.3_p2-r1.ebuild:
+  Stable on x86 wrt bug #130027.
+
+  16 Apr 2006; Bryan Østergaard <kloeri@gentoo.org
+  openssh-4.3_p2-r1.ebuild:
+  Stable on alpha, bug 130027.
+
+  15 Apr 2006; Jason Wever <weeve@gentoo.org> openssh-4.3_p2-r1.ebuild:
+  Stable on SPARC wrt bug #130027.
+
+  15 Apr 2006; <nixnut@gentoo.org> openssh-4.3_p2-r1.ebuild:
+  Stable on ppc. Bug #130027
+
+  15 Apr 2006; Marcus D. Hanwell <cryos@gentoo.org>
+  openssh-4.3_p2-r1.ebuild:
+  Marked stable on amd64, bug 130027.
+
+  04 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  openssh-4.3_p2-r1.ebuild:
+  Allow using freebsd-lib's libedit with libedit useflag.
+
+  30 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  openssh-4.3_p2-r1.ebuild:
+  Add ~x86-fbsd keyword.
+
+  05 Mar 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.3_p2-selinux.patch.glue, openssh-4.3_p2-r1.ebuild:
+  Glue selinux and X509 support #125108 by Alon Bar-Lev.
+
+  05 Mar 2006; Andrea Barisani <lcars@gentoo.org> openssh-4.3_p1.ebuild,
+  openssh-4.3_p2.ebuild, openssh-4.3_p2-r1.ebuild:
+  Restored ldap support in 4.3 versions.
+
+*openssh-4.3_p2-r1 (05 Mar 2006)
+
+  05 Mar 2006; Chris PeBenito <pebenito@gentoo.org>
+  +files/openssh-4.3_p2-selinux.patch, +openssh-4.3_p2-r1.ebuild:
+  Bump to update SELinux patch.
+
+*openssh-4.3_p2 (04 Mar 2006)
+
+  04 Mar 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.3_p1-krb5-typos.patch, +openssh-4.3_p2.ebuild:
+  Version bump and add patch from upstream #124494 by RiverRat.
+
+  28 Feb 2006; Mike Frysinger <vapier@gentoo.org> files/sshd.rc6:
+  Add restart function by Michal Fojtik to init.d script #124271.
+
+  19 Feb 2006; Joshua Kinard <kumba@gentoo.org> openssh-4.2_p1-r1.ebuild:
+  Marked stable on mips.
+
+*openssh-4.3_p1 (08 Feb 2006)
+
+  08 Feb 2006; Mike Frysinger <vapier@gentoo.org> +openssh-4.3_p1.ebuild:
+  Version bump #121191 by Wolfram Schlich.
+
+  04 Feb 2006; Mike Frysinger <vapier@gentoo.org> +files/sshd.confd,
+  files/sshd.rc6, openssh-3.9_p1-r3.ebuild, openssh-4.0_p1-r2.ebuild,
+  openssh-4.1_p1-r1.ebuild, openssh-4.2_p1.ebuild, openssh-4.2_p1-r1.ebuild:
+  Pass sshd_config to sshd when starting to better help running multiple
+  instances of ssh #121530 by ph.
+
+  03 Feb 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  openssh-4.2_p1-r1.ebuild:
+  ppc stable, bug #119232
+
+  03 Feb 2006; Markus Rothe <corsair@gentoo.org> openssh-4.2_p1-r1.ebuild:
+  Stable on ppc64: bug #119232
+
+  03 Feb 2006; Jose Luis Rivero <yoswink@gentoo.org>
+  openssh-4.2_p1-r1.ebuild:
+  Stable on alpha wrt sec bug #119232
+
+  02 Feb 2006; Rene Nussbaumer <killerfox@gentoo.org>
+  openssh-4.2_p1-r1.ebuild:
+  Stable on hppa. See bug #119232.
+
+  02 Feb 2006; Mark Loeser <halcy0n@gentoo.org> openssh-4.2_p1-r1.ebuild:
+  Stable on x86; bug #119232
+
+  02 Feb 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  openssh-4.2_p1-r1.ebuild:
+  Stable on sparc wrt security #119232
+
+  02 Feb 2006; Simon Stelling <blubb@gentoo.org> openssh-4.2_p1-r1.ebuild:
+  stable on amd64 wrt bug 119232
+
+*openssh-4.2_p1-r1 (01 Feb 2006)
+
+  01 Feb 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.2_p1-CVE-2006-0225.patch, +openssh-4.2_p1-r1.ebuild:
+  Version bump for security #119232.
+
+  29 Jan 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.2_p1-cross-compile.patch, openssh-4.0_p1-r2.ebuild,
+  openssh-4.1_p1-r1.ebuild, openssh-4.2_p1.ebuild:
+  Fix cross-compiling #120567 by Raphael Burnes.
+
+  25 Dec 2005; Diego Pettenò <flameeyes@gentoo.org> openssh-4.2_p1.ebuild:
+  Use bindnow-flags function instead of -Wl,-z,now.
+
+  10 Dec 2005; Mike Frysinger <vapier@gentoo.org> files/sshd.rc6:
+  Update init.d script to allow for multiple instances by Marius Mauch #114996.
+
+  22 Oct 2005; MATSUU Takuto <matsuu@gentoo.org> openssh-4.2_p1.ebuild:
+  Stable on sh for #109678.
+
+  22 Oct 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.2_p1-selinux.patch, openssh-4.2_p1.ebuild:
+  Fix selinux support #110039 and add back in securid/hpn patches.
+
+  21 Oct 2005; Bryan Østergaard <kloeri@gentoo.org> openssh-4.2_p1.ebuild:
+  Stable on alpha + ia64, bug 109678.
+
+  21 Oct 2005; Jason Wever <weeve@gentoo.org> openssh-4.2_p1.ebuild:
+  Stable on SPARC wrt security bug #109678.
+
+  21 Oct 2005; Seemant Kulleen <seemant@gentoo.org> openssh-4.2_p1.ebuild:
+  stable amd64 for bug #109678
+
+  21 Oct 2005; Aaron Walker <ka0ttic@gentoo.org> openssh-4.2_p1.ebuild:
+  Stable on mips for bug #109678.
+
+  20 Oct 2005; Michael Hanselmann <hansmi@gentoo.org> openssh-4.2_p1.ebuild:
+  Stable on hppa, ppc.
+
+  20 Oct 2005; <mkay@gentoo.org> openssh-4.2_p1.ebuild:
+  Marking stable on x86
+
+  20 Oct 2005; Brent Baude <ranger@gentoo.org> openssh-4.2_p1.ebuild:
+  Marking openssh-4.2_p1 ppc64 for bug 109678
+
+  19 Oct 2005; Mike Frysinger <vapier@gentoo.org>
+  openssh-3.8.1_p1-r1.ebuild, openssh-3.9_p1-r3.ebuild,
+  openssh-4.0_p1-r2.ebuild, openssh-4.1_p1-r1.ebuild, openssh-4.2_p1.ebuild:
+  Move default xauth location to /usr/bin/xauth.
+
+*openssh-4.2_p1 (06 Sep 2005)
+
+  06 Sep 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.2_p1-kerberos-detection.patch,
+  +files/openssh-4.2_p1-sftplogging-1.4-gentoo.patch.bz2,
+  +openssh-4.2_p1.ebuild:
+  Version bump #104948 by Saurabh Singhvi.
+
+  05 Sep 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-3.9_p1-fix_suid.patch,
+  -files/openssh-3.9_p1-fix_suid.patch.bz2,
+  +files/openssh-3.9_p1-fix_suid-x509.patch, openssh-3.8.1_p1-r1.ebuild,
+  openssh-3.9_p1-r3.ebuild, openssh-4.0_p1-r2.ebuild,
+  openssh-4.1_p1-r1.ebuild:
+  Update the x509 patches.
+
+  05 Sep 2005; Mike Frysinger <vapier@gentoo.org> openssh-4.1_p1-r1.ebuild:
+  Re-enable smartcard support.
+
+  20 Aug 2005; Mike Frysinger <vapier@gentoo.org> files/sshd.rc6:
+  Before starting sshd, sanity check the config file #101893 by Eric Brown.
+
+*openssh-4.1_p1-r1 (15 Jul 2005)
+*openssh-4.0_p1-r2 (15 Jul 2005)
+*openssh-3.9_p1-r3 (15 Jul 2005)
+
+  15 Jul 2005; Andrea Barisani <lcars@gentoo.org> metadata.xml,
+  +openssh-3.9_p1-r3.ebuild, +openssh-4.0_p1-r2.ebuild,
+  +openssh-4.1_p1-r1.ebuild:
+  Updating openssh-lpk ldap patches to version 0.3.6.
+
+  26 Jun 2005; Mike Frysinger <vapier@gentoo.org> openssh-3.9_p1-r2.ebuild,
+  openssh-4.0_p1-r1.ebuild, openssh-4.1_p1.ebuild:
+  Add support for the High Performance patch #96717 by Frank Benkstein.
+
+  29 May 2005; Mike Frysinger <vapier@gentoo.org> openssh-4.0_p1-r1.ebuild,
+  openssh-4.1_p1.ebuild:
+  Add USE=libedit support #94410 by Joe Wells.
+
+*openssh-4.1_p1 (29 May 2005)
+
+  29 May 2005; Mike Frysinger <vapier@gentoo.org> +openssh-4.1_p1.ebuild:
+  Version bump #94261 by Tobias Sager.
+
+  28 May 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.0_p1-smartcard-ldap-happy.patch,
+  openssh-3.8.1_p1-r1.ebuild, openssh-3.9_p1-r2.ebuild,
+  openssh-4.0_p1-r1.ebuild:
+  Add support for LDAP and make it mutually exclusive from x509 since they
+  conflict #58579.
+
+  22 May 2005; Mike Frysinger <vapier@gentoo.org> openssh-4.0_p1-r1.ebuild:
+  Add support for RSA SecurID tokens #92233 by Antti Mäkelä.
+
+  20 May 2005; Diego Pettenò <flameeyes@gentoo.org>
+  openssh-3.9_p1-r2.ebuild, openssh-4.0_p1.ebuild, openssh-4.0_p1-r1.ebuild:
+  Inherit pam eclass for newpamd.
+
+*openssh-4.0_p1-r1 (29 Apr 2005)
+
+  29 Apr 2005; Diego Pettenò <flameeyes@gentoo.org>
+  +files/sshd.pam_include, +openssh-4.0_p1-r1.ebuild:
+  Added a new revision depending on virtual/pam (>=pam-0.78) and uses the
+  include syntax instead of pam_stack.so.
+
+*openssh-3.9_p1-r2 (17 Mar 2005)
+
+  17 Mar 2005; Mike Frysinger <vapier@gentoo.org>
+  files/openssh-3.9_p1-sftplogging-1.2-gentoo.patch.bz2,
+  +openssh-3.9_p1-r2.ebuild:
+  Fix bad sftplogging code #82372 by Andrej Kacian.
+
+*openssh-4.0_p1 (15 Mar 2005)
+
+  15 Mar 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.0_p1-sftplogging-1.2-gentoo.patch.bz2,
+  +openssh-4.0_p1.ebuild:
+  Version bump #84717 by Michail A.Baikov.
+
+  13 Mar 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-3.9_p1-kerberos-detection.patch, openssh-3.9_p1-r1.ebuild:
+  Add patch to fix kerberos detection #80811 by Aron Griffis.
+
+  13 Mar 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-3.9_p1-configure-openct.patch, openssh-3.9_p1-r1.ebuild:
+  Fix USE=-opensc logic with patch by Stian Skjelstad #78730.
+
+  19 Feb 2005; Mike Frysinger <vapier@gentoo.org>
+  files/openssh-3.9_p1-largekey.patch.bz2:
+  Make sure that the largekey properly passes the size of the buffer along
+  #82463 by David Cuthbert.
+
+  22 Jan 2005; Daniel Ahlberg <aliz@gentoo.org>
+  +files/openssh-3.9_p1-pamfix.patch.bz2, openssh-3.9_p1-r1.ebuild:
+  Added pamfix patch from upstream, closing #65343.
+
+  07 Jan 2005; Daniel Ahlberg <aliz@gentoo.org>
+  +files/openssh-3.9_p1-terminal_restore.patch.bz2,
+  openssh-3.9_p1-r1.ebuild:
+  Fix terminal restoration after breaking out from sftp and scp, closing #63544.
+
+  30 Dec 2004; Bryan Østergaard <kloeri@gentoo.org>
+  openssh-3.9_p1-r1.ebuild:
+  Stable on alpha, bug 59361.
+
+  29 Dec 2004; Hardave Riar <hardave@gentoo.org> openssh-3.9_p1-r1.ebuild:
+  Stable on mips, bug #59361.
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  29 Dec 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  openssh-3.9_p1-r1.ebuild:
+  Stable on sparc wrt #59361
+
+  29 Dec 2004; Markus Rothe <corsair@gentoo.org> openssh-3.9_p1-r1.ebuild:
+  Stable for security; bug #59361
+
+  29 Dec 2004; <SeJo@gentoo.org> openssh-3.9_p1-r1.ebuild:
+  stable on ppc glsa: 59361
+
+*openssh-3.9_p1-r1 (28 Dec 2004)
+
+  28 Dec 2004; Mike Frysinger <vapier@gentoo.org>
+  files/openssh-3.9_p1-chroot.patch, +openssh-3.9_p1-r1.ebuild, 
+  +files/openssh-3.9_p1-infoleak.patch:
+  Add infoleak fix #59361 and allow the chroot patch to support PAM auth #72987.
+
+  16 Nov 2004; Mike Frysinger <vapier@gentoo.org> openssh-3.9_p1.ebuild:
+  If USE=pam, then disable PasswordAuthentication since PAM overrides it #71233.
+
+  14 Sep 2004; Daniel Ahlberg <aliz@gentoo.org> openssh-3.9_p1.ebuild,
+  files/openssh-3.9_p1-fix_suid.patch.bz2:
+  Fixed suid binary.
+
+  14 Sep 2004; Daniel Ahlberg <aliz@gentoo.org> openssh-3.7.1_p2-r1.ebuild,
+  openssh-3.7.1_p2-r2.ebuild, openssh-3.8.1_p1-r1.ebuild,
+  openssh-3.8.1_p1-r2.ebuild, openssh-3.8.1_p1.ebuild, openssh-3.8_p1.ebuild,
+  openssh-3.9_p1.ebuild, files/openssh-3.5_p1-gentoo-sshd-gcc3.patch,
+  files/openssh-3.5_p1-gentoo-sshd-gcc3.patch.bz2,
+  files/openssh-3.7.1_p1-selinux.diff,
+  files/openssh-3.7.1_p1-selinux.diff.bz2,
+  files/openssh-3.7.1_p2-chroot.patch,
+  files/openssh-3.7.1_p2-chroot.patch.bz2,
+  files/openssh-3.7.1_p2-kerberos.patch,
+  files/openssh-3.7.1_p2-kerberos.patch.bz2,
+  files/openssh-3.7.1_p2-skey.patch, files/openssh-3.7.1_p2-skey.patch.bz2,
+  files/openssh-3.8.1_p1-chroot.patch,
+  files/openssh-3.8.1_p1-chroot.patch.bz2,
+  files/openssh-3.8.1_p1-kerberos.patch,
+  files/openssh-3.8.1_p1-kerberos.patch.bz2,
+  files/openssh-3.8.1_p1-largekey.patch,
+  files/openssh-3.8.1_p1-largekey.patch.bz2,
+  files/openssh-3.8.1_p1-opensc.patch,
+  files/openssh-3.8.1_p1-opensc.patch.bz2,
+  files/openssh-3.8.1_p1-resolv_functions.patch,
+  files/openssh-3.8.1_p1-resolv_functions.patch.bz2,
+  files/openssh-3.8.1_p1-skey.patch,
+  files/openssh-3.8_p1-resolv_functions.patch.bz2,
+  files/openssh-3.8_p1-skey.patch, files/openssh-3.8_p1-skey.patch.bz2,
+  files/openssh-3.9_p1-chroot.patch, files/openssh-3.9_p1-chroot.patch.bz2,
+  files/openssh-3.9_p1-largekey.patch,
+  files/openssh-3.9_p1-largekey.patch.bz2, files/openssh-3.9_p1-opensc.patch,
+  files/openssh-3.9_p1-opensc.patch.bz2, files/openssh-3.9_p1-selinux.diff,
+  files/openssh-3.9_p1-selinux.diff.bz2,
+  files/openssh-3.9_p1-sftplogging-1.2-gentoo.patch,
+  files/openssh-3.9_p1-sftplogging-1.2-gentoo.patch.bz2,
+  files/openssh-3.9_p1-skey.patch, files/openssh-3.9_p1-skey.patch.bz2,
+  files/openssh-skeychallenge-args.diff,
+  files/openssh-skeychallenge-args.diff.bz2:
+  Compressed patches.
+
+  20 Aug 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  openssh-3.8.1_p1-r1.ebuild:
+  Stable on sparc
+
+  20 Aug 2004; Daniel Ahlberg <aliz@gentoo.org> openssh-3.9_p1.ebuild,
+  files/openssh-3.9_p1-sftplogging-1.2-gentoo.patch:
+  Enable X509 now that a updated patch is available, closing #60905.
+  Fix skey support by running autoconf, closing #60849.
+  Disable pam if static is in USE, closing #60864.
+
+  19 Aug 2004; Chris PeBenito <pebenito@gentoo.org>
+  +files/openssh-3.9_p1-selinux.diff, openssh-3.9_p1.ebuild:
+  Update SELinux patch
+
+  18 Aug 2004; Daniel Ahlberg <aliz@gentoo.org> openssh-3.8.1_p1-r2.ebuild:
+  Fixed sftplogging patch, closing #60417 again.
+
+*openssh-3.9_p1 (18 Aug 2004)
+
+  18 Aug 2004; Daniel Ahlberg <aliz@gentoo.org> openssh-3.8.1_p1-r2.ebuild,
+  openssh-3.9_p1.ebuild:
+  Version bump, closing #60758.
+
+  16 Aug 2004; Daniel Ahlberg <aliz@gentoo.org>
+  files/openssh-3.8.1_p1-largekey.patch:
+  Fixed largekey patch. Closing #60417.
+
+*openssh-3.8.1_p1-r2 (15 Aug 2004)
+
+  15 Aug 2004; Daniel Ahlberg <aliz@gentoo.org> openssh-3.8.1_p1-r2.ebuild:
+  + Added sftp-logging patch, closing #52168.
+  + Added patch for large keys, closing #55013.
+
+  08 Jul 2004; Bryan Østergaard <kloeri@gentoo.org>
+  openssh-3.8.1_p1-r1.ebuild:
+  Stable on alpha.
+
+  07 Jul 2004; Travis Tilley <lv@gentoo.org> openssh-3.8.1_p1-r1.ebuild:
+  stable on amd64
+
+  03 Jul 2004; Joshua Kinard <kumba@gentoo.org> openssh-3.8.1_p1-r1.ebuild:
+  Marked stable on mips.
+
+  01 Jul 2004; Jon Hood <squinky86@gentoo.org> openssh-3.7.1_p2-r1.ebuild,
+  openssh-3.7.1_p2-r2.ebuild, openssh-3.8.1_p1-r1.ebuild,
+  openssh-3.8.1_p1.ebuild, openssh-3.8_p1.ebuild:
+  change virtual/glibc to virtual/libc
+
+  28 Jun 2004; Brandon Hale <tseng@gentoo.org> openssh-3.8.1_p1-r1.ebuild:
+  Stable on x86.
+
+  15 Jun 2004; <solar@gentoo.org> openssh-3.8.1_p1-r1.ebuild:
+  pam & uclibc updates
+
+  07 Jun 2004; Bryan Østergaard <kloeri@gentoo.org> openssh-3.8.1_p1.ebuild:
+  Stable on alpha.
+
+  05 Jun 2004; Hanselmann Michael <hansmi@gentoo.org>
+  openssh-3.8.1_p1.ebuild:
+  Replaced ~ppc with ppc in KEYWORDS.
+
+*openssh-3.8.1_p1-r1 (30 May 2004)
+
+  30 May 2004; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-3.8.1_p1-opensc.patch, +openssh-3.8.1_p1-r1.ebuild:
+  Add optional support for smartcard stuff #43593 by Andreas Jellinghaus.
+
+  01 May 2004; Ciaran McCreesh <ciaranm@gentoo.org> openssh-3.8_p1.ebuild:
+  Stable on sparc, mips
+
+  28 Apr 2004; Daniel Ahlberg <aliz@gentoo.org> openssh-3.8.1_p1.ebuild:
+  Readded X509 patch now that it has been updated upstream.
+
+  27 Apr 2004; Michael McCabe <randy@gentoo.org> openssh-3.8.1_p1.ebuild:
+  Stable on s390
+
+  22 Apr 2004; Guy Martin <gmsoft@gentoo.org> openssh-3.8_p1.ebuild:
+  Marked stable on hppa.
+
+  22 Apr 2004; Daniel Ahlberg <aliz@gentoo.org> openssh-3.7.1_p2-r2.ebuild,
+  openssh-3.8.1_p1.ebuild, openssh-3.8_p1.ebuild:
+  Fixed IUSE flags.
+
+  21 Apr 2004; Daniel Ahlberg <aliz@gentoo.org> openssh-3.8_p1.ebuild:
+  Stable on x86 and amd64.
+
+*openssh-3.8.1_p1 (21 Apr 2004)
+
+  21 Apr 2004; Daniel Ahlberg <aliz@gentoo.org> openssh-3.8.1_p1.ebuild:
+  Version bump. Found by Daniel Webert <daniel_webert@web.de> in #48465.
+
+  13 Apr 2004; Daniel Ahlberg <aliz@gentoo.org> openssh-3.7.1_p2-r2.ebuild,
+  openssh-3.8_p1.ebuild:
+  Updated SRC_URI.
+
+  23 Mar 2004; Daniel Ahlberg <aliz@gentoo.org> openssh-3.7.1_p2-r1.ebuild,
+  openssh-3.7.1_p2-r2.ebuild, openssh-3.8_p1.ebuild:
+  Change download URI for X509 patches temporarily.
+
+  18 Mar 2004; Daniel Ahlberg <aliz@gentoo.org> files/sshd.rc6, openssh-3.8_p1.ebuild:
+  Add mkdir -p /var/empty to initscript. Closing #42936.
+
+  09 Mar 2004; <agriffis@gentoo.org> openssh-3.7.1_p2-r2.ebuild:
+  stable on alpha and ia64
+
+  09 Mar 2004; Daniel Ahlberg <aliz@gentoo.org> openssh-3.8_p1.ebuild:
+  + Add X509 patch back in, bumped to g4.
+  + Fix static compile by Sascha Silbe <sascha-gentoo-bugzilla@silbe.org> in #44077.
+
+  07 Mar 2004; Joshua Kinard <kumba@gentoo.org> openssh-3.7.1_p2-r2.ebuild:
+  Marked stable on mips.
+
+  02 Mar 2004; Brian Jackson <iggy@gentoo.org> openssh-3.8_p1.ebuild:
+  adding initial s390 support
+
+  27 Feb 2004; Sven Blumenstein <bazik@gentoo.org> openssh-3.7.1_p2-r2.ebuild:
+  Stable on sparc. Remember to mkdir /var/empty if it doesnt exist before you
+  restart sshd...
+
+  25 Feb 2004; Guy Martin <gmsoft@gentoo.org> openssh-3.7.1_p2-r2.ebuild:
+  Marked stable on hppa.
+
+  25 Feb 2004; Daniel Ahlberg <aliz@gentoo.org> openssh-3.7.1_p2-r2.ebuild:
+  Backport skey configure.ac patch.
+
+  24 Feb 2004; Daniel Ahlberg <aliz@gentoo.org> openssh-3.7.1_p2-r2.ebuild:
+  Unmask for x86 and amd64.
+
+*openssh-3.8_p1 (24 Feb 2004)
+
+  24 Feb 2004; Daniel Ahlberg <aliz@gentoo.org> openssh-3.8_p1.ebuild:
+  Version bump.
+
+  21 Feb 2004; Daniel Ahlberg <aliz@gentoo.org> openssh-3.7.1_p2-r2.ebuild:
+  Fix openssh to work with multipe kerbers5 libs. Closing #30310.
+
+  20 Feb 2004; Daniel Ahlberg <aliz@gentoo.org> openssh-3.7.1_p2-r2.ebuild:
+  Filter flag if using ldap. Closing #41727.
+
+  12 Feb 2004; Mike Frysinger <vapier@gentoo.org> :
+  Set Protocol to only allow ssh2 by default #41215 and enable pam if in USE.
+
+  10 Jan 2004; Brad House <brad_mssw@gentoo.org> openssh-3.7.1_p2-r2.ebuild:
+  install doesn't seem to be creating /var/empty
+
+  08 Jan 2004; <solar@gentoo.org> openssh-3.5_p1-r1.ebuild,
+  openssh-3.6.1_p2.ebuild, openssh-3.7.1_p2-r1.ebuild,
+  openssh-3.7.1_p2-r2.ebuild:
+  ppc64/mips nightmare.. had to remove tcpd and skey support for various arches
+  due to other things not being marked stable on those arches
+
+*openssh-3.7.1_p2-r2 (08 Jan 2004)
+
+  08 Jan 2004; <solar@gentoo.org> openssh-3.7.1_p2-r2.ebuild:
+  added feature request for chrooting via sshd bug #26615
+
+  04 Jan 2004; Daniel Ahlberg <aliz@gentoo.org> openssh-3.7.1_p2-r1.ebuild:
+  Changeing sshd user shell. Closing #35063.
+
+  03 Jan 2003; Daniel Ahlberg <aliz@gentoo.org> openssh-3.7.1_p2-r1.ebuild:
+  Change adding sshd user and group to user enewuser and enewgroup. Should
+  fix #35369.
+
+*openssh-3.7.1_p2-r1 (05 Nov 2003)
+
+  17 Nov 2003; Joshua Kinard <kumba@gentoo.org> openssh-3.7.1_p2-r1.ebuild:
+  Added a gnuconfig_update call for mips systems
+
+  05 Nov 2003; Tavis Ormandy <taviso@gentoo.org> openssh-3.7.1_p2-r1.ebuild,
+  files/openssh-skeychallenge-args.diff:
+  patch needed for compatability with new skey.
+
+  28 Oct 2003; Chris PeBenito <pebenito@gentoo.org> openssh-3.5_p1-r1.ebuild,
+  openssh-3.6.1_p2.ebuild, openssh-3.7.1_p2.ebuild,
+  files/openssh-3.7.1_p1-selinux.diff:
+  Switch SELinux patch from old API to new API.
+
+  30 Sep 2003; Daniel Ahlberg <aliz@gentoo.org> openssh-3.7.1_p2.ebuild :
+  Add X509 patch back in, closes #29664.
+
+  23 Sep 2003; <solar@gentoo.org> openssh-3.7.1_p2.ebuild:
+  according to the ChangeLog for openssh =zlib-1.1.4 is a must now. Note:
+  openssh needs a X509 patch made upstream for p2
+
+*openssh-3.7.1_p2 (23 Sep 2003)
+
+  23 Sep 2003; <solar@gentoo.org> openssh-3.7.1_p2.ebuild:
+  security update. http://www.openssh.com/txt/sshpam.adv
+
+  19 Sep 2003; Chris PeBenito <pebenito@gentoo.org>
+  openssh-3.7.1_p1-r1.ebuild, openssh-3.7.1_p1.ebuild:
+  Fix SELinux patch for 3.7.1_p1
+
+  19 Sep 2003; Daniel Ahlberg <aliz@gentoo.org> openssh-3.7.1_p1-r1.ebuild :
+  Disabled selinux patch until a new can be made.
+  Fixed some of the patches to allow the X509 patch to apply. Closing #29105.
+
+*openssh-3.7.1_p1-r1 (18 Sep 2003)
+
+  18 Sep 2003; Daniel Ahlberg <aliz@gentoo.org> openssh-3.7.1_p1-r1.ebuild :
+  Removed krb4 and afs support since they are removed according to the Announcment.
+  Ebuild cleanups.
+  Added a bunch of patches from CVS. Among them a fix for CAN-2003-0682.
+
+  18 Sep 2003; Daniel Ahlberg <aliz@gentoo.org> openssh-3.7.1_p1.ebuild :
+  Readd X509 patch. Closing #28992.
+
+*openssh-3.7.1_p1 (16 Sep 2003)
+
+  16 Sep 2003; Rajiv Aaron Manglani <rajiv@gentoo.org> openssh-3.7.1_p1.ebuild:
+  added warning about restarting sshd.
+
+  16 Sep 2003; Mike Frysinger <vapier@gentoo.org> :
+  Another version bump ! :D #28927.  This fixes 'more malloc bugs'.
+
+*openssh-3.7_p1 (16 Sep 2003)
+
+  16 Sep 2003; Rajiv Aaron Manglani <rajiv@gentoo.org> openssh-3.7_p1.ebuild:
+  added warning about restarting sshd.
+
+  16 Sep 2003; Mike Frysinger <vapier@gentoo.org> :
+  Version bump to fix #28873 ... selinux needs to be caught up though :(.
+  Marked stable due to nature of release (security).
+
+*openssh-3.6.1_p2-r3 (05 Sep 2003)
+
+  05 Sep 2003; Tavis Ormandy <taviso@gentoo.org> openssh-3.6.1_p2-r3.ebuild:
+  adding optional s/key authentication support, using new local USE flag
+  `skey`, currently ~arch only. #11478
+
+*openssh-3.6.1_p2-r1 (06 Aug 2003)
+
+  06 Aug 2003; Donny Davies <woodchip@gentoo.org> openssh-3.6.1_p2-r1.ebuild:
+  Added new local USE=X509 variable which includes Roumen Petrov's patch
+  providing support for authentication with X.509 certificates.
+
+  31 May 2003; Brandon Low <lostlogic@gentoo.org> files/sshd.rc6:
+  Add 'use dns logger' to the rcscript
+
+*openssh-3.6.1_p2 (30 Apr 2003)
+
+  30 Apr 2003; Daniel Ahlberg <aliz@gentoo.org> openssh-3.6.1_p2.ebuild :
+  Security update.
+
+*openssh-3.6.1_p1 (02 Apr 2003)
+
+  02 Apr 2003; Brandon Low <lostlogic@gentoo.org> openssh-3.6.1_p1.ebuild:
+  Bump
+
+*openssh-3.6_p1 (02 Apr 2003)
+
+  02 Apr 2003; Brandon Low <lostlogic@gentoo.org> openssh-3.6_p1.ebuild:
+  Bump, required some modifications to the selinux patch, test thoroughly
+
+  09 Feb 2003; Guy Martin <gmsoft@gentoo.org> :
+  Added hppa to keywords.
+
+*openssh-3.5_p1-r1 (20 Jan 2003)
+
+  30 Mar 2003; Joshua Brindle <method@gentoo.org> openssh-3.5_p1-r1.ebuild:
+  fixed compile options for selinux support
+
+  20 Mar 2003; Joshua Brindle <method@gentoo.org> openssh-3.5_p1-r1.ebuild:
+  added selinux support
+
+  15 Mar 2003; Jan Seidel <tuxus@gentoo.org> :
+  Added mips to KEYWORDS
+
+  13 Mar 2003; Zach Welch <zwelch@gentoo.org> openssh-3.5_p1-r1.ebuild:
+  add arm keyword
+
+  09 Mar 2003; Aron Griffis <agriffis@gentoo.org> openssh-3.5_p1-r1.ebuild:
+  Mark stable on alpha
+
+  01 Mar 2003; Brandon Low <lostlogic@gentoo.org> openssh-3.5_p1-r1.ebuild:
+  make -> emake
+
+  21 Jan 2003; Nick Hadaway <raker@gentoo.org> openssh-3.5_p1-r1.ebuild :
+  Changed USE="kerberos" to depend on app-crypt/krb5 as heimdal is not
+  compatible currently.  Install app-crypt/kth-krb and set KTH_KRB="yes"
+  to enable Kerberos IV support.
+
+  20 Jan 2003; Nick Hadaway <raker@gentoo.org> openssh-3.5_p1-r1.ebuild,
+  files/digest-openssh-3.5_p1-r1 :
+  Added kerberos use flag support.
+
+  09 Dec 2002; Donny Davies <woodchip@gentoo.org> openssh-3.5_p1.ebuild,
+  openssh-3.4_p1-r2.ebuild, openssh-3.4_p1-r3.ebuild : Add a shells reminder.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+  01 Dec 2002; Jack Morgan <jmorgan@gentoo.org> openssh-3.5_p1.ebuild :
+  Removed ~ from sparc/sparc64 keywords.
+
+  29 Nov 2002; Daniel Ahlberg <aliz@gentoo.org> openssh-3.5_p1.ebuild :
+  Rewrote patch applying code.
+
+  22 Nov 2002; Will Woods <wwoods@gentoo.org> openssh-3.5_p1.ebuild:
+  Added patch to fix compile problem on alpha.
+
+  23 Oct 2002; Maik Schreiber <blizzy@gentoo.org> openssh-3.5_p1.ebuild: Changed
+  "~x86" to "x86" in KEYWORDS.
+
+*openssh-3.5_p1 (18 Oct 2002)
+
+  19 Jan 2003; Jan Seidel <tuxus@gentoo.org> :
+  Added mips to keywords
+
+  18 Oct 2002; Daniel Ahlberg <aliz@gentoo.org> openssh-3.5_p1.ebuild:
+  Version bump, found by fluxbox <fluxbox@cox.net> in bug #9262.
+
+*openssh-3.4_p1-r3 (04 July 2002)
+
+  25 Jul 2002; Nicholas Jones <carpaski@gentoo.org> openssh-3.4_p1-r3.ebuild:
+	
+  Bopped Brandon on the head. Added -passwords to the end of --with-md5
+  No version bump as this doesn't affect most people, and those who need it
+  can just rsync and emerge.
+
+  09 Jul 2002; Brandon Low <lostlogic@gentoo.org> openssh-3.4_p1-r3.ebuild:
+
+  New revision enables md5 passwords, please test and let me know how it
+  goes so I can unmask.  Thanks.
+
+*openssh-3.4_p1-r2 (04 July 2002)
+
+  09 Jul 2002; phoen][x <phoenix@gentoo.org> openssh-3.4_p1-r2.ebuild:
+  Added KEYWORDS.
+
+  04 July 2002; Brandon Low <lostlogic@gentoo.org> openssh-3.4_p1-r2.ebuild:
+  Fixes problem of /var/empty being removed if immediately do emerge openssh
+  emerge openssh.  Not an urgent upgrade, but recommended.
+
+*openssh-3.4_p1-r1 (02 July 2002)
+
+  02 July 2002; Brandon Low <lostlogic@gentoo.org> openssh-3.4_p1-r1.ebuild:
+  This closes bugs 4169, 4170, and 4193.  This new ebuild changes the sshd
+  user from whatever it may be to UID 22, this shouldn't mean anything to most
+  people because no scripts, nor programs use the sshd UID directly (for that
+  matter it is only referenced during authentication of new logins via ssh). 
+  However if for some reason your system does have things that were owned by
+  user sshd, you will need to change their UID.
+
+*openssh-3.4_p1 (26 June 2002)
+
+  26 June 2002; Brandon Low <lostlogic@gentoo.org> :
+  New version closes soon to be released security hole, PLEASE upgrade
+	immediately according to the changelogs, this new version closes several
+	possible holes found during a massive audit of the code.
+
+*openssh-3.3_p1 (22 June 2002)
+
+  22 June 2002; Donny Davies <woodchip@gentoo.org> :
+  Chase latest release.  Starting with this version sshd uses a new privelaged
+  process separation scheme.  See the docs for more info.
+
+*openssh-3.2.3_p1-1 (5 June 2002)
+
+  5 June 2002; Gabriele Giorgetti <stroke@gentoo.org> :  
+  New revision. Changes submitted by Alson van der Meulen gentoo@alm.xs4all.nl
+  within bug #3391 were added. Bug closed/fixed.
+
+*openssh-3.2.3_p1 (30 May 2002)
+
+  30 May 2002; Arcady Genkin <agenkin@thpoon.com> :
+  Update to 3.2.3.
+
+*openssh-3.2.2_p1 (18 May 2002)
+
+  18 May 2002; Donny Davies <woodchip@gentoo.org> :
+  Chase latest release + update openssl dependency.
+
+*openssh-3.1_p1-r2 (03 Apr 2002)
+
+  03 Apr 2002; Daniel Robbins <drobbins@gentoo.org> files/sshd.pam: new pam
+  sshd file to use pam_stack, pam_nologin and pam_shells, as well as use
+  pam_unix instead of pam_pwdb.  Added updated shadow dependency if pam is
+  enabled (to depend upon our new shadow with the pam_pwdb to pam_unix
+  conversion).
+
+*openssh-3.1_p1 (7 Mar 2002)
+
+  15 Mar 2002; Bruce A. Locke <blocke@shivan.org> files/sshd.rc6, files/sshd.rc5:
+  ssh1 keygen requires a new option in the initscripts
+
+  13 Mar 2002; M.Schlemmer <azarah@gentoo.org> openssh-3.1_p1-r1.ebuild:
+  Update rc-script not to fail on restart if there is open sessions.
+
+  7 Mar 2002; F.Meyndert <m0rpheus@gentoo.org> openssh-3.1_p1.ebuild:
+  Updated openssh to version 3.1 that fixes a nasty off by one bug in all
+  previous version. That caused a local root hole.
+
+*openssh-3.0.2_p1-r1 (01 Feb 2002)
+
+  01 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog:
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
