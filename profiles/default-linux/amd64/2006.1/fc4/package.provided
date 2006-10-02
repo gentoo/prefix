@@ -22,5 +22,4 @@ sys-fs/udev-077
 net-misc/iputils-021109
 
 # X11 stuff
-x11-libs/libXv-1.0.1
-x11-libs/libXft-2.1.10
+x11-base/xorg-x11-6.8.2
