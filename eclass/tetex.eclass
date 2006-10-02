@@ -192,7 +192,7 @@ tetex_src_install() {
 			# Install teTeX files
 			einfo "Installing teTeX ..."
 			dodir ${TEXMF_PATH:-/usr/share/texmf}/web2c
-			einstall bindir=${D}/usr/bin texmf=${D}${TEXMF_PATH:-/usr/share/texmf} || die
+			emake bindir=${D}/usr/bin texmf=${D}${TEXMF_PATH:-/usr/share/texmf} install || die
 
 			dosbin ${T}/texmf-update
 			;;

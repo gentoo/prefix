@@ -52,12 +52,14 @@ tetex-3_src_unpack() {
 	tetex_src_unpack
 
 	# create update script
-	cat >${T}/texmf-update<<'EOF'
-#!${EPREFIX}/bin/bash
+	echo "#!${EPREFIX}/bin/bash" >> ${T}/texmf-update
+	cat >>${T}/texmf-update<<'EOF'
 #
 # Utility to update Gentoo teTeX distribution configuration files
 #
-
+EOF
+	echo "EPREFIX=\"${EPREFIX}\"" >> ${T}/texmf-update
+	cat >>${T}/texmf-update<<'EOF'
 PATH=${EPREFIX}/bin:${EPREFIX}/usr/bin
 
 # Fix for all those with altered umask for root
