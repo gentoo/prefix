@@ -241,7 +241,7 @@ toolchain-binutils_src_install() {
 	local x d
 
 	cd "${MY_BUILDDIR}"
-	make DESTDIR="${EDEST}" tooldir="${D}/${LIBPATH}" install || die
+	make DESTDIR="${EDEST}" tooldir="${EPREFIX}/${LIBPATH}" install || die
 	rm -rf "${D}"/${LIBPATH}/bin
 
 	# Now we collect everything intp the proper SLOT-ed dirs
