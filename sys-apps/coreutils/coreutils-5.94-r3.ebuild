@@ -31,8 +31,8 @@ DEPEND="${RDEPEND}
 	sys-apps/help2man"
 
 pkg_setup() {
-	# fixup expr for #123342
-	if [[ $(${EPREFIX}/bin/expr a : '\(a\)') != "a" ]] ; then
+	# fixup expr for #123342 (rely on path)
+	if [[ $(expr a : '\(a\)') != "a" ]] ; then
 		if [[ -x ${EPREFIX}/bin/busybox ]] ; then
 			ln -sf ${EPREFIX}/bin/busybox ${EPREFIX}/bin/expr
 		else
