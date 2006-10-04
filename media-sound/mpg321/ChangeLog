@@ -1,0 +1,135 @@
+# ChangeLog for media-sound/mpg321
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg321/ChangeLog,v 1.34 2006/09/10 18:09:41 the_paya Exp $
+
+  10 Sep 2006; Javier Villavicencio <the_paya@gentoo.org>
+  mpg321-0.2.10-r3.ebuild:
+  Add ~x86-fbsd keyword.
+
+  28 May 2006; Diego Pettenò <flameeyes@gentoo.org>
+  -mpg321-0.2.10-r1.ebuild:
+  Remove vulnerable version.
+
+  07 Nov 2005; Diego Pettenò <flameeyes@gentoo.org>
+  mpg321-0.2.10-r1.ebuild, mpg321-0.2.10-r2.ebuild:
+  Don't install INSTALL and COPYING files.
+
+*mpg321-0.2.10-r3 (29 Aug 2005)
+
+  29 Aug 2005; Diego Pettenò <flameeyes@gentoo.org>
+  -files/mpg321-0.1.5-ao.diff, +files/mpg321-0.2.10-useragent.patch,
+  +mpg321-0.2.10-r3.ebuild:
+  Added patch to provide UserAgent while requesting a stream via HTTP. Patch
+  by Frank Ruell, in FreeBSD PR 84898.
+
+  15 Apr 2005; Stephen P. Becker <geoman@gentoo.org>
+  mpg321-0.2.10-r1.ebuild, mpg321-0.2.10-r2.ebuild:
+  changed to -mips until mad issues are worked out
+
+  03 Apr 2005; Hardave Riar <hardave@gentoo.org> mpg321-0.2.10-r2.ebuild:
+  Stable on mips, bug #86033.
+
+  26 Mar 2005; Markus Rothe <corsair@gentoo.org> mpg321-0.2.10-r2.ebuild:
+  Stable on ppc64; bug #86033
+
+  24 Mar 2005; Bryan Østergaard <kloeri@gentoo.org>
+  mpg321-0.2.10-r2.ebuild:
+  Stable on alpha, bug 86033.
+
+  23 Mar 2005; Michael Hanselmann <hansmi@gentoo.org> mpg321-0.2.10-r2.ebuild:
+  Stable on ppc.
+
+  23 Mar 2005; Jan Brinkmann <luckyduck@gentoo.org> mpg321-0.2.10-r2.ebuild:
+  stable on amd64 and x86 wrt #86033
+
+  23 Mar 2005; Gustavo Zacarias <gustavoz@gentoo.org> mpg321-0.2.10-r2.ebuild:
+  Stable on sparc wrt #86033
+
+  13 Nov 2004; Kito <kito@gentoo.org> :
+  added patch from FreeBSD ports. Fixes mem leaks and minor display bugs.
+  ~ppc-macos keyword
+
+  30 Oct 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  mpg321-0.2.10-r1.ebuild:
+  Fix DEPEND for bug #68815.
+
+  29 Jul 2004; Tom Gall <tgall@gentoo.org> mpg321-0.2.10-r1.ebuild:
+  stable on ppc64, bug #55428
+
+  12 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  mpg321-0.2.10-r1.ebuild:
+  Added missing ${ROOT}
+
+  12 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  mpg321-0.2.10-r1.ebuild:
+  postrm removes the symlink now.
+
+  12 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org> :
+  Make ebuild play nicer with GRP.
+
+  03 May 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  mpg321-0.2.10-r1.ebuild:
+  Changing mad dep to madplay.
+
+  26 Apr 2004; Stephen P. Becker <geoman@gentoo.org> mpg321-0.2.10-r1.ebuild:
+  Marked stable on mips.
+
+  20 Apr 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  mpg321-0.2.10-r1.ebuild:
+  QA fixes.
+
+  15 Feb 2004; Jeremy Huddleston <eradicator@gentoo.org> metadata.xml,
+  mpg321-0.2.10-r1.ebuild:
+  PROVIDE="virtual/mpg123" for bug #14940.  Now using make DESTDIR=${D} install.
+
+  01 Dec 2003; Aron Griffis <agriffis@gentoo.org> mpg321-0.2.10-r1.ebuild:
+  Stable on alpha
+
+*mpg321-0.2.10-r2 (17 Jul 2003)
+
+  04 Nov 2003; Joshua Kinard <kumba@gentoo.org> mpg321-0.2.10-r1.ebuild:
+  Added ~mips to KEYWORDS
+
+  07 Oct 2003; Todd Sunderlin <todd@gentoo.org> mpg321-0.2.10-r1.ebuild:
+  changed keyword to sparc
+
+  01 Sep 2003; Jason Wever <weeve@gentoo.org> mpg321-0.2.10-r1.ebuild:
+  Added ~sparc to keywords to fix bug #27687.
+
+  19 Jul 2003; Nick Hadaway <raker@gentoo.org:
+  Removed unneeded mpg321-0.2.10-r2 
+
+  17 Jul 2003; Nick Hadaway <raker@gentoo.org> mpg321-0.2.10-r2.ebuild:
+  Changed mad depend to media-libs/{libmad,libid3tag}
+
+*mpg321-0.2.10-r1 (27 May 2002)
+
+  14 Jan 2003; Jon Nall <nall@gentoo.org> mpg321-0.2.10-r1.ebuild :
+  added ~ppc
+
+  27 May 2002; Seemant Kulleen <seemant@gentoo.org> mpg321-0.2.10-r1.ebuild
+  files/digest-mpg321-0.2.10-r1.ebuild :
+
+  The mpg123->mpg321 symlink is now only created if mpg123 doesn't own that
+  file.  This is done using the configure option, by the way.  Thanks to
+  Rachel Holmes for pointing that out.
+
+*mpg321-0.2.10 (30 Mar 2002)
+  30 Mar 2002; Spider <spider@gentoo.org>
+  Same procedure as last time
+
+*mpg321-0.2.9 (16 Mar 2002)
+
+  16 Mar 2002; Seemant Kulleen <seemant@gentoo.org> mpg321-0.2.9.ebuild :
+
+  Version upgrade, by copying the old ebuild to a new name.
+
+*mpg321-0.2.3 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
