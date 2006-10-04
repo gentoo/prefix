@@ -1123,7 +1123,7 @@ gcc-compiler-configure() {
 	# multilib support
 	if is_multilib ; then
 		confgcc="${confgcc} --enable-multilib"
-	elif [[ ${CTARGET} == *-linux* ]] ; then
+	else
 		confgcc="${confgcc} --disable-multilib"
 	fi
 
