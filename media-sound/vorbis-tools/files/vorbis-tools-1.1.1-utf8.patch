@@ -1,0 +1,42 @@
+diff -urN vorbis-tools-1.1.1.orig/share/charset.c vorbis-tools-1.1.1/share/charset.c
+--- vorbis-tools-1.1.1.orig/share/charset.c	2005-06-03 06:15:10.000000000 -0400
++++ vorbis-tools-1.1.1/share/charset.c	2006-03-08 08:49:56.000000000 -0500
+@@ -27,6 +27,10 @@
+  * 8-bit char, 16-bit short and 32-bit int.
+  */
+ 
++#ifdef HAVE_CONFIG_H
++# include <config.h>
++#endif
++
+ #ifndef HAVE_ICONV /* should be ifdef USE_CHARSET_CONVERT */
+ 
+ #include <stdlib.h>
+diff -urN vorbis-tools-1.1.1.orig/share/iconvert.c vorbis-tools-1.1.1/share/iconvert.c
+--- vorbis-tools-1.1.1.orig/share/iconvert.c	2005-06-03 06:15:10.000000000 -0400
++++ vorbis-tools-1.1.1/share/iconvert.c	2006-03-08 08:49:56.000000000 -0500
+@@ -16,6 +16,10 @@
+  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  */
+ 
++#ifdef HAVE_CONFIG_H
++# include <config.h>
++#endif
++
+ #ifdef HAVE_ICONV
+ 
+ #include <assert.h>
+diff -urN vorbis-tools-1.1.1.orig/share/utf8.c vorbis-tools-1.1.1/share/utf8.c
+--- vorbis-tools-1.1.1.orig/share/utf8.c	2005-06-03 06:15:10.000000000 -0400
++++ vorbis-tools-1.1.1/share/utf8.c	2006-03-08 08:49:56.000000000 -0500
+@@ -21,6 +21,10 @@
+  * Convert a string between UTF-8 and the locale's charset.
+  */
+ 
++#ifdef HAVE_CONFIG_H
++# include <config.h>
++#endif
++
+ #include <stdlib.h>
+ #include <string.h>
+ 
