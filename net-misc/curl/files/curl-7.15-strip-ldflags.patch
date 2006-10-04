@@ -1,0 +1,20 @@
+--- curl-7.15.4/curl-config.in	2006-05-02 23:48:22.000000000 +0100
++++ curl-7.15.4/curl-config.in	2006-07-17 12:32:59.000000000 +0100
+@@ -181,7 +181,7 @@
+        	;;
+ 
+     --libs)
+-       	echo -L@libdir@ -lcurl @LDFLAGS@ @LIBS@
++       	echo -L@libdir@ -lcurl @LIBS@
+        	;;
+ 
+     *)
+--- curl-7.15.4/libcurl.pc.in	2004-12-11 18:46:40.000000000 +0000
++++ curl-7.15.4/libcurl.pc.in	2006-07-17 12:33:10.000000000 +0100
+@@ -6,5 +6,5 @@
+ Name: libcurl
+ Description: Library to transfer files with ftp, http, etc.
+ Version: @VERSION@
+-Libs: -L${libdir} -lcurl @LDFLAGS@ @LIBS@
++Libs: -L${libdir} -lcurl @LIBS@
+ Cflags: -I${includedir}
