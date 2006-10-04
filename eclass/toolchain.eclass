@@ -840,7 +840,7 @@ gcc-compiler_pkg_preinst() {
 }
 
 gcc-compiler_pkg_postinst() {
-	export LD_LIBRARY_PATH=${LIBPATH}:${LD_LIBRARY_PATH}
+	export LD_LIBRARY_PATH=${EPREFIX}/${LIBPATH}:${LD_LIBRARY_PATH}
 
 	if has_version 'app-admin/eselect-compiler' ; then
 		do_eselect_compiler
