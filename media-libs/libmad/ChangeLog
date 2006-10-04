@@ -1,0 +1,134 @@
+# ChangeLog for media-libs/libmad
+# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmad/ChangeLog,v 1.38 2006/09/24 17:10:37 flameeyes Exp $
+
+  24 Sep 2006; Diego Pettenò <flameeyes@gentoo.org>
+  libmad-0.15.1b-r1.ebuild:
+  Force latest version of autotools, thanks to Seemant for reporting.
+
+  28 Jul 2006; Diego Pettenò <flameeyes@gentoo.org>
+  -libmad-0.15.0b-r1.ebuild:
+  Remove old version.
+
+  16 Jul 2006; <psi29a@gentoo.org> libmad-0.15.1b.ebuild:
+  stable on mips
+
+  06 May 2006; Diego Pettenò <flameeyes@gentoo.org>
+  libmad-0.15.1b-r1.ebuild:
+  Add ~x86-fbsd keyword and move epunt_cxx after eautoreconf.
+
+*libmad-0.15.1b-r1 (10 Mar 2006)
+
+  10 Mar 2006; Patrick McLean <chutzpah@gentoo.org>
+  +files/libmad-0.15.1b-cflags.patch, +libmad-0.15.1b-r1.ebuild:
+  Revision bump. Add patch to make libmad use the system CFLAGS rather than
+  adding it's own optimization flags. Based on the patch by Ryan Hill in
+  bug #123215.
+
+  06 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  libmad-0.15.0b-r1.ebuild:
+  Drop virtual/libc dependency.
+
+  02 Oct 2005; Hardave Riar <hardave@gentoo.org> libmad-0.15.1b.ebuild:
+  Keyworded ~mips
+
+  01 Jun 2005; Herbie Hopkins <herbs@gentoo.org> libmad-0.15.1b.ebuild:
+  Use correct libdir in pkgconfig file.
+
+  14 Apr 2005; Stephen P. Becker <geoman@gentoo.org>
+  libmad-0.15.0b-r1.ebuild, libmad-0.15.1b.ebuild:
+  changed to -mips keywords
+
+  05 Feb 2005; Michael Hanselmann <hansmi@gentoo.org> libmad-0.15.1b.ebuild:
+  Stable on ppc.
+
+  11 Jan 2005; Mike Frysinger <vapier@gentoo.org> libmad-0.15.1b.ebuild:
+  Disable C++ checks #74490.
+
+  31 Dec 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  libmad-0.15.1b.ebuild:
+  Changed to 'use sparc' over the PROFILE_ARCH sparc64 for borked audio
+  workaround on sparc.
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  17 Nov 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  libmad-0.15.0b-r1.ebuild, libmad-0.15.1b.ebuild:
+  Readded debug to IUSE.
+
+  06 Oct 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  libmad-0.15.1b.ebuild:
+  get_libdir fixes.
+
+  22 Jul 2004; Mamoru KOMACHI <usata@gentoo.org> libmad-0.15.1b.ebuild:
+  Added to macos. See bug #57448
+
+  14 Jul 2004; Bryan Østergaard <kloeri@gentoo.org> libmad-0.15.1b.ebuild:
+  Stable on alpha.
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  libmad-0.15.0b-r1.ebuild, libmad-0.15.1b.ebuild:
+  virtual/glibc -> virtual/libc
+
+  20 Jun 2004; Tom Gall <tgall@gentoo.org> libmad-0.15.1b.ebuild:
+  stable on ppc64
+
+  26 Apr 2004; Stephen P. Becker <geoman@gentoo.org> libmad-0.15.0b-r1.ebuild:
+  Marked stable on mips.
+
+  21 Apr 2004; Guy Martin <gmsoft@gentoo.org> libmad-0.15.1b.ebuild:
+  Marked stable on hppa.
+
+  29 Mar 2004; Jason Wever <weeve@gentoo.org> libmad-0.15.1b.ebuild:
+  Stable on sparc.
+
+  29 Mar 2004; Gustavo Zacarias <gustavoz@gentoo.org> libmad-0.15.1b.ebuild:
+  fix for b0rked sound on sparc
+
+  26 Mar 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  libmad-0.15.0b-r1.ebuild, libmad-0.15.1b.ebuild:
+  Bump to stable.  remove cruft.
+
+*libmad-0.15.1b (18 Feb 2004)
+
+  18 Feb 2004; Martin Holzer <mholzer@gentoo.org> libmad-0.15.1b.ebuild:
+  Version bumped.
+
+  16 Jan 2004; Martin Guy <gmsoft@gentoo.org> libmad-0.15.0b-r1.ebuild:
+  Marked stable on hppa.
+
+  10 Jan 2004; Aron Griffis <agriffis@gentoo.org> libmad-0.15.0b-r1.ebuild:
+  stable on alpha and ia64
+
+  20 Nov 2003; Luca Barbato <lu_zero@gentoo.org> libmad-0.15.0b-r1.ebuild:
+  Marked ppc
+
+*libmad-0.15.0b-r1 (03 Sep 2003)
+
+  04 Nov 2003; Joshua Kinard <kumba@gentoo.org> libmad-0.15.0b-r1.ebuild:
+  Added ~mips to KEYWORDS
+
+  16 Sep 2003; Jason Wever <weeve@gentoo.org> libmad-0.15.0b-r1.ebuild:
+  Marked stable for sparc.
+
+  07 Sep 2003; Caleb Tennis <caleb@gentoo.org> libmad-0.15.0b-r1.ebuild:
+  Marked as x86 stable as KDE (arts) depends on it.
+
+  03 Sep 2003; Brandon Low <lostlogic@gentoo.org> libmad-0.15.0b-r1.ebuild:
+  Add a speedup patgch this is experimental, see how it goes for you
+
+  19 Jul 2003; Nick Hadaway <raker@gentoo.org> libmad-0.15.0b.ebuild:
+  Added lotsa arch's, changed so mad is not conflicting and some other
+  cleanup and beautification.
+
+  18 Jul 2003; Luca Barbato <lu_zero@gentoo.org> libmad-0.15.0b.ebuild:
+  Added keyword ~ppc
+
+*libmad-0.15.0b (17 Jul 2003)
+
+  17 Jul 2003; Nick Hadaway <raker@gentoo.org> libmad-0.15.0b.ebuild:
+  New ebuild.  Conflicts with media-sound/mad as this does not contain
+  any userland binaries but just a library.  libmad will most likely
+  replace mad in the near future as this is the newer code base.  Also
+  added and updated /usr/lib/pkgconfig/mad.pc
