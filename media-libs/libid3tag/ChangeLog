@@ -1,0 +1,101 @@
+# ChangeLog for media-libs/libid3tag
+# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libid3tag/ChangeLog,v 1.30 2006/09/10 17:07:27 the_paya Exp $
+
+  10 Sep 2006; Javier Villavicencio <the_paya@gentoo.org>
+  libid3tag-0.15.1b.ebuild:
+  Added ~x86-fbsd keyword.
+
+  03 Apr 2006; Thomas Cort <tcort@gentoo.org> libid3tag-0.15.1b.ebuild:
+  New HOMEPAGE.
+
+  06 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> metadata.xml,
+  libid3tag-0.15.0b.ebuild, libid3tag-0.15.1b.ebuild:
+  Drop virtual/libc dependency.
+
+  19 Jan 2006; Simon Stelling <blubb@gentoo.org> libid3tag-0.15.1b.ebuild:
+  fix broken libdir in pkgconfig file
+
+  12 Jul 2005; Stephen P. Becker <geoman@gentoo.org>
+  libid3tag-0.15.1b.ebuild:
+  stable on mips
+
+  08 Apr 2005; Michael Hanselmann <hansmi@gentoo.org>
+  libid3tag-0.15.1b.ebuild:
+  Stable on ppc.
+
+  11 Jan 2005; Mike Frysinger <vapier@gentoo.org> libid3tag-0.15.1b.ebuild:
+  Disable C++ checks #74489.
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  14 Oct 2004; Michael Sterrett <mr_bones_@gentoo.org>
+  libid3tag-0.15.1b.ebuild:
+  dodir unneeded
+
+  06 Oct 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  libid3tag-0.15.1b.ebuild:
+  get_libdir fixes.
+
+  22 Jul 2004; Mamoru KOMACHI <usata@gentoo.org> libid3tag-0.15.1b.ebuild:
+  Added to macos. See bug #57448
+
+  14 Jul 2004; Bryan Østergaard <kloeri@gentoo.org> libid3tag-0.15.1b.ebuild:
+  Stable on alpha.
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  libid3tag-0.15.0b.ebuild, libid3tag-0.15.1b.ebuild:
+  virtual/glibc -> virtual/libc
+
+  20 Jun 2004; Tom Gall <tgall@gentoo.org> libid3tag-0.15.1b.ebuild:
+  stable on ppc64
+
+  26 Apr 2004; Stephen P. Becker <geoman@gentoo.org> libid3tag-0.15.0b.ebuild:
+  Marked stable on mips.
+
+  21 Apr 2004; Guy Martin <gmsoft@gentoo.org> libid3tag-0.15.1b.ebuild:
+  Marked stable on hppa.
+
+  29 Mar 2004; Jason Wever <weeve@gentoo.org> libid3tag-0.15.1b.ebuild:
+  Stable on sparc.
+
+  26 Mar 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  libid3tag-0.15.0b.ebuild, libid3tag-0.15.1b.ebuild:
+  Removed implicit S=.  Marked stable on x86.
+
+*libid3tag-0.15.1b (18 Feb 2004)
+
+  18 Feb 2004; Martin Holzer <mholzer@gentoo.org> libid3tag-0.15.1b.ebuild:
+  Version bumped.
+
+  16 Jan 2004; Martin Guy <gmsoft@gentoo.org> libid3tag-0.15.0b.ebuild:
+  Marked stable on hppa.
+
+  10 Jan 2004; Aron Griffis <agriffis@gentoo.org> libid3tag-0.15.0b.ebuild:
+  stable on alpha and ia64
+
+  20 Nov 2003; Luca Barbato <lu_zero@gentoo.org> libid3tag-0.15.0b.ebuild:
+  Marked ppc
+
+*libid3tag-0.15.0b (17 Jul 2003)
+
+  04 Nov 2003; Joshua Kinard <kumba@gentoo.org> libid3tag-0.15.0b.ebuild:
+  Added ~mips to KEYWORDS
+
+  16 Sep 2003; Jason Wever <weeve@gentoo.org> libid3tag-0.15.0b.ebuild:
+  Marked stable for sparc.
+
+  07 Sep 2003; Caleb Tennis <caleb@gentoo.org> libid3tag-0.15.0b.ebuild:
+  Marking x86 stable
+
+  19 Jul 2003; Nick Hadaway <raker@gentoo.org> libid3tag-0.15.0b.ebuild:
+  Filled out archs and adjusted build for the media-sound/mad 
+  metapackage.  Other beautification as well.
+
+  18 Jul 2003; Luca Barbato <lu_zero@gentoo.org> libid3tag-0.15.0b.ebuild:
+  Added keyword ~ppc
+
+  17 Jul 2003; Nick Hadaway <raker@gentoo.org> libid3tag-0.15.0b.ebuild:
+  New ebuild.  Conflicts with media-sound/mad and compliments
+  media-libs/libmad.  Also added and updated /usr/lib/pkgconfig/id3tag.pc
