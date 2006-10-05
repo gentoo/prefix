@@ -12,7 +12,7 @@ SRC_URI="ftp://ftp.gnu.org/pub/gnu/ed/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
 DEPEND="sys-apps/texinfo"
