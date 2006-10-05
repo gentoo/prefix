@@ -1,0 +1,22 @@
+Index: prefix-portage-2.1.13.4497/bin/ebuild.sh
+===================================================================
+--- prefix-portage-2.1.13.4497.orig/bin/ebuild.sh
++++ prefix-portage-2.1.13.4497/bin/ebuild.sh
+@@ -1145,7 +1145,16 @@ dyn_test() {
+ 		ewarn "Skipping make test/check due to ebuild restriction."
+ 		echo ">>> Test phase [explicitly disabled]: ${CATEGORY}/${PF}"
+ 	elif ! hasq test $FEATURES; then
+-		echo ">>> Test phase [not enabled]: ${CATEGORY}/${PF}"
++		## check package.test
++		if [ -f ${EPREFIX}/etc/portage/package.test ]; then
++        		local found=$(grep "^${CATEGORY}/${PN}" ${EPREFIX}/etc/portage/package.test)
++			if [ -n "${found}" ]; then
++				echo "Running test for ${CATEGORY}/${PF}"
++				src_test
++			fi
++		else
++			echo ">>> Test phase [not enabled]: ${CATEGORY}/${PF}"
++		fi
+ 	else
+ 		src_test
+ 	fi

@@ -32,8 +32,10 @@ S=${WORKDIR}/prefix-${PN}-${PV/-r1/}
 
 src_unpack() {
 	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-best_version.patch
+	epatch "${FILESDIR}"/${P}-double_prefix.patch
+	epatch "${FILESDIR}"/${P}-matt-double_prefix-qa.patch
+	epatch "${FILESDIR}"/${P}-matt-tests.patch
+	epatch "${FILESDIR}"/${P}-matt-various_fixes.patch
 }
 
 src_compile() {
