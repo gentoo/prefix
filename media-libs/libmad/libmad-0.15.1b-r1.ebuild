@@ -15,7 +15,7 @@ SRC_URI="mirror://sourceforge/mad/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="debug"
 
 DEPEND=""
@@ -59,6 +59,6 @@ src_install() {
 	doins "${FILESDIR}"/mad.pc
 
 	# Use correct libdir in pkgconfig file
-	dosed "s:^libdir.*:libdir=/usr/$(get_libdir):" \
+	dosed "s:^libdir.*:libdir=${EPREFIX}/usr/$(get_libdir):" \
 		/usr/$(get_libdir)/pkgconfig/mad.pc
 }
