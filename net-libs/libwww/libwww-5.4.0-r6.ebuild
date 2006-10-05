@@ -1,8 +1,11 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libwww/libwww-5.4.0-r5.ebuild,v 1.1 2006/01/06 14:31:36 nattfodd Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libwww/libwww-5.4.0-r6.ebuild,v 1.9 2006/10/04 12:59:02 flameeyes Exp $
 
 EAPI="prefix"
+
+WANT_AUTOMAKE="1.4"
+WANT_AUTOCONF="latest"
 
 inherit eutils multilib autotools
 
@@ -23,7 +26,6 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 
 DEPEND="${RDEPEND}
 	!dev-libs/9libs
-	>=sys-devel/autoconf-2.13
 	dev-lang/perl"
 
 S=${WORKDIR}/${MY_P}
@@ -40,15 +42,15 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-disable-ndebug-gentoo.diff	# bug #50483
 	# http://lists.w3.org/Archives/Public/www-lib/2003OctDec/0015.html
 	# http://www.mysql.gr.jp/mysqlml/mysql/msg/8118
-	epatch "${FILESDIR}"/${P}-mysql-4.1.patch
+	epatch "${FILESDIR}"/${P}-mysql-4.0.patch
 	# Fix multiple problems, potentially exploitable (bug #109040)
 	epatch "${FILESDIR}"/${P}-htbound.patch
 	# Fix linking while using --as-needed
 	epatch "${FILESDIR}/${P}-asneeded.patch"
 	# Drop Externls rebuild after automake
 	epatch "${FILESDIR}/${P}-noexport.patch"
-	# Mac OS X has no automake 1.4, only 1.6.3
-	epatch "${FILESDIR}/${P}-automake-macos.patch"
+	# Respect users LDFLAGS, bug #126863.
+	epatch "${FILESDIR}/${P}-respectflags.patch"
 
 	eautoreconf || die "autoreconf failed"
 }
