@@ -15,7 +15,7 @@ do
 	# note this is Solaris linker specific, but GNU supports it (make
 	# sure ${dir} is a directory!)
 	[[ -d ${dir} ]] && \
-		LDFLAGS="${LDFLAGS} -L${dir} -Wl,R -Wl,${dir}"
+		LDFLAGS="${LDFLAGS} -L${dir} -Wl,-R -Wl,${dir}"
 done
 
 export LDFLAGS="${LDFLAGS} ${OLDLDFLAGS/${LDFLAGS}/}"
