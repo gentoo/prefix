@@ -245,13 +245,11 @@ do
 				echo "out-of-date, applying diff -r$ptecv -r$mtecv"
 				# checkout both original versions and make the diffs,
 				# ignoring keywords
-				cvs -d"${CVSROOT}" \
+				cvs -Q -d"${CVSROOT}" \
 					checkout -r$ptecv -p ${CVSMODULE}/${EPACKAGE}/$pte \
-					2> /dev/null \
 					> /var/tmp/$pte-$ptecv.tmp
-				cvs -d"${CVSROOT}" \
+				cvs -Q -d"${CVSROOT}" \
 					checkout -r$mtecv -p ${CVSMODULE}/${EPACKAGE}/$mte \
-					2> /dev/null \
 					> /var/tmp/$mte-$mtecv.tmp
 				# make KEYWORDS and EAPI void in the diff
 				sed -i \
