@@ -12,7 +12,8 @@ LDFLAGS=""
 for dir in lib64 lib usr/lib64 usr/lib;
 do
 	dir=${EPREFIX}/${dir}
-# note this is Solaris linker only, GNU=-rpath ${dir}
+	# note this is Solaris linker specific, but GNU supports it (make
+	# sure ${dir} is a directory!)
 	[[ -d ${dir} ]] && \
 		LDFLAGS="${LDFLAGS} -L${dir} -R${dir}"
 done
