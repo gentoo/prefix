@@ -18,7 +18,7 @@ SRC_URI="http://downloads.xiph.org/releases/ao/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86-macos"
 IUSE="alsa arts esd nas mmap pulseaudio doc"
 
 RDEPEND="alsa? ( media-libs/alsa-lib )
