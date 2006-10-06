@@ -18,7 +18,7 @@ SRC_URI="mirror://gnupg/gnupg/${P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="bzip2 curl ecc idea ldap nls readline selinux smartcard static usb zlib X linguas_ru"
 # IUSE+=caps
 
