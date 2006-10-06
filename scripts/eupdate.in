@@ -183,6 +183,40 @@ cross_diff() {
 	rm /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp
 }
 
+revision_diff() {
+	mtecv=$1
+	ptecv=$2
+	package=$3
+	# Gentoo never increments the major, and branches are not
+	# allowed, so we can make things easy and only use the minor
+	if [[ ${mtecv#1.} -eq ${ptecv#1.} ]];
+	then
+		echo "up-to-date (rev: $mtecv)"
+	elif [[ ${mtecv#1.} -gt ${ptecv#1.} ]];
+	then
+		echo "out-of-date, applying diff -r$ptecv -r$mtecv"
+		# checkout both original versions and make the diffs,
+		# ignoring keywords
+		cvs -Q -d"${CVSROOT}" \
+			checkout -r$ptecv -p ${CVSMODULE}/${EPACKAGE}/$package \
+			> /var/tmp/$package-$ptecv.tmp
+		cvs -Q -d"${CVSROOT}" \
+			checkout -r$mtecv -p ${CVSMODULE}/${EPACKAGE}/$package \
+			> /var/tmp/$package-$mtecv.tmp
+		# make KEYWORDS and EAPI void in the diff
+		[[ ${package##*.} == "ebuild" ]] && sed -i \
+			-e 's|^KEYWORDS=.*$|'"`egrep '^KEYWORDS=' $package`"'|' \
+			-e 's|^# \$Header:.*$|&\n\nEAPI="prefix"|' \
+			/var/tmp/$package-$ptecv.tmp /var/tmp/$package-$mtecv.tmp
+		# show what's going to change
+		diff -U 1 /var/tmp/$package-$ptecv.tmp /var/tmp/$package-$mtecv.tmp
+		# (attempt to) do it!
+		diff -u /var/tmp/$package-$ptecv.tmp /var/tmp/$package-$mtecv.tmp \
+			| patch --no-backup-if-mismatch $package
+		rm /var/tmp/$package-$ptecv.tmp /var/tmp/$package-$mtecv.tmp
+	fi
+}
+
 if [[ ! -d ${MTREEDIR}/${EPACKAGE} ]];
 then
 	echo "no such package in main tree: ${EPACKAGE}"
@@ -218,6 +252,7 @@ do
 				vdiff=$((ptevnr - mtevnr))
 				if [[ $vdiff > 0 ]];
 				then
+					echo "$(get_versionebuild $ptevn) > $(get_versionebuild $mtevn) ($vdiff)"
 					# due to sortedness, vdiff cannot be negative here, so
 					# it is a newer revision, save it for later
 					had_match=$mtev
@@ -235,34 +270,7 @@ do
 			echo -n "  found $mte in both ... "
 			mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$mte)
 			ptecv=$(get_cvsversion $pte)
-			# Gentoo never increments the major, and branches are not
-			# allowed, so we can make things easy and only use the minor
-			if [[ ${mtecv#1.} -eq ${ptecv#1.} ]];
-			then
-				echo "up-to-date (rev: $mtecv)"
-			elif [[ ${mtecv#1.} -gt ${ptecv#1.} ]];
-			then
-				echo "out-of-date, applying diff -r$ptecv -r$mtecv"
-				# checkout both original versions and make the diffs,
-				# ignoring keywords
-				cvs -Q -d"${CVSROOT}" \
-					checkout -r$ptecv -p ${CVSMODULE}/${EPACKAGE}/$pte \
-					> /var/tmp/$pte-$ptecv.tmp
-				cvs -Q -d"${CVSROOT}" \
-					checkout -r$mtecv -p ${CVSMODULE}/${EPACKAGE}/$mte \
-					> /var/tmp/$mte-$mtecv.tmp
-				# make KEYWORDS and EAPI void in the diff
-				sed -i \
-					-e 's|^KEYWORDS=.*$|'"`egrep '^KEYWORDS=' $pte`"'|' \
-					-e 's|^# \$Header:.*$|&\n\nEAPI="prefix"|' \
-					/var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp
-				# show what's going to change
-				diff -U 1 /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp
-				# (attempt to) do it!
-				diff -u /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp \
-					| patch --no-backup-if-mismatch $pte
-				rm /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp
-			fi
+			revision_diff $mtecv $ptecv $pte
 		fi
 	done
 	if [[ $had_match > 1 ]];
@@ -286,4 +294,11 @@ then
 	pver=$(get_versionebuild $ptelv)
 	cross_diff $mver $pver
 fi
+echo -n "  checking ChangeLog: "
+mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/ChangeLog)
+ptecv=$(get_cvsversion ChangeLog)
+revision_diff $mtecv $ptecv ChangeLog
+echo -n "  refreshing metadata.xml... "
+cp "${MTREEDIR}/${EPACKAGE}"/metadata.xml metadata.xml
+echo "done"
 echo "done"
