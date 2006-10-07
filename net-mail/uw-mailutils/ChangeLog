@@ -1,0 +1,44 @@
+# ChangeLog for net-mail/uw-mailutils
+# Copyright 1999-2005 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/ChangeLog,v 1.10 2005/10/09 21:20:35 ticho Exp $
+
+  09 Oct 2005; Andrej Kacian <ticho@gentoo.org> ChangeLog:
+  Use pam-less make target. Bug #108529, reported by Henrique Dias
+  <hdias@aesbuc.pt>.
+
+  07 Oct 2005; Fernando J. Pereda <ferdy@gentoo.org>
+  uw-mailutils-2004g.ebuild:
+  fix DESCRIPTION and HOMEPAGE
+
+  07 Oct 2005; Andrej Kacian <ticho@gentoo.org> uw-mailutils-2004g.ebuild:
+  Added block of pine to deps, to prevent file collisions.
+
+  07 Oct 2005; Simon Stelling <blubb@gentoo.org> uw-mailutils-2004g.ebuild:
+  marked stable on amd64 wrt bug 108206
+
+  07 Oct 2005; Michael Hanselmann <hansmi@gentoo.org>
+  uw-mailutils-2004g.ebuild:
+  Stable on hppa, ppc. See bug #108206.
+
+  06 Oct 2005; Brent Baude <ranger@gentoo.org> uw-mailutils-2004g.ebuild:
+  Marking uw-imap-2004g-r1 ppc64 for bug 108206
+
+  06 Oct 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  uw-mailutils-2004g.ebuild:
+  Stable on sparc wrt #108206
+
+  06 Oct 2005; Fernando J. Pereda <ferdy@gentoo.org>
+  uw-mailutils-2004g.ebuild:
+  stable on alpha wrt bug #108206
+
+  06 Oct 2005; Andrej Kacian <ticho@gentoo.org> uw-mailutils-2004g.ebuild:
+  Stable on x86, due to security bug #108206.
+
+*uw-mailutils-2004g (06 Oct 2005)
+
+  06 Oct 2005; Andrej Kacian <ticho@gentoo.org>
+  +files/uw-mailutils-2004g.patch, +metadata.xml,
+  +uw-mailutils-2004g.ebuild:
+  Initial import. Closes bug #105313, reported by Zak Kipling <zak at
+  transversal.com>.
+
