@@ -6,10 +6,10 @@ Index: prefix-portage-2.1.13.4497/bin/misc-functions.sh
  		unset INSTALLTOD
  	fi
  
-+	if [[ -d ${D}/${PREFIX} ]] ; then
++	if [[ -d ${D}/${EPREFIX} ]] ; then
 +		declare -i INSTALLTOD=0
-+		for i in $(find "${D}/${PREFIX}/"); do
-+			echo "QA Notice: /${i##${D}/${PREFIX}} double prefix"
++		for i in $(find "${D}/${EPREFIX}/"); do
++			echo "QA Notice: /${i##${D}/${EPREFIX}} double prefix"
 +			((INSTALLTOD++))
 +		done
 +		ewarn "QA concerns: ${INSTALLTOD} double prefix files installed "
@@ -19,18 +19,3 @@ Index: prefix-portage-2.1.13.4497/bin/misc-functions.sh
  	local find_log="${T}/find-portage-log"
  	find "${D}"/ -user ${PORTAGE_USER:-portage} -print0 > "${find_log}"
  	if [[ -s ${find_log} ]] ; then
-@@ -239,7 +249,13 @@ preinst_mask() {
- 		 eerror "${FUNCNAME}: IMAGE is unset"
- 		 return 1
- 	else
--		IMAGE="${IMAGE}/${EPREFIX}"
-+		plen=${#EPREFIX}
-+		ilen=${#IMAGE}
-+		# check if prefixed at end
-+		pend=${IMAGE:$[ilen-plen]:${plen}}
-+		if [ "${pend}" != "${EPREFIX}" ]; then
-+			IMAGE="${IMAGE}${EPREFIX}"
-+		fi
- 	fi
- 	# remove man pages, info pages, docs if requested
- 	for f in man info doc; do
