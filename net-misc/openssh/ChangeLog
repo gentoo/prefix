@@ -1,6 +1,21 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.204 2006/09/30 13:08:09 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.207 2006/10/04 03:12:50 pebenito Exp $
+
+*openssh-4.4_p1-r3 (04 Oct 2006)
+
+  04 Oct 2006; Chris PeBenito <pebenito@gentoo.org>
+  +files/openssh-4.4p1-selinux-ac.diff, +openssh-4.4_p1-r3.ebuild:
+  Fix configure to properly detect SELinux functions.
+
+*openssh-4.4_p1-r2 (02 Oct 2006)
+
+  02 Oct 2006; Mike Frysinger <vapier@gentoo.org> +openssh-4.4_p1-r2.ebuild:
+  Add support for new X509.
+
+  02 Oct 2006; Andrea Barisani <lcars@gentoo.org>
+  files/digest-openssh-4.4_p1-r1, Manifest:
+  Fixing digest wrt bug #149571
 
   30 Sep 2006; Diego Pettenò <flameeyes@gentoo.org>
   openssh-4.4_p1-r1.ebuild:
