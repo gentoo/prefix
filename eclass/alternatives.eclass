@@ -72,8 +72,9 @@ alternatives_makesym() {
 	# usage: alternatives_makesym <resulting symlink> [alternative targets..]
 	# make sure it is in the prefix, allow it already to be in the prefix
 	SYMLINK=${EPREFIX}/${1#${EPREFIX}}
-	# this trick removes the trailing / from ${ROOT}
+	# this trick removes the trailing ${EPREFIX}/ from ${ROOT}
 	pref=$(echo ${ROOT} | sed 's:/$::')
+	pref=${ROOT%${EPREFIX%/}}
 	shift
 	ALTERNATIVES=$@
 
