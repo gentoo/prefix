@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.6_rc4.ebuild,v 1.1 2006/10/01 20:53:49 exg Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.6_rc5.ebuild,v 1.1 2006/10/03 11:18:54 exg Exp $
 
 EAPI="prefix"
 
