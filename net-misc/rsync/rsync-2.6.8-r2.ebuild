@@ -70,17 +70,17 @@ src_install() {
 		insinto /etc
 		doins "${FILESDIR}"/rsyncd.conf
 		ebegin "Adjusting to prefix"
-		dosed -i \
-			-e "s|@GENTOO_PORTAGE_EPREFIX@|${EPREFIX}|g" \
-			rsyncd.conf
+		dosed \
+			"s|@GENTOO_PORTAGE_EPREFIX@|${EPREFIX}|g" \
+			/etc/rsyncd.conf
 		eend $?
 		if use xinetd ; then
 			insinto /etc/xinetd.d
 			newins "${FILESDIR}"/rsyncd.xinetd rsyncd
 			ebegin "Adjusting to prefix"
-			dosed -i \
-				-e "s|@GENTOO_PORTAGE_EPREFIX@|${EPREFIX}|g" \
-				rsyncd
+			dosed \
+				"s|@GENTOO_PORTAGE_EPREFIX@|${EPREFIX}|g" \
+				/etc/xinetd.d/rsyncd
 			eend $?
 			fi
 	else
