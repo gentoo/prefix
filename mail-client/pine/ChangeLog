@@ -1,0 +1,555 @@
+# ChangeLog for mail-client/pine
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/mail-client/pine/ChangeLog,v 1.85 2006/09/19 21:03:42 ticho Exp $
+
+*pine-4.64-r4 (19 Sep 2006)
+
+  19 Sep 2006; <ticho@gentoo.org> +pine-4.64-r4.ebuild:
+  Updated chappa-all patchset. Closes bug #146455, reported by Petr Novak <che
+  at inkvizice.org>.
+
+  17 May 2006; Fernando J. Pereda <ferdy@gentoo.org> pine-4.64-r3.ebuild:
+  Stable on alpha.
+
+  31 Mar 2006; Michael Hanselmann <hansmi@gentoo.org> pine-4.64-r3.ebuild:
+  Stable on ppc.
+
+  28 Mar 2006; Gustavo Zacarias <gustavoz@gentoo.org> pine-4.64-r3.ebuild:
+  Stable on sparc
+
+  27 Mar 2006; <ticho@gentoo.org> pine-4.64-r3.ebuild:
+  Stable on x86.
+
+  23 Feb 2006; Andrej Kacian <ticho@gentoo.org> -pine-4.62.ebuild,
+  -pine-4.62-r1.ebuild, -pine-4.62-r2.ebuild, -pine-4.63.ebuild,
+  -pine-4.63-r1.ebuild, -pine-4.63-r2.ebuild:
+  Old ebuild cleanup.
+
+*pine-4.64-r3 (23 Feb 2006)
+
+  23 Feb 2006; Andrej Kacian <ticho@gentoo.org> -pine-4.64-r2.ebuild,
+  +pine-4.64-r3.ebuild:
+  Update chappa-all patch for bug #120981, by Erik Quaeghebeur <equaeghe at
+  nospammail.net>.
+
+*pine-4.64-r2 (03 Feb 2006)
+
+  03 Feb 2006; Andrej Kacian <ticho@gentoo.org> +pine-4.64-r2.ebuild:
+  Updated chappa-all patch.
+
+  12 Oct 2005; Joseph Jezak <josejx@gentoo.org> pine-4.64-r1.ebuild:
+  Marked ppc stable for bug #108647.
+
+  10 Oct 2005; <dang@gentoo.org> pine-4.64-r1.ebuild:
+  Marked stable on amd64
+
+  10 Oct 2005; Fernando J. Pereda <ferdy@gentoo.org> pine-4.64-r1.ebuild:
+  Stable on alpha wrt bug #108647
+
+  10 Oct 2005; Jason Wever <weeve@gentoo.org> pine-4.64-r1.ebuild:
+  Stable on SPARC wrt bug #108647.
+
+  09 Oct 2005; Carsten Lohrke <carlo@gentoo.org> pine-4.64-r1.ebuild:
+  sry, reverted
+
+  09 Oct 2005; Carsten Lohrke <carlo@gentoo.org> pine-4.64-r1.ebuild:
+  missing blocker !
+
+*pine-4.64-r1 (08 Oct 2005)
+
+  08 Oct 2005; Andrej Kacian <ticho@gentoo.org> +pine-4.64-r1.ebuild:
+  Bump to work with uw-mailutils. Also updated chappa-all patch. Keyworded
+  stable on x86 to prevent tree breakage with net-mail/uw-mailutils and
+  net-mai/uw-imap. See bugs #108206 and #105313.
+
+  02 Oct 2005; Michael Hanselmann <hansmi@gentoo.org> pine-4.63-r3.ebuild:
+  Stable on ppc.
+
+  02 Oct 2005; Aron Griffis <agriffis@gentoo.org> pine-4.63-r3.ebuild:
+  Mark 4.63-r3 stable on ia64
+
+*pine-4.64 (29 Sep 2005)
+
+  29 Sep 2005; Andrej Kacian <ticho@gentoo.org> +pine-4.64.ebuild:
+  Version bump.
+
+  22 Sep 2005; Gustavo Zacarias <gustavoz@gentoo.org> pine-4.63-r3.ebuild:
+  Stable on sparc
+
+  22 Sep 2005; Fernando J. Pereda <ferdy@gentoo.org> pine-4.63-r3.ebuild:
+  stable on alpha
+
+  21 Sep 2005; Andrej Kacian <ticho@gentoo.org> pine-4.63-r3.ebuild:
+  Stable on x86.
+
+  24 Aug 2005; Aron Griffis <agriffis@gentoo.org> pine-4.63-r2.ebuild:
+  stable on ia64
+
+*pine-4.63-r3 (14 Aug 2005)
+
+  14 Aug 2005; Andrej Kacian <ticho@gentoo.org> pine-4.63-r1.ebuild,
+  pine-4.63-r2.ebuild, +pine-4.63-r3.ebuild:
+  chappa-all patch update.
+
+  01 Aug 2005; Fernando J. Pereda <ferdy@gentoo.org> pine-4.63-r2.ebuild:
+  stable on alpha
+
+  17 Jul 2005; Tobias Scherbaum <dertobi123@gentoo.org> pine-4.63-r2.ebuild:
+  ppc stable
+
+  08 Jul 2005; Gustavo Zacarias <gustavoz@gentoo.org> pine-4.63-r2.ebuild:
+  Stable on sparc
+
+  07 Jul 2005; Andrej Kacian <ticho@gentoo.org>
+  -files/imap-4.7c2-flock.patch, -pine-4.61-r2.ebuild, -pine-4.61-r3.ebuild,
+  -pine-4.61-r4.ebuild, pine-4.63-r2.ebuild:
+  Stable on amd64 and x86. Removed older ebuilds and unused patches.
+
+*pine-4.63-r2 (20 May 2005)
+
+  20 May 2005; Andrej Kacian <ticho@gentoo.org> +pine-4.63-r2.ebuild:
+  Updated chappa-all patch.
+
+*pine-4.63-r1 (06 May 2005)
+
+  06 May 2005; Andrej Kacian <ticho@gentoo.org> +pine-4.63-r1.ebuild:
+  Updated chappa patch, due to fixed bug that could possibly cause loss of
+  emails. Thanks to Eduardo Chappa.
+
+  06 May 2005; Herbie Hopkins <herbs@gentoo.org> pine-4.63.ebuild:
+  Stable on amd64 wrt bug #88836.
+
+  06 May 2005; Bryan Østergaard <kloeri@gentoo.org> pine-4.63.ebuild:
+  Stable on alpha + ia64, bug 88836.
+
+  06 May 2005; Gustavo Zacarias <gustavoz@gentoo.org> pine-4.63.ebuild:
+  Stable on sparc wrt #88836
+
+  06 May 2005; Michael Hanselmann <hansmi@gentoo.org> pine-4.63.ebuild:
+  Stable on ppc.
+
+  06 May 2005; Andrej Kacian <ticho@gentoo.org> pine-4.63.ebuild:
+  Stable on x86, security bug #88836.
+
+*pine-4.63 (05 May 2005)
+
+  05 May 2005; Andrej Kacian <ticho@gentoo.org> +pine-4.63.ebuild:
+  Version bump.
+
+  27 Apr 2005; Fernando J. Pereda <ferdy@gentoo.org> pine-4.61-r5.ebuild:
+  alpha stable
+
+  21 Apr 2005; Michael Hanselmann <hansmi@gentoo.org> pine-4.62-r1.ebuild:
+  Stable on ppc.
+
+  10 Apr 2005; Simon Stelling <blubb@gentoo.org> pine-4.62-r1.ebuild:
+  stable on amd64
+
+  03 Apr 2005; Lina Pezzella <j4rg0n@gentoo.org> pine-4.62-r1.ebuild,
+  pine-4.62-r2.ebuild:
+  Bug #83630. Thanks to David Rogers for reporting the fix.
+
+  01 Apr 2005; Aron Griffis <agriffis@gentoo.org> pine-4.62-r1.ebuild:
+  stable on ia64
+
+  31 Mar 2005; Gustavo Zacarias <gustavoz@gentoo.org> pine-4.62-r1.ebuild:
+  Stable on sparc
+
+*pine-4.62-r2 (29 Mar 2005)
+
+  29 Mar 2005; Andrej Kacian <ticho@gentoo.org>
+  +files/pine-4.62-spooldir-permissions.patch, pine-4.62-r1.ebuild,
+  +pine-4.62-r2.ebuild:
+  Updated the chappa-patchset. 4.62-r1 stable on x86. Introduced patch which
+  turns off .lockfile usage to get rid of "vulnerable" spool directory on
+  startup.
+
+  05 Mar 2005; Joseph Jezak <josejx@gentoo.org> pine-4.62.ebuild:
+  Marked ppc stable for bug #83249.
+
+  27 Feb 2005; Tom Martin <slarti@gentoo.org> pine-4.62.ebuild:
+  Stable on amd64 for bug 83249.
+
+  25 Feb 2005; Aron Griffis <agriffis@gentoo.org> pine-4.62-r1.ebuild,
+  pine-4.62.ebuild:
+  4.62 stable on ia64 #83249
+
+  25 Feb 2005; Ferris McCormick <fmccor@gentoo.org> pine-4.62.ebuild:
+  Stable for sparc (Bug 83249).
+
+  25 Feb 2005; Andrej Kacian <ticho@gentoo.org> :
+  Recreated digest to correct stored filesize of chappa-all patch. Closes
+  #83282, reported by Jan Jitse Venselaar <janjitse@a-eskwadraat.nl>
+
+*pine-4.62-r1 (25 Feb 2005)
+
+  25 Feb 2005; Andrej Kacian <ticho@gentoo.org> +pine-4.62-r1.ebuild,
+  pine-4.62.ebuild:
+  Updated chappa-all patch. Removed maildir USE flag, and print an URL for
+  "incoming folders" guide. Changed my devspace URIs in SRC_URI to
+  mirror://gentoo/. 4.62 stable on x86.
+
+*pine-4.62 (22 Jan 2005)
+
+  22 Jan 2005; Andrej Kacian <ticho@gentoo.org> +pine-4.62.ebuild:
+  New version. Added maildir USE flag, since maildir patch behavior has
+  changed. See maildir_warn() function in the ebuild.
+
+  17 Jan 2005; Gustavo Zacarias <gustavoz@gentoo.org> pine-4.61-r5.ebuild:
+  Stable on sparc
+
+  17 Jan 2005; Andrej Kacian <ticho@gentoo.org> pine-4.61-r5.ebuild:
+  Stable on x86.
+
+  04 Jan 2005; Gustavo Zacarias <gustavoz@gentoo.org> pine-4.61-r4.ebuild:
+  Stable on sparc
+
+  03 Jan 2005; Andrej Kacian <ticho@gentoo.org> pine-4.61-r3.ebuild,
+  pine-4.61-r4.ebuild:
+  Stable on x86.
+
+*pine-4.61-r5 (18 Dec 2004)
+
+  18 Dec 2004; Sven Wegener <swegener@gentoo.org>
+  +files/pine-4.61-largeterminal.patch, +pine-4.61-r5.ebuild:
+  Revision bump. Support for the largeterminal USE flag that adds support for
+  large terminals by doubling the size of pine's internal display buffer.
+
+  30 Nov 2004; Andrej Kacian <ticho@gentoo.org>
+  -files/imap-4.7c2-flock+maildir.patch, -files/pine-4.21-fixhome.patch,
+  -files/pine-4.21-passwd.patch, pine-4.61-r2.ebuild, pine-4.61-r3.ebuild,
+  pine-4.61-r4.ebuild:
+  Some more unused patches cleanup.
+
+*pine-4.61-r4 (30 Nov 2004)
+
+  30 Nov 2004; Andrej Kacian <ticho@gentoo.org>
+  +files/pine-4.61-subjectlength.patch, +pine-4.61-r4.ebuild:
+  Apply patch to relax length condition on subject field. Patch submitted by
+  Kolbjorn Barmen <kolla@uninett.no>. Closes bug #72861.
+
+  26 Nov 2004; Andrej Kacian <ticho@gentoo.org>
+  -files/pine-4.33-whitespace.patch, -files/pine-4.40-boguswarning.patch,
+  -pine-4.50-r4.ebuild, -pine-4.58-r3.ebuild, -pine-4.60.ebuild,
+  -pine-4.61-r1.ebuild, pine-4.61-r2.ebuild, pine-4.61-r3.ebuild:
+  Removed ebuilds <=4.61-r1, as well as no longer used patches from files/
+  dir. Closes bug #72200, reported by Michael <fd0man@chadeux.net>.
+
+  25 Nov 2004; Jason Wever <weeve@gentoo.org> pine-4.61-r2.ebuild:
+  Stable on sparc wrt bug #72268.
+
+  26 Nov 2004; Joseph Jezak <josejx@gentoo.org> pine-4.61-r2.ebuild:
+  Marked ppc stable for bug #72268.
+
+*pine-4.61-r3 (25 Nov 2004)
+
+  25 Nov 2004; Andrej Kacian <ticho@gentoo.org> +pine-4.61-r3.ebuild:
+  Updated chappa patch pack.
+
+  23 Nov 2004; Karol Wojtaszek <sekretarz@gentoo.org> pine-4.61-r2.ebuild:
+  Stable on amd64, bug #72268
+
+  23 Nov 2004; Andrej Kacian <ticho@gentoo.org> pine-4.61-r2.ebuild:
+  Stable on x86.
+
+  04 Oct 2004; Robin H. Johnson <robbat2@gentoo.org> pine-4.50-r4.ebuild,
+  pine-4.58-r3.ebuild, pine-4.60.ebuild, pine-4.61-r1.ebuild,
+  pine-4.61-r2.ebuild:
+  Bug #66333 - better RDEPEND.
+
+  02 Sep 2004; Andrej Kacian <ticho@gentoo.org> pine-4.50-r4.ebuild,
+  pine-4.58-r3.ebuild, pine-4.60.ebuild, pine-4.61-r1.ebuild,
+  pine-4.61-r2.ebuild:
+  Use ${P/-/} instead of ${PN}${PV} in ${S}, suggested by seemant.
+
+*pine-4.61-r2 (02 Sep 2004)
+
+  02 Sep 2004; Andrej Kacian <ticho@gentoo.org> +pine-4.61-r2.ebuild:
+  Modified ebuild to make use of pam optional. Patch submitted by Christer
+  Ekholm <che@chrekh.se>. Closes #58667.
+
+  14 Aug 2004; Tuan Van <langthang@gentoo.org> pine-4.50-r4.ebuild,
+  pine-4.58-r3.ebuild, -pine-4.58.ebuild:
+  tidy wrt # 60345.
+
+  09 Aug 2004; Tom Martin <slarti@gentoo.org> pine-4.50-r4.ebuild,
+  pine-4.58-r3.ebuild, pine-4.58.ebuild, pine-4.60.ebuild,
+  pine-4.61-r1.ebuild:
+  No longer installs /etc/mime.types - RDEPENDs on app-misc/mime-types now.
+
+  08 Aug 2004; Jason Wever <weeve@gentoo.org> pine-4.60.ebuild:
+  Stable on sparc.
+
+  07 Aug 2004; Tom Martin <slarti@gentoo.org> pine-4.60.ebuild:
+  Stable on amd64
+
+  06 Aug 2004; Tuan Van <langthang@gentoo.org> pine-4.61-r1.ebuild:
+  fix typo.
+
+*pine-4.61-r1 (06 Aug 2004)
+
+  06 Aug 2004; Tuan Van <langthang@gentoo.org> +pine-4.61-r1.ebuild,
+  -pine-4.61.ebuild:
+  Revision bump to bring in new chappa-all patch. Resolve bug #59573.
+
+*pine-4.61 (27 Jul 2004)
+
+  27 Jul 2004; Tuan Van <langthang@gentoo.org> +pine-4.61.ebuild:
+  Version bump, resolve bug #58205.
+  Thanks to: Anders Hellgren <andh@gentoo.se>
+  This ebuild also installs mailutil tool, resolve bug #53489.
+
+  24 Jun 2004; Alexander Plank <alexander@gentoo.org> pine-4.58-r3.ebuild:
+  add -macos; doesn't compile correctly
+
+  22 Jul 2004; Tom Gall <tgall@gentoo.org> pine-4.58-r3.ebuild:
+  stable on ppc64, bug #57588
+
+  21 Jul 2004; <malc@gentoo.org> pine-4.60.ebuild:
+  Add ~amd64 after testing per req: from langthang
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org> pine-4.50-r4.ebuild,
+  pine-4.58-r1.ebuild, pine-4.58-r2.ebuild, pine-4.58-r3.ebuild,
+  pine-4.58.ebuild, pine-4.60.ebuild:
+  virtual/glibc -> virtual/libc
+
+  30 Jun 2004; Cory Visi <merlin@gentoo.org> pine-4.50-r4.ebuild,
+  pine-4.58-r1.ebuild, pine-4.58-r2.ebuild, pine-4.58-r3.ebuild,
+  pine-4.58.ebuild, pine-4.60.ebuild:
+  Removed mailcap install to fix Bug 50433 in all versions
+
+  10 Jun 2004; Aron Griffis <agriffis@gentoo.org> pine-4.60.ebuild:
+  Fix use invocation
+
+*pine-4.60 (08 Jun 2004)
+
+  08 Jun 2004; Grant Goodyear <g2boojum@gentoo.org>
+  +files/imap-4.7c2-flock_4.60.patch, +pine-4.60.ebuild:
+  Version bump that supposedly fixes Bugs 50696, 23232, 28877, and 48273.
+
+  06 Jun 2004; Aron Griffis <agriffis@gentoo.org> pine-4.50-r4.ebuild,
+  pine-4.58-r1.ebuild, pine-4.58-r2.ebuild, pine-4.58-r3.ebuild,
+  pine-4.58.ebuild:
+  Fix use invocation
+
+*pine-4.58-r2 (29 May 2004)
+
+  29 May 2004; Seemant Kulleen <seemant@gentoo.org> +metadata.xml,
+  +files/flock.c, +files/imap-2000-time.patch,
+  +files/imap-4.7c2-flock+maildir.patch, +files/imap-4.7c2-flock.patch,
+  +files/pine-4.21-fixhome.patch, +files/pine-4.21-passwd.patch,
+  +files/pine-4.30-ldap.patch, +files/pine-4.31-segfix.patch,
+  +files/pine-4.33-whitespace.patch, +files/pine-4.40-boguswarning.patch,
+  +files/pine-4.40-lockfile-perm.patch, +files/pine-4.56-passfile.patch,
+  +files/transparency.patch, +pine-4.50-r4.ebuild, +pine-4.58-r1.ebuild,
+  +pine-4.58-r2.ebuild, +pine-4.58-r3.ebuild, +pine-4.58.ebuild:
+  Moved from net-mail/pine to mail-client/pine.
+
+  25 Mar 2004; Jason Huebel,,, <jhuebel@gentoo.org> pine-4.58.ebuild:
+  stable on amd64
+
+*pine-4.58-r3 (08 Nov 2003)
+
+  08 Nov 2003; <max@gentoo.org> pine-4.58-r3.ebuild:
+  New experimental version with lots of new freatures: UTF8 support (bug 29093),
+  Maildir support (bugs 28877 and hopefully 23232), Kerberos gssapi support (bug
+  32713), IPV6 support, and a new chappa patch.
+
+  02 Oct 2003; Brad House <brad_mssw@gentoo.org> pine-4.58.ebuild:
+  add ~amd64 flag
+
+*pine-4.58-r2 (19 Sep 2003)
+
+  19 Sep 2003; Max Kalika <max@gentoo.org> pine-4.58-r2.ebuild,
+  files/pine-4.56-passfile.patch:
+  Massive cleanup and add the PASSFILE feature controlled by a new local USE
+  flag.
+
+*pine-4.58-r1 (16 Sep 2003)
+
+  16 Sep 2003; Rajiv Aaron Manglani <rajiv@gentoo.org> pine-4.58-r1.ebuild:
+  chappa patches are back. now using his 'all' set for 4.58 as of 2003-09-15.
+  keyworded for testing.
+
+*pine-4.58 (16 Sep 2003)
+
+  16 Sep 2003; Rajiv Aaron Manglani <rajiv@gentoo.org> pine-4.58.ebuild:
+  version bump, fixes security problems. temporarily removed chappa patches
+  until we get versions which work with pine 4.58.
+
+  11 Jul 2003; Nick Hadaway <raker@gentoo.org> pine-4.56.ebuild:
+  Marked stable for x86
+
+  08 Jul 2003; Nick Hadaway <raker@gentoo.org> pine-4.56.ebuild:
+  Added a little patch for making pine transparent in terms that support 
+  it.
+
+  19 Jun 2003; <msterret@gentoo.org> pine-4.56.ebuild:
+  use dohtml instead of dodoc for html (bug 23048)
+  use sed -i
+
+*pine-4.56 (09 Jun 2003)
+
+  09 Jun 2003; Nick Hadaway <raker@gentoo.org> pine-4.56.ebuild,
+  files/pine-4.56-chappa-20030609.patch.bz2, files/digest-pine-4.56:
+  Version bump.  The bogus-whitespace patch no longer is needed.
+
+*pine-4.53-r4 (14 Feb 2003)
+
+  15 Apr 2003; Martin Holzer <mholzer@gentoo.org> pine-4.53-r4.ebuild:
+  Removed net-www/lynx from depend. Closes #16314.
+
+  15 Apr 2003; Tavis Ormandy <taviso@gentoo.org> pine-4.53-r4.ebuild:
+  added ~alpha #19260
+
+  04 Apr 2003; Jason Wever <weeve@gentoo.org> pine-4.53-r4.ebuild:
+  Changed ~sparc keyword to sparc.
+
+  14 Feb 2003; Nick Hadaway <raker@gentoo.org> pine-4.53-r4.ebuild,
+  files/digest-pine-4.53-r4, files/pine-4.53-chappa-20030214.patch.bz2 :
+  Happy Singles Awareness Day (SAD) to ya'll. :)  Here's an
+  I love pine gift for everyone.  An updated patch with rules.c and
+  rules.h included so the configure script doesn't try to wget
+  the files.  This closes bug #15455.
+
+*pine-4.53-r3 (04 Feb 2003)
+
+  04 Feb 2003; Nick Hadaway <raker@gentoo.org> pine-4.53-r3.ebuild,
+  files/digest-pine-4.53-r3 :
+  Moved the default location of pine{.conf,.conf.fixed,.info} to /etc
+  Also made a local mirror of the patch so we aren't subject to the
+  random upstream changes with no filename change.
+
+*pine-4.53-r2 (04 Feb 2003)
+
+  04 Feb 2003; Nick Hadaway <raker@gentoo.org> pine-4.53-r2.ebuild,
+  files/digest-pine-4.53-r2 :
+  A new patch added on the chappa build.
+
+*pine-4.53-r1 (28 Jan 2003)
+
+  28 Jan 2003; Nick Hadaway <raker@gentoo.org> pine-4.53-r1.ebuild,
+  files/digest-pine-4.53-r1 :
+  Chappa updated the patches upstream.  Release -r1 to account for the
+  changes.  New digest file, ebuild is still the same.
+
+*pine-4.53 (17 Jan 2003)
+
+  15 Apr 2003; Martin Holzer <mholzer@gentoo.org> Manifest,
+  pine-4.50-r4.ebuild, pine-4.53-r1.ebuild, pine-4.53-r1.ebuild,
+  pine-4.53-r2.ebuild, pine-4.53-r2.ebuild, pine-4.53-r3.ebuild,
+  pine-4.53-r3.ebuild, pine-4.53.ebuild, pine-4.53.ebuild,
+  files/pine-4.50-maildir.patch:
+  Removed old crusty ebuilds, moved pine-4.50-maildir.patch to distfiles,
+  changed ebuild to use epatch.
+
+  17 Jan 2003; Nick Hadaway <raker@gentoo.org> pine-4.53.ebuild,
+  files/digest-pine-4.53 :
+  Version bump.  Minor cleanups.
+
+*pine-4.52 (12 Jan 2003)
+
+  13 Jan 2003; Nick Hadaway <raker@gentoo.org> pine-4.52.ebuild :
+  Now conflicts with net-mail/pine-maildir.
+
+  12 Jan 2003; Nick Hadaway <raker@gentoo.org> pine-4.52.ebuild,
+  files/digest-pine-4.52 :
+  Another version bump.  A hand picked group of patches from the chappa
+  collection.
+
+*pine-4.51 (03 Jan 2002)
+
+  03 Jan 2002; Martin Holzer <mholzer@gentoo.org> pine-4.51.ebuild files/digest-pine-4.51 ChangeLog :
+  Added lynx dep. Changed from tar.gz to tar.bz2. Closes #13157
+
+  03 Jan 2002; Nick Hadaway <raker@gentoo.org> pine-4.51.ebuild,
+  files/digest-pine-4.51 :
+  Version bump.  No maildir patch yet. Includes the entire Eduardo
+  Chappa patch collection for 4.51.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*pine-4.50-r4 (05 Dec 2002)
+
+  05 Dec 2002; Nick Hadaway <raker@gentoo.org> pine-4.50-r4.ebuild,
+  files/digest-pine-4.50-r4 :
+  Fixed ssl certs directory as noted on bug #11638 and fixed some
+  compile-time warnings.
+
+*pine-4.50-r3 (03 Dec 2002)
+
+  03 Dec 2002; Nick Hadaway <raker@gentoo.org> pine-4.50-r3.ebuild,
+  files/digest-pine-4.50-r3, files/imap-4.7c2-flock+maildir.patch,
+  files/pine-4.50-maildir.patch :
+  Incorporated the mbox use variable and split up the patches again.
+
+*pine-4.50-r2 (03 Dec 2002)
+
+  03 Dec 2002; Nick Hadaway <raker@gentoo.org> pine-4.50-r2.ebuild :
+  Updated the mega patch to remove the unstable multibyte char patch
+  portion.
+
+*pine-4.50-r1 (25 Nov 2002)
+
+  01 Dec 2002; Nick Hadaway <raker@gentoo.org> pine-4.50-r1.ebuild :
+  Marked stable.
+
+  25 Nov 2002; Nick Hadaway <raker@gentoo.org> pine-4.50-r1.ebuild,
+  files/digest-pine-4.50-r1, files/4.50-gentoo.diff :
+  Now supports maildir!  This ebuild uses just one diff which is based
+  off the diff provided by Michael Grubb on bug #8474.  I updated it
+  to work with pine-4.50 and changed the reference to .maildir instead
+  of Maildir to work with the gentoo standard.
+
+*pine-4.50 (22 Nov 2002)
+
+  25 Nov 2002; Nick Hadaway <raker@gentoo.org> pine-4.50.ebuild :
+  Added ability to compile with/without debugging.  Fixed the 
+  ssl certs directory (openssl-0.9.6-r1 style)
+
+  22 Nov 2002; Nick Hadaway <raker@gentoo.org> pine-4.50.ebuild,
+  files/digest-pine-4.50 :
+  Version bump.  lots of fixes.  Threaded index is included.
+  Some SSL cleanup.  Updated a sed statement.  Sorted through
+  patches.
+
+*pine-4.44-r5 (17 Nov 2002)
+
+  17 Nov 2002; Nick Hadaway <raker@gentoo.org> pine-4.44-r5.ebuild,
+  files/fancy.patch.bz2, files/digest-pine-4.44-r5 :
+  New pine ebuild with the threaded index patch and got rid of some
+  compile warnings.
+
+*pine-4.44-r4 (15 Apr 2002)
+
+  20 Oct 2002; Seemant Kulleen <seemant@gentoo.org> :
+
+  the multibyte patch causes instability. RH removed it from their followup
+  rpm.  Closes bug #3719 by ftobin@neverending.org (Frank Tobin)
+
+  12 Aug 2002; Mark Guertin <gerk@gentoo.org> :
+  Added ppc to keywords
+
+  15 Apr 2002; Jared H. Hudson <jhhudso@gentoo.org> :
+
+  Changed the ebuild so that it no longer PROVIDEs virtual/imapUW or
+  the imap headers. These imap headers and static library will be provided
+  by net-mail/uw-imap exclusively now.
+	
+*pine-4.44-r1 (21 Feb 2002)
+
+  21 Feb 2002; Grant Goodyear <g2boojum@gentoo.org> :
+
+  Revamped our ebuild to use RH patches so that I could
+  include SSL and LDAP support (both controlled by use variables).  I don't
+  know enough about pine to test it properly.
+  
+*pine-4.44 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
