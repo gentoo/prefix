@@ -42,7 +42,7 @@ src_compile() {
 		$(use_enable acl acl-support) \
 		$(use_enable acl xattr-support) \
 		$(use_enable ipv6) \
-		--with-rsyncd-conf=/etc/rsyncd.conf \
+		--with-rsyncd-conf="${EPREFIX}"/etc/rsyncd.conf \
 		|| die
 	emake || die "emake failed"
 }
@@ -58,15 +58,31 @@ pkg_preinst() {
 src_install() {
 	make DESTDIR="${EDEST}" install || die "make install failed"
 	newconfd "${FILESDIR}"/rsyncd.conf.d rsyncd
-	newinitd "${FILESDIR}"/rsyncd.init.d rsyncd
+	cp "${FILESDIR}"/rsyncd.init.d "${T}"/rsyncd.init.d
+	ebegin "Adjusting to prefix"
+	sed -i \
+		-e "s|@GENTOO_PORTAGE_EPREFIX@|${EPREFIX}|g" \
+		"${T}"/rsyncd.init.d
+	eend $?
+	newinitd "${T}"/rsyncd.init.d rsyncd
 	if ! use build ; then
 		dodoc NEWS OLDNEWS README TODO tech_report.tex
 		insinto /etc
 		doins "${FILESDIR}"/rsyncd.conf
+		ebegin "Adjusting to prefix"
+		dosed -i \
+			-e "s|@GENTOO_PORTAGE_EPREFIX@|${EPREFIX}|g" \
+			rsyncd.conf
+		eend $?
 		if use xinetd ; then
 			insinto /etc/xinetd.d
 			newins "${FILESDIR}"/rsyncd.xinetd rsyncd
-		fi
+			ebegin "Adjusting to prefix"
+			dosed -i \
+				-e "s|@GENTOO_PORTAGE_EPREFIX@|${EPREFIX}|g" \
+				rsyncd
+			eend $?
+			fi
 	else
 		rm -r "${D}"/usr/share
 	fi
