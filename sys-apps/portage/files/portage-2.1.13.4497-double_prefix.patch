@@ -10,7 +10,7 @@
 +	if prefix[-1]!="/":
 +		prefix=prefix+"/"
 +	if root.endswith(prefix):
-+		root=root[0:-len(prefix)]
++		root=root[0:-len(prefix)]+"/"
  else:
  	root="/"
  if root != "/":
