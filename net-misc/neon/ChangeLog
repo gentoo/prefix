@@ -1,0 +1,297 @@
+# ChangeLog for net-misc/neon
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.77 2006/10/01 16:10:28 gmsoft Exp $
+
+  01 Oct 2006; Guy Martin <gmsoft@gentoo.org> neon-0.26.1-r1.ebuild:
+  Stable on hppa.
+
+*neon-0.26.1-r1 (24 Sep 2006)
+
+  24 Sep 2006; Paul de Vrieze <pauldv@gentoo.org> +neon-0.26.1-r1.ebuild:
+  Gnutls support is broken in connection with subversion. This should fix
+  #148306 and others once and for all.
+
+  03 Sep 2006; Joshua Kinard <kumba@gentoo.org> neon-0.26.1.ebuild:
+  Marked stable on mips.
+
+  14 Aug 2006; Paul de Vrieze <pauldv@gentoo.org> neon-0.26.1.ebuild:
+  built_with_use dies when the package is not installed at all. To prevent
+  dying and allow things to (hopefully) work on a ulibc system add an extra
+  has_version check around it. This should solve bug #143886.
+
+  05 Aug 2006; Chris White <chriswhite@gentoo.org> metadata.xml:
+  metadata.xml translation by Yoshino-san in bug #136538
+
+  30 Jul 2006; Daniel Gryniewicz <dang@gentoo.org> neon-0.26.1.ebuild:
+  Marked stable on amd64 for bug #139506
+
+  26 Jul 2006; Joshua Kinard <kumba@gentoo.org> neon-0.25.5.ebuild:
+  Marking stable on mips (dep needed by gnome-vfs).
+
+  25 Jul 2006; Thomas Cort <tcort@gentoo.org> neon-0.26.1.ebuild:
+  Stable on alpha wrt Bug #139506.
+
+  23 Jul 2006; Akinori Hattori <hattya@gentoo.org> neon-0.26.1.ebuild:
+  x86 stable, bug #139506
+
+  23 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org> neon-0.26.1.ebuild:
+  ppc stable, bug #139506
+
+  20 Jul 2006; Markus Rothe <corsair@gentoo.org> neon-0.26.1.ebuild:
+  Stable on ppc64; bug #139506
+
+  17 Jul 2006; Daniel Gryniewicz <dang@gentoo.org> neon-0.25.3.ebuild:
+  Marked stable on amd64 for bug #139612
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org> neon-0.25.3.ebuild:
+  hppa stable, bug #139612
+
+  14 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org> neon-0.25.3.ebuild:
+  ppc stable, bug #139612
+
+  13 Jul 2006; Patrick McLean <chutzpah@gentoo.org> neon-0.26.1.ebuild:
+  Add ewarn about API breakage.
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org> neon-0.26.1.ebuild:
+  Mark 0.26.1 stable on ia64. #139507
+
+  12 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org> neon-0.25.3.ebuild:
+  Stable on x86 wrt bug #139612.
+
+  10 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org> neon-0.26.1.ebuild:
+  Stable on sparc wrt #139506 and #139612
+
+  10 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org> neon-0.25.3.ebuild:
+  Stable on sparc wrt #139612
+
+  05 Jul 2006; Steve Arnold <nerdboy@gentoo.org> neon-0.26.1.ebuild:
+  Removed unneccesary make clean from src_test (doh!).
+
+*neon-0.26.1 (05 Jul 2006)
+
+  05 Jul 2006; Steve Arnold <nerdboy@gentoo.org> +neon-0.26.1.ebuild:
+  Version bump for rapidsvn and subversion support (and bug 137563).
+  This version adds several new features, so test away (note that socks
+  support is considered experimental, and tests are somewhat fragile).
+
+  21 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> neon-0.25.5.ebuild:
+  Add missing elibtoolize.
+
+  30 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> neon-0.25.5.ebuild:
+  Add ~x86-fbsd keyword.
+
+*neon-0.25.5 (21 Feb 2006)
+
+  21 Feb 2006; Paul de Vrieze <pauldv@gentoo.org> +neon-0.25.5.ebuild:
+  New upstream version (bug #123361)
+
+  23 Dec 2005; Paul de Vrieze <pauldv@gentoo.org> neon-0.25.3.ebuild:
+  Explicitly disable linking with gssapi. Autodetecting gives a broken
+  dependency. Using a useflag dependency doesn't work as apparently the
+  libtool archive created does not have proper dependencies.
+
+  14 Sep 2005; Aaron Walker <ka0ttic@gentoo.org> neon-0.24.7.ebuild:
+  0.24.7 stable on mips.
+
+*neon-0.25.3 (10 Sep 2005)
+
+  10 Sep 2005; Daniel Black <dragonheart@gentoo.org> -neon-0.21.3.ebuild,
+  -neon-0.23.8.ebuild, -neon-0.23.9.ebuild, -neon-0.24.0.ebuild,
+  -neon-0.24.2.ebuild, -neon-0.24.4.ebuild, -neon-0.24.5.ebuild,
+  -neon-0.24.6.ebuild, +neon-0.25.3.ebuild:
+  version bump. remove old and security vulnerable versions
+
+  29 Jul 2005; Aaron Walker <ka0ttic@gentoo.org> neon-0.24.7.ebuild:
+  Added ~mips.
+
+  20 Jul 2005; Andrej Kacian <ticho@gentoo.org> neon-0.24.7.ebuild:
+  Commented out the darwin sed call for now. Bug #99647.
+
+  19 Jul 2005; Kito <kito@gentoo.org> neon-0.24.7.ebuild:
+  fix for shared library on Darwin
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  16 Dec 2004; Markus Rothe <corsair@gentoo.org> neon-0.24.7.ebuild:
+  Stable on ppc64
+
+  04 Nov 2004; Aron Griffis <agriffis@gentoo.org> neon-0.24.7.ebuild:
+  add ia64 keyword
+
+  01 Nov 2004; Markus Rothe <corsair@gentoo.org> neon-0.24.7.ebuild:
+  Marked ~ppc64; bug #63683
+
+  01 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> neon-0.24.6.ebuild,
+  neon-0.24.7.ebuild:
+  Added to ~ppc-macos; bug #58811.
+
+  23 Jul 2004; Travis Tilley <lv@gentoo.org> neon-0.24.7.ebuild:
+  stable on amd64
+
+  23 Jul 2004; Guy Martin <gmsoft@gentoo.org> neon-0.24.7.ebuild:
+  Marked stable on hppa.
+
+  23 Jul 2004; Bryan Østergaard,,, <kloeri@gentoo.org> neon-0.24.7.ebuild:
+  Stable on alpha, see bug #57747.
+
+  20 Jul 2004; Stuart Herbert <stuart@gentoo.org> neon-0.24.7.ebuild:
+  Stable on x86
+
+  20 Jul 2004; Ciaran McCreesh <ciaranm@gentoo.org> neon-0.24.7.ebuild:
+  Stable on sparc for bug #57747
+
+*neon-0.24.7 (20 Jul 2004)
+
+  20 Jul 2004; Stuart Herbert <stuart@gentoo.org> +neon-0.24.7.ebuild:
+  Version bump; required by subversion-1.0.6
+
+  02 Jun 2004; Ciaran McCreesh <ciaranm@gentoo.org> neon-0.24.6.ebuild:
+  Stable on sparc at klieber's request
+
+  02 Jun 2004; Aron Griffis <agriffis@gentoo.org> neon-0.24.6.ebuild:
+  stable on alpha
+
+  24 May 2004; Bryan Østergaard <kloeri@gentoo.org> neon-0.24.6.ebuild:
+  Keyworded ~alpha, requested in bug #51550.
+
+  20 May 2004; Michael McCabe <randy@gentoo.org> neon-0.24.6.ebuild:
+  Marked stable on s390
+
+*neon-0.24.6 (19 May 2004)
+
+  19 May 2004; Paul de Vrieze <pauldv@gentoo.org> +neon-0.24.6.ebuild:
+  New version with security fixes
+
+  13 May 2004; Michael McCabe <randy@gentoo.org> neon-0.24.5.ebuild:
+  Added s390 keywords
+
+  27 Apr 2004; Travis Tilley <lv@gentoo.org> neon-0.24.5.ebuild:
+  stable on amd64
+
+*neon-0.24.5 (27 Apr 2004)
+
+  27 Apr 2004; Paul de Vrieze <pauldv@gentoo.org> +neon-0.24.5.ebuild:
+  New upstream version with SECURITY fixes. Updating is highly recommended
+
+  26 Apr 2004; Paul de Vrieze <pauldv@gentoo.org> neon-0.24.4.ebuild:
+  Mark stable so that subversion can be marked stable
+
+  26 Apr 2004; Aron Griffis <agriffis@gentoo.org> neon-0.23.8.ebuild,
+  neon-0.23.9.ebuild, neon-0.24.0.ebuild, neon-0.24.2.ebuild,
+  neon-0.24.4.ebuild:
+  Add die following econf for bug 48950
+
+  22 Jan 2004; <augustus@gentoo.org> neon-0.24.4.ebuild:
+  Added ~amd64 keyword.
+
+*neon-0.24.4 (13 Dec 2003)
+
+  13 Dec 2003; <paul@gentoo.org> neon-0.24.4.ebuild:
+  Add a new version, with some fixes based on bug #32232. patch slightly adapted
+  from a patch by Jani Averbach <jaa@iki.fi>
+
+  28 Nov 2003; Jason Wever <weeve@gentoo.org> neon-0.24.2.ebuild:
+  Added ~sparc keyword.
+
+  09 Nov 2003; David Holm <dholm@gentoo.org> neon-0.24.2.ebuild:
+  Added to ~ppc.
+
+*neon-0.24.2 (27 Sep 2003)
+
+  27 Sep 2003; Paul de Vrieze <pauldv@gentoo.org> metadata.xml,
+  neon-0.24.2.ebuild:
+  Version bump as subversion needs 0.24.2
+
+*neon-0.24.0 (26 Sep 2003)
+
+  26 Sep 2003; Martin Holzer <mholzer@gentoo.org> neon-0.24.0.ebuild:
+  Version bumped.
+
+*neon-0.23.9 (17 Aug 2003)
+
+  17 Aug 2003; Paul de Vrieze <pauldv@gentoo.org> neon-0.23.8.ebuild,
+  neon-0.23.9.ebuild:
+  Add new upstream version that could probably fix some pkg-config bugs
+
+  17 Aug 2003; Paul de Vrieze <pauldv@gentoo.org> neon-0.23.8.ebuild:
+  Mark neon stable as it is needed for subversion to become stable
+
+  31 May 2003; root <root@gentoo.org> neon-0.21.3.ebuild, neon-0.23.2.ebuild,
+  neon-0.23.3.ebuild, neon-0.23.5.ebuild, neon-0.23.8.ebuild:
+  ppc keyworded where necessary
+
+*neon-0.23.8 (15 Mar 2003)
+
+  15 Mar 2003; Alain Penders <alain@gentoo.org> neon-0.23.8.ebuild: Version bump, needed for subversion.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*neon-0.23.5 (15 Nov 2002)
+
+  15 Nov 2002; Karl Trygve (karltk@gentoo.org) neon-0.23.5.ebuild files/digest-neon-0.23.5 :
+  The version below was never committed, so I made a new one. Fixes #10721.
+
+  2 Nov 2002; Joshua Brindle (method@gentoo.org) neon-0.23.5.ebuild files/digest-neon-0.23.3 :
+  Added zlib support, new upstream version
+
+*neon-0.23.3 (26 Oct 2002)
+
+  26 Oct 2002; Karl Trygve Kalleberg <karltk@gentoo.org> neon-0.23.3.ebuild files/digest-neon-0.23.3 :
+  New upstream version.
+
+*neon-0.23.2 (18 Oct 2002)
+
+  18 Oct 2002; Karl Trygve Kalleberg <karltk@gentoo.org> neon-0.23.2.ebuild files/digest-neon-0.23.2 :
+  New upstream version.
+
+*neon-0.21.3 (14 Jul 2002)
+
+  14 Jul 2002; Karl Trygve Kalleberg <karltk@gentoo.org> neon-0.21.3.ebuild :
+  New upstream version.
+  Old versions 0.15.3-r1, 0.18.5, 0.19.2-r1, 0.19.2, 0.21.1 removed.
+
+*neon-0.21.1 (06 Jun 2002)
+
+  09 Jul 2002; phoen][x <phoenix@gentoo.org> neon-0.19.2.ebuild :
+  Added KEYWORDS.
+
+  06 Jun 2002; Gabriele Giorgetti <stroke@gentoo.org> neon-0.21.1.ebuild :
+  Bumped to new version
+
+*neon-0.19.2-r1 (29 Oct 2002)
+
+  23 Apr 2003; Paul de Vrieze <pauldv@gentoo.org> neon-0.19.2-r1.ebuild:
+  Unmasked neon-0.19.2 as subversion-0.10_pre1 is marked stable.
+
+  29 Oct 2002; Karl Trygve Kalleberg <karltk@gentoo.org> neon-0.19.2-r1.ebuild files/digest-neon-0.19.2-r1 :
+  Resurrected, so that subversion may work.
+
+  09 Jul 2002; phoen][x <phoenix@gentoo.org> neon-0.19.2.ebuild :
+  Added KEYWORDS, LICENSE, SLOT.
+
+*neon-0.19.2 (26 Feb 2002)
+
+  09 Jul 2002; phoen][x <phoenix@gentoo.org> neon-0.19.2.ebuild :
+  Added KEYWORDS, LICENSE, SLOT.
+
+  26 Feb 2002; G.Bevin <gbevin@gentoo.org> neon-0.19.2.ebuild, files/digest-neon-0.19.2 :
+
+  upgraded version to latest release  
+  
+*neon-0.18.5 (8 Feb 2002)
+
+  09 Jul 2002; phoen][x <phoenix@gentoo.org> neon-0.18.5.ebuild :
+  Added KEYWORDS, LICENSE, SLOT.
+
+  8 Feb 2002; G.Bevin <gbevin@gentoo.org> neon-0.18.5.ebuild, files/digest-neon-0.18.5 :
+
+  upgraded version to latest release  
+  
+*neon-0.15.3-r1 (1 Feb 2002)
+
+  09 Jul 2002; phoen][x <phoenix@gentoo.org> neon-0.15.3-r1.ebuild:
+  Added KEYWORDS, LICENSE, SLOT.
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :  
+  Added initial ChangeLog.

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>no-herd</herd>
+<maintainer>
+  <email>pauldv@gentoo.org</email>
+<description>It is needed for subversion so I'll update it once in a while. You're welcome to take it over</description>
+</maintainer>
+<longdescription>
+neon is an HTTP and WebDAV client library for Unix
+systems, with a C language API. It provides high-level interfaces to
+HTTP/1.1 and WebDAV methods, and a low-level interface to HTTP
+request/response handling, allowing new methods to be easily
+implemented.
+</longdescription>
+<longdescription lang="ja">
+neon は Unix システムにおける HTTP 及び WebDAV クライアント・ライブラリ
+であり、C言語 API です。HTTP/1.1 及び WebDAV のメソッドという高い視点
+でのインターフェイス、HTTP リクエスト/レスポンス のハンドリングという
+低い視点でのインターフェイス、簡単に実装できるようにした新しいメソッド
+といったものを提供します。
+</longdescription>
+</pkgmetadata>
