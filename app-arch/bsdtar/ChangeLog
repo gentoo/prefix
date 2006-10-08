@@ -1,0 +1,190 @@
+# ChangeLog for app-arch/bsdtar
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bsdtar/ChangeLog,v 1.37 2006/10/06 14:04:00 flameeyes Exp $
+
+*bsdtar-1.3.1-r1 (06 Oct 2006)
+
+  06 Oct 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +files/libarchive-1.3.1-static.patch, +bsdtar-1.3.1-r1.ebuild:
+  Make sure that build/static useflags are correctly respected (as this
+  package is used in Gentoo/FreeBSD stage1).
+
+  06 Oct 2006; Diego Pettenò <flameeyes@gentoo.org> bsdtar-1.3.1.ebuild:
+  Fix dependencies.
+
+  24 Sep 2006; Diego Pettenò <flameeyes@gentoo.org> bsdtar-1.2.53.ebuild,
+  bsdtar-1.2.57.ebuild, bsdtar-1.3.1.ebuild:
+  Fix the autotools version dependencies.
+
+*bsdtar-1.3.1 (08 Sep 2006)
+
+  08 Sep 2006; Diego Pettenò <flameeyes@gentoo.org>
+  -bsdtar-1.2.53-r1.ebuild, +bsdtar-1.3.1.ebuild:
+  Version bump and remove old version.
+
+*bsdtar-1.2.57 (02 Sep 2006)
+
+  02 Sep 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +files/libarchive-1.2.57-acl.patch, +bsdtar-1.2.57.ebuild:
+  Version bump with a new patch.
+
+  31 Jul 2006; Diego Pettenò <flameeyes@gentoo.org>
+  bsdtar-1.2.53-r1.ebuild:
+  Use -j1 to actually install.
+
+  30 Jul 2006; Diego Pettenò <flameeyes@gentoo.org> bsdtar-1.2.53.ebuild,
+  bsdtar-1.2.53-r1.ebuild:
+  Die when the install failed.
+
+*bsdtar-1.2.53-r1 (18 Jun 2006)
+
+  18 Jun 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +files/libarchive-1.2.53-strict-aliasing.patch, +bsdtar-1.2.53-r1.ebuild:
+  Add patch to fix strict-aliasing.
+
+  09 Jun 2006; Emanuele Giaquinta <exg@gentoo.org> bsdtar-1.2.53.ebuild:
+  Simplify test for static, no need to special case darwin.
+
+  14 May 2006; Diego Pettenò <flameeyes@gentoo.org>
+  -files/bsdtar-1.02.027-osx.patch, -bsdtar-1.02.027-r1.ebuild,
+  -bsdtar-1.2.52.ebuild:
+  Drop old versions.
+
+  14 May 2006; Luis Medinas <metalgod@gentoo.org> bsdtar-1.2.53.ebuild:
+  Stable on amd64. Bug #132604.
+
+  30 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> bsdtar-1.2.53.ebuild:
+  Add ~x86-fbsd keyword.
+
+*bsdtar-1.2.53 (24 Mar 2006)
+
+  24 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> +bsdtar-1.2.53.ebuild:
+  Version bump.
+
+*bsdtar-1.2.52 (22 Mar 2006)
+
+  22 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  -bsdtar-1.2.51-r1.ebuild, +bsdtar-1.2.52.ebuild:
+  Version bump to fix problems on FreeBSD.
+
+  21 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> -bsdtar-1.2.37.ebuild,
+  -bsdtar-1.2.38.ebuild:
+  Drop old versions.
+
+*bsdtar-1.2.51-r1 (21 Mar 2006)
+
+  21 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +files/libarchive-1.2.51-acl.patch,
+  +files/libarchive-1.2.51-linking.patch, -bsdtar-1.2.51.ebuild,
+  +bsdtar-1.2.51-r1.ebuild:
+  Add patches to make acl and attr optional, plus link bsdtar non statically.
+
+*bsdtar-1.2.51 (19 Mar 2006)
+
+  19 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> +bsdtar-1.2.51.ebuild:
+  Version bump, this version merges libarchive and bsdtar in the same package,
+  so it requires to get libarchive removed before merging.
+
+*bsdtar-1.2.38 (18 Feb 2006)
+
+  18 Feb 2006; Diego Pettenò <flameeyes@gentoo.org> +bsdtar-1.2.38.ebuild:
+  Bump following upstream.
+
+  05 Jan 2006; Diego Pettenò <flameeyes@gentoo.org>
+  -bsdtar-1.02.036.ebuild:
+  Drop old version.
+
+*bsdtar-1.2.37 (08 Nov 2005)
+
+  08 Nov 2005; Diego Pettenò <flameeyes@gentoo.org> +bsdtar-1.2.37.ebuild:
+  Updated to latest upstream version. Changed versioning scheme by upstream.
+
+  05 Nov 2005; Diego Pettenò <flameeyes@gentoo.org>
+  -bsdtar-1.02.030.ebuild, -bsdtar-1.02.034.ebuild:
+  Remove old versions.
+
+*bsdtar-1.02.036 (13 Oct 2005)
+
+  13 Oct 2005; Diego Pettenò <flameeyes@gentoo.org>
+  +bsdtar-1.02.036.ebuild:
+  Updated to latest version.
+
+  09 Oct 2005; Diego Pettenò <flameeyes@gentoo.org>
+  bsdtar-1.02.027-r1.ebuild, bsdtar-1.02.030.ebuild, bsdtar-1.02.034.ebuild:
+  Don't symlink bsdtar on every BSD userland, but just on freebsd. NetBSD uses
+  OpenBSD pax instead, for example.
+
+  25 Sep 2005; Diego Pettenò <flameeyes@gentoo.org> bsdtar-1.02.034.ebuild:
+  Don't try to use -static on Darwin userland, as it doesn't work.
+
+*bsdtar-1.02.034 (25 Sep 2005)
+
+  25 Sep 2005; Diego Pettenò <flameeyes@gentoo.org>
+  -bsdtar-1.02.032.ebuild, -bsdtar-1.02.033.ebuild, +bsdtar-1.02.034.ebuild:
+  Updated to latest upstream version, cleaned up old versions.
+
+*bsdtar-1.02.033 (24 Sep 2005)
+
+  24 Sep 2005; Diego Pettenò <flameeyes@gentoo.org>
+  +bsdtar-1.02.033.ebuild:
+  Update to latest upstream version.
+
+*bsdtar-1.02.032 (07 Sep 2005)
+
+  07 Sep 2005; Diego Pettenò <flameeyes@gentoo.org>
+  -files/bsdtar-1.02.031-wchar.patch, -bsdtar-1.02.031.ebuild,
+  +bsdtar-1.02.032.ebuild:
+  Updated to latest upstream version, dropped wchar patch as new libarchive
+  fixes it definitively (changed dependency to avoid problems; also now just
+  RDEPEND on it if not built static, and not on zlib/bzip2 as they are
+  dependencies of libarchive itself).
+
+*bsdtar-1.02.031 (06 Sep 2005)
+
+  06 Sep 2005; Diego Pettenò <flameeyes@gentoo.org>
+  +files/bsdtar-1.02.031-wchar.patch, +bsdtar-1.02.031.ebuild:
+  Updated bsdtar, unrestricted the libarchive dependency. Added patch to
+  compile clean with latest libarchive.
+
+  30 Aug 2005; Diego Pettenò <flameeyes@gentoo.org> bsdtar-1.02.030.ebuild:
+  Don't use ${P} for osx patch.
+
+  30 Aug 2005; Diego Pettenò <flameeyes@gentoo.org> bsdtar-1.02.030.ebuild:
+  Re-added osx patch as it's still needed, I trusted upstream on that but
+  direct test shown it's not as it was told.
+
+*bsdtar-1.02.030 (28 Aug 2005)
+
+  28 Aug 2005; Diego Pettenò <flameeyes@gentoo.org>
+  +bsdtar-1.02.030.ebuild:
+  Updated to latest upstream version. Dropped osx patch as it's fixed upstream
+  now.
+
+  28 Jul 2005; Diego Pettenò <flameeyes@gentoo.org>
+  bsdtar-1.02.027-r1.ebuild:
+  Stable on amd64.
+
+  22 Jul 2005; Diego Pettenò <flameeyes@gentoo.org>
+  +files/bsdtar-1.02.027-osx.patch, bsdtar-1.02.027-r1.ebuild:
+  Added patch for OSX compatibility.
+
+  21 Jun 2005; Diego Pettenò <flameeyes@gentoo.org>
+  bsdtar-1.02.027-r1.ebuild:
+  Added build and static useflag, needed to build Gentoo/FreeBSD stage.
+
+*bsdtar-1.02.027-r1 (17 Jun 2005)
+
+  17 Jun 2005; <flame@gentoo.org> -bsdtar-1.02.027.ebuild,
+  +bsdtar-1.02.027-r1.ebuild:
+  Install in /bin as does gnutar. Symlink man page on BSD systems.
+
+  16 Jun 2005; David Holm <dholm@gentoo.org> bsdtar-1.02.027.ebuild:
+  Added to ~ppc.
+
+*bsdtar-1.02.027 (16 Jun 2005)
+
+  16 Jun 2005; Diego Pettenò <flameeyes@gentoo.org> +metadata.xml,
+  +bsdtar-1.02.027.ebuild:
+  Initial version, BSD version of tar, usable also on Linux. Faster and
+  simpler, and supports more fileformats.
+
