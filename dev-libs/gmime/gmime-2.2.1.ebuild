@@ -56,7 +56,7 @@ src_compile() {
 
 src_install() {
 	make GACUTIL_FLAGS="/root ${D}/usr/$(get_libdir) /gacdir /usr/$(get_libdir) /package ${PN}" \
-		DESTDIR=${D} install || die
+		DESTDIR=${EDEST} install || die
 
 	if use doc ; then
 		# we don't use docinto/dodoc, because we don't want html doc gzipped
