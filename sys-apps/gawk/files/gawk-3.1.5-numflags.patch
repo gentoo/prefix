@@ -1,0 +1,16 @@
+Tue Jul  4 22:43:05 2006  Arnold D. Robbins  <arnold@skeeve.com>
+
+    * eval.c (interpret): Node_assign_concat case: Turn off NUMBER and NUMCUR
+    flags in result.  Sheesh. Thanks to <Heiner.Marxen@DrB.Insel.DE> for finding
+    the problem.
+
+--- gawk-3.1.5/eval.c.numflags	2006-07-10 09:36:26.000000000 +0200
++++ gawk-3.1.5/eval.c	2006-07-10 09:36:41.000000000 +0200
+@@ -1193,6 +1193,7 @@
+ 			unref(*lhs);
+ 			*lhs = make_str_node(nval, l->stlen + r->stlen, ALREADY_MALLOCED);
+ 		}
++		(*lhs)->flags &= ~(NUMCUR|NUMBER);
+ 		free_temp(r);
+ 
+ 		if (after_assign)

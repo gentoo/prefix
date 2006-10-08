@@ -1,0 +1,35 @@
+Ripped from Fedora
+
+* Sun Oct  9 2005 Karel Zak <kzak@redhat.com> 3.1.5-4
+- fix off-by-one error in assignment of sentinel value at
+  end of FIELDWIDTHS array. (patch by Aharon Robbins)
+
+--- gawk-3.1.5/field.c.fieldwidths	2005-05-11 17:28:15.000000000 +0200
++++ gawk-3.1.5/field.c	2005-10-09 08:35:54.000000000 +0200
+@@ -916,7 +916,7 @@
+ 
+ 	parse_field = fw_parse_field;
+ 	scan = force_string(FIELDWIDTHS_node->var_value)->stptr;
+-	end = scan + 1;
++
+ 	if (FIELDWIDTHS == NULL)
+ 		emalloc(FIELDWIDTHS, int *, fw_alloc * sizeof(int), "set_FIELDWIDTHS");
+ 	FIELDWIDTHS[0] = 0;
+@@ -941,7 +941,7 @@
+ 		errno = 0;
+ 		tmp = strtoul(scan, &end, 10);
+ 		if (errno != 0
+-		    || !(*end == '\0' || is_blank(*end))
++		    || (*end != '\0' && ! is_blank(*end))
+ 		    || !(0 < tmp && tmp <= INT_MAX))
+ 			fatal(_("invalid FIELDWIDTHS value, near `%s'"),
+ 			      scan);
+@@ -954,7 +954,7 @@
+ 		if (*scan == '\0')
+ 			break;
+ 	}
+-	FIELDWIDTHS[i] = -1;
++	FIELDWIDTHS[i+1] = -1;
+ 
+ 	update_PROCINFO("FS", "FIELDWIDTHS");
+ }

@@ -1,10 +1,10 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/gawk-3.1.5.ebuild,v 1.6 2005/10/13 00:11:25 kito Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/gawk-3.1.5-r2.ebuild,v 1.12 2006/09/04 05:54:40 kumba Exp $
 
 EAPI="prefix"
 
-inherit eutils toolchain-funcs
+inherit eutils toolchain-funcs multilib
 
 DESCRIPTION="GNU awk pattern-matching language"
 HOMEPAGE="http://www.gnu.org/software/gawk/gawk.html"
@@ -13,7 +13,7 @@ SRC_URI="mirror://gnu/gawk/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
-IUSE="nls build solarisld"
+IUSE="nls solarisld"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
@@ -25,12 +25,21 @@ src_unpack() {
 	unpack ${P}.tar.gz
 
 	# Copy filefuncs module's source over ...
-	cp -pPR "${FILESDIR}"/filefuncs "${SFFS}" || die "cp failed"
+	cp -r "${FILESDIR}"/filefuncs "${SFFS}" || die "cp failed"
 
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-core.patch
 	epatch "${FILESDIR}"/${P}-gcc4.patch
-	epatch "${FILESDIR}"/${PN}-3.1.3-getpgrp_void.patch #fedora
+	epatch "${FILESDIR}"/${P}-utf-8-strcat.patch
+	epatch "${FILESDIR}"/${P}-autotools-crap.patch #139397
+	# Patches from Fedora
+	epatch "${FILESDIR}"/${PN}-3.1.3-getpgrp_void.patch
+	epatch "${FILESDIR}"/${P}-fieldwidths.patch #127163
+	epatch "${FILESDIR}"/${P}-binmode.patch
+	epatch "${FILESDIR}"/${P}-num2str.patch
+	epatch "${FILESDIR}"/${P}-internal.patch
+	epatch "${FILESDIR}"/${P}-numflags.patch
+	epatch "${FILESDIR}"/${P}-syntaxerror.patch
 	# support for dec compiler.
 	[[ $(tc-getCC) == "ccc" ]] && epatch "${FILESDIR}"/${PN}-3.1.2-dec-alpha-compiler.diff
 }
@@ -38,7 +47,7 @@ src_unpack() {
 src_compile() {
 	econf \
 		$(with_bindir) \
-		--libexec=${EPREFIX}/usr/lib/misc \
+		--libexec='$(libdir)/misc' \
 		$(use_enable nls) \
 		--enable-switch \
 		|| die
@@ -69,7 +78,7 @@ src_install() {
 			mv -f "${D}"/bin/${x} "${D}"/${binpath}/${x}-${PV}
 		elif [[ -f ${D}/bin/${x}- && ! -f ${D}/bin/${x}-${PV} ]] ; then
 			mv -f "${D}"/bin/${x}- "${D}"/${binpath}/${x}-${PV}
-		elif [[ ${binpath} == "${EPREFIX}/usr/bin" && -f ${D}/bin/${x}-${PV} ]] ; then
+		elif [[ ${binpath} == "/usr/bin" && -f ${D}/bin/${x}-${PV} ]] ; then
 			mv -f "${D}"/bin/${x}-${PV} "${D}"/${binpath}/${x}-${PV}
 		fi
 
@@ -84,7 +93,7 @@ src_install() {
 	dosym /bin/gawk-${PV} /usr/bin/gawk
 	dosym gawk-${PV} /bin/awk
 	dosym /bin/gawk-${PV} /usr/bin/awk
-	[[ ${USERLAND} != "GNU" ]] && [[ ${EPREFIX/\//} == "" ]] && \
+	[[ ${USERLAND} != "GNU" ]] && [[ ${EPREFIX%/} == "" ]] && \
 		rm -f "${D}"/{,usr/}bin/awk{,-${PV}}
 
 	# Install headers
@@ -93,22 +102,18 @@ src_install() {
 	# We do not want 'acconfig.h' in there ...
 	rm -f "${D}"/usr/include/awk/acconfig.h
 
-	if ! use build ; then
-		cd "${S}"
-		rm -f "${D}"/usr/share/man/man1/pgawk.1
-		dosym gawk.1.gz /usr/share/man/man1/pgawk.1.gz
-		[[ ${USERLAND} != "GNU" ]] && [[ ${EPREFIX/\//} == "" ]] || \
-			dosym gawk.1.gz /usr/share/man/man1/awk.1.gz
-		dodoc AUTHORS ChangeLog FUTURES LIMITATIONS NEWS PROBLEMS POSIX.STD README
-		docinto README_d
-		dodoc README_d/*
-		docinto awklib
-		dodoc awklib/ChangeLog
-		docinto pc
-		dodoc pc/ChangeLog
-		docinto posix
-		dodoc posix/ChangeLog
-	else
-		rm -r "${D}"/usr/share
-	fi
+	cd "${S}"
+	rm -f "${D}"/usr/share/man/man1/pgawk.1
+	dosym gawk.1.gz /usr/share/man/man1/pgawk.1.gz
+	[[ ${USERLAND} != "GNU" ]] && [[ ${EPREFIX%/} == "" ]] || \
+		dosym gawk.1.gz /usr/share/man/man1/awk.1.gz
+	dodoc AUTHORS ChangeLog FUTURES LIMITATIONS NEWS PROBLEMS POSIX.STD README
+	docinto README_d
+	dodoc README_d/*
+	docinto awklib
+	dodoc awklib/ChangeLog
+	docinto pc
+	dodoc pc/ChangeLog
+	docinto posix
+	dodoc posix/ChangeLog
 }
