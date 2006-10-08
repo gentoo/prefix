@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/less-394.ebuild,v 1.11 2006/05/24 14:52:09 christel Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/less-394.ebuild,v 1.12 2006/10/04 14:01:38 vapier Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.greenwoodsoftware.com/less/"
 SRC_URI="http://www.greenwoodsoftware.com/less/${P}.tar.gz
 	http://www-zeuthen.desy.de/~friebel/unix/less/code2color"
 
-LICENSE="GPL-2"
+LICENSE="less"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="unicode"
