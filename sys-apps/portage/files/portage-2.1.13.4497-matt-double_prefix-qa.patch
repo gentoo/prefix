@@ -9,7 +9,7 @@ Index: prefix-portage-2.1.13.4497/bin/misc-functions.sh
 +	if [[ -d ${D}/${EPREFIX} ]] ; then
 +		declare -i INSTALLTOD=0
 +		for i in $(find "${D}/${EPREFIX}/"); do
-+			echo "QA Notice: /${i##${D}/${EPREFIX}} double prefix"
++			echo "QA Notice: ${i#${D}} double prefix"
 +			((INSTALLTOD++))
 +		done
 +		ewarn "QA concerns: ${INSTALLTOD} double prefix files installed "
