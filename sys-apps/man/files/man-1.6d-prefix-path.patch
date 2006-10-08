@@ -1,0 +1,12 @@
+--- man-1.6d/configure
++++ man-1.6d/configure
+@@ -360,7 +360,8 @@
+ #   for i in /bin:/usr/bin:$PATH
+ # does not work everywhere.)
+ # Some people might prefer having $PATH first in PREPATH
+-PREPATH=/bin:/usr/bin:/usr/ucb:/usr/local/bin:$PATH
++# => Yes we do in prefix
++PREPATH=$PATH:/bin:/usr/bin:/usr/ucb:/usr/local/bin
+ IFS0="$IFS"
+ IFS=":$IFS"
+ for i in $PREPATH
