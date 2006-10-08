@@ -1,0 +1,12 @@
+Index: cabextract-1.1/configure.ac
+===================================================================
+--- cabextract-1.1.orig/configure.ac
++++ cabextract-1.1/configure.ac
+@@ -37,7 +37,6 @@ AC_CHECK_FUNCS([memcpy strcasecmp strchr
+ AC_CHECK_FUNCS([getopt_long],,[AC_CHECK_LIB([gnugetopt], [getopt_long],
+   [AC_DEFINE([HAVE_GETOPT_LONG])],[AC_LIBOBJ(getopt) AC_LIBOBJ(getopt1)])])
+ AC_REPLACE_FNMATCH
+-AC_REPLACE_FUNCS([mempcpy])
+ 
+ AC_CONFIG_FILES([Makefile cabextract.spec])
+ AC_OUTPUT
