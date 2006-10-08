@@ -1,0 +1,293 @@
+# ChangeLog for sys-apps/sandbox
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.71 2006/09/04 21:02:37 flameeyes Exp $
+
+  04 Sep 2006; Diego Pettenò <flameeyes@gentoo.org>
+  sandbox-1.2.20_alpha2.ebuild:
+  Add ~x86-fbsd keyword.
+
+*sandbox-1.2.20_alpha2 (11 Jul 2006)
+
+  11 Jul 2006; Martin Schlemmer <azarah@gentoo.org>
+  +sandbox-1.2.20_alpha2.ebuild:
+  New testing version.
+
+  09 Jul 2006; Joshua Kinard <kumba@gentoo.org> sandbox-1.2.17.ebuild:
+  Marked stable on mips (even though it doesn't even work, best to keep up...)
+
+*sandbox-1.2.20_alpha1-r2 (08 Jul 2006)
+*sandbox-1.2.20_alpha1-r1 (08 Jul 2006)
+
+  08 Jul 2006; Martin Schlemmer <azarah@gentoo.org>
+  +files/sandbox-1.2.20_alpha1-double-free.patch,
+  +sandbox-1.2.20_alpha1-r1.ebuild, +sandbox-1.2.20_alpha1-r2.ebuild:
+  More bugfixes.
+
+*sandbox-1.2.20_alpha1 (07 Jul 2006)
+
+  07 Jul 2006; Martin Schlemmer <azarah@gentoo.org> +files/09sandbox,
+  +sandbox-1.2.20_alpha1.ebuild:
+  Testing release for feedback.  Check package.mask for details.
+
+  20 May 2006; Bryan Østergaard <kloeri@gentoo.org> sandbox-1.2.17.ebuild:
+  Stable on ia64.
+
+  20 May 2006; Bryan Østergaard <kloeri@gentoo.org> sandbox-1.2.17.ebuild:
+  Stable on alpha.
+
+*sandbox-1.2.18.1 (19 May 2006)
+
+  19 May 2006; Martin Schlemmer <azarah@gentoo.org>
+  +sandbox-1.2.18.1.ebuild:
+  New bugfix release.
+
+  11 May 2006; Joshua Jackson <tsunam@gentoo.org> sandbox-1.2.17.ebuild:
+  stable x86; bug #132025
+
+  10 May 2006; Martin Schlemmer <azarah@gentoo.org> sandbox-1.2.18.ebuild:
+  Mask 1.2.18 for now, as it have a double-free issue.
+
+  03 May 2006; Joseph Jezak <josejx@gentoo.org> sandbox-1.2.17.ebuild:
+  Marked ppc stable for bug #132025.
+
+  03 May 2006; Patrick McLean <chutzpah@gentoo.org> sandbox-1.2.17.ebuild:
+  Stable on amd64 (bug #132025)
+
+  03 May 2006; Gustavo Zacarias <gustavoz@gentoo.org> sandbox-1.2.17.ebuild:
+  Stable on hppa wrt #132025
+
+*sandbox-1.2.18 (03 May 2006)
+
+  03 May 2006; Martin Schlemmer <azarah@gentoo.org> +sandbox-1.2.18.ebuild:
+  New release.
+
+  03 May 2006; Markus Rothe <corsair@gentoo.org> sandbox-1.2.17.ebuild:
+  Stable on ppc64; bug #132025
+
+  02 May 2006; Gustavo Zacarias <gustavoz@gentoo.org> sandbox-1.2.17.ebuild:
+  Stable on sparc wrt #132025
+
+  19 Feb 2006; Joshua Kinard <kumba@gentoo.org> sandbox-1.2.12.ebuild:
+  Marked stable on mips (doesn't actually work well, but we disable it in
+  profiles).
+
+  06 Feb 2006; Martin Schlemmer <azarah@gentoo.org> sandbox-1.2.17.ebuild:
+  Fix docs installation.
+
+*sandbox-1.2.17 (05 Dec 2005)
+
+  05 Dec 2005; Martin Schlemmer <azarah@gentoo.org> +sandbox-1.2.17.ebuild:
+  New release.
+
+*sandbox-1.2.16 (02 Dec 2005)
+
+  02 Dec 2005; Martin Schlemmer <azarah@gentoo.org> +sandbox-1.2.16.ebuild:
+  New release.
+
+*sandbox-1.2.15 (01 Dec 2005)
+
+  01 Dec 2005; Martin Schlemmer <azarah@gentoo.org> +sandbox-1.2.15.ebuild:
+  New release.
+
+*sandbox-1.2.14 (28 Nov 2005)
+
+  28 Nov 2005; Martin Schlemmer <azarah@gentoo.org> +sandbox-1.2.14.ebuild:
+  New release.
+
+  14 Nov 2005; Martin Schlemmer <azarah@gentoo.org> sandbox-1.2.13.ebuild:
+  Simplify multilib building logic.  Other cleanups.
+
+  13 Oct 2005; Martin Schlemmer <azarah@gentoo.org> sandbox-1.2.12.ebuild,
+  sandbox-1.2.13.ebuild:
+  Add workaround for bug #109036.
+
+  07 Oct 2005; Jeremy Huddleston <eradicator@gentoo.org>
+  sandbox-1.2.9.ebuild, sandbox-1.2.10.ebuild, sandbox-1.2.11.ebuild,
+  sandbox-1.2.12.ebuild, sandbox-1.2.13.ebuild:
+  Some changes for amd64 2006.0.
+
+*sandbox-1.2.13 (12 Sep 2005)
+
+  12 Sep 2005; Martin Schlemmer <azarah@gentoo.org> +sandbox-1.2.13.ebuild:
+  New release.
+
+  30 Aug 2005; Fernando J. Pereda <ferdy@gentoo.org> sandbox-1.2.12.ebuild:
+  stable on alpha wrt bug #101433
+
+  16 Aug 2005; Gustavo Zacarias <gustavoz@gentoo.org> sandbox-1.2.12.ebuild:
+  Stable on sparc wrt #101433
+
+  15 Aug 2005; Danny van Dyk <kugelfang@gentoo.org> sandbox-1.2.12.ebuild:
+  Marked stable on amd64.
+
+  15 Aug 2005; Michael Hanselmann <hansmi@gentoo.org> sandbox-1.2.12.ebuild:
+  Stable on ppc and hppa.
+
+  15 Aug 2005; Ian Leitch <port001@gentoo.org> sandbox-1.2.12.ebuild:
+  Stable on x86, #101433
+
+  15 Aug 2005; Markus Rothe <corsair@gentoo.org> sandbox-1.2.12.ebuild:
+  Stable on ppc64 (bug #101433)
+
+*sandbox-1.2.12 (05 Aug 2005)
+
+  05 Aug 2005; Martin Schlemmer <azarah@gentoo.org> +sandbox-1.2.12.ebuild:
+  New release.
+
+  23 Jul 2005; MATSUU Takuto <matsuu@gentoo.org> sandbox-1.2.11.ebuild:
+  Stable on sh.
+
+  22 Jul 2005; Jason Stubbs <jstubbs@gentoo.org> sandbox-1.2.11.ebuild:
+  Stable on mips per hardave's request. #96782
+
+  21 Jul 2005; Rene Nussbaumer <killerfox@gentoo.org> sandbox-1.2.11.ebuild:
+  Stable on hppa. bug #96782
+
+  21 Jul 2005; Aron Griffis <agriffis@gentoo.org> sandbox-1.2.11.ebuild:
+  stable on alpha
+
+  21 Jul 2005; Aron Griffis <agriffis@gentoo.org> sandbox-1.2.11.ebuild:
+  stable on ia64
+
+  21 Jul 2005; Chris Gianelloni <wolf31o2@gentoo.org> sandbox-1.2.11.ebuild:
+  Marking stable on x86 for bug #96782.
+
+  21 Jul 2005; Joseph Jezak <josejx@gentoo.org> sandbox-1.2.11.ebuild:
+  Marked ppc stable for bug #96782.
+
+  20 Jul 2005; Markus Rothe <corsair@gentoo.org> sandbox-1.2.11.ebuild:
+  Stable on ppc64 (bug #96782)
+
+  20 Jul 2005; Gustavo Zacarias <gustavoz@gentoo.org> sandbox-1.2.11.ebuild:
+  Stable on sparc wrt #96782
+
+  20 Jul 2005; Danny van Dyk <kugelfang@gentoo.org> sandbox-1.2.11.ebuild:
+  Marked stable on amd64.
+
+  18 Jul 2005; Guy Martin <gmsoft@gentoo.org> sandbox-1.2.10.ebuild:
+  Stable on hppa.
+
+  15 Jul 2005; Bryan Østergaard <kloeri@gentoo.org> sandbox-1.2.10.ebuild:
+  Stable on alpha + ia64, bug 99019.
+
+  14 Jul 2005; Gustavo Zacarias <gustavoz@gentoo.org> sandbox-1.2.10.ebuild:
+  Stable on sparc wrt #99019
+
+  14 Jul 2005; Joseph Jezak <josejx@gentoo.org> sandbox-1.2.10.ebuild:
+  Marked ppc stable for bug #99019.
+
+  15 Jul 2005; Jason Stubbs <jstubbs@gentoo.org> sandbox-1.2.9.ebuild,
+  sandbox-1.2.10.ebuild, sandbox-1.2.11.ebuild:
+  Removed ppc-macos from keywords as sandbox does not work there yet.
+
+*sandbox-1.2.11 (14 Jul 2005)
+
+  14 Jul 2005; Martin Schlemmer <azarah@gentoo.org> +sandbox-1.2.11.ebuild:
+  New release.
+
+  14 Jul 2005; Jeremy Huddleston <eradicator@gentoo.org>
+  sandbox-1.2.10.ebuild:
+  Stable amd64.
+
+  12 Jul 2005; Markus Rothe <corsair@gentoo.org> sandbox-1.2.10.ebuild:
+  Stable on ppc64
+
+  10 Jul 2005; Martin Schlemmer <azarah@gentoo.org>
+  +files/sandbox-1.2.9-uclibc-getcwd.patch,
+  +files/sandbox-1.2.10-uclibc-getcwd.patch, sandbox-1.2.9.ebuild,
+  sandbox-1.2.10.ebuild:
+  Add some fixes to the getcwd implementation, bug #98419.
+
+  05 Jul 2005; Jeremy Huddleston <eradicator@gentoo.org>
+  sandbox-1.2.9.ebuild:
+  Stable amd64 for 2005.1
+
+*sandbox-1.2.10 (03 Jul 2005)
+
+  03 Jul 2005; Martin Schlemmer <azarah@gentoo.org> +sandbox-1.2.10.ebuild:
+  Update version.
+
+*sandbox-1.2.9 (09 Jun 2005)
+
+  09 Jun 2005; Martin Schlemmer <azarah@gentoo.org> +sandbox-1.2.9.ebuild:
+  Update version.
+
+*sandbox-1.2.8 (13 May 2005)
+
+  13 May 2005; Martin Schlemmer <azarah@gentoo.org> +sandbox-1.2.8.ebuild:
+  Cleanups and hopefully finally kill bug #91541.  Fix bug #92478.
+
+*sandbox-1.2.7 (12 May 2005)
+
+  12 May 2005; Martin Schlemmer <azarah@gentoo.org> +sandbox-1.2.7.ebuild:
+  Lots of cleanups and fixes - see ChangeLog in /usr/share/doc.
+
+*sandbox-1.2.6 (10 May 2005)
+
+  10 May 2005; Martin Schlemmer <azarah@gentoo.org> +sandbox-1.2.6.ebuild:
+  Workaround for tsocks incompatability, bug #91541.
+
+*sandbox-1.2.5-r2 (09 May 2005)
+
+  09 May 2005; Jeremy Huddleston <eradicator@gentoo.org>
+  +sandbox-1.2.5-r2.ebuild:
+  On some versions of portage, CFLAGS_* do not survive across ebuild.sh
+  stages, so we must ensure the multilib setup always gets rerun for each
+  stage.
+
+*sandbox-1.2.5-r1 (06 May 2005)
+
+  06 May 2005; Jeremy Huddleston <eradicator@gentoo.org>
+  +sandbox-1.2.5-r1.ebuild:
+  Revbump to fix problems with amd64 2004.3's multilib. Cleaned up multilib
+  handling in general. 2004.3 amd64 users should have working 32bit sandbox
+  again.
+
+  04 May 2005; Mike Frysinger <vapier@gentoo.org> sandbox-1.2.5.ebuild:
+  Fix multilib building on amd64/2004.3 profiles.
+
+*sandbox-1.2.5 (04 May 2005)
+
+  04 May 2005; Martin Schlemmer <azarah@gentoo.org> +sandbox-1.2.5.ebuild:
+  General fixes.  Fix for bug #91431.
+
+*sandbox-1.2.4 (03 May 2005)
+
+  03 May 2005; Martin Schlemmer <azarah@gentoo.org> +sandbox-1.2.4.ebuild:
+  Some speedups (bug #91040) and uclibc fixes.
+
+*sandbox-1.2.3 (29 Apr 2005)
+
+  29 Apr 2005; Martin Schlemmer <azarah@gentoo.org> +sandbox-1.2.3.ebuild:
+  Fixup libc detection.  Fix bug or two.
+
+*sandbox-1.2.2 (28 Apr 2005)
+
+  28 Apr 2005; Martin Schlemmer <azarah@gentoo.org> +sandbox-1.2.2.ebuild:
+  Bug fixes for bug #90592.
+
+*sandbox-1.2.1-r3 (24 Apr 2005)
+
+  24 Apr 2005; Jeremy Huddleston <eradicator@gentoo.org>
+  +sandbox-1.2.1-r3.ebuild:
+  Fix multilib.
+
+*sandbox-1.2.1 (24 Apr 2005)
+  24 Apr 2005; Brian Harring <ferringb@gentoo.org> +sandbox-1.2.1-r2.ebuild:
+  Amd64 fix for 90135.
+
+*sandbox-1.2.1 (24 Apr 2005)
+
+  24 Apr 2005; Jason Stubbs <jstubbs@gentoo.org> +sandbox-1.2.1-r1.ebuild:
+  Added missing check_multilib function.
+
+*sandbox-1.2.1 (23 Apr 2005)
+
+  23 Apr 2005; Martin Schlemmer <azarah@gentoo.org> +sandbox-1.2.1.ebuild:
+  Fix for bug #90153.
+
+*sandbox-1.2 (Apr 23 2005)
+
+  23 Apr 2005; Brian Harring <ferringb@gentoo.org>; sandbox-1.2.ebuild
+  Initial import of cvs head sandbox code.  Multilib portion of it 
+  could stand testing.
