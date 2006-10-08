@@ -1,0 +1,75 @@
+# ChangeLog for app-arch/arc
+# Copyright 1999-2005 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/arc/ChangeLog,v 1.24 2005/09/30 20:17:21 fuzzyray Exp $
+
+  30 Sep 2005; Paul Varner <fuzzyray@gentoo.org> arc-5.21m.ebuild:
+  Stable on x86 (bug #107312)
+
+  30 Sep 2005; Simon Stelling <blubb@gentoo.org> arc-5.21m.ebuild:
+  stable on amd64 wrt bug 107312
+
+  30 Sep 2005; Michael Hanselmann <hansmi@gentoo.org> arc-5.21m.ebuild:
+  Stable on ppc.
+
+  30 Sep 2005; Markus Rothe <corsair@gentoo.org> arc-5.21m.ebuild:
+  Stable on ppc64 (bug #107312)
+
+  30 Sep 2005; Gustavo Zacarias <gustavoz@gentoo.org> arc-5.21m.ebuild:
+  Stable on sparc wrt #107312
+
+  30 Sep 2005; Fernando J. Pereda <ferdy@gentoo.org> arc-5.21m.ebuild:
+  stable on alpha wrt bug #107312
+
+*arc-5.21m (29 Sep 2005)
+
+  29 Sep 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/arc-5.21m-compile-cleanups.patch, -files/arc-521e-timeh.patch,
+  +arc-5.21m.ebuild:
+  Version bump to fix insecure tempfile usage #107312.
+
+  17 May 2005; Andrej Kacian <ticho@gentoo.org> arc-5.21j.ebuild:
+  Inherit toolchain-funcs instead of gcc eclass. Bug #92745.
+
+  28 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  05 Oct 2004; Pieter Van den Abeele <pvdabeel@gentoo.org> arc-5.21j.ebuild:
+  Masked arc-5.21j.ebuild stable for ppc
+
+  24 Jul 2004; Bryan Østergaard <kloeri@gentoo.org> arc-5.21j.ebuild:
+  Stable on alpha.
+
+  11 Jul 2004; Tom Gall <tgall@gentoo.org> arc-5.21j.ebuild:
+  stable on ppc64 bug #55409
+
+  05 Jun 2004; David Holm <dholm@gentoo.org> arc-5.21j.ebuild:
+  Added to ~ppc.
+
+  27 Apr 2004; Daniel Ahlberg <aliz@gentoo.org> arc-5.21j.ebuild:
+  Mark stable on amd64.
+
+  10 Apr 2004; Michael Sterrett <mr_bones_@gentoo.org> arc-5.21j.ebuild:
+  error check/messages; IUSE; don't assign default to S
+
+  31 Mar 2004; Daniel Ahlberg <aliz@gentoo.org> arc-5.21j.ebuild:
+  Compile with gcc.
+
+  27 Feb 2004; Sven Blumenstein <bazik@gentoo.org> arc-5.21j.ebuild:
+  Stable on sparc, DEPEND of amavis.
+
+*arc-5.21j (24 Feb 2004)
+
+  24 Feb 2004; Daniel Ahlberg <aliz@gentoo.org> arc-5.21j.ebuild:
+  New version that doesn't segfault. Closing #38541. Also removed old segfaulting version becuse the 
+  version numbering scheme being different.
+
+  24 Nov 2003; Aron Griffis <agriffis@gentoo.org> arc-521e.ebuild:
+  Add ~alpha
+
+*arc-521e (17 Aug 2002)
+
+  6 Sep 2002; Owen Stampflee <owen@gentoo.org> :
+  Doesn't work on PPC. Added -ppc to KEYWORDS.
+
+  17 Aug 2002; Daniel Ahlberg <aliz@gentoo.org> arc-521e.ebuild:
+  Initial import. Ebuild submitted by Enrico Morelli <morelli@cerm.unifi.it>.

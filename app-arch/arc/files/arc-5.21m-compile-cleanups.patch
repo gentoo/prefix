@@ -1,0 +1,171 @@
+Cleanup the build by adding missing headers, fixing broken prototypes,
+incorrect if statements, and all that jazz
+
+--- arc-5.21m/arc-prototypes.h
++++ arc-5.21m/arc-prototypes.h
+@@ -0,0 +1,12 @@
++VOID openarc(int);
++int readhdr(struct heads*, FILE*);
++int match(char*, char*);
++VOID closearc(int);
++int unpack(FILE*, FILE*, struct heads*);
++VOID setstamp(char*, unsigned short, unsigned short);
++int crcbuf(int, u_int, u_char*);
++VOID arcdie();
++int move(char*, char*);
++VOID writehdr(struct heads*, FILE*);
++VOID filecopy(FILE*, FILE*, long);
++VOID upper(char*);
+--- arc-5.21m/arc.c
++++ arc-5.21m/arc.c
+@@ -105,6 +105,7 @@
+ static char   **lst;		/* files list */
+ static int	lnum;		/* length of files list */
+ 
++int
+ main(num, arg)			/* system entry point */
+ 	int		num;	/* number of arguments */
+ 	char	       *arg[];	/* pointers to arguments */
+--- arc-5.21m/arc.h
++++ arc-5.21m/arc.h
+@@ -94,6 +94,7 @@
+ 
+ #ifndef DONT_DEFINE		/* Defined by arcdata.c */
+ #include "arcs.h"
++#include "arc-prototypes.h"
+ 
+ extern int      keepbak;	/* true if saving the old archive */
+ #if	!DOS
+--- arc-5.21m/arcext.c
++++ arc-5.21m/arcext.c
+@@ -26,8 +26,6 @@
+ #include <strings.h>
+ #endif
+ 
+-VOID	openarc(), closearc(), setstamp();
+-int	match(), readhdr(), unpack();
+ static	VOID	extfile();
+ 
+ #ifndef	__STDC__
+@@ -144,7 +135,7 @@
+ 		printf("Extracting file: %s\n", fix);
+ 
+ 	if (warn && !overlay) {
+-		if (f = fopen(fix, "r")) {	/* see if it exists */
++		if ((f = fopen(fix, "r"))) {	/* see if it exists */
+ 				fclose(f);
+ 				printf("WARNING: File %s already exists!", fix);
+ 				fflush(stdout);
+--- arc-5.21m/arclzw.c
++++ arc-5.21m/arclzw.c
+@@ -663,7 +663,7 @@
+ {
+ 	int             temp;
+ 
+-	while (temp = string_tab[index].next)	/* while more duplicates */
++	while (temp == string_tab[index].next)	/* while more duplicates */
+ 		index = temp;
+ 
+ 	return index;
+--- arc-5.21m/arcmisc.c
++++ arc-5.21m/arcmisc.c
+@@ -306,7 +306,7 @@
+ 
+ 	if (Nnum == 0) {	/* first call */
+ 		strcpy(namecopy,filename);
+-		if(pattern=rindex(namecopy,CUTOFF)) {
++		if((pattern=rindex(namecopy,CUTOFF))) {
+ 			*pattern = 0;
+ 			pattern++;
+ 			dirname = namecopy;
+--- arc-5.21m/arcpack.c
++++ arc-5.21m/arcpack.c
+@@ -27,7 +27,6 @@
+ 
+ VOID		setcode(), init_cm(), codebuf();
+ VOID		arcdie(), init_sq(), flsh_cm();
+-int		crcbuf();
+ u_int		ncr_buf();
+ 
+ int		lastc;
+--- arc-5.21m/arcrun.c
++++ arc-5.21m/arcrun.c
+@@ -20,12 +20,14 @@
+  */
+ #include <stdio.h>
+ #include <string.h>
++#include <sys/types.h>
++#include <sys/stat.h>
++#include <unistd.h>
+ #include "arc.h"
+ 
+ VOID	rempath(), openarc(), closearc(), arcdie();
+ int	readhdr(), match(), unpack();
+ static	VOID	runfile();
+-char	*strcat();
+ 
+ VOID
+ runarc(num, arg)		/* run file from archive */
+@@ -120,7 +122,7 @@
+ #endif
+ 
+ 	if (warn)
+-		if (tmp = fopen(buf, "r"))
++		if ((tmp = fopen(buf, "r")))
+ 			arcdie("Temporary file %s already exists", buf);
+ 	if (!(tmp = fopen(buf, OPEN_W)))
+ 		arcdie("Unable to create temporary file %s", buf);
+@@ -131,7 +133,7 @@
+ 	dir = gcdir("");	/* see where we are */
+ 	unpack(arc, tmp, hdr);	/* unpack the entry */
+ 	fclose(tmp);		/* release the file */
+-	chmod(buf, "700");	/* make it executable */
++	chmod(buf, 700);	/* make it executable */
+ #if	GEMDOS
+ 	execve(buf, arg, NULL);
+ #else
+--- arc-5.21m/arcsvc.c
++++ arc-5.21m/arcsvc.c
+@@ -19,15 +19,13 @@
+ #include <stdio.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
++#include <unistd.h>
+ #include <fcntl.h>
+ #include "arc.h"
+ #if	_MTS
+ #include <mts.h>
+ #endif
+ 
+-VOID	arcdie(), setstamp();
+-int	unlink();
+-
+ VOID
+ openarc(chg)			/* open archive */
+ 	int             chg;	/* true to open for changes */
+--- arc-5.21m/marc.c
++++ arc-5.21m/marc.c
+@@ -26,12 +26,14 @@
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #endif
++#include <unistd.h>
+ 
+ #ifndef	__STDC__
+ char *calloc(), *malloc(), *realloc(); /* memory managers */
+ #endif
+-VOID	arcdie();
+ static VOID expandlst(), merge();
++int gethdr(FILE*, struct heads*);
++void copyfile(FILE*, struct heads*, int);
+ 
+ FILE *src;			       /* source archive */
+ char srcname[STRLEN];		       /* source archive name */
+@@ -295,6 +292,7 @@
+     else return 0;		       /* or fake end of archive */
+ }
+ 
++void
+ copyfile(f,hdr,ver)		       /* copy a file from an archive */
+ FILE *f;			       /* archive to copy from */
+ struct heads *hdr;		       /* header data for file */
