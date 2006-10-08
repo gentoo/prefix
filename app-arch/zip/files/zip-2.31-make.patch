@@ -1,0 +1,13 @@
+Index: zip-2.31/unix/Makefile
+===================================================================
+--- zip-2.31.orig/unix/Makefile
++++ zip-2.31/unix/Makefile
+@@ -13,7 +13,7 @@ all:
+ 
+ list:   all
+ 
+-MAKE = make -f unix/Makefile
++MAKE := $(MAKE) -f unix/Makefile
+ SHELL = /bin/sh
+ LN = ln -s
+ 

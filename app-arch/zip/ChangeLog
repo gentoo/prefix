@@ -1,0 +1,185 @@
+# ChangeLog for app-arch/zip
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/zip/ChangeLog,v 1.56 2006/09/29 19:55:24 corsair Exp $
+
+  29 Sep 2006; Markus Rothe <corsair@gentoo.org> zip-2.31-r1.ebuild:
+  Stable on ppc64
+
+  28 Sep 2006; Fernando J. Pereda <ferdy@gentoo.org> zip-2.31-r1.ebuild:
+  Stable on alpha as per bug #147979
+
+  23 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org> zip-2.31-r1.ebuild:
+  hppa stable, bug #147979
+
+  21 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org> zip-2.31-r1.ebuild:
+  ppc stable, bug #147979
+
+  19 Sep 2006; Daniel Gryniewicz <dang@gentoo.org> zip-2.31-r1.ebuild:
+  Marked stable on amd64 bug #147979
+
+  18 Sep 2006; Gustavo Zacarias <gustavoz@gentoo.org> zip-2.31-r1.ebuild:
+  Stable on sparc wrt #147979
+
+  18 Sep 2006; <ticho@gentoo.org> zip-2.31-r1.ebuild:
+  Stable on x86, bug #147979.
+
+  18 Sep 2006; Brent Baude <ranger@gentoo.org> ChangeLog:
+  Marking zip-2.31-r1 ppc64 stable per bug #147979
+
+  17 Sep 2006; Fabian Groffen <grobian@gentoo.org> zip-2.31-r1.ebuild:
+  marked ppc-macos stabl for progressive users (bug #147979)
+
+*zip-2.32 (17 Sep 2006)
+
+  17 Sep 2006; Mike Frysinger <vapier@gentoo.org> +zip-2.32.ebuild:
+  Version bump #147973 by Kai.
+
+  08 Jul 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +files/zip-2.31-make.patch, zip-2.31-r1.ebuild:
+  Replace gmake workaround with proper fix, thanks Mike in bug #139663.
+
+  07 Jul 2006; Diego Pettenò <flameeyes@gentoo.org> zip-2.31-r1.ebuild:
+  Use gmake instead of make when available (non-intrusive fix for FreeBSD).
+  Add ~x86-fbsd keyword.
+
+  28 Apr 2006; Joshua Kinard <kumba@gentoo.org> zip-2.31.ebuild:
+  Marked stable on mips.
+
+  14 Mar 2006; Fernando J. Pereda <ferdy@gentoo.org> zip-2.31.ebuild:
+  Stable on alpha as per bug #126101
+
+  14 Mar 2006; Markus Rothe <corsair@gentoo.org> zip-2.31.ebuild:
+  Stable on ppc64; bug #126101
+
+  14 Mar 2006; Chris White <chriswhite@gentoo.org> zip-2.31.ebuild:
+  ppc stable for bug #126101.
+
+  14 Mar 2006; Chris White <chriswhite@gentoo.org> zip-2.31.ebuild:
+  Stable on amd64 (tested with pitr) and x86.
+
+  14 Mar 2006; Jason Wever <weeve@gentoo.org> zip-2.31.ebuild:
+  Stable on SPARC wrt bug #126101.
+
+*zip-2.31-r1 (14 Mar 2006)
+
+  14 Mar 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/zip-2.31-exec-stack.patch, +zip-2.31-r1.ebuild:
+  Fix execstack markings on x86 and fixes by Roberto Teichmann for USE=crypt
+  support #122849.
+
+  23 Jul 2005; Kito <kito@gentoo.org> zip-2.31.ebuild:
+  ~ppc-macos keyword
+
+*zip-2.31 (13 Mar 2005)
+
+  13 Mar 2005; Mike Frysinger <vapier@gentoo.org> +zip-2.31.ebuild:
+  Version bump #84914 by Kenyon Ralph.
+
+  07 Nov 2004; Joshua Kinard <kumba@gentoo.org> zip-2.3-r4.ebuild:
+  Marked stable on mips.
+
+  06 Nov 2004; Lars Weiler <pylon@gentoo.org> zip-2.3-r4.ebuild:
+  Stable on ppc, bug #70227.
+
+  06 Nov 2004; Bryan Østergaard <kloeri@gentoo.org> zip-2.3-r4.ebuild:
+  Stable on alpha, bug 70227.
+
+  06 Nov 2004; <plasmaroo@gentoo.org> zip-2.3-r4.ebuild:
+  Stabling on Gentoo/IA64 with regard to security bug #70227.
+
+  06 Nov 2004; Karol Wojtaszek <sekretarz@gentoo.org> zip-2.3-r4.ebuild:
+  Stable on amd64, bug #70227
+
+  06 Nov 2004; Jason Wever <weeve@gentoo.org> zip-2.3-r4.ebuild:
+  Stable on sparc wrt security bug #70227.
+
+  06 Nov 2004; Olivier Crete <tester@gentoo.org> zip-2.3-r4.ebuild:
+  Stable on x86 per #70227
+
+  06 Nov 2004; Markus Rothe <corsair@gentoo.org> zip-2.3-r4.ebuild:
+  Stable on ppc64; bug #70227
+
+*zip-2.3-r4 (06 Nov 2004)
+
+  06 Nov 2004; <solar@gentoo.org> +files/zip-CAN-2004-1010.patch,
+  +zip-2.3-r4.ebuild:
+  security bump for bug #70227 - CAN-2004-1010
+
+*zip-2.3-r3 (28 Sep 2004)
+
+  28 Sep 2004; <solar@gentoo.org> +files/zip-2.3-unix_configure-pic.patch,
+  +zip-2.3-r3.ebuild:
+  pie executables will have runtime text relocations in them with zip unless we
+  disable the inline asm. This is done by adding a patch(tests via the pre
+  compiler to see if we are generating pic code) to zips homegrown configure
+  script. A better long term solution would be to fix said asm so pic users can
+  get any speed advantages that may come from using inline asm.
+
+  20 Jul 2004; Tom Gall <tgall@gentoo.org> zip-2.3-r2.ebuild:
+  stable on ppc64, bug #57660
+
+  01 Jun 2004; Aron Griffis <agriffis@gentoo.org> zip-2.3-r2.ebuild:
+  Fix use invocation
+
+  13 Apr 2004; Joshua Kinard <kumba@gentoo.org> zip-2.3-r2.ebuild:
+  Marked stable on mips.
+
+  17 Feb 2004; Joshua Kinard <kumba@gentoo.org> zip-2.3-r2.ebuild:
+  Added ~mips to keywords
+
+  17 Jan 2004; Bartosch Pixa <darkspecter@gentoo.org> :
+  manifest fix
+
+  16 Jan 2004; Bartosch Pixa <darkspecter@gentoo.org> zip-2.3-r2.ebuild:
+  set ppc in keywords
+
+  11 Jan 2004; Jason Wever <weeve@gentoo.org> zip-2.3-r2.ebuild:
+  Marked stable on sparc.
+
+  09 Jan 2004; Aron Griffis <agriffis@gentoo.org> zip-2.3-r2.ebuild:
+  stable on alpha
+
+  28 Dec 2003; Seemant Kulleen <seemant@gentoo.org> zip-2.3-r2.ebuild:
+  SRC_URI to mirror://gentoo instead of ibiblio only
+
+  13 Dec 2003; Guy Martin <gmsoft@gentoo.org> zip-2.3-r2.ebuild:
+  Marked stable on hppa.
+
+  14 Nov 2003; Aron Griffis <agriffis@gentoo.org> zip-2.3-r2.ebuild:
+  Stable on ia64
+
+  12 Oct 2003; Chuck Short <zul@gentoo.org> zip-2.3-r2.ebuild:
+  Added ~ia64 to keywords.
+
+  07 Aug 2003; Lisa Seelye <lisa@gentoo.org> zip-2.3-r2.ebuild:
+  Changed make to emake for bug 26149
+
+  18 Jul 2003; Martin Holzer <mholzer@gentoo.org> zip-2.3-r2.ebuild:
+  Added DEPEND. Closes #24739.
+
+*zip-2.3-r2 (16 Jul 2003)  
+
+  16 Jul 2003; <raker@gentoo.org> zip-2.3-r2.ebuild:
+  Added encryption support via the crypt use variable.
+  Thanks to tobias on bug #13598 for suggesting this feature.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*zip-2.3-r1 (1 Feb 2002)
+
+  14 Jun 2003; Guy Martin <gmsoft@gentoo.org> zip-2.3-r1.ebduild :
+  Added hppa to KEYWORDS.
+
+  15 Aug 2002; Jack Morgan <jmorgan@gentoo.org> :
+  Added KEYWORDS sparc64
+
+  15 Jul 2002; Owen Stampflee <owen@gentoo.org> :
+  Added KEYWORDS.
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
