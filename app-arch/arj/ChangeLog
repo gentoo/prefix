@@ -1,0 +1,93 @@
+# ChangeLog for app-arch/arj
+# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/arj/ChangeLog,v 1.24 2006/07/15 13:13:10 kloeri Exp $
+
+  15 Jul 2006; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
+  Remove aliz from metadata.xml as he's retired.
+
+  10 Dec 2005; Herbie Hopkins <herbs@gentoo.org> arj-3.10.22-r1.ebuild:
+  Stable on amd64 wrt bug #84142.
+
+  09 Dec 2005; Joseph Jezak <josejx@gentoo.org> arj-3.10.22-r1.ebuild:
+  Marked ppc stable for bug #84142.
+
+  06 Dec 2005; Carsten Lohrke <carlo@gentoo.org> -arj-3.10g.ebuild:
+  delete buggy version, #84142
+
+  05 Dec 2005; Mark Loeser <halcy0n@gentoo.org> arj-3.10.22-r1.ebuild:
+  Stable on x86; bug #84142
+
+  05 Dec 2005; Jason Wever <weeve@gentoo.org> arj-3.10.22-r1.ebuild:
+  Stable on SPARC wrt bug #84142.
+
+*arj-3.10.22-r1 (01 Dec 2005)
+
+  01 Dec 2005; Carsten Lohrke <carlo@gentoo.org>
+  +files/003_64_bit_clean.patch, +arj-3.10.22-r1.ebuild:
+  hopefully fix 64 bit issues
+
+  13 Nov 2005; Jason Wever <weeve@gentoo.org> arj-3.10.18.ebuild:
+  Stable on SPARC.
+
+*arj-3.10.22 (11 Nov 2005)
+
+  11 Nov 2005; Carsten Lohrke <carlo@gentoo.org>
+  +files/001_arches_align.patch, +files/002_no_remove_static_const.patch,
+  +arj-3.10.22.ebuild:
+  version bump plus two patches from Debian
+
+  30 May 2005; Sven Wegener <swegener@gentoo.org> arj-3.10.21.ebuild:
+  Moved from gcc.eclass to toolchain-funcs.eclass.
+
+  01 Jan 2005; Daniel Ahlberg <aliz@gentoo.org> arj-3.10.21.ebuild:
+  Borrowed some gcc checking code from openoffice to automatically use gcc-3.3
+  when compiling arj, should close #52311.
+
+  15 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org> arj-3.10g.ebuild:
+  Stable on sparc
+
+  17 Oct 2004; Dylan Carlson <absinthe@gentoo.org> arj-3.10.21.ebuild:
+  stable on amd64.
+
+  05 Oct 2004; Pieter Van den Abeele <pvdabeel@gentoo.org> arj-3.10.18.ebuild,
+  arj-3.10g.ebuild:
+  Masked arj-3.10g.ebuild stable for ppc
+
+  05 Oct 2004; Pieter Van den Abeele <pvdabeel@gentoo.org> arj-3.10.18.ebuild:
+  Masked arj-3.10.18.ebuild stable for ppc
+
+*arj-3.10.21 (12 Aug 2004)
+
+  12 Aug 2004; Daniel Ahlberg <aliz@gentoo.org> arj-3.10.21.ebuild:
+  Version bump.
+
+*arj-3.10.20 (27 Apr 2004)
+
+  27 Apr 2004; Daniel Ahlberg <aliz@gentoo.org> arj-3.10.18.ebuild,
+  arj-3.10.20.ebuild:
+  Unmask on x86 and version bump.
+
+  12 Mar 2004; Daniel Ahlberg <aliz@gentoo.org> arj-3.10.18.ebuild,
+  arj-3.10g.ebuild:
+  amd64 unmask and inherit eutils for epatch.
+
+  29 Feb 2004; <plasmaroo@gentoo.org> arj-3.10.18.ebuild,
+  files/arj-3.10.18-2.6.headers.patch:
+  Added patch for compatibility with 2.6 Linux headers; closes bug #42763.
+
+  25 Feb 2004; Daniel Ahlberg <aliz@gentoo.org> arj-3.10.18.ebuild:
+  Fix amd64 compilation. Closing #40936.
+
+*arj-3.10.18 (09 Feb 2004)
+
+  09 Feb 2004; Dylan Carlson <absinthe@gentoo.org> arj-3.10.18.ebuild:
+  version bump.
+
+  03 Sep 2003; Michael Sterrett <msterret@gentoo.org> arj-3.10g.ebuild:
+  fix LICENSE; tidy
+
+*arj-3.10g (21 Jul 2003)
+
+  21 Jul 2003; Nick Hadaway <raker@gentoo.org> arj-3.10g.ebuild:
+  New ebuild.  Finally we have the ability to create arj archives
+  instead of just being able to uncompress them. :)
