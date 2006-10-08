@@ -1,0 +1,145 @@
+# ChangeLog for perl-core/PodParser
+# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/perl-core/PodParser/ChangeLog,v 1.25 2006/09/16 22:12:45 dertobi123 Exp $
+
+  16 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  PodParser-1.34.ebuild:
+  ppc stable
+
+  05 Sep 2006; Joshua Kinard <kumba@gentoo.org> PodParser-1.34.ebuild:
+  Marked stable on mips.
+
+  18 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  PodParser-1.34.ebuild:
+  Marking amd64 stable
+
+  04 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  PodParser-1.30.ebuild, PodParser-1.32.ebuild, PodParser-1.34.ebuild:
+  Adding perl dep
+
+  18 Jul 2006; Bryan Østergaard <kloeri@gentoo.org> PodParser-1.34.ebuild:
+  Stable on alpha.
+
+  18 Jun 2006; Bryan Østergaard <kloeri@gentoo.org> PodParser-1.34.ebuild:
+  Stable on ia64.
+
+  12 Jun 2006; Michael Cummings <mcummings@gentoo.org>
+  PodParser-1.34.ebuild:
+  Marking sparc stable
+
+  08 Jun 2006; Joshua Kinard <kumba@gentoo.org> PodParser-1.32.ebuild:
+  Marked stable on mips.
+
+  27 May 2006; Bryan Østergaard <kloeri@gentoo.org> PodParser-1.32.ebuild:
+  Stable on alpha.
+
+  27 May 2006; <mcummings@gentoo.org> PodParser-1.32.ebuild:
+  Marking sparc stable
+
+  26 May 2006; Chris Gianelloni <wolf31o2@gentoo.org> PodParser-1.32.ebuild:
+  Stable on amd64 and x86 wrt bug #133989.
+
+  26 May 2006; Diego Pettenò <flameeyes@gentoo.org> PodParser-1.34.ebuild:
+  Add ~x86-fbsd keyword.
+
+  26 May 2006; Guy Martin <gmsoft@gentoo.org> PodParser-1.32.ebuild:
+  Stable on hppa.
+
+  26 May 2006; Markus Rothe <corsair@gentoo.org> PodParser-1.32.ebuild:
+  Stable on ppc64; bug #133989
+
+  26 May 2006; <nixnut@gentoo.org> PodParser-1.32.ebuild:
+  Stable on ppc. Bug #133989
+
+*PodParser-1.34 (05 May 2006)
+
+  05 May 2006; Christian Hartmann <ian@gentoo.org> +PodParser-1.34.ebuild:
+  Version bump
+
+  14 Mar 2006; Chris White <chriswhite@gentoo.org> -PodParser-1.28.ebuild,
+  PodParser-1.30.ebuild:
+  amd64 stable for 1.30. Removed old 1.28.
+
+  25 Feb 2006; Joshua Kinard <kumba@gentoo.org> PodParser-1.30.ebuild:
+  Marked stable on mips.
+
+  31 Jan 2006; Aron Griffis <agriffis@gentoo.org> PodParser-1.30.ebuild:
+  Mark 1.30 stable on alpha
+
+*PodParser-1.32 (13 Jan 2006)
+
+  13 Jan 2006; Michael Cummings <mcummings@gentoo.org>
+  +PodParser-1.32.ebuild:
+  Version bump
+
+  11 Jan 2006; <mcumming@gentoo.org> PodParser-1.28.ebuild,
+  PodParser-1.30.ebuild:
+  DESCRIPTION fix, thanx Beau
+
+  02 Jan 2006; Michael Hanselmann <hansmi@gentoo.org> PodParser-1.30.ebuild:
+  Stable on ppc.
+
+  31 Dec 2005; Markus Rothe <corsair@gentoo.org> PodParser-1.30.ebuild:
+  Stable on ppc64
+
+*PodParser-1.28 (30 Dec 2005)
+
+  30 Dec 2005; <mcumming@gentoo.org> +metadata.xml, +PodParser-1.28.ebuild,
+  +PodParser-1.30.ebuild:
+  Moving from dev-perl to perl-core
+
+*PodParser-1.30 (29 Apr 2005)
+
+  29 Apr 2005; Michael Cummings <mcummings@gentoo.org>
+  -PodParser-1.22.ebuild, +PodParser-1.30.ebuild:
+  Cleaning for mirror
+
+  07 Apr 2005; Michael Hanselmann <hansmi@gentoo.org> PodParser-1.28.ebuild:
+  Stable on ppc.
+
+  02 Apr 2005; Stephen P. Becker <geoman@gentoo.org> PodParser-1.28.ebuild:
+  stable on mips
+
+  01 Apr 2005; Simon Stelling <blubb@gentoo.org> PodParser-1.28.ebuild:
+  stable on amd64
+
+  27 Mar 2005; Bryan Østergaard <kloeri@gentoo.org> PodParser-1.28.ebuild:
+  Stable on alpha.
+
+  20 Mar 2005; Yuta SATOH <nigoro@gentoo.org> :
+  Stable on ppc64
+
+  07 Feb 2005; Gustavo Zacarias <gustavoz@gentoo.org> PodParser-1.28.ebuild:
+  Stable on sparc
+
+  07 Feb 2005; Michael Cummings <mcummings@gentoo.org> PodParser-1.28.ebuild:
+  Unmasking for x86
+
+  21 Jul 2004; Tom Gall <tgall@gentoo.org> PodParser-1.28.ebuild:
+  stable on ppc64, bug #57585
+
+  06 Jun 2004; Robert Coie <rac@gentoo.org> PodParser-1.22.ebuild:
+  allow perl to fulfill the File-Spec dep
+
+*PodParser-1.28 (06 Jun 2004)
+
+  06 Jun 2004; Michael Cummings <mcummings@gentoo.org> PodParser-1.28.ebuild:
+  new version on cpan
+
+  20 Feb 2004; Aron Griffis <agriffis@gentoo.org> PodParser-1.22.ebuild:
+  stable on alpha and ia64
+
+  09 Feb 2004; Bartosch Pixa <darkspecter@gentoo.org> PodParser-1.22.ebuild:
+  set ppc in keywords
+
+  18 Jan 2004; <tuxus@gentoo.org> PodParser-1.22.ebuild:
+  Added ~mips to KEYWORDS.
+
+  08 Jan 2004; <gustavoz@gentoo.org> PodParser-1.22.ebuild:
+  stable on sparc and hppa
+
+*PodParser-1.22 (16 Jun 2003)
+
+  16 Jun 2003; Michael Cummings <mcummings@gentoo.org> PodParser-1.22.ebuild:
+  Prereq for GetOpt-Long
+
