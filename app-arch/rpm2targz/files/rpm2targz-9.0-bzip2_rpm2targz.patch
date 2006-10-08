@@ -1,0 +1,62 @@
+--- rpm2targz	2003-10-15 00:46:48.000000000 +0200
++++ rpm2targz.new	2003-10-15 01:39:00.000000000 +0200
+@@ -21,6 +21,8 @@
+ #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ #
+ 
++# debug switch to allow to bypass use of rpm2cpio provided by the rpm package
++USERPM2CPIO=true
+ if [ "$TMPDIR" = "" ]; then
+   TMPDIR=/tmp
+ fi
+@@ -46,7 +48,7 @@
+ fi
+ for i in $* ; do
+   if [ ! "$1" = "$*" ]; then
+-    echo -n "Processing file: $i"
++    echo "Processing file: $i"
+   fi
+   rm -rf $TMPDIR/rpm2targz$COOKIE # clear the way, just in case of mischief
+   mkdir $TMPDIR/rpm2targz$COOKIE
+@@ -68,7 +70,7 @@
+   fi
+ 
+   ofn=$TMPDIR/rpm2targz$COOKIE/`basename $i .rpm`.cpio
+-  if which rpm2cpio 1> /dev/null 2> /dev/null ; then
++  if $USERPM2CPIO && which rpm2cpio 1> /dev/null 2> /dev/null ; then
+     rpm2cpio $i > $ofn 2> /dev/null
+     if [ ! $? = 0 ]; then
+       echo "... rpm2cpio failed.  (maybe $i is not an RPM?)"
+@@ -76,7 +78,31 @@
+       continue
+     fi
+   else # less reliable than rpm2cpio...
+-    dd ibs=`rpmoffset < $i` skip=1 if=$i 2> /dev/null | gzip -dc > $ofn
++    # get offset of start of payload
++    PAYLOADOFFSET=`rpmoffset < $i` 
++    #identify compression
++    PAYLOADHEAD=`dd ibs=${PAYLOADOFFSET} skip=1 if=$i 2> /dev/null | dd bs=10 count=1 2> /dev/null`
++    if echo ${PAYLOADHEAD} | grep -e $'^\037\213' > /dev/null ; then 
++   	echo "found gzip magic bytes"
++	decomp="gzip"
++    elif echo ${PAYLOADHEAD} | grep -e "^BZh" > /dev/null ; then
++        echo "found bzip magic bytes"
++	decomp="bzip2"
++    else
++        echo  " $i - no magic compression identifier found - skipping file"
++        ( cd $TMPDIR ; rm -rf rpm2targz$COOKIE )
++        continue
++    fi
++    echo -n "  trying to decompress with ${decomp}..."
++    dd ibs=`rpmoffset < $i` skip=1 if=$i 2> /dev/null | ${decomp} -dc > $ofn 2> /dev/null 
++    if [ $? = 0 ]; then
++      echo "  OK"
++    else
++      echo "  FAILED"
++      echo  " $i  failed to decompress - skipping file"
++      ( cd $TMPDIR ; rm -rf rpm2targz$COOKIE )
++      continue
++    fi
+   fi
+   DEST=$TMPDIR/rpm2targz$COOKIE
+   #if [ "$isSource" = "1" ]; then

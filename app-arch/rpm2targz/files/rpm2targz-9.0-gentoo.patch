@@ -1,0 +1,15 @@
+--- rpm2targz	2003-06-21 13:25:33.000000000 +0100
++++ rpm2targz	2003-06-21 14:26:30.000000000 +0100
+@@ -79,9 +79,9 @@
+     dd ibs=`rpmoffset < $i` skip=1 if=$i 2> /dev/null | gzip -dc > $ofn
+   fi
+   DEST=$TMPDIR/rpm2targz$COOKIE
+-  if [ "$isSource" = "1" ]; then
+-     DEST=$DEST/$(basename $(basename $i .rpm) .src)
+-  fi
++  #if [ "$isSource" = "1" ]; then
++  #   DEST=$DEST/$(basename $(basename $i .rpm) .src)
++  #fi
+   mkdir -p $DEST
+   ( cd $DEST
+     cpio --extract --preserve-modification-time --make-directories < $ofn 1> /dev/null 2> /dev/null

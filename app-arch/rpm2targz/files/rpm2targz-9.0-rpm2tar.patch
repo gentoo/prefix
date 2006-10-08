@@ -1,0 +1,41 @@
+Add support for turning rpm's into tar's and skipping the gzip stage ...
+Much faster on slower boxes and useful when you just want to rip apart 
+a rpm and look at the insides.
+
+--- rpm2targz
++++ rpm2targz
+@@ -35,6 +35,7 @@
+ 	exit 1
+ fi
+ 
++BASENAME="`basename $0`"
+ if [ "$1" = "" ]; then
+   echo "$0:  Converts RPM format to standard GNU tar + GNU zip format."
+   if [ -e /etc/slackware-version ]; then
+@@ -44,8 +45,10 @@
+   fi
+   echo
+   echo "Usage:      $0 <file.rpm>"
+-  if [ "`basename $0`" = "rpm2tgz" ]; then
++  if [ "$BASENAME" = "rpm2tgz" ]; then
+     echo "            (Outputs \"file.tgz\")"
++  elif [ "$BASENAME" = "rpm2tar" ]; then
++    echo "            (Outputs \"file.tar\")"
+   else
+     echo "            (Outputs \"file.tar.gz\")"
+   fi
+@@ -118,9 +121,11 @@
+     rm -f $ofn
+     find . -type d -perm 700 -exec chmod 755 {} \; )
+   ( cd ${WORKDIR} ; tar cf - . ) > `basename $i .rpm`.tar
+-  gzip -9 `basename $i .rpm`.tar
+-  if [ "`basename $0`" = "rpm2tgz" ]; then
+-    mv `basename $i .rpm`.tar.gz `basename $i .rpm`.tgz
++  if [ "$BASENAME" != "rpm2tar" ]; then
++    gzip -9 `basename $i .rpm`.tar
++    if [ "$BASENAME" = "rpm2tgz" ]; then
++      mv `basename $i .rpm`.tar.gz `basename $i .rpm`.tgz
++    fi
+   fi
+   ( rm -rf "${WORKDIR}/*" )
+   echo
