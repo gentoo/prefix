@@ -1,0 +1,27 @@
+# ChangeLog for app-arch/xar
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xar/ChangeLog,v 1.5 2006/04/27 09:26:48 antarus Exp $
+
+  27 Apr 2006; Alec Warner <antarus@gentoo.org> files/digest-xar-20050423,
+  Manifest:
+  Fixing duff SHA256 digests: Bug # 131293
+
+*xar-1.4 (19 Mar 2006)
+
+  19 Mar 2006; <keetz@gentoo.org> +xar-1.4.ebuild:
+  Version bump.
+
+  19 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +files/xar-20050423-ldflags.patch, xar-20050423.ebuild:
+  Respect CFLAGS and LDFLAGS set by user.
+
+  28 Jun 2005; Diego Pettenò <flameeyes@gentoo.org>
+  +files/xar-20050423-amd64.patch, xar-20050423.ebuild:
+  Added patch to compile with -fPIC the library, and unset $SYMLINK_LIB which
+  is set by AMD64-multilib profile and conflicts with internal build one.
+
+*xar-20050423 (23 Apr 2005)
+
+  23 Apr 2005; Kito <kito@gentoo.org> +metadata.xml, +xar-20050423.ebuild:
+  initial import, ~amd64 ~ppc ~ppc64 ~ppc-macos ~sparc ~x86 keywords.
+

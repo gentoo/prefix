@@ -1,0 +1,23 @@
+diff -ur xar-20050423/lib/Makefile.in xar-20050423-amd64/lib/Makefile.in
+--- xar-20050423/lib/Makefile.in	2005-04-22 18:01:03.000000000 +0200
++++ xar-20050423-amd64/lib/Makefile.in	2005-06-28 19:54:32.963452168 +0200
+@@ -1,6 +1,6 @@
+ include ../Mk/autoconf.mk
+ 
+-CFLAGS += $(XML2_CFLAGS) -I../include
++CFLAGS += $(XML2_CFLAGS) -I../include -fPIC
+ LDFLAGS += $(XML2_LIBS) -L../lib/
+ LIBS += $(XML2_LIBS)
+ 
+diff -ur xar-20050423/Makefile.in xar-20050423-amd64/Makefile.in
+--- xar-20050423/Makefile.in	2005-04-22 18:39:09.000000000 +0200
++++ xar-20050423-amd64/Makefile.in	2005-06-28 20:00:42.454281024 +0200
+@@ -24,7 +24,7 @@
+ 	@make CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" LIBS="$(LIBS)" LIBRARY="$(LIBRARY)" $(notdir $(EXECUTABLE)) -C src/
+ 
+ $(LIBRARY): 
+-	@make CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" LIBS="$(LIBS)" $(LIB_FILE) -C lib/
++	@make CFLAGS="$(CFLAGS) -fPIC" LDFLAGS="$(LDFLAGS)" LIBS="$(LIBS)" $(LIB_FILE) -C lib/
+ 
+ .PHONY: install
+ install: $(EXECUTABLE) $(LIBRARY)

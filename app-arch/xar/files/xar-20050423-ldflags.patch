@@ -1,0 +1,13 @@
+Index: xar-20050423/platform.m4
+===================================================================
+--- xar-20050423.orig/platform.m4
++++ xar-20050423/platform.m4
+@@ -927,7 +927,7 @@ AC_DEFUN(SC_CONFIG_BUILD, [
+         LIB_SUFFIX=${SHARED_LIB_SUFFIX}
+ 	LIB_FILE='${LIB_NAME}.${LIB_SUFFIX}'
+ 	if test "x${MAKE_LIB}" = "x"; then
+-	    MAKE_LIB='${SHLIB_LD} -o [$]@ ${SHLIB_LD_FLAGS} ${LIB_OBJS} ${SHLIB_LD_LIBS} ${SHLIB_LD_EXTRAS}'
++	    MAKE_LIB='${SHLIB_LD} ${LDFLAGS} -o [$]@ ${SHLIB_LD_FLAGS} ${LIB_OBJS} ${SHLIB_LD_LIBS} ${SHLIB_LD_EXTRAS}'
+ 	fi
+ 	if test "x${SYMLINK_LIB}" = "x"; then
+ 	    SYMLINK_LIB='rm -f $(LIB_NAME)$(SHLIB_SUFFIX); ${LN_S} $(LIB_FILE) ${LIB_NAME}${SHLIB_SUFFIX}'
