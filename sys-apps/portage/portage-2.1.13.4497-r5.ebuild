@@ -33,7 +33,7 @@ S=${WORKDIR}/prefix-${PN}-${PV/-r1/}
 src_unpack() {
 	unpack ${A}
 	epatch "${FILESDIR}"/${P}-double_prefix.patch
-	epatch "${FILESDIR}"/${P}-matt-double_prefix-qa.patch
+	epatch "${FILESDIR}"/${P}-prefix-qa.patch
 	epatch "${FILESDIR}"/${P}-matt-various_fixes.patch
 	epatch "${FILESDIR}"/${P}-matt-config_protect.patch
 }
