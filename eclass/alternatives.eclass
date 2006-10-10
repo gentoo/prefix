@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/alternatives.eclass,v 1.12 2005/07/11 15:08:06 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/alternatives.eclass,v 1.13 2006/03/25 02:37:04 agriffis Exp $
 
 # Author :     Alastair Tse <liquidx@gentoo.org> (03 Oct 2003)
 # Short Desc:  Creates symlink to the latest version of multiple slotted
@@ -14,7 +14,7 @@
 #
 #  This eclass provides a convenience function that needs to be given a
 #  list of alternatives (descending order of recent-ness) and the symlink.
-#  It will choose the latest version if can find installed and create
+#  It will choose the latest version it can find installed and create
 #  the desired symlink.
 #
 #  There are two ways to use this eclass. First is by declaring two variables

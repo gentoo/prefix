@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.65 2006/08/31 18:22:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.66 2006/09/20 01:11:54 vapier Exp $
 
 # We install binutils into CTARGET-VERSION specific directories.  This lets
 # us easily merge multiple versions for multiple targets (if we wish) and
@@ -258,10 +258,9 @@ toolchain-binutils_src_install() {
 			mv "${D}"/usr/${CHOST}/${CTARGET}/lib/* "${D}"/${LIBPATH}/
 			rm -r "${D}"/usr/${CHOST}/{include,lib}
 		fi
-	else
-		insinto ${INCPATH}
-		doins "${S}/include/libiberty.h"
 	fi
+	insinto ${INCPATH}
+	doins "${S}/include/libiberty.h"
 	if [[ -d ${D}/${LIBPATH}/lib ]] ; then
 		mv "${D}"/${LIBPATH}/lib/* "${D}"/${LIBPATH}/
 		rm -r "${D}"/${LIBPATH}/lib

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.307 2006/09/12 21:23:04 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.314 2006/10/02 22:35:50 vapier Exp $
 
 HOMEPAGE="http://gcc.gnu.org/"
 LICENSE="GPL-2 LGPL-2.1"
@@ -138,22 +138,26 @@ else
 	IUSE="multislot test"
 
 	if [[ ${PN} != "kgcc64" ]] ; then
-		IUSE="${IUSE} altivec bootstrap build doc fortran gcj gtk hardened multilib nls nocxx objc vanilla"
+		IUSE="${IUSE} altivec build fortran nls nocxx"
 		[[ -n ${PIE_VER}    ]] && IUSE="${IUSE} nopie"
 		[[ -n ${PP_VER}     ]] && IUSE="${IUSE} nossp"
 		[[ -n ${HTB_VER}    ]] && IUSE="${IUSE} boundschecking"
 
-		# gcc-{nios2,bfin} don't accept these
-		if [[ ${PN} == "gcc" ]] ; then
-			IUSE="${IUSE} ip28 ip32r10k n32 n64"
-		fi
+		if version_is_at_least 3 ; then
+			IUSE="${IUSE} bootstrap doc gcj gtk hardened multilib objc vanilla"
 
-		# these are features introduced in 4.0
-		if tc_version_is_at_least "4.0" ; then
-			IUSE="${IUSE} objc-gc mudflap"
+			# gcc-{nios2,bfin} don't accept these
+			if [[ ${PN} == "gcc" ]] ; then
+				IUSE="${IUSE} ip28 ip32r10k n32 n64"
+			fi
 
-			if tc_version_is_at_least "4.1" ; then
-				IUSE="${IUSE} objc++"
+			# these are features introduced in 4.0
+			if tc_version_is_at_least "4.0" ; then
+				IUSE="${IUSE} objc-gc mudflap"
+
+				if tc_version_is_at_least "4.1" ; then
+					IUSE="${IUSE} objc++"
+				fi
 			fi
 		fi
 	fi
@@ -395,7 +399,7 @@ hardened_gcc_is_stable() {
 	if [[ $1 == "pie" ]] ; then
 		# HARDENED_* variables are deprecated and here for compatibility
 		local tocheck="${HARDENED_PIE_WORKS} ${HARDENED_GCC_WORKS}"
-		if is_uclibc ; then
+		if [[ ${CTARGET} == *-uclibc* ]] ; then
 			tocheck="${tocheck} ${PIE_UCLIBC_STABLE}"
 		else
 			tocheck="${tocheck} ${PIE_GLIBC_STABLE}"
@@ -403,7 +407,7 @@ hardened_gcc_is_stable() {
 	elif [[ $1 == "ssp" ]] ; then
 		# ditto
 		local tocheck="${HARDENED_SSP_WORKS} ${HARDENED_GCC_WORKS}"
-		if is_uclibc ; then
+		if [[ ${CTARGET} == *-uclibc* ]] ; then
 			tocheck="${tocheck} ${SSP_UCLIBC_STABLE}"
 		else
 			tocheck="${tocheck} ${SSP_STABLE}"
@@ -423,7 +427,7 @@ hardened_gcc_check_unsupported() {
 	# this shouldn't cause problems... however, allowing this logic to work
 	# even with the variables unset will break older ebuilds that dont use them.
 	if [[ $1 == "pie" ]] ; then
-		if is_uclibc ; then
+		if [[ ${CTARGET} == *-uclibc* ]] ; then
 			[[ -z ${PIE_UCLIBC_UNSUPPORTED} ]] && return 0
 			tocheck="${tocheck} ${PIE_UCLIBC_UNSUPPORTED}"
 		else
@@ -431,7 +435,7 @@ hardened_gcc_check_unsupported() {
 			tocheck="${tocheck} ${PIE_GLIBC_UNSUPPORTED}"
 		fi
 	elif [[ $1 == "ssp" ]] ; then
-		if is_uclibc ; then
+		if [[ ${CTARGET} == *-uclibc* ]] ; then
 			[[ -z ${SSP_UCLIBC_UNSUPPORTED} ]] && return 0
 			tocheck="${tocheck} ${SSP_UCLIBC_UNSUPPORTED}"
 		else
@@ -1003,7 +1007,7 @@ do_gcc_rename_java_bins() {
 gcc_src_unpack() {
 	local release_version="Gentoo ${GCC_PVR}"
 
-	[[ -z ${UCLIBC_VER} ]] && is_uclibc && die "Sorry, this version does not support uClibc"
+	[[ -z ${UCLIBC_VER} ]] && [[ ${CTARGET} == *-uclibc* ]] && die "Sorry, this version does not support uClibc"
 
 	gcc_quick_unpack
 	exclude_gcc_patches
@@ -1226,7 +1230,7 @@ gcc_do_configure() {
 	# ppc altivec support
 	confgcc="${confgcc} $(use_enable altivec)"
 
-	[[ ${CTARGET} == *-softfloat-* ]] && confgcc="${confgcc} --with-float=soft"
+	[[ ${CTARGET//_/-} == *-softfloat-* ]] && confgcc="${confgcc} --with-float=soft"
 
 	# Native Language Support
 	if use nls && ! use build ; then
@@ -1261,7 +1265,8 @@ gcc_do_configure() {
 			*-freebsd*) needed_libc=freebsd-lib;;
 			*-gnu*)     needed_libc=glibc;;
 			*-klibc)    needed_libc=klibc;;
-			*-uclibc)   needed_libc=uclibc;;
+			*-uclibc*)  needed_libc=uclibc;;
+			mingw*)     needed_libc=mingw-runtime;;
 			avr)        confgcc="${confgcc} --enable-shared --disable-threads";;
 		esac
 		if [[ -n ${needed_libc} ]] ; then
@@ -1277,7 +1282,7 @@ gcc_do_configure() {
 		if [[ ${GCCMAJOR}.${GCCMINOR} > 4.1 ]] ; then
 			confgcc="${confgcc} --disable-bootstrap"
 		fi
-	else
+	elif [[ ${CHOST} != mingw* ]] ; then
 		confgcc="${confgcc} --enable-shared --enable-threads=posix"
 
 		if [[ ${GCCMAJOR}.${GCCMINOR} > 4.1 ]] ; then
@@ -1293,11 +1298,11 @@ gcc_do_configure() {
 	# --enable-sjlj-exceptions : currently the unwind stuff seems to work
 	# for statically linked apps but not dynamic
 	# so use setjmp/longjmp exceptions by default
-	if is_uclibc ; then
+	if [[ ${CTARGET} == *-uclibc* ]] ; then
 		confgcc="${confgcc} --disable-__cxa_atexit --enable-target-optspace"
 		[[ ${GCCMAJOR}.${GCCMINOR} == 3.3 ]] && \
 			confgcc="${confgcc} --enable-sjlj-exceptions"
-	else
+	elif [[ ${CTARGET} == *-gnu* ]] ; then
 		confgcc="${confgcc} --enable-__cxa_atexit"
 	fi
 	[[ ${CTARGET} == *-gnu* ]] && confgcc="${confgcc} --enable-clocale=gnu"
@@ -1615,7 +1620,11 @@ gcc-compiler_src_install() {
 	gcc_movelibs
 
 	# Basic sanity check
-	is_crosscompile || [[ -r ${D}${BINPATH}/gcc ]] || die "gcc not found in ${D}"
+	if ! is_crosscompile ; then
+		local EXEEXT
+		eval $(grep ^EXEEXT= "${WORKDIR}"/build/gcc/config.log)
+		[[ -r ${D}${BINPATH}/gcc${EXEEXT} ]] || die "gcc not found in ${D}"
+	fi
 
 	dodir /etc/env.d/gcc
 	create_gcc_env_entry
@@ -1904,7 +1913,7 @@ do_gcc_stub() {
 	local v stub_patch=""
 	for v in ${GCC_RELEASE_VER} ${GCC_BRANCH_VER} ; do
 		stub_patch=${GCC_FILESDIR}/stubs/gcc-${v}-$1-stub.patch
-		if [[ -e ${stub_patch} ]] ; then
+		if [[ -e ${stub_patch} ]] && ! use vanilla ; then
 			EPATCH_SINGLE_MSG="Applying stub patch for $1 ..." \
 			epatch "${stub_patch}"
 			return 0
@@ -2301,11 +2310,6 @@ is_multilib() {
 			has_multilib_profile || use multilib ;;
 		*)	false ;;
 	esac
-}
-
-is_uclibc() {
-	[[ ${GCCMAJOR} -lt 3 ]] && return 1
-	[[ ${CTARGET} == *-uclibc ]]
 }
 
 is_cxx() {
