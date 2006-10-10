@@ -149,25 +149,26 @@ setup_portage() {
 }
 
 bootstrap_tree() {
+	PV="20061009"
 	for x in etc usr/{,s}bin var/tmp var/lib/portage var/log/portage;
 	do
 		[ -d "${ROOT}/${x}" ] || mkdir -p "${ROOT}/${x}"
 	done
 	if [ ! -e ${ROOT}/usr/portage/.unpacked ]; then
 		cd ${ROOT}/usr
-		${FETCH_COMMAND} "${GENTOO_URL}/experimental/snapshots/portage-alt-prefix-latest.tar.bz2"
-		bzip2 -dc portage-alt-prefix-latest.tar.bz2 | tar -xf - || exit 1
-		mv portage{-alt-prefix,}
+		${FETCH_COMMAND} "${PORTAGE_URL}/distfiles/prefix-overlay-${PV}.tar.bz2"
+		bzip2 -dc prefix-overlay-${PV}.tar.bz2 | tar -xf - || exit 1
+		mv prefix-overlay portage
 		touch portage/.unpacked
 		mkdir portage/distfiles
-		rm portage-alt-prefix-latest.tar.bz2
+		rm prefix-overlay-${PV}.tar.bz2
 	fi
 }
 
 bootstrap_portage() {
 	# don't use "latest" here, as I want to have the bootstrap script to
 	# use a portage in a known "state"
-	PV=2.1.13.4415
+	PV=2.1.13.4497
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 		
