@@ -223,6 +223,37 @@ then
 	exit -1
 fi
 
+if [[ ${EPACKAGE} == "eclass" ]];
+then
+	echo "Processing eclasses directory"
+# FIXME also descend into subdirs
+	mt=`cd "${MTREEDIR}"/${EPACKAGE}/ && ls *.eclass`
+	pt=`ls *.eclass`
+	# nested loop join
+	for pte in $pt;
+	do
+		had_match=0
+		for mte in $mt;
+		do
+			if [[ $pte == $mte ]];
+			then
+				echo -n "  found $mte in both ... "
+				mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$mte)
+				ptecv=$(get_cvsversion $pte)
+				revision_diff $mtecv $ptecv $pte
+				had_match=1;
+				break;
+			fi
+		done
+		[[ $had_match == 0 ]] \
+			&& echo "  warning: $pte no longer in the main tree"
+	done
+
+# FIXME: check for new eclasses in the main tree
+	echo "done"
+	exit 0
+fi
+
 echo "Processing ${EPACKAGE}"
 mt=`cd "${MTREEDIR}"/${EPACKAGE}/ && ls *.ebuild`
 pt=`ls *.ebuild`
@@ -252,7 +283,6 @@ do
 				vdiff=$((ptevnr - mtevnr))
 				if [[ $vdiff > 0 ]];
 				then
-					echo "$(get_versionebuild $ptevn) > $(get_versionebuild $mtevn) ($vdiff)"
 					# due to sortedness, vdiff cannot be negative here, so
 					# it is a newer revision, save it for later
 					had_match=$mtev
