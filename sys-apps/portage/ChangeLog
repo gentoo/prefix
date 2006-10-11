@@ -5,6 +5,11 @@
 # See the gentoo-src Portage ChangeLog for up-to-date release information:
 # http://www.gentoo.org/cgi-bin/viewcvs.cgi/portage/ChangeLog?rev=HEAD&cvsroot=gentoo-src&content-type=text/vnd.viewcvs-markup
 
+  11 Oct 2006; Fabian Groffen <grobian@gentoo.org> ChangeLog:
+  Since the bootstrap script now uses 4497, removed 4415.  Bumped 4497
+  to -r6, to include root_slash patch, such that original ebuilds and
+  eclasses work without modifying ${ROOT} handling.
+
   08 Oct 2006; Fabian Groffen <grobian@gentoo.org> ChangeLog:
   Rewrote QA patch from Matt, to actually work and die on double prefixed
   files. Added QA check for files installed outside the prefix, which also

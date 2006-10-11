@@ -1,0 +1,11 @@
+--- prefix-portage-2.1.13.4497/pym/portage.py
++++ prefix-portage-2.1.13.4497/pym/portage.py
+@@ -2364,7 +2364,7 @@
+ 		# due to how it's coded... Don't overwrite this so we can use it.
+ 		mysettings["PORTAGE_DEBUG"]=str(debug)
+ 
+-	mysettings["ROOT"]     = normalize_path(myroot+portage_const.EPREFIX)
++	mysettings["ROOT"]     = normalize_path(myroot+portage_const.EPREFIX)+"/"
+ 	mysettings["STARTDIR"] = getcwd()
+ 
+ 	mysettings["EBUILD"]   = ebuild_path
