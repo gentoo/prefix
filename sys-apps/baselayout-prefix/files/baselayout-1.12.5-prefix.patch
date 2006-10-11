@@ -1,6 +1,5 @@
-diff -ur baselayout-1.12.5.orig/etc/env.d/00basic baselayout-1.12.5/etc/env.d/00basic
---- baselayout-1.12.5.orig/etc/env.d/00basic	2006-09-24 17:26:00 +0200
-+++ baselayout-1.12.5/etc/env.d/00basic	2006-09-24 17:28:12 +0200
+--- baselayout-1.12.5/etc/env.d/00basic
++++ baselayout-1.12.5/etc/env.d/00basic
 @@ -1,10 +1,10 @@
 -# /etc/env.d/00basic
 +# @GENTOO_PORTAGE_EPREFIX@/etc/env.d/00basic
@@ -19,9 +18,8 @@ diff -ur baselayout-1.12.5.orig/etc/env.d/00basic baselayout-1.12.5/etc/env.d/00
 -PAGER="/usr/bin/less"
 +PAGER="@GENTOO_PORTAGE_EPREFIX@/usr/bin/less"
  LESSOPEN="|lesspipe.sh %s"
-diff -ur baselayout-1.12.5.orig/sbin/env-update.sh baselayout-1.12.5/sbin/env-update.sh
---- baselayout-1.12.5.orig/sbin/env-update.sh	2006-09-24 17:26:00 +0200
-+++ baselayout-1.12.5/sbin/env-update.sh	2006-09-24 17:33:11 +0200
+--- baselayout-1.12.5/sbin/env-update.sh
++++ baselayout-1.12.5/sbin/env-update.sh
 @@ -1,10 +1,10 @@
 -#!/bin/bash
 +#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
@@ -60,9 +58,8 @@ diff -ur baselayout-1.12.5.orig/sbin/env-update.sh baselayout-1.12.5/sbin/env-up
  fi
  
  # vim:ts=4
-diff -ur baselayout-1.12.5.orig/sbin/functions.sh baselayout-1.12.5/sbin/functions.sh
---- baselayout-1.12.5.orig/sbin/functions.sh	2006-09-24 17:26:00 +0200
-+++ baselayout-1.12.5/sbin/functions.sh	2006-09-24 17:46:10 +0200
+--- baselayout-1.12.5/sbin/functions.sh
++++ baselayout-1.12.5/sbin/functions.sh
 @@ -4,11 +4,11 @@
  RC_GOT_FUNCTIONS="yes"
  
@@ -263,3 +260,69 @@ diff -ur baselayout-1.12.5.orig/sbin/functions.sh baselayout-1.12.5/sbin/functio
  		declare -r BOOTLEVEL DEFAULTLEVEL SOFTLEVEL
  	fi
  else
+--- baselayout-1.12.5/etc/profile
++++ baselayout-1.12.5/etc/profile
+@@ -1,4 +1,4 @@
+-# /etc/profile: login shell setup
++# @GENTOO_PORTAGE_EPREFIX@/etc/profile: login shell setup
+ #
+ # That this file is used by any Bourne-shell derivative to setup the
+ # environment for login shells.
+@@ -6,8 +6,8 @@
+ 
+ # Load environment settings from profile.env, which is created by
+ # env-update from the files in /etc/env.d
+-if [ -e /etc/profile.env ] ; then
+-	. /etc/profile.env
++if [ -e "@GENTOO_PORTAGE_EPREFIX@"/etc/profile.env ] ; then
++	. "@GENTOO_PORTAGE_EPREFIX@"/etc/profile.env
+ fi
+ 
+ # 077 would be more secure, but 022 is generally quite realistic
+@@ -22,23 +22,23 @@
+ # This way the evaluation can be short-circuited and calling whoami is
+ # avoided.
+ if [ "$EUID" = "0" ] || [ "$USER" = "root" ] ; then
+-	PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${ROOTPATH}"
++	PATH="@GENTOO_PORTAGE_EPREFIX@/usr/sbin:@GENTOO_PORTAGE_EPREFIX@/usr/bin:@GENTOO_PORTAGE_EPREFIX@/sbin:@GENTOO_PORTAGE_EPREFIX@/bin:/usr/sbin:/usr/bin:/sbin:/bin:${ROOTPATH}"
+ else
+-	PATH="/usr/local/bin:/usr/bin:/bin:${PATH}"
++	PATH="@GENTOO_PORTAGE_EPREFIX@/usr/bin:@GENTOO_PORTAGE_EPREFIX@/bin:/usr/bin:/bin:${PATH}"
+ fi
+ export PATH
+ unset ROOTPATH
+ 
+ # Extract the value of EDITOR
+-[ -z "$EDITOR" ] && EDITOR="`. /etc/rc.conf 2>/dev/null; echo $EDITOR`"
+-[ -z "$EDITOR" ] && EDITOR="/bin/nano"
++[ -z "$EDITOR" ] && EDITOR="`. @GENTOO_PORTAGE_EPREFIX@/etc/rc.conf 2>/dev/null; echo $EDITOR`"
++[ -z "$EDITOR" ] && EDITOR="@GENTOO_PORTAGE_EPREFIX@/bin/nano"
+ export EDITOR
+ 
+ if [ -n "${BASH_VERSION}" ] ; then
+ 	# Newer bash ebuilds include /etc/bash/bashrc which will setup PS1
+ 	# including color.  We leave out color here because not all
+ 	# terminals support it.
+-	if [ -f /etc/bash/bashrc ] ; then
++	if [ -f "@GENTOO_PORTAGE_EPREFIX@"/etc/bash/bashrc ] ; then
+ 		# Bash login shells run only /etc/profile
+ 		# Bash non-login shells run only /etc/bash/bashrc
+ 		# Since we want to run /etc/bash/bashrc regardless, we source it 
+@@ -46,7 +46,7 @@
+ 		# this *after* the user's .bash_profile runs (without putting 
+ 		# it in the user's dot-files), but it shouldn't make any 
+ 		# difference.
+-		. /etc/bash/bashrc
++		. "@GENTOO_PORTAGE_EPREFIX@"/etc/bash/bashrc
+ 	else
+ 		PS1='\u@\h \w \$ '
+ 	fi
+@@ -57,7 +57,7 @@
+ 	PS1="`whoami`@`uname -n | cut -f1 -d.` \$ "
+ fi
+ 
+-for sh in /etc/profile.d/*.sh ; do
++for sh in "@GENTOO_PORTAGE_EPREFIX@"/etc/profile.d/*.sh ; do
+ 	if [ -r "$sh" ] ; then
+ 		. "$sh"
+ 	fi

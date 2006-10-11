@@ -15,7 +15,7 @@ SRC_URI="mirror://gentoo/${P/-prefix/}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 DEPEND="virtual/os-headers
 	>=sys-apps/portage-2.0.51"
@@ -36,6 +36,7 @@ src_unpack() {
 	sed -i \
 		-e "s|@GENTOO_PORTAGE_EPREFIX@|${EPREFIX}|g" \
 		etc/env.d/00basic \
+		etc/profile \
 		sbin/env-update.sh \
 		sbin/functions.sh
 	eend $?
@@ -68,6 +69,9 @@ src_install() {
 
 	# get the basic stuff in there
 	doenvd "${S}"/etc/env.d/* || die "doenvd"
+
+	# copy the profile
+	cp "${S}"/etc/profile "${D}"/etc/profile
 	
 	# Setup files in /sbin
 	#
