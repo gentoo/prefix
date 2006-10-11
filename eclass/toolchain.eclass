@@ -1604,7 +1604,7 @@ gcc-compiler_src_install() {
 	# (ncurses, openssl, etc).
 	for x in $(find "${WORKDIR}"/build/gcc/include/ -name '*.h') ; do
 		grep -q 'It has been auto-edited by fixincludes from' "${x}" \
-			&& rm -f "${x}"
+			&& [[ ${EPREFIX%/} == "" ]] && rm -f "${x}"
 	done
 	einfo "Installing GCC..."
 	# Do the 'make install' from the build directory
