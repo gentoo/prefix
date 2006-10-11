@@ -9,7 +9,7 @@
 #
 # A generic eclass to install tetex 3.x distributions.
 
-TEXMF_PATH="${EPREFIX}"/var/lib/texmf
+TEXMF_PATH=/var/lib/texmf
 
 inherit tetex
 
@@ -162,7 +162,7 @@ tetex-3_src_install() {
 	cd ${D}/usr/share/texmf		# not ${TEXMF_PATH}
 	for d in $(find . -name config -type d | sed -e "s:\./::g") ; do
 		dodir /etc/texmf/${d}
-		for f in $(find ${D}usr/share/texmf/$d -maxdepth 1 -mindepth 1); do
+		for f in $(find ${D}/usr/share/texmf/$d -maxdepth 1 -mindepth 1); do
 			mv $f ${D}/etc/texmf/$d || die "mv $f failed"
 			dosym /etc/texmf/$d/$(basename $f) /usr/share/texmf/$d/$(basename $f)
 		done
