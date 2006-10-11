@@ -156,7 +156,7 @@ bootstrap_tree() {
 	done
 	if [ ! -e ${ROOT}/usr/portage/.unpacked ]; then
 		cd ${ROOT}/usr
-		${FETCH_COMMAND} "${PORTAGE_URL}/distfiles/prefix-overlay-${PV}.tar.bz2"
+		${FETCH_COMMAND} "${PORTAGE_URL}/prefix-overlay-${PV}.tar.bz2"
 		bzip2 -dc prefix-overlay-${PV}.tar.bz2 | tar -xf - || exit 1
 		mv prefix-overlay portage
 		touch portage/.unpacked
