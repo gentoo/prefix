@@ -1,0 +1,61 @@
+--- tetex-src-3.0/texk/kpathsea/texmf.in
++++ tetex-src-3.0/texk/kpathsea/texmf.in
+@@ -56,18 +56,18 @@
+ 
+ % The tree containing the runtime files closely related to the specific
+ % program version used:
+-TEXMFMAIN = /var/lib/texmf
++TEXMFMAIN = @prefix@/var/lib/texmf
+ 
+ % The main distribution tree:
+-TEXMFDIST = /usr/share/texmf
++TEXMFDIST = @prefix@/usr/share/texmf
+ 
+ % The Gentoo site tree:
+-TEXMFSITE = /usr/share/texmf-site
++TEXMFSITE = @prefix@/usr/share/texmf-site
+ 
+ % A place for local additions to a "standard" texmf tree.
+ % This tree is not used for local configuration maintained by
+ % texconfig, it uses TEXMFCONFIG below.
+-TEXMFLOCAL = /usr/local/share/texmf
++TEXMFLOCAL = @prefix@/usr/local/share/texmf
+ 
+ % TEXMFSYSVAR, where texconfig-sys stores variable runtime data.
+ % With teTeX-3.0 or later, this must be set.
+@@ -122,7 +122,7 @@
+ % Where generated fonts may be written.  This tree is used when the sources
+ % were found in a system tree and either that tree wasn't writable, or the
+ % varfonts feature was enabled in MT_FEATURES in mktex.cnf.
+-VARTEXFONTS = /var/cache/fonts
++VARTEXFONTS = @prefix@/var/cache/fonts
+ 
+ % Where to look for ls-R files.  There need not be an ls-R in the
+ % directories in this path, but if there is one, Kpathsea will use it.
+@@ -145,7 +145,7 @@
+ %
+ % On some systems, there will be a system tree which contains all the font
+ % files that may be created as well as the formats.  For example
+-%   TEXMFVAR = /var/lib/texmf
++%   TEXMFVAR = @prefix@/var/lib/texmf
+ % is used on many Linux systems.  In this case, set VARTEXFONTS like this
+ %   VARTEXFONTS = $TEXMFVAR/fonts
+ % and do not mention it in TEXMFDBS (but _do_ mention TEXMFVAR).
+@@ -336,7 +336,7 @@
+ % Used by DMP (ditroff-to-mpx), called by makempx -troff.
+ % The path given is correct for GROFF on Linux installed under /usr.
+ % Originally: TRFONTS = /usr/lib/font/devpost
+-TRFONTS = /usr/share/groff/current/font/devps
++TRFONTS = @prefix@/usr/share/groff/current/font/devps
+ MPSUPPORT = .;$TEXMF/metapost/support
+ 
+ % For xdvi to find mime.types and .mailcap, if they do not exist in
+@@ -398,7 +398,7 @@
+ %  Part 2: Non-path options.
+ 
+ % Write .log/.dvi/etc. files here, if the current directory is unwritable.
+-% TEXMFOUTPUT = /tmp
++% TEXMFOUTPUT = @prefix@/tmp
+ 
+ % If a dynamic file creation fails, log the command to this file, in
+ % either the current directory or TEXMFOUTPUT.  Set to the

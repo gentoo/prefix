@@ -58,6 +58,9 @@ src_unpack() {
 	# Construct a Gentoo site texmf directory
 	# that overlays the upstream supplied
 	epatch ${FILESDIR}/${P}-texmf-site.patch
+
+	# make sure config files also look in the prefix
+	epatch "${FILESDIR}"/${P}-prefix.patch
 }
 
 src_compile() {
