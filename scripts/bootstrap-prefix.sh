@@ -43,6 +43,7 @@ fetch() {
 				FETCH_COMMAND="curl -O"
 			else
 				eerror "no suitable download manager found (need wget or curl)"
+				eerror "could not download ${1##*/}"
 				exit 1
 			fi
 		fi
