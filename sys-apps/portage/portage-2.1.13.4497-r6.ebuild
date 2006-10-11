@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gentoo.org/"
 SRC_URI="http://dev.gentoo.org/~grobian/distfiles/prefix-${PN}-${PV}.tar.bz2"
 LICENSE="GPL-2"
 
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 
 SLOT="0"
 IUSE="build doc selinux"
@@ -35,6 +35,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-double_prefix.patch
 	epatch "${FILESDIR}"/${P}-root_slash.patch
 	epatch "${FILESDIR}"/${P}-prefix-qa.patch
+	epatch "${FILESDIR}"/${P}-solaris.patch
 	epatch "${FILESDIR}"/${P}-matt-various_fixes.patch
 	epatch "${FILESDIR}"/${P}-matt-config_protect.patch
 }
