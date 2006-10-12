@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.34 2006/08/16 16:24:20 liquidx Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.35 2006/10/10 19:59:06 marienz Exp $
 #
 # Author: Jon Nelson <jnelson@gentoo.org>
 # Current Maintainer: Alastair Tse <liquidx@gentoo.org>
@@ -53,8 +53,7 @@ distutils_src_install() {
 		${python} setup.py install --root=${EDEST} "$@" || die
 	fi
 
-	DDOCS="CHANGELOG COPYRIGHT KNOWN_BUGS MAINTAINERS PKG-INFO"
-	DDOCS="${DDOCS} CONTRIBUTORS TODO"
+	DDOCS="CHANGELOG KNOWN_BUGS MAINTAINERS PKG-INFO CONTRIBUTORS TODO"
 	DDOCS="${DDOCS} Change* MANIFEST* README*"
 
 	for doc in ${DDOCS}; do
