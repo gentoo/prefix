@@ -1,6 +1,10 @@
 # ChangeLog for www-client/lynx
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.44 2006/10/03 11:18:54 exg Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.45 2006/10/09 18:28:01 exg Exp $
+
+  09 Oct 2006; Emanuele Giaquinta <exg@gentoo.org> -lynx-2.8.6_rc1.ebuild,
+  -lynx-2.8.6_rc2.ebuild, -lynx-2.8.6_rc3.ebuild, -lynx-2.8.6_rc4.ebuild:
+  Cleanup.
 
 *lynx-2.8.6_rc5 (03 Oct 2006)
 
