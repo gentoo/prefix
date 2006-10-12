@@ -169,6 +169,7 @@ bootstrap_portage() {
 
 	einfo "Unpacking ${A%-*}"
 	export S="${PORTAGE_TMPDIR}"/portage-${PV}
+	ptmp=${S}
 	rm -rf "${S}" >& /dev/null
 	mkdir -p "${S}" >& /dev/null
 	cd "${S}"
@@ -190,6 +191,7 @@ bootstrap_portage() {
 
 	setup_portage
 
+	rm -R ${ptmp}
 	einfo "${A%-*} succesfully bootstrapped"
 }
 
@@ -216,6 +218,8 @@ bootstrap_odcctools() {
 	$MAKE || exit 1
 
 	$MAKE install || exit 1
+
+	rm -R ${S}
 }
 
 prep_gcc-apple() {
@@ -279,6 +283,8 @@ bootstrap_gcc() {
 	$MAKE ${MAKEOPTS} bootstrap-lean || exit 1
 
 	$MAKE install || exit 1
+
+	rm -R ${S}
 }
 
 bootstrap_gnu() {
@@ -307,6 +313,7 @@ bootstrap_gnu() {
 	einfo "Installing ${A%-*}"
 	$MAKE install || exit 1
 
+	rm -R ${S}
 	einfo "${A%-*} succesfully bootstrapped"
 }
 
