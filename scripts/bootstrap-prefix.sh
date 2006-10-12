@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
 trap 'exit 1' TERM KILL INT QUIT ABRT
 
@@ -39,8 +39,10 @@ fetch() {
 
 		mkdir -p "${DISTDIR}" >& /dev/null
 		einfo "Fetching ${1##*/}"
+		pushd `pwd` > /dev/null
 		cd "${DISTDIR}"
 		${FETCH_COMMAND} "$1"
+		popd
 	fi
 }
 
@@ -139,7 +141,7 @@ setup_portage() {
 }
 
 bootstrap_tree() {
-	PV="20061009"
+	PV="20061011"
 	for x in etc usr/{,s}bin var/tmp var/lib/portage var/log/portage;
 	do
 		[ -d "${ROOT}/${x}" ] || mkdir -p "${ROOT}/${x}"
@@ -147,11 +149,12 @@ bootstrap_tree() {
 	if [ ! -e ${ROOT}/usr/portage/.unpacked ]; then
 		cd ${ROOT}/usr
 		fetch "${PORTAGE_URL}/prefix-overlay-${PV}.tar.bz2"
-		bzip2 -dc prefix-overlay-${PV}.tar.bz2 | tar -xf - || exit 1
+		bzip2 -dc ${DISTDIR}/prefix-overlay-${PV}.tar.bz2 | tar -xf - || exit 1
+		# beware: fetch creates DISTDIR!!!
+		mv portage/distfiles prefix-overlay/
+		rm -R portage
 		mv prefix-overlay portage
 		touch portage/.unpacked
-		mkdir portage/distfiles
-		rm prefix-overlay-${PV}.tar.bz2
 	fi
 }
 
