@@ -42,7 +42,7 @@ fetch() {
 		pushd `pwd` > /dev/null
 		cd "${DISTDIR}"
 		${FETCH_COMMAND} "$1"
-		popd
+		popd > /dev/null
 	fi
 }
 
