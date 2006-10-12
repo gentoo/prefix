@@ -2,20 +2,9 @@
 
 trap 'exit 1' TERM KILL INT QUIT ABRT
 
-# Source functions to have colors and nice output
-
-if [ -e /etc/init.d/functions.sh ] ; then
-	source /etc/init.d/functions.sh
-
-	# Use our own custom script, else logger cause things to
-	# 'freeze' if we do not have a system logger running
-	esyslog() {
-		echo &> /dev/null
-	}
-else
-	eerror() { echo "!!! $*" 1>&2; }
-	einfo() { echo "* $*"; }
-fi
+# some basic output functions
+eerror() { echo "!!! $*" 1>&2; }
+einfo() { echo "* $*"; }
 
 ## Functions Start Here
 
@@ -157,7 +146,7 @@ bootstrap_tree() {
 	done
 	if [ ! -e ${ROOT}/usr/portage/.unpacked ]; then
 		cd ${ROOT}/usr
-		${FETCH_COMMAND} "${PORTAGE_URL}/prefix-overlay-${PV}.tar.bz2"
+		fetch "${PORTAGE_URL}/prefix-overlay-${PV}.tar.bz2"
 		bzip2 -dc prefix-overlay-${PV}.tar.bz2 | tar -xf - || exit 1
 		mv prefix-overlay portage
 		touch portage/.unpacked
