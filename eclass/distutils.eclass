@@ -45,6 +45,9 @@ distutils_src_install() {
 	# in site-packages. (eg. dev-java/java-config-2.x)
 	# - liquidx (14/08/2006)
 	pylibdir="$(${python} -c 'from distutils.sysconfig import get_python_lib; print get_python_lib()')"
+	# what comes out of python, includes our prefix, and the code below doesn't
+	# keep that in mind -- grobian
+	pylibdir=/${pylibdir#${EPREFIX}}
 	[ -n "${pylibdir}" ] && dodir "${pylibdir}"
 	
 	if has_version ">=dev-lang/python-2.3"; then
