@@ -16,7 +16,7 @@ KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="nls"
 
 RDEPEND="nls? ( virtual/libintl )"
-DEPEND="nls? ( sys-devel/gettext )"
+DEPEND="sys-devel/gettext"
 
 #test fail. I can't figure out why.
 RESTRICT=test
