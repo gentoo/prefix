@@ -12,7 +12,7 @@ MAKEOPTS="-j2"
 PLATFORM=$CHOST
 LDFLAGS="-Wl,-search_paths_first"
 
-FEATURES="-sandbox -userpriv"
+FEATURES="-sandbox -userpriv nostrip"
 
 USE="berkdb bzip2 emboss python zlib"
 USE_EXPAND="PLATFORM"
