@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r2.ebuild,v 1.20 2006/08/18 22:07:19 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r2.ebuild,v 1.21 2006/10/07 07:33:34 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -27,6 +27,7 @@ PERL_OLDVERSEN="5.8.0 5.8.2 5.8.4 5.8.5 5.8.6 5.8.7"
 DEPEND="berkdb? ( sys-libs/db )
 	gdbm? ( >=sys-libs/gdbm-1.8.3 )
 	>=sys-devel/libperl-${PV}-r1
+	elibc_FreeBSD? ( sys-freebsd/freebsd-mk-defs )
 	<sys-devel/libperl-5.9
 	!<perl-core/File-Spec-0.87
 	!<perl-core/Test-Simple-0.47-r1"
@@ -112,7 +113,7 @@ src_unpack() {
 		epatch ${FILESDIR}/${PN}-regexp-nossp.patch
 
 
-	# On PA7200, uname -a contains a single quote and we need to 
+	# On PA7200, uname -a contains a single quote and we need to
 	# filter it otherwise configure fails. See #125535.
 	epatch ${FILESDIR}/perl-hppa-pa7200-configure.patch
 
@@ -230,10 +231,8 @@ src_configure() {
 
 	[[ ${ELIBC} == "FreeBSD" ]] && myconf "-Dlibc=/usr/$(get_libdir)/libc.a"
 
-	if [[ $(get_libdir) != "lib" ]] ; then
-		# We need to use " and not ', as the written config.sh use ' ...
-		myconf "-Dlibpth=/usr/local/$(get_libdir) /$(get_libdir) /usr/$(get_libdir)"
-	fi
+	# We need to use " and not ', as the written config.sh use ' ...
+	myconf "-Dlibpth=${EPREFIX}/$(get_libdir) ${EPREFIX}/usr/$(get_libdir) /usr/local/$(get_libdir) /$(get_libdir) /usr/$(get_libdir)"
 
 	sh Configure -des \
 		-Darchname="${myarch}" \
