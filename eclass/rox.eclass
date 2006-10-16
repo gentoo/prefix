@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/rox.eclass,v 1.14 2006/10/07 16:34:30 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/rox.eclass,v 1.15 2006/10/14 20:27:21 swegener Exp $
 
 # ROX eclass Version 2
 
@@ -37,12 +37,12 @@ DEPEND="${DEPEND}
 
 if [[ -n "${ROX_LIB_VER}" ]]; then
 	DEPEND="${DEPEND}
-			  >=rox-base/rox-lib-${ROX_LIB_VER}"
+		>=rox-base/rox-lib-${ROX_LIB_VER}"
 fi
 
 if [[ -n "${ROX_CLIB_VER}" ]]; then
 	DEPEND="${DEPEND}
-			  >=rox-base/rox-clib-${ROX_CLIB_VER}"
+		>=rox-base/rox-clib-${ROX_CLIB_VER}"
 fi
 
 RDEPEND="${DEPEND}"
@@ -106,22 +106,22 @@ rox_src_install() {
 
 	# set permissions for programs where we have rox_run script (all who using rox-clib )
 	if [ -f "${D}/usr/lib/rox/${APPNAME}/rox_run" ]; then
-	    chmod 755 "${D}/usr/lib/rox/${APPNAME}/rox_run"
+		chmod 755 "${D}/usr/lib/rox/${APPNAME}/rox_run"
 	fi
 
 	# some programs have choice_install script
 	if [ -f "${D}/usr/lib/rox/${APPNAME}/choice_install" ]; then
-	    chmod 755 "${D}/usr/lib/rox/${APPNAME}/choice_install"
+		chmod 755 "${D}/usr/lib/rox/${APPNAME}/choice_install"
 	fi
 
 	# set permissions on all binares files for compiled programs per arch
 	if [ -n "${SET_PERM}" ]; then
-	    ARCH="`uname -m`"
-	    case ${ARCH} in
-		i?86) ARCH=ix86 ;;
-	    esac
-	    PLATFORM="`uname -s`-${ARCH}"
-	    chmod -R 755 "${D}/usr/lib/rox/${APPNAME}/${PLATFORM}"
+		ARCH="`uname -m`"
+		case ${ARCH} in
+			i?86) ARCH=ix86 ;;
+		esac
+		PLATFORM="`uname -s`-${ARCH}"
+		chmod -R 755 "${D}/usr/lib/rox/${APPNAME}/${PLATFORM}"
 	fi
 
 	#create a script in bin to run the application from command line

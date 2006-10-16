@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.28 2006/08/16 16:24:20 liquidx Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.29 2006/10/14 20:27:21 swegener Exp $
 #
 # Author: Alastair Tse <liquidx@gentoo.org>
 #
@@ -72,7 +72,7 @@ __python_version_extract() {
 	export PYVER_MAJOR=${verstr:0:1}
 	export PYVER_MINOR=${verstr:2:1}
 	if [ "${verstr:3}x" = ".x" ]; then
-	   export PYVER_MICRO=${verstr:4}
+		export PYVER_MICRO=${verstr:4}
 	fi
 	export PYVER="${PYVER_MAJOR}.${PYVER_MINOR}"
 }

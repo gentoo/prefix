@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php5-sapi-r2.eclass,v 1.40 2006/07/05 07:57:33 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5-sapi-r2.eclass,v 1.41 2006/10/14 20:27:21 swegener Exp $
 #
 # eclass/php5-sapi-r2.eclass
 #               Eclass for building different php5 SAPI instances
@@ -158,7 +158,7 @@ php5-sapi-r2_check_awkward_uses() {
 		eerror "Support will be added once MySQL 4.1 is no longer package-masked"
 		eerror
 		die "mysqli not supported yet"
-	 fi
+	fi
 
 	# recode not available in 5.0.0; upstream bug
 	if useq recode && [ "$PHP_PV" == "5.0.0" ]; then

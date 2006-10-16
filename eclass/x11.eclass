@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x11.eclass,v 1.9 2006/10/11 02:29:29 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x11.eclass,v 1.10 2006/10/14 20:27:21 swegener Exp $
 #
 # Author: Seemant Kulleen <seemant@gentoo.org>
 #
@@ -53,7 +53,7 @@ check_version_h() {
 get_KV_info() {
 	check_version_h
 	get_version
-	
+
 	# Not used anywhere, leaving here just in case...
 	export KV_full="${KV_FULL}"
 	export KV_major="${KV_MAJOR}"

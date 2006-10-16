@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig-2.eclass,v 1.12 2006/10/04 13:58:58 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig-2.eclass,v 1.13 2006/10/14 20:27:21 swegener Exp $
 #
 # mozconfig.eclass: the new mozilla.eclass
 
@@ -25,8 +25,8 @@ RDEPEND="|| ( ( x11-libs/libXrender
 	>=x11-libs/pango-1.10.1
 	>=dev-libs/libIDL-0.8.0
 	gnome? ( >=gnome-base/gnome-vfs-2.3.5
-		 >=gnome-base/libgnomeui-2.2.0 )
-	 !<x11-base/xorg-x11-6.7.0-r2
+		>=gnome-base/libgnomeui-2.2.0 )
+	!<x11-base/xorg-x11-6.7.0-r2
 	>=x11-libs/cairo-1.0.0"
 	#According to bugs #18573, #204520, and couple of others in Mozilla's
 	#bugzilla. libmng and mng support has been removed in 2003.

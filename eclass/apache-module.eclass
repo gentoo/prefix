@@ -1,7 +1,7 @@
 # Copyright 2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
 # Author Michael Tindal <urilith@gentoo.org>
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-module.eclass,v 1.15 2006/06/10 16:19:54 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-module.eclass,v 1.17 2006/10/14 20:27:20 swegener Exp $
 
 inherit depend.apache
 
@@ -52,7 +52,7 @@ APACHE2_MOD_CONF=""
 ## APACHE1_MOD_DEFINE, APACHE2_MOD_DEFINE
 ##
 ## Name of define (eg FOO) to use in conditional loading of the installed
-## module/it's config file
+## module/it's config file, multiple defines should be space separated
 ####
 APACHE1_MOD_DEFINE=""
 APACHE2_MOD_DEFINE=""
@@ -107,10 +107,10 @@ apache_mod_file() {
 
 	if [ "${APACHE_VERSION}" == "1" ]; then
 		[ -n "${APACHE1_MOD_FILE}" ] && MOD_FILE="${APACHE1_MOD_FILE}"
-	    [ -z "${MOD_FILE}" ] && MOD_FILE="$(apache_cd_dir)/${PN}.so"
+		[ -z "${MOD_FILE}" ] && MOD_FILE="$(apache_cd_dir)/${PN}.so"
 	else
 		[ -n "${APACHE2_MOD_FILE}" ] && MOD_FILE="${APACHE2_MOD_FILE}"
-	    [ -z "${MOD_FILE}" ] && MOD_FILE="$(apache_cd_dir)/.libs/${PN}.so"
+		[ -z "${MOD_FILE}" ] && MOD_FILE="$(apache_cd_dir)/.libs/${PN}.so"
 	fi
 
 	debug-print apache_mod_file: MOD_FILE=${MOD_FILE}
@@ -208,9 +208,11 @@ apache1_pkg_postinst() {
 	debug-print-function apache1_pkg_postinst
 
 	if [ -n "${APACHE1_MOD_DEFINE}" ]; then
+		local my_opts="-D ${APACHE1_MOD_DEFINE// / -D }"
+
 		einfo
 		einfo "To enable ${PN}, you need to edit your /etc/conf.d/apache file and"
-		einfo "add '-D ${APACHE1_MOD_DEFINE}' to APACHE_OPTS."
+		einfo "add '${my_opts}' to APACHE_OPTS."
 		einfo
 	fi
 	if [ -n "${APACHE1_MOD_CONF}" ] ; then
@@ -320,9 +322,11 @@ apache2_pkg_postinst() {
 	debug-print-function apache2_pkg_postinst
 
 	if [ -n "${APACHE2_MOD_DEFINE}" ]; then
+		local my_opts="-D ${APACHE2_MOD_DEFINE// / -D }"
+
 		einfo
 		einfo "To enable ${PN}, you need to edit your /etc/conf.d/apache2 file and"
-		einfo "add '-D ${APACHE2_MOD_DEFINE}' to APACHE2_OPTS."
+		einfo "add '${my_opts}' to APACHE2_OPTS."
 		einfo
 	fi
 	if [ -n "${APACHE2_MOD_CONF}" ] ; then

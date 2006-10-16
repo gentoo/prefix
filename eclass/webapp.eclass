@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/webapp.eclass,v 1.44 2006/07/11 02:36:23 rl03 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/webapp.eclass,v 1.45 2006/10/14 20:27:21 swegener Exp $
 #
 # eclass/webapp.eclass
 #				Eclass for installing applications to run under a web server
@@ -374,7 +374,7 @@ function webapp_pkg_setup ()
 
 			if [ "$?" != "0" ]; then
 				# okay, whatever is there, it isn't webapp-config-compatible
-			    ewarn "You already have something installed in ${my_dir}"
+				ewarn "You already have something installed in ${my_dir}"
 				ewarn
 				ewarn "Whatever is in ${my_dir}, it's not"
 				ewarn "compatible with webapp-config."

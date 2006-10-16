@@ -1,11 +1,11 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.18 2006/09/08 13:28:17 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.19 2006/10/14 20:27:21 swegener Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
 #
-# Note: HOMEPAGE and LICENSE are set in appropriate ebuild, as 
+# Note: HOMEPAGE and LICENSE are set in appropriate ebuild, as
 # gnat is developed by FSF and AdaCore "in parallel"
 
 inherit eutils versionator toolchain-funcs flag-o-matic multilib libtool fixheadtails gnuconfig
@@ -56,7 +56,7 @@ PN_GnatPro="gnat-pro"
 # so set it here for what we can..
 if  [[ ${PN} == "${PN_GnatGCC}" ]] || \
 	[[ ${PN} == "${PN_GnatGpl}" ]] || \
-	[[ ${PN} == "asis" ]]; 
+	[[ ${PN} == "asis" ]];
 then
 	GCCVER="${GNATRELEASE}"
 elif [[ ${PN} == "${PN_GnatPro}" ]] ; then
@@ -240,7 +240,7 @@ should_we_eselect_gnat() {
 
 	# if the current config is invalid, we definitely want a new one
 	# Note: due to bash quirkiness, the following must not be 1 line
-	local curr_config 
+	local curr_config
 	curr_config=$(eselect --no-color gnat show | grep ${CTARGET} | awk '{ print $1 }') || return 0
 	[[ -z ${curr_config} ]] && return 0
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cvs.eclass,v 1.64 2006/06/15 14:45:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cvs.eclass,v 1.65 2006/10/14 20:27:21 swegener Exp $
 #
 # Maintainer: vapier@gentoo.org (and anyone who wants to help)
 
@@ -487,14 +487,14 @@ cvs_src_unpack() {
 	local ECVS_LOCALNAME="${ECVS_LOCALNAME}"
 
 	if [ -z "$ECVS_LOCALNAME" ]; then
-	    ECVS_LOCALNAME="$ECVS_MODULE"
+		ECVS_LOCALNAME="$ECVS_MODULE"
 	fi
 
 	local offline_pkg_var="ECVS_OFFLINE_${PN}"
 	if [ "${!offline_pkg_var}" == "1" -o "$ECVS_OFFLINE" == "1" -o "$ECVS_SERVER" == "offline" ]; then
 		# We're not required to fetch anything; the module already
 		# exists and shouldn't be updated.
-	 	if [ -d "${ECVS_TOP_DIR}/${ECVS_LOCALNAME}" ]; then
+		if [ -d "${ECVS_TOP_DIR}/${ECVS_LOCALNAME}" ]; then
 			debug-print "$FUNCNAME: offline mode"
 		else
 			debug-print "$FUNCNAME: Offline mode specified but directory ${ECVS_TOP_DIR}/${ECVS_LOCALNAME} not found, exiting with error"

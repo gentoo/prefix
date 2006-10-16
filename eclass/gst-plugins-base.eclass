@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.5 2006/09/14 21:16:37 zaheerm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.6 2006/10/14 20:27:21 swegener Exp $
 
 # Author : foser <foser@gentoo.org>
 
@@ -83,17 +83,17 @@ gst-plugins-base_src_unpack() {
 	gst-plugins10_find_plugin_dir
 	sed -e "s:\$(top_builddir)/gst-libs/gst/interfaces/libgstinterfaces:/usr/$(get_libdir)/libgstinterfaces:" \
 		-e "s:\${top_builddir}/gst-libs/gst/interfaces/libgstinterfaces:/usr/$(get_libdir)/libgstinterfaces:" \
-	        -e "s:\$(top_builddir)/gst-libs/gst/audio/libgstaudio:/usr/$(get_libdir)/libgstaudio:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/audio/libgstaudio:/usr/$(get_libdir)/libgstaudio:" \
 		-e "s:\${top_builddir}/gst-libs/gst/audio/libgstaudio:/usr/$(get_libdir)/libgstaudio:" \
-	        -e "s:\$(top_builddir)/gst-libs/gst/riff/libgstriff:/usr/$(get_libdir)/libgstriff:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/riff/libgstriff:/usr/$(get_libdir)/libgstriff:" \
 		-e "s:\${top_builddir}/gst-libs/gst/riff/libgstriff:/usr/$(get_libdir)/libgstriff:" \
-	        -e "s:\$(top_builddir)/gst-libs/gst/tag/libgsttag:/usr/$(get_libdir)/libgsttag:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/tag/libgsttag:/usr/$(get_libdir)/libgsttag:" \
 		-e "s:\${top_builddir}/gst-libs/gst/tag/libgsttag:/usr/$(get_libdir)/libgsttag:" \
-	        -e "s:\$(top_builddir)/gst-libs/gst/video/libgstvideo:/usr/$(get_libdir)/libgstvideo:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/video/libgstvideo:/usr/$(get_libdir)/libgstvideo:" \
 		-e "s:\${top_builddir}/gst-libs/gst/video/libgstvideo:/usr/$(get_libdir)/libgstvideo:" \
-	        -e "s:\$(top_builddir)/gst-libs/gst/netbuffer/libgstnetbuffer:/usr/$(get_libdir)/libgstnetbuffer:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/netbuffer/libgstnetbuffer:/usr/$(get_libdir)/libgstnetbuffer:" \
 		-e "s:\${top_builddir}/gst-libs/gst/netbuffer/libgstnetbuffer:/usr/$(get_libdir)/libgstnetbuffer:" \
-	        -e "s:\$(top_builddir)/gst-libs/gst/rtp/libgstrtp:/usr/$(get_libdir)/libgstrtp:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/rtp/libgstrtp:/usr/$(get_libdir)/libgstrtp:" \
 		-e "s:\${top_builddir}/gst-libs/gst/rtp/libgstrtp:/usr/$(get_libdir)/libgstrtp:" \
 		-i Makefile.in
 	cd ${S}

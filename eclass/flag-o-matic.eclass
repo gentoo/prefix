@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.110 2006/08/01 00:49:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.111 2006/10/14 20:27:21 swegener Exp $
 #
 # Maintainer: base-system@gentoo.org
 
@@ -528,7 +528,7 @@ replace-sparc64-flags() {
 			CFLAGS="${CFLAGS/-mcpu=${x}/-mcpu=v8}"
 		done
 	else
-	 	for x in ${SPARC64_CPUS}; do
+		for x in ${SPARC64_CPUS}; do
 			CFLAGS="${CFLAGS/-mcpu=${x}/-mcpu=v8 -mtune=${x}}"
 		done
 	fi
@@ -538,7 +538,7 @@ replace-sparc64-flags() {
 			CXXFLAGS="${CXXFLAGS/-mcpu=${x}/-mcpu=v8}"
 		done
 	else
-	 	for x in ${SPARC64_CPUS}; do
+		for x in ${SPARC64_CPUS}; do
 			CXXFLAGS="${CXXFLAGS/-mcpu=${x}/-mcpu=v8 -mtune=${x}}"
 		done
 	fi

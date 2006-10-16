@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xmms-plugin.eclass,v 1.22 2006/06/28 09:36:30 metalgod Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xmms-plugin.eclass,v 1.23 2006/10/14 20:27:21 swegener Exp $
 #
 # Jeremy Huddleston <eradicator@gentoo.org>
 # Luis Medinas	<metalgod@gentoo.org>
@@ -33,8 +33,8 @@ HOMEPAGE="http://www.xmms.org"
 LICENSE="GPL-2"
 
 SRC_URI="http://www.xmms.org/files/1.2.x/xmms-${PV}.tar.bz2
-	 ${M4_VER:+${GENTOO_URI}/xmms-${PV}-gentoo-m4-${M4_VER}.tar.bz2}
-	 ${PATCH_VER:+${GENTOO_URI}/xmms-${PV}-gentoo-patches-${PATCH_VER}.tar.bz2}"
+	${M4_VER:+${GENTOO_URI}/xmms-${PV}-gentoo-m4-${M4_VER}.tar.bz2}
+	${PATCH_VER:+${GENTOO_URI}/xmms-${PV}-gentoo-patches-${PATCH_VER}.tar.bz2}"
 
 # Set S to something which exists
 S="${WORKDIR}/xmms-${PV}"
@@ -62,9 +62,10 @@ xmms-plugin_src_unpack() {
 	fi
 
 	cd ${S}/${PLUGIN_PATH}
-	sed -i -e "s:-I\$(top_srcdir)::g" \
-	       -e "s:\$(top_builddir)/libxmms/libxmms.la:/usr/$(get_libdir)/libxmms.la:g" \
-	       Makefile.am || die "Failed to edit Makefile.am"
+	sed -i \
+		-e "s:-I\$(top_srcdir)::g" \
+		-e "s:\$(top_builddir)/libxmms/libxmms.la:/usr/$(get_libdir)/libxmms.la:g" \
+		Makefile.am || die "Failed to edit Makefile.am"
 
 	cd ${S}
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.314 2006/10/02 22:35:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.315 2006/10/14 20:27:21 swegener Exp $
 
 HOMEPAGE="http://gcc.gnu.org/"
 LICENSE="GPL-2 LGPL-2.1"
@@ -1032,7 +1032,7 @@ gcc_src_unpack() {
 
 	${ETYPE}_src_unpack || die "failed to ${ETYPE}_src_unpack"
 
-        # protoize don't build on FreeBSD, skip it
+	# protoize don't build on FreeBSD, skip it
 	if ! is_crosscompile && ! use elibc_FreeBSD ; then
 		# enable protoize / unprotoize
 		sed -i -e '/^LANGUAGES =/s:$: proto:' "${S}"/gcc/Makefile.in

@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.35 2006/10/08 13:11:28 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.36 2006/10/12 16:31:45 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -349,7 +349,8 @@ vdr-plugin_pkg_config_final() {
 	rm ${conf_orig}
 }
 
-vdr-plugin_pkg_config() {
+vdr-plugin_pkg_config_old() {
+	einfo "Using interface of gentoo-vdr-scripts-0.3.6 and older"
 	if [[ -z "${INSTALLPLUGIN}" ]]; then
 		INSTALLPLUGIN="${VDRPLUGIN}"
 	fi
@@ -408,6 +409,52 @@ vdr-plugin_pkg_config() {
 		-e ${LINE}'s/" /"/g'
 
 	vdr-plugin_pkg_config_final
+}
+
+vdr-plugin_pkg_config_new() {
+	einfo "Using interface introduced with gentoo-vdr-scripts-0.3.7"
+	if [[ -z "${INSTALLPLUGIN}" ]]; then
+		INSTALLPLUGIN="${VDRPLUGIN}"
+	fi
+
+	active=0
+	# First test if plugin is already inside PLUGINS
+	local conf=/etc/conf.d/vdr.plugins
+	exec 3<${conf}
+	while read -u 3 line; do
+		[[ ${line} == "" ]] && continue
+		[[ ${line:0:1} == "#" ]] && continue
+		set -- ${line}
+		[[ ${1} == ${INSTALLPLUGIN} ]] && active=1
+	done
+	exec 3<&-
+
+	if [[ $active == 0 ]]; then
+		einfo "Adding ${INSTALLPLUGIN} to active plugins."
+
+		# The pure edit process.
+		echo "${INSTALLPLUGIN}" >> "${conf}"
+	else
+		einfo "${INSTALLPLUGIN} already activated"
+		echo
+		read -p "Do you want to deactivate ${INSTALLPLUGIN} (yes/no) " answer
+		if [[ "${answer}" != "yes" ]]; then
+			einfo "aborted"
+			return
+		fi
+		einfo "Removing ${INSTALLPLUGIN} from active plugins."
+
+		# The pure edit process
+		sed -i "${conf}" -e "/^[[:space:]]*${INSTALLPLUGIN}[[:space:]]*\$/d"
+	fi
+}
+
+vdr-plugin_pkg_config() {
+	if has_version ">media-tv/gentoo-vdr-scripts-0.3.6"; then
+		vdr-plugin_pkg_config_new
+	else
+		vdr-plugin_pkg_config_old
+	fi
 }
 
 fix_vdr_libsi_include()

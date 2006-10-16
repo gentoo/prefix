@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.193 2006/10/08 20:00:04 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.194 2006/10/12 02:58:51 dostrow Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -435,11 +435,15 @@ compile_headers() {
 		# if K_DEFCONFIG isn't set, force to "defconfig"
 		# needed by mips
 		if [[ -z ${K_DEFCONFIG} ]]; then
-			case ${CTARGET} in
-				powerpc64*)	K_DEFCONFIG="ppc64_defconfig";;
-				powerpc*)	K_DEFCONFIG="pmac32_defconfig";;
-				*)			K_DEFCONFIG="defconfig";;
-			esac
+			if [[ $(KV_to_int ${KV}) -ge $(KV_to_int 2.6.16) ]]; then
+				case ${CTARGET} in
+					powerpc64*)	K_DEFCONFIG="ppc64_defconfig";;
+					powerpc*)	K_DEFCONFIG="pmac32_defconfig";;
+					*)			K_DEFCONFIG="defconfig";;
+				esac
+			else
+				K_DEFCONFIG="defconfig"
+			fi
 		fi
 
 		# if there arent any installed headers, then there also isnt an asm

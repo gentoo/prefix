@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/perl-module.eclass,v 1.102 2006/09/02 00:20:13 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/perl-module.eclass,v 1.103 2006/10/14 20:27:21 swegener Exp $
 #
 # Author: Seemant Kulleen <seemant@gentoo.org>
 # Maintained by the Perl herd <perl@gentoo.org>
@@ -171,7 +171,7 @@ perl-module_src_install() {
 		rm -rf ${FILE}
 	done
 	find ${D}/usr/share/man -depth -type d 2>/dev/null | xargs -r rmdir 2>/dev/null
-	
+
 	fixlocalpod
 
 	for FILE in `find ${D} -type f |grep -v '.so'`; do
@@ -242,15 +242,15 @@ perlinfo() {
 	VENDOR_ARCH=${installvendorarch}
 
 	if [ "${PREFER_BUILDPL}" == "yes" ]; then
-	   if [ ! -f ${S}/Makefile.PL ] || [ ${PN} == "module-build" ]; then
-		if [ -f ${S}/Build.PL ]; then
-			if [ ${PN} == "module-build" ]; then
-				BUILDER_VER="1" # A bootstrapping if you will
-			else
-				BUILDER_VER=`perl -MModule::Build -e 'print "$Module::Build::VERSION;"' `
+		if [ ! -f ${S}/Makefile.PL ] || [ ${PN} == "module-build" ]; then
+			if [ -f ${S}/Build.PL ]; then
+				if [ ${PN} == "module-build" ]; then
+					BUILDER_VER="1" # A bootstrapping if you will
+				else
+					BUILDER_VER=`perl -MModule::Build -e 'print "$Module::Build::VERSION;"' `
+				fi
 			fi
 		fi
-	   fi
 	fi
 
 	if [ -f "${EPREFIX}"/usr/bin/perl ]
@@ -284,16 +284,16 @@ updatepod() {
 	if [ -d "${POD_DIR}" ]
 	then
 		for FILE in `find ${POD_DIR} -type f -name "*.pod.arch"`; do
-		   cat ${FILE} >> ${ARCH_LIB}/perllocal.pod
-		   rm -f ${FILE}
+			cat ${FILE} >> ${ARCH_LIB}/perllocal.pod
+			rm -f ${FILE}
 		done
 		for FILE in `find ${POD_DIR} -type f -name "*.pod.site"`; do
-		   cat ${FILE} >> ${SITE_LIB}/perllocal.pod
-		   rm -f ${FILE}
+			cat ${FILE} >> ${SITE_LIB}/perllocal.pod
+			rm -f ${FILE}
 		done
 		for FILE in `find ${POD_DIR} -type f -name "*.pod.vendor"`; do
-		   cat ${FILE} >> ${VENDOR_LIB}/perllocal.pod
-		   rm -f ${FILE}
+			cat ${FILE} >> ${VENDOR_LIB}/perllocal.pod
+			rm -f ${FILE}
 		done
 	fi
 }

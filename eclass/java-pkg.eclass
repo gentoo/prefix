@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg.eclass,v 1.44 2006/09/29 03:40:18 nichoj Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg.eclass,v 1.45 2006/10/14 20:27:21 swegener Exp $
 
 inherit multilib
 
@@ -18,10 +18,10 @@ export WANT_JAVA_CONFIG="1"
 # uses java-pkg_pkg_setup
 java-pkg_pkg_setup() {
 	java-pkg_announce-qa-violation "using deprecated eclass java-pkg"
-	
+
 	# We need to do a little magic if java-config-2 is around
 	if has_version "=dev-java/java-config-2*"; then
-		# we only want to enable the Java stuff if 
+		# we only want to enable the Java stuff if
 		# there isn't a Java use flag (means its a pure Java pckage)
 		# or if there is a Java use flag and it is enabled
 		if ! hasq java ${IUSE} || use java; then

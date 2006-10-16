@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.6 2006/09/14 21:16:37 zaheerm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.7 2006/10/14 20:27:21 swegener Exp $
 
 #
 # Original Author: Saleem Abdulrasool <compnerd@gentoo.org>
@@ -23,9 +23,9 @@ SRC_URI="http://gstreamer.freedesktop.org/src/gst-plugins-bad/${MY_P}.tar.bz2"
 # 6/2/2006 - zaheerm
 if [ "${PN}" != "${MY_PN}" ]; then
 RDEPEND="=media-libs/gstreamer-0.10*
-		 =media-libs/gst-plugins-base-0.10*
-		 >=dev-libs/glib-2.6
-		 >=dev-libs/liboil-0.3"
+		=media-libs/gst-plugins-base-0.10*
+		>=dev-libs/glib-2.6
+		>=dev-libs/liboil-0.3"
 DEPEND="${RDEPEND}
 		sys-apps/sed
 		sys-devel/gettext"
