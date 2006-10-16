@@ -30,12 +30,6 @@ PROVIDE="virtual/portage"
 
 S=${WORKDIR}/prefix-${PN}-${PV}
 
-src_unpack() {
-	unpack ${A}
-#	epatch "${FILESDIR}"/${P}-matt-various_fixes.patch
-#	epatch "${FILESDIR}"/${P}-matt-config_protect.patch
-}
-
 src_compile() {
 	econf \
 		--with-user=${PORTAGE_USER:-portage} \
