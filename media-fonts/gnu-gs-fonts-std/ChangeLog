@@ -1,0 +1,38 @@
+# ChangeLog for media-fonts/gnu-gs-fonts-std
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/gnu-gs-fonts-std/ChangeLog,v 1.10 2006/04/02 17:44:38 flameeyes Exp $
+
+  02 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  gnu-gs-fonts-std-8.11.ebuild:
+  Add ~x86-fbsd keyword.
+
+  04 Nov 2005; Fabian Groffen <grobian@gentoo.org>
+  gnu-gs-fonts-std-8.11.ebuild:
+  Marked ppc-macos as deep dependency of bug #109997
+
+  27 Oct 2004; Kito <kito@gentoo.org> gnu-gs-fonts-std-8.11.ebuild:
+  added ~ppc-macos
+
+  16 Oct 2004; Chris Bainbridge <chrb@gentoo.org>
+  gnu-gs-fonts-std-8.11.ebuild:
+  ftp site files have disappeared, changed to sourceforge gs ftp
+
+*gnu-gs-fonts-std-8.11 (29 Sep 2004)
+
+  29 Sep 2004; Heinrich Wendel <lanius@gentoo.org>
+  +gnu-gs-fonts-std-8.11.ebuild:
+  version bump and mark stable because it's needed in ghostscript and there are
+  only fonts
+
+  03 Feb 2004; <augustus@gentoo.org> gnu-gs-fonts-std-6.0.ebuild:
+  Added ~amd64 keyword.
+
+  09 Dec 2003; Heinrich Wendel <lanius@gentoo.org>
+  gnu-gs-fonts-std-6.0.ebuild:
+  changed app-text/ghostscript to virtual/ghostscript
+
+*gnu-gs-fonts-std-6.0 (27 Jan 2003)
+  25 Feb 2003; Thomas Raschbacher <lordvan@gentoo.org>: gnu-gs-fonts-std-6.0.ebuild
+  marked stable for all archs(since it are only fonts)
+  27 Jan 2003; Thomas Raschbacher <lordvan@gentoo.org>: gnu-gs-fonts-std-6.0.ebuild
+  initial Version (from Kfir Ozer <ufk2k@yahoo.com>) bug #11528
