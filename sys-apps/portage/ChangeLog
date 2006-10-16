@@ -5,6 +5,9 @@
 # See the gentoo-src Portage ChangeLog for up-to-date release information:
 # http://www.gentoo.org/cgi-bin/viewcvs.cgi/portage/ChangeLog?rev=HEAD&cvsroot=gentoo-src&content-type=text/vnd.viewcvs-markup
 
+  16 Oct 2006; Fabian Groffen <grobian@gentoo.org> ChangeLog:
+  New release 4721 which is based on a complete merge of the trunk code.
+
   11 Oct 2006; Fabian Groffen <grobian@gentoo.org> ChangeLog:
   Since the bootstrap script now uses 4497, removed 4415.  Bumped 4497
   to -r6, to include root_slash patch, such that original ebuilds and
@@ -15,16 +18,3 @@
   files. Added QA check for files installed outside the prefix, which also
   dies if it finds files.  Bumping to -r5 to force everyone using the
   new QA checks for better feedback on problem packages in the tree.
-
-*portage-2.1.0_alpha20050718 (11 Aug 2005)
-
-  11 Aug 2005; Marius Mauch <genone@gentoo.org>
-  +portage-2.1.0_alpha20050718.ebuild:
-  New pre alpha snapshot for 2.1 which is NOT the one with the new dep
-  resolver, you'll have to wait for the rewrite for that. It's in the works,
-  really. Meanwhile, enjoy this gapfiller. No release notes yet, so here a
-  *very* short and incomplete list of new features: ebuild-daemon, elog,
-  confcache, verify-rdepend, fakeroot, autotools, extended bashrc, set
-  framework, transport framework. All bugreports should go to bug #102126.
-  Have fun with it.
-
