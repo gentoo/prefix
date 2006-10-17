@@ -70,7 +70,7 @@ src_install() {
 
 	ebegin "Adjusting to prefix"
 	sed \
-		-e "s|GENTOO_PORTAGE_EPREFIX|${EPREFIX}|g" \
+		-e "s|@GENTOO_PORTAGE_EPREFIX@|${EPREFIX}|g" \
 		"${FILESDIR}"/05portage.envd \
 		> "${T}"/05portage.envd
 	eend $?

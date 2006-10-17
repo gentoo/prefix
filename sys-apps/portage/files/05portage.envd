@@ -1,0 +1,1 @@
+PYTHONPATH="@GENTOO_PORTAGE_EPREFIX@/usr/lib/portage/pym"

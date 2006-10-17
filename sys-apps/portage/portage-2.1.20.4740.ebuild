@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gentoo.org/"
 SRC_URI="http://dev.gentoo.org/~grobian/distfiles/prefix-${PN}-${PV}.tar.bz2"
 LICENSE="GPL-2"
 
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 
 SLOT="0"
 IUSE="build doc selinux"
@@ -28,10 +28,18 @@ RDEPEND="!build? ( >=sys-apps/sed-4.0.5 \
 
 PROVIDE="virtual/portage"
 
-S=${WORKDIR}/prefix-${PN}-${PV/-r1/}
+S=${WORKDIR}/prefix-${PN}-${PV}
+
+src_unpack() {
+	unpack ${A}
+
+	cp "${FILESDIR}"/05portage.envd "${T}"/05portage.envd
+	# after this function we can do the sedding like this:
+	#eprefixify "${T}"/05portage.envd
+	sed -i -e "s|@GENTOO_PORTAGE_EPREFIX@|${EPREFIX}|g" "${T}"/05portage.envd
+}
 
 src_compile() {
-	echo ${S}
 	econf \
 		--with-user=${PORTAGE_USER:-portage} \
 		--with-group=${PORTAGE_GROUP:-portage} \
@@ -57,12 +65,6 @@ src_install() {
 	dodir /var/log/portage
 	keepdir /etc/portage
 
-	ebegin "Adjusting to prefix"
-	sed \
-		-e "s|GENTOO_PORTAGE_EPREFIX|${EPREFIX}|g" \
-		"${FILESDIR}"/05portage.envd \
-		> "${T}"/05portage.envd
-	eend $?
 	doenvd "${T}"/05portage.envd
 }
 
