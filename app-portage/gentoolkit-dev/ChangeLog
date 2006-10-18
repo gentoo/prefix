@@ -1,0 +1,151 @@
+# ChangeLog for app-portage/gentoolkit-dev
+# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.34 2006/09/18 17:25:07 uberlord Exp $
+
+  18 Sep 2006; Roy Marples <uberlord@gentoo.org>
+  gentoolkit-dev-0.2.6.1.ebuild:
+  Keyworded ~x86-fbsd
+
+*gentoolkit-dev-0.2.6.1 (25 Mar 2006)
+
+  25 Mar 2006; Aron Griffis <agriffis@gentoo.org>
+  -gentoolkit-dev-0.2.6.ebuild, +gentoolkit-dev-0.2.6.1.ebuild:
+  Re-release because the previous release wasn't up to date
+
+*gentoolkit-dev-0.2.6 (25 Mar 2006)
+
+  25 Mar 2006; Aron Griffis <agriffis@gentoo.org>
+  +gentoolkit-dev-0.2.6.ebuild:
+  Update eviewcvs for sources.gentoo.org; make it work with subversion too
+
+  24 Aug 2005; Aron Griffis <agriffis@gentoo.org>
+  -gentoolkit-dev-0.2.3.ebuild, -gentoolkit-dev-0.2.4.ebuild,
+  gentoolkit-dev-0.2.5.ebuild:
+  stable everywhere
+
+*gentoolkit-dev-0.2.5 (12 Jul 2005)
+
+  12 Jul 2005; Aron Griffis <agriffis@gentoo.org>
+  +gentoolkit-dev-0.2.5.ebuild:
+  Fix echangelog to work correctly with gtk+ #92966
+
+  27 May 2005; Aron Griffis <agriffis@gentoo.org>
+  gentoolkit-dev-0.2.4.ebuild:
+  stable everywhere
+
+  27 May 2005; Aron Griffis <agriffis@gentoo.org>
+  gentoolkit-dev-0.2.4.ebuild:
+  fix SRC_URI to point to mirrors instead of ~karltk #92356
+
+*gentoolkit-dev-0.2.4 (12 May 2005)
+
+  12 May 2005; Aron Griffis <agriffis@gentoo.org>
+  -gentoolkit-dev-0.2.0_pre1.ebuild, -gentoolkit-dev-0.2.0_pre2.ebuild,
+  -gentoolkit-dev-0.2.0_pre3.ebuild, -gentoolkit-dev-0.2.0_pre4.ebuild,
+  -gentoolkit-dev-0.2.1.ebuild, -gentoolkit-dev-0.2.2.ebuild,
+  gentoolkit-dev-0.2.3.ebuild, +gentoolkit-dev-0.2.4.ebuild:
+  Bump to 0.2.4. Mark 0.2.3 stable on arm and s390. Trim a bazillion old
+  versions.
+
+  05 May 2005; Michael Hanselmann <hansmi@gentoo.org>
+  gentoolkit-dev-0.2.3.ebuild:
+  Stable on hppa.
+
+  01 May 2005; Joshua Kinard <kumba@gentoo.org> gentoolkit-dev-0.2.3.ebuild:
+  Marked stable on mips.
+
+  16 Apr 2005; <gongloo@gentoo.org> gentoolkit-dev-0.2.3.ebuild:
+  Stable on ppc-macos.
+
+  08 Apr 2005; Markus Rothe <corsair@gentoo.org>
+  gentoolkit-dev-0.2.3.ebuild:
+  Stable on ppc64
+
+  08 Apr 2005; Karl Trygve Kalleberg <karltk@gentoo.org>
+  gentoolkit-dev-0.2.2.ebuild:
+  Marked stable on x86.
+
+  03 Apr 2005; Joseph Jezak <josejx@gentoo.org> gentoolkit-dev-0.2.3.ebuild:
+  Marked ppc stable.
+
+  01 Apr 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  gentoolkit-dev-0.2.3.ebuild:
+  Stable on sparc
+
+  31 Mar 2005; Aron Griffis <agriffis@gentoo.org> gentoolkit-dev-0.2.3.ebuild:
+  stable on alpha amd64 ia64 x86
+
+  31 Mar 2005; Aron Griffis <agriffis@gentoo.org>
+  gentoolkit-dev-0.2.0_pre4.ebuild:
+  stable on ia64
+
+*gentoolkit-dev-0.2.3 (12 Mar 2005)
+
+  12 Mar 2005; Karl Trygve Kalleberg <karltk@gentoo.org>
+  +gentoolkit-dev-0.2.3.ebuild:
+  New upstream release.
+
+*gentoolkit-dev-0.2.2 (01 Mar 2005)
+
+  01 Mar 2005; Karl Trygve Kalleberg <karltk@gentoo.org>
+  +gentoolkit-dev-0.2.1.ebuild, +gentoolkit-dev-0.2.2.ebuild:
+  New upstream release.
+
+  28 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  04 Dec 2004; Mamoru KOMACHI <usata@gentoo.org>
+  gentoolkit-dev-0.2.0_pre4.ebuild:
+  Stable on ppc-macos; _pre4 is the only one capable of handling ppc-macos
+  keyword correctly (ekeyword).
+
+*gentoolkit-dev-0.2.1 (10 Nov 2004)
+
+  10 Nov 2004; Karl Trygve Kalleberg <karltk@gentoo.org>
+  +gentoolkit-dev-0.2.1.ebuild:
+  New upstream release.
+
+*gentoolkit-dev-0.2.0_pre4 (27 Sep 2004)
+
+  27 Sep 2004; Karl Trygve Kalleberg <karltk@gentoo.org>
+  gentoolkit-dev-0.2.0_pre4.ebuild: New upstream version.
+
+  21 Jun 2004; <agriffis@gentoo.org> gentoolkit-dev-0.2.0_pre3.ebuild:
+  Stable everywhere
+
+  11 Jun 2004; Lars Weiler <pylon@gentoo.org>
+  gentoolkit-dev-0.2.0_pre3.ebuild:
+  Stable on ppc.
+
+  05 May 2004; Bryan Østergaard <kloeri@gentoo.org>
+  gentoolkit-dev-0.2.0_pre3.ebuild:
+  Stable on alpha.
+
+  17 Apr 2004; Travis Tilley <lv@gentoo.org> gentoolkit-dev-0.2.0_pre3.ebuild:
+  marking stable on amd64
+
+*gentoolkit-dev-0.2.0_pre3 (14 Apr 2004)
+
+  14 Apr 2004; Karl Trygve Kalleberg <karltk@gentoo.org>
+  gentoolkit-dev-0.2.0_pre3.ebuild: New upstream version.
+  
+  04 Mar 2004; Brian Jackson <iggy@gentoo.org>
+  gentoolkit-dev-0.2.0_pre2.ebuild:
+  added s390 keywords
+
+*gentoolkit-dev-0.2.0_pre2 (08 Feb 2004)
+
+  08 Feb 2004; Karl Trygve Kalleberg <karltk@gentoo.org>
+  gentoolkit-dev-0.2.0_pre2.ebuild: New upstream version, adds ebump,
+  epkgmove and gensync.
+  
+
+  07 Feb 2004; Marius Mauch <genone@gentoo.org>
+  gentoolkit-dev-0.2.0_pre1.ebuild:
+  marking stable for portage-2.0.50
+
+*gentoolkit-dev-0.2.0_pre1 (15 Jan 2004)
+
+  15 Jan 2004; Karl Trygve Kalleberg <karltk@gentoo.org>
+  gentoolkit-dev-0.2.0_pre1.ebuild: Initial import.  Ebuild submitted by
+  myself.
