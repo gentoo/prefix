@@ -134,7 +134,7 @@ python_mod_exists() {
 # desc:   given a filename, it will pre-compile the module's .pyc and .pyo.
 #         should only be run in pkg_postinst()
 # exam:
-#         python_mod_compile ${ROOT}usr/lib/python2.3/site-packages/pygoogle.py
+#         python_mod_compile ${PROOT}usr/lib/python2.3/site-packages/pygoogle.py
 #
 python_mod_compile() {
 	# allow compiling for older python versions
@@ -163,12 +163,12 @@ python_mod_compile() {
 #         if supplied with arguments, it will recompile all modules recursively
 #         in the supplied directory
 # exam:
-#         python_mod_optimize ${ROOT}/usr/share/codegen
+#         python_mod_optimize ${PROOT}usr/share/codegen
 #
 python_mod_optimize() {
 	local myroot
 	# strip trailing slash
-	myroot="${ROOT%/}"
+	myroot="${PROOT%/}"
 
 	# allow compiling for older python versions
 	if [ -n "${PYTHON_OVERRIDE_PYVER}" ]; then
@@ -207,10 +207,10 @@ python_mod_cleanup() {
 
 	if [ $# -gt 0 ]; then
 		for path in $@; do
-			SEARCH_PATH="${SEARCH_PATH} ${myroot}${path#${myroot}}"
+			SEARCH_PATH="${SEARCH_PATH} ${myroot}/${path#/}"
 		done
 	else
-		for path in ${myroot}/usr/lib*/python*/site-packages; do
+		for path in ${myroot}${EPREFIX}/usr/lib*/python*/site-packages; do
 			SEARCH_PATH="${SEARCH_PATH} ${path}"
 		done
 	fi

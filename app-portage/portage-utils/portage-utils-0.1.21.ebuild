@@ -32,6 +32,7 @@ src_install() {
 }
 
 pkg_postinst() {
+	ROOT=${PROOT}
 	[ -e ${ROOT}/etc/portage/bin/post_sync ] && return 0
 	mkdir -p ${ROOT}/etc/portage/bin/
 

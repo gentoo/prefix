@@ -41,15 +41,15 @@ src_install() {
 # Completely remove if no issues found during gentoolkit-0.2.3_pre testing
 #pkg_preinst() {
 #	# FIXME: Remove from future ebuilds after gentoolkit-0.2.2 is stable
-#	rm -f ${ROOT}/usr/lib/gentoolkit/pym/gentoolkit.py[co] ${ROOT}/usr/lib/gentoolkit/pym/gentoolkit/*.py[co]
+#	rm -f ${PROOT}usr/lib/gentoolkit/pym/gentoolkit.py[co] ${PROOT}usr/lib/gentoolkit/pym/gentoolkit/*.py[co]
 #}
 
 pkg_postinst() {
-	python_mod_optimize ${ROOT}/usr/lib/gentoolkit
+	python_mod_optimize ${PROOT}usr/lib/gentoolkit
 	echo
 	ewarn "The qpkg and etcat tools are deprecated in favor of equery and"
-	ewarn "are no longer installed in ${ROOT}/usr/bin in this release."
-	ewarn "They are still available in ${ROOT}/usr/share/doc/${PF}/deprecated/"
+	ewarn "are no longer installed in ${PROOT}usr/bin in this release."
+	ewarn "They are still available in ${PROOT}usr/share/doc/${PF}/deprecated/"
 	ewarn "if you *really* want to use them."
 	echo
 	elog "Another alternative to qpkg and equery are the q applets in"
@@ -58,5 +58,5 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	python_mod_cleanup ${ROOT}/usr/lib/gentoolkit
+	python_mod_cleanup ${PROOT}usr/lib/gentoolkit
 }

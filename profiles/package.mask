@@ -8,12 +8,10 @@
 
 # Prefix entries, between top comment to avoid clashes during merging
 
-# <grobian@gentoo.org> (15 Oct 2006)
-# This is a brand new, almost fully redone version of prefixed portage.
-# It is considered to be highly risky to use it.  If you break your
-# portage when using it, you are obliged to fix it and send the patches
-# to me.
-=sys-apps/portage-2.1.20*
+# <grobian@gentoo.org> (18 Oct 2006)
+# These portages are still in for reference, but they don't work with
+# the current tree any more.
+<sys-apps/portage-2.1.20.4755
 
 ##
 ##  This is an example

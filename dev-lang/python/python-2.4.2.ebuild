@@ -251,7 +251,7 @@ pkg_postrm() {
 
 pkg_postinst() {
 	local myroot
-	myroot=$(echo $ROOT | sed 's:/$::')
+	myroot=${PROOT%/}
 
 	python_makesym
 	python_mod_optimize
@@ -265,7 +265,7 @@ pkg_postinst() {
 			einfo "Working around possible python-portage upgrade breakage"
 			mkdir -p ${myroot}/usr/lib/portage/pym
 			cp ${myroot}/usr/lib/python2.4/site-packages/{portage,xpak,output,cvstree,getbinpkg,emergehelp,dispatch_conf}.py ${myroot}/usr/lib/portage/pym
-			python_mod_optimize ${myroot}/usr/lib/portage/pym
+			python_mod_optimize ${EPREFIX}/usr/lib/portage/pym
 		fi
 	fi
 
@@ -278,13 +278,13 @@ pkg_postinst() {
 	ewarn
 	ewarn "If you have just upgraded from an older version of python you will need to run:"
 	ewarn
-	ewarn "/usr/sbin/python-updater"
+	ewarn "${EPREFIX}/usr/sbin/python-updater"
 	ewarn
 	ewarn "This will automatically rebuild all the python dependent modules"
 	ewarn "to run with python-${PYVER}."
 	ewarn
 	ewarn "Your original Python is still installed and can be accessed via"
-	ewarn "/usr/bin/python2.x."
+	ewarn "${EPREFIX}/usr/bin/python2.x."
 	ewarn
 	ebeep 5
 }

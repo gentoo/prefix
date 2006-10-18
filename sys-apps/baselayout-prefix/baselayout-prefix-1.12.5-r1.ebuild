@@ -32,14 +32,11 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P/-prefix/}-prefix.patch
 	cd ${S}
-	ebegin "Adjusting to prefix"
-	sed -i \
-		-e "s|@GENTOO_PORTAGE_EPREFIX@|${EPREFIX}|g" \
+	eprefixify \
 		etc/env.d/00basic \
 		etc/profile \
 		sbin/env-update.sh \
 		sbin/functions.sh
-	eend $?
 }
 
 src_compile() {
@@ -117,8 +114,8 @@ pkg_postinst() {
 	# This is also written in src_install (so it's in CONTENTS), but
 	# write it here so that the new version is immediately in the file
 	# (without waiting for the user to do etc-update)
-	rm -f ${ROOT}/etc/._cfg????_gentoo-release
-	echo "Gentoo Prefix Base System version ${PV}" > ${ROOT}/etc/gentoo-release
+	rm -f ${PROOT}/etc/._cfg????_gentoo-release
+	echo "Gentoo Prefix Base System version ${PV}" > ${PROOT}/etc/gentoo-release
 
 	echo
 	einfo "Please be sure to update all pending '._cfg*' files in /etc,"
