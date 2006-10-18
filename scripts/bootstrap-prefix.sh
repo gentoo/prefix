@@ -141,7 +141,7 @@ setup_portage() {
 }
 
 bootstrap_tree() {
-	PV="20061011"
+	PV="20061018"
 	for x in etc usr/{,s}bin var/tmp var/lib/portage var/log/portage;
 	do
 		[ -d "${ROOT}/${x}" ] || mkdir -p "${ROOT}/${x}"
@@ -152,7 +152,7 @@ bootstrap_tree() {
 		bzip2 -dc ${DISTDIR}/prefix-overlay-${PV}.tar.bz2 | tar -xf - || exit 1
 		# beware: fetch creates DISTDIR!!!
 		mv portage/distfiles prefix-overlay/
-		rm -R portage
+		rm -Rf portage
 		mv prefix-overlay portage
 		touch portage/.unpacked
 	fi
@@ -161,7 +161,7 @@ bootstrap_tree() {
 bootstrap_portage() {
 	# don't use "latest" here, as I want to have the bootstrap script to
 	# use a portage in a known "state"
-	PV=2.1.13.4497
+	PV=2.1.20.4755
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 		
@@ -191,7 +191,7 @@ bootstrap_portage() {
 
 	setup_portage
 
-	rm -R ${ptmp}
+	rm -Rf ${ptmp}
 	einfo "${A%-*} succesfully bootstrapped"
 }
 
@@ -219,7 +219,7 @@ bootstrap_odcctools() {
 
 	$MAKE install || exit 1
 
-	rm -R ${S}
+	rm -Rf ${S}
 }
 
 prep_gcc-apple() {
@@ -284,7 +284,7 @@ bootstrap_gcc() {
 
 	$MAKE install || exit 1
 
-	rm -R ${S}
+	rm -Rf ${S}
 }
 
 bootstrap_gnu() {
@@ -313,7 +313,7 @@ bootstrap_gnu() {
 	einfo "Installing ${A%-*}"
 	$MAKE install || exit 1
 
-	rm -R ${S}
+	rm -Rf ${S}
 	einfo "${A%-*} succesfully bootstrapped"
 }
 
