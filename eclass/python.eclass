@@ -207,7 +207,7 @@ python_mod_cleanup() {
 
 	if [ $# -gt 0 ]; then
 		for path in $@; do
-			SEARCH_PATH="${SEARCH_PATH} ${EPREFIX}/${path}"
+			SEARCH_PATH="${SEARCH_PATH} ${myroot}${path#${myroot}}"
 		done
 	else
 		for path in ${myroot}/usr/lib*/python*/site-packages; do
