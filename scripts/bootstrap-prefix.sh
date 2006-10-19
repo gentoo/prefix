@@ -141,7 +141,7 @@ setup_portage() {
 }
 
 bootstrap_tree() {
-	PV="20061018"
+	PV="20061019"
 	for x in etc usr/{,s}bin var/tmp var/lib/portage var/log/portage;
 	do
 		[ -d "${ROOT}/${x}" ] || mkdir -p "${ROOT}/${x}"
@@ -161,7 +161,7 @@ bootstrap_tree() {
 bootstrap_portage() {
 	# don't use "latest" here, as I want to have the bootstrap script to
 	# use a portage in a known "state"
-	PV=2.1.20.4755
+	PV=2.1.20.4758
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 		
