@@ -1,0 +1,39 @@
+# ChangeLog for media-libs/liblo
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/liblo/ChangeLog,v 1.9 2006/10/14 11:58:55 kloeri Exp $
+
+  14 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
+  Remove kito from metadata.xml due to retiring.
+
+  11 Jun 2006; Markus Rothe <corsair@gentoo.org> liblo-0.23.ebuild:
+  Stable on ppc64
+
+  01 May 2006; Markus Rothe <corsair@gentoo.org> liblo-0.23.ebuild:
+  Added ~ppc64
+
+  30 Mar 2006; Chris White <chriswhite@gentoo.org> liblo-0.23.ebuild:
+  liblo-0.23 x86 stable bug #126970
+
+  23 Mar 2006; Luis Medinas <metalgod@gentoo.org> liblo-0.23.ebuild:
+  Stable on amd64. Bug #126970.
+
+  20 Mar 2006; <keetz@gentoo.org> liblo-0.23.ebuild:
+  stable on ppc and ppc-macos.
+
+*liblo-0.23 (04 Feb 2006)
+
+  04 Feb 2006; <keetz@gentoo.org> -liblo-0.18.ebuild, liblo-0.22.ebuild,
+  +liblo-0.23.ebuild:
+  Version bump. Remove version 0.18, update SRC_URI. Closes bug #121598
+
+*liblo-0.22 (14 Oct 2005)
+
+  14 Oct 2005; Kito <kito@gentoo.org> +liblo-0.22.ebuild:
+  version bump. Closes Bug #109204
+
+*liblo-0.18 (21 Apr 2005)
+
+  21 Apr 2005; Kito <kito@gentoo.org> +metadata.xml, +liblo-0.18.ebuild:
+  inital import. Thanks to Sean Bolton <smbolton@jps.net> and Michael Schnake
+  <schnake@composition.de>. Closes Bug #68350
+
