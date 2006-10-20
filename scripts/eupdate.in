@@ -324,11 +324,12 @@ then
 	pver=$(get_versionebuild $ptelv)
 	cross_diff $mver $pver
 fi
-echo -n "  checking ChangeLog: "
+echo -n "  checking ChangeLog... "
 mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/ChangeLog)
 ptecv=$(get_cvsversion ChangeLog)
 revision_diff $mtecv $ptecv ChangeLog
-echo -n "  refreshing metadata.xml... "
-cp "${MTREEDIR}/${EPACKAGE}"/metadata.xml metadata.xml
-echo "done"
+echo -n "  checking metadata.xml... "
+change=$(diff -u metadata.xml "${MTREEDIR}/${EPACKAGE}"/metadata.xml | patch metadata.xml)
+[[ -z $change ]] && change="up-to-date"
+echo $change
 echo "done"
