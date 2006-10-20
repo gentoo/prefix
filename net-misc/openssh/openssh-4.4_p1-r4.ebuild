@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.4_p1-r3.ebuild,v 1.1 2006/10/04 03:12:50 pebenito Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.4_p1-r4.ebuild,v 1.3 2006/10/17 14:37:18 uberlord Exp $
 
 EAPI="prefix"
 
@@ -16,14 +16,14 @@ PARCH=${P/_/}
 X509_PATCH="${PARCH}+x509-5.5.1.diff.gz"
 SECURID_PATCH="" #${PARCH}+SecurID_v1.3.2.patch"
 LDAP_PATCH="${PARCH/-4.4p1/-lpk-4.4p1}-0.3.7.patch"
-HPN_PATCH="" #${PARCH/4.4p1/4.3p2}-hpn12-gentoo.patch.bz2"
+HPN_PATCH="${PARCH}-hpn12v11-gentoo.patch.bz2"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.com/"
 SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
 	X509? ( http://roumenpetrov.info/openssh/x509-5.5.1/${X509_PATCH} )
-	ldap? ( http://dev.inversepath.com/openssh-lpk/${LDAP_PATCH} )"
-#	hpn? ( mirror://gentoo/${HPN_PATCH} http://www.psc.edu/networking/projects/hpn-ssh/${HPN_PATCH} )
+	ldap? ( http://dev.inversepath.com/openssh-lpk/${LDAP_PATCH} )
+	hpn? ( mirror://gentoo/${HPN_PATCH} http://www.psc.edu/networking/projects/hpn-ssh/${HPN_PATCH} )"
 #	smartcard? ( http://www.omniti.com/~jesus/projects/${SECURID_PATCH} )
 
 LICENSE="as-is"
