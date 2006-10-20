@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/tcp-wrappers
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/tcp-wrappers/ChangeLog,v 1.36 2006/04/04 16:53:49 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/tcp-wrappers/ChangeLog,v 1.37 2006/10/17 14:42:02 uberlord Exp $
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org> tcp-wrappers-7.6-r8.ebuild:
+  Added ~sparc-fbsd keyword.
 
   04 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
   tcp-wrappers-7.6-r8.ebuild:
