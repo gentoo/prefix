@@ -1,6 +1,9 @@
 # ChangeLog for perl-core/PodParser
 # Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/PodParser/ChangeLog,v 1.25 2006/09/16 22:12:45 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/PodParser/ChangeLog,v 1.26 2006/10/17 09:04:42 uberlord Exp $
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org> PodParser-1.34.ebuild:
+  Added ~sparc-fbsd keyword.
 
   16 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org>
   PodParser-1.34.ebuild:
