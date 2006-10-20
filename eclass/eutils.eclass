@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.253 2006/10/06 07:00:14 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.254 2006/10/18 21:35:19 drizzt Exp $
 #
 # This eclass is for general purpose functions that most ebuilds
 # have to implement themselves.
@@ -932,7 +932,7 @@ Categories=Application;${type};" > "${desktop}"
 
 # Make a GDM/KDM Session file
 #
-# make_desktop_entry(<title>, <command>)
+# make_session_desktop(<title>, <command>)
 # title: File to execute to start the Window Manager
 # command: Name of the Window Manager
 

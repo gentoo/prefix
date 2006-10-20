@@ -1,13 +1,13 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.67 2006/07/24 20:18:09 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.68 2006/10/16 14:10:46 genstef Exp $
 
 # Description: This eclass is used to interface with linux-info in such a way
 #              to provide the functionality required and initial functions
 #			   required to install external modules against a kernel source
 #			   tree.
 #
-# Maintainer: John Mylchreest <johnm@gentoo.org>
+# Maintainer: John Mylchreest <johnm@gentoo.org>, Stefan Schweizer <genstef@gentoo.org>
 # Copyright 2004 Gentoo Linux
 #
 # Please direct your bugs to the current eclass maintainer :)
@@ -230,6 +230,19 @@ set_kvobj() {
 	# einfo "Using KV_OBJ=${KV_OBJ}"
 }
 
+get-KERNEL_CC() {
+	local kernel_cc
+	if [ -n "${KERNEL_ABI}" ]; then
+		# In future, an arch might want to define CC_$ABI
+		#kernel_cc="$(get_abi_CC)"
+		#[ -z "${kernel_cc}" ] && 
+		kernel_cc="$(tc-getCC $(ABI=${KERNEL_ABI} get_abi_CHOST))"
+	else
+		kernel_cc=$(tc-getCC)
+	fi
+	echo "${kernel_cc}"
+}
+
 generate_modulesd() {
 	# This function will generate the neccessary modules.d file from the
 	# information contained in the modules exported parms
@@ -439,7 +452,7 @@ linux-mod_src_compile() {
 	ARCH="$(tc-arch-kernel)"
 	ABI="${KERNEL_ABI}"
 	CC_HOSTCC=$(tc-getBUILD_CC)
-	CC_CC=$(tc-getCC)
+	CC_CC=$(get-KERNEL_CC)
 
 	BUILD_TARGETS=${BUILD_TARGETS:-clean module}
 	strip_modulenames;
@@ -464,7 +477,7 @@ linux-mod_src_compile() {
 				die "Unable to run econf ${ECONF_PARAMS}"
 			fi
 
-			emake HOSTCC=${CC_HOSTCC} CC=${CC_CC}\
+			emake HOSTCC=${CC_HOSTCC} CC=${CC_CC} LDFLAGS="$(get_abi_LDFLAGS)" \
 				  ${BUILD_FIXES} ${BUILD_PARAMS} ${BUILD_TARGETS} \
 				|| die "Unable to make ${BUILD_FIXES} ${BUILD_PARAMS} ${BUILD_TARGETS}."
 			touch ${srcdir}/.built

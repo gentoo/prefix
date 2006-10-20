@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.36 2006/10/12 16:31:45 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.37 2006/10/19 10:26:10 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -98,6 +98,45 @@ remove_vdrplugindb() {
 		einfo "Removing ${CATEGORY}/${PN}-${PVR} from vdrplugindb."
 		sed -ie "/.*${CATEGORY}\/${P}.*/d" ${VDRPLUGINDB_DIR}/vdrplugindb
 	fi
+}
+
+# New method of storing plugindb
+#   Called from src_install
+#   file maintained by normal portage-methods
+create_plugindb_file() {
+	local NEW_VDRPLUGINDB_DIR=/usr/share/vdr/vdrplugin-rebuild/
+	local DB_FILE=${NEW_VDRPLUGINDB_DIR}/${CATEGORY}-${PF}
+	insinto ${NEW_VDRPLUGINDB_DIR}
+	cat <<-EOT > ${D}/${DB_FILE}
+		VDRPLUGIN_DB=1
+		CREATOR=ECLASS
+		EBUILD=${CATEGORY}/${PN}
+		EBUILD_V=${PVR}
+	EOT
+}
+
+# Delete files created outside of vdr-plugin.eclass
+#   vdrplugin-rebuild.ebuild converted plugindb and files are
+#   not deleted by portage itself - should only be needed as
+#   long as not every system has switched over to
+#   vdrplugin-rebuild-0.2
+delete_orphan_plugindb_file() {
+	#einfo Testing for orphaned plugindb file
+	local NEW_VDRPLUGINDB_DIR=/usr/share/vdr/vdrplugin-rebuild/
+	local DB_FILE=${ROOT}/${NEW_VDRPLUGINDB_DIR}/${CATEGORY}-${PF}
+
+	# file exists
+	[[ -f ${DB_FILE} ]] || return
+
+	# will portage handle the file itself
+	if grep -q CREATOR=ECLASS ${DB_FILE}; then
+		#einfo file owned by eclass - don't touch it
+		return
+	fi
+
+	einfo "Removing orphaned plugindb-file."
+	einfo "#rm ${DB_FILE}"
+	rm ${DB_FILE}
 }
 
 vdr-plugin_pkg_setup() {
@@ -323,10 +362,14 @@ vdr-plugin_src_install() {
 			doins header-md5-${PN}
 		fi
 	fi
+
+	create_plugindb_file
 }
 
 vdr-plugin_pkg_postinst() {
-	update_vdrplugindb
+	if has_version "<=media-tv/vdrplugin-rebuild-0.1"; then
+		update_vdrplugindb
+	fi
 	einfo
 	einfo "The vdr plugin ${VDRPLUGIN} has now been installed."
 	einfo "To activate execute the following command:"
@@ -341,7 +384,10 @@ vdr-plugin_pkg_postinst() {
 }
 
 vdr-plugin_pkg_postrm() {
-	remove_vdrplugindb
+	if has_version "<=media-tv/vdrplugin-rebuild-0.1"; then
+		remove_vdrplugindb
+	fi
+	delete_orphan_plugindb_file
 }
 
 vdr-plugin_pkg_config_final() {

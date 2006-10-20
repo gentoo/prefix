@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.47 2006/10/02 22:52:08 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.51 2006/10/17 19:17:31 flameeyes Exp $
 #
 # Author: Diego Pettenò <flameeyes@gentoo.org>
 # Enhancements: Martin Schlemmer <azarah@gentoo.org>
@@ -12,16 +12,20 @@
 
 inherit eutils libtool
 
-[[ ${WANT_AUTOMAKE} == "latest" ]] && export WANT_AUTOMAKE=1.9
-[[ ${WANT_AUTOCONF} == "latest" ]] && export WANT_AUTOCONF=2.5
-
 _automake_atom="sys-devel/automake"
 _autoconf_atom="sys-devel/autoconf"
-[[ -n ${WANT_AUTOMAKE} ]] && _automake_atom="=sys-devel/automake-${WANT_AUTOMAKE}*"
+if [[ -n ${WANT_AUTOMAKE} ]] && [[ ${WANT_AUTOMAKE} != "latest" ]]; then
+	case ${WANT_AUTOMAKE} in
+		# workaround while we have different versions of automake in arch and ~arch
+		latest) _automake_atom="|| ( =sys-devel/automake-1.10* =sys-devel/automake-1.9* )" ;;
+		*) _automake_atom="=sys-devel/automake-${WANT_AUTOMAKE}*" ;;
+	esac
+fi
+
 if [[ -n ${WANT_AUTOCONF} ]] ; then
 	case ${WANT_AUTOCONF} in
 		2.1) _autoconf_atom="=sys-devel/autoconf-${WANT_AUTOCONF}*" ;;
-		2.5) _autoconf_atom=">=sys-devel/autoconf-2.59" ;;
+		latest | 2.5) _autoconf_atom=">=sys-devel/autoconf-2.59" ;;
 	esac
 fi
 DEPEND="${_automake_atom}
@@ -188,6 +192,7 @@ autotools_set_versions() {
 	[[ -n ${autotools_version_sets} ]] && return 0
 
 	if [[ -n ${WANT_AUTOCONF} ]]; then
+		[[ ${WANT_AUTOCONF} == "latest" ]] && WANT_AUTOCONF="2.5"
 		export WANT_AUTOCONF
 		einfo "Requested autoconf ${WANT_AUTOCONF}"
 		einfo "Using $(autoconf --version 2>/dev/null | head -n 1)"
@@ -195,6 +200,11 @@ autotools_set_versions() {
 	fi
 
 	if [[ -n ${WANT_AUTOMAKE} ]]; then
+		if [[ ${WANT_AUTOMAKE} == "latest" ]]; then
+			# Consider starting from 1.9, as that is stable everywhere.
+			has_version '=sys-devel/automake-1.9*' && WANT_AUTOMAKE="1.9"
+			has_version '=sys-devel/automake-1.10*' && WANT_AUTOMAKE="1.10"
+		fi
 		export WANT_AUTOMAKE
 		einfo "Requested automake ${WANT_AUTOMAKE}"
 		einfo "Using $(automake --version 2>/dev/null | head -n 1)"
