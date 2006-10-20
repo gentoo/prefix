@@ -1,0 +1,191 @@
+# ChangeLog for media-libs/jpeg
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/ChangeLog,v 1.56 2006/09/04 03:59:21 kumba Exp $
+
+  04 Sep 2006; Joshua Kinard <kumba@gentoo.org> jpeg-6b-r7.ebuild:
+  Marked stable on mips.
+
+  18 Jun 2006; Bryan Østergaard <kloeri@gentoo.org> jpeg-6b-r7.ebuild:
+  Stable on ia64, bug 130889.
+
+  18 Jun 2006; Diego Pettenò <flameeyes@gentoo.org> jpeg-6b-r7.ebuild:
+  Re-add ~x86-fbsd keyword now.
+
+  16 Jun 2006; Fabian Groffen <grobian@gentoo.org> jpeg-6b-r7.ebuild:
+  Updating the patchset to include Darwin/BSD patch, marked ppc-macos stable
+  (bug #130889)
+
+  03 Jun 2006; Rene Nussbaumer <killerfox@gentoo.org> jpeg-6b-r7.ebuild:
+  Stable on hppa. See bug #130889.
+
+  02 Jun 2006; Mark Loeser <halcy0n@gentoo.org> jpeg-6b-r7.ebuild:
+  Stable on x86; bug #130889
+
+  01 Jun 2006; Tobias Scherbaum <dertobi123@gentoo.org> jpeg-6b-r7.ebuild:
+  ppc stable, bug #130889
+
+  31 May 2006; Thomas Cort <tcort@gentoo.org> jpeg-6b-r7.ebuild:
+  Stable on amd64 wrt security Bug #130889.
+
+  31 May 2006; Markus Rothe <corsair@gentoo.org> jpeg-6b-r7.ebuild:
+  Stable on ppc64; bug #130889
+
+  31 May 2006; Gustavo Zacarias <gustavoz@gentoo.org> jpeg-6b-r7.ebuild:
+  Stable on sparc wrt security #130889
+
+  31 May 2006; Thomas Cort <tcort@gentoo.org> jpeg-6b-r7.ebuild:
+  Stable on alpha wrt security Bug #130889.
+
+  29 May 2006; Diego Pettenò <flameeyes@gentoo.org> jpeg-6b-r7.ebuild:
+  Drop ~x86-fbsd keyword from -r7 as it contains a linux-specific macro usage.
+
+*jpeg-6b-r7 (27 May 2006)
+
+  27 May 2006; Tavis Ormandy <taviso@gentoo.org> +jpeg-6b-r7.ebuild:
+  bump to enable maxmem feature, #130889
+
+  01 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> jpeg-6b-r6.ebuild:
+  Add ~x86-fbsd keyword.
+
+  02 Oct 2005; Hardave Riar <hardave@gentoo.org> jpeg-6b-r5.ebuild:
+  Stable on mips
+
+  13 Sep 2005; Aron Griffis <agriffis@gentoo.org> jpeg-6b-r5.ebuild:
+  Mark 6b-r5 stable on alpha
+
+*jpeg-6b-r6 (06 Sep 2005)
+
+  06 Sep 2005; Mike Frysinger <vapier@gentoo.org> +jpeg-6b-r6.ebuild:
+  Move patches to a patchset. Add fixes from Debian, support for lossless
+  cropping #71122, and support for exif data #38503.
+
+  06 Sep 2005; Diego Pettenò <flameeyes@gentoo.org>
+  -files/jpeg-6b-freebsd.patch, jpeg-6b-r5.ebuild:
+  Remove FreeBSD patch, some other change made it pointless.
+
+  06 Sep 2005; Mike Frysinger <vapier@gentoo.org>
+  files/jpeg-6b-gentoo.patch, jpeg-6b-r5.ebuild:
+  Cleanup build system and dont filter k6 CFLAGS anymore #104953.
+
+  03 Sep 2005; Markus Rothe <corsair@gentoo.org> jpeg-6b-r5.ebuild:
+  Stable on ppc64
+
+  02 Sep 2005; Michael Hanselmann <hansmi@gentoo.org> jpeg-6b-r5.ebuild:
+  Stable on ppc.
+
+  23 Aug 2005; Gustavo Zacarias <gustavoz@gentoo.org> jpeg-6b-r5.ebuild:
+  Stable on sparc
+
+*jpeg-6b-r5 (10 Jun 2005)
+
+  10 Jun 2005; Diego Pettenò <flameeyes@gentoo.org>
+  +files/jpeg-6b-freebsd.patch, +jpeg-6b-r5.ebuild:
+  New revision with patch for Gentoo/FreeBSD (bump to avoid adding it in stable).
+
+  24 May 2005; Herbie Hopkins <herbs@gentoo.org> jpeg-6b-r4.ebuild:
+  Fix libdir path in libtool file.
+
+  01 Apr 2005; Karol Wojtaszek <sekretarz@gentoo.org> jpeg-6b-r4.ebuild:
+  Added >=sys-devel/libtool-1.5.10-r4 to DEPEND, bug #77928 and #87063
+
+  30 Jan 2005; Lina Pezzella <j4rg0n@gentoo.org> jpeg-6b-r4.ebuild:
+  Bug #80032 fix.
+
+  04 Jan 2005; Karol Wojtaszek <sekretarz@gentoo.org>
+  +files/jpeg-6b-gentoo.patch, -files/jpeg-6b-pic.patch, jpeg-6b-r4.ebuild:
+  Solved libtool problem on amd64 and combined with pic patch, bug #75092
+
+  18 Nov 2004; Luca Barbato <lu_zero@gentoo.org> +files/jpeg-6b-pic.patch,
+  jpeg-6b-r4.ebuild:
+  Fix for bug #70947
+
+*jpeg-6b-r4 (10 Nov 2004)
+
+  10 Nov 2004; Mike Frysinger <vapier@gentoo.org> -jpeg-6b-r3.ebuild,
+  +jpeg-6b-r4.ebuild:
+  Install jpegint.h #64254 by José Romildo Malaquias.
+
+  11 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> jpeg-6b-r3.ebuild:
+  Added darwintoolize for ppc-macos.
+
+  10 Oct 2004; Hasan Khalil <gongloo@gentoo.org> jpeg-6b-r3.ebuild:
+  fixes for multilib fixes on ppc-macos.
+
+  07 Oct 2004; Jeremy Huddleston <eradicator@gentoo.org> jpeg-6b-r3.ebuild:
+  multilib fixes
+
+  27 Jul 2004; Hasan Khalil <gongloo@gentoo.org> jpeg-6b-r3.ebuild:
+  Added ~macos to keywords, needs dolib fix still (bug 57858)
+
+  07 May 2004; Michael McCabe <randy@gentoo.org> jpeg-6b-r3.ebuild:
+  Changed s390 to use gnuconfig_update so it builds
+
+  25 Apr 2004; Aron Griffis <agriffis@gentoo.org> jpeg-6b-r3.ebuild:
+  Add die following econf for bug 48950
+
+  22 Mar 2004; Seemant Kulleen <seemant@gentoo.org> jpeg-6b-r3.ebuild:
+  switch to sed -i syntax, and move the replace-flags statements to src_compile
+
+  15 Mar 2004; Stephen P. Becker <geoman@gentoo.org> jpeg-6b-r3.ebuild:
+  Marked stable on mips.
+
+  06 Mar 2004; Stephen P. Becker <geoman@gentoo.org> :
+  Added ~mips keyword.
+
+  02 Mar 2004; Tom Gall <tgall@gentoo.org> jpeg-6b-r3.ebuild:
+  stable on ppc64
+
+  17 Feb 2004; Joshua Kinard <kumba@gentoo.org> jpeg-6b-r3.ebuild:
+  Added ~mips to keywords, removed arm keyword, fixed date.
+
+  16 Nov 2003; Martin Holzer <mholzer@gentoo.org> jpeg-6b-r3.ebuild:
+  adding more docs. Closes #33439
+
+*jpeg-6b-r3 (15 Nov 2002)
+
+  11 May 2003; Guy Martin <gmsoft@gentoo.org> jpeg-6b-r3.ebuild :
+  Added use hppa && gnuconfig_update to support hppa2.0-unknown-linux-gnu targets.
+
+  06 Apr 2003; Zach Welch <zwelch@gentoo.org> jpeg-6b-r3.ebuild:
+  add arm keyword
+
+  02 Mar 2003; Martin Holzer <mholzer@gentoo.org> jpeg-6b-r3.ebuild :
+  Changing back to replace-flags.
+
+  12 Feb 2003; Guy Martin <gmsoft@gentoo.org> jpeg-6b-r3.ebuild :
+  Added hppa to keywords and replaced $chost by $CHOST.
+
+  31 Jan 2003; Seemant Kulleen <seemant@gentoo.org> jpeg-6b-r3.ebuild :
+
+  using bash isntead of replace-flags for k6 stuff Closes bug #14851 by
+  Andy gorham <uncleduck@sympatico.ca>
+
+  16 Jan 2003; Seemant Kulleen <seemant@gentoo.org> jpeg-6b-r3.ebuild :
+
+  replace -march=k6-3 by -march=i586 as well. This time closes bug #13955 by
+  aholler@gentoo.de (Alexander Holler)
+
+  12 Jan 2003; Seemant Kulleen <seemant@gentoo.org> jpeg-6b-r3.ebuild :
+
+  Replace -march=k6 and -march=k6-2 flags with -march=i586, as per bug
+  #13684 by: raymond.barbiero@uconn.edu (Raymond D Barbiero)
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+  18 Nov 2002; Will Woods <wwoods@gentoo.org> jpeg-6b-r3.ebuild, ChangeLog:
+  Minor fix to chouser's minor fix, updating gnuconfig files so they 
+  recognize alphaev67 as a valid CHOST.
+
+  15 Nov 2002; Chris Houser <chouser@gentoo.org> files/digest-jpeg-6b-r3,
+  jpeg-6b-r3.ebuild, ChangeLog: Minor bug fix to build process.  The bug was
+  observed on an alpha-ev6 system.  NOTE: There is no benefit to upgrading if
+  jpeg-6b-r2 built successfully for you.
+
+*jpeg-6b-r2 (01 Feb 2002)
+
+  01 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog: Added initial ChangeLog
+  which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
