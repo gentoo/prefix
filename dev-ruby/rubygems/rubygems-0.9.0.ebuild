@@ -29,7 +29,7 @@ src_compile() {
 src_install() {
 	ver=$(${RUBY} -r rbconfig -e 'print Config::CONFIG["MAJOR"] + "." + Config::CONFIG["MINOR"]')
 	GEM_HOME=${D}/usr/lib/ruby/gems/$ver ruby_src_install
-	cp "${FILESDIR}/auto_gem.rb" "${D}"/$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitedir"]')
+	cp "${FILESDIR}/auto_gem.rb" "${EDEST}"/$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitedir"]')
 	keepdir /usr/lib/ruby/gems/$ver/doc
 	doenvd "${FILESDIR}/10rubygems"
 }
@@ -45,5 +45,5 @@ pkg_postrm()
 {
 	# If we potentially downgraded, then getting rid of RUBYOPT from env.d is probably a smart idea.
 	env-update
-	source /etc/profile
+	source "${EPREFIX}"/etc/profile
 }

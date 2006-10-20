@@ -53,7 +53,7 @@ if [[ ${RUBY_OPTIONAL} != "yes" ]]; then
 	DEPEND="virtual/ruby"
 fi
 
-[[ -z "${RUBY}" ]] && export RUBY=/usr/bin/ruby
+[[ -z "${RUBY}" ]] && export RUBY=${EPREFIX}/usr/bin/ruby
 
 ruby_src_unpack() {
 
@@ -72,25 +72,25 @@ ruby_econf() {
 	RUBY_ECONF="${RUBY_ECONF} ${EXTRA_ECONF}"
 	if [ -f configure ] ; then
 		./configure \
-			--prefix=/usr \
+			--prefix="${EPREFIX}"/usr \
 			--host=${CHOST} \
-			--mandir=/usr/share/man \
-			--infodir=/usr/share/info \
-			--datadir=/usr/share \
-			--sysconfdir=/etc \
-			--localstatedir=/var/lib \
+			--mandir="${EPREFIX}"/usr/share/man \
+			--infodir="${EPREFIX}"/usr/share/info \
+			--datadir="${EPREFIX}"/usr/share \
+			--sysconfdir="${EPREFIX}"/etc \
+			--localstatedir="${EPREFIX}"/var/lib \
 			--with-ruby=${RUBY} \
 			${RUBY_ECONF} \
 			"$@" || die "econf failed"
 	fi
 	if [ -f install.rb ] ; then
-		${RUBY} install.rb config --prefix=/usr "$@" \
+		${RUBY} install.rb config --prefix="${EPREFIX}"/usr "$@" \
 			${RUBY_ECONF} || die "install.rb config failed"
 		${RUBY} install.rb setup "$@" \
 			${RUBY_ECONF} || die "install.rb setup failed"
 	fi
 	if [ -f setup.rb ] ; then
-		${RUBY} setup.rb config --prefix=/usr "$@" \
+		${RUBY} setup.rb config --prefix="${EPREFIX}"/usr "$@" \
 			${RUBY_ECONF} || die "setup.rb config failed"
 		${RUBY} setup.rb setup "$@" \
 			${RUBY_ECONF} || die "setup.rb setup failed"
@@ -119,17 +119,17 @@ ruby_einstall() {
 
 	RUBY_ECONF="${RUBY_ECONF} ${EXTRA_ECONF}"
 	if [ -f install.rb ] ; then
-		${RUBY} install.rb config --prefix=${D}/usr "$@" \
+		${RUBY} install.rb config --prefix="${D}"/usr "$@" \
 			${RUBY_ECONF} || die "install.rb config failed"
 		${RUBY} install.rb install "$@" \
 			${RUBY_ECONF} || die "install.rb install failed"
 	elif [ -f setup.rb ] ; then
-		${RUBY} setup.rb config --prefix=${D}/usr "$@" \
+		${RUBY} setup.rb config --prefix="${D}"/usr "$@" \
 			${RUBY_ECONF} || die "setup.rb config failed"
 		${RUBY} setup.rb install "$@" \
 			${RUBY_ECONF} || die "setup.rb install failed"
 	elif [ -f extconf.rb -o -f Makefile ] ; then
-		make DESTDIR=${D} "$@" install || die "make install failed"
+		make DESTDIR="${EDEST}" "$@" install || die "make install failed"
 	else
 		siteruby=$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitedir"]')
 		insinto ${siteruby}
@@ -194,19 +194,19 @@ erubyinstall() {
 # prepall adds SLOT support for ruby.eclass
 prepall() {
 
-	[[ ! -x /usr/bin/ruby16 ]] && export USE_RUBY=${USE_RUBY/ruby16/}
-	[[ ! -x /usr/bin/ruby18 ]] && export USE_RUBY=${USE_RUBY/ruby18/}
-	[[ ! -x /usr/bin/ruby19 ]] && export USE_RUBY=${USE_RUBY/ruby19/}
+	[[ ! -x ${EPREFIX}/usr/bin/ruby16 ]] && export USE_RUBY=${USE_RUBY/ruby16/}
+	[[ ! -x ${EPREFIX}/usr/bin/ruby18 ]] && export USE_RUBY=${USE_RUBY/ruby18/}
+	[[ ! -x ${EPREFIX}/usr/bin/ruby19 ]] && export USE_RUBY=${USE_RUBY/ruby19/}
 
 	local ruby_slots=$(echo "${USE_RUBY}" | wc -w)
 
-	if [ "$ruby_slots" -ge 2 ] || (use ppc-macos && [ "$ruby_slots" -ge 1 ])
+	if [ "$ruby_slots" -ge 2 ] ;
 	then
 		einfo "Now we are building the package for ${USE_RUBY}"
 		for rb in ${USE_RUBY} ruby ; do
 			einfo "Using $rb"
-			export RUBY=/usr/bin/$rb
-			ruby() { /usr/bin/$rb "$@" ; }
+			export RUBY=${EPREFIX}/usr/bin/$rb
+			ruby() { "${EPREFIX}"/usr/bin/$rb "$@" ; }
 			mkdir -p ${S}
 			cd ${WORKDIR}
 			einfo "Unpacking for $rb"
@@ -224,11 +224,11 @@ prepall() {
 		# in case no directories found in siteruby
 		shopt -sq nullglob
 
-		for x in ${D}/${siteruby}/* ; do
-			mv $x ${D}/${siteruby}/..
+		for x in ${EDEST}/${siteruby}/* ; do
+			mv $x ${EDEST}/${siteruby}/..
 		done
-		if [ -d ${D}${siteruby} ] ; then
-			rmdir --ignore-fail-on-non-empty ${D}/${siteruby}
+		if [ -d ${EDEST}${siteruby} ] ; then
+			rmdir --ignore-fail-on-non-empty ${EDEST}/${siteruby}
 		fi
 	fi
 
