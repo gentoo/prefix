@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/grep
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/ChangeLog,v 1.66 2006/08/01 05:20:25 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/ChangeLog,v 1.67 2006/10/17 11:24:47 uberlord Exp $
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org> grep-2.5.1a-r1.ebuild:
+  Added ~sparc-fbsd keyword.
 
 *grep-2.5.1a-r1 (01 Aug 2006)
 
