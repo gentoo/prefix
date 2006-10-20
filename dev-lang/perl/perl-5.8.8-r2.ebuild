@@ -597,8 +597,7 @@ pkg_postinst() {
 		cd /usr/include;
 		h2ph *
 		h2ph -r sys/* arpa/* netinet/* bits/* security/* asm/* gnu/* linux/* gentoo*
-		cd /usr/include/linux
-		h2ph *
+		cd /usr/include/linux && h2ph *
 	fi
 
 # This has been moved into a function because rumor has it that a future release
