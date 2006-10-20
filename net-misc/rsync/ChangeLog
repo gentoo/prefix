@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/rsync
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.101 2006/09/04 07:21:00 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.102 2006/10/17 11:40:22 uberlord Exp $
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org> rsync-2.6.8-r2.ebuild:
+  Added ~sparc-fbsd keyword.
 
   04 Sep 2006; Joshua Kinard <kumba@gentoo.org> rsync-2.6.8-r2.ebuild:
   Marked stable on mips.
