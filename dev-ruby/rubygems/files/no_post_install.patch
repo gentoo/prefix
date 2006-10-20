@@ -1,0 +1,9 @@
+--- post-install.rb.orig	2005-10-20 10:46:25.000000000 -0500
++++ post-install.rb	2005-10-20 10:46:29.000000000 -0500
+@@ -71,6 +71,5 @@
+ end
+ 
+ install_windows_batch_files
+-remove_stubs
+ install_sources
+ 

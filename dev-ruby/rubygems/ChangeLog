@@ -1,0 +1,157 @@
+# ChangeLog for dev-ruby/rubygems
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.36 2006/09/16 12:18:52 killerfox Exp $
+
+  16 Sep 2006; Rene Nussbaumer <killerfox@gentoo.org> rubygems-0.9.0.ebuild:
+  Added to ~hppa.
+
+*rubygems-0.9.0 (30 Jun 2006)
+
+  30 Jun 2006; Diego Pettenò <flameeyes@gentoo.org> +rubygems-0.9.0.ebuild:
+  Version bump, thanks to Steven Davidovitz in bug #138634.
+
+  30 Apr 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  rubygems-0.8.11-r5.ebuild:
+  ppc stable
+
+  30 Apr 2006; Simon Stelling <blubb@gentoo.org> rubygems-0.8.11-r5.ebuild:
+  stable on amd64
+
+  25 Apr 2006; Jason Wever <weeve@gentoo.org> rubygems-0.8.11-r5.ebuild:
+  Stable on SPARC.
+
+  17 Apr 2006; Caleb Tennis <caleb@gentoo.org> -rubygems-0.8.10.ebuild,
+  -rubygems-0.8.11-r3.ebuild, -rubygems-0.8.11-r4.ebuild:
+  remove old versions
+
+  17 Apr 2006; Caleb Tennis <caleb@gentoo.org> rubygems-0.8.11-r5.ebuild:
+  x86 stable
+
+  17 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  rubygems-0.8.11-r5.ebuild:
+  Add ~x86-fbsd keyword.
+
+  03 Apr 2006; Aron Griffis <agriffis@gentoo.org> rubygems-0.8.11-r5.ebuild:
+  Mark 0.8.11-r5 stable on ia64
+
+*rubygems-0.8.11-r5 (31 Mar 2006)
+
+  31 Mar 2006; Caleb Tennis <caleb@gentoo.org> +rubygems-0.8.11-r5.ebuild:
+  This version runs etc-update and source's /etc/profile after a package
+  remove to make sure the RUBYOPT variable gets cleared if it really needs to
+  be
+
+  29 Mar 2006; Aron Griffis <agriffis@gentoo.org> rubygems-0.8.11-r4.ebuild:
+  Mark 0.8.11-r4 ~ia64
+
+  19 Mar 2006; Markus Rothe <corsair@gentoo.org> rubygems-0.8.11-r4.ebuild:
+  Stable on ppc64; bug #116875
+
+*rubygems-0.8.11-r4 (22 Feb 2006)
+
+  22 Feb 2006; Caleb Tennis <caleb@gentoo.org> files/10rubygems,
+  +files/auto_gem.rb, -rubygems-0.8.11-r1.ebuild,
+  -rubygems-0.8.11-r2.ebuild, +rubygems-0.8.11-r4.ebuild:
+  Okay, I think this is a good fix for the rubygems issue
+
+  22 Feb 2006; Caleb Tennis <caleb@gentoo.org> rubygems-0.8.11-r3.ebuild:
+  Remove ruby_with_gems and message saying it's a good idea to use
+
+*rubygems-0.8.11-r3 (02 Jan 2006)
+
+  02 Jan 2006; Caleb Tennis <caleb@gentoo.org> +rubygems-0.8.11-r3.ebuild:
+  New version which adds a new configurable Ruby version that automatically
+  loads rubygems for you
+
+*rubygems-0.8.11-r2 (02 Jan 2006)
+
+  02 Jan 2006; Caleb Tennis <caleb@gentoo.org> rubygems-0.8.11-r1.ebuild,
+  +rubygems-0.8.11-r2.ebuild:
+  bump to not install RUBYOPT variable for now, as it breaks ruby-cvs 1.9
+
+  26 Nov 2005; Tom Gall <tgall@gentoo.org> rubygems-0.8.11-r1:
+  added ~ppc64
+
+  13 Nov 2005; Jason Wever <weeve@gentoo.org> rubygems-0.8.11.ebuild:
+  Stable on SPARC.
+
+*rubygems-0.8.11-r1 (20 Oct 2005)
+
+  20 Oct 2005; Caleb Tennis <caleb@gentoo.org> +files/10rubygems,
+  +files/no_post_install.patch, +rubygems-0.8.11-r1.ebuild:
+  Don't do the stub removal check in the post-install. Also, install
+  10rubygems environment file which contains RUBYOPT='-rubygems' so that gems
+  are automagically found
+
+  12 Oct 2005; Michael Hanselmann <hansmi@gentoo.org>
+  rubygems-0.8.11.ebuild:
+  Stable on ppc.
+
+  11 Oct 2005; Caleb Tennis <caleb@gentoo.org> rubygems-0.8.11.ebuild:
+  x86 stable
+
+*rubygems-0.8.11 (23 Sep 2005)
+
+  23 Sep 2005; Caleb Tennis <caleb@gentoo.org> +rubygems-0.8.11.ebuild:
+  Version bump
+
+  17 Aug 2005; Fabian Groffen <grobian@gentoo.org> rubygems-0.8.10.ebuild:
+  Marking ~ppc-macos
+
+  01 Aug 2005; Ferris McCormick <fmccor@gentoo.org> rubygems-0.8.10.ebuild:
+  Add ~sparc keyword (required for rails).
+
+  21 Apr 2005; Michael Hanselmann <hansmi@gentoo.org>
+  rubygems-0.8.10.ebuild:
+  Stable on ppc.
+
+  14 Apr 2005; Caleb Tennis <caleb@gentoo.org> -rubygems-0.8.6.ebuild:
+  Removing older version
+
+  01 Apr 2005; Caleb Tennis <caleb@gentoo.org> rubygems-0.8.10.ebuild:
+  x86 stable
+
+*rubygems-0.8.10 (28 Mar 2005)
+
+  28 Mar 2005; Caleb Tennis <caleb@gentoo.org> -rubygems-0.8.1.ebuild,
+  +rubygems-0.8.10.ebuild, -rubygems-0.8.4-r1.ebuild, -rubygems-0.8.4.ebuild,
+  -rubygems-0.8.8.ebuild:
+  Version bump, remove older versions
+
+*rubygems-0.8.8 (25 Mar 2005)
+
+  25 Mar 2005; Rob Cakebread <pythonhead@gentoo.org> +rubygems-0.8.8.ebuild:
+  Version bump.
+
+  08 Mar 2005; Caleb Tennis <caleb@gentoo.org> rubygems-0.8.6.ebuild:
+  x86 stable
+
+  06 Mar 2005; Joseph Jezak <josejx@gentoo.org> rubygems-0.8.6.ebuild:
+  Marked ~ppc for bug #83219.
+
+*rubygems-0.8.6 (28 Feb 2005)
+
+  28 Feb 2005; Caleb Tennis <caleb@gentoo.org> +rubygems-0.8.6.ebuild:
+  Version bump
+
+  21 Feb 2005; Simon Stelling <blubb@gentoo.org> rubygems-0.8.4-r1.ebuild:
+  added ~amd64
+
+*rubygems-0.8.4-r1 (15 Feb 2005)
+
+  15 Feb 2005; Rob Cakebread <pythonhead@gentoo.org>
+  +rubygems-0.8.4-r1.ebuild:
+  Added keepdir for doc dir, needed for gems.eclass
+
+*rubygems-0.8.4 (27 Jan 2005)
+
+  27 Jan 2005; Caleb Tennis <caleb@gentoo.org> +rubygems-0.8.4.ebuild:
+  Adding a new version of rubygems
+
+*rubygems-0.8.1 (20 Nov 2004)
+
+  20 Nov 2004; Mamoru KOMACHI <usata@gentoo.org> +metadata.xml,
+  +files/rubygems-0.8.1-gentoo.diff, +rubygems-0.8.1.ebuild:
+  Initial import. Thanks to Alexander Kellett <lypanov@kde.org> and
+  Thomas Kirchner <gentoo@halffull.org>. This closes bug #71757.
+
