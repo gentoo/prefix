@@ -1,0 +1,64 @@
+Fix DESTDIR and parallel build bugs
+
+http://bugs.gentoo.org/147371
+
+--- Makefile.in
++++ Makefile.in
+@@ -44,7 +44,7 @@
+ 	@( cd ./sh_util ; $(MAKE) "CC=$(CC)" "CFLAGS=$(CFLAGS)" )
+ 	@( cd ./vis ; $(MAKE) "CC=$(CC)" "CFLAGS=$(CFLAGS)" )
+-	-@test -z "$(DESTDIR)" || mkdir -p "$DESTDIR" 2>/dev/null
+-	-mkdir "$(DESTDIR)$(prefix)" "$(DESTDIR)$(BINDIR)" "$(DESTDIR)$(SYSCONFDIR)" "$(DESTDIR)$(mandir)" "$(DESTDIR)$(mandir)/man1" 2>/dev/null
++	-@test -z "$(DESTDIR)" || mkdir -p "$(DESTDIR)" 2>/dev/null
++	-mkdir -p "$(DESTDIR)$(prefix)" "$(DESTDIR)$(BINDIR)" "$(DESTDIR)$(SYSCONFDIR)" "$(DESTDIR)$(mandir)" "$(DESTDIR)$(mandir)/man1" 2>/dev/null
+ 	-@echo '..... Installing the programs .....'
+ 	$(INSTALL_PROGRAM) bin/ncftp@EXEEXT@ "$(DESTDIR)$(BINDIR)/ncftp@EXEEXT@"
+ 	$(INSTALL_PROGRAM) bin/ncftpget@EXEEXT@ "$(DESTDIR)$(BINDIR)/ncftpget@EXEEXT@"
+@@ -52,7 +52,7 @@
+ 	$(INSTALL_PROGRAM) bin/ncftpls@EXEEXT@ "$(DESTDIR)$(BINDIR)/ncftpls@EXEEXT@"
+ 	$(INSTALL_PROGRAM) bin/ncftpbatch@EXEEXT@ "$(DESTDIR)$(BINDIR)/ncftpbatch@EXEEXT@"
+ 	-@test -f "$(DESTDIR)$(BINDIR)/ncftpspooler@EXEEXT@" && echo /bin/rm "$(DESTDIR)$(BINDIR)/ncftpspooler@EXEEXT@" && /bin/rm "$(DESTDIR)$(BINDIR)/ncftpspooler@EXEEXT@"
+-	ln "$(DESTDIR)$(BINDIR)/ncftpbatch@EXEEXT@" "$(DESTDIR)$(BINDIR)/ncftpspooler@EXEEXT@"
++	ln -s "ncftpbatch@EXEEXT@" "$(DESTDIR)$(BINDIR)/ncftpspooler@EXEEXT@"
+ #
+ # The visual programs are only built if a working Curses was found.
+ #
+--- sio/Makefile.in
++++ sio/Makefile.in
+@@ -179,6 +179,7 @@
+ SClose.o: SClose.c $(SYSHDRS_DEP)
+ SConnect.o: SConnect.c $(SYSHDRS_DEP)
+ SConnectByName.o: SConnectByName.c $(SYSHDRS_DEP)
++SError.o: SError.c $(SYSHDRS_DEP)
+ SNew.o: SNew.c $(SYSHDRS_DEP)
+ SRead.o: SRead.c $(SYSHDRS_DEP)
+ SReadline.o: SReadline.c $(SYSHDRS_DEP)
+--- sio/pch.mk.gcc-gch
++++ sio/pch.mk.gcc-gch
+@@ -1,5 +1,6 @@
+ syshdrs.h.gch: syshdrs.h sio.h usio.h
+-	$(CCDV)$(CC) $(CFLAGS) $(DEFS) $(CPPFLAGS) syshdrs.h
++	$(CCDV)$(CC) $(CFLAGS) $(DEFS) $(CPPFLAGS) syshdrs.h -o .tmp.$@
++	mv -f .tmp.$@ $@
+ 
+ PCH=syshdrs.h.gch
+ SYSHDRS_DEP=syshdrs.h.gch
+--- libncftp/Makefile.in
++++ libncftp/Makefile.in
+@@ -353,3 +353,6 @@
+ 
+ u_unmdtm.o: u_unmdtm.c $(SYSHDRS_DEP)
+ u_unmdtm.so: u_unmdtm.c $(SYSHDRS_DEP)
++
++u_feat.o: u_feat.c $(SYSHDRS_DEP)
++u_feat.so: u_feat.c $(SYSHDRS_DEP)
+--- libncftp/pch.mk.gcc-gch
++++ libncftp/pch.mk.gcc-gch
+@@ -1,5 +1,6 @@
+ syshdrs.h.gch: syshdrs.h ncftp.h ncftp_errno.h util.h ftp.h
+-	$(CCDV)$(CC) $(CFLAGS) $(DEFS) $(CPPFLAGS) syshdrs.h
++	$(CCDV)$(CC) $(CFLAGS) $(DEFS) $(CPPFLAGS) syshdrs.h -o .tmp.$@
++	mv -f .tmp.$@ $@
+ 
+ PCH=syshdrs.h.gch
+ SYSHDRS_DEP=syshdrs.h.gch
