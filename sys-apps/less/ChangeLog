@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/less
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.61 2006/05/24 14:52:09 christel Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.62 2006/10/17 11:50:30 uberlord Exp $
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org> less-394.ebuild:
+  Added ~sparc-fbsd keyword.
 
   24 May 2006; Christel Dahlskjaer <christel@gentoo.org> less-394.ebuild:
   Stable on mips; bug #133163
