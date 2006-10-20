@@ -60,7 +60,7 @@ alternatives_auto_makesym() {
 	# sort a space delimited string by converting it to a multiline list
 	# and then run sort -r over it.
 	# make sure we use ${ROOT} because otherwise stage-building will break
-	ALT="$(for i in $(echo ${ROOT}${myregex}); do echo ${i#${ROOT}}; done | sort -r)"
+	ALT="$(for i in $(echo ${PROOT}${myregex}); do echo ${i#${PROOT}}; done | sort -r)"
 	alternatives_makesym ${SYMLINK} ${ALT}
 }
 
@@ -72,9 +72,8 @@ alternatives_makesym() {
 	# usage: alternatives_makesym <resulting symlink> [alternative targets..]
 	# make sure it is in the prefix, allow it already to be in the prefix
 	SYMLINK=${EPREFIX}/${1#${EPREFIX}}
-	# this trick removes the trailing ${EPREFIX}/ from ${ROOT}
-	pref=$(echo ${ROOT} | sed 's:/$::')
-	pref=${ROOT%${EPREFIX%/}}
+	# this trick removes the trailing / from ${ROOT}
+	pref=${ROOT%/}
 	shift
 	ALTERNATIVES=$@
 
