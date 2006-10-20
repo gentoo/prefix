@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/keychain
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/keychain/ChangeLog,v 1.60 2006/09/08 21:52:42 agriffis Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/keychain/ChangeLog,v 1.62 2006/10/17 14:23:32 uberlord Exp $
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org> keychain-2.6.6.ebuild:
+  Added ~sparc-fbsd keyword.
+
+  14 Oct 2006; Aron Griffis <agriffis@gentoo.org> -keychain-2.6.2.ebuild,
+  keychain-2.6.6.ebuild:
+  Mark 2.6.6 stable everywhere.  Remove 2.6.2
 
 *keychain-2.6.6 (08 Sep 2006)
 
