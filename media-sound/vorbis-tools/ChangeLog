@@ -1,6 +1,16 @@
 # ChangeLog for media-sound/vorbis-tools
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/ChangeLog,v 1.41 2006/05/12 21:21:10 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/ChangeLog,v 1.43 2006/10/19 17:18:48 flameeyes Exp $
+
+  19 Oct 2006; Diego Pettenò <flameeyes@gentoo.org>
+  vorbis-tools-1.0.1.ebuild, vorbis-tools-1.0.1-r1.ebuild,
+  vorbis-tools-1.1.1.ebuild, vorbis-tools-1.1.1-r2.ebuild:
+  Depend on 1.1.2 version of flac, as the 1.1.3 version changes API.
+
+  04 Oct 2006; Fabian Groffen <grobian@gentoo.org>
+  vorbis-tools-1.0.1.ebuild, vorbis-tools-1.0.1-r1.ebuild,
+  vorbis-tools-1.1.1.ebuild, vorbis-tools-1.1.1-r2.ebuild:
+  Dropped ~ppc-macos, see you in prefix.
 
   12 May 2006; Diego Pettenò <flameeyes@gentoo.org>
   vorbis-tools-1.1.1-r2.ebuild:

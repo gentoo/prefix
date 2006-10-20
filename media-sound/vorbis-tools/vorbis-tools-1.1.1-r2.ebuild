@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/vorbis-tools-1.1.1-r2.ebuild,v 1.3 2006/05/12 21:21:10 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/vorbis-tools-1.1.1-r2.ebuild,v 1.5 2006/10/19 17:18:48 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ RDEPEND=">=media-libs/libvorbis-1.1.0
 	>=media-libs/libao-0.8.2
 	>=net-misc/curl-7.9
 	speex? ( media-libs/speex )
-	flac? ( media-libs/flac )"
+	flac? ( ~media-libs/flac-1.1.2 )"
 
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
