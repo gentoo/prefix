@@ -1,6 +1,9 @@
 # ChangeLog for perl-core/Test-Harness
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Harness/ChangeLog,v 1.17 2006/08/04 13:32:49 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Harness/ChangeLog,v 1.18 2006/10/17 08:41:03 uberlord Exp $
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org> Test-Harness-2.62.ebuild:
+  Added ~sparc-fbsd keyword.
 
   04 Aug 2006; Michael Cummings <mcummings@gentoo.org>
   Test-Harness-2.30.ebuild, Test-Harness-2.42.ebuild,
