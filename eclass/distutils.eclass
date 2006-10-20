@@ -78,7 +78,7 @@ distutils_pkg_postrm() {
 		ebegin "Performing Python Module Cleanup .."
 		if [ -n "${PYTHON_MODNAME}" ]; then
 			for pymod in ${PYTHON_MODNAME}; do
-				for moddir in "`ls -d --color=none -1 ${ROOT}${EPREFIX}/usr/$(get_libdir)/python*/site-packages/${pymod} 2> /dev/null`"; do
+				for moddir in "`ls -d --color=none -1 ${PROOT}/usr/$(get_libdir)/python*/site-packages/${pymod} 2> /dev/null`"; do
 					python_mod_cleanup ${moddir}
 				done
 			done
@@ -98,8 +98,8 @@ distutils_pkg_postinst() {
 	if has_version ">=dev-lang/python-2.3"; then
 		python_version
 		for pymod in ${PYTHON_MODNAME}; do
-			if [ -d "${ROOT}/usr/$(get_libdir)/python${PYVER}/site-packages/${pymod}" ]; then
-				python_mod_optimize ${ROOT}/usr/$(get_libdir)/python${PYVER}/site-packages/${pymod}
+			if [ -d "${PROOT}/usr/$(get_libdir)/python${PYVER}/site-packages/${pymod}" ]; then
+				python_mod_optimize ${PROOT}/usr/$(get_libdir)/python${PYVER}/site-packages/${pymod}
 			fi
 		done
 	fi
