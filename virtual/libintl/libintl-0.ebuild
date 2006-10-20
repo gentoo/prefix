@@ -23,9 +23,3 @@ RDEPEND="elibc_Darwin? ( sys-devel/gettext )
 	elibc_NetBSD? ( sys-devel/gettext )
 	elibc_OpenBSD? ( sys-devel/gettext )
 	elibc_DragonFly? ( sys-devel/gettext )"
-
-src_install() {
-	# silence prefixed portage, it upsets users.  Actually, this bug should be
-	# fixed, but anyway.
-	mkdir -p ${D}
-}
