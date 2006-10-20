@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/neon
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.77 2006/10/01 16:10:28 gmsoft Exp $
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.79 2006/10/18 12:44:23 uberlord Exp $
+
+  18 Oct 2006; Roy Marples <uberlord@gentoo.org> neon-0.26.1-r1.ebuild:
+  Added ~sparc-fbsd keyword.
+
+  07 Oct 2006; Mike Frysinger <vapier@gentoo.org> neon-0.26.1.ebuild,
+  neon-0.26.1-r1.ebuild:
+  Punt invalid use of USE=static.
 
   01 Oct 2006; Guy Martin <gmsoft@gentoo.org> neon-0.26.1-r1.ebuild:
   Stable on hppa.

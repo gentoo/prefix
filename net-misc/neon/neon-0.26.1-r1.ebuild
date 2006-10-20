@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.26.1-r1.ebuild,v 1.2 2006/10/01 16:10:28 gmsoft Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.26.1-r1.ebuild,v 1.4 2006/10/18 12:44:23 uberlord Exp $
 
 EAPI="prefix"
 
@@ -13,15 +13,14 @@ SRC_URI="http://www.webdav.org/neon/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
-IUSE="expat nls socks5 ssl static zlib"
+IUSE="expat nls socks5 ssl zlib"
+RESTRICT="test"
 
 DEPEND="expat? ( dev-libs/expat )
 	!expat? ( dev-libs/libxml2 )
 	socks5? ( net-proxy/dante )
 	zlib? ( sys-libs/zlib )
 	ssl? ( >=dev-libs/openssl-0.9.6f )"
-
-RESTRICT="test"
 
 src_unpack() {
 	unpack ${A}
@@ -55,13 +54,8 @@ src_compile() {
 	    myconf="${myconf} --disable-nls"
 	fi
 
-	if use static; then
-	    myconf="${myconf} --enable-static"
-	else
-	    myconf="${myconf} --disable-static --with-pic"
-	fi
-
 	econf \
+		--enable-static \
 		--enable-shared \
 		--without-gssapi \
 		$(use_with zlib) \
@@ -72,7 +66,6 @@ src_compile() {
 }
 
 src_test() {
-	cd ${S}
 	make check || die "Trying make check without success."
 }
 
