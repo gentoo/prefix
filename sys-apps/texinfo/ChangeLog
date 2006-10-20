@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/texinfo
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.74 2006/07/20 00:44:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.75 2006/10/17 06:41:51 uberlord Exp $
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org> texinfo-4.8-r4.ebuild:
+  Added ~sparc-fbsd keyword.
 
 *texinfo-4.8-r4 (20 Jul 2006)
 
