@@ -1,19 +1,19 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libwww/libwww-5.4.0-r6.ebuild,v 1.9 2006/10/04 12:59:02 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libwww/libwww-5.4.0-r7.ebuild,v 1.6 2006/10/15 10:05:55 dertobi123 Exp $
 
 EAPI="prefix"
 
-WANT_AUTOMAKE="1.4"
+WANT_AUTOMAKE="latest"
 WANT_AUTOCONF="latest"
-
 inherit eutils multilib autotools
 
+PATCHVER="1.0"
 MY_P=w3c-${P}
 DESCRIPTION="A general-purpose client side WEB API"
 HOMEPAGE="http://www.w3.org/Library/"
 SRC_URI="http://www.w3.org/Library/Distribution/${MY_P}.tgz
-	mirror://gentoo/libwww-5.4.0-debian-autoconf-2.5.patch.bz2"
+	mirror://gentoo/${P}-patches-${PATCHVER}.tar.bz2"
 
 LICENSE="W3C"
 SLOT="0"
@@ -23,35 +23,18 @@ IUSE="mysql ssl"
 RDEPEND=">=sys-libs/zlib-1.1.4
 	mysql? ( >=dev-db/mysql-3.23.26 )
 	ssl? ( >=dev-libs/openssl-0.9.6 )"
-
 DEPEND="${RDEPEND}
+	dev-util/pkgconfig
 	!dev-libs/9libs
 	dev-lang/perl"
 
 S=${WORKDIR}/${MY_P}
 
-
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
-	epatch "${FILESDIR}"/${PN}-config-liborder.patch
-	epatch "${WORKDIR}"/${P}-debian-autoconf-2.5.patch
-	epatch "${FILESDIR}"/${P}-autoconf-gentoo.diff
-	epatch "${FILESDIR}"/${P}-automake-gentoo.diff	# bug #41959
-	epatch "${FILESDIR}"/${P}-disable-ndebug-gentoo.diff	# bug #50483
-	# http://lists.w3.org/Archives/Public/www-lib/2003OctDec/0015.html
-	# http://www.mysql.gr.jp/mysqlml/mysql/msg/8118
-	epatch "${FILESDIR}"/${P}-mysql-4.0.patch
-	# Fix multiple problems, potentially exploitable (bug #109040)
-	epatch "${FILESDIR}"/${P}-htbound.patch
-	# Fix linking while using --as-needed
-	epatch "${FILESDIR}/${P}-asneeded.patch"
-	# Drop Externls rebuild after automake
-	epatch "${FILESDIR}/${P}-noexport.patch"
-	# Respect users LDFLAGS, bug #126863.
-	epatch "${FILESDIR}/${P}-respectflags.patch"
-
+	rm -f configure.in
+	EPATCH_SUFFIX="patch" epatch "${WORKDIR}"/patch
 	eautoreconf || die "autoreconf failed"
 }
 
@@ -76,7 +59,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die "Installation failed"
+	emake DESTDIR="${EDEST}" install || die "Installation failed"
 	dodoc ChangeLog
 	dohtml -r .
 }
