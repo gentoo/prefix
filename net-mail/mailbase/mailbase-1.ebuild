@@ -10,7 +10,7 @@ HOMEPAGE="http://www.gentoo.org/"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 arm hppa ia64 m68k mips ppc ~ppc-macos ppc64 s390 sh sparc x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86"
 IUSE="pam"
 
 RDEPEND="pam? ( virtual/pam )"
