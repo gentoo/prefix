@@ -13,7 +13,7 @@ SRC_URI="http://www.portaudio.com/archives/${MY_P}.zip"
 
 LICENSE="GPL-2"
 SLOT="18"
-KEYWORDS="~ppc ~ppc-macos"
+KEYWORDS="~ppc-macos"
 IUSE=""
 
 RDEPEND=""
