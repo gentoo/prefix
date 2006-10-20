@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libid3tag
 # Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libid3tag/ChangeLog,v 1.30 2006/09/10 17:07:27 the_paya Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libid3tag/ChangeLog,v 1.31 2006/10/04 17:34:19 grobian Exp $
+
+  04 Oct 2006; Fabian Groffen <grobian@gentoo.org> libid3tag-0.15.1b.ebuild:
+  Dropped ~ppc-macos, see you in prefix.
 
   10 Sep 2006; Javier Villavicencio <the_paya@gentoo.org>
   libid3tag-0.15.1b.ebuild:
