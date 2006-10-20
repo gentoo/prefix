@@ -1,6 +1,10 @@
 # ChangeLog for net-libs/liblockfile
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/liblockfile/ChangeLog,v 1.38 2006/07/22 23:28:32 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/liblockfile/ChangeLog,v 1.39 2006/10/17 22:13:00 flameeyes Exp $
+
+  17 Oct 2006; Diego Pettenò <flameeyes@gentoo.org>
+  liblockfile-1.06-r1.ebuild:
+  Add missing WANT_AUTOCONF/WANT_AUTOMAKE variables.
 
   22 Jul 2006; Daniel Gryniewicz <dang@gentoo.org>
   liblockfile-1.06-r1.ebuild:
