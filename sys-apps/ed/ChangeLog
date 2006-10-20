@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/ed
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ChangeLog,v 1.26 2006/03/30 19:25:39 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ChangeLog,v 1.27 2006/10/17 11:03:43 uberlord Exp $
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org> ed-0.2-r6.ebuild:
+  Added ~sparc-fbsd keyword.
 
   30 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> ed-0.2-r6.ebuild:
   Add ~x86-fbsd keyword dropping virtual/libc dependency.
