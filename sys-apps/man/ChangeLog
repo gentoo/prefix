@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/man
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.102 2006/09/04 22:51:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.103 2006/10/17 11:17:57 uberlord Exp $
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org> man-1.6d.ebuild:
+  Added ~sparc-fbsd keyword.
 
   22 Aug 2006; Stephen P. Becker <geoman@gentoo.org> man-1.6d.ebuild:
   stable on mips
