@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/wget
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.85 2006/03/30 15:10:14 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.87 2006/10/17 12:38:38 uberlord Exp $
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org> wget-1.10.2.ebuild:
+  Added ~sparc-fbsd keyword.
+
+  12 Oct 2006; Fabian Groffen <grobian@gentoo.org> wget-1.9.1-r5.ebuild,
+  wget-1.10.2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   30 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> wget-1.10.2.ebuild:
   Add ~x86-fbsd keyword.
