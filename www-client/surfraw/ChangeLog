@@ -1,0 +1,57 @@
+# ChangeLog for www-client/surfraw
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-client/surfraw/ChangeLog,v 1.8 2006/10/20 11:18:14 seemant Exp $
+
+*surfraw-2.1.5 (20 Oct 2006)
+
+  20 Oct 2006; Seemant Kulleen <seemant@gentoo.org>
+  +files/surfraw-2.1.5-gentoo_pkg_tools.patch, +surfraw-2.1.5.ebuild:
+  Version bump thanks to James Rowe in bug #150945
+
+  06 Jun 2006; Seemant Kulleen <seemant@gentoo.org> metadata.xml:
+  Added long description, thanks to James in bug #135489
+
+*surfraw-2.1.4 (31 Mar 2006)
+
+  31 Mar 2006; Seemant Kulleen <seemant@gentoo.org> -surfraw-2.1.0.1.ebuild,
+  +surfraw-2.1.4.ebuild:
+  Version bump, thanks to Jay in bug #127549
+
+*surfraw-2.1.1 (19 Oct 2005)
+
+  19 Oct 2005; Seemant Kulleen <seemant@gentoo.org>
+  +files/surfraw-gentoo_pkg_tools.patch, -surfraw-2.0.2.1.ebuild,
+  surfraw-2.1.0.1.ebuild, +surfraw-2.1.1.ebuild:
+  version bump, thanks to James Rowe (the real maintainer) in bug #109330
+
+*surfraw-2.1.0.1 (10 May 2005)
+
+  10 May 2005; Seemant Kulleen <seemant@gentoo.org> +surfraw-2.1.0.1.ebuild:
+  Version bump thanks to: James Rowe <jnrowe@ukfsn.org> in bug #90968
+
+*surfraw-2.0.2.1 (19 Apr 2005)
+
+  19 Apr 2005; Seemant Kulleen <seemant@gentoo.org> +metadata.xml,
+  +surfraw-2.0.2.1.ebuild:
+  version bump, with many bug fixes, including FHS'ness. Thanks very very much
+  to: James Rowe <jnrowe@ukfsn.org> in bug #88454
+
+*surfraw-1.0.7 (18 Mar 2005)
+
+  18 Mar 2005; Seemant Kulleen <seemant@gentoo.org> +surfraw-1.0.7.ebuild:
+  Moved from net-www/surfraw to www-client/surfraw.
+
+  02 Oct 2004; Markus Nigbur <pyrania@gentoo.org> surfraw-1.0.7.ebuild:
+  Removed unneeded S=, added IUSE.
+
+  30 Jun 2004; David Holm <dholm@gentoo.org> surfraw-1.0.7.ebuild:
+  Added to ~ppc.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*surfraw-1.0.7 (4 Aug 2002)
+
+  4 August 2002; Sascha Schwabbauer <cybersystem@gentoo.org> ChangeLog, surfraw-1.0.7.ebuild, files/digest-surfraw-1.0.7 :
+
+  Initial version in Portage now.
+  Initial ebuild contributed by mikepolniak <mikpolniak@adelphia.net>
