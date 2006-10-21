@@ -1,0 +1,14 @@
+--- src/configure.ac	2005-09-22 19:14:28.000000000 +0200
++++ src/configure.ac	2006-02-07 21:31:16.000000000 +0100
+@@ -726,9 +726,9 @@
+ AC_SUBST(FILES)
+ 
+ dnl Dynamic device support.
+-DYNAMIC_CFLAGS=""
++DYNAMIC_CFLAGS="-fPIC"
+ DYNAMIC_DEVS=""
+-DYNAMIC_FLAGS=""
++DYNAMIC_FLAGS="-fPIC -shared"
+ DYNAMIC_LDFLAGS=""
+ DYNAMIC_LIBS=""
+ 

@@ -1,0 +1,29 @@
+% FAPIcidfmap.zh_CN
+/BousungEG-Light-GB		<< /Path (gbsn00lp.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(GB1) 4] >> ;
+/GBZenKai-Medium		<< /Path (gkai00mp.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(GB1) 4] >> ;
+/MSungGBK-Light			<< /Path (gbsn00lp.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(GB1) 4] >> ;
+/Adobe-GB1			<< /Path (gbsn00lp.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(GB1) 4] >> ;
+
+% FAPIcidfmap.zh_TW
+/ZenKai-Medium			<< /Path (gkai00mp.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(CNS1) 4] >> ;
+/ShanHeiSun-Light		<< /Path (gbsn00lp.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(CNS1) 4] >> ;
+/Adobe-CNS1			<< /Path (gbsn00lp.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(CNS1) 4] >> ;
+
+% FAPIcidfmap.ja
+/Kochi-Mincho			<< /Path (kochi-mincho-subst.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(Japan1) 6] >> ;
+/Kochi-Gothic			<< /Path (kochi-gothic-subst.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(Japan1) 6] >> ;
+/Adobe-Japan1			<< /Path (kochi-mincho-subst.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(Japan1) 6] >> ;
+/Adobe-Japan2			<< /Path (kochi-gothic-subst.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(Japan2) 0] >> ;
+/Ryumin-Light			<< /Path (kochi-mincho-subst.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(Japan1) 6] >> ;
+/GothicBBB-Medium		<< /Path (kochi-gothic-subst.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(Japan1) 6] >> ;
+
+% FAPIcidfmap.ko
+/Baekmuk-Batang			<< /Path (batang.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(Korea1) 2] >> ;
+/Baekmuk-Dotum			<< /Path (dotum.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(Korea1) 2] >> ;
+/Baekmuk-Gulim			<< /Path (gulim.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(Korea1) 2] >> ;
+/Baekmuk-Headline		<< /Path (hline.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(Korea1) 2] >> ;
+/Baekmuk-Batang-Regular		<< /Path (batang.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(Korea1) 2] >> ;
+/Baekmuk-Dotum-Regular		<< /Path (dotum.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(Korea1) 2] >> ;
+/Baekmuk-Gulim-Regular		<< /Path (gulim.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(Korea1) 2] >> ;
+/Baekmuk-Headline-Regular	<< /Path (hline.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(Korea1) 2] >> ;
+/Adobe-Korea1			<< /Path (batang.ttf) /CIDFontType 0 /FAPI /FreeType /CSI [(Korea1) 2] >> ;

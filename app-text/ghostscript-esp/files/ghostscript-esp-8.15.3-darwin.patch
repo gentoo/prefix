@@ -1,0 +1,64 @@
+--- espgs-8.15.3/configure.ac
++++ espgs-8.15.3/configure.ac
+@@ -833,7 +833,7 @@
+ 		THREADSYNC="posync"
+ 		THREADLIBS="-lpthread"
+ 		;;
+-		*BSD)
++		*BSD | Darwin)
+ 		THREADSYNC="posync"
+ 		THREADLIBS="-pthread"
+ 		;;
+--- espgs-8.15.3/src/unix-dll.mak
++++ espgs-8.15.3/src/unix-dll.mak
+@@ -45,12 +45,22 @@
+ GSSOX=$(BINDIR)/$(SOBINRELDIR)/$(GSSOX_XENAME)
+ 
+ # shared library
++CPU = $(shell uname)
++ifeq ($(CPU),Darwin)
++GS_SONAME=lib$(GS).dylib
++GS_SONAME_MAJOR=lib$(GS).$(GS_VERSION_MAJOR).dylib
++GS_SONAME_MAJOR_MINOR=lib$(GS).$(GS_VERSION_MAJOR).$(GS_VERSION_MINOR).dylib
++GS_SO=$(BINDIR)/$(GS_SONAME)
++GS_SO_MAJOR=$(BINDIR)/$(GS_SONAME_MAJOR)
++GS_SO_MAJOR_MINOR=$(BINDIR)/$(GS_SONAME_MAJOR_MINOR)
++else
+ GS_SONAME=lib$(GS).so
+ GS_SONAME_MAJOR=$(GS_SONAME).$(GS_VERSION_MAJOR)
+ GS_SONAME_MAJOR_MINOR= $(GS_SONAME).$(GS_VERSION_MAJOR).$(GS_VERSION_MINOR)
+ GS_SO=$(BINDIR)/$(GS_SONAME)
+ GS_SO_MAJOR=$(GS_SO).$(GS_VERSION_MAJOR)
+ GS_SO_MAJOR_MINOR=$(GS_SO_MAJOR).$(GS_VERSION_MINOR)
++endif
+ 
+ # Shared object is built by redefining GS_XE in a recursive make.
+ 
+@@ -74,16 +74,28 @@
+ 
+ # ------------------------- Recursive make targets ------------------------- #
+ 
++ifeq ($(CPU),Darwin)
++SODEFS=LDFLAGS='$(LDFLAGS) $(CFLAGS_SO) -dynamiclib -install_name $(GS_SO_MAJOR)'\
++ GS_XE=$(BINDIR)/$(SOBINRELDIR)/$(GS_SONAME_MAJOR_MINOR)\
++ STDIO_IMPLEMENTATION=c\
++ DISPLAY_DEV=$(DD)$(SOOBJRELDIR)/display.dev\
++ BINDIR=$(BINDIR)/$(SOBINRELDIR)\
++ GLGENDIR=$(GLGENDIR)/$(SOOBJRELDIR)\
++ GLOBJDIR=$(GLOBJDIR)/$(SOOBJRELDIR)\
++ PSGENDIR=$(PSGENDIR)/$(SOOBJRELDIR)\
++ PSOBJDIR=$(PSOBJDIR)/$(SOOBJRELDIR)
++else
+ SODEFS=LDFLAGS='$(LDFLAGS) $(CFLAGS_SO) -shared -Wl,-soname=$(GS_SONAME_MAJOR)'\
+  GS_XE=$(BINDIR)/$(SOBINRELDIR)/$(GS_SONAME_MAJOR_MINOR)\
+  STDIO_IMPLEMENTATION=c\
+  DISPLAY_DEV=$(DD)$(SOOBJRELDIR)/display.dev\
+  BINDIR=$(BINDIR)/$(SOBINRELDIR)\
+  GLGENDIR=$(GLGENDIR)/$(SOOBJRELDIR)\
+  GLOBJDIR=$(GLOBJDIR)/$(SOOBJRELDIR)\
+  PSGENDIR=$(PSGENDIR)/$(SOOBJRELDIR)\
+  PSOBJDIR=$(PSOBJDIR)/$(SOOBJRELDIR)
++endif
+ 
+ 
+ # Normal shared object

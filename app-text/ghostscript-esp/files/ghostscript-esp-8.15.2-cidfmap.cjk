@@ -1,0 +1,35 @@
+% cidfmap.zh_CN
+/BousungEG-Light-GB		<< /FileType /TrueType /Path (gbsn00lp.ttf) /CSI [(GB1) 4] >> ;
+/GBZenKai-Medium		<< /FileType /TrueType /Path (gkai00mp.ttf) /CSI [(GB1) 4] >> ;
+/MSungGBK-Light			/BousungEG-Light-GB ;
+/Adobe-GB1			/BousungEG-Light-GB ;
+
+% cidfmap.zh_TW
+/ZenKai-Medium			<< /FileType /TrueType /Path (gkai00mp.ttf) /CSI [(CNS1) 4] >> ;
+/ShanHeiSun-Light		<< /FileType /TrueType /Path (gbsn00lp.ttf) /CSI [(CNS1) 4] >> ;
+/Adobe-CNS1			/ShanHeiSun-Light ;
+
+% cidfmap.ja
+/Kochi-Gothic			<< /FileType /TrueType /Path (kochi-gothic-subst.ttf) /CSI [(Japan1) 6] >> ;
+/Kochi-Gothic-Regular		/Kochi-Gothic ;
+/Kochi-Gothic-JaH		<< /FileType /TrueType /Path (kochi-gothic-subst.ttf) /CSI [(Japan2) 0] >> ;
+/Kochi-Gothic-Regular-JaH	/Kochi-Gothic-JaH ;
+/Kochi-Mincho			<< /FileType /TrueType /Path (kochi-mincho-subst.ttf) /CSI [(Japan1) 6] >> ;
+/Kochi-Mincho-Regular		/Kochi-Mincho ;
+/Kochi-Mincho-JaH		<< /FileType /TrueType /Path (kochi-mincho-subst.ttf) /CSI [(Japan2) 0] >> ;
+/Kochi-Mincho-Regular-JaH	/Kochi-Mincho-JaH ;
+/Ryumin-Light			/Kochi-Mincho ;
+/GothicBBB-Medium		/Kochi-Gothic ;
+/Adobe-Japan1			/Kochi-Gothic ;
+/Adobe-Japan2			/Kochi-Gothic-JaH ;
+
+% cidfmap.ko
+/Baekmuk-Batang			<< /FileType /TrueType /Path (batang.ttf) /CSI [(Korea1) 2] >> ;
+/Baekmuk-Batang-Regular		/Baekmuk-Batang ;
+/Baekmuk-Dotum			<< /FileType /TrueType /Path (dotum.ttf) /CSI [(Korea1) 2] >> ;
+/Baekmuk-Dotum-Regular		/Baekmuk-Dotum ;
+/Baekmuk-Gulim			<< /FileType /TrueType /Path (gulim.ttf) /CSI [(Korea1) 2] >> ;
+/Baekmuk-Gulim-Regular		/Baekmuk-Gulim ;
+/Baekmuk-Headline		<< /FileType /TrueType /Path (hline.ttf) /CSI [(Korea1) 2] >> ;
+/Baekmuk-Headline-Regular	/Baekmuk-Headline ;
+/Adobe-Korea1			/Baekmuk-Batang ;
