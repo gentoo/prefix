@@ -1,0 +1,11 @@
+--- ssmtp-2.61/Makefile.in
++++ ssmtp-2.61/Makefile.in
+@@ -79,7 +79,7 @@
+ 
+ # Binaries:
+ ssmtp: $(OBJS)
+-	$(CC) -o ssmtp $(OBJS) @LIBS@
++	$(CC) @LDFLAGS@ -o ssmtp $(OBJS) @LIBS@
+ 
+ .PHONY: clean
+ clean:
