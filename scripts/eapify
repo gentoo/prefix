@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# <grobian@gentoo.org> -- 2006-10-24
+# because portage now deals differently (saner) with ebuilds, we replace
+# all ${EDEST} with ${D} again as "cleanup" action.  Instead we look at
+# all ${D} not in a make call and ${ROOT} variables.
 # <grobian@gentoo.org> -- 2006-09-22
 # eapify is a small hackish script that usually does fine in adding
 # EAPI="prefix" if there is not yet a EAPI=something line in the ebuild.
@@ -33,15 +37,18 @@ do
 		echo 'added EAPI="prefix"'
 	fi
 
-	echo -n "  make install ... "
-	k="`egrep 'e?make( .*)? DESTDIR="?\\\${D}"?' "$f"`"
-	if [[ $k != "" ]];
-	then
-		sed -i \
-			-e 's|DESTDIR="\?${D}"\?|DESTDIR="${EDEST}"|' \
-			"$f"
-		echo $k "->" `grep 'DESTDIR="${EDEST}"' "$f"`
-	else
-		echo "not applicable"
-	fi
+	# cleanup mess from previous portage APIs
+	echo -n "  replacing \${EDEST} -> \${D} ... "
+	sed -i -e 's|${EDEST}|${D}|g' "$f"
+	echo "done"
+
+	# we replace all ${D} with ${ED} if not in a make ... install line
+	echo -n "  replacing \${D} -> \${ED} ... "
+	sed -i -e '/make.*install/!s|${D}|${ED}|g' "$f"
+	echo "done"
+
+	# replace ${ROOT} with ${EROOT}
+	echo -n "  replacing \${ROOT} -> \${EROOT} ... "
+	sed -i -e 's|${ROOT}|${EROOT}|g' "$f"
+	echo "done"
 done
