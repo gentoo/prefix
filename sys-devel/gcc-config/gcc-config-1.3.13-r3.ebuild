@@ -15,7 +15,7 @@ SRC_URI=""
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
 IUSE=""
 
 DEPEND=""

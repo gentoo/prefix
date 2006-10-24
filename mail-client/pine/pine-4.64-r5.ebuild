@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/pine/pine-4.64-r4.ebuild,v 1.2 2006/10/07 16:41:12 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/pine/pine-4.64-r5.ebuild,v 1.1 2006/10/07 01:02:45 ticho Exp $
 
 EAPI="prefix"
 
@@ -66,17 +66,17 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A} && cd "${S}"
 
-	epatch "${FILESDIR}/pine-4.62-spooldir-permissions.patch" || die
+	epatch "${FILESDIR}/pine-4.62-spooldir-permissions.patch"
 
 	# Various fixes and features.
-	epatch "${WORKDIR}/${CHAPPA_PF}-chappa-all.patch" || die
+	epatch "${WORKDIR}/${CHAPPA_PF}-chappa-all.patch"
 	# Fix flock() emulation.
 	cp "${FILESDIR}/flock.c" "${S}/imap/src/osdep/unix" || die
 	# Build the flock() emulation.
-	epatch "${FILESDIR}/imap-4.7c2-flock_4.60.patch" || die
+	epatch "${FILESDIR}/imap-4.7c2-flock_4.60.patch"
 	if use ldap ; then
 		# Link to shared ldap libs instead of static.
-		epatch "${FILESDIR}/pine-4.30-ldap.patch" || die
+		epatch "${FILESDIR}/pine-4.30-ldap.patch"
 		mkdir "${S}/ldap"
 		ln -s /usr/lib "${S}/ldap/libraries"
 		ln -s /usr/include "${S}/ldap/include"
@@ -86,24 +86,26 @@ src_unpack() {
 #	fi
 	if use passfile ; then
 		#Is this really the correct place to define it?
-		epatch "${FILESDIR}/pine-4.56-passfile.patch" || die
+		epatch "${FILESDIR}/pine-4.56-passfile.patch"
 	fi
 	if use largeterminal ; then
 		# Add support for large terminals by doubling the size of pine's internal display buffer
-		epatch "${FILESDIR}/pine-4.61-largeterminal.patch" || die
+		epatch "${FILESDIR}/pine-4.61-largeterminal.patch"
 	fi
 
 	# Something from RedHat.
-	epatch "${FILESDIR}/pine-4.31-segfix.patch" || die
+	epatch "${FILESDIR}/pine-4.31-segfix.patch"
 	# Create lockfiles with a mode of 0600 instead of 0666.
-	epatch "${FILESDIR}/pine-4.40-lockfile-perm.patch" || die
+	epatch "${FILESDIR}/pine-4.40-lockfile-perm.patch"
 	# Add missing time.h includes.
-	epatch "${FILESDIR}/imap-2000-time.patch" || die
+	epatch "${FILESDIR}/imap-2000-time.patch"
 	# Bug #23336 - makes pine transparent in terms that support it.
-	epatch "${FILESDIR}/transparency.patch" || die
+	epatch "${FILESDIR}/transparency.patch"
 
 	# Bug #72861 - relaxes subject length for base64-encoded subjects
-	epatch "${FILESDIR}/pine-4.61-subjectlength.patch" || die
+	epatch "${FILESDIR}/pine-4.61-subjectlength.patch"
+
+	epatch "${FILESDIR}/rename-symlink.patch"
 
 	if use debug ; then
 		sed -e "s:-g -DDEBUG -DDEBUGJOURNAL:${CFLAGS} -g -DDEBUG -DDEBUGJOURNAL:" \

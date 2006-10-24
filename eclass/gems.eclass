@@ -56,11 +56,11 @@ gems_src_install() {
 	fi
 
 	dodir ${GEMSDIR}
-	gem install ${GEM_SRC} -v ${PV} ${myconf} -l -i ${D}/${GEMSDIR} || die "gem install failed"
+	gem install ${GEM_SRC} -v ${PV} ${myconf} -l -i ${EDEST}/${GEMSDIR} || die "gem install failed"
 
-	if [ -d ${D}/${GEMSDIR}/bin ] ; then
+	if [ -d ${EDEST}/${GEMSDIR}/bin ] ; then
 		exeinto /usr/bin
-		for exe in ${D}/${GEMSDIR}/bin/* ; do
+		for exe in ${EDEST}/${GEMSDIR}/bin/* ; do
 			doexe ${exe}
 		done
 	fi

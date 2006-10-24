@@ -15,7 +15,8 @@ KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 
 SLOT="0"
 IUSE="build doc selinux"
-DEPEND=">=dev-lang/python-2.3"
+DEPEND=">=dev-lang/python-2.3
+	>=sys-apps/portage-2.1.20.4758"
 RDEPEND="!build? ( >=sys-apps/sed-4.0.5 \
 		dev-python/python-fchksum \
 		>=dev-lang/python-2.3 \
@@ -28,21 +29,16 @@ RDEPEND="!build? ( >=sys-apps/sed-4.0.5 \
 
 PROVIDE="virtual/portage"
 
-S=${WORKDIR}/prefix-${PN}-${PV/-r1/}
+S=${WORKDIR}/prefix-${PN}-${PV}
 
 src_unpack() {
 	unpack ${A}
-	epatch "${FILESDIR}"/${P}-double_prefix.patch
-	epatch "${FILESDIR}"/${P}-collision-protect.patch
-	epatch "${FILESDIR}"/${P}-root_slash.patch
-	epatch "${FILESDIR}"/${P}-prefix-qa.patch
-	epatch "${FILESDIR}"/${P}-solaris.patch
-	epatch "${FILESDIR}"/${P}-matt-various_fixes.patch
-	epatch "${FILESDIR}"/${P}-matt-config_protect.patch
+
+	cp "${FILESDIR}"/05portage.envd "${T}"/05portage.envd
+	eprefixify "${T}"/05portage.envd
 }
 
 src_compile() {
-	echo ${S}
 	econf \
 		--with-user=${PORTAGE_USER:-portage} \
 		--with-group=${PORTAGE_GROUP:-portage} \
@@ -61,28 +57,22 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die "make install failed."
+	make DESTDIR="${D}" install || die "make install failed."
 	dodir /usr/lib/portage/bin
 	dodir /etc/portage
 	dodir /var/lib/portage
 	dodir /var/log/portage
 	keepdir /etc/portage
 
-	ebegin "Adjusting to prefix"
-	sed \
-		-e "s|@GENTOO_PORTAGE_EPREFIX@|${EPREFIX}|g" \
-		"${FILESDIR}"/05portage.envd \
-		> "${T}"/05portage.envd
-	eend $?
 	doenvd "${T}"/05portage.envd
 }
 
 pkg_preinst() {
 	if has livecvsportage ${FEATURES} && [ "${ROOT}" = "/" ]; then
-		rm -rf ${D}/usr/lib/portage/pym/*
-		mv ${D}/usr/lib/portage/bin/tbz2tool ${T}
-		rm -rf ${D}/usr/lib/portage/bin/*
-		mv ${T}/tbz2tool ${D}/usr/lib/portage/bin/
+		rm -rf ${ED}/usr/lib/portage/pym/*
+		mv ${ED}/usr/lib/portage/bin/tbz2tool ${T}
+		rm -rf ${ED}/usr/lib/portage/bin/*
+		mv ${T}/tbz2tool ${ED}/usr/lib/portage/bin/
 	else
 		rm ${EPREFIX}/usr/lib/portage/pym/*.pyc >& /dev/null
 		rm ${EPREFIX}/usr/lib/portage/pym/*.pyo >& /dev/null
@@ -92,15 +82,15 @@ pkg_preinst() {
 pkg_postinst() {
 	local x
 
-	if [ ! -f "${ROOT}/var/lib/portage/world" ] &&
-	   [ -f ${ROOT}/var/cache/edb/world ] &&
-	   [ ! -h ${ROOT}/var/cache/edb/world ]; then
-		mv ${ROOT}/var/cache/edb/world ${ROOT}/var/lib/portage/world
-		ln -s ../../lib/portage/world ${EPREFIX}/var/cache/edb/world
+	if [ ! -f "${EROOT}/var/lib/portage/world" ] &&
+	   [ -f ${EROOT}/var/cache/edb/world ] &&
+	   [ ! -h ${EROOT}/var/cache/edb/world ]; then
+		mv ${EROOT}/var/cache/edb/world ${EROOT}/var/lib/portage/world
+		ln -s ../../lib/portage/world ${EROOT}/var/cache/edb/world
 	fi
 
-	for x in ${ROOT}/etc/._cfg????_make.globals; do
+	for x in ${EROOT}/etc/._cfg????_make.globals; do
 		# Overwrite the globals file automatically.
-		[ -e "${x}" ] && mv -f "${x}" "${ROOT}/etc/make.globals"
+		[ -e "${x}" ] && mv -f "${x}" "${EROOT}/etc/make.globals"
 	done
 }

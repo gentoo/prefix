@@ -1,6 +1,19 @@
 # ChangeLog for mail-client/pine
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/pine/ChangeLog,v 1.85 2006/09/19 21:03:42 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/pine/ChangeLog,v 1.87 2006/10/07 16:41:12 grobian Exp $
+
+*pine-4.64-r5 (07 Oct 2006)
+
+  07 Oct 2006; Andrej Kacian <ticho@gentoo.org> +files/rename-symlink.patch,
+  +pine-4.64-r5.ebuild:
+  Updated chappa-all patchset. Apply patch that preserves symlinks when pine
+  rewrites a file. Suggested by Haroon Rafique <corporate_gadfly at
+  hotmail.com> in bug #58664.
+
+  07 Oct 2006; Fabian Groffen <grobian@gentoo.org> pine-4.61-r5.ebuild,
+  pine-4.63-r3.ebuild, pine-4.64.ebuild, pine-4.64-r1.ebuild,
+  pine-4.64-r3.ebuild, pine-4.64-r4.ebuild:
+  Dropped ppc-macos keyword, see you in prefix.
 
 *pine-4.64-r4 (19 Sep 2006)
 
