@@ -20,8 +20,3 @@ RDEPEND="|| (
 				elibc_Darwin? ( sys-devel/gcc-apple )
 				sys-devel/gcc
 			)"
-
-src_install() {
-	# shutup portage
-	mkdir -p "${D}"
-}
