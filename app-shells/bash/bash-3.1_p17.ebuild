@@ -124,7 +124,7 @@ src_install() {
 	einstall || die
 
 	dodir /bin
-	mv "${D}"/usr/bin/bash "${D}"/bin/
+	mv "${ED}"/usr/bin/bash "${ED}"/bin/
 	[[ ${USERLAND} != "BSD" ]] && dosym bash /bin/sh
 	dosym bash /bin/rbash
 
@@ -135,8 +135,8 @@ src_install() {
 		newins "${FILESDIR}"/dot-${f} .${f}
 	done
 
-	sed -i -e "s:#${USERLAND}#@::" "${D}"/etc/skel/.bashrc "${D}"/etc/bash/bashrc
-	sed -i -e '/#@/d' "${D}"/etc/skel/.bashrc "${D}"/etc/bash/bashrc
+	sed -i -e "s:#${USERLAND}#@::" "${ED}"/etc/skel/.bashrc "${ED}"/etc/bash/bashrc
+	sed -i -e '/#@/d' "${ED}"/etc/skel/.bashrc "${ED}"/etc/bash/bashrc
 
 	doman doc/*.1
 	dodoc README NEWS AUTHORS CHANGES COMPAT Y2K doc/FAQ doc/INTRO
@@ -144,14 +144,14 @@ src_install() {
 }
 
 pkg_preinst() {
-	if [[ -e ${ROOT}/etc/bashrc ]] && [[ ! -d ${ROOT}/etc/bash ]] ; then
-		mkdir -p "${ROOT}"/etc/bash
-		mv -f "${ROOT}"/etc/bashrc "${ROOT}"/etc/bash/
+	if [[ -e ${EROOT}/etc/bashrc ]] && [[ ! -d ${EROOT}/etc/bash ]] ; then
+		mkdir -p "${EROOT}"/etc/bash
+		mv -f "${EROOT}"/etc/bashrc "${EROOT}"/etc/bash/
 	fi
 
 	# our bash_logout is just a place holder so dont
 	# force users to go through etc-update all the time
-	if [[ -e ${ROOT}/etc/bash/bash_logout ]] ; then
-		rm -f "${D}"/etc/bash/bash_logout
+	if [[ -e ${EROOT}/etc/bash/bash_logout ]] ; then
+		rm -f "${ED}"/etc/bash/bash_logout
 	fi
 }
