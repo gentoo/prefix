@@ -62,13 +62,13 @@ src_install() {
 	rcscripts_dir="/lib/rcscripts"
 
 	# rc-scripts version for testing of features that *should* be present
-	echo "Gentoo Prefixed Base System version ${PV}" > ${D}/etc/gentoo-release
+	echo "Gentoo Prefixed Base System version ${PV}" > ${ED}/etc/gentoo-release
 
 	# get the basic stuff in there
 	doenvd "${S}"/etc/env.d/* || die "doenvd"
 
 	# copy the profile
-	cp "${S}"/etc/profile "${D}"/etc/profile
+	cp "${S}"/etc/profile "${ED}"/etc/profile
 	
 	# Setup files in /sbin
 	#
@@ -107,15 +107,15 @@ src_install() {
 
 # doesn't compile on Darwin
 	#cd "${S}"/src
-	#make DESTDIR="${EDEST}" LIBDIR="${libdir}" install || die
+	#make DESTDIR="${D}" LIBDIR="${libdir}" install || die
 }
 
 pkg_postinst() {
 	# This is also written in src_install (so it's in CONTENTS), but
 	# write it here so that the new version is immediately in the file
 	# (without waiting for the user to do etc-update)
-	rm -f ${PROOT}/etc/._cfg????_gentoo-release
-	echo "Gentoo Prefix Base System version ${PV}" > ${PROOT}/etc/gentoo-release
+	rm -f ${EROOT}/etc/._cfg????_gentoo-release
+	echo "Gentoo Prefix Base System version ${PV}" > ${EROOT}/etc/gentoo-release
 
 	echo
 	einfo "Please be sure to update all pending '._cfg*' files in /etc,"
