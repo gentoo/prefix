@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit eutils
+
 DESCRIPTION="Manages the /usr/bin/vi symlink."
 HOMEPAGE="http://www.gentoo.org/"
 SRC_URI="mirror://gentoo/vi.eselect-${PVR}.bz2"
@@ -14,6 +16,13 @@ KEYWORDS="~ppc-macos ~x86"
 IUSE=""
 
 RDEPEND=">=app-admin/eselect-1.0.6"
+
+src_unpack() {
+	unpack ${A}
+	epatch "${FILESDIR}"/${P}-prefix.patch
+
+	eprefixify vi.eselect-1.1.3
+}
 
 src_install() {
 	insinto /usr/share/eselect/modules
