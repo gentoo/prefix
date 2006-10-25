@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.5-r3.ebuild,v 1.2 2006/06/27 06:17:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.5-r3.ebuild,v 1.11 2006/10/17 05:50:28 uberlord Exp $
 
 EAPI="prefix"
 
@@ -100,19 +100,19 @@ src_install() {
 	# files overwrite the unicode versions
 	if use unicode ; then
 		cd "${WORKDIR}"/widec
-		make DESTDIR="${EDEST}" install || die "make widec install failed"
+		make DESTDIR="${D}" install || die "make widec install failed"
 	fi
 	cd "${WORKDIR}"/narrowc
-	make DESTDIR="${EDEST}" install || die "make narrowc install failed"
+	make DESTDIR="${D}" install || die "make narrowc install failed"
 
 	if [[ ${CHOST} != *-darwin* ]] ; then
 		# Move static and extraneous ncurses libraries out of /lib
 		dodir /usr/$(get_libdir)
-		cd "${D}"/$(get_libdir)
-		mv lib{form,menu,panel}.so* *.a "${D}"/usr/$(get_libdir)/
+		cd "${ED}"/$(get_libdir)
+		mv lib{form,menu,panel}.so* *.a "${ED}"/usr/$(get_libdir)/
 		gen_usr_ldscript lib{,n}curses.so
 		if use unicode ; then
-			mv lib{form,menu,panel}w.so* "${D}"/usr/$(get_libdir)/
+			mv lib{form,menu,panel}w.so* "${ED}"/usr/$(get_libdir)/
 			gen_usr_ldscript lib{,n}cursesw.so
 		fi
 	fi
@@ -122,12 +122,12 @@ src_install() {
 	for x in ansi console dumb linux rxvt screen sun vt{52,100,102,200,220} \
 	         xterm xterm-color xterm-xfree86
 	do
-		local termfile=$(find "${D}"/usr/share/terminfo/ -name "${x}" 2>/dev/null)
+		local termfile=$(find "${ED}"/usr/share/terminfo/ -name "${x}" 2>/dev/null)
 		local basedir=$(basename $(dirname "${termfile}"))
 
 		if [[ -n ${termfile} ]] ; then
 			dodir /etc/terminfo/${basedir}
-			mv ${termfile} "${D}"/etc/terminfo/${basedir}/
+			mv ${termfile} "${ED}"/etc/terminfo/${basedir}/
 			dosym ../../../../etc/terminfo/${basedir}/${x} \
 				/usr/share/terminfo/${basedir}/${x}
 		fi
@@ -140,7 +140,7 @@ src_install() {
 	doenvd "${T}"/50ncurses
 
 	if use build ; then
-		cd "${D}"
+		cd "${ED}"
 		rm -rf usr/share/man
 		cd usr/share/terminfo
 		cp -pPR l/linux n/nxterm v/vt100 "${T}"
@@ -151,13 +151,13 @@ src_install() {
 		cp -pPR "${T}"/vt100 v
 	else
 		# Install xterm-debian terminfo entry to satisfy bug #18486
-		LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${D}/usr/$(get_libdir):${D}/$(get_libdir) \
-		TERMINFO=${D}/usr/share/terminfo \
-			"${D}"/usr/bin/tic "${FILESDIR}"/xterm-debian.ti
+		LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${ED}/usr/$(get_libdir):${ED}/$(get_libdir) \
+		TERMINFO=${ED}/usr/share/terminfo \
+			"${ED}"/usr/bin/tic "${FILESDIR}"/xterm-debian.ti
 
 		if use minimal ; then
-			cp "${D}"/usr/share/terminfo/x/xterm-debian "${D}"/etc/terminfo/x/
-			rm -r "${D}"/usr/share/terminfo
+			cp "${ED}"/usr/share/terminfo/x/xterm-debian "${ED}"/etc/terminfo/x/
+			rm -r "${ED}"/usr/share/terminfo
 		fi
 
 		cd "${S}"
@@ -167,18 +167,18 @@ src_install() {
 }
 
 pkg_preinst() {
-	if [[ ! -f ${ROOT}/etc/env.d/50ncurses ]] ; then
-		mkdir -p "${ROOT}"/etc/env.d
-		echo "CONFIG_PROTECT_MASK=\"/etc/terminfo\"" > \
-			"${ROOT}"/etc/env.d/50ncurses
+	if [[ ! -f ${EROOT}/etc/env.d/50ncurses ]] ; then
+		mkdir -p "${EROOT}"/etc/env.d
+		echo "CONFIG_PROTECT_MASK=\"${EPREFIX}/etc/terminfo\"" > \
+			"${EROOT}"/etc/env.d/50ncurses
 	fi
 }
 
 pkg_postinst() {
 	# Old ncurses may still be around from old build tbz2's.
-	rm -f "${ROOT}"/lib/libncurses.so.5.[23] "${ROOT}"/usr/lib/lib{form,menu,panel}.so.5.[23]
+	rm -f "${EROOT}"/lib/libncurses.so.5.[23] "${EROOT}"/usr/lib/lib{form,menu,panel}.so.5.[23]
 	if [[ $(get_libdir) != "lib" ]] ; then
-		rm -f "${ROOT}"/$(get_libdir)/libncurses.so.5.[23] \
-			"${ROOT}"/usr/$(get_libdir)/lib{form,menu,panel}.so.5.[23]
+		rm -f "${EROOT}"/$(get_libdir)/libncurses.so.5.[23] \
+			"${EROOT}"/usr/$(get_libdir)/lib{form,menu,panel}.so.5.[23]
 	fi
 }
