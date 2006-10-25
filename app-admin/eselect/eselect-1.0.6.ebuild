@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit eutils
+
 DESCRIPTION="Modular -config replacement utility"
 HOMEPAGE="http://www.gentoo.org/proj/en/eselect/"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
@@ -22,6 +24,16 @@ DEPEND="sys-apps/sed
 	)"
 RDEPEND="sys-apps/sed
 	sys-apps/file"
+
+src_unpack() {
+	unpack ${A}
+	epatch "${FILESDIR}"/${P}-prefix.patch
+
+	eprefixify \
+		$(find "${S}"/bin -type f) \
+		$(find "${S}"/libs -type f) \
+		$(find "${S}"/misc -type f)
+}
 
 src_compile() {
 	econf || die "econf failed"

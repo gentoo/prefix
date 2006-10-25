@@ -1,0 +1,248 @@
+diff -Naur eselect-1.0.6.orig/bin/eselect.in eselect-1.0.6/bin/eselect.in
+--- eselect-1.0.6.orig/bin/eselect.in	2006-10-25 22:28:48 +0200
++++ eselect-1.0.6/bin/eselect.in	2006-10-25 22:27:17 +0200
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+ # Copyright (c) 2005 Gentoo Foundation.
+ # $Id: eselect.in 314 2006-10-03 18:50:56Z kugelfang $
+diff -Naur eselect-1.0.6.orig/libs/config.bash.in eselect-1.0.6/libs/config.bash.in
+--- eselect-1.0.6.orig/libs/config.bash.in	2006-10-25 22:28:35 +0200
++++ eselect-1.0.6/libs/config.bash.in	2006-10-25 22:30:07 +0200
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+ # Copyright (c) 2005 Gentoo Foundation.
+ # $Id: config.bash.in 314 2006-10-03 18:50:56Z kugelfang $
+diff -Naur eselect-1.0.6.orig/libs/core.bash.in eselect-1.0.6/libs/core.bash.in
+--- eselect-1.0.6.orig/libs/core.bash.in	2006-10-25 22:29:02 +0200
++++ eselect-1.0.6/libs/core.bash.in	2006-10-25 22:28:18 +0200
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+ # Copyright (c) 2005 Gentoo Foundation.
+ # $Id: core.bash.in 314 2006-10-03 18:50:56Z kugelfang $
+diff -Naur eselect-1.0.6.orig/libs/default.eselect.in eselect-1.0.6/libs/default.eselect.in
+--- eselect-1.0.6.orig/libs/default.eselect.in	2006-10-25 22:28:35 +0200
++++ eselect-1.0.6/libs/default.eselect.in	2006-10-25 22:30:51 +0200
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+ # Copyright (c) 2005 Gentoo Foundation.
+ # $Id: default.eselect.in 314 2006-10-03 18:50:56Z kugelfang $
+diff -Naur eselect-1.0.6.orig/libs/manip.bash.in eselect-1.0.6/libs/manip.bash.in
+--- eselect-1.0.6.orig/libs/manip.bash.in	2006-10-25 22:28:35 +0200
++++ eselect-1.0.6/libs/manip.bash.in	2006-10-25 22:32:30 +0200
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+ # Copyright (c) 2005 Gentoo Foundation.
+ # $Id: manip.bash.in 314 2006-10-03 18:50:56Z kugelfang $
+diff -Naur eselect-1.0.6.orig/libs/multilib.bash.in eselect-1.0.6/libs/multilib.bash.in
+--- eselect-1.0.6.orig/libs/multilib.bash.in	2006-10-25 22:28:35 +0200
++++ eselect-1.0.6/libs/multilib.bash.in	2006-10-25 22:33:29 +0200
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+ # Copyright (c) 2005 Gentoo Foundation.
+ # $Id: multilib.bash.in 314 2006-10-03 18:50:56Z kugelfang $
+@@ -25,13 +25,13 @@
+     local dir libdirs
+     libdirs=""
+     for dir in ${ES_VALID_MULTILIB_DIRS} ; do
+-        if grep -q "^/${dir}\(\|/\)$" ${ROOT}/etc/ld.so.conf &> /dev/null ; then
++        if grep -q "^/${dir}\(\|/\)$" ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/ld.so.conf &> /dev/null ; then
+             libdirs=( ${libdirs[@]} ${dir} )
+         fi
+     done
+     if [[ -z ${libdirs[@]} ]] ; then
+     	# Broken or non-existing ld.so.conf
+-    	libdirs=( ${ROOT}/lib* )
++    	libdirs=( ${ROOT}@GENTOO_PORTAGE_EPREFIX@/lib* )
+ 	libdirs=( ${libdirs[@]/\/lib/lib} )
+     fi
+     echo "${libdirs[@]}"
+diff -Naur eselect-1.0.6.orig/libs/output.bash.in eselect-1.0.6/libs/output.bash.in
+--- eselect-1.0.6.orig/libs/output.bash.in	2006-10-25 22:28:35 +0200
++++ eselect-1.0.6/libs/output.bash.in	2006-10-25 22:34:04 +0200
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+ # Copyright (c) 2005 Gentoo Foundation.
+ # $Id: output.bash.in 314 2006-10-03 18:50:56Z kugelfang $
+diff -Naur eselect-1.0.6.orig/libs/package-manager.bash.in eselect-1.0.6/libs/package-manager.bash.in
+--- eselect-1.0.6.orig/libs/package-manager.bash.in	2006-10-25 22:28:35 +0200
++++ eselect-1.0.6/libs/package-manager.bash.in	2006-10-25 22:37:25 +0200
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+ # Copyright (c) 2005 Gentoo Foundation.
+ # $Id: package-manager.bash.in 314 2006-10-03 18:50:56Z kugelfang $
+@@ -40,6 +40,7 @@
+             mips*) ret=mips ;;
+             sparc*) ret=sparc ;;
+             x86_64) ret=amd64 ;;
++            "Power Macintosh") ret=ppc ;;
+             *) write_warning_msg \
+                 "Unknown architecture. Please submit a bug including the output of 'uname -m'!"
+                 return 1
+@@ -52,6 +53,7 @@
+                 NetBSD) suffix="-nbsd" ;;
+                 OpenBSD) suffix="-obsd" ;;
+                 DragonFly) suffix="-dfly" ;;
++                Darwin) suffix="-macos" ;;
+                 *) write_warning_msg \
+                     "Unknown OS. Please submit a bug including the output of 'uname -s'!"
+                     return 1
+diff -Naur eselect-1.0.6.orig/libs/paludis.bash.in eselect-1.0.6/libs/paludis.bash.in
+--- eselect-1.0.6.orig/libs/paludis.bash.in	2006-10-25 22:28:35 +0200
++++ eselect-1.0.6/libs/paludis.bash.in	2006-10-25 22:37:42 +0200
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+ # Copyright (c) 2005 Gentoo Foundation.
+ # $Id: paludis.bash.in 314 2006-10-03 18:50:56Z kugelfang $
+diff -Naur eselect-1.0.6.orig/libs/path-manipulation.bash.in eselect-1.0.6/libs/path-manipulation.bash.in
+--- eselect-1.0.6.orig/libs/path-manipulation.bash.in	2006-10-25 22:28:35 +0200
++++ eselect-1.0.6/libs/path-manipulation.bash.in	2006-10-25 22:38:00 +0200
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+ # Copyright (c) 2005 Gentoo Foundation.
+ # $Id: path-manipulation.bash.in 314 2006-10-03 18:50:56Z kugelfang $
+diff -Naur eselect-1.0.6.orig/libs/portage.bash.in eselect-1.0.6/libs/portage.bash.in
+--- eselect-1.0.6.orig/libs/portage.bash.in	2006-10-25 22:28:35 +0200
++++ eselect-1.0.6/libs/portage.bash.in	2006-10-25 22:38:13 +0200
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+ # Copyright (c) 2005 Gentoo Foundation.
+ # $Id: portage.bash.in 314 2006-10-03 18:50:56Z kugelfang $
+diff -Naur eselect-1.0.6.orig/libs/skel.bash.in eselect-1.0.6/libs/skel.bash.in
+--- eselect-1.0.6.orig/libs/skel.bash.in	2006-10-25 22:28:35 +0200
++++ eselect-1.0.6/libs/skel.bash.in	2006-10-25 22:45:37 +0200
+@@ -25,7 +25,7 @@
+ find_implems() {
+     local -a implems
+     iface=$1 libdir=$2
+-    for file in ${ROOT}/etc/env.d/${iface}/${libdir}/* ; do
++    for file in ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/${iface}/${libdir}/* ; do
+         [[ -f ${file} ]] || continue
+         [[ "${file##*/}" != "config" ]] || continue
+         implems=(${implems[@]} "${file##*/}")
+@@ -37,7 +37,7 @@
+ # returns true if $implem is currently used for the $iface/$libdir combination
+ is_active() {
+     [[ ${#@} -eq 3 ]] || die "Need exactly 3 arguments!"
+-    current=$(load_config ${ROOT}/etc/env.d/${1}/${2}/config CURRENT)
++    current=$(load_config ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/${1}/${2}/config CURRENT)
+     [[ ${current} == ${3} ]]
+ }
+ 
+@@ -49,9 +49,9 @@
+     local iface=${1}
+     local libdir=${2}
+     local implem=${3##*/}
+-    local implem_file="${ROOT}/etc/env.d/${iface}/${libdir}/${implem}"
+-    local current=$(load_config "${ROOT}"/etc/env.d/${iface}/${libdir}/config CURRENT)
+-    local current_file="${ROOT}/etc/env.d/${iface}/${libdir}/${current}"
++    local implem_file="${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/${iface}/${libdir}/${implem}"
++    local current=$(load_config "${ROOT}@GENTOO_PORTAGE_EPREFIX@"/etc/env.d/${iface}/${libdir}/config CURRENT)
++    local current_file="${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/${iface}/${libdir}/${current}"
+     local dest src
+     if is_active ${iface} ${libdir} ${implem}; then
+         echo "Implementation \"${implem}\" already active for library directory \"${libdir}\"!"
+@@ -68,7 +68,7 @@
+ 
+             set ${line}
+             dest=$2
+-            rm -f ${ROOT}${dest}
++            rm -f ${ROOT}@GENTOO_PORTAGE_EPREFIX@${dest}
+         done < ${current_file}
+     fi
+ 
+@@ -82,11 +82,11 @@
+         set ${line}
+         src=$1
+         dest=$2
+-        ln -sf ${src} ${ROOT}${dest}
++        ln -sf ${src} ${ROOT}@GENTOO_PORTAGE_EPREFIX@${dest}
+     done < ${implem_file}
+ 
+     store_config \
+-        "${ROOT}"/etc/env.d/${iface}/${libdir}/config \
++        "${ROOT}@GENTOO_PORTAGE_EPREFIX@"/etc/env.d/${iface}/${libdir}/config \
+         CURRENT ${implem}
+ }
+ 
+@@ -116,15 +116,15 @@
+ # Shows the current implementation for $libdir
+ iface_do_show() {
+     local iface=$IFACE libdir=$1 implem
+-    config=${ROOT}/etc/env.d/${iface}/${libdir}/config
++    config=${ROOT}"@GENTOO_PORTAGE_EPREFIX@"/etc/env.d/${iface}/${libdir}/config
+     [[ ${#config[@]} -eq 1 ]] \
+         || return
+     [[ -e ${config} ]] \
+         || return
+ 
+-    implem=$(load_config ${ROOT}/etc/env.d/${iface}/${libdir}/config CURRENT)
+-    [[ -e ${ROOT}/etc/env.d/${iface}/${libdir}/${implem} ]] \
+-        || die "File \"${ROOT}/etc/env.d/${iface}/${libdir}/${implem}\" is missing!"
++    implem=$(load_config ${ROOT}"@GENTOO_PORTAGE_EPREFIX@"/etc/env.d/${iface}/${libdir}/config CURRENT)
++    [[ -e ${ROOT}"@GENTOO_PORTAGE_EPREFIX@"/etc/env.d/${iface}/${libdir}/${implem} ]] \
++        || die "File \"${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/${iface}/${libdir}/${implem}\" is missing!"
+ 
+     echo "${libdir}: ${implem}"
+ }
+@@ -148,8 +148,8 @@
+     local i=0
+ 
+     for libdir in $(get_libdirs); do
+-        [[ -d ${ROOT}/usr/${libdir} ]] \
+-            && [[ ! -h ${ROOT}/usr/${libdir} ]] \
++        [[ -d ${ROOT}"@GENTOO_PORTAGE_EPREFIX@"/usr/${libdir} ]] \
++            && [[ ! -h ${ROOT}"@GENTOO_PORTAGE_EPREFIX@"/usr/${libdir} ]] \
+             || continue
+         iface_do_list $libdir
+     done
+@@ -266,8 +266,8 @@
+     [[ -n ${mylibdirs[@]} ]] && libdirs=${mylibdirs[@]}
+ 
+     for libdir in ${libdirs}; do
+-        [[ -d ${ROOT}/usr/${libdir} ]] \
+-            && [[ ! -h ${ROOT}/usr/${libdir} ]] \
++        [[ -d ${ROOT}"@GENTOO_PORTAGE_EPREFIX@"/usr/${libdir} ]] \
++            && [[ ! -h ${ROOT}"@GENTOO_PORTAGE_EPREFIX@"/usr/${libdir} ]] \
+             || continue
+         iface_do_show $libdir
+     done
+@@ -295,7 +295,7 @@
+ 
+     # If $D is set, we're adding from portage so we want to respect sandbox.
+     # Otherwise, respect the ROOT variable.
+-    local PREFIX=${D:-${ROOT}}
++    local PREFIX=${D:-${ROOT}}"@GENTOO_PORTAGE_EPREFIX@"
+ 
+     # Create directory if necessary
+     if [[ ! -e ${PREFIX}/etc/env.d/${IFACE}/${1} ]]; then
+diff -Naur eselect-1.0.6.orig/libs/tests.bash.in eselect-1.0.6/libs/tests.bash.in
+--- eselect-1.0.6.orig/libs/tests.bash.in	2006-10-25 22:28:35 +0200
++++ eselect-1.0.6/libs/tests.bash.in	2006-10-25 22:44:07 +0200
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+ # Copyright (c) 2005 Gentoo Foundation.
+ # $Id: tests.bash.in 314 2006-10-03 18:50:56Z kugelfang $
