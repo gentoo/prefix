@@ -1,0 +1,207 @@
+# ChangeLog for app-admin/eselect
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.39 2006/10/18 13:18:19 uberlord Exp $
+
+  18 Oct 2006; Roy Marples <uberlord@gentoo.org> eselect-1.0.6.ebuild:
+  Added ~sparc-fbsd keyword.
+
+*eselect-1.0.6 (03 Oct 2006)
+
+  03 Oct 2006; Danny van Dyk <kugelfang@gentoo.org> -eselect-1.0.5.ebuild,
+  +eselect-1.0.6.ebuild:
+  Removed version 1.0.5. Added version 1.0.6.
+
+  04 Sep 2006; Joshua Kinard <kumba@gentoo.org> eselect-1.0.2.ebuild:
+  Marked stable on mips.
+
+*eselect-1.0.5 (26 Aug 2006)
+
+  26 Aug 2006; Danny van Dyk <kugelfang@gentoo.org> -eselect-1.0.4.ebuild,
+  +eselect-1.0.5.ebuild:
+  Removed version 1.0.4. Added version 1.0.5.
+
+  19 Aug 2006; Bryan Østergaard <kloeri@gentoo.org> eselect-1.0.2.ebuild:
+  Stable on alpha.
+
+  16 Aug 2006; Markus Rothe <corsair@gentoo.org> eselect-1.0.2.ebuild:
+  Stable on ppc64
+
+*eselect-1.0.4 (02 Aug 2006)
+
+  02 Aug 2006; Danny van Dyk <kugelfang@gentoo.org> -eselect-1.0.3.ebuild,
+  +eselect-1.0.4.ebuild:
+  Removed release 1.0.3. Added release 1.0.4.
+
+  02 Aug 2006; Gustavo Zacarias <gustavoz@gentoo.org> eselect-1.0.2.ebuild:
+  Stable on hppa
+
+  29 Jul 2006; Fabian Groffen <grobian@gentoo.org> eselect-1.0.2.ebuild:
+  Marked ~ppc-macos
+
+  15 Jul 2006; Joshua Jackson <tsunam@gentoo.org> eselect-1.0.2.ebuild:
+  Stable x86; openoffice security bug
+
+  15 Jul 2006; Luis Medinas <metalgod@gentoo.org> eselect-1.0.2.ebuild:
+  Stable on amd64.
+
+  12 Jul 2006; Aron Griffis <agriffis@gentoo.org> eselect-1.0.2.ebuild:
+  Mark 1.0.2 stable on ia64
+
+  12 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org> eselect-1.0.2.ebuild:
+  Stable on sparc
+
+  06 Jul 2006; Danny van Dyk <kugelfang@gentoo.org> eselect-1.0.ebuild,
+  eselect-1.0.2.ebuild, eselect-1.0.3.ebuild:
+  Added ChangeLog to the list of to-be-installed documents.
+
+  05 Jul 2006; Lars Weiler <pylon@gentoo.org> eselect-1.0.2.ebuild:
+  Stable on ppc; dependency for bug #139249.
+
+  03 Jul 2006; <malc@gentoo.org> files/digest-eselect-1.0,
+  files/digest-eselect-1.0.2, Manifest:
+  Fix broken digests - as reported in #gentoo-amd64
+
+  06 Jun 2006; Stephen Bennett <spb@gentoo.org> eselect-1.0.ebuild:
+  Mips stable for bug #125630
+
+  19 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> eselect-1.0.2.ebuild:
+  Add dependency over freebsd-bin as alternative to realpath, it does already
+  provide a realpath binary that works.
+
+*eselect-1.0.2 (14 Apr 2006)
+
+  14 Apr 2006; Danny van Dyk <kugelfang@gentoo.org> -eselect-1.0.1.ebuild,
+  +eselect-1.0.2.ebuild:
+  Added bugfix release 1.0.2. Removed 1.0.1 due to a slightly broken env.eselect.
+
+*eselect-1.0.1 (02 Apr 2006)
+
+  02 Apr 2006; Danny van Dyk <kugelfang@gentoo.org> -eselect-0.9.6.ebuild,
+  -eselect-1.0_rc1.ebuild, -eselect-1.0_rc2.ebuild, eselect-1.0.ebuild,
+  +eselect-1.0.1.ebuild:
+  Removed obsolete versions. Updated RDEPEND with sys-apps/file. Added 1.0.1
+  release.
+
+  30 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> eselect-1.0.ebuild:
+  Add ~x86-fbsd keyword, although the env module doesn't work, as other
+  modules are needed for other packages; most of this version works fine.
+
+  12 Mar 2006; Jason Wever <weeve@gentoo.org> eselect-1.0.ebuild:
+  Stable on SPARC wrt bug #125630.
+
+  10 Mar 2006; Fernando J. Pereda <ferdy@gentoo.org> eselect-1.0.ebuild:
+  Stable on alpha wrt bug #125630
+
+  10 Mar 2006; Markus Rothe <corsair@gentoo.org> eselect-1.0.ebuild:
+  Stable on ppc64; bug #125630
+
+  10 Mar 2006; Lars Weiler <pylon@gentoo.org> eselect-1.0.ebuild:
+  Stable on ppc wrt bug #125630.
+
+  10 Mar 2006; Michele Noberasco <s4t4n@gentoo.org> eselect-1.0.ebuild:
+  Stable for x86. See bug #125630.
+
+  09 Mar 2006; Aron Griffis <agriffis@gentoo.org> eselect-1.0.ebuild:
+  Mark 1.0 stable on ia64
+
+  09 Mar 2006; Jeroen Roovers <jer@gentoo.org> eselect-1.0.ebuild:
+  Stable on hppa (bug #125630).
+
+  09 Mar 2006; Danny van Dyk <kugelfang@gentoo.org> eselect-1.0.ebuild:
+  Marked stable on amd64.
+
+*eselect-1.0 (09 Feb 2006)
+
+  09 Feb 2006; Ciaran McCreesh <ciaranm@gentoo.org> +eselect-1.0.ebuild:
+  New release.
+
+  19 Nov 2005; Markus Rothe <corsair@gentoo.org> eselect-0.9.6.ebuild,
+  eselect-1.0_rc1.ebuild, eselect-1.0_rc2.ebuild:
+  Added ~ppc64; bug #102649
+
+*eselect-1.0_rc2 (16 Nov 2005)
+
+  16 Nov 2005; Danny van Dyk <kugelfang@gentoo.org> +eselect-1.0_rc2.ebuild:
+  Second release candidate for eselect-1.0. Fixes some bugs in BLAS and LAPACK
+  support. Adds support for MKL72.
+
+*eselect-1.0_rc1 (19 Oct 2005)
+
+  19 Oct 2005; Aaron Walker <ka0ttic@gentoo.org> +eselect-1.0_rc1.ebuild:
+  First release candidate for 1.0. Please test; the more testers we get, the
+  faster we'll get a stable eselect. This release fixes bugs #101898,#104354,
+  and #106540 as well as a sleu of others (see NEWS for a full list).
+
+  19 Sep 2005; Aaron Walker <ka0ttic@gentoo.org> -eselect-0.9.5.ebuild:
+  0.9.5 has a broken digest; not worth keeping around, so removing it.
+
+  01 Aug 2005; Aaron Walker <ka0ttic@gentoo.org> eselect-0.9.5.ebuild,
+  eselect-0.9.6.ebuild:
+  Since I'm an idiot, use newins rather than doins for installing the bashcomp.
+
+  31 Jul 2005; Aaron Walker <ka0ttic@gentoo.org> eselect-0.9.5.ebuild,
+  eselect-0.9.6.ebuild:
+  Added ~hppa; updated ebuilds to not use bash-completion.eclass; also added
+  missing NEWS/AUTHORS to the list of dodoc'd files.
+
+*eselect-0.9.6 (25 Jul 2005)
+
+  25 Jul 2005; Danny van Dyk <kugelfang@gentoo.org> +eselect-0.9.6.ebuild:
+  Version bump.
+
+*eselect-0.9.5 (18 Jun 2005)
+
+  18 Jun 2005; Aaron Walker <ka0ttic@gentoo.org> -eselect-0.9.4.ebuild,
+  +eselect-0.9.5.ebuild:
+  Version bump.
+
+*eselect-0.9.4 (13 Jun 2005)
+
+  13 Jun 2005; Aaron Walker <ka0ttic@gentoo.org> +metadata.xml,
+  +eselect-0.9.4.ebuild:
+  Version bump; moved from app-admin/eclectic to app-admin/eselect.
+
+  04 Jun 2005; Stephen Bennett <spb@gentoo.org> eclectic-0.9.3.ebuild:
+  ~mips keywords
+
+  17 May 2005; Ciaran McCreesh <ciaranm@gentoo.org> eclectic-0.9.2.ebuild,
+  eclectic-0.9.3.ebuild:
+  Update homepage now that there's a proper website
+
+  16 May 2005; Ciaran McCreesh <ciaranm@gentoo.org> eclectic-0.9.3.ebuild:
+  Up the bash dependency to version 3. This is temporary and just for this
+  release.
+
+*eclectic-0.9.3 (16 May 2005)
+
+  16 May 2005; Ciaran McCreesh <ciaranm@gentoo.org> +eclectic-0.9.3.ebuild:
+  Version bump
+
+  15 May 2005; Fernando J. Pereda <ferdy@gentoo.org> eclectic-0.9.2.ebuild:
+  keyworded ~alpha
+
+  15 May 2005; Ciaran McCreesh <ciaranm@gentoo.org> metadata.xml,
+  eclectic-0.9.2.ebuild:
+  Added ~sparc, update metadata
+
+  12 May 2005; Danny van Dyk <kugelfang@gentoo.org> eclectic-0.9.2.ebuild:
+  Marked ~amd64.
+
+  12 May 2005; Aaron Walker <ka0ttic@gentoo.org> eclectic-0.9.2.ebuild:
+  Fix dohtml glob; default.css wasn't getting installed.
+
+  11 May 2005; Lars Weiler <pylon@gentoo.org> eclectic-0.9.2.ebuild:
+  Added ~ppc.
+
+*eclectic-0.9.2 (08 May 2005)
+
+  08 May 2005; Aaron Walker <ka0ttic@gentoo.org> -eclectic-0.9.1.ebuild,
+  +eclectic-0.9.2.ebuild:
+  Version bump.
+
+*eclectic-0.9.1 (08 May 2005)
+
+  08 May 2005; Aaron Walker <ka0ttic@gentoo.org> +metadata.xml,
+  +eclectic-0.9.1.ebuild:
+  Initial commit.
+
