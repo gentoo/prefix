@@ -134,7 +134,7 @@ python_mod_exists() {
 # desc:   given a filename, it will pre-compile the module's .pyc and .pyo.
 #         should only be run in pkg_postinst()
 # exam:
-#         python_mod_compile ${PROOT}usr/lib/python2.3/site-packages/pygoogle.py
+#         python_mod_compile ${EROOT}usr/lib/python2.3/site-packages/pygoogle.py
 #
 python_mod_compile() {
 	# allow compiling for older python versions
@@ -163,7 +163,7 @@ python_mod_compile() {
 #         if supplied with arguments, it will recompile all modules recursively
 #         in the supplied directory
 # exam:
-#         python_mod_optimize ${PROOT}usr/share/codegen
+#         python_mod_optimize ${EROOT}usr/share/codegen
 #
 python_mod_optimize() {
 	local myroot
