@@ -70,7 +70,7 @@ gen_usr_ldscript() {
 	dodir /usr/${libdir}
 
 	for lib in "${@}" ; do
-		cat > "${D}/usr/${libdir}/${lib}" <<-END_LDSCRIPT
+		cat > "${ED}/usr/${libdir}/${lib}" <<-END_LDSCRIPT
 		/* GNU ld script
 		   Since Gentoo has critical dynamic libraries
 		   in /lib, and the static versions in /usr/lib,
@@ -493,9 +493,9 @@ enewuser() {
 	# handle shell
 	local eshell=$1; shift
 	if [[ ! -z ${eshell} ]] && [[ ${eshell} != "-1" ]] ; then
-		if [[ ! -e ${PROOT}${eshell} ]] ; then
+		if [[ ! -e ${EROOT}${eshell} ]] ; then
 			eerror "A shell was specified but it does not exist !"
-			die "${eshell} does not exist in ${PROOT}"
+			die "${eshell} does not exist in ${EROOT}"
 		fi
 		if [[ ${eshell} == */false || ${eshell} == */nologin ]] ; then
 			eerror "Do not specify ${eshell} yourself, use -1"
@@ -503,7 +503,7 @@ enewuser() {
 		fi
 	else
 		for shell in /sbin/nologin /usr/sbin/nologin /bin/false /usr/bin/false /dev/null ; do
-			[[ -x ${PROOT}${shell} ]] && break
+			[[ -x ${EROOT}${shell} ]] && break
 		done
 
 		if [[ ${shell} == "/dev/null" ]] ; then
@@ -632,11 +632,11 @@ enewuser() {
 		;;
 	esac
 
-	if [[ ! -e ${PROOT}/${ehome} ]] ; then
-		einfo " - Creating ${ehome} in ${PROOT}"
-		mkdir -p "${PROOT}/${ehome}"
-		chown ${euser} "${PROOT}/${ehome}"
-		chmod 755 "${PROOT}/${ehome}"
+	if [[ ! -e ${EROOT}/${ehome} ]] ; then
+		einfo " - Creating ${ehome} in ${EROOT}"
+		mkdir -p "${EROOT}/${ehome}"
+		chown ${euser} "${EROOT}/${ehome}"
+		chmod 755 "${EROOT}/${ehome}"
 	fi
 
 	export SANDBOX_ON=${oldsandbox}
@@ -1563,20 +1563,20 @@ set_arch_to_portage() {
 preserve_old_lib() {
 	LIB=$1
 
-	if [ -n "${LIB}" -a -f "${PROOT}${LIB}" ]; then
+	if [ -n "${LIB}" -a -f "${EROOT}${LIB}" ]; then
 		SONAME=`basename ${LIB}`
 		DIRNAME=`dirname ${LIB}`
 
 		dodir ${DIRNAME}
-		cp ${PROOT}${LIB} ${D}${DIRNAME}
-		touch ${D}${LIB}
+		cp ${EROOT}${LIB} ${ED}${DIRNAME}
+		touch ${ED}${LIB}
 	fi
 }
 
 preserve_old_lib_notify() {
 	LIB=$1
 
-	if [ -n "${LIB}" -a -f "${PROOT}${LIB}" ]; then
+	if [ -n "${LIB}" -a -f "${EROOT}${LIB}" ]; then
 		SONAME=`basename ${LIB}`
 
 		ewarn "An old version of an installed library was detected on your system."
@@ -1607,8 +1607,8 @@ built_with_use() {
 	[[ -z ${PKG} ]] && die "Unable to resolve $1 to an installed package"
 	shift
 
-	local USEFILE="${PROOT}"/var/db/pkg/${PKG}/USE
-	local IUSEFILE="${PROOT}"/var/db/pkg/${PKG}/IUSE
+	local USEFILE="${EROOT}"/var/db/pkg/${PKG}/USE
+	local IUSEFILE="${EROOT}"/var/db/pkg/${PKG}/IUSE
 
 	# if the USE file doesnt exist, assume the $PKG is either
 	# injected or package.provided
