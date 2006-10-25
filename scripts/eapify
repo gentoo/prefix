@@ -41,6 +41,9 @@ do
 	echo -n "  replacing \${EDEST} -> \${D} ... "
 	sed -i -e 's|${EDEST}|${D}|g' "$f"
 	echo "done"
+	echo -n "  replacing \${PROOT} -> \${EROOT} ... "
+	sed -i -e 's|${PROOT}|${EROOT}|g' "$f"
+	echo "done"
 
 	# we replace all ${D} with ${ED} if not in a make ... install line
 	echo -n "  replacing \${D} -> \${ED} ... "
