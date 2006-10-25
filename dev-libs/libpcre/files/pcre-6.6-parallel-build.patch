@@ -1,0 +1,27 @@
+diff -ur pcre-6.6.orig/Makefile.in pcre-6.6/Makefile.in
+--- pcre-6.6.orig/Makefile.in	2006-09-06 22:26:24.000000000 +0100
++++ pcre-6.6/Makefile.in	2006-09-06 22:52:13.000000000 +0100
+@@ -188,20 +188,20 @@
+ 		pcretest.@OBJEXT@ \
+ 		libpcre.la @POSIX_LIB@
+ 
+-pcrecpp_unittest@EXEEXT@: libpcrecpp.la pcrecpp_unittest.@OBJEXT@ \
++pcrecpp_unittest@EXEEXT@: libpcrecpp.la @POSIX_LIB@ pcrecpp_unittest.@OBJEXT@ \
+ 		@ON_WINDOWS@ winshared
+ 		$(CXXLINK) $(PURIFY) $(EFENCE) -o pcrecpp_unittest@EXEEXT@ \
+ 		pcrecpp_unittest.@OBJEXT@ \
+ 		libpcrecpp.la @POSIX_LIB@
+ 
+-pcre_scanner_unittest@EXEEXT@: libpcrecpp.la pcre_scanner_unittest.@OBJEXT@ \
++pcre_scanner_unittest@EXEEXT@: libpcrecpp.la @POSIX_LIB@ pcre_scanner_unittest.@OBJEXT@ \
+ 		@ON_WINDOWS@ winshared
+ 		$(CXXLINK) $(PURIFY) $(EFENCE) \
+ 		-o pcre_scanner_unittest@EXEEXT@ \
+ 		pcre_scanner_unittest.@OBJEXT@ \
+ 		libpcrecpp.la @POSIX_LIB@
+ 
+-pcre_stringpiece_unittest@EXEEXT@: libpcrecpp.la \
++pcre_stringpiece_unittest@EXEEXT@: libpcrecpp.la @POSIX_LIB@ \
+ 		pcre_stringpiece_unittest.@OBJEXT@ @ON_WINDOWS@ winshared
+ 		$(CXXLINK) $(PURIFY) $(EFENCE) \
+ 		-o pcre_stringpiece_unittest@EXEEXT@ \
