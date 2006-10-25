@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.36 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.43 2006/10/23 12:26:45 vivo Exp $
 
 # Author: Francesco Riosa <vivo@gentoo.org>
 # Maintainer: Luca Longinotti <chtekk@gentoo.org>
@@ -25,33 +25,38 @@ if [[ -z "${MYSQL_VERSION_ID}" ]] ; then
 	MYSQL_VERSION_ID=${MYSQL_VERSION_ID##"0"}
 fi
 
-DEPEND="${DEPEND}
-		>=sys-libs/readline-4.1
-		berkdb? ( sys-apps/ed )
-		ssl? ( >=dev-libs/openssl-0.9.6d )
+inherit eutils flag-o-matic gnuconfig autotools mysql_fx
+
+# Be warned, *DEPEND are version-dependant
+DEPEND="ssl? ( >=dev-libs/openssl-0.9.6d )
 		userland_GNU? ( sys-process/procps )
-		>=sys-libs/zlib-1.2.3
+		>=sys-apps/sed-4
 		>=sys-apps/texinfo-4.7-r1
-		>=sys-apps/sed-4"
+		>=sys-libs/readline-4.1
+		>=sys-libs/zlib-1.2.3"
+
+mysql_version_is_at_least "5.01.00.00" \
+|| DEPEND="${DEPEND} berkdb? ( sys-apps/ed )"
 
 RDEPEND="${DEPEND} selinux? ( sec-policy/selinux-mysql )"
 
 # dev-perl/DBD-mysql is needed by some scripts installed by MySQL
 PDEPEND="perl? ( >=dev-perl/DBD-mysql-2.9004 )"
 
-inherit eutils flag-o-matic gnuconfig autotools mysql_fx
-
 # Shorten the path because the socket path length must be shorter than 107 chars
 # and we will run a mysql server during test phase
-S="${WORKDIR}/${PN}"
+S="${WORKDIR}/${PN/_alpha/-bk-}" # BitKeeper ebuilds
 
 # Define $MY_FIXED_PV for MySQL patchsets
 MY_FIXED_PV="${PV/_alpha/}"
-MY_FIXED_PV="${MY_FIXED_PV/_beta/}"
-MY_FIXED_PV="${MY_FIXED_PV/_rc/}"
+#MY_FIXED_PV="${MY_FIXED_PV/_beta/}"
+#MY_FIXED_PV="${MY_FIXED_PV/_rc/}"
+
+MY_P="${P/_/-}"
+MY_P="${MY_P/-alpha/-bk-}" # BitKeeper ebuilds
 
 # Define correct SRC_URIs
-SRC_URI="mirror://mysql/Downloads/MySQL-${PV%.*}/${P/_/-}${MYSQL_RERELEASE}.tar.gz"
+SRC_URI="mirror://mysql/Downloads/MySQL-${PV%.*}/${MY_P}${MYSQL_RERELEASE}.tar.gz"
 if [[ -n "${MYSQL_PATCHSET_REV}" ]] ; then
 	MYSQL_PATCHSET_FILENAME="${PN}-patchset-${MY_FIXED_PV}-r${MYSQL_PATCHSET_REV}.tar.bz2"
 	# We add the Gentoo mirror here, as we only use primaryuri for the MySQL tarball
@@ -62,7 +67,7 @@ DESCRIPTION="A fast, multi-threaded, multi-user SQL database server."
 HOMEPAGE="http://www.mysql.com/"
 SLOT="0"
 LICENSE="GPL-2"
-IUSE="big-tables berkdb debug embedded minimal perl selinux srvdir ssl static"
+IUSE="big-tables debug embedded minimal perl selinux srvdir ssl static"
 RESTRICT="confcache"
 
 mysql_version_is_at_least "4.01.00.00" \
@@ -80,8 +85,15 @@ mysql_version_is_at_least "5.00.18.00" \
 mysql_version_is_at_least "5.01.00.00" \
 && IUSE="${IUSE} innodb"
 
+mysql_version_is_at_least "5.01.00.00" \
+|| IUSE="${IUSE} berkdb"
+
 EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_preinst \
 				pkg_postinst pkg_config pkg_postrm
+
+#
+# HELPER FUNCTIONS:
+#
 
 # void mysql_init_vars()
 #
@@ -119,12 +131,12 @@ mysql_init_vars() {
 			fi
 			einfo "Using default DATADIR"
 		fi
-		einfo "MySQL DATADIR is ${DATADIR}"
+		elog "MySQL DATADIR is ${DATADIR}"
 
 		if [[ -z "${PREVIOUS_DATADIR}" ]] ; then
 			if [[ -e "${DATADIR}" ]] ; then
-				ewarn "Previous datadir found, it's YOUR job to change"
-				ewarn "ownership and take care of it"
+				elog "Previous datadir found, it's YOUR job to change"
+				elog "ownership and take care of it"
 				PREVIOUS_DATADIR="yes"
 			else
 				PREVIOUS_DATADIR="no"
@@ -139,9 +151,177 @@ mysql_init_vars() {
 	export DATADIR
 }
 
+configure_minimal() {
+		# These are things we exclude from a minimal build, please
+		# note that the server actually does get built and installed,
+		# but we then delete it before packaging.
+		local minimal_exclude_list="server embedded-server extra-tools innodb bench berkeley-db row-based-replication"
+
+		for i in ${minimal_exclude_list} ; do
+			myconf="${myconf} --without-${i}"
+		done
+		myconf="${myconf} --with-extra-charsets=none"
+}
+
+configure_common() {
+	myconf="${myconf} $(use_with big-tables)"
+	myconf="${myconf} --enable-local-infile"
+	myconf="${myconf} --with-extra-charsets=all"
+	myconf="${myconf} --with-mysqld-user=mysql"
+	myconf="${myconf} --with-server"
+	myconf="${myconf} --with-unix-socket-path=/var/run/mysqld/mysqld.sock"
+	myconf="${myconf} --without-libwrap"
+
+	if useq "static" ; then
+		myconf="${myconf} --with-mysqld-ldflags=-all-static"
+		myconf="${myconf} --with-client-ldflags=-all-static"
+		myconf="${myconf} --disable-shared"
+	else
+		myconf="${myconf} --enable-shared --enable-static"
+	fi
+
+	if useq "debug" ; then
+		myconf="${myconf} --with-debug=full"
+	else
+		myconf="${myconf} --without-debug"
+		mysql_version_is_at_least "4.01.03.00" \
+		&& useq "cluster" \
+		&& myconf="${myconf} --without-ndb-debug"
+	fi
+
+	if mysql_version_is_at_least "4.01.00.00" && ! useq "latin1" ; then
+			myconf="${myconf} --with-charset=utf8"
+			myconf="${myconf} --with-collation=utf8_general_ci"
+		else
+			myconf="${myconf} --with-charset=latin1"
+			myconf="${myconf} --with-collation=latin1_swedish_ci"
+	fi
+
+	if useq "embedded" ; then
+		myconf="${myconf} --with-embedded-privilege-control"
+		myconf="${myconf} --with-embedded-server"
+	else
+		myconf="${myconf} --without-embedded-privilege-control"
+		myconf="${myconf} --without-embedded-server"
+	fi
+
+}
+
+configure_40_41_50() {
+	myconf="${myconf} $(use_with perl bench)"
+	myconf="${myconf} --enable-assembler"
+	myconf="${myconf} --with-extra-tools"
+	myconf="${myconf} --with-innodb"
+	myconf="${myconf} --without-readline"
+	mysql_version_is_at_least "5.00.00.00" || myconf="${myconf} $(use_with raid)"
+
+	if useq "ssl" ; then
+		# --with-vio is not needed anymore, it's on by default and
+		# has been removed from configure
+		mysql_version_is_at_least "5.00.04.00" || myconf="${myconf} --with-vio"
+		if mysql_version_is_at_least "5.00.06.00" ; then
+			# myconf="${myconf} --with-yassl"
+			myconf="${myconf} --with-openssl"
+		else
+			myconf="${myconf} --with-openssl"
+		fi
+	else
+		myconf="${myconf} --without-openssl"
+	fi
+
+	# The following fix is due to a bug with bdb on SPARC's. See:
+	# http://www.geocrawler.com/mail/msg.php3?msg_id=4754814&list=8
+	# It comes down to non-64-bit safety problems.
+	if useq "sparc" || useq "alpha" || useq "hppa" || useq "mips" || useq "amd64" ; then
+		elog "Berkeley DB support was disabled due to incompatible arch"
+		myconf="${myconf} --without-berkeley-db"
+	else
+		if useq "berkdb" ; then
+			myconf="${myconf} --with-berkeley-db=./bdb"
+		else
+			myconf="${myconf} --without-berkeley-db"
+		fi
+	fi
+
+	if mysql_version_is_at_least "4.01.03.00" ; then
+		myconf="${myconf} --with-geometry"
+		myconf="${myconf} $(use_with cluster ndbcluster)"
+	fi
+
+	if mysql_version_is_at_least "4.01.03.00" && useq "extraengine" ; then
+		# http://dev.mysql.com/doc/mysql/en/archive-storage-engine.html
+		myconf="${myconf} --with-archive-storage-engine"
+
+		# http://dev.mysql.com/doc/mysql/en/csv-storage-engine.html
+		myconf="${myconf} --with-csv-storage-engine"
+
+		# http://dev.mysql.com/doc/mysql/en/blackhole-storage-engine.html
+		myconf="${myconf} --with-blackhole-storage-engine"
+
+		# http://dev.mysql.com/doc/mysql/en/federated-storage-engine.html
+		# http://dev.mysql.com/doc/mysql/en/federated-description.html
+		# http://dev.mysql.com/doc/mysql/en/federated-limitations.html
+		if mysql_version_is_at_least "5.00.03.00" ; then
+			elog "Before using the Federated storage engine, please be sure to read"
+			elog "http://dev.mysql.com/doc/mysql/en/federated-limitations.html"
+			myconf="${myconf} --with-federated-storage-engine"
+		fi
+	fi
+
+	mysql_version_is_at_least "5.00.18.00" \
+	&& useq "max-idx-128" \
+	&& myconf="${myconf} --with-max-indexes=128"
+}
+
+configure_51() {
+	# TODO: !!!! readd --without-readline
+	# the failure depend upon config/ac-macros/readline.m4 checking into
+	# readline.h instead of history.h
+	myconf="${myconf} $(use_with ssl)"
+	myconf="${myconf} --enable-assembler"
+	myconf="${myconf} --with-geometry"
+	myconf="${myconf} --with-readline"
+	myconf="${myconf} --with-row-based-replication"
+	myconf="${myconf} --with-zlib=/usr/$(get_libdir)"
+	myconf="${myconf} --without-pstack"
+	useq "max-idx-128" && myconf="${myconf} --with-max-indexes=128"
+
+	# 5.1 introduces a new way to manage storage engines (plugins)
+	# like configuration=none
+	local plugins="csv,myisam,myisammrg,heap"
+	if useq "extraengine" ; then
+		# like configuration=max-no-ndb, archive and example removed in 5.1.11
+		plugins="${plugins},archive,blackhole,example,federated,ftexample,partition"
+
+		elog "Before using the Federated storage engine, please be sure to read"
+		elog "http://dev.mysql.com/doc/refman/5.1/en/federated-limitations.html"
+	fi
+
+	if useq "innodb" ; then
+		plugins="${plugins},innobase"
+	fi
+
+	# like configuration=max-no-ndb
+	if useq "cluster" ; then
+		plugins="${plugins},ndbcluster"
+		myconf="${myconf} --with-ndb-binlog"
+	fi
+
+	myconf="${myconf} --with-plugins=${plugins}"
+}
+
+#
+# EBUILD FUNCTIONS
+#
+
 mysql_pkg_setup() {
 	enewgroup mysql 60 || die "problem adding 'mysql' group"
 	enewuser mysql 60 -1 /dev/null mysql || die "problem adding 'mysql' user"
+
+	if mysql_version_is_at_least "5.01.12.00" && useq "innodb" ; then
+		eerror "InnoDB now uses cmake to build, this is a TODO item, will be fixed shortly!"
+		die "InnoDB now uses cmake to build, this is a TODO item, will be fixed shortly!"
+	fi
 
 	# Check for USE flag problems in pkg_setup
 	if useq "static" && useq "ssl" ; then
@@ -163,6 +343,10 @@ mysql_pkg_setup() {
 		eerror "USE flags 'cluster' and 'extraengine' conflict with 'minimal' USE flag!"
 		die "USE flags 'cluster' and 'extraengine' conflict with 'minimal' USE flag!"
 	fi
+
+	mysql_check_version_range "4.00.00.00 to 5.00.99.99" \
+	&& useq "berkdb" \
+	&& elog "Berkeley DB support is deprecated and will be removed in future versions!"
 }
 
 mysql_src_unpack() {
@@ -171,7 +355,7 @@ mysql_src_unpack() {
 
 	unpack ${A}
 
-	mv -f "${WORKDIR}/${P/_/-}${MYSQL_RERELEASE}" "${S}"
+	mv -f "${WORKDIR}/${MY_P}${MYSQL_RERELEASE}" "${S}"
 	cd "${S}"
 
 	# Apply the patches for this MySQL version
@@ -185,11 +369,14 @@ mysql_src_unpack() {
 	rm -f "scripts/mysqlbug"
 
 	# Make charsets install in the right place
-	find . -name 'Makefile.am' -exec sed --in-place -e 's!$(pkgdatadir)!'${MY_SHAREDSTATEDIR}'!g' {} \;
+	find . -name 'Makefile.am' \
+		-exec sed --in-place -e 's!$(pkgdatadir)!'${MY_SHAREDSTATEDIR}'!g' {} \;
 
 	# Manage mysqlmanager
 	mysql_version_is_at_least "5.00.15.00" \
-	&& sed -i -e "s!@GENTOO_EXT@!!g" -e "s!@GENTOO_SOCK_PATH@!var/run/mysqld!g" "${S}/server-tools/instance-manager/Makefile.am"
+	&& sed -i -e "s!@GENTOO_EXT@!!g" \
+		-e "s!@GENTOO_SOCK_PATH@!var/run/mysqld!g" \
+		"${S}/server-tools/instance-manager/Makefile.am"
 
 	if mysql_version_is_at_least "4.01.00.00" ; then
 		# Remove what needs to be recreated, so we're sure it's actually done
@@ -198,13 +385,15 @@ mysql_src_unpack() {
 			-o -name configure \
 			-exec rm -f {} \;
 		rm -f "ltmain.sh"
+		rm -f "scripts/mysqlbug"
 	fi
 
 	local rebuilddirlist bdbdir d
 
-	if mysql_version_is_at_least "5.01.00.00" ; then
-		rebuilddirlist=". storage/innobase"
-		bdbdir='storage/bdb/dist'
+	if mysql_version_is_at_least "5.01.12.00" ; then
+		# TODO: innodb is using cmake now?
+		rebuilddirlist="."
+		bdbdir=''
 	else
 		rebuilddirlist=". innobase"
 		bdbdir='bdb/dist'
@@ -217,10 +406,8 @@ mysql_src_unpack() {
 		popd &>/dev/null
 	done
 
-	# TODO: berkdb in MySQL 5.1 needs to be worked on
-	if useq "berkdb" \
-	&& ! mysql_check_version_range "4.00.00.00 to 4.00.99.99" \
-	&& ! mysql_check_version_range "5.01.00.00 to 5.01.08.99" ; then
+	if mysql_check_version_range "4.01.00.00 to 5.00.99.99" \
+	&& useq "berkdb" ; then
 		[[ -w "${bdbdir}/ltmain.sh" ]] && cp -f "ltmain.sh" "${bdbdir}/ltmain.sh"
 		pushd "${bdbdir}" \
 		&& sh s_all \
@@ -234,173 +421,18 @@ mysql_src_compile() {
 	# Make sure the vars are correctly initialized
 	mysql_init_vars
 
-	local myconf
+	# $myconf is modified by the configure_* functions
+	local myconf=""
 
-	if useq "static" ; then
-		myconf="${myconf} --with-mysqld-ldflags=-all-static"
-		myconf="${myconf} --with-client-ldflags=-all-static"
-		myconf="${myconf} --disable-shared"
+	if useq "minimal" ; then
+		configure_minimal
 	else
-		myconf="${myconf} --enable-shared --enable-static"
-	fi
-
-	myconf="${myconf} --without-libwrap"
-
-	if useq "ssl" ; then
-		# --with-vio is not needed anymore, it's on by default and
-		# has been removed from configure
-		mysql_version_is_at_least "5.00.04.00" || myconf="${myconf} --with-vio"
-		if mysql_version_is_at_least "5.00.06.00" ; then
-			# yassl-0.96 is still young and breaks with GCC-4.X or amd64
-			# myconf="${myconf} --with-yassl"
-			myconf="${myconf} --with-openssl"
+		configure_common
+		if mysql_version_is_at_least "5.01.10.00" ; then
+			configure_51
 		else
-			myconf="${myconf} --with-openssl"
+			configure_40_41_50
 		fi
-	else
-		myconf="${myconf} --without-openssl"
-	fi
-
-	if useq "debug" ; then
-		myconf="${myconf} --with-debug=full"
-	else
-		myconf="${myconf} --without-debug"
-
-		mysql_version_is_at_least "4.01.03.00" && useq "cluster" \
-		&& myconf="${myconf} --without-ndb-debug"
-	fi
-
-	# These are things we exclude from a minimal build.
-	# Note that the server actually does get built and installed,
-	# but we then delete it.
-	local minimal_exclude_list="server embedded-server extra-tools innodb bench"
-
-	if ! useq "minimal" ; then
-		myconf="${myconf} --with-server"
-		myconf="${myconf} --with-extra-tools"
-
-		if ! mysql_version_is_at_least "5.00.00.00" ; then
-			if useq "raid" ; then
-				myconf="${myconf} --with-raid"
-			else
-				myconf="${myconf} --without-raid"
-			fi
-		fi
-
-		if mysql_version_is_at_least "4.01.00.00" && ! useq "latin1" ; then
-			myconf="${myconf} --with-charset=utf8"
-			myconf="${myconf} --with-collation=utf8_general_ci"
-		else
-			myconf="${myconf} --with-charset=latin1"
-			myconf="${myconf} --with-collation=latin1_swedish_ci"
-		fi
-
-		# Optional again with MySQL 5.1
-		if mysql_version_is_at_least "5.01.00.00" ; then
-			if useq "innodb" ; then
-				myconf="${myconf} --with-innodb"
-			else
-				myconf="${myconf} --without-innodb"
-			fi
-		fi
-
-		# Lots of charsets
-		myconf="${myconf} --with-extra-charsets=all"
-
-		# The following fix is due to a bug with bdb on SPARC's. See:
-		# http://www.geocrawler.com/mail/msg.php3?msg_id=4754814&list=8
-		# It comes down to non-64-bit safety problems.
-		if useq "sparc" || useq "alpha" || useq "hppa" || useq "mips" || useq "amd64" ; then
-			ewarn "bdb berkeley-db disabled due to incompatible arch"
-			myconf="${myconf} --without-berkeley-db"
-		else
-			# TODO: berkdb in MySQL 5.1 needs to be worked on
-			if useq "berkdb" && ! mysql_check_version_range "5.01.00.00 to 5.01.08.99" ; then
-				myconf="${myconf} --with-berkeley-db=./bdb"
-			else
-				myconf="${myconf} --without-berkeley-db"
-			fi
-		fi
-
-		if mysql_version_is_at_least "4.01.03.00" ; then
-			myconf="${myconf} --with-geometry"
-
-			if useq "cluster" ; then
-				myconf="${myconf} --with-ndbcluster"
-			else
-				myconf="${myconf} --without-ndbcluster"
-			fi
-		fi
-
-		if useq "big-tables" ; then
-			myconf="${myconf} --with-big-tables"
-		else
-			myconf="${myconf} --without-big-tables"
-		fi
-
-		mysql_version_is_at_least "5.01.06.00" \
-		&&  myconf="${myconf} --with-ndb-binlog"
-
-		if useq "embedded" ; then
-			myconf="${myconf} --with-embedded-privilege-control"
-			myconf="${myconf} --with-embedded-server"
-		else
-			myconf="${myconf} --without-embedded-privilege-control"
-			myconf="${myconf} --without-embedded-server"
-		fi
-
-		# Benchmarking stuff needs Perl
-		if useq "perl" ; then
-			myconf="${myconf} --with-bench"
-		else
-			myconf="${myconf} --without-bench"
-		fi
-	else
-		for i in ${minimal_exclude_list} ; do
-			myconf="${myconf} --without-${i}"
-		done
-		myconf="${myconf} --without-berkeley-db"
-		myconf="${myconf} --with-extra-charsets=none"
-	fi
-
-	if mysql_version_is_at_least "4.01.03.00" && useq "extraengine" ; then
-		# http://dev.mysql.com/doc/mysql/en/archive-storage-engine.html
-		myconf="${myconf} --with-archive-storage-engine"
-
-		# http://dev.mysql.com/doc/mysql/en/csv-storage-engine.html
-		myconf="${myconf} --with-csv-storage-engine"
-
-		# http://dev.mysql.com/doc/mysql/en/blackhole-storage-engine.html
-		myconf="${myconf} --with-blackhole-storage-engine"
-
-		# http://dev.mysql.com/doc/mysql/en/federated-storage-engine.html
-		# http://dev.mysql.com/doc/mysql/en/federated-description.html
-		# http://dev.mysql.com/doc/mysql/en/federated-limitations.html
-		if mysql_version_is_at_least "5.00.03.00" ; then
-			einfo "Before using the Federated storage engine, please be sure to read"
-			einfo "http://dev.mysql.com/doc/mysql/en/federated-limitations.html"
-			myconf="${myconf} --with-federated-storage-engine"
-		fi
-
-		# http://dev.mysql.com/doc/refman/5.1/en/partitioning-overview.html
-		if mysql_version_is_at_least "5.01.00.00" ; then
-			myconf="${myconf} --with-partition"
-		fi
-	fi
-
-	mysql_version_is_at_least "5.00.18.00" \
-	&& useq "max-idx-128" \
-	&& myconf="${myconf} --with-max-indexes=128"
-
-	mysql_version_is_at_least "5.01.05.00" \
-	&& myconf="${myconf} --with-row-based-replication"
-
-	# TODO: Rechek again later, there were problems with assembler enabled
-	#       and some combination of USE flags with MySQL 5.1
-	if mysql_check_version_range "5.01.00.00 to 5.01.08.99" ; then
-		myconf="${myconf} --disable-assembler"
-	else
-		myconf="${myconf} --enable-assembler"
 	fi
 
 	# Bug #114895, bug #110149
@@ -409,12 +441,11 @@ mysql_src_compile() {
 	# glib-2.3.2_pre fix, bug #16496
 	append-flags "-DHAVE_ERRNO_AS_DEFINE=1"
 
-	# The compiler flags are as their "official" spec says ;)
 	append-flags "-fno-exceptions -fno-strict-aliasing"
 	CXXFLAGS="${CXXFLAGS} -felide-constructors -fno-rtti"
 	mysql_version_is_at_least "5.00.00.00" \
 	&& CXXFLAGS="${CXXFLAGS} -fno-implicit-templates"
-	export CXXFLAGS="${CXXFLAGS}"
+	export CXXFLAGS
 
 	econf \
 		--libexecdir="/usr/sbin" \
@@ -424,29 +455,25 @@ mysql_src_compile() {
 		--libdir="${MY_LIBDIR}" \
 		--includedir="${MY_INCLUDEDIR}" \
 		--with-low-memory \
-		--enable-local-infile \
-		--with-mysqld-user=mysql \
 		--with-client-ldflags=-lstdc++ \
 		--enable-thread-safe-client \
 		--with-comment="Gentoo Linux ${PF}" \
-		--with-unix-socket-path="/var/run/mysqld/mysqld.sock" \
-		--without-readline \
 		--without-docs \
-		${myconf} || die "bad ./configure"
+		${myconf} || die "econf failed"
 
 	# TODO: Move this before autoreconf !!!
 	find . -type f -name Makefile -print0 \
 	| xargs -0 -n100 sed -i \
 	-e 's|^pkglibdir *= *$(libdir)/mysql|pkglibdir = $(libdir)|;s|^pkgincludedir *= *$(includedir)/mysql|pkgincludedir = $(includedir)|'
 
-	emake || die "compile problem"
+	emake || die "emake failed"
 }
 
 mysql_src_install() {
 	# Make sure the vars are correctly initialized
 	mysql_init_vars
 
-	make install DESTDIR="${D}" benchdir_root="${MY_SHAREDSTATEDIR}" || die "make install error"
+	emake install DESTDIR="${D}" benchdir_root="${MY_SHAREDSTATEDIR}" || die "emake install failed"
 
 	insinto "${MY_INCLUDEDIR}"
 	doins "${MY_INCLUDEDIR}"/my_{config,dir}.h
@@ -458,7 +485,9 @@ mysql_src_install() {
 
 	# Various junk (my-*.cnf moved elsewhere)
 	rm -Rf "${D}/usr/share/info"
-	for removeme in  "mysql-log-rotate" mysql.server* binary-configure* my-*.cnf mi_test_all* ; do
+	for removeme in  "mysql-log-rotate" mysql.server* \
+		binary-configure* my-*.cnf mi_test_all*
+	do
 		rm -f "${D}"/usr/share/mysql/${removeme}
 	done
 
@@ -550,7 +579,8 @@ mysql_pkg_postinst() {
 	mysql_init_vars
 
 	# Check FEATURES="collision-protect" before removing this
-	[[ -d "${ROOT}/var/log/mysql" ]] || install -d -m0750 -o mysql -g mysql "${ROOT}${MY_LOGDIR}"
+	[[ -d "${ROOT}/var/log/mysql" ]] \
+		|| install -d -m0750 -o mysql -g mysql "${ROOT}${MY_LOGDIR}"
 
 	# Secure the logfiles
 	touch "${ROOT}${MY_LOGDIR}"/mysql.{log,err}
@@ -560,13 +590,16 @@ mysql_pkg_postinst() {
 	if ! useq "minimal" ; then
 		# Your friendly public service announcement ...
 		einfo
-		einfo "You might want to run:"
-		einfo "\"emerge --config =${CATEGORY}/${PF}\""
-		einfo "if this is a new install."
+		elog "You might want to run:"
+		elog "\"emerge --config =${CATEGORY}/${PF}\""
+		elog "if this is a new install."
 		einfo
 		mysql_version_is_at_least "5.01.00.00" \
-		|| einfo "InnoDB is *not* optional as of MySQL-4.0.24, at the request of upstream."
+		|| elog "InnoDB is *not* optional as of MySQL-4.0.24, at the request of upstream."
 	fi
+	mysql_check_version_range "4.00.00.00 to 5.00.99.99" \
+	&& useq "berkdb" \
+	&& elog "Berkeley DB support is deprecated and will be removed in future versions!"
 }
 
 mysql_pkg_config() {

@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cannadic.eclass,v 1.13 2006/05/26 15:19:55 antarus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cannadic.eclass,v 1.14 2006/10/21 00:07:58 flameeyes Exp $
 #
 # Author: Mamoru KOMACHI <usata@gentoo.org>
 #
@@ -10,7 +10,7 @@
 
 EXPORT_FUNCTIONS src_install pkg_setup pkg_postinst pkg_postrm
 
-IUSE="canna"
+IUSE=""
 
 DESCRIPTION="Based on the $ECLASS eclass"
 HOMEPAGE="http://canna.sourceforge.jp/"		# you need to change this!
@@ -68,9 +68,7 @@ cannadic_src_install() {
 		cannadic-install $f
 	done 2>/dev/null
 
-	if use canna ; then
-		dicsdir-install || die
-	fi
+	dicsdir-install || die
 
 	dodoc ${DOCS}
 }
@@ -112,44 +110,38 @@ update-cannadic-dir() {
 # pkg_postinst() : updates dics.dir and print out notice after install
 #
 cannadic_pkg_postinst() {
+	update-cannadic-dir
+	einfo
+	einfo "Please restart cannaserver to fit the changes."
+	einfo "You need to modify your config file (~/.canna) to enable dictionaries."
 
-	if use canna ; then
-		update-cannadic-dir
-		einfo
-		einfo "Please restart cannaserver to fit the changes."
-		einfo "You need to modify your config file (~/.canna) to enable dictionaries."
-
-		if [ -n "${CANNADICS}" ] ; then
-			einfo "e.g) add $(for d in ${CANNADICS}; do
+	if [ -n "${CANNADICS}" ] ; then
+		einfo "e.g) add $(for d in ${CANNADICS}; do
 				echo -n "\"$d\" "
 				done)to section use-dictionary()."
-			einfo "For details, see documents under /usr/share/doc/${PF}"
-		fi
-
-		einfo "If you do not have ~/.canna, you can find sample files in /usr/share/canna."
-		ewarn "If you are upgrading from existing dictionary, you may need to recreate"
-		ewarn "user dictionary if you have one."
-		einfo
+		einfo "For details, see documents under /usr/share/doc/${PF}"
 	fi
+
+	einfo "If you do not have ~/.canna, you can find sample files in /usr/share/canna."
+	ewarn "If you are upgrading from existing dictionary, you may need to recreate"
+	ewarn "user dictionary if you have one."
+	einfo
 }
 
 #
 # pkg_postrm() : updates dics.dir and print out notice after uninstall
 #
 cannadic_pkg_postrm() {
+	update-cannadic-dir
+	einfo
+	einfo "Please restart cannaserver to fit changes."
+	einfo "and modify your config file (~/.canna) to disable dictionary."
 
-	if use canna ; then
-		update-cannadic-dir
-		einfo
-		einfo "Please restart cannaserver to fit changes."
-		einfo "and modify your config file (~/.canna) to disable dictionary."
-
-		if [ -n "${CANNADICS}" ] ; then
-			einfo "e.g) delete $(for d in ${CANNADICS}; do
+	if [ -n "${CANNADICS}" ] ; then
+		einfo "e.g) delete $(for d in ${CANNADICS}; do
 				echo -n "\"$d\" "
 				done)from section use-dictionary()."
-		fi
-
-		einfo
 	fi
+
+	einfo
 }

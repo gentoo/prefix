@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.254 2006/10/18 21:35:19 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.255 2006/10/24 17:27:31 wolf31o2 Exp $
 #
 # This eclass is for general purpose functions that most ebuilds
 # have to implement themselves.
@@ -1220,7 +1220,7 @@ check_license() {
 	local alic
 	set -o noglob #so that bash doesn't expand "*"
 	for alic in ${ACCEPT_LICENSE} ; do
-		if [[ ${alic} == * || ${alic} == ${l} ]]; then
+		if [[ ${alic} == ${l} ]]; then
 			set +o noglob; set -${shopts} #reset old shell opts
 			return 0
 		fi

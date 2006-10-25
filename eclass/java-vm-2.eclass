@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.14 2006/10/15 16:18:01 nichoj Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.15 2006/10/20 03:52:24 nichoj Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -76,18 +76,44 @@ java-vm-2_pkg_postinst() {
 		einfo "where all JREs and JDKs will be available"
 	fi
 
+	echo
+
+	java-vm_check-nsplugin
+	java_mozilla_clean_
+}
+
+java-vm_check-nsplugin() {
+	local libdir
+	if [[ ${VMHANDLE} =~ emul-linux-x86 ]]; then
+		libdir=lib32
+	else
+		libdir=lib
+	fi
 	# Install a default nsplugin if we don't already have one
 	if has nsplugin ${IUSE} && use nsplugin; then
-		if [[ ! -f /usr/lib/nsbrowser/plugins/javaplugin.so ]]; then
-			einfo "You have no system nsplugin set, setting it to ${VMHANDLE}."
-			eselect java-nsplugin set ${VMHANDLE}
+		if [[ ! -f /usr/${libdir}/nsbrowser/plugins/javaplugin.so ]]; then
+			einfo "No system nsplugin currently set."
+			java-vm_set-nsplugin
 		else
 			einfo "System nsplugin is already set, not changing it."
 		fi
 		einfo "You can change nsplugin with eselect java-nsplugin."
 	fi
+}
 
-	java_mozilla_clean_
+java-vm_set-nsplugin() {
+	local extra_args
+	if use amd64; then
+		if [[ ${VMHANDLE} =~ emul-linux-x86 ]]; then
+			extra_args="32bit"
+		else
+			extra_args="64bit"
+		fi
+		einfo "Setting ${extra_args} nsplugin to ${VMHANDLE}"
+	else
+		einfo "Setting nsplugin to ${VMHANDLE}..."
+	fi
+	eselect java-nsplugin set ${extra_args} ${VMHANDLE}
 }
 
 java-vm-2_pkg_prerm() {

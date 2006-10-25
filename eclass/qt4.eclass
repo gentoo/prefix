@@ -1,6 +1,6 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.4 2006/08/16 12:20:15 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.6 2006/10/21 09:56:28 flameeyes Exp $
 #
 # Author Caleb Tennis <caleb@gentoo.org>
 #
@@ -16,8 +16,8 @@
 inherit versionator
 
 QTPKG="x11-libs/qt-"
-QT4MAJORVERSIONS="4.1 4.0"
-QT4VERSIONS="4.1.4 4.1.3 4.1.2 4.1.1 4.1.0 4.0.1 4.0.0"
+QT4MAJORVERSIONS="4.2 4.1 4.0"
+QT4VERSIONS="4.2.0-r2 4.2.0-r1 4.2.0 4.1.4-r2 4.1.4-r2 4.1.4 4.1.3 4.1.2 4.1.1 4.1.0 4.0.1 4.0.0"
 
 qt4_min_version() {
 	echo "|| ("
@@ -31,7 +31,7 @@ qt4_min_version_list() {
 
 	case "${MINVER}" in
 		4|4.0|4.0.0) VERSIONS="=${QTPKG}4*";;
-		4.1|4.1.0)
+		4.1|4.1.0|4.2|4.2.0)
 			for x in ${QT4MAJORVERSIONS}; do
 				if $(version_is_at_least "${MINVER}" "${x}"); then
 					VERSIONS="${VERSIONS} =${QTPKG}${x}*"

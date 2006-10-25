@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.194 2006/10/12 02:58:51 dostrow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.196 2006/10/24 23:45:35 vapier Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -487,15 +487,19 @@ install_universal() {
 }
 
 install_headers() {
+	local ddir=$(kernel_header_destdir)
+
 	# 2.6.18 introduces headers_install which means we dont need any
 	# of this crap anymore :D
 	if kernel_is ge 2 6 18 ; then
 		env_setup_xmakeopts
-		emake headers_install INSTALL_HDR_PATH="${D}"/usr ${xmakeopts} || die
+		emake headers_install INSTALL_HDR_PATH="${D}"/${ddir}/.. ${xmakeopts} || die
+
+		# let other packages install some of these headers
+		rm -rf "${D}"/${ddir}/sound #alsa-headers
+		rm -rf "${D}"/${ddir}/scsi  #glibc/uclibc/etc...
 		return 0
 	fi
-
-	local ddir=$(kernel_header_destdir)
 
 	cd "${S}"
 	dodir ${ddir}/linux

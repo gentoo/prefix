@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.19 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.20 2006/10/24 11:00:50 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -56,7 +56,9 @@ PN_GnatPro="gnat-pro"
 # so set it here for what we can..
 if  [[ ${PN} == "${PN_GnatGCC}" ]] || \
 	[[ ${PN} == "${PN_GnatGpl}" ]] || \
-	[[ ${PN} == "asis" ]];
+	[[ ${PN} == "asis" ]] || \
+	[[ ${PN} == "asis-gcc" ]] || \
+	[[ ${PN} == "asis-gpl" ]];
 then
 	GCCVER="${GNATRELEASE}"
 elif [[ ${PN} == "${PN_GnatPro}" ]] ; then
@@ -91,12 +93,6 @@ is_crosscompile() {
 # profiles, so mostly watch out for the right SLOT used in the bootstrap.
 BOOT_TARGET=${CTARGET}
 BOOT_SLOT=${SLOT}
-# optional packages
-if [[ ${PN} == "${PN_GnatGpl}" ]] ; then
-	ASIS_SRC="${WORKDIR}/asis-${ACT_Ver}-src"
-else
-	ASIS_SRC="none"
-fi
 
 # set our install locations
 PREFIX=${GNATBUILD_PREFIX:-${EPREFIX}/usr} # not sure we need this hook, but may be..
