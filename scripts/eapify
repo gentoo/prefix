@@ -19,39 +19,46 @@ else
 	files="$*"
 fi
 
+replace() {
+	echo -n "  replacing $1 -> $2 ... "
+	local cnt=$(sed -e "${4:-s}|$1|$2|g" "$3" | diff "$3" - | grep ">" | wc -l)
+	if [[ $cnt > 0 ]];
+	then
+		sed -i -e "${4:-s}|$1|$2|g" "$3"
+		echo "$cnt occurences"
+	else
+		echo "not found"
+	fi
+}
+
 for f in $files;
 do
 	echo "Processing $f"
 
-	unset EAPI
-	echo -n "  EAPI ... "
-	eval "`egrep "^EAPI=" "$f"`"
-
-	if [[ $EAPI != "" ]];
+	if [[ ${f##*.} != "eclass" ]];
 	then
-		echo "already $EAPI"
-	else
-		sed -i \
-			-e 's|^# \$Header:.*$|&\n\nEAPI="prefix"|' \
-			"$f"
-		echo 'added EAPI="prefix"'
+		unset EAPI
+		echo -n "  EAPI ... "
+		eval "`egrep "^EAPI=" "$f"`"
+
+		if [[ $EAPI != "" ]];
+		then
+			echo "already $EAPI"
+		else
+			sed -i \
+				-e 's|^# \$Header:.*$|&\n\nEAPI="prefix"|' \
+				"$f"
+			echo 'added EAPI="prefix"'
+		fi
 	fi
 
 	# cleanup mess from previous portage APIs
-	echo -n "  replacing \${EDEST} -> \${D} ... "
-	sed -i -e 's|${EDEST}|${D}|g' "$f"
-	echo "done"
-	echo -n "  replacing \${PROOT} -> \${EROOT} ... "
-	sed -i -e 's|${PROOT}|${EROOT}|g' "$f"
-	echo "done"
+	replace '${EDEST}' '${D}' "$f"
+	replace '${PROOT}' '${EROOT}' "$f"
 
 	# we replace all ${D} with ${ED} if not in a make ... install line
-	echo -n "  replacing \${D} -> \${ED} ... "
-	sed -i -e '/make.*install/!s|${D}|${ED}|g' "$f"
-	echo "done"
+	replace '${D}' '${ED}' "$f" '/make.*install/!s'
 
 	# replace ${ROOT} with ${EROOT}
-	echo -n "  replacing \${ROOT} -> \${EROOT} ... "
-	sed -i -e 's|${ROOT}|${EROOT}|g' "$f"
-	echo "done"
+	replace '${ROOT}' '${EROOT}' "$f"
 done
