@@ -98,16 +98,15 @@
  		ewarn "Please remember to run:"
  		echo
 -		ewarn "  # source /etc/profile"
-+		ewarn "  # source i${EPREFIX}/etc/profile"
++		ewarn "  # source ${EPREFIX}/etc/profile"
  		echo
  	fi
  
-@@ -288,7 +290,7 @@
- 	fi
+@@ -289,6 +291,7 @@
  }
  
--[[ -z ${ROOT} ]] && ROOT="/"
-+[[ -z ${ROOT} ]] && ROOT="${EPREFIX}"
+ [[ -z ${ROOT} ]] && ROOT="/"
++ROOT="${ROOT}${EPREFIX}"
  [[ ${ROOT:0-1} != "/" ]] && ROOT="${ROOT}/"
  ENV_D="${ROOT}etc/env.d/binutils"
  

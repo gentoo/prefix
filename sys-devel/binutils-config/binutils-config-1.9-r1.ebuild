@@ -21,11 +21,7 @@ src_unpack() {
 	cp "${FILESDIR}"/${PN}-${PV} "${T}"/ 
 	cd "${T}"
 	epatch "${FILESDIR}"/${PN}-${PV}-prefix.patch
-	ebegin "Adjusting to prefix"
-	sed -i \
-		-e "s|@GENTOO_PORTAGE_EPREFIX@|${EPREFIX}|g" \
-		"${T}"/${PN}-${PV}
-	eend $?
+	eprefixify "${T}"/${PN}-${PV}
 }
 
 src_install() {
