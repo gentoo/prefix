@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.1_p17.ebuild,v 1.17 2006/10/17 05:58:51 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p1.ebuild,v 1.1 2006/10/18 16:49:42 vapier Exp $
 
 EAPI="prefix"
 
@@ -11,8 +11,8 @@ inherit eutils flag-o-matic toolchain-funcs
 PLEVEL=${PV##*_p}
 MY_PV=${PV/_p*}
 MY_P=${PN}-${MY_PV}
-READLINE_VER=5.1
-READLINE_PLEVEL=1
+READLINE_VER=5.2
+READLINE_PLEVEL=0
 
 DESCRIPTION="The standard GNU Bourne again shell"
 HOMEPAGE="http://cnswww.cns.cwru.edu/~chet/bash/bashtop.html"
@@ -58,18 +58,10 @@ src_unpack() {
 	cd ../..
 
 	if ! use vanilla ; then
-		# Fall back to /etc/inputrc
-		epatch "${FILESDIR}"/${PN}-3.0-etc-inputrc.patch
-		# Add more ulimit options (from Fedora)
-		epatch "${FILESDIR}"/${MY_P}-ulimit.patch
-		# Fix a memleak in read_builtin (from Fedora)
-		epatch "${FILESDIR}"/${PN}-3.0-read-memleak.patch
+		epatch "${FILESDIR}"/${PN}-3.2-ulimit.patch
 		# Don't barf on handled signals in scripts
 		epatch "${FILESDIR}"/${PN}-3.0-trap-fg-signals.patch
-		# Fix -/bin/bash login shell #118257
-		epatch "${FILESDIR}"/bash-3.1-fix-dash-login-shell.patch
-		# Fix /dev/fd test with FEATURES=userpriv #131875
-		epatch "${FILESDIR}"/bash-3.1-dev-fd-test-as-user.patch
+		epatch "${FILESDIR}"/${PN}-3.2-dev-fd-test-as-user.patch #131875
 		# Log bash commands to syslog #91327
 		if use bashlogger ; then
 			echo
