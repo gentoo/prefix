@@ -479,7 +479,7 @@ want_split_specs() {
 # This function checks whether or not glibc has the support required to build
 # Position Independant Executables with gcc.
 glibc_have_pie() {
-	if [[ ! -f ${ROOT}/usr/$(get_libdir)/Scrt1.o ]] ; then
+	if [[ ! -f ${EROOT}/usr/$(get_libdir)/Scrt1.o ]] ; then
 		echo
 		ewarn "Your glibc does not have support for pie, the file Scrt1.o is missing"
 		ewarn "Please update your glibc to a proper version or disable hardened"
@@ -491,7 +491,7 @@ glibc_have_pie() {
 # This function determines whether or not libc has been patched with stack
 # smashing protection support.
 libc_has_ssp() {
-	[[ ${ROOT} != "/" ]] && return 0
+	[[ ${EROOT} != "/" ]] && return 0
 
 	# lib hacks taken from sandbox configure
 	echo 'int main(){}' > "${T}"/libctest.c
@@ -617,15 +617,15 @@ create_gcc_env_entry() {
 	local gcc_envd_base="/etc/env.d/gcc/${CTARGET}-${GCC_CONFIG_VER}"
 
 	if [[ -z $1 ]] ; then
-		gcc_envd_file="${D}${gcc_envd_base}"
+		gcc_envd_file="${ED}${gcc_envd_base}"
 		# I'm leaving the following commented out to remind me that it
 		# was an insanely -bad- idea. Stuff broke. GCC_SPECS isnt unset
 		# on chroot or in non-toolchain.eclass gcc ebuilds!
 		#gcc_specs_file="${LIBPATH}/specs"
 		gcc_specs_file=""
 	else
-		gcc_envd_file="${D}${gcc_envd_base}-$1"
-		gcc_specs_file="${LIBPATH}/$1.specs"
+		gcc_envd_file="${ED}${gcc_envd_base}-$1"
+		gcc_specs_file="${EPREFIX}/${LIBPATH}/$1.specs"
 	fi
 
 	echo "PATH=\"${EPREFIX}/${BINPATH}\"" > ${gcc_envd_file}
@@ -744,7 +744,7 @@ add_profile_eselect_conf() {
 
 create_eselect_conf() {
 	local config_dir="/etc/eselect/compiler"
-	local compiler_config_file="${D}/${config_dir}/${CTARGET}-${GCC_CONFIG_VER}.conf"
+	local compiler_config_file="${ED}/${config_dir}/${CTARGET}-${GCC_CONFIG_VER}.conf"
 	local abi
 
 	dodir ${config_dir}
@@ -759,9 +759,9 @@ create_eselect_conf() {
 	echo "	bin_prefix=${CTARGET}" >> ${compiler_config_file}
 
 	# Per spyderous, it is best not to alias the fortran compilers
-	#if [[ -x "${D}/${BINPATH}/${CTARGET}-g77" ]] ; then
+	#if [[ -x "${ED}/${BINPATH}/${CTARGET}-g77" ]] ; then
 	#	echo "	alias_gfortran=g77" >> ${compiler_config_file}
-	#elif [[ -x "${D}/${BINPATH}/${CTARGET}-gfortran" ]] ; then
+	#elif [[ -x "${ED}/${BINPATH}/${CTARGET}-gfortran" ]] ; then
 	#	echo "	alias_g77=gfortran" >> ${compiler_config_file}
 	#fi
 
@@ -882,18 +882,18 @@ gcc-compiler_pkg_postinst() {
 
 	if ! is_crosscompile ; then
 		# hack to prevent collisions between SLOT
-		[[ ! -d ${ROOT}/lib/rcscripts/awk ]] \
-			&& mkdir -p "${ROOT}"/lib/rcscripts/awk
-		[[ ! -d ${ROOT}/sbin ]] \
-			&& mkdir -p "${ROOT}"/sbin
-		cp "${ROOT}/${DATAPATH}"/fixlafiles.awk "${ROOT}"/lib/rcscripts/awk/ || die "installing fixlafiles.awk"
-		cp "${ROOT}/${DATAPATH}"/fix_libtool_files.sh "${ROOT}"/sbin/ || die "installing fix_libtool_files.sh"
+		[[ ! -d ${EROOT}/lib/rcscripts/awk ]] \
+			&& mkdir -p "${EROOT}"/lib/rcscripts/awk
+		[[ ! -d ${EROOT}/sbin ]] \
+			&& mkdir -p "${EROOT}"/sbin
+		cp "${EROOT}/${DATAPATH}"/fixlafiles.awk "${EROOT}"/lib/rcscripts/awk/ || die "installing fixlafiles.awk"
+		cp "${EROOT}/${DATAPATH}"/fix_libtool_files.sh "${EROOT}"/sbin/ || die "installing fix_libtool_files.sh"
 
 		# Since these aren't critical files and portage sucks with
 		# handling of binpkgs, don't require these to be found
-		for x in "${ROOT}/${DATAPATH}"/c{89,99} ; do
+		for x in "${EROOT}/${DATAPATH}"/c{89,99} ; do
 			if [[ -e ${x} ]]; then
-				cp ${x} "${ROOT}"/usr/bin/ || die "installing c89/c99"
+				cp ${x} "${EROOT}"/usr/bin/ || die "installing c89/c99"
 			fi
 		done
 	fi
@@ -901,8 +901,8 @@ gcc-compiler_pkg_postinst() {
 
 gcc-compiler_pkg_prerm() {
 	# Don't let these files be uninstalled #87647
-	touch -c "${ROOT}"/sbin/fix_libtool_files.sh \
-		"${ROOT}"/lib/rcscripts/awk/fixlafiles.awk
+	touch -c "${EROOT}"/sbin/fix_libtool_files.sh \
+		"${EROOT}"/lib/rcscripts/awk/fixlafiles.awk
 }
 
 gcc-compiler_pkg_postrm() {
@@ -913,16 +913,16 @@ gcc-compiler_pkg_postrm() {
 
 	# clean up the cruft left behind by cross-compilers
 	if is_crosscompile ; then
-		if [[ -z $(ls "${ROOT}"/etc/env.d/gcc/${CTARGET}* 2>/dev/null) ]] ; then
-			rm -f "${ROOT}"/etc/env.d/gcc/config-${CTARGET}
-			rm -f "${ROOT}"/etc/env.d/??gcc-${CTARGET}
-			rm -f "${ROOT}"/usr/bin/${CTARGET}-{gcc,{g,c}++}{,32,64}
+		if [[ -z $(ls "${EROOT}"/etc/env.d/gcc/${CTARGET}* 2>/dev/null) ]] ; then
+			rm -f "${EROOT}"/etc/env.d/gcc/config-${CTARGET}
+			rm -f "${EROOT}"/etc/env.d/??gcc-${CTARGET}
+			rm -f "${EROOT}"/usr/bin/${CTARGET}-{gcc,{g,c}++}{,32,64}
 		fi
 		return 0
 	fi
 
 	# ROOT isnt handled by the script
-	[[ ${ROOT} != "/" ]] && return 0
+	[[ ${EROOT} != "/" ]] && return 0
 
 	if [[ ! -e ${LIBPATH}/libstdc++.so ]] ; then
 		einfo "Running 'fix_libtool_files.sh ${GCC_RELEASE_VER}'"
@@ -1289,7 +1289,7 @@ gcc_do_configure() {
 			confgcc="${confgcc} --enable-bootstrap"
 		fi
 
-		if [[ ${EPREFIX/\//} != "" ]] ; then
+		if [[ ${EPREFIX%/} != "" ]] ; then
 			confgcc="${confgcc} --with-local-prefix=${EPREFIX}"
 		fi
 	fi
@@ -1430,14 +1430,14 @@ gcc_do_make() {
 # non-versioned gcc targets. If no directory is specified, it is assumed that
 # you want -all- shared objects to have ${GCC_CONFIG_VER} added. Example
 #
-#	add_version_to_shared ${D}/usr/$(get_libdir)
+#	add_version_to_shared ${ED}/usr/$(get_libdir)
 #
 # Travis Tilley <lv@gentoo.org> (05 Sep 2004)
 #
 add_version_to_shared() {
 	local sharedlib sharedlibdir
 	[[ -z $1 ]] \
-		&& sharedlibdir=${D} \
+		&& sharedlibdir=${ED} \
 		|| sharedlibdir=$1
 
 	for sharedlib in $(find ${sharedlibdir} -name *.so.*) ; do
@@ -1524,7 +1524,7 @@ gcc_src_compile() {
 	pushd "${WORKDIR}"/build > /dev/null
 
 	# Install our pre generated manpages if we do not have perl ...
-	[[ ! -x /usr/bin/perl ]] && [[ -n ${MAN_VER} ]] && \
+	[[ ! -x ${EPREFIX}/usr/bin/perl ]] && [[ -n ${MAN_VER} ]] && \
 		unpack gcc-${MAN_VER}-manpages.tar.bz2
 
 	einfo "Configuring ${PN} ..."
@@ -1533,7 +1533,7 @@ gcc_src_compile() {
 	touch "${S}"/gcc/c-gperf.h
 
 	# Do not make manpages if we do not have perl ...
-	[[ ! -x /usr/bin/perl ]] \
+	[[ ! -x ${EPREFIX}/usr/bin/perl ]] \
 		&& find "${WORKDIR}"/build -name '*.[17]' | xargs touch
 
 	einfo "Compiling ${PN} ..."
@@ -1558,7 +1558,7 @@ gcc-library_src_install() {
 	# Do the 'make install' from the build directory
 	cd "${WORKDIR}"/build
 	S=${WORKDIR}/build \
-	make DESTDIR="${EDEST}" \
+	make DESTDIR="${D}" \
 		prefix=${PREFIX} \
 		bindir=${BINPATH} \
 		includedir=${LIBPATH}/include \
@@ -1569,20 +1569,20 @@ gcc-library_src_install() {
 		${GCC_INSTALL_TARGET} || die
 
 	if [[ ${GCC_LIB_COMPAT_ONLY} == "true" ]] ; then
-		rm -rf "${D}"${INCLUDEPATH}
-		rm -rf "${D}"${DATAPATH}
-		pushd "${D}"${LIBPATH}/
+		rm -rf "${ED}"${INCLUDEPATH}
+		rm -rf "${ED}"${DATAPATH}
+		pushd "${ED}"${LIBPATH}/
 		rm *.a *.la *.so
 		popd
 	fi
 
 	if [[ -n ${GCC_LIB_USE_SUBDIR} ]] ; then
 		mkdir -p "${WORKDIR}"/${GCC_LIB_USE_SUBDIR}/
-		mv "${D}"${LIBPATH}/* "${WORKDIR}"/${GCC_LIB_USE_SUBDIR}/
-		mv "${WORKDIR}"/${GCC_LIB_USE_SUBDIR}/ "${D}"${LIBPATH}
+		mv "${ED}"${LIBPATH}/* "${WORKDIR}"/${GCC_LIB_USE_SUBDIR}/
+		mv "${WORKDIR}"/${GCC_LIB_USE_SUBDIR}/ "${ED}"${LIBPATH}
 
 		dodir /etc/env.d
-		echo "LDPATH=\"${EPREFIX}/${LIBPATH}/${GCC_LIB_USE_SUBDIR}/\"" >> "${D}"/etc/env.d/99${PN}
+		echo "LDPATH=\"${EPREFIX}/${LIBPATH}/${GCC_LIB_USE_SUBDIR}/\"" >> "${ED}"/etc/env.d/99${PN}
 	fi
 
 	if [[ ${GCC_VAR_TYPE} == "non-versioned" ]] ; then
@@ -1601,7 +1601,7 @@ gcc-compiler_src_install() {
 		[[ -L ${x} ]] && rm -f "${x}"
 	done
 	# Remove generated headers, as they can cause things to break
-	# (ncurses, openssl, etc).
+	# (ncurses, openssl, etc), unless when in a prefix.
 	for x in $(find "${WORKDIR}"/build/gcc/include/ -name '*.h') ; do
 		grep -q 'It has been auto-edited by fixincludes from' "${x}" \
 			&& [[ ${EPREFIX%/} == "" ]] && rm -f "${x}"
@@ -1610,11 +1610,11 @@ gcc-compiler_src_install() {
 	# Do the 'make install' from the build directory
 	cd "${WORKDIR}"/build
 	S=${WORKDIR}/build \
-	make DESTDIR="${EDEST}" install || die
+	make DESTDIR="${D}" install || die
 	# Punt some tools which are really only useful while building gcc
-	rm -r "${D}${LIBEXECPATH}"/install-tools
+	rm -r "${ED}${LIBEXECPATH}"/install-tools
 	# This one comes with binutils
-	find "${D}" -name libiberty.a -exec rm -f {} \;
+	find "${ED}" -name libiberty.a -exec rm -f {} \;
 
 	# Move the libraries to the proper location
 	gcc_movelibs
@@ -1623,7 +1623,7 @@ gcc-compiler_src_install() {
 	if ! is_crosscompile ; then
 		local EXEEXT
 		eval $(grep ^EXEEXT= "${WORKDIR}"/build/gcc/config.log)
-		[[ -r ${D}${BINPATH}/gcc${EXEEXT} ]] || die "gcc not found in ${D}"
+		[[ -r ${ED}${BINPATH}/gcc${EXEEXT} ]] || die "gcc not found in ${ED}"
 	fi
 
 	dodir /etc/env.d/gcc
@@ -1649,42 +1649,42 @@ gcc-compiler_src_install() {
 	# Make sure we dont have stuff lying around that
 	# can nuke multiple versions of gcc
 	if ! use build ; then
-		cd ${D}${LIBPATH}
+		cd ${ED}${LIBPATH}
 
 		# Move Java headers to compiler-specific dir
-		for x in ${D}${PREFIX}/include/gc*.h ${D}${PREFIX}/include/j*.h ; do
-			[[ -f ${x} ]] && mv -f "${x}" ${D}${LIBPATH}/include/
+		for x in ${ED}/include/gc*.h ${ED}/include/j*.h ; do
+			[[ -f ${x} ]] && mv -f "${x}" ${ED}${LIBPATH}/include/
 		done
 		for x in gcj gnu java javax org ; do
-			if [[ -d ${D}${PREFIX}/include/${x} ]] ; then
+			if [[ -d ${ED}${PREFIX}/include/${x} ]] ; then
 				dodir /${LIBPATH}/include/${x}
-				mv -f ${D}${PREFIX}/include/${x}/* ${D}${LIBPATH}/include/${x}/
-				rm -rf ${D}${PREFIX}/include/${x}
+				mv -f ${ED}${PREFIX}/include/${x}/* ${ED}${LIBPATH}/include/${x}/
+				rm -rf ${ED}${PREFIX}/include/${x}
 			fi
 		done
 
-		if [[ -d ${D}${PREFIX}/lib/security ]] ; then
+		if [[ -d ${ED}${PREFIX}/lib/security ]] ; then
 			dodir /${LIBPATH}/security
-			mv -f ${D}${PREFIX}/lib/security/* ${D}${LIBPATH}/security
-			rm -rf ${D}${PREFIX}/lib/security
+			mv -f ${ED}${PREFIX}/lib/security/* ${ED}${LIBPATH}/security
+			rm -rf ${ED}${PREFIX}/lib/security
 		fi
 
 		# Move libgcj.spec to compiler-specific directories
-		[[ -f ${D}${PREFIX}/lib/libgcj.spec ]] && \
-			mv -f ${D}${PREFIX}/lib/libgcj.spec ${D}${LIBPATH}/libgcj.spec
+		[[ -f ${ED}${PREFIX}/lib/libgcj.spec ]] && \
+			mv -f ${ED}${PREFIX}/lib/libgcj.spec ${ED}${LIBPATH}/libgcj.spec
 
 		# Rename jar because it could clash with Kaffe's jar if this gcc is
 		# primary compiler (aka don't have the -<version> extension)
-		cd ${D}${BINPATH}
+		cd ${ED}${BINPATH}
 		[[ -f jar ]] && mv -f jar gcj-jar
 
 		# Move <cxxabi.h> to compiler-specific directories
-		[[ -f ${D}${STDCXX_INCDIR}/cxxabi.h ]] && \
-			mv -f ${D}${STDCXX_INCDIR}/cxxabi.h ${D}${LIBPATH}/include/
+		[[ -f ${ED}${STDCXX_INCDIR}/cxxabi.h ]] && \
+			mv -f ${ED}${STDCXX_INCDIR}/cxxabi.h ${ED}${LIBPATH}/include/
 
 		# These should be symlinks
 		dodir /usr/bin
-		cd "${D}"${BINPATH}
+		cd "${ED}"${BINPATH}
 		for x in cpp gcc g++ c++ g77 gcj gcjh gfortran ; do
 			# For some reason, g77 gets made instead of ${CTARGET}-g77...
 			# this should take care of that
@@ -1714,35 +1714,35 @@ gcc-compiler_src_install() {
 		#   ffi.'s include of ffitarget.h - Armando Di Cianno <fafhrd@gentoo.org>
 		if is_objc && ! is_gcj ; then
 			#dosed "s:<ffitarget.h>:<libffi/ffitarget.h>:g" /${LIBPATH}/include/ffi.h
-			mv "${D}"${LIBPATH}/include/libffi/* "${D}"${LIBPATH}/include
-			rm -Rf "${D}"${LIBPATH}/include/libffi
+			mv "${ED}"${LIBPATH}/include/libffi/* "${ED}"${LIBPATH}/include
+			rm -Rf "${ED}"${LIBPATH}/include/libffi
 		fi
 	fi
 
 	# Now do the fun stripping stuff
-	env RESTRICT="" CHOST=${CHOST} prepstrip "${D}${BINPATH}" "${D}${LIBEXECPATH}"
-	env RESTRICT="" CHOST=${CTARGET} prepstrip "${D}${LIBPATH}"
+	env RESTRICT="" CHOST=${CHOST} prepstrip "${ED}${BINPATH}" "${ED}${LIBEXECPATH}"
+	env RESTRICT="" CHOST=${CTARGET} prepstrip "${ED}${LIBPATH}"
 
 	cd "${S}"
 	if use build || is_crosscompile; then
-		rm -rf "${D}"/usr/share/{man,info}
-		rm -rf "${D}"${DATAPATH}/{man,info}
+		rm -rf "${ED}"/usr/share/{man,info}
+		rm -rf "${ED}"${DATAPATH}/{man,info}
 	else
 		local cxx_mandir=${WORKDIR}/build/${CTARGET}/libstdc++-v3/docs/doxygen/man
 		if [[ -d ${cxx_mandir} ]] ; then
 			# clean bogus manpages #113902
 			find "${cxx_mandir}" -name '*_build_*' -exec rm {} \;
-			cp -r "${cxx_mandir}"/man? "${D}/${DATAPATH}"/man/
+			cp -r "${cxx_mandir}"/man? "${ED}/${DATAPATH}"/man/
 		fi
 		has noinfo ${FEATURES} \
-			&& rm -r "${D}/${DATAPATH}"/info \
+			&& rm -r "${ED}/${DATAPATH}"/info \
 			|| prepinfo "${DATAPATH}"
 		has noman ${FEATURES} \
-			&& rm -r "${D}/${DATAPATH}"/man \
+			&& rm -r "${ED}/${DATAPATH}"/man \
 			|| prepman "${DATAPATH}"
 	fi
 	# prune empty dirs left behind
-	find "${D}" -type d | xargs rmdir >& /dev/null
+	find "${ED}" -type d | xargs rmdir >& /dev/null
 
 	# Rather install the script, else portage with changing $FILESDIR
 	# between binary and source package borks things ....
@@ -1750,7 +1750,7 @@ gcc-compiler_src_install() {
 		insinto "${DATAPATH}"
 		if tc_version_is_at_least 4.0 ; then
 			newins "${GCC_FILESDIR}"/awk/fixlafiles.awk-no_gcc_la fixlafiles.awk || die
-			find "${D}/${LIBPATH}" -name libstdc++.la -type f -exec rm "{}" \;
+			find "${ED}/${LIBPATH}" -name libstdc++.la -type f -exec rm "{}" \;
 		else
 			doins "${GCC_FILESDIR}"/awk/fixlafiles.awk || die
 		fi
@@ -1761,7 +1761,7 @@ gcc-compiler_src_install() {
 
 	# use gid of 0 because some stupid ports don't have
 	# the group 'root' set to gid 0
-	chown -R ${PORTAGE_INST_UID:-0}:${PORTAGE_INST_GID:-0} "${D}"${LIBPATH}
+	chown -R ${PORTAGE_INST_UID:-0}:${PORTAGE_INST_GID:-0} "${ED}"${LIBPATH}
 
 	# Create config files for eselect-compiler
 	create_eselect_conf
@@ -1778,7 +1778,7 @@ gcc_movelibs() {
 
 		local OS_MULTIDIR=$($(XGCC) ${multiarg} --print-multi-os-directory)
 		local MULTIDIR=$($(XGCC) ${multiarg} --print-multi-directory)
-		local TODIR=${D}${LIBPATH}/${MULTIDIR}
+		local TODIR=${ED}${LIBPATH}/${MULTIDIR}
 		local FROMDIR=
 
 		[[ -d ${TODIR} ]] || mkdir -p ${TODIR}
@@ -1791,7 +1791,7 @@ gcc_movelibs() {
 			${PREFIX}/lib/${MULTIDIR}
 		do
 			removedirs="${removedirs} ${FROMDIR}"
-			FROMDIR=${D}${FROMDIR}
+			FROMDIR=${ED}${FROMDIR}
 			if [[ ${FROMDIR} != "${TODIR}" && -d ${FROMDIR} ]] ; then
 				local files=$(find "${FROMDIR}" -maxdepth 1 ! -type d 2>/dev/null)
 				if [[ -n ${files} ]] ; then
@@ -1806,13 +1806,13 @@ gcc_movelibs() {
 	#   rmdir SRC/lib/../lib/
 	#   mv SRC/lib/../lib32/*.o DEST  # Bork
 	for FROMDIR in ${removedirs} ; do
-		rmdir "${D}"${FROMDIR} >& /dev/null
+		rmdir "${ED}"${FROMDIR} >& /dev/null
 	done
-	find "${D}" -type d | xargs rmdir >& /dev/null
+	find "${ED}" -type d | xargs rmdir >& /dev/null
 
 	# make sure the libtool archives have libdir set to where they actually
 	# -are-, and not where they -used- to be.
-	fix_libtool_libdir_paths "$(find ${D}${LIBPATH} -name *.la)"
+	fix_libtool_libdir_paths "$(find ${ED}${LIBPATH} -name *.la)"
 }
 
 #----<< src_* >>----
@@ -2059,7 +2059,7 @@ do_gcc_PIE_patches() {
 
 should_we_gcc_config() {
 	# we only want to switch compilers if installing to / or /tmp/stage1root
-	[[ ${ROOT} == "/" || ${ROOT} == "/tmp/stage1root" ]] || return 1
+	[[ ${EROOT%/} == ${EPREFIX%/} || ${EROOT} == "/tmp/stage1root" ]] || return 1
 
 	# we always want to run gcc-config if we're bootstrapping, otherwise
 	# we might get stuck with the c-only stage1 compiler
@@ -2120,7 +2120,7 @@ do_gcc_config() {
 		[[ -n ${current_specs} ]] && use_specs=-${current_specs}
 	fi
 	if [[ -n ${use_specs} ]] && \
-	   [[ ! -e ${ROOT}/etc/env.d/gcc/${CTARGET}-${GCC_CONFIG_VER}${use_specs} ]]
+	   [[ ! -e ${EROOT}/etc/env.d/gcc/${CTARGET}-${GCC_CONFIG_VER}${use_specs} ]]
 	then
 		ewarn "The currently selected specs-specific gcc config,"
 		ewarn "${current_specs}, doesn't exist anymore. This is usually"
@@ -2137,7 +2137,7 @@ do_gcc_config() {
 
 should_we_eselect_compiler() {
 	# we only want to switch compilers if installing to / or /tmp/stage1root
-	[[ ${ROOT} == "/" || ${ROOT} == "/tmp/stage1root" ]] || return 1
+	[[ ${EROOT%/} == ${EPREFIX%/} || ${EROOT} == "/tmp/stage1root" ]] || return 1
 
 	# we always want to run gcc-config if we're bootstrapping, otherwise
 	# we might get stuck with the c-only stage1 compiler
@@ -2298,7 +2298,7 @@ disable_multilib_libjava() {
 fix_libtool_libdir_paths() {
 	local dirpath
 	for archive in $* ; do
-		dirpath=$(dirname ${archive} | sed -e "s:^${D}::")
+		dirpath=$(dirname ${archive} | sed -e "s:^${ED}::")
 		sed -i ${archive} -e "s:^libdir.*:libdir=\'${dirpath}\':"
 	done
 }

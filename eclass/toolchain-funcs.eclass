@@ -280,7 +280,7 @@ _tc_gen_usr_ldscript() {
 			ewarn "making a symlink instead."
 			dosym "/${libdir}/${lib}" "/usr/${libdir}/${lib}"
 		else
-			cat > "${D}/usr/${libdir}/${lib}" <<-END_LDSCRIPT
+			cat > "${ED}/usr/${libdir}/${lib}" <<-END_LDSCRIPT
 			/* GNU ld script
 			   Since Gentoo has critical dynamic libraries
 			   in /lib, and the static versions in /usr/lib,

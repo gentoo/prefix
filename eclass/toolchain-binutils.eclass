@@ -241,29 +241,29 @@ toolchain-binutils_src_install() {
 	local x d
 
 	cd "${MY_BUILDDIR}"
-	make DESTDIR="${EDEST}" tooldir="${EPREFIX}/${LIBPATH}" install || die
-	rm -rf "${D}"/${LIBPATH}/bin
+	make DESTDIR="${D}" tooldir="${EPREFIX}/${LIBPATH}" install || die
+	rm -rf "${ED}"/${LIBPATH}/bin
 
 	# Now we collect everything intp the proper SLOT-ed dirs
 	# When something is built to cross-compile, it installs into
 	# /usr/$CHOST/ by default ... we have to 'fix' that :)
 	if is_cross ; then
-		cd "${D}"/${BINPATH}
+		cd "${ED}"/${BINPATH}
 		for x in * ; do
 			mv ${x} ${x/${CTARGET}-}
 		done
 
-		if [[ -d ${D}/usr/${CHOST}/${CTARGET} ]] ; then
-			mv "${D}"/usr/${CHOST}/${CTARGET}/include "${D}"/${INCPATH}
-			mv "${D}"/usr/${CHOST}/${CTARGET}/lib/* "${D}"/${LIBPATH}/
-			rm -r "${D}"/usr/${CHOST}/{include,lib}
+		if [[ -d ${ED}/usr/${CHOST}/${CTARGET} ]] ; then
+			mv "${ED}"/usr/${CHOST}/${CTARGET}/include "${ED}"/${INCPATH}
+			mv "${ED}"/usr/${CHOST}/${CTARGET}/lib/* "${ED}"/${LIBPATH}/
+			rm -r "${ED}"/usr/${CHOST}/{include,lib}
 		fi
 	fi
 	insinto ${INCPATH}
 	doins "${S}/include/libiberty.h"
-	if [[ -d ${D}/${LIBPATH}/lib ]] ; then
-		mv "${D}"/${LIBPATH}/lib/* "${D}"/${LIBPATH}/
-		rm -r "${D}"/${LIBPATH}/lib
+	if [[ -d ${ED}/${LIBPATH}/lib ]] ; then
+		mv "${ED}"/${LIBPATH}/lib/* "${ED}"/${LIBPATH}/
+		rm -r "${ED}"/${LIBPATH}/lib
 	fi
 	prepman ${DATAPATH}
 
@@ -274,7 +274,7 @@ toolchain-binutils_src_install() {
 		doins elf2flt.ld || die "doins elf2flt.ld failed"
 		exeinto ${BINPATH}
 		doexe elf2flt flthdr || die "doexe elf2flt flthdr failed"
-		mv "${D}"/${BINPATH}/{ld,ld.real} || die
+		mv "${ED}"/${BINPATH}/{ld,ld.real} || die
 		newexe ld-elf2flt ld || die "doexe ld-elf2flt failed"
 		newdoc README README.elf2flt
 	fi
@@ -329,17 +329,17 @@ toolchain-binutils_src_install() {
 		dodoc opcodes/ChangeLog*
 	fi
 	# Punt all the fun stuff if user doesn't want it :)
-	has noinfo ${FEATURES} && rm -r "${D}"/${DATAPATH}/info
-	has noman ${FEATURES} && rm -r "${D}"/${DATAPATH}/man
+	has noinfo ${FEATURES} && rm -r "${ED}"/${DATAPATH}/info
+	has noman ${FEATURES} && rm -r "${ED}"/${DATAPATH}/man
 	# Remove shared info pages
-	rm -f "${D}"/${DATAPATH}/info/{dir,configure.info,standards.info}
+	rm -f "${ED}"/${DATAPATH}/info/{dir,configure.info,standards.info}
 	# Trim all empty dirs
-	find "${D}" -type d | xargs rmdir >& /dev/null
+	find "${ED}" -type d | xargs rmdir >& /dev/null
 }
 
 toolchain-binutils_pkg_postinst() {
 	# Make sure this ${CTARGET} has a binutils version selected
-	[[ -e ${ROOT}/etc/env.d/binutils/config-${CTARGET} ]] && return 0
+	[[ -e ${EROOT}/etc/env.d/binutils/config-${CTARGET} ]] && return 0
 	binutils-config ${CTARGET}-${BVER}
 }
 
