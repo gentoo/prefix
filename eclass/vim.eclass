@@ -257,7 +257,7 @@ vim_src_unpack() {
 	fi
 
 	# Fixup a script to use awk instead of nawk
-	sed -i '1s|.*|#!/usr/bin/awk -f|' ${S}/runtime/tools/mve.awk \
+	sed -i '1s|.*|#!'"${EPREFIX}"'/usr/bin/awk -f|' ${S}/runtime/tools/mve.awk \
 		|| die "mve.awk sed failed"
 
 	# Patch to build with ruby-1.8.0_pre5 and following
@@ -292,7 +292,7 @@ vim_src_unpack() {
 	if [[ "${MY_PN}" == "vim" ]] && [[ $(get_major_version ) -ge 7 ]] \
 			&& use vim-pager ; then
 		cat <<END > ${S}/runtime/macros/manpager.sh
-#!/bin/sh
+#!${EPREFIX}/bin/sh
 tr '\\267' '.' | col -b | \\
 		vim \\
 			-c 'let no_plugin_maps = 1' \\
@@ -500,7 +500,7 @@ vim_src_install() {
 				installtools \
 				install-languages \
 				install-icons \
-				DESTDIR=${EDEST} \
+				DESTDIR=${D} \
 				BINDIR=${EPREFIX}/usr/bin \
 				MANDIR=${EPREFIX}/usr/share/man \
 				DATADIR=${EPREFIX}/usr/share \
@@ -514,7 +514,7 @@ vim_src_install() {
 				installtools \
 				install-languages \
 				install-icons \
-				DESTDIR=${EDEST} \
+				DESTDIR=${D} \
 				BINDIR=${EPREFIX}/usr/bin \
 				MANDIR=${EPREFIX}/usr/share/man \
 				DATADIR=${EPREFIX}/usr/share \
@@ -533,11 +533,11 @@ vim_src_install() {
 			# livecd. bug 65144.
 			einfo "Removing some files for a smaller livecd install ..."
 
-			local vimfiles=${D}/usr/share/vim/vim${VIM_VERSION/.}
+			local vimfiles=${ED}/usr/share/vim/vim${VIM_VERSION/.}
 			shopt -s extglob
 			rm -fr ${vimfiles}/{compiler,doc,ftplugin,indent}
 			rm -fr ${vimfiles}/{macros,print,tools,tutor}
-			rm ${D}/usr/bin/vimtutor
+			rm ${ED}/usr/bin/vimtutor
 
 			local keep_colors="default"
 			ignore=$(rm -fr ${vimfiles}/colors/!(${keep_colors}).vim )
@@ -551,7 +551,7 @@ vim_src_install() {
 		# These files might have slight security issues, so we won't
 		# install them. See bug #77841. We don't mind if these don't
 		# exist.
-		rm ${D}/usr/share/vim/vim${VIM_VERSION/.}/tools/{vimspell.sh,tcltags}
+		rm ${ED}/usr/share/vim/vim${VIM_VERSION/.}/tools/{vimspell.sh,tcltags}
 
 	elif [[ "${MY_PN}" == "gvim" ]] ; then
 		dobin src/gvim
@@ -583,17 +583,17 @@ vim_src_install() {
 
 	else
 		dobin src/vim
-		ln -s vim ${D}/usr/bin/vimdiff && \
-		ln -s vim ${D}/usr/bin/rvim && \
-		ln -s vim ${D}/usr/bin/ex && \
-		ln -s vim ${D}/usr/bin/view && \
-		ln -s vim ${D}/usr/bin/rview \
+		ln -s vim ${ED}/usr/bin/vimdiff && \
+		ln -s vim ${ED}/usr/bin/rvim && \
+		ln -s vim ${ED}/usr/bin/ex && \
+		ln -s vim ${ED}/usr/bin/view && \
+		ln -s vim ${ED}/usr/bin/rview \
 			|| die "/usr/bin symlinks failed"
 		if [[ $(get_major_version ) -ge 7 ]] && use vim-pager ; then
-			ln -s /usr/share/vim/vim${VIM_VERSION//./}/macros/less.sh \
-					${D}/usr/bin/vimpager
-			ln -s /usr/share/vim/vim${VIM_VERSION//./}/macros/manpager.sh \
-					${D}/usr/bin/vimmanpager
+			ln -s "${EPREFIX}"/usr/share/vim/vim${VIM_VERSION//./}/macros/less.sh \
+					${ED}/usr/bin/vimpager
+			ln -s "${EPREFIX}"/usr/share/vim/vim${VIM_VERSION//./}/macros/manpager.sh \
+					${ED}/usr/bin/vimmanpager
 			insinto /usr/share/vim/vim${VIM_VERSION//./}/macros
 			doins runtime/macros/manpager.sh
 			fperms a+x /usr/share/vim/vim${VIM_VERSION//./}/macros/manpager.sh
@@ -612,9 +612,9 @@ vim_src_install() {
 	if version_is_at_least 7.0.109 ; then
 		# We shouldn't be installing the ex or view man page symlinks, as they
 		# are managed by eselect-vi
-		rm -f "${D}"/usr/share/man/man1/{ex,view}.1.gz
+		rm -f "${ED}"/usr/share/man/man1/{ex,view}.1.gz
 		# Same for these /usr/bin symlinks
-		rm -f "${D}"/usr/bin/{ex,view}
+		rm -f "${ED}"/usr/bin/{ex,view}
 	fi
 }
 
@@ -633,21 +633,21 @@ update_vim_symlinks() {
 	fi
 
 	# Make or remove convenience symlink, vim -> gvim
-	if [[ -f ${ROOT}/usr/bin/gvim ]]; then
-		ln -s gvim ${ROOT}/usr/bin/vim 2>/dev/null
-	elif [[ -L ${ROOT}/usr/bin/vim && ! -f ${ROOT}/usr/bin/vim ]]; then
-		rm ${ROOT}/usr/bin/vim
+	if [[ -f ${EROOT}/usr/bin/gvim ]]; then
+		ln -s gvim ${EROOT}/usr/bin/vim 2>/dev/null
+	elif [[ -L ${EROOT}/usr/bin/vim && ! -f ${EROOT}/usr/bin/vim ]]; then
+		rm ${EROOT}/usr/bin/vim
 	fi
 
 	# Make or remove convenience symlinks to vim
-	if [[ -f ${ROOT}/usr/bin/vim ]]; then
+	if [[ -f ${EROOT}/usr/bin/vim ]]; then
 		for f in ${syms}; do
-			ln -s vim ${ROOT}/usr/bin/${f} 2>/dev/null
+			ln -s vim ${EROOT}/usr/bin/${f} 2>/dev/null
 		done
 	else
 		for f in ${syms}; do
-			if [[ -L ${ROOT}/usr/bin/${f} && ! -f ${ROOT}/usr/bin/${f} ]]; then
-				rm -f ${ROOT}/usr/bin/${f}
+			if [[ -L ${EROOT}/usr/bin/${f} && ! -f ${EROOT}/usr/bin/${f} ]]; then
+				rm -f ${EROOT}/usr/bin/${f}
 			fi
 		done
 	fi

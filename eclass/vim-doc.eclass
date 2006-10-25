@@ -16,7 +16,7 @@ update_vim_helptags() {
 	local vimfiles vim d s
 
 	# This is where vim plugins are installed
-	vimfiles="${ROOT}"/usr/share/vim/vimfiles
+	vimfiles="${EROOT}"/usr/share/vim/vimfiles
 
 	if [[ $PN != vim-core ]]; then
 		# Find a suitable vim binary for updating tags :helptags
@@ -41,7 +41,7 @@ update_vim_helptags() {
 
 	# Install the documentation symlinks into the versioned vim
 	# directory and run :helptags
-	for d in "${ROOT}"/usr/share/vim/vim[0-9]*; do
+	for d in "${EROOT}"/usr/share/vim/vim[0-9]*; do
 		[[ -d "$d/doc" ]] || continue	# catch a failed glob
 
 		# Remove links, and possibly remove stale dirs

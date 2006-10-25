@@ -20,7 +20,7 @@ SLOT="0"
 vim-plugin_src_install() {
 	local f
 
-	# we run unpriovileged
+	# we run unprivileged
 #	ebegin "Fixing file permissions"
 #	# Make sure perms are good
 #	chmod -R a+rX ${S} || die "chmod failed"
@@ -47,10 +47,10 @@ vim-plugin_src_install() {
 	# Install remainder of plugin
 	cd ${WORKDIR}
 	dodir /usr/share/vim
-	mv ${S} ${D}/usr/share/vim/vimfiles
+	mv ${S} ${ED}/usr/share/vim/vimfiles
 
 	# Fix remaining bad permissions
-	chmod -R -x+X ${D}/usr/share/vim/vimfiles/ || die "chmod failed"
+	chmod -R -x+X ${ED}/usr/share/vim/vimfiles/ || die "chmod failed"
 }
 
 vim-plugin_pkg_postinst() {
@@ -72,7 +72,7 @@ vim-plugin_pkg_postrm() {
 # /usr/share/vim/vimfiles/after/* comprised of the snippets in
 # /usr/share/vim/vimfiles/after/*/*.d
 update_vim_afterscripts() {
-	local d f afterdir=${ROOT}/usr/share/vim/vimfiles/after
+	local d f afterdir=${EROOT}/usr/share/vim/vimfiles/after
 
 	# Nothing to do if the dir isn't there
 	[ -d ${afterdir} ] || return 0
