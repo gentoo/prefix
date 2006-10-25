@@ -36,6 +36,12 @@ replace() {
 
 for f in $files;
 do
+	if [[ ! -f $f ]];
+	then
+		echo "no such file: $f"
+		exit -1
+	fi
+
 	echo "Processing $f"
 
 	if [[ ${f##*.} != "eclass" ]];
