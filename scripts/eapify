@@ -25,7 +25,10 @@ replace() {
 	if [[ $cnt > 0 ]];
 	then
 		sed -i -e "${4:-s}|$1|$2|g" "$3"
-		echo "$cnt occurences"
+		echo -n "$cnt occurence"
+		[[ $cnt == 1 ]] \
+			&& echo "" \
+			|| echo "s"
 	else
 		echo "not found"
 	fi
