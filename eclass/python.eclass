@@ -168,7 +168,7 @@ python_mod_compile() {
 python_mod_optimize() {
 	local myroot
 	# strip trailing slash
-	myroot="${PROOT%/}"
+	myroot="${EROOT%/}"
 
 	# allow compiling for older python versions
 	if [ -n "${PYTHON_OVERRIDE_PYVER}" ]; then
