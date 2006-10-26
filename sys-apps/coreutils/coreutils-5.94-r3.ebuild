@@ -122,26 +122,26 @@ src_test() {
 }
 
 src_install() {
-	make install DESTDIR="${EDEST}" || die
-	rm -f "${D}"/usr/lib/charset.alias
+	make install DESTDIR="${D}" || die
+	rm -f "${ED}"/usr/lib/charset.alias
 	dodoc AUTHORS ChangeLog* NEWS README* THANKS TODO
 
 	# remove files provided by other packages
-	rm "${D}"/bin/{kill,uptime} # procps
-	rm "${D}"/bin/{groups,su}   # shadow
-	rm "${D}"/bin/hostname      # net-tools
-	rm "${D}"/usr/share/man/man1/{groups,kill,hostname,su,uptime}.1
+	rm "${ED}"/bin/{kill,uptime} # procps
+	rm "${ED}"/bin/{groups,su}   # shadow
+	rm "${ED}"/bin/hostname      # net-tools
+	rm "${ED}"/usr/share/man/man1/{groups,kill,hostname,su,uptime}.1
 	# provide by the man-pages package
-	rm "${D}"/usr/share/man/man1/{chgrp,chmod,chown,cp,dd,df,dir,dircolors}.1
-	rm "${D}"/usr/share/man/man1/{du,install,ln,ls,mkdir,mkfifo,mknod,mv}.1
-	rm "${D}"/usr/share/man/man1/{rm,rmdir,touch,vdir}.1
+	rm "${ED}"/usr/share/man/man1/{chgrp,chmod,chown,cp,dd,df,dir,dircolors}.1
+	rm "${ED}"/usr/share/man/man1/{du,install,ln,ls,mkdir,mkfifo,mknod,mv}.1
+	rm "${ED}"/usr/share/man/man1/{rm,rmdir,touch,vdir}.1
 
 	insinto /etc
 	newins src/dircolors.hin DIR_COLORS
 
 	if [[ ${USERLAND} == "GNU" ]] ; then
 		# move non-critical packages into /usr
-		cd "${D}"
+		cd "${ED}"
 		dodir /usr/bin
 		mv bin/{csplit,expand,factor,fmt,fold,join,md5sum,nl,od} usr/bin
 		mv bin/{paste,pathchk,pinky,pr,printf,sha1sum,shred,sum,tac} usr/bin
