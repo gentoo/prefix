@@ -172,11 +172,12 @@ cross_diff() {
 	sed -i \
 		-e 's|^# \$Header:.*$|'"`egrep '^# \\\$Header: ' /var/tmp/$mte-$mtecv.tmp`"'|' \
 		$mte /var/tmp/$pte-$ptecv.tmp
-	# make KEYWORDS and EAPI void in the diff
+	# make KEYWORDS void in the diff
 	sed -i \
 		-e 's|^KEYWORDS=.*$|'"`egrep '^KEYWORDS=' $pte`"'|' \
-		-e 's|^# \$Header:.*$|&\n\nEAPI="prefix"|' \
 		/var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp
+	# destroy changes (hopefully) with the prefixed version by eapifying
+	eapify /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp > /dev/null || exit -1
 	# (attempt to) do it!
 	diff -u /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp \
 		| patch --no-backup-if-mismatch $mte
@@ -203,11 +204,12 @@ revision_diff() {
 		cvs -Q -d"${CVSROOT}" \
 			checkout -r$mtecv -p ${CVSMODULE}/${EPACKAGE}/$package \
 			> /var/tmp/$package-$mtecv.tmp
-		# make KEYWORDS and EAPI void in the diff
+		# make KEYWORDS void in the diff
 		[[ ${package##*.} == "ebuild" ]] && sed -i \
 			-e 's|^KEYWORDS=.*$|'"`egrep '^KEYWORDS=' $package`"'|' \
-			-e 's|^# \$Header:.*$|&\n\nEAPI="prefix"|' \
 			/var/tmp/$package-$ptecv.tmp /var/tmp/$package-$mtecv.tmp
+		# destroy changes (hopefully) with the prefixed version by eapifying
+		eapify /var/tmp/$package-$ptecv.tmp /var/tmp/$package-$mtecv.tmp > /dev/null || exit -1
 		# show what's going to change
 		diff -U 1 /var/tmp/$package-$ptecv.tmp /var/tmp/$package-$mtecv.tmp
 		# (attempt to) do it!
