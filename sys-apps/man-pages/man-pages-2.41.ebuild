@@ -40,7 +40,7 @@ src_unpack() {
 src_compile() { :; }
 
 src_install() {
-	make install prefix="${D}" || die
+	make install prefix="${D}${EPREFIX}" || die
 	dodoc man-pages-*.Announce README Changes* HOWTOHELP
 }
 
