@@ -21,10 +21,10 @@ SCROLLKEEPER_UPDATE=${SCROLLKEEPER_UPDATE:="1"}
 SCROLLKEEPER_DIR=${SCROLLKEEPER_DIR:="/var/lib/scrollkeeper"}
 
 # Path to scrollkeeper-update
-SCROLLKEEPER_UPDATE_BIN=${SCROLLKEEPER_UPDATE_BIN:="${ROOT}/usr/bin/scrollkeeper-update"}
+SCROLLKEEPER_UPDATE_BIN=${SCROLLKEEPER_UPDATE_BIN:="${EROOT}/usr/bin/scrollkeeper-update"}
 
 # Path to gconftool-2
-GCONFTOOL_BIN=${GCONFTOOL_BIN:="${ROOT}/usr/bin/gconftool-2"}
+GCONFTOOL_BIN=${GCONFTOOL_BIN:="${EROOT}/usr/bin/gconftool-2"}
 
 if [[ ${GCONF_DEBUG} != "no" ]]; then
 	IUSE="debug"
@@ -53,7 +53,7 @@ gnome2_src_configure() {
 	elibtoolize ${ELTCONF}
 
 	# Do not remove the addwrite. bug #128289
-	addwrite "${ROOT}/root/.gnome2"
+	addwrite "${EROOT}/root/.gnome2"
 
 	# GST_REGISTRY is to work around gst-inspect trying to read/write /root
 	GST_REGISTRY="${S}/registry.xml" econf "$@" ${G2CONF} || die "configure failed"
@@ -74,9 +74,9 @@ gnome2_src_install() {
 
 	debug-print "You are testing with DESTDIR by default - AllanonJL"
 	if [[ -z "${USE_EINSTALL}" || "${USE_EINSTALL}" = "0" ]]; then
-		make DESTDIR=${EDEST} "scrollkeeper_localstate_dir=${D}${SCROLLKEEPER_DIR} " "$@" install || die "install failed"
+		make DESTDIR=${D} "scrollkeeper_localstate_dir=${D}${SCROLLKEEPER_DIR} " "$@" install || die "install failed"
 	else
-		einstall "scrollkeeper_localstate_dir=${D}${SCROLLKEEPER_DIR} " "$@" || die "einstall failed"
+		einstall "scrollkeeper_localstate_dir=${ED}${SCROLLKEEPER_DIR} " "$@" || die "einstall failed"
 	fi
 
 	unset GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
@@ -86,18 +86,18 @@ gnome2_src_install() {
 
 	# Do not keep /var/lib/scrollkeeper because:
 	# 1. scrollkeeper will get regenerated at pkg_postinst()
-	# 2. ${D}/var/lib/scrollkeeper contains only indexes for the current pkg
+	# 2. ${ED}/var/lib/scrollkeeper contains only indexes for the current pkg
 	#    thus it makes no sense if pkg_postinst ISN'T run for some reason.
 
-	if [[ -z "$(find ${D} -name '*.omf')" ]]; then
+	if [[ -z "$(find ${ED} -name '*.omf')" ]]; then
 		export SCROLLKEEPER_UPDATE="0"
 	fi
 
 	# Regenerate these in pkg_postinst()
-	rm -rf "${D}${SCROLLKEEPER_DIR}"
+	rm -rf "${ED}${SCROLLKEEPER_DIR}"
 
 	# Make sure this one doesn't get in the portage db
-	rm -fr "${D}/usr/share/applications/mimeinfo.cache"
+	rm -fr "${ED}/usr/share/applications/mimeinfo.cache"
 }
 
 
@@ -110,7 +110,7 @@ gnome2_gconf_install() {
 
 		einfo "Installing GNOME 2 GConf schemas"
 
-		local contents="${ROOT}/var/db/pkg/*/${PN}-${PVR}/CONTENTS"
+		local contents="${EROOT}/var/db/pkg/*/${PN}-${PVR}/CONTENTS"
 
 		for F in $(grep "obj /etc/gconf/schemas" ${contents} | sed 's:obj \([^ ]*\) .*:\1:' ); do
 			if [[ -e "${F}" ]]; then
@@ -134,7 +134,7 @@ gnome2_gconf_uninstall() {
 
 		einfo "Uninstalling GNOME 2 GConf schemas"
 
-		local contents="${ROOT}/var/db/pkg/*/${PN}-${PVR}/CONTENTS"
+		local contents="${EROOT}/var/db/pkg/*/${PN}-${PVR}/CONTENTS"
 
 		for F in $(grep "obj /etc/gconf/schemas" ${contents} | sed 's:obj \([^ ]*\) .*:\1:' ); do
 			# echo "DEBUG::gconf install  ${F}"
@@ -157,7 +157,7 @@ gnome2_icon_cache_update() {
 		return
 	fi
 
-	if ! grep -q "obj /usr/share/icons" ${ROOT}/var/db/pkg/*/${PF}/CONTENTS
+	if ! grep -q "obj ${EPREFIX}/usr/share/icons" ${EROOT}/var/db/pkg/*/${PF}/CONTENTS
 	then
 		debug-print "No items to update"
 
@@ -170,7 +170,7 @@ gnome2_icon_cache_update() {
 	local retval=0
 	local fails=( )
 
-	for dir in $(find ${ROOT}/usr/share/icons -maxdepth 1 -mindepth 1 -type d)
+	for dir in $(find ${EROOT}/usr/share/icons -maxdepth 1 -mindepth 1 -type d)
 	do
 		if [[ -f "${dir}/index.theme" ]] ; then
 			local rv=0
@@ -270,7 +270,7 @@ gnome2_scrollkeeper_update() {
 	if [[ -x ${SCROLLKEEPER_UPDATE_BIN} && "${SCROLLKEEPER_UPDATE}" = "1" ]]
 	then
 		einfo "Updating scrollkeeper database ..."
-		${SCROLLKEEPER_UPDATE_BIN} -q -p ${ROOT}${SCROLLKEEPER_DIR}
+		${SCROLLKEEPER_UPDATE_BIN} -q -p ${EROOT}${SCROLLKEEPER_DIR}
 	fi
 }
 
