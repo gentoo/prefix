@@ -42,5 +42,5 @@ src_compile() {
 
 src_install() {
 	dodir /usr/{bin,include,$(get_libdir)} /usr/share/man/{man1,man3}
-	make ROOT="${EDEST}" install || die
+	make ROOT="${D}" install || die
 }
