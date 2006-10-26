@@ -59,12 +59,12 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die "make install failed"
+	make DESTDIR="${D}" install || die "make install failed"
 
 	# Override the default shell scripts... grep knows how to act
 	# based on how it's called
-	ln -sfn grep "${D}"/bin/egrep || die "ln egrep failed"
-	ln -sfn grep "${D}"/bin/fgrep || die "ln fgrep failed"
+	ln -sfn grep "${ED}"/bin/egrep || die "ln egrep failed"
+	ln -sfn grep "${ED}"/bin/fgrep || die "ln fgrep failed"
 
 	dodoc AUTHORS ChangeLog NEWS README THANKS TODO
 }
