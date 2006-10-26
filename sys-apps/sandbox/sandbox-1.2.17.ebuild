@@ -103,7 +103,7 @@ src_install() {
 		cd "${WORKDIR}/build-${ABI}-${CHOST}"
 		einfo "Installing sandbox for ABI=${ABI}..."
 		make \
-			DESTDIR="${D}" \
+			DESTDIR="${ED}" \
 			bindir="/usr/bin" \
 			datadir="/usr/share" \
 			infodir="/usr/share/info" \
