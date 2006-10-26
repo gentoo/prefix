@@ -94,7 +94,7 @@ src_install() {
 	#fi
 
 	# set up config file, v2. Bug 47562
-	local conffile="${D}/etc/ssmtp/ssmtp.conf"
+	local conffile="${ED}/etc/ssmtp/ssmtp.conf"
 	mv "${conffile}" "${conffile}.orig"
 	# Sorry about the weird indentation, I couldn't figure out a cleverer way
 	# to do this without having horribly >80 char lines.

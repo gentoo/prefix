@@ -53,7 +53,7 @@ src_install() {
 	insinto /etc/ssmtp
 	doins ssmtp.conf revaliases
 
-	local conffile="${D}/etc/ssmtp/ssmtp.conf"
+	local conffile="${ED}/etc/ssmtp/ssmtp.conf"
 	mv "${conffile}" "${conffile}.orig"
 
 	# Sorry about the weird indentation, I couldn't figure out a cleverer way
