@@ -43,5 +43,5 @@ src_compile() {
 src_install() {
 	einstall || die
 	dodoc AUTHORS ChangeLog NEWS README
-	use build && rm -r "${D}"/usr/share
+	use build && rm -r "${ED}"/usr/share
 }
