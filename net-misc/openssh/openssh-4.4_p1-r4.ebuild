@@ -139,7 +139,7 @@ src_compile() {
 }
 
 src_install() {
-	emake install-nokeys DESTDIR="${EDEST}" || die
+	emake install-nokeys DESTDIR="${D}" || die
 	fperms 600 /etc/ssh/sshd_config
 	dobin contrib/ssh-copy-id
 	newinitd "${FILESDIR}"/sshd.rc6 sshd
