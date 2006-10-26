@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.12.3.ebuild,v 1.2 2006/09/13 17:52:15 agriffis Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.12.4.ebuild,v 1.4 2006/10/24 08:03:24 uberlord Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="debug doc hardened"
 
 RDEPEND="virtual/libc
@@ -44,7 +44,11 @@ src_unpack() {
 		fi
 	fi
 
-	epatch ${FILESDIR}/${PN}-2.8.3-macos.patch
+	epatch "${FILESDIR}/${PN}-2.8.3-macos.patch"
+
+	# Fix build for FreeBSD. These will be included in 2.12.5
+	epatch "${FILESDIR}/${P}-gtimer-fix.patch"
+	epatch "${FILESDIR}/${P}-tests_pthread.patch"
 }
 
 src_compile() {
@@ -68,16 +72,16 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die "Installation failed"
+	make DESTDIR="${D}" install || die "Installation failed"
 
 	# Do not install charset.alias even if generated, leave it tol libiconv
-	rm -f ${D}/usr/lib/charset.alias
+	rm -f ${ED}/usr/lib/charset.alias
 
 	# Consider invalid UTF-8 filenames as locale-specific.
 	# TODO :: Eventually get rid of G_BROKEN_FILENAMES
 	dodir /etc/env.d
-	echo "G_BROKEN_FILENAMES=1" > ${D}/etc/env.d/50glib2
-	echo "G_FILENAME_ENCODING=UTF-8" >> ${D}/etc/env.d/50glib2
+	echo "G_BROKEN_FILENAMES=1" > ${ED}/etc/env.d/50glib2
+	echo "G_FILENAME_ENCODING=UTF-8" >> ${ED}/etc/env.d/50glib2
 
 	dodoc AUTHORS ChangeLog* NEWS* README
 }

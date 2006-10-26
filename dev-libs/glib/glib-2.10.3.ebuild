@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.10.3.ebuild,v 1.12 2006/09/13 17:52:15 agriffis Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.10.3.ebuild,v 1.13 2006/10/19 15:21:22 kloeri Exp $
 
 EAPI="prefix"
 
@@ -73,16 +73,16 @@ src_compile() {
 
 src_install() {
 
-	make DESTDIR="${EDEST}" install || die "Installation failed"
+	make DESTDIR="${D}" install || die "Installation failed"
 
 	# Do not install charset.alias even if generated, leave it tol libiconv
-	rm -f ${D}/usr/lib/charset.alias
+	rm -f ${ED}/usr/lib/charset.alias
 
 	# Consider invalid UTF-8 filenames as locale-specific.
 	# TODO :: Eventually get rid of G_BROKEN_FILENAMES
 	dodir /etc/env.d
-	echo "G_BROKEN_FILENAMES=1" > ${D}/etc/env.d/50glib2
-	echo "G_FILENAME_ENCODING=UTF-8" >> ${D}/etc/env.d/50glib2
+	echo "G_BROKEN_FILENAMES=1" > ${ED}/etc/env.d/50glib2
+	echo "G_FILENAME_ENCODING=UTF-8" >> ${ED}/etc/env.d/50glib2
 
 	dodoc AUTHORS ChangeLog* NEWS* README
 

@@ -49,12 +49,12 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${EDEST}" || die
+	make install DESTDIR="${D}" || die
 
 	dodoc AUTHORS ChangeLog README* INSTALL NEWS
 	dohtml -r docs
 
-	cd "${D}"/usr/$(get_libdir) || die
+	cd "${ED}"/usr/$(get_libdir) || die
 	if use ppc-macos ; then
 		chmod 755 libgmodule-1.2.*.dylib
 	else
