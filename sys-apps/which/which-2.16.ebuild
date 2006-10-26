@@ -25,6 +25,6 @@ src_unpack() {
 }
 
 src_install() {
-	make install DESTDIR="${EDEST}" || die
+	make install DESTDIR="${D}" || die
 	dodoc AUTHORS EXAMPLES NEWS README*
 }
