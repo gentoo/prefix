@@ -72,12 +72,12 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die
+	make DESTDIR="${D}" install || die
 	dodir /$(get_libdir)
 
 	if ! use userland_Darwin ; then
-		mv "${D}"/usr/$(get_libdir)/*.so* "${D}"/$(get_libdir)
-		chmod a+rx "${D}"/$(get_libdir)/*.so*
+		mv "${ED}"/usr/$(get_libdir)/*.so* "${ED}"/$(get_libdir)
+		chmod a+rx "${ED}"/$(get_libdir)/*.so*
 
 		# Bug #4411
 		gen_usr_ldscript libreadline.so
@@ -96,14 +96,14 @@ src_install() {
 
 pkg_preinst() {
 	# Backwards compatibility #29865
-	if [[ -e ${ROOT}/$(get_libdir)/libreadline.so.4 ]] ; then
-		cp -pPR "${ROOT}"/$(get_libdir)/libreadline.so.4* "${D}"/$(get_libdir)/
-		touch "${D}"/$(get_libdir)/libreadline.so.4*
+	if [[ -e ${EROOT}/$(get_libdir)/libreadline.so.4 ]] ; then
+		cp -pPR "${EROOT}"/$(get_libdir)/libreadline.so.4* "${ED}"/$(get_libdir)/
+		touch "${ED}"/$(get_libdir)/libreadline.so.4*
 	fi
 }
 
 pkg_postinst() {
-	if [[ -e ${ROOT}/$(get_libdir)/libreadline.so.4 ]] ; then
+	if [[ -e ${EROOT}/$(get_libdir)/libreadline.so.4 ]] ; then
 		ewarn "Your old readline libraries have been copied over."
 		ewarn "You should run 'revdep-rebuild --library libreadline.so.4' asap."
 		ewarn "Once you have, you can safely delete /$(get_libdir)/libreadline.so.4*"
