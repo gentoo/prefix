@@ -209,7 +209,8 @@ revision_diff() {
 			-e 's|^KEYWORDS=.*$|'"`egrep '^KEYWORDS=' $package`"'|' \
 			/var/tmp/$package-$ptecv.tmp /var/tmp/$package-$mtecv.tmp
 		# destroy changes (hopefully) with the prefixed version by eapifying
-		eapify /var/tmp/$package-$ptecv.tmp /var/tmp/$package-$mtecv.tmp > /dev/null || exit -1
+		[[ ${package##*.} == "ebuild" ]] && \
+			eapify /var/tmp/$package-$ptecv.tmp /var/tmp/$package-$mtecv.tmp > /dev/null || exit -1
 		# show what's going to change
 		diff -U 1 /var/tmp/$package-$ptecv.tmp /var/tmp/$package-$mtecv.tmp
 		# (attempt to) do it!
