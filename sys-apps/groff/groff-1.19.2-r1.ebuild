@@ -38,8 +38,8 @@ src_unpack() {
 	# Make sure we can cross-compile this puppy
 	if tc-is-cross-compiler ; then
 		sed -i \
-			-e '/^GROFFBIN=/s:=.*:=/usr/bin/groff:' \
-			-e '/^TROFFBIN=/s:=.*:=/usr/bin/troff:' \
+			-e '/^GROFFBIN=/s:=.*:=${EPREFIX}/usr/bin/groff:' \
+			-e '/^TROFFBIN=/s:=.*:=${EPREFIX}/usr/bin/troff:' \
 			-e '/^GROFF_BIN_PATH=/s:=.*:=:' \
 			contrib/mom/Makefile.sub \
 			doc/Makefile.in \
@@ -59,7 +59,7 @@ src_compile() {
 	#	$(use_enable cjk multibyte)
 
 	econf \
-		--with-appresdir=/etc/X11/app-defaults \
+		--with-appresdir="${EPREFIX}"/etc/X11/app-defaults \
 		$(use_with X x) \
 		|| die
 	emake || die
@@ -68,13 +68,13 @@ src_compile() {
 src_install() {
 	dodir /usr/bin
 	make \
-		prefix="${D}"/usr \
-		bindir="${D}"/usr/bin \
-		libdir="${D}"/usr/$(get_libdir) \
-		appresdir="${D}"/etc/X11/app-defaults \
-		datadir="${D}"/usr/share \
-		mandir="${D}"/usr/share/man \
-		infodir="${D}"/usr/share/info \
+		prefix="${ED}"/usr \
+		bindir="${ED}"/usr/bin \
+		libdir="${ED}"/usr/$(get_libdir) \
+		appresdir="${ED}"/etc/X11/app-defaults \
+		datadir="${ED}"/usr/share \
+		mandir="${ED}"/usr/share/man \
+		infodir="${ED}"/usr/share/info \
 		install || die
 
 	# The following links are required for man #123674
