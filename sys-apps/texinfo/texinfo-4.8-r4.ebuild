@@ -62,12 +62,12 @@ src_install() {
 		newbin util/ginstall-info install-info
 		dobin makeinfo/makeinfo util/{texi2dvi,texindex}
 	else
-		make DESTDIR="${EDEST}" install || die "install failed"
+		make DESTDIR="${D}" install || die "install failed"
 		dosbin ${FILESDIR}/mkinfodir
 		# tetex installs this guy #76812
-		has_version '<app-text/tetex-3' && rm -f "${D}"/usr/bin/texi2pdf
+		has_version '<app-text/tetex-3' && rm -f "${ED}"/usr/bin/texi2pdf
 
-		if [[ ! -f ${D}/usr/share/info/texinfo.info ]] ; then
+		if [[ ! -f ${ED}/usr/share/info/texinfo.info ]] ; then
 			die "Could not install texinfo.info!!!"
 		fi
 
