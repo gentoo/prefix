@@ -38,13 +38,13 @@ src_unpack() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die
+	make DESTDIR="${D}" install || die
 
 	local x
 	for x in aclocal automake ; do
 		help2man ${x} > ${x}.1
 		doman ${x}.1
-		rm -f "${D}"/usr/bin/${x}
+		rm -f "${ED}"/usr/bin/${x}
 	done
 
 	dodoc NEWS README THANKS TODO AUTHORS ChangeLog

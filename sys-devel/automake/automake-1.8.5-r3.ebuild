@@ -33,8 +33,8 @@ src_unpack() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die
-	rm -f "${D}"/usr/bin/{aclocal,automake}
+	make DESTDIR="${D}" install || die
+	rm -f "${ED}"/usr/bin/{aclocal,automake}
 
 	dodoc NEWS README THANKS TODO AUTHORS ChangeLog
 	doinfo doc/*.info*

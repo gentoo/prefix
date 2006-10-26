@@ -40,11 +40,11 @@ src_unpack() {
 }
 
 src_install() {
-	make install DESTDIR="${EDEST}" \
+	make install DESTDIR="${D}" \
 		pkgdatadir=${EPREFIX}/usr/share/automake-${SLOT} \
 		m4datadir=${EPREFIX}/usr/share/aclocal-${SLOT} \
 		|| die
-	rm -f "${D}"/usr/bin/{aclocal,automake}
+	rm -f "${ED}"/usr/bin/{aclocal,automake}
 	dosym automake-${SLOT} /usr/share/automake
 
 	dodoc NEWS README THANKS TODO AUTHORS ChangeLog

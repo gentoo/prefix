@@ -36,12 +36,12 @@ src_unpack() {
 }
 
 src_install() {
-	make install DESTDIR="${EDEST}" || die "make install failed"
+	make install DESTDIR="${D}" || die "make install failed"
 
 	local x=
 	for x in aclocal automake ; do
-		mv "${D}"/usr/bin/${x}{,-${SLOT}} || die "rename ${x}"
-		mv "${D}"/usr/share/${x}{,-${SLOT}} || die "move ${x}"
+		mv "${ED}"/usr/bin/${x}{,-${SLOT}} || die "rename ${x}"
+		mv "${ED}"/usr/share/${x}{,-${SLOT}} || die "move ${x}"
 	done
 
 	dodoc NEWS README THANKS TODO AUTHORS ChangeLog
