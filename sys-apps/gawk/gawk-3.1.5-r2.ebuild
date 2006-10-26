@@ -59,10 +59,10 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${EDEST}" || die "install failed"
+	make install DESTDIR="${D}" || die "install failed"
 	cd "${SFFS}"
 	use solarisld || \
-		make LIBDIR="$(get_libdir)" install || die "filefuncs install failed"
+		make LIBDIR="${EPREFIX}/$(get_libdir)" install || die "filefuncs install failed"
 
 	dodir /usr/bin
 	# In some rare cases, (p)gawk gets installed as (p)gawk- and not
@@ -74,36 +74,36 @@ src_install() {
 			&& binpath="/bin" \
 			|| binpath="/usr/bin"
 
-		if [[ -f ${D}/bin/${x} && ! -f ${D}/bin/${x}-${PV} ]] ; then
-			mv -f "${D}"/bin/${x} "${D}"/${binpath}/${x}-${PV}
-		elif [[ -f ${D}/bin/${x}- && ! -f ${D}/bin/${x}-${PV} ]] ; then
-			mv -f "${D}"/bin/${x}- "${D}"/${binpath}/${x}-${PV}
-		elif [[ ${binpath} == "/usr/bin" && -f ${D}/bin/${x}-${PV} ]] ; then
-			mv -f "${D}"/bin/${x}-${PV} "${D}"/${binpath}/${x}-${PV}
+		if [[ -f ${ED}/bin/${x} && ! -f ${ED}/bin/${x}-${PV} ]] ; then
+			mv -f "${ED}"/bin/${x} "${ED}"/${binpath}/${x}-${PV}
+		elif [[ -f ${ED}/bin/${x}- && ! -f ${ED}/bin/${x}-${PV} ]] ; then
+			mv -f "${ED}"/bin/${x}- "${ED}"/${binpath}/${x}-${PV}
+		elif [[ ${binpath} == "/usr/bin" && -f ${ED}/bin/${x}-${PV} ]] ; then
+			mv -f "${ED}"/bin/${x}-${PV} "${ED}"/${binpath}/${x}-${PV}
 		fi
 
-		rm -f "${D}"/bin/${x}
+		rm -f "${ED}"/bin/${x}
 		dosym ${x}-${PV} ${binpath}/${x}
 		[[ ${binpath} == "/usr/bin" ]] && dosym /usr/bin/${x}-${PV} /bin/${x}
 	done
 
-	rm -f "${D}"/bin/awk
+	rm -f "${ED}"/bin/awk
 	dodir /usr/bin
 	# Compat symlinks
 	dosym /bin/gawk-${PV} /usr/bin/gawk
 	dosym gawk-${PV} /bin/awk
 	dosym /bin/gawk-${PV} /usr/bin/awk
 	[[ ${USERLAND} != "GNU" ]] && [[ ${EPREFIX%/} == "" ]] && \
-		rm -f "${D}"/{,usr/}bin/awk{,-${PV}}
+		rm -f "${ED}"/{,usr/}bin/awk{,-${PV}}
 
 	# Install headers
 	insinto /usr/include/awk
 	doins "${S}"/*.h || die "ins headers failed"
 	# We do not want 'acconfig.h' in there ...
-	rm -f "${D}"/usr/include/awk/acconfig.h
+	rm -f "${ED}"/usr/include/awk/acconfig.h
 
 	cd "${S}"
-	rm -f "${D}"/usr/share/man/man1/pgawk.1
+	rm -f "${ED}"/usr/share/man/man1/pgawk.1
 	dosym gawk.1.gz /usr/share/man/man1/pgawk.1.gz
 	[[ ${USERLAND} != "GNU" ]] && [[ ${EPREFIX%/} == "" ]] || \
 		dosym gawk.1.gz /usr/share/man/man1/awk.1.gz
