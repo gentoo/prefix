@@ -40,12 +40,12 @@ src_compile() {
 
 src_install() {
 	newbin "${FILESDIR}"/${PN}-${PV} ${PN} || die "install gcc-config"
-	patch "${D}"/usr/bin/${PN} < "${FILESDIR}"/${P}-prefix.patch || die
+	patch "${ED}"/usr/bin/${PN} < "${FILESDIR}"/${P}-prefix.patch || die
 	sed -i \
 		-e "s:PORTAGE-VERSION:${PVR}:g" \
 		-e "s:GENTOO_LIBDIR:$(get_libdir):g" \
 		-e "s:GENTOO_PORTAGE_EPREFIX:${EPREFIX}:g" \
-		"${D}"/usr/bin/${PN}
+		"${ED}"/usr/bin/${PN}
 
 	exeinto /usr/$(get_libdir)/misc
 	newexe wrapper gcc-config || die "install wrapper"
@@ -56,11 +56,11 @@ pkg_postinst() {
 	if gcc-config --get-current-profile &>/dev/null ; then
 		# We not longer use the /usr/include/g++-v3 hacks, as
 		# it is not needed ...
-		[[ -L ${ROOT}/usr/include/g++ ]] && rm -f "${ROOT}"/usr/include/g++
-		[[ -L ${ROOT}/usr/include/g++-v3 ]] && rm -f "${ROOT}"/usr/include/g++-v3
-		[[ ${ROOT} = "/" ]] && gcc-config $(/usr/bin/gcc-config --get-current-profile)
+		[[ -L ${EROOT}/usr/include/g++ ]] && rm -f "${EROOT}"/usr/include/g++
+		[[ -L ${EROOT}/usr/include/g++-v3 ]] && rm -f "${EROOT}"/usr/include/g++-v3
+		[[ ${EROOT} = "/" ]] && gcc-config $(/usr/bin/gcc-config --get-current-profile)
 	fi
 
 	# Make sure old versions dont exist #79062
-	rm -f "${ROOT}"/usr/sbin/gcc-config
+	rm -f "${EROOT}"/usr/sbin/gcc-config
 }
