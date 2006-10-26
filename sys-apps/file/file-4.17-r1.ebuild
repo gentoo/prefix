@@ -46,7 +46,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die "make install failed"
+	make DESTDIR="${D}" install || die "make install failed"
 	dodoc ChangeLog MAINT README
 
 	use python && cd python && distutils_src_install
