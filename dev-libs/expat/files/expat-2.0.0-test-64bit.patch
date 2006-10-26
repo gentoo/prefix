@@ -1,0 +1,11 @@
+--- tests/runtests.c.old	2006-04-12 11:32:20.616132185 +0200
++++ tests/runtests.c	2006-04-12 11:32:27.152122381 +0200
+@@ -1176,7 +1176,7 @@
+                         const XML_Char *systemId,
+                         const XML_Char *publicId) 
+ {
+-    int callno = 1 + (int)XML_GetUserData(parser);
++    long callno = 1 + (long)XML_GetUserData(parser);
+     char *text;
+     XML_Parser p2;
+ 

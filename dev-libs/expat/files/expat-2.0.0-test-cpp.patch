@@ -1,0 +1,22 @@
+--- Makefile.in.old	2006-04-17 21:28:36.000000000 +0200
++++ Makefile.in	2006-04-17 21:34:50.000000000 +0200
+@@ -103,6 +103,7 @@
+ 	done
+ 
+ CC = @CC@
++CXX = @CXX@
+ LIBTOOL = @LIBTOOL@
+ 
+ INCLUDES = -I$(srcdir)/lib -I.
+@@ -172,8 +173,10 @@
+ run-xmltest: xmlwf/xmlwf tests/XML-Test-Suite
+ 	tests/xmltest.sh
+ 
+-.SUFFIXES: .c .lo .o
++.SUFFIXES: .c .cpp .lo .o
+ 
++.cpp.o:
++	$(CXXCOMPILE) -o $@ -c $<
+ .c.o:
+ 	$(COMPILE) -o $@ -c $<
+ .c.lo:
