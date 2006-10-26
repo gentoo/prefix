@@ -66,7 +66,7 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${EDEST}" || die
+	make install DESTDIR="${D}" || die
 
 	dosed "s|^HELPFILE.*$|HELPFILE:file://localhost/usr/share/doc/${PF}/lynx_help/lynx_help_main.html|" \
 			/etc/lynx/lynx.cfg
