@@ -35,7 +35,7 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${EDEST}" || die "make install failed"
+	make install DESTDIR="${D}" || die "make install failed"
 	dodoc AUTHORS ChangeLog NEWS ONEWS README* RoadMap THANKS TODO
 	dosym flex /usr/bin/lex
 }
