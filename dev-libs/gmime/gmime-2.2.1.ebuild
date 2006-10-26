@@ -55,8 +55,8 @@ src_compile() {
 }
 
 src_install() {
-	make GACUTIL_FLAGS="/root ${D}/usr/$(get_libdir) /gacdir /usr/$(get_libdir) /package ${PN}" \
-		DESTDIR=${EDEST} install || die
+	make GACUTIL_FLAGS="${EPREFIX}/root ${ED}/usr/$(get_libdir) ${EPREFIX}/gacdir ${EPREFIX}/usr/$(get_libdir) ${EPREFIX}/package ${EPREFIX}/${PN}" \
+		DESTDIR=${D} install || die
 
 	if use doc ; then
 		# we don't use docinto/dodoc, because we don't want html doc gzipped
@@ -66,8 +66,8 @@ src_install() {
 
 	# rename these two, so they don't conflict with app-arch/sharutils
 	# (bug #70392)	Ticho, 2004-11-10
-	mv ${D}/usr/bin/uuencode ${D}/usr/bin/gmime-uuencode
-	mv ${D}/usr/bin/uudecode ${D}/usr/bin/gmime-uudecode
+	mv ${ED}/usr/bin/uuencode ${ED}/usr/bin/gmime-uuencode
+	mv ${ED}/usr/bin/uudecode ${ED}/usr/bin/gmime-uudecode
 }
 
 DOCS="AUTHORS ChangeLog COPYING INSTALL NEWS PORTING README TODO doc/html/"
