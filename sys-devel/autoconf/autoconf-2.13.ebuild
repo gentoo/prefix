@@ -48,12 +48,12 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${EDEST}" || die
+	make install DESTDIR="${D}" || die
 
 	dodoc AUTHORS NEWS README TODO \
 		ChangeLog ChangeLog.0 ChangeLog.1
 
-	mv "${D}"/usr/share/info/autoconf{,-${PV}}.info
+	mv "${ED}"/usr/share/info/autoconf{,-${PV}}.info
 }
 
 pkg_postinst() {
