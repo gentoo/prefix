@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/gentoolkit-0.2.3_pre1.ebuild,v 1.1 2006/09/04 05:13:21 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/gentoolkit-0.2.3_pre2.ebuild,v 1.2 2006/10/17 14:20:15 uberlord Exp $
 
 EAPI="prefix"
 
@@ -30,26 +30,28 @@ src_unpack() {
 		-e "s|/usr/lib/gentoolkit/pym|${EPREFIX}/usr/lib/gentoolkit/pym|g" \
 		-e "s|/usr/lib/portage/pym|${EPREFIX}/usr/lib/portage/pym|g" \
 		-e "s|/usr/share/|${EPREFIX}/usr/share/|g" \
-		-e "s|^#!/usr/bin/python|#!${EPREFIX}/usr/bin/python|g"
+		-e "s|^#!/usr/bin/python|#!${EPREFIX}/usr/bin/python|g" \
+		-e "s|^#!/bin/bash|#!${EPREFIX}/bin/bash|g" \
+		-e "s|=/etc|=${EPREFIX}/etc|g"
 	eend $?
 }
 
 src_install() {
-	make DESTDIR="${EDEST}/${EPREFIX}" install-gentoolkit || die
+	make DESTDIR="${D}/${EPREFIX}" install-gentoolkit || die
 }
 
 # Completely remove if no issues found during gentoolkit-0.2.3_pre testing
 #pkg_preinst() {
 #	# FIXME: Remove from future ebuilds after gentoolkit-0.2.2 is stable
-#	rm -f ${PROOT}usr/lib/gentoolkit/pym/gentoolkit.py[co] ${PROOT}usr/lib/gentoolkit/pym/gentoolkit/*.py[co]
+#	rm -f ${EROOT}usr/lib/gentoolkit/pym/gentoolkit.py[co] ${EROOT}usr/lib/gentoolkit/pym/gentoolkit/*.py[co]
 #}
 
 pkg_postinst() {
-	python_mod_optimize ${PROOT}usr/lib/gentoolkit
+	python_mod_optimize ${EROOT}usr/lib/gentoolkit
 	echo
 	ewarn "The qpkg and etcat tools are deprecated in favor of equery and"
-	ewarn "are no longer installed in ${PROOT}usr/bin in this release."
-	ewarn "They are still available in ${PROOT}usr/share/doc/${PF}/deprecated/"
+	ewarn "are no longer installed in ${EROOT}usr/bin in this release."
+	ewarn "They are still available in ${EROOT}usr/share/doc/${PF}/deprecated/"
 	ewarn "if you *really* want to use them."
 	echo
 	elog "Another alternative to qpkg and equery are the q applets in"
@@ -58,5 +60,5 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	python_mod_cleanup ${PROOT}usr/lib/gentoolkit
+	python_mod_cleanup ${EROOT}usr/lib/gentoolkit
 }
