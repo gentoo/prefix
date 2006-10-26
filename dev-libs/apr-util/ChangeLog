@@ -1,0 +1,242 @@
+# ChangeLog for dev-libs/apr-util
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.66 2006/10/18 16:06:14 uberlord Exp $
+
+  18 Oct 2006; Roy Marples <uberlord@gentoo.org> apr-util-0.9.12.ebuild:
+  Added ~sparc-fbsd keyword.
+
+  18 Oct 2006; Roy Marples <uberlord@gentoo.org> apr-util-1.2.7.ebuild:
+  Added ~sparc-fbsd keyword.
+
+  15 Oct 2006; Michael Stewart <vericgar@gentoo.org> apr-util-0.9.12.ebuild,
+  apr-util-1.2.7.ebuild:
+  Remove aprutil.exp as it's not used and causes collisions between SLOTs
+
+  10 Sep 2006; Javier Villavicencio <the_paya@gentoo.org>
+  apr-util-1.2.7.ebuild:
+  Add ~x86-fbsd keyword.
+
+  05 Sep 2006; Joshua Kinard <kumba@gentoo.org> apr-util-0.9.12.ebuild:
+  Marked stable on mips.
+
+  29 Jul 2006; Bryan Østergaard <kloeri@gentoo.org> apr-util-0.9.12.ebuild:
+  Stable on alpha.
+
+  28 Jun 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  apr-util-0.9.12.ebuild:
+  ppc stable, #138011
+
+  28 Jun 2006; Joshua Jackson <tsunam@gentoo.org> apr-util-0.9.12.ebuild:
+  stable x86; bug #138011
+
+  27 Jun 2006; Marcus D. Hanwell <cryos@gentoo.org> apr-util-0.9.12.ebuild:
+  Marked stable on amd64, bug 138011.
+
+  27 Jun 2006; Guy Martin <gmsoft@gentoo.org> apr-util-0.9.12.ebuild:
+  Stable on hppa.
+
+  26 Jun 2006; Markus Rothe <corsair@gentoo.org> apr-util-0.9.12.ebuild:
+  Stable on ppc64; bug #138011
+
+  26 Jun 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  apr-util-0.9.12.ebuild:
+  Stable on sparc wrt #138011
+
+  06 Jun 2006; Michael Stewart <vericgar@gentoo.org> apr-util-1.2.7.ebuild:
+  Remove as-needed filtering
+
+  05 Jun 2006; Michael Stewart <vericgar@gentoo.org>
+  +files/apr-util-0.9.12-linking.patch, apr-util-0.9.12.ebuild:
+  Add patch to allow correct linking with --as-needed
+
+  04 Jun 2006; Luca Longinotti <chtekk@gentoo.org> apr-util-0.9.7.ebuild,
+  apr-util-0.9.12.ebuild, apr-util-1.2.2.ebuild, apr-util-1.2.7.ebuild:
+  Fix bug #133871 for all apr-util versions save the all-stable one.
+  Thanks to Flameeyes for the patch.
+
+  27 Apr 2006; Marien Zwart <marienz@gentoo.org> Manifest:
+  Fixing SHA256 digest, pass four
+
+  22 Apr 2006; Luca Longinotti <chtekk@gentoo.org> apr-util-0.9.6-r2.ebuild:
+  Fix repoman trailing whitespace error.
+
+*apr-util-0.9.12 (16 Apr 2006)
+
+  16 Apr 2006; Michael Stewart <vericgar@gentoo.org>
+  +apr-util-0.9.12.ebuild:
+  Version bump
+
+*apr-util-1.2.7 (16 Apr 2006)
+
+  16 Apr 2006; Michael Stewart <vericgar@gentoo.org> +apr-util-1.2.7.ebuild:
+  Version bump in preperation for the next version of apache 2.2.x
+
+  30 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> apr-util-0.9.7.ebuild,
+  apr-util-1.2.2.ebuild:
+  Add ~x86-fbsd keyword to the unmasked ebuild.
+
+  30 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> apr-util-1.2.2.ebuild:
+  Add ~x86-fbsd keyword.
+
+*apr-util-1.2.2 (15 Feb 2006)
+
+  15 Feb 2006; Michael Stewart <vericgar@gentoo.org> +apr-util-1.2.2.ebuild:
+  New version for apache 2.2
+
+  15 Jan 2006; Marcus D. Hanwell <cryos@gentoo.org> apr-util-0.9.7.ebuild:
+  Stable on amd64, bug 117835.
+
+  13 Jan 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  apr-util-0.9.7.ebuild:
+  ppc stable, bug #117835
+
+  12 Jan 2006; Markus Rothe <corsair@gentoo.org> apr-util-0.9.7.ebuild:
+  Stable on ppc64; bug #117835
+
+  10 Jan 2006; Gustavo Zacarias <gustavoz@gentoo.org> apr-util-0.9.7.ebuild:
+  Stable on sparc wrt #117835
+
+  09 Jan 2006; Bryan Østergaard <kloeri@gentoo.org apr-util-0.9.7.ebuild:
+  Stable on x86, alpha and ia64, bug 117835.
+
+  06 Jan 2006; Michael Stewart <vericgar@gentoo.org> apr-util-0.9.7.ebuild:
+  Remove testing that shouldn't have made it to CVS. Fixes bug 117949.
+
+  05 Jan 2006; Michael Stewart <vericgar@gentoo.org> apr-util-0.9.7.ebuild:
+  Correctly honor our USE-flags. Fixes bug 116980
+
+*apr-util-0.9.7 (22 Oct 2005)
+
+  22 Oct 2005; Michael Stewart <vericgar@gentoo.org> +apr-util-0.9.7.ebuild:
+  Version Bump
+
+  21 Oct 2005; Aaron Walker <ka0ttic@gentoo.org> apr-util-0.9.6-r2.ebuild:
+  Stable on mips.
+
+  10 Oct 2005; Danny van Dyk <kugelfang@gentoo.org>
+  apr-util-0.9.6-r2.ebuild:
+  Marked ~ppc-macos.
+
+  10 Oct 2005; MATSUU Takuto <matsuu@gentoo.org> apr-util-0.9.6-r2.ebuild,
+  apr-util-1.1.2.ebuild:
+  Stable on sh.
+
+  19 Sep 2005; Michael Hanselmann <hansmi@gentoo.org>
+  apr-util-0.9.6-r2.ebuild:
+  Stable on hppa and ppc.
+
+  18 Sep 2005; Marcus D. Hanwell <cryos@gentoo.org>
+  apr-util-0.9.6-r2.ebuild:
+  Stable on amd64, bug 105516.
+
+  18 Sep 2005; Jason Wever <weeve@gentoo.org> apr-util-0.9.6-r2.ebuild:
+  Marked stable on SPARC wrt bug #105516.
+
+  18 Sep 2005; Michael Stewart <vericgar@gentoo.org> -apr-util-0.9.5.ebuild,
+  -apr-util-0.9.5-r1.ebuild, -apr-util-0.9.6.ebuild,
+  -apr-util-0.9.6-r1.ebuild:
+  Removing old revisions that use broken LFS-support
+
+  17 Sep 2005; Aron Griffis <agriffis@gentoo.org> apr-util-0.9.6-r2.ebuild:
+  Mark 0.9.6-r2 stable on ia64
+
+  11 Sep 2005; Markus Rothe <corsair@gentoo.org> apr-util-0.9.6-r2.ebuild:
+  Stable on ppc64
+
+  10 Sep 2005; Aron Griffis <agriffis@gentoo.org> apr-util-0.9.6-r2.ebuild:
+  Mark 0.9.6-r2 stable on alpha
+
+  10 Sep 2005; Michael Stewart <vericgar@gentoo.org>
+  apr-util-0.9.6-r2.ebuild:
+  Stable on x86
+
+  10 Sep 2005; Aron Griffis <agriffis@gentoo.org> apr-util-0.9.5-r1.ebuild:
+  Mark 0.9.5-r1 stable on alpha
+
+  17 Jul 2005; Kito <kito@gentoo.org> apr-util-1.1.2.ebuild:
+  ~ppc-macos Keyword. Bug 94202
+
+  13 Jul 2005; bret curtis <psi29a@gentoo.org> apr-util-0.9.6.ebuild,
+  apr-util-0.9.6-r2.ebuild, apr-util-1.1.2.ebuild:
+  added to ~mips
+
+  11 Jun 2005; Bryan Østergaard <kloeri@gentoo.org>
+  apr-util-0.9.6-r2.ebuild, apr-util-1.1.2.ebuild:
+  Fix g/bsd compatibility, bug 95468.
+
+*apr-util-0.9.6-r2 (10 May 2005)
+*apr-util-0.9.5-r1 (10 May 2005)
+
+  10 May 2005; Elfyn McBratney <beu@gentoo.org> +apr-util-0.9.5-r1.ebuild,
+  +apr-util-0.9.6-r2.ebuild:
+  Rev bumps to pick up on the LFS-removal from apr.
+
+  10 May 2005; Bret Curtis <psi29a@gentoo.org> apr-util-0.9.5.ebuild:
+  marked for testing, ~mips
+
+*apr-util-0.9.6-r1 (13 Apr 2005)
+
+  13 Apr 2005; Christian Parpart <trapni@gentoo.org>
+  +files/apr-util-0.9.x-161086:161087.patch, +apr-util-0.9.6-r1.ebuild:
+  adding backport-patch so that depending pkgs on it will compile well
+
+*apr-util-1.1.2 (10 Apr 2005)
+
+  10 Apr 2005; Christian Parpart <trapni@gentoo.org> +apr-util-1.1.2.ebuild:
+  adding apr-util-1 (1.1.1) ebuilds to the series of apr versions which is the
+  base requirement (besides of apr-1) for forthcoming apache httpd 2.1.x
+  series ;)
+
+  31 Mar 2005; Aron Griffis <agriffis@gentoo.org> apr-util-0.9.5.ebuild:
+  stable on ia64
+
+  05 Mar 2005; Markus Rothe <corsair@gentoo.org> apr-util-0.9.5.ebuild:
+  Stable on ppc64
+
+  05 Mar 2005; Elfyn McBratney <beu@gentoo.org> apr-util-0.9.5.ebuild,
+  apr-util-0.9.6.ebuild:
+  Depend on the 'best version' of apr here, too.
+
+*apr-util-0.9.6 (02 Mar 2005)
+
+  02 Mar 2005; Elfyn McBratney <beu@gentoo.org> +apr-util-0.9.6.ebuild:
+  Version bump.
+
+  28 Feb 2005; Jeremy Huddleston <eradicator@gentoo.org>
+  apr-util-0.9.5.ebuild:
+  Killed einstall usage.  Back to using econf to fix multilib problems.
+
+  20 Feb 2005; Aron Griffis <agriffis@gentoo.org> apr-util-0.9.5.ebuild:
+  add ~ia64 #77455
+
+  09 Feb 2005; Benedikt Boehm <hollow@gentoo.org> apr-util-0.9.5.ebuild:
+  fixed expat
+
+  05 Feb 2005; Bryan Østergaard <kloeri@gentoo.org> apr-util-0.9.5.ebuild:
+  ~alpha keyword, bug 77455.
+
+  28 Jan 2005; Michael Hanselmann <hansmi@gentoo.org> apr-util-0.9.5.ebuild:
+  Added to ~ppc.
+
+  28 Jan 2005; Paul de Vrieze <pauldv@gentoo.org> apr-util-0.9.5.ebuild:
+  Fixing ownership issue when compiling with userpriv (headers will be owned 
+  by portage, not root. A chown fixes this).
+
+  11 Jan 2005; Mike Doty <kingtaco@gentoo.org> apr-util-0.9.5.ebuild:
+  ~amd64 added
+
+  11 Jan 2005; Guy Martin <gmsoft@gentoo.org> apr-util-0.9.5.ebuild:
+  Added ~hppa to KEYWORDS.
+
+  11 Jan 2005; Markus Rothe <corsair@gentoo.org> apr-util-0.9.5.ebuild:
+  Added ~ppc64 to KEYWORDS
+
+  10 Jan 2005; Jason Wever <weeve@gentoo.org> apr-util-0.9.5.ebuild:
+  Added ~sparc keyword wrt bug #77455.
+
+*apr-util-0.9.5 (08 Jan 2005)
+
+  08 Jan 2005; Michael Stewart <vericgar@gentoo.org> +metadata.xml,
+  +apr-util-0.9.5.ebuild:
+  New package, required by apache
+

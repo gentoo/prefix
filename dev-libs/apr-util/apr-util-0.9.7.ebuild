@@ -53,14 +53,14 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" installbuilddir=/usr/share/apr-util-0/build install || die
+	make DESTDIR="${D}" installbuilddir=/usr/share/apr-util-0/build install || die
 
 	#bogus values pointing at /var/tmp/portage
-	sed -i -e "s:APU_SOURCE_DIR=.*:APU_SOURCE_DIR=:g" ${D}/usr/bin/apu-config
-	sed -i -e "s:APU_BUILD_DIR=.*:APU_BUILD_DIR=${EPREFIX}/usr/share/apr-util-0/build:g" ${D}/usr/bin/apu-config
+	sed -i -e "s:APU_SOURCE_DIR=.*:APU_SOURCE_DIR=:g" ${ED}/usr/bin/apu-config
+	sed -i -e "s:APU_BUILD_DIR=.*:APU_BUILD_DIR=${EPREFIX}/usr/share/apr-util-0/build:g" ${ED}/usr/bin/apu-config
 
 	dodoc CHANGES NOTICE
 
 	# Will install as portage user when using userpriv. Fixing
-	chown -R root:0 ${D}/usr/include/apr-0/
+	chown -R root:0 ${ED}/usr/include/apr-0/
 }
