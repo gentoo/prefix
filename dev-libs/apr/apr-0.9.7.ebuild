@@ -42,18 +42,18 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" installbuilddir=${EPREFIX}/usr/share/apr-0/build install || die
+	make DESTDIR="${D}" installbuilddir=${EPREFIX}/usr/share/apr-0/build install || die
 
 	# bogus values pointing at /var/tmp/portage
-	sed -i -e "s:APR_SOURCE_DIR=.*:APR_SOURCE_DIR=${EPREFIX}/usr/share/apr-0:g" "${D}"/usr/bin/apr-config
-	sed -i -e "s:APR_BUILD_DIR=.*:APR_BUILD_DIR=${EPREFIX}/usr/share/apr-0/build:g" "${D}"/usr/bin/apr-config
+	sed -i -e "s:APR_SOURCE_DIR=.*:APR_SOURCE_DIR=${EPREFIX}/usr/share/apr-0:g" "${ED}"/usr/bin/apr-config
+	sed -i -e "s:APR_BUILD_DIR=.*:APR_BUILD_DIR=${EPREFIX}/usr/share/apr-0/build:g" "${ED}"/usr/bin/apr-config
 
-	sed -i -e "s:apr_builddir=.*:apr_builddir=${EPREFIX}/usr/share/apr-0/build:g" "${D}"/usr/share/apr-0/build/apr_rules.mk
-	sed -i -e "s:apr_builders=.*:apr_builders=${EPREFIX}/usr/share/apr-0/build:g" "${D}"/usr/share/apr-0/build/apr_rules.mk
+	sed -i -e "s:apr_builddir=.*:apr_builddir=${EPREFIX}/usr/share/apr-0/build:g" "${ED}"/usr/share/apr-0/build/apr_rules.mk
+	sed -i -e "s:apr_builders=.*:apr_builders=${EPREFIX}/usr/share/apr-0/build:g" "${ED}"/usr/share/apr-0/build/apr_rules.mk
 
-	cp -p build/*.awk ${D}/usr/share/apr-0/build
-	cp -p build/*.sh ${D}/usr/share/apr-0/build
-	cp -p build/*.pl ${D}/usr/share/apr-0/build
+	cp -p build/*.awk ${ED}/usr/share/apr-0/build
+	cp -p build/*.sh ${ED}/usr/share/apr-0/build
+	cp -p build/*.pl ${ED}/usr/share/apr-0/build
 
 	dodoc CHANGES LICENSE NOTICE
 }

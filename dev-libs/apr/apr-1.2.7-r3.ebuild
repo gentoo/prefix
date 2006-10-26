@@ -75,7 +75,7 @@ src_compile() {
 
 src_install() {
 
-	make DESTDIR="${EDEST}" install || die "make install failed"
+	make DESTDIR="${D}" install || die "make install failed"
 
 	dodoc CHANGES NOTICE LICENSE
 }
