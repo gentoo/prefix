@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/libperl-5.8.8-r1.ebuild,v 1.14 2006/08/15 13:48:22 ian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/libperl-5.8.7.ebuild,v 1.15 2005/10/02 00:53:00 kloeri Exp $
 
 # The basic theory based on comments from Daniel Robbins <drobbins@gentoo.org>.
 #
@@ -65,12 +65,12 @@ SHORT_PV="${PV%.*}"
 MY_P="perl-${PV/_rc/-RC}"
 S="${WORKDIR}/${MY_P}"
 DESCRIPTION="Larry Wall's Practical Extraction and Reporting Language"
-SRC_URI="mirror://cpan/src/${MY_P}.tar.bz2"
+SRC_URI="ftp://ftp.cpan.org/pub/CPAN/src/${MY_P}.tar.bz2"
 HOMEPAGE="http://www.perl.org"
 SLOT="${PERLSLOT}"
 LIBPERL="libperl$(get_libname ${PERLSLOT}.${SHORT_PV})"
 LICENSE="Artistic GPL-2"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86"
 
 # rac 2004.08.06
 
@@ -90,7 +90,7 @@ RDEPEND="
 	berkdb? ( sys-libs/db )
 	gdbm? ( >=sys-libs/gdbm-1.8.0 )"
 
-PDEPEND="~dev-lang/perl-${PV}"
+PDEPEND=">=dev-lang/perl-${PV}"
 
 pkg_setup() {
 	# I think this should rather be displayed if you *have* 'ithreads'
@@ -100,6 +100,16 @@ pkg_setup() {
 		ewarn ""
 		ewarn "PLEASE NOTE: You are compiling perl-5.8 with"
 		ewarn "interpreter-level threading enabled."
+		ewarn "Threading is not supported by all applications "
+		ewarn "that compile against perl. You use threading at "
+		ewarn "your own discretion. "
+		ewarn ""
+		epause 10
+	else
+		ewarn ""
+		ewarn "PLEASE NOTE: If you want to compile perl-5.8 with"
+		ewarn "threading enabled , you must restart this emerge"
+		ewarn "with USE=ithreads emerge...."
 		ewarn "Threading is not supported by all applications "
 		ewarn "that compile against perl. You use threading at "
 		ewarn "your own discretion. "
@@ -135,139 +145,98 @@ src_unpack() {
 	cd ${S}; epatch ${FILESDIR}/${PN}-noksh.patch
 
 	# we need the same @INC-inversion magic here we do in perl
-	cd ${S}; epatch ${FILESDIR}/${P}-reorder-INC.patch
-
-	# On PA7200, uname -a contains a single quote and we need to 
-	# filter it otherwise configure fails. See #125535.
-	epatch ${FILESDIR}/perl-hppa-pa7200-configure.patch
-
-
-	use amd64 && cd ${S} && epatch ${FILESDIR}/${P}-lib64.patch
-	[[ ${CHOST} == *-dragonfly* ]] && cd ${S} && epatch ${FILESDIR}/${P}-dragonfly-clean.patch
-	[[ ${CHOST} == *-freebsd* ]] && cd ${S} && epatch ${FILESDIR}/${P}-fbsdhints.patch
-	cd ${S}; epatch ${FILESDIR}/${P}-cplusplus.patch
-}
-
-myconf() {
-	myconf=( "${myconf[@]}" "$@" )
+	cd ${S}; epatch ${FILESDIR}/${PN}-reorder-INC.patch
 }
 
 src_compile() {
-	declare -a myconf
-
 	# Perl has problems compiling with -Os in your flags
-	# some arches and -O do not mix :)
-	use arm && replace-flags -O? -O1
-	use ppc && replace-flags -O? -O1
-	use ia64 && replace-flags -O? -O1
-	# Perl has problems compiling with -Os in your flags with glibc
 	use elibc_uclibc || replace-flags "-Os" "-O2"
 	# This flag makes compiling crash in interesting ways
 	filter-flags "-malign-double"
-	# Fixes bug #97645
-	use ppc && filter-flags -mpowerpc-gpopt
-	# Fixes bug #143895 on gcc-4.1.1
-	filter-flags "-fsched2-use-superblocks"
 
 	export LC_ALL="C"
+	local myconf=""
 
-	case ${CHOST} in
-		*-freebsd*) osname="freebsd" ;;
-		*-dragonfly*) osname="dragonfly" ;;
-		*-netbsd*) osname="netbsd" ;;
-		*-openbsd*) osname="openbsd" ;;
-		*-darwin*) osname="darwin" ;;
-
-		*) osname="linux" ;;
-	esac
+	if [[ ${KERNEL} == "FreeBSD" && "${ELIBC}" = "FreeBsd" ]]; then
+		osname="freebsd"
+	elif [[ ${USERLAND} == "Darwin" ]]; then
+		osname="darwin"
+	else
+		osname="linux"
+	fi
 
 	if use ithreads
 	then
 		einfo "using ithreads"
 		mythreading="-multi"
-		myconf -Dusethreads
-		myarch=${CHOST}
+		myconf="-Dusethreads ${myconf}"
+		myarch=$(get_abi_CHOST)
 		myarch="${myarch%%-*}-${osname}-thread"
 	else
-		myarch=${CHOST}
+		myarch=$(get_abi_CHOST)
 		myarch="${myarch%%-*}-${osname}"
 	fi
 
-	local inclist=$(for v in $PERL_OLDVERSEN; do echo -n "$v $v/$myarch$mythreading "; done)
-
-	# allow either gdbm to provide ndbm (in <gdbm/ndbm.h>) or db1
-
-	myndbm='U'
-	mygdbm='U'
-	mydb='U'
+	ewarn "myarch: ${myarch}"
 
 	if use gdbm
 	then
-		mygdbm='D'
-		myndbm='D'
+		myconf="${myconf} -Di_gdbm"
 	fi
 	if use berkdb
 	then
-		mydb='D'
-		has_version '=sys-libs/db-1*' && myndbm='D'
+		myconf="${myconf} -Di_db -Di_ndbm"
+	else
+		myconf="${myconf} -Ui_db -Ui_ndbm"
 	fi
-
-	myconf "-${myndbm}i_ndbm" "-${mygdbm}i_gdbm" "-${mydb}i_db"
-
 	if use mips
 	then
 		# this is needed because gcc 3.3-compiled kernels will hang
 		# the machine trying to run this test - check with `Kumba
 		# <rac@gentoo.org> 2003.06.26
-		myconf -Dd_u32align
+		myconf="${myconf} -Dd_u32align"
 	fi
 
 	if use debug
 	then
 		CFLAGS="${CFLAGS} -g"
-		myconf -DDEBUGGING
 	fi
 
 	if use sparc
 	then
-		myconf -Ud_longdbl
-	fi
-
-	if use alpha && "$(tc-getCC)" == "ccc"
-	then
-		ewarn "Perl will not be built with berkdb support, use gcc if you needed it..."
-		myconf -Ui_db -Ui_ndbm
+		myconf="${myconf} -Ud_longdbl"
 	fi
 
 	rm -f config.sh Policy.sh
 
-	[[ -n "${ABI}" ]] && myconf "-Dusrinc=$(get_ml_incdir)"
+	[ -n "${ABI}" ] && myconf="${myconf} -Dusrinc=$(get_ml_incdir)"
 
-	[[ ${ELIBC} == "FreeBSD" ]] && myconf "-Dlibc=/usr/$(get_libdir)/libc.a"
+	[[ ${ELIBC} == "FreeBSD" ]] && myconf="${myconf} -Dlibc=/usr/lib/libc.a"
 
-	# We need to use " and not ', as the written config.sh use ' ...
-	myconf "-Dlibpth=${EPREFIX}/$(get_libdir) ${EPREFIX}/usr/$(get_libdir) /usr/local/$(get_libdir) /$(get_libdir) /usr/$(get_libdir)"
+	if [[ $(get_libdir) != "lib" ]] ; then
+		myconf="${myconf} -Dlibpth='${EPREFIX}/usr/local/$(get_libdir) ${EPREFIX}/$(get_libdir) \
+		${EPREFIX}/usr/$(get_libdir)'"
+	fi
 
 	sh Configure -des \
 		-Darchname="${myarch}" \
-		-Dcccdlflags="-fPIC" \
-		-Dccdlflags="-rdynamic" \
+		-Dcccdlflags='-fPIC' \
+		-Dccdlflags='-rdynamic' \
 		-Dcc="$(tc-getCC)" \
-		-Dprefix="${EPREFIX}/usr" \
-		-Dvendorprefix="${EPREFIX}/usr" \
-		-Dsiteprefix="${EPREFIX}/usr" \
-		-Dlocincpth=" " \
+		-Dprefix='${EPREFIX}/usr' \
+		-Dvendorprefix='${EPREFIX}/usr' \
+		-Dsiteprefix='${EPREFIX}/usr' \
+		-Dlocincpth=' ' \
 		-Doptimize="${CFLAGS}" \
 		-Duselargefiles \
 		-Duseshrplib \
-		-Dman3ext="3pm" \
+		-Dman3ext='3pm' \
 		-Dlibperl="${LIBPERL}" \
 		-Dd_dosuid \
 		-Dd_semctl_semun \
-		-Dcf_by="Gentoo" \
-		-Dldflags="${LDFLAGS}" \
+		-Dcf_by='Gentoo' \
 		-Ud_csh \
-		"${myconf[@]}" || die "Unable to configure"
+		${myconf} || die
 
 	emake -j1 -f Makefile depend || die "Couldn't make libperl$(get_libname) depends"
 	emake -j1 -f Makefile LIBPERL=${LIBPERL} ${LIBPERL} || die "Unable to make libperl$(get_libname)"
@@ -281,28 +250,32 @@ src_install() {
 	if [ "${PN}" = "libperl" ]
 	then
 		dolib.so ${WORKDIR}/${LIBPERL}
-		dosym ${LIBPERL} /usr/$(get_libdir)/libperl$(get_libname ${PERLSLOT})
+		if [[ ${USERLAND} == "Darwin" ]]; then
+			install_name_tool -id ${EPREFIX}/usr/$(get_libdir)/${LIBPERL} ${ED}/usr/$(get_libdir)/${LIBPERL}
+		else
+			preplib
+		fi
 	else
 		# Need to do this, else apps do not link to dynamic version of
 		# the library ...
-		local coredir="/usr/$(get_libdir)/perl5/${PV}/${myarch}${mythreading}/CORE"
+		local coredir="/usr/lib/perl5/${PV}/${myarch}${mythreading}/CORE"
 		dodir ${coredir}
 		dosym ../../../../../$(get_libdir)/${LIBPERL} ${coredir}/${LIBPERL}
 		dosym ../../../../../$(get_libdir)/${LIBPERL} ${coredir}/libperl$(get_libname ${PERLSLOT})
 		dosym ../../../../../$(get_libdir)/${LIBPERL} ${coredir}/libperl$(get_libname)
 
 		# Fix for "stupid" modules and programs
-		dodir /usr/$(get_libdir)/perl5/site_perl/${PV}/${myarch}${mythreading}
+		dodir /usr/lib/perl5/site_perl/${PV}/${myarch}${mythreading}
 
 		make DESTDIR="${ED}" \
-			INSTALLMAN1DIR="${EDDEST}/usr/share/man/man1" \
+			INSTALLMAN1DIR="${ED}/usr/share/man/man1" \
 			INSTALLMAN3DIR="${ED}/usr/share/man/man3" \
 			install || die "Unable to make install"
 
 		cp -f utils/h2ph utils/h2ph_patched
 
 		LD_LIBRARY_PATH=. ./perl -Ilib utils/h2ph_patched \
-			-a -d ${ED}/usr/$(get_libdir)/perl5/${PV}/${myarch}${mythreading} <<EOF
+			-a -d ${ED}/usr/lib/perl5/${PV}/${myarch}${mythreading} <<EOF
 asm/termios.h
 syscall.h
 syslimits.h
@@ -314,7 +287,7 @@ wait.h
 EOF
 
 		# This is to fix a missing c flag for backwards compat
-		for i in `find ${ED}/usr/$(get_libdir)/perl5 -iname "Config.pm"`;do
+		for i in `find ${ED}/usr/lib/perl5 -iname "Config.pm"`;do
 			sed -e "s:ccflags=':ccflags='-DPERL5 :" \
 			    -e "s:cppflags=':cppflags='-DPERL5 :" \
 				${i} > ${i}.new &&\
@@ -322,8 +295,8 @@ EOF
 		done
 
 		# A poor fix for the miniperl issues
-		dosed 's:./miniperl:/usr/bin/perl:' /usr/$(get_libdir)/perl5/${PV}/ExtUtils/xsubpp
-		fperms 0444 /usr/$(get_libdir)/perl5/${PV}/ExtUtils/xsubpp
+		dosed 's:./miniperl:/usr/bin/perl:' /usr/lib/perl5/${PV}/ExtUtils/xsubpp
+		fperms 0444 /usr/lib/perl5/${PV}/ExtUtils/xsubpp
 		dosed 's:./miniperl:/usr/bin/perl:' /usr/bin/xsubpp
 		fperms 0755 /usr/bin/xsubpp
 
@@ -359,19 +332,19 @@ EOF
 pkg_postinst() {
 
 	# Make sure we do not have stale/invalid libperl.so 's ...
-	if [ -f "${EROOT}/usr/$(get_libdir)/libperl$(get_libname)" -a ! -L "${EROOT}/usr/$(get_libdir)/libperl$(get_libname)" ]
+	if [ -f "${EROOT}usr/$(get_libdir)/libperl$(get_libname)" -a ! -L "${EROOT}usr/$(get_libdir)/libperl$(get_libname)" ]
 	then
-		mv -f ${EROOT}/usr/$(get_libdir)/libperl$(get_libname) ${EROOT}/usr/$(get_libdir)/libperl$(get_libname).old
+		mv -f ${EROOT}usr/$(get_libdir)/libperl$(get_libname) ${EROOT}usr/$(get_libdir)/libperl$(get_libname).old
 	fi
 
 	# Next bit is to try and setup the /usr/lib/libperl.so symlink
 	# properly ...
-	local libnumber="`ls -1 ${EROOT}/usr/$(get_libdir)/libperl$(get_libname ?.*) | grep -v '\.old' | wc -l`"
+	local libnumber="`ls -1 ${EROOT}usr/$(get_libdir)/libperl$(get_libname ?.*) | grep -v '\.old' | wc -l`"
 	if [ "${libnumber}" -eq 1 ]
 	then
 		# Only this version of libperl is installed, so just link libperl.so
 		# to the *soname* version of it ...
-		ln -snf libperl$(get_libname ${PERLSLOT}) ${EROOT}/usr/$(get_libdir)/libperl$(get_libname)
+		ln -snf libperl$(get_libname ${PERLSLOT}) ${EROOT}usr/$(get_libdir)/libperl$(get_libname)
 	else
 		if [ -x "${EROOT}/usr/bin/perl" ]
 		then
@@ -380,7 +353,7 @@ pkg_postinst() {
 			# to that *soname* version of libperl.so ...
 			local perlversion="`${EROOT}/usr/bin/perl -V:version | cut -d\' -f2 | cut -d. -f1,2`"
 
-			cd ${EROOT}/usr/$(get_libdir)
+			cd ${EROOT}usr/$(get_libdir)
 			# Link libperl.so to the *soname* versioned lib ...
 			ln -snf `echo libperl$(get_libname ?.${perlversion}) | cut -d.  -f1,2,3` libperl$(get_libname)
 		else
@@ -388,12 +361,12 @@ pkg_postinst() {
 
 			# Nope, we are not so lucky ... try to figure out what version
 			# is the latest, and keep fingers crossed ...
-			for x in `ls -1 ${EROOT}/usr/$(get_libdir)/libperl$(get_libname ?.*)`
+			for x in `ls -1 ${EROOT}usr/$(get_libdir)/libperl$(get_libname ?.*)`
 			do
 				latest="${x}"
 			done
 
-			cd ${EROOT}/usr/$(get_libdir)
+			cd ${EROOT}usr/$(get_libdir)
 			# Link libperl.so to the *soname* versioned lib ...
 			ln -snf `echo ${latest##*/} | cut -d. -f1,2,3` libperl$(get_libname)
 		fi
