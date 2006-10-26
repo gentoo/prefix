@@ -67,52 +67,52 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${EDEST}" || die "install failed"
-	use nls || rm -r "${D}"/usr/share/locale
+	make install DESTDIR="${D}" || die "install failed"
+	use nls || rm -r "${ED}"/usr/share/locale
 	dosym msgfmt /usr/bin/gmsgfmt #43435
 	dobin gettext-tools/misc/gettextize || die "gettextize"
 
 	# remove stuff that glibc handles
 	if use elibc_glibc ; then
-		rm -f "${D}"/usr/include/libintl.h
-		rm -f "${D}"/usr/$(get_libdir)/libintl.*
+		rm -f "${ED}"/usr/include/libintl.h
+		rm -f "${ED}"/usr/$(get_libdir)/libintl.*
 	fi
-	rm -f "${D}"/usr/share/locale/locale.alias "${D}"/usr/lib/charset.alias
+	rm -f "${ED}"/usr/share/locale/locale.alias "${ED}"/usr/lib/charset.alias
 
 	# older gettext's sometimes installed libintl ...
 	# need to keep the linked version or the system
 	# could die (things like sed link against it :/)
 	local libname="libintl$(get_libname 7)"
-	if [[ -e ${ROOT}/usr/$(get_libdir)/${libname} ]] ; then
-		cp -pPR ${ROOT}/usr/$(get_libdir)/${libname}* "${D}"/usr/$(get_libdir)/
-		touch "${D}"/usr/$(get_libdir)/${libname}*
+	if [[ -e ${EROOT}/usr/$(get_libdir)/${libname} ]] ; then
+		cp -pPR ${EROOT}/usr/$(get_libdir)/${libname}* "${ED}"/usr/$(get_libdir)/
+		touch "${ED}"/usr/$(get_libdir)/${libname}*
 	fi
-	if [[ -e ${ROOT}/$(get_libdir)/${libname} ]] ; then
+	if [[ -e ${EROOT}/$(get_libdir)/${libname} ]] ; then
 		dodir /$(get_libdir)
-		cp -pPR ${ROOT}/$(get_libdir)/${libname}* "${D}"/$(get_libdir)/
-		touch "${D}"/$(get_libdir)/${libname}*
+		cp -pPR ${EROOT}/$(get_libdir)/${libname}* "${ED}"/$(get_libdir)/
+		touch "${ED}"/$(get_libdir)/${libname}*
 	fi
 
 	if [[ $USERLAND == "BSD" ]] ; then
 		libname="libintl$(get_libname 8)"
 		# Move dynamic libs and creates ldscripts into /usr/lib
 		dodir /$(get_libdir)
-		mv "${D}"/usr/$(get_libdir)/${libname}* "${D}"/$(get_libdir)/
+		mv "${ED}"/usr/$(get_libdir)/${libname}* "${ED}"/$(get_libdir)/
 		gen_usr_ldscript ${libname}
 	fi
 
 	if ! use doc ; then
-		rm -rf "${D}/${EPREFIX}"/usr/share/doc/${PF}/html
-		rm -rf "${D}/${EPREFIX}"/usr/share/doc/${PF}/{csharpdoc,examples,javadoc2,javadoc1}
+		rm -rf "${ED}/${EPREFIX}"/usr/share/doc/${PF}/html
+		rm -rf "${ED}/${EPREFIX}"/usr/share/doc/${PF}/{csharpdoc,examples,javadoc2,javadoc1}
 	fi
-	dohtml "${D}/${EPREFIX}"/usr/share/doc/${PF}/*.html
-	rm -f "${D}/${EPREFIX}"/usr/share/doc/${PF}/*.html
+	dohtml "${ED}/${EPREFIX}"/usr/share/doc/${PF}/*.html
+	rm -f "${ED}/${EPREFIX}"/usr/share/doc/${PF}/*.html
 
 	# Remove emacs site-lisp stuff if 'emacs' is not in USE
 	if use emacs ; then
 		elisp-site-file-install "${FILESDIR}"/50po-mode-gentoo.el
 	else
-		rm -rf "${D}/${EPREFIX}"/usr/share/emacs
+		rm -rf "${ED}/${EPREFIX}"/usr/share/emacs
 	fi
 
 	dodoc AUTHORS ChangeLog NEWS README THANKS
