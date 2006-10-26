@@ -47,9 +47,9 @@ src_compile() {
 src_install() {
 	chmod 0644 "${S}"/ed.info
 	make \
-		prefix="${D}"/ \
-		mandir="${D}"/usr/share/man/man1 \
-		infodir="${D}"/usr/share/info \
+		prefix="${ED}"/ \
+		mandir="${ED}"/usr/share/man/man1 \
+		infodir="${ED}"/usr/share/info \
 		install || die
 	dodoc ChangeLog NEWS POSIX README THANKS TODO
 }
