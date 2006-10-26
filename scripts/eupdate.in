@@ -177,7 +177,7 @@ cross_diff() {
 		-e 's|^KEYWORDS=.*$|'"`egrep '^KEYWORDS=' $pte`"'|' \
 		/var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp
 	# destroy changes (hopefully) with the prefixed version by eapifying
-	eapify /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp > /dev/null || exit -1
+	eapify /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp > /dev/null
 	# (attempt to) do it!
 	diff -u /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp \
 		| patch --no-backup-if-mismatch $mte
