@@ -106,7 +106,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" PREFIX="${EPREFIX}" install || die "make install failed"
+	make DESTDIR="${D}" PREFIX="${EPREFIX}" install || die "make install failed"
 	dosym man /usr/bin/manpath
 
 	dodoc LSM README* TODO
@@ -116,22 +116,22 @@ src_install() {
 
 	keepdir /var/cache/man
 	[[ ${EPREFIX%/} == "" ]] && diropts -m0775 -g man || diropts -m0775
-	local mansects=$(grep ^MANSECT "${D}"/etc/man.conf | cut -f2-)
+	local mansects=$(grep ^MANSECT "${ED}"/etc/man.conf | cut -f2-)
 	for x in ${mansects//:/ } ; do
 		keepdir /var/cache/man/cat${x}
 	done
 }
 
 pkg_postinst() {
-	einfo "Forcing sane permissions onto ${ROOT}/var/cache/man (Bug #40322)"
-	chown -R root:man "${ROOT}"/var/cache/man
-	chmod -R g+w "${ROOT}"/var/cache/man
-	[[ -e ${ROOT}/var/cache/man/whatis ]] \
-		&& chown root:0 "${ROOT}"/var/cache/man/whatis
+	einfo "Forcing sane permissions onto ${EROOT}/var/cache/man (Bug #40322)"
+	chown -R root:man "${EROOT}"/var/cache/man
+	chmod -R g+w "${EROOT}"/var/cache/man
+	[[ -e ${EROOT}/var/cache/man/whatis ]] \
+		&& chown root:0 "${EROOT}"/var/cache/man/whatis
 
 	echo
 
-	local files=$(ls "${ROOT}"/etc/cron.{daily,weekly}/makewhatis{,.cron} 2>/dev/null)
+	local files=$(ls "${EROOT}"/etc/cron.{daily,weekly}/makewhatis{,.cron} 2>/dev/null)
 	if [[ ${files/$'\n'} != ${files} ]] ; then
 		ewarn "You have multiple makewhatis cron files installed."
 		ewarn "You might want to delete all but one of these:"
