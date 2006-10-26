@@ -1,0 +1,127 @@
+# ChangeLog for dev-libs/mpfr
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.34 2006/10/21 22:40:39 dragonheart Exp $
+
+*mpfr-2.2.0_p16 (21 Oct 2006)
+
+  21 Oct 2006; Daniel Black <dragonheart@gentoo.org> +files/2.2.0/patch15,
+  +files/2.2.0/patch16, +mpfr-2.2.0_p16.ebuild:
+  Grab some more patches from upstream.
+
+  20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> mpfr-2.2.0_p10.ebuild:
+  Stable on Alpha.
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org> mpfr-2.2.0_p14.ebuild:
+  Added ~sparc-fbsd keyword.
+
+  29 Sep 2006; Mike Frysinger <vapier@gentoo.org> mpfr-2.2.0_p8.ebuild,
+  mpfr-2.2.0_p10.ebuild, mpfr-2.2.0_p12.ebuild, mpfr-2.2.0_p14.ebuild:
+  Dont filter -ffast-math; people who use this globally deserve what they get.
+
+  03 Sep 2006; Joshua Kinard <kumba@gentoo.org> mpfr-2.2.0_p10.ebuild:
+  Marked stable on mips.
+
+  24 Aug 2006; Markus Rothe <corsair@gentoo.org> mpfr-2.2.0_p10.ebuild:
+  Stable on ppc64
+
+  23 Aug 2006; Gustavo Zacarias <gustavoz@gentoo.org> mpfr-2.2.0_p10.ebuild:
+  Stable on sparc
+
+  21 Aug 2006; Chris Gianelloni <wolf31o2@gentoo.org> mpfr-2.2.0_p10.ebuild:
+  Stable on amd64 and x86 wrt release snapshot. This is in preparation for an
+  eventual GCC 4.1.1 going stable.
+
+*mpfr-2.2.0_p14 (28 Jul 2006)
+
+  28 Jul 2006; Daniel Black <dragonheart@gentoo.org> +files/2.2.0/patch13,
+  +files/2.2.0/patch14, +mpfr-2.2.0_p14.ebuild:
+  more upstream patches
+
+*mpfr-2.2.0_p12 (19 Jul 2006)
+
+  19 Jul 2006; Daniel Black <dragonheart@gentoo.org> +files/2.2.0/patch11,
+  +files/2.2.0/patch12, +mpfr-2.2.0_p12.ebuild:
+  more upstream patches
+
+  27 Jun 2006; Luca Barbato <lu_zero@gentoo.org> mpfr-2.2.0_p10.ebuild:
+  Marked stable on ppc
+
+  25 Jun 2006; Guy Martin <gmsoft@gentoo.org> mpfr-2.2.0_p10.ebuild:
+  Stable on hppa.
+
+  06 May 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/2.2.0/debian-disable-buggy-umul_ppmm.patch, mpfr-2.2.0_p8.ebuild,
+  mpfr-2.2.0_p10.ebuild:
+  Grab patch from Debian to fix test crashes #126082.
+
+*mpfr-2.2.0_p10 (10 Apr 2006)
+
+  10 Apr 2006; Mike Frysinger <vapier@gentoo.org> +files/2.2.0/patch09,
+  +files/2.2.0/patch10, +mpfr-2.2.0_p10.ebuild:
+  Grab some more patches from upstream.
+
+  07 Apr 2006; Guy Martin <gmsoft@gentoo.org> mpfr-2.2.0_p8.ebuild:
+  Fix hppa 1.1 computation bug.
+
+  14 Mar 2006; Joseph Jezak <josejx@gentoo.org> mpfr-2.2.0_p8.ebuild:
+  Marked ppc stable for bug #121968.
+
+  27 Feb 2006; Jeroen Roovers <jer@gentoo.org> mpfr-2.2.0_p8.ebuild:
+  Stable on hppa (bug #121968).
+
+  26 Feb 2006; Joshua Kinard <kumba@gentoo.org> mpfr-2.2.0_p8.ebuild:
+  Marked stable on mips.
+
+  15 Feb 2006; Markus Rothe <corsair@gentoo.org> mpfr-2.2.0_p8.ebuild:
+  Stable on ppc64; bug #121968
+
+  13 Feb 2006; Patrick McLean <chutzpah@gentoo.org> mpfr-2.2.0_p8.ebuild:
+  Add filtering of -ffast-math on amd64 and mark stable (bug #121968).
+
+  09 Feb 2006; Aron Griffis <agriffis@gentoo.org> mpfr-2.2.0_p8.ebuild:
+  Mark 2.2.0_p8 stable on ia64
+
+  08 Feb 2006; Mark Loeser <halcy0n@gentoo.org> mpfr-2.2.0_p8.ebuild:
+  Stable on x86; bug #121968
+
+  08 Feb 2006; Gustavo Zacarias <gustavoz@gentoo.org> mpfr-2.2.0_p8.ebuild:
+  Stable on sparc wrt #121968
+
+  04 Feb 2006; Aron Griffis <agriffis@gentoo.org> mpfr-2.2.0_p4.ebuild:
+  Mark 2.2.0_p4 stable on ia64
+
+*mpfr-2.2.0_p8 (22 Jan 2006)
+
+  22 Jan 2006; Daniel Black <dragonheart@gentoo.org> +files/2.2.0/patch08,
+  +mpfr-2.2.0_p8.ebuild:
+  patch bump
+
+  07 Jan 2006; Daniel Black <dragonheart@gentoo.org> mpfr-2.2.0_p7.ebuild:
+  opps did not mean to commit 390 to stable - marked ~s390
+
+*mpfr-2.2.0_p7 (07 Jan 2006)
+
+  07 Jan 2006; Daniel Black <dragonheart@gentoo.org> +files/2.2.0/patch06
+  +files/2.2.0/patch07, +mpfr-2.2.0_p7.ebuild:
+  added more patches from upstream
+
+  03 Jan 2006; Joshua Kinard <kumba@gentoo.org> mpfr-2.2.0_p4.ebuild:
+  Add ~mips to KEYWORDS.
+
+  26 Oct 2005; Jason Wever <weeve@gentoo.org> mpfr-2.2.0_p4.ebuild:
+  Added ~sparc keyword wrt bug #80357.
+
+  23 Oct 2005; Brent Baude <ranger@gentoo.org> mpfr-2.2.0_p4.ebuild:
+  Marking mpfr ~ppc64 for bug 80357
+
+  22 Oct 2005; Mark Loeser <halcy0n@gentoo.org> mpfr-2.2.0_p4.ebuild:
+  Adding ~x86 to keywords; bug #110026
+
+  22 Oct 2005; Daniel Black <dragonheart@gentoo.org> mpfr-2.2.0_p4.ebuild:
+  ~ppc keyword. Dependency change to avoid file conflicts in earlier gmp
+  versions
+
+*mpfr-2.2.0_p4 (19 Oct 2005)
+
+  19 Oct 2005; Mike Frysinger <vapier@gentoo.org> :
+  Initial import.  Ebuild submitted by me.

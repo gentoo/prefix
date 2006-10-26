@@ -1,0 +1,45 @@
+diff -Naurd mpfr-2.2.0-p8/random2.c mpfr-2.2.0-p9/random2.c
+--- mpfr-2.2.0-p8/random2.c	2005-08-18 17:03:10.000000000 +0000
++++ mpfr-2.2.0-p9/random2.c	2006-02-20 10:29:01.000000000 +0000
+@@ -2,7 +2,7 @@
+    long runs of consecutive ones and zeros in the binary representation.
+    Intended for testing.
+ 
+-Copyright 1999, 2001, 2002, 2003, 2004 Free Software Foundation, Inc.
++Copyright 1999, 2001, 2002, 2003, 2004, 2006 Free Software Foundation, Inc.
+ 
+ This file is part of the MPFR Library.
+ 
+@@ -36,7 +36,8 @@
+ 
+   if (MPFR_UNLIKELY(size == 0))
+     {
+-      MPFR_SET_ZERO(x);
++      MPFR_SET_ZERO (x);
++      MPFR_SET_POS (x);
+       return ;
+     }
+   else if (size > 0)
+diff -Naurd mpfr-2.2.0-p8/tests/trandom.c mpfr-2.2.0-p9/tests/trandom.c
+--- mpfr-2.2.0-p8/tests/trandom.c	2005-08-18 17:03:16.000000000 +0000
++++ mpfr-2.2.0-p9/tests/trandom.c	2006-02-20 10:29:01.000000000 +0000
+@@ -1,6 +1,6 @@
+ /* Test file for the various mpfr_random fonctions.
+ 
+-Copyright 1999, 2000, 2001, 2002, 2003, 2004 Free Software Foundation.
++Copyright 1999, 2000, 2001, 2002, 2003, 2004, 2006 Free Software Foundation, Inc.
+ 
+ This file is part of the MPFR Library.
+ 
+@@ -120,7 +120,10 @@
+ 
+   /* test size=0 */
+   mpfr_random2 (x, 0, 0);
+-  MPFR_ASSERTN(mpfr_cmp_ui (x, 0) == 0 && MPFR_IS_POS(x));
++  MPFR_ASSERTN (mpfr_cmp_ui (x, 0) == 0 && MPFR_IS_POS (x));
++  mpfr_set_si (x, -1, GMP_RNDN); /* x is negative */
++  mpfr_random2 (x, 0, 0);
++  MPFR_ASSERTN (mpfr_cmp_ui (x, 0) == 0 && MPFR_IS_POS (x));
+ 
+   /* test size < 0 */
+   mpfr_random2 (x, -1, 0);

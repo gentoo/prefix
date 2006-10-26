@@ -1,0 +1,61 @@
+diff -Naurd mpfr-2.2.0-p15/tests/texp2.c mpfr-2.2.0-p16/tests/texp2.c
+--- mpfr-2.2.0-p15/tests/texp2.c	2006-08-23 13:17:45.000000000 +0000
++++ mpfr-2.2.0-p16/tests/texp2.c	2006-08-28 12:11:36.000000000 +0000
+@@ -34,6 +34,10 @@
+ {
+   mpfr_t x, y;
+   int inex;
++  mp_exp_t emin, emax;
++
++  emin = mpfr_get_emin ();
++  emax = mpfr_get_emax ();
+ 
+   set_emin (-125);
+   set_emax (128);
+@@ -53,8 +57,8 @@
+ 
+   mpfr_clear (y);
+   mpfr_clear (x);
+-  set_emin (MPFR_EMIN_MIN);
+-  set_emax (MPFR_EMAX_MAX);
++  set_emin (emin);
++  set_emax (emax);
+ }
+ 
+ static void
+@@ -65,7 +69,7 @@
+       mpfr_t x, y;
+       int inex, ov;
+ 
+-      mpfr_init2 (x, 64);
++      mpfr_init2 (x, sizeof(mp_exp_t) * CHAR_BIT * 4);
+       mpfr_init2 (y, 8);
+       mpfr_set_si (x, mpfr_get_emax (), GMP_RNDN);
+ 
+@@ -233,15 +237,18 @@
+       exit (1);
+     }
+ 
+-  mpfr_set_prec (x, 40);
+-  mpfr_set_prec (y, 40);
+-  mpfr_set_str (x, "10000000000.5", 10, GMP_RNDN);
+-  mpfr_clear_flags ();
+-  mpfr_exp2 (y, x, GMP_RNDN);
+-  if (!(MPFR_IS_INF (y) && MPFR_IS_POS (y) && mpfr_overflow_p ()))
++  if (mpfr_get_emax () <= 10000000000)
+     {
+-      printf ("exp2(10000000000.5) should overflow.\n");
+-      exit (1);
++      mpfr_set_prec (x, 40);
++      mpfr_set_prec (y, 40);
++      mpfr_set_str (x, "10000000000.5", 10, GMP_RNDN);
++      mpfr_clear_flags ();
++      mpfr_exp2 (y, x, GMP_RNDN);
++      if (!(MPFR_IS_INF (y) && MPFR_IS_POS (y) && mpfr_overflow_p ()))
++        {
++          printf ("exp2(10000000000.5) should overflow.\n");
++          exit (1);
++        }
+     }
+ 
+   test_generic (2, 100, 100);

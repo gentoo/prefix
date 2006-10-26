@@ -1,0 +1,286 @@
+diff -Naurd mpfr-2.2.0-p7/get_f.c mpfr-2.2.0-p8/get_f.c
+--- mpfr-2.2.0-p7/get_f.c	2005-06-08 09:53:48.000000000 +0000
++++ mpfr-2.2.0-p8/get_f.c	2006-01-13 15:04:34.000000000 +0000
+@@ -1,6 +1,6 @@
+ /* mpfr_get_f -- convert a MPFR number to a GNU MPF number
+ 
+-Copyright 2005 Free Software Foundation, Inc.
++Copyright 2005, 2006 Free Software Foundation, Inc.
+ 
+ This file is part of the MPFR Library.
+ 
+@@ -27,8 +27,9 @@
+ int
+ mpfr_get_f (mpf_ptr x, mpfr_srcptr y, mp_rnd_t rnd_mode)
+ {
+-  unsigned long sx, sy, precx, precy, sh;
+-  mp_exp_t ey;
++  mp_size_t sx, sy;
++  mp_prec_t precx, precy;
++  int sh;
+ 
+   if (MPFR_UNLIKELY(MPFR_IS_SINGULAR(y)))
+     {
+@@ -44,20 +45,18 @@
+   sx = PREC(x); /* number of limbs of the mantissa of x */
+ 
+   precy = MPFR_PREC(y);
+-  precx = sx * BITS_PER_MP_LIMB;
+-  sy = 1 + (MPFR_PREC(y) - 1) / BITS_PER_MP_LIMB;
++  precx = (mp_prec_t) sx * BITS_PER_MP_LIMB;
++  sy = MPFR_LIMB_SIZE (y);
+ 
+   /* since mpf numbers are represented in base 2^BITS_PER_MP_LIMB,
+      we loose -EXP(y) % BITS_PER_MP_LIMB bits in the most significant limb */
+-  ey = MPFR_GET_EXP(y) % BITS_PER_MP_LIMB;
+-  if (ey <= 0)
+-    sh = (unsigned long) (-ey);
+-  else /* 0 < ey < BITS_PER_MP_LIMB */
+-    sh = BITS_PER_MP_LIMB - (unsigned long) ey;
++  sh = MPFR_GET_EXP(y) % BITS_PER_MP_LIMB;
++  sh = sh <= 0 ? - sh : BITS_PER_MP_LIMB - sh;
++  MPFR_ASSERTD (sh >= 0);
+   if (precy + sh <= precx) /* we can copy directly */
+     {
+-      /* necessarily sy <= sx */
+-      if (sh)
++      MPFR_ASSERTN (sx >= sy);
++      if (sh != 0)
+         mpn_rshift (PTR(x) + sx - sy, MPFR_MANT(y), sy, sh);
+       else
+         MPN_COPY (PTR(x) + sx - sy, MPFR_MANT(y), sy);
+@@ -68,17 +67,17 @@
+   else /* we have to round to precx - sh bits */
+     {
+       mpfr_t z;
+-      unsigned long sz;
++      mp_size_t sz;
+ 
+       mpfr_init2 (z, precx - sh);
+-      sz = 1 + (MPFR_PREC(z) - 1) / BITS_PER_MP_LIMB;
++      sz = MPFR_LIMB_SIZE (z);
+       mpfr_set (z, y, rnd_mode);
+       /* warning, sh may change due to rounding, but then z is a power of two,
+          thus we can safely ignore its last bit which is 0 */
+-      ey = MPFR_GET_EXP(z) % BITS_PER_MP_LIMB;
+-      sh = (ey <= 0) ? (unsigned long) (-ey)
+-        : BITS_PER_MP_LIMB - (unsigned long) ey;
+-      if (sh)
++      sh = MPFR_GET_EXP(z) % BITS_PER_MP_LIMB;
++      sh = sh <= 0 ? - sh : BITS_PER_MP_LIMB - sh;
++      MPFR_ASSERTD (sh >= 0);
++      if (sh != 0)
+         mpn_rshift (PTR(x) + sx - sz, MPFR_MANT(z), sz, sh);
+       else
+         MPN_COPY (PTR(x) + sx - sz, MPFR_MANT(z), sz);
+diff -Naurd mpfr-2.2.0-p7/set_f.c mpfr-2.2.0-p8/set_f.c
+--- mpfr-2.2.0-p7/set_f.c	2005-08-18 16:35:13.000000000 +0000
++++ mpfr-2.2.0-p8/set_f.c	2006-01-12 10:34:40.000000000 +0000
+@@ -1,6 +1,6 @@
+ /* mpfr_set_f -- set a MPFR number from a GNU MPF number
+ 
+-Copyright 1999, 2000, 2001, 2002, 2003, 2004, 2005 Free Software Foundation, Inc.
++Copyright 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
+ 
+ This file is part of the MPFR Library.
+ 
+@@ -80,7 +80,22 @@
+       inexact = 0;
+     }
+ 
+-  MPFR_SET_EXP(y, EXP(x) * BITS_PER_MP_LIMB - cnt + carry);
++  /* warning: EXP(x) * BITS_PER_MP_LIMB may exceed the maximal exponent */
++  if (EXP(x) > 1 + (__gmpfr_emax - 1) / BITS_PER_MP_LIMB)
++    {
++      /* EXP(x) >= 2 + floor((__gmpfr_emax-1)/BITS_PER_MP_LIMB)
++         EXP(x) >= 2 + (__gmpfr_emax - BITS_PER_MP_LIMB) / BITS_PER_MP_LIMB
++                >= 1 + __gmpfr_emax / BITS_PER_MP_LIMB
++         EXP(x) * BITS_PER_MP_LIMB >= __gmpfr_emax + BITS_PER_MP_LIMB
++         Since 0 <= cnt <= BITS_PER_MP_LIMB-1, and 0 <= carry <= 1,
++         we have then EXP(x) * BITS_PER_MP_LIMB - cnt + carry > __gmpfr_emax */
++      return mpfr_overflow (y, rnd_mode, MPFR_SIGN (y));
++    }
++  else
++    {
++      /* Do not use MPFR_SET_EXP as the exponent may be out of range. */
++      MPFR_EXP (y) = EXP (x) * BITS_PER_MP_LIMB - (mp_exp_t) cnt + carry;
++    }
+ 
+-  return inexact;
++  return mpfr_check_range (y, inexact, rnd_mode);
+ }
+diff -Naurd mpfr-2.2.0-p7/tests/tget_f.c mpfr-2.2.0-p8/tests/tget_f.c
+--- mpfr-2.2.0-p7/tests/tget_f.c	2005-06-02 16:12:04.000000000 +0000
++++ mpfr-2.2.0-p8/tests/tget_f.c	2006-01-13 15:05:14.000000000 +0000
+@@ -1,6 +1,6 @@
+ /* Test file for mpfr_get_f.
+ 
+-Copyright 2005 Free Software Foundation, Inc.
++Copyright 2005, 2006 Free Software Foundation, Inc.
+ 
+ This file is part of the MPFR Library.
+ 
+@@ -22,6 +22,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <time.h>
++#include <limits.h>
+ 
+ #include "mpfr-test.h"
+ 
+@@ -31,6 +32,7 @@
+   mpf_t x;
+   mpfr_t y;
+   unsigned long i;
++  mp_exp_t e;
+ 
+   MPFR_TEST_USE_RANDS ();
+   tests_start_mpfr ();
+@@ -83,11 +85,14 @@
+           printf ("Error: mpfr_get_f(%lu) fails\n", i);
+           exit (1);
+         }
+-      mpfr_set_si (y, (signed long) -i, GMP_RNDN);
+-      if (mpfr_get_f (x, y, GMP_RNDN) || mpf_cmp_si (x, (signed long) -i))
++      if (i <= - (unsigned long) LONG_MIN)
+         {
+-          printf ("Error: mpfr_get_f(-%lu) fails\n", i);
+-          exit (1);
++          mpfr_set_si (y, - (long) i, GMP_RNDN);
++          if (mpfr_get_f (x, y, GMP_RNDN) || mpf_cmp_si (x, - (long) i))
++            {
++              printf ("Error: mpfr_get_f(-%lu) fails\n", i);
++              exit (1);
++            }
+         }
+       i *= 2;
+     }
+@@ -113,6 +118,42 @@
+       i *= 2;
+     }
+ 
++  /* bug reported by Jim White */
++  for (e = 0; e <= 2 * BITS_PER_MP_LIMB; e++)
++    {
++      /* test with 2^(-e) */
++      mpfr_set_ui (y, 1, GMP_RNDN);
++      mpfr_div_2exp (y, y, e, GMP_RNDN);
++      mpfr_get_f (x, y, GMP_RNDN);
++      mpf_mul_2exp (x, x, e);
++      if (mpf_cmp_ui (x, 1) != 0)
++        {
++          printf ("Error: mpfr_get_f(x,y,GMP_RNDN) fails\n");
++          printf ("y=");
++          mpfr_dump (y);
++          printf ("x=");
++          mpf_div_2exp (x, x, e);
++          mpf_dump (x);
++          exit (1);
++        }
++
++      /* test with 2^(e) */
++      mpfr_set_ui (y, 1, GMP_RNDN);
++      mpfr_mul_2exp (y, y, e, GMP_RNDN);
++      mpfr_get_f (x, y, GMP_RNDN);
++      mpf_div_2exp (x, x, e);
++      if (mpf_cmp_ui (x, 1) != 0)
++        {
++          printf ("Error: mpfr_get_f(x,y,GMP_RNDN) fails\n");
++          printf ("y=");
++          mpfr_dump (y);
++          printf ("x=");
++          mpf_mul_2exp (x, x, e);
++          mpf_dump (x);
++          exit (1);
++        }
++    }
++
+   mpfr_clear (y);
+   mpf_clear (x);
+ 
+diff -Naurd mpfr-2.2.0-p7/tests/tset_f.c mpfr-2.2.0-p8/tests/tset_f.c
+--- mpfr-2.2.0-p7/tests/tset_f.c	2005-09-09 15:18:00.000000000 +0000
++++ mpfr-2.2.0-p8/tests/tset_f.c	2006-01-12 10:31:42.000000000 +0000
+@@ -1,6 +1,6 @@
+ /* Test file for mpfr_set_f.
+ 
+-Copyright 1999, 2001, 2002, 2003, 2004, 2005 Free Software Foundation, Inc.
++Copyright 1999, 2001, 2002, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
+ 
+ This file is part of the MPFR Library.
+ 
+@@ -22,6 +22,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <time.h>
++#include <limits.h> /* for ULONG_MAX */
+ 
+ #include "mpfr-test.h"
+ 
+@@ -30,6 +31,7 @@
+ {
+   mpfr_t x, u;
+   mpf_t y, z;
++  mp_exp_t emax;
+   unsigned long k, pr;
+   int r, inexact;
+ 
+@@ -87,8 +89,6 @@
+     }
+   MPFR_ASSERTN(mpfr_cmp_ui_2exp (x, 1, 901) == 0);
+ 
+-  mpfr_clear (u);
+-
+   for (k = 1; k <= 100000; k++)
+     {
+       pr = 2 + (randlimb () & 255);
+@@ -131,7 +131,49 @@
+       mpf_mul_2exp (y, y, 1);
+     }
+ 
++  mpf_set_ui (y, 1);
++  mpf_mul_2exp (y, y, ULONG_MAX);
++  mpfr_set_f (x, y, GMP_RNDN);
++  mpfr_set_ui (u, 1, GMP_RNDN);
++  mpfr_mul_2ui (u, u, ULONG_MAX, GMP_RNDN);
++  if (!mpfr_equal_p (x, u))
++    {
++      printf ("Error: mpfr_set_f (x, y, GMP_RNDN) for y = 2^ULONG_MAX\n");
++      exit (1);
++    }
++
++  emax = mpfr_get_emax ();
++
++  /* For mpf_mul_2exp, emax must fit in an unsigned long! */
++  if (emax >= 0 && emax <= ULONG_MAX)
++    {
++      mpf_set_ui (y, 1);
++      mpf_mul_2exp (y, y, emax);
++      mpfr_set_f (x, y, GMP_RNDN);
++      mpfr_set_ui_2exp (u, 1, emax, GMP_RNDN);
++      if (!mpfr_equal_p (x, u))
++        {
++          printf ("Error: mpfr_set_f (x, y, GMP_RNDN) for y = 2^emax\n");
++          exit (1);
++        }
++    }
++
++  /* For mpf_mul_2exp, emax - 1 must fit in an unsigned long! */
++  if (emax >= 1 && emax - 1 <= ULONG_MAX)
++    {
++      mpf_set_ui (y, 1);
++      mpf_mul_2exp (y, y, emax - 1);
++      mpfr_set_f (x, y, GMP_RNDN);
++      mpfr_set_ui_2exp (u, 1, emax - 1, GMP_RNDN);
++      if (!mpfr_equal_p (x, u))
++        {
++          printf ("Error: mpfr_set_f (x, y, GMP_RNDN) for y = 2^(emax-1)\n");
++          exit (1);
++        }
++    }
++
+   mpfr_clear (x);
++  mpfr_clear (u);
+   mpf_clear (y);
+   mpf_clear (z);
+ 

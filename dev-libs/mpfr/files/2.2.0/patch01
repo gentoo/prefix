@@ -1,0 +1,41 @@
+diff -Naurd mpfr-2.2.0/lngamma.c mpfr-2.2.0-p1/lngamma.c
+--- mpfr-2.2.0/lngamma.c	2005-09-09 15:17:58.000000000 +0000
++++ mpfr-2.2.0-p1/lngamma.c	2005-09-29 11:27:04.000000000 +0000
+@@ -167,8 +167,8 @@
+   compared = mpfr_cmp_ui (z0, 1);
+ 
+ #ifndef IS_GAMMA
+-  if (compared == 0) /* lngamma(1) = +0 */
+-    return mpfr_set_ui (y, 0, GMP_RNDN);
++  if (compared == 0 || (compared > 0 && mpfr_cmp_ui (z0, 2) == 0))
++    return mpfr_set_ui (y, 0, GMP_RNDN);  /* lngamma(1 or 2) = +0 */
+ #endif
+ 
+   mpfr_init2 (s, MPFR_PREC_MIN);
+diff -Naurd mpfr-2.2.0/tests/tlngamma.c mpfr-2.2.0-p1/tests/tlngamma.c
+--- mpfr-2.2.0/tests/tlngamma.c	2005-09-09 15:17:59.000000000 +0000
++++ mpfr-2.2.0-p1/tests/tlngamma.c	2005-09-29 11:20:34.000000000 +0000
+@@ -79,7 +79,7 @@
+ 
+   mpfr_set_ui (x, 1, GMP_RNDN);
+   mpfr_lngamma (y, x, GMP_RNDN);
+-  if (mpfr_cmp_ui (y, 0))
++  if (mpfr_cmp_ui (y, 0) || MPFR_IS_NEG (y))
+     {
+       printf ("Error for lngamma(1)\n");
+       exit (1);
+@@ -93,6 +93,14 @@
+       exit (1);
+     }
+ 
++  mpfr_set_ui (x, 2, GMP_RNDN);
++  mpfr_lngamma (y, x, GMP_RNDN);
++  if (mpfr_cmp_ui (y, 0) || MPFR_IS_NEG (y))
++    {
++      printf ("Error for lngamma(2)\n");
++      exit (1);
++    }
++
+   mpfr_set_prec (x, 53);
+   mpfr_set_prec (y, 53);
+ 

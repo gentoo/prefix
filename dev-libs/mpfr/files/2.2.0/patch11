@@ -1,0 +1,322 @@
+diff -Naurd mpfr-2.2.0-p10/configure.in mpfr-2.2.0-p11/configure.in
+--- mpfr-2.2.0-p10/configure.in	2005-09-17 10:27:28.000000000 +0000
++++ mpfr-2.2.0-p11/configure.in	2005-09-17 10:27:28.000000000 +0000
+@@ -308,12 +308,6 @@
+ AC_CHECK_LIB(gmp, __gmpz_init, [LIBS="-lgmp $LIBS"], 
+  [AC_MSG_ERROR(libgmp not found)])
+ 
+-dnl Check if we can use mpn_sub_nc
+-if test -n "$gmp_internal_file_check" ; then
+- AC_CHECK_FUNC([__gmpn_sub_nc], 
+-  [AC_DEFINE([MPFR_HAVE_MPN_SUB_NC],1,[Function mpn_sub_nc is available])])
+-fi
+-
+ dnl Check for corresponding 'gmp.h' and libgmp.a
+ AC_MSG_CHECKING(if gmp.h version and libgmp version are the same)
+ AC_RUN_IFELSE([AC_LANG_PROGRAM([[
+diff -Naurd mpfr-2.2.0-p10/configure mpfr-2.2.0-p11/configure
+--- mpfr-2.2.0-p10/configure	2005-10-02 10:49:55.000000000 +0000
++++ mpfr-2.2.0-p11/configure	2006-05-26 22:08:17.000000000 +0000
+@@ -23159,107 +23159,6 @@
+    { (exit 1); exit 1; }; }
+ fi
+ 
+-
+-if test -n "$gmp_internal_file_check" ; then
+- echo "$as_me:$LINENO: checking for __gmpn_sub_nc" >&5
+-echo $ECHO_N "checking for __gmpn_sub_nc... $ECHO_C" >&6
+-if test "${ac_cv_func___gmpn_sub_nc+set}" = set; then
+-  echo $ECHO_N "(cached) $ECHO_C" >&6
+-else
+-  cat >conftest.$ac_ext <<_ACEOF
+-/* confdefs.h.  */
+-_ACEOF
+-cat confdefs.h >>conftest.$ac_ext
+-cat >>conftest.$ac_ext <<_ACEOF
+-/* end confdefs.h.  */
+-/* Define __gmpn_sub_nc to an innocuous variant, in case <limits.h> declares __gmpn_sub_nc.
+-   For example, HP-UX 11i <limits.h> declares gettimeofday.  */
+-#define __gmpn_sub_nc innocuous___gmpn_sub_nc
+-
+-/* System header to define __stub macros and hopefully few prototypes,
+-    which can conflict with char __gmpn_sub_nc (); below.
+-    Prefer <limits.h> to <assert.h> if __STDC__ is defined, since
+-    <limits.h> exists even on freestanding compilers.  */
+-
+-#ifdef __STDC__
+-# include <limits.h>
+-#else
+-# include <assert.h>
+-#endif
+-
+-#undef __gmpn_sub_nc
+-
+-/* Override any gcc2 internal prototype to avoid an error.  */
+-#ifdef __cplusplus
+-extern "C"
+-{
+-#endif
+-/* We use char because int might match the return type of a gcc2
+-   builtin and then its argument prototype would still apply.  */
+-char __gmpn_sub_nc ();
+-/* The GNU C library defines this for functions which it implements
+-    to always fail with ENOSYS.  Some functions are actually named
+-    something starting with __ and the normal name is an alias.  */
+-#if defined (__stub___gmpn_sub_nc) || defined (__stub_____gmpn_sub_nc)
+-choke me
+-#else
+-char (*f) () = __gmpn_sub_nc;
+-#endif
+-#ifdef __cplusplus
+-}
+-#endif
+-
+-int
+-main ()
+-{
+-return f != __gmpn_sub_nc;
+-  ;
+-  return 0;
+-}
+-_ACEOF
+-rm -f conftest.$ac_objext conftest$ac_exeext
+-if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
+-  (eval $ac_link) 2>conftest.er1
+-  ac_status=$?
+-  grep -v '^ *+' conftest.er1 >conftest.err
+-  rm -f conftest.er1
+-  cat conftest.err >&5
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); } &&
+-	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
+-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+-  (eval $ac_try) 2>&5
+-  ac_status=$?
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; } &&
+-	 { ac_try='test -s conftest$ac_exeext'
+-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+-  (eval $ac_try) 2>&5
+-  ac_status=$?
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; }; then
+-  ac_cv_func___gmpn_sub_nc=yes
+-else
+-  echo "$as_me: failed program was:" >&5
+-sed 's/^/| /' conftest.$ac_ext >&5
+-
+-ac_cv_func___gmpn_sub_nc=no
+-fi
+-rm -f conftest.err conftest.$ac_objext \
+-      conftest$ac_exeext conftest.$ac_ext
+-fi
+-echo "$as_me:$LINENO: result: $ac_cv_func___gmpn_sub_nc" >&5
+-echo "${ECHO_T}$ac_cv_func___gmpn_sub_nc" >&6
+-if test $ac_cv_func___gmpn_sub_nc = yes; then
+-
+-cat >>confdefs.h <<\_ACEOF
+-#define MPFR_HAVE_MPN_SUB_NC 1
+-_ACEOF
+-
+-fi
+-
+-fi
+-
+ echo "$as_me:$LINENO: checking if gmp.h version and libgmp version are the same" >&5
+ echo $ECHO_N "checking if gmp.h version and libgmp version are the same... $ECHO_C" >&6
+ if test "$cross_compiling" = yes; then
+diff -Naurd mpfr-2.2.0-p10/div.c mpfr-2.2.0-p11/div.c
+--- mpfr-2.2.0-p10/div.c	2005-11-24 21:39:31.000000000 +0000
++++ mpfr-2.2.0-p11/div.c	2006-05-26 21:00:45.000000000 +0000
+@@ -23,9 +23,9 @@
+ #include "mpfr-impl.h"
+ 
+ #ifdef DEBUG
+-#define mpn_print(ap,n) mpn_print3(ap,n,MPFR_LIMB_ZERO)
++#define mpfr_mpn_print(ap,n) mpfr_mpn_print3 (ap,n,MPFR_LIMB_ZERO)
+ static void
+-mpn_print3 (mp_ptr ap, mp_size_t n, mp_limb_t cy)
++mpfr_mpn_print3 (mp_ptr ap, mp_size_t n, mp_limb_t cy)
+ {
+   mp_size_t i;
+   for (i = 0; i < n; i++)
+@@ -38,7 +38,7 @@
+ 
+ /* check if {ap, an} is zero */
+ static int
+-mpn_cmpzero (mp_ptr ap, mp_size_t an)
++mpfr_mpn_cmpzero (mp_ptr ap, mp_size_t an)
+ {
+   while (an > 0)
+     if (MPFR_LIKELY(ap[--an] != MPFR_LIMB_ZERO))
+@@ -51,7 +51,7 @@
+    Takes into account bp[0] for extra=1.
+ */
+ static int
+-mpn_cmp_aux (mp_ptr ap, mp_size_t an, mp_ptr bp, mp_size_t bn, int extra)
++mpfr_mpn_cmp_aux (mp_ptr ap, mp_size_t an, mp_ptr bp, mp_size_t bn, int extra)
+ {
+   int cmp = 0;
+   mp_size_t k;
+@@ -103,20 +103,23 @@
+   return cmp;
+ }
+ 
+-/* {ap, n} <- {ap, n} - {bp, n} >> extra - cy, with cy=0 or 1 */
++/* {ap, n} <- {ap, n} - {bp, n} >> extra - cy, with cy = 0 or 1 */
+ static mp_limb_t
+-mpn_sub_aux (mp_ptr ap, mp_ptr bp, mp_size_t n, mp_limb_t cy, int extra)
++mpfr_mpn_sub_aux (mp_ptr ap, mp_ptr bp, mp_size_t n, mp_limb_t cy, int extra)
+ {
+   mp_limb_t bb, rp;
++  MPFR_ASSERTD (cy <= 1);
+   while (n--)
+     {
+       bb = (extra) ? ((bp[1] << (BITS_PER_MP_LIMB-1)) | (bp[0] >> 1)) : bp[0];
+       rp = ap[0] - bb - cy;
+-      cy = ((ap[0] < bb) || (cy && ~rp == MPFR_LIMB_ZERO)) ? MPFR_LIMB_ONE : MPFR_LIMB_ZERO;
++      cy = (ap[0] < bb) || (cy && ~rp == MPFR_LIMB_ZERO) ?
++        MPFR_LIMB_ONE : MPFR_LIMB_ZERO;
+       ap[0] = rp;
+       ap ++;
+       bp ++;
+     }
++  MPFR_ASSERTD (cy <= 1);
+   return cy;
+ }
+ 
+@@ -234,7 +237,7 @@
+       else if (l == 0) /* no more divisor limb */
+         extra_bit = 1;
+       else /* k=0: no more dividend limb */
+-        extra_bit = mpn_cmpzero (vp, l) == 0;
++        extra_bit = mpfr_mpn_cmpzero (vp, l) == 0;
+     }
+ #ifdef DEBUG
+   printf ("extra_bit=%u\n", extra_bit);
+@@ -278,7 +281,7 @@
+         sticky_u = mpn_rshift (ap, up + k, qqsize, 1);
+       else
+         MPN_COPY(ap, up + k, qqsize);
+-      sticky_u = sticky_u || mpn_cmpzero (up, k);
++      sticky_u = sticky_u || mpfr_mpn_cmpzero (up, k);
+     }
+   low_u = sticky_u;
+ 
+@@ -297,7 +300,7 @@
+           bp = (mp_ptr) MPFR_TMP_ALLOC (qsize * sizeof(mp_limb_t));
+           MPN_COPY(bp, vp, vsize);
+         }
+-      sticky_v = sticky_v || mpn_cmpzero (vp, k);
++      sticky_v = sticky_v || mpfr_mpn_cmpzero (vp, k);
+       k = 0;
+     }
+   else /* vsize < qsize: small divisor case */
+@@ -310,12 +313,12 @@
+   qh = mpn_divrem (qp, 0, ap + k, qqsize - k, bp, qsize - k);
+   /* warning: qh may be 1 if u1 == v1, but u < v */
+ #ifdef DEBUG
+-  printf ("q="); mpn_print (qp, qsize);
+-  printf ("r="); mpn_print (ap, qsize);
++  printf ("q="); mpfr_mpn_print (qp, qsize);
++  printf ("r="); mpfr_mpn_print (ap, qsize);
+ #endif
+ 
+   k = qsize;
+-  sticky_u = sticky_u || mpn_cmpzero (ap, k);
++  sticky_u = sticky_u || mpfr_mpn_cmpzero (ap, k);
+ 
+   sticky = sticky_u | sticky_v;
+ 
+@@ -417,9 +420,9 @@
+               cmp_s_r = mpn_cmp (sp + k, ap, qsize);
+               if (cmp_s_r == 0) /* compare {sp, k} and low(u) */
+                 {
+-                  cmp_s_r = (usize >= qqsize)
+-                             ? mpn_cmp_aux (sp, k, up, usize-qqsize, extra_bit)
+-                             : mpn_cmpzero (sp, k);
++                  cmp_s_r = (usize >= qqsize) ?
++                    mpfr_mpn_cmp_aux (sp, k, up, usize-qqsize, extra_bit) :
++                    mpfr_mpn_cmpzero (sp, k);
+                 }
+ #ifdef DEBUG
+               printf ("cmp(q*v0,r+u0)=%d\n", cmp_s_r);
+@@ -441,25 +444,30 @@
+                       mp_size_t m;
+                       l = usize - qqsize; /* number of low limbs in u */
+                       m = (l > k) ? l - k : 0;
+-                      cy = (extra_bit) ? (up[m] & MPFR_LIMB_ONE) : MPFR_LIMB_ZERO;
++                      cy = (extra_bit) ?
++                        (up[m] & MPFR_LIMB_ONE) : MPFR_LIMB_ZERO;
+                       if (l >= k) /* u0 has more limbs */
+                         {
+-                          cy = cy || mpn_cmpzero (up, m);
++                          cy = cy || mpfr_mpn_cmpzero (up, m);
+                           low_u = cy;
+-                          cy = mpn_sub_aux (sp, up + l - k, k,
+-                                            (cy) ? MPFR_LIMB_ONE : MPFR_LIMB_ZERO, extra_bit);
++                          cy = mpfr_mpn_sub_aux (sp, up + l - k, k,
++                                                 cy, extra_bit);
+                         }
+                       else /* l < k: s has more limbs than u0 */
+                         {
+                           low_u = MPFR_LIMB_ZERO;
+                           if (cy != MPFR_LIMB_ZERO)
+-                            cy = mpn_sub_1 (sp + k - l - 1, sp + k - l - 1, 1, MPFR_LIMB_HIGHBIT);
+-                          cy = mpn_sub_aux (sp + k - l, up, l, cy, extra_bit);
++                            cy = mpn_sub_1 (sp + k - l - 1, sp + k - l - 1,
++                                            1, MPFR_LIMB_HIGHBIT);
++                          cy = mpfr_mpn_sub_aux (sp + k - l, up, l,
++                                                 cy, extra_bit);
+                         }
+                     }
++                  MPFR_ASSERTD (cy <= 1);
+                   cy = mpn_sub_1 (sp + k, sp + k, qsize, cy);
+                   /* subtract r */
+-                  cy = mpn_sub_nc (sp + k, sp + k, ap, qsize, cy);
++                  cy += mpn_sub_n (sp + k, sp + k, ap, qsize);
++                  MPFR_ASSERTD (cy <= 1);
+                   /* now compare {sp, ssize} to v */
+                   cmp_s_r = mpn_cmp (sp, vp, vsize);
+                   if (cmp_s_r == 0 && low_u != MPFR_LIMB_ZERO)
+diff -Naurd mpfr-2.2.0-p10/mpfr-gmp.c mpfr-2.2.0-p11/mpfr-gmp.c
+--- mpfr-2.2.0-p10/mpfr-gmp.c	2005-08-18 17:03:09.000000000 +0000
++++ mpfr-2.2.0-p11/mpfr-gmp.c	2006-05-26 21:00:45.000000000 +0000
+@@ -373,18 +373,3 @@
+ }
+ 
+ #endif /* Have gmp-impl.h */
+-
+-#ifndef MPFR_HAVE_MPN_SUB_NC
+-mp_limb_t
+-mpfr_sub_nc (mp_ptr dest, mp_srcptr op1, mp_srcptr op2, mp_size_t s,
+-             mp_limb_t c)
+-{
+-  mp_limb_t c2;
+-  c2 = mpn_sub_n (dest, op1, op2, s);
+-  MPFR_ASSERTD (c+c2 < MPFR_LIMB_HIGHBIT);
+-  c2 = mpn_sub_1 (dest, dest, s, c+c2);
+-  return c2;
+-}
+-
+-#endif /* !Have MPFR_HAVE_MPN_SUB_NC */
+-
+diff -Naurd mpfr-2.2.0-p10/mpfr-impl.h mpfr-2.2.0-p11/mpfr-impl.h
+--- mpfr-2.2.0-p10/mpfr-impl.h	2005-11-23 09:04:29.000000000 +0000
++++ mpfr-2.2.0-p11/mpfr-impl.h	2006-05-26 21:00:45.000000000 +0000
+@@ -153,15 +153,6 @@
+ # error "Can't compute log2(BITS_PER_MP_LIMB)"
+ #endif
+ 
+-/* mpn_sub_nc is internal but may be defined in the header
+-   but not in the library! That's why we may need to overide it.*/
+-#ifndef MPFR_HAVE_MPN_SUB_NC
+-mp_limb_t mpfr_sub_nc _MPFR_PROTO ((mp_ptr, mp_srcptr, mp_srcptr, mp_size_t,
+-                                    mp_limb_t ));
+-#undef mpn_sub_nc
+-#define mpn_sub_nc mpfr_sub_nc
+-#endif
+-
+ #if __MPFR_GNUC(3,0) || __MPFR_ICC(8,1,0)
+ # define MPFR_NORETURN_ATTR __attribute__ ((noreturn))
+ # define MPFR_CONST_ATTR    __attribute__ ((const))

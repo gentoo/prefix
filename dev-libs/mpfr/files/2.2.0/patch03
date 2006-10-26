@@ -1,0 +1,12 @@
+diff -Naurd mpfr-2.2.0-p2/configure mpfr-2.2.0-p3/configure
+--- mpfr-2.2.0-p2/configure	2005-09-19 13:31:58.000000000 +0000
++++ mpfr-2.2.0-p3/configure	2005-10-02 10:49:55.000000000 +0000
+@@ -10519,7 +10519,7 @@
+       ;;
+ 
+     darwin* | rhapsody*)
+-    if test "$GXX" = yes ; then
++    if test "$GCC" = yes ; then
+       archive_cmds_need_lc=no
+       case "$host_os" in
+       rhapsody* | darwin1.[012])

@@ -1,0 +1,22 @@
+Ripped from Debian's mpfr_2.2.0.dfsg.1-6.diff.gz
+
+http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=363287
+http://bugs.gentoo.org/show_bug.cgi?id=126082
+http://sympa.loria.fr/wwsympa/arc/mpfr/2006-04/msg00018.html
+
+Also, this appears to blow up on HPPA 1.0/1.1 systems ... so just
+disable for all HPPA systems (although we could check _PA_RISC2_0 ...)
+
+--- mpfr-2.2.0.dfsg.1.orig/mul.c
++++ mpfr-2.2.0.dfsg.1/mul.c
+@@ -307,8 +307,8 @@
+       cn = tn;
+     }
+   MPFR_ASSERTD (bn >= cn);
+-  /* longlong's umul_ppmm seems to be buggy on HP-UX. */
+-#ifndef __hpux
++  /* longlong's umul_ppmm seems to be buggy on HP-UX and s390 */
++#if ! defined (__hpux) && ! defined (__s390__) && ! defined (__hppa__)
+   if (MPFR_LIKELY (bn <= 2))
+     {
+       if (bn == 1)

@@ -1,0 +1,132 @@
+diff -Naurd mpfr-2.2.0-p9/asin.c mpfr-2.2.0-p10/asin.c
+--- mpfr-2.2.0-p9/asin.c	2005-08-18 17:03:04.000000000 +0000
++++ mpfr-2.2.0-p10/asin.c	2006-03-16 17:47:51.000000000 +0000
+@@ -51,7 +51,7 @@
+     }
+ 
+   /* asin(x) = x + x^3/6 + ... so the error is < 2^(3*EXP(x)-2) */
+-  MPFR_FAST_COMPUTE_IF_SMALL_INPUT (asin,x, -2*MPFR_GET_EXP (x)+2,1,rnd_mode,);
++  MPFR_FAST_COMPUTE_IF_SMALL_INPUT (asin,x, -2*MPFR_GET_EXP (x)+2,1,rnd_mode,{});
+ 
+   /* Set x_p=|x| (x is a normal number) */
+   mpfr_init2 (xp, MPFR_PREC (x));
+diff -Naurd mpfr-2.2.0-p9/asinh.c mpfr-2.2.0-p10/asinh.c
+--- mpfr-2.2.0-p9/asinh.c	2005-08-18 17:03:04.000000000 +0000
++++ mpfr-2.2.0-p10/asinh.c	2006-03-16 17:47:51.000000000 +0000
+@@ -62,7 +62,7 @@
+     }
+ 
+   /* asinh(x) = x - x^3/6 + ... so the error is < 2^(3*EXP(x)-2) */
+-  MPFR_FAST_COMPUTE_IF_SMALL_INPUT (y, x, -2*MPFR_GET_EXP (x)+2,0,rnd_mode,);
++  MPFR_FAST_COMPUTE_IF_SMALL_INPUT (y, x, -2*MPFR_GET_EXP (x)+2,0,rnd_mode,{});
+ 
+   Ny = MPFR_PREC (y);   /* Precision of output variable */
+ 
+diff -Naurd mpfr-2.2.0-p9/atan.c mpfr-2.2.0-p10/atan.c
+--- mpfr-2.2.0-p9/atan.c	2005-08-18 16:35:03.000000000 +0000
++++ mpfr-2.2.0-p10/atan.c	2006-03-16 17:47:51.000000000 +0000
+@@ -185,7 +185,7 @@
+   /* atan(x) = x - x^3/3 + x^5/5...
+      so the error is < 2^(3*EXP(x)-1)
+      so `EXP(x)-(3*EXP(x)-1)` = -2*EXP(x)+1 */
+-  MPFR_FAST_COMPUTE_IF_SMALL_INPUT (atan,x, -2*MPFR_GET_EXP (x)+1,0,rnd_mode,);
++  MPFR_FAST_COMPUTE_IF_SMALL_INPUT (atan,x, -2*MPFR_GET_EXP (x)+1,0,rnd_mode,{});
+ 
+   /* Set x_p=|x| */
+   MPFR_TMP_INIT_ABS (xp, x);
+diff -Naurd mpfr-2.2.0-p9/atanh.c mpfr-2.2.0-p10/atanh.c
+--- mpfr-2.2.0-p9/atanh.c	2005-08-18 17:03:04.000000000 +0000
++++ mpfr-2.2.0-p10/atanh.c	2006-03-16 17:47:51.000000000 +0000
+@@ -71,7 +71,7 @@
+     }
+ 
+   /* atanh(x) = x + x^3/3 + ... so the error is < 2^(3*EXP(x)-1) */
+-  MPFR_FAST_COMPUTE_IF_SMALL_INPUT (y, xt, -2*MPFR_GET_EXP (xt)+1,1,rnd_mode,);
++  MPFR_FAST_COMPUTE_IF_SMALL_INPUT (y, xt, -2*MPFR_GET_EXP (xt)+1,1,rnd_mode,{});
+ 
+   MPFR_SAVE_EXPO_MARK (expo);
+ 
+diff -Naurd mpfr-2.2.0-p9/expm1.c mpfr-2.2.0-p10/expm1.c
+--- mpfr-2.2.0-p9/expm1.c	2005-08-18 17:03:06.000000000 +0000
++++ mpfr-2.2.0-p10/expm1.c	2006-03-16 17:47:51.000000000 +0000
+@@ -61,7 +61,7 @@
+     }
+ 
+   /* exp(x)-1 = x +x^2/2 + ... so the error is < 2^(2*EXP(x)-1) */
+-  MPFR_FAST_COMPUTE_IF_SMALL_INPUT (y, x, -MPFR_GET_EXP (x)+1,1,rnd_mode,);
++  MPFR_FAST_COMPUTE_IF_SMALL_INPUT (y, x, -MPFR_GET_EXP (x)+1,1,rnd_mode,{});
+ 
+   MPFR_SAVE_EXPO_MARK (expo);
+   /* General case */
+diff -Naurd mpfr-2.2.0-p9/log1p.c mpfr-2.2.0-p10/log1p.c
+--- mpfr-2.2.0-p9/log1p.c	2005-08-18 17:03:08.000000000 +0000
++++ mpfr-2.2.0-p10/log1p.c	2006-03-16 17:47:51.000000000 +0000
+@@ -63,7 +63,7 @@
+     }
+ 
+   /* log(1+x) = x-x^2/2 + ... so the error is < 2^(2*EXP(x)-1) */
+-  MPFR_FAST_COMPUTE_IF_SMALL_INPUT (y, x, -MPFR_GET_EXP (x)+1,0,rnd_mode,);
++  MPFR_FAST_COMPUTE_IF_SMALL_INPUT (y, x, -MPFR_GET_EXP (x)+1,0,rnd_mode,{});
+ 
+   comp = mpfr_cmp_si (x, -1);
+   /* log1p(x) is undefined for x < -1 */
+diff -Naurd mpfr-2.2.0-p9/sin.c mpfr-2.2.0-p10/sin.c
+--- mpfr-2.2.0-p9/sin.c	2005-12-24 15:17:54.000000000 +0000
++++ mpfr-2.2.0-p10/sin.c	2006-03-16 17:47:51.000000000 +0000
+@@ -129,7 +129,7 @@
+     }
+ 
+   /* sin(x) = x - x^3/6 + ... so the error is < 2^(3*EXP(x)-2) */
+-  MPFR_FAST_COMPUTE_IF_SMALL_INPUT (y, x, -2*MPFR_GET_EXP (x)+2,0,rnd_mode, );
++  MPFR_FAST_COMPUTE_IF_SMALL_INPUT (y, x, -2*MPFR_GET_EXP (x)+2,0,rnd_mode,{});
+ 
+   /* Compute initial precision */
+   precy = MPFR_PREC (y);
+diff -Naurd mpfr-2.2.0-p9/sinh.c mpfr-2.2.0-p10/sinh.c
+--- mpfr-2.2.0-p9/sinh.c	2005-08-18 16:35:14.000000000 +0000
++++ mpfr-2.2.0-p10/sinh.c	2006-03-16 17:47:51.000000000 +0000
+@@ -57,7 +57,7 @@
+     }
+ 
+   /* sinh(x) = x + x^3/6 + ... so the error is < 2^(3*EXP(x)-2) */
+-  MPFR_FAST_COMPUTE_IF_SMALL_INPUT (y, xt, -2*MPFR_GET_EXP(xt)+2,1,rnd_mode, );
++  MPFR_FAST_COMPUTE_IF_SMALL_INPUT (y, xt, -2*MPFR_GET_EXP(xt)+2,1,rnd_mode,{});
+ 
+   MPFR_TMP_INIT_ABS (x, xt);
+ 
+diff -Naurd mpfr-2.2.0-p9/tan.c mpfr-2.2.0-p10/tan.c
+--- mpfr-2.2.0-p9/tan.c	2005-08-18 16:35:15.000000000 +0000
++++ mpfr-2.2.0-p10/tan.c	2006-03-16 17:47:51.000000000 +0000
+@@ -53,7 +53,7 @@
+     }
+ 
+   /* tan(x) = x + x^3/3 + ... so the error is < 2^(3*EXP(x)-1) */
+-  MPFR_FAST_COMPUTE_IF_SMALL_INPUT (y, x, -2*MPFR_GET_EXP (x)+1,1,rnd_mode, );
++  MPFR_FAST_COMPUTE_IF_SMALL_INPUT (y, x, -2*MPFR_GET_EXP (x)+1,1,rnd_mode,{});
+ 
+   MPFR_SAVE_EXPO_MARK (expo);
+ 
+diff -Naurd mpfr-2.2.0-p9/tanh.c mpfr-2.2.0-p10/tanh.c
+--- mpfr-2.2.0-p9/tanh.c	2005-08-18 17:03:12.000000000 +0000
++++ mpfr-2.2.0-p10/tanh.c	2006-03-16 17:47:51.000000000 +0000
+@@ -56,7 +56,7 @@
+     }
+ 
+   /* tanh(x) = x - x^3/3 + ... so the error is < 2^(3*EXP(x)-1) */
+-  MPFR_FAST_COMPUTE_IF_SMALL_INPUT (y, xt, -2*MPFR_GET_EXP(xt)+1,0,rnd_mode, );
++  MPFR_FAST_COMPUTE_IF_SMALL_INPUT (y, xt, -2*MPFR_GET_EXP(xt)+1,0,rnd_mode,{});
+ 
+   MPFR_TMP_INIT_ABS (x, xt);
+ 
+diff -Naurd mpfr-2.2.0-p9/zeta.c mpfr-2.2.0-p10/zeta.c
+--- mpfr-2.2.0-p9/zeta.c	2005-09-16 14:36:54.000000000 +0000
++++ mpfr-2.2.0-p10/zeta.c	2006-03-16 17:47:51.000000000 +0000
+@@ -175,7 +175,7 @@
+       else
+         err = ((mp_exp_t)1) << err;
+       err = 1 - (-err+1); /* GET_EXP(one) - (-err+1) = err :) */
+-      MPFR_FAST_COMPUTE_IF_SMALL_INPUT (z, __gmpfr_one, err, 1, rnd_mode, );
++      MPFR_FAST_COMPUTE_IF_SMALL_INPUT (z, __gmpfr_one, err, 1, rnd_mode,{});
+     }
+ 
+   d = precz + MPFR_INT_CEIL_LOG2(precz) + 10;

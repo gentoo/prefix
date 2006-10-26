@@ -1,0 +1,25 @@
+diff -Naurd mpfr-2.2.0-p5/div.c mpfr-2.2.0-p6/div.c
+--- mpfr-2.2.0-p5/div.c	2005-08-18 17:03:05.000000000 +0000
++++ mpfr-2.2.0-p6/div.c	2005-11-24 21:39:31.000000000 +0000
+@@ -298,17 +298,16 @@
+           MPN_COPY(bp, vp, vsize);
+         }
+       sticky_v = sticky_v || mpn_cmpzero (vp, k);
++      k = 0;
+     }
+-  else /* vsize < qsize */
++  else /* vsize < qsize: small divisor case */
+     {
++      bp = vp;
+       k = qsize - vsize;
+-      bp = (mp_ptr) MPFR_TMP_ALLOC (qsize * sizeof(mp_limb_t));
+-      MPN_COPY(bp + k, vp, vsize);
+-      MPN_ZERO(bp, k);
+     }
+ 
+   /* we now can perform the division */
+-  qh = mpn_divrem (qp, 0, ap, qqsize, bp, qsize);
++  qh = mpn_divrem (qp, 0, ap + k, qqsize - k, bp, qsize - k);
+   /* warning: qh may be 1 if u1 == v1, but u < v */
+ #ifdef DEBUG
+   printf ("q="); mpn_print (qp, qsize);

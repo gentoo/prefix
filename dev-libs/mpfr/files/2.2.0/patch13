@@ -1,0 +1,74 @@
+diff -Naurd mpfr-2.2.0-p12/configure mpfr-2.2.0-p13/configure
+--- mpfr-2.2.0-p12/configure	2006-05-26 22:08:17.000000000 +0000
++++ mpfr-2.2.0-p13/configure	2006-07-21 13:56:45.000000000 +0000
+@@ -2053,7 +2053,7 @@
+ # Check whether --with-gmp_lib or --without-gmp_lib was given.
+ if test "${with_gmp_lib+set}" = set; then
+   withval="$with_gmp_lib"
+-  LDFLAGS="-L$withval $LDFLAGS"
++  LDFLAGS="$LDFLAGS -L$withval"
+ fi;
+ 
+ # Check whether --with-gmp_build or --without-gmp_build was given.
+@@ -2061,7 +2061,7 @@
+   withval="$with_gmp_build"
+ 
+     CPPFLAGS="$CPPFLAGS -I$withval -I$withval/tune"
+-    LDFLAGS="-L$withval -L$withval/.libs -L$withval/tune/ $LDFLAGS"
++    LDFLAGS="$LDFLAGS -L$withval -L$withval/.libs -L$withval/tune/"
+     if test -r $withval/Makefile ; then
+      GMP_CFLAGS=`grep -w "CFLAGS =" $withval/Makefile | sed 's/CFLAGS = //'`
+      GMP_CC=`grep -w "CC =" $withval/Makefile | sed 's/CC = //'`
+@@ -2074,7 +2074,7 @@
+   withval="$with_gmp"
+ 
+    CPPFLAGS="$CPPFLAGS -I$withval/include"
+-   LDFLAGS="-L$withval/lib $LDFLAGS"
++   LDFLAGS="$LDFLAGS -L$withval/lib"
+ fi;
+ 
+ 
+@@ -4108,7 +4108,7 @@
+ case $OS_TYPE in
+   HP-UX*)
+ 	if test -n "$GCC"; then
+-	  LDFLAGS="-Xlinker +allowunsats $LDFLAGS"
++	  LDFLAGS="$LDFLAGS -Xlinker +allowunsats"
+ 	fi
+ 	;;
+   IRIX64)
+diff -Naurd mpfr-2.2.0-p12/configure.in mpfr-2.2.0-p13/configure.in
+--- mpfr-2.2.0-p12/configure.in	2005-09-17 10:27:28.000000000 +0000
++++ mpfr-2.2.0-p13/configure.in	2005-09-17 10:27:28.000000000 +0000
+@@ -40,11 +40,11 @@
+    CPPFLAGS="$CPPFLAGS -I$withval")
+ AC_ARG_WITH(gmp_lib, 
+    [  --with-gmp-lib=DIR      GMP lib directory ], 
+-   LDFLAGS="-L$withval $LDFLAGS")
++   LDFLAGS="$LDFLAGS -L$withval")
+ AC_ARG_WITH(gmp_build, 
+    [  --with-gmp-build=DIR    GMP build directory], [
+     CPPFLAGS="$CPPFLAGS -I$withval -I$withval/tune"
+-    LDFLAGS="-L$withval -L$withval/.libs -L$withval/tune/ $LDFLAGS"
++    LDFLAGS="$LDFLAGS -L$withval -L$withval/.libs -L$withval/tune/"
+     if test -r $withval/Makefile ; then
+      GMP_CFLAGS=`grep -w "CFLAGS =" $withval/Makefile | sed 's/CFLAGS = //'`
+      GMP_CC=`grep -w "CC =" $withval/Makefile | sed 's/CC = //'`
+@@ -53,7 +53,7 @@
+ AC_ARG_WITH(gmp, 
+    [  --with-gmp=DIR          GMP install directory ], [
+    CPPFLAGS="$CPPFLAGS -I$withval/include"
+-   LDFLAGS="-L$withval/lib $LDFLAGS" ])
++   LDFLAGS="$LDFLAGS -L$withval/lib" ])
+ 
+ AC_ARG_WITH(irix64, 
+    [  --with-irix64=on/off    Irix 32/64 bits support ], 
+@@ -165,7 +165,7 @@
+ case $OS_TYPE in
+   HP-UX*)
+ 	if test -n "$GCC"; then
+-	  LDFLAGS="-Xlinker +allowunsats $LDFLAGS"
++	  LDFLAGS="$LDFLAGS -Xlinker +allowunsats"
+ 	fi
+ 	;;
+   IRIX64)
