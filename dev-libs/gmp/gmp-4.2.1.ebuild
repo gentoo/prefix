@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.2.1.ebuild,v 1.11 2006/09/16 14:26:26 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.2.1.ebuild,v 1.14 2006/10/20 00:19:49 kloeri Exp $
 
 EAPI="prefix"
 
@@ -34,9 +34,6 @@ src_unpack () {
 }
 
 src_compile() {
-	filter-flags -ffast-math
-
-
 	# GMP believes hppa2.0 is 64bit
 	if [[ ${CHOST} == hppa2.0-* ]] ; then
 		is_hppa_2_0=1
@@ -61,11 +58,11 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die "make install failed"
+	make DESTDIR="${D}" install || die "make install failed"
 
 	dodoc AUTHORS ChangeLog NEWS README
 	dodoc doc/configuration doc/isa_abi_headache
 	dohtml -r doc
 
-	use doc && cp "${DISTDIR}"/gmp-man-${PV}.pdf "${D}"/usr/share/doc/${PF}/
+	use doc && cp "${DISTDIR}"/gmp-man-${PV}.pdf "${ED}"/usr/share/doc/${PF}/
 }
