@@ -32,7 +32,7 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${EDEST}" || die
+	make install DESTDIR="${D}" || die
 	# autoconf-2.60 for instance, first checks gm4, then m4.  If we don't have
 	# gm4, it might find gm4 from outside the prefix on for instance Darwin
 	[[ ${USERLAND} != "GNU" ]] && [[ ${PREFIX/\//} != "" ]] || \
