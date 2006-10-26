@@ -59,7 +59,7 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${EDEST}" install || die "Installation failed"
+	emake DESTDIR="${D}" install || die "Installation failed"
 	dodoc ChangeLog
 	dohtml -r .
 }
