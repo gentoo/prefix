@@ -21,7 +21,7 @@ fi
 
 replace() {
 	echo -n "  replacing $1 -> $2 ... "
-	local cnt=$(sed -e "${4:-s}|$1|$2|g" "$3" | diff "$3" - | egrep "^>" | wc -l)
+	local cnt=$(sed -e "${4:-s}|$1|$2|g" "$3" | diff "$3" - | grep -o "$2" | wc -l)
 	if [[ $cnt > 0 ]];
 	then
 		sed -i -e "${4:-s}|$1|$2|g" "$3"
