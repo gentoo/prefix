@@ -28,7 +28,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die "make install failed"
+	make DESTDIR="${D}" install || die "make install failed"
 	dodoc AUTHORS ChangeLog NEWS README*
 	if [[ ${USERLAND} == "GNU" ]] || [[ ${EPREFIX/\//} != "" ]] ; then
 		# we install everywhere as 'gmake' but on GNU systems,
