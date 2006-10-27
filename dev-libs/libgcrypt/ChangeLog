@@ -1,0 +1,321 @@
+# ChangeLog for dev-libs/libgcrypt
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.79 2006/10/19 15:53:59 uberlord Exp $
+
+  19 Oct 2006; Roy Marples <uberlord@gentoo.org> libgcrypt-1.2.2-r1.ebuild:
+  Added ~sparc-fbsd keyword.
+
+  09 Jul 2006; Joshua Kinard <kumba@gentoo.org> libgcrypt-1.2.2-r1.ebuild:
+  Marked stable on mips.
+
+  27 Apr 2006; Marien Zwart <marienz@gentoo.org>
+  files/digest-libgcrypt-1.1.12, files/digest-libgcrypt-1.1.94,
+  files/digest-libgcrypt-1.2.0, files/digest-libgcrypt-1.2.1,
+  files/digest-libgcrypt-1.2.1-r1, Manifest:
+  Fixing SHA256 digest, pass four
+
+  23 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  libgcrypt-1.2.2-r1.ebuild:
+  Actually add the ~x86-fbsd keyword.
+
+  23 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  libgcrypt-1.2.2-r1.ebuild:
+  Don't run econf two times, it's useless.
+
+  23 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  libgcrypt-1.2.2-r1.ebuild:
+  Run elibtoolize and add ~x86-fbsd keyword.
+
+  21 Feb 2006; Marcelo Goes <vanquirius@gentoo.org>
+  -files/libgcrypt-1.2.1-GNU-stack-fix.patch,
+  -files/libgcrypt-1.2.1-info-entry-fix.patch,
+  -files/libgcrypt-1.2.1-ppc64-fix.patch, libgcrypt-1.2.1.ebuild,
+  libgcrypt-1.2.1-r1.ebuild, libgcrypt-1.2.2.ebuild,
+  libgcrypt-1.2.2-r1.ebuild:
+  Move patches to mirrors, fixes large files bug 123634 reported by Mark
+  Loeser <halcy0n at gentoo dot org>.
+
+  14 Feb 2006; Fabian Groffen <grobian@gentoo.org>
+  libgcrypt-1.2.2-r1.ebuild:
+  Marked ppc-macos stable bug (#122760)
+
+  06 Feb 2006; Simon Stelling <blubb@gentoo.org> libgcrypt-1.2.2-r1.ebuild:
+  stable on amd64
+
+  04 Feb 2006; Aron Griffis <agriffis@gentoo.org> libgcrypt-1.2.2-r1.ebuild:
+  Mark 1.2.2-r1 stable on alpha
+
+  02 Jan 2006; Michael Hanselmann <hansmi@gentoo.org>
+  libgcrypt-1.2.2-r1.ebuild:
+  Stable on ppc.
+
+  31 Dec 2005; Markus Rothe <corsair@gentoo.org> libgcrypt-1.2.2.ebuild,
+  libgcrypt-1.2.2-r1.ebuild:
+  Added tgall's fix for ppc64 to later versions, too.
+
+  30 Dec 2005; Markus Rothe <corsair@gentoo.org> libgcrypt-1.2.2-r1.ebuild:
+  Stable on ppc64
+
+  29 Dec 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  libgcrypt-1.2.2-r1.ebuild:
+  Stable on sparc
+
+  29 Dec 2005; Mark Loeser <halcy0n@gentoo.org> libgcrypt-1.2.2-r1.ebuild:
+  Stable on x86; bug #117034
+
+  25 Nov 2005; Tom Gall <tgall@gentoo.org> libgcrypt-1.2.1.ebuild,
+  +libgcrypt-1.2.1-ppc64-fix.patch:
+  bug #90211
+
+  10 Nov 2005; Michele Noberasco <s4t4n@gentoo.org>  libgcrypt-1.2.2-r1.ebuild files/digest-libgcrypt-1.2.2-r1
+  libgcrypt-1.2.2.ebuild files/digest-libgcrypt-1.2.2 +files/libgcrypt-1.2.1-info-entry-fix.patch:
+  Added small patch to fix info file so that its subsequent index entry works.
+
+*libgcrypt-1.2.2-r1 (08 Nov 2005)
+
+  08 Nov 2005; Daniel Black <dragonheart@gentoo.org>  libgcrypt-1.2.2-r1.ebuild files/digest-libgcrypt-1.2.2-r1
+  Added portable nonexecutable stack method thanks to Werner
+
+*libgcrypt-1.2.2 (07 Nov 2005)
+
+  07 Nov 2005; Daniel Black <dragonheart@gentoo.org>
+  +libgcrypt-1.2.2.ebuild:
+  verison bump as per bug #108677
+
+  04 Sep 2005; Daniel Black <dragonheart@gentoo.org>
+  +files/libgcrypt-1.2.1-GNU-stack-fix.patch, libgcrypt-1.2.1-r1.ebuild:
+  nonexecutable stacks hopefully fixed for all platforms (bug #96022). Thanks
+  to the Pax Team who I could not of fixed it without
+
+*libgcrypt-1.2.1-r1 (20 Aug 2005)
+
+  20 Aug 2005; Daniel Black <dragonheart@gentoo.org>  libgcrypt-1.2.1-r1.ebuild files/digest-libgcrypt-1.2.1-r1
+  revision bump to force pic static libraries (bug #96022)
+
+  17 Aug 2005; MATSUU Takuto <matsuu@gentoo.org> libgcrypt-1.2.1.ebuild:
+  Stable on sh.
+
+  07 Aug 2005; Daniel Black <dragonheart@gentoo.org>
+  libgcrypt-1.1.12.ebuild, libgcrypt-1.1.94.ebuild, libgcrypt-1.2.0.ebuild,
+  libgcrypt-1.2.1.ebuild:
+  changed to mirror://gnupg
+
+  09 Jul 2005; Lina Pezzella <j4rg0n@gentoo.org> libgcrypt-1.2.1.ebuild:
+  Stable ppc-macos. Bug #98376
+
+  05 Jul 2005; Daniel Black <dragonheart@gentoo.org>
+  -files/libgcrypt-hppa.patch, -files/libgcrypt-rijndael.patch,
+  -libgcrypt-1.1.91.ebuild, -libgcrypt-1.1.92.ebuild,
+  -libgcrypt-1.2.0-r1.ebuild, -libgcrypt-1.2.0-r2.ebuild,
+  libgcrypt-1.2.1.ebuild:
+  Version cleanout and fixes bug #96792 by Chris White
+
+  03 Jul 2005; Hardave Riar <hardave@gentoo.org> libgcrypt-1.2.1.ebuild:
+  Stable on mips, dep for bug #90726.
+
+  06 Jun 2005; Markus Rothe <corsair@gentoo.org> libgcrypt-1.2.1.ebuild:
+  Stable on ppc64
+
+  09 May 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  libgcrypt-1.2.1.ebuild:
+  Stable on sparc
+
+  07 May 2005; Aron Griffis <agriffis@gentoo.org> libgcrypt-1.2.1.ebuild:
+  stable on ia64
+
+  30 Apr 2005; Bryan Østergaard <kloeri@gentoo.org> libgcrypt-1.2.1.ebuild:
+  Stable on alpha.
+
+  29 Apr 2005; Jan Brinkmann <luckyduck@gentoo.org> libgcrypt-1.2.1.ebuild:
+  stable on amd64
+
+  29 Apr 2005; Daniel Black <dragonheart@gentoo.org> libgcrypt-1.2.1.ebuild:
+  ppc stable
+
+  28 Apr 2005; Daniel Black <dragonheart@gentoo.org> libgcrypt-1.2.1.ebuild:
+  x86 stable libgcrypt-1.2.1
+
+  01 Apr 2005; Aron Griffis <agriffis@gentoo.org> libgcrypt-1.2.0-r2.ebuild:
+  stable on ia64
+
+  26 Mar 2005; Marcelo Goes <vanquirius@gentoo.org> libgcrypt-1.1.91.ebuild,
+  libgcrypt-1.1.92.ebuild, libgcrypt-1.1.94.ebuild, libgcrypt-1.2.0-r1.ebuild,
+  libgcrypt-1.2.0-r2.ebuild, libgcrypt-1.2.0.ebuild, libgcrypt-1.2.1.ebuild:
+  Added dev-libs/libgpg-error to RDEPEND. Fix bug 86456. Thanks Spider
+  <spider@gentoo.org>.
+
+*libgcrypt-1.2.1 (13 Jan 2005)
+
+  13 Jan 2005; Daniel Black <dragonheart@gentoo.org> metadata.xml,
+  +libgcrypt-1.2.1.ebuild:
+  Version bump. Previous patches were included. Maintainer crypto added to
+  metadata.xml
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  26 Nov 2004; Jason Wever <weeve@gentoo.org> libgcrypt-1.2.0-r2.ebuild:
+  Stable on sparc.
+
+*libgcrypt-1.2.0-r2 (10 Oct 2004)
+
+  10 Oct 2004; Jason Wever <weeve@gentoo.org>
+  +files/libgcrypt-rijndael.patch, +libgcrypt-1.2.0-r2.ebuild:
+  Added a fix for bug #53667 that makes libgcrypt apps happy on sparc.
+
+  03 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> libgcrypt-1.2.0-r1.ebuild,
+  libgcrypt-1.2.0.ebuild:
+  ppc-macos fix. Added ppc-macos back because sys-devel/patch is in
+  package.provided.
+
+*libgcrypt-1.2.0-r1 (04 Sep 2004)
+
+  04 Sep 2004; Guy Martin <gmsoft@gentoo.org> +files/libgcrypt-hppa.patch,
+  +libgcrypt-1.2.0-r1.ebuild:
+  Added a fix for relocation problem on hppa. Removed macos KEYWORDS until they
+  stabilize sys-devel/patch.
+
+  09 Aug 2004; Guy Martin <gmsoft@gentoo.org> libgcrypt-1.2.0.ebuild:
+  Stable on hppa.
+
+  07 Aug 2004; <agriffis@gentoo.org> libgcrypt-1.2.0.ebuild:
+  stable on ia64 to fulfill dependency for gnutls security update #59231
+
+  07 Aug 2004; Luca Barbato <lu_zero@gentoo.org> libgcrypt-1.1.94.ebuild:
+  Stable on ppc
+
+  07 Aug 2004; Luca Barbato <lu_zero@gentoo.org> libgcrypt-1.1.94.ebuild:
+  Stable on ppc
+
+  06 Aug 2004; Gustavo Zacarias <gustavoz@gentoo.org> libgcrypt-1.2.0.ebuild:
+  Stable on sparc wrt #59231
+
+  29 Jul 2004; Stephen P. Becker <geoman@gentoo.org> libgcrypt-1.1.94.ebuild:
+  Stable on mips.
+
+  03 Jul 2004; Bryan Østergaard <kloeri@gentoo.org> libgcrypt-1.1.94.ebuild:
+  Stable on alpha.
+
+  01 Jul 2004; Tom Gall <tgall@gentoo.org> libgcrypt-1.2.0.ebuild:
+  stable on ppc64 bug #54804
+
+  26 Jun 2004; Danny van Dyk <kugelfang@gentoo.org> libgcrypt-1.1.94.ebuild:
+  Marked stable on amd64.
+
+  07 Jun 2004; Daniel Black <dragonheart@gentoo.org> -libgcrypt-1.1.3.ebuild,
+  libgcrypt-1.1.91.ebuild, libgcrypt-1.1.92.ebuild, libgcrypt-1.1.94.ebuild,
+  libgcrypt-1.2.0.ebuild:
+  Keyword changes - x86 to 1.1.9*. ~hppa ~ia64 ~ppc readded to 1.2.0 as they
+  seem to have been dropped
+
+*libgcrypt-1.2.0 (30 May 2004)
+
+  30 May 2004; Mike Frysinger <vapier@gentoo.org> +libgcrypt-1.2.0.ebuild:
+  Version bump #48916 by Erinn Looney-Triggs.
+
+  12 May 2004; Bryan Østergaard <kloeri@gentoo.org> libgcrypt-1.1.94.ebuild:
+  Add ~alpha.
+
+  02 May 2004; Stephen P. Becker <geoman@gentoo.org> libgcrypt-1.1.94.ebuild:
+  Added ~mips keyword.
+
+*libgcrypt-1.1.94 (02 May 2004)
+
+  02 May 2004; Bryan Østergaard <kloeri@gentoo.org> +libgcrypt-1.1.94.ebuild:
+  Version bump, bug #49610.
+
+  29 Feb 2004; Jason Wever <weeve@gentoo.org> libgcrypt-1.1.92.ebuild:
+  I hope you like ~sparcin' too.
+
+*libgcrypt-1.1.92 (28 Feb 2004)
+
+  28 Feb 2004; Alastair Tse <liquidx@gentoo.org> libgcrypt-1.1.92.ebuild:
+  version bump. added backward compat symlinks. (#43175)
+
+  01 Feb 2004; Jon Portnoy <avenj@gentoo.org> libgcrypt-1.1.91.ebuild :
+  AMD64 keywords.
+
+*libgcrypt-1.1.91 (01 Jan 2004)
+
+  01 Jan 2004; Hanno Boeck <hanno@gentoo.org> libgcrypt-1.1.91.ebuild:
+  Version bump.
+
+  16 Dec 2003; Guy Martin <gmsoft@gentoo.org> libgcrypt-1.1.12.ebuild:
+  Marked stable on hppa.
+
+  14 Dec 2003; Lars Weiler <pylon@gentoo.org> libgcrypt-1.1.12.ebuild:
+  Make stable on ppc
+
+  13 Dec 2003; Brad House <brad_mssw@gentoo.org> libgcrypt-1.1.12.ebuild:
+  mark stable on amd64
+
+  10 Dec 2003; <agriffis@gentoo.org> libgcrypt-1.1.12.ebuild:
+  stable on ia64
+
+  28 Nov 2003; Jason Wever <weeve@gentoo.org> libgcrypt-1.1.12.ebuild:
+  Marked stable on sparc.
+
+  16 Oct 2003; Aron Griffis <agriffis@gentoo.org> libgcrypt-1.1.12.ebuild:
+  Stable on alpha
+
+  13 Oct 2003; Alastair Tse <liquidx@gentoo.org> libgcrypt-1.1.10.ebuild,
+  libgcrypt-1.1.12.ebuild, libgcrypt-1.1.8.ebuild:
+  stable bump and cleanup
+
+  13 May 2003; Tavis Ormandy <taviso@gentoo.org> libgcrypt-1.1.12.ebuild:
+  adding ~alpha keyword.
+
+  10 May 2003; <jrray@gentoo.org> libgcrypt-1.1.12.ebuild:
+  Making the doctype depends optional based on the doc use variable. Closes bug
+  19535.
+
+*libgcrypt-1.1.12 (08 Feb 2003)
+
+  08 Feb 2003; J Robert Ray <jrray@gentoo.org> libgcrypt-1.1.12 : Version bump,
+  all the docbook-sgml-utils issues should be sorted out.  The configure script
+  needs a working docbook environment or else it prints out a warning, then
+  goes on to never actually use it.  Since it is conceivable that it may be
+  used or needed in the future, I'm leaving the dependencies in place for now.
+
+*libgcrypt-1.1.10 (4 Feb 2003)
+
+  04 Feb 2003; Yannick Koehler <ykoehler@gentoo.org> libgcrypt-1.1.10.ebuild
+  files/digest-libgcrypt-1.1.10 :
+
+  Version bump.
+
+  03 Jan 2003; Matthew Turk <satai@gentoo.org> :
+  Changed docbook2X dependency to docbook-sgml-utils, as both have the same
+  results and docbook-sgml-utils is more dependable, although I can't really
+  tell where the docbook2X system is used in this.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*libgcrypt-1.1.8 (12 Oct 2002)
+
+  12 Oct 2002; Seemant Kulleen <seemant@gentoo.org> libgcrypt-1.1.8.ebuild
+  files/digest-libgcrypt-1.1.8 :
+
+  Version bump.  License is now LGPL-2.1 unless using a unix without
+  /dev/random or windows, in which case use GPL-2.  Removed myconf settings 
+  from 1.1.3 since README mentioned nothing about them.  Added docs in 
+  src_install.
+
+*libgcrypt-1.1.3 (15 Mar 2002 )
+
+  13 Aug 2002; Pieter Van den Abeele <pvdabeel@gentoo.org> ChangeLog :
+
+  Added ppc keyword
+
+  15 Mar 2002; Seemant Kulleen <seemant@gentoo.org> ChangeLog :
+
+  This library is necessary for the new release of aide (intrusion detection)
+  version 0.8
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.

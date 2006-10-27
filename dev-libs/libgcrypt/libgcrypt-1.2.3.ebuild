@@ -46,7 +46,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die
+	make DESTDIR="${D}" install || die
 	dodoc AUTHORS BUGS ChangeLog NEWS README* THANKS TODO VERSION
 
 	# backwards compat symlinks

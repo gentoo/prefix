@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.2.2-r1.ebuild,v 1.15 2006/07/09 00:48:45 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.2.2-r1.ebuild,v 1.17 2006/10/19 15:53:59 uberlord Exp $
 
 EAPI="prefix"
 
@@ -26,8 +26,8 @@ src_unpack() {
 	epunt_cxx
 
 	# fix for miss detection of 32 bit ppc
-	cd ${S}
-	epatch ${WORKDIR}/${PN}-1.2.1-ppc64-fix.patch
+	cd "${S}"
+	epatch "${WORKDIR}"/${PN}-1.2.1-ppc64-fix.patch
 
 #	cd ${S}
 #	epatch ${WORKDIR}/${PN}-1.2.1-GNU-stack-fix.patch
@@ -46,7 +46,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die
+	make DESTDIR="${D}" install || die
 	dodoc AUTHORS BUGS ChangeLog NEWS README* THANKS TODO VERSION
 
 	# backwards compat symlinks
