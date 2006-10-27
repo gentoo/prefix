@@ -46,6 +46,6 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR=${EDEST} install || die "make install failed"
+	make DESTDIR=${D} install || die "make install failed"
 	dodoc AUTHORS ChangeLog NEWS README THANKS TODO VERSION
 }
