@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ca-certificates-20050804.ebuild,v 1.3 2006/03/30 14:36:07 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ca-certificates-20050804.ebuild,v 1.4 2006/10/17 06:55:49 uberlord Exp $
 
 EAPI="prefix"
 
@@ -26,14 +26,14 @@ src_unpack() {
 }
 
 src_install() {
-	mkdir -p "${D}"
-	cd "${D}"
+	mkdir -p "${ED}"
+	cd "${ED}"
 	tar zxf "${S}"/data.tar.gz || die "installing data failed"
-	find "${D}"/usr/share/ca-certificates -name '*.crt' -printf '%P\n' \
+	find "${ED}"/usr/share/ca-certificates -name '*.crt' -printf '%P\n' \
 		| sort > etc/ca-certificates.conf
 }
 
 pkg_postinst() {
-	[[ ${ROOT} != "/" ]] && return 0
+	[[ ${EROOT} != "/" ]] && return 0
 	update-ca-certificates
 }

@@ -1,0 +1,27 @@
+# ChangeLog for app-misc/ca-certificates
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.5 2006/10/17 06:55:49 uberlord Exp $
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org>
+  ca-certificates-20050804.ebuild:
+  Added ~sparc-fbsd keyword.
+
+  27 Apr 2006; Alec Warner <antarus@gentoo.org>
+  files/digest-ca-certificates-20050518,
+  files/digest-ca-certificates-20050804, Manifest:
+  Fixing duff SHA256 digests: Bug # 131293
+
+  30 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  ca-certificates-20050804.ebuild:
+  Add ~x86-fbsd keyword.
+
+*ca-certificates-20050804 (04 Sep 2005)
+
+  04 Sep 2005; Daniel Black <dragonheart@gentoo.org>
+  +ca-certificates-20050804.ebuild:
+  version bump
+
+*ca-certificates-20050518 (23 May 2005)
+
+  23 May 2005; Mike Frysinger <vapier@gentoo.org> :
+  Initial import.  Ebuild submitted by me for #93520.
