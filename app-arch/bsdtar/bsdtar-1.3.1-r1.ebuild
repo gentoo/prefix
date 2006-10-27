@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bsdtar/bsdtar-1.3.1-r1.ebuild,v 1.1 2006/10/06 14:04:00 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bsdtar/bsdtar-1.3.1-r1.ebuild,v 1.3 2006/10/17 12:01:10 uberlord Exp $
 
 EAPI="prefix"
 
@@ -64,7 +64,7 @@ src_compile() {
 }
 
 src_install() {
-	emake -j1 DESTDIR="${EDEST}" install || die "emake install failed"
+	emake -j1 DESTDIR="${D}" install || die "emake install failed"
 
 	# Create tar symlink for FreeBSD
 	if [[ ${CHOST} == *-freebsd* ]]; then
@@ -73,14 +73,14 @@ src_install() {
 	fi
 
 	if use build; then
-		rm -rf "${D}"/usr
-		rm -rf "${D}"/lib/*.so*
+		rm -rf "${ED}"/usr
+		rm -rf "${ED}"/lib/*.so*
 		return 0
 	fi
 
-	if [[ ${CHOST} != *-darwin* ]]; then
+	if [[ ${USERLAND} != "Darwin" ]]; then
 		dodir /$(get_libdir)
-		mv "${D}"/usr/$(get_libdir)/*.so* "${D}"/$(get_libdir)
+		mv "${ED}"/usr/$(get_libdir)/*.so* "${ED}"/$(get_libdir)
 		gen_usr_ldscript libarchive.so
 	fi
 }
