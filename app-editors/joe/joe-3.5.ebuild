@@ -46,10 +46,10 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${EDEST}" || die "make install failed"
+	make install DESTDIR="${D}" || die "make install failed"
 	dodoc ChangeLog HACKING HINTS LIST NEWS README TODO
 	# remove superfluous documentation, fixes bug #116861
-	rm -rf "${D}"/etc/joe/doc
+	rm -rf "${ED}"/etc/joe/doc
 }
 
 pkg_postinst() {
