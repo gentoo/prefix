@@ -1,5 +1,5 @@
 #####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.6131 2006/10/24 23:02:19 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.6147 2006/10/26 20:09:51 beandog Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -20,6 +20,28 @@
 ##
 ##   End example
 ## 
+
+# Steve Dibb <beandog@gentoo.org> (26 Oct 2006)
+# Masked for removal (treecleaner), see bug #65923
+# remove on 2006-11-26
+dev-java/bluej-bin
+
+# George Shapovalov <george@gentoo.org> (26 Oct 2006)
+# Masked for removal - "proper" versions have been added under 
+# asis-gcc and asis-gpl. Please consider switching!
+=dev-ada/asis-3.4.6
+=dev-ada/asis-3.4.6.2006
+# Masked for removal as old style gnat is going to be masked soon. 
+=dev-ada/asis-3.44
+
+# Matthias Schwarzott <zzam@gentoo.org> (26 Oct 2006)
+# Masked for removal (will be moved to vdr-testing overlay)
+# as it does not work in its current state.
+media-plugins/vdr-adzap
+
+# Doug Goldstein <cardoe@gentoo.org> (25 Oct 2006)
+# Masked pending removal on 25 Nov 2006. See bug #134621
+net-www/netscape-plugger
 
 # Diego Pettenò <flameeyes@gentoo.org> (24 Oct 2006)
 # pam_console on its own ebuild, so that it can be used with PAM 0.99
@@ -59,11 +81,17 @@ dev-perl/rpm
 >=games-fps/quake3-brainworks-0.91-r1
 >=games-fps/quake3-cpma-1.38-r1
 >=games-fps/quake3-defrag-1.91.08-r1
+games-fps/quake3-excessiveplus
+games-fps/quake3-lrctf
 >=games-fps/quake3-matrix-2.4_beta-r1
+>=games-fps/quake3-nsco-1.93-r1
 >=games-fps/quake3-ra3-1.76-r1
+games-fps/quake3-rally
+games-fps/quake3-reaction
 >=games-fps/quake3-ruinhunters-1.0a-r1
 >=games-fps/quake3-threewave-1.7-r1
 >=games-fps/quake3-urbanterror-3.7-r1
+>=games-fps/quake3-wop-1.0_beta1-r2
 
 # Fabian Groffen <grobian@gentoo.org> (23 Oct 2006)
 # MonetDB doesn't compile any more.  Waiting for next release (soon) 
@@ -463,6 +491,12 @@ games-arcade/tuxracer-demo
 ~x11-drivers/nvidia-drivers-1.0.9626
 ~media-video/nvidia-settings-1.0.20060919
 
+# Seemant Kullee <seemant@gentoo.org> (26 Oct 2006)
+# swfdec is stale, according to upstream as well, and these need to follow
+# mozilla out of the door.
+media-libs/swfdec
+media-plugins/gst-plugins-swfdec
+
 # Markus Ullmann <jokey@gentoo.org> (24.09.2006)
 # masking kvirc cvs ebuild
 =net-irc/kvirc-9999
@@ -515,64 +549,6 @@ net-im/ohphone
 # get the word out
 >=dev-lang/python-2.5
 >=dev-python/python-docs-2.5
-
-# Mike Kelly <pioto@gentoo.org> (19 Sep 2006)
-# Masking new eselect-vi module and related vim/nvi versions.
-# YOU SHOULDN'T HAVE VIM UNMASKED! DON'T USE THIS YET!
-# It needs >=app-admin/eselect-1.0.6, which isn't out yet.
-# See bug #147857 for more details.
->=app-editors/vim-core-7.0.109
->=app-editors/vim-7.0.109
->=app-editors/gvim-7.0.109
->=app-editors/elvis-2.2.0-r2
->=app-editors/vile-9.5-r1
->=app-editors/nvi-1.81.5-r4
-app-admin/eselect-vi
-
-# Alec Warner <antarus@gentoo.org> (19 Sep 2006)
-# masked app-misc/lhinv for treecleaners, bug(s) 83959
-# Removal Oct 19th
-app-misc/lhinv
-
-# Alec Warner <antarus@gentoo.org> (19 Sep 2006)
-# masked x11-plugins/gai-album for treecleaners, bug(s) 80429
-# Removal Oct 19th
-x11-plugins/gai-album
-
-# Alec Warner <antarus@gentoo.org> (19 Sep 2006)
-# masked x11-themes/zinf-themes for treecleaners, bug(s) 148154
-# Removal Oct 19th
-x11-themes/zinf-themes
-
-# Alec Warner <antarus@gentoo.org> (19 Sep 2006)
-# masked media-gfx/xwgui2 for treecleaners, bug(s) 147488 
-# Removal Oct 19th
-media-gfx/xwgui2
-
-# Alec Warner <antarus@gentoo.org> (19 Sep 2006)
-# masked x11-plugins/asbutton for treecleaners, bug(s) 147220
-# Removal Oct 19th
-x11-plugins/asbutton
-
-# Alec Warner <antarus@gentoo.org> (19 Sep 2006)
-# masked www-client/prozgui for treecleaners, bug(s) 144898
-# Removal Oct 19th
-www-client/prozgui
-
-# Alec Warner <antarus@gentoo.org> (19 Sep 2006)
-# masked media-gfx/xpaint for treecleaners, bug(s) 144283
-# Removal Oct 19th
-media-gfx/xpaint
-
-# Alec Warner <antarus@gentoo.org> (19 Sep 2006)
-# masked media-sound/zinf for treecleaners, bug(s) 139989
-# Removal Oct 19th
-media-sound/zinf
-
-# Alec Warner <antarus@gentoo.org> (19 Sep 2006)
-# masked x11-misc/smeg for treecleaners, bug(s) 124079
-# Removal Oct 19th
-x11-misc/smeg
 
 # Alexandre Buisse <nattfodd@gentoo.org> (16 Sep 2006)
 # Too buggy
@@ -1395,10 +1371,6 @@ media-gfx/zphoto
 # Francesco Riosa <vivo@gentoo.org> (07 Dec 2005)
 >=dev-db/mysql-5.1
 
-# Michael Sterrett <mr_bones_@gentoo.org> (03 Dec 2005)
-# Doesn't work with newer allegro, buggy, no release since '02
-games-emulation/game-launcher
-
 # Wolfram Schlich <wschlich@gentoo.org> (26 Nov 2005)
 # has security issues and will be removed from portage
 # due to upstream behaviour, see bug #106497
@@ -1428,11 +1400,6 @@ app-backup/mondo-rescue
 # masking swig 1.3.27 until it gets proper testing
 # to compile with other packages.
 =dev-lang/swig-1.3.27
-
-# Damien Krotkine <dams@gentoo.org> (19 Oct 2005)
-# broken versions, no install rul in Makefile
-=app-portage/flagedit-0.0.3
-=app-portage/flagedit-0.0.4
 
 # Marcelo Goes <vanquirius@gentoo.org> (01 Oct 2005)
 # Masking because of bug 107240 (exporting PDF/Latex)
@@ -1513,8 +1480,6 @@ media-sound/ipodder
 
 # Markus Nigbur <pYrania@gentoo.org> (01 Jul 2005)
 # Masked due to a pretty big bug with crosscompile support.
-=sys-devel/distcc-2.18.3-r8
-
 # Colin Kingsley <tercel@gentoo.org> (30 Jun 2005)
 # Major revisions. Masked for testing.
 =sys-devel/distcc-2.18.3-r8
@@ -1611,10 +1576,6 @@ net-im/mercury-bin
 # be broken out of it
 dev-lisp/cl-imho
 
-# <mkennedy@gentoo.org> (Jan 12 2005)
-# no longer needed for the time being; use app-emacs/slime instead
-# app-emacs/slime-cvs
-
 # <danarmak@gentoo.org> (11 Dec 2004)
 # Considered broken by upstream; future to be decided
 kde-base/qtsharp
@@ -1684,10 +1645,3 @@ net-im/gabber
 # <lu_zero@gentoo.org> (16 Mar 2003)
 # to be tested, seems unstable
 net-dialup/hcfusbmodem
-
-# <phoenix@gentoo.org> (21 Nov 2002)
-# The huge nsplugins mask. These plugins use
-# the new layout (/usr/lib/nsbrowser/plugins)
-# and should work in both mozilla and phoenix.
-=net-www/netscape-plugger-4.0-r2
-

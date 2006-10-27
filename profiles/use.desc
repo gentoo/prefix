@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.310 2006/10/21 17:54:17 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.312 2006/10/26 23:58:41 blubb Exp $
 
 # Keep them sorted
 
@@ -81,7 +81,6 @@ emacs-w3 - Add support for Emacs/W3 where applicable
 emboss - Adds support for the European Molecular Biology Open Software Suite
 empress - Adds support for the Empress database server
 empress-bcs - Adds local access support for the Empress database server
-emul-linux-x86 - Pull in binary support libraries for x86 applications
 encode - Adds support for encoding of audio or video files
 esd - Adds support for media-sound/esound (Enlightened Sound Daemon)
 esoob - Adds support for Easysoft OOD database
@@ -213,6 +212,7 @@ mozilla - Adds support for the Mozilla web-browser
 mp3 - Add support for reading mp3 files
 mpeg - Adds libmpeg3 support to various packages.
 mpi - Adds MPI (Message Passing Interface) layer to the apps that support it.
+mplayer - Enable mplayer support for playback or encoding
 msession - Adds support for msession daemon
 msn - Enable MSN Messenger IM protocol support
 msql - Adds support for the MSQL database server
