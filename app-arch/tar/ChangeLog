@@ -1,6 +1,25 @@
 # ChangeLog for app-arch/tar
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.65 2006/09/30 17:18:58 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.70 2006/10/21 21:45:56 vapier Exp $
+
+*tar-1.16 (21 Oct 2006)
+
+  21 Oct 2006; Mike Frysinger <vapier@gentoo.org> +tar-1.16.ebuild:
+  Version bump.
+
+  15 Oct 2006; Timothy Redaelli <drizzt@gentoo.org> tar-1.15.92-r1.ebuild:
+  Added ~x86-fbsd keyword
+
+*tar-1.15.92-r1 (14 Oct 2006)
+
+  14 Oct 2006; Sven Wegener <swegener@gentoo.org>
+  +files/tar-1.15.92-stderr.patch, +tar-1.15.92-r1.ebuild:
+  Fix from upstream for stdout/verbose bug #151239.
+
+*tar-1.15.92 (13 Oct 2006)
+
+  13 Oct 2006; Mike Frysinger <vapier@gentoo.org> +tar-1.15.92.ebuild:
+  Version bump.
 
   30 Sep 2006; Fabian Groffen <grobian@gentoo.org>
   +files/tar-1.15.91-darwin.patch, tar-1.15.91.ebuild:

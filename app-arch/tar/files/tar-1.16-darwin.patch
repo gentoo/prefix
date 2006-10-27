@@ -1,5 +1,5 @@
---- tar-1.15.91/src/common.h
-+++ tar-1.15.91/src/common.h
+--- tar-1.16/src/common.h
++++ tar-1.16/src/common.h
 @@ -73,6 +73,10 @@
  /* Name of this program.  */
  GLOBAL const char *program_name;
