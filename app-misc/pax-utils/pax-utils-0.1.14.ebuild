@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/pax-utils-0.1.14.ebuild,v 1.1 2006/09/23 10:50:36 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/pax-utils-0.1.14.ebuild,v 1.2 2006/10/17 07:03:58 uberlord Exp $
 
 EAPI="prefix"
 
@@ -24,5 +24,5 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}/${EPREFIX}" install || die
+	make DESTDIR="${D}${EPREFIX}" install || die
 }
