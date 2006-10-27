@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/cabextract-1.1.ebuild,v 1.17 2006/09/24 19:46:38 seemant Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/cabextract-1.1.ebuild,v 1.18 2006/10/08 19:49:57 grobian Exp $
 
 EAPI="prefix"
 
@@ -28,6 +28,6 @@ src_unpack() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die
+	make DESTDIR="${D}" install || die
 	dodoc AUTHORS ChangeLog INSTALL NEWS README TODO doc/magic
 }
