@@ -1,6 +1,29 @@
 # ChangeLog for app-arch/unrar
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/ChangeLog,v 1.76 2006/08/23 17:30:13 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/ChangeLog,v 1.83 2006/10/19 15:13:21 kloeri Exp $
+
+  19 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> unrar-3.6.8.ebuild:
+  Stable on Alpha.
+
+  15 Oct 2006; Tobias Scherbaum <dertobi123@gentoo.org> unrar-3.6.8.ebuild:
+  hppa stable, bug #151323
+
+  15 Oct 2006; Fabian Groffen <grobian@gentoo.org> unrar-3.6.2.ebuild,
+  unrar-3.6.4.ebuild, unrar-3.6.5.ebuild, unrar-3.6.6.ebuild,
+  unrar-3.6.7.ebuild, unrar-3.6.8.ebuild:
+  Dropped ppc-macos keyword, see you in prefix.
+
+  15 Oct 2006; Jason Wever <weeve@gentoo.org> unrar-3.6.8.ebuild:
+  Stable on SPARC wrt bug #151323.
+
+  14 Oct 2006; Olivier Crête <tester@gentoo.org> unrar-3.6.8.ebuild:
+  Stable on amd64 per bug #151323
+
+  14 Oct 2006; Michael Hanselmann <hansmi@gentoo.org> unrar-3.6.8.ebuild:
+  Stable on ppc. See bug #151323.
+
+  14 Oct 2006; Markus Rothe <corsair@gentoo.org> unrar-3.6.8.ebuild:
+  Stable on ppc64; bug #151323
 
   23 Aug 2006; Gustavo Zacarias <gustavoz@gentoo.org> unrar-3.6.7.ebuild:
   Stable on hppa wrt #144492
