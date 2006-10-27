@@ -1,0 +1,13 @@
+Index: compiler.eselect.in
+===================================================================
+--- compiler-config-2.0.0_rc2/src/profile-manager/compiler.eselect.in	(revision 271)
++++ compiler-config-2.0.0_rc2/src/profile-manager/compiler.eselect.in	(working copy)
+@@ -380,7 +380,7 @@
+ 		postopts="${postopts} --native"
+ 	else
+ 		# Figure out what bins are installed for the default CTARGET in case we are or are becoming default
+-		set_v="COMPILER_CONFIG_SET_${COMPILER_CONFIG_DEFAULT_CTARGET}"
++		set_v="COMPILER_CONFIG_SET_${COMPILER_CONFIG_DEFAULT_CTARGET//[-.]/_}"
+ 		if [[ -n ${!set_v} ]] ; then
+ 			oldprofile=${!set_v}
+ 

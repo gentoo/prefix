@@ -1,0 +1,204 @@
+# ChangeLog for app-admin/eselect-compiler
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-compiler/ChangeLog,v 1.32 2006/09/23 18:56:16 eradicator Exp $
+
+  23 Sep 2006; Jeremy Huddleston <eradicator@gentoo.org>
+  eselect-compiler-2.0.0_rc2-r1.ebuild:
+  Removed eselect version block as this is compatible with the new eselect.
+
+  22 Aug 2006; Jeremy Huddleston <eradicator@gentoo.org>
+  -files/eselect-compiler-2.0.0_rc1-env-update.patch,
+  -files/eselect-compiler-2.0.0_rc1-inherit.patch,
+  -eselect-compiler-2.0.0_rc1-r6.ebuild, -eselect-compiler-2.0.0_rc2.ebuild,
+  eselect-compiler-2.0.0_rc2-r1.ebuild:
+  Added mktemp to RDEPEND - bug 139629.
+
+  30 Jul 2006; Diego Pettenò <flameeyes@gentoo.org>
+  eselect-compiler-2.0.0_rc1-r6.ebuild:
+  Remove ~x86-fbsd keyword, failure related to libgcc_s.so not being copied
+  over to /lib.
+
+  12 Jul 2006; Kevin F. Quinn <kevquinn@gentoo.org>
+  eselect-compiler-2.0.0_rc2-r1.ebuild:
+  Tentative fixes for bug #139016 and bug #139830; do not die in pkg_setup()
+  if there are no profiles at all, and similarly if no gcc is installed skip
+  the postinst() activation of profiles (for bootstrapping).
+
+  06 Jul 2006; Danny van Dyk <kugelfang@gentoo.org>
+  eselect-compiler-2.0.0_rc1-r6.ebuild, eselect-compiler-2.0.0_rc2.ebuild,
+  eselect-compiler-2.0.0_rc2-r1.ebuild:
+  Added blocks on incompatible eselect versions.
+
+*eselect-compiler-2.0.0_rc2-r1 (26 Jun 2006)
+
+  26 Jun 2006; Jeremy Huddleston <eradicator@gentoo.org> ChangeLog:
+  Fixed bug #135688 which resulted in some wrappers not getting dedleted when
+  profiles were switched.
+
+  23 Jun 2006; Diego Pettenò <flameeyes@gentoo.org>
+  eselect-compiler-2.0.0_rc2.ebuild:
+  Drop ~x86-fbsd keyword from 2.0.0_rc2 that uses non-portable stat calls.
+
+*eselect-compiler-2.0.0_rc2 (21 Jun 2006)
+
+  21 Jun 2006; Jeremy Huddleston <eradicator@gentoo.org>
+  +eselect-compiler-2.0.0_rc2.ebuild:
+  Release to address bugs #136585 and #137251.
+
+  16 Jun 2006; Joshua Kinard <kumba@gentoo.org>
+  eselect-compiler-2.0.0_rc1-r6.ebuild:
+  De-keywording for now on mips. Will stay with gcc-config-1.3.x and see how
+  2.x and its eselect tool mature.
+
+  10 Jun 2006; Harald van Dĳk <truedfx@gentoo.org>
+  eselect-compiler-2.0.0_rc1-r6.ebuild:
+  Move /lib/cpp creation to pkg_postinst for bug #135862
+
+*eselect-compiler-2.0.0_rc1-r6 (09 Jun 2006)
+
+  09 Jun 2006; Jeremy Huddleston <eradicator@gentoo.org>
+  +files/eselect-compiler-2.0.0_rc1-env-update.patch,
+  -eselect-compiler-2.0.0_rc1-r5.ebuild,
+  +eselect-compiler-2.0.0_rc1-r6.ebuild:
+  Run env-update after updating /etc/env.d file.
+
+  07 Jun 2006; Jeremy Huddleston <eradicator@gentoo.org>
+  -eselect-compiler-2.0.0_rc1-r4.ebuild:
+  Removing old version.
+
+*eselect-compiler-2.0.0_rc1-r5 (07 Jun 2006)
+
+  07 Jun 2006; Jeremy Huddleston <eradicator@gentoo.org>
+  +eselect-compiler-2.0.0_rc1-r5.ebuild:
+  Make sure /lib/cpp is installed. Right now, the ebuild is just copying the
+  wrapper to that location, but I'll have this handled properly by
+  compiler.eselect in a later release.
+
+  02 Jun 2006; Jeremy Huddleston <eradicator@gentoo.org>
+  eselect-compiler-2.0.0_rc1-r4.ebuild:
+  Delete buggy spec files rather than fixing them with sed. This will allow
+  portage to properly delete the profiles on unmerge.
+
+  02 Jun 2006; Jeremy Huddleston <eradicator@gentoo.org>
+  eselect-compiler-2.0.0_rc1-r4.ebuild:
+  Only tell users to source /etc/profile when they really need to source it.
+
+*eselect-compiler-2.0.0_rc1-r4 (01 Jun 2006)
+
+  01 Jun 2006; Jeremy Huddleston <eradicator@gentoo.org>
+  -eselect-compiler-2.0.0_rc1-r2.ebuild,
+  -eselect-compiler-2.0.0_rc1-r3.ebuild,
+  +eselect-compiler-2.0.0_rc1-r4.ebuild:
+  Remove profiles for non-existent versions of gcc from /etc/eselect/compiler
+  when we first install eselect-compiler.
+
+*eselect-compiler-2.0.0_rc1-r3 (01 Jun 2006)
+
+  01 Jun 2006; Jeremy Huddleston <eradicator@gentoo.org>
+  +eselect-compiler-2.0.0_rc1-r3.ebuild:
+  Make sure we use the -n option to 'eselect compiler set' when setting up the
+  DEFAULT_ABI.
+
+*eselect-compiler-2.0.0_rc1-r2 (26 May 2006)
+
+  26 May 2006; Jeremy Huddleston <eradicator@gentoo.org>
+  +files/25eselect-compiler, -eselect-compiler-2.0.0_rc1-r1.ebuild,
+  +eselect-compiler-2.0.0_rc1-r2.ebuild:
+  Added env.d entry for CONFIG_PROTECT_MASK. Just tell new users about
+  'eselect compiler migrate' rather than use it since most users will probably
+  already have eselect-compiler profiles installed, and those are superior to
+  the migrated ones. Added logic to choose the compiler during the first
+  install.
+
+  26 May 2006; Diego Pettenò <flameeyes@gentoo.org>
+  eselect-compiler-2.0.0_rc1-r1.ebuild:
+  Add ~x86-fbsd keyword.
+
+  28 Mar 2006; Jeremy Huddleston <eradicator@gentoo.org>
+  -eselect-compiler-2.0.0_beta5.ebuild,
+  eselect-compiler-2.0.0_rc1-r1.ebuild:
+  Added to ~ppc64.
+
+*eselect-compiler-2.0.0_rc1-r1 (28 Oct 2005)
+
+  28 Oct 2005; Jeremy Huddleston <eradicator@gentoo.org>
+  +files/eselect-compiler-2.0.0_rc1-inherit.patch,
+  -eselect-compiler-2.0.0_rc1.ebuild, +eselect-compiler-2.0.0_rc1-r1.ebuild:
+  Added missing inherit.
+
+*eselect-compiler-2.0.0_rc1 (19 Oct 2005)
+
+  19 Oct 2005; Jeremy Huddleston <eradicator@gentoo.org>
+  eselect-compiler-2.0.0_beta5.ebuild, +eselect-compiler-2.0.0_rc1.ebuild:
+  Version bump and fixed to work with eselect-1.0_rc1.
+
+*eselect-compiler-2.0.0_beta5 (07 Oct 2005)
+
+  07 Oct 2005; Jeremy Huddleston <eradicator@gentoo.org>
+  -eselect-compiler-2.0.0_beta4.ebuild,
+  +eselect-compiler-2.0.0_beta5.ebuild:
+  Change behavior to NOT use the deprecated CFLAGS_${ABI} unless explicitly
+  enabled in selection.conf (and it is off by default).
+
+*eselect-compiler-2.0.0_beta4 (06 Oct 2005)
+
+  06 Oct 2005; Jeremy Huddleston <eradicator@gentoo.org>
+  -eselect-compiler-2.0.0_beta3.ebuild,
+  +eselect-compiler-2.0.0_beta4.ebuild:
+  Fixed a bug where selecting a non-native compiler removed the native
+  binaries. Use bin_prefix to determine reference file for timestamp which is
+  needed for the alternate targets of multilib crosscompilers.
+
+*eselect-compiler-2.0.0_beta3 (06 Oct 2005)
+
+  06 Oct 2005; Jeremy Huddleston <eradicator@gentoo.org>
+  -files/eselect-compiler-2.0.0_beta2-get_bins.patch,
+  -files/eselect-compiler-2.0.0_beta2-ref.patch,
+  -files/eselect-compiler-2.0.0_beta2-specs.patch,
+  -eselect-compiler-2.0.0_beta2-r2.ebuild,
+  +eselect-compiler-2.0.0_beta3.ebuild:
+  Some more cross compilation fixes.
+
+*eselect-compiler-2.0.0_beta2-r2 (05 Oct 2005)
+
+  05 Oct 2005; Jeremy Huddleston <eradicator@gentoo.org>
+  +files/eselect-compiler-2.0.0_beta2-get_bins.patch,
+  -eselect-compiler-2.0.0_beta2-r1.ebuild,
+  +eselect-compiler-2.0.0_beta2-r2.ebuild:
+  Fixed get_bins for cross compilers.
+
+*eselect-compiler-2.0.0_beta2-r1 (05 Oct 2005)
+
+  05 Oct 2005; Jeremy Huddleston <eradicator@gentoo.org>
+  +files/eselect-compiler-2.0.0_beta2-ref.patch,
+  +files/eselect-compiler-2.0.0_beta2-specs.patch,
+  -eselect-compiler-2.0.0_beta2.ebuild,
+  +eselect-compiler-2.0.0_beta2-r1.ebuild:
+  Revbump to fix a problem when choosing the reference file for touch on
+  crosscompilers and let postinst fix spec->specs in the conf files.
+
+  05 Oct 2005; Jeremy Huddleston <eradicator@gentoo.org>
+  eselect-compiler-2.0.0_beta2.ebuild:
+  Cleaned up postinst to be a little smarter.
+
+  03 Oct 2005; Jeremy Huddleston <eradicator@gentoo.org>
+  -eselect-compiler-2.0.0_beta1.ebuild, eselect-compiler-2.0.0_beta2.ebuild:
+  Add sedness to fix some possibly broken configs.
+
+*eselect-compiler-2.0.0_beta2 (02 Oct 2005)
+
+  02 Oct 2005; Jeremy Huddleston <eradicator@gentoo.org>
+  +eselect-compiler-2.0.0_beta2.ebuild:
+  Version bump with BSD fixes, some bug fixes, and more backwards compat support.
+
+  01 Oct 2005; Jeremy Huddleston <eradicator@gentoo.org>
+  eselect-compiler-2.0.0_beta1.ebuild:
+  Filtering -ftracer as it borks stuff.
+
+*eselect-compiler-2.0.0_beta1 (01 Oct 2005)
+
+  01 Oct 2005; Jeremy Huddleston <eradicator@gentoo.org> +metadata.xml,
+  +eselect-compiler-2.0.0_beta1.ebuild:
+  Initial version of replacement to gcc-config. It has much better support for
+  multilib, cross compilers, and per-user configurations.
+
