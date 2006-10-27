@@ -95,7 +95,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die
+	make DESTDIR="${D}" install || die
 	dodoc ChangeLog NEWS README THANKS TODO VERSION
 
 	# neither of these should really be needed, please check

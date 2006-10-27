@@ -1,6 +1,32 @@
 # ChangeLog for app-crypt/gnupg
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.233 2006/10/05 04:29:49 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.241 2006/10/24 18:32:17 grobian Exp $
+
+  24 Oct 2006; Fabian Groffen <grobian@gentoo.org> gnupg-1.4.2.2.ebuild,
+  gnupg-1.4.4.ebuild, gnupg-1.4.5.ebuild, gnupg-1.4.5-r1.ebuild,
+  gnupg-1.4.5-r2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix.
+
+  24 Oct 2006; Joshua Jackson <tsunam@gentoo.org> gnupg-1.4.5-r2.ebuild:
+  Stable x86; bug #136665
+
+  24 Oct 2006; Daniel Gryniewicz <dang@gentoo.org> gnupg-1.4.5-r2.ebuild:
+  Marked stable on amd64 for bug #136665
+
+  23 Oct 2006; Markus Rothe <corsair@gentoo.org> gnupg-1.4.5-r2.ebuild:
+  Stable on ppc64; bug #136665
+
+  23 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org> gnupg-1.4.5-r2.ebuild:
+  Stable on hppa wrt #136665
+
+  23 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org> gnupg-1.4.5-r2.ebuild:
+  Stable on sparc wrt #136665
+
+  23 Oct 2006; Chris White <chriswhite@gentoo.org> gnupg-1.4.5-r2.ebuild:
+  PPC stable on version 1.4.5-r2 for bug #136665.
+
+  15 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> gnupg-1.9.21.ebuild:
+  Stable on ia64.
 
 *gnupg-1.4.5-r2 (05 Oct 2006)
 

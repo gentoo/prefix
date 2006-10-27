@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-1.4.5.ebuild,v 1.9 2006/09/02 23:49:37 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-1.4.5.ebuild,v 1.10 2006/10/24 18:32:17 grobian Exp $
 
 EAPI="prefix"
 
@@ -130,10 +130,10 @@ src_compile() {
 
 src_install() {
 	gnupg_fixcheckperms
-	make DESTDIR="${EDEST}" install || die
+	make DESTDIR="${D}" install || die
 
 	# keep the documentation in /usr/share/doc/...
-	rm -rf "${D}/usr/share/gnupg/FAQ" "${D}/usr/share/gnupg/faq.html"
+	rm -rf "${ED}/usr/share/gnupg/FAQ" "${ED}/usr/share/gnupg/faq.html"
 
 	dodoc AUTHORS BUGS ChangeLog NEWS PROJECTS README THANKS \
 		TODO VERSION doc/{FAQ,HACKING,DETAILS,ChangeLog,OpenPGP,faq.raw}
@@ -151,11 +151,6 @@ src_install() {
 	then
 		cp doc/gpg.ru.1 ${T}/gpg.1
 		doman -i18n=ru ${T}/gpg.1
-	fi
-
-	# Remove collissions
-	if use ppc-macos; then
-		rm ${D}/usr/lib/charset.alias ${D}/usr/share/locale/locale.alias
 	fi
 }
 
@@ -184,12 +179,12 @@ src_test() {
 pkg_postinst() {
 	#if ! use kernel_linux || (! use caps && kernel_is lt 2 6 9); then
 	if ! use kernel_linux || kernel_is lt 2 6 9; then
-		chmod u+s,go-r ${ROOT}/usr/bin/gpg
+		chmod u+s,go-r ${EROOT}/usr/bin/gpg
 		einfo "gpg is installed suid root to make use of protected memory space"
 		einfo "This is needed in order to have a secure place to store your"
 		einfo "passphrases, etc. at runtime but may make some sysadmins nervous."
 	else
-		chmod u-s,go-r ${ROOT}/usr/bin/gpg
+		chmod u-s,go-r ${EROOT}/usr/bin/gpg
 	fi
 	echo
 	if use idea; then
