@@ -220,6 +220,23 @@ revision_diff() {
 	fi
 }
 
+# if the user gave some files on the command line, try to revision diff
+# those
+if [[ ${#*} > 0 ]];
+then
+	while [[ ${#*} > 0 ]];
+	do
+		echo -n "  checking $1... "
+		mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$1)
+		ptecv=$(get_cvsversion $1)
+		revision_diff $mtecv $ptecv $1
+		shift
+	done
+
+	# we're done
+	exit 0
+fi
+
 if [[ ! -d ${MTREEDIR}/${EPACKAGE} ]];
 then
 	echo "no such package in main tree: ${EPACKAGE}"
