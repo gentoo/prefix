@@ -1,0 +1,24 @@
+http://bugs.gentoo.org/149583
+
+--- util/domd
++++ util/domd
+@@ -14,7 +14,7 @@
+ cp Makefile Makefile.save
+ # fake the presence of Kerberos
+ touch $TOP/krb5.h
+-if [ "$MAKEDEPEND" = "gcc" ]; then
++if [ "$MAKEDEPEND" != "makedepend" ]; then
+     args=""
+     while [ $# -gt 0 ]; do
+ 	if [ "$1" != "--" ]; then args="$args $1"; fi
+--- Makefile.org
++++ Makefile.org
+@@ -69,7 +69,7 @@
+ PERL= perl
+ TAR= tar
+ TARFLAGS= --no-recursion
+-MAKEDEPPROG=makedepend
++MAKEDEPPROG=$(CC)
+ 
+ # We let the C compiler driver to take care of .s files. This is done in
+ # order to be excused from maintaining a separate set of architecture
