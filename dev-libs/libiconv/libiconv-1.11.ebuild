@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libiconv/libiconv-1.11.ebuild,v 1.5 2006/08/05 13:19:36 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libiconv/libiconv-1.11.ebuild,v 1.6 2006/10/17 06:11:23 uberlord Exp $
 
 EAPI="prefix"
 
@@ -51,21 +51,21 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${EDEST}" docdir="${EPREFIX}/usr/share/doc/${PF}/html" install || die "make install failed"
+	emake DESTDIR="${D}" docdir="${EPREFIX}/usr/share/doc/${PF}/html" install || die "make install failed"
 
 	# Move static libs and creates ldscripts into /usr/lib
 	dodir /$(get_libdir)
 	if [[ ${USERLAND} != "Darwin" ]] ; then
-		mv "${D}"/usr/$(get_libdir)/*.so* "${D}/$(get_libdir)"
+		mv "${ED}"/usr/$(get_libdir)/*.so* "${ED}/$(get_libdir)"
 		gen_usr_ldscript libiconv$(get_libname)
 		gen_usr_ldscript libcharset$(get_libname)
 	fi
 
-	use build && rm -rf "${D}/usr"
+	use build && rm -rf "${ED}/usr"
 
 	preserve_old_lib /lib/$(get_libdir)/libiconv$(get_libname 4)
 	# config protect
-	rm "${D}"/usr/lib/charset.alias
+	rm "${ED}"/usr/lib/charset.alias
 }
 
 pkg_postinst() {
