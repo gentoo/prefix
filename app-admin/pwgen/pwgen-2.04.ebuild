@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/pwgen/pwgen-2.04.ebuild,v 1.12 2005/10/06 18:55:15 hansmi Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/pwgen/pwgen-2.04.ebuild,v 1.13 2006/10/08 19:35:35 grobian Exp $
 
 EAPI="prefix"
 
@@ -29,6 +29,6 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die
+	make DESTDIR="${D}" install || die
 	use livecd && exeinto /etc/init.d && newexe ${FILESDIR}/pwgen.rc pwgen
 }
