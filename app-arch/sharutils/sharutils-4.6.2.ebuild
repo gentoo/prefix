@@ -33,8 +33,8 @@ src_install() {
 	dodoc AUTHORS ChangeLog NEWS README THANKS TODO
 	if use doc ; then
 		mv html_chapter/ html_node sharutils.html html_mono/ \
-			pdf/sharutils.pdf.gz "${D}/usr/share/doc/${PF}" \
+			pdf/sharutils.pdf.gz "${ED}/usr/share/doc/${PF}" \
 			|| die 'documentation installation failed'
-		rm "${D}/usr/share/doc/${PF}"/*/*.gz
+		rm "${ED}/usr/share/doc/${PF}"/*/*.gz
 	fi
 }
