@@ -23,7 +23,6 @@ MISC metadata.xml 260 RMD160 43cb7ced9f55009bba29a4017d2ee88dab5ab83f SHA1 94674
 MD5 a68f2de135f18e206da75ebdf70cf045 metadata.xml 260
 RMD160 43cb7ced9f55009bba29a4017d2ee88dab5ab83f metadata.xml 260
 SHA256 b937624b5672a3a8f418d773a2dff2c4228888b64f40e2ca3350b3915b0e5319 metadata.xml 260
-size 220 files/digest-zip-2.32 220
+MD5 345d860e42e96f074b9d42586b9ecb4c files/digest-zip-2.32 220
 RMD160 722b3f11ee7de1a65b28bd982b573b437145c0f5 files/digest-zip-2.32 220
 SHA256 610d0957381d482e463b305d935d376fe4dfe9c6f6ef87b98d3ae84bcd7d7993 files/digest-zip-2.32 220
-MD5 345d860e42e96f074b9d42586b9ecb4c files/digest-zip-2.32 220
