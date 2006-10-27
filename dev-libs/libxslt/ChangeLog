@@ -1,0 +1,554 @@
+# ChangeLog for dev-libs/libxslt
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.143 2006/10/20 00:27:28 kloeri Exp $
+
+  20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> libxslt-1.1.17.ebuild:
+  Stable on Alpha.
+
+  19 Oct 2006; Roy Marples <uberlord@gentoo.org> libxslt-1.1.17.ebuild:
+  Added ~sparc-fbsd keyword.
+
+  03 Sep 2006; Joshua Kinard <kumba@gentoo.org> libxslt-1.1.17.ebuild:
+  Marked stable on mips.
+
+  16 Aug 2006; Markus Rothe <corsair@gentoo.org> libxslt-1.1.17.ebuild:
+  Stable on ppc64
+
+  17 Jul 2006; Daniel Gryniewicz <dang@gentoo.org> libxslt-1.1.17.ebuild:
+  Marked stable on amd64 for bug #139612
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libxslt-1.1.17.ebuild:
+  hppa stable, bug #139612
+
+  14 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libxslt-1.1.17.ebuild:
+  ppc stable, bug #139612
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org> libxslt-1.1.17.ebuild:
+  Mark 1.1.17 stable on ia64
+
+  12 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org> libxslt-1.1.17.ebuild:
+  Stable on x86 wrt bug #139612.
+
+  10 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org> libxslt-1.1.17.ebuild:
+  Stable on sparc wrt #139612
+
+*libxslt-1.1.17 (22 Jun 2006)
+
+  22 Jun 2006; Leonardo Boshell <leonardop@gentoo.org>
+  +libxslt-1.1.17.ebuild:
+  New release.
+
+*libxslt-1.1.16 (19 May 2006)
+
+  19 May 2006; Leonardo Boshell <leonardop@gentoo.org>
+  +files/libxslt-1.1.16-destdir.patch,
+  +files/libxslt-1.1.16-pythondir_fix.patch, +libxslt-1.1.16.ebuild:
+  New release.
+
+  01 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  libxslt-1.1.15-r1.ebuild:
+  Add ~x86-fbsd keyword.
+
+*libxslt-1.1.15-r1 (31 Mar 2006)
+
+  31 Mar 2006; Leonardo Boshell <leonardop@gentoo.org>
+  +files/libxslt-1.1.15-pattern_fix.patch, +libxslt-1.1.15-r1.ebuild:
+  Patch to fix a segfault with certain xpath statements (bug #106992). Dropped
+  'static' USE flag.
+
+  11 Nov 2005; Michael Hanselmann <hansmi@gentoo.org> libxslt-1.1.15.ebuild:
+  Stable on ppc.
+
+  31 Oct 2005; Brent Baude <ranger@gentoo.org> libxslt-1.1.15.ebuild:
+  marking libxslt-1.1.15 ppc64 stable per bug 110454
+
+  26 Oct 2005; Aaron Walker <ka0ttic@gentoo.org> libxslt-1.1.15.ebuild:
+  Stable on mips for bug #110454.
+
+  25 Oct 2005; Fernando J. Pereda <ferdy@gentoo.org> libxslt-1.1.15.ebuild:
+  stable on alpha wrt bug #110454
+
+  25 Oct 2005; John N. Laliberte <allanonjl@gentoo.org>
+  libxslt-1.1.15.ebuild:
+  stable on x86, #110454
+
+  25 Oct 2005; Gustavo Zacarias <gustavoz@gentoo.org> libxslt-1.1.15.ebuild:
+  Stable on sparc wrt #110454
+
+  25 Oct 2005; <dang@gentoo.org> libxslt-1.1.15.ebuild:
+  Marked stable on amd64
+
+  07 Sep 2005; Aaron Walker <ka0ttic@gentoo.org> libxslt-1.1.14-r2.ebuild:
+  Stable on mips.
+
+*libxslt-1.1.15 (06 Sep 2005)
+
+  06 Sep 2005; Leonardo Boshell <leonardop@gentoo.org>
+  -libxslt-1.1.14.ebuild, +libxslt-1.1.15.ebuild:
+  New version.
+
+  31 Aug 2005; Herbie Hopkins <herbs@gentoo.org> libxslt-1.1.14-r2.ebuild:
+  Stable on amd64.
+
+  23 Aug 2005; Aron Griffis <agriffis@gentoo.org> libxslt-1.1.14-r2.ebuild:
+  stable on ia64
+
+  19 Aug 2005; Michael Hanselmann <hansmi@gentoo.org>
+  libxslt-1.1.14-r2.ebuild:
+  Stable on ppc.
+
+  17 Aug 2005; MATSUU Takuto <matsuu@gentoo.org> libxslt-1.1.14-r2.ebuild:
+  Stable on sh.
+
+  08 Aug 2005; Markus Rothe <corsair@gentoo.org> libxslt-1.1.14-r2.ebuild:
+  Stable on ppc64
+
+  03 Aug 2005; Bryan Østergaard <kloeri@gentoo.org>
+  libxslt-1.1.14-r2.ebuild:
+  Stable on alpha.
+
+  03 Aug 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  libxslt-1.1.14-r2.ebuild:
+  Stable on sparc
+
+  03 Aug 2005; Leonardo Boshell <leonardop@gentoo.org>
+  libxslt-1.1.14-r2.ebuild:
+  Stable on x86.
+
+  02 Aug 2005; Simon Stelling <blubb@gentoo.org> libxslt-1.1.14.ebuild:
+  stable on amd64
+
+  31 Jul 2005; Tobias Scherbaum <dertobi123@gentoo.org>
+  libxslt-1.1.14.ebuild:
+  ppc stable
+
+*libxslt-1.1.14-r2 (29 Jul 2005)
+
+  29 Jul 2005; John N. Laliberte <allanonjl@gentoo.org>
+  -libxslt-1.1.14-r1.ebuild, +libxslt-1.1.14-r2.ebuild:
+  fix html path to use PF, fixes #99382
+
+*libxslt-1.1.14-r1 (27 Jul 2005)
+
+  27 Jul 2005; Leonardo Boshell <leonardop@gentoo.org>
+  libxslt-1.1.14-r1.ebuild:
+  New revision. Always pass --with-debugger to make libxslt useful for
+  external development tools (bug #98345).
+
+  27 Jul 2005; Guy Martin <gmsoft@gentoo.org> libxslt-1.1.14.ebuild:
+  Stable on hppa.
+
+  26 Jul 2005; Gustavo Zacarias <gustavoz@gentoo.org> libxslt-1.1.14.ebuild:
+  Stable on sparc
+
+  25 Jul 2005; Leonardo Boshell <leonardop@gentoo.org> libxslt-1.1.14.ebuild:
+  Stable on x86.
+
+  09 Jul 2005; Markus Rothe <corsair@gentoo.org> libxslt-1.1.13-r1.ebuild:
+  Stable on ppc64
+
+  08 Jul 2005; Rene Nussbaumer <killerfox@gentoo.org>
+  libxslt-1.1.13-r1.ebuild:
+  Stable on hppa.
+
+  07 Jul 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  libxslt-1.1.13-r1.ebuild:
+  Stable on sparc
+
+*libxslt-1.1.14 (06 Jul 2005)
+
+  06 Jul 2005; Leonardo Boshell <leonardop@gentoo.org> libxslt-1.1.14.ebuild:
+  New release. Added 'debug' and 'static' USE flags.
+
+  06 Jul 2005; Leonardo Boshell <leonardop@gentoo.org>
+  libxslt-1.1.13-r1.ebuild:
+  Stable on x86.
+
+  09 Apr 2005; Markus Rothe <corsair@gentoo.org> libxslt-1.1.12.ebuild:
+  Stable on ppc64
+
+  02 Apr 2005; Stephen P. Becker <geoman@gentoo.org> libxslt-1.1.12.ebuild:
+  stable on mips
+
+  01 Apr 2005; Simon Stelling <blubb@gentoo.org> libxslt-1.1.12.ebuild:
+  stable on amd64
+
+  26 Mar 2005; Danny van Dyk <kugelfang@gentoo.org>
+  libxslt-1.1.13-r1.ebuild:
+  Fixed BUG #86756 (multilib-strict).
+
+*libxslt-1.1.13-r1 (25 Mar 2005)
+
+  25 Mar 2005; Mike Gardiner <obz@gentoo.org>
+  +files/libxslt-1.1.13-xslt.patch, +libxslt-1.1.13-r1.ebuild:
+  Applied fix for missing dictionary in xslt.c which was causing crashes in
+  kopete. Should be fixed in 1.1.14 (it's in CVS). See bug #86327, and the
+  linked upstream bug
+
+  22 Mar 2005; Mike Gardiner <obz@gentoo.org> libxslt-1.1.13.ebuild:
+  Requires >=dev-libs/libxml2-2.6.17, see bug #86157
+
+*libxslt-1.1.13 (20 Mar 2005)
+
+  20 Mar 2005; Joe McCann <joem@gentoo.org> +libxslt-1.1.13.ebuild:
+  version bump
+
+  20 Mar 2005; Bryan Østergaard <kloeri@gentoo.org> libxslt-1.1.12.ebuild:
+  Stable on alpha.
+
+  09 Mar 2005; Gustavo Zacarias <gustavoz@gentoo.org> libxslt-1.1.12.ebuild:
+  Stable on sparc
+
+  09 Mar 2005; Mike Gardiner <obz@gentoo.org> libxslt-1.1.12.ebuild:
+  Keyworded x86 ppc
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  16 Dec 2004; Dylan Carlson <absinthe@gentoo.org> libxslt-1.1.9-r1.ebuild:
+  Stable on amd64.
+
+  11 Dec 2004; Bryan Østergaard <kloeri@gentoo.org>
+  libxslt-1.1.9-r1.ebuild:
+  Stable on alpha.
+
+*libxslt-1.1.12 (11 Dec 2004)
+
+  11 Dec 2004; Mike Gardiner <obz@gentoo.org> +libxslt-1.1.12.ebuild:
+  New version
+
+  12 Nov 2004; Mike Gardiner <obz@gentoo.org> :
+  Keyworded ppc
+
+  08 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org> libxslt-1.1.9-r1.ebuild:
+  Stable on sparc
+
+  07 Nov 2004; Joshua Kinard <kumba@gentoo.org> libxslt-1.1.9-r1.ebuild:
+  Marked stable on mips.
+
+  06 Nov 2004; Mike Gardiner <obz@gentoo.org> libxslt-1.1.9-r1.ebuild,
+  -libxslt-1.1.9.ebuild:
+  Marked 1.1.9-r1 x86
+
+  05 Nov 2004; Lars Weiler <pylon@gentoo.org> libxslt-1.1.8-r1.ebuild:
+  Stable on ppc.
+
+  05 Nov 2004; Mike Gardiner <obz@gentoo.org> -libxslt-1.0.33.ebuild,
+  -libxslt-1.1.3.ebuild, libxslt-1.1.4.ebuild, libxslt-1.1.6.ebuild,
+  libxslt-1.1.8-r1.ebuild, libxslt-1.1.8.ebuild, libxslt-1.1.9-r1.ebuild,
+  libxslt-1.1.9.ebuild:
+  Removed conditional inheritance, see QA on bug #68913, and cleaned out
+  oldest versions
+
+  19 Sep 2004; Joshua Kinard <kumba@gentoo.org> libxslt-1.1.8-r1.ebuild:
+  Marked stable on mips.
+
+*libxslt-1.1.9-r1 (13 Sep 2004)
+
+  13 Sep 2004; Mike Gardiner <obz@gentoo.org> +libxslt-1.1.9-r1.ebuild:
+  Fixed bug: 61097, adding support for crypt to libxslt, based on USE flags,
+  rather than only-detection (QA-Warning-Flash). Please mark this stable, rather
+  than 1.1.9 archs
+
+*libxslt-1.1.9 (23 Aug 2004)
+
+  23 Aug 2004; Mike Gardiner <obz@gentoo.org> +libxslt-1.1.9.ebuild:
+  New version, 1.1.9 added
+
+  18 Aug 2004; Aron Griffis <agriffis@gentoo.org> libxslt-1.1.8-r1.ebuild:
+  stable on alpha and ia64
+
+  07 Aug 2004; Travis Tilley <lv@gentoo.org> libxslt-1.1.8.ebuild:
+  stable on amd64
+
+  05 Aug 2004; Gustavo Zacarias <gustavoz@gentoo.org> libxslt-1.1.8.ebuild:
+  Stable on sparc
+
+  05 Aug 2004; Guy Martin <gmsoft@gentoo.org> libxslt-1.1.8-r1.ebuild:
+  Stable on hppa.
+
+*libxslt-1.1.8-r1 (31 Jul 2004)
+
+  31 Jul 2004; <spider@gentoo.org> +libxslt-1.1.8-r1.ebuild:
+  added libxslt.m4 patch from bug #57791. Thanks to Christian Parpart
+
+*libxslt-1.1.8-r1 31 Jul 2004
+
+  31 Jul 2004; Spider <spider@gentoo.org> 
+  # INSERT ENTRY HERE
+
+  31 Jul 2004; <spider@gentoo.org> libxslt-1.1.8.ebuild:
+  stable on x86 for gnome 2.6.2
+
+*libxslt-1.1.8 (13 Jul 2004)
+
+  13 Jul 2004; Mike Gardiner <obz@gentoo.org> +libxslt-1.1.8.ebuild:
+  New version as requested in bug #56875
+
+  04 Jul 2004; Bryan Østergaard <kloeri@gentoo.org> libxslt-1.1.4.ebuild:
+  Stable on alpha.
+
+  22 Jun 2004; Tom Gall <tgall@gentoo.org> libxslt-1.1.6.ebuild:
+  stable on ppc64, bug #54149
+
+  03 Jun 2004; Aron Griffis <agriffis@gentoo.org> libxslt-1.1.2.ebuild,
+  libxslt-1.1.3.ebuild:
+  Fix use invocation
+
+  13 May 2004; Stephen P. Becker <geoman@gentoo.org> libxslt-1.1.4.ebuild:
+  Stable on mips.
+
+  02 May 2004; Michael McCabe <randy@gentoo.org> libxslt-1.1.6.ebuild:
+  Stable on s390
+
+  27 Apr 2004; Gustavo Zacarias <gustavoz@gentoo.org> libxslt-1.1.4.ebuild:
+  Stable on sparc
+
+*libxslt-1.1.6 (25 Apr 2004)
+
+  25 Apr 2004; foser <foser@gentoo.org> libxslt-1.1.6 :
+  New release
+
+  17 Apr 2004; Travis Tilley <lv@gentoo.org> libxslt-1.1.2.ebuild,
+  libxslt-1.1.3.ebuild, libxslt-1.1.4.ebuild:
+  marked stable on amd64
+
+  21 Mar 2004; Joshua Kinard <kumba@gentoo.org> libxslt-1.0.33.ebuild,
+  libxslt-1.1.0.ebuild, libxslt-1.1.4.ebuild:
+  Marked 1.0.33 stable on mips, added ~mips to 1.1.4
+
+  09 Mar 2004; <agriffis@gentoo.org> libxslt-1.1.3.ebuild:
+  stable on alpha and ia64
+
+  07 Mar 2004; Gustavo Zacarias <gustavoz@gentoo.org> libxslt-1.1.3.ebuild:
+  marked stable on sparc
+
+*libxslt-1.1.4 (07 Mar 2004)
+
+  07 Mar 2004; foser <foser@gentoo.org> libxslt-1.1.4.ebuild :
+  New release
+
+  28 Feb 2004; Alastair Tse <liquidx@gentoo.org> libxslt-1.1.2.ebuild,
+  libxslt-1.1.3.ebuild:
+  add inherit python to disable pyc generation in the presence of python USE
+  flag (#42240)
+
+*libxslt-1.1.3 (17 Feb 2004)
+
+  17 Feb 2004; foser <foser@gentoo.org> libxslt-1.1.3.ebuild :
+  New release, update libxml2 dep
+
+  10 Feb 2004; Bartosch Pixa <darkspecter@gentoo.org> libxslt-1.1.2.ebuild:
+  set ppc in keywords
+
+  09 Feb 2004; <gustavoz@gentoo.org> libxslt-1.1.2.ebuild:
+  stable on hppa and sparc
+
+  08 Feb 2004; <spider@gentoo.org> libxslt-1.1.2.ebuild:
+  x86 stable
+
+  28 Jan 2004; Aron Griffis <agriffis@gentoo.org> libxslt-1.1.1.ebuild:
+  stable on alpha and ia64
+
+  18 Jan 2004; <tuxus@gentoo.org> libxslt-1.0.33.ebuild:
+  Added ~mips to KEYWORDS.
+
+  13 Jan 2004; <gustavoz@gentoo.org> libxslt-1.1.1.ebuild:
+  stable on hppa and sparc
+
+*libxslt-1.1.2 (10 jan 2003)
+
+  10 Jan 2003; foser <foser@gentoo.org> libxslt-1.1.2.ebuild :
+  New release
+
+  13 Dec 2003; Guy Martin <gmsoft@gentoo.org> libxslt-1.0.33.ebuild:
+  Marked stable on hppa.
+
+*libxslt-1.1.1 (11 Dec 2003)
+
+  11 Dec 2003; foser <foser@gentoo.org> libxslt-1.1.1.ebuild :
+  New release
+
+  14 Nov 2003; Aron Griffis <agriffis@gentoo.org> libxslt-1.1.0.ebuild:
+  Stable on ia64
+
+*libxslt-1.1.0 (09 Nov 2003)
+
+  09 Nov 2003; Alastair Tse <liquidx@gentoo.org> libxslt-1.1.0.ebuild:
+  version bump. now requires libxml2-2.6.x
+
+  04 Nov 2003; Christian Birchinger <joker@gentoo.org> libxslt-1.0.33.ebuild:
+  Added sparc stable keyword
+
+  22 Oct 2003; Bartosch Pixa <darkspecter@gentoo.org> libxslt-1.0.33.ebuild:
+  set ppc in keywords
+
+  17 Oct 2003; Aron Griffis <agriffis@gentoo.org> libxslt-1.0.33.ebuild:
+  Stable on alpha
+
+  05 Oct 2003; Mike Gardiner <obz@gentoo.org> libxslt-1.0.33.ebuild:
+  Marked stable on x86
+
+  23 Sep 2003; Bartosch Pixa <darkspecter@gentoo.org> libxslt-1.0.31.ebuild:
+  set ppc in keywords
+
+*libxslt-1.0.33 (12 Sep 2003)
+
+  12 Sep 2003; foser <foser@gentoo.org> libxslt-1.0.33.ebuild :
+  New version
+
+*libxslt-1.0.32 (10 Aug 2003)
+
+  10 Aug 2003; foser <foser@gentoo.org> libxslt-1.0.32.ebuild :
+  New version, removed perl dep, seems unneeded, see how it goes
+
+*libxslt-1.0.31 (07 Jul 2003)
+
+  23 Aug 2003; Guy Martin <gmsoft@gentoo.org> libxslt-1.0.31.ebuild :
+  Marked stable on hppa.
+
+  12 Jul 2003; Daniel Ahlberg <aliz@gentoo.org> :
+  Added missing changelog entry.
+
+  24 Jun 2003; Aron Griffis <agriffis@gentoo.org> libxslt-1.0.30-r1.ebuild:
+  Mark stable on alpha
+
+*libxslt-1.0.30-r1 (24 Jun 2003)
+
+  23 Jul 2003; Guy Martin <gmsoft@gentoo.org> libxslt-1.0.30-r1.ebuild :
+  Marked stable on hppa.
+
+  24 Jun 2003; foser <foser@gentoo.org> libxslt-1.0.30-r1.ebuild :
+  Reinstated emake on upstream request (#23356)
+
+  08 Jun 2003; Christian Birchinger <joker@gentoo.org> libxslt-1.0.30.ebuild:
+  Added sparc stable keyword
+
+*libxslt-1.0.30 (05 May 2003)
+
+  14 Jun 2003; Guy Martin <gmsoft@gentoo.org> libxslt-1.0.30.ebuild :
+  Added hppa to KEYWORDS.
+
+  05 June 2003; Robin Johnson <robbat2@gentoo.org> libxslt-1.0.30.ebuild:
+  Move to stable on x86 as needed for PHP-4.3.2.
+
+  05 May 2003; foser <foser@gentoo.org> libxslt-1.0.30.ebuild :
+  New version
+
+*libxslt-1.0.29 (01 Apr 2003)
+
+  01 Apr 2003; foser <foser@gentoo.org> libxslt-1.0.29.ebuild :
+  New version
+
+*libxslt-1.0.28 (27 Mar 2003)
+
+  27 Mar 2003; Daniel Robbins <drobbins@gentoo.org> libxslt-1.0.28.ebuild:
+  New libxslt bumped into unstable x86.
+
+*libxslt-1.0.27 (03 Mar 2003)
+
+  19 Mar 2003; Guy Martin <gmsoft@gentoo.org> libxslt-1.0.27.ebuild :
+  Added ~hppa to keywords.
+
+  09 Mar 2003; Aron Griffis <agriffis@gentoo.org> libxslt-1.0.27.ebuild:
+  Mark stable on alpha
+
+  03 Mar 2003; foser <foser@gentoo.org> libxslt-1.0.27.ebuild :
+  New version
+
+*libxslt-1.0.25 (05 Feb 2003)
+
+  08 Apr 2003; Todd Sunderlin <todd@gentoo.org> libxslt-1.0.25.ebuild:
+  Marked stable for sparc.
+
+  19 Mar 2003; Guy Martin <gmsoft@gentoo.org> libxslt-1.0.25.ebuild :
+  Added hppa to keywords.
+
+  05 Feb 2003; foser <foser@gentoo.org> libxslt-1.0.25.ebuild :
+  New version
+
+*libxslt-1.0.24 (30 Jan 2003)
+
+  21 Feb 2003; Aron Griffis <agriffis@gentoo.org> libxslt-1.0.24.ebuild :
+  Mark stable on alpha
+
+  30 Jan 2003; foser <foser@gentoo.org> libxslt-1.0.24.ebuild :
+  New version, corrected libxml2 dep
+
+*libxslt-1.0.23 (13 Jan 2003)
+
+  30 Jan 2003; foser <foser@gentoo.org> libxslt-1.0.23.ebuild :
+  Fixed libxml2 dep (#14558)
+
+  13 Jan 2003; foser <foser@gentoo.org> libxslt-1.0.23.ebuild :
+  New version
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*libxslt-1.0.22 (27 Oct 2002)
+
+  07 Nov 2002; foser <foser@gentoo.org> libxslt-1.0.22.ebuild :
+  Added python USE flag. Fixed license to be MIT.
+  Removed some obsolete stuff
+
+  27 Oct 2002; foser <foser@gentoo.org> libxslt-1.0.22.ebuild :
+  Gnome 2.1 commit
+
+*libxslt-1.0.20 (06 Sep 2002)
+
+  29 Nov 2002;Martin Holzer <mholzer@gentoo.org> libxslt-1.0.20.ebuild:
+  Changed download url. 
+
+  17 Sep 2002; Spider <spider@gentoo.org> libxslt-1.0.20.ebuild : ppc keyword
+  added
+
+  16 Sep 2002; Maarten Thibaut <murphy@gentoo.org> libxslt-1.0.20.ebuild ChangeLog :
+  Added Sparc/sparc64 keywords. Revamped ChangeLog layout.
+
+  06 Sep 2002; Spider <spider@gentoo.org> libxslt-1.0.20.ebuild :
+  new version
+  had to patch the python/Makefile to make it adhere to DESTDIR
+
+*libxslt-1.0.19 (07 Jul 2002)
+
+  29 Nov 2002; Martin Holzer <mholzer@gentoo.org> libxslt-1.0.19.ebuild :
+  Changed download url.
+
+  01 Aug 2002; Mark Guertin <gerk@gentoo.org> libxml2-2.4.23.ebuild :
+  Added ppc to keywords
+
+  07 Jul 2002; Gabriele Giorgetti <stroke@gentoo.org> libxslt-1.0.19.ebuild :
+  new version and libxml2 dependence update.
+
+*libxslt-1.0.18 (27 May 2002)
+
+  27 May 2002; Spider <spider@gentoo.org> libxslt-1.0.18.ebuild :
+  new version added
+
+*libxslt-1.0.17-r1 (26 May 2002)
+
+  26 May 2002; Martin Schlemmer <azarah@gentoo.org> libxslt-1.0.17-r1.ebuild :
+  Libtoolize to fix .la files of python site package.
+
+*libxslt-1.0.17 (9 May 2002)
+
+  9 May 2002; Spider <spider@gentoo.org> libxslt-1.0.17.ebuild :
+  bump version is needed due to gnome2 release ;)
+  
+*libxslt-1.0.16 (16 Apr 2002)
+
+  16 Apr 2002; Seemant Kulleen <seemant@gentoo.org> libxslt-1.0.16.ebuild,
+  files/digest-libxslt-1.0.16 : Quick version update.
+
+*libxslt-1.0.14 (21 March 2002)
+
+*libxslt-1.0.10 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
