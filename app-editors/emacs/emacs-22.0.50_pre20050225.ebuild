@@ -131,22 +131,22 @@ src_compile() {
 
 src_install () {
 	einstall || die
-	rm ${D}/usr/bin/emacs-${SLOT}.emacs-${SLOT} || die "removing duplicate emacs executable failed"
+	rm ${ED}/usr/bin/emacs-${SLOT}.emacs-${SLOT} || die "removing duplicate emacs executable failed"
 	dohard /usr/bin/emacs.emacs-${SLOT} /usr/bin/emacs-${SLOT} || die
 
 	if use aqua ; then
 		einfo "Installing Carbon Emacs..."
 		dodir /Applications/Gentoo/Emacs.app
 		pushd mac/Emacs.app
-		tar -chf - . | ( cd ${D}/Applications/Gentoo/Emacs.app; tar -xf -)
+		tar -chf - . | ( cd ${ED}/Applications/Gentoo/Emacs.app; tar -xf -)
 		popd
 	fi
 
 	# fix info documentation
 	einfo "Fixing info documentation..."
 	dodir /usr/share/info/emacs-${SLOT}
-	mv ${D}/usr/share/info/{,emacs-${SLOT}/}dir || die "mv dir failed"
-	for i in ${D}/usr/share/info/*
+	mv ${ED}/usr/share/info/{,emacs-${SLOT}/}dir || die "mv dir failed"
+	for i in ${ED}/usr/share/info/*
 	do
 		if [ "${i##*/}" != emacs-${SLOT} ] ; then
 			mv ${i} ${i/info/info/emacs-${SLOT}}.info
@@ -161,7 +161,7 @@ src_install () {
 	newenvd ${FILESDIR}/60emacs-${SLOT}.envd 60emacs-${SLOT}
 
 	einfo "Fixing manpages..."
-	for m in  ${D}/usr/share/man/man1/* ; do
+	for m in  ${ED}/usr/share/man/man1/* ; do
 		mv ${m} ${m/.1/-${SLOT}.1} || die "mv man failed"
 	done
 
