@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-1.3.12-r1.ebuild,v 1.12 2006/09/18 18:57:34 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-1.3.12-r1.ebuild,v 1.13 2006/10/17 12:08:09 uberlord Exp $
 
 EAPI="prefix"
 
@@ -62,7 +62,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die
+	make DESTDIR="${D}" install || die
 
 	dodoc ChangeLog README doc/nanorc.sample AUTHORS BUGS NEWS TODO
 	dohtml *.html
@@ -71,7 +71,7 @@ src_install() {
 
 	insinto /usr/share/nano
 	doins "${FILESDIR}"/*.nanorc || die
-	echo $'\n''# include "'"${EPREFIX}"'/usr/share/nano/gentoo.nanorc"' >> "${D}"/etc/nanorc
+	echo $'\n''# include "'"${EPREFIX}"'/usr/share/nano/gentoo.nanorc"' >> "${ED}"/etc/nanorc
 
 	dodir /usr/bin
 	dosym /bin/nano /usr/bin/nano
