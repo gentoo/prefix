@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.26.ebuild,v 1.10 2006/09/03 23:42:19 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.26.ebuild,v 1.12 2006/10/17 16:33:47 uberlord Exp $
 
 EAPI="prefix"
 
@@ -88,25 +88,25 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die "Installation failed"
+	make DESTDIR="${D}" install || die "Installation failed"
 
 	dodoc AUTHORS ChangeLog Copyright NEWS README* TODO*
 
 	if ! use doc; then
-		rm -rf ${D}/usr/share/gtk-doc
-		rm -rf ${D}/usr/share/doc/${P}/html
+		rm -rf ${ED}/usr/share/gtk-doc
+		rm -rf ${ED}/usr/share/doc/${P}/html
 	fi
 }
 
 pkg_postinst() {
 	# need an XML catalog, so no-one writes to a non-existent one
-	CATALOG="${ROOT}/etc/xml/catalog"
+	CATALOG="${EROOT}/etc/xml/catalog"
 
 	# we dont want to clobber an existing catalog though,
 	# only ensure that one is there
 	# <obz@gentoo.org>
 	if [ ! -e ${CATALOG} ]; then
-		[ -d "${ROOT}/etc/xml" ] || mkdir -p "${ROOT}/etc/xml"
+		[ -d "${EROOT}/etc/xml" ] || mkdir -p "${EROOT}/etc/xml"
 		${EPREFIX}/usr/bin/xmlcatalog --create > ${CATALOG}
 		einfo "Created XML catalog in ${CATALOG}"
 	fi
