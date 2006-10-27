@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/cpio-2.6-r5.ebuild,v 1.12 2006/03/30 15:05:16 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/cpio-2.6-r5.ebuild,v 1.13 2006/10/17 11:47:52 uberlord Exp $
 
 EAPI="prefix"
 
@@ -47,8 +47,8 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${EDEST}" || die
+	make install DESTDIR="${D}" || die
 	dodoc ChangeLog NEWS README INSTALL
-	rm -f "${D}"/usr/share/man/man1/mt.1
-	rmdir "${D}"/usr/libexec || die
+	rm -f "${ED}"/usr/share/man/man1/mt.1
+	rmdir "${ED}"/usr/libexec || die
 }
