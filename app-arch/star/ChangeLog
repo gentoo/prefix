@@ -1,6 +1,13 @@
 # ChangeLog for app-arch/star
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/star/ChangeLog,v 1.30 2006/09/16 13:03:15 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/star/ChangeLog,v 1.32 2006/10/15 08:54:36 dertobi123 Exp $
+
+  15 Oct 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  star-1.5_alpha62.ebuild:
+  hppa stable
+
+  09 Oct 2006; Fabian Groffen <grobian@gentoo.org> star-1.5_alpha74.ebuild:
+  Dropped ppc-macos, see you in prefix.
 
   16 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org>
   star-1.5_alpha62.ebuild:

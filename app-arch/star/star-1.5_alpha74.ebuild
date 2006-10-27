@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/star/star-1.5_alpha74.ebuild,v 1.2 2006/06/22 19:00:06 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/star/star-1.5_alpha74.ebuild,v 1.3 2006/10/09 20:15:38 grobian Exp $
 
 EAPI="prefix"
 
@@ -45,30 +45,30 @@ src_compile() {
 }
 
 src_install() {
-	make INS_BASE=${D}/usr install || die
+	make INS_BASE=${D}${EPREFIX}/usr install || die
 	insinto /etc/default
 	newins ${S}/rmt/rmt.dfl rmt
 
 	# install mt as mt.star to not conflict with other packages
-	mv ${D}/usr/bin/mt ${D}/usr/bin/mt.star
+	mv ${ED}/usr/bin/mt ${ED}/usr/bin/mt.star
 
 	# same goes for rmt (see #33119, sort of)
-	mv ${D}/usr/sbin/rmt ${D}/usr/sbin/rmt.star
+	mv ${ED}/usr/sbin/rmt ${ED}/usr/sbin/rmt.star
 
 	# finally, remove /usr/bin/tar and /usr/bin/gnutar #33119
-	rm ${D}/usr/bin/tar ${D}/usr/bin/gnutar
+	rm ${ED}/usr/bin/tar ${ED}/usr/bin/gnutar
 
 	dosym star /usr/bin/ustar
 
 	dodoc BUILD Changelog AN-1.* README README.* PORTING TODO
 
 	# avoid questions from rm
-	rm -f ${D}/usr/man/man1/match*
+	rm -f ${ED}/usr/man/man1/match*
 	dodir /usr/share/
-	mv ${D}/usr/man/ ${D}/usr/share
+	mv ${ED}/usr/man/ ${ED}/usr/share
 
-	mv ${D}/usr/share/man/man1/rmt.1.gz ${D}/usr/share/man/man1/rmt.star.1.gz
+	mv ${ED}/usr/share/man/man1/rmt.1.gz ${ED}/usr/share/man/man1/rmt.star.1.gz
 
 	# if the static library isn't writable, portage chokes on it
-	find ${D} -name "*.a" | xargs chmod 644
+	find ${ED} -name "*.a" | xargs chmod 644
 }
