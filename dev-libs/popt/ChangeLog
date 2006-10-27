@@ -1,0 +1,150 @@
+# ChangeLog for dev-libs/popt
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.39 2006/10/24 19:16:50 grobian Exp $
+
+  24 Oct 2006; Fabian Groffen <grobian@gentoo.org> popt-1.7-r1.ebuild,
+  popt-1.10.4-r1.ebuild, popt-1.10.4-r2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix.
+
+*popt-1.10.4-r2 (21 Oct 2006)
+
+  21 Oct 2006; Sandro Bonazzola <sanchan@gentoo.org>
+  files/popt-1.10.4-nls.patch, popt-1.10.4-r1.ebuild,
+  +popt-1.10.4-r2.ebuild:
+  Removed nls patch from 1.10.4-r1 now DEPENDing on gettext. Added 1.10.4-r2
+  masked for testing, nls patch updated discarding any gettext reference.
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org> popt-1.10.4-r1.ebuild:
+  Added ~sparc-fbsd keyword.
+
+  12 Oct 2006; Sandro Bonazzola <sanchan@gentoo.org>
+  files/popt-1.10.4-lib64.patch:
+  lib64 patch updated with the one provided by Roy Marples fixing bug #150984.
+  The patch solves both multilib behaviour and lib6464 previously fixed.
+
+  09 Oct 2006; Sandro Bonazzola <sanchan@gentoo.org>
+  +files/popt-1.10.4-nls.patch, popt-1.10.4-r1.ebuild:
+  Fix bug #150543. Patch provided by opensolaris.org, ported from popt-1.7 and
+  adapted for gentoo. Original patch available here:
+  http://cvs.opensolaris.org/source/xref/jds/Solaris/patches/popt-01-xgettext.diff
+
+  01 Oct 2006; Guy Martin <gmsoft@gentoo.org> popt-1.10.4-r1.ebuild:
+  Stable on hppa.
+
+  21 Sep 2006; Fabian Groffen <grobian@gentoo.org> popt-1.10.4-r1.ebuild:
+  Remove ppc-macos hack, upstream does this already.  Marked ~ppc-macos
+
+  19 Sep 2006; <antarus@gentoo.org> popt-1.7-r1.ebuild:
+  Adding dep on automake to popt to fix stage1 ebuilds
+
+  13 Sep 2006; Aron Griffis <agriffis@gentoo.org> popt-1.10.4-r1.ebuild:
+  Mark 1.10.4-r1 ~ia64. #121862
+
+  12 Sep 2006; Markus Rothe <corsair@gentoo.org> popt-1.10.4-r1.ebuild:
+  Added ~ppc64; bug #121862
+
+  12 Sep 2006; Joshua Jackson <tsunam@gentoo.org> popt-1.10.4-r1.ebuild:
+  adding ~x86 as requested
+
+  11 Sep 2006; Sandro Bonazzola <sanchan@gentoo.org>
+  files/popt-1.10.4-lib64.patch, popt-1.10.4-r1.ebuild:
+  Fixing configure.ac patch using ${EGREP} instead of grep, fixing autoreconf
+  issues. Thanks to SpanKY <vapier@gentoo.org> for reporting and solving the
+  issue. Fix bug #147133
+
+  10 Sep 2006; Diego Pettenò <flameeyes@gentoo.org> popt-1.10.4-r1.ebuild:
+  Add ~x86-fbsd keyword as per bug #121862.
+
+*popt-1.10.4-r1 (10 Sep 2006)
+
+  10 Sep 2006; Sandro Bonazzola <sanchan@gentoo.org>
+  +files/popt-1.10.4-lib64.patch, -popt-1.10.4.ebuild,
+  +popt-1.10.4-r1.ebuild:
+  ebuild bump fixing bug #146988, bug #147066, bug #147044. Many thanks to
+  Patrick McLean for the patches and Diego Pettenò for the package masking.
+
+*popt-1.10.4 (09 Sep 2006)
+
+  09 Sep 2006; Sandro Bonazzola <sanchan@gentoo.org> metadata.xml,
+  +popt-1.10.4.ebuild:
+  Version bump, intially only for ~amd64. Partially resolve bug# 121862. 
+  Taking over maintainership of the package.
+
+  07 Sep 2006; Steve Dibb <beandog@gentoo.org> +metadata.xml:
+  Add metadata
+
+  30 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> popt-1.7-r1.ebuild:
+  Add ~x86-fbsd keyword.
+
+  25 Jan 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +files/popt-1.7-nls.patch, popt-1.7-r1.ebuild:
+  Add patch to link to libintl when not using GLIBC; depend on virtual/libintl
+  when using nls.
+
+  10 May 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/popt-1.7-missing-tests.patch, popt-1.7-r1.ebuild:
+  Add a patch by Ryan Hill to remove incomplete tests #71610.
+
+  26 Jul 2004; Michael Sterrett <mr_bones_@gentoo.org> popt-1.7-r1.ebuild:
+  update source in src_unpack; use emake; tidy
+
+  15 Jun 2004; <solar@gentoo.org> popt-1.7-r1.ebuild,
+  files/popt-1.7-uclibc.patch:
+  added uclibc patch for configure target
+
+*popt-1.7-r1 (20 Mar 2003)
+
+  27 Mar 2003; Seemant Kulleen <seemant@gentoo.org> popt-1.7-r1.ebuild:
+  ok, this one actually does disable nls and also has a mips fix
+
+  27 Mar 2003; Seemant Kulleen <seemant@gentoo.org> popt-1.7-r1.ebuild:
+  gettext is no longer a REQUIRED dependency, though it's a quirky way of
+  disabling it -- tsk tsk @ the upstream authors
+
+  20 Mar 2003; Graham Forest <vladimir@gentoo.org> popt-1.7-r1.ebuild:
+  Removed usage of pic USE flag
+
+  21 Feb 2003; Zach Welch <zwelch@gentoo.org> :
+  Added arm to keywords.
+
+  11 Feb 2003; Guy Martin <gmsoft@gentoo.org> :
+  Added hppa to keywords.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*popt-1.7 (19 Nov 2002)
+
+  09 Mar 2003; Aron Griffis <agriffis@gentoo.org> popt-1.7.ebuild:
+  Mark stable on alpha
+
+  6 Feb 2003; Luca Barbato <lu_zero@gentoo.org> :
+  added elibtoolize
+
+  19 Nov 2002; Mike Frysinger <vapier@gentoo.org> :
+  Version bump/added pic support
+
+*popt-1.6.3 (03 Mar 2002)
+
+  18 Jan 2003; Jan Seidel <tuxus@gentoo.org> :
+  Added mips to keywords
+
+  03 Oct 2002; Brad Cowan <bcowan@gentoo.org> popt-1.6.3.ebuild :
+  fixed nls compile problems per bug #8731
+
+  01 Aug 2002; Mark Guertin <gerk@gentoo.org> libxml2-2.4.23.ebuild :
+  Added ppc to keywords
+
+  29 May 2002; Spider <spider@gentoo.org> popt-1.6.3.ebuild popt-1.5.ebuild :
+  fix bogus DESCRIPTION
+
+*popt-1.5 (01 Feb 2002)
+
+  01 Aug 2002; Mark Guertin <gerk@gentoo.org> libxml2-2.4.23.ebuild :
+  Added ppc to keywords
+
+  01 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.

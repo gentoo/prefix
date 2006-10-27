@@ -1,0 +1,57 @@
+diff -ur popt-1.10.4.orig/configure.ac popt-1.10.4.my/configure.ac
+--- popt-1.10.4.orig/configure.ac	2006-10-21 13:14:32.000000000 +0200
++++ popt-1.10.4.my/configure.ac	2006-10-21 13:13:24.000000000 +0200
+@@ -92,14 +92,6 @@
+               [ : ] )
+ AM_CONDITIONAL(HAVE_LD_VERSION_SCRIPT, test "$have_ld_version_script" = "yes")
+ 
+-if test ! -f ../rpm.c
+-then
+-  AC_MSG_CHECKING(for GNU xgettext)
+-  xgettext --version 2>&1 | grep 'GNU gettext' >/dev/null 2>&1 || AC_MSG_ERROR([
+-  *** GNU gettext is required. The latest version
+-  *** is always available from ftp://ftp.gnu.org/gnu/gettext/.])
+-  AC_MSG_RESULT(yes)
+-fi
+ 
+ AC_CHECK_FUNC(setreuid, [], [
+     AC_CHECK_LIB(ucb, setreuid, [if echo $LIBS | grep -- -lucb >/dev/null ;then :; else LIBS="$LIBS -lc -lucb" USEUCB=y;fi])
+@@ -107,11 +99,9 @@
+ AC_CHECK_FUNCS(getuid geteuid mtrace __secure_getenv setregid strerror)
+ 
+ 
+-AM_GNU_GETTEXT
+-
+ POPT_SOURCE_PATH="`pwd`"
+ AC_DEFINE_UNQUOTED(POPT_SOURCE_PATH, "$POPT_SOURCE_PATH",
+ 	[Full path to popt top_srcdir.])
+ AC_SUBST(POPT_SOURCE_PATH)
+ 
+-AC_OUTPUT([Doxyfile Makefile intl/Makefile po/Makefile.in])
++AC_OUTPUT([Doxyfile Makefile])
+diff -ur popt-1.10.4.orig/Makefile.am popt-1.10.4.my/Makefile.am
+--- popt-1.10.4.orig/Makefile.am	2006-10-21 13:14:32.000000000 +0200
++++ popt-1.10.4.my/Makefile.am	2006-10-21 13:10:09.000000000 +0200
+@@ -9,8 +9,6 @@
+ 	po/*.in po/*.po po/popt.pot \
+ 	popt.ps
+ 
+-SUBDIRS = intl po
+-
+ INCLUDES = -I. -I$(top_srcdir)
+ 
+ noinst_HEADERS = findme.h poptint.h system.h
+@@ -39,10 +37,11 @@
+ usrlib_LTLIBRARIES = libpopt.la
+ 
+ libpopt_la_SOURCES = popt.c findme.c poptparse.c poptconfig.c popthelp.c
+-libpopt_la_LDFLAGS = -no-undefined @INTLLIBS@
+ 
+ if HAVE_LD_VERSION_SCRIPT
+-libpopt_la_LDFLAGS += -Wl,--version-script=$(srcdir)/libpopt.vers
++libpopt_la_LDFLAGS = -no-undefined -Wl,--version-script=$(srcdir)/libpopt.vers
++else
++libpopt_la_LDFLAGS = -no-undefined 
+ endif
+ 
+ man_MANS = popt.3
