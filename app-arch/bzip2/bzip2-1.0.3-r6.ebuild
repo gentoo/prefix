@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/bzip2-1.0.3-r6.ebuild,v 1.13 2006/07/01 17:33:09 kanaka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/bzip2-1.0.3-r6.ebuild,v 1.14 2006/10/17 11:14:02 uberlord Exp $
 
 EAPI="prefix"
 
@@ -63,15 +63,15 @@ src_compile() {
 
 src_install() {
 	if ! use build ; then
-		make PREFIX="${D}"/usr LIBDIR="$(get_libdir)" install || die
+		make PREFIX="${D}${EPREFIX}"/usr LIBDIR="$(get_libdir)" install || die
 
 		# move bzip2 binaries to /bin and use the shared libbz2.so
-		mkdir -p "${D}"/bin
-		mv "${D}"/usr/bin/* "${D}"/bin/
+		mkdir -p "${ED}"/bin
+		mv "${ED}"/usr/bin/* "${ED}"/bin/
 		into /
 
-		if use userland_Darwin ; then
-			make PREFIX="${D}"/usr LIBDIR="$(get_libdir)" install-dylib \
+		if [[ ${USERLAND} == "Darwin" ]] ; then
+			make PREFIX="${D}${EPREFIX}"/usr LIBDIR="$(get_libdir)" install-dylib \
 				|| die "install-dylib failed"
 		else
 			if ! use static ; then

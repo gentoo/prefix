@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/bzip2
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/ChangeLog,v 1.43 2006/07/01 17:33:09 kanaka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/ChangeLog,v 1.44 2006/10/17 11:14:02 uberlord Exp $
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org> bzip2-1.0.3-r6.ebuild:
+  Added ~sparc-fbsd keyword.
 
   01 Jul 2006; Joel Martin <kanaka@gentoo.org> bzip2-1.0.3-r6.ebuild:
   Make install phase idempotent by moving files in .../bin instead of
