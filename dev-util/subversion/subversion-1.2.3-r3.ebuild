@@ -1,37 +1,43 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.0.ebuild,v 1.4 2006/10/18 13:11:43 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.2.3-r3.ebuild,v 1.14 2006/06/24 15:35:50 mcummings Exp $
 
 EAPI="prefix"
 
-inherit elisp-common libtool python eutils bash-completion flag-o-matic depend.apache perl-module java-pkg-opt-2
+inherit elisp-common libtool python eutils bash-completion flag-o-matic depend.apache perl-module
 
 DESCRIPTION="A compelling replacement for CVS"
 HOMEPAGE="http://subversion.tigris.org/"
-SRC_URI="http://subversion.tigris.org/downloads/${P/_rc/-rc}.tar.bz2"
+SRC_URI="http://subversion.tigris.org/tarballs/${P/_rc/-rc}.tar.bz2"
 
 LICENSE="Apache-1.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
-IUSE="apache2 berkdb python emacs perl java nls nowebdav ruby"
+KEYWORDS="~amd64 ~ppc-macos ~x86"
+IUSE="apache2 berkdb python emacs perl java nls nowebdav zlib ruby"
 RESTRICT="test"
 
+# Presently subversion doesn't build with swig-1.3.22, bug 65424
 COMMONDEPEND="apache2? ( ${APACHE2_DEPEND} )
-	>=dev-libs/apr-util-0.9.7
-	python? ( >=dev-lang/python-2.0 )
-	perl? ( >=dev-lang/perl-5.8.6-r6
+	>=dev-libs/apr-util-0.9.5
+	python? ( <=dev-lang/swig-1.3.25 >=dev-lang/python-2.0 )
+	perl? ( <=dev-lang/swig-1.3.25
+		>=dev-lang/perl-5.8.6-r6
 		!=dev-lang/perl-5.8.7 )
-	ruby? ( >=dev-lang/ruby-1.8.2 )
-	!nowebdav? ( net-misc/neon )
+	ruby? ( =dev-lang/swig-1.3.25
+		>=dev-lang/ruby-1.8.2 )
+	!nowebdav? ( ~net-misc/neon-0.24.7 )
 	berkdb? ( =sys-libs/db-4* )
-	java? ( >=virtual/jdk-1.4 )
+	zlib? ( sys-libs/zlib )
+	java? ( virtual/jdk )
 	emacs? ( virtual/emacs )"
 RDEPEND="${COMMONDEPEND}
-	java? ( >=virtual/jre-1.4 )"
+	java? ( virtual/jre )"
 
 DEPEND="${COMMONDEPEND}
-	java? ( >=virtual/jdk-1.4 )
+	java? ( virtual/jdk )
 	>=sys-devel/autoconf-2.59"
+# Does not work because jikes is broken
+#	jikes? (dev-java/jikes)"
 
 S=${WORKDIR}/${P/_rc/-rc}
 
@@ -54,26 +60,25 @@ pkg_setup() {
 		echo
 		die "Ensure that you dump your repository first"
 	fi
-	java-pkg-opt-2_pkg_setup
 }
 
 src_unpack() {
-	unpack $A
+	unpack ${P/_rc/-rc}.tar.bz2
 	cd ${S}
 
-	epatch ${FILESDIR}/subversion-1.4-db4.patch
+	epatch ${FILESDIR}/subversion-db4.patch
 	epatch ${FILESDIR}/subversion-1.1.1-perl-vendor.patch
 	epatch ${FILESDIR}/subversion-hotbackup-config.patch
-	epatch ${FILESDIR}/subversion-1.3.1-neon-config.patch
-	epatch ${FILESDIR}/subversion-apr_cppflags.patch
-	# rapidsvn developers work with 1.3.2
-	epatch ${FILESDIR}/subversion-1.3.1-neon-0.26.patch
+	epatch ${FILESDIR}/subversion-swig.m4-ruby.patch
 
 	export WANT_AUTOCONF=2.5
+	elibtoolize
 	autoconf
+	(cd apr; autoconf)
+	(cd apr-util; autoconf)
 	sed -i -e 's,\(subversion/svnversion/svnversion.*\)\(>.*svn-revision.txt\),echo "exported" \2,' Makefile.in
 
-	elibtoolize
+	use emacs && cp ${FILESDIR}/vc-svn.el ${S}/contrib/client-side/vc-svn.el
 }
 
 src_compile() {
@@ -84,7 +89,8 @@ src_compile() {
 	use apache2 || myconf="${myconf} --without-apxs"
 
 	myconf="${myconf} $(use_enable java javahl)"
-	use java && myconf="${myconf} --without-jikes --with-jdk=${JAVA_HOME}"
+#	use java && myconf="${myconf} $(use_with jikes)"
+	use java && myconf="${myconf} --without-jikes"
 
 	if use python || use perl || use ruby; then
 		myconf="${myconf} --with-swig"
@@ -98,25 +104,15 @@ src_compile() {
 		myconf="${myconf} --with-neon=${EPREFIX}/usr"
 	fi
 
-	case ${CHOST} in
-		*-darwin7)
-			# KeyChain support on OSX Panther is broken, due to some library
-			# includes which don't exist
-			myconf="${myconf} --disable-keychain"
-		;;
-	esac
-
 	append-flags `${EPREFIX}/usr/bin/apr-config --cppflags`
 
 	econf ${myconf} \
 		$(use_with berkdb berkeley-db) \
+		$(use_with zlib) \
 		$(use_with python) \
 		$(use_enable nls) \
 		--disable-experimental-libtool \
 		--disable-mod-activation || die "econf failed"
-
-	# Respect the user LDFLAGS
-	export EXTRA_LDFLAGS="${LDFLAGS}"
 
 	# Build subversion, but do it in a way that is safe for parallel builds.
 	# Also apparently the included apr has a libtool that doesn't like -L flags.
@@ -144,7 +140,7 @@ src_compile() {
 		# ensure that the destination dir exists, else some compilation fails
 		mkdir -p ${S}/subversion/bindings/java/javahl/classes
 		# Compile javahl
-		make JAVAC_FLAGS="$(java-pkg_javac-args) -encoding iso8859-1" javahl || die "Compilation failed"
+		make JAVACFLAGS="-source 1.3 -encoding iso8859-1" javahl || die "Compilation failed"
 	fi
 
 	if use emacs; then
@@ -152,6 +148,10 @@ src_compile() {
 		elisp-compile ${S}/contrib/client-side/psvn/psvn.el || die "emacs modules failed"
 		elisp-compile ${S}/contrib/client-side/vc-svn.el || die "emacs modules failed"
 	fi
+
+	# svn-config isn't quite built correctly; it contains references to
+	# @SVN_DB_LIBS@ and @SVN_DB_INCLUDES@.  It appears the best thing is to remove that.  #64634
+	sed -i 's/@SVN_DB_[^@]*@//g' svn-config || die "sed failed"
 }
 
 
@@ -173,7 +173,7 @@ src_install () {
 
 	dobin svn-config
 	if use python; then
-		make install-swig-py DESTDIR=${D} DISTUTIL_PARAM=--prefix=${D}${EPREFIX} LD_LIBRARY_PATH="-L${D}${EPREFIX}/usr/$(get_libdir)" || die "Installation of subversion python bindings failed"
+		make install-swig-py DESTDIR=${D} DISTUTIL_PARAM=--prefix=${D}  LD_LIBRARY_PATH="-L${D}/usr/$(get_libdir)" || die "Installation of subversion python bindings failed"
 
 		# move python bindings
 		mkdir -p ${ED}${PYTHON_DIR}/site-packages
@@ -190,9 +190,6 @@ src_install () {
 	fi
 	if use java; then
 		make DESTDIR="${D}" install-javahl || die "installation failed"
-		java-pkg_regso ${ED}/usr/$(get_libdir)/libsvnjavahl*.so
-		java-pkg_dojar ${ED}/usr/$(get_libdir)/svn-javahl/svn-javahl.jar
-		rm -r ${ED}/usr/$(get_libdir)/svn-javahl/*.jar
 	fi
 
 	# Install apache module config
@@ -251,6 +248,12 @@ EOF
 	do
 		[[ -f ${f} ]] && dodoc ${f}
 	done
+
+	# Install the book in it's own dir
+	docinto book
+	cd ${S}
+	echo "installing html book"
+	dohtml -r doc/book/svn-book.html doc/book/styles.css doc/book/images || die "Installing book failed"
 
 	# Install emacs lisps
 	if use emacs; then

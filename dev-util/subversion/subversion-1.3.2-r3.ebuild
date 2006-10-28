@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.3.2-r3.ebuild,v 1.4 2006/09/10 07:33:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.3.2-r3.ebuild,v 1.12 2006/10/20 21:15:11 kloeri Exp $
 
 EAPI="prefix"
 
@@ -122,7 +122,7 @@ src_compile() {
 	# Also apparently the included apr has a libtool that doesn't like -L flags.
 	# So not specifying it at all when not building apache modules and only
 	# specify it for internal parts otherwise.
-	( emake external-all && emake LT_LDFLAGS="-L${D}/usr/$(get_libdir)" local-all ) || die "make of subversion failed"
+	( emake external-all && emake LT_LDFLAGS="-L${ED}/usr/$(get_libdir)" local-all ) || die "make of subversion failed"
 
 	if use python; then
 		# Building fails without the apache apr-util as includes are wrong.
@@ -162,47 +162,47 @@ src_install () {
 	python_version
 	PYTHON_DIR=/usr/$(get_libdir)/python${PYVER}
 
-	make DESTDIR="${EDEST}" install || die "Installation of subversion failed"
+	make DESTDIR="${D}" install || die "Installation of subversion failed"
 
 #	This might not be necessary with the new install
-#	if [[ -e ${D}/usr/$(get_libdir)/apache2 ]]; then
+#	if [[ -e ${ED}/usr/$(get_libdir)/apache2 ]]; then
 #		if [ "${APACHE2_MODULESDIR}" != "/usr/$(get_libdir)/apache2/modules" ]; then
-#			mkdir -p ${D}/`dirname ${APACHE2_MODULESDIR}`
-#			mv ${D}/usr/$(get_libdir)/apache2/modules ${D}/${APACHE2_MODULESDIR}
-#			rmdir ${D}/usr/$(get_libdir)/apache2 2>/dev/null
+#			mkdir -p ${ED}/`dirname ${APACHE2_MODULESDIR}`
+#			mv ${ED}/usr/$(get_libdir)/apache2/modules ${ED}/${APACHE2_MODULESDIR}
+#			rmdir ${ED}/usr/$(get_libdir)/apache2 2>/dev/null
 #		fi
 #	fi
 
 
 	dobin svn-config
 	if use python; then
-		make install-swig-py DESTDIR="${EDEST}" DISTUTIL_PARAM=--prefix=${D}  LD_LIBRARY_PATH="-L${D}/usr/$(get_libdir)" || die "Installation of subversion python bindings failed"
+		make install-swig-py DESTDIR="${D}" DISTUTIL_PARAM=--prefix=${D}  LD_LIBRARY_PATH="-L${D}/usr/$(get_libdir)" || die "Installation of subversion python bindings failed"
 
 		# move python bindings
-		mkdir -p ${D}${PYTHON_DIR}/site-packages
-		mv ${D}/usr/$(get_libdir)/svn-python/svn ${D}${PYTHON_DIR}/site-packages
-		mv ${D}/usr/$(get_libdir)/svn-python/libsvn ${D}${PYTHON_DIR}/site-packages
-		rmdir ${D}/usr/$(get_libdir)/svn-python
+		mkdir -p ${ED}${PYTHON_DIR}/site-packages
+		mv ${ED}/usr/$(get_libdir)/svn-python/svn ${ED}${PYTHON_DIR}/site-packages
+		mv ${ED}/usr/$(get_libdir)/svn-python/libsvn ${ED}${PYTHON_DIR}/site-packages
+		rmdir ${ED}/usr/$(get_libdir)/svn-python
 	fi
 	if use perl; then
-		make DESTDIR="${EDEST}" install-swig-pl || die "Perl library building failed"
+		make DESTDIR="${D}" install-swig-pl || die "Perl library building failed"
 		fixlocalpod
 	fi
 	if use ruby; then
-		make DESTDIR="${EDEST}" install-swig-rb || die "Installation of subversion ruby bindings failed"
+		make DESTDIR="${D}" install-swig-rb || die "Installation of subversion ruby bindings failed"
 	fi
 	if use java; then
-		make DESTDIR="${EDEST}" install-javahl || die "installation failed"
-		java-pkg_regso ${D}/usr/$(get_libdir)/libsvnjavahl*.so
-		java-pkg_dojar ${D}/usr/$(get_libdir)/svn-javahl/svn-javahl.jar
-		rm -r ${D}/usr/$(get_libdir)/svn-javahl/*.jar
+		make DESTDIR="${D}" install-javahl || die "installation failed"
+		java-pkg_regso ${ED}/usr/$(get_libdir)/libsvnjavahl*.so
+		java-pkg_dojar ${ED}/usr/$(get_libdir)/svn-javahl/svn-javahl.jar
+		rm -r ${ED}/usr/$(get_libdir)/svn-javahl/*.jar
 	fi
 
 	# Install apache module config
 	if useq apache2; then
 		MOD="${APACHE2_MODULESDIR/${APACHE2_BASEDIR}\//}"
-		mkdir -p ${D}/${APACHE2_MODULES_CONFDIR}
-		cat <<EOF >${D}/${APACHE2_MODULES_CONFDIR}/47_mod_dav_svn.conf
+		mkdir -p ${ED}/${APACHE2_MODULES_CONFDIR}
+		cat <<EOF >${ED}/${APACHE2_MODULES_CONFDIR}/47_mod_dav_svn.conf
 <IfDefine SVN>
 	<IfModule !mod_dav_svn.c>
 		LoadModule dav_svn_module	${MOD}/mod_dav_svn.so
@@ -245,9 +245,9 @@ EOF
 	dodoc CHANGES
 	dodoc tools/xslt/svnindex.css tools/xslt/svnindex.xsl
 	find contrib tools -name \*.in -print0 | xargs -0 rm -f
-	mkdir -p ${D}/usr/share/doc/${PF}/
-	cp -r tools/{client-side,examples,hook-scripts} ${D}/usr/share/doc/${PF}/
-	cp -r contrib/hook-scripts ${D}/usr/share/doc/${PF}/
+	mkdir -p ${ED}/usr/share/doc/${PF}/
+	cp -r tools/{client-side,examples,hook-scripts} ${ED}/usr/share/doc/${PF}/
+	cp -r contrib/hook-scripts ${ED}/usr/share/doc/${PF}/
 
 	docinto notes
 	for f in notes/*
