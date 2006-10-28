@@ -51,9 +51,9 @@ distutils_src_install() {
 	[ -n "${pylibdir}" ] && dodir "${pylibdir}"
 
 	if has_version ">=dev-lang/python-2.3"; then
-		${python} setup.py install --root=${EDEST} --no-compile "$@" || die
+		${python} setup.py install --root=$D --no-compile "$@" || die
 	else
-		${python} setup.py install --root=${EDEST} "$@" || die
+		${python} setup.py install --root=$D "$@" || die
 	fi
 
 	DDOCS="CHANGELOG KNOWN_BUGS MAINTAINERS PKG-INFO CONTRIBUTORS TODO"
@@ -78,7 +78,7 @@ distutils_pkg_postrm() {
 		ebegin "Performing Python Module Cleanup .."
 		if [ -n "${PYTHON_MODNAME}" ]; then
 			for pymod in ${PYTHON_MODNAME}; do
-				for moddir in "`ls -d --color=none -1 ${PROOT}/usr/$(get_libdir)/python*/site-packages/${pymod} 2> /dev/null`"; do
+				for moddir in "`ls -d --color=none -1 ${EROOT}/usr/$(get_libdir)/python*/site-packages/${pymod} 2> /dev/null`"; do
 					python_mod_cleanup ${moddir}
 				done
 			done
@@ -98,14 +98,14 @@ distutils_pkg_postinst() {
 	if has_version ">=dev-lang/python-2.3"; then
 		python_version
 		for pymod in ${PYTHON_MODNAME}; do
-			if [ -d "${PROOT}/usr/$(get_libdir)/python${PYVER}/site-packages/${pymod}" ]; then
-				python_mod_optimize ${PROOT}/usr/$(get_libdir)/python${PYVER}/site-packages/${pymod}
+			if [ -d "${EROOT}/usr/$(get_libdir)/python${PYVER}/site-packages/${pymod}" ]; then
+				python_mod_optimize ${EROOT}/usr/$(get_libdir)/python${PYVER}/site-packages/${pymod}
 			fi
 		done
 	fi
 }
 
-# e.g. insinto ${ROOT}/usr/include/python${PYVER}
+# e.g. insinto ${EROOT}/usr/include/python${PYVER}
 
 distutils_python_version() {
 	python_version
