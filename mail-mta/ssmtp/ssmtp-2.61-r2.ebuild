@@ -30,6 +30,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/ssmtp-2.61-bug127592.patch
 	epatch "${FILESDIR}"/ssmtp-2.61-respect-LDFLAGS.patch
+	epatch "${FILESDIR}"/ssmtp-2.61-darwin7.patch
 }
 
 src_compile() {
