@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/perl
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.230 2006/10/07 07:33:34 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.232 2006/10/23 19:35:29 mcummings Exp $
+
+  23 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  -perl-5.8.7-r3.ebuild:
+  Removing old perl
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org> perl-5.8.8-r2.ebuild:
+  Added ~sparc-fbsd keyword.
 
   07 Oct 2006; Diego Pettenò <flameeyes@gentoo.org> perl-5.8.8-r2.ebuild:
   Add a dependency on freebsd-mk-defs on FreeBSD.

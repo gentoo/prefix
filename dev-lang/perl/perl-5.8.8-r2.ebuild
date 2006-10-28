@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r2.ebuild,v 1.21 2006/10/07 07:33:34 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r2.ebuild,v 1.22 2006/10/17 08:21:23 uberlord Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ LIBPERL="libperl$(get_libname ${PERLSLOT}.${SHORT_PV})"
 
 LICENSE="Artistic GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ~ppc-macos x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="berkdb debug doc gdbm ithreads perlsuid build"
 PERL_OLDVERSEN="5.8.0 5.8.2 5.8.4 5.8.5 5.8.6 5.8.7"
 
@@ -55,12 +55,12 @@ pkg_setup() {
 		epause 5
 	fi
 
-	if [ ! -f "${PROOT}/usr/$(get_libdir)/${LIBPERL}" ]
+	if [ ! -f "${EROOT}/usr/$(get_libdir)/${LIBPERL}" ]
 	then
 		# Make sure we have libperl installed ...
-		eerror "Cannot find ${PROOT}/usr/$(get_libdir)/${LIBPERL}!  Make sure that you"
+		eerror "Cannot find ${EROOT}/usr/$(get_libdir)/${LIBPERL}!  Make sure that you"
 		eerror "have sys-libs/libperl installed properly ..."
-		die "Cannot find ${PROOT}/usr/$(get_libdir)/${LIBPERL}!"
+		die "Cannot find ${EROOT}/usr/$(get_libdir)/${LIBPERL}!"
 	fi
 }
 
@@ -249,8 +249,8 @@ src_configure() {
 		-Dscriptdir="${EPREFIX}"/usr/bin \
 		-Dman1dir="${EPREFIX}"/usr/share/man/man1 \
 		-Dman3dir="${EPREFIX}"/usr/share/man/man3 \
-		-Dinstallman1dir="${D}"/usr/share/man/man1 \
-		-Dinstallman3dir="${D}"/usr/share/man/man3 \
+		-Dinstallman1dir="${ED}"/usr/share/man/man1 \
+		-Dinstallman3dir="${ED}"/usr/share/man/man3 \
 		-Dman1ext='1' \
 		-Dman3ext='3pm' \
 		-Dinc_version_list="$inclist" \
@@ -295,17 +295,17 @@ src_install() {
 	if use build ; then
 		installtarget=install.perl
 	fi
-	make DESTDIR="${EDEST}" ${installtarget} || die "Unable to make ${installtarget}"
+	make DESTDIR="${D}" ${installtarget} || die "Unable to make ${installtarget}"
 
-	rm ${D}/usr/bin/perl
-	ln -s perl${MY_PV} ${D}/usr/bin/perl
+	rm ${ED}/usr/bin/perl
+	ln -s perl${MY_PV} ${ED}/usr/bin/perl
 
 	cp -f utils/h2ph utils/h2ph_patched
 	epatch ${FILESDIR}/${PN}-h2ph-ansi-header.patch
 
 
 	LD_LIBRARY_PATH=. ./perl -Ilib utils/h2ph_patched \
-		-a -d ${D}/usr/$(get_libdir)/perl5/${MY_PV}/${myarch}${mythreading} <<EOF
+		-a -d ${ED}/usr/$(get_libdir)/perl5/${MY_PV}/${myarch}${mythreading} <<EOF
 asm/termios.h
 syscall.h
 syslimits.h
@@ -317,7 +317,7 @@ wait.h
 EOF
 
 	# This is to fix a missing c flag for backwards compat
-	for i in `find ${D}/usr/$(get_libdir)/perl5 -iname "Config.pm"`;do
+	for i in `find ${ED}/usr/$(get_libdir)/perl5 -iname "Config.pm"`;do
 		sed -e "s:ccflags=':ccflags='-DPERL5 :" \
 		    -e "s:cppflags=':cppflags='-DPERL5 :" \
 			${i} > ${i}.new &&\
@@ -331,16 +331,16 @@ EOF
 	dosed 's:./miniperl:/usr/bin/perl:' /usr/bin/xsubpp
 	fperms 0755 /usr/bin/xsubpp
 
-	# This removes ${D} from Config.pm and .packlist
-	for i in `find ${D} -iname "Config.pm"` `find ${D} -iname ".packlist"`;do
-		einfo "Removing ${D} from ${i}..."
-		sed -e "s:${D}::" ${i} > ${i}.new &&\
+	# This removes ${ED} from Config.pm and .packlist
+	for i in `find ${ED} -iname "Config.pm"` `find ${ED} -iname ".packlist"`;do
+		einfo "Removing ${ED} from ${i}..."
+		sed -e "s:${ED}::" ${i} > ${i}.new &&\
 			mv ${i}.new ${i} || die "Sed failed"
 	done
 
 	# Note: find out from psm why we would need/want this.
 	# ( use berkdb && has_version '=sys-libs/db-1*' ) ||
-	#	find ${D} -name "*NDBM*" | xargs rm -f
+	#	find ${ED} -name "*NDBM*" | xargs rm -f
 
 	dodoc Changes* Artistic Copying README Todo* AUTHORS
 
@@ -354,29 +354,29 @@ EOF
 			--podroot='.' \
 			--podpath='lib:ext:pod:vms' \
 			--recurse \
-			--htmldir="${D}/usr/share/doc/${PF}/html" \
+			--htmldir="${ED}/usr/share/doc/${PF}/html" \
 			--libpods='perlfunc:perlguts:perlvar:perlrun:perlop'
 	fi
-	cd `find ${D} -name Path.pm|sed -e 's/Path.pm//'`
+	cd `find ${ED} -name Path.pm|sed -e 's/Path.pm//'`
 	# CAN patch in bug 79685
 	cd "${S}"
 	epatch ${FILESDIR}/${P}-CAN-2005-0448-rmtree.patch
 
 	# Remove those items we PDPEND on
-	rm -f ${D}/usr/bin/pod2usage
-	rm -f ${D}/usr/bin/podchecker
-	rm -f ${D}/usr/bin/podselect
-	rm -f ${D}/usr/bin/prove
-	rm -f ${D}/usr/share/man/man1/pod2usage*
-	rm -f ${D}/usr/share/man/man1/podchecker*
-	rm -f ${D}/usr/share/man/man1/podselect*
-	rm -f ${D}/usr/share/man/man1/prove*
+	rm -f ${ED}/usr/bin/pod2usage
+	rm -f ${ED}/usr/bin/podchecker
+	rm -f ${ED}/usr/bin/podselect
+	rm -f ${ED}/usr/bin/prove
+	rm -f ${ED}/usr/share/man/man1/pod2usage*
+	rm -f ${ED}/usr/share/man/man1/podchecker*
+	rm -f ${ED}/usr/share/man/man1/podselect*
+	rm -f ${ED}/usr/share/man/man1/prove*
 	if use build ; then
 		src_remove_extra_files
 	fi
 
 	# avoid problems with static archives that portage cannot write to
-	find ${D} -name "*.a" | xargs chmod 644
+	find ${ED} -name "*.a" | xargs chmod 644
 }
 
 src_remove_extra_files()
@@ -560,7 +560,7 @@ src_remove_extra_files()
 		${bindir}/sperl${MY_PV}"
 	fi
 
-	pushd ${D} > /dev/null
+	pushd ${ED} > /dev/null
 	# Remove cruft
 	einfo "Removing files that are not in the minimal install"
 	echo "${MINIMAL_PERL_INSTALL}"
@@ -574,21 +574,21 @@ src_remove_extra_files()
 
 pkg_postinst() {
 	INC=$(perl -e 'for $line (@INC) { next if $line eq "."; next if $line =~ m/'${MY_PV}'|etc|local|perl$/; print "$line\n" }')
-	if [ "${ROOT}" = "/" ]
+	if [ "${EROOT}" = "/" ]
 	then
 		ebegin "Removing old .ph files"
 		for DIR in $INC; do
-			if [ -d ${ROOT}/$DIR ]; then
-				for file in $(find ${ROOT}/$DIR -name "*.ph" -type f); do
-					rm ${ROOT}/$file
+			if [ -d ${EROOT}/$DIR ]; then
+				for file in $(find ${EROOT}/$DIR -name "*.ph" -type f); do
+					rm ${EROOT}/$file
 					einfo "<< $file"
 				done
 			fi
 		done
 		# Silently remove the now empty dirs
 		for DIR in $INC; do
-		   if [ -d ${ROOT}/$DIR ]; then
-		   	find ${ROOT}/$DIR -depth -type d | xargs -r rmdir &> /dev/null
+		   if [ -d ${EROOT}/$DIR ]; then
+		   	find ${EROOT}/$DIR -depth -type d | xargs -r rmdir &> /dev/null
 		   fi
 		done
 		ebegin "Generating ConfigLocal.pm (ignore any error)"
