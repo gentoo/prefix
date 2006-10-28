@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86"
 IUSE=""
 
-DEPEND=""
+DEPEND="dev-libs/pth"
 
 src_unpack() {
 	unpack ${A}
