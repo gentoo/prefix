@@ -24,6 +24,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-prefix.patch
+	epatch "${FILESDIR}"/${P}-darwin7.patch
 	eprefixify Makefile.in
 }
 
