@@ -22,12 +22,19 @@ S=${WORKDIR}/distcc-${PV}/distcc_dist
 
 src_unpack() {
 	unpack ${A}
+	epatch "${FILESDIR}"/${P}-compilers.patch
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-prefix.patch
 	epatch "${FILESDIR}"/${P}-darwin7.patch
-	eprefixify Makefile.in
+	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify Makefile.in src/versinfo.c
 }
 
 src_install() {
 	emake DESTDIR=${D%/} install || die
+
+	echo "${CHOST}-gcc" >> ../compilers
+	echo "${CHOST}-g++" >> ../compilers
+	echo "${CHOST}-c++" >> ../compilers
+	insinto /etc
+	doins ../compilers
 }

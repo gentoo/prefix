@@ -1,0 +1,55 @@
+--- distcc-42/compilers
++++ distcc-42/compilers
+@@ -1,21 +1,21 @@
+ # This file contains a list of the compilers that distcc will allow to be remotely invoked.
+ # One compiler per line, newline separated, no whitespace allowed.
+ 
+-/usr/bin/gcc
+-/usr/bin/cc
+-/usr/bin/gcc-3.3
+-/usr/bin/gcc-4.0
+-/usr/bin/g++
+-/usr/bin/g++-3.3
+-/usr/bin/g++-4.0
++#/usr/bin/gcc
++#/usr/bin/cc
++#/usr/bin/gcc-3.3
++#/usr/bin/gcc-4.0
++#/usr/bin/g++
++#/usr/bin/g++-3.3
++#/usr/bin/g++-4.0
+ 
+ # Note that this configuration does not allow distcc to use an implicit compiler.
+ # To enable implicit compilation, uncomment the following lines.  This feature
+ # is disabled by default because it will pick the first occurence of any
+ # one of these found within the user's path.
+ 
+-#cc
+-#gcc
+-#g++
+-#c++
++cc
++gcc
++g++
++c++
+ 
+--- distcc-42/distcc_dist/src/versinfo.c
++++ distcc-42/distcc_dist/src/versinfo.c
+@@ -57,8 +57,8 @@
+ {
+     static CompilerInfo *compilers = NULL;
+     struct stat sb;
+-    if (compilers == NULL && stat("/etc/compilers", &sb) == 0) {
+-        int compilersFD = open("/etc/compilers", O_RDONLY, 0);
++    if (compilers == NULL && stat("@GENTOO_PORTAGE_EPREFIX@/etc/compilers", &sb) == 0) {
++        int compilersFD = open("@GENTOO_PORTAGE_EPREFIX@/etc/compilers", O_RDONLY, 0);
+         if (compilersFD != 1) {
+             char *compilersBuff = (char *)malloc(sb.st_size+1);
+             if (compilersBuff) {
+@@ -245,4 +245,4 @@
+         }
+     }
+     return ret;
+-}
+\ No newline at end of file
++}
