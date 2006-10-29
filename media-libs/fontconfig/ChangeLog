@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.79 2006/10/11 19:54:52 dsd Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.80 2006/10/20 21:39:31 kloeri Exp $
+
+  20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org>
+  fontconfig-2.3.2-r1.ebuild:
+  Stable on Alpha.
 
   11 Oct 2006; Daniel Drake <dsd@gentoo.org> fontconfig-2.3.2-r1.ebuild:
   Fix missing RDEPEND, bug #149879
