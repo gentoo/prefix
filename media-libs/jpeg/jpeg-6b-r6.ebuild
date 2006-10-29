@@ -36,7 +36,7 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${EDEST}" || die "install"
+	make install DESTDIR="${D}" || die "install"
 	make -C "${WORKDIR}"/extra install DESTDIR="${D}" || die "install extra"
 
 	dodoc README install.doc usage.doc wizard.doc change.log \
