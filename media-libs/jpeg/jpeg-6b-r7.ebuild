@@ -38,8 +38,8 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${D}" || die "install"
-	make -C "${WORKDIR}"/extra install DESTDIR="${D}" || die "install extra"
+	make DESTDIR="${D}" install || die "install"
+	make -C "${WORKDIR}"/extra install DESTDIR="${D}${EPREFIX}" || die "install extra"
 
 	dodoc README install.doc usage.doc wizard.doc change.log \
 		libjpeg.doc example.c structure.doc filelist.doc \
