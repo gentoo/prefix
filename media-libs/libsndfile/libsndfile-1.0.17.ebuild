@@ -42,6 +42,6 @@ src_compile() {
 }
 
 src_install() {
-	emake -j1 DESTDIR="${EDEST}" htmldocdir="${EPREFIX}/usr/share/doc/${PF}/html" install || die "make install failed"
+	emake -j1 DESTDIR="${D}" htmldocdir="${EPREFIX}/usr/share/doc/${PF}/html" install || die "make install failed"
 	dodoc AUTHORS ChangeLog NEWS README TODO || die "dodoc failed"
 }
