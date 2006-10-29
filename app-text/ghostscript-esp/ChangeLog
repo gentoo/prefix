@@ -1,6 +1,33 @@
 # ChangeLog for app-text/ghostscript-esp
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ChangeLog,v 1.42 2006/10/15 19:54:02 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ChangeLog,v 1.48 2006/10/23 00:08:43 genstef Exp $
+
+*ghostscript-esp-8.15.3-r1 (23 Oct 2006)
+
+  23 Oct 2006; Stefan Schweizer <genstef@gentoo.org>
+  +ghostscript-esp-8.15.3-r1.ebuild:
+  Add gsdjvu support, thanks to Timothy Stotts <devel@tstotts.net> and E.
+  Scaglione <erm67@yahoo.it> in bug 107342
+
+  21 Oct 2006; Bryan Østergaard <kloeri@gentoo.org>
+  ghostscript-esp-8.15.3.ebuild:
+  Stable on Alpha + ia64.
+
+  21 Oct 2006; <nixnut@gentoo.org> ghostscript-esp-8.15.3.ebuild:
+  Stable on ppc wrt bug 148945
+
+  18 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  ghostscript-esp-8.15.3.ebuild:
+  Stable on sparc wrt #148945
+
+  17 Oct 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  ghostscript-esp-8.15.3.ebuild:
+  Stable on amd64/x86 wrt bug #148945.
+
+  21 Oct 2006; Fabian Groffen <grobian@gentoo.org> -files/gs-osx-ijs.patch,
+  -files/gs-osx-unix-dll.patch, ghostscript-esp-7.07.1-r8.ebuild,
+  ghostscript-esp-7.07.1-r10.ebuild:
+  Dropped ppc-macos keyword.  See you in prefix.
 
   15 Oct 2006; Tobias Scherbaum <dertobi123@gentoo.org>
   ghostscript-esp-8.15.3.ebuild:

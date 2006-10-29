@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ghostscript-esp-8.15.3.ebuild,v 1.12 2006/10/21 22:52:00 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ghostscript-esp-8.15.3-r1.ebuild,v 1.1 2006/10/23 00:08:44 genstef Exp $
 
 EAPI="prefix"
 
@@ -12,18 +12,20 @@ inherit autotools elisp-common eutils versionator
 DESCRIPTION="ESP Ghostscript -- an enhanced version of GPL Ghostscript with better printer support"
 HOMEPAGE="http://www.cups.org/espgs"
 
+GSDJVU_PV=1.1
 MY_P=espgs-${PV}
 PVM=$(get_version_component_range 1-2)
 SRC_URI="cjk? ( ftp://ftp.gyve.org/pub/gs-cjk/adobe-cmaps-200406.tar.gz
 		ftp://ftp.gyve.org/pub/gs-cjk/acro5-cmaps-2001.tar.gz )
+		djvu? ( mirror://sourceforge/djvu/gsdjvu-${GSDJVU_PV}.tar.gz )
 		http://ftp.rz.tu-bs.de/pub/mirror/ftp.easysw.com/ftp/pub/ghostscript/${PV}/espgs-${PV}-source.tar.bz2
 		ftp://ftp3.easysw.com/pub/ghostscript/${PV}/espgs-${PV}-source.tar.bz2"
 ESVN_REPO_URI="http://svn.easysw.com/public/espgs/trunk"
 
-LICENSE="GPL-2 LGPL-2"
+LICENSE="GPL-2 LGPL-2 CPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86"
-IUSE="X cups cjk emacs gtk threads xml"
+IUSE="X cups cjk emacs gtk threads xml djvu"
 
 DEP="virtual/libc
 	>=media-libs/jpeg-6b
@@ -31,6 +33,7 @@ DEP="virtual/libc
 	>=sys-libs/zlib-1.1.4
 	>=media-libs/tiff-3.7
 	X? ( || ( x11-libs/libXt virtual/x11 ) )
+	djvu? ( app-text/djvu )
 	gtk? ( >=x11-libs/gtk+-2.0 )
 	cups? ( >=net-print/cups-1.1.20 )
 	xml? ( >=dev-libs/libxml2-2.6.8 )
@@ -63,6 +66,16 @@ src_unpack() {
 	# http://cups.org/espgs/str.php?L2000
 	epatch ${FILESDIR}/ghostscript-esp-8.15.1-fPIC.patch
 
+	if use djvu; then
+		unpack gsdjvu-${GSDJVU_PV}.tar.gz
+		cp gsdjvu-${GSDJVU_PV}/gsdjvu ${S}
+		cp gsdjvu-${GSDJVU_PV}/gdevdjvu.c ${S}/src
+		cp gsdjvu-${GSDJVU_PV}/ps2utf8.ps ${S}/lib
+		cp ${S}/src/contrib.mak ${S}/src/contrib.mak.gsdjvu
+		grep -q djvusep ${S}/src/contrib.mak || \
+			cat gsdjvu-${GSDJVU_PV}/gsdjvu.mak >> ${S}/src/contrib.mak
+	fi
+
 	# search path fix
 	sed -i -e "s:\$\(gsdatadir\)/lib:${EPREFIX}/usr/share/ghostscript/${PVM}/$(get_libdir):" \
 		-e 's:$(gsdir)/fonts:'"${EPREFIX}"'/usr/share/fonts/default/ghostscript/:' \
@@ -89,6 +102,13 @@ src_compile() {
 		--with-fontconfig \
 		--with-ijs \
 		--with-jbig2dec || die "econf failed"
+
+	if use djvu; then
+		sed -i -e 's!$(DD)bbox.dev!& $(DD)djvumask.dev $(DD)djvusep.dev!g'		Makefile
+		sed -i -e 's:(/\(Resource/[a-zA-Z/]*\)):(\1) findlibfile {pop} {pop &}
+		ifelse:' lib/gs_res.ps
+	fi
+
 	emake -j1 so all || die "emake failed"
 
 	cd ijs
@@ -98,6 +118,8 @@ src_compile() {
 
 src_install() {
 	emake install_prefix="${D}" install soinstall || die "emake install failed"
+
+	use djvu && dobin gsdjvu
 
 	rm -fr ${ED}/usr/share/doc/${PF}/html/{README,PUBLIC}
 	dodoc doc/README
