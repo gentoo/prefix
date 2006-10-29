@@ -58,7 +58,7 @@ src_compile() {
 
 src_install() {
 
-	make DESTDIR="${EDEST}" install || die
+	make DESTDIR="${D}" install || die
 
 	dodoc ChangeLog README
 	dodoc docs/{CHANGES,CUSTOMIZE,DEBUG,*.txt,PATENTS,TODO}
