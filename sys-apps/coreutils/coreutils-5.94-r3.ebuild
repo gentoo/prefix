@@ -73,6 +73,10 @@ src_unpack() {
 	# There's no reason for this crap to use the private version
 	sed -i 's:__mempcpy:mempcpy:g' lib/*.c
 
+	# Darwin 7 (OS X 10.3.9) has a bug in underlying readdir implementation.
+	# This patch is from 6.3 which works around this problem.
+	epatch "${FILESDIR}"/${P}-darwin7.patch
+
 	export WANT_AUTOMAKE=1.9
 	export WANT_AUTOCONF=2.5
 	ebegin "Reconfiguring configure scripts (be patient)"
