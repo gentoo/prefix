@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libpng
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.96 2006/08/30 14:02:40 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.97 2006/10/24 19:20:17 grobian Exp $
+
+  24 Oct 2006; Fabian Groffen <grobian@gentoo.org> libpng-1.2.12.ebuild,
+  libpng-1.2.12-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix.
 
   30 Aug 2006; Gustavo Zacarias <gustavoz@gentoo.org>
   libpng-1.2.12-r1.ebuild:

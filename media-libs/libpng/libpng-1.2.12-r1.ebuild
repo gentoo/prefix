@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.12-r1.ebuild,v 1.10 2006/09/09 10:09:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.12-r1.ebuild,v 1.11 2006/10/24 19:20:17 grobian Exp $
 
 EAPI="prefix"
 
@@ -39,14 +39,14 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die
+	make DESTDIR="${D}" install || die
 	dodoc ANNOUNCE CHANGES KNOWNBUG README TODO Y2KINFO
 	use doc && dodoc libpng-manual.txt
 }
 
 pkg_postinst() {
 	# the libpng authors really screwed around between 1.2.1 and 1.2.3
-	if [[ -f ${ROOT}/usr/$(get_libdir)/libpng$(get_libname 3.1.2.1) ]] ; then
-		rm -f "${ROOT}"/usr/$(get_libdir)/libpng$(get_libname 3.1.2.1)
+	if [[ -f ${EROOT}/usr/$(get_libdir)/libpng$(get_libname 3.1.2.1) ]] ; then
+		rm -f "${EROOT}"/usr/$(get_libdir)/libpng$(get_libname 3.1.2.1)
 	fi
 }
