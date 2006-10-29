@@ -29,7 +29,7 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${EDEST}" || die "make install failed"
+	make install DESTDIR="${D}" || die "make install failed"
 
 	dodoc CHANGES CREDITS README TODO VERSION
 
@@ -37,5 +37,5 @@ src_install() {
 	insinto /usr/$(get_libdir)/pkgconfig
 	doins ${FILESDIR}/id3tag.pc
 	sed -i -e "s:libdir=\${exec_prefix}/lib:libdir=${EPREFIX}/usr/$(get_libdir):" \
-		${D}/usr/$(get_libdir)/pkgconfig/id3tag.pc
+		${ED}/usr/$(get_libdir)/pkgconfig/id3tag.pc
 }
