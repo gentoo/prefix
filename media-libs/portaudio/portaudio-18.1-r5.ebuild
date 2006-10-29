@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/portaudio-18.1-r3.ebuild,v 1.8 2006/03/18 15:52:11 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/portaudio-18.1-r5.ebuild,v 1.1 2006/10/22 14:53:15 aballier Exp $
 
 EAPI="prefix"
 
@@ -25,9 +25,9 @@ src_unpack() {
 	unpack ${A}
 
 	if use userland_Darwin ; then
-		cp ${FILESDIR}/${P}-Makefile.macos ${S}/Makefile
+		cp "${FILESDIR}"/${P}-Makefile.macos "${S}"/Makefile
 	else
-		cp ${FILESDIR}/${P}-Makefile.linux ${S}/Makefile
+		cp "${FILESDIR}"/${PF}-Makefile.linux "${S}"/Makefile
 	fi
 }
 
@@ -36,6 +36,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" includedir="${EPREFIX}/usr/include" libdir="${EPREFIX}/usr/$(get_libdir)" install || die
+	make DESTDIR="${D}" includedir="${EPREFIX}/usr/include" libdir="${EPREFIX}/usr/$(get_libdir)" install || die
+	fperms 644 /usr/include/portaudio/portaudio.h
 	dodoc docs/*
 }
