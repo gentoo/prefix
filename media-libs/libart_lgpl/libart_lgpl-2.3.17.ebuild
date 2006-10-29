@@ -11,7 +11,7 @@ HOMEPAGE="http://www.levien.com/libart"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86"
 IUSE=""
 
 DEPEND="dev-util/pkgconfig"
