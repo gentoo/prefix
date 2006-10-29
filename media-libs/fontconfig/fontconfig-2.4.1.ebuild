@@ -58,7 +58,7 @@ src_compile() {
 
 src_install() {
 
-	make DESTDIR="${EDEST}" install || die
+	make DESTDIR="${D}" install || die
 
 	insinto /etc/fonts
 	doins "${S}"/fonts.conf
@@ -88,10 +88,10 @@ pkg_postinst() {
 	# <azarah@gentoo.org> (11 Dec 2002)
 	ewarn "Please make fontconfig configuration changes in /etc/fonts/conf.d/"
 	ewarn "and NOT to /etc/fonts/fonts.conf, as it will be replaced!"
-	mv -f ${ROOT}/etc/fonts/fonts.conf.new ${ROOT}/etc/fonts/fonts.conf
-	rm -f ${ROOT}/etc/fonts/._cfg????_fonts.conf
+	mv -f ${EROOT}/etc/fonts/fonts.conf.new ${EROOT}/etc/fonts/fonts.conf
+	rm -f ${EROOT}/etc/fonts/._cfg????_fonts.conf
 
-	if [ "${ROOT}" = "/" ]
+	if [ "${EROOT}" = "/" ]
 	then
 		ebegin "Creating global font cache..."
 		"${EPREFIX}"/usr/bin/fc-cache -s
