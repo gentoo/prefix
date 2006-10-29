@@ -44,7 +44,7 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${EDEST}" || die "make install failed"
+	make install DESTDIR="${D}" || die "make install failed"
 	dodoc README TODO VERSION
 }
 
