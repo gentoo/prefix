@@ -54,9 +54,9 @@ src_compile() {
 }
 
 src_install () {
-	emake -j1 DESTDIR="${EDEST}" install || die
+	emake -j1 DESTDIR="${D}" install || die
 
-	rm -rf "${D}/usr/share/doc"
+	rm -rf "${ED}/usr/share/doc"
 	dodoc AUTHORS CHANGES README TODO
 	use doc && dohtml -A c doc/*.html
 }
