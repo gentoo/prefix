@@ -65,9 +65,9 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die
+	make DESTDIR="${D}" install || die
 
-	rm -rf ${D}/usr/share/doc
+	rm -rf ${ED}/usr/share/doc
 	dodoc AUTHORS README todo.txt
 	docinto txt
 	dodoc doc/*.txt
