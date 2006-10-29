@@ -1,3 +1,7 @@
+# for as long as our tree isn't sane yet, prevent from having files
+# installed into the live filesystem for non-sandbox people
+export EDEST=${D}/fix/your/EDEST
+
 # unfortunately the two below do not work (i.e. they don't result in the
 # same as setting -L and -R in the LDFLAGS)
 #export LD_LIBRARY_PATH="${EPREFIX}/lib:${EPREFIX}/usr/lib"
@@ -15,7 +19,7 @@ do
 	# note this is Solaris linker specific, but GNU supports it (make
 	# sure ${dir} is a directory!)
 	[[ -d ${dir} ]] && \
-		LDFLAGS="${LDFLAGS} -L${dir} -Wl,-R -Wl,${dir}"
+		LDFLAGS="${LDFLAGS} -L${dir} -Wl,-R${dir}"
 done
 
 export LDFLAGS="${LDFLAGS} ${OLDLDFLAGS/${LDFLAGS}/}"
