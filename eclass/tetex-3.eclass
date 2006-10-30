@@ -155,41 +155,41 @@ tetex-3_src_install() {
 	tetex_src_install
 
 	dodir /etc/env.d
-# grobian: iirc don't prefix config protect masks
-	echo 'CONFIG_PROTECT_MASK="/etc/texmf/web2c"' > ${D}/etc/env.d/98tetex
+	# grobian: don't prefix config protect masks
+	echo 'CONFIG_PROTECT_MASK="/etc/texmf/web2c"' > ${ED}/etc/env.d/98tetex
 	# populate /etc/texmf
 	keepdir /etc/texmf/web2c
-	cd ${D}/usr/share/texmf		# not ${TEXMF_PATH}
+	cd ${ED}/usr/share/texmf		# not ${TEXMF_PATH}
 	for d in $(find . -name config -type d | sed -e "s:\./::g") ; do
 		dodir /etc/texmf/${d}
-		for f in $(find ${D}/usr/share/texmf/$d -maxdepth 1 -mindepth 1); do
-			mv $f ${D}/etc/texmf/$d || die "mv $f failed"
+		for f in $(find ${ED}/usr/share/texmf/$d -maxdepth 1 -mindepth 1); do
+			mv $f ${ED}/etc/texmf/$d || die "mv $f failed"
 			dosym /etc/texmf/$d/$(basename $f) /usr/share/texmf/$d/$(basename $f)
 		done
 	done
 	cd -
-	cd ${D}${TEXMF_PATH}
+	cd ${ED}${TEXMF_PATH}
 	for f in $(find . -name '*.cnf' -o -name '*.cfg' -type f | sed -e "s:\./::g") ; do
 		if [ "${f/config/}" != "${f}" ] ; then
 			continue
 		fi
 		dodir /etc/texmf/$(dirname $f)
-		mv ${D}${TEXMF_PATH}/$f ${D}/etc/texmf/$(dirname $f) || die "mv $f failed."
+		mv ${ED}${TEXMF_PATH}/$f ${ED}/etc/texmf/$(dirname $f) || die "mv $f failed."
 		dosym /etc/texmf/$f ${TEXMF_PATH}/$f
 	done
 
 	# take care of updmap.cfg, fmtutil.cnf and texmf.cnf
 	dodir /etc/texmf/{updmap.d,fmtutil.d,texmf.d}
-	#cp ${D}/usr/share/texmf/web2c/updmap.cfg ${D}/etc/texmf/updmap.d/00updmap.cfg
+	#cp ${ED}/usr/share/texmf/web2c/updmap.cfg ${ED}/etc/texmf/updmap.d/00updmap.cfg
 	dosym /etc/texmf/web2c/updmap.cfg ${TEXMF_PATH}/web2c/updmap.cfg
-	mv ${D}/usr/share/texmf/web2c/updmap.cfg ${D}/etc/texmf/updmap.d/00updmap.cfg
-	mv ${D}/etc/texmf/web2c/fmtutil.cnf ${D}/etc/texmf/fmtutil.d/00fmtutil.cnf
-	mv ${D}/etc/texmf/web2c/texmf.cnf ${D}/etc/texmf/texmf.d/00texmf.cnf
+	mv ${ED}/usr/share/texmf/web2c/updmap.cfg ${ED}/etc/texmf/updmap.d/00updmap.cfg
+	mv ${ED}/etc/texmf/web2c/fmtutil.cnf ${ED}/etc/texmf/fmtutil.d/00fmtutil.cnf
+	mv ${ED}/etc/texmf/web2c/texmf.cnf ${ED}/etc/texmf/texmf.d/00texmf.cnf
 
 	# xdvi
 	if useq X ; then
 		dodir /etc/X11/app-defaults /etc/texmf/xdvi
-		mv ${D}${TEXMF_PATH}/xdvi/XDvi ${D}/etc/X11/app-defaults || die "mv XDvi failed"
+		mv ${ED}${TEXMF_PATH}/xdvi/XDvi ${ED}/etc/X11/app-defaults || die "mv XDvi failed"
 		dosym /etc/X11/app-defaults/XDvi ${TEXMF_PATH}/xdvi/XDvi
 	fi
 	cd -
@@ -197,28 +197,28 @@ tetex-3_src_install() {
 
 tetex-3_pkg_preinst() {
 
-	ewarn "Removing ${ROOT}/usr/share/texmf/web2c"
-	rm -rf "${ROOT}/usr/share/texmf/web2c"
+	ewarn "Removing ${EROOT}/usr/share/texmf/web2c"
+	rm -rf "${EROOT}/usr/share/texmf/web2c"
 
 	# take care of symlinks problems, see bug 120515
 	# this can be removed when that is not an issue anymore
 	# i.e., all users with problem has got them fixed
 	for conf in updmap.d/00updmap.cfg texmf.d/00texmf.cnf fmtutil.d/00fmtutil.cnf
 	do
-		if [ -L "${ROOT}/etc/texmf/${conf}" ]
+		if [ -L "${EROOT}/etc/texmf/${conf}" ]
 		then
-			ewarn "Removing ${ROOT}/etc/texmf/${conf}"
-			rm -f "${ROOT}/etc/texmf/${conf}"
+			ewarn "Removing ${EROOT}/etc/texmf/${conf}"
+			rm -f "${EROOT}/etc/texmf/${conf}"
 		fi
 	done
 
 	# take care of config protection, upgrade from <=tetex-2.0.2-r4
 	for conf in updmap.cfg texmf.cnf fmtutil.cnf
 	do
-		if [ ! -d "${ROOT}/etc/texmf/${conf/.*/.d}" -a -f "${ROOT}/etc/texmf/${conf}" ]
+		if [ ! -d "${EROOT}/etc/texmf/${conf/.*/.d}" -a -f "${EROOT}/etc/texmf/${conf}" ]
 		then
-			mkdir "${ROOT}/etc/texmf/${conf/.*/.d}"
-			cp "${ROOT}/etc/texmf/${conf}" "${ROOT}/etc/texmf/00${conf/.*/.d}"
+			mkdir "${EROOT}/etc/texmf/${conf/.*/.d}"
+			cp "${EROOT}/etc/texmf/${conf}" "${EROOT}/etc/texmf/00${conf/.*/.d}"
 		fi
 	done
 }

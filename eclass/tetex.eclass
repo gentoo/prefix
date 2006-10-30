@@ -113,10 +113,6 @@ tetex_src_unpack() {
 			for p in ${WORKDIR}/patches/* ; do
 				epatch $p
 			done
-
-			if useq ppc-macos ; then
-				sed -i -e "/^HOMETEXMF/s:\$HOME/texmf:\$HOME/Library/texmf:" ${S}/texk/kpathsea/texmf.in || die "sed texmf.in failed."
-			fi
 			;;
 		all)
 			tetex_src_unpack unpack patch
@@ -166,13 +162,14 @@ tetex_src_compile() {
 		${xdvik} \
 		${TETEX_ECONF} || die
 
+	# dubious, but I'll let it in for now (grobian)
 	if useq X && useq ppc-macos ; then
 		for f in $(find ${S} -name config.status) ; do
 			sed -i -e "s:-ldl::g" $f
 		done
 	fi
 
-	emake -j1 CC="$(tc-getCC)" CXX="$(tc-getCXX)" texmf=${TEXMF_PATH:-${EPREFIX}/usr/share/texmf} || die "make teTeX failed"
+	emake -j1 CC="$(tc-getCC)" CXX="$(tc-getCXX)" texmf=${EPREFIX}${TEXMF_PATH:-/usr/share/texmf} || die "make teTeX failed"
 }
 
 tetex_src_install() {
@@ -187,12 +184,12 @@ tetex_src_install() {
 			dodir /usr/share/
 			# Install texmf files
 			einfo "Installing texmf ..."
-			cp -Rv texmf ${D}/usr/share
+			cp -Rv texmf ${ED}/usr/share
 
 			# Install teTeX files
 			einfo "Installing teTeX ..."
 			dodir ${TEXMF_PATH:-/usr/share/texmf}/web2c
-			emake bindir=${D}/usr/bin texmf=${D}${TEXMF_PATH:-/usr/share/texmf} install || die
+			emake bindir=${D}${EPREFIX}/usr/bin texmf=${D}${EPREFIX}${TEXMF_PATH:-/usr/share/texmf} install || die
 
 			dosbin ${T}/texmf-update
 			;;
@@ -225,22 +222,22 @@ tetex_src_install() {
 			# move docs to /usr/share/doc/${PF}
 			if useq doc ; then
 				dodir /usr/share/doc/${PF}
-				mv ${D}/usr/share/texmf/doc/* \
-					${D}/usr/share/doc/${PF} \
+				mv ${ED}/usr/share/texmf/doc/* \
+					${ED}/usr/share/doc/${PF} \
 					|| die "mv doc failed."
-				cd ${D}/usr/share/texmf
+				cd ${ED}/usr/share/texmf
 				rmdir doc
 				ln -s ../doc/${PF} doc \
 					|| die "ln -s doc failed."
 				cd -
 			else
-				rm -rf ${D}/usr/share/texmf/doc
+				rm -rf ${ED}/usr/share/texmf/doc
 			fi
 			;;
 		fixup)
 			#fix for conflicting readlink binary:
-			rm -f ${D}/bin/readlink
-			rm -f ${D}/usr/bin/readlink
+			rm -f ${ED}/bin/readlink
+			rm -f ${ED}/usr/bin/readlink
 
 			#add /var/cache/fonts directory
 			dodir /var/cache/fonts
@@ -249,8 +246,8 @@ tetex_src_install() {
 			#NOTE: do not use fowners, as its not recursive ...
 			einfo "Fixing permissions ..."
 			# root group name doesn't exist on Mac OS X
-			chown -R 0:0 ${D}/usr/share/texmf
-			find ${D} -name "ls-R" -exec rm {} \;
+			chown -R 0:0 ${ED}/usr/share/texmf
+			find ${ED} -name "ls-R" -exec rm {} \;
 			;;
 		all)
 			tetex_src_install base doc fixup
