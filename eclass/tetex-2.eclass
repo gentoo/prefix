@@ -22,20 +22,22 @@ tetex-2_src_unpack() {
 	unpack ${TETEX_TEXMF_SRC}
 
 	# create update script
-	cat >${T}/texmf-update<<'EOF'
-#!/bin/bash
+	echo "#!${EPREFIX}/bin/bash" >> ${T}/texmf-update
+	cat >>${T}/texmf-update<<'EOF'
 #
 # Utility to update Gentoo teTeX distribution configuration files
 #
-
-PATH=/bin:/usr/bin
+EOF
+	echo "EPREFIX=\"${EPREFIX}\"" >> ${T}/texmf-update
+	cat >>${T}/texmf-update<<'EOF'
+PATH=${EPREFIX}/bin:${EPREFIX}/usr/bin
 
 for conf in texmf.cnf fmtutil.cnf updmap.cfg
 do
-	if [ -d "/etc/texmf/${conf/.*/.d}" ]
+	if [ -d "${EPREFIX}/etc/texmf/${conf/.*/.d}" ]
 	then
-		echo "Generating /etc/texmf/web2c/${conf} from /etc/texmf/${conf/.*/.d} ..."
-		cat /etc/texmf/${conf/.*/.d}/* > "/etc/texmf/web2c/${conf}"
+		echo "Generating ${EPREFIX}/etc/texmf/web2c/${conf} from ${EPREFIX}/etc/texmf/${conf/.*/.d} ..."
+		cat "${EPREFIX}"/etc/texmf/${conf/.*/.d}/* > "${EPREFIX}/etc/texmf/web2c/${conf}"
 	fi
 done
 
@@ -45,7 +47,7 @@ mktexlsr &>/dev/null
 texconfig init &>/dev/null
 texconfig confall &>/dev/null
 texconfig font rw &>/dev/null
-texconfig font vardir /var/cache/fonts &>/dev/null
+texconfig font vardir "${EPREFIX}"/var/cache/fonts &>/dev/null
 texconfig font options varfonts &>/dev/null
 updmap &>/dev/null
 
