@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/gcc-config-1.3.13-r3.ebuild,v 1.1 2006/07/03 18:57:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/gcc-config-1.3.14.ebuild,v 1.2 2006/10/19 12:53:54 uberlord Exp $
 
 EAPI="prefix"
 
@@ -15,22 +15,20 @@ SRC_URI=""
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
-DEPEND=""
+RDEPEND="!app-admin/eselect-compiler"
 
 S=${WORKDIR}
 
 src_unpack() {
 	cp "${FILESDIR}"/wrapper-${W_VER}.c  "${S}/"
+	cp "${FILESDIR}"/${PN}-${PV}  "${S}/"${PN}
 	cd "${S}"
 	epatch "${FILESDIR}"/wrapper-${W_VER}-prefix.patch
-	ebegin "Adjusting source to prefix"
-	sed -i \
-		-e "s:GENTOO_PORTAGE_EPREFIX:${EPREFIX}:g" \
-		wrapper-${W_VER}.c
-	eend $?
+	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify wrapper-${W_VER}.c ${PN}
 }
 
 src_compile() {
@@ -39,12 +37,10 @@ src_compile() {
 }
 
 src_install() {
-	newbin "${FILESDIR}"/${PN}-${PV} ${PN} || die "install gcc-config"
-	patch "${ED}"/usr/bin/${PN} < "${FILESDIR}"/${P}-prefix.patch || die
+	dobin ${PN} || die "install gcc-config"
 	sed -i \
 		-e "s:PORTAGE-VERSION:${PVR}:g" \
 		-e "s:GENTOO_LIBDIR:$(get_libdir):g" \
-		-e "s:GENTOO_PORTAGE_EPREFIX:${EPREFIX}:g" \
 		"${ED}"/usr/bin/${PN}
 
 	exeinto /usr/$(get_libdir)/misc
@@ -58,7 +54,7 @@ pkg_postinst() {
 		# it is not needed ...
 		[[ -L ${EROOT}/usr/include/g++ ]] && rm -f "${EROOT}"/usr/include/g++
 		[[ -L ${EROOT}/usr/include/g++-v3 ]] && rm -f "${EROOT}"/usr/include/g++-v3
-		[[ ${EROOT} = "/" ]] && gcc-config $(/usr/bin/gcc-config --get-current-profile)
+		[[ ${EROOT%/} = ${EPREFIX%/} ]] && gcc-config $(${EROOT}/usr/bin/gcc-config --get-current-profile)
 	fi
 
 	# Make sure old versions dont exist #79062

@@ -1,0 +1,250 @@
+--- gcc-config
++++ gcc-config
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ # Copyright 1999-2006 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.3.14,v 1.1 2006/10/19 04:01:49 vapier Exp $
+@@ -6,8 +6,8 @@
+ trap ":" INT QUIT TSTP
+ 
+ argv0=${0##*/}
+-source /sbin/functions.sh || {
+-	echo "${argv0}: Could not source /sbin/functions.sh!"
++source "${EPREFIX}"/sbin/functions.sh || {
++	echo "${argv0}: Could not source "${EPREFIX}"/sbin/functions.sh!"
+ 	exit 1
+ }
+ umask 022
+@@ -53,8 +53,8 @@
+ 	fi
+ 
+ 	for x in /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin ; do
+-		if [[ -x ${x}/$1 ]] && [[ -r ${x}/$1 ]] ; then
+-			echo "${x}/$1"
++		if [[ -x ${EPREFIX}/${x}/$1 ]] && [[ -r ${EPREFIX}/${x}/$1 ]] ; then
++			echo "${EPREFIX}/${x}/$1"
+ 			return 0
+ 		fi
+ 	done
+@@ -88,7 +88,7 @@
+ 	#
+ 
+ 	local varname=$1
+-	local conf=${ROOT}/etc/make.conf
++	local conf=${EROOT}/etc/make.conf
+ 	local ret=$(source "${conf}" 2>/dev/null ; echo ${!varname})
+ 	if [[ -z ${ret} ]] ; then
+ 		# newer portage supports spaces between the var and =
+@@ -110,8 +110,8 @@
+ 	#
+ 	# Then we try /etc/env.d/gcc/config
+ 	#
+-	if [[ -s ${ROOT}/etc/env.d/gcc/config ]] ; then
+-		ret=$(split_gcc_ver $(eval $(<"${ROOT}"/etc/env.d/gcc/config) ; echo ${CURRENT}))
++	if [[ -s ${EROOT}/etc/env.d/gcc/config ]] ; then
++		ret=$(split_gcc_ver $(eval $(<"${EROOT}"/etc/env.d/gcc/config) ; echo ${CURRENT}))
+ 		echo ${ret% *}
+ 	fi
+ }
+@@ -136,7 +136,7 @@
+ 	if [[ -z ${REAL_CHOST} ]] ; then
+ 		eerror "${argv0}: Could not get portage CHOST!"
+ 		eerror "${argv0}: You should verify that CHOST is set in one of these places:"
+-		eerror "${argv0}:  - ${ROOT}/etc/make.conf"
++		eerror "${argv0}:  - ${EROOT}/etc/make.conf"
+ 		eerror "${argv0}:  - active environment"
+ 		exit 1
+ 	fi
+@@ -153,10 +153,11 @@
+ 	local OLD_CC_COMP=
+ 	local GCC_BIN_PATH=
+ 
+-	if [[ "$(id -u)" -ne 0 ]] ; then
+-		eerror "${argv0}: Must be root."
+-		exit 1
+-	fi
++ 	# shouldn't be here in unprivileged
++#	if [[ "$(id -u)" -ne 0 ]] ; then
++#		eerror "${argv0}: Must be root."
++#		exit 1
++#	fi
+ 
+ 	if is_cross_compiler ; then
+ 		ebegin "Switching cross-compiler to ${CC_COMP}"
+@@ -224,10 +225,10 @@
+ 		else
+ 			# People need to rebuild their gcc or setting GCC_SPECS to
+ 			# "" will cause issues again :(
+-			if [[ ${ROOT} != "/" ]] ; then
++			if [[ ${EROOT} != ${EPREFIX} ]] ; then
+ 				echo "GCC_SPECS=\"\"" >> "${ENV_D}/05gcc"
+ 			else
+-				if ! GCC_SPECS="" /usr/bin/gcc -v &>/dev/null ; then
++				if ! GCC_SPECS="" "${EROOT}"/usr/bin/gcc -v &>/dev/null ; then
+ 					echo
+ 					ewarn "Your gcc has a bug with GCC_SPECS."
+ 					ewarn "Please re-emerge gcc."
+@@ -243,14 +244,14 @@
+ 	fi
+ 
+ 	# Save PATH
+-	GCC_BIN_PATH=${PATH}
++	GCC_BIN_PATH=$(echo "${PATH}" | ${SED} -e "s|${ROOT}/*|/|")
+ 	# Fix environment
+-	source /etc/profile
++	source "${EPREFIX}"/etc/profile
+ 	umask 022
+ 	# Find the bin wrapper
+ 	local wrapper
+ 	for wrapper in GENTOO_LIBDIR lib lib64 lib32 lib ; do
+-		wrapper="${ROOT}usr/${wrapper}/misc/gcc-config"
++		wrapper="${EROOT}/usr/${wrapper}/misc/gcc-config"
+ 		[[ -e ${wrapper} ]] && break
+ 	done
+ 
+@@ -259,9 +260,9 @@
+ 	is_cross_compiler && native=""
+ 	for x in ${native} ${CTARGET}-{cpp,gcc,c++,g++,f77,g77,gcj} ; do
+ 		# Make sure we have no stale wrappers
+-		${RM} -f "${ROOT}/usr/bin/${x}"
++		${RM} -f "${EROOT}/usr/bin/${x}"
+ 		[[ ${x:${#x}-3} == "gcc" || ${x:${#x}-3} == "g++" ]] \
+-			&& ${RM} -f "${ROOT}/usr/bin/${x}"{32,64}
++			&& ${RM} -f "${EROOT}/usr/bin/${x}"{32,64}
+ 
+ 		# Only install a wrapper if the binary exists ...
+ 		# We want to figure out the 'reference file' for each 
+@@ -275,24 +276,24 @@
+ 			*)   ref=${ROOT}/${GCC_BIN_PATH}/${x};;
+ 		esac
+ 		if [[ -x ${ref} ]] ; then
+-			${CP} -f "${wrapper}" "${ROOT}/usr/bin/${x}"
+-			${TOUCH} -r "${ref}" "${ROOT}/usr/bin/${x}"
++			${CP} -f "${wrapper}" "${EROOT}/usr/bin/${x}"
++			${TOUCH} -r "${ref}" "${EROOT}/usr/bin/${x}"
+ 
+ 			# Install 32bit and 64bit wrappers if need be
+ 			# This should probably get folded back into the wrapper ...
+ 			if [[ ${x:${#x}-3} == "gcc" ]] || [[ ${x:${#x}-3} == "g++" ]] ; then
+ 				for bits in ${GCCBITS} ; do
+-					${CP} -f "${wrapper}" "${ROOT}/usr/bin/${x}${bits}"
++					${CP} -f "${wrapper}" "${EROOT}/usr/bin/${x}${bits}"
+ 				done
+ 			fi
+ 		fi
+ 	done
+ 	# legacy cruft, make sure we dont leave it laying around #143205
+-	${RM} -f "${ROOT}/usr/bin/${CTARGET}-cc"
++	${RM} -f "${EROOT}/usr/bin/${CTARGET}-cc"
+ 	# Only install cpp if switching to a native one
+ 	if ! is_cross_compiler && [[ ${CTARGET} != *-solaris* ]] ; then
+-		${RM} -f "${ROOT}/lib/cpp"
+-		${CP} -f "${wrapper}" "${ROOT}/lib/cpp"
++		${RM} -f "${EROOT}/lib/cpp"
++		${CP} -f "${wrapper}" "${EROOT}/lib/cpp"
+ 	fi
+ 
+ 	# We need to make sure that libgcc_s.so / libunwind.so make it into /lib.
+@@ -311,7 +312,7 @@
+ 			multiarg=${multiarg/@/-}
+ 			multilibdir=${multilib%;*}
+ 			libdir="lib/"$("${ROOT}/${GCC_BIN_PATH}"/gcc ${multiarg} -print-multi-os-directory)
+-			if mkdir -p "${ROOT}/${libdir}"/.gcc.config.new ; then
++			if mkdir -p "${EROOT}/${libdir}"/.gcc.config.new ; then
+ 				for gcclib in gcc_s unwind ; do
+ 					if [[ -n $(ls "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.so.* 2>/dev/null) ]]; then
+ 						${CP} -pP "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.so.* "${ROOT}/${libdir}"/.gcc.config.new/
+@@ -319,11 +320,11 @@
+ 						# care of it.  we also need this step to be completly atomic
+ 						# for systems that have even `mv` linked against libgcc_s.so.
+ 						# http://bugs.gentoo.org/150257
+-						#${RM} -f "${ROOT}/${libdir}"/lib${gcclib}.so*
+-						${MV} -f "${ROOT}/${libdir}"/.gcc.config.new/* "${ROOT}/${libdir}"/
++						#${RM} -f "${EROOT}/${libdir}"/lib${gcclib}.so*
++						${MV} -f "${EROOT}/${libdir}"/.gcc.config.new/* "${EROOT}/${libdir}"/
+ 					fi
+ 				done
+-				rmdir "${ROOT}/${libdir}"/.gcc.config.new
++				rmdir "${EROOT}/${libdir}"/.gcc.config.new
+ 			fi
+ 		done
+ 		unset multilib
+@@ -332,28 +333,28 @@
+ 		unset libdir
+ 	fi
+ 
+-	if [[ ${ROOT} == "/" ]] && [[ ${OLD_CC_COMP} != ${CC_COMP} || ${FORCE} == "yes" ]] ; then
++	if [[ ${EROOT} == ${EPREFIX} ]] && [[ ${OLD_CC_COMP} != ${CC_COMP} || ${FORCE} == "yes" ]] ; then
+ 		# in case python is broken ...
+ 		if ! ${ENV_UPDATE} ; then
+ 			echo ""
+ 			ewarn "env-update failed to work properly; making sure ld.so.conf paths"
+ 			ewarn "are setup properly.  Please rerun gcc-config with the -f option."
+ 			echo ""
+-			${GREP} -h ^LDPATH= "${ROOT}"/etc/env.d/05gcc \
++			${GREP} -h ^LDPATH= "${EROOT}"/etc/env.d/05gcc \
+ 				| ${SED} -e 's:^LDPATH=::' -e 's:"::g' -e 's|:|\n|g' \
+-				>> /etc/ld.so.conf
++				>> ${EPREFIX}/etc/ld.so.conf
+ 			ldconfig
+ 		fi
+ 	fi
+ 
+ 	eend 0
+ 
+-	if [[ ${ROOT} == "/" ]] && [[ ${OLD_CC_COMP} != ${CC_COMP} ]] ; then
++	if [[ ${EROOT} == ${EPREFIX} ]] && [[ ${OLD_CC_COMP} != ${CC_COMP} ]] ; then
+ 		echo
+ 		ewarn "If you intend to use the gcc from the new profile in an already"
+ 		ewarn "running shell, please remember to do:"
+ 		echo
+-		ewarn "  # source /etc/profile"
++		ewarn "  # source ${EPREFIX}/etc/profile"
+ 		echo
+ 	fi
+ 
+@@ -391,7 +392,7 @@
+ list_profiles() {
+ 	local i=1
+ 
+-	if [[ ${ROOT} != "/" ]] ; then
++	if [[ ${EROOT} != ${EPREFIX} ]] ; then
+ 		echo "Using gcc-config info in ${ROOT}"
+ 	fi
+ 
+@@ -550,7 +551,9 @@
+ CC_COMP=
+ [[ -z ${ROOT} ]] && ROOT="/"
+ [[ ${ROOT:0-1} != "/" ]] && ROOT="${ROOT}/"
+-ENV_D="${ROOT}etc/env.d"
++EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
++EROOT="${ROOT%/}${EPREFIX}"
++ENV_D="${EROOT}/etc/env.d"
+ GCC_ENV_D="${ENV_D}/gcc"
+ 
+ for x in "$@" ; do
+@@ -683,17 +686,19 @@
+ if [[ ${DOIT} != "get_current_profile" ]] ; then
+ 	GCC_LIB=$(
+ 		source "${GCC_ENV_D}/${CC_COMP}"
+-		echo ${LDPATH} | ${AWK} -F/ '{ print  "/"$2"/"$3"/"$4"/" }'
++		echo ${LDPATH} | \
++ 			${SED} -e "s|${EROOT}/*|/|g" | \
++			${AWK} -F/ '{ print "/"$2"/"$3"/"$4"/" }'
+ 	)
+ 
+ 	CC_COMP_VERSION=$(chop_gcc_ver_spec ${CC_COMP})
+ 	CC_COMP_TARGET=${CC_COMP%-${CC_COMP_VERSION}*}
+ 
+-	if [[ ! -d ${ROOT}/${GCC_LIB}/${CC_COMP_TARGET}/${CC_COMP_VERSION} ]]; then
++	if [[ ! -d ${EROOT}/${GCC_LIB}/${CC_COMP_TARGET}/${CC_COMP_VERSION} ]]; then
+ 		CC_COMP_VERSION=${CC_COMP_VERSION%-*}
+ 	fi
+ 
+-	if [[ ! -d ${ROOT}/${GCC_LIB}/${CC_COMP_TARGET}/${CC_COMP_VERSION} ]] || \
++	if [[ ! -d ${EROOT}/${GCC_LIB}/${CC_COMP_TARGET}/${CC_COMP_VERSION} ]] || \
+ 	   [[ ! -f ${GCC_ENV_D}/${CC_COMP} ]]
+ 	then
+ 		eerror "${argv0}: Profile does not exist or invalid setting for ${GCC_ENV_D}/${CC_COMP}" 1>&2
