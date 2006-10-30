@@ -1,0 +1,336 @@
+diff -ur tetex-src-2.0.2-orig/texk/acklibtool.m4 tetex-src-2.0.2/texk/acklibtool.m4
+--- tetex-src-2.0.2-orig/texk/acklibtool.m4	1997-10-03 11:38:16.000000000 +0000
++++ tetex-src-2.0.2/texk/acklibtool.m4	2006-02-28 17:23:29.000000000 +0000
+@@ -13,12 +13,7 @@
+ # scan PATH.  For one thing, if we found it somewhere there, we couldn't
+ # use that directory to put the config file ... and that's what we need
+ # to do, to avoid having to configure in every subdirectory.
+-LIBTOOL=$ac_aux_dir/klibtool
+-AC_SUBST(LIBTOOL)
+-if test ! -r $LIBTOOL; then
+-  AC_MSG_ERROR([klibtool not in $ac_aux_dir, goodbye])
+-  exit 1
+-fi
++LIBTOOL=libtool
+ #
+ ## Argument parsing: we support --enable-shared and --enable-static.
+ AC_ARG_ENABLE(shared,
+diff -ur tetex-src-2.0.2-orig/texk/dviljk/Makefile.in tetex-src-2.0.2/texk/dviljk/Makefile.in
+--- tetex-src-2.0.2-orig/texk/dviljk/Makefile.in	2002-12-08 10:31:49.000000000 +0000
++++ tetex-src-2.0.2/texk/dviljk/Makefile.in	2006-02-28 20:18:24.000000000 +0000
+@@ -58,13 +58,13 @@
+ install-exec:
+ 	$(SHELL) $(top_srcdir)/../mkinstalldirs $(bindir) $(scriptdir)
+ 	test ! -f $(program) \
+-	  || $(INSTALL_LIBTOOL_PROG) $(bindir) $(program)
++	  || $(INSTALL_LIBTOOL_PROG) $(program) $(bindir)
+ 	test ! -f $(program2p) \
+-	  || $(INSTALL_LIBTOOL_PROG) $(bindir) $(program2p)
++	  || $(INSTALL_LIBTOOL_PROG) $(program2p) $(bindir)
+ 	test ! -f $(program4) \
+-	  || $(INSTALL_LIBTOOL_PROG) $(bindir) $(program4)
++	  || $(INSTALL_LIBTOOL_PROG) $(program4) $(bindir)
+ 	test ! -f $(program4l) \
+-	  || $(INSTALL_LIBTOOL_PROG) $(bindir) $(program4l)
++	  || $(INSTALL_LIBTOOL_PROG) $(program4l) $(bindir)
+ 	$(INSTALL_SCRIPT) $(srcdir)/dvihp $(scriptdir)/dvihp
+ 	rm -f $(bindir)/$(program6); $(LN) $(program4) $(bindir)/$(program6)
+ uninstall-exec:
+diff -ur tetex-src-2.0.2-orig/texk/dvipdfm/Makefile.in tetex-src-2.0.2/texk/dvipdfm/Makefile.in
+--- tetex-src-2.0.2-orig/texk/dvipdfm/Makefile.in	2003-02-16 01:03:45.000000000 +0000
++++ tetex-src-2.0.2/texk/dvipdfm/Makefile.in	2006-02-28 20:20:29.000000000 +0000
+@@ -50,8 +50,8 @@
+ 
+ install-exec:
+ 	$(SHELL) $(top_srcdir)/../mkinstalldirs $(bindir)
+-	$(INSTALL_LIBTOOL_PROG) $(bindir) $(program)
+-	$(INSTALL_LIBTOOL_PROG) $(bindir) ebb
++	$(INSTALL_LIBTOOL_PROG) $(program) $(bindir)
++	$(INSTALL_LIBTOOL_PROG) ebb $(bindir)
+ 	$(INSTALL_SCRIPT) $(srcdir)/dvipdft $(bindir)
+ 
+ uninstall-exec:
+diff -ur tetex-src-2.0.2-orig/texk/dvipsk/Makefile.in tetex-src-2.0.2/texk/dvipsk/Makefile.in
+--- tetex-src-2.0.2-orig/texk/dvipsk/Makefile.in	2003-01-31 18:07:46.000000000 +0000
++++ tetex-src-2.0.2/texk/dvipsk/Makefile.in	2006-02-28 20:20:55.000000000 +0000
+@@ -73,7 +73,7 @@
+ 
+ install-exec: all
+ 	$(SHELL) $(top_srcdir)/../mkinstalldirs $(bindir) $(scriptdir) $(fontdir)
+-	for p in $(programs); do $(INSTALL_LIBTOOL_PROG) $(bindir) $$p; done
++	for p in $(programs); do $(INSTALL_LIBTOOL_PROG) $$p $(bindir); done
+ uninstall-exec:
+ 	for p in $(programs); do rm -f $(bindir)/$$p; done
+ 
+diff -ur tetex-src-2.0.2-orig/texk/etc/autoconf/acspecific.m4 tetex-src-2.0.2/texk/etc/autoconf/acspecific.m4
+--- tetex-src-2.0.2-orig/texk/etc/autoconf/acspecific.m4	2003-02-18 06:46:57.000000000 +0000
++++ tetex-src-2.0.2/texk/etc/autoconf/acspecific.m4	2006-02-28 19:20:16.000000000 +0000
+@@ -119,7 +119,7 @@
+ 
+ AC_DEFUN(AC_PROG_CXX,
+ [AC_BEFORE([$0], [AC_PROG_CXXCPP])dnl
+-AC_CHECK_PROGS(CXX, $CCC c++ g++ gcc CC cxx cc++ cl, gcc)
++AC_CHECK_PROGS(CXX, $CCC g++ gcc CC cxx cc++ cl, gcc)
+ 
+ AC_PROG_CXX_WORKS
+ AC_PROG_CXX_GNU
+diff -ur tetex-src-2.0.2-orig/texk/gsftopk/Makefile.in tetex-src-2.0.2/texk/gsftopk/Makefile.in
+--- tetex-src-2.0.2-orig/texk/gsftopk/Makefile.in	2002-11-12 20:59:35.000000000 +0000
++++ tetex-src-2.0.2/texk/gsftopk/Makefile.in	2006-02-28 20:22:58.000000000 +0000
+@@ -35,7 +35,7 @@
+ 
+ install-exec: $(program)
+ 	$(SHELL) $(top_srcdir)/../mkinstalldirs $(bindir)
+-	$(INSTALL_LIBTOOL_PROG)  $(bindir) $(program)
++	$(INSTALL_LIBTOOL_PROG) $(program) $(bindir)
+ uninstall-exec:
+ 	rm -f $(bindir)/$(program)
+ 
+diff -ur tetex-src-2.0.2-orig/texk/kpathsea/Makefile.in tetex-src-2.0.2/texk/kpathsea/Makefile.in
+--- tetex-src-2.0.2-orig/texk/kpathsea/Makefile.in	2003-02-15 17:21:42.000000000 +0000
++++ tetex-src-2.0.2/texk/kpathsea/Makefile.in	2006-02-28 22:15:34.000000000 +0000
+@@ -33,10 +33,10 @@
+ library = kpathsea
+ 
+ # We want to compile almost everything with libtool ...
+-KPATHSEA_CC = $(LIBTOOL) compile "$(CC)"
++KPATHSEA_CC = $(LIBTOOL) --mode=compile "$(CC)"
+ .SUFFIXES: .lo
+ .c.lo:
+-	$(KPATHSEA_CC) $< $(ALL_CFLAGS)
++	$(KPATHSEA_CC) $(ALL_CFLAGS) $<
+ 
+ default all: kpsewhich kpsestat access readlink $(library).info manfiles
+ 
+@@ -52,15 +52,8 @@
+ readlink: readlink.o
+ 	$(link_command) readlink.o
+ 
+-$(kpathsea): $(objects) klibtool.version
+-	$(LIBTOOL) archive $(AR) $(ARFLAGS) $@ $(objects)
+-
+-# All the objects depend on the klibtool configuration file.
+-$(objects): ../klibtool.config
+-
+-# Create klibtool.version in the build tree
+-klibtool.version:
+-	$(LN) $(srcdir)/kpathsea.version $@
++$(kpathsea): $(objects)
++	$(LIBTOOL) --mode=link $(CC) $(objects) -rpath $(libdir) -o $@
+ 
+ # Make variable substitutions for paths.h.
+ texmf.cnf: texmf.in texmf.sed
+@@ -180,8 +173,8 @@
+ 	$(INSTALL_SCRIPT) $(srcdir)/mktexnam $(web2cdir)/mktexnam
+ 	$(INSTALL_DATA) $(srcdir)/mktexnam.opt $(web2cdir)/mktexnam.opt
+ 	$(INSTALL_SCRIPT) $(srcdir)/mktexupd $(web2cdir)/mktexupd
+-	$(INSTALL_LIBTOOL_LIBS) $(libdir) lib$(library).la
+-	$(INSTALL_LIBTOOL_PROG) $(bindir) kpsewhich
++	$(INSTALL_LIBTOOL_LIBS) lib$(library).la $(libdir)
++	$(INSTALL_LIBTOOL_PROG) kpsewhich $(bindir)
+ 	$(INSTALL_PROGRAM) kpsestat $(bindir)
+ 	$(INSTALL_PROGRAM) access $(bindir)
+ 	$(INSTALL_PROGRAM) readlink $(bindir)
+diff -ur tetex-src-2.0.2-orig/texk/kpathsea/configure tetex-src-2.0.2/texk/kpathsea/configure
+--- tetex-src-2.0.2-orig/texk/kpathsea/configure	2003-02-18 04:12:52.000000000 +0000
++++ tetex-src-2.0.2/texk/kpathsea/configure	2006-02-28 17:20:36.000000000 +0000
+@@ -1382,12 +1382,8 @@
+ # scan PATH.  For one thing, if we found it somewhere there, we couldn't
+ # use that directory to put the config file ... and that's what we need
+ # to do, to avoid having to configure in every subdirectory.
+-LIBTOOL=$ac_aux_dir/klibtool
++LIBTOOL="libtool"
+ 
+-if test ! -r $LIBTOOL; then
+-  { echo "configure: error: klibtool not in $ac_aux_dir, goodbye" 1>&2; exit 1; }
+-  exit 1
+-fi
+ #
+ ## Argument parsing: we support --enable-shared and --enable-static.
+ # Check whether --enable-shared or --disable-shared was given.
+Only in tetex-src-2.0.2/texk/kpathsea: tetex-2.0.2-use-system-libtool.patch
+diff -ur tetex-src-2.0.2-orig/texk/make/common.mk tetex-src-2.0.2/texk/make/common.mk
+--- tetex-src-2.0.2-orig/texk/make/common.mk	2003-01-24 19:22:12.000000000 +0000
++++ tetex-src-2.0.2/texk/make/common.mk	2006-02-28 19:32:46.000000000 +0000
+@@ -12,7 +12,7 @@
+ LDFLAGS = @LDFLAGS@ $(XLDFLAGS)
+ 
+ # Kpathsea needs this for compiling, programs need it for linking.
+-LIBTOOL = $(kpathsea_srcdir_parent)/klibtool
++LIBTOOL = libtool
+ 
+ # You can change [X]CPPFLAGS, [X]CFLAGS, or [X]DEFS, but
+ # please don't change ALL_CPPFLAGS or ALL_CFLAGS.
+@@ -32,8 +32,8 @@
+ INSTALL_PROGRAM = @INSTALL_PROGRAM@
+ INSTALL_SCRIPT = @INSTALL_SCRIPT@
+ INSTALL_DATA = @INSTALL_DATA@
+-INSTALL_LIBTOOL_LIBS = INSTALL_DATA='$(INSTALL_DATA)' $(LIBTOOL) install-lib
+-INSTALL_LIBTOOL_PROG = INSTALL_PROGRAM='$(INSTALL_PROGRAM)' $(LIBTOOL) install-prog
++INSTALL_LIBTOOL_LIBS = $(LIBTOOL) --mode=install $(INSTALL_DATA)
++INSTALL_LIBTOOL_PROG = $(LIBTOOL) --mode=install $(INSTALL_PROGRAM)
+ 
+ # Creating (symbolic) links.
+ LN = @LN_S@
+diff -ur tetex-src-2.0.2-orig/texk/make/programs.mk tetex-src-2.0.2/texk/make/programs.mk
+--- tetex-src-2.0.2-orig/texk/make/programs.mk	2001-10-27 10:21:12.000000000 +0000
++++ tetex-src-2.0.2/texk/make/programs.mk	2006-02-28 18:48:03.000000000 +0000
+@@ -15,5 +15,5 @@
+ 
+ # When we link with Kpathsea, have to take account that it might be a
+ # shared library, etc.
+-kpathsea_link = $(LIBTOOL) link $(link_command)
++kpathsea_link = $(LIBTOOL) --mode=link $(link_command)
+ # End of programs.mk.
+diff -ur tetex-src-2.0.2-orig/texk/makeindexk/Makefile.in tetex-src-2.0.2/texk/makeindexk/Makefile.in
+--- tetex-src-2.0.2-orig/texk/makeindexk/Makefile.in	2002-11-12 20:57:06.000000000 +0000
++++ tetex-src-2.0.2/texk/makeindexk/Makefile.in	2006-02-28 20:21:17.000000000 +0000
+@@ -20,7 +20,7 @@
+ 
+ install-exec: $(programs)
+ 	$(SHELL) $(top_srcdir)/../mkinstalldirs $(bindir)
+-	$(INSTALL_LIBTOOL_PROG) $(bindir) $(program)
++	$(INSTALL_LIBTOOL_PROG) $(program) $(bindir)
+ 	$(INSTALL_SCRIPT) $(srcdir)/mkindex $(scriptdir)/mkindex
+ uninstall-exec:
+ 	cd $(bindir) && rm -f $(program)
+diff -ur tetex-src-2.0.2-orig/texk/odvipsk/Makefile.in tetex-src-2.0.2/texk/odvipsk/Makefile.in
+--- tetex-src-2.0.2-orig/texk/odvipsk/Makefile.in	2003-01-31 18:08:27.000000000 +0000
++++ tetex-src-2.0.2/texk/odvipsk/Makefile.in	2006-02-28 20:21:40.000000000 +0000
+@@ -61,7 +61,7 @@
+ 
+ install-exec: all
+ 	$(SHELL) $(top_srcdir)/../mkinstalldirs $(bindir) $(scriptdir)
+-	for p in $(programs); do $(INSTALL_LIBTOOL_PROG) $(bindir) $$p; done
++	for p in $(programs); do $(INSTALL_LIBTOOL_PROG) $$p $(bindir); done
+ uninstall-exec:
+ 	for p in $(programs); do rm -f $(bindir)/$$p; done
+ 
+diff -ur tetex-src-2.0.2-orig/texk/oxdvik/Makefile.in tetex-src-2.0.2/texk/oxdvik/Makefile.in
+--- tetex-src-2.0.2-orig/texk/oxdvik/Makefile.in	2003-02-02 18:53:12.000000000 +0000
++++ tetex-src-2.0.2/texk/oxdvik/Makefile.in	2006-02-28 20:21:52.000000000 +0000
+@@ -102,7 +102,7 @@
+ 
+ install-exec: $(program)
+ 	$(SHELL) $(top_srcdir)/../mkinstalldirs $(bindir)
+-	for p in $(program); do $(INSTALL_LIBTOOL_PROG) $(bindir) $$p; done
++	for p in $(program); do $(INSTALL_LIBTOOL_PROG) $$p $(bindir); done
+ 	$(INSTALL_SCRIPT) $(srcdir)/oxdvi-sh $(scriptdir)/oxdvi
+ uninstall-exec:
+ 
+diff -ur tetex-src-2.0.2-orig/texk/ps2pkm/Makefile.in tetex-src-2.0.2/texk/ps2pkm/Makefile.in
+--- tetex-src-2.0.2-orig/texk/ps2pkm/Makefile.in	2002-11-12 20:59:14.000000000 +0000
++++ tetex-src-2.0.2/texk/ps2pkm/Makefile.in	2006-02-28 20:22:06.000000000 +0000
+@@ -36,7 +36,7 @@
+ 
+ install-exec: $(programs)
+ 	$(SHELL) $(top_srcdir)/../mkinstalldirs $(bindir)
+-	for p in $(programs); do $(INSTALL_LIBTOOL_PROG) $(bindir) $$p; done
++	for p in $(programs); do $(INSTALL_LIBTOOL_PROG) $$p $(bindir); done
+ uninstall-exec:
+ 	for p in $(programs); do rm -f $(bindir)/$$p; done
+ 
+diff -ur tetex-src-2.0.2-orig/texk/web2c/Makefile.in tetex-src-2.0.2/texk/web2c/Makefile.in
+--- tetex-src-2.0.2-orig/texk/web2c/Makefile.in	2003-02-01 16:51:16.000000000 +0000
++++ tetex-src-2.0.2/texk/web2c/Makefile.in	2006-02-28 20:06:08.000000000 +0000
+@@ -38,7 +38,7 @@
+ CXX = @CXX@
+ CXXLD = $(CXX)
+ cxx_link_command = $(CXXLD) -o $@ $(LDFLAGS)
+-kpathsea_cxx_link = $(LIBTOOL) link $(cxx_link_command)
++kpathsea_cxx_link = $(LIBTOOL) --mode=link $(cxx_link_command)
+ 
+ @MAINT@ifeq ($(CC), gcc)
+ @MAINT@XDEFS = -Wimplicit -Wreturn-type -Wcomment -Wformat
+@@ -581,7 +581,7 @@
+ 	$(SHELL) $(top_srcdir)/../mkinstalldirs $(bindir) $(texpooldir) \
+ 	  $(mfpooldir) $(mppooldir)
+ 	cd mpware && $(MAKE) $(install_makeargs) install-exec
+-	for p in $(programs); do $(INSTALL_LIBTOOL_PROG) $(bindir) $$p; done
++	for p in $(programs); do $(INSTALL_LIBTOOL_PROG) $$p $(bindir); done
+ @OMEGA@	cd omegafonts && $(MAKE) $(install_makeargs) install-programs install-links
+ @OMEGA@	cd otps && $(MAKE) $(install_makeargs) install-programs
+ 
+diff -ur tetex-src-2.0.2-orig/texk/web2c/configure tetex-src-2.0.2/texk/web2c/configure
+--- tetex-src-2.0.2-orig/texk/web2c/configure	2003-02-21 14:49:42.000000000 +0000
++++ tetex-src-2.0.2/texk/web2c/configure	2006-02-28 19:19:21.000000000 +0000
+@@ -2807,7 +2807,7 @@
+   # First test whether the compiler works in a subshell, and if so,
+   # do it again in the main shell so we see the result.
+ (
+-  for ac_prog in $CCC c++ g++ gcc CC cxx cc++ cl
++  for ac_prog in $CCC g++ gcc CC cxx cc++ cl
+ do
+ # Extract the first word of "$ac_prog", so it can be a program name with args.
+ set dummy $ac_prog; ac_word=$2
+@@ -2952,7 +2952,7 @@
+ fi
+ 
+ ) && {
+-  for ac_prog in $CCC c++ g++ gcc CC cxx cc++ cl
++  for ac_prog in $CCC g++ gcc CC cxx cc++ cl
+ do
+ # Extract the first word of "$ac_prog", so it can be a program name with args.
+ set dummy $ac_prog; ac_word=$2
+diff -ur tetex-src-2.0.2-orig/texk/web2c/mpware/Makefile.in tetex-src-2.0.2/texk/web2c/mpware/Makefile.in
+--- tetex-src-2.0.2-orig/texk/web2c/mpware/Makefile.in	2001-12-15 19:30:18.000000000 +0000
++++ tetex-src-2.0.2/texk/web2c/mpware/Makefile.in	2006-02-28 20:05:21.000000000 +0000
+@@ -47,8 +47,8 @@
+ install-exec: $(programs)
+ 	$(SHELL) $(top_srcdir)/../mkinstalldirs $(bindir) $(scriptdir)
+ 	$(INSTALL_PROGRAM) newer $(bindir)/newer
+-	$(INSTALL_LIBTOOL_PROG) $(bindir) dmp
+-	$(INSTALL_LIBTOOL_PROG) $(bindir) mpto
++	$(INSTALL_LIBTOOL_PROG) dmp $(bindir)
++	$(INSTALL_LIBTOOL_PROG) mpto $(bindir)
+ 	$(INSTALL_SCRIPT) makempx $(scriptdir)/makempx
+ install-data:
+ 
+diff -ur tetex-src-2.0.2-orig/texk/web2c/omegadir/omega.mk tetex-src-2.0.2/texk/web2c/omegadir/omega.mk
+--- tetex-src-2.0.2-orig/texk/web2c/omegadir/omega.mk	2002-11-12 17:35:32.000000000 +0000
++++ tetex-src-2.0.2/texk/web2c/omegadir/omega.mk	2006-02-28 20:23:45.000000000 +0000
+@@ -117,7 +117,7 @@
+ # The actual binary executables and pool files.
+ install-omega-programs: $(omega_programs)
+ 	$(SHELL) $(top_srcdir)/../mkinstalldirs $(bindir)
+-	for p in omega; do $(INSTALL_LIBTOOL_PROG) $(bindir) $$p; done
++	for p in omega; do $(INSTALL_LIBTOOL_PROG) $$p $(bindir); done
+ 	cd otps && $(MAKE) $(install_makeargs) install-programs
+ 	cd omegafonts && $(MAKE) $(install_makeargs) install-programs
+ 
+diff -ur tetex-src-2.0.2-orig/texk/web2c/omegafonts/Makefile.in tetex-src-2.0.2/texk/web2c/omegafonts/Makefile.in
+--- tetex-src-2.0.2-orig/texk/web2c/omegafonts/Makefile.in	2001-11-10 13:42:37.000000000 +0000
++++ tetex-src-2.0.2/texk/web2c/omegafonts/Makefile.in	2006-02-28 20:11:23.000000000 +0000
+@@ -53,7 +53,7 @@
+ 
+ install-programs: $(programs)
+ 	$(SHELL) $(top_srcdir)/../mkinstalldirs $(bindir) 
+-	for p in $(programs); do $(INSTALL_LIBTOOL_PROG) $(bindir) $$p; done
++	for p in $(programs); do $(INSTALL_LIBTOOL_PROG) $$p $(bindir); done
+ 
+ install-links: install-programs
+ 	for f in ""$(linked_programs); do \
+diff -ur tetex-src-2.0.2-orig/texk/web2c/otps/Makefile.in tetex-src-2.0.2/texk/web2c/otps/Makefile.in
+--- tetex-src-2.0.2-orig/texk/web2c/otps/Makefile.in	2000-06-20 22:27:56.000000000 +0000
++++ tetex-src-2.0.2/texk/web2c/otps/Makefile.in	2006-02-28 20:12:28.000000000 +0000
+@@ -36,7 +36,7 @@
+ 
+ install-programs: $(programs)
+ 	$(SHELL) $(top_srcdir)/../mkinstalldirs $(bindir) 
+-	for p in $(programs); do $(INSTALL_LIBTOOL_PROG) $(bindir) $$p; done
++	for p in $(programs); do $(INSTALL_LIBTOOL_PROG) $$p $(bindir); done
+ 	for p in $(scripts); do $(INSTALL_SCRIPT) $(srcdir)/$$p $(scriptdir); done
+ 
+ Makefile: Makefile.in ../config.status
+diff -ur tetex-src-2.0.2-orig/texk/xdvik/Makefile.in tetex-src-2.0.2/texk/xdvik/Makefile.in
+--- tetex-src-2.0.2-orig/texk/xdvik/Makefile.in	2003-02-02 18:53:22.000000000 +0000
++++ tetex-src-2.0.2/texk/xdvik/Makefile.in	2006-02-28 20:23:59.000000000 +0000
+@@ -103,7 +103,7 @@
+ 
+ install-exec: $(program)
+ 	$(SHELL) $(top_srcdir)/../mkinstalldirs $(bindir)
+-	for p in $(program); do $(INSTALL_LIBTOOL_PROG) $(bindir) $$p; done
++	for p in $(program); do $(INSTALL_LIBTOOL_PROG) $$p $(bindir); done
+ 	$(INSTALL_SCRIPT) $(srcdir)/$(perlprog) $(scriptdir)/$(perlprog)
+ 	$(INSTALL_SCRIPT) $(srcdir)/xdvi-sh $(scriptdir)/xdvi
+ 	$(INSTALL_SCRIPT) $(srcdir)/xdvizilla $(scriptdir)/xdvizilla

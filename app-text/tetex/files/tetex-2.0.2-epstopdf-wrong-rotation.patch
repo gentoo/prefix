@@ -1,0 +1,12 @@
+--- tetex-src-2.0.2.old/texk/tetex/epstopdf	2002-11-23 01:58:03.000000000 +0100
++++ tetex-src-2.0.2/texk/tetex/epstopdf	2005-12-02 19:57:55.000000000 +0100
+@@ -194,7 +194,8 @@
+ ### open output file
+ if ($::opt_gs) {
+   my $pipe = "$GS -q -sDEVICE=pdfwrite $GSOPTS " .
+-          "-sOutputFile=$OutputFilename - -c quit";
++  	 "-dAutoRotatePages=/None " .
++         "\"-sOutputFile=$OutputFilename\" - -c quit";
+   debug "Ghostscript pipe:", $pipe;
+   open(OUT,"|$pipe") or error "Cannot open Ghostscript for piped input";
+ }

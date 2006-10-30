@@ -1,0 +1,57 @@
+diff -ru xpdf-2.02pl1/goo/gmem.c xpdf-2.02pl1/goo/gmem.c
+--- xpdf-2.02pl1/goo/gmem.c	2003-06-16 22:01:26.000000000 +0200
++++ xpdf-2.02pl1/goo/gmem.c	2004-10-29 15:13:34.866919791 +0200
+@@ -53,9 +53,9 @@
+ 
+ #endif /* DEBUG_MEM */
+ 
+-void *gmalloc(int size) {
++void *gmalloc(size_t size) {
+ #ifdef DEBUG_MEM
+-  int size1;
++  size_t size1;
+   char *mem;
+   GMemHdr *hdr;
+   void *data;
+@@ -94,11 +94,11 @@
+ #endif
+ }
+ 
+-void *grealloc(void *p, int size) {
++void *grealloc(void *p, size_t size) {
+ #ifdef DEBUG_MEM
+   GMemHdr *hdr;
+   void *q;
+-  int oldSize;
++  size_t oldSize;
+ 
+   if (size == 0) {
+     if (p)
+@@ -137,7 +137,7 @@
+ 
+ void gfree(void *p) {
+ #ifdef DEBUG_MEM
+-  int size;
++  size_t size;
+   GMemHdr *hdr;
+   GMemHdr *prevHdr, *q;
+   int lst;
+diff -ru xpdf-2.02pl1/goo/gmem.h xpdf-2.02pl1/goo/gmem.h
+--- xpdf-2.02pl1/goo/gmem.h	2003-06-16 22:01:26.000000000 +0200
++++ xpdf-2.02pl1/goo/gmem.h	2004-10-29 15:13:50.864027201 +0200
+@@ -19,13 +19,13 @@
+  * Same as malloc, but prints error message and exits if malloc()
+  * returns NULL.
+  */
+-extern void *gmalloc(int size);
++extern void *gmalloc(size_t size);
+ 
+ /*
+  * Same as realloc, but prints error message and exits if realloc()
+  * returns NULL.  If <p> is NULL, calls malloc instead of realloc().
+  */
+-extern void *grealloc(void *p, int size);
++extern void *grealloc(void *p, size_t size);
+ 
+ /*
+  * Same as free, but checks for and ignores NULL pointers.

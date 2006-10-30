@@ -1,0 +1,11 @@
+--- tetex-src-2.0.2.old/texk/xdvik/dvi-draw.c      2003-01-25 05:16:33.000000000 -0500
++++ tetex-src-2.0.2/texk/xdvik/dvi-draw.c  2006-01-08 04:52:44.000000000 -0500
+@@ -518,7 +518,7 @@
+
+ #endif /* T1LIB */
+
+-extern void home();  /* from events.c */
++extern void home(wide_bool scrl);  /* from events.c */
+ extern int fallbacktfm; /* from tfmload.c */
+
+ static struct frame frame0;    /* dummy head of list */

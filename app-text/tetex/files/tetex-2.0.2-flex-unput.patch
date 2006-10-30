@@ -1,0 +1,12 @@
+diff -uNr tetex-src-2.0.2.old/texk/web2c/omegafonts/Makefile.in tetex-src-2.0.2/texk/web2c/omegafonts/Makefile.in
+--- tetex-src-2.0.2.old/texk/web2c/omegafonts/Makefile.in	2001-11-10 14:42:37.000000000 +0100
++++ tetex-src-2.0.2/texk/web2c/omegafonts/Makefile.in	2006-02-13 12:38:48.000000000 +0100
+@@ -40,7 +40,7 @@
+ 	-test -f y.tab.h && mv -f y.tab.h y_tab.h
+ $(LEX_OUTPUT_ROOT).o: parser.h
+ $(LEX_OUTPUT_ROOT).c: pl.l
+-	$(LEX) $(srcdir)/pl.l
++	cp $(srcdir)/lex.yy.c-dist $(srcdir)/lex.yy.c
+ 
+ 
+ 

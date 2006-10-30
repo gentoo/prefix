@@ -1,0 +1,81 @@
+diff -ru xpdf-2.02pl1/xpdf/XRef.cc xpdf-2.02pl1/xpdf/XRef.cc
+--- xpdf-2.02pl1/xpdf/XRef.cc	2004-10-29 15:16:45.790089001 +0200
++++ xpdf-2.02pl1/xpdf/XRef.cc	2004-10-29 15:11:54.132168025 +0200
+@@ -66,6 +66,8 @@
+   start = str->getStart();
+   pos = readTrailer();
+ 
++  entries = NULL;
++
+   // if there was a problem with the trailer,
+   // try to reconstruct the xref table
+   if (pos == 0) {
+@@ -76,7 +78,7 @@
+ 
+   // trailer is ok - read the xref table
+   } else {
+-    if (size*sizeof(XRefEntry)/sizeof(XRefEntry) != size) {
++    if ((size < 0) || (size*sizeof(XRefEntry)/sizeof(XRefEntry) != size)) {
+       error(-1, "Invalid 'size' inside xref table.");
+       ok = gFalse;
+       errCode = errDamaged;
+@@ -181,7 +183,7 @@
+     n = atoi(p);
+     while ('0' <= *p && *p <= '9') ++p;
+     while (isspace(*p)) ++p;
+-    if (p == buf)
++    if ((p == buf) || (n < 0)) /* must make progress */
+       return 0;
+     pos1 += (p - buf) + n * 20;
+   }
+@@ -255,6 +257,10 @@
+     }
+     s[i] = '\0';
+     first = atoi(s);
++    if (first < 0) {
++        error(-1, "Invalid 'first'");
++        goto err2;
++    }
+     while ((c = str->lookChar()) != EOF && isspace(c)) {
+       str->getChar();
+     }
+@@ -266,6 +272,10 @@
+     }
+     s[i] = '\0';
+     n = atoi(s);
++    if (n<=0) {
++        error(-1, "Invalid 'n'");
++        goto err2;
++    }
+     while ((c = str->lookChar()) != EOF && isspace(c)) {
+       str->getChar();
+     }
+@@ -273,7 +283,7 @@
+     // table size
+     if (first + n > size) {
+       newSize = size + 256;
+-      if (newSize*sizeof(XRefEntry)/sizeof(XRefEntry) != newSize) {
++      if ((newSize < 0) || (newSize*sizeof(XRefEntry)/sizeof(XRefEntry) != newSize)) {
+         error(-1, "Invalid 'newSize'");
+         goto err2;
+       }
+@@ -406,6 +416,10 @@
+     // look for object
+     } else if (isdigit(*p)) {
+       num = atoi(p);
++      if (num < 0) {
++	error(-1, "Invalid 'num' parameters.");
++	return gFalse;
++      }
+       do {
+ 	++p;
+       } while (*p && isdigit(*p));
+@@ -425,7 +439,7 @@
+ 	    if (!strncmp(p, "obj", 3)) {
+ 	      if (num >= size) {
+ 		newSize = (num + 1 + 255) & ~255;
+-	        if (newSize*sizeof(XRefEntry)/sizeof(XRefEntry) != newSize) {
++	        if ((newSize < 0) || (newSize*sizeof(XRefEntry)/sizeof(XRefEntry) != newSize)) {
+ 	          error(-1, "Invalid 'obj' parameters.");
+ 	          return gFalse;
+ 	        }

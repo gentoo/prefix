@@ -1,0 +1,30 @@
+--- tetex-bin-2.0.2/texk/xdvik/xdvizilla	2002-10-12 15:28:50.000000000 +0200
++++ tetex-bin-2.0.2.new/texk/xdvik/xdvizilla	2004-12-23 12:58:35.010332504 +0100
+@@ -33,7 +33,7 @@
+ case "$FILETYPE" in
+ 
+   *"gzip compressed data"*)
+-    FILE=/tmp/xdvizilla$$
++    FILE=`mktemp -t xdvizilla.XXXXXX` || exit 1
+     gunzip -c "$1" > $FILE
+     [ -n "$NO_RM" ] || rm -f -- "$1"
+     NO_RM=
+@@ -41,7 +41,7 @@
+     ;;
+ 
+   *"compressed data"* | *"compress'd data"*)
+-    FILE=/tmp/xdvizilla$$
++    FILE=`mktemp -t xdvizilla.XXXXXX` || exit 1
+     uncompress -c "$1" > $FILE
+     [ -n "$NO_RM" ] || rm -f -- "$1"
+     NO_RM=
+@@ -60,8 +60,7 @@
+ case "$FILETYPE" in
+ 
+   *" tar archive")
+-    TARDIR=/tmp/xdvitar$$
+-    mkdir $TARDIR
++    TARDIR=`mktemp -t -d xdvitar.XXXXXX` || exit 1
+     cat "$FILE" | (cd $TARDIR; tar xf -)
+     DVINAME=`tar tf "$FILE" | grep '\.dvi$' | head -1`
+     [ -n "$NO_RM" ] || rm -f -- "$FILE"
