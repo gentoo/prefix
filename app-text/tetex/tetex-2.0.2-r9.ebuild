@@ -36,8 +36,15 @@ src_unpack() {
 	# bug 118264
 	EPATCH_OPTS="-d ${WORKDIR} -p0" epatch ${FILESDIR}/${P}-dvi-draw-conflicting-types.patch
 
+	# On OSX/Darwin we have to use glibtool instead
+	[[ ${USERLAND} == "Darwin" ]] && \
+		sed -e '/^+/s|libtool|glibtool|g' \
+			"${FILESDIR}"/${P}-use-system-libtool.patch \
+			> "${T}"/${P}-use-system-libtool.patch
+	
+
 	# bug 80985
-	EPATCH_OPTS="-d ${S} -p1" epatch ${FILESDIR}/${P}-use-system-libtool.patch
+	EPATCH_OPTS="-d ${S} -p1" epatch "${T}"/${P}-use-system-libtool.patch
 
 }
 
