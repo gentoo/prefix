@@ -109,6 +109,16 @@ int main() {
 	einfo "Configuring GCC with: ${myconf//--/\n\t--}"
 	${S}/configure ${myconf} || die "conf failed"
 	make -j1 bootstrap || die "emake failed"
+}
+
+src_install() {
+	cd ${WORKDIR}/build
+	make DESTDIR="${D}" install || die
+
+	use build && rm -rf "${ED}"/usr/{man,share}
+
+	VERS=`sed -n -e '/version_string/s/.*\"\([^ \"]*\)[ \"].*/\1/p' \
+		< ${S}/gcc/version.c || exit 1`
 
 	# create gcc-config entry
 	dodir /etc/env.d/gcc
@@ -128,13 +138,6 @@ int main() {
 	echo "MANPATH=\"${EPREFIX}/usr/share/gcc-data/${CHOST}/${VERS}/man\"" >> ${gcc_envd_file}
 	echo "INFOPATH=\"${EPREFIX}/usr/share/gcc-data/${CHOST}/${VERS}/info\"" >> ${gcc_envd_file}
 	echo "STDCXX_INCDIR=\"g++-v${VERS/\.*/}\"" >> ${gcc_envd_file}
-}
-
-src_install() {
-	cd ${WORKDIR}/build
-	make DESTDIR="${D}" install || die
-
-	use build && rm -rf "${ED}"/usr/{man,share}
 }
 
 pkg_postinst() {
