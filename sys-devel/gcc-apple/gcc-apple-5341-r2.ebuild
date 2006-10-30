@@ -84,8 +84,7 @@ int main() {
 		--with-gxx-include-dir=${EPREFIX}/usr/lib/gcc/${CHOST}/${VERS}/include/g++-v${VERS/\.*/} \
 		--with-as=${EPREFIX}/usr/bin/as \
 		--with-ld=${EPREFIX}/usr/bin/ld \
-		--enable-languages=c,objc,c++,obj-c++ \
-		--with-slibdir=${EPREFIX}/usr/lib"
+		--enable-languages=c,objc,c++,obj-c++"
 
 	# Native Language Support
 	if use nls ; then
