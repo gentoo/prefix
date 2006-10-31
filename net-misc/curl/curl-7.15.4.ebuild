@@ -86,7 +86,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die "installed failed for current version"
+	make DESTDIR="${D}" install || die "installed failed for current version"
 
 	insinto /usr/share/aclocal
 	doins docs/libcurl/libcurl.m4
