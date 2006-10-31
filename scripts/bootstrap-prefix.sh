@@ -349,7 +349,8 @@ bootstrap_python() {
 		--enable-shared \
 		--disable-ipv6 \
 		--with-threads \
-		--with-cxx=no
+		--with-cxx=no \
+		--disable-shared
 	$MAKE ${MAKEOPTS} || exit 1
 
 	einfo "Installing ${A%-*}"
