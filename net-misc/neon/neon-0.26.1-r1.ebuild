@@ -70,7 +70,7 @@ src_test() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die 'install failed'
+	make DESTDIR="${D}" install || die 'install failed'
 	dodoc AUTHORS BUGS ChangeLog NEWS README THANKS TODO doc/*
 }
 
