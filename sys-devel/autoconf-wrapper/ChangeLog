@@ -1,0 +1,143 @@
+# ChangeLog for sys-devel/autoconf-wrapper
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-wrapper/ChangeLog,v 1.35 2006/10/17 09:10:51 uberlord Exp $
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org>
+  autoconf-wrapper-3.2-r2.ebuild:
+  Added ~sparc-fbsd keyword.
+
+  29 Aug 2006; Fernando J. Pereda <ferdy@gentoo.org>
+  autoconf-wrapper-3.2.ebuild:
+  Stable on alpha as per bug #137896
+
+  29 Jun 2006; Martin Schlemmer <azarah@gentoo.org>
+  +files/ac-wrapper-3.3.sh:
+  Update wrapper to be more generic with different versions of autconf-2.59 or
+  later.
+
+*autoconf-wrapper-3.2-r2 (27 Jun 2006)
+
+  27 Jun 2006; Mike Frysinger <vapier@gentoo.org>
+  +autoconf-wrapper-3.2-r2.ebuild:
+  Version bump for autoconf-2.60.
+
+  26 Jun 2006; Andrej Kacian <ticho@gentoo.org> autoconf-wrapper-3.2.ebuild:
+  Stable on x86. Bug 137896.
+
+  25 Jun 2006; Christian Birchinger <joker@gentoo.org>
+  autoconf-wrapper-3.2.ebuild:
+  Added sparc stable keyword
+
+  25 Jun 2006; Marcus D. Hanwell <cryos@gentoo.org>
+  autoconf-wrapper-3.2.ebuild:
+  Marked stable on amd64, bug 137896.
+
+  25 Jun 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  autoconf-wrapper-3.2.ebuild:
+  ppc stable, bug #137896
+
+  25 Jun 2006; Fabian Groffen <grobian@gentoo.org>
+  autoconf-wrapper-3.2.ebuild:
+  Marked ppc-macos stable for progressive users (bug #137896)
+
+  25 Jun 2006; Markus Rothe <corsair@gentoo.org> ChangeLog:
+  machine freezed before digest have been commited. fixing
+
+  25 Jun 2006; Markus Rothe <corsair@gentoo.org>
+  autoconf-wrapper-3.2.ebuild:
+  Stable on ppc64; bug #137896
+
+*autoconf-wrapper-3.2-r1 (25 Jun 2006)
+
+  25 Jun 2006; Mike Frysinger <vapier@gentoo.org>
+  +autoconf-wrapper-3.2-r1.ebuild:
+  Version bump for autoconf-2.59d.
+
+  29 May 2006; Joshua Kinard <kumba@gentoo.org> autoconf-wrapper-3.2.ebuild:
+  Marking stable on mips to plug a catalyst stage3 build error (autom4te not
+  found for libtool).
+
+  02 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  autoconf-wrapper-3-r1.ebuild, autoconf-wrapper-3.2.ebuild:
+  Update ~x86-fbsd keyword.
+
+  30 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  autoconf-wrapper-3-r1.ebuild:
+  Add ~x86-fbsd keyword.
+
+  19 Feb 2006; Joshua Kinard <kumba@gentoo.org>
+  autoconf-wrapper-3-r1.ebuild:
+  Marked stable on mips.
+
+*autoconf-wrapper-3.2 (09 Sep 2005)
+
+  09 Sep 2005; Martin Schlemmer <azarah@gentoo.org>
+  +files/ac-wrapper-3.2.sh, +autoconf-wrapper-3.2.ebuild:
+  Remove awk compat crap as gawk now works on Darwin.
+
+  03 Aug 2005; Fernando J. Pereda <ferdy@gentoo.org>
+  autoconf-wrapper-3-r1.ebuild:
+  stable on alpha
+
+  17 Jul 2005; Tobias Scherbaum <dertobi123@gentoo.org>
+  autoconf-wrapper-3-r1.ebuild:
+  ppc stable
+
+*autoconf-wrapper-3.1 (16 Jul 2005)
+
+  16 Jul 2005; Martin Schlemmer <azarah@gentoo.org>
+  +files/ac-wrapper-3.1.sh, +autoconf-wrapper-3.1.ebuild:
+  Update to work with MacOS X.  Do not parse comments in acfiles.
+
+  12 Jul 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  autoconf-wrapper-3-r1.ebuild:
+  Stable on sparc
+
+  12 Jul 2005; Markus Rothe <corsair@gentoo.org>
+  autoconf-wrapper-3-r1.ebuild:
+  Stable on ppc64
+
+  11 Jul 2005; Danny van Dyk <kugelfang@gentoo.org>
+  autoconf-wrapper-3-r1.ebuild:
+  Marked stable on amd64.
+
+*autoconf-wrapper-3-r1 (30 Jun 2005)
+
+  30 Jun 2005; Martin Schlemmer <azarah@gentoo.org> files/ac-wrapper-3.sh,
+  +autoconf-wrapper-3-r1.ebuild:
+  Also check configure.{in,ac} for AC_PREREQ, bug #97470.
+
+*autoconf-wrapper-3 (28 Jun 2005)
+
+  28 Jun 2005; Martin Schlemmer <azarah@gentoo.org> +files/ac-wrapper-3.sh,
+  +autoconf-wrapper-3.ebuild:
+  Add logic to check automake aux files for AC_PREREQ and run required
+  autoconf version according to that. Some syntax cleanups.
+
+*autoconf-wrapper-2-r1 (08 Feb 2004)
+
+  08 Feb 2004; Mike Frysinger <vapier@gentoo.org> :
+  Force people to re-emerge.
+
+*autoconf-wrapper-2 (05 Dec 2004)
+
+  05 Dec 2004; Mike Frysinger <vapier@gentoo.org> +files/ac-wrapper-2.sh,
+  +autoconf-wrapper-2.ebuild:
+  When guessing which version to run, dont try to use autoconf-2.1x if we are
+  running automake-1.7 or better.
+
+*autoconf-wrapper-1-r1 (05 Dec 2004)
+
+  05 Dec 2004; Mike Frysinger <vapier@gentoo.org>
+  +autoconf-wrapper-1-r1.ebuild, -autoconf-wrapper-1.ebuild:
+  Version bump to fix #73328.
+
+  13 Nov 2004; Mike Frysinger <vapier@gentoo.org> +files/ac-wrapper-1.sh,
+  autoconf-wrapper-1.ebuild:
+  Punt the perl version and use the bash version by Gregorio Guidi #66478.
+
+*autoconf-wrapper-1 (20 Oct 2004)
+
+  20 Oct 2004; Mike Frysinger <vapier@gentoo.org>:
+  Break the autoconf wrapper (ac-wrapper.pl) off into its own package.
+  This updated version resolves #56670 and #66478.
