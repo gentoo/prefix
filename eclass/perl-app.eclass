@@ -27,11 +27,11 @@ perl-app_src_prep() {
 	pwd
 	if [ "${PREFER_BUILDPL}" == "yes" ] && ( [ -f Build.PL ] || [ ${PN} == "module-build" ] ); then
 		einfo "Using Module::Build"
-		echo "$pm_echovar" | perl Build.PL --installdirs=vendor --destdir=${D} --libdoc= || die "Unable to build! (are you using USE=\"build\"?)"
+		echo "$pm_echovar" | perl Build.PL --installdirs=vendor --destdir="$D" --libdoc= || die "Unable to build! (are you using USE=\"build\"?)"
 	elif [ -f Makefile.PL ] && [ ! ${PN} == "module-build" ]; then
 		einfo "Using ExtUtils::MakeMaker"
 		echo "$pm_echovar" | perl Makefile.PL ${myconf} INSTALLMAN3DIR='none'\
-		PREFIX=/usr INSTALLDIRS=vendor DESTDIR=${D} || die "Unable to build! (are you using USE=\"build\"?)"
+		PREFIX=/usr INSTALLDIRS=vendor DESTDIR="$D" || die "Unable to build! (are you using USE=\"build\"?)"
 	fi
 	if [ ! -f Build.PL ] && [ ! -f Makefile.PL ]; then
 		einfo "No Make or Build file detected..."

@@ -33,7 +33,7 @@ EXPORT_FUNCTIONS pkg_setup pkg_preinst pkg_postinst pkg_prerm pkg_postrm src_com
 # understand DESTDIR
 #
 # 2004.10.01 mcummings
-# noticed a discrepancy in how we were sed fixing references to ${D}
+# noticed a discrepancy in how we were sed fixing references to ${ED}
 #
 # 2005.03.14 mcummings
 # Updated eclass to include a specific function for dealing with perlocal.pods -
@@ -118,11 +118,11 @@ perl-module_src_prep() {
 	pwd
 	if [ "${PREFER_BUILDPL}" == "yes" ] && ( [ -f Build.PL ] || [ ${PN} == "module-build" ] ); then
 		einfo "Using Module::Build"
-		echo "$pm_echovar" | perl Build.PL --installdirs=vendor --destdir="${EDEST}" --libdoc= || die "Unable to build! (are you using USE=\"build\"?)"
+		echo "$pm_echovar" | perl Build.PL --installdirs=vendor --destdir="$D" --libdoc= || die "Unable to build! (are you using USE=\"build\"?)"
 	elif [ -f Makefile.PL ] && [ ! ${PN} == "module-build" ]; then
 		einfo "Using ExtUtils::MakeMaker"
 		echo "$pm_echovar" | perl Makefile.PL ${myconf} INSTALLMAN3DIR='none'\
-		PREFIX="${EPREFIX}"/usr INSTALLDIRS=vendor DESTDIR="${EDEST}" || die "Unable to build! (are you using USE=\"build\"?)"
+		PREFIX="${EPREFIX}"/usr INSTALLDIRS=vendor DESTDIR="$D" || die "Unable to build! (are you using USE=\"build\"?)"
 	fi
 	if [ ! -f Build.PL ] && [ ! -f Makefile.PL ]; then
 		einfo "No Make or Build file detected..."
@@ -167,17 +167,17 @@ perl-module_src_install() {
 
 
 	einfo "Cleaning out stray man files"
-	for FILE in `find ${D} -type f -name "*.3pm*"`; do
+	for FILE in `find ${ED} -type f -name "*.3pm*"`; do
 		rm -rf ${FILE}
 	done
-	find ${D}/usr/share/man -depth -type d 2>/dev/null | xargs -r rmdir 2>/dev/null
+	find ${ED}/usr/share/man -depth -type d 2>/dev/null | xargs -r rmdir 2>/dev/null
 
 	fixlocalpod
 
-	for FILE in `find ${D} -type f |grep -v '.so'`; do
+	for FILE in `find ${ED} -type f |grep -v '.so'`; do
 		STAT=`file $FILE| grep -i " text"`
 		if [ "${STAT}x" != "x" ]; then
-			sed -i -e "s:${D}:/:g" ${FILE}
+			sed -i -e "s:$D:/:g" ${FILE}
 		fi
 	done
 
@@ -262,19 +262,19 @@ perlinfo() {
 fixlocalpod() {
 	perlinfo
 
-	if [ -f ${EDEST}${ARCH_LIB}/perllocal.pod ];
+	if [ -f $D${ARCH_LIB}/perllocal.pod ];
 	then
-		rm -f ${EDEST}/${ARCH_LIB}/perllocal.pod
+		rm -f $D/${ARCH_LIB}/perllocal.pod
 	fi
 
-	if [ -f ${EDEST}${SITE_LIB}/perllocal.pod ];
+	if [ -f $D${SITE_LIB}/perllocal.pod ];
 	then
-		rm -f ${EDEST}/${SITE_LIB}/perllocal.pod
+		rm -f $D/${SITE_LIB}/perllocal.pod
 	fi
 
-	if [ -f ${EDEST}${VENDOR_LIB}/perllocal.pod ];
+	if [ -f $D${VENDOR_LIB}/perllocal.pod ];
 	then
-		rm -f ${EDEST}/${VENDOR_LIB}/perllocal.pod
+		rm -f $D/${VENDOR_LIB}/perllocal.pod
 	fi
 }
 
