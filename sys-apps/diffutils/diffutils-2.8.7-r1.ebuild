@@ -51,9 +51,9 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${EDEST}" || die
+	make install DESTDIR="${D}" || die
 	dodoc ChangeLog NEWS README
 
 	# use the manpage from 'sys-apps/man-pages'
-	rm -f "${D}"/usr/share/man/man1/diff.1*
+	rm -f "${ED}"/usr/share/man/man1/diff.1*
 }
