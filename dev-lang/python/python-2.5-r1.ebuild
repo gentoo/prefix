@@ -200,7 +200,7 @@ src_install() {
 	if use framework ; then
 		local myfw
 		myfw="Library/Frameworks/Python.framework/Versions/${PYVER}"
-		make DESTDIR="${EDEST}" frameworkinstall || die "framework failed"
+		make DESTDIR="${D}" frameworkinstall || die "framework failed"
 		if use aqua ; then
 			make DESTDIR="${D}" frameworkinstallapps || die "install apps failed"
 			make DESTDIR="${D}" frameworkinstallextras || die "install extras failed"
@@ -210,27 +210,27 @@ src_install() {
 		dosym ../../${myfw}/lib/python${PYVER} /usr/lib/python${PYVER}
 		dosym ../../${myfw}/include/python${PYVER} /usr/include/python${PYVER}
 	else
-		make DESTDIR="${EDEST}" altinstall maninstall  || die "make altinstall maninstall failed"
+		make DESTDIR="${D}" altinstall maninstall  || die "make altinstall maninstall failed"
 	fi
 
 	if use userland_Darwin && ! use framework; then
 		make libpython.${PV}.dylib || die "make dylib failed"
 		into /usr
 		dolib.so ${S}/libpython.2.5.0.dylib
-		cd ${D}
+		cd ${ED}
 		dosym /usr/lib/libpython.${PV}.dylib /usr/lib/libpython.2.5.dylib
 		dosym /usr/lib/libpython.${PV}.dylib /usr/lib/libpython.2.dylib
 		dosym /usr/lib/libpython.${PV}.dylib /usr/lib/libpython.dylib
 	fi
 
-	mv ${D}/usr/bin/python${PYVER}-config ${D}/usr/bin/python-config-${PYVER}
+	mv ${ED}/usr/bin/python${PYVER}-config ${ED}/usr/bin/python-config-${PYVER}
 
 	# Fix slotted collisions
-	mv ${D}/usr/bin/pydoc ${D}/usr/bin/pydoc${PYVER}
-	mv ${D}/usr/bin/idle ${D}/usr/bin/idle${PYVER}
-	mv ${D}/usr/share/man/man1/python.1 \
-		${D}/usr/share/man/man1/python${PYVER}.1
-	rm -f ${D}/usr/bin/smtpd.py
+	mv ${ED}/usr/bin/pydoc ${ED}/usr/bin/pydoc${PYVER}
+	mv ${ED}/usr/bin/idle ${ED}/usr/bin/idle${PYVER}
+	mv ${ED}/usr/share/man/man1/python.1 \
+		${ED}/usr/share/man/man1/python${PYVER}.1
+	rm -f ${ED}/usr/bin/smtpd.py
 
 	# install python-updater in /usr/sbin
 	newsbin ${FILESDIR}/python-updater-r1 python-updater
@@ -242,11 +242,11 @@ src_install() {
 			/usr/$(get_libdir)/python${PYVER}/config/Makefile
 
 	if use build ; then
-		rm -rf ${D}/usr/$(get_libdir)/python${PYVER}/{test,encodings,email,lib-tk,bsddb/test}
+		rm -rf ${ED}/usr/$(get_libdir)/python${PYVER}/{test,encodings,email,lib-tk,bsddb/test}
 	else
-		use elibc_uclibc && rm -rf ${D}/usr/$(get_libdir)/python${PYVER}/{test,bsddb/test}
-		use berkdb || rm -rf ${D}/usr/$(get_libdir)/python${PYVER}/bsddb
-		use tk || rm -rf ${D}/usr/$(get_libdir)/python${PYVER}/lib-tk
+		use elibc_uclibc && rm -rf ${ED}/usr/$(get_libdir)/python${PYVER}/{test,bsddb/test}
+		use berkdb || rm -rf ${ED}/usr/$(get_libdir)/python${PYVER}/bsddb
+		use tk || rm -rf ${ED}/usr/$(get_libdir)/python${PYVER}/lib-tk
 	fi
 
 	prep_ml_includes /usr/include/python${PYVER}

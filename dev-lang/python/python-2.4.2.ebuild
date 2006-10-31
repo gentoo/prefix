@@ -185,7 +185,7 @@ src_install() {
 	if use framework ; then
 		local myfw
 		myfw="Library/Frameworks/Python.framework/Versions/${PYVER}"
-		make DESTDIR="${EDEST}" frameworkinstall || die "framework failed"
+		make DESTDIR="${D}" frameworkinstall || die "framework failed"
 		if use aqua ; then
 			make DESTDIR="${D}" frameworkinstallapps || die "install apps failed"
 			make DESTDIR="${D}" frameworkinstallextras || die "install extras failed"
@@ -195,14 +195,14 @@ src_install() {
 		dosym ../../${myfw}/lib/python${PYVER} /usr/lib/python${PYVER}
 		dosym ../../${myfw}/include/python${PYVER} /usr/include/python${PYVER}
 	else
-		make DESTDIR="${EDEST}" altinstall  || die "make altinstall failed"
+		make DESTDIR="${D}" altinstall  || die "make altinstall failed"
 	fi
 
 	if use userland_Darwin && ! use framework; then
 		make libpython.${PV}.dylib || die "make dylib failed"
 		into /usr
 		dolib.so ${S}/libpython.2.4.2.dylib
-		cd ${D}
+		cd ${ED}
 		dosym /usr/lib/libpython.${PV}.dylib /usr/lib/libpython.2.4.dylib
 		dosym /usr/lib/libpython.${PV}.dylib /usr/lib/libpython.2.dylib
 		dosym /usr/lib/libpython.${PV}.dylib /usr/lib/libpython.dylib
@@ -233,11 +233,11 @@ src_install() {
 	dosbin ${FILESDIR}/python-updater
 
 	if use build ; then
-		rm -rf ${D}/usr/lib/python${PYVER}/{test,encodings,email,lib-tk,bsddb/test}
+		rm -rf ${ED}/usr/lib/python${PYVER}/{test,encodings,email,lib-tk,bsddb/test}
 	else
-		use elibc_uclibc && rm -rf ${D}/usr/lib/python${PYVER}/{test,bsddb/test}
-		use berkdb || rm -rf ${D}/usr/lib/python${PYVER}/bsddb
-		( use !X || use !tcltk ) && rm -rf ${D}/usr/lib/python${PYVER}/lib-tk
+		use elibc_uclibc && rm -rf ${ED}/usr/lib/python${PYVER}/{test,bsddb/test}
+		use berkdb || rm -rf ${ED}/usr/lib/python${PYVER}/bsddb
+		( use !X || use !tcltk ) && rm -rf ${ED}/usr/lib/python${PYVER}/lib-tk
 	fi
 
 	prep_ml_includes /usr/include/python${PYVER}
@@ -270,7 +270,7 @@ pkg_postinst() {
 	fi
 
 	# try to upgrade to new python automatically - something to think about
-	#if [ "${ROOT}" = "/" ]; then
+	#if [ "${EROOT}" = "/" ]; then
 	#	/usr/sbin/python-updater
 	#fi
 
