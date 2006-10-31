@@ -53,13 +53,13 @@ src_install() {
 		return 0
 	fi
 
-	make DESTDIR="${EDEST}" install || die
+	make DESTDIR="${D}" install || die
 	dodoc AUTHORS ChangeLog MAILING-LIST NEWS README TODO
 	dodoc doc/sample.wgetrc
 
 	if use ipv6 ; then
 		ebegin "Adding a note about ipv6 in the config file"
-		cat ${FILESDIR}/wgetrc-ipv6 >> ${D}/etc/wget/wgetrc
+		cat ${FILESDIR}/wgetrc-ipv6 >> ${ED}/etc/wget/wgetrc
 		eend $?
 	fi
 
