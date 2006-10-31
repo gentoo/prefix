@@ -99,7 +99,7 @@ setup_portage() {
 			keywords="~amd64 amd64"
 			;;
 		ia64-pc-linux-gnu)
-			profile="${PORTDIR}/profiles/default-linux/ia64/2006"
+			profile="${PORTDIR}/profiles/default-linux/ia64/2006.0"
 			keywords="~ia64 ia64"
 			;;
 		i386-sun-solaris2.10)
