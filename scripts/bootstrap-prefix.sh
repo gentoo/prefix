@@ -98,6 +98,10 @@ setup_portage() {
 			profile="${PORTDIR}/profiles/default-linux/amd64/2005.1/no-multilib"
 			keywords="~amd64 amd64"
 			;;
+		ia64-pc-linux-gnu)
+			profile="${PORTDIR}/profiles/default-linux/ia64/2006"
+			keywords="~ia64 ia64"
+			;;
 		i386-sun-solaris2.10)
 			profile="${PORTDIR}/profiles/default-sunos/solaris/5.10/x86"
 			keywords="~x86-solaris x86-solaris"
