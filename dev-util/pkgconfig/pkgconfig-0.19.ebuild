@@ -31,7 +31,7 @@ src_unpack() {
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die "Installation failed"
+	make DESTDIR="${D}" install || die "Installation failed"
 
 	dodoc AUTHORS ChangeLog NEWS README
 	
