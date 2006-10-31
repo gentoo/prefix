@@ -48,15 +48,15 @@ src_compile() {
 }
 
 pkg_preinst() {
-	if [[ -e ${ROOT}/etc/rsync/rsyncd.conf ]] && [[ ! -e ${ROOT}/etc/rsyncd.conf ]] ; then
-		mv "${ROOT}"/etc/rsync/rsyncd.conf "${ROOT}"/etc/rsyncd.conf
-		rm -f "${ROOT}"/etc/rsync/.keep
-		rmdir "${ROOT}"/etc/rsync >& /dev/null
+	if [[ -e ${EROOT}/etc/rsync/rsyncd.conf ]] && [[ ! -e ${EROOT}/etc/rsyncd.conf ]] ; then
+		mv "${EROOT}"/etc/rsync/rsyncd.conf "${EROOT}"/etc/rsyncd.conf
+		rm -f "${EROOT}"/etc/rsync/.keep
+		rmdir "${EROOT}"/etc/rsync >& /dev/null
 	fi
 }
 
 src_install() {
-	make DESTDIR="${EDEST}" install || die "make install failed"
+	make DESTDIR="${D}" install || die "make install failed"
 	newconfd "${FILESDIR}"/rsyncd.conf.d rsyncd
 	cp "${FILESDIR}"/rsyncd.init.d "${T}"/rsyncd.init.d
 	ebegin "Adjusting to prefix"
@@ -84,7 +84,7 @@ src_install() {
 			eend $?
 			fi
 	else
-		rm -r "${D}"/usr/share
+		rm -r "${ED}"/usr/share
 	fi
 }
 
