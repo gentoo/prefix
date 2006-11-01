@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/ruby-config
 # Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-config/ChangeLog,v 1.30 2006/03/31 21:02:42 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-config/ChangeLog,v 1.31 2006/10/18 15:21:47 uberlord Exp $
+
+  18 Oct 2006; Roy Marples <uberlord@gentoo.org> ruby-config-0.3.2.ebuild:
+  Added ~sparc-fbsd keyword.
 
   31 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
   ruby-config-0.3.2.ebuild:

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-config/ruby-config-0.3.2.ebuild,v 1.2 2006/03/31 21:02:42 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-config/ruby-config-0.3.2.ebuild,v 1.3 2006/10/18 15:21:47 uberlord Exp $
 
 EAPI="prefix"
 
@@ -23,11 +23,7 @@ S=${WORKDIR}
 src_unpack() {
 	cp ${FILESDIR}/${PN}-0.3.2 .
 	epatch "${FILESDIR}"/${PN}-0.3.2-prefix.patch
-	einfo "Adjusting to prefix"
-	sed -i \
-		-e "s|@GENTOO_PORTAGE_EPREFIX@|${EPREFIX}|g" \
-		${PN}-0.3.2
-	eend $?
+	eprefixify ${PN}-0.3.2
 }
 
 src_install() {
