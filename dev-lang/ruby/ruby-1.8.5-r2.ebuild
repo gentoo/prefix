@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.5.ebuild,v 1.14 2006/10/13 11:36:15 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.5-r2.ebuild,v 1.6 2006/10/20 21:00:15 agriffis Exp $
 
 EAPI="prefix"
 
@@ -57,6 +57,7 @@ src_unpack() {
 }
 
 src_compile() {
+	# -fomit-frame-pointer makes ruby segfault, see bug #150413.
 	filter-flags -fomit-frame-pointer
 
 	# Socks support via dante

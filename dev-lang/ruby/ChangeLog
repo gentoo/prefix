@@ -1,6 +1,56 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.214 2006/09/03 21:46:35 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.228 2006/10/20 21:00:15 agriffis Exp $
+
+  20 Oct 2006; Aron Griffis <agriffis@gentoo.org> ruby-1.8.5-r2.ebuild:
+  Mark 1.8.5-r2 stable on ia64
+
+  20 Oct 2006; Aron Griffis <agriffis@gentoo.org> ruby-1.8.5-r2.ebuild:
+  Mark 1.8.5-r2 stable on alpha
+
+  18 Oct 2006; Roy Marples <uberlord@gentoo.org> ruby-1.8.5-r2.ebuild:
+  Added ~sparc-fbsd keyword.
+
+  13 Oct 2006; Diego Pettenò <flameeyes@gentoo.org> ruby-1.8.4-r1.ebuild,
+  ruby-1.8.4-r3.ebuild, ruby-1.8.5.ebuild, ruby-1.8.5-r1.ebuild,
+  ruby-1.8.5-r2.ebuild:
+  Remove autoconf dependencies, and leave them to autotools eclass.
+
+  12 Oct 2006; Diego Pettenò <flameeyes@gentoo.org> ruby-1.8.4-r1.ebuild,
+  ruby-1.8.4-r3.ebuild, ruby-1.8.5.ebuild, ruby-1.8.5-r1.ebuild,
+  ruby-1.8.5-r2.ebuild:
+  Remove again gnuconfig calls, please don't add them back again.
+
+*ruby-1.8.5-r2 (09 Oct 2006)
+
+  09 Oct 2006; Diego Pettenò <flameeyes@gentoo.org> +ruby-1.8.5-r2.ebuild:
+  Mask again -fomit-frame-poointer as per bug #150413 and #148965
+
+*ruby-1.8.5-r1 (06 Oct 2006)
+
+  06 Oct 2006; Caleb Tennis <caleb@gentoo.org> +ruby-1.8.5-r1.ebuild:
+  version bump to get rid of fomit-frame-pointer filtering, per bug #148965
+
+  05 Oct 2006; Emanuele Giaquinta <exg@gentoo.org> ruby-1.8.5.ebuild:
+  tcltk -> tk, acked by Flameeyes.
+
+  28 Sep 2006; Gustavo Zacarias <gustavoz@gentoo.org> ruby-1.8.5.ebuild:
+  Stable on sparc wrt security #142038
+
+  27 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org> ruby-1.8.5.ebuild:
+  hppa&&ppc stable, bug #142038
+
+  27 Sep 2006; Fernando J. Pereda <ferdy@gentoo.org> ruby-1.8.5.ebuild:
+  Stable on alpha wrt bug #145524
+
+  27 Sep 2006; Joshua Jackson <tsunam@gentoo.org> ruby-1.8.5.ebuild:
+  Stable x86; bug #142038
+
+  26 Sep 2006; Markus Rothe <corsair@gentoo.org> ruby-1.8.5.ebuild:
+  Stable on ppc64; bug #142038
+
+  26 Sep 2006; Simon Stelling <blubb@gentoo.org> ruby-1.8.5.ebuild:
+  stable on amd64; bug 142038
 
   05 Sep 2006; Joshua Kinard <kumba@gentoo.org> ruby-1.8.4-r3.ebuild:
   Marked stable on mips.
