@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/swig-1.3.29.ebuild,v 1.2 2006/07/08 22:34:28 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/swig-1.3.29-r1.ebuild,v 1.1 2006/09/26 13:30:47 chriswhite Exp $
 
 EAPI="prefix"
 
@@ -28,6 +28,14 @@ DEPEND="lua? ( dev-lang/lua )
 	ruby? ( virtual/ruby )
 	tcl? ( dev-lang/tcl )
 	tk? ( dev-lang/tk )"
+
+src_unpack() {
+	unpack "${A}"
+	cd "${S}"
+
+	# const char type casting issue prevention
+	epatch "${FILESDIR}"/swig-const.patch
+}
 
 src_compile() {
 	strip-flags
@@ -58,7 +66,7 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${EDEST}" || die
+	make install DESTDIR="${D}" || die
 	dodoc ANNOUNCE CHANGES CHANGES.current FUTURE NEW README TODO
 	use doc && dohtml -r Doc/{Devel,Manual}
 }

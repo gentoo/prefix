@@ -58,7 +58,7 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${EDEST}" || die
+	make install DESTDIR="${D}" || die
 	dodoc ANNOUNCE CHANGES CHANGES.current FUTURE NEW README TODO
 	use doc && dohtml -r Doc/{Devel,Manual}
 }
