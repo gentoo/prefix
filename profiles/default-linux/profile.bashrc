@@ -10,7 +10,7 @@ for dir in lib64 lib usr/lib64 usr/lib;
 do
 	dir=${EPREFIX}/${dir}
 	[[ -d ${dir} ]] && \
-		LDFLAGS="${LDFLAGS} -L${dir} -Wl,--rpath=${dir}"
+		LDFLAGS="${LDFLAGS} -L${dir} -Wl,-rpath=${dir}"
 done
 
 ##
