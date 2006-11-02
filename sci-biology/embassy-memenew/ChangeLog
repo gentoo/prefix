@@ -1,0 +1,11 @@
+# ChangeLog for sci-biology/embassy-memenew
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-memenew/ChangeLog,v 1.1 2006/07/21 15:04:29 ribosome Exp $
+
+*embassy-memenew-0.1.0 (21 Jul 2006)
+
+  21 Jul 2006; Olivier Fisette <ribosome@gentoo.org> +metadata.xml,
+  +embassy-memenew-0.1.0.ebuild:
+  Initial import. This package will probably replace EMBASSY-MEME in new
+  EMBASSY releases.
+
