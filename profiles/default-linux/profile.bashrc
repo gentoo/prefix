@@ -25,4 +25,7 @@ export LDFLAGS="${LDFLAGS} ${OLDLDFLAGS/${LDFLAGS}/}"
 
 # The compiler in a prefixed system should look in the prefix header
 # dirs.  The linker has the prefixed paths compiled in.
-export CPPFLAGS="-I${EPREFIX}/usr/include ${CPPFLAGS/-I${EPREFIX}\/usr\/include/}"
+CPPFLAGS="-I${EPREFIX}/usr/include ${CPPFLAGS/-I${EPREFIX}\/usr\/include/}"
+# configure can die if it detects a CPPFLAGS "change" due to suddenly
+# noticing trailing space(s)
+export CPPFLAGS=${CPPFLAGS%% }
