@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/autoconf-wrapper
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-wrapper/ChangeLog,v 1.35 2006/10/17 09:10:51 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-wrapper/ChangeLog,v 1.36 2006/11/01 20:11:57 wolf31o2 Exp $
+
+  01 Nov 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  autoconf-wrapper-3.2-r2.ebuild:
+  Stable on amd64/x86 wrt bug #144467.
 
   17 Oct 2006; Roy Marples <uberlord@gentoo.org>
   autoconf-wrapper-3.2-r2.ebuild:
