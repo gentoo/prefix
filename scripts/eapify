@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# <grobian@gentoo.org> -- 2006-11-03
+# time to get more careful about what we do.  Don't replace anything if
+# an ebuild is already EAPI="prefix", unless -f flag is given to
+# "force".  Only run legacy cleanup stuff when using -f.  A special case
+# is when the file to process is an eclass; in that case we run the
+# normal replace rules, regardless.
 # <grobian@gentoo.org> -- 2006-10-24
 # because portage now deals differently (saner) with ebuilds, we replace
 # all ${EDEST} with ${D} again as "cleanup" action.  Instead we look at
@@ -12,12 +18,23 @@
 # it multiple times should not harm.  It might, however, do wrong
 # things, so always check the result.  You have been warned.
 
-if [ -z $1 ];
-then
-	files="*.ebuild"
-else
-	files="$*"
-fi
+while [[ ! -z $1 ]] ; do
+	case $1 in
+		-f)
+			force=1
+		;;
+		*)
+			[[ -z $files ]] \
+				&& files=$1 \
+				|| files="$files $1"
+		;;
+	esac
+	shift
+done
+
+# default to all ebuilds if no files given
+[[ -z $files ]] && files="*.ebuild"
+
 
 replace() {
 	echo -n "  replacing $1 -> $2 ... "
@@ -34,36 +51,40 @@ replace() {
 	fi
 }
 
-for f in $files;
-do
-	if [[ ! -f $f ]];
-	then
+for f in $files ; do
+	if [[ ! -f $f ]] ; then
 		echo "no such file: $f"
 		exit -1
 	fi
 
 	echo "Processing $f"
 
-	if [[ ${f##*.} != "eclass" ]];
-	then
+	if [[ ${f##*.} == "ebuild" ]] ; then
 		unset EAPI
 		echo -n "  EAPI ... "
 		eval "`egrep "^EAPI=" "$f"`"
 
-		if [[ $EAPI != "" ]];
-		then
+		if [[ $EAPI != "" ]] ; then
 			echo "already $EAPI"
+			# don't process any more, we're done with this ebuild
+			# (unless we were forced)
+			[[ $force == 1 ]] || continue
 		else
 			sed -i \
 				-e 's|^# \$Header:.*$|&\n\nEAPI="prefix"|' \
 				"$f"
 			echo 'added EAPI="prefix"'
 		fi
+	elif [[ ${f##*.} != "eclass" ]] ; then
+		# don't try anything on arbitrary files
+		continue
 	fi
 
-	# cleanup mess from previous portage APIs
-	replace '${EDEST}' '${D}' "$f"
-	replace '${PROOT}' '${EROOT}' "$f"
+	if [[ $force == 1 ]] ; then 
+		# cleanup mess from previous portage APIs
+		replace '${EDEST}' '${D}' "$f"
+		replace '${PROOT}' '${EROOT}' "$f"
+	fi
 
 	# we replace all ${D} with ${ED} if not in a make ... install line
 	replace '${D}' '${ED}' "$f" '/make.*install/!s'
