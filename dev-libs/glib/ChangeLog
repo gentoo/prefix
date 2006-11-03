@@ -1,6 +1,25 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.214 2006/09/13 17:52:15 agriffis Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.219 2006/10/24 08:03:24 uberlord Exp $
+
+  24 Oct 2006; Roy Marples <uberlord@gentoo.org> glib-2.12.4.ebuild:
+  Added ~sparc-fbsd keyword.
+
+  19 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> glib-2.10.3.ebuild:
+  Stable on Alpha.
+
+  15 Oct 2006; Mart Raudsepp <leio@gentoo.org>
+  +files/glib-2.12.4-tests_pthread.patch, glib-2.12.4.ebuild:
+  Fix pthread related build failure on Gentoo/FreeBSD, bug #150583
+
+  09 Oct 2006; Mart Raudsepp <leio@gentoo.org>
+  +files/glib-2.12.4-gtimer-fix.patch, glib-2.12.4.ebuild:
+  Fix gtimer build on Gentoo/FreeBSD, bug #150557
+
+*glib-2.12.4 (06 Oct 2006)
+
+  06 Oct 2006; Mart Raudsepp <leio@gentoo.org> +glib-2.12.4.ebuild:
+  Version bump
 
   13 Sep 2006; Aron Griffis <agriffis@gentoo.org> glib-2.10.3.ebuild,
   glib-2.12.0.ebuild, glib-2.12.1.ebuild, glib-2.12.2.ebuild,
