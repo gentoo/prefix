@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake-wrapper/automake-wrapper-1-r1.ebuild,v 1.5 2006/09/16 21:20:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake-wrapper/automake-wrapper-2.ebuild,v 1.2 2006/10/17 09:22:39 uberlord Exp $
 
 EAPI="prefix"
 
@@ -20,6 +20,7 @@ S=${WORKDIR}
 src_install() {
 	exeinto /usr/$(get_libdir)/misc
 	newexe "${FILESDIR}"/am-wrapper-${PV}.sh am-wrapper.sh || die
+	dosed "1s|/bin/bash|${EPREFIX}/bin/bash|" /usr/$(get_libdir)/misc/am-wrapper.sh
 
 	keepdir /usr/share/aclocal
 
