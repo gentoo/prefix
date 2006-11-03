@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/fox.eclass,v 1.5 2006/09/24 17:04:11 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/fox.eclass,v 1.6 2006/10/30 22:14:18 mabi Exp $
 
 # fox eclass
 #
@@ -19,11 +19,11 @@
 # are API unstable; changes are made to the apps, and likely need to be
 # bumped together with the library.
 #
-# Here are sample [R]DEPENDs for the fox apps, based on the first versions
-# in each branch to use this eclass:
-#	1.0: '>=x11-libs/fox-1.0.53 <x11-libs/fox-1.1'
-#	1.2: '>=x11-libs/fox-1.2.15 <x11-libs/fox-1.3'
-#	1.4: '>=x11-libs/fox-1.4.12 <x11-libs/fox-1.5'
+# Here are sample [R]DEPENDs for the fox apps
+# fox versions that do not use this eclass are blocked in INCOMPAT_DEP below
+#	1.0: '=x11-libs/fox-1.0*'
+#	1.2: '=x11-libs/fox-1.2*'
+#	1.4: '=x11-libs/fox-1.4*'
 #	1.5: '~x11-libs/fox-${PV}'
 #	1.6: '=x11-libs/fox-${FOXVER}*'
 #

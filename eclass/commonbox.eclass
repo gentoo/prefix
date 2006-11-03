@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/commonbox.eclass,v 1.31 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/commonbox.eclass,v 1.32 2006/10/29 22:22:34 omp Exp $
 #
 # Author: Seemant Kulleen <seemant@gentoo.org>
 #
@@ -9,6 +9,9 @@
 # The common utilities of those window managers get installed in the
 # commonbox-utils dependency, and default styles with the commonbox-styles
 # utility.  They all share the /usr/share/commonbox directory now.
+#
+#
+# THIS ECLASS IS DEPRECATED. PLEASE DO NOT USE IT.
 
 
 EXPORT_FUNCTIONS src_compile src_install pkg_postinst
@@ -19,7 +22,6 @@ DEPEND="dev-util/pkgconfig
 	=sys-apps/sed-4*"
 
 RDEPEND="nls? ( sys-devel/gettext )
-	x11-misc/commonbox-utils
 	x11-themes/commonbox-styles"
 
 PROVIDE="virtual/blackbox"

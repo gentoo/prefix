@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2.eclass,v 1.73 2006/08/03 17:04:47 foser Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2.eclass,v 1.75 2006/10/31 17:08:44 allanonjl Exp $
 
 # GNOME 2 ECLASS
 inherit libtool gnome.org debug fdo-mime eutils
@@ -112,7 +112,7 @@ gnome2_gconf_install() {
 
 		local contents="${EROOT}/var/db/pkg/*/${PN}-${PVR}/CONTENTS"
 
-		for F in $(grep "obj /etc/gconf/schemas" ${contents} | sed 's:obj \([^ ]*\) .*:\1:' ); do
+		for F in $(grep "^obj /etc/gconf/schemas/.\+\.schemas\b" ${contents} | gawk '{print $2}' ); do
 			if [[ -e "${F}" ]]; then
 				# echo "DEBUG::gconf install  ${F}"
 				${GCONFTOOL_BIN} --makefile-install-rule ${F} 1>/dev/null

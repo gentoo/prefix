@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.154 2006/10/09 22:26:46 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.156 2006/10/31 08:24:29 pioto Exp $
 
 # Authors:
 # 	Ryan Phillips <rphillips@gentoo.org>
@@ -127,6 +127,7 @@ fi
 # eselect-vi support
 if version_is_at_least 7.0.109 ; then
 	DEPEND="${DEPEND} >=app-admin/eselect-vi-1.1"
+	RDEPEND="${RDEPEND} >=app-admin/eselect-vi-1.1"
 fi
 
 HOMEPAGE="http://www.vim.org/"
@@ -500,7 +501,7 @@ vim_src_install() {
 				installtools \
 				install-languages \
 				install-icons \
-				DESTDIR=${D} \
+				DESTDIR=${ED} \
 				BINDIR=${EPREFIX}/usr/bin \
 				MANDIR=${EPREFIX}/usr/share/man \
 				DATADIR=${EPREFIX}/usr/share \
@@ -514,7 +515,7 @@ vim_src_install() {
 				installtools \
 				install-languages \
 				install-icons \
-				DESTDIR=${D} \
+				DESTDIR=${ED} \
 				BINDIR=${EPREFIX}/usr/bin \
 				MANDIR=${EPREFIX}/usr/share/man \
 				DATADIR=${EPREFIX}/usr/share \
@@ -612,7 +613,7 @@ vim_src_install() {
 	if version_is_at_least 7.0.109 ; then
 		# We shouldn't be installing the ex or view man page symlinks, as they
 		# are managed by eselect-vi
-		rm -f "${ED}"/usr/share/man/man1/{ex,view}.1.gz
+		rm -f "${ED}"/usr/share/man/man1/{ex,view}.1
 		# Same for these /usr/bin symlinks
 		rm -f "${ED}"/usr/bin/{ex,view}
 	fi

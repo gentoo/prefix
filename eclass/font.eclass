@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.19 2006/09/17 14:33:59 foser Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.21 2006/10/30 06:13:48 dberkholz Exp $
 
 # Author: foser <foser@gentoo.org>
 
@@ -84,7 +84,7 @@ font_src_install() {
 	cd "${S}"
 	# try to install some common docs
 	DOCS="${DOCS} COPYRIGHT README NEWS"
-	dodoc ${DOCS}
+	dodoc ${DOCS} 2> /dev/null
 
 }
 
@@ -92,7 +92,7 @@ font_pkg_setup() {
 
 	# make sure we get no colissions
 	# setup is not the nicest place, but preinst doesn't cut it
-	rm -f "${FONTDIR}/fonts.cache-1"
+	[[ -e "${FONTDIR}/fonts.cache-1" ]] && rm -f "${FONTDIR}/fonts.cache-1"
 
 }
 

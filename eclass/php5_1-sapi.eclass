@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php5_1-sapi.eclass,v 1.33 2006/08/30 09:04:07 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5_1-sapi.eclass,v 1.34 2006/10/27 11:45:28 chtekk Exp $
 #
 # ########################################################################
 #
@@ -127,6 +127,7 @@ DEPEND="${DEPEND}
 PDEPEND="doc? ( app-doc/php-docs )
 		java-external? ( dev-php5/php-java-bridge )
 		mcve? ( dev-php5/pecl-mcve )
+		pdo? ( !dev-php5/pecl-pdo )
 		pdo-external? ( dev-php5/pecl-pdo )
 		yaz? ( dev-php5/pecl-yaz )
 		zip? ( dev-php5/pecl-zip )"

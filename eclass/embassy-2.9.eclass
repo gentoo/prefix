@@ -43,10 +43,10 @@ embassy-2.9_src_unpack() {
 	unpack ${A}
 	mkdir EMBOSS-${EBOV}/embassy
 	mv ${EF} EMBOSS-${EBOV}/embassy/
-	cp /usr/$(get_libdir)/libplplot.la EMBOSS-${EBOV}/plplot/
-	cp /usr/$(get_libdir)/libajax.la EMBOSS-${EBOV}/ajax/
-	cp /usr/$(get_libdir)/libajaxg.la EMBOSS-${EBOV}/ajax/
-	cp /usr/$(get_libdir)/libnucleus.la EMBOSS-${EBOV}/nucleus/
+	cp "${EROOT}"/usr/$(get_libdir)/libplplot.la EMBOSS-${EBOV}/plplot/
+	cp "${EROOT}"/usr/$(get_libdir)/libajax.la EMBOSS-${EBOV}/ajax/
+	cp "${EROOT}"/usr/$(get_libdir)/libajaxg.la EMBOSS-${EBOV}/ajax/
+	cp "${EROOT}"/usr/$(get_libdir)/libnucleus.la EMBOSS-${EBOV}/nucleus/
 }
 
 embassy-2.9_src_compile() {

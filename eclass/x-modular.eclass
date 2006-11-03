@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.76 2006/10/11 02:31:47 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.80 2006/10/30 18:40:58 dberkholz Exp $
 #
 # Author: Donnie Berkholz <spyderous@gentoo.org>
 #
@@ -24,10 +24,6 @@
 # IMPORTANT: Both SNAPSHOT and FONT_DIR must be set _before_ the inherit.
 #
 # Pretty much everything else should be automatic.
-
-EXPORT_FUNCTIONS src_unpack src_compile src_install pkg_preinst pkg_postinst pkg_postrm
-
-inherit eutils libtool multilib toolchain-funcs flag-o-matic autotools
 
 # Directory prefix to use for everything
 XDIR="/usr"
@@ -88,12 +84,16 @@ if [[ -n "${SNAPSHOT}" ]]; then
 fi
 
 # If we're a font package, but not the font.alias one
+FONT_ECLASS=""
 if [[ "${PN/#font-}" != "${PN}" ]] \
 	&& [[ "${CATEGORY}" = "media-fonts" ]] \
 	&& [[ "${PN}" != "font-alias" ]] \
 	&& [[ "${PN}" != "font-util" ]]; then
 	# Activate font code in the rest of the eclass
 	FONT="yes"
+
+	# Whether to inherit the font eclass
+	FONT_ECLASS="font"
 
 	RDEPEND="${RDEPEND}
 		media-fonts/encodings
@@ -172,6 +172,8 @@ RDEPEND="${RDEPEND}
 	!<=x11-base/xorg-x11-6.9"
 # Provides virtual/x11 for temporary use until packages are ported
 #	x11-base/x11-env"
+
+inherit eutils libtool multilib toolchain-funcs flag-o-matic autotools ${FONT_ECLASS}
 
 x-modular_specs_check() {
 	if [[ ${PN:0:11} = "xorg-server" ]] || [[ -n "${DRIVER}" ]]; then
@@ -366,9 +368,8 @@ x-modular_src_install() {
 }
 
 x-modular_pkg_preinst() {
-	if [[ -n "${FONT}" ]]; then
-		discover_font_dirs
-	fi
+	# We no longer do anything here, but we can't remove it from the API
+	:
 }
 
 x-modular_pkg_postinst() {
@@ -380,6 +381,7 @@ x-modular_pkg_postinst() {
 x-modular_pkg_postrm() {
 	if [[ -n "${FONT}" ]]; then
 		cleanup_fonts
+		font_pkg_postrm
 	fi
 }
 
@@ -419,8 +421,8 @@ cleanup_fonts() {
 }
 
 setup_fonts() {
-	if [[ ! -n "${FONT_DIRS}" ]]; then
-		msg="FONT_DIRS is empty. The ebuild should set it to at least one subdir of /usr/share/fonts."
+	if [[ ! -n "${FONT_DIR}" ]]; then
+		msg="FONT_DIR is empty. The ebuild should set it to at least one subdir of /usr/share/fonts."
 		eerror "${msg}"
 		die "${msg}"
 	fi
@@ -457,51 +459,25 @@ install_driver_hwdata() {
 }
 
 discover_font_dirs() {
-	pushd ${IMAGE}/usr/share/fonts
-	FONT_DIRS="$(find . -maxdepth 1 -mindepth 1 -type d)"
-	FONT_DIRS="$(echo ${FONT_DIRS} | sed -e 's:./::g')"
-	popd
+	FONT_DIRS="${FONT_DIR}"
 }
 
 create_fonts_scale() {
 	ebegin "Creating fonts.scale files"
 		local x
-		for FONT_DIR in ${FONT_DIRS}; do
-			x=${ROOT}/usr/share/fonts/${FONT_DIR}
+		for DIR in ${FONT_DIR}; do
+			x=${ROOT}/usr/share/fonts/${DIR}
 			[[ -z "$(ls ${x}/)" ]] && continue
 			[[ "$(ls ${x}/)" = "fonts.cache-1" ]] && continue
 
 			# Only generate .scale files if truetype, opentype or type1
 			# fonts are present ...
 
-			# First truetype (ttf,ttc)
-			# NOTE: ttmkfdir does NOT work on type1 fonts (#53753)
-			# Also, there is no way to regenerate Speedo/CID fonts.scale
+			# NOTE: There is no way to regenerate Speedo/CID fonts.scale
 			# <spyderous@gentoo.org> 2 August 2004
 			if [[ "${x/encodings}" = "${x}" ]] \
-				&& [[ -n "$(find ${x} -iname '*.tt[cf]' -print)" ]]; then
-				if [[ -x ${ROOT}/usr/bin/ttmkfdir ]]; then
-					LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${ROOT}/usr/$(get_libdir)" \
-					${ROOT}/usr/bin/ttmkfdir -x 2 \
-						-e ${ROOT}/usr/share/fonts/encodings/encodings.dir \
-						-o ${x}/fonts.scale -d ${x}
-					# ttmkfdir fails on some stuff, so try mkfontscale if it does
-					local ttmkfdir_return=$?
-				else
-					# We didn't use ttmkfdir at all
-					local ttmkfdir_return=2
-				fi
-				if [[ ${ttmkfdir_return} -ne 0 ]]; then
-					LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${ROOT}/usr/$(get_libdir)" \
-					${ROOT}/usr/bin/mkfontscale \
-						-a /usr/share/fonts/encodings/encodings.dir \
-						-- ${x}
-				fi
-			# Next type1 and opentype (pfa,pfb,otf,otc)
-			elif [[ "${x/encodings}" = "${x}" ]] \
-				&& [[ -n "$(find ${x} -iname '*.[po][ft][abcf]' -print)" ]]; then
-				LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${ROOT}/usr/$(get_libdir)" \
-				${ROOT}/usr/bin/mkfontscale \
+				&& [[ -n "$(find ${x} -iname '*.[pot][ft][abcf]' -print)" ]]; then
+				mkfontscale \
 					-a ${ROOT}/usr/share/fonts/encodings/encodings.dir \
 					-- ${x}
 			fi
@@ -511,14 +487,13 @@ create_fonts_scale() {
 
 create_fonts_dir() {
 	ebegin "Generating fonts.dir files"
-		for FONT_DIR in ${FONT_DIRS}; do
-			x=${ROOT}/usr/share/fonts/${FONT_DIR}
+		for DIR in ${FONT_DIR}; do
+			x=${ROOT}/usr/share/fonts/${DIR}
 			[[ -z "$(ls ${x}/)" ]] && continue
 			[[ "$(ls ${x}/)" = "fonts.cache-1" ]] && continue
 
 			if [[ "${x/encodings}" = "${x}" ]]; then
-				LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${ROOT}/usr/$(get_libdir)" \
-				${ROOT}/usr/bin/mkfontdir \
+				mkfontdir \
 					-e ${ROOT}/usr/share/fonts/encodings \
 					-e ${ROOT}/usr/share/fonts/encodings/large \
 					-- ${x}
@@ -529,20 +504,15 @@ create_fonts_dir() {
 
 fix_font_permissions() {
 	ebegin "Fixing permissions"
-		for FONT_DIR in ${FONT_DIRS}; do
-			find ${ROOT}/usr/share/fonts/${FONT_DIR} -type f -name 'font.*' \
+		for DIR in ${FONT_DIR}; do
+			find ${ROOT}/usr/share/fonts/${DIR} -type f -name 'font.*' \
 				-exec chmod 0644 {} \;
 		done
 	eend 0
 }
 
 create_font_cache() {
-	# danarmak found out that fc-cache should be run AFTER all the above
-	# stuff, as otherwise the cache is invalid, and has to be run again
-	# as root anyway
-	if [[ -x ${ROOT}/usr/bin/fc-cache ]]; then
-		ebegin "Creating FC font cache"
-			HOME="/root" ${ROOT}/usr/bin/fc-cache
-		eend 0
-	fi
+	font_pkg_postinst
 }
+
+EXPORT_FUNCTIONS src_unpack src_compile src_install pkg_preinst pkg_postinst pkg_postrm

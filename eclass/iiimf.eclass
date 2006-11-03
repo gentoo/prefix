@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/iiimf.eclass,v 1.14 2006/10/14 10:19:09 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/iiimf.eclass,v 1.15 2006/11/01 17:32:00 flameeyes Exp $
 #
 # Author: Mamoru KOMACHI <usata@gentoo.org>
 #
@@ -9,7 +9,7 @@
 #
 
 WANT_AUTOMAKE="1.4"
-WANT_AUTOCONF="2.1"
+WANT_AUTOCONF="2.5"
 
 inherit autotools
 

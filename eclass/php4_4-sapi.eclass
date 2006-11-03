@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php4_4-sapi.eclass,v 1.28 2006/08/30 09:04:07 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php4_4-sapi.eclass,v 1.29 2006/10/27 11:45:28 chtekk Exp $
 #
 # ########################################################################
 #
@@ -122,6 +122,7 @@ DEPEND="${DEPEND}
 # They are in PDEPEND because we need PHP installed first!
 PDEPEND="doc? ( app-doc/php-docs )
 		java-external? ( dev-php4/php-java-bridge )
+		java-internal? ( !dev-php4/php-java-bridge )
 		sqlite? ( dev-php4/pecl-sqlite )
 		yaz? ( dev-php4/pecl-yaz )
 		zip? ( dev-php4/pecl-zip )"
