@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# <grobian@gentoo.org> -- 2006-11-03
+# let eapify figure out what should be done to a file.  This requires
+# the extension of the file to be retained in the temp location, but
+# afterwards it works nicely for eclasses and ebuilds, as well as
+# ChangeLogs.
 # <grobian@gentoo.org> -- 2006-09-22
 # eupdate: a not yet fully complete bucket of voodoo to sync a the
 # prefix tree with the mainline tree.  Strategies followed are largerly
@@ -158,30 +163,31 @@ cross_diff() {
 	echo "cross diff from $ptecv to $mtecv"
 	# checkout both original versions and make the diffs,
 	# ignoring keywords
+	tmp="tmp.${package##*.}"
 	cvs -Q -d"${CVSROOT}" \
 		checkout -r$ptecv -p ${CVSMODULE}/${EPACKAGE}/$pte \
-		> /var/tmp/$pte-$ptecv.tmp
+		> /var/tmp/$pte-$ptecv.$tmp
 	cvs -Q -d"${CVSROOT}" \
 		checkout -r$mtecv -p ${CVSMODULE}/${EPACKAGE}/$mte \
-		> /var/tmp/$mte-$mtecv.tmp
+		> /var/tmp/$mte-$mtecv.$tmp
 	# create the new file to patch against
 	cp $pte $mte
 	# Sanitise the $Header line, because it may differ being in the
 	# Attic or something.  Use version of main tree, to keep updates
 	# working.
 	sed -i \
-		-e 's|^# \$Header:.*$|'"`egrep '^# \\\$Header: ' /var/tmp/$mte-$mtecv.tmp`"'|' \
-		$mte /var/tmp/$pte-$ptecv.tmp
+		-e 's|^# \$Header:.*$|'"`egrep '^# \\\$Header: ' /var/tmp/$mte-$mtecv.$tmp`"'|' \
+		$mte /var/tmp/$pte-$ptecv.$tmp
 	# make KEYWORDS void in the diff
 	sed -i \
 		-e 's|^KEYWORDS=.*$|'"`egrep '^KEYWORDS=' $pte`"'|' \
-		/var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp
+		/var/tmp/$pte-$ptecv.$tmp /var/tmp/$mte-$mtecv.$tmp
 	# destroy changes (hopefully) with the prefixed version by eapifying
-	eapify /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp > /dev/null
+	eapify /var/tmp/$pte-$ptecv.$tmp /var/tmp/$mte-$mtecv.$tmp > /dev/null
 	# (attempt to) do it!
-	diff -u /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp \
+	diff -u /var/tmp/$pte-$ptecv.$tmp /var/tmp/$mte-$mtecv.$tmp \
 		| patch --no-backup-if-mismatch $mte
-	rm /var/tmp/$pte-$ptecv.tmp /var/tmp/$mte-$mtecv.tmp
+	rm /var/tmp/$pte-$ptecv.$tmp /var/tmp/$mte-$mtecv.$tmp
 }
 
 revision_diff() {
@@ -198,25 +204,25 @@ revision_diff() {
 		echo "out-of-date, applying diff -r$ptecv -r$mtecv"
 		# checkout both original versions and make the diffs,
 		# ignoring keywords
+		tmp="tmp.${package##*.}"
 		cvs -Q -d"${CVSROOT}" \
 			checkout -r$ptecv -p ${CVSMODULE}/${EPACKAGE}/$package \
-			> /var/tmp/$package-$ptecv.tmp
+			> /var/tmp/$package-$ptecv.$tmp
 		cvs -Q -d"${CVSROOT}" \
 			checkout -r$mtecv -p ${CVSMODULE}/${EPACKAGE}/$package \
-			> /var/tmp/$package-$mtecv.tmp
+			> /var/tmp/$package-$mtecv.$tmp
 		# make KEYWORDS void in the diff
 		[[ ${package##*.} == "ebuild" ]] && sed -i \
 			-e 's|^KEYWORDS=.*$|'"`egrep '^KEYWORDS=' $package`"'|' \
-			/var/tmp/$package-$ptecv.tmp /var/tmp/$package-$mtecv.tmp
+			/var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp
 		# destroy changes (hopefully) with the prefixed version by eapifying
-		[[ ${package##*.} == "ebuild" ]] && \
-			eapify /var/tmp/$package-$ptecv.tmp /var/tmp/$package-$mtecv.tmp > /dev/null
+		eapify /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp > /dev/null
 		# show what's going to change
-		diff -U 1 /var/tmp/$package-$ptecv.tmp /var/tmp/$package-$mtecv.tmp
+		diff -U 1 /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp
 		# (attempt to) do it!
-		diff -u /var/tmp/$package-$ptecv.tmp /var/tmp/$package-$mtecv.tmp \
+		diff -u /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp \
 			| patch --no-backup-if-mismatch $package
-		rm /var/tmp/$package-$ptecv.tmp /var/tmp/$package-$mtecv.tmp
+		rm /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp
 	fi
 }
 
