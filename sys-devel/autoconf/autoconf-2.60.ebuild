@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.60.ebuild,v 1.6 2006/10/17 06:36:10 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.60.ebuild,v 1.7 2006/11/01 20:13:22 wolf31o2 Exp $
 
 EAPI="prefix"
 
@@ -12,9 +12,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="2.5"
-# mask till I know how this is supposed to work
-KEYWORDS="-*"
-#KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="emacs"
 
 DEPEND=">=sys-apps/texinfo-4.3
