@@ -3,6 +3,7 @@
 # $Header: $
 
 EAPI="prefix"
+RESTRICT="mirror"
 
 inherit eutils toolchain-funcs autotools
 
