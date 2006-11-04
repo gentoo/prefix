@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2279 2006/10/26 16:58:20 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2296 2006/11/02 19:00:09 dragonheart Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -27,6 +27,7 @@ app-admin/webalizer:search - Include the search patch
 app-admin/webalizer:xtended - Include the 404 extension
 app-admin/webmin:webmin-minimal - Install the minimal webmin distribution
 app-arch/bsdtar:xattr - if you want extended attributes enabled
+app-arch/dump:ermt - encrypted rmt support
 app-arch/pdv:nomotif - Disable motif frontend.
 app-backup/amanda:xfs - Support for backing up raw XFS filesystems using xfsdump
 app-backup/bacula:bacula-clientonly - Disable DB support, and just build a client
@@ -131,6 +132,7 @@ app-i18n/scim-cvs:immqt - Enable immodule for Qt support (binary incompatible)
 app-i18n/scim-cvs:immqt-bc - Enable immodule for Qt support (binary compatible)
 app-i18n/scim:immqt - Enable immodule for Qt support (binary incompatible)
 app-i18n/scim:immqt-bc - Enable immodule for Qt support (binary compatible)
+app-i18n/uim-svn:anthy - Enable anthy support
 app-i18n/uim-svn:dict - Build uim-dict (a dictionary utility for uim)
 app-i18n/uim-svn:eb - Enable EB support
 app-i18n/uim-svn:fep - Build uim-fep
@@ -146,6 +148,7 @@ app-laptop/tpctl:tpctlir - enable support for thinkpad models 760 and 765
 app-misc/bbgallery:gimp - Engables support for the gimp via extra libraries
 app-misc/beagle:chm - Enable indexing of MS HTML Help files (.chm)
 app-misc/beagle:ole - Enable ole support
+app-misc/beagle:galago - Enable desktop presence via galago
 app-misc/booh:transcode - Use transcode to extract video thumbnails
 app-misc/g15composer:amarok - Enable display of titles played in Amarok
 app-misc/graphlcd-base:g15 - Add support for g15daemon driver ( e.g Logitech G15 Keybord )
@@ -317,6 +320,7 @@ dev-java/quartz:jta - Enable jta support
 dev-java/quartz:servlet-2.3 - Enable servlet-2.3 support
 dev-java/quartz:servlet-2.4 - Enable servlet-2.4 support
 dev-java/quartz:struts - Enable struts support
+dev-java/rxtx:lfd - Installs and uses LockFileServer daemon (lfd)
 dev-java/sun-jaxp-bin:dom4j - Enable dom4j
 dev-java/sun-jdk:jce - Enable Java Cryptographic Extension Unlimited Strength Policy files
 dev-java/swt:cairo - Enable Cairo rendering backend
@@ -352,6 +356,7 @@ dev-lang/python:ucs2 - Enable byte size 2 unicode
 dev-lang/smarteiffel:tcc - use tcc instead of gcc for build (g++ is still used for c++ code)
 dev-lang/spidermonkey:threadsafe - Build a threadsafe version of spidermonkey
 dev-lang/swig:pike - Enable Pike scripting support
+dev-libs/ace:tao - include the ACE ORB (CORBA stuff) (called tao) into the build of ace
 dev-libs/DirectFB:fusion - add Multi Application support (fusion kernel device)
 dev-libs/DirectFB:sysfs - Add support for the sysfs filesystem (requires Linux-2.6+)
 dev-libs/DirectFB:v4l2 - Enables video4linux2 support
@@ -468,6 +473,7 @@ dev-util/eric:idl - Enable omniorb support
 dev-util/git:mozsha1 - Make use of a bundled routine commit with Mozilla that should be fast on non-x86 archs
 dev-util/git:ppcsha1 - Make use of a bundled routine that is optimized for the PPC arch
 dev-util/git:webdav - Adds support for push'ing to HTTP repositories via DAV
+dev-util/glade:devhelp - Enable help support through devhelp
 dev-util/glade:gnomedb - Enable gnomedb widgets for Glade.
 dev-util/global:vim - vim funny stuff for global
 dev-util/kdevelop:ada - Support for the Ada programming language.
@@ -796,6 +802,9 @@ media-libs/xine-lib:vidix - Support for vidix video output
 media-libs/xine-lib:xvmc - Support for XVideo Motion Compensation (accelerated mpeg playback)
 media-plugins/alsa-plugins:libsamplerate - Build with libsamplerate support
 media-plugins/alsa-plugins:pulseaudio - Enable support for PulseAudio output plugin
+media-plugins/audacious-crossfade:libsamplerate - Build with libsamplerate support
+media-plugins/audacious-plugins:chardet - Character set detection support for non-UTF8 ID3 tags
+media-plugins/audacious-plugins:libnotify - Enable libnotify support
 media-plugins/audacious-plugins:modplug - Build with modplug support
 media-plugins/audacious-plugins:musepack - Build with musepack support
 media-plugins/audacious-plugins:pulseaudio - Enable support for PulseAudio output plugin
@@ -819,16 +828,18 @@ media-sound/alsa-tools:fltk - Enable FLTK support
 media-sound/amarok:exscalibar - Enable moodbar/exscalibar support
 media-sound/amarok:ifp - Enable support for iRiver devices access through libifp
 media-sound/amarok:ipod - Enable support for iPod devices access through libgpod
-media-sound/amarok:njb - Enable support for NJB (Creative) devices access throguh libnjb
+media-sound/amarok:mtp - Enable support for libMTP (Plays4Sure) devices access through libmtp
+media-sound/amarok:njb - Enable support for NJB (Creative) devices access through libnjb
 media-sound/amarok:noamazon - Disable support for downloading covers from amazon.com
 media-sound/amarok:real - Build with real/helix player support
 media-sound/amarok:visualization - Support visualization plugins through media-libs/libvisual
-media-sound/audacious:chardet - Character set detection support for non-compliant ID3 tags
+media-sound/audacious:chardet - Character set detection support for non-UTF8 ID3 tags
 media-sound/audacious:modplug - Build with modplug support
 media-sound/audacious:musepack - Build with musepack support
 media-sound/audacious:sid - Build with SID (Commodore 64 Audio) support
 media-sound/audacious:timidity - Build with Timidity++ (MIDI sequencer) support
 media-sound/audacious:wma - Build with WMA (Windows Media Audio) support
+media-sound/audacity:libsamplerate - Build with libsamplerate support
 media-sound/banshee:daap - Build with Daap support
 media-sound/banshee:ipod - Build with ipod support
 media-sound/banshee:njb - Build with njb audio player support
@@ -978,6 +989,7 @@ media-video/mplayer:musepack - Enables support for the musepack audio codec
 media-video/mplayer:nvidia - Enables support for the nvidia xvmc video driver
 media-video/mplayer:real - Adds real video support
 media-video/mplayer:rtc - Enables usage of the linux real time clock.  The alternative is software emulation of rtc
+media-video/mplayer:subtitles - Enables support for SSA/ASS subtitles
 media-video/mplayer:tga - Enables tga output support
 media-video/mplayer:v4l2 - Enables video4linux2 support
 media-video/mplayer:x264 - Enables h264 encoding using x264
@@ -1219,6 +1231,8 @@ net-im/naim:screen - Enable screen support
 net-im/psi:extras - Enables extra non official patches
 net-im/psi:insecure-patches - Enables extra non official patches that may pose as a security risk
 net-im/psi:xscreensaver - Enables detection of xscreensaver
+net-im/tkabber:extras - Enables extra non official patches
+net-im/tkabber:plugins - Enables instalation the extra plugins
 net-im/tmsnc:talkfilters - Enables Talkfilters support on tmsnc
 net-im/twinkle:ilbc - Enables use of ilbc (RFC3951) audio encoding
 net-im/twinkle:zrtp - Enables use of secure rtp using the zrtp extension of GNU RTP stack developed by Phil Zimmermen
@@ -1450,13 +1464,20 @@ net-www/mod_auth_ldap:mem-cache - Enables support for memory cache.
 net-www/mod_ftpd:dbi - Enables support for libDBI
 net-www/mod_log_sql:dbi - Enables support for libDBI
 net-www/mplayerplug-in:divx - Divx Playback Support
-net-www/mplayerplug-in:gecko-sdk - Forces use of Gecko-SDK instead of firefox/mozilla
 net-www/mplayerplug-in:gmedia - Google Media Playback Support
 net-www/mplayerplug-in:realmedia - Real Media Playback Support
 net-www/mplayerplug-in:wmp - Windows Media Playback Support
 net-www/pwauth:domain-aware - Ignore leading domain names in username (Windows compat)
 net-www/pwauth:faillog - Log failed login attempts
 net-www/pwauth:ignore-case - Ignore string case in username (mostly Windows compat)
+rox-extra/archive:compress - Enable tar.Z and *.Z via ncompress package
+rox-extra/archive:rar - Enable .rar support via rar package
+rox-extra/archive:uuencode - Enable .uue compression/decompression via sharutils package
+rox-extra/archive:zip - Enable .zip support via zip and unzip packages
+rox-extra/archive:ace - Enable .ace support via unace package
+rox-extra/archive:rpm - Enable .rpm extraction via rpm2cpio from the rpm package
+rox-extra/archive:cpio - Enable .cpio extraction via cpio package
+rox-extra/memo:libnotify - Enable libnotify support for alarm notifications
 sci-astronomy/orsa:cln - Use the Class Library for Numbers for calculations
 sci-astronomy/orsa:gsl - Use the GNU scientific library for calculations
 sci-astronomy/predict:xforms - Add a "map" client which uses the xforms library for its GUI
@@ -1736,11 +1757,8 @@ www-client/elinks:nntp - Enable support for the NNTP
 www-client/kazehakase:hyperestraier - enable hyperestraier support for full-text search in history.
 www-client/kazehakase:thumbnail - enable thumbnail support.
 www-client/mozilla-firefox:mozbranding - Enable official branding
-www-client/mozilla-firefox:mozcalendar - Enable mozilla calendar extension, http://mozilla.org/projects/calendar/
 www-client/mozilla-firefox:mozdevelop - Enable features for web developers (e.g. Venkman)
-www-client/mozilla-firefox:moznoxft - Disable XFT support in mozilla (also firefox, thunderbird)
 www-client/mozilla-firefox:restrict-javascript - Pull in noscript extension to disable javascript globally, putting user fully in control of the sites he/she visits
-www-client/mozilla-firefox:mozsvg - Enable SVG support in mozilla and firefox
 www-client/mozilla-firefox:xforms - XForms is a standard to split up XHTML into XForms, instance data, and user interface
 www-client/mozilla-launcher:aoss - Add support for media-libs/alsa-oss - playing sounds from browser via OSS emulation
 www-client/mozilla:mozcalendar - Enable mozilla calendar extension, http://mozilla.org/projects/calendar/
@@ -1827,6 +1845,7 @@ x11-terms/hanterm:utempter - Records everytime a user logins in. Useful on multi
 x11-terms/mlterm:scim - Enable scim support
 x11-terms/mlterm:uim - Enable uim support
 x11-terms/mrxvt:menubar - Enable mrxvt menubar
+x11-terms/mrxvt:utempter - Records everytime a user logins in. Useful on multi-user systems.
 x11-terms/rxvt-unicode:iso14755 - Enable ISO-14755 support
 x11-terms/rxvt-unicode:tabs - Install the experimental urxvt-tabbed client
 x11-terms/rxvt-unicode:xgetdefault - Enable resources via X instead of rxvt small version
