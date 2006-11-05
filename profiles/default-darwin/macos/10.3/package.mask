@@ -1,0 +1,3 @@
+# dies with "exhausted memory" errors
+=dev-util/cvs-1.12*
+
