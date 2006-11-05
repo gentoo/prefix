@@ -131,7 +131,7 @@ src_install() {
 	LDPATH="${EPREFIX}/usr/lib/gcc/${CHOST}/${VERS}"
 	echo "LDPATH=\"${LDPATH}\"" >> ${gcc_envd_file}
 
-	BITS=$(${EPREFIX}/usr/${CHOST}/gcc-bin/${VERS}/gcc -dumpspecs | grep -A1 multilib: | tail -n1 | grep -o 64 | head -n1)
+	BITS=$(${ED}/usr/${CHOST}/gcc-bin/${VERS}/gcc -dumpspecs | grep -A1 multilib: | tail -n1 | grep -o 64 | head -n1)
 	BITS="32 ${BITS}"
 	echo "GCCBITS=\"${BITS}\"" >> ${gcc_envd_file}
 
