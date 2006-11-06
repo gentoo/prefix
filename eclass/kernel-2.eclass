@@ -428,7 +428,7 @@ compile_headers() {
 
 		# autoconf.h isnt generated unless it already exists. plus, we have
 		# no guarantee that any headers are installed on the system...
-		[[ -f ${ROOT}/usr/include/linux/autoconf.h ]] \
+		[[ -f ${EROOT}/usr/include/linux/autoconf.h ]] \
 			|| touch include/linux/autoconf.h
 
 		# if K_DEFCONFIG isn't set, force to "defconfig"
@@ -495,15 +495,15 @@ install_headers() {
 		emake headers_install INSTALL_HDR_PATH="${D}"/${ddir}/.. ${xmakeopts} || die
 
 		# let other packages install some of these headers
-		rm -rf "${D}"/${ddir}/sound #alsa-headers
-		rm -rf "${D}"/${ddir}/scsi  #glibc/uclibc/etc...
+		rm -rf "${ED}"/${ddir}/sound #alsa-headers
+		rm -rf "${ED}"/${ddir}/scsi  #glibc/uclibc/etc...
 		return 0
 	fi
 
 	cd "${S}"
 	dodir ${ddir}/linux
-	cp -pPR "${S}"/include/linux/* ${D}/${ddir}/linux
-	rm -rf ${D}/${ddir}/linux/modules
+	cp -pPR "${S}"/include/linux/* ${ED}/${ddir}/linux
+	rm -rf ${ED}/${ddir}/linux/modules
 
 	# Handle multilib headers and crap
 	local multi_dirs="" multi_defs=""
@@ -526,28 +526,28 @@ install_headers() {
 			;;
 		arm)
 			dodir ${ddir}/asm
-			cp -pPR "${S}"/include/asm/* "${D}"/${ddir}/asm
-			[[ ! -e ${D}/${ddir}/asm/arch ]] && ln -sf arch-ebsa285 "${D}"/${ddir}/asm/arch
-			[[ ! -e ${D}/${ddir}/asm/proc ]] && ln -sf proc-armv "${D}"/${ddir}/asm/proc
+			cp -pPR "${S}"/include/asm/* "${ED}"/${ddir}/asm
+			[[ ! -e ${ED}/${ddir}/asm/arch ]] && ln -sf arch-ebsa285 "${ED}"/${ddir}/asm/arch
+			[[ ! -e ${ED}/${ddir}/asm/proc ]] && ln -sf proc-armv "${ED}"/${ddir}/asm/proc
 			;;
 		powerpc)
 			dodir ${ddir}/asm
-			cp -pPR "${S}"/include/asm/* ${D}/${ddir}/asm
+			cp -pPR "${S}"/include/asm/* ${ED}/${ddir}/asm
 			if [[ -e "${S}"/include/asm-ppc ]] ; then
 				dodir ${ddir}/asm-ppc
-				cp -pPR "${S}"/include/asm-ppc/* ${D}/${ddir}/asm-ppc
+				cp -pPR "${S}"/include/asm-ppc/* ${ED}/${ddir}/asm-ppc
 			fi
 			;;
 		*)
 			dodir ${ddir}/asm
-			cp -pPR "${S}"/include/asm/* ${D}/${ddir}/asm
+			cp -pPR "${S}"/include/asm/* ${ED}/${ddir}/asm
 			;;
 	esac
 	if [[ -n ${multi_dirs} ]] ; then
 		local d ml_inc=""
 		for d in ${multi_dirs} ; do
 			dodir ${ddir}/asm-${d}
-			cp -pPR "${S}"/include/asm-${d}/* ${D}/${ddir}/asm-${d}/ || die "cp asm-${d} failed"
+			cp -pPR "${S}"/include/asm-${d}/* ${ED}/${ddir}/asm-${d}/ || die "cp asm-${d} failed"
 
 			ml_inc="${ml_inc} ${multi_defs%% *}:${ddir}/asm-${d}"
 			multi_defs=${multi_defs#* }
@@ -557,11 +557,11 @@ install_headers() {
 
 	if kernel_is 2 6; then
 		dodir ${ddir}/asm-generic
-		cp -pPR "${S}"/include/asm-generic/* ${D}/${ddir}/asm-generic
+		cp -pPR "${S}"/include/asm-generic/* ${ED}/${ddir}/asm-generic
 	fi
 
 	# clean up
-	find "${D}" -name '*.orig' -exec rm -f {} \;
+	find "${ED}" -name '*.orig' -exec rm -f {} \;
 
 	cd ${OLDPWD}
 }
@@ -591,7 +591,7 @@ install_sources() {
 			> "${S}"/patches.txt
 	fi
 
-	mv ${WORKDIR}/linux* ${D}/usr/src
+	mv ${WORKDIR}/linux* ${ED}/usr/src
 }
 
 # pkg_preinst functions
@@ -612,21 +612,21 @@ postinst_sources() {
 
 	# if we are to forcably symlink, delete it if it already exists first.
 	if [[ ${K_SYMLINK} > 0 ]]; then
-		[[ -h ${ROOT}usr/src/linux ]] && rm ${ROOT}usr/src/linux
+		[[ -h ${EROOT}usr/src/linux ]] && rm ${EROOT}usr/src/linux
 		MAKELINK=1
 	fi
 
 	# if the link doesnt exist, lets create it
-	[[ ! -h ${ROOT}usr/src/linux ]] && MAKELINK=1
+	[[ ! -h ${EROOT}usr/src/linux ]] && MAKELINK=1
 
 	if [[ ${MAKELINK} == 1 ]]; then
-		cd ${ROOT}usr/src
+		cd ${EROOT}usr/src
 		ln -sf linux-${KV_FULL} linux
 		cd ${OLDPWD}
 	fi
 
 	# Don't forget to make directory for sysfs
-	[[ ! -d ${ROOT}sys ]] && kernel_is 2 6 && mkdir ${ROOT}sys
+	[[ ! -d ${EROOT}sys ]] && kernel_is 2 6 && mkdir ${EROOT}sys
 
 	echo
 	einfo "After installing a new kernel of any version, it is important"
