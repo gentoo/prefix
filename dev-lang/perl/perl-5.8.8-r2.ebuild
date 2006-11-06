@@ -242,7 +242,8 @@ src_configure() {
 		-Dprefix="${EPREFIX}"'/usr' \
 		-Dvendorprefix="${EPREFIX}"'/usr' \
 		-Dsiteprefix="${EPREFIX}"'/usr' \
-		-Dlocincpth=' ' \
+		-Dlocincpth="${EPREFIX}"'/usr/include ' \
+		-Dglibpth="${EPREFIX}/$(get_libdir) ${EPREFIX}/usr/$(get_libdir)"' ' \
 		-Doptimize="${CFLAGS}" \
 		-Duselargefiles \
 		-Dd_semctl_semun \
