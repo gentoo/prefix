@@ -12,8 +12,8 @@
  argv0=${0##*/}
 -source /sbin/functions.sh || {
 -	echo "${argv0}: Could not source /sbin/functions.sh!"
-+source "${EPREFIX}"/sbin/functions.sh || {
-+	echo "${argv0}: Could not source "${EPREFIX}"/sbin/functions.sh!"
++source "@GENTOO_PORTAGE_EPREFIX@"/sbin/functions.sh || {
++	echo "${argv0}: Could not source "@GENTOO_PORTAGE_EPREFIX@"/sbin/functions.sh!"
  	exit 1
  }
  umask 022
@@ -147,7 +147,7 @@
  	fi
  
  	# We need to make sure that libgcc_s.so / libunwind.so make it into /lib.
-@@ -311,7 +312,7 @@
+@@ -311,19 +312,19 @@
  			multiarg=${multiarg/@/-}
  			multilibdir=${multilib%;*}
  			libdir="lib/"$("${ROOT}/${GCC_BIN_PATH}"/gcc ${multiarg} -print-multi-os-directory)
@@ -155,8 +155,9 @@
 +			if mkdir -p "${EROOT}/${libdir}"/.gcc.config.new ; then
  				for gcclib in gcc_s unwind ; do
  					if [[ -n $(ls "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.so.* 2>/dev/null) ]]; then
- 						${CP} -pP "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.so.* "${ROOT}/${libdir}"/.gcc.config.new/
-@@ -319,11 +320,11 @@
+-						${CP} -pP "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.so.* "${ROOT}/${libdir}"/.gcc.config.new/
++						${CP} -pP "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.so.* "${EROOT}/${libdir}"/.gcc.config.new/
+ 						# no need to sanity remove this as the `mv` should take
  						# care of it.  we also need this step to be completly atomic
  						# for systems that have even `mv` linked against libgcc_s.so.
  						# http://bugs.gentoo.org/150257
