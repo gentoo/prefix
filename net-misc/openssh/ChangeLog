@@ -1,6 +1,51 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.210 2006/10/17 14:37:18 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.221 2006/11/07 23:03:28 vapier Exp $
+
+*openssh-4.5_p1 (07 Nov 2006)
+
+  07 Nov 2006; Mike Frysinger <vapier@gentoo.org> +openssh-4.5_p1.ebuild:
+  Version bump #154389.
+
+  05 Nov 2006; Brent Baude <ranger@gentoo.org> openssh-4.4_p1-r6.ebuild:
+  Marking openssh-4.4_p1-r6 ppc64 stable for 149502
+
+  03 Nov 2006; Fernando J. Pereda <ferdy@gentoo.org>
+  openssh-4.4_p1-r6.ebuild:
+  Stable on alpha as per bug #149502
+
+*openssh-4.4_p1-r6 (03 Nov 2006)
+
+  03 Nov 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.4_p1-ldap-hpn-glue.patch, +openssh-4.4_p1-r6.ebuild:
+  Grab updated HPN patch to fix -C issues #153854.
+
+  01 Nov 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  openssh-4.4_p1-r5.ebuild:
+  ppc stable, bug #149502
+
+  01 Nov 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  openssh-4.4_p1-r5.ebuild:
+  Stable on sparc wrt security #149502
+
+  01 Nov 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.4_p1-x509-hpn-glue.patch, openssh-4.4_p1-r5.ebuild:
+  Tweak X509 a little so HPN can apply at the sametime #151527 by Bob Reveley.
+
+  31 Oct 2006; Danny van Dyk <kugelfang@gentoo.org>
+  openssh-4.4_p1-r5.ebuild:
+  Marked stable on amd64.
+
+  31 Oct 2006; Andrej Kacian <ticho@gentoo.org> openssh-4.4_p1-r5.ebuild:
+  Stable on x86, security bug #152594.
+
+  31 Oct 2006; Jeroen Roovers <jer@gentoo.org> openssh-4.4_p1-r5.ebuild:
+  Stable for HPPA (bug #149502).
+
+*openssh-4.4_p1-r5 (25 Oct 2006)
+
+  25 Oct 2006; Mike Frysinger <vapier@gentoo.org> +openssh-4.4_p1-r5.ebuild:
+  Add updated securid support.
 
   17 Oct 2006; Roy Marples <uberlord@gentoo.org> openssh-4.4_p1-r4.ebuild:
   Added ~sparc-fbsd keyword.

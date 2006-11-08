@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.4_p1-r4.ebuild,v 1.3 2006/10/17 14:37:18 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.5_p1.ebuild,v 1.1 2006/11/07 23:03:28 vapier Exp $
 
 EAPI="prefix"
 
@@ -13,18 +13,18 @@ inherit eutils flag-o-matic ccc multilib autotools pam
 # and _p? releases.
 PARCH=${P/_/}
 
-X509_PATCH="${PARCH}+x509-5.5.1.diff.gz"
-SECURID_PATCH="" #${PARCH}+SecurID_v1.3.2.patch"
-LDAP_PATCH="${PARCH/-4.4p1/-lpk-4.4p1}-0.3.7.patch"
-HPN_PATCH="${PARCH}-hpn12v11-gentoo.patch.bz2"
+X509_PATCH="${PARCH/4.5/4.4}+x509-5.5.1.diff.gz"
+SECURID_PATCH="${PARCH/4.5/4.4}+SecurID_v1.3.2.patch"
+LDAP_PATCH="${PARCH/-4.5p1/-lpk-4.4p1}-0.3.7.patch"
+HPN_PATCH="${PARCH/4.5/4.4}-hpn12v13.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.com/"
 SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
 	X509? ( http://roumenpetrov.info/openssh/x509-5.5.1/${X509_PATCH} )
 	ldap? ( http://dev.inversepath.com/openssh-lpk/${LDAP_PATCH} )
-	hpn? ( mirror://gentoo/${HPN_PATCH} http://www.psc.edu/networking/projects/hpn-ssh/${HPN_PATCH} )"
-#	smartcard? ( http://www.omniti.com/~jesus/projects/${SECURID_PATCH} )
+	hpn? ( http://www.psc.edu/networking/projects/hpn-ssh/${HPN_PATCH} )
+	smartcard? ( http://omniti.com/~jesus/projects/${SECURID_PATCH} )"
 
 LICENSE="as-is"
 SLOT="0"
@@ -74,22 +74,18 @@ src_unpack() {
 		-e '/_PATH_XAUTH/s:/usr/X11R6/bin/xauth:/usr/bin/xauth:' \
 		pathnames.h || die
 
-	# fix autoconf lib checking for SELinux
-	epatch "${FILESDIR}/openssh-4.4p1-selinux-ac.diff"
-
-	use X509 && epatch "${DISTDIR}"/${X509_PATCH}
+	use X509 && epatch "${DISTDIR}"/${X509_PATCH} "${FILESDIR}"/${P}-x509-hpn-glue.patch
 	use chroot && epatch "${FILESDIR}"/openssh-4.3_p1-chroot.patch
 	use smartcard && epatch "${FILESDIR}"/openssh-3.9_p1-opensc.patch
 	if ! use X509 ; then
 		if [[ -n ${SECURID_PATCH} ]] && use smartcard ; then
-			epatch \
-				"${DISTDIR}"/${SECURID_PATCH} \
-				"${FILESDIR}"/${P}-securid-updates.patch \
-				"${FILESDIR}"/${P}-securid-hpn-glue.patch
+			epatch "${DISTDIR}"/${SECURID_PATCH} \
+				"${FILESDIR}"/${PN}-4.3_p2-securid-updates.patch \
+				"${FILESDIR}"/${PN}-4.3_p2-securid-hpn-glue.patch
 			use ldap && epatch "${FILESDIR}"/openssh-4.0_p1-smartcard-ldap-happy.patch
 		fi
 		if use ldap ; then
-			epatch "${DISTDIR}"/${LDAP_PATCH}
+			epatch "${DISTDIR}"/${LDAP_PATCH} "${FILESDIR}"/${P}-ldap-hpn-glue.patch
 		fi
 	elif [[ -n ${SECURID_PATCH} ]] && use smartcard || use ldap ; then
 		ewarn "Sorry, X509 and smartcard/ldap don't get along, disabling smartcard/ldap"

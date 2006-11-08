@@ -1,0 +1,22 @@
+--- configure.ac
++++ configure.ac
+@@ -1024,8 +1024,8 @@
+                                [AceInitialize(); SD_Init(&sd_dat);],
+                                [
+                                        AC_MSG_RESULT(yes)
+-                                       AC_DEFINE(SECURID)
+-                                       AC_DEFINE(SECURID_NEW)
++                                       AC_DEFINE(SECURID, 1, [enable securid])
++                                       AC_DEFINE(SECURID_NEW, 1, [enable new securid])
+                                        SECURID_MSG="yes: 5.X+" 
+                                ],
+                                [
+@@ -1053,7 +1053,7 @@
+                                [sd = &sd_dat; creadcfg(); sd_init(sd);],
+                                [
+                                        AC_MSG_RESULT(yes)
+-                                       AC_DEFINE(SECURID)
++                                       AC_DEFINE(SECURID, 1, [enable securid])
+                                        SECURID_MSG="yes: <= 4.X"
+                                ],
+                                [

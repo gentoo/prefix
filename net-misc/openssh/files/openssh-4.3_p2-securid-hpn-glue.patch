@@ -1,0 +1,69 @@
+tweak the secure id code a little so hpn patches cleanly
+
+--- servconf.c
++++ servconf.c
+@@ -643,6 +643,32 @@
+ 			*intptr = value;
+ 		break;
+ 
++#ifdef SECURID
++	case sSecurIDAuthentication:
++		intptr = &options->securid_authentication;
++		goto parse_flag;
++
++	case sSecurIDFallBack:
++		intptr = &options->securid_fallback;
++		goto parse_flag;
++
++	case sAllowNonSecurID:
++		intptr = &options->allow_nonsecurid;
++		goto parse_flag;
++
++	case sNegateSecurIDUsers:
++		intptr = &options->negate_securid_users;
++		goto parse_flag;
++
++	case sSecurIDUsersFile:
++		charptr = &options->securid_usersfile;
++		goto parse_filename;
++
++	case sSecurIDIgnoreShell:
++		intptr = &options->securid_ignore_shell;
++		goto parse_flag;
++#endif
++
+ 	case sIgnoreRhosts:
+ 		intptr = &options->ignore_rhosts;
+ parse_flag:
+@@ -662,31 +688,6 @@
+ 			*intptr = value;
+ 		break;
+ 
+-#ifdef SECURID
+-        case sSecurIDAuthentication:
+-                intptr = &options->securid_authentication;
+-                goto parse_flag;
+-
+-        case sSecurIDFallBack:
+-                intptr = &options->securid_fallback;
+-                goto parse_flag;
+-
+-        case sAllowNonSecurID:
+-                intptr = &options->allow_nonsecurid;
+-                goto parse_flag;
+-
+-        case sNegateSecurIDUsers:
+-                intptr = &options->negate_securid_users;
+-                goto parse_flag;
+-
+-        case sSecurIDUsersFile:
+-                charptr = &options->securid_usersfile;
+-                goto parse_filename;
+-
+-        case sSecurIDIgnoreShell:
+-                intptr = &options->securid_ignore_shell;
+-                goto parse_flag;
+-#endif
+ 	case sIgnoreUserKnownHosts:
+ 		intptr = &options->ignore_user_known_hosts;
+ 		goto parse_flag;
