@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/file
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.106 2006/10/17 12:10:33 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.109 2006/11/02 20:39:54 kanaka Exp $
+
+*file-4.18 (31 Oct 2006)
+
+  31 Oct 2006; Mike Frysinger <vapier@gentoo.org> +file-4.18.ebuild:
+  Version bump.
 
   17 Oct 2006; Roy Marples <uberlord@gentoo.org> file-4.17-r1.ebuild:
   Added ~sparc-fbsd keyword.
