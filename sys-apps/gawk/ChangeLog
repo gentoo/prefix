@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/gawk
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.96 2006/10/17 12:04:10 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.97 2006/11/05 09:13:06 grobian Exp $
+
+  05 Nov 2006; Fabian Groffen <grobian@gentoo.org> gawk-3.1.5-r1.ebuild,
+  gawk-3.1.5-r2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix.
 
   17 Oct 2006; Roy Marples <uberlord@gentoo.org> gawk-3.1.5-r2.ebuild:
   Added ~sparc-fbsd keyword.
