@@ -501,10 +501,10 @@ vim_src_install() {
 				installtools \
 				install-languages \
 				install-icons \
-				DESTDIR=${ED} \
-				BINDIR=${EPREFIX}/usr/bin \
-				MANDIR=${EPREFIX}/usr/share/man \
-				DATADIR=${EPREFIX}/usr/share \
+				DESTDIR="$D" \
+				BINDIR="${EPREFIX}"/usr/bin \
+				MANDIR="${EPREFIX}"/usr/share/man \
+				DATADIR="${EPREFIX}"/usr/share \
 				|| die "install failed"
 		else
 			make \
@@ -515,10 +515,10 @@ vim_src_install() {
 				installtools \
 				install-languages \
 				install-icons \
-				DESTDIR=${ED} \
-				BINDIR=${EPREFIX}/usr/bin \
-				MANDIR=${EPREFIX}/usr/share/man \
-				DATADIR=${EPREFIX}/usr/share \
+				DESTDIR="$D" \
+				BINDIR="${EPREFIX}"/usr/bin \
+				MANDIR="${EPREFIX}"/usr/share/man \
+				DATADIR="${EPREFIX}"/usr/share \
 				|| die "install failed"
 		fi
 
