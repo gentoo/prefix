@@ -1,6 +1,31 @@
 # ChangeLog for sys-devel/autoconf-wrapper
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-wrapper/ChangeLog,v 1.36 2006/11/01 20:11:57 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-wrapper/ChangeLog,v 1.41 2006/11/07 19:11:53 gustavoz Exp $
+
+  07 Nov 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  autoconf-wrapper-3.2-r2.ebuild:
+  Stable on sparc wrt #144467
+
+  05 Nov 2006; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  autoconf-wrapper-3.2-r2.ebuild:
+  stable on ppc (needed for bug #144467)
+
+*autoconf-wrapper-4-r1 (05 Nov 2006)
+
+  05 Nov 2006; Mike Frysinger <vapier@gentoo.org> files/ac-wrapper-4.sh,
+  +autoconf-wrapper-4-r1.ebuild:
+  Fix up SLOT/VER collision as pointed out by Alexis Ballier.
+
+*autoconf-wrapper-4 (05 Nov 2006)
+
+  05 Nov 2006; Mike Frysinger <vapier@gentoo.org> +files/ac-wrapper-4.sh,
+  +autoconf-wrapper-4.ebuild:
+  Add a more flexible wrapper using stuff from automake-wrapper-3 and allow
+  WANT_AUTOCONF to be a space delimited list.
+
+  03 Nov 2006; Fabian Groffen <grobian@gentoo.org>
+  autoconf-wrapper-3.2.ebuild, autoconf-wrapper-3.2-r2.ebuild:
+  Dropped ppc-macos, see you in prefix.
 
   01 Nov 2006; Chris Gianelloni <wolf31o2@gentoo.org>
   autoconf-wrapper-3.2-r2.ebuild:
