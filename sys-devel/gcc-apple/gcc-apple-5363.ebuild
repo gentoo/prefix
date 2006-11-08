@@ -6,9 +6,9 @@ EAPI="prefix"
 
 inherit eutils
 
-DESCRIPTION="Apple branch of the GNU Compiler Collection"
+DESCRIPTION="Apple branch of the GNU Compiler Collection, Xcode 2.4"
 HOMEPAGE="http://gcc.gnu.org"
-SRC_URI="http://darwinsource.opendarwin.org/tarballs/other/gcc-${PV}.tar.gz"
+SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/gcc-${PV}.tar.gz"
 
 LICENSE="APSL-2 GPL-2"
 SLOT="40"
@@ -31,7 +31,7 @@ S=${WORKDIR}/gcc-${PV}
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 	# we use our libtool
 	sed -i -e "s:/usr/bin/libtool:${EPREFIX}/usr/bin/libtool:" \
 		gcc/config/darwin.h || die "sed gcc/config/darwin.h failed"

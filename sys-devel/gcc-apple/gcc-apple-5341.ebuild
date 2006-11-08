@@ -11,7 +11,7 @@ HOMEPAGE="http://gcc.gnu.org"
 SRC_URI="http://darwinsource.opendarwin.org/tarballs/other/gcc-${PV}.tar.gz"
 
 LICENSE="APSL-2 GPL-2"
-SLOT="0"
+SLOT="40"
 
 KEYWORDS="~ppc-macos ~x86-macos"
 
