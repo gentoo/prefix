@@ -1,6 +1,20 @@
 # ChangeLog for sys-devel/autoconf
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.82 2006/11/01 20:13:22 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.86 2006/11/07 19:12:59 gustavoz Exp $
+
+  07 Nov 2006; Gustavo Zacarias <gustavoz@gentoo.org> autoconf-2.60.ebuild:
+  Stable on sparc wrt #144467
+
+  05 Nov 2006; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  autoconf-2.60.ebuild:
+  stable on ppc (needed for bug #144467)
+
+  04 Nov 2006; Jeroen Roovers <jer@gentoo.org> autoconf-2.60.ebuild:
+  Stable for HPPA (bug #144467).
+
+  03 Nov 2006; Fabian Groffen <grobian@gentoo.org> autoconf-2.13.ebuild,
+  autoconf-2.59-r7.ebuild, autoconf-2.60.ebuild:
+  Dropped ppc-macos, see you in prefix.
 
   01 Nov 2006; Chris Gianelloni <wolf31o2@gentoo.org> autoconf-2.60.ebuild:
   Stable on amd64/x86 wrt bug #144467.
