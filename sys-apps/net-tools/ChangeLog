@@ -1,0 +1,266 @@
+# ChangeLog for sys-apps/net-tools
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/ChangeLog,v 1.61 2006/11/01 22:15:27 kloeri Exp $
+
+  01 Nov 2006; Bryan Østergaard <kloeri@gentoo.org>
+  net-tools-1.60-r12.ebuild:
+  Stable on Alpha + ia64, bug 152837.
+
+  30 Oct 2006; Jeroen Roovers <jer@gentoo.org> net-tools-1.60-r12.ebuild:
+  Stable for HPPA (bug #152837).
+
+  28 Oct 2006; nixnut <nixnut@gentoo.org> net-tools-1.60-r12.ebuild:
+  Stable on ppc wrt bug 152837
+
+  27 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  net-tools-1.60-r12.ebuild:
+  Stable on sparc wrt #152837
+
+  26 Oct 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  net-tools-1.60-r12.ebuild:
+  Stable on amd64/x86 wrt bug #152837.
+
+*net-tools-1.60-r12 (11 Mar 2006)
+
+  11 Mar 2006; Mike Frysinger <vapier@gentoo.org>
+  +net-tools-1.60-r12.ebuild:
+  Fold etherwake and mii-diag into this package as well as a bunch of other
+  diag utilities.
+
+  29 Jun 2005; Joshua Kinard <kumba@gentoo.org> net-tools-1.60-r11.ebuild:
+  Marked stable on mips.
+
+  29 May 2005; <solar@gentoo.org> net-tools-1.60-r9.ebuild:
+  - update sys-apps/net-tools to use libc expanded variable elibc_uclibc vs
+  uclibc so USE=-* works
+
+  09 Apr 2005; Markus Rothe <corsair@gentoo.org> net-tools-1.60-r11.ebuild:
+  Stable on ppc64
+
+  28 Mar 2005; Michael Hanselmann <hansmi@gentoo.org>
+  net-tools-1.60-r11.ebuild:
+  Stable on ppc.
+
+  19 Mar 2005; Bryan Østergaard <kloeri@gentoo.org>
+  net-tools-1.60-r11.ebuild:
+  Stable on alpha.
+
+  14 Mar 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  net-tools-1.60-r11.ebuild:
+  Stable on sparc
+
+*net-tools-1.60-r11 (11 Feb 2005)
+
+  11 Feb 2005; Mike Frysinger <vapier@gentoo.org>
+  +net-tools-1.60-r11.ebuild:
+  Move to using a patch tarball, add some updates from Fedora, add ipv6
+  hostname fix by pasi.valminen@hut.fi #42650, and add support for infiniband
+  to ifconfig by Tom Duffy #81180.
+
+  10 Jan 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/1.60-Makefile.patch, net-tools-1.60-r10.ebuild:
+  Remove all references to config.h so the configure script will never run
+  again #77348.
+
+*net-tools-1.60-r10 (06 Jan 2005)
+
+  06 Jan 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/1.60-appletalk.patch, files/1.60-man.patch,
+  +files/1.60-numeric-ports.patch, +files/1.60-wide.patch,
+  +net-tools-1.60-r10.ebuild:
+  Add patch by comabug@gmail.com for the -w flag (dont truncate hostnames)
+  #53731. Fix numeric translation with patch by Mads Martin Joergensen #76756.
+  Ad patch from Debian to parse the appletalk format.
+
+  02 Jan 2005; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  30 Oct 2004; Tom Gall <tgall@gentoo.org> net-tools-1.60-r9.ebuild:
+  stable on ppc64, bug #58633
+
+  30 Oct 2004; Michael Imhof <tantive@gentoo.org> net-tools-1.60-r9.ebuild:
+  Marked stable on s390. Closes #58633.
+
+  19 Oct 2004; Simon Stelling <blubb@gentoo.org> net-tools-1.60-r9.ebuild:
+  stable on amd64
+
+  18 Oct 2004; Bryan Østergaard <kloeri@gentoo.org>
+  net-tools-1.60-r9.ebuild:
+  Stable on alpha, bug 58633.
+
+  18 Oct 2004; Guy Martin <gmsoft@gentoo.org> net-tools-1.60-r9.ebuild:
+  Stable on hppa.
+
+  17 Oct 2004; Hardave Riar <hardave@gentoo.org> net-tools-1.60-r9.ebuild:
+  Stable on mips, bug #58633.
+
+  17 Oct 2004; Jason Wever <weeve@gentoo.org> net-tools-1.60-r9.ebuild:
+  Stable on sparc wrt security bug #58633.
+
+  17 Oct 2004; Michael Hanselmann <hansmi@gentoo.org>
+  net-tools-1.60-r9.ebuild:
+  Stable on PowerPC.
+
+  17 Oct 2004; <solar@gentoo.org> net-tools-1.60-r9.ebuild:
+  marked stable x86
+
+  17 Aug 2004; <solar@gentoo.org> files/net-tools-1.60-get_name.patch:
+  updated the get_name patch a little as per comment 16/17 bug 58633
+
+*net-tools-1.60-r9 (12 Aug 2004)
+
+  12 Aug 2004; <solar@gentoo.org> net-tools-1.60-r9.ebuild,
+  files/net-tools-1.60-get_name.patch:
+  get_name() scans past the first ':' looking for <digit>*: - however if the
+  bytes field has grown far enough to butt right up to the interface name it
+  will cause get_name to parse over the bytes field thinking it may be an alias
+  thus triggering an overflow. bug 58633
+
+  17 Jul 2004; Michael Sterrett <mr_bones_@gentoo.org>
+  net-tools-1.60-r8.ebuild:
+  use emake (work around buggy makefiles); error check; tidy
+
+  16 Jul 2004; Michael Sterrett <mr_bones_@gentoo.org>
+  -net-tools-1.60-r7.ebuild:
+  clean older ebuild
+
+  27 Jun 2004; Aron Griffis <agriffis@gentoo.org> net-tools-1.60-r7.ebuild:
+  QA - fix use invocation
+
+  15 Jun 2004; <solar@gentoo.org> net-tools-1.60-r8.ebuild:
+  added uclibc support
+
+  19 Apr 2004; Mike Frysinger <vapier@gentoo.org> :
+  Add gcc-3.4 patch #48167 by George L. Emigh.
+
+  29 Mar 2004; Sven Blumenstein <bazik@gentoo.org>
+  files/net-tools-1.60-cleanup-list-handling.patch:
+  Fixed net-tools-1.60-cleanup-list-handling.patch, closes bug #46082,
+  blameseemant! :)
+
+*net-tools-1.60-r8 (28 Mar 2004)
+
+  28 Mar 2004; Seemant Kulleen <seemant@gentoo.org> net-tools-1.60-r6.ebuild,
+  net-tools-1.60-r8.ebuild, files/net-tools-1.60-cleanup-list-handling.patch:
+  fix for nameif segfaulting on larger mtabs, thanks to: Tony Vroon
+  <tony@vroon.org> in bug #37769
+
+  02 Mar 2004; Brian Jackson <iggy@gentoo.org> net-tools-1.60-r7.ebuild:
+  adding initial s390 support
+
+  19 Oct 2003; <plasmaroo@gentoo.org> net-tools-1.60-r7.ebuild,
+  files/net-tools-1.60-2.6-compilefix.patch:
+  Added patch to get net-tools to go on 2.6 headers: Bug #31240.
+  Thanks to Peter Gnodde <peter@gnodde.org> for the patch.
+
+*net-tools-1.60-r7 (18 May 2003)
+
+  29 Sep 2003; Mike Frysinger <vapier@gentoo.org> :
+  Add small manpage patch #29677.
+
+  23 Jun 2003; Aron Griffis <agriffis@gentoo.org> net-tools-1.60-r7.ebuild:
+  Mark stable on alpha
+
+  06 Jul 2003; Guy Martin <gmsoft@gentoo.org> net-tools-1.60-r7.ebuild :
+  Marked stable on hppa.
+
+  22 Jun 2003; Joshua Kinard <kumba@gentoo.org> net-tools-1.60-r7.ebuild:
+  Changed ~sparc & ~mips to sparc & mips
+
+  18 Jun 2003; <msterret@gentoo.org> net-tools-1.60-r7.ebuild:
+  Add support for use static (bug 22450) based on code from Sascha Silbe
+  Use sed -i
+
+
+  18 May 2003; Nicholas Wourms <dragon@gentoo.org> net-tools-1.60-r7.ebuild:
+  Version bump. Add Manifest. Update ether-wake to Donald Becker's latest
+  version (1.08). Add an english manpage for ether-wake. Add newline characters
+  to various multi-line string literals in order to fix gcc-3.3 compile errors.
+  Update lib/masq_info.c to support ipvs configurations. Update netstat to fix
+  interface name output and to support modifying the statistics refresh delay as
+  a command-line argument.
+
+*net-tools-1.60-r6 (18 Mar 2003)
+
+  18 Mar 2003; Martin Holzer <mholzer@gentoo.org> net-tools-1.60-r5.ebuild,
+  net-tools-1.60-r5.ebuild, net-tools-1.60-r6.ebuild:
+  Fixed manpages are not installed cause of nls use flag.
+
+*net-tools-1.60-r5 (16 Jul 2002)
+
+  18 Mar 2003; Martin Holzer <mholzer@gentoo.org> net-tools-1.60-r5.ebuild:
+  Now installing man pages. Closes #17562.
+
+  24 Feb 2003; Nicholas Wourms <dragon@gentoo.org> net-tools-1.60-r5.ebuild :
+  Marked as stable for mips.
+
+  20 Feb 2003; Zach Welch <zwelch@gentoo.org> net-tools-1.60-r5.ebuild :
+  Added arm to keywords.
+
+  10 Feb 2003; Seemant Kulleen <seemant@gentoo.org> net-tools-1.60-r4.ebuild
+  net-tools-1.60-r5.ebuild :
+
+  Many things -- moved the files and patches from files/ subdirectory into a
+  tarball and sent it to the mirrors.  Also, changed sed expression
+  delimiters from / to :, closing bug #15006 by Blu3
+  <david+gentoo.org@blue-labs.org>
+
+  09 Feb 2003; Guy Martin <gmsoft@gentoo.org> net-tools-1.60-r5.ebuild :
+  Added hppa to keywords.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+  19 Nov 2002; Mike Frysinger <vapier@gentoo.org> :
+  Under heavy loads the timestamps on the config files may cause
+  the config process to be re-run requiring user input
+  Both files are now touched at the same time (#10799)
+
+  23 Oct 2002; Mike Frysinger <vapier@gentoo.org> :
+  Removed bootcd USE flag
+
+  16 Jul 2002; Grant Goodyear <g2boojum@gentoo.org> ChangeLog  :
+  added some RH patches
+
+*net-tools-1.60-r4 (21 Jun 2002)
+
+  18 Jan 2003; Jan Seidel <tuxus@gentoo.org> :
+  Added mips to keywords
+
+  19 Nov 2002; Mike Frysinger <vapier@gentoo.org> :
+  Under heavy loads the timestamps on the config files may cause
+  the config process to be re-run requiring user input.
+  Both files are now touched at the same time (#10799)
+
+  23 Oct 2002; Mike Frysinger <vapier@gentoo.org> :
+  Removed bootcd USE flag
+
+  14 Jul 2002; phoen][x <phoenix@gentoo.org> net-tools-1.60-r4.ebuild :
+  Added LICENSE, KEYWORDS, SLOT.
+
+  21 Jun 2002; Martin Schlemmer <azarah@gentoo.org> :
+  Only install /bin/hostname during USE=build.
+
+*net-tools-1.60-r3 (20 Mar 2002)
+
+  23 Oct 2002; Mike Frysinger <vapier@gentoo.org> :
+  Removed bootcd USE flag
+
+  14 Jul 2002; phoen][x <phoenix@gentoo.org> net-tools-1.60-r3.ebuild :
+  Added LICENSE, KEYWORDS, SLOT.
+
+  20 Mar 2002; Seemant Kulleen <seemant@gentoo.org> net-tools-1.60-r3 :
+  Alternate implementation of USE dependent nls compilation.
+
+*net-tools-1.60-r2 (12 Mar 2002)
+  
+  12 Mar 2002; Seemant Kulleen <seemant@gentoo.org> net-tools-1.60-r2 :
+  Added USE dependent nls compilation
+
+*net-tools-1.60-r1 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
