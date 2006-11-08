@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/automake
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.93 2006/10/30 13:58:12 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.94 2006/11/03 18:37:54 grobian Exp $
+
+  03 Nov 2006; Fabian Groffen <grobian@gentoo.org> automake-1.4_p6.ebuild,
+  automake-1.5.ebuild, automake-1.6.3.ebuild, automake-1.7.9-r1.ebuild,
+  automake-1.8.5-r3.ebuild, automake-1.9.6-r2.ebuild, automake-1.10.ebuild:
+  Dropped ppc-macos, see you in prefix.
 
   30 Oct 2006; Roy Marples <uberlord@gentoo.org> automake-1.6.3.ebuild,
   automake-1.7.9-r1.ebuild:
