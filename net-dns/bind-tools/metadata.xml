@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>bind</herd>
+<maintainer>
+  <email>voxus@gentoo.org</email>
+  <description>Konstantin V. Arkhipov</description>
+</maintainer>
+<longdescription>ISC's Bind DNS' server tools</longdescription>
+</pkgmetadata>
