@@ -1,6 +1,44 @@
 # ChangeLog for sys-devel/automake-wrapper
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake-wrapper/ChangeLog,v 1.13 2006/10/17 09:22:39 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake-wrapper/ChangeLog,v 1.22 2006/11/07 08:12:10 opfer Exp $
+
+  07 Nov 2006; Christian Faulhammer <opfer@gentoo.org>
+  automake-wrapper-2.ebuild:
+  stable x86, bug #153936; no bugs as assumed before
+
+  07 Nov 2006; Christian Faulhammer <opfer@gentoo.org>
+  automake-wrapper-2.ebuild:
+  reverted to ~x86, not secure to turn it to stable, sorry tsunam
+
+  07 Nov 2006; Joshua Jackson <tsunam@gentoo.org> automake-wrapper-2.ebuild:
+  Stable x86; bug #153936
+
+  06 Nov 2006; Jeroen Roovers <jer@gentoo.org> automake-wrapper-2.ebuild:
+  Stable for HPPA (bug #153936).
+
+*automake-wrapper-3-r1 (05 Nov 2006)
+
+  05 Nov 2006; Mike Frysinger <vapier@gentoo.org> files/am-wrapper-3.sh,
+  +automake-wrapper-3-r1.ebuild:
+  Make sure we break out of new loop as reported by Alexis Ballier.
+
+*automake-wrapper-3 (05 Nov 2006)
+
+  05 Nov 2006; Mike Frysinger <vapier@gentoo.org> +files/am-wrapper-3.sh,
+  +automake-wrapper-3.ebuild:
+  Make default automake selection more flexible and allow WANT_AUTOMAKE to
+  contain a list of versions.
+
+  04 Nov 2006; Danny van Dyk <kugelfang@gentoo.org>
+  automake-wrapper-2.ebuild:
+  Marked stable on amd64.
+
+  03 Nov 2006; Fabian Groffen <grobian@gentoo.org>
+  automake-wrapper-1-r1.ebuild, automake-wrapper-2.ebuild:
+  Dropped ppc-macos, see you in prefix.
+
+  03 Nov 2006; nixnut <nixnut@gentoo.org> automake-wrapper-2.ebuild:
+  Stable on ppc wrt bug 153936
 
   17 Oct 2006; Roy Marples <uberlord@gentoo.org> automake-wrapper-2.ebuild:
   Added ~sparc-fbsd keyword.
