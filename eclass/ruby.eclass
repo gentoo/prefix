@@ -119,17 +119,17 @@ ruby_einstall() {
 
 	RUBY_ECONF="${RUBY_ECONF} ${EXTRA_ECONF}"
 	if [ -f install.rb ] ; then
-		${RUBY} install.rb config --prefix="${D}"/usr "$@" \
+		${RUBY} install.rb config --prefix="${ED}"/usr "$@" \
 			${RUBY_ECONF} || die "install.rb config failed"
 		${RUBY} install.rb install "$@" \
 			${RUBY_ECONF} || die "install.rb install failed"
 	elif [ -f setup.rb ] ; then
-		${RUBY} setup.rb config --prefix="${D}"/usr "$@" \
+		${RUBY} setup.rb config --prefix="${ED}"/usr "$@" \
 			${RUBY_ECONF} || die "setup.rb config failed"
 		${RUBY} setup.rb install "$@" \
 			${RUBY_ECONF} || die "setup.rb install failed"
 	elif [ -f extconf.rb -o -f Makefile ] ; then
-		make DESTDIR="${EDEST}" "$@" install || die "make install failed"
+		make DESTDIR="${D}" "$@" install || die "make install failed"
 	else
 		siteruby=$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitedir"]')
 		insinto ${siteruby}
@@ -144,7 +144,7 @@ erubydoc() {
 
 	insinto ${rdbase}
 	[ -n "${rdfiles}" ] && doins ${rdfiles}
-	rmdir ${D}${rdbase} 2>/dev/null || true
+	rmdir ${ED}${rdbase} 2>/dev/null || true
 	if [ -d doc -o -d docs ] ; then
 		dohtml -x html -r {doc,docs}/*
 		dohtml -r {doc,docs}/html/*
@@ -156,7 +156,7 @@ erubydoc() {
 		for dir in sample example examples; do
 			if [ -d ${dir} ] ; then
 				dodir /usr/share/doc/${PF}
-				cp -pPR ${dir} ${D}/usr/share/doc/${PF} || die "cp failed"
+				cp -pPR ${dir} ${ED}/usr/share/doc/${PF} || die "cp failed"
 			fi
 		done
 	fi
@@ -224,11 +224,11 @@ prepall() {
 		# in case no directories found in siteruby
 		shopt -sq nullglob
 
-		for x in ${EDEST}/${siteruby}/* ; do
-			mv $x ${EDEST}/${siteruby}/..
+		for x in ${D}/${siteruby}/* ; do
+			mv $x ${D}/${siteruby}/..
 		done
-		if [ -d ${EDEST}${siteruby} ] ; then
-			rmdir --ignore-fail-on-non-empty ${EDEST}/${siteruby}
+		if [ -d ${D}${siteruby} ] ; then
+			rmdir --ignore-fail-on-non-empty ${D}/${siteruby}
 		fi
 	fi
 
