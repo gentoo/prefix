@@ -24,7 +24,7 @@ S=${WORKDIR}/${MY_P}
 src_unpack() {
 	unpack ${A}
 
-	if use userland_Darwin ; then
+	if [[ ${USERLAND} == "Darwin" ]] ; then
 		cp "${FILESDIR}"/${P}-Makefile.macos "${S}"/Makefile
 	else
 		cp "${FILESDIR}"/${PF}-Makefile.linux "${S}"/Makefile
