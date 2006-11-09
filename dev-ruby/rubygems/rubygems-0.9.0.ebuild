@@ -29,7 +29,7 @@ src_compile() {
 src_install() {
 	ver=$(${RUBY} -r rbconfig -e 'print Config::CONFIG["MAJOR"] + "." + Config::CONFIG["MINOR"]')
 	GEM_HOME=${ED}/usr/lib/ruby/gems/$ver ruby_src_install
-	cp "${FILESDIR}/auto_gem.rb" "${ED}"/$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitedir"]')
+	cp "${FILESDIR}/auto_gem.rb" "${D}"/$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitedir"]')
 	keepdir /usr/lib/ruby/gems/$ver/doc
 	doenvd "${FILESDIR}/10rubygems"
 }
