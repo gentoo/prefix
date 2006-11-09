@@ -17,7 +17,10 @@ do
 		LDFLAGS="${LDFLAGS} -L${dir}"
 done
 
-export LDFLAGS="${LDFLAGS} ${OLDLDFLAGS/${LDFLAGS}/}"
+LDFLAGS="${LDFLAGS} ${OLDLDFLAGS/${LDFLAGS}/}"
+# We need to get rid of superfluous spaces, as otherwise configure in
+# large projects will bail out that it has changed while passing it over
+export LDFLAGS=$(echo ${LDFLAGS} | sed -e "s/  +/ /g" -e "s/(^ +| +$)//g")
 
 # The compiler in a prefixed system should look in the prefix header
 # dirs, like the linker does
