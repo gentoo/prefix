@@ -1,0 +1,105 @@
+--- distcc-config.orig	2006-11-09 21:27:01 +0100
++++ distcc-config	2006-11-09 21:35:59 +0100
+@@ -21,7 +21,7 @@
+ 
+ tmpcmdline=sys.argv[1:]
+ cmdline=[]
+-envfile = '/etc/env.d/02distcc'
++envfile = '@GENTOO_PORTAGE_EPREFIX@/etc/env.d/02distcc'
+ 
+ def exithandler(foo,bar):
+ 	os.kill(0,signal.SIGKILL)
+@@ -30,6 +30,8 @@
+ signal.signal(signal.SIGINT,exithandler)
+ 
+ def isroot(ret=0):
++	retval = 1
++	"""
+ 	if os.getuid() != 0:
+ 		if ret == 0:
+ 			print '!!!',sys.argv[:1][0],tmpcmdline[0],'must be run as root'
+@@ -38,6 +40,7 @@
+ 			retval = 0
+ 	else:
+ 		retval = 1
++	"""
+ 	return retval
+ 
+ def writeenv(var,value):
+@@ -50,7 +53,7 @@
+ 			distcc_env[i] = var+'="'+value+'"\n'
+ 		distcc_env_new.write(distcc_env[i])
+ 	#print 'Set',var,'to:',value
+-	os.popen('/usr/sbin/env-update')
++	os.popen('@GENTOO_PORTAGE_EPREFIX@/usr/sbin/env-update')
+ 	print 'If you want to use these new settings in an existing shell,'
+ 	print 'you need to "source /etc/profile" to get the changes.'
+ 
+@@ -69,13 +72,13 @@
+ 
+ def installlinks(chost=''):
+ 	for file in ['gcc', 'cc', 'c++', 'g++']:
+-		path = '/usr/lib/distcc/bin/'
++		path = '@GENTOO_PORTAGE_EPREFIX@/usr/lib/distcc/bin/'
+ 		if not chost == '':
+ 			file = chost+'-'+file
+-		if os.path.exists('/usr/bin/'+file):
++		if os.path.exists('@GENTOO_PORTAGE_EPREFIX@/usr/bin/'+file):
+ 			#print 'Creating',path+file,'symlink...'
+ 			if not os.path.exists(path+file):
+-				os.symlink('/usr/bin/distcc',path+file)
++				os.symlink('@GENTOO_PORTAGE_EPREFIX@/usr/bin/distcc',path+file)
+ 			#else:
+ 			#	print 'Already exists. Skipping...'
+ 
+@@ -101,13 +104,13 @@
+ 		print HOSTS_ENV
+ 	elif os.path.isfile(HOSTS_HOME) and os.path.getsize(HOSTS_HOME) != 0:
+ 		print HOSTS_HOME
+-	elif os.path.exists('/etc/distcc/hosts'):
+-		print rstrip(open('/etc/distcc/hosts', 'r').read())
++	elif os.path.exists('@GENTOO_PORTAGE_EPREFIX@/etc/distcc/hosts'):
++		print rstrip(open('@GENTOO_PORTAGE_EPREFIX@/etc/distcc/hosts', 'r').read())
+ 	else:
+ 		print 'No configuration file found. Setup your hosts with --set-hosts.'
+ elif '--set-hosts' in tmpcmdline:
+ 	if isroot(1):
+-		PATH = '/etc/distcc'		
++		PATH = '@GENTOO_PORTAGE_EPREFIX@/etc/distcc'		
+ 	else:
+ 		PATH = os.environ.get('HOME')
+ 	createdistccdir(PATH)
+@@ -126,25 +129,27 @@
+ 	distcc_env = open(envfile, 'w')
+ 	distcc_env.write('# This file is managed by distcc-config; use it to change these settings.\n')
+ 	distcc_env.write('DISTCC_LOG=""\n')
+-	distcc_env.write('DCCC_PATH="/usr/lib/distcc/bin"\n')
++	distcc_env.write('DCCC_PATH="@GENTOO_PORTAGE_EPREFIX@/usr/lib/distcc/bin"\n')
+ 	distcc_env.write('DISTCC_VERBOSE="0"\n')
+ 	
+-	if os.WEXITSTATUS(commands.getstatusoutput('/usr/sbin/useradd -u 240 -g daemon -s /bin/false -d /dev/null -c "distccd" distcc')[0]) == 9:
+-		os.WEXITSTATUS(commands.getstatusoutput('/usr/sbin/usermod -g daemon -s /bin/false -d /dev/null -c "distccd" distcc')[0])
++	"""
++	if os.WEXITSTATUS(commands.getstatusoutput('@GENTOO_PORTAGE_EPREFIX@/usr/sbin/useradd -u 240 -g daemon -s /bin/false -d /dev/null -c "distccd" distcc')[0]) == 9:
++		os.WEXITSTATUS(commands.getstatusoutput('@GENTOO_PORTAGE_EPREFIX@/usr/sbin/usermod -g daemon -s /bin/false -d /dev/null -c "distccd" distcc')[0])
++	"""
+ 
+ 	foobar = pwd.getpwnam('distcc')
+ 	user   = foobar[2]
+ 	group  = foobar[3]
+ 
+-	makeconf = open('/etc/make.conf', 'r').read()
++	makeconf = open('@GENTOO_PORTAGE_EPREFIX@/etc/make.conf', 'r').read()
+ 	chost = re.compile('CHOST="(.*)"').search(makeconf).group(1)
+ 	print 'Creating symlinks...'
+ 	installlinks()
+ 	installlinks(chost)
+ 
+ 	print 'Checking permissions...'
+-	permissions('/usr/lib/distcc/bin/',user,group)
+-	permissions('/var/run/distccd/',user,group)
++	permissions('@GENTOO_PORTAGE_EPREFIX@/usr/lib/distcc/bin/',user,group)
++	permissions('@GENTOO_PORTAGE_EPREFIX@/var/run/distccd/',user,group)
+ elif '--get-env' in tmpcmdline:
+ 	if len(tmpcmdline) == 1:
+ 		print rstrip(open(envfile, 'r').read())
