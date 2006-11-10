@@ -1,0 +1,11 @@
+--- gcc/config/rs6000/darwin.h.orig	2006-11-09 18:28:06 +0100
++++ gcc/config/rs6000/darwin.h	2006-11-09 18:28:28 +0100
+@@ -408,6 +408,8 @@
+ #define TARGET_DEFAULT (MASK_POWERPC | MASK_MULTIPLE | MASK_NEW_MNEMONICS \
+                       | MASK_PPC_GFXOPT)
+ 
++#include "default64.h"
++
+ /* Darwin only runs on PowerPC, so short-circuit POWER patterns.  */
+ #undef  TARGET_POWER
+ #define TARGET_POWER 0

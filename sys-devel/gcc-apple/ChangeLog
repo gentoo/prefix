@@ -1,0 +1,17 @@
+# ChangeLog for sys-devel/gcc-apple
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*gcc-apple-4.0.1_p5363 (10 Nov 2006)
+*gcc-apple-3.5.0_p3506 (10 Nov 2006)
+*gcc-apple-3.3_p1819 (10 Nov 2006)
+
+  10 Nov 2006; Fabian Groffen <grobian@gentoo.org>
+  +files/gcc-apple-5363-native-64bits.patch, +gcc-apple-3.3_p1819.ebuild,
+  +gcc-apple-3.5.0_p3506.ebuild, +gcc-apple-4.0.1_p5363.ebuild,
+  -gcc-apple-5247.ebuild, -gcc-apple-5341.ebuild, -gcc-apple-5341-r2.ebuild,
+  -gcc-apple-5363.ebuild:
+  New organisation of Apple's GCC ebuilds.  Ebuilds now carry the GCC
+  version in their name.  All ebuilds rely on gcc-config, and appropriate
+  slotting is applied.
+
