@@ -147,7 +147,7 @@
  	fi
  
  	# We need to make sure that libgcc_s.so / libunwind.so make it into /lib.
-@@ -311,19 +312,19 @@
+@@ -311,19 +312,24 @@
  			multiarg=${multiarg/@/-}
  			multilibdir=${multilib%;*}
  			libdir="lib/"$("${ROOT}/${GCC_BIN_PATH}"/gcc ${multiarg} -print-multi-os-directory)
@@ -165,6 +165,11 @@
 -						${MV} -f "${ROOT}/${libdir}"/.gcc.config.new/* "${ROOT}/${libdir}"/
 +						#${RM} -f "${EROOT}/${libdir}"/lib${gcclib}.so*
 +						${MV} -f "${EROOT}/${libdir}"/.gcc.config.new/* "${EROOT}/${libdir}"/
++					fi
++					# Darwin Mach-O DYLIB support
++					if [[ -n $(ls "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.*.dylib 2>/dev/null) ]]; then
++						${CP} -pP "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.*.dylib "${EROOT}/${libdir}"/.gcc.config.new/
++						${MV} -f "${EROOT}/${libdir}"/.gcc.config.new/* "${EROOT}/${libdir}"/
  					fi
  				done
 -				rmdir "${ROOT}/${libdir}"/.gcc.config.new
@@ -172,7 +177,7 @@
  			fi
  		done
  		unset multilib
-@@ -332,28 +333,28 @@
+@@ -332,28 +338,28 @@
  		unset libdir
  	fi
  
@@ -206,7 +211,7 @@
  		echo
  	fi
  
-@@ -391,7 +392,7 @@
+@@ -391,7 +397,7 @@
  list_profiles() {
  	local i=1
  
@@ -215,7 +220,7 @@
  		echo "Using gcc-config info in ${ROOT}"
  	fi
  
-@@ -550,7 +551,9 @@
+@@ -550,7 +556,9 @@
  CC_COMP=
  [[ -z ${ROOT} ]] && ROOT="/"
  [[ ${ROOT:0-1} != "/" ]] && ROOT="${ROOT}/"
@@ -226,7 +231,7 @@
  GCC_ENV_D="${ENV_D}/gcc"
  
  for x in "$@" ; do
-@@ -683,17 +686,19 @@
+@@ -683,17 +691,19 @@
  if [[ ${DOIT} != "get_current_profile" ]] ; then
  	GCC_LIB=$(
  		source "${GCC_ENV_D}/${CC_COMP}"
