@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils multilib
 
 DESCRIPTION="Utility to switch the ruby interpreter beging used"
 HOMEPAGE="http://www.gentoo.org/"
@@ -24,6 +24,10 @@ src_unpack() {
 	cp ${FILESDIR}/${PN}-0.3.2 .
 	epatch "${FILESDIR}"/${PN}-0.3.2-prefix.patch
 	eprefixify ${PN}-0.3.2
+	sed -i \
+		-e "s|@GENTOO_PORTAGE_LIBDIR@|$(get_libdir)|g" \
+		-e "s|@GENTOO_PORTAGE_LIBNAME@|$(get_libname)|g" \
+		${PN}-0.3.2
 }
 
 src_install() {

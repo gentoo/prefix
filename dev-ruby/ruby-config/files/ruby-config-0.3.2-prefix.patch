@@ -21,29 +21,6 @@
  else
  	echo "Could not find functions.sh"
  	exit 1
-@@ -19,6 +19,8 @@
- EXPORT_FUNCTIONS() { :; }
- 
- ALTERNATIVES="$(portageq portdir)/eclass/alternatives.eclass"
-+MULTILIB="$(portageq portdir)/eclass/multilib.eclass"
-+CHOST="$(portageq envvar CHOST)"
- 
- if [ -r "${ALTERNATIVES}" ] ; then
- 	source ${ALTERNATIVES}
-@@ -27,6 +28,13 @@
- 	exit 1
- fi
- 
-+if [ -r "${MULTILIB}" ] ; then
-+	source ${MULTILIB}
-+else
-+	echo "Could not find ${MULTILIB}"
-+	exit 1
-+fi
-+
- usage() {
- cat << "USAGE_END"
- Usage: ruby-config [Option] [Ruby Profile]
 @@ -52,66 +60,42 @@
  fi
  
@@ -83,8 +60,8 @@
 +				"@GENTOO_PORTAGE_EPREFIX@"/usr/bin/$i "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/${i}{$suf,18,16,19}
 +		done
 +		alternatives_makesym \
-+			"@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libruby$(get_libname) \
-+			"@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libruby{$suf,18,16,19}$(get_libname)
++			"@GENTOO_PORTAGE_EPREFIX@"/usr/@GENTOO_PORTAGE_LIBDIR@/libruby@GENTOO_PORTAGE_LIBNAME@ \
++			"@GENTOO_PORTAGE_EPREFIX@"/usr/@GENTOO_PORTAGE_LIBDIR@/libruby{$suf,18,16,19}@GENTOO_PORTAGE_LIBNAME@
 +		alternatives_makesym \
 +			"@GENTOO_PORTAGE_EPREFIX@"/usr/share/man/man1/ruby.1.gz \
 +			"@GENTOO_PORTAGE_EPREFIX@"/usr/share/man/man1/ruby{$suf,18,16,19}.1.gz
