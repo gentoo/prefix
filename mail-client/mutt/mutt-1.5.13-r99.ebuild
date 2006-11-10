@@ -87,6 +87,13 @@ src_compile() {
 		--disable-fcntl --enable-flock \
 		--enable-nfs-fix --enable-external-dotlock \
 		--with-mixmaster"
+	
+	case $CHOST in
+		*-darwin7)
+			# locales are broken on Panther
+			myconf="${myconf} --enable-locales-fix --without-wc-funcs"
+		;;
+	esac
 
 	# See Bug #22787
 	unset WANT_AUTOCONF_2_5 WANT_AUTOCONF
