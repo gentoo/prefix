@@ -18,7 +18,7 @@ SRC_URI="http://www.nano-editor.org/dist/v1.3/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="debug justify minimal ncurses nls slang spell unicode"
 
 DEPEND=">=sys-libs/ncurses-5.2
@@ -41,7 +41,7 @@ src_compile() {
 
 	local myconf=""
 	use ncurses \
-		&& myconf="--without-slang" \
+		&& myconf="--without-slang --enable-overwrite" \
 		|| myconf="${myconf} $(use_with slang)"
 
 	econf \
