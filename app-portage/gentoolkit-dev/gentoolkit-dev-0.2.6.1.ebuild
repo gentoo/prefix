@@ -1,8 +1,10 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/gentoolkit-dev-0.2.6.1.ebuild,v 1.2 2006/09/18 17:25:07 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/gentoolkit-dev-0.2.6.1.ebuild,v 1.3 2006/10/18 12:19:47 uberlord Exp $
 
 EAPI="prefix"
+
+inherit eutils
 
 DESCRIPTION="Collection of developer scripts for Gentoo"
 HOMEPAGE="http://www.gentoo.org/~karltk/projects/gentoolkit/"
@@ -19,6 +21,12 @@ DEPEND=">=sys-apps/portage-2.0.50
 	>=dev-lang/perl-5.6
 	>=sys-apps/grep-2.4"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-svn-echangelog.patch
+}
+
 src_install() {
-	make DESTDIR="${EDEST}/${EPREFIX}" install-gentoolkit-dev
+	make DESTDIR="${D}/${EPREFIX}" install-gentoolkit-dev
 }

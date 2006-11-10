@@ -1,0 +1,193 @@
+--- src/echangelog/echangelog
++++ src/echangelog/echangelog
+@@ -47,18 +47,35 @@
+ }
+ 
+ # Figure out what has changed around here
+-open C, 'cvs -fn up 2>&1 |' or die "Can't run cvs -fn up: $!\n";
+-while (<C>) {
+-    if (/^C (\S+)/) {
+-        push @conflicts, $1; 
+-        next;
+-    } elsif (/^\? (\S+)/) {
+-        push @unknown, $1;
+-        $actions{$1} = '+';
+-        next;
+-    } elsif (/^([ARM]) (\S+)/) {
+-        push @files, $2;
+-        ($actions{$2} = $1) =~ tr/ARM/+-/d;
++if (-d 'CVS') {
++    open C, 'cvs -fn up 2>&1 |' or die "Can't run cvs -fn up: $!\n";
++    while (<C>) {
++        if (/^C (\S+)/) {
++            push @conflicts, $1; 
++            next;
++        } elsif (/^\? (\S+)/) {
++            push @unknown, $1;
++            $actions{$1} = '+';
++            next;
++        } elsif (/^([ARM]) (\S+)/) {
++            push @files, $2;
++            ($actions{$2} = $1) =~ tr/ARM/+-/d;
++        }
++    }
++} elsif (-d '.svn') {
++    open C, 'svn status 2>&1 |' or die "Can't run svn status: $!\n";
++    while (<C>) {
++        if (/^ ?C +(\S+)/) {
++            push @conflicts, $1; 
++            next;
++        } elsif (/^\? +(\S+)/) {
++            push @unknown, $1;
++            $actions{$1} = '+';
++            next;
++        } elsif (/^([ADRM])[ \+]+(\S+)/) {
++            push @files, $2;
++            ($actions{$2} = $1) =~ tr/ADRM/+-/d;
++        }
+     }
+ }
+ 
+@@ -84,7 +101,7 @@
+ # out above)
+ if (@unknown) {
+     print STDERR <<EOT;
+-Cvs reports the following unknown files.  Please use "cvs add" before
++Cvs/svn reports the following unknown files.  Please use "cvs/svn add" before
+ running echangelog, or remove the files in question.
+ EOT
+     print STDERR map "? $_\n", @unknown;
+@@ -180,39 +197,76 @@
+ @ebuilds = grep /\.ebuild$/, @files;
+ @files = grep !/\.ebuild$/, @files;
+ if (@ebuilds) {
+-    open C, "cvs -f diff -U0 @ebuilds 2>&1 |" or die "Can't run cvs diff: $!\n";
+-    $_ = <C>;
+-    while (defined $_) {
+-        if (/^cvs diff: (([^\/]*?)\.ebuild) was removed/) { 
+-            push @files, $1;
+-        }
+-        elsif (/^Index: (([^\/]*?)\.ebuild)\s*$/) { 
+-            my ($f, $v) = ($1, $2);
+-            # check if more than just copyright date changed.
+-            # skip some lines
+-            $_ = <C>;	# ====================================
+-            $_ = <C>;	# RCS file: ...
+-            $_ = <C>;	# retrieving revision
+-            $_ = <C>;	# diff -u ...
+-            $_ = <C>;	# --- vim-6.2-r6.ebuild
+-            $_ = <C>;	# +++ vim-6.2-r6.ebuild
+-            while (<C>) {
+-                last if /^[A-Za-z]/;
+-                if (/^[-+](?!# Copyright)/) {
+-                    push @files, $f;
+-                    last;
++    if (-d 'CVS') {
++        open C, "cvs -f diff -U0 @ebuilds 2>&1 |" or die "Can't run cvs diff: $!\n";
++        $_ = <C>;
++        while (defined $_) {
++            if (/^cvs diff: (([^\/]*?)\.ebuild) was removed/) { 
++                push @files, $1;
++            }
++            elsif (/^Index: (([^\/]*?)\.ebuild)\s*$/) { 
++                my ($f, $v) = ($1, $2);
++                # check if more than just copyright date changed.
++                # skip some lines
++                $_ = <C>;	# ====================================
++                $_ = <C>;	# RCS file: ...
++                $_ = <C>;	# retrieving revision
++                $_ = <C>;	# diff -u ...
++                $_ = <C>;	# --- vim-6.2-r6.ebuild
++                $_ = <C>;	# +++ vim-6.2-r6.ebuild
++                while (<C>) {
++                    last if /^[A-Za-z]/;
++                    if (/^[-+](?!# Copyright)/) {
++                        push @files, $f;
++                        last;
++                    }
+                 }
++                # at this point we've either added $f to @files or not,
++                # and we have the next line in $_ for processing
++                next;
+             }
+-            # at this point we've either added $f to @files or not,
+-            # and we have the next line in $_ for processing
+-            next;
+-        }
+-        elsif (/^cvs.*?: (([^\/]*?)\.ebuild) is a new entry/) { 
+-            push @files, $1;
+-            push @new_versions, $2;  # new ebuild, will create a new entry
++            elsif (/^cvs.*?: (([^\/]*?)\.ebuild) is a new entry/) { 
++                push @files, $1;
++                push @new_versions, $2;  # new ebuild, will create a new entry
++            }
++            # other cvs output is ignored
++            $_ = <C>;
+         }
+-        # other cvs output is ignored
++    } elsif (-d '.svn') {
++        open C, "svn status @ebuilds 2>&1 |" or die "Can't run svn status: $!\n";
+         $_ = <C>;
++        while (defined $_) {
++            if (/^D[ ]+(([^\/]*?)\.ebuild)/) {
++                push @files, $1;
++            } elsif (/^A[ \+]+(([^\/]*?)\.ebuild)/) {
++                push @files, $1;
++                push @new_versions, $2;  # new ebuild, will create a new entry
++            } elsif (/^[RM][ \+]+(([^\/]*?)\.ebuild)/) {
++                open D, "svn diff $1 2>&1 |" or die "Can't run svn diff: $!\n";
++                my ($f, $v) = ($1, $2);
++                $_ = <D>;
++                while (defined $_) {
++                    # check if more than just copyright date changed.
++                    # skip some lines
++                    $_ = <D>;	# ====================================
++                    $_ = <D>;	# --- vim-6.2-r6.ebuild
++                    $_ = <D>;	# +++ vim-6.2-r6.ebuild
++                    while (<D>) {
++                        last if /^[A-Za-z]/;
++                        if (/^[-+](?!# Copyright)/) {
++                            push @files, $f;
++                            last;
++                        }
++                    }
++                    # at this point we've either added $f to @files or not,
++                    # and we have the next line in $_ for processing
++                    next;
++                }
++                close D;
++            }
++            # other svn output is ignored
++            $_ = <C>;
++        }
+     }
+ }
+ close C;
+@@ -230,7 +283,7 @@
+     print STDERR "**\n";
+     print STDERR "** NOTE: No non-trivial changed files found.  Normally echangelog\n";
+     print STDERR "** should be run after all affected files have been added and/or\n";
+-    print STDERR "** modified.  Did you forget to cvs add?\n";
++    print STDERR "** modified.  Did you forget to cvs/svn add?\n";
+     print STDERR "**\n";
+     @files = sort sortfunc @trivial;
+     @files = qw/ChangeLog/ unless @files;  # last resort to put something in the list
+@@ -360,9 +413,15 @@
+ 
+ # Okay, now we have a starter ChangeLog to work with.
+ # The text will be added just like with any other ChangeLog below.  
+-# Add the new ChangeLog to cvs before continuing.
+-if (open F, "CVS/Entries") {
+-    system("cvs -f add ChangeLog") unless (scalar grep /^\/ChangeLog\//, <F>);
++# Add the new ChangeLog to cvs/svn before continuing.
++if (-d 'CVS') {
++    if (open F, "CVS/Entries") {
++        system("cvs -f add ChangeLog") unless (scalar grep /^\/ChangeLog\//, <F>);
++    }
++} elsif (-d '.svn') {
++    if (open F, ".svn/entries") {
++        system("svn add ChangeLog") unless (scalar grep /^ChangeLog$/, <F>);
++    }
+ }
+ 
+ # vim:sw=4 ts=8 expandtab
