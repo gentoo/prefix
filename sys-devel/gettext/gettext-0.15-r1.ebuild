@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.15.ebuild,v 1.17 2006/10/14 21:25:30 agriffis Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.15-r1.ebuild,v 1.2 2006/10/18 11:40:01 uberlord Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="emacs nls doc nocxx"
 
-DEPEND="virtual/libiconv"
+DEPEND="virtual/libiconv
+	dev-libs/expat"
 
 src_unpack() {
 	unpack ${A}
@@ -26,6 +27,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.14.1-lib-path-tests.patch #81628
 	# Fix race, bug #85054
 	epatch "${FILESDIR}"/${PN}-0.14.2-fix-race.patch
+	epatch "${FILESDIR}"/${P}-expat-no-dlopen.patch
 
 	# bundled libtool seems to be broken so skip certain rpath tests
 	# http://lists.gnu.org/archive/html/bug-libtool/2005-03/msg00070.html

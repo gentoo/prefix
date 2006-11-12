@@ -1,0 +1,31 @@
+--- gettext-0.15/gettext-tools/configure.orig	2006-07-21 15:38:28.000000000 +0200
++++ gettext-0.15/gettext-tools/configure	2006-10-07 01:19:15.295758370 +0200
+@@ -44267,19 +44266,6 @@
+ 
+ 
+ 
+-case "$host_os" in
+-  linux*)
+-
+-cat >>confdefs.h <<\_ACEOF
+-#define DYNLOAD_LIBEXPAT 1
+-_ACEOF
+-
+-    LIBEXPAT="-ldl"
+-    LTLIBEXPAT="-ldl"
+-
+-
+-    ;;
+-  *)
+ 
+ 
+ 
+@@ -44786,8 +44772,6 @@
+ 
+ 
+ 
+-    ;;
+-esac
+ 
+  # If set to t, that means we are running in a shell under Emacs.
+  # If you have an Emacs named "t", then use the full path.
