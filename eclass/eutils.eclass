@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.258 2006/11/02 21:13:47 nyhm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.261 2006/11/11 15:13:46 kanaka Exp $
 #
 # This eclass is for general purpose functions that most ebuilds
 # have to implement themselves.
@@ -1412,16 +1412,16 @@ _cdrom_locate_file_on_cd() {
 			local dir=$(dirname ${cdset[${i}]})
 			local file=$(basename ${cdset[${i}]})
 
-			for mline in $(gawk '/(iso|cdrom|fs=cdfss)/ {print $2}' /proc/mounts) ; do
-				mline=$(echo -e ${mline})
-				[[ -d ${mline}/${dir} ]] || continue
-				if [[ -n $(find "${mline}"/${dir} -maxdepth 1 -iname ${file}) ]] ; then
-					export CDROM_ROOT=${mline}
-					export CDROM_SET=${i}
-					export CDROM_MATCH=${cdset[${i}]}
-					return
-				fi
-			done
+			local point= node= fs= foo=
+			while read point node fs foo ; do
+				[[ *" ${fs} "* != " cd9660 iso9660 " ]] && continue
+				point=${point//\040/ }
+				[[ -z $(find "${point}/${dir}" -maxdepth 1 -iname "${file}") ]] && continue
+				export CDROM_ROOT=${point}
+				export CDROM_SET=${i}
+				export CDROM_MATCH=${cdset[${i}]}
+				return
+			done < <(get_mounts)
 
 			((++i))
 		done

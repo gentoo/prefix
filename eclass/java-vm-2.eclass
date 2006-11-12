@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.15 2006/10/20 03:52:24 nichoj Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.16 2006/11/11 00:13:22 betelgeuse Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -12,7 +12,7 @@
 #
 # -----------------------------------------------------------------------------
 
-inherit eutils
+inherit eutils fdo-mime
 
 DEPEND="
 	=dev-java/java-config-2.0*
@@ -32,7 +32,7 @@ fi
 JAVA_VM_CONFIG_DIR="/usr/share/java-config-2/vm"
 JAVA_VM_DIR="/usr/lib/jvm"
 
-EXPORT_FUNCTIONS pkg_postinst pkg_prerm
+EXPORT_FUNCTIONS pkg_postinst pkg_prerm pkg_postrm
 
 java-vm-2_pkg_postinst() {
 	# Set the generation-2 system VM, if it isn't set
@@ -80,6 +80,7 @@ java-vm-2_pkg_postinst() {
 
 	java-vm_check-nsplugin
 	java_mozilla_clean_
+	fdo-mime_desktop_database_update
 }
 
 java-vm_check-nsplugin() {
@@ -122,6 +123,10 @@ java-vm-2_pkg_prerm() {
 		ewarn "Please run java-config -L to list available VMs,"
 		ewarn "then use java-config -S to set a new system-vm!"
 	fi
+}
+
+java-vm-2_pkg_postrm() {
+	fdo-mime_desktop_database_update
 }
 
 java_set_default_vm_() {

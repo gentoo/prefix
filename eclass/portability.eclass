@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/portability.eclass,v 1.8 2006/03/08 20:08:13 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/portability.eclass,v 1.10 2006/11/10 15:56:59 uberlord Exp $
 #
 # Author: Diego Pettenò <flameeyes@gentoo.org>
 #
@@ -129,3 +129,33 @@ get_bmake() {
 		echo pmake
 	fi
 }
+
+# Portable method of getting mount names and points.
+# Returns as "point node fs options"
+# Remember to convert 040 back to a space.
+get_mounts() {
+	local point= node= fs= opts= foo=
+
+	# Linux has /proc/mounts which should always exist
+	if [[ $(uname -s) == "Linux" ]] ; then
+		while read node point fs opts foo ; do
+			echo "${point} ${node} ${fs} ${opts}" 
+		done < /proc/mounts
+		return 
+	fi
+
+	# OK, pray we have a -p option that outputs mounts in fstab format
+	# using tabs as the seperator.
+	# Then pray that there are no tabs in the either.
+	# Currently only FreeBSD supports this and the other BSDs will
+	# have to be patched.
+	# Athough the BSD's may support /proc, they do NOT put \040 in place
+	# of the spaces and we should not force a /proc either.
+	local IFS=$'\t'
+	LC_ALL=C mount -p | while read node point fs foo ; do
+		opts=${fs#* }
+		fs=${fs%% *}
+		echo "${point// /\040} ${node// /\040} ${fs%% *} ${opts// /\040}"
+	done
+}
+

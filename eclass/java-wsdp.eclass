@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-wsdp.eclass,v 1.4 2006/10/28 22:29:14 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-wsdp.eclass,v 1.5 2006/11/10 15:21:31 nelchael Exp $
 
 #
 # Original Author: Krzysiek Pawlik <nelchael@gentoo.org>
@@ -24,7 +24,12 @@ RESTRICT="fetch nostrip"
 
 IUSE="doc"
 
-DEPEND="app-arch/unzip
+# java-utils-2.eclass currently only does vm switching if you DEPEND
+# on virtual/jdk so we need to depend on that to get right version of java
+# in src_unpack
+DEPEND="
+	>=virtual/jdk-1.5
+	app-arch/unzip
 	dev-java/sax
 	dev-java/xalan
 	dev-java/xerces"
@@ -46,6 +51,7 @@ java-wsdp_pkg_setup() {
 	# version, so we have to know also the JWSDP version:
 	[[ -z "${JWSDP_VERSION}" ]] && die "No JWSDP version given."
 
+	java-pkg-2_pkg_setup
 }
 
 # The file downloaded from Sun is self-extracting archive, it uses obsolete
@@ -64,7 +70,7 @@ java-wsdp_src_unpack() {
 
 	# And finally unpack it:
 	cd "${T}/unpacked/"
-	unzip -qq "packed.zip" || die "unzip failed"
+	unpack "./packed.zip"
 	eend 0
 
 	# Now the Sun's installer is run to get the files:
