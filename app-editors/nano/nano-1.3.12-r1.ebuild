@@ -41,7 +41,7 @@ src_compile() {
 
 	local myconf=""
 	use ncurses \
-		&& myconf="--without-slang --enable-overwrite" \
+		&& myconf="--without-slang" \
 		|| myconf="${myconf} $(use_with slang)"
 
 	econf \
