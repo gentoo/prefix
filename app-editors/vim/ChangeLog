@@ -1,10 +1,21 @@
 # ChangeLog for app-editors/vim
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.244 2006/10/23 03:22:08 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.249 2006/11/06 08:05:34 pioto Exp $
+
+  25 Oct 2006; Fabian Groffen <grobian@gentoo.org> vim-7.0.17.ebuild,
+  vim-7.0.91.ebuild:
+  Dropped ppc-macos, see you in prefix.
+
+  25 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org> vim-7.0.91.ebuild:
+  Stable on sparc
+
+  24 Oct 2006; Mike Kelly <pioto@gentoo.org> vim-7.0.146.ebuild:
+  Dropping ppc-macos keyword, since eselect-1.0.6 isn't keyworded for it,
+  either.
 
 *vim-7.0.146 (23 Oct 2006)
 
-  23 Oct 2006; Mike Kelly <pioto@pioto.org> -vim-7.0.109.ebuild,
+  23 Oct 2006; Mike Kelly <pioto@gentoo.org> -vim-7.0.109.ebuild,
   +vim-7.0.146.ebuild:
   Version bump.
 
@@ -21,12 +32,12 @@
   28 Sep 2006; Gustavo Zacarias <gustavoz@gentoo.org> vim-7.0.17.ebuild:
   Stable on hppa
 
-  20 Sep 2006; Mike Kelly <pioto@pioto.org> vim-7.0.109.ebuild:
+  20 Sep 2006; Mike Kelly <pioto@gentoo.org> vim-7.0.109.ebuild:
   Remove block against app-editors/nvi
 
 *vim-7.0.109 (20 Sep 2006)
 
-  20 Sep 2006; Mike Kelly <pioto@pioto.org> +vim-7.0.109.ebuild:
+  20 Sep 2006; Mike Kelly <pioto@gentoo.org> +vim-7.0.109.ebuild:
   Version bump, addition of support for eselect-vim (currently masked).
 
 *vim-7.0.91 (08 Sep 2006)
@@ -1050,3 +1061,4 @@ vim-6.1-r8.ebuild (06 Jul 2002)
   details about writing correct changelogs are explained in the
   skel.ChangeLog file which you can find in the root directory of the
   portage repository.
+
