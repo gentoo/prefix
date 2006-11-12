@@ -80,6 +80,7 @@ do_compile() {
 		--enable-const \
 		--with-chtype='long' \
 		--with-mmask-t='long' \
+		--enable-overwrite \
 		$(use_with debug) \
 		$(use_with gpm) \
 		$(use_with trace) \
