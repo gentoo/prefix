@@ -34,7 +34,7 @@ SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="afs bashlogger nls vanilla"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2"
@@ -84,7 +84,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-3.0-configs.patch
 
 	sed -i 's:-lcurses:-lncurses:' configure || die "sed configure"
-	
+
 	epatch "${FILESDIR}"/${PN}-3.0-pathnames.patch
 	sed -i -e "s:\@PREFIX\@:${EPREFIX}:g" config-top.h pathnames.h.in \
 		|| die "sed failed."
