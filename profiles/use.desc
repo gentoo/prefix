@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.312 2006/10/26 23:58:41 blubb Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.316 2006/11/10 15:43:03 beandog Exp $
 
 # Keep them sorted
 
@@ -38,6 +38,7 @@ bootstrap - !!internal use only!! DO NOT SET THIS FLAG YOURSELF!, used during or
 boundschecking - Adds the bounds checking patch by Haj Ten Brugge, this will DISABLE the hardened PIE+SSP patches
 build - !!internal use only!! DO NOT SET THIS FLAG YOURSELF!, used for creating build images and the first half of bootstrapping.
 bzip2 - Use the bzlib compression library
+cairo - Enable support for the cairo graphics library
 calendar - Adds support for calendars (not using mcal!)
 canna - Adds support for the Canna kana to kanji conversion engine
 caps - Use Linux capabilities library to control privileges.
@@ -97,7 +98,7 @@ ffmpeg - Enable ffmpeg support
 fftw - Use FFTW library for computing Fourier transforms
 filepro - Adds support for filePro databases
 firebird - Adds support for the Firebird relational database
-firefox - Build against Firefox instead of Mozilla
+firefox - Build against Firefox instead of Seamonkey/Mozilla
 flac - Adds support for the flac audio codec
 flash - Adds support for creating flash files using Ming
 flatfile - Adds dbm support for flat files
@@ -180,6 +181,7 @@ libcaca - Add support for colored ASCII-art graphics
 libedit - Use the libedit library (replacement for readline)
 libg++ - Adds C++ modules in dev-db/postgresql (libpq++)
 libgda - Adds GNU Data Access (CORBA wrapper) support for gnumeric
+libnotify - Enable notification support
 libwww - Adds libwww support (General purpose WEB API)
 lirc - Adds support for lirc (Linux's Infra-Red Remote Control)
 livecd - !!internal use only!! DO NOT SET THIS FLAG YOURSELF!, used during livecd building.
@@ -239,6 +241,7 @@ offensive - Enables potentially offensive items in packages
 ofx - Enable support for importing (and exporting) OFX (Open Financial eXchange) data files
 ogg - Adds support for the Ogg container format (commonly used by Vorbis, Theora and flac)
 openal - Adds support for the Open Audio Library
+openexr - Support for the OpenEXR graphics file format
 opengl - Adds support for OpenGL (3D graphics)
 oracle7 - Adds support for the Oracle 7 Database
 oracle - Enable Oracle Database support
