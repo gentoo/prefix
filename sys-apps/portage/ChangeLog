@@ -5,6 +5,13 @@
 # See the gentoo-src Portage ChangeLog for up-to-date release information:
 # http://www.gentoo.org/cgi-bin/viewcvs.cgi/portage/ChangeLog?rev=HEAD&cvsroot=gentoo-src&content-type=text/vnd.viewcvs-markup
 
+*portage-2.1.20.5016 (12 Nov 2006)
+
+  12 Nov 2006; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.1.20.4942.ebuild, +portage-2.1.20.5016.ebuild:
+  New snapshot from main-line, plus additional SVN support, such that
+  `emerge --sync` now also works with our SVN tree.
+
   16 Oct 2006; Fabian Groffen <grobian@gentoo.org> ChangeLog:
   New release 4721 which is based on a complete merge of the trunk code.
 
