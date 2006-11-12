@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5-r1.ebuild,v 1.1 2006/09/20 00:21:07 liquidx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5-r1.ebuild,v 1.2 2006/10/18 10:55:28 uberlord Exp $
 
 EAPI="prefix"
 
@@ -25,7 +25,7 @@ SRC_URI="http://www.python.org/ftp/python/${PYVER}/${MY_P}.tar.bz2
 
 LICENSE="PSF-2.2"
 SLOT="2.5"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="ncurses gdbm ssl readline tk berkdb bootstrap ipv6 build ucs2 sqlite doc nocxx"
 # NOTE: dev-python/{elementtree,celementtree,pysqlite,ctypes,cjkcodecs}
 #       do not conflict with the ones in python proper. - liquidx
@@ -95,10 +95,6 @@ src_unpack() {
 	if tc-is-cross-compiler ; then
 		epatch "${WORKDIR}/${PYVER}/2.4.1-crosscompile.patch"
 	fi
-
-	# fix osx install weirdness
-	sed -i -e "s:/usr/local:/usr:g" Mac/OSX/Makefile \
-		|| die "sed Mac/OSX/Makefile failed"
 
 	# fix gentoo/obsd problems (bug 117261)
 	epatch "${WORKDIR}/${PYVER}/2.4.3-gentoo_obsd.patch"
@@ -211,16 +207,6 @@ src_install() {
 		dosym ../../${myfw}/include/python${PYVER} /usr/include/python${PYVER}
 	else
 		make DESTDIR="${D}" altinstall maninstall  || die "make altinstall maninstall failed"
-	fi
-
-	if use userland_Darwin && ! use framework; then
-		make libpython.${PV}.dylib || die "make dylib failed"
-		into /usr
-		dolib.so ${S}/libpython.2.5.0.dylib
-		cd ${ED}
-		dosym /usr/lib/libpython.${PV}.dylib /usr/lib/libpython.2.5.dylib
-		dosym /usr/lib/libpython.${PV}.dylib /usr/lib/libpython.2.dylib
-		dosym /usr/lib/libpython.${PV}.dylib /usr/lib/libpython.dylib
 	fi
 
 	mv ${ED}/usr/bin/python${PYVER}-config ${ED}/usr/bin/python-config-${PYVER}
