@@ -1,16 +1,16 @@
 # ChangeLog for app-editors/vile
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vile/ChangeLog,v 1.27 2006/10/25 04:21:21 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vile/ChangeLog,v 1.29 2006/11/06 08:04:40 pioto Exp $
 
-  25 Oct 2006; Mike Kelly <pioto@pioto.org> vile-9.5-r1.ebuild:
+  25 Oct 2006; Mike Kelly <pioto@gentoo.org> vile-9.5-r1.ebuild:
   Dropping ~ppc-macos keyword
 
-  20 Sep 2006; Mike Kelly <pioto@pioto.org> vile-9.5-r1.ebuild:
+  20 Sep 2006; Mike Kelly <pioto@gentoo.org> vile-9.5-r1.ebuild:
   Forgot a DEPEND on eselect-vi
 
 *vile-9.5-r1 (20 Sep 2006)
 
-  20 Sep 2006; Mike Kelly <pioto@pioto.org> +vile-9.5-r1.ebuild:
+  20 Sep 2006; Mike Kelly <pioto@gentoo.org> +vile-9.5-r1.ebuild:
   Adding support for eselect vi. Currently package.masked. See bug #147857
 
   07 Jun 2006; Patrick McLean <chutzpah@gentoo.org>
@@ -105,3 +105,4 @@
 
   29 Jun 2003; Daniel Ahlberg <aliz@gentoo.org> :
   Added missing changelog entry.
+
