@@ -1,17 +1,17 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.6_rc5.ebuild,v 1.1 2006/10/03 11:18:54 exg Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.6-r1.ebuild,v 1.1 2006/10/13 12:55:39 exg Exp $
 
 EAPI="prefix"
 
-inherit eutils versionator
+inherit eutils
 
-FIRST=$(get_version_component_range 1-3)
-LAST=$(get_version_component_range 4)
+MY_P=${PN}${PV}
+S=${WORKDIR}/${MY_P//./-}
 
 DESCRIPTION="An excellent console-based web browser with ssl support"
 HOMEPAGE="http://lynx.browser.org/"
-SRC_URI="ftp://lynx.isc.org/current/${PN}${FIRST}${LAST/rc/pre.}.tar.bz2"
+SRC_URI="ftp://lynx.isc.org/${MY_P}/${MY_P}rel.2.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -27,8 +27,6 @@ RDEPEND="sys-libs/ncurses
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
-S="${WORKDIR}/${PN}${FIRST//./-}"
-
 pkg_setup() {
 	if use unicode && ! built_with_use sys-libs/ncurses unicode; then
 		eerror "Installing lynx with the unicode flag requires ncurses be"
@@ -37,6 +35,12 @@ pkg_setup() {
 		eerror "ncurses with \`emerge --oneshot sys-libs/ncurses\`."
 		die "Re-emerge ncurses with the unicode flag"
 	fi
+}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-darwin7.patch
 }
 
 src_compile() {
