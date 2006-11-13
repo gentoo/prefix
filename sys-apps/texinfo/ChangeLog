@@ -1,6 +1,23 @@
 # ChangeLog for sys-apps/texinfo
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.75 2006/10/17 06:41:51 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.79 2006/11/11 12:36:12 malc Exp $
+
+  11 Nov 2006; <malc@gentoo.org> texinfo-4.8-r5.ebuild:
+  Stable amd64 wrt sec bug #154316
+
+  10 Nov 2006; Gustavo Zacarias <gustavoz@gentoo.org> texinfo-4.8-r5.ebuild:
+  Stable on sparc wrt security #154316
+
+  10 Nov 2006; Christian Faulhammer <opfer@gentoo.org>
+  texinfo-4.8-r5.ebuild:
+  stable x86, security bug #154316
+
+*texinfo-4.8-r5 (09 Nov 2006)
+
+  09 Nov 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/texinfo-4.8-buf-overflow-CVE-2006-4810.patch,
+  +texinfo-4.8-r5.ebuild:
+  Version bump #154316.
 
   17 Oct 2006; Roy Marples <uberlord@gentoo.org> texinfo-4.8-r4.ebuild:
   Added ~sparc-fbsd keyword.

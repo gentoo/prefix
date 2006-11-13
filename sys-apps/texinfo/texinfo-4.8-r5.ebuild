@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/texinfo-4.8-r4.ebuild,v 1.2 2006/10/17 06:41:51 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/texinfo-4.8-r5.ebuild,v 1.5 2006/11/12 03:10:03 vapier Exp $
 
 EAPI="prefix"
 
@@ -26,6 +26,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-freebsd.patch
 	epatch "${FILESDIR}"/${P}-tempfile-owl.patch #114499
 	epatch "${FILESDIR}"/${P}-bounds-check.patch #140902
+	epatch "${FILESDIR}"/${P}-buf-overflow-CVE-2006-4810.patch #154316
 
 	cd doc
 	# Get the texinfo info page to have a proper name of texinfo.info
