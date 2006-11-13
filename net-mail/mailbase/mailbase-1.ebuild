@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit eutils
+
 DESCRIPTION="MTA layout package"
 SRC_URI=""
 HOMEPAGE="http://www.gentoo.org/"
@@ -21,8 +23,11 @@ src_install() {
 	dodir /etc/mail
 	insinto /etc/mail
 	doins ${FILESDIR}/aliases
+	cp "${FILESDIR}"/mailcap .
+	epatch "${FILESDIR}"/mailcap-prefix.patch
+	eprefixify mailcap
 	insinto /etc/
-	doins ${FILESDIR}/mailcap
+	doins mailcap
 
 	keepdir /var/spool/mail
 	fowners root:mail /var/spool/mail
