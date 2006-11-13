@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/gzip
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/ChangeLog,v 1.69 2006/10/17 12:52:28 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/ChangeLog,v 1.70 2006/11/11 09:36:40 vapier Exp $
+
+  11 Nov 2006; Mike Frysinger <vapier@gentoo.org> gzip-1.3.5-r9.ebuild,
+  gzip-1.3.5-r10.ebuild:
+  Stabilize to fix security team screwup #154757.
 
   17 Oct 2006; Roy Marples <uberlord@gentoo.org> gzip-1.3.5-r10.ebuild:
   Added ~sparc-fbsd keyword.
