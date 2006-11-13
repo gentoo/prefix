@@ -4,4 +4,4 @@ KERNEL="Darwin"
 ELIBC="Darwin"
 
 FEATURES="collision-protect"
-
+USE="objc objc++"
