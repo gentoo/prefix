@@ -44,7 +44,9 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-smarttime.patch
 	epatch "${FILESDIR}"/${P}-smtp.patch
-	epatch "${FILESDIR}"/${PN}-1.5.11-prefix.patch
+	# this patch is non-generic and only works because we use a sysconfdir
+	# different from the one used by the mailbase ebuild
+	epatch "${FILESDIR}"/${P}-prefix-mailcap.patch
 
 	if ! use vanilla ; then
 		if ! use nntp ; then
@@ -87,7 +89,7 @@ src_compile() {
 		--disable-fcntl --enable-flock \
 		--enable-nfs-fix --enable-external-dotlock \
 		--with-mixmaster"
-	
+
 	case $CHOST in
 		*-darwin7)
 			# locales are broken on Panther
