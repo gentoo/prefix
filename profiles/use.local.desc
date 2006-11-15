@@ -659,6 +659,7 @@ mail-client/mutt:gpgme - Enable support for gpgme
 mail-client/mutt:nntp - Adds support for nntp via patch
 mail-client/mutt:pop - Enable support for pop
 mail-client/mutt:smime - Enable support for smime
+mail-client/mutt:smtp - Enable support for smtp
 mail-client/muttng:buffysize - Enables buffysize workaround, see bug 72422
 mail-client/muttng:gpgme - Enable support for gpgme
 mail-client/muttng:nntp - Enable support for nntp
