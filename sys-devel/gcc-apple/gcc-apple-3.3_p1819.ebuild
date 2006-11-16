@@ -46,7 +46,7 @@ src_unpack() {
 	sed -i -e "s:tail +16c:tail -c +16:g" \
 		gcc/Makefile.in || die "sed gcc/Makefile.in failed."
 }
-	
+
 src_compile() {
 	local langs="c"
 	use nocxx || langs="${langs},c++"
@@ -82,7 +82,7 @@ src_compile() {
 		--disable-werror"
 
 	if [[ ${EPREFIX%/} != "" ]] ; then
-		myconf="${myconf} --with-local-prefix=${EPREFIX}"
+		myconf="${myconf} --with-local-prefix=${EPREFIX}/usr"
 	fi
 
 	mkdir -p ${WORKDIR}/build
