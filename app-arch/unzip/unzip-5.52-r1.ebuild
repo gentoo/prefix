@@ -12,7 +12,7 @@ SRC_URI="ftp://ftp.info-zip.org/pub/infozip/src/${PN}${PV/.}.tar.gz"
 
 LICENSE="Info-ZIP"
 SLOT="0"
-KEYWORDS="~ppc-macos"
+KEYWORDS="~amd64 ~ppc-macos"
 IUSE=""
 
 DEPEND=""
