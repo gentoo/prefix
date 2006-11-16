@@ -5,6 +5,13 @@
 # See the gentoo-src Portage ChangeLog for up-to-date release information:
 # http://www.gentoo.org/cgi-bin/viewcvs.cgi/portage/ChangeLog?rev=HEAD&cvsroot=gentoo-src&content-type=text/vnd.viewcvs-markup
 
+*portage-2.1.20.5060 (16 Nov 2006)
+
+  16 Nov 2006; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.1.20.4986.ebuild, +portage-2.1.20.5060.ebuild:
+  New snapshot.  Includes prefix patch for repoman not honouring the
+  portage group given during configure call.
+
 *portage-2.1.20.5020 (12 Nov 2006)
 
   12 Nov 2006; Fabian Groffen <grobian@gentoo.org>
