@@ -21,10 +21,3 @@ LDFLAGS="${LDFLAGS} ${OLDLDFLAGS/${LDFLAGS}/}"
 # We need to get rid of superfluous spaces, as otherwise configure in
 # large projects will bail out that it has changed while passing it over
 export LDFLAGS=$(echo ${LDFLAGS} | sed -e "s/  +/ /g" -e "s/(^ +| +$)//g")
-
-# The compiler in a prefixed system should look in the prefix header
-# dirs, like the linker does
-CPPFLAGS="-I${EPREFIX}/usr/include ${CPPFLAGS/-I${EPREFIX}\/usr\/include/}"
-# configure can die if it detects a CPPFLAGS "change" due to suddenly
-# noticing the trail space(s)
-export CPPFLAGS=${CPPFLAGS%% }
