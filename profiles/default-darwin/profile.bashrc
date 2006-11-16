@@ -1,6 +1,6 @@
 # for as long as our tree isn't sane yet, prevent from having files
 # installed into the live filesystem for non-sandbox people
-export EDEST=${D}/fix/your/EDEST
+export EDEST=${D}/fix/your/package/it/uses/EDEST
 
 export DYLD_LIBRARY_PATH="${EPREFIX}/lib:${EPREFIX}/lib64:${EPREFIX}/usr/lib:${EPREFIX}/usr/lib64"
 
