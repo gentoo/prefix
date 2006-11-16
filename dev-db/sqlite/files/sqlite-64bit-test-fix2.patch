@@ -1,0 +1,13 @@
+--- test/types3.test~	2006-01-21 15:32:32.000000000 +0100
++++ test/types3.test	2006-02-05 18:14:04.000000000 +0100
+@@ -30,10 +30,6 @@
+   set V [expr {1+2}]
+   concat [tcl_variable_type V] [execsql {SELECT typeof(:V)}]
+ } {int integer}
+-do_test types3-1.3 {
+-  set V [expr {1+123456789012345}]
+-  concat [tcl_variable_type V] [execsql {SELECT typeof(:V)}]
+-} {wideInt integer}
+ 
+ # A double variable comes in as REAL
+ do_test types3-1.4 {

@@ -1,0 +1,15 @@
+--- test/printf.test~	2005-12-19 18:31:01.000000000 +0100
++++ test/printf.test	2006-02-05 18:12:33.000000000 +0100
+@@ -130,12 +130,6 @@
+   sqlite3_mprintf_scaled {A double: %g} 1.0e307 100.0
+ } {A double: NaN}
+ 
+-do_test printf-8.1 {
+-  sqlite3_mprintf_int {%u %u %u} 0x7fffffff 0x80000000 0xffffffff
+-} {2147483647 2147483648 4294967295}
+-do_test printf-8.2 {
+-  sqlite3_mprintf_int {%lu %lu %lu} 0x7fffffff 0x80000000 0xffffffff
+-} {2147483647 2147483648 4294967295}
+ do_test printf-8.3 {
+   sqlite3_mprintf_int64 {%llu %llu %llu} 2147483647 2147483648 4294967296
+ } {2147483647 2147483648 4294967296}

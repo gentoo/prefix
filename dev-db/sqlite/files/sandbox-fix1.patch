@@ -1,0 +1,40 @@
+--- test/capi3.test~	2006-01-30 23:35:44.000000000 +0100
++++ test/capi3.test	2006-02-05 19:41:12.000000000 +0100
+@@ -140,18 +140,6 @@
+ do_test capi3-3.2 {
+   sqlite3_close $db2
+ } {SQLITE_OK}
+-do_test capi3-3.3 {
+-  catch {
+-    set db2 [sqlite3_open /bogus/path/test.db {}]
+-  }
+-  sqlite3_errcode $db2
+-} {SQLITE_CANTOPEN}
+-do_test capi3-3.4 {
+-  sqlite3_errmsg $db2
+-} {unable to open database file}
+-do_test capi3-3.5 {
+-  sqlite3_close $db2
+-} {SQLITE_OK}
+ do_test capi3-3.6.1 {
+   sqlite3_close $db2
+ } {SQLITE_MISUSE}
+@@ -176,18 +164,6 @@
+ do_test capi3-4.2 {
+   sqlite3_close $db2
+ } {SQLITE_OK}
+-do_test capi3-4.3 {
+-  catch {
+-    set db2 [sqlite3_open16 [utf16 /bogus/path/test.db] {}]
+-  }
+-  sqlite3_errcode $db2
+-} {SQLITE_CANTOPEN}
+-do_test capi3-4.4 {
+-  utf8 [sqlite3_errmsg16 $db2]
+-} {unable to open database file}
+-do_test capi3-4.5 {
+-  sqlite3_close $db2
+-} {SQLITE_OK}
+ } ;# utf16
+ 
+ # This proc is used to test the following API calls:
