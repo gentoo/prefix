@@ -11,7 +11,7 @@
 #
 # - Features:
 # gems_location()     - Set ${GEMSDIR} with gem install dir and ${GEM_SRC} with path to gem to install
-# gems_src_install()  - installs a gem into ${D}
+# gems_src_install()  - installs a gem into ${ED}
 # gems_src_unpack()   - Does nothing.
 # gems_src_compile()  - Does nothing.
 #
@@ -55,12 +55,12 @@ gems_src_install() {
 		myconf="--no-rdoc"
 	fi
 
-	dodir ${GEMSDIR}
-	gem install ${GEM_SRC} -v ${PV} ${myconf} -l -i ${EDEST}/${GEMSDIR} || die "gem install failed"
+	dodir ${GEMSDIR#${EPREFIX%/}}
+	gem install ${GEM_SRC} -v ${PV} ${myconf} -l -i ${D}/${GEMSDIR} || die "gem install failed"
 
-	if [ -d ${EDEST}/${GEMSDIR}/bin ] ; then
+	if [ -d ${D}/${GEMSDIR}/bin ] ; then
 		exeinto /usr/bin
-		for exe in ${EDEST}/${GEMSDIR}/bin/* ; do
+		for exe in ${D}/${GEMSDIR}/bin/* ; do
 			doexe ${exe}
 		done
 	fi
