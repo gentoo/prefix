@@ -182,13 +182,13 @@ toolchain-binutils_src_compile() {
 	myconf="--prefix=${EPREFIX}/usr \
 		--host=${CHOST} \
 		--target=${CTARGET} \
-		--datadir=${EPREFIX}/${DATAPATH} \
-		--infodir=${EPREFIX}/${DATAPATH}/info \
-		--mandir=${EPREFIX}/${DATAPATH}/man \
-		--bindir=${EPREFIX}/${BINPATH} \
-		--libdir=${EPREFIX}/${LIBPATH} \
-		--libexecdir=${EPREFIX}/${LIBPATH} \
-		--includedir=${EPREFIX}/${INCPATH} \
+		--datadir=${EPREFIX}${DATAPATH} \
+		--infodir=${EPREFIX}${DATAPATH}/info \
+		--mandir=${EPREFIX}${DATAPATH}/man \
+		--bindir=${EPREFIX}${BINPATH} \
+		--libdir=${EPREFIX}${LIBPATH} \
+		--libexecdir=${EPREFIX}${LIBPATH} \
+		--includedir=${EPREFIX}${INCPATH} \
 		--enable-64-bit-bfd \
 		--enable-shared \
 		--disable-werror \

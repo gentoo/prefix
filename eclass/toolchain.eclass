@@ -1210,13 +1210,13 @@ gcc_do_configure() {
 
 	# Set configuration based on path variables
 	confgcc="${confgcc} \
-		--prefix=${EPREFIX}/${PREFIX} \
-		--bindir=${EPREFIX}/${BINPATH} \
-		--includedir=${EPREFIX}/${INCLUDEPATH} \
-		--datadir=${EPREFIX}/${DATAPATH} \
-		--mandir=${EPREFIX}/${DATAPATH}/man \
-		--infodir=${EPREFIX}/${DATAPATH}/info \
-		--with-gxx-include-dir=${EPREFIX}/${STDCXX_INCDIR}"
+		--prefix=${EPREFIX}${PREFIX} \
+		--bindir=${EPREFIX}${BINPATH} \
+		--includedir=${EPREFIX}${INCLUDEPATH} \
+		--datadir=${EPREFIX}${DATAPATH} \
+		--mandir=${EPREFIX}${DATAPATH}/man \
+		--infodir=${EPREFIX}${DATAPATH}/info \
+		--with-gxx-include-dir=${EPREFIX}${STDCXX_INCDIR}"
 
 	# All our cross-compile logic goes here !  woo !
 	confgcc="${confgcc} --host=${CHOST}"
@@ -1292,7 +1292,7 @@ gcc_do_configure() {
 		fi
 
 		if [[ ${EPREFIX%/} != "" ]] ; then
-			confgcc="${confgcc} --with-local-prefix=${EPREFIX}"
+			confgcc="${confgcc} --with-local-prefix=${EPREFIX}${EPREFIX}"
 		fi
 	fi
 	# __cxa_atexit is "essential for fully standards-compliant handling of
