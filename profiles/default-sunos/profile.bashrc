@@ -1,6 +1,6 @@
 # for as long as our tree isn't sane yet, prevent from having files
 # installed into the live filesystem for non-sandbox people
-export EDEST=${D}/fix/your/EDEST
+export EDEST=${D}/fix/your/ebuild/it/uses/EDEST
 
 # unfortunately the two below do not work (i.e. they don't result in the
 # same as setting -L and -R in the LDFLAGS)
@@ -23,10 +23,3 @@ do
 done
 
 export LDFLAGS="${LDFLAGS} ${OLDLDFLAGS/${LDFLAGS}/}"
-
-# The compiler in a prefixed system should look in the prefix header
-# dirs, like the linker does
-CPPFLAGS="-I${EPREFIX}/usr/include ${CPPFLAGS/-I${EPREFIX}\/usr\/include/}"
-# configure can die if it detects a CPPFLAGS "change" due to suddenly
-# noticing trailing space(s)
-export CPPFLAGS=${CPPFLAGS%% }
