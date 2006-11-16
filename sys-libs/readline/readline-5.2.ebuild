@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-5.1_p4.ebuild,v 1.13 2006/10/17 06:02:10 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-5.2.ebuild,v 1.4 2006/10/17 06:02:10 uberlord Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ inherit eutils multilib toolchain-funcs
 
 # Official patches
 # See ftp://ftp.cwru.edu/pub/bash/readline-5.1-patches/
-PLEVEL=${PV##*_p}
+PLEVEL=0 #${PV##*_p}
 MY_PV=${PV/_p*}
 MY_P=${PN}-${MY_PV}
 
@@ -24,7 +24,7 @@ SRC_URI="mirror://gnu/readline/${MY_P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 # We must be certain that we have a bash that is linked
@@ -44,13 +44,11 @@ src_unpack() {
 	for ((i=1; i<=PLEVEL; i++)); do
 		epatch "${DISTDIR}"/${PN}${MY_PV/\.}-$(printf '%03d' ${i})
 	done
-	epatch "${FILESDIR}"/bash-3.0-etc-inputrc.patch
 	epatch "${FILESDIR}"/${PN}-5.0-no_rpath.patch
-	epatch "${FILESDIR}"/${MY_P}-cleanups.patch
-	epatch "${FILESDIR}"/${MY_P}-rlfe-build.patch #116483
-	epatch "${FILESDIR}"/${MY_P}-rlfe-uclibc.patch
-	epatch "${FILESDIR}"/${MY_P}-rlfe-libutil.patch
-	epatch "${FILESDIR}"/${MY_P}-fbsd-pic.patch
+	epatch "${FILESDIR}"/${PN}-5.2-rlfe-build.patch #151174
+	epatch "${FILESDIR}"/${PN}-5.1-rlfe-uclibc.patch
+	epatch "${FILESDIR}"/${PN}-5.1-fbsd-pic.patch
+	epatch "${FILESDIR}"/${PN}-5.1-rlfe-extern.patch
 
 	ln -s ../.. examples/rlfe/readline
 
