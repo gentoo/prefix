@@ -351,7 +351,6 @@ bootstrap_python() {
 		--disable-toolbox-glue \
 		--enable-unicode=ucs4 \
 		--with-fpectl \
-		--enable-shared \
 		--disable-ipv6 \
 		--with-threads \
 		--with-cxx=no \
