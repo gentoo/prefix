@@ -1,4 +1,4 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -17,11 +17,20 @@ KEYWORDS="~ppc-macos ~x86-macos"
 
 IUSE="nls"
 
-RDEPEND=">=sys-libs/ncurses-5.2-r2"
+RDEPEND=">=sys-libs/ncurses-5.2-r2
+	=dev-db/sqlite-3*"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
 S=${WORKDIR}/gdb-${PV}/src
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-darwin7.patch
+	epatch "${FILESDIR}"/${P}-no-64bit.patch
+}
 
 src_compile() {
 	replace-flags -O? -O2
