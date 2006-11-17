@@ -59,8 +59,8 @@ alternatives_auto_makesym() {
 
 	# sort a space delimited string by converting it to a multiline list
 	# and then run sort -r over it.
-	# make sure we use ${ROOT} because otherwise stage-building will break
-	ALT="$(for i in $(echo ${PROOT}${myregex}); do echo ${i#${PROOT}}; done | sort -r)"
+	# make sure we use ${EROOT} because otherwise stage-building will break
+	ALT="$(for i in $(echo ${EROOT}${myregex}); do echo ${i#${EROOT}}; done | sort -r)"
 	alternatives_makesym ${SYMLINK} ${ALT}
 }
 
