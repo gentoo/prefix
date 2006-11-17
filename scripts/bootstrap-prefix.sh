@@ -209,7 +209,7 @@ bootstrap_odcctools() {
 	rm -rf "${S}"
 	mkdir -p "${S}"
 	cd "${S}"
-	tar -jxf "${DISTDIR}/${A}" || exit 1
+	bzip2 -dc "${DISTDIR}/${A}" | tar -xf - || exit 1
 
 	rm -rf "${S}/build"
 	mkdir -p "${S}/build"
@@ -333,7 +333,7 @@ bootstrap_python() {
 	rm -rf ${S}
 	mkdir -p ${S}
 	cd ${S}
-	tar -jxf ${DISTDIR}/${A} || exit 1
+	bzip2 -dc ${DISTDIR}/${A} | tar -xf - || exit 1
 	S=${S}/Python-${PV}
 	cd ${S}
 
