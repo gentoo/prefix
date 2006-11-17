@@ -5,6 +5,13 @@
 # See the gentoo-src Portage ChangeLog for up-to-date release information:
 # http://www.gentoo.org/cgi-bin/viewcvs.cgi/portage/ChangeLog?rev=HEAD&cvsroot=gentoo-src&content-type=text/vnd.viewcvs-markup
 
+*portage-2.1.20.5077 (17 Nov 2006)
+
+  17 Nov 2006; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.1.20.5016.ebuild, +portage-2.1.20.5077.ebuild:
+  New snapshot, mainly with fixes for portage niceness, and (new style)
+  virtuals
+
 *portage-2.1.20.5060 (16 Nov 2006)
 
   16 Nov 2006; Fabian Groffen <grobian@gentoo.org>
