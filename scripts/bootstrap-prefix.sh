@@ -346,6 +346,14 @@ bootstrap_python() {
 	export PYTHON_DISABLE_SSL=1
 	export OPT="${CFLAGS}"
 
+	case $CHOST in
+		*-sun-solaris*)
+			# Solaris manpage says we need -lrt for fdatasync and
+			# sem_wait & friends, Python apparently doesn't know
+			export LDFLAGS="-lrt"
+		;;
+	esac
+
 	einfo "Compiling ${A%-*}"
 	econf \
 		--disable-toolbox-glue \
