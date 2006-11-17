@@ -389,6 +389,10 @@ bootstrap_patch() {
 	bootstrap_gnu patch 2.5.9
 }
 
+bootstrap_binutils() {
+	bootstrap_gnu binutils 2.17
+}
+
 bootstrap_all() {
 	bootstrap_tree	
 	case ${CHOST} in
