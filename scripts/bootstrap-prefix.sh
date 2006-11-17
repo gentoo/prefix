@@ -254,7 +254,7 @@ bootstrap_gcc() {
 			;;
 		*-sun-solaris*)
 			prep_gcc-fsf
-			GCC_EXTRA_OPTS="--with-gnu-ld"
+			GCC_EXTRA_OPTS="--disable-multilib --with-gnu-ld"
 			;;
 		*)	
 			prep_gcc-fsf
