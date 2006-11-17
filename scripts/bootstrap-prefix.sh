@@ -252,6 +252,10 @@ bootstrap_gcc() {
 		*-*-darwin*)
 			prep_gcc-apple
 			;;
+		*-sun-solaris*)
+			prep_gcc-fsf
+			GCC_EXTRA_OPTS="--with-gnu-ld"
+			;;
 		*)	
 			prep_gcc-fsf
 			;;
@@ -278,7 +282,8 @@ bootstrap_gcc() {
 				--disable-werror \
 				--disable-nls \
 				--with-system-zlib \
-				--enable-languages=${GCC_LANG}"
+				--enable-languages=${GCC_LANG}
+				${GCC_EXTRA_OPTS}"
 
 
 	${S}/gcc-${GCC_PV}/configure \
