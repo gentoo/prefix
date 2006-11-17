@@ -350,7 +350,7 @@ bootstrap_python() {
 		*-sun-solaris*)
 			# Solaris manpage says we need -lrt for fdatasync and
 			# sem_wait & friends, Python apparently doesn't know
-			export LDFLAGS="-lrt"
+			export LDFLAGS="-lrt -laio -lmd5"
 		;;
 	esac
 
