@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.12-r1.ebuild,v 1.12 2006/11/10 00:00:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.13.ebuild,v 1.6 2006/11/16 15:03:11 corsair Exp $
 
 EAPI="prefix"
 
@@ -28,8 +28,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/1.2.7-gentoo.diff
 
-	# Fixes for #136452
-	epatch "${FILESDIR}"/${P}-no-asm.patch
+	epatch "${FILESDIR}"/${PN}-1.2.12-no-asm.patch #136452
 	eautoreconf
 }
 
