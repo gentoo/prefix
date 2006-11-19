@@ -5,6 +5,19 @@
 # See the gentoo-src Portage ChangeLog for up-to-date release information:
 # http://www.gentoo.org/cgi-bin/viewcvs.cgi/portage/ChangeLog?rev=HEAD&cvsroot=gentoo-src&content-type=text/vnd.viewcvs-markup
 
+*portage-2.1.20.5090 (19 Nov 2006)
+
+  19 Nov 2006; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.1.20.5020.ebuild, +portage-2.1.20.5090.ebuild:
+  Fix for repoman's SVN support.  It now properly detects added ebuilds.
+
+*portage-2.1.20.5089 (19 Nov 2006)
+
+  19 Nov 2006; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.1.20.5020.ebuild, +portage-2.1.20.5089.ebuild:
+  New snapshot, most particular, all traces of ACCEPT_LICENSE support have
+  been removed again
+
 *portage-2.1.20.5077 (17 Nov 2006)
 
   17 Nov 2006; Fabian Groffen <grobian@gentoo.org>
