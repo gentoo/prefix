@@ -438,7 +438,7 @@ then
 				MAKE=make
 				;;
 			Darwin)
-				CHOST="`uname -p`-apple-darwin`sysctl kern.osrelease | cut -d'=' -f 2 | cut -d' ' -f 2- | cut -d'.' -f 1`"
+				CHOST="`uname -p`-apple-darwin`/usr/sbin/sysctl kern.osrelease | cut -d'=' -f 2 | cut -d' ' -f 2- | cut -d'.' -f 1`"
 				MAKE=make
 				;;
 			SunOS)
