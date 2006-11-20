@@ -1292,7 +1292,9 @@ gcc_do_configure() {
 		fi
 
 		if [[ ${EPREFIX%/} != "" ]] ; then
-			confgcc="${confgcc} --with-local-prefix=${EPREFIX}${PREFIX}"
+			# should be /usr, because it's the path to search includes for,
+			# which is unrelated to TOOLCHAIN_PREFIX, a.k.a. PREFIX
+			confgcc="${confgcc} --with-local-prefix=${EPREFIX}/usr"
 		fi
 	fi
 	# __cxa_atexit is "essential for fully standards-compliant handling of
