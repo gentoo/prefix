@@ -1292,7 +1292,7 @@ gcc_do_configure() {
 		fi
 
 		if [[ ${EPREFIX%/} != "" ]] ; then
-			confgcc="${confgcc} --with-local-prefix=${EPREFIX}${EPREFIX}"
+			confgcc="${confgcc} --with-local-prefix=${EPREFIX}${PREFIX}"
 		fi
 	fi
 	# __cxa_atexit is "essential for fully standards-compliant handling of
