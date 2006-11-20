@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-1.5.20.ebuild,v 1.8 2005/10/18 13:03:11 agriffis Exp ${P}-r1.ebuild,v 1.8 2002/10/04 06:34:42 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-1.5.22.ebuild,v 1.12 2006/11/02 18:54:27 flameeyes Exp ${P}-r1.ebuild,v 1.8 2002/10/04 06:34:42 kloeri Exp $
 
 EAPI="prefix"
 
@@ -23,7 +23,9 @@ DEPEND="${RDEPEND}
 
 lt_setup() {
 	export WANT_AUTOCONF=2.5
-	export WANT_AUTOMAKE=1.9
+	ROOT=/ has_version '=sys-devel/automake-1.10*' && \
+               export WANT_AUTOMAKE=1.10 || \
+               export WANT_AUTOMAKE=1.9
 }
 
 gen_ltmain_sh() {
