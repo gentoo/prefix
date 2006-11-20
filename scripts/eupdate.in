@@ -32,6 +32,7 @@ CVSMODULE='gentoo-x86'
 # Voodoo to figure out what package you're currently messing with
 EPACKAGE="`pwd -P`"; EPACKAGE=${EPACKAGE#*${PTREEDIR}/}
 
+# returns the CVS revision number from the $Header
 get_cvsversion() {
 	if [[ -z $1 ]];
 	then
@@ -39,13 +40,172 @@ get_cvsversion() {
 		return
 	fi
 
-	ver=`egrep '^# \\\$Header:' "$1" | egrep -o "v [0-9.]+"`
+	ver=`egrep '^# \\\$Header:' "$1" | egrep -m1 -o "v [0-9.]+" | head -n1`
 	if [[ $ver == "" ]];
 	then
 		echo 0
 		return
 	fi
 	echo ${ver#v }
+}
+
+# Comparator for ebuild version strings.  Returns 0 if both arguments
+# are equal, a number less then 0 if the first argument is smaller than
+# the second, and a number greater then 0 otherwise.  Arguments may be
+# up to full paths to the bare version string only.
+# It is possible to deduce what the largest difference between the two
+# given versions is, by considering the following on the absolute return
+# value: 10000 < x < 0 -> main version, where 1 is a difference in
+# the major, 10 a difference in the minor, etc. 100000 < x < 10000 ->
+# suffix, 1000000 < x < 100000 -> revision.
+cmp_ebuild_ver() {
+	if [[ -z $1 || -z $2 ]] ; then
+		echo 0
+		return
+	fi
+
+	# get the bare version, if not already
+	local l=$(get_ebuildversion $1)
+	local r=$(get_ebuildversion $2)
+
+	local lver=`echo $l | cut -d'-' -f1`
+	local lrev=`echo ${l#$lver} | cut -d'-' -f2`
+	local t=$lver
+	lver=`echo $t | cut -d'_' -f1`
+	local lsuf=`echo ${t#$lver} | cut -d'_' -f2`
+
+	local rver=`echo $r | cut -d'-' -f1`
+	local rrev=`echo ${r#$rver} | cut -d'-' -f2`
+	t=$rver
+	rver=`echo $t | cut -d'_' -f1`
+	local rsuf=`echo ${t#$rver} | cut -d'_' -f2`
+
+	local cnt=1
+	# start "eating" the version from the left, comparing the numbers,
+	# following an exit-early approach
+	while [[ $lver != "" ]] && [[ $rver != "" ]] ; do
+		# get the "head" component
+		local la=${lver%%.*}
+		local ra=${rver%%.*}
+		# unfortunately also characters next to numbers can appear in
+		# the version number, 4a is considered to be smaller than 33
+		local lan=${la%%[abcdefghijklmnopqrstuvwxyz]*}
+		local ran=${ra%%[abcdefghijklmnopqrstuvwxyz]*}
+		t=$((lan - ran))
+		if [[ ${t} != 0 ]] ; then
+			[[ $t > 9 ]] && t=9
+			[[ $t < -9 ]] && t=-9
+			echo $((t * cnt))
+			return
+		else
+			# perform string equality... should work
+			if [[ ${la} < ${ra} ]] ; then
+				echo $((-1 * cnt))
+				return
+			elif [[ ${la} > ${ra} ]] ; then
+				echo $cnt
+				return
+			fi
+		fi
+
+		# remove the part we processed (and was equal)
+		lver=${lver#${la}}
+		rver=${rver#${ra}}
+		# strip leading dot (if any)
+		lver=${lver#.}
+		rver=${rver#.}
+
+		[[ $cnt < 1000 ]] && cnt=$((cnt * 10))
+	done
+
+	# the main version components are equal, dive into the suffices
+
+	# suffix precedence rules:
+	# alpha
+	# beta
+	# pre
+	# rc
+	# (none)
+	# p
+
+	cnt=10000
+	local lan=0
+	case $lsuf in
+		alpha*)
+			lan=-1
+			lsuf=${lsuf#alpha}
+		;;
+		beta*)
+			lan=-2
+			lsuf=${lsuf#beta}
+		;;
+		pre*)
+			lan=-3
+			lsuf=${lsuf#pre}
+		;;
+		rc*)
+			lan=-4
+			lsuf=${lsuf#rc}
+		;;
+		p*)
+			lan=-6
+			lsuf=${lsuf#p}
+		;;
+		*)
+			lan=-5
+		;;
+	esac
+
+	local ran=0
+	case $rsuf in
+		alpha*)
+			ran=-1
+			rsuf=${rsuf#alpha}
+		;;
+		beta*)
+			ran=-2
+			rsuf=${rsuf#beta}
+		;;
+		pre*)
+			ran=-3
+			rsuf=${rsuf#pre}
+		;;
+		rc*)
+			ran=-4
+			rsuf=${rsuf#rc}
+		;;
+		p*)
+			ran=-6
+			rsuf=${rsuf#p}
+		;;
+		*)
+			ran=-5
+		;;
+	esac
+
+	t=$((lan - ran))
+	if [[ ${t} != 0 ]] ; then
+		echo $((t * cnt))
+		return
+	fi
+	t=$((lsuf - rsuf))
+	if [[ ${t} != 0 ]] ; then
+		[[ $t > 9 ]] && t=9
+		[[ $t < -9 ]] && t=-9
+		echo $((t * cnt))
+		return
+	fi
+
+	# suffices were equal too, now lets see the revision
+
+	cnt=100000
+	lrev=${lref#r}
+	rrev=${rref#r}
+	
+	t=$((lrev - rrev))
+	[[ $t > 9 ]] && t=9
+	[[ $t < -9 ]] && t=-9
+	echo $((t * cnt))
 }
 
 get_ebuildversion() {
@@ -65,99 +225,15 @@ get_ebuildversion() {
 		t=${t#*-}
 	done
 
-	ver=`echo $t | cut -d'-' -f1`
-	rev=`echo ${t#$ver} | cut -d'-' -f2`
-	t=$ver
-	ver=`echo $t | cut -d'_' -f1`
-	suf=`echo ${t#$ver} | cut -d'_' -f2`
-
-	# somehow "normalise" ver to a value like 0000.0000.0000.0000.0000
-	ver=`echo $ver | awk -F'.' '{
-		printf("%4s.%4s.%4s.%4s.%4s", $1, $2, $3, $4, $5);
-	}' | sed 's| |-|g'`
-	# turn suf into a int, keeping precedence rules
-	# alpha   100000
-	# beta    200000
-	# pre     300000
-	# rc      400000
-	# (none)  500000
-	# p       600000
-	case $suf in
-		alpha*)
-			suf=$((${suf#alpha} + 100000))
-		;;
-		beta*)
-			suf=$((${suf#beta} + 200000))
-		;;
-		pre*)
-			suf=$((${suf#pre} + 300000))
-		;;
-		rc*)
-			suf=$((${suf#rc} + 400000))
-		;;
-		p*)
-			suf=$((${suf#p} + 600000))
-		;;
-		*)
-			suf=500000
-		;;
-	esac
-	# turn rev into a normal int, starting with 1000
-	rev=$((${rev#r} + 1000))
-#	echo "ver: $ver, suf: $suf, rev: $rev"
-	echo "$ver.$suf.$rev"
-}
-
-get_versionebuild() {
-	if [[ -z $1 ]];
-	then
-		echo 0
-		return
-	fi
-
-	echo $1 | sed 's|-||g' | awk -F'.' '{
-		out = $1;
-		# should only have empty ones at the end, never inbetween
-		if ($2 != "") { out = out "." $2; }
-		if ($3 != "") { out = out "." $3; }
-		if ($4 != "") { out = out "." $4; }
-		if ($5 != "") { out = out "." $5; }
-
-		if ($6 == 100000) {
-			out = out "_alpha";
-		} else if ($6 > 100000 && $6 < 200000) {
-			out = out "_alpha" ($6 - 100000);
-		} else if ($6 == 200000) {
-			out = out "_beta";
-		} else if ($6 > 200000 && $6 < 300000) {
-			out = out "_beta" ($6 - 200000);
-		} else if ($6 == 300000) {
-			out = out "_pre";
-		} else if ($6 > 300000 && $6 < 400000) {
-			out = out "_pre" ($6 - 300000);
-		} else if ($6 == 400000) {
-			out = out "_rc";
-		} else if ($6 > 400000 && $6 < 500000) {
-			out = out "_rc" ($6 - 400000);
-		} else if ($6 == 600000) {
-			out = out "_p";
-		} else if ($6 > 600000 && $6 < 700000) {
-			out = out "_p" ($6 - 600000);
-		}
-		if ($7 > 1000) {
-			out = out "-r" ($7 - 1000);
-		}
-
-		print out;
-	}'
+	echo ${t}
 }
 
 cross_diff() {
-	mver=$1
-	pver=$2
+	mver=$(get_ebuildversion $1)
+	pver=$(get_ebuildversion $2)
 	echo -n "  new version in main tree: ${mver} [${pver}] ... "
-	mte=`basename "${MTREEDIR}/${EPACKAGE}"/*${mver}.ebuild`
-	pte=`echo *${pver}.ebuild`
+	mte=`basename "${MTREEDIR}/${EPACKAGE}"/$1`
+	pte=`echo $2`
 	mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$mte)
 	ptecv=$(get_cvsversion $pte)
 	echo "cross diff from $ptecv to $mtecv"
@@ -283,73 +359,55 @@ fi
 echo "Processing ${EPACKAGE}"
 mt=`cd "${MTREEDIR}"/${EPACKAGE}/ && ls *.ebuild`
 pt=`ls *.ebuild`
-# do a nested loop join, where we know that both sides are sorted and
-# that pt is more important, because we're not interested in older
-# versions
+# do a nested loop join, we don't assume any order
 for pte in $pt;
 do
 	had_match=0
-	ptev=$(get_ebuildversion $pte)
-	[[ $ptev > $ptelv ]] && ptelv=$ptev
+	[[ $(cmp_ebuild_ver $pte $last_pte) > 0 ]] \
+		&& last_pte=$pte
 	for mte in $mt;
 	do
-		if [[ $had_match != 0 ]];
-		then
-			# try and see if there is a revision higher than the one we
-			# just matched
-			mtev=$(get_ebuildversion $mte)
-			# look at version only first
-			ptevn=${ptev%.*}
-			mtevn=${mtev%.*}
-			if [[ $ptevn == $mtevn ]];
-			then
-				# look at revision numbers
-				ptevnr=${ptev##*.}
-				mtevnr=${mtev##*.}
-				vdiff=$((ptevnr - mtevnr))
-				if [[ $vdiff > 0 ]];
-				then
-					# due to sortedness, vdiff cannot be negative here, so
-					# it is a newer revision, save it for later
-					had_match=$mtev
-				fi
-			else
-				# we have a totally new version, stop looking for
-				# updates
-				continue
-			fi
-		fi
-		if [[ $mte == $pte ]];
-		then
+		# calculate the diffs between prefix and main
+		vdiff=$(cmp_ebuild_ver $mte $pte)
+		# if we have the same ebuild version...
+		if [[ $vdiff == 0 ]] ; then
 			had_match=1
-			# look inside the files to see if the file was updated or not
+			# ... look inside the files to see if the file was updated or not
 			echo -n "  found $mte in both ... "
 			mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$mte)
 			ptecv=$(get_cvsversion $pte)
 			revision_diff $mtecv $ptecv $pte
+		elif [[ $vdiff -ge 100000 ]] ; then
+			# we have an updated revision: always update
+			cross_diff $mte $pte
+		elif [[ $vdiff -ge 10000 ]] ; then
+			# alpha/beta/rc update: always update
+			cross_diff $mte $pte
+		elif [[ $vdiff -ge 100 ]] ; then
+			# suff release or worse, don't update, unless it's the last
+			# thing in the tree
+			[[ $(cmp_ebuild_ver $last_match $mte) < 0 ]] \
+				&& last_match=$mte
+		elif [[ $vdiff -ge 10 ]] ; then
+			# minor version number update: always update
+			cross_diff $mte $pte
+		elif [[ $vdiff -ge 1 ]] ; then
+			# major version number update: always update
+			cross_diff $mte $pte
 		fi
 	done
-	if [[ $had_match > 1 ]];
-	then
-		# we have to apply an update from $ptev to $had_match
-		cross_diff $(get_versionebuild $ptev) $(get_versionebuild $had_match)
-	elif [[ $had_match == 0 ]];
-	then
-		# stale entry
-		echo "  warning: $pte no longer in the main tree"
-	fi
+	# stale entry
+	[[ $had_match == 0 ]] \
+		&& echo "  warning: $pte no longer in the main tree"
 done
-for mte in $mt;
-do
-	mtev=$(get_ebuildversion $mte)
-	[[ $mtev > $mtelv ]] && mtelv=$mtev
-done
-if [[ $mtelv > $ptelv ]];
+
+if [[ $last_match != "" ]] \
+	&& [[ $(cmp_ebuild_ver $last_pte $last_match) < 0 ]];
 then
-	mver=$(get_versionebuild $mtelv)
-	pver=$(get_versionebuild $ptelv)
-	cross_diff $mver $pver
+	# we have to apply an update from $last_pte to $last_match
+	cross_diff $last_match $last_pte
 fi
+
 echo -n "  checking ChangeLog... "
 mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/ChangeLog)
 ptecv=$(get_cvsversion ChangeLog)
