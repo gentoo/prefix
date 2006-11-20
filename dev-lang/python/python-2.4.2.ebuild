@@ -251,7 +251,7 @@ pkg_postrm() {
 
 pkg_postinst() {
 	local myroot
-	myroot=${PROOT%/}
+	myroot=${EROOT%/}
 
 	python_makesym
 	python_mod_optimize
