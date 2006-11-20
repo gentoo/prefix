@@ -59,8 +59,11 @@ get_cvsversion() {
 # the major, 10 a difference in the minor, etc. 100000 < x < 10000 ->
 # suffix, 1000000 < x < 100000 -> revision.
 cmp_ebuild_ver() {
-	if [[ -z $1 || -z $2 ]] ; then
+	if [[ -z $1 ]] ; then
 		echo 0
+		return
+	elif [[ -z $2 ]] ; then
+		echo 1
 		return
 	fi
 
@@ -199,8 +202,8 @@ cmp_ebuild_ver() {
 	# suffices were equal too, now lets see the revision
 
 	cnt=100000
-	lrev=${lref#r}
-	rrev=${rref#r}
+	lrev=${lrev#r}
+	rrev=${rrev#r}
 	
 	t=$((lrev - rrev))
 	[[ $t > 9 ]] && t=9
@@ -360,13 +363,9 @@ echo "Processing ${EPACKAGE}"
 mt=`cd "${MTREEDIR}"/${EPACKAGE}/ && ls *.ebuild`
 pt=`ls *.ebuild`
 # do a nested loop join, we don't assume any order
-for pte in $pt;
-do
+for pte in $pt ; do
 	had_match=0
-	[[ $(cmp_ebuild_ver $pte $last_pte) > 0 ]] \
-		&& last_pte=$pte
-	for mte in $mt;
-	do
+	for mte in $mt ; do
 		# calculate the diffs between prefix and main
 		vdiff=$(cmp_ebuild_ver $mte $pte)
 		# if we have the same ebuild version...
@@ -377,35 +376,46 @@ do
 			mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$mte)
 			ptecv=$(get_cvsversion $pte)
 			revision_diff $mtecv $ptecv $pte
-		elif [[ $vdiff -ge 100000 ]] ; then
-			# we have an updated revision: always update
-			cross_diff $mte $pte
-		elif [[ $vdiff -ge 10000 ]] ; then
-			# alpha/beta/rc update: always update
-			cross_diff $mte $pte
-		elif [[ $vdiff -ge 100 ]] ; then
-			# suff release or worse, don't update, unless it's the last
-			# thing in the tree
-			[[ $(cmp_ebuild_ver $last_match $mte) < 0 ]] \
-				&& last_match=$mte
-		elif [[ $vdiff -ge 10 ]] ; then
-			# minor version number update: always update
-			cross_diff $mte $pte
-		elif [[ $vdiff -ge 1 ]] ; then
-			# major version number update: always update
-			cross_diff $mte $pte
+			# we found this version, so needless to look for it any more
+			mt=${mt/$mte/}
 		fi
 	done
 	# stale entry
 	[[ $had_match == 0 ]] \
 		&& echo "  warning: $pte no longer in the main tree"
 done
-
-if [[ $last_match != "" ]] \
-	&& [[ $(cmp_ebuild_ver $last_pte $last_match) < 0 ]];
-then
+# what's left in $mt is everything which is not in $pt
+last_pte=""
+for pte in $pt ; do
+	last_match=""
+	for mte in $mt ; do
+		# calculate the diffs between prefix and main
+		vdiff=$(cmp_ebuild_ver $mte $pte)
+		if [[ $vdiff -ge 100000 ]] ; then
+			# we have an updated revision: track it
+			[[ $(cmp_ebuild_ver $last_match $mte) < 0 ]] \
+				&& last_match=$mte
+			# we don't need this version any more
+			mt=${mt/$mte/}
+		fi
+	done
+	# apply the last revision update for this ebuild
+	[[ $last_match != "" ]] \
+		&& cross_diff $last_match $pte
+	[[ $(cmp_ebuild_ver $pte $last_pte) > 0 ]] \
+		&& last_pte=$pte
+done
+# if there is anything left in mt that is bigger than last_pte we want
+# the biggest of that
+last_mte=""
+for mte in $mt ; do
+	[[ $(cmp_ebuild_ver $mte $last_pte) > 0 ]] && \
+	[[ $(cmp_ebuild_ver $mte $last_mte) > 0 ]] \
+		&& last_mte=$mte
+done
+if [[ $last_mte != "" ]] ; then
 	# we have to apply an update from $last_pte to $last_match
-	cross_diff $last_match $last_pte
+	cross_diff $last_mte $last_pte
 fi
 
 echo -n "  checking ChangeLog... "
