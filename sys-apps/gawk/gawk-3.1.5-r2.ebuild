@@ -13,7 +13,7 @@ SRC_URI="mirror://gnu/gawk/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
-IUSE="nls solarisld"
+IUSE="nls"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
@@ -40,6 +40,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-internal.patch
 	epatch "${FILESDIR}"/${P}-numflags.patch
 	epatch "${FILESDIR}"/${P}-syntaxerror.patch
+	# on solaris, we have stupid /usr/bin/awk, but gcc,
+	# which's preprocessor understands '\'-linebreaks
+	epatch "${FILESDIR}"/${P}-stupid-awk-clever-cc.patch
 	# support for dec compiler.
 	[[ $(tc-getCC) == "ccc" ]] && epatch "${FILESDIR}"/${PN}-3.1.2-dec-alpha-compiler.diff
 }
@@ -54,15 +57,13 @@ src_compile() {
 	emake || die "emake failed"
 
 	cd "${SFFS}"
-	use solarisld || \
-		emake CC=$(tc-getCC) || die "filefuncs emake failed"
+	emake CC=$(tc-getCC) || die "filefuncs emake failed"
 }
 
 src_install() {
 	make install DESTDIR="${D}" || die "install failed"
 	cd "${SFFS}"
-	use solarisld || \
-		make LIBDIR="${EPREFIX}/$(get_libdir)" install || die "filefuncs install failed"
+	make LIBDIR="${EPREFIX}/$(get_libdir)" install || die "filefuncs install failed"
 
 	dodir /usr/bin
 	# In some rare cases, (p)gawk gets installed as (p)gawk- and not
