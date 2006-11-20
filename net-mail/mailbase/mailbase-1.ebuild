@@ -53,14 +53,14 @@ src_install() {
 }
 
 pkg_postinst() {
-	if [ "$(stat -c%a ${ROOT}/var/spool/mail/)" != "775" ] ; then
+	if [ "$(stat -c%a ${EROOT}/var/spool/mail/)" != "775" ] ; then
 		echo
 		ewarn
-		ewarn "Your ${ROOT}/var/spool/mail/ directory permissions differ from"
+		ewarn "Your ${EROOT}/var/spool/mail/ directory permissions differ from"
 		ewarn "  those which mailbase set when you first installed it (0775)."
 		ewarn "  If you did not change them on purpose, consider running:"
 		ewarn
-		echo -e "\tchmod 0775 ${ROOT}/var/spool/mail/"
+		echo -e "\tchmod 0775 ${EROOT}/var/spool/mail/"
 		echo
 	fi
 }
