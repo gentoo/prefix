@@ -22,8 +22,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	elibtoolize
-	if use ppc-macos;
-	then
+	if [[ ${USERLAND} == "Darwin" ]] ; then
 		touch gl/libgnu.la
 		sed -i \
 			-e 's|../gl/libgnu.la||g' \
