@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.316 2006/11/10 15:43:03 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.324 2006/11/15 15:36:42 beandog Exp $
 
 # Keep them sorted
 
@@ -20,6 +20,7 @@ afs - Adds OpenAFS support (distributed file system)
 aim - Enable AIM IM protocol support
 alsa - Adds support for media-libs/alsa-lib (Advanced Linux Sound Architecture)
 altivec - Adds support for optimizations for G4 and G5/ppc970 processors
+ao - Use libao audio output library for sound playback
 apache - Chooses Apache1 support when a package optionally supports Apache1
 apache2 - Chooses Apache2 support when a package supports both Apache1 and Apache2
 apm - Adds APM (Advanced Power Management) support
@@ -43,6 +44,7 @@ calendar - Adds support for calendars (not using mcal!)
 canna - Adds support for the Canna kana to kanji conversion engine
 caps - Use Linux capabilities library to control privileges.
 cdb - Adds support for the CDB database engine from the author of qmail
+cddb - Access cddb servers to retrieve and submit information about compact disks
 cdinstall - Copies files from the CD rather than asking the user to copy them, mostly used with games
 cdparanoia - Enables cdparanoia (audio CD ripper) support
 cdr - Adds support for CD writer hardware
@@ -182,6 +184,7 @@ libedit - Use the libedit library (replacement for readline)
 libg++ - Adds C++ modules in dev-db/postgresql (libpq++)
 libgda - Adds GNU Data Access (CORBA wrapper) support for gnumeric
 libnotify - Enable notification support
+libsamplerate - Build with support for converting sample rates using libsamplerate
 libwww - Adds libwww support (General purpose WEB API)
 lirc - Adds support for lirc (Linux's Infra-Red Remote Control)
 livecd - !!internal use only!! DO NOT SET THIS FLAG YOURSELF!, used during livecd building.
@@ -221,6 +224,7 @@ msql - Adds support for the MSQL database server
 mssql - Adds support for Microsoft SQL Server database
 mule - Adds multi-language support to XEmacs
 multilib - On 64bit systems, if you want to be able to compile 32bit and 64bit binaries
+musepack - Enable support for the musepack audio codec
 mysql - Adds mySQL Database support
 mysqli - Adds support for the improved mySQL libraries
 nas - Adds support for network audio sound
@@ -267,6 +271,7 @@ postgres - Adds support for the postgresql database
 ppds - Adds support for automatically generated ppd (printing driver) files
 prelude - Adds support/bindings for the Prelude Intrusion Detection System
 profile - Adds profile support to builds of packages (will likely vary from ebuild to ebuild in support)
+pulseaudio - Adds support for PulseAudio sound server
 python - Adds support/bindings for the Python language
 qdbm - Adds support for the qdbm (Quick Database Manager) library
 qt3 - Adds support for the Qt GUI/Application Toolkit version 3.x
@@ -346,13 +351,13 @@ wifi - Enable wireless network functions
 win32codecs - use win32codecs package for dll avi decoding support (wmv and what not)
 wmf - Adds support for the wmf vector image format
 wxwindows - Adds support for wxWindows/wxGTK GUI toolkit
+x264 - Enable h264 encoding using x264
 xface - Adds xface support used to allow a small image of xface format to be included in an email via the header 'X-Face'.
 xine - Add support for the XINE movie libraries
 xinerama - Add support for the xinerama X11 extension, which allows you to stretch your display across multiple monitors
 xinetd - Add support for the xinetd super-server
 xml - Add support for XML files
 xmlrpc - Support for xml-rpc library
-xmms - Check/Support for XMMS (X MultiMedia System) player
 xosd - Sends display using the X On Screen Display library
 xpm - Adds support for XPM graphics format
 xprint - Support for xprint, http://www.mozilla.org/projects/xprint/
