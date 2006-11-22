@@ -109,7 +109,7 @@ src_install() {
 		cp -pPR sample ${ED}/${ROOT}usr/share/doc/${PF}
 	fi
 
-	dosym libruby${SLOT/./}$(get_libame ${PV%_*}) /usr/$(get_libdir)/libruby$(get_libname ${PV%.*})
+	dosym libruby${SLOT/./}$(get_libname ${PV%_*}) /usr/$(get_libdir)/libruby$(get_libname ${PV%.*})
 	dosym libruby${SLOT/./}$(get_libname ${PV%_*}) /usr/$(get_libdir)/libruby$(get_libname ${PV%_*})
 
 	dodoc COPYING* ChangeLog MANIFEST README* ToDo
