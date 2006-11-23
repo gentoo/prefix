@@ -1,0 +1,13 @@
+--- configure	Tue Mar 29 01:23:02 2005
++++ ../../configure	Thu Mar 31 10:32:45 2005
+@@ -10362,8 +10367,8 @@
+ 				LDSHARED="$LDSHARED "'$(PYTHONFRAMEWORKPREFIX)/$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
+ 			else
+ 				# No framework, use the Python app as bundle-loader
+-				BLDSHARED="$LDSHARED "'-bundle_loader $(BUILDPYTHON)'
+-				LDSHARED="$LDSHARED "'-bundle_loader $(BINDIR)/python$(VERSION)$(EXE)'
++				BLDSHARED="$LDSHARED "'-flat_namespace -undefined suppress -bundle_loader $(BUILDPYTHON)'
++				LDSHARED="$LDSHARED "'-flat_namespace -undefined suppress -bundle_loader $(BINDIR)/python$(VERSION)$(EXE)'
+ 			fi
+ 		fi
+ 		;;
