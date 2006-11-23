@@ -1,0 +1,22 @@
+Index: aspell-0.60.4/Makefile.am
+===================================================================
+--- aspell-0.60.4.orig/Makefile.am
++++ aspell-0.60.4/Makefile.am
+@@ -91,7 +91,7 @@ libaspell_la_SOURCES =\
+   lib/string_pair_enumeration-c.cpp\
+   lib/new_checker.cpp
+ 
+-libaspell_la_LIBADD =  $(LIBINTL) $(PTHREAD_LIB)
++libaspell_la_LIBADD =  $(LTLIBINTL) $(PTHREAD_LIB)
+ 
+ if INCREMENTED_SONAME
+ libaspell_la_LDFLAGS = -version-info 16:4:0 -no-undefined
+@@ -129,7 +129,7 @@ word_list_compress_SOURCES = prog/compre
+ 
+ aspell_SOURCES = prog/aspell.cpp prog/check_funs.cpp prog/checker_string.cpp
+ 
+-aspell_LDADD = libaspell.la $(CURSES_LIB)
++aspell_LDADD = libaspell.la $(CURSES_LIB) $(LTLIBINTL)
+ 
+ prezip_bin_SOURCES = prog/prezip.c
+ 
