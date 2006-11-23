@@ -8,16 +8,16 @@ inherit eutils
 
 GCC_VERS=${PV/_p*/}
 APPLE_VERS=${PV/*_p/}
-DESCRIPTION="Apple branch of the GNU Compiler Collection"
+DESCRIPTION="Apple branch of the GNU Compiler Collection, Xcode 2.4"
 HOMEPAGE="http://gcc.gnu.org"
-SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/gcc_os_35-${APPLE_VERS}.tar.gz"
+SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/gcc-${APPLE_VERS}.tar.gz"
 
 LICENSE="APSL-2 GPL-2"
-SLOT="35"
+SLOT="40"
 
-KEYWORDS="~ppc-macos"
+KEYWORDS="~ppc-macos ~x86-macos"
 
-IUSE="nls fortran objc nocxx"
+IUSE="nls objc objc++ nocxx"
 
 RDEPEND="virtual/libc
 	>=sys-libs/zlib-1.1.4
@@ -29,7 +29,7 @@ DEPEND="${RDEPEND}
 	>=sys-devel/bison-1.875
 	>=sys-devel/odcctools"
 
-S=${WORKDIR}/gcc_os_35-${APPLE_VERS}
+S=${WORKDIR}/gcc-${APPLE_VERS}
 
 src_unpack() {
 	unpack ${A}
@@ -49,8 +49,10 @@ src_unpack() {
 src_compile() {
 	local langs="c"
 	use nocxx || langs="${langs},c++"
-	use fortran && langs="${langs},f77"
+#	use fortran && langs="${langs},f95"
 	use objc && langs="${langs},objc"
+	use objc++ && langs="${langs/,objc/},objc,obj-c++" # need objc with objc++
+#	use gcj && langs="${langs},java"
 
 	local myconf="${myconf} \
 		--prefix=${EPREFIX}/usr \
@@ -60,7 +62,8 @@ src_compile() {
 		--mandir=${EPREFIX}/usr/share/gcc-data/${CHOST}/${GCC_VERS}/man \
 		--infodir=${EPREFIX}/usr/share/gcc-data/${CHOST}/${GCC_VERS}/info \
 		--with-gxx-include-dir=${EPREFIX}/usr/lib/gcc/${CHOST}/${GCC_VERS}/include/g++-v${GCC_VERS/\.*/} \
-		--host=${CHOST}"
+		--host=${CHOST} \
+		--enable-version-specific-runtime-libs"
 	[[ -n ${CBUILD} ]] && myconf="${myconf} --build=${CBUILD}"
 
 	# Straight from the GCC install doc:
@@ -100,6 +103,24 @@ src_compile() {
 		--with-as=${EPREFIX}/usr/bin/as \
 		--with-ld=${EPREFIX}/usr/bin/ld"
 
+	# <grobian@gentoo.org> - 2006-09-19:
+	# figure out whether the CPU we're on is 64-bits capable using a
+	# simple C program and requesting the compiler to compile it with
+	# 64-bits if possible.  Since Apple ships multilib compilers, it
+	# will always compile 64-bits code, but might fail running,
+	# depending on the CPU, so the resulting program might fail.  Thanks
+	# Tobias Hahn for working that out.
+	cd "${T}"
+	echo '
+#include <stdio.h>
+
+int main() {
+	printf("%d\n", sizeof(size_t) * 8);
+}
+' > bits.c
+	gcc -m64 -o bits bits.c
+	[[ $(./bits) != 64 ]] && myconf="${myconf} --disable-multilib"
+
 	mkdir -p ${WORKDIR}/build
 	cd ${WORKDIR}/build
 	einfo "Configuring GCC with: ${myconf//--/\n\t--}"
@@ -112,9 +133,6 @@ src_install() {
 	make DESTDIR="${D}" install || die
 
 	use build && rm -rf "${ED}"/usr/{man,share}
-
-	# move libgcc static libraries into a non-conflicting location
-	mv "${ED}"/usr/lib/* "${ED}/usr/lib/gcc/${CHOST}/${GCC_VERS}/"
 
 	# create gcc-config entry
 	dodir /etc/env.d/gcc

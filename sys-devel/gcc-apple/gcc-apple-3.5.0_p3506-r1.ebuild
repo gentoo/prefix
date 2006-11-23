@@ -10,13 +10,12 @@ GCC_VERS=${PV/_p*/}
 APPLE_VERS=${PV/*_p/}
 DESCRIPTION="Apple branch of the GNU Compiler Collection"
 HOMEPAGE="http://gcc.gnu.org"
-SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/gcc_os-${APPLE_VERS}.tar.gz"
+SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/gcc_os_35-${APPLE_VERS}.tar.gz"
 
 LICENSE="APSL-2 GPL-2"
-SLOT="33"
+SLOT="35"
 
-# included for historical correctness/timeline - doesn't compile with gcc-4
-KEYWORDS="-*"
+KEYWORDS="~ppc-macos"
 
 IUSE="nls fortran objc nocxx"
 
@@ -30,7 +29,7 @@ DEPEND="${RDEPEND}
 	>=sys-devel/bison-1.875
 	>=sys-devel/odcctools"
 
-S=${WORKDIR}/gcc_os-${APPLE_VERS}
+S=${WORKDIR}/gcc_os_35-${APPLE_VERS}
 
 src_unpack() {
 	unpack ${A}
@@ -54,9 +53,6 @@ src_compile() {
 	use objc && langs="${langs},objc"
 
 	local myconf="${myconf} \
-		--build=${CHOST} \
-		--host=${CHOST} \
-		--target=${CHOST} \
 		--prefix=${EPREFIX}/usr \
 		--bindir=${EPREFIX}/usr/${CHOST}/gcc-bin/${GCC_VERS} \
 		--includedir=${EPREFIX}/usr/lib/gcc/${CHOST}/${GCC_VERS}/include \
@@ -64,9 +60,14 @@ src_compile() {
 		--mandir=${EPREFIX}/usr/share/gcc-data/${CHOST}/${GCC_VERS}/man \
 		--infodir=${EPREFIX}/usr/share/gcc-data/${CHOST}/${GCC_VERS}/info \
 		--with-gxx-include-dir=${EPREFIX}/usr/lib/gcc/${CHOST}/${GCC_VERS}/include/g++-v${GCC_VERS/\.*/} \
-		--with-as=${EPREFIX}/usr/bin/as \
-		--with-ld=${EPREFIX}/usr/bin/ld \
-		--enable-languages=${langs}"
+		--host=${CHOST} \
+		--enable-version-specific-runtime-libs"
+	[[ -n ${CBUILD} ]] && myconf="${myconf} --build=${CBUILD}"
+
+	# Straight from the GCC install doc:
+	# "GCC has code to correctly determine the correct value for target
+	# for nearly all native systems. Therefore, we highly recommend you
+	# not provide a configure target when configuring a native compiler."
 
 	# Native Language Support
 	if use nls ; then
@@ -76,14 +77,29 @@ src_compile() {
 	fi
 
 	# reasonably sane globals (hopefully)
+	# --disable-libunwind-exceptions needed till unwind sections get fixed. see ps.m for details
 	myconf="${myconf} \
 		--with-system-zlib \
 		--disable-checking \
-		--disable-werror"
+		--disable-werror \
+		--disable-libunwind-exceptions"
 
+	# languages to build
+	myconf="${myconf} --enable-languages=${langs}"
+
+	# ???
+	myconf="${myconf} --enable-shared --enable-threads=posix"
+
+	# make clear we're in an offset
 	if [[ ${EPREFIX%/} != "" ]] ; then
 		myconf="${myconf} --with-local-prefix=${EPREFIX}/usr"
 	fi
+
+	# we don't use a GNU linker, so tell GCC where to find the linker stuff we
+	# want it to use
+	myconf="${myconf} \
+		--with-as=${EPREFIX}/usr/bin/as \
+		--with-ld=${EPREFIX}/usr/bin/ld"
 
 	mkdir -p ${WORKDIR}/build
 	cd ${WORKDIR}/build
@@ -111,7 +127,9 @@ src_install() {
 	echo "LDPATH=\"${LDPATH}\"" >> ${gcc_envd_file}
 
 	BITS=$(${ED}/usr/${CHOST}/gcc-bin/${GCC_VERS}/gcc -dumpspecs | grep -A1 multilib: | tail -n1 | grep -o 64 | head -n1)
-	BITS="32 ${BITS}"
+	[[ -z ${BITS} ]] \
+		&& BITS="32" \
+		|| BITS="32 ${BITS}"
 	echo "GCCBITS=\"${BITS}\"" >> ${gcc_envd_file}
 
 	echo "MANPATH=\"${EPREFIX}/usr/share/gcc-data/${CHOST}/${GCC_VERS}/man\"" >> ${gcc_envd_file}
@@ -120,6 +138,6 @@ src_install() {
 }
 
 pkg_postinst() {
-	# beware, should match $VERS
+	# beware this also switches when it's on another branch version of GCC
 	gcc-config ${CHOST}-${GCC_VERS}
 }

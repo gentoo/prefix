@@ -2,6 +2,17 @@
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*gcc-apple-4.0.1_p5363-r1 (23 Nov 2006)
+*gcc-apple-3.5.0_p3506-r1 (23 Nov 2006)
+
+  23 Nov 2006; Fabian Groffen <grobian@gentoo.org>
+  -gcc-apple-3.3_p1819.ebuild, -gcc-apple-3.5.0_p3506.ebuild,
+  +gcc-apple-3.5.0_p3506-r1.ebuild, -gcc-apple-4.0.1_p5363.ebuild,
+  +gcc-apple-4.0.1_p5363-r1.ebuild:
+  Removed 3.3 as it doesn't compile anyway, fixed 3.5.0 and 4.0.1 to use
+  --enable-version-specific-runtime-libs which installs runtime-libs, such as
+  libstdc++ and libgcc_s into usr/lib/${CHOST}/gcc/${VER}
+
 *gcc-apple-4.0.1_p5363 (10 Nov 2006)
 *gcc-apple-3.5.0_p3506 (10 Nov 2006)
 *gcc-apple-3.3_p1819 (10 Nov 2006)
