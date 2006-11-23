@@ -191,16 +191,6 @@ src_install() {
 	src_configure
 	make DESTDIR="${D}" altinstall maninstall || die
 
-	if [[ ${USERLAND} == "xDarwin" ]] ; then
-		mv ${S}/libpython.${PV}.{so,dylib} || die "oops, libpython.${PV}.so not found"
-		into /usr
-		dolib.so ${S}/libpython.${PV}.dylib
-		cd ${ED}
-		dosym /usr/lib/libpython.${PV}.dylib /usr/lib/libpython.2.4.dylib
-		dosym /usr/lib/libpython.${PV}.dylib /usr/lib/libpython.2.dylib
-		dosym /usr/lib/libpython.${PV}.dylib /usr/lib/libpython.dylib
-	fi
-
 	# install our own custom python-config
 	exeinto /usr/bin
 	doexe ${FILESDIR}/python-config-${PYVER}
