@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r2.ebuild,v 1.22 2006/10/17 08:21:23 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r2.ebuild,v 1.24 2006/11/19 19:31:18 mcummings Exp $
 
 EAPI="prefix"
 
@@ -18,7 +18,7 @@ SRC_URI="mirror://cpan/src/${MY_P}.tar.bz2"
 HOMEPAGE="http://www.perl.org/"
 LIBPERL="libperl$(get_libname ${PERLSLOT}.${SHORT_PV})"
 
-LICENSE="Artistic GPL-2"
+LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="berkdb debug doc gdbm ithreads perlsuid build"
@@ -125,6 +125,8 @@ src_unpack() {
 	cd ${S}; epatch ${FILESDIR}/${P}-links.patch
 	# c++ patch - should address swig related items
 	cd ${S}; epatch ${FILESDIR}/${P}-cplusplus.patch
+
+	has_version '>=sys-devel/gcc-4.2' && epatch ${FILESDIR}/${P}-gcc42-command-line.patch
 
 }
 

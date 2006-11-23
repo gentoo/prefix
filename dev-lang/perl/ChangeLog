@@ -1,6 +1,17 @@
 # ChangeLog for dev-lang/perl
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.232 2006/10/23 19:35:29 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.234 2006/11/19 19:31:18 mcummings Exp $
+
+  19 Nov 2006; Michael Cummings <mcummings@gentoo.org>
+  +files/perl-5.8.8-gcc42-command-line.patch, perl-5.8.8-r2.ebuild:
+  Bug 144965, gcc-4.2 bug/patch, patch provided by dirtyepic
+
+  18 Nov 2006; Michael Cummings <mcummings@gentoo.org>
+  -files/perl-5.8.7-CAN-2005-0448-rmtree.patch,
+  -files/perl-5.8.7-regexp-nossp.patch, -files/perl-5.8.7-tempfiles.patch,
+  -files/perl-exp_intwrap.patch, -files/perl-nonblock.patch,
+  -files/perl-reorder-INC.patch, perl-5.8.8-r2.ebuild:
+  Bug 150702; also cleaned up unused patches
 
   23 Oct 2006; Michael Cummings <mcummings@gentoo.org>
   -perl-5.8.7-r3.ebuild:
