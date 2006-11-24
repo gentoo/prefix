@@ -1,6 +1,40 @@
 # ChangeLog for perl-core/Test-Simple
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Simple/ChangeLog,v 1.21 2006/10/15 20:55:30 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Simple/ChangeLog,v 1.29 2006/11/11 00:01:56 mcummings Exp $
+
+*Test-Simple-0.65 (11 Nov 2006)
+
+  11 Nov 2006; Michael Cummings <mcummings@gentoo.org>
+  +Test-Simple-0.65.ebuild:
+  Version bump
+
+  05 Nov 2006; Christian Faulhammer <opfer@gentoo.org>
+  Test-Simple-0.64.ebuild:
+  stabled x86, bug #153488
+
+  23 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  Test-Simple-0.64.ebuild:
+  Stable on hppa
+
+  21 Oct 2006; Bryan Østergaard <kloeri@gentoo.org>
+  Test-Simple-0.64.ebuild:
+  Stable on Alpha.
+
+  21 Oct 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  Test-Simple-0.64.ebuild:
+  ppc stable
+
+  20 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  -Test-Simple-0.54.ebuild:
+  Removing old ebuild
+
+  20 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Simple-0.63.ebuild:
+  Marking amd64 stable
+
+  20 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Simple-0.63.ebuild:
+  Marking sparc stable
 
   15 Oct 2006; Michael Cummings <mcummings@gentoo.org>
   Test-Simple-0.64.ebuild:
