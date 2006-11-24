@@ -1,0 +1,50 @@
+# ChangeLog for dev-perl/Text-CSV_XS
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-CSV_XS/ChangeLog,v 1.5 2006/08/06 00:19:55 mcummings Exp $
+
+  06 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Text-CSV_XS-0.23-r1.ebuild:
+  Adding perl dep; fixed header; fixed DEPEND
+
+  02 Oct 2005; Aron Griffis <agriffis@gentoo.org>
+  Text-CSV_XS-0.23-r1.ebuild:
+  Mark 0.23-r1 stable on ia64
+
+  26 Aug 2005; Aron Griffis <agriffis@gentoo.org>
+  Text-CSV_XS-0.23-r1.ebuild:
+  add ~ia64
+
+*Text-CSV_XS-0.23-r1 (23 Apr 2005)
+
+  23 Apr 2005; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +Text-CSV_XS-0.23-r1.ebuild:
+  In place migration, bugs 76913 and 76775 - misnamed, or more accurately, the
+  name shifted upstream when it was realized the package conflicted
+  namespaces.
+
+  20 Mar 2005; Yuta SATOH <nigoro@gentoo.org> Text-CSV-0.23-r1.ebuild:
+  Stable on ppc64
+
+  23 Dec 2004; Yuta SATOH <nigoro@gentoo.org> Text-CSV-0.23-r1.ebuild:
+  added ~ppc64
+
+*Text-CSV-0.23-r1 (21 Jun 2003)
+ 
+  12 Jul 2003; Daniel Ahlberg <aliz@gentoo.org> :
+  Added missing changelog entry.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+  29 Oct 2002; Seemant Kulleen <seemant@gentoo.org> ChangeLog  :
+  forced version bump to install into correct locations
+
+*Text-CSV-0.23 (28 Jun 2002)
+
+  1 Aug 2002; Calum Selkirk <cselkirk@gentoo.org> Text-CSV-0.23.ebuild :
+
+  Added ppc to KEYWORDS.
+
+  28 Jun 2002; Seemant Kulleen <seemant@gentoo.org> Text-CSV-0.23.ebuild
+  files/digest-Text-CSV-0.23 :
+
+  New package, courtesy of: rac@intrigue.com (Robert Coie) in bug #4045
