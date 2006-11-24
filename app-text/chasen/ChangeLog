@@ -1,0 +1,104 @@
+# ChangeLog for app-text/chasen
+# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/chasen/ChangeLog,v 1.25 2006/08/01 15:06:37 usata Exp $
+
+  01 Aug 2006; Mamoru KOMACHI <usata@gentoo.org> chasen-2.3.3-r3.ebuild:
+  Fix broken perl XS module for the first build.
+
+  10 Jul 2006; Mamoru KOMACHI <usata@gentoo.org> chasen-2.3.3-r3.ebuild,
+  -chasen-2.4.0_pre1.ebuild, chasen-2.4.0_pre1-r1.ebuild:
+  Text::ChaSen from chasen distribution conflicts with dev-perl/Text-ChaSen.
+  (They are the same software but with different versions)
+
+  26 Jun 2006; Mamoru KOMACHI <usata@gentoo.org>
+  +files/chasen-2.3.3-darts-0.3.patch, chasen-2.3.3-r3.ebuild:
+  Fixed compilation with the latest darts.
+
+  18 Dec 2005; Mamoru KOMACHI <usata@gentoo.org> chasen-2.3.3-r3.ebuild,
+  chasen-2.4.0_pre1-r1.ebuild:
+  Added eutils for epatch. Applied gcc34 patch to 2.3.x branch as well.
+
+  28 Nov 2005; <mcumming@gentoo.org> chasen-2.3.3-r3.ebuild,
+  chasen-2.4.0_pre1-r1.ebuild, chasen-2.4.0_pre1.ebuild:
+  Switched from perl-module to perl-app eclass
+
+  28 Aug 2005; Simon Stelling <blubb@gentoo.org> chasen-2.3.3-r3.ebuild,
+  chasen-2.4.0_pre1.ebuild, chasen-2.4.0_pre1-r1.ebuild:
+  removing append-flags -fPIC, not needed anymore
+
+  06 May 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  chasen-2.3.3-r3.ebuild:
+  Stable on sparc
+
+  05 Mar 2005; Markus Rothe <corsair@gentoo.org> chasen-2.4.0_pre1-r1.ebuild:
+  Stable on ppc64
+
+*chasen-2.4.0_pre1-r1 (02 Jan 2005)
+
+  02 Jan 2005; Markus Rothe <corsair@gentoo.org>
+  +files/chasen-2.4.0_pre1-gcc34.patch, +chasen-2.4.0_pre1-r1.ebuild:
+  Revision bump to add gcc34 patch; added ~ppc64 to KEYWORDS; bug #72909
+
+  21 Oct 2004; Michael Sterrett <mr_bones_@gentoo.org> -chasen-2.3.3.ebuild:
+  clean older buggy ebuild
+
+  19 Oct 2004; Dylan Carlson <absinthe@gentoo.org> chasen-2.3.3-r3.ebuild:
+  Stable on amd64.
+
+  27 Sep 2004; Mamoru KOMACHI <usata@gentoo.org> chasen-2.3.3-r3.ebuild:
+  Stable on x86 and ppc.
+
+*chasen-2.4.0_pre1 (07 Sep 2004)
+
+  07 Sep 2004; Mamoru KOMACHI <usata@gentoo.org> -chasen-2.3.1.ebuild,
+  -chasen-2.3.2.ebuild, -chasen-2.3.3-r1.ebuild, -chasen-2.3.3-r2.ebuild,
+  +chasen-2.4.0_pre1.ebuild:
+  Added development version. Cleaned out ebuilds.
+
+*chasen-2.3.3-r3 (30 Aug 2004)
+
+  30 Aug 2004; Guy Martin <gmsoft@gentoo.org> +chasen-2.3.3-r3.ebuild:
+  Unconditonal use of -fPIC (#55238).
+
+*chasen-2.3.3-r2 (24 Jul 2004)
+
+  24 Jul 2004; MATSUU Takuto <matsuu@gentoo.org> +chasen-2.3.3-r2.ebuild:
+  Fixed amd64 problems(added -fPIC).
+
+*chasen-2.3.3-r1 (22 Jul 2004)
+
+  22 Jul 2004; MATSUU Takuto <matsuu@gentoo.org> +chasen-2.3.3-r1.ebuild:
+  Fixed unusable perl module. Bug #50904.
+  Fixed LICENSE. Bug #50902.
+
+  02 Jun 2004; Aron Griffis <agriffis@gentoo.org> chasen-2.3.1.ebuild,
+  chasen-2.3.2.ebuild, chasen-2.3.3.ebuild:
+  Fix use invocation
+
+  25 Apr 2004; Mamoru KOMACHI <usata@gentoo.org> chasen-2.3.1.ebuild,
+  chasen-2.3.2.ebuild, chasen-2.3.3.ebuild:
+  Marked stable on x86. Don't assign default to S
+
+  18 Apr 2004; <matsuu@gentoo.org> chasen-2.3.3.ebuild:
+  Added ~ppc and ~sparc to KEYWORDS.
+
+  07 Mar 2004; Jon Portnoy <avenj@gentoo.org> chasen-2.3.3.ebuild :
+  AMD64 keywords.
+
+*chasen-2.3.3 (21 Sep 2003)
+
+  21 Sep 2003; MATSUU Takuto <matsuu@gentoo.org> chasen-2.3.3.ebuild:
+  version bump.
+
+*chasen-2.3.2 (03 Aug 2003)
+
+  03 Aug 2003; MATSUU Takuto <matsuu@gentoo.org> chasen-2.3.2.ebuild:
+  version bump.
+
+*chasen-2.3.1 (21 Jun 2003)
+
+  21 Jun 2003; YAMAKURA Makoto <yakina@gentoo.org> chasen-2.3.1.ebuild,
+  Manifest,ChangeLog,files/digest-chasen-2.3.1:
+
+  Initial import. Ebuild submitted by MATSUU Takuto <matsuu@7501.net>
+

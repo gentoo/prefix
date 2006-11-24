@@ -1,0 +1,12 @@
+diff -urN chasen-2.3.3/lib/dartsdic.cpp chasen-2.3.3-darts-0.3/lib/dartsdic.cpp
+--- chasen-2.3.3/lib/dartsdic.cpp	2003-07-31 01:06:57.000000000 +0900
++++ chasen-2.3.3-darts-0.3/lib/dartsdic.cpp	2006-06-27 04:28:27.000000000 +0900
+@@ -68,7 +68,7 @@
+ 
+     da = (darts_t*)cha_malloc(sizeof(darts_t));
+     da->da_mmap = cha_mmap_file(daname);
+-    darts->setArray(cha_mmap_map(da->da_mmap));
++    darts->set_array(cha_mmap_map(da->da_mmap));
+     da->da = darts;
+     da->lex_mmap = cha_mmap_file(lexname);
+     da->dat_mmap = cha_mmap_file(datname);
