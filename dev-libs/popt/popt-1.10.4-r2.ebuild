@@ -1,8 +1,11 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/popt-1.10.4-r2.ebuild,v 1.2 2006/10/24 19:16:50 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/popt-1.10.4-r2.ebuild,v 1.6 2006/11/12 03:55:04 vapier Exp $
 
 EAPI="prefix"
+
+WANT_AUTOCONF="latest"
+WANT_AUTOMAKE="1.9"
 
 inherit flag-o-matic autotools
 

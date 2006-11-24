@@ -1,6 +1,29 @@
 # ChangeLog for dev-libs/popt
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.39 2006/10/24 19:16:50 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.45 2006/11/08 17:12:01 drizzt Exp $
+
+  08 Nov 2006; Timothy Redaelli <drizzt@gentoo.org> popt-1.10.4-r3.ebuild:
+  Keyworded ~ppc, wrt bug 121862.
+
+  07 Nov 2006; Sandro Bonazzola <sanchan@gentoo.org> popt-1.10.4-r3.ebuild:
+  Readding dropped keywords.
+
+*popt-1.10.4-r3 (07 Nov 2006)
+
+  07 Nov 2006; Sandro Bonazzola <sanchan@gentoo.org>
+  +files/popt-1.10.4-regression.patch, metadata.xml, +popt-1.10.4-r3.ebuild:
+  Version bump, including a fix for a regression found by wormo@gentoo.org and
+  fixed with a patch provided by drizzt@gentoo.org, last fix needed for bug
+  #121862.
+
+  05 Nov 2006; Bryan Østergaard <kloeri@gentoo.org> popt-1.10.4-r2.ebuild:
+  Add ~alpha keyword.
+
+  03 Nov 2006; Jason Wever <weeve@gentoo.org> popt-1.10.4-r2.ebuild:
+  Added ~sparc keyword wrt bug #121862.
+
+  02 Nov 2006; Diego Pettenò <flameeyes@gentoo.org> popt-1.10.4-r2.ebuild:
+  Add versioned dependencies over autoconf/automake.
 
   24 Oct 2006; Fabian Groffen <grobian@gentoo.org> popt-1.7-r1.ebuild,
   popt-1.10.4-r1.ebuild, popt-1.10.4-r2.ebuild:
