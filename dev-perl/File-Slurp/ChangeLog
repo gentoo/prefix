@@ -1,0 +1,130 @@
+# ChangeLog for dev-perl/File-Slurp
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Slurp/ChangeLog,v 1.33 2006/10/10 21:09:04 mcummings Exp $
+
+  10 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  files/digest-File-Slurp-9999.09, Manifest:
+  Updating manifest, bug 150827
+
+  09 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  File-Slurp-9999.11.ebuild, File-Slurp-9999.12.ebuild:
+  Cleaning up stale ebuilds
+
+  16 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  File-Slurp-9999.12.ebuild:
+  ppc stable
+
+  07 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  File-Slurp-9999.12.ebuild:
+  Marking stable amd64
+
+  05 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  File-Slurp-9999.09.ebuild, File-Slurp-9999.11.ebuild,
+  File-Slurp-9999.12.ebuild:
+  Adding perl dep; fixed DEPEND
+
+  19 Jul 2006; Bryan Østergaard <kloeri@gentoo.org>
+  File-Slurp-9999.12.ebuild:
+  Stable on alpha.
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org> File-Slurp-9999.12.ebuild:
+  Mark 9999.12 stable on ia64
+
+  29 Jun 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  File-Slurp-9999.12.ebuild:
+  Stable on hppa
+
+  12 Jun 2006; Michael Cummings <mcummings@gentoo.org>
+  File-Slurp-9999.12.ebuild:
+  Actual stable mark - sorry
+
+  12 Jun 2006; Michael Cummings <mcummings@gentoo.org> Manifest:
+  Marking stable sparc
+
+*File-Slurp-9999.12 (26 Apr 2006)
+
+  26 Apr 2006; <mcummings@gentoo.org> +File-Slurp-9999.12.ebuild:
+  Version bump
+
+  20 Apr 2006; Thomas Cort <tcort@gentoo.org> File-Slurp-9999.11.ebuild:
+  Stable on alpha wrt Bug #124854.
+
+  13 Mar 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  File-Slurp-9999.11.ebuild:
+  hppa stable wrt #124854
+
+  09 Mar 2006; Aron Griffis <agriffis@gentoo.org> File-Slurp-9999.11.ebuild:
+  Mark 9999.11 stable on ia64
+
+  05 Mar 2006; Joshua Jackson <tsunam@gentoo.org> File-Slurp-9999.11.ebuild:
+  stable on x86; bug #124854
+
+  05 Mar 2006; Jason Wever <weeve@gentoo.org> File-Slurp-9999.11.ebuild:
+  Stable on SPARC wrt bug #124854.
+
+  04 Mar 2006; <nixnut@gentoo.org> File-Slurp-9999.11.ebuild:
+  Stable on ppc. bug 124854
+
+  03 Mar 2006; Chris White <chriswhite@gentoo.org>
+  -File-Slurp-9999.06.ebuild, File-Slurp-9999.11.ebuild:
+  Cleaned up older versions.  File-Slurp-9999.11 amd64 stable.
+
+  04 Feb 2006; Aron Griffis <agriffis@gentoo.org> File-Slurp-9999.09.ebuild:
+  Mark 9999.09 stable on ia64
+
+  31 Jan 2006; Aron Griffis <agriffis@gentoo.org> File-Slurp-9999.09.ebuild:
+  Mark 9999.09 stable on alpha
+
+*File-Slurp-9999.11 (22 Jan 2006)
+
+  22 Jan 2006; Michael Cummings <mcummings@gentoo.org>
+  +File-Slurp-9999.11.ebuild:
+  Version bump
+
+  18 Jan 2006; Guy Martin <gmsoft@gentoo.org> File-Slurp-9999.09.ebuild:
+  Stable on hppa.
+
+  15 Jan 2006; Michael Hanselmann <hansmi@gentoo.org>
+  File-Slurp-9999.09.ebuild:
+  Stable on ppc.
+
+  13 Jan 2006; Michael Cummings <mcummings@gentoo.org>
+  File-Slurp-9999.09.ebuild:
+  Marking stable sparc x86
+
+*File-Slurp-9999.09 (20 Nov 2005)
+
+  20 Nov 2005; Aaron Kulbe <superlag@gentoo.org> +File-Slurp-9999.09.ebuild:
+  Version bump upstream.
+
+  02 Oct 2005; Aron Griffis <agriffis@gentoo.org> File-Slurp-9999.06.ebuild:
+  Mark 9999.06 stable on ia64
+
+  08 Sep 2005; Aron Griffis <agriffis@gentoo.org> File-Slurp-9999.06.ebuild:
+  Mark 9999.06 stable on alpha
+
+  25 Aug 2005; Aron Griffis <agriffis@gentoo.org> File-Slurp-9999.06.ebuild:
+  add ~ia64
+
+  24 Apr 2005; Michael Hanselmann <hansmi@gentoo.org>
+  File-Slurp-9999.06.ebuild:
+  Stable on ppc.
+
+  09 Apr 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  File-Slurp-9999.06.ebuild:
+  Stable on sparc
+
+  14 Mar 2005; Michael Cummings <mcummings@gentoo.org>
+  File-Slurp-9999.06.ebuild:
+  Adding keywords that were added by other devs to packages that dep this one(?)
+
+  22 Jan 2005; Michael Cummings <mcummings@gentoo.org>
+  File-Slurp-9999.06.ebuild:
+  Unmasking for x86
+
+*File-Slurp-9999.06 (06 Oct 2004)
+
+  06 Oct 2004; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +File-Slurp-9999.06.ebuild:
+  Dep for Plucene - perl port of lucene
+
