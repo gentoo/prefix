@@ -1,0 +1,14 @@
+# ChangeLog for dev-perl/Text-CSV-Simple
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-CSV-Simple/ChangeLog,v 1.2 2006/09/17 00:09:58 mcummings Exp $
+
+  17 Sep 2006; Michael Cummings <mcummings@gentoo.org>
+  Text-CSV-Simple-1.00.ebuild:
+  Keywording ~amd64
+
+*Text-CSV-Simple-1.00 (23 May 2006)
+
+  23 May 2006; Christian Hartmann <ian@gentoo.org> +metadata.xml,
+  +Text-CSV-Simple-1.00.ebuild:
+  New package. Fixes bug 122118.
+
