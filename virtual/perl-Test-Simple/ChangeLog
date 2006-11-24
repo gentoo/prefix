@@ -1,0 +1,64 @@
+# ChangeLog for virtual/perl-Test-Simple
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Test-Simple/ChangeLog,v 1.12 2006/11/11 00:03:04 mcummings Exp $
+
+*perl-Test-Simple-0.65 (11 Nov 2006)
+
+  11 Nov 2006; Michael Cummings <mcummings@gentoo.org>
+  +perl-Test-Simple-0.65.ebuild:
+  Version bump
+
+  05 Nov 2006; Christian Faulhammer <opfer@gentoo.org>
+  perl-Test-Simple-0.64.ebuild:
+  stabled x86, bug #153488
+
+  23 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  perl-Test-Simple-0.64.ebuild:
+  Stable on hppa
+
+  21 Oct 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  perl-Test-Simple-0.64.ebuild:
+  ppc stable
+
+  15 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  perl-Test-Simple-0.64.ebuild:
+  Marking amd64, sparc stable
+
+*perl-Test-Simple-0.64 (23 Jul 2006)
+
+  23 Jul 2006; Michael Cummings <mcummings@gentoo.org>
+  +perl-Test-Simple-0.64.ebuild:
+  Version bump
+
+*perl-Test-Simple-0.63 (10 Jul 2006)
+
+  10 Jul 2006; Christian Hartmann <ian@gentoo.org>
+  -perl-Test-Simple-0.47.ebuild, -perl-Test-Simple-0.53.ebuild,
+  -perl-Test-Simple-0.54.ebuild, -perl-Test-Simple-0.60.ebuild,
+  +perl-Test-Simple-0.63.ebuild:
+  Version bump; removed obsolete versions
+
+  24 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  perl-Test-Simple-0.62.ebuild:
+  Add ~x86-fbsd keyword.
+
+  26 Feb 2006; Joshua Kinard <kumba@gentoo.org>
+  perl-Test-Simple-0.62.ebuild:
+  Marked stable on mips.
+
+  13 Feb 2006; Michael Cummings <mcummings@gentoo.org>
+  perl-Test-Simple-0.54.ebuild, perl-Test-Simple-0.62.ebuild:
+  Updated RDEPS
+
+*perl-Test-Simple-0.62 (06 Feb 2006)
+*perl-Test-Simple-0.60 (06 Feb 2006)
+*perl-Test-Simple-0.54 (06 Feb 2006)
+*perl-Test-Simple-0.53 (06 Feb 2006)
+*perl-Test-Simple-0.47 (06 Feb 2006)
+
+  06 Feb 2006; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +perl-Test-Simple-0.47.ebuild, +perl-Test-Simple-0.53.ebuild,
+  +perl-Test-Simple-0.54.ebuild, +perl-Test-Simple-0.60.ebuild,
+  +perl-Test-Simple-0.62.ebuild:
+  New virtual for perl-core/Test-Simple
+
