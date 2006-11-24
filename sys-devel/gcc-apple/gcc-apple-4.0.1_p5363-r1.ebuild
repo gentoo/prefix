@@ -133,6 +133,7 @@ src_install() {
 	make DESTDIR="${D}" install || die
 
 	use build && rm -rf "${ED}"/usr/{man,share}
+	find "${ED}" -name libiberty.a -exec rm -f {} \;
 
 	# create gcc-config entry
 	dodir /etc/env.d/gcc

@@ -2,6 +2,11 @@
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Nov 2006; Fabian Groffen <grobian@gentoo.org>
+  gcc-apple-3.5.0_p3506-r1.ebuild, gcc-apple-4.0.1_p5363-r1.ebuild:
+  Don't install libiberty.a as this prevents installing multiple compilers
+  and isn't stricktly necessary.
+
 *gcc-apple-4.0.1_p5363-r1 (23 Nov 2006)
 *gcc-apple-3.5.0_p3506-r1 (23 Nov 2006)
 
