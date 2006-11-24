@@ -1,0 +1,93 @@
+# ChangeLog for dev-perl/Algorithm-Diff
+# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Algorithm-Diff/ChangeLog,v 1.24 2006/09/16 20:23:03 dertobi123 Exp $
+
+  16 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  Algorithm-Diff-1.1901.ebuild:
+  ppc stable
+
+  17 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Algorithm-Diff-1.1901.ebuild:
+  Marking amd64 stable
+
+  04 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Algorithm-Diff-1.15.ebuild, Algorithm-Diff-1.1901.ebuild:
+  Adding perl dep; fixed header; fixed DEPEND
+
+  03 Jul 2006; Christian Hartmann <ian@gentoo.org>
+  Algorithm-Diff-1.1901.ebuild:
+  Fixed RDEPEND wrt bug #134781
+
+  22 Jun 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  Algorithm-Diff-1.1901.ebuild:
+  Stable on sparc
+
+  20 Feb 2006; Markus Rothe <corsair@gentoo.org>
+  Algorithm-Diff-1.1901.ebuild:
+  Stable on ppc64
+
+  14 Oct 2005; Aron Griffis <agriffis@gentoo.org>
+  Algorithm-Diff-1.1901.ebuild:
+  Mark 1.1901 stable on alpha
+
+  03 Oct 2005; Aron Griffis <agriffis@gentoo.org>
+  Algorithm-Diff-1.1901.ebuild:
+  Mark 1.1901 stable on ia64
+
+  19 Sep 2005; Olivier Fisette <ribosome@gentoo.org> metadata.xml:
+  Removed Stephen Diener (MIA) as maintainer.
+
+  25 Aug 2005; Aron Griffis <agriffis@gentoo.org>
+  Algorithm-Diff-1.1901.ebuild:
+  add ~ia64
+
+  21 May 2005; Simon Stelling <blubb@gentoo.org>
+  Algorithm-Diff-1.1901.ebuild:
+  added app-arch/unzip to dependancies
+
+  01 May 2005; Michael Hanselmann <hansmi@gentoo.org>
+  Algorithm-Diff-1.15.ebuild:
+  Stable on ppc.
+
+*Algorithm-Diff-1.1901 (23 Apr 2005)
+
+  23 Apr 2005; Michael Cummings <mcummings@gentoo.org>
+  +Algorithm-Diff-1.1901.ebuild:
+  version bump
+
+  22 Apr 2005; Simon Stelling <blubb@gentoo.org> Algorithm-Diff-1.15.ebuild:
+  stable on amd64
+
+  28 Mar 2005; Michael Cummings <mcummings@gentoo.org>
+  Algorithm-Diff-1.15.ebuild:
+  Mirror syntax
+
+  15 Mar 2005; Yuta SATOH <nigoro@gentoo.org> Algorithm-Diff-1.15.ebuild:
+  Stable on ppc64
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  28 Dec 2004; Dylan Carlson <absinthe@gentoo.org>
+  Algorithm-Diff-1.15.ebuild:
+  Keywords ~amd64.
+
+  23 Dec 2004; Yuta SATOH <nigoro@gentoo.org> Algorithm-Diff-1.15.ebuild:
+  added ~ppc64
+
+  19 Jun 2004; Jason Wever <weeve@gentoo.org> Algorithm-Diff-1.15.ebuild:
+  Stable on sparc.
+
+  24 May 2004; Bryan Østergaard <kloeri@gentoo.org>
+  Algorithm-Diff-1.15.ebuild:
+  Stable on alpha.
+
+  19 Apr 2004; Patrick Kursawe <phosphan@gentoo.org>
+  Algorithm-Diff-1.15.ebuild:
+  Removed S=... with no effect, added IUSE
+
+*Algorithm-Diff-1.15 (29 Sep 2003)
+
+  29 Sep 2003; <sediener@gentoo.org> Algorithm-Diff-1.15.ebuild:
+  Initial import. required for app-sci/bioperl-run.
+
