@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-wrapper/autoconf-wrapper-3.2-r2.ebuild,v 1.8 2006/11/07 19:11:53 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-wrapper/autoconf-wrapper-3.2-r2.ebuild,v 1.9 2006/11/24 16:25:25 corsair Exp $
 
 EAPI="prefix"
 
