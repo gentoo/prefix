@@ -86,7 +86,7 @@ cmp_ebuild_ver() {
 	local cnt=1
 	# start "eating" the version from the left, comparing the numbers,
 	# following an exit-early approach
-	while [[ $lver != "" ]] && [[ $rver != "" ]] ; do
+	while [[ $lver != "" ]] || [[ $rver != "" ]] ; do
 		# get the "head" component
 		local la=${lver%%.*}
 		local ra=${rver%%.*}
