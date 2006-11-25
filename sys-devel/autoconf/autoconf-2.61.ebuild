@@ -1,10 +1,8 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.60.ebuild,v 1.13 2006/11/24 16:26:29 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.61.ebuild,v 1.1 2006/11/17 20:17:26 vapier Exp $
 
 EAPI="prefix"
-
-inherit eutils
 
 DESCRIPTION="Used to create autoconfiguration files"
 HOMEPAGE="http://www.gnu.org/software/autoconf/autoconf.html"
@@ -19,13 +17,7 @@ DEPEND=">=sys-apps/texinfo-4.3
 	>=sys-devel/m4-1.4.6
 	dev-lang/perl"
 RDEPEND="${DEPEND}
-	>=sys-devel/autoconf-wrapper-3.2-r1"
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-tests.patch
-}
+	>=sys-devel/autoconf-wrapper-4-r2"
 
 src_compile() {
 	(use emacs && type -p emacs) \
@@ -41,12 +33,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die
 	dodoc AUTHORS BUGS NEWS README TODO THANKS \
 		ChangeLog ChangeLog.0 ChangeLog.1 ChangeLog.2
-}
-
-pkg_postinst() {
-	einfo "Please note that the 'WANT_AUTOCONF_2_5=1' syntax is now:"
-	einfo "  WANT_AUTOCONF=2.5"
 }
