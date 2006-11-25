@@ -1,0 +1,98 @@
+# ChangeLog for app-portage/euses
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/euses/ChangeLog,v 1.21 2006/11/24 22:18:20 jer Exp $
+
+*euses-2.5.3 (24 Nov 2006)
+
+  24 Nov 2006; Jeroen Roovers <jer@gentoo.org> -euses-2.5.2.ebuild,
+  +euses-2.5.3.ebuild:
+  Fix bug #156146. Thanks go to Martin von Gagern for the reminder to actually
+  publish the fixed version.
+
+*euses-2.5.2 (22 Nov 2006)
+
+  22 Nov 2006; Jeroen Roovers <jer@gentoo.org> euses-2.4.3.ebuild,
+  -euses-2.5.0-r1.ebuild, -euses-2.5.1.ebuild, +euses-2.5.2.ebuild:
+  Revisited WANT_AUTO*, removed bad bad bad versions. Added nice version.
+
+*euses-2.5.1 (20 Nov 2006)
+
+  20 Nov 2006; Jeroen Roovers <jer@gentoo.org> -euses-2.5.0.ebuild,
+  +euses-2.5.1.ebuild:
+  Version bump. Possibly fixes bug #140321.
+
+*euses-2.5.0-r1 (18 Nov 2006)
+
+  18 Nov 2006; Jeroen Roovers <jer@gentoo.org> +files/euses-2.5.0.patch,
+  +euses-2.5.0-r1.ebuild:
+  Patched 2.5.0 with fixes suggested on bug #140321. Removed redundant
+  src_compile().
+
+  18 Nov 2006; Jeroen Roovers <jer@gentoo.org> -euses-2.5.0_pre1.ebuild:
+  Removed ancient preview.
+
+*euses-2.5.0 (18 Nov 2006)
+
+  18 Nov 2006; Jeroen Roovers <jer@gentoo.org> +euses-2.5.0.ebuild:
+  Version bump.
+
+  08 Nov 2006; Jeroen Roovers <jer@gentoo.org> euses-2.4.3.ebuild,
+  euses-2.5.0_pre1.ebuild:
+  euses does not care about a specific version for WANT_AUTOMAKE.
+
+  08 Nov 2006; Jeroen Roovers <jer@gentoo.org> euses-2.4.3.ebuild,
+  euses-2.5.0_pre1.ebuild:
+  Fix WANT_AUTOMAKE.
+
+  19 Apr 2006; Jeroen Roovers <jer@gentoo.org> metadata.xml:
+  Added name tag to metadata.xml
+
+  17 Feb 2006; Scott Stoddard <deltacow@gentoo.org> euses-2.4.3.ebuild:
+  Stable on amd64; bug #122885.
+
+  16 Feb 2006; Joshua Jackson <tsunam@gentoo.org> euses-2.4.3.ebuild:
+  Stable on x86; bug #122885
+
+  15 Feb 2006; Jeroen Roovers <jer@gentoo.org> -euses-2.4.2.ebuild,
+  euses-2.4.3.ebuild:
+  Removed 2.4.2, marked 2.4.3 stable on hppa (bug #122885).
+
+*euses-2.5.0_pre1 (01 Feb 2006)
+
+  01 Feb 2006; Jeroen Roovers <jer@gentoo.org> -euses-2.3.ebuild,
+  +euses-2.5.0_pre1.ebuild:
+  Removed old version, added spanking new one with lang.desc support.
+
+  05 Jan 2006; Jeroen Roovers <jer@gentoo.org> euses-2.4.3.ebuild:
+  hppa -> ~hppa for now.
+
+  05 Jan 2006; Jeroen Roovers <jer@gentoo.org> metadata.xml:
+  Corrected e-mail addy in metadata.xml
+
+*euses-2.4.3 (05 Jan 2006)
+
+  05 Jan 2006; <chainsaw@gentoo.org> metadata.xml, +euses-2.4.3.ebuild:
+  Version bump. Passed maintainership to ReJ.
+
+  04 Dec 2005; Jeroen Roovers <jer@gentoo.org> euses-2.3.ebuild,
+  euses-2.4.2.ebuild:
+  Stable on hppa
+
+  21 Nov 2005; Jeroen Roovers <jer@gentoo.org> euses-2.3.ebuild,
+  euses-2.4.2.ebuild:
+  Added ~hppa keyword
+
+  19 Nov 2005; <chainsaw@gentoo.org> euses-2.4.2.ebuild:
+  Also install upstream ChangeLog.
+
+*euses-2.4.2 (19 Nov 2005)
+
+  19 Nov 2005; <chainsaw@gentoo.org> euses-2.3.ebuild, +euses-2.4.2.ebuild:
+  Use autotools eclass. Add ~amd64 keyword. Version bump, closes bug #113017.
+
+*euses-2.3 (15 Oct 2005)
+
+  15 Oct 2005; Tony Vroon <chainsaw@gentoo.org> +metadata.xml,
+  +euses-2.3.ebuild:
+  Initial commit, ebuild based on the one by JeR <jer@xs4all.nl> in bug #92795.
+
