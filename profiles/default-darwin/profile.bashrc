@@ -2,8 +2,6 @@
 # installed into the live filesystem for non-sandbox people
 export EDEST=${D}/fix/your/package/it/uses/EDEST
 
-export DYLD_LIBRARY_PATH="${EPREFIX}/lib:${EPREFIX}/lib64:${EPREFIX}/usr/lib:${EPREFIX}/usr/lib64"
-
 # The linker in a prefixed system should look first in the prefix
 # directories (search path), then the (foreign) system directories
 # Because the Darwin linker complains when a directory does not exist,
