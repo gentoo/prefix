@@ -1,0 +1,38 @@
+# ChangeLog for dev-perl/Text-LevenshteinXS
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-LevenshteinXS/ChangeLog,v 1.8 2006/08/18 01:54:00 mcummings Exp $
+
+  18 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Text-LevenshteinXS-0.03.ebuild:
+  Marking amd64 stable
+
+  06 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Text-LevenshteinXS-0.03.ebuild:
+  Adding perl dep; fixed DEPEND
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org>
+  Text-LevenshteinXS-0.03.ebuild:
+  Mark 0.03 stable on ia64
+
+  04 Jul 2006; Michael Cummings <mcummings@gentoo.org>
+  Text-LevenshteinXS-0.03.ebuild:
+  Keywording ~amd64
+
+  30 Mar 2006; Aron Griffis <agriffis@gentoo.org>
+  Text-LevenshteinXS-0.03.ebuild:
+  Mark 0.03 ~ia64
+
+  13 Jan 2006; Michael Cummings <mcummings@gentoo.org>
+  Text-LevenshteinXS-0.03.ebuild:
+  Marking sparc x86 stable
+
+  13 Jan 2006; Michael Cummings <mcummings@gentoo.org>
+  Text-LevenshteinXS-0.03.ebuild:
+  Marking stable x86
+
+*Text-LevenshteinXS-0.03 (30 May 2005)
+
+  30 May 2005; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +Text-LevenshteinXS-0.03.ebuild:
+  Initial import, dep for misterhouse, bug 71006
+
