@@ -1,0 +1,32 @@
+# ChangeLog for dev-perl/IO-Compress-Base
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Compress-Base/ChangeLog,v 1.7 2006/11/17 13:00:56 gustavoz Exp $
+
+  17 Nov 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  IO-Compress-Base-2.001.ebuild:
+  Stable on sparc
+
+  15 Nov 2006; Markus Rothe <corsair@gentoo.org>
+  IO-Compress-Base-2.001.ebuild:
+  Added ~ppc64; bug #154244
+
+  15 Nov 2006; Jeroen Roovers <jer@gentoo.org>
+  IO-Compress-Base-2.001.ebuild:
+  Marked ~hppa (bug #154244).
+
+  10 Nov 2006; nixnut <nixnut@gentoo.org> IO-Compress-Base-2.001.ebuild:
+  Added ~ppc keyword wrt bug 154244
+
+  07 Nov 2006; Joshua Jackson <tsunam@gentoo.org>
+  IO-Compress-Base-2.001.ebuild:
+  Stable x86 for bug #154244
+
+  06 Nov 2006; Michael Cummings <mcummings@gentoo.org> +metadata.xml:
+  New dep for Compress-Zlib
+
+*IO-Compress-Base-2.001 (06 Nov 2006)
+
+  06 Nov 2006; Michael Cummings <mcummings@gentoo.org>
+  +IO-Compress-Base-2.001.ebuild:
+  New dep for Compress-Zlib
+
