@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/distcc
 # Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.158 2006/08/14 16:53:22 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.159 2006/11/17 16:46:07 flameeyes Exp $
+
+  17 Nov 2006; Diego Pettenò <flameeyes@gentoo.org>
+  distcc-2.18.3-r10.ebuild:
+  Add ~sparc-fbsd keyword.
 
   14 Aug 2006; Christian Heim <phreak@gentoo.org> distcc-2.16-r2.ebuild,
   distcc-2.16-r3.ebuild, distcc-2.18.3-r6.ebuild, distcc-2.18.3-r7.ebuild,
