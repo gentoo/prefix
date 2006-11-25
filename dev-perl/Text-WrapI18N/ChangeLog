@@ -1,0 +1,55 @@
+# ChangeLog for dev-perl/Text-WrapI18N
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-WrapI18N/ChangeLog,v 1.13 2006/10/20 20:12:13 kloeri Exp $
+
+  20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org>
+  Text-WrapI18N-0.06.ebuild:
+  Stable on Alpha.
+
+  11 Oct 2006; Jeroen Roovers <jer@gentoo.org> Text-WrapI18N-0.06.ebuild:
+  Marked ~hppa (bug #144414).
+
+  29 Aug 2006; Bryan Østergaard <kloeri@gentoo.org>
+  Text-WrapI18N-0.06.ebuild:
+  Add ~alpha keyword.
+
+  19 Aug 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  Text-WrapI18N-0.06.ebuild:
+  Added ~ppc
+
+  18 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Text-WrapI18N-0.06.ebuild:
+  Marking amd64 stable
+
+  06 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Text-WrapI18N-0.06.ebuild:
+  Adding perl dep; fixed DEPEND
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org> Text-WrapI18N-0.06.ebuild:
+  Mark 0.06 stable on ia64
+
+  05 Jul 2006; Christian Hartmann <ian@gentoo.org>
+  Text-WrapI18N-0.06.ebuild:
+  Fixed RDEPEND wrt bug #134781
+
+  28 Jun 2006; Michael Cummings <mcummings@gentoo.org>
+  Text-WrapI18N-0.06.ebuild:
+  Keywording ~amd64
+
+  30 Mar 2006; Aron Griffis <agriffis@gentoo.org> Text-WrapI18N-0.06.ebuild:
+  Mark 0.06 ~ia64
+
+  13 Jan 2006; Michael Cummings <mcummings@gentoo.org>
+  Text-WrapI18N-0.06.ebuild:
+  Marking sparc x86 stable
+
+  13 Jan 2006; Michael Cummings <mcummings@gentoo.org>
+  Text-WrapI18N-0.06.ebuild:
+  Marking stable x86
+
+*Text-WrapI18N-0.06 (16 Apr 2005)
+
+  16 Apr 2005; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +Text-WrapI18N-0.06.ebuild:
+  Dep for po4a, ebuild from Jordi Vilalta <jvprat@wanadoo.es>, closes bug 80350
+
