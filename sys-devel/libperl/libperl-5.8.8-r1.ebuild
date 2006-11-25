@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/libperl-5.8.8-r1.ebuild,v 1.14 2006/08/15 13:48:22 ian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/libperl-5.8.8-r1.ebuild,v 1.19 2006/11/19 19:27:21 mcummings Exp $
 
 # The basic theory based on comments from Daniel Robbins <drobbins@gentoo.org>.
 #
@@ -69,7 +69,7 @@ SRC_URI="mirror://cpan/src/${MY_P}.tar.bz2"
 HOMEPAGE="http://www.perl.org"
 SLOT="${PERLSLOT}"
 LIBPERL="libperl$(get_libname ${PERLSLOT}.${SHORT_PV})"
-LICENSE="Artistic GPL-2"
+LICENSE="|| ( Artistic GPL-2 )"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 
 # rac 2004.08.06
@@ -84,7 +84,8 @@ RESTRICT="test"
 
 DEPEND="!elibc_uclibc? ( sys-apps/groff )
 	berkdb? ( sys-libs/db )
-	gdbm? ( >=sys-libs/gdbm-1.8.0 )"
+	gdbm? ( >=sys-libs/gdbm-1.8.0 )
+	elibc_FreeBSD? ( sys-freebsd/freebsd-mk-defs )"
 
 RDEPEND="
 	berkdb? ( sys-libs/db )
@@ -124,10 +125,6 @@ src_unpack() {
 	cd ${S};
 	use userland_Darwin || epatch ${FILESDIR}/${PN}-create-libperl-soname.patch
 
-	# uclibc support - dragonheart 2004.06.16
-	# Now upstreamed - MPC 2005.06.28
-	#cd ${S}; epatch ${FILESDIR}/${PN}-uclibc.patch
-
 	# Configure makes an unwarranted assumption that /bin/ksh is a
 	# good shell. This patch makes it revert to using /bin/sh unless
 	# /bin/ksh really is executable. Should fix bug 42665.
@@ -137,7 +134,7 @@ src_unpack() {
 	# we need the same @INC-inversion magic here we do in perl
 	cd ${S}; epatch ${FILESDIR}/${P}-reorder-INC.patch
 
-	# On PA7200, uname -a contains a single quote and we need to 
+	# On PA7200, uname -a contains a single quote and we need to
 	# filter it otherwise configure fails. See #125535.
 	epatch ${FILESDIR}/perl-hppa-pa7200-configure.patch
 
@@ -146,6 +143,7 @@ src_unpack() {
 	[[ ${CHOST} == *-dragonfly* ]] && cd ${S} && epatch ${FILESDIR}/${P}-dragonfly-clean.patch
 	[[ ${CHOST} == *-freebsd* ]] && cd ${S} && epatch ${FILESDIR}/${P}-fbsdhints.patch
 	cd ${S}; epatch ${FILESDIR}/${P}-cplusplus.patch
+	has_version '>=sys-devel/gcc-4.2' && epatch ${FILESDIR}/${P}-gcc42-command-line.patch
 }
 
 myconf() {
