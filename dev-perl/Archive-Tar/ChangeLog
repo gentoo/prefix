@@ -1,0 +1,266 @@
+# ChangeLog for dev-perl/Archive-Tar
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Tar/ChangeLog,v 1.68 2006/09/16 20:28:53 dertobi123 Exp $
+
+  16 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  Archive-Tar-1.29.ebuild:
+  ppc stable
+
+  07 Sep 2006; Michael Cummings <mcummings@gentoo.org>
+  -Archive-Tar-1.23-r1.ebuild, -Archive-Tar-1.26.ebuild,
+  Archive-Tar-1.29.ebuild:
+  Cleaning out old ebuilds; keywording mips stable (tested on o2k)
+
+  17 Aug 2006; Thomas Cort <tcort@gentoo.org> Archive-Tar-1.29.ebuild:
+  Stable on alpha.
+
+  06 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Archive-Tar-1.29.ebuild:
+  Marking amd64 stable
+
+  04 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Archive-Tar-1.23-r1.ebuild, Archive-Tar-1.26.ebuild,
+  Archive-Tar-1.28.ebuild, Archive-Tar-1.29.ebuild:
+  Adding perl dep; fixed DEPEND
+
+  03 Jul 2006; Christian Hartmann <ian@gentoo.org>
+  Archive-Tar-1.23-r1.ebuild, Archive-Tar-1.26.ebuild,
+  Archive-Tar-1.28.ebuild, Archive-Tar-1.29.ebuild:
+  Fixed RDEPEND wrt bug #134781
+
+  02 Jul 2006; Michael Cummings <mcummings@gentoo.org>
+  Archive-Tar-1.28.ebuild:
+  Marking stable amd64
+
+  29 Jun 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  Archive-Tar-1.29.ebuild:
+  Stable on hppa
+
+  09 Jun 2006; Michael Cummings <mcummings@gentoo.org>
+  Archive-Tar-1.29.ebuild:
+  Marking stable sparc
+
+  27 May 2006; Bryan Østergaard <kloeri@gentoo.org>
+  Archive-Tar-1.28.ebuild:
+  Stable on alpha.
+
+  01 May 2006; Diego Pettenò <flameeyes@gentoo.org>
+  Archive-Tar-1.29.ebuild:
+  Add ~x86-fbsd keyword.
+
+  27 Apr 2006; Marien Zwart <marienz@gentoo.org>
+  files/digest-Archive-Tar-1.23-r1, files/digest-Archive-Tar-1.26,
+  files/digest-Archive-Tar-1.28, Manifest:
+  Fixing SHA256 digest, pass four
+
+  29 Apr 2006; Joshua Kinard <kumba@gentoo.org> Archive-Tar-1.28.ebuild:
+  Marked stable on mips.
+
+*Archive-Tar-1.29 (17 Apr 2006)
+
+  17 Apr 2006; Aaron Kulbe <superlag@gentoo.org> +Archive-Tar-1.29.ebuild:
+  Version bump.
+
+  27 Mar 2006; Markus Rothe <corsair@gentoo.org> Archive-Tar-1.28.ebuild:
+  Stable on ppc64
+
+  23 Mar 2006; Michael Hanselmann <hansmi@gentoo.org>
+  Archive-Tar-1.28.ebuild:
+  Stable on ppc.
+
+  23 Mar 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  Archive-Tar-1.28.ebuild:
+  Stable on hppa
+
+  22 Mar 2006; Michael Cummings <mcummings@gentoo.org>
+  Archive-Tar-1.28.ebuild:
+  marking stable x86, sparc
+
+  25 Feb 2006; Joshua Kinard <kumba@gentoo.org> Archive-Tar-1.26.ebuild:
+  Marked stable on mips.
+
+  13 Feb 2006; <mcumming@gentoo.org> Archive-Tar-1.23-r1.ebuild,
+  Archive-Tar-1.26.ebuild, Archive-Tar-1.28.ebuild:
+  Virtual for perl-core dep
+
+*Archive-Tar-1.28 (22 Jan 2006)
+
+  22 Jan 2006; Michael Cummings <mcummings@gentoo.org>
+  +Archive-Tar-1.28.ebuild:
+  Version bump upstream
+
+  16 Nov 2005; Homer Parker <hparker@gentoo.org> Archive-Tar-1.26.ebuild:
+  Stable on amd64 needed for bug 112063
+
+  14 Nov 2005; Michael Hanselmann <hansmi@gentoo.org>
+  Archive-Tar-1.26.ebuild:
+  Stable on hppa, ppc.
+
+  14 Nov 2005; Markus Rothe <corsair@gentoo.org> Archive-Tar-1.26.ebuild:
+  Stable on ppc64
+
+  13 Nov 2005; Mark Loeser <halcy0n@gentoo.org> Archive-Tar-1.26.ebuild:
+  Stable on x86; bug #112063
+
+  13 Nov 2005; Fernando J. Pereda <ferdy@gentoo.org>
+  Archive-Tar-1.26.ebuild:
+  stable as per bug #112063
+
+  13 Nov 2005; Jason Wever <weeve@gentoo.org> Archive-Tar-1.26.ebuild:
+  Stable on SPARC.
+
+*Archive-Tar-1.26 (09 Nov 2005)
+
+  09 Nov 2005; Chris White <chriswhite@gentoo.org> -Archive-Tar-1.24.ebuild,
+  +Archive-Tar-1.26.ebuild:
+  Version bump to 1.26. Removed older ~arch version. Added SRC_TEST='do'.
+  Helps fix bug #111933.
+
+  25 May 2005; Michael Cummings <mcummings@gentoo.org>
+  Archive-Tar-1.23-r1.ebuild:
+  dev-perl/Test-Harness => perl-core/Test-Harness migration
+
+  25 May 2005; Michael Cummings <mcummings@gentoo.org>
+  Archive-Tar-1.24.ebuild:
+  dev-perl/Test-Harness => perl-core/Test-Harness migration
+
+*Archive-Tar-1.24 (09 May 2005)
+
+  09 May 2005; Elfyn McBratney <beu@gentoo.org> +Archive-Tar-1.24.ebuild:
+  Version bump.
+
+  24 Apr 2005; Michael Cummings <mcummings@gentoo.org>
+  -Archive-Tar-0.22.ebuild, -Archive-Tar-0.22-r1.ebuild,
+  -Archive-Tar-1.00.ebuild, -Archive-Tar-1.03.ebuild,
+  -Archive-Tar-1.05.ebuild, -Archive-Tar-1.09.ebuild,
+  -Archive-Tar-1.10.ebuild, -Archive-Tar-1.23.ebuild:
+  cleaning
+
+  06 Apr 2005; Joseph Jezak <josejx@gentoo.org> Archive-Tar-1.23-r1.ebuild:
+  Marked ppc stable.
+
+  18 Mar 2005; Aron Griffis <agriffis@gentoo.org>
+  Archive-Tar-1.23-r1.ebuild:
+  Stable on ia64
+
+  12 Mar 2005; Markus Rothe <corsair@gentoo.org> Archive-Tar-1.23-r1.ebuild:
+  Stable on ppc64
+
+  06 Feb 2005; Joshua Kinard <kumba@gentoo.org> Archive-Tar-1.23-r1.ebuild:
+  Marked stable on mips.
+
+*Archive-Tar-1.23-r1 (25 Jan 2005)
+
+  25 Jan 2005; Michael Cummings <mcummings@gentoo.org>
+  +Archive-Tar-1.23-r1.ebuild:
+  Version bumping to make sure folks get IO-string
+
+  24 Jan 2005; Michael Cummings <mcummings@gentoo.org>
+  Archive-Tar-1.23.ebuild:
+  Added missing dep for IO-String, bug 73488
+
+  22 Jan 2005; Gustavo Zacarias <gustavoz@gentoo.org> Archive-Tar-1.23.ebuild:
+  Stable on sparc
+
+  22 Jan 2005; Bryan Østergaard <kloeri@gentoo.org>
+  Archive-Tar-1.23.ebuild:
+  Stable on alpha.
+
+  21 Jan 2005; Michael Cummings <mcummings@gentoo.org>
+  Archive-Tar-1.23.ebuild:
+  Unmasking for x86
+
+  21 Jan 2005; Michael Cummings <mcummings@gentoo.org>
+  Archive-Tar-1.23.ebuild:
+  Unmasking for x86
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  22 Dec 2004; Yuta SATOH <nigoro@gentoo.org> Archive-Tar-1.23.ebuild:
+  added ~ppc64
+
+*Archive-Tar-1.23 (04 Dec 2004)
+
+  04 Dec 2004; Michael Cummings <mcummings@gentoo.org>
+  +Archive-Tar-1.23.ebuild:
+  New version on CPAN
+
+  21 Nov 2004; Hardave Riar <hardave@gentoo.org> Archive-Tar-1.09.ebuild:
+  Stable on mips, dep for bug #68570
+
+  20 Nov 2004; Daniel Black <dragonheart@gentoo.org> Archive-Tar-1.10.ebuild:
+  ppc stable to support bug #68570
+
+*Archive-Tar-1.10 (30 Jul 2004)
+
+  30 Jul 2004; Michael Cummings <mcummings@gentoo.org>
+  +Archive-Tar-1.10.ebuild:
+  New version on CPAN
+
+  25 Jun 2004; Danny van Dyk <kugelfang@gentoo.org> Archive-Tar-1.09.ebuild:
+  Marked stable on amd64.
+
+  11 Jun 2004; Gustavo Zacarias <gustavoz@gentoo.org> Archive-Tar-1.09.ebuild:
+  Stable on sparc
+
+*Archive-Tar-1.09 (05 Jun 2004)
+
+  05 Jun 2004; Michael Cummings <mcummings@gentoo.org>
+  Archive-Tar-1.09.ebuild:
+  new version, dep for others
+
+  24 May 2004; Bryan Østergaard <kloeri@gentoo.org> Archive-Tar-1.05.ebuild:
+  Stable on alpha.
+
+  03 Mar 2004; Gustavo Zacarias <gustavoz@gentoo.org> Archive-Tar-1.05.ebuild:
+  stable on sparc
+
+  27 Feb 2004; Michael Cummings <mcummings@gentoo.org>
+  Archive-Tar-1.05.ebuild:
+  Unmasking after 185 days
+
+  19 Jan 2004; Eric Sammer <esammer@gentoo.org> Archive-Tar-0.22-r1.ebuild,
+  Archive-Tar-0.22.ebuild, Archive-Tar-1.00.ebuild, Archive-Tar-1.05.ebuild:
+  Fixed copyright headers. Added ~arm, ~hppa, and ~mips to keywords to fix
+  depend.BAD for new module-build.
+
+  18 Jan 2004; <gustavoz@gentoo.org> Archive-Tar-1.03.ebuild:
+  stable on sparc
+
+*Archive-Tar-1.05 (26 Aug 2003)
+
+  26 Aug 2003; Michael Cummings <mcummings@gentoo.org>
+  Archive-Tar-1.05.ebuild:
+  CPAN Version bump
+
+  20 Jul 2003; <rac@gentoo.org> Archive-Tar-1.03.ebuild:
+  Allow perl-5.8.0-r12 to fulfill the File-Spec and Test-Simple dependencies
+
+*Archive-Tar-1.03 (10 Jul 2003)
+
+  10 Jul 2003; Michael Cummings <mcummings@gentoo.org>
+  Archive-Tar-1.03.ebuild:
+  CPAN version bump
+
+*Archive-Tar-1.00 (05 Jun 2003)
+
+  05 Jun 2003; Michael Cummings <mcummings@gentoo.org>
+  Archive-Tar-1.00.ebuild:
+  Version bump from CPAN, includes new/missing deps
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+  29 Oct 2002; Seemant Kulleen <seemant@gentoo.org> ChangeLog  :
+  forced version bump to install into correct locations
+
+*Archive-Tar-0.22-r1 (21 Jun 2003)
+ 
+  12 Jul 2003; Daniel Ahlberg <aliz@gentoo.org> :
+  Added missing changelog entry.
+
+*Archive-Tar-0.22 (23 Oct 2002)
+
+  23 Oct 2002; Nick Hadaway <raker@gentoo.org> Archive-Tar-0.22.ebuild,
+  files/digest-Archive-Tar-0.22 :
+  New ebuild.  Added to support net-mail/amavis
