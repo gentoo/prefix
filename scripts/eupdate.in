@@ -365,6 +365,7 @@ pt=`ls *.ebuild`
 # do a nested loop join, we don't assume any order
 for pte in $pt ; do
 	had_match=0
+	last_rev=0
 	for mte in $mt ; do
 		# calculate the diffs between prefix and main
 		vdiff=$(cmp_ebuild_ver $mte $pte)
@@ -378,30 +379,25 @@ for pte in $pt ; do
 			revision_diff $mtecv $ptecv $pte
 			# we found this version, so needless to look for it any more
 			mt=${mt/$mte/}
+		elif [[ $vdiff -ge 100000 ]] ; then
+			# we have an updated revision: track it
+			[[ $(cmp_ebuild_ver $last_rev $mte) < 0 ]] \
+				&& last_rev=$mte
+			# we don't need to look at revisions lateron because we
+			# update them here
+			mt=${mt/$mte/}
 		fi
 	done
 	# stale entry
 	[[ $had_match == 0 ]] \
 		&& echo "  warning: $pte no longer in the main tree"
+	# revision update
+	[[ $last_rev != 0 ]] \
+		&& cross_diff $last_rev $pte
 done
 # what's left in $mt is everything which is not in $pt
 last_pte=""
 for pte in $pt ; do
-	last_match=""
-	for mte in $mt ; do
-		# calculate the diffs between prefix and main
-		vdiff=$(cmp_ebuild_ver $mte $pte)
-		if [[ $vdiff -ge 100000 ]] ; then
-			# we have an updated revision: track it
-			[[ $(cmp_ebuild_ver $last_match $mte) < 0 ]] \
-				&& last_match=$mte
-			# we don't need this version any more
-			mt=${mt/$mte/}
-		fi
-	done
-	# apply the last revision update for this ebuild
-	[[ $last_match != "" ]] \
-		&& cross_diff $last_match $pte
 	[[ $(cmp_ebuild_ver $pte $last_pte) > 0 ]] \
 		&& last_pte=$pte
 done
