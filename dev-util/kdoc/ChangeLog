@@ -1,0 +1,25 @@
+# ChangeLog for dev-util/kdoc
+# Copyright 2002-2004 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/kdoc/ChangeLog,v 1.10 2004/06/25 02:38:23 agriffis Exp $
+
+  25 Apr 2004; Aron Griffis <agriffis@gentoo.org> kdoc-2.0_alpha54.ebuild:
+  Add die following econf for bug 48950
+
+  16 Nov 2003; Brad House <brad_mssw@gentoo.org> kdoc-2.0_alpha54.ebuild:
+  mark stable on amd64
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*kdoc-2.0_alpha54 (4 Mar 2002)
+
+  29 Apr 2003; Hannes Mehnert <hannes@gentoo.org> kdoc-2.0_alpha54.ebuild:
+  install man-pages to /usr/share/man, thanks to Gregorio Guidi <g.guidi@sns.it>
+  (bug #20063)
+
+  15 Feb 2003; Mark Guertin <gerk@gentoo.org> kdoc-2.0_alpha54.ebuild :
+  set ppc in keywords
+
+  4 Mar 2002; Dan Armak <danarmak@gentoo.org> ChangeLog :
+  
+  kdoc now lives in dev-util not kde-base, has its own versioning scheeme
+  separate from the kde one and installs into /usr.
