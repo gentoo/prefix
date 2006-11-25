@@ -1,0 +1,90 @@
+# ChangeLog for virtual/perl-Test-Harness
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Test-Harness/ChangeLog,v 1.19 2006/11/06 17:10:00 mcummings Exp $
+
+*perl-Test-Harness-2.64 (06 Nov 2006)
+
+  06 Nov 2006; Michael Cummings <mcummings@gentoo.org>
+  +perl-Test-Harness-2.64.ebuild:
+  Version bump
+
+  26 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  -perl-Test-Harness-2.48.ebuild:
+  Removing old ebuild
+
+  20 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  -perl-Test-Harness-2.30.ebuild, -perl-Test-Harness-2.42.ebuild,
+  -perl-Test-Harness-2.52.ebuild:
+  Cleaning out old ebuilds
+
+  04 Sep 2006; Joshua Kinard <kumba@gentoo.org>
+  perl-Test-Harness-2.56.ebuild:
+  Marked stable on mips.
+
+  18 Jul 2006; Bryan Østergaard <kloeri@gentoo.org>
+  perl-Test-Harness-2.56.ebuild:
+  Stable on alpha + ia64.
+
+  24 Jun 2006; Michael Cummings <mcummings@gentoo.org>
+  perl-Test-Harness-2.62.ebuild:
+  Corrected dep syntax
+
+*perl-Test-Harness-2.62 (24 Jun 2006)
+
+  24 Jun 2006; Michael Cummings <mcummings@gentoo.org>
+  +perl-Test-Harness-2.62.ebuild:
+  Version bump
+
+  26 May 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  perl-Test-Harness-2.56.ebuild:
+  Stable on amd64 wrt bug #133989
+
+  25 May 2006; Guy Martin <gmsoft@gentoo.org> perl-Test-Harness-2.56.ebuild:
+  Stable on hppa.
+
+  24 May 2006; Michael Hanselmann <hansmi@gentoo.org>
+  perl-Test-Harness-2.56.ebuild:
+  Stable on ppc.
+
+  23 May 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  perl-Test-Harness-2.56.ebuild:
+  Stable on x86 wrt bug #133989.
+
+  23 May 2006; <mcummings@gentoo.org> perl-Test-Harness-2.56.ebuild:
+  Marking stable sparc, bug 133989
+
+  23 May 2006; Markus Rothe <corsair@gentoo.org>
+  perl-Test-Harness-2.56.ebuild:
+  Stable on ppc64; bug #133989
+
+  24 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  perl-Test-Harness-2.56.ebuild:
+  Add ~x86-fbsd keyword.
+
+*perl-Test-Harness-2.48 (26 Mar 2006)
+
+  26 Mar 2006; Michael Cummings <mcummings@gentoo.org>
+  +perl-Test-Harness-2.48.ebuild:
+  I realize this looks like I'm added an ebuild straight to virtual, but it
+  came up via bug 125332 that we didn't have any virtuals that could be met by
+  perl-5.8.7 for Test-Harness. Since 5.8.7 is keyworded for everyone, 
+  keywording for this was inherited that route.
+
+  26 Feb 2006; Joshua Kinard <kumba@gentoo.org>
+  perl-Test-Harness-2.42.ebuild:
+  Marked stable on mips.
+
+  13 Feb 2006; Michael Cummings <mcummings@gentoo.org>
+  perl-Test-Harness-2.56.ebuild:
+  Updated RDEPS
+
+*perl-Test-Harness-2.56 (06 Feb 2006)
+*perl-Test-Harness-2.52 (06 Feb 2006)
+*perl-Test-Harness-2.42 (06 Feb 2006)
+*perl-Test-Harness-2.30 (06 Feb 2006)
+
+  06 Feb 2006; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +perl-Test-Harness-2.30.ebuild, +perl-Test-Harness-2.42.ebuild,
+  +perl-Test-Harness-2.52.ebuild, +perl-Test-Harness-2.56.ebuild:
+  New virtual for perl-core/Test-Harness
+
