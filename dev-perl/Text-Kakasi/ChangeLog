@@ -1,0 +1,55 @@
+# ChangeLog for dev-perl/Text-Kakasi
+# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Kakasi/ChangeLog,v 1.15 2006/08/06 00:26:44 mcummings Exp $
+
+  06 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Text-Kakasi-2.04.ebuild:
+  Adding perl dep; fixed DEPEND
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org> Text-Kakasi-2.04.ebuild:
+  Mark 2.04 stable on ia64
+
+  05 Jul 2006; Christian Hartmann <ian@gentoo.org> Text-Kakasi-2.04.ebuild:
+  Fixed RDEPEND wrt bug #134781
+
+  30 Mar 2006; Aron Griffis <agriffis@gentoo.org> Text-Kakasi-2.04.ebuild:
+  Mark 2.04 ~ia64
+
+  15 Jan 2006; Michael Cummings <mcummings@gentoo.org>
+  Text-Kakasi-2.04.ebuild:
+  Mirror syntax
+
+  30 Jul 2005; Pieter Van den Abeele <pvdabeel@gentoo.org>
+  Text-Kakasi-2.04.ebuild:
+  PowerPC Stable
+
+  06 May 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  Text-Kakasi-2.04.ebuild:
+  Stable on sparc
+
+  12 Apr 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  Text-Kakasi-2.04.ebuild:
+  Keyworded ~sparc
+
+  16 Dec 2004; Markus Rothe <corsair@gentoo.org> Text-Kakasi-2.04.ebuild:
+  Stable on ppc64
+
+  03 Nov 2004; Markus Rothe <corsair@gentoo.org> Text-Kakasi-2.04.ebuild:
+  Marked ~ppc64
+
+  04 Jun 2004; David Holm <dholm@gentoo.org> Text-Kakasi-2.04.ebuild:
+  Added to ~ppc.
+
+*Text-Kakasi-2.04 (21 Jun 2003)
+
+  18 Sep 2003; YAMAKURA Makoto <yakina@gentoo.org> files/Text-Kakasi-1.05-gentoo.diff:
+  added missing patch
+
+  21 Jun 2003; YAMAKURA Makoto <yakina@gentoo.org> Text-Kakasi-2.04.ebuild:
+  DEPEND fix
+
+  21 Jun 2003; YAMAKURA Makoto <yakina@gentoo.org> Text-Kakasi-2.04.ebuild,
+  ChangeLog,Manifest,files/digest-Text-Kakasi-2.04:
+
+  Initial import. Ebuild submitted by me
+
