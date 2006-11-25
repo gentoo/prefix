@@ -1,0 +1,13 @@
+--- popt.c.bak	2006-11-04 00:14:31.553881369 +0100
++++ popt.c	2006-11-04 00:15:19.607576097 +0100
+@@ -748,9 +748,7 @@
+ 	    if (origOptString == NULL)	/* XXX can't happen */
+ 		return POPT_ERROR_BADOPT;
+ 
+-	    if (con->restLeftover || *origOptString != '-' ||
+-		(*origOptString == '-' && origOptString[1] == '\0'))
+-	    {
++	    if (con->restLeftover || *origOptString != '-') {
+ 		if (con->flags & POPT_CONTEXT_POSIXMEHARDER)
+ 		    con->restLeftover = 1;
+ 		if (con->flags & POPT_CONTEXT_ARG_OPTS) {
