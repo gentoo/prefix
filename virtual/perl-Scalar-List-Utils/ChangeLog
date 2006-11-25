@@ -1,0 +1,47 @@
+# ChangeLog for virtual/perl-Scalar-List-Utils
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Scalar-List-Utils/ChangeLog,v 1.11 2006/10/25 02:40:34 mcummings Exp $
+
+  25 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  -perl-Scalar-List-Utils-1.14.ebuild:
+  Cleaning up ebuilds
+
+  05 Sep 2006; Joshua Kinard <kumba@gentoo.org>
+  perl-Scalar-List-Utils-1.18.ebuild:
+  Marked stable on mips.
+
+  27 May 2006; Bryan Østergaard <kloeri@gentoo.org>
+  perl-Scalar-List-Utils-1.18.ebuild:
+  Stable on alpha.
+
+  26 May 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  perl-Scalar-List-Utils-1.18.ebuild:
+  Stable on amd64 wrt bug #133989
+
+  27 Mar 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  perl-Scalar-List-Utils-1.18.ebuild:
+  Stable on hppa
+
+  27 Mar 2006; Markus Rothe <corsair@gentoo.org>
+  perl-Scalar-List-Utils-1.18.ebuild:
+  Stable on ppc64
+
+  23 Mar 2006; Michael Hanselmann <hansmi@gentoo.org>
+  perl-Scalar-List-Utils-1.18.ebuild:
+  Stable on ppc.
+
+  22 Mar 2006; Michael Cummings <mcummings@gentoo.org>
+  perl-Scalar-List-Utils-1.18.ebuild:
+  Marking stable sparc and x86
+
+  13 Feb 2006; Michael Cummings <mcummings@gentoo.org>
+  perl-Scalar-List-Utils-1.14.ebuild, perl-Scalar-List-Utils-1.18.ebuild:
+  Updated RDEPS
+
+*perl-Scalar-List-Utils-1.18 (07 Feb 2006)
+*perl-Scalar-List-Utils-1.14 (07 Feb 2006)
+
+  07 Feb 2006; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +perl-Scalar-List-Utils-1.14.ebuild, +perl-Scalar-List-Utils-1.18.ebuild:
+  New virtual for perl-core/Scalar-List-Utils
+
