@@ -1,0 +1,66 @@
+# ChangeLog for dev-perl/IO-Zlib
+# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Zlib/ChangeLog,v 1.19 2006/08/05 04:47:24 mcummings Exp $
+
+  05 Aug 2006; Michael Cummings <mcummings@gentoo.org> IO-Zlib-1.01.ebuild,
+  IO-Zlib-1.04.ebuild:
+  Adding perl dep; fixed DEPEND
+
+  04 Jul 2006; Christian Hartmann <ian@gentoo.org> IO-Zlib-1.01.ebuild,
+  IO-Zlib-1.04.ebuild:
+  Fixed RDEPEND wrt bug #134781; fixed header
+
+  24 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> IO-Zlib-1.04.ebuild:
+  Add ~x86-fbsd keyword.
+
+  25 Feb 2006; Joshua Kinard <kumba@gentoo.org> IO-Zlib-1.04.ebuild:
+  Marked stable on mips.
+
+  06 Feb 2006; Simon Stelling <blubb@gentoo.org> IO-Zlib-1.04.ebuild:
+  stable on amd64
+
+  21 Jan 2006; Markus Rothe <corsair@gentoo.org> IO-Zlib-1.04.ebuild:
+  Stable on ppc64
+
+  15 Jan 2006; Michael Hanselmann <hansmi@gentoo.org> IO-Zlib-1.04.ebuild:
+  Stable on ppc.
+
+  13 Jan 2006; Michael Cummings <mcummings@gentoo.org> IO-Zlib-1.04.ebuild:
+  marking stable sparc x86
+
+  14 Oct 2005; Aron Griffis <agriffis@gentoo.org> IO-Zlib-1.04.ebuild:
+  Mark 1.04 stable on alpha
+
+  03 Oct 2005; Aron Griffis <agriffis@gentoo.org> IO-Zlib-1.04.ebuild:
+  Stable on ia64
+
+*IO-Zlib-1.04 (27 Apr 2005)
+
+  27 Apr 2005; Michael Cummings <mcummings@gentoo.org> IO-Zlib-1.01.ebuild,
+  +IO-Zlib-1.04.ebuild:
+  Cleaning house
+
+  18 Mar 2005; Aron Griffis <agriffis@gentoo.org> IO-Zlib-1.01.ebuild:
+  Stable on ia64
+
+  12 Mar 2005; Markus Rothe <corsair@gentoo.org> IO-Zlib-1.01.ebuild:
+  Stable on ppc64
+
+  22 Dec 2004; Yuta SATOH <nigoro@gentoo.org> IO-Zlib-1.01.ebuild:
+  added ~ppc64
+
+  21 Nov 2004; Hardave Riar <hardave@gentoo.org> IO-Zlib-1.01.ebuild:
+  Stable on mips, dep for bug #68570
+
+  19 Jan 2004; Eric Sammer <esammer@gentoo.org> IO-Zlib-1.01.ebuild:
+  Marking stable on ppc and alpha to fix broken deps with Archive-Tar. No bugs
+  reported since 07-2003.
+
+  16 Dec 2003; Jason Wever <weeve@gentoo.org> IO-Zlib-1.01.ebuild:
+  Marked stable on sparc to fix broken dependencies of dev-perl/Archive-Tar.
+
+*IO-Zlib-1.01 (05 Jun 2003)
+
+  05 Jun 2003; Michael Cummings <mcummings@gentoo.org> IO-Zlib-1.01.ebuild:
+  This is a missing dependancy for Archive-Tar
+
