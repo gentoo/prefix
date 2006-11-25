@@ -1,0 +1,74 @@
+# ChangeLog for sys-devel/gnuconfig
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gnuconfig/ChangeLog,v 1.27 2006/10/17 09:26:10 uberlord Exp $
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org> gnuconfig-20060702.ebuild:
+  Added ~sparc-fbsd keyword.
+
+*gnuconfig-20060702 (20 Jul 2006)
+
+  20 Jul 2006; Mike Frysinger <vapier@gentoo.org>
+  +gnuconfig-20060702.ebuild:
+  Version bump.
+
+  30 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  gnuconfig-20060227.ebuild:
+  Add ~x86-fbsd keyword.
+
+*gnuconfig-20060227 (02 Mar 2006)
+
+  02 Mar 2006; Mike Frysinger <vapier@gentoo.org>
+  +gnuconfig-20060227.ebuild:
+  Version bump.
+
+*gnuconfig-20051223 (30 Dec 2005)
+
+  30 Dec 2005; Mike Frysinger <vapier@gentoo.org>
+  +gnuconfig-20051223.ebuild:
+  Version bump to include nios2 support.
+
+*gnuconfig-20051113 (07 Dec 2005)
+
+  07 Dec 2005; Mike Frysinger <vapier@gentoo.org>
+  +gnuconfig-20051113.ebuild:
+  Sync with latest cvs and add patch to support more superh targets.
+
+*gnuconfig-20050602 (16 Jun 2005)
+
+  16 Jun 2005; Mike Frysinger <vapier@gentoo.org>
+  +gnuconfig-20050602.ebuild:
+  Sync to latest upstream.
+
+*gnuconfig-20050324 (17 Apr 2005)
+
+  17 Apr 2005; Mike Frysinger <vapier@gentoo.org>
+  +gnuconfig-20050324.ebuild:
+  Sync to latest upstream version and add some hunks for ps2 support.
+
+*gnuconfig-20050223 (23 Feb 2005)
+
+  23 Feb 2005; Mike Frysinger <vapier@gentoo.org>
+  +gnuconfig-20050223.ebuild:
+  CVS update.
+
+  24 Jun 2004; <solar@gentoo.org> gnuconfig-20040214.ebuild,
+  files/automake-1.8.5-config-guess-uclibc.patch,
+  files/gnuconfig-20040312-update.patch:
+  added uclibc support to gnuconfig with 2004-03-12 update
+
+*gnuconfig-20040214 (14 Feb 2004)
+
+  14 Feb 2004; Joshua Kinard <kumba@gentoo.org> gnuconfig-20040214.ebuild,
+  metadata.xml:
+  Updated config.sub/guess files taken from GNU CVS (Savannah). Older versions
+  off ftp.gnu.org still unavailable.  Also removed arm keywords.
+
+*gnuconfig-20030708 (12 Jul 2003)
+
+  12 Jul 2003; Joshua Kinard <kumba@gentoo.org> gnuconfig-20030708.ebuild:
+  First version.  This package contains config.sub and config.guess files from
+  ftp://ftp.gnu.org/pub/gnu/config.  Some packages from GNU apparently cannot
+  recognize certain system types, so these files are a neccessity.
+  This package will start in stable, since it's just a few files called only
+  if gnuconfig_update is called.  Starting keywords are "mips sparc x86 alpha hppa".
+  This snapshot is from 2003 Jul 08.
