@@ -1,0 +1,79 @@
+# ChangeLog for dev-perl/Text-Tabs+Wrap
+# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Tabs+Wrap/ChangeLog,v 1.19 2006/11/19 16:25:15 mcummings Exp $
+
+*Text-Tabs+Wrap-2006.1117 (19 Nov 2006)
+
+  19 Nov 2006; Michael Cummings <mcummings@gentoo.org>
+  +Text-Tabs+Wrap-2006.1117.ebuild:
+  Version bump
+
+  21 Oct 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  Text-Tabs+Wrap-2006.0711.ebuild:
+  ppc stable
+
+  20 Oct 2006; Aron Griffis <agriffis@gentoo.org>
+  Text-Tabs+Wrap-2006.0711.ebuild:
+  Mark 2006.0711 stable on ia64
+
+  15 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  Text-Tabs+Wrap-2001.0929.ebuild, -Text-Tabs+Wrap-2005.0824.ebuild,
+  -Text-Tabs+Wrap-2006.0705.ebuild, Text-Tabs+Wrap-2006.0711.ebuild:
+  Marking amd64, sparc stable; cleaning up ebuilds
+
+  06 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Text-Tabs+Wrap-2001.0929.ebuild, Text-Tabs+Wrap-2005.0824.ebuild,
+  Text-Tabs+Wrap-2006.0705.ebuild, Text-Tabs+Wrap-2006.0711.ebuild:
+  Adding perl dep; fixed DEPEND
+
+*Text-Tabs+Wrap-2006.0711 (30 Jul 2006)
+
+  30 Jul 2006; Michael Cummings <mcummings@gentoo.org>
+  +Text-Tabs+Wrap-2006.0711.ebuild:
+  Version bump
+
+*Text-Tabs+Wrap-2006.0705 (06 Jul 2006)
+
+  06 Jul 2006; Christian Hartmann <ian@gentoo.org>
+  +Text-Tabs+Wrap-2006.0705.ebuild:
+  Version bump; added tests; cleanup
+
+*Text-Tabs+Wrap-2005.0824 (24 Apr 2006)
+
+  24 Apr 2006; Christian Hartmann <ian@gentoo.org>
+  +Text-Tabs+Wrap-2005.0824.ebuild:
+  Versionbump
+
+  24 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  Text-Tabs+Wrap-2001.0929.ebuild:
+  Add ~x86-fbsd keyword.
+
+  17 Sep 2005; Aron Griffis <agriffis@gentoo.org>
+  Text-Tabs+Wrap-2001.0929.ebuild:
+  Mark 2001.0929 stable on ia64
+
+  26 Aug 2005; Aron Griffis <agriffis@gentoo.org>
+  Text-Tabs+Wrap-2001.0929.ebuild:
+  add ~ia64
+
+  18 May 2005; Markus Rothe <corsair@gentoo.org>
+  Text-Tabs+Wrap-2001.0929.ebuild:
+  Stable on ppc64
+
+  29 Apr 2005; Michael Cummings <mcummings@gentoo.org>
+  Text-Tabs+Wrap-2001.0929.ebuild:
+  Cleaning for mirror syntax
+
+  22 Apr 2005; Simon Stelling <blubb@gentoo.org>
+  Text-Tabs+Wrap-2001.0929.ebuild:
+  stable on amd64
+
+  09 Mar 2005; Markus Rothe <corsair@gentoo.org>
+  Text-Tabs+Wrap-2001.0929.ebuild:
+  Added ~ppc64 to KEYWORDS
+
+*Text-Tabs+Wrap-2001.0929 (11 Nov 2003)
+
+  11 Nov 2003; Benjamin Coles <sj7trunks@gentoo.org> :
+  Required Perl Module for Bugzilla ebuild.
+
