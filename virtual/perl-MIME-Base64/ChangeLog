@@ -1,0 +1,68 @@
+# ChangeLog for virtual/perl-MIME-Base64
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-MIME-Base64/ChangeLog,v 1.15 2006/10/25 02:36:32 mcummings Exp $
+
+  25 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  perl-MIME-Base64-3.05.ebuild:
+  Cleaning up deps
+
+  20 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  -perl-MIME-Base64-2.12.ebuild, -perl-MIME-Base64-2.20.ebuild,
+  -perl-MIME-Base64-3.00.ebuild, -perl-MIME-Base64-3.01.ebuild:
+  Cleaning up old ebuilds
+
+  04 Sep 2006; Joshua Kinard <kumba@gentoo.org>
+  perl-MIME-Base64-3.07.ebuild:
+  Marked stable on mips.
+
+  18 Jul 2006; Bryan Østergaard <kloeri@gentoo.org>
+  perl-MIME-Base64-3.07.ebuild:
+  Stable on alpha.
+
+  18 Jun 2006; Bryan Østergaard <kloeri@gentoo.org>
+  perl-MIME-Base64-3.07.ebuild:
+  Stable on ia64.
+
+  26 May 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  perl-MIME-Base64-3.07.ebuild:
+  Stable on amd64 wrt bug #133989
+
+  25 May 2006; Guy Martin <gmsoft@gentoo.org> perl-MIME-Base64-3.07.ebuild:
+  Stable on hppa.
+
+  24 May 2006; Michael Hanselmann <hansmi@gentoo.org>
+  perl-MIME-Base64-3.07.ebuild:
+  Stable on ppc.
+
+  23 May 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  perl-MIME-Base64-3.07.ebuild:
+  Stable on x86 wrt bug #133989.
+
+  23 May 2006; <mcummings@gentoo.org> perl-MIME-Base64-3.07.ebuild:
+  Marking stable sparc, bug 133989
+
+  23 May 2006; Markus Rothe <corsair@gentoo.org>
+  perl-MIME-Base64-3.07.ebuild:
+  Stable on ppc64; bug #133989
+
+  24 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  perl-MIME-Base64-3.07.ebuild:
+  Add ~x86-fbsd keyword.
+
+  13 Feb 2006; Michael Cummings <mcummings@gentoo.org>
+  perl-MIME-Base64-3.05.ebuild, perl-MIME-Base64-3.07.ebuild:
+  Updated RDEPENDS
+
+*perl-MIME-Base64-3.07 (07 Feb 2006)
+*perl-MIME-Base64-3.05 (07 Feb 2006)
+*perl-MIME-Base64-3.01 (07 Feb 2006)
+*perl-MIME-Base64-3.00 (07 Feb 2006)
+*perl-MIME-Base64-2.20 (07 Feb 2006)
+*perl-MIME-Base64-2.12 (07 Feb 2006)
+
+  07 Feb 2006; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +perl-MIME-Base64-2.12.ebuild, +perl-MIME-Base64-2.20.ebuild,
+  +perl-MIME-Base64-3.00.ebuild, +perl-MIME-Base64-3.01.ebuild,
+  +perl-MIME-Base64-3.05.ebuild, +perl-MIME-Base64-3.07.ebuild:
+  New virtual for perl-core/MIME-Base64
+
