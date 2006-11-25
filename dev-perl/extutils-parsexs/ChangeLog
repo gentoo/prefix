@@ -1,0 +1,151 @@
+# ChangeLog for dev-perl/extutils-parsexs
+# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/extutils-parsexs/ChangeLog,v 1.35 2006/11/24 17:47:52 mcummings Exp $
+
+  24 Nov 2006; Michael Cummings <mcummings@gentoo.org>
+  extutils-parsexs-2.16.ebuild:
+  sparc stable
+
+  24 Nov 2006; Michael Cummings <mcummings@gentoo.org>
+  extutils-parsexs-2.16.ebuild:
+  amd64 stable
+
+*extutils-parsexs-2.17 (22 Nov 2006)
+
+  22 Nov 2006; Michael Cummings <mcummings@gentoo.org>
+  +extutils-parsexs-2.17.ebuild:
+  Version bump
+
+  20 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  -extutils-parsexs-2.08.ebuild, -extutils-parsexs-2.11.ebuild,
+  extutils-parsexs-2.15.ebuild, extutils-parsexs-2.16.ebuild:
+  Cleaning up
+
+*extutils-parsexs-2.16 (24 Sep 2006)
+
+  24 Sep 2006; Christian Hartmann <ian@gentoo.org>
+  +extutils-parsexs-2.16.ebuild:
+  Version bump
+
+  06 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  extutils-parsexs-2.08.ebuild, extutils-parsexs-2.11.ebuild,
+  extutils-parsexs-2.15.ebuild:
+  Adding perl dep; fixed DEPEND
+
+  05 Jul 2006; Christian Hartmann <ian@gentoo.org>
+  extutils-parsexs-2.08.ebuild, extutils-parsexs-2.11.ebuild,
+  extutils-parsexs-2.15.ebuild:
+  Fixed RDEPEND wrt bug #134781; fixed header
+
+  02 Jul 2006; Michael Cummings <mcummings@gentoo.org>
+  extutils-parsexs-2.15.ebuild:
+  Marking amd64 stable
+
+  02 May 2006; Diego Pettenò <flameeyes@gentoo.org>
+  extutils-parsexs-2.15.ebuild:
+  Add ~x86-fbsd keyword.
+
+  24 Apr 2006; Joshua Kinard <kumba@gentoo.org>
+  extutils-parsexs-2.15.ebuild:
+  Marked stable on mips.
+
+  04 Feb 2006; Aron Griffis <agriffis@gentoo.org>
+  extutils-parsexs-2.15.ebuild:
+  Mark 2.15 stable on ia64
+
+  31 Jan 2006; Aron Griffis <agriffis@gentoo.org>
+  extutils-parsexs-2.15.ebuild:
+  Mark 2.15 stable on alpha
+
+  21 Jan 2006; Markus Rothe <corsair@gentoo.org>
+  extutils-parsexs-2.15.ebuild:
+  Stable on ppc64
+
+  16 Jan 2006; Rene Nussbaumer <killerfox@gentoo.org>
+  extutils-parsexs-2.15.ebuild:
+  Stable on hppa.
+
+  15 Jan 2006; Michael Hanselmann <hansmi@gentoo.org>
+  extutils-parsexs-2.15.ebuild:
+  Stable on ppc.
+
+  13 Jan 2006; Michael Cummings <mcummings@gentoo.org>
+  extutils-parsexs-2.15.ebuild:
+  Marking stable sparc x86
+
+*extutils-parsexs-2.15 (19 Nov 2005)
+
+  19 Nov 2005; Michael Cummings <mcummings@gentoo.org>
+  +extutils-parsexs-2.15.ebuild:
+  Version bump
+
+  26 Aug 2005; Aron Griffis <agriffis@gentoo.org>
+  extutils-parsexs-2.11.ebuild:
+  add ~ia64
+
+*extutils-parsexs-2.11 (17 Jul 2005)
+
+  17 Jul 2005; Michael Cummings <mcummings@gentoo.org>
+  +extutils-parsexs-2.11.ebuild:
+  Version bump upstream
+
+  29 Apr 2005; Michael Cummings <mcummings@gentoo.org>
+  -extutils-parsexs-2.02.ebuild:
+  Cleaning for mirror syntax
+
+  01 Apr 2005; Simon Stelling <blubb@gentoo.org> extutils-parsexs-2.08.ebuild:
+  stable on amd64
+
+  16 Mar 2005; Michael Cummings <mcummings@gentoo.org>
+  extutils-parsexs-2.08.ebuild:
+  module-build dep
+
+  12 Mar 2005; Markus Rothe <corsair@gentoo.org> extutils-parsexs-2.08.ebuild:
+  Stable on ppc64
+
+  30 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  22 Dec 2004; Yuta SATOH <nigoro@gentoo.org> extutils-parsexs-2.08.ebuild:
+  added ~ppc64
+
+  21 Nov 2004; Hardave Riar <hardave@gentoo.org> extutils-parsexs-2.08.ebuild:
+  Stable on mips, dep for bug #68570
+
+  20 Nov 2004; Daniel Black <dragonheart@gentoo.org>
+  extutils-parsexs-2.08.ebuild:
+  ppc stable to support bug #68570
+
+  24 Oct 2004; Bryan Østergaard <kloeri@gentoo.org>
+  extutils-parsexs-2.08.ebuild:
+  Stable on alpha.
+
+  22 Oct 2004; Michael Cummings <mcummings@gentoo.org>
+  extutils-parsexs-2.08.ebuild:
+  marking stable on x86
+
+  19 Oct 2004; Dylan Carlson <absinthe@gentoo.org>
+  extutils-parsexs-2.02.ebuild:
+  Stable on amd64.
+
+*extutils-parsexs-2.08 (05 Jun 2004)
+
+  05 Jun 2004; Michael Cummings <mcummings@gentoo.org>
+  extutils-parsexs-2.08.ebuild:
+  new version on cpan, new dep
+
+  05 Jun 2004; Michael Cummings <mcummings@gentoo.org>
+  extutils-parsexs-2.02.ebuild:
+  Keyword fix for amd64. Sorry folks, but this is a necessary dep for
+  module-build, and you have that one already in your mask pile
+
+  30 May 2004; Bryan Østergaard <kloeri@gentoo.org>
+  extutils-parsexs-2.02.ebuild:
+  Stable on alpha.
+
+*extutils-parsexs-2.02 (26 Jun 2003)
+
+  26 Jun 2003; Michael Cummings <mcummings@gentoo.org>
+  extutils-parsexs-2.02.ebuild:
+  Fills dep for alzabo
+
