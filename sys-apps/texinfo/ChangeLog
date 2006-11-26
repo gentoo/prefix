@@ -1,6 +1,19 @@
 # ChangeLog for sys-apps/texinfo
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.79 2006/11/11 12:36:12 malc Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.83 2006/11/15 13:19:04 corsair Exp $
+
+  15 Nov 2006; Markus Rothe <corsair@gentoo.org> texinfo-4.8-r5.ebuild:
+  Stable on ppc64; bug #154316
+
+  15 Nov 2006; Jeroen Roovers <jer@gentoo.org> texinfo-4.8-r5.ebuild:
+  Stable for HPPA (bug #154316).
+
+  14 Nov 2006; Bryan Østergaard <kloeri@gentoo.org> texinfo-4.8-r5.ebuild:
+  Stable on Alpha, bug 154316.
+
+  13 Nov 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  texinfo-4.8-r5.ebuild:
+  ppc stable, bug #154316
 
   11 Nov 2006; <malc@gentoo.org> texinfo-4.8-r5.ebuild:
   Stable amd64 wrt sec bug #154316
