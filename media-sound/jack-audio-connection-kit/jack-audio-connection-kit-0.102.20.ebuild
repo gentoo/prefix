@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.102.20.ebuild,v 1.1 2006/10/08 03:01:56 eldad Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.102.20.ebuild,v 1.2 2006/11/18 12:47:24 eldad Exp $
 
 EAPI="prefix"
 
@@ -73,14 +73,22 @@ src_compile() {
 			-maltivec -mabi=altivec -mhard-float -mpowerpc-gfxopt
 	fi
 
-	# CPU Detection (dynsimd) uses asm routines which requires 3dnow.
+	# CPU Detection (dynsimd) uses asm routines which requires 3dnow, mmx and sse.
+	# Also, without -O2 it will not compile as well.
 	# we test if it is present before enabling the configure flag.
 	if use cpudetection ; then
 		if (! grep 3dnow /proc/cpuinfo >/dev/null) ; then
 			ewarn "Can't build cpudetection (dynsimd) without cpu 3dnow support. see bug #136565."
+		elif (! grep sse /proc/cpuinfo >/dev/null) ; then
+			ewarn "Can't build cpudetection (dynsimd) without cpu sse support. see bug #136565."
+		elif (! grep mmx /proc/cpuinfo >/dev/null) ; then
+			ewarn "Can't build cpudetection (dynsimd) without cpu mmx support. see bug #136565."
 		else
-			einfo "Enabling cpudetection (dynsimd)"
+			einfo "Enabling cpudetection (dynsimd). Adding -mmmx, -msse, -m3dnow and -O2 to CFLAGS."
 			myconf="${myconf} --enable-dynsimd"
+
+			filter-flags -O*
+			append-flags -mmmx -msse -m3dnow -O2
 		fi
 	fi
 
