@@ -1,6 +1,21 @@
 # ChangeLog for sci-biology/embassy-topo
 # Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-topo/ChangeLog,v 1.16 2006/07/21 15:13:52 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-topo/ChangeLog,v 1.20 2006/11/03 13:23:15 nixnut Exp $
+
+  03 Nov 2006; nixnut <nixnut@gentoo.org> embassy-topo-1.0.0-r3.ebuild:
+  Stable on ppc wrt bug 153766
+
+  03 Nov 2006; Jeff Gardner <je_fro@gentoo.org>
+  embassy-topo-1.0.0-r3.ebuild:
+  Marked ~sparc
+
+  02 Nov 2006; Fabian Groffen <grobian@gentoo.org>
+  embassy-topo-1.0.0-r2.ebuild, embassy-topo-1.0.0-r3.ebuild:
+  Dropped ppc-macos, see you in prefix.
+
+  02 Nov 2006; Olivier Fisette <ribosome@gentoo.org>
+  embassy-topo-1.0.0-r3.ebuild:
+  Added to x86.
 
 *embassy-topo-1.0.0-r3 (21 Jul 2006)
 
