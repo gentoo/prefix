@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.4.ebuild,v 1.7 2006/11/07 19:14:53 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.4.ebuild,v 1.8 2006/11/24 16:27:42 corsair Exp $
 
 EAPI="prefix"
 
