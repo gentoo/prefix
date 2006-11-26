@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/prosite/prosite-19.37.ebuild,v 1.2 2006/11/02 20:49:51 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/prosite/prosite-19.38.ebuild,v 1.1 2006/11/03 00:19:11 ribosome Exp $
 
 EAPI="prefix"
 

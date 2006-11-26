@@ -1,6 +1,32 @@
 # ChangeLog for sci-biology/prosite
 # Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/prosite/ChangeLog,v 1.85 2006/10/18 00:19:54 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/prosite/ChangeLog,v 1.92 2006/11/20 20:56:17 blubb Exp $
+
+  20 Nov 2006; <blubb@gentoo.org> prosite-19.36.ebuild:
+  stable on amd64
+
+  15 Nov 2006; Markus Rothe <corsair@gentoo.org> prosite-19.36.ebuild:
+  Stable on ppc64; bug #153766
+
+  03 Nov 2006; nixnut <nixnut@gentoo.org> prosite-19.36.ebuild:
+  Stable on ppc wrt bug 153766
+
+  03 Nov 2006; Olivier Fisette <ribosome@gentoo.org> -prosite-19.25.ebuild,
+  -prosite-19.29.ebuild, -prosite-19.35.ebuild:
+  Pruned old versions.
+
+*prosite-19.38 (03 Nov 2006)
+
+  03 Nov 2006; Olivier Fisette <ribosome@gentoo.org> +prosite-19.38.ebuild:
+  New upstream version.
+
+  02 Nov 2006; Fabian Groffen <grobian@gentoo.org> prosite-19.18.ebuild,
+  prosite-19.22.ebuild, prosite-19.25.ebuild, prosite-19.29.ebuild,
+  prosite-19.35.ebuild, prosite-19.36.ebuild, prosite-19.37.ebuild:
+  Dropped ppc-macos, see you in prefix.
+
+  02 Nov 2006; Olivier Fisette <ribosome@gentoo.org> prosite-19.36.ebuild:
+  Added to x86.
 
 *prosite-19.37 (18 Oct 2006)
 
