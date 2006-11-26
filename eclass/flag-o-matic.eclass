@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.111 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.113 2006/11/15 22:46:52 vapier Exp $
 #
 # Maintainer: base-system@gentoo.org
 
@@ -214,7 +214,7 @@ replace-cpu-flags() {
 	local newcpu="$#" ; newcpu="${!newcpu}"
 	while [ $# -gt 1 ] ; do
 		# quote to make sure that no globbing is done (particularly on
-		# ${oldcpu} prior to calling replace-flags
+		# ${oldcpu}) prior to calling replace-flags
 		replace-flags "-march=${1}" "-march=${newcpu}"
 		replace-flags "-mcpu=${1}" "-mcpu=${newcpu}"
 		replace-flags "-mtune=${1}" "-mtune=${newcpu}"
@@ -223,44 +223,30 @@ replace-cpu-flags() {
 	return 0
 }
 
-is-flagq() {
+_is_flagq() {
 	local x
-
-	for x in ${CFLAGS} ${CXXFLAGS} ; do
-		# Note this should work with globs like -mcpu=ultrasparc*
-		if [[ ${x} == ${1} ]]; then
-			return 0
-		fi
+	for x in ${!1} ; do
+		[[ ${x} == $2 ]] && return 0
 	done
 	return 1
+}
+
+is-flagq() {
+	[[ -n $2 ]] && die "Usage: is-flag <flag>"
+	_is_flagq CFLAGS $1 || _is_flagq CXXFLAGS $1
 }
 
 is-flag() {
-	if is-flagq ${1}; then
-		echo true
-		return 0
-	fi
-	return 1
+	is-flagq "$@" && echo true
 }
 
 is-ldflagq() {
-	local x
-
-	for x in ${LDFLAGS} ; do
-		# Note this should work with globs like -mcpu=ultrasparc*
-		if [[ ${x} == ${1} ]]; then
-			return 0
-		fi
-	done
-	return 1
+	[[ -n $2 ]] && die "Usage: is-ldflag <flag>"
+	_is_flagq LDFLAGS $1
 }
 
 is-ldflag() {
-	if is-ldflagq ${1}; then
-		echo true
-		return 0
-	fi
-	return 1
+	is-ldflagq "$@" && echo true
 }
 
 filter-mfpmath() {
@@ -366,11 +352,11 @@ test-flags-PROG() {
 
 	shift
 
-	[[ -z ${comp} ]] && \
-		return 1
+	[[ -z ${comp} ]] && return 1
 
+	x=""
 	for x in "$@" ; do
-		test-flag-${comp} "${x}" && flags="${flags} ${x}"
+		test-flag-${comp} "${x}" && flags="${flags}${flags:+ }${x}"
 	done
 
 	echo "${flags}"
@@ -405,17 +391,8 @@ test_version_info() {
 }
 
 strip-unsupported-flags() {
-	local x NEW_CFLAGS NEW_CXXFLAGS
-
-	for x in ${CFLAGS} ; do
-		NEW_CFLAGS="${NEW_CFLAGS} $(test-flags ${x})"
-	done
-	for x in ${CXXFLAGS} ; do
-		NEW_CXXFLAGS="${NEW_CXXFLAGS} $(test-flags ${x})"
-	done
-
-	export CFLAGS=${NEW_CFLAGS}
-	export CXXFLAGS=${NEW_CXXFLAGS}
+	export CFLAGS=$(test-flags-CC ${CFLAGS})
+	export CXXFLAGS=$(test-flags-CXX ${CXXFLAGS})
 }
 
 get-flag() {
@@ -573,28 +550,6 @@ raw-ldflags() {
 	echo "$@"
 }
 
-# This is thanks to great work from Paul de Vrieze <gentoo-user@devrieze.net>,
-# bug #9016.  Also thanks to Jukka Salmi <salmi@gmx.net> (bug #13907) for more
-# fixes.
-#
-# Export CFLAGS and CXXFLAGS that are compadible with gcc-2.95.3
-gcc2-flags() {
-	if [[ $(tc-arch) == "x86" || $(tc-arch) == "amd64" ]] ; then
-		CFLAGS=${CFLAGS//-mtune=/-mcpu=}
-		CXXFLAGS=${CXXFLAGS//-mtune=/-mcpu=}
-	fi
-
-	replace-cpu-flags k6-{2,3} k6
-	replace-cpu-flags athlon{,-{tbird,4,xp,mp}} i686
-
-	replace-cpu-flags pentium-mmx i586
-	replace-cpu-flags pentium{2,3,4} i686
-
-	replace-cpu-flags ev6{7,8} ev6
-
-	export CFLAGS CXXFLAGS
-}
-
 # Gets the flags needed for "NOW" binding
 bindnow-flags() {
 	case $($(tc-getLD) -v 2>&1 </dev/null) in
@@ -611,3 +566,30 @@ bindnow-flags() {
 		;;
 	esac
 }
+
+
+# Some tests for when we screw with things and want to make
+# sure we didn't break anything
+#TESTS() {
+#	CFLAGS="-a -b -c=1"
+#	CXXFLAGS="-x -y -z=2"
+#	LDFLAGS="-l -m -n=3"
+#
+#	die() { exit 1; }
+#	(is-flag 1 2 3) && die
+#	(is-ldflag 1 2 3) && die
+#
+#	is-flagq -l && die
+#	is-ldflagq -a && die
+#	is-flagq -a || die
+#	is-flagq -x || die
+#	is-ldflagq -n=* || die
+#	is-ldflagq -n && die
+#
+#	strip-unsupported-flags
+#	[[ ${CFLAGS} == "-c=1" ]] || die
+#	[[ ${CXXFLAGS} == "-y -z=2" ]] || die
+#
+#	echo "All tests pass"
+#}
+#TESTS

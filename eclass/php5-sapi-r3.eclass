@@ -1,9 +1,14 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php5-sapi-r2.eclass,v 1.42 2006/11/23 14:02:50 vivo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5-sapi-r3.eclass,v 1.24 2006/11/23 14:02:50 vivo Exp $
 #
-# eclass/php5-sapi-r2.eclass
+# ########################################################################
+#
+# eclass/php5-sapi-r3.eclass
 #               Eclass for building different php5 SAPI instances
+#
+#				USE THIS ECLASS FOR PHP 5.1.x
+#				USE php5-sapi-r2 FOR PHP 5.0.x
 #
 #               Based on robbat2's work on the php4 sapi eclass
 #
@@ -12,10 +17,7 @@
 #
 # ========================================================================
 
-# a list of the USE flags which PHP supports, but which we don't have
-# required packages in the tree
-
-CONFUTILS_MISSING_DEPS="adabas birdstep db2 dbmaker empress empress-bcs esoob frontbase hyperwave-api informix ingres mnogosearch msession msql oci8 oracle7 ovrimos pfpro sapdb solid sybase sybase-ct"
+CONFUTILS_MISSING_DEPS="adabas birdstep db2 dbmaker empress empress-bcs esoob frontbase hyperwave-api informix msession msql oci8 oracle7 ovrimos pfpro sapdb solid sybase sybase-ct"
 
 inherit flag-o-matic eutils confutils libtool
 
@@ -35,19 +37,17 @@ if [ "${PHP_PACKAGE}" = 1 ]; then
 	S="${WORKDIR}/${MY_PHP_P}"
 fi
 
-IUSE="adabas bcmath berkdb birdstep bzip2 calendar cdb pdf crypt
-ctype curl curlwrappers db2 dba dbase dbm dbmaker dbx debug dio empress
-empress-bcs esoob exif fam firebird frontbase fdftk flatfile filepro ftp gd gd-external gdbm gmp hardenedphp hyperwave-api imap inifile iconv informix ingres interbase iodbc jpeg kerberos ldap libedit mcve memlimit mhash mime ming mkconfig mnogosearch msession msql mssql mysql mysqli ncurses nls nis oci8 odbc oracle7 ovrimos pcntl pcre pfpro png postgres posix qdbm readline recode sapdb sasl session sharedext sharedmem simplexml snmp soap sockets solid spell spl sqlite ssl sybase sybase-ct sysvipc threads tidy tiff tokenizer truetype wddx xsl xml xmlrpc xpm zlib"
+IUSE="adabas bcmath berkdb birdstep bzip2 calendar cdb crypt ctype curl
+curlwrappers db2 dba dbase dbm dbmaker dbx debug empress empress-bcs esoob exif
+frontbase fdftk flatfile filepro firebird ftp gd gd-external gdbm gmp hardenedphp hyperwave-api imap inifile iconv informix interbase iodbc jpeg kerberos ldap libedit mcve memlimit mhash mime ming mkconfig msession msql mssql mysql mysqli ncurses nls oci8 odbc oracle7 ovrimos pcntl pcre pfpro png postgres posix qdbm readline recode sapdb sasl session sharedext sharedmem simplexml snmp soap sockets solid spell spl sqlite ssl sybase sybase-ct sysvipc threads tidy tiff tokenizer truetype wddx xsl xml2 xmlrpc xpm zlib"
 
 # these USE flags should have the correct dependencies
 DEPEND="$DEPEND
 	!<=dev-php/php-4.99.99
 	berkdb? ( =sys-libs/db-4* )
 	bzip2? ( app-arch/bzip2 )
-	pdf? ( >=media-libs/clibpdf-2 )
 	crypt? ( >=dev-libs/libmcrypt-2.4 )
 	curl? ( >=net-misc/curl-7.10.5 )
-	fam? ( virtual/fam )
 	fdftk? ( app-text/fdftk )
 	firebird? ( dev-db/firebird  )
 	gd-external? ( media-libs/gd )
@@ -65,6 +65,7 @@ DEPEND="$DEPEND
 	ming? ( media-libs/ming )
 	mssql? ( dev-db/freetds )
 	mysql? ( virtual/mysql )
+	mysqli? ( >=virtual/mysql-4.1 )
 	ncurses? ( sys-libs/ncurses )
 	nls? ( sys-devel/gettext )
 	odbc? ( >=dev-db/unixODBC-1.8.13 )
@@ -89,7 +90,7 @@ DEPEND="$DEPEND
 	xsl? ( dev-libs/libxslt )
 	zlib? ( sys-libs/zlib ) "
 
-# this would be xml?, but PEAR requires XML support
+# this would be xml2?, but PEAR requires XML support
 # this can become a USE flag when Gentoo bug #2272 has been resolved
 DEPEND="$DEPEND
 		dev-libs/libxml2"
@@ -125,7 +126,16 @@ EXPORT_FUNCTIONS pkg_setup src_compile src_install src_unpack pkg_postinst
 # INTERNAL FUNCTIONS
 # ========================================================================
 
-php5-sapi-r2_check_awkward_uses() {
+php5-sapi-r3_check_awkward_uses() {
+
+	# unfortunately, libedit support is broken atm
+
+	if useq libedit ; then
+		eerror
+		eerror "php-5.1-beta doesn't link successfully if you use libedit"
+		eerror "Please switch to using readline instead for now."
+		die "libedit support broken"
+	fi
 
 	# disabled hardenedphp after many reports of problems w/ apache
 	# need to look into this at some point
@@ -151,14 +161,14 @@ php5-sapi-r2_check_awkward_uses() {
 	fi
 
 	# mysqli support is disabled; see bug #53886
-
-	if useq mysqli ; then
-		eerror
-		eerror "We currently do not support the mysqli extension"
-		eerror "Support will be added once MySQL 4.1 is no longer package-masked"
-		eerror
-		die "mysqli not supported yet"
-	fi
+	#
+	# if useq mysqli ; then
+	#	eerror
+	#	eerror "We currently do not support the mysqli extension"
+	#	eerror "Support will be added once MySQL 4.1 is no longer package-masked"
+	#	eerror
+	#	die "mysqli not supported yet"
+	# fi
 
 	# recode not available in 5.0.0; upstream bug
 	if useq recode && [ "$PHP_PV" == "5.0.0" ]; then
@@ -220,7 +230,7 @@ php5-sapi-r2_check_awkward_uses() {
 		enable_extension_with 	"gd" 			"gd" 		0
 	fi
 
-	confutils_use_depend_any "jpeg" "gd" "gd-external" "pdf"
+	confutils_use_depend_any "jpeg" "gd" "gd-external"
 	confutils_use_depend_any "png"  "gd" "gd-external"
 	confutils_use_depend_any "tiff" "gd" "gd-external"
 	confutils_use_depend_any "xpm"  "gd" "gd-external"
@@ -268,9 +278,7 @@ php5-sapi-r2_check_awkward_uses() {
 		enable_extension_with		"mysql"			"mysql"			1 "/usr/lib/mysql"
 		enable_extension_with		"mysql-sock"	"mysql"			0 "/var/run/mysqld/mysqld.sock"
 	fi
-	if useq mysqli; then
-		enable_extension_with		"mysqli"		"mysqli"		1 "/usr/bin/mysql_config"
-	fi
+	enable_extension_with		"mysqli"		"mysqli"		    1 "/usr/bin/mysql_config"
 
 	# QDBM doesn't play nicely with GDBM _or_ DBM
 	confutils_use_conflict "qdbm" "gdbm" "dbm"
@@ -336,14 +344,14 @@ php5-sapi-r2_check_awkward_uses() {
 # EXPORTED FUNCTIONS
 # ========================================================================
 
-php5-sapi-r2_pkg_setup() {
+php5-sapi-r3_pkg_setup() {
 	# let's do all the USE flag testing before we do anything else
 	# this way saves a lot of time
 
-	php5-sapi-r2_check_awkward_uses
+	php5-sapi-r3_check_awkward_uses
 }
 
-php5-sapi-r2_src_unpack() {
+php5-sapi-r3_src_unpack() {
 	if [ "${PHP_PACKAGE}" == 1 ]; then
 		unpack ${A}
 	fi
@@ -380,30 +388,23 @@ php5-sapi-r2_src_unpack() {
 	# epatch ${FILESDIR}/${MY_PHP_P}-missing-arches.patch
 }
 
-php5-sapi-r2_src_compile() {
+php5-sapi-r3_src_compile() {
 	cd ${PHP_S}
 	confutils_init
 
 	my_conf="${my_conf} --with-config-file-path=${PHP_INI_DIR}"
-	if [ "$PHPSAPI" == "cli" ]; then
-		my_conf="${my_conf} --with-pear=/usr/share/php"
-	else
-		my_conf="${my_conf} --disable-cli --without-pear"
-	fi
+	my_conf="${my_conf} --without-pear"
 
 	#							extension		USE flag		shared support?
 	enable_extension_enable		"bcmath"		"bcmath"		1
 	enable_extension_with		"bz2"			"bzip2"			1
 	enable_extension_enable		"calendar"		"calendar"		1
-	enable_extension_with		"cpdflib"		"pdf"		1 # depends on jpeg
 	enable_extension_disable	"ctype"			"ctype"			0
 	enable_extension_with		"curl"			"curl"			1
 	enable_extension_with		"curlwrappers"	"curlwrappers"	1
 	enable_extension_enable		"dbase"			"dbase"			1
-	enable_extension_enable		"dio"			"dio"			1
-	enable_extension_disable	"dom"			"xml"			0
+	enable_extension_disable	"dom"			"xml2"			0
 	enable_extension_enable		"exif"			"exif"			1
-	enable_extension_with		"fam"			"fam"			1
 	enable_extension_with		"fbsql"			"frontbase"		1
 	enable_extension_with		"fdftk"			"fdftk"			1 "/opt/fdftk-6.0"
 	enable_extension_enable		"filepro"		"filepro"		1
@@ -413,13 +414,12 @@ php5-sapi-r2_src_compile() {
 	enable_extension_with		"hwapi"			"hyperwave-api"	1
 	enable_extension_with		"iconv"			"iconv"			1
 	enable_extension_with		"informix"		"informix"		1
-	enable_extension_with		"ingres"		"ingres"		1
 	enable_extension_with		"interbase"		"firebird"		1
 	# iodbc support added by Tim Haynes <gentoo@stirfried.vegetable.org.uk>
 	enable_extension_with 		"iodbc" 		"iodbc" 		0 "/usr"
 	# ircg extension not supported on Gentoo at this time
 	enable_extension_with		"kerberos"		"kerberos"		0
-	enable_extension_disable	"libxml"		"xml"			0
+	enable_extension_disable	"libxml"		"xml2"			0
 	enable_extension_enable		"mbstring"		"nls"			1
 	enable_extension_with		"mcrypt"		"crypt"			1
 	enable_extension_with		"mcve"			"mcve"			1
@@ -427,7 +427,6 @@ php5-sapi-r2_src_compile() {
 	enable_extension_with		"mhash"			"mhash"			1
 	enable_extension_with		"mime-magic"	"mime"			0 "/usr/share/misc/file/magic.mime"
 	enable_extension_with		"ming"			"ming"			1
-	enable_extension_with		"mnogosearch"	"mnogosearch"	1
 	enable_extension_with		"msql"			"msql"			1
 	enable_extension_with		"mssql"			"mssql"			1
 	enable_extension_with		"ncurses"		"ncurses"		1
@@ -458,13 +457,12 @@ php5-sapi-r2_src_compile() {
 	enable_extension_disable	"tokenizer"		"tokenizer"		1
 	enable_extension_enable		"wddx"			"wddx"			1
 	enable_extension_with		"xsl"			"xsl"			1
-	#enable_extension_disable	"xml"			"xml"			1 # PEAR needs --enable-xml
+	#enable_extension_disable	"xml"			"xml2"			1 # PEAR needs --enable-xml
 	enable_extension_with		"xmlrpc"		"xmlrpc"		1
-	enable_extension_enable		"yp"			"nis"			1
 	enable_extension_with		"zlib"			"zlib"			1
 	enable_extension_enable		"debug"			"debug"			0
 
-	php5-sapi-r2_check_awkward_uses
+	php5-sapi-r3_check_awkward_uses
 
 	# DBA support
 	enable_extension_enable		"dba"		"dba" 1
@@ -481,6 +479,10 @@ php5-sapi-r2_src_compile() {
 		my_conf="${my_conf} --with-pic"
 	fi
 
+	if [ "${PHPSAPI}" != "cli" ]; then
+		my_conf="${my_conf} --disable-cli"
+	fi
+
 	# Bug 98694
 	addpredict /etc/krb5.conf
 
@@ -490,7 +492,7 @@ php5-sapi-r2_src_compile() {
 	emake || die "make failed"
 }
 
-php5-sapi-r2_src_install() {
+php5-sapi-r3_src_install() {
 	cd ${PHP_S}
 	addpredict /usr/share/snmp/mibs/.index
 
@@ -525,11 +527,12 @@ php5-sapi-r2_src_install() {
 	insinto ${PHP_INI_DIR}
 	newins ${phpinisrc} ${PHP_INI_FILE}
 
-	# php-config install the following, so we don't have to
+	# PEAR-Installer and phpconfig install the following, so we
+	# don't have to
 	#
-	# if 'mkconfig' USE flag is set, we create the phpconfig
-	# source tarball ... this makes it easy for us to bump the
-	# phpconfig package whenever we bump php
+	# if 'mkconfig' USE flag is set, we create the phpconfig source
+	# tarball ... this makes it easy for us to bump the phpconfig
+	# package whenever we bump php
 
 	if useq mkconfig ; then
 		CONFIG_NAME=phpconfig-$PV
@@ -538,7 +541,8 @@ php5-sapi-r2_src_install() {
 		einfo "Building source tarball for ${CONFIG_NAME}"
 
 		mkdir -p ${CONFIG_DESTDIR}/usr/bin
-		cp ${D}/usr/bin/{phpextdist,phpize,php-config} ${CONFIG_DESTDIR}/usr/bin/
+		cp ${D}/usr/bin/{phpize,php-config} ${CONFIG_DESTDIR}/usr/bin/
+		cp scripts/dev/phpextdist ${CONFIG_DESTDIR}/usr/bin/
 
 		mkdir -p ${CONFIG_DESTDIR}/usr/lib/php
 		cp -r ${D}/usr/lib/php/build ${CONFIG_DESTDIR}/usr/lib/php
@@ -550,35 +554,18 @@ php5-sapi-r2_src_install() {
 		tar -cf - ${CONFIG_NAME} | bzip2 -9 > ${CONFIG_NAME}.tar.bz2
 		cd -
 
-		einfo "Done; tarball is ${T}/${CONFIG_NAME}.tar.bz2"
+		einfo "Done; tarball is ${T}/${CONFIG_NAME}.tar.bz"
 	fi
 
-	# move all the PEAR stuff from /usr/lib/php to /usr/share/php
-
+	rm -rf ${D}/usr/bin/{phpize,php-config,pear}
 	rm -rf ${D}/usr/lib/php/build
-	dodir /usr/share/php
-
-	for x in ${D}/usr/lib/php/* ; do
-		if [ "`basename $x`" != 'extensions' ]; then
-			mv $x ${D}/usr/share/php
-		fi
-	done
-
-	# only the cli SAPI is allowed to install PEAR
-
-	if [ "$PHPSAPI" != "cli" ]; then
-		rm -f ${D}/usr/bin/pear
-		rm -f ${D}/usr/share/php
-	fi
-
-	rm -rf ${D}/usr/bin/{phpextdist,phpize,php-config}
 	rm -rf ${D}/usr/include/php
 
 	# we let each SAPI install the man page
 	# this does mean that the packages are in conflict for now
 }
 
-php5-sapi-r2_pkg_postinst() {
+php5-sapi-r3_pkg_postinst() {
 	ewarn "If you have additional third party PHP extensions (such as"
 	ewarn "dev-php/eaccelerator) you may need to recompile them now."
 

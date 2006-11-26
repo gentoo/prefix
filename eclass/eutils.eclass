@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.261 2006/11/11 15:13:46 kanaka Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.265 2006/11/21 16:58:57 wolf31o2 Exp $
 #
 # This eclass is for general purpose functions that most ebuilds
 # have to implement themselves.
@@ -765,11 +765,7 @@ enewgroup() {
 #
 # edos2unix(file, <more files> ...)
 edos2unix() {
-	for f in "$@"
-	do
-		cp "${f}" ${T}/edos2unix
-		sed 's/\r$//' ${T}/edos2unix > "${f}"
-	done
+	echo "$@" | xargs sed -i 's/\r$//'
 }
 
 
@@ -828,7 +824,7 @@ make_desktop_entry() {
 
 			games)
 				case ${catmin} in
-					action)     type=ActionGame;;
+					action|fps) type=ActionGame;;
 					arcade)     type=ArcadeGame;;
 					board)      type=BoardGame;;
 					kids)       type=KidsGame;;
@@ -1414,14 +1410,16 @@ _cdrom_locate_file_on_cd() {
 
 			local point= node= fs= foo=
 			while read point node fs foo ; do
-				[[ *" ${fs} "* != " cd9660 iso9660 " ]] && continue
+				[[ " cd9660 iso9660 " != *" ${fs} "* ]] && \
+					! [[ ${fs} == "subfs" && ",${opts}," == *",fs=cdfss,"* ]] \
+					&& continue
 				point=${point//\040/ }
 				[[ -z $(find "${point}/${dir}" -maxdepth 1 -iname "${file}") ]] && continue
 				export CDROM_ROOT=${point}
 				export CDROM_SET=${i}
 				export CDROM_MATCH=${cdset[${i}]}
 				return
-			done < <(get_mounts)
+			done <<< "$(get_mounts)"
 
 			((++i))
 		done

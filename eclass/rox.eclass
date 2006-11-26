@@ -1,12 +1,13 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/rox.eclass,v 1.15 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/rox.eclass,v 1.16 2006/11/15 19:28:33 lack Exp $
 
 # ROX eclass Version 2
 
 # This eclass was created by Sergey Kuleshov (svyatogor@gentoo.org) and
 # Alexander Simonov (devil@gentoo.org.ua) to ease installation of ROX desktop
 # applications. Enhancements and python additions by Peter Hyman.
+# Small fixes and current maintenance by the Rox herd (rox@gentoo.org)
 
 # These variables are used in the GLOBAL scope to decide on DEPENDs, so they
 # must be set BEFORE you 'inherit rox':
@@ -26,26 +27,26 @@
 # For examples refer to ebuilds in rox-extra/
 
 # need python to byte compile modules, if any
-inherit python
+# need autotools to run autoreconf, if required
+inherit python autotools
 
 if [[ -z "${ROX_VER}" ]]; then
 	ROX_VER="2.1.0"
 fi
 
-DEPEND="${DEPEND}
-		>=rox-base/rox-${ROX_VER}"
+RDEPEND=">=rox-base/rox-${ROX_VER}"
 
 if [[ -n "${ROX_LIB_VER}" ]]; then
-	DEPEND="${DEPEND}
+	RDEPEND="${RDEPEND}
 		>=rox-base/rox-lib-${ROX_LIB_VER}"
 fi
 
 if [[ -n "${ROX_CLIB_VER}" ]]; then
-	DEPEND="${DEPEND}
+	RDEPEND="${RDEPEND}
 		>=rox-base/rox-clib-${ROX_CLIB_VER}"
+	DEPEND="${RDEPEND}
+		>=dev-util/pkgconfig-0.20"
 fi
-
-RDEPEND="${DEPEND}"
 
 rox_src_compile() {
 	cd "${APPNAME}"
@@ -59,7 +60,9 @@ rox_src_compile() {
 		if [ -f src/configure.in ]; then
 			cd src
 			sed -i.bak -e 's/ROX_CLIB_0LAUNCH/ROX_CLIB/' configure.in
-			autoconf
+			# TODO: This should really be 'eautoreconf', but that breaks a number
+			# of packages (such as pager-1.0.1)
+			eautoconf
 			cd ..
 		fi
 		export LIBDIRPATH="/usr/lib/"

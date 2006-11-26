@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-sapi.eclass,v 1.90 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-sapi.eclass,v 1.91 2006/11/23 14:02:50 vivo Exp $
 # Author: Robin H. Johnson <robbat2@gentoo.org>
 
 inherit eutils flag-o-matic multilib libtool
@@ -87,7 +87,7 @@ RDEPEND="${RDEPEND}
 	!alpha? ( !amd64? ( java? ( =virtual/jdk-1.4* dev-java/java-config ) ) )
 	jpeg? ( >=media-libs/jpeg-6b )
 	ldap? ( >=net-nds/openldap-1.2.11 )
-	mysql? ( >=dev-db/mysql-3.23.26 )
+	mysql? ( virtual/mysql )
 	nls? ( sys-devel/gettext )
 	odbc? ( >=dev-db/unixODBC-1.8.13 )
 	pam? ( >=sys-libs/pam-0.75 )

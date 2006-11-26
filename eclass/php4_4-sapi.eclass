@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php4_4-sapi.eclass,v 1.29 2006/10/27 11:45:28 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php4_4-sapi.eclass,v 1.30 2006/11/23 14:02:50 vivo Exp $
 #
 # ########################################################################
 #
@@ -73,7 +73,7 @@ DEPEND="adabas? ( >=dev-db/unixODBC-1.8.13 )
 		mhash? ( app-crypt/mhash )
 		ming? ( media-libs/ming )
 		mssql? ( dev-db/freetds )
-		mysql? ( dev-db/mysql )
+		mysql? ( virtual/mysql )
 		ncurses? ( sys-libs/ncurses )
 		nls? ( sys-devel/gettext )
 		oci8-instant-client? ( dev-db/oracle-instantclient-basic )

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/tetex.eclass,v 1.47 2006/08/06 10:36:52 nattfodd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/tetex.eclass,v 1.49 2006/11/23 14:02:50 vivo Exp $
 #
 # Author: Jaromir Malenko <malenko@email.cz>
 # Author: Mamoru KOMACHI <usata@gentoo.org>
@@ -41,11 +41,13 @@ KEYWORDS=""
 
 # tetex, ptex, cstetex must not block itself, fix for bug 121727
 if [[ "${PN}" = "tetex" ]] ; then
-	DEPEND="!app-text/ptex
+	# >=app-text/ptex-3.1.9 work with app-text/tetex
+	DEPEND="!<app-text/ptex-3.1.9
 		!app-text/cstetex"
 fi
 if [[ "${PN}" = "ptex" ]] ; then
-	DEPEND="!app-text/tetex
+	# >=app-text/ptex-3.1.9 does not co-exist with tetex-2
+	DEPEND="!<app-text/tetex-3
 		!app-text/cstetex"
 fi
 if [[ "${PN}" = "cstetex" ]] ; then
@@ -84,12 +86,12 @@ PROVIDE="virtual/tetex"
 tetex_pkg_setup() {
 
 	# hundreds of bugs reporting "cannot find -lmysqlclient" :(
-	if ! has_version 'dev-db/mysql' && (libwww-config --libs | grep mysql >/dev/null 2>&1); then
+	if ! has_version 'virtual/mysql' && (libwww-config --libs | grep mysql >/dev/null 2>&1); then
 		eerror
 		eerror "Your libwww was compiled with MySQL but MySQL is missing from system."
 		eerror "Please install MySQL or remerge libwww without mysql USE flag."
 		eerror
-		die "libwww was compiled with mysql but mysql is not installed"
+		die "libwww was compiled with mysql but virtual/mysql is not installed"
 	fi
 }
 

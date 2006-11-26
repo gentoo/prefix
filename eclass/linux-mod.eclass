@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.68 2006/10/16 14:10:46 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.69 2006/11/25 10:16:04 genstef Exp $
 
 # Description: This eclass is used to interface with linux-info in such a way
 #              to provide the functionality required and initial functions
@@ -97,6 +97,8 @@ DEPEND="${RDEPEND}
 # ----------------------------------
 
 check_vermagic() {
+	debug-print-function ${FUNCNAME} $*
+
 	local curr_gcc_ver=$(gcc -dumpversion)
 	local tmpfile old_chost old_gcc_ver result=0
 
@@ -134,6 +136,8 @@ check_vermagic() {
 }
 
 use_m() {
+	debug-print-function ${FUNCNAME} $*
+
 	# if we haven't determined the version yet, we need too.
 	get_version;
 
@@ -144,6 +148,8 @@ use_m() {
 }
 
 convert_to_m() {
+	debug-print-function ${FUNCNAME} $*
+
 	if use_m
 	then
 		[ ! -f "${1}" ] && \
@@ -155,13 +161,15 @@ convert_to_m() {
 }
 
 update_depmod() {
+	debug-print-function ${FUNCNAME} $*
+
 	# if we haven't determined the version yet, we need too.
 	get_version;
 
 	ebegin "Updating module dependencies for ${KV_FULL}"
 	if [ -r ${KV_OUT_DIR}/System.map ]
 	then
-		depmod -ae -F ${KV_OUT_DIR}/System.map -b ${ROOT} -r ${KV_FULL}
+		depmod -ae -F ${KV_OUT_DIR}/System.map -b ${EROOT} -r ${KV_FULL}
 		eend $?
 	else
 		ewarn
@@ -173,8 +181,10 @@ update_depmod() {
 }
 
 update_modules() {
+	debug-print-function ${FUNCNAME} $*
+
 	if [ -x /sbin/modules-update ] && \
-		grep -v -e "^#" -e "^$" ${D}/etc/modules.d/* >/dev/null 2>&1; then
+		grep -v -e "^#" -e "^$" ${ED}/etc/modules.d/* >/dev/null 2>&1; then
 		ebegin "Updating modules.conf"
 		/sbin/modules-update
 		eend $?
@@ -182,8 +192,10 @@ update_modules() {
 }
 
 move_old_moduledb() {
-	local OLDDIR=${ROOT}/usr/share/module-rebuild/
-	local NEWDIR=${ROOT}/var/lib/module-rebuild/
+	debug-print-function ${FUNCNAME} $*
+
+	local OLDDIR=${EROOT}/usr/share/module-rebuild/
+	local NEWDIR=${EROOT}/var/lib/module-rebuild/
 
 	if [[ -f ${OLDDIR}/moduledb ]]; then
 		[[ ! -d ${NEWDIR} ]] && mkdir -p ${NEWDIR}
@@ -195,7 +207,9 @@ move_old_moduledb() {
 }
 
 update_moduledb() {
-	local MODULEDB_DIR=${ROOT}/var/lib/module-rebuild/
+	debug-print-function ${FUNCNAME} $*
+
+	local MODULEDB_DIR=${EROOT}/var/lib/module-rebuild/
 	move_old_moduledb
 
 	if [[ ! -f ${MODULEDB_DIR}/moduledb ]]; then
@@ -209,7 +223,9 @@ update_moduledb() {
 }
 
 remove_moduledb() {
-	local MODULEDB_DIR=${ROOT}/var/lib/module-rebuild/
+	debug-print-function ${FUNCNAME} $*
+
+	local MODULEDB_DIR=${EROOT}/var/lib/module-rebuild/
 	move_old_moduledb
 
 	if [[ -n $(grep ${CATEGORY}/${PN}-${PVR} ${MODULEDB_DIR}/moduledb) ]]; then
@@ -219,6 +235,8 @@ remove_moduledb() {
 }
 
 set_kvobj() {
+	debug-print-function ${FUNCNAME} $*
+
 	if kernel_is 2 6
 	then
 		KV_OBJ="ko"
@@ -231,6 +249,8 @@ set_kvobj() {
 }
 
 get-KERNEL_CC() {
+	debug-print-function ${FUNCNAME} $*
+
 	local kernel_cc
 	if [ -n "${KERNEL_ABI}" ]; then
 		# In future, an arch might want to define CC_$ABI
@@ -244,6 +264,8 @@ get-KERNEL_CC() {
 }
 
 generate_modulesd() {
+	debug-print-function ${FUNCNAME} $*
+
 	# This function will generate the neccessary modules.d file from the
 	# information contained in the modules exported parms
 
@@ -386,6 +408,8 @@ generate_modulesd() {
 }
 
 find_module_params() {
+	debug-print-function ${FUNCNAME} $*
+
 	local matched_offset=0 matched_opts=0 test="${@}" temp_var result
 	local i=0 y=0 z=0
 
@@ -429,6 +453,8 @@ find_module_params() {
 # --------------------------------
 
 linux-mod_pkg_setup() {
+	debug-print-function ${FUNCNAME} $*
+
 	linux-info_pkg_setup;
 	check_kernel_built;
 	strip_modulenames;
@@ -441,6 +467,8 @@ linux-mod_pkg_setup() {
 }
 
 strip_modulenames() {
+	debug-print-function ${FUNCNAME} $*
+
 	local i
 	for i in ${MODULE_IGNORE}; do
 		MODULE_NAMES=${MODULE_NAMES//${i}(*}
@@ -448,11 +476,11 @@ strip_modulenames() {
 }
 
 linux-mod_src_compile() {
+	debug-print-function ${FUNCNAME} $*
+
 	local modulename libdir srcdir objdir i n myARCH="${ARCH}" myABI="${ABI}"
 	ARCH="$(tc-arch-kernel)"
 	ABI="${KERNEL_ABI}"
-	CC_HOSTCC=$(tc-getBUILD_CC)
-	CC_CC=$(get-KERNEL_CC)
 
 	BUILD_TARGETS=${BUILD_TARGETS:-clean module}
 	strip_modulenames;
@@ -477,7 +505,7 @@ linux-mod_src_compile() {
 				die "Unable to run econf ${ECONF_PARAMS}"
 			fi
 
-			emake HOSTCC=${CC_HOSTCC} CC=${CC_CC} LDFLAGS="$(get_abi_LDFLAGS)" \
+			emake HOSTCC="$(tc-getBUILD_CC)" CC="$(get-KERNEL_CC)" LDFLAGS="$(get_abi_LDFLAGS)" \
 				  ${BUILD_FIXES} ${BUILD_PARAMS} ${BUILD_TARGETS} \
 				|| die "Unable to make ${BUILD_FIXES} ${BUILD_PARAMS} ${BUILD_TARGETS}."
 			touch ${srcdir}/.built
@@ -490,6 +518,8 @@ linux-mod_src_compile() {
 }
 
 linux-mod_src_install() {
+	debug-print-function ${FUNCNAME} $*
+
 	local modulename libdir srcdir objdir i n
 
 	strip_modulenames;
@@ -515,17 +545,22 @@ linux-mod_src_install() {
 }
 
 linux-mod_pkg_preinst() {
+	debug-print-function ${FUNCNAME} $*
+
 	[ -d ${IMAGE}/lib/modules ] && UPDATE_DEPMOD=true || UPDATE_DEPMOD=false
 	[ -d ${IMAGE}/etc/modules.d ] && UPDATE_MODULES=true || UPDATE_MODULES=false
 	[ -d ${IMAGE}/lib/modules ] && UPDATE_MODULEDB=true || UPDATE_MODULEDB=false
 }
 
 linux-mod_pkg_postinst() {
+	debug-print-function ${FUNCNAME} $*
+
 	${UPDATE_DEPMOD} && update_depmod;
 	${UPDATE_MODULES} && update_modules;
 	${UPDATE_MODULEDB} && update_moduledb;
 }
 
 linux-mod_pkg_postrm() {
+	debug-print-function ${FUNCNAME} $*	
 	remove_moduledb;
 }

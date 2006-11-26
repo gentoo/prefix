@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig-2.eclass,v 1.13 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig-2.eclass,v 1.14 2006/11/24 02:15:13 tester Exp $
 #
 # mozconfig.eclass: the new mozilla.eclass
 
@@ -50,16 +50,12 @@ mozconfig_config() {
 			--enable-debug \
 			--enable-tests \
 			--disable-reorder \
-			--disable-strip \
-			--disable-strip-libs \
 			--enable-debugger-info-modules=ALL_MODULES
 	else
 		mozconfig_annotate -debug \
 			--disable-debug \
 			--disable-tests \
 			--enable-reorder \
-			--enable-strip \
-			--enable-strip-libs
 
 		# Currently --enable-elf-dynstr-gc only works for x86 and ppc,
 		# thanks to Jason Wever <weeve@gentoo.org> for the fix.

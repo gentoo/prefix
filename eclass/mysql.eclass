@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.43 2006/10/23 12:26:45 vivo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.44 2006/11/23 13:52:28 vivo Exp $
 
 # Author: Francesco Riosa <vivo@gentoo.org>
 # Maintainer: Luca Longinotti <chtekk@gentoo.org>
@@ -35,6 +35,10 @@ DEPEND="ssl? ( >=dev-libs/openssl-0.9.6d )
 		>=sys-libs/readline-4.1
 		>=sys-libs/zlib-1.2.3"
 
+# LEAVE THE SURROUNDING SPACES THERE
+MYSQL_MUTUALLY_EXCLUSIVE=" !dev-db/mysql !dev-db/mysql-community "
+DEPEND="${DEPEND} ${MYSQL_MUTUALLY_EXCLUSIVE/ !${CATEGORY}\/${PN} /}"
+
 mysql_version_is_at_least "5.01.00.00" \
 || DEPEND="${DEPEND} berkdb? ( sys-apps/ed )"
 
@@ -45,7 +49,7 @@ PDEPEND="perl? ( >=dev-perl/DBD-mysql-2.9004 )"
 
 # Shorten the path because the socket path length must be shorter than 107 chars
 # and we will run a mysql server during test phase
-S="${WORKDIR}/${PN/_alpha/-bk-}" # BitKeeper ebuilds
+S="${WORKDIR}/mysql" # BitKeeper ebuilds
 
 # Define $MY_FIXED_PV for MySQL patchsets
 MY_FIXED_PV="${PV/_alpha/}"
@@ -54,6 +58,7 @@ MY_FIXED_PV="${PV/_alpha/}"
 
 MY_P="${P/_/-}"
 MY_P="${MY_P/-alpha/-bk-}" # BitKeeper ebuilds
+MY_P="${MY_P/-community/}"
 
 # Define correct SRC_URIs
 SRC_URI="mirror://mysql/Downloads/MySQL-${PV%.*}/${MY_P}${MYSQL_RERELEASE}.tar.gz"

@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf.eclass,v 1.10 2006/07/20 14:04:43 azarah Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf.eclass,v 1.11 2006/11/24 02:15:13 tester Exp $
 #
 # mozcoreconf.eclass : core options for mozilla
 # inherit mozconfig-2 if you need USE flags
@@ -175,7 +175,9 @@ mozconfig_init() {
 		--enable-pango \
 		--enable-svg \
 		--enable-svg-renderer=cairo \
-		--enable-system-cairo
+		--enable-system-cairo \
+		--disable-strip \
+		--disable-strip-libs
 
 	if [[ ${PN} != seamonkey ]]; then
 		mozconfig_annotate gentoo \
