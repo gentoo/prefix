@@ -1,6 +1,10 @@
 # ChangeLog for net-libs/liblockfile
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/liblockfile/ChangeLog,v 1.39 2006/10/17 22:13:00 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/liblockfile/ChangeLog,v 1.40 2006/10/21 18:19:54 kloeri Exp $
+
+  21 Oct 2006; Bryan Østergaard <kloeri@gentoo.org>
+  liblockfile-1.06-r1.ebuild:
+  Stable on Alpha, bug 140793.
 
   17 Oct 2006; Diego Pettenò <flameeyes@gentoo.org>
   liblockfile-1.06-r1.ebuild:
