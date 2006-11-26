@@ -1,6 +1,21 @@
 # ChangeLog for sci-biology/embassy-structure
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-structure/ChangeLog,v 1.6 2006/07/21 15:12:43 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-structure/ChangeLog,v 1.10 2006/11/03 13:21:49 nixnut Exp $
+
+  03 Nov 2006; nixnut <nixnut@gentoo.org> embassy-structure-0.1.0-r1.ebuild:
+  Stable on ppc wrt bug 153766
+
+  03 Nov 2006; Jeff Gardner <je_fro@gentoo.org>
+  embassy-structure-0.1.0-r1.ebuild:
+  Added ~sparc
+
+  02 Nov 2006; Fabian Groffen <grobian@gentoo.org>
+  embassy-structure-0.1.0.ebuild, embassy-structure-0.1.0-r1.ebuild:
+  Dropped ppc-macos, see you in prefix.
+
+  02 Nov 2006; Olivier Fisette <ribosome@gentoo.org>
+  embassy-structure-0.1.0-r1.ebuild:
+  Added to x86.
 
 *embassy-structure-0.1.0-r1 (21 Jul 2006)
 
