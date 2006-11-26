@@ -1,6 +1,14 @@
 # ChangeLog for virtual/perl-Digest-MD5
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Digest-MD5/ChangeLog,v 1.13 2006/09/04 06:33:46 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Digest-MD5/ChangeLog,v 1.14 2006/10/25 02:26:23 mcummings Exp $
+
+  25 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  -perl-Digest-MD5-2.33.ebuild:
+  Correcting dep
+
+  25 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  perl-Digest-MD5-2.33.ebuild:
+  Correcting dep
 
   04 Sep 2006; Joshua Kinard <kumba@gentoo.org> perl-Digest-MD5-2.36.ebuild:
   Marked stable on mips.
