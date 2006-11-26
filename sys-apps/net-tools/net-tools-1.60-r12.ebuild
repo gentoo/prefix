@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/net-tools-1.60-r12.ebuild,v 1.9 2006/11/04 11:32:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/net-tools-1.60-r12.ebuild,v 1.10 2006/11/15 12:48:01 corsair Exp $
 
 EAPI="prefix"
 

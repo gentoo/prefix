@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/net-tools
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/ChangeLog,v 1.61 2006/11/01 22:15:27 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/ChangeLog,v 1.62 2006/11/15 12:48:01 corsair Exp $
+
+  15 Nov 2006; Markus Rothe <corsair@gentoo.org> net-tools-1.60-r12.ebuild:
+  Stable on ppc64; bug #152837
 
   01 Nov 2006; Bryan Østergaard <kloeri@gentoo.org>
   net-tools-1.60-r12.ebuild:
