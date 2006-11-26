@@ -1,0 +1,15 @@
+# ChangeLog for virtual/libiconv
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/libiconv/ChangeLog,v 1.2 2006/10/17 09:18:10 uberlord Exp $
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org> libiconv-0.ebuild:
+  Added ~sparc-fbsd keyword.
+
+*libiconv-0 (13 Apr 2006)
+
+  13 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> +metadata.xml,
+  +libiconv-0.ebuild:
+  Add virtual/libiconv to add runtime dependency when packages needs a GNU
+  implementation of iconv() function. It's a no-op for GLIBC and uClibc
+  systems, and points to libiconv for the others.
+
