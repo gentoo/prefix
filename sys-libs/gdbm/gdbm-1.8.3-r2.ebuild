@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/gdbm-1.8.3-r2.ebuild,v 1.5 2006/03/30 16:51:23 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/gdbm-1.8.3-r2.ebuild,v 1.6 2006/10/17 08:29:30 uberlord Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://gnu/gdbm/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 arm hppa ia64 m68k mips ppc ppc-macos ppc64 s390 sh sparc x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
 IUSE="berkdb"
 
 DEPEND="berkdb? ( sys-libs/db )"
