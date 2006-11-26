@@ -5,6 +5,12 @@
 # See the gentoo-src Portage ChangeLog for up-to-date release information:
 # http://www.gentoo.org/cgi-bin/viewcvs.cgi/portage/ChangeLog?rev=HEAD&cvsroot=gentoo-src&content-type=text/vnd.viewcvs-markup
 
+*portage-2.1.20.5138 (26 Nov 2006)
+
+  26 Nov 2006; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.1.20.5090.ebuild, +portage-2.1.20.5138.ebuild:
+  New snapshot, contains some important etc-update related fixes
+
 *portage-2.1.20.5132 (26 Nov 2006)
 
   26 Nov 2006; Fabian Groffen <grobian@gentoo.org>
