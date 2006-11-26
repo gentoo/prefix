@@ -1,6 +1,9 @@
 # ChangeLog for sci-biology/prints
 # Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/prints/ChangeLog,v 1.18 2006/08/18 02:48:20 weeve Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/prints/ChangeLog,v 1.19 2006/11/02 20:21:23 grobian Exp $
+
+  02 Nov 2006; Fabian Groffen <grobian@gentoo.org> prints-38.0.ebuild:
+  Dropped ppc-macos, see you in prefix.
 
   18 Aug 2006; Jason Wever <weeve@gentoo.org> prints-38.0.ebuild:
   Added ~sparc keyword wrt bug #144241.

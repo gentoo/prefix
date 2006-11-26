@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/prints/prints-38.0.ebuild,v 1.7 2006/08/18 02:48:20 weeve Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/prints/prints-38.0.ebuild,v 1.8 2006/11/02 20:21:23 grobian Exp $
 
 EAPI="prefix"
 
