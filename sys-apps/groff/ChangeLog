@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/groff
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/ChangeLog,v 1.74 2006/10/17 11:20:52 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/ChangeLog,v 1.75 2006/11/09 01:13:02 iluxa Exp $
+
+  09 Nov 2006; Ilya A. Volynets-Evenbakh <iluxa@gentoo.org>
+  groff-1.19.2-r1.ebuild:
+  Stable on mips
 
   17 Oct 2006; Roy Marples <uberlord@gentoo.org> groff-1.19.1-r2.ebuild:
   Added ~sparc-fbsd keyword.
