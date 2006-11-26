@@ -1,6 +1,18 @@
 # ChangeLog for sci-biology/embassy-esim4
 # Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-esim4/ChangeLog,v 1.16 2006/07/21 14:56:46 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-esim4/ChangeLog,v 1.19 2006/11/03 02:56:59 je_fro Exp $
+
+  03 Nov 2006; Jeff Gardner <je_fro@gentoo.org>
+  embassy-esim4-1.0.0-r3.ebuild:
+  Marked ~sparc
+
+  02 Nov 2006; Fabian Groffen <grobian@gentoo.org>
+  embassy-esim4-1.0.0-r2.ebuild, embassy-esim4-1.0.0-r3.ebuild:
+  Dropped ppc-macos, see you in prefix.
+
+  02 Nov 2006; Olivier Fisette <ribosome@gentoo.org>
+  embassy-esim4-1.0.0-r3.ebuild:
+  Added to x86.
 
 *embassy-esim4-1.0.0-r3 (21 Jul 2006)
 
