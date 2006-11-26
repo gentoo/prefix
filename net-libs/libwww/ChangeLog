@@ -1,6 +1,20 @@
 # ChangeLog for net-libs/libwww
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libwww/ChangeLog,v 1.70 2006/10/15 10:05:54 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libwww/ChangeLog,v 1.74 2006/11/23 20:02:54 vivo Exp $
+
+  23 Nov 2006; Francesco Riosa <vivo@gentoo.org> libwww-5.4.0-r3.ebuild,
+  libwww-5.4.0-r4.ebuild, libwww-5.4.0-r5.ebuild, libwww-5.4.0-r6.ebuild,
+  libwww-5.4.0-r7.ebuild:
+  dev-db/mysql => virtual/mysql
+
+  04 Nov 2006; <blubb@gentoo.org> libwww-5.4.0-r7.ebuild:
+  stable on amd64
+
+  01 Nov 2006; Bryan Østergaard <kloeri@gentoo.org> libwww-5.4.0-r7.ebuild:
+  Stable on Alpha, bug 150198.
+
+  20 Oct 2006; Paul Varner <fuzzyray@gentoo.org> libwww-5.4.0-r7.ebuild:
+  x86 stable - bug #150198
 
   15 Oct 2006; Tobias Scherbaum <dertobi123@gentoo.org>
   libwww-5.4.0-r7.ebuild:
