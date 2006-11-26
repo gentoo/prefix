@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-domainatrix/embassy-domainatrix-0.1.0-r1.ebuild,v 1.1 2006/07/21 14:51:20 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-domainatrix/embassy-domainatrix-0.1.0-r1.ebuild,v 1.5 2006/11/03 12:58:42 nixnut Exp $
 
 EAPI="prefix"
 
