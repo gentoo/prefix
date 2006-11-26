@@ -1,6 +1,21 @@
 # ChangeLog for sci-biology/emboss
 # Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/emboss/ChangeLog,v 1.35 2006/08/18 02:51:13 weeve Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/emboss/ChangeLog,v 1.40 2006/11/20 20:57:29 blubb Exp $
+
+  20 Nov 2006; <blubb@gentoo.org> emboss-4.0.0.ebuild:
+  stable on amd64
+
+  15 Nov 2006; Markus Rothe <corsair@gentoo.org> emboss-4.0.0.ebuild:
+  Stable on ppc64; bug #153766
+
+  03 Nov 2006; nixnut <nixnut@gentoo.org> emboss-4.0.0.ebuild:
+  Stable on ppc wrt bug 153766
+
+  03 Nov 2006; Jeff Gardner <je_fro@gentoo.org> emboss-3.0.0-r1.ebuild:
+  Added ~sparc to emboss-3 for embassy-phylip-3.6b.
+
+  02 Nov 2006; Olivier Fisette <ribosome@gentoo.org> emboss-4.0.0.ebuild:
+  Added to x86.
 
   18 Aug 2006; Jason Wever <weeve@gentoo.org> emboss-4.0.0.ebuild:
   Added ~sparc keyword wrt bug #144241.
