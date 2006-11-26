@@ -1,6 +1,20 @@
 # ChangeLog for sci-biology/embassy-emnu
 # Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-emnu/ChangeLog,v 1.16 2006/07/21 14:55:28 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-emnu/ChangeLog,v 1.20 2006/11/03 13:11:12 nixnut Exp $
+
+  03 Nov 2006; nixnut <nixnut@gentoo.org> embassy-emnu-1.05-r3.ebuild:
+  Stable on ppc wrt bug 153766
+
+  03 Nov 2006; Fabian Groffen <grobian@gentoo.org>
+  embassy-emnu-1.05-r2.ebuild, embassy-emnu-1.05-r3.ebuild:
+  Dropped ppc-macos, see you in prefix.
+
+  03 Nov 2006; Jeff Gardner <je_fro@gentoo.org> embassy-emnu-1.05-r3.ebuild:
+  Added ~sparc
+
+  02 Nov 2006; Olivier Fisette <ribosome@gentoo.org>
+  embassy-emnu-1.05-r3.ebuild:
+  Added to x86.
 
 *embassy-emnu-1.05-r3 (21 Jul 2006)
 
