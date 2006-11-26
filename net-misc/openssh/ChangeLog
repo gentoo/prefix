@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.221 2006/11/07 23:03:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.222 2006/11/08 23:15:58 iluxa Exp $
+
+  08 Nov 2006; Ilya A. Volynets-Evenbakh <iluxa@gentoo.org>
+  openssh-4.4_p1-r6.ebuild:
+  Stable on mips (#149502)
 
 *openssh-4.5_p1 (07 Nov 2006)
 
