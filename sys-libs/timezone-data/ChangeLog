@@ -1,0 +1,225 @@
+# ChangeLog for sys-libs/timezone-data
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.53 2006/11/06 20:23:12 vapier Exp $
+
+*timezone-data-2006o (06 Nov 2006)
+
+  06 Nov 2006; Mike Frysinger <vapier@gentoo.org>
+  +timezone-data-2006o.ebuild:
+  Version bump #154268 by Rodrigo Severo.
+
+  06 Nov 2006; Roy Marples <uberlord@gentoo.org> timezone-data-2006n.ebuild:
+  Link to intl in non glibc systems when requesting nls.
+  Fixes #154181 thanks to Timothy Redaelli.
+
+  04 Nov 2006; Mike Frysinger <vapier@gentoo.org>
+  files/timezone-data-2005n-makefile.patch, timezone-data-2006n.ebuild:
+  Add support for USE=nls #154070 by Benno Schulenberg.
+
+  27 Oct 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  timezone-data-2006n.ebuild:
+  Stable on x86 wrt bug #151539.
+
+  21 Oct 2006; Bryan Østergaard <kloeri@gentoo.org>
+  timezone-data-2006n.ebuild:
+  Stable on Alpha + ia64, bug 151539.
+
+  21 Oct 2006; Jeroen Roovers <jer@gentoo.org> timezone-data-2006n.ebuild:
+  Stable for HPPA (bug #151539).
+
+  21 Oct 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  timezone-data-2006n.ebuild:
+  ppc stable, bug #151539
+
+  18 Oct 2006; Patrick McLean <chutzpah@gentoo.org>
+  timezone-data-2006n.ebuild:
+  Stable on amd64 (bug #151539).
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org> timezone-data-2006n.ebuild:
+  Added ~sparc-fbsd keyword.
+
+  17 Oct 2006; Markus Rothe <corsair@gentoo.org> timezone-data-2006n.ebuild:
+  Stable on ppc64; bug #151539
+
+  17 Oct 2006; Jason Wever <weeve@gentoo.org> timezone-data-2006n.ebuild:
+  Stable on SPARC wrt bug #151539.
+
+*timezone-data-2006n (11 Oct 2006)
+
+  11 Oct 2006; Mike Frysinger <vapier@gentoo.org>
+  +timezone-data-2006n.ebuild:
+  Version bump #150762 by Rodrigo Severo.
+
+*timezone-data-2006m (03 Oct 2006)
+
+  03 Oct 2006; Mike Frysinger <vapier@gentoo.org>
+  +timezone-data-2006m.ebuild:
+  Version bump #149898 by Rodrigo Severo.
+
+*timezone-data-2006l (19 Sep 2006)
+
+  19 Sep 2006; Mike Frysinger <vapier@gentoo.org>
+  +timezone-data-2006l.ebuild:
+  Version bump #148101 by Rodrigo Severo.
+
+*timezone-data-2006k (28 Aug 2006)
+
+  28 Aug 2006; Mike Frysinger <vapier@gentoo.org>
+  +timezone-data-2006k.ebuild:
+  Version bump #145374 by Rodrigo Severo.
+
+  25 Aug 2006; <ticho@gentoo.org> timezone-data-2006g.ebuild:
+  Stable on x86, bug #144711.
+
+  23 Aug 2006; <malc@gentoo.org> timezone-data-2006g.ebuild:
+  Stable on amd64
+
+  22 Aug 2006; Markus Rothe <corsair@gentoo.org> timezone-data-2006g.ebuild:
+  Stable on ppc64; bug #144711
+
+*timezone-data-2006j (22 Aug 2006)
+
+  22 Aug 2006; Mike Frysinger <vapier@gentoo.org>
+  +timezone-data-2006j.ebuild:
+  Version bump #144652 by Rodrigo Severo.
+
+  01 Jul 2006; Joel Martin <kanaka@gentoo.org> timezone-data-2006g.ebuild:
+  Compile native zic first and use that if we are cross-compiling.
+
+  27 Jun 2006; Javier Villavicencio <the_paya@gentoo.org>
+  timezone-data-2006g.ebuild:
+  Fix for bug #138251 thanks to Adam Potter for reporting.
+
+  26 May 2006; Guy Martin <gmsoft@gentoo.org> timezone-data-2006g.ebuild:
+  Stable on hppa.
+
+  23 May 2006; Markus Rothe <corsair@gentoo.org> timezone-data-2006a.ebuild:
+  Stable on ppc64
+
+*timezone-data-2006g (09 May 2006)
+
+  09 May 2006; Mike Frysinger <vapier@gentoo.org>
+  +timezone-data-2006g.ebuild:
+  Version bump #132727 by Rodrigo Severo.
+
+*timezone-data-2006f (03 May 2006)
+
+  03 May 2006; Mike Frysinger <vapier@gentoo.org>
+  +timezone-data-2006f.ebuild:
+  Version bump #132020 by Rodrigo Severo.
+
+  27 Apr 2006; Alec Warner <antarus@gentoo.org> Manifest:
+  Fixing SHA256 digest, pass four
+
+  22 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  timezone-data-2006d.ebuild:
+  Add ~x86-fbsd keyword.
+
+*timezone-data-2006d (21 Apr 2006)
+
+  21 Apr 2006; Mike Frysinger <vapier@gentoo.org>
+  +timezone-data-2006d.ebuild:
+  Version bump #130778 by Rodrigo Severo.
+
+*timezone-data-2006c (14 Apr 2006)
+
+  14 Apr 2006; Mike Frysinger <vapier@gentoo.org>
+  +timezone-data-2006c.ebuild:
+  Version bump #128705 by Rodrigo Severo.
+
+  28 Mar 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  timezone-data-2006a.ebuild:
+  Stable on x86 wrt bug #127680.
+
+  13 Mar 2006; Danny van Dyk <kugelfang@gentoo.org>
+  timezone-data-2006a.ebuild:
+  Marked stable on amd64.
+
+  27 Feb 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  timezone-data-2006b.ebuild:
+  Stable on sparc
+
+  24 Feb 2006; Mike Frysinger <vapier@gentoo.org>
+  files/timezone-data-2005n-makefile.patch:
+  Fix by Ulrich Mueller for building with -std=c99 on 32bit hosts #123778.
+
+  23 Feb 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  timezone-data-2006b.ebuild:
+  Back to ~sparc until bug #123778 is resolved
+
+*timezone-data-2006b (22 Feb 2006)
+
+  22 Feb 2006; Mike Frysinger <vapier@gentoo.org>
+  +timezone-data-2006b.ebuild:
+  Version bump #123594 by Rodrigo Severo.
+
+  20 Feb 2006; Joshua Kinard <kumba@gentoo.org> timezone-data-2006a.ebuild:
+  Marked stable on mips.
+
+  07 Feb 2006; Aron Griffis <agriffis@gentoo.org>
+  timezone-data-2006a.ebuild:
+  Mark 2006a stable on ia64
+
+*timezone-data-2006a (01 Feb 2006)
+
+  01 Feb 2006; Mike Frysinger <vapier@gentoo.org>
+  +timezone-data-2006a.ebuild:
+  Version bump #121033 by Rodrigo Severo.
+
+  15 Jan 2006; Joseph Jezak <josejx@gentoo.org> timezone-data-2005r.ebuild:
+  Marked ppc stable.
+
+  05 Jan 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  timezone-data-2005p.ebuild, timezone-data-2005q.ebuild,
+  timezone-data-2005r.ebuild:
+  Stable on sparc
+
+*timezone-data-2005r (28 Dec 2005)
+
+  28 Dec 2005; Mike Frysinger <vapier@gentoo.org>
+  +timezone-data-2005r.ebuild:
+  Version bump #116994 by Rodrigo Severo.
+
+*timezone-data-2005q (14 Dec 2005)
+
+  14 Dec 2005; Mike Frysinger <vapier@gentoo.org>
+  +timezone-data-2005q.ebuild:
+  Version bump #115429 by Rodrigo Severo.
+
+  09 Dec 2005; Joshua Kinard <kumba@gentoo.org> timezone-data-2005p.ebuild:
+  Added ~mips to KEYWORDS.
+
+*timezone-data-2005p (06 Dec 2005)
+
+  06 Dec 2005; Mike Frysinger <vapier@gentoo.org>
+  +timezone-data-2005p.ebuild:
+  Version bump #114546 by Rodrigo Severo.
+
+  30 Nov 2005; Bryan Østergaard <kloeri@gentoo.org>
+  timezone-data-2005o.ebuild:
+  Stable on alpha, needed for glibc-2.3.5-r3.
+
+*timezone-data-2005o (29 Nov 2005)
+
+  29 Nov 2005; Mike Frysinger <vapier@gentoo.org>
+  +timezone-data-2005o.ebuild:
+  Version bump #113816 by Rodrigo Severo.
+
+  25 Nov 2005; Markus Rothe <corsair@gentoo.org>
+  timezone-data-2005n-r1.ebuild:
+  Added ~ppc64 keyword
+
+  03 Nov 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  timezone-data-2005n-r1.ebuild:
+  ~sparc good
+
+*timezone-data-2005n-r1 (28 Oct 2005)
+
+  28 Oct 2005; Mike Frysinger <vapier@gentoo.org>
+  files/timezone-data-2005n-makefile.patch, +timezone-data-2005n-r1.ebuild:
+  Fix tzselect shell interpreter #110681 by Priit Laes.
+
+*timezone-data-2005n (19 Oct 2005)
+
+  19 Oct 2005; Mike Frysinger <vapier@gentoo.org> :
+  Initial import.  Ebuild submitted by me #109556.
