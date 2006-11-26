@@ -1,16 +1,20 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/vorbis-tools-1.1.1-r2.ebuild,v 1.5 2006/10/19 17:18:48 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/vorbis-tools-1.1.1-r3.ebuild,v 1.2 2006/11/17 23:49:00 aballier Exp $
 
 EAPI="prefix"
 
 IUSE="nls flac speex"
 
-inherit eutils toolchain-funcs flag-o-matic
+WANT_AUTOCONF=2.5
+WANT_AUTOMAKE=1.9
+
+inherit eutils toolchain-funcs flag-o-matic autotools
 
 DESCRIPTION="tools for using the Ogg Vorbis sound file format"
 HOMEPAGE="http://www.vorbis.com/"
-SRC_URI="http://downloads.xiph.org/releases/vorbis/${P}.tar.gz"
+SRC_URI="http://downloads.xiph.org/releases/vorbis/${P}.tar.gz
+	mirror://gentoo/${P}+flac-1.1.3.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -20,7 +24,7 @@ RDEPEND=">=media-libs/libvorbis-1.1.0
 	>=media-libs/libao-0.8.2
 	>=net-misc/curl-7.9
 	speex? ( media-libs/speex )
-	flac? ( ~media-libs/flac-1.1.2 )"
+	flac? ( media-libs/flac )"
 
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
@@ -35,8 +39,12 @@ pkg_setup() {
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
-	epatch ${FILESDIR}/${P}-utf8.patch
+	cd "${S}"
+	epatch "${FILESDIR}/${P}-utf8.patch"
+	epatch "${WORKDIR}/${P}+flac-1.1.3-1.patch"
+	epatch "${WORKDIR}/${P}+flac-1.1.3-2.patch"
+	epatch "${WORKDIR}/${P}+flac-1.1.3-3.patch"
+	AT_M4DIR="m4" eautoreconf
 }
 
 src_compile() {
@@ -47,10 +55,13 @@ src_compile() {
 	use flac || myconf="${myconf} --without-flac"
 	# --with-speex is not supported. See bug #97316
 	use speex || myconf="${myconf} --without-speex"
-	use nls || myconf="${myconf} --disable-nls"
 
-	econf ${myconf} || die
-	emake || die
+	# for vcut see bug #143487
+	econf \
+		--enable-vcut \
+		$(use_enable nls) \
+		${myconf} || die "econf failed"
+	emake || die "emake failed"
 }
 
 src_install() {
