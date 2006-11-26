@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/primer3/primer3-1.0.0.ebuild,v 1.11 2006/11/02 19:08:34 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/primer3/primer3-1.0b.ebuild,v 1.1 2006/11/03 01:52:10 ribosome Exp $
 
 EAPI="prefix"
 
@@ -13,11 +13,11 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86"
 IUSE=""
 
-RDEPEND=""
-
 DEPEND="dev-lang/perl"
 
-S=${WORKDIR}/${PN}_${PV}/src
+RDEPEND=""
+
+S="${WORKDIR}/${PN}_${PV}/src"
 
 src_unpack() {
 	unpack ${A}
@@ -37,6 +37,7 @@ src_test () {
 }
 
 src_install () {
-	dobin primer3_core
-	dodoc release_notes ../README ../example
+	dobin primer3_core || die "Could not install program."
+	dodoc ../{how-to-cite.txt,README.${PN}_${PV}.txt,example} || \
+			die "Could not install documentation."
 }
