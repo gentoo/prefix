@@ -42,14 +42,14 @@ AUX gmp-4.1.4-multilib.patch 2864 RMD160 707ed6bdca664ab07c7dcd48a4657f92b4b9cd6
 MD5 ee91d8f397ce79dd0ff7e4ae48a47b21 files/gmp-4.1.4-multilib.patch 2864
 RMD160 707ed6bdca664ab07c7dcd48a4657f92b4b9cd62 files/gmp-4.1.4-multilib.patch 2864
 SHA256 11519c27029e0627ef9652cbcebdff689dfaecfb9aa9f6fd9a121bda0ee8d989 files/gmp-4.1.4-multilib.patch 2864
-AUX gmp-4.1.4-noexecstack.patch 489 RMD160 58b3b8f6d95cbc32cfb8fdb01d35cb6ce521836d SHA1 6ac562345e9e557d68506bdc162583d611e04257 SHA256 b6e9bff0c94928037223cc29d74e037ee4acce575ce250912d3c83239c4c4a02
-MD5 6cd8393cd75268730f199290a62e318d files/gmp-4.1.4-noexecstack.patch 489
-RMD160 58b3b8f6d95cbc32cfb8fdb01d35cb6ce521836d files/gmp-4.1.4-noexecstack.patch 489
-SHA256 b6e9bff0c94928037223cc29d74e037ee4acce575ce250912d3c83239c4c4a02 files/gmp-4.1.4-noexecstack.patch 489
-AUX gmp-4.1.4-nostackexec.patch 477 RMD160 653b509e4140312a63bceccf290f6024f07cf133 SHA1 7d2f215c99f722ba2d1ce9fde719bc5cef852a51 SHA256 cb456a4b7cc740e30ec081cecd0fc0191851ba7cd111eadff723e09c4d4c328c
-MD5 23dc2aa78cf38e662cec9e402a6c13a2 files/gmp-4.1.4-nostackexec.patch 477
-RMD160 653b509e4140312a63bceccf290f6024f07cf133 files/gmp-4.1.4-nostackexec.patch 477
-SHA256 cb456a4b7cc740e30ec081cecd0fc0191851ba7cd111eadff723e09c4d4c328c files/gmp-4.1.4-nostackexec.patch 477
+AUX gmp-4.1.4-noexecstack.patch 500 RMD160 f6127c09401e20137dc84bf15bcc664882e8cb8c SHA1 4a4488042cd0ec374f014576c1e88e3d469ad571 SHA256 5596cceb83b0cb7d82512623a314b9dad4a595fe897403ec7f130511a35ed672
+MD5 c5cdde547a6d6877d618f865215b1180 files/gmp-4.1.4-noexecstack.patch 500
+RMD160 f6127c09401e20137dc84bf15bcc664882e8cb8c files/gmp-4.1.4-noexecstack.patch 500
+SHA256 5596cceb83b0cb7d82512623a314b9dad4a595fe897403ec7f130511a35ed672 files/gmp-4.1.4-noexecstack.patch 500
+AUX gmp-4.1.4-nostackexec.patch 333 RMD160 2552417332eacce3a91bf455b42ace6a24f9ce78 SHA1 6832d0db2b95ebfb96f1ec25ac13791167dd64cf SHA256 c2038c83eebba11293794af93d3cdf94b23cc1c7da70337474e1bd14ace2934b
+MD5 bbd0e9615a3d4c4e30f13fe0ce4a0d63 files/gmp-4.1.4-nostackexec.patch 333
+RMD160 2552417332eacce3a91bf455b42ace6a24f9ce78 files/gmp-4.1.4-nostackexec.patch 333
+SHA256 c2038c83eebba11293794af93d3cdf94b23cc1c7da70337474e1bd14ace2934b files/gmp-4.1.4-nostackexec.patch 333
 AUX gmp-4.1.4-ppc64-asm-dots.patch 591 RMD160 93723091cc2bf41de13a4270ac35bc350aeffaae SHA1 e22d15477498cefa5b0a667016872e281c9a1bc1 SHA256 71e2c485c5f76b3b0923c3c20e3707ac9dc9cab0aec48694a4f0b86a368d1f10
 MD5 d2af66806a8974a7be3bf44cebef957d files/gmp-4.1.4-ppc64-asm-dots.patch 591
 RMD160 93723091cc2bf41de13a4270ac35bc350aeffaae files/gmp-4.1.4-ppc64-asm-dots.patch 591
@@ -86,9 +86,9 @@ MISC metadata.xml 162 RMD160 d002486a43522f2116b1d9d59828c484956d66e2 SHA1 d6b49
 MD5 567094e03359ffc1c95af7356395228d metadata.xml 162
 RMD160 d002486a43522f2116b1d9d59828c484956d66e2 metadata.xml 162
 SHA256 65a915d44de1f01d4b7f72d313b4192c38374a9835d24988c00c1e73dca5805a metadata.xml 162
-MD5 ecfa6e6ac8c4599adec0bb6355cf4c77 files/digest-gmp-4.1.4-r3 467
-RMD160 0bc487bda83bd2fa004940e2476c63d92dc85841 files/digest-gmp-4.1.4-r3 467
-SHA256 9c84e4f821774519f5ed03916ae541da11af509354ff0e628f1965f7862be914 files/digest-gmp-4.1.4-r3 467
+MD5 dc34093cf57d16d21d101c7ec9324787 files/digest-gmp-4.1.4-r3 467
+RMD160 d3e1841f0adbd7ac384f2842460da58833b7527c files/digest-gmp-4.1.4-r3 467
+SHA256 95ca16128883784d99a04bfea32f909ced0fec3517812d8f0922e43b6ed1cabb files/digest-gmp-4.1.4-r3 467
 MD5 d87bd044c3923c0796531c3bf8576c9f files/digest-gmp-4.2.1 467
 RMD160 98ab335c8f75e99dfd7ddc3d8997efb97f8ef99e files/digest-gmp-4.2.1 467
 SHA256 72f6e7bb87de1a79792e7c22a78d0e16956ec7e0b80a13c7de181b691a627db9 files/digest-gmp-4.2.1 467

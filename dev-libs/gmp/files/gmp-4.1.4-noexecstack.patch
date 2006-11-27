@@ -1,0 +1,19 @@
+fixed executable stack as per bug #115038 thanks to Petteri Räty
+
+--- gmp-4.1.4/configure
++++ gmp-4.1.4/configure
+@@ -21689,6 +21689,7 @@
+ fi
+ echo "')" >> $gmp_configm4
+ echo "define(\`__CONFIG_M4_INCLUDED__')" >> $gmp_configm4
++cat nostackexec>>$gmp_configm4
+ 
+ # Create Makefiles
+ # FIXME: Upcoming version of autoconf/automake may not like broken lines.
+--- gmp-4.1.4/nostackexec
++++ gmp-4.1.4/nostackexec
+@@ -0,0 +1,4 @@
++#ifdef __ELF__
++.section .note.GNU-stack,"",%progbits
++.previous
++#endif

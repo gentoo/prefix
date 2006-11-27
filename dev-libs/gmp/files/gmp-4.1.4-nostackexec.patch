@@ -1,0 +1,16 @@
+--- gmp-4.1.4/acinclude.m4.orig
++++ gmp-4.1.4/acinclude.m4
+@@ -878,6 +878,7 @@
+ fi
+ echo ["')"] >> $gmp_configm4
+ echo ["define(\`__CONFIG_M4_INCLUDED__')"] >> $gmp_configm4
++cat nostackexec>>$gmp_configm4
+ ])
+ 
+ 
+--- /dev/null
++++ gmp-4.1.4/nostackexec
+@@ -0,0 +1,3 @@
++#ifdef __ELF__
++.section .note.GNU-stack,"",%progbits
++#endif
