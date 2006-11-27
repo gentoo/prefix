@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg.eclass,v 1.45 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg.eclass,v 1.47 2006/11/26 21:59:41 betelgeuse Exp $
 
 inherit multilib
 
@@ -154,6 +154,7 @@ java-pkg_do_init_()
 
 java-pkg_do_write_()
 {
+	debug-print-function ${FUNCNAME} $*
 	# Create directory for package.env
 	dodir "${shareroot}"
 
@@ -161,6 +162,9 @@ java-pkg_do_write_()
 	echo "DESCRIPTION=${DESCRIPTION}" > "${package_env}"
 	echo "GENERATION=1" >> "${package_env}"
 	if [ -n "${cp_pkg}" ]; then
+		debug-print "cp_prepend: ${cp_prepend}"
+		debug-print "cp_pkg: ${cp_pkg}"
+		debug-print "cp_append: ${cp_append}"
 		echo "CLASSPATH=${cp_prepend}:${cp_pkg}:${cp_append}" >> "${package_env}"
 	fi
 	if [ -n "${lp_pkg}" ]; then
@@ -252,10 +256,17 @@ java-pkg_dojar()
 		do
 			if [ -f "${sharepath}/${i}/package.env" ] ; then
 				debug-print "${i} path: ${sharepath}/${i}"
+				# Before removing the quotes this caused
+				# https://bugs.gentoo.org/show_bug.cgi?id=155590
+				# There was also an extra quote in the else that could also be
+				# the cause.
 				if [ -z "${cp_append}" ] ; then
-					cp_append=`grep "CLASSPATH=" "${sharepath}/${i}/package.env" | sed "s/CLASSPATH=//"`
+					cp_append=$(grep "CLASSPATH=" "${sharepath}/${i}/package.env" \
+						| sed -e "s/CLASSPATH=//" -e 's/"//g')
 				else
-					cp_append="${cp_append}:"`grep "CLASSPATH=" "${sharepath}/${i}/package.env" | sed "s/CLASSPATH=//"`
+					cp_append="${cp_append}:$(grep "CLASSPATH=" \
+					"${sharepath}/${i}/package.env" \
+						| sed -e "s/CLASSPATH=//" -e 's/"//g')"
 				fi
 			else
 				debug-print "Error:  Package ${i} not found."

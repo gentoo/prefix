@@ -1,7 +1,7 @@
 # Copyright 2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
 # Author Michael Tindal <urilith@gentoo.org>
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-module.eclass,v 1.17 2006/10/14 20:27:20 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-module.eclass,v 1.18 2006/11/26 21:25:28 vericgar Exp $
 
 inherit depend.apache
 
@@ -76,7 +76,7 @@ DOCFILES=""
 ## Return the path to our temporary build dir
 ####
 apache_cd_dir() {
-	debug-print-function apache_cd_dir
+	debug-print-function $FUNCNAME $*
 
 	if [ "${APACHE_VERSION}" == "1" ]; then
 		[ -n "${APXS1_S}" ] && CD_DIR="${APXS1_S}"
@@ -103,7 +103,7 @@ apache_cd_dir() {
 ## Return the path to the module file
 ####
 apache_mod_file() {
-	debug-print-function apache_mod_file
+	debug-print-function $FUNCNAME $*
 
 	if [ "${APACHE_VERSION}" == "1" ]; then
 		[ -n "${APACHE1_MOD_FILE}" ] && MOD_FILE="${APACHE1_MOD_FILE}"
@@ -126,7 +126,7 @@ apache_mod_file() {
 ## docs are returned.
 ####
 apache_doc_magic() {
-	debug-print-function apache_doc_magic $*
+	debug-print-function $FUNCNAME $*
 
 	if [ -n "${DOCFILES}" ]; then
 		if [ "x$1" == "xhtml" ]; then
@@ -151,7 +151,7 @@ apache_doc_magic() {
 ## than this, use ${APXS1} in your own src_compile routine.
 ####
 apache1_src_compile() {
-	debug-print-function apache1_src_compile
+	debug-print-function $FUNCNAME $*
 
 	CD_DIR=$(apache_cd_dir)
 	cd ${CD_DIR} || die "cd ${CD_DIR} failed"
@@ -172,7 +172,7 @@ apache1_src_compile() {
 ## .libs/${PN}.so.
 ####
 apache1_src_install() {
-	debug-print-function apache1_src_install
+	debug-print-function $FUNCNAME $*
 
 	CD_DIR=$(apache_cd_dir)
 	cd ${CD_DIR} || die "cd ${CD_DIR} failed"
@@ -205,7 +205,7 @@ apache1_src_install() {
 ## Prints the standard config message, unless APACHE1_NO_CONFIG is set to yes.
 ####
 apache1_pkg_postinst() {
-	debug-print-function apache1_pkg_postinst
+	debug-print-function $FUNCNAME $*
 
 	if [ -n "${APACHE1_MOD_DEFINE}" ]; then
 		local my_opts="-D ${APACHE1_MOD_DEFINE// / -D }"
@@ -236,7 +236,7 @@ apache1_pkg_postinst() {
 ## know they need prefork, and then exit the build.
 ####
 apache2_pkg_setup() {
-	debug-print-function apache2_pkg_setup
+	debug-print-function $FUNCNAME $*
 
 	if [ -n "${APACHE2_SAFE_MPMS}" ]; then
 
@@ -267,7 +267,7 @@ apache2_pkg_setup() {
 ## than this, use ${APXS2} in your own src_compile routine.
 ####
 apache2_src_compile() {
-	debug-print-function apache2_src_compile
+	debug-print-function $FUNCNAME $*
 
 	CD_DIR=$(apache_cd_dir)
 	cd ${CD_DIR} || die "cd ${CD_DIR} failed"
@@ -286,7 +286,7 @@ apache2_src_compile() {
 ## DOCFILES contains the list of files you want filed as documentation.
 ####
 apache2_src_install() {
-	debug-print-function apache2_src_install
+	debug-print-function $FUNCNAME $*
 
 	CD_DIR=$(apache_cd_dir)
 	cd ${CD_DIR} || die "cd ${CD_DIR} failed"
@@ -319,7 +319,7 @@ apache2_src_install() {
 }
 
 apache2_pkg_postinst() {
-	debug-print-function apache2_pkg_postinst
+	debug-print-function $FUNCNAME $*
 
 	if [ -n "${APACHE2_MOD_DEFINE}" ]; then
 		local my_opts="-D ${APACHE2_MOD_DEFINE// / -D }"
@@ -368,7 +368,7 @@ apache2_pkg_postinst() {
 ######
 
 apache-module_pkg_setup() {
-	debug-print-function apache-module_pkg_setup
+	debug-print-function $FUNCNAME $*
 
 	if [ ${APACHE_VERSION} -eq '2' ]; then
 		apache2_pkg_setup
@@ -376,7 +376,7 @@ apache-module_pkg_setup() {
 }
 
 apache-module_src_compile() {
-	debug-print-function apache-module_src_compile
+	debug-print-function $FUNCNAME $*
 
 	if [ ${APACHE_VERSION} -eq '1' ]; then
 		apache1_src_compile
@@ -386,7 +386,7 @@ apache-module_src_compile() {
 }
 
 apache-module_src_install() {
-	debug-print-function apache-module_src_install
+	debug-print-function $FUNCNAME $*
 
 	if [ ${APACHE_VERSION} -eq '1' ]; then
 		apache1_src_install
@@ -396,7 +396,7 @@ apache-module_src_install() {
 }
 
 apache-module_pkg_postinst() {
-	debug-print-function apache-module_pkg_postinst
+	debug-print-function $FUNCNAME $*
 
 	if [ ${APACHE_VERSION} -eq '1' ]; then
 		apache1_pkg_postinst
