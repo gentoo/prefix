@@ -50,7 +50,8 @@ src_compile() {
 	[[ ${USERLAND} != "GNU" ]] && [[ ${EPREFIX/\//} == "" ]] && \
 		myconf=" --program-prefix=g"
 
-	if echo "#include <regex.h>" | $(tc-getCPP) > /dev/null ; then
+	if echo "#include <regex.h>" | $(tc-getCPP) > /dev/null && \
+		[[ ${USERLAND} != "Darwin" ]] ; then
 		myconf="${myconf} --without-included-regex"
 	fi
 
