@@ -8,11 +8,12 @@ inherit eutils flag-o-matic autotools
 
 DESCRIPTION="a small but very powerful text-based mail client"
 HOMEPAGE="http://www.mutt.org"
-SRC_URI="ftp://ftp.mutt.org/mutt/devel/${P}.tar.gz
+SRC_URI="http://www.gentoo.org/~grobian/distfiles/${P%%_*}-20061128.tar.gz
 	!vanilla? (
-		mirror://gentoo/${P}-gentoo-patches.tar.bz2
+		mirror://gentoo/${P%%_*}-gentoo-patches.tar.bz2
 	)"
-IUSE="berkdb buffysize cjk crypt debug gdbm gnutls gpgme idn imap mbox nls nntp pop sasl smime ssl vanilla smtp"
+IUSE="berkdb buffysize cjk crypt debug gdbm gnutls gpgme idn imap mbox nls nntp
+pop sasl smime ssl smtp vanilla"
 SLOT="0"
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~ppc-macos ~x86"
@@ -37,22 +38,29 @@ RDEPEND="nls? ( sys-devel/gettext )
 DEPEND="${RDEPEND}
 	net-mail/mailbase"
 
-PATCHDIR="${WORKDIR}"/${P}-gentoo-patches
+S="${WORKDIR}"/${P%%_*}
+PATCHDIR="${WORKDIR}"/${P%%_*}-gentoo-patches
 
 src_unpack() {
-	unpack ${A} && cd "${S}" || die "unpack failed"
+	unpack ${A}
+	mv mutt ${P%%_*}
+	cd "${S}" || die "unpack failed"
 
-	epatch "${FILESDIR}"/${P}-smarttime.patch
+	epatch "${FILESDIR}"/${P%%_*}-smarttime.patch
 	epatch "${FILESDIR}"/${P}-smtp.patch
 	# this patch is non-generic and only works because we use a sysconfdir
 	# different from the one used by the mailbase ebuild
-	epatch "${FILESDIR}"/${P}-prefix-mailcap.patch
+	epatch "${FILESDIR}"/${P%%_*}-prefix-mailcap.patch
 
 	if ! use vanilla ; then
 		if ! use nntp ; then
 			rm "${PATCHDIR}"/07-vvv.nntp-gentoo.patch
 			rm "${PATCHDIR}"/08-mixmaster_nntp.patch
 		fi
+		# these are broken with recent snapshots
+		rm "${PATCHDIR}"/03-compressed.patch
+		rm "${PATCHDIR}"/05-mbox_hook.patch 
+		rm "${PATCHDIR}"/06-pgp_timeout.patch
 
 		for p in "${PATCHDIR}"/*.patch ; do
 			epatch "${p}"
