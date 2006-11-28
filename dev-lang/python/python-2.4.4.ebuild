@@ -197,6 +197,8 @@ src_install() {
 
 	# Use correct libdir in python-config
 	dosed "s:/usr/lib/:${EPREFIX}/usr/$(get_libdir)/:" /usr/bin/python-config-${PYVER}
+	# Use correct shebang
+	dosed "1s|^#!/usr/bin/python$|#!${EPREFIX}/usr/bin/python|" /usr/bin/python-config-${PYVER}
 
 	# install python-updater in /usr/sbin
 	newsbin ${FILESDIR}/python-updater-r1 python-updater
@@ -244,7 +246,7 @@ python_makesym
 	alternatives_auto_makesym "/usr/share/man/man1/python.1.gz" \
 								"python[0-9].[0-9].1.gz"
 
-	python_mod_cleanup /usr/lib/python${PYVER}
+	python_mod_cleanup /usr/$(get_libdir)/python${PYVER}
 	[[ "$(get_libdir)" == "lib" ]] || \
 		python_mod_cleanup /usr/$(get_libdir)/python${PYVER}
 }
