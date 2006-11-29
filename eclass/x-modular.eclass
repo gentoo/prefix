@@ -26,7 +26,7 @@
 # Pretty much everything else should be automatic.
 
 # Directory prefix to use for everything
-XDIR="/usr"
+XDIR="${EPREFIX}/usr"
 
 # Set up default patchset version(s) if necessary
 # x11-driver-patches
@@ -164,7 +164,7 @@ DEPEND="${DEPEND}
 if [[ "${PN/util-macros}" = "${PN}" ]]; then
 	DEPEND="${DEPEND}
 		>=x11-misc/util-macros-0.99.2
-		>=sys-devel/binutils-2.16.1-r3"
+		|| ( >=sys-devel/binutils-2.16.1-r3 sys-devel/odcctools )"
 fi
 
 RDEPEND="${RDEPEND}
