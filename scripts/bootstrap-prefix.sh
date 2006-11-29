@@ -129,17 +129,6 @@ setup_portage() {
 		einfo "Your ACCEPT_KEYWORDS is set to ${keywords}"
 	fi
 
-	einfo "Adding DEFAULT_PATH to etc/make.conf which includes host files"
-	echo -n "DEFAULT_PATH=\"" >> ${ROOT}/etc/make.conf
-	echo -n "${ROOT}/sbin:" >> ${ROOT}/etc/make.conf
-	echo -n "${ROOT}/bin:" >> ${ROOT}/etc/make.conf
-	echo -n "${ROOT}/usr/sbin:" >> ${ROOT}/etc/make.conf
-	echo -n "${ROOT}/usr/bin:" >> ${ROOT}/etc/make.conf
-	echo -n "${ROOT}/usr/lib/portage/bin:" >> ${ROOT}/etc/make.conf
-	echo -n "/bin:" >> ${ROOT}/etc/make.conf
-	echo -n "/usr/bin:" >> ${ROOT}/etc/make.conf
-	echo "\"" >> ${ROOT}/etc/make.conf
-
 	einfo "Setting up sync uri"
 	echo 'SYNC="svn+http://overlays.gentoo.org/svn/proj/alt/trunk/prefix-overlay"' >> ${ROOT}/etc/make.conf
 }
@@ -187,7 +176,8 @@ bootstrap_portage() {
 		--with-user=`id -un` \
 		--with-group=`id -gn` \
 		--with-wheelgid=`id -g` \
-		--with-rootuser=`id -un`
+		--with-rootuser=`id -un` \
+		--with-default-path="/bin:/usr/bin:${ROOT}/tmp/bin:${ROOT}/tmp/usr/bin"
 	$MAKE || exit 1
 
  	einfo "Installing ${A%-*}"
