@@ -5,6 +5,18 @@
 # See the gentoo-src Portage ChangeLog for up-to-date release information:
 # http://www.gentoo.org/cgi-bin/viewcvs.cgi/portage/ChangeLog?rev=HEAD&cvsroot=gentoo-src&content-type=text/vnd.viewcvs-markup
 
+*portage-2.1.20.5141 (29 Nov 2006)
+
+  29 Nov 2006; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.1.20.5139.ebuild, +portage-2.1.20.5141.ebuild:
+  Remove faulty version, new version with fix for a correct DEFAULT_PATH
+
+*portage-2.1.20.5140 (29 Nov 2006)
+
+  29 Nov 2006; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.1.20.5139.ebuild, +portage-2.1.20.5140.ebuild:
+  Default path didn't include portage's own bins, fixed now
+
 *portage-2.1.20.5139 (29 Nov 2006)
 
   29 Nov 2006; Fabian Groffen <grobian@gentoo.org>
