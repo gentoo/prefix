@@ -1,0 +1,156 @@
+# ChangeLog for x11-proto/xproto
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xproto/ChangeLog,v 1.42 2006/11/02 23:02:59 joshuabaergen Exp $
+
+*xproto-7.0.9 (02 Nov 2006)
+
+  02 Nov 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  -xproto-7.0.8.ebuild, +xproto-7.0.9.ebuild:
+  Version bump.  Fixes _X_INLINE for non-GCC compilers and adds _X_{,UN}LIKELY.
+
+*xproto-7.0.8 (14 Oct 2006)
+
+  14 Oct 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xproto-7.0.8.ebuild:
+  Version bump.  Defines _X_INLINE, defines some new keysyms and adds an AIX fix.
+
+  12 Sep 2006; Gustavo Zacarias <gustavoz@gentoo.org> xproto-7.0.7.ebuild:
+  Stable on hppa
+
+  04 Sep 2006; Joshua Kinard <kumba@gentoo.org> xproto-7.0.7.ebuild:
+  Marked stable on mips.
+
+  30 Aug 2006; Michael Hanselmann <hansmi@gentoo.org> xproto-7.0.7.ebuild:
+  Stable on ppc.
+
+  22 Aug 2006; Ferris McCormick <fmccor@gentoo.org> xproto-7.0.7.ebuild:
+  Stable on sparc.
+
+  15 Aug 2006; Joshua Jackson <tsunam@gentoo.org> xproto-7.0.7.ebuild:
+  Stable x86; bug #135974
+
+  12 Aug 2006; Markus Rothe <corsair@gentoo.org> xproto-7.0.7.ebuild:
+  Stable on ppc64; bug #135974
+
+  19 Jul 2006; Guy Martin <gmsoft@gentoo.org> xproto-7.0.5.ebuild:
+  Stable on hppa.
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org> xproto-7.0.5.ebuild:
+  Mark 7.0.5 stable on ia64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; xproto-7.0.5.ebuild:
+  arm/sh stable
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; -xproto-7.0.4.ebuild:
+  Pull old ebuild.
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; xproto-7.0.5.ebuild:
+  ppc/sparc/mips/alpha stable
+
+  30 Jun 2006; Chris Gianelloni <wolf31o2@gentoo.org> xproto-7.0.5.ebuild,
+  xproto-7.0.7.ebuild:
+  Fixing amd64 to have the right version stable.
+
+  30 Jun 2006; Chris Gianelloni <wolf31o2@gentoo.org> xproto-7.0.7.ebuild:
+  Stable on amd64.
+
+  30 Jun 2006; Markus Rothe <corsair@gentoo.org> xproto-7.0.5.ebuild:
+  Stable on ppc64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; xproto-7.0.5.ebuild:
+  x86 stable.
+
+*xproto-7.0.7 (23 Jun 2006)
+
+  23 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; +xproto-7.0.7.ebuild:
+  Bump for libX11 1.0.2.
+
+*xproto-7.0.5 (29 Apr 2006)
+
+  29 Apr 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xproto-7.0.5.ebuild:
+  Version bump.  Fix some comment typos and Solaris 64-bit builds.
+
+  28 Apr 2006; Marien Zwart <marienz@gentoo.org> files/digest-xproto-7.0.4,
+  Manifest:
+  Fixing SHA256 digest, pass four
+
+  31 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> xproto-7.0.4.ebuild:
+  Add ~x86-fbsd keyword.
+
+  24 Mar 2006; Donnie Berkholz <spyderous@gentoo.org>; xproto-7.0.4.ebuild:
+  (#127306) Digests changed between release candidates and final release for
+  the same tarballs.
+
+  22 Mar 2006; Donnie Berkholz <spyderous@gentoo.org>; xproto-7.0.4.ebuild:
+  (#122726) Add missing keywords; apps that depend on this were keyworded, so
+  it was tested and just got missed.
+
+  09 Mar 2006; Aron Griffis <agriffis@gentoo.org> xproto-7.0.4.ebuild:
+  Mark 7.0.4 ~ia64
+
+  14 Feb 2006; Markus Rothe <corsair@gentoo.org> xproto-7.0.4.ebuild:
+  Added ~ppc64
+
+  31 Jan 2006; Rene Nussbaumer <killerfox@gentoo.org> xproto-7.0.4.ebuild:
+  Unstable on hppa.
+
+  26 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  -xproto-7.0.3.ebuild:
+  Pull old versions.
+
+  26 Dec 2005; Stefaan De Roeck <stefaan@gentoo.org> xproto-7.0.4.ebuild:
+  Marked ~alpha
+
+*xproto-7.0.4 (17 Dec 2005)
+
+  17 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xproto-7.0.4.ebuild:
+  Bump for 7.0RC4.
+
+  09 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>; -xproto-7.0.ebuild,
+  -xproto-7.0_p20050917.ebuild, -xproto-7.0.1.ebuild, -xproto-7.0.2.ebuild:
+  Pull old versions.
+
+*xproto-7.0.3 (04 Dec 2005)
+
+  04 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xproto-7.0.3.ebuild:
+  Bump for 7.0RC3.
+
+*xproto-7.0.2 (11 Nov 2005)
+
+  11 Nov 2005; Donnie Berkholz <spyderous@gentoo.org>; +xproto-7.0.2.ebuild:
+  Bump for 7.0RC2.
+
+*xproto-7.0.1 (20 Oct 2005)
+
+  20 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>; +xproto-7.0.1.ebuild:
+  Bump for 7.0 RC1.
+
+*xproto-7.0_p20050917 (17 Sep 2005)
+
+  17 Sep 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xproto-7.0_p20050917.ebuild:
+  New snapshot for BSD support (bug #105768).
+
+  09 Sep 2005; Donnie Berkholz <spyderous@gentoo.org>; +metadata.xml:
+  Add metadata.
+
+  28 Aug 2005; MATSUU Takuto <matsuu@gentoo.org> xproto-7.0.ebuild:
+  Marked ~sh
+
+  20 Aug 2005; Luca Barbato <lu_zero@gentoo.org> xproto-7.0.ebuild:
+  Marked ~ppc
+
+  15 Aug 2005; Herbie Hopkins <herbs@gentoo.org> xproto-7.0.ebuild:
+  Marked ~amd64
+
+  08 Aug 2005; Ferris McCormick <fmccor@gentoo.org> xproto-7.0.ebuild:
+  Add ~sparc keyword (modular X testing on sparc).
+
+*xproto-7.0 (08 Aug 2005)
+
+  08 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>; +xproto-7.0.ebuild:
+  Initial commit for modular X
+
