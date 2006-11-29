@@ -34,15 +34,13 @@ EPACKAGE="`pwd -P`"; EPACKAGE=${EPACKAGE#*${PTREEDIR}/}
 
 # returns the CVS revision number from the $Header
 get_cvsversion() {
-	if [[ -z $1 ]];
-	then
+	if [[ -z $1 ]] ; then
 		echo 0
 		return
 	fi
 
 	ver=`egrep '^# \\\$Header:' "$1" | egrep -m1 -o "v [0-9.]+" | head -n1`
-	if [[ $ver == "" ]];
-	then
+	if [[ $ver == "" ]] ; then
 		echo 0
 		return
 	fi
@@ -92,8 +90,8 @@ cmp_ebuild_ver() {
 		local ra=${rver%%.*}
 		# unfortunately also characters next to numbers can appear in
 		# the version number, 4a is considered to be smaller than 33
-		local lan=${la%%[abcdefghijklmnopqrstuvwxyz]*}
-		local ran=${ra%%[abcdefghijklmnopqrstuvwxyz]*}
+		local lan=${la%%[a-zA-Z]*}
+		local ran=${ra%%[a-zA-Z]*}
 		t=$((lan - ran))
 		if [[ ${t} != 0 ]] ; then
 			[[ $t > 9 ]] && t=9
@@ -223,9 +221,10 @@ get_ebuildversion() {
 	# strip package name
 	t=${t#*-}
 	# sometimes there are dashes in the package name
-	while [[ ${t:0:1} < "0" || ${t:0:1} > "9" ]];
-	do
-		t=${t#*-}
+	while [[ ${t:0:1} < "0" || ${t:0:1} > "9" ]] ; do
+		[[ $t != ${t#*-} ]] \
+			&& t=${t#*-} \
+			|| break
 	done
 
 	echo ${t}
@@ -305,16 +304,47 @@ revision_diff() {
 	fi
 }
 
-# if the user gave some files on the command line, try to revision diff
-# those
-if [[ ${#*} > 0 ]];
-then
-	while [[ ${#*} > 0 ]];
-	do
-		echo -n "  checking $1... "
-		mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$1)
-		ptecv=$(get_cvsversion $1)
+diff_patch() {
+	file=$1
+	change=$(diff -u $file "${MTREEDIR}/${EPACKAGE}"/$file | patch $file)
+	[[ -z $change ]] && change="up-to-date"
+	echo $change
+}
+
+update_file() {
+	# on directories, recurse
+	if [[ -d $1 ]] ; then
+		echo "directory"
+		# recurse into this directory
+		( cd $1 && eupdate $(ls -p) )
+		return
+	fi
+
+	# check existence of files
+	if [[ ! -f $1 ]] ; then
+		echo "no such file: $1"
+		return
+	fi
+	if [[ ! -f "${MTREEDIR}/${EPACKAGE}"/$1 ]] ; then
+		echo "$1 not found in the main tree"
+		return
+	fi
+
+	# see if the file has a CVS header
+	mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$1)
+	ptecv=$(get_cvsversion $1)
+	if [[ $mtecv == 0 ]] && [[ $ptecv == 0 ]] ; then
+		diff_patch $1
+	else
 		revision_diff $mtecv $ptecv $1
+	fi
+}
+
+# if the user gave some files on the command line, try to update those
+if [[ ${#*} > 0 ]] ; then
+	while [[ ${#*} > 0 ]] ; do
+		echo -n "  checking $1... "
+		update_file $1
 		shift
 	done
 
@@ -322,31 +352,26 @@ then
 	exit 0
 fi
 
-if [[ ! -d ${MTREEDIR}/${EPACKAGE} ]];
-then
+if [[ ! -d ${MTREEDIR}/${EPACKAGE} ]] ; then
 	echo "no such package in main tree: ${EPACKAGE}"
 	exit -1
 fi
 
-if [[ ${EPACKAGE} == "eclass" ]];
-then
+if [[ ${EPACKAGE} == "eclass" ]] ; then
 	echo "Processing eclasses directory"
-# FIXME also descend into subdirs
-	mt=`cd "${MTREEDIR}"/${EPACKAGE}/ && ls *.eclass`
-	pt=`ls *.eclass`
+	mt=`cd "${MTREEDIR}"/${EPACKAGE}/ && ls -p`
+	pt=`ls -p`
 	# nested loop join
-	for pte in $pt;
-	do
+	for pte in $pt ; do
 		had_match=0
-		for mte in $mt;
-		do
-			if [[ $pte == $mte ]];
-			then
+		for mte in $mt ; do
+			if [[ $pte == $mte ]] ; then
 				echo -n "  found $mte in both ... "
-				mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$mte)
-				ptecv=$(get_cvsversion $pte)
-				revision_diff $mtecv $ptecv $pte
+				update_file $mte
 				had_match=1;
+				# we don't need $pte/$mte any more
+				pt=${pt/$pte/}
+				mt=${mt/$mte/}
 				break;
 			fi
 		done
@@ -354,14 +379,18 @@ then
 			&& echo "  warning: $pte no longer in the main tree"
 	done
 
-# FIXME: check for new eclasses in the main tree
+	# everything left in $mt now is what's not in $pt, let's make a
+	# note about them
+	for mte in $mt ; do
+		echo "  only in main tree: $mte"
+	done
 	echo "done"
 	exit 0
 fi
 
 echo "Processing ${EPACKAGE}"
-mt=`cd "${MTREEDIR}"/${EPACKAGE}/ && ls *.ebuild`
-pt=`ls *.ebuild`
+mt=`cd "${MTREEDIR}"/${EPACKAGE}/ && ls -p`
+pt=`ls -p`
 # do a nested loop join, we don't assume any order
 for pte in $pt ; do
 	had_match=0
@@ -369,14 +398,12 @@ for pte in $pt ; do
 	for mte in $mt ; do
 		# calculate the diffs between prefix and main
 		vdiff=$(cmp_ebuild_ver $mte $pte)
-		# if we have the same ebuild version...
-		if [[ $vdiff == 0 ]] ; then
+		# if we have the same ebuild version... (or file)
+		if [[ $vdiff == 0 ]] && [[ $mte == $pte ]] ; then
 			had_match=1
 			# ... look inside the files to see if the file was updated or not
 			echo -n "  found $mte in both ... "
-			mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$mte)
-			ptecv=$(get_cvsversion $pte)
-			revision_diff $mtecv $ptecv $pte
+			update_file $mte
 			# we found this version, so needless to look for it any more
 			mt=${mt/$mte/}
 		elif [[ $vdiff -ge 100000 ]] ; then
@@ -414,12 +441,4 @@ if [[ $last_mte != "" ]] ; then
 	cross_diff $last_mte $last_pte
 fi
 
-echo -n "  checking ChangeLog... "
-mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/ChangeLog)
-ptecv=$(get_cvsversion ChangeLog)
-revision_diff $mtecv $ptecv ChangeLog
-echo -n "  checking metadata.xml... "
-change=$(diff -u metadata.xml "${MTREEDIR}/${EPACKAGE}"/metadata.xml | patch metadata.xml)
-[[ -z $change ]] && change="up-to-date"
-echo $change
 echo "done"
