@@ -134,7 +134,7 @@ setup_portage() {
 }
 
 bootstrap_tree() {
-	PV="20061113"
+	PV="20061129"
 	for x in etc usr/{,s}bin var/tmp var/lib/portage var/log/portage;
 	do
 		[ -d "${ROOT}/${x}" ] || mkdir -p "${ROOT}/${x}"
@@ -154,7 +154,7 @@ bootstrap_tree() {
 bootstrap_portage() {
 	# don't use "latest" here, as I want to have the bootstrap script to
 	# use a portage in a known "state"
-	PV=2.1.20.5020
+	PV=2.1.20.5141
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 		
@@ -177,15 +177,18 @@ bootstrap_portage() {
 		--with-group=`id -gn` \
 		--with-wheelgid=`id -g` \
 		--with-rootuser=`id -un` \
-		--with-default-path="/bin:/usr/bin:${ROOT}/tmp/bin:${ROOT}/tmp/usr/bin"
+		--with-default-path="${ROOT}/tmp/bin:${ROOT}/tmp/usr/bin:/bin:/usr/bin"
 	$MAKE || exit 1
 
  	einfo "Installing ${A%-*}"
 	$MAKE install || exit 1
 
+	einfo "Avoiding a bug of endlessly looping for sed"
+	rm ${ROOT}/usr/bin/sed
+
 	setup_portage
 
-	rm -Rf ${ptmp}
+	rm -Rf ${ptmp} >& /dev/null
 	einfo "${A%-*} succesfully bootstrapped"
 }
 
