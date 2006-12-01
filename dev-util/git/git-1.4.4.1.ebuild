@@ -1,10 +1,10 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.4.2.3.ebuild,v 1.1 2006/10/02 19:21:29 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.4.4.1.ebuild,v 1.1 2006/11/26 14:01:48 ferdy Exp $
 
 EAPI="prefix"
 
-inherit python toolchain-funcs eutils elisp-common
+inherit python toolchain-funcs eutils elisp-common perl-module bash-completion
 
 DOC_VER=${PV}
 
@@ -17,7 +17,7 @@ SRC_URI="mirror://kernel/software/scm/git/${P}.tar.bz2
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86"
-IUSE="curl doc emacs gtk mozsha1 ppcsha1 tk webdav"
+IUSE="curl doc elibc_uclibc emacs gtk mozsha1 ppcsha1 tk webdav"
 
 DEPEND="dev-libs/openssl
 		sys-libs/zlib
@@ -51,6 +51,7 @@ exportmakeopts() {
 	fi
 
 	myopts="${myopts} WITH_SEND_EMAIL=YesPlease"
+	myopts="${myopts} NO_FINK=YesPlease NO_DARWIN_PORTS=YesPlease"
 
 	# Older python versions need own subproccess.py
 	python_version
@@ -59,6 +60,12 @@ exportmakeopts() {
 	use elibc_uclibc && myopts="${myopts} NO_ICONV=YesPlease"
 
 	export MY_MAKEOPTS=${myopts}
+}
+
+showpkgdeps() {
+	local pkg=$1
+	shift
+	einfo "  $(printf "%-17s:" ${pkg}) ${@}"
 }
 
 src_unpack() {
@@ -70,13 +77,15 @@ src_unpack() {
 		-e "s:^\(LDFLAGS = \).*$:\1${LDFLAGS}:" \
 		-e "s:^\(CC = \).*$:\1$(tc-getCC):" \
 		-e "s:^\(AR = \).*$:\1$(tc-getAR):" \
+		-e "s:\(PYTHON_PATH = \)\(.*\)$:\1${EPREFIX}\2:" \
+		-e "s:\(PERL_PATH = \)\(.*\)$:\1${EPREFIX}\2:" \
 		Makefile || die "sed failed"
 
 	exportmakeopts
 }
 
 src_compile() {
-	emake ${MY_MAKEOPTS} DESTDIR="${EDEST}" prefix="${EPREFIX}"/usr || die "make failed"
+	emake ${MY_MAKEOPTS} DESTDIR="${ED}" prefix="${EPREFIX}"/usr || die "make failed"
 
 	if use emacs ; then
 		elisp-compile contrib/emacs/{,vc-}git.el || die "emacs modules failed"
@@ -84,9 +93,9 @@ src_compile() {
 }
 
 src_install() {
-	emake ${MY_MAKEOPTS} DESTDIR="${EDEST}" prefix="${EPREFIX}"/usr install || die "make install failed"
+	emake ${MY_MAKEOPTS} DESTDIR="${D}" prefix="${EPREFIX}"/usr install || die "make install failed"
 
-	use tk || rm "${D}"/usr/bin/gitk
+	use tk || rm "${ED}"/usr/bin/gitk
 
 	doman "${WORKDIR}"/man?/*
 
@@ -94,8 +103,10 @@ src_install() {
 	if use doc ; then
 		dodoc Documentation/technical/*
 		dodir /usr/share/doc/${PF}/html
-		cp -r "${WORKDIR}"/{*.html,howto} "${D}"/usr/share/doc/${PF}/html
+		cp -r "${WORKDIR}"/{*.html,howto} "${ED}"/usr/share/doc/${PF}/html
 	fi
+
+	dobashcompletion contrib/completion/git-completion.bash ${PN}
 
 	if use emacs ; then
 		insinto "${SITELISP}"
@@ -113,6 +124,8 @@ src_install() {
 
 	newinitd "${FILESDIR}"/git-daemon.initd git-daemon
 	newconfd "${FILESDIR}"/git-daemon.confd git-daemon
+
+	fixlocalpod
 }
 
 src_test() {
@@ -120,29 +133,21 @@ src_test() {
 
 	has_version dev-util/subversion || \
 		MY_MAKEOPTS="${MY_MAKEOPTS} NO_SVN_TESTS=YesPlease"
-	emake ${MY_MAKEOPTS} DESTDIR="${EDEST}" prefix="${EPREFIX}"/usr test || die "tests failed"
+	has_version app-arch/unzip || \
+		rm "${S}"/t/t5000-tar-tree.sh
+	emake ${MY_MAKEOPTS} DESTDIR="${D}" prefix="${EPREFIX}"/usr test || die "tests failed"
 }
 
 pkg_postinst() {
 	use emacs && elisp-site-regen
+	einfo "These additional scripts need some dependencies:"
 	einfo
-	einfo "If you want to import arch repositories into git, consider using the"
-	einfo "git-archimport command. You should install dev-util/tla before."
-	einfo
-	einfo "If you want to import cvs repositories into git, consider using the"
-	einfo "git-cvsimport command. You should install >=dev-util/cvsps-2.1 before."
-	einfo
-	einfo "If you want to import svn repositories into git, consider using the"
-	einfo "git-svnimport command. You should install dev-util/subversion before."
-	einfo
-	einfo "If you want to manage subversion repositories using git, consider"
-	einfo "using git-svn. You should install dev-util/subversion and dev-perl/libwww-perl."
-	einfo
-	einfo "If you want to import a quilt series into git, consider using the"
-	einfo "git-quiltimport command. You should install dev-util/quilt before."
-	einfo
-	einfo "If you want to use the included CVS server you will need to install"
-	einfo "dev-perl/DBI and dev-perl/DBD-SQLite."
+	showpkgdeps git-archimport "dev-util/tla"
+	showpkgdeps git-cvsimport ">=dev-util/cvsps-2.1"
+	showpkgdeps git-svnimport "dev-util/subversion(USE=perl)"
+	showpkgdeps git-svn "dev-util/subversion(USE=perl)" "dev-perl/libwww-perl"
+	showpkgdeps git-quiltimport "dev-util/quilt"
+	showpkgdeps git-cvsserver "dev-perl/DBI" "dep-perl/DBD-SQLite"
 	einfo
 }
 
