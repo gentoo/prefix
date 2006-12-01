@@ -28,7 +28,7 @@ src_unpack() {
 }
 
 src_install() {
-	emake install DESTDIR="${EDEST}" || die
+	emake install DESTDIR="${D}" || die
 	dodoc README.txt doc/*.txt
 	dohtml doc/html/*.html
 }
