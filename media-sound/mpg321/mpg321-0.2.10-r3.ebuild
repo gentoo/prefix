@@ -40,22 +40,22 @@ src_compile() {
 }
 
 src_install () {
-	make DESTDIR="${EDEST}" install || die
+	make DESTDIR="${D}" install || die
 	dodoc AUTHORS BUGS ChangeLog HACKING NEWS README README.remote THANKS TODO
 }
 
 pkg_postinst() {
 	# We create a symlink for /usr/bin/mpg123 if it doesn't already exist
-	if ! [ -f ${ROOT}/usr/bin/mpg123 ]; then
-		ln -s mpg321 ${ROOT}/usr/bin/mpg123
+	if ! [ -f ${EROOT}/usr/bin/mpg123 ]; then
+		ln -s mpg321 ${EROOT}/usr/bin/mpg123
 	fi
 }
 
 pkg_postrm() {
 	# We delete the symlink if it's nolonger valid.
-	if [ -L "${ROOT}/usr/bin/mpg123" ] && [ ! -x "${ROOT}/usr/bin/mpg123" ]; then
-		einfo "We are removing the ${ROOT}/usr/bin/mpg123 symlink since it is no longer valid."
+	if [ -L "${EROOT}/usr/bin/mpg123" ] && [ ! -x "${EROOT}/usr/bin/mpg123" ]; then
+		einfo "We are removing the ${EROOT}/usr/bin/mpg123 symlink since it is no longer valid."
 		einfo "If you are using another virtual/mpg123 program, you should setup the appropriate symlink."
-		rm ${ROOT}/usr/bin/mpg123
+		rm ${EROOT}/usr/bin/mpg123
 	fi
 }
