@@ -1,0 +1,51 @@
+diff -Nru postgresql-8.1.5.orig/src/bin/Makefile postgresql-8.1.5/src/bin/Makefile
+--- postgresql-8.1.5.orig/src/bin/Makefile	2006-11-05 13:20:34.000000000 +0100
++++ postgresql-8.1.5/src/bin/Makefile	2006-11-05 15:50:53.000000000 +0100
+@@ -14,7 +14,7 @@
+ include $(top_builddir)/src/Makefile.global
+ 
+ DIRS := initdb ipcclean pg_ctl pg_dump \
+-	psql scripts pg_config pg_controldata pg_resetxlog
++	psql scripts pg_controldata pg_resetxlog
+ ifeq ($(PORTNAME), win32)
+ DIRS+=pgevent
+ endif
+diff -Nru postgresql-8.1.5.orig/src/interfaces/Makefile postgresql-8.1.5/src/interfaces/Makefile
+--- postgresql-8.1.5.orig/src/interfaces/Makefile	2006-11-05 13:20:34.000000000 +0100
++++ postgresql-8.1.5/src/interfaces/Makefile	2006-11-05 15:50:53.000000000 +0100
+@@ -12,7 +12,7 @@
+ top_builddir = ../..
+ include $(top_builddir)/src/Makefile.global
+ 
+-DIRS := libpq ecpg 
++DIRS := ecpg 
+ 
+ ALLDIRS := $(DIRS) 
+ 
+diff -Nru postgresql-8.1.5.orig/src/Makefile postgresql-8.1.5/src/Makefile
+--- postgresql-8.1.5.orig/src/Makefile	2006-11-05 13:20:34.000000000 +0100
++++ postgresql-8.1.5/src/Makefile	2006-11-05 15:50:53.000000000 +0100
+@@ -18,7 +18,6 @@
+ 	$(MAKE) -C timezone $@
+ 	$(MAKE) -C backend $@
+ 	$(MAKE) -C backend/utils/mb/conversion_procs $@
+-	$(MAKE) -C include $@
+ 	$(MAKE) -C interfaces $@
+ 	$(MAKE) -C bin $@
+ 	$(MAKE) -C pl $@
+@@ -47,7 +46,6 @@
+ 	$(MAKE) -C port $@
+ 	$(MAKE) -C timezone $@
+ 	$(MAKE) -C backend $@
+-	$(MAKE) -C include $@
+ 	$(MAKE) -C interfaces $@
+ 	$(MAKE) -C bin $@
+ 	$(MAKE) -C pl $@
+@@ -61,7 +59,6 @@
+ 	-$(MAKE) -C port $@
+ 	-$(MAKE) -C timezone $@
+ 	-$(MAKE) -C backend $@
+-	-$(MAKE) -C include $@
+ 	-$(MAKE) -C interfaces $@
+ 	-$(MAKE) -C bin $@
+ 	-$(MAKE) -C pl $@

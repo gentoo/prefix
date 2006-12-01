@@ -1,0 +1,67 @@
+#!/sbin/runscript
+# Copyright 1999-2006 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/files/postgresql.init-8.1,v 1.2 2006/11/07 22:48:22 chtekk Exp $
+
+opts="${opts} reload"
+
+depend() {
+	use net
+}
+
+checkconfig() {
+	if [ ! -d "$PGDATA" ] ; then
+		eerror "Directory not found: $PGDATA"
+		eerror "You must create the $PGDATA directory first!"
+		return 1
+	fi
+}
+
+start() {
+	checkconfig || return 1
+
+	ebegin "Starting PostgreSQL"
+
+	if [ -f "$PGDATA/postmaster.pid" ] ; then
+		rm -f "$PGDATA/postmaster.pid"
+	fi
+
+	su - $PGUSER -c "/usr/bin/pg_ctl start -D '$PGDATA' -s -l '$PGLOG' -o '$PGOPTS'"
+
+	while :
+	do
+		cnt=$(($cnt + 1))
+		if [ -f "$PGDATA/postmaster.pid" ] ; then
+			ret=0
+			break
+		fi
+
+		if [ $cnt -eq 30 ] ; then
+			eerror
+			eerror "Please check the $PGLOG log file for errors."
+			eerror
+			ret=1
+			break
+		fi
+		sleep 1
+	done
+	eend $ret
+}
+
+stop() {
+	ebegin "Stopping PostgreSQL"
+	su - $PGUSER -c "/usr/bin/pg_ctl stop -D '$PGDATA' -s -m fast"
+	eend $?
+}
+
+svc_restart() {
+	ebegin "Restarting PostgreSQL"
+	su - $PGUSER -c "/usr/bin/pg_ctl restart -D '$PGDATA' -s -m fast -l '$PGLOG' -o '$PGOPTS'"
+	eend $?
+}
+
+reload() {
+	ebegin "Reloading PostgreSQL configuration"
+	su - $PGUSER -c "/usr/bin/pg_ctl reload -D '$PGDATA' -s"
+	eend $?
+}
