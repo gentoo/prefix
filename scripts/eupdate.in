@@ -315,8 +315,8 @@ update_file() {
 	# on directories, recurse
 	if [[ -d $1 ]] ; then
 		echo "directory"
-		# recurse into this directory
-		( cd $1 && eupdate $(ls -p) )
+		# recurse into this directory (don't update digests)
+		( cd $1 && eupdate $(ls -p | egrep -v "^digest-") )
 		return
 	fi
 
@@ -389,8 +389,8 @@ if [[ ${EPACKAGE} == "eclass" ]] ; then
 fi
 
 echo "Processing ${EPACKAGE}"
-mt=`cd "${MTREEDIR}"/${EPACKAGE}/ && ls -p`
-pt=`ls -p`
+mt=`cd "${MTREEDIR}"/${EPACKAGE}/ && ls -p | egrep -v "^Manifest$"`
+pt=`ls -p | egrep -v "^Manifest$"`
 # do a nested loop join, we don't assume any order
 for pte in $pt ; do
 	had_match=0
