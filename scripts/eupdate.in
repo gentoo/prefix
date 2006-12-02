@@ -39,7 +39,7 @@ get_cvsversion() {
 		return
 	fi
 
-	ver=`egrep '^# \\\$Header:' "$1" | egrep -m1 -o "v [0-9.]+" | head -n1`
+	ver=`egrep '(^|[^\\])\\\$Header:' "$1" | egrep -m1 -o "v [0-9.]+" | head -n1`
 	if [[ $ver == "" ]] ; then
 		echo 0
 		return
