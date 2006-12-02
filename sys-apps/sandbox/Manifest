@@ -16,9 +16,9 @@ MISC metadata.xml 337 RMD160 c70000494a436cc0f8256d428f86d42b0fdf6017 SHA1 d81a5
 MD5 4a6b419321a7e1ee609c8af41905ff1b metadata.xml 337
 RMD160 c70000494a436cc0f8256d428f86d42b0fdf6017 metadata.xml 337
 SHA256 575b378bf8db5526847e6839a3351ec72769d75ed1c5b392559d57f6e6b4294f metadata.xml 337
-MD5 bbf3febbc509a4978c8d213e581776f0 files/digest-sandbox-1.2.17 247
-RMD160 d8d8084fd6fc134fb4fa3173dab3ee69ea19f4dc files/digest-sandbox-1.2.17 247
-SHA256 57f18e97e930d38cf0236909e91534e094ee539e3f01a47406925a6cf74caaae files/digest-sandbox-1.2.17 247
+MD5 c30d5d0fa4502f5034f0a8e182fd8a6b files/digest-sandbox-1.2.17 247
+RMD160 1473b6fba0d8dfd436d81fb76afb418d792779b0 files/digest-sandbox-1.2.17 247
+SHA256 ce285228a81cd36dcbe480a35dd477f1a586ae1924ea820b12dc5f2a9707a019 files/digest-sandbox-1.2.17 247
 MD5 029fb3464c9a7f555b36bf111f123c12 files/digest-sandbox-1.2.20_alpha2 265
 RMD160 0805fbaf35432d9426e0ab9399fb1e5afbfbff6b files/digest-sandbox-1.2.20_alpha2 265
 SHA256 0bb111ea38da430d257ed23ea847c863228fb9096b7a3bdbabfd2bc2662978b5 files/digest-sandbox-1.2.20_alpha2 265
