@@ -23,14 +23,22 @@
 
 # Main Tree Directory, an rsynced portage tree is fine
 MTREEDIR='/usr/portage'
+# Prefix offset
+EPREFIX='/my/prefix'
 # Prefix Tree Directory
-PTREEDIR="`cd /my/prefix/usr/portage && pwd -P`"
+PTREEDIR="`cd ${EPREFIX}/usr/portage && pwd -P`"
 # How to reach the CVS server for retrieving revision diffs
 CVSROOT=':ext:developer@cvs.gentoo.org:/var/cvsroot/'
 # Don't touch this.  You really don't want to.
 CVSMODULE='gentoo-x86'
 # Voodoo to figure out what package you're currently messing with
 EPACKAGE="`pwd -P`"; EPACKAGE=${EPACKAGE#*${PTREEDIR}/}
+
+[[ -e "${EPREFIX}"/etc/init.d/functions.sh ]] \
+	&& source "${EPREFIX}"/etc/init.d/functions.sh \
+	|| echo "!!! cannot find functions.sh !!!"
+
+[[ -z $DO_INDENT ]] || RC_INDENTATION=$DO_INDENT
 
 # returns the CVS revision number from the $Header
 get_cvsversion() {
@@ -57,17 +65,17 @@ get_cvsversion() {
 # the major, 10 a difference in the minor, etc. 100000 < x < 10000 ->
 # suffix, 1000000 < x < 100000 -> revision.
 cmp_ebuild_ver() {
-	if [[ -z $1 ]] ; then
-		echo 0
-		return
-	elif [[ -z $2 ]] ; then
-		echo 1
-		return
-	fi
-
 	# get the bare version, if not already
 	local l=$(get_ebuildversion $1)
 	local r=$(get_ebuildversion $2)
+
+	if [[ -z $l ]] ; then
+		echo 0
+		return
+	elif [[ -z $r ]] ; then
+		echo 1
+		return
+	fi
 
 	local lver=`echo $l | cut -d'-' -f1`
 	local lrev=`echo ${l#$lver} | cut -d'-' -f2`
@@ -210,14 +218,16 @@ cmp_ebuild_ver() {
 }
 
 get_ebuildversion() {
-	if [[ -z $1 ]];
-	then
-		echo 0
+	if [[ -z $1 ]] ; then
 		return
 	fi
 
 	# strip extention
 	t=${1%.ebuild}
+	# abort if this is not an ebuild
+	if [[ $t == $1 ]] ; then
+		return
+	fi
 	# strip package name
 	t=${t#*-}
 	# sometimes there are dashes in the package name
@@ -233,12 +243,11 @@ get_ebuildversion() {
 cross_diff() {
 	mver=$(get_ebuildversion $1)
 	pver=$(get_ebuildversion $2)
-	echo -n "  new version in main tree: ${mver} [${pver}] ... "
 	mte=`basename "${MTREEDIR}/${EPACKAGE}"/$1`
 	pte=`echo $2`
 	mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$mte)
 	ptecv=$(get_cvsversion $pte)
-	echo "cross diff from $ptecv to $mtecv"
+	ewarn "new version in main tree: ${mver} [${pver}] ... cross diff from $ptecv to $mtecv"
 	# checkout both original versions and make the diffs,
 	# ignoring keywords
 	tmp="tmp.${package##*.}"
@@ -274,11 +283,9 @@ revision_diff() {
 	package=$3
 	# Gentoo never increments the major, and branches are not
 	# allowed, so we can make things easy and only use the minor
-	if [[ ${mtecv#1.} -eq ${ptecv#1.} ]];
-	then
-		echo "up-to-date (rev: $mtecv)"
-	elif [[ ${mtecv#1.} -gt ${ptecv#1.} ]];
-	then
+	if [[ ${mtecv#1.} -eq ${ptecv#1.} ]] ; then
+		return
+	elif [[ ${mtecv#1.} -gt ${ptecv#1.} ]] ; then
 		echo "out-of-date, applying diff -r$ptecv -r$mtecv"
 		# checkout both original versions and make the diffs,
 		# ignoring keywords
@@ -300,34 +307,35 @@ revision_diff() {
 		# (attempt to) do it!
 		diff -u /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp \
 			| patch --no-backup-if-mismatch $package
+		ret=$?
 		rm /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp
+		return $ret
 	fi
 }
 
 diff_patch() {
-	file=$1
-	change=$(diff -u $file "${MTREEDIR}/${EPACKAGE}"/$file | patch $file)
-	[[ -z $change ]] && change="up-to-date"
-	echo $change
+	diff -u $1 "${MTREEDIR}/${EPACKAGE}"/$1 | patch $1
+	return $?
 }
 
 update_file() {
 	# on directories, recurse
 	if [[ -d $1 ]] ; then
-		echo "directory"
+		eindent
 		# recurse into this directory (don't update digests)
-		( cd $1 && eupdate $(ls -p | egrep -v "^digest-") )
+		( cd $1 && DO_INDENT=$RC_INDENTATION eupdate $(ls -p | egrep -v "^digest-") )
+		eoutdent
 		return
 	fi
 
 	# check existence of files
 	if [[ ! -f $1 ]] ; then
 		echo "no such file: $1"
-		return
+		return -1
 	fi
 	if [[ ! -f "${MTREEDIR}/${EPACKAGE}"/$1 ]] ; then
 		echo "$1 not found in the main tree"
-		return
+		return -1
 	fi
 
 	# see if the file has a CVS header
@@ -335,16 +343,39 @@ update_file() {
 	ptecv=$(get_cvsversion $1)
 	if [[ $mtecv == 0 ]] && [[ $ptecv == 0 ]] ; then
 		diff_patch $1
+		return $?
 	else
 		revision_diff $mtecv $ptecv $1
+		return $?
+	fi
+}
+
+do_check_file() {
+	file=$1
+	msg=$2
+	[[ -z $2 ]] && msg="checking $file"
+
+	if [[ -d $1 ]] ; then
+		einfo "$msg (a directory)"
+		update_file $file
+		return
+	fi
+
+	ebegin $msg
+	err=$(update_file $file)
+	ret=$?
+	eend $ret
+	if [[ ! -z $err ]] ; then
+		[[ $ret != 0 ]] \
+			&& eerror "$file: $err" \
+			|| einfo "$file: $err"
 	fi
 }
 
 # if the user gave some files on the command line, try to update those
 if [[ ${#*} > 0 ]] ; then
 	while [[ ${#*} > 0 ]] ; do
-		echo -n "  checking $1... "
-		update_file $1
+		do_check_file $1
 		shift
 	done
 
@@ -353,12 +384,12 @@ if [[ ${#*} > 0 ]] ; then
 fi
 
 if [[ ! -d ${MTREEDIR}/${EPACKAGE} ]] ; then
-	echo "no such package in main tree: ${EPACKAGE}"
+	eerror "no such package in main tree: ${EPACKAGE}"
 	exit -1
 fi
 
 if [[ ${EPACKAGE} == "eclass" ]] ; then
-	echo "Processing eclasses directory"
+	einfo "Processing eclasses directory"
 	mt=`cd "${MTREEDIR}"/${EPACKAGE}/ && ls -p`
 	pt=`ls -p`
 	# nested loop join
@@ -366,8 +397,7 @@ if [[ ${EPACKAGE} == "eclass" ]] ; then
 		had_match=0
 		for mte in $mt ; do
 			if [[ $pte == $mte ]] ; then
-				echo -n "  found $mte in both ... "
-				update_file $mte
+				do_check_file $mte "found $mte in both"
 				had_match=1;
 				# we don't need $pte/$mte any more
 				pt=${pt/$pte/}
@@ -388,7 +418,7 @@ if [[ ${EPACKAGE} == "eclass" ]] ; then
 	exit 0
 fi
 
-echo "Processing ${EPACKAGE}"
+einfo "Processing ${EPACKAGE}"
 mt=`cd "${MTREEDIR}"/${EPACKAGE}/ && ls -p | egrep -v "^Manifest$"`
 pt=`ls -p | egrep -v "^Manifest$"`
 # do a nested loop join, we don't assume any order
@@ -402,8 +432,7 @@ for pte in $pt ; do
 		if [[ $vdiff == 0 ]] && [[ $mte == $pte ]] ; then
 			had_match=1
 			# ... look inside the files to see if the file was updated or not
-			echo -n "  found $mte in both ... "
-			update_file $mte
+			do_check_file $mte "found $mte in both"
 			# we found this version, so needless to look for it any more
 			mt=${mt/$mte/}
 		elif [[ $vdiff -ge 100000 ]] ; then
@@ -417,7 +446,7 @@ for pte in $pt ; do
 	done
 	# stale entry
 	[[ $had_match == 0 ]] \
-		&& echo "  warning: $pte no longer in the main tree"
+		&& ewarn "warning: $pte no longer in the main tree"
 	# revision update
 	[[ $last_rev != 0 ]] \
 		&& cross_diff $last_rev $pte
@@ -440,5 +469,3 @@ if [[ $last_mte != "" ]] ; then
 	# we have to apply an update from $last_pte to $last_match
 	cross_diff $last_mte $last_pte
 fi
-
-echo "done"
