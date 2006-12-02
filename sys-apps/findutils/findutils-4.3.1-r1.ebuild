@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.3.1-r1.ebuild,v 1.3 2006/11/16 17:45:04 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.3.1-r1.ebuild,v 1.4 2006/11/27 00:15:57 vapier Exp $
 
 EAPI="prefix"
 
