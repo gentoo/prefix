@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6d.ebuild,v 1.13 2006/10/17 11:17:57 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6e.ebuild,v 1.1 2006/11/29 05:18:12 vapier Exp $
 
 EAPI="prefix"
 
@@ -43,9 +43,6 @@ src_unpack() {
 	# contains two directories that are symlinked together
 	epatch "${FILESDIR}"/man-1.5p-defmanpath-symlinks.patch
 
-	# makewhatis should get section info from config, not hardcode it #86863
-	epatch "${FILESDIR}"/man-1.6a-makewhatis-config.patch
-
 	# add more sections to default search path
 	epatch "${FILESDIR}"/man-1.6b-more-sections.patch
 
@@ -55,14 +52,13 @@ src_unpack() {
 	# Fedora patches
 	epatch "${FILESDIR}"/man-1.5m2-apropos.patch
 
-	# include more headers
-	epatch "${FILESDIR}"/man-1.6d-headers.patch
-
-	# use non-lazy binds for man
-	epatch "${FILESDIR}"/man-1.6b-build.patch
-
-	# Fixes compilation in FreeBSD and Darwin wrt #138123
+	# Fixes compilation in FreeBSD wrt #138123
 	epatch "${FILESDIR}"/man-1.6d-fbsd.patch
+
+	# This patch could be easily merged with the FreeBSD one, but we don't
+	# because the files have no CVS header and then auto syncing overwrites the
+	# local difference we make.  <grobian@gentoo.org>
+	epatch "${FILESDIR}"/man-1.6e-darwin.patch
 
 	# Results in grabbing as much tools from the prefix, instead of main
 	# system in a prefixed environment
@@ -101,7 +97,7 @@ src_compile() {
 		+lang ${mylang} \
 		|| die "configure failed"
 
-	export BINDNOW_FLAGS=$(bindnow-flags)
+	append-ldflags $(bindnow-flags)
 	emake || die "emake failed"
 }
 
