@@ -10,10 +10,10 @@
  trap ":" INT QUIT TSTP
  
  argv0=${0##*/}
--source /sbin/functions.sh || {
--	echo "${argv0}: Could not source /sbin/functions.sh!"
-+source "@GENTOO_PORTAGE_EPREFIX@"/sbin/functions.sh || {
-+	echo "${argv0}: Could not source "@GENTOO_PORTAGE_EPREFIX@"/sbin/functions.sh!"
+-source /etc/init.d/functions.sh || {
+-	echo "${argv0}: Could not source /etc/init.d/functions.sh!"
++source "@GENTOO_PORTAGE_EPREFIX@"/etc/init.d/functions.sh || {
++	echo "${argv0}: Could not source "@GENTOO_PORTAGE_EPREFIX@"/etc/init.d/functions.sh!"
  	exit 1
  }
  umask 022
