@@ -137,7 +137,7 @@ src_install() {
 	# Build fails to create this ...
 	dosym ../share/terminfo /usr/$(get_libdir)/terminfo
 
-	echo "CONFIG_PROTECT_MASK=/etc/terminfo\"" > "${T}"/50ncurses
+	echo "CONFIG_PROTECT_MASK=\"/etc/terminfo\"" > "${T}"/50ncurses
 	doenvd "${T}"/50ncurses
 
 	if use build ; then
