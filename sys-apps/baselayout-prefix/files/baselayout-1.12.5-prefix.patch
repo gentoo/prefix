@@ -12,7 +12,7 @@
 +PATH="@GENTOO_PORTAGE_EPREFIX@/opt/bin"
 +ROOTPATH="@GENTOO_PORTAGE_EPREFIX@/opt/bin"
 +LDPATH="@GENTOO_PORTAGE_EPREFIX@/usr/local/lib"
-+MANPATH="@GENTOO_PORTAGE_EPREFIX@/usr/local/share/man:@GENTOO_PORTAGE_EPREFIX@/usr/share/man"
++MANPATH="@GENTOO_PORTAGE_EPREFIX@/usr/share/man:/usr/share/man"
 +INFOPATH="@GENTOO_PORTAGE_EPREFIX@/usr/share/info"
  CVS_RSH="ssh"
 -PAGER="/usr/bin/less"
