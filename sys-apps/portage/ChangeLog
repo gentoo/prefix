@@ -5,6 +5,13 @@
 # See the gentoo-src Portage ChangeLog for up-to-date release information:
 # http://www.gentoo.org/cgi-bin/viewcvs.cgi/portage/ChangeLog?rev=HEAD&cvsroot=gentoo-src&content-type=text/vnd.viewcvs-markup
 
+*portage-2.1.20.5165 (03 Dec 2006)
+
+  03 Dec 2006; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.1.20.5162.ebuild, +portage-2.1.20.5165.ebuild:
+  New snapshot with fix for portage not informing about files that need
+  updating after emerging.
+
 *portage-2.1.20.5162 (03 Dec 2006)
 
   03 Dec 2006; Fabian Groffen <grobian@gentoo.org>
