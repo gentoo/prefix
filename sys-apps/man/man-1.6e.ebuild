@@ -64,6 +64,11 @@ src_unpack() {
 	# system in a prefixed environment
 	epatch "${FILESDIR}"/man-1.6d-prefix-path.patch
 
+	# Fix the makewhatis script for prefix.
+	cp "${FILESDIR}"/makewhatis.cron "${T}"/
+	( cd "${T}" && epatch "${FILESDIR}"/makewhatis.cron-prefix.patch )
+	eprefixify "${T}"/makewhatis.cron
+
 	strip-linguas $(eval $(grep ^LANGUAGES= configure) ; echo ${LANGUAGES//,/ })
 
 	ebegin "Allowing unpriviliged install"
@@ -108,7 +113,7 @@ src_install() {
 	dodoc LSM README* TODO
 
 	exeinto /etc/cron.weekly
-	newexe "${FILESDIR}"/makewhatis.cron makewhatis
+	newexe "${T}"/makewhatis.cron makewhatis
 
 	keepdir /var/cache/man
 	[[ ${EPREFIX%/} == "" ]] && diropts -m0775 -g man || diropts -m0775
