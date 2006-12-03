@@ -323,7 +323,8 @@ update_file() {
 	if [[ -d $1 ]] ; then
 		eindent
 		# recurse into this directory (don't update digests)
-		( cd $1 && DO_INDENT=$RC_INDENTATION eupdate $(ls -p | egrep -v "^digest-") )
+		f=$(ls -p $1 | egrep -v "^digest-")
+		[[ ! -z $f ]] && ( cd $1 && DO_INDENT=$RC_INDENTATION eupdate $f )
 		eoutdent
 		return
 	fi
@@ -388,8 +389,8 @@ if [[ ! -d ${MTREEDIR}/${EPACKAGE} ]] ; then
 	exit -1
 fi
 
-if [[ ${EPACKAGE} == "eclass" ]] ; then
-	einfo "Processing eclasses directory"
+if [[ ${EPACKAGE} == "eclass" || ${EPACKAGE} == "licenses" ]] ; then
+	einfo "Processing ${EPACKAGE} directory"
 	mt=`cd "${MTREEDIR}"/${EPACKAGE}/ && ls -p`
 	pt=`ls -p`
 	# nested loop join
@@ -406,13 +407,14 @@ if [[ ${EPACKAGE} == "eclass" ]] ; then
 			fi
 		done
 		[[ $had_match == 0 ]] \
-			&& echo "  warning: $pte no longer in the main tree"
+			&& ewarn "warning: $pte no longer in the main tree"
 	done
 
 	# everything left in $mt now is what's not in $pt, let's make a
-	# note about them
+	# note about them and perform a copy
 	for mte in $mt ; do
-		echo "  only in main tree: $mte"
+		ewarn "adding from main tree: $mte"
+		cp "${MTREEDIR}"/${EPACKAGE}/$mte .
 	done
 	echo "done"
 	exit 0
