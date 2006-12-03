@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.324 2006/11/15 15:36:42 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.328 2006/11/22 03:15:14 beandog Exp $
 
 # Keep them sorted
 
@@ -104,6 +104,7 @@ firefox - Build against Firefox instead of Seamonkey/Mozilla
 flac - Adds support for the flac audio codec
 flash - Adds support for creating flash files using Ming
 flatfile - Adds dbm support for flat files
+fltk - Adds support for the Fast Light Toolkit gui interface
 foomaticdb - Adds support for the foomatic printing driver database
 fortran - Adds support for fortran (formally f77)
 freetds - Adds support for the TDS protocol to connect to MSSQL/Sybase databases
@@ -154,6 +155,7 @@ inifile - Adds dbm support for .ini files
 innodb - Adds innodb support for mySQL (transaction support)
 interbase - Adds support for Interbase database
 iodbc - Adds support for iODBC library
+ipod - Enable support for iPod device access
 ipv6 - Adds support for IP version 6
 jabber - Enable jabber IM protocol support
 jack - Adds support for the JACK Audio Connection Kit
@@ -234,6 +236,7 @@ netcdf - Enable NetCDF data format support
 neXt - Enable neXt toolkit
 nis - Support for NIS/YP services
 nls - Adds Native Language Support (using gettext - GNU locale utilities)
+nntp - Add support for newsgroups (Network News Transfer Protocol)
 nocd - Tells emerge to install all files required to run the application without a CD mounted
 nocxx - Disable support for C++ (DON'T USE THIS UNLESS YOU KNOW WHAT YOU'RE DOING)
 nptl - Enable support for Native POSIX Threads Library, the new threading module (requires linux-2.6 or better usually)
@@ -279,6 +282,7 @@ qt4 - Adds support for the Qt GUI/Application Toolkit version 4.x
 quicktime - Adds support for OpenQuickTime
 radius - Adds support for RADIUS authentication"
 readline - Enables support for libreadline, a GNU line-editing library that almost everyone wants
+rdesktop - Adds support for the remote desktop protocol, usually used to connect to Windows servers
 recode - Enables support for the GNU recode library
 ruby - Adds support/bindings for the Ruby language
 samba - Adds support for SAMBA (Windows File and Printer sharing)
