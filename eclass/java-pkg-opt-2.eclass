@@ -52,6 +52,7 @@ pre_pkg_setup() {
 
 pre_src_unpack() {
 	java-pkg-opt-2_pkg_setup
+	use "${JAVA_PKG_OPT_USE}" || JAVA_PKG_BSFIX="off"
 }
 
 pre_src_compile() {

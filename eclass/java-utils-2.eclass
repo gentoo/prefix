@@ -430,6 +430,7 @@ java-pkg_dohtml() {
 	debug-print-function ${FUNCNAME} $*
 
 	[[ ${#} -lt 1 ]] &&  die "At least one argument required for ${FUNCNAME}"
+
 	# TODO-nichoj find out what exactly -f package-list does
 	dohtml -f package-list "$@"
 	# this probably shouldn't be here but it provides
@@ -1616,6 +1617,7 @@ java-pkg_init_paths_() {
 # ------------------------------------------------------------------------------
 # TODO change to do-write, to match everything else
 java-pkg_do_write_() {
+	java-pkg_init_paths_
 	# Create directory for package.env
 	dodir "${JAVA_PKG_SHAREPATH}"
 	if [[ -n "${JAVA_PKG_CLASSPATH}" || -n "${JAVA_PKG_LIBRARY}" || -f "${JAVA_PKG_DEPEND}" ]]; then
@@ -1653,7 +1655,6 @@ java-pkg_do_write_() {
 		sed -e "s/=\":/=\"/" -e "s/:\"$/\"/" -i "${JAVA_PKG_ENV}" || die "Did you forget to call java_init ?"
 	fi
 }
-
 
 # ------------------------------------------------------------------------------
 # @internal-function java-pkg_record-jar_
@@ -1921,7 +1922,6 @@ java-pkg_verify-classes() {
 		die "Bad class files found"
 	fi
 }
-
 
 # ------------------------------------------------------------------------------
 # @section-end internal

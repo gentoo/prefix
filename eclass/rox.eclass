@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/rox.eclass,v 1.16 2006/11/15 19:28:33 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/rox.eclass,v 1.17 2006/11/27 18:45:52 lack Exp $
 
 # ROX eclass Version 2
 
@@ -80,8 +80,9 @@ rox_src_compile() {
 		else
 			rm -rf src
 		fi
-		# set permissions flag here!
-		SET_PERM=true
+		if [[ -d build ]]; then
+			rm -rf build
+		fi
 
 		# Restore the original AppRun
 		mv AppRun.bak AppRun
@@ -94,49 +95,25 @@ rox_src_install() {
 			dodoc "${i}"
 		done
 	fi
+
 	insinto /usr/lib/rox
-	doins -r ${APPNAME}
 
-	#set correct permissions on files, in case they are wrong
-	#include all subdirectories in search, just in case
-	find "${D}/usr/lib/rox/${APPNAME}" -name 'AppRun' -print0 | xargs -0 chmod 755 >/dev/null 2>&1
-	find "${D}/usr/lib/rox/${APPNAME}" -name 'AppletRun' -print0 | xargs -0 chmod 755 >/dev/null 2>&1
-
-	# set permissions for programs where we have libdir script
-	if [ -f "${D}/usr/lib/rox/${APPNAME}/libdir" ]; then
-		chmod 755 "${D}/usr/lib/rox/${APPNAME}/libdir"
-	fi
-
-	# set permissions for programs where we have rox_run script (all who using rox-clib )
-	if [ -f "${D}/usr/lib/rox/${APPNAME}/rox_run" ]; then
-		chmod 755 "${D}/usr/lib/rox/${APPNAME}/rox_run"
-	fi
-
-	# some programs have choice_install script
-	if [ -f "${D}/usr/lib/rox/${APPNAME}/choice_install" ]; then
-		chmod 755 "${D}/usr/lib/rox/${APPNAME}/choice_install"
-	fi
-
-	# set permissions on all binares files for compiled programs per arch
-	if [ -n "${SET_PERM}" ]; then
-		ARCH="`uname -m`"
-		case ${ARCH} in
-			i?86) ARCH=ix86 ;;
-		esac
-		PLATFORM="`uname -s`-${ARCH}"
-		chmod -R 755 "${D}/usr/lib/rox/${APPNAME}/${PLATFORM}"
-	fi
+	# Use 'cp -pPR' and not 'doins -r' here so we don't have to do a flurry of
+	# 'chmod' calls on the executables in the appdir - Just be sure that all the
+	# files in the original appdir prior to this step are correct, as they will
+	# all be preserved.
+	cp -pPR ${APPNAME} ${ED}/usr/lib/rox/${APPNAME}
 
 	#create a script in bin to run the application from command line
 	dodir /usr/bin/
-	cat >"${D}/usr/bin/${APPNAME}" <<EOF
+	cat >"${ED}/usr/bin/${APPNAME}" <<EOF
 #!/bin/sh
 exec "/usr/lib/rox/${APPNAME}/AppRun" "\$@"
 EOF
-	chmod 755 "${D}/usr/bin/${APPNAME}"
+	chmod 755 "${ED}/usr/bin/${APPNAME}"
 
 	#now compile any and all python files
-	python_mod_optimize "${D}/usr/lib/rox/${APPNAME}" >/dev/null 2>&1
+	python_mod_optimize "${ED}/usr/lib/rox/${APPNAME}" >/dev/null 2>&1
 }
 
 rox_pkg_postinst() {

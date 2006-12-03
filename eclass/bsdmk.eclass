@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/bsdmk.eclass,v 1.6 2006/11/21 14:28:31 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/bsdmk.eclass,v 1.7 2006/12/01 02:58:32 flameeyes Exp $
 #
 # Otavio R. Piske "AngusYoung" <angusyoung@gentoo.org>
 # Diego Pettenò <flameeyes@gentoo.org>
@@ -42,7 +42,7 @@ mkinstall() {
 
 	# STRIP= will replace the default value of -s, leaving to portage the
 	# task of stripping executables.
-	${BMAKE} ${mymakeopts} NO_WERROR= STRIP= DESTDIR="${D}" "$@" install
+	${BMAKE} ${mymakeopts} NO_WERROR= STRIP= MANSUBDIR= DESTDIR="${D}" "$@" install
 }
 
 #### dummy_mk <dirnames>

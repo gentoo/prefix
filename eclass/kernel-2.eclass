@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.197 2006/10/26 06:55:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.198 2006/12/02 18:43:37 vapier Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -500,10 +500,12 @@ install_headers() {
 		return 0
 	fi
 
+	# Do not use "linux/*" as that can cause problems with very long
+	# $S values where the cmdline to cp is too long
 	cd "${S}"
 	dodir ${ddir}/linux
-	cp -pPR "${S}"/include/linux/* ${ED}/${ddir}/linux
-	rm -rf ${ED}/${ddir}/linux/modules
+	cp -pPR "${S}"/include/linux "${ED}"/${ddir}/ || die
+	rm -rf "${ED}"/${ddir}/linux/modules
 
 	# Handle multilib headers and crap
 	local multi_dirs="" multi_defs=""

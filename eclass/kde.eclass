@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.185 2006/10/29 00:23:30 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.186 2006/12/01 20:23:51 flameeyes Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -21,9 +21,6 @@ fi
 
 if [[ ${CATEGORY} == "kde-base" ]]; then
 	IUSE="${IUSE} kdeenablefinal"
-	if [[ ${PV} == "3.5"* ]] && [[ ${PN} != "kdemultimedia" && ${KMNAME} != "kdemultimedia" ]]; then
-		IUSE="${IUSE} kdehiddenvisibility"
-	fi
 fi
 
 # Set USE_KEG_PACKAGING=1 before inheriting if the package use extragear-like
