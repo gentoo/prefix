@@ -69,7 +69,7 @@ src_install() {
 
 	# copy the profile
 	cp "${S}"/etc/profile "${ED}"/etc/profile
-	
+
 	# Setup files in /sbin
 	#
 	cd ${S}/sbin
