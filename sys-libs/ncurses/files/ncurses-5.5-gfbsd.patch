@@ -1,0 +1,74 @@
+Index: ncurses-5.5/aclocal.m4
+===================================================================
+--- ncurses-5.5.orig/aclocal.m4
++++ ncurses-5.5/aclocal.m4
+@@ -3507,7 +3507,7 @@ AC_DEFUN([CF_SHARED_OPTS],
+ 		MK_SHARED_LIB='$(LD) -shared -rdata_shared -soname `basename $[@]` -o $[@]'
+ 		cf_cv_rm_so_locs=yes
+ 		;;
+-	linux*|gnu*|k*bsd*-gnu)
++	linux*|gnu*|k*bsd*-gnu|freebsd*|dragonfly*)
+ 		if test "$DFT_LWR_MODEL" = "shared" ; then
+ 			LOCAL_LDFLAGS="-Wl,-rpath,`pwd`/lib"
+ 			LOCAL_LDFLAGS2="$LOCAL_LDFLAGS"
+@@ -3523,23 +3523,6 @@ AC_DEFUN([CF_SHARED_OPTS],
+ 		CC_SHARED_OPTS="$CC_SHARED_OPTS -DPIC"
+ 		MK_SHARED_LIB='$(LD) -Bshareable -soname,`basename $[@].$(ABI_VERSION)` -o $[@]'
+ 		;;
+-	freebsd[[45]]*)
+-		CC_SHARED_OPTS="$CC_SHARED_OPTS -DPIC"
+-		MK_SHARED_LIB='$(LD) -Bshareable -soname=`basename $[@]` -o $[@]'
+-		test "$cf_cv_shlib_version" = auto && cf_cv_shlib_version=rel
+-
+-# This doesn't work - I keep getting spurious references to needing
+-# libncurses.so.5.3 when ldd says it's resolved.  LOCAL_LDFLAGS2 seems to be
+-# no longer used anyway.  And the rpath logic isn't relative - so I have to
+-# add the local and install lib-directories:
+-#
+-#		if test "$DFT_LWR_MODEL" = "shared" && test "$cf_cv_ld_rpath" = yes ; then
+-#			LOCAL_LDFLAGS="-rpath `pwd`/lib"
+-#			LOCAL_LDFLAGS2="-rpath \$(libdir) $LOCAL_LDFLAGS"
+-#			cf_ld_rpath_opt="-rpath "
+-#			EXTRA_LDFLAGS="$LOCAL_LDFLAGS $EXTRA_LDFLAGS"
+-#		fi
+-		;;
+ 	openbsd*|freebsd*)
+ 		CC_SHARED_OPTS="$CC_SHARED_OPTS -DPIC"
+ 		MK_SHARED_LIB='$(LD) -Bshareable -o $[@]'
+Index: ncurses-5.5/configure
+===================================================================
+--- ncurses-5.5.orig/configure
++++ ncurses-5.5/configure
+@@ -5061,7 +5061,7 @@ echo "${ECHO_T}$CC_SHARED_OPTS" >&6
+ 		MK_SHARED_LIB='$(LD) -shared -rdata_shared -soname `basename $@` -o $@'
+ 		cf_cv_rm_so_locs=yes
+ 		;;
+-	linux*|gnu*|k*bsd*-gnu)
++	linux*|gnu*|k*bsd*-gnu|freebsd*|dragonfly*)
+ 		if test "$DFT_LWR_MODEL" = "shared" ; then
+ 			LOCAL_LDFLAGS="-Wl,-rpath,`pwd`/lib"
+ 			LOCAL_LDFLAGS2="$LOCAL_LDFLAGS"
+@@ -5077,23 +5077,6 @@ echo "${ECHO_T}$CC_SHARED_OPTS" >&6
+ 		CC_SHARED_OPTS="$CC_SHARED_OPTS -DPIC"
+ 		MK_SHARED_LIB='$(LD) -Bshareable -soname,`basename $@.$(ABI_VERSION)` -o $@'
+ 		;;
+-	freebsd[45]*)
+-		CC_SHARED_OPTS="$CC_SHARED_OPTS -DPIC"
+-		MK_SHARED_LIB='$(LD) -Bshareable -soname=`basename $@` -o $@'
+-		test "$cf_cv_shlib_version" = auto && cf_cv_shlib_version=rel
+-
+-# This doesn't work - I keep getting spurious references to needing
+-# libncurses.so.5.3 when ldd says it's resolved.  LOCAL_LDFLAGS2 seems to be
+-# no longer used anyway.  And the rpath logic isn't relative - so I have to
+-# add the local and install lib-directories:
+-#
+-#		if test "$DFT_LWR_MODEL" = "shared" && test "$cf_cv_ld_rpath" = yes ; then
+-#			LOCAL_LDFLAGS="-rpath `pwd`/lib"
+-#			LOCAL_LDFLAGS2="-rpath \$(libdir) $LOCAL_LDFLAGS"
+-#			cf_ld_rpath_opt="-rpath "
+-#			EXTRA_LDFLAGS="$LOCAL_LDFLAGS $EXTRA_LDFLAGS"
+-#		fi
+-		;;
+ 	openbsd*|freebsd*)
+ 		CC_SHARED_OPTS="$CC_SHARED_OPTS -DPIC"
+ 		MK_SHARED_LIB='$(LD) -Bshareable -o $@'
