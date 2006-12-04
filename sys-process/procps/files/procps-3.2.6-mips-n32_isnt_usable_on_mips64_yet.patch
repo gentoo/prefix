@@ -1,0 +1,11 @@
+--- proc/procps.h.orig	2005-12-21 19:12:11.000000000 -0500
++++ proc/procps.h	2005-12-21 19:12:17.000000000 -0500
+@@ -31,7 +31,7 @@
+ //
+ // Unknown: PA-RISC and zSeries
+ //
+-#if defined(k64test) || (defined(_ABIN32) && _MIPS_SIM == _ABIN32)
++#if defined(k64test)
+ #define KLONG long long    // not typedef; want "unsigned KLONG" to work
+ #define KLF "L"
+ #define STRTOUKL strtoull
