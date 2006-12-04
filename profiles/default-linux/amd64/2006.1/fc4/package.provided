@@ -1,7 +1,6 @@
 sys-kernel/fedora-sources-2.6.16
 sys-process/cronbase-0.3.2
 sys-process/vixie-cron-4.1
-sys-process/psmisc-21.6
 sys-apps/sysvinit-2.86-r3
 sys-apps/kbd-1.12
 sys-apps/net-tools-1.60
@@ -18,7 +17,6 @@ sys-libs/pwdb-0.62
 sys-libs/pam-0.78
 sys-fs/e2fsprogs-1.38
 sys-fs/udev-077
-#net-misc/openssh-4.2_p1
 net-misc/iputils-021109
 
 # X11 stuff
