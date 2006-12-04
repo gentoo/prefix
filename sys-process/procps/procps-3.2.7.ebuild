@@ -34,6 +34,8 @@ src_unpack() {
 		-e '/ALL_CFLAGS += $(call check_gcc,-Wstrict-aliasing=2,)/s,=2,,' \
 		-e "/^lib64/s:=.*:=$(get_libdir):" \
 		-e 's:-m64::g' \
+		-e 's|--owner 0||g' \
+		-e 's|--group 0||g' \
 		Makefile || die "sed Makefile"
 
 	# mips 2.4.23 headers (and 2.6.x) don't allow PAGE_SIZE to be defined in
@@ -69,6 +71,9 @@ src_install() {
 
 	insinto /usr/include/proc
 	doins proc/*.h || die "doins include"
+
+	# we want stripped stuff any case
+	chmod u+w "${ED}"/usr/bin/*
 
 	dodoc sysctl.conf BUGS NEWS TODO ps/HACKING
 }
