@@ -29,7 +29,7 @@ src_unpack() {
 
 src_compile() {
 	econf \
-		--bindir=/bin \
+		--bindir="${EPREFIX}"/bin \
 		$(use_enable selinux) \
 		$(use_enable nls) \
 		$(use_enable ipv6) \
