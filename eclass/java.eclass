@@ -76,7 +76,7 @@ set_java_env() {
 		-e "s/@PLATFORM@/${platform}/g" \
 		-e "/^ADDLDPATH=.*lib\\/\\\"/s|\"\\(.*\\)\"|\"\\1${platform}/:\\1${platform}/server/\"|" \
 		< $1 \
-		> ${D}/etc/env.d/java/20`basename $1` || die
+		> ${ED}/etc/env.d/java/20`basename $1` || die
 }
 
 
@@ -85,8 +85,8 @@ java_get_plugin_dir_() {
 }
 
 install_mozilla_plugin() {
-	if [ ! -f ${D}/$1 ] ; then
-		die "Cannot find mozilla plugin at ${D}/${1}"
+	if [ ! -f ${ED}/$1 ] ; then
+		die "Cannot find mozilla plugin at ${ED}/${1}"
 	fi
 
 	local plugin_dir=$(java_get_plugin_dir_)
@@ -107,13 +107,13 @@ java_mozilla_clean_() {
 	done
 }
 
-# Use this to remove libjsoundalsa.so from ${D}.
+# Use this to remove libjsoundalsa.so from ${ED}.
 # You generally would want to use this like:
 # use !alsa && java_remove-libjoundalsa /opt/${P}
 java_remove-libjsoundalsa() {
 	[[ ${#} -ne 1 ]] && die "Expected one argument"
 	local search_path="$@"
-	local libs=$(find ${D}/${search_path} -name libjsoundalsa.so)
+	local libs=$(find ${ED}/${search_path} -name libjsoundalsa.so)
 	if [[ -n ${libs} ]]; then
 		rm ${libs} || die "Failed to delete ${libs}"
 	fi
@@ -122,7 +122,7 @@ java_remove-libjsoundalsa() {
 # Symlinks i386 to i?86. Updates env file to then use i?86
 # for LD_LIBRARY_PATH. See bug #23579.
 #
-# Takes an argument, which is a directory living in ${D}
+# Takes an argument, which is a directory living in ${ED}
 # which has a directory named i386, that should be i686, i486, etc.
 # This argument defaults to /opt/${P}/jre/lib
 fix-i386-dir() {
@@ -139,7 +139,7 @@ fix-i386-dir() {
 
 
 			sed -i -e "s/i386/${host}/g" \
-				${D}/etc/env.d/java/20${VMHANDLE} || die "Failed to sed"
+				${ED}/etc/env.d/java/20${VMHANDLE} || die "Failed to sed"
 		fi
 	fi
 }

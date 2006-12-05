@@ -147,8 +147,8 @@ get_system_arch() {
 # TODO rename to something more evident, like install_env_file
 set_java_env() {
 	local platform="$(get_system_arch)"
-	local env_file="${D}${JAVA_VM_CONFIG_DIR}/${VMHANDLE}"
-	local old_env_file="${D}/etc/env.d/java/20${P}"
+	local env_file="${ED}${JAVA_VM_CONFIG_DIR}/${VMHANDLE}"
+	local old_env_file="${ED}/etc/env.d/java/20${P}"
 	local source_env_file="${FILESDIR}/${VMHANDLE}.env"
 
 	if [[ ! -f ${source_env_file} ]]; then
@@ -201,8 +201,8 @@ java_get_plugin_dir_() {
 install_mozilla_plugin() {
 	local plugin=${1}
 
-	if [ ! -f "${D}/${plugin}" ] ; then
-		die "Cannot find mozilla plugin at ${D}/${plugin}"
+	if [ ! -f "${ED}/${plugin}" ] ; then
+		die "Cannot find mozilla plugin at ${ED}/${plugin}"
 	fi
 
 	local plugin_dir=/usr/share/java-config-2/nsplugin

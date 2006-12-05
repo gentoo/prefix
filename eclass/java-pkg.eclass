@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg.eclass,v 1.47 2006/11/26 21:59:41 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg.eclass,v 1.48 2006/12/03 15:27:48 betelgeuse Exp $
 
 inherit multilib
 
@@ -11,6 +11,13 @@ EXPORT_FUNCTIONS pkg_setup
 
 # First we make sure java-config-1 will be used
 export WANT_JAVA_CONFIG="1"
+
+# We can't depend on java-config directly because some packages use this eclass
+# only with the java use flag.
+# http://bugs.gentoo.org/show_bug.cgi?id=137971
+#DEPEND="
+#	=dev-java/java-config-1.3*
+#	=dev-java/java-config-2*"
 
 # During pkg_setup, we need to do a few extra things to ensure things work in a
 # mixed generation-1/generation-2 environment
@@ -140,7 +147,7 @@ java-pkg_do_init_()
 		sodest="/opt/${pkg_name}/${SODESTTREE}"
 	fi
 
-	package_env="${D}${shareroot}/package.env"
+	package_env="${ED}${shareroot}/package.env"
 
 	debug-print "JARDESTTREE=${JARDESTTREE}"
 	debug-print "SODESTTREE=${SODESTTREE}"
@@ -209,15 +216,15 @@ java-pkg_doso()
 	fi
 
 	# Make sure directory is created
-	if [ ! -d "${D}${sodest}" ] ; then
-		install -d "${D}${sodest}"
+	if [ ! -d "${ED}${sodest}" ] ; then
+		install -d "${ED}${sodest}"
 	fi
 
 	for i in $* ; do
 		mysrc=$(java-pkg_do_getsrc_)
 
 		# Install files
-		install -m 0755 "${mysrc}" "${D}${sodest}" || die "${mysrc} not found"
+		install -m 0755 "${mysrc}" "${ED}${sodest}" || die "${mysrc} not found"
 	done
 	lp_pkg="${sodest}"
 
@@ -289,7 +296,7 @@ java-pkg_dojar()
 		mysrc=$(java-pkg_do_getsrc_)
 
 		# Install files
-		install -m 0644 "${mysrc}" "${D}${jardest}" || die "${mysrc} not found"
+		install -m 0644 "${mysrc}" "${ED}${jardest}" || die "${mysrc} not found"
 
 		# Build CLASSPATH
 		if [ -z "${cp_pkg}" ] ; then
@@ -338,8 +345,8 @@ java-pkg_dowar()
 
 	# Patch from Joerg Schaible <joerg.schaible@gmx.de>
 	# Make sure directory is created
-	if [ ! -d "${D}${wardest}" ] ; then
-		install -d "${D}${wardest}"
+	if [ ! -d "${ED}${wardest}" ] ; then
+		install -d "${ED}${wardest}"
 	fi
 
 	for i in $* ; do
@@ -357,7 +364,7 @@ java-pkg_dowar()
 		fi
 
 		# Install files
-		install -m 0644 "${mysrc}" "${D}${wardest}"
+		install -m 0644 "${mysrc}" "${ED}${wardest}"
 	done
 }
 
@@ -476,7 +483,7 @@ java-pkg_dosrc() {
 	done
 
 	dodir ${target}
-	install ${INSOPTIONS} "${T}/${PN}-src.zip" "${D}${target}" \
+	install ${INSOPTIONS} "${T}/${PN}-src.zip" "${ED}${target}" \
 		|| die "failed to install sources"
 }
 

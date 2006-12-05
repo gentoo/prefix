@@ -5,6 +5,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-opt-2.eclass,v 1.5 2006/12/03 13:05:06 betelgeuse Exp $
 
 inherit java-utils-2
 

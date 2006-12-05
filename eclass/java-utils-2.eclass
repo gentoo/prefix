@@ -6,6 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.31 2006/12/03 18:41:25 betelgeuse Exp $
 
 
 # -----------------------------------------------------------------------------
@@ -185,12 +186,12 @@ java-pkg_dojar() {
 				INSDESTTREE="${JAVA_PKG_JARDEST}" \
 					doins "${jar}" || die "failed to install ${jar}"
 				java-pkg_append_ JAVA_PKG_CLASSPATH "${JAVA_PKG_JARDEST}/${jar_basename}"
-				debug-print "installed ${jar} to ${D}${JAVA_PKG_JARDEST}"
+				debug-print "installed ${jar} to ${ED}${JAVA_PKG_JARDEST}"
 			# make a symlink to the original jar if it's symlink
 			else
 				# TODO use dosym, once we find something that could use it
 				# -nichoj
-				ln -s "$(readlink "${jar}")" "${D}${JAVA_PKG_JARDEST}/${jar_basename}"
+				ln -s "$(readlink "${jar}")" "${ED}${JAVA_PKG_JARDEST}/${jar_basename}"
 				debug-print "${jar} is a symlink, linking accordingly"
 			fi
 		else
@@ -211,10 +212,10 @@ java-pkg_dojar() {
 # install things.
 #
 # Example:
-#	java-pkg_regjar ${D}/opt/foo/lib/foo.jar
+#	java-pkg_regjar ${ED}/opt/foo/lib/foo.jar
 #
 # WARNING:
-#   if you want to use shell expansion, you have to use ${D}/... as the for in
+#   if you want to use shell expansion, you have to use ${ED}/... as the for in
 #   this function will not be able to expand the path, here's an example:
 #
 #   java-pkg_regjar /opt/my-java/lib/*.jar
@@ -227,11 +228,11 @@ java-pkg_dojar() {
 #
 #   you have to use it as:
 #
-#   java-pkg_regjar ${D}/opt/my-java/lib/*.jar
+#   java-pkg_regjar ${ED}/opt/my-java/lib/*.jar
 #
 # @param $@ - jars to record
 # ------------------------------------------------------------------------------
-# TODO should we be making sure the jar is present on ${D} or wherever?
+# TODO should we be making sure the jar is present on ${ED} or wherever?
 java-pkg_regjar() {
 	debug-print-function ${FUNCNAME} $*
 
@@ -245,14 +246,14 @@ java-pkg_regjar() {
 	for jar in "$@"; do
 		# TODO use java-pkg_check-versioned-jar
 		if [[ -e "${jar}" ]]; then
-			# nelchael: we should strip ${D} in this case too, here's why:
+			# nelchael: we should strip ${ED} in this case too, here's why:
 			# imagine such call:
-			#    java-pkg_regjar ${D}/opt/java/*.jar
+			#    java-pkg_regjar ${ED}/opt/java/*.jar
 			# such call will fall into this case (-e ${jar}) and will
-			# record paths with ${D} in package.env
-			java-pkg_append_ JAVA_PKG_CLASSPATH	"${jar#${D}}"
-		elif [[ -e "${D}${jar}" ]]; then
-			java-pkg_append_ JAVA_PKG_CLASSPATH	"${jar#${D}}"
+			# record paths with ${ED} in package.env
+			java-pkg_append_ JAVA_PKG_CLASSPATH	"${jar#${ED}}"
+		elif [[ -e "${ED}${jar}" ]]; then
+			java-pkg_append_ JAVA_PKG_CLASSPATH	"${jar#${ED}}"
 		else
 			die "${jar} does not exist"
 		fi
@@ -289,7 +290,6 @@ java-pkg_newjar() {
 	java-pkg_dojar "${new_jar_dest}"
 }
 
-
 # ------------------------------------------------------------------------------
 # @ebuild-function java-pkg_addcp
 #
@@ -303,7 +303,6 @@ java-pkg_addcp() {
 	java-pkg_append_ JAVA_PKG_CLASSPATH "${@}"
 	java-pkg_do_write_
 }
-
 
 # ------------------------------------------------------------------------------
 # @ebuild-function java-pkg_doso
@@ -342,7 +341,7 @@ java-pkg_doso() {
 			# otherwise make a symlink to the symlink's origin
 			else
 				# TODO use dosym
-				ln -s "$(readlink "${lib}")" "${D}${JAVA_PKG_LIBDEST}/$(basename "${lib}")"
+				ln -s "$(readlink "${lib}")" "${ED}${JAVA_PKG_LIBDEST}/$(basename "${lib}")"
 				debug-print "${lib} is a symlink, linking accordanly"
 			fi
 		# otherwise die
@@ -378,10 +377,10 @@ java-pkg_regso() {
 		# Check the absolute path of the lib
 		if [[ -e "${lib}" ]] ; then
 			target_dir="$(java-pkg_expand_dir_ ${lib})"
-			java-pkg_append_ JAVA_PKG_LIBRARY "/${target_dir#${D}}"
-		# Check the path of the lib relative to ${D}
-		elif [[ -e "${D}${lib}" ]]; then
-			target_dir="$(java-pkg_expand_dir_ ${D}${lib})"
+			java-pkg_append_ JAVA_PKG_LIBRARY "/${target_dir#${ED}}"
+		# Check the path of the lib relative to ${ED}
+		elif [[ -e "${ED}${lib}" ]]; then
+			target_dir="$(java-pkg_expand_dir_ ${ED}${lib})"
 			java-pkg_append_ JAVA_PKG_LIBRARY "${target_dir}"
 		else
 			die "${lib} does not exist"
@@ -431,15 +430,27 @@ java-pkg_dohtml() {
 
 	[[ ${#} -lt 1 ]] &&  die "At least one argument required for ${FUNCNAME}"
 
-	# TODO-nichoj find out what exactly -f package-list does
+	# from /usr/lib/portage/bin/dohtml -h
+	#  -f   Set list of allowed extensionless file names.
 	dohtml -f package-list "$@"
+
 	# this probably shouldn't be here but it provides
 	# a reasonable way to catch # docs for all of the
 	# old ebuilds.
 	java-pkg_recordjavadoc
 }
 
-# TODO document
+# ------------------------------------------------------------------------------
+# @ebuild-function java-pkg_dojavadoc
+#
+# Installs javadoc documentation. This should be controlled by the doc use flag.
+#
+# @param $1: - The javadoc root directory.
+#
+# @example:
+#	java-pkg_dojavadoc docs/api
+#
+# ------------------------------------------------------------------------------
 java-pkg_dojavadoc() {
 	local dir="$1"
 
@@ -646,9 +657,9 @@ java-pkg_recordjavadoc()
 	debug-print-function ${FUNCNAME} $*
 	# the find statement is important
 	# as some packages include multiple trees of javadoc
-	JAVADOC_PATH="$(find ${D}/usr/share/doc/ -name allclasses-frame.html -printf '%h:')"
+	JAVADOC_PATH="$(find ${ED}/usr/share/doc/ -name allclasses-frame.html -printf '%h:')"
 	# remove $D - TODO: check this is ok with all cases of the above
-	JAVADOC_PATH="${JAVADOC_PATH//${D}}"
+	JAVADOC_PATH="${JAVADOC_PATH//${ED}}"
 	if [[ -n "${JAVADOC_PATH}" ]] ; then
 		debug-print "javadocs found in ${JAVADOC_PATH%:}"
 		java-pkg_do_write_
@@ -765,43 +776,47 @@ java-pkg_jarfrom() {
 # that have to be present only at build time and are not needed on runtime
 # (junit testing etc).
 #
-# Example: Get the classpath for xerces-2,
-#	java-pkg_getjars xerces-2 xalan
+# Example: Get the classpath for xerces-2 and xalan,
+#	java-pkg_getjars xerces-2,xalan
 # Example Return:
 #	/usr/share/xerces-2/lib/xml-apis.jar:/usr/share/xerces-2/lib/xmlParserAPIs.jar:/usr/share/xalan/lib/xalan.jar
 #
 # @param $1 - (optional) "--build-only" makes the jar(s) not added into
 #	package.env DEPEND line.
-# @param $@ - list of packages to get jars from
+# @param $2 - list of packages to get jars from
+#   (passed to java-config --classpath)
 # ------------------------------------------------------------------------------
 java-pkg_getjars() {
 	debug-print-function ${FUNCNAME} $*
 
-	local build_only=""
+	[[ ${#} -lt 1 || ${#} -gt 2 ]] && die "${FUNCNAME} takes only one or two arguments"
 
 	if [[ "${1}" = "--build-only" ]]; then
-		build_only="true"
+		local build_only="true"
 		shift
 	fi
 
-	[[ ${#} -lt 1 ]] && die "At least one argument needed"
+	local classpath pkgs="${1}"
+	jars="$(java-config --classpath=${pkgs})"
+	[[ -z "${jars}" ]] && die "java-config --classpath=${pkgs} failed"
+	debug-print "${pkgs}:${jars}"
 
-	# NOTE could probably just pass $@ to java-config --classpath. and return it
-	local classpath pkg
-	for pkg in ${@//,/ }; do
-	#for pkg in $(echo "$@" | tr ',' ' '); do
-		jars="$(java-config --classpath=${pkg})"
-		[[ -z "${jars}" ]] && die "java-config --classpath=${pkg} failed"
-		debug-print "${pkg}:${jars}"
+	if [[ -z "${classpath}" ]]; then
+		classpath="${jars}"
+	else
+		classpath="${classpath}:${jars}"
+	fi
 
-		if [[ -z "${classpath}" ]]; then
-			classpath="${jars}"
-		else
-			classpath="${classpath}:${jars}"
-		fi
-		# Only record jars that aren't build-only
-		[[ -z "${build_only}" ]] && java-pkg_record-jar_ "${pkg}"
-	done
+	# Only record jars that aren't build-only
+	if [[ -z "${build_only}" ]]; then
+		oldifs="${IFS}"
+		IFS=","
+		for pkg in ${pkgs}; do
+			java-pkg_record-jar_ "${pkg}"
+		done
+		IFS="${oldifs}"
+	fi
+
 	echo "${classpath}"
 }
 
@@ -1594,7 +1609,7 @@ java-pkg_init_paths_() {
 
 	JAVA_PKG_SHAREPATH="${DESTTREE}/share/${JAVA_PKG_NAME}"
 	JAVA_PKG_SOURCESPATH="${JAVA_PKG_SHAREPATH}/sources/"
-	JAVA_PKG_ENV="${D}${JAVA_PKG_SHAREPATH}/package.env"
+	JAVA_PKG_ENV="${ED}${JAVA_PKG_SHAREPATH}/package.env"
 
 	[[ -z "${JAVA_PKG_JARDEST}" ]] && JAVA_PKG_JARDEST="${JAVA_PKG_SHAREPATH}/lib"
 	[[ -z "${JAVA_PKG_LIBDEST}" ]] && JAVA_PKG_LIBDEST="${DESTTREE}/$(get_libdir)/${JAVA_PKG_NAME}"
@@ -1911,8 +1926,8 @@ java-pkg_jar-list() {
 # Verify that the classes were compiled for the right source / target
 java-pkg_verify-classes() {
 	ebegin "Verifying java class versions"
-	#$(find ${D} -type f -name '*.jar' -o -name '*.class')
-	class-version-verify.py -t $(java-pkg_get-target) -r ${D}
+	#$(find ${ED} -type f -name '*.jar' -o -name '*.class')
+	class-version-verify.py -t $(java-pkg_get-target) -r ${ED}
 	result=$?
 	eend ${result}
 	if [[ ${result} == 0 ]]; then

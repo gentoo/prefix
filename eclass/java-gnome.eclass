@@ -74,7 +74,7 @@ java-gnome_src_install() {
 
 	java-pkg_regjar ${JAVA_GNOME_JARPATH}
 	# Examples as documentation
-	! use doc && rm -rf ${D}/usr/share/doc/${PF}/examples
+	! use doc && rm -rf ${ED}/usr/share/doc/${PF}/examples
 
 	use source && java-pkg_dosrc ${S}/src/java/*
 }
