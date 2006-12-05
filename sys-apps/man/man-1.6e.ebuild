@@ -96,7 +96,7 @@ src_compile() {
 	[[ ${EPREFIX%/} == "" ]] && myconf="${myconf} +sgid"
 
 	./configure \
-		-confdir=/etc \
+		-confdir="${EPREFIX}"/etc \
 		${myconf} \
 		+fhs \
 		+lang ${mylang} \
@@ -109,6 +109,14 @@ src_compile() {
 src_install() {
 	make DESTDIR="${D}" PREFIX="${EPREFIX}" install || die "make install failed"
 	dosym man /usr/bin/manpath
+
+	# man setup is kind of broken, so man.conf installs in double prefix, but
+	# otherwise it doesn't use prefix when looking for it, or the rest is
+	# installed wrongly
+	mkdir -p "${ED}"/etc/
+	mv "${ED}/${EPREFIX}"/etc/man.conf "${ED}"/etc/
+	PREF=${EPREFIX#/}
+	rm -R "${ED}/${PREF%%/*}"
 
 	dodoc LSM README* TODO
 
