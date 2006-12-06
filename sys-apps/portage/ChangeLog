@@ -2,8 +2,12 @@
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
-# See the gentoo-src Portage ChangeLog for up-to-date release information:
-# http://www.gentoo.org/cgi-bin/viewcvs.cgi/portage/ChangeLog?rev=HEAD&cvsroot=gentoo-src&content-type=text/vnd.viewcvs-markup
+*portage-2.1.20.5188 (06 Dec 2006)
+
+  06 Dec 2006; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.1.20.5145.ebuild, +portage-2.1.20.5188.ebuild:
+  New snapshot, fix for DEFAULT_PATH screwup, fix for XCU_ID check to look in
+  prefix first, repoman identification clearification.
 
 *portage-2.1.20.5172 (04 Dec 2006)
 
