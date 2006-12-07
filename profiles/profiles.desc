@@ -8,31 +8,32 @@
 
 # AMD64 Profiles
 #amd64		default-linux/amd64/2006.0			stable
-amd64		default-linux/amd64/2006.1			stable
-amd64		default-linux/amd64/2006.1/desktop	stable
+#amd64		default-linux/amd64/2006.1			stable
+#amd64		default-linux/amd64/2006.1/desktop	stable
 #amd64		default-linux/amd64/2006.1/server	stable
-amd64		default-linux/amd64/2006.0/no-symlinks	dev
+#amd64		default-linux/amd64/2006.0/no-symlinks	dev
 #amd64		default-linux/amd64/2006.1/no-symlinks	dev
 #amd64		default-linux/amd64/2006.0/no-multilib	stable
-amd64		default-linux/amd64/2006.1/no-multilib	stable
+#amd64		default-linux/amd64/2006.1/no-multilib	stable
+amd64		default-linux/amd64/2006.1/fc4		dev
 
 # Mac OS X Profiles
 ppc-macos	default-darwin/macos/10.3			dev
-ppc-macos	default-darwin/macos/10.4			stable
-x86-macos	default-darwin/macos/10.4			stable
+ppc-macos	default-darwin/macos/10.4/ppc		dev
+x86-macos	default-darwin/macos/10.4/x86		dev
 
 # IA64 Profiles
 #ia64		default-linux/ia64/2005.0			stable
-ia64		default-linux/ia64/2006.0			stable
+ia64		default-linux/ia64/2006.0			dev
 
 # x86 Profiles
 #x86		default-linux/x86/2005.0			stable
 #x86		default-linux/x86/2005.1			stable
 #x86		default-linux/x86/2006.0			stable
-x86		default-linux/x86/2006.1			stable
-x86		default-linux/x86/no-nptl			stable
-x86		default-linux/x86/no-nptl/2.4			stable
-x86		default-linux/x86/2006.1/desktop		stable
+x86		default-linux/x86/2006.1			dev
+#x86		default-linux/x86/no-nptl			stable
+#x86		default-linux/x86/no-nptl/2.4		stable
+x86		default-linux/x86/2006.1/desktop		dev
 #x86		default-linux/x86/2006.1/server		stable
 
 
