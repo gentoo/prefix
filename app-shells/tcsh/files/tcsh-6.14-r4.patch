@@ -11,12 +11,13 @@
  ##     Resolved reported bug on MOTD (disabled it)
  ## 2003-01-13  --  Alain Penders (alain@gentoo.org)
  ##     Initial version.  Inspired by the Suse version.
-@@ -16,7 +19,7 @@
+@@ -14,9 +17,7 @@
+     # Console
+     if ( ! ${?TERM} )           setenv TERM linux
      if ( "$TERM" == "unknown" ) setenv TERM linux
-     # No tset available on SlackWare
+-    # No tset available on SlackWare
      if ( -x "`which stty`" ) stty sane cr0 pass8 dec
 -    if ( -x "`which tset`" ) tset -I -Q
-+    if ( -x "`which tset`" ) eval `tset -Q -I -s`
      unsetenv TERMCAP
      settc km yes
  endif
