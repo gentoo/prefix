@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit eutils gnuconfig flag-o-matic toolchain-funcs
 
-KEYWORDS="-*"
+KEYWORDS="~amd64"
 
 DESCRIPTION="PostgreSQL libraries."
 HOMEPAGE="http://www.postgresql.org/"
@@ -51,13 +51,13 @@ src_compile() {
 
 	cd "${S}"
 
-	./configure --prefix=/usr \
-		--includedir=/usr/include/postgresql/libpq-${SLOT} \
-		--sysconfdir=/etc/postgresql \
-		--mandir=/usr/share/man \
+	./configure --prefix="${EPREFIX}"/usr \
+		--includedir="${EPREFIX}"/usr/include/postgresql/libpq-${SLOT} \
+		--sysconfdir="${EPREFIX}"/etc/postgresql \
+		--mandir="${EPREFIX}"/usr/share/man \
 		--host=${CHOST} \
-		--with-docdir=/usr/share/doc/${PF} \
-		--libdir=/usr/$(get_libdir) \
+		--with-docdir="${EPREFIX}"/usr/share/doc/${PF} \
+		--libdir="${EPREFIX}"/usr/$(get_libdir) \
 		--enable-depend \
 		$(use_with kerberos krb5) \
 		$(use_enable nls ) \
