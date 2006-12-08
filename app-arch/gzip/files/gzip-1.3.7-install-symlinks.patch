@@ -1,0 +1,25 @@
+--- gzip-1.3.7/Makefile.in
++++ gzip-1.3.7/Makefile.in
+@@ -916,15 +916,19 @@
+ 	  transform='$(transform)'; \
+ 	  test "X$$prog" = "X$$prog_ext" || \
+ 	    transform="$$transform"';s/$$/$(EXEEXT)/'; \
+-	  source=$(DESTDIR)$(bindir)/`echo "$$prog"|sed "$$transform"`; \
++	  sourcebase=`echo "$$prog"|sed "$$transform"`; \
++	  source=$(DESTDIR)$(bindir)/$$sourcebase; \
+ 	  for alias in $$aliases; do \
+ 	    dest=$(DESTDIR)$(bindir)/`echo "$$alias"|sed "$$transform"`; \
+ 	    (set -x; \
+ 	     rm -f "$$dest" && \
+ 	     case $@ in \
+ 	     install-exec-hook) \
+-	       for ln in ln "$(LN_S)"; do \
+-		 $$ln "$$source" "$$dest" && break; \
++	       for ln in "$(LN_S)"; do \
++		 case $$ln in \
++		   ln) $$ln "$$source" "$$dest" && break;; \
++		   *) $$ln "$$sourcebase" "$$dest" && break;; \
++		 esac; \
+ 	       done;; \
+ 	     esac \
+ 	    ) || exit; \
