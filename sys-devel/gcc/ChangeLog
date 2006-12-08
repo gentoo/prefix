@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.587 2006/11/20 12:35:11 gmsoft Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.589 2006/11/29 15:13:30 gustavoz Exp $
+
+  29 Nov 2006; Gustavo Zacarias <gustavoz@gentoo.org> gcc-3.4.6-r2.ebuild:
+  Stable on sparc
+
+*gcc-4.1.1-r3 (27 Nov 2006)
+
+  27 Nov 2006; Mike Frysinger <vapier@gentoo.org> +gcc-4.1.1-r3.ebuild:
+  Fix debug regression #155417 and add some fixes for hppa.
 
   20 Nov 2006; Guy Martin <gmsoft@gentoo.org> gcc-4.1.1-r1.ebuild:
   Stable on hppa.
