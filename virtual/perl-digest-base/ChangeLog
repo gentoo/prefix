@@ -1,0 +1,48 @@
+# ChangeLog for virtual/perl-digest-base
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-digest-base/ChangeLog,v 1.9 2006/10/23 18:10:59 gustavoz Exp $
+
+  23 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  perl-digest-base-1.15.ebuild:
+  Stable on hppa
+
+  20 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  -perl-digest-base-1.05.ebuild, -perl-digest-base-1.08.ebuild,
+  -perl-digest-base-1.10.ebuild:
+  Cleaning up old ebuilds
+
+  20 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  perl-digest-base-1.08.ebuild, perl-digest-base-1.15.ebuild:
+  Marking amd64 stable
+
+  20 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  perl-digest-base-1.05.ebuild, perl-digest-base-1.08.ebuild,
+  perl-digest-base-1.15.ebuild:
+  Marking sparc stable
+
+*perl-digest-base-1.15 (21 May 2006)
+
+  21 May 2006; Christian Hartmann <ian@gentoo.org>
+  -perl-digest-base-1.14.ebuild, +perl-digest-base-1.15.ebuild:
+  Version bump
+
+  26 Feb 2006; Joshua Kinard <kumba@gentoo.org>
+  perl-digest-base-1.13.ebuild:
+  Marked stable on mips.
+
+  07 Feb 2006; Simon Stelling <blubb@gentoo.org>
+  perl-digest-base-1.13.ebuild:
+  stable on amd64
+
+*perl-digest-base-1.14 (06 Feb 2006)
+*perl-digest-base-1.13 (06 Feb 2006)
+*perl-digest-base-1.10 (06 Feb 2006)
+*perl-digest-base-1.08 (06 Feb 2006)
+*perl-digest-base-1.05 (06 Feb 2006)
+
+  06 Feb 2006; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +perl-digest-base-1.05.ebuild, +perl-digest-base-1.08.ebuild,
+  +perl-digest-base-1.10.ebuild, +perl-digest-base-1.13.ebuild,
+  +perl-digest-base-1.14.ebuild:
+  New virtual for perl-core/digest-base
+
