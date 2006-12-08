@@ -22,10 +22,10 @@ AUX automake-1.5-target_hook.patch 1132 RMD160 7f0614d273825d415ef30eff9de9c37ce
 MD5 fbf3743bc8590dcb5bd34c675cb9d9f0 files/automake-1.5-target_hook.patch 1132
 RMD160 7f0614d273825d415ef30eff9de9c37ce7defed3 files/automake-1.5-target_hook.patch 1132
 SHA256 7169c860060faeeb698195ed82cd742162e5375cec0d2b4037b0cbb09998a421 files/automake-1.5-target_hook.patch 1132
-AUX automake-1.5-test-fixes.patch 2303 RMD160 a0098f45eab22ceacb32c44c6af07d68b093d3ee SHA1 0265517f47c9623c696cc4e9f02d2a2701cdbd73 SHA256 29cc425cc6d8e3a639d3b11218f0e8e76d587750d7edb31f8c0b08e5bbc0d6ce
-MD5 5c2fe79f8f664efdb7e2736e88c10f09 files/automake-1.5-test-fixes.patch 2303
-RMD160 a0098f45eab22ceacb32c44c6af07d68b093d3ee files/automake-1.5-test-fixes.patch 2303
-SHA256 29cc425cc6d8e3a639d3b11218f0e8e76d587750d7edb31f8c0b08e5bbc0d6ce files/automake-1.5-test-fixes.patch 2303
+AUX automake-1.5-test-fixes.patch 1277 RMD160 93e86ddc6bb847a82ec698c5f4a578593d51e5e8 SHA1 bcf8b3a2ead934dad96f0c7b3c220720861f5457 SHA256 f99b8961328a25712b1ac441da300360c69acf8cbf7a31028a5292fbe2b56e5e
+MD5 c61e7a15e98bc67ff3c01d38d7729892 files/automake-1.5-test-fixes.patch 1277
+RMD160 93e86ddc6bb847a82ec698c5f4a578593d51e5e8 files/automake-1.5-test-fixes.patch 1277
+SHA256 f99b8961328a25712b1ac441da300360c69acf8cbf7a31028a5292fbe2b56e5e files/automake-1.5-test-fixes.patch 1277
 AUX automake-1.7.9-infopage-namechange.patch 592 RMD160 78f09d0a4ce09d0389cd3d3f54edc16b7df8541d SHA1 816b31bd1887bad43a50e34f04d4bfe7aa702474 SHA256 3e0dae801e4ff79dc2d5a469a8be1efb5df09344f566cf39b897f385b39212ee
 MD5 e93136e02eb000c938f564484d306d76 files/automake-1.7.9-infopage-namechange.patch 592
 RMD160 78f09d0a4ce09d0389cd3d3f54edc16b7df8541d files/automake-1.7.9-infopage-namechange.patch 592
@@ -34,10 +34,6 @@ AUX automake-1.8.2-infopage-namechange.patch 1131 RMD160 c520c80b37dd30e0b6fca35
 MD5 9587f00ace066c11b5c22d72afe630a9 files/automake-1.8.2-infopage-namechange.patch 1131
 RMD160 c520c80b37dd30e0b6fca359bcc7f242ded15fae files/automake-1.8.2-infopage-namechange.patch 1131
 SHA256 305979b9a07496352bfc6cc2177bf7aa1587ef1d0dcbbab1de7a56cb9d0ac539 files/automake-1.8.2-infopage-namechange.patch 1131
-AUX automake-1.9.3-infopage-namechange.patch 1109 RMD160 f717f10b98485d39dd86d1f3457b68331d221770 SHA1 5a95f8836483fbf6cf8f3cfdf5b0e39d88d9afe0 SHA256 4447442210ac8d1f516b30c0e13c222c9ff161db5143c7a775fc1f18df75992f
-MD5 4c0ad89956f0b70972c19a60c65f9275 files/automake-1.9.3-infopage-namechange.patch 1109
-RMD160 f717f10b98485d39dd86d1f3457b68331d221770 files/automake-1.9.3-infopage-namechange.patch 1109
-SHA256 4447442210ac8d1f516b30c0e13c222c9ff161db5143c7a775fc1f18df75992f files/automake-1.9.3-infopage-namechange.patch 1109
 AUX automake-1.9.6-ignore-comments.patch 614 RMD160 2d9ca9b4de82171370edd6843b4a3c2b9c073b4c SHA1 c10645bafd86fe2dfa15a4e62f96b55032c66c1b SHA256 28b80f088b53a72935f15c7d845919f474224ece83847d7b3bae5f2236fe30fe
 MD5 3099ade0063f414271664a3909abac9e files/automake-1.9.6-ignore-comments.patch 614
 RMD160 2d9ca9b4de82171370edd6843b4a3c2b9c073b4c files/automake-1.9.6-ignore-comments.patch 614
