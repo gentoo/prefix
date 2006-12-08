@@ -1,7 +1,7 @@
 #!/bin/bash
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake-wrapper/files/am-wrapper-2.sh,v 1.1 2006/10/16 01:38:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake-wrapper/files/am-wrapper-2.sh,v 1.2 2006/11/10 00:04:41 vapier Exp $
 
 # Based on the am-wrapper.pl script provided by MandrakeSoft
 # Rewritten in bash by Gregorio Guidi
@@ -53,10 +53,20 @@ fi
 
 vers="1.10 1.9 1.8 1.7 1.6 1.5 1.4"
 
+binary=""
 for v in ${vers} ; do
 	eval binary_${v/./_}="${0}-${v}"
+
+	if [ -z "${binary}" ] && [ -x "${0}-${v}" ] ; then
+		binary="${0}-${v}"
+	fi
 done
-binary="${binary_1_10}"
+if [ -z "${binary}" ] ; then
+	echo "am-wrapper: Unable to locate any usuable version of automake." >&2
+	echo "            I tried these versions: ${vers}" >&2
+	echo "            With a base name of '${0}'." >&2
+	exit 1
+fi
 
 #
 # Check the WANT_AUTOMAKE setting
