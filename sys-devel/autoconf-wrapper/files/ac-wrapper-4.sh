@@ -1,7 +1,7 @@
 #!/bin/bash
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-wrapper/files/ac-wrapper-4.sh,v 1.3 2006/11/17 20:17:07 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-wrapper/files/ac-wrapper-4.sh,v 1.4 2006/11/26 14:35:36 vapier Exp $
 
 # Based on the ac-wrapper.pl script provided by MandrakeSoft
 # Rewritten in bash by Gregorio Guidi
@@ -142,7 +142,7 @@ for v in ${vers} ; do
 	auto_ver=${v%:*}
 	want_ver=${v#*:}
 	if [ "${binary}" = "${0}-${auto_ver}" ] ; then
-		export WANT_AUTOMAKE="${want_ver}"
+		export WANT_AUTOCONF="${want_ver}"
 	fi
 done
 
