@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bsdtar/bsdtar-1.3.1-r1.ebuild,v 1.3 2006/10/17 12:01:10 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bsdtar/bsdtar-1.3.1-r2.ebuild,v 1.2 2006/11/11 12:42:57 blubb Exp $
 
 EAPI="prefix"
 
@@ -41,6 +41,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/libarchive-1.3.1-static.patch
 	epatch "${FILESDIR}"/libarchive-1.2.57-acl.patch
 	epatch "${FILESDIR}"/libarchive-1.2.53-strict-aliasing.patch
+	epatch "${FILESDIR}"/libarchive-1.3.1-infiniteloop.patch
 
 	eautoreconf
 	epunt_cxx

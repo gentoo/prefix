@@ -2,10 +2,6 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>bsd</herd>
-<maintainer>
-<email>flameeyes@gentoo.org</email>
-<name>Diego Pettenò</name>
-</maintainer>
 <longdescription lang="en">
 The bsdtar program creates and manipulates streaming archive files.
 It has a number of advantages over previous tar implementations.
