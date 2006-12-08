@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.16.ebuild,v 1.1 2006/10/21 21:45:56 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.16-r2.ebuild,v 1.9 2006/12/06 21:34:52 eroyf Exp $
 
 EAPI="prefix"
 
@@ -15,10 +15,9 @@ SRC_URI="http://ftp.gnu.org/gnu/tar/${P}.tar.bz2
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
-IUSE="nls static build bzip2"
+IUSE="nls static"
 
-RDEPEND="app-arch/gzip
-	bzip2? ( app-arch/bzip2 )"
+RDEPEND=""
 DEPEND="${RDEPEND}
 	nls? ( >=sys-devel/gettext-0.10.35 )"
 
@@ -26,6 +25,8 @@ src_unpack() {
 	unpack ${A}
 	epatch "${FILESDIR}"/${P}-darwin.patch
 	cd "${S}"
+	epatch "${FILESDIR}"/${P}-segv.patch
+	epatch "${FILESDIR}"/${P}-remove-GNUTYPE_NAMES.patch #155901
 	if [[ ${USERLAND} != "GNU" ]] && [[ ${EPREFIX%/} == "" ]] ; then
 		sed -i \
 			-e 's:/backup\.sh:/gbackup.sh:' \
@@ -51,22 +52,19 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die "make install failed"
-	# a nasty yet required symlink
 	local p=""
-	use userland_BSD && p=g
+	use userland_GNU || [[ ${EPREFIX%/} != "" ]] || p=g
+
+	emake DESTDIR="${D}" install || die "make install failed"
+
+	# a nasty yet required symlink
 	dodir /etc
 	dosym /usr/sbin/${p}rmt /etc/${p}rmt
-	if use build ; then
-		rm -r "${ED}"/usr
-	else
-		dodir /usr/bin
-		dosym /bin/${p}tar /usr/bin/${p}tar
-		dodoc AUTHORS ChangeLog* NEWS README* PORTS THANKS
-		newman "${FILESDIR}"/tar.1 ${p}tar.1
-		mv "${ED}"/usr/sbin/${p}backup{,-tar}
-		mv "${ED}"/usr/sbin/${p}restore{,-tar}
-	fi
 
-	rm -f ${ED}/usr/$(get_libdir)/charset.alias
+	dodoc AUTHORS ChangeLog* NEWS README* PORTS THANKS
+	newman "${FILESDIR}"/tar.1 ${p}tar.1
+	mv "${ED}"/usr/sbin/${p}backup{,-tar}
+	mv "${ED}"/usr/sbin/${p}restore{,-tar}
+
+	rm -f "${ED}"/usr/$(get_libdir)/charset.alias
 }

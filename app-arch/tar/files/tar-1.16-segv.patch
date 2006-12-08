@@ -1,0 +1,122 @@
+fix from upstream
+
+http://lists.gnu.org/archive/html/bug-tar/2006-10/msg00042.html
+
+To: "Karl Berry" <karl@freefriends.org>
+From: "Sergey Poznyakoff" <gray@Mirddin.farlep.net>
+Date: Wed, 01 Nov 2006 02:17:25 +0200
+Subject: Re: [Bug-tar] tar 1.16 segmentation fault
+
+Karl Berry <karl@freefriends.org> wrote:
+
+> I typed (by mistake):
+> tar czfT x.tgz `cat /tmp/b`
+> 
+> and got:
+> Segmentation fault
+
+Thank you. I have installed the following fix:
+
+2006-11-01  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+        * src/tar.c: Handle zero-length entries in a files-from file
+	
+Index: src/tar.c
+===================================================================
+RCS file: /cvsroot/tar/tar/src/tar.c,v
+retrieving revision 1.160
+diff -p -u -r1.160 tar.c
+--- src/tar.c	17 Oct 2006 08:13:43 -0000	1.160
++++ src/tar.c	1 Nov 2006 00:15:40 -0000
+@@ -953,7 +953,8 @@ enum read_file_list_state  /* Result of 
+   {
+     file_list_success,     /* OK, name read successfully */
+     file_list_end,         /* End of list file */
+-    file_list_zero         /* Zero separator encountered where it should not */
++    file_list_zero,        /* Zero separator encountered where it should not */
++    file_list_skip         /* Empty (zero-length) entry encountered, skip it */
+   };
+ 
+ /* Read from FP a sequence of characters up to FILENAME_TERMINATOR and put them
+@@ -971,13 +972,15 @@ read_name_from_file (FILE *fp, struct ob
+ 	{
+ 	  /* We have read a zero separator. The file possibly is
+ 	     zero-separated */
+-	  /* FATAL_ERROR((0, 0, N_("file name contains null character"))); */
+ 	  return file_list_zero;
+ 	}
+       obstack_1grow (stk, c);
+       counter++;
+     }
+ 
++  if (counter == 0 && c != EOF)
++    return file_list_skip;
++  
+   obstack_1grow (stk, 0);
+ 
+   return (counter == 0 && c == EOF) ? file_list_end : file_list_success;
+@@ -1058,31 +1061,42 @@ update_argv (const char *filename, struc
+ 	open_fatal (filename);
+     }
+ 
+-  while ((read_state = read_name_from_file (fp, &argv_stk)) == file_list_success)
+-    count++;
+-
+-  if (read_state == file_list_zero)
++  while ((read_state = read_name_from_file (fp, &argv_stk)) != file_list_end)
+     {
+-      size_t size;
++      switch (read_state)
++	{
++	case file_list_success:
++	  count++;
++	  break;
++	  
++	case file_list_end: /* won't happen, just to pacify gcc */
++	  break;
+ 
+-      WARN ((0, 0, N_("%s: file name read contains nul character"),
+-	     quotearg_colon (filename)));
++	case file_list_zero:
++	  {
++	    size_t size;
+ 
+-      /* Prepare new stack contents */
+-      size = obstack_object_size (&argv_stk);
+-      p = obstack_finish (&argv_stk);
+-      for (; size > 0; size--, p++)
+-	if (*p)
+-	  obstack_1grow (&argv_stk, *p);
+-        else
+-	  obstack_1grow (&argv_stk, '\n');
+-      obstack_1grow (&argv_stk, 0);
+-      count = 1;
+-
+-      /* Read rest of files using new filename terminator */
+-      filename_terminator = 0;
+-      while (read_name_from_file (fp, &argv_stk) == file_list_success)
+-	count++;
++	    WARN ((0, 0, N_("%s: file name read contains nul character"),
++		   quotearg_colon (filename)));
++
++	    /* Prepare new stack contents */
++	    size = obstack_object_size (&argv_stk);
++	    p = obstack_finish (&argv_stk);
++	    for (; size > 0; size--, p++)
++	      if (*p)
++		obstack_1grow (&argv_stk, *p);
++	      else
++		obstack_1grow (&argv_stk, '\n');
++	    obstack_1grow (&argv_stk, 0);
++	    count = 1;
++	    /* Read rest of files using new filename terminator */
++	    filename_terminator = 0;
++	    break;
++	  }
++	  
++	case file_list_skip:
++	  break;
++	}
+     }
+ 
+   if (!is_stdin)
