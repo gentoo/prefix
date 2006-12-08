@@ -1,14 +1,18 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.273 2006/11/15 20:30:18 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.276 2006/12/03 06:34:15 vapier Exp $
 
-  15 Nov 2006; Sven Wegener <swegener@gentoo.org>
-  binutils-2.17.50.0.6.ebuild:
-  Inherit autotools first, to get proper DESCRIPTION.
+*binutils-2.17.50.0.8 (03 Dec 2006)
 
-  15 Nov 2006; Luca Barbato <lu_zero@gentoo.org>
-  binutils-2.17.50.0.6.ebuild:
-  Cell support added
+  03 Dec 2006; Mike Frysinger <vapier@gentoo.org>
+  +binutils-2.17.50.0.8.ebuild:
+  Version bump.
+
+*binutils-2.17.50.0.7 (29 Nov 2006)
+
+  29 Nov 2006; Mike Frysinger <vapier@gentoo.org>
+  +binutils-2.17.50.0.7.ebuild:
+  Version bump.
 
 *binutils-2.17.50.0.6 (21 Oct 2006)
 
