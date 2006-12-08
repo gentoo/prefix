@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.4.ebuild,v 1.9 2006/12/01 16:13:49 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.7.ebuild,v 1.1 2006/12/08 00:32:10 vapier Exp $
 
 EAPI="prefix"
 
@@ -59,7 +59,7 @@ src_unpack() {
 		EPATCH_MULTI_MSG="Applying SELINUX patches ..." \
 		EPATCH_SUFFIX="patch" epatch "${PATCHDIR}"/selinux
 		( cd "${PATCHDIR}" ; epatch selinux/GLUE* ) || die "glue failed"
-	elif use acl ; then
+	else
 		EPATCH_MULTI_MSG="Applying ACL patches ..." \
 		EPATCH_SUFFIX="patch" epatch "${PATCHDIR}"/acl
 	fi
@@ -100,6 +100,7 @@ src_compile() {
 	econf \
 		--enable-largefile \
 		$(use_enable nls) \
+		$(use_enable acl) \
 		$(use_enable selinux) \
 		${myconf} \
 		|| die "econf"
