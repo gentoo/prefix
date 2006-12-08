@@ -1,0 +1,13 @@
+# ChangeLog for perl-core/IO
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/perl-core/IO/ChangeLog,v 1.2 2006/11/07 06:30:45 opfer Exp $
+
+  07 Nov 2006; Christian Faulhammer <opfer@gentoo.org> IO-1.23.01.ebuild:
+  keyworded ~x86, bug #154253
+
+*IO-1.23.01 (06 Nov 2006)
+
+  06 Nov 2006; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +IO-1.23.01.ebuild:
+  New dep for Test-Class - requires newer version than shipped with perl
+
