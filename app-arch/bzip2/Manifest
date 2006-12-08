@@ -18,10 +18,10 @@ AUX bzip2-1.0.3-dylib.patch 1879 RMD160 beb7c9697ecf34a1d34dab77a19e306f919708ee
 MD5 084712480a0e2dcf577ed86bf2bc57ad files/bzip2-1.0.3-dylib.patch 1879
 RMD160 beb7c9697ecf34a1d34dab77a19e306f919708ee files/bzip2-1.0.3-dylib.patch 1879
 SHA256 343d26e2e5b353f49b1c2da009477ecc6d061eb982cc81f554807d8d18befeaa files/bzip2-1.0.3-dylib.patch 1879
-AUX bzip2-1.0.3-makefile-CFLAGS.patch 489 RMD160 c880da9de5bf47790d5f4965844a1a5877f46952 SHA1 8533e465dbc3aa3cd6afcab3d24c92ccf5cc4fe2 SHA256 e3f828c8ab7588c644e9aa49a973fdce75f0fd6fb817b9dbc5ebee1f08b19d61
-MD5 be84e51b1bd56731f5d7762980e3ad47 files/bzip2-1.0.3-makefile-CFLAGS.patch 489
-RMD160 c880da9de5bf47790d5f4965844a1a5877f46952 files/bzip2-1.0.3-makefile-CFLAGS.patch 489
-SHA256 e3f828c8ab7588c644e9aa49a973fdce75f0fd6fb817b9dbc5ebee1f08b19d61 files/bzip2-1.0.3-makefile-CFLAGS.patch 489
+AUX bzip2-1.0.3-makefile-CFLAGS.patch 412 RMD160 bfaa7213cc80066bcfe92bd7e5f65640dfa16a7c SHA1 c96c61b6862998f928b52938b9497831718c02b8 SHA256 336b9b0150282b765555cc5aab91b7ecef6cadcf9b35ad81e5fef7341ecdc21f
+MD5 ac08797208ed37631f0f375860b7a027 files/bzip2-1.0.3-makefile-CFLAGS.patch 412
+RMD160 bfaa7213cc80066bcfe92bd7e5f65640dfa16a7c files/bzip2-1.0.3-makefile-CFLAGS.patch 412
+SHA256 336b9b0150282b765555cc5aab91b7ecef6cadcf9b35ad81e5fef7341ecdc21f files/bzip2-1.0.3-makefile-CFLAGS.patch 412
 AUX bzip2-1.0.3-makefile-LDFLAGS.patch 482 RMD160 ec746e52242f687650f577d559abfe757147fb1b SHA1 bc30f1fdd2b52762f6007f3c6b99cd11d10269fd SHA256 80638fd8eb1e5587a6a5243f7d20cad1f09d409f3d1f181aa7daf2f27fe5f481
 MD5 229d3efda4fa04ec02e72883bf783b08 files/bzip2-1.0.3-makefile-LDFLAGS.patch 482
 RMD160 ec746e52242f687650f577d559abfe757147fb1b files/bzip2-1.0.3-makefile-LDFLAGS.patch 482
