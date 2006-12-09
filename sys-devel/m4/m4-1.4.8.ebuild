@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit eutils
+
 DESCRIPTION="GNU macro processor"
 HOMEPAGE="http://www.gnu.org/software/m4/m4.html"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2
@@ -17,6 +19,12 @@ IUSE="nls"
 # remember: cannot dep on autoconf since it needs us
 DEPEND="nls? ( sys-devel/gettext )"
 RDEPEND=""
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-darwin7.patch
+}
 
 src_compile() {
 	local myconf=""

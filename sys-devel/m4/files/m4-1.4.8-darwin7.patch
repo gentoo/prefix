@@ -1,0 +1,54 @@
+Fabian Groffen <grobian@gentoo.org>
+* rlim_t is defined in sys/types.h on Darwin 7
+* Darwin 7 doesn't have signal.h, but sys/signal.h, since Linux has
+  both, use the latter one
+
+* For Gentoo, we patch configure itself, since we can't depend on
+  autoconf for this package, since autoconf needs this one.
+
+--- configure.ac
++++ configure.ac
+@@ -78,15 +78,18 @@
+     [Define to 1 if using stack overflow detection])
+   AC_CHECK_TYPES([rlim_t], [],
+     [AC_DEFINE([rlim_t], [int],
+-      [Define to int if rlim_t is not defined in sys/resource.h])],
+-    [[#include <sys/resource.h>
++      [Define to int if rlim_t is not defined in sys/resource.h or sys/types.h])],
++    [[
++#include <sys/types.h>
++#include <sys/time.h>
++#include <sys/resource.h>
+   ]])
+   AC_CHECK_TYPES([stack_t], [],
+     [AC_DEFINE([stack_t], [struct sigaltstack],
+-      [Define to struct sigaltstack if stack_t is not in signal.h])],
+-    [[#include <signal.h>
++      [Define to struct sigaltstack if stack_t is not in sys/signal.h])],
++    [[#include <sys/signal.h>
+   ]])
+-  AC_CHECK_TYPES([sigcontext], [], [], [[#include <signal.h>
++  AC_CHECK_TYPES([sigcontext], [], [], [[#include <sys/signal.h>
+   ]])
+ fi
+ 
+--- configure
++++ configure
+@@ -15427,6 +15427,8 @@
+ cat >>conftest.$ac_ext <<_ACEOF
+ /* end confdefs.h.  */
++#include <sys/types.h>
++#include <sys/time.h>
+ #include <sys/resource.h>
+ 
+ 
+ typedef rlim_t ac__type_new_;
+@@ -15496,7 +15497,7 @@
+ cat confdefs.h >>conftest.$ac_ext
+ cat >>conftest.$ac_ext <<_ACEOF
+ /* end confdefs.h.  */
+-#include <signal.h>
++#include <sys/signal.h>
+ 
+ 
+ typedef stack_t ac__type_new_;
