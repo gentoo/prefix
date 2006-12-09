@@ -5,7 +5,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.4 2006/12/03 13:05:06 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.5 2006/12/08 12:12:04 betelgeuse Exp $
 
 inherit java-utils-2
 
@@ -42,6 +42,7 @@ EXPORT_FUNCTIONS pkg_setup
 # ------------------------------------------------------------------------------
 java-pkg-2_pkg_setup() {
 	java-pkg_init
+	java-pkg_ensure-test
 }
 
 # ------------------------------------------------------------------------------

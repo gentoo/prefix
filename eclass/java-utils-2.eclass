@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.31 2006/12/03 18:41:25 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.34 2006/12/08 12:12:04 betelgeuse Exp $
 
 
 # -----------------------------------------------------------------------------
@@ -25,6 +25,8 @@
 # -----------------------------------------------------------------------------
 
 inherit eutils versionator multilib
+
+IUSE="elibc_FreeBSD"
 
 # -----------------------------------------------------------------------------
 # @section-begin variables
@@ -261,7 +263,6 @@ java-pkg_regjar() {
 
 	java-pkg_do_write_
 }
-
 
 # ------------------------------------------------------------------------------
 # @ebuild-function java-pkg_newjar
@@ -1272,9 +1273,11 @@ java-pkg_javac-args() {
 java-pkg_get-jni-cflags() {
 	local flags="-I${JAVA_HOME}/include"
 
+	local platform="linux"
+	use elibc_FreeBSD && platform="freebsd"
+
 	# TODO do a check that the directories are valid
-	# TODO figure out how to cope with other things than linux...
-	flags="${flags} -I${JAVA_HOME}/include/linux"
+	flags="${flags} -I${JAVA_HOME}/include/${platform}"
 
 	echo ${flags}
 }
@@ -1290,7 +1293,9 @@ java-pkg_ensure-gcj() {
 }
 
 java-pkg_ensure-test() {
-	if hasq test ${FEATURES} && ! hasq -test ${FEATURES} && ! use test; then
+	if hasq test ${FEATURES} && ! hasq -test ${FEATURES} \
+		&& hasq test ${IUSE} && ! use test;
+	then
 		eerror "You specified FEATURES=test, but USE=test is needed"
 		eerror "to pull in the additional dependencies for testing"
 		die "Need USE=test enabled"
@@ -1844,9 +1849,10 @@ java-pkg_switch-vm() {
 				GENTOO_VM="$(depend-java-query --get-vm "${JAVA_PKG_NV_DEPEND:-${DEPEND}}")"
 			fi
 			if [[ -z "${GENTOO_VM}" || "${GENTOO_VM}" == "None" ]]; then
-				eerror "Unable to determine VM for building from dependencies."
+				eerror "Unable to determine VM for building from dependencies:"
 				echo "NV_DEPEND: ${JAVA_PKG_NV_DEPEND:-${DEPEND}}"
 				echo "VNEED: ${JAVA_PKG_VNEED}"
+				die "Failed to determine VM for building."
 			else
 				export GENTOO_VM
 			fi

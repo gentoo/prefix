@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2.eclass,v 1.75 2006/10/31 17:08:44 allanonjl Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2.eclass,v 1.76 2006/12/07 03:13:25 compnerd Exp $
 
 # GNOME 2 ECLASS
 inherit libtool gnome.org debug fdo-mime eutils
@@ -47,7 +47,11 @@ gnome2_src_configure() {
 			G2CONF="${G2CONF} --enable-debug=yes"
 		fi
 	fi
-	G2CONF="${G2CONF} $(use_enable doc gtk-doc)"
+
+	# Prevent a QA warning
+	if hasq doc ${IUSE} ; then
+		G2CONF="${G2CONF} $(use_enable doc gtk-doc)"
+	fi
 
 	# Run libtoolize
 	elibtoolize ${ELTCONF}

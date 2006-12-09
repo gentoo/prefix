@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.48 2006/09/07 11:37:41 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.50 2006/12/07 18:52:55 dsd Exp $
 #
 # Description: This eclass is used as a central eclass for accessing kernel
 #			   related information for sources already installed.
@@ -120,7 +120,7 @@ local	ERROR workingdir basefname basedname myARCH="${ARCH}"
 
 		cd "${basedname}"
 		echo -e "e:\\n\\t@echo \$(${1})\\ninclude ${basefname}" | \
-			make ${BUILD_FIXES} -s -f - 2>/dev/null
+			make M="${S}" ${BUILD_FIXES} -s -f - 2>/dev/null
 		cd "${workingdir}"
 
 		ARCH=${myARCH}
@@ -280,8 +280,8 @@ get_version() {
 	# but before we do this, we need to find if we use a different object directory.
 	# This *WILL* break if the user is using localversions, but we assume it was
 	# caught before this if they are.
-	[ "${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}.${KV_EXTRA}" == "$(uname -r)" ] && \
-		OUTPUT_DIR="${OUTPUT_DIR:-/lib/modules/${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}.${KV_EXTRA}/build}"
+	[ "${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}${KV_EXTRA}" == "$(uname -r)" ] && \
+		OUTPUT_DIR="${OUTPUT_DIR:-/lib/modules/${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}${KV_EXTRA}/build}"
 
 	[ -h "${OUTPUT_DIR}" ] && KV_OUT_DIR="$(readlink -f ${OUTPUT_DIR})"
 	[ -d "${OUTPUT_DIR}" ] && KV_OUT_DIR="${OUTPUT_DIR}"
