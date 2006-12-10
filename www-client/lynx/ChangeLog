@@ -1,6 +1,45 @@
 # ChangeLog for www-client/lynx
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.47 2006/10/13 12:55:39 exg Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.58 2006/12/08 19:25:07 dang Exp $
+
+  08 Dec 2006; Daniel Gryniewicz <dang@gentoo.org> lynx-2.8.6-r1.ebuild:
+  Marked stable on amd64 for bug #157100
+
+  05 Dec 2006; Christian Faulhammer <opfer@gentoo.org> lynx-2.8.6-r1.ebuild:
+  stable x86, bug #157100
+
+  05 Dec 2006; Jeroen Roovers <jer@gentoo.org> lynx-2.8.6-r1.ebuild,
+  lynx-2.8.6-r2.ebuild:
+  Mark the correct revision stable for HPPA (bug #157100).
+
+  05 Dec 2006; Jeroen Roovers <jer@gentoo.org> lynx-2.8.6-r2.ebuild:
+  Stable for HPPA (bug #157100).
+
+  04 Dec 2006; Gustavo Zacarias <gustavoz@gentoo.org> lynx-2.8.6-r1.ebuild:
+  Stable on sparc wrt #157100
+
+  04 Dec 2006; Tim Yamin <plasmaroo@gentoo.org> lynx-2.8.6-r1.ebuild:
+  Stable on IA64; bug #157100.
+
+  04 Dec 2006; Timothy Redaelli <drizzt@gentoo.org> lynx-2.8.6-r1.ebuild:
+  Stable on ppc wrt bug #157100
+
+  04 Dec 2006; Markus Rothe <corsair@gentoo.org> lynx-2.8.6-r1.ebuild:
+  Stable on ppc64; bug #157100
+
+  04 Dec 2006; Alexander H. Færøy <eroyf@gentoo.org> lynx-2.8.6-r1.ebuild:
+  Stable on Alpha and MIPS; bug #157100
+
+  04 Dec 2006; Timothy Redaelli <drizzt@gentoo.org>
+  files/digest-lynx-2.8.6-r1, Manifest:
+  Redigested, reported by eroyf.
+
+*lynx-2.8.6-r2 (04 Dec 2006)
+
+  04 Dec 2006; Timothy Redaelli <drizzt@gentoo.org> metadata.xml,
+  +lynx-2.8.6-r2.ebuild:
+  Updated to rel.4.
+  Fixed bug #154234.
 
 *lynx-2.8.6-r1 (13 Oct 2006)
 

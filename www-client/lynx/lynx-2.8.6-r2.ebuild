@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.6-r1.ebuild,v 1.9 2006/12/08 19:25:07 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.6-r2.ebuild,v 1.3 2006/12/05 01:43:42 jer Exp $
 
 EAPI="prefix"
 
@@ -11,12 +11,12 @@ S=${WORKDIR}/${MY_P//./-}
 
 DESCRIPTION="An excellent console-based web browser with ssl support"
 HOMEPAGE="http://lynx.browser.org/"
-SRC_URI="ftp://lynx.isc.org/${MY_P}/${MY_P}rel.2.tar.bz2"
+SRC_URI="ftp://lynx.isc.org/${MY_P}/${MY_P}rel.4.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86"
-IUSE="bzip2 cjk ipv6 nls ssl unicode"
+IUSE="bzip2 cjk ipv6 linguas_ja nls ssl unicode"
 
 RDEPEND="sys-libs/ncurses
 	sys-libs/zlib
@@ -48,7 +48,6 @@ src_compile() {
 	use unicode && myconf="--with-screen=ncursesw"
 
 	econf \
-		--libdir="${EPREFIX}"/etc/lynx \
 		--enable-cgi-links \
 		--enable-persistent-cookies \
 		--enable-prettysrc \
@@ -62,6 +61,7 @@ src_compile() {
 		$(use_enable nls) \
 		$(use_enable ipv6) \
 		$(use_enable cjk) \
+		$(use_enable linguas_ja japanese-utf8) \
 		$(use_with ssl) \
 		$(use_with bzip2 bzlib) \
 		${myconf} || die
