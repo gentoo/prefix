@@ -27,7 +27,7 @@ RDEPEND="virtual/libc
 DEPEND="${RDEPEND}
 	>=sys-apps/texinfo-4.2-r4
 	>=sys-devel/bison-1.875
-	>=sys-devel/odcctools"
+	sys-devel/odcctools"
 
 S=${WORKDIR}/gcc-${APPLE_VERS}
 
