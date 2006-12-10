@@ -1,6 +1,87 @@
 # ChangeLog for app-crypt/gnupg
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.241 2006/10/24 18:32:17 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.261 2006/12/09 16:57:59 alonbl Exp $
+
+*gnupg-2.0.1-r1 (09 Dec 2006)
+
+  09 Dec 2006; Alon Bar-Lev <alonbl@gentoo.org> +gnupg-2.0.1-r1.ebuild:
+  Drop-in replacement of gnupg-1.4, removed slot fixup use flags
+
+  08 Dec 2006; Daniel Gryniewicz <dang@gentoo.org> gnupg-1.4.6.ebuild:
+  Marked stable on amd64 for bug #156947
+
+  07 Dec 2006; Tobias Scherbaum <dertobi123@gentoo.org> gnupg-1.4.6.ebuild:
+  ppc stable, bug #156947
+
+  07 Dec 2006; Alexander H. Færøy <eroyf@gentoo.org> gnupg-1.4.6.ebuild:
+  Stable on IA64; bug #156947
+
+  07 Dec 2006; Alexander H. Færøy <eroyf@gentoo.org> gnupg-1.4.6.ebuild:
+  Stable on Alpha and MIPS; bug #156947
+
+  07 Dec 2006; Markus Rothe <corsair@gentoo.org> gnupg-1.4.6.ebuild:
+  Stable on ppc64; bug #156947
+
+  07 Dec 2006; Joshua Jackson <tsunam@gentoo.org> gnupg-1.4.6.ebuild:
+  Stable x86; for ticho
+
+  07 Dec 2006; Jason Wever <weeve@gentoo.org> gnupg-1.4.6.ebuild:
+  Stable on SPARC wrt security bug #156947.
+
+  07 Dec 2006; Jeroen Roovers <jer@gentoo.org> gnupg-1.4.6.ebuild:
+  Stable for HPPA (bug #156947).
+
+*gnupg-1.4.6 (06 Dec 2006)
+
+  06 Dec 2006; Alon Bar-Lev <alonbl@gentoo.org>
+  +files/gnupg-1.4.6-badruman.patch, +files/gnupg-1.4.6-ecc-helper.patch,
+  +gnupg-1.4.6.ebuild:
+  Version bump, closes bug#156476
+
+*gnupg-2.0.1 (02 Dec 2006)
+
+  02 Dec 2006; Alon Bar-Lev <alonbl@gentoo.org> +gnupg-2.0.1.ebuild:
+  Version bump
+
+  25 Nov 2006; Bryan Østergaard <kloeri@gentoo.org> gnupg-1.4.5-r2.ebuild:
+  Stable on Alpha + ia64, bug 136665.
+
+*gnupg-2.0.0 (11 Nov 2006)
+
+  11 Nov 2006; Robin H. Johnson <robbat2@gentoo.org> +gnupg-2.0.0.ebuild:
+  Bump to 2.0.0. pmasked for testing first.
+
+  03 Nov 2006; Alon Bar-Lev <alonbl@gentoo.org> gnupg-1.9.94.ebuild:
+  Handling gettext PIC issue is not needed since external gettext package will
+  be used (upstream)
+
+  01 Nov 2006; Alon Bar-Lev <alonbl@gentoo.org> gnupg-1.9.94.ebuild:
+  No need to remove flags anymore
+
+  30 Oct 2006; Alon Bar-Lev <alonbl@gentoo.org>
+  +files/gnupg-1.9.94-make.patch, gnupg-1.9.94.ebuild:
+  Fix some more dependencies. Fix parallel make issue, thanks to Jason Wever,
+  closes bug#153444
+
+  30 Oct 2006; Alon Bar-Lev <alonbl@gentoo.org> gnupg-1.9.94.ebuild:
+  Fix dependency, thanks to Dale, closes bug#153427
+
+  30 Oct 2006; Robin H. Johnson <robbat2@gentoo.org> gnupg-1.9.20-r3.ebuild,
+  gnupg-1.9.21.ebuild, gnupg-1.9.21-r1.ebuild, gnupg-1.9.22.ebuild,
+  gnupg-1.9.94.ebuild:
+  Move WANT_AUTOMAKE=latest line above autotools inherit.
+
+  30 Oct 2006; Robin H. Johnson <robbat2@gentoo.org> gnupg-1.9.20-r3.ebuild,
+  gnupg-1.9.21.ebuild, gnupg-1.9.21-r1.ebuild, gnupg-1.9.22.ebuild,
+  gnupg-1.9.94.ebuild:
+  Need to include a WANT_AUTOMAKE variable to bring automake/autoconf etc into
+  DEPEND system.
+
+  29 Oct 2006; Alon Bar-Lev <alonbl@gentoo.org>
+  +files/gnupg-1.9.94-fbsd.patch, +gnupg-1.9.94.ebuild:
+  Version bump
+
+*gnupg-1.9.94 (29 Oct 2006)
 
   24 Oct 2006; Fabian Groffen <grobian@gentoo.org> gnupg-1.4.2.2.ebuild,
   gnupg-1.4.4.ebuild, gnupg-1.4.5.ebuild, gnupg-1.4.5-r1.ebuild,

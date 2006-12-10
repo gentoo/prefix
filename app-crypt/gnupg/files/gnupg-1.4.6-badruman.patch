@@ -1,0 +1,12 @@
+diff -urNp gnupg-1.4.6.org/doc/Makefile.in gnupg-1.4.6/doc/Makefile.in
+--- gnupg-1.4.6.org/doc/Makefile.in	2006-12-06 11:15:27.000000000 +0200
++++ gnupg-1.4.6/doc/Makefile.in	2006-12-06 22:46:05.000000000 +0200
+@@ -315,7 +315,7 @@ EXTRA_DIST = DETAILS faq.raw FAQ faq.htm
+ myman_sources = gpg.texi gpgv.texi
+ myman_pages = gpg.1 gpgv.1
+ info_TEXINFOS = gnupg1.texi
+-man_MANS = $(myman_pages) gnupg.7 gpg.ru.1
++man_MANS = $(myman_pages) gnupg.7
+ gnupg1_TEXINFOS = gnupg1.texi
+ 
+ # Need this to avoid building of dvis with automake 1.4

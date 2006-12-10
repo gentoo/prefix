@@ -1,0 +1,13 @@
+--- gnupg-1.4.5-ecc0.1.6.diff.org	2006-12-06 23:03:01.000000000 +0200
++++ gnupg-1.4.5-ecc0.1.6.diff	2006-12-06 23:03:21.000000000 +0200
+@@ -1961,8 +1961,8 @@ diff -Nru gnupg-1.4.5/configure gnupg-1.
+  
+  # Define the identity of the package.
+   PACKAGE='gnupg'
+-- VERSION='1.4.5'
+-+ VERSION='1.4.5-ecc01.6'
++- VERSION='1.4.6'
+++ VERSION='1.4.6-ecc01.6'
+  
+  
+  cat >>confdefs.h <<_ACEOF
