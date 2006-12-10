@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.4.20_p2.ebuild,v 1.6 2006/09/22 18:51:16 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.4.20_p2.ebuild,v 1.7 2006/11/26 12:30:30 vapier Exp $
 
 EAPI="prefix"
 
