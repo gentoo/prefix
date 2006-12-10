@@ -2,6 +2,9 @@
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 Dec 2006; Fabian Groffen <grobian@gentoo.org> +metadata.xml:
+  Add metadata.xml
+
 *odcctools-20061118 (03 Dec 2006)
 *odcctools-20060413-r1 (03 Dec 2006)
 
