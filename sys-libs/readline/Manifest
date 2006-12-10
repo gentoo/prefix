@@ -1,7 +1,7 @@
-AUX bash-3.0-etc-inputrc.patch 1223 RMD160 84ffb32c8f64dcad2d6eaa89d6f81d2546f02368 SHA1 91b08a30c6ca450fd3aadd3f123abdf136578acc SHA256 155bef992b50e35bcf08da3d0f66f1c4dbd8b76c2eb0ae79ae119544ae7fd932
-MD5 4a3ebcb995491c2730d156b314cbab0b files/bash-3.0-etc-inputrc.patch 1223
-RMD160 84ffb32c8f64dcad2d6eaa89d6f81d2546f02368 files/bash-3.0-etc-inputrc.patch 1223
-SHA256 155bef992b50e35bcf08da3d0f66f1c4dbd8b76c2eb0ae79ae119544ae7fd932 files/bash-3.0-etc-inputrc.patch 1223
+AUX bash-3.0-etc-inputrc.patch 1443 RMD160 8bf34837bef20bfc7062e32e4a23aa6af9ef2b49 SHA1 a58b9011f61e7e60be0fcd8741d91292222eff61 SHA256 b43736c32ed9d9088ee1cbbff11b78d6f6993492f9da3e1eb5151a64a082d025
+MD5 d687545889dacb43e121f4932d99a534 files/bash-3.0-etc-inputrc.patch 1443
+RMD160 8bf34837bef20bfc7062e32e4a23aa6af9ef2b49 files/bash-3.0-etc-inputrc.patch 1443
+SHA256 b43736c32ed9d9088ee1cbbff11b78d6f6993492f9da3e1eb5151a64a082d025 files/bash-3.0-etc-inputrc.patch 1443
 AUX readline-5.0-no_rpath.patch 363 RMD160 6a4ea25da4f683a77892a24f904de873579270fd SHA1 6e5e24e7965cd71abc8b09897de74b766a85461e SHA256 59df6107772d1a93550bacc267a2c00f9dfd6d5380b8497d8fd756a7191b9e4b
 MD5 d5f28667389d9681136307274ebc1f28 files/readline-5.0-no_rpath.patch 363
 RMD160 6a4ea25da4f683a77892a24f904de873579270fd files/readline-5.0-no_rpath.patch 363
@@ -18,10 +18,6 @@ AUX readline-5.1-rlfe-build.patch 252 RMD160 7e9085f685b7732d0ef0ecdcc5538b7d84b
 MD5 73869a19bab0f37a7ee46e377d2bac15 files/readline-5.1-rlfe-build.patch 252
 RMD160 7e9085f685b7732d0ef0ecdcc5538b7d84bb7d1f files/readline-5.1-rlfe-build.patch 252
 SHA256 45f3ac7973b5d5af4a79575fe0b6c364bb444dbbe42f43b600b1dd1d99dcac55 files/readline-5.1-rlfe-build.patch 252
-AUX readline-5.1-rlfe-extern.patch 357 RMD160 5610c2dbfcde9b068f34c8043aba2a42cdab0477 SHA1 051063630baf03a47ba7a4ca2ac6ec2e1709e064 SHA256 123f0f4342ceaa120e900b4ba3f80eb4ee495f7bc6e384e1f52ab8e97823d04a
-MD5 c6f99077c7289dc71bb104b338aea5d0 files/readline-5.1-rlfe-extern.patch 357
-RMD160 5610c2dbfcde9b068f34c8043aba2a42cdab0477 files/readline-5.1-rlfe-extern.patch 357
-SHA256 123f0f4342ceaa120e900b4ba3f80eb4ee495f7bc6e384e1f52ab8e97823d04a files/readline-5.1-rlfe-extern.patch 357
 AUX readline-5.1-rlfe-libutil.patch 530 RMD160 4f0d86709159d8299d51da21de99abd4ffa2ad1f SHA1 0667f4022fe0db3c90e167b66ab89f920f53e940 SHA256 b99dee7796e16598e4bed51a84b4daaff7b7f43532f8738e5581bdfe1068c69e
 MD5 c59aee767346ecfc235e155e20d9e16b files/readline-5.1-rlfe-libutil.patch 530
 RMD160 4f0d86709159d8299d51da21de99abd4ffa2ad1f files/readline-5.1-rlfe-libutil.patch 530
