@@ -2,6 +2,9 @@
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 Dec 2006; Fabian Groffen <grobian@gentoo.org> +metadata.xml:
+  Add metadata.xml
+
   17 Nov 2006; Fabian Groffen <grobian@gentoo.org>
   +files/gdb-apple-563-darwin7.patch, +files/gdb-apple-563-no-64bit.patch,
   gdb-apple-563.ebuild, gdb-apple-563.ebuild, gdb-apple-563.ebuild:
