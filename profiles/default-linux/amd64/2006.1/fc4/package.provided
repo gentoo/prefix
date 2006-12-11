@@ -16,7 +16,6 @@ sys-libs/pwdb-0.62
 sys-libs/pam-0.78
 sys-fs/e2fsprogs-1.38
 sys-fs/udev-077
-net-misc/iputils-021109
 
 # X11 stuff
 x11-base/xorg-x11-6.8.2
