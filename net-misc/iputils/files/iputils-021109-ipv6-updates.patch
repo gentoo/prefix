@@ -1,0 +1,93 @@
+Handle ipv6 define changes
+
+http://bugs.gentoo.org/134751
+
+--- iputils/ping_common.h
++++ iputils/ping_common.h
+@@ -37,6 +37,17 @@
+ #define	CLR(bit)	(A(bit) &= (~B(bit)))
+ #define	TST(bit)	(A(bit) & B(bit))
+ 
++/* handle updates to IPV6 defines */
++#ifndef IPV6_2292PKTINFO
++# define IPV6_2292PKTINFO IPV6_PKTINFO
++#endif
++#ifndef IPV6_2292RTHDR
++# define IPV6_2292RTHDR IPV6_RTHDR
++#endif
++#ifndef IPV6_2292HOPLIMIT
++# define IPV6_2292HOPLIMIT IPV6_HOPLIMIT
++#endif
++
+ /* various options */
+ extern int options;
+ #define	F_FLOOD		0x001
+--- iputils/ping6.c
++++ iputils/ping6.c
+@@ -153,7 +153,7 @@ extern struct cmsghdr *	inet6_srcrt_init
+ 
+ 	cmsg->cmsg_len = sizeof(struct cmsghdr) + sizeof(struct rt0_hdr);
+ 	cmsg->cmsg_level = SOL_IPV6;
+-	cmsg->cmsg_type = IPV6_RTHDR;
++	cmsg->cmsg_type = IPV6_2292RTHDR;
+ 
+ 	return cmsg;
+ }
+@@ -372,7 +372,7 @@ int main(int argc, char *argv[])
+ 		cmsglen += CMSG_SPACE(sizeof(*ipi));
+ 		cmsg->cmsg_len = CMSG_LEN(sizeof(*ipi));
+ 		cmsg->cmsg_level = SOL_IPV6;
+-		cmsg->cmsg_type = IPV6_PKTINFO;
++		cmsg->cmsg_type = IPV6_2292PKTINFO;
+ 				
+ 		ipi = (struct in6_pktinfo*)CMSG_DATA(cmsg);
+ 		memset(ipi, 0, sizeof(*ipi));
+@@ -483,7 +483,7 @@ int main(int argc, char *argv[])
+ 
+ 	if (1) {
+ 		int on = 1;
+-		if (setsockopt(icmp_sock, IPPROTO_IPV6, IPV6_HOPLIMIT,
++		if (setsockopt(icmp_sock, IPPROTO_IPV6, IPV6_2292HOPLIMIT,
+ 			       &on, sizeof(on)) == -1) {
+ 			perror ("can't receive hop limit");
+ 			exit(2);
+@@ -701,7 +701,7 @@ parse_reply(struct msghdr *msg, int cc, 
+ 
+ 	for (c = CMSG_FIRSTHDR(msg); c; c = CMSG_NXTHDR(msg, c)) {
+ 		if (c->cmsg_level != SOL_IPV6 ||
+-		    c->cmsg_type != IPV6_HOPLIMIT)
++		    c->cmsg_type != IPV6_2292HOPLIMIT)
+ 			continue;
+ 		if (c->cmsg_len < CMSG_LEN(sizeof(int)))
+ 			continue;
+--- iputils/tracepath6.c
++++ iputils/tracepath6.c
+@@ -25,6 +25,8 @@
+ #include <sys/uio.h>
+ #include <arpa/inet.h>
+ 
++#include "ping_common.h"
++
+ int overhead = 48;
+ int mtu = 128000;
+ int hops_to = -1;
+@@ -111,7 +111,7 @@ int recverr(int fd, int ttl)
+ 		if (cmsg->cmsg_level == SOL_IPV6) {
+ 			if (cmsg->cmsg_type == IPV6_RECVERR) {
+ 				e = (struct sock_extended_err *)CMSG_DATA(cmsg);
+-			} else if (cmsg->cmsg_type == IPV6_HOPLIMIT) {
++			} else if (cmsg->cmsg_type == IPV6_2292HOPLIMIT) {
+ 				rethops = *(int*)CMSG_DATA(cmsg);
+ 			}
+ 		} else if (cmsg->cmsg_level == SOL_IP) {
+@@ -349,8 +349,8 @@ int main(int argc, char **argv)
+ 		perror("IP_RECVERR");
+ 		exit(1);
+ 	}
+-	if (setsockopt(fd, SOL_IPV6, IPV6_HOPLIMIT, &on, sizeof(on))) {
+-		perror("IPV6_HOPLIMIT");
++	if (setsockopt(fd, SOL_IPV6, IPV6_2292HOPLIMIT, &on, sizeof(on))) {
++		perror("IPV6_2292HOPLIMIT");
+ 		exit(1);
+ 	}
+ 	if (mapped && setsockopt(fd, SOL_IP, IP_RECVTTL, &on, sizeof(on))) {

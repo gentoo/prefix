@@ -1,0 +1,8 @@
+--- Makefile.orig	2004-04-07 02:07:14.361973576 -0400
++++ Makefile	2004-04-07 02:07:21.243927360 -0400
+@@ -20,5 +19,0 @@
+-ifeq ($(KERNEL_INCLUDE)/linux/pfkeyv2.h,$(wildcard $(KERNEL_INCLUDE)/linux/pfkeyv2.h))
+-  SUBDIRS=libipsec setkey
+-  LDLIBS+=-Llibipsec -lipsec
+-  IPSECDEF=-DDO_IPSEC -Ilibipsec
+-endif

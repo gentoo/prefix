@@ -1,0 +1,16 @@
+Since these binaries are going to be setuid root, we want 
+don't want to allow lazy bindings, otherwise we allow some 
+information leakage.
+
+http://bugs.gentoo.org/77526
+
+--- Makefile
++++ Makefile
+@@ -39,3 +39,7 @@
+ ping: ping.o ping_common.o
++	$(LINK.o) $^ $(LDLIBS) -o $@ -Wl,-z,now -Wl,-z,relro
+ ping6: ping6.o ping_common.o
++	$(LINK.o) $^ $(LDLIBS) -o $@ -Wl,-z,now -Wl,-z,relro
++traceroute6: traceroute6.o
++	$(LINK.o) $^ $(LDLIBS) -o $@ -Wl,-z,now -Wl,-z,relro
+ ping.o ping6.o ping_common.o: ping_common.h

@@ -1,0 +1,9 @@
+--- iputils/rdisc.c.orig	2005-01-03 22:53:27.852431840 -0500
++++ iputils/rdisc.c	2005-01-03 22:53:27.864430016 -0500
+@@ -1504,5 +1504,5 @@
+ 	if (logging)
+ 		syslog(LOG_ERR, "%s: %m", str);
+ 	else
+-		(void) fprintf(stderr, "%s: %s\n", str, sys_errlist[errno]);
++		(void) fprintf(stderr, "%s: %s\n", str, strerror(errno));
+ }

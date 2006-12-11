@@ -1,0 +1,15 @@
+diff -Nru iputils.old/traceroute6.c iputils/traceroute6.c
+--- iputils.old/traceroute6.c	2004-09-29 21:10:48.540700488 -0400
++++ iputils/traceroute6.c	2004-09-29 21:11:58.667039664 -0400
+@@ -244,7 +244,11 @@
+ #include <netinet/in.h>
+ #include <netinet/ip.h>
+ #include <netinet/ip_icmp.h>
++#if __linux__
++#include <linux/udp.h>
++#else
+ #include <netinet/udp.h>
++#endif
+ 
+ #include <linux/ipv6.h>
+ #include <linux/in6.h>

@@ -1,0 +1,45 @@
+In newer kernels, the pg file has moved around in /proc/.
+
+http://bugs.gentoo.org/show_bug.cgi?id=71756
+
+--- iputils/ipg.orig	2005-01-03 22:47:26.314393976 -0500
++++ iputils/ipg	2005-01-03 22:49:09.686679000 -0500
+@@ -1,21 +1,31 @@
+-#! /bin/bash
++#!/bin/bash
+ 
+-modprobe pg3
++modprobe pg3 >& /dev/null
++modprobe pktgen >& /dev/null
++
++PGDEV=/proc/net/pg
++if [[ ! -e ${PGDEV} ]] ; then
++	PGDEV=/proc/net/pktgen/pg0
++	if [[ ! -e ${PGDEV} ]] ; then
++		echo "Couldn't not locate pg in /proc/net :("
++		exit 1
++	fi
++fi
+ 
+ function pgset() {
+     local result
+ 
+-    echo $1 > /proc/net/pg
++    echo $1 > ${PGDEV}
+ 
+-    result=`cat /proc/net/pg | fgrep "Result: OK:"`
++    result=`cat ${PGDEV} | fgrep "Result: OK:"`
+     if [ "$result" = "" ]; then
+-         cat /proc/net/pg | fgrep Result:
++         cat ${PGDEV} | fgrep Result:
+     fi
+ }
+ 
+ function pg() {
+-    echo inject > /proc/net/pg
+-    cat /proc/net/pg
++    echo inject > ${PGDEV}
++    cat ${PGDEV}
+ }
+ 
+ pgset "odev eth0"

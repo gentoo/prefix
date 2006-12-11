@@ -1,0 +1,177 @@
+fix a lot of incorrect types
+
+--- iputils/arping.c
++++ iputils/arping.c
+@@ -434,7 +434,7 @@ main(int argc, char **argv)
+ 			}
+ 		} else if (!dad) {
+ 			int on = 1;
+-			int alen = sizeof(saddr);
++			socklen_t alen = sizeof(saddr);
+ 
+ 			saddr.sin_port = htons(1025);
+ 			saddr.sin_addr = dst;
+@@ -463,7 +463,7 @@ main(int argc, char **argv)
+ 	}
+ 
+ 	if (1) {
+-		int alen = sizeof(me);
++		socklen_t alen = sizeof(me);
+ 		if (getsockname(s, (struct sockaddr*)&me, &alen) == -1) {
+ 			perror("getsockname");
+ 			exit(2);
+@@ -495,9 +495,9 @@ main(int argc, char **argv)
+ 
+ 	while(1) {
+ 		sigset_t sset, osset;
+-		char packet[4096];
++		unsigned char packet[4096];
+ 		struct sockaddr_ll from;
+-		int alen = sizeof(from);
++		socklen_t alen = sizeof(from);
+ 		int cc;
+ 
+ 		if ((cc = recvfrom(s, packet, sizeof(packet), 0,
+--- iputils/clockdiff.c
++++ iputils/clockdiff.c
+@@ -120,7 +120,7 @@ long rtt_sigma = 0;
+ int
+ measure(struct sockaddr_in * addr)
+ {
+-	int length;
++	socklen_t length;
+ 	int msgcount;
+ 	int cc, count;
+ 	fd_set ready;
+@@ -299,7 +299,7 @@ char *myname, *hisname;
+ int
+ measure_opt(struct sockaddr_in * addr)
+ {
+-	int length;
++	socklen_t length;
+ 	int msgcount;
+ 	int cc, count;
+ 	fd_set ready;
+@@ -597,7 +597,7 @@ main(int argc, char *argv[])
+ 	}
+ 	if (ip_opt_len) {
+ 		struct sockaddr_in myaddr;
+-		int addrlen = sizeof(myaddr);
++		socklen_t addrlen = sizeof(myaddr);
+ 		unsigned char rspace[ip_opt_len];
+ 
+ 	        bzero(rspace, sizeof(rspace));
+--- iputils/ping6.c
++++ iputils/ping6.c
+@@ -313,7 +313,7 @@ int main(int argc, char *argv[])
+ 	hostname = target;
+ 
+ 	if (ipv6_addr_any(&source.sin6_addr)) {
+-		int alen;
++		socklen_t alen;
+ 		int probe_fd = socket(AF_INET6, SOCK_DGRAM, 0);
+ 
+ 		if (probe_fd < 0) {
+--- iputils/ping.c
++++ iputils/ping.c
+@@ -260,7 +260,7 @@ main(int argc, char **argv)
+ 	}
+ 
+ 	if (source.sin_addr.s_addr == 0) {
+-		int alen;
++		socklen_t alen;
+ 		struct sockaddr_in dst = whereto;
+ 		int probe_fd = socket(AF_INET, SOCK_DGRAM, 0);
+ 
+--- iputils/ping_common.c
++++ iputils/ping_common.c
+@@ -67,7 +67,7 @@ static void fill(char *patp)
+ 	int ii, jj, kk;
+ 	int pat[16];
+ 	char *cp;
+-	char *bp = outpack+8;
++	u_char *bp = outpack+8;
+ 
+ 	for (cp = patp; *cp; cp++) {
+ 		if (!isxdigit(*cp)) {
+@@ -393,7 +393,7 @@ resend:
+ void sock_setbufs(int icmp_sock, int alloc)
+ {
+ 	int rcvbuf, hold;
+-	int tmplen = sizeof(hold);
++	socklen_t tmplen = sizeof(hold);
+ 
+ 	if (!sndbuf)
+ 		sndbuf = alloc;
+@@ -464,7 +464,7 @@ void setup(int icmp_sock)
+ 
+ 	if (!(options & F_PINGFILLED)) {
+ 		int i;
+-		char *p = outpack+8;
++		u_char *p = outpack+8;
+ 
+ 		/* Do not forget about case of small datalen,
+ 		 * fill timestamp area too!
+--- iputils/rarpd.c
++++ iputils/rarpd.c
+@@ -423,7 +423,7 @@ void serve_it(int fd)
+ {
+ 	unsigned char buf[1024];
+ 	struct sockaddr_ll sll;
+-	int sll_len = sizeof(sll);
++	socklen_t sll_len = sizeof(sll);
+ 	struct arphdr *a = (struct arphdr*)buf;
+ 	struct rarp_map *rmap;
+ 	unsigned char *ptr;
+--- iputils/rdisc.c
++++ iputils/rdisc.c
+@@ -451,7 +451,7 @@ next:
+ 	for (;;) {
+ 		u_char	packet[MAXPACKET];
+ 		int len = sizeof (packet);
+-		int fromlen = sizeof (from);
++		socklen_t fromlen = sizeof (from);
+ 		int cc;
+ 
+ 		cc=recvfrom(s, (char *)packet, len, 0, 
+--- iputils/tftpd.c
++++ iputils/tftpd.c
+@@ -89,7 +89,7 @@ union {
+ 	struct	sockaddr_in  sin;
+ 	struct	sockaddr_in6 sin6;
+ } from;
+-int	fromlen;
++socklen_t	fromlen;
+ 
+ #define MAXARG	1
+ char	*dirs[MAXARG+1];
+@@ -149,7 +149,8 @@ int main(int ac, char **av)
+ 	 */
+ 	{
+ 		int pid;
+-		int i, j;
++		int i;
++		socklen_t j;
+ 
+ 		for (i = 1; i < 20; i++) {
+ 		    pid = fork();
+--- iputils/traceroute6.c
++++ iputils/traceroute6.c
+@@ -501,7 +501,7 @@ int main(int argc, char *argv[])
+ 				  (char *)&on, sizeof(on));
+ 
+ 	if (source == NULL) {
+-		int alen;
++		socklen_t alen;
+ 		int probe_fd = socket(AF_INET6, SOCK_DGRAM, 0);
+ 
+ 		if (probe_fd < 0) {
+@@ -622,7 +622,7 @@ wait_for_reply(sock, from, reset_timer)
+ 	fd_set fds;
+ 	static struct timeval wait;
+ 	int cc = 0;
+-	int fromlen = sizeof (*from);
++	socklen_t fromlen = sizeof (*from);
+ 
+ 	FD_ZERO(&fds);
+ 	FD_SET(sock, &fds);
