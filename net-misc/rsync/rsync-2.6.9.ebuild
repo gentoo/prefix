@@ -29,6 +29,10 @@ src_unpack() {
 		epatch patches/{acls,xattrs}.diff
 		./prepare-source || die
 	fi
+	cp "${FILESDIR}"/rsyncd.* "${T}"/
+	cd "${T}"
+	epatch "${FILESDIR}"/rsync-files-prefix.patch
+	eprefixify rsyncd.*
 }
 
 src_compile() {
@@ -55,25 +59,21 @@ pkg_preinst() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
-	newconfd "${FILESDIR}"/rsyncd.conf.d rsyncd
-	cp "${FILESDIR}"/rsyncd.init.d "${T}"/rsyncd.init.d
-	eprefixify "${T}"/rsyncd.init.d
+	newconfd "${T}"/rsyncd.conf.d rsyncd
 	newinitd "${T}"/rsyncd.init.d rsyncd
 	dodoc NEWS OLDNEWS README TODO tech_report.tex
 	insinto /etc
-	cp "${FILESDIR}"/rsyncd.conf "${T}"
-	eprefixify "${T}"/rsyncd.conf
 	doins "${T}"/rsyncd.conf
 	if use xinetd ; then
 		insinto /etc/xinetd.d
-		newins "${FILESDIR}"/rsyncd.xinetd rsyncd
+		newins "${T}"/rsyncd.xinetd rsyncd
 	fi
 }
 
 pkg_postinst() {
-	ewarn "The rsyncd.conf file has been moved for you to /etc/rsyncd.conf"
+	ewarn "The rsyncd.conf file has been moved for you to ${EPREFIX}/etc/rsyncd.conf"
 	echo
 	ewarn "Please make sure you do NOT disable the rsync server running"
-	ewarn "in a chroot.  Please check /etc/rsyncd.conf and make sure"
+	ewarn "in a chroot.  Please check ${EPREFIX}/etc/rsyncd.conf and make sure"
 	ewarn "it says: use chroot = yes"
 }

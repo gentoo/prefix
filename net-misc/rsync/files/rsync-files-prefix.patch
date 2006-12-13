@@ -1,0 +1,36 @@
+--- rsyncd.conf
++++ rsyncd.conf
+@@ -4,12 +4,12 @@
+ # See rsync(1) and rsyncd.conf(5) man pages for help
+ 
+ # This line is required by the /etc/init.d/rsyncd script
+-pid file = /var/run/rsyncd.pid
++pid file = @GENTOO_PORTAGE_EPREFIX@/var/run/rsyncd.pid
+ use chroot = yes
+ read only = yes
+ 
+ # Simple example for enabling your own local rsync server
+ #[gentoo-portage]
+-#	path = /usr/portage
++#	path = @GENTOO_PORTAGE_EPREFIX@/usr/portage
+ #	comment = Gentoo Portage tree
+ #	exclude = /distfiles /packages
+--- rsyncd.xinetd
++++ rsyncd.xinetd
+@@ -4,7 +4,7 @@
+ 	protocol    = tcp
+ 	wait        = no
+ 	user        = root
+-	server      = /usr/bin/rsync
++	server      = @GENTOO_PORTAGE_EPREFIX@/usr/bin/rsync
+ 	server_args = --daemon
+ 	disable     = yes
+ }
+--- rsyncd.conf.d
++++ rsyncd.conf.d
+@@ -1,4 +1,4 @@
+-# /etc/conf.d/rsyncd: config file for /etc/init.d/rsyncd
++# @GENTOO_PORTAGE_EPREFIX@/etc/conf.d/rsyncd: config file for @GENTOO_PORTAGE_EPREFIX@/etc/init.d/rsyncd
+ 
+ # see man pages for rsync or run `rsync --help`
+ # for valid cmdline options
