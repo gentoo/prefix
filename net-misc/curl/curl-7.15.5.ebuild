@@ -14,7 +14,7 @@ SRC_URI="http://curl.haxx.se/download/${P}.tar.bz2"
 
 LICENSE="MIT X11"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="ssl ipv6 ldap ares gnutls idn kerberos krb4 test"
 
 RDEPEND="gnutls? ( net-libs/gnutls )
