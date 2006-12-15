@@ -2,6 +2,7 @@
 *sys-devel/gcc-apple
 *sys-libs/readline
 *sys-apps/darwin-miscutils
+*sys-apps/bsd-man-pages
 
 ## Begin Linux specific packages
 -*sys-apps/kbd
