@@ -2,6 +2,15 @@
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*darwin-miscutils-2 (15 Dec 2006)
+
+  15 Dec 2006; Fabian Groffen <grobian@gentoo.org>
+  +darwin-miscutils-2.ebuild, -darwin-miscutils-18.ebuild:
+  New version with extra utilities from shell_cmds: alias apply getopt
+  hostname jot kill killall lastcomm renice script shlock su time w
+  whereis.  Changed version scheme to be Gentoo specific, as this package
+  is a selection of programs missing in coreutils. findutils, etc.
+
   9 Nov 2006; Fabian Groffen <grobian@gentoo.org> :
 
   Initial import of darwin-miscutils, a package with the tools found in
