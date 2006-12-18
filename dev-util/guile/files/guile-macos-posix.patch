@@ -1,0 +1,40 @@
+--- libguile/posix.c.sav	Fri Feb 21 17:09:20 2003
++++ libguile/posix.c	Fri Feb 21 17:10:33 2003
+@@ -117,7 +117,12 @@
+ 
+ #include <signal.h>
+ 
++#if defined(__APPLE__) && defined(__DYNAMIC__)
++#include <crt_externs.h>
++char ** environ = NULL;
++#else
+ extern char ** environ;
++#endif
+ 
+ #ifdef HAVE_GRP_H
+ #include <grp.h>
+@@ -1036,6 +1041,9 @@
+            "then the return value is unspecified.")
+ #define FUNC_NAME s_scm_environ
+ {
++#if defined(__APPLE__) && defined(__DYNAMIC__)
++  environ = *_NSGetEnviron();
++#endif
+   if (SCM_UNBNDP (env))
+     return scm_makfromstrs (-1, environ);
+   else
+@@ -1213,6 +1213,13 @@
+     SCM_MEMORY_ERROR;
+   strncpy (ptr, SCM_STRING_CHARS (str), SCM_STRING_LENGTH (str));
+   ptr[SCM_STRING_LENGTH (str)] = 0;
++#if defined(macosx)
++  if (!strchr(ptr, '=')) {
++    unsetenv(ptr);
++    rv = 0;
++  }
++  else
++#endif
+   rv = putenv (ptr);
+   if (rv < 0)
+     SCM_SYSERROR;
+

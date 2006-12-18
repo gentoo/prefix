@@ -1,0 +1,38 @@
+--- ltmain.sh.orig	Sat Oct  9 20:52:10 2004
++++ ltmain.sh	Sat Oct  9 20:53:34 2004
+@@ -2270,7 +2270,7 @@
+ 	   { test "$prefer_static_libs" = no || test -z "$old_library"; }; then
+ 	  if test "$installed" = no; then
+ 	    notinst_deplibs="$notinst_deplibs $lib"
+-	    need_relink=yes
++	    need_relink=no
+ 	  fi
+ 	  # This is a shared library
+ 	
+--- pre-inst-guile.in  Sun Dec  8 07:41:28 2002
++++ pre-inst-guile.in       Sat May  3 22:31:00 2003
+@@ -50,6 +50,23 @@
+     exit 1
+ }
+ 
++# the load library path is needed during the install phase (when guile looks
++# for libraries in $prefix/lib, but they have not been installed yet)
++
++guile_libdir="${top_srcdir}/libguile/.libs:${top_srcdir}/libguile-ltdl/.libs"
++
++# handle DYLD_LIBRARY_PATH (no clobber)
++if [ x"$DYLD_LIBRARY_PATH" = x ] ; then
++    DYLD_LIBRARY_PATH="${guile_libdir}"
++else
++    # This hair prevents double inclusion.
++    # The ":" prevents prefix aliasing.
++    case x"$DYLD_LIBRARY_PATH" in x*${guile_libdir}:*) ;;
++      *) DYLD_LIBRARY_PATH="${guile_libdir}:$DYLD_LIBRARY_PATH" ;;
++    esac
++fi
++export DYLD_LIBRARY_PATH
++
+ # handle GUILE_LOAD_PATH (no clobber)
+ if [ x"$GUILE_LOAD_PATH" = x ] ; then
+     GUILE_LOAD_PATH="${top_srcdir}"
+
