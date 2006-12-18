@@ -18,7 +18,7 @@ SRC_URI="${SRC_URI}
 
 S=${WORKDIR}/vim${VIM_VERSION/.*}
 DESCRIPTION="Vim, an improved vi-style text editor"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
 IUSE=""
 PROVIDE="virtual/editor"
 DEPEND="${DEPEND}
@@ -26,3 +26,13 @@ DEPEND="${DEPEND}
 RDEPEND="${RDEPEND}
 	!<app-editors/nvi-1.81.5-r4
 	!minimal? ( ~app-editors/vim-core-${PV} )"
+
+src_unpack() {
+	vim_src_unpack || die
+	epatch ${FILESDIR}/with-local-dir.patch || die
+}
+
+src_compile() {
+	[[ ${EPREFIX%/} != "" ]] && EXTRA_ECONF="--without-local-dir"
+	vim_src_compile || die
+}
