@@ -48,7 +48,8 @@ src_compile() {
 		myconf=" --program-prefix=g"
 
 	if echo "#include <regex.h>" | $(tc-getCPP) > /dev/null && \
-		[[ ${USERLAND} != "Darwin" ]] ; then
+		[[ ${USERLAND} != "Darwin" ]] && \
+		[[ ${USERLAND} != "Solaris" ]] ; then
 		myconf="${myconf} --without-included-regex"
 	fi
 
