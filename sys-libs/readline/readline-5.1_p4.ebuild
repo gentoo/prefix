@@ -51,6 +51,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${MY_P}-rlfe-uclibc.patch
 	epatch "${FILESDIR}"/${MY_P}-rlfe-libutil.patch
 	epatch "${FILESDIR}"/${MY_P}-fbsd-pic.patch
+	epatch "${FILESDIR}"/${MY_P}-rlfe-extern.patch
 
 	ln -s ../.. examples/rlfe/readline
 
