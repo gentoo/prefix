@@ -1,0 +1,7 @@
+# Copyright 1999-2005 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/x86/xbox/make.defaults,v 1.14 2006/10/28 13:29:59 flameeyes Exp $
+
+USE="oss apm arts berkdb bitmap-fonts crypt cups emboss encode fortran font-server foomaticdb gdbm gif gpm gtk gtk2 imlib jpeg kde gnome libg++ libwww mad mikmod motif mpeg ncurses nls oggvorbis opengl pam png python qt3 qt4 quicktime readline sdl slang spell ssl svga tcpd truetype truetype-fonts type1-fonts X xml2 xv zlib"
+
+PROFILE_ARCH="xbox"

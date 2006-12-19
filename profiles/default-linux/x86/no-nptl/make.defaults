@@ -1,0 +1,7 @@
+# Copyright 1999-2005 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/x86/no-nptl/make.defaults,v 1.11 2006/10/28 13:29:59 flameeyes Exp $
+
+STAGE1_USE="-nptl -nptlonly"
+
+USE="alsa apm arts bitmap-fonts cups eds emboss encode fortran foomaticdb gdbm gif gnome gpm gstreamer gtk gtk2 imlib jpeg kde libg++ libwww mad mikmod motif mp3 mpeg -nptl ogg opengl oss png qt3 qt4 quicktime sdl spell truetype truetype-fonts type1-fonts vorbis X xml xv"
