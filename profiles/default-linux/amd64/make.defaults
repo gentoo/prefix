@@ -1,0 +1,50 @@
+# Copyright 1999-2006 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/amd64/make.defaults,v 1.20 2006/10/25 09:23:40 blubb Exp $
+
+ARCH="amd64"
+ACCEPT_KEYWORDS="${ARCH}"
+
+CHOST="x86_64-pc-linux-gnu"
+CFLAGS="-O2 -pipe"
+CXXFLAGS="${CFLAGS}"
+
+FEATURES="sandbox sfperms"
+
+USE="berkdb crypt ipv6 ncurses nls pam perl python readline ssl tcpd zlib"
+# 2006/10/24 - Simon Stelling <blubb@gentoo.org>
+# They are masked, but we can enable them anyway for those who have 
+# >=portage-2.1.2_pre3-r4
+USE="${USE} mmx sse sse2"
+
+# 2006/06/07 - Danny van Dyk <kugelfang@gentoo.org>
+# Multilib settings for all amd64 subprofiles.
+MULTILIB_ABIS="amd64 x86"
+DEFAULT_ABI="amd64"
+
+# 64bit specific settings.
+CHOST_amd64="x86_64-pc-linux-gnu"
+CDEFINE_amd64="__x86_64__"
+LIBDIR_amd64="lib64"
+
+# 32bit specific settings.
+CFLAGS_x86="-m32 -L/emul/linux/x86/lib -L/emul/linux/x86/usr/lib"
+LDFLAGS_x86="-m elf_i386 -L/emul/linux/x86/lib -L/emul/linux/x86/usr/lib"
+ASFLAGS_x86="--32"
+CHOST_x86="i686-pc-linux-gnu"
+CDEFINE_x86="__i386__"
+LIBDIR_x86="lib32"
+
+# FEATURES="multilib-strict" specific settings.
+MULTILIB_STRICT_DIRS="/lib /usr/lib /usr/kde/*/lib /usr/qt/*/lib /usr/X11R6/lib"
+MULTILIB_STRICT_DENY="64-bit.*shared object"
+MULTILIB_STRICT_EXEMPT="(perl5|gcc|gcc-lib|binutils|eclipse-3|debug|portage)"
+
+# Let sys-apps/baselayout create the lib symlink.
+SYMLINK_LIB="yes"
+
+# 2006/08/18 - Donnie Berkholz <dberkholz@gentoo.org>
+# Defaults for video drivers
+VIDEO_CARDS="apm ark ati chips cirrus cyrix dummy fbdev glint i128 i810 mga \
+	neomagic nv rendition s3 s3virge savage siliconmotion sis sisusb tdfx tga \
+	trident tseng v4l vesa vga via vmware voodoo"

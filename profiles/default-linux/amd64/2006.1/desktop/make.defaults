@@ -1,0 +1,9 @@
+# Copyright 1999-2005 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/amd64/2006.1/desktop/make.defaults,v 1.5 2006/10/04 20:56:20 wolf31o2 Exp $
+
+# This will be commented and replaced with just STAGE1_USE="unicode" if we do
+# not end up with a stable glibc 2.4 by 2006.1's release.
+STAGE1_USE="nptl nptlonly unicode"
+
+USE="alsa arts cairo cdr dbus dvd dvdr eds emboss encode esd fam firefox gif gnome gstreamer gtk gtk2 hal jpeg kde ldap mad mikmod mp3 mpeg ogg opengl oss png qt3 qt4 quicktime sdl spell truetype vorbis win32codecs X xml xv"

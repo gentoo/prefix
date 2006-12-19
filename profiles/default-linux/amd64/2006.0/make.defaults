@@ -1,0 +1,15 @@
+# Copyright 1999-2005 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/amd64/2006.0/make.defaults,v 1.21 2006/10/04 20:56:20 wolf31o2 Exp $
+
+FEATURES="sandbox autoconfig"
+
+ABI=amd64
+
+# Hack to tell baselayout to use symlinks for /lib, /usr/lib, and /usr/local/lib
+SYMLINK_LIB="yes"
+
+# Switch to nptl, but no nptlonly yet.
+USE="nptl -nptlonly"
+
+USE="${USE} alsa berkdb crypt cups eds emboss encode foomaticdb gif gnome gpm gstreamer gtk gtk2 imlib ipv6 jpeg kde lzw lzw-tiff mp3 mpeg ncurses nls opengl pam perl png python qt3 qt4 quicktime readline sdl spell ssl tcpd tiff usb zlib X xpm xv zlib -java"
