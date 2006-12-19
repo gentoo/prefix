@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/make.defaults,v 1.27 2006/09/06 19:12:03 kugelfang Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/make.defaults,v 1.28 2006/12/06 11:34:54 flameeyes Exp $
 #
 # System-wide defaults for the Portage system
 # See portage(5) manpage
@@ -10,8 +10,7 @@ FEATURES="autoconfig strict sfperms"
 
 # Env vars to expand into USE vars.  Modifying this requires prior
 # discussion on gentoo-dev@gentoo.org.
-USE_EXPAND="FOO2ZJS_DEVICES MISDN_CARDS FRITZCAPI_CARDS FCDSL_CARDS VIDEO_CARDS DVB_CARDS LIRC_DEVICES INPUT_DEVICES LINGUAS USERLAND KERNEL ELIBC CROSSCOMPILE_OPTS"
-
+USE_EXPAND="FOO2ZJS_DEVICES MISDN_CARDS FRITZCAPI_CARDS FCDSL_CARDS VIDEO_CARDS DVB_CARDS LIRC_DEVICES INPUT_DEVICES LINGUAS USERLAND KERNEL ELIBC CROSSCOMPILE_OPTS ALSA_CARDS"
 
 # USE_EXPAND variables whose contents are not shown in package manager
 # output. Changes need discussion on gentoo-dev.
