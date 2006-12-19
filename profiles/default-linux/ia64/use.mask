@@ -1,0 +1,150 @@
+# This is a list of USE flags that should not be used on ia64.
+
+# There is no stable blas/lapack implementation on ia64 (yet)
+blas
+lapack
+
+# These are debatable, since technically an ia64 could support this hardware
+pcmcia
+3dfx
+
+# The rest should work in theory. Feel free to test and remove.
+# No hardware to test
+pda
+sms
+
+# No apm support on ia64
+apm
+
+# tcc is x86-only
+tcc
+
+# I don't think that openafs really works on other architectures,
+# despite some internal Gentoo efforts (mine) to port it
+afs
+
+# see email to gentoo-dev with subject "use.mask and PHP5's crazy IUSE"
+# Dated Sat, 31 Jul 2004 14:49:28 -0700, from robbat2@gentoo.org
+# all of these are binary-only, and not presently available on this
+# architecture.
+adabas
+birdstep
+dbmaker
+empress
+empress-bcs
+esoob
+filepro
+frontbase
+hyperwave
+informix
+ingres
+oci8
+pfpro
+solid
+sybase
+sybase-ct
+fdftk
+qdbm
+
+hardened
+djbfft
+mzscheme
+
+# dietlibc
+diet
+
+jack
+
+# java releated use flags
+# need to get dev-java/ant marked stable  and dev-php4/php-java-bridge stable
+# before unmasking (16 Oct 2006 nichoj)
+java
+java-internal
+java-external
+freetts
+
+# need to keyword openjms-bin, sun-jms
+jms
+# need to keyword sun-jmx
+jmx
+# need to keyword sun-javamail-bin, sun-javamail
+javamail
+
+lirc
+
+# mono compiler doesn't build on ia64 (20 Jan 2005 agriffis)
+mono
+# beagle depends on dev-dotnet/gnome-sharp.. masked for testing (19 Aug 2006 kloeri)
+beagle
+
+emboss
+
+# lm_sensors not supported on ia64 hw, afaik
+lm_sensors
+
+# we can't test wifi currently
+wifi
+
+pike
+
+timidity
+
+# emacs segfaults during build
+xemacs
+
+# 2006/02/05 - Donnie Berkholz <dberkholz@gentoo.org>
+# Modular X: mask for architectures on which they aren't available
+video_cards_nsc
+video_cards_newport
+video_cards_sis
+
+# dev-db/firebird-1.5.x entirely lacks ia64 support
+firebird
+
+# 01 july 2006 - Gustavo Zacarias <gustavoz@gentoo.org>
+# Seamonkey isn't keyworded for ia64, see bug #137198
+seamonkey
+
+# depends on ibm-jdk-bin which isn't available for ia64
+mpe-sdk
+
+# mask nvtv as I don't have the hardware to test it (19 Aug 2006 kloeri)
+nvtv
+
+# linux-fusion doesn't seem to build right now
+fusion
+
+# Diego Pettenò <flameeyes@gentoo.org> (6 Dec 2006)
+# Mask ALSA drivers for ISA cards
+alsa_cards_cs4232
+alsa_cards_msnd-pinnacle
+alsa_cards_cs4231-lib
+alsa_cards_adlib
+alsa_cards_ad1816a
+alsa_cards_ad1848
+alsa_cards_als100
+alsa_cards_azt2320
+alsa_cards_cmi8330
+alsa_cards_cs4231
+alsa_cards_cs4236
+alsa_cards_dt019x
+alsa_cards_es968
+alsa_cards_es1688
+alsa_cards_es18xx
+alsa_cards_gusclassic
+alsa_cards_gusextreme
+alsa_cards_gusmax
+alsa_cards_interwave
+alsa_cards_interwave-stb
+alsa_cards_opl3sa2
+alsa_cards_opti92x-ad1848
+alsa_cards_opti92x-cs4231
+alsa_cards_opti93x
+alsa_cards_miro
+alsa_cards_sb8
+alsa_cards_sb16
+alsa_cards_sbawe
+alsa_cards_sb16_csp
+alsa_cards_sgalaxy
+alsa_cards_sscape
+alsa_cards_wavefront

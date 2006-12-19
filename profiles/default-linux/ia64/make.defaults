@@ -1,0 +1,20 @@
+# Copyright 1999-2005 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/ia64/make.defaults,v 1.7 2006/09/06 05:29:36 dberkholz Exp $
+
+ARCH="ia64"
+ACCEPT_KEYWORDS="ia64"
+
+CHOST="ia64-unknown-linux-gnu"
+CFLAGS="-O2 -pipe"
+CXXFLAGS="${CFLAGS}"
+
+FEATURES="sandbox sfperms"
+
+USE="berkdb crypt ipv6 ncurses nls pam perl python readline ssl tcpd zlib"
+
+# 2006/08/18 - Donnie Berkholz <dberkholz@gentoo.org>
+# Defaults for video drivers
+VIDEO_CARDS="apm ark ati chips cirrus cyrix dummy fbdev glint i128 i740 i810 \
+	imstt mga neomagic nv rendition s3 s3virge savage siliconmotion sis sisusb \
+	tdfx tga v4l vesa vga via voodoo"
