@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.5-r2.ebuild,v 1.8 2006/11/07 15:29:21 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.5-r3.ebuild,v 1.10 2006/11/25 16:12:44 kloeri Exp $
 
 EAPI="prefix"
 
@@ -48,7 +48,9 @@ src_unpack() {
 		popd
 	fi
 
-	cd ${S}
+	cd "${S}"
+
+	epatch "${FILESDIR}/${P}-cgi-dos-1.patch"
 
 	# Fix a hardcoded lib path in configure script
 	sed -i -e "s:\(RUBY_LIB_PREFIX=\"\${prefix}/\)lib:\1$(get_libdir):" \
