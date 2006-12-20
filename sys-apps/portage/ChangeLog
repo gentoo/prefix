@@ -2,6 +2,13 @@
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.1.20.5336 (20 Dec 2006)
+
+  20 Dec 2006; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.1.20.5261.ebuild, +portage-2.1.20.5336.ebuild:
+  New snapshot with fix for a bug which caused weird python behaviour
+  introduced in 5320
+
 *portage-2.1.20.5320 (18 Dec 2006)
 
   18 Dec 2006; Fabian Groffen <grobian@gentoo.org>
