@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-1.3.12-r1.ebuild,v 1.15 2006/11/06 21:45:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.0.1.ebuild,v 1.1 2006/11/26 12:29:32 vapier Exp $
 
 EAPI="prefix"
 
@@ -9,7 +9,6 @@ EAPI="prefix"
 #ECVS_AUTH="pserver"
 #ECVS_USER="anonymous"
 #inherit cvs
-inherit eutils
 
 MY_P=${PN}-${PV/_}
 DESCRIPTION="GNU GPL'd Pico clone with more functionality"
@@ -29,16 +28,13 @@ PROVIDE="virtual/editor"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-path.patch
-	epatch "${FILESDIR}"/${P}-scroll.patch
-	epatch "${FILESDIR}"/${P}-fix2.patch
-}
 
-src_compile() {
 	if [[ ! -e configure ]] ; then
 		./autogen.sh || die "autogen failed"
 	fi
+}
 
+src_compile() {
 	local myconf=""
 	use ncurses \
 		&& myconf="--without-slang" \
@@ -62,7 +58,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die
 
 	dodoc ChangeLog README doc/nanorc.sample AUTHORS BUGS NEWS TODO
 	dohtml *.html

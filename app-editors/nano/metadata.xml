@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>no-herd</herd>
+<maintainer>
+ <email>vapier@gentoo.org</email>
+</maintainer>
+<longdescription>
+GNU nano - an enhanced clone of the Pico text editor.
+
+The nano project was started because of a few "problems" with the
+wonderfully easy-to-use and friendly Pico text editor.
+
+First and foremost is its license: the Pine suite does not use the
+GPL or a GPL-friendly license, and has unclear restrictions on
+redistribution.  Because of this, Pine and Pico are not included with
+many GNU/Linux distributions.  Also, other features (like goto line
+number or search and replace) were unavailable until recently or
+require a command line flag.  Yuck.
+
+nano aims to solve these problems by emulating the functionality of
+Pico as closely as possible while addressing the problems above and
+perhaps providing other extra functionality.
+</longdescription>
+</pkgmetadata>
