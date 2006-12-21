@@ -1,10 +1,10 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.26.ebuild,v 1.13 2006/10/27 10:20:02 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.27.ebuild,v 1.2 2006/12/18 10:35:41 leonardop Exp $
 
 EAPI="prefix"
 
-inherit libtool gnome.org flag-o-matic eutils
+inherit libtool flag-o-matic eutils
 
 DESCRIPTION="Version 2 of the library to manipulate XML files"
 HOMEPAGE="http://www.xmlsoft.org/"
@@ -20,7 +20,7 @@ XSTS_NAME_2="xmlschema2004-01-14"
 XSTS_TARBALL_1="xsts-2002-01-16.tar.gz"
 XSTS_TARBALL_2="xsts-2004-01-14.tar.gz"
 
-SRC_URI="${SRC_URI}
+SRC_URI="ftp://xmlsoft.org/${PN}/${P}.tar.gz
 	test? (
 		${XSTS_HOME}/${XSTS_NAME_1}/${XSTS_TARBALL_1}
 		${XSTS_HOME}/${XSTS_NAME_2}/${XSTS_TARBALL_2} )"
@@ -34,7 +34,7 @@ DEPEND="${RDEPEND}
 
 
 src_unpack() {
-	unpack "${P}.tar.${GNOME_TARBALL_SUFFIX}"
+	unpack "${P}.tar.gz"
 	cd "${S}"
 
 	if use test; then
@@ -43,6 +43,9 @@ src_unpack() {
 			${S}/xstc/ \
 			|| die "Failed to install test tarballs"
 	fi
+
+	# Pass --wildcards option to tar when needed (bug #158386)
+	epatch "${FILESDIR}"/${P}-tar_in_tests.patch
 
 	epunt_cxx
 }
@@ -84,7 +87,6 @@ src_compile() {
 	done
 
 	emake || die "Copilation failed"
-
 }
 
 src_install() {
@@ -100,13 +102,13 @@ src_install() {
 
 pkg_postinst() {
 	# need an XML catalog, so no-one writes to a non-existent one
-	CATALOG="${EROOT}/etc/xml/catalog"
+	CATALOG="${EROOT}etc/xml/catalog"
 
 	# we dont want to clobber an existing catalog though,
 	# only ensure that one is there
 	# <obz@gentoo.org>
 	if [ ! -e ${CATALOG} ]; then
-		[ -d "${EROOT}/etc/xml" ] || mkdir -p "${EROOT}/etc/xml"
+		[ -d "${EROOT}etc/xml" ] || mkdir -p "${EROOT}etc/xml"
 		${EPREFIX}/usr/bin/xmlcatalog --create > ${CATALOG}
 		einfo "Created XML catalog in ${CATALOG}"
 	fi
