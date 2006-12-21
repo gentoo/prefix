@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# <grobian@gentoo.org> -- 2006-12-21
+# added -e flag to indicate to the script that the given file(s) should
+# be treated as ebuilds
 # <grobian@gentoo.org> -- 2006-11-03
 # time to get more careful about what we do.  Don't replace anything if
 # an ebuild is already EAPI="prefix", unless -f flag is given to
@@ -18,10 +21,15 @@
 # it multiple times should not harm.  It might, however, do wrong
 # things, so always check the result.  You have been warned.
 
+force=0
+isebuild=0
 while [[ ! -z $1 ]] ; do
 	case $1 in
 		-f)
 			force=1
+		;;
+		-e)
+			isebuild=1
 		;;
 		*)
 			[[ -z $files ]] \
@@ -59,7 +67,7 @@ for f in $files ; do
 
 	echo "Processing $f"
 
-	if [[ ${f##*.} == "ebuild" ]] ; then
+	if [[ $isebuild == 1 ]] || [[ ${f##*.} == "ebuild" ]] ; then
 		unset EAPI
 		echo -n "  EAPI ... "
 		eval "`egrep "^EAPI=" "$f"`"
