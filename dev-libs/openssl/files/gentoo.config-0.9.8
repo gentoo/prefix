@@ -1,7 +1,7 @@
-#!/bin/bash
+#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/files/gentoo.config-0.9.8,v 1.6 2006/09/02 00:19:09 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/files/gentoo.config-0.9.8,v 1.14 2006/09/28 14:00:32 vapier Exp $
 #
 # Openssl doesn't play along nicely with cross-compiling 
 # like autotools based projects, so let's teach it new tricks.
@@ -17,11 +17,13 @@ if [[ $1 == "test" ]] ; then
 		"armv5b-linux-gnu             |linux-generic32 -DB_ENDIAN" \
 		"x86_64-pc-linux-gnu          |linux-x86_64" \
 		"alphaev56-unknown-linux-gnu  |linux-alpha+bwx-gcc" \
-		"whatever-gentoo-freebsdX.Y   |FreeBSD-elf" \
-		"sparc64-alpha-freebsdX.Y     |FreeBSD-sparc64" \
-		"ia64-gentoo-freebsd5.99234   |FreeBSD-ia64" \
-		"x86_64-gentoo-freebsdX.Y     |FreeBSD-amd64" \
-		"hppa64-aldsF-linux-gnu5.3    |linux-parisc" \
+		"i686-pc-linux-gnu            |linux-elf" \
+		"whatever-gentoo-freebsdX.Y   |BSD-generic32" \
+		"i686-gentoo-freebsdX.Y       |BSD-x86-elf" \
+		"sparc64-alpha-freebsdX.Y     |BSD-sparc64" \
+		"ia64-gentoo-freebsd5.99234   |BSD-ia64" \
+		"x86_64-gentoo-freebsdX.Y     |BSD-x86_64" \
+		"hppa64-aldsF-linux-gnu5.3    |linux-generic32 -DB_ENDIAN" \
 		"powerpc-gentOO-linux-uclibc  |linux-ppc" \
 		"powerpc64-unk-linux-gnu      |linux-ppc64" \
 	;do
@@ -45,7 +47,7 @@ fi
 # Detect the operating system
 case ${CHOST} in
 	*-linux*)    system="linux";;
-	*-freebsd*)  system="FreeBSD";;
+	*-freebsd*)  system="BSD";;
 	*-solaris*)  system="solaris";;
 	*)           exit 0;;
 esac
@@ -70,19 +72,18 @@ linux)
 		arm*b*)       machine="generic32 -DB_ENDIAN";;
 		arm*)         machine="generic32 -DL_ENDIAN";;
 	#	hppa64*)      machine=parisc64;;
-		hppa*)        machine=parisc;;
-		i[0-5]86*)    machine=elf;;
-		i[6-9]86*)    machine=generic32;;
+		hppa*)        machine="generic32 -DB_ENDIAN";;
+		i[0-9]86*)    machine=elf;;
 		ia64*)        machine=ia64;;
 		m68*)         machine="generic32 -DB_ENDIAN";;
-		mips*el*)     machine=mipsel;;
-		mips*)        machine=mips;;
+		mips*el*)     machine="generic32 -DL_ENDIAN";;
+		mips*)        machine="generic32 -DB_ENDIAN";;
 		powerpc64*)   machine=ppc64;;
 		powerpc*)     machine=ppc;;
 	#	sh64*)        machine=elf;;
 		sh*b*)        machine="generic32 -DB_ENDIAN";;
 		sh*)          machine="generic32 -DL_ENDIAN";;
-		sparc*v7*)    machine=sparcv7;;
+		sparc*v7*)    machine="generic32 -DB_ENDIAN";;
 		sparc64*)     machine=sparcv9;;
 		sparc*)       machine=sparcv8;;
 		s390x*)       machine=s390x;;
@@ -90,13 +91,14 @@ linux)
 		x86_64*)      machine=x86_64;;
 	esac
 	;;
-FreeBSD)
+BSD)
 	case ${chost_machine} in
-		sparc64*)     machine=sparc64;;
+		alpha*)       machine=generic64;;
+		i[6-9]86*)    machine=x86-elf;;
 		ia64*)        machine=ia64;;
-		alpha*)       machine=alpha;;
-		x86_64*)      machine=amd64;;
-		*)            machine=elf;;
+		sparc64*)     machine=sparc64;;
+		x86_64*)      machine=x86_64;;
+		*)            machine=generic32;;
 	esac
 	;;
 solaris)

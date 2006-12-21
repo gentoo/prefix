@@ -39,6 +39,7 @@ src_unpack() {
 
 	# allow openssl to be cross-compiled
 	cp "${FILESDIR}"/gentoo.config-0.9.8 gentoo.config || die "cp cross-compile failed"
+	eprefixify gentoo.config
 	chmod a+rx gentoo.config
 
 	# Don't build manpages if we don't want them
