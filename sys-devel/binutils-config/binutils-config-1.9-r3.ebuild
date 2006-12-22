@@ -4,9 +4,9 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils toolchain-funcs
 
-DESCRIPTION="Utility to change the binutils version being used"
+DESCRIPTION="Utility to change the binutils version being used - prefix version"
 HOMEPAGE="http://www.gentoo.org/"
 SRC_URI=""
 
@@ -17,9 +17,45 @@ IUSE=""
 
 RDEPEND=">=sys-apps/findutils-4.2"
 
+W_VER=1.0
+
 src_unpack() {
 	cp "${FILESDIR}"/${PN}-${PV} "${T}"/
-	eprefixify "${T}"/${PN}-${PV}
+	cp "${FILESDIR}"/ldwrapper-${W_VER}.c "${T}"/
+	eprefixify "${T}"/${PN}-${PV} "${T}"/ldwrapper-${W_VER}.c
+}
+
+src_compile() {
+	cd "${T}"
+
+	# based on what system we have do some adjusting of the wrapper's work
+	case ${USERLAND} in
+		Darwin)
+			defines="-DNEEDS_LIBRARY_INCLUDES"
+			libs="-L${EPREFIX}/lib -L${EPREFIX}/usr/lib"
+			rpaths=""
+		;;
+		*)
+			defines="-DNEEDS_LIBRARY_INCLUDES -DNEEDS_RPATH_DIRECTIONS"
+			# this is a lousy check for multilib, and should be done properly
+			# some day/time
+			libs=""
+			for dir in lib64 lib usr/lib64 usr/lib ; do
+				dir=${EPREFIX}/${dir}
+				[[ -d ${dir} ]] && \
+					libs="${libs} -L${dir}"
+			done
+			rpaths=${libs//-L/-rpath=}
+		;;
+	esac
+
+	sed -i \
+		-e "s|@LIBRARY_INCLUDES@|${libs}|g" \
+		-e "s|@RUNPATH_INCLUDES@|${rpaths}|g" \
+		ldwrapper-${W_VER}.c
+
+	$(tc-getCC) -O2 -Wall ${defines} -o ldwrapper \
+		ldwrapper-${W_VER}.c || die "compile wrapper"
 }
 
 src_install() {
