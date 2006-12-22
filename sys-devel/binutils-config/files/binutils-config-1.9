@@ -26,6 +26,7 @@ cat << USAGE_END
 Usage: ${HILITE}binutils-config${NORMAL} ${GOOD}[options]${NORMAL} ${BRACKET}[binutils profile]${NORMAL}
 
 ${HILITE}General Options:${NORMAL}
+  ${GOOD}-B, --get-bin-path${NORMAL}         Print current linker bin path
   ${GOOD}-c, --get-current-profile${NORMAL}  Print current profile
   ${GOOD}-l, --list-profiles${NORMAL}        Print a list of available profiles
   ${GOOD}-u, --uninstall${NORMAL}            Remove all signs of specified target
@@ -233,6 +234,35 @@ uninstall_target() {
 	rm -f "${ENV_D}"/${TARGET}-*
 }
 
+get_bin_path() {
+	if [[ ! -f ${ENV_D}/config-${PROFILE} ]] ; then
+		eerror "${argv0}: No binutils profile is active!"
+		return 1
+	fi
+
+	source "${ENV_D}/config-${PROFILE}"
+
+	if [[ -z ${CURRENT} ]] ; then
+		eerror "${argv0}: No binutils profile is active!"
+		return 1
+	fi
+
+	unset TARGET VER
+	source "${ENV_D}/${PROFILE}-${CURRENT}"
+	if [[ -z ${TARGET} ]] ; then
+		eerror "${PROFILE}-${CURRENT} is invalid (no \$TARGET defined) :("
+		return 1
+	fi
+	if [[ -z ${VER} ]] ; then
+		eerror "${PROFILE}-${CURRENT} is invalid (no \$VER defined) :("
+		return 1
+	fi
+
+	echo "@GENTOO_PORTAGE_EPREFIX@/usr/${TARGET}/binutils-bin/${VER}"
+
+	return 0
+}
+
 get_current_profile() {
 	if [[ ! -f ${ENV_D}/config-${PROFILE} ]] ; then
 		eerror "${argv0}: No binutils profile is active!"
@@ -309,6 +339,10 @@ while [[ $# -gt 0 ]] ; do
 	x=$1
 	shift
 	case ${x} in
+		-B|--get-bin-path)
+			DOIT="get_bin_path"
+			NEED_ACTION="no"
+			;;
 		-c|--get-current-profile)
 			if [[ ${NEED_ACTION} == "yes" ]] ; then
 				NEED_ACTION="no"
