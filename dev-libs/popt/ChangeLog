@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/popt
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.45 2006/11/08 17:12:01 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.46 2006/12/06 19:52:39 sanchan Exp $
+
+*popt-1.10.7 (06 Dec 2006)
+
+  06 Dec 2006; Sandro Bonazzola <sanchan@gentoo.org> +popt-1.10.7.ebuild:
+  Version bump (bug #121862) thanks to Timothy Redaelli <drizzt@gentoo.org>.
 
   08 Nov 2006; Timothy Redaelli <drizzt@gentoo.org> popt-1.10.4-r3.ebuild:
   Keyworded ~ppc, wrt bug 121862.

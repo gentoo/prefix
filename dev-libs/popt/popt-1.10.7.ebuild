@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/popt-1.10.4-r3.ebuild,v 1.4 2006/11/12 03:55:04 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/popt-1.10.7.ebuild,v 1.1 2006/12/06 19:52:39 sanchan Exp $
 
 EAPI="prefix"
 
@@ -24,9 +24,9 @@ DEPEND="nls? ( sys-devel/gettext )"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-lib64.patch
-	epatch "${FILESDIR}"/${P}-regression.patch
-	use nls || epatch "${FILESDIR}"/${P}-nls.patch
+	epatch "${FILESDIR}"/${PN}-1.10.4-lib64.patch
+	epatch "${FILESDIR}"/${PN}-1.10.4-regression.patch
+	use nls || epatch "${FILESDIR}"/${PN}-1.10.4-nls.patch
 	eautoreconf
 }
 
@@ -36,6 +36,6 @@ src_compile() {
 }
 
 src_install() {
-	emake install DESTDIR="${D}" || die
+	make DESTDIR="${D}" install || die
 	dodoc CHANGES README
 }

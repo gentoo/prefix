@@ -1,0 +1,29 @@
+diff -ru popt-1.10.4.orig/Makefile.am popt-1.10.4/Makefile.am
+--- popt-1.10.4.orig/Makefile.am	2005-09-16 14:19:21 +0100
++++ popt-1.10.4/Makefile.am	2006-10-12 09:36:16 +0100
+@@ -35,7 +35,7 @@
+ 
+ include_HEADERS = popt.h
+ 
+-usrlibdir = $(libdir)@MARK64@
++usrlibdir = $(libdir)
+ usrlib_LTLIBRARIES = libpopt.la
+ 
+ libpopt_la_SOURCES = popt.c findme.c poptparse.c poptconfig.c popthelp.c
+diff -ru popt-1.10.4.orig/configure.ac popt-1.10.4/configure.ac
+--- popt-1.10.4.orig/configure.ac	2005-11-17 20:14:31 +0000
++++ popt-1.10.4/configure.ac	2006-10-12 09:35:59 +0100
+@@ -59,13 +59,6 @@
+ fi
+ AC_SUBST(TARGET)
+ 
+-dnl XXX Choose /usr/lib or /usr/lib64 for library installs.
+-MARK64=
+-case "${target_cpu}" in
+-x86_64*|powerpc64*|ppc64*|sparc64*|s390x*)        MARK64=64 ;;
+-esac
+-AC_SUBST(MARK64)
+-
+ AC_CHECK_HEADERS(alloca.h float.h libintl.h mcheck.h unistd.h)
+ AC_MSG_CHECKING(for /usr/ucblib in LIBS)
+ if test -d /usr/ucblib ; then
