@@ -61,4 +61,7 @@ src_compile() {
 src_install() {
 	newbin "${T}"/${PN}-${PV} ${PN} || die
 	doman "${FILESDIR}"/${PN}.8
+
+	exeinto /usr/$(get_libdir)/misc
+	newexe "${T}"/ldwrapper binutils-config || die "install ldwrapper"
 }

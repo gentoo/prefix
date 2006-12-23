@@ -78,6 +78,13 @@ switch_profile() {
 
 	ebegin "Switching to ${PROFILE}"
 
+	# Find the bin wrapper
+	local wrapper
+	for wrapper in lib lib64 lib32 ; do
+		wrapper="${ROOT}usr/${wrapper}/misc/binutils-config"
+		[[ -e ${wrapper} ]] && break
+	done
+
 	#
 	# Generate binary symlinks
 	# On systems that do 32bit/64bit, we need to fake an 
@@ -102,7 +109,18 @@ switch_profile() {
 	cd "${ROOT}/${BINPATH}" || exit 1
 	mkdir -p "${ROOT}/${BINPATH_LINKS}"
 	for x in * ; do
-		ln -sf "${EPREFIX}/${BINPATH}/${x}" "${ROOT}/${BINPATH_LINKS}/${x}"
+		case ${x} in
+			ld|ld64)
+				# remove symlink first if exists, to avoid overwriting
+				# the target in the cp that follows
+				rm -f "${ROOT}/${BINPATH_LINKS}/${x}" > /dev/null
+				cp -f "${wrapper}" "${ROOT}/${BINPATH_LINKS}/${x}"
+				touch -r "${EPREFIX}/${BINPATH}/${x}" "${ROOT}/${BINPATH_LINKS}/${x}"
+			;;
+			*)
+				ln -sf "${EPREFIX}/${BINPATH}/${x}" "${ROOT}/${BINPATH_LINKS}/${x}"
+			;;
+		esac
 		ln -sf "${EPREFIX}/${BINPATH_LINKS}/${x}" "${ROOT}"/usr/bin/${TARGET}-${x}
 		for fake in ${FAKE_TARGETS} ; do
 			[[ -f ${ENV_D}/config-${fake} ]] && continue
