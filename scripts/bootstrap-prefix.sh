@@ -151,6 +151,40 @@ bootstrap_tree() {
 	fi
 }
 
+bootstrap_ldwrapper() {
+	# based on what system we have do some adjusting of the wrapper's work
+	case ${CHOST} in
+		*-darwin*)
+			libs="-L${ROOT}/lib -L${ROOT}/usr/lib"
+			rpaths=""
+		;;
+		*)
+			# this is a lousy check for multilib, and should be done properly
+			# some day/time
+			libs=""
+			for dir in lib64 lib usr/lib64 usr/lib ; do
+				dir=${ROOT}/${dir}
+				[[ -d ${dir} ]] && \
+					libs="${libs} -L${dir}"
+			done
+			# for Sun's native linker (if used during bootstrap) we use
+			# -R here instead of -rpath=
+			rpaths=${libs//-L/-R}
+		;;
+	esac
+
+	mkdir -p "${ROOT}/usr/bin"
+	echo '#!/usr/bin/env bash'               > ${ROOT}/usr/bin/ld
+	echo "$(which ld)"' $* '"$libs $rpaths" >> ${ROOT}/usr/bin/ld
+	chmod 755 "${ROOT}/usr/bin/ld"
+	# on Darwin we need ld64 too, just add it, if it's there
+	if [[ $(type -t ld64) == "file" ]] ; then
+		echo '#!/usr/bin/env bash'                 > ${ROOT}/usr/bin/ld64
+		echo "$(which ld64)"' $* '"$libs $rpaths" >> ${ROOT}/usr/bin/ld64
+		chmod 755 "${ROOT}/usr/bin/ld64"
+	fi
+}
+
 bootstrap_portage() {
 	# don't use "latest" here, as I want to have the bootstrap script to
 	# use a portage in a known "state"
@@ -472,7 +506,7 @@ einfo "Bootstrapping Gentoo prefixed portage installation using"
 einfo "host:   ${CHOST}"
 einfo "prefix: ${ROOT}"
 
-TODO=${2:-all}
+TODO=${2}
 if [[ $(type -t bootstrap_${TODO}) != "function" ]];
 then
 	eerror "bootstrap target ${TODO} unknown"
