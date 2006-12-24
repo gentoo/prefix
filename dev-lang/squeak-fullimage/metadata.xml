@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>no-herd</herd>
+<maintainer>
+	<email>araujo@gentoo.org</email>
+	<name>Luis F. Araujo</name>
+</maintainer>
+<longdescription lang="en">
+Squeak is a full-featured implementation of the Smalltalk programming language
+and environment based on (and largely compatible with) the original Smalltalk-80
+system. Squeak has very powerful 2- and 3-D graphics, sound, video, MIDI,
+animation and other multimedia capabilities -- and one of the most impressive
+development environments ever created. It also includes a customisable framework
+for creating dynamic HTTP servers and interactively extensible Web sites. The
+entire Squeak system is open source software, distributed freely with a liberal
+license.
+</longdescription>
+</pkgmetadata>
