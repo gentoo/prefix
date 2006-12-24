@@ -1,0 +1,15 @@
+* <grobian@gentoo.org>
+  AC_GNU_OPT does (unlike its name suggests) some injection on CFLAGS
+  based on the host type, which breaks on OSX due to a wrong assumption
+  by the developers
+
+--- Squeak-3.9-7/platforms/unix/config/configure.ac
++++ Squeak-3.9-7/platforms/unix/config/configure.ac
+@@ -249,7 +249,6 @@
+ 
+ # Checks for platform characteristics.
+ 
+-AC_GNU_OPT
+ AC_GNU_INTERP
+ AC_MODULE_LIB_PREFIX
+ AC_64BIT_ARCH
