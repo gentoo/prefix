@@ -398,20 +398,6 @@ bootstrap_binutils() {
 	bootstrap_gnu binutils 2.17
 }
 
-bootstrap_all() {
-	bootstrap_tree	
-	case ${CHOST} in
-		*-*-darwin*)
-			bootstrap_odcctools
-	esac
-	bootstrap_gcc
-	bootstrap_sed
-	bootstrap_findutils
-	bootstrap_wget
-	bootstrap_python
-	bootstrap_portage
-}
-
 ## End Functions
 
 ## some vars
