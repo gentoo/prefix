@@ -17,6 +17,6 @@ DEPEND=""
 # systems) here we can define that difference.  Note that this virtual is not
 # meant for using another compiler than GNU's GCC.
 RDEPEND="|| (
-				elibc_Darwin? ( sys-devel/gcc-apple )
+				userland_Darwin? ( sys-devel/gcc-apple )
 				sys-devel/gcc
 			)"
