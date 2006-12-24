@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/swig
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/ChangeLog,v 1.73 2006/10/01 10:11:09 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/ChangeLog,v 1.74 2006/11/19 22:55:45 flameeyes Exp $
+
+  19 Nov 2006; Diego Pettenò <flameeyes@gentoo.org> swig-1.3.29-r1.ebuild:
+  Forwardport the ~x86-fbsd keyword.
 
   01 Oct 2006; Diego Pettenò <flameeyes@gentoo.org> swig-1.3.29.ebuild:
   Add ~x86-fbsd keyword.

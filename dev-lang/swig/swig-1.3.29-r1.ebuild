@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/swig-1.3.29-r1.ebuild,v 1.1 2006/09/26 13:30:47 chriswhite Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/swig-1.3.29-r1.ebuild,v 1.2 2006/11/19 22:55:45 flameeyes Exp $
 
 EAPI="prefix"
 
