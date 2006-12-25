@@ -51,7 +51,7 @@ src_compile() {
 
 	sed -i \
 		-e "s|@LIBRARY_INCLUDES@|${libs}|g" \
-		-e "s|@RUNPATH_INCLUDES@|${rpaths}|g" \
+		-e "s|@RUNPATH_DIRECTIONS@|${rpaths}|g" \
 		ldwrapper-${W_VER}.c
 
 	$(tc-getCC) -O2 -Wall ${defines} -o ldwrapper \
