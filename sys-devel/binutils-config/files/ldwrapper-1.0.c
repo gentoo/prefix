@@ -365,7 +365,7 @@ int main(int argc, char *argv[])
 #endif
 #ifdef NEEDS_RPATH_DIRECTIONS
 			,
-			"@RUNPATH_DIRECTIONS@"
+			"@RUNPATH_DIRECTIONS@",
 			data->ldpath
 #endif
 			);
