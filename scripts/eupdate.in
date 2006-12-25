@@ -502,7 +502,7 @@ for pte in $pt ; do
 	last_rev=""
 	for mte in $mt ; do
 		[[ $(cmp_ebuild_ver $mte $pte) -ge 100000 ]] && \
-		[ $(cmp_ebuild_ver $mte $last_rev) > 0 ]] \
+		[[ $(cmp_ebuild_ver $mte $last_rev) > 0 ]] \
 			&& last_rev=$mte
 	done
 	[[ $last_rev != "" ]] \
