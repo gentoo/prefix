@@ -501,9 +501,13 @@ done
 for pte in $pt ; do
 	last_rev=""
 	for mte in $mt ; do
-		[[ $(cmp_ebuild_ver $mte $pte) -ge 100000 ]] && \
-		[[ $(cmp_ebuild_ver $mte $last_rev) > 0 ]] \
-			&& last_rev=$mte
+		if [[ $(cmp_ebuild_ver $mte $pte) -ge 100000 ]] ; then
+			[[ $(cmp_ebuild_ver $mte $last_rev) > 0 ]] \
+				&& last_rev=$mte
+			# we will deal with the (newer) revision later, so let's
+			# avoid the final update check below finding this revision
+			mt=${mt/$mte/}
+		fi
 	done
 	[[ $last_rev != "" ]] \
 		&& cross_diff $last_rev $pte
