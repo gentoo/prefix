@@ -1,6 +1,11 @@
 # ChangeLog for net-libs/libwww
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libwww/ChangeLog,v 1.74 2006/11/23 20:02:54 vivo Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libwww/ChangeLog,v 1.75 2006/12/20 01:00:31 nattfodd Exp $
+
+  20 Dec 2006; Alexandre Buisse <nattfodd@gentoo.org>
+  libwww-5.4.0-r3.ebuild, libwww-5.4.0-r4.ebuild, libwww-5.4.0-r5.ebuild,
+  libwww-5.4.0-r6.ebuild, libwww-5.4.0-r7.ebuild:
+  Removed unnecessary block of 9lib (bug #132120).
 
   23 Nov 2006; Francesco Riosa <vivo@gentoo.org> libwww-5.4.0-r3.ebuild,
   libwww-5.4.0-r4.ebuild, libwww-5.4.0-r5.ebuild, libwww-5.4.0-r6.ebuild,

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libwww/libwww-5.4.0-r7.ebuild,v 1.10 2006/11/23 20:02:54 vivo Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libwww/libwww-5.4.0-r7.ebuild,v 1.11 2006/12/20 01:00:31 nattfodd Exp $
 
 EAPI="prefix"
 
@@ -25,7 +25,6 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 	ssl? ( >=dev-libs/openssl-0.9.6 )"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
-	!dev-libs/9libs
 	dev-lang/perl"
 
 S=${WORKDIR}/${MY_P}
