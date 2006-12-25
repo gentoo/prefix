@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.5_p1.ebuild,v 1.4 2006/11/08 20:06:23 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.5_p1.ebuild,v 1.5 2006/12/07 08:44:26 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -36,7 +36,7 @@ RDEPEND="pam? ( virtual/pam )
 	selinux? ( >=sys-libs/libselinux-1.28 )
 	skey? ( >=app-admin/skey-1.1.5-r1 )
 	ldap? ( net-nds/openldap )
-	libedit? ( || ( dev-libs/libedit sys-freebsd/freebsd-lib ) )
+	libedit? ( dev-libs/libedit )
 	>=dev-libs/openssl-0.9.6d
 	>=sys-libs/zlib-1.2.3
 	smartcard? ( dev-libs/opensc )
@@ -95,6 +95,8 @@ src_unpack() {
 	sed -i '/LD.*ssh-keysign/s:$: '$(bindnow-flags)':' Makefile.in || die "setuid"
 
 	sed -i "s:-lcrypto:$(pkg-config --libs openssl):" configure{,.ac} || die
+
+	sed -i 's|AC_PATH_PROG($1, $2)|AC_PATH_PROG($1, $2, no, '"$PATH"')|' aclocal.m4 || die
 
 	eautoreconf
 }

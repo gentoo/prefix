@@ -1,3 +1,6 @@
+http://bugs.gentoo.org/43593
+http://bugzilla.mindrot.org/show_bug.cgi?id=608
+
 Index: scard-opensc.c
 ===================================================================
 RCS file: /cvs/openssh/scard-opensc.c,v
