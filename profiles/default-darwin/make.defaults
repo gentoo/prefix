@@ -10,7 +10,6 @@ CFLAGS="-O2 -pipe"
 CXXFLAGS=${CFLAGS}
 MAKEOPTS="-j2"
 PLATFORM=$CHOST
-LDFLAGS="-Wl,-search_paths_first"
 
 FEATURES="-sandbox -userpriv nostrip"
 
