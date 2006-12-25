@@ -32,7 +32,7 @@ src_compile() {
 	case ${USERLAND} in
 		Darwin)
 			defines="-DNEEDS_LIBRARY_INCLUDES"
-			libs="-L${EPREFIX}/lib -L${EPREFIX}/usr/lib"
+			libs="-search_paths_first -L${EPREFIX}/lib -L${EPREFIX}/usr/lib"
 			rpaths=""
 		;;
 		*)
@@ -64,4 +64,10 @@ src_install() {
 
 	exeinto /usr/$(get_libdir)/misc
 	newexe "${T}"/ldwrapper binutils-config || die "install ldwrapper"
+}
+
+pkg_postinst() {
+	# refresh all links and the wrapper
+	[[ ${EROOT%/} == ${EPREFIX%/} ]] \
+		&& binutils-config $(${EROOT}/usr/bin/binutils-config --get-current-profile)
 }
