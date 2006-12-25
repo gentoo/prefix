@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg.eclass,v 1.48 2006/12/03 15:27:48 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg.eclass,v 1.49 2006/12/18 19:25:59 betelgeuse Exp $
 
 inherit multilib
 
@@ -489,7 +489,5 @@ java-pkg_dosrc() {
 
 
 java-pkg_announce-qa-violation() {
-	if hasq java-strict ${FEATURES}; then
-		echo "Java QA Notice: $@" >&2
-	fi
+	[[ "${JAVA_PKG_STRICT}" ]] && ewarn "Java QA Notice: $@"
 }

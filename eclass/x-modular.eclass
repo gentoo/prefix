@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.80 2006/10/30 18:40:58 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.81 2006/12/17 15:30:25 joshuabaergen Exp $
 #
 # Author: Donnie Berkholz <spyderous@gentoo.org>
 #
@@ -77,10 +77,10 @@ LICENSE=${PN}
 if [[ -n "${SNAPSHOT}" ]]; then
 # FIXME: What's the minimal libtool version supporting arbitrary versioning?
 	DEPEND="${DEPEND}
-		>=sys-devel/autoconf-2.57
-		>=sys-devel/automake-1.7
 		>=sys-devel/libtool-1.5
 		>=sys-devel/m4-1.4"
+	WANT_AUTOCONF="latest"
+	WANT_AUTOMAKE="latest"
 fi
 
 # If we're a font package, but not the font.alias one

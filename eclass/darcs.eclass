@@ -1,6 +1,6 @@
 # Copyright 2004 Gentoo Technologies, Inc.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/darcs.eclass,v 1.2 2006/08/10 22:52:47 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/darcs.eclass,v 1.3 2006/12/18 11:51:06 kosmikus Exp $
 #
 # darcs eclass author:  Andres Loeh <kosmikus@gentoo.org>
 # tla eclass author:    <rphillips@gentoo.org>
@@ -31,7 +31,7 @@ SRC_URI=""
 [ -z "$EDARCS_DARCS_CMD" ] && EDARCS_DARCS_CMD="darcs"
 
 # darcs commands with command-specific options
-[ -z "$EDARCS_GET_CMD" ] && EDARCS_GET_CMD="get"
+[ -z "$EDARCS_GET_CMD" ] && EDARCS_GET_CMD="get --partial"
 [ -z "$EDARCS_UPDATE_CMD" ] && EDARCS_UPDATE_CMD="pull"
 
 # options to pass to both the "get" and "update" commands
@@ -46,7 +46,8 @@ SRC_URI=""
 # The local directory to store the repository (useful to ensure a
 # unique local name); relative to EDARCS_TOP_DIR
 [ -z "$EDARCS_LOCALREPO" ] && [ -n "$EDARCS_REPOSITORY" ] \
-	&& EDARCS_LOCALREPO="`basename $EDARCS_REPOSITORY`"
+	&& EDARCS_LOCALREPO=${EDARCS_REPOSITORY%/} \
+	&& EDARCS_LOCALREPO=${EDARCS_LOCALREPO##*/}
 
 # EDARCS_CLEAN: set this to something to get a clean copy when updating
 # (removes the working directory, then uses $EDARCS_GET_CMD to

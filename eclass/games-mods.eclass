@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games-mods.eclass,v 1.11 2006/11/21 23:27:35 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games-mods.eclass,v 1.13 2006/12/16 14:30:33 wolf31o2 Exp $
 
 # Variables to specify in an ebuild which uses this eclass:
 # GAME - (doom3, quake4 or ut2004, etc), unless ${PN} starts with e.g. "doom3-"
@@ -125,8 +125,8 @@ games-mods_pkg_setup() {
 		then
 			die "You must merge ${CATEGORY}/${GAME}-bin with USE=dedicated!"
 		fi
-	else
-		die "${CATEGORY}/${GAME} not installed!"
+#	else
+#		die "${CATEGORY}/${GAME} not installed!"
 	fi
 }
 
@@ -169,7 +169,7 @@ games-mods_src_unpack() {
 		done
 	done
 	# Since we remove all of these anyway, let's move it to the eclass
-	rm -f 3355_patch
+	rm -f 3355_patch 3339_patch
 }
 
 games-mods_src_install() {

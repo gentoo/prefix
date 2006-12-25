@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/perl-app.eclass,v 1.9 2006/08/28 20:22:20 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/perl-app.eclass,v 1.10 2006/12/09 14:34:01 mcummings Exp $
 
 #
 # Author: Michael Cummings <mcummings@gentoo.org>
@@ -48,5 +48,6 @@ perl-app_src_compile() {
 	elif [ -f Build ]; then
 		perl Build build || die "compilation failed"
 	fi
+	fixlocalpod
 
 }

@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.34 2006/12/08 12:12:04 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.36 2006/12/20 22:45:18 caster Exp $
 
 
 # -----------------------------------------------------------------------------
@@ -205,6 +205,17 @@ java-pkg_dojar() {
 }
 
 
+# ------------------------------------------------------------------------------
+# @internal-function depend-java-query
+#
+# Wrapper for the depend-java-query binary to enable passing USE in env.
+# Using env variables keeps this eclass working with java-config versions that
+# do not handle use flags.
+# ------------------------------------------------------------------------------
+
+depend-java-query() {
+	USE="${USE}" $(which depend-java-query) "${@}"
+}
 
 # ------------------------------------------------------------------------------
 # @ebuild-function java-pkg_regjar
@@ -1330,7 +1341,7 @@ eant() {
 #			"Using eant, but not depending on dev-java/ant or dev-java/ant-core"
 #	fi
 
-	local antflags
+	local antflags="-Dnoget=true"
 	java-pkg_init-compiler_
 	local compiler="${GENTOO_COMPILER}"
 
@@ -1342,7 +1353,7 @@ eant() {
 	fi
 
 	if [[ ${compiler} != "javac" ]]; then
-		antflags="-Dbuild.compiler=${build_compiler}"
+		antflags="${antflags} -Dbuild.compiler=${build_compiler}"
 		# Figure out any extra stuff to put on the classpath for compilers aside
 		# from javac
 		# ANT_BUILD_COMPILER_DEPS should be something that could be passed to

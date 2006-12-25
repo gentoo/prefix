@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-gnome.eclass,v 1.3 2006/10/28 22:29:14 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-gnome.eclass,v 1.4 2006/12/17 13:12:31 betelgeuse Exp $
 
 #
 # Original Author: Joshua Nichols <nichoj@gentoo.org>
@@ -40,7 +40,7 @@ else
 fi
 
 # Full path to installed jar
-JAVA_GNOME_JARPATH="${JAVA_PKG_JARDEST}/${JARNAME}"
+JAVA_GNOME_JARPATH="${JAVA_PKG_JARDEST}/${JAVA_GNOME_JARNAME}"
 
 # pkgconfig file for the package
 JAVA_GNOME_PC=${JAVA_GNOME_PC:="${JAVA_GNOME_BINDINGS}-java.pc"}

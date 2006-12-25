@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.117 2006/10/19 22:41:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.118 2006/12/20 01:38:35 mr_bones_ Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -44,6 +44,8 @@ egamesconf() {
 }
 
 egamesinstall() {
+	ewarn "Don't use egamesinstall, use emake DESTDIR=\"\${D}\" install instead"
+	epause 30
 	make \
 		prefix="${D}${GAMES_PREFIX}" \
 		mandir="${D}/usr/share/man" \

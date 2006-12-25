@@ -5,7 +5,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.5 2006/12/08 12:12:04 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.8 2006/12/18 10:18:56 betelgeuse Exp $
 
 inherit java-utils-2
 
@@ -33,7 +33,7 @@ DEPEND="${JAVA_PKG_E_DEPEND}"
 # ------------------------------------------------------------------------------
 RDEPEND="${DEPEND}"
 
-EXPORT_FUNCTIONS pkg_setup
+EXPORT_FUNCTIONS pkg_setup src_compile
 
 # ------------------------------------------------------------------------------
 # @eclass-pkg_setup
@@ -43,6 +43,27 @@ EXPORT_FUNCTIONS pkg_setup
 java-pkg-2_pkg_setup() {
 	java-pkg_init
 	java-pkg_ensure-test
+}
+
+# ------------------------------------------------------------------------------
+# @eclass-src_compile
+#
+# Default src_compile for java packages
+# variables:
+# EANT_BUILD_XML - controls the location of the build.xml (default: ./build.xml)
+# EANT_BUILD_TARGET - the ant target/targets to execute (default: jar)
+# EANT_DOC_TARGET - the target to build extra docs under the doc use flag
+#                   (default: the one provided by use_doc in
+#                   java-utils-2.eclass)
+# ------------------------------------------------------------------------------
+java-pkg-2_src_compile() {
+	if [[ -e "${EANT_BUILD_XML:=build.xml}" ]]; then
+		local antflags="${EANT_BUILD_TARGET:=jar}"
+		hasq doc ${IUSE} && antflags="${antflags} $(use_doc ${EANT_DOC_TARGET})"
+		eant ${antflags} -f "${EANT_BUILD_XML}"
+	else
+		echo "${FUNCNAME}: No build.xml found so nothing to do."
+	fi
 }
 
 # ------------------------------------------------------------------------------

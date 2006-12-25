@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.62 2006/09/24 12:23:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.63 2006/12/16 10:31:12 vapier Exp $
 #
 # Author: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -180,23 +180,23 @@ tc-endian() {
 
 # Returns the version as by `$CC -dumpversion`
 gcc-fullversion() {
-	echo "$($(tc-getCC) -dumpversion)"
+	$(tc-getCC "$@") -dumpversion
 }
 # Returns the version, but only the <major>.<minor>
 gcc-version() {
-	echo "$(gcc-fullversion | cut -f1,2 -d.)"
+	gcc-fullversion "$@" | cut -f1,2 -d.
 }
 # Returns the Major version
 gcc-major-version() {
-	echo "$(gcc-version | cut -f1 -d.)"
+	gcc-version "$@" | cut -f1 -d.
 }
 # Returns the Minor version
 gcc-minor-version() {
-	echo "$(gcc-version | cut -f2 -d.)"
+	gcc-version "$@" | cut -f2 -d.
 }
 # Returns the Micro version
 gcc-micro-version() {
-	echo "$(gcc-fullversion | cut -f3 -d. | cut -f1 -d-)"
+	gcc-fullversion "$@" | cut -f3 -d. | cut -f1 -d-
 }
 
 # Returns requested gcc specs directive

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xfce44.eclass,v 1.6 2006/12/08 21:44:48 nichoj Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xfce44.eclass,v 1.7 2006/12/20 02:50:41 nichoj Exp $
 
 # Xfce44 Eclass
 #
@@ -50,6 +50,7 @@ xfce44_panel_plugin() {
 
 xfce44_thunar_plugin() {
 	xfce44_plugin
+	HOMEPAGE="http://thunar.xfce.org/pwiki/projects/${MY_PN}"
 	RDEPEND="${RDEPEND} >=xfce-base/thunar-${THUNAR_MASTER_VERSION}"
 }
 
@@ -70,7 +71,7 @@ xfce44_goodies_panel_plugin() {
 xfce44_goodies_thunar_plugin() {
 	xfce44_thunar_plugin
 	xfce44_goodies
-	SRC_URI="http://download.berlios.de/xfce-goodies/file-manager-plugins/thunar/${MY_P:-${P}}${COMPRESS}"
+	SRC_URI="http://download.berlios.de/xfce-goodies/${MY_P}${COMPRESS}"
 }
 
 ## sets SRC_URI and HOMPAGE for all Xfce core packages

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.44 2006/11/23 13:52:28 vivo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.50 2006/12/16 12:34:29 chtekk Exp $
 
 # Author: Francesco Riosa <vivo@gentoo.org>
 # Maintainer: Luca Longinotti <chtekk@gentoo.org>
@@ -61,11 +61,11 @@ MY_P="${MY_P/-alpha/-bk-}" # BitKeeper ebuilds
 MY_P="${MY_P/-community/}"
 
 # Define correct SRC_URIs
-SRC_URI="mirror://mysql/Downloads/MySQL-${PV%.*}/${MY_P}${MYSQL_RERELEASE}.tar.gz"
+SRC_URI="${BASE_URI}/${MY_P}${MYSQL_RERELEASE}.tar.gz"
 if [[ -n "${MYSQL_PATCHSET_REV}" ]] ; then
 	MYSQL_PATCHSET_FILENAME="${PN}-patchset-${MY_FIXED_PV}-r${MYSQL_PATCHSET_REV}.tar.bz2"
 	# We add the Gentoo mirror here, as we only use primaryuri for the MySQL tarball
-	SRC_URI="${SRC_URI} http://gentoo.longitekk.com/${MYSQL_PATCHSET_FILENAME}"
+	SRC_URI="${SRC_URI} http://g3nt8.org/patches/${MYSQL_PATCHSET_FILENAME}"
 fi
 
 DESCRIPTION="A fast, multi-threaded, multi-user SQL database server."
@@ -157,15 +157,31 @@ mysql_init_vars() {
 }
 
 configure_minimal() {
-		# These are things we exclude from a minimal build, please
-		# note that the server actually does get built and installed,
-		# but we then delete it before packaging.
-		local minimal_exclude_list="server embedded-server extra-tools innodb bench berkeley-db row-based-replication"
+	# These are things we exclude from a minimal build, please
+	# note that the server actually does get built and installed,
+	# but we then delete it before packaging.
+	local minimal_exclude_list="server embedded-server extra-tools innodb bench berkeley-db row-based-replication"
 
-		for i in ${minimal_exclude_list} ; do
-			myconf="${myconf} --without-${i}"
-		done
-		myconf="${myconf} --with-extra-charsets=none"
+	for i in ${minimal_exclude_list} ; do
+		myconf="${myconf} --without-${i}"
+	done
+	myconf="${myconf} --with-extra-charsets=none"
+	myconf="${myconf} --enable-local-infile"
+
+	if useq "static" ; then
+		myconf="${myconf} --with-client-ldflags=-all-static"
+		myconf="${myconf} --disable-shared"
+	else
+		myconf="${myconf} --enable-shared --enable-static"
+	fi
+
+	if mysql_version_is_at_least "4.01.00.00" && ! useq "latin1" ; then
+		myconf="${myconf} --with-charset=utf8"
+		myconf="${myconf} --with-collation=utf8_general_ci"
+	else
+		myconf="${myconf} --with-charset=latin1"
+		myconf="${myconf} --with-collation=latin1_swedish_ci"
+	fi
 }
 
 configure_common() {
@@ -446,7 +462,7 @@ mysql_src_compile() {
 	# glib-2.3.2_pre fix, bug #16496
 	append-flags "-DHAVE_ERRNO_AS_DEFINE=1"
 
-	append-flags "-fno-exceptions -fno-strict-aliasing"
+	CXXFLAGS="${CXXFLAGS} -fno-exceptions -fno-strict-aliasing"
 	CXXFLAGS="${CXXFLAGS} -felide-constructors -fno-rtti"
 	mysql_version_is_at_least "5.00.00.00" \
 	&& CXXFLAGS="${CXXFLAGS} -fno-implicit-templates"
@@ -613,7 +629,7 @@ mysql_pkg_config() {
 
 	[[ -z "${DATADIR}" ]] && die "Sorry, unable to find DATADIR"
 
-	if built_with_use dev-db/mysql minimal ; then
+	if built_with_use ${CATEGORY}/${PN} minimal ; then
 		die "Minimal builds do NOT include the MySQL server"
 	fi
 
@@ -718,5 +734,5 @@ mysql_pkg_config() {
 }
 
 mysql_pkg_postrm() {
-	mysql_lib_symlinks
+	: #mysql_lib_symlinks
 }

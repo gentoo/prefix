@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.316 2006/11/13 18:57:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.318 2006/12/23 02:40:30 vapier Exp $
 
 HOMEPAGE="http://gcc.gnu.org/"
 LICENSE="GPL-2 LGPL-2.1"
@@ -1283,7 +1283,7 @@ gcc_do_configure() {
 		fi
 
 		if [[ ${GCCMAJOR}.${GCCMINOR} > 4.1 ]] ; then
-			confgcc="${confgcc} --disable-bootstrap"
+			confgcc="${confgcc} --disable-bootstrap --disable-libgomp"
 		fi
 	elif [[ ${CHOST} != mingw* ]] ; then
 		confgcc="${confgcc} --enable-shared --enable-threads=posix"
@@ -1298,6 +1298,7 @@ gcc_do_configure() {
 			confgcc="${confgcc} --with-local-prefix=${EPREFIX}/usr"
 		fi
 	fi
+	[[ ${CTARGET} == *-elf ]] && confgcc="${confgcc} --with-newlib"
 	# __cxa_atexit is "essential for fully standards-compliant handling of
 	# destructors", but apparently requires glibc.
 	# --enable-sjlj-exceptions : currently the unwind stuff seems to work

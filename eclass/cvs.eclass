@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cvs.eclass,v 1.65 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cvs.eclass,v 1.68 2006/12/11 00:16:28 vapier Exp $
 #
 # Maintainer: vapier@gentoo.org (and anyone who wants to help)
 
@@ -35,7 +35,9 @@ inherit eutils
 # quiet, to disregard the ~/.cvsrc config file and to use maximum
 # compression.
 
-[ -z "$ECVS_CVS_COMMAND" ] && ECVS_CVS_COMMAND="cvs -q -f -z4"
+[[ -z ${ECVS_CVS_COMPRESS} ]] && ECVS_CVS_COMPRESS="-z1"
+[[ -z ${ECVS_CVS_OPTIONS} ]] && ECVS_CVS_OPTIONS="-q -f"
+[[ -z ${ECVS_CVS_COMMAND} ]] && ECVS_CVS_COMMAND="cvs ${ECVS_CVS_OPTIONS} ${ECVS_CVS_COMPRESS}"
 
 
 # ECVS_UP_OPTS, ECVS_CO_OPTS -- CVS options given after the cvs
@@ -115,7 +117,6 @@ inherit eutils
 # ECVS_USER -- Username to use for authentication on the remote server
 [ -z "$ECVS_USER" ] && ECVS_USER="anonymous"
 
-
 # ECVS_PASS -- Password to use for authentication on the remote server
 [ -z "$ECVS_PASS" ] && ECVS_PASS=""
 
@@ -174,12 +175,6 @@ cvs_fetch() {
 	local ECVS_COMMAND="${ECVS_COMMAND}"
 	local ECVS_UP_OPTS="${ECVS_UP_OPTS}"
 	local ECVS_CO_OPTS="${ECVS_CO_OPTS}"
-
-	# Fix for sourceforge which doesnt want -z>3 anymore.
-
-	(echo $ECVS_SERVER | grep -q sourceforge) \
-		&& [ "$ECVS_CVS_COMMAND" == "cvs -q -f -z4" ] \
-		&& ECVS_CVS_COMMAND="cvs -q -f -z3"
 
 	debug-print-function $FUNCNAME $*
 
@@ -275,7 +270,10 @@ cvs_fetch() {
 	then
 		local server="${ECVS_USER}@${ECVS_SERVER}"
 	else
-		local server=":${ECVS_AUTH}:${ECVS_USER}@${ECVS_SERVER}"
+		local connection="${ECVS_AUTH}"
+		[[ -n ${ECVS_PROXY} ]] && connection="${connection};proxy=${ECVS_PROXY}"
+		[[ -n ${ECVS_PROXY_PORT} ]] && connection="${connection};proxyport=${ECVS_PROXY_PORT}"
+		local server=":${connection}:${ECVS_USER}@${ECVS_SERVER}"
 	fi
 
 	# Switch servers automagically if needed
@@ -490,7 +488,8 @@ cvs_src_unpack() {
 		ECVS_LOCALNAME="$ECVS_MODULE"
 	fi
 
-	local offline_pkg_var="ECVS_OFFLINE_${PN}"
+	local sanitized_pn=$(echo "${PN}" | LC_ALL=C sed -e 's:[^A-Za-z0-9_]:_:g')
+	local offline_pkg_var="ECVS_OFFLINE_${sanitized_pn}"
 	if [ "${!offline_pkg_var}" == "1" -o "$ECVS_OFFLINE" == "1" -o "$ECVS_SERVER" == "offline" ]; then
 		# We're not required to fetch anything; the module already
 		# exists and shouldn't be updated.
