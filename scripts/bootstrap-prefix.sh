@@ -134,7 +134,7 @@ setup_portage() {
 }
 
 bootstrap_tree() {
-	PV="20061224"
+	PV="20061227"
 	for x in etc usr/{,s}bin var/tmp var/lib/portage var/log/portage var/db;
 	do
 		[ -d "${ROOT}/${x}" ] || mkdir -p "${ROOT}/${x}"
@@ -155,7 +155,7 @@ bootstrap_ldwrapper() {
 	# based on what system we have do some adjusting of the wrapper's work
 	case ${CHOST} in
 		*-darwin*)
-			libs="-L${ROOT}/lib -L${ROOT}/usr/lib"
+			libs="-search_paths_first -L${ROOT}/lib -L${ROOT}/usr/lib"
 			rpaths=""
 		;;
 		*)
@@ -188,7 +188,7 @@ bootstrap_ldwrapper() {
 bootstrap_portage() {
 	# don't use "latest" here, as I want to have the bootstrap script to
 	# use a portage in a known "state"
-	PV=2.1.20.5380
+	PV=2.1.20.5396
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 		
