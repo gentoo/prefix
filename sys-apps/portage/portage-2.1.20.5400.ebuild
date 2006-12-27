@@ -46,6 +46,7 @@ src_compile() {
 		--with-rootuser=${PORTAGE_INST_USER:-root} \
 		--with-wheelgid=${PORTAGE_INST_GID:-0} \
 		--with-offset-prefix=${EPREFIX} \
+		--with-default-path="/usr/bin:/bin" \
 		|| die "econf failed"
 
 	if use elibc_FreeBSD; then
