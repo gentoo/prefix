@@ -1,0 +1,205 @@
+# ChangeLog for dev-libs/expat
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.54 2006/09/06 18:19:56 flameeyes Exp $
+
+  06 Sep 2006; Diego Pettenò <flameeyes@gentoo.org> expat-1.95.8.ebuild:
+  Drop ~x86-fbsd keyword from 1.95.8 so that the missing test dependency is
+  not an error anymore.
+
+  17 Apr 2006; Emanuele Giaquinta <exg@gentoo.org>
+  files/expat-2.0.0-test-64bit.patch, +files/expat-2.0.0-test-cpp.patch,
+  expat-2.0.0.ebuild:
+  Add patch to fix bug #128143 (thanks Flameeyes) and to add missing
+  definition for CXX in Makefile.in; use elibtoolize again since the
+  bundled ltmain.sh behaves correctly now.
+
+  12 Apr 2006; Emanuele Giaquinta <exg@gentoo.org>
+  +files/expat-2.0.0-test-64bit.patch, expat-2.0.0.ebuild:
+  Remove dep on dev-libs/check since it's not needed anymore. Use eautoreconf
+  instead of elibtoolize to fix test linking. Add patch to fix test build on 64
+  bit hosts (thanks Flameeyes).
+
+  30 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> expat-1.95.8.ebuild,
+  expat-2.0.0.ebuild:
+  Add ~x86-fbsd keywords.
+
+  30 Mar 2006; Emanuele Giaquinta <exg@gentoo.org> expat-2.0.0.ebuild:
+  Add warning about the ABI change.
+
+*expat-2.0.0 (24 Mar 2006)
+
+  24 Mar 2006; Emanuele Giaquinta <exg@gentoo.org> +expat-2.0.0.ebuild:
+  Version bump.
+
+  10 Oct 2005; Danny van Dyk <kugelfang@gentoo.org> expat-1.95.8.ebuild:
+  Fixed missing 'inherit multilib'.
+
+  06 Feb 2005; Joshua Kinard <kumba@gentoo.org> expat-1.95.8.ebuild:
+  Marked stable on mips.
+
+  16 Jan 2005; Guy Martin <gmsoft@gentoo.org> expat-1.95.8.ebuild:
+  Stable on hppa.
+
+  15 Jan 2005; Lina Pezzella <j4rg0n@gentoo.org> expat-1.95.8.ebuild:
+  Stable ppc-macos.
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  21 Dec 2004; Bryan Østergaard <kloeri@gentoo.org> expat-1.95.8.ebuild:
+  Stable on alpha.
+
+  16 Dec 2004; Dylan Carlson <absinthe@gentoo.org> expat-1.95.8.ebuild:
+  Stable on amd64.
+
+  23 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org> expat-1.95.8.ebuild:
+  Stable on sparc
+
+  20 Nov 2004; Doug Goldstein <cardoe@gentoo.org> expat-1.95.8.ebuild:
+  stable on x86
+
+*expat-1.95.8 (22 Sep 2004)
+
+  22 Sep 2004; Doug Goldstein <cardoe@gentoo.org> +expat-1.95.8.ebuild:
+  revision bump
+
+  19 Sep 2004; Joshua Kinard <kumba@gentoo.org> expat-1.95.7.ebuild:
+  Marked stable on mips.
+
+  09 Sep 2004; Gustavo Zacarias <gustavoz@gentoo.org> expat-1.95.7.ebuild:
+  Stable on sparc
+
+*expat-1.95.7-r1 (09 Sep 2004)
+
+  09 Sep 2004; Doug Goldstein <cardoe@gentoo.org> +expat-1.95.7-r1.ebuild:
+  make check adds additional depends... graceful solution to include those
+  depends if the FEATURE is requested. Had to use a local USE flag though.
+
+  07 Aug 2004; Michael Sterrett <mr_bones_@gentoo.org> expat-1.95.7.ebuild:
+  gnuconfig_update in src_unpack; use generic src_compile
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org> expat-1.95.4.ebuild,
+  expat-1.95.5-r1.ebuild, expat-1.95.6-r1.ebuild, expat-1.95.6.ebuild,
+  expat-1.95.7.ebuild:
+  virtual/glibc -> virtual/libc
+
+  15 Jun 2004; <solar@gentoo.org> expat-1.95.6-r1.ebuild,
+  files/expat-1.95.6-uclibc.patch:
+  added uclibc patch for configure target
+
+  15 May 2004; Bryan Østergaard <kloeri@gentoo.org> expat-1.95.7.ebuild:
+  Stable on alpha.
+
+  25 Apr 2004; Aron Griffis <agriffis@gentoo.org> expat-1.95.7.ebuild:
+  Add die following econf for bug 48950
+
+  17 Apr 2004; Travis Tilley <lv@gentoo.org> expat-1.95.7.ebuild:
+  marked stable on amd64
+
+  22 Mar 2004; Joshua Kinard <kumba@gentoo.org> expat-1.95.7.ebuild:
+  I was dumb, forgot to add econf and emake to the src_compile() function I
+  added to fix a mips issue.
+
+  21 Mar 2004; Joshua Kinard <kumba@gentoo.org> expat-1.95.6-r1.ebuild,
+  expat-1.95.7.ebuild:
+  Added gnuconfig support to 1.95.6-r1 and 1.95.7 for mips, and added ~mips to
+  KEYWORDS for 1.95.7
+
+  28 Dec 2003; Joshua Kinard <kumba@gentoo.org> expat-1.95.6-r1.ebuild:
+  Move to mips stable (~mips -> mips)
+
+*expat-1.95.7 (09 Nov 2003)
+
+  09 Nov 2003; Michael Sterrett <mr_bones_@gentoo.org> expat-1.95.7.ebuild:
+  version bump; (bug 32832) - the claim is that the patch isn't needed anymore.
+  Also, modified the ebuild to use parallel make again in the hope that it's
+  been fixed upstream.
+
+  23 Sep 2003; Bartosch Pixa <darkspecter@gentoo.org> expat-1.95.6-r1.ebuild:
+  set ppc in keywords
+
+  17 Sep 2003; Jon Portnoy <avenj@gentoo.org> expat-1.95.6-r1.ebuild :
+  ia64 keywords.
+
+  24 Jun 2003; Aron Griffis <agriffis@gentoo.org> expat-1.95.6-r1.ebuild:
+  Mark stable on alpha
+
+*expat-1.95.6-r1 (17 Mar 2003)
+
+  16 Jun 2003; Guy Martin <gmsoft@gento.org> expat-1.95.6-r1.ebuild :
+  Added hppa to KEYWORDS.
+
+  02 Apr 2003; Christian Birchinger <joker@gentoo.org> expat-1.95.6-r1.ebuild:
+  Added stable sparc keyword
+
+  17 Mar 2003; Patrick Kursawe <phosphan@gentoo.org> :
+  added patch xmlstatus to fix problem described in
+  sourceforge request 676844 and gentoo bug 17426
+  (that made pwlib build fail)
+
+*expat-1.95.6 (09 Mar 2003)
+
+  29 May 2003; Zach Welch <zwelch@gentoo.org expat-1.95.6-r1.ebuild,
+  expat-1.95.6.ebuild:
+  add arm keyword
+
+  09 Mar 2003; Daniel Ahlberg <aliz@gentoo.org> :
+  Version bump.
+
+  21 Feb 2003; Zach Welch <zwelch@gentoo.org> :
+  Added arm to keywords.
+
+  07 Feb 2003; Guy Martin <gmsoft@gentoo.org> :
+  Added hppa to keywords.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+
+*expat-1.95.5-r1 (02 Dec 2002)
+
+  02 Dec 2002; Seemant Kulleen <seemant@gentoo.org> expat-1.95.5-r1.ebuild
+  files/digest-expat-1.95.5-r1 :
+
+  Man page is now installed in FHS correct location.  Small enough package
+  that I version bumped.  Closes bug #11236 by k8la@arrl.net (Thomas M.
+  Beaudry)
+
+*expat-1.95.5 (11 Nov 2002)
+
+  11 Nov 2002; Karl Trygve Kalleberg <karltk@gentoo.org> expat-1.95.5.ebuild files/digest-expat-1.95.5 :
+  New upstream version.
+
+*expat-1.95.4 (23 Jul 2002)
+
+  06 Jan 2003; Jan Seidel <tuxus@gentoo.org> expat-1.95.4.ebuild :
+  Added mips to keywords.
+
+  01 Sep 2002; George Shapovalov <george@gentoo.org> expat-1.95.4.ebuild :
+  fixed man page install location
+
+  08 Aug 2002; Seemant Kulleen <seemant@gentoo.org> expat-1.95.4.ebuild :
+  Made more FHS compliant.
+
+  23 Jul 2002; Mark Guertin <gerk@gentoo.org> :
+  Added ppc to keywords
+
+  23 Jul 2002; Arcady Genkin <agenkin@thpoon.com> expat-1.95.4.ebuild :
+  Version bump.
+
+*expat-1.95.3 (10 Jul 2002)
+
+  10 Jul 2002; Seemant Kulleen <seemant@gentoo.org> expat-1.95.3.ebuild
+  files/digest-expat-1.95.3 :
+  Version bump.  Also, SRC_URI changed to use sourceforge mirror.  LICENSE,
+  SLOT and KEYWORDS added.  Thanks to: gentoo@gonzo.ch (Roman Weber) in bug
+  #4797
+
+*expat-1.95.2 (25 Mar 2002)
+
+  25 Mar 2002; Donny Davies <woodchip@gentoo.org> expat-1.95.2.ebuild :
+  Update to latest release.  Fixed to install into ${D}, previously it didn't.
+  Parallel make is busted, s/emake/make/.  Fixed html docs.
+
+*expat-1.95.1-r1 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  Added initial ChangeLog.
