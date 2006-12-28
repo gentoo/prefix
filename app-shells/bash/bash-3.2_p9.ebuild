@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p1.ebuild,v 1.1 2006/10/18 16:49:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p9.ebuild,v 1.1 2006/12/16 03:07:26 vapier Exp $
 
 EAPI="prefix"
 
@@ -17,12 +17,12 @@ READLINE_PLEVEL=0
 DESCRIPTION="The standard GNU Bourne again shell"
 HOMEPAGE="http://cnswww.cns.cwru.edu/~chet/bash/bashtop.html"
 # Hit the GNU mirrors before hitting Chet's site
+#		printf 'mirror://gnu/bash/bash-%s-patches/bash%s-%03d\n' \
+#			${MY_PV} ${MY_PV/\.} ${i}
 SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz
 	ftp://ftp.cwru.edu/pub/bash/${MY_P}.tar.gz
 	$(for ((i=1; i<=PLEVEL; i++)); do
 		printf 'ftp://ftp.cwru.edu/pub/bash/bash-%s-patches/bash%s-%03d\n' \
-			${MY_PV} ${MY_PV/\.} ${i}
-		printf 'mirror://gnu/bash/bash-%s-patches/bash%s-%03d\n' \
 			${MY_PV} ${MY_PV/\.} ${i}
 	done)
 	$(for ((i=1; i<=READLINE_PLEVEL; i++)); do
@@ -45,6 +45,9 @@ src_unpack() {
 	unpack ${MY_P}.tar.gz
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-3.1-gentoo.patch
+
+	# Fix process substitution on BSD.
+	epatch "${FILESDIR}"/${PN}-3.2-process-subst.patch
 
 	# Include official patches
 	local i
@@ -74,12 +77,6 @@ src_unpack() {
 	fi
 
 	epatch "${FILESDIR}"/${PN}-3.0-configs.patch
-
-	sed -i 's:-lcurses:-lncurses:' configure || die "sed configure"
-
-	epatch "${FILESDIR}"/${PN}-3.0-pathnames.patch
-	sed -i -e "s:\@PREFIX\@:${EPREFIX}:g" config-top.h pathnames.h.in \
-		|| die "sed failed."
 }
 
 src_compile() {
@@ -101,7 +98,6 @@ src_compile() {
 
 	# Force linking with system curses ... the bundled termcap lib
 	# sucks bad compared to ncurses
-	export bash_cv_termcap_lib=libcurses
 	myconf="${myconf} --with-curses"
 
 	econf \
