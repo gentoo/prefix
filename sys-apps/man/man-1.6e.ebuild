@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6e.ebuild,v 1.1 2006/11/29 05:18:12 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6e.ebuild,v 1.2 2006/12/27 16:15:47 vapier Exp $
 
 EAPI="prefix"
 
@@ -107,7 +107,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${D}" PREFIX="${EPREFIX}" install || die "make install failed"
+	emake DESTDIR="${D}" PREFIX="${EPREFIX}" install || die "make install failed"
 	dosym man /usr/bin/manpath
 
 	# man setup is kind of broken, so man.conf installs in double prefix, but
@@ -120,7 +120,8 @@ src_install() {
 
 	dodoc LSM README* TODO
 
-	exeinto /etc/cron.weekly
+	# makewhatis only adds man-pages from the last 24hrs
+	exeinto /etc/cron.daily
 	newexe "${T}"/makewhatis.cron makewhatis
 
 	keepdir /var/cache/man
@@ -140,7 +141,13 @@ pkg_postinst() {
 
 	echo
 
-	local files=$(ls "${EROOT}"/etc/cron.{daily,weekly}/makewhatis{,.cron} 2>/dev/null)
+	local f files=$(ls "${EROOT}"/etc/cron.{daily,weekly}/makewhatis{,.cron} 2>/dev/null)
+	for f in ${files} ; do
+		[[ ${f} == */etc/cron.daily/makewhatis ]] && continue
+		[[ $(md5sum "${f}") == "8b2016cc778ed4e2570b912c0f420266 "* ]] \
+			&& rm -f "${f}"
+	done
+	files=$(ls "${EROOT}"/etc/cron.{daily,weekly}/makewhatis{,.cron} 2>/dev/null)
 	if [[ ${files/$'\n'} != ${files} ]] ; then
 		ewarn "You have multiple makewhatis cron files installed."
 		ewarn "You might want to delete all but one of these:"
