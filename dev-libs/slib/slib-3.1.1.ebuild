@@ -1,10 +1,10 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/slib/slib-2.4.6.ebuild,v 1.12 2006/12/18 18:17:48 masterdriverz Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/slib/slib-3.1.1.ebuild,v 1.7 2006/12/18 18:17:48 masterdriverz Exp $
 
 EAPI="prefix"
 
-MY_P=${PN}2d6
+MY_P=${PN}3a1
 S=${WORKDIR}/${PN}
 DESCRIPTION="library providing functions for Scheme implementations"
 SRC_URI="http://swissnet.ai.mit.edu/ftpdir/scm/OLD/${MY_P}.zip"
