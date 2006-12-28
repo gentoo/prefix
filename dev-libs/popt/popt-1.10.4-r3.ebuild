@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/popt-1.10.4-r2.ebuild,v 1.6 2006/11/12 03:55:04 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/popt-1.10.4-r3.ebuild,v 1.4 2006/11/12 03:55:04 vapier Exp $
 
 EAPI="prefix"
 
@@ -21,13 +21,11 @@ IUSE="nls"
 RDEPEND="nls? ( virtual/libintl )"
 DEPEND="nls? ( sys-devel/gettext )"
 
-#test fail. I can't figure out why.
-RESTRICT=test
-
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-lib64.patch
+	epatch "${FILESDIR}"/${P}-regression.patch
 	use nls || epatch "${FILESDIR}"/${P}-nls.patch
 	eautoreconf
 }
@@ -38,6 +36,6 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die
+	emake install DESTDIR="${D}" || die
 	dodoc CHANGES README
 }
