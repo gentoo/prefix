@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/pth
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/ChangeLog,v 1.41 2006/09/23 00:57:44 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/ChangeLog,v 1.42 2006/10/27 11:42:01 grobian Exp $
+
+  27 Oct 2006; Fabian Groffen <grobian@gentoo.org> pth-1.4.0.ebuild,
+  pth-2.0.3.ebuild, pth-2.0.5.ebuild, pth-2.0.6.ebuild:
+  Dropped ppc-macos keyword, see you in prefix.
 
   23 Sep 2006; Daniel Black <dragonheart@gentoo.org>
   +files/pth-1.4.0-sigstack.patch, +files/pth-2.0.6-sigstack.patch,
