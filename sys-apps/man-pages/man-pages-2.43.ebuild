@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-2.42.ebuild,v 1.3 2006/12/02 22:40:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-2.43.ebuild,v 1.1 2006/12/02 22:41:10 vapier Exp $
 
 EAPI="prefix"
 
@@ -15,8 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="nls"
 
-RDEPEND="virtual/man
-	!dev-libs/libiconv"
+RDEPEND="virtual/man"
 PDEPEND="nls? (
 	linguas_cs? ( app-i18n/man-pages-cs )
 	linguas_da? ( app-i18n/man-pages-da )
