@@ -1,0 +1,75 @@
+# ChangeLog for app-shells/zsh-completion
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/ChangeLog,v 1.16 2006/11/17 15:11:40 flameeyes Exp $
+
+  17 Nov 2006; Diego Pettenò <flameeyes@gentoo.org>
+  zsh-completion-20060618.ebuild:
+  Add ~sparc-fbsd keyword.
+
+  20 Sep 2006; Diego Pettenò <flameeyes@gentoo.org>
+  zsh-completion-20060618.ebuild:
+  Add ~x86-fbsd keyword.
+
+  22 Jun 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  zsh-completion-20050120.ebuild:
+  Stable on sparc
+
+*zsh-completion-20060618 (17 Jun 2006)
+
+  17 Jun 2006; Mamoru KOMACHI <usata@gentoo.org>
+  +zsh-completion-20060618.ebuild:
+  Added eclean completion and most of the programs of portage_utils.
+  Thanks to baptux <baptiste.daroussin@gmail.com>. This closes bug #133855.
+
+*zsh-completion-20050503 (03 May 2005)
+
+  03 May 2005; Mamoru KOMACHI <usata@gentoo.org>
+  +zsh-completion-20050503.ebuild:
+  Added euse completion. Thanks to baptux <baptiste.daroussin@gmail.com>;
+  bug #91196.
+
+  21 Apr 2005; Simon Stelling <blubb@gentoo.org>
+  zsh-completion-20050120.ebuild:
+  stable on amd64
+
+  06 Apr 2005; Mamoru KOMACHI <usata@gentoo.org>
+  zsh-completion-20040730.ebuild, zsh-completion-20050120.ebuild:
+  Added einfos to tell users recompile their functions if they use zcompile;
+  bug #83824.
+
+  31 Mar 2005; Aron Griffis <agriffis@gentoo.org>
+  zsh-completion-20050120.ebuild:
+  stable on ia64
+
+  30 Mar 2005; Michael Hanselmann <hansmi@gentoo.org>
+  zsh-completion-20050120.ebuild:
+  Stable on ppc.
+
+  28 Mar 2005; Guy Martin <gmsoft@gentoo.org> zsh-completion-20050120.ebuild:
+  Stable on hppa.
+
+  21 Mar 2005; Mamoru KOMACHI <usata@gentoo.org>
+  zsh-completion-20050120.ebuild:
+  Stable on x86 and ppc-macos.
+
+*zsh-completion-20050120 (23 Feb 2005)
+
+  23 Feb 2005; Mamoru KOMACHI <usata@gentoo.org>
+  +zsh-completion-20050120.ebuild:
+  Support '--' style operation and other improvements. Special thanks to
+  baptux <bapt@ifrance.com> and oberyno <oberyno@gmail.com>. See bug #71957
+  and bug #71532.
+
+  10 Feb 2005; Kito <kito@gentoo.org> zsh-completion-20040730.ebuild:
+  keyword ~ppc-macos
+
+  14 Dec 2004; Akinori Hattori <hattya@gentoo.org>
+  zsh-completion-20040730.ebuild:
+  add ~ia64.
+
+*zsh-completion-20040730 (07 Nov 2004)
+
+  07 Nov 2004; Mamoru KOMACHI <usata@gentoo.org> +metadata.xml,
+  +zsh-completion-20040730.ebuild:
+  Initial import. Derived from zsh package.
+
