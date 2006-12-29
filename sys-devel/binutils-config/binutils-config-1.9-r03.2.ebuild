@@ -68,6 +68,9 @@ src_install() {
 
 pkg_postinst() {
 	# refresh all links and the wrapper
-	[[ ${EROOT%/} == ${EPREFIX%/} ]] \
-		&& binutils-config $(${EROOT}/usr/bin/binutils-config --get-current-profile)
+	if [[ ${EROOT%/} == ${EPREFIX%/} ]] ; then
+		[[ -f ${EROOT}/etc/env.d/binutils/config-${CHOST} ]] \
+			&& binutils-config $(${EROOT}/usr/bin/binutils-config --get-current-profile) \
+			|| binutils-config 1
+	fi
 }
