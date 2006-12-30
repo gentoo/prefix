@@ -17,7 +17,7 @@ IUSE=""
 
 RDEPEND=">=sys-apps/findutils-4.2"
 
-W_VER=1.0
+W_VER=1.1
 
 src_unpack() {
 	cp "${FILESDIR}"/${PN}-${PV} "${T}"/

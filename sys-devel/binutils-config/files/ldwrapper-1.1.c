@@ -181,7 +181,7 @@ bail:
 
 /* find_ldpath_in_envd parses /etc/env.d/05gcc, and tries to
  * extract LDPATH, which is set to the LDPATH for all compilers, with
- * the current compiler first
+ * the current compiler first, of which only the first path is returned
  */
 static int find_ldpath_in_envd(struct wrapper_data *data, int cross_compile)
 {
@@ -345,30 +345,53 @@ int main(int argc, char *argv[])
 	data->path = NULL;
 
 	/* Get the include path for the compiler */
-	find_ldpath_in_envd(data, 0);
+	if (find_ldpath_in_envd(data, 0) == 0) {
+		data->ldpath[0] = '\0';
+		fprintf(stderr, "binutils-config warning: no GCC found on your system!");
+	}
 
 	/* We add -L and -rpath flags before invoking the real binary */
 #if !defined(NEEDS_LIBRARY_INCLUDES) && !defined(NEEDS_RPATH_DIRECTIONS)
 # error NEEDS_LIBRARY_INCLUDES and/or NEEDS_RPATH_DIRECTIONS must be defined
 #endif
-	snprintf(callarg, MAXPATHLEN * 8,
+	if (data->ldpath[0] == '\0') {
+		size = snprintf(callarg, MAXPATHLEN * 8,
 #ifdef NEEDS_LIBRARY_INCLUDES
-			"%s -L%s "
+				"%s "
 #endif
 #ifdef NEEDS_RPATH_DIRECTIONS
-			"%s -rpath=%s"
+				"%s"
 #endif
-			,
+				,
 #ifdef NEEDS_LIBRARY_INCLUDES
-			"@LIBRARY_INCLUDES@",
-			data->ldpath
+				"@LIBRARY_INCLUDES@"
 #endif
 #ifdef NEEDS_RPATH_DIRECTIONS
-			,
-			"@RUNPATH_DIRECTIONS@",
-			data->ldpath
+				,
+				"@RUNPATH_DIRECTIONS@"
 #endif
-			);
+		);
+	} else {
+		size = snprintf(callarg, MAXPATHLEN * 8,
+#ifdef NEEDS_LIBRARY_INCLUDES
+				"%s -L%s "
+#endif
+#ifdef NEEDS_RPATH_DIRECTIONS
+				"%s -rpath=%s"
+#endif
+				,
+#ifdef NEEDS_LIBRARY_INCLUDES
+				"@LIBRARY_INCLUDES@",
+				data->ldpath
+#endif
+#ifdef NEEDS_RPATH_DIRECTIONS
+				,
+				"@RUNPATH_DIRECTIONS@",
+				data->ldpath
+#endif
+		);
+	}
+	callarg[size] = '\0';
 	newargv = build_new_argv(argv, callarg);
 	if (!newargv)
 		wrapper_exit("%s wrapper: out of memory\n", argv[0]);
