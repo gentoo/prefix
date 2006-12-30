@@ -27,7 +27,6 @@ src_unpack() {
 	cp "${FILESDIR}"/${PN}-${PV}  "${S}/"${PN}
 	cd "${S}"
 	epatch "${FILESDIR}"/wrapper-${W_VER}-prefix.patch
-	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify wrapper-${W_VER}.c ${PN}
 }
 
