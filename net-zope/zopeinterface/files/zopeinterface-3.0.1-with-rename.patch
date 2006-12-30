@@ -1,0 +1,252 @@
+=== modified file 'Dependencies/zope.interface-ZopeInterface-3.0.1/zope.interface/adapter.py'
+--- Dependencies/zope.interface-ZopeInterface-3.0.1/zope.interface/adapter.py	2006-09-20 20:56:16 +0000
++++ Dependencies/zope.interface-ZopeInterface-3.0.1/zope.interface/adapter.py	2006-09-20 21:19:48 +0000
+@@ -192,8 +192,8 @@
+                         oldwithobs = implied[key] = {}
+                         
+                     # v is {with -> tuple([object])}
+-                    for with, objects in v.iteritems():
+-                        oldwithobs[with] = oldwithobs.get(with, ()) + objects
++                    for withob, objects in v.iteritems():
++                        oldwithobs[withob] = oldwithobs.get(withob, ()) + objects
+                     
+                 else:
+                     oldbyname = implied.get(key)
+@@ -253,24 +253,24 @@
+     def unsubscribe(self, dependent):
+         del self.dependents[dependent]
+ 
+-    def _adaptTo(self, specification, object, name='', with=()):
++    def _adaptTo(self, specification, object, name='', withob=()):
+         if object is None:
+             try:
+-                del self.adapters[False, tuple(with), name, specification]
++                del self.adapters[False, tuple(withob), name, specification]
+             except KeyError:
+                 pass
+         else:
+-            self.adapters[False, tuple(with), name, specification
++            self.adapters[False, tuple(withob), name, specification
+                           ] = object
+ 
+         self.dirty()
+ 
+-    def _subscriptionAdaptTo(self, specification, object, with=()):
++    def _subscriptionAdaptTo(self, specification, object, withob=()):
+         if object is None:
+             raise TypeError, ("Unregistering subscription adapters" 
+                               " isn't implemented")
+ 
+-        key = (True, tuple(with), '', specification)
++        key = (True, tuple(withob), '', specification)
+         self.adapters[key] = self.adapters.get(key, ()) + (object, )
+         self.dirty()
+ 
+@@ -287,13 +287,13 @@
+     #           withs[j][0] extends withs[i][0].
+ 
+     withs = []
+-    for with, value in bywith.iteritems():
++    for withob, value in bywith.iteritems():
+         for i, (w, v) in enumerate(withs):
+-            if withextends(with, w):
+-                withs.insert(i, (with, value))
++            if withextends(withob, w):
++                withs.insert(i, (withob, value))
+                 break
+         else:
+-            withs.append((with, value))
++            withs.append((withob, value))
+             
+     return withs
+     
+@@ -355,7 +355,7 @@
+ 
+         # Multi adapter
+ 
+-        with = required[1:]
++        withob = required[1:]
+         key = provided, order
+ 
+         for surrogate in self.get(required[0]), self._default:
+@@ -377,7 +377,7 @@
+             for rwith, value in bywith:
+                 # the `rank` describes how well the found adapter matches.
+                 rank = []
+-                for rspec, spec in zip(rwith, with):
++                for rspec, spec in zip(rwith, withob):
+                     if not spec.isOrExtends(rspec):
+                         break # This one is no good
+                     # Determine the rank of this particular specification.
+@@ -459,7 +459,7 @@
+         
+         # Multi
+         key = 's', provided, order
+-        with = required[1:]
++        withob = required[1:]
+         result = []
+         
+         for surrogate in self.get(required[0]), self._default:
+@@ -468,7 +468,7 @@
+                 continue
+ 
+             for rwith, values in bywith:
+-                for rspec, spec in zip(rwith, with):
++                for rspec, spec in zip(rwith, withob):
+                     if not spec.isOrExtends(rspec):
+                         break # This one is no good
+                 else:
+@@ -537,22 +537,22 @@
+ 
+     def register(self, required, provided, name, value):
+         if required:
+-            with = []
++            withob = []
+             for iface in required[1:]:
+                 if iface is None:
+                     iface = Interface
+-                with.append(iface)
+-            with = tuple(with)
++                withob.append(iface)
++            withob = tuple(withob)
+             required = self.get(required[0])
+         else:
+-            with = ()
++            withob = ()
+             required = self._null
+         
+         if not isinstance(name, basestring):
+             raise TypeError("The name provided to provideAdapter "
+                             "must be a string or unicode")
+ 
+-        required._adaptTo(provided, value, unicode(name), with)
++        required._adaptTo(provided, value, unicode(name), withob)
+ 
+     def lookupAll(self, required, provided):
+         order = len(required)
+@@ -585,7 +585,7 @@
+ 
+         # Multi adapter
+ 
+-        with = required[1:]
++        withob = required[1:]
+         key = provided, order
+         first = ()
+ 
+@@ -599,7 +599,7 @@
+                     continue
+ 
+                 for rwith, value in bywith:
+-                    for rspec, spec in zip(rwith, with):
++                    for rspec, spec in zip(rwith, withob):
+                         if not spec.isOrExtends(rspec):
+                             break # This one is no good
+                     else:
+@@ -611,19 +611,19 @@
+ 
+     def subscribe(self, required, provided, value):
+         if required:
+-            required, with = self.get(required[0]), tuple(required[1:])
++            required, withob = self.get(required[0]), tuple(required[1:])
+         else:
+             required = self._null
+-            with = ()
++            withob = ()
+ 
+         if provided is None:
+             provided = Null
+             
+-        required._subscriptionAdaptTo(provided, value, with)
++        required._subscriptionAdaptTo(provided, value, withob)
+ 
+-def mextends(with, rwith):
+-    if len(with) == len(rwith):
+-        for w, r in zip(with, rwith):
++def mextends(withob, rwith):
++    if len(withob) == len(rwith):
++        for w, r in zip(withob, rwith):
+             if not w.isOrExtends(r):
+                 break
+         else:
+@@ -646,19 +646,19 @@
+         # TODO: Backward compatability
+         # Don't need to handle 3-tuples some day
+         try:
+-            (subscription, with, name, target) = key
++            (subscription, withob, name, target) = key
+         except ValueError:
+-            (with, name, target) = key
++            (withob, name, target) = key
+             subscription = False
+ 
+         if subscription:
+-            if with:
+-                _add_multi_sub_adapter(with, target, multi, value)
++            if withob:
++                _add_multi_sub_adapter(withob, target, multi, value)
+             else:
+                 _add_named_sub_adapter(target, implied, value)
+         else:
+-            if with:
+-                _add_multi_adapter(with, name, target, target, multi,
++            if withob:
++                _add_multi_adapter(withob, name, target, target, multi,
+                                    registered, value)
+             else:
+                 _add_named_adapter(target, target, name, implied,
+@@ -688,10 +688,10 @@
+             _add_named_adapter(b, provided, name, implied,
+                                registered, value)
+ 
+-def _add_multi_adapter(with, name, target, provided, implied,
++def _add_multi_adapter(withob, name, target, provided, implied,
+                        registered, object):
+ 
+-    ikey = target, (len(with) + 1)
++    ikey = target, (len(withob) + 1)
+     byname = implied.get(ikey)
+     if not byname:
+         byname = implied[ikey] = {}
+@@ -701,8 +701,8 @@
+         bywith = byname[name] = {}
+ 
+     
+-    rkey = ikey, name, with # The full key has all 4
+-    if (with not in bywith
++    rkey = ikey, name, withob # The full key has all 4
++    if (withob not in bywith
+         or
+         (rkey not in registered or registered[rkey].extends(provided))
+         ):
+@@ -710,10 +710,10 @@
+         # general interface that is closer provided than what we had
+         # before
+         registered[rkey] = provided
+-        bywith[with] = object
++        bywith[withob] = object
+ 
+     for b in target.__bases__:
+-        _add_multi_adapter(with, name, b, provided, implied,
++        _add_multi_adapter(withob, name, b, provided, implied,
+                            registered, object)
+ 
+ def _add_named_sub_adapter(target, implied, objects):
+@@ -723,13 +723,13 @@
+     for b in target.__bases__:
+         _add_named_sub_adapter(b, implied, objects)
+ 
+-def _add_multi_sub_adapter(with, target, implied, objects):
+-    key = 's', target, (len(with) + 1)
++def _add_multi_sub_adapter(withob, target, implied, objects):
++    key = 's', target, (len(withob) + 1)
+     bywith = implied.get(key)
+     if not bywith:
+         bywith = implied[key] = {}
+ 
+-    bywith[with] = bywith.get(with, ()) + objects
++    bywith[withob] = bywith.get(withob, ()) + objects
+ 
+     for b in target.__bases__:
+-        _add_multi_sub_adapter(with, b, implied, objects)
++        _add_multi_sub_adapter(withob, b, implied, objects)
+
