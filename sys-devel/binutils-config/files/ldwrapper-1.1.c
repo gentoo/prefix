@@ -347,7 +347,7 @@ int main(int argc, char *argv[])
 	/* Get the include path for the compiler */
 	if (find_ldpath_in_envd(data, 0) == 0) {
 		data->ldpath[0] = '\0';
-		fprintf(stderr, "binutils-config warning: no GCC found on your system!");
+		fprintf(stderr, "binutils-config warning: no GCC found on your system!\n");
 	}
 
 	/* We add -L and -rpath flags before invoking the real binary */
