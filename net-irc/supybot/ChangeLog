@@ -1,0 +1,84 @@
+# ChangeLog for net-irc/supybot
+# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-irc/supybot/ChangeLog,v 1.18 2006/09/25 21:09:35 the_paya Exp $
+
+  25 Sep 2006; Javier Villavicencio <the_paya@gentoo.org>
+  supybot-0.83.2.ebuild:
+  Added ~x86-fbsd keyword.
+
+  31 Aug 2006; Thomas Cort <tcort@gentoo.org> supybot-0.83.2.ebuild:
+  Added ~amd64 wrt Bug #145138.
+
+  22 Aug 2006; Alastair Tse <liquidx@gentoo.org> supybot-0.77.2.ebuild,
+  -supybot-0.80.1.ebuild, -supybot-0.83.0_rc3.ebuild:
+  cleanup and fix pysqlite deps for slotted pysqlite-2 (#82511)
+
+  05 Aug 2006; Jason Wever <weeve@gentoo.org> supybot-0.83.2.ebuild:
+  Added ~sparc keyword wrt bug #141096.
+
+*supybot-0.83.2 (24 Jul 2006)
+
+  24 Jul 2006; Alastair Tse <liquidx@gentoo.org> supybot-0.83.1.ebuild,
+  +supybot-0.83.2.ebuild:
+  version bump (#141606)
+
+*supybot-0.83.1 (05 Nov 2005)
+
+  05 Nov 2005; Alastair Tse <liquidx@gentoo.org> supybot-0.83.0_rc3.ebuild,
+  +supybot-0.83.1.ebuild:
+  version bump. modified sqlite dep to =dev-python/pysqlite-1\* (#99567)
+
+*supybot-0.83.0_rc3 (25 Jun 2005)
+
+  25 Jun 2005; Alastair Tse <liquidx@gentoo.org> -supybot-0.77.0.ebuild,
+  -supybot-0.80.0_pre2.ebuild, supybot-0.80.1.ebuild,
+  +supybot-0.83.0_rc3.ebuild:
+  version bump (#95186)
+
+  29 May 2005; Sven Wegener <swegener@gentoo.org>
+  -files/supybot-0.77.2-cvsadditions-2004-06-10.patch,
+  supybot-0.77.2.ebuild:
+  Moved large patch from files/ to mirrors.
+
+*supybot-0.80.1 (04 Feb 2005)
+
+  04 Feb 2005; Fernando Serboncini <fserb@gentoo.org>
+  +supybot-0.80.1.ebuild:
+  Version bump
+
+*supybot-0.80.0_pre2 (26 Oct 2004)
+
+  26 Oct 2004; Alastair Tse <liquidx@gentoo.org> supybot-0.77.0.ebuild,
+  supybot-0.77.2.ebuild, +supybot-0.80.0_pre2.ebuild:
+  made sqlite optional (#62236), version bump (#62101)
+
+  10 Sep 2004; Hasan Khalil <gongloo@gentoo.org> supybot-0.77.2.ebuild:
+  Stable macos.
+
+  29 Jun 2004; Sven Wegener <swegener@gentoo.org>
+  files/supybot-0.77.2-cvsadditions-2004-06-10.patch:
+  Cleared up the CRLF vs. LF mess in the CVS patch.
+
+  28 Jun 2004; Alastair Tse <liquidx@gentoo.org>
+  files/supybot-0.77.2-cvsadditions-2004-06-10.patch:
+  sanitize patch so it doesn't get mangled by cvs (#55319)
+
+*supybot-0.77.2 (26 Jun 2004)
+
+  26 Jun 2004; Alastair Tse <liquidx@gentoo.org>
+  +files/supybot-0.77.2-cvsadditions-2004-06-10.patch, +supybot-0.77.2.ebuild:
+  version bump, added cvs bug fix patch recommended by the developers (#53438)
+
+  29 May 2004; Pieter Van den Abeele <pvdabeel@gentoo.org>
+  supybot-0.77.0.ebuild:
+  Masked supybot-0.77.0.ebuild testing for ppc
+
+  27 Apr 2004; Aron Griffis <agriffis@gentoo.org> supybot-0.77.0.ebuild:
+  Add inherit eutils
+
+*supybot-0.77.0 (28 Feb 2004)
+
+  28 Feb 2004; Alastair Tse <liquidx@gentoo.org> supybot-0.77.0.ebuild:
+  initial ebuild. patch for setup.py thanks to David Grant
+  <david.grant@telus.net> (#42556)
+
