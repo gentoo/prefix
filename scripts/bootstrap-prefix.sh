@@ -218,7 +218,8 @@ bootstrap_portage() {
 	$MAKE install || exit 1
 
 	einfo "Avoiding a bug of endlessly looping for sed"
-	rm ${ROOT}/usr/bin/sed
+	rm -f ${ROOT}/usr/bin/sed
+	( cd ${ROOT}/usr/bin && ln -s ../../bin/sed )
 
 	setup_portage
 
