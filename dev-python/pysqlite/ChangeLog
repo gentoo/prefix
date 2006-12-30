@@ -1,0 +1,250 @@
+# ChangeLog for dev-python/pysqlite
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pysqlite/ChangeLog,v 1.66 2006/10/20 20:36:05 kloeri Exp $
+
+  20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> pysqlite-2.3.1.ebuild:
+  Stable on Alpha.
+
+  29 Sep 2006; Javier Villavicencio <the_paya@gentoo.org>
+  pysqlite-2.0.7.ebuild:
+  Keyworded ~x86-fbsd.
+
+  25 Sep 2006; Javier Villavicencio <the_paya@gentoo.org>
+  pysqlite-1.0.1.ebuild:
+  Add ~x86-fbsd keyword.
+
+  17 Aug 2006; Markus Rothe <corsair@gentoo.org> pysqlite-2.3.1.ebuild:
+  Stable on ppc64
+
+  11 Aug 2006; Gustavo Zacarias <gustavoz@gentoo.org> pysqlite-2.3.1.ebuild:
+  Stable on sparc wrt #137494
+
+  08 Aug 2006; Chris Gianelloni <wolf31o2@gentoo.org> pysqlite-2.3.1.ebuild:
+  Stable on amd64 and x86 wrt bug #118429.
+
+  31 Jul 2006; Tom Gall <tgall@gentoo.org> pysqlite-2.3.1.ebuild:
+  added ~ppc64
+
+  22 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  pysqlite-2.3.1.ebuild:
+  ppc stable, bug #137494
+
+  12 Jul 2006; Aron Griffis <agriffis@gentoo.org> pysqlite-2.3.1.ebuild:
+  Mark 2.3.1 stable on ia64. #137494
+
+  26 Jun 2006; Javier Villavicencio <the_paya@gentoo.org>
+  pysqlite-2.3.1.ebuild:
+  Add ~x86-fbsd keyword.
+
+  22 Jun 2006; Fabian Groffen <grobian@gentoo.org> pysqlite-2.2.2-r1.ebuild:
+  Marked ~ppc-macos
+
+*pysqlite-2.3.1 (22 Jun 2006)
+
+  22 Jun 2006; Marien Zwart <marienz@gentoo.org> +pysqlite-2.3.1.ebuild:
+  Version bump.
+
+*pysqlite-2.2.2-r1 (27 May 2006)
+
+  27 May 2006; Lukasz Strzygowski <lucass@gentoo.org>
+  +pysqlite-2.2.2-r1.ebuild:
+  Fixed bug #134423.
+
+*pysqlite-2.2.2 (04 May 2006)
+
+  04 May 2006; Marien Zwart <marienz@gentoo.org> +pysqlite-2.2.2.ebuild:
+  Version bump, closes bug #132258. Thanks to arj for reporting.
+
+*pysqlite-2.2.0 (07 Apr 2006)
+
+  07 Apr 2006; Marien Zwart <marienz@gentoo.org> +pysqlite-2.2.0.ebuild:
+  Version bump (closes bug #129118) and some ebuild cleanup.
+
+  01 Apr 2006; Aron Griffis <agriffis@gentoo.org> pysqlite-0.5.1.ebuild:
+  Mark 0.5.1 ~ia64
+
+  10 Mar 2006; Aron Griffis <agriffis@gentoo.org> pysqlite-2.0.7.ebuild:
+  Mark 2.0.7 ~ia64
+
+  19 Feb 2006; Bryan Østergaard <kloeri@gentoo.org pysqlite-2.0.7.ebuild:
+  Add ~alpha keyword, bug 121880.
+
+  18 Feb 2006; Doug Goldstein <cardoe@gentoo.org> pysqlite-2.0.7.ebuild:
+  adding ~ppc
+
+  07 Feb 2006; Jason Wever <weeve@gentoo.org> pysqlite-2.0.7.ebuild:
+  Added ~sparc keyword wrt bug #121880.
+
+  06 Feb 2006; Marien Zwart <marienz@gentoo.org>
+  +files/pysqlite-2.0.7-setup.py-doc-fixes.patch, pysqlite-2.0.7.ebuild:
+  Make USE=doc build work (fix dependencies) and USE=-doc not build the docs,
+  fix a sandbox issue with the tests.
+
+  05 Feb 2006; Marien Zwart <marienz@gentoo.org> pysqlite-2.0.7.ebuild:
+  Drop keywords on the (package.masked) 2.0.7 to ~amd64 ~x86 because of
+  setuptools.
+
+*pysqlite-2.0.7 (05 Feb 2006)
+
+  05 Feb 2006; Marien Zwart <marienz@gentoo.org> -pysqlite-2.0.4.ebuild,
+  pysqlite-2.0.5.ebuild, +pysqlite-2.0.7.ebuild:
+  Remove old ebuild. Block newer sqlite in 2.0.5 because it does not work (bug
+  #121460). Version bump to 2.0.7 which works with newer sqlite but is in
+  package.mask because setuptools is masked.
+
+  02 Feb 2006; Marien Zwart <marienz@gentoo.org> Manifest:
+  Fix rmd160 digests.
+
+  01 Feb 2006; Aron Griffis <agriffis@gentoo.org> pysqlite-2.0.5.ebuild:
+  Mark 2.0.5 stable on ia64
+
+  31 Jan 2006; Aron Griffis <agriffis@gentoo.org> pysqlite-2.0.5.ebuild:
+  Mark 2.0.5 stable on alpha
+
+  11 Jan 2006; Gustavo Zacarias <gustavoz@gentoo.org> pysqlite-2.0.5.ebuild:
+  Stable on sparc
+
+  11 Jan 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  pysqlite-2.0.5.ebuild:
+  ppc stable, bug #118302
+
+  10 Jan 2006; Mark Loeser <halcy0n@gentoo.org> pysqlite-2.0.5.ebuild:
+  Stable on x86; bug #118302
+
+  20 Nov 2005; <dang@gentoo.org> pysqlite-1.0.1.ebuild:
+  Marked stable on amd64
+
+*pysqlite-2.0.5 (06 Nov 2005)
+
+  06 Nov 2005; Alastair Tse <liquidx@gentoo.org> -pysqlite-2.0.2.ebuild,
+  -pysqlite-2.0.3.ebuild, +pysqlite-2.0.5.ebuild:
+  version bump
+
+*pysqlite-2.0.4 (30 Sep 2005)
+
+  30 Sep 2005; Lukasz Strzygowski <lucass@gentoo.org>
+  +pysqlite-2.0.4.ebuild:
+  Version bump. Closing bug #105696.
+
+  26 Aug 2005; Aron Griffis <agriffis@gentoo.org> pysqlite-2.0.3.ebuild:
+  add ~ia64
+
+*pysqlite-2.0.3 (01 Aug 2005)
+
+  01 Aug 2005; Rob Cakebread <pythonhead@gentoo.org> pysqlite-0.5.1.ebuild,
+  pysqlite-1.0.1.ebuild, pysqlite-2.0.2.ebuild, +pysqlite-2.0.3.ebuild:
+  Version bump, fixed deps for dev-lang/python.
+
+  16 Jul 2005; Joseph Jezak <josejx@gentoo.org> pysqlite-2.0.2.ebuild:
+  Marked ~ppc for bug #98814.
+
+  02 Jul 2005; Bryan Østergaard <kloeri@gentoo.org> pysqlite-2.0.2.ebuild:
+  Add ~alpha keyword.
+
+  27 May 2005; Jason Wever <weeve@gentoo.org> pysqlite-1.0.1.ebuild:
+  Stable on SPARC.
+
+*pysqlite-2.0.2 (26 May 2005)
+
+  26 May 2005; Fernando Serboncini <fserb@gentoo.org>
+  -pysqlite-0.3.1.ebuild, -pysqlite-0.4.1.ebuild, -pysqlite-0.4.3.ebuild,
+  -pysqlite-0.5.0.ebuild, -pysqlite-1.0.ebuild, pysqlite-1.0.1.ebuild,
+  +pysqlite-2.0.2.ebuild:
+  Removed old versions
+  marked 1.0.1 stable on x86
+  2.0.2 version bump
+
+*pysqlite-1.0.1 (24 Apr 2005)
+
+  24 Apr 2005; Anders Rune Jensen <arj@gentoo.org> +pysqlite-1.0.1.ebuild,
+  pysqlite-1.0.1.ebuild:
+  New version, works on amd64.
+
+  31 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  23 Oct 2004; Jason Wever <weeve@gentoo.org> pysqlite-1.0.ebuild:
+  Added ~sparc keyword.
+
+  17 Oct 2004; Dylan Carlson <absinthe@gentoo.org> pysqlite-0.5.1.ebuild:
+  stable on amd64.
+
+*pysqlite-1.0 (10 Oct 2004)
+
+  10 Oct 2004; Anders Rune Jensen <arj@gentoo.org> pysqlite-1.0.ebuild:
+  New version, minor changes.
+
+  10 Oct 2004; Bryan Østergaard <kloeri@gentoo.org> pysqlite-0.5.1.ebuild:
+  Stable on alpha.
+
+  03 Oct 2004; Anders Rune Jensen <arj@gentoo.org> pysqlite-0.5.1.ebuild:
+  Stable on x86.
+
+  23 Sep 2004; Ferris McCormick <fmccor@gentoo.org> pysqlite-0.5.1.ebuild:
+  Stable for sparc.
+
+  10 Sep 2004; Hasan Khalil <gongloo@gentoo.org> pysqlite-0.5.1.ebuild:
+  Stable macos.
+
+  07 Sep 2004; Ferris McCormick <fmccor@gentoo.org> pysqlite-0.5.1.ebuild:
+  Add ~sparc keyword. Builds and runs tests, examples on sparc with
+  sqlite-2.8.14.
+
+  05 Aug 2004; Anders Rune Jensen <arj@gentoo.org> pysqlite-0.3.1.ebuild,
+  pysqlite-0.4.1.ebuild, pysqlite-0.4.3.ebuild, pysqlite-0.5.0.ebuild,
+  pysqlite-0.5.1.ebuild:
+  Depend on version 2 of sqlite.
+
+*pysqlite-0.5.1 (06 Jul 2004)
+
+  06 Jul 2004; Anders Rune Jensen <arj@gentoo.org> pysqlite-0.5.1.ebuild:
+  New version
+
+  06 Jul 2004; Anders Rune Jensen <arj@gentoo.org> pysqlite-0.5.0.ebuild:
+  Mark as stable
+
+  02 Jun 2004; Bryan Østergaard <kloeri@gentoo.org> pysqlite-0.5.0.ebuild:
+  Stable on alpha.
+
+  20 Apr 2004; Bryan Østergaard <kloeri@gentoo.org> pysqlite-0.5.0.ebuild:
+  Added ~alpha to keywords.
+
+  26 Feb 2004; Sven Blumenstein <bazik@gentoo.org> pysqlite-0.4.3.ebuild:
+  Stable on sparc.
+
+*pysqlite-0.5.0 (30 Jan 2004)
+
+  30 Jan 2004; Bryan Østergaard <kloeri@gentoo.org> pysqlite-0.5.0.ebuild:
+  New version
+
+*pysqlite-0.4.3 (26 Jun 2003)
+
+  26 Jun 2003; Alastair Tse <liquidx@gentoo.org> pysqlite-0.4.3.ebuild:
+  version bump
+
+*pysqlite-0.4.1 (16 May 2003)
+
+  16 May 2003; Alastair Tse <liquidx@gentoo.org> pysqlite-0.4.1.ebuild:
+  version bump
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*pysqlite-0.3.1 (23 Nov 2002)
+
+  04 Apr 2003; Alastair Tse <liquidx@gentoo.org> pysqlite-0.3.1.ebuild:
+  distutil-ize
+
+  23 Nov 2003; Bart Verwilst <verwilst@gentoo.org> :
+  New version
+
+*pysqlite-0.2.0-r1 (03 Nov 2002)
+
+  03 Nov 2002; Nicholas Henke <roughneck@gentoo.org> pysqlite-0.2.0-r1.ebuild files/digest-pysqlite-0.2.0-r1:\
+  old ebuild did not install examples correctly. Thanks to Bardur Arantsson <bardur-gta@odense.kollegienet.dk> for bug fix.
+  Removed pysqlite-0.2.0.ebuild files/digest-pysqlite-0.2.0
+  
+  Added ppc to keywords
+
+*pysqlite-0.2.0 (30 Jul 2002)
+
+  30 Jul 2002; Ryan Phillips <rphillips@gentoo.org> pysqlite-0.2.0.ebuild : Initial.  Submitted by me.
