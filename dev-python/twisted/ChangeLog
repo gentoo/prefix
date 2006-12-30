@@ -1,0 +1,392 @@
+# ChangeLog for dev-python/twisted
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.83 2006/10/20 20:36:34 kloeri Exp $
+
+  20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> twisted-2.4.0.ebuild:
+  Stable on Alpha.
+
+  25 Sep 2006; Javier Villavicencio <the_paya@gentoo.org>
+  twisted-2.4.0-r1.ebuild:
+  Add ~x86-fbsd keyword.
+
+*twisted-2.4.0-r1 (20 Sep 2006)
+
+  20 Sep 2006; Marien Zwart <marienz@gentoo.org>
+  +files/twisted-2.4.0-python-2.5-compat.patch,
+  +files/twisted-2.4.0-remove-newjelly.patch,
+  +files/twisted-2.4.0-trial-attempted-fix.patch,
+  +files/twisted-2.4.0-trial-python-2.5-compat.patch,
+  +files/twisted-2.4.0-unjellyable.patch, +twisted-2.4.0-r1.ebuild:
+  Add a couple of patches from upstream to work with python 2.5. Does not
+  quite pass its tests, that needs a fix in zopeinterface.
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  twisted-2.4.0.ebuild:
+  hppa stable, bug #139612
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org> twisted-2.2.0.ebuild,
+  twisted-2.4.0.ebuild:
+  Mark 2.2.0 and 2.4.0 stable on ia64
+
+  02 Jul 2006; Lars Weiler <pylon@gentoo.org> twisted-2.4.0.ebuild:
+  Stable on ppc.
+
+  30 Jun 2006; Thomas Cort <tcort@gentoo.org> twisted-2.0.1.ebuild:
+  Stable on alpha wrt Bug #128688.
+
+  28 Jun 2006; Luis Medinas <metalgod@gentoo.org> twisted-2.4.0.ebuild:
+  Stable on amd64. See bug #124293.
+
+  22 Jun 2006; Marien Zwart <marienz@gentoo.org> twisted-2.0.1.ebuild,
+  twisted-2.1.0.ebuild, twisted-2.2.0.ebuild, twisted-2.4.0.ebuild:
+  Block twisted-docs (the manpages collide).
+
+  04 Jun 2006; Brent Baude <ranger@gentoo.org> twisted-2.4.0.ebuild:
+  Marking twisted-2.4.0 ppc64 stable to handle net-dns/avahi deps per Mr Bones
+
+  29 May 2006; Simon Stelling <blubb@gentoo.org> twisted-2.0.1.ebuild:
+  stable on amd64
+
+*twisted-2.4.0 (26 May 2006)
+
+  26 May 2006; Marien Zwart <marienz@gentoo.org> +twisted-2.4.0.ebuild:
+  Version bump.
+
+  25 May 2006; Michael Hanselmann <hansmi@gentoo.org> twisted-2.0.1.ebuild:
+  Stable on ppc.
+
+  12 May 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  twisted-2.2.0.ebuild:
+  Added ~hppa
+
+  03 May 2006; Mark Loeser <halcy0n@gentoo.org> twisted-2.0.1.ebuild:
+  Stable on x86; bug #128688
+
+  01 May 2006; Markus Rothe <corsair@gentoo.org> twisted-2.2.0.ebuild:
+  Added ~ppc64
+
+  27 Apr 2006; Marien Zwart <marienz@gentoo.org> files/digest-twisted-1.2.0,
+  files/digest-twisted-1.3.0, Manifest:
+  Fixing SHA256 digest, pass four
+
+  09 Apr 2006; Marien Zwart <marienz@gentoo.org> twisted-2.0.1.ebuild,
+  twisted-2.1.0.ebuild, twisted-2.2.0.ebuild:
+  Add PYTHONPATH to tests to make them work without userpriv in FEATURES.
+
+  03 Apr 2006; Gustavo Zacarias <gustavoz@gentoo.org> twisted-2.0.1.ebuild:
+  Stable on sparc wrt #128688
+
+  03 Apr 2006; Marien Zwart <marienz@gentoo.org>
+  +files/twisted-2.0.1-echo-less.patch,
+  +files/twisted-2.1.0-echo-less.patch, twisted-2.0.1.ebuild,
+  twisted-2.1.0.ebuild, twisted-2.2.0.ebuild:
+  Make the process tests work on a slower or loaded cpu, thanks to gustavoz
+  for reporting.
+
+  13 Feb 2006; Marien Zwart <marienz@gentoo.org> twisted-2.2.0.ebuild:
+  Fix minimal python requirement.
+
+*twisted-2.2.0 (13 Feb 2006)
+
+  13 Feb 2006; Marien Zwart <marienz@gentoo.org> +twisted-2.2.0.ebuild:
+  Version bump.
+
+  06 Feb 2006; Aron Griffis <agriffis@gentoo.org> twisted-1.3.0.ebuild:
+  Mark 1.3.0 stable on alpha
+
+  02 Feb 2006; Marien Zwart <marienz@gentoo.org> Manifest:
+  Fix rmd160 digests.
+
+  31 Jan 2006; Aron Griffis <agriffis@gentoo.org> twisted-1.3.0.ebuild,
+  twisted-2.1.0.ebuild:
+  Mark 1.3.0 stable on ia64, mark 2.1.0 ~ia64
+
+  04 Dec 2005; Marien Zwart <marienz@gentoo.org> twisted-2.0.1.ebuild,
+  twisted-2.1.0.ebuild:
+  Remove einfo referring to nonexistant meta-ebuild (thanks to TFKyle for
+  noticing)
+
+  30 Nov 2005; Marien Zwart <marienz@gentoo.org> -twisted-2.0.0.ebuild:
+  Remove old ebuild.
+
+*twisted-2.0.1 (27 Nov 2005)
+
+  27 Nov 2005; Marien Zwart <marienz@gentoo.org> +twisted-2.0.1.ebuild:
+  Version bump to 2.0.1 for people who cannot use 2.1.0 for some reason (based
+  on the 2.1.0 ebuild, not the 2.0.0 ebuild, bug #80639)
+
+  23 Nov 2005; Marien Zwart <marienz@gentoo.org> twisted-2.1.0.ebuild:
+  Clean up after running the tests.
+
+*twisted-2.1.0 (23 Nov 2005)
+
+  23 Nov 2005; Marien Zwart <marienz@gentoo.org>
+  +files/twisted-2.1.0-trial-tests.patch,
+  +files/twisted-2.1.0-trial-tests2.patch,
+  +files/twisted-2.1.0-zsh-head.patch, +files/twistd.conf,
+  +files/twistd.init, metadata.xml, +twisted-2.1.0.ebuild:
+  version bump to 2.1.0 to fix bug 110388, and a lot of ebuild changes to fix
+  part of bug 80639. Taking over maintainership.
+
+  05 Nov 2005; Fernando J. Pereda <ferdy@gentoo.org> twisted-2.0.0.ebuild:
+  marked ~alpha wrt bug #110575
+
+  03 Nov 2005; Alastair Tse <liquidx@gentoo.org> -twisted-1.1.0.ebuild,
+  -twisted-1.1.1.ebuild, twisted-1.2.0.ebuild, -twisted-1.2.1_alpha2.ebuild,
+  twisted-1.3.0.ebuild, twisted-2.0.0.ebuild:
+  removed gtk2 useflag
+
+  26 Aug 2005; Aron Griffis <agriffis@gentoo.org> twisted-1.3.0.ebuild:
+  add ~ia64
+
+  22 May 2005; Simon Stelling <blubb@gentoo.org> twisted-2.0.0.ebuild:
+  added ~amd64 keyword
+
+  05 May 2005; Sven Wegener <swegener@gentoo.org> twisted-1.1.0.ebuild,
+  twisted-1.1.1.ebuild, twisted-1.2.0.ebuild, twisted-1.2.1_alpha2.ebuild,
+  twisted-1.3.0.ebuild, twisted-2.0.0.ebuild:
+  Removed trailing * from <, <=, >= and > dependencies.
+
+  30 Apr 2005; David Holm <dholm@gentoo.org> twisted-2.0.0.ebuild:
+  Added to ~ppc
+
+  24 Apr 2005; Michael Hanselmann <hansmi@gentoo.org> twisted-1.2.0.ebuild:
+  Stable on ppc.
+
+  21 Apr 2005; Thomas Raschbacher <lordvan@gentoo.org> :
+  added zope.interface dep.
+  Thanks to Stephan Wienczny <Stephan@Wienczny.de> for pointing this out.
+
+  08 Apr 2005; Thomas Raschbacher <lordvan@gentoo.org> twisted-2.0.0.ebuild:
+  Version bump (package split now look out for twisted-web, twisted-mail,
+  twisted-conch,... within the next few days)
+
+  31 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  23 Oct 2004; Jason Wever <weeve@gentoo.org> twisted-1.3.0.ebuild:
+  Added ~sparc keyword.
+
+  17 Oct 2004; Dylan Carlson <absinthe@gentoo.org> twisted-1.2.0.ebuild:
+  stable on amd64.
+
+  17 Jul 2004; Bryan Østergaard <kloeri@gentoo.org> twisted-1.1.1.ebuild,
+  twisted-1.2.0.ebuild, twisted-1.2.1_alpha2.ebuild, twisted-1.3.0.ebuild:
+  Fix pyopenssl dependencies.
+
+  04 Jul 2004; Bryan Østergaard <kloeri@gentoo.org> twisted-1.2.0.ebuild:
+  Stable on alpha.
+
+  03 Jun 2004; Aron Griffis <agriffis@gentoo.org> twisted-1.1.0.ebuild,
+  twisted-1.1.1.ebuild, twisted-1.2.0.ebuild, twisted-1.2.1_alpha2.ebuild,
+  twisted-1.3.0.ebuild:
+  Fix use invocation
+
+*twisted-1.3.0 (19 May 2004)
+
+  19 May 2004; Thomas Raschbacher <lordvan@gentoo.org> +twisted-1.3.0.ebuild:
+  Version bump
+
+*twisted-1.2.1_alpha2 (06 May 2004)
+
+  06 May 2004; Thomas Raschbacher <lordvan@gentoo.org> twisted-1.2.0.ebuild,
+  +twisted-1.2.1_alpha2.ebuild:
+  added 1.2.1_alpha2
+  marked 1.2.0 stable on x86
+
+  22 Apr 2004; Bryan Østergaard <kloeri@gentoo.org> twisted-1.2.0.ebuild:
+  Added ~alpha to keywords.
+
+  06 Mar 2004; David Holm <dholm@gentoo.org> twisted-1.2.0.ebuild:
+  Added to ~ppc.
+
+*twisted-1.2.0 (05 Mar 2004)
+
+  05 Mar 2004; Thomas Raschbacher <lordvan@gentoo.org>
+  twisted-1.2.0.ebuild:
+  Version Bump (~arch for now)
+
+	
+  16 Dec 2003; Jason Wever <weeve@gentoo.org> twisted-1.1.0.ebuild:
+  Changed sparc keyword to ~sparc as dependency dev-python/pycrypto was missing
+  any sparc keywords.
+
+*twisted-1.1.1 (13 Dec 2003)
+
+  21 Jan 2003; Thomas Raschbacher <lordvan@gentoo.org> twisted-1.1.1.ebuild,
+  twisted-1.1.0.ebuild:
+  fixed gtk,gtk2 deps
+	
+  13 Dec 2003; Bryan Østergaard,,, <kloeri@gentoo.org> twisted-1.1.1.ebuild:
+  Version bump.
+
+  06 Dec 2003; Alastair Tse <liquidx@gentoo.org> twisted-1.0.6.ebuild,
+  twisted-1.0.7.ebuild, twisted-1.0.7_rc1.ebuild, twisted-1.1.0.ebuild:
+  cleanup and fix gtk2 useflags (#34558)
+
+*twisted-1.1.0 (27 Oct 2003)
+  03 Nov 2003; Thomas Raschbacher <lordvan@gentoo.org> twisted-1.1.0.ebuild:
+  fixed dep for TwistedDocs -> twisted-docs move
+
+  27 Oct 2003; Thomas Raschbacher <lordvan@gentoo.org> twisted-1.1.0.ebuild:
+  version bump
+  using _NoDocs tarball now (dev-python/twisted-docs created)
+	
+*twisted-1.0.7 (13 Sep 2003)
+  13 Sep 2003; Thomas Raschbacher <lordvan@gentoo.org> twisted-1.0.7.ebuild:
+  version bump
+	
+*twisted-1.0.7-rc1 (30 Aug 2003)
+  30 Aug 2003; Thomas Raschbacher<lordvan@gentoo.org>:
+  removed alpha5
+  added rc1
+	
+*twisted-1.0.7-alpha5 (21 Aug 2003)
+  21 Aug 2003; Thomas Raschbacher <lordvan@gentoo.org>:
+  removed 1.0.7alpha4 
+  added 1.0.7alpha5
+	
+  19 Jul 2003; Alastair Tse <liquidx@gentoo.org> metadata.xml,
+  twisted-1.0.1-r1.ebuild, twisted-1.0.2.ebuild, twisted-1.0.3-r1.ebuild,
+  twisted-1.0.3.ebuild, twisted-1.0.4.ebuild, twisted-1.0.5.ebuild:
+  cleaned out old versions because of security issues pre-1.0.6. added lordvan
+  one of the maintainers
+
+*twisted-1.0.6 (29 Jun 2003)
+  29 Jun 2003; Thomas Raschbacher <lordvan@gentoo.org> twisted-1.0.6.ebuild:
+  new version (with security bugfix for twisted.web)
+
+  12 Jun 2003; <msterret@gentoo.org> twisted-1.0.2.ebuild:
+  add Header
+
+*twisted-1.0.5 (09 May 2003)
+  09 May 2003; Thomas Raschbacher <lordvan@gentoo.org> twisted-1.0.5.ebuild:
+  new ebuild (does not support python-2.1 anymore!
+	
+*twisted-1.0.4 (18 Apr 2003)
+  18 Apr 2003; Thomas Raschbacher <lordvan@gentoo.org> twisted-1.0.4.ebuild
+  new version
+	
+*twisted-1.0.3-r1 (10 Apr 2003)
+
+  10 Apr 2003; Alastair Tse <liquidx@gentoo.org> twisted-1.0.3-r1.ebuild:
+  added pygtk deps, and fix manhole to use pygtk2 is requested
+
+*twisted-1.0.3 (16 Feb 2003)
+
+  05 Apr 2003; Alastair Tse <liquidx@gentoo.org> twisted-1.0.1.ebuild,
+  twisted-1.0.1.ebuild, twisted-1.0.2_alpha4.ebuild,
+  twisted-1.0.2_alpha4.ebuild, twisted-1.0.3.ebuild:
+  bump to stable
+
+  16 Feb 2003; Thomas Raschbacher <lordvan@gentoo.org>: twisted-1.0.3.ebuild
+  version bump (~arch)
+	
+*twisted-1.0.2 (29 Jan 2003)
+  29 Jan 2003; Thomas Raschbacher <lordvan@gentoo.org>: twisted-1.0.2.ebuild
+  version bump (~arch cuz of freeze)
+
+*twisted-1.0.2_alpha4 (23 Jan 2003)
+  23 Jan 2003; Thomas Raschbacher <lordvan@gentoo.org>: twisted-1.0.2_alpha4.ebuild
+  version bump ~arch masked
+  26 Jan 2003; Thomas Raschbacher <lordvan@gentoo.org>: twisted-1.0.2_alpha4.ebuild
+  fixed typo in WORKDIR (fixed bug #14471)
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*twisted-1.0.1-r1 (05 Dec 2002)
+  05 Dec 2002; Thomas Raschbacher <lordvan@gentoo.org>: twisted-1.0.1-r1
+  Added dep for dev-python/pycrypto
+  Added IUSE
+	
+*twisted-1.0.1 (29 Nov 2002) Bart Verwilst <verwilst@gentoo.org>
+
+  New version, with lots of bugfixes to the ebuild itself as well, 
+  provided by Thomas Raschbacher. 
+
+*twisted-1.0.0 (26 Okt 2002) Bart Verwilst <verwilst@gentoo.org>
+
+*twisted-0.99.4 (14 Okt 2002) Bart Verwilst <verwilst@gentoo.org>
+
+  Long overdue new version. Masked for testing (~x86) because of the freeze.
+
+
+*twisted-0.19.0 (1 Aug 2002)
+  1 Aug 2002; Jon Nelson <jnelson@gentoo.org> twisted-0.18.0.ebuild twisted-0.19.0.ebuild :
+  
+  Add KEYWORDS to 0.18.0 and update to 0.19.0 at the same time
+  0.19.0 uses distutils eclass
+
+  Update LICENSE to use LGPL-2.1
+  
+*twisted-0.18.0 (03 Jun 2002)
+
+  03 Jun 2002; Karl Trygve Kalleberg <karltk@gentoo.org> twisted-0.18.0.ebuild files/digest-twisted-0.18.0 :
+  
+  From the web page:
+  
+  What Is Twisted?
+  An Application Suite
+
+  Twisted is a collection of servers and clients, which can be used
+  either by developers of new applications or directly. Instance Messenger
+  and Twisted Web are both available out of the box as applications for
+  the desktop user. 
+
+  A Development Tool
+
+  Twisted is a framework, written in Python, for writing networked
+  applications. It includes implementations of a number of commonly used
+  network services such as a web server, an IRC chat server, a mail
+  server, a relational database interface and an object broker. Developers
+  can build applications using all of these services as well as custom
+  services that they write themselves. Twisted also includes a user
+  authentication system that controls access to services and provides
+  services with user context information to implement their own security
+  models. 
+
+  An Integrated Environment
+
+  Twisted is an integration point for network services that were
+  previously unable to interoperate. Services within a Twisted server can
+  communicate with each other and share information providing a very
+  integrated programming environment that can re-use large amounts of
+  infrastructure across multiple network mediums (such as chat, web, and
+  mail).
+
+  As well as servers, Twisted supports several different kinds of
+  clients and GUIs. This means that the client can re-use large portions
+  of the server's code, improving test coverage and reliability while
+  reducing code size. 
+
+  All at Once?
+
+  A common reaction to this amount of functionality all in one box is that
+  it's overwhelming. Why are chat and web in the same server? Why network
+  your client with the same infrastructure that you're using on the
+  server? Why give programmers and users the same tool? And how do you
+  achieve that while remaining lightweight and minimal-impact?
+
+  At first glance, these are really different problems requiring different
+  solutions -- at least, in the traditional way of thinking about them.
+  However, the traditional approach to network software development has
+  erected artificial barriers between applications. Those barriers prevent
+  developers from easily adding useful functionality. As an example,
+  putting a web administration interface on your IRC server can be
+  difficult, if it's even possible. Once you've done it, chances are you
+  can't use that same web server you set up to serve your filesystem.
+
+  Unless you're using Twisted. In that case, your chat server's web
+  interface is running with the same industrial strength application
+  server that runs your whole web site. The connections are automatic,
+  since servers that need to talk to each other already have a robust
+  client in them. As a user, you don't need to learn much programming in
+  order to enhance your Twisted environment; your favorite new feature is
+  just a Python script away.
+
+  And strangely enough, integrating all this functionality reduces bloat.
+  Apache, the industry-standard HTTP daemon, weighs in at 3.7 megabytes;
+  Twisted is a mere 0.5 megabytes.
+
+
+  Ebuild submitted by Gontran Zepeda <gontran@gontran.net>.
+
