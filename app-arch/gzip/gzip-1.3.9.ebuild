@@ -1,14 +1,14 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/gzip-1.3.7.ebuild,v 1.1 2006/12/07 13:56:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/gzip-1.3.9.ebuild,v 1.1 2006/12/16 03:08:25 vapier Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic
 
 DESCRIPTION="Standard GNU compressor"
-HOMEPAGE="http://www.gnu.org/software/gzip/gzip.html"
-SRC_URI="ftp://alpha.gnu.org/gnu/gzip/${P}.tar.gz
+HOMEPAGE="http://www.gnu.org/software/gzip/"
+SRC_URI="mirror://gnu/gzip/${P}.tar.gz
 	mirror://gentoo/${P}.tar.gz"
 
 LICENSE="GPL-2"
@@ -24,12 +24,8 @@ PROVIDE="virtual/gzip"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	#epatch "${FILESDIR}"/${PN}-1.3.7-CVE-2006-4334-8.2.patch
-	epatch "${FILESDIR}"/${PN}-1.3.5-znew-tempfile-2.patch
-	epatch "${FILESDIR}"/${PN}-1.3.7-asm-execstack.patch
 	#epatch "${FILESDIR}"/${PN}-1.3.5-rsync.patch
-	epatch "${FILESDIR}"/${PN}-1.3.5-alpha.patch
-	epatch "${FILESDIR}"/${PN}-1.3.7-install-symlinks.patch
+	epatch "${FILESDIR}"/${PN}-1.3.8-install-symlinks.patch
 }
 
 src_compile() {
