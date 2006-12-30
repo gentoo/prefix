@@ -1,0 +1,13 @@
+Index: src/rawSHA1_fmt.c
+===================================================================
+--- src.orig/rawSHA1_fmt.c
++++ src/rawSHA1_fmt.c
+@@ -100,7 +100,7 @@ static void rawsha1_set_key(char *key, i
+ 	if(index==0)
+ 	{
+ 		total_len = 0;
+-		memset(saved_key, 0, PLAINTEXT_LENGTH*MMX_COEF);
++		memset(saved_key, 0, sizeof(saved_key));
+ 	}
+ 	len = strlen(key);
+ 	if(len>PLAINTEXT_LENGTH)
