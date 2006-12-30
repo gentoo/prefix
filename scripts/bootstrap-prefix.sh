@@ -134,7 +134,7 @@ setup_portage() {
 }
 
 bootstrap_tree() {
-	PV="20061227"
+	PV="20061230"
 	for x in etc usr/{,s}bin var/tmp var/lib/portage var/log/portage var/db;
 	do
 		[ -d "${ROOT}/${x}" ] || mkdir -p "${ROOT}/${x}"
