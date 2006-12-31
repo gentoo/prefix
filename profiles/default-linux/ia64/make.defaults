@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/ia64/make.defaults,v 1.7 2006/09/06 05:29:36 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/ia64/make.defaults,v 1.8 2006/12/22 23:55:45 flameeyes Exp $
 
 ARCH="ia64"
 ACCEPT_KEYWORDS="ia64"
@@ -18,3 +18,9 @@ USE="berkdb crypt ipv6 ncurses nls pam perl python readline ssl tcpd zlib"
 VIDEO_CARDS="apm ark ati chips cirrus cyrix dummy fbdev glint i128 i740 i810 \
 	imstt mga neomagic nv rendition s3 s3virge savage siliconmotion sis sisusb \
 	tdfx tga v4l vesa vga via voodoo"
+
+# 2006/12/23 - Diego Pettenò <flameeyes@gentoo.org>
+# Defaults for audio drivers - Took from x86 profile
+ALSA_CARDS="ali5451 als4000 atiixp atiixp-modem bt87x ca0106 cmipci emu10k1x \
+	ens1370 ens1371 es1938 es1968 fm801 hda-intel intel8x0 intel8x0m maestro3 \
+	trident usb-audio via82xx via82xx-modem ymfpci"

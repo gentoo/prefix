@@ -43,7 +43,6 @@ pfpro
 solid
 sybase
 sybase-ct
-fdftk
 qdbm
 
 hardened
