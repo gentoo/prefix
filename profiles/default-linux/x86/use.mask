@@ -1,6 +1,6 @@
 # Copyright 2004 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/x86/use.mask,v 1.22 2006/08/23 20:40:24 chutzpah Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/x86/use.mask,v 1.23 2006/12/29 21:13:18 flameeyes Exp $
 
 # This file masks out USE flags that are simply NOT allowed in the default
 # x86 profile.  This works, for example, if another architecture's
@@ -54,3 +54,6 @@ ibm
 
 # psyco works on x86
 -psyco
+
+# Adobe FDF toolkit is x86 only.
+-fdftk
