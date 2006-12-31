@@ -59,3 +59,16 @@ oci8
 oracle7
 pfpro
 solid
+
+# Re-add Darwin libc
+-elibc_Solaris
+
+# Mask extraneous elibc/kernel combinations
+elibc_glibc
+elibc_uclibc
+elibc_Darwin
+kernel_linux
+kernel_FreeBSD
+userland_GNU
+userland_BSD
+userland_Darwin
