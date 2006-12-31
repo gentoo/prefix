@@ -2,37 +2,26 @@
 
 # these will more than likely never work on darwin
 3dfx
-3dnow
-3dnowext
 acpi
 alsa
 apm
 cap
 caps
 directfb
-divx4linux
 djbfft
 emul-linux-x86
 fbcon
-fdftk
 fmod
 ggi
 gpm
 hardened
-icc
-icc-pgo
-mmx
-mmx2
-on-the-fly-crypt  # requires device-mapper
+# VV requires device-mapper 
+on-the-fly-crypt
 oss
 solid
-sse
-sse2
-svga
 sybase
 sybase-ct
 rtc
-uclibc
 voodoo3
 pvm
 v4l
@@ -44,7 +33,6 @@ v4l2
 # architecture.
 adabas
 birdstep
-cpdflib
 db2
 dbmaker
 empress
@@ -59,3 +47,14 @@ oci8
 oracle7
 pfpro
 solid
+
+# Re-add Darwin libc
+-elibc_Darwin
+
+# Mask extraneous elibc/kernel combinations
+elibc_glibc
+elibc_uclibc
+kernel_linux
+kernel_FreeBSD
+userland_GNU
+userland_BSD
