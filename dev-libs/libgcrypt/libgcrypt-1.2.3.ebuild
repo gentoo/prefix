@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.2.3.ebuild,v 1.1 2006/10/29 20:20:28 alonbl Exp $
 
 EAPI="prefix"
 
@@ -26,8 +26,8 @@ src_unpack() {
 	epunt_cxx
 
 	# fix for miss detection of 32 bit ppc
-	cd ${S}
-	epatch ${WORKDIR}/${PN}-1.2.1-ppc64-fix.patch
+	cd "${S}"
+	epatch "${WORKDIR}"/${PN}-1.2.1-ppc64-fix.patch
 
 #	cd ${S}
 #	epatch ${WORKDIR}/${PN}-1.2.1-GNU-stack-fix.patch
@@ -50,7 +50,7 @@ src_install() {
 	dodoc AUTHORS BUGS ChangeLog NEWS README* THANKS TODO VERSION
 
 	# backwards compat symlinks
-	if use userland_Darwin ; then
+	if [[ ${USERLAND} == "Darwin" ]] ; then
 		dosym libgcrypt.11.dylib /usr/lib/libgcrypt.7.dylib
 	else
 		dosym libgcrypt.so.11 /usr/lib/libgcrypt.so.7
