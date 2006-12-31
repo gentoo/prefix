@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2436 2006/12/19 02:43:42 leonardop Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2461 2006/12/30 02:16:58 mr_bones_ Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -26,6 +26,7 @@ app-admin/testdisk:reiserfs - include reiserfs reading ability
 app-admin/webalizer:search - Include the search patch
 app-admin/webalizer:xtended - Include the 404 extension
 app-admin/webmin:webmin-minimal - Install the minimal webmin distribution
+app-antivirus/clamav:logrotate - Install logrotate script for clamav logs
 app-antivirus/clamav:onaccess - Enable support for on-access scan using dazuko kernel module.
 app-arch/bsdtar:xattr - if you want extended attributes enabled
 app-arch/dump:ermt - encrypted rmt support
@@ -60,6 +61,7 @@ app-cdr/k3b:emovix - Enable burning support for eMoviX images
 app-cdr/pxlinux:gnuplot - enable gnuplot support
 app-cdr/serpentine:muine - Enable Muine support
 app-crypt/ccid:chipcard2 - Enable libchipcard support
+app-crypt/ccid:twinserial - Enable twinserial reader
 app-crypt/gnupg:ecc - Use elliptic curve cryptosystem patch
 app-crypt/gnupg:gpg2-experimental - Install experimental development version of gnupg
 app-crypt/gnupg:idea - Use the patented IDEA algorithm
@@ -275,6 +277,7 @@ dev-db/postgresql:pg-intdatetime - Enables --enable-integer-datetimes configure 
 dev-db/postgresql:pg-vacuumdelay - Adds in the vacuum inter-page delay feature.
 dev-db/rekall:xbase - Support for the Xbase db family, covering dBase, Clipper, FoxPro, Visual dBase/Objects/FoxPro plus some older products.
 dev-db/sqlite:nothreadsafe - turn off thread safe operation of sqlite
+dev-db/tora:oci8-instant-client - Use dev-db/oracle-instantclient-basic as Oracle provider instead of requiring a full Oracle server install
 dev-games/cegui:devil - image loading support with DevIL
 dev-games/cegui:xerces-c - use external Xerces-C++ XML parser instead of tiny embedded XML parser
 dev-games/crystalspace-cvs:3ds - Enables support for .3DS files in CrystalSpace
@@ -362,6 +365,7 @@ dev-lang/php:cli - Enable CLI SAPI
 dev-lang/php:concurrentmodphp - Make it possible to load both mod_php4 and mod_php5 into the same Apache2 instance (experimental)
 dev-lang/php:discard-path - Switch on common security setting for CGI SAPI
 dev-lang/php:fastbuild - Build PHP quicker (experimental)
+dev-lang/php:fdftk - Add supports for Adobe's FDF toolkit.
 dev-lang/php:force-cgi-redirect - Switch on common security setting for CGI SAPI
 dev-lang/php:hash - Enable the hash extension
 dev-lang/php:java-external - Use the external java extension rather than the bundled one
@@ -414,6 +418,7 @@ dev-libs/opensc:openct - build using dev-libs/openct compatibility
 dev-libs/opensc:pcsc-lite - build with pcsc-lite
 dev-libs/pwlib:v4l2 - Enable video4linux2 support
 dev-libs/qsa:ide - enable the qsa ide
+dev-libs/STLport:boost - Enable the usage of boost
 dev-libs/wx-xmingw:gdb - Enable gdb debugging
 dev-libs/wx-xmingw:monolithic - Build a monolithic lib
 dev-libs/wx-xmingw:mslu - Enable mslu support
@@ -707,11 +712,9 @@ mail-filter/bsfilter:mecab - Adds support for mecab
 mail-filter/clamassassin:clamd - Use the ClamAV daemon for virus checking.
 mail-filter/clamassassin:subject-rewrite - Adds support for subject rewriting.
 mail-filter/dcc:rrdtool - Enable rrdtool interface scripts
-mail-filter/dspam:cyrus - Build delivery options for cyrus-imapd
 mail-filter/dspam:daemon - Enable support for DSPAM to run in --daemon mode
 mail-filter/dspam:large-domain - Builds for large domain rather than for domain scale
 mail-filter/dspam:logrotate - Install support files for logrotate
-mail-filter/dspam:procmail - Build procmail filter support
 mail-filter/dspam:user-homedirs - Build with user homedir support
 mail-filter/dspam:virtual-users - Build with virtual-users support
 mail-filter/maildrop:authlib - Add courier-authlib suport
@@ -770,6 +773,8 @@ media-gfx/splashutils:kdgraphics - Use KD_GRAPHICS for silent mode. This will co
 media-gfx/ufraw:gimp - Build a plugin for the GIMP
 media-gfx/xsane:gimp - Build a plugin for the GIMP
 media-libs/a52dec:djbfft - Prefer D.J. Bernstein's library for fourier transforms
+media-libs/alsa-lib:alisp - Enable support for ALISP (ALSA LISP) interpreter for advanced features.
+media-libs/alsa-lib:midi - Enables MIDI output support (both Hardware and Software)
 media-libs/cal3d:16bit-indices - Enables use of 16bit indices
 media-libs/coin:fontconfig - Support for mananging custom fonts via fontconfig.
 media-libs/devil:allegro - Add support for Allegro
@@ -810,6 +815,7 @@ media-libs/xine-lib:asf - Support for ASF demuxer (required for win32codecs)
 media-libs/xine-lib:dxr3 - Support for DXR3 mpeg accelleration cards
 media-libs/xine-lib:modplug - Build with modplug support
 media-libs/xine-lib:vidix - Support for vidix video output
+media-libs/xine-lib:wavpack - Build with WavPack support
 media-libs/xine-lib:xvmc - Support for XVideo Motion Compensation (accelerated mpeg playback)
 media-plugins/audacious-plugins:chardet - Character set detection support for non-UTF8 ID3 tags
 media-plugins/audacious-plugins:modplug - Build with modplug support
@@ -883,13 +889,14 @@ media-sound/rhythmbox:avahi - support for avahi mdns daemon
 media-sound/rhythmbox:daap - support for daap
 media-sound/rhythmbox:musicbrainz - support for muzicbrains
 media-sound/rhythmbox:tagwriting - support for tag wriring in certian audio files
-media-sound/slismerver:alac - Enable support for alac
+media-sound/slimserver:alac - Enable support for alac
 media-sound/snd:gsl - Use the GNU scientific library for calculations
 media-sound/transkode:amarok - Build Amarok script
 media-sound/transkode:wavpack - Add support for wavpack decoding/encoding
 media-sound/zinf:corba - Enables corba interface support
 media-tv/gentoo-vdr-scripts:nvram - Add support for using nvram-wakeup to set wakeup time in bios
 media-tv/kdetv:zvbi - Enable VBI Decoding Library for Zapping
+media-tv/mythtv:autostart - Controls whether settings are installed for autostarting MythFrontend on boot
 media-tv/mythtv:backendonly - Builds only the backend component rather then the whole suite
 media-tv/mythtv:crciprec - Enable support for Network Recorder
 media-tv/mythtv:dbox2 - Enable support for Nokia DBOX2 DVB boxes
@@ -908,6 +915,7 @@ media-tv/xdtv:zvbi - Enable VBI Decoding Library for Zapping
 media-tv/xmltv:be - Belgium and Luxemburg tv listing grabber
 media-tv/xmltv:br - Brazil tv listing grabber
 media-tv/xmltv:brnet - Brazil cable tv listing grabber
+media-tv/xmltv:ch - Switzerland bluewin tv listing grabber
 media-tv/xmltv:de_tvtoday - Germany tv listing grabber
 media-tv/xmltv:dk - Denmark tv listing grabber
 media-tv/xmltv:ee - Estonia tv listing grabber
@@ -915,6 +923,7 @@ media-tv/xmltv:es - Spain tv listing grabber
 media-tv/xmltv:es_laguiatv - Spain alternative grabber
 media-tv/xmltv:fi - Finland tv listing grabber
 media-tv/xmltv:fr - France tv listing grabber
+media-tv/xmltv:hr - Croatia tv listing grabber
 media-tv/xmltv:huro - Hungarian tv listing grabber
 media-tv/xmltv:il - Israel tv listing grabber
 media-tv/xmltv:is - Iceland tv listing grabber
@@ -1138,6 +1147,7 @@ net-fs/samba:swat - Enables support for swat configuration gui
 net-fs/samba:syslog - Enables support for syslog
 net-fs/samba:winbind - Enables support for the winbind auth daemon
 net-fs/shfs:amd - Enable automounter support
+net-ftp/ftpcube:sftp - Enable sftp connection support
 net-ftp/proftpd:authfile - Enable support for auth-file module
 net-ftp/proftpd:ifsession - Enable support for the ifsession module
 net-ftp/proftpd:noauthunix - Disable support for auth-unix module
@@ -1172,8 +1182,10 @@ net-im/ekg2:nogg - Disable Gadu-Gadu plugin
 net-im/ekiga:avahi - Support for the avahi mdns daemon
 net-im/gaim:avahi - Enable using avahi howl libraries.
 net-im/gaim:bonjour - Enable bonjour support
-net-im/gaim:custom-flags - Disables stripping of "unsafe C[XX]FLAGS"
+net-im/gaim:console - Enable gaim-text
+net-im/gaim:custom-cflags - Disables stripping of "unsafe C[XX]FLAGS"
 net-im/gaim:gadu - Enable Gadu Gadu protocol support.
+net-im/gaim:groupwise - Enable Novell Groupwise protocol support.
 net-im/gaim:meanwhile - Enable meanwhile support for Sametime protocol.
 net-im/gaim:silc - Enable SILC protocol support
 net-im/gaim:xscreensaver - Enable X idle time support instead of gaim idle time.
@@ -1316,7 +1328,6 @@ net-misc/icecast:yp - Build support for yp public directory listings
 net-misc/linphone:ilbc - Build ILBC codec plugin
 net-misc/linphone:novideo - Disable video support
 net-misc/ltsp:vnc - Enable vnc support
-net-misc/ntp:logrotate - Install support files for logrotate
 net-misc/ntp:openntpd - Allow ntp to be installed alongside openntpd
 net-misc/ntp:parse-clocks - Add support for PARSE clocks
 net-misc/nx:vnc - Add support for vnc to remote servers
@@ -1471,7 +1482,6 @@ sci-biology/vienna-rna:no-readseq - Do not include the modified version of Don G
 sci-biology/vienna-rna:no-utils - Do not include sequence format conversion and representation utilities
 sci-chemistry/caver:pymol - Install the PyMol plugin
 sci-chemistry/eden:double-precision - more precise calculations at the expense of speed
-sci-chemistry/ghemical:mpqc - Use the MPQC package for quantum-mechanical calculations
 sci-chemistry/ghemical:openbabel - Use the OpenBabel package for file conversions
 sci-chemistry/ghemical:toolbar - Build the shortcuts toolbar
 sci-chemistry/shelx:dosformat - Use CR/LF to end lines; useful in mixed Linux/Windows environments
@@ -1706,10 +1716,6 @@ www-apache/mod_suphp:mode-force - Run scripts with UID/GID specified in Apache c
 www-apache/mod_suphp:mode-owner - Run scripts with owner UID/GID
 www-apache/mod_suphp:mode-paranoid - Run scripts with owner UID/GID but also check if they match the UID/GID specified in the Apache configuration
 www-apps/bugzilla:extras - optional Perl modules
-www-apps/dspam-web:large-domain - Builds for large domain rather than for domain scale
-www-apps/dspam-web:logrotate - Build logrotate support for dspam
-www-apps/dspam-web:neural - Build neural support for dspam
-www-apps/dspam-web:virtual-users - Build with virtual-users support
 www-apps/egroupware:jpgraph - Add jpgraph support
 www-apps/gallery:dcraw - Add dcraw support
 www-apps/gallery:netpbm - Add NetPBM support
@@ -1740,6 +1746,7 @@ www-client/elinks:finger - Enable support for the finger protocol
 www-client/elinks:gopher - Enable support for the gopher protocol
 www-client/kazehakase:hyperestraier - enable hyperestraier support for full-text search in history.
 www-client/kazehakase:thumbnail - enable thumbnail support.
+www-client/mozilla-firefox:filepicker - enable old gtkfilepicker from 1.0.x firefox
 www-client/mozilla-firefox:mozbranding - Enable official branding
 www-client/mozilla-firefox:mozdevelop - Enable features for web developers (e.g. Venkman)
 www-client/mozilla-firefox:moznopango - Disable pango during runtime
@@ -1765,7 +1772,7 @@ www-client/seamonkey:moznoroaming - sroaming extension support
 www-client/w3m:async - Enables asynchronous fetch
 www-client/w3m:lynxkeymap - If you prefer Lynx-like key binding
 www-misc/nsxml:xslt - Enables xslt support
-www-servers/cherokee:scgi - Enables scgi interface
+www-servers/cherokee:coverpage - Installs the default cherokee coverpage
 www-servers/fnord:auth - Enable HTTP authentication support
 www-servers/lighttpd:memcache - Enable memcache support for mod_cml and mod_trigger_b4_dl
 www-servers/lighttpd:rrdtool - Enable rrdtool support via mod_rrdtool
@@ -1774,6 +1781,7 @@ www-servers/lighttpd:xattr - if you want extended attributes enabled
 www-servers/nginx:status - Enables stub_status module
 www-servers/pound:msdav - if you want the Microsoft DAV extensions enabled
 www-servers/pound:unsafe - if you want the 'unsafe' characters passed through to the web servers
+www-servers/resin:admin - Enable Resin admin webapp
 www-servers/shttpd:cgi - Enable CGI script support
 www-servers/shttpd:dmalloc - Enable debugging with the dmalloc library
 www-servers/tomcat:admin - Enable Tomcat admin webapp
@@ -1783,7 +1791,6 @@ x11-base/kdrive:fbdev - Enables framebuffer kdrive server
 x11-base/kdrive:font-server - Enables font server support
 x11-base/kdrive:speedo - Enables Speedo font support
 x11-base/kdrive:type1 - Enables Type1 font support
-x11-base/x11-drm:gatos - Installs DRM built to work alongside GATOS features
 x11-base/xorg-server:aiglx - Includes extra AIGLX patches that allow compiz to function
 x11-base/xorg-server:dmx - Build the Distributed Multiheaded X server
 x11-base/xorg-server:kdrive - Build the kdrive X servers
@@ -1814,6 +1821,7 @@ x11-libs/qt:qt3support - Enable the Qt3Support libraries for Qt4
 x11-libs/wxGTK:wxgtk1 - Add gtk1 support in addition to optional gtk2ansi and gtk2unicode
 x11-misc/adesklets:ctrlmenu - force CTRL to be pressed to fire context menu
 x11-misc/adesklets:fontconfig - Support for mananging custom fonts via fontconfig
+x11-misc/dmenu:savedconfig - Add support to user defined configs
 x11-misc/linuxwacom:dlloader - Installs dynamically linked linuxwacom Xorg driver
 x11-misc/linuxwacom:sdk - Builds wacom X11 driver against installed X11 SDK
 x11-misc/openclipart:gzip - Compresses clip art using gzip
@@ -1864,16 +1872,17 @@ x11-wm/stumpwm-cvs:clisp - Use CLISP for the runtime
 x11-wm/stumpwm-cvs:sbcl - Use SBCL for the runtime
 x11-wm/windowmaker:modelock - Enable XKB language status lock support. README says: "If you don't know what it is you probably don't need it."
 xfce-base/thunar:thumbnail - enable thumbnail support in the file browser.
-xfce-base/thunar:xslt - Build HTML based docs from xml.
 xfce-base/thunar:freetype - Enable support for font thumbnailing.
+xfce-base/thunar:trash-panel-plugin - Build and install the trash panel plugin
 xfce-base/xfdesktop:exo - Build with libexo support (required for thunar-vfs integration).
 xfce-base/xfdesktop:panel-plugin - Enable the xfdesktop menu plugin for xfce4-panel.
 xfce-base/xfdesktop:thunar-vfs - Enable thunar-vfs support for desktop icons.
 xfce-base/xfprint:lpr - Build LPr/LPd support instead of CUPS support.
 xfce-base/xfwm4:xcomposite - Support for Xorg composite extension.
-xfce-extra/xarchiver:arj - Adds support for arj archices
-xfce-extra/xarchiver:ace - Adds support for ace archives
-xfce-extra/xarchiver:rar - Adds support for rar archives
 xfce-extra/xarchiver:7zip - Adds support for 7zip archives
+xfce-extra/xarchiver:ace - Adds support for ace archives
+xfce-extra/xarchiver:arj - Adds support for arj archives
+xfce-extra/xarchiver:lha - Adds support for lha archives
+xfce-extra/xarchiver:rar - Adds support for rar archives
 xfce-extra/xarchiver:rpm - Adds support for rpms
-xfce-extra/terminal:xslt - Build HTML based docs from xml.
+xfce-extra/xarchiver:zip - Adds support for zips

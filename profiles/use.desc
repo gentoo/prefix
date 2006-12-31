@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.330 2006/12/06 07:08:39 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.332 2006/12/30 13:00:36 vapier Exp $
 
 # Keep them sorted
 
@@ -35,9 +35,9 @@ birdstep - Adds support for the Birdstep Database Server
 blas - Adds support for the virtual/blas numerical library
 bluetooth - Enables Bluetooth Support
 bonobo - Adds support for gnome-base/bonobo (Gnome CORBA interfaces)
-bootstrap - !!internal use only!! DO NOT SET THIS FLAG YOURSELF!, used during original system bootstrapping
+bootstrap - !!internal use only!! DO NOT SET THIS FLAG YOURSELF!, used during original system bootstrapping [make stage2]
 boundschecking - Adds the bounds checking patch by Haj Ten Brugge, this will DISABLE the hardened PIE+SSP patches
-build - !!internal use only!! DO NOT SET THIS FLAG YOURSELF!, used for creating build images and the first half of bootstrapping.
+build - !!internal use only!! DO NOT SET THIS FLAG YOURSELF!, used for creating build images and the first half of bootstrapping [make stage1]
 bzip2 - Use the bzlib compression library
 cairo - Enable support for the cairo graphics library
 calendar - Adds support for calendars (not using mcal!)
@@ -95,7 +95,6 @@ expat - Enable the use of dev-libs/expat
 fam - Enable FAM (File Alteration Monitor) support
 fastcgi - Add support for the FastCGI interface
 fbcon - Adds framebuffer support for the console, via the kernel
-fdftk - Add supports for Adobe's FDF toolkit.
 ffmpeg - Enable ffmpeg support
 fftw - Use FFTW library for computing Fourier transforms
 filepro - Adds support for filePro databases
