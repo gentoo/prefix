@@ -1,0 +1,7 @@
+# Copyright 1999-2005 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/x86/dev/2007.0/desktop/make.defaults,v 1.1 2006/11/03 22:36:57 wolf31o2 Exp $
+
+STAGE1_USE="nptl nptlonly unicode"
+
+USE="alsa arts cairo cdr dbus dvd dvdr eds emboss encode esd fam firefox gif gnome gpm gstreamer gtk hal jpeg kde ldap mad mikmod mp3 mpeg ogg opengl oss png qt3 qt4 quicktime sdl spell truetype vorbis win32codecs unicode X xml xv"
