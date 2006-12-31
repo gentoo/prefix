@@ -690,11 +690,10 @@ if [[ -z ${CC_COMP} ]] ; then
 fi
 
 if [[ ${DOIT} != "get_current_profile" ]] ; then
-	einfo "source ${GCC_ENV_D}/${CC_COMP}"
 	GCC_LIB=$(
 		source "${GCC_ENV_D}/${CC_COMP}"
 		echo ${LDPATH} | \
- 			${SED} -e "s|${EROOT}/*|/|g" | \
+ 			${SED} -e "s|${EPREFIX}/*|/|g" | \
 			${AWK} -F/ '{ print "/"$2"/"$3"/"$4"/" }'
 	)
 
