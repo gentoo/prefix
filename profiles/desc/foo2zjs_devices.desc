@@ -1,0 +1,21 @@
+# Copyright 1999-2006 Gentoo Foundation.
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/foo2zjs_devices.desc,v 1.2 2006/11/16 03:40:45 jer Exp $
+
+# This file contains descriptions of FOO2ZJS_DEVICES USE_EXPAND flags.
+
+# Keep it sorted.
+
+
+hp2600n - Download HP Color LaserJet 2600n .ICM files
+hp1600 - Download HP Color LaserJet 1600 .ICM files
+km2430 - Download Minolta 2430 DL .ICM files
+km2300 - Download Minolta 2300 DL .ICM files
+km2200 - Download Minolta 2200 DL .ICM files
+kmcpwl - Download Minolta Color PageWorks/Pro L .ICM files
+
+hp1020 - Download HP LJ1020 firmware file
+hp1018 - Download HP LJ1005 firmware file
+hp1005 - Download HP LJ1005 firmware file
+hp1000 - Download HP LJ1000 firmware file
+

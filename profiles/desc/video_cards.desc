@@ -1,0 +1,57 @@
+# Copyright 1999-2006 Gentoo Foundation.
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/video_cards.desc,v 1.3 2006/06/30 01:57:16 geoman Exp $
+
+# This file contains descriptions of VIDEO_CARDS USE_EXPAND flags.
+
+# Keep it sorted.
+
+apm - VIDEO_CARDS setting to build driver for apm video cards
+ark - VIDEO_CARDS setting to build driver for ark video cards
+chips - VIDEO_CARDS setting to build driver for chips video cards
+cirrus - VIDEO_CARDS setting to build driver for cirrus video cards
+cyrix - VIDEO_CARDS setting to build driver for cyrix video cards
+dummy - VIDEO_CARDS setting to build driver for dummy video cards
+epson - VIDEO_CARDS setting to build driver for epson video cards
+fbdev - VIDEO_CARDS setting to build driver for fbdev video cards
+fglrx - VIDEO_CARDS setting to build driver for fglrx video cards
+glint - VIDEO_CARDS setting to build driver for glint video cards
+i128 - VIDEO_CARDS setting to build driver for i128 video cards
+i740 - VIDEO_CARDS setting to build driver for i740 video cards
+i810 - VIDEO_CARDS setting to build driver for i810 video cards
+impact - VIDEO_CARDS setting to build driver for impact video cards
+imstt - VIDEO_CARDS setting to build driver for imstt video cards
+mach64 - VIDEO_CARDS setting to build driver for mach64 video cards
+mga - VIDEO_CARDS setting to build driver for mga video cards
+neomagic - VIDEO_CARDS setting to build driver for neomagic video cards
+newport - VIDEO_CARDS setting to build driver for newport video cards
+none - VIDEO_CARDS setting to build no drivers (useful when using binary drivers)
+nsc - VIDEO_CARDS setting to build driver for nsc video cards
+nv - VIDEO_CARDS setting to build driver for nv video cards
+nvidia - VIDEO_CARDS setting to build driver for nvidia video cards
+r128 - VIDEO_CARDS setting to build driver for r128 video cards
+radeon - VIDEO_CARDS setting to build driver for radeon video cards
+rendition - VIDEO_CARDS setting to build driver for rendition video cards
+s3 - VIDEO_CARDS setting to build driver for s3 video cards
+s3virge - VIDEO_CARDS setting to build driver for s3virge video cards
+savage - VIDEO_CARDS setting to build driver for savage video cards
+siliconmotion - VIDEO_CARDS setting to build driver for siliconmotion video cards
+sis - VIDEO_CARDS setting to build driver for sis video cards
+sisusb - VIDEO_CARDS setting to build driver for sisusb video cards
+sunbw2 - VIDEO_CARDS setting to build driver for sunbw2 video cards
+suncg14 - VIDEO_CARDS setting to build driver for suncg14 video cards
+suncg3 - VIDEO_CARDS setting to build driver for suncg3 video cards
+suncg6 - VIDEO_CARDS setting to build driver for suncg6 video cards
+sunffb - VIDEO_CARDS setting to build driver for sunffb video cards
+sunleo - VIDEO_CARDS setting to build driver for sunleo video cards
+suntcx - VIDEO_CARDS setting to build driver for suntcx video cards
+tdfx - VIDEO_CARDS setting to build driver for tdfx video cards
+tga - VIDEO_CARDS setting to build driver for tga video cards
+trident - VIDEO_CARDS setting to build driver for trident video cards
+tseng - VIDEO_CARDS setting to build driver for tseng video cards
+v4l - VIDEO_CARDS setting to build driver for v4l video cards
+vesa - VIDEO_CARDS setting to build driver for vesa video cards
+vga - VIDEO_CARDS setting to build driver for vga video cards
+via - VIDEO_CARDS setting to build driver for via video cards
+vmware - VIDEO_CARDS setting to build driver for vmware video cards
+voodoo - VIDEO_CARDS setting to build driver for voodoo video cards

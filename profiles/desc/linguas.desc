@@ -1,0 +1,128 @@
+# Copyright 1999-2006 Gentoo Foundation.
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/linguas.desc,v 1.17 2006/11/25 11:28:33 masterdriverz Exp $
+
+# This file contains descriptions of LINGUAS USE_EXPAND flags.
+
+# Keep it sorted.
+
+af - Afrikaans locale
+am - Amharic locale
+ar - Arabic locale
+as_IN - Assamese locale for India
+az - Azeri locale
+be - Belarusian locale
+be_BY - Belarusian locale
+bg - Bulgarian locale
+bn - Bengali locale
+br - Breton locale
+bs - Bosnian locale
+ca - Catalan locale
+cs - Czech locale
+cy - Welsh locale
+da - Danish locale
+de - German locale
+el - Greek locale
+en - English locale
+en_US - English locale
+en_GB - English locale for Britain
+en_ZA - English locale for South Africa
+eo - Esperanto locale
+es - Spanish locale
+es_AR - Spanish locale for Argentina
+es_ES - Spanish locale for Spain
+et - Estonian locale
+eu - Basque locale
+fa - Persian locale
+fi - Finnish locale
+fo -  Faroese locale
+fr - French locale
+fy - Frisian locale
+fy_NL - Frisian language locale for the Netherlands
+ga - Irish locale
+ga_IE - Irish locale for Ireland
+gl - Galician locale
+gu - Gujarati locale
+gu_IN - Gujarati locale for India
+he - Hebrew locale
+hi - Hindi locale
+hi_IN - Hindi locale
+hr - Croatian locale
+hsb - Upper Sorbian locale
+hu - Hungarian locale
+id - Indonesian locale
+is - Icelandic locale
+it - Italian locale
+ja - Japanese locale
+ka - Georgian locale
+kk - Kazakh locale
+km - Khmer locale
+kn - Kannada locale
+ko - Korean locale
+ku - Kurdish (latin) locale
+la - Latin2 locale
+lo - Lao locale
+lt - Lithuanian locale
+lv - Latvian locale
+mk - Macedonian locale
+ml - Malayalam locale
+ml_IN - Malayalam locale for India
+mr_IN - Marathi locale for India
+mn - Mongolian locale
+ms - Malay locale
+mt - Maltese locale
+nb - Norwegian (Bokmal) locale
+nb_NO - Norwegian (Bokmal) locale for Norway
+nds - Low Saxon locale
+ne - Nepali locale
+nl - Dutch locale
+nn - Nynorsk locale
+nn_NO - Nynorsk locale for Norway
+no - Norwegian locale
+nr - Ndebele (South) locale
+ns - Northern Sotho locale
+nso - Northern Sotho locale
+or_IN - Oriya for India
+pa - Punjabi locale for India
+pa_IN - Punjabi locale for India
+pl - Polish locale
+pt_BR - Portuguese locale for Brasil
+pt_PT - Portuguese locale for Portugal
+pt - Portuguese locale
+ro - Romanian locale
+ru - Russian locale
+rw - Kinyarwanda locale
+se - Northern Saami locale
+sh_YU - Serbo-Croatian locale
+sk - Slovak locale
+sl - Slovenian locale
+sq - Albanian locale
+sr@Latn - Serbian (latin) locale
+sr - Serbian locale
+sr_CS - Serbian locale
+ss - Swati locale
+st - Southern Sotho locale
+sv - Swedish locale
+sv_SE - Swedish locale for Sweden
+sw_TZ - Swahili locale for Tanzania
+ta - Tamil locale
+ta_IN - Tamil locale
+te - Telugu locale
+te_IN - Telugu locale for India
+tg - Tajik locale
+th - Thai locale
+ti_ER - Tigrinya locale for Eritrea
+tl - Tagalog locale
+tn - Tswana locale
+tr - Turkish locale
+ts - Tsonga locale
+ur_IN - Urdu locale for India
+uk - Ukrainian locale
+uz - Uzbek locale
+ve - Venda locale
+vi - Vietnamese locale
+xh - Xhosa locale
+zh - Chinese locale
+zh_CN - Chinese locale for Peoples Republic of China
+zh_TW - Chinese locale for Taiwan
+zu - Zulu locale
