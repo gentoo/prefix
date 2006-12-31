@@ -13,3 +13,4 @@ glibc - ELIBC setting for systems that use the GNU C library
 OpenBSD - ELIBC setting for systems that use the OpenBSD C library
 NetBSD - ELIBC setting for systems that use the NetBSD C library
 uclibc - ELIBC setting for systems that use the uClibc C library
+Solaris - ELIBC setting for systems that use the Solaris C library
