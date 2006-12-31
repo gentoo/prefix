@@ -1,6 +1,6 @@
 # Copyright 2004 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/amd64/use.mask,v 1.42 2006/12/08 01:23:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/amd64/use.mask,v 1.44 2006/12/29 21:13:17 flameeyes Exp $
 
 # SECTION: Unmask
 
@@ -30,6 +30,11 @@
 -video_cards_vmware
 
 # SECTION: Unavailable/Broken
+
+# 2006/12/21 - Diego Pettenò <flameeyes@gentoo.org>
+# Mask some ALSA cards that are known broken in AMD64
+alsa_cards_cs5535audio
+alsa_cards_asihpi
 
 # 2006/09/05 - Tupone Alfredo <tupone@gentoo.org>
 # doomsday ebuild is not available on this architecture
@@ -78,10 +83,6 @@ mzscheme
 # 2004/10/06 - Jeremy Huddleston <eradicator@gentoo.org>
 # sys-cluster/pvm won't build
 pvm
-
-# 2004/06/22 - Taken from 2004.0 profile
-# x86 binary only, used by php
-fdftk
 
 # 2004/06/22 - Taken from 2004.0 profile
 # masked
