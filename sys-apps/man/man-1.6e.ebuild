@@ -62,7 +62,7 @@ src_unpack() {
 
 	# Results in grabbing as much tools from the prefix, instead of main
 	# system in a prefixed environment
-	epatch "${FILESDIR}"/man-1.6d-prefix-path.patch
+	epatch "${FILESDIR}"/man-1.6e-prefix-path.patch
 
 	# Fix the makewhatis script for prefix.
 	cp "${FILESDIR}"/makewhatis.cron "${T}"/
@@ -96,6 +96,7 @@ src_compile() {
 	[[ ${EPREFIX%/} == "" ]] && myconf="${myconf} +sgid"
 
 	./configure \
+		-prefix="${EPREFIX}/usr" \
 		-confdir="${EPREFIX}"/etc \
 		${myconf} \
 		+fhs \
@@ -107,16 +108,8 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" PREFIX="${EPREFIX}" install || die "make install failed"
+	emake DESTDIR="${D}" install || die "make install failed"
 	dosym man /usr/bin/manpath
-
-	# man setup is kind of broken, so man.conf installs in double prefix, but
-	# otherwise it doesn't use prefix when looking for it, or the rest is
-	# installed wrongly
-	mkdir -p "${ED}"/etc/
-	mv "${ED}/${EPREFIX}"/etc/man.conf "${ED}"/etc/
-	PREF=${EPREFIX#/}
-	rm -R "${ED}/${PREF%%/*}"
 
 	dodoc LSM README* TODO
 
