@@ -134,7 +134,7 @@ setup_portage() {
 }
 
 bootstrap_tree() {
-	PV="20061231"
+	PV="20070102"
 	for x in etc usr/{,s}bin var/tmp var/lib/portage var/log/portage var/db;
 	do
 		[ -d "${ROOT}/${x}" ] || mkdir -p "${ROOT}/${x}"
@@ -151,44 +151,10 @@ bootstrap_tree() {
 	fi
 }
 
-bootstrap_ldwrapper() {
-	# based on what system we have do some adjusting of the wrapper's work
-	case ${CHOST} in
-		*-darwin*)
-			libs="-search_paths_first -L${ROOT}/lib -L${ROOT}/usr/lib"
-			rpaths=""
-		;;
-		*)
-			# this is a lousy check for multilib, and should be done properly
-			# some day/time
-			libs=""
-			for dir in lib64 lib usr/lib64 usr/lib ; do
-				dir=${ROOT}/${dir}
-				[[ -d ${dir} ]] && \
-					libs="${libs} -L${dir}"
-			done
-			# for Sun's native linker (if used during bootstrap) we use
-			# -R here instead of -rpath=
-			rpaths=${libs//-L/-R}
-		;;
-	esac
-
-	mkdir -p "${ROOT}/usr/bin"
-	echo '#!/usr/bin/env bash'               > ${ROOT}/usr/bin/ld
-	echo "$(which ld)"' $* '"$libs $rpaths" >> ${ROOT}/usr/bin/ld
-	chmod 755 "${ROOT}/usr/bin/ld"
-	# on Darwin we need ld64 too, just add it, if it's there
-	if [[ $(type -t ld64) == "file" ]] ; then
-		echo '#!/usr/bin/env bash'                 > ${ROOT}/usr/bin/ld64
-		echo "$(which ld64)"' $* '"$libs $rpaths" >> ${ROOT}/usr/bin/ld64
-		chmod 755 "${ROOT}/usr/bin/ld64"
-	fi
-}
-
 bootstrap_portage() {
 	# don't use "latest" here, as I want to have the bootstrap script to
 	# use a portage in a known "state"
-	PV=2.1.20.5400
+	PV=2.1.20.5447
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 		
@@ -217,8 +183,7 @@ bootstrap_portage() {
  	einfo "Installing ${A%-*}"
 	$MAKE install || exit 1
 
-	einfo "Avoiding a bug of endlessly looping for sed"
-	rm -f ${ROOT}/usr/bin/sed
+	einfo "making a symlink for sed in ${ROOT}/usr/bin"
 	( cd ${ROOT}/usr/bin && ln -s ../../bin/sed )
 
 	setup_portage
