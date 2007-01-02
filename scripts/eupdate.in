@@ -197,7 +197,7 @@ cmp_ebuild_ver() {
 
 	t=$((lan - ran))
 	if [[ ${t} != 0 ]] ; then
-		echo $((t * cnt))
+		echo $((-t * cnt))
 		return
 	fi
 	t=$((lsuf - rsuf))
