@@ -625,20 +625,20 @@ create_gcc_env_entry() {
 		gcc_specs_file=""
 	else
 		gcc_envd_file="${ED}${gcc_envd_base}-$1"
-		gcc_specs_file="${EPREFIX}/${LIBPATH}/$1.specs"
+		gcc_specs_file="${EPREFIX}${LIBPATH}/$1.specs"
 	fi
 
-	echo "PATH=\"${EPREFIX}/${BINPATH}\"" > ${gcc_envd_file}
-	echo "ROOTPATH=\"${EPREFIX}/${BINPATH}\"" >> ${gcc_envd_file}
+	echo "PATH=\"${EPREFIX}${BINPATH}\"" > ${gcc_envd_file}
+	echo "ROOTPATH=\"${EPREFIX}${BINPATH}\"" >> ${gcc_envd_file}
 
 	if use multilib && ! has_multilib_profile; then
-		LDPATH="${EPREFIX}/${LIBPATH}"
+		LDPATH="${EPREFIX}${LIBPATH}"
 		for path in 32 64 ; do
-			[[ -d ${EPREFIX}/${LIBPATH}/${path} ]] && LDPATH="${LDPATH}:${EPREFIX}/${LIBPATH}/${path}"
+			[[ -d ${EPREFIX}${LIBPATH}/${path} ]] && LDPATH="${LDPATH}:${EPREFIX}${LIBPATH}/${path}"
 		done
 	else
 		local MULTIDIR
-		LDPATH="${EPREFIX}/${LIBPATH}"
+		LDPATH="${EPREFIX}${LIBPATH}"
 
 		# We want to list the default ABI's LIBPATH first so libtool
 		# searches that directory first.  This is a temporary
@@ -648,9 +648,9 @@ create_gcc_env_entry() {
 		local abi=${DEFAULT_ABI}
 		local MULTIDIR=$($(XGCC) $(get_abi_CFLAGS ${abi}) --print-multi-directory)
 		if [[ ${MULTIDIR} == "." ]] ; then
-			LDPATH="${EPREFIX}/${LIBPATH}"
+			LDPATH="${EPREFIX}${LIBPATH}"
 		else
-			LDPATH="${EPREFIX}/${LIBPATH}/${MULTIDIR}"
+			LDPATH="${EPREFIX}${LIBPATH}/${MULTIDIR}"
 		fi
 
 		for abi in $(get_all_abis) ; do
@@ -658,9 +658,9 @@ create_gcc_env_entry() {
 
 			MULTIDIR=$($(XGCC) $(get_abi_CFLAGS ${abi}) --print-multi-directory)
 			if [[ ${MULTIDIR} == "." ]] ; then
-				LDPATH=${LDPATH}:${EPREFIX}/${LIBPATH}
+				LDPATH=${LDPATH}:${EPREFIX}${LIBPATH}
 			else
-				LDPATH=${LDPATH}:${EPREFIX}/${LIBPATH}/${MULTIDIR}
+				LDPATH=${LDPATH}:${EPREFIX}${LIBPATH}/${MULTIDIR}
 			fi
 		done
 	fi
@@ -672,8 +672,8 @@ create_gcc_env_entry() {
 	CC=$(XGCC) has_m64 && mbits="${mbits:+${mbits} }64"
 	echo "GCCBITS=\"${mbits}\"" >> ${gcc_envd_file}
 
-	echo "MANPATH=\"${EPREFIX}/${DATAPATH}/man\"" >> ${gcc_envd_file}
-	echo "INFOPATH=\"${EPREFIX}/${DATAPATH}/info\"" >> ${gcc_envd_file}
+	echo "MANPATH=\"${EPREFIX}${DATAPATH}/man\"" >> ${gcc_envd_file}
+	echo "INFOPATH=\"${EPREFIX}${DATAPATH}/info\"" >> ${gcc_envd_file}
 	echo "STDCXX_INCDIR=\"${STDCXX_INCDIR##*/}\"" >> ${gcc_envd_file}
 
 	is_crosscompile && echo "CTARGET=${CTARGET}" >> ${gcc_envd_file}
