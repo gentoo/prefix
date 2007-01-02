@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.6467 2006/12/19 03:45:42 gothgirl Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.6521 2007/01/01 16:59:09 beu Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -25,22 +25,135 @@
 ##   End example
 ## 
 
-# Christian Heim <phreak@gentoo.org> (17 Dec 2006)
-# masking net-wireless/ipw3945d-1.7.22-r4 for some testing
-=net-wireless/ipw3945d-1.7.22-r4
+# Doug Goldstein <cardoe@gentoo.org> (31 Dec 2006)
+# Masked for testing
+>=x11-libs/cairo-1.3.0
+
+# Alec Warner <antarus@gentoo.org> (30 Dec 2006)
+# Pending removal, use net-www/gnash or net-www/netscape-flash
+# It will die in 30 days (Moz team if you want it shorter make
+# it so)
+net-www/gplflash
+
+# William L. Thomson Jr. <wltjr@gentoo.org> (30 Dec 2006)
+# Old versions of Netbeans no longer supported
+# Neither are some of it's deps like Tomcat 5.0.28
+=dev-util/netbeans-4.0-r2
+
+# William L. Thomson Jr. <wltjr@gentoo.org> (30 Dec 2006)
+# Old versions of Tomcat no longer supported
+# 5.0.27 is soon to be removed, ppc/ppc64 users please
+# let me know if your using this version
+<www-servers/tomcat-5.5.20
+
+# Tiziano Müller <dev-zero@gentoo.org> (30 Dec 2006)
+# Masking for pending removal: bug #151927, upstream dead since 2001
+dev-python/snmpy
+
+# Mike Frysinger <vapier@gentoo.org> (28 Dec 2006)
+# Build failure on big-endian #154294 and breaks non-default journals #154974
+~sys-fs/reiserfsprogs-3.6.20
+
+# Chris Gianelloni <wolf31o2@gentoo.org> (28 Dec 2006)
+# These need to be unmasked together
+games-action/descent2-data
+games-action/descent2-demodata
+>=games-action/d2x-0.2.5-r3
+games-action/d2x-xml
+
+# Mike Frysinger <vapier@gentoo.org> (28 Dec 2006)
+# Does not work with bittorrent-4.x+ #152442
+net-p2p/gnome-btdownload
+
+# Joshua Nichols <nichoj@gentoo.org> (27 Dec 2006)
+# Python bindings for XFCE 4.4
+dev-python/pyxfce
+
+# Diego Pettenò <flameeyes@gentoo.org> (27 Dec 2006)
+# Preview snapshot
+=media-libs/xine-lib-1.1.4_pre*
+
+# Daniel Drake <dsd@gentoo.org> (26 Dec 2006)
+# Many unpatched security issues, including bug #144820
+sys-kernel/systrace-sources
+
+# Diego Pettenò <flameeyes@gentoo.org> (26 Dec 2006)
+# Pending removal (26 Jan 2007) as superseded by media-libs/libmpcdec.
+media-libs/libmusepack
+=media-plugins/gst-plugins-musepack-0.8.8
+
+# Andrej Kacian <ticho@gentoo.org> (25 Dec 2006)
+# Masked for debugging
+>=app-antivirus/bitdefender-console-7.1
+
+# Mike Doty <kingtaco@gentoo.org> (25 Dec 2006)
+# Please use media-video/gspca instead - pending removal (25 Jan 2007)
+media-video/gspcav1
+
+# Charlie Shepherd <masterdriverz@gentoo.org> (24 Dec 2006)
+# Mask pending removal (24 Jan 2007) - dead upstream, fails to compile
+# with later kernels, see bug 153365
+media-video/dxr2-driver
+
+# Andrej Kacian <ticho@gentoo.org> (24 Dec 2006)
+# Mask prior to removal - the same functionality is provided by coreutils.
+# See bug #152815. Removal on (24 Jan 2007)
+net-mail/base64
+
+# Konstantin V. Arkhipov <voxus@gentoo.org> (22 Dec 2006)
+# Stability issues on hardened systems: bugs #158217, #158664
+~net-dns/bind-9.2.7
+~net-dns/bind-tools-9.2.7
+~net-dns/bind-9.3.3
+~net-dns/bind-tools-9.3.3
+
+# Diego Pettenò <flameeyes@gentoo.org> (21 Dec 2006)
+# Masked pending removal on (21 Jan 2007)
+# Obsoleted by media-plugins/alsa-plugins with jack
+# useflag enabled.
+media-plugins/alsa-jack
+
+# Diego Pettenò <flameeyes@gentoo.org> (21 Dec 2006)
+# This is an experimental ebuild, with more USE flags and
+# a new ALSA_PCM_PLUGINS variable to disable of the
+# core internal plugins.
+=media-libs/alsa-lib-1.0.14_rc1-r1
+
+# Donnie Berkholz <dberkholz@gentoo.org> (20 Dec 2006)
+# Testing for FreeBSD support
+=x11-base/x11-drm-20060608-r1
+
+# Joshua Nichols <nichoj@gentoo.org> (05 Dec 2006)
+# Plugins for XFCE 4.4's Thunar file manager
+xfce-extra/thunar-archive
+xfce-extra/thunar-media-tags
+
+# Diego Pettenò <flameeyes@gentoo.org> (19 Dec 2006)
+# Pending removal on (19 Jan 2007), as Amarok does not use
+# this anymore, and that was its only user.
+media-sound/exscalibar
+
+# Markus Ullmann <jokey@gentoo.org> (19 Dec 2006)
+# mask for removal bug #153257 on (19 Jan 2007)
+net-analyzer/zodiac
 
 # George Shapovalov <george@gentoo.org> (16 Dec 2006)
 # masked for removal (an IO tool for an old mp3 player, 
 # no updates for ages, does not build any more, see #152131)
+# Remove (15 Jan 2007)
 app-misc/nomad-tool
 
 # Christian Faulhammer <opfer@gentoo.org> (16 Dec 2006)
 # has open security issues, see bug #142661
-# removal 15 Jan 2007, if noone steps up
+# removal (15 Jan 2007), if noone steps up
 net-misc/ltsp
 
 # Christian Faulhammer <opfer@gentoo.org> (16 Dec 2006)
 # Won't compile with GCC 4, see bugs #142406, #146229
+# Remove (15 Jan 2007)
+# NOTE: for security reasons, please contact security team if for
+#       some reason this is not removed (see #159501).
+#           -- taviso (30 Dec 2006)
 net-p2p/xmule 
 
 # Michael Sterrett <mr_bones_@gentoo.org> (14 Dec 2006)
@@ -62,7 +175,7 @@ kde-misc/styleclock
 
 # Michael Sterrett <mr_bones_@gentoo.org> (13 Dec 2006)
 # doomlegacy has numerous bugs open about it and doesn't
-# build with gcc4.  Masking for removal unless someone
+# build with gcc4.  Masking for removal (Jan 13) unless someone
 # steps up to fix all the open bugs.
 # bugs #88804, #72799, #103323, #82716, #150403, and #119844
 games-fps/doomlegacy
@@ -85,14 +198,6 @@ sys-fs/submount
 # needs some testing
 =net-analyzer/arpwatch-2.1.15-r3
 
-# Elfyn McBratney <beu@gentoo.org> (11 Dec 2006)
-# Dead upstream; removal pending 2006-12-25.
-dev-util/mergetrees
-
-# Elfyn McBratney <beu@gentoo.org> (11 Dec 2006)
-# Dead upstream; removal pending 2006-12-25.
-net-misc/cidr
-
 # Timothy Redaelli <drizzt@gentoo.org> (09 Dec 2006)
 # pending removal (#156989)
 # can't fix rpath, application checks its checksum
@@ -101,24 +206,6 @@ app-antivirus/vlnx
 # Daniel Black <dragonheart@gentoo.org> (09 Dec 2006)
 # needs more compatibilty testing - bug #157718 for incompatibilites
 >=net-misc/curl-7.16.0
-
-# Marius Mauch <genone@gentoo.org> (07 Dec 2006)
-# Temporary mask until everything is in place.
->=mail-client/sylpheed-claws-2.6.1
-mail-client/claws-mail
-mail-client/claws-mail-acpi-notifier
-mail-client/claws-mail-att-remover
-mail-client/claws-mail-cachesaver
-mail-client/claws-mail-etpan-privacy
-mail-client/claws-mail-fetchinfo
-mail-client/claws-mail-gtkhtml
-mail-client/claws-mail-maildir
-mail-client/claws-mail-mailmbox
-mail-client/claws-mail-newmail
-mail-client/claws-mail-perl
-mail-client/claws-mail-rssyl
-mail-client/claws-mail-smime
-mail-client/claws-mail-vcalendar
 
 # Joshua Nichols <nichoj@gentoo.org> (05 Dec 2006)
 # Archive tool for XFCE 4.4
@@ -140,6 +227,7 @@ xfce-extra/xfce4-cpu-freq
 >=xfce-extra/xfce4-datetime-0.4.0
 >=xfce-extra/xfce4-diskperf-2.0
 >=xfce-extra/xfce4-genmon-3.0
+xfce-extra/xfce4-mailwatch
 >=xfce-extra/xfce4-mount-0.4.7
 >=xfce-extra/xfce4-notes-1.4
 >=xfce-extra/xfce4-quicklauncher-1.9.2
@@ -209,13 +297,6 @@ media-video/vls
 # Masked for testing.
 =media-libs/spandsp-0.0.3*
 
-# Stuart Herbert <stuart@gentoo.org> (27 Nov 2006)
-# Deprecated: no longer supported
-# Pending removal Dec 27
-=net-misc/nxserver-personal-1.5*
-=net-misc/nxserver-business-1.5*
-=net-misc/nxserver-enterprise-1.5*
-
 # Steve Dibb <beandog@gentoo.org> (26 Nov 2006)
 # Deprecated: upstream dead, unsupported, doesn't compile anymore.
 # Pending removal Dec 26
@@ -240,10 +321,6 @@ net-ftp/kbear
 # Saleem Abdulrasool <compnerd@gentoo.org> (21 Nov 2006)
 # Mask for testing
 app-misc/tracker
-
-# Robin H. Johnson <robbat2@gentoo.org> (21 Nov 2006)
-# bug #149660, scheduled for removal 2006-Dec-21.
-net-nds/migrationtools
 
 # Robin H. Johnson <robbat2@gentoo.org> (21 Nov 2006)
 # Block. It breaks badly on bigendian boxes.
@@ -275,178 +352,10 @@ dev-ada/adaopengl
 # Pending for removal on 18 Jan 2007.
 net-dialup/gigaset-isdn
 
-# Saleem Abdulrasool <compnerd@gentoo.org> (17 Nov 2006)
-# Hard D-BUS dependency (0.90)
->=app-misc/tomboy-0.5.0
-
-# Alin Nastac <mrness@gentoo.org> (17 Nov 2006)
-# This package is merely a hack that adds anti-virus support to the
-# old version of dansguardian (2.8).
-# Since >net-proxy/dansguardian-2.9 have better AV support,
-# I'm masking dgav with the intention of removing it on 17 Dec 2006.
-net-proxy/dansguardian-dgav
-
-# Doug Goldstein <cardoe@gentoo.org>
-# New stable Cairo
-=x11-libs/cairo-1.2.6
-
 # Diego Pettenò <flameeyes@gentoo.org>
 # Masking pre-releases before final release
 =media-video/vlc-0.8.6_beta*
 =media-video/vlc-0.8.6_rc*
-
-# Saleem Abdulrasool <compnerd@gentoo.org> (16 Nov 2006)
-# GNOME 1.x Removal Mask (15 Dec 2006)
-app-admin/fpm
-app-admin/gpsui
-app-admin/procman
-app-admin/xsu
-app-dicts/pydict
-app-editors/gmanedit
-app-emulation/xwine
-app-i18n/ami
-app-misc/gtktalog
-app-misc/gtktrain
-app-misc/sjog
-app-mobilephone/gscmxx
-app-office/gbib
-app-office/lahelper
-dev-cpp/gnomemm
-dev-db/gmyclient
-dev-perl/CORBA-ORBit
-dev-perl/gtk-perl
-dev-perl/glade-perl
-dev-perl/gtk-perl-glade
-dev-perl/HTTP-GHTTP
-dev-php4/php-gtk
-dev-python/bonobo-python
-dev-python/orbit-python
-dev-ruby/ruby-gnome
-dev-ruby/ruby-libglade
-dev-ruby/ruby-panel-applet
-dev-util/glimmer
-dev-util/pharmacy
-games-action/bombermaze
-games-board/daemonshogi
-games-board/gnono
-games-emulation/grustibus
-games-emulation/gsnes9x
-games-misc/groach
-games-strategy/xarchon
-gnome-base/bonobo
-gnome-base/gnome-core
-gnome-base/gnome-libs
-gnome-base/gnome-print
-gnome-base/oaf
-gnome-extra/battstat
-gnome-extra/bonobo-conf
-gnome-extra/glibwww
-gnome-extra/gnome-pim
-gnome-extra/gtop
-gnome-extra/guppi
-gnome-extra/merlin-cpufire
-gnome-extra/users-guide
-mail-client/sylpheed-claws-ghostscript-viewer
-mail-client/sylpheed-claws-pgpinline
-media-gfx/danpei
-media-gfx/ee
-media-gfx/gnome-iconedit
-media-libs/gdk-pixbuf
-media-plugins/gst-plugins-swfdec
-media-sound/digitaldj
-<media-sound/gnusound-0.7.4
-media-sound/psindustrializer
-media-video/gsubedit
-media-video/nvoption
-media-video/ldvd
-media-video/piave
-net-analyzer/cheops-ng
-net-analyzer/netleds_applet
-net-analyzer/nomad
-net-analyzer/xtraceroute
-net-dialup/pptpconfig
-net-fs/intersync
-net-ftp/deadftp
-net-im/ayttm
-net-im/gnophone
-net-im/ymessenger
-net-misc/gnomba
-net-misc/pxes
-net-nds/directoryadministrator
-net-nntp/glitter
-net-nntp/gnewspost
-net-p2p/fidelio
-net-wireless/gkismet
-net-wireless/wavelan-applet
-sci-calculators/snac
-www-client/ochusha
-<x11-libs/rep-gtk-0.18
-x11-misc/xalf
-x11-misc/gtkdiff
-x11-misc/whitebox
-x11-plugins/gkrellm-gnome
-x11-plugins/wmappkill
-x11-plugins/wmdeskguide
-x11-plugins/wmspaceclock
-x11-terms/multi-gnome-terminal
-x11-themes/gtk-engines-smooth
-x11-themes/mandrake-artwork
-x11-themes/nautilus-themes
-
-<app-crypt/tinyca-2
-<app-editors/ghex-2
-<app-misc/gpsdrive-2
-<app-office/gnucash-2
-<app-pda/gnome-pilot-2
-<app-pda/gnome-pilot-conduits-2
-<app-text/gtranslator-1
-<dev-util/glade-2
-<dev-util/glademm-2
-<dev-util/memprof-0.5.1
-<dev-ml/lablgtk-2
-<dev-perl/AxKit-1.6-r2
-<dev-python/pygtk-2
-dev-python/python-gtkextra
-<dev-python/gnome-python-2
-<gnome-base/control-center-2
-<gnome-base/eel-2
-<gnome-base/gconf-2
-<gnome-base/gnome-applets-2
-<gnome-base/gnome-common-2
-<gnome-base/gnome-panel-2
-<gnome-base/gnome-vfs-2
-<gnome-base/libglade-2
-<gnome-base/libgtop-2
-<gnome-base/librsvg-2
-<gnome-base/nautilus-2
-<gnome-base/orbit-2
-<gnome-extra/gal-1.99.11
-<gnome-extra/gnome-games-2
-<gnome-extra/gnome-media-2
-<gnome-extra/gnome-utils-2
-<gnome-extra/gtkhtml-2
-<mail-client/balsa-2
-<mail-client/sylpheed-claws-2
-=mail-client/sylpheed-claws-maildir-0.7
-=mail-client/sylpheed-claws-mailmbox-0.9
-<media-gfx/eog-2
-<media-sound/galan-0.3
-<media-sound/gqmpeg-0.91.1
-<media-sound/gqradio-1.9.2
-=media-video/coriander-1*
-<media-video/lives-0.9.1
-<media-video/ogle-gui-0.9.2
-<net-misc/unison-2.12.0
-<=net-p2p/mldonkey-2.5.16-r9
-<sci-chemistry/ghemical-2
-<sci-electronics/gerbv-1
-<sci-mathematics/scilab-3
-<sci-misc/oww-0.81.9
-<sci-visualization/scigraphica-2
-=media-libs/swfdec-0.2.2
-=x11-wm/sawfish-1.0.1-r6
-# Broken in more than one way
-mail-client/spruce
 
 # Doug Goldstein <cardoe@gentoo.org> (15 Nov 2006)
 # Completely broken. Upstream removed and changed binary files
@@ -480,12 +389,6 @@ dev-ada/adabroker
 <dev-ada/gps-bin-2.1
 =dev-ada/aunit-1.01
 
-# Luca Barbato <lu_zero@gentoo.org> (13 Nov 2006)
-# Cell stuff, not for consumption yet.
-# 
-sys-libs/libspe
-=sys-libs/newlib-20061113
-
 # Joseph Jezak <josejx@gentoo.org> (13 Nov 2006)
 # Masked for removal, depends on pmud (bug #153197)
 # Please use gkrellm-pmu, or the KDE/gnome battery panels instead
@@ -500,10 +403,6 @@ app-laptop/pmud
 # app-emulation/uae for bug(s) 153191, 112675, 140707, 137018
 # Upstream is going to help and fix bugs in 0.8.25... Until use e-uae.
 app-emulation/uae
-
-# Robin H. Johnson <robbat2@gentoo.org> (11 Nov 2006)
-# Temporarily block while testing
->=app-crypt/gnupg-2.0.0
 
 # Kris Kersey <augustus@gentoo.org> (08 Nov 2006)
 # The below BETA adds support for GeForce 8800 GTX and GeForce 8800 GTS GPUs.
@@ -580,30 +479,6 @@ dev-ada/asis
 >=x11-plugins/enigmail-0.94.1-r1
 >=mail-client/mozilla-thunderbird-2.0_alpha1
 
-# Chris Gianelloni <wolf31o2@gentoo.org> (23 Oct 2006)
-# I am masking all of this so it can all be unmasked at once.  All of the new
-# revisions of quake3-based mods will be added here first,until I get them all
-# ported to the new eclass.
->=games-fps/quake3-bin-1.32c-r1
->=games-fps/quake3-alliance-3.3-r1
->=games-fps/quake3-alternatefire-2.0-r1
->=games-fps/quake3-bfp-1.2-r1
->=games-fps/quake3-brainworks-0.91-r1
->=games-fps/quake3-cpma-1.38-r1
->=games-fps/quake3-defrag-1.91.08-r1
-games-fps/quake3-excessiveplus
-games-fps/quake3-lrctf
->=games-fps/quake3-matrix-2.4_beta-r1
->=games-fps/quake3-nsco-1.93-r1
->=games-fps/quake3-osp-1.03a-r1
->=games-fps/quake3-ra3-1.76-r1
-games-fps/quake3-rally
-games-fps/quake3-reaction
->=games-fps/quake3-ruinhunters-1.0a-r1
->=games-fps/quake3-threewave-1.7-r1
->=games-fps/quake3-urbanterror-3.7-r1
->=games-fps/quake3-wop-1.0_beta1-r2
-
 # Fabian Groffen <grobian@gentoo.org> (23 Oct 2006)
 # MonetDB doesn't compile any more.  Waiting for next release (soon) 
 # hopefully with better luck.
@@ -669,6 +544,7 @@ sys-apps/perfctr
 
 # Roy Marples <uberlord@gentoo.org> (02 Oct 2006)
 # masked for testing due to major ebuild and installation changes
+sys-apps/makedev
 >=sys-apps/baselayout-1.13.0_alpha1
 =media-gfx/splashutils-1.3-r3
 
@@ -806,10 +682,6 @@ dev-lisp/cl-icu
 dev-lisp/cl-fiveam
 dev-lisp/cl-ucw
 dev-lisp/cl-rfc2109
-
-# Michael Sterrett <mr_bones_@gentoo.org> (20 Aug 2006)
-# Don't even think of filing bugs about these versions.
->=games-strategy/wesnoth-1.1
 
 # Matthew Kennedy <mkennedy@gentoo.org> (20 Aug 2006)
 # Unmaintained upstream, problems with recent Emacs.
@@ -1085,8 +957,9 @@ sys-apps/ppc64-utils
 net-misc/asterisk-app_authenticate_ldap
 
 # Mark Loeser <halcy0n@gentoo.org> (11 Apr 2006)
-# GCC 4.2 snapshots; use with extreme care and only report bugs if you have
+# GCC snapshots; use with extreme care and only report bugs if you have
 # a patch
+=sys-devel/gcc-4.3*
 =sys-devel/gcc-4.2*
 
 # Carsten Lohrke <carlo@gentoo.org> (10 Apr 2006)
@@ -1432,7 +1305,7 @@ media-video/dirac
 net-mail/mailer-config
 =net-mail/mailwrapper-0.2.1-r1
 =mail-mta/nbsmtp-1.00-r3
-=mail-mta/msmtp-1.4.7-r1
+=mail-mta/msmtp-1.4.9-r1
 >=mail-mta/ssmtp-2.61-r30
 >=mail-mta/esmtp-0.5.0-r2
 =mail-mta/postfix-2.2.4
