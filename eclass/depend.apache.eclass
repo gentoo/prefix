@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/depend.apache.eclass,v 1.28 2006/11/26 21:25:28 vericgar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/depend.apache.eclass,v 1.29 2007/01/01 22:27:01 swegener Exp $
 
 inherit multilib
 
@@ -101,7 +101,7 @@ APACHE2_2_DEPEND="=net-www/apache-2.2*"
 ## NEED_APACHE_DEPEND
 ##
 ## Dependency magic based on useflags to use the right DEPEND
-## If you change this, please check the DEPENDS in need_apache() 
+## If you change this, please check the DEPENDS in need_apache()
 ####
 
 NEED_APACHE_DEPEND="apache2? ( ${APACHE2_DEPEND} ) !apache2? ( ${APACHE1_DEPEND} )"
@@ -257,12 +257,12 @@ need_apache() {
 	if [[ "${supports20}" == "yes" && "${supports22}" == "yes" ]]; then
 		supports2x=yes;
 	fi
-	
+
 	debug-print "supports13: ${supports13}"
 	debug-print "supports20: ${supports20}"
 	debug-print "supports22: ${supports22}"
 	debug-print "supports2x: ${supports2x}"
-	
+
 	if [ "${supports13}" != "yes" ]; then
 		if [ "${supports2x}" == "yes" ]; then
 			need_apache2
@@ -272,7 +272,7 @@ need_apache() {
 			need_apache2_2
 		fi
 	elif [ "${supports13}" == "yes" ]; then
-		if [[ 	"${supports2x}" == "yes" || 
+		if [[ 	"${supports2x}" == "yes" ||
 				"${supports20}" == "yes" ||
 				"${supports22}" == "yes" ]]; then
 
@@ -288,10 +288,10 @@ need_apache() {
 					NEED_APACHE_DEPEND="apache2? ( ${APACHE2_2_DEPEND} ) !apache2? ( ${APACHE1_DEPEND} )"
 				fi
 			fi
-			
+
 			DEPEND="${DEPEND} ${NEED_APACHE_DEPEND}"
 			RDEPEND="${RDEPEND} ${NEED_APACHE_DEPEND}"
-			
+
 			if useq apache2; then
 				uses_apache2
 			else

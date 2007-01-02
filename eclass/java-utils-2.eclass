@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.36 2006/12/20 22:45:18 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.38 2006/12/31 19:30:54 betelgeuse Exp $
 
 
 # -----------------------------------------------------------------------------
@@ -258,14 +258,14 @@ java-pkg_regjar() {
 	local jar jar_dir jar_file
 	for jar in "$@"; do
 		# TODO use java-pkg_check-versioned-jar
-		if [[ -e "${jar}" ]]; then
+		if [[ -e "${jar}" || -e "${ED}${jar}" ]]; then
+			[[ -d "${jar}" || -d "${ED}${jar}" ]] \
+				&& die "Called ${FUNCNAME} on a	directory $*"
 			# nelchael: we should strip ${ED} in this case too, here's why:
 			# imagine such call:
 			#    java-pkg_regjar ${ED}/opt/java/*.jar
 			# such call will fall into this case (-e ${jar}) and will
 			# record paths with ${ED} in package.env
-			java-pkg_append_ JAVA_PKG_CLASSPATH	"${jar#${ED}}"
-		elif [[ -e "${ED}${jar}" ]]; then
 			java-pkg_append_ JAVA_PKG_CLASSPATH	"${jar#${ED}}"
 		else
 			die "${jar} does not exist"
@@ -577,7 +577,7 @@ java-pkg_dolauncher() {
 
 	# Process the other the rest of the arguments
 	while [[ -n "${1}" && -n "${2}" ]]; do
-		local var=${1} value=${2}
+		local var="${1}" value="${2}"
 		if [[ "${var:0:2}" == "--" ]]; then
 			local var=${var:2}
 			echo "gjl_${var}=\"${value}\"" >> "${var_tmp}"
@@ -801,12 +801,12 @@ java-pkg_jarfrom() {
 java-pkg_getjars() {
 	debug-print-function ${FUNCNAME} $*
 
-	[[ ${#} -lt 1 || ${#} -gt 2 ]] && die "${FUNCNAME} takes only one or two arguments"
-
 	if [[ "${1}" = "--build-only" ]]; then
 		local build_only="true"
 		shift
 	fi
+
+	[[ ${#} -ne 1 ]] && die "${FUNCNAME} takes only one argument besides --build-only"
 
 	local classpath pkgs="${1}"
 	jars="$(java-config --classpath=${pkgs})"
@@ -1186,26 +1186,11 @@ java-pkg_get-source() {
 # Determines what target version should be used, for passing to -target.
 # If you don't care about lower versions, you can set _WANT_TARGET to the
 # version of your JDK.
-# Remember doing this will mostly like cause things to break.
-# Doesn't allow it to be lower then the one in depend.
-# Doesn't allow it to be higher then the active vm.
 #
 # @return string - Either the lowest possible target, or JAVA_PKG_WANT_TARGET
 # ------------------------------------------------------------------------------
 java-pkg_get-target() {
-	local min=$(depend-java-query --get-lowest "${DEPEND} ${RDEPEND}")
-	if [[ -n "${JAVA_PKG_WANT_TARGET}" ]]; then
-		local max="$(java-config --select-vm "${GENTOO_VM}" -g PROVIDES_VERSION)"
-		if version_is_at_least "${min}" "${JAVA_PKG_WANT_TARGET}" && version_is_at_least "${JAVA_PKG_WANT_TARGET}" "${max}"; then
-			echo ${JAVA_PKG_WANT_TARGET}
-		else
-			echo ${min}
-		fi
-	else
-		echo ${min}
-	fi
-
-	#echo ${JAVA_PKG_WANT_TARGET:-$(depend-java-query --get-lowest "${DEPEND}")}
+	echo ${JAVA_PKG_WANT_TARGET:-$(depend-java-query --get-lowest "${DEPEND} ${RDEPEND}")}
 }
 
 java-pkg_get-javac() {
@@ -1453,6 +1438,7 @@ java-pkg_force-compiler() {
 use_doc() {
 	use doc && echo ${@:-javadoc}
 }
+
 
 # ------------------------------------------------------------------------------
 # @section-end build
@@ -1846,10 +1832,13 @@ java-pkg_get-vm-version() {
 # Setup the environment for the VM being used.
 # ------------------------------------------------------------------------------
 java-pkg_switch-vm() {
+	debug-print-function ${FUNCNAME} $*
+
 	if java-pkg_needs-vm; then
 		# Use the VM specified by JAVA_PKG_FORCE_VM
-		if [[ -n ${JAVA_PKG_FORCE_VM} ]]; then
+		if [[ -n "${JAVA_PKG_FORCE_VM}" ]]; then
 			# If you're forcing the VM, I hope you know what your doing...
+			debug-print "JAVA_PKG_FORCE_VM used: ${JAVA_PKG_FORCE_VM}"
 			export GENTOO_VM="${JAVA_PKG_FORCE_VM}"
 		# if we're allowed to switch the vm...
 		elif [[ "${JAVA_PKG_ALLOW_VM_CHANGE}" == "yes" ]]; then

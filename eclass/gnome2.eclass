@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2.eclass,v 1.78 2006/12/13 02:27:48 leonardop Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2.eclass,v 1.79 2007/01/01 22:27:01 swegener Exp $
 
 #
 # gnome2.eclass
@@ -111,7 +111,7 @@ gnome2_pkg_postinst() {
 	fdo-mime_desktop_database_update
 	fdo-mime_mime_database_update
 	gnome2_icon_cache_update
-	
+
 	if [[ "${SCROLLKEEPER_UPDATE}" = "1" ]]; then
 		gnome2_scrollkeeper_update
 	fi

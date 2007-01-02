@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.1 2006/09/11 08:46:09 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.3 2006/12/30 18:21:02 ferdy Exp $
 
 ## --------------------------------------------------------------------------- #
 # subversion.eclass author: Akinori Hattori <hattya@gentoo.org>
@@ -204,7 +204,8 @@ git_fetch() {
 		${EGIT_UPDATE_CMD} ${EGIT_OPTIONS} origin ${EGIT_BRANCH}:${EGIT_BRANCH} \
 			|| die "${EGIT}: can't update from ${EGIT_REPO_URI}."
 
-		${EGIT_DIFFSTAT_CMD} ${oldsha1}..${EGIT_BRANCH}
+		# piping through cat is needed to avoid a stupid Git feature
+		${EGIT_DIFFSTAT_CMD} ${oldsha1}..${EGIT_BRANCH} | cat
 	fi
 
 	einfo "   local clone: ${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}"

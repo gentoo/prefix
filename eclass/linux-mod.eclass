@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.69 2006/11/25 10:16:04 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.70 2007/01/01 22:27:01 swegener Exp $
 
 # Description: This eclass is used to interface with linux-info in such a way
 #              to provide the functionality required and initial functions
@@ -255,7 +255,7 @@ get-KERNEL_CC() {
 	if [ -n "${KERNEL_ABI}" ]; then
 		# In future, an arch might want to define CC_$ABI
 		#kernel_cc="$(get_abi_CC)"
-		#[ -z "${kernel_cc}" ] && 
+		#[ -z "${kernel_cc}" ] &&
 		kernel_cc="$(tc-getCC $(ABI=${KERNEL_ABI} get_abi_CHOST))"
 	else
 		kernel_cc=$(tc-getCC)
@@ -561,6 +561,6 @@ linux-mod_pkg_postinst() {
 }
 
 linux-mod_pkg_postrm() {
-	debug-print-function ${FUNCNAME} $*	
+	debug-print-function ${FUNCNAME} $*
 	remove_moduledb;
 }

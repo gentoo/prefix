@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.186 2006/12/01 20:23:51 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.187 2006/12/25 13:49:28 flameeyes Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -34,10 +34,11 @@ fi
 DEPEND="sys-devel/make
 	dev-util/pkgconfig
 	dev-lang/perl
-	|| ( x11-proto/xf86vidmodeproto <virtual/x11-7 )
-	xinerama? ( || ( x11-proto/xineramaproto <virtual/x11-7 ) )"
+	x11-libs/libXt
+	x11-proto/xf86vidmodeproto
+	x11-proto/xineramaproto"
 
-RDEPEND="xinerama? ( || ( x11-libs/libXinerama <virtual/x11-7 ) )"
+RDEPEND="xinerama? ( x11-libs/libXinerama )"
 
 if [[ ${ARTS_REQUIRED} == "yes" ]]; then
 	DEPEND="${DEPEND} kde-base/arts"

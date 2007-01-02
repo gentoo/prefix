@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2-utils.eclass,v 1.1 2006/12/13 02:25:02 leonardop Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2-utils.eclass,v 1.2 2007/01/01 22:27:01 swegener Exp $
 
 #
 # gnome2-utils.eclass
@@ -29,7 +29,7 @@ DEPEND=">=sys-apps/sed-4"
 
 
 # Applies any schema files installed by the current ebuild to Gconf's database
-# using gconftool-2 
+# using gconftool-2
 gnome2_gconf_install() {
 	if [[ ! -x ${GCONFTOOL_BIN} ]]; then
 		return

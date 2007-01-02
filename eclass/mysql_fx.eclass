@@ -1,10 +1,12 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql_fx.eclass,v 1.13 2006/05/05 19:49:43 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql_fx.eclass,v 1.15 2007/01/01 22:27:01 swegener Exp $
 
 # Author: Francesco Riosa <vivo@gentoo.org>
 # Maintainer: Francesco Riosa <vivo@gentoo.org>
 
+ECLASS="mysql_fx"
+INHERITED="$INHERITED $ECLASS"
 inherit multilib
 
 # Helper function, version (integer) may have sections separated by dots
@@ -12,11 +14,31 @@ inherit multilib
 #
 stripdots() {
 	local dotver=${1:-"0"}
-	while [[ "${dotver/./}" != "${dotver}" ]] ; do dotver="${dotver/./}" ; done
-	echo "${dotver:-"0"}"
+	local v=""
+	local ret=0
+	if [[ "${dotver/./}" != "${dotver}" ]] ; then
+		# dotted version number
+		for i in 1000000 10000 100 1 ; do
+			v=${dotver%%\.*}
+			# remove leading zeroes
+			while [[ ${#v} -gt 1 ]] && [[ ${v:0:1} == "0" ]]; do v=${v#0}; done
+			# increment integer version number
+			ret=$(( ${v} * ${i} + ${ret} ))
+			if [[ "${dotver}" == "${dotver/\.}" ]] ; then
+				dotver=0
+			else
+				dotver=${dotver#*\.}
+			fi
+		done
+		echo ${ret}
+	else
+		# already an integer
+		v=${dotver}
+		while [[ ${#v} -gt 1 ]] && [[ ${v:0:1} == "0" ]]; do v=${v#0}; done
+		echo ${v}
+	fi
 }
 
-# bool mysql_check_version_range(char * range, int ver=MYSQL_VERSION_ID, int die_on_err=MYSQL_DIE_ON_RANGE_ERROR)
 #
 # Check if a version number falls inside a given range.
 # The range includes the extremes and must be specified as
@@ -54,6 +76,28 @@ mysql_version_is_at_least() {
 	local want_s=$(stripdots "$1") have_s=$(stripdots "${2:-${MYSQL_VERSION_ID}}")
 	[[ -z "${want_s}" ]] && die "mysql_version_is_at_least missing value to check"
 	[[ ${want_s} -le ${have_s} ]] && return 0 || return 1
+}
+
+# THERE IS A COPY OF THIS ONE IN ESELECT-MYSQL, keep the two synced
+# crappy sorting file list per version
+mysql_make_file_list() {
+	local base="${1}-"
+	local n=( )
+	echo $( for i in $( ls -d ${1}-[[:digit:]]_[[:digit:]]{,[[:digit:]]}_[[:digit:]]{,[[:digit:]]} 2>/dev/null )
+	do
+		n=${i#${base}}
+		n=( ${n//_/ } )
+		# prepend the file name with its numeric version number to make
+		# it sortable
+		echo "$(( 100000 + ${n[0]} * 10000 + ${n[1]} * 100 + ${n[2]} ))$i"
+	# sort and cut the numeric version we added in the previous line
+	done | sort | cut -c 7- )
+}
+
+# THERE IS A COPY OF THIS ONE IN ESELECT-MYSQL, keep the two synced
+mysql_choose_better_version() {
+	local better=$(mysql_make_file_list ${1})
+	echo ${better##* }
 }
 
 # void mysql_lib_symlinks()

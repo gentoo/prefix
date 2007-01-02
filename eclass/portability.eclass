@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/portability.eclass,v 1.10 2006/11/10 15:56:59 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/portability.eclass,v 1.11 2007/01/01 22:27:01 swegener Exp $
 #
 # Author: Diego Pettenò <flameeyes@gentoo.org>
 #
@@ -139,9 +139,9 @@ get_mounts() {
 	# Linux has /proc/mounts which should always exist
 	if [[ $(uname -s) == "Linux" ]] ; then
 		while read node point fs opts foo ; do
-			echo "${point} ${node} ${fs} ${opts}" 
+			echo "${point} ${node} ${fs} ${opts}"
 		done < /proc/mounts
-		return 
+		return
 	fi
 
 	# OK, pray we have a -p option that outputs mounts in fstab format

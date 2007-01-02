@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.113 2006/11/15 22:46:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.115 2006/12/29 21:30:38 vapier Exp $
 #
 # Maintainer: base-system@gentoo.org
 
@@ -112,7 +112,8 @@ setup-allowed-flags() {
 		-mtls-direct-seg-refs -mno-tls-direct-seg-refs \
 		-mflat -mno-flat -mno-faster-structs -mfaster-structs \
 		-m32 -m64 -mabi -mlittle-endian -mbig-endian -EL -EB -fPIC \
-		-mlive-g0 -mcmodel -mstack-bias -mno-stack-bias"
+		-mlive-g0 -mcmodel -mstack-bias -mno-stack-bias \
+		-msecure-plt -D*"
 
 	# C[XX]FLAGS that we are think is ok, but needs testing
 	# NOTE:  currently -Os have issues with gcc3 and K6* arch's

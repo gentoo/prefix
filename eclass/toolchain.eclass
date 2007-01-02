@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.318 2006/12/23 02:40:30 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.320 2006/12/30 09:12:36 vapier Exp $
 
 HOMEPAGE="http://gcc.gnu.org/"
 LICENSE="GPL-2 LGPL-2.1"
@@ -102,7 +102,6 @@ if [[ ${GCC_VAR_TYPE} == "versioned" ]] ; then
 	else
 		LIBPATH=${TOOLCHAIN_LIBPATH:-${PREFIX}/lib/gcc-lib/${CTARGET}/${GCC_CONFIG_VER}}
 	fi
-	LIBEXECPATH=${TOOLCHAIN_LIBEXE:-${PREFIX}/libexec/gcc/${CTARGET}/${GCC_CONFIG_VER}}
 	INCLUDEPATH=${TOOLCHAIN_INCLUDEPATH:-${LIBPATH}/include}
 	if is_crosscompile ; then
 		BINPATH=${TOOLCHAIN_BINPATH:-${PREFIX}/${CHOST}/${CTARGET}/gcc-bin/${GCC_CONFIG_VER}}
@@ -120,7 +119,6 @@ elif [[ ${GCC_VAR_TYPE} == "non-versioned" ]] ; then
 	# specific gcc targets, like libffi. Note that we dont override the value
 	# returned by get_libdir here.
 	LIBPATH=${TOOLCHAIN_LIBPATH:-${PREFIX}/$(get_libdir)}
-	LIBEXECPATH=${TOOLCHAIN_LIBEXE:-${PREFIX}/libexec/gcc}
 	INCLUDEPATH=${TOOLCHAIN_INCLUDEPATH:-${PREFIX}/include}
 	BINPATH=${TOOLCHAIN_BINPATH:-${PREFIX}/bin}
 	DATAPATH=${TOOLCHAIN_DATAPATH:-${PREFIX}/share}
@@ -1109,11 +1107,13 @@ gcc_src_unpack() {
 		eend $?
 	done
 
-	einfo "Touching generated files"
-	./contrib/gcc_update --touch | \
-		while read f ; do
-			einfo "  ${f%%...}"
-		done
+	if [[ -x contrib/gcc_update ]] ; then
+		einfo "Touching generated files"
+		./contrib/gcc_update --touch | \
+			while read f ; do
+				einfo "  ${f%%...}"
+			done
+	fi
 
 	disable_multilib_libjava || die "failed to disable multilib java"
 }
@@ -1247,6 +1247,7 @@ gcc_do_configure() {
 		--with-system-zlib \
 		--disable-checking \
 		--disable-werror \
+		--enable-secureplt \
 		--disable-libunwind-exceptions"
 
 	# etype specific configuration
@@ -1618,9 +1619,9 @@ gcc-compiler_src_install() {
 	S=${WORKDIR}/build \
 	make DESTDIR="${D}" install || die
 	# Punt some tools which are really only useful while building gcc
-	rm -r "${ED}${LIBEXECPATH}"/install-tools
+	find "${ED}" -name install-tools -type d -exec rm -rf "{}" \;
 	# This one comes with binutils
-	find "${ED}" -name libiberty.a -exec rm -f {} \;
+	find "${ED}" -name libiberty.a -exec rm -f "{}" \;
 
 	# Move the libraries to the proper location
 	gcc_movelibs
@@ -1655,38 +1656,38 @@ gcc-compiler_src_install() {
 	# Make sure we dont have stuff lying around that
 	# can nuke multiple versions of gcc
 	if ! use build ; then
-		cd ${ED}${LIBPATH}
+		cd "${ED}"${LIBPATH}
 
 		# Move Java headers to compiler-specific dir
-		for x in ${ED}/include/gc*.h ${ED}/include/j*.h ; do
-			[[ -f ${x} ]] && mv -f "${x}" ${ED}${LIBPATH}/include/
+		for x in "${ED}"${PREFIX}/include/gc*.h "${ED}"${PREFIX}/include/j*.h ; do
+			[[ -f ${x} ]] && mv -f "${x}" "${ED}"${LIBPATH}/include/
 		done
 		for x in gcj gnu java javax org ; do
 			if [[ -d ${ED}${PREFIX}/include/${x} ]] ; then
 				dodir /${LIBPATH}/include/${x}
-				mv -f ${ED}${PREFIX}/include/${x}/* ${ED}${LIBPATH}/include/${x}/
-				rm -rf ${ED}${PREFIX}/include/${x}
+				mv -f "${ED}"${PREFIX}/include/${x}/* "${ED}"${LIBPATH}/include/${x}/
+				rm -rf "${ED}"${PREFIX}/include/${x}
 			fi
 		done
 
 		if [[ -d ${ED}${PREFIX}/lib/security ]] ; then
 			dodir /${LIBPATH}/security
-			mv -f ${ED}${PREFIX}/lib/security/* ${ED}${LIBPATH}/security
-			rm -rf ${ED}${PREFIX}/lib/security
+			mv -f "${ED}"${PREFIX}/lib/security/* "${ED}"${LIBPATH}/security
+			rm -rf "${ED}"${PREFIX}/lib/security
 		fi
 
 		# Move libgcj.spec to compiler-specific directories
 		[[ -f ${ED}${PREFIX}/lib/libgcj.spec ]] && \
-			mv -f ${ED}${PREFIX}/lib/libgcj.spec ${ED}${LIBPATH}/libgcj.spec
+			mv -f "${ED}"${PREFIX}/lib/libgcj.spec "${ED}"${LIBPATH}/libgcj.spec
 
 		# Rename jar because it could clash with Kaffe's jar if this gcc is
 		# primary compiler (aka don't have the -<version> extension)
-		cd ${ED}${BINPATH}
+		cd "${ED}"${BINPATH}
 		[[ -f jar ]] && mv -f jar gcj-jar
 
 		# Move <cxxabi.h> to compiler-specific directories
 		[[ -f ${ED}${STDCXX_INCDIR}/cxxabi.h ]] && \
-			mv -f ${ED}${STDCXX_INCDIR}/cxxabi.h ${ED}${LIBPATH}/include/
+			mv -f "${ED}"${STDCXX_INCDIR}/cxxabi.h "${ED}"${LIBPATH}/include/
 
 		# These should be symlinks
 		dodir /usr/bin
@@ -1726,8 +1727,11 @@ gcc-compiler_src_install() {
 	fi
 
 	# Now do the fun stripping stuff
-	env RESTRICT="" CHOST=${CHOST} prepstrip "${ED}${BINPATH}" "${ED}${LIBEXECPATH}"
+	env RESTRICT="" CHOST=${CHOST} prepstrip "${ED}${BINPATH}"
 	env RESTRICT="" CHOST=${CTARGET} prepstrip "${ED}${LIBPATH}"
+	# gcc used to install helper binaries in lib/ but then moved to libexec/
+	[[ -d ${ED}${PREFIX}/libexec/gcc ]] && \
+		env RESTRICT="" CHOST=${CHOST} prepstrip "${ED}${PREFIX}/libexec/gcc/${CTARGET}/${GCC_CONFIG_VER}"
 
 	cd "${S}"
 	if use build || is_crosscompile; then
@@ -1777,6 +1781,9 @@ gcc-compiler_src_install() {
 # when installing gcc, it dumps internal libraries into /usr/lib
 # instead of the private gcc lib path
 gcc_movelibs() {
+	# older versions of gcc did not support --print-multi-os-directory
+	tc_version_is_at_least 3.0 || return 0
+
 	local multiarg removedirs=""
 	for multiarg in $($(XGCC) -print-multi-lib) ; do
 		multiarg=${multiarg#*;}
@@ -1818,7 +1825,7 @@ gcc_movelibs() {
 
 	# make sure the libtool archives have libdir set to where they actually
 	# -are-, and not where they -used- to be.
-	fix_libtool_libdir_paths "$(find ${ED}${LIBPATH} -name *.la)"
+	fix_libtool_libdir_paths $(find "${ED}"${LIBPATH} -name *.la)
 }
 
 #----<< src_* >>----

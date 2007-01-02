@@ -1,13 +1,13 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/webapp.eclass,v 1.45 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/webapp.eclass,v 1.47 2006/12/31 19:16:31 rl03 Exp $
 #
 # eclass/webapp.eclass
 #				Eclass for installing applications to run under a web server
 #
 #				Part of the implementation of GLEP #11
 #
-# Author(s)		Stuart Herbert <stuart@gentoo.org>
+# Author(s)		Stuart Herbert
 #				Renat Lumpau <rl03@gentoo.org>
 #				Gunnar Wrobel <wrobel@gentoo.org>
 #
@@ -24,7 +24,7 @@
 
 SLOT="${PVR}"
 IUSE="vhosts"
-DEPEND="app-admin/webapp-config"
+DEPEND=">=app-admin/webapp-config-1.50.15"
 RDEPEND="${DEPEND}"
 
 EXPORT_FUNCTIONS pkg_postinst pkg_setup src_install pkg_prerm
@@ -35,8 +35,9 @@ IS_REPLACE=0
 
 INSTALL_CHECK_FILE="installed_by_webapp_eclass"
 
-ETC_CONFIG="${ROOT}/etc/vhosts/webapp-config"
-WEBAPP_CONFIG="${ROOT}/usr/sbin/webapp-config"
+ETC_CONFIG="${EROOT}/etc/vhosts/webapp-config"
+WEBAPP_CONFIG="${EROOT}/usr/sbin/webapp-config"
+WEBAPP_CLEANER="${EROOT}/usr/sbin/webapp-cleaner"
 
 # ------------------------------------------------------------------------
 # INTERNAL FUNCTION - USED BY THIS ECLASS ONLY
@@ -106,7 +107,7 @@ function webapp_strip_appdir ()
 
 function webapp_strip_d ()
 {
-	echo "${1}" | sed -e "s|${D}||g;"
+	echo "${1}" | sed -e "s|${ED}||g;"
 }
 
 function webapp_strip_cwd ()
@@ -127,13 +128,13 @@ function webapp_configfile ()
 {
 	local m=""
 	for m in "$@" ; do
-		webapp_checkfileexists "${m}" "${D}"
+		webapp_checkfileexists "${m}" "${ED}"
 
 		local MY_FILE="$(webapp_strip_appdir "${m}")"
 		MY_FILE="$(webapp_strip_cwd "${MY_FILE}")"
 
 		elog "(config) ${MY_FILE}"
-		echo "${MY_FILE}" >> ${D}/${WA_CONFIGLIST}
+		echo "${MY_FILE}" >> ${ED}/${WA_CONFIGLIST}
 	done
 }
 
@@ -151,8 +152,8 @@ function webapp_hook_script ()
 	webapp_checkfileexists "${1}"
 
 	elog "(hook) ${1}"
-	cp "${1}" "${D}/${MY_HOOKSCRIPTSDIR}/$(basename "${1}")" || die "Unable to install ${1} into ${D}/${MY_HOOKSCRIPTSDIR}/"
-	chmod 555 "${D}/${MY_HOOKSCRIPTSDIR}/$(basename "${1}")"
+	cp "${1}" "${ED}/${MY_HOOKSCRIPTSDIR}/$(basename "${1}")" || die "Unable to install ${1} into ${ED}/${MY_HOOKSCRIPTSDIR}/"
+	chmod 555 "${ED}/${MY_HOOKSCRIPTSDIR}/$(basename "${1}")"
 }
 
 # ------------------------------------------------------------------------
@@ -169,7 +170,7 @@ function webapp_postinst_txt ()
 	webapp_checkfileexists "${2}"
 
 	elog "(info) ${2} (lang: ${1})"
-	cp "${2}" "${D}/${MY_APPDIR}/postinst-${1}.txt"
+	cp "${2}" "${ED}/${MY_APPDIR}/postinst-${1}.txt"
 }
 
 # ------------------------------------------------------------------------
@@ -186,7 +187,7 @@ function webapp_postupgrade_txt ()
 	webapp_checkfileexists "${2}"
 
 	elog "(info) ${2} (lang: ${1})"
-	cp "${2}" "${D}/${MY_APPDIR}/postupgrade-${1}.txt"
+	cp "${2}" "${ED}/${MY_APPDIR}/postupgrade-${1}.txt"
 }
 
 # ------------------------------------------------------------------------
@@ -209,14 +210,14 @@ function webapp_serverowned ()
 	if [ "${1}" = "-R" ]; then
 		shift
 		for m in "$@" ; do
-			for a in $(find ${D}/${m}); do
-				a=${a/${D}\/\///}
+			for a in $(find ${ED}/${m}); do
+				a=${a/${ED}\/\///}
 				webapp_checkfileexists "${a}" "$D"
 				local MY_FILE="$(webapp_strip_appdir "${a}")"
 				MY_FILE="$(webapp_strip_cwd "${MY_FILE}")"
 
 				elog "(server owned) ${MY_FILE}"
-				echo "${MY_FILE}" >> "${D}/${WA_SOLIST}"
+				echo "${MY_FILE}" >> "${ED}/${WA_SOLIST}"
 			done
 		done
 	else
@@ -226,7 +227,7 @@ function webapp_serverowned ()
 			MY_FILE="$(webapp_strip_cwd "${MY_FILE}")"
 
 			elog "(server owned) ${MY_FILE}"
-			echo "${MY_FILE}" >> "${D}/${WA_SOLIST}"
+			echo "${MY_FILE}" >> "${ED}/${WA_SOLIST}"
 		done
 	fi
 }
@@ -265,7 +266,7 @@ function webapp_server_configfile ()
 	# the other scripts that also rely upon these names
 
 	elog "(${1}) config file '${my_file}'"
-	cp "${2}" "${D}/${MY_SERVERCONFIGDIR}/${my_file}"
+	cp "${2}" "${ED}/${MY_SERVERCONFIGDIR}/${my_file}"
 }
 
 # ------------------------------------------------------------------------
@@ -289,8 +290,8 @@ function webapp_sqlscript ()
 	# scripts for specific database engines go into their own subdirectory
 	# just to keep things readable on the filesystem
 
-	if [ ! -d "${D}/${MY_SQLSCRIPTSDIR}/${1}" ]; then
-		mkdir -p "${D}/${MY_SQLSCRIPTSDIR}/${1}" || die "unable to create directory ${D}/${MY_SQLSCRIPTSDIR}/${1}"
+	if [ ! -d "${ED}/${MY_SQLSCRIPTSDIR}/${1}" ]; then
+		mkdir -p "${ED}/${MY_SQLSCRIPTSDIR}/${1}" || die "unable to create directory ${ED}/${MY_SQLSCRIPTSDIR}/${1}"
 	fi
 
 	# warning:
@@ -302,13 +303,13 @@ function webapp_sqlscript ()
 	if [ -n "${3}" ]; then
 		# yes we are
 		elog "(${1}) upgrade script from ${PN}-${PVR} to ${3}"
-		cp "${2}" "${D}${MY_SQLSCRIPTSDIR}/${1}/${3}_to_${PVR}.sql"
-		chmod 600 "${D}${MY_SQLSCRIPTSDIR}/${1}/${3}_to_${PVR}.sql"
+		cp "${2}" "${ED}${MY_SQLSCRIPTSDIR}/${1}/${3}_to_${PVR}.sql"
+		chmod 600 "${ED}${MY_SQLSCRIPTSDIR}/${1}/${3}_to_${PVR}.sql"
 	else
 		# no, we are not
 		elog "(${1}) create script for ${PN}-${PVR}"
-		cp "${2}" "${D}/${MY_SQLSCRIPTSDIR}/${1}/${PVR}_create.sql"
-		chmod 600 "${D}/${MY_SQLSCRIPTSDIR}/${1}/${PVR}_create.sql"
+		cp "${2}" "${ED}/${MY_SQLSCRIPTSDIR}/${1}/${PVR}_create.sql"
+		chmod 600 "${ED}/${MY_SQLSCRIPTSDIR}/${1}/${PVR}_create.sql"
 	fi
 }
 
@@ -322,9 +323,9 @@ function webapp_sqlscript ()
 
 function webapp_src_install ()
 {
-	chown -R "${VHOST_DEFAULT_UID}:${VHOST_DEFAULT_GID}" "${D}/"
-	chmod -R u-s "${D}/"
-	chmod -R g-s "${D}/"
+	chown -R "${VHOST_DEFAULT_UID}:${VHOST_DEFAULT_GID}" "${ED}/"
+	chmod -R u-s "${ED}/"
+	chmod -R g-s "${ED}/"
 
 	keepdir "${MY_PERSISTDIR}"
 	fowners "root:0" "${MY_PERSISTDIR}"
@@ -337,7 +338,7 @@ function webapp_src_install ()
 	# no longer rely on Portage calling both webapp_src_install() and
 	# webapp_pkg_postinst() within the same shell process
 
-	touch "${D}/${MY_APPDIR}/${INSTALL_CHECK_FILE}"
+	touch "${ED}/${MY_APPDIR}/${INSTALL_CHECK_FILE}"
 }
 
 # ------------------------------------------------------------------------
@@ -366,7 +367,7 @@ function webapp_pkg_setup ()
 	# non-webapp-config solution?
 
 	if ! use vhosts ; then
-		local my_dir="${ROOT}${VHOST_ROOT}/${MY_HTDOCSBASE}/${PN}"
+		local my_dir="${EROOT}${VHOST_ROOT}/${MY_HTDOCSBASE}/${PN}"
 		local my_output
 
 		if [ -d "${my_dir}" ] ; then
@@ -448,7 +449,7 @@ function webapp_pkg_postinst ()
 
 	# sanity checks, to catch bugs in the ebuild
 
-	if [ ! -f "${ROOT}${MY_APPDIR}/${INSTALL_CHECK_FILE}" ]; then
+	if [ ! -f "${EROOT}${MY_APPDIR}/${INSTALL_CHECK_FILE}" ]; then
 		eerror
 		eerror "This ebuild did not call webapp_src_install() at the end"
 		eerror "of the src_install() function"
@@ -462,7 +463,7 @@ function webapp_pkg_postinst ()
 	fi
 
 	# if 'vhosts' is not set in your USE flags, we install a copy of
-	# this application in ${ROOT}/var/www/localhost/htdocs/${PN}/ for you
+	# this application in ${EROOT}/var/www/localhost/htdocs/${PN}/ for you
 
 	if ! use vhosts ; then
 		echo
@@ -488,22 +489,11 @@ function webapp_pkg_postinst ()
 		elog "Running ${my_cmd}"
 		${my_cmd}
 
-		# remove the old version
-		#
-		# why do we do this?  well ...
-		#
-		# normally, emerge -u installs a new version and then removes the
-		# old version.  however, if the new version goes into a different
-		# slot to the old version, then the old version gets left behind
-		#
-		# if USE=-vhosts, then we want to remove the old version, because
-		# the user is relying on portage to do the magical thing for it
-
-		if [ "${IS_UPGRADE}" = "1" ] ; then
-			elog "Removing old version ${REMOVE_PKG}"
-
-			emerge -C "${REMOVE_PKG}"
-		fi
+		# run webapp-cleaner instead of emerge
+		echo
+		local cleaner="${WEBAPP_CLEANER} -p -C ${PN}"
+		einfo "Running ${cleaner}"
+		${cleaner}
 	else
 		# vhosts flag is on
 		#

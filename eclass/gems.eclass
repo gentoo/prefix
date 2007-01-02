@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.9 2006/06/15 12:40:08 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.11 2006/12/30 16:40:11 pclouds Exp $
 #
 # Author: Rob Cakebread <pythonhead@gentoo.org>
 # Current Maintainer: Ruby Herd <ruby@gentoo.org>
@@ -45,22 +45,31 @@ gems_src_install() {
 
 	if [ -z "${MY_P}" ]; then
 		GEM_SRC=${DISTDIR}/${P}
+		spec_path=${ED}/${GEMSDIR}/specifications/${P}.gemspec
 	else
 		GEM_SRC=${DISTDIR}/${MY_P}
+		spec_path=${ED}/${GEMSDIR}/specifications/${MY_P}.gemspec
 	fi
 
+	# RI documentation installation: bug #145222
 	if use doc; then
-		myconf="--rdoc"
+		myconf="--rdoc --ri"
 	else
-		myconf="--no-rdoc"
+		myconf="--no-rdoc --no-ri"
 	fi
 
 	dodir ${GEMSDIR#${EPREFIX%/}}
-	gem install ${GEM_SRC} -v ${PV} ${myconf} -l -i ${D}/${GEMSDIR} || die "gem install failed"
+	gem install ${GEM_SRC} -v ${PV} ${myconf} -l -i ${ED}/${GEMSDIR} || die "gem install failed"
 
-	if [ -d ${D}/${GEMSDIR}/bin ] ; then
+	# This is a workaround for <=rubygems-0.9.0.8 because it's exitstatus equals 0
+	# even if the dependencies are not found. So we are testing if rubygems at
+	# least installed the gemspec (which should always occur otherwise).
+	# See bug #104733
+	test -f ${spec_path} || die "gem install failed"
+
+	if [ -d ${ED}/${GEMSDIR}/bin ] ; then
 		exeinto /usr/bin
-		for exe in ${D}/${GEMSDIR}/bin/* ; do
+		for exe in ${ED}/${GEMSDIR}/bin/* ; do
 			doexe ${exe}
 		done
 	fi

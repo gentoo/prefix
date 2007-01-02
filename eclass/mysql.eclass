@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.50 2006/12/16 12:34:29 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.53 2007/01/01 22:27:01 swegener Exp $
 
 # Author: Francesco Riosa <vivo@gentoo.org>
 # Maintainer: Luca Longinotti <chtekk@gentoo.org>
@@ -99,6 +99,72 @@ EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_preinst \
 #
 # HELPER FUNCTIONS:
 #
+
+bitkeeper_fetch() {
+
+	local tpv=( ${PV//[-._]/ } )
+	local reposuf="${tpv[0]}.${tpv[1]}"
+	useq "cluster" && reposuf="${reposuf}-ndb"
+	local repo_uri="bk://mysql.bkbits.net/mysql-${reposuf}"
+	## -- ebk_store_dir:  bitkeeper sources store directory
+	local ebk_store_dir="${PORTAGE_ACTUAL_DISTDIR-${DISTDIR}}/bk-src"
+	## -- ebk_fetch_cmd:  bitkeeper fetch command
+	# always fetch the latest revision, use -r<revision> if a specified revision is wanted
+	# hint: does not work
+	local ebk_fetch_cmd="sfioball"
+	## -- ebk_update_cmd:  bitkeeper update command
+	local ebk_update_cmd="update"
+
+	#addread "/etc/bitkeeper"
+	addwrite "${ebk_store_dir}"
+
+	if [[ ! -d "${ebk_store_dir}" ]]; then
+		debug-print "${FUNCNAME}: initial checkout. creating bitkeeper directory"
+		mkdir -p "${ebk_store_dir}" || die "${EBK}: can't mkdir ${ebk_store_dir}."
+	fi
+
+	pushd "${ebk_store_dir}" || die "${EBK}: can't chdir to ${ebk_store_dir}"
+
+	local wc_path=mysql-${reposuf}
+
+	if [[ ! -d "${wc_path}" ]]; then
+		local options="-r+"
+		# first check out
+		einfo "bitkeeper check out start -->"
+		einfo "     repository: ${repo_uri}"
+		${ebk_fetch_cmd} ${options} "${repo_uri}" ${wc_path} \
+		|| die "${EBK}: can't fetch from ${repo_uri}."
+	else
+		if [[ ! -d "${wc_path}/BK" ]]; then
+			popd
+			die "Look like ${wc_path} is not a bitkeeper path."
+		fi
+
+		# update working copy
+		einfo "bitkeeper update start -->"
+		einfo "     repository: ${repo_uri}"
+
+		${ebk_update_cmd} "${repo_uri}" "${wc_path}" \
+		|| die "BK: can't update from ${repo_uri} to ${wc_path}."
+
+	fi
+
+	einfo "   working copy: ${wc_path}"
+	cd "${wc_path}"
+	rsync -rlpgo --exclude="BK/" . "${S}" || die "BK: can't export to ${S}."
+
+	echo
+	popd
+
+}
+
+mysql_disable_test() {
+	local testname="${1}" ; shift
+	local reason="${@}"
+	local mysql_disable_file="${S}/mysql-test/t/disabled.def"
+	echo ${testname} : ${reason} >> "${mysql_disable_file}"
+	ewarn "test \"${testname}\" disabled because: \"${reason}\""
+}
 
 # void mysql_init_vars()
 #
@@ -205,12 +271,12 @@ configure_common() {
 		myconf="${myconf} --with-debug=full"
 	else
 		myconf="${myconf} --without-debug"
-		mysql_version_is_at_least "4.01.03.00" \
+		mysql_version_is_at_least "4.1.3" \
 		&& useq "cluster" \
 		&& myconf="${myconf} --without-ndb-debug"
 	fi
 
-	if mysql_version_is_at_least "4.01.00.00" && ! useq "latin1" ; then
+	if mysql_version_is_at_least "4.1" && ! useq "latin1" ; then
 			myconf="${myconf} --with-charset=utf8"
 			myconf="${myconf} --with-collation=utf8_general_ci"
 		else
@@ -234,13 +300,13 @@ configure_40_41_50() {
 	myconf="${myconf} --with-extra-tools"
 	myconf="${myconf} --with-innodb"
 	myconf="${myconf} --without-readline"
-	mysql_version_is_at_least "5.00.00.00" || myconf="${myconf} $(use_with raid)"
+	mysql_version_is_at_least "5.0" || myconf="${myconf} $(use_with raid)"
 
 	if useq "ssl" ; then
 		# --with-vio is not needed anymore, it's on by default and
 		# has been removed from configure
-		mysql_version_is_at_least "5.00.04.00" || myconf="${myconf} --with-vio"
-		if mysql_version_is_at_least "5.00.06.00" ; then
+		mysql_version_is_at_least "5.0.4" || myconf="${myconf} --with-vio"
+		if mysql_version_is_at_least "5.0.6" ; then
 			# myconf="${myconf} --with-yassl"
 			myconf="${myconf} --with-openssl"
 		else
@@ -264,12 +330,12 @@ configure_40_41_50() {
 		fi
 	fi
 
-	if mysql_version_is_at_least "4.01.03.00" ; then
+	if mysql_version_is_at_least "4.1.3" ; then
 		myconf="${myconf} --with-geometry"
 		myconf="${myconf} $(use_with cluster ndbcluster)"
 	fi
 
-	if mysql_version_is_at_least "4.01.03.00" && useq "extraengine" ; then
+	if mysql_version_is_at_least "4.1.3" && useq "extraengine" ; then
 		# http://dev.mysql.com/doc/mysql/en/archive-storage-engine.html
 		myconf="${myconf} --with-archive-storage-engine"
 
@@ -282,14 +348,14 @@ configure_40_41_50() {
 		# http://dev.mysql.com/doc/mysql/en/federated-storage-engine.html
 		# http://dev.mysql.com/doc/mysql/en/federated-description.html
 		# http://dev.mysql.com/doc/mysql/en/federated-limitations.html
-		if mysql_version_is_at_least "5.00.03.00" ; then
+		if mysql_version_is_at_least "5.0.3" ; then
 			elog "Before using the Federated storage engine, please be sure to read"
 			elog "http://dev.mysql.com/doc/mysql/en/federated-limitations.html"
 			myconf="${myconf} --with-federated-storage-engine"
 		fi
 	fi
 
-	mysql_version_is_at_least "5.00.18.00" \
+	mysql_version_is_at_least "5.0.18" \
 	&& useq "max-idx-128" \
 	&& myconf="${myconf} --with-max-indexes=128"
 }
@@ -312,7 +378,7 @@ configure_51() {
 	local plugins="csv,myisam,myisammrg,heap"
 	if useq "extraengine" ; then
 		# like configuration=max-no-ndb, archive and example removed in 5.1.11
-		plugins="${plugins},archive,blackhole,example,federated,ftexample,partition"
+		plugins="${plugins},archive,blackhole,example,federated,partition"
 
 		elog "Before using the Federated storage engine, please be sure to read"
 		elog "http://dev.mysql.com/doc/refman/5.1/en/federated-limitations.html"
@@ -331,6 +397,34 @@ configure_51() {
 	myconf="${myconf} --with-plugins=${plugins}"
 }
 
+pbxt_src_compile() {
+	mysql_init_vars
+
+	pushd "${WORKDIR}/pbxt-${PBXT_VERSION}" &>/dev/null
+
+	einfo "Reconfiguring dir '${PWD}'"
+	AT_GNUCONF_UPDATE="yes" eautoreconf
+
+	local myconf
+	myconf="${myconf} --with-mysql=${S}"
+	mkdir -p ${T}/lib
+	myconf="${myconf} --libdir=${ED}/${MY_LIBDIR}"
+	useq "debug" && myconf="${myconf} --with-debug=full"
+	# TODO is safe/needed to use econf here ?
+	./configure ${myconf} || die "problem configuring pbxt storage engine"
+	# TODO is safe/needed to use emake here ?
+	make || die "problem making pbxt storage engine (${myconf})"
+
+	popd
+	# TODO: modify test suite
+}
+
+pbxt_src_install() {
+	pushd "${WORKDIR}/pbxt-${PBXT_VERSION}" &>/dev/null
+		make install || die "failed pbxt install"
+	popd
+}
+
 #
 # EBUILD FUNCTIONS
 #
@@ -339,18 +433,13 @@ mysql_pkg_setup() {
 	enewgroup mysql 60 || die "problem adding 'mysql' group"
 	enewuser mysql 60 -1 /dev/null mysql || die "problem adding 'mysql' user"
 
-	if mysql_version_is_at_least "5.01.12.00" && useq "innodb" ; then
-		eerror "InnoDB now uses cmake to build, this is a TODO item, will be fixed shortly!"
-		die "InnoDB now uses cmake to build, this is a TODO item, will be fixed shortly!"
-	fi
-
 	# Check for USE flag problems in pkg_setup
 	if useq "static" && useq "ssl" ; then
 		eerror "MySQL does not support being built statically with SSL support enabled!"
 		die "MySQL does not support being built statically with SSL support enabled!"
 	fi
 
-	if ! mysql_version_is_at_least "5.00.00.00" \
+	if ! mysql_version_is_at_least "5.0" \
 	&& useq "raid" \
 	&& useq "static" ; then
 		eerror "USE flags 'raid' and 'static' conflict, you cannot build MySQL statically"
@@ -358,14 +447,14 @@ mysql_pkg_setup() {
 		die "USE flags 'raid' and 'static' conflict!"
 	fi
 
-	if mysql_version_is_at_least "4.01.03.00" \
+	if mysql_version_is_at_least "4.1.3" \
 	&& ( useq "cluster" || useq "extraengine" ) \
 	&& useq "minimal" ; then
 		eerror "USE flags 'cluster' and 'extraengine' conflict with 'minimal' USE flag!"
 		die "USE flags 'cluster' and 'extraengine' conflict with 'minimal' USE flag!"
 	fi
 
-	mysql_check_version_range "4.00.00.00 to 5.00.99.99" \
+	mysql_check_version_range "4.0 to 5.0.99.99" \
 	&& useq "berkdb" \
 	&& elog "Berkeley DB support is deprecated and will be removed in future versions!"
 }
@@ -409,15 +498,18 @@ mysql_src_unpack() {
 		rm -f "scripts/mysqlbug"
 	fi
 
-	local rebuilddirlist bdbdir d
+	local rebuilddirlist d
 
-	if mysql_version_is_at_least "5.01.12.00" ; then
-		# TODO: innodb is using cmake now?
+	if mysql_version_is_at_least "5.1.12" ; then
 		rebuilddirlist="."
-		bdbdir=''
+		# TODO IMPO! Check this with a cmake expert
+		useq "innodb" \
+		&& cmake \
+			-DCMAKE_C_COMPILER=$(which $(tc-getCC)) \
+			-DCMAKE_CXX_COMPILER=$(which $(tc-getCC)) \
+			"storage/innobase"
 	else
 		rebuilddirlist=". innobase"
-		bdbdir='bdb/dist'
 	fi
 
 	for d in ${rebuilddirlist} ; do
@@ -427,10 +519,10 @@ mysql_src_unpack() {
 		popd &>/dev/null
 	done
 
-	if mysql_check_version_range "4.01.00.00 to 5.00.99.99" \
+	if mysql_check_version_range "4.1 to 5.0.99.99" \
 	&& useq "berkdb" ; then
-		[[ -w "${bdbdir}/ltmain.sh" ]] && cp -f "ltmain.sh" "${bdbdir}/ltmain.sh"
-		pushd "${bdbdir}" \
+		[[ -w "bdb/dist/ltmain.sh" ]] && cp -f "ltmain.sh" "bdb/dist/ltmain.sh"
+		pushd "bdb/dist" \
 		&& sh s_all \
 		|| die "Failed bdb reconfigure" \
 		&>/dev/null
@@ -449,7 +541,7 @@ mysql_src_compile() {
 		configure_minimal
 	else
 		configure_common
-		if mysql_version_is_at_least "5.01.10.00" ; then
+		if mysql_version_is_at_least "5.1.10" ; then
 			configure_51
 		else
 			configure_40_41_50
@@ -464,7 +556,7 @@ mysql_src_compile() {
 
 	CXXFLAGS="${CXXFLAGS} -fno-exceptions -fno-strict-aliasing"
 	CXXFLAGS="${CXXFLAGS} -felide-constructors -fno-rtti"
-	mysql_version_is_at_least "5.00.00.00" \
+	mysql_version_is_at_least "5.0" \
 	&& CXXFLAGS="${CXXFLAGS} -fno-implicit-templates"
 	export CXXFLAGS
 
@@ -521,7 +613,7 @@ mysql_src_install() {
 	fi
 
 	# Configuration stuff
-	if mysql_version_is_at_least "4.01.00.00" ; then
+	if mysql_version_is_at_least "4.1" ; then
 		mysql_mycnf_version="4.1"
 	else
 		mysql_mycnf_version="4.0"
@@ -531,7 +623,7 @@ mysql_src_install() {
 	sed -e "s!@DATADIR@!${DATADIR}!g" \
 		"${FILESDIR}/my.cnf-${mysql_mycnf_version}" \
 		> "${TMPDIR}/my.cnf.ok"
-	if mysql_version_is_at_least "4.01.00.00" && useq "latin1" ; then
+	if mysql_version_is_at_least "4.1" && useq "latin1" ; then
 		sed -e "s|utf8|latin1|g" -i "${TMPDIR}/my.cnf.ok"
 	fi
 	newins "${TMPDIR}/my.cnf.ok" my.cnf
@@ -618,7 +710,7 @@ mysql_pkg_postinst() {
 		mysql_version_is_at_least "5.01.00.00" \
 		|| elog "InnoDB is *not* optional as of MySQL-4.0.24, at the request of upstream."
 	fi
-	mysql_check_version_range "4.00.00.00 to 5.00.99.99" \
+	mysql_check_version_range "4.0 to 5.0.99.99" \
 	&& useq "berkdb" \
 	&& elog "Berkeley DB support is deprecated and will be removed in future versions!"
 }
@@ -675,7 +767,7 @@ mysql_pkg_config() {
 	chown -R mysql:mysql "${ROOT}/${DATADIR}" 2> /dev/null
 	chmod 0750 "${ROOT}/${DATADIR}" 2> /dev/null
 
-	if mysql_version_is_at_least "4.01.03.00" ; then
+	if mysql_version_is_at_least "4.1.3" ; then
 		options="--skip-ndbcluster"
 
 		# Filling timezones, see
