@@ -13,7 +13,7 @@ SRC_URI="http://www.greenwoodsoftware.com/less/${P}.tar.gz
 
 LICENSE="less"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="unicode"
 
 DEPEND=">=sys-libs/ncurses-5.2"
