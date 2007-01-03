@@ -12,7 +12,7 @@ SRC_URI="http://rsync.samba.org/ftp/rsync/${P/_/}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="acl build ipv6 static xinetd"
 
 RDEPEND="!build? ( >=dev-libs/popt-1.5 )
