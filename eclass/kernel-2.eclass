@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.199 2006/12/10 18:21:54 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.200 2007/01/02 01:43:34 dsd Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -42,6 +42,7 @@
 # K_GENPATCHES_VER		- The version of the genpatches tarball(s) to apply.
 #						  A value of "5" would apply genpatches-2.6.12-5 to
 #						  my-sources-2.6.12.ebuild
+# K_SECURITY_UNSUPPORTED- If set, this kernel is unsupported by Gentoo Security
 
 # H_SUPPORTEDARCH		- this should be a space separated list of ARCH's which
 #						  can be supported by the headers ebuild
@@ -631,13 +632,6 @@ postinst_sources() {
 	[[ ! -d ${EROOT}sys ]] && kernel_is 2 6 && mkdir ${EROOT}sys
 
 	echo
-	einfo "After installing a new kernel of any version, it is important"
-	einfo "that you have the appropriate /etc/modules.autoload.d/kernel-X.Y"
-	einfo "created (X.Y is the first 2 parts of your new kernel version)"
-	echo
-	einfo "For example, this kernel will require:"
-	einfo "/etc/modules.autoload.d/kernel-${KV_MAJOR}.${KV_MINOR}"
-	echo
 	einfo "If you are upgrading from a previous kernel, you may be interested"
 	einfo "in the following documents:"
 	einfo "  - General upgrade guide: http://www.gentoo.org/doc/en/kernel-upgrade.xml"
@@ -659,6 +653,15 @@ postinst_sources() {
 	if [[ -n ${K_EXTRAEWARN} ]]; then
 		echo ${K_EXTRAEWARN} | fmt |
 		while read -s ELINE; do ewarn "${ELINE}"; done
+	fi
+
+	# optionally display security unsupported message
+	if [[ -n ${K_SECURITY_UNSUPPORTED} ]]; then
+		echo
+		ewarn "${PN} is UNSUPPORTED by Gentoo Security."
+		ewarn "This means that it is likely to be vulnerable to recent security issues."
+		ewarn "For specific information on why this kernel is unsupported, please read:"
+		ewarn "http://www.gentoo.org/proj/en/security/kernel.xml"
 	fi
 }
 

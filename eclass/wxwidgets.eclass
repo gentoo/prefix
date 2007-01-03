@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/wxwidgets.eclass,v 1.17 2006/04/28 12:42:00 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/wxwidgets.eclass,v 1.18 2007/01/02 08:10:31 dirtyepic Exp $
 #
 # Author Rob Cakebread <pythonhead@gentoo.org>
 
@@ -10,8 +10,8 @@
 # FUNCTIONS:
 # need-wxwidgets:
 #   Arguments:
-#     2.4: gtk gtk2 unicode
-#     2.6: gtk gtk2 unicode base base-unicode mac mac-unicode
+#     2.4: gtk gtk2 unicode !!! 2.4 is being removed from the tree !!!
+#     2.6: gtk2 unicode base base-unicode mac mac-unicode
 #
 #
 # set-wxconfig
@@ -88,13 +88,14 @@ set-wxconfig() {
 		case $1 in
 			wxgtk)	 echo "!!! You need to emerge wxGTK with wxgtk1 in your USE";;
 			wxgtkd)	 echo "!!! You need to emerge wxGTK with wxgtk1 in your USE";;
-			gtk-ansi)  echo "!!! You need to emerge wxGTK with wxgtk1 in your USE";;
-			gtkd-ansi) echo "!!! You need to emerge wxGTK with wxgtk1 in your USE";;
+			gtk-ansi)  echo "!!! GTK-1 support is not available in wxGTK-2.6."
+			           echo "!!! Please search bugzilla for this package and file a new bug if one is not already present.";;
+			gtkd-ansi) echo "!!! GTK-1 support is not available in wxGTK-2.6.";;
 
-			wxgtk2)	 echo "!!! You need to emerge wxGTK with gtk2 in your USE";;
-			wxgtk2d) echo "!!! You need to emerge wxGTK with gtk2 in your USE";;
-			gtk2-ansi)  echo "!!! You need to emerge wxGTK with gtk2 in your USE";;
-			gtk2d-ansi) echo "!!! You need to emerge wxGTK with gtk2 in your USE";;
+			wxgtk2)	 echo "!!! You need to emerge wxGTK with gtk in your USE";;
+			wxgtk2d) echo "!!! You need to emerge wxGTK with gtk in your USE";;
+			gtk2-ansi)  echo "!!! You need to emerge wxGTK with gtk in your USE";;
+			gtk2d-ansi) echo "!!! You need to emerge wxGTK with gtk in your USE";;
 
 			wxgtk2u)  echo "!!! You need to emerge wxGTK with unicode in your USE";;
 			wxgtk2ud) echo "!!! You need to emerge wxGTK with unicode in your USE";;
