@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gentoo.org/proj/en/gentoo-alt/"
 SRC_URI=""
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 DEPEND=""
 
