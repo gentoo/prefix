@@ -257,7 +257,7 @@ static void find_wrapper_binutils(struct wrapper_data *data)
 		return;
 
 	/* Only our wrapper is in PATH, so
-	   get the CC path using gcc-config and
+	   get the CC path using binutils-config and
 	   execute the real binary in there... */
 	inpipe = popen(BINUTILS_CONFIG " --get-bin-path", "r");
 	if (inpipe == NULL)
@@ -329,8 +329,23 @@ int main(int argc, char *argv[])
 			wrapper_exit("%s wrapper: out of memory\n", argv[0]);
 	}
 
-	/* What should we find ? */
+	/* What should we find?
+	 * If this is a ${CHOST}-ld{,64} thing, strip the ${CHOST}- */
 	strcpy(data->name, basename(argv[0]));
+	size = strlen(data->name);
+#ifdef __MACH__
+	/* only Apple/OSX/Darwin has an ld64 as far as I know */
+	if (size > 4) {
+		if (strcmp(&data->name[size - 5], "-ld64") == 0) {
+			strcpy(data->name, "ld64");
+			size = 0;	/* trick the if below in thinking it won't work */
+		}
+	}
+#endif
+	if (size > 2) {
+		if (strcmp(&data->name[size - 3], "-ld") == 0)
+			strcpy(data->name, "ld");
+	}
 
 	/* What is the full name of our wrapper? */
 	size = sizeof(data->fullname);
@@ -374,20 +389,20 @@ int main(int argc, char *argv[])
 	} else {
 		size = snprintf(callarg, MAXPATHLEN * 8,
 #ifdef NEEDS_LIBRARY_INCLUDES
-				"%s -L%s "
+				"-L%s %s "
 #endif
 #ifdef NEEDS_RPATH_DIRECTIONS
-				"%s -rpath=%s"
+				"-rpath=%s %s"
 #endif
 				,
 #ifdef NEEDS_LIBRARY_INCLUDES
-				"@LIBRARY_INCLUDES@",
-				data->ldpath
+				data->ldpath,
+				"@LIBRARY_INCLUDES@"
 #endif
 #ifdef NEEDS_RPATH_DIRECTIONS
 				,
-				"@RUNPATH_DIRECTIONS@",
-				data->ldpath
+				data->ldpath,
+				"@RUNPATH_DIRECTIONS@"
 #endif
 		);
 	}
@@ -398,7 +413,7 @@ int main(int argc, char *argv[])
 
 	/* Ok, lets do it one more time ... */
 	if (execv(data->bin, newargv) < 0)
-		wrapper_exit("Could not run/locate \"%s\"\n", data->name);
+		wrapper_exit("Could not run/locate \"%s\" (%s)\n", data->name, data->bin);
 
 	return 0;
 }
