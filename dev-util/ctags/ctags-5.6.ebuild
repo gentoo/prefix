@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ctags-5.5.4-r3.ebuild,v 1.5 2006/12/30 02:23:07 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ctags-5.6.ebuild,v 1.2 2006/11/26 12:37:59 vapier Exp $
 
 EAPI="prefix"
 
@@ -15,15 +15,12 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
 IUSE=""
 
-
 src_unpack() {
 	unpack ${A}
 	cd ${S}
 	epatch "${FILESDIR}/${P}-ebuilds.patch"
-	epatch "${FILESDIR}/${P}-ruby-classes.patch"
-	epatch "${FILESDIR}/${P}-haskell.patch"
-	epatch "${FILESDIR}/${P}-objc.patch"
-	epatch "${FILESDIR}/${P}-vim-c.patch"
+	#epatch "${FILESDIR}/${P}-haskell.patch"
+	#epatch "${FILESDIR}/${P}-objc.patch"
 }
 
 src_compile() {
