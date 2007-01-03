@@ -12,7 +12,7 @@ SRC_URI="http://primates.ximian.com/~flucifredi/man/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="nls"
 
 DEPEND="nls? ( sys-devel/gettext )"
