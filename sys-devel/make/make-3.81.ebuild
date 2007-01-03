@@ -22,6 +22,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-tests-lang.patch
+	# https://savannah.gnu.org/bugs/index.php?18680
+	epatch "${FILESDIR}"/${P}-eintr-loop.patch
 }
 
 src_compile() {
