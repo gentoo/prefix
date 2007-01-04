@@ -22,5 +22,6 @@ RDEPEND="elibc_Darwin? ( dev-libs/libiconv )
 	elibc_FreeBSD? ( dev-libs/libiconv )
 	elibc_NetBSD? ( dev-libs/libiconv )
 	elibc_OpenBSD? ( dev-libs/libiconv )
-	elibc_DragonFly? ( dev-libs/libiconv )"
+	elibc_DragonFly? ( dev-libs/libiconv )
+	elibc_Solaris? ( dev-libs/libiconv )"
 
