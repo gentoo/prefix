@@ -22,4 +22,5 @@ RDEPEND="elibc_Darwin? ( sys-devel/gettext )
 	elibc_FreeBSD? ( sys-devel/gettext )
 	elibc_NetBSD? ( sys-devel/gettext )
 	elibc_OpenBSD? ( sys-devel/gettext )
-	elibc_DragonFly? ( sys-devel/gettext )"
+	elibc_DragonFly? ( sys-devel/gettext )
+	elibc_Solaris? ( sys-devel/gettext )"
