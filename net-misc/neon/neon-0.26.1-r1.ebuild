@@ -20,7 +20,8 @@ DEPEND="expat? ( dev-libs/expat )
 	!expat? ( dev-libs/libxml2 )
 	socks5? ( net-proxy/dante )
 	zlib? ( sys-libs/zlib )
-	ssl? ( >=dev-libs/openssl-0.9.6f )"
+	ssl? ( >=dev-libs/openssl-0.9.6f )
+	nls? ( virtual/libintl )"
 
 src_unpack() {
 	unpack ${A}
