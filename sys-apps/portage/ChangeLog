@@ -2,6 +2,12 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.1.20.5476 (06 Jan 2007)
+
+  06 Jan 2007; Fabian Groffen <grobian@gentoo.org>
+  +portage-2.1.20.5476.ebuild:
+  New snapshot
+
   02 Jan 2007; Fabian Groffen <grobian@gentoo.org> ChangeLog:
   New snapshot, doesn't install sed wrapper in usr/bin any more
 
