@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/libao
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libao/ChangeLog,v 1.62 2006/10/16 04:26:32 agriffis Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libao/ChangeLog,v 1.64 2006/11/13 18:17:31 gustavoz Exp $
+
+  13 Nov 2006; Gustavo Zacarias <gustavoz@gentoo.org> libao-0.8.6-r3.ebuild:
+  Keyworded ~sparc wrt #149806
+
+  08 Nov 2006; Christian Faulhammer <opfer@gentoo.org>
+  libao-0.8.6-r3.ebuild:
+  keyworded ~x86, bug #149806
 
   16 Oct 2006; Aron Griffis <agriffis@gentoo.org> libao-0.8.6-r3.ebuild:
   Mark 0.8.6-r3 ~ia64. #149806
