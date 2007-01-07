@@ -1,6 +1,45 @@
 # ChangeLog for media-libs/libpng
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.102 2006/11/16 15:03:11 corsair Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.111 2007/01/06 23:46:27 seemant Exp $
+
+  06 Jan 2007; Seemant Kulleen <seemant@gentoo.org>
+  -libpng-1.2.12-r1.ebuild, libpng-1.2.14.ebuild, libpng-1.2.14-r1.ebuild,
+  libpng-1.2.15.ebuild:
+  put a versioned and compressed manual on the gentoo mirrors, to fix bug
+  #146921, once and for all. I've also sent an email upstream requesting that
+  they version the libpng-manual.txt file as well, so that we do not have to
+  maintain it separately on our mirrors.
+
+  06 Jan 2007; Michael Cummings <mcummings@gentoo.org> libpng-1.2.14.ebuild:
+  Bug 159562, amd64 stable
+
+*libpng-1.2.15 (06 Jan 2007)
+
+  06 Jan 2007; Mike Frysinger <vapier@gentoo.org> +libpng-1.2.15.ebuild:
+  Version bump.
+
+  04 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> libpng-1.2.14.ebuild:
+  Stable on Alpha, bug 159562.
+
+  03 Jan 2007; Jeroen Roovers <jer@gentoo.org> libpng-1.2.14.ebuild:
+  Stable for HPPA (bug #159562).
+
+  02 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> libpng-1.2.14.ebuild:
+  Stable on sparc wrt #159562
+
+  02 Jan 2007; Andrej Kacian <ticho@gentoo.org> libpng-1.2.14.ebuild:
+  Stable on x86, bug #159562.
+
+*libpng-1.2.14-r1 (31 Dec 2006)
+
+  31 Dec 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/libpng-1.2.14-mem-leak.patch, +libpng-1.2.14-r1.ebuild:
+  Apply fix from dev version of libpng to plug a memleak #159216.
+
+*libpng-1.2.14 (28 Nov 2006)
+
+  28 Nov 2006; Mike Frysinger <vapier@gentoo.org> +libpng-1.2.14.ebuild:
+  Version bump.
 
   16 Nov 2006; Markus Rothe <corsair@gentoo.org> libpng-1.2.13.ebuild:
   Stable on ppc64; bug #154380
