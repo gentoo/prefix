@@ -1,0 +1,16 @@
+--- libsamplerate-0.1.2/configure.ac.old	2006-12-08 17:39:38.000000000 +0100
++++ libsamplerate-0.1.2/configure.ac	2006-12-08 17:41:44.000000000 +0100
+@@ -183,8 +183,13 @@
+ 
+ #====================================================================================
+ # Check for libsndfile which is required for the test and example programs.
++AC_ARG_ENABLE(sndfile, AC_HELP_STRING([--disable-sndfile], [disable support for sndfile (default=autodetect)]), [ enable_sndfile=$enableval ], [ enable_sndfile=yes ])
+ 
++if test "x$enable_sndfile" = "xyes"; then
+ PKG_CHECK_MODULES(SNDFILE, sndfile >= 1.0.6, ac_cv_sndfile=1, ac_cv_sndfile=0)
++else
++ac_cv_sndfile=0
++fi
+ 
+ AC_DEFINE_UNQUOTED([HAVE_SNDFILE],$ac_cv_sndfile,[Set to 1 if you have libsndfile.])
+ 
