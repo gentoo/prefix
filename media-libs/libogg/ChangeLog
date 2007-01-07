@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libogg
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libogg/ChangeLog,v 1.44 2006/10/04 17:42:48 grobian Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libogg/ChangeLog,v 1.45 2007/01/05 17:14:17 flameeyes Exp $
+
+  05 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> libogg-1.0.ebuild:
+  Convert to use elog.
 
   04 Oct 2006; Fabian Groffen <grobian@gentoo.org> libogg-1.1.ebuild,
   libogg-1.1.1.ebuild, libogg-1.1.2.ebuild, libogg-1.1.3.ebuild:
