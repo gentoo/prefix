@@ -1,16 +1,15 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.1.10.ebuild,v 1.7 2007/01/05 08:06:37 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.1.10-r2.ebuild,v 1.11 2007/01/05 08:06:37 flameeyes Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic libtool
 
-SPV="`echo ${PV} | cut -d. -f1,2`"
-
 DESCRIPTION="A high-quality and portable font engine"
 HOMEPAGE="http://www.freetype.org/"
 SRC_URI="mirror://sourceforge/freetype/${P/_/}.tar.bz2
+	mirror://gentoo/freetype-2.1.10-security_batch-r1.patch.bz2
 	doc? ( mirror://sourceforge/${PN}/${PN}-doc-${PV}.tar.bz2 )"
 
 LICENSE="FTL GPL-2"
@@ -36,6 +35,13 @@ src_unpack() {
 
 	# fix internal header cast which gets used by pango (bad)
 	epatch ${FILESDIR}/${P}-internal_header.patch
+	# fix bunch of overflows etc. (#124828)
+	epatch ${WORKDIR}/${P}-security_batch-r1.patch
+	# revert pointer
+	epatch ${FILESDIR}/${P}-revert_pointer.patch
+	# fix artificial bold bug (#127872)
+	cd ${S}/src/base
+	epatch ${FILESDIR}/${P}-fix_synth.patch
 
 	elibtoolize
 	epunt_cxx
@@ -49,9 +55,16 @@ src_compile() {
 
 	use bindist || append-flags -DTT_CONFIG_OPTION_BYTECODE_INTERPRETER
 
-	make setup CFG="--host=${CHOST} $(with_prefix) $(use_with zlib) --libdir=${EPREFIX}/usr/$(get_libdir)" unix || die
+	# Fix missing symbols in fontconfig in some circumstances
+	append-flags -DFT_CONFIG_OPTION_OLD_INTERNALS
 
-	emake || die
+	make setup CFG="--host=${CHOST} --prefix=${EPREFIX}/usr $(use_with zlib) --libdir=${EPREFIX}/usr/$(get_libdir)" unix || die
+
+	emake || die "make failed"
+
+	if use doc ; then
+		emake refdoc || die "refdoc failed"
+	fi
 
 }
 

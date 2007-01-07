@@ -1,0 +1,26 @@
+===================================================================
+RCS file: /var/lib/cvs/sources/freetype/freetype2/src/base/ftsynth.c,v
+retrieving revision 1.27
+retrieving revision 1.28
+diff -u -r1.27 -r1.28
+--- freetype/freetype2/src/base/ftsynth.c	2005/05/30 07:54:20	1.27
++++ freetype/freetype2/src/base/ftsynth.c	2005/06/16 19:07:08	1.28
+@@ -81,7 +81,7 @@
+ 
+     /* some reasonable strength */
+     xstr = FT_MulFix( face->units_per_EM,
+-                      face->size->metrics.y_scale ) / 42;
++                      face->size->metrics.y_scale ) / 24;
+     ystr = xstr;
+ 
+     if ( slot->format == FT_GLYPH_FORMAT_OUTLINE )
+@@ -122,8 +122,8 @@
+     /* modify the metrics accordingly */
+     if ( !error )
+     {
++      /* assume the layout is horizontal */
+       slot->advance.x += xstr;
+-      slot->advance.y += ystr;
+ 
+       slot->metrics.width        += xstr;
+       slot->metrics.height       += ystr;
