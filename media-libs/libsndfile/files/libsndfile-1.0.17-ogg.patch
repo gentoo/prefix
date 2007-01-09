@@ -1,0 +1,11 @@
+--- libsndfile-1.0.17/configure.old	2006-12-16 09:08:04.000000000 +0100
++++ libsndfile-1.0.17/configure.ac	2006-12-16 09:08:22.000000000 +0100
+@@ -340,7 +340,7 @@
+ 			AC_DEFINE(HAVE_FLAC_1_1_1, [1], [Define to 1 if you have libflac 1.1.1])
+ 			fi
+ 		# in FLAC 1.1.3 libOggFLAC was merged into libFLAC, hence we need -logg
+-		FLAC_LIBS="-lFLAC -logg"
++		FLAC_LIBS="-lFLAC"
+ 		fi
+ 	fi
+ 
