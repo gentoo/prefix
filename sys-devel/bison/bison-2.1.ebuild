@@ -1,10 +1,10 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/bison-2.1.ebuild,v 1.12 2006/05/31 21:28:03 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/bison-2.1.ebuild,v 1.13 2007/01/05 07:12:45 flameeyes Exp $
 
 EAPI="prefix"
 
-inherit toolchain-funcs flag-o-matic eutils gnuconfig
+inherit toolchain-funcs flag-o-matic eutils
 
 DESCRIPTION="A yacc-compatible parser generator"
 HOMEPAGE="http://www.gnu.org/software/bison/bison.html"

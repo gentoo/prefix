@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/bison
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/ChangeLog,v 1.62 2006/10/26 03:57:45 vapier Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/ChangeLog,v 1.63 2007/01/05 07:12:45 flameeyes Exp $
+
+  05 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> bison-1.875.ebuild,
+  bison-2.0.ebuild, bison-2.1.ebuild, bison-2.2.ebuild:
+  Remove gnuconfig inherit.
 
 *bison-2.3 (26 Oct 2006)
 
