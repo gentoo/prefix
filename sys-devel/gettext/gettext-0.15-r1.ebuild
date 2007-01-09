@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.15-r1.ebuild,v 1.2 2006/10/18 11:40:01 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.15-r1.ebuild,v 1.4 2006/12/30 00:58:40 vapier Exp $
 
 EAPI="prefix"
 
@@ -25,23 +25,14 @@ src_unpack() {
 	epunt_cxx
 
 	epatch "${FILESDIR}"/${PN}-0.14.1-lib-path-tests.patch #81628
-	# Fix race, bug #85054
-	epatch "${FILESDIR}"/${PN}-0.14.2-fix-race.patch
-	epatch "${FILESDIR}"/${P}-expat-no-dlopen.patch
+	epatch "${FILESDIR}"/${PN}-0.14.2-fix-race.patch #85054
+	epatch "${FILESDIR}"/${PN}-0.15-expat-no-dlopen.patch #146211
 
 	# bundled libtool seems to be broken so skip certain rpath tests
 	# http://lists.gnu.org/archive/html/bug-libtool/2005-03/msg00070.html
 	sed -i \
 		-e '2iexit 77' \
 		autoconf-lib-link/tests/rpath-3*[ef] || die "sed tests"
-
-	# use Gentoo std docdir
-	sed -i \
-		-e "/^docdir=/s:=.*:=${EPREFIX}/usr/share/doc/${PF}:" \
-		gettext-runtime/configure \
-		gettext-tools/configure \
-		gettext-tools/examples/installpaths.in \
-		|| die "sed docdir"
 
 	# sanity check for Bug 105304
 	if [[ -z ${USERLAND} ]] ; then
@@ -61,6 +52,7 @@ src_compile() {
 	fi
 	use nocxx && export CXX=$(tc-getCC)
 	econf \
+		--docdir="/usr/share/doc/${PF}" \
 		$(use_with emacs) \
 		--disable-java \
 		${myconf} \
@@ -103,18 +95,18 @@ src_install() {
 		gen_usr_ldscript ${libname}
 	fi
 
-	if ! use doc ; then
-		rm -rf "${ED}/${EPREFIX}"/usr/share/doc/${PF}/html
-		rm -rf "${ED}/${EPREFIX}"/usr/share/doc/${PF}/{csharpdoc,examples,javadoc2,javadoc1}
+	if use doc ; then
+		dohtml "${ED}"/usr/share/doc/${PF}/*.html
+	else
+		rm -rf "${ED}"/usr/share/doc/${PF}/{csharpdoc,examples,javadoc2,javadoc1}
 	fi
-	dohtml "${ED}/${EPREFIX}"/usr/share/doc/${PF}/*.html
-	rm -f "${ED}/${EPREFIX}"/usr/share/doc/${PF}/*.html
+	rm -f "${ED}"/usr/share/doc/${PF}/*.html
 
 	# Remove emacs site-lisp stuff if 'emacs' is not in USE
 	if use emacs ; then
 		elisp-site-file-install "${FILESDIR}"/50po-mode-gentoo.el
 	else
-		rm -rf "${ED}/${EPREFIX}"/usr/share/emacs
+		rm -rf "${ED}"/usr/share/emacs
 	fi
 
 	dodoc AUTHORS ChangeLog NEWS README THANKS

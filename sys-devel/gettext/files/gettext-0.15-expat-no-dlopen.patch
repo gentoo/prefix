@@ -1,5 +1,10 @@
---- gettext-0.15/gettext-tools/configure.orig	2006-07-21 15:38:28.000000000 +0200
-+++ gettext-0.15/gettext-tools/configure	2006-10-07 01:19:15.295758370 +0200
+Add support for expat-2 to xgettext by linking it at build time rather than
+at runtime using dlopen
+
+http://bugs.gentoo.org/146211
+
+--- gettext-0.15/gettext-tools/configure
++++ gettext-0.15/gettext-tools/configure
 @@ -44267,19 +44266,6 @@
  
  

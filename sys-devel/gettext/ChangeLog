@@ -1,6 +1,18 @@
 # ChangeLog for sys-devel/gettext
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.130 2006/10/18 11:40:01 uberlord Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.133 2007/01/05 09:15:35 flameeyes Exp $
+
+  05 Jan 2007; Diego Pettenò <flameeyes@gentoo.org>
+  gettext-0.12.1-r2.ebuild, gettext-0.14.1-r1.ebuild:
+  Remove gnuconfig_update usage, leave it to econf.
+
+*gettext-0.16.1 (30 Dec 2006)
+
+  30 Dec 2006; Mike Frysinger <vapier@gentoo.org> +gettext-0.16.1.ebuild:
+  Version bump #158820 by Guido Flohr.
+
+  28 Dec 2006; Mike Frysinger <vapier@gentoo.org> gettext-0.15-r1.ebuild:
+  Fixes from Chris Mayo to cleanup doc handling #154907.
 
   18 Oct 2006; Roy Marples <uberlord@gentoo.org> gettext-0.15-r1.ebuild:
   Added ~sparc-fbsd keyword.
