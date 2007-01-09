@@ -1,6 +1,28 @@
 # ChangeLog for sys-devel/automake
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.94 2006/11/03 18:37:54 grobian Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.101 2007/01/07 18:51:13 dertobi123 Exp $
+
+  07 Jan 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  automake-1.10.ebuild:
+  ppc stable, bug #159417
+
+  05 Jan 2007; Jeroen Roovers <jer@gentoo.org> automake-1.10.ebuild:
+  Stable for HPPA (bug #159417).
+
+  03 Jan 2007; Steve Dibb <beandog@gentoo.org> automake-1.10.ebuild:
+  amd64 stable, bug 159417
+
+  02 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> automake-1.10.ebuild:
+  Stable on sparc wrt #159417
+
+  30 Dec 2006; Tom Gall <tgall@gentoo.org> automake-1.10.ebuild:
+  stable on ppc64, bug #159417
+
+  30 Dec 2006; Andrej Kacian <ticho@gentoo.org> automake-1.10.ebuild:
+  Stable on x86, bug #159417.
+
+  30 Dec 2006; Bryan Østergaard <kloeri@gentoo.org> automake-1.10.ebuild:
+  Stable on Alpha, bug 159417.
 
   03 Nov 2006; Fabian Groffen <grobian@gentoo.org> automake-1.4_p6.ebuild,
   automake-1.5.ebuild, automake-1.6.3.ebuild, automake-1.7.9-r1.ebuild,
