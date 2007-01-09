@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/portaudio-18.1-r5.ebuild,v 1.8 2006/12/03 23:24:25 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/portaudio-18.1-r6.ebuild,v 1.1 2006/11/30 19:39:20 aballier Exp $
 
 EAPI="prefix"
 
@@ -27,8 +27,11 @@ src_unpack() {
 	if [[ ${USERLAND} == "Darwin" ]] ; then
 		cp "${FILESDIR}"/${P}-Makefile.macos "${S}"/Makefile
 	else
-		cp "${FILESDIR}"/${PF}-Makefile.linux "${S}"/Makefile
+		cp "${FILESDIR}"/${PF}-Makefile "${S}"/Makefile
 	fi
+	# Fix deprecated includes
+	fgrep --null -lr malloc.h "${S}" | xargs -0 sed -i 's/malloc.h/stdlib.h/'
+	fgrep --null -lr machine/soundcard.h "${S}" | xargs -0 sed -i 's/machine\/soundcard.h/sys\/soundcard.h/'
 }
 
 src_compile() {
