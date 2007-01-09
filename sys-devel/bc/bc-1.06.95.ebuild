@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/bc/bc-1.06.95.ebuild,v 1.2 2006/10/18 11:13:56 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/bc/bc-1.06.95.ebuild,v 1.3 2006/12/31 15:03:31 vapier Exp $
 
 EAPI="prefix"
 
@@ -36,6 +36,6 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${D}" || die
+	emake install DESTDIR="${D}" || die
 	dodoc AUTHORS FAQ NEWS README ChangeLog
 }
