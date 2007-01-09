@@ -1,6 +1,62 @@
 # ChangeLog for sys-devel/gcc
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.589 2006/11/29 15:13:30 gustavoz Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.603 2007/01/08 22:51:51 opfer Exp $
+
+  08 Jan 2007; Christian Faulhammer <opfer@gentoo.org> gcc-4.1.1-r3.ebuild:
+  stable x86, bug #160663
+
+  08 Jan 2007; Joseph Jezak <josejx@gentoo.org> gcc-4.1.1-r3.ebuild:
+  Marked ppc stable for bug #160663.
+
+  08 Jan 2007; Markus Rothe <corsair@gentoo.org> gcc-4.1.1-r3.ebuild:
+  Stable on ppc64; bug #160663
+
+  08 Jan 2007; Mike Frysinger <vapier@gentoo.org> gcc-4.1.1-r1.ebuild,
+  gcc-4.1.1-r3.ebuild:
+  Force binutils-2.17+ to make sure the assembler supports secureplt #160709.
+
+  08 Jan 2007; Jeroen Roovers <jer@gentoo.org> gcc-4.1.1-r3.ebuild:
+  Stable for HPPA (bug #160663).
+
+  02 Jan 2007; Andrej Kacian <ticho@gentoo.org> gcc-3.3.6-r1.ebuild:
+  Stable on x86, bug #159459.
+
+  01 Jan 2007; Joseph Jezak <josejx@gentoo.org> gcc-3.4.6-r2.ebuild:
+  Marked ppc stable for bug #159460.
+
+  30 Dec 2006; Tom Gall <tgall@gentoo.org> gcc-3.4.6-r2.ebuild:
+  stable on ppc64, bug #159250
+
+  30 Dec 2006; Andrej Kacian <ticho@gentoo.org> gcc-3.4.6-r2.ebuild:
+  Stable on x86, bug #159250.
+
+*gcc-2.95.3-r10 (30 Dec 2006)
+
+  30 Dec 2006; Mike Frysinger <vapier@gentoo.org> +gcc-2.95.3-r10.ebuild:
+  Add support for toolchain.eclass #124578 by Harald van Dijk.
+
+  28 Dec 2006; Bryan Østergaard <kloeri@gentoo.org> gcc-3.4.6-r2.ebuild:
+  Stable on  Alpha.
+
+*gcc-4.3.0_alpha20061216 (17 Dec 2006)
+
+  17 Dec 2006; Mike Frysinger <vapier@gentoo.org>
+  +gcc-4.3.0_alpha20061216.ebuild:
+  Update snapshot as last one ICEs while building on ppc.
+
+*gcc-4.3.0_alpha20061209 (11 Dec 2006)
+*gcc-4.2.0_alpha20061205 (11 Dec 2006)
+*gcc-4.1.0_alpha20061208 (11 Dec 2006)
+
+  11 Dec 2006; Mike Frysinger <vapier@gentoo.org>
+  -gcc-4.1.0_alpha20061110.ebuild, +gcc-4.1.0_alpha20061208.ebuild,
+  -gcc-4.2.0_alpha20061107.ebuild, +gcc-4.2.0_alpha20061205.ebuild,
+  -gcc-4.3.0_alpha20061111.ebuild, +gcc-4.3.0_alpha20061209.ebuild:
+  Update snapshots.
+
+  10 Dec 2006; Bryan Østergaard <kloeri@gentoo.org> gcc-4.1.1-r1.ebuild,
+  gcc-4.1.1-r3.ebuild:
+  Add ~alpha keyword.
 
   29 Nov 2006; Gustavo Zacarias <gustavoz@gentoo.org> gcc-3.4.6-r2.ebuild:
   Stable on sparc
