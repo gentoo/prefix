@@ -1,23 +1,25 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/groff-1.19.2-r1.ebuild,v 1.14 2006/11/09 01:13:02 iluxa Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/groff-1.19.2-r1.ebuild,v 1.18 2006/12/30 13:55:47 vapier Exp $
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic toolchain-funcs multilib
+WANT_AUTOCONF="latest"
+WANT_AUTOMAKE="latest"
+inherit eutils flag-o-matic toolchain-funcs multilib autotools
 
 MB_PATCH="groff_1.18.1-7" #"${P/-/_}-7"
 DESCRIPTION="Text formatter used for man pages"
 HOMEPAGE="http://www.gnu.org/software/groff/groff.html"
-SRC_URI="mirror://gnu/groff/${P}.tar.gz"
+SRC_URI="mirror://gnu/groff/${P}.tar.gz
+	cjk? ( mirror://gentoo/groff-1.19.2-japanese.patch.bz2 )"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
-IUSE="X"
+IUSE="cjk X"
 
-DEPEND=">=sys-apps/texinfo-4.7-r1
-	!app-i18n/man-pages-ja"
+DEPEND=">=sys-apps/texinfo-4.7-r1"
 
 src_unpack() {
 	unpack ${A}
@@ -45,6 +47,11 @@ src_unpack() {
 			doc/Makefile.in \
 			doc/Makefile.sub || die "cross-compile sed failed"
 	fi
+
+	if use cjk ; then
+		epatch "${WORKDIR}"/groff-1.19.2-japanese.patch #134377
+		eautoreconf
+	fi
 }
 
 src_compile() {
@@ -55,12 +62,10 @@ src_compile() {
 	# (fixes bug 36008, 06 Jan 2004 agriffis)
 	replace-flags -Os -O
 
-	# CJK doesnt work yet with groff-1.19
-	#	$(use_enable cjk multibyte)
-
 	econf \
 		--with-appresdir="${EPREFIX}"/etc/X11/app-defaults \
 		$(use_with X x) \
+		$(use_enable cjk japanese) \
 		|| die
 	emake || die
 }
@@ -75,6 +80,7 @@ src_install() {
 		datadir="${ED}"/usr/share \
 		mandir="${ED}"/usr/share/man \
 		infodir="${ED}"/usr/share/info \
+		docdir="${ED}"/usr/share/doc/${PF} \
 		install || die
 
 	# The following links are required for man #123674
