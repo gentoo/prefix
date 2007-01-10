@@ -1,13 +1,13 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-2.18.3-r10.ebuild,v 1.5 2006/11/17 16:46:07 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-2.18.3-r10.ebuild,v 1.6 2007/01/05 09:14:13 flameeyes Exp $
 
 EAPI="prefix"
 
 # If you change this in any way please email lisa@gentoo.org and make an
 # entry in the ChangeLog (this means you spanky :P). (2004-04-11) Lisa Seelye
 
-inherit eutils flag-o-matic gnuconfig toolchain-funcs
+inherit eutils flag-o-matic toolchain-funcs
 
 PATCHLEVEL="2.18"
 
@@ -55,8 +55,6 @@ src_unpack() {
 	cp "${FILESDIR}"/distcc-config .
 	epatch "${FILESDIR}"/distcc-config-prefix.patch
 	eprefixify distcc-config
-
-	gnuconfig_update
 }
 
 src_compile() {

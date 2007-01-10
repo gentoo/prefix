@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/distcc
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.159 2006/11/17 16:46:07 flameeyes Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.160 2007/01/05 09:14:13 flameeyes Exp $
+
+  05 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> distcc-2.16-r2.ebuild,
+  distcc-2.16-r3.ebuild, distcc-2.18.3-r6.ebuild, distcc-2.18.3-r7.ebuild,
+  distcc-2.18.3-r8.ebuild, distcc-2.18.3-r10.ebuild:
+  Remove gnuconfig_update usage, leave it to econf.
 
   17 Nov 2006; Diego Pettenò <flameeyes@gentoo.org>
   distcc-2.18.3-r10.ebuild:
