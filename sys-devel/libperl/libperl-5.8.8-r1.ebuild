@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/libperl-5.8.8-r1.ebuild,v 1.19 2006/11/19 19:27:21 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/libperl-5.8.8-r1.ebuild,v 1.20 2007/01/05 00:24:39 mcummings Exp $
 
 # The basic theory based on comments from Daniel Robbins <drobbins@gentoo.org>.
 #
@@ -82,8 +82,7 @@ KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 
 RESTRICT="test"
 
-DEPEND="!elibc_uclibc? ( sys-apps/groff )
-	berkdb? ( sys-libs/db )
+DEPEND="berkdb? ( sys-libs/db )
 	gdbm? ( >=sys-libs/gdbm-1.8.0 )
 	elibc_FreeBSD? ( sys-freebsd/freebsd-mk-defs )"
 
