@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.6.ebuild,v 1.1 2006/11/26 15:38:53 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.7-r1.ebuild,v 1.1 2007/01/02 04:53:44 vapier Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,7 @@ SRC_URI="ftp://alpha.gnu.org/gnu/coreutils/${P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="acl nls selinux static"
 RESTRICT="confcache"
 
@@ -119,14 +119,15 @@ src_test() {
 }
 
 src_install() {
-	make install DESTDIR="${D}" || die
+	emake install DESTDIR="${D}" || die
 	rm -f "${ED}"/usr/lib/charset.alias
 	dodoc AUTHORS ChangeLog* NEWS README* THANKS TODO
 
 	# remove files provided by other packages
-	rm "${ED}"/bin/{kill,uptime} # procps
-	rm "${ED}"/bin/{groups,su}   # shadow
-	rm "${ED}"/bin/hostname      # net-tools
+	rm "${ED}"/usr/bin/uptime        # procps
+	rm "${ED}"/bin/kill          # procps
+	rm "${ED}"/usr/bin/{groups,su}   # shadow
+	rm "${ED}"/bin/hostname          # net-tools
 	rm "${ED}"/usr/share/man/man1/{groups,kill,hostname,su,uptime}.1
 	# provide by the man-pages package
 	rm "${ED}"/usr/share/man/man1/{chgrp,chmod,chown,cp,dd,df,dir,dircolors}.1
@@ -137,16 +138,19 @@ src_install() {
 	newins src/dircolors.hin DIR_COLORS
 
 	if [[ ${USERLAND} == "GNU" ]] ; then
-		# move non-critical packages into /usr
-		cd "${ED}"
-		dodir /usr/bin
-		mv bin/{csplit,expand,factor,fmt,fold,join,md5sum,nl,od} usr/bin
-		mv bin/{paste,pathchk,pinky,pr,printf,sha1sum,shred,sum,tac} usr/bin
-		mv bin/{tail,test,[,tsort,unexpand,users} usr/bin
-		cd bin
+		cd "${ED}"/usr/bin
+		dodir /bin
+		# move critical binaries into /bin (required by FHS)
+		local fhs="cat chgrp chmod chown cp date dd df echo false ln ls
+		           mkdir mknod mv pwd rm rmdir stty sync true uname"
+		mv ${fhs} ../../bin/ || die "could not move fhs bins"
+		# move critical binaries into /bin (common scripts)
+		local com="basename chroot cut dir dirname du env expr head mkfifo
+		           readlink seq sleep sort tail touch tr tty vdir wc yes"
+		mv ${com} ../../bin/ || die "could not move common bins"
 		local x
-		for x in * ; do
-			dosym /bin/${x} /usr/bin/${x}
+		for x in ${com} ; do
+			dosym /bin/${x} /usr/bin/${x} || die
 		done
 	else
 		# For now, drop the man pages, collides with the ones of the system.
