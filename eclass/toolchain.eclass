@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.320 2006/12/30 09:12:36 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.321 2007/01/06 11:31:26 vapier Exp $
 
 HOMEPAGE="http://gcc.gnu.org/"
 LICENSE="GPL-2 LGPL-2.1"
@@ -334,7 +334,6 @@ get_gcc_src_uri() {
 		GCC_SRC_URI="${GCC_SRC_URI}
 			boundschecking? (
 				mirror://sourceforge/boundschecking/${HTBFILE}
-				http://web.inter.nl.net/hcc/Haj.Ten.Brugge/${HTBFILE}
 				$(gentoo_urls ${HTBFILE})
 			)"
 	fi

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.265 2006/11/21 16:58:57 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.267 2007/01/09 15:47:47 vapier Exp $
 #
 # This eclass is for general purpose functions that most ebuilds
 # have to implement themselves.
@@ -39,16 +39,16 @@ ebeep() {
 }
 
 # This function generate linker scripts in /usr/lib for dynamic
-# libs in /lib.  This is to fix linking problems when you have
-# the .so in /lib, and the .a in /usr/lib.  What happens is that
+# libs in /lib.	 This is to fix linking problems when you have
+# the .so in /lib, and the .a in /usr/lib.	What happens is that
 # in some cases when linking dynamic, the .a in /usr/lib is used
 # instead of the .so in /lib due to gcc/libtool tweaking ld's
-# library search path.  This cause many builds to fail.
+# library search path.	This cause many builds to fail.
 # See bug #4411 for more info.
 #
 # To use, simply call:
 #
-#   gen_usr_ldscript libfoo.so
+#	gen_usr_ldscript libfoo.so
 #
 # Note that you should in general use the unversioned name of
 # the library, as ldconfig should usually update it correctly
@@ -95,7 +95,7 @@ EPATCH_SUFFIX="patch.bz2"
 # Set --no-backup-if-mismatch so we don't leave '.orig' files behind.
 # Set -E to automatically remove empty files.
 EPATCH_OPTS="-g0 -E --no-backup-if-mismatch"
-# List of patches not to apply.  Not this is only file names,
+# List of patches not to apply.	 Not this is only file names,
 # and not the full path ..
 EPATCH_EXCLUDE=""
 # Change the printed message for a single patch.
@@ -104,7 +104,7 @@ EPATCH_SINGLE_MSG=""
 EPATCH_MULTI_MSG="Applying various patches (bugfixes/updates) ..."
 # Force applying bulk patches even if not following the style:
 #
-#   ??_${ARCH}_foo.${EPATCH_SUFFIX}
+#	??_${ARCH}_foo.${EPATCH_SUFFIX}
 #
 EPATCH_FORCE="no"
 
@@ -125,12 +125,12 @@ EPATCH_FORCE="no"
 #
 # Bulk Patches should preferibly have the form of:
 #
-#   ??_${ARCH}_foo.${EPATCH_SUFFIX}
+#	??_${ARCH}_foo.${EPATCH_SUFFIX}
 #
 # For example:
 #
-#   01_all_misc-fix.patch.bz2
-#   02_sparc_another-fix.patch.bz2
+#	01_all_misc-fix.patch.bz2
+#	02_sparc_another-fix.patch.bz2
 #
 # This ensures that there are a set order, and you can have ARCH
 # specific patches.
@@ -228,11 +228,11 @@ epatch() {
 	do
 		# New ARCH dependant patch naming scheme ...
 		#
-		#   ???_arch_foo.patch
+		#	???_arch_foo.patch
 		#
 		if [ -f ${x} ] && \
 		   ([ "${SINGLE_PATCH}" = "yes" -o "${x/_all_}" != "${x}" -o "${x/_${ARCH}_}" != "${x}" ] || \
-		    [ "${EPATCH_FORCE}" = "yes" ])
+			[ "${EPATCH_FORCE}" = "yes" ])
 		then
 			local count=0
 			local popts="${EPATCH_OPTS}"
@@ -255,7 +255,7 @@ epatch() {
 					einfo "Applying ${patchname} ..."
 				fi
 			else
-				einfo "  ${patchname} ..."
+				einfo "	 ${patchname} ..."
 			fi
 
 			echo "***** ${patchname} *****" > ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
@@ -270,13 +270,13 @@ epatch() {
 
 				if [ "${PATCH_SUFFIX}" != "patch" ]
 				then
-					echo -n "PIPE_COMMAND:  " >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
+					echo -n "PIPE_COMMAND:	" >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
 					echo "${PIPE_CMD} ${x} > ${PATCH_TARGET}" >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
 				else
 					PATCH_TARGET="${x}"
 				fi
 
-				echo -n "PATCH COMMAND:  " >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
+				echo -n "PATCH COMMAND:	 " >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
 				echo "patch -p${count} ${popts} < ${PATCH_TARGET}" >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
 
 				echo >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
@@ -770,14 +770,14 @@ edos2unix() {
 
 
 ##############################################################
-# START: Handle .desktop files and menu entries              #
+# START: Handle .desktop files and menu entries				 #
 # maybe this should be separated into a new eclass some time #
-# lanius@gentoo.org                                          #
+# lanius@gentoo.org											 #
 ##############################################################
 
 # Make a desktop file !
 # Great for making those icons in kde/gnome startmenu !
-# Amaze your friends !  Get the women !  Join today !
+# Amaze your friends !	Get the women !	 Join today !
 #
 # make_desktop_entry(<command>, [name], [icon], [type], [path])
 #
@@ -786,7 +786,7 @@ edos2unix() {
 # icon:		give your little like a pretty little icon ...
 #			this can be relative (to /usr/share/pixmaps) or
 #			a full path to an icon
-# type:		what kind of application is this ?  for categories:
+# type:		what kind of application is this ?	for categories:
 #			http://www.freedesktop.org/Standards/desktop-entry-spec
 # path:		if your app needs to startup in a specific dir
 make_desktop_entry() {
@@ -804,17 +804,17 @@ make_desktop_entry() {
 		case ${catmaj} in
 			app)
 				case ${catmin} in
-					admin)     type=System;;
-					cdr)       type=DiscBurning;;
-					dicts)     type=Dictionary;;
+					admin)	   type=System;;
+					cdr)	   type=DiscBurning;;
+					dicts)	   type=Dictionary;;
 					editors)   type=TextEditor;;
-					emacs)     type=TextEditor;;
+					emacs)	   type=TextEditor;;
 					emulation) type=Emulator;;
-					laptop)    type=HardwareSettings;;
-					office)    type=Office;;
-					vim)       type=TextEditor;;
-					xemacs)    type=TextEditor;;
-					*)         type=;;
+					laptop)	   type=HardwareSettings;;
+					office)	   type=Office;;
+					vim)	   type=TextEditor;;
+					xemacs)	   type=TextEditor;;
+					*)		   type=;;
 				esac
 				;;
 
@@ -825,17 +825,17 @@ make_desktop_entry() {
 			games)
 				case ${catmin} in
 					action|fps) type=ActionGame;;
-					arcade)     type=ArcadeGame;;
-					board)      type=BoardGame;;
-					kids)       type=KidsGame;;
-					emulation)  type=Emulator;;
-					puzzle)     type=LogicGame;;
-					rpg)        type=RolePlaying;;
-					roguelike)  type=RolePlaying;;
+					arcade)		type=ArcadeGame;;
+					board)		type=BoardGame;;
+					kids)		type=KidsGame;;
+					emulation)	type=Emulator;;
+					puzzle)		type=LogicGame;;
+					rpg)		type=RolePlaying;;
+					roguelike)	type=RolePlaying;;
 					simulation) type=Simulation;;
-					sports)     type=SportsGame;;
-					strategy)   type=StrategyGame;;
-					*)          type=;;
+					sports)		type=SportsGame;;
+					strategy)	type=StrategyGame;;
+					*)			type=;;
 				esac
 				type="Game;${type}"
 				;;
@@ -849,9 +849,9 @@ make_desktop_entry() {
 					gfx)   type=Graphics;;
 					radio) type=Tuner;;
 					sound) type=Audio;;
-					tv)    type=TV;;
+					tv)	   type=TV;;
 					video) type=Video;;
-					*)     type=;;
+					*)	   type=;;
 				esac
 				type="AudioVideo;${type}"
 				;;
@@ -859,14 +859,14 @@ make_desktop_entry() {
 			net)
 				case ${catmin} in
 					dialup) type=Dialup;;
-					ftp)    type=FileTransfer;;
-					im)     type=InstantMessaging;;
-					irc)    type=IRCClient;;
-					mail)   type=Email;;
-					news)   type=News;;
-					nntp)   type=News;;
-					p2p)    type=FileTransfer;;
-					*)      type=;;
+					ftp)	type=FileTransfer;;
+					im)		type=InstantMessaging;;
+					irc)	type=IRCClient;;
+					mail)	type=Email;;
+					news)	type=News;;
+					nntp)	type=News;;
+					p2p)	type=FileTransfer;;
+					*)		type=;;
 				esac
 				type="Network;${type}"
 				;;
@@ -874,12 +874,12 @@ make_desktop_entry() {
 			sci)
 				case ${catmin} in
 					astro*) type=Astronomy;;
-					bio*)   type=Biology;;
-					calc*)  type=Calculator;;
-					chem*)  type=Chemistry;;
-					geo*)   type=Geology;;
-					math*)  type=Math;;
-					*)      type=;;
+					bio*)	type=Biology;;
+					calc*)	type=Calculator;;
+					chem*)	type=Chemistry;;
+					geo*)	type=Geology;;
+					math*)	type=Math;;
+					*)		type=;;
 				esac
 				type="Science;${type}"
 				;;
@@ -887,7 +887,7 @@ make_desktop_entry() {
 			www)
 				case ${catmin} in
 					client) type=WebBrowser;;
-					*)      type=;;
+					*)		type=;;
 				esac
 				type="Network"
 				;;
@@ -988,7 +988,7 @@ newicon() {
 }
 
 ##############################################################
-# END: Handle .desktop files and menu entries              #
+# END: Handle .desktop files and menu entries			   #
 ##############################################################
 
 
@@ -1017,19 +1017,19 @@ find_unpackable_file() {
 #
 # Usage: unpack_pdv [file to unpack] [size of off_t]
 # - you have to specify the off_t size ... i have no idea how to extract that
-#   information out of the binary executable myself.  basically you pass in
-#   the size of the off_t type (in bytes) on the machine that built the pdv
-#   archive.  one way to determine this is by running the following commands:
-#   strings <pdv archive> | grep lseek
-#   strace -elseek <pdv archive>
-#   basically look for the first lseek command (we do the strings/grep because
-#   sometimes the function call is _llseek or something) and steal the 2nd
-#   parameter.  here is an example:
-#   root@vapier 0 pdv_unpack # strings hldsupdatetool.bin | grep lseek
-#   lseek
-#   root@vapier 0 pdv_unpack # strace -elseek ./hldsupdatetool.bin
-#   lseek(3, -4, SEEK_END)                  = 2981250
-#   thus we would pass in the value of '4' as the second parameter.
+#	information out of the binary executable myself.  basically you pass in
+#	the size of the off_t type (in bytes) on the machine that built the pdv
+#	archive.  one way to determine this is by running the following commands:
+#	strings <pdv archive> | grep lseek
+#	strace -elseek <pdv archive>
+#	basically look for the first lseek command (we do the strings/grep because
+#	sometimes the function call is _llseek or something) and steal the 2nd
+#	parameter.	here is an example:
+#	root@vapier 0 pdv_unpack # strings hldsupdatetool.bin | grep lseek
+#	lseek
+#	root@vapier 0 pdv_unpack # strace -elseek ./hldsupdatetool.bin
+#	lseek(3, -4, SEEK_END)					= 2981250
+#	thus we would pass in the value of '4' as the second parameter.
 unpack_pdv() {
 	local src=$(find_unpackable_file $1)
 	local sizeoff_t=$2
@@ -1040,7 +1040,7 @@ unpack_pdv() {
 	local shrtsrc=$(basename "${src}")
 	echo ">>> Unpacking ${shrtsrc} to ${PWD}"
 	local metaskip=`tail -c ${sizeoff_t} ${src} | hexdump -e \"%i\"`
-	local tailskip=`tail -c $((${sizeoff_t}*2)) ${src} | head -c ${sizeoff_t} |  hexdump -e \"%i\"`
+	local tailskip=`tail -c $((${sizeoff_t}*2)) ${src} | head -c ${sizeoff_t} |	 hexdump -e \"%i\"`
 
 	# grab metadata for debug reasons
 	local metafile="$(emktemp)"
@@ -1109,7 +1109,7 @@ unpack_pdv() {
 # Usage: unpack_makeself [file to unpack] [offset] [tail|dd]
 # - If the file is not specified then unpack will utilize ${A}.
 # - If the offset is not specified then we will attempt to extract
-#   the proper offset from the script itself.
+#	the proper offset from the script itself.
 unpack_makeself() {
 	local src_input=${1:-${A}}
 	local src=$(find_unpackable_file "${src_input}")
@@ -1227,7 +1227,7 @@ check_license() {
 **********************************************************
 The following license outlines the terms of use of this
 package.  You MUST accept this license for installation to
-continue.  When you are done viewing, hit 'q'.  If you
+continue.  When you are done viewing, hit 'q'.	If you
 CTRL+C out of this, the install will not run!
 **********************************************************
 
@@ -1259,17 +1259,17 @@ EOF
 # normally the cdrom functions will refer to the cds as 'cd #1', 'cd #2',
 # etc...  if you want to give the cds better names, then just export
 # the appropriate CDROM_NAME variable before calling cdrom_get_cds().
-#  - CDROM_NAME="fooie cd"     - for when you only want 1 cd
+#  - CDROM_NAME="fooie cd"	   - for when you only want 1 cd
 #  - CDROM_NAME_1="install cd" - for when you want more than 1 cd
-#    CDROM_NAME_2="data cd"
+#	 CDROM_NAME_2="data cd"
 #  - CDROM_NAME_SET=( "install cd" "data cd" ) - short hand for CDROM_NAME_#
 #
 # for those multi cd ebuilds, see the cdrom_load_next_cd() below.
 #
 # Usage: cdrom_get_cds <file on cd1> [file on cd2] [file on cd3] [...]
 # - this will attempt to locate a cd based upon a file that is on
-#   the cd ... the more files you give this function, the more cds
-#   the cdrom functions will handle
+#	the cd ... the more files you give this function, the more cds
+#	the cdrom functions will handle
 cdrom_get_cds() {
 	# first we figure out how many cds we're dealing with by
 	# the # of files they gave us
@@ -1457,14 +1457,14 @@ _cdrom_locate_file_on_cd() {
 # a package can support
 #
 # usage: strip-linguas <allow LINGUAS>
-#        strip-linguas -i <directories of .po files>
-#        strip-linguas -u <directories of .po files>
+#		 strip-linguas -i <directories of .po files>
+#		 strip-linguas -u <directories of .po files>
 #
 # The first form allows you to specify a list of LINGUAS.
 # The -i builds a list of po files found in all the
-#   directories and uses the intersection of the lists.
+#	directories and uses the intersection of the lists.
 # The -u builds a list of po files found in all the
-#   directories and uses the union of the lists.
+#	directories and uses the union of the lists.
 strip-linguas() {
 	local ls newls nols
 	if [[ $1 == "-i" ]] || [[ $1 == "-u" ]] ; then
@@ -1518,12 +1518,12 @@ set_arch_to_kernel() {
 	done
 	export EUTILS_ECLASS_PORTAGE_ARCH="${ARCH}"
 	case ${ARCH} in
-		x86)    export ARCH="i386";;
-		amd64)  export ARCH="x86_64";;
-		hppa)   export ARCH="parisc";;
-		mips)   export ARCH="mips";;
-		sparc)  export ARCH="$(tc-arch-kernel)";; # Yeah this is ugly, but it's even WORSE if you don't do this.  linux-info.eclass's set_arch_to_kernel is fixed, but won't get used over this one!
-		*)      export ARCH="${ARCH}";;
+		x86)	export ARCH="i386";;
+		amd64)	export ARCH="x86_64";;
+		hppa)	export ARCH="parisc";;
+		mips)	export ARCH="mips";;
+		sparc)	export ARCH="$(tc-arch-kernel)";; # Yeah this is ugly, but it's even WORSE if you don't do this.  linux-info.eclass's set_arch_to_kernel is fixed, but won't get used over this one!
+		*)		export ARCH="${ARCH}";;
 	esac
 }
 
@@ -1540,13 +1540,13 @@ set_arch_to_portage() {
 # preserve_old_lib /path/to/libblah.so.0
 # preserve_old_lib_notify /path/to/libblah.so.0
 #
-# These functions are useful when a lib in your package changes --library.  Such
-# an example might be from libogg.so.0 to libogg.so.1.  Removing libogg.so.0
+# These functions are useful when a lib in your package changes --library.	Such
+# an example might be from libogg.so.0 to libogg.so.1.	Removing libogg.so.0
 # would break packages that link against it.  Most people get around this
 # by using the portage SLOT mechanism, but that is not always a relevant
 # solution, so instead you can add the following to your ebuilds:
 #
-# src_install() {
+# pkg_preinst() {
 # ...
 # preserve_old_lib /usr/$(get_libdir)/libogg.so.0
 # ...
@@ -1559,43 +1559,52 @@ set_arch_to_portage() {
 # }
 
 preserve_old_lib() {
-	LIB=$1
-
-	if [ -n "${LIB}" -a -f "${EROOT}${LIB}" ]; then
-		SONAME=`basename ${LIB}`
-		DIRNAME=`dirname ${LIB}`
-
-		dodir ${DIRNAME}
-		cp ${EROOT}${LIB} ${ED}${DIRNAME}
-		touch ${ED}${LIB}
+	if [[ ${EBUILD_PHASE} != "pkg_preinst" ]] ; then
+		eerror "preserve_old_lib() must be called from pkg_preinst() only"
+#		die "Invalid preserve_old_lib() usage"
 	fi
+	[[ -z $1 ]] && die "Usage: preserve_old_lib <library to preserve> [more libraries to preserve]"
+
+	local lib dir
+	for lib in "$@" ; do
+		[[ -e ${EROOT}/${lib} ]] || continue
+		dir=${lib%/*}
+		dodir ${dir} || die "dodir ${dir} failed"
+		cp "${EROOT}"/${lib} "${ED}"/${lib} || die "cp ${lib} failed"
+		touch "${ED}"/${lib}
+	done
 }
 
 preserve_old_lib_notify() {
-	LIB=$1
-
-	if [ -n "${LIB}" -a -f "${EROOT}${LIB}" ]; then
-		SONAME=`basename ${LIB}`
-
-		ewarn "An old version of an installed library was detected on your system."
-		ewarn "In order to avoid breaking packages that link against it, this older version"
-		ewarn "is not being removed.  In order to make full use of this newer version,"
-		ewarn "you will need to execute the following command:"
-		ewarn "  revdep-rebuild --library ${SONAME}"
-		ewarn
-		ewarn "After doing that, you can safely remove ${LIB}"
-		ewarn "Note: 'emerge gentoolkit' to get revdep-rebuild"
+	if [[ ${EBUILD_PHASE} != "pkg_postinst" ]] ; then
+		eerror "preserve_old_lib_notify() must be called from pkg_postinst() only"
+#		die "Invalid preserve_old_lib_notify() usage"
 	fi
+
+	local lib notice=0
+	for lib in "$@" ; do
+		[[ -e ${EROOT}/${lib} ]] || continue
+		if [[ ${notice} -eq 0 ]] ; then
+			notice=1
+			ewarn "Old versions of installed libraries were detected on your system."
+			ewarn "In order to avoid breaking packages that depend on these old libs,"
+			ewarn "the libraries are not being removed.  You need to run revdep-rebuild"
+			ewarn "in order to remove these old dependencies.  If you do not have this"
+			ewarn "helper program, simply emerge the 'gentoolkit' package."
+			ewarn
+		fi
+		ewarn "  # revdep-rebuild --library ${lib##*/}"
+	done
 }
 
 # Hack for people to figure out if a package was built with
 # certain USE flags
 #
 # Usage: built_with_use [-a|-o] <DEPEND ATOM> <List of USE flags>
-#    ex: built_with_use xchat gtk2
+#	 ex: built_with_use xchat gtk2
 #
-# Flags: -a   all USE flags should be utilized
-#        -o   at least one USE flag should be utilized
+# Flags: -a	  all USE flags should be utilized
+#		 -o	  at least one USE flag should be utilized
 # Note: the default flag is '-a'
 built_with_use() {
 	local opt=$1
@@ -1648,29 +1657,6 @@ epunt_cxx() {
 		patch -p0 "${f}" "${PORTDIR}/eclass/ELT-patches/nocxx/nocxx.patch" > /dev/null
 	done
 	eend 0
-}
-
-# dopamd <file> [more files]
-#
-# Install pam auth config file in /etc/pam.d
-dopamd() {
-	[[ -z $1 ]] && die "dopamd requires at least one argument"
-
-	use pam || return 0
-
-	INSDESTTREE=/etc/pam.d \
-	doins "$@" || die "failed to install $@"
-}
-# newpamd <old name> <new name>
-#
-# Install pam file <old name> as <new name> in /etc/pam.d
-newpamd() {
-	[[ $# -ne 2 ]] && die "newpamd requires two arguements"
-
-	use pam || return 0
-
-	INSDESTTREE=/etc/pam.d \
-	newins "$1" "$2" || die "failed to install $1 as $2"
 }
 
 # make a wrapper script ...

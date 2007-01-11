@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vmware-mod.eclass,v 1.6 2006/11/22 17:16:14 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vmware-mod.eclass,v 1.7 2007/01/05 17:52:20 ikelos Exp $
 
 
 # Ensure vmware comes before linux-mod since we want linux-mod's pkg_preinst and
@@ -37,14 +37,16 @@ vmware-mod_pkg_setup() {
 
 	vmware_determine_product
 
-	case ${product} in
-		vmware-tools)
-			VMWARE_MODULE_LIST="vmdesched vmhgfs vmmemctl vmxnet"
-			;;
-		*)
-			VMWARE_MODULE_LIST="vmmon vmnet"
-			;;
-	esac
+	if [[ -z "${VMWARE_MODULE_LIST}" ]]; then
+		case ${product} in
+			vmware-tools)
+				VMWARE_MODULE_LIST="${VMWARE_MODULE_LIST}vmdesched vmhgfs vmmemctl vmxnet"
+				;;
+			*)
+				VMWARE_MODULE_LIST="${VMWARE_MODULE_LIST}vmmon vmnet"
+				;;
+		esac
+	fi
 
 	for mod in ${VMWARE_MODULE_LIST}; do
 	MODULE_NAMES="${MODULE_NAMES}

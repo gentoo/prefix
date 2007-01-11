@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.69 2007/01/01 22:27:01 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.70 2007/01/07 05:51:21 vapier Exp $
 
 # We install binutils into CTARGET-VERSION specific directories.  This lets
 # us easily merge multiple versions for multiple targets (if we wish) and
@@ -180,7 +180,7 @@ toolchain-binutils_src_compile() {
 	[[ ${EPREFIX/\//} != "" ]] && myconf="${myconf} \
 		--with-lib-path=${EPREFIX}/lib64:${EPREFIX}/usr/lib64:${EPREFIX}/lib:${EPREFIX}/usr/lib:/lib64:/usr/lib64:/lib:/usr/lib"
 #	glibc-2.3.6 lacks support for this ...
-#		--enable-secureplt
+#		--enable-secureplt   <- this is an alpha-only option
 	myconf="--prefix=${EPREFIX}/usr \
 		--host=${CHOST} \
 		--target=${CTARGET} \

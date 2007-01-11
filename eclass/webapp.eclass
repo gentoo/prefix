@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/webapp.eclass,v 1.47 2006/12/31 19:16:31 rl03 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/webapp.eclass,v 1.48 2007/01/03 20:16:39 rl03 Exp $
 #
 # eclass/webapp.eclass
 #				Eclass for installing applications to run under a web server
@@ -527,21 +527,23 @@ function webapp_pkg_prerm ()
 		return
 	fi
 
-	for x in ${my_output} ; do
-		[ -f ${x}/.webapp ] && . ${x}/.webapp || ewarn "Cannot find file ${x}/.webapp"
+	if ! use vhosts ; then # remove any installed copies
 
-		if [ -z "${WEB_HOSTNAME}" -o -z "${WEB_INSTALLDIR}" ]; then
-			ewarn "Don't forget to use webapp-config to remove the copy of"
-			ewarn "${PN}-${PVR} installed in"
-			ewarn
+		for x in ${my_output} ; do
+			[ -f ${x}/.webapp ] && . ${x}/.webapp || ewarn "Cannot find file ${x}/.webapp"
+			if [ "${WEB_HOSTNAME}" -a "${WEB_INSTALLDIR}" ]; then
+				${WEBAPP_CONFIG} -C -h ${WEB_HOSTNAME} -d ${WEB_INSTALLDIR}
+			fi
+		done
+	else # don't remove anything, but warn user. bug #136959
+
+		ewarn "Don't forget to use webapp-config to remove any copies of"
+		ewarn "${PN}-${PVR} installed in"
+		ewarn
+
+		for x in ${my_output} ; do
+			[ -f ${x}/.webapp ] && . ${x}/.webapp || ewarn "Cannot find file ${x}/.webapp"
 			ewarn "    ${x}"
-			ewarn
-		else
-			# we have enough information to remove the virtual copy ourself
-
-			${WEBAPP_CONFIG} -C -h ${WEB_HOSTNAME} -d ${WEB_INSTALLDIR}
-
-			# if the removal fails - we carry on anyway!
-		fi
-	done
+		done
+	fi
 }

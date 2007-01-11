@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.60 2006/12/18 13:41:12 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.63 2007/01/08 23:25:30 flameeyes Exp $
 #
 # Author: Diego Pettenò <flameeyes@gentoo.org>
 # Enhancements: Martin Schlemmer <azarah@gentoo.org>
@@ -12,11 +12,15 @@
 
 inherit eutils libtool
 
+[[ -z ${WANT_AUTOCONF} ]] && WANT_AUTOCONF="latest"
+[[ -z ${WANT_AUTOMAKE} ]] && WANT_AUTOMAKE="latest"
+
 _automake_atom="sys-devel/automake"
 _autoconf_atom="sys-devel/autoconf"
 if [[ -n ${WANT_AUTOMAKE} ]]; then
 	case ${WANT_AUTOMAKE} in
 		# workaround while we have different versions of automake in arch and ~arch
+		none) _automake_atom="" ;; # some packages don't require automake at all
 		latest) _automake_atom="|| ( =sys-devel/automake-1.10* =sys-devel/automake-1.9* )" ;;
 		*) _automake_atom="=sys-devel/automake-${WANT_AUTOMAKE}*" ;;
 	esac
@@ -200,6 +204,8 @@ autotools_set_versions() {
 		einfo "Requested autoconf ${WANT_AUTOCONF}"
 		einfo "Using $(autoconf --version 2>/dev/null | head -n 1)"
 		einfo "Using $(autoheader --version 2>/dev/null | head -n 1)"
+	else
+		ewarn "QA Notice: \${WANT_AUTOCONF} variable unset. Please report on http://bugs.gentoo.org/"
 	fi
 
 	if [[ -n ${WANT_AUTOMAKE} ]]; then
@@ -211,10 +217,16 @@ autotools_set_versions() {
 				ROOT=/ has_version =sys-devel/automake-${amver}* && break
 			done
 		fi
-		export WANT_AUTOMAKE
-		einfo "Requested automake ${latest_automake}${WANT_AUTOMAKE}"
-		einfo "Using $(automake --version 2>/dev/null | head -n 1)"
-		einfo "Using $(aclocal --version 2>/dev/null | head -n 1)"
+
+		# Don't do stuff if no autoamke is requested/required
+		if [[ ${WANT_AUTOMAKE} != "none" ]]; then
+			export WANT_AUTOMAKE
+			einfo "Requested automake ${latest_automake}${WANT_AUTOMAKE}"
+			einfo "Using $(automake --version 2>/dev/null | head -n 1)"
+			einfo "Using $(aclocal --version 2>/dev/null | head -n 1)"
+		fi
+	else
+		ewarn "QA Notice: \${WANT_AUTOMAKE} variable unset. Please report on http://bugs.gentoo.org/"
 	fi
 
 	autotools_version_sets="yes"

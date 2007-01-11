@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.55 2006/12/04 22:05:53 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.56 2007/01/06 16:00:22 flameeyes Exp $
 #
 # Author: Mamoru KOMACHI <usata@gentoo.org>
 #
@@ -228,7 +228,8 @@ prepall() {
 	elif [ "${USE_RUBY}" == "any" ] ; then
 		siteruby=$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitelibdir"]')
 		# in case no directories found in siteruby
-		shopt -sq nullglob
+		local shopts=$-
+		set -o noglob # so that bash doen't expand "*"
 
 		for x in ${D}/${siteruby}/* ; do
 			mv $x ${D}/${siteruby}/..
@@ -236,6 +237,8 @@ prepall() {
 		if [ -d ${D}${siteruby} ] ; then
 			rmdir --ignore-fail-on-non-empty ${D}/${siteruby}
 		fi
+
+		set +noglob; set -$shopts # reset old shell opts
 	fi
 
 	prepallman

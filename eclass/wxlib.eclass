@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/wxlib.eclass,v 1.17 2006/08/07 07:25:48 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/wxlib.eclass,v 1.18 2007/01/04 23:11:17 dirtyepic Exp $
 
 # Author Diego Pettenò <flameeyes@gentoo.org>
 # Maintained by wxwidgets herd
@@ -8,9 +8,9 @@
 # This eclass is used by wxlib-based packages (wxGTK, wxMotif, wxBase, wxMac) to share code between
 # them.
 
-inherit flag-o-matic debug eutils multilib toolchain-funcs
+inherit flag-o-matic eutils multilib toolchain-funcs
 
-IUSE="doc odbc unicode"
+IUSE="debug doc odbc unicode"
 
 LICENSE="wxWinLL-3"
 

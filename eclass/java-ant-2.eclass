@@ -10,7 +10,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.10 2006/12/27 18:46:01 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.11 2007/01/06 19:45:27 betelgeuse Exp $
 
 inherit java-utils-2
 
@@ -131,6 +131,19 @@ java-ant_bsfix() {
 	popd > /dev/null
 }
 
+_bsfix_die() {
+	if has_version dev-python/pyxml; then
+		eerror "If the output above contains:"
+		eerror "ImportError:"
+		eerror "/usr/lib/python2.4/site-packages/_xmlplus/parsers/pyexpat.so:"
+		eerror "undefined symbol: PyUnicodeUCS2_DecodeUTF8"
+		eerror "Try re-emerging dev-python/pyxml"
+		die ${1} " Look at the eerror message above"
+	else
+		die ${1}
+	fi
+}
+
 # ------------------------------------------------------------------------------
 # @public java-ant_bsfix_files
 #
@@ -178,8 +191,12 @@ java-ant_bsfix_files() {
 				vecho "Rewriting $file (using xml-rewrite.py)"
 				# Doing this twice because otherwise the source attributes would
 				# get added to target tags too and javadoc does not like target
-				xml-rewrite.py -f "${file}" -c -e ${JAVA_PKG_BSFIX_SOURCE_TAGS// / -e } -a source -v ${want_source} || die "xml-rewrite failed: ${file}"
-				xml-rewrite.py -f "${file}" -c -e ${JAVA_PKG_BSFIX_TARGET_TAGS// / -e } -a target -v ${want_target} || die "xml-rewrite failed: ${file}"
+				xml-rewrite.py -f "${file}" \
+					-c -e ${JAVA_PKG_BSFIX_SOURCE_TAGS// / -e } \
+					-a source -v ${want_source} || _bsfix_die "xml-rewrite failed: ${file}"
+				xml-rewrite.py -f "${file}" \
+					-c -e ${JAVA_PKG_BSFIX_TARGET_TAGS// / -e } \
+					-a target -v ${want_target} || _bsfix_die "xml-rewrite failed: ${file}"
 			fi
 		done
 
@@ -188,12 +205,12 @@ java-ant_bsfix_files() {
 			vecho "Rewriting source attributes"
 			eval xml-rewrite-2.py ${files} \
 				-c -e ${JAVA_PKG_BSFIX_SOURCE_TAGS// / -e } \
-				-a source -v ${want_source} ${output} || die "xml-rewrite2 failed: ${file}"
+				-a source -v ${want_source} ${output} || _bsfix_die "xml-rewrite2 failed: ${file}"
 
 			vecho "Rewriting target attributes"
 			eval xml-rewrite-2.py ${files} \
 				-c -e ${JAVA_PKG_BSFIX_TARGET_TAGS// / -e } \
-				-a target -v ${want_target} ${output} || die "xml-rewrite2 failed: ${file}"
+				-a target -v ${want_target} ${output} || _bsfix_die "xml-rewrite2 failed: ${file}"
 		fi
 
 		if [[ -n "${JAVA_PKG_DEBUG}" ]]; then

@@ -1,6 +1,6 @@
 # Copyright 2004 Gentoo Technologies, Inc.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/darcs.eclass,v 1.3 2006/12/18 11:51:06 kosmikus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/darcs.eclass,v 1.4 2007/01/06 18:46:49 kosmikus Exp $
 #
 # darcs eclass author:  Andres Loeh <kosmikus@gentoo.org>
 # tla eclass author:    <rphillips@gentoo.org>
@@ -114,6 +114,7 @@ darcs_fetch() {
 
 
 darcs_src_unpack() {
+	local EDARCS_SHOPT
 
 	debug-print-function $FUNCNAME $*
 
@@ -137,8 +138,10 @@ darcs_src_unpack() {
 	# Use ${WORKDIR}/${P} rather than ${S} so user can point ${S} to something inside.
 	mkdir -p "${WORKDIR}/${P}"
 
+	EDARCS_SHOPT=$(shopt -p dotglob)
 	shopt -s dotglob	# get any dotfiles too.
 	cp -Rf "$EDARCS_TOP_DIR/$EDARCS_LOCALREPO"/* "${WORKDIR}/${P}"
+	eval ${EDARCS_SHOPT}    # reset shopt
 
 	einfo "Darcs repository contents are now in ${WORKDIR}/${P}"
 

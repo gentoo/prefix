@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg.eclass,v 1.49 2006/12/18 19:25:59 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg.eclass,v 1.50 2007/01/03 14:14:22 caster Exp $
 
 inherit multilib
 
@@ -46,6 +46,8 @@ java-pkg_pkg_setup() {
 					ewarn "in order for the old and new Java systems to coexist"
 					ewarn "Details about this can be found at:"
 					ewarn "\thttp://overlays.gentoo.org/proj/java/wiki/Why_We_Need_Java14"
+					ewarn "If you wonder why we can't just depend on the needed JDK version,"
+					ewarn "then read https://bugs.gentoo.org/show_bug.cgi?id=144240"
 					echo
 				fi
 

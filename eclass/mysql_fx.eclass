@@ -1,8 +1,11 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql_fx.eclass,v 1.15 2007/01/01 22:27:01 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql_fx.eclass,v 1.17 2007/01/04 20:38:16 vivo Exp $
+# kate: encoding utf-8; eol unix;
+# kate: indent-width 4; mixedindent off; remove-trailing-space on; space-indent off;
+# kate: word-wrap-column 80; word-wrap off;
 
-# Author: Francesco Riosa <vivo@gentoo.org>
+# Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: Francesco Riosa <vivo@gentoo.org>
 
 ECLASS="mysql_fx"
@@ -50,23 +53,88 @@ mysql_check_version_range() {
 	local lbound="${1%% to *}" ; lbound=$(stripdots "${lbound}")
 	local rbound="${1#* to }"  ; rbound=$(stripdots "${rbound}")
 	local my_ver="${2:-"${MYSQL_VERSION_ID}"}"
-	[[ ${lbound} -le ${my_ver} && ${my_ver} -le ${rbound} ]] && return 0
+	[[ ${lbound} -le ${my_ver} ]] && [[ ${my_ver} -le ${rbound} ]] && return 0
 	return 1
 }
 
-# * char mysql_strip_double_slash()
+# true if found at least one appliable range
+# 2005-11-19 <vivo at gentoo.org>
+_mysql_test_patch_ver_pn() {
+	local filesdir="${WORKDIR}/mysql-extras"
+	local allelements=", version, package name"
+
+	[[ -d "${filesdir}" ]] || die "sourcedir must be a directory"
+	local flags=$1 pname=$2
+	if [[ $(( $flags & $(( 1 + 4 + 16 )) )) -eq 21 ]] ; then
+		einfo "using \"${pname}\""
+		mv "${filesdir}/${pname}" "${EPATCH_SOURCE}" || die "cannot move ${pname}"
+		return 0
+	fi
+
+	[[ $(( $flags & $(( 2 + 4 )) )) -gt 0 ]] \
+	&& allelements="${allelements//", version"}"
+	
+	[[ $(( $flags & $(( 8 + 16 )) )) -gt 0 ]] \
+	&& allelements="${allelements//", package name"}"
+	
+	[[ -n "${allelements}" ]] && [[ "${flags}" -gt 0 ]] \
+	&& ewarn "QA notice ${allelements} missing in ${pname} patch"
+
+	return 1
+}
+
+# void mysql_mv_patches(char * index_file, char * filesdir, int my_ver)
 #
-# Strip double slashes from passed argument.
-# 2005-11-19 <vivo@gentoo.org>
-#
-mysql_strip_double_slash() {
-	local path="${1}"
-	local newpath="${path/\/\///}"
-	while [[ "${path}" != "${newpath}" ]] ; do
-		path="${newpath}"
-		newpath="${path/\/\///}"
-	done
-	echo "${newpath}"
+# parse a "index_file" looking for patches to apply to current
+# version.
+# If the patch apply then print it's description
+# 2005-11-19 <vivo at gentoo.org>
+mysql_mv_patches() {
+	local index_file="${1:-"${WORKDIR}/mysql-extras/000_index.txt"}"
+	local my_ver="${2:-"${MYSQL_VERSION_ID}"}"
+	local my_test_fx=${3:-"_mysql_test_patch_ver_pn"}
+	local dsc ndsc=0 i
+	dsc=( )
+
+	# values for flags are (2^x):
+	#  1 - one patch found
+	#  2 - at  least one version range is wrong
+	#  4 - at  least one version range is _good_
+	#  8 - at  least one ${PN} did not match
+	#  16 - at  least one ${PN} has been matched
+	local flags=0 pname=''
+	while read row; do
+		case "${row}" in
+			@patch\ *)
+				[[ -n "${pname}" ]] \
+				&& ${my_test_fx} $flags "${pname}" \
+				&& for (( i=0 ; $i < $ndsc ; i++ )) ; do einfo ">    ${dsc[$i]}" ; done
+				flags=1 ; ndsc=0 ; dsc=( )
+				pname=${row#"@patch "}
+				;;
+			@ver\ *)
+				if mysql_check_version_range "${row#"@ver "}" "${my_ver}" ; then
+					flags=$(( $flags | 4 ))
+				else
+					flags=$(( $flags | 2 ))
+				fi
+				;;
+			@pn\ *)
+				if [[ ${row#"@pn "} == "${PN}" ]] ; then
+					flags=$(( $flags | 16 ))
+				else
+					flags=$(( $flags | 8 ))
+				fi
+				;;
+			# @use\ *) ;;
+			@@\ *)
+				dsc[$ndsc]="${row#"@@ "}"
+				(( ++ndsc ))
+				;;
+		esac
+	done < "${index_file}"
+	${my_test_fx} $flags "${pname}" \
+		&& for (( i=0 ; $i < $ndsc ; i++ )) ; do einfo ">    ${dsc[$i]}" ; done
 }
 
 # Is $2 (defaults to $MYSQL_VERSION_ID) at least version $1?
@@ -102,35 +170,53 @@ mysql_choose_better_version() {
 
 # void mysql_lib_symlinks()
 #
-# To be called on the live filesystem, reassigning symlinks of each MySQL
-# library to the best version available.
-# 2005-12-30 <vivo@gentoo.org>
-#
+# To be called on the live filesystem, reassign symlinks to each mysql
+# library to the best version available
+# 2005-12-30 <vivo at gentoo.org>
+# THERE IS A COPY OF THIS ONE IN ESELECT-MYSQL, keep the two synced
 mysql_lib_symlinks() {
-	local d dirlist maxdots soname sonameln other better
-	pushd "${ROOT}/usr/$(get_libdir)" &> /dev/null
+	local d dirlist maxdots soname sonameln reldir
+	reldir=${1}
+	pushd "${EROOT}${reldir}/usr/$(get_libdir)" &> /dev/null
+		# dirlist must contain the less significative directory left
+		dirlist="mysql $( mysql_make_file_list mysql )"
 
-	# dirlist must contain the less significative directory left
-	dirlist="mysql"
-
-	# waste some time in removing and recreating symlinks
-	for d in $dirlist ; do
-		for soname in $(find "${d}" -name "*.so*" -and -not -type "l") ; do
-			# maxdot is a limit versus infinite loop
-			maxdots=0
-			sonameln=${soname##*/}
-			# loop in version of the library to link it, similar to how
-			# libtool works
-			while [[ ${sonameln:0-3} != '.so' ]] && [[ ${maxdots} -lt 6 ]] ; do
+		# waste some time in removing and recreating symlinks
+		for d in $dirlist ; do
+			for soname in $( find "${d}" -name "*.so*" -and -not -type "l" 2>/dev/null )
+			do
+				# maxdot is a limit versus infinite loop
+				maxdots=0
+				sonameln=${soname##*/}
+				# loop in version of the library to link it, similar to the
+				# libtool work
+				while [[ ${sonameln:0-3} != '.so' ]] && [[ ${maxdots} -lt 6 ]]
+				do
+					rm -f "${sonameln}"
+					ln -s "${soname}" "${sonameln}"
+					(( ++maxdots ))
+					sonameln="${sonameln%.*}"
+				done
 				rm -f "${sonameln}"
 				ln -s "${soname}" "${sonameln}"
-				(( ++maxdots ))
-				sonameln="${sonameln%.*}"
 			done
-			rm -f "${sonameln}"
-			ln -s "${soname}" "${sonameln}"
 		done
-	done
-
 	popd &> /dev/null
+}
+
+mysql_clients_link_to_best_version() {
+	local other better
+	# "include"s and "mysql_config", needed to compile other sw
+	for other in "/usr/$(get_libdir)/mysql" "/usr/include/mysql" "/usr/bin/mysql_config" ; do
+		pushd "${EROOT}${other%/*}" &> /dev/null
+		better=$( mysql_choose_better_version "${other##*/}" )
+		if ! [[ -d "${other##*/}" ]] ; then
+			[[ -L "${other##*/}" ]] && rm -f "${other##*/}"
+			! [[ -f "${other##*/}" ]] && ln -sf "${better}" "${other##*/}"
+		else
+			[[ -L "${other##*/}" ]] && rm -f "${other##*/}"
+			! [[ -d "${other##*/}" ]] && ln -s "${better}" "${other##*/}"
+		fi
+		popd &> /dev/null
+	done
 }

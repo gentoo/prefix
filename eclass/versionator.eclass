@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/versionator.eclass,v 1.11 2006/08/30 16:14:13 spb Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/versionator.eclass,v 1.12 2007/01/10 05:49:10 antarus Exp $
 #
 # Original Author: Ciaran McCreesh <ciaranm@gentoo.org>
 #
@@ -36,7 +36,27 @@
 #     version_is_at_least             want      have
 # which may be buggy, so use with caution.
 
-shopt -s extglob
+# Quick function to toggle the shopts required for some functions on and off
+# Used because we can't set extglob in global scope anymore (QA Violation)
+__versionator_shopt_toggle() {
+	VERSIONATOR_RECURSION=${VERSIONATOR_RECURSION:-0}
+	case "$1" in
+		"on")
+			if [[ $VERSIONATOR_RECURSION -lt 1 ]] ;  then
+				VERSIONATOR_OLD_EXTGLOB=$(shopt -p extglob)
+				shopt -s extglob
+			fi
+			VERSIONATOR_RECURSION=$(( $VERSIONATOR_RECURSION + 1 ))
+			;;
+		"off")
+			VERSIONATOR_RECURSION=$(( $VERSIONATOR_RECURSION - 1 ))
+			if [[ $VERSIONATOR_RECURSION -lt 1 ]] ; then
+				eval $VERSIONATOR_OLD_EXTGLOB
+			fi
+			;;
+	esac
+	return 0
+}
 
 # Split up a version string into its component parts. If no parameter is
 # supplied, defaults to $PV.
@@ -46,6 +66,7 @@ shopt -s extglob
 #     20040905    ->  20040905
 #     3.0c-r1     ->  3 . 0 c - r1
 get_all_version_components() {
+	__versionator_shopt_toggle on
 	local ver_str=${1:-${PV}} result result_idx=0
 	result=( )
 
@@ -53,6 +74,7 @@ get_all_version_components() {
 	# times.
 	if [[ "${VERSIONATOR_CACHE_VER_STR}" == "${ver_str}" ]] ; then
 		echo ${VERSIONATOR_CACHE_RESULT}
+		__versionator_shopt_toggle off
 		return
 	fi
 	export VERSIONATOR_CACHE_VER_STR="${ver_str}"
@@ -92,6 +114,7 @@ get_all_version_components() {
 
 	export VERSIONATOR_CACHE_RESULT="${result[@]}"
 	echo ${result[@]}
+	__versionator_shopt_toggle off
 }
 
 # Get the important version components, excluding '.', '-' and '_'. Defaults to
@@ -102,9 +125,11 @@ get_all_version_components() {
 #     20040905    ->  20040905
 #     3.0c-r1     ->  3 0 c r1
 get_version_components() {
+	__versionator_shopt_toggle on
 	local c="$(get_all_version_components "${1:-${PV}}")"
 	c=( ${c[@]//[-._]/ } )
 	echo ${c[@]}
+	__versionator_shopt_toggle off
 }
 
 # Get the major version of a value. Defaults to $PV if no parameter is supplied.
@@ -114,9 +139,11 @@ get_version_components() {
 #     20040905    ->  20040905
 #     3.0c-r1     ->  3
 get_major_version() {
+	__versionator_shopt_toggle on
 	local c
 	c=( $(get_all_version_components "${1:-${PV}}" ) )
 	echo ${c[0]}
+	__versionator_shopt_toggle off
 }
 
 # Get a particular component or range of components from the version. If no
@@ -125,6 +152,7 @@ get_major_version() {
 #    1-2    1.2.3       -> 1.2
 #    2-     1.2.3       -> 2.3
 get_version_component_range() {
+	__versionator_shopt_toggle on 
 	local c v="${2:-${PV}}" range="${1}" range_start range_end i=-1 j=0
 	c=( $(get_all_version_components ${v} ) )
 	range_start="${range%-*}" ; range_start="${range_start:-1}"
@@ -132,16 +160,17 @@ get_version_component_range() {
 
 	while (( j < ${range_start} )) ; do
 		i=$(($i + 1))
-		[[ $i -gt ${#c[@]} ]] && return
+		[[ $i -gt ${#c[@]} ]] && __versionator_shopt_toggle off && return
 		[[ -n "${c[${i}]//[-._]}" ]] && j=$(($j + 1))
 	done
 
 	while (( j <= ${range_end} )) ; do
 		echo -n ${c[$i]}
-		[[ $i -gt ${#c[@]} ]] && return
+		[[ $i -gt ${#c[@]} ]] && __versionator_shopt_toggle off && return
 		[[ -n "${c[${i}]//[-._]}" ]] && j=$(($j + 1))
 		i=$(($i + 1))
 	done
+	__versionator_shopt_toggle off
 }
 
 # Get everything after the major version and its separator (if present) of a
@@ -152,7 +181,9 @@ get_version_component_range() {
 #     20040905    ->  (empty string)
 #     3.0c-r1     ->  0c-r1
 get_after_major_version() {
+	__versionator_shopt_toggle on
 	echo $(get_version_component_range 2- "${1:-${PV}}" )
+	__versionator_shopt_toggle off
 }
 
 # Replace the $1th separator with $2 in $3 (defaults to $PV if $3 is not
@@ -163,6 +194,7 @@ get_after_major_version() {
 # Rather than being a number, $1 can be a separator character such as '-', '.'
 # or '_'. In this case, the first separator of this kind is selected.
 replace_version_separator() {
+	__versionator_shopt_toggle on
 	local w i c found=0 v="${3:-${PV}}"
 	w=${1:-1}
 	c=( $(get_all_version_components ${v} ) )
@@ -187,15 +219,18 @@ replace_version_separator() {
 	fi
 	c=${c[@]}
 	echo ${c// }
+	__versionator_shopt_toggle off
 }
 
 # Replace all version separators in $2 (defaults to $PV) with $1.
 #     '_' 1b.2.3        -> 1b_2_3
 replace_all_version_separators() {
+	__versionator_shopt_toggle on
 	local c
 	c=( $(get_all_version_components "${2:-${PV}}" ) )
 	c="${c[@]//[-._]/$1}"
 	echo ${c// }
+	__versionator_shopt_toggle off
 }
 
 # Delete the $1th separator in $2 (defaults to $PV if $2 is not supplied). If
@@ -206,13 +241,17 @@ replace_all_version_separators() {
 # Rather than being a number, $1 can be a separator character such as '-', '.'
 # or '_'. In this case, the first separator of this kind is deleted.
 delete_version_separator() {
+	__versionator_shopt_toggle on
 	replace_version_separator "${1}" "" "${2}"
+	__versionator_shopt_toggle off
 }
 
 # Delete all version separators in $1 (defaults to $PV).
 #     1b.2.3        -> 1b23
 delete_all_version_separators() {
+	__versionator_shopt_toggle on
 	replace_all_version_separators "" "${1}"
+	__versionator_shopt_toggle off
 }
 
 # How many version components are there in $1 (defaults to $PV)?
@@ -220,9 +259,11 @@ delete_all_version_separators() {
 #     3.0c-r1     ->  4
 #
 get_version_component_count() {
+	__versionator_shopt_toggle on
 	local a
 	a=( $(get_version_components "${1:-${PV}}" ) )
 	echo ${#a[@]}
+	__versionator_shopt_toggle off
 }
 
 # What is the index of the last version component in $1 (defaults to $PV)?
@@ -231,27 +272,34 @@ get_version_component_count() {
 #     3.0c-r1     ->  4
 #
 get_last_version_component_index() {
+	__versionator_shopt_toggle on
 	echo $(( $(get_version_component_count "${1:-${PV}}" ) - 1 ))
+	__versionator_shopt_toggle off
 }
 
 # Is $2 (defaults to $PVR) at least version $1? Intended for use in eclasses
 # only. May not be reliable, be sure to do very careful testing before actually
 # using this. Prod ciaranm if you find something it can't handle.
 version_is_at_least() {
+	__versionator_shopt_toggle on
 	local want_s="$1" have_s="${2:-${PVR}}" r
 	version_compare "${want_s}" "${have_s}"
 	r=$?
 	case $r in
 		1|2)
+			__versionator_shopt_toggle off
 			return 0
 			;;
 		3)
+			__versionator_shopt_toggle off
 			return 1
 			;;
 		*)
+			__versionator_shopt_toggle off
 			die "versionator compare bug [atleast, ${want_s}, ${have_s}, ${r}]"
 			;;
 	esac
+	__versionator_shopt_toggle off
 }
 
 # Takes two parameters (a, b) which are versions. If a is an earlier version
@@ -259,6 +307,7 @@ version_is_at_least() {
 # return 3. You probably want version_is_at_least rather than this function.
 # May not be very reliable. Test carefully before using this.
 version_compare() {
+	__versionator_shopt_toggle on
 	local ver_a=${1} ver_b=${2} parts_a parts_b cur_idx_a=0 cur_idx_b=0
 	parts_a=( $(get_all_version_components "${ver_a}" ) )
 	parts_b=( $(get_all_version_components "${ver_b}" ) )
@@ -304,8 +353,8 @@ version_compare() {
 		[[ -z ${cur_tok_b} ]] && cur_tok_b=0
 
 		# compare
-		[[ ${cur_tok_a} -lt ${cur_tok_b} ]] && return 1
-		[[ ${cur_tok_a} -gt ${cur_tok_b} ]] && return 3
+		[[ ${cur_tok_a} -lt ${cur_tok_b} ]] && __versionator_shopt_toggle off && return 1
+		[[ ${cur_tok_a} -gt ${cur_tok_b} ]] && __versionator_shopt_toggle off && return 3
 	done
 
 	### number parts equal. compare letter parts.
@@ -326,8 +375,8 @@ version_compare() {
 	fi
 
 	# compare
-	[[ ${letter_a} < ${letter_b} ]] && return 1
-	[[ ${letter_a} > ${letter_b} ]] && return 3
+	[[ ${letter_a} < ${letter_b} ]] && __versionator_shopt_toggle off && return 1
+	[[ ${letter_a} > ${letter_b} ]] && __versionator_shopt_toggle off && return 3
 
 	### letter parts equal. compare suffixes in order.
 	local suffix rule part r_lt r_gt
@@ -352,18 +401,19 @@ version_compare() {
 
 		[[ -z ${suffix_a} ]] && [[ -z ${suffix_b} ]] && continue
 
-		[[ -z ${suffix_a} ]] && return ${r_gt}
-		[[ -z ${suffix_b} ]] && return ${r_lt}
+		[[ -z ${suffix_a} ]] && __versionator_shopt_toggle off && return ${r_gt}
+		[[ -z ${suffix_b} ]] && __versionator_shopt_toggle off && return ${r_lt}
 
 		# avoid octal problems
 		suffix_a=${suffix_a##+(0)} ; suffix_a=${suffix_a:-0}
 		suffix_b=${suffix_b##+(0)} ; suffix_b=${suffix_b:-0}
 
-		[[ ${suffix_a} -lt ${suffix_b} ]] && return 1
-		[[ ${suffix_a} -gt ${suffix_b} ]] && return 3
+		[[ ${suffix_a} -lt ${suffix_b} ]] && __versionator_shopt_toggle off && return 1
+		[[ ${suffix_a} -gt ${suffix_b} ]] && __versionator_shopt_toggle off && return 3
 	done
 
 	### no differences.
+	__versionator_shopt_toggle off
 	return 2
 }
 
@@ -371,6 +421,7 @@ version_compare() {
 # algorithm for simplicity, so don't call it with more than a few dozen items.
 # Uses version_compare, so be careful.
 version_sort() {
+	__versionator_shopt_toggle on
 	local items= left=0
 	items=( $@ )
 	while [[ ${left} -lt ${#items[@]} ]] ; do
@@ -387,9 +438,11 @@ version_sort() {
 		left=$(( ${left} + 1 ))
 	done
 	echo ${items[@]}
+	__versionator_shopt_toggle off
 }
 
 __versionator__test_version_compare() {
+	__versionator_shopt_toggle on
 	local lt=1 eq=2 gt=3 p q
 
 	__versionator__test_version_compare_t() {
@@ -493,6 +546,6 @@ __versionator__test_version_compare() {
 		__versionator__test_version_compare_t "7.2${p}3" $gt "7.2${p}2"
 		__versionator__test_version_compare_t "7.2${p}2" $lt "7.2${p}3"
 	done
-
+	__versionator_shopt_toggle off
 }
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2.eclass,v 1.79 2007/01/01 22:27:01 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2.eclass,v 1.80 2007/01/04 23:37:26 compnerd Exp $
 
 #
 # gnome2.eclass
@@ -12,7 +12,7 @@
 #
 
 
-inherit debug fdo-mime libtool gnome.org gnome2-utils
+inherit fdo-mime libtool gnome.org gnome2-utils
 
 
 # Extra configure opts passed to econf

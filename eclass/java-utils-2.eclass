@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.38 2006/12/31 19:30:54 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.40 2007/01/10 09:52:51 betelgeuse Exp $
 
 
 # -----------------------------------------------------------------------------
@@ -176,7 +176,7 @@ java-pkg_dojar() {
 
 	local jar
 	# for each jar
-	for jar in "$@"; do
+	for jar in ${@}; do
 		local jar_basename=$(basename "${jar}")
 
 		java-pkg_check-versioned-jar ${jar_basename}
@@ -256,7 +256,7 @@ java-pkg_regjar() {
 	java-pkg_init_paths_
 
 	local jar jar_dir jar_file
-	for jar in "$@"; do
+	for jar in ${@}; do
 		# TODO use java-pkg_check-versioned-jar
 		if [[ -e "${jar}" || -e "${ED}${jar}" ]]; then
 			[[ -d "${jar}" || -d "${ED}${jar}" ]] \
@@ -1011,13 +1011,36 @@ java-pkg_getjar() {
 #	export RDEPEND="${RDEPEND} ${depstr}"
 #}
 
-# This should be used after S has been populated with symlinks to jars
-# TODO document
+# ------------------------------------------------------------------------------
+# @ebuild-function java-pkg_find-normal-jars
+#
+# Find the files with suffix .jar file in the given directory or $WORKDIR
+#
+# @param $1 - The directory to search for jar files (default: ${WORKDIR})
+# ------------------------------------------------------------------------------
+java-pkg_find-normal-jars() {
+	local dir=$1
+	[[ "${dir}" ]] || dir="${WORKDIR}"
+	local found
+	for jar in $(find "${dir}" -name "*.jar" -type f); do
+		echo "${jar}"
+		found="true"
+	done
+	[[ "${found}" ]]
+	return $?
+}
+
+# ------------------------------------------------------------------------------
+# @ebuild-function java-pkg_ensure-no-bundled-jars
+#
+# Try to locate bundled jar files in ${WORKDIR} and die if found.
+# This function should be called after WORKDIR has been populated with symlink
+# to system jar files or bundled jars removed.
+# ------------------------------------------------------------------------------
 java-pkg_ensure-no-bundled-jars() {
 	debug-print-function ${FUNCNAME} $*
-	pushd ${WORKDIR} >/dev/null 2>/dev/null
 
-	local bundled_jars=$(find . -name "*.jar" -type f)
+	local bundled_jars=$(java-pkg_find-normal-jars)
 	if [[ -n ${bundled_jars} ]]; then
 		echo "Bundled jars found:"
 		local jar
@@ -1025,9 +1048,7 @@ java-pkg_ensure-no-bundled-jars() {
 			echo $(pwd)${jar/./}
 		done
 		die "Bundled jars found!"
-
 	fi
-	popd >/dev/null 2>/dev/null
 }
 
 # ------------------------------------------------------------------------------

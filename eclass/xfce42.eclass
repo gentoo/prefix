@@ -1,12 +1,10 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xfce42.eclass,v 1.6 2006/04/20 04:40:44 dostrow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xfce42.eclass,v 1.7 2007/01/05 04:21:10 flameeyes Exp $
 
 # Xfce42 Eclass
 #
 # Eclass to simplify Xfce4 package installation
-
-inherit debug
 
 ## set some variable values:
 ## COMPRESS is the default compression extension
