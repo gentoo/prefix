@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/tcp-wrappers/tcp-wrappers-7.6-r8.ebuild,v 1.21 2006/10/17 14:42:02 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/tcp-wrappers/tcp-wrappers-7.6-r8.ebuild,v 1.23 2006/12/29 22:13:04 vapier Exp $
 
 EAPI="prefix"
 
@@ -80,10 +80,10 @@ src_install() {
 
 	into /
 	newlib.so libwrap.so libwrap.so.0.${PV}
-	dosym /$(get_libdir)/libwrap.so.0.${PV} /$(get_libdir)/libwrap.so.0
-	dosym /$(get_libdir)/libwrap.so.0 /$(get_libdir)/libwrap.so
+	dosym libwrap.so.0.${PV} /$(get_libdir)/libwrap.so.0
+	dosym libwrap.so.0 /$(get_libdir)/libwrap.so
 	# bug #4411
 	gen_usr_ldscript libwrap.so || die "gen_usr_ldscript failed"
 
-	dodoc BLURB CHANGES DISCLAIMER README* ${FILESDIR}/hosts.allow.example
+	dodoc BLURB CHANGES DISCLAIMER README* "${FILESDIR}"/hosts.allow.example
 }
