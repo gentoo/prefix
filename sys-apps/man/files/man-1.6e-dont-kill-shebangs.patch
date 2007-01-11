@@ -1,0 +1,25 @@
+http://bugs.gentoo.org/159192
+
+--- configure
++++ configure
+@@ -1250,6 +1250,7 @@
+ allargs='$@'
+ infiles='$infiles'
+ infile='$infile'
++shebang='`sed -n -e 1p $infile.in`'
+ cb='$cb'
+ cs='$cs'
+ ce='$ce'
+@@ -1273,7 +1274,11 @@
+   *.1|*.5|*.8|*.man)
+     cb=$mancomment; cs=$mancomment; ce=$mancomment;;
+   *)
+-    cb="#"; cs="#"; ce="#";;
++    case "$shebang" in
++    '#!'*) cb="$shebang";;
++    *)     cb="#";;
++    esac
++    cs="#"; ce="#";;
+   esac
+   echo "$cb"                                                    > $infile
+   echo "$cs Generated automatically from $infile.in by the"     >> $infile

@@ -2,4 +2,4 @@
 # this is part of the man package
 # it updates the search database for manpages
 
-exec /bin/nice /usr/sbin/makewhatis -u
+exec nice makewhatis -u
