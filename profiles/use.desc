@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.332 2006/12/30 13:00:36 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.336 2007/01/10 17:57:29 flameeyes Exp $
 
 # Keep them sorted
 
@@ -26,6 +26,7 @@ apache2 - Chooses Apache2 support when a package supports both Apache1 and Apach
 apm - Adds APM (Advanced Power Management) support
 arts - Adds support for aRts: the KDE sound daemon
 audiofile - Adds support for libaudiofile where applicable
+avahi - Add avahi/Zeroconf support
 bash-completion - Enable bash-completion support
 bcmath - Adds support for libbcmath
 berkdb - Adds support for sys-libs/db (Berkeley DB for MySQL)
@@ -65,7 +66,7 @@ dbm - Adds support for generic DBM databases.
 dbmaker - Adds support for dbmaker database server
 dbus - Enable dbus support for anything that needs it (gpsd, gnomemeeting, etc)
 dbx - Adds database abstraction layer
-debug - Tells configure and the makefiles to build for debugging. Effects vary across packages, but generally it will at least add -g to CFLAGS. Remember to set FEATURES=nostrip too
+debug - Enable extra debug codepaths, like asserts and extra output. If you want to get meaningful backtraces see http://www.gentoo.org/proj/en/qa/backtraces.xml .
 dedicated - Adds support for dedicated game servers (some packages do not provide clients and servers at the same time)
 dga - Adds DGA Support (Xfree86) (DGA=Direct Graphic Access)
 dio - Adds direct i/o support
@@ -279,9 +280,9 @@ qdbm - Adds support for the qdbm (Quick Database Manager) library
 qt3 - Adds support for the Qt GUI/Application Toolkit version 3.x
 qt4 - Adds support for the Qt GUI/Application Toolkit version 4.x
 quicktime - Adds support for OpenQuickTime
-radius - Adds support for RADIUS authentication"
-readline - Enables support for libreadline, a GNU line-editing library that almost everyone wants
+radius - Adds support for RADIUS authentication
 rdesktop - Adds support for the remote desktop protocol, usually used to connect to Windows servers
+readline - Enables support for libreadline, a GNU line-editing library that almost everyone wants
 recode - Enables support for the GNU recode library
 ruby - Adds support/bindings for the Ruby language
 samba - Adds support for SAMBA (Windows File and Printer sharing)

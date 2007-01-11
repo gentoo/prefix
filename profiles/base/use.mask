@@ -1,11 +1,9 @@
-win32codecs
-real
-
 # profile specific USE flags
 selinux
 uclibc
 
 # amd64/x86 arch specific USE flags
+kqemu
 3dnow
 3dnowext
 icc
@@ -16,6 +14,8 @@ mmxext
 sse
 sse2
 svga
+win32codecs
+real
 
 # ppc arch specific USE flags
 altivec
@@ -31,6 +31,7 @@ ibm
 
 # sparc arch specific USE flags
 vis
+ultra1
 
 # nVidia XvMC requires nvidia-drivers/nvidia-legacy-drivers
 nvidia
@@ -40,6 +41,9 @@ oci8-instant-client
 
 # net-libs/osptoolkit is only available on x86 (used by asterisk, bug 115798)
 osp
+
+# yellownet is only avaible as a binary blob (bug 149970)
+yellownet
 
 # not needed on non-sparc systems
 video_cards_sunbw2
@@ -112,3 +116,35 @@ alsa_cards_at91-soc-eti-b1-wm8731
 alsa_cards_harmony
 # Mask specific MIPS drivers
 alsa_cards_au1x00
+
+# Diego Pettenò <flameeyes@gentoo.org> (29 Dec 2006)
+# Adobe FDF toolkit is x86 only.
+fdftk
+
+# Diego Pettenò <flameeyes@gentoo.org> (30 Dec 2006)
+# These are specific of Mac OS X
+aqua
+coreaudio
+
+# Diego Pettenò <flameeyes@gentoo.org> (4 Jan 2007)
+# Mask the flags for PHP that are available only on x86
+fdftk
+sybase-ct
+ingres
+birdstep
+adabas
+filepro
+pfpro
+informix
+empress
+empress-bcs
+sybase
+frontbase
+dbmaker
+esoob
+solid
+# Shared with amd64
+oci8
+oracle7
+firebird
+db2
