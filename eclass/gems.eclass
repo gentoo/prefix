@@ -32,7 +32,8 @@ IUSE="doc"
 gems_location() {
 	local sitelibdir
 	sitelibdir=`ruby -r rbconfig -e 'print Config::CONFIG["sitelibdir"]'`
-	export GEMSDIR=${sitelibdir/site_ruby/gems}
+	GEMSDIR=${sitelibdir/site_ruby/gems}
+	export GEMSDIR=${GEMSDIR#${EPREFIX%/}}
 
 }
 
@@ -67,7 +68,7 @@ gems_src_install() {
 	fi
 
 
-	dodir ${GEMSDIR#${EPREFIX%/}}
+	dodir ${GEMSDIR}
 	gem install ${GEM_SRC} -v ${PV} ${myconf} -l -i ${ED}/${GEMSDIR} || die "gem install failed: gem-$(gem --version) install ${GEM_SRC} -v ${PV} ${myconf} -l -i ${ED}/${GEMSDIR}"
 
 	# This is a workaround for <=rubygems-0.9.0.8 because it's exitstatus equals 0
