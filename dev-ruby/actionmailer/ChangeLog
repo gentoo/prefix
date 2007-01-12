@@ -1,0 +1,221 @@
+# ChangeLog for dev-ruby/actionmailer
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionmailer/ChangeLog,v 1.49 2006/11/24 01:19:41 caleb Exp $
+
+  24 Nov 2006; Caleb Tennis <caleb@gentoo.org> -actionmailer-1.2.1.ebuild,
+  -actionmailer-1.2.2.ebuild, -actionmailer-1.2.3.ebuild,
+  -actionmailer-1.2.4.ebuild, +actionmailer-1.2.5.5618.ebuild:
+  remove old versions
+
+*actionmailer-1.2.5.5618 (24 Nov 2006)
+
+  24 Nov 2006; Caleb Tennis <caleb@gentoo.org>
+  +actionmailer-1.2.5.5618.ebuild:
+  version bump
+
+  02 Sep 2006; Bryan Østergaard <kloeri@gentoo.org>
+  actionmailer-1.2.5.ebuild:
+  Stable on ia64.
+
+*actionmailer-1.2.5 (10 Aug 2006)
+
+  10 Aug 2006; Caleb Tennis <caleb@gentoo.org> +actionmailer-1.2.5.ebuild:
+  version bump
+
+  10 Aug 2006; Ferris McCormick <fmccor@gentoo.org>
+  actionmailer-1.2.4.ebuild:
+  Stable on sparc --- Bug #143369 (mandatory security upgrade) --- installs and
+  works.
+
+  10 Aug 2006; Joshua Jackson <tsunam@gentoo.org> actionmailer-1.2.4.ebuild:
+  stable x86; bug #143369
+
+  09 Aug 2006; Thomas Cort <tcort@gentoo.org> actionmailer-1.2.4.ebuild:
+  Stable on amd64.
+
+  09 Aug 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  actionmailer-1.2.4.ebuild:
+  ppc stable, bug #143369
+
+*actionmailer-1.2.4 (09 Aug 2006)
+
+  09 Aug 2006; Caleb Tennis <caleb@gentoo.org> +actionmailer-1.2.4.ebuild:
+  version bump
+
+  31 Jul 2006; Simon Stelling <blubb@gentoo.org> actionmailer-1.2.3.ebuild:
+  stable on amd64 wrt bug 138323
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org> actionmailer-1.2.3.ebuild:
+  Mark 1.2.3 stable on ia64. #138323
+
+  06 Jul 2006; Jason Wever <weeve@gentoo.org> actionmailer-1.2.3.ebuild:
+  Stable on SPARC wrt bug #138323.
+
+  05 Jul 2006; Joshua Jackson <tsunam@gentoo.org> actionmailer-1.2.2.ebuild:
+  Stable x86; for ruby #138323
+
+  03 Jul 2006; Lars Weiler <pylon@gentoo.org> actionmailer-1.2.3.ebuild:
+  Stable on ppc; security bug #138323.
+
+*actionmailer-1.2.3 (03 Jul 2006)
+
+  03 Jul 2006; Caleb Tennis <caleb@gentoo.org> +actionmailer-1.2.3.ebuild:
+  Version bump
+
+*actionmailer-1.2.2 (28 Jun 2006)
+
+  28 Jun 2006; Caleb Tennis <caleb@gentoo.org> -actionmailer-1.1.5.ebuild,
+  -actionmailer-1.2.0.ebuild, +actionmailer-1.2.2.ebuild:
+  version bump, remove old versions
+
+  06 Jun 2006; Simon Stelling <blubb@gentoo.org> actionmailer-1.2.1.ebuild:
+  stable on amd64
+
+  24 May 2006; Michael Hanselmann <hansmi@gentoo.org>
+  actionmailer-1.2.1.ebuild:
+  Stable on ppc.
+
+  16 May 2006; Joshua Jackson <tsunam@gentoo.org> actionmailer-1.2.1.ebuild:
+  Stable on x86; bug #133003
+
+  11 May 2006; Ferris McCormick <fmccor@gentoo.org>
+  actionmailer-1.2.1.ebuild:
+  Stable on sparc (Bug #133003).
+
+  17 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  actionmailer-1.2.1.ebuild:
+  Add ~x86-fbsd keyword.
+
+*actionmailer-1.2.1 (06 Apr 2006)
+
+  06 Apr 2006; Caleb Tennis <caleb@gentoo.org> +actionmailer-1.2.1.ebuild:
+  version bump
+
+  30 Mar 2006; Aron Griffis <agriffis@gentoo.org> actionmailer-1.2.0.ebuild:
+  Mark 1.2.0 ~ia64
+
+*actionmailer-1.2.0 (28 Mar 2006)
+
+  28 Mar 2006; Caleb Tennis <caleb@gentoo.org>
+  -actionmailer-1.1.5.4008.ebuild, +actionmailer-1.2.0.ebuild:
+  rails 1.1
+
+*actionmailer-1.1.5.4008 (22 Mar 2006)
+
+  22 Mar 2006; Caleb Tennis <caleb@gentoo.org> -actionmailer-1.0.1.ebuild,
+  +actionmailer-1.1.5.4008.ebuild:
+  New 1.1 release candidate, slotted to install alongside existing rails
+
+  27 Jan 2006; Michael Hanselmann <hansmi@gentoo.org>
+  actionmailer-1.1.5.ebuild:
+  Stable on ppc.
+
+  10 Jan 2006; Ferris McCormick <fmccor@gentoo.org>
+  actionmailer-1.1.5.ebuild:
+  Stable on sparc (needed for rails).
+
+  02 Jan 2006; Caleb Tennis <caleb@gentoo.org> actionmailer-1.1.5.ebuild:
+  x86 stable
+
+*actionmailer-1.1.5 (13 Dec 2005)
+
+  13 Dec 2005; Caleb Tennis <caleb@gentoo.org> -actionmailer-1.1.4.ebuild,
+  +actionmailer-1.1.5.ebuild:
+  Version bump
+
+*actionmailer-1.1.4 (08 Dec 2005)
+
+  08 Dec 2005; Caleb Tennis <caleb@gentoo.org> -actionmailer-1.1.3.ebuild,
+  +actionmailer-1.1.4.ebuild:
+  Version bump
+
+  13 Nov 2005; Jason Wever <weeve@gentoo.org> actionmailer-1.0.1.ebuild:
+  Stable on SPARC.
+
+*actionmailer-1.1.3 (08 Nov 2005)
+
+  08 Nov 2005; Caleb Tennis <caleb@gentoo.org> -actionmailer-1.1.2.ebuild,
+  +actionmailer-1.1.3.ebuild:
+  version bump
+
+*actionmailer-1.1.2 (04 Nov 2005)
+
+  04 Nov 2005; Caleb Tennis <caleb@gentoo.org> -actionmailer-1.1.1.ebuild,
+  +actionmailer-1.1.2.ebuild:
+  bump and remove previous version
+
+  19 Oct 2005; Luca Barbato <lu_zero@gentoo.org> actionmailer-1.0.1.ebuild:
+  Marked ppc
+
+*actionmailer-1.1.1 (19 Oct 2005)
+
+  19 Oct 2005; Caleb Tennis <caleb@gentoo.org> +actionmailer-1.1.1.ebuild:
+  Version bump
+
+  23 Sep 2005; Caleb Tennis <caleb@gentoo.org> -actionmailer-0.6.1.ebuild,
+  -actionmailer-0.7.0.ebuild, -actionmailer-0.7.1.ebuild,
+  -actionmailer-0.8.0.ebuild, -actionmailer-0.8.1.ebuild,
+  -actionmailer-0.9.1.ebuild:
+  Remove old versions
+
+  01 Aug 2005; Ferris McCormick <fmccor@gentoo.org>
+  actionmailer-1.0.1.ebuild:
+  Add ~sparc keyword (required for rails).
+
+  27 Jul 2005; Caleb Tennis <caleb@gentoo.org> actionmailer-1.0.1.ebuild:
+  x86 stable
+
+*actionmailer-1.0.1 (12 Jul 2005)
+
+  12 Jul 2005; Caleb Tennis <caleb@gentoo.org> +actionmailer-1.0.1.ebuild:
+  Version bump
+
+  12 Jul 2005; David Holm <dholm@gentoo.org> actionmailer-0.9.1.ebuild:
+  Added to ~ppc.
+
+*actionmailer-0.9.1 (20 Apr 2005)
+
+  20 Apr 2005; Rob Cakebread <pythonhead@gentoo.org>
+  -actionmailer-0.9.0.ebuild, +actionmailer-0.9.1.ebuild:
+  Version bump removed bad version.
+
+*actionmailer-0.9.0 (19 Apr 2005)
+
+  19 Apr 2005; Rob Cakebread <pythonhead@gentoo.org>
+  +actionmailer-0.9.0.ebuild:
+  Version bump.
+
+  01 Apr 2005; Caleb Tennis <caleb@gentoo.org> actionmailer-0.8.1.ebuild:
+  x86 stable
+
+*actionmailer-0.8.1 (28 Mar 2005)
+
+  28 Mar 2005; Rob Cakebread <pythonhead@gentoo.org>
+  +actionmailer-0.8.1.ebuild:
+  Version bump.
+
+*actionmailer-0.8.0 (22 Mar 2005)
+
+  22 Mar 2005; Caleb Tennis <caleb@gentoo.org> +actionmailer-0.8.0.ebuild:
+  version bump
+
+*actionmailer-0.7.1 (10 Mar 2005)
+
+  10 Mar 2005; Rob Cakebread <pythonhead@gentoo.org>
+  +actionmailer-0.7.1.ebuild:
+  Version bump.
+
+  08 Mar 2005; Caleb Tennis <caleb@gentoo.org> actionmailer-0.7.0.ebuild:
+  x86 stable
+
+*actionmailer-0.7.0 (28 Feb 2005)
+
+  28 Feb 2005; Caleb Tennis <caleb@gentoo.org> +actionmailer-0.7.0.ebuild:
+  version bump - see bug #83446
+
+*actionmailer-0.6.1 (15 Feb 2005)
+
+  15 Feb 2005; Rob Cakebread <pythonhead@gentoo.org> +metadata.xml,
+  +actionmailer-0.6.1.ebuild:
+  Initial commit.
+
