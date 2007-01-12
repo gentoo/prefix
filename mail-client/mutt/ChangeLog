@@ -1,6 +1,37 @@
 # ChangeLog for mail-client/mutt
 # Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.90 2006/10/02 17:08:13 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.99 2006/11/22 08:17:23 ferdy Exp $
+
+*mutt-1.5.13-r2 (22 Nov 2006)
+
+  22 Nov 2006; Fernando J. Pereda <ferdy@gentoo.org>
+  +files/mutt-1.5.13-paranoid-temp-file.patch, +mutt-1.5.13-r2.ebuild:
+  Fix for bug #154310
+
+  11 Nov 2006; Alexander H. Færøy <eroyf@gentoo.org>
+  mutt-1.5.13-r1.ebuild:
+  Stable on MIPS. Bug 152657.
+
+  28 Oct 2006; Tom Knight <tomk@gentoo.org> mutt-1.5.13-r1.ebuild:
+  Stable on amd64. Bug #152657
+
+  26 Oct 2006; Jason Wever <weeve@gentoo.org> mutt-1.5.13-r1.ebuild:
+  Stable on SPARC wrt bug #152657.
+
+  25 Oct 2006; Chris White <chriswhite@gentoo.org> mutt-1.5.13-r1.ebuild:
+  ppc stable for bug #152657.
+
+  25 Oct 2006; Joshua Jackson <tsunam@gentoo.org> mutt-1.5.13-r1.ebuild:
+  Stable x86; bug #152657
+
+  25 Oct 2006; Jeroen Roovers <jer@gentoo.org> mutt-1.5.13-r1.ebuild:
+  Stable for HPPA (bug #152657).
+
+  24 Oct 2006; Markus Rothe <corsair@gentoo.org> mutt-1.5.13-r1.ebuild:
+  Stable on ppc64; bug #152657
+
+  21 Oct 2006; Aron Griffis <agriffis@gentoo.org> mutt-1.5.13-r1.ebuild:
+  Mark 1.5.13-r1 stable on alpha/ia64
 
   02 Oct 2006; Fabian Groffen <grobian@gentoo.org> mutt-1.5.11-r2.ebuild,
   mutt-1.5.12.ebuild, mutt-1.5.13.ebuild, mutt-1.5.13-r1.ebuild:

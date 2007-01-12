@@ -1,0 +1,79 @@
+* From: Jorgen Hermanrud Fjeld <jhf@hex.no>
+  To: mutt-dev@mutt.org
+  Subject: imap_recent option to use RECENT instead of UNSEEN
+  Date: Tue, 2 Jan 2007 20:56:23 +0100
+
+
+--- PATCHES
++++ PATCHES
+@@ -0,0 +1 @@
++patch-1.5.13.jhf.imap_recent.1
+--- init.h
++++ init.h
+@@ -947,6 +947,12 @@
+   { "imap_peek", DT_BOOL, R_NONE, OPTIMAPPEEK, 1 },
+   /*
+   ** .pp
++  ** When \fIset\fP, mutt will use RECENT rather than UNSEEN to check
++  ** for new mail.
++  */
++  { "imap_recent", DT_BOOL, R_NONE, OPTIMAPRECENT, 0 },
++  /*
++  ** .pp
+   ** When \fIset\fP, mutt will avoid implicitly marking your mail as read whenever
+   ** you fetch a message from the server. This is generally a good thing,
+   ** but can make closing an IMAP folder somewhat slower. This option
+--- mutt.h
++++ mutt.h
+@@ -380,6 +380,7 @@
+   OPTIMAPLSUB,
+   OPTIMAPPASSIVE,
+   OPTIMAPPEEK,
++  OPTIMAPRECENT,
+   OPTIMAPSERVERNOISE,
+ #endif
+ #if defined(USE_SSL)
+--- imap/command.c
++++ imap/command.c
+@@ -886,18 +886,26 @@
+ 
+       if (value && !imap_mxcmp (mailbox, value))
+       {
+-        dprint (2, (debugfile, "Found %s in buffy list (OV: %d ON: %d U: %d)\n",
+-                    mailbox, olduv, oldun, status->unseen));
++        dprint (2, (debugfile, "Found %s in buffy list (OV: %d ON: %d U: %d R: %d)\n",
++                    mailbox, olduv, oldun, status->unseen,status->recent));
+         
+         if (olduv && olduv == status->uidvalidity)
+         {
+           if (oldun < status->uidnext)
+           {
+-            inc->new = status->unseen;
++              if option (OPTIMAPRECENT) {
++                  inc->new = status->recent;
++              } else {
++                  inc->new = status->unseen;
++              }
+           }
+         }
+         else
+-          inc->new = status->unseen;
++            if option (OPTIMAPRECENT) {
++                inc->new = status->recent;
++            } else {
++                inc->new = status->unseen;
++            }
+ 
+         /* forced back to keep detecting new mail until the mailbox is opened */
+         status->uidnext = oldun;
+--- imap/imap.c
++++ imap/imap.c
+@@ -1466,7 +1466,7 @@
+     }
+     
+     imap_munge_mbox_name (munged, sizeof (munged), name);
+-    snprintf (command, sizeof (command), "STATUS %s (UIDNEXT UIDVALIDITY UNSEEN)", munged);
++    snprintf (command, sizeof (command), "STATUS %s (UIDNEXT UIDVALIDITY RECENT UNSEEN)", munged);
+ 
+     if (imap_cmd_queue (idata, command) < 0)
+     {
