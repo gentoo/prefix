@@ -1,0 +1,17 @@
+--- lib/commands/server.rb	2006-09-03 06:48:07.000000000 +0700
++++ server.rb	2006-10-02 17:41:16.000000000 +0700
+@@ -14,7 +14,13 @@
+     ARGV.shift
+   else
+     if RUBY_PLATFORM !~ /mswin/ && !silence_stderr { `lighttpd -version` }.blank? && defined?(FCGI)
+-      "lighttpd"
++      if %x(lighttpd -version) =~ /^lighttpd-(\d+)\.(\d+)\.(\d+)/ and ($1.to_i < 1 or $2.to_i < 4 or $3.to_i < 10)
++        puts "You are using an old version of lighttpd (less than 1.4.10)"
++        puts "Your lighttpd should not work properly with rails and will be ignored"
++        "webrick"
++      else
++        "lighttpd"
++      end
+     else
+       "webrick"
+     end

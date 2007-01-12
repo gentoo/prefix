@@ -1,0 +1,275 @@
+# ChangeLog for dev-ruby/rails
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.67 2006/11/24 01:29:06 caleb Exp $
+
+*rails-1.2.0_rc1 (24 Nov 2006)
+
+  24 Nov 2006; Caleb Tennis <caleb@gentoo.org> +rails-1.2.0_rc1.ebuild:
+  1.2.0_rc1
+
+*rails-1.1.6-r1 (03 Oct 2006)
+
+  03 Oct 2006; Nguyễn Thái Ngọc Duy <pclouds@gentoo.org>
+  +files/1.1.6-deprecate-old-lighttpd.patch, -rails-1.1.2.ebuild,
+  -rails-1.1.3.ebuild, -rails-1.1.4.ebuild, -rails-1.1.5.ebuild,
+  +rails-1.1.6-r1.ebuild:
+  Removed old ebuilds. Added 1.1.6-r1 to ignore lighttpd older than 1.4.10
+  (bug #133500)
+
+  02 Sep 2006; Bryan Østergaard <kloeri@gentoo.org> rails-1.1.6.ebuild:
+  Stable on ia64.
+
+*rails-1.1.6 (10 Aug 2006)
+
+  10 Aug 2006; Caleb Tennis <caleb@gentoo.org> +rails-1.1.6.ebuild:
+  version bump
+
+  10 Aug 2006; Ferris McCormick <fmccor@gentoo.org> rails-1.1.5.ebuild:
+  Stable on sparc --- Bug #143369 (mandatory security upgrade) --- installs and
+  works.
+
+  10 Aug 2006; Joshua Jackson <tsunam@gentoo.org> rails-1.1.5.ebuild:
+  Stable x86; bug # 143369
+
+  09 Aug 2006; Thomas Cort <tcort@gentoo.org> rails-1.1.5.ebuild:
+  Stable on amd64 wrt security Bug #143369.
+
+  09 Aug 2006; Tobias Scherbaum <dertobi123@gentoo.org> rails-1.1.5.ebuild:
+  ppc stable, bug #143369
+
+*rails-1.1.5 (09 Aug 2006)
+
+  09 Aug 2006; Caleb Tennis <caleb@gentoo.org> +rails-1.1.5.ebuild:
+  version bump
+
+  31 Jul 2006; Simon Stelling <blubb@gentoo.org> rails-1.1.4.ebuild:
+  stable on amd64 wrt bug 138323
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org> rails-1.1.4.ebuild:
+  Mark 1.1.4 stable on ia64. #138323
+
+  06 Jul 2006; Jason Wever <weeve@gentoo.org> rails-1.1.4.ebuild:
+  Stable on SPARC wrt security bug #138323.
+
+  05 Jul 2006; Joshua Jackson <tsunam@gentoo.org> rails-1.1.4.ebuild:
+  Stable x86; bug #138323
+
+  03 Jul 2006; Lars Weiler <pylon@gentoo.org> rails-1.1.4.ebuild:
+  Stable on ppc; security bug #138323.
+
+*rails-1.1.4 (03 Jul 2006)
+
+  03 Jul 2006; Caleb Tennis <caleb@gentoo.org> +rails-1.1.4.ebuild:
+  Version bump
+
+*rails-1.1.3 (28 Jun 2006)
+
+  28 Jun 2006; Caleb Tennis <caleb@gentoo.org> -rails-1.0.0.ebuild,
+  -rails-1.1.0.ebuild, -rails-1.1.1.ebuild, +rails-1.1.3.ebuild:
+  version bump, remove old versions
+
+  25 Jun 2006; Tobias Scherbaum <dertobi123@gentoo.org> rails-1.1.2.ebuild:
+  ppc stable, bug #133003
+
+  14 Jun 2006; Robin H. Johnson <robbat2@gentoo.org> rails-1.1.2.ebuild:
+  Somebody left out ppc. It works fine here.
+
+  06 Jun 2006; Simon Stelling <blubb@gentoo.org> rails-1.1.2.ebuild:
+  stable on amd64
+
+  02 Jun 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +files/rails-1.0.0-rdoc-rake-0.7.patch, rails-1.0.0.ebuild:
+  Add patch to fix rdoc call with rake 0.7. Thanks to Stephen Tallowitz in bug
+  #132692.
+
+  16 May 2006; Joshua Jackson <tsunam@gentoo.org> rails-1.1.2.ebuild:
+  x86 stable; bug #133003
+
+  11 May 2006; Ferris McCormick <fmccor@gentoo.org> rails-1.1.2.ebuild:
+  Stable on sparc (Bug #133003).
+
+  08 May 2006; Seemant Kulleen <seemant@gentoo.org> rails-1.1.2.ebuild:
+  keyworded for ~amd64
+
+  27 Apr 2006; Marien Zwart <marienz@gentoo.org> files/digest-rails-1.0.0,
+  files/digest-rails-1.1.0, files/digest-rails-1.1.1, Manifest:
+  Fixing SHA256 digest, pass four
+
+  17 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> rails-1.1.2.ebuild:
+  Add ~x86-fbsd keyword.
+
+*rails-1.1.2 (14 Apr 2006)
+
+  14 Apr 2006; Caleb Tennis <caleb@gentoo.org> +rails-1.1.2.ebuild:
+  Version bump
+
+  08 Apr 2006; Caleb Tennis <caleb@gentoo.org> rails-1.1.1.ebuild:
+  make it dep on rake 0.7.1
+
+*rails-1.1.1 (06 Apr 2006)
+
+  06 Apr 2006; Caleb Tennis <caleb@gentoo.org> +rails-1.1.1.ebuild:
+  version bump
+
+  31 Mar 2006; Caleb Tennis <caleb@gentoo.org> rails-1.0.0.ebuild:
+  Fix deps to lock rails 1.0 components together
+
+  30 Mar 2006; Aron Griffis <agriffis@gentoo.org> rails-1.1.0.ebuild:
+  Mark 1.1.0 ~ia64
+
+*rails-1.1.0 (28 Mar 2006)
+
+  28 Mar 2006; Caleb Tennis <caleb@gentoo.org> -rails-1.0.0.4008.ebuild,
+  +rails-1.1.0.ebuild:
+  Rails 1.1
+
+*rails-1.0.0.4008 (22 Mar 2006)
+
+  22 Mar 2006; Caleb Tennis <caleb@gentoo.org> -rails-0.13.1.ebuild,
+  +rails-1.0.0.4008.ebuild:
+  New 1.1 release candidate, slotted to install alongside existing rails
+
+  27 Jan 2006; Michael Hanselmann <hansmi@gentoo.org> rails-1.0.0.ebuild:
+  Stable on ppc.
+
+  10 Jan 2006; Ferris McCormick <fmccor@gentoo.org> rails-1.0.0.ebuild:
+  Stable on sparc (at gustavoz's request); works as it should for me.
+
+  02 Jan 2006; Caleb Tennis <caleb@gentoo.org> rails-1.0.0.ebuild:
+  x86 stable
+
+  20 Dec 2005; <dang@gentoo.org> rails-1.0.0.ebuild:
+  Marked ~amd64 Per bug#115774
+
+*rails-1.0.0 (13 Dec 2005)
+
+  13 Dec 2005; Caleb Tennis <caleb@gentoo.org> -rails-0.14.4.ebuild,
+  +rails-1.0.0.ebuild:
+  Version bump
+
+*rails-0.14.4 (08 Dec 2005)
+
+  08 Dec 2005; Caleb Tennis <caleb@gentoo.org> -rails-0.14.3.ebuild,
+  +rails-0.14.4.ebuild:
+  Version bump
+
+  13 Nov 2005; Jason Wever <weeve@gentoo.org> rails-0.13.1.ebuild:
+  Stable on SPARC.
+
+*rails-0.14.3 (08 Nov 2005)
+
+  08 Nov 2005; Caleb Tennis <caleb@gentoo.org> -rails-0.14.2.ebuild,
+  +rails-0.14.3.ebuild:
+  version bump
+
+*rails-0.14.2 (04 Nov 2005)
+
+  04 Nov 2005; Caleb Tennis <caleb@gentoo.org> -rails-0.14.1.ebuild,
+  +rails-0.14.2.ebuild:
+  bump and remove previous version
+
+  01 Nov 2005; Caleb Tennis <caleb@gentoo.org> rails-0.14.1.ebuild:
+  Requires rake-0.6.2
+
+  19 Oct 2005; Luca Barbato <lu_zero@gentoo.org> rails-0.13.1.ebuild:
+  Marked ppc
+
+*rails-0.14.1 (19 Oct 2005)
+
+  19 Oct 2005; Caleb Tennis <caleb@gentoo.org> +rails-0.14.1.ebuild:
+  Version bump
+
+  23 Sep 2005; Caleb Tennis <caleb@gentoo.org> -rails-0.9.5.ebuild,
+  -rails-0.10.0-r1.ebuild, -rails-0.10.1.ebuild, -rails-0.11.0-r1.ebuild,
+  -rails-0.11.1-r1.ebuild, -rails-0.12.1.ebuild:
+  Remove old versions
+
+  01 Aug 2005; Ferris McCormick <fmccor@gentoo.org> rails-0.13.1.ebuild:
+  Add ~sparc keyword.  Builds and appears to run without problems.
+
+  27 Jul 2005; Caleb Tennis <caleb@gentoo.org> rails-0.13.1.ebuild:
+  x86 stable
+
+*rails-0.13.1 (12 Jul 2005)
+
+  12 Jul 2005; Caleb Tennis <caleb@gentoo.org> +rails-0.13.1.ebuild:
+  Version bump
+
+  12 Jul 2005; David Holm <dholm@gentoo.org> rails-0.12.1.ebuild:
+  Added to ~ppc.
+
+*rails-0.12.1 (20 Apr 2005)
+
+  20 Apr 2005; Rob Cakebread <pythonhead@gentoo.org> -rails-0.12.0.ebuild,
+  +rails-0.12.1.ebuild:
+  Version bump removed bad version.
+
+  19 Apr 2005; Caleb Tennis <caleb@gentoo.org> rails-0.12.0.ebuild:
+  This version of rails seems to require rake 0.5.3
+
+  19 Apr 2005; Rob Cakebread <pythonhead@gentoo.org> rails-0.12.0.ebuild:
+  Removed obsolete postinst_info
+
+*rails-0.12.0 (19 Apr 2005)
+
+  19 Apr 2005; Rob Cakebread <pythonhead@gentoo.org> +rails-0.12.0.ebuild:
+  Version bump.
+
+  01 Apr 2005; Caleb Tennis <caleb@gentoo.org> rails-0.11.1-r1.ebuild:
+  x86 stable
+
+  30 Mar 2005; Caleb Tennis <caleb@gentoo.org> rails-0.11.1-r1.ebuild:
+  This version of rails requires rake 0.5.0
+
+*rails-0.11.1-r1 (29 Mar 2005)
+
+  29 Mar 2005; Rob Cakebread <pythonhead@gentoo.org> -rails-0.11.1.ebuild,
+  +rails-0.11.1-r1.ebuild:
+  Fixed rubyforge gem url.
+
+*rails-0.11.1 (28 Mar 2005)
+
+  28 Mar 2005; Rob Cakebread <pythonhead@gentoo.org> +rails-0.11.1.ebuild:
+  Version bump.
+
+  26 Mar 2005; Rob Cakebread <pythonhead@gentoo.org> rails-0.11.0-r1.ebuild:
+  Added fastcgi support/USE flag
+
+  25 Mar 2005; Rob Cakebread <pythonhead@gentoo.org>
+  +files/rails-0.11.0-dispatch.fcgi.diff, +rails-0.11.0-r1.ebuild:
+  Patched borken dispatch.fcgi, added some helpful einfo about upgrading from
+  0.10. Removed 0.11.0
+
+*rails-0.11.0 (22 Mar 2005)
+
+  22 Mar 2005; Caleb Tennis <caleb@gentoo.org> +rails-0.11.0.ebuild:
+  version bump
+
+*rails-0.10.1 (10 Mar 2005)
+
+  10 Mar 2005; Rob Cakebread <pythonhead@gentoo.org> +rails-0.10.1.ebuild:
+  Version bump.
+
+  08 Mar 2005; Caleb Tennis <caleb@gentoo.org> rails-0.10.0-r1.ebuild:
+  x86 stable
+
+  01 Mar 2005; Rob Cakebread <pythonhead@gentoo.org> rails-0.10.0-r1.ebuild:
+  Added upgrade postinst info
+
+*rails-0.10.0-r1 (01 Mar 2005)
+
+  01 Mar 2005; Caleb Tennis <caleb@gentoo.org> +rails-0.10.0-r1.ebuild,
+  -rails-0.10.0.ebuild:
+  Bump because my SRC_URI was wrong
+
+*rails-0.10.0 (28 Feb 2005)
+
+  28 Feb 2005; Caleb Tennis <caleb@gentoo.org> +rails-0.10.0.ebuild:
+  Version bump - bug #83446
+
+*rails-0.9.5 (15 Feb 2005)
+
+  15 Feb 2005; Rob Cakebread <pythonhead@gentoo.org> +metadata.xml,
+  +rails-0.9.5.ebuild:
+  Initial commit. bug# 80828
+
