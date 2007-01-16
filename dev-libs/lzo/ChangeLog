@@ -1,0 +1,143 @@
+# ChangeLog for dev-libs/lzo
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/lzo/ChangeLog,v 1.44 2007/01/07 19:50:53 dragonheart Exp $
+
+  07 Jan 2007; Daniel Black <dragonheart@gentoo.org> lzo-1.08-r1.ebuild:
+  [e]autotools correction as per bug #160159 thanks Diego
+
+  05 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> lzo-1.08-r1.ebuild:
+  Remove gnuconfig_update usage, leave it to econf.
+
+  09 Nov 2006; Ilya A. Volynets-Evenbakh <iluxa@gentoo.org>
+  lzo-2.02-r1.ebuild:
+  Stable on mips
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org> lzo-2.02-r1.ebuild:
+  Added ~sparc-fbsd keyword.
+
+  22 Sep 2006; Bryan Østergaard <kloeri@gentoo.org> lzo-2.02-r1.ebuild:
+  Stable on Alpha.
+
+  21 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org> lzo-2.02-r1.ebuild:
+  hppa stable
+
+  10 Sep 2006; Javier Villavicencio <the_paya@gentoo.org>
+  lzo-2.02-r1.ebuild:
+  Add ~x86-fbsd keyword
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org> lzo-2.02-r1.ebuild:
+  Mark 2.02-r1 stable on ia64
+
+  23 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> lzo-1.08-r1.ebuild:
+  Run elibtoolize and add ~x86-fbsd keyword.
+
+  20 Apr 2006; Chris Gianelloni <wolf31o2@gentoo.org> lzo-2.02-r1.ebuild:
+  Marking stable on x86 for bug #129748.
+
+  19 Apr 2006; Daniel Goller <morfic@gentoo.org> lzo-2.02-r1.ebuild:
+  Stable on ppc and amd64 as dep. for transcode-1
+
+  19 Apr 2006; Jason Wever <weeve@gentoo.org> lzo-2.02-r1.ebuild:
+  Stable on SPARC wrt bug #129748.
+
+  17 Apr 2006; Markus Rothe <corsair@gentoo.org> lzo-2.02-r1.ebuild:
+  Stable on ppc64; bug #129748
+
+  29 Dec 2005; Daniel Black <dragonheart@gentoo.org>
+  +files/lzo-1.08-exec-stack.patch, +files/lzo-2.02-exec-stack.patch,
+  lzo-1.08-r1.ebuild, -lzo-2.02.ebuild, lzo-2.02-r1.ebuild:
+  removed executable stacks bug #116930] thanks to betelgeuse
+
+*lzo-2.02-r1 (03 Dec 2005)
+
+  03 Dec 2005; Carsten Lohrke <carlo@gentoo.org> +lzo-2.02-r1.ebuild:
+  Add examples only when wanted.
+
+*lzo-2.02 (13 Nov 2005)
+
+  13 Nov 2005; Daniel Black <dragonheart@gentoo.org> +metadata.xml,
+  -lzo-1.08.ebuild, -lzo-2.01.ebuild, +lzo-2.02.ebuild:
+  version bump to support slots - bug #110877 and bug #110878 thanks to
+  Francisco Jose Canizares Santofimia. remove older versions
+
+*lzo-2.01 (16 Jul 2005)
+
+  16 Jul 2005; Daniel Black <dragonheart@gentoo.org> -lzo-2.00.ebuild,
+  +lzo-2.01.ebuild:
+  version bump.
+
+  03 Jul 2005; Hardave Riar <hardave@gentoo.org> lzo-1.08-r1.ebuild:
+  Stable on mips, dep for bug #90726.
+
+*lzo-2.00 (25 Jun 2005)
+
+  25 Jun 2005; Daniel Black <dragonheart@gentoo.org> +lzo-2.00.ebuild:
+  version bump
+
+  05 Jun 2005; Joseph Jezak <josejx@gentoo.org> lzo-1.08-r1.ebuild:
+  Marked ppc-macos stable.
+
+  01 Apr 2005; Michael Hanselmann <hansmi@gentoo.org> lzo-1.08-r1.ebuild:
+  Stable on ppc.
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  24 Nov 2004; Kito <kito@gentoo.org> lzo-1.08-r1.ebuild:
+  added ~ppc-macos. closes bug 67509
+
+  18 Aug 2004; Hardave Riar <hardave@gentoo.org> lzo-1.08-r1.ebuild:
+  Added ~mips keyword.
+
+  03 Jul 2004; <solar@gentoo.org> lzo-1.08-r1.ebuild:
+  allow user optimizations
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org> lzo-1.08.ebuild:
+  virtual/glibc -> virtual/libc
+
+  26 May 2004; Guy Martin <gmsoft@gentoo.org> lzo-1.08-r1.ebuild:
+  Marked stable on hppa.
+
+  23 May 2004; Bryan Østergaard <kloeri@gentoo.org> lzo-1.08-r1.ebuild:
+  Stable on alpha.
+
+  01 May 2004; Gustavo Zacarias <gustavoz@gentoo.org> lzo-1.08-r1.ebuild:
+  Stable on sparc
+
+  28 Apr 2004; Jon Portnoy <avenj@gentoo.org> lzo-1.08-r1.ebuild :
+  Stable on x86 and AMD64.
+
+  14 Mar 2004; Michael Sterrett <mr_bones_@gentoo.org> lzo-1.08.ebuild:
+  Don't assign default to S; header fix
+
+  07 Mar 2004; Tom Gall <tgall@gentoo.org> lzo-1.08-r1.ebuild:
+  mark ppc64 as stable
+
+  24 Sep 2003; Daniel Robbins <drobbins@gentoo.org>: removed nasm from
+  RDEPEND.
+
+  12 Sep 2003; Jason Wever <weeve@gentoo.org> lzo-1.08-r1.ebuild:
+  Fixed dependencies for non-x86 arches as nasm is an x86 assembler and not
+  keyworded for anything other than x86.
+
+*lzo-1.08-r1 (11 Sep 2003)
+
+  11 Sep 2003; Mike Frysinger <vapier@gentoo.org> :
+  Version bump to fix asm support #28359.
+
+*lzo-1.08 (21 Sep 2002)
+
+  07 Apr 2003; Guy Martin <gmsoft@gentoo.org> lzo-1.08.ebuild :
+  Added hppa to KEYWORDS.
+
+  06 Mar 2003; Aron Griffis <agriffis@gentoo.org> lzo-1.08.ebuild:
+  Add alpha to KEYWORDS
+
+  21 Sep 2002; Daniel Robbins <drobbins@gentoo.org>: Bumped version to 1.08.
+
+*lzo-1.07 (13 Apr 2002)
+
+  14 Aug 2002; Pieter Van den Abeele <pvdabeel@gentoo.org> : Added ppc keyword
+
+  13 Apr 2002; Jon Nelson <jnelson@gentoo.org> ChangeLog, lzo-1.07.ebuild New
+  lzo ebuild courtesy of Bryce Allen (ballen at mum.edu)
