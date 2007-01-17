@@ -1,0 +1,222 @@
+# ChangeLog for media-gfx/povray
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/ChangeLog,v 1.52 2006/07/22 20:22:59 psi29a Exp $
+
+  22 Jul 2006; <psi29a@gentoo.org> povray-3.6.1-r1.ebuild:
+  stable on mips
+
+  23 May 2006; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
+  Remove morfic from metadata, bug 53434.
+
+  09 Feb 2006; Mark Loeser <halcy0n@gentoo.org>
+  +files/povray-3.6.1-configure.patch, povray-3.6.1-r1.ebuild:
+  Add patch to fix compilation with gcc-4 on ppc64; bug #118156
+
+  13 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  povray-3.6.1-r1.ebuild:
+  Add modular X dependencies.
+
+  24 Aug 2005; Aron Griffis <agriffis@gentoo.org> povray-3.6.1-r1.ebuild:
+  stable on ia64
+
+  25 Jul 2005; Guy Martin <gmsoft@gentoo.org> povray-3.6.1-r1.ebuild:
+  Stable on hppa.
+
+  17 Jul 2005; Hardave Riar <hardave@gentoo.org> povray-3.6.1-r1.ebuild:
+  Keyworded ~mips
+
+  08 Jul 2005; Jason Wever <weeve@gentoo.org> povray-3.6.1-r1.ebuild:
+  Stable on SPARC.
+
+  12 May 2005; Aron Griffis <agriffis@gentoo.org> povray-3.6.1-r1.ebuild:
+  add ~ia64
+
+  20 Jan 2005; Daniel Goller <morfic@gentoo.org> -files/README.ICC-PGO,
+  -files/gentoo-3.5.patch, -files/gentoo.patch,
+  -files/povray-3.5-amd64.patch, -files/prob-opt.sh, -povray-3.1g-r5.ebuild,
+  -povray-3.5.ebuild, povray-3.6.1-r1.ebuild:
+  Cleanup old and or broken versions
+
+  19 Jan 2005; Mike Doty <kingtaco@gentoo.org> povray-3.6.1-r1.ebuild:
+  stable on amd64.
+
+  02 Jan 2005; Bryan Østergaard <kloeri@gentoo.org> povray-3.6.1-r1.ebuild:
+  Stable on alpha.
+
+  24 Dec 2004; Jason Wever <weeve@gentoo.org> povray-3.6.1-r1.ebuild:
+  Added ~sparc keyword.
+
+  16 Dec 2004; Markus Rothe <corsair@gentoo.org> povray-3.6.1-r1.ebuild:
+  Stable on ppc64
+
+  12 Dec 2004; Daniel Goller <morfic@gentoo.org> povray-3.6.1-r1.ebuild:
+  Removing -fomit-frame-pointer if k6-2 march is used, closing bug 71255
+
+  07 Dec 2004; Daniel Goller <morfic@gentoo.org> povray-3.6.1-r1.ebuild:
+  Stable on ppc and x86
+
+  01 Nov 2004; Markus Rothe <corsair@gentoo.org> povray-3.6.1-r1.ebuild:
+  Marked ~ppc64; bug #68711
+
+*povray-3.6.1-r1 (27 Oct 2004)
+
+  27 Oct 2004; Daniel Goller <morfic@gentoo.org> +povray-3.6.1-r1.ebuild,
+  -povray-3.6.1.ebuild:
+  Added >=medi-libs/tiff-3.6.1 to ebuild and bumped to -r1 to force upgrade
+  Closing bug 67783
+
+*povray-3.5 (21 Sep 2004)
+
+  21 Sep 2004; Daniel Goller <morfic@gentoo.org> +files/gentoo-3.5.patch,
+  -files/gentoo-3.50c.patch, +files/povray-3.5-amd64.patch,
+  -files/povray-3.50c-amd64.patch, +povray-3.5.ebuild, -povray-3.50c.ebuild:
+  to make sure portage knows 3.6.1 is newer than 3.50c ebuild 3.50c renamed to
+  3.5, moved ebuilds, and patches
+
+  20 Sep 2004; Daniel Goller <morfic@gentoo.org> metadata.xml:
+  removed "no-herd" from metadata.xml, left over from skel
+
+  20 Sep 2004; Daniel Goller <morfic@gentoo.org> :
+  Added povray-3.6.1 ebuild
+  thanks to Alexander Holler
+
+  08 Aug 2004; Tom Martin <slarti@gentoo.org> povray-3.1g-r5.ebuild,
+  povray-3.50c.ebuild:
+  Typo in DESCRIPTION: Persistance -> Persistence. Bug 59717.
+
+  07 Jun 2004; Aron Griffis <agriffis@gentoo.org> povray-3.1g-r5.ebuild,
+  povray-3.50c.ebuild:
+  Fix use invocation
+
+  08 Mar 2004; <augustus@gentoo.org> povray-3.50c.ebuild:
+  Marked stable on amd64.
+
+  15 Jan 2004; Luca Barbato <lu_zero@gentoo.org> povray-3.50c.ebuild:
+  Fix, thanks to Jayson <mrdizzy38@hotmail.com>
+
+  01 Jan 2004; Luca Barbato <lu_zero@gentoo.org> povray-3.50c.ebuild:
+  Fixed the without X build issue (bug #27049)
+
+  12 Dec 2003; Daniel Ahlberg <aliz@gentoo.org> povray-3.50c.ebuild:
+  Add amd64 keyword. AMD64 patch contributed by Kris Kersey <augustus@linuxhardware.org>
+  in #34027.
+
+  08 Oct 2003; Luca Barbato <lu_zero@gentoo.org> povray-3.50c.ebuild:
+  Fixed bug #25149
+
+  31 Aug 2003; Luca Barbato <lu_zero@gentoo.org> povray-3.50c.ebuild:
+  Fixed bug #27049
+
+*povray-3.50c (26 Mar 2003)
+
+  18 Apr 2003; Philip Walls <malverian@gentoo.org> povray-3.50c.ebuild :
+  Fixed bug #18522
+
+  9 Apr 2003; Luca Barbato <lu_zero@gentoo.org> povray-3.50c.ebuild:
+  Fixes bug #18970
+
+  1 Apr 2003; Philip Walls <malverian@gentoo.org> povray-3.50c.ebuild:
+  Added jpeg and tiff libraries to DEPEND, fixes bug #18457
+
+  30 Mar 2003; Martin Holzer <mholzer@gentoo.org> povray-3.50c.ebuild:
+  Added gcc-version check cause it doesn't compile on gcc-2.95
+
+  26 Mar 2003; Philip Walls <malverian@gentoo.org> povray-3.50c.ebuild :
+  Version bump, fixes bug #18206
+
+*povray-3.5a (05 Oct 2002)
+
+  14 Mar 2003; Stefan Jones <cretin@gentoo.org> povray-3.5a.ebuild :
+  Added pthread to librarys for /usr/X11R6/lib/libX11.a dep
+  Bug 17493
+
+  02 March 2003; Jon Portnoy <avenj@gentoo.org> povray-3.5a.ebuild :
+  Fixed missing 'else' for GCC CPPFLAGS.
+
+  02 March 2003; Jon Portnoy <avenj@gentoo.org> files/prob-opt.sh :
+  Added script from Klaus-J. Wolf <yanestra@web.de> to optimize
+  POV-ray significantly more heavily.
+
+  15 Dec 2002; Bjoern Brauel <bjb@gentoo.org> povray-3.5a.ebuild :
+  Add alpha to KEYWORDS
+
+  05 Oct 2002; Sascha Schwabbauer <cybersystem@gentoo.org> povray-3.5a.ebuild :
+
+  Added ppc to keywords.
+
+*povray-3.5a (2 Aug 2002)
+
+  26 Aug 2002; Ryan Phillips <rphillips@gentoo.org> povray-3.5a.ebuild :
+
+  Removed PGO extensions to ebuild
+
+  4 Aug 2002; Ryan Phillips <rphillips@gentoo.org> povray-3.5a.ebuild :
+
+  Compiles and runs now on my system.  Needs testing for PPC, et al platforms
+  and on the ICC compiler.
+
+  2 Aug 2002; Ryan Phillips <rphillips@gentoo.org> povray-3.5a.ebuild :
+
+  Preliminary ebuild for povray 3.5.  The application errors out with an
+  I/O error looking for povray.ini... I or someone will look into this.
+
+*povray-3.1g-r5 (27 Jun 2002)
+
+  6 Aug 2002; Ryan Phillips <rphillips@gentoo.org> povray-3.1g-r5.ebuild :
+
+  Changed ebuild to reflect the manually mirrored source files.
+
+  27 Jun 2002; Spider <spider@gentoo.org> povray-3.1g-r5.ebuild :
+  updated with SLOT and LICENSE flags. added povlegal-3.1g to licenses
+
+
+  
+  14 May 2002; William McArthur <sandymac@gentoo.org>
+
+  rphillips found a problem where -ip causes segfaults on P3 cpus. I removed
+  -ip from the default case.
+
+*povray-3.1g-r4 (19 Apr 2002)
+
+  12 Apr 2002; William McArthur <sandymac@gentoo.org>
+
+  Fixed povray to use system versions of libpng and zlib. PovRay wasn't using
+  newest libpng despite the change entry below.
+  
+  Changed the CFLAGS in the makefile to be similar to the ones in the systems
+  /etc/make.conf . This is kinda ugly but it doesn't hard code the CFLAGS for 
+  pentium 2.
+
+  Added icc support. This is also ugly but there are real speed increases to be
+  gained. To use icc you need to add "icc" to your USE variable. My benchmarks
+  show that using icc gives a 5% speed increase on a pentium 2.
+
+  Added icc Profile-guided Optimization (PGO) support. To use PGO you need to
+  add "icc-pgo" to your USE variable. Then merge the package, run it some to
+  collect profile data, and merge it again useing that profile data. PGO is a
+  two step process, so it requires that the user merge the package twice. In
+  step one the icc compiles the package with "-prof_gen" in the CFLAGS. Then
+  icc adds code in the application to collect stats on the execution flow of the
+  program. Unfortunatlly there is about a 30% performance hit but the performace
+  gains later are worth it. After you've run the program a some, the more you do
+  the better the collected stats, you recompile with "-prof_use". The resulting
+  binary is optimized based on your use of the program. In my benchmarks the PGO
+  binary was 21.7% faster that the gcc version and 15.8% faster than the non-PGO
+  icc version. If you want to recollect the PGO data delete the
+  /var/tmp/portage/povray-3.1g-r4/icc-pgo directory. The ebuild detects the
+  presence of this directory to decide which stage in the PGO process it is in.
+
+*povray-3.1g-r3 (12 Apr 2002)
+
+  12 Apr 2002; Seemant Kulleen <seemant@gentoo.org>
+
+  Compile against newest libpng
+
+*povray-3.1g-r2 (01 Apr 2002)
+  01 Apr 2002; Spider <spider@gentoo.org>
+  apply sed-fix from tod to get the default povray.ini to point right
+
+*povray-3.1g-r1 (31 Mar 2002)
+  31 Mar 2002; Spider <spider@gentoo.org>
+  Initial ebuild + patch now adheres to USE flags for svgalib X and tty versions.
+

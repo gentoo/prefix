@@ -1,0 +1,24 @@
+--- povray-3.6.1/configure.ac	2006-01-15 20:11:41.000000000 +0000
++++ povray-3.6.1/configure.ac	2006-01-15 20:11:19.000000000 +0000
+@@ -1051,11 +1051,19 @@
+       # PPC 7400 (aka G4).  To be precise, the vector instructions are new
+       # in the four digit model number PowerPC processors (aka G4), but gcc
+       # cannot (as of February 2003) use them automatically anyway! [trf]
+-      for pov_flags in "-mpowerpc" "-mcpu=750 -mtune=7450" "-mmultiple" "-mstring" "-mfused-madd"; do
++      if "$host" != powerpc64* ; then
++          for pov_flags in "-mpowerpc" "-mcpu=750 -mtune=7450"; do
++            POV_PROG_CXX_FLAGS([$pov_flags],
++              [if test "$subdirs"; then { POV_PROG_CC_FLAGS([$pov_flags]) }; fi]
++            )
++          done
++      fi
++      for pov_flags in "-mmultiple" "-mstring" "-mfused-madd"; do
+         POV_PROG_CXX_FLAGS([$pov_flags],
+-          [if test "$subdirs"; then { POV_PROG_CC_FLAGS([$pov_flags]) }; fi]
++            [if test "$subdirs"; then { POV_PROG_CC_FLAGS([$pov_flags]) }; fi]
+         )
+       done
++
+       ;;
+ 
+     sparc-*)
