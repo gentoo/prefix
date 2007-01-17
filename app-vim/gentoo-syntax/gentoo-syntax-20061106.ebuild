@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/gentoo-syntax/gentoo-syntax-20051221-r1.ebuild,v 1.4 2006/12/30 02:21:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/gentoo-syntax/gentoo-syntax-20061106.ebuild,v 1.2 2006/12/30 02:21:03 vapier Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gentoo.org/"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="vim"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="ignore-glep31"
 
 VIM_PLUGIN_HELPFILES="gentoo-syntax"
@@ -21,7 +21,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${P}-metadata.patch
 	if use ignore-glep31 ; then
 		for f in ftplugin/*.vim ; do
 			ebegin "Removing UTF-8 rules from ${f} ..."
