@@ -1,0 +1,55 @@
+# ChangeLog for app-misc/pv
+# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/pv/ChangeLog,v 1.16 2006/09/16 14:02:23 dertobi123 Exp $
+
+  16 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org> pv-0.9.6.ebuild:
+  ppc stable
+
+  19 Aug 2006; Bryan Østergaard <kloeri@gentoo.org> pv-0.9.6.ebuild:
+  Stable on alpha.
+
+  22 Jun 2006; Gustavo Zacarias <gustavoz@gentoo.org> pv-0.9.6.ebuild:
+  Stable on sparc
+
+  28 May 2006; Lars Weiler <pylon@gentoo.org> pv-0.8.1.ebuild:
+  Stable on ppc.
+
+*pv-0.9.6 (20 Mar 2006)
+
+  20 Mar 2006; Jon Portnoy <avenj@gentoo.org> pv-0.9.6.ebuild :
+  Version bump, bug #104520.
+
+  09 Sep 2005; Aron Griffis <agriffis@gentoo.org> pv-0.8.1.ebuild:
+  Mark 0.8.1 stable on alpha
+
+*pv-0.9.0 (17 Jun 2005)
+
+  17 Jun 2005; Jon Portnoy <avenj@gentoo.org> pv-0.9.0.ebuild :
+  Version bump, bug #88545
+
+  17 Jun 2005; Jon Portnoy <avenj@gentoo.org> pv-0.8.1.ebuild :
+  Stable on x86, amd64
+
+  07 Mar 2005; Markus Rothe <corsair@gentoo.org> pv-0.8.1.ebuild:
+  Stable on ppc64
+
+  23 Jan 2005; Markus Rothe <corsair@gentoo.org> pv-0.8.1.ebuild:
+  added ~ppc64 to KEYWORDS
+
+  02 Jan 2005; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  19 Oct 2004; Bryan Østergaard <kloeri@gentoo.org> pv-0.8.1.ebuild:
+  ~alpha keyword.
+
+  15 Aug 2004; Jason Wever <weeve@gentoo.org> pv-0.8.1.ebuild:
+  Added ~sparc keyword.
+
+  20 Apr 2004; David Holm <dholm@gentoo.org> pv-0.8.1.ebuild:
+  Added to ~ppc.
+
+*pv-0.8.1 (19 Apr 2004)
+
+  19 Apr 2004; Jon Portnoy <avenj@gentoo.org> pv-0.8.1.ebuild :
+  Initial import. Bug 36317. Submitted by Eric Harney
+  <eharney@clemson.edu>.
