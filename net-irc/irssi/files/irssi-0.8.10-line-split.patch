@@ -1,0 +1,23 @@
+Index: src/core/line-split.c
+===================================================================
+--- src/core/line-split.c	(revision 1501)
++++ src/core/line-split.c	(revision 4381)
+@@ -90,6 +90,7 @@
+ int line_split(const char *data, int len, char **output, LINEBUF_REC **buffer)
+ {
+ 	LINEBUF_REC *rec;
++	int ret;
+ 
+ 	g_return_val_if_fail(data != NULL, -1);
+ 	g_return_val_if_fail(output != NULL, -1);
+@@ -122,8 +123,9 @@
+ 		}
+ 	}
+ 
++	ret = remove_newline(rec);
+ 	*output = rec->str;
+-	return remove_newline(rec);
++	return ret;
+ }
+ 
+ void line_split_free(LINEBUF_REC *buffer)
