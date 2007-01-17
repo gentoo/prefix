@@ -1,0 +1,12 @@
+--- dictd-1.8.0/dictfmt.c	2003-09-21 10:59:06.000000000 +1200
++++ dictd-1.8.0-gentoo/dictfmt.c	2003-09-21 11:18:37.000000000 +1200
+@@ -369,7 +369,7 @@
+            several words to have the same definition\n\
+            Example: autumn%%%fall can be used\n\
+            if '--headword-separator %%%' is supplied",
+-"--without-headword         with this parameter supplied
++"--without-headword         with this parameter supplied\n\
+            head words will not be copied to .dict file",
+       0 };
+    const char        **p = help_msg;
+
