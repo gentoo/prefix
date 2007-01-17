@@ -1,6 +1,56 @@
 # ChangeLog for app-admin/eselect
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.39 2006/10/18 13:18:19 uberlord Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.53 2007/01/16 06:04:13 jer Exp $
+
+  16 Jan 2007; Jeroen Roovers <jer@gentoo.org> eselect-1.0.7.ebuild:
+  Stable for HPPA (bug #160535).
+
+  15 Jan 2007; Mike Kelly <pioto@gentoo.org>
+  +files/eselect-1.0.8-fix-parallel-install.patch, eselect-1.0.8.ebuild:
+  Add a patch to really really fix Bug #162008.
+
+*eselect-1.0.8 (14 Jan 2007)
+
+  14 Jan 2007; Mike Kelly <pioto@gentoo.org> +eselect-1.0.8.ebuild:
+  Version bump. Really fixes Bug #162008.
+
+  14 Jan 2007; Mike Kelly <pioto@gentoo.org> eselect-1.0.7.ebuild:
+  Force non-parallel install for now until all the Makefile issues can be fixed.
+
+  14 Jan 2007; Joseph Jezak <josejx@gentoo.org> eselect-1.0.7.ebuild:
+  Marked ppc stable for bug #160535.
+
+  09 Jan 2007; Christian Faulhammer <opfer@gentoo.org> eselect-1.0.7.ebuild:
+  stable x86, bug #160535
+
+  09 Jan 2007; Markus Rothe <corsair@gentoo.org> eselect-1.0.7.ebuild:
+  Stable on ppc64; bug #160535
+
+  08 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> eselect-1.0.7.ebuild:
+  Stable on sparc wrt #160535
+
+  07 Jan 2007; Mike Kelly <pioto@gentoo.org> eselect-1.0.7.ebuild:
+  Mark ~amd64 again, since we need to stable a few other things first. See Bug
+  #160535.
+
+  06 Jan 2007; Mike Kelly <pioto@gentoo.org> eselect-1.0.7.ebuild:
+  Mark stable on amd64 (okayed by Kugelfang).
+
+  06 Jan 2007; Mike Kelly <pioto@gentoo.org> -eselect-1.0.6.ebuild:
+  Remove old and kinda buggy 1.0.6 version.
+
+  09 Nov 2006; Marien Zwart <marienz@gentoo.org> Manifest:
+  Fix Manifest.
+
+  09 Nov 2006; Marien Zwart <marienz@gentoo.org> +eselect-1.0.6.ebuild:
+  Put 1.0.6 back to avoid a downgrade while 1.0.7 is masked.
+
+*eselect-1.0.7 (08 Nov 2006)
+
+  08 Nov 2006; Danny van Dyk <kugelfang@gentoo.org> -eselect-1.0.ebuild,
+  -eselect-1.0.6.ebuild, +eselect-1.0.7.ebuild:
+  Removed obsolete version 1.0. Bumped eselect to version 1.0.7, which is a
+  bugfix release.
 
   18 Oct 2006; Roy Marples <uberlord@gentoo.org> eselect-1.0.6.ebuild:
   Added ~sparc-fbsd keyword.

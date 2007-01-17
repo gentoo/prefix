@@ -1,10 +1,10 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.0.6.ebuild,v 1.2 2006/10/18 13:18:19 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.0.8.ebuild,v 1.2 2007/01/15 03:29:44 pioto Exp $
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils autotools
 
 DESCRIPTION="Modular -config replacement utility"
 HOMEPAGE="http://www.gentoo.org/proj/en/eselect/"
@@ -27,8 +27,12 @@ RDEPEND="sys-apps/sed
 
 src_unpack() {
 	unpack ${A}
-	epatch "${FILESDIR}"/${P}-prefix.patch
+	cd "${S}"
 
+	epatch "${FILESDIR}/${P}-fix-parallel-install.patch"
+	eautoreconf
+
+	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify \
 		$(find "${S}"/bin -type f) \
 		$(find "${S}"/libs -type f) \
@@ -45,7 +49,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die "make install failed"
+	emake DESTDIR="${D}" install || die "make install failed"
 	dodoc AUTHORS ChangeLog NEWS README TODO doc/*.txt
 	use doc && dohtml *.html doc/*
 
