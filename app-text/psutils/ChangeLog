@@ -1,0 +1,54 @@
+# ChangeLog for app-text/psutils
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/psutils/ChangeLog,v 1.19 2006/05/25 22:32:19 flameeyes Exp $
+
+  25 May 2006; Diego Pettenò <flameeyes@gentoo.org> +metadata.xml,
+  psutils-1.17.ebuild:
+  Fix quoting, make use of the right CC value, use emake instead of make
+  (parallel make works), add maintainer-needed metadata.
+
+  02 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> psutils-1.17.ebuild:
+  Add ~x86-fbsd keyword.
+
+  27 Jun 2005; Lina Pezzella <j4rg0n@gentoo.org> psutils-1.17.ebuild:
+  Stable ppc-macos
+
+  10 Apr 2005; Lina Pezzella <j4rg0n@gentoo.org> psutils-1.17.ebuild:
+  Testing ppc-macos. Bug #86079
+
+  29 Aug 2004; Seemant Kulleen <seemant@gentoo.org> psutils-1.17.ebuild:
+  DESCRIPTION spelling fix thanks to: Tim Cera <timcera@earthlink.net> in bug
+  #62158
+
+  17 Jul 2004; Tom Gall <tgall@gentoo.org> psutils-1.17.ebuild:
+  stable on ppc64, bug #55805
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org> psutils-1.17.ebuild:
+  virtual/glibc -> virtual/libc
+
+  28 Jun 2004; Ciaran McCreesh <ciaranm@gentoo.org> psutils-1.17.ebuild:
+  Stable on mips
+
+  07 Mar 2004; Bret Curtis <psi29a@gentoo.org> psutils-1.17.ebuild:
+  Added ~mips to KEYWORDS.
+
+  23 May 2003; Aron Griffis <agriffis@gentoo.org> psutils-1.17.ebuild:
+  Mark stable on alpha
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*psutils-1.17 (1 Feb 2002)
+
+  15 Nov 2003; Guy Martin <gmsoft@gentoo.org> psutils-1.17.ebuild :
+  Added hppa to KEYWORDS.
+
+  2 Aug 2002; phoen][x <phoenix@gentoo.org> psutils-1.17.ebuild :
+  Added LICENSE, KEYWORDS, SLOT.
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
