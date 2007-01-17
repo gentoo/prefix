@@ -1,6 +1,44 @@
 # ChangeLog for app-portage/gentoolkit-dev
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.35 2006/10/18 12:19:47 uberlord Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.44 2007/01/13 09:24:19 beandog Exp $
+
+  13 Jan 2007; Steve Dibb <beandog@gentoo.org>
+  gentoolkit-dev-0.2.6.2.ebuild:
+  amd64 stable, bug 161360
+
+  12 Jan 2007; nixnut <nixnut@gentoo.org> gentoolkit-dev-0.2.6.2.ebuild:
+  Stable on ppc wrt bug 161360
+
+  12 Jan 2007; Paul Varner <fuzzyray@gentoo.org>
+  +files/gentoolkit-dev-0.2.6.2-Makefile.patch,
+  gentoolkit-dev-0.2.6.2.ebuild:
+  Add patch to fix cosmetic Makefile error
+
+  11 Jan 2007; Joshua Jackson <tsunam@gentoo.org>
+  gentoolkit-dev-0.2.6.2.ebuild:
+  stable x86 bug #161360
+
+  11 Jan 2007; Guy Martin <gmsoft@gentoo.org> gentoolkit-dev-0.2.6.2.ebuild:
+  Stable on hppa.
+
+  11 Jan 2007; Markus Rothe <corsair@gentoo.org>
+  gentoolkit-dev-0.2.6.2.ebuild:
+  Stable on ppc64; bug #161360
+
+  11 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  gentoolkit-dev-0.2.6.2.ebuild:
+  Stable on sparc wrt #161360
+
+  11 Jan 2007; Paul Varner <fuzzyray@gentoo.org>
+  files/digest-gentoolkit-dev-0.2.6.2, Manifest:
+  Fix broken digest
+
+*gentoolkit-dev-0.2.6.2 (10 Jan 2007)
+
+  10 Jan 2007; Paul Varner <fuzzyray@gentoo.org>
+  +gentoolkit-dev-0.2.6.2.ebuild:
+  Version bump to remove epkgmove (Bug 161360) and deprecate gensync
+  (Bug 62381).
 
   18 Oct 2006; Roy Marples <uberlord@gentoo.org>
   gentoolkit-dev-0.2.6.1.ebuild:
