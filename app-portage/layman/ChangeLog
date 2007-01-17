@@ -1,0 +1,149 @@
+# ChangeLog for app-portage/layman
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.33 2007/01/09 18:01:15 wrobel Exp $
+
+*layman-1.0.10 (09 Jan 2007)
+
+  09 Jan 2007; <wrobel@gentoo.org> -layman-1.0.9.ebuild,
+  +layman-1.0.10.ebuild:
+  Added layman-1.0.10 to the tree. Fixes bugs #159695 and #160143.
+
+*layman-1.0.9 (04 Jan 2007)
+
+  04 Jan 2007; <wrobel@gentoo.org> -layman-1.0.8.ebuild,
+  +layman-1.0.9.ebuild:
+  Added layman-1.0.9 to the tree. Fixes bugs #148698, #159051, #151965, #149867.
+
+  29 Dec 2006; <doug@gentoo.org> layman-1.0.8.ebuild:
+  Make layman check that nowebdav is not set on subversion since it needs webdav
+
+  15 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> layman-1.0.6.ebuild:
+  Stable on ia64.
+
+  03 Oct 2006; Diego Pettenò <flameeyes@gentoo.org> layman-1.0.8.ebuild:
+  Add ~x86-fbsd keyword. Thanks to Timothy Redaelli in bug #149841.
+
+*layman-1.0.8 (23 Sep 2006)
+
+  23 Sep 2006; <wrobel@gentoo.org> -layman-1.0.7.ebuild,
+  +layman-1.0.8.ebuild:
+  Added cvs support to layman. Update to 1.0.8
+
+  18 Sep 2006; Ferris McCormick <fmccor@gentoo.org> layman-1.0.6.ebuild,
+  layman-1.0.7.ebuild:
+  layman-1.0.6 stable on sparc --- Bug #144228 --- and add ~sparc keyword to
+  1.0.7.
+
+  14 Sep 2006; Joshua Nichols <nichoj@gentoo.org> layman-1.0.7.ebuild:
+  Added ~ppc64
+
+*layman-1.0.7 (06 Sep 2006)
+
+  06 Sep 2006; <wrobel@gentoo.org> -layman-1.0.0.ebuild,
+  -layman-1.0.4.ebuild, +layman-1.0.7.ebuild:
+  Update to layman-1.0.7
+
+  23 Aug 2006; <malc@gentoo.org> layman-1.0.6.ebuild:
+  Stable on amd64
+
+  22 Aug 2006; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  layman-1.0.6.ebuild:
+  stable on ppc (Bug #144228)
+
+  22 Aug 2006; Ferris McCormick <fmccor@gentoo.org> layman-1.0.6.ebuild:
+  Add ~sparc keyword.  Seems fine.
+
+  22 Aug 2006; Thomas Cort <tcort@gentoo.org> layman-1.0.6.ebuild:
+  Stable on alpha wrt Bug #144228.
+
+  22 Aug 2006; Alastair Tse <liquidx@gentoo.org> layman-1.0.6.ebuild:
+  stable for x86
+
+*layman-1.0.6 (25 Jul 2006)
+
+  25 Jul 2006; <wrobel@gentoo.org> -layman-1.0.5.ebuild,
+  +layman-1.0.6.ebuild:
+  layman-1.0.6 in response to bug #141691
+
+*layman-1.0.5 (24 Jul 2006)
+
+  24 Jul 2006; <wrobel@gentoo.org> -layman-1.0.2.ebuild,
+  +layman-1.0.5.ebuild:
+  Added layman-1.0.5 to the tree.
+
+*layman-1.0.4 (28 Jun 2006)
+
+  28 Jun 2006; <wrobel@gentoo.org> -layman-1.0.3.ebuild,
+  +layman-1.0.4.ebuild:
+  Layman-1.0.4 fixes the relocation check.
+
+  27 Jun 2006; <wrobel@gentoo.org> files/digest-layman-1.0.3, Manifest:
+  Weird. Digest needed fixing again.
+
+*layman-1.0.3 (27 Jun 2006)
+
+  27 Jun 2006; <wrobel@gentoo.org> +layman-1.0.3.ebuild:
+  Added layman-1.0.3. Features bzr support, improved handling of global list
+  fetching, overlay relocation, overlay listing
+
+  05 Jun 2006; <wrobel@gentoo.org> files/digest-layman-1.0.2, Manifest:
+  Fixed digest and manifest
+
+  05 Jun 2006; <wrobel@gentoo.org> layman-1.0.2.ebuild:
+  Readded ia64.
+
+  05 Jun 2006; <wrobel@gentoo.org> layman-1.0.2.ebuild:
+  Removed git dependency.
+
+*layman-1.0.2 (05 Jun 2006)
+
+  05 Jun 2006; <wrobel@gentoo.org> -layman-1.0.1.ebuild,
+  +layman-1.0.2.ebuild:
+  Corrected dependency on git and added checks for presence of necessary
+  binaries. Version 1.0.2
+
+*layman-1.0.1 (05 Jun 2006)
+
+  05 Jun 2006; <wrobel@gentoo.org> -layman-0.9.2.ebuild,
+  +layman-1.0.1.ebuild:
+  Added git overlay support to layman (contributed by genstef@gentoo.org).
+  Update to version 1.0.1
+
+*layman-1.0.0 (27 May 2006)
+
+  27 May 2006; <wrobel@gentoo.org> +layman-1.0.0.ebuild:
+  Added multiple list support to layman. Location of central list changed.
+  Version bump to 1.0.0
+
+  12 May 2006; Thomas Cort <tcort@gentoo.org> layman-0.9.2.ebuild:
+  Added ~amd64 wrt Bug #132283.
+
+  01 May 2006; Tobias Scherbaum <dertobi123@gentoo.org> layman-0.9.2.ebuild:
+  Added to ~ppc
+
+  01 May 2006; <wrobel@gentoo.org> layman-0.9.2.ebuild:
+  Accidentally dropped keywords ~alpha ~ia64. Added back in.
+
+*layman-0.9.2 (01 May 2006)
+
+  01 May 2006; <wrobel@gentoo.org> -layman-0.9.ebuild, -layman-0.9.1.ebuild,
+  +layman-0.9.2.ebuild:
+  Update layman to 0.9.2. Bugfix release that fixes testing and the
+  postinstall instructions.
+
+*layman-0.9.1 (14 Apr 2006)
+
+  14 Apr 2006; <wrobel@gentoo.org> +layman-0.9.1.ebuild:
+  Added support for packaged overlays without category
+
+  23 Mar 2006; Aron Griffis <agriffis@gentoo.org> layman-0.9.ebuild:
+  Mark 0.9 ~ia64
+
+  23 Mar 2006; Fernando J. Pereda <ferdy@gentoo.org> layman-0.9.ebuild:
+  Add ~alpha. Tested by Thomas Cort <tcort@cs.ubishops.ca>
+
+*layman-0.9 (12 Mar 2006)
+
+  12 Mar 2006; <wrobel@gentoo.org> +metadata.xml, +layman-0.9.ebuild:
+  Added layman-0.9 to the tree
+

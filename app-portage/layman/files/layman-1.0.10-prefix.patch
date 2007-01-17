@@ -1,0 +1,52 @@
+--- layman/config.py
++++ layman/config.py
+@@ -55,17 +55,18 @@
+         ['cache', 'config', 'config_dir', 'local_list', 'make_conf', 'nocheck', 'overlays', 'proxy', 'quietness', 'storage']
+         '''
+ 
+-        self.defaults = {'config_dir': '/etc/layman',
+-                         'config'    : '/etc/layman/layman.cfg',
+-                         'storage'   : '/usr/portage/local/layman',
++        self.defaults = {'config_dir': '@GENTOO_PORTAGE_EPREFIX@/etc/layman',
++                         'config'    : '@GENTOO_PORTAGE_EPREFIX@/etc/layman/layman.cfg',
++                         'storage'   : '@GENTOO_PORTAGE_EPREFIX@/usr/portage/local/layman',
+                          'cache'     : '%(storage)s/cache',
+                          'local_list': '%(storage)s/overlays.xml',
+                          'make_conf' : '%(storage)s/make.conf',
+                          'nocheck'   : 'no',
+                          'proxy'     : '',
+                          'overlays'  :
+-                         'http://www.gentoo.org/proj/en/overlays/layman-global.'
+-                         'txt',}
++                         'http://www.gentoo.org/proj/en/gentoo-alt/prefix/'
++						 'layman-prefix.txt',
++                         }
+ 
+ 
+         self.parser = OptionParser(
+--- etc/layman.cfg
++++ etc/layman.cfg
+@@ -3,12 +3,12 @@
+ #-----------------------------------------------------------
+ # Path to the config directory
+ 
+-config_dir: /etc/layman
++config_dir: @GENTOO_PORTAGE_EPREFIX@/etc/layman
+ 
+ #-----------------------------------------------------------
+ # Defines the directory where overlays should be installed
+ 
+-storage   : /usr/portage/local/layman
++storage   : @GENTOO_PORTAGE_EPREFIX@/usr/portage/local/layman
+ 
+ #-----------------------------------------------------------
+ # Remote overlay lists will be stored here
+@@ -36,7 +36,7 @@
+ #            http://mydomain.org/my-layman-list.xml
+ #            file:///usr/portage/local/layman/my-list.xml
+ 
+-overlays  : http://www.gentoo.org/proj/en/overlays/layman-global.txt
++overlays  : http://www.gentoo.org/proj/en/gentoo-alt/prefix/layman-prefix.txt
+ 
+ #-----------------------------------------------------------
+ # Proxy support
