@@ -1,0 +1,49 @@
+# ChangeLog for app-arch/lzop
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzop/ChangeLog,v 1.18 2006/11/27 22:46:28 drizzt Exp $
+
+  27 Nov 2006; Timothy Redaelli <drizzt@gentoo.org> lzop-1.02_rc1-r1.ebuild:
+  Added ~x86-fbsd keyword.
+
+*lzop-1.02_rc1-r1 (13 Nov 2005)
+
+  13 Nov 2005; Daniel Black <dragonheart@gentoo.org> +metadata.xml,
+  lzop-1.01.ebuild, lzop-1.02_rc1.ebuild, +lzop-1.02_rc1-r1.ebuild:
+  fix dependencies for a nice easy lzo 1->2 transition - bug #105637 sort of
+  releated.
+
+  14 Sep 2005; Fabian Groffen <grobian@gentoo.org> lzop-1.02_rc1.ebuild:
+  Marking ~ppc-macos (bug #105845)
+
+*lzop-1.02_rc1 (11 Sep 2005)
+
+  11 Sep 2005; Daniel Black <dragonheart@gentoo.org> +lzop-1.02_rc1.ebuild:
+  version bump
+
+  17 Dec 2004; Markus Rothe <corsair@gentoo.org> lzop-1.01.ebuild:
+  Stable on ppc64
+
+  17 Nov 2004; Mike Frysinger <vapier@gentoo.org> lzop-1.01.ebuild:
+  Use make install DESTDIR.
+
+  15 Nov 2004; Markus Rothe <corsair@gentoo.org> lzop-1.01.ebuild:
+  Marked ~ppc64; bug #71166
+
+  07 Aug 2004; Tom Martin <slarti@gentoo.org> lzop-1.01.ebuild:
+  Typo in DESCRIPTION: reat-time -> real-time. Bug 59717.
+
+*lzop-1.01 (11 Sep 2003)
+
+  11 Sep 2003; Mike Frysinger <vapier@gentoo.org> :
+  Version bump to fix gcc3 compile bugs #28334.
+
+*lzop-1.00,  (03 May 2002)
+
+  14 Aug 2002; Pieter Van den Abeele <pvdabeel@gentoo.org> :
+  Added ppc keyword
+
+  25 Jul 2002; George Shapovalov <george@gentoo.org> lzop-1.00.ebuild :
+  fixed sandbox violaion
+
+  03 May 2002; George Shapovalov <george@gentoo.org> lzop-1.00.ebuild, files/digest-lzop-1.00 :
+  Initial release
