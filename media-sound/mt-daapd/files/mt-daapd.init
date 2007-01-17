@@ -1,0 +1,23 @@
+#!/sbin/runscript
+
+depend() {
+	need net
+	provide daap
+}
+
+start() {
+	ebegin "Starting mt-daapd DAAP server"
+
+        start-stop-daemon --start --quiet --pidfile /var/run/mt-daapd.pid \
+                --startas /usr/sbin/mt-daapd
+        eend $? "Failed to start mt-daapd"
+}
+
+stop() {
+	ebegin "Stopping mt-daapd DAAP server"
+        start-stop-daemon --stop --quiet --pidfile /var/run/mt-daapd.pid
+        eend $? "Failed to stop mt-daapd"
+
+        # clean stale pidfile
+        [ -f /var/run/mt-daapd.pid ] && rm -f /var/run/mt-daapd.pid
+}

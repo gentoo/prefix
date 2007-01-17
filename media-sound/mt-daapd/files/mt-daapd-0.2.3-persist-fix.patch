@@ -1,0 +1,28 @@
+Index: mt-daapd-0.2.3/src/rend-howl.c
+===================================================================
+--- mt-daapd-0.2.3.orig/src/rend-howl.c
++++ mt-daapd-0.2.3/src/rend-howl.c
+@@ -156,8 +156,8 @@ void rend_callback(void) {
+ 					NULL, /* domain */
+ 					NULL, /* host */
+ 					msg.port,
+-					"\034Database ID=beddab1edeadbea7", /* text record */
+-					29, /* text record length */
++					"\011txtvers=1\034Database ID=beddab1edeadbea7", /* text record */
++					39, /* text record length */
+ 					rend_howl_reply,
+ 					NULL,
+ 					&rend_oid)) != SW_OKAY) {
+Index: mt-daapd-0.2.3/src/rend-posix.c
+===================================================================
+--- mt-daapd-0.2.3.orig/src/rend-posix.c
++++ mt-daapd-0.2.3/src/rend-posix.c
+@@ -414,7 +414,7 @@ void rend_callback(void) {
+     switch(msg.cmd) {
+     case REND_MSG_TYPE_REGISTER:
+ 	DPRINTF(E_DBG,L_REND,"Registering %s.%s (%d)\n",msg.name,msg.type,msg.port);
+-	RegisterOneService(msg.name,msg.type,"local.","\034Database ID=beddab1edeadbea7",29,
++	RegisterOneService(msg.name,msg.type,"local.","\011txtvers=1\034Database ID=beddab1edeadbea7",39,
+ 			   msg.port);
+ 	rend_send_response(0); /* success */
+ 	break;

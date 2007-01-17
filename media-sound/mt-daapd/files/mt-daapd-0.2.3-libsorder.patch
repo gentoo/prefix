@@ -1,0 +1,134 @@
+This patch make sure that the libraries to link against are specified at the
+end of the linking commandline, instead of before any file, as that would
+ignore them altogether while using --as-needed. It make sure the libraries are
+passed in a more autotool-compliant way, too.
+
+Index: mt-daapd-0.2.3/configure.in
+===================================================================
+--- mt-daapd-0.2.3.orig/configure.in
++++ mt-daapd-0.2.3/configure.in
+@@ -20,8 +20,9 @@ STATIC_LIBS=no
+ CPPFLAGS="${CPPFLAGS} -g"
+ 
+ dnl fix freebsd's broken (?) libpthread
+-AC_CHECK_LIB(c_r,pthread_creat,LDFLAGS="${LDFLAGS} -lc_r", [
+-  AC_CHECK_LIB(pthread,pthread_create,LDFLAGS="${LDFLAGS} -lpthread") ])
++AC_CHECK_LIB(c_r,pthread_creat,THREAD_LIBS="-lc_r", [
++  AC_CHECK_LIB(pthread,pthread_create,THREAD_LIBS="-lpthread") ])
++AC_SUBST(THREAD_LIBS)
+ 
+ AC_ARG_ENABLE(debug,[  --enable-debug          Enable debugging features],
+ 		       CPPFLAGS="${CPPFLAGS} -Wall")
+@@ -35,17 +36,19 @@ AC_ARG_ENABLE(mdns,[  --enable-mdns     
+ 		      esac ])
+ 
+ AC_ARG_ENABLE(efence,[  --enable-efence         Enable electric fence],
+-			LDFLAGS="${LDFLAGS} -lefence")
++			EFENCE_LIBS="-lefence")
++AC_SUBST(EFENCE_LIBS)
+ AC_ARG_ENABLE(nslu2,[  --enable-nslu2          Build for NSLU2/uNSLUng], 
+ 		       CFLAGS="${CFLAGS} -DNSLU2")
+ 
+ AC_ARG_ENABLE(howl,[  --enable-howl       Use howl 0.9.2 or later],
+ 		      [ case "${enableval}" in
+-                        yes) rend_howl=true; rend_posix=false; LDFLAGS="${LDFLAGS} -lhowl";
++                        yes) rend_howl=true; rend_posix=false; HOWL_LIBS="-lhowl";
+ 			CPPFLAGS="${CPPFLAGS} -DWITH_HOWL";;
+ 		        no)  rend_howl=false;;
+ 		        *)   AC_MSG_ERROR(bad value ${enableval} for --enable-howl);;
+ 		      esac ])
++AC_SUBST(HOWL_LIBS)
+ 
+ AC_ARG_ENABLE(oggvorbis,[  --enable-oggvorbis      Enable Ogg/Vorbis support],
+                            use_oggvorbis=true;
+@@ -72,7 +75,7 @@ case $host in
+ 	CPPFLAGS="$CPPFLAGS -DNOT_HAVE_SA_LEN -D_XPG4_2"
+ 	CPPFLAGS="$CPPFLAGS -D__EXTENSIONS__ -DHAVE_BROKEN_RECVIF_NAME"
+ 	CPPFLAGS="$CPPFLAGS -D_POSIX_PTHREAD_SEMANTICS"
+-	LDFLAGS="$LDFLAGS -lnsl -lsocket";;	
++	EXTRA_LIBS="$EXTRA_LIBS -lnsl -lsocket";;
+ *freebsd*)
+ 	CPPFLAGS="$CPPFLAGS -DFREEBSD";;
+ *linux*)
+@@ -88,6 +91,8 @@ case $host in
+ 	AM_CONDITIONAL(COND_REND_POSIX,false);;
+ esac
+ 
++AC_SUBST(EXTRA_LIBS)
++
+ dnl Checks for libraries.
+ AC_ARG_WITH(static-libs,
+ 	[--with-static-libs[[=DIR]]            use static libs in DIR],[
+@@ -144,12 +149,13 @@ AC_CHECK_HEADERS(gdbm.h,, [
+ AC_CHECK_LIB(gdbm,gdbm_open,echo "Have gdbm", echo "Must have gdbm";exit)
+ 
+ if test "$STATIC_LIBS" != "no"; then
+-  LDFLAGS="${LDFLAGS} ${STATIC_LIBS}/libgdbm.a"
++  GDBM_LIBS="${STATIC_LIBS}/libgdbm.a"
+   echo "Adding static libgdbm"
+ else
+-  LDFLAGS="${LDFLAGS} -lgdbm"
++  GDBM_LIBS="-lgdbm"
+   echo "Adding dynamic libgdbm"
+ fi
++AC_SUBST(GDBM_LIBS)
+ 
+ AC_CHECK_HEADERS(id3tag.h,, [
+  AC_MSG_ERROR([id3tag.h not found... try --with-id3tag=dir])])
+@@ -160,12 +166,13 @@ CFLAGS="$CFLAGS -lz"
+ AC_CHECK_LIB(id3tag,id3_file_open,echo "Have id3tag",echo "Must have libid3tag";exit)
+ 
+ if test "$STATIC_LIBS" != "no"; then
+-  LDFLAGS="${LDFLAGS} ${STATIC_LIBS}/libid3tag.a -lz"
++  ID3_LIBS="${STATIC_LIBS}/libid3tag.a -lz"
+   echo "Adding static libid3tag"
+ else
+-  LDFLAGS="${LDFLAGS} -lid3tag -lz"
++  ID3_LIBS="-lid3tag -lz"
+   echo "Adding dynamic libid3tag"
+ fi
++AC_SUBST([ID3_LIBS])
+ CFLAGS=$oldcflags
+ 
+ if test x$use_oggvorbis = xtrue; then
+@@ -174,22 +181,23 @@ if test x$use_oggvorbis = xtrue; then
+   AC_CHECK_LIB(ogg,ogg_sync_init,echo "Have ogg",echo "Must have libogg for Ogg/Vorbis support";exit)
+ 
+   if test x"$STATIC_LIBS" != x"no"; then
+-    LDFLAGS="${LDFLAGS} ${STATIC_LIBS}/libogg.a"
++    OGG_LIBS="${STATIC_LIBS}/libogg.a"
+     echo "Adding static libogg"
+   else
+-    LDFLAGS="${LDFLAGS} -logg"
++    OGG_LIBS="-logg"
+     echo "Adding dynamic libogg"
+   fi
++  AC_SUBST(OGG_LIBS)
+ 
+   AC_CHECK_HEADERS(vorbis/codec.h,, [
+    AC_MSG_ERROR([vorbis/codec.h not found... Must have libvorbis installed for Ogg/Vorbis support])])
+   AC_CHECK_LIB(vorbis,vorbis_info_init,echo "Have vorbis",echo "Must have libvorbis for Ogg/Vorbis support";exit)
+ 
+   if test x"$STATIC_LIBS" != x"no"; then
+-    LDFLAGS="${LDFLAGS} ${STATIC_LIBS}/libvorbis.a"
++    OGG_LIBS="${OGG_LIBS} ${STATIC_LIBS}/libvorbis.a"
+     echo "Adding static libvorbis"
+   else
+-    LDFLAGS="${LDFLAGS} -lvorbis"
++    OGG_LIBS="${OGG_LIBS} -lvorbis"
+     echo "Adding dynamic libvorbis"
+   fi
+ fi
+Index: mt-daapd-0.2.3/src/Makefile.am
+===================================================================
+--- mt-daapd-0.2.3.orig/src/Makefile.am
++++ mt-daapd-0.2.3/src/Makefile.am
+@@ -29,6 +29,8 @@ mt_daapd_SOURCES = main.c daapd.h rend.h
+ 	rend-unix.h lexer.l parser.y strcasestr.c strcasestr.h strsep.c \
+ 	redblack.c redblack.h dynamic-art.c dynamic-art.h query.c query.h \
+ 	$(PRENDSRC) $(ORENDSRC) $(HRENDSRC) $(OGGVORBISSRC)
++mt_daapd_LDADD = $(GDBM_LIBS) $(ID3_LIBS) $(OGG_LIBS) $(THREAD_LIBS) \
++	$(EFENCE_LIBS) $(HOWL_LIBS) $(EXTRA_LIBS)
+ 
+ EXTRA_DIST = mDNS.c mDNSClientAPI.h mDNSDebug.h mDNSPosix.c \
+ 	mDNSUNP.c mDNSPlatformFunctions.h mDNSPosix.h mDNSUNP.h \
