@@ -1,0 +1,10 @@
+--- src/fit.c.orig	2004-04-09 03:12:49.249588328 +0200
++++ src/fit.c	2004-04-09 03:11:56.805561032 +0200
+@@ -1685,6 +1685,7 @@
+     VA_START(args, fmt);
+ # if defined(HAVE_VFPRINTF) || _LIBC
+     vfprintf(STANDARD, fmt, args);
++    VA_START(args, fmt);
+     vfprintf(log_f, fmt, args);
+ # else
+     _doprnt(fmt, args, STANDARD);

@@ -1,0 +1,209 @@
+# ChangeLog for sci-visualization/gnuplot
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.7 2006/11/13 02:55:13 dberkholz Exp $
+
+  13 Nov 2006; Donnie Berkholz <dberkholz@gentoo.org>;
+  gnuplot-4.2_rc1.ebuild:
+  First try at separating RDEPEND and DEPEND; add pkgconfig to DEPEND.
+
+  13 Nov 2006; Donnie Berkholz <dberkholz@gentoo.org>;
+  gnuplot-4.2_rc1.ebuild:
+  (#154673) Properly support wxGTK rather than autodetecting it.
+
+*gnuplot-4.2_rc1 (10 Oct 2006)
+
+  10 Oct 2006; Grant Goodyear <g2boojum@gentoo.org> gnuplot-4.0-r1.ebuild,
+  +gnuplot-4.2_rc1.ebuild:
+  Added 4.2 rc (masked) and added addwrite statements to
+  close bug #82940.
+
+  12 Jul 2006; Grant Goodyear <g2boojum@gentoo.org> ChangeLog:
+  Removed 3.x gnuplot builds.
+
+  10 Mar 2006; Aron Griffis <agriffis@gentoo.org> gnuplot-4.0-r1.ebuild:
+  Mark 4.0-r1 stable on ia64
+
+  29 Jan 2006; Marcus D. Hanwell <cryos@gentoo.org>
+  +files/gnuplot-3.8j-amd64.diff, +files/pdflib-6-compat.patch,
+  +files/header-order.patch, +metadata.xml, +gnuplot-3.8j.ebuild,
+  +gnuplot-3.8j-r1.ebuild, +gnuplot-4.0-r1.ebuild:
+  Moved from media-gfx/gnuplot to sci-visualization/gnuplot.
+
+  22 Jan 2006; Marius Mauch <genone@gentoo.org> gnuplot-3.8j.ebuild,
+  gnuplot-3.8j-r1.ebuild, gnuplot-4.0-r1.ebuild:
+  Replacing pdflib use flag with pdf use flag
+
+  13 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  gnuplot-4.0-r1.ebuild:
+  Add modular X dependencies.
+
+  24 May 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +files/pdflib-6-compat.patch, gnuplot-4.0-r1.ebuild:
+  (#86008) Add pdflib-6-compat.patch to fix compilation against >=pdflib-6.
+  PDF_open_fp suddenly disappeared, so switch to PDF_open_file.
+
+  30 Mar 2005; Michael Hanselmann <hansmi@gentoo.org> gnuplot-4.0-r1.ebuild:
+  Stable on ppc.
+
+  14 Mar 2005; Gustavo Zacarias <gustavoz@gentoo.org> gnuplot-4.0-r1.ebuild:
+  Stable on sparc
+
+  02 Mar 2005; Lina Pezzella <j4rg0n@gentoo.org> gnuplot-3.8j.ebuild,
+  gnuplot-4.0-r1.ebuild:
+  Stable ppc-macos
+
+  15 Feb 2005; Markus Rothe <corsair@gentoo.org> gnuplot-4.0-r1.ebuild:
+  Stable on ppc64
+
+  06 Feb 2005; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  gnuplot-4.0-r1.ebuild:
+  Added ~ppc to KEYWORDS (passes 'maketest' unlike 3.8j, planning
+  to stabilize soon)
+
+  07 Feb 2005; Bryan Østergaard <kloeri@gentoo.org> gnuplot-4.0-r1.ebuild:
+  Stable on alpha.
+
+  05 Feb 2005; Steve Arnold <nerdboy@gentoo.org> gnuplot-4.0-r1.ebuild,
+  -gnuplot-4.0.ebuild:
+  bumped to x86 and amd64 (both tested) and removed 4.0 ebuild as superfluous
+
+  02 Feb 2005; Lina Pezzella <j4rg0n@gentoo.org> gnuplot-3.8j.ebuild:
+  Unstable ppc-macos
+
+  30 Jan 2005; Markus Rothe <corsair@gentoo.org> gnuplot-4.0-r1.ebuild:
+  Added ~ppc64 to KEYWORDS
+
+  02 Jan 2005; Lina Pezzella <j4rg0n@gentoo.org> gnuplot-4.0-r1.ebuild:
+  Unstable ppc-macos.
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  20 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> gnuplot-4.0-r1.ebuild:
+  Support for emacs. Thanks to P.L.Hayes <paul@wolfbone.ath.cx>; bug #66765.
+
+  17 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> gnuplot-4.0-r1.ebuild:
+  Detects XEmacs correctly; bug #66765.
+
+  05 Oct 2004; Jason Wever <weeve@gentoo.org> gnuplot-4.0-r1.ebuild:
+  Added ~sparc keyword.
+
+*gnuplot-4.0-r1 (07 Aug 2004)
+
+  07 Aug 2004; Olivier Fisette <ribosome@gentoo.org> gnuplot-4.0-r1.ebuild:
+  Moved help and demo files to "/usr/share/gnuplot".
+  Added gnuplot tutorial.
+  Added documentation and files related to PostScript
+  creation. (Fixes bug #41729.)
+  Provided access to /dev/svga from inside the sandbox 
+  environment. (Fixes bug #41711.)
+
+  31 Jul 2004; Tom Gall <tgall@gentoo.org> gnuplot-3.8j.ebuild:
+  stable on ppc64, bug #57147
+
+  02 Jul 2004; Grant Goodyear <g2boojum@gentoo.org> gnuplot-4.0.ebuild:
+  Replaced specific dep on xemacs to virtual/xemacs.
+
+  29 Jun 2004; Danny van Dyk <kugelfang@gentoo.org> gnuplot-4.0.ebuild:
+  Marked ~amd64.
+
+  07 Jun 2004; Aron Griffis <agriffis@gentoo.org> gnuplot-3.8j-r1.ebuild,
+  gnuplot-3.8j.ebuild, gnuplot-4.0.ebuild:
+  Fix use invocation
+
+  05 May 2004; Patrick Kursawe <phosphan@gentoo.org> gnuplot-4.0.ebuild,
+  files/header-order.patch:
+  Added a patch for bug #49263 and corrected the header.
+
+  05 May 2004; Bryan Østergaard <kloeri@gentoo.org> gnuplot-3.8j.ebuild:
+  Stable on alpha.
+
+*gnuplot-4.0 (27 Apr 2004)
+
+  27 Apr 2004; Grant Goodyear <g2boojum@gentoo.org> +gnuplot-4.0.ebuild:
+  New version.  Thanks to Frank Hellmuth and Tsyganenko.
+
+  27 Apr 2004; Aron Griffis <agriffis@gentoo.org> gnuplot-3.8j-r1.ebuild:
+  Add inherit eutils
+
+*gnuplot-3.8j-r1 (08 Apr 2004)
+
+  08 Apr 2004; Travis Tilley <lv@gentoo.org> gnuplot-3.8j-r1.ebuild,
+  files/gnuplot-3.8j-amd64.diff:
+  added a patch to fix a segfault on amd64 - see bug #46981 for more info
+
+  06 Apr 2004; Aron Griffis <agriffis@gentoo.org> gnuplot-3.8j.ebuild:
+  Stable on ia64
+
+  09 Feb 2004; <augustus@gentoo.org> gnuplot-3.8j.ebuild:
+  Added ~amd64 to keywords.
+
+*gnuplot-3.8j (08 Feb 2004)
+
+  08 Feb 2004; Grant Goodyear <g2boojum@gentoo.org> gnuplot-3.7.1-r3.ebuild,
+  gnuplot-3.7.2.ebuild, gnuplot-3.7.3-r1.ebuild, gnuplot-3.7.3.ebuild,
+  gnuplot-3.8j.ebuild, metadata.xml:
+  Old versions fail to build due to some libpng setjmp weirdness that
+  I don't understand.  I've added a new version that builds just fine
+  (on x86, at least), and is much less out-of-date.  I've also removed
+  the versions that don't build.
+
+  14 Dec 2003; Chuck Short <zul@gentoo.org> gnuplot-3.7.3-r1.ebuild:
+  Added amd64 keyword, closes #35807.
+
+*gnuplot-3.7.3-r1 (16 Oct 2003)
+
+  16 Oct 2003; Mamoru KOMACHI <usata@gentoo.org> gnuplot-3.7.3-r1.ebuild:
+  Added doc and pdflib IUSE flags. doc IUSE flag is suggested by Thomas
+  Eckert <eckert.thomas@gmx.net> in Bug #31219
+
+  25 Aug 2003; Jason Wever <weeve@gentoo.org> gnuplot-3.7.3.ebuild:
+  Marked stable for sparc.
+
+*gnuplot-3.7.3 (09 Mar 2003)
+
+  10 Mar 2003; Aron Griffis <agriffis@gentoo.org> gnuplot-3.7.3.ebuild:
+  Mark stable on alpha
+
+  09 Mar 2003; Daniel Ahlberg <aliz@gentoo.org> :
+  Version bump.
+
+*gnuplot-3.7.2 (06 Nov 2002)
+
+  06 Nov 2002; Arcady Genkin <agenkin@gentoo.org> gnuplot-3.7.2.ebuild :
+
+  Version bump.
+
+*gnuplot-3.7.1-r3 (12 Apr 2002)
+
+  10 Feb 2003; Peter Johanson <latexer@gentoo.org> gnuplot-3.7.1-r3.ebuild :
+  Added ~alpha to KEYWORDS.
+
+  19 Sep 2002; Owen Stampflee <owen@gentoo.org> :
+  Added PPC to KEYWORDS.
+
+  07 Sep 2002; George Shapovalov <george@gentoo.org> gnuplot-3.7.1-r3.ebuild :
+
+  corrected LICENSE (it has its own, not GPL-compatible)
+  corrected home page, added RDEPEND and some docs
+
+  12 Apr 2002; Seemant Kulleen <seemant@gentoo.org> gnuplot-3.7.1-r3.ebuild :
+
+  Compile against newer libpng
+
+*gnuplot-3.7.1-r2 (12 Feb 2002)
+
+  12 Feb 2002; T.Neidt <tod@gentoo.org> ChangeLog, gnuplot-3.7.1-r2.ebuild :
+  
+  Added gnu plotutils support for gnuplot.  Dependency and configuration for
+  plotutils requires 'plotutils' to be in the USE variable.
+  
+*gnuplot-3.7.1-r1 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
