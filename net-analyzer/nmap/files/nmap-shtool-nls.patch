@@ -1,0 +1,22 @@
+--- shtool.orig	2006-02-03 22:49:06.000000000 -0500
++++ shtool	2006-02-03 22:49:28.000000000 -0500
+@@ -59,6 +59,19 @@
+ ##    path       Deal with program paths
+ ##
+ 
++# NLS nuisances.
++for as_var in \
++  LANG LANGUAGE LC_ADDRESS LC_ALL LC_COLLATE LC_CTYPE LC_IDENTIFICATION \
++  LC_MEASUREMENT LC_MESSAGES LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER \
++  LC_TELEPHONE LC_TIME
++do
++  if (set +x; test -z "`(eval $as_var=C; export $as_var) 2>&1`"); then
++    eval $as_var=C; export $as_var
++  else
++    unset $as_var
++  fi
++done
++
+ if [ $# -eq 0 ]; then
+     echo "$0:Error: invalid command line" 1>&2
+     echo "$0:Hint:  run \`$0 -h' for usage" 1>&2

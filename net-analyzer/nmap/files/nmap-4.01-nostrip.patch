@@ -1,0 +1,22 @@
+Index: nmap-4.01/Makefile.in
+===================================================================
+--- nmap-4.01.orig/Makefile.in
++++ nmap-4.01/Makefile.in
+@@ -144,7 +144,7 @@ depend:
+ 
+ install-nmap: $(TARGET)
+ 	$(SHTOOL) mkdir -f -p -m 755 $(DESTDIR)$(bindir) $(DESTDIR)$(mandir)/man1 $(DESTDIR)$(nmapdatadir)
+-	$(INSTALL) -c -m 755 -s nmap $(DESTDIR)$(bindir)/nmap
++	$(INSTALL) -c -m 755 nmap $(DESTDIR)$(bindir)/nmap
+ 	$(INSTALL) -c -m 644 docs/$(TARGET).1 $(DESTDIR)$(mandir)/man1/$(TARGET).1
+ 	$(INSTALL) -c -m 644 docs/nmap.xsl $(DESTDIR)$(nmapdatadir)/
+ 	$(INSTALL) -c -m 644 docs/nmap.dtd $(DESTDIR)$(nmapdatadir)/
+@@ -158,7 +158,7 @@ install-nmap: $(TARGET)
+ install-nmapfe: $(TARGETNMAPFE)
+ 	$(SHTOOL) mkdir -f -p -m 755 $(DESTDIR)$(bindir) $(DESTDIR)$(mandir)/man1 $(DESTDIR)$(nmapdatadir) $(DESTDIR)$(deskdir)
+ 	@echo "If the next command fails -- you cannot use the X front end"
+-	-test -f nmapfe/nmapfe && $(INSTALL) -c -m 755 -s nmapfe/nmapfe $(DESTDIR)$(bindir)/nmapfe && rm -f $(DESTDIR)$(bindir)/xnmap && $(SHTOOL) mkln -f -s $(DESTDIR)$(bindir)/nmapfe $(DESTDIR)$(bindir)/xnmap && $(INSTALL) -c -m 644 nmapfe.desktop $(DESTDIR)$(deskdir)/nmapfe.desktop && $(INSTALL) -c -m 644 docs/nmapfe.1 $(DESTDIR)$(mandir)/man1/nmapfe.1 && $(INSTALL) -c -m 644 docs/xnmap.1 $(DESTDIR)$(mandir)/man1/xnmap.1
++	-test -f nmapfe/nmapfe && $(INSTALL) -c -m 755 nmapfe/nmapfe $(DESTDIR)$(bindir)/nmapfe && rm -f $(DESTDIR)$(bindir)/xnmap && $(SHTOOL) mkln -f -s $(DESTDIR)$(bindir)/nmapfe $(DESTDIR)$(bindir)/xnmap && $(INSTALL) -c -m 644 nmapfe.desktop $(DESTDIR)$(deskdir)/nmapfe.desktop && $(INSTALL) -c -m 644 docs/nmapfe.1 $(DESTDIR)$(mandir)/man1/nmapfe.1 && $(INSTALL) -c -m 644 docs/xnmap.1 $(DESTDIR)$(mandir)/man1/xnmap.1
+ 
+ install: install-nmap $(INSTALLNMAPFE)
+ 
