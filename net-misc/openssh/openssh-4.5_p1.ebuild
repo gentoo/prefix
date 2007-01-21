@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.5_p1.ebuild,v 1.5 2006/12/07 08:44:26 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.5_p1.ebuild,v 1.13 2007/01/08 19:36:38 mcummings Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ PARCH=${P/_/}
 X509_PATCH="${PARCH}+x509-5.5.2.diff.gz"
 SECURID_PATCH="${PARCH/4.5/4.4}+SecurID_v1.3.2.patch"
 LDAP_PATCH="${PARCH/-4.5p1/-lpk-4.4p1}-0.3.7.patch"
-HPN_PATCH="${PARCH/4.5/4.4}-hpn12v13.diff.gz"
+HPN_PATCH="${PARCH}-hpn12v14.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.com/"
@@ -71,7 +71,7 @@ src_unpack() {
 	cd "${S}"
 
 	sed -i \
-		-e '/_PATH_XAUTH/s:/usr/X11R6/bin/xauth:/usr/bin/xauth:' \
+		-e "/_PATH_XAUTH/s:/usr/X11R6/bin/xauth:${EPREFIX}/usr/bin/xauth:" \
 		pathnames.h || die
 
 	use X509 && epatch "${DISTDIR}"/${X509_PATCH} "${FILESDIR}"/${PN}-4.4_p1-x509-hpn-glue.patch
@@ -122,6 +122,7 @@ src_compile() {
 		--datadir="${EPREFIX}"/usr/share/openssh \
 		--disable-suid-ssh \
 		--with-privsep-path="${EPREFIX}"/var/empty \
+		--with-pid-dir="${EPREFIX}"/var/run \
 		--with-privsep-user=sshd \
 		--with-md5-passwords \
 		$(use_with ldap) \
