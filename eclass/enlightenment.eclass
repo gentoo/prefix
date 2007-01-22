@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/enlightenment.eclass,v 1.69 2006/12/07 17:23:49 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/enlightenment.eclass,v 1.70 2007/01/18 02:09:35 vapier Exp $
 #
 # Author: vapier@gentoo.org
 
@@ -26,8 +26,6 @@ inherit eutils libtool
 #	KEYWORDS    EKEY_STATE
 #	SRC_URI     EURI_STATE
 #	S           EURI_STATE
-
-EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_postinst
 
 #E17_DEFAULT_CVS="cvs.sourceforge.net:/cvsroot/enlightenment"
 E17_DEFAULT_CVS="anoncvs.enlightenment.org:/var/cvs/e"
@@ -158,8 +156,8 @@ enlightenment_src_compile() {
 }
 
 enlightenment_src_install() {
-	make install DESTDIR="${D}" || enlightenment_die
-	find "${D}" -name CVS -type d -exec rm -rf '{}' \; 2>/dev/null
+	emake install DESTDIR="${D}" || enlightenment_die
+	find "${ED}" -name CVS -type d -exec rm -rf '{}' \; 2>/dev/null
 	dodoc AUTHORS ChangeLog NEWS README TODO ${EDOCS}
 	use doc && [[ -d doc ]] && dohtml -r doc/*
 }
@@ -167,3 +165,5 @@ enlightenment_src_install() {
 enlightenment_pkg_postinst() {
 	enlightenment_warning_msg
 }
+
+EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_postinst

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vmware.eclass,v 1.20 2007/01/05 18:11:58 ikelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vmware.eclass,v 1.21 2007/01/11 21:12:08 wolf31o2 Exp $
 
 # This eclass is for all vmware-* ebuilds in the tree and should contain all
 # of the common components across the multiple packages.
@@ -372,7 +372,12 @@ vmware_pkg_postinst() {
 	einfo "For VMware Add-Ons just visit"
 	einfo "http://www.vmware.com/download/downloadaddons.html"
 	echo
-	elog "After configuring, run ${PN} to launch"
+	if [ "${PN}" == "vmware-player" ]
+	then
+		elog "After configuring, run vmplayer to launch"
+	else
+		elog "After configuring, run ${PN} to launch"
+	fi
 	echo
 	if [ "${product}" == "vmware" -o "${product}" == "vmware-tools" ]
 	then

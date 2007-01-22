@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.40 2007/01/10 09:52:51 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.43 2007/01/15 21:03:24 betelgeuse Exp $
 
 
 # -----------------------------------------------------------------------------
@@ -183,6 +183,13 @@ java-pkg_dojar() {
 
 		# check if it exists
 		if [[ -e "${jar}" ]] ; then
+			# Don't overwrite if jar has already been installed with the same
+			# name
+			local dest="${ED}${JAVA_PKG_JARDEST}/${jar_basename}"
+			if [[ -e "${dest}" ]]; then
+				ewarn "Overwriting ${dest}"
+			fi
+
 			# install it into JARDEST if it's a non-symlink
 			if [[ ! -L "${jar}" ]] ; then
 				INSDESTTREE="${JAVA_PKG_JARDEST}" \
@@ -552,10 +559,10 @@ java-pkg_dosrc() {
 #  --main the.main.class.too.start
 #  --jar /the/jar/too/launch.jar or just <name>.jar
 #  --java_args 'Extra arguments to pass to java'
-#  --pkg_args 'Extra arguments too pass to the package'
-#  --pwd
-#  -into
-#  -pre
+#  --pkg_args 'Extra arguments to pass to the package'
+#  --pwd Directory the launcher changes to before executing java
+#  -into Directory to install the launcher to, instead of /usr/bin
+#  -pre Prepend contents of this file to the launcher
 # ------------------------------------------------------------------------------
 java-pkg_dolauncher() {
 	debug-print-function ${FUNCNAME} $*
@@ -606,7 +613,13 @@ java-pkg_dolauncher() {
 
 	# Write the actual script
 	echo "#!/bin/bash" > "${target}"
-	[[ -n "${pre}" ]] && [[ -f "${pre}" ]] && cat "${pre}" >> "${target}"
+	if [[ -n "${pre}" ]]; then
+		if [[ -f "${pre}" ]]; then
+			cat "${pre}" >> "${target}"
+		else
+			die "-pre specified file '${pre}' does not exist"
+		fi
+	fi
 	echo "gjl_package=${JAVA_PKG_NAME}" >> "${target}"
 	cat "${var_tmp}" >> "${target}"
 	rm -f "${var_tmp}"
@@ -726,6 +739,11 @@ java-pkg_jar-from() {
 		shift
 	fi
 
+	if [[ "${1}" = "--with-dependencies" ]]; then
+		local deep="--with-dependencies"
+		shift
+	fi
+
 	local target_pkg="${1}" target_jar="${2}" destjar="${3}"
 
 	[[ -z ${target_pkg} ]] && die "Must specify a package"
@@ -735,7 +753,7 @@ java-pkg_jar-from() {
 
 	local error_msg="There was a problem getting the classpath for ${target_pkg}."
 	local classpath
-	classpath="$(java-config --classpath=${target_pkg})"
+	classpath="$(java-config ${deep} --classpath=${target_pkg})"
 	[[ $? != 0 ]] && die ${error_msg}
 
 	local jar
@@ -806,10 +824,15 @@ java-pkg_getjars() {
 		shift
 	fi
 
+	if [[ "${1}" = "--with-dependencies" ]]; then
+		local deep="--with-dependencies"
+		shift
+	fi
+
 	[[ ${#} -ne 1 ]] && die "${FUNCNAME} takes only one argument besides --build-only"
 
 	local classpath pkgs="${1}"
-	jars="$(java-config --classpath=${pkgs})"
+	jars="$(java-config ${deep} --classpath=${pkgs})"
 	[[ -z "${jars}" ]] && die "java-config --classpath=${pkgs} failed"
 	debug-print "${pkgs}:${jars}"
 
@@ -1336,6 +1359,10 @@ java-pkg_ensure-test() {
 #
 # Ant wrapper function. Will use the appropriate compiler, based on user-defined
 # compiler.
+# variables:
+# EANT_GENTOO_CLASSPATH - calls java-pkg_getjars for the value and adds to the
+#                         gentoo.classpath property. Be sure to call
+#                         java-ant_rewrite-classpath in src_unpack.
 #
 # ------------------------------------------------------------------------------
 eant() {
@@ -1377,6 +1404,14 @@ eant() {
 
 	if [[ -n ${JAVA_PKG_DEBUG} ]]; then
 		antflags="${antflags} -debug"
+	fi
+
+	local gcp="${EANT_GENTOO_CLASSPATH}"
+
+	if [[ "${gcp}" ]]; then
+		local cp="$(java-pkg_getjars ${gcp})"
+		# It seems ant does not like single quotes around ${cp}
+		antflags="${antflags} -Dgentoo.classpath=\"${cp}\""
 	fi
 
 	[[ -n ${JAVA_PKG_DEBUG} ]] && echo ant ${antflags} "${@}"

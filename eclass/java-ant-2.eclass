@@ -10,7 +10,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.11 2007/01/06 19:45:27 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.12 2007/01/12 14:03:16 betelgeuse Exp $
 
 inherit java-utils-2
 
@@ -245,16 +245,14 @@ java-ant_bsfix_one() {
 # @public java-ant_rewrite-classpath
 #
 # Adds 'classpath="${gentoo.classpath}"' to specified build file.
+# @param $1 - the file to rewrite (defaults to build.xml)
 # ------------------------------------------------------------------------------
 java-ant_rewrite-classpath() {
 	debug-print-function ${FUNCNAME} $*
 
-	if [ -z "${1}" ]; then
-		eerror "java-ant_rewrite-classpath needs one argument"
-		die "java-ant_rewrite-classpath needs one argument"
-	fi
-
 	local file="${1}"
+	[[ -z "${1}" ]] && file=build.xml
+
 	echo "Adding gentoo.classpath to ${file}"
 	debug-print "java-ant_rewrite-classpath: ${file}"
 
@@ -262,9 +260,43 @@ java-ant_rewrite-classpath() {
 
 	chmod u+w "${file}"
 
-	xml-rewrite.py -f "${file}" --change -e javac -e xjavac -a classpath -v '${gentoo.classpath}' || die "xml-rewrite failed: ${file}"
+	java-ant_xml-rewrite -f "${file}" --change -e javac -e xjavac -a classpath -v '${gentoo.classpath}'
 
 	if [[ -n "${JAVA_PKG_DEBUG}" ]]; then
 		diff -NurbB "${file}.orig" "${file}"
+	fi
+}
+
+# ------------------------------------------------------------------------------
+# @public java-ant_ignore-system-classes
+#
+# Makes the available task ignore classes in the system classpath
+# @param $1 - the file to rewrite (defaults to build.xml)
+# ------------------------------------------------------------------------------
+java-ant_ignore-system-classes() {
+	debug-print-function ${FUNCNAME} $*
+	local file="${1}"
+	[[ -z "${1}" ]] && file=build.xml
+	echo "Changing ignoresystemclasses to true for available tasks"
+	java-ant_xml-rewrite -f "${file}" --change \
+		-e available -a ignoresystemclasses -v "true"
+}
+
+# ------------------------------------------------------------------------------
+# @public java-ant_xml-rewrite
+# Run the right xml-rewrite binary with the given arguments
+# ------------------------------------------------------------------------------
+java-ant_xml-rewrite() {
+	local bindir="${EROOT}/usr/bin/"
+	local gen2="${bindir}/xml-rewrite-2.py"
+	local gen1="${bindir}/xml-rewrite.py"
+	if [[ -x "${gen2}" ]]; then
+		${gen2} "${@}" || die "${gen2} failed"
+	elif [[ -x "${gen1}" ]]; then
+		${gen1} "${@}" || die "${gen1} failed"
+	else
+		eerror "No binary for rewriting found."
+		eerror "Do you have dev-java/javatoolkit installed?"
+		die "xml-rewrite not found"
 	fi
 }

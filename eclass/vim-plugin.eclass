@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vim-plugin.eclass,v 1.18 2006/10/10 15:47:34 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vim-plugin.eclass,v 1.19 2007/01/12 05:18:24 pioto Exp $
 #
 # This eclass simplifies installation of app-vim plugins into
 # /usr/share/vim/vimfiles.  This is a version-independent directory
@@ -93,7 +93,7 @@ update_vim_afterscripts() {
 		# This is a generated file, but might be abandoned.  Check
 		# if there's no corresponding .d directory, or if the
 		# file's effectively empty
-		if [[ ! -d "${f}.d" || -z "$(grep -v '^"')" ]]; then
+		if [[ ! -d "${f}.d" || -z "$(grep -v '^"' "${f}")" ]]; then
 			rm -f "${f}"
 		fi
 	done

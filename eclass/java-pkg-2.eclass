@@ -5,7 +5,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.10 2007/01/10 09:59:21 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.14 2007/01/16 21:14:38 betelgeuse Exp $
 
 inherit java-utils-2
 
@@ -18,6 +18,15 @@ inherit java-utils-2
 # -----------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
+# @IUSE
+#
+# ebuilds using this eclass can set JAVA_PKG_IUSE and then this eclass
+# will automatically add deps for them.
+#
+# ------------------------------------------------------------------------------
+IUSE="${JAVA_PKG_IUSE}"
+
+# ------------------------------------------------------------------------------
 # @depend
 #
 # Java packages need java-config, and a fairly new release of Portage.
@@ -25,6 +34,8 @@ inherit java-utils-2
 # JAVA_PKG_E_DEPEND is defined in java-utils.eclass.
 # ------------------------------------------------------------------------------
 DEPEND="${JAVA_PKG_E_DEPEND}"
+
+hasq source ${JAVA_PKG_IUSE} && DEPEND="${DEPEND} source? ( app-arch/zip )"
 
 # ------------------------------------------------------------------------------
 # @rdepend
@@ -56,6 +67,8 @@ java-pkg-2_pkg_setup() {
 # EANT_DOC_TARGET - the target to build extra docs under the doc use flag
 #                   (default: the one provided by use_doc in
 #                   java-utils-2.eclass)
+# EANT_GENTOO_CLASSPATH - @see eant documention in java-utils-2.eclass
+# EANT_EXTRA_ARGUMENTS - extra arguments to pass to eant
 # ------------------------------------------------------------------------------
 java-pkg-2_src_compile() {
 	if [[ -e "${EANT_BUILD_XML:=build.xml}" ]]; then
@@ -64,7 +77,7 @@ java-pkg-2_src_compile() {
 
 		local antflags="${EANT_BUILD_TARGET:=jar}"
 		hasq doc ${IUSE} && antflags="${antflags} $(use_doc ${EANT_DOC_TARGET})"
-		eant ${antflags} -f "${EANT_BUILD_XML}"
+		eant ${antflags} -f "${EANT_BUILD_XML}" ${EANT_EXTRA_ARGUMENTS}
 	else
 		echo "${FUNCNAME}: No build.xml found so nothing to do."
 	fi

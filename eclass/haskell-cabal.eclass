@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/haskell-cabal.eclass,v 1.8 2006/10/04 17:49:20 kosmikus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/haskell-cabal.eclass,v 1.9 2007/01/15 13:58:13 kosmikus Exp $
 #
 # Original authors: Andres Loeh <kosmikus@gentoo.org>
 #                   Duncan Coutts <dcoutts@gentoo.org>
@@ -166,14 +166,14 @@ cabal-copy() {
 }
 
 cabal-pkg() {
-	# This does not actually register since we're using /usr/bin/true instead
+	# This does not actually register since we're using true instead
 	# of ghc-pkg. So it just leaves the .installed-pkg-config and we can
 	# register that ourselves (if it exists).
 	local result
 	local err
 
 	if [[ -n ${CABAL_HAS_LIBRARIES} ]]; then
-		sed -i "s|$(ghc-getghcpkg)|/usr/bin/true|" .setup-config
+		sed -i "s|$(ghc-getghcpkg)|$(which true)|" .setup-config
 		./setup register || die "setup register failed"
 		if [[ -f .installed-pkg-config ]]; then
 			ghc-setup-pkg .installed-pkg-config
@@ -187,6 +187,7 @@ cabal-pkg() {
 # exported function: check if cabal is correctly installed for
 # the currently active ghc (we cannot guarantee this with portage)
 haskell-cabal_pkg_setup() {
+        ghc-package_pkg_setup
 	if [[ -z "${CABAL_BOOTSTRAP}" ]] && ! ghc-sanecabal "1.1.3"; then
 		eerror "The package dev-haskell/cabal is not correctly installed for"
 		eerror "the currently active version of ghc ($(ghc-version)). Please"

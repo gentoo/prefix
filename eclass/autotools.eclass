@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.63 2007/01/08 23:25:30 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.64 2007/01/19 23:39:29 vapier Exp $
 #
 # Author: Diego Pettenò <flameeyes@gentoo.org>
 # Enhancements: Martin Schlemmer <azarah@gentoo.org>
@@ -21,9 +21,11 @@ if [[ -n ${WANT_AUTOMAKE} ]]; then
 	case ${WANT_AUTOMAKE} in
 		# workaround while we have different versions of automake in arch and ~arch
 		none) _automake_atom="" ;; # some packages don't require automake at all
-		latest) _automake_atom="|| ( =sys-devel/automake-1.10* =sys-devel/automake-1.9* )" ;;
+		latest) _automake_atom="=sys-devel/automake-1.10*" ;;
 		*) _automake_atom="=sys-devel/automake-${WANT_AUTOMAKE}*" ;;
 	esac
+	[[ ${WANT_AUTOMAKE} == "latest" ]] && WANT_AUTOMAKE="1.10"
+	export WANT_AUTOMAKE
 fi
 
 if [[ -n ${WANT_AUTOCONF} ]] ; then
@@ -31,6 +33,8 @@ if [[ -n ${WANT_AUTOCONF} ]] ; then
 		2.1) _autoconf_atom="=sys-devel/autoconf-${WANT_AUTOCONF}*" ;;
 		latest | 2.5) _autoconf_atom=">=sys-devel/autoconf-2.59" ;;
 	esac
+	[[ ${WANT_AUTOCONF} == "latest" ]] && WANT_AUTOCONF="2.5"
+	export WANT_AUTOCONF
 fi
 DEPEND="${_automake_atom}
 	${_autoconf_atom}
@@ -123,7 +127,6 @@ eaclocal() {
 		done
 	fi
 
-	autotools_set_versions
 	[[ ! -f aclocal.m4 || -n $(grep -e 'generated.*by aclocal' aclocal.m4) ]] && \
 		autotools_run_tool aclocal "$@" ${aclocal_opts}
 }
@@ -149,7 +152,6 @@ _elibtoolize() {
 eautoheader() {
 	# Check if we should run autoheader
 	[[ -n $(autotools_check_macro "AC_CONFIG_HEADERS") ]] || return 0
-	autotools_set_versions
 	NO_FAIL=1 autotools_run_tool autoheader "$@"
 }
 
@@ -161,7 +163,6 @@ eautoconf() {
 		die "No configure.{ac,in} present!"
 	fi
 
-	autotools_set_versions
 	autotools_run_tool autoconf "$@"
 }
 
@@ -170,7 +171,6 @@ eautomake() {
 
 	[[ -f Makefile.am ]] || return 0
 
-	autotools_set_versions
 	if [[ -z ${FROM_EAUTORECONF} && -f Makefile.in ]]; then
 		local used_automake
 		local installed_automake
@@ -193,43 +193,6 @@ eautomake() {
 
 	# --force-missing seems not to be recognized by some flavours of automake
 	autotools_run_tool automake --add-missing --copy ${extra_opts} "$@"
-}
-
-autotools_set_versions() {
-	[[ -n ${autotools_version_sets} ]] && return 0
-
-	if [[ -n ${WANT_AUTOCONF} ]]; then
-		[[ ${WANT_AUTOCONF} == "latest" ]] && WANT_AUTOCONF="2.5"
-		export WANT_AUTOCONF
-		einfo "Requested autoconf ${WANT_AUTOCONF}"
-		einfo "Using $(autoconf --version 2>/dev/null | head -n 1)"
-		einfo "Using $(autoheader --version 2>/dev/null | head -n 1)"
-	else
-		ewarn "QA Notice: \${WANT_AUTOCONF} variable unset. Please report on http://bugs.gentoo.org/"
-	fi
-
-	if [[ -n ${WANT_AUTOMAKE} ]]; then
-		local latest_automake
-		if [[ ${WANT_AUTOMAKE} == "latest" ]]; then
-			latest_automake="latest: "
-			for amver in 1.10 1.9 1.8 1.7 1.6; do
-				WANT_AUTOMAKE="${amver}"
-				ROOT=/ has_version =sys-devel/automake-${amver}* && break
-			done
-		fi
-
-		# Don't do stuff if no autoamke is requested/required
-		if [[ ${WANT_AUTOMAKE} != "none" ]]; then
-			export WANT_AUTOMAKE
-			einfo "Requested automake ${latest_automake}${WANT_AUTOMAKE}"
-			einfo "Using $(automake --version 2>/dev/null | head -n 1)"
-			einfo "Using $(aclocal --version 2>/dev/null | head -n 1)"
-		fi
-	else
-		ewarn "QA Notice: \${WANT_AUTOMAKE} variable unset. Please report on http://bugs.gentoo.org/"
-	fi
-
-	autotools_version_sets="yes"
 }
 
 # Internal function to run an autotools' tool

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.267 2007/01/09 15:47:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.269 2007/01/19 05:29:18 vapier Exp $
 #
 # This eclass is for general purpose functions that most ebuilds
 # have to implement themselves.
@@ -1559,7 +1559,7 @@ set_arch_to_portage() {
 # }
 
 preserve_old_lib() {
-	if [[ ${EBUILD_PHASE} != "pkg_preinst" ]] ; then
+	if [[ ${EBUILD_PHASE} != "preinst" ]] ; then
 		eerror "preserve_old_lib() must be called from pkg_preinst() only"
 #		die "Invalid preserve_old_lib() usage"
 	fi
@@ -1576,7 +1576,7 @@ preserve_old_lib() {
 }
 
 preserve_old_lib_notify() {
-	if [[ ${EBUILD_PHASE} != "pkg_postinst" ]] ; then
+	if [[ ${EBUILD_PHASE} != "postinst" ]] ; then
 		eerror "preserve_old_lib_notify() must be called from pkg_postinst() only"
 #		die "Invalid preserve_old_lib_notify() usage"
 	fi
@@ -1600,13 +1600,24 @@ preserve_old_lib_notify() {
 # Hack for people to figure out if a package was built with
 # certain USE flags
 #
-# Usage: built_with_use [-a|-o] <DEPEND ATOM> <List of USE flags>
+# Usage: built_with_use [--missing <action>] [-a|-o] <DEPEND ATOM> <List of USE flags>
 #	 ex: built_with_use xchat gtk2
 #
-# Flags: -a	  all USE flags should be utilized
-#		 -o	  at least one USE flag should be utilized
+# Flags: -a	        all USE flags should be utilized
+#		 -o	        at least one USE flag should be utilized
+#        --missing  peform the specified action if the flag is not in IUSE (true/false/die)
 # Note: the default flag is '-a'
 built_with_use() {
+	local missing_action="die"
+	if [[ $1 == "--missing" ]] ; then
+		missing_action=$2
+		shift ; shift
+		case ${missing_action} in
+			true|false|die) ;;
+			*) die "unknown action '${missing_action}'";;
+		esac
+	fi
+
 	local opt=$1
 	[[ ${opt:0:1} = "-" ]] && shift || opt="-a"
 
@@ -1631,7 +1642,13 @@ built_with_use() {
 		fi
 	done
 	if [[ -n ${expand} ]] ; then
-		has $1 ${IUSE_BUILT} || die "$PKG does not actually support the $1 USE flag!"
+		if ! has $1 ${IUSE_BUILT} ; then
+			case ${missing_action} in
+				true)  return 0;;
+				false) return 1;;
+				die)   die "$PKG does not actually support the $1 USE flag!";;
+			esac
+		fi
 	fi
 
 	local USE_BUILT=$(<${USEFILE})

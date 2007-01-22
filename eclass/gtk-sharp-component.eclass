@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-component.eclass,v 1.27 2006/09/07 06:46:57 latexer Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-component.eclass,v 1.28 2007/01/18 08:22:41 latexer Exp $
 
 # Author : Peter Johanson <latexer@gentoo.org>
 # Based off of original work in gst-plugins.eclass by <foser@gentoo.org>
@@ -136,6 +136,13 @@ gtk-sharp-component_src_unpack() {
 	then
 		sed -i -e 's:^libdir.*:libdir=@libdir@:' \
 			${S}/gconf/GConf/*.pc.in || die
+	fi
+
+	if [ -f "${S}/sample/gconf/Makefile.am" ]
+	then
+		# Fix install data hook (bug #161093)
+		sed -i -e 's/^install-hook/install-data-hook/' \
+			${S}/sample/gconf/Makefile.am || die "sed failed"
 	fi
 
 	# disable building of samples (#16015)

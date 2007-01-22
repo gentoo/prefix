@@ -1,12 +1,13 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.158 2007/01/05 04:41:17 beu Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.159 2007/01/11 06:52:12 pioto Exp $
 
 # Authors:
 # 	Ryan Phillips <rphillips@gentoo.org>
 # 	Seemant Kulleen <seemant@gentoo.org>
 # 	Aron Griffis <agriffis@gentoo.org>
 # 	Ciaran McCreesh <ciaranm@gentoo.org>
+#	Mike Kelly <pioto@gentoo.org>
 
 # This eclass handles vim, gvim and vim-core.  Support for -cvs ebuilds is
 # included in the eclass, since it's rather easy to do, but there are no
@@ -122,7 +123,7 @@ if [[ $(get_major_version ) -ge 7 ]] ; then
 			!app-vim/vimspell
 			!<app-vim/vimbuddy-0.9.1-r1
 			!<app-vim/autoalign-11
-			!app-vim/supertab"
+			!<app-vim/supertab-0.41"
 	fi
 fi
 

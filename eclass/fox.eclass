@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/fox.eclass,v 1.6 2006/10/30 22:14:18 mabi Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/fox.eclass,v 1.7 2007/01/15 20:27:06 mabi Exp $
 
 # fox eclass
 #
@@ -58,8 +58,8 @@ if [ "${PN}" != fox ] ; then
 	FOX_COMPONENT="${FOX_COMPONENT:-${PN}}"
 fi
 
-if use doc && [ "${FOXVER}" != "1.0" ] && [ -z "${FOX_COMPONENT}" ] ; then
-	DOXYGEN_DEP="app-doc/doxygen"
+if [ "${FOXVER}" != "1.0" ] && [ -z "${FOX_COMPONENT}" ] ; then
+	DOXYGEN_DEP="doc? ( app-doc/doxygen )"
 fi
 
 if [ "${PN}" != reswrap ] ; then
