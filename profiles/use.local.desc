@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2489 2007/01/09 21:51:07 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2510 2007/01/18 23:34:14 opfer Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -165,6 +165,7 @@ app-misc/digitemp:ds2490 - Build support for the ds2490 sensor
 app-misc/digitemp:ds9097 - Build support for the ds9097 sensor
 app-misc/digitemp:ds9097u - Build support for the ds9097u sensor
 app-misc/g15composer:amarok - Enable display of titles played in Amarok
+app-misc/gpsdrive:garmin - Adds specific support for Garmin GPS receivers
 app-misc/graphlcd-base:g15 - Add support for g15daemon driver ( e.g Logitech G15 Keybord )
 app-misc/lcd4linux:serdisp - Add support for several displays via serdisplib
 app-misc/lcdproc:g15 - Enable support for Logitech G15 Keyboard LCDs
@@ -173,8 +174,9 @@ app-misc/lcdproc:irman - Enable support for IRMan
 app-misc/lcdproc:nfs - Adds support for NFS file system
 app-misc/lcdproc:seamless-hbars - Try to avoid gaps in horizontal bars
 app-misc/lcdproc:ula200 - Enable support for ULA200 USB devices
+app-misc/lcd-stuff:mpd - Add support for display of mpd controlled music
+app-misc/lcd-stuff:rss - Add support for display of RSS feeds
 app-misc/lirc:hardware-carrier - The transmitter device generates its clock signal in hardware
-app-misc/lirc:streamzap - add the streamzap driver to lirc
 app-misc/lirc:transmitter - add transmitter support to some lirc-drivers (e.g. serial)
 app-misc/mc:7zip - add support for 7zip archives
 app-misc/note:general - add support for ascii flatfile backend
@@ -189,6 +191,7 @@ app-misc/tablix:pvm - Add support for parallel virtual machine (http://www.epm.o
 app-misc/tomboy:galago - Add support for the galago desktop presence framework
 app-misc/towitoko:moneyplex - Makes libtowitoko work for the moneyplex home banking software
 app-misc/tracker:gsf - Enable libgsf based data extractor
+app-misc/tracker:thumbnailing - Enable support for thumbnails
 app-misc/workrave:distribution - Enable networking. See http://www.workrave.org/features/
 app-mobilephone/gammu:irda - Enable infrared support
 app-mobilephone/gnokii:ical - Enable libical support
@@ -264,9 +267,7 @@ dev-db/mysql:extraengine - Add support for alternative storage engines.
 dev-db/mysql:latin1 - Use LATIN1 encoding instead of UTF8.
 dev-db/mysql:max-idx-128 - Raise the max index per table limit from 64 to 128
 dev-db/mysql:minimal - Install client programs only, no server
-dev-db/mysql:pbxt - Add experimental support for pbxt storage engine
 dev-db/mysql:raid - deprecated option, removed in the 5.0 series
-dev-db/mysql:srvdir - Add support for GLEP 20
 dev-db/mysql-community:big-tables - Make tables contain up to 1.844E+19 rows
 dev-db/mysql-community:cluster - Add support for NDB clustering.
 dev-db/mysql-community:embedded - Build embedded server (libmysqld)
@@ -275,8 +276,6 @@ dev-db/mysql-community:latin1 - Use LATIN1 encoding instead of UTF8.
 dev-db/mysql-community:max-idx-128 - Raise the max index per table limit from 64 to 128
 dev-db/mysql-community:minimal - Install client programs only, no server
 dev-db/mysql-community:pbxt - Add experimental support for pbxt storage engine
-dev-db/mysql-community:raid - deprecated option, removed in the 5.0 series
-dev-db/mysql-community:srvdir - Add support for GLEP 20
 dev-db/mysql-slotted:big-tables - Make tables contain up to 1.844E+19 rows
 dev-db/mysql-slotted:cluster - Add support for NDB clustering.
 dev-db/mysql-slotted:embedded - Build embedded server (libmysqld)
@@ -286,7 +285,6 @@ dev-db/mysql-slotted:max-idx-128 - Raise the max index per table limit from 64 t
 dev-db/mysql-slotted:minimal - Install client programs only, no server
 dev-db/mysql-slotted:pbxt - Add experimental support for pbxt storage engine
 dev-db/mysql-slotted:raid - deprecated option, removed in the 5.0 series
-dev-db/mysql-slotted:srvdir - Add support for GLEP 20
 dev-db/pgcluster:pg-intdatetime - Enables --enable-integer-datetimes configure option, which changes PG to use 64-bit integers for timestamp storage.
 dev-db/postgis:geos - Add the GEOS library for exact topological tests.
 dev-db/postgis:proj - Add the Proj library for reprojection features.
@@ -435,6 +433,7 @@ dev-libs/libtomcrypt:libtommath - Use the portable math library
 dev-libs/libtomcrypt:tomsfastmath - Use the optimized math library
 dev-libs/libwbxml:nokia6600 - Add support for Nokia 6600 mobile phone
 dev-libs/log4cxx:smtp - offer SMTP support via libsmtp
+dev-libs/g-wrap:glib - build support for glib, needed by gnucash-2.0.x
 dev-libs/openobex:irda - enable IrDA support
 dev-libs/openobex:syslog - enable syslog support
 dev-libs/opensc:openct - build using dev-libs/openct compatibility
@@ -602,6 +601,7 @@ games-rpg/nwn:hou - Install the Hordes of the Underdark expansion pack
 games-rpg/nwn:sou - Installs the Shadows of Undrentide expension pack
 games-simulation/openttd:scenarios - Install additional contributed scenarios
 games-simulation/openttd:timidity - Add sound support (timidity)
+games-strategy/dark-oberon:fmod - Add sound support (fmod)
 games-strategy/freeciv:auth - Add authentication capability
 games-strategy/freecraft-fcmp:music - Installs optional music data
 games-strategy/freelords:editor - Installs optional map editor
@@ -707,10 +707,8 @@ mail-client/mail-notification:gmail - Enable Gmail mailbox checking
 mail-client/mail-notification:pop - Enable support for pop
 mail-client/mail-notification:sylpheed - Enable support for MH mailboxes used by sylpheed
 mail-client/mozilla-thunderbird:branding - Enable official branding
-mail-client/mozilla-thunderbird:mozcalendar - Enable build in calendar (also firefox, thunderbird)
 mail-client/mozilla-thunderbird:mozdom - Enable mozilla DOM
 mail-client/mozilla-thunderbird:moznopango - Disable pango during runtime
-mail-client/mozilla-thunderbird:moznoxft - Disable XFT support in mozilla (also firefox, thunderbird)
 mail-client/mozilla-thunderbird:replytolist - Enable reply-to-list plugin
 mail-client/mutt:buffysize - Enables buffysize workaround, see bug 72422
 mail-client/mutt:gpgme - Enable support for gpgme
@@ -861,6 +859,7 @@ media-plugins/vdr-weatherng:dxr3 - enables lower osd color deep for dxr3 cards
 media-radio/xastir:ax25 - Enable ax25 support
 media-radio/xastir:festival - Enable festival support
 media-radio/xastir:shape - Enable shapelib support
+media-sound/alsa-utils:midi - Build the sequencer (midi) utilities
 media-sound/amarok:ifp - Enable support for iRiver devices access through libifp
 media-sound/amarok:mtp - Enable support for libMTP (Plays4Sure) devices access through libmtp
 media-sound/amarok:musicbrainz - Enable support for MusicBrainz audio lookups (musicbrainz.org)
@@ -1081,7 +1080,6 @@ net-analyzer/net-snmp:mfd-rewrites - Use MFD rewrites of mib modules where avail
 net-analyzer/net-snmp:rpm - Enable the rpm snmp probing
 net-analyzer/net-snmp:sendmail - Enable sendmail statistics monitoring
 net-analyzer/net-snmp:smux - Enable the smux MIBS module
-net-analyzer/netcat:GAPING_SECURITY_HOLE - add support for running programs after connect
 net-analyzer/pchar:pcap - Use the pcap library
 net-analyzer/pmacct:64bit - Use 64bit counters instead of 32bit ones
 net-analyzer/rrdtool:rrdcgi - Build rrdcgi support
@@ -1094,6 +1092,7 @@ net-analyzer/scapy:visual - Enable visual support for 3d graphs
 net-analyzer/snort:dynamicplugin - Enable ability to dynamically load preprocessors, detection engine, and rules library
 net-analyzer/snort:flexresp - Enable connection tearing (not recommended)
 net-analyzer/snort:flexresp2 - Enable new connection tearing
+net-analyzer/snort:gre - Enable GRE support
 net-analyzer/snort:inline - Enable snort-inline for accepting packets from iptables, via libipq, rather than libpcap.
 net-analyzer/snort:linux-smp-stats - Enable statistics reporting through proc on smp systems
 net-analyzer/snort:perfprofiling - Enable preprocessor and rule performance profiling
@@ -1356,16 +1355,12 @@ net-misc/hylafax:mgetty - Adds support for mgetty and vgetty
 net-misc/icecast:yp - Build support for yp public directory listings
 net-misc/linphone:ilbc - Build ILBC codec plugin
 net-misc/linphone:novideo - Disable video support
-net-misc/ltsp:vnc - Enable vnc support
 net-misc/ntp:openntpd - Allow ntp to be installed alongside openntpd
 net-misc/ntp:parse-clocks - Add support for PARSE clocks
 net-misc/nx:vnc - Add support for vnc to remote servers
 net-misc/nx-x11-bin:vnc - Add support for connecting to VNC servers
 net-misc/nx-x11:vnc - Add support for connecting to VNC servers
-net-misc/nxserver-business:prebuilt - Use the libraries shipped by nomachine, instead of building them locally
-net-misc/nxserver-enterprise:prebuilt - Use the libraries shipped by nomachine, instead of building them locally
 net-misc/nxserver-freenx:nxclient - Add support for the commercial nxclient
-net-misc/nxserver-personal:prebuilt - Use the libraries shipped by nomachine, instead of building them locally
 net-misc/openssh:X509 - Adds support for X.509 certificate authentication
 net-misc/openssh:chroot - Enable chrooting support
 net-misc/openssh:hpn - Enable high performance ssh
@@ -1476,7 +1471,6 @@ net-www/apache:mpm-prefork - Prefork MPM - non-threaded, forking MPM - similiar 
 net-www/apache:mpm-threadpool - (experimental) Threadpool MPM - keeps pool of idle threads to handle requests
 net-www/apache:mpm-worker - Worker MPM - hybrid multi-process multi-thread MPM
 net-www/apache:no-suexec - Don't install suexec with apache
-net-www/apache:srvdir - Add support for GLEP 20
 net-www/apache:static-modules - Build modules into apache instead of having them load at run time
 net-www/gentoo-webroot-default:no-htdocs - Don't install anything in the default webroot (/var/www/localhost)
 net-www/gnash:agg - Rendering based on the Anti-Grain Geometry Rendering Engine library
@@ -1503,6 +1497,7 @@ rox-extra/magickthumbnail:xcf - Enable previews of .xcf files using the gimp
 sci-astronomy/orsa:cln - Use the Class Library for Numbers for calculations
 sci-astronomy/orsa:gsl - Use the GNU scientific library for calculations
 sci-astronomy/predict:xforms - Add a "map" client which uses the xforms library for its GUI
+sci-astronomy/predict:xplanet - Project predict data onto world maps generated by xplanet/xearth
 sci-astronomy/setiathome:server - Enable compilation of server
 sci-biology/clustalw-mpi:mpi_njtree - Use MPI (as opposed to serial) code for computing neighbor-joining trees
 sci-biology/clustalw-mpi:static_pairalign - Use static (as opposed to dynamic) scheduling for pair alignments
@@ -1511,6 +1506,8 @@ sci-biology/vienna-rna:no-readseq - Do not include the modified version of Don G
 sci-biology/vienna-rna:no-utils - Do not include sequence format conversion and representation utilities
 sci-chemistry/caver:pymol - Install the PyMol plugin
 sci-chemistry/eden:double-precision - more precise calculations at the expense of speed
+sci-chemistry/ghemical:gamess - Add GAMESS interface for QM/MM.
+sci-chemistry/ghemical:mopac7 - Apply compilation fix for mopac7 support.
 sci-chemistry/ghemical:openbabel - Use the OpenBabel package for file conversions
 sci-chemistry/ghemical:toolbar - Build the shortcuts toolbar
 sci-chemistry/shelx:dosformat - Use CR/LF to end lines; useful in mixed Linux/Windows environments
@@ -1518,13 +1515,14 @@ sci-geosciences/gmt:gmtfull - Full resolution bathymetry database
 sci-geosciences/gmt:gmthigh - Adds high resolution bathymetry database
 sci-geosciences/gmt:gmtsuppl - Supplement functions for GMT
 sci-geosciences/gmt:gmttria - Non GNU triangulation method, more efficient
+sci-geosciences/gpsd:italk - Enable iTalk protocol support
+sci-geosciences/gpsd:itrax - Enable iTrax hardware support
 sci-geosciences/gpsd:ntp - Enable NTP shared memory interface for GPS time
 sci-geosciences/gpsd:tntc - Enable True North Technologies support
 sci-geosciences/grass:gdal - Enables gdal support (Grass 6 only)
 sci-geosciences/grass:glw - Enables libGLw support (requires mesa)
 sci-geosciences/grass:gmath - Enables gmath wrapper for BLAS/Lapack
 sci-geosciences/grass:largefile - Enables LFS support for huge files
-sci-geosciences/grass:proj - Enables proj library support (geographic projections)
 sci-geosciences/mapserver:gdal - Enables gdal library support
 sci-geosciences/mapserver:geos - Enables geos library support
 sci-geosciences/mapserver:postgis - Enables postgis support 
@@ -1582,7 +1580,6 @@ sys-apps/memtest86:serial - Compile with serial console support
 sys-apps/module-init-tools:no-old-linux - Don't support modules for Linux 2.4 and older
 sys-apps/paludis:contrarius - Build the contrarius client, for building cross toolchains.
 sys-apps/paludis:cran - Enable CRAN repository support.
-sys-apps/paludis:gems - Enable RubyGems repository support.
 sys-apps/paludis:glsa - Enable parsing of GLSA files
 sys-apps/paludis:pink - Use a less boring colourscheme than the default
 sys-apps/paludis:qa - Enable QA tools.
@@ -1661,7 +1658,6 @@ sys-devel/gcc:objc++ - Build support for the Objective C++ language
 sys-devel/gcc:objc-gc - Build support for the Objective C code language Garbage Collector
 sys-devel/kgcc64:multislot - Allow for SLOTs to include minor version (3.3.4 instead of just 3.3)
 sys-devel/libperl:ithreads - Enable Perl threads, has some compatibility problems
-sys-freebsd/freebsd-bin:rcp - Enable rcp support (TODO improve description)
 sys-freebsd/freebsd-lib:atm - Enable Asynchronous Transfer Mode protocol support
 sys-freebsd/freebsd-lib:gpib - Enable gpib support (TODO improve description)
 sys-freebsd/freebsd-rescue:atm - Enable Asynchronous Transfer Mode protocol support
@@ -1688,6 +1684,7 @@ sys-fs/lvm2:nolvm1 - Allow users to build lvm2 without lvm1 support
 sys-fs/lvm2:nolvmstatic - Allow users to build lvm2 dynamically
 sys-fs/lvm2:nomirrors - Allow users to build lvm2 without mirror support
 sys-fs/lvm2:nosnapshots - Allow users to build lvm2 without snapshot support
+sys-fs/ntfs3g:suid - Install the binary SUID root, allowing users to mount ntfs-3g filesystems with potential security risks
 sys-fs/ntfsprogs:fuse - Build a FUSE module
 sys-fs/quota:rpc - Enable quota interaction via RPC
 sys-fs/unionfs:nfs - Adds support for NFS file system

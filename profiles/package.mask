@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.6586 2007/01/10 21:56:50 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.6636 2007/01/20 00:18:16 pylon Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -23,7 +23,398 @@
 #=media-video/mplayer-0.90_pre5-r1
 ##
 ##   End example
-## 
+##
+
+# Lars Weiler <pylon@gentoo.org> (20 Jan 2007)
+# Won't compile on a stable system
+>=net-misc/strongswan-2.8.1
+
+# Matti Bickel <mabi@gentoo.org> (19 Jan 2007)
+# Masked, pending removal in 30 days, dead upstream, sources gone
+dev-lang/tolua
+
+# Christian Heim <phreak@gentoo.org> (19 Jan 2007)
+# Masked, pending removal in 30 days. Please stop using the external package
+# and use the in-kernel equivalents
+net-wireless/ipw2100
+net-wireless/ipw2200
+
+# Nguyễn Thái Ngọc Duy <pclouds@gentoo.org> (17 Jan 2007)
+# Masked for testing, #162463
+=dev-ruby/rubygems-0.9.1
+
+# Sandro Bonazzola <sanchan@gentoo.org> (16 Jan 2007)
+# Masked for testing
+=app-arch/rpm-4.4.7-r2
+
+#=media-video/mplayer-0.90_pre5
+# Diego Pettenò <flameeyes@gentoo.org> (16 Jan 2007)
+# KDE pre-release, masked until official release for testing by the
+# Gentoo KDE team.
+~kde-base/ark-3.5.6
+~kde-base/kdf-3.5.6
+~kde-base/kdm-3.5.6
+~kde-base/kig-3.5.6
+~kde-base/juk-3.5.6
+~kde-base/kpf-3.5.6
+~kde-base/ktuberling-3.5.6
+~kde-base/amor-3.5.6
+~kde-base/knewsticker-scripts-3.5.6
+~kde-base/karm-3.5.6
+~kde-base/kate-3.5.6
+~kde-base/kdat-3.5.6
+~kde-base/kdvi-3.5.6
+~kde-base/kfax-3.5.6
+~kde-base/kget-3.5.6
+~kde-base/kgpg-3.5.6
+~kde-base/kmag-3.5.6
+~kde-base/kmid-3.5.6
+~kde-base/kmix-3.5.6
+~kde-base/kodo-3.5.6
+~kde-base/kolf-3.5.6
+~kde-base/kpat-3.5.6
+~kde-base/kpdf-3.5.6
+~kde-base/korn-3.5.6
+~kde-base/kppp-3.5.6
+~kde-base/krdc-3.5.6
+~kde-base/krec-3.5.6
+~kde-base/krfb-3.5.6
+~kde-base/kscd-3.5.6
+~kde-base/ksig-3.5.6
+~kde-base/ksim-3.5.6
+~kde-base/ktip-3.5.6
+~kde-base/ksvg-3.5.6
+~kde-base/lisa-3.5.6
+~kde-base/ktux-3.5.6
+~kde-base/kwin-3.5.6
+~kde-base/kxkb-3.5.6
+~kde-base/kdepasswd-3.5.6
+~kde-base/kdetoys-meta-3.5.6
+~kde-base/kalzium-3.5.6
+~kde-base/renamedlg-audio-3.5.6
+~kde-base/katomic-3.5.6
+~kde-base/dcoppython-3.5.6
+~kde-base/ksysguard-3.5.6
+~kde-base/dcoprss-3.5.6
+~kde-base/kbounce-3.5.6
+~kde-base/artsplugin-mpeglib-3.5.6
+~kde-base/kdeartwork-icewm-themes-3.5.6
+~kde-base/kimagemapeditor-3.5.6
+~kde-base/kdejava-3.5.6
+~kde-base/kdelirc-3.5.6
+~kde-base/kbattleship-3.5.6
+~kde-base/kdesdk-kioslaves-3.5.6
+~kde-base/kdeartwork-kworldclock-3.5.6
+~kde-base/libkdepim-3.5.6
+~kde-base/atlantikdesigner-3.5.6
+~kde-base/kaboodle-3.5.6
+~kde-base/knewsticker-3.5.6
+~kde-base/khangman-3.5.6
+~kde-base/kfloppy-3.5.6
+~kde-base/cervisia-3.5.6
+~kde-base/kwalletmanager-3.5.6
+~kde-base/eyesapplet-3.5.6
+~kde-base/khexedit-3.5.6
+~kde-base/kpercentage-3.5.6
+~kde-base/kandy-3.5.6
+~kde-base/kcalc-3.5.6
+~kde-base/kdesu-3.5.6
+~kde-base/kcron-3.5.6
+~kde-base/kdict-3.5.6
+~kde-base/kedit-3.5.6
+~kde-base/kfind-3.5.6
+~kde-base/kiten-3.5.6
+~kde-base/kjots-3.5.6
+~kde-base/kmail-3.5.6
+~kde-base/kmilo-3.5.6
+~kde-base/kmoon-3.5.6
+~kde-base/kmrml-3.5.6
+~kde-base/knode-3.5.6
+~kde-base/kooka-3.5.6
+~kde-base/ksame-3.5.6
+~kde-base/ksirc-3.5.6
+~kde-base/ktnef-3.5.6
+~kde-base/ksync-3.5.6
+~kde-base/ksysv-3.5.6
+~kde-base/ktron-3.5.6
+~kde-base/kttsd-3.5.6
+~kde-base/kuser-3.5.6
+~kde-base/kview-3.5.6
+~kde-base/kwin4-3.5.6
+~kde-base/lskat-3.5.6
+~kde-base/kgoldrunner-3.5.6
+~kde-base/pykde-3.5.6
+~kde-base/kcoloredit-3.5.6
+~kde-base/klipper-3.5.6
+~kde-base/kvoctrain-3.5.6
+~kde-base/kappfinder-3.5.6
+~kde-base/kmousetool-3.5.6
+~kde-base/kdesdk-kfile-plugins-3.5.6
+~kde-base/ksnapshot-3.5.6
+~kde-base/kdeadmin-meta-3.5.6
+~kde-base/libkholidays-3.5.6
+~kde-base/klinkstatus-3.5.6
+~kde-base/kompare-3.5.6
+~kde-base/kontact-3.5.6
+~kde-base/konsole-3.5.6
+~kde-base/kdeartwork-iconthemes-3.5.6
+~kde-base/kdeartwork-kwin-styles-3.5.6
+~kde-base/libkdegames-3.5.6
+~kde-base/kdepim-kresources-3.5.6
+~kde-base/konsolekalendar-3.5.6
+~kde-base/kanagram-3.5.6
+~kde-base/kcachegrind-3.5.6
+~kde-base/drkonqi-3.5.6
+~kde-base/kpackage-3.5.6
+~kde-base/kdeedu-applnk-3.5.6
+~kde-base/lilo-config-3.5.6
+~kde-base/kdepim-wizards-3.5.6
+~kde-base/khelpcenter-3.5.6
+~kde-base/kshisen-3.5.6
+~kde-base/ksirtet-3.5.6
+~kde-base/libkcal-3.5.6
+~kde-base/libkonq-3.5.6
+~kde-base/khotkeys-3.5.6
+~kde-base/konquest-3.5.6
+~kde-base/akregator-3.5.6
+~kde-base/kspaceduel-3.5.6
+~kde-base/ksmserver-3.5.6
+~kde-base/kdebase-data-3.5.6
+~kde-base/kdebase-meta-3.5.6
+~kde-base/kturtle-3.5.6
+~kde-base/kverbos-3.5.6
+~kde-base/kweather-3.5.6
+~kde-base/klaptopdaemon-3.5.6
+~kde-base/networkstatus-3.5.6
+~kde-base/korundum-3.5.6
+~kde-base/kdebindings-meta-3.5.6
+~kde-base/kxsldbg-3.5.6
+~kde-base/kwifimanager-3.5.6
+~kde-base/nsplugins-3.5.6
+~kde-base/kdepim-kioslaves-3.5.6
+~kde-base/noatun-plugins-3.5.6
+~kde-base/kdemultimedia-kfile-plugins-3.5.6
+~kde-base/kbugbuster-3.5.6
+~kde-base/kdegraphics-meta-3.5.6
+~kde-base/kmenuedit-3.5.6
+~kde-base/renamedlg-images-3.5.6
+~kde-base/kdesdk-scripts-3.5.6
+~kde-base/kdenetwork-kfile-plugins-3.5.6
+~kde-base/mimelib-3.5.6
+~kde-base/kbackgammon-3.5.6
+~kde-base/knetattach-3.5.6
+~kde-base/kaddressbook-3.5.6
+~kde-base/kscreensaver-3.5.6
+~kde-base/kdemultimedia-kappfinder-data-3.5.6
+~kde-base/kde-meta-3.5.6
+~kde-base/kontact-specialdates-3.5.6
+~kde-base/kdegames-meta-3.5.6
+~kde-base/kdeaccessibility-meta-3.5.6
+~kde-base/fifteenapplet-3.5.6
+~kde-base/kdeedu-meta-3.5.6
+~kde-base/kdeartwork-wallpapers-3.5.6
+~kde-base/certmanager-3.5.6
+~kde-base/kdeaddons-meta-3.5.6
+~kde-base/kcontrol-3.5.6
+~kde-base/kicker-applets-3.5.6
+~kde-base/artsplugin-xine-3.5.6
+~kde-base/konq-plugins-3.5.6
+~kde-base/kbabel-3.5.6
+~kde-base/kalarm-3.5.6
+~kde-base/kamera-3.5.6
+~kde-base/kaudiocreator-3.5.6
+~kde-base/kdeprint-3.5.6
+~kde-base/kasteroids-3.5.6
+~kde-base/kbruch-3.5.6
+~kde-base/kdnssd-3.5.6
+~kde-base/keduca-3.5.6
+~kde-base/kdesktop-3.5.6
+~kde-base/kgamma-3.5.6
+~kde-base/kdeutils-meta-3.5.6
+~kde-base/kicker-3.5.6
+~kde-base/kviewshell-3.5.6
+~kde-base/klatin-3.5.6
+~kde-base/klines-3.5.6
+~kde-base/kmines-3.5.6
+~kde-base/kmouth-3.5.6
+~kde-base/kmplot-3.5.6
+~kde-base/knotes-3.5.6
+~kde-base/kdebase-startkde-3.5.6
+~kde-base/kpager-3.5.6
+~kde-base/kopete-3.5.6
+~kde-base/kpilot-3.5.6
+~kde-base/kpoker-3.5.6
+~kde-base/ksayit-3.5.6
+~kde-base/kruler-3.5.6
+~kde-base/ktalkd-3.5.6
+~kde-base/ksnake-3.5.6
+~kde-base/kdeartwork-meta-3.5.6
+~kde-base/kstars-3.5.6
+~kde-base/ktimer-3.5.6
+~kde-base/ktouch-3.5.6
+~kde-base/kdenetwork-filesharing-3.5.6
+~kde-base/kjsembed-3.5.6
+~kde-base/kreversi-3.5.6
+~kde-base/kdenetwork-meta-3.5.6
+~kde-base/noatun-3.5.6
+~kde-base/kitchensync-3.5.6
+~kde-base/libkpimexchange-3.5.6
+~kde-base/ksplashml-3.5.6
+~kde-base/kblackbox-3.5.6
+~kde-base/kcharselect-3.5.6
+~kde-base/kdeaccessibility-iconthemes-3.5.6
+~kde-base/quanta-3.5.6
+~kde-base/qtruby-3.5.6
+~kde-base/superkaramba-3.5.6
+~kde-base/ksmiletris-3.5.6
+~kde-base/kdemultimedia-kioslaves-3.5.6
+~kde-base/kaddressbook-plugins-3.5.6
+~kde-base/kuickshow-3.5.6
+~kde-base/kolourpaint-3.5.6
+~kde-base/kommander-3.5.6
+~kde-base/kiconedit-3.5.6
+~kde-base/kmahjongg-3.5.6
+~kde-base/klettres-3.5.6
+~kde-base/kfouleggs-3.5.6
+~kde-base/kghostview-3.5.6
+~kde-base/klickety-3.5.6
+~kde-base/kdemultimedia-arts-3.5.6
+~kde-base/kdemultimedia-meta-3.5.6
+~kde-base/kfilereplace-3.5.6
+~kde-base/kpersonalizer-3.5.6
+~kde-base/kdeadmin-kfile-plugins-3.5.6
+~kde-base/kdepim-meta-3.5.6
+~kde-base/kpovmodeler-3.5.6
+~kde-base/kgeography-3.5.6
+~kde-base/kjumpingcube-3.5.6
+~kde-base/kenolaba-3.5.6
+~kde-base/kdesdk-meta-3.5.6
+~kde-base/libkcddb-3.5.6
+~kde-base/blinken-3.5.6
+~kde-base/ksokoban-3.5.6
+~kde-base/kdewebdev-meta-3.5.6
+~kde-base/kteatime-3.5.6
+~kde-base/kworldwatch-3.5.6
+~kde-base/kbstateapplet-3.5.6
+~kde-base/konqueror-akregator-3.5.6
+~kde-base/kate-plugins-3.5.6
+~kde-base/umbrello-3.5.6
+~kde-base/libkpimidentities-3.5.6
+~kde-base/kdeartwork-kscreensaver-3.5.6
+~kde-base/artsplugin-akode-3.5.6
+~kde-base/kdebase-kioslaves-3.5.6
+~kde-base/konqueror-3.5.6
+~kde-base/kuiviewer-3.5.6
+~kde-base/kregexpeditor-3.5.6
+~kde-base/kwordquiz-3.5.6
+~kde-base/kdegraphics-kfile-plugins-3.5.6
+~kde-base/korganizer-3.5.6
+~kde-base/kdeartwork-styles-3.5.6
+~kde-base/atlantik-3.5.6
+~kde-base/kdelibs-3.5.6
+~kde-base/kcheckpass-3.5.6
+~kde-base/kcminit-3.5.6
+~kde-base/kdcop-3.5.6
+~kde-base/kdeaddons-kfile-plugins-3.5.6
+~kde-base/kdeartwork-sounds-3.5.6
+~kde-base/kdebugdialog-3.5.6
+~kde-base/kdesdk-misc-3.5.6
+~kde-base/kode-3.5.6
+~kde-base/kreadconfig-3.5.6
+~kde-base/kspy-3.5.6
+~kde-base/kstart-3.5.6
+~kde-base/libkmime-3.5.6
+~kde-base/libksieve-3.5.6
+~kde-base/librss-3.5.6
+~kde-base/mpeglib-3.5.6
+~kde-base/qtjava-3.5.6
+~kde-base/secpolicy-3.5.6
+~kde-base/smoke-3.5.6
+~kde-base/kde-i18n-3.5.6
+~kde-base/kdeaccessibility-3.5.6
+~kde-base/kdeaddons-3.5.6
+~kde-base/kdeadmin-3.5.6
+~kde-base/kdeartwork-3.5.6
+~kde-base/kdebase-3.5.6
+~kde-base/kdebindings-3.5.6
+~kde-base/kdeedu-3.5.6
+~kde-base/kdegames-3.5.6
+~kde-base/kdegraphics-3.5.6
+~kde-base/kde-3.5.6
+~kde-base/kdemultimedia-3.5.6
+~kde-base/kdenetwork-3.5.6
+~kde-base/kdepim-3.5.6
+~kde-base/kdesdk-3.5.6
+~kde-base/kdetoys-3.5.6
+~kde-base/kdeutils-3.5.6
+~kde-base/kdewebdev-3.5.6
+~kde-base/arts-3.5.6
+~dev-util/kdevelop-3.3.6
+
+# Chris Gianelloni <wolf31o2@gentoo.org> (15 Jan 2007)
+# The Armagetron Advanced packages in Gentoo's repository are obsolete and will
+# likely remain masked until they can be revisted to be maintainable.  Until
+# that time, the upstream team has created their own overlay:
+#     emerge -a layman
+#     layman -ka armagetron
+games-action/armagetronad
+
+# Markus Ullmann <jokey@gentoo.org> (15 Jan 2007)
+# mask live ebuild
+=app-emulation/virtualbox-9999
+
+# Luis Medinas <metalgod@gentoo.org> (15 Jan 2007)
+# Mask libisofs-0.2.4 that changed the API
+# and broke the current brasero.
+=dev-libs/libisofs-0.2.4
+
+# Olivier Crete <tester@gentoo.org> (13 Jan 2007)
+# Unmaintained upstream, security bug #160793
+net-im/centericq
+
+# Joshua Baergen <joshuabaergen@gentoo.org> (13 Jan 2007)
+# Deprecated X components
+x11-apps/mkcfm
+
+# Luca Longinotti <chtekk@gentoo.org> (13 Jan 2007)
+# Masked pglogd for removal on 13.02.2007.
+# Dead upstream, no release in 2 years and
+# doesn't work with PostgreSQL 8.X releases.
+www-misc/pglogd
+
+# Matti Bickel <mabi@gentoo.org> (13 Jan 2007)
+# Masked slotted versions pending further testing, needs further investigation
+=dev-lang/lua-5.0.3-r1
+=dev-lang/lua-5.1.1-r1
+
+# Marijn Schouten <hkBst@gentoo.org> (13 Jan 2007)
+# Pending removal
+=x11-libs/guile-gtk-0.19-r1
+
+# Raúl Porcel <armin76@gentoo.org> (12 Jan 2007)
+# Upstream dead almost 3 years ago and doesn't compile with GCC 4.x.
+# Pending removal 12 Feb 2007, bug 153268
+net-p2p/teknap
+
+# Marijn Schouten <hkBst@gentoo.org> (12 Jan 2007)
+# Pending removal
+<=dev-scheme/guile-1.6.6
+
+# Alon Bar-Lev <alonbl@gentoo.org> (12 Jan 2007)
+# Pending removal, use app-crypt/asedriveiiie-serial or app-crypt/asedriveiiie-usb
+# It will die in 14 days
+sys-apps/pcsc-ase-iiie-drv
+
+# Chris Gianelloni <wolf31o2@gentoo.org> (12 Jan 2007)
+# Masking this since it hasn't been used in ages, isn't supported, isn't even
+# maintained, and catalyst replaces it.  This will be removed on (12 Feb 2007).
+app-admin/livecd-ng
+
+# Marien Zwart <marienz@gentoo.org> (11 Jan 2007)
+# Does not work with the latest twisted core,
+# upstream says "I don't think it should have ever been released anyway",
+# so mask until it stabilizes.
+dev-python/twisted-web2
 
 # Diego Pettenò <flameeyes@gentoo.org> (10 Jan 2007)
 # Broken with GCC 3.4 and later and ignored up to now
@@ -129,10 +520,6 @@ net-misc/tulip-devel
 # Pending removal Feb 2nd
 media-radio/ax25-tools
 
-# Ryan Hill <dirtyepic@gentoo.org> (02 Jan 2006)
-# Mask for testing with Seamonkey / FF 2.0
->x11-libs/wxmozilla-0.5.6
-
 # Doug Goldstein <cardoe@gentoo.org> (31 Dec 2006)
 # Masked for testing
 >x11-libs/cairo-1.3.10
@@ -223,6 +610,7 @@ media-plugins/alsa-jack
 # a new ALSA_PCM_PLUGINS variable to disable of the
 # core internal plugins.
 =media-libs/alsa-lib-1.0.14_rc1-r1
+=media-libs/alsa-lib-1.0.14_rc2-r1
 
 # Donnie Berkholz <dberkholz@gentoo.org> (20 Dec 2006)
 # Testing for FreeBSD support
@@ -232,11 +620,6 @@ media-plugins/alsa-jack
 # Plugins for XFCE 4.4's Thunar file manager
 xfce-extra/thunar-archive
 xfce-extra/thunar-media-tags
-
-# Diego Pettenò <flameeyes@gentoo.org> (19 Dec 2006)
-# Pending removal on (19 Jan 2007), as Amarok does not use
-# this anymore, and that was its only user.
-media-sound/exscalibar
 
 # Markus Ullmann <jokey@gentoo.org> (19 Dec 2006)
 # mask for removal bug #153257 on (19 Jan 2007)
@@ -253,15 +636,6 @@ app-misc/nomad-tool
 # there is an offer of a company to help maintain it
 # I will proxymaintain 
 net-misc/ltsp
-
-# Christian Faulhammer <opfer@gentoo.org> (16 Dec 2006)
-# Won't compile with GCC 4, see bugs #142406, #146229,
-# #138605
-# Remove (15 Jan 2007)
-# NOTE: for security reasons, please contact security team if for
-#       some reason this is not removed (see #159501).
-#           -- taviso (30 Dec 2006)
-net-p2p/xmule 
 
 # Michael Sterrett <mr_bones_@gentoo.org> (14 Dec 2006)
 # treecleaners, remove (14 Jan 2007)
@@ -286,11 +660,6 @@ kde-misc/styleclock
 # steps up to fix all the open bugs.
 # bugs #88804, #72799, #103323, #82716, #150403, and #119844
 games-fps/doomlegacy
-
-# Jeff Gardner <je_fro@gentoo.org> (13 Dec 2006)
-# Broken for now...hope to fix and add again later.
-# For now use the binary at http://www.hellion.org.uk/ivtv/debian/
-x11-drivers/xf86-video-ivtvdev
 
 # Daniel Drake <dsd@gentoo.org> (12 Dec 2006)
 # Broken again with new kernel release, no maintainer, no upstream
@@ -353,10 +722,6 @@ xfce-extra/xfce4-xfapplet
 # this anymore and it is deprecated
 x11-themes/bmpx-themes
 
-# Christian Faulhammer <opfer@gentoo.org> (04 Dec 2006)
-# masked for testing, as it is beta
-x11-misc/gaia
-
 # Timothy Redaelli <drizzt@gentoo.org> (01 Dec 2006)
 # Beta versions
 =app-arch/upx-ucl-2.9*
@@ -376,14 +741,6 @@ x11-misc/gaia
 # Timothy Redaelli <drizzt@gentoo.org> (28 Nov 2006)
 # Masked for testing.
 =media-libs/spandsp-0.0.3*
-
-# Kevin F. Quinn <kevquinn@gentoo.org> (21 Nov 2006)
-# Mask for initial testing; bug #125366
-=app-text/acroread-7.0.8-r1
-
-# Saleem Abdulrasool <compnerd@gentoo.org> (21 Nov 2006)
-# Mask for testing
-app-misc/tracker
 
 # Robin H. Johnson <robbat2@gentoo.org> (21 Nov 2006)
 # Block. It breaks badly on bigendian boxes.
@@ -408,12 +765,6 @@ dev-perl/Msql-Mysql-modules
 # masked for removal
 dev-ada/adabindx
 dev-ada/adaopengl
-
-# Alin Nastac <mrness@gentoo.org> (18 Nov 2006)
-# Masked because kernel 2.6.17 contains the base and M105 drivers.
-# If you need the frontend tools, open a bug requesting just that.
-# Pending for removal on 18 Jan 2007.
-net-dialup/gigaset-isdn
 
 # Doug Goldstein <cardoe@gentoo.org> (15 Nov 2006)
 # Completely broken. Upstream removed and changed binary files
@@ -535,10 +886,6 @@ media-video/gspcav1
 # beta version, breaks API badly with other software.
 >=media-libs/flac-1.1.3_beta2
 
-# Olivier Crete <tester@gentoo.org> (18 Oct 2006)
-# Beta versions
-=net-www/netscape-flash-9*
-
 # Andrej Kacian <ticho@gentoo.org> (16 Oct 2006)
 # Release candidates, no unsuspecting users should use these.
 =app-antivirus/clamav-0.90_rc*
@@ -546,7 +893,10 @@ media-video/gspcav1
 # Christian Heim <phreak@gentoo.org> (14 Oct 2006)
 # masking app-misc/gpsdrive for treecleaners, bug(s) 142710
 # Pending removal 14th November 2006
-app-misc/gpsdrive
+# Steve Arnold <nerdboy@gentoo.org> (12 Jan 2007)
+# Unmasking due to removal being canceled.
+# Updated ebuild addresses current bugs.
+#app-misc/gpsdrive
 
 # Grant Goodyear <g2boojum@gentoo.org> (10 Oct 2006)
 # mask gnuplot rc
@@ -589,10 +939,6 @@ dev-util/boost-build
 =dev-libs/boost-1.34*
 =dev-python/pythonmagick-0.6
 
-# Ioannis Aslanidis <deathwing00@gentoo.org> (29 Sep 2006)
-# Preview version: Needs to be tested, has known crashes.
-=kde-misc/katalog-0.4_pre1
-
 # Seemant Kulleen <seemant@gentoo.org> (26 Oct 2006)
 # swfdec is stale, according to upstream as well, and these need to follow
 # mozilla out of the door.
@@ -633,11 +979,6 @@ net-misc/linux-igd
 # Daniel Gryniewicz <dang@gentoo.org> (11 Sep 2006)
 # orbit 2.14.3 is broken.  bug #146929
 =gnome-base/orbit-2.14.3
-
-# Mike Kelly <pioto@gentoo.org> (09 Sep 2006)
-# The 2.x branch changes how it interacts with vim and other plugins. Masking
-# this for now until I'm sure all current plugins work with it.
->=app-vim/genutils-2
 
 # Stefaan De Roeck <stefaan@gentoo.org> (09 Sep 2006)
 # 1.5.x is a development branch, people should test 1.4.x by default
@@ -728,11 +1069,6 @@ app-admin/eselect-compiler
 # i18n support and encoders/decoders are missing.
 =app-cdr/k3b-1.0_beta*
 =app-cdr/k3b-1.0_rc*
-
-# Tuấn Văn <langthang@gentoo.org> (10 Aug 2006)
-# Security mask
-# Bug #132821
-mail-filter/libspf
 
 # Tim Yamin <plasmaroo@gentoo.org> (07 Aug 2006)
 # Security mask
@@ -1018,10 +1354,6 @@ net-libs/enet
 # - provide log output to /var/log somewhere intelligently
 app-benchmarks/ltp
 
-# Matthew Kennedy <mkennedy@gentoo.org> (06 Mar 2006)
-# Masked due to maintainability issues.  See bug 116631.
-dev-scheme/bigloo-lib
-
 # Michael Sterrett <mr_bones_@gentoo.org> (06 Mar 2006)
 # masked due to security issues: bug #125289
 # unmask locally at your own risk.
@@ -1142,13 +1474,11 @@ sys-apps/gli
 # most likely will be removing it in the near future.
 =games-util/loki_patch-20051209
 
-# Francesco Riosa <vivo@gentoo.org> (07 Dec 2006)
-# Luca Longinotti <chtekk@gentoo.org> (06 Jan 2007)
-# Mask MySQL 5.1.*, as well as slotted MySQL and the alpha versions
+# Luca Longinotti <chtekk@gentoo.org> (12 Jan 2007)
+# Mask MySQL 5.1.* and the alpha versions
 >=dev-db/mysql-5.1
 >=dev-db/mysql-community-5.1
 >=virtual/mysql-5.1
-dev-db/mysql-slotted
 =dev-db/mysql-4.1.23_alpha20070101-r61
 =dev-db/mysql-5.0.34_alpha20070101-r61
 =dev-db/mysql-community-5.1.15_alpha-r90
@@ -1236,12 +1566,6 @@ gnustep-apps/vindaloo
 # Konstantin Arkhipov <voxus@gentoo.org> (14 Jul 2005)
 # Masked for security reasons.
 <=sys-kernel/openmosix-sources-2.4.30
-
-# Chris White (chriswhite@gentoo.org) (08 Jul 2005)
-# Masking initial import of ipodder as it has some issues
-# with the episode cleanup window.  However, those that don't use
-# it should be ok.
-media-sound/ipodder
 
 # Caleb Tennis <caleb@gentoo.org> (01 Jul 2005)
 # Seems to not be compatible with kde 3.4 though
@@ -1383,10 +1707,6 @@ games-fps/unreal-tournament-infiltration
 games-fps/unreal-tournament-strikeforce
 games-fps/unreal-tournament-bonuspacks
 games-fps/aaut
-
-# <weeve@gentoo.org> (02 Mar 2004)
-# mask slib-3.1.1 until gnucash can get a fix for it
-=dev-libs/slib-3.1.1
 
 # <robbat2@gentoo.org> (10 Jan 2004)
 # blocked for testing
