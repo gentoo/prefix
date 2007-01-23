@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/apr
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.73 2006/10/18 16:10:41 uberlord Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.74 2007/01/08 23:35:43 phreak Exp $
+
+  08 Jan 2007; Christian Heim <phreak@gentoo.org> apr-1.2.7-r1.ebuild,
+  apr-1.2.7-r2.ebuild, apr-1.2.7-r3.ebuild:
+  Setting WANT_AUTOCONF to shutup #161027.
 
   18 Oct 2006; Roy Marples <uberlord@gentoo.org> apr-0.9.12.ebuild:
   Added ~sparc-fbsd keyword.

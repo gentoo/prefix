@@ -1,10 +1,12 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.2.7-r3.ebuild,v 1.4 2006/10/18 12:48:26 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.2.7-r3.ebuild,v 1.5 2007/01/08 23:35:43 phreak Exp $
 
 EAPI="prefix"
 
 inherit autotools
+
+WANT_AUTOCONF="2.5"
 
 DESCRIPTION="Apache Portable Runtime Library"
 HOMEPAGE="http://apr.apache.org/"
