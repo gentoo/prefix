@@ -1,6 +1,19 @@
 # ChangeLog for app-portage/gentoolkit-dev
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.44 2007/01/13 09:24:19 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.47 2007/01/19 19:41:05 eroyf Exp $
+
+  19 Jan 2007; Alexander H. Færøy <eroyf@gentoo.org>
+  gentoolkit-dev-0.2.6.2.ebuild:
+  Stable on MIPS; bug #161360
+
+  17 Jan 2007; Jose Luis Rivero <yoswink@gentoo.org>
+  gentoolkit-dev-0.2.6.2.ebuild:
+  Stable on alpha wrt bug 161360
+
+  17 Jan 2007; Fabian Groffen <grobian@gentoo.org>
+  gentoolkit-dev-0.2.5.ebuild, gentoolkit-dev-0.2.6.1.ebuild,
+  gentoolkit-dev-0.2.6.2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   13 Jan 2007; Steve Dibb <beandog@gentoo.org>
   gentoolkit-dev-0.2.6.2.ebuild:
