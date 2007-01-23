@@ -72,12 +72,12 @@ pkg_postinst() {
 	einfo
 	elog  "If this is the very first overlay you add with layman,"
 	elog  "you need to append the following statement to your"
-	elog  "/etc/make.conf file:"
+	elog  "${EPREFIX}/etc/make.conf file:"
 	elog
-	elog  "source /usr/portage/local/layman/make.conf"
+	elog  "source ${EPREFIX}/usr/portage/local/layman/make.conf"
 	elog
 	elog  "If you modify the 'storage' parameter in the layman"
-	elog  "configuration file (/etc/layman/layman.cfg) you will"
+	elog  "configuration file (${EPREFIX}/etc/layman/layman.cfg) you will"
 	elog  "need to adapt the path given above to the new storage"
 	elog  "directory."
 	einfo
