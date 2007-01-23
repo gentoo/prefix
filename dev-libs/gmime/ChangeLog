@@ -1,6 +1,17 @@
 # ChangeLog for dev-libs/gmime
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.50 2006/09/03 07:53:30 dertobi123 Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.53 2007/01/02 22:13:27 flameeyes Exp $
+
+  02 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> gmime-2.2.3.ebuild:
+  Add ~x86-fbsd keyword.
+
+*gmime-2.2.3 (02 Jan 2007)
+
+  02 Jan 2007; Andrej Kacian <ticho@gentoo.org> +gmime-2.2.3.ebuild:
+  Version bump.
+
+  02 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> gmime-2.2.1.ebuild:
+  Run elibtoolize, as the package installs a shared library.
 
   03 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org> gmime-2.1.19.ebuild:
   hppa stable
