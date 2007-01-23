@@ -1,19 +1,24 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.236 2007/01/05 04:29:15 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.237 2007/01/17 02:05:16 leio Exp $
 
-  05 Jan 2007; <leio@gentoo.org> glib-2.8.6.ebuild, glib-2.10.3.ebuild,
+*glib-2.12.9 (17 Jan 2007)
+
+  17 Jan 2007; Mart Raudsepp <leio@gentoo.org> +glib-2.12.9.ebuild:
+  Version bump
+
+  05 Jan 2007; Mart Raudsepp <leio@gentoo.org> glib-2.8.6.ebuild, glib-2.10.3.ebuild,
   glib-2.10.3-r1.ebuild, glib-2.12.4-r1.ebuild, glib-2.12.6.ebuild:
   Remove debug.eclass usage, bug 160095
 
-  05 Jan 2007; <leio@gentoo.org>
+  05 Jan 2007; Mart Raudsepp <leio@gentoo.org>
   -files/glib-2.12.5-gkeyfile-gnomevfs-mime.patch, -glib-2.8.4.ebuild,
   -glib-2.8.5.ebuild, -glib-2.12.5-r1.ebuild:
   Remove some redundant versions
 
 *glib-2.12.7 (05 Jan 2007)
 
-  05 Jan 2007; <leio@gentoo.org> +glib-2.12.7.ebuild:
+  05 Jan 2007; Mart Raudsepp <leio@gentoo.org> +glib-2.12.7.ebuild:
   New release
 
 *glib-2.12.6 (21 Dec 2006)
