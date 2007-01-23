@@ -1,6 +1,35 @@
 # ChangeLog for dev-libs/libgcrypt
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.80 2006/10/29 20:20:28 alonbl Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.87 2007/01/12 20:48:36 alonbl Exp $
+
+  12 Jan 2007; Alon Bar-Lev <alonbl@gentoo.org> libgcrypt-1.2.3-r1.ebuild:
+  Remove WANT_AUTO*
+
+  10 Jan 2007; Alon Bar-Lev <alonbl@gentoo.org>
+  +files/libgcrypt-1.2.3-strict-aliasing.patch, libgcrypt-1.2.3-r1.ebuild:
+  Fixed strict-aliasing qa issue, bug#161370
+
+  05 Jan 2007; Alon Bar-Lev <alonbl@gentoo.org> libgcrypt-1.2.3-r1.ebuild:
+  Added autotools variables, bug#160135, thanks to jacub
+
+  05 Jan 2007; Alon Bar-Lev <alonbl@gentoo.org> libgcrypt-1.2.3-r1.ebuild:
+  Fixing idea url to upstream, who publish our patch now
+
+  04 Jan 2007; Diego Pettenò <flameeyes@gentoo.org>
+  libgcrypt-1.2.3-r1.ebuild:
+  Fix atom.
+
+*libgcrypt-1.2.3-r1 (04 Jan 2007)
+
+  04 Jan 2007; Alon Bar-Lev <alonbl@gentoo.org> +libgcrypt-1.2.3-r1.ebuild:
+  Add idea algirithm patch, modified version of
+  http://www.kfwebs.net/articles/article/42/GnuPG-2.0---IDEA-support,
+  bug#159870
+
+  28 Dec 2006; Fabian Groffen <grobian@gentoo.org> libgcrypt-1.2.0.ebuild,
+  libgcrypt-1.2.1.ebuild, libgcrypt-1.2.1-r1.ebuild, libgcrypt-1.2.2.ebuild,
+  libgcrypt-1.2.2-r1.ebuild, libgcrypt-1.2.3.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *libgcrypt-1.2.3 (29 Oct 2006)
 
