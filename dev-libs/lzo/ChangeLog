@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/lzo
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/lzo/ChangeLog,v 1.44 2007/01/07 19:50:53 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/lzo/ChangeLog,v 1.45 2007/01/16 20:19:31 grobian Exp $
+
+  16 Jan 2007; Fabian Groffen <grobian@gentoo.org> lzo-1.08-r1.ebuild,
+  lzo-2.02-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix.
 
   07 Jan 2007; Daniel Black <dragonheart@gentoo.org> lzo-1.08-r1.ebuild:
   [e]autotools correction as per bug #160159 thanks Diego
