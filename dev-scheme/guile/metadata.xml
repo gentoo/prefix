@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>no-herd</herd>
-<maintainer>
-	<email>liquidx@gentoo.org</email>
-	<description>Unwilling victim. Please take over if you are more interested.</description>
-</maintainer>
+	<herd>scheme</herd>
+	<maintainer>
+		<email>hkBst@gentoo.org</email>
+	</maintainer>
+	<longdescription lang="en">
+Guile is a library designed to help programmers create flexible applications. Using Guile in an application allows programmers to write plug-ins, or modules (there are many names, but the concept is essentially the same) and users to use them to have an application fit their needs.
+	</longdescription>
 </pkgmetadata>

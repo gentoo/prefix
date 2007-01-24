@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.6.7.ebuild,v 1.1 2007/01/10 17:31:47 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.6.8.ebuild,v 1.1 2007/01/12 14:45:43 hkbst Exp $
 
 EAPI="prefix"
 
@@ -28,32 +28,12 @@ DEPEND=">=sys-libs/ncurses-5.1
 SLOT="12"
 MAJOR="1.6"
 
-src_unpack() {
-	unpack ${A}
-	cd ${S}
-
-	if [ "${ARCH}" = "amd64" ]; then
-		epatch ${FILESDIR}/guile-amd64.patch
-	fi
-
-	if [ "${ARCH}" = "ppc" ]; then
-		replace-flags -O3 -O2
-	fi
-
-	# fix for putenv on Darwin
-	epatch ${FILESDIR}/${P}-posix.patch
-	# fixes sleep/usleep errors on Darwin
-	epatch ${FILESDIR}/${P}-scmsigs.patch
-	# Fix for gcc-4.0
-	epatch ${FILESDIR}/${P}-gcc4.patch
-}
-
 src_compile() {
+	use ppc && replace-flags -O3 -O2
+
 	# Fix for bug 26484: This package fails to build when built with
 	# -g3, at least on some architectures.  (19 Aug 2003 agriffis)
 	filter-flags -g3
-
-	use userland_Darwin && append-flags -Dmacosx
 
 	econf \
 		--with-threads \
@@ -77,4 +57,15 @@ src_install() {
 	# there anyway, and will only match the last guile installed.
 	# so the GUILE_LOAD_PATH will match the data available from guile-config.
 	echo "GUILE_LOAD_PATH=\"${EPREFIX}/usr/share/guile/${MAJOR}\"" > ${ED}/etc/env.d/50guile
+
+#	# install a symlink to slib; probably not worth it to test for slib use flag
+#	dosym ${eroot}/usr/lib/slib/ ${eroot}/usr/share/guile/slib
 }
+
+# keeping this in slib for now
+#pkg_postinst() {
+#	if use slib; then
+#		einfo "installing slib for guile..."
+#		guile -c "(use-modules (ice-9 slib)) (require 'new-catalog)"
+#	fi
+#}
