@@ -66,7 +66,9 @@ src_unpack() {
 
 	# Fix the makewhatis script for prefix.
 	cp "${FILESDIR}"/makewhatis.cron "${T}"/
-	( cd "${T}" && epatch "${FILESDIR}"/makewhatis.cron-prefix.patch )
+	pushd "${T}" > /dev/null
+	epatch "${FILESDIR}"/makewhatis.cron-prefix.patch
+	popd > /dev/null
 	eprefixify "${T}"/makewhatis.cron
 
 	epatch "${FILESDIR}"/man-1.6e-dont-kill-shebangs.patch #159192
