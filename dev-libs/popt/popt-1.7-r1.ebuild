@@ -1,8 +1,11 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/popt-1.7-r1.ebuild,v 1.25 2006/10/24 19:16:50 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/popt-1.7-r1.ebuild,v 1.26 2007/01/09 19:05:52 sanchan Exp $
 
 EAPI="prefix"
+
+WANT_AUTOCONF="latest"
+WANT_AUTOMAKE="1.6"
 
 inherit libtool eutils flag-o-matic autotools
 
@@ -16,8 +19,7 @@ KEYWORDS="~amd64 ~ppc-macos ~x86"
 IUSE="nls"
 
 RDEPEND="nls? ( virtual/libintl )"
-DEPEND="nls? ( sys-devel/gettext )
-	=sys-devel/automake-1.6*"
+DEPEND="nls? ( sys-devel/gettext )"
 
 src_unpack() {
 	unpack ${A}

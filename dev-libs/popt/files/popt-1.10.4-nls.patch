@@ -1,6 +1,5 @@
-diff -ur popt-1.10.4.orig/configure.ac popt-1.10.4.my/configure.ac
---- popt-1.10.4.orig/configure.ac	2006-10-21 13:14:32.000000000 +0200
-+++ popt-1.10.4.my/configure.ac	2006-10-21 13:13:24.000000000 +0200
+--- popt-1.10.4.orig/configure.ac
++++ popt-1.10.4.my/configure.ac
 @@ -92,14 +92,6 @@
                [ : ] )
  AM_CONDITIONAL(HAVE_LD_VERSION_SCRIPT, test "$have_ld_version_script" = "yes")
@@ -29,9 +28,8 @@ diff -ur popt-1.10.4.orig/configure.ac popt-1.10.4.my/configure.ac
  
 -AC_OUTPUT([Doxyfile Makefile intl/Makefile po/Makefile.in])
 +AC_OUTPUT([Doxyfile Makefile])
-diff -ur popt-1.10.4.orig/Makefile.am popt-1.10.4.my/Makefile.am
---- popt-1.10.4.orig/Makefile.am	2006-10-21 13:14:32.000000000 +0200
-+++ popt-1.10.4.my/Makefile.am	2006-10-21 13:10:09.000000000 +0200
+--- popt-1.10.4.orig/Makefile.am
++++ popt-1.10.4.my/Makefile.am
 @@ -9,8 +9,6 @@
  	po/*.in po/*.po po/popt.pot \
  	popt.ps
