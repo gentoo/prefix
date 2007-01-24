@@ -1,11 +1,11 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/slib/slib-3.1.1.ebuild,v 1.7 2006/12/18 18:17:48 masterdriverz Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/slib-3.1.1.ebuild,v 1.6 2007/01/19 09:59:38 hkbst Exp $
 
 EAPI="prefix"
 
-MY_P=${PN}3a1
-S=${WORKDIR}/${PN}
+MY_P="${PN}3a1"
+S="${WORKDIR}/${PN}"
 DESCRIPTION="library providing functions for Scheme implementations"
 SRC_URI="http://swissnet.ai.mit.edu/ftpdir/scm/OLD/${MY_P}.zip"
 HOMEPAGE="http://swissnet.ai.mit.edu/~jaffer/SLIB.html"
@@ -15,10 +15,9 @@ LICENSE="public-domain BSD"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
 IUSE=""
 
-RDEPEND=">=dev-util/guile-1.4"
+RDEPEND="~dev-scheme/guile-1.6.7"
 DEPEND="${RDEPEND}
-	>=app-arch/unzip-5.21
-	>=dev-util/guile-1.4"
+	>=app-arch/unzip-5.21"
 
 RESTRICT="test"
 
