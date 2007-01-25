@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.15.4.ebuild,v 1.2 2006/10/04 17:45:59 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.16.0.ebuild,v 1.1 2006/12/09 03:30:39 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SRC_URI="http://curl.haxx.se/download/${P}.tar.bz2"
 
 LICENSE="MIT X11"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="ssl ipv6 ldap ares gnutls idn kerberos krb4 test"
 
 RDEPEND="gnutls? ( net-libs/gnutls )
@@ -53,7 +53,8 @@ src_compile() {
 		--enable-manual
 		--enable-telnet
 		--enable-nonblocking
-		--enable-largefile"
+		--enable-largefile
+		--enable-maintainer-mode"
 
 	if use ipv6 && use ares; then
 		ewarn "c-ares support disabled because it is incompatible with ipv6."
@@ -78,7 +79,7 @@ src_compile() {
 	fi
 
 	if use kerberos; then
-	   myconf="${myconfg} --with-gssapi=${EPREFIX}/usr"
+	   myconf="${myconf} --with-gssapi=${EPREFIX}/usr"
 	fi
 
 	econf ${myconf} || die 'configure failed'
@@ -92,6 +93,14 @@ src_install() {
 	doins docs/libcurl/libcurl.m4
 
 	dodoc CHANGES README
-	dodoc docs/FEATURES docs/INTERNALS docs/LIBCURL
+	dodoc docs/FEATURES docs/INTERNALS
 	dodoc docs/MANUAL docs/FAQ docs/BUGS docs/CONTRIBUTE
+}
+
+pkg_postinst() {
+	if [[ -e "${EROOT}"/usr/$(get_libdir)/libcurl.so.3 ]] ; then
+		ewarn "You must re-compile all packages that are linked against"
+		ewarn "curl-7.15.* by using revdep-rebuild from gentoolkit:"
+		ewarn "# revdep-rebuild --library libcurl.so.3"
+	fi
 }
