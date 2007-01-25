@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2006o.ebuild,v 1.1 2006/11/06 20:23:12 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2007a.ebuild,v 1.2 2007/01/13 19:01:03 vapier Exp $
 
 EAPI="prefix"
 
@@ -52,10 +52,28 @@ src_install() {
 	dohtml *.htm *.jpg
 }
 
-pkg_postinst() {
-	if [[ ! -e ${EROOT}/etc/localtime ]] ; then
-		ewarn "Please remember to set your timezone using the zic command."
-		rm -f "${EROOT}"/etc/localtime
-		ln -s ../usr/share/zoneinfo/Factory "${EROOT}"/etc/localtime
+pkg_config() {
+	# make sure the /etc/localtime file does not get stale #127899
+	local tz=$(source "${EROOT}"/etc/conf.d/clock ; echo ${TIMEZONE})
+	if [[ -z ${tz} ]] ; then
+		if [[ ! -e ${EROOT}/etc/localtime ]] ; then
+			cp -f "${EROOT}"/usr/share/zoneinfo/Factory "${EROOT}"/etc/localtime
+		fi
+		ewarn "You do not have TIMEZONE set in /etc/conf.d/clock."
+		ewarn "Skipping auto-update of /etc/localtime."
+		return 0
 	fi
+
+	if [[ ! -e ${EROOT}/usr/share/zoneinfo/${tz} ]] ; then
+		eerror "You have an invalid TIMEZONE setting in ${EPREFIX}/etc/conf.d/clock."
+		eerror "Your ${EPREFIX}/etc/localtime has been reset to Factory; enjoy!"
+		tz="Factory"
+	fi
+	einfo "Updating ${EPREFIX}/etc/localtime with ${EPREFIX}/usr/share/zoneinfo/${tz}"
+	[[ -L ${EROOT}/etc/localtime ]] && rm -f "${EROOT}"/etc/localtime
+	cp -f "${EROOT}"/usr/share/zoneinfo/"${tz}" "${EROOT}"/etc/localtime
+}
+
+pkg_postinst() {
+	pkg_config
 }

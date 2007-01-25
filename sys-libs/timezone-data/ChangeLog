@@ -1,6 +1,25 @@
 # ChangeLog for sys-libs/timezone-data
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.54 2006/11/29 01:16:06 vapier Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.58 2007/01/13 19:01:03 vapier Exp $
+
+  13 Jan 2007; Mike Frysinger <vapier@gentoo.org>
+  timezone-data-2007a.ebuild:
+  Move timezone update to pkg_config so people can refresh it automatically as
+  suggested by Stefano Varesi.
+
+  09 Jan 2007; Mike Frysinger <vapier@gentoo.org>
+  files/timezone-data-2005n-makefile.patch:
+  Default to -std=gnu99 rather than -std=c99 #161183 by Sandro.
+
+*timezone-data-2007a (09 Jan 2007)
+
+  09 Jan 2007; Mike Frysinger <vapier@gentoo.org>
+  +timezone-data-2007a.ebuild:
+  Version bump #160957 by Rodrigo Severo.
+
+  31 Dec 2006; Mike Frysinger <vapier@gentoo.org>
+  timezone-data-2006p.ebuild:
+  Add support for updating /etc/localtime via TIMEZONE in /etc/conf.d/clock.
 
 *timezone-data-2006p (29 Nov 2006)
 

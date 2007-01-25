@@ -48,7 +48,7 @@
  # falls on a Friday, Saturday, or Sunday.
  
 -CFLAGS=
-+CFLAGS += -std=c99
++CFLAGS += -std=gnu99
  
  # If you want zic's -s option used when installing, uncomment the next line
 @@ -220,5 +220,5 @@
