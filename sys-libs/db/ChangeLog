@@ -1,6 +1,30 @@
 # ChangeLog for sys-libs/db
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.182 2006/10/17 18:10:45 gustavoz Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.190 2007/01/10 01:25:09 kloeri Exp $
+
+  10 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> db-4.2.52_p4-r2.ebuild:
+  Stable on Alpha.
+
+  09 Jan 2007; Christian Faulhammer <opfer@gentoo.org> db-1.85-r3.ebuild:
+  stable x86, bug #159445
+
+  09 Jan 2007; Markus Rothe <corsair@gentoo.org> db-1.85-r3.ebuild:
+  Stable on ppc64; bug #159445
+
+  08 Jan 2007; Jeroen Roovers <jer@gentoo.org> db-1.85-r3.ebuild:
+  Stable for HPPA (bug #159445).
+
+  07 Jan 2007; Tobias Scherbaum <dertobi123@gentoo.org> db-1.85-r3.ebuild:
+  ppc stable, bug #159445
+
+  04 Jan 2007; Peter Weller (welp) <welp@gentoo.org> db-1.85-r3.ebuild:
+  Stable on amd64 wrt bug #159445
+
+  04 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> db-1.85-r3.ebuild:
+  Stable on IA64.
+
+  04 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> db-1.85-r3.ebuild:
+  Stable on sparc wrt #159445
 
   17 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org>
   db-4.2.52_p4-r2.ebuild:
