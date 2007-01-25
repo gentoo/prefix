@@ -1,10 +1,10 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-5.2_p1.ebuild,v 1.1 2006/12/16 03:07:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-5.2_p1.ebuild,v 1.3 2007/01/13 19:36:31 vapier Exp $
 
 EAPI="prefix"
 
-inherit eutils multilib toolchain-funcs
+inherit eutils multilib toolchain-funcs flag-o-matic
 
 # Official patches
 # See ftp://ftp.cwru.edu/pub/bash/readline-5.1-patches/
@@ -57,6 +57,8 @@ src_unpack() {
 }
 
 src_compile() {
+	append-flags -D_GNU_SOURCE
+
 	# the --libdir= is needed because if lib64 is a directory, it will default
 	# to using that... even if CONF_LIBDIR isnt set or we're using a version
 	# of portage without CONF_LIBDIR support.
@@ -94,17 +96,9 @@ src_install() {
 }
 
 pkg_preinst() {
-	# Backwards compatibility #29865
-	if [[ -e ${EROOT}/$(get_libdir)/libreadline.so.4 ]] ; then
-		cp -pPR "${EROOT}"/$(get_libdir)/libreadline.so.4* "${ED}"/$(get_libdir)/
-		touch "${ED}"/$(get_libdir)/libreadline.so.4*
-	fi
+	preserve_old_lib /$(get_libdir)/lib{history,readline}.so.4 #29865
 }
 
 pkg_postinst() {
-	if [[ -e ${EROOT}/$(get_libdir)/libreadline.so.4 ]] ; then
-		ewarn "Your old readline libraries have been copied over."
-		ewarn "You should run 'revdep-rebuild --library libreadline.so.4' asap."
-		ewarn "Once you have, you can safely delete /$(get_libdir)/libreadline.so.4*"
-	fi
+	preserve_old_lib_notify /$(get_libdir)/lib{history,readline}.so.4
 }
