@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/make.defaults,v 1.30 2006/12/21 00:25:13 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/make.defaults,v 1.31 2007/01/17 00:52:45 rbu Exp $
 #
 # System-wide defaults for the Portage system
 # See portage(5) manpage
@@ -10,7 +10,7 @@ FEATURES="autoconfig strict sfperms"
 
 # Env vars to expand into USE vars.  Modifying this requires prior
 # discussion on gentoo-dev@gentoo.org.
-USE_EXPAND="FOO2ZJS_DEVICES MISDN_CARDS FRITZCAPI_CARDS FCDSL_CARDS VIDEO_CARDS DVB_CARDS LIRC_DEVICES INPUT_DEVICES LINGUAS USERLAND KERNEL ELIBC CROSSCOMPILE_OPTS ALSA_CARDS ALSA_PCM_PLUGINS"
+USE_EXPAND="FOO2ZJS_DEVICES MISDN_CARDS FRITZCAPI_CARDS FCDSL_CARDS VIDEO_CARDS DVB_CARDS LIRC_DEVICES INPUT_DEVICES LINGUAS USERLAND KERNEL ELIBC CROSSCOMPILE_OPTS ALSA_CARDS ALSA_PCM_PLUGINS LCD_DEVICES"
 
 # USE_EXPAND variables whose contents are not shown in package manager
 # output. Changes need discussion on gentoo-dev.
@@ -25,6 +25,10 @@ KERNEL="linux"
 USERLAND="GNU"
 INPUT_DEVICES="keyboard mouse"
 
-# Diego Pettenò <flameeyes@gentoo.org (21 Dec 2006)
+# Diego Pettenò <flameeyes@gentoo.org> (21 Dec 2006)
 # Build everything for the average user
 ALSA_PCM_PLUGINS="adpcm alaw asym copy dmix dshare dsnoop empty extplug file hooks iec958 ioplug ladspa lfloat linear meter mulaw multi null plug rate route share shm softvol"
+
+# Robert Buchholz <rbu@gentoo.org> (17 Jan 2006)
+# Some common lcd devices
+LCD_DEVICES="bayrad cfontz cfontz633 glk hd44780 lb216 lcdm001 mtxorb ncurses text"

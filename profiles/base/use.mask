@@ -148,3 +148,7 @@ oci8
 oracle7
 firebird
 db2
+
+# Robert Buchholz <rbu@gentoo.org> (18 Jan 2007)
+# Only works on x86
+lcd_devices_svga
