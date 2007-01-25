@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.5-r3.ebuild,v 1.12 2007/01/16 22:36:05 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.6.ebuild,v 1.1 2007/01/17 20:25:59 vapier Exp $
 
 EAPI="prefix"
 
@@ -27,9 +27,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	[[ -n ${PV_SNAP} ]] && epatch "${WORKDIR}"/${MY_P}-${PV_SNAP}-patch.sh
-
-	epatch "${FILESDIR}"/${P}-gfbsd.patch
-	epatch "${FILESDIR}"/${P}-terminfo-gnome.patch
+	epatch "${FILESDIR}"/${PN}-5.6-gfbsd.patch
 }
 
 src_compile() {
