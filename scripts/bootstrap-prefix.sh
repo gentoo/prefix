@@ -182,7 +182,7 @@ bootstrap_portage() {
 		--with-group=`id -gn` \
 		--with-wheelgid=`id -g` \
 		--with-rootuser=`id -un` \
-		--with-default-path="${ROOT}/tmp/bin:${ROOT}/tmp/usr/bin:/bin:/usr/bin"
+		--with-default-path="${ROOT}/tmp/bin:${ROOT}/tmp/usr/bin:/bin:/usr/bin:${PATH}"
 	$MAKE || exit 1
 
  	einfo "Installing ${A%-*}"
@@ -400,7 +400,7 @@ bootstrap_tar() {
 }
 
 bootstrap_patch() {
-	bootstrap_gnu patch 2.5.9
+	bootstrap_gnu patch 2.5.4
 }
 
 bootstrap_binutils() {
