@@ -193,6 +193,7 @@ bootstrap_portage() {
 
 	setup_portage
 
+	cd "${ROOT}"
 	rm -Rf ${ptmp} >& /dev/null
 	einfo "${A%-*} succesfully bootstrapped"
 }
@@ -221,6 +222,7 @@ bootstrap_odcctools() {
 
 	$MAKE install || exit 1
 
+	cd "${ROOT}"
 	rm -Rf ${S}
 }
 
@@ -291,6 +293,7 @@ bootstrap_gcc() {
 
 	$MAKE install || exit 1
 
+	cd "${ROOT}"
 	rm -Rf ${S}
 }
 
@@ -320,6 +323,7 @@ bootstrap_gnu() {
 	einfo "Installing ${A%-*}"
 	$MAKE install || exit 1
 
+	cd "${ROOT}"
 	rm -Rf ${S}
 	einfo "${A%-*} succesfully bootstrapped"
 }
