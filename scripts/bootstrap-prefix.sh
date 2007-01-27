@@ -6,6 +6,11 @@ trap 'exit 1' TERM KILL INT QUIT ABRT
 eerror() { echo "!!! $*" 1>&2; }
 einfo() { echo "* $*"; }
 
+# prefer gtar over tar
+[[ x$(type -t gtar) == "xfile" ]] \
+	&& TAR="gtar" \
+	|| TAR="tar"
+
 ## Functions Start Here
 
 econf() {
@@ -59,7 +64,7 @@ fetch() {
 # 	rm -rf ${S}
 # 	mkdir -p ${S}
 # 	cd ${S}
-# 	tar -zxf ${DISTDIR}/${A} || exit 1
+# 	$TAR -zxf ${DISTDIR}/${A} || exit 1
 # 	S=${S}/${PN}-${PV}
 # 	cd ${S}
 
@@ -142,7 +147,7 @@ bootstrap_tree() {
 	if [ ! -e ${ROOT}/usr/portage/.unpacked ]; then
 		cd ${ROOT}/usr
 		fetch "${PORTAGE_URL}/prefix-overlay-${PV}.tar.bz2"
-		bzip2 -dc ${DISTDIR}/prefix-overlay-${PV}.tar.bz2 | tar -xf - || exit 1
+		bzip2 -dc ${DISTDIR}/prefix-overlay-${PV}.tar.bz2 | $TAR -xf - || exit 1
 		# beware: fetch creates DISTDIR!!!
 		mv portage/distfiles prefix-overlay/
 		rm -Rf portage
@@ -166,7 +171,7 @@ bootstrap_portage() {
 	rm -rf "${S}" >& /dev/null
 	mkdir -p "${S}" >& /dev/null
 	cd "${S}"
-	bzip2 -dc "${DISTDIR}/${A}" | tar -xf - || exit 1
+	bzip2 -dc "${DISTDIR}/${A}" | $TAR -xf - || exit 1
 	S="${S}/prefix-portage-${PV}"
 	cd "${S}"
 
@@ -202,7 +207,7 @@ bootstrap_odcctools() {
 	rm -rf "${S}"
 	mkdir -p "${S}"
 	cd "${S}"
-	bzip2 -dc "${DISTDIR}/${A}" | tar -xf - || exit 1
+	bzip2 -dc "${DISTDIR}/${A}" | $TAR -xf - || exit 1
 
 	rm -rf "${S}/build"
 	mkdir -p "${S}/build"
@@ -260,7 +265,7 @@ bootstrap_gcc() {
 	rm -rf ${S}
 	mkdir -p ${S}
 	cd ${S}
-	tar ${TAROPTS} ${DISTDIR}/${GCC_A} || exit 1
+	$TAR ${TAROPTS} ${DISTDIR}/${GCC_A} || exit 1
 
 	rm -rf ${S}/build
 	mkdir -p ${S}/build
@@ -303,7 +308,7 @@ bootstrap_gnu() {
 	rm -rf ${S}
 	mkdir -p ${S}
 	cd ${S}
-	gzip -dc ${DISTDIR}/${A} | tar -xf - || exit 1
+	gzip -dc ${DISTDIR}/${A} | $TAR -xf - || exit 1
 	S=${S}/${PN}-${PV}
 	cd ${S}
 
@@ -331,7 +336,7 @@ bootstrap_python() {
 	rm -rf ${S}
 	mkdir -p ${S}
 	cd ${S}
-	bzip2 -dc ${DISTDIR}/${A} | tar -xf - || exit 1
+	bzip2 -dc ${DISTDIR}/${A} | $TAR -xf - || exit 1
 	S=${S}/Python-${PV}
 	cd ${S}
 
