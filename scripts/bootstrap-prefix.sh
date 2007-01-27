@@ -191,6 +191,11 @@ bootstrap_portage() {
 	einfo "making a symlink for sed in ${ROOT}/usr/bin"
 	( cd ${ROOT}/usr/bin && ln -s ../../bin/sed )
 
+	if [[ $MAKE != "make" ]] ; then
+		einfo "making a symlink for $MAKE"
+		( cd ${ROOT}/tmp/usr/bin && ln -s $(which $MAKE) make )
+	fi
+
 	setup_portage
 
 	cd "${ROOT}"
@@ -474,7 +479,7 @@ GNU_URL="http://ftp.gnu.org/gnu"
 GCC_APPLE_URL="http://darwinsource.opendarwin.org/tarballs/other"
 GENTOO_URL="http://gentoo.osuosl.org"
 
-export CFLAGS CXXFLAGS
+export CFLAGS CXXFLAGS MAKE
 
 
 einfo "Bootstrapping Gentoo prefixed portage installation using"
