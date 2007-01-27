@@ -67,7 +67,7 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${D}" || die "Install failed"
+	emake install DESTDIR="${D}" || die "Install failed"
 	dodoc NEWS README* THANKS AUTHORS BUGS ChangeLog
 	docinto examples
 	dodoc "${FILESDIR}"/{dos2unix,unix2dos}
