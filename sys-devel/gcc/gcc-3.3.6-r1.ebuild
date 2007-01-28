@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.3.6-r1.ebuild,v 1.6 2007/01/02 18:22:17 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.3.6-r1.ebuild,v 1.7 2007/01/12 15:35:03 vapier Exp $
 
 EAPI="prefix"
 
@@ -27,7 +27,7 @@ PIE_GLIBC_UNSUPPORTED=""
 
 # whether we should split out specs files for multiple {PIE,SSP}-by-default
 # and vanilla configurations.
-SPLIT_SPECS=${SPLIT_SPECS-true}
+SPLIT_SPECS=no
 
 #GENTOO_PATCH_EXCLUDE=""
 #PIEPATCH_EXCLUDE=""

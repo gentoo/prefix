@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.1.1-r3.ebuild,v 1.8 2007/01/08 22:51:51 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.1.1-r3.ebuild,v 1.9 2007/01/18 05:13:02 vapier Exp $
 
 EAPI="prefix"
 
@@ -13,12 +13,12 @@ ETYPE="gcc-compiler"
 # and vanilla configurations.
 SPLIT_SPECS=no #${SPLIT_SPECS-true} hard disable until #106690 is fixed
 
-inherit toolchain
+inherit toolchain flag-o-matic
 
 DESCRIPTION="The GNU Compiler Collection.  Includes C/C++, java compilers, pie+ssp extensions, Haj Ten Brugge runtime bounds checking"
 
 LICENSE="GPL-2 LGPL-2.1"
-KEYWORDS="~amd64 ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
 
 RDEPEND=">=sys-libs/zlib-1.1.4
 	|| ( >=sys-devel/gcc-config-1.3.12-r4 app-admin/eselect-compiler )
@@ -67,4 +67,15 @@ src_unpack() {
 	epatch "${FILESDIR}"/4.1.0/gcc-4.1.0-fast-math-i386-Os-workaround.patch
 
 	[[ ${USERLAND} == "Solaris" ]] && EXTRA_ECONF="${EXTRA_ECONF} --with-gnu-ld"
+}
+
+src_compile() {
+	if use userland_Darwin ; then
+		# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=25127
+		filter-flags "-mcpu=*"
+		filter-flags "-mabi=*"
+		filter-flags "-march=*"
+		filter-flags "-mtune=*"
+	fi
+	gcc_src_compile
 }
