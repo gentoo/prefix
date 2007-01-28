@@ -1,0 +1,16 @@
+Index: libtasn1-0.3.5/configure.in
+===================================================================
+--- libtasn1-0.3.5.orig/configure.in
++++ libtasn1-0.3.5/configure.in
+@@ -60,8 +60,9 @@ if test "$GCC" = "yes"; then
+ 	CFLAGS="-Wno-pointer-sign"
+ 	AC_COMPILE_IFELSE(AC_LANG_PROGRAM([]),_gcc_psign=yes,_gcc_psign=no)
+ 	AC_MSG_RESULT($_gcc_psign)
+-	if test x"$_gcc_psign" != xyes ; then
+-	  CFLAGS=$_gcc_cflags_save;
++	CFLAGS=$_gcc_cflags_save;
++	if test x"$_gcc_psign" = xyes ; then
++	  CFLAGS="${CFLAGS} -Wno-pointer-sign"
+ 	fi
+ 
+ 	AC_MSG_CHECKING([whether we have GNU assembler])
