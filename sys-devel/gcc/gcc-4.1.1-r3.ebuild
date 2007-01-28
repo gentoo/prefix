@@ -43,7 +43,7 @@ DEPEND="${RDEPEND}
 	test? ( sys-devel/autogen dev-util/dejagnu )
 	>=sys-apps/texinfo-4.2-r4
 	>=sys-devel/bison-1.875
-	|| ( userland_Darwin? >=${CATEGORY}/odcctools-20060413
+	|| ( userland_Darwin? ( >=${CATEGORY}/odcctools-20060413 )
 		ppc? ( >=${CATEGORY}/binutils-2.17 )
 		ppc64? ( >=${CATEGORY}/binutils-2.17 )
 		>=${CATEGORY}/binutils-2.15.94 )"

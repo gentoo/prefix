@@ -33,7 +33,7 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 DEPEND="${RDEPEND}
 	>=sys-apps/texinfo-4.2-r4
 	>=sys-devel/bison-1.875
-	|| ( userland_Darwin? >=${CATEGORY}/odcctools-20060413
+	|| ( userland_Darwin? ( >=${CATEGORY}/odcctools-20060413 )
 		>=${CATEGORY}/binutils-2.16.1 )"
 PDEPEND="|| ( sys-devel/gcc-config app-admin/eselect-compiler )"
 if [[ ${CATEGORY} != cross-* ]] ; then
@@ -55,6 +55,11 @@ src_unpack() {
 	epatch "${FILESDIR}"/4.1.0/gcc-4.1.0-cross-compile.patch
 
 	[[ ${USERLAND} == "Solaris" ]] && EXTRA_ECONF="${EXTRA_ECONF} --with-gnu-ld"
+}
+
+src_compile() {
+	export LIBRARY_PATH="${EPREFIX}/usr/lib64:${EPREFIX}/lib64:${EPREFIX}/usr/lib:${EPREFIX}/lib"
+	gcc_src_compile
 }
 
 pkg_postinst() {
