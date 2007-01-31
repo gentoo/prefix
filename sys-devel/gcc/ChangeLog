@@ -1,15 +1,9 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.604 2007/01/18 05:13:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.605 2007/01/21 19:32:45 vapier Exp $
 
-*gcc-4.3.0_alpha20070112 (18 Jan 2007)
-*gcc-4.2.0_alpha20070117 (18 Jan 2007)
-*gcc-4.1.0_alpha20070115 (18 Jan 2007)
-
-  18 Jan 2007; Mike Frysinger <vapier@gentoo.org>
-  +gcc-4.1.0_alpha20070115.ebuild, +gcc-4.2.0_alpha20070117.ebuild,
-  +gcc-4.3.0_alpha20070112.ebuild:
-  Version bump.
+  21 Jan 2007; Mike Frysinger <vapier@gentoo.org>:
+  Move snapshots to toolchain overlay.
 
   08 Jan 2007; Christian Faulhammer <opfer@gentoo.org> gcc-4.1.1-r3.ebuild:
   stable x86, bug #160663
@@ -47,22 +41,6 @@
   28 Dec 2006; Bryan Østergaard <kloeri@gentoo.org> gcc-3.4.6-r2.ebuild:
   Stable on  Alpha.
 
-*gcc-4.3.0_alpha20061216 (17 Dec 2006)
-
-  17 Dec 2006; Mike Frysinger <vapier@gentoo.org>
-  +gcc-4.3.0_alpha20061216.ebuild:
-  Update snapshot as last one ICEs while building on ppc.
-
-*gcc-4.3.0_alpha20061209 (11 Dec 2006)
-*gcc-4.2.0_alpha20061205 (11 Dec 2006)
-*gcc-4.1.0_alpha20061208 (11 Dec 2006)
-
-  11 Dec 2006; Mike Frysinger <vapier@gentoo.org>
-  -gcc-4.1.0_alpha20061110.ebuild, +gcc-4.1.0_alpha20061208.ebuild,
-  -gcc-4.2.0_alpha20061107.ebuild, +gcc-4.2.0_alpha20061205.ebuild,
-  -gcc-4.3.0_alpha20061111.ebuild, +gcc-4.3.0_alpha20061209.ebuild:
-  Update snapshots.
-
   10 Dec 2006; Bryan Østergaard <kloeri@gentoo.org> gcc-4.1.1-r1.ebuild,
   gcc-4.1.1-r3.ebuild:
   Add ~alpha keyword.
@@ -84,25 +62,8 @@
   15 Nov 2006; Luis Medinas <metalgod@gentoo.org> gcc-4.1.1-r1.ebuild:
   Stable on amd64. Bug #155090.
 
-  15 Nov 2006; Luca Barbato <lu_zero@gentoo.org>
-  gcc-4.3.0_alpha20061111.ebuild:
-  Fixed spu build
-
   14 Nov 2006; Andrej Kacian <ticho@gentoo.org> gcc-4.1.1-r1.ebuild:
   Stable on x86, bug #155090.
-
-  14 Nov 2006; Luca Barbato <lu_zero@gentoo.org>
-  gcc-4.3.0_alpha20061111.ebuild:
-  Cell support added
-
-*gcc-4.3.0_alpha20061111 (14 Nov 2006)
-*gcc-4.2.0_alpha20061107 (14 Nov 2006)
-*gcc-4.1.0_alpha20061110 (14 Nov 2006)
-
-  14 Nov 2006; Mike Frysinger <vapier@gentoo.org>
-  +gcc-4.1.0_alpha20061110.ebuild, +gcc-4.2.0_alpha20061107.ebuild,
-  +gcc-4.3.0_alpha20061111.ebuild:
-  Update snapshots.
 
 *gcc-4.1.1-r2 (14 Nov 2006)
 
@@ -112,13 +73,6 @@
   13 Nov 2006; Tom Gall <tgall@gentoo.org> gcc-4.1.1-r1.ebuild:
   gcc 4.1.1 stable for ppc64. 
 
-*gcc-4.2.0_alpha20061031 (02 Nov 2006)
-*gcc-4.1.0_alpha20061027 (02 Nov 2006)
-
-  02 Nov 2006; Mike Frysinger <vapier@gentoo.org>
-  +gcc-4.1.0_alpha20061027.ebuild, +gcc-4.2.0_alpha20061031.ebuild:
-  Update snapshots.
-
   02 Nov 2006; Mike Frysinger <vapier@gentoo.org>
   +files/4.1.0/gcc-4.1.0-fast-math-i386-Os-workaround.patch,
   gcc-4.1.1.ebuild, gcc-4.1.1-r1.ebuild:
@@ -126,12 +80,6 @@
 
   26 Oct 2006; <blubb@gentoo.org> gcc-3.3.2-r7.ebuild, gcc-3.4.1-r3.ebuild:
   remove unused emul-linux-x86 use flag
-
-*gcc-4.2.0_alpha20061014 (22 Oct 2006)
-
-  22 Oct 2006; Mike Frysinger <vapier@gentoo.org>
-  +gcc-4.2.0_alpha20061014.ebuild:
-  Version bump.
 
   18 Oct 2006; Roy Marples <uberlord@gentoo.org> gcc-4.1.1-r1.ebuild:
   Added ~sparc-fbsd keyword.
@@ -159,12 +107,6 @@
   +gcc-4.1.1-r1.ebuild:
   Push out some fixes.
 
-*gcc-4.2.0_alpha20060902 (03 Sep 2006)
-
-  03 Sep 2006; Mike Frysinger <vapier@gentoo.org>
-  +gcc-4.2.0_alpha20060902.ebuild:
-  Bump weekly 4.2 snapshot.
-
   30 Aug 2006; Joshua Jackson <tsunam@gentoo.org> gcc-4.1.1.ebuild:
   Stable x86; its about time for us to get this stable
 
@@ -176,8 +118,7 @@
   gcc-3.3.6-r1.ebuild, gcc-3.4.1-r3.ebuild, gcc-3.4.4-r1.ebuild,
   gcc-3.4.5.ebuild, gcc-3.4.5-r1.ebuild, gcc-3.4.6.ebuild,
   gcc-3.4.6-r1.ebuild, gcc-3.4.6-r2.ebuild, gcc-4.0.2-r3.ebuild,
-  gcc-4.0.3.ebuild, gcc-4.1.0-r1.ebuild, gcc-4.1.1.ebuild,
-  gcc-4.2.0_alpha20060715.ebuild:
+  gcc-4.0.3.ebuild, gcc-4.1.0-r1.ebuild, gcc-4.1.1.ebuild:
   - switch default ordering of gcc-config and eselect-compiler to work around
   portage bug
 
@@ -186,12 +127,6 @@
   gcc-3.4.4-r1.ebuild, gcc-3.4.5.ebuild, gcc-3.4.5-r1.ebuild,
   gcc-3.4.6.ebuild, gcc-3.4.6-r1.ebuild, gcc-3.4.6-r2.ebuild:
   Move rename of rmic/rmiregistry from ebuilds to toolchain.eclass - bug #139918
-
-*gcc-4.2.0_alpha20060715 (15 Jul 2006)
-
-  15 Jul 2006; Mike Frysinger <vapier@gentoo.org>
-  +gcc-4.2.0_alpha20060715.ebuild:
-  Bump weekly 4.2 snapshot.
 
   13 Jul 2006; Kevin F. Quinn <kevquinn@gentoo.org> gcc-3.3.5-r1.ebuild,
   gcc-3.3.5.20050130-r1.ebuild, gcc-3.3.6.ebuild, gcc-3.3.6-r1.ebuild,
@@ -209,9 +144,7 @@
   fstack-protector to fstack-protector-all (bug #104754)
 
   30 Jun 2006; Mike Frysinger <vapier@gentoo.org> gcc-4.0.2-r3.ebuild,
-  gcc-4.0.3.ebuild, gcc-4.1.0-r1.ebuild, gcc-4.1.1.ebuild,
-  gcc-4.2.0_alpha20060603.ebuild:
-  Move glibc into PDEPEND and drop libstdc++ garbage.
+  gcc-4.0.3.ebuild, gcc-4.1.0-r1.ebuild, gcc-4.1.1.ebuild:
 
   27 Jun 2006; Luca Barbato <lu_zero@gentoo.org> gcc-4.1.1.ebuild:
   Marked stable on ppc
@@ -244,20 +177,8 @@
   the ptototype, and later mistaking the actual prototype as the function
   call.
 
-*gcc-4.2.0_alpha20060603 (04 Jun 2006)
-
-  04 Jun 2006; Mark Loeser <halcy0n@gentoo.org>
-  -gcc-4.2.0_alpha20060527.ebuild, +gcc-4.2.0_alpha20060603.ebuild:
-  Bump weekly 4.2 snapshot
-
   31 May 2006; Joseph Jezak <josejx@gentoo.org> gcc-3.4.6-r1.ebuild:
   Marked ppc stable.
-
-*gcc-4.2.0_alpha20060527 (30 May 2006)
-
-  30 May 2006; Mark Loeser <halcy0n@gentoo.org>
-  -gcc-4.2.0_alpha20060520.ebuild, +gcc-4.2.0_alpha20060527.ebuild:
-  Bump weekly 4.2 snapshot
 
   29 May 2006; Diego Pettenò <flameeyes@gentoo.org> gcc-4.1.1.ebuild:
   Add ~x86-fbsd keyword (currently profile masked).
@@ -289,30 +210,12 @@
   -gcc-4.1.1_pre20060517.ebuild, +gcc-4.1.1.ebuild:
   Bump to 4.1.1 final release
 
-*gcc-4.2.0_alpha20060520 (20 May 2006)
-
-  20 May 2006; Mark Loeser <halcy0n@gentoo.org>
-  -gcc-4.2.0_alpha20060513.ebuild, +gcc-4.2.0_alpha20060520.ebuild:
-  Bump weekly 4.2 snapshot
-
-*gcc-4.1.1_pre20060517 (18 May 2006)
-
-  18 May 2006; Mark Loeser <halcy0n@gentoo.org>
-  +gcc-4.1.1_pre20060517.ebuild:
-  Add gcc-4.1.1_rc1; resolves bug #126681 and bug #132378
-
-*gcc-4.2.0_alpha20060513 (14 May 2006)
 *gcc-4.1.0-r1 (14 May 2006)
 
   14 May 2006; Mark Loeser <halcy0n@gentoo.org> -gcc-4.1.0.ebuild,
-  +gcc-4.1.0-r1.ebuild, -gcc-4.2.0_alpha20060506.ebuild,
-  +gcc-4.2.0_alpha20060513.ebuild:
+  +gcc-4.1.0-r1.ebuild:
   Bump gcc-4.1 so everyone gets the newest changes (no more libstdc++.la and
   the 1.4 patchset), and bump the 4.2 weekly snapshot
-
-  13 May 2006; Mark Loeser <halcy0n@gentoo.org>
-  gcc-4.2.0_alpha20060506.ebuild:
-  Use the 4.1.0 cross compile patch for 4.2.0 as well
 
   13 May 2006; Mike Frysinger <vapier@gentoo.org>
   +files/4.1.0/gcc-4.1.0-cross-compile.patch, gcc-4.1.0.ebuild:
@@ -321,18 +224,6 @@
 
   11 May 2006; Joshua Kinard <kumba@gentoo.org> gcc-3.4.6-r1.ebuild:
   Marked stable on mips.
-
-*gcc-4.2.0_alpha20060506 (07 May 2006)
-
-  07 May 2006; Mark Loeser <halcy0n@gentoo.org>
-  -gcc-4.2.0_alpha20060429.ebuild, +gcc-4.2.0_alpha20060506.ebuild:
-  Weekly bump of the 4.2 snapshot
-
-*gcc-4.2.0_alpha20060429 (29 Apr 2006)
-
-  29 Apr 2006; Mark Loeser <halcy0n@gentoo.org>
-  -gcc-4.2.0_alpha20060422.ebuild, +gcc-4.2.0_alpha20060429.ebuild:
-  Weekly 4.2 snapshot bump
 
   28 Apr 2006; Markus Rothe <corsair@gentoo.org> gcc-3.4.6-r1.ebuild:
   Stable on ppc64
@@ -349,18 +240,12 @@
   23 Apr 2006; Mike Frysinger <vapier@gentoo.org> +gcc-3.3.6-r1.ebuild:
   Push out accumulated patches.
 
-*gcc-4.2.0_alpha20060422 (23 Apr 2006)
-
-  23 Apr 2006; Mark Loeser <halcy0n@gentoo.org>
-  -gcc-4.2.0_alpha20060415.ebuild, +gcc-4.2.0_alpha20060422.ebuild:
-  Bump to new 4.2 snapshot
-
   21 Apr 2006; Mark Loeser <halcy0n@gentoo.org> files/digest-gcc-3.4.5-r1,
   Manifest:
   Fix digest for 3.4.5-r1 patchset
 
   18 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> gcc-3.4.6-r1.ebuild,
-  gcc-4.1.0.ebuild, gcc-4.2.0_alpha20060415.ebuild:
+  gcc-4.1.0.ebuild:
   Add dependency over virtual/libiconv (for three series of gcc) as it's
   needed to build gcc also without nls.
 
@@ -369,26 +254,8 @@
   18 Apr 2006; Mark Loeser <halcy0n@gentoo.org> +gcc-3.4.6-r1.ebuild:
   Bump 3.4.6 patchset to fix bugs #127190 #126279 and #126871
 
-  17 Apr 2006; Konstantin Arkhipov <voxus@gentoo.org>
-  +gcc-4.2.0_alpha20060415.ebuild:
-  Added ~amd64.
-
-*gcc-4.2.0_alpha20060415 (17 Apr 2006)
-
-  17 Apr 2006; Mark Loeser <halcy0n@gentoo.org>
-  -gcc-4.2.0_alpha20060408.ebuild, +gcc-4.2.0_alpha20060415.ebuild:
-  4.2 snapshot bump
-
   12 Apr 2006; Bryan Østergaard <kloeri@gentoo.org> gcc-3.4.6.ebuild:
   ~alpha 3.4.6 - solves a ld segfault in binutils when emerging gmp.
-
-*gcc-4.2.0_alpha20060408 (11 Apr 2006)
-
-  11 Apr 2006; Mark Loeser <halcy0n@gentoo.org>
-  +gcc-4.2.0_alpha20060408.ebuild:
-  Initial gcc-4.2 snapshot; only report bugs if you have patches. These
-  snapshots are for testing purposes and are added as a convenience to
-  those that want to test as well
 
   11 Apr 2006; Joshua Kinard <kumba@gentoo.org>
   +files/3.4.2/gcc-3.4.2-mips-ip28_cache_barriers-v4.patch,
@@ -1072,23 +939,17 @@
   +gcc-4.0.0_beta20050305.ebuild:
   Version bump of gcc-4 for bleeding edge masochists.
 
-*gcc-4.0.0_alpha20050213 (17 Feb 2005)
-
   17 Feb 2005; Jeremy Huddleston <eradicator@gentoo.org>
   gcc-3.3.5-r1.ebuild, gcc-3.3.5.20050130.ebuild, gcc-3.4.3-r1.ebuild,
-  gcc-3.4.3.20050110.ebuild, -gcc-4.0.0_alpha20050123.ebuild,
-  -gcc-4.0.0_alpha20050130.ebuild, +gcc-4.0.0_alpha20050213.ebuild:
-  Only apply libffi-without-libgcj.patch if we're -build. Bump the gcc-4
-  version and make a note to report bugs upstream.
+  gcc-3.4.3.20050110.ebuild:
+  Only apply libffi-without-libgcj.patch if we're -build.
 
   12 Feb 2005; <plasmaroo@gentoo.org> gcc-3.3.5.20050130.ebuild:
   Mark -ia64 as bootstrapping fails with this version.
 
   12 Feb 2005; Jeremy Huddleston <eradicator@gentoo.org>
   gcc-3.3.5-r1.ebuild, gcc-3.3.5.20050130.ebuild, gcc-3.4.3-r1.ebuild,
-  gcc-3.4.3.20050110.ebuild, gcc-4.0.0_alpha20050123.ebuild,
-  gcc-4.0.0_alpha20050130.ebuild:
-  Added DEPEND for cross-compilation.
+  gcc-3.4.3.20050110.ebuild:
 
   12 Feb 2005; <plasmaroo@gentoo.org> gcc-3.4.3-r1.ebuild,
   gcc-3.4.3.20050110.ebuild:
@@ -1105,21 +966,16 @@
   gcc-3.3.5.20050130.ebuild:
   Pushing into ~arch.  Re-adds support for tls on sparc.
 
-  01 Feb 2005; Sven Wegener <swegener@gentoo.org>
-  gcc-4.0.0_alpha20050123.ebuild, gcc-4.0.0_alpha20050130.ebuild:
-  Added missing ? in PDEPEND.
-
 *gcc-3.3.5.20050130 (01 Feb 2005)
 
   01 Feb 2005; Jeremy Huddleston <eradicator@gentoo.org>
   gcc-3.3.5-r1.ebuild, +gcc-3.3.5.20050130.ebuild, gcc-3.4.3-r1.ebuild,
-  gcc-3.4.3.20050110.ebuild, +gcc-4.0.0_alpha20050123.ebuild,
-  +gcc-4.0.0_alpha20050130.ebuild:
-  Adding gcc4 alpha ebuilds for development and testing. Fix ordering of data
-  in ebuilds so DESCRIPTION, etc comes after inherit toolchain. Bump gcc-3.3
-  to reintroduce patchs from fedora which got dropped from 3.3.5 and
-  3.3.5-r1. This should fix tls issues on sparc (bug #78320), but it is still
-  in 'KEYWORDS=-*' until the PIE patches get updated.
+  gcc-3.4.3.20050110.ebuild:
+  Fix ordering of data in ebuilds so DESCRIPTION, etc comes after inherit
+  toolchain. Bump gcc-3.3 to reintroduce patchs from fedora which got
+  dropped from 3.3.5 and 3.3.5-r1. This should fix tls issues on sparc
+  (bug #78320), but it is still in 'KEYWORDS=-*' until the PIE patches
+  get updated.
 
   31 Jan 2005; <plasmaroo@gentoo.org> gcc-3.3.5-r1.ebuild,
   gcc-3.4.3-r1.ebuild:
