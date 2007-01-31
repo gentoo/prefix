@@ -1,6 +1,24 @@
 # ChangeLog for sys-apps/ed
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ChangeLog,v 1.27 2006/10/17 11:03:43 uberlord Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ChangeLog,v 1.32 2007/01/25 19:56:55 eroyf Exp $
+
+  25 Jan 2007; Alexander H. Færøy <eroyf@gentoo.org> ed-0.4.ebuild:
+  Stable on Alpha/IA64/MIPS.
+
+  23 Jan 2007; René Nussbaumer <killerfox@gentoo.org> ed-0.4.ebuild:
+  Stable on hppa. See bug #163220.
+
+  23 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> ed-0.4.ebuild:
+  Stable on sparc wrt security #163220
+
+  23 Jan 2007; Mike Frysinger <vapier@gentoo.org> ed-0.4.ebuild:
+  Install red.1 symlink #163321 by Ulrich Mueller.
+
+*ed-0.4 (22 Jan 2007)
+
+  22 Jan 2007; Mike Frysinger <vapier@gentoo.org> +files/ed-0.4-build.patch,
+  +files/ed-0.4-configure-LANG.patch, +ed-0.4.ebuild:
+  Version bump #163220 by Raphael Marichez.
 
   17 Oct 2006; Roy Marples <uberlord@gentoo.org> ed-0.2-r6.ebuild:
   Added ~sparc-fbsd keyword.

@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ed-0.2-r6.ebuild,v 1.4 2006/10/17 11:03:43 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ed-0.2-r6.ebuild,v 1.5 2007/01/22 17:51:04 vapier Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ inherit eutils toolchain-funcs
 
 DESCRIPTION="Your basic line editor"
 HOMEPAGE="http://www.gnu.org/software/ed/"
-SRC_URI="ftp://ftp.gnu.org/pub/gnu/ed/${P}.tar.gz"
+SRC_URI="mirror://gnu/ed/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"

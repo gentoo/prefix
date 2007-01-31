@@ -1,0 +1,28 @@
+--- configure
++++ configure
+@@ -36,12 +36,8 @@
+ infodir='$(datadir)/info'
+ mandir='$(datadir)/man'
+ sysconfdir='$(prefix)/etc'
+-CC=
+-CXX=
+-CPPFLAGS=
+-CFLAGS='-Wall -W -O2'
+-CXXFLAGS='-Wall -W -O2'
+-LDFLAGS=
++CFLAGS="$CFLAGS -Wall -W"
++CXXFLAGS="$CXXFLAGS -Wall -W"
+ 
+ # Loop over all args
+ while [ x"$1" != x ] ; do
+--- Makefile.in
++++ Makefile.in
+@@ -48,7 +48,7 @@
+ 	if test ! -d $(DESTDIR)$(bindir) ; then $(INSTALL) -d $(DESTDIR)$(bindir) ; fi
+ 	$(INSTALL_PROGRAM) ./$(progname) $(DESTDIR)$(bindir)/$(progname)
+ 	-rm -f $(DESTDIR)$(bindir)/r$(progname)
+-	cd $(DESTDIR)$(bindir) ; ln $(progname) r$(progname)
++	cd $(DESTDIR)$(bindir) ; ln -s $(progname) r$(progname)
+ 
+ install-info :
+ 	if test ! -d $(DESTDIR)$(infodir) ; then $(INSTALL) -d $(DESTDIR)$(infodir) ; fi
