@@ -1,6 +1,9 @@
 # ChangeLog for app-text/dictd
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.31 2007/01/05 07:23:52 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.32 2007/01/25 21:07:25 eroyf Exp $
+
+  25 Jan 2007; Alexander H. Færøy <eroyf@gentoo.org> dictd-1.9.14.ebuild:
+  Stable on MIPS.
 
   05 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> dictd-1.8.0.ebuild,
   dictd-1.9.11-r1.ebuild, dictd-1.9.14.ebuild, dictd-1.10.0.ebuild:
