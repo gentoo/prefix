@@ -1,6 +1,24 @@
 # ChangeLog for sys-devel/gettext
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.133 2007/01/05 09:15:35 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.138 2007/01/23 19:46:08 grobian Exp $
+
+  23 Jan 2007; Fabian Groffen <grobian@gentoo.org> gettext-0.12.1-r2.ebuild,
+  gettext-0.14.1-r1.ebuild, gettext-0.14.2.ebuild, gettext-0.14.4.ebuild,
+  gettext-0.14.5.ebuild, gettext-0.14.6.ebuild, gettext-0.15.ebuild,
+  gettext-0.15-r1.ebuild, gettext-0.16.1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
+
+  23 Jan 2007; Jeroen Roovers <jer@gentoo.org> gettext-0.16.1.ebuild:
+  Stable for HPPA (bug #163178).
+
+  22 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> gettext-0.16.1.ebuild:
+  Stable on sparc wrt #163178
+
+  22 Jan 2007; Markus Rothe <corsair@gentoo.org> gettext-0.16.1.ebuild:
+  Stable on ppc64; bug #163178
+
+  22 Jan 2007; Raúl Porcel <armin76@gentoo.org> gettext-0.16.1.ebuild:
+  x86 stable wrt bug 163178
 
   05 Jan 2007; Diego Pettenò <flameeyes@gentoo.org>
   gettext-0.12.1-r2.ebuild, gettext-0.14.1-r1.ebuild:
