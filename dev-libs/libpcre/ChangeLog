@@ -1,6 +1,20 @@
 # ChangeLog for dev-libs/libpcre
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.84 2006/10/20 00:23:04 kloeri Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.87 2007/01/27 22:29:00 eroyf Exp $
+
+  27 Jan 2007; Alexander H. Færøy <eroyf@gentoo.org> libpcre-6.6.ebuild:
+  Stable on MIPS; bug #145409
+
+  27 Jan 2007; Charlie Shepherd <masterdriverz@gentoo.org>
+  libpcre-7.0.ebuild:
+  Force building of static libs; bug 164099
+
+*libpcre-7.0 (27 Jan 2007)
+
+  27 Jan 2007; Charlie Shepherd <masterdriverz@gentoo.org>
+  -libpcre-6.3.ebuild, -libpcre-6.4.ebuild, +libpcre-7.0.ebuild:
+  Bump to version 7 and add unicode useflags, bugs 145365 and 141794. Thanks to
+  Michael Vogt
 
   20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> libpcre-6.6.ebuild:
   Stable on Alpha.
