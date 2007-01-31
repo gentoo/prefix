@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-6.6.ebuild,v 1.1 2006/12/19 06:30:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-6.6.ebuild,v 1.7 2007/01/31 01:54:06 tester Exp $
 
 EAPI="prefix"
 
@@ -53,11 +53,11 @@ src_test() {
 }
 
 src_install() {
-	make \
-		DESTDIR="$D" \
+	emake \
+		DESTDIR="${D}" \
 		libdir=/nukeme includedir=/nukeme \
 		install || die
-	rm -r "$D"/nukeme || die
+	rm -r "${D}"/nukeme || die
 
 	# Don't install docs when building a cross-gdb
 	if [[ ${CTARGET} != ${CHOST} ]] ; then
@@ -76,4 +76,9 @@ src_install() {
 
 	# Remove shared info pages
 	rm -f "${ED}"/usr/share/info/{annotate,bfd,configure,standards}.info*
+}
+
+pkg_postinst() {
+	# portage sucks and doesnt unmerge files in /etc
+	rm -vf "${EROOT}"/etc/skel/.gdbinit
 }
