@@ -1,11 +1,11 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/sgml-common/sgml-common-0.6.3-r5.ebuild,v 1.9 2006/11/03 02:57:31 leonardop Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/sgml-common/sgml-common-0.6.3-r5.ebuild,v 1.10 2006/11/14 10:22:13 leonardop Exp $
 
 EAPI="prefix"
 
-WANT_AUTOCONF=2.1
-WANT_AUTOMAKE=1.5
+WANT_AUTOCONF="2.1"
+WANT_AUTOMAKE="1.5"
 
 inherit autotools eutils
 
