@@ -1,0 +1,11 @@
+--- tetex-src-2.0.2/texk/web2c/Makefile.in	2006-11-29 00:28:35.000000000 +0100
++++ tetex-src-2.0.2/texk/web2c/Makefile.in.new	2006-11-29 00:56:13.000000000 +0100
+@@ -855,7 +855,7 @@
+ # Testing, including triptrap. The `x' filenames are for output.
+ @TEX@tex_check = tex-check
+ @ETEX@etex_check = etex-check
+-check: bibtex-check dvicopy-check dvitomp-check dvitype-check \
++check: dvicopy-check dvitomp-check dvitype-check \
+        $(etex_check) gftodvi-check gftopk-check gftype-check \
+        mf-check mft-check mpost-check patgen-check pktogf-check \
+        pktype-check pltotf-check pooltype-check $(tex_check) tftopl-check \

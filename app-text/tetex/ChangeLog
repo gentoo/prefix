@@ -1,6 +1,51 @@
 # ChangeLog for app-text/tetex
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.129 2006/06/15 15:44:32 ehmsen Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.141 2007/01/28 06:08:55 genone Exp $
+
+  28 Jan 2007; Marius Mauch <genone@gentoo.org> tetex-3.0_p1-r3.ebuild:
+  Replacing einfo with elog
+
+  13 Jan 2007; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  tetex-2.0.2-r9.ebuild:
+  stable on ppc (Bug #154489)
+
+  29 Nov 2006; Christian Faulhammer <opfer@gentoo.org>
+  tetex-2.0.2-r9.ebuild:
+  stable x86, bug #154489
+
+  29 Nov 2006; Alexandre Buisse <nattfodd@gentoo.org>
+  +files/tetex-2.0.2-skip_bibtex_test.patch, tetex-2.0.2-r9.ebuild:
+  Skip a BibTeX test that is known to fail on some fresh installs (bug
+  #115775, from comment 17).
+
+  15 Nov 2006; Markus Rothe <corsair@gentoo.org> tetex-2.0.2-r9.ebuild,
+  tetex-3.0_p1-r3.ebuild:
+  Stable on ppc64; bug #154489
+
+  10 Nov 2006; <blubb@gentoo.org> tetex-3.0_p1-r3.ebuild:
+  stable on amd64
+
+  09 Nov 2006; Jeroen Roovers <jer@gentoo.org> tetex-3.0_p1-r3.ebuild:
+  Stable for HPPA (bug #154489).
+
+  08 Nov 2006; Ferris McCormick <fmccor@gentoo.org> tetex-3.0-r3.ebuild,
+  tetex-3.0_p1-r3.ebuild:
+  Stable sparc for the version I thought I was making stable --- Bug #154489 ---
+  thanks to opfer@gentoo.org for pointing this out to me.
+
+  08 Nov 2006; Timothy Redaelli <drizzt@gentoo.org> tetex-3.0_p1-r3.ebuild:
+  Stable on ppc. Bug 154489.
+
+  08 Nov 2006; Christian Faulhammer <opfer@gentoo.org>
+  tetex-3.0_p1-r3.ebuild:
+  stable x86, bug #154489
+
+  08 Nov 2006; Ferris McCormick <fmccor@gentoo.org> tetex-2.0.2-r9.ebuild,
+  tetex-3.0-r3.ebuild:
+  Stable on sparc --- Bug #154489
+
+  17 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> tetex-2.0.2-r9.ebuild:
+  Stable on Alpha.
 
   15 Jun 2006; Martin Ehmsen <ehmsen@gentoo.org> tetex-3.0_p1-r3.ebuild:
   Removed the *virtex symlinks, since they don't make any sense anymore. Use

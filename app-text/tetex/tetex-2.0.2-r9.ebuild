@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/tetex-2.0.2-r9.ebuild,v 1.7 2006/10/17 20:44:38 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/tetex-2.0.2-r9.ebuild,v 1.12 2007/01/15 07:26:42 wormo Exp $
 
 EAPI="prefix"
 
@@ -44,6 +44,9 @@ src_unpack() {
 
 	# bug 80985
 	EPATCH_OPTS="-d ${S} -p1" epatch "${T}"/${P}-use-system-libtool.patch
+
+	# bug 115775 (from comment 17)
+	EPATCH_OPTS="-d ${S} -p1" epatch ${FILESDIR}/${P}-skip_bibtex_test.patch
 
 }
 
