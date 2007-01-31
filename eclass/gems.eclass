@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.14 2007/01/09 23:29:17 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.15 2007/01/29 12:15:50 pclouds Exp $
 #
 # Author: Rob Cakebread <pythonhead@gentoo.org>
 # Current Maintainer: Ruby Herd <ruby@gentoo.org>
@@ -38,6 +38,7 @@ gems_location() {
 }
 
 gems_src_unpack() {
+	ruby_patch_mkmf
 	true
 }
 

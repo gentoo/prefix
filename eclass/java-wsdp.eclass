@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-wsdp.eclass,v 1.5 2006/11/10 15:21:31 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-wsdp.eclass,v 1.6 2007/01/20 17:40:26 nelchael Exp $
 
 #
 # Original Author: Krzysiek Pawlik <nelchael@gentoo.org>
@@ -29,10 +29,7 @@ IUSE="doc"
 # in src_unpack
 DEPEND="
 	>=virtual/jdk-1.5
-	app-arch/unzip
-	dev-java/sax
-	dev-java/xalan
-	dev-java/xerces"
+	app-arch/unzip"
 RDEPEND=">=virtual/jre-1.5
 	${RDEPEND}"
 

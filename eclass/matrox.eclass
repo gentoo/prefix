@@ -1,6 +1,6 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/matrox.eclass,v 1.15 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/matrox.eclass,v 1.16 2007/01/28 13:16:38 kugelfang Exp $
 #
 # Author: Donnie Berkholz <spyderous@gentoo.org>
 #
@@ -15,7 +15,7 @@ EXPORT_FUNCTIONS pkg_setup src_compile
 HOMEPAGE="http://www.matrox.com/mga/products/parhelia/home.cfm"
 
 LICENSE="Matrox"
-SLOT="${KV}"
+SLOT="0"
 RESTRICT="fetch nostrip"
 
 RDEPEND="virtual/linux-sources"

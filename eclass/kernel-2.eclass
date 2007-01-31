@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.200 2007/01/02 01:43:34 dsd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.201 2007/01/25 22:06:35 dsd Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -694,7 +694,7 @@ setup_headers() {
 #==============================================================
 unipatch() {
 	local i x y z extention PIPE_CMD UNIPATCH_DROP KPATCH_DIR PATCH_DEPTH ELINE
-	local STRICT_COUNT PATCH_LEVEL myLC_ALL myLANG
+	local STRICT_COUNT PATCH_LEVEL myLC_ALL myLANG extglob_bak
 
 	# set to a standard locale to ensure sorts are ordered properly.
 	myLC_ALL="${LC_ALL}"
@@ -706,6 +706,7 @@ unipatch() {
 	[ ! -d ${KPATCH_DIR} ] && mkdir -p ${KPATCH_DIR}
 
 	# We're gonna need it when doing patches with a predefined patchlevel
+	extglob_bak=$(shopt -p extglob)
 	shopt -s extglob
 
 	# This function will unpack all passed tarballs, add any passed patches, and remove any passed patchnumbers
@@ -867,6 +868,7 @@ unipatch() {
 
 	LC_ALL="${myLC_ALL}"
 	LANG="${myLANG}"
+	eval ${extglob_bak}
 }
 
 # getfilevar accepts 2 vars as follows:

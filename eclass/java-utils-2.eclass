@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.43 2007/01/15 21:03:24 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.56 2007/01/30 14:12:34 caster Exp $
 
 
 # -----------------------------------------------------------------------------
@@ -38,7 +38,30 @@ IUSE="elibc_FreeBSD"
 # Make sure we use java-config-2
 export WANT_JAVA_CONFIG="2"
 
-# TODO document
+# -----------------------------------------------------------------------------
+# @variable-external WANT_ANT_TASKS
+# @variable-default ""
+#
+# An $IFS separated list of ant tasks.
+# Ebuild can specify this variable before inheriting java-ant-2 eclass to
+# determine ANT_TASKS it needs. They will be automatically translated to
+# DEPEND variable and ANT_TASKS variable. JAVA_PKG_FORCE_ANT_TASKS can override
+# ANT_TASKS set by WANT_ANT_TASKS, but not the DEPEND due to caching.
+# Ebuilds that need to depend conditionally on certain tasks and specify them
+# differently for different eant calls can't use this simplified approach.
+# You also cannot specify version or anything else than ant-*.
+#
+# @example WANT_ANT_TASKS="ant-junit ant-trax"
+#
+# @seealso JAVA_PKG_FORCE_ANT_TASKS
+# -----------------------------------------------------------------------------
+#WANT_ANT_TASKS
+
+# @variable-internal JAVA_PKG_PORTAGE_DEP
+#
+# The version of portage we need to function properly. At this moment it's
+# portage with phase hooks support.
+# -----------------------------------------------------------------------------
 JAVA_PKG_PORTAGE_DEP=">=sys-apps/portage-2.1_pre1"
 
 # -----------------------------------------------------------------------------
@@ -132,6 +155,20 @@ JAVA_PKG_COMPILERS_CONF=${JAVA_PKG_COMPILERS_CONF:="/etc/java-config-2/build/com
 #	JAVA_PKG_FORCE_COMPILER="jikes javac"
 # -----------------------------------------------------------------------------
 
+# -----------------------------------------------------------------------------
+# @variable-external JAVA_PKG_FORCE_ANT_TASKS
+#
+# An $IFS separated list of ant tasks. Can be set in environment before calling
+# emerge/ebuild to override variables set in ebuild, mainly for testing before
+# putting the resulting (WANT_)ANT_TASKS into ebuild. Affects only ANT_TASKS in
+# eant() call, not the dependencies specified in WANT_ANT_TASKS.
+#
+# @example JAVA_PKG_FORCE_ANT_TASKS="ant-junit ant-trax" \
+# 	ebuild foo.ebuild compile
+#
+# @seealso WANT_ANT_TASKS
+# -----------------------------------------------------------------------------
+
 # TODO document me
 JAVA_PKG_QA_VIOLATIONS=0
 
@@ -176,7 +213,7 @@ java-pkg_dojar() {
 
 	local jar
 	# for each jar
-	for jar in ${@}; do
+	for jar in "${@}"; do
 		local jar_basename=$(basename "${jar}")
 
 		java-pkg_check-versioned-jar ${jar_basename}
@@ -192,6 +229,9 @@ java-pkg_dojar() {
 
 			# install it into JARDEST if it's a non-symlink
 			if [[ ! -L "${jar}" ]] ; then
+				#but first check class version when in strict mode.
+				is-java-strict && java-pkg_verify-classes "${jar}"
+
 				INSDESTTREE="${JAVA_PKG_JARDEST}" \
 					doins "${jar}" || die "failed to install ${jar}"
 				java-pkg_append_ JAVA_PKG_CLASSPATH "${JAVA_PKG_JARDEST}/${jar_basename}"
@@ -263,11 +303,15 @@ java-pkg_regjar() {
 	java-pkg_init_paths_
 
 	local jar jar_dir jar_file
-	for jar in ${@}; do
+	for jar in "${@}"; do
 		# TODO use java-pkg_check-versioned-jar
 		if [[ -e "${jar}" || -e "${ED}${jar}" ]]; then
 			[[ -d "${jar}" || -d "${ED}${jar}" ]] \
 				&& die "Called ${FUNCNAME} on a	directory $*"
+
+			#check that class version correct when in strict mode
+			is-java-strict && java-pkg_verify-classes "${jar}"
+
 			# nelchael: we should strip ${ED} in this case too, here's why:
 			# imagine such call:
 			#    java-pkg_regjar ${ED}/opt/java/*.jar
@@ -301,7 +345,8 @@ java-pkg_newjar() {
 	local new_jar_dest="${T}/${new_jar}"
 
 	[[ -z ${original_jar} ]] && die "Must specify a jar to install"
-	[[ ! -f ${original_jar} ]] && die "${original_jar} does not exist!"
+	[[ ! -f ${original_jar} ]] \
+		&& die "${original_jar} does not exist or is not a file!"
 
 	rm -f "${new_jar_dest}" || die "Failed to remove ${new_jar_dest}"
 	cp "${original_jar}" "${new_jar_dest}" \
@@ -524,7 +569,7 @@ java-pkg_dosrc() {
 	local zip_name="${PN}-src.zip"
 	local zip_path="${T}/${zip_name}"
 	local dir
-	for dir in ${@}; do
+	for dir in "${@}"; do
 		local dir_parent=$(dirname "${dir}")
 		local dir_name=$(basename "${dir}")
 		pushd ${dir_parent} > /dev/null || die "problem entering ${dir_parent}"
@@ -721,8 +766,12 @@ java-pkg_recordjavadoc()
 # Example: get junit.jar which is needed only for building
 #	java-pkg_jar-from --build-only junit junit.jar
 #
-# @param $1 - (optional) "--build-only" makes the jar(s) not added into
-#	package.env DEPEND line.
+# @param $opt 
+#	--build-only - makes the jar(s) not added into package.env DEPEND line.
+#	  (assumed automatically when called inside src_test)
+#	--with-dependencies - get jars also from requested package's dependencies
+#	  transitively.
+#	--into $dir - symlink jar(s) into $dir (must exist) instead of .
 # @param $1 - Package to get jars from.
 # @param $2 - jar from package. If not specified, all jars will be used.
 # @param $3 - When a single jar is specified, destination filename of the
@@ -733,16 +782,24 @@ java-pkg_jar-from() {
 	debug-print-function ${FUNCNAME} $*
 
 	local build_only=""
+	local destdir="."
+	local deep=""
+	
+	[[ "${EBUILD_PHASE}" == "test" ]] && build_only="true"
 
-	if [[ "${1}" = "--build-only" ]]; then
-		build_only="true"
+	while [[ "${1}" == --* ]]; do
+		if [[ "${1}" = "--build-only" ]]; then
+			build_only="true"
+		elif [[ "${1}" = "--with-dependencies" ]]; then
+			deep="--with-dependencies"
+		elif [[ "${1}" = "--into" ]]; then
+			destdir="${2}"
+			shift
+		else
+			die "java-pkg_jar-from called with unknown parameter: ${1}"
+		fi
 		shift
-	fi
-
-	if [[ "${1}" = "--with-dependencies" ]]; then
-		local deep="--with-dependencies"
-		shift
-	fi
+	done
 
 	local target_pkg="${1}" target_jar="${2}" destjar="${3}"
 
@@ -756,6 +813,8 @@ java-pkg_jar-from() {
 	classpath="$(java-config ${deep} --classpath=${target_pkg})"
 	[[ $? != 0 ]] && die ${error_msg}
 
+	pushd ${destdir} > /dev/null \
+		|| die "failed to change directory to ${destdir}"
 	local jar
 	for jar in ${classpath//:/ }; do
 		local jar_name=$(basename "${jar}")
@@ -775,9 +834,11 @@ java-pkg_jar-from() {
 			ln -snf "${jar}" "${destjar}" \
 				|| die "Failed to make symlink from ${jar} to ${destjar}"
 			[[ -z "${build_only}" ]] && java-pkg_record-jar_ "${target_pkg}" "${jar}"
+			popd > /dev/null
 			return 0
 		fi
 	done
+	popd > /dev/null
 	# if no target was specified, we're ok
 	if [[ -z "${target_jar}" ]] ; then
 		return 0
@@ -811,25 +872,34 @@ java-pkg_jarfrom() {
 # Example Return:
 #	/usr/share/xerces-2/lib/xml-apis.jar:/usr/share/xerces-2/lib/xmlParserAPIs.jar:/usr/share/xalan/lib/xalan.jar
 #
-# @param $1 - (optional) "--build-only" makes the jar(s) not added into
-#	package.env DEPEND line.
-# @param $2 - list of packages to get jars from
+# @param $opt 
+#	--build-only - makes the jar(s) not added into package.env DEPEND line.
+#	  (assumed automatically when called inside src_test)
+#	--with-dependencies - get jars also from requested package's dependencies
+#	  transitively.
+# @param $1 - list of packages to get jars from
 #   (passed to java-config --classpath)
 # ------------------------------------------------------------------------------
 java-pkg_getjars() {
 	debug-print-function ${FUNCNAME} $*
 
-	if [[ "${1}" = "--build-only" ]]; then
-		local build_only="true"
-		shift
-	fi
+	local build_only=""
+	local deep=""
+	
+	[[ "${EBUILD_PHASE}" == "test" ]] && build_only="true"
 
-	if [[ "${1}" = "--with-dependencies" ]]; then
-		local deep="--with-dependencies"
+	while [[ "${1}" == --* ]]; do
+		if [[ "${1}" = "--build-only" ]]; then
+			build_only="true"
+		elif [[ "${1}" = "--with-dependencies" ]]; then
+			deep="--with-dependencies"
+		else
+			die "java-pkg_jar-from called with unknown parameter: ${1}"
+		fi
 		shift
-	fi
+	done
 
-	[[ ${#} -ne 1 ]] && die "${FUNCNAME} takes only one argument besides --build-only"
+	[[ ${#} -ne 1 ]] && die "${FUNCNAME} takes only one argument besides --*"
 
 	local classpath pkgs="${1}"
 	jars="$(java-config ${deep} --classpath=${pkgs})"
@@ -869,8 +939,8 @@ java-pkg_getjars() {
 # @example-return
 #	/usr/share/xerces-2/lib/xml-apis.jar
 #
-# @param $1 - (optional) "--build-only" makes the jar not added into
-#	package.env DEPEND line.
+# @param $opt
+#	--build-only - makes the jar not added into package.env DEPEND line.
 # @param $1 - package to use
 # @param $2 - jar to get
 # ------------------------------------------------------------------------------
@@ -878,11 +948,19 @@ java-pkg_getjar() {
 	debug-print-function ${FUNCNAME} $*
 
 	local build_only=""
+	
+	[[ "${EBUILD_PHASE}" == "test" ]] && build_only="true"
 
-	if [[ "${1}" = "--build-only" ]]; then
-		build_only="true"
+	while [[ "${1}" == --* ]]; do
+		if [[ "${1}" = "--build-only" ]]; then
+			build_only="true"
+		else
+			die "java-pkg_jar-from called with unknown parameter: ${1}"
+		fi
 		shift
-	fi
+	done
+
+	[[ ${#} -ne 2 ]] && die "${FUNCNAME} takes only two arguments besides --*"
 
 	local pkg="${1}" target_jar="${2}" jar
 	[[ -z ${pkg} ]] && die "Must specify package to get a jar from"
@@ -1343,6 +1421,103 @@ java-pkg_ensure-test() {
 }
 
 # ------------------------------------------------------------------------------
+# @ebuild-function java-pkg_register-ant-task
+#
+# Register this package as ant task, so that ant will load it when no specific
+# ANT_TASKS are specified. Note that even without this registering, all packages
+# specified in ANT_TASKS will be loaded. Mostly used by the actual ant tasks
+# packages, but can be also used by other ebuilds that used to symlink their
+# .jar into /usr/share/ant-core/lib to get autoloaded, for backwards
+# compatibility.
+#
+# @param --version x.y Register only for ant version x.y (otherwise for any ant
+#		version). Used by the ant-* packages to prevent loading of mismatched
+#		ant-core ant tasks after core was updated, before the tasks are updated,
+#		without a need for blockers.
+# @param $1 Name to register as. Defaults to JAVA_PKG_NAME ($PN[-$SLOT])
+# ------------------------------------------------------------------------------
+java-pkg_register-ant-task() {
+	local TASKS_DIR="tasks"
+
+	# check for --version x.y parameters
+	while [[ -n "${1}" && -n "${2}" ]]; do
+		local var="${1#--}"
+		local val="${2}"
+		if [[ "${var}" == "version" ]]; then
+			TASKS_DIR="tasks-${val}"
+		else
+			die "Unknown parameter passed to java-pkg_register-ant-tasks: ${1} ${2}"
+		fi
+		shift 2
+	done
+
+	local TASK_NAME="${1:-${JAVA_PKG_NAME}}"
+
+	dodir /usr/share/ant/${TASKS_DIR}
+	touch "${ED}/usr/share/ant/${TASKS_DIR}/${TASK_NAME}"
+}
+
+# ------------------------------------------------------------------------------
+# @internal-function java-pkg_ant-tasks-from-deps
+#
+# Function to determine ANT_TASKS from DEPEND variable for backwards
+# compatibility with ebuilds that don't set ANT_TASKS before calling eant() or
+# WANT_ANT_TASKS before inheriting java-pkg-2. If the DEPEND string contains
+# "dev-java/ant" or "dev-java/ant-tasks", then it returns "all", otherwise
+# "none". It's not smart enough to cope with USE flag depends but that shouldn't
+# be a problem, the worst it can do is activace all tasks when not needed.
+# Note that this is called only with JAVA_PKG_STRICT=1, to find ebuilds with
+# insufficient dependencies, otherwise all available tasks are used for
+# backwards compatilbility.
+#
+# @return "all" or "none"
+# ------------------------------------------------------------------------------
+java-pkg_ant-tasks-from-deps() {
+	local found_ant found_ant_tasks
+
+	for dep in ${DEPEND}
+	do
+		local ant="$(awk '/(dev-java\/ant)/ { if (match($1, "(dev-java/ant)((-[0-9])+|$)", m)) print m[1]  }' <<< ${dep})"
+		[[ "${ant}" == "dev-java/ant" ]] && found_ant=true
+		[[ "${dep}" == *"ant-tasks"* ]] && found_ant_tasks=true
+	done
+
+	if [[ -n "${found_ant}" || -n "${found_ant_tasks}" ]]; then
+		java-pkg_announce-qa-violation "The ebuild DEPENDS on deprecated ant or ant-tasks"
+		echo "all"
+	else
+		# ebuild doesn't set ANT_TASKS and doesn't depend on ant-tasks or ant
+		# so we deactivate all tasks that may be installed
+		echo "none"
+	fi
+}
+
+# ------------------------------------------------------------------------------
+# @internal-function java-pkg_ant-tasks-depend
+#
+# Translates the WANT_ANT_TASKS variable into valid dependencies.
+# ------------------------------------------------------------------------------
+java-pkg_ant-tasks-depend() {
+	debug-print-function ${FUNCNAME} ${WANT_ANT_TASKS}
+
+	if [[ -n "${WANT_ANT_TASKS}" ]]; then
+		local DEP=""
+		for i in ${WANT_ANT_TASKS}
+		do
+			if [[ ${i} != ant-* ]]; then
+				echo "Invalid atom in WANT_ANT_TASKS: ${i}"
+				return 1
+			fi
+			DEP="${DEP}dev-java/${i} "
+		done
+		echo ${DEP}
+		return 0
+	else
+		return 0
+	fi
+}
+
+# ------------------------------------------------------------------------------
 # @section-end helper
 # ------------------------------------------------------------------------------
 
@@ -1358,12 +1533,12 @@ java-pkg_ensure-test() {
 # @ebuild-function eant
 #
 # Ant wrapper function. Will use the appropriate compiler, based on user-defined
-# compiler.
+# compiler. Will also set proper ANT_TASKS from the variable ANT_TASKS,
 # variables:
 # EANT_GENTOO_CLASSPATH - calls java-pkg_getjars for the value and adds to the
 #                         gentoo.classpath property. Be sure to call
 #                         java-ant_rewrite-classpath in src_unpack.
-#
+# *ANT_TASKS - used to determine ANT_TASKS before calling Ant.
 # ------------------------------------------------------------------------------
 eant() {
 	debug-print-function ${FUNCNAME} $*
@@ -1374,7 +1549,13 @@ eant() {
 #			"Using eant, but not depending on dev-java/ant or dev-java/ant-core"
 #	fi
 
-	local antflags="-Dnoget=true"
+	if ! hasq java-ant-2 ${INHERITED} && is-java-strict; then
+		local msg="You should inherit java-ant-2 when using eant"
+		java-pkg_announce-qa-violation ${msg}
+		die ${msg}
+	fi
+
+	local antflags="-Dnoget=true -Dmaven.mode.offline=true"
 	java-pkg_init-compiler_
 	local compiler="${GENTOO_COMPILER}"
 
@@ -1402,9 +1583,53 @@ eant() {
 		antflags="${antflags} -Dbuild.sysclasspath=ignore"
 	fi
 
-	if [[ -n ${JAVA_PKG_DEBUG} ]]; then
-		antflags="${antflags} -debug"
+	for arg in "${@}"; do
+		if [[ ${arg} = -lib ]]; then
+			if is-java-strict; then
+				eerror "You should not use the -lib argument to eant because it will fail"
+				eerror "with JAVA_PKG_STRICT. Please use for example java-pkg_jar-from"
+				eerror "or ant properties to make dependencies available."
+				eerror "For ant tasks use WANT_ANT_TASKS or ANT_TASKS from."
+				eerror "split ant (>=dev-java/ant-core-1.7)."
+				die "eant -lib is deprecated/forbidden"
+			else
+				echo "eant -lib is deprecated. Turn JAVA_PKG_STRICT on for"
+				echo "more info."
+			fi
+		fi
+	done
+
+	if has_version ">=dev-java/ant-core-1.7.0"; then
+		# default ANT_TASKS to WANT_ANT_TASKS, if ANT_TASKS is not set explicitly
+		ANT_TASKS="${ANT_TASKS:-${WANT_ANT_TASKS}}"
+
+		# override ANT_TASKS with JAVA_PKG_FORCE_ANT_TASKS if it's set
+		ANT_TASKS="${JAVA_PKG_FORCE_ANT_TASKS:-${ANT_TASKS}}"
+
+		if is-java-strict; then
+			# if ant-tasks were not set by ebuild or forced, try to determine them from depends
+			if [[ -z "${ANT_TASKS}" ]]; then
+				ANT_TASKS="$(java-pkg_ant-tasks-from-deps)"
+			fi
+		else
+			# if ant-tasks is not set by ebuild or forced, activate all of them
+			ANT_TASKS="${ANT_TASKS:-all}"
+		fi
+
+		# at this point, ANT_TASKS should be "all", "none" or explicit list
+		if [[ "${ANT_TASKS}" == "all" ]]; then
+			einfo "Using all available ANT_TASKS"
+		elif [[ "${ANT_TASKS}" == "none" ]]; then
+			einfo "Disabling all optional ANT_TASKS"
+		else
+			einfo "Using following ANT_TASKS: ${ANT_TASKS}"
+		fi
+
+		export ANT_TASKS
 	fi
+
+	[[ -n ${JAVA_PKG_DEBUG} ]] && antflags="${antflags} --execdebug -debug"
+	[[ -n ${PORTAGE_QUIET} ]] && antflags="${antflags} -q"
 
 	local gcp="${EANT_GENTOO_CLASSPATH}"
 
@@ -1415,6 +1640,7 @@ eant() {
 	fi
 
 	[[ -n ${JAVA_PKG_DEBUG} ]] && echo ant ${antflags} "${@}"
+	debug-print "Calling ant: ${antflags} ${@}"
 	ant ${antflags} "${@}" || die "eant failed"
 
 }
@@ -1537,6 +1763,10 @@ java-pkg_init() {
 	# This also helps prevent unexpected dependencies on random things
 	# from the CLASSPATH.
 	unset CLASSPATH
+	
+	# Unset external ANT_ stuff
+	unset ANT_TASKS
+	unset ANT_OPTS
 }
 
 # ------------------------------------------------------------------------------
@@ -1984,19 +2214,33 @@ java-pkg_jar-list() {
 	fi
 }
 
-# TODO document
-# Verify that the classes were compiled for the right source / target
+# ------------------------------------------------------------------------------
+# @internal-function java-pkg_verify-classes
+#
+# Verify that the classes were compiled for the right source / target. Dies if
+# not.
+# @param $1 (optional) - the file to check, otherwise checks whole ${ED}
+# ------------------------------------------------------------------------------
 java-pkg_verify-classes() {
-	ebegin "Verifying java class versions"
 	#$(find ${ED} -type f -name '*.jar' -o -name '*.class')
-	class-version-verify.py -t $(java-pkg_get-target) -r ${ED}
-	result=$?
-	eend ${result}
-	if [[ ${result} == 0 ]]; then
-		einfo "All good"
+	local target=$(java-pkg_get-target)
+	local result
+	local log="${T}/class-version-verify.log"
+	if [[ -n "${1}" ]]; then
+		class-version-verify.py -v -t ${target} "${1}" > "${log}"
+		result=$?
 	else
-		ewarn "Possible problem"
-		die "Bad class files found"
+		ebegin "Verifying java class versions (target: ${target})"
+		class-version-verify.py -v -t ${target} -r "${ED}" > "${log}"
+		result=$?
+		eend ${result}
+	fi
+	[[ -n ${JAVA_PKG_DEBUG} ]] && cat "${log}"
+	if [[ ${result} != 0 ]]; then
+		eerror "Incorrect bytecode version found"
+		[[ -n "${1}" ]] && eerror "in file: ${1}"
+		eerror "See ${log} for more details."
+		die "Incorrect bytecode found"
 	fi
 }
 

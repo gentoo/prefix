@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.189 2007/01/19 20:57:00 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.190 2007/01/21 01:08:12 flameeyes Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -446,7 +446,8 @@ slot_rebuild() {
 }
 
 kde_pkg_preinst() {
-	if [[ $(find "${ED}/${PREFIX}/share/applnk" -name '*.desktop' 2>/dev/null | wc -l) != "0" ]]; then
+	if [[ $(find "${ED}/${PREFIX}/share/applnk" -name '*.desktop' \
+		-not -path '*.hidden*' 2>/dev/null | wc -l) != "0" ]]; then
 		ewarn "KDE Team warning: this package (${PF}) is installing"
 		ewarn "	 .desktop files in the obsolete applnk path:"
 		ewarn "	 ${PREFIX}/share/applnk. It won't be shown on non-KDE"

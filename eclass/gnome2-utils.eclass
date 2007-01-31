@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2-utils.eclass,v 1.2 2007/01/01 22:27:01 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2-utils.eclass,v 1.3 2007/01/24 18:20:01 compnerd Exp $
 
 #
 # gnome2-utils.eclass
@@ -52,9 +52,12 @@ gnome2_gconf_install() {
 	done
 
 	# have gconf reload the new schemas
-	ebegin "Reloading GConf schemas"
-	killall -HUP gconfd-2
-	eend $?
+	pids=$(pidof gconfd-2)
+	if [[ $? == 0 ]] ; then
+		ebegin "Reloading GConf schemas"
+		kill -HUP ${pids}
+		eend $?
+	fi
 }
 
 

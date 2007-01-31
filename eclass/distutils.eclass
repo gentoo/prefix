@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.36 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.37 2007/01/27 11:21:45 kloeri Exp $
 #
 # Author: Jon Nelson <jnelson@gentoo.org>
 # Current Maintainer: Alastair Tse <liquidx@gentoo.org>
@@ -19,7 +19,7 @@
 # PYTHON_SLOT_VERSION     - for Zope support
 # DOCS                    - additional DOCS
 
-inherit python eutils
+inherit python multilib eutils
 
 # This helps make it possible to add extensions to python slots.
 # Normally only a -py21- ebuild would set PYTHON_SLOT_VERSION.

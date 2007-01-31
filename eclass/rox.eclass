@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/rox.eclass,v 1.17 2006/11/27 18:45:52 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/rox.eclass,v 1.19 2007/01/30 22:07:49 lack Exp $
 
 # ROX eclass Version 2
 
@@ -20,6 +20,10 @@
 # the ebuild:
 #
 # APPNAME - the actual name of the application as the app folder is named
+# APPCATEGORY - the .desktop categories this application should be placed in.
+#    If unset, no .desktop file will be created.  For a list of acceptable
+#    category names, see
+#    http://standards.freedesktop.org/menu-spec/latest/apa.html
 # KEEP_SRC - this flag, if set, will not remove the source directory
 #    but will do a make clean in it. This is useful if users wish to
 #    preserve the source code for anything
@@ -28,7 +32,7 @@
 
 # need python to byte compile modules, if any
 # need autotools to run autoreconf, if required
-inherit python autotools
+inherit python autotools eutils
 
 if [[ -z "${ROX_VER}" ]]; then
 	ROX_VER="2.1.0"
@@ -48,16 +52,24 @@ if [[ -n "${ROX_CLIB_VER}" ]]; then
 		>=dev-util/pkgconfig-0.20"
 fi
 
+# Utility functions
+rox_desktop_entry() {
+	# make_desktop_entry(<command>, [name], [icon], [type], [path])
+	make_desktop_entry ${APPNAME} ${APPNAME} \
+		"${APPICON}" "${APPCATEGORY};ROX"
+}
+
+# Exported functions
 rox_src_compile() {
 	cd "${APPNAME}"
 	#Some packages need to be compiled.
 	chmod 755 AppRun
-	if [ -d src/ ]; then
+	if [[ -d src/ ]]; then
 		# Bug 150303: Check with Rox-Clib will fail if the user has 0install
 		# installed on their system somewhere, so remove the check for it in the
 		# configure script, and adjust the path that the 'libdir' program uses
 		# to search for it:
-		if [ -f src/configure.in ]; then
+		if [[ -f src/configure.in ]]; then
 			cd src
 			sed -i.bak -e 's/ROX_CLIB_0LAUNCH/ROX_CLIB/' configure.in
 			# TODO: This should really be 'eautoreconf', but that breaks a number
@@ -73,7 +85,7 @@ rox_src_compile() {
 		sed -i.bak -e 's/\<read\>/#read/' AppRun
 
 		./AppRun --compile || die "Failed to compile the package"
-		if [ -n "${KEEP_SRC}" ]; then
+		if [[ -n "${KEEP_SRC}" ]]; then
 			cd src
 			make clean
 			cd ..
@@ -90,7 +102,7 @@ rox_src_compile() {
 }
 
 rox_src_install() {
-	if [ -d "${APPNAME}/Help/" ]; then
+	if [[ -d "${APPNAME}/Help/" ]]; then
 		for i in "${APPNAME}"/Help/*; do
 			dodoc "${i}"
 		done
@@ -112,8 +124,39 @@ exec "/usr/lib/rox/${APPNAME}/AppRun" "\$@"
 EOF
 	chmod 755 "${ED}/usr/bin/${APPNAME}"
 
+	# Copy the .DirIcon into /usr/share/pixmaps with the proper extension
+	if [[ -f "${APPNAME}/.DirIcon" ]]; then
+		local APPDIRICON=${APPNAME}/.DirIcon
+		case "$(file -b ${APPDIRICON})" in
+			"PNG image data"*)
+				export APPICON=${APPNAME}.png
+				;;
+			"XML 1.0 document text"*)
+				export APPICON=${APPNAME}.svg
+				;;
+			"X pixmap image text"*)
+				export APPICON=${APPNAME}.xpm
+				;;
+			"symbolic link"*)
+				APPDIRICON=$(dirname $APPDIRICON)/$(readlink $APPDIRICON)
+				export APPICON=${APPNAME}.${APPDIRICON##*.}
+				;;
+			*)
+				# Unknown... Remark on it, and just copy without an extension
+				export APPICON=${APPNAME}
+				;;
+		esac
+		insinto /usr/share/pixmaps
+		newins "${APPDIRICON}" "${APPICON}"
+	fi
+
 	#now compile any and all python files
 	python_mod_optimize "${ED}/usr/lib/rox/${APPNAME}" >/dev/null 2>&1
+
+	# Create a .desktop file if the proper category is supplied
+	if [[ -n "${APPCATEGORY}" ]]; then
+		rox_desktop_entry
+	fi
 }
 
 rox_pkg_postinst() {

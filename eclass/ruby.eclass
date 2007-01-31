@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.57 2007/01/15 16:22:22 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.61 2007/01/29 12:15:50 pclouds Exp $
 #
 # Author: Mamoru KOMACHI <usata@gentoo.org>
 #
@@ -43,8 +43,6 @@ EXPORT_FUNCTIONS src_unpack src_compile src_install
 HOMEPAGE="http://raa.ruby-lang.org/list.rhtml?name=${PN}"
 SRC_URI="mirror://gentoo/${P}.tar.gz"
 
-IUSE="examples"
-
 SLOT="0"
 LICENSE="Ruby"
 
@@ -55,8 +53,25 @@ fi
 
 [[ -z "${RUBY}" ]] && export RUBY=${EPREFIX}/usr/bin/ruby
 
-ruby_src_unpack() {
+ruby_patch_mkmf() {
 
+	if [ ! -x /bin/install -a -x /usr/bin/install ]; then
+		einfo "Patching mkmf"
+		cat <<END >${T}/mkmf.rb
+require 'mkmf'
+
+STDERR.puts 'Modified mkmf is used'
+CONFIG['INSTALL'] = '/usr/bin/install'
+END
+		# save it because rubygems needs it (for unsetting RUBYOPT)
+		export GENTOO_RUBYOPT="-r${T}/mkmf.rb"
+		export RUBYOPT="${RUBYOPT} ${GENTOO_RUBYOPT}"
+	fi
+
+}
+
+ruby_src_unpack() {
+	ruby_patch_mkmf
 	unpack ${A}
 	cd ${S}
 	# apply bulk patches

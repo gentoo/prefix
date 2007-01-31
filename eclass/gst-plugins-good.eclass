@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-good.eclass,v 1.11 2006/09/14 21:16:37 zaheerm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-good.eclass,v 1.12 2007/01/25 16:47:56 lack Exp $
 
 # Author : foser <foser@gentoo.org>, zaheerm <zaheerm@gentoo.org>
 
@@ -26,7 +26,11 @@ MY_P=${MY_PN}-${PV}
 # All relevant configure options for gst-plugins
 # need a better way to extract these
 # gst-plugins-base 0.9
-my_gst_plugins_good="gconf gconftool oss aalib aalibtest cairo cdio esd esdtest flac jpeg ladspa libcaca libdv libpng dv1394 shout2 shout2test speex annodex hal x taglib gdk_pixbuf"
+
+# This list is current to gst-plugins-good-0.10.5
+my_gst_plugins_good="gconf gconftool oss aalib aalibtest cairo cdio esd esdtest
+flac jpeg ladspa libcaca libdv libpng dv1394 shout2 shout2test speex annodex hal
+x taglib gdk_pixbuf gst_v4l2 sunaudio xshm xvideo zlib"
 
 #SRC_URI="mirror://gnome/sources/gst-plugins/${PV_MAJ_MIN}/${MY_P}.tar.bz2"
 SRC_URI="http://gstreamer.freedesktop.org/src/gst-plugins-good/${MY_P}.tar.bz2"

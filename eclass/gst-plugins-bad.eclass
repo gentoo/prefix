@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.7 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.8 2007/01/25 16:47:56 lack Exp $
 
 #
 # Original Author: Saleem Abdulrasool <compnerd@gentoo.org>
@@ -9,7 +9,14 @@
 # plugin rather than in a single package.
 #
 
-my_gst_plugins_bad="amrwb bz2 directfb dts divx faac faad gsm gst_v4l2 ivorbis libmms musepack musicbrainz neon opengl sdl sdltest soundtouch swfdec theoradec wavpack xvid"
+# This list is current to gst-plugins-good-0.10.4 except for:
+#   gst_v4l2 - moved to gst-plugins-good-0.10.5 (not in >=gst-plugins-bad-0.10.4)
+#              But it must stay in this list until all <gst-plugins-bad-0.10.4
+#              are removed
+my_gst_plugins_bad="alsa amrwb bz2 cdaudio directfb dts divx dvb faac faad gsm
+gst_v4l2 ivorbis jack ladspa libmms mpeg2enc musepack musicbrainz neon opengl
+sdl sdltest soundtouch spc swfdec theoradec wavpack xvid x"
+
 #qtdemux spped tta
 
 inherit eutils gst-plugins10

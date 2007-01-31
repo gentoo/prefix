@@ -10,7 +10,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.12 2007/01/12 14:03:16 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.17 2007/01/30 21:51:15 caster Exp $
 
 inherit java-utils-2
 
@@ -18,8 +18,62 @@ inherit java-utils-2
 # ant to build. In particular, it will attempt to fix build.xml files, so that
 # they use the appropriate 'target' and 'source' attributes.
 
+# -----------------------------------------------------------------------------
+# @variable-preinherit WANT_ANT_TASKS
+# @variable-default ""
+#
+# Please see the description in java-utils-2.eclass.
+#WANT_ANT_TASKS
+
+# -----------------------------------------------------------------------------
+# @variable-preinherit WANT_SPLIT_ANT
+# @variable-default ""
+#
+# If set, ant-core dependency specifies version with startup script that
+# honours ANT_TASKS variable, i.e. >=1.7.0. Using WANT_ANT_TASKS implies
+# split-ant already, so you need this only if you manually depend on some
+# external package providing ant tasks and want to use it via ANT_TASKS.
+[[ -n "${WANT_ANT_TASKS}" ]] && WANT_SPLIT_ANT="true"
+
+# -----------------------------------------------------------------------------
+# @variable-preinherit JAVA_ANT_DISABLE_ANT_CORE_DEP
+# @variable-default unset for java-pkg-2, true for java-pkg-opt-2
+#
+# Setting this variable non-empty before inheriting java-ant-2 disables adding
+# dev-java/ant-core into DEPEND.
+
+# construct ant-speficic DEPEND
+JAVA_ANT_E_DEPEND=""
+# add ant-core into DEPEND, unless disabled; respect WANT_SPLIT_ANT
+if [[ -z "${JAVA_ANT_DISABLE_ANT_CORE_DEP}" ]]; then
+	if [[ -n "${WANT_SPLIT_ANT}" ]]; then
+		JAVA_ANT_E_DEPEND="${JAVA_ANT_E_DEPEND} >=dev-java/ant-core-1.7.0"
+	else
+		JAVA_ANT_E_DEPEND="${JAVA_ANT_E_DEPEND} dev-java/ant-core"
+	fi
+fi
+
+# add ant tasks specified in WANT_ANT_TASKS to DEPEND
+local ANT_TASKS_DEPEND;
+ANT_TASKS_DEPEND="$(java-pkg_ant-tasks-depend)"
+# check that java-pkg_ant-tasks-depend didn't fail
+if [[ $? != 0 ]]; then
+	eerror "${ANT_TASKS_DEPEND}"
+	die "java-pkg_ant-tasks-depend() failed"
+fi
+JAVA_ANT_E_DEPEND="${JAVA_ANT_E_DEPEND} ${ANT_TASKS_DEPEND}"
+
+# this eclass must be inherited after java-pkg-2 or java-pkg-opt-2
+# if it's java-pkg-opt-2, ant dependencies are pulled based on USE flag
+if hasq java-pkg-opt-2 ${INHERITED}; then
+	JAVA_ANT_E_DEPEND="${JAVA_PKG_OPT_USE}? ( ${JAVA_ANT_E_DEPEND} )"
+elif ! hasq java-pkg-2 ${INHERITED}; then
+	eerror "java-ant-2 eclass can only be inherited AFTER java-pkg-2 or java-pkg-opt-2"
+fi
+
 # We need some tools from javatoolkit. We also need portage 2.1 for phase hooks
-DEPEND=">=dev-java/javatoolkit-0.1.5 ${JAVA_PKG_PORTAGE_DEP}"
+# and ant dependencies constructed above
+DEPEND=">=dev-java/javatoolkit-0.1.5 ${JAVA_PKG_PORTAGE_DEP} ${JAVA_ANT_E_DEPEND}"
 
 # ------------------------------------------------------------------------------
 # @global JAVA_PKG_BSFIX
@@ -71,6 +125,8 @@ JAVA_PKG_BSFIX_SOURCE_TAGS=${JAVA_PKG_BSFIX_SOURCE_TAGS:-"javadoc javac xjavac j
 # @public java-ant_src_unpack
 #
 # Unpacks the source, and attempts to fix build files.
+# variable JAVA_ANT_IGNORE_SYSTEM_CLASSES:
+#	ignore ant classpath in available tasks
 # ------------------------------------------------------------------------------
 post_src_unpack() {
 	if java-pkg_func-exists ant_src_unpack; then
@@ -78,6 +134,8 @@ post_src_unpack() {
 		ant_src_unpack
 	fi
 	java-ant_bsfix
+	[[ "${JAVA_ANT_IGNORE_SYSTEM_CLASSES}" ]] \
+		&& java-ant_ignore-system-classes "${S}/build.xml"
 }
 
 # ------------------------------------------------------------------------------
