@@ -1,0 +1,56 @@
+Dont update makewhatis files if they're on readonly filesystems
+
+http://bugs.gentoo.org/163932
+
+--- src/makewhatis.sh
++++ src/makewhatis.sh
+@@ -184,6 +188,34 @@
+      if [ x$verbose != x ]; then
+ 	echo "about to enter $mandir" > /dev/stderr
+      fi
++
++     # kludge for Slackware's /usr/man/preformat
++     if [ $mandir = /usr/man/preformat ]
++     then
++	mandir1=/usr/man
++     else
++	mandir1=$mandir
++     fi
++
++     # if $mandir is on a readonly partition, and the whatis file
++     # is not a symlink, then let's skip trying to update it
++     if [ ! -L ${mandir1}/whatis ]
++     then
++	if [ -e ${mandir1}/whatis ] && [ ! -w ${mandir1}/whatis ]
++	then
++	   if [ x$verbose != x ]; then
++	      echo skipping $mandir - whatis file is readonly > /dev/stderr
++	   fi
++	   continue
++	elif [ ! -e ${mandir1}/whatis ] && [ ! -w ${mandir1} ]
++	then
++	   if [ x$verbose != x ]; then
++	      echo skipping $mandir - directory is readonly > /dev/stderr
++	   fi
++	   continue
++	fi
++     fi
++
+      if [ -s ${mandir}/whatis -a $pages = man -a x$update = x ]; then
+ 	if [ x$verbose != x ]; then
+ 	   echo skipping $mandir - we did it already > /dev/stderr
+@@ -407,14 +439,6 @@
+ 
+        cd $here
+ 
+-       # kludge for Slackware's /usr/man/preformat
+-       if [ $mandir = /usr/man/preformat ]
+-       then
+-	 mandir1=/usr/man
+-       else
+-	 mandir1=$mandir
+-       fi
+-
+        if [ -f ${mandir1}/whatis ]
+        then
+ 	 cat ${mandir1}/whatis >> $TMPFILE

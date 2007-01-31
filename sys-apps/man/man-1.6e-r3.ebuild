@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6e.ebuild,v 1.2 2006/12/27 16:15:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6e-r3.ebuild,v 1.1 2007/01/27 05:44:45 vapier Exp $
 
 EAPI="prefix"
 
@@ -28,6 +28,9 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	# add support for bzip2 pages
+	epatch "${FILESDIR}"/man-1.6e-man2html-bzip2.patch
 
 	# We love to cross-compile
 	epatch "${FILESDIR}"/man-1.6-cross-compile.patch
@@ -66,8 +69,14 @@ src_unpack() {
 
 	# Fix the makewhatis script for prefix.
 	cp "${FILESDIR}"/makewhatis.cron "${T}"/
-	( cd "${T}" && epatch "${FILESDIR}"/makewhatis.cron-prefix.patch )
+	pushd "${T}" > /dev/null
+	epatch "${FILESDIR}"/makewhatis.cron-prefix.patch
+	popd > /dev/null
 	eprefixify "${T}"/makewhatis.cron
+
+	epatch "${FILESDIR}"/man-1.6e-dont-kill-shebangs.patch #159192
+	epatch "${FILESDIR}"/man-1.6e-headers.patch
+	epatch "${FILESDIR}"/man-1.6e-readonly-whatis2.patch #163932
 
 	strip-linguas $(eval $(grep ^LANGUAGES= configure) ; echo ${LANGUAGES//,/ })
 
