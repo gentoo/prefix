@@ -1,6 +1,18 @@
 # ChangeLog for dev-libs/libtasn1
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.49 2006/11/09 03:11:45 iluxa Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.52 2007/01/28 22:59:25 alonbl Exp $
+
+  28 Jan 2007; Alon Bar-Lev <alonbl@gentoo.org> -libtasn1-0.2.18.ebuild,
+  -libtasn1-0.3.4.ebuild:
+  Cleanup deeper
+
+  28 Jan 2007; Fabian Groffen <grobian@gentoo.org> libtasn1-0.2.18.ebuild,
+  libtasn1-0.3.4.ebuild, libtasn1-0.3.5.ebuild:
+  Drop ppc-macos keyword, see you in prefix
+
+  28 Jan 2007; Alon Bar-Lev <alonbl@gentoo.org> -libtasn1-0.2.13.ebuild,
+  libtasn1-0.3.5.ebuild:
+  Cleanup per bug#164204
 
   09 Nov 2006; Ilya A. Volynets-Evenbakh <iluxa@gentoo.org>
   libtasn1-0.3.5.ebuild:
