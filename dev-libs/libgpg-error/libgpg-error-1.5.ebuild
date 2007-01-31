@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgpg-error/libgpg-error-1.5.ebuild,v 1.1 2006/12/09 08:37:23 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgpg-error/libgpg-error-1.5.ebuild,v 1.3 2007/01/28 07:35:12 vapier Exp $
 
 EAPI="prefix"
 
@@ -30,6 +30,6 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${D}" || die
+	emake install DESTDIR="${D}" || die
 	dodoc AUTHORS ChangeLog NEWS README
 }
