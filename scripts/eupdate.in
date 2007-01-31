@@ -103,6 +103,9 @@ cmp_ebuild_ver() {
 		# the version number, 4a is considered to be smaller than 33
 		local lan=${la%%[a-zA-Z]*}
 		local ran=${ra%%[a-zA-Z]*}
+		# if lan or ran starts with a 0, bash thinks it's an octal number
+		lan=${lan#0}; lan=${lan:-0}
+		ran=${ran#0}; ran=${ran:-0}
 		t=$((lan - ran))
 		if [[ ${t} != 0 ]] ; then
 			[[ $t > 9 ]] && t=9
