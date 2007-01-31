@@ -1,4 +1,4 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -13,8 +13,7 @@ SRC_URI="http://www.gentoo.org/~grobian/distfiles/${P}.tar.bz2"
 LICENSE="APSL-2"
 SLOT="0"
 
-# doesn't compile, needs fixing
-KEYWORDS="-*"
+KEYWORDS="~ppc-macos ~x86-macos"
 
 IUSE=""
 
@@ -25,6 +24,12 @@ LIBPATH=/usr/$(get_libdir)/binutils/${CHOST}/${PV}
 INCPATH=${LIBPATH}/include
 DATAPATH=/usr/share/binutils-data/${CHOST}/${PV}
 BINPATH=/usr/${CHOST}/binutils-bin/${PV}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-darwin8.8.0.patch
+}
 
 src_compile() {
 	myconf="\
