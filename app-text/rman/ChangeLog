@@ -1,6 +1,14 @@
 # ChangeLog for app-text/rman
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/rman/ChangeLog,v 1.28 2006/07/01 01:31:28 spyderous Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/rman/ChangeLog,v 1.30 2007/01/06 01:02:53 kugelfang Exp $
+
+  06 Jan 2007; Danny van Dyk <kugelfang@gentoo.org> -rman-3.0.9.ebuild,
+  -rman-3.1.ebuild:
+  QA: Removed unused versions.
+
+  29 Nov 2006; Fabian Groffen <grobian@gentoo.org> rman-3.1.ebuild,
+  rman-3.2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   01 Jul 2006; Donnie Berkholz <spyderous@gentoo.org>; rman-3.2.ebuild:
   arm/mips/ppc/sh/sparc/x86 stable.
