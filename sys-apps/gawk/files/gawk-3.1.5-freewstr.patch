@@ -1,0 +1,193 @@
+--- gawk-3.1.5/builtin.c.freewstr	2005-07-26 20:07:43.000000000 +0200
++++ gawk-3.1.5/builtin.c	2007-01-08 13:29:45.000000000 +0100
+@@ -2089,9 +2089,9 @@
+ 			}
+ 
+ 			free(buf);
+-			if (wc_indices != NULL)
+-				free(wc_indices);
+ 		}
++		if (wc_indices != NULL)
++			free(wc_indices);
+ 	} else {		/* match failed */
+ 		rstart = 0;
+ 		rlength = -1;
+@@ -2462,6 +2462,8 @@
+ 	free(t->stptr);
+ 	t->stptr = buf;
+ 	t->stlen = textlen;
++	free_wstr(t);
++	t->flags &= ~(NUMCUR|NUMBER);
+ 
+ 	free_temp(s);
+ 	if (matches > 0 && lhs) {
+@@ -2471,7 +2473,6 @@
+ 		}
+ 		if (after_assign != NULL)
+ 			(*after_assign)();
+-		t->flags &= ~(NUMCUR|NUMBER);
+ 	}
+ 	if (mb_indices != NULL)
+ 		free(mb_indices);
+--- gawk-3.1.5/awk.h.freewstr	2005-07-26 20:07:43.000000000 +0200
++++ gawk-3.1.5/awk.h	2007-01-08 12:31:26.000000000 +0100
+@@ -1166,6 +1166,9 @@
+ #define force_wstring(n)	str2wstr(n, NULL)
+ extern const wchar_t *wstrstr P((const wchar_t *haystack, size_t hs_len, const wchar_t *needle, size_t needle_len));
+ extern const wchar_t *wcasestrstr P((const wchar_t *haystack, size_t hs_len, const wchar_t *needle, size_t needle_len));
++extern void free_wstr P((NODE *n));
++#else
++#define free_wstr(NODE)	/* empty */
+ #endif
+ /* re.c */
+ extern Regexp *make_regexp P((const char *s, size_t len, int ignorecase, int dfa));
+--- gawk-3.1.5/node.c.freewstr	2007-01-08 12:31:26.000000000 +0100
++++ gawk-3.1.5/node.c	2007-01-08 12:41:48.000000000 +0100
+@@ -218,15 +218,7 @@
+ no_malloc:
+ 	s->stref = 1;
+ 	s->flags |= STRCUR;
+-#if defined MBS_SUPPORT
+-	if ((s->flags & WSTRCUR) != 0) {
+-		assert(s->wstptr != NULL);
+-		free(s->wstptr);
+-		s->wstptr = NULL;
+-		s->wstlen = 0;
+-		s->flags &= ~WSTRCUR;
+-	}
+-#endif
++	free_wstr(s);
+ 	return s;
+ }
+ 
+@@ -289,8 +281,14 @@
+ 	*r = *n;
+ 	r->flags &= ~(PERM|TEMP|FIELD);
+ 	r->flags |= MALLOC;
+-#if defined MBS_SUPPORT
++#ifdef MBS_SUPPORT
++	/*
++	 * DON'T call free_wstr(r) here!
++	 * r->wstptr still points at n->wstptr's value, and we
++	 * don't want to free it!
++	 */
+ 	r->wstptr = NULL;
++	r->wstlen = 0;
+ #endif /* defined MBS_SUPPORT */
+ 	if (n->type == Node_val && (n->flags & STRCUR) != 0) {
+ 		r->stref = 1;
+@@ -346,11 +344,7 @@
+ 	r->stref = 1;
+ 	r->stptr = NULL;
+ 	r->stlen = 0;
+-#if defined MBS_SUPPORT
+-	r->wstptr = NULL;
+-	r->wstlen = 0;
+-	r->flags &= ~WSTRCUR;
+-#endif /* MBS_SUPPORT */
++	free_wstr(r);
+ #endif /* GAWKDEBUG */
+ 	return r;
+ }
+@@ -365,10 +359,11 @@
+ 	getnode(r);
+ 	r->type = Node_val;
+ 	r->flags = (STRING|STRCUR|MALLOC);
+-#if defined MBS_SUPPORT
++#ifdef MBS_SUPPORT
+ 	r->wstptr = NULL;
+ 	r->wstlen = 0;
+-#endif
++#endif /* defined MBS_SUPPORT */
++
+ 	if (flags & ALREADY_MALLOCED)
+ 		r->stptr = s;
+ 	else {
+@@ -512,20 +507,13 @@
+ 				return;
+ 			}
+ 			free(tmp->stptr);
+-#if defined MBS_SUPPORT
+-			if (tmp->wstptr != NULL) {
+-				assert((tmp->flags & WSTRCUR) != 0);
+-				free(tmp->wstptr);
+-			}
+-			tmp->flags &= ~WSTRCUR;
+-			tmp->wstptr = NULL;
+-			tmp->wstlen = 0;
+-#endif
++			free_wstr(tmp);
+ 		}
+ 		freenode(tmp);
+ 		return;
+ 	}
+ 	if ((tmp->flags & FIELD) != 0) {
++		free_wstr(tmp);
+ 		freenode(tmp);
+ 		return;
+ 	}
+@@ -708,11 +696,8 @@
+ 			fall through and recompute to fill in the array */
+ 	}
+ 
+-	if (n->wstptr != NULL) {
+-		free(n->wstptr);
+-		n->wstptr = NULL;
+-		n->wstlen = 0;
+-	}
++	if (n->wstptr != NULL) 
++		free_wstr(n);
+ 
+ 	/*
+ 	 * After consideration and consultation, this
+@@ -777,6 +762,20 @@
+ 	return n;
+ }
+ 
++/* free_wstr --- release the wide string part of a node */
++
++void
++free_wstr(NODE *n)
++{
++	if ((n->flags & WSTRCUR) != 0) {
++		assert(n->wstptr != NULL);
++		free(n->wstptr);
++		n->wstptr = NULL;
++		n->wstlen = 0;
++		n->flags &= ~WSTRCUR;
++	}
++}
++
+ #if 0
+ static void
+ dump_wstr(FILE *fp, const wchar_t *str, size_t len)
+@@ -839,11 +838,10 @@
+ 				h = towlower(*start);
+ 				n = towlower(needle[j]);
+ 				if (h != n)
+-					goto out;
++					continue;
+ 			}
+ 			return haystack + i;
+ 		}
+-out:	;
+ 	}
+ 
+ 	return NULL;
+--- gawk-3.1.5/eval.c.freewstr	2007-01-08 12:31:26.000000000 +0100
++++ gawk-3.1.5/eval.c	2007-01-08 12:31:26.000000000 +0100
+@@ -1176,13 +1176,7 @@
+ 			memcpy(l->stptr + l->stlen, r->stptr, r->stlen);
+ 			l->stlen += r->stlen;
+ 			l->stptr[l->stlen] = '\0';
+-#if defined MBS_SUPPORT
+-			if (r->wstptr != NULL)
+-				free(r->wstptr);
+-			r->wstptr = NULL;
+-			r->wstlen = 0;
+-			r->flags &= ~WSTRCUR;
+-#endif /* MBS_SUPPORT */
++			free_wstr(l);
+ 		} else {
+ 			char *nval;
+ 			size_t nlen = l->stlen + r->stlen + 2;

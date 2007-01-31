@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/gawk-3.1.5-r2.ebuild,v 1.16 2007/01/26 08:42:19 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/gawk-3.1.5-r3.ebuild,v 1.2 2007/01/26 08:42:19 vapier Exp $
 
 EAPI="prefix"
 
@@ -30,7 +30,6 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-core.patch
 	epatch "${FILESDIR}"/${P}-gcc4.patch
-	epatch "${FILESDIR}"/${P}-utf-8-strcat.patch
 	epatch "${FILESDIR}"/${P}-autotools-crap.patch #139397
 	# Patches from Fedora
 	epatch "${FILESDIR}"/${PN}-3.1.3-getpgrp_void.patch
@@ -40,11 +39,11 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-internal.patch
 	epatch "${FILESDIR}"/${P}-numflags.patch
 	epatch "${FILESDIR}"/${P}-syntaxerror.patch
+	epatch "${FILESDIR}"/${P}-wconcat.patch
+	epatch "${FILESDIR}"/${P}-freewstr.patch #135931
 	# on solaris, we have stupid /usr/bin/awk, but gcc,
 	# which's preprocessor understands '\'-linebreaks
 	epatch "${FILESDIR}"/${P}-stupid-awk-clever-cc.patch
-	# support for dec compiler.
-	[[ $(tc-getCC) == "ccc" ]] && epatch "${FILESDIR}"/${PN}-3.1.2-dec-alpha-compiler.diff
 }
 
 src_compile() {

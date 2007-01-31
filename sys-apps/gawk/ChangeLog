@@ -1,6 +1,13 @@
 # ChangeLog for sys-apps/gawk
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.97 2006/11/05 09:13:06 grobian Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.98 2007/01/12 06:16:53 vapier Exp $
+
+*gawk-3.1.5-r3 (12 Jan 2007)
+
+  12 Jan 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/gawk-3.1.5-freewstr.patch, +files/gawk-3.1.5-wconcat.patch,
+  +gawk-3.1.5-r3.ebuild:
+  Grab some patches from Fedora to fixup double free #135931 by Georgi Georgiev.
 
   05 Nov 2006; Fabian Groffen <grobian@gentoo.org> gawk-3.1.5-r1.ebuild,
   gawk-3.1.5-r2.ebuild:
