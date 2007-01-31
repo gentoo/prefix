@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/libksba-1.0.0.ebuild,v 1.2 2006/10/30 18:58:58 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/libksba-1.0.0.ebuild,v 1.4 2007/01/28 07:37:58 vapier Exp $
 
 EAPI="prefix"
 
@@ -32,6 +32,6 @@ src_unpack() {
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die
 	dodoc AUTHORS ChangeLog NEWS README README-alpha THANKS TODO VERSION
 }
