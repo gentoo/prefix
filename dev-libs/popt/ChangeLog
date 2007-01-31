@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/popt
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.54 2007/01/15 16:26:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.55 2007/01/20 04:01:50 jer Exp $
+
+  20 Jan 2007; Jeroen Roovers <jer@gentoo.org> popt-1.10.7.ebuild:
+  Stable for HPPA (bug #161177).
 
   15 Jan 2007; Mike Frysinger <vapier@gentoo.org>
   +files/popt-1.10.7-scrub-lame-gettext.patch, popt-1.10.7.ebuild:
