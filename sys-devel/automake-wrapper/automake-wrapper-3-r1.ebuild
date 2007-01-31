@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake-wrapper/automake-wrapper-3-r1.ebuild,v 1.9 2007/01/07 18:49:49 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake-wrapper/automake-wrapper-3-r1.ebuild,v 1.10 2007/01/19 23:33:12 vapier Exp $
 
 EAPI="prefix"
 
