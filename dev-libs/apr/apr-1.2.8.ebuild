@@ -1,12 +1,13 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.2.7-r3.ebuild,v 1.5 2007/01/08 23:35:43 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.2.8.ebuild,v 1.1 2007/01/21 15:27:39 phreak Exp $
 
 EAPI="prefix"
 
-inherit autotools
-
 WANT_AUTOCONF="2.5"
+WANT_AUTOMAKE="1.1"
+
+inherit autotools
 
 DESCRIPTION="Apache Portable Runtime Library"
 HOMEPAGE="http://apr.apache.org/"
@@ -22,7 +23,7 @@ DEPEND=""
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 
 	# for some reason not all the .m4 files that are referenced in 
 	# configure.in exist, so we remove all references and include every
@@ -31,31 +32,23 @@ src_unpack() {
 	sed -i -e '/sinclude/d' configure.in
 	AT_M4DIR="build" eautoreconf
 
-	epatch ${FILESDIR}/config.layout.patch
+	epatch "${FILESDIR}"/config.layout.patch
 
 }
 
 src_compile() {
-
-
-	myconf="--enable-layout=gentoo"
-
 	# For now we always enable ipv6. Testing has shown that is still works
 	# correctly in ipv4 systems, and currently, the ipv4-only support
 	# is broken in apr. (ipv6 is enabled by default)
 	#myconf="${myconf} $(use_enable ipv6)"
 
-	myconf="${myconf} --enable-threads"
-	myconf="${myconf} --enable-nonportable-atomics"
 	if use urandom; then
-		einfo "Using /dev/urandom as random device"
 		myconf="${myconf} --with-devrandom=/dev/urandom"
 	else
-		einfo "Using /dev/random as random device"
 		myconf="${myconf} --with-devrandom=/dev/random"
 	fi
 
-	useq debug && myconf="${myconf} --enable-maintainer-mode"
+	use debug && myconf="${myconf} --enable-maintainer-mode"
 
 	# We pre-load the cache with the correct answer!  This avoids
 	# it violating the sandbox.  This may have to be changed for
@@ -63,25 +56,27 @@ src_compile() {
 	# hack is built around documentation in /usr/include/semaphore.h
 	# and the glibc (pthread) source
 	# See bugs 24215 and 133573
-	echo 'ac_cv_func_sem_open=${ac_cv_func_sem_open=no}' >> ${S}/config.cache
+	echo 'ac_cv_func_sem_open=${ac_cv_func_sem_open=no}' >> "${S}"/config.cache
 
-	econf ${myconf} || die "Configure failed"
+	econf --enable-layout=gentoo \
+		 --enable-threads \
+		 --enable-nonportable-atomics \
+		 ${myconf} || die "econf failed!"
 
 	# Make sure we use the system libtool
-	sed -i 's,$(apr_builddir)/libtool,/usr/bin/libtool,' build/apr_rules.mk
-	sed -i 's,${installbuilddir}/libtool,/usr/bin/libtool,' apr-1-config
-	rm libtool
+	sed -i 's,$(apr_builddir)/libtool,/usr/bin/libtool,' "${S}"/build/apr_rules.mk
+	sed -i 's,${installbuilddir}/libtool,/usr/bin/libtool,' "${S}"/apr-1-config
+	rm -f "${S}"/libtool
 
 	emake || die "Make failed"
 }
 
 src_install() {
-
 	make DESTDIR="${D}" install || die "make install failed"
 
 	# This file is only used on AIX systems, which gentoo is not,
 	# and causes collisions between the SLOTs, so kill it
-	rm ${ED}/usr/$(get_libdir)/apr.exp
+	rm "${ED}"/usr/$(get_libdir)/apr.exp
 
 	dodoc CHANGES NOTICE LICENSE
 }

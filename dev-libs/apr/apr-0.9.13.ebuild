@@ -1,10 +1,10 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-0.9.7.ebuild,v 1.11 2006/05/18 18:14:40 vericgar Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-0.9.13.ebuild,v 1.2 2007/01/29 12:40:17 phreak Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic libtool
+inherit eutils flag-o-matic libtool
 
 DESCRIPTION="Apache Portable Runtime Library"
 HOMEPAGE="http://apr.apache.org/"
@@ -17,13 +17,18 @@ IUSE="ipv6 urandom"
 RESTRICT="test"
 
 DEPEND=""
+RDEPEND=""
 
-src_compile() {
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
 
-	filter-ldflags -Wl,--as-needed --as-needed
-
+	epatch "${FILESDIR}"/apr-0.9.12-linking.patch
 	elibtoolize || die "elibtoolize failed"
 
+}
+
+src_compile() {
 	myconf="--datadir=${EPREFIX}/usr/share/apr-0"
 
 	myconf="${myconf} $(use_enable ipv6)"
@@ -37,12 +42,20 @@ src_compile() {
 		myconf="${myconf} --with-devrandom=/dev/random"
 	fi
 
-	econf ${myconf} || die
-	emake || die
+	# We pre-load the cache with the correct answer!  This avoids
+	# it violating the sandbox.  This may have to be changed for
+	# non-Linux systems or if sem_open changes on Linux.  This
+	# hack is built around documentation in /usr/include/semaphore.h
+	# and the glibc (pthread) source
+	# See bugs 24215 and 133573
+	echo 'ac_cv_func_sem_open=${ac_cv_func_sem_open=no}' >> "${S}"/config.cache
+
+	econf ${myconf} || die "econf failed!"
+	emake || die "emake failed!"
 }
 
 src_install() {
-	make DESTDIR="${D}" installbuilddir=${EPREFIX}/usr/share/apr-0/build install || die
+	make DESTDIR="${D}" installbuilddir="${EPREFIX}"/usr/share/apr-0/build install || die "make install failed!"
 
 	# bogus values pointing at /var/tmp/portage
 	sed -i -e "s:APR_SOURCE_DIR=.*:APR_SOURCE_DIR=${EPREFIX}/usr/share/apr-0:g" "${ED}"/usr/bin/apr-config
@@ -56,4 +69,8 @@ src_install() {
 	cp -p build/*.pl ${ED}/usr/share/apr-0/build
 
 	dodoc CHANGES LICENSE NOTICE
+
+	# This file is only used on AIX systems, which gentoo is not,
+	# and causes collisions between the SLOTs, so kill it
+	rm "${ED}"/usr/$(get_libdir)/apr.exp
 }

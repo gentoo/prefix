@@ -1,0 +1,12 @@
+Index: apr-0.9.12/Makefile.in
+===================================================================
+--- apr-0.9.12.orig/Makefile.in
++++ apr-0.9.12/Makefile.in
+@@ -12,6 +12,7 @@ APR_MAJOR_VERSION=@APR_MAJOR_VERSION@
+ INCDIR=./include
+ INCDIR1=../include
+ INCLUDES=-I$(INCDIR) -I$(INCDIR1)
++ALL_LIBS=@EXTRA_LIBS@
+ 
+ #
+ # Macros for target determination
