@@ -116,7 +116,7 @@ lesspipe() {
 		;;
 
 	### Media ###
-	*.bmp|*.gif|*.jpeg|*.jpg|*.pcd|*.pcx|*.png|*.ppm|*.tga|*.tiff|*.tif)
+	*.bmp|*.gif|*.jpeg|*.jpg|*.ico|*.pcd|*.pcx|*.png|*.ppm|*.tga|*.tiff|*.tif)
 		identify "$1" || file -L -- "$1"
 		;;
 	*.avi|*.mpeg|*.mpg|*.mov|*.qt|*.wmv|*.asf|*.rm|*.ram)
@@ -193,7 +193,7 @@ if [[ -z $1 ]] ; then
 	echo "Usage: lesspipe.sh <file>"
 elif [[ $1 == "-V" ]] ; then
 	Id="cvsid"
-	cvsid="$Id: lesspipe.sh,v 1.20 2006/11/27 00:33:09 vapier Exp $"
+	cvsid="$Id: lesspipe.sh,v 1.21 2007/01/18 03:06:58 vapier Exp $"
 	cat <<-EOF
 		$cvsid
 		Copyright 2001-2006 Gentoo Foundation
