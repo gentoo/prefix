@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.2.7.ebuild,v 1.8 2006/10/18 12:59:02 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.2.8.ebuild,v 1.1 2007/01/21 15:31:05 phreak Exp $
 
 EAPI="prefix"
 
@@ -29,15 +29,11 @@ DEPEND="dev-libs/expat
 # but in reality the build system is broken for it....
 
 src_compile() {
-	elibtoolize || die "elibtoolize failed"
-
 	local myconf=""
 
+	elibtoolize || die "elibtoolize failed"
+
 	use ldap && myconf="${myconf} --with-ldap"
-	myconf="${myconf} $(use_with gdbm)"
-	myconf="${myconf} $(use_with postgres pgsql)"
-	myconf="${myconf} $(use_with sqlite sqlite2)"
-	myconf="${myconf} $(use_with sqlite3)"
 
 	if use berkdb; then
 		dbver="$(db_findver sys-libs/db)" || die "Unable to find db version"
@@ -49,13 +45,16 @@ src_compile() {
 		myconf="${myconf} --without-berkeley-db"
 	fi
 
-	econf \
-		--datadir=${EPREFIX}/usr/share/apr-util-1 \
+	econf --datadir=${EPREFIX}/usr/share/apr-util-1 \
 		--with-apr=${EPREFIX}/usr \
 		--with-expat=${EPREFIX}/usr \
-		$myconf || die "configure failed"
+		$(use_with gdbm) \
+		$(use_with postgres pgsql) \
+		$(use_with sqlite sqlite2) \
+		$(use_with sqlite3) \
+		${myconf} || die "econf failed!"
 
-	emake || die "make failed"
+	emake || die "emake failed!"
 }
 
 src_install() {
@@ -65,5 +64,5 @@ src_install() {
 
 	# This file is only used on AIX systems, which gentoo is not,
 	# and causes collisions between the SLOTs, so kill it
-	rm ${ED}/usr/$(get_libdir)/aprutil.exp
+	rm "${ED}"/usr/$(get_libdir)/aprutil.exp
 }

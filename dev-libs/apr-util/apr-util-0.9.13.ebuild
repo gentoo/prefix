@@ -1,10 +1,10 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-0.9.7.ebuild,v 1.12 2006/06/04 13:23:34 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-0.9.13.ebuild,v 1.2 2007/01/29 12:41:44 phreak Exp $
 
 EAPI="prefix"
 
-inherit eutils libtool db-use
+inherit eutils flag-o-matic libtool db-use
 
 DESCRIPTION="Apache Portable Runtime Library"
 HOMEPAGE="http://apr.apache.org/"
@@ -17,14 +17,21 @@ IUSE="berkdb gdbm ldap"
 RESTRICT="test"
 
 DEPEND="dev-libs/expat
-	~dev-libs/apr-0.9.7
+	~dev-libs/apr-${PV}
 	berkdb? ( =sys-libs/db-4* )
 	gdbm? ( sys-libs/gdbm )
 	ldap? ( =net-nds/openldap-2* )"
 
-src_compile() {
-	elibtoolize || die "elibtoolize failed"
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
 
+	epatch "${FILESDIR}"/apr-util-0.9.12-linking.patch
+	elibtoolize || die "elibtoolize failed"
+}
+
+
+src_compile() {
 	local myconf=""
 
 	use ldap && myconf="${myconf} --with-ldap"
@@ -34,10 +41,7 @@ src_compile() {
 		dbver="$(db_findver sys-libs/db)" || die "Unable to find db version"
 		dbver="$(db_ver_to_slot "$dbver")"
 		dbver="${dbver/\./}"
-		# grobian: this results in 44, and the max supported version in the
-		# configure script is 43, so skip it, it seems to work fine without
-#		myconf="${myconf} --with-dbm=db${dbver}
-		myconf="${myconf}
+		myconf="${myconf} --with-dbm=db${dbver}
 		--with-berkeley-db=$(db_includedir):${EPREFIX}/usr/$(get_libdir)"
 	else
 		myconf="${myconf} --without-berkeley-db"
@@ -47,13 +51,13 @@ src_compile() {
 		--datadir=${EPREFIX}/usr/share/apr-util-0 \
 		--with-apr=${EPREFIX}/usr \
 		--with-expat=${EPREFIX}/usr \
-		$myconf || die
+		$myconf || die "econf failed!"
 
-	emake || die
+	emake || die "emake failed!"
 }
 
 src_install() {
-	make DESTDIR="${D}" installbuilddir=/usr/share/apr-util-0/build install || die
+	make DESTDIR="${D}" installbuilddir="${EPREFIX}"/usr/share/apr-util-0/build install || die "make install failed!"
 
 	#bogus values pointing at /var/tmp/portage
 	sed -i -e "s:APU_SOURCE_DIR=.*:APU_SOURCE_DIR=:g" ${ED}/usr/bin/apu-config
@@ -62,5 +66,9 @@ src_install() {
 	dodoc CHANGES NOTICE
 
 	# Will install as portage user when using userpriv. Fixing
-	chown -R root:0 ${ED}/usr/include/apr-0/
+	chown -R root:0 "${ED}"/usr/include/apr-0/
+
+	# This file is only used on AIX systems, which gentoo is not,
+	# and causes collisions between the SLOTs, so kill it
+	rm "${ED}"/usr/$(get_libdir)/aprutil.exp
 }

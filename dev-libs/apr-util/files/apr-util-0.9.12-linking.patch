@@ -1,0 +1,13 @@
+Index: apr-util-0.9.12/Makefile.in
+===================================================================
+--- apr-util-0.9.12.orig/Makefile.in
++++ apr-util-0.9.12/Makefile.in
+@@ -81,7 +81,7 @@ install: $(TARGET_LIB)
+ 
+ $(TARGET_LIB):
+ 	@objects="`find $(SUBDIRS) -name expat -prune -o -name 'gen_uri_delims.@so_ext@' -prune -o -name '*.@so_ext@' -print`"; \
+-	    tmpcmd="$(LINK) @lib_target@ @EXTRA_OS_LINK@"; \
++	    tmpcmd="$(LINK) $(APRUTIL_LDFLAGS) @lib_target@ @EXTRA_OS_LINK@ $(APRUTIL_LIBS)"; \
+ 	    echo $$tmpcmd; \
+ 	    $$tmpcmd && touch $@
+ 
