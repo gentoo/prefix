@@ -1,8 +1,10 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/convmv/convmv-1.10.ebuild,v 1.2 2006/10/02 22:36:05 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/convmv/convmv-1.10.ebuild,v 1.12 2007/01/22 01:30:30 kloeri Exp $
 
 EAPI="prefix"
+
+inherit eutils
 
 DESCRIPTION="convert filenames to utf8 or any other charset"
 HOMEPAGE="http://j3e.de/linux/convmv"
@@ -27,5 +29,14 @@ src_compile() {
 
 src_install() {
 	einstall DESTDIR="${D}" PREFIX="${EPREFIX}/usr" || die "einstall failed"
-	dodoc CREDITS Changes GPL2 TODO VERSION testsuite.tar
+	dodoc CREDITS Changes TODO VERSION
+}
+
+src_test() {
+	cd ${S}
+	unpack ./testsuite.tar
+	# Never make assumptions as to the ordering of files inside a directory!
+	epatch ${FILESDIR}/${PN}-1.10-testcase-cleanup.patch
+	cd ${S}/suite
+	./dotests.sh || die "Tests failed"
 }

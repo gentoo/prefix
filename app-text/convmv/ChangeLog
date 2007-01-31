@@ -1,6 +1,38 @@
 # ChangeLog for app-text/convmv
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/convmv/ChangeLog,v 1.21 2006/10/13 10:41:28 corsair Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/convmv/ChangeLog,v 1.31 2007/01/22 01:30:30 kloeri Exp $
+
+  22 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> convmv-1.10.ebuild:
+  Stable on Alpha + IA64.
+
+  23 Nov 2006; <blubb@gentoo.org> convmv-1.10.ebuild:
+  stable on amd64
+
+  17 Nov 2006; nixnut <nixnut@gentoo.org> convmv-1.10.ebuild:
+  Stable on ppc wrt bug 154981
+
+  15 Nov 2006; Tom Gall <tgall@gentoo.org> convmv-1.10.ebuild:
+  stable on ppc64, bug 154981
+
+  15 Nov 2006; Robin H. Johnson <robbat2@gentoo.org> convmv-1.10.ebuild:
+  Change to use unpack instead of tar in src_test.
+
+  15 Nov 2006; Jeroen Roovers <jer@gentoo.org> convmv-1.10.ebuild:
+  Stable for HPPA (bug #154981).
+
+  13 Nov 2006; Fabian Groffen <grobian@gentoo.org> convmv-1.08.ebuild,
+  convmv-1.09.ebuild, convmv-1.10.ebuild:
+  Dropped ppc-macos keyword, see you in prefix.
+
+  13 Nov 2006; Andrej Kacian <ticho@gentoo.org> convmv-1.10.ebuild:
+  Stable on x86, bug #154981.
+
+  13 Nov 2006; Gustavo Zacarias <gustavoz@gentoo.org> convmv-1.10.ebuild:
+  Stable on sparc wrt #154981
+
+  13 Nov 2006; Robin H. Johnson <robbat2@gentoo.org>
+  +files/convmv-1.10-testcase-cleanup.patch, convmv-1.10.ebuild:
+  Bug #151071, fix testsuite making assumptions about filesystem.
 
   13 Oct 2006; Markus Rothe <corsair@gentoo.org> convmv-1.09.ebuild:
   Stable on ppc64
