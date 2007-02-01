@@ -1,14 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.7-r1.ebuild,v 1.3 2007/01/19 03:14:25 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.7-r1.ebuild,v 1.5 2007/01/22 01:05:45 kloeri Exp $
 
 EAPI="prefix"
 
-WANT_AUTOCONF="latest"
-WANT_AUTOMAKE="latest"
 inherit eutils flag-o-matic toolchain-funcs autotools
 
-PATCH_VER="1.0"
+PATCH_VER="1.1"
 DESCRIPTION="Standard GNU file utilities (chmod, cp, dd, dir, ls...), text utilities (sort, tr, head, wc..), and shell utilities (whoami, who,...)"
 HOMEPAGE="http://www.gnu.org/software/coreutils/"
 SRC_URI="ftp://alpha.gnu.org/gnu/coreutils/${P}.tar.bz2
@@ -89,10 +87,13 @@ src_compile() {
 	# put stuff in usr/libexec/gnu for x86-fbsd, if non-prefixed
 	if [[ ${EPREFIX%/} == "" ]] && [[ ${USERLAND} != "GNU" ]]; then
 		myconf="${myconf} --bindir=${EPREFIX}/usr/libexec/gnu"
-	else
-		myconf="${myconf} --bindir=${EPREFIX}/bin"
 	fi
 
+	# somehow this works for spanky/spanky thinks this works
+#	if echo "#include <regex.h>" | $(tc-getCPP) > /dev/null ; then
+#		myconf="${myconf} --without-included-regex"
+#	fi
+	# it doesn't for Linux and Darwin, so we do it the oldfashioned way
 	[[ ${ELIBC} == "glibc" || ${ELIBC} == "uclibc" ]] \
 		&& myconf="${myconf} --without-included-regex"
 
@@ -101,6 +102,7 @@ src_compile() {
 		--enable-largefile \
 		$(use_enable nls) \
 		$(use_enable acl) \
+		$(use_enable xattr) \
 		$(use_enable selinux) \
 		${myconf} \
 		|| die "econf"
@@ -124,10 +126,9 @@ src_install() {
 	dodoc AUTHORS ChangeLog* NEWS README* THANKS TODO
 
 	# remove files provided by other packages
-	rm "${ED}"/usr/bin/uptime        # procps
-	rm "${ED}"/bin/kill          # procps
+	rm "${ED}"/usr/bin/{kill,uptime} # procps
 	rm "${ED}"/usr/bin/{groups,su}   # shadow
-	rm "${ED}"/bin/hostname          # net-tools
+	rm "${ED}"/usr/bin/hostname      # net-tools
 	rm "${ED}"/usr/share/man/man1/{groups,kill,hostname,su,uptime}.1
 	# provide by the man-pages package
 	rm "${ED}"/usr/share/man/man1/{chgrp,chmod,chown,cp,dd,df,dir,dircolors}.1
@@ -137,7 +138,7 @@ src_install() {
 	insinto /etc
 	newins src/dircolors.hin DIR_COLORS
 
-	if [[ ${USERLAND} == "GNU" ]] ; then
+	if [[ ${USERLAND} == "GNU" || ${EPREFIX%/} != "" ]] ; then
 		cd "${ED}"/usr/bin
 		dodir /bin
 		# move critical binaries into /bin (required by FHS)
