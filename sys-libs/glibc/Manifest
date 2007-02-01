@@ -447,11 +447,9 @@ MISC metadata.xml 162 RMD160 d002486a43522f2116b1d9d59828c484956d66e2 SHA1 d6b49
 MD5 567094e03359ffc1c95af7356395228d metadata.xml 162
 RMD160 d002486a43522f2116b1d9d59828c484956d66e2 metadata.xml 162
 SHA256 65a915d44de1f01d4b7f72d313b4192c38374a9835d24988c00c1e73dca5805a metadata.xml 162
-size 1575 files/digest-glibc-2.4-r3 1575
-RMD160 c82aed2e0f3f556b051d7e3a1fc13c202f67bf2f files/digest-glibc-2.4-r3 1575
-SHA256 f22d43e9647ef7c83b51e5102caaca7e38b3d16783e6097b1a3cbe4b0957070e files/digest-glibc-2.4-r3 1575
-MD5 0839b75709d53cb72b9a3f6039d220a5 files/digest-glibc-2.4-r3 1575
-size 1870 files/digest-glibc-2.3.5-r2 1870
+MD5 e92c657d23aa2cc0d2beadc6ae315ad0 files/digest-glibc-2.3.5-r2 1870
 RMD160 ad47a68d940e0b791901aa14c3730dad545e486e files/digest-glibc-2.3.5-r2 1870
 SHA256 cd6b1397b89ea59e164f262fe07f94422fd10ef58b1de2d68204d96781fd2bbd files/digest-glibc-2.3.5-r2 1870
-MD5 e92c657d23aa2cc0d2beadc6ae315ad0 files/digest-glibc-2.3.5-r2 1870
+MD5 0839b75709d53cb72b9a3f6039d220a5 files/digest-glibc-2.4-r3 1575
+RMD160 c82aed2e0f3f556b051d7e3a1fc13c202f67bf2f files/digest-glibc-2.4-r3 1575
+SHA256 f22d43e9647ef7c83b51e5102caaca7e38b3d16783e6097b1a3cbe4b0957070e files/digest-glibc-2.4-r3 1575

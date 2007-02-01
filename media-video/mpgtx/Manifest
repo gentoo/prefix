@@ -11,7 +11,6 @@ MISC metadata.xml 223 RMD160 86b42c49b694db39ddb3fdc60b98a3ad1a0c3392 SHA1 ea8c3
 MD5 0338bfb24d7bfb6450aac4dd025c0096 metadata.xml 223
 RMD160 86b42c49b694db39ddb3fdc60b98a3ad1a0c3392 metadata.xml 223
 SHA256 dd48e823ec9a151bc3611121402ed26ee24eb3304aa62870b1e875a8fa0ac812 metadata.xml 223
-size 232 files/digest-mpgtx-1.3.1 232
+MD5 b72812781967f9eaf46fb5f4828d834c files/digest-mpgtx-1.3.1 232
 RMD160 50af605515fdc7014c1cbc8ac2c4cd31e6d31a73 files/digest-mpgtx-1.3.1 232
 SHA256 b4a34f7c5cb447906fd8aa8dd6c51d721d89c4633af63e41495985d0008793ad files/digest-mpgtx-1.3.1 232
-MD5 b72812781967f9eaf46fb5f4828d834c files/digest-mpgtx-1.3.1 232

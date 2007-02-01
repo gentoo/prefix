@@ -11,7 +11,6 @@ MISC metadata.xml 300 RMD160 dbee3af8bcfc2eec2b6512bae1ced9c1508c8fba SHA1 9ec03
 MD5 3cc2be50cac7e8be24e1943841cd9274 metadata.xml 300
 RMD160 dbee3af8bcfc2eec2b6512bae1ced9c1508c8fba metadata.xml 300
 SHA256 248d96b6884bbf560b059de223a79cdd7b009246e2f846f8e395245c974e07fa metadata.xml 300
-size 271 files/digest-vim-spell-en-20060123 271
+MD5 07454841875f825a9f85d45d913a5f87 files/digest-vim-spell-en-20060123 271
 RMD160 8ccbc2c585040baf490f68737d8af0bc11f7d836 files/digest-vim-spell-en-20060123 271
 SHA256 92e38fa2469191edbc8f82f5b18012ad3264dd0a1b6722d49c9fbf5ccc5fc274 files/digest-vim-spell-en-20060123 271
-MD5 07454841875f825a9f85d45d913a5f87 files/digest-vim-spell-en-20060123 271

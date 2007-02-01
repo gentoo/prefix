@@ -11,7 +11,6 @@ MISC metadata.xml 220 RMD160 2390b6ee3b22f50253c620e2c43e8041469f8fbb SHA1 ecc54
 MD5 f244a3bc4950853b234f8c3d76c08f55 metadata.xml 220
 RMD160 2390b6ee3b22f50253c620e2c43e8041469f8fbb metadata.xml 220
 SHA256 ee7ebf67a80d38cd4390f0ef813962c0501b57fb1cad958fba2aa4677da06e8b metadata.xml 220
-size 202 files/digest-deb2targz-1 202
+MD5 1d4e5d10fdf0468c20f758ca9f0f918f files/digest-deb2targz-1 202
 RMD160 fa9d96386e7e0807e351019459f8b3e5c58c2020 files/digest-deb2targz-1 202
 SHA256 ffd6061564d633365b032fb96209573557c1c3b9f84e0afc9665b8b84da9ee97 files/digest-deb2targz-1 202
-MD5 1d4e5d10fdf0468c20f758ca9f0f918f files/digest-deb2targz-1 202

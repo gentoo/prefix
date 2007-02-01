@@ -15,7 +15,6 @@ MISC metadata.xml 272 RMD160 7c8df1c612701081856595fd1df8a1cf08245b98 SHA1 a0acd
 MD5 1bb83f4e84ad8336fcdc25c821ccb680 metadata.xml 272
 RMD160 7c8df1c612701081856595fd1df8a1cf08245b98 metadata.xml 272
 SHA256 9abc9ed0695bca81616f283383dac21ac7fd207d35f558ddfc247a2cb6ef01b5 metadata.xml 272
-size 232 files/digest-uw-mailutils-2004g 232
+MD5 0d5d414d07402759de9342401655183d files/digest-uw-mailutils-2004g 232
 RMD160 aef5a82d8b7b979859d4e1c7ec1ae3f5f94897d7 files/digest-uw-mailutils-2004g 232
 SHA256 6e923a6cf0c59497531bb8ad3ed5e77a50f113a7579b46d90716540d17528fd4 files/digest-uw-mailutils-2004g 232
-MD5 0d5d414d07402759de9342401655183d files/digest-uw-mailutils-2004g 232
