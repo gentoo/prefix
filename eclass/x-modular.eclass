@@ -118,7 +118,7 @@ if [[ "${PN/#font-}" != "${PN}" ]] \
 	FONT_DIR=${FONT_DIR/speedo/Speedo}
 
 	# Set up configure option
-	FONT_OPTIONS="--with-fontdir=\"/usr/share/fonts/${FONT_DIR}\""
+	FONT_OPTIONS="--with-fontdir=\"${EROOT}/usr/share/fonts/${FONT_DIR}\""
 
 	if [[ -n "${FONT}" ]]; then
 		if [[ ${PN##*-} = misc ]] || [[ ${PN##*-} = 75dpi ]] || [[ ${PN##*-} = 100dpi ]]; then
