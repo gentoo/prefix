@@ -19,14 +19,16 @@ if [ "${1:0:1}" = '=' ]; then
 else
 	ebuild=${2:-$(grep "+[^ ]*.ebuild" ChangeLog | head -n 1 | sed -e "s:.*+::" -e "s/://")}
 fi
-P=${ebuild/.ebuild}
+
+PF=${ebuild/.ebuild}
+P=${PF%-r[1-9]*}
 PN=${P%-*}
 
 wget http://sources.gentoo.org/viewcvs.py/*checkout*/gentoo-x86/$catpkg/$ebuild
 mkdir files
-wget -P files http://sources.gentoo.org/viewcvs.py/*checkout*/gentoo-x86/$catpkg/files/digest-${P}
+wget -P files http://sources.gentoo.org/viewcvs.py/*checkout*/gentoo-x86/$catpkg/files/digest-${PF}
 
-for i in $(grep FILESDIR $ebuild | sed -e "s:.*/::" -e "s:\${P}:$P:" -e "s:\${PN}:$PN:"); do
+for i in $(grep FILESDIR $ebuild | sed -e "s:.*/::" -e "s:\${P}:$P:g" -e "s:\${PN}:$PN:g" -e 's:"::g' -e ":'::"); do
 	wget -P files http://sources.gentoo.org/viewcvs.py/*checkout*/gentoo-x86/$catpkg/files/$i
 done
 eapify $ebuild
