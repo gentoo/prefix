@@ -1,0 +1,38 @@
+From: Robin H. Johnson <robbat2@gentoo.org>
+Signed-off-by: Robin H. Johnson <robbat2@gentoo.org>
+Initial-Package-Version: 0.6.13
+Date: Fri Jan  5 11:57:33 PST 2007
+Origin: n/a
+Description: Fix the doc Makefile for parallel builds.
+
+diff -Nuar libexif-0.6.13.orig/doc/Makefile.am libexif-0.6.13/doc/Makefile.am
+--- libexif-0.6.13.orig/doc/Makefile.am	2007-01-05 11:55:47.000000000 -0800
++++ libexif-0.6.13/doc/Makefile.am	2007-01-05 11:55:21.000000000 -0800
+@@ -9,15 +9,13 @@
+ DOXYGEN_UPLOAD = $(HTML_APIDOC_DIR).uploaded $(HTML_APIDOC_INTERNALS_DIR).uploaded
+ 
+ # FIXME: Depending on the source files would be sufficient...
+-$(HTML_APIDOC_DIR).stamp: Doxyfile $(top_builddir)/libexif/libexif.la
++# Generate the public version before running this version
++$(HTML_APIDOC_INTERNALS_DIR).stamp: Doxyfile-internals $(top_builddir)/libexif/libexif.la $(DOXYGEN_OUTPUT_DIR).stamp
+ 	doxygen $<
+ 	echo > $@
+ 
+ # FIXME: Depending on the source files would be sufficient...
+-$(HTML_APIDOC_INTERNALS_DIR).stamp: Doxyfile-internals $(top_builddir)/libexif/libexif.la
+-	doxygen $<
+-	echo > $@
+-
++# This generates HTML_APIDOC_DIR as well as DOXYGEN_OUTPUT_DIR
+ $(DOXYGEN_OUTPUT_DIR).stamp: Doxyfile $(top_builddir)/libexif/libexif.la
+ 	doxygen $<
+ 	echo > $@
+@@ -28,7 +26,7 @@
+ $(HTML_APIDOC_DIR).tar.gz: $(DOXYGEN_OUTPUT_DIR).stamp
+ 	(cd $(DOXYGEN_OUTPUT_DIR) && $(AMTAR) chof - $(HTML_APIDOC_DIR) | GZIP=--best gzip -c) > $@
+ 
+-$(HTML_APIDOC_INTERNALS_DIR).tar.gz: $(DOXYGEN_OUTPUT_DIR).stamp
++$(HTML_APIDOC_INTERNALS_DIR).tar.gz: $(DOXYGEN_OUTPUT_DIR).stamp $(HTML_APIDOC_INTERNALS_DIR).stamp
+ 	(cd $(DOXYGEN_OUTPUT_DIR) && $(AMTAR) chof - $(HTML_APIDOC_INTERNALS_DIR) | GZIP=--best gzip -c) > $@
+ 
+ DOC_APIDOC_HTML = api.html

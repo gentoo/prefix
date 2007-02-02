@@ -1,0 +1,46 @@
+Submitted By: Hugo Villeneuve <hugo at hugovil dot com>
+Date: 2006-03-04
+Initial Package Version: 0.6.13
+Origin: n/a
+Description: When doxygen is not installed, 'make install' aborts
+	     with the following error:
+	     "*** No rule to make target `install-apidocs', needed by `install-data-local'."
+
+diff -Naur libexif-0.6.13-orig/doc/Makefile.am libexif-0.6.13-patched/doc/Makefile.am
+--- libexif-0.6.13-orig/doc/Makefile.am	2005-07-18 16:34:04.000000000 -0400
++++ libexif-0.6.13-patched/doc/Makefile.am	2006-03-04 14:51:31.132839264 -0500
+@@ -74,12 +74,16 @@
+ 
+ all-local: $(DOXYGEN_STAMPS)
+ 
++if HAVE_DOXYGEN
++
+ install-data-local: install-apidocs install-apidocs-internals
+ 
+ uninstall-local: uninstall-apidocs uninstall-apidocs-internals
+ 
+ clean-local: clean-apidocs
+ 
++endif
++
+ upload: $(DOXYGEN_UPLOAD)
+ 
+ CLEANFILES = $(DOXYGEN_FILES) $(DOXYGEN_STAMPS)
+diff -Naur libexif-0.6.13-orig/doc/Makefile.in libexif-0.6.13-patched/doc/Makefile.in
+--- libexif-0.6.13-orig/doc/Makefile.in	2005-12-27 16:18:36.000000000 -0500
++++ libexif-0.6.13-patched/doc/Makefile.in	2006-03-04 14:51:18.138814656 -0500
+@@ -444,11 +444,11 @@
+ 
+ all-local: $(DOXYGEN_STAMPS)
+ 
+-install-data-local: install-apidocs install-apidocs-internals
++@HAVE_DOXYGEN_TRUE@install-data-local: install-apidocs install-apidocs-internals
+ 
+-uninstall-local: uninstall-apidocs uninstall-apidocs-internals
++@HAVE_DOXYGEN_TRUE@uninstall-local: uninstall-apidocs uninstall-apidocs-internals
+ 
+-clean-local: clean-apidocs
++@HAVE_DOXYGEN_TRUE@clean-local: clean-apidocs
+ 
+ upload: $(DOXYGEN_UPLOAD)
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
