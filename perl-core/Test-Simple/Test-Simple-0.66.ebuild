@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/M/MS/MSCHWERN/${P}.tar.gz"
 
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 mydoc="rfc*.txt"
