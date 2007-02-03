@@ -1,0 +1,142 @@
+# ChangeLog for x11-libs/xtrans
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/xtrans/ChangeLog,v 1.32 2006/12/16 17:14:47 joshuabaergen Exp $
+
+  03 Feb 2007; Stefan Schweizer <stefan@gentoo.org> +., +files,
+  +metadata.xml, +xtrans-1.0.3.ebuild:
+  ~x86-macos
+
+*xtrans-1.0.3 (16 Dec 2006)
+
+  16 Dec 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xtrans-1.0.3.ebuild:
+  Version bump for 7.2.  Build/dist fix only.
+
+*xtrans-1.0.2 (21 Oct 2006)
+
+  21 Oct 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xtrans-1.0.2.ebuild:
+  Version bump.
+
+  19 Jul 2006; Guy Martin <gmsoft@gentoo.org> xtrans-1.0.1.ebuild:
+  Stable on hppa.
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org> xtrans-1.0.1.ebuild:
+  Mark 1.0.1 stable on ia64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; xtrans-1.0.1.ebuild:
+  ppc/sparc/mips/alpha/arm/sh stable
+
+  30 Jun 2006; Chris Gianelloni <wolf31o2@gentoo.org> xtrans-1.0.1.ebuild:
+  Stable on amd64.
+
+  30 Jun 2006; Markus Rothe <corsair@gentoo.org> xtrans-1.0.1.ebuild:
+  Stable on ppc64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; xtrans-1.0.1.ebuild:
+  x86 stable.
+
+*xtrans-1.0.1 (30 Jun 2006)
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  -files/xtrans-1.0.0-setuid.diff, -xtrans-1.0.0-r1.ebuild,
+  +xtrans-1.0.1.ebuild:
+  Bump for security fix.
+
+*xtrans-1.0.0-r1 (20 Jun 2006)
+
+  20 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  +files/xtrans-1.0.0-setuid.diff, -xtrans-1.0.0.ebuild,
+  +xtrans-1.0.0-r1.ebuild:
+  Security bump. Failure to check the return value of setuid() in a privileged
+  process could be used by a local user for file overwriting and possible
+  privilege escalation in corner cases. See
+  http://lists.freedesktop.org/archives/xorg/2006-June/016146.html for more
+  information.
+
+  28 Apr 2006; Marien Zwart <marienz@gentoo.org> files/digest-xtrans-1.0.0,
+  Manifest:
+  Revert to working digest.
+
+  28 Apr 2006; Alec Warner <antarus@gentoo.org> files/digest-xtrans-1.0.0,
+  Manifest:
+  Fixing SHA256 digest, pass four
+
+  31 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> xtrans-1.0.0.ebuild:
+  Add ~x86-fbsd keyword.
+
+  24 Mar 2006; Donnie Berkholz <spyderous@gentoo.org>; xtrans-1.0.0.ebuild:
+  (#127306) Digests changed between release candidates and final release for
+  the same tarballs.
+
+  22 Mar 2006; Donnie Berkholz <spyderous@gentoo.org>; xtrans-1.0.0.ebuild:
+  (#122726) Add missing keywords; apps that depend on this were keyworded, so
+  it was tested and just got missed.
+
+  09 Mar 2006; Aron Griffis <agriffis@gentoo.org> xtrans-1.0.0.ebuild:
+  Mark 1.0.0 ~ia64
+
+  14 Feb 2006; Markus Rothe <corsair@gentoo.org> xtrans-1.0.0.ebuild:
+  Added ~ppc64
+
+  31 Jan 2006; Rene Nussbaumer <killerfox@gentoo.org> xtrans-1.0.0.ebuild:
+  Unstable on hppa.
+
+  26 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  -xtrans-0.99.2.ebuild:
+  Pull old versions.
+
+  26 Dec 2005; Stefaan De Roeck <stefaan@gentoo.org> xtrans-1.0.0.ebuild:
+  Marked ~alpha
+
+*xtrans-1.0.0 (17 Dec 2005)
+
+  17 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xtrans-1.0.0.ebuild:
+  Bump for 7.0RC4.
+
+  09 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  -xtrans-0.99.1.ebuild:
+  Pull old versions.
+
+*xtrans-0.99.2 (11 Nov 2005)
+
+  11 Nov 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +xtrans-0.99.2.ebuild:
+  Bump for 7.0RC2.
+
+  04 Nov 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  xtrans-0.99.1.ebuild:
+  Upon some further inspection that xorg-server dep isn't needed.
+
+  04 Nov 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  -xtrans-0.99.0.ebuild, xtrans-0.99.1.ebuild:
+  Add missing xorg-server dep.  Drop old version.
+
+*xtrans-0.99.1 (20 Oct 2005)
+
+  20 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +xtrans-0.99.1.ebuild:
+  Bump for 7.0 RC1.
+
+  09 Sep 2005; Donnie Berkholz <spyderous@gentoo.org>; +metadata.xml:
+  Add metadata.
+
+  28 Aug 2005; MATSUU Takuto <matsuu@gentoo.org> xtrans-0.99.0.ebuild:
+  Marked ~sh
+
+  20 Aug 2005; Luca Barbato <lu_zero@gentoo.org> xtrans-0.99.0.ebuild:
+  Marked ~ppc
+
+  15 Aug 2005; Herbie Hopkins <herbs@gentoo.org> xtrans-0.99.0.ebuild:
+  Marked ~amd64
+
+  08 Aug 2005; Ferris McCormick <fmccor@gentoo.org> xtrans-0.99.0.ebuild:
+  Add ~sparc keyword (modular X testing).
+
+*xtrans-0.99.0 (08 Aug 2005)
+
+  08 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +xtrans-0.99.0.ebuild:
+  Initial commit for modular X.
+
