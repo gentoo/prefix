@@ -1,0 +1,176 @@
+# ChangeLog for dev-lang/nasm
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-lang/nasm/ChangeLog,v 1.42 2006/05/12 22:35:51 flameeyes Exp $
+
+  12 May 2006; Diego Pettenò <flameeyes@gentoo.org> nasm-0.98.39-r3.ebuild:
+  Add ~x86-fbsd keyword.
+
+  06 May 2006; Michael Sterrett <mr_bones_@gentoo.org>
+  nasm-0.98.39-r3.ebuild:
+  stable for x86
+
+  26 Mar 2006; Michael Sterrett <mr_bones_@gentoo.org>
+  nasm-0.98.39-r3.ebuild:
+  strip-flags since ricer cflags can cause problems (bug #127529)
+
+*nasm-0.98.39-r3 (05 Jan 2006)
+
+  05 Jan 2006; Mike Frysinger <vapier@gentoo.org>
+  files/nasm-0.98.39-elf-visibility.patch, -nasm-0.98.39-r2.ebuild,
+  +nasm-0.98.39-r3.ebuild:
+  Fix building of xvid with elf-visibility patch #116398.
+
+*nasm-0.98.39-r2 (17 Dec 2005)
+
+  17 Dec 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/nasm-0.98.39-elf-visibility.patch, +nasm-0.98.39-r2.ebuild:
+  Add support for ELF visibility markings.
+
+*nasm-0.98.39-r1 (17 May 2005)
+
+  17 May 2005; Michael Sterrett <mr_bones_@gentoo.org>
+  +nasm-0.98.39-r1.ebuild:
+  rev bump to force out security fix
+
+  17 May 2005; Michael Sterrett <mr_bones_@gentoo.org> nasm-0.98.39.ebuild:
+  security fix for bug #92991
+
+  17 May 2005; Michael Sterrett <mr_bones_@gentoo.org>
+  -files/0.98.38-overflow.patch, -nasm-0.98.38-r1.ebuild:
+  clean older version
+
+  11 May 2005; Marcus D. Hanwell <cryos@gentoo.org> nasm-0.98.39.ebuild:
+  Stable on amd64.
+
+  09 May 2005; Michael Sterrett <mr_bones_@gentoo.org>
+  nasm-0.98.38-r1.ebuild, nasm-0.98.39.ebuild:
+  tidy; sed in src_unpack, not src_compile
+
+  11 Apr 2005; Michael Sterrett <mr_bones_@gentoo.org> nasm-0.98.39.ebuild:
+  stable for x86
+
+  20 Feb 2005; Martin Schlemmer <azarah@gentoo.org> nasm-0.98.39.ebuild:
+  Remove -std=c99 from CFLAGS set by configure if we build with gcc-2.95.3.
+
+*nasm-0.98.39 (01 Feb 2005)
+
+  01 Feb 2005; Michael Sterrett <mr_bones_@gentoo.org> +nasm-0.98.39.ebuild:
+  version bump
+
+  16 Dec 2004; Michael Sterrett <mr_bones_@gentoo.org> nasm-0.98.38-r1.ebuild:
+  fix parallel make
+
+*nasm-0.98.38-r1 (16 Dec 2004)
+
+  16 Dec 2004; Michael Sterrett <mr_bones_@gentoo.org>
+  +files/0.98.38-overflow.patch, -files/nasm-0.98.36-remove-doc-target.diff,
+  -nasm-0.98.36.ebuild, +nasm-0.98.38-r1.ebuild, -nasm-0.98.38.ebuild:
+  add patch from bug #74477 to address overflow; clean older version; tidy
+
+  05 Jun 2004; Aron Griffis <agriffis@gentoo.org> nasm-0.98.38.ebuild:
+  Use make rules instead of applying a useless patch.
+
+  11 May 2004; Travis Tilley <lv@gentoo.org> nasm-0.98.38.ebuild:
+  added ~amd64 keyword
+
+  15 Apr 2004; <coxj@gentoo.org> nasm-0.98.36.ebuild:
+  Fix typo
+
+  30 Jan 2004; Michael Sterrett <mr_bones_@gentoo.org> nasm-0.98.38.ebuild:
+  inherit eutils for epatch
+
+  09 Dec 2003; Heinrich Wendel <lanius@gentoo.org> nasm-0.98.36.ebuild,
+  nasm-0.98.38.ebuild:
+  changed app-text/ghostscript to virtual/ghostscript
+
+  11 Oct 2003; Michael Sterrett <mr_bones_@gentoo.org> nasm-0.98.38.ebuild:
+  mark stable
+
+  06 Oct 2003; Michael Sterrett <mr_bones_@gentoo.org> metadata.xml:
+  add metadata.xml
+
+*nasm-0.98.38 (13 Sep 2003)
+
+  13 Sep 2003; Martin Holzer <mholzer@gentoo.org> nasm-0.98.38.ebuild:
+  Version bumped.
+
+*nasm-0.98.37 (30 Aug 2003)
+
+  30 Aug 2003; Hanno Boeck <hanno@gentoo.org> nasm-0.98.37.ebuild:
+  Version bump.
+
+*nasm-0.98.36 (24 Mar 2003)
+
+  25 Mar 2003; Nicholas Jones <carpaski@gentoo.org> .ebuild:
+  Fixing improper dependencies. build? in this case.
+
+  24 Mar 2003; Aron Griffis <agriffis@gentoo.org> nasm-0.98.35.ebuild,
+  nasm-0.98.36.ebuild:
+  Update to recent version. Thanks to Michael Sterrett for the heads-up in bug
+  #16266
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*nasm-0.98.35 (25 Mar 2003)
+ 
+  11 Jul 2003; Daniel Ahlberg <aliz@gentoo.org> :
+  Added missing changelog entry.
+
+*nasm-0.98.34 (08 Sep 2002)
+
+  25 Mar 2003; Nicholas Jones <carpaski@gentoo.org> .ebuild:
+  Fixing improper dependencies. build? in this case.
+
+  15 Dec 2002; Bjoern Brauel <bjb@gentoo.org> nasm-0.98.34.ebuild :
+  Add -alpha to KEYWORDS
+  
+  08 Sep 2002; Doug Goldstein <cardoe@gentoo.org> nasm-0.98.34.ebuild, nasm-0.98.34-remove-doc-target.diff :
+  Updated to new version and creates new patches
+
+*nasm-0.98.31-r1 (18 May 2002)
+
+  25 Mar 2003; Nicholas Jones <carpaski@gentoo.org> .ebuild:
+  Fixing improper dependencies. build? in this case.
+
+  05 Sep 2002; Seemant Kulleen <seemant@gentoo.org> *.ebuild :
+  cleaned out old ebuilds, and tagged the remaining ones x86 only.
+
+  18 May 2002; Dan Armak <danarmak@gentoo.org> changelog :
+  Only create ps, pdf etc. docs if USE doc is enabled. Closes bug #2824.
+
+*nasm-0.98.31 (17 May 2002)
+
+  25 Mar 2003; Nicholas Jones <carpaski@gentoo.org> .ebuild:
+  Fixing improper dependencies. build? in this case.
+
+  20 Sep 2002; Mike Frysinger <vapier@gentoo.org> :
+  Updated HOMEPAGE variable
+
+  16 Aug 2002; Mark Guertin <gerk@gentoo.org> :
+  Updated to new web page and added -ppc to keywords.  Note
+  to sparc guys, you may wanna rethink your keywords ;)
+
+  17 May 2002; Dan Armak <danarmak@gentoo.org> changelog :
+  New upstream version, has some minute fixes. Close #2784.
+
+*nasm-0.98.30 (06 May 2002)
+
+  06 May 2002; Kain <kain@kain.org> nasm-0.98.30.ebuild :
+  New NASM releases are being made off SourceForge.  0.98.30 fixes a number of
+  compatibility bugs in 0.98 and also has various enhancements.
+
+*nasm-0.98-r4 (21 Mar 2002)
+
+  21 Mar 2002; Seemant Kulleen <seemant@gentoo.org> nasm-0.98-r4.ebuild :
+  HTML documentation will no longer be gzipped because it is being handled by
+  dohtml instead of dodoc.  Thanks to stefan@mdy.univie.ac.at for pointing it
+  out.
+
+*nasm-0.98-r3 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
