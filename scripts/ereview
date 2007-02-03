@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+cd /tmp
+wget $1
+patch=${1##*\/}
+less $patch
+e=$(grep -o "/[^-]*-[^/]*/[^/]*/[^/]*.ebuild" $patch | head -n 1 | sed -e "s:^/::")
+catpkg=${e%/*}
+ebuild=${e##*/}
+cd -
+ecopy $catpkg $ebuild
+cd $catpkg
+patch -p1 < /tmp/$patch
+cd ../../
+ecommit $catpkg

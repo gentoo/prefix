@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+for i in $@; do
+	svn add $i
+	cd $i
+	repoman ci -m "Add and keyword $i"
+	cd ../../
+done

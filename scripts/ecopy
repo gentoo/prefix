@@ -2,8 +2,8 @@
 
 if [ "${1:0:1}" = '=' ] || [ "${1:0:1}" = '<' ] || [ "${1:0:1}" = '>' ]; then
 	ebuildgrep=${1#*\/}
-	catpkg=${1%-*}
-	catpkg=${catpkg#<}
+	#catpkg=${1%-*}
+	catpkg=${1#<}
 	catpkg=${catpkg#>}
 	catpkg=${catpkg#=}
 else
