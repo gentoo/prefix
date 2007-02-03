@@ -1,0 +1,109 @@
+# ChangeLog for x11-proto/xcmiscproto
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-proto/xcmiscproto/ChangeLog,v 1.26 2006/07/19 09:06:39 gmsoft Exp $
+
+  03 Feb 2007; Stefan Schweizer <stefan@gentoo.org> +., +files,
+  +metadata.xml, +xcmiscproto-1.1.2.ebuild:
+  ~x86-macos
+
+  19 Jul 2006; Guy Martin <gmsoft@gentoo.org> xcmiscproto-1.1.2.ebuild:
+  Stable on hppa.
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org> xcmiscproto-1.1.2.ebuild:
+  Mark 1.1.2 stable on ia64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  xcmiscproto-1.1.2.ebuild:
+  arm/sh stable
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  xcmiscproto-1.1.2.ebuild:
+  ppc/sparc/mips/alpha stable
+
+  30 Jun 2006; Marien Zwart <marienz@gentoo.org>
+  files/digest-xcmiscproto-1.1.2, Manifest:
+  Fix digest.
+
+  30 Jun 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  xcmiscproto-1.1.2.ebuild:
+  Stable on amd64.
+
+  30 Jun 2006; Markus Rothe <corsair@gentoo.org> xcmiscproto-1.1.2.ebuild:
+  Stable on ppc64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  xcmiscproto-1.1.2.ebuild:
+  x86 stable.
+
+  24 Jun 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  files/digest-xcmiscproto-1.1.2, Manifest:
+  Hmm, fix digest for real this time...
+
+  23 Jun 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  files/digest-xcmiscproto-1.1.2, Manifest:
+  Fix digest (bug #137780, James Laver).
+
+  14 May 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  xcmiscproto-1.1.2.ebuild:
+  Digests got broken again; add RESTRICT=mirror and use upstream tarballs.
+  Reported by Ciaran McCreesh.
+
+  31 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  xcmiscproto-1.1.2.ebuild:
+  Add ~x86-fbsd keyword.
+
+  09 Mar 2006; Aron Griffis <agriffis@gentoo.org> xcmiscproto-1.1.2.ebuild:
+  Mark 1.1.2 ~ia64
+
+  14 Feb 2006; Markus Rothe <corsair@gentoo.org> xcmiscproto-1.1.2.ebuild:
+  Added ~ppc64
+
+  31 Jan 2006; Rene Nussbaumer <killerfox@gentoo.org>
+  xcmiscproto-1.1.2.ebuild:
+  Unstable on hppa.
+
+  26 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  -xcmiscproto-1.1.1.ebuild:
+  Pull old versions.
+
+  26 Dec 2005; Stefaan De Roeck <stefaan@gentoo.org>
+  xcmiscproto-1.1.2.ebuild:
+  Marked ~alpha
+
+*xcmiscproto-1.1.2 (17 Dec 2005)
+
+  17 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xcmiscproto-1.1.2.ebuild:
+  Bump for 7.0RC4.
+
+  09 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  -xcmiscproto-1.1.ebuild:
+  Pull old versions.
+
+*xcmiscproto-1.1.1 (20 Oct 2005)
+
+  20 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +xcmiscproto-1.1.1.ebuild:
+  Bump for 7.0 RC1.
+
+  09 Sep 2005; Donnie Berkholz <spyderous@gentoo.org>; +metadata.xml:
+  Add metadata.
+
+  28 Aug 2005; MATSUU Takuto <matsuu@gentoo.org> xcmiscproto-1.1.ebuild:
+  Marked ~sh
+
+  20 Aug 2005; Luca Barbato <lu_zero@gentoo.org> xcmiscproto-1.1.ebuild:
+  Marked ~ppc
+
+  15 Aug 2005; Herbie Hopkins <herbs@gentoo.org> xcmiscproto-1.1.ebuild:
+  Marked ~amd64
+
+  08 Aug 2005; Ferris McCormick <fmccor@gentoo.org> xcmiscproto-1.1.ebuild:
+  Add ~sparc keyword (modular X testing on sparc).
+
+*xcmiscproto-1.1 (08 Aug 2005)
+
+  08 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +xcmiscproto-1.1.ebuild:
+  Initial commit for modular X
+
