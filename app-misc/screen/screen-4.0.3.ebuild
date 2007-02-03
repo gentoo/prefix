@@ -12,7 +12,7 @@ SRC_URI="ftp://ftp.uni-erlangen.de/pub/utilities/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
 IUSE="debug nethack pam selinux multiuser"
 
 RDEPEND=">=sys-libs/ncurses-5.2
@@ -71,6 +71,9 @@ src_unpack() {
 		doc/screen.1 \
 		|| die "sed doc/screen.1 failed"
 
+	# proper setenv detection for Solaris
+	epatch "${FILESDIR}"/${P}-setenv_autoconf.patch
+
 	# configure as delivered with screen is made with autoconf-2.5
 	WANT_AUTOCONF=2.5 eautoconf
 }
@@ -81,6 +84,7 @@ src_compile() {
 
 	append-flags "-DMAXWIN=${MAX_SCREEN_WINDOWS:-100}"
 	append-ldflags $(bindnow-flags)
+	use userland_Solaris && append-ldflags -lsocket -lnsl
 
 	use nethack || append-flags "-DNONETHACK"
 	use debug && append-flags "-DDEBUG"
