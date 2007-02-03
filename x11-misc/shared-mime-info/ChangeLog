@@ -1,0 +1,304 @@
+# ChangeLog for x11-misc/shared-mime-info
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-misc/shared-mime-info/ChangeLog,v 1.75 2007/02/03 07:33:44 dertobi123 Exp $
+
+  03 Feb 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  shared-mime-info-0.19.ebuild:
+  Stable on ppc wrt bug #164978.
+
+  03 Feb 2007; Olivier Crête <tester@gentoo.org>
+  shared-mime-info-0.19.ebuild:
+  Stable on amd64 per bug #164978
+
+  01 Feb 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  shared-mime-info-0.19.ebuild:
+  Stable on sparc
+
+  21 Jan 2007; Bryan Østergaard <kloeri@gentoo.org>
+  shared-mime-info-0.19.ebuild:
+  Stable on IA64, bug 156662.
+
+  20 Jan 2007; Jeroen Roovers <jer@gentoo.org> shared-mime-info-0.19.ebuild:
+  Stable for HPPA (bug #156662).
+
+  17 Jan 2007; Olivier Crête <tester@gentoo.org>
+  shared-mime-info-0.18-r1.ebuild:
+  Stable on amd64, bug #156662
+
+  14 Jan 2007; Bryan Østergaard <kloeri@gentoo.org>
+  shared-mime-info-0.19.ebuild:
+  Stable on Alpha.
+
+  21 Dec 2006; Markus Rothe <corsair@gentoo.org>
+  shared-mime-info-0.18-r1.ebuild:
+  Stable on ppc64; bug #156662
+
+  18 Dec 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  shared-mime-info-0.18-r1.ebuild:
+  Stable on sparc
+
+  17 Dec 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  shared-mime-info-0.18-r1.ebuild:
+  Stable on ppc wrt bug #156662.
+
+  10 Dec 2006; Andrej Kacian <ticho@gentoo.org>
+  shared-mime-info-0.18-r1.ebuild:
+  Stable on x86, bug #156662.
+
+*shared-mime-info-0.19 (04 Dec 2006)
+
+  04 Dec 2006; Marinus Schraal <foser@gentoo.org> shared-mime-info-0.19.ebuild :
+  New release per #150428
+
+  20 Oct 2006; Aron Griffis <agriffis@gentoo.org>
+  shared-mime-info-0.17-r2.ebuild:
+  Mark 0.17-r2 stable on alpha
+
+  05 Sep 2006; Joshua Kinard <kumba@gentoo.org>
+  shared-mime-info-0.17-r2.ebuild:
+  Marked stable on mips.
+
+*shared-mime-info-0.18-r1 (03 Aug 2006)
+
+  03 Aug 2006; Marinus Schraal <foser@gentoo.org> shared-mime-info-0.18-r1.ebuild,
+  files/shared-mime-info-0.18-m4a_offset.patch :
+  Fix m4a pattern match offset, thanks to Robin Ince in #142342
+
+  02 Aug 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  shared-mime-info-0.17-r2.ebuild:
+  Stable on hppa wrt #139661
+
+  19 Jul 2006; Joshua Jackson <tsunam@gentoo.org>
+  shared-mime-info-0.17-r2.ebuild:
+  Stable x86; bug #139661
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org>
+  shared-mime-info-0.17-r2.ebuild:
+  Mark 0.17-r2 stable on ia64. #139661
+
+  10 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  shared-mime-info-0.17-r2.ebuild:
+  Stable on sparc wrt #139661
+
+  10 Jul 2006; Daniel Gryniewicz <dang@gentoo.org>
+  shared-mime-info-0.17-r2.ebuild:
+  Marked stable on amd64 per bug #139661
+
+  09 Jul 2006; Marinus Schraal <foser@gentoo.org> shared-mime-info-0.18.ebuild :
+  Remove redundant patchline
+
+  09 Jul 2006; Joseph Jezak <josejx@gentoo.org>
+  shared-mime-info-0.17-r2.ebuild:
+  Marked ppc stable for bug #139661.
+
+  08 Jul 2006; Markus Rothe <corsair@gentoo.org>
+  shared-mime-info-0.17-r2.ebuild:
+  Stable on ppc64; bug #139661
+
+*shared-mime-info-0.18 (08 Jul 2006)
+
+  08 Jul 2006; Marinus Schraal <foser@gentoo.org> shared-mime-info-0.18.ebuild, metadata.xml  :
+  New release, remove 1 obsolete patch (#139313)
+  Remove (retired) lanius from metadata, add foser and gnome herd as maintainers
+
+  25 Jun 2006; Javier Villavicencio <the_paya@gentoo.org>
+  shared-mime-info-0.17-r2.ebuild:
+  Add ~x86-fbsd keyword.
+
+*shared-mime-info-0.17-r2 (22 Apr 2006)
+
+  22 Apr 2006; Marinus Schraal <foser@gentoo.org>
+  shared-mime-info-0.17-r2.ebuild, files/shared-mime-info-0.17-m3u_plain_text.patch :
+  Fix m3u detection
+
+*shared-mime-info-0.17-r1 (01 Apr 2006)
+
+  01 Apr 2006; Marinus Schraal <foser@gentoo.org>
+  shared-mime-info-0.17-r1.ebuild, files/shared-mime-info-0.17-ps_plain_text.patch :
+  Fix ps/pdf detection, thanks Giacomo Perale for the report (#126880)
+
+  29 Mar 2006; Marinus Schraal <foser@gentoo.org>
+  shared-mime-info-0.17.ebuild, files/shared-mime-info-0.17-fix_pc.patch :
+  Add patch to make the pkgconfig file libdir safe
+
+*shared-mime-info-0.17 (29 Mar 2006)
+
+  29 Mar 2006; Marinus Schraal <foser@gentoo.org> shared-mime-info-0.17.ebuild :
+  New release, remove non working libdir stuff
+
+  19 Jan 2006; Simon Stelling <blubb@gentoo.org>
+  shared-mime-info-0.16.ebuild:
+  fix broken libdir in pkgconfig file
+
+  11 Jul 2005; Stephen P. Becker <geoman@gentoo.org>
+  shared-mime-info-0.14-r2.ebuild, shared-mime-info-0.16.ebuild:
+  stable on mips
+
+  25 Jun 2005; Guy Martin <gmsoft@gentoo.org> shared-mime-info-0.16.ebuild:
+  Stable on hppa.
+
+  12 Jun 2005; Olivier Crête <tester@gentoo.org>
+  shared-mime-info-0.16.ebuild:
+  Stable on amd64
+
+  12 Jun 2005; Bryan Østergaard <kloeri@gentoo.org>
+  shared-mime-info-0.16.ebuild:
+  Stable on alpha.
+
+  12 Jun 2005; Tobias Scherbaum <dertobi123@gentoo.org>
+  shared-mime-info-0.16.ebuild:
+  Stable on ppc.
+
+  11 Jun 2005; Danny van Dyk <kugelfang@gentoo.org>
+  shared-mime-info-0.16.ebuild:
+  Stable on s390.
+
+  09 Jun 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  shared-mime-info-0.16.ebuild:
+  Stable on sparc
+
+  06 Jun 2005; Markus Rothe <corsair@gentoo.org>
+  shared-mime-info-0.16.ebuild:
+  Stable on ppc64
+
+  09 Apr 2005; Markus Rothe <corsair@gentoo.org>
+  shared-mime-info-0.14-r2.ebuild:
+  Stable on ppc64
+
+  28 Mar 2005; Michael Hanselmann <hansmi@gentoo.org>
+  shared-mime-info-0.14-r2.ebuild:
+  Stable on ppc.
+
+*shared-mime-info-0.16 (25 Mar 2005)
+
+  25 Mar 2005; Heinrich Wendel <lanius@gentoo.org>
+  +shared-mime-info-0.16.ebuild:
+  version bump
+
+  21 Mar 2005; Bryan Østergaard <kloeri@gentoo.org>
+  shared-mime-info-0.14-r2.ebuild:
+  Stable on alpha.
+
+  06 Mar 2005; Heinrich Wendel <lanius@gentoo.org>
+  shared-mime-info-0.14-r2.ebuild:
+  stable on amd64
+
+  04 Mar 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  shared-mime-info-0.14-r2.ebuild:
+  Stable on sparc
+
+  13 Feb 2005; Bryan Østergaard <kloeri@gentoo.org>
+  shared-mime-info-0.14-r1.ebuild:
+  Stable on alpha.
+
+  26 Jan 2005; Guy Martin <gmsoft@gentoo.org> shared-mime-info-0.14-r1.ebuild:
+  Stable on hppa.
+
+  17 Jan 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  shared-mime-info-0.14-r1.ebuild:
+  Stable on sparc
+
+*shared-mime-info-0.14-r2 (16 Jan 2005)
+
+  16 Jan 2005; foser <foser@gentoo.org> shared-mime-info-0.14-r2.ebuild
+  Add patch to fix #66195 & #76809
+
+*shared-mime-info-0.15 (26 Sep 2004)
+
+  26 Sep 2004; Heinrich Wendel <lanius@gentoo.org>
+  +files/shared-mime-info-0.15-ALL_CFLAGS_LIBS.patch,
+  +shared-mime-info-0.15.ebuild:
+  version bump, bug #40422
+
+*shared-mime-info-0.14-r1 (14 Sep 2004)
+
+  14 Sep 2004; foser <foser@gentoo.org> shared-mime-info-0.14-r1.ebuild :
+  Make the ebuild use the fdo-mime eclass to update the mime db
+
+  28 Jun 2004; Tom Gall <tgall@gentoo.org> shared-mime-info-0.14.ebuild:
+  stable on ppc64, bug #54792
+
+  20 Jun 2004; Ian Leitch <port001@gentoo.org> shared-mime-info-0.13.ebuild:
+  Fixed typo, USE -> IUSE
+
+  03 Jun 2004; Stephen P. Becker <geoman@gentoo.org>
+  shared-mime-info-0.14.ebuild:
+  Stable on mips.
+
+  24 May 2004; Guy Martin <gmsoft@gentoo.org> shared-mime-info-0.14.ebuild:
+  Marked stable on hppa.
+
+  13 May 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  shared-mime-info-0.14.ebuild:
+  Stable on sparc
+
+  02 May 2004; Stephen P. Becker <geoman@gentoo.org>
+  shared-mime-info-0.14.ebuild:
+  Added ~mips keyword.
+
+  09 Apr 2004; Heinrich Wendel <lanius@gentoo.org>
+  shared-mime-info-0.12.ebuild:
+  remove S=${WORKDIR}/${P}
+
+  07 Apr 2004; Guy Martin <gmsoft@gentoo.org> shared-mime-info-0.13.ebuild:
+  Marked stable on hppa.
+
+  24 Mar 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  shared-mime-info-0.13.ebuild:
+  stable on sparc
+
+*shared-mime-info-0.14 (24 Mar 2004)
+
+  24 Mar 2004; foser <foser@gentoo.org> shared-mime-info-0.14.ebuild :
+  New release, minor ebuild fixes
+
+  22 Feb 2004; Heinrich Wendel <lanius@gentoo.org>
+  shared-mime-info-0.13.ebuild:
+  add dev-perl/XML-Parser to DEPEND, bug #42145
+
+  17 Feb 2004; Aron Griffis <agriffis@gentoo.org>
+  shared-mime-info-0.13.ebuild:
+  stable on alpha and ia64
+
+*shared-mime-info-0.13 (11 Feb 2004)
+
+  11 Feb 2004; Heinrich Wendel <lanius@gentoo.org>
+  shared-mime-info-0.13.ebuild:
+  version bump
+
+  13 Sep 2003; Heinrich Wendel <lanius@gentoo.org>
+  shared-mime-info-0.12.ebuild:
+  stable bump
+
+*shared-mime-info-0.12 (29 Aug 2003)
+
+  29 Aug 2003; Heinrich Wendel <lanius@gentoo.org>
+  shared-mime-info-0.11.ebuild, shared-mime-info-0.12.ebuild,
+  shared-mime-info-0.7.ebuild, shared-mime-info-0.9.ebuild:
+  added version 0.12
+
+*shared-mime-info-0.11 (03 Aug 2003)
+
+  03 Aug 2003; Heinrich Wendel <lanius@gentoo.org> shared-mime-info-0.11.ebuild:
+  version bump
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*shared-mime-info-0.9 (29 Jul 2002)
+
+  04 Aug 2003; Guy Martin <gmsoft@gentoo.org> shared-mime-info-0.9.ebuild :
+  Marked stable on hppa.
+
+  26 Jan 2003; Jon Nall <nall@gentoo.org> shared-mime-info-0.9.ebuild :
+  added ~ppc
+
+  29 Jul 2002; Gabriele Giorgetti <stroke@gentoo.org> shared-mime-info-0.9.ebuild :
+  
+  New version, also added missing dependencies. 
+
+*shared-mime-info-0.7 (13 Jul 2002)
+
+  13 Jul 2002; Gabriele Giorgetti <stroke@gentoo.org> shared-mime-info-0.7.ebuild :
+  
+  New package.
+  Ebuild written by: Riccardo Persichetti <ricpersi@libero.it>
