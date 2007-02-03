@@ -1,6 +1,55 @@
 # ChangeLog for app-portage/portage-utils
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.57 2006/08/21 16:44:28 solar Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.69 2007/02/03 00:15:50 jer Exp $
+
+  03 Feb 2007; Jeroen Roovers <jer@gentoo.org> portage-utils-0.1.23.ebuild:
+  Stable for HPPA (bug #165074).
+
+  03 Feb 2007; Bryan Østergaard <kloeri@gentoo.org>
+  portage-utils-0.1.23.ebuild:
+  Stable on Alpha, bug 165074.
+
+  02 Feb 2007; Steve Dibb <beandog@gentoo.org> portage-utils-0.1.23.ebuild:
+  amd64 stable, bug 165074
+
+  02 Feb 2007; Alexander H. Færøy <eroyf@gentoo.org>
+  portage-utils-0.1.23.ebuild:
+  Stable on MIPS; bug #165074
+
+  24 Jan 2007; Marius Mauch <genone@gentoo.org> portage-utils-0.1.20.ebuild,
+  portage-utils-0.1.21.ebuild, portage-utils-0.1.22.ebuild,
+  portage-utils-0.1.23.ebuild:
+  Replacing einfo with elog
+
+  15 Jan 2007; Timothy Redaelli <drizzt@gentoo.org>
+  portage-utils-0.1.22.ebuild, portage-utils-0.1.23.ebuild:
+  Add ~x86-fbsd keyword wrt bug #159383
+
+*portage-utils-0.1.23 (15 Jan 2007)
+
+  15 Jan 2007; <solar@gentoo.org> +portage-utils-0.1.23.ebuild:
+  - Lots of src/style updates. - Now links with -lkvm on fbsd so /proc does
+  not have to be mounted. (Flameeyes) - Now passes our own make check - Make
+  error msg more verbose when somebody is attempting to use RGB values via
+  color.map - Little speedup in contents_parse_line - Update man pages for the
+  newyear. - 3 new qfile options --from/-f --max-args/-m --exclude/-x and
+  example scripts (TGL)
+
+  29 Dec 2006; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Remove also ~sparc-fbsd in the mean time.
+
+  26 Dec 2006; Timothy Redaelli <drizzt@gentoo.org>
+  portage-utils-0.1.22.ebuild:
+  Removed ~x86-fbsd keyword.
+
+*portage-utils-0.1.22 (24 Dec 2006)
+
+  24 Dec 2006; <solar@gentoo.org> +portage-utils-0.1.22.ebuild:
+  - overdue version bump. lots of changes
+
+  29 Nov 2006; Diego Pettenò <flameeyes@gentoo.org>
+  portage-utils-0.1.21.ebuild:
+  Add ~sparc-fbsd keyword.
 
 *portage-utils-0.1.21 (21 Aug 2006)
 
