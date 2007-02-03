@@ -1,0 +1,32 @@
+Index: gtk+-2.8.9/configure.in
+===================================================================
+--- gtk+-2.8.9.orig/configure.in
++++ gtk+-2.8.9/configure.in
+@@ -195,6 +195,10 @@ AC_ARG_ENABLE(shm,
+               [AC_HELP_STRING([--enable-shm],
+                               [support shared memory if available [default=yes]])],,
+               [enable_shm="yes"])
++AC_ARG_ENABLE(xinerama,
++              [AC_HELP_STRING([--enable-xinerama],
++	                      [support xinerama extension if available [default=yes]])],,
++              [enable_xinerama="yes"])
+ AC_ARG_ENABLE(xkb,
+               [AC_HELP_STRING([--enable-xkb],
+                               [support XKB [default=maybe]])],,
+@@ -1193,7 +1197,7 @@ if test "x$gdktarget" = "xx11"; then
+   fi
+ 
+   # Check for Xinerama extension (Solaris impl or Xfree impl)
+-
++  if test "x$enable_xinerama" = "xyes"; then
+   gtk_save_cppflags="$CPPFLAGS"
+   CPPFLAGS="$CPPFLAGS $x_cflags"
+   
+@@ -1241,6 +1245,7 @@ if test "x$gdktarget" = "xx11"; then
+          fi
+          ;;
+   esac
++  fi
+ 
+   # set up things for XInput
+ 
