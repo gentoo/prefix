@@ -57,15 +57,15 @@ src_install() {
 }
 
 pkg_postinst() {
-	if [ "${EROOT}" == "/" ] ; then
+	if [ "${EROOT}" == "/" ] || [ "${EAPI}" == "prefix" ]; then
 		einfo "Generating modules listing..."
 
 		use amd64 && PANGO_CONFDIR="/etc/pango/${CHOST}"
 		use x86 && [ "${CONF_LIBDIR}" == "lib32" ] && PANGO_CONFDIR="/etc/pango/${CHOST}"
 
 		PANGO_CONFDIR=${PANGO_CONFDIR:=/etc/pango}
-		mkdir -p ${PANGO_CONFDIR}
+		mkdir -p ${EROOT}${PANGO_CONFDIR}
 
-		pango-querymodules > ${PANGO_CONFDIR}/pango.modules
+		pango-querymodules > ${EROOT}${PANGO_CONFDIR}/pango.modules
 	fi
 }
