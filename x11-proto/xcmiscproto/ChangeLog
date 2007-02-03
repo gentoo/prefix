@@ -1,10 +1,6 @@
 # ChangeLog for x11-proto/xcmiscproto
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-proto/xcmiscproto/ChangeLog,v 1.26 2006/07/19 09:06:39 gmsoft Exp $
-
-  03 Feb 2007; Stefan Schweizer <stefan@gentoo.org> +., +files,
-  +metadata.xml, +xcmiscproto-1.1.2.ebuild:
-  ~x86-macos
 
   19 Jul 2006; Guy Martin <gmsoft@gentoo.org> xcmiscproto-1.1.2.ebuild:
   Stable on hppa.
