@@ -1,6 +1,9 @@
 # ChangeLog for x11-misc/util-macros
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/x11-misc/util-macros/ChangeLog,v 1.43 2006/11/10 03:28:31 joshuabaergen Exp $
+
+  03 Feb 2007; Stefan Schweizer <stefan@gentoo.org> ChangeLog:
+  ~x86-macos
 
 *util-macros-1.1.2 (10 Nov 2006)
 
