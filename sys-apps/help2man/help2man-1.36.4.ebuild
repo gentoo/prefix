@@ -27,7 +27,13 @@ src_unpack() {
 }
 
 src_compile() {
-	econf $(use_enable nls) || die
+	use userland_Solaris && use nls \
+		&& elog "nls support is broken on Solaris for this package, disabling"
+	if use userland_Solaris ; then
+		econf --disable-nls || die
+	else
+		econf $(use_enable nls) || die
+	fi
 	emake || die "emake failed"
 }
 
