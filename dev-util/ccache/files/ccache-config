@@ -1,0 +1,68 @@
+#!/bin/bash
+#
+# ccache-config - helper script for ccache and its ebuild
+#
+# Copyright 2003 Superlucidity Services, LLC 
+# This program licensed under the GNU GPL version 2.
+#
+# This script developed by Zachary T Welch at Superlucidity Services, LLC
+#  it was cloned from the distcc-config script
+# 
+# Additional features to come; this provides a starting point
+
+# this should be getopt'd someday (override with CC_QUIET=1)
+CC_VERBOSE=1
+
+cc_echo() {
+	[ -z "${CC_QUIET}" -a -n "${CC_VERBOSE}" ] && echo "$*"
+}
+
+###
+# the following functions manage the ccache symlinks
+#  they allow the user or other scripts (namely gcc-config) to
+#  automatically update ccache's links when upgrading toolchains
+#
+cc_remove_link() {
+	local t="/usr/lib/ccache/bin/${1}"
+	if [ -L ${t} ]; then
+		cc_echo "Removing ${t}..."
+		rm -f "${t}"
+	fi
+}
+cc_install_link() {
+	# Search the PATH for the specified compiler
+	#  then create shadow link in /usr/lib/ccache/bin to ccache
+	
+	if [ -n "$(type -p ${1})" ]; then 
+		# first be sure any old link is removed
+		CC_QUIET=1 cc_remove_link "${1}"
+
+		# then create the new link
+		local t="/usr/lib/ccache/bin/${1}"
+		cc_echo "Creating ccache shadow link: ${t}..."
+		ln -s /usr/bin/ccache "${t}"
+	fi
+}
+cc_links() {
+	local a
+	for a in gcc cc c++ g++ ; do
+		[ -n "${2}" ] && a="${2}-${a}"
+		eval "cc_${1}_link" "${a}"
+	done
+}
+
+###
+# main routine
+
+case "${1}" in
+	--install-links )
+		cc_links install "${2}"
+		;;
+	--remove-links )
+		cc_links remove "${2}"
+		;;
+	* )
+		echo "usage: ${0} {--install-links|--remove-links} [ CHOST ]"
+		;;
+esac
+

@@ -1,0 +1,210 @@
+# ChangeLog for dev-util/ccache
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-util/ccache/ChangeLog,v 1.57 2007/01/30 05:19:43 beandog Exp $
+
+  30 Jan 2007; Steve Dibb <beandog@gentoo.org> ccache-2.4-r6.ebuild:
+  amd64 stable, bug 159527
+
+  04 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> ccache-2.4-r6.ebuild:
+  Stable on IA64.
+
+  04 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> ccache-2.4-r6.ebuild:
+  Stable on Alpha, bug 159527.
+
+  02 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> ccache-2.4-r6.ebuild:
+  Stable on sparc wrt #159527
+
+  31 Dec 2006; Tom Gall <tgall@gentoo.org> ccache-2.4-r6.ebuild:
+  ppc64 stable bug #159527
+
+  31 Dec 2006; Timothy Redaelli <drizzt@gentoo.org> ccache-2.4-r6.ebuild:
+  ppc stable wrt bug #159527
+
+  31 Dec 2006; Andrej Kacian <ticho@gentoo.org> ccache-2.4-r6.ebuild:
+  Stable on x86, bug #159527.
+
+  08 Dec 2006; Jeroen Roovers <jer@gentoo.org> ccache-2.4-r6.ebuild:
+  Stable for HPPA.
+
+  15 Oct 2006; Aron Griffis <agriffis@gentoo.org> ccache-2.4-r2.ebuild:
+  Mark 2.4-r2 stable on ia64
+
+*ccache-2.4-r6 (15 Sep 2006)
+
+  15 Sep 2006; Lisa Seelye <lisa@gentoo.org> +ccache-2.4-r6.ebuild:
+  okay, apparently -r5 wasnt binary friendly. bug 145167 comment
+
+*ccache-2.4-r5 (14 Sep 2006)
+
+  14 Sep 2006; Lisa Seelye <lisa@gentoo.org> -ccache-2.4-r4.ebuild,
+  +ccache-2.4-r5.ebuild:
+  move the removal of stale links check to pkg_setup due to a portage bug. it
+  should be in pkg_preinst. also fix a symlink issue where it was linking to
+  the name of the compilier and not ccache. oops
+
+*ccache-2.4-r4 (13 Sep 2006)
+
+  13 Sep 2006; Lisa Seelye <lisa@gentoo.org> -ccache-2.4-r3.ebuild,
+  +ccache-2.4-r4.ebuild:
+  Another attempt at bug 145167. Removing the stale wrappers in pkg_preinst.
+
+*ccache-2.4-r3 (13 Sep 2006)
+
+  13 Sep 2006; Lisa Seelye <lisa@gentoo.org> +ccache-2.4-r3.ebuild:
+  Move (shadow) symlinks creation into src_install. Moved Zach Welch created
+  multiline helper into five lines. Ha. This also should resolve bug 145167
+
+*ccache-2.4-r2 (09 Jun 2006)
+
+  09 Jun 2006; Robin H. Johnson <robbat2@gentoo.org>
+  +files/ccache-2.4-utimes.patch, +ccache-2.4-r2.ebuild:
+  Patch to fix bug #136233, to use utimes instead of utime.
+
+  31 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> ccache-2.4-r1.ebuild:
+  Remove virtual/libc dependency and add keyword ~x86-fbsd.
+
+*ccache-2.4-r1 (20 Mar 2006)
+
+  20 Mar 2006; Lisa Seelye <lisa@gentoo.org>
+  +files/ccache-2.4-respectflags.patch, +ccache-2.4-r1.ebuild:
+  ccache-2.4-respectflags.patch from bug #126875 to respect  user defined LDFLAGS
+
+  06 Mar 2006; Lisa Seelye <lisa@gentoo.org> ccache-2.2.ebuild,
+  ccache-2.3.ebuild, ccache-2.4.ebuild:
+  Change SRC_URI to close bug #125246
+
+  17 Jul 2005; MATSUU Takuto <matsuu@gentoo.org> ccache-2.3.ebuild:
+  Stable on sh.
+
+  06 Aug 2005; <gongloo@gentoo.org> ccache-2.3.ebuild, ccache-2.4.ebuild:
+  Fixes for ccache dir on ppc-macos.
+
+  30 Mar 2005; Michael Hanselmann <hansmi@gentoo.org> ccache-2.3.ebuild:
+  Stable on ppc.
+
+  09 Mar 2005; Brian Harring <ferringb@gentoo.org> ccache-2.4.ebuild:
+  Version bump. bug 76133
+
+  21 Feb 2005; <gongloo@gentoo.org> ccache-2.3.ebuild:
+  Stable on ppc-macos.
+
+  21 Jan 2005; <gongloo@gentoo.org> ccache-2.3.ebuild:
+  Keyworded ~ppc-macos.
+
+  30 Oct 2004; Michael Imhof <tantive@gentoo.org> :
+  Added ~s390 keyword.
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org> ccache-2.2.ebuild,
+  ccache-2.3.ebuild:
+  virtual/glibc -> virtual/libc
+
+  09 Apr 2004; Brian Jackson <iggy@gentoo.org> ccache-2.3.ebuild:
+  added s390 keyword
+
+  13 Jan 2004; Jon Portnoy <avenj@gentoo.org> ccache-2.3.ebuild :
+  Stable on AMD64.
+
+  09 Jan 2004; Aron Griffis <agriffis@gentoo.org> ccache-2.3.ebuild:
+  stable on alpha
+
+  05 Jan 2004; Jason Wever <weeve@gentoo.org> ccache-2.3.ebuild:
+  Marked stable on sparc.
+
+  28 Dec 2003; Joshua Kinard <kumba@gentoo.org> ccache-2.3.ebuild:
+  Move to mips stable (~mips -> mips)
+
+  14 Dec 2003; Guy Martin <gmsoft@gentoo.org> ccache-2.3.ebuild:
+  Marked stable on hppa.
+
+  12 Nov 2003; Aron Griffis <agriffis@gentoo.org> ccache-2.3.ebuild:
+  Stable on ia64
+
+  18 Oct 2003; Martin Holzer <mholzer@gentoo.org> ccache-2.3.ebuild:
+  x86 stable.
+
+*ccache-2.3 (29 Sep 2003)
+
+  29 Sep 2003; Martin Holzer <mholzer@gentoo.org> ccache-2.3.ebuild:
+  Version bumped.
+
+*ccache-2.2 (26 Feb 2003)
+
+  17 Apr 2003; Zach Welch <zwelch@gentoo.org> files/ccache-config:
+  fix ccache-config to add CC_QUIET
+
+  11 Apr 2003; Zach Welch <zwelch@gentoo.org> ccache-2.2.ebuild:
+  mark all platform keywords stable
+
+  19 Mar 2003; Aron Griffis <agriffis@gentoo.org> ccache-2.2.ebuild:
+  Mark stable on alpha
+
+  26 Feb 2003; Zach Welch <zwelch@gentoo.org> ccache-2.2.ebuild files/digest-ccache-2.2 :
+  Bump to new version; see bug 15100
+
+*ccache-2.1.1-r2 (24 Feb 2003)
+
+  25 Feb 2003; Zach Welch <zwelch@gentoo.org> ccache-2.1.1-r2.ebuild :
+  Remove old versions outright, don't backup; fixes multiple re-installs
+  Add portage 2.0.46-r11 as a RDEPEND.
+
+  24 Feb 2003; Zach Welch <zwelch@gentoo.org> ccache-2.1.1-r2.ebuild :
+  Add missing keepdir; no bump since found fast
+
+  24 Feb 2003; Zach Welch <zwelch@gentoo.org> ccache-2.1.1-r2.ebuild files/ccache-config files/digest-ccache-2.1.1-r2 :
+  Add changes from bug 15100, with enhancements from distcc
+
+  11 Feb 2003; Guy Martin <gmsoft@gentoo.org> :
+  Added hppa to keywords.
+
+*ccache-2.1.1 (24 Jan 2002)
+
+  25 Feb 2003; Zach Welch <zwelch@gentoo.org> ccache-2.1.1-r2.ebuild ccache-2.1.1.ebuild :
+  Fix ccache-2.1.1 ebuild to allow downgrade from 2.1.1-r2
+
+  24 Jan 2002; Bart Verwilst <verwilst@gentoo.org> : updating to 2.1.1.
+
+  06 Jan 2003; Jan Seidel <tuxus@gentoo.org>: ccache-1.9-r1.ebuild,
+  Added mips to keywords.
+
+*ccache-1.9-r2 (06 Jan 2003)
+
+  06 Jan 2003; Aron Griffis <agriffis@gentoo.org> ccache-1.9-r2.ebuild :
+  Fix installation of symbolic links by searching PATH for compiler
+  front-ends.  Fix einfo commentary to fit in an 80-column terminal.  
+  Add alpha to KEYWORDS.  Make this the -r2 release.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+  20 Nov 2002, ZhEN <zhen@gentoo.org> ccache-1.9-r1.ebuild,
+  I added some info the the einfo section regarding
+  bug #6805. My change should clear up that confusion.
+
+  12 Jul 2002; phoen][x <phoenix@gentoo.org> ccache-1.9-r1.ebuild, 
+  files/digest-ccache-1.9-r1: New revision: Added a check before
+  symlinking in pkg_postinst(). That way, the ebuild wont create
+  symlinks for compiler which arent installed.
+
+  12 Jul 2002; phoen][x <phoenix@gentoo.org> ccache-1.9-r1.ebuild, 
+  Added LICENSE, SLOT.
+
+*ccache-1.9-r1 (09 Jul 2002)
+
+  09 Jul 2002; Mark Guertin <gerk@gentoo.org> : tested and added
+  ppc to KEYWORDS
+
+*ccache-1.9 (24 Jun 2002)
+
+  24 Jun 2002; Daniel Robbins <drobbins@gentoo.org> : updating to 1.9.
+
+*ccache-1.8-r1 (24 Jun 2002)
+
+  24 Jun 2002; Daniel Robbins <drobbins@gentoo.org> : new ebuild that installs
+  ccache into /usr/bin/ccache/ccache and creates /usr/bin/ccache/gcc and cc 
+  symlinks automatically.  Also creates /root/.ccache dir if it doesn't exist.
+  This version is designed to play nicely with Portage 2.0.6.  Portage 2.0.6+
+  will auto-detect and use ccache if it is available :)
+
+*ccache-1.8 (30 Apr 2002)
+
+  30 Apr 2002; Ryan Phillips <rphillips@gentoo.org> ChangeLog : Initial
+  release submitted by Paul Belt <gaarde@yahoo.com>. Thanks Paul!
