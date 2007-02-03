@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/xproto
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/x11-proto/xproto/ChangeLog,v 1.42 2006/11/02 23:02:59 joshuabaergen Exp $
+
+  03 Feb 2007; Stefan Schweizer <stefan@gentoo.org> ChangeLog:
+  ~x86-macos
 
 *xproto-7.0.9 (02 Nov 2006)
 
