@@ -1,0 +1,29 @@
+# ChangeLog for x11-proto/xf86bigfontproto
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-proto/xf86bigfontproto/ChangeLog,v 1.25 2006/07/19 09:03:46 gmsoft Exp $
+
+*xf86bigfontproto-1.1.2 (03 Feb 2007)
+
+  03 Feb 2007; Stefan Schweizer <stefan@gentoo.org> +., +files,
+  +metadata.xml, +xf86bigfontproto-1.1.2.ebuild:
+  ~x86-macos
+
+  19 Jul 2006; Guy Martin <gmsoft@gentoo.org> xf86bigfontproto-1.1.2.ebuild:
+  Stable on hppa.
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org>
+  xf86bigfontproto-1.1.2.ebuild:
+  Mark 1.1.2 stable on ia64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  xf86bigfontproto-1.1.2.ebuild:
+  arm/sh stable
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  xf86bigfontproto-1.1.2.ebuild:
+  ppc/sparc/mips/alpha stable
+
+  30 Jun 2006; Marien Zwart <marienz@gentoo.org>
+  files/digest-xf86bigfontproto-1.1.2, Manifest:
+  Fix digest.
+
