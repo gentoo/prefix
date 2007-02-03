@@ -1,0 +1,49 @@
+#!/sbin/runscript
+# Copyright 1999-2004 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/net-misc/tinc/files/tincd,v 1.3 2004/07/15 00:13:56 agriffis Exp $
+
+depend() {
+	use logger dns
+	need net
+}
+
+checkconfig() {
+	if [ ! `grep -c '^ *NETWORK:' /etc/conf.d/tinc.networks` > 0 ]
+	then
+		eerror "No VPN networks configured in /etc/conf.d/tinc.networks"
+		return 1
+	fi
+}
+
+start() {
+	checkconfig || return 1
+	ebegin "Starting tinc VPN networks"
+	eend 0
+	cat /etc/conf.d/tinc.networks | grep '^ *NETWORK:' | awk '{ print $2 }' | while read TINCNET
+	do
+		if [ ! -f /etc/tinc/$TINCNET/tinc.conf ] 
+		then
+			eerror "Cannot start network $TINCNET, /etc/tinc/$TINCNET/tinc.conf does not exist !"
+		else
+			ebegin "Starting tinc network $TINCNET"
+			/usr/sbin/tincd --net=$TINCNET --logfile=/var/log/tinc.$TINCNET.log --pidfile=/var/run/tinc.$TINCNET.pid
+			eend $?
+		fi
+	done
+}
+
+stop() {
+	ebegin "Stopping tinc VPN networks"
+	eend 0
+	cat /etc/conf.d/tinc.networks | grep '^ *NETWORK:' | awk '{ print $2 }' | while read TINCNET
+	do
+		if [ -f /var/run/tinc.$TINCNET.pid ]
+		then
+			ebegin "Stopping tinc network $TINCNET"
+			/usr/sbin/tincd --kill=9 `cat /var/run/tinc.$TINCNET.pid` --pidfile=/var/run/tinc.$TINCNET.pid
+			eend $?
+			#rm -f /var/run/tinc.$TINCNET.pid
+		fi
+	done
+}
