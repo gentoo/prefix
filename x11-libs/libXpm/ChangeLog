@@ -1,0 +1,113 @@
+# ChangeLog for x11-libs/libXpm
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/libXpm/ChangeLog,v 1.29 2006/10/22 18:03:30 joshuabaergen Exp $
+
+*libXpm-3.5.6 (21 Oct 2006)
+
+  21 Oct 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  +libXpm-3.5.6.ebuild:
+  Version bump.
+
+  19 Jul 2006; Guy Martin <gmsoft@gentoo.org> libXpm-3.5.5.ebuild:
+  Stable on hppa.
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org> libXpm-3.5.5.ebuild:
+  Mark 3.5.5 stable on ia64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; libXpm-3.5.5.ebuild:
+  ppc/sparc/mips/alpha/arm/sh stable
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  -libXpm-3.5.4.2.ebuild:
+  Pull old ebuild.
+
+  30 Jun 2006; Chris Gianelloni <wolf31o2@gentoo.org> libXpm-3.5.5.ebuild:
+  Stable on amd64.
+
+  30 Jun 2006; Markus Rothe <corsair@gentoo.org> libXpm-3.5.5.ebuild:
+  Stable on ppc64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; libXpm-3.5.5.ebuild:
+  x86 stable.
+
+  03 May 2006; Marien Zwart <marienz@gentoo.org> Manifest:
+  Re-recommit manifest for sha256 issues.
+
+*libXpm-3.5.5 (29 Apr 2006)
+
+  29 Apr 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  +libXpm-3.5.5.ebuild:
+  Version bump.  Fixes a possible NULL dereference.
+
+  28 Apr 2006; Alec Warner <antarus@gentoo.org> Manifest:
+  Fixing SHA256 digest, pass four
+
+  31 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> libXpm-3.5.4.2.ebuild:
+  Add ~x86-fbsd keyword.
+
+  09 Mar 2006; Aron Griffis <agriffis@gentoo.org> libXpm-3.5.4.2.ebuild:
+  Mark 3.5.4.2 ~ia64
+
+  14 Feb 2006; Markus Rothe <corsair@gentoo.org> libXpm-3.5.4.2.ebuild:
+  Added ~ppc64
+
+  31 Jan 2006; Rene Nussbaumer <killerfox@gentoo.org> libXpm-3.5.4.2.ebuild:
+  Unstable on hppa.
+
+  26 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  -libXpm-3.5.4.1.ebuild:
+  Pull old versions.
+
+  26 Dec 2005; Stefaan De Roeck <stefaan@gentoo.org> libXpm-3.5.4.2.ebuild:
+  Marked ~alpha
+
+*libXpm-3.5.4.2 (17 Dec 2005)
+
+  17 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +libXpm-3.5.4.2.ebuild:
+  Bump for 7.0RC4.
+
+  09 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>; -libXpm-3.5.3.ebuild,
+  -libXpm-3.5.4.ebuild:
+  Pull old versions.
+
+*libXpm-3.5.4.1 (04 Dec 2005)
+
+  04 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +libXpm-3.5.4.1.ebuild:
+  Bump for 7.0RC3.
+
+*libXpm-3.5.4 (11 Nov 2005)
+
+  11 Nov 2005; Donnie Berkholz <spyderous@gentoo.org>; +libXpm-3.5.4.ebuild:
+  Bump for 7.0RC2.
+
+  04 Nov 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  -libXpm-3.5.2.ebuild:
+  Drop old version.
+
+*libXpm-3.5.3 (20 Oct 2005)
+
+  20 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>; +libXpm-3.5.3.ebuild:
+  Bump for 7.0 RC1.
+
+  09 Sep 2005; Donnie Berkholz <spyderous@gentoo.org>; +metadata.xml:
+  Add metadata.
+
+  04 Sep 2005; MATSUU Takuto <matsuu@gentoo.org> libXpm-3.5.2.ebuild:
+  Added ~sh
+
+  23 Aug 2005; Herbie Hopkins <herbs@gentoo.org> libXpm-3.5.2.ebuild:
+  Marked ~amd64.
+
+  20 Aug 2005; Luca Barbato <lu_zero@gentoo.org> libXpm-3.5.2.ebuild:
+  Marked ~ppc
+
+  09 Aug 2005; Ferris McCormick <fmccor@gentoo.org> libXpm-3.5.2.ebuild:
+  Add ~sparc keyword (X modular testing).
+
+*libXpm-3.5.2 (08 Aug 2005)
+
+  08 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>; +libXpm-3.5.2.ebuild:
+  Initial commit for modular X.
+
