@@ -1,0 +1,114 @@
+# ChangeLog for x11-misc/xkeyboard-config
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-misc/xkeyboard-config/ChangeLog,v 1.23 2006/11/14 16:25:23 joshuabaergen Exp $
+
+*xkeyboard-config-0.9 (14 Nov 2006)
+
+  14 Nov 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xkeyboard-config-0.9.ebuild:
+  Version bump.  Thanks to Camille Huot for the poke (bug #155124).
+
+*xkeyboard-config-0.8-r1 (03 Sep 2006)
+
+  03 Sep 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  +files/add_missing_lsgt.patch, +xkeyboard-config-0.8-r1.ebuild:
+  Add missing LSGT symbol to evdev symbols.  (Dennis Schridde, Bug #145097)
+  This should fix the availability of <, > and | for users of this symbol list.
+
+  16 Aug 2006; Brent Baude <ranger@gentoo.org> xkeyboard-config-0.8.ebuild:
+  Keywording ppc64 stable per MrBones request
+
+  16 Aug 2006; Brent Baude <ranger@gentoo.org> xkeyboard-config-0.8.ebuild:
+  Marking ~ppc64 per MrBones request
+
+  19 Jul 2006; Guy Martin <gmsoft@gentoo.org> xkeyboard-config-0.8.ebuild:
+  Stable on hppa.
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org>
+  xkeyboard-config-0.8.ebuild:
+  Mark 0.8 stable on ia64
+
+  04 Jul 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  xkeyboard-config-0.8.ebuild:
+  Some old XKB thing (xkbdata?) installed /usr/share/X11/xkb/symbols/pc as a
+  directory. Now we install it as a file, but portage won't let a file replace
+  a directory so it doesn't get installed. This breaks XKB setups, with
+  numerous reports. Check for the directory in pkg_setup().
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  xkeyboard-config-0.8.ebuild:
+  ppc/sparc/mips/alpha/arm/sh stable
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  -files/0.7-fix-scroll-lock.patch, -xkeyboard-config-0.7-r2.ebuild:
+  Pull old version.
+
+  30 Jun 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  xkeyboard-config-0.8.ebuild:
+  Stable on amd64.
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  xkeyboard-config-0.8.ebuild:
+  x86 stable.
+
+  21 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  xkeyboard-config-0.8.ebuild:
+  (#130590) Ensure that the old XKB directory gets out of the way (Patrick
+  Allaert).
+
+*xkeyboard-config-0.8 (16 Apr 2006)
+
+  16 Apr 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  +xkeyboard-config-0.8.ebuild:
+  Bump.
+
+  31 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  xkeyboard-config-0.7-r2.ebuild:
+  Add ~x86-fbsd keyword.
+
+*xkeyboard-config-0.7-r2 (23 Mar 2006)
+
+  23 Mar 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  +files/0.7-fix-scroll-lock.patch, -xkeyboard-config-0.7-r1.ebuild,
+  +xkeyboard-config-0.7-r2.ebuild:
+  (#124657) Fix scroll lock randomly turning on and off.
+
+  09 Mar 2006; Aron Griffis <agriffis@gentoo.org>
+  xkeyboard-config-0.7-r1.ebuild:
+  Mark 0.7-r1 ~ia64
+
+  23 Feb 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  xkeyboard-config-0.7-r1.ebuild:
+  dev-perl/XML-Parser is DEPEND, not RDEPEND.
+
+  21 Feb 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  xkeyboard-config-0.7-r1.ebuild:
+  Let xkbcomp take care of creating /var/lib/xkb, as suggested in fd.o bug #5906.
+
+*xkeyboard-config-0.7-r1 (13 Feb 2006)
+
+  13 Feb 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  -xkeyboard-config-0.7.ebuild, +xkeyboard-config-0.7-r1.ebuild:
+  (#122214) Create /var/lib/xkb so xorg-server doesn't fail later when trying
+  to write to /usr/share/X11/xkb/compiled.
+
+  07 Feb 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  xkeyboard-config-0.7.ebuild:
+  (#122010) Fix deps, thanks to Caio <errado@gmail.com>.
+
+  07 Feb 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  xkeyboard-config-0.7.ebuild:
+  Also make the xorg rules symlink.
+
+  06 Feb 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  xkeyboard-config-0.7.ebuild:
+  Meaningless whitespace change to re-commit and fix manifest.
+
+*xkeyboard-config-0.7 (06 Feb 2006)
+
+  06 Feb 2006; Donnie Berkholz <spyderous@gentoo.org>; +metadata.xml,
+  +xkeyboard-config-0.7.ebuild:
+  New, restructured, maintained package for XKB configuration data, expected
+  to supercede xkbdata. Since it's the same collection of data files,
+  keyworded ~arch for the same arches.
+
