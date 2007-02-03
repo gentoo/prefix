@@ -1,0 +1,173 @@
+# ChangeLog for x11-libs/libXcursor
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/libXcursor/ChangeLog,v 1.37 2006/10/22 18:00:27 joshuabaergen Exp $
+
+*libXcursor-1.1.8 (21 Oct 2006)
+
+  21 Oct 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  +libXcursor-1.1.8.ebuild:
+  Version bump.
+
+  19 Jul 2006; Guy Martin <gmsoft@gentoo.org> libXcursor-1.1.7.ebuild:
+  Stable on hppa.
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org> libXcursor-1.1.7.ebuild:
+  Mark 1.1.7 stable on ia64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  libXcursor-1.1.7.ebuild:
+  ppc/sparc/mips/alpha/arm/sh stable
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  -libXcursor-1.1.5.2-r1.ebuild, -libXcursor-1.1.6.ebuild:
+  Pull old versions.
+
+  30 Jun 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  libXcursor-1.1.7.ebuild:
+  Stable on amd64.
+
+  30 Jun 2006; Markus Rothe <corsair@gentoo.org> libXcursor-1.1.7.ebuild:
+  Stable on ppc64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  libXcursor-1.1.7.ebuild:
+  x86 stable.
+
+*libXcursor-1.1.7 (03 Jun 2006)
+
+  03 Jun 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  +libXcursor-1.1.7.ebuild:
+  Version bump.  Fixes a small memory leak.
+
+  29 Apr 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  libXcursor-1.1.6.ebuild:
+  We don't have to restrict mirroring on this version.
+
+*libXcursor-1.1.6 (29 Apr 2006)
+
+  29 Apr 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  +libXcursor-1.1.6.ebuild:
+  Version bump.  Adds a missing include and fixes a NULL chase.
+
+  28 Apr 2006; Marien Zwart <marienz@gentoo.org>
+  files/digest-libXcursor-1.1.5.2-r1, Manifest:
+  Revert to working digest.
+
+  28 Apr 2006; Alec Warner <antarus@gentoo.org>
+  files/digest-libXcursor-1.1.5.2-r1, Manifest:
+  Fixing SHA256 digest, pass four
+
+  01 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  libXcursor-1.1.5.2-r1.ebuild:
+  Add ~x86-fbsd keyword.
+
+  24 Mar 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  -libXcursor-1.1.5.2.ebuild, libXcursor-1.1.5.2-r1.ebuild:
+  (#127306) Digests changed between release candidates and final release for
+  the same tarballs. Remove old ebuild.
+
+  09 Mar 2006; Aron Griffis <agriffis@gentoo.org>
+  libXcursor-1.1.5.2-r1.ebuild:
+  Mark 1.1.5.2-r1 ~ia64
+
+  14 Feb 2006; Markus Rothe <corsair@gentoo.org> libXcursor-1.1.5.2.ebuild,
+  libXcursor-1.1.5.2-r1.ebuild:
+  Added ~ppc64
+
+*libXcursor-1.1.5.2-r1 (01 Feb 2006)
+
+  01 Feb 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  +libXcursor-1.1.5.2-r1.ebuild:
+  (#120808) Add some more cursor paths to comply with icon theme spec and be
+  internally consistent: /usr/local/share/cursors, /usr/local/share/icons,
+  /usr/local/share/pixmaps, /usr/share/cursors, /usr/share/icons,
+  /usr/share/pixmaps. Previously we were just looking in xorg-x11
+  subdirectories of many of them, or missing the /usr/local variants.
+
+  31 Jan 2006; Rene Nussbaumer <killerfox@gentoo.org>
+  libXcursor-1.1.5.2.ebuild:
+  Unstable on hppa.
+
+  26 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  -files/make-icondir-configurable-1.1.5.1.patch,
+  -libXcursor-1.1.5.1.ebuild:
+  Pull old versions.
+
+  26 Dec 2005; Stefaan De Roeck <stefaan@gentoo.org>
+  libXcursor-1.1.5.2.ebuild:
+  Marked ~alpha
+
+*libXcursor-1.1.5.2 (17 Dec 2005)
+
+  17 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +libXcursor-1.1.5.2.ebuild:
+  Bump for 7.0RC4.
+
+  09 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  -files/make-icondir-configurable.patch:
+  Unused file.
+
+  09 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  -libXcursor-1.1.4.ebuild, -libXcursor-1.1.5.ebuild:
+  Pull old versions.
+
+*libXcursor-1.1.5.1 (04 Dec 2005)
+
+  04 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +files/make-icondir-configurable-1.1.5.1.patch,
+  +libXcursor-1.1.5.1.ebuild:
+  Bump for 7.0RC3.
+
+*libXcursor-1.1.5 (11 Nov 2005)
+
+  11 Nov 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +libXcursor-1.1.5.ebuild:
+  Bump for 7.0RC2.
+
+  04 Nov 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  -libXcursor-1.1.3-r1.ebuild:
+  Drop old version.
+
+  30 Oct 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  libXcursor-1.1.4.ebuild:
+  Add missing xproto dep.
+
+*libXcursor-1.1.4 (20 Oct 2005)
+
+  20 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +libXcursor-1.1.4.ebuild:
+  Bump for 7.0 RC1.
+
+  09 Sep 2005; Donnie Berkholz <spyderous@gentoo.org>; +metadata.xml:
+  Add metadata.
+
+  04 Sep 2005; MATSUU Takuto <matsuu@gentoo.org> libXcursor-1.1.3-r1.ebuild:
+  Added ~sh
+
+  20 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  -libXcursor-1.1.3.ebuild:
+  Remove old versions.
+
+  20 Aug 2005; Luca Barbato <lu_zero@gentoo.org> libXcursor-1.1.3.ebuild,
+  libXcursor-1.1.3-r1.ebuild:
+  Marked ~ppc
+
+*libXcursor-1.1.3-r1 (16 Aug 2005)
+
+  16 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +files/make-icondir-configurable.patch, +libXcursor-1.1.3-r1.ebuild:
+  Look in the same directories as the monolith. Patch from Christophe Saout
+  <christophe@saout.de>.
+
+  15 Aug 2005; Herbie Hopkins <herbs@gentoo.org> libXcursor-1.1.3.ebuild:
+  Marked ~amd64.
+
+  09 Aug 2005; Ferris McCormick <fmccor@gentoo.org> libXcursor-1.1.3.ebuild:
+  Add ~sparc keyword (X modular testing).
+
+*libXcursor-1.1.3 (08 Aug 2005)
+
+  08 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +libXcursor-1.1.3.ebuild:
+  Initial commit for modular X.
+
