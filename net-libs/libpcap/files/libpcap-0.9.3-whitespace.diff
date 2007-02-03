@@ -1,0 +1,22 @@
+diff --exclude='*~' -Naur libpcap-0.9.3.orig/pcap.h libpcap-0.9.3/pcap.h
+--- libpcap-0.9.3.orig/pcap.h	2005-09-11 16:43:56.000000000 -0300
++++ libpcap-0.9.3/pcap.h	2005-09-11 16:45:06.000000000 -0300
+@@ -38,13 +38,13 @@
+ #define lib_pcap_h
+ 
+ #if defined(WIN32)
+-  #include <pcap-stdinc.h>
++#include <pcap-stdinc.h>
+ #elif defined(MSDOS)
+-  #include <sys/types.h>
+-  #include <sys/socket.h>  /* u_int, u_char etc. */
++#include <sys/types.h>
++#include <sys/socket.h>  /* u_int, u_char etc. */
+ #else /* UN*X */
+-  #include <sys/types.h>
+-  #include <sys/time.h>
++#include <sys/types.h>
++#include <sys/time.h>
+ #endif /* WIN32/MSDOS/UN*X */
+ 
+ #ifndef PCAP_DONT_INCLUDE_PCAP_BPF_H
