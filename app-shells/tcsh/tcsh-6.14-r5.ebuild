@@ -14,7 +14,7 @@ SRC_URI="ftp://ftp.astron.com/pub/tcsh/${MY_P}.tar.gz
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
 
 IUSE="perl catalogs"
 
