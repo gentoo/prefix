@@ -12,7 +12,7 @@ SRC_URI="http://www.egenix.com/files/python/${P}.tar.gz"
 
 LICENSE="eGenixPublic"
 SLOT="0"
-KEYWORDS="~x86 ~amd64 ~ia64 ~ppc-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
 DEPEND="virtual/python"
