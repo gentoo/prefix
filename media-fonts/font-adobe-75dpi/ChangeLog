@@ -1,0 +1,111 @@
+# ChangeLog for media-fonts/font-adobe-75dpi
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-fonts/font-adobe-75dpi/ChangeLog,v 1.25 2006/07/19 14:06:05 gmsoft Exp $
+
+  19 Jul 2006; Guy Martin <gmsoft@gentoo.org> font-adobe-75dpi-1.0.0.ebuild:
+  Stable on hppa.
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org>
+  font-adobe-75dpi-1.0.0.ebuild:
+  Mark 75dpi-1.0.0 stable on ia64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  font-adobe-75dpi-1.0.0.ebuild:
+  ppc/sparc/mips/alpha/arm/sh stable
+
+  30 Jun 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  font-adobe-75dpi-1.0.0.ebuild:
+  Stable on amd64.
+
+  30 Jun 2006; Markus Rothe <corsair@gentoo.org>
+  font-adobe-75dpi-1.0.0.ebuild:
+  Stable on ppc64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  font-adobe-75dpi-1.0.0.ebuild:
+  x86 stable.
+
+  04 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  font-adobe-75dpi-1.0.0.ebuild:
+  (#133980) Add a real description (Max Lorenz).
+
+  28 Apr 2006; Marien Zwart <marienz@gentoo.org> Manifest:
+  Fixing SHA256 digest, pass four
+
+  31 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  font-adobe-75dpi-1.0.0.ebuild:
+  Add ~x86-fbsd keyword.
+
+  24 Mar 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  font-adobe-75dpi-1.0.0.ebuild:
+  Regularize RESTRICT syntax with all the others for easier scripting later on.
+
+  23 Mar 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  font-adobe-75dpi-1.0.0.ebuild:
+  (#127306) Fix digest, it changed upstream. RESTRICT=mirror until this
+  propogates.
+
+  23 Mar 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  font-adobe-75dpi-1.0.0.ebuild:
+  Some keywords got missed.
+
+  14 Feb 2006; Markus Rothe <corsair@gentoo.org>
+  font-adobe-75dpi-1.0.0.ebuild:
+  Added ~ppc64
+
+  10 Jan 2006; Michael Hanselmann <hansmi@gentoo.org>
+  font-adobe-75dpi-1.0.0.ebuild:
+  Added to ~hppa, ~ppc.
+
+*font-adobe-75dpi-1.0.0 (18 Dec 2005)
+
+  18 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  -font-adobe-75dpi-0.99.2.ebuild, +font-adobe-75dpi-1.0.0.ebuild:
+  Bump for 7.0RC4.
+
+  10 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  font-adobe-75dpi-0.99.2.ebuild:
+  Remove mkfontscale and mkfontdir deps; moved to x-modular.eclass.
+
+  10 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  font-adobe-75dpi-0.99.2.ebuild:
+  Remove mkfontscale and mkfontdir deps; moved to x-modular.eclass.
+
+  07 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  -font-adobe-75dpi-0.99.0.ebuild, -font-adobe-75dpi-0.99.1.ebuild:
+  Pull old versions.
+
+*font-adobe-75dpi-0.99.2 (07 Dec 2005)
+
+  07 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +font-adobe-75dpi-0.99.2.ebuild:
+  Bump for 7.0RC2.
+
+*font-adobe-75dpi-0.99.1 (20 Oct 2005)
+
+  20 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +font-adobe-75dpi-0.99.1.ebuild:
+  Bump for 7.0 RC1.
+
+  09 Sep 2005; Donnie Berkholz <spyderous@gentoo.org>; +metadata.xml:
+  Add metadata.
+
+  14 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  font-adobe-75dpi-0.99.0.ebuild:
+  Autodiscover fonts instead of specifying them.
+
+  11 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  font-adobe-75dpi-0.99.0.ebuild:
+  Update to use new x-modular.eclass setup code. See font-misc-misc ChangeLog
+  for more details.
+
+  09 Aug 2005; Ferris McCormick <fmccor@gentoo.org>
+  font-adobe-75dpi-0.99.0.ebuild:
+  Add ~sparc keyword (modular X testing).
+
+*font-adobe-75dpi-0.99.0 (08 Aug 2005)
+
+  08 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +font-adobe-75dpi-0.99.0.ebuild:
+  Initial commit for modular X.
+
