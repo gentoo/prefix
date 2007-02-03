@@ -1,0 +1,121 @@
+--- index.theme.old	2006-02-17 09:40:59.000000000 -0600
++++ index.theme	2006-02-17 10:10:06.000000000 -0600
+@@ -2,7 +2,7 @@
+ Name=Hicolor
+ Comment=Fallback icon theme
+ Hidden=true
+-Directories=16x16/actions,16x16/apps,16x16/devices,16x16/filesystems,16x16/mimetypes,16x16/emblems,16x16/stock/chart,16x16/stock/code,16x16/stock/data,16x16/stock/form,16x16/stock/image,16x16/stock/io,16x16/stock/media,16x16/stock/navigation,16x16/stock/net,16x16/stock/object,16x16/stock/table,16x16/stock/text,22x22/actions,22x22/apps,22x22/devices,22x22/filesystems,22x22/mimetypes,22x22/emblems,22x22/stock/chart,22x22/stock/code,22x22/stock/data,22x22/stock/form,22x22/stock/image,22x22/stock/io,22x22/stock/media,22x22/stock/navigation,22x22/stock/net,22x22/stock/object,22x22/stock/table,22x22/stock/text,24x24/actions,24x24/apps,24x24/devices,24x24/filesystems,24x24/mimetypes,24x24/emblems,24x24/stock/chart,24x24/stock/code,24x24/stock/data,24x24/stock/form,24x24/stock/image,24x24/stock/io,24x24/stock/media,24x24/stock/navigation,24x24/stock/net,24x24/stock/object,24x24/stock/table,24x24/stock/text,32x32/actions,32x32/apps,32x32/devices,32x32/filesystems,32x32/mimetypes,32x32/emblems,32x32/stock/chart,32x32/stock/code,32x32/stock/data,32x32/stock/form,32x32/stock/image,32x32/stock/io,32x32/stock/media,32x32/stock/navigation,32x32/stock/net,32x32/stock/object,32x32/stock/table,32x32/stock/text,36x36/actions,36x36/apps,36x36/devices,36x36/filesystems,36x36/mimetypes,36x36/emblems,36x36/stock/chart,36x36/stock/code,36x36/stock/data,36x36/stock/form,36x36/stock/image,36x36/stock/io,36x36/stock/media,36x36/stock/navigation,36x36/stock/net,36x36/stock/object,36x36/stock/table,36x36/stock/text,48x48/actions,48x48/apps,48x48/devices,48x48/filesystems,48x48/mimetypes,48x48/emblems,48x48/stock/chart,48x48/stock/code,48x48/stock/data,48x48/stock/form,48x48/stock/image,48x48/stock/io,48x48/stock/media,48x48/stock/navigation,48x48/stock/net,48x48/stock/object,48x48/stock/table,48x48/stock/text,64x64/actions,64x64/apps,64x64/devices,64x64/filesystems,64x64/mimetypes,64x64/emblems,64x64/stock/chart,64x64/stock/code,64x64/stock/data,64x64/stock/form,64x64/stock/image,64x64/stock/io,64x64/stock/media,64x64/stock/navigation,64x64/stock/net,64x64/stock/object,64x64/stock/table,64x64/stock/text,72x72/actions,72x72/apps,72x72/devices,72x72/filesystems,72x72/mimetypes,72x72/emblems,72x72/stock/chart,72x72/stock/code,72x72/stock/data,72x72/stock/form,72x72/stock/image,72x72/stock/io,72x72/stock/media,72x72/stock/navigation,72x72/stock/net,72x72/stock/object,72x72/stock/table,72x72/stock/text,96x96/actions,96x96/apps,96x96/devices,96x96/filesystems,96x96/mimetypes,96x96/emblems,96x96/stock/chart,96x96/stock/code,96x96/stock/data,96x96/stock/form,96x96/stock/image,96x96/stock/io,96x96/stock/media,96x96/stock/navigation,96x96/stock/net,96x96/stock/object,96x96/stock/table,96x96/stock/text,128x128/actions,128x128/apps,128x128/devices,128x128/filesystems,128x128/mimetypes,128x128/emblems,128x128/stock/chart,128x128/stock/code,128x128/stock/data,128x128/stock/form,128x128/stock/image,128x128/stock/io,128x128/stock/media,128x128/stock/navigation,128x128/stock/net,128x128/stock/object,128x128/stock/table,128x128/stock/text,192x192/actions,192x192/apps,192x192/devices,192x192/filesystems,192x192/mimetypes,192x192/emblems,192x192/stock/chart,192x192/stock/code,192x192/stock/data,192x192/stock/form,192x192/stock/image,192x192/stock/io,192x192/stock/media,192x192/stock/navigation,192x192/stock/net,192x192/stock/object,192x192/stock/table,192x192/stock/text,scalable/actions,scalable/apps,scalable/devices,scalable/filesystems,scalable/mimetypes,scalable/emblems,scalable/stock/chart,scalable/stock/code,scalable/stock/data,scalable/stock/form,scalable/stock/image,scalable/stock/io,scalable/stock/media,scalable/stock/navigation,scalable/stock/net,scalable/stock/object,scalable/stock/table,scalable/stock/text
++Directories=16x16/actions,16x16/apps,16x16/devices,16x16/filesystems,16x16/mimetypes,16x16/emblems,16x16/stock/chart,16x16/stock/code,16x16/stock/data,16x16/stock/document,16x16/stock/form,16x16/stock/generic,16x16/stock/image,16x16/stock/io,16x16/stock/media,16x16/stock/navigation,16x16/stock/net,16x16/stock/object,16x16/stock/table,16x16/stock/text,22x22/actions,22x22/apps,22x22/devices,22x22/filesystems,22x22/mimetypes,22x22/emblems,22x22/stock/chart,22x22/stock/code,22x22/stock/data,22x22/stock/form,22x22/stock/image,22x22/stock/io,22x22/stock/media,22x22/stock/navigation,22x22/stock/net,22x22/stock/object,22x22/stock/table,22x22/stock/text,24x24/actions,24x24/apps,24x24/devices,24x24/filesystems,24x24/mimetypes,24x24/emblems,24x24/stock/chart,24x24/stock/code,24x24/stock/data,24x24/stock/document,24x24/stock/form,24x24/stock/generic,24x24/stock/image,24x24/stock/io,24x24/stock/media,24x24/stock/navigation,24x24/stock/net,24x24/stock/object,24x24/stock/table,24x24/stock/text,32x32/actions,32x32/apps,32x32/devices,32x32/filesystems,32x32/mimetypes,32x32/emblems,32x32/stock/chart,32x32/stock/code,32x32/stock/data,32x32/stock/document,32x32/stock/form,32x32/stock/generic,32x32/stock/image,32x32/stock/io,32x32/stock/media,32x32/stock/navigation,32x32/stock/net,32x32/stock/object,32x32/stock/table,32x32/stock/text,36x36/actions,36x36/apps,36x36/devices,36x36/filesystems,36x36/mimetypes,36x36/emblems,36x36/stock/chart,36x36/stock/code,36x36/stock/data,36x36/stock/document,36x36/stock/form,36x36/stock/generic,36x36/stock/image,36x36/stock/io,36x36/stock/media,36x36/stock/navigation,36x36/stock/net,36x36/stock/object,36x36/stock/table,36x36/stock/text,48x48/actions,48x48/apps,48x48/devices,48x48/filesystems,48x48/mimetypes,48x48/emblems,48x48/stock/chart,48x48/stock/code,48x48/stock/data,48x48/stock/document,48x48/stock/form,48x48/stock/generic,48x48/stock/image,48x48/stock/io,48x48/stock/media,48x48/stock/navigation,48x48/stock/net,48x48/stock/object,48x48/stock/table,48x48/stock/text,64x64/actions,64x64/apps,64x64/devices,64x64/filesystems,64x64/mimetypes,64x64/emblems,64x64/stock/chart,64x64/stock/code,64x64/stock/data,64x64/stock/form,64x64/stock/image,64x64/stock/io,64x64/stock/media,64x64/stock/navigation,64x64/stock/net,64x64/stock/object,64x64/stock/table,64x64/stock/text,72x72/actions,72x72/apps,72x72/devices,72x72/filesystems,72x72/mimetypes,72x72/emblems,72x72/stock/chart,72x72/stock/code,72x72/stock/data,72x72/stock/form,72x72/stock/image,72x72/stock/io,72x72/stock/media,72x72/stock/navigation,72x72/stock/net,72x72/stock/object,72x72/stock/table,72x72/stock/text,96x96/actions,96x96/apps,96x96/devices,96x96/filesystems,96x96/mimetypes,96x96/emblems,96x96/stock/chart,96x96/stock/code,96x96/stock/data,96x96/stock/form,96x96/stock/image,96x96/stock/io,96x96/stock/media,96x96/stock/navigation,96x96/stock/net,96x96/stock/object,96x96/stock/table,96x96/stock/text,128x128/actions,128x128/apps,128x128/devices,128x128/filesystems,128x128/mimetypes,128x128/emblems,128x128/stock/chart,128x128/stock/code,128x128/stock/data,128x128/stock/form,128x128/stock/image,128x128/stock/io,128x128/stock/media,128x128/stock/navigation,128x128/stock/net,128x128/stock/object,128x128/stock/table,128x128/stock/text,192x192/actions,192x192/apps,192x192/devices,192x192/filesystems,192x192/mimetypes,192x192/emblems,192x192/stock/chart,192x192/stock/code,192x192/stock/data,192x192/stock/form,192x192/stock/image,192x192/stock/io,192x192/stock/media,192x192/stock/navigation,192x192/stock/net,192x192/stock/object,192x192/stock/table,192x192/stock/text,scalable/actions,scalable/apps,scalable/devices,scalable/filesystems,scalable/mimetypes,scalable/emblems,scalable/stock/chart,scalable/stock/code,scalable/stock/data,scalable/stock/form,scalable/stock/image,scalable/stock/io,scalable/stock/media,scalable/stock/navigation,scalable/stock/net,scalable/stock/object,scalable/stock/table,scalable/stock/text
+ 
+ [16x16/actions]
+ Size=16
+@@ -49,11 +49,21 @@
+ Context=Stock
+ Type=Threshold
+ 
++[16x16/stock/document]
++Size=16
++Context=Stock
++Type=Threshold
++
+ [16x16/stock/form]
+ Size=16
+ Context=Stock
+ Type=Threshold
+ 
++[16x16/stock/generic]
++Size=16
++Context=Stock
++Type=Threshold
++
+ [16x16/stock/image]
+ Size=16
+ Context=Stock
+@@ -229,11 +239,21 @@
+ Context=Stock
+ Type=Threshold
+ 
++[24x24/stock/document]
++Size=24
++Context=Stock
++Type=Threshold
++
+ [24x24/stock/form]
+ Size=24
+ Context=Stock
+ Type=Threshold
+ 
++[24x24/stock/generic]
++Size=24
++Context=Stock
++Type=Threshold
++
+ [24x24/stock/image]
+ Size=24
+ Context=Stock
+@@ -319,11 +339,21 @@
+ Context=Stock
+ Type=Threshold
+ 
++[32x32/stock/document]
++Size=32
++Context=Stock
++Type=Threshold
++
+ [32x32/stock/form]
+ Size=32
+ Context=Stock
+ Type=Threshold
+ 
++[32x32/stock/generic]
++Size=32
++Context=Stock
++Type=Threshold
++
+ [32x32/stock/image]
+ Size=32
+ Context=Stock
+@@ -409,11 +439,21 @@
+ Context=Stock
+ Type=Threshold
+ 
++[36x36/stock/document]
++Size=36
++Context=Stock
++Type=Threshold
++
+ [36x36/stock/form]
+ Size=36
+ Context=Stock
+ Type=Threshold
+ 
++[36x36/stock/generic]
++Size=36
++Context=Stock
++Type=Threshold
++
+ [36x36/stock/image]
+ Size=36
+ Context=Stock
+@@ -499,11 +539,21 @@
+ Context=Stock
+ Type=Threshold
+ 
++[48x48/stock/document]
++Size=48
++Context=Stock
++Type=Threshold
++
+ [48x48/stock/form]
+ Size=48
+ Context=Stock
+ Type=Threshold
+ 
++[48x48/stock/generic]
++Size=48
++Context=Stock
++Type=Threshold
++
+ [48x48/stock/image]
+ Size=48
+ Context=Stock
