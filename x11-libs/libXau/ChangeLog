@@ -1,0 +1,149 @@
+# ChangeLog for x11-libs/libXau
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/libXau/ChangeLog,v 1.39 2007/01/06 01:00:33 kloeri Exp $
+
+  06 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> libXau-1.0.2.ebuild:
+  Stable on Alpha.
+
+*libXau-1.0.3 (16 Dec 2006)
+
+  16 Dec 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  +libXau-1.0.3.ebuild:
+  Version bump for 7.2.  Build/dist fix only.
+
+  14 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> libXau-1.0.2.ebuild:
+  Stable on ia64.
+
+  08 Oct 2006; Simon Stelling <blubb@gentoo.org> libXau-1.0.2.ebuild:
+  stable on amd64
+
+  12 Sep 2006; Gustavo Zacarias <gustavoz@gentoo.org> libXau-1.0.2.ebuild:
+  Stable on hppa
+
+  04 Sep 2006; Joshua Kinard <kumba@gentoo.org> libXau-1.0.2.ebuild:
+  Marked stable on mips.
+
+  24 Aug 2006; Markus Rothe <corsair@gentoo.org> libXau-1.0.2.ebuild:
+  Stable on ppc64
+
+  22 Aug 2006; Ferris McCormick <fmccor@gentoo.org> libXau-1.0.2.ebuild:
+  Stable on sparc.
+
+  20 Aug 2006; Donnie Berkholz <dberkholz@gentoo.org>; libXau-1.0.2.ebuild:
+  Stable on x86/ppc.
+
+  29 Jul 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  libXau-1.0.2.ebuild:
+  Depend on the newest version of util-macros for code-checking macros used
+  here.
+
+*libXau-1.0.2 (29 Jul 2006)
+
+  29 Jul 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  +libXau-1.0.2.ebuild:
+  Version bump.  Includes minor cleanups.
+
+  19 Jul 2006; Guy Martin <gmsoft@gentoo.org> libXau-1.0.1.ebuild:
+  Stable on hppa.
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org> libXau-1.0.1.ebuild:
+  Mark 1.0.1 stable on ia64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; libXau-1.0.1.ebuild:
+  ppc/sparc/mips/alpha/arm/sh stable
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; -libXau-1.0.0.ebuild:
+  Pull old versions.
+
+  30 Jun 2006; Chris Gianelloni <wolf31o2@gentoo.org> libXau-1.0.1.ebuild:
+  Stable on amd64.
+
+  30 Jun 2006; Markus Rothe <corsair@gentoo.org> libXau-1.0.1.ebuild:
+  Stable on ppc64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; libXau-1.0.1.ebuild:
+  x86 stable.
+
+*libXau-1.0.1 (13 May 2006)
+
+  13 May 2006; Donnie Berkholz <spyderous@gentoo.org>; +libXau-1.0.1.ebuild:
+  Bump.
+
+  28 Apr 2006; Marien Zwart <marienz@gentoo.org> files/digest-libXau-1.0.0,
+  Manifest:
+  Revert to working digest.
+
+  28 Apr 2006; Alec Warner <antarus@gentoo.org> files/digest-libXau-1.0.0,
+  Manifest:
+  Fixing SHA256 digest, pass four
+
+  31 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> libXau-1.0.0.ebuild:
+  Add ~x86-fbsd keyword.
+
+  24 Mar 2006; Donnie Berkholz <spyderous@gentoo.org>; libXau-1.0.0.ebuild:
+  (#127306) Digests changed between release candidates and final release for
+  the same tarballs.
+
+  09 Mar 2006; Aron Griffis <agriffis@gentoo.org> libXau-1.0.0.ebuild:
+  Mark 1.0.0 ~ia64
+
+  14 Feb 2006; Markus Rothe <corsair@gentoo.org> libXau-1.0.0.ebuild:
+  Added ~ppc64
+
+  31 Jan 2006; Rene Nussbaumer <killerfox@gentoo.org> libXau-1.0.0.ebuild:
+  Unstable on hppa.
+
+  26 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  -libXau-0.99.2.ebuild:
+  Pull old versions.
+
+  26 Dec 2005; Stefaan De Roeck <stefaan@gentoo.org> libXau-1.0.0.ebuild:
+  Marked ~alpha
+
+*libXau-1.0.0 (17 Dec 2005)
+
+  17 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +libXau-1.0.0.ebuild:
+  Bump for 7.0RC4.
+
+  09 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  -libXau-0.99.1.ebuild:
+  Pull old versions.
+
+*libXau-0.99.2 (04 Dec 2005)
+
+  04 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +libXau-0.99.2.ebuild:
+  Bump for 7.0RC3.
+
+  04 Nov 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  -libXau-0.99.0.ebuild, libXau-0.99.1.ebuild:
+  Fix xproto depend and drop old version.
+
+*libXau-0.99.1 (20 Oct 2005)
+
+  20 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +libXau-0.99.1.ebuild:
+  Bump for 7.0 RC1.
+
+  09 Sep 2005; Donnie Berkholz <spyderous@gentoo.org>; +metadata.xml:
+  Add metadata.
+
+  28 Aug 2005; MATSUU Takuto <matsuu@gentoo.org> libXau-0.99.0.ebuild:
+  Marked ~sh
+
+  20 Aug 2005; Luca Barbato <lu_zero@gentoo.org> libXau-0.99.0.ebuild:
+  Marked ~ppc
+
+  15 Aug 2005; Herbie Hopkins <herbs@gentoo.org> libXau-0.99.0.ebuild:
+  Marked ~amd64
+
+  08 Aug 2005; Ferris McCormick <fmccor@gentoo.org> libXau-0.99.0.ebuild:
+  Add ~sparc keyword (modular X testing).
+
+*libXau-0.99.0 (08 Aug 2005)
+
+  08 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +libXau-0.99.0.ebuild:
+  Initial commit for modular X.
+
