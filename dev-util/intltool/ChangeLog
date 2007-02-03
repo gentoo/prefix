@@ -1,0 +1,318 @@
+# ChangeLog for dev-util/intltool
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-util/intltool/ChangeLog,v 1.90 2007/01/22 22:16:52 leonardop Exp $
+
+*intltool-0.35.4 (22 Jan 2007)
+
+  22 Jan 2007; Leonardo Boshell <leonardop@gentoo.org>
+  +intltool-0.35.4.ebuild:
+  New release.
+
+  21 Dec 2006; Roy Marples <uberlord@gentoo.org> intltool-0.35.0.ebuild:
+  Added ~sparc-fbsd keyword.
+
+  19 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> intltool-0.35.0.ebuild:
+  Stable on Alpha.
+
+  04 Sep 2006; Joshua Kinard <kumba@gentoo.org> intltool-0.35.0.ebuild:
+  Marked stable on mips.
+
+  16 Aug 2006; Markus Rothe <corsair@gentoo.org> intltool-0.35.0.ebuild:
+  Stable on ppc64
+
+  17 Jul 2006; Daniel Gryniewicz <dang@gentoo.org> intltool-0.35.0.ebuild:
+  Marked stable on amd64 for bug #139612
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  intltool-0.35.0.ebuild:
+  hppa stable, bug #139612
+
+  14 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  intltool-0.35.0.ebuild:
+  ppc stable, bug #139612
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org> intltool-0.35.0.ebuild:
+  Mark 0.35.0 stable on ia64
+
+  12 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  intltool-0.35.0.ebuild:
+  Stable on x86 wrt bug #139612.
+
+  10 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  intltool-0.35.0.ebuild:
+  Stable on sparc wrt #139612
+
+*intltool-0.35.0 (15 May 2006)
+
+  15 May 2006; Leonardo Boshell <leonardop@gentoo.org>
+  +intltool-0.35.0.ebuild:
+  New release.
+
+  12 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> intltool-0.34.2.ebuild:
+  Add ~x86-fbsd keyword.
+
+*intltool-0.34.2 (08 Feb 2006)
+
+  08 Feb 2006; Saleem Abdulrasool <compnerd@gentoo.org>
+  +intltool-0.34.2.ebuild:
+  Version bump from upstream for 2.12.3
+
+  22 Jan 2006; <dang@gentoo.org> intltool-0.34.1.ebuild:
+  Marked stable on amd64 per bug #119634
+
+  25 Dec 2005; Joshua Kinard <kumba@gentoo.org> intltool-0.34.1.ebuild:
+  Marked stable on mips.
+
+  12 Sep 2005; Michael Hanselmann <hansmi@gentoo.org>
+  intltool-0.34.1.ebuild:
+  Stable on ppc.
+
+  10 Sep 2005; Aron Griffis <agriffis@gentoo.org> intltool-0.34.1.ebuild:
+  Mark 0.34.1 stable on alpha
+
+  08 Sep 2005; Aron Griffis <agriffis@gentoo.org> intltool-0.34.1.ebuild:
+  Mark 0.34.1 stable on ia64
+
+  06 Sep 2005; Markus Rothe <corsair@gentoo.org> intltool-0.34.1.ebuild:
+  Stable on ppc64
+
+  05 Sep 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  intltool-0.34.1.ebuild:
+  Stable on sparc
+
+  05 Sep 2005; Leonardo Boshell <leonardop@gentoo.org>
+  intltool-0.34.1.ebuild:
+  Stable on x86.
+
+  14 Aug 2005; Kito <kito@gentoo.org> intltool-0.34.1.ebuild:
+  ~ppc-macos keyword.
+
+  13 Aug 2005; Michael Hanselmann <hansmi@gentoo.org> intltool-0.33.ebuild:
+  Stable on ppc.
+
+  08 Aug 2005; Markus Rothe <corsair@gentoo.org> intltool-0.33.ebuild:
+  Stable on ppc64
+
+*intltool-0.34.1 (02 Aug 2005)
+
+  02 Aug 2005; Leonardo Boshell <leonardop@gentoo.org> intltool-0.34.1.ebuild:
+  New version.
+
+  01 Aug 2005; Gustavo Zacarias <gustavoz@gentoo.org> intltool-0.33.ebuild:
+  Stable on sparc
+
+  31 Jul 2005; Leonardo Boshell <leonardop@gentoo.org> intltool-0.33.ebuild:
+  Stable on x86.
+
+  07 Jul 2005; Markus Rothe <corsair@gentoo.org> intltool-0.32.1.ebuild:
+  Stable on ppc64
+
+  02 Jul 2005; Bryan Østergaard <kloeri@gentoo.org> intltool-0.32.1.ebuild:
+  Stable on alpha.
+
+  01 Jul 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  intltool-0.32.1.ebuild:
+  Stable on sparc
+
+*intltool-0.33 (30 Jun 2005)
+
+  30 Jun 2005; Leonardo Boshell <leonardop@gentoo.org> intltool-0.33.ebuild:
+  New release, resolving bug #96955.
+
+  30 Jun 2005; Leonardo Boshell <leonardop@gentoo.org> intltool-0.32.1.ebuild:
+  Stable on x86.
+
+  01 Apr 2005; Aron Griffis <agriffis@gentoo.org> intltool-0.32.1.ebuild:
+  stable on ia64
+
+  12 Feb 2005; Alin Nastac <mrness@gentoo.org> intltool-0.30.ebuild,
+  intltool-0.31.2.ebuild, intltool-0.31.3.ebuild:
+  Fix dependencies (move dev-perl/XML-Parser from RDEPEND to DEPEND).
+  See bug #81544.
+
+  06 Feb 2005; Joshua Kinard <kumba@gentoo.org> intltool-0.31.2.ebuild:
+  Marked stable on mips.
+
+  24 Dec 2004; Bryan Østergaard <kloeri@gentoo.org> :
+  Stable on alpha.
+
+  23 Dec 2004; Guy Martin <gmsoft@gentoo.org> intltool-0.32.1.ebuild:
+  Stable on hppa.
+
+  17 Dec 2004; Markus Rothe <corsair@gentoo.org> intltool-0.31.2.ebuild:
+  Stable on ppc64
+
+  27 Nov 2004; Benjamin Schindler <config@gentoo.org> intltool-0.31.2.ebuild:
+  Marked stable on amd64
+
+  23 Nov 2004; Bryan Østergaard <kloeri@gentoo.org> intltool-0.31.2.ebuild:
+  Stable on alpha.
+
+  14 Nov 2004; Simon Stelling <blubb@gentoo.org> intltool-0.32.1.ebuild:
+  fixed dependancies (bug #71081)
+
+  11 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org> intltool-0.31.2.ebuild:
+  Stable on sparc
+
+  11 Nov 2004; Mike Gardiner <obz@gentoo.org> intltool-0.31.2.ebuild:
+  Keyworded ppc for GNOME 2.8
+
+*intltool-0.32.1 (11 Nov 2004)
+
+  11 Nov 2004; foser <foser@gentoo.org> intltool-0.32.1.ebuild :
+  Fresh release
+
+*intltool-0.31.3 (14 Oct 2004)
+
+  14 Oct 2004; Alastair Tse <liquidx@gentoo.org> +intltool-0.31.3.ebuild:
+  version bump
+
+*intltool-0.31.2 (16 Sep 2004)
+
+  16 Sep 2004; foser <foser@gentoo.org> intltool-0.31.2.ebuild :
+  New release (#62484), now uses DESTDIR
+
+  28 Jun 2004; Tom Gall <tgall@gentoo.org> intltool-0.30.ebuild:
+  stable on ppc64
+
+  30 May 2004; L. Boshell <leonardop@gentoo.org> intltool-0.30.ebuild:
+  Add IUSE var.
+
+  13 May 2004; Stephen P. Becker <geoman@gentoo.org> intltool-0.30.ebuild:
+  Stable on mips.
+
+  09 Mar 2004; <agriffis@gentoo.org> intltool-0.30.ebuild:
+  stable on alpha and ia64
+
+  09 Mar 2004; Stephen P. Becker <geoman@gentoo.org> :
+  Added ~mips keyword.
+
+  16 Feb 2004; Gustavo Zacarias <gustavoz@gentoo.org> intltool-0.30.ebuild:
+  stable on hppa and sparc
+
+  10 Feb 2004; <spider@gentoo.org> intltool-0.30.ebuild:
+  x86 bump due to bugs with missing Makefile.in.in
+
+  10 Feb 2004; Bartosch Pixa <darkspecter@gentoo.org> intltool-0.29.ebuild:
+  set ppc in keywords
+
+  07 Feb 2004; <gustavoz@gentoo.org> intltool-0.29.ebuild:
+  stable on hppa and sparc
+
+  07 Feb 2004; foser <foser@gentoo.org> intltool-0.{29,30}.ebuild :
+  Fix RDEP order to actually make sense (thnx spider for the bucket of water)
+
+  07 Feb 2004; <spider@gentoo.org> intltool-0.29.ebuild:
+  stable on x86, doing this to get building working on things that need
+  XML::Parser
+
+*intltool-0.30 (3 Feb 2004)
+
+  03 Feb 2004; foser <foser@gentoo.org> intltool-0.30.ebuild :
+  New release
+
+*intltool-0.29 (26 Jan 2004)
+
+  26 Jan 2004; foser <foser@gentoo.org> intltool-0.29.ebuild, metadata.xml :
+  New release, added XML-Parser as rdep
+  Added to gnome herd
+
+  28 Dec 2003; Joshua Kinard <kumba@gentoo.org> intltool-0.27.2.ebuild:
+  Move to mips stable (~mips -> mips)
+
+  06 Nov 2003; Jason Wever <weeve@gentoo.org> intltool-0.27.2.ebuild:
+  Marked stable on sparc.
+
+  22 Oct 2003; Bartosch Pixa <darkspecter@gentoo.org> intltool-0.27.2.ebuild:
+  set ppc in keywords
+
+  16 Oct 2003; Aron Griffis <agriffis@gentoo.org> intltool-0.27.2.ebuild:
+  Stable on alpha
+
+  05 Oct 2003; Mike Gardiner <obz@gentoo.org> intltool-0.27.2.ebuild:
+  Marked stable on x86
+
+  23 Sep 2003; Bartosch Pixa <darkspecter@gentoo.org> intltool-0.26.ebuild:
+  set ppc in keywords
+
+*intltool-0.27.2 (18 Aug 2003)
+
+  15 Nov 2003; Guy Martin <gmsoft@gentoo.org> intltool-0.27.2.ebuild :
+  Marked stable on hppa.
+
+  18 Aug 2003; foser <foser@gentoo.org> intltool-0.27.2.ebuild :
+  New version
+
+*intltool-0.26 (17 May 2003)
+
+  24 Jul 2003; Guy Martin <gmsoft@gentoo.org>
+  Marked stable on hppa.
+
+  17 May 2003; foser <foser@gentoo.org> intltool-0.26.ebuild ;
+  New version, removed popt dep, should fix #15194
+
+  13 Mar 2003; Olivier Reisch <doctomoe@gentoo.org> intltool-0.25.ebuild :
+  Marked ppc stable.
+
+*intltool-0.25 (07 Jan 2002)
+
+  18 Apr 2003; Jan Seiddel <tuxus@gentoo.org> intltool-0.25.ebuild:
+  Added mips to keywords.
+
+  08 Apr 2003; Todd Sunderlin <todd@gentoo.org> intltool-0.25.ebuild:
+  Marked stable for sparc
+
+  16 Mar 2003; Guy Martin <gmsoft@gentoo.org> intltool-0.25.ebuild :
+  Added hppa to keywords.
+
+  21 Feb 2003; Aron Griffis <agriffis@gentoo.org> intltool-0.25.ebuild :
+  Mark stable on alpha
+  
+  07 Jan 2002; Spider <spider@gentoo.org> intltool-0.25.ebuild :
+  hacked up the new 0.25 release, some doc changes but thats all
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+
+*intltool-0.23 (28 Nov 2002)
+  
+  28 Nov 2002; Spider <spider@gentoo.org> intltool-0.23.ebuild :
+  new version for the last gnome-2 release. no changes.
+  
+*intltool-0.22 (7 Jun 2002) 
+  
+  23 Oct 2002; Spider <spider@gentoo.org> intltool-0.22.ebuild :
+  updated SRC_URI 
+  
+  7 Jun 2002; Spider <spider@gentoo.org> intltool-0.22.ebuild :
+  I missed to commit this yesterday.
+
+  23 Jul 2002; Mark Guertin <gerk@gentoo.org> :
+  Added ppc to keywords
+
+*intltool-0.21 (20 May 2002)
+  20 May 2002; Spider <spider@gentoo.org> :
+  Later greater and better... and fixes a bug in old version :)
+
+*intltool-0.20 (19 May 2002)
+  19 May 2002; Spider <spider@gentoo.org> :
+  update to the latest version that has support for schemas
+  
+*intltool-0.19 (18 May 2002)
+  18 May 2002; Spider <spider@gentoo.org> : 
+  copy over to updated version
+
+
+*intltool-0.17 (10 March 2002)
+
+*intltool-0.15 (17 Feb 2002)
+
+*intltool-0.14 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
