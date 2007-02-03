@@ -1,0 +1,16 @@
+--- configure.orig	2006-11-13 20:22:26.000000000 +0100
++++ configure	2006-11-16 00:23:41.000000000 +0100
+@@ -43559,8 +43559,12 @@
+ 
+ #
+ # Path to ImageMagick document files
++if test "x${PF}" = "x" ; then
+ MagickDocumentSubdir="${PACKAGE_NAME}-${PACKAGE_VERSION}"
+-MagickDocumentPath="${DATA_DIR}/doc/${MagickDocumentSubdir}"
++else
++MagickDocumentSubdir="${PF}"
++fi
++MagickDocumentPath="${DATA_DIR}/doc/${MagickDocumentSubdir}/html"
+ MagickDocumentPathDefine="${MagickDocumentPath}/"
+ if test "$native_win32_build" = 'yes'
+ then
