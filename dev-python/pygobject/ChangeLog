@@ -1,0 +1,77 @@
+# ChangeLog for dev-python/pygobject
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.19 2007/01/18 23:48:38 jer Exp $
+
+  18 Jan 2007; Jeroen Roovers <jer@gentoo.org> pygobject-2.12.3.ebuild:
+  Stable for HPPA (bug #147751).
+
+  14 Jan 2007; Bryan Østergaard <kloeri@gentoo.org>
+  pygobject-2.12.3.ebuild:
+  Stable on Alpha.
+
+  09 Jan 2007; Mart Raudsepp <leio@gentoo.org> pygobject-2.12.3.ebuild:
+  Fix DESCRIPTION, bug 161033
+
+  08 Jan 2007; Mart Raudsepp <leio@gentoo.org> -pygobject-2.12.1.ebuild,
+  -pygobject-2.12.2.ebuild, pygobject-2.12.3.ebuild:
+  QA: Set WANT_AUTOCONF, bug 160699. Remove old versions
+
+  21 Dec 2006; Markus Rothe <corsair@gentoo.org> pygobject-2.12.3.ebuild:
+  Stable on ppc64; bug #156662
+
+  18 Dec 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  pygobject-2.12.3.ebuild:
+  Stable on sparc
+
+  16 Dec 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  pygobject-2.12.3.ebuild:
+  Stable on ppc wrt bug #156662.
+
+  12 Dec 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  pygobject-2.12.3.ebuild:
+  Stable on amd64 wrt bug #156662.
+
+  10 Dec 2006; Andrej Kacian <ticho@gentoo.org> pygobject-2.12.3.ebuild:
+  Stable on x86, bug #156662.
+
+*pygobject-2.12.3 (19 Nov 2006)
+
+  19 Nov 2006; Mart Raudsepp <leio@gentoo.org> +pygobject-2.12.3.ebuild:
+  Version bump
+
+  30 Oct 2006; Robin H. Johnson <robbat2@gentoo.org>
+  pygobject-2.12.2.ebuild:
+  Move WANT_AUTOMAKE=1.8 line above autotools inherit.
+
+  30 Oct 2006; Robin H. Johnson <robbat2@gentoo.org>
+  pygobject-2.12.2.ebuild:
+  Fix bug #147285, eautomake invocation needed, see ebuild for full details.
+
+*pygobject-2.12.2 (13 Oct 2006)
+
+  13 Oct 2006; Mart Raudsepp <leio@gentoo.org> +pygobject-2.12.2.ebuild:
+  Version bump
+
+  22 Sep 2006; Donnie Berkholz <dberkholz@gentoo.org>; metadata.xml,
+  -pygobject-2.10.1.ebuild:
+  Remove 'my' version, and turn over completely to gnome.
+
+  07 Sep 2006; Daniel Gryniewicz <dang@gentoo.org> metadata.xml:
+  put pygobject in the gnome herd
+
+  07 Sep 2006; Donnie Berkholz <dberkholz@gentoo.org>; pygobject-2.10.1.ebuild:
+  Sync with gnome overlay ebuild, add back in blocker on pygtk < 2.9 that I
+  wrongly removed.
+
+*pygobject-2.12.1 (07 Sep 2006)
+
+  07 Sep 2006; Daniel Gryniewicz <dang@gentoo.org> +pygobject-2.12.1.ebuild:
+  New version for gnome 2.16
+
+*pygobject-2.10.1 (05 Sep 2006)
+
+  05 Sep 2006; Donnie Berkholz <dberkholz@gentoo.org>; +metadata.xml,
+  +pygobject-2.10.1.ebuild:
+  Add GNOME 2 bindings for Python, needed for system-config-*. Based on 2.11
+  ebuild in gnome overlay. Gnome herd, feel free to add yourself to metadata.
+
