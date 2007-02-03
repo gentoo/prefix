@@ -11,7 +11,7 @@ CXXFLAGS=${CFLAGS}
 MAKEOPTS="-j2"
 PLATFORM=$CHOST
 
-FEATURES="-sandbox -userpriv"
+FEATURES="-sandbox -userpriv nostrip"
 
 USE="berkdb bzip2 emboss python zlib"
 USE_EXPAND="PLATFORM"
