@@ -1,0 +1,108 @@
+# ChangeLog for x11-libs/libXtst
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/libXtst/ChangeLog,v 1.27 2006/10/01 17:01:45 dberkholz Exp $
+
+  01 Oct 2006; Donnie Berkholz <dberkholz@gentoo.org>; libXtst-1.0.1.ebuild:
+  libXext has a runtime dep on xextproto now, so we don't need to depend on it
+  here.
+
+  29 Sep 2006; Donnie Berkholz <dberkholz@gentoo.org>; libXtst-1.0.1.ebuild:
+  Move recordproto to runtime deps because it is required to compile against
+  this library (Daniel Drake).
+
+  19 Jul 2006; Guy Martin <gmsoft@gentoo.org> libXtst-1.0.1.ebuild:
+  Stable on hppa.
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org> libXtst-1.0.1.ebuild:
+  Mark 1.0.1 stable on ia64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; libXtst-1.0.1.ebuild:
+  ppc/sparc/mips/alpha/arm/sh stable
+
+  30 Jun 2006; Chris Gianelloni <wolf31o2@gentoo.org> libXtst-1.0.1.ebuild:
+  Stable on amd64.
+
+  30 Jun 2006; Markus Rothe <corsair@gentoo.org> libXtst-1.0.1.ebuild:
+  Stable on ppc64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; libXtst-1.0.1.ebuild:
+  x86 stable.
+
+  31 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> libXtst-1.0.1.ebuild:
+  Add ~x86-fbsd keyword.
+
+  09 Mar 2006; Aron Griffis <agriffis@gentoo.org> libXtst-1.0.1.ebuild:
+  Mark 1.0.1 ~ia64
+
+  14 Feb 2006; Markus Rothe <corsair@gentoo.org> libXtst-1.0.1.ebuild:
+  Added ~ppc64
+
+  31 Jan 2006; Rene Nussbaumer <killerfox@gentoo.org> libXtst-1.0.1.ebuild:
+  Unstable on hppa.
+
+  26 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  -libXtst-0.99.3.ebuild, -libXtst-1.0.0.ebuild:
+  Pull old versions.
+
+  26 Dec 2005; Stefaan De Roeck <stefaan@gentoo.org> libXtst-1.0.1.ebuild:
+  Marked ~alpha
+
+*libXtst-1.0.1 (23 Dec 2005)
+
+  23 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +libXtst-1.0.1.ebuild:
+  Bump for 7.0.
+
+*libXtst-1.0.0 (17 Dec 2005)
+
+  17 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +libXtst-1.0.0.ebuild:
+  Bump for 7.0RC4.
+
+  09 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  -libXtst-0.99.1.ebuild, -libXtst-0.99.2.ebuild:
+  Pull old versions.
+
+*libXtst-0.99.3 (04 Dec 2005)
+
+  04 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +libXtst-0.99.3.ebuild:
+  Bump for 7.0RC3.
+
+  12 Nov 2005; MATSUU Takuto <matsuu@gentoo.org> libXtst-0.99.2.ebuild:
+  Marked ~sh.
+
+*libXtst-0.99.2 (11 Nov 2005)
+
+  11 Nov 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +libXtst-0.99.2.ebuild:
+  Bump for 7.0RC2.
+
+  04 Nov 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  -libXtst-0.99.0.ebuild:
+  Drop old version.
+
+*libXtst-0.99.1 (20 Oct 2005)
+
+  20 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +libXtst-0.99.1.ebuild:
+  Bump for 7.0 RC1.
+
+  09 Sep 2005; Luca Barbato <lu_zero@gentoo.org> libXtst-0.99.0.ebuild:
+  Marked ~ppc
+
+  09 Sep 2005; Donnie Berkholz <spyderous@gentoo.org>; +metadata.xml:
+  Add metadata.
+
+  06 Sep 2005; Herbie Hopkins <herbs@gentoo.org> libXtst-0.99.0.ebuild:
+  Marked ~amd64.
+
+  08 Aug 2005; Ferris McCormick <fmccor@gentoo.org> libXtst-0.99.0.ebuild:
+  Add ~sparc keyword (modular X testing).
+
+*libXtst-0.99.0 (08 Aug 2005)
+
+  08 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +libXtst-0.99.0.ebuild:
+  Initial commit for modular X.
+
