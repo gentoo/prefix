@@ -1,0 +1,172 @@
+# ChangeLog for x11-proto/glproto
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-proto/glproto/ChangeLog,v 1.42 2006/12/01 18:14:36 gustavoz Exp $
+
+  01 Dec 2006; Gustavo Zacarias <gustavoz@gentoo.org> glproto-1.4.8.ebuild:
+  Stable on hppa
+
+  18 Oct 2006; Aron Griffis <agriffis@gentoo.org> glproto-1.4.8.ebuild:
+  Mark 1.4.8 stable on alpha. #144549
+
+  13 Oct 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  glproto-1.4.8.ebuild:
+  AMD64/x86 stable for bug #144549 (X7.1).
+
+  10 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> glproto-1.4.8.ebuild:
+  Stable on ia64.
+
+  20 Sep 2006; Donnie Berkholz <dberkholz@gentoo.org>; glproto-1.4.8.ebuild:
+  Fix keywording.
+
+*glproto-1.4.8 (20 Sep 2006)
+
+  20 Sep 2006; Donnie Berkholz <dberkholz@gentoo.org>;
+  +glproto-1.4.8.ebuild:
+  Bump for new tfp opcodes. Need to build xorg-server against this version if
+  using mesa 6.5.1 and wanting nice compositing eye candy.
+
+  19 Jul 2006; Guy Martin <gmsoft@gentoo.org> glproto-1.4.7.ebuild:
+  Stable on hppa.
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org> glproto-1.4.7.ebuild:
+  Mark 1.4.7 stable on ia64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; glproto-1.4.7.ebuild:
+  arm/sh stable
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; glproto-1.4.7.ebuild:
+  ppc/sparc/mips/alpha stable
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  -glproto-1.4.6.ebuild:
+  Pull old ebuild.
+
+  30 Jun 2006; Chris Gianelloni <wolf31o2@gentoo.org> glproto-1.4.7.ebuild:
+  Stable on amd64.
+
+  30 Jun 2006; Markus Rothe <corsair@gentoo.org> glproto-1.4.7.ebuild:
+  Stable on ppc64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; glproto-1.4.7.ebuild:
+  x86 stable.
+
+*glproto-1.4.7 (13 May 2006)
+
+  13 May 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  +glproto-1.4.7.ebuild:
+  Bump for final EXT_tfp tokens.
+
+  31 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> glproto-1.4.6.ebuild:
+  Add ~x86-fbsd keyword.
+
+*glproto-1.4.6 (20 Mar 2006)
+
+  20 Mar 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  -glproto-1.4.5.ebuild, +glproto-1.4.6.ebuild:
+  Bump.
+
+*glproto-1.4.5 (22 Feb 2006)
+
+  22 Feb 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  -glproto-1.4.4.ebuild, +glproto-1.4.5.ebuild:
+  Bump to add GLX_FRONT_LEFT_EXT.
+
+*glproto-1.4.4 (15 Feb 2006)
+
+  15 Feb 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  -glproto-1.4.3.ebuild, +glproto-1.4.4.ebuild:
+  Bump. Mainly fixes some problems for people trying to build Xgl.
+
+  14 Feb 2006; Markus Rothe <corsair@gentoo.org> glproto-1.4.3.ebuild:
+  Added ~ppc64
+
+  31 Jan 2006; Rene Nussbaumer <killerfox@gentoo.org> glproto-1.4.3.ebuild:
+  Unstable on hppa.
+
+  26 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  -glproto-1.4.1.ebuild, -glproto-1.4.2.ebuild:
+  Pull old versions.
+
+  26 Dec 2005; Stefaan De Roeck <stefaan@gentoo.org> glproto-1.4.3.ebuild:
+  Marked ~alpha
+
+*glproto-1.4.3 (23 Dec 2005)
+
+  23 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +glproto-1.4.3.ebuild:
+  Bump for 7.0.
+
+*glproto-1.4.2 (17 Dec 2005)
+
+  17 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +glproto-1.4.2.ebuild:
+  Bump for 7.0RC4.
+
+  31 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  -glproto-1.4-r1.ebuild, -glproto-1.4.1_pre20051013.ebuild:
+  Pull old versions.
+
+  20 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  files/digest-glproto-1.4.1:
+  Fix digest.
+
+*glproto-1.4.1 (20 Oct 2005)
+
+  20 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +glproto-1.4.1.ebuild:
+  Bump for 7.0 RC1.
+
+  14 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>; -glproto-1.4.ebuild:
+  Drop old revision.
+
+*glproto-1.4.1_pre20051013 (14 Oct 2005)
+
+  14 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +glproto-1.4.1_pre20051013.ebuild:
+  Bump for new xorg-server snapshot.
+
+  09 Sep 2005; Donnie Berkholz <spyderous@gentoo.org>; +metadata.xml:
+  Add metadata.
+
+  03 Sep 2005; Jeremy Huddleston <eradicator@gentoo.org> glproto-1.4.ebuild,
+  glproto-1.4-r1.ebuild:
+  Use eselect instead of opengl-update.
+
+  28 Aug 2005; MATSUU Takuto <matsuu@gentoo.org> glproto-1.4-r1.ebuild:
+  Marked ~sh
+
+  20 Aug 2005; Luca Barbato <lu_zero@gentoo.org> glproto-1.4.ebuild,
+  glproto-1.4-r1.ebuild:
+  Marked ~ppc
+
+  15 Aug 2005; Herbie Hopkins <herbs@gentoo.org> glproto-1.4-r1.ebuild:
+  Marked ~amd64
+
+*glproto-1.4-r1 (10 Aug 2005)
+
+  10 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +glproto-1.4-r1.ebuild:
+  Rev bump to make sure people get working GL setup.
+
+  10 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>; glproto-1.4.ebuild:
+  (fd.o #4036) Stop installing glu.h. This and glx.h are already installed by
+  mesa.
+
+  10 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>; glproto-1.4.ebuild:
+  Add dep on >=opengl-update-2.2.2.
+
+  10 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>; glproto-1.4.ebuild:
+  Add pkg_postinst() to run opengl-update so mesa will build.
+
+  10 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>; glproto-1.4.ebuild:
+  Make compatible with opengl-update. Reported by Georgi Georgiev
+  <chutz@gg3.net>.
+
+  08 Aug 2005; Ferris McCormick <fmccor@gentoo.org> glproto-1.4.ebuild:
+  Add ~sparc keyword (modular X testing on sparc).
+
+*glproto-1.4 (08 Aug 2005)
+
+  08 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>; +glproto-1.4.ebuild:
+  Initial commit for modular X
+
