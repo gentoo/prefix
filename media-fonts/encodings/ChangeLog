@@ -1,0 +1,120 @@
+# ChangeLog for media-fonts/encodings
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-fonts/encodings/ChangeLog,v 1.27 2006/11/09 15:34:59 joshuabaergen Exp $
+
+*encodings-1.0.2 (09 Nov 2006)
+
+  09 Nov 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  -encodings-1.0.1.ebuild, +encodings-1.0.2.ebuild:
+  Bump for RC2.  Brings minor cleanups.
+
+*encodings-1.0.1 (02 Nov 2006)
+
+  02 Nov 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  +encodings-1.0.1.ebuild:
+  Version bump.
+
+  19 Jul 2006; Guy Martin <gmsoft@gentoo.org> encodings-1.0.0.ebuild:
+  Stable on hppa.
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org> encodings-1.0.0.ebuild:
+  Mark 1.0.0 stable on ia64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  encodings-1.0.0.ebuild:
+  ppc/sparc/mips/alpha/arm/sh stable
+
+  30 Jun 2006; Marien Zwart <marienz@gentoo.org>
+  files/digest-encodings-1.0.0, ChangeLog, Manifest:
+  Fix digest.
+
+  30 Jun 2006; Marien Zwart <marienz@gentoo.org>
+  files/digest-encodings-1.0.0, Manifest:
+  Fix digest.
+
+  30 Jun 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  encodings-1.0.0.ebuild:
+  Stable on amd64.
+
+  30 Jun 2006; Markus Rothe <corsair@gentoo.org> encodings-1.0.0.ebuild:
+  Stable on ppc64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  encodings-1.0.0.ebuild:
+  x86 stable.
+
+  06 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  files/digest-encodings-1.0.0, Manifest:
+  (#135715) Fix digest.
+
+  04 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  encodings-1.0.0.ebuild:
+  (#133980) Add a real description (Max Lorenz).
+
+  14 May 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  encodings-1.0.0.ebuild:
+  Digests got broken again; add RESTRICT=mirror and use upstream tarballs.
+  Reported by Ciaran McCreesh.
+
+  31 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> encodings-1.0.0.ebuild:
+  Add ~x86-fbsd keyword.
+
+  14 Feb 2006; Markus Rothe <corsair@gentoo.org> encodings-1.0.0.ebuild:
+  Added ~ppc64
+
+  31 Jan 2006; Rene Nussbaumer <killerfox@gentoo.org>
+  encodings-1.0.0.ebuild:
+  Unstable on hppa.
+
+  26 Dec 2005; Stefaan De Roeck <stefaan@gentoo.org> encodings-1.0.0.ebuild:
+  Marked ~alpha
+
+*encodings-1.0.0 (18 Dec 2005)
+
+  18 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  -encodings-0.99.1-r1.ebuild, +encodings-1.0.0.ebuild:
+  Bump for 7.0RC4.
+
+*encodings-0.99.1-r1 (08 Dec 2005)
+
+  08 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +files/configurable-encodingsdir.patch, -encodings-0.99.1.ebuild,
+  +encodings-0.99.1-r1.ebuild:
+  (fd.o #5292) Make encodingsdir configurable in the source instead of a
+  hackish sed in the ebuild.
+
+  07 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  -encodings-0.99.0.ebuild:
+  Pull old versions.
+
+*encodings-0.99.1 (11 Nov 2005)
+
+  11 Nov 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +encodings-0.99.1.ebuild:
+  Bump for 7.0RC2.
+
+  19 Oct 2005; Stephen P. Becker <geoman@gentoo.org>
+  encodings-0.99.0.ebuild:
+  added ~mips keyword
+
+  09 Sep 2005; Donnie Berkholz <spyderous@gentoo.org>; +metadata.xml:
+  Add metadata.
+
+  28 Aug 2005; MATSUU Takuto <matsuu@gentoo.org> encodings-0.99.0.ebuild:
+  Marked ~sh
+
+  20 Aug 2005; Luca Barbato <lu_zero@gentoo.org> encodings-0.99.0.ebuild:
+  Marked ~ppc
+
+  15 Aug 2005; Herbie Hopkins <herbs@gentoo.org> encodings-0.99.0.ebuild:
+  Marked ~amd64
+
+  09 Aug 2005; Ferris McCormick <fmccor@gentoo.org> encodings-0.99.0.ebuild:
+  Add ~sparc keyword (modular X testing).
+
+*encodings-0.99.0 (08 Aug 2005)
+
+  08 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +encodings-0.99.0.ebuild:
+  Initial commit for modular X.
+
