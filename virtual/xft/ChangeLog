@@ -1,0 +1,44 @@
+# ChangeLog for virtual/xft
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/virtual/xft/ChangeLog,v 1.12 2007/01/26 06:54:03 dberkholz Exp $
+
+  26 Jan 2007; Donnie Berkholz <dberkholz@gentoo.org>; -xft-6.8.ebuild:
+  Pull monolithic Xorg. It's moved to the (new) x11 overlay, accessible via
+  layman.
+
+  23 Aug 2006; Sven Wegener <swegener@gentoo.org> xft-6.8.ebuild,
+  xft-7.0.ebuild:
+  Virtual packages have no build-time dependencies.
+
+  22 Aug 2006; Ferris McCormick <fmccor@gentoo.org> xft-7.0.ebuild:
+  Stable on sparc.
+
+  20 Jul 2006; Jeroen Roovers <jer@gentoo.org> xft-7.0.ebuild:
+  Stable on HPPA.
+
+  11 Jul 2006; Aron Griffis <agriffis@gentoo.org> xft-7.0.ebuild:
+  Mark 7.0 stable on ia64
+
+  10 Jul 2006; Stephen P. Becker <geoman@gentoo.org> xft-6.8.ebuild:
+  removing mips from 6.8, please use modular X on mips
+
+  01 Jul 2006; Donnie Berkholz <spyderous@gentoo.org>; xft-7.0.ebuild:
+  alpha/arm/mips/ppc/sh stable. Holding off on sparc for now, gustavoz is
+  having issues.
+
+  30 Jun 2006; Chris Gianelloni <wolf31o2@gentoo.org> xft-7.0.ebuild:
+  Stable on amd64.
+
+  30 Jun 2006; Markus Rothe <corsair@gentoo.org> xft-7.0.ebuild:
+  Stable on ppc64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; xft-7.0.ebuild:
+  x86 stable.
+
+*xft-7.0 (24 Apr 2006)
+*xft-6.8 (24 Apr 2006)
+
+  24 Apr 2006; Donnie Berkholz <spyderous@gentoo.org>; +metadata.xml,
+  +xft-6.8.ebuild, +xft-7.0.ebuild:
+  Add new-style virtual for xft, again so xorg-x11-7 ebuilds don't provide it.
+
