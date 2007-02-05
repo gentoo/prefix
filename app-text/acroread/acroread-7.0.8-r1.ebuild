@@ -30,7 +30,7 @@ SRC_URI="${SRC_URI}
 
 LICENSE="Adobe"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 RESTRICT="strip mirror"
 
 RDEPEND="x86? ( >=x11-libs/gtk+-2.0
