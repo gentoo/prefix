@@ -133,7 +133,7 @@ src_unpack() {
 		# LANG (matched with a trailing * so that for example 'de_DE' matches
 		# 'de', 'en_GB' matches 'en' etc).
 		cat > bin/acroread <<-EOF
-			#!/bin/bash
+			#!${EPREFIX}/bin/bash
 			# Copyright 1999-2007 Gentoo Foundation
 			# Distributed under the terms of the GNU General Public License v2
 			#
@@ -171,7 +171,7 @@ src_install() {
 	do
 		if [ -d ${i} ] ; then
 			chown -R --dereference -L root:0 ${i}
-			mv ${i} ${D}${INSTALLDIR}
+			mv ${i} ${ED}${INSTALLDIR}
 		fi
 	done
 
@@ -192,7 +192,7 @@ src_install() {
 	fi
 
 	if ! use ldap ; then
-		rm ${D}${INSTALLDIR}/Reader/intellinux/plug_ins/PPKLite.api
+		rm ${ED}${INSTALLDIR}/Reader/intellinux/plug_ins/PPKLite.api
 	fi
 
 	# libcups is needed for printing support (bug 118417)
@@ -207,7 +207,7 @@ src_install() {
 	dosym ${INSTALLDIR}/acroread /opt/bin/acroread
 
 	# fix wrong directory permissions (bug #25931)
-	find ${D}${INSTALLDIR}/. -type d | xargs chmod 755 || die
+	find ${ED}${INSTALLDIR}/. -type d | xargs chmod 755 || die
 }
 
 pkg_postinst () {
