@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 cd /tmp
-wget $1
 patch=${1##*\/}
+wget $1 -O $patch
 less $patch
 e=$(grep -o "/[^-]*-[^/]*/[^/]*/[^/]*.ebuild" $patch | head -n 1 | sed -e "s:^/::")
 catpkg=${e%/*}
