@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="create an index of X font files in a directory"
 
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 
 RDEPEND="x11-apps/mkfontscale"
 DEPEND="${RDEPEND}"
