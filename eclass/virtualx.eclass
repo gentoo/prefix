@@ -6,7 +6,7 @@
 #
 # This eclass can be used for packages that needs a working X environment to build
 
-DEPEND="X? ( || ( x11-base/xorg-server virtual/x11 ) )"
+DEPEND="!userland_darwin? ( X? ( || ( x11-base/xorg-server virtual/x11 ) ) )"
 IUSE="X"
 
 DESCRIPTION="Based on the $ECLASS eclass"
