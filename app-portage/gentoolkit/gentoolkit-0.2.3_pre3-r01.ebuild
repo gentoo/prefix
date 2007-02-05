@@ -24,6 +24,7 @@ DEPEND=">=sys-apps/portage-2.1.1_pre1
 
 src_unpack() {
 	unpack ${A}
+	epatch "${FILESDIR}"/${P}-modular-portage.patch
 	ebegin "Adjusting to prefix (sloppyly)"
 	cd "${S}"
 	find . -mindepth 2 -type f | grep -v Makefile | xargs sed -i \
