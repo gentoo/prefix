@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="X.Org XF86Rush protocol headers"
 
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 RESTRICT="mirror"
 
 RDEPEND=""
