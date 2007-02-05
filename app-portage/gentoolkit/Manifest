@@ -2,11 +2,15 @@ AUX gentoolkit-0.2.3_pre3-modular-portage.patch 9551 RMD160 8bef3fc3ffa4107d948a
 MD5 f499ea83348a88e5b5bdf62564eb1db1 files/gentoolkit-0.2.3_pre3-modular-portage.patch 9551
 RMD160 8bef3fc3ffa4107d948aef435ec6fb8b2741c73b files/gentoolkit-0.2.3_pre3-modular-portage.patch 9551
 SHA256 f22b61cb161910d33721d0be336e7be071c3cbd5f9193f3d0c89eb746f23577d files/gentoolkit-0.2.3_pre3-modular-portage.patch 9551
+AUX gentoolkit-0.2.3_pre3-revdep-prefix-darwin.patch 13543 RMD160 d8d0904136be14e399367809787cd6a2c0e92c3b SHA1 d6908c56fac51222c2323502aec8d0592ba57cac SHA256 441e9dac7e7fef34f7076c8df49afc4421a1ff391dc9b1d5718a04d0b6f9f5cb
+MD5 7de93e588f4ee054b3ddbd88b7e3c96b files/gentoolkit-0.2.3_pre3-revdep-prefix-darwin.patch 13543
+RMD160 d8d0904136be14e399367809787cd6a2c0e92c3b files/gentoolkit-0.2.3_pre3-revdep-prefix-darwin.patch 13543
+SHA256 441e9dac7e7fef34f7076c8df49afc4421a1ff391dc9b1d5718a04d0b6f9f5cb files/gentoolkit-0.2.3_pre3-revdep-prefix-darwin.patch 13543
 DIST gentoolkit-0.2.3_pre3.tar.gz 89972 RMD160 e08149e10c4a921ddbf042e7b47055a2fdb0a899 SHA1 98772d697bfb37bdf7c0c02230daa8c8e72281ce SHA256 4f229ca86be065b89373f211c29ddad780d9ac81bb3447a1fa2b7c9f9acc8c39
-EBUILD gentoolkit-0.2.3_pre3-r01.ebuild 2126 RMD160 da2210c3b11c6d2e23bdf7c6706ede87e585a0f3 SHA1 e0e8c974b3f89bfbfcc0d2048ffc8a88b556b110 SHA256 d335b53627aabffe3819f61ac135f13c56ae19dad79f09b804b6a6845c79452a
-MD5 e7b07426eb65581a649f465d0ab73865 gentoolkit-0.2.3_pre3-r01.ebuild 2126
-RMD160 da2210c3b11c6d2e23bdf7c6706ede87e585a0f3 gentoolkit-0.2.3_pre3-r01.ebuild 2126
-SHA256 d335b53627aabffe3819f61ac135f13c56ae19dad79f09b804b6a6845c79452a gentoolkit-0.2.3_pre3-r01.ebuild 2126
+EBUILD gentoolkit-0.2.3_pre3-r02.ebuild 2180 RMD160 d4fecdcefc4d462414af25c49f971982cdc22e79 SHA1 ad7ce7c9a29f8d1d21731cf49c2fb4ea46538560 SHA256 9317f37a176266c6ae79d7589022f292f0391bcc941a1b9013571e68790f8eca
+MD5 f07edd81fffdeb4775c072ada56607cc gentoolkit-0.2.3_pre3-r02.ebuild 2180
+RMD160 d4fecdcefc4d462414af25c49f971982cdc22e79 gentoolkit-0.2.3_pre3-r02.ebuild 2180
+SHA256 9317f37a176266c6ae79d7589022f292f0391bcc941a1b9013571e68790f8eca gentoolkit-0.2.3_pre3-r02.ebuild 2180
 MISC ChangeLog 37302 RMD160 5462edc9a56e1edbfea6b163757b7be556bf26b8 SHA1 3db494ed6b1c73a27689f73c1bbafc3fdd12eb76 SHA256 538815180fed5329783e420c314a169bc5eca4ef93544ea2c82af21eed58dca6
 MD5 1dd32c5421062a72546ab93a96ab2041 ChangeLog 37302
 RMD160 5462edc9a56e1edbfea6b163757b7be556bf26b8 ChangeLog 37302
@@ -15,6 +19,6 @@ MISC metadata.xml 451 RMD160 b1cce9123da273149c731793696937f9b3d02c60 SHA1 6126c
 MD5 c36d3e9465a96d7220228d2ef5457bd3 metadata.xml 451
 RMD160 b1cce9123da273149c731793696937f9b3d02c60 metadata.xml 451
 SHA256 1a2def4d28f69d6bffeb0b09e97ce53e6822e457d5d9308000a1010dca32abeb metadata.xml 451
-MD5 632066814b6ba7280cf4d2f331b17257 files/digest-gentoolkit-0.2.3_pre3-r01 262
-RMD160 5b7bd553fa8e4468f33c9768e6346cb121d7bf11 files/digest-gentoolkit-0.2.3_pre3-r01 262
-SHA256 e15eb4f9e3c38b0e8b3af8f07ea0be5b7754955e5b7b05b7814d87513dbf1a08 files/digest-gentoolkit-0.2.3_pre3-r01 262
+MD5 632066814b6ba7280cf4d2f331b17257 files/digest-gentoolkit-0.2.3_pre3-r02 262
+RMD160 5b7bd553fa8e4468f33c9768e6346cb121d7bf11 files/digest-gentoolkit-0.2.3_pre3-r02 262
+SHA256 e15eb4f9e3c38b0e8b3af8f07ea0be5b7754955e5b7b05b7814d87513dbf1a08 files/digest-gentoolkit-0.2.3_pre3-r02 262
