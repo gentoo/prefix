@@ -7,7 +7,7 @@ EAPI="prefix"
 inherit eutils multilib
 
 DESCRIPTION="X keyboard configuration database"
-KEYWORDS="~x86-macos ~x86"
+KEYWORDS="~ppc-macos ~x86 ~x86-macos"
 HOMEPAGE="http://www.freedesktop.org/wiki/Software/XKeyboardConfig"
 SRC_URI="http://xlibs.freedesktop.org/xkbdesc/${P}.tar.bz2"
 
