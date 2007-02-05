@@ -10,6 +10,6 @@ EAPI="prefix"
 inherit x-modular
 
 DESCRIPTION="X.Org KB protocol headers"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 RDEPEND=""
 DEPEND="${RDEPEND}"
