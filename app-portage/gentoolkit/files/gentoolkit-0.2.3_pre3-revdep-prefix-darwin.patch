@@ -1,0 +1,293 @@
+* Johan Hattne <johan.hattne@embl-hamburg.de>
+  revdep-rebuild patches for prefix and Darwin support
+  (indenting and quoting fixes by grobian@gentoo.org)
+
+--- gentoolkit-0.2.3_pre3/src/revdep-rebuild/revdep-rebuild
++++ gentoolkit-0.2.3_pre3/src/revdep-rebuild/revdep-rebuild
+@@ -67,6 +67,44 @@
+ PORTAGE_ROOT=$(portageq envvar ROOT)
+ [ -z "$PORTAGE_ROOT" ] && PORTAGE_ROOT="/"
+ 
++EPREFIX=$(portageq envvar EPREFIX)
++EROOT="${PORTAGE_ROOT%/}${EPREFIX}"
++
++case `uname` in
++	Darwin )
++		SONAME_SUFFIX=".dylib"
++		function all_missing_libs_f () {
++			otool -L "$1" 2>/dev/null | sort -u | awk '/^\t/{if (system("test -e "$ 1) != 0) print $ 1;}' | tr '\n' ' ' | sed 's/ $//'
++		}
++		function ldd_f () {
++			otool -L "$1"
++		}
++		# FIXME!! I don't know how to check for required libs on Darwin
++		function required_libs_f () {
++			all_missing_libs_f $1
++		}
++		function search_lib_f () {
++			otool -L "$1" 2>/dev/null | sort -u | $2 "$3" | awk '{print $ 1}' | tr '\n' ' ' | sed 's/ $//'
++		}
++	;;
++
++	Linux)
++		SONAME_SUFFIX=".so"
++		function all_missing_libs_f () {
++			ldd "$1" 2>/dev/null | sort -u | sed -n 's/	\(.*\) => not found/\1/p' | tr '\n' ' ' | sed 's/ $//'
++		}
++		function ldd_f () {
++			ldd "$1"
++		}
++		function required_libs_f () {
++			objdump -x $1 | grep NEEDED | awk '{print $ 2}' | tr '\n' ' ' | sed 's/ $//'
++		}
++		function search_lib_f () {
++			ldd "$1" 2>/dev/null | sort -u | $2 "$3" | awk '{print $ 1}' | tr '\n' ' ' | sed 's/ $//'
++		}
++	;;
++esac
++
+ # Update the incremental variables using /etc/profile.env, /etc/ld.so.conf,
+ # portage, and the environment
+ 
+@@ -78,30 +116,30 @@
+ PRELIMINARY_LD_LIBRARY_MASK="$LD_LIBRARY_MASK $(unset LD_LIBRARY_MASK; portageq envvar LD_LIBRARY_MASK)"
+ 
+ # Add the defaults
+-if [ -d /etc/revdep-rebuild ]
++if [ -d "${EPREFIX}"/etc/revdep-rebuild ]
+ then
+-	for file in $(ls /etc/revdep-rebuild)
++	for file in $(ls "${EPREFIX}"/etc/revdep-rebuild)
+ 	do
+-		PRELIMINARY_SEARCH_DIRS="$PRELIMINARY_SEARCH_DIRS $(. /etc/revdep-rebuild/${file}; echo $SEARCH_DIRS)"
+-		PRELIMINARY_SEARCH_DIRS_MASK="$PRELIMINARY_SEARCH_DIRS_MASK $(. /etc/revdep-rebuild/${file}; echo $SEARCH_DIRS_MASK)"
+-		PRELIMINARY_LD_LIBRARY_MASK="$PRELIMINARY_LD_LIBRARY_MASK $(. /etc/revdep-rebuild/${file}; echo $LD_LIBRARY_MASK)"
++		PRELIMINARY_SEARCH_DIRS="$PRELIMINARY_SEARCH_DIRS $(.  "${EPREFIX}"/etc/revdep-rebuild/${file}; echo $SEARCH_DIRS)"
++		PRELIMINARY_SEARCH_DIRS_MASK="$PRELIMINARY_SEARCH_DIRS_MASK $(.  "${EPREFIX}"/etc/revdep-rebuild/${file}; echo $SEARCH_DIRS_MASK)"
++		PRELIMINARY_LD_LIBRARY_MASK="$PRELIMINARY_LD_LIBRARY_MASK $(.  "${EPREFIX}"/etc/revdep-rebuild/${file}; echo $LD_LIBRARY_MASK)"
+ 	done
+ else
+-	PRELIMINARY_SEARCH_DIRS="$PRELIMINARY_SEARCH_DIRS /bin /sbin /usr/bin /usr/sbin /lib* /usr/lib*"
+-	PRELIMINARY_SEARCH_DIRS_MASK="$PRELIMINARY_SEARCH_DIRS_MASK /opt/OpenOffice /usr/lib/openoffice"
+-	PRELIMINARY_LD_LIBRARY_MASK="$PRELIMINARY_LD_LIBRARY_MASK libodbcinst.so libodbc.so libjava.so libjvm.so"
++	PRELIMINARY_SEARCH_DIRS="$PRELIMINARY_SEARCH_DIRS "${EPREFIX}"/bin "${EPREFIX}"/sbin "${EPREFIX}"/usr/bin "${EPREFIX}"/usr/sbin "${EPREFIX}"/lib* "${EPREFIX}"/usr/lib*"
++	PRELIMINARY_SEARCH_DIRS_MASK="$PRELIMINARY_SEARCH_DIRS_MASK "${EPREFIX}"/opt/OpenOffice "${EPREFIX}"/usr/lib/openoffice"
++	PRELIMINARY_LD_LIBRARY_MASK="$PRELIMINARY_LD_LIBRARY_MASK libodbcinst${SONAME_SUFFIX} libodbc${SONAME_SUFFIX} libjava${SONAME_SUFFIX} libjvm${SONAME_SUFFIX}"
+ fi
+ 
+ # Get the ROOTPATH and PATH from /etc/profile.env
+-if [ -e "/etc/profile.env" ]
++if [ -e "${EPREFIX}/etc/profile.env" ]
+ then
+-	PRELIMINARY_SEARCH_DIRS="$PRELIMINARY_SEARCH_DIRS $((. /etc/profile.env; echo ${ROOTPATH}:${PATH}) | tr ':' ' ')"
++	PRELIMINARY_SEARCH_DIRS="$PRELIMINARY_SEARCH_DIRS $((. "${EPREFIX}"/etc/profile.env; echo ${ROOTPATH}:${PATH}) | tr ':' ' ')"
+ fi
+ 
+ # Get the directories from /etc/ld.so.conf
+-if [ -e /etc/ld.so.conf ]
++if [ -e "${EPREFIX}"/etc/ld.so.conf ]
+ then
+-	PRELIMINARY_SEARCH_DIRS="$PRELIMINARY_SEARCH_DIRS $(grep -v "^#" /etc/ld.so.conf | tr '\n' ' ')"
++	PRELIMINARY_SEARCH_DIRS="$PRELIMINARY_SEARCH_DIRS $(grep -v "^#" "${EPREFIX}"/etc/ld.so.conf | tr '\n' ' ')"
+ fi	
+ 
+ # Set the final variables
+@@ -142,14 +180,14 @@
+ 	rm ~/.revdep-rebuild_0.test
+ else
+ 	# Try to use /var/tmp since $HOME is not available
+-	touch /var/tmp/.revdep-rebuild_0.test 2>/dev/null
++	touch "${EPREFIX}"/var/tmp/.revdep-rebuild_0.test 2>/dev/null
+ 	if [ $? -eq 0 ]
+ 	then
+-		LIST="/var/tmp/.revdep-rebuild"
+-		rm /var/tmp/.revdep-rebuild_0.test
++		LIST="${EPREFIX}/var/tmp/.revdep-rebuild"
++		rm "${EPREFIX}"/var/tmp/.revdep-rebuild_0.test
+ 	else
+ 		echo
+-		echo "!!! Unable to write temporary files to either $HOME or /var/tmp !!!"
++		echo "!!! Unable to write temporary files to either $HOME or ${EPREFIX}/var/tmp !!!"
+ 		echo
+ 		exit 1
+ 	fi
+@@ -372,10 +410,10 @@
+ 
+ 	# Hack for the different versions of find.
+ 	# Be extra paranoid and pipe results through sed to remove multiple slashes
+-	find_results=$(find /usr/bin/revdep-rebuild -type f -perm /u+x 2>/dev/null)
++	find_results=$(find "${EPREFIX}"/usr/bin/revdep-rebuild -type f -perm /u+x 2>/dev/null)
+ 	if [ -z $find_results ]
+ 	then
+-		find_results=$(find /usr/bin/revdep-rebuild -type f -perm +u+x 2>/dev/null)
++		find_results=$(find "${EPREFIX}"/usr/bin/revdep-rebuild -type f -perm +u+x 2>/dev/null)
+ 		if [ -z $find_results ]
+ 		then
+ 			echo -e "\n"
+@@ -385,13 +423,17 @@
+ 			exit 1
+ 		else
+ 			# using -perm +u+x for find command
+-			find $SEARCH_DIRS -type f \( -perm +u+x -o -name '*.so' -o -name '*.so.*' -o -name '*.la' \) 2>/dev/null | sort | uniq | sed 's:/\+:/:g' >$LIST.0_files
++			find $SEARCH_DIRS -type f \( -perm +u+x -o -name "*${SONAME_SUFFIX}" -o -name "*${SONAME_SUFFIX}.*" -o -name "*.la" \) 2>/dev/null | sort | uniq | sed 's:/\+:/:g' >$LIST.0_files
+ 		fi
+ 	else
+ 		# using -perm /u+x for find command
+-		find $SEARCH_DIRS -type f \( -perm /u+x -o -name '*.so' -o -name '*.so.*' -o -name '*.la' \) 2>/dev/null | sort | uniq | sed 's:/\+:/:g' >$LIST.0_files
++		find $SEARCH_DIRS -type f \( -perm /u+x -o -name "*${SONAME_SUFFIX}" -o -name "*${SONAME_SUFFIX}.*" -o -name "*.la" \) 2>/dev/null | sort | uniq | sed 's:/\+:/:g' >$LIST.0_files
+ 	fi
+ 
++	# Do not check anything outside $EROOT.
++	grep "^${EROOT}" $LIST.0_files > $LIST.1_files
++	mv $LIST.1_files $LIST.0_files
++
+ 	# Remove files that match SEARCH_DIR_MASK
+ 	for dir in $SEARCH_DIRS_MASK
+ 	do
+@@ -412,8 +454,8 @@
+ 		set_trap "$LIST.2_ldpath"
+ 		# Ensure that the "trusted" lib directories are at the start of the path
+ 		(
+-			echo /lib* /usr/lib* | sed 's/ /:/g'
+-			sed '/^#/d;s/#.*$//' </etc/ld.so.conf
++			echo "${EPREFIX}"/lib* "${EPREFIX}"/usr/lib* | sed 's/ /:/g'
++			sed '/^#/d;s/#.*$//' < "${EPREFIX}"/etc/ld.so.conf
+ 			sed 's:/[^/]*$::' <$LIST.1_files | sort -ru
+ 		) | tr '\n' : | tr -d '\r' | sed 's/:$//' >$LIST.2_ldpath
+ 		echo -e " done.\n  ($LIST.2_ldpath)"
+@@ -433,13 +475,15 @@
+ 	cat $LIST.1_files | egrep -v '*\.la$' | while read FILE ; do
+ 	# Note: double checking seems to be faster than single
+ 	# with complete path (special add ons are rare).
+-	if ldd "$FILE" 2>/dev/null | grep -v "$LD_MASK" | $SONAME_GREP -q "$SONAME_SEARCH" ; then
++
++	# How can one enter the block below, when $SONAME_SEARCH is set up the way it is?
++	if ldd_f $FILE 2>/dev/null | grep -v "$LD_MASK" | $SONAME_GREP -q "$SONAME_SEARCH" ; then
+ 		if $SEARCH_BROKEN && $FULL_LD_PATH ; then
+-			if LD_LIBRARY_PATH="$COMPLETE_LD_LIBRARY_PATH" ldd "$FILE" 2>/dev/null | grep -v "$LD_MASK" | $SONAME_GREP -q "$SONAME_SEARCH" ; then
++			if LD_LIBRARY_PATH="$COMPLETE_LD_LIBRARY_PATH" ldd_f $FILE 2>/dev/null | grep -v "$LD_MASK" | $SONAME_GREP -q "$SONAME_SEARCH" ; then
+ 				# FIX: I hate duplicating code
+ 				# Only build missing direct dependencies
+-				ALL_MISSING_LIBS=$(ldd "$FILE" 2>/dev/null | sort -u | sed -n 's/	\(.*\) => not found/\1/p' | tr '\n' ' ' | sed 's/ $//' )
+-				REQUIRED_LIBS=$(objdump -x $FILE | grep NEEDED | awk '{print $2}' | tr '\n' ' ' | sed 's/ $//')
++				ALL_MISSING_LIBS=$(all_missing_libs_f $FILE)
++				REQUIRED_LIBS=$(required_libs_f $FILE)
+ 				MISSING_LIBS=""
+ 				for lib in $ALL_MISSING_LIBS
+ 				do
+@@ -457,8 +501,8 @@
+ 		else
+ 			# FIX: I hate duplicating code
+ 			# Only rebuild for direct dependencies
+-			ALL_MISSING_LIBS=$(ldd "$FILE" 2>/dev/null | sort -u | $SONAME_GREP "$SONAME_SEARCH" | awk '{print $1}' | tr '\n' ' ' | sed 's/ $//' )
+-			REQUIRED_LIBS=$(objdump -x $FILE | grep NEEDED | awk '{print $2}' | tr '\n' ' ' | sed 's/ $//')
++			ALL_MISSING_LIBS=$(search_lib_f $FILE $SONAME_GREP $SONAME_SEARCH)
++			REQUIRED_LIBS=$(required_libs_f $FILE)
+ 			MISSING_LIBS=""
+ 			for lib in $ALL_MISSING_LIBS
+ 			do
+@@ -508,7 +552,7 @@
+ 			if $PORTAGE_UTILS ; then
+ 				EXACT_PKG="$(qfile -qvC ${FILE} )"
+ 			else
+-				EXACT_PKG=$(find /var/db/pkg -name CONTENTS | xargs fgrep -l "obj $FILE " | sed -e 's:/var/db/pkg/\(.*\)/CONTENTS:\1:g')
++				EXACT_PKG=$(find "${EPREFIX}"/var/db/pkg -name CONTENTS | xargs fgrep -l "obj $FILE " | sed -e "s:${EPREFIX}/var/db/pkg/\(.*\)/CONTENTS:\1:g")
+ 			fi
+ 			# Ugly sed hack to strip version information
+ 			PKG="$(echo $EXACT_PKG | sed 's/-r[0-9].*$//;s/\(^.*\/*\)-.*$/\1/')"
+@@ -547,8 +591,8 @@
+ 			do
+ 				# Get the slot
+ 				PKG="$(echo $EXACT_PKG | sed 's/-r[0-9].*$//;s/\(^.*\/*\)-.*$/\1/')"
+-				SLOT=$(cat /var/db/pkg/${EXACT_PKG}/SLOT)
+-				OTHER_VERSIONS=$(/usr/lib/gentoolkit/bin/find_pkgs.py $PKG | grep -v "($SLOT)" | awk '{print $2}')
++				SLOT=$(cat "${EPREFIX}"/var/db/pkg/${EXACT_PKG}/SLOT)
++				OTHER_VERSIONS=$("${EPREFIX}"/usr/lib/gentoolkit/bin/find_pkgs.py $PKG | grep -v "($SLOT)" | awk '{print $2}')
+ 				# If SLOT is equal to 0, then just see what portage says is latest version
+ 				if [ "$SLOT" = "0" -o "x$OTHER_VERSIONS" = "x" ]
+ 				then
+@@ -557,24 +601,24 @@
+ 					continue
+ 				fi
+ 				# Otherwise mask the other SLOTTED versions and check for latest
+-				if [ -e /etc/portage/package.mask ]
++				if [ -e "${EPREFIX}"/etc/portage/package.mask ]
+ 				then
+-					mv -f /etc/portage/package.mask /etc/portage/package.mask.revdep-rebuild.backup
++					mv -f "${EPREFIX}"/etc/portage/package.mask "${EPREFIX}"/etc/portage/package.mask.revdep-rebuild.backup
+ 				else
+-					# Make sure that /etc/portage/package.mask exists
+-					mkdir -p /etc/portage
+-					touch /etc/portage/package.mask
++					# Make sure that "${EPREFIX}"/etc/portage/package.mask exists
++					mkdir -p "${EPREFIX}"/etc/portage
++					touch "${EPREFIX}"/etc/portage/package.mask
+ 				fi
+ 				for pkg_version in $(echo $OTHER_VERSIONS | tr '\n' ' ') 
+ 				do
+-					echo "=${PKG}-${pkg_version}" >> /etc/portage/package.mask
++					echo "=${PKG}-${pkg_version}" >> "${EPREFIX}"/etc/portage/package.mask
+ 				done
+ 				best_visible=$(portageq best_visible $PORTAGE_ROOT $PKG)
+ 				[ "x" != "x$best_visible" ] && echo $best_visible
+-				rm -f /etc/portage/package.mask
+-				if [ -e /etc/portage/package.mask.revdep-rebuild.backup ]
++				rm -f "${EPREFIX}"/etc/portage/package.mask
++				if [ -e "${EPREFIX}"/etc/portage/package.mask.revdep-rebuild.backup ]
+ 				then
+-					mv -f /etc/portage/package.mask.revdep-rebuild.backup /etc/portage/package.mask
++					mv -f "${EPREFIX}"/etc/portage/package.mask.revdep-rebuild.backup ${EPREFIX}/etc/portage/package.mask
+ 				fi
+ 			done > $LLIST.4_ebuilds
+ 			echo -e " done.\n  ($LLIST.4_ebuilds)"
+@@ -593,8 +637,8 @@
+ 	else
+ 		if [ -s "$LLIST.3_rebuild" ] ; then
+ 			set_trap "$LLIST.4_ebuilds"
+-			find /var/db/pkg -name CONTENTS | xargs fgrep -l -f $LLIST.3_rebuild |
+-			sed 's:/var/db/pkg/\(.*\)/CONTENTS:\1:' > $LLIST.4_ebuilds
++			find "${EPREFIX}"/var/db/pkg -name CONTENTS | xargs fgrep -l -f $LLIST.3_rebuild |
++			sed "s:${EPREFIX}/var/db/pkg/\(.*\)/CONTENTS:\1:" > $LLIST.4_ebuilds
+ 			echo -e " done.\n  ($LLIST.4_ebuilds)"
+ 		else
+ 			echo " Nothing to rebuild"
+@@ -619,8 +663,8 @@
+ 			echo -e "Will merge in \"random\" order!${NO}"
+ 			echo "Possible reasons:"
+ 			echo "- An ebuild is no longer in the portage tree."
+-			echo "- An ebuild is masked, use /etc/portage/packages.keyword"
+-			echo "  and/or /etc/portage/package.unmask to unmask it"
++			echo "- An ebuild is masked, use ${EPREFIX}/etc/portage/packages.keyword"
++			echo "  and/or ${EPREFIX}/etc/portage/package.unmask to unmask it"
+ 			for i in . . . . . ; do
+ 				echo -n -e '\a.'
+ 				sleep 1
+@@ -634,8 +678,8 @@
+ 				echo -e "Will merge in \"random\" order!${NO}"
+ 				echo "Possible reasons:"
+ 				echo "- An ebuild is no longer in the portage tree."
+-				echo "- An ebuild is masked, use /etc/portage/packages.keyword"
+-				echo "  and/or /etc/portage/package.unmask to unmask it"
++				echo "- An ebuild is masked, use ${EPREFIX}/etc/portage/packages.keyword"
++				echo "  and/or ${EPREFIX}/etc/portage/package.unmask to unmask it"
+ 				for i in . . . . . ; do
+ 					echo -n -e '\a.'
+ 					sleep 1
+@@ -697,7 +741,7 @@
+ exec 0<&6 6<&-
+ 
+ #if $EXACT_EBUILDS ; then
+-#	mv -i /usr/portage/profiles/package.mask.hidden /usr/portage/profiles/package.mask
++#	mv -i "${EPREFIX}"/usr/portage/profiles/package.mask.hidden "${EPREFIX}"/usr/portage/profiles/package.mask
+ #	trap - SIGHUP SIGINT SIGQUIT SIGABRT SIGTERM
+ #fi
+ 
+@@ -711,7 +755,7 @@
+ 	echo "- use -X or --package-names as first argument (trys to rebuild package, not exact"
+ 	echo "  ebuild)"
+ 	echo "    or"
+-	echo "- set ACCEPT_KEYWORDS=\"~<your platform>\" and/or /etc/portage/package.unmask"
++	echo "- set ACCEPT_KEYWORDS=\"~<your platform>\" and/or ${EPREFIX}/etc/portage/package.unmask"
+ 	echo "  (and remove $LLIST.5_order to be evaluated again)"
+ 	echo "    or"
+ 	echo "- modify the above emerge command and run it manually"

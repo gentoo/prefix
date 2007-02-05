@@ -25,8 +25,9 @@ DEPEND=">=sys-apps/portage-2.1.1_pre1
 src_unpack() {
 	unpack ${A}
 	epatch "${FILESDIR}"/${P}-modular-portage.patch
-	ebegin "Adjusting to prefix (sloppyly)"
+	epatch "${FILESDIR}"/${P}-revdep-prefix-darwin.patch
 	cd "${S}"
+	ebegin "Adjusting to prefix (sloppyly)"
 	find . -mindepth 2 -type f | grep -v Makefile | xargs sed -i \
 		-e "s|/usr/lib/gentoolkit/pym|${EPREFIX}/usr/lib/gentoolkit/pym|g" \
 		-e "s|/usr/lib/portage/pym|${EPREFIX}/usr/lib/portage/pym|g" \
