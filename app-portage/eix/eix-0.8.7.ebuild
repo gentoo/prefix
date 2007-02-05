@@ -26,7 +26,7 @@ src_install() {
 
 	dodoc AUTHORS ChangeLog TODO
 
-	sed -i -e "s:PORTDIR_CACHE_METHOD.*:PORTDIR_CACHE_METHOD='backport':" eixrc
+	sed -i -e "s:PORTDIR_CACHE_METHOD.*:PORTDIR_CACHE_METHOD='none':" eixrc
 	insinto /etc
 	doins eixrc
 }
