@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.16 2006/08/07 07:10:16 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.17 2007/02/02 19:09:33 chtekk Exp $
 #
 # ========================================================================
 #
@@ -50,6 +50,7 @@ uses_php4() {
 	PHPCGI="/usr/${libdir}/php4/bin/php-cgi"
 	PHP_PKG="`best_version =dev-lang/php-4*`"
 	PHPPREFIX="/usr/${libdir}/php4"
+	EXT_DIR="`${PHPCONFIG} --extension-dir 2>/dev/null`"
 
 	einfo
 	einfo "Using ${PHP_PKG}"
@@ -87,6 +88,7 @@ uses_php5() {
 	PHPCGI="/usr/${libdir}/php5/bin/php-cgi"
 	PHP_PKG="`best_version =dev-lang/php-5*`"
 	PHPPREFIX="/usr/${libdir}/php5"
+	EXT_DIR="`${PHPCONFIG} --extension-dir 2>/dev/null`"
 
 	einfo
 	einfo "Using ${PHP_PKG}"

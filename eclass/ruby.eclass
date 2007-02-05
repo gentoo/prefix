@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.61 2007/01/29 12:15:50 pclouds Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.62 2007/01/31 13:46:07 pclouds Exp $
 #
 # Author: Mamoru KOMACHI <usata@gentoo.org>
 #
@@ -71,7 +71,7 @@ END
 }
 
 ruby_src_unpack() {
-	ruby_patch_mkmf
+	#ruby_patch_mkmf
 	unpack ${A}
 	cd ${S}
 	# apply bulk patches

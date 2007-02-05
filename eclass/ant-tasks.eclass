@@ -3,9 +3,13 @@
 # Copyright 2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
 # Author Vlastimil Babka <caster@gentoo.org>
-# $Header: /var/cvsroot/gentoo-x86/eclass/ant-tasks.eclass,v 1.3 2007/01/21 21:37:02 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ant-tasks.eclass,v 1.4 2007/02/02 22:59:53 caster Exp $
 
-inherit java-pkg-2 versionator
+# we set ant-core dep ourselves, restricted
+JAVA_ANT_DISABLE_ANT_CORE_DEP=true
+# rewriting build.xml for are the testcases has no reason atm
+JAVA_PKG_BSFIX_ALL=no
+inherit versionator java-pkg-2 java-ant-2
 
 EXPORT_FUNCTIONS src_unpack src_compile src_install
 

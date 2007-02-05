@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.321 2007/01/06 11:31:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.322 2007/02/01 23:42:42 flameeyes Exp $
 
 HOMEPAGE="http://gcc.gnu.org/"
 LICENSE="GPL-2 LGPL-2.1"
@@ -137,9 +137,9 @@ else
 
 	if [[ ${PN} != "kgcc64" ]] ; then
 		IUSE="${IUSE} altivec build fortran nls nocxx"
-		[[ -n ${PIE_VER}    ]] && IUSE="${IUSE} nopie"
-		[[ -n ${PP_VER}     ]] && IUSE="${IUSE} nossp"
-		[[ -n ${HTB_VER}    ]] && IUSE="${IUSE} boundschecking"
+		[[ -n ${PIE_VER}	]] && IUSE="${IUSE} nopie"
+		[[ -n ${PP_VER}		]] && IUSE="${IUSE} nossp"
+		[[ -n ${HTB_VER}	]] && IUSE="${IUSE} boundschecking"
 
 		if version_is_at_least 3 ; then
 			IUSE="${IUSE} bootstrap doc gcj gtk hardened multilib objc vanilla"
@@ -498,13 +498,13 @@ libc_has_ssp() {
 	[[ -z ${libc_file} ]] && die "Unable to find a libc !?"
 
 	# Check for gcc-4.x style ssp support
-	if  [[ -n $(readelf -s "${libc_file}" 2>/dev/null | \
+	if	[[ -n $(readelf -s "${libc_file}" 2>/dev/null | \
 				grep 'FUNC.*GLOBAL.*__stack_chk_fail') ]]
 	then
 		return 0
 	else
 		# Check for gcc-3.x style ssp support
-		if  [[ -n $(readelf -s "${libc_file}" 2>/dev/null | \
+		if	[[ -n $(readelf -s "${libc_file}" 2>/dev/null | \
 					grep 'OBJECT.*GLOBAL.*__guard') ]] && \
 			[[ -n $(readelf -s "${libc_file}" 2>/dev/null | \
 					grep 'FUNC.*GLOBAL.*__stack_smash_handler') ]]
@@ -589,10 +589,10 @@ _create_specs_file() {
 	popd > /dev/null
 	eend $([[ -s ${WORKDIR}/build/${name}.specs ]] ; echo $?)
 }
-create_vanilla_specs_file()          { _create_specs_file hardened vanilla ; }
-create_hardened_specs_file()         { _create_specs_file !hardened hardened  ${gcc_common_hard} -DEFAULT_PIE_SSP ; }
-create_hardenednossp_specs_file()    { _create_specs_file "" hardenednossp    ${gcc_common_hard} -DEFAULT_PIE ; }
-create_hardenednopie_specs_file()    { _create_specs_file "" hardenednopie    ${gcc_common_hard} -DEFAULT_SSP ; }
+create_vanilla_specs_file()			 { _create_specs_file hardened vanilla ; }
+create_hardened_specs_file()		 { _create_specs_file !hardened hardened  ${gcc_common_hard} -DEFAULT_PIE_SSP ; }
+create_hardenednossp_specs_file()	 { _create_specs_file "" hardenednossp	  ${gcc_common_hard} -DEFAULT_PIE ; }
+create_hardenednopie_specs_file()	 { _create_specs_file "" hardenednopie	  ${gcc_common_hard} -DEFAULT_SSP ; }
 create_hardenednopiessp_specs_file() { _create_specs_file "" hardenednopiessp ${gcc_common_hard} ; }
 
 split_out_specs_files() {
@@ -793,9 +793,9 @@ gcc_pkg_setup() {
 
 	if [[ ( $(tc-arch) == "amd64" || $(tc-arch) == "ppc64" ) && ( ${LD_PRELOAD} == "/lib/libsandbox.so" || ${LD_PRELOAD} == "/usr/lib/libsandbox.so" ) ]] && is_multilib ; then
 		eerror "Sandbox in your installed portage does not support compilation."
-		eerror "of a multilib gcc.  Please set FEATURES=-sandbox and try again."
+		eerror "of a multilib gcc.	Please set FEATURES=-sandbox and try again."
 		eerror "After you have a multilib gcc, re-emerge portage to have a working sandbox."
-		die "No 32bit sandbox.  Retry with FEATURES=-sandbox."
+		die "No 32bit sandbox.	Retry with FEATURES=-sandbox."
 	fi
 
 	if [[ ${ETYPE} == "gcc-compiler" ]] ; then
@@ -862,16 +862,16 @@ gcc-compiler_pkg_postinst() {
 	# tell our users that gcc-config will yell at them, but it's all good.
 	if ! has_version '>=sys-devel/gcc-config-1.3.10-r1' && [[ ${GCC_CONFIG_VER/-/} != ${GCC_CONFIG_VER} ]] ; then
 		ewarn "Your version of gcc-config will issue about having an invalid profile"
-		ewarn "when switching to this profile.  It is safe to ignore this warning,"
+		ewarn "when switching to this profile.	It is safe to ignore this warning,"
 		ewarn "and this problem has been corrected in >=sys-devel/gcc-config-1.3.10-r1."
 	fi
 
 	if ! is_crosscompile && ! use multislot && [[ ${GCCMAJOR}.${GCCMINOR} == 3.4 ]] ; then
 		echo
 		ewarn "You should make sure to rebuild all your C++ packages when"
-		ewarn "upgrading between different versions of gcc.  For example,"
+		ewarn "upgrading between different versions of gcc.	 For example,"
 		ewarn "when moving to gcc-3.4 from gcc-3.3, emerge gentoolkit and run:"
-		ewarn "  # revdep-rebuild --library libstdc++.so.5"
+		ewarn "	 # revdep-rebuild --library libstdc++.so.5"
 		echo
 		ewarn "For more information on the steps to take when upgrading "
 		ewarn "from gcc-3.3 please refer to: "
@@ -888,6 +888,8 @@ gcc-compiler_pkg_postinst() {
 		cp "${EROOT}/${DATAPATH}"/fixlafiles.awk "${EROOT}"/lib/rcscripts/awk/ || die "installing fixlafiles.awk"
 		cp "${EROOT}/${DATAPATH}"/fix_libtool_files.sh "${EROOT}"/sbin/ || die "installing fix_libtool_files.sh"
 
+		[[ ! -d ${EROOT}/usr/bin ]] \
+			&& mkdir -p "${EROOT}"/usr/bin
 		# Since these aren't critical files and portage sucks with
 		# handling of binpkgs, don't require these to be found
 		for x in "${EROOT}/${DATAPATH}"/c{89,99} ; do
@@ -971,7 +973,7 @@ guess_patch_type_in_dir() {
 }
 do_gcc_rename_java_bins() {
 	# bug #139918 - conflict between gcc and java-config-2 for ownership of
-	# /usr/bin/rmi{c,registry}.  Done with mv & sed rather than a patch
+	# /usr/bin/rmi{c,registry}.	 Done with mv & sed rather than a patch
 	# because patches would be large (thanks to the rename of man files),
 	# and it's clear from the sed invocations that all that changes is the
 	# rmi{c,registry} names to grmi{c,registry} names.
@@ -991,8 +993,8 @@ do_gcc_rename_java_bins() {
 			die "Failed to fixup file ${jfile} for rename to grmic"
 	done
 	# 3) Fixup Makefiles to build the changed executable names
-	#    These are present in all 3.x versions, and are the important bit
-	#    to get gcc to build with the new names.
+	#	 These are present in all 3.x versions, and are the important bit
+	#	 to get gcc to build with the new names.
 	for jfile in libjava/Makefile.am libjava/Makefile.in gcc/java/Make-lang.in; do
 		sed -i -e 's:rmiregistry:grmiregistry:g' ${S}/${jfile} ||
 			die "Failed to fixup file ${jfile} for rename to grmiregistry"
@@ -1110,7 +1112,7 @@ gcc_src_unpack() {
 		einfo "Touching generated files"
 		./contrib/gcc_update --touch | \
 			while read f ; do
-				einfo "  ${f%%...}"
+				einfo "	 ${f%%...}"
 			done
 	fi
 
@@ -1145,7 +1147,7 @@ gcc-compiler-configure() {
 
 	# GTK+ is preferred over xlib in 3.4.x (xlib is unmaintained
 	# right now). Much thanks to <csm@gnu.org> for the heads up.
-	# Travis Tilley <lv@gentoo.org>  (11 Jul 2004)
+	# Travis Tilley <lv@gentoo.org>	 (11 Jul 2004)
 	if ! is_gcj ; then
 		confgcc="${confgcc} --disable-libgcj"
 	elif use gtk ; then
@@ -1263,14 +1265,14 @@ gcc_do_configure() {
 		# disable a bunch of features or gcc goes boom
 		local needed_libc=""
 		case ${CTARGET} in
-			*-linux)    needed_libc=no-fucking-clue;;
+			*-linux)	needed_libc=no-fucking-clue;;
 			*-dietlibc) needed_libc=dietlibc;;
 			*-freebsd*) needed_libc=freebsd-lib;;
-			*-gnu*)     needed_libc=glibc;;
-			*-klibc)    needed_libc=klibc;;
-			*-uclibc*)  needed_libc=uclibc;;
-			mingw*)     needed_libc=mingw-runtime;;
-			avr)        confgcc="${confgcc} --enable-shared --disable-threads";;
+			*-gnu*)		needed_libc=glibc;;
+			*-klibc)	needed_libc=klibc;;
+			*-uclibc*)	needed_libc=uclibc;;
+			mingw*)		needed_libc=mingw-runtime;;
+			avr)		confgcc="${confgcc} --enable-shared --disable-threads";;
 		esac
 		if [[ -n ${needed_libc} ]] ; then
 			if ! has_version ${CATEGORY}/${needed_libc} ; then
@@ -1374,7 +1376,7 @@ gcc_do_make() {
 		# resulting binaries natively ^^;
 		GCC_MAKE_TARGET=${GCC_MAKE_TARGET-all}
 	elif [[ $(tc-arch) == "x86" || $(tc-arch) == "amd64" || $(tc-arch) == "ppc64" ]] \
-	 	&& [[ ${GCCMAJOR}.${GCCMINOR} > 3.3 ]]
+		&& [[ ${GCCMAJOR}.${GCCMINOR} > 3.3 ]]
 	then
 		GCC_MAKE_TARGET=${GCC_MAKE_TARGET-profiledbootstrap}
 	else
@@ -1478,7 +1480,7 @@ gcc_do_filter_flags() {
 		case $(tc-arch) in
 			x86)   filter-flags '-mtune=*';;
 			amd64) filter-flags '-mtune=*'
-			   	replace-cpu-flags k8 athlon64 opteron i686;;
+				replace-cpu-flags k8 athlon64 opteron i686;;
 		esac
 		;;
 	3.4|4.*)
@@ -1493,21 +1495,21 @@ gcc_do_filter_flags() {
 
 	# CFLAGS logic (verified with 3.4.3):
 	# CFLAGS:
-	#   This conflicts when creating a crosscompiler, so set to a sane
-	#     default in this case:
-	#   used in ./configure and elsewhere for the native compiler
-	#   used by gcc when creating libiberty.a
-	#   used by xgcc when creating libstdc++ (and probably others)!
-	#     this behavior should be removed...
+	#	This conflicts when creating a crosscompiler, so set to a sane
+	#	  default in this case:
+	#	used in ./configure and elsewhere for the native compiler
+	#	used by gcc when creating libiberty.a
+	#	used by xgcc when creating libstdc++ (and probably others)!
+	#	  this behavior should be removed...
 	#
 	# CXXFLAGS:
-	#   used by xgcc when creating libstdc++
+	#	used by xgcc when creating libstdc++
 	#
 	# STAGE1_CFLAGS (not used in creating a crosscompile gcc):
-	#   used by ${CHOST}-gcc for building stage1 compiler
+	#	used by ${CHOST}-gcc for building stage1 compiler
 	#
 	# BOOT_CFLAGS (not used in creating a crosscompile gcc):
-	#   used by xgcc for building stage2/3 compiler
+	#	used by xgcc for building stage2/3 compiler
 
 	if is_crosscompile ; then
 		# Set this to something sane for both native and target
@@ -1713,11 +1715,11 @@ gcc-compiler_src_install() {
 		done
 
 		# I do not know if this will break gcj stuff, so I'll only do it for
-		#   objc for now; basically "ffi.h" is the correct file to include,
-		#   but it gets installed in .../GCCVER/include and yet it does
-		#   "#include <ffitarget.h>" which (correctly, as it's an "extra" file)
-		#   is installed in .../GCCVER/include/libffi; the following fixes
-		#   ffi.'s include of ffitarget.h - Armando Di Cianno <fafhrd@gentoo.org>
+		#	objc for now; basically "ffi.h" is the correct file to include,
+		#	but it gets installed in .../GCCVER/include and yet it does
+		#	"#include <ffitarget.h>" which (correctly, as it's an "extra" file)
+		#	is installed in .../GCCVER/include/libffi; the following fixes
+		#	ffi.'s include of ffitarget.h - Armando Di Cianno <fafhrd@gentoo.org>
 		if is_objc && ! is_gcj ; then
 			#dosed "s:<ffitarget.h>:<libffi/ffitarget.h>:g" /${LIBPATH}/include/ffi.h
 			mv "${ED}"${LIBPATH}/include/libffi/* "${ED}"${LIBPATH}/include
@@ -1814,9 +1816,9 @@ gcc_movelibs() {
 	done
 
 	# We remove directories separately to avoid this case:
-	#   mv SRC/lib/../lib/*.o DEST
-	#   rmdir SRC/lib/../lib/
-	#   mv SRC/lib/../lib32/*.o DEST  # Bork
+	#	mv SRC/lib/../lib/*.o DEST
+	#	rmdir SRC/lib/../lib/
+	#	mv SRC/lib/../lib32/*.o DEST  # Bork
 	for FROMDIR in ${removedirs} ; do
 		rmdir "${ED}"${FROMDIR} >& /dev/null
 	done
@@ -2104,7 +2106,7 @@ should_we_gcc_config() {
 		# the middle of an emerge operation (like an 'emerge -e world'
 		# which could install multiple gcc versions).
 		einfo "The current gcc config appears valid, so it will not be"
-		einfo "automatically switched for you.  If you would like to"
+		einfo "automatically switched for you.	If you would like to"
 		einfo "switch to the newly installed gcc version, do the"
 		einfo "following:"
 		echo
@@ -2182,7 +2184,7 @@ should_we_eselect_compiler() {
 		# the middle of an emerge operation (like an 'emerge -e world'
 		# which could install multiple gcc versions).
 		einfo "The current gcc config appears valid, so it will not be"
-		einfo "automatically switched for you.  If you would like to"
+		einfo "automatically switched for you.	If you would like to"
 		einfo "switch to the newly installed gcc version, do the"
 		einfo "following:"
 		echo
@@ -2233,7 +2235,7 @@ do_eselect_compiler() {
 
 			if [[ ${isset} == 0 ]] ; then
 				eerror "We were not able to automatically set the current compiler for ${ctarget}"
-				eerror "to your newly emerged gcc.  Please use 'eselect compiler set'"
+				eerror "to your newly emerged gcc.	Please use 'eselect compiler set'"
 				eerror "to select your compiler."
 			fi
 		fi

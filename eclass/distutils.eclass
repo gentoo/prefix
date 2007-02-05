@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.37 2007/01/27 11:21:45 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.38 2007/02/03 00:19:41 kloeri Exp $
 #
 # Author: Jon Nelson <jnelson@gentoo.org>
 # Current Maintainer: Alastair Tse <liquidx@gentoo.org>
@@ -115,7 +115,7 @@ distutils_python_version() {
 distutils_python_tkinter() {
 	if ! python -c "import Tkinter" >/dev/null 2>&1; then
 		eerror "You need to recompile python with Tkinter support."
-		eerror "Try adding 'dev-lang/python X tk' to:"
+		eerror "Try adding 'dev-lang/python tk' to:"
 		eerror "/etc/portage/package.use"
 		echo
 		die "missing tkinter support with installed python"

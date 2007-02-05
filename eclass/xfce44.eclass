@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xfce44.eclass,v 1.15 2007/01/29 17:47:44 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xfce44.eclass,v 1.16 2007/02/03 00:35:12 nichoj Exp $
 
 # Xfce44 Eclass
 #
@@ -113,15 +113,15 @@ xfce44_want_einstall() {
 
 xfce44_src_compile() {
 	## XFCE_CONFIG sets extra config parameters
-	if has doc ${IUSE} && use doc ; then
+	if has doc ${IUSE}; then
 		XFCE_CONFIG="${XFCE_CONFIG} $(use_enable doc gtk-doc)"
 	fi
 
-	if has startup-notification ${IUSE} && use startup-notification ; then
+	if has startup-notification ${IUSE}; then
 		XFCE_CONFIG="${XFCE_CONFIG} $(use_enable startup-notification)"
 	fi
 
-	if has debug ${IUSE} && use debug ; then
+	if has debug ${IUSE}; then
 		XFCE_CONFIG="${XFCE_CONFIG} $(use_enable debug)"
 	fi
 	${CONFIGURE} ${XFCE_CONFIG} || die
