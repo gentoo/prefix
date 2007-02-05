@@ -10,7 +10,7 @@ EAPI="prefix"
 inherit x-modular multilib
 
 DESCRIPTION="compile XKB keyboard description"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libxkbfile"
