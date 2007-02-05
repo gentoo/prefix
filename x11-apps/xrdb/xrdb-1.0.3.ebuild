@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="X server resource database utility"
 
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 
 RDEPEND="x11-libs/libXmu
 	x11-libs/libX11"
