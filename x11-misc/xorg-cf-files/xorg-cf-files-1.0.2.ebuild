@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="Old Imake-related build files"
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 
 RDEPEND=""
 DEPEND=""
