@@ -1,0 +1,353 @@
+diff -Nru squid-2.6.STABLE9.orig/helpers/basic_auth/SMB/Makefile.am squid-2.6.STABLE9/helpers/basic_auth/SMB/Makefile.am
+--- squid-2.6.STABLE9.orig/helpers/basic_auth/SMB/Makefile.am	2005-05-17 19:56:26.000000000 +0300
++++ squid-2.6.STABLE9/helpers/basic_auth/SMB/Makefile.am	2007-01-27 08:17:28.000000000 +0200
+@@ -14,7 +14,7 @@
+ ## FIXME: autoconf should test for the samba path.
+ 
+ SMB_AUTH_HELPER	= smb_auth.sh
+-SAMBAPREFIX=/usr/local/samba
++SAMBAPREFIX=/usr
+ SMB_AUTH_HELPER_PATH = $(libexecdir)/$(SMB_AUTH_HELPER)
+ 
+ libexec_SCRIPTS	= $(SMB_AUTH_HELPER)
+diff -Nru squid-2.6.STABLE9.orig/helpers/basic_auth/SMB/smb_auth.sh squid-2.6.STABLE9/helpers/basic_auth/SMB/smb_auth.sh
+--- squid-2.6.STABLE9.orig/helpers/basic_auth/SMB/smb_auth.sh	2001-01-08 01:36:46.000000000 +0200
++++ squid-2.6.STABLE9/helpers/basic_auth/SMB/smb_auth.sh	2007-01-27 08:17:28.000000000 +0200
+@@ -24,7 +24,7 @@
+ read AUTHSHARE
+ read AUTHFILE
+ read SMBUSER
+-read SMBPASS
++read -r SMBPASS
+ 
+ # Find domain controller
+ echo "Domain name: $DOMAINNAME"
+@@ -47,7 +47,7 @@
+   addropt=""
+ fi
+ echo "Query address options: $addropt"
+-dcip=`$SAMBAPREFIX/bin/nmblookup $addropt "$PASSTHROUGH#1c" | awk '/^[0-9.]+ / { print $1 ; exit }'`
++dcip=`$SAMBAPREFIX/bin/nmblookup $addropt "$PASSTHROUGH#1c" | awk '/^[0-9.]+\..+ / { print $1 ; exit }'`
+ echo "Domain controller IP address: $dcip"
+ [ -n "$dcip" ] || exit 1
+ 
+diff -Nru squid-2.6.STABLE9.orig/snmplib/snmp_api.c squid-2.6.STABLE9/snmplib/snmp_api.c
+--- squid-2.6.STABLE9.orig/snmplib/snmp_api.c	2006-06-02 20:32:44.000000000 +0300
++++ squid-2.6.STABLE9/snmplib/snmp_api.c	2007-01-27 08:17:28.000000000 +0200
+@@ -121,7 +121,7 @@
+ }
+ 
+ /*
+- * Parses the packet recieved on the input session, and places the data into
++ * Parses the packet received on the input session, and places the data into
+  * the input pdu.  length is the length of the input packet.  If any errors
+  * are encountered, NULL is returned.  If not, the community is.
+  */
+diff -Nru squid-2.6.STABLE9.orig/src/auth/digest/auth_digest.c squid-2.6.STABLE9/src/auth/digest/auth_digest.c
+--- squid-2.6.STABLE9.orig/src/auth/digest/auth_digest.c	2006-07-31 02:27:04.000000000 +0300
++++ squid-2.6.STABLE9/src/auth/digest/auth_digest.c	2007-01-27 08:17:28.000000000 +0200
+@@ -1271,7 +1271,7 @@
+     nonce = authenticateDigestNonceFindNonce(digest_request->nonceb64);
+     if (!nonce) {
+ 	/* we couldn't find a matching nonce! */
+-	debug(29, 4) ("authenticateDigestDecode: Unexpected or invalid nonce recieved\n");
++	debug(29, 4) ("authenticateDigestDecode: Unexpected or invalid nonce received\n");
+ 	authDigestLogUsername(auth_user_request, username);
+ 
+ 	/* we don't need the scheme specific data anymore */
+@@ -1285,8 +1285,8 @@
+     /* check the qop is what we expected. Note that for compatability with 
+      * RFC 2069 we should support a missing qop. Tough. */
+     if (!digest_request->qop || strcmp(digest_request->qop, QOP_AUTH)) {
+-	/* we recieved a qop option we didn't send */
+-	debug(29, 4) ("authenticateDigestDecode: Invalid qop option recieved\n");
++	/* we received a qop option we didn't send */
++	debug(29, 4) ("authenticateDigestDecode: Invalid qop option received\n");
+ 	authDigestLogUsername(auth_user_request, username);
+ 
+ 	/* we don't need the scheme specific data anymore */
+diff -Nru squid-2.6.STABLE9.orig/src/cf.data.pre squid-2.6.STABLE9/src/cf.data.pre
+--- squid-2.6.STABLE9.orig/src/cf.data.pre	2007-01-20 00:03:03.000000000 +0200
++++ squid-2.6.STABLE9/src/cf.data.pre	2007-01-27 08:17:28.000000000 +0200
+@@ -344,12 +344,12 @@
+ NAME: htcp_port
+ IFDEF: USE_HTCP
+ TYPE: ushort
+-DEFAULT: 4827
++DEFAULT: 0
+ LOC: Config.Port.htcp
+ DOC_START
+ 	The port number where Squid sends and receives HTCP queries to
+-	and from neighbor caches.  Default is 4827.  To disable use
+-	"0".
++	and from neighbor caches.  To turn it on you want to set it to
++	4827.  By default it is set to "0" (disabled).
+ DOC_END
+ 
+ 
+@@ -2841,6 +2841,8 @@
+ acl Safe_ports port 488		# gss-http
+ acl Safe_ports port 591		# filemaker
+ acl Safe_ports port 777		# multiling http
++acl Safe_ports port 901		# SWAT
++acl purge method PURGE
+ acl CONNECT method CONNECT
+ NOCOMMENT_END
+ DOC_END
+@@ -2960,6 +2962,9 @@
+ # Only allow cachemgr access from localhost
+ http_access allow manager localhost
+ http_access deny manager
++# Only allow purge requests from localhost
++http_access allow purge localhost
++http_access deny purge
+ # Deny requests to unknown ports
+ http_access deny !Safe_ports
+ # Deny CONNECT to other than SSL ports
+@@ -2978,6 +2983,9 @@
+ #acl our_networks src 192.168.1.0/24 192.168.2.0/24
+ #http_access allow our_networks
+ 
++# Allow the localhost to have access by default
++http_access allow localhost
++
+ # And finally deny all other access to this proxy
+ http_access deny all
+ NOCOMMENT_END
+@@ -3274,7 +3282,7 @@
+ 
+ NAME: cache_mgr
+ TYPE: string
+-DEFAULT: webmaster
++DEFAULT: root
+ LOC: Config.adminEmail
+ DOC_START
+ 	Email-address of local cache manager who will receive
+@@ -3309,7 +3317,7 @@
+ 
+ NAME: cache_effective_user
+ TYPE: string
+-DEFAULT: nobody
++DEFAULT: squid 
+ LOC: Config.effectiveUser
+ DOC_START
+ 	If you start Squid as root, it will change its effective/real
+@@ -3324,7 +3332,7 @@
+ 
+ NAME: cache_effective_group
+ TYPE: string
+-DEFAULT: none
++DEFAULT: squid
+ LOC: Config.effectiveGroup
+ DOC_START
+ 	If you want Squid to run with a specific GID regardless of
+@@ -3693,6 +3701,9 @@
+ 	If you disable this, it will appear as
+ 
+ 		X-Forwarded-For: unknown
++NOCOMMENT_START
++forwarded_for off
++NOCOMMENT_END
+ DOC_END
+ 
+ 
+@@ -4127,7 +4138,11 @@
+ 	If you wish to create your own versions of the default
+ 	(English) error files, either to customize them to suit your
+ 	language or company copy the template English files to another
+-	directory and point this tag at them.
++	directory where the error files are read from.
++	/usr/share/squid/errors contains sets of error files
++	in different languages. The default error directory
++	is /etc/squid/errors, which is a link to one of these
++	error sets.
+ DOC_END
+ 
+ NAME: maximum_single_addr_tries
+@@ -4161,12 +4176,15 @@
+ NAME: snmp_port
+ TYPE: ushort
+ LOC: Config.Port.snmp
+-DEFAULT: 3401
++DEFAULT: 0
+ IFDEF: SQUID_SNMP
+ DOC_START
+ 	Squid can now serve statistics and status information via SNMP.
+ 	By default it listens to port 3401 on the machine. If you don't
+ 	wish to use SNMP, set this to "0".
++
++	Note: on Gentoo Linux, the default is zero - you need to
++	set it to 3401 to enable it.
+ DOC_END
+ 
+ NAME: snmp_access
+diff -Nru squid-2.6.STABLE9.orig/src/client_side.c squid-2.6.STABLE9/src/client_side.c
+--- squid-2.6.STABLE9.orig/src/client_side.c	2007-01-24 03:38:16.000000000 +0200
++++ squid-2.6.STABLE9/src/client_side.c	2007-01-27 08:17:38.000000000 +0200
+@@ -4599,14 +4599,7 @@
+ 	debug(83, 2) ("clientNegotiateSSL: Session %p reused on FD %d (%s:%d)\n", SSL_get_session(ssl), fd, fd_table[fd].ipaddr, (int) fd_table[fd].remote_port);
+     } else {
+ 	if (do_debug(83, 4)) {
+-	    /* Write out the SSL session details.. actually the call below, but
+-	     * OpenSSL headers do strange typecasts confusing GCC.. */
+-	    /* PEM_write_SSL_SESSION(debug_log, SSL_get_session(ssl)); */
+-#if defined(OPENSSL_VERSION_NUMBER) && OPENSSL_VERSION_NUMBER >= 0x00908000L
+-	    PEM_ASN1_write((i2d_of_void *) i2d_SSL_SESSION, PEM_STRING_SSL_SESSION, debug_log, (char *) SSL_get_session(ssl), NULL, NULL, 0, NULL, NULL);
+-#else
+ 	    PEM_ASN1_write(i2d_SSL_SESSION, PEM_STRING_SSL_SESSION, debug_log, (char *) SSL_get_session(ssl), NULL, NULL, 0, NULL, NULL);
+-#endif
+ 	    /* Note: This does not automatically fflush the log file.. */
+ 	}
+ 	debug(83, 2) ("clientNegotiateSSL: New session %p on FD %d (%s:%d)\n", SSL_get_session(ssl), fd, fd_table[fd].ipaddr, (int) fd_table[fd].remote_port);
+diff -Nru squid-2.6.STABLE9.orig/src/defines.h squid-2.6.STABLE9/src/defines.h
+--- squid-2.6.STABLE9.orig/src/defines.h	2006-11-29 17:58:52.000000000 +0200
++++ squid-2.6.STABLE9/src/defines.h	2007-01-27 08:17:28.000000000 +0200
+@@ -249,7 +249,7 @@
+ 
+ /* were to look for errors if config path fails */
+ #ifndef DEFAULT_SQUID_ERROR_DIR
+-#define DEFAULT_SQUID_ERROR_DIR "/usr/local/squid/etc/errors"
++#define DEFAULT_SQUID_ERROR_DIR "/usr/share/squid/errors/English"
+ #endif
+ 
+ /* gb_type operations */
+diff -Nru squid-2.6.STABLE9.orig/src/delay_pools.c squid-2.6.STABLE9/src/delay_pools.c
+--- squid-2.6.STABLE9.orig/src/delay_pools.c	2006-10-23 14:22:21.000000000 +0300
++++ squid-2.6.STABLE9/src/delay_pools.c	2007-01-27 08:17:28.000000000 +0200
+@@ -613,7 +613,7 @@
+ }
+ 
+ /*
+- * this records actual bytes recieved.  always recorded, even if the
++ * this records actual bytes received.  always recorded, even if the
+  * class is disabled - it's more efficient to just do it than to do all
+  * the checks.
+  */
+diff -Nru squid-2.6.STABLE9.orig/src/main.c squid-2.6.STABLE9/src/main.c
+--- squid-2.6.STABLE9.orig/src/main.c	2007-01-13 18:10:14.000000000 +0200
++++ squid-2.6.STABLE9/src/main.c	2007-01-27 08:17:28.000000000 +0200
+@@ -372,6 +372,22 @@
+     asnFreeMemory();
+ }
+ 
++#if USE_UNLINKD
++static int
++needUnlinkd(void)
++{
++    int i;
++    int r = 0;
++    for (i = 0; i < Config.cacheSwap.n_configured; i++) {
++       if (strcmp(Config.cacheSwap.swapDirs[i].type, "ufs") == 0 ||
++           strcmp(Config.cacheSwap.swapDirs[i].type, "aufs") == 0 ||
++           strcmp(Config.cacheSwap.swapDirs[i].type, "diskd") == 0)
++          r++;
++    }
++    return r;
++}
++#endif
++
+ static void
+ mainReconfigure(void)
+ {
+@@ -395,6 +411,7 @@
+     locationRewriteShutdown();
+     authenticateShutdown();
+     externalAclShutdown();
++    unlinkdClose();
+     storeDirCloseSwapLogs();
+     storeLogClose();
+     accessLogClose();
+@@ -430,6 +447,9 @@
+ #if USE_WCCPv2
+     wccp2Init();
+ #endif
++#if USE_UNLINKD
++    if (needUnlinkd()) unlinkdInit();
++#endif
+     serverConnectionsOpen();
+     neighbors_init();
+     storeDirOpenSwapLogs();
+@@ -593,7 +613,7 @@
+ 
+     if (!configured_once) {
+ #if USE_UNLINKD
+-	unlinkdInit();
++	if (needUnlinkd()) unlinkdInit();
+ #endif
+ 	urlInitialize();
+ 	cachemgrInit();
+@@ -972,7 +992,7 @@
+     int nullfd;
+     if (*(argv[0]) == '(')
+ 	return;
+-    openlog(appname, LOG_PID | LOG_NDELAY | LOG_CONS, LOG_LOCAL4);
++    openlog(appname, LOG_PID | LOG_NDELAY, LOG_DAEMON);
+     if ((pid = fork()) < 0)
+ 	syslog(LOG_ALERT, "fork failed: %s", xstrerror());
+     else if (pid > 0)
+@@ -1008,14 +1028,14 @@
+ 	mainStartScript(argv[0]);
+ 	if ((pid = fork()) == 0) {
+ 	    /* child */
+-	    openlog(appname, LOG_PID | LOG_NDELAY | LOG_CONS, LOG_LOCAL4);
++	    openlog(appname, LOG_PID | LOG_NDELAY, LOG_DAEMON);
+ 	    prog = xstrdup(argv[0]);
+ 	    argv[0] = xstrdup("(squid)");
+ 	    execvp(prog, argv);
+ 	    syslog(LOG_ALERT, "execvp failed: %s", xstrerror());
+ 	}
+ 	/* parent */
+-	openlog(appname, LOG_PID | LOG_NDELAY | LOG_CONS, LOG_LOCAL4);
++	openlog(appname, LOG_PID | LOG_NDELAY, LOG_DAEMON);
+ 	syslog(LOG_NOTICE, "Squid Parent: child process %d started", pid);
+ 	time(&start);
+ 	squid_signal(SIGINT, SIG_IGN, SA_RESTART);
+diff -Nru squid-2.6.STABLE9.orig/src/Makefile.am squid-2.6.STABLE9/src/Makefile.am
+--- squid-2.6.STABLE9.orig/src/Makefile.am	2006-10-30 02:07:33.000000000 +0200
++++ squid-2.6.STABLE9/src/Makefile.am	2007-01-27 08:17:28.000000000 +0200
+@@ -314,12 +314,12 @@
+ DEFAULT_CONFIG_FILE     = $(sysconfdir)/squid.conf
+ DEFAULT_MIME_TABLE	= $(sysconfdir)/mime.conf
+ DEFAULT_DNSSERVER       = $(libexecdir)/`echo dnsserver | sed '$(transform);s/$$/$(EXEEXT)/'`
+-DEFAULT_LOG_PREFIX	= $(localstatedir)/logs
++DEFAULT_LOG_PREFIX	= $(localstatedir)/log/squid
+ DEFAULT_CACHE_LOG       = $(DEFAULT_LOG_PREFIX)/cache.log
+ DEFAULT_ACCESS_LOG      = $(DEFAULT_LOG_PREFIX)/access.log
+ DEFAULT_STORE_LOG       = $(DEFAULT_LOG_PREFIX)/store.log
+-DEFAULT_PID_FILE        = $(DEFAULT_LOG_PREFIX)/squid.pid
+-DEFAULT_SWAP_DIR        = $(localstatedir)/cache
++DEFAULT_PID_FILE        = $(localstatedir)/run/squid.pid
++DEFAULT_SWAP_DIR        = $(localstatedir)/cache/squid
+ DEFAULT_PINGER		= $(libexecdir)/`echo pinger | sed '$(transform);s/$$/$(EXEEXT)/'`
+ DEFAULT_UNLINKD		= $(libexecdir)/`echo unlinkd | sed '$(transform);s/$$/$(EXEEXT)/'`
+ DEFAULT_DISKD		= $(libexecdir)/`echo diskd-daemon | sed '$(transform);s/$$/$(EXEEXT)/'`
+diff -Nru squid-2.6.STABLE9.orig/src/mib.txt squid-2.6.STABLE9/src/mib.txt
+--- squid-2.6.STABLE9.orig/src/mib.txt	2006-09-22 05:49:24.000000000 +0300
++++ squid-2.6.STABLE9/src/mib.txt	2007-01-27 08:17:28.000000000 +0200
+@@ -314,7 +314,7 @@
+                 MAX-ACCESS read-only
+                 STATUS current
+ 		DESCRIPTION
+-			" Number of HTTP KB's recieved "
++			" Number of HTTP KB's received "
+         ::= { cacheProtoAggregateStats 4 }
+ 
+         cacheHttpOutKb OBJECT-TYPE
+@@ -354,7 +354,7 @@
+                 MAX-ACCESS read-only
+                 STATUS current
+ 		DESCRIPTION
+-                        " Number of ICP KB's recieved "
++                        " Number of ICP KB's received "
+         ::= { cacheProtoAggregateStats 9 }
+ 
+         cacheServerRequests OBJECT-TYPE
+@@ -378,7 +378,7 @@
+                 MAX-ACCESS read-only
+                 STATUS current
+ 		DESCRIPTION
+-                        " KB's of traffic recieved from servers "
++                        " KB's of traffic received from servers "
+         ::= { cacheProtoAggregateStats 12 }
+ 
+         cacheServerOutKb OBJECT-TYPE

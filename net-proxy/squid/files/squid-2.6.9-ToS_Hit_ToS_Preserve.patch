@@ -1,0 +1,216 @@
+diff -Nru squid-2.6.STABLE9.orig/src/cf.data.pre squid-2.6.STABLE9/src/cf.data.pre
+--- squid-2.6.STABLE9.orig/src/cf.data.pre	2007-01-27 08:18:53.000000000 +0200
++++ squid-2.6.STABLE9/src/cf.data.pre	2007-01-27 08:19:12.000000000 +0200
+@@ -3191,6 +3191,64 @@
+ 	to off when using this directive in such configurations.
+ DOC_END
+ 
++NAME: zph_tos_local
++TYPE: int
++DEFAULT: 0
++LOC: Config.zph_tos_local
++DOC_START
++	Allows you to select a TOS/Diffserv value to mark local hits. Read above
++	(tcp_outgoing_tos) for details/requirements about TOS.
++	Default: 0 (disabled).
++DOC_END
++
++NAME: zph_tos_peer
++TYPE: int
++DEFAULT: 0
++LOC: Config.zph_tos_peer
++DOC_START
++	Allows you to select a TOS/Diffserv value to mark peer hits. Read above
++	(tcp_outgoing_tos) for details/requirements about TOS.
++	Default: 0 (disabled).
++DOC_END
++
++NAME: zph_tos_parent
++COMMENT: on|off
++TYPE: onoff
++LOC: Config.onoff.zph_tos_parent
++DEFAULT: on
++DOC_START
++	Set this to off if you want only sibling hits to be marked.
++	If set to on (default), parent hits are being marked too.
++DOC_END
++
++NAME: zph_preserve_miss_tos
++COMMENT: on|off
++TYPE: onoff
++LOC: Config.onoff.zph_preserve_miss_tos
++DEFAULT: on
++DOC_START
++	If set to on (default), any HTTP response towards clients will
++	have the TOS value of the response comming from the remote
++	server masked with the value of zph_preserve_miss_tos_mask.
++	For this to work correctly, you will need to patch your linux
++	kernel with the TOS preserving ZPH patch.
++	Has no effect under FreeBSD, works only under linux ZPH patched
++	kernels.
++DOC_END
++
++NAME: zph_preserve_miss_tos_mask
++TYPE: int
++DEFAULT: 255
++LOC: Config.zph_preserve_miss_tos_mask
++DOC_START
++	Allows you to mask certain bits in the TOS received from the
++	remote server, before copying the value to the TOS send towards
++	clients.
++	See zph_preserve_miss_tos for details.
++	
++	Default: 255 (TOS from server is not changed).
++DOC_END
++
+ NAME: tcp_outgoing_address
+ TYPE: acl_address
+ DEFAULT: none
+diff -Nru squid-2.6.STABLE9.orig/src/client_side.c squid-2.6.STABLE9/src/client_side.c
+--- squid-2.6.STABLE9.orig/src/client_side.c	2007-01-27 08:18:53.000000000 +0200
++++ squid-2.6.STABLE9/src/client_side.c	2007-01-27 08:19:12.000000000 +0200
+@@ -2629,6 +2629,55 @@
+ 	return;
+     }
+     assert(http->out.offset == 0);
++	
++	if ( Config.zph_tos_local || Config.zph_tos_peer ||
++         (Config.onoff.zph_preserve_miss_tos && Config.zph_preserve_miss_tos_mask) )
++    {
++       int need_change = 0;
++       int hit = 0;
++       int tos = 0;
++       int tos_old = 0;
++       int tos_len = sizeof(tos_old);
++       int res;
++                   
++       if (Config.zph_tos_local && isTcpHit(http->log_type)) {     /* local hit */
++           hit = 1;
++           tos = Config.zph_tos_local;
++       } else if (Config.zph_tos_peer &&
++           (http->request->hier.code == SIBLING_HIT ||             /* sibling hit */
++           (Config.onoff.zph_tos_parent &&
++           http->request->hier.code == PARENT_HIT))) {             /* parent hit */
++           hit = 1;
++           tos = Config.zph_tos_peer;
++       }
++       if (http->request->flags.proxy_keepalive) {
++           if (getsockopt(fd, IPPROTO_IP, IP_TOS, &tos_old, &tos_len) < 0) {
++               debug(33, 1) ("ZPH: getsockopt(IP_TOS) on FD %d: %s\n", fd, xstrerror());
++           } else if (hit && tos_old != tos) {     /* HIT: 1-st request, or previous was MISS, */
++               need_change = 1;                    /* or local/parent hit change */
++           } else if (!hit && (tos_old ||  /* MISS: previous was HIT */
++                            Config.onoff.zph_preserve_miss_tos)) { /* TOS copying is on */
++#if defined(_SQUID_LINUX_)			    
++                   if ( Config.onoff.zph_preserve_miss_tos ) {
++                     tos = (entry->mem_obj != NULL) ?
++                           (entry->mem_obj->recvTOS & Config.zph_preserve_miss_tos_mask):0;
++                   } else tos = 0;
++#else
++		    tos = 0;
++#endif		   
++               need_change = 1;
++           } 
++       } else if (hit) {                           /* no keepalive */
++           need_change = 1;
++       }
++       if (need_change) {
++           if (!hit) enter_suid(); /* Setting TOS bit6-7 is privilleged */
++           res = setsockopt(fd, IPPROTO_IP, IP_TOS, &tos, sizeof(tos));
++           if (!hit) leave_suid(); /* Setting bit5-7 is privilleged */
++           if ( res < 0)
++               debug(33, 1) ("ZPH: setsockopt(IP_TOS) on FD %d: %s\n", fd, xstrerror());
++       }
++    }
+     rep = http->reply = clientBuildReply(http, buf, size);
+     if (!rep) {
+ 	/* Forward as HTTP/0.9 body with no reply */
+diff -Nru squid-2.6.STABLE9.orig/src/http.c squid-2.6.STABLE9/src/http.c
+--- squid-2.6.STABLE9.orig/src/http.c	2007-01-21 12:26:44.000000000 +0200
++++ squid-2.6.STABLE9/src/http.c	2007-01-27 08:19:12.000000000 +0200
+@@ -1263,6 +1263,53 @@
+     peer *p = httpState->peer;
+     CWCB *sendHeaderDone;
+     int fd = httpState->fd;
++    
++#if defined(_SQUID_LINUX_)    
++/* ZPH patch starts here (M.Stavrev 25-05-2005)
++ * Retrieve connection peer's TOS value (which its SYN_ACK TCP segment
++ * was encapsulated into an IP packet)
++ */
++    int tos, tos_len;
++    if ( entry && entry->mem_obj ) { // Is this check necessary ? Seems not, but
++				 // have no time to investigate further.
++	    entry->mem_obj->recvTOS = 0;
++	    tos = 1;
++	    tos_len = sizeof(tos);
++	 	if ( setsockopt(fd,SOL_IP, IP_RECVTOS, &tos, tos_len) == 0 ) {
++		    unsigned char buf[128];
++		    int len = 128;
++		    if (getsockopt(fd, SOL_IP, IP_PKTOPTIONS, buf, &len) == 0)
++		    {
++		    	/* Parse the PKTOPTIONS structure to locate the TOS data message
++		    	 * prepared in the kernel by the ZPH incoming TCP TOS preserving
++		    	 * patch. In 99,99% the TOS should be located at buf[12], but
++		    	 * let's do it the right way.
++		    	 */
++		    	unsigned char * p = buf;
++		    	while ( p-buf < len ) {
++		    		struct cmsghdr * o = (struct cmsghdr*)p;
++		    		if ( o->cmsg_len <= 0 || o->cmsg_len > 52 )
++		    		   break;
++		    		if ( o->cmsg_level == SOL_IP && o->cmsg_type == IP_TOS ) {
++	    			   entry->mem_obj->recvTOS = (unsigned char)(*(int*)
++			    	   						(p + sizeof(struct cmsghdr)));
++				       debug(11, 5) ("ZPH: Incomming TOS=%d on FD %d\n",
++				       			entry->mem_obj->recvTOS, fd );
++			    	   break;
++		    		}
++		    		p += o->cmsg_len;
++		    	}
++		    } else {
++		    	debug(11, 5) ("ZPH: getsockopt(IP_PKTOPTIONS) on FD %d: %s\n",
++		    				 fd, xstrerror());
++		    }
++		} else {
++	    	debug(11, 5) ("ZPH: setsockopt(IP_RECVTOS) on FD %d: %s\n",
++	    					 fd, xstrerror());
++		}
++    }
++/* ZPH patch ends here */    
++#endif
+ 
+     debug(11, 5) ("httpSendRequest: FD %d: httpState %p.\n", fd, httpState);
+ 
+diff -Nru squid-2.6.STABLE9.orig/src/structs.h squid-2.6.STABLE9/src/structs.h
+--- squid-2.6.STABLE9.orig/src/structs.h	2007-01-21 12:26:44.000000000 +0200
++++ squid-2.6.STABLE9/src/structs.h	2007-01-27 08:19:12.000000000 +0200
+@@ -669,6 +669,8 @@
+ 	int relaxed_header_parser;
+ 	int accel_no_pmtu_disc;
+ 	int global_internal_static;
++	int zph_tos_parent;
++	int zph_preserve_miss_tos;	
+ 	int httpd_suppress_version_string;
+ 	int via;
+ 	int check_hostnames;
+@@ -793,6 +795,9 @@
+     int sleep_after_fork;	/* microseconds */
+     time_t minimum_expiry_time;	/* seconds */
+     external_acl *externalAclHelperList;
++	int zph_tos_local;
++   	int zph_tos_peer;
++	int zph_preserve_miss_tos_mask;    
+     errormap *errorMapList;
+ #if USE_SSL
+     struct {
+@@ -1719,6 +1724,9 @@
+     const char *vary_encoding;
+     StoreEntry *ims_entry;
+     time_t refresh_timestamp;
++#if defined(_SQUID_LINUX_)    
++    unsigned char recvTOS; /* ZPH patch - stores remote server's TOS */
++#endif	
+ };
+ 
+ struct _StoreEntry {

@@ -1,0 +1,8 @@
+#%PAM-1.0
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/net-proxy/squid/files/squid.pam,v 1.2 2006/01/09 06:03:12 mrness Exp $
+auth       include		system-auth
+auth       required		pam_nologin.so
+account    include		system-auth
+password   include		system-auth
+session    include		system-auth
+session    optional		pam_limits.so
