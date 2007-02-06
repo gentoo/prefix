@@ -226,9 +226,13 @@ src_install() {
 
 	insinto ${QTLIBDIR/${EPREFIX}}
 	doins lib/*.{la,pc}
-	sed -i -e "s:${S}/lib:${QTLIBDIR}:g" ${D}/${QTLIBDIR}/*.{la,prl,pc}
 
-	# pkgconfig files refer to WORKDIR/bin as the moc and uic locations.  Fix:
+	(
+		find ${D}/${QTLIBDIR} -name "*.la"
+		find ${D}/${QTLIBDIR} -name "*.prl"
+		find ${D}/${QTLIBDIR} -name "*.pc"
+	) | xargs \
+	sed -i -e "s:${S}/lib:${QTLIBDIR}:g"
 	sed -i -e "s:${S}/bin:${QTBINDIR}:g" ${D}/${QTLIBDIR}/*.pc
 
 	# Move .pc files into the pkgconfig directory
