@@ -10,7 +10,7 @@ SRC_URI="mirror://sourceforge/tinyproxy/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos"
 IUSE="socks5 transparent-proxy debug"
 
 DEPEND="socks5? ( net-proxy/dante )"
