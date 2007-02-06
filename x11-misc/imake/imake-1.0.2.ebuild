@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="C preprocessor interface to the make utility"
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 RESTRICT="mirror"
 
 RDEPEND="x11-misc/xorg-cf-files
