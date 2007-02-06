@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>no-herd</herd>
+<maintainer>
+<email>flameeyes@gentoo.org</email>
+<name>Diego Pettenò</name>
+</maintainer>
+<maintainer>
+ <email>drizzt@gentoo.org</email>
+ <name>Timothy Redaelli</name>
+ <description>Secondary Maintainer</description>
+</maintainer>
+<longdescription lang="en">
+Console BitTorrent client using ncurses based on libtorrent written in C++.
+</longdescription>
+</pkgmetadata>
