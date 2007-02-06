@@ -96,7 +96,7 @@ setup_portage() {
 			keywords="~x86-macos x86-macos"
 			;;
 		i*86-pc-linux-gnu)
-			profile="${PORTDIR}/profiles/default-linux/x86/2005.1"
+			profile="${PORTDIR}/profiles/default-linux/x86/2006.1"
 			keywords="~x86 x86"
 			;;
 		x64_86-pc-linux-gnu)
@@ -107,7 +107,7 @@ setup_portage() {
 			profile="${PORTDIR}/profiles/default-linux/ia64/2006.0"
 			keywords="~ia64 ia64"
 			;;
-		i386-sun-solaris2.10)
+		i386-pc-solaris2.10)
 			profile="${PORTDIR}/profiles/default-sunos/solaris/5.10/x86"
 			keywords="~x86-solaris x86-solaris"
 			;;
@@ -257,7 +257,7 @@ bootstrap_gcc() {
 		*-*-darwin*)
 			prep_gcc-apple
 			;;
-		*-sun-solaris*)
+		*-*-solaris*)
 			prep_gcc-fsf
 			GCC_EXTRA_OPTS="--disable-multilib --with-gnu-ld"
 			;;
@@ -354,7 +354,7 @@ bootstrap_python() {
 	export OPT="${CFLAGS}"
 
 	case $CHOST in
-		*-sun-solaris*)
+		*-*-solaris*)
 			# Solaris manpage says we need -lrt for fdatasync and
 			# sem_wait & friends, Python apparently doesn't know
 			export LDFLAGS="-lrt -laio -lmd5"
