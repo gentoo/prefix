@@ -439,7 +439,14 @@ then
 				MAKE=make
 				;;
 			SunOS)
-				CHOST="`uname -p`-sun-solaris`uname -r | sed 's|5|2|'`"
+				case `uname -p` in
+					i386)
+						CHOST="i386-pc-solaris`uname -r | sed 's|5|2|'`"
+					;;
+					sparc)
+						CHOST="sparc-sun-solaris`uname -r | sed 's|5|2|'`"
+					;;
+				esac
 				# make needs to know it is gmake
 				MAKE=gmake
 				;;
