@@ -1,0 +1,12 @@
+--- configure.orig	2006-11-26 10:20:41.000000000 +0100
++++ configure	2006-11-26 10:22:49.000000000 +0100
+@@ -3595,8 +3595,8 @@
+                     if "$unixtests/compile.test" "$XQMAKESPEC" $OPT_VERBOSE "$relpath" "$outpath" config.tests/unix/sqlite "SQLite" $QT_LFLAGS_SQLITE $L_FLAGS $QT_CFLAGS_SQLITE $I_FLAGS $l_FLAGS; then
+                         if [ "$CFG_SQL_sqlite" = "auto" ]; then
+                             CFG_SQL_sqlite=plugin
+-                            QMAKE_CONFIG="$QMAKE_CONFIG system-sqlite"
+                         fi
++                        QMAKE_CONFIG="$QMAKE_CONFIG system-sqlite"
+                     else
+                         SQLITE_AUTODETECT_FAILED="yes"
+                         CFG_SQL_sqlite=no

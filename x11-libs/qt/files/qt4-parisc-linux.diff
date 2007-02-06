@@ -1,0 +1,35 @@
+diff -uNr src/corelib/arch/parisc/arch.pri src/corelib/arch/parisc/arch.pri
+--- src/corelib/arch/parisc/arch.pri	2006-06-02 15:35:32.000000000 +0200
++++ src/corelib/arch/parisc/arch.pri	2006-06-02 15:39:49.000000000 +0200
+@@ -8,6 +8,14 @@
+ DEPENDPATH += $$ARCH_CPP;$$ARCH_H
+ 
+ HEADERS += $$ARCH_H/qatomic.h
+-SOURCES += $$ARCH_CPP/q_ldcw.s \
+-	   $$ARCH_CPP/qatomic.cpp
++SOURCES += $$ARCH_CPP/qatomic.cpp
++
++UNAME = $$system(uname -s)
++
++contains( UNAME, [lL]inux ) {
++	SOURCES += $$ARCH_CPP/q_ldcw-Linux.s
++} else {
++	SOURCES += $$ARCH_CPP/q_ldcw.s
++}
++
+ 
+diff -uNr src/corelib/arch/parisc/q_ldcw-Linux.s src/corelib/arch/parisc/q_ldcw-Linux.s
+--- src/corelib/arch/parisc/q_ldcw-Linux.s	1970-01-01 01:00:00.000000000 +0100
++++ src/corelib/arch/parisc/q_ldcw-Linux.s	2006-06-02 15:36:02.000000000 +0200
+@@ -0,0 +1,11 @@
++
++	.align 4
++	.text
++	.EXPORT q_ldcw,ENTRY,PRIV_LEV=3,ARGW0=GR,RTNVAL=GR
++q_ldcw:
++	.PROC
++	.CALLINFO FRAME=0,CALLS,SAVE_RP
++	ldcw 0(%r26),%r1
++	bv %r0(%r2)
++	copy %r1,%r28
++	.PROCEND

@@ -1,0 +1,15 @@
+--- qt-x11-opensource-src-4.1.4/configure.orig	2006-09-22 15:47:43.000000000 -0600
++++ qt-x11-opensource-src-4.1.4/configure	2006-09-22 21:17:12.000000000 -0600
+@@ -1821,6 +1821,12 @@
+     	fi
+     	ARCH=s390
+     	;;
++    Linux:*:sparc*)
++        if [ "$OPT_VERBOSE" = "yes" ]; then
++            echo "    Linux on SPARC"
++        fi
++        ARCH=sparc
++        ;;
+     *:*:*)
+         if [ "$OPT_VERBOSE" = "yes" ]; then
+             echo "    Trying '$UNAME_MACHINE'..."
