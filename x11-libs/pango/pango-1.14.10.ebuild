@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/pango/pango-1.14.9.ebuild,v 1.2 2006/12/09 21:31:31 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.14.10.ebuild,v 1.1 2007/01/30 21:17:32 leio Exp $
 
 EAPI="prefix"
 
@@ -12,18 +12,20 @@ HOMEPAGE="http://www.pango.org/"
 LICENSE="LGPL-2 FTL"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
-IUSE="doc"
+IUSE="doc X"
 
-RDEPEND="x11-libs/libXrender
-	x11-libs/libX11
-	x11-libs/libXft
+RDEPEND="X? (
+		x11-libs/libXrender
+		x11-libs/libX11
+		x11-libs/libXft
+	)
 	>=dev-libs/glib-2.10.0
 	>=media-libs/fontconfig-1.0.1
 	>=media-libs/freetype-2
 	>=x11-libs/cairo-1.2.2"
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.9
-	x11-proto/xproto
+	X? ( x11-proto/xproto )
 	doc? (
 		>=dev-util/gtk-doc-1
 		~app-text/docbook-xml-dtd-4.1.2
@@ -50,6 +52,11 @@ src_unpack() {
 	epunt_cxx
 }
 
+src_compile() {
+	econf $(use_with X x) || die "econf failed"
+	emake || "emake failed"
+}
+
 src_install() {
 	gnome2_src_install
 
@@ -57,15 +64,13 @@ src_install() {
 }
 
 pkg_postinst() {
-	if [ "${EROOT}" == "/" ] || [ "${EAPI}" == "prefix" ]; then
-		einfo "Generating modules listing..."
+	einfo "Generating modules listing..."
 
-		use amd64 && PANGO_CONFDIR="/etc/pango/${CHOST}"
-		use x86 && [ "${CONF_LIBDIR}" == "lib32" ] && PANGO_CONFDIR="/etc/pango/${CHOST}"
+	use amd64 && PANGO_CONFDIR="${EPREFIX}/etc/pango/${CHOST}"
+	use x86 && [ "${CONF_LIBDIR}" == "lib32" ] && PANGO_CONFDIR="${EPREFIX}/etc/pango/${CHOST}"
 
-		PANGO_CONFDIR=${PANGO_CONFDIR:=/etc/pango}
-		mkdir -p ${EROOT}${PANGO_CONFDIR}
+	PANGO_CONFDIR=${PANGO_CONFDIR:="${EPREFIX}/etc/pango"}
+	mkdir -p ${PANGO_CONFDIR}
 
-		pango-querymodules > ${EROOT}${PANGO_CONFDIR}/pango.modules
-	fi
+	pango-querymodules > ${PANGO_CONFDIR}/pango.modules
 }
