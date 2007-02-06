@@ -13,13 +13,15 @@ SRC_URI="http://cairographics.org/snapshots/${P}.tar.gz"
 LICENSE="|| ( LGPL-2.1 MPL-1.1 )"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
-IUSE="debug directfb doc glitz svg X xcb"
+IUSE="aqua debug directfb doc glitz svg X xcb"
 
 # Test causes a circular depend on gtk+... since gtk+ needs cairo but test needs gtk+ so we need to block it
 RESTRICT="test"
 
-RDEPEND="media-libs/fontconfig
-		>=media-libs/freetype-2.1.4
+RDEPEND="	!aqua? (
+			media-libs/fontconfig
+			>=media-libs/freetype-2.1.4
+		)
 		media-libs/libpng
 		X?	(
 				x11-libs/libXrender
@@ -54,10 +56,12 @@ src_compile() {
 	#gets rid of fbmmx.c inlining warnings
 	append-flags -finline-limit=1200
 
-	econf $(use_enable X xlib) $(use_enable doc gtk-doc) $(use_enable directfb) \
+	econf $(use_enable X xlib) $(use_enable doc gtk-doc) \
+	  	  $(use_enable directfb) \
 		  $(use_enable svg) $(use_enable glitz) \
 		  $(use_enable debug test-surfaces) --enable-pdf  --enable-png \
-		  --enable-freetype --enable-ps $(use_enable xcb) \
+		  $(use_enable X freetype) --enable-ps $(use_enable xcb) \
+		  $(use_enable aqua quartz) $(use_enable aqua atsui) \
 		  || die "configure failed"
 
 	emake || die "compile failed"
