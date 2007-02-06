@@ -1,4 +1,0 @@
-#!/bin/sh
-test -e /var/run/squid.pid && \
-test -n "$(cat /var/run/squid.pid|xargs ps -p|grep squid)" && \
-	/usr/sbin/squid -k rotate
