@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/cvs-1.12.12-r4.ebuild,v 1.1 2006/08/09 02:04:54 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/cvs-1.12.12-r4.ebuild,v 1.3 2006/10/17 15:08:46 uberlord Exp $
 
 EAPI="prefix"
 
@@ -58,7 +58,7 @@ src_install() {
 		insinto /usr/share/emacs/site-lisp
 		doins cvs-format.el || die "doins failed"
 	fi
-	
+
 	use server && newdoc ${FILESDIR}/cvs-1.12.12-cvs-custom.c cvs-custom.c
 
 	if use doc; then
