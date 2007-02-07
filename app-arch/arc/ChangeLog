@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/arc
-# Copyright 1999-2005 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/arc/ChangeLog,v 1.24 2005/09/30 20:17:21 fuzzyray Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/arc/ChangeLog,v 1.25 2007/01/05 23:23:01 kugelfang Exp $
+
+  05 Jan 2007; Danny van Dyk <kugelfang@gentoo.org> -arc-5.21j.ebuild:
+  QA: Removed unused versions.
 
   30 Sep 2005; Paul Varner <fuzzyray@gentoo.org> arc-5.21m.ebuild:
   Stable on x86 (bug #107312)
