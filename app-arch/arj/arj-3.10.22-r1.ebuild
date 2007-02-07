@@ -1,10 +1,12 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/arj/arj-3.10.22-r1.ebuild,v 1.5 2005/12/10 00:20:20 herbs Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/arj/arj-3.10.22-r1.ebuild,v 1.6 2007/01/04 19:26:16 flameeyes Exp $
 
 EAPI="prefix"
 
-inherit gnuconfig eutils toolchain-funcs
+WANT_AUTOCONF="latest"
+
+inherit eutils toolchain-funcs autotools
 
 DESCRIPTION="Utility for opening arj archives"
 HOMEPAGE="http://arj.sourceforge.net/"
@@ -12,7 +14,7 @@ SRC_URI="mirror://sourceforge/arj/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
 IUSE=""
 RESTRICT="nostrip"
 
@@ -24,6 +26,9 @@ src_unpack() {
 	epatch "${FILESDIR}/002_no_remove_static_const.patch"
 	epatch "${FILESDIR}/003_64_bit_clean.patch"
 	epatch "${FILESDIR}"/${P}-darwin.patch
+
+	cd "${S}/gnu"
+	eautoreconf
 }
 
 src_compile() {
@@ -56,30 +61,16 @@ src_compile() {
 		fi
 	fi
 
-	gnuconfig_update
-
-	cd ${S}/gnu
-	autoconf
+	cd "${S}/gnu"
 	econf || die
 
-	cd ${S}
+	cd "${S}"
 	make prepare || die "make prepare failed"
 	make package || die "make package failed"
 }
 
 src_install() {
-	case $CHOST in
-		*darwin8)
-			cd "${S}"/darwin8/en/rs/u
-			;;
-		*darwin7)
-			cd "${S}"/darwin7/en/rs/u
-			;;
-		# todo add solaris, bsd, etc
-		*)
-			cd "${S}"/linux-gnu/en/rs/u
-			;;
-	esac
+	cd "${S}"/${CHOST#*-*-}/en/rs/u
 	dobin bin/* || die
-	dodoc doc/arj/* ${S}/ChangeLog
+	dodoc doc/arj/* "${S}"/ChangeLog
 }

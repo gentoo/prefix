@@ -1,6 +1,14 @@
 # ChangeLog for app-arch/arj
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/arj/ChangeLog,v 1.24 2006/07/15 13:13:10 kloeri Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/arj/ChangeLog,v 1.25 2007/01/04 19:26:16 flameeyes Exp $
+
+  04 Jan 2007; Diego Pettenò <flameeyes@gentoo.org>
+  -files/arj-3.10.18-2.6.headers.patch, -files/arj-3.10.18-fPIC.patch,
+  -arj-3.10.18.ebuild, -arj-3.10.20.ebuild, -arj-3.10.21.ebuild,
+  -arj-3.10.22.ebuild, arj-3.10.22-r1.ebuild:
+  Remove old versions, and remove usage of gnuconfig in latest version. This
+  package should be p.masked and probably removed unless can be built with GCC
+  4.
 
   15 Jul 2006; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
   Remove aliz from metadata.xml as he's retired.
