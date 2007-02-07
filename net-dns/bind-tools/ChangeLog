@@ -1,6 +1,37 @@
 # ChangeLog for net-dns/bind-tools
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.56 2006/07/20 20:25:48 flameeyes Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.62 2007/02/06 03:01:59 mjolnir Exp $
+
+*bind-tools-9.4.0_rc2 (06 Feb 2007)
+*bind-tools-9.3.4 (06 Feb 2007)
+*bind-tools-9.2.8 (06 Feb 2007)
+
+  06 Feb 2007; Martin Jackson <mjolnir@gentoo.org> +bind-tools-9.2.8.ebuild,
+  +bind-tools-9.3.4.ebuild, +bind-tools-9.4.0_rc2.ebuild:
+  Updates for bugs #163691 #163692 and #164293
+
+  19 Dec 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  bind-tools-9.3.3.ebuild:
+  Stable on ppc wrt bug #158217.
+
+  18 Dec 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  bind-tools-9.3.3.ebuild:
+  Stable on sparc wrt security #158217
+
+  18 Dec 2006; Christian Faulhammer <opfer@gentoo.org>
+  bind-tools-9.2.7.ebuild, bind-tools-9.3.3.ebuild:
+  stable x86, security bug #158217
+
+  18 Dec 2006; Konstantin V. Arkhipov <voxus@gentoo.org>
+  bind-tools-9.2.7.ebuild, bind-tools-9.3.3.ebuild:
+  Goes stable on amd64 wrt security bug #158217.
+
+*bind-tools-9.3.3 (17 Dec 2006)
+*bind-tools-9.2.7 (17 Dec 2006)
+
+  17 Dec 2006; Konstantin V. Arkhipov <voxus@gentoo.org>
+  +bind-tools-9.2.7.ebuild, +bind-tools-9.3.3.ebuild:
+  Version bumps.
 
   20 Jul 2006; Diego Pettenò <flameeyes@gentoo.org>
   bind-tools-9.3.2-r3.ebuild:

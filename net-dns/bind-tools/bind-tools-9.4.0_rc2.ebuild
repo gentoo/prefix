@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.3.2-r3.ebuild,v 1.2 2006/07/20 20:25:48 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.4.0_rc2.ebuild,v 1.1 2007/02/06 03:01:59 mjolnir Exp $
 
 EAPI="prefix"
 
@@ -21,15 +21,22 @@ IUSE="idn ipv6"
 DEPEND=""
 
 src_unpack() {
-	unpack ${A} || die
-	cd ${S} || die
+	unpack "${A}" || die
+	cd "${S}" || die
 
 	use idn && {
-		epatch ${S}/contrib/idn/idnkit-1.0-src/patch/bind9/bind-${PV}-patch
+		# BIND 9.4.0 doesn't have this patch
+		# epatch ${S}/contrib/idn/idnkit-1.0-src/patch/bind9/bind-${PV}-patch
 
 		cd ${S}/contrib/idn/idnkit-1.0-src
 		epatch ${FILESDIR}/${PN}-configure.patch
+		cd -
 	}
+
+	# bug #151839
+	sed \
+		-e 's:CDEFINES =:CDEFINES = -USO_BSDCOMPAT:' \
+		-i lib/isc/unix/Makefile.in
 }
 
 src_compile() {
