@@ -29,10 +29,10 @@ for l in \
 	"hr" "is" "it" "nl" "no" "pl" "pt" "ro" "ru" "sk" \
 	"sl" "sr" "sv" "uk" "vi"; do
 	dep="linguas_${l}? ( app-dicts/aspell-${l} )"
-	[[ -z ${PDEPEND} ]] &&
-		PDEPEND="${dep}" ||
-		PDEPEND="${PDEPEND}
-${dep}"
+#	[[ -z ${PDEPEND} ]] &&
+#		PDEPEND="${dep}" ||
+#		PDEPEND="${PDEPEND}
+#${dep}"
 	def="!linguas_${l}? ( ${def} )"
 done
 PDEPEND="${PDEPEND}
@@ -41,8 +41,7 @@ ${def}"
 RDEPEND=">=sys-libs/ncurses-5.2
 	virtual/aspell-dict
 	gpm? ( sys-libs/gpm )
-	nls? ( virtual/libintl )
-	!=app-dicts/aspell-en-0.5*"
+	nls? ( virtual/libintl )"
 # English dictionary 0.5 is incompatible with aspell-0.6
 
 DEPEND="${RDEPEND}
