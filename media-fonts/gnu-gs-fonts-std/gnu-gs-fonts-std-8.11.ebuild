@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/ghostscript/${MY_P}.tar.gz"
 
 LICENSE="GPL-1"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
 DEPEND=""
