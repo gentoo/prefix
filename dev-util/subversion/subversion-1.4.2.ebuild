@@ -103,7 +103,7 @@ src_compile() {
 			# includes which don't exist
 			myconf="${myconf} --disable-keychain"
 		;;
-		*-sun-solaris*)
+		*-*-solaris*)
 			# -lintl isn't added for some reason
 			use nls && append-ldflags -lintl
 		;;
