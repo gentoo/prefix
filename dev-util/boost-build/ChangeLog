@@ -1,0 +1,10 @@
+# ChangeLog for dev-util/boost-build
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.1 2006/12/18 23:06:50 dev-zero Exp $
+
+*boost-build-1.34_pre20061214 (18 Dec 2006)
+
+  18 Dec 2006; Tiziano Müller <dev-zero@gentoo.org> +metadata.xml,
+  +boost-build-1.34_pre20061214.ebuild:
+  Initial commit.
+
