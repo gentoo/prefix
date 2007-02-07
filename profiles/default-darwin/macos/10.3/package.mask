@@ -1,3 +1,5 @@
 # dies with "exhausted memory" errors
 =dev-util/cvs-1.12*
 
+# system headers seem to completely unsuitable/broken for this
+=sys-devel/odcctools-20070131*
