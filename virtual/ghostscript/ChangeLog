@@ -1,0 +1,19 @@
+# ChangeLog for virtual/ghostscript
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/virtual/ghostscript/ChangeLog,v 1.5 2006/08/23 21:27:59 swegener Exp $
+
+  23 Aug 2006; Sven Wegener <swegener@gentoo.org> ghostscript-0.ebuild:
+  Virtual packages have no build-time dependencies.
+
+  27 Jun 2006; Stefan Schweizer <genstef@gentoo.org> ghostscript-0.ebuild:
+  Change ghostscript-afpl to -gpl and move it to #1
+
+  06 May 2006; Stefan Schweizer <genstef@gentoo.org> ghostscript-0.ebuild:
+  Make gs-esp-8 default for ~arch systems only until all arches stabilized it
+
+*ghostscript-0 (01 Apr 2006)
+
+  01 Apr 2006; Stefan Schweizer <genstef@gentoo.org> +metadata.xml,
+  +ghostscript-0.ebuild:
+  New-style virtual for ghostscript
+
