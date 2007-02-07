@@ -1,0 +1,11 @@
+--- dbus-1.0.0/bus/dir-watch-dnotify.c.fixfilecreation	2006-11-22 14:24:01.000000000 +0100
++++ dbus-1.0.0/bus/dir-watch-dnotify.c	2006-11-22 14:26:06.000000000 +0100
+@@ -57,7 +57,7 @@
+       goto out;
+     }
+ 
+-  if (fcntl (fd, F_NOTIFY, DN_DELETE|DN_RENAME|DN_MODIFY) == -1)
++  if (fcntl (fd, F_NOTIFY, DN_CREATE|DN_DELETE|DN_RENAME|DN_MODIFY) == -1)
+     {
+       _dbus_warn ("Cannot setup D_NOTIFY for '%s' error '%s'\n", dir, _dbus_strerror (errno));
+       close (fd);
