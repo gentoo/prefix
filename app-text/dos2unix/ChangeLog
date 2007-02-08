@@ -1,0 +1,75 @@
+# ChangeLog for app-text/dos2unix
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/dos2unix/ChangeLog,v 1.24 2007/01/31 21:06:49 corsair Exp $
+
+  31 Jan 2007; Markus Rothe <corsair@gentoo.org> dos2unix-3.1-r1.ebuild:
+  Stable on ppc64; bug #163872
+
+  27 Jan 2007; Joseph Jezak <josejx@gentoo.org> dos2unix-3.1-r1.ebuild:
+  Marked ppc stable for bug #163872.
+
+  27 Jan 2007; Jeroen Roovers <jer@gentoo.org> dos2unix-3.1-r1.ebuild:
+  Stable for HPPA (bug #163872).
+
+  27 Jan 2007; Olivier Crête <tester@gentoo.org> dos2unix-3.1-r1.ebuild:
+  Stable on amd64 for bug #163872
+
+  26 Jan 2007; Alexander H. Færøy <eroyf@gentoo.org>
+  dos2unix-3.1-r1.ebuild:
+  Stable on Alpha; bug #163872
+
+  26 Jan 2007; Alexander H. Færøy <eroyf@gentoo.org>
+  dos2unix-3.1-r1.ebuild:
+  Stable on MIPS; bug #163872
+
+  26 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  dos2unix-3.1-r1.ebuild:
+  Stable on sparc wrt #163872
+
+  26 Jan 2007; Raúl Porcel <armin76@gentoo.org> dos2unix-3.1-r1.ebuild:
+  x86 stable wrt bug 163872
+
+*dos2unix-3.1-r1 (05 Nov 2005)
+
+  05 Nov 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/dos2unix-3.1-includes.patch,
+  +files/dos2unix-3.1-manpage-update.patch,
+  +files/dos2unix-3.1-preserve-file-modes.patch,
+  +files/dos2unix-3.1-safeconv.patch, files/dos2unix-3.1-segfault.patch,
+  files/dos2unix-3.1.patch, +dos2unix-3.1-r1.ebuild:
+  Clean up patches, grab some more from Fedora, and cleanup the ebuild.
+
+  16 Sep 2005; Ciaran McCreesh <ciaranm@gentoo.org> ChangeLog:
+  Converted to UTF-8, fixed encoding screwups
+
+  21 Oct 2004; Aaron Walker <ka0ttic@gentoo.org> +metadata.xml:
+  Add metadata (shell-tools)
+
+  23 Jul 2004; Erik Swanson <erik_swanson@gentoo.org> dos2unix-3.1.ebuild:
+  Added macos to KEYWORDS re bug #58101
+
+  15 Jul 2004; Tom Gall <tgall@gentoo.org> dos2unix-3.1.ebuild:
+  stable on ppc64, bug #55545
+
+  28 Jun 2004; Ciaran McCreesh <ciaranm@gentoo.org> dos2unix-3.1.ebuild:
+  Added ~mips
+
+  23 Jun 2004; Guy Martin <gmsoft@gentoo.org> dos2unix-3.1.ebuild:
+  Marked stable on hppa.
+
+  28 Apr 2004; Jon Portnoy <avenj@gentoo.org> dos2unix-3.1.ebuild :
+  Stable on AMD64.
+
+  20 Jan 2004; Jon Portnoy <avenj@gentoo.org> dos2unix-3.1.ebuild :
+  AMD64 keywords.
+
+  24 Jun 2003; Tavis Ormandy <taviso@gentoo.org> dos2unix-3.1.ebuild:
+  marking alpha
+
+*dos2unix-3.1 (01 Dec 2002)
+
+  22 Dec 2002; Christian Birchinger <joker@gentoo.org>:
+  Added "sparc" keyword.
+
+  01 Dec 2002; Mike Frysinger <vapier@gentoo.org> :
+  Initial import.  Ebuild submitted by José Fonseca <j_r_fonseca@yahoo.co.uk>.
