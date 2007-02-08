@@ -1,12 +1,10 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.13.ebuild,v 1.7 2006/12/31 13:17:34 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.16.ebuild,v 1.2 2007/02/02 00:38:17 mr_bones_ Exp $
 
 EAPI="prefix"
 
-WANT_AUTOCONF="latest"
-WANT_AUTOMAKE="latest"
-inherit eutils autotools multilib
+inherit multilib eutils
 
 DESCRIPTION="Portable Network Graphics library"
 HOMEPAGE="http://www.libpng.org/"
@@ -17,30 +15,18 @@ LICENSE="as-is"
 SLOT="1.2"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="doc"
-RESTRICT="mirror" #146921
 
 DEPEND="sys-libs/zlib"
 
 src_unpack() {
-	unpack ${P}.tar.bz2
+	unpack ${A}
 	cd "${S}"
-	use doc && cp "${DISTDIR}"/libpng-manual.txt .
-
+	use doc && cp "${WORKDIR}"/${PN}-manual.txt .
 	epatch "${FILESDIR}"/1.2.7-gentoo.diff
-
-	epatch "${FILESDIR}"/${PN}-1.2.12-no-asm.patch #136452
-	eautoreconf
-}
-
-src_compile() {
-	econf || die
-	mv pngconf.h pngconf.h.in
-	emake pngconf.h || die
-	emake || die
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die
 	dodoc ANNOUNCE CHANGES KNOWNBUG README TODO Y2KINFO
 	use doc && dodoc libpng-manual.txt
 }

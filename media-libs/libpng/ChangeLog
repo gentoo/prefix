@@ -1,6 +1,40 @@
 # ChangeLog for media-libs/libpng
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.111 2007/01/06 23:46:27 seemant Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.121 2007/02/07 14:36:56 blubb Exp $
+
+  07 Feb 2007; Simon Stelling <blubb@gentoo.org> libpng-1.2.15.ebuild:
+  stable on amd64; bug 156061
+
+*libpng-1.2.16 (01 Feb 2007)
+
+  01 Feb 2007; Mike Frysinger <vapier@gentoo.org> +libpng-1.2.16.ebuild:
+  Version bump.
+
+  23 Jan 2007; Jeroen Roovers <jer@gentoo.org> libpng-1.2.15.ebuild:
+  Stable for HPPA (bug #156061).
+
+  23 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> libpng-1.2.15.ebuild:
+  Stable on sparc wrt #156061
+
+  23 Jan 2007; Christian Faulhammer <opfer@gentoo.org> libpng-1.2.15.ebuild:
+  stable x86, bug #156061
+
+  22 Jan 2007; Luca Barbato <lu_zero@gentoo.org> libpng-1.2.15.ebuild:
+  Marked ppc
+
+  22 Jan 2007; Markus Rothe <corsair@gentoo.org> libpng-1.2.15.ebuild:
+  Stable on ppc64; bug #156061
+
+  09 Jan 2007; Markus Rothe <corsair@gentoo.org> libpng-1.2.14.ebuild:
+  Stable on ppc64; bug #159562
+
+  07 Jan 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  libpng-1.2.14.ebuild:
+  ppc stable, bug #159562
+
+  07 Jan 2007; Seemant Kulleen <seemant@gentoo.org> libpng-1.2.14.ebuild,
+  libpng-1.2.14-r1.ebuild:
+  fixed the bum cp command, closing bug #160683
 
   06 Jan 2007; Seemant Kulleen <seemant@gentoo.org>
   -libpng-1.2.12-r1.ebuild, libpng-1.2.14.ebuild, libpng-1.2.14-r1.ebuild,
