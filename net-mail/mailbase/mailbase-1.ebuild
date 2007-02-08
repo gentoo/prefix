@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/mailbase/mailbase-1.ebuild,v 1.15 2006/10/17 11:00:11 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/mailbase/mailbase-1.ebuild,v 1.16 2007/01/06 13:44:07 drizzt Exp $
 
 EAPI="prefix"
 
@@ -18,6 +18,14 @@ IUSE="pam"
 RDEPEND="pam? ( virtual/pam )"
 
 S=${WORKDIR}
+
+get_permissions_oct() {
+	if [[ ${USERLAND} = GNU ]] || [[ ${EPREFIX%/} != "" ]] ; then
+		stat -c%a "${EROOT}$1"
+	elif [[ ${USERLAND} = BSD ]] ; then
+		stat -f%p "${EROOT}$1" | cut -c 3-
+	fi
+}
 
 src_install() {
 	dodir /etc/mail
@@ -53,7 +61,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	if [ "$(stat -c%a ${EROOT}/var/spool/mail/)" != "775" ] ; then
+	if [[ "$(get_permissions_oct /var/spool/mail)" != "775" ]] ; then
 		echo
 		ewarn
 		ewarn "Your ${EROOT}/var/spool/mail/ directory permissions differ from"
