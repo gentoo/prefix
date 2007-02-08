@@ -33,6 +33,6 @@ src_compile() {
 src_install() {
 	exeinto /usr/bin
 	doexe pgrep/pgrep pkill/pkill pfind/pfind
-	
-	doman pgrep/pgrep.1 pkill/pkill.1 pfind/pfind.1	
+
+	doman pgrep/pgrep.1 pkill/pkill.1 pfind/pfind.1
 }
