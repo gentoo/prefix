@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.13-r1.ebuild,v 1.9 2007/02/03 21:06:16 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.13-r2.ebuild,v 1.1 2007/02/04 20:26:44 griffon26 Exp $
 
 EAPI="prefix"
 
-inherit eutils libtool
+inherit autotools eutils
 
 DESCRIPTION="Library for parsing, editing, and saving EXIF data"
 HOMEPAGE="http://libexif.sourceforge.net/"
@@ -26,16 +26,14 @@ src_unpack() {
 	cd ${S}
 	epatch ${FILESDIR}/${P}-doxygen.patch
 	epatch ${FILESDIR}/${P}-parallel-build.patch
-	epatch ${FILESDIR}/${P}-doxy-stamp-make.patch
+	epatch ${FILESDIR}/${P}-doxy-stamp-make.patch		# bug #160973
 	epatch ${FILESDIR}/${P}-pkgconfig.patch
+	epatch ${FILESDIR}/${P}-optional-apidocs.patch		# bug #150152
 
-	# The libexif hackers made a goof on the soname versioning.
-	sed -i 's/^LIBEXIF_AGE=0$/LIBEXIF_AGE=2/' ${S}/configure
-	sed -i 's/^LIBEXIF_REVISION=0$/LIBEXIF_REVISION=2/' ${S}/configure
-	sed -i 's/^LIBEXIF_VERSION_INFO=.*$/LIBEXIF_VERSION_INFO=$LIBEXIF_CURRENT:$LIBEXIF_AGE:$LIBEXIF_REVISION/' \
-		${S}/configure
+	# See upstream commits of configure.ac from 1.13 to 1.15
+	epatch "${FILESDIR}/${P}-library-versioning.patch"
 
-	elibtoolize
+	AT_M4DIR="m4m" eautoreconf
 }
 
 src_compile() {
@@ -60,7 +58,9 @@ src_install() {
 
 	# installs a blank directory for whatever broken reason
 	use nls || rm -rf ${ED}usr/share/locale
+}
 
+pkg_preinst() {
 	# Keep around old lib
 	preserve_old_lib /usr/$(get_libdir)/libexif.so.9
 }

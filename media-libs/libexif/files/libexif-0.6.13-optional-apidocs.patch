@@ -1,0 +1,62 @@
+diff -ruN libexif-0.6.13/configure.ac libexif-0.6.13-fixed/configure.ac
+--- libexif-0.6.13/configure.ac	2005-12-27 22:17:23.000000000 +0100
++++ libexif-0.6.13-fixed/configure.ac	2007-02-02 22:19:20.387292250 +0100
+@@ -75,6 +75,22 @@
+ GP_CONFIG_MSG([Ship binaries in tarball],[$ship_binaries])
+ 
+ 
++dnl ------------------------------------------------------------------------
++dnl Whether to install api documentation
++dnl ------------------------------------------------------------------------
++
++install_apidocs=false
++AC_ARG_ENABLE([doc],
++[AS_HELP_STRING([--enable-doc],
++[Whether to install API documentation [default=no]])],[
++	if test x$enableval = xyes; then
++		install_apidocs=true
++	fi
++])
++AM_CONDITIONAL([INSTALL_APIDOCS],[$install_apidocs])
++GP_CONFIG_MSG([Install API documentation],[$install_apidocs])
++
++
+ dnl ---------------------------------------------------------------------------
+ dnl Whether -lm is required for our math functions
+ dnl ---------------------------------------------------------------------------
+diff -ruN libexif-0.6.13/doc/Makefile.am libexif-0.6.13-fixed/doc/Makefile.am
+--- libexif-0.6.13/doc/Makefile.am	2007-02-02 22:18:07.878760750 +0100
++++ libexif-0.6.13-fixed/doc/Makefile.am	2007-02-02 22:19:54.889448500 +0100
+@@ -2,6 +2,7 @@
+ # Conditional rules, depending on tool availability
+ ########################################################################
+ 
++if INSTALL_APIDOCS
+ if HAVE_DOXYGEN
+ 
+ DOXYGEN_FILES =
+@@ -62,7 +63,7 @@
+ 	ssh "sf" "find /home/groups/l/li/libexif/htdocs/internals /home/groups/l/li/libexif/htdocs/api \( -type d -exec chgrp libexif {} \; -exec chmod g+rwxs,a+rx {} \; \) -or \( -type f -exec chgrp libexif {} \; -exec chmod g+rw {} \; \( -name '*.html' -or -name '*.png' -or -name '*.php' -or -name '*.jpg' -or -name '*.css' -name '*.dot' -name '*.map' \) -exec chmod a+r {} \; \)"
+ 
+ endif
+-
++endif
+ 
+ ########################################################################
+ # Common part
+@@ -74,6 +75,7 @@
+ 
+ all-local: $(DOXYGEN_STAMPS)
+ 
++if INSTALL_APIDOCS
+ if HAVE_DOXYGEN
+ 
+ install-data-local: install-apidocs install-apidocs-internals
+@@ -83,6 +85,7 @@
+ clean-local: clean-apidocs
+ 
+ endif
++endif
+ 
+ upload: $(DOXYGEN_UPLOAD)
+ 

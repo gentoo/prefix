@@ -1,0 +1,13 @@
+diff -ruN libexif-0.6.13/doc/Makefile.am libexif-0.6.13-fixed/doc/Makefile.am
+--- libexif-0.6.13/doc/Makefile.am	2007-02-04 15:10:39.692419000 +0100
++++ libexif-0.6.13-fixed/doc/Makefile.am	2007-02-04 15:12:54.920870250 +0100
+@@ -21,6 +21,9 @@
+ 	doxygen $<
+ 	echo > $@
+ 
++$(HTML_APIDOC_DIR).stamp: $(DOXYGEN_OUTPUT_DIR).stamp
++	echo > $@
++
+ $(top_builddir)/libexif/libexif.la:
+ 	cd $(top_builddir)/libexif && $(MAKE) libexif.la
+ 

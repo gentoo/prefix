@@ -1,0 +1,30 @@
+diff -ruN libexif-0.6.13/configure.ac libexif-0.6.13-fixed/configure.ac
+--- libexif-0.6.13/configure.ac	2007-02-02 23:35:23.064441750 +0100
++++ libexif-0.6.13-fixed/configure.ac	2007-02-02 23:39:51.129194750 +0100
+@@ -37,13 +37,14 @@
+ dnl			 0 if you incremented CURRENT.
+ dnl  - CURRENT (Major):  Increment if the interface has changes or removals.
+ dnl ---------------------------------------------------------------------------
+-LIBEXIF_AGE=1
+-LIBEXIF_REVISION=0
++LIBEXIF_AGE=0
++LIBEXIF_REVISION=1
+ LIBEXIF_CURRENT=12
+ AC_SUBST([LIBEXIF_AGE])
+ AC_SUBST([LIBEXIF_REVISION])
+ AC_SUBST([LIBEXIF_CURRENT])
+-LIBEXIF_VERSION_INFO=`expr $LIBEXIF_CURRENT + $LIBEXIF_REVISION`:$LIBEXIF_AGE:$LIBEXIF_REVISION
++AC_SUBST([LIBEXIF_CURRENT_MIN],[`expr $LIBEXIF_CURRENT - $LIBEXIF_AGE`])
++LIBEXIF_VERSION_INFO=$LIBEXIF_CURRENT:$LIBEXIF_REVISION:$LIBEXIF_AGE
+ AC_SUBST([LIBEXIF_VERSION_INFO])
+ 
+ AC_PROG_CC
+@@ -129,7 +130,7 @@
+ # ---------------------------------------------------------------------------
+ # i18n support
+ # ---------------------------------------------------------------------------
+-GP_GETTEXT_HACK([${PACKAGE}-${LIBEXIF_CURRENT}],
++GP_GETTEXT_HACK([${PACKAGE}-${LIBEXIF_CURRENT_MIN}],
+                 [Lutz Müller and others])
+ ALL_LINGUAS="de es fr pl"
+ AM_GNU_GETTEXT_VERSION([0.14.1])
