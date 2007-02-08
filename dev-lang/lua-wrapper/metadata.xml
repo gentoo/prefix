@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd></herd>
+	<maintainer>
+		<email>mabi@gentoo.org</email>
+		<name>Matti Bickel</name>
+	</maintainer>
+	<longdescription lang="en">
+		This is a small config script to set the symlinks for the slotted
+		versions of lua.
+	</longdescription>
+</pkgmetadata>
+
