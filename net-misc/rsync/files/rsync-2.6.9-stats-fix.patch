@@ -1,0 +1,84 @@
+http://bugs.gentoo.org/165121
+
+--- old/flist.c
++++ new/flist.c
+@@ -476,6 +476,9 @@ static void send_file_entry(struct file_
+ 	}
+ 
+ 	strlcpy(lastname, fname, MAXPATHLEN);
++
++	if (S_ISREG(mode) || S_ISLNK(mode))
++		stats.total_size += file->length;
+ }
+ 
+ static struct file_struct *receive_file_entry(struct file_list *flist,
+@@ -699,6 +702,9 @@ static struct file_struct *receive_file_
+ 		read_buf(f, sum, checksum_len);
+ 	}
+ 
++	if (S_ISREG(mode) || S_ISLNK(mode))
++		stats.total_size += file_length;
++
+ 	return file;
+ }
+ 
+@@ -938,9 +944,6 @@ struct file_struct *make_file(char *fnam
+ 			file->mode = save_mode;
+ 	}
+ 
+-	if (S_ISREG(st.st_mode) || S_ISLNK(st.st_mode))
+-		stats.total_size += st.st_size;
+-
+ 	return file;
+ }
+ 
+@@ -1357,9 +1360,6 @@ struct file_list *recv_file_list(int f)
+ 			flags |= read_byte(f) << 8;
+ 		file = receive_file_entry(flist, flags, f);
+ 
+-		if (S_ISREG(file->mode) || S_ISLNK(file->mode))
+-			stats.total_size += file->length;
+-
+ 		flist->files[flist->count++] = file;
+ 
+ 		maybe_emit_filelist_progress(flist->count);
+--- old/io.c
++++ new/io.c
+@@ -245,10 +245,15 @@ static void read_msg_fd(void)
+ 
+ 	switch (tag) {
+ 	case MSG_DONE:
+-		if (len != 0 || !am_generator) {
++		if ((len != 0 && len != 8) || !am_generator) {
+ 			rprintf(FERROR, "invalid message %d:%d\n", tag, len);
+ 			exit_cleanup(RERR_STREAMIO);
+ 		}
++		if (len) {
++			read_loop(fd, buf, 8);
++			stats.total_read = IVAL(buf, 0)
++					 | (((int64)IVAL(buf, 4)) << 32);
++		}
+ 		flist_ndx_push(&redo_list, -1);
+ 		break;
+ 	case MSG_REDO:
+--- old/main.c
++++ new/main.c
+@@ -710,6 +710,7 @@ static int do_recv(int f_in,int f_out,st
+ 	}
+ 
+ 	if (pid == 0) {
++		char numbuf[8];
+ 		close(error_pipe[0]);
+ 		if (f_in != f_out)
+ 			close(f_out);
+@@ -724,7 +725,9 @@ static int do_recv(int f_in,int f_out,st
+ 		io_flush(FULL_FLUSH);
+ 		handle_stats(f_in);
+ 
+-		send_msg(MSG_DONE, "", 0);
++		SIVAL(numbuf, 0, (stats.total_read & 0xFFFFFFFF));
++		SIVAL(numbuf, 4, ((stats.total_read >> 32) & 0xFFFFFFFF));
++		send_msg(MSG_DONE, numbuf, 8);
+ 		io_flush(FULL_FLUSH);
+ 
+ 		/* Handle any keep-alive packets from the post-processing work

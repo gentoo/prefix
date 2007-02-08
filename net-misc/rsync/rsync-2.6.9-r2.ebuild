@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-2.6.9.ebuild,v 1.10 2006/12/14 16:11:42 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-2.6.9-r2.ebuild,v 1.1 2007/02/03 21:35:15 vapier Exp $
 
 EAPI="prefix"
 
@@ -13,9 +13,9 @@ SRC_URI="http://rsync.samba.org/ftp/rsync/${P/_/}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
-IUSE="acl build ipv6 static xinetd"
+IUSE="acl ipv6 static xinetd"
 
-RDEPEND="!build? ( >=dev-libs/popt-1.5 )
+RDEPEND=">=dev-libs/popt-1.5
 	acl? ( kernel_linux? ( sys-apps/acl ) )"
 DEPEND="${RDEPEND}
 	>=sys-apps/portage-2.0.51"
@@ -27,8 +27,11 @@ src_unpack() {
 	cd "${S}"
 	if use acl ; then
 		epatch patches/{acls,xattrs}.diff
+		epatch "${FILESDIR}"/${P}-delete-acls-xattr.patch
 		./prepare-source || die
 	fi
+	epatch "${FILESDIR}"/${P}-stats-fix.patch #165121
+
 	cp "${FILESDIR}"/rsyncd.* "${T}"/
 	cd "${T}"
 	epatch "${FILESDIR}"/rsync-files-prefix.patch
@@ -40,7 +43,7 @@ src_compile() {
 	use static && append-ldflags -static
 
 	econf \
-		$(use_with build included-popt) \
+		--without-included-popt \
 		$(use_enable acl acl-support) \
 		$(use_enable acl xattr-support) \
 		$(use_enable ipv6) \
