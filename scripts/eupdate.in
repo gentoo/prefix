@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# <grobian@gentoo.org> -- 2006-02-08
+# when adding a new version, also try and copy all extra files from
+# FILESDIR.  Also when invoked from an empty directory properly deal
+# with "missing" files, so new files are copied.
 # <grobian@gentoo.org> -- 2006-12-24
 # support for inter-revisions (-r01.1), which are also ignored when
 # comparing to the main tree
@@ -334,6 +338,33 @@ revision_diff() {
 	fi
 }
 
+fetch_files() {
+	mver=$(get_ebuildversion $1)
+	pn=${EPACKAGE##*/}
+	pv=${mver%-r*}
+	p=$pn-$pv
+
+	# Find all "referenced" files from/to FILESDIR.  We keep ${FILESDIR}
+	# in, to just use a bash eval on what we found to get the right
+	# path.
+	f=$(sed \
+		-e '/FILESDIR/!d' \
+		-e 's/^.*[^"]\("\?\${FILESDIR}\)/\1/' \
+		-e 's/#.*$//' \
+		$1)
+	eindent
+	for l in $f ; do
+		t=$(eval a='$l'; for i in $a ; do echo $i ; break ; done)
+		t=$(P=$p PV=$pv PN=$pn FILESDIR=files eval echo $t)
+		if [[ ! -f $t ]] ; then
+			ewarn "copying $t"
+			[[ ! -d files ]] && mkdir files
+			cp "${MTREEDIR}/${EPACKAGE}"/$t $t
+		fi
+	done
+	eoutdent
+}
+
 diff_patch() {
 	diff -u $2 "${MTREEDIR}/${EPACKAGE}"/$1 | patch $2
 	return $?
@@ -370,6 +401,7 @@ update_file() {
 		revision_diff $mtecv $ptecv $1 $2
 		return $?
 	fi
+	fetch_files $1
 }
 
 do_check_file() {
@@ -512,8 +544,10 @@ for pte in $pt ; do
 			mt=${mt/$mte/}
 		fi
 	done
-	[[ $last_rev != "" ]] \
-		&& cross_diff $last_rev $pte
+	if [[ $last_rev != "" ]] ; then
+		cross_diff $last_rev $pte
+		fetch_files $last_rev
+	fi
 done
 # if there is anything left in mt that is bigger than last_pte we want
 # the biggest of that
@@ -525,5 +559,23 @@ for mte in $mt ; do
 done
 if [[ $last_mte != "" ]] ; then
 	# we have to apply an update from $last_pte to $last_mte
-	cross_diff $last_mte $last_pte
+	if [[ $last_pte != "" ]] ; then
+		cross_diff $last_mte $last_pte
+	else
+		# this is from an empty directory, get the last one and relevant
+		# files
+		if [[ -f ${MTREEDIR}/${EPACKAGE}/metadata.xml ]] ; then
+			ewarn "copying metadata.xml"
+			cp "${MTREEDIR}/${EPACKAGE}"/metadata.xml .
+		fi
+		if [[ -f ${MTREEDIR}/${EPACKAGE}/ChangeLog ]] ; then
+			ewarn "copying ChangeLog"
+			cp "${MTREEDIR}/${EPACKAGE}"/ChangeLog .
+		fi
+		ewarn "copying $last_mte"
+		cp "${MTREEDIR}/${EPACKAGE}"/$last_mte .
+		eapify $last_mte
+		ecleankw $last_mte
+	fi
+	fetch_files $last_mte
 fi
