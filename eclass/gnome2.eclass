@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2.eclass,v 1.80 2007/01/04 23:37:26 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2.eclass,v 1.81 2007/02/05 05:39:14 compnerd Exp $
 
 #
 # gnome2.eclass
@@ -16,16 +16,16 @@ inherit fdo-mime libtool gnome.org gnome2-utils
 
 
 # Extra configure opts passed to econf
-G2CONF=${G2CONF:=""}
+G2CONF=${G2CONF:-""}
 
 # Extra options passed to elibtoolize
-ELTCONF=${ELTCONF:=""}
+ELTCONF=${ELTCONF:-""}
 
 # Should we use EINSTALL instead of DESTDIR
-USE_EINSTALL=${USE_EINSTALL:=""}
+USE_EINSTALL=${USE_EINSTALL:-""}
 
 # Run scrollkeeper for this package?
-SCROLLKEEPER_UPDATE=${SCROLLKEEPER_UPDATE:="1"}
+SCROLLKEEPER_UPDATE=${SCROLLKEEPER_UPDATE:-"1"}
 
 
 
@@ -41,6 +41,9 @@ gnome2_src_unpack() {
 
 	# Prevent scrollkeeper access violations
 	gnome2_omf_fix
+
+	# Run libtoolize
+	elibtoolize ${ELTCONF}
 }
 
 gnome2_src_configure() {
@@ -55,9 +58,6 @@ gnome2_src_configure() {
 	if hasq doc ${IUSE} ; then
 		G2CONF="${G2CONF} $(use_enable doc gtk-doc)"
 	fi
-
-	# Run libtoolize
-	elibtoolize ${ELTCONF}
 
 	# Avoid sandbox violations caused by misbehaving packages (bug #128289)
 	addwrite "${EROOT}root/.gnome2"

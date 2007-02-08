@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.70 2007/01/01 22:27:01 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.71 2007/02/05 14:51:07 dsd Exp $
 
 # Description: This eclass is used to interface with linux-info in such a way
 #              to provide the functionality required and initial functions
@@ -230,7 +230,7 @@ remove_moduledb() {
 
 	if [[ -n $(grep ${CATEGORY}/${PN}-${PVR} ${MODULEDB_DIR}/moduledb) ]]; then
 		einfo "Removing ${CATEGORY}/${PN}-${PVR} from moduledb."
-		sed -ie "/.*${CATEGORY}\/${PN}-${PVR}.*/d" ${MODULEDB_DIR}/moduledb
+		sed -i -e "/.*${CATEGORY}\/${PN}-${PVR}.*/d" ${MODULEDB_DIR}/moduledb
 	fi
 }
 

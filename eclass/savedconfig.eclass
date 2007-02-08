@@ -1,16 +1,15 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/savedconfig.eclass,v 1.2 2007/02/04 20:23:28 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/savedconfig.eclass,v 1.3 2007/02/05 09:55:22 dragonheart Exp $
 
 # Original Author: Daniel Black <dragonheart@gentoo.org>
 #
 # Purpose: Define an interface for ebuilds to save and restore
 # complex configuration that may be edited by users.
 #
+# Thanks to Mike Frysinger <vapier@gentoo.org> for the suggestions.
 
-# TODO
-#
-# - Move away from cp --parents because BSD doesn't like it
+inherit portability
 
 IUSE="savedconfig"
 
@@ -18,37 +17,32 @@ IUSE="savedconfig"
 #
 # Saves the files and/or directories to
 # /etc/portage/savedconfig/${CATEGORY}/${PF}
+#
 # If a single file is specified ${PF} is that file else it is a directory
 # containing all specified files and directories.
 #
 
 save_config() {
-	case ${EBUILD_PHASE} in
-		preinst|install)
-		;;
-		*) die "Bad package!  save_config only for use in pkg_preinst or src_install functions!"
-		;;
-	esac
+	if [[ ${EBUILD_PHASE} != "install" ]]; then
+		die "Bad package!  save_config only for use in src_install functions!"
+	fi
 	case $# in
 		0) die "Tell me what to save"
 		    ;;
 		1) if [[ -f "$1" ]]; then
-				dodir "${PORTAGE_CONFIGROOT}"/etc/portage/savedconfig/${CATEGORY}
-				cp "$1" "${D}/${PORTAGE_CONFIGROOT}"/etc/portage/savedconfig/${CATEGORY}/${PF} \
+				dodir /etc/portage/savedconfig/${CATEGORY}
+				cp "$1" "${ED}"/etc/portage/savedconfig/${CATEGORY}/${PF} \
 					|| die "Failed to save $1"
 			else
-				dodir "${PORTAGE_CONFIGROOT}"/etc/portage/savedconfig/${CATEGORY}/${PF}
-				cp --parents -pPR "$1" "${D}/${PORTAGE_CONFIGROOT}"/etc/portage/savedconfig/${CATEGORY}/${PF} \
+				dodir /etc/portage/savedconfig/${CATEGORY}/${PF}
+				treecopy "$1" "${ED}"/etc/portage/savedconfig/${CATEGORY}/${PF} \
 					|| die "Failed to save $1"
 			fi
 			;;
 		*)
 			dodir "${PORTAGE_CONFIGROOT}"/etc/portage/savedconfig/${CATEGORY}/${PF}
-			while [ "$1" ]; do
-				cp --parents -pPR "$1" "${D}/${PORTAGE_CONFIGROOT}"/etc/portage/savedconfig/${CATEGORY}/${PF} \
+			treecopy $* "${ED}/${PORTAGE_CONFIGROOT}"/etc/portage/savedconfig/${CATEGORY}/${PF} \
 					|| die "Failed to save $1"
-				shift
-			done
 	esac
 }
 
@@ -79,7 +73,7 @@ restore_config() {
 	case ${EBUILD_PHASE} in
 		unpack|compile)
 		;;
-		*) die "Bad package!  save_config only for use in pkg_preinst or src_install functions!"
+		*) die "Bad package!  restore_config only for use in src_unpack or src_compile functions!"
 		;;
 	esac
 	local found;
@@ -104,7 +98,7 @@ restore_config() {
 	elif [[ -d ${found} ]]; then
 		dest=${PWD}
 		pushd "${found}"
-		cp --parents . "${DEST}" \
+		treecopy . "${dest}" \
 			|| die "Failed to restore ${found} to $1"
 		popd
 	elif [[ -a {found} ]]; then 
@@ -114,8 +108,3 @@ restore_config() {
 		die "provide a configuration file in ${PORTAGE_CONFIGROOT}/etc/portage/savedconfig/${CATEGORY}/${PN}"
 	fi
 }
-
-
-#warn_config() {
-#
-#}

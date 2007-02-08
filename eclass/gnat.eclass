@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.19 2006/06/15 15:20:26 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.21 2007/02/05 13:21:57 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -126,6 +126,7 @@ get_gnat_Arch() {
 # The purpose of this one is to remove all parts of the env entry specific to a
 # given lib. Usefull when some lib wants to act differently upon detecting
 # itself installed..
+#
 # params:
 #  $1 - name of env var to process
 #  $2 (opt) - name of the lib to filter out (defaults to ${PN})
@@ -141,6 +142,18 @@ filter_env_var() {
 		fi
 	done
 	echo ${env_str}
+}
+
+# A simpler helper, for the libs that need to extract active gnat location
+# Returns a first entry for a specified env var. Relies on the (presently true)
+# convention that first gnat's entries are listed and then of the other
+# installed libs.
+#
+# params:
+#  $1 - name of env var to process
+get_gnat_value() {
+	local entries=(${!1//:/ })
+	echo ${entries[0]}
 }
 
 
@@ -201,12 +214,12 @@ gnat_pkg_setup() {
 gnat_pkg_postinst() {
 	einfo "Updating gnat configuration to pick up ${PN} library..."
 	eselect gnat update
-	einfo "The environment has been set up to make gnat automatically find files"
-	einfo "for the installed library. In order to immediately activate these"
-	einfo "settings please run:"
-	einfo
-	einfo "env-update"
-	einfo "source /etc/profile"
+	elog "The environment has been set up to make gnat automatically find files"
+	elog "for the installed library. In order to immediately activate these"
+	elog "settings please run:"
+	elog
+	elog "env-update"
+	elog "source /etc/profile"
 	einfo
 	einfo "Otherwise the settings will become active next time you login"
 }

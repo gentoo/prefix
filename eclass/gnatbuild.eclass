@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.20 2006/10/24 11:00:50 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.21 2007/02/05 13:55:47 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -247,12 +247,12 @@ should_we_eselect_gnat() {
 	if [[ ${curr_config} == ${CTARGET}-${PN}-${SLOT} ]] ; then
 		return 0
 	else
-		einfo "The current gcc config appears valid, so it will not be"
-		einfo "automatically switched for you.  If you would like to"
-		einfo "switch to the newly installed gcc version, do the"
-		einfo "following:"
+		elog "The current gcc config appears valid, so it will not be"
+		elog "automatically switched for you.  If you would like to"
+		elog "switch to the newly installed gcc version, do the"
+		elog "following:"
 		echo
-		einfo "eselect compiler set <profile>"
+		elog "eselect compiler set <profile>"
 		echo
 		ebeep
 		return 1
@@ -263,11 +263,11 @@ should_we_eselect_gnat() {
 do_gnat_config() {
 	eselect gnat set ${CTARGET}-${PN}-${SLOT} &> /dev/null
 
-	einfo "The following gnat profile has been activated:"
-	einfo "${CTARGET}-${PN}-${SLOT}"
-	einfo ""
-	einfo "The compiler has been installed as gnatgcc, and the coverage testing"
-	einfo "tool as gnatgcov."
+	elog "The following gnat profile has been activated:"
+	elog "${CTARGET}-${PN}-${SLOT}"
+	elog ""
+	elog "The compiler has been installed as gnatgcc, and the coverage testing"
+	elog "tool as gnatgcov."
 }
 
 
