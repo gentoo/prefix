@@ -1,6 +1,47 @@
 # ChangeLog for net-misc/iputils
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/ChangeLog,v 1.42 2006/08/20 07:26:41 vapier Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/ChangeLog,v 1.52 2007/02/05 20:03:30 wolf31o2 Exp $
+
+  05 Feb 2007; Chris Gianelloni <wolf31o2@gentoo.org>
+  iputils-20060512.ebuild:
+  Stable on alpha wrt bug #165179.
+
+  05 Feb 2007; Jeroen Roovers <jer@gentoo.org> iputils-20060512.ebuild:
+  Stable for HPPA (bug #165179).
+
+  04 Feb 2007; Steve Dibb <beandog@gentoo.org> iputils-20060512.ebuild:
+  amd64 stable, bug 165179
+
+  04 Feb 2007; nixnut <nixnut@gentoo.org> iputils-20060512.ebuild:
+  Stable on ppc wrt bug 165179
+
+  04 Feb 2007; Markus Rothe <corsair@gentoo.org> iputils-20060512.ebuild:
+  Added ~ppc64; bug #165179
+
+  03 Feb 2007; Torsten Veller <tove@gentoo.org> iputils-20060512.ebuild:
+  Stable on x86 (#165179)
+
+  03 Feb 2007; Jason Wever <weeve@gentoo.org> iputils-20060512.ebuild:
+  Stable on SPARC wrt bug #165179.
+
+*iputils-20070202 (03 Feb 2007)
+
+  03 Feb 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/iputils-20070202-makefile.patch, +iputils-20070202.ebuild:
+  Version bump.
+
+  21 Dec 2006; Mike Frysinger <vapier@gentoo.org> iputils-20060512.ebuild:
+  Only generate man pages for USE=doc until next release where they include
+  man pages #158660.
+
+*iputils-20060512 (20 Dec 2006)
+
+  20 Dec 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/iputils-20060512-RFC3542.patch, +files/iputils-20060512-gcc4.patch,
+  +files/iputils-20060512-kernel-ifaddr.patch,
+  +files/iputils-20060512-linux-headers.patch,
+  +files/iputils-20060512-makefile.patch, +iputils-20060512.ebuild:
+  Version bump.
 
   20 Aug 2006; Mike Frysinger <vapier@gentoo.org>
   +files/iputils-021109-ipv6-updates.patch, iputils-021109-r3.ebuild:
