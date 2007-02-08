@@ -1,11 +1,8 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmad/libmad-0.15.1b-r2.ebuild,v 1.1 2006/10/05 08:35:38 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmad/libmad-0.15.1b-r2.ebuild,v 1.8 2007/01/28 07:57:46 vapier Exp $
 
 EAPI="prefix"
-
-WANT_AUTOCONF="latest"
-WANT_AUTOMAKE="latest"
 
 inherit eutils autotools libtool flag-o-matic
 
@@ -56,7 +53,7 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${D}" || die "make install failed"
+	emake install DESTDIR="${D}" || die "make install failed"
 
 	dodoc CHANGES CREDITS README TODO VERSION
 
