@@ -1,0 +1,259 @@
+# ChangeLog for dev-lang/lua
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-lang/lua/ChangeLog,v 1.66 2007/02/03 18:06:10 weeve Exp $
+
+  03 Feb 2007; Jason Wever <weeve@gentoo.org> lua-5.1.1.ebuild:
+  Added ~sparc keyword wrt bugs #155518 and 162985.
+
+  25 Jan 2007; Matti Bickel <mabi@gentoo.org> lua-5.1.1.ebuild:
+  fixing multilib-strict issue (bug #156153)
+
+  24 Jan 2007; Steve Dibb <beandog@gentoo.org> lua-5.1.1.ebuild:
+  Add ~amd64, bug 155518
+
+  23 Jan 2007; Matti Bickel <mabi@gentoo.org> files/lua-5.1.1-make.patch:
+  Fixing slotted fallout in make.patch
+
+  22 Jan 2007; Matti Bickel <mabi@gentoo.org>
+  -files/lua-5.1.1-Makefile.patch, -lua-5.0.3-r1.ebuild,
+  -lua-5.1.1-r1.ebuild:
+  Slotted lua officially dead
+
+  16 Jan 2007; Matti Bickel <mabi@gentoo.org>
+  files/lua-5.1.1-Makefile.patch:
+  correct path problems with Makefile.patch (justin in bug #155518)
+
+  14 Jan 2007; Matti Bickel <mabi@gentoo.org> lua-5.0.3-r1.ebuild,
+  lua-5.1.1-r1.ebuild:
+  fixing pkg-config data (bug #162036)
+
+*lua-5.1.1-r1 (10 Jan 2007)
+*lua-5.0.3-r1 (10 Jan 2007)
+
+  10 Jan 2007; Matti Bickel <mabi@gentoo.org> -files/lua-4.0-config.patch,
+  +files/lua-5.1.1-Makefile.patch, files/lua-5.1.1-make_static.patch,
+  -lua-4.0.1.ebuild, +lua-5.0.3-r1.ebuild, +lua-5.1.1-r1.ebuild:
+  Remove old version, add slotted versions of lua
+
+  27 Dec 2006; Stuart Longland <redhatter@gentoo.org> lua-5.0.2.ebuild:
+  Marked v5.0.2 stable on mips as per bug #150072
+
+  05 Dec 2006; Jeroen Roovers <jer@gentoo.org> lua-5.1.1.ebuild:
+  Marked ~hppa (bug #155518).
+
+  01 Dec 2006; Matti Bickel <mabi@gentoo.org> files/lua-5.1.1-make.patch,
+  lua-5.0.2.ebuild, lua-5.1.1.ebuild:
+  Made lua -5.0.2 and -5.1.1 use dlopen_lib for BSD, changed the name of
+  liblua back to the old liblualib, seems we're slowly getting into a usable
+  state :)
+
+  27 Nov 2006; Matti Bickel <mabi@gentoo.org> files/lua-5.1.1-make.patch,
+  files/lua-5.1.1-make_static.patch, lua-5.1.1.ebuild:
+  Build static library too, do tests with static lua
+
+  24 Nov 2006; Markus Rothe <corsair@gentoo.org> lua-5.1.1.ebuild:
+  Added ~ppc64; bug #155518
+
+  21 Nov 2006; Matti Bickel <mabi@gentoo.org> files/lua-5.1.1-make.patch,
+  +files/lua-5.1.1-make_static.patch, lua-5.1.1.ebuild:
+  Added static useflag to allow to be closer to upstreams recommendations
+
+  18 Nov 2006; Christian Faulhammer <opfer@gentoo.org> lua-5.1.1.ebuild:
+  keyworded ~x86, bug #155518
+
+  17 Nov 2006; Matti Bickel <mabi@gentoo.org> +files/lua-5.1.1-make.patch,
+  +files/lua-5.1.1-readline.patch, +file/lua-5.1.1-module_paths.patch,
+  +lua-5.1.1.ebuild, Changelog, metadata.xml:
+  Version bump (bug #124719); exg is retired, i'll try to help out
+
+  16 Oct 2006; Emanuele Giaquinta <exg@gentoo.org>
+  -files/lua-5.0.2-gentoo.patch, +files/lua-5.0.3-destdir.patch,
+  +files/lua-5.0.3-dylib.patch, -lua-5.0.2-r1.ebuild, lua-5.0.3.ebuild:
+  Add patch for ppc-macos. Cleanup.
+
+  15 Oct 2006; Emanuele Giaquinta <exg@gentoo.org>
+  files/lua-ppc-macos-Makefile.patch, lua-5.0.2.ebuild:
+  Clean up ppc-macos patch. Disable as-needed patch, it is broken.
+
+  15 Oct 2006; Emanuele Giaquinta <exg@gentoo.org>
+  files/lua-5.0.3-asneeded.patch, files/lua-5.0.3-ldflags.patch,
+  -files/lua-5.0.3-linking.patch, +files/lua-5.0.3-shared.patch,
+  lua-5.0.3.ebuild:
+  Proper support for PIC.
+
+  14 Oct 2006; Emanuele Giaquinta <exg@gentoo.org>
+  files/lua-5.0.3-asneeded.patch, lua-5.0.3.ebuild:
+  Fix patch for as-needed, see comment #7 in bug #122128. Remove useless -l
+  directives when using readline.
+
+  07 Oct 2006; Diego Pettenò <flameeyes@gentoo.org> lua-5.0.3.ebuild:
+  Add ~x86-fbsd keyword.
+
+*lua-5.0.3 (07 Oct 2006)
+
+  07 Oct 2006; Emanuele Giaquinta <exg@gentoo.org>
+  +files/lua-5.0.3-asneeded.patch, +files/lua-5.0.3-ldflags.patch,
+  +files/lua-5.0.3-linking.patch, +lua-5.0.3.ebuild:
+  Version bump, fixes bugs #132417, #137582, #149911.
+
+  09 Jul 2006; Joshua Kinard <kumba@gentoo.org> lua-4.0.1.ebuild:
+  Marking stable to satisfy elinks dep.
+
+  25 Jun 2006; Stefan Schweizer <genstef@gentoo.org>
+  +files/lua-5.0.2-LDFLAGS_and_as-needed.patch, lua-5.0.2.ebuild:
+  as-needed patch thanks to TGL <degrenier@easyconnect.fr> in bug 122128 from
+  Benjamin Schindler <config@gentoo.org>
+
+  01 Mar 2006; Tom Payne <twp@gentoo.org> -lua-4.0.ebuild, -lua-5.0.ebuild,
+  -lua-5.0.1_beta20031003-r2.ebuild:
+  Remove old versions.
+
+  11 Feb 2006; Joshua Kinard <kumba@gentoo.org> lua-5.0.2-r1.ebuild:
+  Marked stable on mips.
+
+  19 Aug 2005; Tom Payne <twp@gentoo.org> lua-5.0.1_beta20031003-r2.ebuild,
+  lua-5.0.2.ebuild, lua-5.0.2-r1.ebuild:
+  Don't install /etc/magic. Bug # 102970.
+
+  28 Jul 2005; Lina Pezzella <j4rg0n@gentoo.org> lua-5.0.2-r1.ebuild:
+  Ported patch from 5.0.2 version to this version. Only affects ppc-macos
+  environment.
+
+  22 Apr 2005; Herbie Hopkins <herbs@gentoo.org> lua-5.0.2.ebuild,
+  lua-5.0.2-r1.ebuild:
+  Fixed multilib strict issue, bug #88120
+
+  21 Apr 2005; Aron Griffis <agriffis@gentoo.org> lua-5.0.2.ebuild,
+  lua-5.0.2-r1.ebuild:
+  Add ia64 keywords
+
+  22 Mar 2005; Lina Pezzella <j4rg0n@gentoo.org> lua-5.0.2.ebuild:
+  Fix to use more of the options used on x86
+
+  07 Mar 2005; Lina Pezzella <j4rg0n@gentoo.org> lua-5.0.2.ebuild:
+  Stable ppc-macos.
+
+  15 Feb 2005; Lina Pezzella <j4rg0n@gentoo.org> lua-5.0.2.ebuild:
+  Fixed find statement to be arch independent.
+
+  05 Feb 2005; Lina Pezzella <j4rg0n@gentoo.org>
+  +files/lua-ppc-macos-Makefile.patch, lua-5.0.2.ebuild:
+  Unstable ppc-macos
+  Fix for Bug #65591
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  05 Sep 2004; Guy Martin <gmsoft@gentoo.org> lua-5.0.2.ebuild:
+  Stable on hppa.
+
+*lua-5.0.2-r1 (05 Aug 2004)
+
+  05 Aug 2004; <twp@gentoo.org> +files/lua-5.0.2-gentoo.patch,
+  +lua-5.0.2-r1.ebuild:
+  Hopefully fixed linking problems. Bugs 49309 & 59487.
+
+  17 Jul 2004; Tom Gall <tgall@gentoo.org> lua-5.0.2.ebuild:
+  stable on ppc64, bug #55680
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org> lua-4.0.1.ebuild,
+  lua-4.0.ebuild:
+  virtual/glibc -> virtual/libc
+
+  06 Jun 2004; Danny van Dyk <kugelfang@gentoo.org> lua-5.0.2.ebuild:
+  Marked stable on amd64.
+
+  15 May 2004; Bryan Østergaard <kloeri@gentoo.org> lua-5.0.2.ebuild:
+  Stable on alpha.
+
+  05 Apr 2004; Chris Aniszczyk <zx@gentoo.org> lua-5.0.ebuild:
+  Marking stable on hppa
+
+  29 Mar 2004; Gustavo Zacarias <gustavoz@gentoo.org> lua-5.0.2.ebuild:
+  stable on sparc
+
+  26 Mar 2004; Tom Payne <twp@gentoo.org> lua-5.0.2.ebuild :
+  Marked stable on x86. Bug # 45739.
+
+  26 Mar 2004; Tom Payne <twp@gentoo.org> lua-4.0.ebuild, lua-4.0.1.ebuild, lua-5.0.ebuild :
+  Added IUSE.
+
+*lua-5.0.2 (16 Mar 2004)
+
+  16 Mar 2004; Tom Payne <twp@gentoo.org> lua-5.0.2.ebuild :
+  Version bump.
+
+  15 Mar 2004; Tom Payne <twp@gentoo.org> lua-5.0.1_beta20031003-r1.ebuild, lua-5.0.1_beta20031003.ebuild, lua-5.0_beta.ebuild :
+  Removed old versions. Lua 4.0*: inherit eutils, use epatch.
+
+  05 Mar 2004; Gustavo Zacarias <gustavoz@gentoo.org> lua-5.0.ebuild:
+  stable on sparc
+
+  06 Feb 2004; Daniel Ahlberg <aliz@gentoo.org>
+  lua-5.0.1_beta20031003-r2.ebuild:
+  Apply existing pic patch, makes it build on amd64. Should close #35675.
+
+  26 Jan 2004; Tom Payne <twp@gentoo.org> lua-5.0.1_beta20031003-r2.ebuild :
+  New tarball location. Bug # 39211.
+
+  03 Jan 2004; Jon Portnoy <avenj@gentoo.org> lua-5.0.1_beta20031003-r1.ebuild :
+  AMD64 keywords. Copyright date fixes to make repoman happy.
+
+*lua-5.0.1_beta20031003-r2 (08 Jan 2003)
+
+  08 Jan 2003; Tom Payne <twp@gentoo.org> lua-5.0.1_beta20031003.ebuild-r2 :
+  Added compiler and interpreter variables to lua.pc.
+
+  21 Dec 2003; Tom Payne <twp@gentoo.org> lua-5.0.1_beta20031003-r1.ebuild, metadata.xml :
+  Install all READMEs. Use dl and readline. Install various bits from etc/.
+  Add pkg-config script. Added metadata.xml.
+
+  20 Dec 2003; Guy Martin <gmsoft@gentoo.org> lua-5.0.1_beta20031003.ebuild,
+  files/lua-5.0.1-pic.patch :
+  Added a pic patch to use -fPIC flag correctly. This fix hppa compilation.
+
+*lua-5.0.1_beta20031003 (21 Nov 2003)
+
+  21 Nov 2003; Tom Payne <twp@gentoo.org> lua-5.0.1_beta20031003.ebuild :
+  Version bump using patches from http://lua-users.org/lists/lua-l/2003-10/msg00039.html.
+  Marked ~x86.
+
+  05 Sep 2003; Michael Sterrett <msterret@gentoo.org> lua-5.0.ebuild:
+  use sed -i; add error messages
+
+*lua-5.0 (14 Apr 2003)
+
+  14 Apr 2003; Tom Payne <twp@gentoo.org> lua-5.0.ebuild :
+
+  Version bump. Added ~arch keywords.
+
+*lua-5.0_beta (09 Apr 2003)
+
+  09 Apr 2003; Tom Payne <twp@gentoo.org> lua-5.0_beta.ebuild :
+
+  Version bump. Install docs. Tidied ebuild.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+
+*lua-4.0.1 (07 Feb 2003)
+
+  07 Feb 2003; Ryan Phillips <rphillips@gentoo.org> lua-4.0.1.ebuild :
+  new version
+ 
+*lua-4.0 (09 June 2002)
+  
+  04 Aug 2002; Calum Selkirk <cselkirk@gentoo.org> lua-4.0.ebuild :
+
+  Added ppc to KEYWORDS.
+
+  09 June 2002; Ryan Phillips <rphillips@gentoo.org> lua-4.0.ebuild :
+
+  Fixed ebuild since package has changed.
+  
+  23 Apr 2002; Ryan Phillips <rphillips@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.

@@ -1,0 +1,138 @@
+--- Makefile.orig	2006-06-02 12:53:38.000000000 +0200
++++ Makefile	2007-01-13 00:03:46.000000000 +0100
+@@ -7,25 +7,29 @@
+ # Your platform. See PLATS for possible values.
+ PLAT= none
+ 
++# Lua version and release.
++V= 5.1
++R= 5.1.1
++
+ # Where to install. The installation starts in the src directory, so take care
+ # if INSTALL_TOP is not an absolute path. (Man pages are installed from the
+ # doc directory.)
+ #
+ INSTALL_TOP= /usr/local
+ INSTALL_BIN= $(INSTALL_TOP)/bin
+-INSTALL_INC= $(INSTALL_TOP)/include
++INSTALL_INC= $(INSTALL_TOP)/include/lua-$V
+ INSTALL_LIB= $(INSTALL_TOP)/lib
+-INSTALL_MAN= $(INSTALL_TOP)/man/man1
++INSTALL_MAN= $(INSTALL_TOP)/share/man/man1
+ INSTALL_LMOD= $(INSTALL_TOP)/share/lua/$V
+ INSTALL_CMOD= $(INSTALL_TOP)/lib/lua/$V
+ 
+ # How to install. You may prefer "install" instead of "cp" if you have it.
+ # To remove debug information from binaries, use "install -s" in INSTALL_EXEC.
+ #
+-INSTALL_EXEC= $(CP)
+-INSTALL_DATA= $(CP)
+-#INSTALL_EXEC= $(INSTALL) -m 0755
+-#INSTALL_DATA= $(INSTALL) -m 0644
++#INSTALL_EXEC= $(CP)
++#INSTALL_DATA= $(CP)
++INSTALL_EXEC= $(INSTALL) -m 0755
++INSTALL_DATA= $(INSTALL) -m 0644
+ 
+ # Utilities.
+ CP= cp
+@@ -40,22 +44,18 @@
+ PLATS= aix ansi bsd generic linux macosx mingw posix solaris
+ 
+ # What to install.
+-TO_BIN= lua luac
++TO_BIN= lua-$V luac-$V
+ TO_INC= lua.h luaconf.h lualib.h lauxlib.h ../etc/lua.hpp
+-TO_LIB= liblua.a
++TO_LIB= liblua-$V.a
+ TO_MAN= lua.1 luac.1
+ 
+-# Lua version and release.
+-V= 5.1
+-R= 5.1.1
+-
+ all:	$(PLAT)
+ 
+ $(PLATS) clean:
+ 	cd src && $(MAKE) $@
+ 
+ test:	dummy
+-	src/lua test/hello.lua
++	src/lua-$V test/hello.lua
+ 
+ install: dummy
+ 	cd src && $(MKDIR) -p $(INSTALL_BIN) $(INSTALL_INC) $(INSTALL_LIB) $(INSTALL_MAN) $(INSTALL_LMOD) $(INSTALL_CMOD)
+@@ -127,3 +127,22 @@
+ .PHONY: all $(PLATS) clean test install local none dummy echo pecho lecho newer
+ 
+ # (end of Makefile)
++
++# Use libtool for binary installs, etc.
++
++export $V
++export LIBTOOL = libtool --quiet --tag=CC
++# See libtool manual about how to set this
++
++gentoo_clean:
++	cd src; $(MAKE) $@
++
++gentoo_test: gentoo_linux
++	test/lua.static test/hello.lua
++
++gentoo_install:
++	mkdir -p $(INSTALL_BIN) $(INSTALL_INC) $(INSTALL_LIB) $(INSTALL_MAN)
++	cd src; $(LIBTOOL) --mode=install $(INSTALL_DATA) $(TO_LIB:%.a=%.la) $(INSTALL_LIB)
++	cd src; $(LIBTOOL) --mode=install $(INSTALL_DATA) $(TO_LIB) $(INSTALL_LIB)
++	cd src; $(LIBTOOL) --mode=install $(INSTALL_EXEC) $(TO_BIN) $(INSTALL_BIN)
++	cd src; $(INSTALL_DATA) $(TO_INC) $(INSTALL_INC)
+--- src/Makefile.orig	2006-03-22 01:41:49.000000000 +0100
++++ src/Makefile	2007-01-12 23:40:15.000000000 +0100
+@@ -29,10 +29,10 @@
+ LIB_O=	lauxlib.o lbaselib.o ldblib.o liolib.o lmathlib.o loslib.o ltablib.o \
+ 	lstrlib.o loadlib.o linit.o
+ 
+-LUA_T=	lua
++LUA_T=	lua-$V
+ LUA_O=	lua.o
+ 
+-LUAC_T=	luac
++LUAC_T=	luac-$V
+ LUAC_O=	luac.o print.o
+ 
+ ALL_O= $(CORE_O) $(LIB_O) $(LUA_O) $(LUAC_O)
+@@ -176,3 +176,35 @@
+   ltm.h lzio.h lmem.h lopcodes.h lundump.h
+ 
+ # (end of Makefile)
++
++export LIBTOOL = libtool --quiet --tag=CC
++
++# The following rules use libtool for compiling and linking in order to
++# provide shared library support.
++
++LIB_NAME = liblua-$V.la
++LIB_OBJS = $(CORE_O:.o=.lo) $(LIB_O:.o=.lo)
++
++%.lo %.o: %.c
++	$(LIBTOOL) --mode=compile $(CC) -c $(CPPFLAGS) $(CFLAGS) -o $@ $<
++
++$(LIB_NAME): $(LIB_OBJS)
++	$(LIBTOOL) --mode=link $(CC) \
++            -rpath $(RPATH) -o $(LIB_NAME) $(LIB_OBJS) $(LIB_LIBS)
++
++$(LIB_NAME:.la=.a): $(LIB_OBJS)
++	$(LIBTOOL) --mode=link $(CC) -static -o $(LIB_NAME:.la=.a) $(LIB_OBJS)
++
++$(LUA_T): $(LUA_O) $(LIB_NAME)
++	$(LIBTOOL) --mode=link $(CC) -Wl,-E -o $@ $(LUA_O) $(LUA_LIBS) -llua-$V
++
++lua_test: $(LUA_O) $(LIB_NAME)
++	$(LIBTOOL) --mode=link $(CC) -static -Wl,-E -o $@ $(LUA_O) $(LIB_NAME) $(LUA_LIBS)
++
++$(LUAC_T): $(LUAC_O) $(LIB_NAME)
++	$(LIBTOOL) --mode=link $(CC) -static -o $@ $(LUAC_O) $(LIB_NAME)
++
++gentoo_clean:
++	$(LIBTOOL) --mode=clean $(RM) $(ALL_O:.o=.lo) $(LIB_NAME) $(LUA_T) $(LUAC_T)
++
++gentoo_all: $(LIB_NAME) $(LIB_NAME:.la=.a) $(LUA_T) lua_test $(LUAC_T)
