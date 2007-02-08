@@ -347,19 +347,19 @@ fetch_files() {
 	# Find all "referenced" files from/to FILESDIR.  We keep ${FILESDIR}
 	# in, to just use a bash eval on what we found to get the right
 	# path.
-	f=$(sed \
+	eindent
+	sed \
 		-e '/FILESDIR/!d' \
 		-e 's/^.*[^"]\("\?\${FILESDIR}\)/\1/' \
 		-e 's/#.*$//' \
-		$1)
-	eindent
-	for l in $f ; do
+		$1 | \
+	while read l ; do
 		t=$(eval a='$l'; for i in $a ; do echo $i ; break ; done)
 		t=$(P=$p PV=$pv PN=$pn FILESDIR=files eval echo $t)
-		if [[ ! -f $t ]] ; then
+		if [[ ! -e $t ]] ; then
 			ewarn "copying $t"
 			[[ ! -d files ]] && mkdir files
-			cp "${MTREEDIR}/${EPACKAGE}"/$t $t
+			cp -R "${MTREEDIR}/${EPACKAGE}"/$t $t
 		fi
 	done
 	eoutdent
