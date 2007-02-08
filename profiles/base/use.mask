@@ -70,6 +70,8 @@ input_devices_wacom
 
 # beep-media-player is in package.mask
 bmp
+# media-sound/bmpx is broken, app-admin/conky wants to pull it in (bug #162405)
+bmpx
 
 # xmms is going away
 xmms
