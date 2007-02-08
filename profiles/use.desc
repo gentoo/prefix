@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.336 2007/01/10 17:57:29 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.339 2007/02/07 06:10:03 jer Exp $
 
 # Keep them sorted
 
@@ -102,7 +102,6 @@ filepro - Adds support for filePro databases
 firebird - Adds support for the Firebird relational database
 firefox - Build against Firefox instead of Seamonkey/Mozilla
 flac - Adds support for the flac audio codec
-flash - Adds support for creating flash files using Ming
 flatfile - Adds dbm support for flat files
 fltk - Adds support for the Fast Light Toolkit gui interface
 foomaticdb - Adds support for the foomatic printing driver database
@@ -207,7 +206,6 @@ migemo - Enables migemo support for Japanese
 mikmod - Adds libmikmod support to allow playing of SoundTracker-style music files
 milter - Adds sendmail mail filter (milter) support
 mime - Adds MIME support
-ming - Adds support for ming library for creating flash format files
 minimal - Install a very minimal build (disables, for example, plugins, fonts, most drivers, non-critical features)
 mmap - Adds mmap (memory map) support
 mmx - Adds support for optimizations for Pentium MMX and Athlon class processors
@@ -231,9 +229,9 @@ mysql - Adds mySQL Database support
 mysqli - Adds support for the improved mySQL libraries
 nas - Adds support for network audio sound
 ncurses - Adds ncurses support (console display library)
+neXt - Enable neXt toolkit
 netboot - Enables network booting
 netcdf - Enable NetCDF data format support
-neXt - Enable neXt toolkit
 nis - Support for NIS/YP services
 nls - Adds Native Language Support (using gettext - GNU locale utilities)
 nntp - Add support for newsgroups (Network News Transfer Protocol)
@@ -250,8 +248,8 @@ ogg - Adds support for the Ogg container format (commonly used by Vorbis, Theora
 openal - Adds support for the Open Audio Library
 openexr - Support for the OpenEXR graphics file format
 opengl - Adds support for OpenGL (3D graphics)
-oracle7 - Adds support for the Oracle 7 Database
 oracle - Enable Oracle Database support
+oracle7 - Adds support for the Oracle 7 Database
 osc - Enables support for Open Sound Control
 oscar - Enable Oscar (AIM/ICQ) IM protocol support
 oss - Adds support for OSS (Open Sound System)
@@ -288,6 +286,7 @@ ruby - Adds support/bindings for the Ruby language
 samba - Adds support for SAMBA (Windows File and Printer sharing)
 sapdb - Adds support for SAP DB
 sasl - Adds support for the Simple Authentication and Security Layer
+savedconfig - Use this to restore your config from /etc/portage/savedconfig ${CATEGORY}/${PN}. Make sure you USE flags allow for approprate dependencies
 scanner - Adds support for scanner hardware (e.g. build the sane frontend in kdegraphics)
 sdl - Adds support for Simple Direct Layer (media library)
 seamonkey - Adds support for the Seamonkey web-browser
@@ -356,6 +355,7 @@ win32codecs - use win32codecs package for dll avi decoding support (wmv and what
 wmf - Adds support for the wmf vector image format
 wxwindows - Adds support for wxWindows/wxGTK GUI toolkit
 x264 - Enable h264 encoding using x264
+xcomposite - Enable support for the Xorg composite extension
 xface - Adds xface support used to allow a small image of xface format to be included in an email via the header 'X-Face'.
 xine - Add support for the XINE movie libraries
 xinerama - Add support for the xinerama X11 extension, which allows you to stretch your display across multiple monitors
