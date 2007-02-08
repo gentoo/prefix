@@ -1,0 +1,131 @@
+diff -urN proctools-0.4pre1.orig/Makefile.gnu proctools-0.4pre1/Makefile.gnu
+--- proctools-0.4pre1.orig/Makefile.gnu	1969-12-31 19:00:00 -0500
++++ proctools-0.4pre1/Makefile.gnu	2007-02-05 23:15:53 -0500
+@@ -0,0 +1,6 @@
++all:
++	cd proctools; $(MAKE) -f Makefile.gnu
++	cd pgrep; $(MAKE) -f Makefile.gnu
++	cd pkill; $(MAKE) -f Makefile.gnu
++	cd pfind; $(MAKE) -f Makefile.gnu
++
+diff -urN proctools-0.4pre1.orig/pfind/Makefile.gnu proctools-0.4pre1/pfind/Makefile.gnu
+--- proctools-0.4pre1.orig/pfind/Makefile.gnu	1969-12-31 19:00:00 -0500
++++ proctools-0.4pre1/pfind/Makefile.gnu	2007-02-05 22:43:57 -0500
+@@ -0,0 +1,6 @@
++all:
++	gcc pfind.c -o pfind -L../proctools -lproctools -L/usr/lib -lkvm
++
++clean:
++	rm -f pfind
++
+Files proctools-0.4pre1.orig/pfind/pfind and proctools-0.4pre1/pfind/pfind differ
+diff -urN proctools-0.4pre1.orig/pfind/pfind.c proctools-0.4pre1/pfind/pfind.c
+--- proctools-0.4pre1.orig/pfind/pfind.c	2007-02-05 22:11:46 -0500
++++ proctools-0.4pre1/pfind/pfind.c	2007-02-05 22:44:42 -0500
+@@ -434,11 +434,11 @@
+ PFIND_EVAL(pfind_pri_any)
+ {
+ 	int result;
+-	result = !regexec(&(*expression)->optarg.re.r, proctoolslist->name, 0, NULL, NULL);
++	result = !regexec(&(*expression)->optarg.re.r, proctoolslist->name, 0, NULL, 0);
+ 	if (!result) {
+ 		const char *args;
+ 		args = getProcArgs(baton, proctoolslist);
+-		result = args && !regexec(&(*expression)->optarg.re.r, args, 0, NULL, NULL);
++		result = args && !regexec(&(*expression)->optarg.re.r, args, 0, NULL, 0);
+ 		/* do not free(args) */
+ 	}
+ 	(*expression)->parent->result = (*expression)->result = (*expression)->invert_after ^ result;
+@@ -450,7 +450,7 @@
+ 	const char *args;
+ 	int result;
+ 	args = getProcArgs(baton, proctoolslist);
+-	result = args && !regexec(&(*expression)->optarg.re.r, args, 0, NULL, NULL);
++	result = args && !regexec(&(*expression)->optarg.re.r, args, 0, NULL, 0);
+ 	(*expression)->parent->result = (*expression)->result = (*expression)->invert_after ^ result;
+ 	/* do not free(args) */
+ 	return 0;
+@@ -490,7 +490,7 @@
+ 			(*expression)->parent->result = (*expression)->result = (*expression)->invert_after ^ !strcmp(proctoolslist->name, (*expression)->optarg.str);
+ 	}
+ 	else {
+-		(*expression)->parent->result = (*expression)->result = (*expression)->invert_after ^ !regexec(&(*expression)->optarg.re.r, proctoolslist->name, 0, NULL, NULL);
++		(*expression)->parent->result = (*expression)->result = (*expression)->invert_after ^ !regexec(&(*expression)->optarg.re.r, proctoolslist->name, 0, NULL, 0);
+ 	}
+ 	return 0;
+ }
+diff -urN proctools-0.4pre1.orig/pgrep/Makefile.gnu proctools-0.4pre1/pgrep/Makefile.gnu
+--- proctools-0.4pre1.orig/pgrep/Makefile.gnu	1969-12-31 19:00:00 -0500
++++ proctools-0.4pre1/pgrep/Makefile.gnu	2007-02-05 22:40:46 -0500
+@@ -0,0 +1,6 @@
++all:
++	gcc pgrep.c -o pgrep -L../proctools -lproctools -L/usr/lib -lkvm
++
++clean:
++	rm -f pgrep
++
+Files proctools-0.4pre1.orig/pgrep/pgrep and proctools-0.4pre1/pgrep/pgrep differ
+diff -urN proctools-0.4pre1.orig/pkill/Makefile.gnu proctools-0.4pre1/pkill/Makefile.gnu
+--- proctools-0.4pre1.orig/pkill/Makefile.gnu	1969-12-31 19:00:00 -0500
++++ proctools-0.4pre1/pkill/Makefile.gnu	2007-02-05 22:42:19 -0500
+@@ -0,0 +1,6 @@
++all:
++	gcc pkill.c -o pkill -L../proctools -lproctools -L/usr/lib -lkvm
++
++clean:
++	rm -f pkill
++
+Files proctools-0.4pre1.orig/pkill/pkill and proctools-0.4pre1/pkill/pkill differ
+diff -urN proctools-0.4pre1.orig/proctools/Makefile.gnu proctools-0.4pre1/proctools/Makefile.gnu
+--- proctools-0.4pre1.orig/proctools/Makefile.gnu	1969-12-31 19:00:00 -0500
++++ proctools-0.4pre1/proctools/Makefile.gnu	2007-02-05 22:36:23 -0500
+@@ -0,0 +1,9 @@
++all:
++	gcc -c fmt.c -o fmt.o
++	gcc -c proctools.c -o proctools.o
++	ar cq libproctools.a fmt.o proctools.o 
++	ranlib libproctools.a 
++
++clean:
++	rm -f fmt.o proctools.o libproctools.a
++
+Files proctools-0.4pre1.orig/proctools/proctools and proctools-0.4pre1/proctools/proctools differ
+diff -urN proctools-0.4pre1.orig/proctools/proctools.c proctools-0.4pre1/proctools/proctools.c
+--- proctools-0.4pre1.orig/proctools/proctools.c	2007-02-05 22:11:46 -0500
++++ proctools-0.4pre1/proctools/proctools.c	2007-02-05 22:14:11 -0500
+@@ -919,7 +919,7 @@
+ 								matched = !strcmp(name, pattern);
+ 						}
+ 						else {
+-							matched = regexec(&regex, name, 0, NULL, NULL) == 0;
++							matched = regexec(&regex, name, 0, NULL, 0) == 0;
+ 						}
+ 					}
+ 					else {
+@@ -960,7 +960,7 @@
+ 						}
+ 					}
+ 					else
+-						if (regexec(&regex, name, 0, NULL, NULL) == 0)
++						if (regexec(&regex, name, 0, NULL, 0) == 0)
+ 							pushProcList(proctoolslist, kp);
+ 				}
+ 				else
+@@ -995,7 +995,7 @@
+ 								matched = !strcmp(name, pattern);
+ 						}
+ 						else {
+-							matched = regexec(&regex, name, 0, NULL, NULL) == 0;
++							matched = regexec(&regex, name, 0, NULL, 0) == 0;
+ 						}
+ 					}
+ 					else {
+@@ -1037,7 +1037,7 @@
+ 						}
+ 					}
+ 					else
+-						if (regexec(&regex, name, 0, NULL, NULL) == REG_NOMATCH)
++						if (regexec(&regex, name, 0, NULL, 0) == REG_NOMATCH)
+ 							pushProcList(proctoolslist, kp);
+ 				}
+ 				else
