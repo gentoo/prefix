@@ -1,0 +1,71 @@
+#!/sbin/runscript
+# Copyright 1999-2005 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/files/clamd.rc,v 1.8 2005/11/09 16:40:05 ticho Exp $
+
+depend() {
+	use net
+	provide antivirus
+}
+
+start() {
+	local clamd_socket=`awk '$1 == "LocalSocket" { print $2 }' /etc/clamd.conf`
+	if [ "${START_CLAMD}" = "yes" ]; then
+		if [ -S "${clamd_socket:-/tmp/clamd}" ]; then
+			rm -f ${clamd_socket:-/tmp/clamd}
+		fi
+		ebegin "Starting clamd"
+		start-stop-daemon --start --quiet \
+			--exec /usr/sbin/clamd
+		eend $? "Failed to start clamd"
+	fi
+	if [ "${START_FRESHCLAM}" = "yes" ]; then
+		ebegin "Starting freshclam"
+		start-stop-daemon --start --quiet \
+			--exec /usr/bin/freshclam -- -d
+		retcode=$?
+		if [ ${retcode} = 1 ]; then
+			eend 0
+			einfo "Virus databases are already up to date."
+		else
+			eend ${retcode} "Failed to start freshclam"
+		fi
+	fi
+	if [ "${START_MILTER}" = "yes" ]; then
+		if [ -S "${MILTER_SOCKET}" ]; then
+			rm -f ${MILTER_SOCKET}
+		fi
+
+		local logfile=`awk '$1 == "LogFile" { print $2 }' /etc/clamd.conf`
+		local clamav_user=`awk '$1 == "User" { print $2 }' /etc/clamd.conf`
+		if [[ -n "${logfile}" && -n "${clamav_user}" ]]; then
+			if [ ! -f "${logfile}" ]; then
+				touch ${logfile}
+			fi	
+		chown ${clamav_user} ${logfile}
+		fi	
+
+		ebegin "Starting clamav-milter"
+		start-stop-daemon --start --quiet \
+			--exec /usr/sbin/clamav-milter -- ${MILTER_OPTS} ${MILTER_SOCKET}
+		eend $? "Failed to start clamav-milter"
+	fi
+}
+
+stop() {
+	if [ "${START_CLAMD}" = "yes" ]; then
+		ebegin "Stopping clamd"
+		start-stop-daemon --stop --quiet --name clamd
+		eend $? "Failed to stop clamd"
+	fi
+	if [ "${START_FRESHCLAM}" = "yes" ]; then
+		ebegin "Stopping freshclam"
+		start-stop-daemon --stop --quiet --name freshclam
+		eend $? "Failed to stop freshclam"
+	fi
+	if [ "${START_MILTER}" = "yes" ]; then
+		ebegin "Stopping clamav-milter"
+		start-stop-daemon --stop --quiet --name clamav-milter
+		eend $? "Failed to stop clamav-milter"
+	fi
+}
