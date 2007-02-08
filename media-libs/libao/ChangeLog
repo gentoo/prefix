@@ -1,6 +1,25 @@
 # ChangeLog for media-libs/libao
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libao/ChangeLog,v 1.64 2006/11/13 18:17:31 gustavoz Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libao/ChangeLog,v 1.70 2007/02/06 21:25:47 wolf31o2 Exp $
+
+  06 Feb 2007; Chris Gianelloni <wolf31o2@gentoo.org> libao-0.8.6-r3.ebuild:
+  Stable on amd64 wrt bug #161149.
+
+  27 Jan 2007; Joseph Jezak <josejx@gentoo.org> libao-0.8.6-r3.ebuild:
+  Marked ppc stable for bug #161149.
+
+  19 Jan 2007; Jeroen Roovers <jer@gentoo.org> libao-0.8.6-r3.ebuild:
+  Stable for HPPA (bug #149806).
+
+  18 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> libao-0.8.6-r3.ebuild:
+  Stable on sparc
+
+  18 Jan 2007; Christian Faulhammer <opfer@gentoo.org>
+  libao-0.8.6-r3.ebuild:
+  stable x86, bug #161149
+
+  14 Jan 2007; Markus Rothe <corsair@gentoo.org> libao-0.8.6-r3.ebuild:
+  Stable on ppc64; bug #161149
 
   13 Nov 2006; Gustavo Zacarias <gustavoz@gentoo.org> libao-0.8.6-r3.ebuild:
   Keyworded ~sparc wrt #149806
