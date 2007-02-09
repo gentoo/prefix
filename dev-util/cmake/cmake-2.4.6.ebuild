@@ -1,10 +1,10 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.4.4.ebuild,v 1.1 2006/11/29 19:24:18 genstef Exp $
+# $Header: $
 
 EAPI="prefix"
 
-inherit toolchain-funcs eutils versionator
+inherit toolchain-funcs eutils versionator qt3
 
 DESCRIPTION="Cross platform Make"
 HOMEPAGE="http://www.cmake.org/"
@@ -20,9 +20,9 @@ src_compile() {
 	tc-export CC CXX LD
 	./bootstrap \
 		--prefix="${EPREFIX}"/usr \
-		--docdir="${EPREFIX}"/share/doc/${PN} \
-		--datadir="${EPREFIX}"/share/${PN} \
-		--mandir="${EPREFIX}"/share/man || die "./bootstrap failed"
+		--docdir=/share/doc/${PN} \
+		--datadir=/share/${PN} \
+		--mandir=/share/man || die "./bootstrap failed"
 	emake || die
 }
 
