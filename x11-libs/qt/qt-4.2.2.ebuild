@@ -23,16 +23,16 @@ IUSE_INPUT_DEVICES="input_devices_wacom"
 
 IUSE="aqua accessibility cups dbus debug doc examples firebird gif glib jpeg mng mysql nas nis odbc opengl pch png postgres qt3support sqlite sqlite3 xinerama zlib ${IUSE_INPUT_DEVICES}"
 
-DEPEND="x11-libs/libXrandr
+DEPEND="!aqua? ( x11-libs/libXrandr
 	x11-libs/libXcursor
 	x11-libs/libXi
 	x11-libs/libXfont
 	x11-libs/libSM
 	x11-proto/xextproto
-	x11-proto/inputproto
+	x11-proto/inputproto 
+	virtual/xft )
 	dev-util/pkgconfig
 	xinerama? ( x11-proto/xineramaproto x11-libs/libXinerama )
-	virtual/xft
 	>=media-libs/freetype-2
 	png? ( media-libs/libpng )
 	jpeg? ( media-libs/jpeg )
