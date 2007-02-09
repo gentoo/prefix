@@ -14,8 +14,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
-#DEPEND=">=dev-lang/perl-5.6
-#	dev-perl/XML-Parser"
+DEPEND=">=dev-lang/perl-5.6
+	dev-perl/XML-Parser"
 RDEPEND="${DEPEND}"
 
 
