@@ -1,0 +1,51 @@
+# ChangeLog for app-text/agrep
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/agrep/ChangeLog,v 1.19 2007/02/09 00:57:39 flameeyes Exp $
+
+  09 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
+
+  08 Oct 2005; Fabian Groffen <grobian@gentoo.org> agrep-2.04.ebuild:
+  Marking ~ppc-macos (bug #108461)
+
+  05 Jun 2005; Michael Hanselmann <hansmi@gentoo.org> agrep-2.04.ebuild:
+  Stable on ppc.
+
+  30 May 2005; Stephanie Lockwood-Childs <wormo@gentoo.org> agrep-2.04.ebuild:
+  mark ~ppc
+
+  21 Apr 2005; Simon Stelling <blubb@gentoo.org> agrep-2.04.ebuild:
+  stable on amd64
+
+  21 Nov 2004; Daniel Black <dragonheart@gentoo.org> agrep-2.04.ebuild:
+  added conficts with app-misc/glimpse and dev-libs/tre as per bug #71795
+
+  21 Oct 2004; Aaron Walker <ka0ttic@gentoo.org> +metadata.xml:
+  Add metadata (shell-tools)
+
+  07 Sep 2004; Tom Gall <tgall@gentoo.org> agrep-2.04.ebuild:
+  stable on ppc64, bug #63057
+
+  04 Jul 2004; Ciaran McCreesh <ciaranm@gentoo.org> agrep-2.04.ebuild:
+  Stable on mips
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org> agrep-2.04.ebuild:
+  virtual/glibc -> virtual/libc
+
+  28 Jun 2004; Ciaran McCreesh <ciaranm@gentoo.org> agrep-2.04.ebuild:
+  Added ~mips
+
+  01 Jun 2004; Michael Sterrett <mr_bones_@gentoo.org> agrep-2.04.ebuild:
+  fix depend
+
+  06 May 2004; Danny van Dyk <kugelfang@gentoo.org> agrep-2.04.ebuild:
+  Marked ~amd64.
+
+  31 Jan 2004; Ciaran McCreesh <ciaranm@gentoo.org> agrep-2.04.ebuild:
+  Added sparc keyword
+
+*agrep-2.04 (15 Jun 2003)
+
+  15 Jun 2003; Jared Hudson <jhhudso@gentoo.org> : Initial Import.
+  Credit goes to Burton Samograd <kruhft@kruhft.dyndns.org> for providing
+  the ebuild.
