@@ -1857,6 +1857,7 @@ x11-libs/gtkmathview:t1lib - Enable t1lib support
 x11-libs/libX11:xcb - Support the X C-language Binding, a replacement for Xlib
 x11-libs/libmatchbox:pango - Enable pango support
 x11-libs/libmatchbox:xsettings - Enable the use of xsettings for settings management.
+x11-libs/qt:aqua - MacOSX aqua widgets support, disables X11
 x11-libs/qt:glib - Enable glib eventloop support
 x11-libs/qt:immqt - Enable binary incompatible version of immodule for Qt
 x11-libs/qt:immqt-bc - Enable binary compatible version of immodule for Qt
