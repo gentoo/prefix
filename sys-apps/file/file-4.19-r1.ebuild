@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-4.18.ebuild,v 1.15 2007/02/07 04:38:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-4.19-r1.ebuild,v 1.1 2007/02/07 04:50:30 vapier Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="ftp://ftp.gw.com/mirrors/pub/unix/file/${P}.tar.gz
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="python"
 
 DEPEND=""
@@ -23,6 +23,8 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-4.15-libtool.patch #99593
+	epatch "${FILESDIR}"/${PN}-4.19-init-file.patch #163948
+	userland_GNU && epatch "${FILESDIR}"/${PN}-4.19-wcwidth.patch
 
 	elibtoolize
 	epunt_cxx

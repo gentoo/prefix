@@ -1,0 +1,13 @@
+make sure we get the wcwidth() prototype
+
+--- src/file.c
++++ src/file.c
+@@ -29,6 +29,8 @@
+  * file - find type of a file or files - main program.
+  */
+ 
++#define _XOPEN_SOURCE
++
+ #include "file.h"
+ #include "magic.h"
+ 

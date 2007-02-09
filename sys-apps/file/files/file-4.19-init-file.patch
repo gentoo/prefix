@@ -1,0 +1,21 @@
+When a new struct magic_set is created as the handle to the calling application
+(in magic_open), the "file" char * is not NULLified.  This causes unexplained
+segfaults in other apps that don't properly have their magic.mgc file created,
+i.e. in app-arch/rpm-4.4.6-r3.  The file pointer is some random value, so when
+file_magwarn tries to report a missing magic.mgc file, for example, it tries to
+print ms->file, which is NULL, and the segfault occurs.
+
+Fix by Jeff Hansen.
+
+http://bugs.gentoo.org/163948
+
+--- src/magic.c
++++ src/magic.c
+@@ -110,6 +110,7 @@ magic_open(int flags)
+ 	ms->haderr = 0;
+ 	ms->error = -1;
+ 	ms->mlist = NULL;
++	ms->file = NULL;
+ 	return ms;
+ free3:
+ 	free(ms->o.pbuf);
