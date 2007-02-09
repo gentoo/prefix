@@ -34,7 +34,8 @@ src_compile() {
 	use static && append-ldflags -static
 
 	local myconf=""
-	use gprefix && myconf="--program-prefix=g"
+	[[ ${USERLAND} == "BSD" ]] && [[ ${PREFIX%/} != "" ]] \
+		&& myconf="--program-prefix=g"
 	ac_cv_sys_long_file_names=yes econf ${myconf} || die
 
 	emake || die "emake failed"
