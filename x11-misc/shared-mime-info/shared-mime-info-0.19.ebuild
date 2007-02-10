@@ -1,6 +1,9 @@
+# FIXME :
+# This ebuild should probably also remove the stuff it now leaves behind
+# in /usr/share/mime
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-misc/shared-mime-info/Attic/shared-mime-info-0.16.ebuild,v 1.14 2006/12/04 16:08:52 foser dead $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/shared-mime-info-0.19.ebuild,v 1.10 2007/02/04 08:47:35 corsair Exp $
 
 EAPI="prefix"
 
@@ -12,7 +15,7 @@ SRC_URI="http://www.freedesktop.org/~jrb/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
 RDEPEND=">=dev-libs/glib-2
