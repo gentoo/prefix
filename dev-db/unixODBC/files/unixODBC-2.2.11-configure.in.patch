@@ -1,0 +1,10 @@
+--- configure.in.orig	2003-12-10 20:08:49.000000000 -0800
++++ configure.in	2003-12-10 20:11:33.000000000 -0800
+@@ -29,6 +29,7 @@
+ 
+ if test "x$gui" = "xtrue"; then
+ AC_PROG_CXX
++AC_PATH_X
+ else
+ dnl This gets around a autoconf problem
+ if
