@@ -1,6 +1,19 @@
 # ChangeLog for x11-libs/libXt
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/libXt/ChangeLog,v 1.35 2006/11/09 15:51:35 joshuabaergen Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/ChangeLog,v 1.38 2007/02/04 18:52:54 joshuabaergen Exp $
+
+  04 Feb 2007; Joshua Baergen <joshuabaergen@gentoo.org> libXt-1.0.5.ebuild:
+  Remove an unnecessary mirror restriction.
+
+  04 Feb 2007; Joshua Baergen <joshuabaergen@gentoo.org> libXt-1.0.2.ebuild,
+  libXt-1.0.4.ebuild:
+  Drop mirroring restriction.  Thanks to Zhang Le of bug #163088.
+
+*libXt-1.0.5 (04 Feb 2007)
+
+  04 Feb 2007; Joshua Baergen <joshuabaergen@gentoo.org>
+  +libXt-1.0.5.ebuild:
+  Version bump.  Brings some small man page fixes.
 
 *libXt-1.0.4 (09 Nov 2006)
 
