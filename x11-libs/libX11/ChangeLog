@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/libX11
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.61 2007/01/06 00:56:17 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.62 2007/02/04 18:23:48 joshuabaergen Exp $
+
+  04 Feb 2007; Joshua Baergen <joshuabaergen@gentoo.org>
+  libX11-1.0.1-r1.ebuild, libX11-1.0.3.ebuild, libX11-1.0.3-r1.ebuild:
+  Drop mirroring restriction.  Thanks to Zhang Le of bug #163088.
 
   06 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> libX11-1.0.3.ebuild:
   Stable on Alpha.
