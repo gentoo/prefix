@@ -2,6 +2,13 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.1.20.5937 (10 Feb 2007)
+
+  10 Feb 2007; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.1.20.5839.ebuild, +portage-2.1.20.5937.ebuild:
+  New snapshot with new configure logic that should fix some bugs, and
+  probably introduces some new ones
+
 *portage-2.1.20.5894 (05 Feb 2007)
 
   05 Feb 2007; Fabian Groffen <grobian@gentoo.org>
