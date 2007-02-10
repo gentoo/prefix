@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/libXres/libXres-1.0.3.ebuild,v 1.1 2006/12/16 16:55:28 joshuabaergen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXres/libXres-1.0.3.ebuild,v 1.2 2007/02/04 18:26:10 joshuabaergen Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,6 @@ inherit x-modular
 DESCRIPTION="X.Org XRes library"
 
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
-RESTRICT="mirror"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libXext
