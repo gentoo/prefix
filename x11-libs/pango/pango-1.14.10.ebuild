@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.14.10.ebuild,v 1.1 2007/01/30 21:17:32 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.14.10.ebuild,v 1.2 2007/02/04 03:12:33 leio Exp $
 
 EAPI="prefix"
 
@@ -31,7 +31,7 @@ DEPEND="${RDEPEND}
 		~app-text/docbook-xml-dtd-4.1.2
 	)"
 
-DOCS="AUTHORS ChangeLog* NEWS README TODO*"
+DOCS="AUTHORS ChangeLog* NEWS README"
 
 src_unpack() {
 	gnome2_src_unpack
@@ -55,12 +55,6 @@ src_unpack() {
 src_compile() {
 	econf $(use_with X x) || die "econf failed"
 	emake || "emake failed"
-}
-
-src_install() {
-	gnome2_src_install
-
-	rm ${ED}/etc/pango/pango.modules
 }
 
 pkg_postinst() {

@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/pango
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/pango/ChangeLog,v 1.162 2007/01/30 21:17:32 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.163 2007/02/04 03:12:33 leio Exp $
+
+  04 Feb 2007; Mart Raudsepp <leio@gentoo.org> pango-1.14.10.ebuild:
+  Some QA fixes, bug 164686
 
 *pango-1.14.10 (30 Jan 2007)
 
