@@ -29,7 +29,7 @@ DEPEND="!aqua? ( x11-libs/libXrandr
 	x11-libs/libXfont
 	x11-libs/libSM
 	x11-proto/xextproto
-	x11-proto/inputproto 
+	x11-proto/inputproto
 	virtual/xft )
 	dev-util/pkgconfig
 	xinerama? ( x11-proto/xineramaproto x11-libs/libXinerama )
@@ -120,7 +120,7 @@ src_unpack() {
 	# out the line below and give 'er a whirl.
 	strip-flags
 	replace-flags -O3 -O2
-	
+
 	sed -i -e "s:QMAKE_CFLAGS[^_]*=.*:QMAKE_CFLAGS=${CFLAGS}:" \
 		-e "s:QMAKE_CXXFLAGS[^_]*=.*:QMAKE_CXXFLAGS=${CXXFLAGS}:" \
 		-e "s:QMAKE_LFLAGS[^_]*=\(.*\):QMAKE_LFLAGS=\1 ${LDFLAGS}:" \
