@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/libXxf86vm
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/libXxf86vm/ChangeLog,v 1.31 2006/10/01 17:04:09 dberkholz Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXxf86vm/ChangeLog,v 1.32 2007/02/04 18:26:58 joshuabaergen Exp $
+
+  04 Feb 2007; Joshua Baergen <joshuabaergen@gentoo.org>
+  libXxf86vm-1.0.1.ebuild:
+  Drop mirroring restriction.  Thanks to Zhang Le of bug #163088.
 
   01 Oct 2006; Donnie Berkholz <dberkholz@gentoo.org>;
   libXxf86vm-1.0.1.ebuild:
