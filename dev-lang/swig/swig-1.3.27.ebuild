@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/swig-1.3.27.ebuild,v 1.5 2006/07/08 22:34:28 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/swig-1.3.27.ebuild,v 1.6 2007/01/10 17:52:07 hkbst Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ IUSE="doc guile java lua mono ocaml perl php pike python ruby tcl tk"
 RESTRICT="test"
 
 DEPEND="lua? ( dev-lang/lua )
-	guile? ( >=dev-util/guile-1.4 )
+	guile? ( >=dev-scheme/guile-1.4 )
 	java? ( virtual/jdk )
 	mono? ( dev-lang/mono )
 	perl? ( >=dev-lang/perl-5.6.1 )
