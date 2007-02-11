@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/gentoo-syntax/gentoo-syntax-20051221-r1.ebuild,v 1.4 2006/12/30 02:21:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/gentoo-syntax/gentoo-syntax-20051221-r1.ebuild,v 1.5 2007/01/23 16:34:05 genone Exp $
 
 EAPI="prefix"
 
@@ -39,12 +39,12 @@ pkg_postinst() {
 		ewarn "compliance. When editing ebuilds, please make sure you get"
 		ewarn "the character set correct."
 	else
-		einfo "Note for developers and anyone else who edits ebuilds:"
-		einfo "    This release of gentoo-syntax now contains filetype rules to set"
-		einfo "    fileencoding for ebuilds and ChangeLogs to utf-8 as per GLEP 31."
-		einfo "    If you find this feature breaks things, please submit a bug and"
-		einfo "    assign it to vim@gentoo.org. You can use the 'ignore-glep31' USE"
-		einfo "    flag to remove these rules."
+		elog "Note for developers and anyone else who edits ebuilds:"
+		elog "    This release of gentoo-syntax now contains filetype rules to set"
+		elog "    fileencoding for ebuilds and ChangeLogs to utf-8 as per GLEP 31."
+		elog "    If you find this feature breaks things, please submit a bug and"
+		elog "    assign it to vim@gentoo.org. You can use the 'ignore-glep31' USE"
+		elog "    flag to remove these rules."
 	fi
 	echo
 	epause 5

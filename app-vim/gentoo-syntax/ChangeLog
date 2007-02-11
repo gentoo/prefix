@@ -1,6 +1,11 @@
 # ChangeLog for app-vim/gentoo-syntax
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/gentoo-syntax/ChangeLog,v 1.72 2006/11/06 07:56:35 pioto Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-vim/gentoo-syntax/ChangeLog,v 1.73 2007/01/23 16:34:05 genone Exp $
+
+  23 Jan 2007; Marius Mauch <genone@gentoo.org>
+  gentoo-syntax-20051221.ebuild, gentoo-syntax-20051221-r1.ebuild,
+  gentoo-syntax-20061106.ebuild:
+  Replacing einfo with elog
 
 *gentoo-syntax-20061106 (06 Nov 2006)
 
