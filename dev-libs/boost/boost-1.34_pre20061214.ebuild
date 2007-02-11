@@ -1,10 +1,10 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-libs/boost/boost-1.34_pre20061214.ebuild,v 1.1 2006/12/18 23:17:00 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.34_pre20061214.ebuild,v 1.3 2007/02/10 12:38:14 dev-zero Exp $
 
 EAPI="prefix"
 
-inherit distutils flag-o-matic multilib python toolchain-funcs versionator
+inherit distutils flag-o-matic multilib toolchain-funcs versionator
 
 KEYWORDS="~amd64 ~x86 ~x86-macos"
 
@@ -15,7 +15,7 @@ HOMEPAGE="http://www.boost.org/"
 SRC_URI="http://dev.gentoo.org/~dev-zero/distfiles/${MY_P}.tar.bz2"
 LICENSE="freedist Boost-1.0"
 SLOT="0"
-IUSE="debug doc icc icu pyste static threads threadsonly tools userland_Darwin"
+IUSE="debug doc icc icu pyste tools userland_Darwin"
 
 DEPEND="icu? ( >=dev-libs/icu-3.2 )
 		sys-libs/zlib
@@ -38,8 +38,7 @@ src_unpack() {
 }
 
 generate_options() {
-	LINK_OPTIONS="shared"
-	use static && LINK_OPTIONS="${LINK_OPTIONS} static"
+	LINK_OPTIONS="shared static"
 
 	if ! use debug ; then
 		OPTIONS="release debug-symbols=none"
@@ -48,16 +47,7 @@ generate_options() {
 	fi
 
 	OPTIONS="${OPTIONS} optimization=none"
-
-	if use threads ; then
-		if use threadsonly ; then
-			OPTIONS="${OPTIONS} threading=multi"
-		else
-			OPTIONS="${OPTIONS} threading=single,multi"
-		fi
-	else
-		OPTIONS="${OPTIONS} threading=single"
-	fi
+	OPTIONS="${OPTIONS} threading=single,multi"
 
 	use icu && OPTIONS="${OPTIONS} -sHAVE_ICU=1 -sICU_PATH=\"${EROOT}/usr\""
 
@@ -65,7 +55,7 @@ generate_options() {
 
 generate_userconfig() {
 	einfo "Writing new user-config.jam"
-	python_version
+	distutils_python_version
 
 	local compiler compilerVersion compilerExecutable
 	if use icc ; then
@@ -97,7 +87,8 @@ src_compile() {
 	generate_userconfig
 	generate_options
 
-	export BOOST_ROOT=${S} BOOST_BUILD_PATH=${EROOT}/usr/share/boost-build
+	export BOOST_ROOT=${S}
+	export BOOST_BUILD_PATH=${EROOT}/usr/share/boost-build
 
 	# Note: The line "debug-symbols=on" only adds '-g' to compiler and linker invocation
 	# and prevents boost-build from stripping the libraries/binaries
@@ -118,7 +109,7 @@ src_compile() {
 
 	if use tools; then
 		cd "${S}/tools/"
-		# We have to set optimization to -O0 or -O1 to work aroudn a gcc-bug
+		# We have to set optimization to -O0 or -O1 to work around a gcc-bug
 		# optimization=off adds -O0 to the compiler call and overwrites our settings.
 		bjam ${NUMJOBS} \
 			release \
@@ -133,7 +124,8 @@ src_install () {
 
 	generate_options
 
-	export BOOST_ROOT=${S} BOOST_BUILD_PATH=${EROOT}/usr/share/boost-build
+	export BOOST_ROOT=${S}
+	export BOOST_BUILD_PATH=${EROOT}/usr/share/boost-build
 
 	for linkoption in ${LINK_OPTIONS} ; do
 		bjam \
