@@ -1,0 +1,11 @@
+--- Imakefile.orig	Thu Apr 30 19:50:26 1998
++++ Imakefile	Thu Apr 30 19:50:43 1998
+@@ -41,7 +41,7 @@
+ 
+ #  EXTRA_DEFINES = -DARROW_SCROLLBAR -DUSEGRAY
+ 
+-#  EXTRA_INCLUDES = -I.
++EXTRA_INCLUDES = -I.
+ 
+ HEADERS = \
+ 	AllWidgets.h \

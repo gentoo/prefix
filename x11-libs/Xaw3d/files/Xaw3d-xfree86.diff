@@ -1,0 +1,21 @@
+--- XawI18n.h.orig	Tue Aug 29 07:00:21 1995
++++ XawI18n.h		Tue Nov 19 02:22:09 1996
+@@ -27,12 +27,18 @@
+ 
+ ********************************************************/
+ 
++#if 0
+ #ifdef HAS_WCTYPE_H
+ #include <wctype.h>
++#if !defined(__linux__)
+ #include <widec.h>
++#endif
++#endif
+ #define wcslen(c) wslen(c)
+ #define wcscpy(d,s) wscpy(d,s)
+ #define wcsncpy(d,s,l) wsncpy(d,s,l)
++#if 0
++#endif
+ #endif
+ 
+ #ifdef HAS_WCHAR_H
