@@ -1,0 +1,186 @@
+# ChangeLog for dev-util/tla
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/tla/ChangeLog,v 1.43 2007/01/23 15:20:07 jer Exp $
+
+  23 Jan 2007; Jeroen Roovers <jer@gentoo.org> tla-1.3.5.ebuild:
+  Stable for HPPA (bug #143099).
+
+  03 Jan 2007; Steve Dibb <beandog@gentoo.org> tla-1.3.5.ebuild:
+  amd64 stable, bug 143099
+
+  03 Jan 2007; nixnut <nixnut@gentoo.org> tla-1.3.5.ebuild:
+  Stable on ppc wrt bug 143099
+
+  03 Jan 2007; Christian Faulhammer <opfer@gentoo.org> tla-1.3.5.ebuild:
+  stable x86, bug #143099
+
+  02 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> tla-1.3.5.ebuild:
+  Stable on sparc wrt #143099
+
+  01 Jan 2007; Petteri Räty <betelgeuse@gentoo.org> metadata.xml:
+  Removed arj as he is retired
+
+*tla-1.3.5 (21 Jul 2006)
+
+  21 Jul 2006; Anders Rune Jensen <arj@gentoo.org> +tla-1.3.5.ebuild:
+  New version. 
+
+  15 Jul 2006; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
+  Remove rphillips from metadata.xml as he's retired.
+
+  14 May 2006; Anders Rune Jensen <arj@gentoo.org> tla-1.3.4.ebuild:
+  Fix #123358: allow one to specify CFLAGS and compiler to use when
+  compiling tla.
+	
+*tla-1.3.4 (06 Jan 2006)
+
+  06 Jan 2006; Anders Rune Jensen <arj@gentoo.org> +tla-1.3.4.ebuild, -tla-1.3.2, -tla-1.3.1_p1:
+  New version. Remove old versions
+
+  16 Dec 2005; Diego Pettenò <flameeyes@gentoo.org> tla-1.3.3-r1.ebuild:
+  Remove GNUish cp -a call. Bug #103487.
+
+  12 Aug 2005; Fabian Groffen <grobian@gentoo.org> tla-1.3.3-r1.ebuild:
+  Marking ~ppc-macos, made dependency for sys-apps/util-linux only hold for non
+  ppc-macos archs
+
+  17 Jul 2005; MATSUU Takuto <matsuu@gentoo.org> tla-1.3.ebuild:
+  Stable on sh.
+
+*tla-1.3.3-r1 (06 Jul 2005)
+
+  06 Jul 2005; <rphillips@gentoo.org> +tla-1.3.3-r1.ebuild:
+  Added Matteo Settenvini's changes for installing documentation. #94391
+
+*tla-1.3.3 (03 Jun 2005)
+
+  03 Jun 2005; Anders Rune Jensen <arj@gentoo.org> +tla-1.3.3.ebuild, 
+  Version bump. 
+
+  19 May 2005; Olivier Crête <tester@gentoo.org> tla-1.3.ebuild:
+  Stable on amd64
+
+  17 May 2005; Rene Nussbaumer <killerfox@gentoo.org> tla-1.3.ebuild:
+  Stable on hppa
+
+*tla-1.3.2 (08 May 2005)
+
+  08 May 2005; Anders Rune Jensen <arj@gentoo.org> +tla-1.3.2.ebuild, 
+  tla-1.3.1_p1.ebuild:
+  Version bump. Fix 1.3.1_p1 to patch correctly. Fix #77682.
+
+  01 May 2005; Anders Rune Jensen <arj@gentoo.org> tla-1.3.1_p1.ebuild:
+  GCC 4.0 patch. Fixes #91073
+
+  21 Apr 2005; Michael Hanselmann <hansmi@gentoo.org> tla-1.3.ebuild:
+  Stable on ppc.
+
+*tla-1.3.1_p1 (03 Apr 2005)
+
+  03 Apr 2005; Anders Rune Jensen <arj@gentoo.org> tla-1.3.1_p1.ebuild,
+  -tla-1.0.6.ebuild, -tla-1.1.0.ebuild, -tla-1.2.ebuild,
+  -tla-1.2-r1.ebuild, -tla-1.2.2_rc1.ebuild, -tla-1.2.2_rc2.ebuild:
+  Version bump. Fixes #82287 and #87752. Thanks to Thomas Eckert. Remove
+  old versions.
+
+  18 Jan 2005; Bryan Østergaard <kloeri@gentoo.org> tla-1.3.ebuild:
+  Stable on alpha.
+
+  13 Jan 2005; Anders Rune Jensen <arj@gentoo.org> tla-1.3.ebuild:
+  added ~amd64
+
+  10 Jan 2005; Gustavo Zacarias <gustavoz@gentoo.org> tla-1.3.ebuild:
+  Stable on sparc
+
+*tla-1.3 (09 Jan 2005)
+
+  09 Jan 2005; <rphillips@gentoo.org> tla-1.3.ebuild:
+  Version bump. Fixes #77051. Thanks to Thomas Eckert
+
+  23 Sep 2004; <blubb@gentoo.org> tla-1.2.2_rc2.ebuild:
+  added ~amd64
+
+*tla-1.2.2_rc2 (18 Sep 2004)
+
+  18 Sep 2004; <arj@gentoo.org> +tla-1.2.2_rc2.ebuild:
+  Add a new release candidate which fixes one little bug in rc1.
+
+*tla-1.2.2_rc1 (06 Sep 2004)
+
+  06 Sep 2004; <arj@gentoo.org> tla-1.2.2_rc1.ebuild, -tla-1.2.1_pre1.ebuild:
+  Added release candidate for 1.2.2 which fixes the 1k barrier problem in
+  the 1.2.1 release (the reason why it's not in the tree) and fixes other
+  bugs including #59548. The new ebuild also closes #61120. Don't get
+  fooled by the wrong version number of libneon in the configure output.
+  They forgot to update the string when they updated the other files.
+
+  Remove tla-1.2.1_pre1 as it seems to include a vulnerable libneon and
+  doesn't seem to be needed.
+
+  01 Sep 2004; Anders Rune Jensen <arj@gentoo.org> metadata.xml, 
+  -files/tla-1.2-4.diff.gz:
+  Add myself as co-maintainer. And move the too large patch to the mirrors.
+	
+  02 Jun 2004; Joshua Kinard <kumba@gentoo.org> tla-1.1.ebuild,
+  tla-1.2-r1.ebuild, tla-1.2-r2.ebuild, tla-1.2.1_pre1.ebuild, tla-1.2.ebuild:
+  Removed mips from KEYWORDS as this package has never been tested on mips.
+
+*tla-1.2-r2 (01 Jun 2004)
+
+  01 Jun 2004; <rphillips@gentoo.org> tla-1.2-r2.ebuild,
+  files/tla-1.2-4.diff.gz:
+  Added the debian patch from bob2 in #arch to use the external libneon library.
+  Added >=neon-0.24.6 dep
+
+*tla-1.2.1_pre1 (28 May 2004)
+
+  28 May 2004; <rphillips@gentoo.org> tla-1.2.1_pre1.ebuild:
+  version bump to 1.2.1_pre1 due to security bug with neon.  Fixes #51586
+
+  15 Apr 2004; <dvandyk@gentoo.org> tla-1.2-r1.ebuild:
+  marked ~amd64
+
+*tla-1.2-r1 (29 Mar 2004)
+
+  29 Mar 2004; Ryan Phillips <rphillips@gentoo.org> tla-1.2-r1.ebuild:
+  patched src/tla/=gpg-check.awk to find the correct gawk, and installed it into
+  /usr/bin/tla-gpg-check.awk
+
+*tla-1.2 (28 Feb 2004)
+
+  28 Feb 2004; Ryan Phillips <rphillips@gentoo.org> tla-1.2.ebuild:
+  version bump
+
+  18 Feb 2004; Ryan Phillips <rphillips@gentoo.org> tla-1.2_pre2.ebuild:
+  tweaked ebuild to install the right documentation
+
+*tla-1.2_pre2 (17 Feb 2004)
+
+  17 Feb 2004; Ryan Phillips <rphillips@gentoo.org> tla-1.2_pre2.ebuild:
+  Version bump
+
+*tla-20040113 (15 Jan 2004)
+
+  15 Jan 2004; <rphillips@gentoo.org> tla-20040113.ebuild:
+  Added a prerelease for TLA that supports signing. Masked in portage.mask
+
+*tla-1.1 (12 Jan 2004)
+
+  12 Jan 2004; <rphillips@gentoo.org> tla-1.1.ebuild:
+  version bump and marked stable
+
+*tla-1.1_pre8 (21 Nov 2003)
+
+  21 Nov 2003; <rphillips@gentoo.org> tla-1.1_pre8.ebuild:
+  version bump
+
+*tla-1.1_pre7.ebuild
+
+  19 Oct 2003; Ryan Phillips <rphillips@gentoo.org> tla-1.1_pre7.ebuild :
+  Added Ben Cornett's updated ebuild. Fixes #25945
+
+*tla-1.0.6 (31 Jul 2003)
+
+  31 Jul 2003; Ryan Phillips <rphillips@gentoo.org> tla-1.0.6.ebuild :
+  
+  Initial import. Created by me
