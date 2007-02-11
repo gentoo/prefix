@@ -1,15 +1,18 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-1.2.10-r5.ebuild,v 1.48 2006/11/03 15:04:21 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-1.2.10-r5.ebuild,v 1.49 2007/02/03 08:34:21 compnerd Exp $
 
 EAPI="prefix"
 
-inherit libtool flag-o-matic eutils portability
+WANT_AUTOMAKE="1.4"
+
+inherit autotools libtool flag-o-matic eutils portability
 
 DESCRIPTION="The GLib library of C routines"
 HOMEPAGE="http://www.gtk.org/"
 SRC_URI="ftp://ftp.gtk.org/pub/gtk/v1.2/${P}.tar.gz
-	 ftp://ftp.gnome.org/pub/GNOME/stable/sources/glib/${P}.tar.gz"
+	 ftp://ftp.gnome.org/pub/GNOME/stable/sources/glib/${P}.tar.gz
+	 mirror://gentoo/glib-1.2.10-as-needed.patch.bz2"
 
 LICENSE="LGPL-2.1"
 SLOT="1"
@@ -28,9 +31,14 @@ src_unpack() {
 	# Allow glib to build with gcc-3.4.x #47047
 	epatch "${FILESDIR}"/${P}-gcc34-fix.patch
 
-	elibtoolize
+	# Fix for -Wl,--as-needed (bug #133818)
+	epatch "${DISTDIR}"/glib-1.2.10-as-needed.patch.bz2
+
 	use ppc64 && use hardened && replace-flags -O[2-3] -O1
 	append-ldflags $(dlopen_lib)
+
+	eautoreconf
+	elibtoolize
 }
 
 src_compile() {
