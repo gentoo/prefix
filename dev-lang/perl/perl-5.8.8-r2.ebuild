@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r2.ebuild,v 1.24 2006/11/19 19:31:18 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r2.ebuild,v 1.28 2007/01/11 03:28:29 mcummings Exp $
 
 EAPI="prefix"
 
@@ -126,7 +126,7 @@ src_unpack() {
 	# c++ patch - should address swig related items
 	cd ${S}; epatch ${FILESDIR}/${P}-cplusplus.patch
 
-	has_version '>=sys-devel/gcc-4.2' && epatch ${FILESDIR}/${P}-gcc42-command-line.patch
+	has_version '>sys-devel/gcc-4.1.9999' && epatch ${FILESDIR}/${P}-gcc42-command-line.patch
 
 }
 
@@ -236,7 +236,7 @@ src_configure() {
 	# We need to use " and not ', as the written config.sh use ' ...
 	myconf "-Dlibpth=${EPREFIX}/$(get_libdir) ${EPREFIX}/usr/$(get_libdir) /usr/local/$(get_libdir) /$(get_libdir) /usr/$(get_libdir)"
 
-	sh Configure -des \
+		sh Configure -des \
 		-Darchname="${myarch}" \
 		-Dcccdlflags='-fPIC' \
 		-Dccdlflags='-rdynamic' \
@@ -256,6 +256,7 @@ src_configure() {
 		-Dinstallman3dir="${ED}"/usr/share/man/man3 \
 		-Dman1ext='1' \
 		-Dman3ext='3pm' \
+		-Dinc_version_list="$inclist" \
 		-Dinc_version_list="$inclist" \
 		-Dcf_by='Gentoo' \
 		-Dldflags="${LDFLAGS}" \

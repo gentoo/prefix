@@ -1,6 +1,19 @@
 # ChangeLog for dev-lang/perl
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.234 2006/11/19 19:31:18 mcummings Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.238 2007/01/11 03:28:29 mcummings Exp $
+
+  11 Jan 2007; Michael Cummings <mcummings@gentoo.org> perl-5.8.8-r2.ebuild:
+  Reverting changes made for bug 59328 until we can figure out why this breaks
+  under catalyst
+
+  09 Jan 2007; Michael Cummings <mcummings@gentoo.org> perl-5.8.8-r2.ebuild:
+  Bug 144965, adjusted gcc patch line
+
+  07 Jan 2007; Michael Cummings <mcummings@gentoo.org> perl-5.8.8-r2.ebuild:
+  Bug 160623, mistakenly removed the else block for noman
+
+  05 Jan 2007; Michael Cummings <mcummings@gentoo.org> perl-5.8.8-r2.ebuild:
+  Bug 59328, features=noman support
 
   19 Nov 2006; Michael Cummings <mcummings@gentoo.org>
   +files/perl-5.8.8-gcc42-command-line.patch, perl-5.8.8-r2.ebuild:
