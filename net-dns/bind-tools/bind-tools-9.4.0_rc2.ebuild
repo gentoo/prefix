@@ -41,6 +41,10 @@ src_unpack() {
 
 src_compile() {
 	use ipv6 && myconf="${myconf} --enable-ipv6" || myconf="${myconf} --enable-ipv6=no"
+	
+	# bind hardcoded refers to /usr/lib when looking for openssl, since the
+	# ebuild doesn't depend on ssl, disable it
+	myconf="${myconf} --with-openssl=no"
 
 	econf ${myconf} || die "Configure failed"
 
