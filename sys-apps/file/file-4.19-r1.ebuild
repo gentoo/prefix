@@ -13,7 +13,7 @@ SRC_URI="ftp://ftp.gw.com/mirrors/pub/unix/file/${P}.tar.gz
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="python"
 
 DEPEND=""
