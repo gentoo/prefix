@@ -12,7 +12,7 @@ SRC_URI="http://www.bzip.org/${PV}/${P}.tar.gz"
 
 LICENSE="BZIP2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="static"
 
 DEPEND=""
