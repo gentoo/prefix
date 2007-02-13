@@ -34,7 +34,7 @@ SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="afs bashlogger nls vanilla"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2"
