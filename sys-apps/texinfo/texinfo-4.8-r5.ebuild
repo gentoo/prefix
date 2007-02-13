@@ -12,7 +12,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="nls build static"
 
 RDEPEND="!build? ( >=sys-libs/ncurses-5.2-r2 )
