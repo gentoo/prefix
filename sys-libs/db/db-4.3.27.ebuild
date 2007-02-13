@@ -28,7 +28,7 @@ done
 
 LICENSE="DB"
 SLOT="4.3"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="tcl java doc nocxx bootstrap"
 
 DEPEND="tcl? ( >=dev-lang/tcl-8.4 )
