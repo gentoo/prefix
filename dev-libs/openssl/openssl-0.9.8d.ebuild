@@ -81,6 +81,14 @@ src_compile() {
 	use zlib && confopts="${confopts} zlib-dynamic"
 	use sse2 || confopts="${confopts} no-sse2"
 
+	case $CHOST in
+		sparc-sun-solaris*)
+			# openssl doesn't grok this setup, and guesses
+			# the architecture wrong, just disable asm for now
+			confopts="${confopts} no-asm"
+		;;
+	esac
+
 	local sslout=$(./gentoo.config)
 	einfo "Use configuration ${sslout:-(openssl knows best)}"
 	local config="Configure"
