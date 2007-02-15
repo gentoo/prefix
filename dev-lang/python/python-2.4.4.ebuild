@@ -61,6 +61,11 @@ src_unpack() {
 	unpack ${A}
 	cd ${S}
 
+	# fix the below patch for patch pre 2.5.9
+	cd "${WORKDIR}/${PV}"
+	epatch "${FILESDIR}"/${P}-readline.delta.patch
+	cd "${S}"
+
 	# unnecessary termcap dep in readline (#79013)
 	epatch ${WORKDIR}/${PV}/2.4.2-readline.patch
 	# db4.2 support
