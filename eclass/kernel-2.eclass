@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.201 2007/01/25 22:06:35 dsd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.202 2007/02/14 16:40:49 vapier Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -666,11 +666,11 @@ postinst_sources() {
 }
 
 postinst_headers() {
-	einfo "Kernel headers are usually only used when recompiling glibc, as such, following the installation"
-	einfo "of newer headers, it is advised that you re-merge glibc as follows:"
-	einfo "emerge glibc"
-	einfo "Failure to do so will cause glibc to not make use of newer features present in the updated kernel"
-	einfo "headers."
+	einfo "Kernel headers are usually only used when recompiling your system libc, as"
+	einfo "such, following the installation of newer headers, it is advised that you"
+	einfo "re-merge your system libc."
+	einfo "Failure to do so will cause your system libc to not make use of newer"
+	einfo "features present in the updated kernel headers."
 }
 
 # pkg_setup functions

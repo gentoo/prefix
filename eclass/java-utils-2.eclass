@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.56 2007/01/30 14:12:34 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.57 2007/02/13 19:52:51 betelgeuse Exp $
 
 
 # -----------------------------------------------------------------------------
@@ -405,7 +405,8 @@ java-pkg_doso() {
 			# otherwise make a symlink to the symlink's origin
 			else
 				# TODO use dosym
-				ln -s "$(readlink "${lib}")" "${ED}${JAVA_PKG_LIBDEST}/$(basename "${lib}")"
+				ln -s "$(readlink "${lib}")" \
+					"${ED}${JAVA_PKG_LIBDEST}/$(basename "${lib}")"
 				debug-print "${lib} is a symlink, linking accordanly"
 			fi
 		# otherwise die
@@ -1556,6 +1557,7 @@ eant() {
 	fi
 
 	local antflags="-Dnoget=true -Dmaven.mode.offline=true"
+
 	java-pkg_init-compiler_
 	local compiler="${GENTOO_COMPILER}"
 
@@ -1633,10 +1635,20 @@ eant() {
 
 	local gcp="${EANT_GENTOO_CLASSPATH}"
 
-	if [[ "${gcp}" ]]; then
-		local cp="$(java-pkg_getjars ${gcp})"
+	if [[ ${EBUILD_PHASE} = "test" ]]; then
+		antflags="${antflags} -DJunit.present=true"
+		[[ ${gcp} && ${ANT_TASKS} = *ant-junit* ]] && gcp="${gcp} junit"
+	fi
+
+	local cp
+
+	for atom in ${gcp}; do
+		cp="${cp}:$(java-pkg_getjars ${atom})"
+	done
+
+	if [[ ${cp} ]]; then
 		# It seems ant does not like single quotes around ${cp}
-		antflags="${antflags} -Dgentoo.classpath=\"${cp}\""
+		antflags="${antflags} -Dgentoo.classpath=\"${cp#:}\""
 	fi
 
 	[[ -n ${JAVA_PKG_DEBUG} ]] && echo ant ${antflags} "${@}"

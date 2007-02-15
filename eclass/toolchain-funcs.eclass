@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.64 2007/01/07 11:39:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.65 2007/02/12 05:01:09 vapier Exp $
 #
 # Author: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -91,6 +91,25 @@ tc-is-cross-compiler() {
 	return $([[ ${CBUILD:-${CHOST}} != ${CHOST} ]])
 }
 
+# See if this toolchain is a softfloat based one.
+# The possible return values:
+#  - only: the target is always softfloat (never had fpu)
+#  - yes:  the target should support softfloat
+#  - no:   the target should support hardfloat
+# This allows us to react differently where packages accept
+# softfloat flags in the case where support is optional, but
+# rejects softfloat flags where the target always lacks an fpu.
+tc-is-softfloat() {
+	case ${CTARGET} in
+		h8300*)
+			echo "only" ;;
+		*)
+			[[ ${CTARGET//_/-} == *-softfloat-* ]] \
+				&& echo "yes" \
+				|| echo "no"
+			;;
+	esac
+}
 
 # Parse information from CBUILD/CHOST/CTARGET rather than
 # use external variables from the profile.

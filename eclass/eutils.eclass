@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.272 2007/01/31 04:40:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.273 2007/02/14 16:49:46 cardoe Exp $
 #
 # This eclass is for general purpose functions that most ebuilds
 # have to implement themselves.
@@ -1661,6 +1661,16 @@ built_with_use() {
 	# if the USE file doesnt exist, assume the $PKG is either
 	# injected or package.provided
 	[[ ! -e ${USEFILE} ]] && die "Unable to determine what USE flags $PKG was built with"
+
+	# if the IUSE file doesn't exist, the read will error out, we need to handle
+	# this gracefully
+	if [[ ! -e ${IUSEFILE} ]] ; then
+		case ${missing_action} in
+			true)	return 0;;
+			false)	return 1;;
+			die)	die "Unable to determine what USE flags $PKG was built with";;
+		esac
+	fi
 
 	local IUSE_BUILT=$(<${IUSEFILE})
 	# Don't check USE_EXPAND #147237

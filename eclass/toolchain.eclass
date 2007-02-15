@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.322 2007/02/01 23:42:42 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.323 2007/02/12 05:02:07 vapier Exp $
 
 HOMEPAGE="http://gcc.gnu.org/"
 LICENSE="GPL-2 LGPL-2.1"
@@ -1233,7 +1233,7 @@ gcc_do_configure() {
 	# ppc altivec support
 	confgcc="${confgcc} $(use_enable altivec)"
 
-	[[ ${CTARGET//_/-} == *-softfloat-* ]] && confgcc="${confgcc} --with-float=soft"
+	[[ $(tc-is-softfloat) == "yes" ]] && confgcc="${confgcc} --with-float=soft"
 
 	# Native Language Support
 	if use nls && ! use build ; then
