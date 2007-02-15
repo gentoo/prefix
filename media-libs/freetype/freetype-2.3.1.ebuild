@@ -1,10 +1,10 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.2.1.ebuild,v 1.4 2006/10/01 13:43:20 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.1.ebuild,v 1.2 2007/02/08 19:13:30 grobian Exp $
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic
+inherit eutils flag-o-matic libtool
 
 DESCRIPTION="A high-quality and portable font engine"
 HOMEPAGE="http://www.freetype.org/"
@@ -31,16 +31,39 @@ RDEPEND="${DEPEND}
 src_unpack() {
 
 	unpack ${A}
+	cd "${S}"
 
-	# disable BCI when distributing binaries (patent issues)
-	use bindist || epatch "${FILESDIR}"/${PN}-2-enable_bci.patch
+	enable_option() {
+		sed -i -e "/#define $1/a #define $1" \
+			include/freetype/config/ftoption.h \
+			|| die "unable to enable option $1"
+	}
 
+	disable_option() {
+		sed -i -e "/#define $1/ { s:^:/*:; s:$:*/: }" \
+			include/freetype/config/ftoption.h \
+			|| die "unable to disable option $1"
+	}
+
+	if ! use bindist; then
+		# Bytecodes and subpixel hinting supports are patented
+		# in United States; for safety, disable them while building
+		# binaries, so that no risky code is distributed.
+		# See http://freetype.org/patents.html
+
+		enable_option TT_CONFIG_OPTION_BYTECODE_INTERPRETER
+		enable_option FT_CONFIG_OPTION_SUBPIXEL_RENDERING
+		disable_option TT_CONFIG_OPTION_UNPATENTED_HINTING
+	fi
+
+	disable_option FT_CONFIG_OPTION_OLD_INTERNALS
+
+	elibtoolize
 	epunt_cxx
 
 }
 
 src_compile() {
-
 	# https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=118021
 	append-flags "-fno-strict-aliasing"
 
@@ -48,17 +71,14 @@ src_compile() {
 	econf $(use_with zlib) || die
 
 	emake || die
-
 }
 
 src_install() {
-
-	make DESTDIR="${D}" install || die
+	emake -j1 DESTDIR="${D}" install || die
 
 	dodoc ChangeLog README
 	dodoc docs/{CHANGES,CUSTOMIZE,DEBUG,*.txt,PATENTS,TODO}
 
 	cd "${WORKDIR}"/${PN}-doc-${PV}
 	use doc && dohtml -r docs/*
-
 }

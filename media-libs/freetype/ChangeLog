@@ -1,6 +1,59 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.93 2007/01/05 08:06:37 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.105 2007/02/14 01:17:27 wolf31o2 Exp $
+
+  14 Feb 2007; Chris Gianelloni <wolf31o2@gentoo.org>
+  freetype-1.3.1-r5.ebuild:
+  Stable on alpha wrt bug #166265.
+
+  13 Feb 2007; Markus Rothe <corsair@gentoo.org> freetype-1.3.1-r5.ebuild:
+  Stable on ppc64; bug #166265
+
+  13 Feb 2007; Jeroen Roovers <jer@gentoo.org> freetype-1.3.1-r5.ebuild:
+  Stable for HPPA (bug #166265).
+
+  12 Feb 2007; Raúl Porcel <armin76@gentoo.org> freetype-1.3.1-r5.ebuild:
+  x86 stable wrt bug 166265
+
+  12 Feb 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  freetype-1.3.1-r5.ebuild:
+  Stable on sparc wrt #166265
+
+  12 Feb 2007; Simon Stelling <blubb@gentoo.org> freetype-1.3.1-r5.ebuild:
+  stable on amd64; bug 166265
+
+  11 Feb 2007; nixnut <nixnut@gentoo.org> freetype-1.3.1-r5.ebuild:
+  Stable on ppc wrt bug 166265
+
+  09 Feb 2007; Fabian Groffen <grobian@gentoo.org>
+  +freetype-2.1.9-r1.ebuild:
+  Restored freetype-2.1.9-r1.ebuild because that version is still in use by
+  alpha, sorry for the breakage
+
+  08 Feb 2007; Fabian Groffen <grobian@gentoo.org>
+  -freetype-2.1.9-r1.ebuild, freetype-2.1.10-r2.ebuild,
+  freetype-2.2.1-r1.ebuild, freetype-2.3.1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix. Removed 2.1.9-r1 as per bug
+  #164188
+
+*freetype-2.3.1 (08 Feb 2007)
+
+  08 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> metadata.xml,
+  +freetype-2.3.1.ebuild:
+  Bump to freetype 2.3.1, thanks to Eike Hein and Ron MacNeil in bug #162550.
+
+  08 Feb 2007; Diego Pettenò <flameeyes@gentoo.org>
+  -files/freetype-2.1.10-security_batch.patch, -freetype-2.1.10.ebuild,
+  -freetype-2.1.10-r1.ebuild:
+  Remove old vulnerable versions.
+
+*freetype-2.2.1-r1 (08 Feb 2007)
+
+  08 Feb 2007; Diego Pettenò <flameeyes@gentoo.org>
+  +files/freetype-2.2.1-foobillard.patch, metadata.xml,
+  -freetype-2.2.1.ebuild, +freetype-2.2.1-r1.ebuild:
+  Add patch to fix bug #149723. I'll take care of unmasking freetype 2.2, so
+  add restricted maintainership in metadata.
 
   05 Jan 2007; Diego Pettenò <flameeyes@gentoo.org>
   freetype-2.1.9-r1.ebuild, freetype-2.1.10.ebuild,

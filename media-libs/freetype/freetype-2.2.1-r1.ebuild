@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.1.10-r2.ebuild,v 1.12 2007/02/08 19:13:30 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.2.1-r1.ebuild,v 1.2 2007/02/08 19:13:30 grobian Exp $
 
 EAPI="prefix"
 
@@ -9,17 +9,16 @@ inherit eutils flag-o-matic libtool
 DESCRIPTION="A high-quality and portable font engine"
 HOMEPAGE="http://www.freetype.org/"
 SRC_URI="mirror://sourceforge/freetype/${P/_/}.tar.bz2
-	mirror://gentoo/freetype-2.1.10-security_batch-r1.patch.bz2
 	doc? ( mirror://sourceforge/${PN}/${PN}-doc-${PV}.tar.bz2 )"
 
 LICENSE="FTL GPL-2"
 SLOT="2"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86"
 IUSE="zlib bindist doc"
 
 # The RDEPEND below makes sure that if there is a version of moz/ff/tb
 # installed, then it will have the freetype-2.1.8+ binary compatibility patch.
-# Otherwise updating freetype will cause moz/ff/tb crashes.  #59849
+# Otherwise updating freetype will cause moz/ff/tb crashes.	 #59849
 # 20 Nov 2004 agriffis
 DEPEND="zlib? ( sys-libs/zlib )"
 
@@ -32,16 +31,12 @@ RDEPEND="${DEPEND}
 src_unpack() {
 
 	unpack ${A}
+	cd "${S}"
 
-	# fix internal header cast which gets used by pango (bad)
-	epatch ${FILESDIR}/${P}-internal_header.patch
-	# fix bunch of overflows etc. (#124828)
-	epatch ${WORKDIR}/${P}-security_batch-r1.patch
-	# revert pointer
-	epatch ${FILESDIR}/${P}-revert_pointer.patch
-	# fix artificial bold bug (#127872)
-	cd ${S}/src/base
-	epatch ${FILESDIR}/${P}-fix_synth.patch
+	# disable BCI when distributing binaries (patent issues)
+	use bindist || epatch "${FILESDIR}"/${PN}-2-enable_bci.patch
+
+	epatch "${FILESDIR}/${P}-foobillard.patch"
 
 	elibtoolize
 	epunt_cxx
@@ -49,33 +44,21 @@ src_unpack() {
 }
 
 src_compile() {
-
 	# https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=118021
 	append-flags "-fno-strict-aliasing"
 
-	use bindist || append-flags -DTT_CONFIG_OPTION_BYTECODE_INTERPRETER
+	type -p gmake &> /dev/null && export GNUMAKE=gmake
+	econf $(use_with zlib) || die
 
-	# Fix missing symbols in fontconfig in some circumstances
-	append-flags -DFT_CONFIG_OPTION_OLD_INTERNALS
-
-	make setup CFG="--host=${CHOST} --prefix=${EPREFIX}/usr $(use_with zlib) --libdir=${EPREFIX}/usr/$(get_libdir)" unix || die
-
-	emake || die "make failed"
-
-	if use doc ; then
-		emake refdoc || die "refdoc failed"
-	fi
-
+	emake || die
 }
 
 src_install() {
-
 	make DESTDIR="${D}" install || die
 
 	dodoc ChangeLog README
 	dodoc docs/{CHANGES,CUSTOMIZE,DEBUG,*.txt,PATENTS,TODO}
 
-	cd ${WORKDIR}/${PN}-doc-${PV}
+	cd "${WORKDIR}"/${PN}-doc-${PV}
 	use doc && dohtml -r docs/*
-
 }
