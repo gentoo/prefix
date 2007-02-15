@@ -1,6 +1,19 @@
 # ChangeLog for app-admin/eselect
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.53 2007/01/16 06:04:13 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.57 2007/02/07 14:47:46 blubb Exp $
+
+  07 Feb 2007; Simon Stelling <blubb@gentoo.org> eselect-1.0.7.ebuild:
+  stable on amd64; bug 160535
+
+  26 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> eselect-1.0.7.ebuild:
+  Stable on Alpha.
+
+  25 Jan 2007; Alexander H. Færøy <eroyf@gentoo.org> eselect-1.0.7.ebuild:
+  Stable on MIPS.
+
+  24 Jan 2007; Marius Mauch <genone@gentoo.org> eselect-1.0.2.ebuild,
+  eselect-1.0.7.ebuild, eselect-1.0.8.ebuild:
+  Replacing einfo with elog
 
   16 Jan 2007; Jeroen Roovers <jer@gentoo.org> eselect-1.0.7.ebuild:
   Stable for HPPA (bug #160535).

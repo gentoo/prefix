@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.0.8.ebuild,v 1.2 2007/01/15 03:29:44 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.0.8.ebuild,v 1.3 2007/01/24 14:07:12 genone Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,8 @@ DEPEND="sys-apps/sed
 		sys-apps/coreutils
 		sys-freebsd/freebsd-bin
 		app-admin/realpath
-	)"
+	)
+	userland_Darwin? ( sys-process/proctools )"
 RDEPEND="sys-apps/sed
 	sys-apps/file"
 
@@ -63,22 +64,18 @@ src_install() {
 
 pkg_postinst() {
 	if use bash-completion ; then
-		echo
-		einfo
-		einfo "To enable command-line completion for eselect, run:"
-		einfo
-		einfo "  eselect bashcomp enable eselect"
-		einfo
-		echo
+		elog
+		elog "To enable command-line completion for eselect, run:"
+		elog
+		elog "  eselect bashcomp enable eselect"
 	fi
 
-	echo
-	einfo "Modules cblas.eselect, blas.eselect and lapack.eselect have"
-	einfo "been split-out to separate packages called:"
-	einfo
-	einfo "  app-admin/eselect-cblas"
-	einfo "  app-admin/eselect-blas"
-	einfo "  app-admin/eselect-lapack"
-	einfo
-	echo
+	elog
+	elog "Modules cblas.eselect, blas.eselect and lapack.eselect have"
+	elog "been split-out to separate packages called:"
+	elog
+	elog "  app-admin/eselect-cblas"
+	elog "  app-admin/eselect-blas"
+	elog "  app-admin/eselect-lapack"
+	elog
 }
