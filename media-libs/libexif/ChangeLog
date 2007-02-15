@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/libexif
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.63 2007/02/04 20:26:44 griffon26 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.65 2007/02/08 19:29:24 grobian Exp $
+
+  08 Feb 2007; Fabian Groffen <grobian@gentoo.org> libexif-0.5.12-r3.ebuild,
+  libexif-0.6.12-r4.ebuild, libexif-0.6.13-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
+
+  08 Feb 2007; Steve Arnold <nerdboy@gentoo.org> libexif-0.6.13-r1.ebuild,
+  libexif-0.6.13-r2.ebuild:
+  corrected erroneous use of static use flag (bug 165358)
 
 *libexif-0.6.13-r2 (04 Feb 2007)
 

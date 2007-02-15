@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.13-r2.ebuild,v 1.1 2007/02/04 20:26:44 griffon26 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.13-r2.ebuild,v 1.2 2007/02/08 06:17:15 nerdboy Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
-IUSE="doc nls static"
+IUSE="doc nls"
 
 DEPEND="dev-util/pkgconfig
 	doc? ( app-doc/doxygen )
@@ -40,7 +40,7 @@ src_compile() {
 	local my_conf
 	use doc && my_conf="--with-doc-dir=/usr/share/doc/${PF}"
 	use nls || my_conf="${my_conf} --without-libintl-prefix"
-	econf $(use_enable nls) $(use_enable doc) $(use_enable static) \
+	econf $(use_enable nls) $(use_enable doc) \
 		--with-pic --disable-rpath ${my_conf} || die
 	emake || die
 }
