@@ -13,7 +13,7 @@ SRC_URI="mirror://gnu/non-gnu/cvs/source/stable/${PV}/${P}.tar.bz2
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-solaris"
 IUSE="doc emacs"
 
 DEPEND=">=sys-libs/zlib-1.1.4"
