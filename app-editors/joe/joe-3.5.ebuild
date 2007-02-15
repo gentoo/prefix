@@ -12,11 +12,11 @@ SRC_URI="mirror://sourceforge/joe-editor/${P}.tar.gz"
 
 LICENSE="GPL-1"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
 IUSE="xterm"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2"
-RDEPEND="!ppc-macos? ( xterm? ( >=x11-terms/xterm-215-r1 ) )"
+RDEPEND="xterm? ( >=x11-terms/xterm-215-r1 )"
 PROVIDE="virtual/editor"
 
 pkg_setup() {
