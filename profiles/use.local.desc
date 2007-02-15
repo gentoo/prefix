@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2577 2007/02/07 13:54:37 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2600 2007/02/14 21:35:23 opfer Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -101,7 +101,9 @@ app-editors/xemacs:athena - Chooses the MIT Athena widget set
 app-editors/xemacs:dnd - Enables support for the x11-libs/dnd drag-n-drop library
 app-editors/xemacs:eolconv - Support detection and translation of newline conventions.
 app-editors/xemacs:pop - Support POP for mail retrieval.
+app-editors/xemacs:xim - Enable X11 XiM input method
 app-emacs/auctex:preview-latex - Use bundled preview-latex
+app-emacs/chess:festival - Enable festival support
 app-emacs/delicious:planner - Include support for app-emacs/planner
 app-emacs/remember:bbdb - Include support for app-emacs/bbdb
 app-emacs/remember:planner - Include support for app-emacs/planner
@@ -157,7 +159,6 @@ app-i18n/uim:prime - Enable PRIME support
 app-laptop/pbbuttonsd:ibam - Enable support for Intelligent Battery Monitoring
 app-laptop/tp_smapi:hdaps - Install a compatible HDAPS module
 app-laptop/tpctl:tpctlir - enable support for thinkpad models 760 and 765
-app-misc/bbgallery:gimp - Enables support for the gimp via extra libraries
 app-misc/beagle:chm - Enable indexing of MS HTML Help files (.chm)
 app-misc/beagle:galago - Enable desktop presence via galago
 app-misc/beagle:ole - Enable ole support
@@ -204,6 +205,7 @@ app-mobilephone/smstools:stats - Enable statistic reporting
 app-mobilephone/yaps:capi - Enable CAPI support
 app-office/abiword-plugins:grammar - Enable grammar checking via grammar-link
 app-office/abiword-plugins:math - Enable gtkmathview support
+app-office/abiword-plugins:ots - Enable Text Summarizer plugin
 app-office/abiword-plugins:thesaurus - Enable thesaurus support
 app-office/abiword-plugins:wordperfect - Enable wordperfect file support via libwpd
 app-office/dia:gnome-print - Gnome-Print support
@@ -224,6 +226,9 @@ app-office/rabbit:gnome-print - Gnome-Print support
 app-office/rabbit:gs - Ghostscript support
 app-office/rabbit:tgif - tgif support
 app-office/tpp:figlet - Installs app-misc/figlet to support the --huge command
+app-pda/libopensync-plugin-irmc:irda - Enable IrDA support.
+app-pda/libopensync-plugin-syncml:http - Enable http transports.
+app-pda/libopensync-plugin-syncml:obex - Enable obex transports.
 app-pda/libsyncml:http - Enable http transports.
 app-pda/libsyncml:obex - Enable obex transports.
 app-pda/multisync:gnokii - Address synchronization with mobile phones via Gnokii.
@@ -400,6 +405,7 @@ dev-lang/php:force-cgi-redirect - Switch on common security setting for CGI SAPI
 dev-lang/php:hash - Enable the hash extension
 dev-lang/php:java-external - Use the external java extension rather than the bundled one
 dev-lang/php:java-internal - Use the bundled java extension in PHP4
+dev-lang/php:ming - Adds support for creating SWF files using Ming
 dev-lang/php:oci8-instant-client - Use dev-db/oracle-instantclient-basic as Oracle provider instead of requiring a full Oracle server install
 dev-lang/php:overload - Enable the overload extension
 dev-lang/php:pdo - Enable the bundled PDO extensions
@@ -427,6 +433,8 @@ dev-libs/boost:icu - Add unicode support to boost.regex using dev-libs/icu
 dev-libs/boost:pyste - Add support for the pyste frontend
 dev-libs/boost:threadsonly - Only build multithreaded libs
 dev-libs/boost:tools - Build and install the boost tools (bcp,quickbook,inspect,wave)
+dev-libs/cyberjack:pcsc-lite - enable installation of pcsc-lite driver
+dev-libs/cyberjack:noudev - disable installation of udev rules
 dev-libs/cyrus-sasl:authdaemond - Enable Courier-IMAP authdaemond's unix socket support.
 dev-libs/cyrus-sasl:ntlm_unsupported_patch - Adds NTLM samba NOT supported patch
 dev-libs/cyrus-sasl:sample - Build sample client and server
@@ -446,7 +454,6 @@ dev-libs/libsqlora8:orathreads - specifies use of Oracle threads
 dev-libs/libtomcrypt:libtommath - Use the portable math library
 dev-libs/libtomcrypt:tomsfastmath - Use the optimized math library
 dev-libs/libwbxml:nokia6600 - Add support for Nokia 6600 mobile phone
-dev-libs/linux-fusion:udev - Enable udev rules file installation
 dev-libs/log4cxx:smtp - offer SMTP support via libsmtp
 dev-libs/openobex:irda - enable IrDA support
 dev-libs/openobex:syslog - enable syslog support
@@ -807,7 +814,7 @@ media-gfx/graphicsmagick:depth16 - use 16-bit color depth as default
 media-gfx/graphicsmagick:depth32 - use 32-bit color depth as default
 media-gfx/graphicsmagick:gs - enable ghostscript support
 media-gfx/graphicsmagick:lzw - enable LZW support
-media-gfx/graphviz:dynagraph - enable dynagraph support
+media-gfx/graphviz:pango - Enables the pango plugin
 media-gfx/gtkam:gimp - GIMP plugin from gtkam
 media-gfx/gwenview:kipi - Support for the KDE Image Plugin Interface.
 media-gfx/imagemagick:fpx - enable libfpx support
@@ -872,9 +879,10 @@ media-libs/xine-lib:dxr3 - Support for DXR3 mpeg accelleration cards
 media-libs/xine-lib:modplug - Build with modplug support
 media-libs/xine-lib:vidix - Support for vidix video output
 media-libs/xine-lib:wavpack - Build with WavPack support
+media-libs/xine-lib:xcb - Support the X C-language Binding, a replacement for Xlib
 media-libs/xine-lib:xvmc - Support for XVideo Motion Compensation (accelerated mpeg playback)
 media-plugins/audacious-plugins:adplug - Build with AdPlug (Adlib sound card emulation) support
-media-plugins/audacious-plugins:chardet - Character set detection support for non-UTF8 ID3 tags
+media-plugins/audacious-plugins:chardet - Try to handle non-UTF8 chinese/japanese/korean ID3 tags
 media-plugins/audacious-plugins:modplug - Build with modplug support
 media-plugins/audacious-plugins:sid - Build with SID (Commodore 64 Audio) support
 media-plugins/audacious-plugins:timidity - Build with Timidity++ (MIDI sequencer) support
@@ -886,7 +894,7 @@ media-plugins/gst-plugins-farsight:jingle - Enables voice calls for jabber
 media-plugins/gst-plugins-farsight:jrtplib - Support for the Real-time Transport Protocol (RTP) library
 media-plugins/mythdvd:transcode - Enable DVD ripping and transcoding
 media-plugins/mythphone:festival - Enable festival support
-media-plugins/vdr-dvdconvert:projectx  - Enables support for projectx 
+media-plugins/vdr-dvdconvert:projectx - Enables support for projectx 
 media-plugins/vdr-pvr350:yaepg - Enables full support for the ouput format of vdr-yaepg
 media-plugins/vdr-softdevice:mmxext - enables mmx2 support
 media-plugins/vdr-weatherng:dxr3 - enables lower osd color deep for dxr3 cards
@@ -894,6 +902,7 @@ media-radio/xastir:ax25 - Enable ax25 support
 media-radio/xastir:festival - Enable festival support
 media-radio/xastir:shape - Enable shapelib support
 media-sound/alsa-driver:midi - Build the sequencer (midi) modules
+media-sound/alsa-tools:midi - Build the sequencer (midi) utilities
 media-sound/alsa-utils:midi - Build the sequencer (midi) utilities
 media-sound/amarok:daap - Enable support for DAAP Music Sharing
 media-sound/amarok:ifp - Enable support for iRiver devices access through libifp
@@ -903,7 +912,7 @@ media-sound/amarok:njb - Enable support for NJB (Creative) devices access throug
 media-sound/amarok:noamazon - Disable support for downloading covers from amazon.com
 media-sound/amarok:real - Build with real/helix player support
 media-sound/amarok:visualization - Support visualization plugins through media-libs/libvisual
-media-sound/audacious:chardet - Character set detection support for non-UTF8 ID3 tags
+media-sound/audacious:chardet - Try to handle non-UTF8 chinese/japanese/korean ID3 tags
 media-sound/audacious:modplug - Build with modplug support
 media-sound/audacious:sid - Build with SID (Commodore 64 Audio) support
 media-sound/audacious:timidity - Build with Timidity++ (MIDI sequencer) support
@@ -916,6 +925,7 @@ media-sound/bmpx:ofa - Build with ofa/PUID checking support for MusicBrainz meta
 media-sound/bmpx:p2p - Enable support for downloading songs from the SoulSeek p2p network with museekd/mooseekd
 media-sound/bmpx:sid - Build with SID (Commodore 64 Audio) support
 media-sound/cmus:modplug - Build with modplug support
+media-sound/cmus:mp4 - enable mp4 decoding
 media-sound/darkice:twolame - Build with twolame support
 media-sound/dir2ogg:wma - Add support for wma files through mplayer
 media-sound/exaile:cdaudio - Enable cd audio playback support
@@ -941,6 +951,8 @@ media-sound/ncmpc:key-screen - Enable key editor screen
 media-sound/ncmpc:mouse - Enable curses getmouse support
 media-sound/ncmpc:raw-mode - raw terminal mode
 media-sound/ncmpc:search-screen - Enable search screen (EXPERIMENTAL)
+media-sound/noteedit:kmid - Use KDE's kmid to play sound
+media-sound/noteedit:tse3 - Use tse3 library to play/export sound
 media-sound/podcatcher:bittorrent - Enable support for bittorrent downloads
 media-sound/prokyon3:musicbrainz - Enable support for MusicBrainz audio lookups (musicbrainz.org)
 media-sound/quodlibet:mmkeys - Enable support for special keys on multimedia keyboards
@@ -954,6 +966,7 @@ media-sound/rhythmbox:keyring - gnome-keyring support for dapp share passwords
 media-sound/rhythmbox:musicbrainz - support for muzicbrainz audio lookup (musicbrainz.org)
 media-sound/rhythmbox:tagwriting - support for tag writing in certain audio files
 media-sound/slimserver:alac - Enable support for alac
+media-sound/shntool:wavpack - Add support for wavpack
 media-sound/snd:gsl - Use the GNU scientific library for calculations
 medua-sound/sonata:tagwriting - Enable support for tag writing (taglib, tagpy)
 media-sound/transkode:amarok - Build Amarok script
@@ -1018,6 +1031,7 @@ media-video/ffmpeg:amr - Enables Adaptive Multi-Rate Audio support
 media-video/ffmpeg:network - Enables network streaming support
 media-video/flumotion:gstreamer08 - Use GStreamer 0.8 over GStreamer 0.10
 media-video/gpac:amr - Adaptive Multi-Rate Audio support (commonly used in telephony)
+media-video/kaffeine:xcb - Support the X C-language Binding, a replacement for Xlib
 media-video/linux-uvc:isight - Apply patch to work _only_ with the Apple iSight
 media-video/lives:libvisual - Enable libvisual support
 media-video/mjpegtools:yv12 - Enables support for the YV12 pixel format
@@ -1080,6 +1094,7 @@ media-video/vlc:live - Enables LIVE.com support.
 media-video/vlc:mod - Enables Mod demux support.
 media-video/vlc:optimisememory - Enable optimisation for memory rather than performance.
 media-video/vlc:rtsp - Enables real audio and RTSP modules.
+media-video/vlc:sdl-image - Enables sdl image video decoder (depends on sdl)
 media-video/vlc:shout - Enables libshout output.
 media-video/vlc:skins - Enables support for the skins2 interface.
 media-video/vlc:stream - Enables vlc to stream video.
@@ -1443,6 +1458,8 @@ net-p2p/mldonkey:fasttrack - enable fasttrack suport
 net-p2p/mldonkey:gnutella - enable gnutella and gnutella2 support
 net-p2p/mldonkey:guionly - enable client build only
 net-p2p/mldonkey:magic - enable use of libmagic
+net-p2p/museek+:qsa - Enable QSA scripting for museeq
+net-p2p/museek+:trayicon - Enable support for tray icon
 net-print/omni:epson - include the epson drivers
 net-print/pkpgcounter:psyco - psyco python accelerator
 net-proxy/dansguardian:kaspersky - Adds support for Kaspersky AntiVirus software
@@ -1458,7 +1475,6 @@ net-voip/yate:gsm - Build gsm codec plugin
 net-voip/yate:h323 - Build H.323 Channel plugin
 net-voip/yate:ilbc - Build ILBC codec plugin
 net-voip/yate:zaptel - Build zaptel Channel plugin
-net-wireless/bluez-utils:udev - Enable udev rules file installation
 net-wireless/hostapd:logwatch - Install support files for logwatch
 net-wireless/hostapd:madwifi - Add support for madwifi (Atheros chipset)
 net-wireless/kdebluetooth:irmc - Enable the kitchensync(Multisynk)'s IrMCSync konnector
@@ -1611,7 +1627,6 @@ sys-apps/pcmcia-cs-modules:cardbus - Enable 32bit CardBus support
 sys-apps/pcmcia-cs:trusted - Assume all users are trusted (Build unsafe user-space tools)
 sys-apps/pcmcia-cs:xforms - Enable building the xforms based cardinfo binary
 sys-apps/pcmciautils:staticsocket - Add support for static sockets
-sys-apps/pcmciautils:udev - Install as an udev helper instead of a hotplug helper
 sys-apps/portage:epydoc - Generate api documentation with epydoc.
 sys-apps/qingy:logrotate - Enable logrotate file installation
 sys-apps/qingy:opensslcrypt - Encrypt communications between qingy and its GUI using OpenSSL
@@ -1657,7 +1672,6 @@ sys-cluster/ocfs:aio - Add aio support
 sys-cluster/openmpi:pbs - Add support for the Portable Batch System (PBS)
 sys-cluster/torque:server - Enable compilation of server
 sys-cluster/vzctl:logrotate - Enable logrotate file installation
-sys-devel/bfin-toolchain:bfin-elf - Also install the bfin-elf toolchain
 sys-devel/binutils-hppa64:multislot - Allow for multiple versions of binutils to be emerged at once for same CTARGET
 sys-devel/binutils-hppa64:multitarget - Adds support to binutils for cross compiling (does not work with gas)
 sys-devel/binutils-nios2:multislot - Allow for multiple versions of binutils to be emerged at once for same CTARGET
@@ -1916,11 +1930,9 @@ x11-wm/sawfish:pango - Enable pango support
 x11-wm/stumpwm-cvs:clisp - Use CLISP for the runtime
 x11-wm/stumpwm-cvs:sbcl - Use SBCL for the runtime
 x11-wm/windowmaker:modelock - Enable XKB language status lock support. README says: "If you don't know what it is you probably don't need it."
-xfce-base/thunar:plugins - Enable panel plugins.
+xfce-base/thunar:plugins - Enable trash panel plugin.
 xfce-base/xfce4-extras:battery - Pulls in xfce4-battery dependency.
 xfce-base/xfce4-extras:wlan - Pulls in xfce4-wavelan dependency.
-xfce-base/xfdesktop:plugins - Enable panel plugins.
-xfce-base/xfdesktop:thunar-vfs - Enable thunar-vfs support for desktop launchers.
 xfce-extra/xarchiver:7zip - Adds support for 7zip archives.
 xfce-extra/xarchiver:arj - Adds support for arj archives.
 xfce-extra/xarchiver:lha - Adds support for lha archives.
