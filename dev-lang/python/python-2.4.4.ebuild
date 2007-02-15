@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.4.ebuild,v 1.1 2006/11/04 16:23:40 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.4.ebuild,v 1.2 2007/02/06 08:39:15 genone Exp $
 
 EAPI="prefix"
 
@@ -316,12 +316,12 @@ src_test() {
 		mv ${T}/test_${test}.py ${S}/Lib/test/test_${test}.py
 	done
 
-	einfo "Portage skipped the following tests which aren't able to run from emerge:"
+	elog "Portage skipped the following tests which aren't able to run from emerge:"
 	for test in ${skip_tests} ; do
-		einfo "test_${test}.py"
+		elog "test_${test}.py"
 	done
 
-	einfo "If you'd like to run them, you may:"
-	einfo "cd /usr/lib/python${PYVER}/test"
-	einfo "and run the tests separately."
+	elog "If you'd like to run them, you may:"
+	elog "cd /usr/lib/python${PYVER}/test"
+	elog "and run the tests separately."
 }
