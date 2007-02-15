@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.4.2.ebuild,v 1.1 2006/12/04 15:18:48 foser Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.4.2.ebuild,v 1.9 2007/02/13 10:58:53 corsair Exp $
 
 EAPI="prefix"
 
@@ -18,12 +18,10 @@ IUSE="doc xml"
 RDEPEND=">=media-libs/freetype-2.1.4
 	!xml? ( >=dev-libs/expat-1.95.3 )
 	xml? ( >=dev-libs/libxml2-2.6 )"
-
 DEPEND="${RDEPEND}
 	doc? ( app-text/docbook-sgml-utils )"
 
 src_unpack() {
-
 	unpack ${A}
 
 	cd "${S}"
@@ -34,11 +32,9 @@ src_unpack() {
 
 	# elibtoolize
 	epunt_cxx #74077
-
 }
 
 src_compile() {
-
 	[ "${ARCH}" == "alpha" -a "${CC}" == "ccc" ] && \
 		die "Dont compile fontconfig with ccc, it doesnt work very well"
 
@@ -53,12 +49,10 @@ src_compile() {
 		|| die
 
 	emake -j1 || die
-
 }
 
 src_install() {
-
-	make DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die
 
 	insinto /etc/fonts
 	doins "${S}"/fonts.conf
@@ -78,11 +72,9 @@ src_install() {
 	fi
 
 	dodoc AUTHORS ChangeLog NEWS README
-
 }
 
 pkg_postinst() {
-
 	# Changes should be made to /etc/fonts/local.conf, and as we had
 	# too much problems with broken fonts.conf, we force update it ...
 	# <azarah@gentoo.org> (11 Dec 2002)
@@ -97,5 +89,4 @@ pkg_postinst() {
 		"${EPREFIX}"/usr/bin/fc-cache -s
 		eend $?
 	fi
-
 }
