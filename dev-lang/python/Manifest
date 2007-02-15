@@ -2,10 +2,10 @@ AUX depreorder.py 2235 RMD160 a6da5f336bdf8c370861c7922a5fa79ce4ab89cb SHA1 3b85
 MD5 1c5cd53cb89c821a549968bac31df0f1 files/depreorder.py 2235
 RMD160 a6da5f336bdf8c370861c7922a5fa79ce4ab89cb files/depreorder.py 2235
 SHA256 93920120e596f34e4222e8686e6283b03cdd517f89f2dba3eda90d79fa016aba files/depreorder.py 2235
-AUX python-2.4.4-readline.delta.patch 1873 RMD160 e956068c337e903e9a1d13baba2792b7b1bcc5cb SHA1 57b2a2546865286d2329c13e0a6229719ce7e0e2 SHA256 500ef7ae866c08fbdfbc52d56ccaf49614d2805d0c2ec2aa2e792abca16a364c
-MD5 258158203df22d944abea4beebc2040a files/python-2.4.4-readline.delta.patch 1873
-RMD160 e956068c337e903e9a1d13baba2792b7b1bcc5cb files/python-2.4.4-readline.delta.patch 1873
-SHA256 500ef7ae866c08fbdfbc52d56ccaf49614d2805d0c2ec2aa2e792abca16a364c files/python-2.4.4-readline.delta.patch 1873
+AUX python-2.4.4-readline.delta.patch 1821 RMD160 1594eea6dfbdf203e097df4c66738580b1719ee2 SHA1 17dd58fea579c6b879ab921ae27fbce7ba2e5dd8 SHA256 26b06721f305459bfd4b91471326a516dea8b9ddc04da202abf083b838232e19
+MD5 b240e22328b921b23826ea317358310d files/python-2.4.4-readline.delta.patch 1821
+RMD160 1594eea6dfbdf203e097df4c66738580b1719ee2 files/python-2.4.4-readline.delta.patch 1821
+SHA256 26b06721f305459bfd4b91471326a516dea8b9ddc04da202abf083b838232e19 files/python-2.4.4-readline.delta.patch 1821
 AUX python-config-2.4 179 RMD160 087417fb7080be00cf62381d5e16fb4e4cb4538f SHA1 3ffffc6e4f4c7b774135f2635601b92a5b13e259 SHA256 86b87546be79ee6027df70046b33808b64921eea71618c81810e6b1280604221
 MD5 d74e7f0fd47f00e8b3fe7ca36b7eb629 files/python-config-2.4 179
 RMD160 087417fb7080be00cf62381d5e16fb4e4cb4538f files/python-config-2.4 179
