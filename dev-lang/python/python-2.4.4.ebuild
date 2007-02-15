@@ -61,9 +61,11 @@ src_unpack() {
 	unpack ${A}
 	cd ${S}
 
-	# fix the below patch for patch pre 2.5.9
+	# fix the readline patch for patch 2.5.4
 	cd "${WORKDIR}/${PV}"
 	epatch "${FILESDIR}"/${P}-readline.delta.patch
+	# fix the libdir patch for patch 2.5.4
+	sed -i -e '/^#/d' 2.4.3-libdir.patch
 	cd "${S}"
 
 	# unnecessary termcap dep in readline (#79013)
