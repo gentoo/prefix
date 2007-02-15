@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/jpeg
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/ChangeLog,v 1.56 2006/09/04 03:59:21 kumba Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/ChangeLog,v 1.57 2007/02/09 06:43:06 vapier Exp $
+
+*jpeg-6b-r8 (09 Feb 2007)
+
+  09 Feb 2007; Mike Frysinger <vapier@gentoo.org> +jpeg-6b-r8.ebuild:
+  Cleanup tempfile handling #165940 by Andrew Aylett.
 
   04 Sep 2006; Joshua Kinard <kumba@gentoo.org> jpeg-6b-r7.ebuild:
   Marked stable on mips.
