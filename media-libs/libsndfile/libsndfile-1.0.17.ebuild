@@ -16,7 +16,7 @@ SRC_URI="http://www.mega-nerd.com/libsndfile/${P}.tar.gz
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~ppc-macos"
+KEYWORDS="~ppc-macos ~x86-macos"
 IUSE="sqlite flac alsa"
 RESTRICT="test"
 
