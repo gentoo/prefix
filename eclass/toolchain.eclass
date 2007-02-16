@@ -2322,7 +2322,8 @@ is_multilib() {
 	case ${CTARGET} in
 		mips64*|powerpc64*|s390x*|sparc64*|x86_64*)
 			has_multilib_profile || use multilib ;;
-		i386-*-solaris*) use multilib ;;
+		*-*-solaris*) use multilib ;;
+		*-apple-darwin*) use multilib ;;
 		*)	false ;;
 	esac
 }
