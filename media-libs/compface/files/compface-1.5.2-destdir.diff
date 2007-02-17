@@ -1,0 +1,18 @@
+diff -urN compface-1.5.2.orig/Makefile.in compface-1.5.2/Makefile.in
+--- compface-1.5.2.orig/Makefile.in	2005-10-04 21:59:49.000000000 +0900
++++ compface-1.5.2/Makefile.in	2005-11-13 19:15:24.220000000 +0900
+@@ -1,10 +1,10 @@
+ prefix          = @prefix@
+ exec_prefix     = @exec_prefix@
+ srcdir          = @srcdir@
+-BINDIR		= @bindir@
+-LIBDIR		= @libdir@
+-MANDIR		= @mandir@
+-INCLUDEDIR	= @includedir@
++BINDIR		= $(DESTDIR)/@bindir@
++LIBDIR		= $(DESTDIR)/@libdir@
++MANDIR		= $(DESTDIR)/@mandir@
++INCLUDEDIR	= $(DESTDIR)/@includedir@
+ 
+ @SET_MAKE@
+ 
