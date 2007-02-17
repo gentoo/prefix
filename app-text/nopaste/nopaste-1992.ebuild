@@ -10,7 +10,7 @@ SRC_URI="${HOMEPAGE}/${P}"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="X"
 
 DEPEND=""
@@ -22,4 +22,6 @@ S=${WORKDIR}
 
 src_install() {
 	newbin ${DISTDIR}/${P} ${PN}
+	sed -i -e "1s|^#!/usr/bin/ruby|#!${EPREFIX}/usr/bin/ruby|" \
+		"${ED}"/usr/bin/${PN}
 }
