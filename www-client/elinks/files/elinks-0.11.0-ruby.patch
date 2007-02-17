@@ -1,0 +1,11 @@
+--- elinks-0.11.0.orig/src/scripting/ruby/hooks.c	2006-01-01 17:39:36.000000000 +0100
++++ elinks-0.11.0/src/scripting/ruby/hooks.c	2006-02-03 20:12:06.000000000 +0100
+@@ -160,7 +160,7 @@
+ 
+ 	args[0] = rb_str_new2(url);
+ 	/* FIXME: Use html_len */
+-	args[1] = rb_str_new(fragment->data, fragment->length);
++	args[1] = rb_str_new2(fragment->data);
+ 
+ 	result = erb_protected_method_call("pre_format_html_hook", 2, args, &error);
+ 	if (error) {

@@ -1,0 +1,12 @@
+diff -Naurp elinks-0.11.1-orig/src/util/time.h elinks-0.11.1/src/util/time.h
+--- elinks-0.11.1-orig/src/util/time.h	2006-05-11 20:38:04.000000000 +0200
++++ elinks-0.11.1/src/util/time.h	2006-05-11 20:38:25.000000000 +0200
+@@ -1,6 +1,8 @@
+ #ifndef EL__UTIL_TIME_H
+ #define EL__UTIL_TIME_H
+ 
++#include <sys/types.h>
++
+ #ifdef HAVE_SYS_TIME_H
+ #include <sys/time.h>
+ #endif

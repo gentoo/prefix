@@ -1,0 +1,12 @@
+diff -Naurp elinks-0.11.0-orig/src/main/event.c elinks-0.11.0/src/main/event.c
+--- elinks-0.11.0-orig/src/main/event.c	2006-01-22 10:58:04.000000000 +0100
++++ elinks-0.11.0/src/main/event.c	2006-01-22 10:58:33.000000000 +0100
+@@ -149,7 +149,7 @@ get_event_name(int id)
+ 	return events[id].name;
+ }
+ 
+-static inline void
++static void
+ trigger_event_va(int id, va_list ap_init)
+ {
+ 	int i;
