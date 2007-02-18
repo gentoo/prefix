@@ -8,7 +8,7 @@ inherit eutils flag-o-matic autotools
 
 DESCRIPTION="a small but very powerful text-based mail client"
 HOMEPAGE="http://www.mutt.org"
-SRC_URI="http://www.gentoo.org/~grobian/distfiles/${P%%_*}-20070111.tar.bz2
+SRC_URI="http://www.gentoo.org/~grobian/distfiles/${P%%_*}-20070217.tar.bz2
 	!vanilla? (
 		mirror://gentoo/${P%%_*}-gentoo-patches.tar.bz2
 	)"
@@ -48,6 +48,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P%%_*}-smarttime.patch
 	epatch "${FILESDIR}"/${P%%_*}_p20061128-smtp.patch
+	epatch "${FILESDIR}"/${P%%_*}-imap-hang.patch
 	# this patch is non-generic and only works because we use a sysconfdir
 	# different from the one used by the mailbase ebuild
 	epatch "${FILESDIR}"/${P%%_*}-prefix-mailcap.patch

@@ -1,0 +1,33 @@
+* Sergey Svishchev <svs@ropnet.ru>
+  If connection to IMAP/SSL server is dropped (perhaps because
+  dynamically-assigned IP on the client has changed), subsequent attempt
+  to reconnect appears to hang -- mutt does not respond to keyboard
+  (SIGTERM) and has to be killed (SIGQUIT).  Actually, mutt just waits
+  for more data from socket but never receives any, and after ~30
+  minutes read() times out.
+
+  A partial fix (clean up previous connection state before reconnecting)
+  is attached.
+
+http://bugs.mutt.org/cgi-bin/gnatsweb.pl?debug=&database=mutt&cmd=view+audit-trail&cmd=view&pr=2717
+
+--- imap/imap.c
++++ imap/imap.c
+@@ -358,8 +358,16 @@
+     new = 1;
+   }
+ 
+-  if (idata->state == IMAP_DISCONNECTED)
++  if (idata->state == IMAP_DISCONNECTED) {
++    idata->seqno = idata->nextcmd = idata->lastcmd = 0;
++    memset(idata->cmds, 0, sizeof(IMAP_COMMAND) * IMAP_PIPELINE_DEPTH);
++    mutt_buffer_free(&idata->cmdbuf);
++    if (!(idata->cmdbuf = mutt_buffer_init (NULL))) {
++      FREE (&idata);
++      return idata;
++    }
+     imap_open_connection (idata);
++  }
+   if (idata->state == IMAP_CONNECTED)
+   {
+     if (!imap_authenticate (idata))
