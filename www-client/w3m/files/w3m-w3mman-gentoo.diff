@@ -1,0 +1,23 @@
+diff -urN w3m-0.4.2.ORIG/scripts/w3mman/w3mman.in w3m-0.4.2/scripts/w3mman/w3mman.in
+--- w3m-0.4.2.ORIG/scripts/w3mman/w3mman.in	2003-09-25 00:58:27.000000000 +0900
++++ w3m-0.4.2/scripts/w3mman/w3mman.in	2003-09-25 03:12:38.000000000 +0900
+@@ -1,7 +1,7 @@
+ #!@PERL@
+ 
+ @W3M = split(' ', $ENV{'W3MMAN_W3M'} || '@W3M@');
+-$ENV{'W3MMAN_MAN'} ||= '@MAN@';
++$ENV{'W3MMAN_MAN'} ||= 'env LC_MESSAGES=${LC_MESSAGES:-${LC_ALL:-${LANG}}} LANG=C @MAN@';
+ $SCRIPT = 'file:///$LIB/w3mman2html.cgi';
+ 
+ sub usage {
+diff -urN w3m-0.4.2.ORIG/scripts/w3mman/w3mman2html.cgi.in w3m-0.4.2/scripts/w3mman/w3mman2html.cgi.in
+--- w3m-0.4.2.ORIG/scripts/w3mman/w3mman2html.cgi.in	2003-09-25 00:58:27.000000000 +0900
++++ w3m-0.4.2/scripts/w3mman/w3mman2html.cgi.in	2003-09-25 03:12:38.000000000 +0900
+@@ -1,6 +1,6 @@
+ #!@PERL@
+ 
+-$MAN = $ENV{'W3MMAN_MAN'} || '@MAN@';
++$MAN = $ENV{'W3MMAN_MAN'} || 'env LC_MESSAGES=${LC_MESSAGES:-${LC_ALL:-${LANG}}} LANG=C @MAN@';
+ $QUERY = $ENV{'QUERY_STRING'} || $ARGV[0];
+ $SCRIPT_NAME = $ENV{'SCRIPT_NAME'} || $0;
+ $CGI = "file://$SCRIPT_NAME";

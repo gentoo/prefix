@@ -1,0 +1,12 @@
+diff -Naur w3m-0.5.1.orig/file.c w3m-0.5.1/file.c
+--- w3m-0.5.1.orig/file.c	2004-04-17 03:47:19.000000000 +0900
++++ w3m-0.5.1/file.c	2006-12-28 00:40:00.000000000 +0900
+@@ -7799,7 +7799,7 @@
+ 	ans = inputChar(prompt);
+     }
+     else {
+-	printf(prompt);
++	printf("%s", prompt);
+ 	fflush(stdout);
+ 	ans = Strfgets(stdin)->ptr;
+     }
