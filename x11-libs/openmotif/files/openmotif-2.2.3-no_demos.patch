@@ -1,0 +1,101 @@
+--- openmotif/configure.in.no_demos	2003-09-19 18:40:33.000000000 +0200
++++ openmotif/configure.in	2003-12-16 12:16:33.000000000 +0100
+@@ -259,88 +259,4 @@
+ doc/man/man5/Makefile \
+ tools/Makefile \
+ tools/wml/Makefile \
+-demos/Makefile \
+-demos/lib/Makefile \
+-demos/lib/Xmd/Makefile \
+-demos/lib/Wsm/Makefile \
+-demos/lib/Exm/Makefile \
+-demos/lib/Exm/wml/Makefile \
+-demos/programs/Makefile \
+-demos/programs/Exm/Makefile \
+-demos/programs/Exm/app_in_c/Makefile \
+-demos/programs/Exm/app_in_uil/Makefile \
+-demos/programs/Exm/simple_app/Makefile \
+-demos/programs/airport/Makefile \
+-demos/programs/animate/Makefile \
+-demos/programs/drag_and_drop/Makefile \
+-demos/programs/draw/Makefile \
+-demos/programs/earth/Makefile \
+-demos/programs/filemanager/Makefile \
+-demos/programs/fileview/Makefile \
+-demos/programs/getsubres/Makefile \
+-demos/programs/hellomotif/Makefile \
+-demos/programs/hellomotifi18n/Makefile \
+-demos/programs/hellomotifi18n/C/Makefile \
+-demos/programs/hellomotifi18n/C/uid/Makefile \
+-demos/programs/hellomotifi18n/english/Makefile \
+-demos/programs/hellomotifi18n/english/uid/Makefile \
+-demos/programs/hellomotifi18n/french/Makefile \
+-demos/programs/hellomotifi18n/french/uid/Makefile \
+-demos/programs/hellomotifi18n/hebrew/Makefile \
+-demos/programs/hellomotifi18n/hebrew/uid/Makefile \
+-demos/programs/hellomotifi18n/japan/Makefile \
+-demos/programs/hellomotifi18n/japan/uid/Makefile \
+-demos/programs/hellomotifi18n/japanese/Makefile \
+-demos/programs/hellomotifi18n/japanese/uid/Makefile \
+-demos/programs/hellomotifi18n/swedish/Makefile \
+-demos/programs/hellomotifi18n/swedish/uid/Makefile \
+-demos/programs/i18ninput/Makefile \
+-demos/programs/panner/Makefile \
+-demos/programs/periodic/Makefile \
+-demos/programs/piano/Makefile \
+-demos/programs/popups/Makefile \
+-demos/programs/sampler2_0/Makefile \
+-demos/programs/setdate/Makefile \
+-demos/programs/todo/Makefile \
+-demos/programs/workspace/Makefile \
+-demos/programs/tooltips/Makefile \
+-demos/programs/FontSel/Makefile \
+-demos/programs/ButtonBox/Makefile \
+-demos/programs/ColorSel/Makefile \
+-demos/programs/Column/Makefile \
+-demos/programs/DropDown/Makefile \
+-demos/programs/MultiList/Makefile \
+-demos/programs/MultiList/pixmaps/Makefile \
+-demos/programs/IconB/Makefile \
+-demos/programs/Outline/Makefile \
+-demos/programs/Paned/Makefile \
+-demos/programs/TabStack/Makefile \
+-demos/programs/Tree/Makefile \
+-demos/programs/pixmaps/Makefile \
+-demos/unsupported/Makefile \
+-demos/unsupported/Exm/Makefile \
+-demos/unsupported/aicon/Makefile \
+-demos/unsupported/dainput/Makefile \
+-demos/unsupported/dogs/Makefile \
+-demos/unsupported/hellomotif/Makefile \
+-demos/unsupported/motifshell/Makefile \
+-demos/unsupported/uilsymdump/Makefile \
+-demos/unsupported/xmapdef/Makefile \
+-demos/unsupported/xmfonts/Makefile \
+-demos/unsupported/xmforc/Makefile \
+-demos/unsupported/xmform/Makefile \
+-demos/doc/Makefile \
+-demos/doc/programGuide/Makefile \
+-demos/doc/programGuide/ch05/Makefile \
+-demos/doc/programGuide/ch05/Scale/Makefile \
+-demos/doc/programGuide/ch06/Makefile \
+-demos/doc/programGuide/ch06/spin_box/Makefile \
+-demos/doc/programGuide/ch06/combo_box/Makefile \
+-demos/doc/programGuide/ch08/Makefile \
+-demos/doc/programGuide/ch08/Notebook/Makefile \
+-demos/doc/programGuide/ch08/Container/Makefile \
+-demos/doc/programGuide/ch16/Makefile \
+-demos/doc/programGuide/ch17/Makefile \
+-demos/doc/programGuide/ch17/simple_drop/Makefile \
+-demos/doc/programGuide/ch17/simple_drag/Makefile \
+ ])
+--- openmotif/Makefile.am.no_demos	2003-12-16 12:17:02.000000000 +0100
++++ openmotif/Makefile.am	2003-12-16 12:17:03.000000000 +0100
+@@ -28,6 +28,5 @@
+              include \
+              tools \
+              clients \
+-             doc \
+-             demos
++             doc
+ AUTOMAKE_OPTIONS = 1.4

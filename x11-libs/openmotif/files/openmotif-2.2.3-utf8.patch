@@ -1,0 +1,77 @@
+--- openMotif-2.2.3/tools/wml/UilSymCSet.h.utf8	2004-03-04 17:41:48.000000000 +0100
++++ openMotif-2.2.3/tools/wml/UilSymCSet.h	2004-03-17 12:54:23.000000000 +0100
+@@ -32,6 +32,7 @@
+     "JISX0201.1976-0",	/* jis_katakana */
+     "KSC5601.1987-0",	/* ksc_hangul */
+     "KSC5601.1987-1",	/* ksc_hangul_gr */
++    "UTF-8",		/* utf-8 */
+ };
+ externaldef(uil_sym_glbl) char **charset_xmstring_names_table =
+ 		charset_xmstring_names_table_vec;
+@@ -66,6 +67,7 @@
+     XmSTRING_DIRECTION_L_TO_R,	/* jis_katakana */
+     XmSTRING_DIRECTION_L_TO_R,	/* ksc_hangul */
+     XmSTRING_DIRECTION_L_TO_R,	/* ksc_hangul_gr */
++    XmSTRING_DIRECTION_L_TO_R,	/* utf-8 */
+ };
+ externaldef(uil_sym_glbl) unsigned char *charset_writing_direction_table =
+ 		charset_wrdirection_table_vec;
+@@ -100,6 +102,7 @@
+     XmSTRING_DIRECTION_L_TO_R,	/* jis_katakana */
+     XmSTRING_DIRECTION_L_TO_R,	/* ksc_hangul */
+     XmSTRING_DIRECTION_L_TO_R,	/* ksc_hangul_gr */
++    XmSTRING_DIRECTION_L_TO_R,	/* utf-8 */
+ };
+ externaldef(uil_sym_glbl) unsigned char *charset_parsing_direction_table =
+ 		charset_parsdirection_table_vec;
+@@ -134,6 +137,7 @@
+     sym_k_onebyte_charsize,	/* jis_katakana */
+     sym_k_twobyte_charsize,	/* ksc_hangul */
+     sym_k_twobyte_charsize,	/* ksc_hangul_gr */
++    sym_k_onebyte_charsize,	/* utf-8 */
+ };
+ externaldef(uil_sym_glbl) unsigned char *charset_character_size_table =
+ 		charset_charsize_table_vec;
+@@ -215,6 +219,7 @@
+     "KSC_HANGUL_GL",	/* ksc_hangul */
+     "KSC_HANGUL_GR",	/* ksc_hangul_gr */
+     "KSC5601.1987-1",	/* ksc_hangul_gr */
++    "UTF-8",		/* utf-8 */
+ };
+ externaldef(uil_sym_glbl) char **charset_lang_names_table =
+ 		charset_lang_names_table_vec;
+@@ -295,10 +300,11 @@
+     sym_k_ksc_hangul_charset,
+     sym_k_ksc_hangul_gr_charset,
+     sym_k_ksc_hangul_gr_charset,
++    sym_k_utf8_charset,
+ };
+ externaldef(uil_sym_glbl) unsigned short int *charset_lang_codes_table =
+ 		charset_lang_codes_table_vec;
+ /*
+  * The number of entries in charset_lang_..._table tables
+  */
+-externaldef(uil_sym_glbl) unsigned short int charset_lang_table_max = 72;
++externaldef(uil_sym_glbl) unsigned short int charset_lang_table_max = 73;
+--- openMotif-2.2.3/tools/wml/UilSymGen.h.utf8	2004-03-04 17:41:48.000000000 +0100
++++ openMotif-2.2.3/tools/wml/UilSymGen.h	2004-03-17 12:54:23.000000000 +0100
+@@ -1417,6 +1417,7 @@
+ #define sym_k_jis_katakana_charset	21
+ #define sym_k_ksc_hangul_charset	22
+ #define sym_k_ksc_hangul_gr_charset	23
++#define sym_k_utf8_charset	24
+ 
+ /*  Define literals for automatic children */
+ 
+--- openMotif-2.2.3/tools/wml/motif.wml.utf8	2003-10-08 23:07:47.000000000 +0200
++++ openMotif-2.2.3/tools/wml/motif.wml	2004-03-17 12:56:09.000000000 +0100
+@@ -163,6 +163,9 @@
+     ksc_hangul_gr
+                 { XmStringCharsetName = "KSC5601.1987-1";
+                   CharacterSize = TwoByte; };
++    utf8
++		{ XmStringCharsetName = "UTF-8"; };
++
+     XmFONTLIST_DEFAULT_TAG
+         { FontListElementTag = XmFONTLIST_DEFAULT_TAG; };
+ 

@@ -1,0 +1,12 @@
+--- openMotif-2.2.3/lib/Xm/MenuUtil.c.popup_timeout	2002-01-31 15:49:35.000000000 +0100
++++ openMotif-2.2.3/lib/Xm/MenuUtil.c	2004-06-08 17:14:46.311285603 +0200
+@@ -156,6 +156,9 @@
+ 				  cursor, time)) == GrabSuccess)
+ 	 break;
+ 
++      if (status == GrabInvalidTime)
++	time = CurrentTime;
++
+       XmeMicroSleep(1000);
+    }
+    if (status != GrabSuccess)

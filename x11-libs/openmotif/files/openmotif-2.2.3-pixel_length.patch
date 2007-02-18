@@ -1,0 +1,11 @@
+--- openMotif-2.2.3/lib/Xm/DataF.c.pixel_length	2004-06-03 15:11:52.932820812 +0200
++++ openMotif-2.2.3/lib/Xm/DataF.c	2004-06-03 15:12:27.323091126 +0200
+@@ -8648,7 +8648,7 @@
+ 	    curr_str++;
+ 	    i++;
+ 	 } else {
+-	    wchar_t tmp;
++	    wchar_t tmp[XmTextF_max_char_size(tf)+1];
+ 	    int num_conv;
+ 	    num_conv = mbtowc(&tmp, curr_str, XmTextF_max_char_size(tf));
+             if (num_conv >= 0 && df_FindPixelLength(tf, (char*) &tmp, 1)) {

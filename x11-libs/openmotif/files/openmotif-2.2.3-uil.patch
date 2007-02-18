@@ -1,0 +1,350 @@
+--- openMotif-2.2.3/lib/Mrm/Mrmhier.c.UIL	2002-01-11 14:56:24.000000000 +0100
++++ openMotif-2.2.3/lib/Mrm/Mrmhier.c	2005-12-31 07:42:31.485196184 +0100
+@@ -712,7 +712,7 @@
+    *  Local variables
+    */
+   Cardinal		result;		/* function results */
+-  char			dummy[300];	/* file name (unused) */
++  char			*dummy;		/* file name (unused) */
+   char			err_stg[300];
+ 
+   /*
+@@ -764,11 +764,13 @@
+ 
+   if (resolvedname == 0)
+     {
+-      sprintf (err_stg, _MrmMMsg_0031, name) ;
++      snprintf (err_stg, 300, _MrmMMsg_0031, name) ;
+       return Urm__UT_Error ("I18NOpenFile", err_stg, NULL, NULL, MrmNOT_FOUND);
+     }
+ 
++  dummy = XtMalloc(strlen(resolvedname)+1);
+   result = UrmIdbOpenFileRead (resolvedname, os_ext, file_id_return, dummy) ;
++  XtFree(dummy);
+   switch ( result )
+     {
+     case MrmSUCCESS:
+--- openMotif-2.2.3/clients/uil/UilIODef.h.UIL	2002-01-04 22:13:33.000000000 +0100
++++ openMotif-2.2.3/clients/uil/UilIODef.h	2005-12-31 07:42:15.129682600 +0100
+@@ -69,13 +69,18 @@
+ #define NULL 0L
+ #endif
+ 
++#include <X11/Xos.h>
++#ifndef PATH_MAX
++#  define PATH_MAX 256
++#endif
++
+ typedef struct  
+ {
+     FILE	*az_file_ptr;
+     char	*c_buffer;
+     boolean	v_position_before_get;
+     z_key	last_key;
+-    char	expanded_name[ 256 ];
++    char	expanded_name[ PATH_MAX ];
+ } uil_fcb_type;
+ 
+ #endif /* UilIODef_h */
+--- openMotif-2.2.3/clients/uil/UilLstLst.c.UIL	2002-01-10 21:55:43.000000000 +0100
++++ openMotif-2.2.3/clients/uil/UilLstLst.c	2005-12-31 07:42:19.447026264 +0100
+@@ -164,7 +164,7 @@
+     lst_l_page_no = 0;
+     lst_v_listing_open = TRUE;
+ 
+-    sprintf(lst_c_title1, 
++    snprintf(lst_c_title1, 132,
+ 	    "%s %s \t%s\t\t Page ",
+ 	    _host_compiler, _compiler_version,
+ 	    current_time(&ctime_buf));
+@@ -270,6 +270,17 @@
+ {
+     /* place the file name in the expanded_name buffer */
+ 
++    if (strlen(Uil_cmd_z_command.ac_listing_file) >= PATH_MAX)
++    {
++      char *p;
++      int len=0;
++      if((p = rindex(Uil_cmd_z_command.ac_listing_file, '/')) != NULL)
++        len = strlen(++p);
++      if(p == NULL || len >= PATH_MAX)
++        p = "<unknown>";
++      strcpy(az_fcb->expanded_name, p);
++      return src_k_open_error;
++    }
+     strcpy(az_fcb->expanded_name, Uil_cmd_z_command.ac_listing_file);
+ 
+     /* open the file */
+@@ -529,7 +540,7 @@
+ 	char		buffer [132];
+ 
+ 	az_fcb = src_az_source_file_table [i];
+-	sprintf (buffer,
++	snprintf (buffer, 132,
+ 		 "     File (%d)   %s",
+ 		 i, az_fcb->expanded_name );
+ 	lst_output_line( buffer, FALSE );
+@@ -598,7 +609,7 @@
+ 	}
+ 
+ 
+-	sprintf(buffer, "%s (%d) %s", 
++	snprintf(buffer, 132, "%s (%d) %s", 
+ 		diag_get_message_abbrev( az_msg->l_message_number ),
+ 		msg_no, 
+ 		az_msg->c_text);
+--- openMotif-2.2.3/clients/uil/UilP2Out.c.UIL	2002-01-10 21:55:44.000000000 +0100
++++ openMotif-2.2.3/clients/uil/UilP2Out.c	2005-12-31 07:42:23.022482712 +0100
+@@ -189,7 +189,7 @@
+     int				topmost_index;
+     struct
+     {   MrmOsOpenParam	os_param;
+-	char		result_file[256];
++	char		result_file[PATH_MAX];
+     } uid_fcb;
+ 
+ 
+@@ -234,15 +234,20 @@
+     if (sym_az_module_entry->az_version != NULL)
+ 	module_version = sym_az_module_entry->az_version->value.c_value;
+ 
+-    urm_status = UrmIdbOpenFileWrite
+-		  ( Uil_cmd_z_command.ac_resource_file,
+-		    & uid_fcb.os_param,
+-		    _host_compiler,
+-		    _compiler_version,
+-		    module_name,
+-		    module_version,
+-		    &out_az_idbfile_id,
+-		    uid_fcb.result_file );
++    if (strlen(Uil_cmd_z_command.ac_resource_file) < PATH_MAX)
++    {
++        urm_status = UrmIdbOpenFileWrite
++		      ( Uil_cmd_z_command.ac_resource_file,
++		        & uid_fcb.os_param,
++		        _host_compiler,
++		        _compiler_version,
++		        module_name,
++		        module_version,
++		        &out_az_idbfile_id,
++		        uid_fcb.result_file );
++    } else {
++        urm_status = MrmFAILURE;
++    }
+ 
+     if (urm_status != MrmSUCCESS)
+     {
+@@ -2961,7 +2966,7 @@
+ {
+     char    buffer[132];
+ 
+-    sprintf(buffer, "while %s encountered %s", 
++    snprintf(buffer, 132, "while %s encountered %s", 
+ 	    problem, 
+ 	    Urm__UT_LatestErrorMessage());
+ 
+--- openMotif-2.2.3/clients/uil/UilSrcSrc.c.UIL	2002-01-10 21:55:47.000000000 +0100
++++ openMotif-2.2.3/clients/uil/UilSrcSrc.c	2005-12-31 07:42:27.176851152 +0100
+@@ -626,11 +626,15 @@
+     static unsigned short	main_dir_len = 0;
+     boolean			main_file;
+     int				i;  /* loop index through include files */
+-    char			buffer[256];
++    char			buffer[PATH_MAX];
++    int c_file_name_len;
+ 
++    az_fcb->az_file_ptr = NULL;
++    c_file_name_len = strlen(c_file_name);
+ 
+     /* place the file name in the expanded_name buffer */
+-
++    if(c_file_name_len >= PATH_MAX)
++      return src_k_open_error;
+     strcpy(buffer, c_file_name);
+ 
+ /*    Determine if this is the main file or an include file.  */
+@@ -644,7 +648,7 @@
+ 
+ /*    Save the directory info for the main file.    */
+ 
+-	for (len = strlen (c_file_name),
++	for (len = c_file_name_len,
+ 	     ptr = & c_file_name [len - 1];
+ 	     len > 0; len--, ptr--) {
+ 	    if ((* ptr) == '/') {
+@@ -673,9 +677,11 @@
+ 	    }
+ 
+ 	if (!specific_directory) {
++	    if (main_dir_len + c_file_name_len >= PATH_MAX)
++	      goto open_label;
+ 	    _move (buffer, main_fcb -> expanded_name, main_dir_len);
+ 	    _move (& buffer [main_dir_len],
+-		   c_file_name, strlen (c_file_name) + 1);  /* + NULL */
++		   c_file_name, c_file_name_len + 1);  /* + NULL */
+ 	} else {
+ 	    strcpy (buffer, c_file_name);
+ 	}
+@@ -695,16 +701,22 @@
+ 
+ 	for (i = 0; i < Uil_cmd_z_command.include_dir_count; i++) {	     
+ 	    int		inc_dir_len;
++	    int		need_slash=0;
+ 
+ 	    inc_dir_len = strlen (Uil_cmd_z_command.ac_include_dir[i]);
+ 	    if (inc_dir_len == 0) {
+ 		search_user_include = False;
+ 		}
++	    if (Uil_cmd_z_command.ac_include_dir[i][inc_dir_len - 1] != '/')
++		need_slash=1;
++	    if (inc_dir_len + need_slash + c_file_name_len >= PATH_MAX)
++		goto open_label;
++
+ 	    _move (buffer, Uil_cmd_z_command.ac_include_dir[i], inc_dir_len);
+ 
+ 	/*  Add '/' if not specified at end of directory  */
+ 
+-	    if (Uil_cmd_z_command.ac_include_dir[i][inc_dir_len - 1] != '/') {
++	    if (need_slash) {
+ 		buffer [inc_dir_len] = '/';
+ 		inc_dir_len++;
+ 	    };
+@@ -723,9 +735,11 @@
+ 
+ /*    Look in the default include directory.    */
+ 	if (search_user_include) {
++	    if (sizeof(c_include_dir)-1 + c_file_name_len >= PATH_MAX)
++	      goto open_label;
+ 	  _move(buffer, c_include_dir, sizeof c_include_dir - 1); /* no NULL */
+ 	  _move(&buffer[sizeof c_include_dir - 1], 
+-		c_file_name, strlen (c_file_name) + 1);  /* + NULL */
++		c_file_name, c_file_name_len + 1);  /* + NULL */
+ 
+ /*    Open the include file.    */
+ 	  az_fcb->az_file_ptr = fopen (buffer, "r");
+--- openMotif-2.2.3/clients/uil/UilSarMod.c.UIL	2002-01-10 21:55:45.000000000 +0100
++++ openMotif-2.2.3/clients/uil/UilSarMod.c	2005-12-31 07:42:35.593571616 +0100
+@@ -379,7 +379,7 @@
+     */
+ 
+     if (Uil_cmd_z_command.v_listing_file)
+-	sprintf(Uil_lst_c_title2, 
++	snprintf(Uil_lst_c_title2, 132, 
+ 		"Module: %s", 
+ 		name_entry->c_text );
+ 
+@@ -479,7 +479,7 @@
+     */
+ 
+     if (Uil_cmd_z_command.v_listing_file)
+-	sprintf(Uil_lst_c_title2, 
++	snprintf(Uil_lst_c_title2, 132, 
+ 		"Module: %s \t Version: %s", 
+ 		sym_az_module_entry->obj_header.az_name->c_text,
+ 		value_entry->value.c_value );
+--- openMotif-2.2.3/clients/uil/UilDiags.c.UIL	2002-01-10 21:55:42.000000000 +0100
++++ openMotif-2.2.3/clients/uil/UilDiags.c	2005-12-31 07:42:39.273012256 +0100
+@@ -293,12 +293,12 @@
+     va_start(ap, l_start_column);
+ 
+ #ifndef NO_MESSAGE_CATALOG
+-    vsprintf( msg_buffer, 
++    vsnprintf( msg_buffer, 132, 
+ 	      catgets(uil_catd, UIL_SET1, msg_cat_table[ message_number ],
+ 		      diag_rz_msg_table[ message_number ].ac_text), 
+ 	     ap );
+ #else
+-    vsprintf( msg_buffer, 
++    vsnprintf( msg_buffer, 132, 
+ 	      diag_rz_msg_table[ message_number ].ac_text, 
+ 	      ap );
+ #endif
+@@ -317,13 +317,13 @@
+ 	    */
+ 
+ #ifndef NO_MESSAGE_CATALOG
+-	    sprintf( loc_buffer,
++	    snprintf( loc_buffer, 132, 
+ 		     catgets(uil_catd, UIL_SET_MISC,
+ 			     UIL_MISC_0, "\t\t line: %d  file: %s"),
+ 		     az_src_rec->w_line_number,
+ 		     src_get_file_name( az_src_rec ) );
+ #else
+-	    sprintf( loc_buffer,
++	    snprintf( loc_buffer, 132, 
+ 		     "\t\t line: %d  file: %s",
+ 		     az_src_rec->w_line_number,
+ 		     src_get_file_name( az_src_rec ) );
+@@ -371,7 +371,7 @@
+ 
+ 	    if (l_start_column != diag_k_no_column)
+ #ifndef NO_MESSAGE_CATALOG
+-	      sprintf(loc_buffer,
++	      snprintf(loc_buffer, 132, 
+ 		      catgets(uil_catd, UIL_SET_MISC,
+ 			      UIL_MISC_1, 
+ 			      "\t\t line: %d  position: %d  file: %s"),
+@@ -379,7 +379,7 @@
+ 		      l_start_column + 1,
+ 		      src_get_file_name( az_src_rec ) );
+ #else
+-	      sprintf(loc_buffer,
++	      snprintf(loc_buffer, 132, 
+ 		      "\t\t line: %d  position: %d  file: %s",
+ 		      az_src_rec->w_line_number,
+ 		      l_start_column + 1,
+@@ -387,13 +387,13 @@
+ #endif
+ 	    else
+ #ifndef NO_MESSAGE_CATALOG
+-		sprintf( loc_buffer, catgets(uil_catd, UIL_SET_MISC,
++		snprintf( loc_buffer, 132, catgets(uil_catd, UIL_SET_MISC,
+ 					     UIL_MISC_0,
+ 					     "\t\t line: %d  file: %s"),
+ 			 az_src_rec->w_line_number,
+ 			 src_get_file_name( az_src_rec ) );
+ #else
+-		sprintf( loc_buffer,
++		snprintf( loc_buffer, 132, 
+ 			 "\t\t line: %d  file: %s",
+ 			 az_src_rec->w_line_number,
+ 			 src_get_file_name( az_src_rec ) );
+--- openMotif-2.2.3/clients/uil/UilSymDef.h.UIL	2002-01-04 22:13:38.000000000 +0100
++++ openMotif-2.2.3/clients/uil/UilSymDef.h	2005-12-31 07:42:44.106277488 +0100
+@@ -65,6 +65,11 @@
+ 
+ #include <Mrm/MrmPublic.h>
+ #include <Xm/Xm.h>
++#include <X11/Xos.h>
++#ifndef PATH_MAX
++#  define PATH_MAX 256
++#endif
++
+ 
+ /*
+ **  constraint check access macro
+@@ -874,10 +879,10 @@
+     sym_section_entry_type	*sections;
+ 	/* pointer to a section list; this list is all of the sections that */
+ 	/* exist in this include file.					    */
+-    char			file_name[255];
++    char			file_name[PATH_MAX];
+ 	/* the file name as specified in the include statement in the UIL   */
+ 	/* source.							    */
+-    char			full_file_name[255];
++    char			full_file_name[PATH_MAX];
+ 	/* the expanded name for the include file actually opened.	    */
+ } sym_include_file_entry_type;
+ 
+@@ -894,9 +899,9 @@
+ 	/* common header						    */
+     struct _src_source_record_type	*src_record_list;
+ 	/* pointer to a list of source records.				    */
+-    char			file_name[255];
++    char			file_name[PATH_MAX];
+ 	/* the main UIL file name as specified on the command line.	    */
+-    char			full_file_name[255];
++    char			full_file_name[PATH_MAX];
+ 	/* the expanded name for the main UIL file that was actually	    */
+ 	/* opened.							    */
+     sym_section_entry_type	*sections;
