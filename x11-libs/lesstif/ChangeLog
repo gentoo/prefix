@@ -1,0 +1,316 @@
+# ChangeLog for x11-libs/lesstif
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/lesstif/ChangeLog,v 1.81 2007/01/04 18:55:05 flameeyes Exp $
+
+  04 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> lesstif-0.94.4.ebuild:
+  Remove libtoolize call on ppc-macos.
+
+  28 Nov 2006; Luca Longinotti <chtekk@gentoo.org>
+  -lesstif-0.93.94-r4.ebuild:
+  Security cleanup, bug #140494.
+
+  01 Oct 2006; Donnie Berkholz <dberkholz@gentoo.org>;
+  lesstif-0.93.94-r4.ebuild, lesstif-0.94.4.ebuild:
+  libXext has a runtime dep on xextproto now, so we don't need to depend on it
+  here.
+
+  24 Sep 2006; Donnie Berkholz <dberkholz@gentoo.org>;
+  lesstif-0.93.94-r4.ebuild, lesstif-0.94.4.ebuild:
+  Remove virtual/x11 option from modular X deps.
+
+  05 Aug 2006; Chris White <chriswhite@gentoo.org>
+  -lesstif-0.94.0-r2.ebuild:
+  Security punt for bug #140494.
+
+  15 Jul 2006; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
+  Remove lanius from metadata.xml as he's retired.
+
+  09 Jul 2006; Javier Villavicencio <the_paya@gentoo.org>
+  lesstif-0.94.4.ebuild:
+  Added ~x86-fbsd keyword.
+
+  10 Mar 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  lesstif-0.93.94-r4.ebuild, lesstif-0.94.0-r2.ebuild,
+  lesstif-0.94.4.ebuild:
+  Add modular X dependencies (bug #124177).
+
+  10 Mar 2006; Aron Griffis <agriffis@gentoo.org> lesstif-0.94.4.ebuild:
+  Mark 0.94.4 stable on ia64
+
+  16 Feb 2006; Fabian Groffen <grobian@gentoo.org>
+  lesstif-0.93.94-r4.ebuild, lesstif-0.94.4.ebuild:
+  Marked ppc-macos stable (bug #114234)
+
+  25 Dec 2005; Fernando J. Pereda <ferdy@gentoo.org>
+  lesstif-0.93.94-r4.ebuild, lesstif-0.94.4.ebuild:
+  stable on alpha as per bug #114234
+
+  24 Dec 2005; Mark Loeser <halcy0n@gentoo.org> lesstif-0.93.94-r4.ebuild,
+  lesstif-0.94.4.ebuild:
+  Stable on x86; bug #114234
+
+  22 Dec 2005; Michael Hanselmann <hansmi@gentoo.org>
+  lesstif-0.93.94-r4.ebuild, lesstif-0.94.4.ebuild:
+  Stable on hppa, ppc.
+
+  22 Dec 2005; Jason Wever <weeve@gentoo.org> ChangeLog:
+  Just rebuilding the digest so this works again.
+
+  21 Dec 2005; Luis Medinas <metalgod@gentoo.org> lesstif-0.94.4.ebuild:
+  Stable on amd64 for bug #114234.
+
+  21 Dec 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  lesstif-0.93.94-r4.ebuild, lesstif-0.94.4.ebuild:
+  Stable on sparc wrt #114234
+
+  21 Dec 2005; Markus Rothe <corsair@gentoo.org> lesstif-0.93.94-r4.ebuild,
+  lesstif-0.94.4.ebuild:
+  Stable on ppc64; bug #114234
+
+  28 Apr 2005; Heinrich Wendel <lanius@gentoo.org> lesstif-0.94.4.ebuild:
+  remove motif-config, bug #90774
+
+  27 Apr 2005; Heinrich Wendel <lanius@gentoo.org> -lesstif-0.94.0.ebuild:
+  cleanup
+
+*lesstif-0.94.4 (26 Apr 2005)
+*lesstif-0.93.94-r4 (26 Apr 2005)
+
+  26 Apr 2005; Heinrich Wendel <lanius@gentoo.org>
+  -lesstif-0.93.94-r3.ebuild, +lesstif-0.93.94-r4.ebuild,
+  -lesstif-0.94.0-r6.ebuild, +lesstif-0.94.0-r7.ebuild:
+  update to latest motif-config version
+
+  01 Apr 2005; Aron Griffis <agriffis@gentoo.org> lesstif-0.94.0-r2.ebuild:
+  stable on ia64
+
+*lesstif-0.93.94-r3 (23 Mar 2005)
+
+  23 Mar 2005; Heinrich Wendel <lanius@gentoo.org> -lesstif-0.93.94-r2.ebuild,
+  +lesstif-0.93.94-r3.ebuild, -lesstif-0.94.0-r5.ebuild,
+  +lesstif-0.94.0-r6.ebuild:
+  fix bugs #85151, #84915
+
+  14 Mar 2005; Heinrich Wendel <lanius@gentoo.org> lesstif-0.93.94-r2.ebuild,
+  lesstif-0.94.0-r5.ebuild:
+  don't build against already installed motif-versions
+
+*lesstif-0.94.0-r5 (10 Mar 2005)
+
+  10 Mar 2005; Heinrich Wendel <lanius@gentoo.org> lesstif-0.93.94-r2.ebuild,
+  lesstif-0.94.0-r5.ebuild:
+  don't remove motif-config profile on upgrade
+
+  07 Mar 2005; Heinrich Wendel <lanius@gentoo.org> -lesstif-0.93.94-r1.ebuild,
+  -lesstif-0.94.0-r4.ebuild:
+  version bump for new motif-config
+
+  07 Mar 2005; Heinrich Wendel <lanius@gentoo.org> lesstif-0.93.94-r1.ebuild,
+  lesstif-0.94.0-r4.ebuild:
+  make use of static flag
+
+  03 Mar 2005; Bryan Østergaard <kloeri@gentoo.org>
+  lesstif-0.94.0-r2.ebuild:
+  Stable on alpha, bug 83656.
+
+  03 Mar 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  lesstif-0.94.0-r2.ebuild:
+  Stable on sparc wrt #83656
+
+  02 Mar 2005; Lina Pezzella <j4rg0n@gentoo.org> lesstif-0.93.94-r1.ebuild,
+  lesstif-0.94.0-r4.ebuild:
+  Pulled ppc-macos keyword
+
+  02 Mar 2005; Lina Pezzella <j4rg0n@gentoo.org> lesstif-0.94.0-r2.ebuild:
+  Stable ppc-macos
+
+  02 Mar 2005; Michael Hanselmann <hansmi@gentoo.org>
+  lesstif-0.94.0-r2.ebuild:
+  Corrected a small, wrong condition for ppc-macos.
+
+  02 Mar 2005; Michael Hanselmann <hansmi@gentoo.org>
+  lesstif-0.94.0-r2.ebuild:
+  Stable on ppc.
+
+  02 Mar 2005; Markus Rothe <corsair@gentoo.org> lesstif-0.94.0-r2.ebuild:
+  Stable on ppc64; bug #83656
+
+*lesstif-0.93.94-r1 (02 Mar 2005)
+
+  02 Mar 2005; Heinrich Wendel <lanius@gentoo.org> +lesstif-0.93.94-r1.ebuild,
+  -lesstif-0.94.0-r3.ebuild, +lesstif-0.94.0-r4.ebuild:
+  slot lesstif to 1.2 and 2.1
+
+*lesstif-0.94.0-r2 (02 Mar 2005)
+
+  02 Mar 2005; Heinrich Wendel <lanius@gentoo.org> +files/CAN-2005-0605.patch,
+  +lesstif-0.94.0-r2.ebuild, +lesstif-0.94.0-r3.ebuild:
+  fix CAN-2005-0605, bug #83656
+
+*lesstif-0.94.0-r1 (20 Feb 2005)
+
+  20 Feb 2005; Aron Griffis <agriffis@gentoo.org> lesstif-0.94.0-r1.ebuild,
+  lesstif-0.94.0.ebuild:
+  add ia64 keywords for emacs
+
+  15 Feb 2005; Lina Pezzella <j4rg0n@gentoo.org> lesstif-0.94.0.ebuild:
+  Stable ppc-macos
+
+  10 Feb 2005; Bryan Østergaard <kloeri@gentoo.org> lesstif-0.94.0.ebuild:
+  Stable on alpha.
+
+  05 Feb 2005; Michael Hanselmann <hansmi@gentoo.org> lesstif-0.94.0.ebuild:
+  Stable on ppc.
+
+  02 Feb 2005; Markus Rothe <corsair@gentoo.org> lesstif-0.94.0.ebuild:
+  Stable on ppc64; bug #78483
+
+  01 Feb 2005; Jason Wever <weeve@gentoo.org> lesstif-0.94.0.ebuild:
+  Stable on sparc wrt security bug #78483.
+
+  01 Feb 2005; Heinrich Wendel <lanius@gentoo.org> lesstif-0.94.0.ebuild:
+  stable on x86 and amd64
+
+*lesstif-0.94.0 (01 Feb 2005)
+
+  01 Feb 2005; Heinrich Wendel <lanius@gentoo.org> +lesstif-0.94.0.ebuild:
+  version bump; provide virtual/motif; fix security bug #78483
+
+  28 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  24 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> lesstif-0.93.97.ebuild:
+  Added to ppc-macos.
+
+  14 Oct 2004; Bryan Østergaard <kloeri@gentoo.org> lesstif-0.93.97.ebuild:
+  Add ~alpha keyword.
+
+  09 Oct 2004; Tom Gall <tgall@gentoo.org> lesstif-0.93.97.ebuild:
+  stable on ppc64, bug #66647
+
+  08 Oct 2004; Guy Martin <gmsoft@gentoo.org> lesstif-0.93.97.ebuild:
+  Marked stable on hppa.
+
+  07 Oct 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  lesstif-0.93.97.ebuild:
+  Stable amd64.
+
+  07 Oct 2004; Gustavo Zacarias <gustavoz@gentoo.org> lesstif-0.93.97.ebuild:
+  Stable on sparc wrt #66647
+
+*lesstif-0.93.97 (07 Oct 2004)
+
+  07 Oct 2004; Heinrich Wendel <lanius@gentoo.org> +lesstif-0.93.97.ebuild:
+  version bump for security reason; unfortunately the 1.2 build is no longer
+  provided, so we have to switch to 2.1
+
+  06 Oct 2004; Guy Martin <gmsoft@gentoo.org> lesstif-0.93.94.ebuild:
+  Stable on hppa.
+
+  01 Aug 2004; Tom Gall <tgall@gentoo.org> lesstif-0.93.94.ebuild:
+  stable on ppc64, bug #57582
+
+  28 Jun 2004; Aron Griffis <agriffis@gentoo.org> lesstif-0.93.94.ebuild:
+  glibc -> libc
+
+  17 Apr 2004; Daniel Ahlberg <aliz@gentoo.org> lesstif-0.93.94.ebuild:
+  Added IUSE=
+
+  27 Jan 2004; Heinrich Wendel <lanius@gentoo.org> lesstif-0.93.36-r3.ebuild,
+  lesstif-0.93.36.ebuild, lesstif-0.93.40.ebuild, lesstif-0.93.91.ebuild:
+  remove old versions
+
+  11 Jan 2004; Heinrich Wendel <lanius@gentoo.org> lesstif-0.93.94.ebuild:
+  stable bump, bug #29388
+
+*lesstif-0.93.94 (27 Dec 2003)
+
+  27 Dec 2003; Heinrich Wendel <lanius@gentoo.org> lesstif-0.93.91.ebuild,
+  lesstif-0.93.94.ebuild:
+  version bump, fixed man5 pages to be installed to man5 not man3
+
+  25 Dec 2003; Heinrich Wendel <lanius@gentoo.org> lesstif-0.93.91.ebuild:
+  make lesstif/lib symlinks relative
+
+  23 Dec 2003; Heinrich Wendel <lanius@gentoo.org> lesstif-0.93.91.ebuild:
+  put lesstif files in /usr/X11R6/{lib,include/bin}/lesstif
+
+  06 Dec 2003; Heinrich Wendel <lanius@gentoo.org> lesstif-0.93.91.ebuild:
+  added ~amd64
+
+  02 Dec 2003; Heinrich Wendel <lanius@gentoo.org> lesstif-0.93.91.ebuild:
+  reverted include changes, it makes more sense to change the include path
+
+  01 Dec 2003; Heinrich Wendel <lanius@gentoo.org> lesstif-0.93.91.ebuild:
+  fixed mwm config path, includes
+
+  23 Nov 2003; Heinrich Wendel <lanius@gentoo.org> lesstif-0.93.91.ebuild:
+  added slot
+
+  19 Nov 2003; Heinrich Wendel <lanius@gentoo.org> lesstif-0.93.91.ebuild:
+  next attemp to cleanup
+
+  31 Oct 2003; Heinrich Wendel <lanius@gentoo.org> :
+  new release of motif cleanups
+
+*lesstif-0.93.91 (11 Oct 2003)
+
+  11 Oct 2003; Heinrich Wendel <lanius@gentoo.org> lesstif-0.93.91.ebuild:
+  motif cleanups #29388
+
+  06 Sep 2003; Heinrich Wendel <lanius@gentoo.org> lesstif-0.93.40.ebuild:
+  stable bump
+
+*lesstif-0.93.40 (08 Feb 2003)
+
+  26 Mar 2003; Graham Forest <vladimir@gentoo.org> lesstif-0.93.36-r3.ebuild,
+  lesstif-0.93.36.ebuild, lesstif-0.93.40.ebuild:
+  Automated cleanup of LICENSE
+
+  08 Feb 2003; Seemant Kulleen <seemant@gentoo.org> lesstif-0.93.40.ebuild
+  files/digest-lesstif-0.93.40 :
+
+  Version bump -- fixes some bugs that nedit was experiencing.
+
+*lesstif-0.93.36-r3 (06 Jan 2003)
+
+  06 Jan 2003; Nick Hadaway <raker@gentoo.org>
+  lesstif-0.93.36-r3.ebuild, files/digest-lesstif-0.93.36-r3 :
+  New ebuild of lesstif which installs into /usr/X11R6 instead of /usr.
+  The next step I envision is the ability to install both lesstif and
+  openmotif and switch between motif implementations i.e. - for testing
+  application compatibility for the brand new wave of lesstif
+  developers with phat gentoo 1.4 systems. :).
+  It has milled in my head for a while now and it will be implemented
+  soon-like. For now, Gentoo 1.4 will be set for you to choose either
+  lesstif or openmotif, not both.  Openmotif will install by default if
+  virtual/motif is a dependancy.
+
+*lesstif-0.93.36-r2 (03 Dec 2002)
+  
+  06 Jan 2003; Jack Morgan <jmorgan@gentoo.org> lesstif-0.93.36.ebuild :
+  Added sparc keyword 
+  
+  05 Jan 2003; Daniel Ahlberg <aliz@gentoo.org> lesstif-0.93.36.ebuild
+  lesstif-0.93.36-r1.ebuild, lesstif-0.93.36-r2.ebuild :
+  Added PROVIDE.
+
+  03 Dec 2002; Martin Schlemmer <azarah@gentoo.org> lesstif-0.93.36-r2.ebuild :
+  Do not install /usr/X11R6/lib/X11/config/host.def.
+
+*lesstif-0.93.36-r1 (23 Nov 2002)
+
+  23 Nov 2002; Sascha Schwabbauer <cybersystem@gentoo.org> lesstif-0.93.36-r1.ebuild :
+  Added ~ppc to keywords.
+
+*lesstif-0.93.36-r1 (12 Nov 2002)
+
+  12 Nov 2002; Stefan Jones <cretin@gentoo.org> lesstif-0.93.36-r1.ebuild :
+  Updated ebuild to build the static library which is needed by the java
+  source ebuild.
+
+*lesstif-0.93.36 (21 Oct 2002)
+
+  21 Oct 2002; Arcady Genkin <agenkin@gentoo.org> lesstif-0.93.36.ebuild :
+  Initial version of the ebuild, based on submission by Jianghai Zhu
+  <zhu5@purdue.edu>.
