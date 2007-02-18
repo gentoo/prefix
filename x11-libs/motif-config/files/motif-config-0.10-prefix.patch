@@ -1,0 +1,120 @@
+* Johan Hattne
+  Prefix patches
+
+--- motif-config-0.10
++++ motif-config-0.10
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ # Copyright 1999-2004 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ # based on gcc-config by Martin Schlemmer <azarah@gentoo.org
+@@ -6,7 +6,8 @@
+ 
+ umask 022
+ 
+-PROFILE_PATH=/usr/@@LIBDIR@@/motif
++EPREFIX=@GENTOO_PORTAGE_EPREFIX@
++PROFILE_PATH=${EPREFIX}/usr/@@LIBDIR@@/motif
+ CONFIG_FILE=${PROFILE_PATH}/current
+ 
+ usage() {
+@@ -51,8 +52,12 @@
+ }
+ 
+ _check_root() {
+-	if [[ "$(id -u)" -ne 0 ]] ; then
+-		eerror "$0: Must be root."
++	if [ ! -w ${PROFILE_PATH} \
++	  -o ! -w ${EPREFIX}/usr/bin \
++	  -o ! -w ${EPREFIX}/usr/include \
++	  -o ! -w ${EPREFIX}/usr/@@LIBDIR@@ \
++	  -o ! -w ${EPREFIX}/usr/share/man ]; then
++		eerror "$0: Must have proper permissions."
+ 		exit 1
+ 	fi
+ }
+@@ -69,31 +74,34 @@
+ 	new=${1}
+ 	files=""
+ 	# libs
+-	for file in `ls /usr/@@LIBDIR@@/${new}/ | grep lib`; do
+-		files="${files} /usr/@@LIBDIR@@/${file}"
+-		rm -rf /usr/@@LIBDIR@@/${file}
++	for file in `ls ${EPREFIX}/usr/@@LIBDIR@@/${new}/ | grep lib`; do
++		files="${files} ${EPREFIX}/usr/@@LIBDIR@@/${file}"
++		rm -rf ${EPREFIX}/usr/@@LIBDIR@@/${file}
+ 		retval=$((retval | $? ))
+-		ln -s /usr/@@LIBDIR@@/${new}/${file} /usr/@@LIBDIR@@/${file}
++		ln -s ${EPREFIX}/usr/@@LIBDIR@@/${new}/${file} \
++		      ${EPREFIX}/usr/@@LIBDIR@@/${file}
+ 		retval=$((retval | $? ))
+ 	done
+ 	# includes
+-	for file in `ls /usr/include/${new}/`; do
+-		files="${files} /usr/include/${file}"
+-		rm -rf /usr/include/${file}
++	for file in `ls ${EPREFIX}/usr/include/${new}/`; do
++		files="${files} ${EPREFIX}/usr/include/${file}"
++		rm -rf ${EPREFIX}/usr/include/${file}
+ 		retval=$((retval | $? ))
+-		ln -s /usr/include/${new}/${file} /usr/include/${file}
++		ln -s ${EPREFIX}/usr/include/${new}/${file} \
++		      ${EPREFIX}/usr/include/${file}
+ 		retval=$((retval | $? ))
+ 	done
+ 	# binaries
+-	for file in `ls /usr/@@LIBDIR@@/${new} | grep -v lib`; do
+-		files="${files} /usr/bin/${file}"
+-		rm -rf /usr/bin/${file}
++	for file in `ls ${EPREFIX}/usr/@@LIBDIR@@/${new} | grep -v lib`; do
++		files="${files} ${EPREFIX}/usr/bin/${file}"
++		rm -rf ${EPREFIX}/usr/bin/${file}
+ 		retval=$((retval | $? ))
+-		ln -s /usr/@@LIBDIR@@/${new}/${file} /usr/bin/${file}
++		ln -s ${EPREFIX}/usr/@@LIBDIR@@/${new}/${file} \
++		      ${EPREFIX}/usr/bin/${file}
+ 		retval=$((retval | $? ))
+ 	done
+ 	# man pages
+-	for file in `find /usr/share/man -regex ".*-${new}\..x?.gz"`; do
++	for file in `find ${EPREFIX}/usr/share/man -regex ".*-${new}\..x?.gz"`; do
+ 		files="${files} ${file/-${new}/}"
+ 		rm -rf ${file/-${new}/}
+ 		retval=$((retval | $? ))
+@@ -204,7 +212,7 @@
+ 	if [ $? -eq 1 ]; then
+ 		eerror "$0: No such profile: $profile"
+ 	else
+-		echo "/usr/@@LIBDIR@@/${PROFILE}/"
++		echo "${EPREFIX}/usr/@@LIBDIR@@/${PROFILE}/"
+ 		exit 0
+ 	fi
+ }
+@@ -219,7 +227,7 @@
+ 	if [ $? -eq 1 ]; then
+ 		eerror "$0: No such profile: $profile"
+ 	else
+-		echo "/usr/include/${PROFILE}/"
++		echo "${EPREFIX}/usr/include/${PROFILE}/"
+ 		exit 0
+ 	fi
+ }
+@@ -234,7 +242,7 @@
+ 	if [ $? -eq 1 ]; then
+ 		eerror "$0: No such profile: $profile"
+ 	else
+-		echo "-I/usr/include/${PROFILE}/"
++		echo "-I${EPREFIX}/usr/include/${PROFILE}/"
+ 		exit 0
+ 	fi
+ }
+@@ -249,7 +257,7 @@
+ 	if [ $? -eq 1 ]; then
+ 		eerror "$0: No such profile: $profile"
+ 	else
+-		echo "-L/usr/@@LIBDIR@@/${PROFILE}/"
++		echo "-L${EPREFIX}/usr/@@LIBDIR@@/${PROFILE}/"
+ 		exit 0
+ 	fi
+ }
