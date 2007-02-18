@@ -1,0 +1,25 @@
+* from phreak@gentoo.org
+
+Index: xforms-1.0.90/fdesign/Makefile.am
+===================================================================
+--- xforms-1.0.90.orig/fdesign/Makefile.am
++++ xforms-1.0.90/fdesign/Makefile.am
+@@ -54,7 +54,3 @@ fdesign_SOURCES = \
+ 	sp_twheel.c \
+ 	sp_xyplot.c \
+ 	xpm.h
+-
+-#	viewforms.c \
+-#	viewforms.h \
+-#	viewforms_main.c \
+Index: xforms-1.0.90/lib/Makefile.am
+===================================================================
+--- xforms-1.0.90.orig/lib/Makefile.am
++++ xforms-1.0.90/lib/Makefile.am
+@@ -118,6 +118,3 @@ libforms_la_SOURCES = \
+ 	xsupport.c \
+ 	xtext.c \
+ 	xyplot.c
+-
+-#	dirent_vms.h \
+-#	vms_readdir.c \
