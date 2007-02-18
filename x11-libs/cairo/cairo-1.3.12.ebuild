@@ -18,7 +18,7 @@ IUSE="aqua debug directfb doc glitz svg X xcb"
 # Test causes a circular depend on gtk+... since gtk+ needs cairo but test needs gtk+ so we need to block it
 RESTRICT="test"
 
-RDEPEND="	!aqua? (
+RDEPEND="!aqua? (
 			media-libs/fontconfig
 			>=media-libs/freetype-2.1.4
 		)
