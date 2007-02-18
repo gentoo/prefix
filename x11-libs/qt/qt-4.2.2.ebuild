@@ -17,7 +17,7 @@ use aqua && S=${WORKDIR}/qt-mac-${SRCTYPE}-${PV}
 
 LICENSE="|| ( QPL-1.0 GPL-2 )"
 SLOT="4"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 
 IUSE_INPUT_DEVICES="input_devices_wacom"
 
