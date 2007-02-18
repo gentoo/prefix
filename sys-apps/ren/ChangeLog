@@ -1,0 +1,38 @@
+# ChangeLog for sys-apps/ren
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ren/ChangeLog,v 1.14 2006/11/03 21:16:12 iluxa Exp $
+
+  03 Nov 2006; Ilya A. Volynets-Evenbakh <iluxa@gentoo.org> ren-1.0.ebuild:
+  Add ~mips keyword (#89296)
+
+  16 Sep 2005; Aron Griffis <agriffis@gentoo.org> ren-1.0.ebuild:
+  Mark 1.0 stable on alpha
+
+  02 Jan 2005; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  12 Sep 2004; Bryan Østergaard <kloeri@gentoo.org> ren-1.0.ebuild:
+  Add ~alpha keyword, bug 63725.
+
+  28 Jul 2004; Tom Gall <tgall@gentoo.org> ren-1.0.ebuild:
+  stable on ppc64, bug #58300
+
+  25 Jul 2004; Lina Pezzella <j4rg0n@gentoo.org>
+  Stable macos per bug # 58306
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org> ren-1.0.ebuild:
+  virtual/glibc -> virtual/libc
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*ren-1.0 (30 May 2002)
+
+  21 Jul 2002; Mark Guertin <gerk@gentoo.org>:
+  updated keywords (ppc)
+
+  14 Jul 2002; phoen][x <phoenix@gentoo.org> ren-1.0.ebuild :
+  Added LICENSE, KEYWORDS, SLOT.
+
+  30 May 2002; Arcady Genkin <agenkin@thpoon.com> ren-1.0.ebuild :
+
+  Initial version, submitted by elnix@yahoo.com (Austin Johnson).
