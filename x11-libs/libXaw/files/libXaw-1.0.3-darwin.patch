@@ -1,0 +1,75 @@
+--- src/Makefile.am
++++ src/Makefile.am
+@@ -76,9 +76,15 @@
+ libXaw6_la_LIBADD = $(XAW6_LIBS)
+ 
+ if !PLATFORM_WIN32
++if PLATFORM_DARWIN
++install-exec-hook::
++	-rm -f $(DESTDIR)$(libdir)/libXaw.6.dylib
++	(cd $(DESTDIR)$(libdir) && $(LN_S) libXaw6.6.dylib libXaw.6.dylib)
++else
+ install-exec-hook::
+ 	-rm -f $(DESTDIR)$(libdir)/libXaw.so.6
+-	(cd $(DESTDIR)$(libdir) && ln -s libXaw6.so.6 libXaw.so.6)
++	(cd $(DESTDIR)$(libdir) && $(LN_S) libXaw6.so.6 libXaw.so.6)
++endif
+ endif
+ 
+ endif
+@@ -100,9 +106,15 @@
+ libXaw7_la_LIBADD = $(XAW7_LIBS)
+ 
+ if !PLATFORM_WIN32
++if PLATFORM_DARWIN
++install-exec-hook::
++	-rm -f $(DESTDIR)$(libdir)/libXaw.7.dylib
++	(cd $(DESTDIR)$(libdir) && $(LN_S) libXaw7.7.dylib libXaw.7.dylib)
++else
+ install-exec-hook::
+ 	-rm -f $(DESTDIR)$(libdir)/libXaw.so.7
+-	(cd $(DESTDIR)$(libdir) && ln -s libXaw7.so.7 libXaw.so.7)
++	(cd $(DESTDIR)$(libdir) && $(LN_S) libXaw7.so.7 libXaw.so.7)
++endif
+ endif
+ 
+ endif
+@@ -124,9 +136,15 @@
+ libXaw8_la_LIBADD = $(XAW8_LIBS)
+ 
+ if !PLATFORM_WIN32
++if PLATFORM_DARWIN
++install-exec-hook::
++	-rm -f $(DESTDIR)$(libdir)/libXaw.8.dylib
++	(cd $(DESTDIR)$(libdir) && $(LN_S) libXaw8.8.dylib libXaw.8.dylib)
++else
+ install-exec-hook::
+ 	-rm -f $(DESTDIR)$(libdir)/libXaw.so.8
+-	(cd $(DESTDIR)$(libdir) && ln -s libXaw8.so.8 libXaw.so.8)
++	(cd $(DESTDIR)$(libdir) && $(LN_S) libXaw8.so.8 libXaw.so.8)
++endif
+ endif
+ 
+ endif
+--- configure.ac
++++ configure.ac
+@@ -42,12 +42,19 @@
+ case $host_os in
+     cygwin*|mingw*)
+ 	platform_win32=yes
++	platform_darwin=no
++	;;
++	*darwin*)
++	platform_win32=no
++	platform_darwin=yes
+ 	;;
+     *)
+ 	platform_win32=no
++	platform_darwin=no
+ 	;;
+ esac
+ AM_CONDITIONAL(PLATFORM_WIN32, test "x$platform_win32" = "xyes")
++AM_CONDITIONAL(PLATFORM_DARWIN, test "x$platform_darwin" = "xyes")
+ 
+ # Whether to build Xaw6
+ 
