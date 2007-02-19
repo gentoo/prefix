@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="analog / digital clock for X"
 
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="xprint"
 
 RDEPEND="x11-libs/libX11
