@@ -73,3 +73,20 @@
  
  # Whether to build Xaw6
  
+--- Makefile.am
++++ Makefile.am
+@@ -37,8 +37,13 @@
+ 	ChangeLog
+ 
+ if !PLATFORM_WIN32
++if PLATFORM_DARWIN
+ install-exec-hook:
+-	cd $(DESTDIR)$(libdir) && rm -f libXaw.so && ln -s $(DEFAULT_LIB) libXaw.so
++	cd $(DESTDIR)$(libdir) && rm -f libXaw.dylib && $(LN_S) $(DEFAULT_LIB) libXaw.dylib
++else
++install-exec-hook:
++	cd $(DESTDIR)$(libdir) && rm -f libXaw.so && $(LN_S) $(DEFAULT_LIB) libXaw.so
++endif
+ endif
+ 
+ MAINTAINERCLEANFILES=ChangeLog
