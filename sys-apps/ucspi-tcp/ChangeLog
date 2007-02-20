@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/ucspi-tcp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ucspi-tcp/ChangeLog,v 1.54 2007/01/15 21:24:20 hansmi Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ucspi-tcp/ChangeLog,v 1.55 2007/02/18 21:07:18 grobian Exp $
+
+  18 Feb 2007; Fabian Groffen <grobian@gentoo.org>
+  ucspi-tcp-0.88-r14.ebuild, ucspi-tcp-0.88-r15.ebuild,
+  ucspi-tcp-0.88-r16.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *ucspi-tcp-0.88-r16 (15 Jan 2007)
 
