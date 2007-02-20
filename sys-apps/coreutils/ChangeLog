@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/coreutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.189 2007/01/22 01:05:45 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.190 2007/02/13 23:03:50 kloeri Exp $
+
+  13 Feb 2007; Bryan Østergaard <kloeri@gentoo.org>
+  coreutils-6.7-r1.ebuild:
+  Stable on Alpha.
 
   22 Jan 2007; Bryan Østergaard <kloeri@gentoo.org>
   coreutils-6.7-r1.ebuild:
