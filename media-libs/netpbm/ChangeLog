@@ -1,0 +1,648 @@
+# ChangeLog for media-libs/netpbm
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.156 2007/02/05 12:52:35 gustavoz Exp $
+
+  05 Feb 2007; Gustavo Zacarias <gustavoz@gentoo.org> netpbm-10.37.0.ebuild:
+  Stable on sparc wrt #165236
+
+  05 Feb 2007; Jeroen Roovers <jer@gentoo.org> netpbm-10.37.0.ebuild:
+  Stable for HPPA (bug #165236).
+
+  04 Feb 2007; Steve Dibb <beandog@gentoo.org> netpbm-10.37.0.ebuild:
+  amd64 stable, bug 165236
+
+  04 Feb 2007; nixnut <nixnut@gentoo.org> netpbm-10.37.0.ebuild:
+  Stable on ppc wrt bug 165236
+
+  04 Feb 2007; Raúl Porcel <armin76@gentoo.org> netpbm-10.37.0.ebuild:
+  x86 stable wrt bug 165236
+
+  04 Feb 2007; Markus Rothe <corsair@gentoo.org> netpbm-10.37.0.ebuild:
+  Added ~ppc64; bug #165236
+
+*netpbm-10.26.39 (04 Feb 2007)
+
+  04 Feb 2007; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.39.ebuild:
+  Version bump.
+
+  21 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> netpbm-10.36.0.ebuild,
+  netpbm-10.37.0.ebuild:
+  Force -j1 on the ebuild (both stable and ~arch for releng sake), as bug
+  #149843 is open for a while now.
+
+*netpbm-10.26.38 (16 Jan 2007)
+
+  16 Jan 2007; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.38.ebuild:
+  Version bump.
+
+  10 Jan 2007; Mike Frysinger <vapier@gentoo.org> netpbm-10.26.37.ebuild,
+  netpbm-10.36.0.ebuild, netpbm-10.37.0.ebuild:
+  Dont install shhopt.h anymore #161225 by Stefano Balocco.
+
+  06 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  netpbm-10.36.0.ebuild:
+  Bug 159801, amd64 stable
+
+  04 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> netpbm-10.36.0.ebuild:
+  Stable on sparc wrt #159801
+
+  03 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> netpbm-10.36.0.ebuild:
+  Stable on Alpha, bug 159801.
+
+  03 Jan 2007; Andrej Kacian <ticho@gentoo.org> netpbm-10.36.0.ebuild:
+  Stable on x86, bug #159801.
+
+  03 Jan 2007; Luca Barbato <lu_zero@gentoo.org> netpbm-10.36.0.ebuild:
+  Marked ppc64
+
+  03 Jan 2007; Luca Barbato <lu_zero@gentoo.org> netpbm-10.36.0.ebuild:
+  Marked ppc
+
+  03 Jan 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/netpbm-10.26.37-headers.patch, netpbm-10.26.37.ebuild:
+  Include more headers to kill off implicit function prototypes.
+
+*netpbm-10.37.0 (03 Jan 2007)
+
+  03 Jan 2007; Mike Frysinger <vapier@gentoo.org> +netpbm-10.37.0.ebuild:
+  Version bump.
+
+*netpbm-10.26.37 (03 Jan 2007)
+
+  03 Jan 2007; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.37.ebuild:
+  Version bump.
+
+*netpbm-10.26.36 (19 Dec 2006)
+
+  19 Dec 2006; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.36.ebuild:
+  Version bump.
+
+*netpbm-10.26.35 (10 Dec 2006)
+
+  10 Dec 2006; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.35.ebuild:
+  Version bump.
+
+*netpbm-10.26.34 (27 Nov 2006)
+
+  27 Nov 2006; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.34.ebuild:
+  Version bump.
+
+  09 Nov 2006; Mike Frysinger <vapier@gentoo.org> netpbm-10.36.0.ebuild:
+  Cleanup previous commit and make jbig/urt optional via USE=jbig/rle #154535.
+
+  07 Nov 2006; Petteri Räty <betelgeuse@gentoo.org> ChangeLog:
+  Added the jpeg2k use flag to make the media-libs/jasper dependency optional.
+  Fixes bug #154353.
+
+*netpbm-10.26.33 (31 Oct 2006)
+
+  31 Oct 2006; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.33.ebuild:
+  Version bump.
+
+  22 Oct 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/netpbm-10.34-ppmtompeg.patch, netpbm-10.34.ebuild,
+  netpbm-10.36.0.ebuild:
+  Fixes from Alun Jones for bugs in ppmtompeg #150063.
+
+*netpbm-10.26.32 (19 Oct 2006)
+
+  19 Oct 2006; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.32.ebuild:
+  Version bump.
+
+*netpbm-10.36.0 (02 Oct 2006)
+
+  02 Oct 2006; Mike Frysinger <vapier@gentoo.org> +netpbm-10.36.0.ebuild:
+  Version bump.
+
+*netpbm-10.35.0 (11 Sep 2006)
+
+  11 Sep 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/netpbm-10.35.0-xml2.patch, +netpbm-10.35.0.ebuild:
+  Version bump.
+
+*netpbm-10.26.31 (06 Sep 2006)
+
+  06 Sep 2006; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.31.ebuild:
+  Version bump.
+
+  04 Sep 2006; Joshua Kinard <kumba@gentoo.org> netpbm-10.34.ebuild:
+  Marked stable on mips.
+
+*netpbm-10.26.30 (05 Aug 2006)
+
+  05 Aug 2006; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.30.ebuild:
+  Version bump.
+
+  15 Jul 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/netpbm-10.34-rgb-paths.patch, netpbm-10.34.ebuild:
+  Use rgb paths that make sense on Gentoo #139423 by Fabio Rossi.
+
+  25 Jun 2006; Tobias Scherbaum <dertobi123@gentoo.org> netpbm-10.34.ebuild:
+  ppc stable, bug #137344
+
+  24 Jun 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/netpbm-10.34-xml2.patch, netpbm-10.34.ebuild:
+  Add support for USE=xml #137871 by Stefan Trenker.
+
+  24 Jun 2006; Rene Nussbaumer <killerfox@gentoo.org> netpbm-10.34.ebuild:
+  Stable on hppa. See bug #137344.
+
+  23 Jun 2006; Thomas Cort <tcort@gentoo.org> netpbm-10.34.ebuild:
+  Stable on alpha and amd64 wrt security Bug #137344
+
+  22 Jun 2006; Joshua Jackson <tsunam@gentoo.org> netpbm-10.34.ebuild:
+  Stable x86; bug #137344
+
+  21 Jun 2006; Markus Rothe <corsair@gentoo.org> netpbm-10.34.ebuild:
+  Stable on ppc64; bug #137344
+
+  21 Jun 2006; Gustavo Zacarias <gustavoz@gentoo.org> netpbm-10.34.ebuild:
+  Stable on sparc wrt security #137344
+
+*netpbm-10.34 (20 Jun 2006)
+
+  20 Jun 2006; Mike Frysinger <vapier@gentoo.org> +netpbm-10.34.ebuild:
+  Version bump #137344 by Raphael Marichez.
+
+*netpbm-10.26.29 (09 Jun 2006)
+
+  09 Jun 2006; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.29.ebuild:
+  Version bump.
+
+*netpbm-10.26.28 (14 May 2006)
+
+  14 May 2006; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.28.ebuild:
+  Version bump.
+
+  27 Apr 2006; Marien Zwart <marienz@gentoo.org> files/digest-netpbm-10.29,
+  files/digest-netpbm-10.30-r1, files/digest-netpbm-10.31-r1, Manifest:
+  Fixing SHA256 digest, pass four
+
+  17 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  files/netpbm-10.33-memmem.patch, netpbm-10.33.ebuild:
+  Change the patch to behave like upstream decided: rename memmem to another
+  name so that it doesn't collide with extensions from various libc, allowing
+  to build on NetBSD 3 that defines a memmem itself. Also respect LDFLAGS
+  while linking the library.
+
+  16 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +files/netpbm-10.33-memmem.patch, netpbm-10.33.ebuild:
+  Add patch to build on FreeBSD 6, and keyword ~x86-fbsd.
+
+*netpbm-10.33 (31 Mar 2006)
+
+  31 Mar 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/netpbm-10.33-lib-objs.patch, +netpbm-10.33.ebuild:
+  Version bump.
+
+*netpbm-10.26.26 (15 Mar 2006)
+
+  15 Mar 2006; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.26.ebuild:
+  Version bump.
+
+  05 Mar 2006; Luca Barbato <lu_zero@gentoo.org>
+  -files/netpbm-10.29-anytopnm.patch, -files/netpbm-10.29-build.patch,
+  -files/netpbm-10.29-infinity.patch,
+  -files/netpbm-10.29-pnmtopng-alpha-check.patch,
+  -files/netpbm-dSAFER.patch, -netpbm-10.26.24.ebuild,
+  -netpbm-10.26.25.ebuild:
+  Cleanup
+
+  01 Mar 2006; Marcelo Goes <vanquirius@gentoo.org>
+  +files/netpbm-10.32-parallel.patch, netpbm-10.32.ebuild:
+  Add Martin von Gagern <Martin dot vGagern at gmx dot net>'s patch to fix
+  parallel compilation for bug 116665.
+
+*netpbm-10.32 (28 Feb 2006)
+
+  28 Feb 2006; Mike Frysinger <vapier@gentoo.org> +netpbm-10.32.ebuild:
+  Version bump.
+
+*netpbm-10.26.25 (20 Feb 2006)
+
+  20 Feb 2006; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.25.ebuild:
+  Version bump.
+
+*netpbm-10.26.24 (09 Feb 2006)
+
+  09 Feb 2006; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.24.ebuild:
+  Version bump.
+
+  02 Feb 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/netpbm-10.31-need-libm.patch, netpbm-10.31-r1.ebuild:
+  Make sure we link against libm #121253 by Diego Pettenò.
+
+  19 Jan 2006; Karol Wojtaszek <sekretarz@gentoo.org>
+  +files/netpbm-10.31-parallel.patch, netpbm-10.31-r1.ebuild:
+  Fixed compile problems in parallel, bug #116665
+
+*netpbm-10.26.23 (16 Jan 2006)
+
+  16 Jan 2006; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.23.ebuild:
+  Version bump.
+
+*netpbm-10.31-r1 (31 Dec 2005)
+
+  31 Dec 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/netpbm-10.19-message.patch,
+  +files/netpbm-10.31-pnmtopng-modtime-segfault.patch,
+  +netpbm-10.31-r1.ebuild:
+  Fix segfault in pnmtopng #117180 by rgo and grab a patch from Fedora for
+  giftopnm.
+
+*netpbm-10.26.22 (28 Dec 2005)
+
+  28 Dec 2005; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.22.ebuild:
+  Version bump.
+
+  26 Dec 2005; Bryan Østergaard <kloeri@gentoo.org netpbm-10.30-r1.ebuild:
+  Stable on alpha.
+
+  24 Dec 2005; Michael Hanselmann <hansmi@gentoo.org>
+  netpbm-10.30-r1.ebuild:
+  Stable on ppc.
+
+*netpbm-10.31 (24 Dec 2005)
+
+  24 Dec 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/netpbm-10.31-build.patch, +netpbm-10.31.ebuild:
+  Version bump.
+
+  21 Dec 2005; Marcus D. Hanwell <cryos@gentoo.org> netpbm-10.30-r1.ebuild:
+  Stable on amd64.
+
+*netpbm-10.26.21 (18 Dec 2005)
+
+  18 Dec 2005; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.21.ebuild:
+  Version bump.
+
+  10 Dec 2005; Tom Gall <tgall@gentoo.org> netpbm-10.30-r1.ebuild:
+  stable on ppc64
+
+  09 Dec 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  netpbm-10.30-r1.ebuild:
+  Stable on sparc
+
+  08 Dec 2005; Andrej Kacian <ticho@gentoo.org> netpbm-10.30-r1.ebuild:
+  Stable on x86. Closes bug #114812, reported by Sean D'Epagnier <geckosenator
+  at gmail.com>.
+
+*netpbm-10.26.20 (07 Dec 2005)
+
+  07 Dec 2005; Mike Frysinger <vapier@gentoo.org> -netpbm-10.26.18.ebuild,
+  -netpbm-10.26.19.ebuild, +netpbm-10.26.20.ebuild:
+  Version bump.
+
+  19 Nov 2005; Joseph Jezak <josejx@gentoo.org> netpbm-10.30-r1.ebuild:
+  Marked ~ppc.
+
+*netpbm-10.26.19 (18 Nov 2005)
+
+  18 Nov 2005; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.19.ebuild:
+  Version bump.
+
+  09 Nov 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/netpbm-10.30-jpeg-prototypes.patch, netpbm-10.30-r1.ebuild:
+  Fix building with USE=-jpeg #111895 by Andrey Kolbasenko.
+
+*netpbm-10.26.18 (09 Nov 2005)
+
+  09 Nov 2005; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.18.ebuild:
+  Version bump.
+
+  31 Oct 2005; Brent Baude <ranger@gentoo.org> netpbm-10.30-r1.ebuild:
+  Marking netpbm-10.30-r1 ~ppc64 for bug 107346
+
+*netpbm-10.30-r1 (30 Oct 2005)
+
+  30 Oct 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/netpbm-10.30-pngtopnm.patch, +files/netpbm-10.30-tifftopnm.patch,
+  +files/netpbm-10.30-anytopnm.patch, +netpbm-10.30-r1.ebuild:
+  Fix anytopnm/tifftopnm #109781 and pngtopnm #109783 (both by Erik Thiele).
+
+*netpbm-10.26.17 (29 Oct 2005)
+
+  29 Oct 2005; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.17.ebuild:
+  Version bump of sorts.
+
+  21 Oct 2005; Aaron Walker <ka0ttic@gentoo.org> netpbm-10.29.ebuild,
+  netpbm-10.29-r1.ebuild, netpbm-10.30.ebuild:
+  10.29 stable on mips for bug #109705. 10.29-r1 and 10.30 marked ~mips.
+
+  19 Oct 2005; Gustavo Zacarias <gustavoz@gentoo.org> netpbm-10.29.ebuild:
+  Stable on sparc wrt #109705
+
+  19 Oct 2005; Brent Baude <ranger@gentoo.org> netpbm-10.29.ebuild:
+  Marking 10.29 ppc64 stable for security purposes
+
+  19 Oct 2005; Luis Medinas <metalgod@gentoo.org> netpbm-10.29.ebuild:
+  Marked Stable on amd64. Bug #109705.
+
+  18 Oct 2005; Bryan Østergaard <kloeri@gentoo.org> netpbm-10.29.ebuild,
+  netpbm-10.29-r1.ebuild, netpbm-10.30.ebuild:
+  Added back ~alpha keyword, stable 10.29 wrt bug 109705.
+
+*netpbm-10.30 (18 Oct 2005)
+
+  18 Oct 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/netpbm-10.30-build.patch, +netpbm-10.30.ebuild:
+  Version bump.
+
+  18 Oct 2005; Aron Griffis <agriffis@gentoo.org> netpbm-10.29.ebuild:
+  Mark 10.29 stable on ia64 #109705
+
+  18 Oct 2005; Andrej Kacian <ticho@gentoo.org> netpbm-10.29.ebuild:
+  Stable on x86, security bug #109705.
+
+  18 Oct 2005; Michael Hanselmann <hansmi@gentoo.org> netpbm-10.29.ebuild,
+  netpbm-10.29-r1.ebuild:
+  10.29-r1: Stable on hppa, added to ~ppc. 10.29: Stable on ppc.
+
+  10 Oct 2005; Diego Pettenò <flameeyes@gentoo.org>
+  +files/netpbm-10.29-infinity.patch, netpbm-10.29-r1.ebuild:
+  Added patch to rename the INFINITY variable to infinity to avoid problems
+  where the first is a system define.
+
+  04 Oct 2005; Mike Frysinger <vapier@gentoo.org> netpbm-10.29-r1.ebuild:
+  Redo some library options and merge Darwin support #74101.
+
+  02 Oct 2005; Jason Wever <weeve@gentoo.org> netpbm-10.29-r1.ebuild:
+  Added ~sparc keyword wrt bug #107346.
+
+  27 Sep 2005; Andrej Kacian <ticho@gentoo.org> netpbm-10.29-r1.ebuild:
+  Keyworded ~x86. Bug #107346.
+
+*netpbm-10.29-r1 (27 Sep 2005)
+
+  27 Sep 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/netpbm-10.29-anytopnm.patch, +files/netpbm-10.29-build.patch,
+  +files/netpbm-10.29-pnmtopng-alpha-check.patch, +netpbm-10.29-r1.ebuild:
+  Fix by Andy Chambers for segfault in pnmtopng #104434 by Heiko Baums. Fix by
+  Matthew Lange for buggy anytopnm #105127 by Erik Thiele. Add real manpages
+  #67017. Also try to fix parallel building. Use external libraries (urt, 
+  jbigkit, jasper) instead of bundled ones.
+
+*netpbm-10.29 (16 Aug 2005)
+
+  16 Aug 2005; Luca Barbato <lu_zero@gentoo.org> +netpbm-10.29.ebuild:
+  New version
+
+  05 Aug 2005; Aaron Walker <ka0ttic@gentoo.org> netpbm-10.28.ebuild:
+  Stable on mips for bug 100398.
+
+  04 Aug 2005; Bryan Østergaard <kloeri@gentoo.org> netpbm-10.28.ebuild:
+  Stable on ia64, bug 100398.
+
+  02 Aug 2005; Rene Nussbaumer <killerfox@gentoo.org> netpbm-10.28.ebuild:
+  Stable on hppa. bug #100398 the second.
+
+  02 Aug 2005; <sekretarz@gentoo.org> netpbm-10.28.ebuild:
+  Stable on x86 due security bug #100398
+
+  01 Aug 2005; Gustavo Zacarias <gustavoz@gentoo.org> netpbm-10.28.ebuild:
+  Stable on sparc wrt #100398
+
+  01 Aug 2005; Herbie Hopkins <herbs@gentoo.org> netpbm-10.28.ebuild:
+  Stable on amd64 wrt bug #100398.
+
+  31 Jul 2005; Tobias Scherbaum <dertobi123@gentoo.org> netpbm-10.28.ebuild:
+  ppc stable, #100398
+
+  31 Jul 2005; Fernando J. Pereda <ferdy@gentoo.org> netpbm-10.28.ebuild:
+  stable on alpha, wrt bug #100398
+
+  31 Jul 2005; Markus Rothe <corsair@gentoo.org> netpbm-10.28.ebuild:
+  Stable on ppc64 (bug #100398)
+
+  31 Jul 2005; Rene Nussbaumer <killerfox@gentoo.org>
+  netpbm-10.20-r1.ebuild:
+  Stable on hppa. bug #100398
+
+*netpbm-10.28 (30 Jul 2005)
+
+  30 Jul 2005; <sekretarz@gentoo.org> +files/netpbm-dSAFER.patch,
+  netpbm-10.20-r1.ebuild, +netpbm-10.28.ebuild:
+  Version bump due security bug #100398
+
+  02 Jul 2005; Hardave Riar <hardave@gentoo.org> netpbm-10.20.ebuild:
+  Stable on mips
+
+*netpbm-10.20-r1 (22 Jun 2005)
+
+  22 Jun 2005; Aron Griffis <agriffis@gentoo.org> +netpbm-10.20-r1.ebuild:
+  Install map files in /usr/share/netpbm instead of as documentation #77797
+
+  30 May 2005; Sven Wegener <swegener@gentoo.org> netpbm-9.12-r4.ebuild,
+  netpbm-10.11.5-r3.ebuild, netpbm-10.11.14.ebuild, netpbm-10.11.15.ebuild,
+  netpbm-10.18.7.ebuild, netpbm-10.20.ebuild:
+  Moved from gcc.eclass to toolchain-funcs.eclass, bug #92745.
+
+  01 Nov 2004; Bryan Østergaard <kloeri@gentoo.org> netpbm-10.20.ebuild:
+  Stable on alpha.
+
+  06 Oct 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  netpbm-10.20.ebuild:
+  get_libdir fixes.
+
+  02 Oct 2004; Olivier Crete <tester@gentoo.org> netpbm-10.20.ebuild:
+  Marking x86 wrt security bug #65647
+
+  01 Oct 2004; <SeJo@gentoo.org> netpbm-10.20.ebuild:
+  stable on ppc gsla bug: 65647
+
+  30 Sep 2004; Gustavo Zacarias <gustavoz@gentoo.org> netpbm-10.20.ebuild:
+  Stable on sparc wrt #65647
+
+  23 Jul 2004; Tom Gall <tgall@gentoo.org> netpbm-10.20.ebuild:
+  stable on ppc64, bug #57657
+
+  07 Jun 2004; Aron Griffis <agriffis@gentoo.org> netpbm-10.11.14.ebuild,
+  netpbm-10.11.15.ebuild, netpbm-10.11.5-r3.ebuild, netpbm-10.18.7.ebuild,
+  netpbm-10.19.ebuild, netpbm-10.20.ebuild:
+  Fix use invocation
+
+*netpbm-10.19 (20 Feb 2004)
+
+  20 Feb 2004; Michael Sterrett <mr_bones_@gentoo.org> netpbm-10.11.14.ebuild,
+  netpbm-10.11.15.ebuild, netpbm-10.11.5-r3.ebuild, netpbm-10.18.7.ebuild,
+  netpbm-10.19.ebuild, netpbm-10.20.ebuild:
+  media-libs/svgalib is x86 only; arm needs deps first
+
+*netpbm-10.20 (02 Feb 2004)
+
+  02 Feb 2004; Martin Holzer <mholzer@gentoo.org> netpbm-10.20.ebuild:
+  Version bumped.
+
+*netpbm-10.18.7 (02 Feb 2004)
+
+  02 Feb 2004; Martin Holzer <mholzer@gentoo.org> netpbm-10.18.7.ebuild:
+  Version bumped.
+
+  27 Jan 2004; Martin Holzer <mholzer@gentoo.org> netpbm-10.11.14.ebuild,
+  netpbm-10.11.15.ebuild:
+  Changing depend and configure script
+
+*netpbm-10.11.15 (14 Jan 2004)
+
+  14 Jan 2004; Martin Holzer <mholzer@gentoo.org> netpbm-10.11.14.ebuild,
+  netpbm-10.11.15.ebuild:
+  Version bumped
+
+  14 Jan 2004; Martin Holzer <mholzer@gentoo.org> netpbm-10.11.13-r1.ebuild,
+  netpbm-10.11.14.ebuild, netpbm-10.11.5-r3.ebuild, netpbm-9.12-r4.ebuild:
+  adding RESTRICT=nomirror
+
+  13 Jan 2004; Mike Frysinger <vapier@gentoo.org> :
+  Remove x86? ( svga? () ) crap.  svga works only on x86 so if someone has
+  svga in their USE on another arch, it's THEIR problem to fix.
+
+  13 Dec 2003; Guy Martin <gmsoft@gentoo.org> netpbm-9.12-r4.ebuild:
+  Marked stable on hppa.
+
+  24 Nov 2003; Aron Griffis <agriffis@gentoo.org> netpbm-10.11.14.ebuild:
+  Stable on ia64
+
+  02 Nov 2003; Martin Holzer <mholzer@gentoo.org> netpbm-10.11.13-r1.ebuild,
+  netpbm-10.11.14.ebuild, netpbm-10.11.5-r3.ebuild:
+  adding restrict=nomirror
+
+*netpbm-10.11.14 (18 Oct 2003)
+
+  18 Oct 2003; Martin Holzer <mholzer@gentoo.org> netpbm-10.11.14.ebuild:
+  Version bumped.
+
+  21 Sep 2003; <zhen@gentoo.org> netpbm-10.11.13-r1.ebuild:
+  Since xvgalib does *not* work on ppc, with the help of Darkspecter, changed
+  DEPEND to use svgalib if we are only on x86.
+
+*netpbm-10.11.13 (22 Sep 2003)
+
+  22 Sep 2003; Martin Holzer <mholzer@gentoo.org> netpbm-10.11.13.ebuild:
+  Version bumped.
+
+*netpbm-10.11.12 (07 Sep 2003)
+
+  07 Sep 2003; Martin Holzer <mholzer@gentoo.org> netpbm-10.11.12.ebuild,
+  files/10.11.12/Makefile.config, files/10.11.12/Makefile.svga:
+  Version bumped.
+
+*netpbm-10.11.11 (06 Sep 2003)
+
+  06 Sep 2003; Martin Holzer <mholzer@gentoo.org> netpbm-10.11.11.ebuild,
+  files/10.11.11/Makefile.config, files/10.11.11/Makefile.svga:
+  Version bumped.
+
+*netpbm-10.11.5-r3 (24 Aug 2003)
+*netpbm-10.11.10-r1 (24 Aug 2003)
+
+  24 Aug 2003; Martin Holzer <mholzer@gentoo.org> netpbm-10.11.10-r1.ebuild,
+  netpbm-10.11.5-r3.ebuild:
+  adding misc files. Closes #21318.
+
+*netpbm-10.11.10 (12 Aug 2003)
+
+  12 Aug 2003; Martin Holzer <mholzer@gentoo.org> netpbm-10.11.10.ebuild,
+  files/10.11.10/Makefile.config, files/10.11.10/Makefile.svga:
+  Version bumped.
+
+  19 Jun 2003; <msterret@gentoo.org> netpbm-10.11.5-r2.ebuild:
+  fix up doc install with a song and dance. (bug 23048)
+
+  13 May 2003; Jason Wever <weeve@gentoo.org> netpbm-9.12-r4.ebuild:
+  Added filter-flags to filter any -Ox optimizations (sparc only) to fix bug
+  #14392
+
+*netpbm-10.11.5-r2 (20 Mar 2003)
+
+  19 Apr 2003; Brandon Low <lostlogic@gentoo.org> netpbm-10.11.5-r2.ebuild,
+  netpbm-9.12-r4.ebuild:
+  Add replace-flags for ultrasparcs
+
+  14 Apr 2003; Stefan Jones <cretin@gentoo.org> netpbm-10.11.5-r2.ebuild:
+  Added -fPIC to CFLAGS for prelink.
+
+  20 Mar 2003; Graham Forest <vladimir@gentoo.org> netpbm-10.11.4-r1.ebuild,
+  netpbm-10.11.5-r2.ebuild:
+  Removed usage of pic USE flag
+
+*netpbm-10.11.5-r1 (06 March 2003)
+
+  09 Mar 2003; Aron Griffis <agriffis@gentoo.org> netpbm-10.11.5-r1.ebuild:
+  Mark stable on alpha
+
+  06 March 2003; Martin Schlemmer <azarah@gentoo.org> netpbm-10.11.5-r1.ebuild :
+  Fix /usr/lib/libnetpbm.so symlink not being created.
+
+*netpbm-10.11.5 (13 Feb 2003)
+
+  22 Feb 2003; Aron Griffis <agriffis@gentoo.org> netpbm-10.11.5.ebuild :
+  Add ~alpha to KEYWORDS
+
+  14 Feb 2003; Brandon Low <lostlogic@lostlogicx.com> *.ebuild:
+  assert ebuild.workswith(newdistcc);
+  Fixed MAKEOPTS, and CC so that this doesn't get errors
+  building on a distcc box (of course it has to be built
+  with -j1 so distcc could only distribute all or none of
+  the processes, but that might be of use, and at least
+  it doesn't break.)
+
+  13 Feb 2003; Nick Hadaway <raker@gentoo.org> netpbm-10.11.5.ebuild,
+  files/digest-netpbm-10.11.5 :
+  Version bump.
+
+*netpbm-10.11.4 (04 Jan 2002)
+
+  30 Jan 2003; Mark Guertin <gerk@gentoo.org> netpbm-10.11.4.ebuild :
+  Set to stable ppc keyword.  Works great here, no more svgalib issues.
+
+  12 Jan 2003; Martin Holzer <mholzer@gentoo.org> netpbm-10.11.4.ebuild :
+  Added Prelink ability. Closes #13650
+
+  07 Jan 2003; Martin Holzer <mholzer@gentoo.org> netpbm-10.11.4.ebuild :
+  A little fix with SVGALIB.
+
+  04 Jan 2003; Martin Holzer <mholzer@gentoo.org> netpbm-10.11.4.ebuild files/digest-netpbm-10.11.4 ChangeLog :
+  Version bumped.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*netpbm-9.12-r4 (16 Oct 2002)
+
+  22 Apr 2003; Brandon Low <lostlogic@gentoo.org> netpbm-9.12-r4.ebuild:
+  Adjust CC and CXX settings for weird environments
+
+  19 Apr 2003; Brandon Low <lostlogic@gentoo.org> netpbm-9.12-r4.ebuild:
+  Typo in sed
+
+  17 Apr 2003; Brandon Low <lostlogic@gentoo.org> netpbm-9.12-r4.ebuild:
+  Minor fixage to ||dies
+
+  16 Oct 2002; Seemant Kulleen <seemant@gentoo.org> netpbm-9.12-r4.ebuild
+  files/digest-netpbm-9.12-r4 :
+
+  Fixed symlinks pointing back to non-existent binaries in the sandbox.
+  Thanks to gaarde@yahoo.com (Paul Belt) in bug #9328.
+
+*netpbm-9.12-r3 (01 Oct 2002)
+
+  01 Oct 2002; Seemant Kulleen <seemant@gentoo.org> netpbm-9.12-r3.ebuild :
+
+  Moved the includes to /usr/include instead of /usr/include/pbm, per the
+  bug report #8576 by desudation@yahoo.ca (Douglas Pollock)
+
+*netpbm-9.12-r2 (12 Apr 2002)
+
+  06 Aug 2002; Maik Schreiber <blizzy@gentoo.org> netpbm-9.12-r2.ebuild:
+  Fixed Makefile.config to use user-defined CFLAGS.
+
+  12 Apr 2002; Spider <spider@gentoo.org> : update with cute new libpng 1.2.1 
+
+*netpbm-9.12-r1 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
