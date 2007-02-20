@@ -1,0 +1,61 @@
+If insert_num() is given an invalid value, it returns NULL, so we need to
+check its return at each instance.
+
+http://bugs.gentoo.org/166233
+
+--- findutils-4.3.2/find/parser.c
++++ findutils-4.3.2/find/parser.c
+@@ -847,8 +847,10 @@
+ parse_gid (const struct parser_table* entry, char **argv, int *arg_ptr)
+ {
+   struct predicate *p = insert_num (argv, arg_ptr, entry);
++  if (p == NULL)
++    return false;
+   p->est_success_rate = (p->args.info.l_val < 100) ? 0.99 : 0.2;
+-  return p;
++  return true;
+ }
+ 
+ static boolean
+@@ -1010,9 +1012,11 @@
+ parse_inum (const struct parser_table* entry, char **argv, int *arg_ptr)
+ {
+   struct predicate *p =  insert_num (argv, arg_ptr, entry);
++  if (p == NULL)
++    return false;
+   /* inode number is exact match only, so very low proportions of files match */
+   p->est_success_rate = 1e-6;
+-  return p;
++  return true;
+ }
+ 
+ /* -ipath is deprecated (at RMS's request) in favour of 
+@@ -1057,13 +1061,15 @@
+ parse_links (const struct parser_table* entry, char **argv, int *arg_ptr)
+ {
+   struct predicate *p = insert_num (argv, arg_ptr, entry);
++  if (p == NULL)
++    return false;
+   if (p->args.info.l_val == 1)
+     p->est_success_rate = 0.99;
+   else if (p->args.info.l_val == 2)
+     p->est_success_rate = 0.01;
+   else
+     p->est_success_rate = 1e-3;
+-  return p;
++  return true;
+ }
+ 
+ static boolean
+@@ -1835,8 +1841,10 @@
+ parse_uid (const struct parser_table* entry, char **argv, int *arg_ptr)
+ {
+   struct predicate *p = insert_num (argv, arg_ptr, entry);
++  if (p == NULL)
++    return false;
+   p->est_success_rate = (p->args.info.l_val < 100) ? 0.99 : 0.2;
+-  return p;
++  return true;
+ }
+ 
+ static boolean
