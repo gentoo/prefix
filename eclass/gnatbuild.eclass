@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.21 2007/02/05 13:55:47 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.24 2007/02/16 14:59:23 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -8,9 +8,9 @@
 # Note: HOMEPAGE and LICENSE are set in appropriate ebuild, as
 # gnat is developed by FSF and AdaCore "in parallel"
 
-inherit eutils versionator toolchain-funcs flag-o-matic multilib libtool fixheadtails gnuconfig
+inherit eutils versionator toolchain-funcs flag-o-matic multilib libtool fixheadtails gnuconfig pax-utils
 
-EXPORT_FUNCTIONS pkg_setup pkg_postinst pkg_prerm src_unpack src_compile src_install
+EXPORT_FUNCTIONS pkg_setup pkg_postinst pkg_postrm src_unpack src_compile src_install
 
 DESCRIPTION="Based on the ${ECLASS} eclass"
 
@@ -101,6 +101,10 @@ LIBEXECPATH=${PREFIX}/libexec/${PN}/${CTARGET}/${SLOT}
 INCLUDEPATH=${LIBPATH}/include
 BINPATH=${PREFIX}/${CTARGET}/${PN}-bin/${SLOT}
 DATAPATH=${PREFIX}/share/${PN}-data/${CTARGET}/${SLOT}
+# ATTN! the one below should match the path defined in eselect-gnat module
+CONFIG_PATH="/usr/share/gnat/eselect"
+gnat_config_file="${ED}/${CONFIG_PATH}/${CTARGET}-${PN}-${SLOT}"
+
 
 # ebuild globals
 if [[ ${PN} == "${PN_GnatPro}" ]] && [[ ${GNATMAJOR} == "3" ]]; then
@@ -151,7 +155,7 @@ create_gnat_env_entry() {
 	dodir /etc/env.d/gnat
 	local gnat_envd_base="/etc/env.d/gnat/${CTARGET}-${PN}-${SLOT}"
 
-	gnat_envd_file="${D}${gnat_envd_base}"
+	gnat_envd_file="${ED}${gnat_envd_base}"
 #	gnat_specs_file=""
 
 	echo "PATH=\"${BINPATH}:${LIBEXECPATH}\"" > ${gnat_envd_file}
@@ -204,13 +208,9 @@ add_profile_eselect_conf() {
 
 
 create_eselect_conf() {
-	# it would be good to source gnat.eselect module here too,
-	# but we only need one path
-	local config_dir="/usr/share/gnat/eselect"
-	local gnat_config_file="${D}/${config_dir}/${CTARGET}-${PN}-${SLOT}"
 	local abi
 
-	dodir ${config_dir}
+	dodir ${CONFIG_PATH}
 
 	echo "[global]" > ${gnat_config_file}
 	echo "  version=${CTARGET}-${SLOT}" >> ${gnat_config_file}
@@ -232,7 +232,7 @@ create_eselect_conf() {
 
 should_we_eselect_gnat() {
 	# we only want to switch compilers if installing to / or /tmp/stage1root
-	[[ ${ROOT} == "/" ]] || return 1
+	[[ ${EROOT} == "/" ]] || return 1
 
 	# if the current config is invalid, we definitely want a new one
 	# Note: due to bash quirkiness, the following must not be 1 line
@@ -319,30 +319,13 @@ gnatbuild_pkg_postinst() {
 	fi
 }
 
-# eselect-gnat can be unmerged together with gnat-*, so we better do this before
-# actual removal takes place, rather than in postrm, like toolchain does
-gnatbuild_pkg_prerm() {
-	# files for eselect module are left behind, so we need to cleanup.
-	if [ ! -f ${EPREFIX}/usr/share/eselect/modules/gnat.eselect ] ; then
-		eerror "eselect-gnat was prematurely unmerged!"
-		eerror "You will have to manually remove unnecessary files"
-		eerror "under /etc/eselect/gnat and /etc/env.d/55gnat-xxx"
-		exit # should *not* die, as this will stop unmerge!
-	fi
 
-	# this copying/modifying and then sourcing of a gnat.eselect is a hack,
-	# but having a duplicate functionality is really bad - gnat.eselect module
-	# might change..
-	cat ${EPREFIX}/usr/share/eselect/modules/gnat.eselect | \
-		grep -v "svn_date_to_version" | \
-		grep -v "DESCRIPTION" \
-		> ${WORKDIR}/gnat.esel
-	. ${WORKDIR}/gnat.esel
-
-	# see if we need to unset gnat
-	if [[ $(get_current_gnat) == "${CTARGET}-${PN}-${SLOT}" ]] ; then
-		eselect gnat unset &> /dev/null
-	fi
+gnatbuild_pkg_postrm() {
+	elog "Automatic cleanup requires a somewhat big rewamp of eclasses to not"
+	elog "breack updates. For now, if you are removing this issue of gnat compiler" 
+	elog "(if this is the last version of gnat-gcc or gnat-gpl that is being "
+	elog "removed),	please manually run:"
+	elog "   rm /etc/env.d/55gnat-*"
 }
 #---->> pkg_* <<----
 
@@ -357,6 +340,7 @@ gnatbuild_src_unpack() {
 	case $1 in
 		base_unpack)
 			unpack ${A}
+			pax-mark E $(find ${GNATBOOT} -name gnat1)
 
 			cd ${S}
 			# patching gcc sources, following the toolchain
@@ -591,8 +575,8 @@ gnatbuild_src_install() {
 		# violation (unlink of gprmake). A siple workaround for now.
 		cd "${GNATBUILD}"
 		make DESTDIR=${D} bindir="${D}${BINPATH}"  install || die
-		mv "${D}${D}${PREFIX}/${CTARGET}" "${D}${PREFIX}"
-		rm -rf "${D}var"
+		mv "${ED}${ED}${PREFIX}/${CTARGET}" "${ED}${PREFIX}"
+		rm -rf "${ED}var"
 
 		#make a convenience info link
 		dosym ${DATAPATH}/info/gnat_ugn_unw.info ${DATAPATH}/info/gnat.info
@@ -602,18 +586,18 @@ gnatbuild_src_install() {
 		debug-print-section move_libs
 
 		# first we need to remove some stuff to make moving easier
-		rm -rf "${D}${LIBPATH}"/{32,include,libiberty.a}
+		rm -rf "${ED}${LIBPATH}"/{32,include,libiberty.a}
 		# gcc insists on installing libs in its own place
-		mv "${D}${LIBPATH}/gcc/${CTARGET}/${GCCRELEASE}"/* "${D}${LIBPATH}"
-		mv "${D}${LIBEXECPATH}/gcc/${CTARGET}/${GCCRELEASE}"/* "${D}${LIBEXECPATH}"
+		mv "${ED}${LIBPATH}/gcc/${CTARGET}/${GCCRELEASE}"/* "${ED}${LIBPATH}"
+		mv "${ED}${LIBEXECPATH}/gcc/${CTARGET}/${GCCRELEASE}"/* "${ED}${LIBEXECPATH}"
 
 		# libgcc_s  and, with gcc>=4.0, other libs get installed in multilib specific locations by gcc
 		# we pull everything together to simplify working environment
 		if has_multilib_profile ; then
 			case $(tc-arch) in
 				amd64)
-					mv "${D}${LIBPATH}"/../$(get_abi_LIBDIR amd64)/* "${D}${LIBPATH}"
-					mv "${D}${LIBPATH}"/../$(get_abi_LIBDIR x86)/* "${D}${LIBPATH}"/32
+					mv "${ED}${LIBPATH}"/../$(get_abi_LIBDIR amd64)/* "${ED}${LIBPATH}"
+					mv "${ED}${LIBPATH}"/../$(get_abi_LIBDIR x86)/* "${ED}${LIBPATH}"/32
 				;;
 				ppc64)
 					# not supported yet, will have to be adjusted when we
@@ -627,7 +611,7 @@ gnatbuild_src_install() {
 		# !ATTN! change this if eselect-gnat starts to follow eselect-compiler
 		if [[ ${GCCVER} < 3.4.6 ]] ; then
 			# gcc 4.1 uses builtin specs. What about 4.0?
-			cd "${D}${BINPATH}"
+			cd "${ED}${BINPATH}"
 			mv gnatgcc gnatgcc_2wrap
 			cat > gnatgcc << EOF
 #! /bin/bash
@@ -643,25 +627,25 @@ EOF
 
 		# earlier gnat's generate some Makefile's at generic location, need to
 		# move to avoid collisions
-		[ -f "${D}${PREFIX}"/share/gnat/Makefile.generic ] &&
-			mv "${D}${PREFIX}"/share/gnat/Makefile.* "${D}${DATAPATH}"
+		[ -f "${ED}${PREFIX}"/share/gnat/Makefile.generic ] &&
+			mv "${ED}${PREFIX}"/share/gnat/Makefile.* "${ED}${DATAPATH}"
 
 		# use gid of 0 because some stupid ports don't have
 		# the group 'root' set to gid 0 (toolchain.eclass)
-		chown -R root:0 "${D}${LIBPATH}"
+		chown -R root:0 "${ED}${LIBPATH}"
 		;;
 
 	cleanup)
 		debug-print-section cleanup
 
-		rm -rf "${D}${LIBPATH}"/{gcc,install-tools,../lib{32,64}}
-		rm -rf "${D}${LIBEXECPATH}"/{gcc,install-tools}
+		rm -rf "${ED}${LIBPATH}"/{gcc,install-tools,../lib{32,64}}
+		rm -rf "${ED}${LIBEXECPATH}"/{gcc,install-tools}
 
 		# this one is installed by gcc and is a duplicate even here anyway
-		rm -f "${D}${BINPATH}/${CTARGET}-gcc-${GCCRELEASE}"
+		rm -f "${ED}${BINPATH}/${CTARGET}-gcc-${GCCRELEASE}"
 
 		# remove duplicate docs
-		cd "${D}${DATAPATH}"
+		cd "${ED}${DATAPATH}"
 		has noinfo ${FEATURES} \
 			&& rm -rf info \
 			|| rm -f info/{dir,gcc,cpp}*

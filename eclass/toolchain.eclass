@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.323 2007/02/12 05:02:07 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.328 2007/02/18 02:12:03 flameeyes Exp $
 
 HOMEPAGE="http://gcc.gnu.org/"
 LICENSE="GPL-2 LGPL-2.1"
@@ -137,9 +137,10 @@ else
 
 	if [[ ${PN} != "kgcc64" ]] ; then
 		IUSE="${IUSE} altivec build fortran nls nocxx"
-		[[ -n ${PIE_VER}	]] && IUSE="${IUSE} nopie"
-		[[ -n ${PP_VER}		]] && IUSE="${IUSE} nossp"
-		[[ -n ${HTB_VER}	]] && IUSE="${IUSE} boundschecking"
+		[[ -n ${PIE_VER} ]] && IUSE="${IUSE} nopie"
+		[[ -n ${PP_VER}	 ]] && IUSE="${IUSE} nossp"
+		[[ -n ${HTB_VER} ]] && IUSE="${IUSE} boundschecking"
+		[[ -n ${D_VER}	 ]] && IUSE="${IUSE} d"
 
 		if version_is_at_least 3 ; then
 			IUSE="${IUSE} bootstrap doc gcj gtk hardened multilib objc vanilla"
@@ -182,6 +183,7 @@ fi
 # Travis Tilley <lv@gentoo.org> (03 Sep 2004)
 #
 gcc_get_s_dir() {
+	local GCC_S
 	if [[ -n ${PRERELEASE} ]] ; then
 		GCC_S=${WORKDIR}/gcc-${PRERELEASE}
 	elif [[ -n ${SNAPSHOT} ]] ; then
@@ -189,7 +191,6 @@ gcc_get_s_dir() {
 	else
 		GCC_S=${WORKDIR}/gcc-${GCC_RELEASE_VER}
 	fi
-
 	echo "${GCC_S}"
 }
 
@@ -337,6 +338,10 @@ get_gcc_src_uri() {
 				$(gentoo_urls ${HTBFILE})
 			)"
 	fi
+
+	# support for the D language
+	[[ -n ${D_VER} ]] && \
+		GCC_SRC_URI="${GCC_SRC_URI} d? ( mirror://sourceforge/dgcc/gdc-${D_VER}-src.tar.bz2 )"
 
 	echo "${GCC_SRC_URI}"
 }
@@ -1013,7 +1018,7 @@ gcc_src_unpack() {
 	gcc_quick_unpack
 	exclude_gcc_patches
 
-	cd ${S:=$(gcc_get_s_dir)}
+	cd "${S}"
 
 	if ! use vanilla ; then
 		if [[ -n ${PATCH_VER} ]] ; then
@@ -1171,6 +1176,7 @@ gcc-compiler-configure() {
 
 	GCC_LANG="c"
 	is_cxx && GCC_LANG="${GCC_LANG},c++"
+	is_d   && GCC_LANG="${GCC_LANG},d"
 	is_gcj && GCC_LANG="${GCC_LANG},java"
 	if is_objc || is_objcxx ; then
 		GCC_LANG="${GCC_LANG},objc"
@@ -1265,19 +1271,20 @@ gcc_do_configure() {
 		# disable a bunch of features or gcc goes boom
 		local needed_libc=""
 		case ${CTARGET} in
-			*-linux)	needed_libc=no-fucking-clue;;
-			*-dietlibc) needed_libc=dietlibc;;
-			*-freebsd*) needed_libc=freebsd-lib;;
-			*-gnu*)		needed_libc=glibc;;
-			*-klibc)	needed_libc=klibc;;
-			*-uclibc*)	needed_libc=uclibc;;
-			mingw*)		needed_libc=mingw-runtime;;
-			avr)		confgcc="${confgcc} --enable-shared --disable-threads";;
+			*-linux)		 needed_libc=no-fucking-clue;;
+			*-dietlibc)		 needed_libc=dietlibc;;
+			*-elf)			 needed_libc=newlib;;
+			*-freebsd*)		 needed_libc=freebsd-lib;;
+			*-gnu*)			 needed_libc=glibc;;
+			*-klibc)		 needed_libc=klibc;;
+			*-uclibc*)		 needed_libc=uclibc;;
+			mingw*|*-mingw*) needed_libc=mingw-runtime;;
+			avr)			 confgcc="${confgcc} --enable-shared --disable-threads";;
 		esac
 		if [[ -n ${needed_libc} ]] ; then
 			if ! has_version ${CATEGORY}/${needed_libc} ; then
 				confgcc="${confgcc} --disable-shared --disable-threads --without-headers"
-			elif built_with_use ${CATEGORY}/${needed_libc} crosscompile_opts_headers-only ; then
+			elif built_with_use --hidden --missing false ${CATEGORY}/${needed_libc} crosscompile_opts_headers-only ; then
 				confgcc="${confgcc} --disable-shared --with-sysroot=${EPREFIX}/${PREFIX}/${CTARGET}"
 			else
 				confgcc="${confgcc} --with-sysroot=${EPREFIX}/${PREFIX}/${CTARGET}"
@@ -1311,6 +1318,8 @@ gcc_do_configure() {
 		[[ ${GCCMAJOR}.${GCCMINOR} == 3.3 ]] && \
 			confgcc="${confgcc} --enable-sjlj-exceptions"
 	elif [[ ${CTARGET} == *-gnu* ]] ; then
+		confgcc="${confgcc} --enable-__cxa_atexit"
+	elif [[ ${CTARGET} == *-freebsd* ]]; then
 		confgcc="${confgcc} --enable-__cxa_atexit"
 	fi
 	[[ ${CTARGET} == *-gnu* ]] && confgcc="${confgcc} --enable-clocale=gnu"
@@ -1857,10 +1866,27 @@ gcc_quick_unpack() {
 		unpack gcc-${GCC_RELEASE_VER}.tar.bz2
 		# We want branch updates to be against a release tarball
 		if [[ -n ${BRANCH_UPDATE} ]] ; then
-			pushd ${S:-"$(gcc_get_s_dir)"} > /dev/null
+			pushd "${S}" > /dev/null
 			epatch ${DISTDIR}/gcc-${GCC_RELEASE_VER}-branch-update-${BRANCH_UPDATE}.patch.bz2
 			popd > /dev/null
 		fi
+	fi
+
+	if [[ -n ${D_VER} ]] ; then
+		pushd "${S}"/gcc > /dev/null
+		unpack gdc-${D_VER}-src.tar.bz2
+		cd ..
+		if use d ; then
+			ebegin "Adding support for the D language"
+			./gcc/d/setup-gcc.sh >& "${T}"/dgcc.log
+			if ! eend $? ; then
+				eerror "The D gcc package failed to apply"
+				eerror "Please include this log file when posting a bug report:"
+				eerror "  ${T}/dgcc.log"
+				die "failed to include the D language"
+			fi
+		fi
+		popd > /dev/null
 	fi
 
 	[[ -n ${PATCH_VER} ]] && \
@@ -1872,7 +1898,7 @@ gcc_quick_unpack() {
 	if want_ssp ; then
 		if [[ -n ${PP_FVER} ]] ; then
 			# The gcc 3.4 propolice versions are meant to be unpacked to ${S}
-			pushd ${S:-$(gcc_get_s_dir)} > /dev/null
+			pushd "${S}" > /dev/null
 			unpack protector-${PP_FVER}.tar.gz
 			popd > /dev/null
 		else
@@ -1888,7 +1914,6 @@ gcc_quick_unpack() {
 		fi
 	fi
 
-	# pappy@gentoo.org - Fri Oct  1 23:24:39 CEST 2004
 	want_boundschecking && \
 		unpack "bounds-checking-gcc-${HTB_GCC_VER}-${HTB_VER}.patch.bz2"
 
@@ -2332,6 +2357,12 @@ is_cxx() {
 	gcc-lang-supported 'c++' || return 1
 	use build && return 1
 	! use nocxx
+}
+
+is_d() {
+	gcc-lang-supported d || return 1
+	use build && return 1
+	use d
 }
 
 is_f77() {

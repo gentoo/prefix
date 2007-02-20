@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.273 2007/02/14 16:49:46 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.276 2007/02/18 03:11:46 vapier Exp $
 #
 # This eclass is for general purpose functions that most ebuilds
 # have to implement themselves.
@@ -1591,7 +1591,7 @@ set_arch_to_portage() {
 preserve_old_lib() {
 	if [[ ${EBUILD_PHASE} != "preinst" ]] ; then
 		eerror "preserve_old_lib() must be called from pkg_preinst() only"
-#		die "Invalid preserve_old_lib() usage"
+		die "Invalid preserve_old_lib() usage"
 	fi
 	[[ -z $1 ]] && die "Usage: preserve_old_lib <library to preserve> [more libraries to preserve]"
 
@@ -1608,7 +1608,7 @@ preserve_old_lib() {
 preserve_old_lib_notify() {
 	if [[ ${EBUILD_PHASE} != "postinst" ]] ; then
 		eerror "preserve_old_lib_notify() must be called from pkg_postinst() only"
-#		die "Invalid preserve_old_lib_notify() usage"
+		die "Invalid preserve_old_lib_notify() usage"
 	fi
 
 	local lib notice=0
@@ -1633,11 +1633,18 @@ preserve_old_lib_notify() {
 # Usage: built_with_use [--missing <action>] [-a|-o] <DEPEND ATOM> <List of USE flags>
 #	 ex: built_with_use xchat gtk2
 #
-# Flags: -a	        all USE flags should be utilized
-#		 -o	        at least one USE flag should be utilized
+# Flags: -a         all USE flags should be utilized
+#        -o         at least one USE flag should be utilized
 #        --missing  peform the specified action if the flag is not in IUSE (true/false/die)
+#        --hidden   USE flag we're checking is hidden expanded so it isnt in IUSE
 # Note: the default flag is '-a'
 built_with_use() {
+	local hidden="no"
+	if [[ $1 == "--hidden" ]] ; then
+		hidden="yes"
+		shift
+	fi
+
 	local missing_action="die"
 	if [[ $1 == "--missing" ]] ; then
 		missing_action=$2
@@ -1658,13 +1665,9 @@ built_with_use() {
 	local USEFILE="${EROOT}"/var/db/pkg/${PKG}/USE
 	local IUSEFILE="${EROOT}"/var/db/pkg/${PKG}/IUSE
 
-	# if the USE file doesnt exist, assume the $PKG is either
-	# injected or package.provided
-	[[ ! -e ${USEFILE} ]] && die "Unable to determine what USE flags $PKG was built with"
-
 	# if the IUSE file doesn't exist, the read will error out, we need to handle
 	# this gracefully
-	if [[ ! -e ${IUSEFILE} ]] ; then
+	if [[ ! -e ${USEFILE} ]] || [[ ! -e ${IUSEFILE} && ${hidden} == "no" ]] ; then
 		case ${missing_action} in
 			true)	return 0;;
 			false)	return 1;;
@@ -1672,22 +1675,24 @@ built_with_use() {
 		esac
 	fi
 
-	local IUSE_BUILT=$(<${IUSEFILE})
-	# Don't check USE_EXPAND #147237
-	local expand
-	for expand in $(echo ${USE_EXPAND} | tr '[:upper:]' '[:lower:]') ; do
-		if [[ $1 == ${expand}_* ]] ; then
-			expand=""
-			break
-		fi
-	done
-	if [[ -n ${expand} ]] ; then
-		if ! has $1 ${IUSE_BUILT} ; then
-			case ${missing_action} in
-				true)  return 0;;
-				false) return 1;;
-				die)   die "$PKG does not actually support the $1 USE flag!";;
-			esac
+	if [[ ${hidden} == "no" ]] ; then
+		local IUSE_BUILT=$(<${IUSEFILE})
+		# Don't check USE_EXPAND #147237
+		local expand
+		for expand in $(echo ${USE_EXPAND} | tr '[:upper:]' '[:lower:]') ; do
+			if [[ $1 == ${expand}_* ]] ; then
+				expand=""
+				break
+			fi
+		done
+		if [[ -n ${expand} ]] ; then
+			if ! has $1 ${IUSE_BUILT} ; then
+				case ${missing_action} in
+					true)  return 0;;
+					false) return 1;;
+					die)   die "$PKG does not actually support the $1 USE flag!";;
+				esac
+			fi
 		fi
 	fi
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.65 2007/02/12 05:01:09 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.66 2007/02/16 00:12:02 vapier Exp $
 #
 # Author: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -101,7 +101,7 @@ tc-is-cross-compiler() {
 # rejects softfloat flags where the target always lacks an fpu.
 tc-is-softfloat() {
 	case ${CTARGET} in
-		h8300*)
+		bfin*|h8300*)
 			echo "only" ;;
 		*)
 			[[ ${CTARGET//_/-} == *-softfloat-* ]] \

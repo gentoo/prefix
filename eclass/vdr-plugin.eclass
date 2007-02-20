@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.41 2007/01/06 14:47:04 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.42 2007/02/17 01:07:48 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -79,7 +79,7 @@ DEPEND="media-tv/linuxtv-dvb-headers"
 
 # this code is from linux-mod.eclass
 update_vdrplugindb() {
-	local VDRPLUGINDB_DIR=${ROOT}/var/lib/vdrplugin-rebuild/
+	local VDRPLUGINDB_DIR=${EROOT}/var/lib/vdrplugin-rebuild/
 
 	if [[ ! -f ${VDRPLUGINDB_DIR}/vdrplugindb ]]; then
 		[[ ! -d ${VDRPLUGINDB_DIR} ]] && mkdir -p ${VDRPLUGINDB_DIR}
@@ -92,7 +92,7 @@ update_vdrplugindb() {
 }
 
 remove_vdrplugindb() {
-	local VDRPLUGINDB_DIR=${ROOT}/var/lib/vdrplugin-rebuild/
+	local VDRPLUGINDB_DIR=${EROOT}/var/lib/vdrplugin-rebuild/
 
 	if [[ -n $(grep ${CATEGORY}/${PN}-${PVR} ${VDRPLUGINDB_DIR}/vdrplugindb) ]]; then
 		einfo "Removing ${CATEGORY}/${PN}-${PVR} from vdrplugindb."
@@ -107,7 +107,7 @@ create_plugindb_file() {
 	local NEW_VDRPLUGINDB_DIR=/usr/share/vdr/vdrplugin-rebuild/
 	local DB_FILE=${NEW_VDRPLUGINDB_DIR}/${CATEGORY}-${PF}
 	insinto ${NEW_VDRPLUGINDB_DIR}
-	cat <<-EOT > ${D}/${DB_FILE}
+	cat <<-EOT > ${ED}/${DB_FILE}
 		VDRPLUGIN_DB=1
 		CREATOR=ECLASS
 		EBUILD=${CATEGORY}/${PN}
@@ -123,7 +123,7 @@ create_plugindb_file() {
 delete_orphan_plugindb_file() {
 	#elog Testing for orphaned plugindb file
 	local NEW_VDRPLUGINDB_DIR=/usr/share/vdr/vdrplugin-rebuild/
-	local DB_FILE=${ROOT}/${NEW_VDRPLUGINDB_DIR}/${CATEGORY}-${PF}
+	local DB_FILE=${EROOT}/${NEW_VDRPLUGINDB_DIR}/${CATEGORY}-${PF}
 
 	# file exists
 	[[ -f ${DB_FILE} ]] || return
@@ -349,14 +349,17 @@ vdr-plugin_src_install() {
 
 
 
+	# Danger: Not using $ROOT here, as compile will also not use it !!!
+	# If vdr in $ROOT and / differ, plugins will not run anyway
+
 	insinto ${VDR_CHECKSUM_DIR}
-	if [[ -f ${ROOT}${VDR_CHECKSUM_DIR}/header-md5-vdr ]]; then
-		newins ${ROOT}${VDR_CHECKSUM_DIR}/header-md5-vdr header-md5-${PN}
+	if [[ -f ${EPREFIX}${VDR_CHECKSUM_DIR}/header-md5-vdr ]]; then
+		newins ${VDR_CHECKSUM_DIR}/header-md5-vdr header-md5-${PN}
 	else
 		if which md5sum >/dev/null 2>&1; then
 			cd ${S}
 			(
-				cd ${ROOT}${VDR_INCLUDE_DIR}
+				cd ${EPREFIX}${VDR_INCLUDE_DIR}
 				md5sum *.h libsi/*.h|LC_ALL=C sort --key=2
 			) > header-md5-${PN}
 			doins header-md5-${PN}
