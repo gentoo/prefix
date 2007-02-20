@@ -75,6 +75,40 @@
  
 --- Makefile.am
 +++ Makefile.am
+@@ -9,21 +9,33 @@
+ if BUILD_XAW6
+ 
+ pkgconfig_DATA += xaw6.pc
++if PLATFORM_DARWIN
++DEFAULT_LIB = libXaw6.dylib
++else
+ DEFAULT_LIB = libXaw6.so
++endif
+ 
+ endif
+ 
+ if BUILD_XAW7
+ 
+ pkgconfig_DATA += xaw7.pc
++if PLATFORM_DARWIN
++DEFAULT_LIB = libXaw7.dylib
++else
+ DEFAULT_LIB = libXaw7.so
++endif
+ 
+ endif
+ 
+ if BUILD_XAW8
+ 
+ pkgconfig_DATA += xaw8.pc
++if PLATFORM_DARWIN
++DEFAULT_LIB = libXaw8.dylib
++else
+ DEFAULT_LIB = libXaw8.so
++endif
+ 
+ endif
+ 
 @@ -37,8 +37,13 @@
  	ChangeLog
  
