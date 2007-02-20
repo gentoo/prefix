@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/net-tools-1.60-r12.ebuild,v 1.13 2007/02/17 17:25:22 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/net-tools-1.60-r13.ebuild,v 1.1 2007/02/17 17:11:00 vapier Exp $
 
 EAPI="prefix"
 
 inherit flag-o-matic toolchain-funcs eutils
 
-PVER="1.5"
+PVER="1.6"
 DESCRIPTION="Standard Linux networking tools"
 HOMEPAGE="http://sites.inka.de/lina/linux/NetTools/"
 SRC_URI="http://www.tazenda.demon.co.uk/phil/net-tools/${P}.tar.bz2
