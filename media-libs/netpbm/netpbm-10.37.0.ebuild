@@ -38,8 +38,9 @@ netpbm_libsuffix() {
 	echo ${suffix//\.}
 }
 netpbm_ldshlib() {
+	# ultra dirty Darwin hack, but hey... in the end this is all it needs...
 	case ${CHOST} in
-		*-darwin*) echo '$(LDFLAGS) -dynamiclib';;
+		*-darwin*) echo '$(LDFLAGS) -dynamiclib -install_name ${EPREFIX}/usr/lib/libnetpbm.10.dylib';;
 		*)		   echo '$(LDFLAGS) -shared -Wl,-soname,$(SONAME)';;
 	esac
 }
