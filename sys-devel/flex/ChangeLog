@@ -1,6 +1,15 @@
 # ChangeLog for sys-devel/flex
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/ChangeLog,v 1.51 2006/10/17 10:38:51 uberlord Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/ChangeLog,v 1.53 2007/02/06 12:05:09 blubb Exp $
+
+  06 Feb 2007; Simon Stelling <blubb@gentoo.org> flex-2.5.33-r2.ebuild:
+  stable on amd64
+
+*flex-2.5.33-r2 (06 Feb 2007)
+
+  06 Feb 2007; Simon Stelling <blubb@gentoo.org>
+  +files/flex-2.5.33-pic.patch, +flex-2.5.33-r2.ebuild:
+  compile lib with -fPIC; bug 131460
 
   17 Oct 2006; Roy Marples <uberlord@gentoo.org> flex-2.5.33-r1.ebuild:
   Added ~sparc-fbsd keyword.
