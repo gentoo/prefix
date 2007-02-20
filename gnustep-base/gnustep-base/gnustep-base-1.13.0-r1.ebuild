@@ -10,7 +10,7 @@ DESCRIPTION="The GNUstep Base Library is a library of general-purpose, non-graph
 
 HOMEPAGE="http://www.gnustep.org"
 SRC_URI="ftp://ftp.gnustep.org/pub/gnustep/core/${P}.tar.gz"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~ppc-macos"
 SLOT="0"
 LICENSE="GPL-2 LGPL-2.1"
 
