@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/diffutils
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/ChangeLog,v 1.50 2006/10/18 11:33:29 uberlord Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/ChangeLog,v 1.51 2007/02/19 23:02:41 wolf31o2 Exp $
+
+  19 Feb 2007; Chris Gianelloni <wolf31o2@gentoo.org> ChangeLog:
+  Added Manifest2.
 
   18 Oct 2006; Roy Marples <uberlord@gentoo.org> diffutils-2.8.7-r1.ebuild:
   Added ~sparc-fbsd keyword.
