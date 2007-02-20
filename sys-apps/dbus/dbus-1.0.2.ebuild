@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/sys-apps/dbus/dbus-1.0.2.ebuild,v 1.10 2007/01/29 15:43:56 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.0.2.ebuild,v 1.12 2007/02/09 22:27:05 eroyf Exp $
 
 EAPI="prefix"
 
