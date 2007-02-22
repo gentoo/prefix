@@ -70,13 +70,13 @@ src_unpack() {
 }
 
 src_compile() {
-	if use userland_Darwin ; then
-		# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=25127
-		filter-flags "-mcpu=*"
-		filter-flags "-mabi=*"
-		filter-flags "-march=*"
-		filter-flags "-mtune=*"
-	fi
+	case ${CHOST} in
+		*-darwin7)
+			# libintl triggers inclusion of -lc which results in multiply
+			# defined symbols, so disable nls
+			EXTRA_ECONF="${EXTRA_ECONF} --disable-nls"
+		;;
+	esac
 	# Since GCC 4.1.2 some non-posix (?) /bin/sh compatible code is used, at
 	# least on Solaris, so force it into our own bash
 	export CONFIG_SHELL="${EPREFIX}/bin/sh"
