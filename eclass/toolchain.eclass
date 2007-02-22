@@ -1495,6 +1495,8 @@ gcc_do_filter_flags() {
 	3.4|4.*)
 		case $(tc-arch) in
 			x86|amd64) filter-flags '-mcpu=*';;
+			# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=25127
+			*-macos) filter-flags '-mcpu=*' '-march=*' '-mtune=*';;
 		esac
 		;;
 	esac
