@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-5.2_p1.ebuild,v 1.3 2007/01/13 19:36:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-5.2_p1.ebuild,v 1.4 2007/01/27 06:50:36 vapier Exp $
 
 EAPI="prefix"
 
@@ -73,7 +73,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die
 	dodir /$(get_libdir)
 
 	if ! use userland_Darwin ; then
