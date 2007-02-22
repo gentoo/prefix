@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2600 2007/02/14 21:35:23 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2614 2007/02/21 16:33:53 lack Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -124,6 +124,9 @@ app-emulation/qemu-softmmu:kqemu - Enables the kernel module acceleration on the
 app-emulation/uade:audacious - Enables support for media-sound/audacious
 app-emulation/uae:scsi - Enable the uaescsi.device
 app-emulation/uae:sdl-sound - Use libsdl for audio output
+app-emulation/virtualbox:additions - Install Guest System Tools ISO
+app-emulation/virtualbox:sdk - Enable building of SDK
+app-emulation/virtualbox-bin:additions - Install Guest System Tools ISO
 app-emulation/xen-tools:custom-cflags - Use CFLAGS from /etc/make.conf rather than the default Xen CFLAGS (not supported)
 app-emulation/xen-tools:pygrub - Install the pygrub boot loader
 app-emulation/xen-tools:screen - Enable support for running domain U consoles in a screen session
@@ -153,8 +156,6 @@ app-i18n/uim-svn:fep - Build uim-fep
 app-i18n/uim-svn:immqt - Enable immodule for Qt support
 app-i18n/uim:anthy - Support for Anthy input method
 app-i18n/uim:eb - Enable EB support
-app-i18n/uim:immqt - Enable immodule for Qt support (binary incompatible)
-app-i18n/uim:immqt-bc - Enable immodule for Qt support (binary compatible)
 app-i18n/uim:prime - Enable PRIME support
 app-laptop/pbbuttonsd:ibam - Enable support for Intelligent Battery Monitoring
 app-laptop/tp_smapi:hdaps - Install a compatible HDAPS module
@@ -172,7 +173,6 @@ app-misc/gpsdrive:garmin - Adds specific support for Garmin GPS receivers
 app-misc/graphlcd-base:g15 - Add support for g15daemon driver ( e.g Logitech G15 Keybord )
 app-misc/lcd-stuff:mpd - Add support for display of mpd controlled music
 app-misc/lcd-stuff:rss - Add support for display of RSS feeds
-app-misc/lcd4linux:serdisp - Add support for several displays via serdisplib
 app-misc/lcdproc:g15 - Enable support for Logitech G15 Keyboard LCDs
 app-misc/lcdproc:graphlcd - Enable support for the GraphLCD library
 app-misc/lcdproc:irman - Enable support for IRMan
@@ -216,6 +216,7 @@ app-office/grisbi:print - Enable TeX and printing support
 app-office/imposter:iksemel - Enable externel iksemel parsing support.
 app-office/kmymoney2:hbci - Adds HBCI online banking support
 app-office/ledger:gnuplot - Enable gnuplot support
+app-office/mozilla-sunbird:moznopango - Disable pango during runtime
 app-office/openoffice:binfilter - Enable support for legacy StarOffice 5.x and earlier file formats
 app-office/openoffice:branding - Enable Gentoo branded splash screen
 app-office/openoffice:odk - Build the Office Development Kit
@@ -504,6 +505,9 @@ dev-php5/eaccelerator:disassembler - Enable the eA disassembler.
 dev-php5/pecl-imagick:graphicsmagick - Use graphicsmagick instead of imagemagick
 dev-php5/pecl-pdo-oci:oci8-instant-client - Use dev-db/oracle-instantclient-basic as Oracle provider instead of requiring a full Oracle server install
 dev-php5/pecl-pdo:oci8-instant-client - Use dev-db/oracle-instantclient-basic as Oracle provider instead of requiring a full Oracle server install
+dev-php5/php-gtk:mozembed - Enable GtkMozembed support using either Mozilla or Firefox as backend
+dev-php5/php-gtk:sourceview - Enable source code highlighting widget using GtkSourceView
+dev-php5/php-gtk:nolibglade - Disable support for libglade
 dev-php5/znf:pear-db - Include support for PEAR-DB.
 dev-php5/znf:smarty - Include support for Smarty.
 dev-python/cgkit:3ds - enable support for importing 3D Studio models
@@ -548,6 +552,7 @@ dev-util/buildbot:irc - Add support for status delivery through an ircbot.
 dev-util/buildbot:mail - Add support for watching a maildir for commits.
 dev-util/buildbot:web - Add a web interface ("waterfall" page).
 dev-util/catalyst:ccache - Enables ccache support
+dev-util/codeblocks:contrib - Build additional contrib components
 dev-util/cvs:server - Enable server support
 dev-util/debootstrap:nodpkg - Don't install dpkg (useful for building a non-debian system)
 dev-util/eclipse-sdk:atk - Enable atk (accessibility) support
@@ -599,7 +604,6 @@ games-board/grhino:gtp - Install the GTP (Go/Game Text Protocol) frontend
 games-board/xboard:zippy - Enable experimental zippy client
 games-emulation/generator:sdlaudio - Enable SDL Audio
 games-emulation/mupen64-glN64:asm - Enable use of asm routines to improve performance
-games-emulation/mupen64:asm - Enable use of asm routines to improve performance
 games-emulation/xmame:net - Add network support
 games-emulation/xmess:net - Add network support
 games-emulation/zsnes:custom-cflags - Enables custom cflags (not supported)
@@ -802,6 +806,8 @@ mail-mta/qmail:noauthcram - If you do NOT want AUTHCRAM to be available
 mail-mta/qmail:notlsbeforeauth - If you do NOT want to require STARTTLS before offering AUTH
 mail-mta/ssmtp:md5sum - Enables MD5 summing for ssmtp
 media-fonts/intlfonts:bdf - Installs BDF fonts in addition to PCF
+media-gfx/asymptote:boehm-gc - Enables using the Boehm-Demers-Weiser conservative garbage collector
+media-gfx/asymptote:gsl - Use the GNU scientific library for calculations
 media-gfx/autotrace:flash - Adds support for creating SWF files using Ming
 media-gfx/blender:blender-game - Adds game engine support to blender
 media-gfx/comix:rar - Pulls app-arch/unrar for rar file support
@@ -1580,6 +1586,7 @@ sci-libs/libghemical:mpqc - Use the MPQC package for quantum-mechanical calculat
 sci-libs/mkl:fortran95 - Add support for a Fortran95 BLAS/LAPACK interface
 sci-libs/plplot:itcl - Support for itcl bindings.
 sci-libs/plplot:octave - Support for Octave bindings.
+sci-libs/scipy:umfpack - Add support for sparse solving via UMFPACK
 sci-libs/vtk:patented - Builds patented classes.
 sci-mathematics/coq:ide - Build the Coq IDE, a clone of proof general using lablgtk2.
 sci-mathematics/coq:norealanalysis - Do not build real analysis modules (faster compilation).
@@ -1861,9 +1868,6 @@ x11-base/xorg-server:aiglx - Includes extra AIGLX patches that allow compiz to f
 x11-base/xorg-server:dmx - Build the Distributed Multiheaded X server
 x11-base/xorg-server:kdrive - Build the kdrive X servers
 x11-base/xorg-server:xorg - Build the Xorg X server (HIGHLY RECOMMENDED)
-x11-drivers/nvidia-drivers:dlloader - Installs dynamically linked synaptics Xorg driver
-x11-drivers/nvidia-legacy-drivers:dlloader - Installs dynamically linked synaptics Xorg driver
-x11-drivers/synaptics:dlloader - Installs dynamically linked synaptics Xorg driver
 x11-libs/cairo:glitz - Build with glitz support
 x11-libs/cairo:xcb - Support the X C-language Binding, a replacement for Xlib
 x11-libs/fltk:noxft - Disables fltk; use for non-english characters
@@ -1881,7 +1885,6 @@ x11-libs/wxGTK:wxgtk1 - Add gtk1 support in addition to optional gtk2ansi and gt
 x11-misc/adesklets:ctrlmenu - force CTRL to be pressed to fire context menu
 x11-misc/adesklets:fontconfig - Support for mananging custom fonts via fontconfig
 x11-misc/dmenu:savedconfig - Add support to user defined configs
-x11-misc/linuxwacom:dlloader - Installs dynamically linked linuxwacom Xorg driver
 x11-misc/linuxwacom:sdk - Builds wacom X11 driver against installed X11 SDK
 x11-misc/openclipart:gzip - Compresses clip art using gzip
 x11-misc/rss-glx:xscreensaver - Enable detection of xscreensavers
@@ -1889,6 +1892,7 @@ x11-misc/vnc2swf:x11vnc - Install script that depends on x11vnc
 x11-misc/xlockmore:xlockrc - Enables xlockrc for people without PAM
 x11-misc/xscreensaver:insecure-savers - Installs some screensaver modules as setuid root to enable cooler effects
 x11-misc/xscreensaver:new-login - Enables users to create new logins even if the X screen is locked by someone else
+x11-plugins/gkrellmbups:nut - Enables monitoring Network-UPS (sys-power/nut)
 x11-plugins/wmhdplop:gkrellm - Enable build of gkrellm module
 x11-plugins/wmspaceclock:stlport - Enable support for STLport, greatly reducing CPU usage
 x11-plugins/wmsysmon:high-ints - Enable support for monitoring 24 interrupts, useful on SMP machines
@@ -1933,6 +1937,8 @@ x11-wm/windowmaker:modelock - Enable XKB language status lock support. README sa
 xfce-base/thunar:plugins - Enable trash panel plugin.
 xfce-base/xfce4-extras:battery - Pulls in xfce4-battery dependency.
 xfce-base/xfce4-extras:wlan - Pulls in xfce4-wavelan dependency.
+xfce-extra/thunar-thumbnailers:dcraw - Enable .agr thumbnailers, grace support.
+xfce-extra/thunar-thumbnailers:grace - Enable .raw thumbnailers, dcraw support.
 xfce-extra/xarchiver:7zip - Adds support for 7zip archives.
 xfce-extra/xarchiver:arj - Adds support for arj archives.
 xfce-extra/xarchiver:lha - Adds support for lha archives.

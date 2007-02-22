@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.6816 2007/02/14 21:47:34 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.6854 2007/02/21 23:17:39 metalgod Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -36,8 +36,126 @@
 ##   End example
 ##
 
+# Luis Medinas <metalgod@gentoo.org> (21 Feb 2007)
+# banshee-official-plugins for removal because
+# the plugins are now included in the core
+media-plugins/banshee-official-plugins
+
+# Alexandre Buisse <nattfodd@gentoo.org> (21 Feb 2007)
+# Depends on xkeyval which was masked earlier today.
+dev-tex/dk-bib
+
+# Luca Longinotti <chtekk@gentoo.org> (21 Feb 2007)
+# Mask pecl-apd, needs PHP 5.0 series (PHP5 version),
+# outdated, use XDebug to get a much better debugger.
+dev-php4/pecl-apd
+dev-php5/pecl-apd
+
+# Luca Longinotti <chtekk@gentoo.org> (21 Feb 2007)
+# Mask PHP 4.3/5.0 series: old, unmaintained, unsupported,
+# various security bugs, please upgrade to 4.4/5.1/5.2 series.
+=dev-lang/php-4.3*
+=dev-lang/php-5.0*
+
+# Alexandre Buisse <nattfodd@gentoo.org> (21 Feb 2007)
+# All of those are provided by tetex-3 which is now stabilized everywhere.
+# The current TeX setup doesn't yet allow for single package updates so 
+# those are masked for the time being.
+dev-tex/lineno
+dev-tex/SIunits
+dev-tex/floatflt
+dev-tex/g-brief
+dev-tex/pgf
+dev-tex/xcolor
+dev-tex/xkeyval
+dev-tex/latex-beamer
+dev-tex/vntex
+dev-tex/komascript
+
+# Raúl Porcel <armin76@gentoo.org> (20 Feb 2007)
+# Masked for removal 19 Mar 2007, bug 135257, security issues
+# Replaced by www-client/seamonkey[-bin]
+www-client/mozilla
+www-client/mozilla-bin
+
+# Simon Stelling <blubb@gentoo.org> (20 Feb 2007)
+# This is crap; will remove March 18th 2007
+app-portage/emool
+
+# Markus Dittrich <markusle@gentoo.org> (20 Feb 2007)
+# new revision, needs more testing
+=sci-visualization/paraview-2.6.0
+
+# Steve Dibb <beandog@gentoo.org> (19 Feb 2007)
+# Needs testing
+>=app-emulation/emul-linux-x86-medialibs-10.0
+>=media-video/mplayer-bin-1.0_rc1
+
+# Krzysiek Pawlik <nelchael@gentoo.org> (19 Feb 2007)
+# Pending removal 28 Feb 2007, bug #167024
+# See also http://pl.uptime-project.net/board/viewtopic.php?t=1435
+net-misc/yasuc
+
+# Michael Cummings <mcummings@gentoo.org> (18 Feb 2007)
+# Pending removal 17 Mar 2007, bug 165467
+dev-perl/Text-ChaSen
+
+# Raúl Porcel <armin76@gentoo.org> (18 Feb 2007)
+# Pending removal 17 Mar 2007, doesn't compile, upstream
+# dropped support a long time ago.
+net-irc/cyclone
+
+# Diego Pettenò <flameeyes@gentoo.org> (17 Feb 2007)
+# Mask preview versions
+=dev-lang/ruby-1.8.6_pre*
+
+# Raúl Porcel <armin76@gentoo.org> (17 Feb 2007)
+# Mask beta versions
+=net-irc/dircproxy-1.2.0_beta2
+
+# Diego Pettenò <flameeyes@gentoo.org> (17 Feb 2007)
+# Masked pending removal on 17 March. This ebuild has been
+# deprecated in favour of the three split ebuilds by font
+# format:
+#   media-fonts/mikachan-font-otf (OpenType)
+#   media-fonts/mikachan-font-ttc (TrueType Collection)
+#   media-fonts/mikachan-font-ttf (TrueType Fonts)
+media-font/mikachan-font
+
+# Markus Ullmann <jokey@gentoo.org> (15 Feb 2007)
+# mask for removal bug #167125
+net-analyzer/netwatch
+
+# Diego Pettenò <flameeyes@gentoo.org> (15 Feb 2007)
+# KOffice 1.6.2 pre-release
+>=app-office/karbon-1.6.2
+>=app-office/kchart-1.6.2
+>=app-office/kexi-1.6.2
+>=app-office/kivio-1.6.2
+>=app-office/koffice-1.6.2
+>=app-office/koffice-data-1.6.2
+>=app-office/koffice-libs-1.6.2
+>=app-office/koffice-meta-1.6.2
+>=app-office/koshell-1.6.2
+>=app-office/kplato-1.6.2
+>=app-office/kpresenter-1.6.2
+>=app-office/krita-1.6.2
+>=app-office/kspread-1.6.2
+>=app-office/kugar-1.6.2
+>=app-office/kword-1.6.2
+>=app-office/kformula-1.6.2
+>=app-i18n/koffice-i18n-1.6.2
+
+# <dev-zero@gentoo.org> (15 Feb 2007)
+# Giving the kde team time to work out a solution for kexi
+=dev-libs/libpqxx-2.6.9
+
+# <hollow@gentoo.org> (15 Feb 2007)
+# Segfaults all over the place; use 1.06.* instead
+=dev-libs/xmlrpc-c-1.09.00
+
 # Raúl Porcel <armin76@gentoo.org> (14 Feb 2007)
-# Doesn't build, upstream dead, network dead, bug 1666887
+# Doesn't build, upstream dead, network dead, bug 166887
 # Pending removal 13 Mar 2007
 net-p2p/mnet
 
@@ -125,11 +243,6 @@ net-libs/gecko-sdk
 # masked, pending removal, does not support new gnat compilers,
 # likely does not build anyway. dev-ada/glade is  a substitute
 dev-ada/garlic
-
-# Daniel Drake <dsd@gentoo.org> (04 Feb 2007)
-# unmaintained here, dead upstream; masked for removal on Feb 17th
-sys-cluster/gomd
-sys-cluster/openmosix-3dmon
 
 # Daniel Black <dragonheart@gentoo.org> (04 Feb 2007)
 # savedconfig.eclass prototype
@@ -244,10 +357,6 @@ net-analyzer/prelude-nagios
 # pending removal 1st of March, reference bug #164924
 net-analyzer/prelude-nids
 
-# Matti Bickel <mabi@gentoo.org> (01 Feb 2007)
-# Slotted lua is gone, the wrapper will follow
-dev-lang/lua-wrapper
-
 # Christian Faulhammer <opfer@gentoo.org> (01 Feb 2007)
 # live ebuild for the 22 branch
 ~app-editors/emacs-cvs-22.0.9999
@@ -345,30 +454,9 @@ app-portage/gatt-svn
 # Masked for removal, dead upstream and there are many alternatives
 media-sound/amp
 
-# Raúl Porcel <armin76@gentoo.org> (21 Jan 2007)
-# Pending removal 20 Feb 2007
-# Bug 138375
-# net-p2p/g2gui: Upstream dead and doesn't work with new mldonkey
-# versions. Use net-p2p/sancho-bin or the gui included in mldonkey.
-# net-p2p/bittorrent-stats: Doesn't work anymore and is an ancient
-# version. Use bittorrent.
-net-p2p/g2gui
-net-p2p/bittorrent-stats
-
-# Charlie Shepherd <masterdriverz@gentoo.org> (20 Jan 2007)
-# Pending removal 19 Feb 2007 
-# Upstream dead since three years ago, doesn't compile with gcc4. The
-# alternatives currently in tree are net-analyzer/labrea,
-# net-analyzer/prelude-nids and net-analyzer/snort. Bug 152538.
-net-firewall/firestorm
-
 # Lars Weiler <pylon@gentoo.org> (20 Jan 2007)
 # Won't compile on a stable system
 >=net-misc/strongswan-2.8.1
-
-# Matti Bickel <mabi@gentoo.org> (19 Jan 2007)
-# Masked, pending removal in 30 days, dead upstream, sources gone
-dev-lang/tolua
 
 # Christian Heim <phreak@gentoo.org> (19 Jan 2007)
 # Masked, pending removal in 30 days. Please stop using the external package
@@ -449,11 +537,6 @@ media-video/avidemux
 # This has been dead upstream for close to eternity and is broken with GCC 4.x.
 # Use games-action/d1x-rebirth instead.  This will be removed on (09 Feb 2007).
 games-action/d1x
-
-# Timothy Redaelli <drizzt@gentoo.org> (09 Jan 2007):
-# Deprecated by x11-drivers/nvidia-drivers
-# Pending removal 2007/2/9
-media-video/nvidia-freebsd
 
 # Christian Heim <phreak@gentoo.org> (08 Jan 2007)
 # Various reasons, please use the these alternatives:
@@ -653,8 +736,11 @@ dev-java/bluej-bin
 
 # Piotr Jaroszyński <peper@gentoo.org> (23 Oct 2006)
 # Masking alpha version of mozilla-thunderbird-2.0 and enigmail for it.
->=x11-plugins/enigmail-0.94.1-r1
->=mail-client/mozilla-thunderbird-2.0_alpha1
+# Raúl Porcel <armin76@gentoo.org> (17 Feb 2007)
+# Update mask
+=x11-plugins/enigmail-0.94.2-r1
+=x11-plugins/enigmail-0.94.1-r2
+>=mail-client/mozilla-thunderbird-2.0_beta1
 
 # Fabian Groffen <grobian@gentoo.org> (23 Oct 2006)
 # MonetDB doesn't compile any more.  Waiting for next release (soon) 
@@ -821,17 +907,6 @@ app-admin/eselect-compiler
 # i18n support and encoders/decoders are missing.
 =app-cdr/k3b-1.0_beta*
 =app-cdr/k3b-1.0_rc*
-
-# Tim Yamin <plasmaroo@gentoo.org> (07 Aug 2006)
-# Security mask, removal on Feb 7th 2007
-# Bugs #135167, #137623, #137626, #138617, #139321,
-# #139475, #139641, #140444, #141503, #142616, #142617 
-sys-kernel/openmosix-sources
-sys-cluster/openmosixview
-sys-cluster/openmosixtest
-sys-cluster/openmosix-user
-sys-cluster/openmosixwebview
-sys-cluster/openmosix-3dmon-stats
 
 # Jonathan Smith <smithj@gentoo.org> (07 Aug 2006)
 # pending removal
@@ -1252,10 +1327,6 @@ gnustep-apps/vindaloo
 # Masked for testing.
 =dev-cpp/gtkglextmm-1.1.0
 
-# Konstantin Arkhipov <voxus@gentoo.org> (14 Jul 2005)
-# Masked for security reasons.
-<=sys-kernel/openmosix-sources-2.4.30
-
 # Caleb Tennis <caleb@gentoo.org> (01 Jul 2005)
 # Seems to not be compatible with kde 3.4 though
 # the docs say it is
@@ -1323,18 +1394,10 @@ net-mail/mailer-config
 # Versions in portage no longer supported. Abeni 1.0 will be in portage soon after wxGTK-2.6.0
 app-portage/abeni
 
-# Konstantin Arkhipov <voxus@gentoo.org> (15 Apr 2005)
-# Masked until arrival of userland tools. At least.
->=sys-kernel/openmosix-sources-2.5
-
 # Masatomo Nakano <nakano@gentoo.org> (27 Feb 2005)
 # Tihs package is conflict with postgresql at the moment
 # and waiting on implementing virtual/postgresql.
 dev-db/pgcluster
-
-# Aron Griffis <agriffis@gentoo.org> (07 Feb 2005)
-# Mask offlineimap testing versions
-=net-irc/ctrlproxy-3.0*
 
 #Gustavo Felisberto <humpback@gentoo.org> (04 Feb 2005)
 #Masked for user testing
