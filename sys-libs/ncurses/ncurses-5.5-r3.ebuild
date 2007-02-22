@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.5-r3.ebuild,v 1.12 2007/01/16 22:36:05 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.5-r3.ebuild,v 1.14 2007/02/21 17:26:10 vapier Exp $
 
 EAPI="prefix"
 
@@ -152,16 +152,7 @@ src_install() {
 		cp -pPR "${T}"/nxterm x/xterm
 		cp -pPR "${T}"/vt100 v
 	else
-		# Install xterm-debian terminfo entry to satisfy bug #18486
-		LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${ED}/usr/$(get_libdir):${ED}/$(get_libdir) \
-		TERMINFO=${ED}/usr/share/terminfo \
-			"${ED}"/usr/bin/tic "${FILESDIR}"/xterm-debian.ti
-
-		if use minimal ; then
-			cp "${ED}"/usr/share/terminfo/x/xterm-debian "${ED}"/etc/terminfo/x/
-			rm -r "${ED}"/usr/share/terminfo
-		fi
-
+		use minimal && rm -r "${ED}"/usr/share/terminfo
 		cd "${S}"
 		dodoc ANNOUNCE MANIFEST NEWS README* TO-DO doc/*.doc
 		use doc && dohtml -r doc/html/
@@ -169,18 +160,9 @@ src_install() {
 }
 
 pkg_preinst() {
-	if [[ ! -f ${EROOT}/etc/env.d/50ncurses ]] ; then
-		mkdir -p "${EROOT}"/etc/env.d
-		echo "CONFIG_PROTECT_MASK=\"${EPREFIX}/etc/terminfo\"" > \
-			"${EROOT}"/etc/env.d/50ncurses
-	fi
+	use unicode || preserve_old_lib /$(get_libdir)/libncursesw.so.5
 }
 
 pkg_postinst() {
-	# Old ncurses may still be around from old build tbz2's.
-	rm -f "${EROOT}"/lib/libncurses.so.5.[23] "${EROOT}"/usr/lib/lib{form,menu,panel}.so.5.[23]
-	if [[ $(get_libdir) != "lib" ]] ; then
-		rm -f "${EROOT}"/$(get_libdir)/libncurses.so.5.[23] \
-			"${EROOT}"/usr/$(get_libdir)/lib{form,menu,panel}.so.5.[23]
-	fi
+	use unicode || preserve_old_lib_notify /$(get_libdir)/libncursesw.so.5
 }
