@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/savedconfig.eclass,v 1.3 2007/02/05 09:55:22 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/savedconfig.eclass,v 1.4 2007/02/21 20:49:45 dragonheart Exp $
 
 # Original Author: Daniel Black <dragonheart@gentoo.org>
 #
@@ -105,6 +105,7 @@ restore_config() {
 		die "do not know how to handle non-file/directory ${found}"
 	else
 		eerror "No saved config to restore - please remove USE=saveconfig or"
-		die "provide a configuration file in ${PORTAGE_CONFIGROOT}/etc/portage/savedconfig/${CATEGORY}/${PN}"
+		eerror "provide a configuration file in ${PORTAGE_CONFIGROOT}/etc/portage/savedconfig/${CATEGORY}/${PN}"
+		die "config file needed when USE=savedconfig is specified"
 	fi
 }
