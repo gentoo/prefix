@@ -121,6 +121,15 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 	[[ -z ${host} ]] && host=${CTARGET:-${CHOST}}
 
 	case ${host} in
+		powerpc-apple-darwin*)
+					echo ppc-macos;;
+		i*-apple-darwin*)
+					echo x86-macos;;
+		sparc-sun-solaris*)
+					echo sparc-solaris;;
+		i*-pc-solaris*)
+					echo x86-solaris;;
+
 		alpha*)		echo alpha;;
 		arm*)		echo arm;;
 		bfin*)		ninj blackfin bfin;;
