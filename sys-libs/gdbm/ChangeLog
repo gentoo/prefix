@@ -1,6 +1,17 @@
 # ChangeLog for sys-libs/gdbm
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/ChangeLog,v 1.39 2006/10/17 08:29:30 uberlord Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/ChangeLog,v 1.41 2007/02/17 22:45:04 grobian Exp $
+
+  17 Feb 2007; Fabian Groffen <grobian@gentoo.org> gdbm-1.8.3-r3.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
+
+*gdbm-1.8.3-r3 (04 Feb 2007)
+
+  04 Feb 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/gdbm-1.8.3-compat-linking.patch, -gdbm-1.8.3-r2.ebuild,
+  +gdbm-1.8.3-r3.ebuild:
+  Cleanup ebuild and link the compat module against gdbm #165263 by Gergan
+  Penkov.
 
   17 Oct 2006; Roy Marples <uberlord@gentoo.org> gdbm-1.8.3-r2.ebuild:
   Added ~sparc-fbsd keyword.
