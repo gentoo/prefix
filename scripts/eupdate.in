@@ -327,6 +327,10 @@ revision_diff() {
 			/var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp
 		# destroy changes (hopefully) with the prefixed version by eapifying
 		eapify /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp > /dev/null
+		# if the file was checked out by ecopy from the web, correct the
+		# header so we don't get conflicts because of that
+		sed -i -e '/^# $Header:/s:/var/www/viewcvs.gentoo.org/raw_cvs:/var/cvsroot:' \
+			$pfile
 		# show what's going to change
 		diff -U 1 /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp
 		# (attempt to) do it!
@@ -352,13 +356,14 @@ fetch_files() {
 		-e '/FILESDIR/!d' \
 		-e 's/^.*[^"]\("\?\${FILESDIR}\)/\1/' \
 		-e 's/#.*$//' \
+		-e 's/\\$//' \
 		$1 | \
 	while read l ; do
 		t=$(eval a='$l'; for i in $a ; do echo $i ; break ; done)
 		t=$(P=$p PV=$pv PN=$pn FILESDIR=files eval echo $t)
 		if [[ ! -e $t ]] ; then
 			ewarn "copying $t"
-			[[ ! -d files ]] && mkdir files
+			[[ ! -d $(dirname $t) ]] && mkdir -p $(dirname $t)
 			cp -R "${MTREEDIR}/${EPACKAGE}"/$t $t
 		fi
 	done
