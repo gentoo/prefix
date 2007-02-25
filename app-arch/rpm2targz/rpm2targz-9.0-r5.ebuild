@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/rpm2targz-9.0-r5.ebuild,v 1.10 2006/11/15 13:38:26 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/rpm2targz-9.0-r5.ebuild,v 1.12 2007/01/21 17:02:28 eroyf Exp $
 
 EAPI="prefix"
 
