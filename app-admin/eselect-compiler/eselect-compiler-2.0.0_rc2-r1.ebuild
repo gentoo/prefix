@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-compiler/eselect-compiler-2.0.0_rc2-r1.ebuild,v 1.5 2006/09/23 18:56:16 eradicator Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-compiler/eselect-compiler-2.0.0_rc2-r1.ebuild,v 1.6 2007/01/24 14:08:32 genone Exp $
 
 EAPI="prefix"
 
@@ -59,9 +59,9 @@ pkg_postinst() {
 		ewarn "Note that if you use the migration tool, your current profiles will be"
 		ewarn "replaced, so you should backup the data in /etc/eselect/compiler first."
 		echo
-		einfo "The following profiles have been activated.  If an incorrect profile is"
-		einfo "chosen or an error is reported, please use 'eselect compiler set' to"
-		einfo "manually choose it"
+		elog "The following profiles have been activated.  If an incorrect profile is"
+		elog "chosen or an error is reported, please use 'eselect compiler set' to"
+		elog "manually choose it"
 
 		local abi
 		for abi in $(get_all_abis) ; do
