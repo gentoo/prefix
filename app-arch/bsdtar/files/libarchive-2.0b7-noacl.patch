@@ -1,0 +1,13 @@
+Index: libarchive-2.0b7/libarchive/archive_write_disk.c
+===================================================================
+--- libarchive-2.0b7.orig/libarchive/archive_write_disk.c
++++ libarchive-2.0b7/libarchive/archive_write_disk.c
+@@ -1535,7 +1535,7 @@ set_fflags_platform(struct archive_write
+ static int
+ set_acls(struct archive_write_disk *a)
+ {
+-	(void)ad; /* UNUSED */
++	(void)a; /* UNUSED */
+ 	return (ARCHIVE_OK);
+ }
+ 

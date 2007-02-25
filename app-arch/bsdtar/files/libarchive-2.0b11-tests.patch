@@ -1,0 +1,28 @@
+Index: libarchive-2.0b11/libarchive/test/main.c
+===================================================================
+--- libarchive-2.0b11.orig/libarchive/test/main.c
++++ libarchive-2.0b11/libarchive/test/main.c
+@@ -28,6 +28,7 @@
+  * Each test program is linked against this file.
+  */
+ #include <stdarg.h>
++#include <time.h>
+ 
+ #include "test.h"
+ 
+Index: libarchive-2.0b11/libarchive/test/test_read_extract.c
+===================================================================
+--- libarchive-2.0b11.orig/libarchive/test/test_read_extract.c
++++ libarchive-2.0b11/libarchive/test/test_read_extract.c
+@@ -126,7 +126,11 @@ DEFINE_TEST(test_read_extract)
+ 	assert(0 == stat("dir4/c", &st));
+ 	assert(st.st_mode == (S_IFDIR | 0711));
+ 	assert(0 == lstat("symlink", &st));
++#ifdef __linux__
++	assert(st.st_mode == (S_IFLNK | 0777));
++#else
+ 	assert(st.st_mode == (S_IFLNK | 0755));
++#endif
+ 	assert(0 == stat("symlink", &st));
+ 	assert(st.st_mode == (S_IFREG | 0755));
+ 

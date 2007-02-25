@@ -1,15 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bsdtar/bsdtar-1.3.1-r2.ebuild,v 1.3 2007/02/01 13:01:58 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bsdtar/bsdtar-2.0_beta11.ebuild,v 1.1 2007/02/11 19:19:10 flameeyes Exp $
 
 EAPI="prefix"
 
-WANT_AUTOCONF=latest
-WANT_AUTOMAKE=latest
-
 inherit eutils autotools toolchain-funcs flag-o-matic
 
-MY_P="libarchive-${PV}"
+MY_P="libarchive-${PV/_beta/b}"
 
 DESCRIPTION="BSD tar command"
 HOMEPAGE="http://people.freebsd.org/~kientzle/libarchive/"
@@ -18,7 +15,7 @@ SRC_URI="http://people.freebsd.org/~kientzle/libarchive/src/${MY_P}.tar.gz"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86"
-IUSE="build static acl xattr"
+IUSE="build static acl xattr test"
 
 RDEPEND="!dev-libs/libarchive
 	kernel_linux? (
@@ -29,6 +26,7 @@ RDEPEND="!dev-libs/libarchive
 		app-arch/bzip2
 		sys-libs/zlib ) )"
 DEPEND="${RDEPEND}
+	test? ( virtual/pmake )
 	kernel_linux? ( sys-fs/e2fsprogs
 		virtual/os-headers )"
 
@@ -39,9 +37,9 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/libarchive-1.3.1-static.patch
-	epatch "${FILESDIR}"/libarchive-1.2.57-acl.patch
-	epatch "${FILESDIR}"/libarchive-1.2.53-strict-aliasing.patch
-	epatch "${FILESDIR}"/libarchive-1.3.1-infiniteloop.patch
+	epatch "${FILESDIR}"/libarchive-2.0b6-acl.patch
+	epatch "${FILESDIR}"/libarchive-2.0b7-noacl.patch
+	epatch "${FILESDIR}"/libarchive-2.0b11-tests.patch
 
 	eautoreconf
 	epunt_cxx
@@ -56,12 +54,25 @@ src_compile() {
 		myconf="${myconf} --disable-static-bsdtar"
 	fi
 
+	# Upstream doesn't seem to care to fix the problems
+	# and I don't want to continue running after them.
+	append-flags -fno-strict-aliasing
+
 	econf \
 		--bindir="${EPREFIX}"/bin \
 		$(use_enable acl) \
 		$(use_enable xattr) \
 		${myconf} || die "econf failed"
 	emake || die "emake failed"
+}
+
+src_test() {
+	cd "${S}/libarchive/test"
+	$(get_bmake) || einfo "Ignore this failure."
+	$(get_bmake) test || die "$(get_bmake) test failed"
+
+	cd "${S}/tar/test"
+	PATH="${S}:${PATH}" $(get_bmake) test || die "$(get_bmake) test failed"
 }
 
 src_install() {

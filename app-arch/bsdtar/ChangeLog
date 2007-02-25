@@ -1,6 +1,49 @@
 # ChangeLog for app-arch/bsdtar
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bsdtar/ChangeLog,v 1.44 2006/11/21 12:26:30 flameeyes Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bsdtar/ChangeLog,v 1.52 2007/02/11 19:46:21 flameeyes Exp $
+
+  11 Feb 2007; Diego Pettenò <flameeyes@gentoo.org>
+  files/libarchive-2.0b11-tests.patch:
+  Improve tests patch, one less failure although it still doesn't pass.
+
+  11 Feb 2007; Diego Pettenò <flameeyes@gentoo.org>
+  -files/libarchive-2.0b6-linux.patch:
+  Remove extra patch.
+
+*bsdtar-2.0_beta11 (11 Feb 2007)
+
+  11 Feb 2007; Diego Pettenò <flameeyes@gentoo.org>
+  +files/libarchive-2.0b11-tests.patch, -bsdtar-2.0_beta9.ebuild,
+  -bsdtar-2.0_beta10.ebuild, +bsdtar-2.0_beta11.ebuild:
+  Version bump, and add a src_test function with the libarchive/bsdtar tests,
+  it is currently failing.
+
+*bsdtar-2.0_beta10 (07 Feb 2007)
+
+  07 Feb 2007; Diego Pettenò <flameeyes@gentoo.org>
+  +bsdtar-2.0_beta10.ebuild:
+  Version bump.
+
+  01 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> bsdtar-1.3.1-r2.ebuild,
+  bsdtar-2.0_beta9.ebuild:
+  Fix manpage symlinks.
+
+*bsdtar-2.0_beta9 (01 Feb 2007)
+
+  01 Feb 2007; Diego Pettenò <flameeyes@gentoo.org>
+  -bsdtar-2.0_beta7.ebuild, +bsdtar-2.0_beta9.ebuild:
+  Update to latest version.
+
+  28 Jan 2007; Diego Pettenò <flameeyes@gentoo.org>
+  bsdtar-2.0_beta7.ebuild:
+  Fix keywording.
+
+*bsdtar-2.0_beta7 (28 Jan 2007)
+
+  28 Jan 2007; Diego Pettenò <flameeyes@gentoo.org>
+  +files/libarchive-2.0b6-acl.patch, +files/libarchive-2.0b6-linux.patch,
+  +files/libarchive-2.0b7-noacl.patch, +bsdtar-2.0_beta7.ebuild:
+  Version bump, with a few patches to make it compile.
 
   21 Nov 2006; Diego Pettenò <flameeyes@gentoo.org> metadata.xml:
   Give this back to bsd herd.
