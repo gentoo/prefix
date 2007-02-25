@@ -1,6 +1,35 @@
 # ChangeLog for app-antivirus/clamav
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.197 2007/02/04 18:07:56 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.205 2007/02/22 13:22:04 chutzpah Exp $
+
+  22 Feb 2007; Patrick McLean <chutzpah@gentoo.org> clamav-0.90.ebuild:
+  Stable on amd64 (bug #167201).
+
+  22 Feb 2007; Fernando J. Pereda <ferdy@gentoo.org> clamav-0.90.ebuild:
+  Stable on alpha as per security bug 167201
+
+  20 Feb 2007; Markus Rothe <corsair@gentoo.org> clamav-0.90.ebuild:
+  Stable on ppc64; bug #167201
+
+  18 Feb 2007; Jeroen Roovers <jer@gentoo.org> clamav-0.90.ebuild:
+  Stable for HPPA (bug #167201).
+
+  18 Feb 2007; Tobias Scherbaum <dertobi123@gentoo.org> clamav-0.90.ebuild:
+  Stable on ppc wrt bug #167201.
+
+  18 Feb 2007; Jason Wever <weeve@gentoo.org> clamav-0.90.ebuild:
+  Stable on SPARC WRT security bug #167201.
+
+  18 Feb 2007; Andrej Kacian <ticho@gentoo.org> clamav-0.90.ebuild:
+  Removed onaccess support, because dazuko upstream rewrote the interface, and
+  there's no stable release yet. Bug #167201.
+
+*clamav-0.90 (14 Feb 2007)
+
+  14 Feb 2007; Andrej Kacian <ticho@gentoo.org> -clamav-0.90_rc3.ebuild,
+  +clamav-0.90.ebuild:
+  Version bump. Add bzip2, curl, gmp USE flags to control dependencies some
+  more. Remove the rc3 ebuild.
 
   04 Feb 2007; Andrej Kacian <ticho@gentoo.org> -clamav-0.90_rc1.ebuild,
   -clamav-0.90_rc2.ebuild:
