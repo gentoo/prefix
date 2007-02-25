@@ -1,6 +1,13 @@
 # ChangeLog for app-arch/lzop
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzop/ChangeLog,v 1.18 2006/11/27 22:46:28 drizzt Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzop/ChangeLog,v 1.20 2007/02/21 19:55:32 peper Exp $
+
+  21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  17 Jan 2007; Fabian Groffen <grobian@gentoo.org> lzop-1.02_rc1.ebuild,
+  lzop-1.02_rc1-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   27 Nov 2006; Timothy Redaelli <drizzt@gentoo.org> lzop-1.02_rc1-r1.ebuild:
   Added ~x86-fbsd keyword.
