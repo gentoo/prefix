@@ -1,6 +1,25 @@
 # ChangeLog for app-editors/joe
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/joe/ChangeLog,v 1.47 2006/08/23 08:58:17 tomk Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/joe/ChangeLog,v 1.53 2007/02/23 22:16:52 corsair Exp $
+
+  23 Feb 2007; Markus Rothe <corsair@gentoo.org> joe-3.5.ebuild:
+  Stable on ppc64; bug #166051
+
+  22 Feb 2007; Ferris McCormick <fmccor@gentoo.org> joe-3.5.ebuild:
+  Stable on sparc --- Bug #166051
+
+  22 Feb 2007; Raúl Porcel <armin76@gentoo.org> joe-3.5.ebuild:
+  x86 stable wrt bug 166051
+
+  22 Feb 2007; Tom Knight <tomk@gentoo.org> joe-3.5.ebuild:
+  Marked stable on amd64, bug #166051
+
+  24 Jan 2007; Marius Mauch <genone@gentoo.org> joe-3.0-r2.ebuild,
+  joe-3.1-r1.ebuild, joe-3.2.ebuild, joe-3.4.ebuild, joe-3.5.ebuild:
+  Replacing einfo with elog
+
+  05 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> joe-3.0-r2.ebuild:
+  Remove gnuconfig_update usage, leave it to econf.
 
 *joe-3.5 (23 Aug 2006)
 

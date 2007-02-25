@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/joe/joe-3.5.ebuild,v 1.1 2006/08/23 08:58:17 tomk Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/joe/joe-3.5.ebuild,v 1.6 2007/02/23 22:16:52 corsair Exp $
 
 EAPI="prefix"
 
@@ -54,10 +54,9 @@ src_install() {
 
 pkg_postinst() {
 	if use xterm; then
-		einfo "To enable full xterm clipboard you need to set the allowWindowOps"
-		einfo "resources to true. This is usually found in /etc/X11/app-defaults/XTerm"
-		einfo "This is false by default due to potential security problems on some"
-		einfo "architectures (see bug #91453)."
-
+		elog "To enable full xterm clipboard you need to set the allowWindowOps"
+		elog "resources to true. This is usually found in /etc/X11/app-defaults/XTerm"
+		elog "This is false by default due to potential security problems on some"
+		elog "architectures (see bug #91453)."
 	fi
 }
