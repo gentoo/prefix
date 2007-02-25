@@ -1,0 +1,59 @@
+# Copyright 2004 Gentoo Foundation.
+# Distributed under the terms of the GNU General Public License, v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/x86/use.mask,v 1.23 2006/12/29 21:13:18 flameeyes Exp $
+
+# This file masks out USE flags that are simply NOT allowed in the default
+# x86 profile.  This works, for example, if another architecture's
+# profile have a USE flag associated with (such as altivec, mmx, etc).
+
+# Unmask x86 instruction sets
+-3dnow
+-3dnowext
+-icc
+-icc-pgo
+-ifc
+-mmx
+-mmxext
+-sse
+-sse2
+-svga
+-kqemu
+
+# Unmask nvidia XvMC support
+-nvidia
+
+# Unmask dev-db/oracle-instantclient-basic support
+-oci8-instant-client
+
+# Unmask osp, used by asterisk; bug 115798
+-osp
+
+# Modular X: unmask for architectures on which they are available
+-input_devices_synaptics
+-input_devices_vmmouse
+-input_devices_wacom
+-video_cards_nvidia
+-video_cards_fglrx
+-video_cards_vmware
+
+# Modular X: mask for architectures on which they aren't available
+video_cards_newport
+
+#codec support
+-win32codecs
+-real
+-x264
+
+# lvm2 cluster
+-clvm
+-gulm
+-cman
+
+# ibm is only used for ppc64 stuff
+ibm
+
+# psyco works on x86
+-psyco
+
+# Adobe FDF toolkit is x86 only.
+-fdftk
