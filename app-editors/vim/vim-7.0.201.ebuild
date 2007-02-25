@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/vim-7.0.146.ebuild,v 1.4 2006/12/30 02:23:20 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/vim-7.0.201.ebuild,v 1.1 2007/02/24 07:01:27 pioto Exp $
 
 EAPI="prefix"
 
@@ -18,7 +18,7 @@ SRC_URI="${SRC_URI}
 
 S=${WORKDIR}/vim${VIM_VERSION/.*}
 DESCRIPTION="Vim, an improved vi-style text editor"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 PROVIDE="virtual/editor"
 DEPEND="${DEPEND}
@@ -26,3 +26,13 @@ DEPEND="${DEPEND}
 RDEPEND="${RDEPEND}
 	!<app-editors/nvi-1.81.5-r4
 	!minimal? ( ~app-editors/vim-core-${PV} )"
+
+src_unpack() {
+	vim_src_unpack || die
+	epatch ${FILESDIR}/with-local-dir.patch || die
+}
+
+src_compile() {
+	[[ ${EPREFIX%/} != "" ]] && EXTRA_ECONF="--without-local-dir"
+	vim_src_compile || die
+}
