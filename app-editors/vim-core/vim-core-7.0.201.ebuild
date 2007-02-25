@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/vim-core-7.0.146.ebuild,v 1.4 2006/12/30 02:23:19 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/vim-core-7.0.201.ebuild,v 1.1 2007/02/24 06:38:38 pioto Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,7 @@ SRC_URI="${SRC_URI}
 
 S=${WORKDIR}/vim${VIM_VERSION/.*}
 DESCRIPTION="vim and gvim shared files"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 DEPEND="${DEPEND}"
 PDEPEND="!livecd? ( app-vim/gentoo-syntax )"
