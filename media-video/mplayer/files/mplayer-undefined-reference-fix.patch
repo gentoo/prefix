@@ -1,0 +1,10 @@
+--- mplayer/libvo/vo_yuv4mpeg.c.orig	2006-10-07 10:22:45.000000000 +0000
++++ mplayer/libvo/vo_yuv4mpeg.c	2006-10-20 14:51:37.464890580 +0000
+@@ -41,6 +41,7 @@
+ #include "fastmemcpy.h"
+ #include "libswscale/swscale.h"
+ #include "libmpcodecs/vf_scale.h"
++#include "libswscale/rgb2rgb.h"
+ 
+ static vo_info_t info = 
+ {
