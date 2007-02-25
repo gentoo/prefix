@@ -10,6 +10,10 @@ SRCTYPE="opensource-src"
 DESCRIPTION="The Qt toolkit is a comprehensive C++ application development framework."
 HOMEPAGE="http://www.trolltech.com/"
 
+IUSE_INPUT_DEVICES="input_devices_wacom"
+
+IUSE="aqua accessibility cups dbus debug doc examples firebird gif glib jpeg mng mysql nas nis odbc opengl pch png postgres qt3support sqlite sqlite3 xinerama zlib ${IUSE_INPUT_DEVICES}"
+
 SRC_URI="!aqua? ( ftp://ftp.trolltech.com/pub/qt/source/qt-x11-${SRCTYPE}-${PV}.tar.gz )
 	aqua? ( ftp://ftp.trolltech.com/pub/qt/source/qt-mac-${SRCTYPE}-${PV}.tar.gz )"
 use aqua || S=${WORKDIR}/qt-x11-${SRCTYPE}-${PV}
@@ -18,10 +22,6 @@ use aqua && S=${WORKDIR}/qt-mac-${SRCTYPE}-${PV}
 LICENSE="|| ( QPL-1.0 GPL-2 )"
 SLOT="4"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
-
-IUSE_INPUT_DEVICES="input_devices_wacom"
-
-IUSE="aqua accessibility cups dbus debug doc examples firebird gif glib jpeg mng mysql nas nis odbc opengl pch png postgres qt3support sqlite sqlite3 xinerama zlib ${IUSE_INPUT_DEVICES}"
 
 DEPEND="!aqua? ( x11-libs/libXrandr
 	x11-libs/libXcursor
