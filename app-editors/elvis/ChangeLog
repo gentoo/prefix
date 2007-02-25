@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/elvis
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/elvis/ChangeLog,v 1.30 2006/11/06 08:03:05 pioto Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/elvis/ChangeLog,v 1.31 2007/02/09 21:23:32 grobian Exp $
+
+  09 Feb 2007; Fabian Groffen <grobian@gentoo.org> elvis-2.2.0-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   24 Oct 2006; Mike Kelly <pioto@gentoo.org> elvis-2.2.0-r2.ebuild:
   Dropping ~ppc-macos keyword
