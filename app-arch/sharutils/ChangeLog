@@ -1,6 +1,14 @@
 # ChangeLog for app-arch/sharutils
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/sharutils/ChangeLog,v 1.42 2006/04/11 21:12:43 dragonheart Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/sharutils/ChangeLog,v 1.44 2007/02/21 20:01:45 peper Exp $
+
+  21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+*sharutils-4.6.3 (26 Jan 2007)
+
+  26 Jan 2007; Mike Frysinger <vapier@gentoo.org> +sharutils-4.6.3.ebuild:
+  Version bump #163667 by yuntaku.
 
 *sharutils-4.6.2 (11 Apr 2006)
 
