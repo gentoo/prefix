@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/mp
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/mp/ChangeLog,v 1.58 2006/04/22 22:24:50 compnerd Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/mp/ChangeLog,v 1.59 2007/02/09 22:01:18 grobian Exp $
+
+  09 Feb 2007; Fabian Groffen <grobian@gentoo.org> mp-3.3.17.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   22 Apr 2006; Saleem Abdulrasool <compnerd@gentoo.org>
   -files/gentoo-synh-mp.patch-3.2.11,
