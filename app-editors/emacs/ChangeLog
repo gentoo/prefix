@@ -1,6 +1,80 @@
 # ChangeLog for app-editors/emacs
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.103 2006/08/30 19:26:58 hansmi Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.120 2007/02/20 22:15:16 opfer Exp $
+
+*emacs-21.4-r7 (20 Feb 2007)
+
+  20 Feb 2007; Christian Faulhammer <opfer@gentoo.org>
+  +files/emacs-21.4-autosave-tmp.patch,
+  +files/emacs-21.4-blessmail-build.patch, +emacs-21.4-r7.ebuild:
+  revision bump with patches to handle rests of temporary path strings in the
+  executable (bug 22563); and handling a possible compilation error in special
+  cases where Emacs was called without disabling the start-up file (bug
+  166059). Everything provided by Ulrich Mueller <ulm@kph.uni-mainz.de>
+
+*emacs-18.59-r1 (14 Feb 2007)
+
+  14 Feb 2007; Christian Faulhammer <opfer@gentoo.org>
+  +files/emacs-18.59-gcc4.patch, +files/emacs-18.59-gentoo.patch,
+  +files/emacs-18.59-unexelf.patch, +emacs-18.59-r1.ebuild:
+  readded this old version as it can become handy over a SSH connection with
+  X; digged out some old patches, and made it ready for GCC 4. Provided by
+  Ulrich Mueller <ulm@kph.uni-mainz.de> in bug 44766
+
+  06 Feb 2007; Christian Faulhammer <opfer@gentoo.org> emacs-21.4-r6.ebuild:
+  made the definition of suffix variable more elegant (thanks to Ulrich
+  Müller <ulm@kph.uni-mainz.de>; removed emacsclient from man page
+  symlinking; added gfdl at the same place
+
+  04 Feb 2007; Christian Faulhammer <opfer@gentoo.org>
+  -emacs-21.4-r5.ebuild, emacs-21.4-r6.ebuild:
+  add a check for uncompressed man pages and clean up
+
+  03 Feb 2007; Christian Faulhammer <opfer@gentoo.org> emacs-21.4-r6.ebuild:
+  determine compression suffix correctly and finally
+
+  02 Feb 2007; Christian Faulhammer <opfer@gentoo.org> emacs-21.4-r6.ebuild:
+  hopefully fix man page symlinks again, part II
+
+  02 Feb 2007; Christian Faulhammer <opfer@gentoo.org> emacs-21.4-r6.ebuild:
+  hopefully fix man page symlinks again
+
+*emacs-21.4-r6 (02 Feb 2007)
+
+  02 Feb 2007; Christian Faulhammer <opfer@gentoo.org>
+  +emacs-21.4-r6.ebuild:
+  create symlinks for man pages, as reported by Ulrich Mueller
+  <ulm@kph.uni-mainz.de>
+
+  05 Jan 2007; Christian Faulhammer <opfer@gentoo.org> emacs-21.4-r5.ebuild:
+  correctly use aspell when having it installed, see bug #158850, reported
+  by Don Pellegrino <donpellegrino@comcast.net>
+
+  04 Dec 2006; Christian Faulhammer <opfer@gentoo.org> -emacs-18.59.ebuild,
+  -emacs-21.4-r1.ebuild, -emacs-21.4-r2.ebuild, -emacs-21.4-r3.ebuild:
+  clean up old versions
+
+  26 Nov 2006; Christian Faulhammer <opfer@gentoo.org> emacs-21.4-r5.ebuild:
+  added some quotes around epatch commands
+
+  31 Oct 2006; Christian Faulhammer <opfer@gentoo.org> emacs-21.4-r4.ebuild,
+  emacs-21.4-r5.ebuild:
+  removed dependency on sys-libs/gdbm as reported in bug #103382 by Marien
+  Zwart <marienz@gentoo.org>
+
+  31 Oct 2006; Christian Faulhammer <opfer@gentoo.org>
+  +files/40aspell-gentoo.el:
+  copied 40aspell-gentoo.el over from app-editors/emacs-cvs to fix bug #101585
+
+  30 Oct 2006; Christian Faulhammer <opfer@gentoo.org> emacs-21.4-r5.ebuild:
+  suppressed the output of permission fixing, as reported by Carsten Lohrke
+  <carlo@gentoo.org> in bug #85968
+
+  15 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> emacs-21.4-r4.ebuild:
+  Stable on ia64.
+
+  10 Oct 2006; Jeroen Roovers <jer@gentoo.org> emacs-21.4-r4.ebuild:
+  Stable for HPPA (bug #136987).
 
   30 Aug 2006; Michael Hanselmann <hansmi@gentoo.org> emacs-21.4-r4.ebuild:
   Stable on ppc.

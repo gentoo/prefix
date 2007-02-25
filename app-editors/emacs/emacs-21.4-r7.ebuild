@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r5.ebuild,v 1.2 2006/08/21 05:05:39 mkennedy Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r7.ebuild,v 1.1 2007/02/20 22:15:16 opfer Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,6 @@ KEYWORDS="~amd64 ~x86"
 IUSE="X Xaw3d leim lesstif motif nls nosendmail"
 
 RDEPEND="sys-libs/ncurses
-	sys-libs/gdbm
 	X? ( || ( ( x11-libs/libXext
 				x11-libs/libICE
 				x11-libs/libSM
@@ -56,15 +55,17 @@ src_unpack() {
 	unpack ${A}
 
 	cd ${S}
-	epatch ${FILESDIR}/emacs-21.3-xorg.patch
-	epatch ${FILESDIR}/emacs-21.3-amd64.patch
-	epatch ${FILESDIR}/emacs-21.3-hppa.patch
-	epatch ${FILESDIR}/emacs-21.2-sh.patch
-	epatch ${FILESDIR}/emacs-21.4-libungif-gif-gentoo.patch
+	epatch "${FILESDIR}/emacs-21.3-xorg.patch"
+	epatch "${FILESDIR}/emacs-21.3-amd64.patch"
+	epatch "${FILESDIR}/emacs-21.3-hppa.patch"
+	epatch "${FILESDIR}/emacs-21.2-sh.patch"
+	epatch "${FILESDIR}/emacs-21.4-libungif-gif-gentoo.patch"
 
-	use ppc64 && epatch ${FILESDIR}/emacs-21.3-ppc64.patch
+	use ppc64 && epatch "${FILESDIR}/emacs-21.3-ppc64.patch"
 
-	epatch ${FILESDIR}/emacs-subdirs-el-gentoo.diff
+	epatch "${FILESDIR}/emacs-subdirs-el-gentoo.diff"
+	epatch "${FILESDIR}/emacs-21.4-autosave-tmp.patch"
+	epatch "${FILESDIR}/emacs-21.4-blessmail-build.patch"
 
 	# This will need to be updated for X-Compilation
 	sed -i -e "s:/usr/lib/\([^ ]*\).o:/usr/$(get_libdir)/\1.o:g" \
@@ -116,6 +117,10 @@ src_compile() {
 	fi
 	econf ${myconf} || die
 	emake CC="$(tc-getCC)" || die
+
+	einfo "Recompiling patched lisp files..."
+	(cd lisp; emake recompile) || die
+	emake CC="$(tc-getCC)" || die
 }
 
 src_install() {
@@ -132,10 +137,14 @@ src_install() {
 	for i in ${ED}/usr/share/info/*
 	do
 		mv ${i} ${T}/emacs-${SLOT}/${i##*/}.info
-		gzip -9 ${T}/emacs-${SLOT}/${i##*/}.info
 	done
 	mv ${T}/emacs-${SLOT} ${ED}/usr/share/info
 	mv ${T}/dir ${ED}/usr/share/info/emacs-${SLOT}
+
+	if has_version 'app-text/aspell' ; then
+		# defaults to aspell if installed
+		elisp-site-file-install ${FILESDIR}/40aspell-gentoo.el
+	fi
 
 	newenvd ${FILESDIR}/60emacs-${SLOT}.envd 60emacs-${SLOT}
 
@@ -145,8 +154,8 @@ src_install() {
 	done
 
 	einfo "Fixing permissions..."
-	find ${ED} -perm 664 |xargs chmod 644
-	find ${ED} -type d |xargs chmod 755
+	find ${ED} -perm 664 |xargs chmod -f 644 2>/dev/null
+	find ${ED} -type d |xargs chmod -f 755 2>/dev/null
 
 	keepdir /usr/share/emacs/${PV}/leim
 	keepdir /usr/share/emacs/site-lisp
@@ -158,9 +167,19 @@ src_install() {
 }
 
 update-alternatives() {
+	# extract the suffix of the manpages to determine the correct compression program
+	local suffix=$(echo /usr/share/man/man1/emacs.emacs-*.1*|sed 's/.*\.1//')
+
+	# this creates symlinks for binaries and man pages, so the correct ones in a slotted
+	# environment can be accessed
 	for i in emacs emacsclient etags ctags b2m ebrowse \
 		rcs-checkin grep-changelog ; do
 		alternatives_auto_makesym "/usr/bin/$i" "/usr/bin/${i}.emacs-*"
+	done
+
+	for j in emacs etags ctags gfdl
+	do
+		alternatives_auto_makesym "/usr/share/man/man1/$j.1${suffix}" "/usr/share/man/man1/$j.emacs-*"
 	done
 }
 

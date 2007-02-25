@@ -1,0 +1,22 @@
+--- emacs-22.0.93/lib-src/Makefile.in~	2007-01-17 16:53:20.000000000 +0100
++++ emacs-22.0.93/lib-src/Makefile.in	2007-02-17 11:29:06.000000000 +0100
+@@ -23,6 +23,10 @@
+ # inherited from the environment.
+ SHELL = /bin/sh
+ 
++# following two lines taken from ../lisp/Makefile.in
++EMACS = ../src/emacs
++EMACSOPT = -batch --no-site-file --multibyte
++
+ # ==================== Things `configure' will edit ====================
+ 
+ CC=@CC@
+@@ -279,7 +283,7 @@
+ 
+ #ifdef MOVEMAIL_NEEDS_BLESSING
+ blessmail:
+-	../src/emacs -batch -l $(srcdir)/../lisp/mail/blessmail.el
++	$(EMACS) $(EMACSOPT) -l $(srcdir)/../lisp/mail/blessmail.el
+ 	chmod +x blessmail
+ #endif
+ 

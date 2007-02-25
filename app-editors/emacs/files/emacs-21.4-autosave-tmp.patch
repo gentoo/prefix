@@ -1,0 +1,12 @@
+--- emacs-21.4/lisp/startup.el~	2003-03-16 23:05:59.000000000 +0100
++++ emacs-21.4/lisp/startup.el	2007-02-16 11:21:18.000000000 +0100
+@@ -629,6 +629,9 @@
+   (setq small-temporary-file-directory
+ 	(if (eq system-type 'ms-dos)
+ 	    (getenv "TMPDIR")))
++  (setq auto-save-file-name-transforms
++	(list (list (caar auto-save-file-name-transforms)
++		    (expand-file-name "\\2" temporary-file-directory))))
+ 
+   ;; See if we should import version-control from the environment variable.
+   (let ((vc (getenv "VERSION_CONTROL")))
