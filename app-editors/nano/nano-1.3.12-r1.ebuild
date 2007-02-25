@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-1.3.12-r1.ebuild,v 1.16 2006/12/20 19:51:44 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-1.3.12-r1.ebuild,v 1.17 2007/01/24 02:43:53 genone Exp $
 
 EAPI="prefix"
 
@@ -78,6 +78,6 @@ src_install() {
 }
 
 pkg_postinst() {
-	einfo "More helpful info about nano, visit the GDP page:"
-	einfo "http://www.gentoo.org/doc/en/nano-basics-guide.xml"
+	elog "More helpful info about nano, visit the GDP page:"
+	elog "http://www.gentoo.org/doc/en/nano-basics-guide.xml"
 }

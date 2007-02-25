@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.0.1.ebuild,v 1.8 2006/12/20 22:07:12 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.0.3.ebuild,v 1.1 2007/01/29 16:30:05 vapier Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ SRC_URI="http://www.nano-editor.org/dist/v${PV:0:3}/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="debug justify minimal ncurses nls slang spell unicode"
 
 DEPEND=">=sys-libs/ncurses-5.2
@@ -28,7 +28,6 @@ PROVIDE="virtual/editor"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
 	if [[ ! -e configure ]] ; then
 		./autogen.sh || die "autogen failed"
 	fi
@@ -74,6 +73,6 @@ src_install() {
 }
 
 pkg_postinst() {
-	einfo "More helpful info about nano, visit the GDP page:"
-	einfo "http://www.gentoo.org/doc/en/nano-basics-guide.xml"
+	elog "More helpful info about nano, visit the GDP page:"
+	elog "http://www.gentoo.org/doc/en/nano-basics-guide.xml"
 }
