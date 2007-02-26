@@ -2,6 +2,13 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.1.20.6085 (26 Feb 2007)
+
+  26 Feb 2007; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.1.20.5886.ebuild, +portage-2.1.20.6085.ebuild:
+  New version with lots of upstream changes. Note: this portage includes
+  support for deprecation of Manifest1 which will soon be used, so update ASAP
+
 *portage-2.1.20.5937 (10 Feb 2007)
 
   10 Feb 2007; Fabian Groffen <grobian@gentoo.org>
