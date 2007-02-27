@@ -360,12 +360,16 @@ fetch_files() {
 		$1 | \
 	while read l ; do
 		t=$(eval a='$l'; for i in $a ; do echo $i ; break ; done)
-		t=$(P=$p PV=$pv PN=$pn FILESDIR=files eval echo $t)
-		if [[ ! -e $t ]] ; then
-			ewarn "copying $t"
-			[[ ! -d $(dirname $t) ]] && mkdir -p $(dirname $t)
-			cp -R "${MTREEDIR}/${EPACKAGE}"/$t $t
-		fi
+		t=$(env -i t=$t P=$p PV=$pv PN=$pn FILESDIR=files bash -c 'eval echo $t')
+		# we can have file{1,2} stuff in the first t here, so iterate
+		# over the result list...
+		for u in $t ; do
+			if [[ ! -e $u ]] ; then
+				ewarn "copying $u"
+				[[ ! -d $(dirname $u) ]] && mkdir -p $(dirname $u)
+				cp -R "${MTREEDIR}/${EPACKAGE}"/$u $u
+			fi
+		done
 	done
 	eoutdent
 }
