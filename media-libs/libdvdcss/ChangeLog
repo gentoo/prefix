@@ -1,0 +1,238 @@
+# ChangeLog for media-libs/libdvdcss
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-libs/libdvdcss/ChangeLog,v 1.62 2007/02/05 11:25:05 flameeyes Exp $
+
+*libdvdcss-1.2.9-r1 (05 Feb 2007)
+
+  05 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> libdvdcss-1.2.9.ebuild,
+  +libdvdcss-1.2.9-r1.ebuild:
+  Unsetting CFLAGS is a very bad idea, get a revbump without any kind of
+  filtering to see if there are still problems (and where, as the comment
+  refers of some otherwise unspecified arches), while using strip-flags for
+  the current stable.
+
+  05 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> libdvdcss-1.2.9.ebuild:
+  Remove static useflag, always build both shared and static library, thanks
+  to Jakub Moc in bug #165385. Remove the broken idea of ABI compatibility
+  symlinks.
+
+  09 Nov 2006; Matthias Schwarzott <zzam@gentoo.org> libdvdcss-1.2.9.ebuild:
+  Changed automake-dependency to latest.
+
+  02 Nov 2006; Matthias Schwarzott <zzam@gentoo.org> libdvdcss-1.2.9.ebuild:
+  Added correct automake-dependency.
+
+  05 Sep 2006; Diego Pettenò <flameeyes@gentoo.org>
+  -libdvdcss-1.2.8.ebuild:
+  Drop old version.
+
+  04 Sep 2006; Joshua Kinard <kumba@gentoo.org> libdvdcss-1.2.9.ebuild:
+  Marked stable on mips.
+
+  22 Jun 2006; Fabian Groffen <grobian@gentoo.org> libdvdcss-1.2.9.ebuild:
+  Marked ppc-macos stable (bug #111132)
+
+  25 May 2006; Diego Pettenò <flameeyes@gentoo.org> libdvdcss-1.2.9.ebuild:
+  Add ~x86-fbsd keyword.
+
+  06 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> metadata.xml,
+  libdvdcss-1.2.8.ebuild:
+  Drop virtual/libc dependency.
+
+  07 Feb 2006; Aron Griffis <agriffis@gentoo.org> libdvdcss-1.2.9.ebuild:
+  Mark 1.2.9 stable on alpha
+
+  13 Jan 2006; Mike Frysinger <vapier@gentoo.org> libdvdcss-1.2.9.ebuild:
+  Clean up ebuild and add sh love.
+
+  14 Dec 2005; Rene Nussbaumer <killerfox@gentoo.org>
+  libdvdcss-1.2.9.ebuild:
+  Stable on hppa.
+
+  11 Nov 2005; Michael Hanselmann <hansmi@gentoo.org>
+  libdvdcss-1.2.9.ebuild:
+  Stable on ppc.
+
+  09 Nov 2005; Luis Medinas <metalgod@gentoo.org> libdvdcss-1.2.9.ebuild:
+  Marked Stable on amd64. Bug #111132.
+
+  05 Nov 2005; Mark Loeser <halcy0n@gentoo.org> libdvdcss-1.2.9.ebuild:
+  Stable on x86; bug #111132
+
+  04 Nov 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  libdvdcss-1.2.9.ebuild:
+  Stable on sparc wrt #111132
+
+  04 Nov 2005; Brent Baude <ranger@gentoo.org> libdvdcss-1.2.9.ebuild:
+  Marking libdvdcss-1.2.9 ppc64 stable for bug 111132
+
+  04 Nov 2005; Diego Pettenò <flameeyes@gentoo.org> libdvdcss-1.2.9.ebuild:
+  Add prediction for writing on /var/cache/fonts.
+
+  01 Nov 2005; Diego Pettenò <flameeyes@gentoo.org>
+  -libdvdcss-0.0.3.3.ebuild, -libdvdcss-1.1.1-r2.ebuild:
+  Removed old versions.
+
+  04 Sep 2005; Diego Pettenò <flameeyes@gentoo.org>
+  libdvdcss-0.0.3.3.ebuild, libdvdcss-1.1.1-r2.ebuild,
+  libdvdcss-1.2.8.ebuild, libdvdcss-1.2.9.ebuild:
+  Don't install COPYING and INSTALL files. Use autotools eclass to re-create
+  autotools support.
+
+  01 Aug 2005; Chris White <chriswhite@gentoo.org> libdvdcss-1.2.9.ebuild:
+  Added einfo line before autotools rebuild so people don't think their system
+  is frozen.
+
+*libdvdcss-1.2.9 (14 Jul 2005)
+
+  14 Jul 2005; Diego Pettenò <flameeyes@gentoo.org>
+  +files/libdvdcss-1.2.9-doc.patch, +libdvdcss-1.2.9.ebuild:
+  Updated to latest upstream version. Added patch to avoid API docs build.
+
+  28 Feb 2005; Kito <kito@gentoo.org> libdvdcss-1.2.8.ebuild:
+  stable on ppc-macos
+
+  27 Jan 2005; Jan Brinkmann <luckyduck@gentoo.org> libdvdcss-1.2.8.ebuild:
+  added support for extra documentation and the static useflag. fixes bug #52501
+
+  07 Jan 2005; Jan Brinkmann <luckyduck@gentoo.org> libdvdcss-0.0.3.3.ebuild:
+  removed sed call in global scope from libdvdcss-0.0.3.3. fixes #77000.
+
+  04 Jan 2005; Hardave Riar <hardave@gentoo.org> libdvdcss-1.2.8.ebuild:
+  Stable on mips, dep of bug #74475.
+
+  06 Oct 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  libdvdcss-1.2.8.ebuild:
+  get_libdir fixes.
+
+  24 Sep 2004; kito@gentoo.org libdvdcss-1.2.8.ebuild:
+  ~ppc-macos keyword
+
+  21 Aug 2004; Hardave Riar <hardave@gentoo.org> libdvdcss-1.2.8.ebuild:
+  Added ~mips keyword
+
+  28 Jul 2004; Tom Gall <tgall@gentoo.org> libdvdcss-1.2.8.ebuild:
+  stable on ppc64, bug #55076
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  libdvdcss-0.0.3.3.ebuild, libdvdcss-1.1.1-r2.ebuild, libdvdcss-1.2.8.ebuild:
+  virtual/glibc -> virtual/libc
+
+  28 Jan 2004; Aron Griffis <agriffis@gentoo.org> libdvdcss-1.2.8.ebuild:
+  stable on ia64
+
+  13 Jan 2004; Aron Griffis <agriffis@gentoo.org> libdvdcss-1.2.8.ebuild:
+  stable on alpha
+
+  29 Dec 2003; Sven Blumenstein <bazik@gentoo.org> libdvdcss-1.2.8.ebuild:
+  Marked stable on sparc to fix xine-lib depend.
+
+  29 Dec 2003; Guy Martin <gmsoft@gentoo.org> libdvdcss-1.2.8.ebuild:
+  Marked stable on hppa.
+
+  18 Dec 2003; Martin Holzer <mholzer@gentoo.org> libdvdcss-1.2.3.ebuild,
+  libdvdcss-1.2.5.ebuild, libdvdcss-1.2.6.ebuild:
+  updating src + hp. Closes
+
+  18 Dec 2003; Martin Holzer <mholzer@gentoo.org> libdvdcss-1.2.8.ebuild:
+  updating  src + hp. Closes #36077.
+
+  26 Oct 2003; Brad House <brad_mssw@gentoo.org> libdvdcss-1.2.8.ebuild:
+  add amd64 flag
+
+  17 Oct 2003; Nick Hadaway <raker@gentoo.org> libdvdcss-1.2.8.ebuild:
+  Marked stable for x86.
+
+  12 Aug 2003; Jason Wever <weeve@gentoo.org> libdvdcss-1.2.8.ebuild:
+  Added ~sparc to keywords.
+
+*libdvdcss-1.2.8 (30 Jul 2003)
+
+  30 Jul 2003; Nick Hadaway <raker@gentoo.org> libdvdcss-1.2.8.ebuild:
+  Version bump.  Bug fixes only, no feature changes.
+
+*libdvdcss-1.2.7 (10 Jul 2003)
+
+  10 Jul 2003; Brandon Low <lostlogic@gentoo.org> libdvdcss-1.2.7.ebuild:
+  Bump
+
+  04 Jul 2003; Luca Barbato <lu_zero@gentoo.org> :
+  Added ~ppc keyword.
+
+*libdvdcss-1.2.6 (11 Mar 2003)
+
+  15 Apr 2003; Arcady Genkin <agenkin@gentoo.org> :
+  Marking stable on x86.
+
+  28 Mar 2003; Martin Holzer <mholzer@gentoo.org> libdvdcss-1.2.6.ebuild:
+  fixed dodoc docs. closes #18304.
+
+  11 Mar 2003; Arcady Genkin <agenkin@gentoo.org> :
+  Version bump.
+ 
+*libdvdcss-1.2.5 (01 Feb 2003)
+
+  10 Mar 2003; Aron Griffis <agriffis@gentoo.org> libdvdcss-1.2.5.ebuild:
+  Mark stable on alpha
+
+  01 Feb 2003; Arcady Genkin <agenkin@gentoo.org> :
+  Version bump.  Fixed homepage and download URLs.
+
+*libdvdcss-1.2.4 (20 Nov 2002)
+
+  20 Nov 2002; Martin Schlemmer <azarah@gentoo.org> :
+  Update to latest version, closing bug #10859.
+
+*libdvdcss-1.2.3 (16 Oct 2002)
+
+  16 Oct 2002; Martin Schlemmer <azarah@gentoo.org> :
+  Update version.
+
+*libdvdcss-1.2.2 (11 Aug 2002)
+
+  12 Aug 2002; Mark Guertin <gerk@gentoo.org> :
+  Added ppc to keywords
+
+  11 Aug 2002; Martin Schlemmer <azarah@gentoo.org> :
+
+  Update to latest version.
+
+*libdvdcss-1.2.1 (24 Jun 2002)
+
+  24 Jun 2002; Wout Mertens <wmertens@gentoo.org> :
+
+  Bumped to new version, because it was there and it fixes a playing problem
+  for me. Notice that it seems to have changed a lot since 1.1.1, so you might
+  want to try 1.1.1 to see if that works better for you.
+
+*libdvdcss-1.2.0 (26 May 2002)
+
+  26 May 2002; Martin Schlemmer <azarah@gentoo.org> :
+
+  Update to latest version.
+
+*libdvdcss-1.1.1-r2 (23 May 2002)
+
+  23 May 2002; Martin Schlemmer <azarah@gentoo.org> :
+
+  Ok, this should resolve bug #2908.
+
+*libdvdcss-1.1.1-r1 (22 May 2002)
+
+  22 May 2002; Martin Schlemmer <azarah@gentoo.org> :
+
+  Try to resolve invalid symlink issue (bug #2908), and
+  also an issue on certain archs where it could not
+  decrypt dvds.
+
+*libdvdcss-1.1.1 (6 Apr 2002)
+
+*libdvdcss-0.0.3.3 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.

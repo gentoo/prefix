@@ -1,0 +1,19 @@
+--- dvdread/Makefile.am.orig	2006-10-06 22:24:39.000000000 +0200
++++ dvdread/Makefile.am	2006-10-06 22:25:35.000000000 +0200
+@@ -2,13 +2,13 @@
+ 
+ lib_LTLIBRARIES = libdvdread.la
+ libdvdread_la_SOURCES = dvd_input.c dvd_reader.c dvd_udf.c ifo_read.c \
+-	ifo_print.c nav_read.c nav_print.c bswap.h dvd_udf.h dvd_input.h \
++	ifo_print.c nav_read.c nav_print.c bswap.h dvd_input.h \
+ 	dvdread_internal.h cmd_print.c \
+ 	md5.c md5.h
+ libdvdread_la_LIBADD = @DL_LIBS@ @CSS_LIBS@
+-libdvdread_la_LDFLAGS = -version-info 5:1:2 -export-symbols-regex "(DVD.*|ifo.*|nav.*|cmd.*)"
++libdvdread_la_LDFLAGS = -version-info 5:1:2 -export-symbols-regex "(DVD.*|UDF.*|ifo.*|nav.*|cmd.*)"
+ 
+ pkgincludedir = $(includedir)/dvdread
+ 
+-pkginclude_HEADERS = dvd_reader.h ifo_types.h ifo_read.h \
++pkginclude_HEADERS = dvd_reader.h ifo_types.h ifo_read.h dvd_udf.h \
+ 	ifo_print.h nav_types.h nav_read.h nav_print.h cmd_print.h
