@@ -12,7 +12,7 @@ HOMEPAGE="http://www.gentoo.org/"
 SRC_URI="http://dev.gentoo.org/~grobian/distfiles/prefix-${PN}-${PV}.tar.bz2"
 LICENSE="GPL-2"
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 
 SLOT="0"
 IUSE="build doc selinux"
