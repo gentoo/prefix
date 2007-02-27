@@ -1,6 +1,10 @@
 # ChangeLog for app-shells/zsh
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.101 2006/11/17 14:55:44 flameeyes Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.102 2007/01/24 03:59:25 genone Exp $
+
+  24 Jan 2007; Marius Mauch <genone@gentoo.org> zsh-4.2.5.ebuild,
+  zsh-4.2.6-r1.ebuild, zsh-4.3.2-r1.ebuild, zsh-4.3.2-r2.ebuild:
+  Replacing einfo with elog
 
   17 Nov 2006; Diego Pettenò <flameeyes@gentoo.org> zsh-4.3.2-r2.ebuild:
   Add ~sparc-fbsd keyword.

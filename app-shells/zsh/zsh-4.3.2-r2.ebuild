@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-4.3.2-r2.ebuild,v 1.2 2006/11/17 14:55:44 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-4.3.2-r2.ebuild,v 1.3 2007/01/24 03:59:25 genone Exp $
 
 EAPI="prefix"
 
@@ -151,18 +151,18 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
-	einfo
-	einfo "If you want to enable Portage completions and Gentoo prompt,"
-	einfo "emerge app-shells/zsh-completion and add"
-	einfo "	autoload -U compinit promptinit"
-	einfo "	compinit"
-	einfo "	promptinit; prompt gentoo"
-	einfo "to your ~/.zshrc"
-	einfo
-	einfo "Also, if you want to enable cache for the completions, add"
-	einfo "	zstyle ':completion::complete:*' use-cache 1"
-	einfo "to your ~/.zshrc"
-	einfo
+	elog
+	elog "If you want to enable Portage completions and Gentoo prompt,"
+	elog "emerge app-shells/zsh-completion and add"
+	elog "	autoload -U compinit promptinit"
+	elog "	compinit"
+	elog "	promptinit; prompt gentoo"
+	elog "to your ~/.zshrc"
+	elog
+	elog "Also, if you want to enable cache for the completions, add"
+	elog "	zstyle ':completion::complete:*' use-cache 1"
+	elog "to your ~/.zshrc"
+	elog
 	# see Bug 26776
 	ewarn
 	ewarn "If you are upgrading from zsh-4.0.x you may need to"
