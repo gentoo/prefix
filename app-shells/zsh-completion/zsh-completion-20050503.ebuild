@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/zsh-completion-20050503.ebuild,v 1.2 2006/09/03 06:04:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/zsh-completion-20050503.ebuild,v 1.3 2007/01/24 04:00:44 genone Exp $
 
 EAPI="prefix"
 
@@ -26,9 +26,9 @@ src_install() {
 }
 
 pkg_postinst() {
-	einfo
-	einfo "If you happen to compile your functions, you may need to delete"
-	einfo "~/.zcompdump{,.zwc} and recompile to make zsh-completion available"
-	einfo "to your shell."
-	einfo
+	elog
+	elog "If you happen to compile your functions, you may need to delete"
+	elog "~/.zcompdump{,.zwc} and recompile to make zsh-completion available"
+	elog "to your shell."
+	elog
 }

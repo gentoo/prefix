@@ -1,6 +1,11 @@
 # ChangeLog for app-shells/zsh-completion
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/ChangeLog,v 1.16 2006/11/17 15:11:40 flameeyes Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/ChangeLog,v 1.17 2007/01/24 04:00:44 genone Exp $
+
+  24 Jan 2007; Marius Mauch <genone@gentoo.org>
+  zsh-completion-20040730.ebuild, zsh-completion-20050120.ebuild,
+  zsh-completion-20050503.ebuild, zsh-completion-20060618.ebuild:
+  Replacing einfo with elog
 
   17 Nov 2006; Diego Pettenò <flameeyes@gentoo.org>
   zsh-completion-20060618.ebuild:
