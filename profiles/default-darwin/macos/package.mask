@@ -1,0 +1,8 @@
+
+# Fabian Groffen <grobian@gentoo.org> (28 Feb 2007)
+# do not use this package, it is broken with regards to answers returned
+# by the utilities.  pgrep -P <pid> for example returns all processes,
+# which is wrong.
+# http://sourceforge.net/tracker/?atid=390287&group_id=27435&func=browse
+# clearly indicates more trouble, and a dead upstream
+=sys-process/proctools-0.4_pre1
