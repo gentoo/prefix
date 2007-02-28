@@ -1,0 +1,43 @@
+# ChangeLog for net-analyzer/gnu-netcat
+# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/net-analyzer/gnu-netcat/ChangeLog,v 1.13 2006/10/09 19:24:44 drizzt Exp $
+
+  09 Oct 2006; Timothy Redaelli <drizzt@gentoo.org> gnu-netcat-0.7.1.ebuild:
+  Added ~x86-fbsd keyword.
+
+  16 Aug 2006; Jon Hood <squinky86@gentoo.org> gnu-netcat-0.7.1.ebuild:
+  Stable on amd64, bug #143904. Thanks postmodern <brodigan@pdx.edu>.
+
+  05 Mar 2006; Markus Ullmann <jokey@gentoo.org> gnu-netcat-0.7.1.ebuild:
+  Stabilizing on arm
+
+  05 Mar 2006; Markus Ullmann <jokey@gentoo.org> gnu-netcat-0.7.1.ebuild:
+  INSTALL cleanup
+
+  15 Sep 2005; Aron Griffis <agriffis@gentoo.org> gnu-netcat-0.7.1.ebuild:
+  Mark 0.7.1 stable on alpha
+
+  15 May 2005; Marcelo Goes <vanquirius@gentoo.org> gnu-netcat-0.7.1.ebuild:
+  Use toolchain-funcs.eclass instead of gcc.eclass. See bug 92745.
+
+  19 Nov 2004; Jason Wever <weeve@gentoo.org> gnu-netcat-0.7.1.ebuild:
+  Stable on sparc.
+
+  16 Aug 2004; Eldad Zack <eldad@gentoo.org> metadata.xml,
+  gnu-netcat-0.7.1.ebuild:
+  x86 stable
+
+  25 Jul 2004; Lina Pezzella <j4rg0n@gentoo.org>
+  Fixed Manifest.
+
+  24 Jul 2004; Lina Pezzella <burgundy@gentoo.org> :
+  gnu-netcat-0.7.1:
+  Stable macos.
+
+  01 Jul 2004; Jon Hood <squinky86@gentoo.org> gnu-netcat-0.7.1.ebuild:
+  change virtual/glibc to virtual/libc
+
+*gnu-netcat-0.7.1 (19 Jun 2004)
+
+  19 Jun 2004; Mike Frysinger <vapier@gentoo.org> :
+  Initial import.  Ebuild submitted by Dick Marinus #53419.
