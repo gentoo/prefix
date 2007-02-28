@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-lang/nasm/nasm-0.98.39-r3.ebuild,v 1.4 2006/05/12 22:35:51 flameeyes Exp $
+# $Header: $
 
 EAPI="prefix"
 
@@ -22,6 +22,9 @@ RDEPEND=""
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	
+	use x86-macos && epatch ${FILESDIR}/${PN}-${PV}_apple-10.4.8.x86.diff
+	
 	epatch "${FILESDIR}"/${P}-elf-visibility.patch
 	if [ "$(gcc-major-version)" -eq "2" ] ; then
 		sed -i \
