@@ -21,8 +21,8 @@ DEPEND="sys-apps/sed
 		sys-apps/coreutils
 		sys-freebsd/freebsd-bin
 		app-admin/realpath
-	)
-	userland_Darwin? ( sys-process/proctools )"
+	)"
+#	userland_Darwin? ( sys-process/proctools )"
 RDEPEND="sys-apps/sed
 	sys-apps/file"
 
