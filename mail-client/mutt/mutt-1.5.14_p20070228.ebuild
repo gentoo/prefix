@@ -12,7 +12,7 @@ SRC_URI="http://www.gentoo.org/~grobian/distfiles/${P/_p/-}.tar.bz2
 	!vanilla? (
 		mirror://gentoo/mutt-1.5.13-gentoo-patches.tar.bz2
 	)"
-IUSE="berkdb buffysize cjk crypt debug gdbm gnutls gpgme idn imap mbox nls nntp pop sasl smime ssl vanilla"
+IUSE="berkdb buffysize cjk crypt debug gdbm gnutls gpgme idn imap mbox nls nntp pop sasl smime smtp ssl vanilla"
 SLOT="0"
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
