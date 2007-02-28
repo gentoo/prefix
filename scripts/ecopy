@@ -14,6 +14,7 @@ cd $catpkg
 
 wget http://sources.gentoo.org/viewcvs.py/*checkout*/gentoo-x86/$catpkg/ChangeLog
 wget http://sources.gentoo.org/viewcvs.py/*checkout*/gentoo-x86/$catpkg/metadata.xml
+wget http://sources.gentoo.org/viewcvs.py/*checkout*/gentoo-x86/$catpkg/Manifest
 if [ "${1:0:1}" = '=' ]; then
 	ebuild=${2:-$(grep "+${ebuildgrep%\*}[^ ]*.ebuild" ChangeLog | head -n 1 | sed -e "s:.*+::" -e "s/://")}
 else
@@ -35,3 +36,4 @@ eapify $ebuild
 ecleankw $ebuild
 source $EPREFIX/etc/make.profile/make.defaults
 ekeyword ~$ACCEPT_KEYWORDS $ebuild
+ebuild $ebuild digest
