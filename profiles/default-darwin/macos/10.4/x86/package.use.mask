@@ -1,0 +1,9 @@
+#i686-apple-darwin8-gcc -c -I.. -Wdeclaration-after-statement -fno-PIC -O4 -D__STDC_LIMIT_MACROS -march=pentium-m -mtune=pentium-m -pipe -ffast-math -fomit-frame-pointer -mdynamic-no-pic -falign-loops=16 -DSYS_DARWIN -DCONFIG_DARWIN -shared-libgcc -arch i386 -isysroot /Developer/SDKs/MacOSX10.4u.sdk -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -I/Users/stefan/Library/Gentoo/usr/lib/gcc/i686-apple-darwin8/4.0.1/include -I/Users/stefan/Library/Gentoo/usr/include -I/Users/stefan/Library/Gentoo/usr/include -I/Users/stefan/Library/Gentoo/usr/include/freetype2 -I/Users/stefan/Library/Gentoo/usr/include -o decode_MMX.o decode_MMX.c
+#{standard input}:91:Unknown pseudo-op: .balign
+#{standard input}:91:Rest of line ignored. 1st junk character valued 49 (1).
+#{standard input}:163:Unknown pseudo-op: .balign
+#{standard input}:163:Rest of line ignored. 1st junk character valued 49 (1).
+# mmx2 has another error ..
+#
+# seems sse needs mmx
+media-video/mplayer mmx mmxext sse sse2 gtk
