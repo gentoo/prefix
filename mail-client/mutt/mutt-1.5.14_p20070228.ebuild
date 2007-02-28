@@ -1,4 +1,4 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -12,8 +12,7 @@ SRC_URI="http://www.gentoo.org/~grobian/distfiles/${P/_p/-}.tar.bz2
 	!vanilla? (
 		mirror://gentoo/mutt-1.5.13-gentoo-patches.tar.bz2
 	)"
-IUSE="berkdb buffysize cjk crypt debug gdbm gnutls gpgme idn imap mbox nls nntp
-pop sasl smime ssl smtp vanilla"
+IUSE="berkdb buffysize cjk crypt debug gdbm gnutls gpgme idn imap mbox nls nntp pop sasl smime ssl vanilla"
 SLOT="0"
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
@@ -58,7 +57,7 @@ src_unpack() {
 		fi
 		# these are broken with recent snapshots
 		rm "${PATCHDIR}"/03-compressed.patch
-		rm "${PATCHDIR}"/05-mbox_hook.patch 
+		rm "${PATCHDIR}"/05-mbox_hook.patch
 		rm "${PATCHDIR}"/06-pgp_timeout.patch
 		# already in CVS
 		rm "${PATCHDIR}"/01-assumed_charset.patch
