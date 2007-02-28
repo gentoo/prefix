@@ -14,7 +14,7 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="jbig jpeg jpeg2k png rle svga tiff xml zlib"
 
 DEPEND="jpeg? ( >=media-libs/jpeg-6b )
