@@ -52,7 +52,7 @@ PROVIDE="virtual/emacs virtual/editor"
 SLOT="22.0.50"
 LICENSE="GPL-2"
 # should run on other arches, but the ebuild is intended for ppc-macos
-KEYWORDS="~ppc-macos"
+KEYWORDS="~ppc-macos ~x86-macos"
 
 DFILE=emacs-${SLOT}.desktop
 
