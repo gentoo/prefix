@@ -15,7 +15,7 @@ SRC_URI="http://cairographics.org/releases/${P}.tar.gz"
 
 LICENSE="|| ( LGPL-2.1 MPL-1.1 )"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="examples numeric"
 
 RDEPEND=">=dev-lang/python-2.3
