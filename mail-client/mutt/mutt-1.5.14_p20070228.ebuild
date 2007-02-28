@@ -8,15 +8,15 @@ inherit eutils flag-o-matic autotools
 
 DESCRIPTION="a small but very powerful text-based mail client"
 HOMEPAGE="http://www.mutt.org"
-SRC_URI="http://www.gentoo.org/~grobian/distfiles/${P%%_*}-20061128.tar.gz
+SRC_URI="http://www.gentoo.org/~grobian/distfiles/${P/_p/-}.tar.bz2
 	!vanilla? (
-		mirror://gentoo/${P%%_*}-gentoo-patches.tar.bz2
+		mirror://gentoo/mutt-1.5.13-gentoo-patches.tar.bz2
 	)"
 IUSE="berkdb buffysize cjk crypt debug gdbm gnutls gpgme idn imap mbox nls nntp
 pop sasl smime ssl smtp vanilla"
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
 RDEPEND="nls? ( sys-devel/gettext )
 	>=sys-libs/ncurses-5.2
 	gdbm?    ( sys-libs/gdbm )
@@ -38,19 +38,18 @@ RDEPEND="nls? ( sys-devel/gettext )
 DEPEND="${RDEPEND}
 	net-mail/mailbase"
 
-S="${WORKDIR}"/${P%%_*}
-PATCHDIR="${WORKDIR}"/${P%%_*}-gentoo-patches
+S="${WORKDIR}"/cvs-03f6a3a011cf
+PATCHDIR="${WORKDIR}"/mutt-1.5.13-gentoo-patches
 
 src_unpack() {
 	unpack ${A}
 	mv mutt ${P%%_*}
 	cd "${S}" || die "unpack failed"
 
-	epatch "${FILESDIR}"/${P%%_*}-smarttime.patch
-	epatch "${FILESDIR}"/${P}-smtp.patch
+	epatch "${FILESDIR}"/mutt-1.5.13-smarttime.patch
 	# this patch is non-generic and only works because we use a sysconfdir
 	# different from the one used by the mailbase ebuild
-	epatch "${FILESDIR}"/${P%%_*}-prefix-mailcap.patch
+	epatch "${FILESDIR}"/mutt-1.5.13-prefix-mailcap.patch
 
 	if ! use vanilla ; then
 		if ! use nntp ; then
@@ -61,6 +60,8 @@ src_unpack() {
 		rm "${PATCHDIR}"/03-compressed.patch
 		rm "${PATCHDIR}"/05-mbox_hook.patch 
 		rm "${PATCHDIR}"/06-pgp_timeout.patch
+		# already in CVS
+		rm "${PATCHDIR}"/01-assumed_charset.patch
 
 		for p in "${PATCHDIR}"/*.patch ; do
 			epatch "${p}"
