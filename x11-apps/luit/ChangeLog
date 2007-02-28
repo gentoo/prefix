@@ -1,0 +1,86 @@
+# ChangeLog for x11-apps/luit
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-apps/luit/ChangeLog,v 1.21 2006/11/09 15:54:32 joshuabaergen Exp $
+
+*luit-1.0.2 (09 Nov 2006)
+
+  09 Nov 2006; Joshua Baergen <joshuabaergen@gentoo.org> +luit-1.0.2.ebuild:
+  Bump for RC2 with some small fixes.
+
+*luit-1.0.1-r1 (02 Nov 2006)
+
+  02 Nov 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  +luit-1.0.1-r1.ebuild:
+  Look for locale.alias in /usr/share instead of /usr/lib.  (Bug #153624,
+  Flammie Pirinen)
+
+  10 Oct 2006; Donnie Berkholz <dberkholz@gentoo.org>; luit-1.0.1.ebuild:
+  Update description to be less generic.
+
+  17 Aug 2006; Aron Griffis <agriffis@gentoo.org> luit-1.0.1.ebuild:
+  Mark 1.0.1 stable on ia64
+
+  15 Aug 2006; Guy Martin <gmsoft@gentoo.org> luit-1.0.1.ebuild:
+  Marked stable on hppa.
+
+  01 Jul 2006; Donnie Berkholz <spyderous@gentoo.org>; luit-1.0.1.ebuild:
+  ppc/sparc/mips/alpha/arm/sh stable
+
+  30 Jun 2006; Markus Rothe <corsair@gentoo.org> luit-1.0.1.ebuild:
+  Stable on ppc64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; luit-1.0.1.ebuild:
+  (#138615) Stable on x86/amd64, xterm needs it on USE=unicode.
+
+  03 May 2006; Diego Pettenò <flameeyes@gentoo.org> luit-1.0.1.ebuild:
+  Add ~x86-fbsd keyword.
+
+  03 May 2006; Daniel Gryniewicz <dang@gentoo.org> luit-1.0.1.ebuild:
+  Mark ~amd64
+
+  02 May 2006; Emanuele Giaquinta <exg@gentoo.org> luit-1.0.1.ebuild:
+  Added ~ppc
+
+  14 Feb 2006; Markus Rothe <corsair@gentoo.org> luit-1.0.1.ebuild:
+  Added ~ppc64
+
+  26 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  -luit-0.99.2.ebuild, -luit-1.0.0.ebuild:
+  Pull old versions.
+
+*luit-1.0.1 (23 Dec 2005)
+
+  23 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>; +luit-1.0.1.ebuild:
+  Bump for 7.0.
+
+*luit-1.0.0 (18 Dec 2005)
+
+  18 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org> +luit-1.0.0.ebuild:
+  Bump for 7.0RC4.
+
+  09 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>; -luit-0.99.0.ebuild,
+  -luit-0.99.1.ebuild:
+  Pull old versions.
+
+*luit-0.99.2 (04 Dec 2005)
+
+  04 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +luit-0.99.2.ebuild:
+  Bump for 7.0RC3.
+
+*luit-0.99.1 (20 Oct 2005)
+
+  20 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>; +luit-0.99.1.ebuild:
+  Bump for 7.0 RC1.
+
+  09 Sep 2005; Donnie Berkholz <spyderous@gentoo.org>; +metadata.xml:
+  Add metadata.
+
+  08 Aug 2005; Ferris McCormick <fmccor@gentoo.org> luit-0.99.0.ebuild:
+  Add ~sparc keyword (Modular X testing).
+
+*luit-0.99.0 (08 Aug 2005)
+
+  08 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>; +luit-0.99.0.ebuild:
+  Initial commit for modular X.
+
