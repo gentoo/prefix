@@ -1,0 +1,12 @@
+diff --exclude='*~' --exclude='.*' -I '$Id:' -urN bash_completion.orig/bash_completion bash_completion/bash_completion
+--- bash_completion.orig/bash_completion	2006-03-02 06:55:56.000000000 -0500
++++ bash_completion/bash_completion	2006-03-02 07:01:47.000000000 -0500
+@@ -5602,7 +5602,7 @@
+ 			return 0
+ 			;;
+ 		-audiofile)
+-			_filedir '@(mp3|MP3|mpg|MPG|ogg|OGG|wav|WAV|mid|MID)'
++			_filedir '@(mp3|MP3|mpg|MPG|ogg|OGG|wav|WAV|mid|MID|flac|FLAC)'
+ 			return 0
+ 			;;
+ 		-font)

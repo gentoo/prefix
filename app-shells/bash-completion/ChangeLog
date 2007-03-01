@@ -1,0 +1,697 @@
+# ChangeLog for app-shells/bash-completion
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.138 2007/02/21 23:07:19 peper Exp $
+
+  21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  04 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
+
+  12 Dec 2006; Mike Kelly <pioto@gentoo.org> metadata.xml:
+  Add myself to metadata.xml
+
+*bash-completion-20060301-r2 (22 Nov 2006)
+
+  22 Nov 2006; Aron Griffis <agriffis@gentoo.org> files/bash-completion.sh,
+  -bash-completion-20060301-r1.ebuild, +bash-completion-20060301-r2.ebuild:
+  Fix bugs in files/bash-completion.sh, in particular default was renamed to
+  base during development but forgot to change it here
+
+*bash-completion-20060301-r1 (20 Nov 2006)
+
+  20 Nov 2006; Aron Griffis <agriffis@gentoo.org> +files/bash-completion.sh,
+  +bash-completion-20060301-r1.ebuild:
+  Break /etc/bash_completion into /usr/share/bash-completion/{.pre,base,.post}
+  so that the base definitions can be eselected. Rename
+  /etc/profile.d/bash-completion to have a .sh extension so it's loaded
+  automatically by /etc/profile. This is okay because it doesn't do anything
+  until modules have been eselected. All of this makes it possible to
+  configure bash-completions entirely with eselect instead of needing to add
+  snippets to one's .bashrc
+
+*bash-completion-20060301 (02 Mar 2006)
+
+  02 Mar 2006; Aaron Walker <ka0ttic@gentoo.org>
+  +files/20060301/01_all_no_xine.diff,
+  +files/20060301/02_all_mplayer_flac.diff,
+  +bash-completion-20060301.ebuild:
+  Version bump; closes bugs 101311, 111681, 111765, 117770, and 122591.
+
+  25 Nov 2005; Tom Gall <tgall@gentoo.org> 
+  bash-completion-20050121-r10.ebuild:
+  stable on ppc64
+
+*bash-completion-20050121-r10 (24 Jul 2005)
+
+  24 Jul 2005; Aaron Walker <ka0ttic@gentoo.org>
+  files/20050121/06_all_tar.diff, -bash-completion-20050121-r9.ebuild,
+  +bash-completion-20050121-r10.ebuild:
+  Revision bump; updated tar patch so 'tar tf' works as expected on
+  uncompressed .tar files (bug 99996). Keeping keywords.
+
+*bash-completion-20050721 (21 Jul 2005)
+
+  21 Jul 2005; Aaron Walker <ka0ttic@gentoo.org>
+  -files/20050712/01_all_gkrellm.diff, -files/20050712/03_all_find.diff,
+  +files/20050721/01_all_gkrellm.diff, -files/20050712/02_all_cvs.diff,
+  -files/20050712/04_all_command.diff, +files/20050721/02_all_cvs.diff,
+  +files/20050721/03_all_find.diff, +files/20050721/04_all_command.diff,
+  -bash-completion-20050712.ebuild, +bash-completion-20050721.ebuild:
+  Version bump; this version disables code that triggers a bash-3 bug (see bug
+  99540).
+
+  14 Jul 2005; Aaron Walker <ka0ttic@gentoo.org>
+  bash-completion-20050121-r9.ebuild, bash-completion-20050712.ebuild:
+  Update pkg_postinst instructions to explicitly state that
+  /etc/profile.d/bsh-completion should be sourced towards the beginning of
+  your ~/.bashrc, or at least before any aliases are set to avoid a)
+  unintentional misuse (bug 98627), or b) clobbering (as bashcomp does set
+  some aliases under certain conditions).
+
+*bash-completion-20050712 (13 Jul 2005)
+
+  13 Jul 2005; Aaron Walker <ka0ttic@gentoo.org>
+  -files/20050121-gentoo.diff, +files/20050712/01_all_gkrellm.diff,
+  -files/gentoo-bashcomp-20050117-equery.diff,
+  +files/20050712/02_all_cvs.diff, +files/20050712/03_all_find.diff,
+  +files/20050712/04_all_command.diff, -bash-completion-20050121-r1.ebuild,
+  +bash-completion-20050712.ebuild:
+  Version bump; removed old ebuild/patches.
+
+  28 Jun 2005; Joshua Kinard <kumba@gentoo.org>
+  bash-completion-20050121-r9.ebuild:
+  Marked stable on mips.
+
+  18 Jun 2005; Fernando J. Pereda <ferdy@gentoo.org>
+  bash-completion-20050121-r9.ebuild:
+  Stable on alpha
+
+  04 Jun 2005; Tobias Scherbaum <dertobi123@gentoo.org>
+  bash-completion-20050121-r9.ebuild:
+  Stable on ppc.
+
+  30 May 2005; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20050121-r9.ebuild:
+  Added sparc stable keyword
+
+  29 May 2005; Marcus D. Hanwell <marcus@gentoo.org>
+  bash-completion-20050121-r9.ebuild:
+  Stable on amd64.
+
+  29 May 2005; Rene Nussbaumer <killerfox@gentoo.org>
+  bash-completion-20050121-r9.ebuild:
+  Stable on hppa.
+
+  28 May 2005; Aaron Walker <ka0ttic@gentoo.org>
+  bash-completion-20050121-r9.ebuild:
+  Stable on x86.
+
+*bash-completion-20050121-r9 (19 May 2005)
+
+  19 May 2005; Aaron Walker <ka0ttic@gentoo.org>
+  files/20050121/02_all_cvs.diff, -bash-completion-20050121-r8.ebuild,
+  +bash-completion-20050121-r9.ebuild:
+  Revision bump; updated _cvs patch so that 'cvs add' completion ignores files
+  matching *~.
+
+*bash-completion-20050121-r8 (06 May 2005)
+
+  06 May 2005; Aaron Walker <ka0ttic@gentoo.org>
+  +files/20050121/09_all_command.diff, -bash-completion-20050121-r7.ebuild,
+  +bash-completion-20050121-r8.ebuild:
+  Revision bump; add patch for bug in _command meta-completion (sudo -<TAB> fex).
+
+  20 Apr 2005; Aaron Walker <ka0ttic@gentoo.org>
+  -files/20041017-gentoo.diff, -files/20041017-rcs.diff,
+  -files/20050121-find.diff, -files/20050121-muttng.diff,
+  -files/20050121-tar.diff, -bash-completion-20041017-r3.ebuild:
+  Tidy.
+
+*bash-completion-20050121-r7 (20 Apr 2005)
+
+  20 Apr 2005; Aaron Walker <ka0ttic@gentoo.org>
+  +files/20050121/02_all_cvs.diff, +files/20050121/04_all_mplayer.diff,
+  +files/20050121/03_all_timidity.diff, +files/20050121/05_all_muttng.diff,
+  +files/20050121/01_all_gkrellm.diff, +files/20050121/06_all_tar.diff,
+  +files/20050121/07_all_find.diff, +files/20050121/08_all_lvm.diff,
+  -bash-completion-20050121-r6.ebuild, +bash-completion-20050121-r7.ebuild:
+  Revision bump; fixes bug 82810. New patch layout since we're starting to get
+  quite a few. Also include gkrellm patch which was accidentally dropped at
+  some point.
+
+  06 Apr 2005; Ciaran McCreesh <ciaranm@gentoo.org>
+  bash-completion-20050121-r1.ebuild:
+  mips stable
+
+*bash-completion-20050121-r6 (06 Apr 2005)
+
+  06 Apr 2005; Aaron Walker <ka0ttic@gentoo.org> +files/20050121-find.diff,
+  -bash-completion-20050121-r5.ebuild, +bash-completion-20050121-r6.ebuild:
+  Revision bump; fix find completion so that it properly completes on
+  -?(i)wholename. Thanks to ciaranm for the patch.
+
+  30 Mar 2005; Michael Hanselmann <hansmi@gentoo.org>
+  bash-completion-20050121-r1.ebuild:
+  Stable on ppc.
+
+*bash-completion-20050121-r5 (29 Mar 2005)
+
+  29 Mar 2005; Aaron Walker <ka0ttic@gentoo.org> +files/20050121-tar.diff,
+  -bash-completion-20050121-r2.ebuild, -bash-completion-20050121-r3.ebuild,
+  -bash-completion-20050121-r4.ebuild, +bash-completion-20050121-r5.ebuild:
+  Revision bump; updated tar completion so -xf will work with both gzip and
+  bzip2 archives now that tar-1.15.1 is stable. Closes bug 76957. Tidy old
+  ebuilds.
+
+*bash-completion-20050121-r4 (28 Mar 2005)
+
+  28 Mar 2005; Aaron Walker <ka0ttic@gentoo.org>
+  +files/20050121-muttng.diff, +bash-completion-20050121-r4.ebuild:
+  Revision bump; extend mutt completion to also work with muttng. Thanks to
+  Marcin 'aye' Kryczek <aye@gentoo.pl> in bug 86853 for the patch.
+
+  27 Mar 2005; Bryan Østergaard <kloeri@gentoo.org>
+  bash-completion-20050121-r1.ebuild:
+  Stable on alpha.
+
+*bash-completion-20050121-r3 (16 Mar 2005)
+
+  16 Mar 2005; Aaron Walker <ka0ttic@gentoo.org>
+  +bash-completion-20050121-r3.ebuild:
+  Revision bump; broke gentoo-bashcomp out into its own ebuild. Added as PDEPEND.
+
+  13 Mar 2005; Marcus D. Hanwell <cryos@gentoo.org> :
+  Marked stable on amd64.
+
+  28 Feb 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  bash-completion-20050121-r1.ebuild:
+  Stable on sparc
+
+  25 Feb 2005; Aaron Walker <ka0ttic@gentoo.org>
+  bash-completion-20050121-r1.ebuild:
+  Marked stable on x86.
+
+*bash-completion-20050121-r2 (07 Feb 2005)
+
+  07 Feb 2005; Aaron Walker <ka0ttic@gentoo.org>
+  +bash-completion-20050121-r2.ebuild:
+  Revision bump; new gentoo-bashcomp release including bug fixes, as well as
+  new webapp-config and portageq completion. Also emerge -C and equery now
+  support completion on package names only.
+
+*bash-completion-20050121-r1 (04 Feb 2005)
+
+  04 Feb 2005; Aaron Walker <ka0ttic@gentoo.org>
+  +files/gentoo-bashcomp-20050117-equery.diff,
+  +bash-completion-20050121-r1.ebuild, -bash-completion-20050121.ebuild:
+  Revision bump for bug 78922; fixes a few equery completion bugs.
+
+*bash-completion-20050121 (21 Jan 2005)
+
+  21 Jan 2005; Aaron Walker <ka0ttic@gentoo.org>
+  -files/20050112-gentoo.diff, -files/20050120-gentoo.diff,
+  +files/20050121-gentoo.diff, -bash-completion-20040704-r1.ebuild,
+  -bash-completion-20040711.ebuild, -bash-completion-20041017-r1.ebuild,
+  -bash-completion-20050112-r1.ebuild, -bash-completion-20050120.ebuild,
+  +bash-completion-20050121.ebuild:
+  New upstream release; early spring cleansing now that 20041017-r3 has been
+  keyworded properly.
+
+  21 Jan 2005; Lars Weiler <pylon@gentoo.org>
+  bash-completion-20041017-r3.ebuild:
+  Stable on ppc.
+
+  21 Jan 2005; Mike Doty <kingtaco@gentoo.org>
+  bash-completion-20041017-r3.ebuild:
+  stable on amd64 per ka0ttics request
+
+  21 Jan 2005; Aaron Walker <ka0ttic@gentoo.org>
+  bash-completion-20041017-r1.ebuild, bash-completion-20041017-r3.ebuild,
+  bash-completion-20050112-r1.ebuild, bash-completion-20050120.ebuild:
+  Don't install subversion completion, since subversion itself offers a much
+  nicer one.
+
+*bash-completion-20050120 (20 Jan 2005)
+
+  20 Jan 2005; Aaron Walker <ka0ttic@gentoo.org>
+  +files/20050120-gentoo.diff, +bash-completion-20050120.ebuild:
+  Version bump; also updated gentoo patch with fix for bug 78439.
+
+  18 Jan 2005; Joshua Kinard <kumba@gentoo.org>
+  bash-completion-20041017-r3.ebuild:
+  Marked stable on mips.
+
+*bash-completion-20050112-r1 (17 Jan 2005)
+
+  17 Jan 2005; Aaron Walker <ka0ttic@gentoo.org>
+  -files/20050103-gentoo.diff, -files/gentoo-bashcomp-20050112.diff,
+  -bash-completion-20050103-r2.ebuild, +bash-completion-20050112-r1.ebuild,
+  -bash-completion-20050112.ebuild:
+  Revision bump; new gentoo-bashcomp release.
+
+  18 Jan 2005; Bryan Østergaard <kloeri@gentoo.org>
+  bash-completion-20041017-r3.ebuild:
+  Stable on alpha.
+
+*bash-completion-20050112 (13 Jan 2005)
+
+  13 Jan 2005; Aaron Walker <ka0ttic@gentoo.org>
+  +files/20050112-gentoo.diff, +bash-completion-20050112.ebuild:
+  New upstream release.
+
+*bash-completion-20050103-r2 (12 Jan 2005)
+
+  12 Jan 2005; Aaron Walker <ka0ttic@gentoo.org>
+  -files/gentoo-bashcomp-20040108.diff,
+  +files/gentoo-bashcomp-20050112.diff, -bash-completion-20050103-r1.ebuild,
+  +bash-completion-20050103-r2.ebuild:
+  Revision bump; gentoo-bashcomp patch update. See bug 75225. Thanks to Ed
+  Catmur.
+
+*bash-completion-20050103-r1 (08 Jan 2005)
+
+  08 Jan 2005; Aaron Walker <ka0ttic@gentoo.org>
+  +files/gentoo-bashcomp-20040108.diff, +bash-completion-20050103-r1.ebuild,
+  -bash-completion-20050103.ebuild:
+  Revision bump; added diff against gentoo-bashcomp cvs HEAD that closes bugs
+  74733, 75332, and 76416.
+
+  04 Jan 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  bash-completion-20041017-r3.ebuild:
+  Stable on sparc
+
+*bash-completion-20050103 (04 Jan 2005)
+
+  04 Jan 2005; Aaron Walker <ka0ttic@gentoo.org>
+  +files/20050103-gentoo.diff, -bash-completion-20041017-r2.ebuild,
+  bash-completion-20041017-r3.ebuild, +bash-completion-20050103.ebuild:
+  New upstream release; marked 20041017-r3 stable on x86.
+
+  02 Jan 2005; Aaron Walker <ka0ttic@gentoo.org> +files/20041017-rcs.diff,
+  bash-completion-20041017-r3.ebuild:
+  Added 20041017-rcs.diff which fixes a rcs completion issue (see bug 75253);
+  Thanks to Ed Catmur <ed@catmur.co.uk> for the patch. Waiting on a few
+  gentoo-bashcomp bugs to be closed before revbumping to r4.
+
+  28 Dec 2004; Guy Martin <gmsoft@gentoo.org>
+  bash-completion-20041017-r1.ebuild:
+  Stable on hppa.
+
+  25 Dec 2004; Aaron Walker <ka0ttic@gentoo.org>
+  bash-completion-20041017-r3.ebuild:
+  RDEPEND on bash or zsh, since zsh is also able to read bash-completions; bug
+  75384. Also added some einfo's with URL's to more info for zsh users.
+
+  16 Dec 2004; Dylan Carlson <absinthe@gentoo.org>
+  bash-completion-20041017-r1.ebuild:
+  Stable on amd64.
+
+  11 Dec 2004; Bryan Østergaard <kloeri@gentoo.org>
+  bash-completion-20041017-r1.ebuild:
+  Stable on alpha.
+
+*bash-completion-20041017-r3 (06 Dec 2004)
+
+  06 Dec 2004; Aaron Walker <ka0ttic@gentoo.org>
+  +bash-completion-20041017-r3.ebuild:
+  Revision bump. New gentoo-bashcomp release which includes new ekeyword
+  completion (thanks ciaranm) in addition to fixing bug 73266. Also, as of
+  this release, the gentoo completions file is installed into
+  /usr/share/bash-completion, with a symlink taking its old location
+  (/etc/bash_completion.d).
+
+  01 Dec 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  bash-completion-20041017-r1.ebuild:
+  Stable on sparc
+
+*bash-completion-20041017-r2 (27 Nov 2004)
+
+  27 Nov 2004; Aaron Walker <ka0ttic@gentoo.org>
+  +files/20041017-gentoo.diff, -bash-completion-20040704.ebuild,
+  bash-completion-20041017-r1.ebuild, +bash-completion-20041017-r2.ebuild,
+  -bash-completion-20041017.ebuild:
+  Revision bump; new gentoo-bashcomp release. Also, added gentoo patch for
+  extra filetypes support for .ts (bug 67201) and others. Fixed gkrellm
+  completion to complete for gkrellm2 as well. Marked 20041017-r1 stable on
+  x86.
+
+  15 Nov 2004; Aaron Walker <ka0ttic@gentoo.org>
+  bash-completion-20041017-r1.ebuild:
+  Use has_version to determine whether or not to install subversion completion.
+
+  12 Nov 2004; Aaron Walker <ka0ttic@gentoo.org> files/bash-completion:
+  Clean up profile.d file thanks to Joker.
+
+*bash-completion-20041017-r1 (12 Nov 2004)
+
+  12 Nov 2004; Aaron Walker <ka0ttic@gentoo.org>
+  +bash-completion-20041017-r1.ebuild:
+  Don't install subversion completion since >=dev-util/subversion-1.1.1-r1
+  provides a much better one.
+
+  09 Nov 2004; Aaron Walker <ka0ttic@gentoo.org> files/bash-completion:
+  Updated profile.d file to also source anything in ~/.bash_completion.d
+
+  05 Nov 2004; Joshua Kinard <kumba@gentoo.org>
+  bash-completion-20040711.ebuild:
+  Marked stable on mips.
+
+  04 Nov 2004; Markus Rothe <corsair@gentoo.org>
+  bash-completion-20041017.ebuild:
+  Marked ~ppc64
+
+  01 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  bash-completion-20040711.ebuild:
+  Stable on sparc
+
+  30 Oct 2004; Aaron Walker <ka0ttic@gentoo.org>
+  -files/gentoo.completion-20040526, -bash-completion-20040526.ebuild,
+  bash-completion-20040711.ebuild:
+  Marked 20040711 stable on x86; removed 20040526.
+
+  27 Oct 2004; Kito <kito@gentoo.org> bash-completion-20041017.ebuild:
+  added ~ppc-macos
+
+*bash-completion-20041017 (19 Oct 2004)
+
+  19 Oct 2004; Aaron Walker <ka0ttic@gentoo.org>
+  +bash-completion-20041017.ebuild:
+  Version bump; includes new version of gentoo-bashcomp as well (new equery
+  completion available which closes #55687).
+
+*bash-completion-20040711 (11 Oct 2004)
+
+  11 Oct 2004; Aaron Walker <ka0ttic@gentoo.org>
+  +bash-completion-20040711.ebuild:
+  Version bump; closes #67148.
+
+  11 Oct 2004; Aaron Walker <ka0ttic@gentoo.org> metadata.xml:
+  Updated metadata to reflect new shell-tools herd.
+
+  01 Sep 2004; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20040704-r1.ebuild:
+  Marked stable
+
+*bash-completion-20040704-r1 (28 Jul 2004)
+
+  28 Jul 2004; Mike Frysinger <vapier@gentoo.org> files/bash-completion,
+  +bash-completion-20040704-r1.ebuild:
+  Add version detection for bash3 #58708 by blubbfisch.
+
+*bash-completion-20040704 (04 Jul 2004)
+
+  04 Jul 2004; Christian Birchinger <joker@gentoo.org>
+  +bash-completion-20040704.ebuild:
+  Version bump
+
+  01 Jul 2004; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20040526-r2.ebuild:
+  Replaced fperms with doexec and added ROOT variable to pkg_postinst tests.
+
+*bash-completion-20040526-r2 (16 Jun 2004)
+
+  16 Jun 2004; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20040526-r2.ebuild:
+  Adjusted permission of profile.d init script
+
+*bash-completion-20040526-r1 (12 Jun 2004)
+
+  12 Jun 2004; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20040526-r1.ebuild:
+  Added a new gentoo completion from
+  http://sourceforge.net/projects/gentoo-bashcomp/
+
+  29 May 2004; Michael Sterrett <mr_bones_@gentoo.org>
+  bash-completion-20040331-r1.ebuild, bash-completion-20040526.ebuild:
+  no need to install COPYING
+
+*bash-completion-20040526 (26 May 2004)
+
+  26 May 2004; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20040526.ebuild, files/gentoo.completion-20040526:
+  Version bump. Fixed Bug #51071 in gentoo-completion
+
+  25 Apr 2004; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20040331-r1.ebuild:
+  Marked stable
+
+*bash-completion-20040331-r1 (18 Apr 2004)
+
+  18 Apr 2004; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20040331-r1.ebuild, files/gentoo.completion-20040331-r1:
+  Changed opengl-update so it handles more than xfree and nvidia
+
+  14 Apr 2004; Christian Birchinger <joker@gentoo.org> :
+  Version bump
+
+  02 Mar 2004; Brian Jackson <iggy@gentoo.org>
+  bash-completion-20040210-r1.ebuild:
+  s390 keywords
+
+*bash-completion-20040210-r1 (27 Feb 2004)
+
+  27 Feb 2004; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20040210-r1.ebuild, files/gentoo.completion-20040210-r1:
+  nospace fix for bug #42878
+
+*bash-completion-20040210 (11 Feb 2004)
+
+  11 Feb 2004; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20040210.ebuild, files/gentoo.completion-20040210:
+  Version bump
+
+  10 Feb 2004; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20040101-r1.ebuild:
+  Marked stable
+
+*bash-completion-20040101-r1 (25 Jan 2004)
+
+  25 Jan 2004; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20040101-r1.ebuild, files/gentoo.completion-20040101-r1:
+  All optional contrib scripts are now installed in /usr/share/bash-completion
+  and can be symlinked to /etc/bash_completion.d
+
+  23 Jan 2004; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20040101.ebuild:
+  Marked stable
+
+*bash-completion-20040101 (04 Jan 2004)
+
+  04 Jan 2004; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20040101.ebuild, files/gentoo.completion,
+  files/gentoo.completion-20040101:
+  Version bump and fix for bug #36910
+
+*bash-completion-20031225 (25 Dec 2003)
+
+  25 Dec 2003; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20031215.ebuild, bash-completion-20031225.ebuild,
+  files/gentoo.completion-20031225:
+  Version bump
+
+*bash-completion-20031215 (19 Dec 2003)
+
+  19 Dec 2003; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20031215.ebuild, files/gentoo.completion-20031215:
+  Version bump
+
+*bash-completion-20031125-r1 (13 Dec 2003)
+
+  13 Dec 2003; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20031125-r1.ebuild, files/gentoo.completion-20031125-r1:
+  Added rc and rc-status completion
+
+  13 Dec 2003; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20031125.ebuild:
+  Marked stable
+
+  27 Nov 2003; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20031112.ebuild:
+  Marked stable on all archs
+
+*bash-completion-20031125 (26 Nov 2003)
+
+  26 Nov 2003; Martin Holzer <mholzer@gentoo.org>
+  bash-completion-20031125.ebuild:
+  Version bumped.
+
+*bash-completion-20031112 (12 Nov 2003)
+
+  12 Nov 2003; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20031112.ebuild:
+  Version bump
+
+  12 Nov 2003; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20031022.ebuild:
+  Marked stable
+
+*bash-completion-20031022 (01 Nov 2003)
+
+  01 Nov 2003; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20030821.ebuild, bash-completion-20030911.ebuild,
+  bash-completion-20031022.ebuild:
+  Version bump
+
+*bash-completion-20030911-r1 (25 Sep 2003)
+
+  25 Sep 2003; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20030505-r1.ebuild, bash-completion-20030713.ebuild,
+  bash-completion-20030721.ebuild, bash-completion-20030911-r1.ebuild,
+  files/gentoo.completion:
+  New gentoo distcc-config completion feature. Removed old versions.
+
+*bash-completion-20030911 (12 Sep 2003)
+
+  12 Sep 2003; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20030911.ebuild:
+  Version bump
+
+  12 Sep 2003; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20030821.ebuild:
+  Added stable keywords
+
+*bash-completion-20030821 (10 Sep 2003)
+
+  10 Sep 2003; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20030821.ebuild, files/gentoo.completion:
+  Version bump and new version of gentoo.completion which has
+  limmited init.d support
+
+*bash-completion-20030721 (21 Jul 2003)
+
+  21 Jul 2003; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20030721.ebuild:
+  Version bump
+
+*bash-completion-20030713 (18 Jul 2003)
+
+  18 Jul 2003; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20030713.ebuild:
+  Version bump
+
+*bash-completion-20030505-r1 (24 May 2003)
+
+  24 May 2003; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20030505-r1.ebuild, files/gentoo.completion:
+  Fixed gentoo completion included
+
+  18 May 2003; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20030505.ebuild:
+  Marked stable on all archs. New Gentoo completion from Zach Forrest <zach@disinformation.ca>
+  is really needed for the latest portage releases.
+
+*bash-completion-20030505 (16 May 2003)
+
+  16 May 2003; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20030505.ebuild, files/gentoo.completion:
+  Version bump and new Gentoo completion included
+
+*bash-completion-20030327 (27 Mar 2003)
+
+  27 Mar 2003; Christian Birchinger <joker@gentoo.org>
+  bash-completion-20030327.ebuild:
+  Version bump to 20030327 (on all archs)
+
+  13 Mar 2003; Olivier Reisch <doctomoe@gentoo.org> bash-completion-20021231.ebuild:
+  Marked ppc stable
+
+*bash-completion-20030209 (17 Feb 2003)
+
+  17 Feb 2003; Seemant Kulleen <seemant@gentoo.org> bash-completion-20030209.ebuild files/digest-bash-completion-20030209 :
+  version bump, thanks to Jeff Stuart <jstuart@computer-city.net> in bug #15553
+
+*bash-completion-20021231 (08 Dec 2003)
+
+  08 Dec 2003; Maik Schreiber <blizzy@gentoo.org> : new version
+
+  07 Jan 2003; Mark Guertin <gerk@gentoo.org> bash-completion-20021221.ebuild:
+  set ppc in keywords
+
+*bash-completion-20021221 (21 Dec 2002)
+
+  21 Dec 2002; Maik Schreiber <blizzy@gentoo.org> : new version
+
+*bash-completion-20021213 (13 Dec 2002)
+
+  13 Dec 2002; Maik Schreiber <blizzy@gentoo.org> : new version
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*bash-completion-20021026 (26 Oct 2002)
+
+  26 Oct 2002; Maik Schreiber <blizzy@gentoo.org> : new version
+
+*bash-completion-20021022 (22 Oct 2002)
+
+  22 Oct 2002; Maik Schreiber <blizzy@gentoo.org> : new version
+
+*bash-completion-20021021 (21 Oct 2002)
+
+  21 Oct 2002; Maik Schreiber <blizzy@gentoo.org> : new version
+
+*bash-completion-20021017 (17 Oct 2002)
+
+  17 Oct 2002; Maik Schreiber <blizzy@gentoo.org> : new version
+
+*bash-completion-20021013 (14 Oct 2002)
+
+  14 Oct 2002; Maik Schreiber <blizzy@gentoo.org> : new version
+
+*bash-completion-20021007 (12 Oct 2002)
+
+  12 Oct 2002; Maik Schreiber <blizzy@gentoo.org> : new version
+
+*bash-completion-20020819 (22 Aug 2002)
+
+  22 Aug 2002; Maik Schreiber <blizzy@gentoo.org> : new version
+
+*bash-completion-20020812 (12 Aug 2002)
+
+  12 Aug 2002; Maik Schreiber <blizzy@gentoo.org> : new version
+
+*bash-completion-20020727 (27 Jul 2002)
+
+  28 Jul 2002; Calum Selkirk <cselkirk@gentoo.org>
+  bash-completion-20020727.ebuild, bash-completion-20020624.ebuild: Added ppc
+  to KEYWORDS.
+
+  27 Jul 2002; Maik Schreiber <blizzy@gentoo.org> : new version
+
+  05 Jul 2002; Seemant Kulleen <seemant@gentoo.org>
+  bash-completion-20020624.ebuild: typo fix in S= assignment.  Closes bug #4564
+  by yurkjes@iit.edu
+
+  25 Jul 2002; Daniel Ahlberg <aliz@gentoo.org> bash-completion-20020624.ebuild:
+  Added KEYWORDS.
+
+  24 Jun 2002; Thilo Bangert <bangert@gentoo.org> bash-completion-20020624.ebuild:
+  fixed SLOT
+
+*bash-completion-20020624 (24 Jun 2002)
+
+  24 Jun 2002; Thilo Bangert <bangert@gentoo.org> : version bump
+
+*bash-completion-20020621 (19 Jun 2002)
+
+  21 Jun 2002; Thilo Bangert <bangert@gentoo.org> : version bump
+
+  20 Jun 2002; Thilo Bangert <bangert@gentoo.org> bash-completion-20020619.ebuild:
+  added support for /etc/profile.d/bash-completion
+  
+*bash-completion-20020619 (19 Jun 2002)
+
+  19 Jun 2002; Thilo Bangert <bangert@gentoo.org> : version bump
+
+*bash-completion-20020521 (21 May 2002)
+
+  21 May 2002; Thilo Bangert <bangert@gentoo.org> bash-completion-20020521.ebuild:
+  version bump - LICENSE & minor fixor
+
+*bash-completion-20020427 (27 Apr 2002)
+
+  27 Apr 2002; Thilo Bangert <bangert@gentoo.org> : version bump
+
+*bash-completion-20020422 (23 Apr 2002)
+
+  23 Apr 2002; Thilo Bangert <bangert@gentoo.org> : initial release

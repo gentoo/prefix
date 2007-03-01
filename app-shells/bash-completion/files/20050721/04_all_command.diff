@@ -1,0 +1,16 @@
+--- bash_completion.orig/bash_completion	2005-05-04 01:01:21.000000000 -0400
++++ bash_completion/bash_completion	2005-05-04 01:15:55.000000000 -0400
+@@ -3024,7 +3024,12 @@
+ 	cmd=${COMP_WORDS[1]}
+ 	    if [[ "$cmd" == -* ]] ; then
+ 		for (( i=1 ; i<=COMP_CWORD ; i++)) ; do
+-		    COMP_WORDS[i]=${COMP_WORDS[i+1]}
++		    if [[ ${i} -lt ${COMP_CWORD} ]] ; then
++			COMP_WORDS[i]=${COMP_WORDS[i+1]}
++		    else
++			done=1
++			break
++		    fi
+ 		done
+ 		COMP_CWORD=$(($COMP_CWORD-1))
+ 	    else 
