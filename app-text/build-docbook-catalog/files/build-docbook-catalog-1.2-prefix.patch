@@ -1,0 +1,33 @@
+--- build-docbook-catalog-1.2.old	2007-02-18 23:40:01 +0200
++++ build-docbook-catalog-1.2	2007-02-18 23:39:22 +0200
+@@ -9,9 +9,9 @@
+ # written by Aron Griffis
+ #
+ 
+-ROOTCATALOG=/etc/xml/catalog
+-CATALOG=/etc/xml/docbook
+-DOCBOOKDIR=/usr/share/sgml/docbook
++ROOTCATALOG=@GENTOO_PORTAGE_EPREFIX@/etc/xml/catalog
++CATALOG=@GENTOO_PORTAGE_EPREFIX@/etc/xml/docbook
++DOCBOOKDIR=@GENTOO_PORTAGE_EPREFIX@/usr/share/sgml/docbook
+ DTDS=
+ LATEST_DTD=
+ LATEST_DATE=
+@@ -78,7 +78,7 @@
+ create_catalogs() {
+ 	if [[ ! -r ${ROOTCATALOG} ]] ; then
+ 		echo "Creating XML Catalog root ${ROOTCATALOG}"
+-		/usr/bin/xmlcatalog --noout --create ${ROOTCATALOG}
++		@GENTOO_PORTAGE_EPREFIX@/usr/bin/xmlcatalog --noout --create ${ROOTCATALOG}
+ 		if [[ ! -r ${ROOTCATALOG} ]] ; then
+ 			echo "Failed creating ${ROOTCATALOG}, aborting" >&2
+ 			exit 1
+@@ -92,7 +92,7 @@
+ 
+ 	if [[ ! -r ${CATALOG} ]] ; then
+ 		echo "Creating DocBook XML Catalog ${CATALOG}"
+-		/usr/bin/xmlcatalog --noout --create ${CATALOG}
++		@GENTOO_PORTAGE_EPREFIX@/usr/bin/xmlcatalog --noout --create ${CATALOG}
+ 		if [[ ! -r ${CATALOG} ]] ; then
+ 			echo "Failed creating ${CATALOG}, aborting" >&2
+ 			exit 1

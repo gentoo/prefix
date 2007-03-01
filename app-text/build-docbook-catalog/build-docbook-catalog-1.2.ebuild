@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit eutils
+
 DESCRIPTION="DocBook XML catalog auto-updater"
 HOMEPAGE="http://unknown/"
 SRC_URI="mirror://gentoo/${P}.bz2"
@@ -17,6 +19,13 @@ DEPEND=""
 RDEPEND=""
 
 S=${WORKDIR}
+
+src_unpack() {
+        unpack ${A}
+        cd ${S}
+        epatch "${FILESDIR}"/${P}-prefix.patch
+        eprefixify build-docbook-catalog-1.2
+}
 
 src_install() {
 	newbin ${P} ${PN} || die
