@@ -12,7 +12,7 @@ inherit x-modular
 
 DESCRIPTION="X.Org miscellaneous fonts"
 RESTRICT="mirror"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 RDEPEND=""
 DEPEND="${RDEPEND}
 	x11-apps/bdftopcf
