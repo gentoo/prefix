@@ -2,8 +2,8 @@
   revdep-rebuild patches for prefix and Darwin support
   (indenting and quoting fixes by grobian@gentoo.org)
 
---- gentoolkit-0.2.3_pre3/src/revdep-rebuild/revdep-rebuild
-+++ gentoolkit-0.2.3_pre3/src/revdep-rebuild/revdep-rebuild
+--- gentoolkit-0.2.3/src/revdep-rebuild/revdep-rebuild
++++ gentoolkit-0.2.3/src/revdep-rebuild/revdep-rebuild
 @@ -67,6 +67,44 @@
  PORTAGE_ROOT=$(portageq envvar ROOT)
  [ -z "$PORTAGE_ROOT" ] && PORTAGE_ROOT="/"

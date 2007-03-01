@@ -1,6 +1,13 @@
 # ChangeLog for app-portage/gentoolkit
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.94 2007/01/24 03:39:18 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.95 2007/02/20 16:56:40 fuzzyray Exp $
+
+*gentoolkit-0.2.3 (20 Feb 2007)
+
+  20 Feb 2007; Paul Varner <fuzzyray@gentoo.org>
+  -gentoolkit-0.2.3_pre1.ebuild, -gentoolkit-0.2.3_pre2.ebuild,
+  -gentoolkit-0.2.3_pre3.ebuild, +gentoolkit-0.2.3.ebuild:
+  Release gentoolkit-0.2.3
 
   24 Jan 2007; Marius Mauch <genone@gentoo.org> gentoolkit-0.2.2.ebuild:
   Replacing einfo with elog

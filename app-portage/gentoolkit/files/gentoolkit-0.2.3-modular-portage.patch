@@ -1,18 +1,18 @@
-diff -Naur gentoolkit-0.2.3_pre3.orig/src/eclean/eclean gentoolkit-0.2.3_pre3/src/eclean/eclean
---- gentoolkit-0.2.3_pre3.orig/src/eclean/eclean	2007-02-05 21:06:00 +0100
-+++ gentoolkit-0.2.3_pre3/src/eclean/eclean	2007-02-05 21:08:00 +0100
+diff -ur gentoolkit-0.2.3/src/eclean/eclean gentoolkit-0.2.3/src/eclean/eclean
+--- gentoolkit-0.2.3/src/eclean/eclean	2007-03-01 21:00:33 +0100
++++ gentoolkit-0.2.3/src/eclean/eclean	2007-03-01 21:00:41 +0100
 @@ -24,7 +24,7 @@
  import signal
- sys.path.insert(0,'/usr/lib/portage/pym')
+ sys.path.insert(0,'/Library/Gentoo/usr/lib/portage/pym')
  import portage
 -from output import *
 +from portage.output import *
  
  listdir = portage.listdir
  
-diff -Naur gentoolkit-0.2.3_pre3.orig/src/equery/equery gentoolkit-0.2.3_pre3/src/equery/equery
---- gentoolkit-0.2.3_pre3.orig/src/equery/equery	2007-02-05 21:06:00 +0100
-+++ gentoolkit-0.2.3_pre3/src/equery/equery	2007-02-05 21:10:55 +0100
+diff -ur gentoolkit-0.2.3/src/equery/equery gentoolkit-0.2.3/src/equery/equery
+--- gentoolkit-0.2.3/src/equery/equery	2007-03-01 21:00:33 +0100
++++ gentoolkit-0.2.3/src/equery/equery	2007-03-01 21:00:41 +0100
 @@ -26,8 +26,8 @@
  
  import gentoolkit
@@ -24,7 +24,7 @@ diff -Naur gentoolkit-0.2.3_pre3.orig/src/equery/equery gentoolkit-0.2.3_pre3/sr
  
  import gentoolkit.pprinter as pp
  from gentoolkit.pprinter import print_info, print_error, print_warn, die
-@@ -899,7 +899,7 @@
+@@ -900,7 +900,7 @@
  		return (query, opts)
  
  	def getMD5sum(self, file):
@@ -33,9 +33,9 @@ diff -Naur gentoolkit-0.2.3_pre3.orig/src/equery/equery gentoolkit-0.2.3_pre3/sr
  	
  	def perform(self, args):
  		(query, opts) = self.parseArgs(args)
-diff -Naur gentoolkit-0.2.3_pre3.orig/src/etcat/etcat gentoolkit-0.2.3_pre3/src/etcat/etcat
---- gentoolkit-0.2.3_pre3.orig/src/etcat/etcat	2007-02-05 21:06:00 +0100
-+++ gentoolkit-0.2.3_pre3/src/etcat/etcat	2007-02-05 21:12:49 +0100
+diff -ur gentoolkit-0.2.3/src/etcat/etcat gentoolkit-0.2.3/src/etcat/etcat
+--- gentoolkit-0.2.3/src/etcat/etcat	2007-03-01 21:00:33 +0100
++++ gentoolkit-0.2.3/src/etcat/etcat	2007-03-01 21:00:41 +0100
 @@ -89,7 +89,7 @@
  
  import gentoolkit
@@ -45,19 +45,19 @@ diff -Naur gentoolkit-0.2.3_pre3.orig/src/etcat/etcat gentoolkit-0.2.3_pre3/src/
  
  __author__ = "Alastair Tse"
  __email__ = "liquidx@gentoo.org"
-diff -Naur gentoolkit-0.2.3_pre3.orig/src/genpkgindex/genpkgindex gentoolkit-0.2.3_pre3/src/genpkgindex/genpkgindex
---- gentoolkit-0.2.3_pre3.orig/src/genpkgindex/genpkgindex	2007-02-05 21:06:00 +0100
-+++ gentoolkit-0.2.3_pre3/src/genpkgindex/genpkgindex	2007-02-05 21:14:03 +0100
+diff -ur gentoolkit-0.2.3/src/genpkgindex/genpkgindex gentoolkit-0.2.3/src/genpkgindex/genpkgindex
+--- gentoolkit-0.2.3/src/genpkgindex/genpkgindex	2007-03-01 21:00:33 +0100
++++ gentoolkit-0.2.3/src/genpkgindex/genpkgindex	2007-03-01 21:02:54 +0100
 @@ -9,7 +9,7 @@
  for x in ['CFLAGS','CXXFLAGS', 'LDFLAGS','USE']:
  	os.environ[x]=''
  
--import xpak, portage, portage_checksum, portage_dep, portage_util
-+import xpak, portage, portage.checksum, portage.dep, portage.util
+-import xpak, portage, portage_checksum, portage_dep, portage_util, portage_const
++import xpak, portage, portage.checksum, portage.dep, portage.util, portage.const
  
  argc=len(sys.argv)
  
-@@ -77,7 +77,7 @@
+@@ -106,7 +106,7 @@
  	fp.write("TIMESTAMP: "+timestamp+"\n")
  
  	vmask = [ "AUTOCLEAN", "DISTDIR", "PKGDIR", "PORTDIR" , "PORTAGE_TMPDIR" , "PORTAGE_RSYNC_OPTS" ]
@@ -66,7 +66,7 @@ diff -Naur gentoolkit-0.2.3_pre3.orig/src/genpkgindex/genpkgindex gentoolkit-0.2
  	for x in vmask:
  		vars.remove(x)
  
-@@ -148,7 +148,7 @@
+@@ -184,7 +184,7 @@
  		item = xpak.getitem(stuff, name)
  		if item is None:
  			continue
@@ -75,18 +75,9 @@ diff -Naur gentoolkit-0.2.3_pre3.orig/src/genpkgindex/genpkgindex gentoolkit-0.2
  		if val:
  			fp.write("%s: %s\n" % (name, serialize_depset(val)))
  
-@@ -162,7 +162,7 @@
- 
- 	st = os.stat(pkg)
- 	fp.write("SIZE: "+ str(st[stat.ST_SIZE]) +"\n")
--	fp.write("MD5: "+portage_checksum.perform_md5(pkg)+"\n")
-+	fp.write("MD5: "+portage.checksum.perform_md5(pkg)+"\n")
- 	fp.write("\n")
- 
- fp.write("\n")
-diff -Naur gentoolkit-0.2.3_pre3.orig/src/gentoolkit/errors.py gentoolkit-0.2.3_pre3/src/gentoolkit/errors.py
---- gentoolkit-0.2.3_pre3.orig/src/gentoolkit/errors.py	2007-02-05 21:06:00 +0100
-+++ gentoolkit-0.2.3_pre3/src/gentoolkit/errors.py	2007-02-05 21:18:03 +0100
+diff -ur gentoolkit-0.2.3/src/gentoolkit/errors.py gentoolkit-0.2.3/src/gentoolkit/errors.py
+--- gentoolkit-0.2.3/src/gentoolkit/errors.py	2007-03-01 21:00:33 +0100
++++ gentoolkit-0.2.3/src/gentoolkit/errors.py	2007-03-01 21:00:41 +0100
 @@ -1,4 +1,4 @@
 -#! /usr/bin/python2
 +#!/usr/bin/python
@@ -100,15 +91,9 @@ diff -Naur gentoolkit-0.2.3_pre3.orig/src/gentoolkit/errors.py gentoolkit-0.2.3_
 -		return self._message
 \ No newline at end of file
 +		return self._message
-diff -Naur gentoolkit-0.2.3_pre3.orig/src/gentoolkit/helpers.py gentoolkit-0.2.3_pre3/src/gentoolkit/helpers.py
---- gentoolkit-0.2.3_pre3.orig/src/gentoolkit/helpers.py	2007-02-05 21:06:00 +0100
-+++ gentoolkit-0.2.3_pre3/src/gentoolkit/helpers.py	2007-02-05 21:18:18 +0100
-@@ -1,4 +1,4 @@
--#! /usr/bin/python2
-+#!/usr/bin/python
- #
- # Copyright(c) 2004, Karl Trygve Kalleberg <karltk@gentoo.org>
- # Copyright(c) 2004, Gentoo Foundation
+diff -ur gentoolkit-0.2.3/src/gentoolkit/helpers.py gentoolkit-0.2.3/src/gentoolkit/helpers.py
+--- gentoolkit-0.2.3/src/gentoolkit/helpers.py	2007-03-01 21:00:33 +0100
++++ gentoolkit-0.2.3/src/gentoolkit/helpers.py	2007-03-01 21:04:09 +0100
 @@ -10,7 +10,7 @@
  import portage
  from gentoolkit import *
@@ -118,18 +103,18 @@ diff -Naur gentoolkit-0.2.3_pre3.orig/src/gentoolkit/helpers.py gentoolkit-0.2.3
  
  def find_packages(search_key, masked=False):
  	"""Returns a list of Package objects that matched the search key."""
-diff -Naur gentoolkit-0.2.3_pre3.orig/src/gentoolkit/package.py gentoolkit-0.2.3_pre3/src/gentoolkit/package.py
---- gentoolkit-0.2.3_pre3.orig/src/gentoolkit/package.py	2007-02-05 21:06:00 +0100
-+++ gentoolkit-0.2.3_pre3/src/gentoolkit/package.py	2007-02-05 21:18:27 +0100
+diff -ur gentoolkit-0.2.3/src/gentoolkit/package.py gentoolkit-0.2.3/src/gentoolkit/package.py
+--- gentoolkit-0.2.3/src/gentoolkit/package.py	2007-03-01 21:00:33 +0100
++++ gentoolkit-0.2.3/src/gentoolkit/package.py	2007-03-01 21:00:41 +0100
 @@ -1,4 +1,4 @@
 -#! /usr/bin/python2
 +#!/usr/bin/python
  #
  # Copyright(c) 2004, Karl Trygve Kalleberg <karltk@gentoo.org>
  # Copyright(c) 2004, Gentoo Foundation
-diff -Naur gentoolkit-0.2.3_pre3.orig/src/gentoolkit/pprinter.py gentoolkit-0.2.3_pre3/src/gentoolkit/pprinter.py
---- gentoolkit-0.2.3_pre3.orig/src/gentoolkit/pprinter.py	2007-02-05 21:06:00 +0100
-+++ gentoolkit-0.2.3_pre3/src/gentoolkit/pprinter.py	2007-02-05 21:17:48 +0100
+diff -ur gentoolkit-0.2.3/src/gentoolkit/pprinter.py gentoolkit-0.2.3/src/gentoolkit/pprinter.py
+--- gentoolkit-0.2.3/src/gentoolkit/pprinter.py	2007-03-01 21:00:33 +0100
++++ gentoolkit-0.2.3/src/gentoolkit/pprinter.py	2007-03-01 21:00:41 +0100
 @@ -7,12 +7,12 @@
  # $Header$
  
@@ -244,9 +229,9 @@ diff -Naur gentoolkit-0.2.3_pre3.orig/src/gentoolkit/pprinter.py gentoolkit-0.2.
 -	return output.white(s)
 \ No newline at end of file
 +	return portage.output.white(s)
-diff -Naur gentoolkit-0.2.3_pre3.orig/src/glsa-check/glsa-check gentoolkit-0.2.3_pre3/src/glsa-check/glsa-check
---- gentoolkit-0.2.3_pre3.orig/src/glsa-check/glsa-check	2007-02-05 21:06:00 +0100
-+++ gentoolkit-0.2.3_pre3/src/glsa-check/glsa-check	2007-02-05 21:21:16 +0100
+diff -ur gentoolkit-0.2.3/src/glsa-check/glsa-check gentoolkit-0.2.3/src/glsa-check/glsa-check
+--- gentoolkit-0.2.3/src/glsa-check/glsa-check	2007-03-01 21:00:33 +0100
++++ gentoolkit-0.2.3/src/glsa-check/glsa-check	2007-03-01 21:04:57 +0100
 @@ -6,7 +6,7 @@
  import os,string,sys
  sys.path.insert(0, "/usr/lib/gentoolkit/pym")
@@ -256,7 +241,7 @@ diff -Naur gentoolkit-0.2.3_pre3.orig/src/glsa-check/glsa-check gentoolkit-0.2.3
  from getopt import getopt,GetoptError
  
  __program__ = "glsa-check"
-@@ -272,7 +272,7 @@
+@@ -273,7 +273,7 @@
  
  # mail mode as requested by solar
  if mode == "mail":
@@ -265,7 +250,7 @@ diff -Naur gentoolkit-0.2.3_pre3.orig/src/glsa-check/glsa-check gentoolkit-0.2.3
  	from StringIO import StringIO
  	
  	# color doesn't make any sense for mail
-@@ -311,8 +311,8 @@
+@@ -312,8 +312,8 @@
  		myattachments.append(str(myfd.getvalue()))
  		myfd.close()
  		
@@ -276,9 +261,9 @@ diff -Naur gentoolkit-0.2.3_pre3.orig/src/glsa-check/glsa-check gentoolkit-0.2.3
  		
  	sys.exit(0)
  	
-diff -Naur gentoolkit-0.2.3_pre3.orig/src/revdep-rebuild/revdep-rebuild gentoolkit-0.2.3_pre3/src/revdep-rebuild/revdep-rebuild
---- gentoolkit-0.2.3_pre3.orig/src/revdep-rebuild/revdep-rebuild	2007-02-05 21:06:00 +0100
-+++ gentoolkit-0.2.3_pre3/src/revdep-rebuild/revdep-rebuild	2007-02-05 21:22:19 +0100
+diff -ur gentoolkit-0.2.3/src/revdep-rebuild/revdep-rebuild gentoolkit-0.2.3/src/revdep-rebuild/revdep-rebuild
+--- gentoolkit-0.2.3/src/revdep-rebuild/revdep-rebuild	2007-03-01 21:00:33 +0100
++++ gentoolkit-0.2.3/src/revdep-rebuild/revdep-rebuild	2007-03-01 21:00:41 +0100
 @@ -1,4 +1,4 @@
 -#! /bin/bash 
 +#!/bin/bash 

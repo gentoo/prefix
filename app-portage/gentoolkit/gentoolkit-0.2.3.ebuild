@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/gentoolkit-0.2.3_pre3.ebuild,v 1.1 2006/12/29 17:40:26 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/gentoolkit-0.2.3.ebuild,v 1.2 2007/02/28 21:58:08 genstef Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ DEPEND=">=sys-apps/portage-2.1.1_pre1
 	>=dev-lang/python-2.0
 	>=dev-lang/perl-5.6
 	>=sys-apps/grep-2.4
-	userland_GNU? ( sys-apps/debianutils )"
+	!userland_BSD? ( sys-apps/debianutils )"
 
 src_unpack() {
 	unpack ${A}
@@ -42,12 +42,6 @@ src_install() {
 	make DESTDIR="${D}/${EPREFIX}" install-gentoolkit || die
 }
 
-# Completely remove if no issues found during gentoolkit-0.2.3_pre testing
-#pkg_preinst() {
-#	# FIXME: Remove from future ebuilds after gentoolkit-0.2.2 is stable
-#	rm -f ${EROOT}usr/lib/gentoolkit/pym/gentoolkit.py[co] ${EROOT}usr/lib/gentoolkit/pym/gentoolkit/*.py[co]
-#}
-
 pkg_postinst() {
 	python_mod_optimize ${EROOT}usr/lib/gentoolkit
 	echo
@@ -55,10 +49,10 @@ pkg_postinst() {
 	ewarn "are no longer installed in ${EROOT}usr/bin in this release."
 	ewarn "They are still available in ${EROOT}usr/share/doc/${PF}/deprecated/"
 	ewarn "if you *really* want to use them."
-	echo
+	elog
 	elog "Another alternative to qpkg and equery are the q applets in"
 	elog "app-portage/portage-utils"
-	echo
+	elog
 }
 
 pkg_postrm() {
