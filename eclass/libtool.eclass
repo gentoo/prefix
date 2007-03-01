@@ -179,7 +179,7 @@ elibtoolize() {
 	[[ ${CHOST} == *"-freebsd"* ]] && \
 		elt_patches="${elt_patches} fbsd-conf fbsd-ltconf"
 
-	useq userland_Darwin && elt_patches="${elt_patches} darwin-ltconf darwin-ltmain"
+	hasq userland_Darwin ${USE} && elt_patches="${elt_patches} darwin-ltconf darwin-ltmain"
 
 	for x in ${my_dirlist} ; do
 		local tmp=$(echo "${x}" | sed -e "s|${WORKDIR}||")
@@ -325,7 +325,7 @@ elibtoolize() {
 						fi
 						;;
 					"darwin-"*)
-						useq userland_Darwin && \
+						hasq userland_Darwin ${USE} && \
 							ewarn "  Darwin patch set '${y}' failed to apply!"
 						;;
 				esac
