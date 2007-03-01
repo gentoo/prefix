@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xfce44.eclass,v 1.16 2007/02/03 00:35:12 nichoj Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xfce44.eclass,v 1.17 2007/02/26 20:07:14 drac Exp $
 
 # Xfce44 Eclass
 #
@@ -61,12 +61,14 @@ xfce44_plugin() {
 xfce44_panel_plugin() {
 	xfce44_plugin
 	RDEPEND="${RDEPEND} >=xfce-base/xfce4-panel-${XFCE_MASTER_VERSION}"
+	DEPEND="${DEPEND} >=xfce-base/xfce4-panel-${XFCE_MASTER_VERSION}"
 }
 
 xfce44_thunar_plugin() {
 	xfce44_plugin
 	HOMEPAGE="http://thunar.xfce.org/pwiki/projects/${MY_PN}"
 	RDEPEND="${RDEPEND} >=xfce-base/thunar-${THUNAR_MASTER_VERSION}"
+	DEPEND="${DEPEND} >=xfce-base/thunar-${THUNAR_MASTER_VERSION}"
 }
 
 ## sets SRC_URI and HOMEPAGE to berlios

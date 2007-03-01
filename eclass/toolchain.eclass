@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.328 2007/02/18 02:12:03 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.329 2007/02/22 02:09:24 vapier Exp $
 
 HOMEPAGE="http://gcc.gnu.org/"
 LICENSE="GPL-2 LGPL-2.1"
@@ -1294,7 +1294,7 @@ gcc_do_configure() {
 		if [[ ${GCCMAJOR}.${GCCMINOR} > 4.1 ]] ; then
 			confgcc="${confgcc} --disable-bootstrap --disable-libgomp"
 		fi
-	elif [[ ${CHOST} != mingw* ]] ; then
+	elif [[ ${CHOST} != mingw* ]] && [[ ${CHOST} != *-mingw* ]] ; then
 		confgcc="${confgcc} --enable-shared --enable-threads=posix"
 
 		if [[ ${GCCMAJOR}.${GCCMINOR} > 4.1 ]] ; then

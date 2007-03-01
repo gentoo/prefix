@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig.eclass,v 1.28 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig.eclass,v 1.29 2007/02/27 17:02:37 genstef Exp $
 #
 # mozconfig.eclass: the new mozilla.eclass
 
@@ -19,7 +19,6 @@ RDEPEND="|| ( ( x11-libs/libXrender
 	>=sys-libs/zlib-1.1.4
 	>=media-libs/jpeg-6b
 	>=media-libs/libpng-1.2.1
-	>=sys-apps/portage-2.0.36
 	dev-libs/expat
 	app-arch/zip
 	app-arch/unzip

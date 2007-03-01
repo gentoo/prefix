@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.57 2007/02/13 19:52:51 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.58 2007/02/28 10:45:20 betelgeuse Exp $
 
 
 # -----------------------------------------------------------------------------
@@ -71,7 +71,7 @@ JAVA_PKG_PORTAGE_DEP=">=sys-apps/portage-2.1_pre1"
 # the version of java-config we want to use. We also need a recent version
 # portage, that includes phase hooks.
 # -----------------------------------------------------------------------------
-JAVA_PKG_E_DEPEND=">=dev-java/java-config-2.0.19-r1 ${JAVA_PKG_PORTAGE_DEP}"
+JAVA_PKG_E_DEPEND=">=dev-java/java-config-2.0.31 ${JAVA_PKG_PORTAGE_DEP}"
 
 # -----------------------------------------------------------------------------
 # @variable-external JAVA_PKG_ALLOW_VM_CHANGE

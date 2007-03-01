@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2.eclass,v 1.81 2007/02/05 05:39:14 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2.eclass,v 1.82 2007/02/23 15:20:57 dang Exp $
 
 #
 # gnome2.eclass
@@ -60,7 +60,7 @@ gnome2_src_configure() {
 	fi
 
 	# Avoid sandbox violations caused by misbehaving packages (bug #128289)
-	addwrite "${EROOT}root/.gnome2"
+	addwrite "/root/.gnome2"
 
 	# GST_REGISTRY is to work around gst-inspect trying to read/write /root
 	GST_REGISTRY="${S}/registry.xml" econf "$@" ${G2CONF} || die "configure failed"

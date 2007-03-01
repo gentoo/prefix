@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.159 2007/01/11 06:52:12 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.160 2007/02/22 03:23:38 pioto Exp $
 
 # Authors:
 # 	Ryan Phillips <rphillips@gentoo.org>
@@ -99,13 +99,14 @@ fi
 # toolkits, and we can also install a vimpager (this is in vim6 as well, but the
 # ebuilds don't handle it).
 if [[ $(get_major_version ) -ge 7 ]] ; then
-	if [[ "${MY_PN}" != "vim-core" ]] ; then
-		IUSE="${IUSE} mzscheme"
-		DEPEND="${DEPEND}
-			mzscheme? ( dev-scheme/mzscheme )"
-		RDEPEND="${RDEPEND}
-			mzscheme? ( dev-scheme/mzscheme )"
-	fi
+	# mzscheme support is currently broken. bug #91970
+	#if [[ "${MY_PN}" != "vim-core" ]] ; then
+	#	IUSE="${IUSE} mzscheme"
+	#	DEPEND="${DEPEND}
+	#		mzscheme? ( dev-scheme/mzscheme )"
+	#	RDEPEND="${RDEPEND}
+	#		mzscheme? ( dev-scheme/mzscheme )"
+	#fi
 	if [[ "${MY_PN}" == "gvim" ]] ; then
 		IUSE="${IUSE} netbeans aqua nextaw"
 		DEPEND="${DEPEND}   netbeans? ( dev-util/netbeans )"
@@ -375,7 +376,8 @@ vim_src_compile() {
 		# the following command never returns:
 		#   VIMINIT='let OS=system("uname -s")' vim
 		if [[ $(get_major_version ) -ge 7 ]] ; then
-			myconf="${myconf} `use_enable mzscheme mzschemeinterp`"
+			# mzscheme support is currently broken. bug #91970
+			#myconf="${myconf} `use_enable mzscheme mzschemeinterp`"
 			if [[ "${MY_PN}" == "gvim" ]] ; then
 				myconf="${myconf} `use_enable netbeans`"
 			fi
