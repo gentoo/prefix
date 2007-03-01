@@ -1,0 +1,32 @@
+diff -ur -x '*~' xvidcore-1.1.0-beta2/build/generic/configure.in xvidcore-1.1.0-beta2-fixaltivec/build/generic/configure.in
+--- xvidcore-1.1.0-beta2/build/generic/configure.in	2005-04-03 22:39:45.000000000 +0200
++++ xvidcore-1.1.0-beta2-fixaltivec/build/generic/configure.in	2005-05-08 14:38:42.920048928 +0200
+@@ -426,8 +426,18 @@
+ dnl * The vector definition is handled in portab.h thx to
+ dnl   HAVE_PARENTHESES/BRACES_ALTIVEC_DECL
+ dnl
++AC_ARG_ENABLE([altivec],
++	AC_HELP_STRING([--disable-altivec], [Disable altivec support on PPC architecture.]),
++	[ want_altivec=$enableval ], [ want_altivec=yes ] )
++
+ PPC_ALTIVEC_SOURCES=""
+-if test "$ARCHITECTURE" = "PPC" ; then
++AC_MSG_CHECKING([if altivec support has to be activated])
++
++if test "$ARCHITECTURE" = "PPC" && test "$want_altivec" = "no"; then
++   AC_MSG_RESULT([no])
++   ARCHITECTURE="GENERIC"
++elif test "$ARCHITECTURE" = "PPC"; then
++   AC_MSG_RESULT([yes])
+    AS="\$(CC)"
+    AFLAGS=""
+    ASSEMBLY_EXTENSION=".s"
+@@ -492,6 +502,8 @@
+    fi
+ 
+    rm -f conftest.*
++else
++   AC_MSG_RESULT([no])
+ fi
+ 
+ dnl
