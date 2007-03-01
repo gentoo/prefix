@@ -1,0 +1,53 @@
+# ChangeLog for app-text/build-docbook-catalog
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-text/build-docbook-catalog/ChangeLog,v 1.13 2006/10/24 09:58:36 uberlord Exp $
+
+  24 Oct 2006; Roy Marples <uberlord@gentoo.org>
+  build-docbook-catalog-1.2.ebuild:
+  Added ~sparc-fbsd keyword.
+
+  05 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  build-docbook-catalog-1.2.ebuild:
+  Add ~x86-fbsd keyword.
+
+  14 Feb 2006; Fabian Groffen <grobian@gentoo.org>
+  build-docbook-catalog-1.2.ebuild:
+  Marked ~ppc-macos (bug #122760)
+
+  09 Feb 2005; Aron Griffis <agriffis@gentoo.org>
+  -build-docbook-catalog-1.1.ebuild:
+  Trim old ebuilds
+
+  10 Oct 2004; Tom Gall <tgall@gentoo.org> build-docbook-catalog-1.2.ebuild:
+  stable on ppc64, bug #60792
+
+  22 Aug 2004; Joshua Kinard <kumba@gentoo.org>
+  build-docbook-catalog-1.2.ebuild:
+  Marked stable on mips.
+
+  19 Aug 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  build-docbook-catalog-1.2.ebuild:
+  Stable on sparc wrt #60792
+
+  18 Aug 2004; Aron Griffis <agriffis@gentoo.org>
+  build-docbook-catalog-1.2.ebuild:
+  stable on alpha, ia64 and amd64
+
+  19 Aug 2004; Mike Gardiner <obz@gentoo.org> build-docbook-catalog-1.2.ebuild:
+  Marked stable on x86
+
+*build-docbook-catalog-1.2 (23 Jul 2004)
+
+  23 Jul 2004; Aron Griffis <agriffis@gentoo.org>
+  +build-docbook-catalog-1.2.ebuild:
+  Update to version 1.2, which is quieter except when --verbose is specified
+
+  15 Jul 2004; Robin H. Johnson <robbat2@gentoo.org> :
+  fix broken package.
+
+*build-docbook-catalog-1.1 (29 Jun 2004)
+
+  29 Jun 2004; Aron Griffis <agriffis@gentoo.org> +metadata.xml,
+  +build-docbook-catalog-1.1.ebuild:
+  New package to generate docbook-xml catalogs.  Submitted by myself in bug 52725
+
