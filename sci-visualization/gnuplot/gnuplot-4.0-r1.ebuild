@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils elisp-common
+inherit flag-o-matic eutils elisp-common
 
 MY_P="${P}.0"
 
@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/gnuplot/${MY_P}.tar.gz"
 
 LICENSE="gnuplot"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
 IUSE="doc emacs gd ggi pdf plotutils png readline svga X xemacs"
 
 DEPEND="
@@ -42,6 +42,10 @@ src_unpack() {
 }
 
 src_compile() {
+	# heiko_> gnuplot doesn't compile if both, -m's and -O? is set. then the
+	# compiler crashes
+	use ppc-macos && filter-flags -O?
+
 	local myconf="--with-gihdir=${EPREFIX}/usr/share/${PN}/gih"
 
 	myconf="${myconf} $(use_with X x)"
