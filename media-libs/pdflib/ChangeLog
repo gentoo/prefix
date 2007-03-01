@@ -1,0 +1,234 @@
+# ChangeLog for media-libs/pdflib
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.60 2006/09/29 13:35:11 sebastian Exp $
+
+  29 Sep 2006; Sebastian Bergmann <sebastian@gentoo.org>
+  pdflib-5.0.4_p1-r1.ebuild, -pdflib-6.0.1.ebuild, pdflib-6.0.3.ebuild:
+  Fix bug #144977.
+
+  08 Jul 2006; Doug Goldstein <cardoe@gentoo.org> pdflib-5.0.4_p1-r1.ebuild,
+  pdflib-6.0.1.ebuild, pdflib-6.0.3.ebuild:
+  split USE='tcltk' to 'tcl' & 'tk' per bug #17808
+
+  28 Jun 2006; Luca Longinotti <chtekk@gentoo.org> metadata.xml,
+  -pdflib-5.0.2.ebuild, -pdflib-5.0.4_p1.ebuild, pdflib-5.0.4_p1-r1.ebuild,
+  pdflib-6.0.1.ebuild, pdflib-6.0.3.ebuild:
+  Fix bug #87004 (thanks to Ryan Hill) on all PDFlib packages, remove old,
+  unneeded versions, and take it under the PHP herds wing.
+
+*pdflib-6.0.3 (26 Jun 2006)
+
+  26 Jun 2006; Luca Longinotti <chtekk@gentoo.org> +pdflib-6.0.3.ebuild:
+  Version bump.
+
+  07 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> +metadata.xml:
+  Add maintainer-needed metadata.
+
+*pdflib-6.0.1 (24 May 2005)
+
+  24 May 2005; Donnie Berkholz <spyderous@gentoo.org>; +pdflib-6.0.1.ebuild:
+  Version bump; not my area, but approved by chriswhite.
+
+  20 Feb 2005; Hardave Riar <hardave@gentoo.org> pdflib-5.0.4_p1-r1.ebuild:
+  Stable on mips
+
+  14 Feb 2005; Danny van Dyk <kugelfang@gentoo.org>
+  pdflib-5.0.4_p1-r1.ebuild:
+  Fixed multilib-strict BUG #81197.
+
+  02 Feb 2005; Lina Pezzella <j4rg0n@gentoo.org> pdflib-5.0.4_p1-r1.ebuild:
+  Stable ppc-macos
+
+  02 Jan 2005; Lina Pezzella <j4rg0n@gentoo.org> pdflib-5.0.4_p1-r1.ebuild:
+  Unstable ppc-macos.
+
+*pdflib-5.0.4_p1-r1 (06 Dec 2004)
+
+  06 Dec 2004; Bryan Østergaard <kloeri@gentoo.org>
+  +pdflib-5.0.4_p1-r1.ebuild:
+  inherit eutils, bug 73139.
+
+  05 Dec 2004; Bryan Østergaard <kloeri@gentoo.org> pdflib-5.0.4_p1.ebuild:
+  Stable on alpha, bug 69043.
+
+  03 Dec 2004; Mike Doty <kingtaco@gentoo.org> pdflib-5.0.4_p1.ebuild:
+  stable on amd64, see bug #69043
+
+  01 Dec 2004; Markus Rothe <corsair@gentoo.org> pdflib-5.0.4_p1.ebuild:
+  Stable on ppc64; bug #69043
+
+  01 Dec 2004; Gustavo Zacarias <gustavoz@gentoo.org> pdflib-5.0.4_p1.ebuild:
+  Stable on sparc wrt #69043
+
+  01 Dec 2004; Joseph Jezak <josejx@gentoo.org> pdflib-5.0.4_p1.ebuild:
+  Marked ppc stable for bug #69043.
+
+*pdflib-5.0.4_p1 (01 Dec 2004)
+
+  01 Dec 2004; Chris White <chriswhite@gentoo.org> +pdflib-5.0.4_p1.ebuild:
+  Ok, so 6.0.0p1 was supposed to be a nice security bump for a now
+  non-confidential security bug. That didn't work out too well and caused php
+  stuff to not compile, so that's what happened below. Now then, 5.0.4 will be
+  the official stable marked pdflib and I've re-compiled everything that depends
+  on pdflib on a stable only chroot and it all compiles just fine. That said,
+  bumping to 5.0.4p1.
+
+  01 Dec 2004; Chris White <chriswhite@gentoo.org> -pdflib-6.0.0_p1.ebuild:
+  Removed from portage 6.0.0p1, explainations later. This will be brought back
+  shortly.
+
+*pdflib-6.0.0_p1 (30 Nov 2004)
+
+  30 Nov 2004; Chris White <chriswhite@gentoo.org> +pdflib-6.0.0_p1.ebuild:
+  Version bump to 6.0.0_p1.
+
+  17 Oct 2004; Thomas Matthijs <axxo@gentoo.org> pdflib-5.0.2.ebuild:
+  dojar --> java-pkg_dojar
+
+  06 Oct 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  pdflib-5.0.2.ebuild:
+  get_libdir fixes.
+
+  31 Jul 2004; Tom Gall <tgall@gentoo.org> pdflib-5.0.2.ebuild:
+  stable on ppc64, bug #57147
+
+  07 Jun 2004; Aron Griffis <agriffis@gentoo.org> pdflib-5.0.2.ebuild:
+  Fix use invocation
+
+  12 May 2004; Michael McCabe <randy@gentoo.org> pdflib-5.0.2.ebuild:
+  Added s390 keywords
+
+  10 May 2004; Michael Sterrett <mr_bones_@gentoo.org> pdflib-5.0.2.ebuild:
+  error check sed; tidy
+
+  07 May 2004; Michael Sterrett <mr_bones_@gentoo.org> pdflib-4.0.1-r3.ebuild,
+  pdflib-4.0.3-r1.ebuild:
+  clean pdflib-4 ebuilds
+
+  24 Jan 2004; <gustavoz@gentoo.org> pdflib-5.0.2.ebuild:
+  marked stable on sparc
+
+  24 Jan 2004; Guy Martin <gmsoft@gentoo.org> pdflib-5.0.2.ebuild:
+  Marked stable on hppa.
+
+  23 Jan 2004; Seemant Kulleen <seemant@gentoo.org> pdflib-5.0.2.ebuild:
+  ok mkennedy fixed the jar file issue
+
+  23 Jan 2004; Seemant Kulleen <seemant@gentoo.org> pdflib-5.0.2.ebuild:
+  more fixes, so that java stuff is not installed into /var/tmp/portage -- leave
+  it to a dotcom to be inconsistent in their build system. Thanks to: tom
+  <poplawtm@earthlink.net> via email for pointing this out
+
+  23 Jan 2004; Bartosch Pixa <darkspecter@gentoo.org> pdflib-5.0.2.ebuild:
+  set ppc in keywords
+
+  22 Jan 2004; Jon Portnoy <avenj@gentoo.org> pdflib-5.0.2.ebuild :
+  Stable on AMD64.
+
+  23 Jan 2004; Seemant Kulleen <seemant@gentoo.org> pdflib-5.0.2.ebuild:
+  sandbox fix0rs, properly this time
+
+  22 Jan 2004; Seemant Kulleen <seemant@gentoo.org> pdflib-5.0.2.ebuild:
+  Stable on x86 as well
+
+  22 Jan 2004; Aron Griffis <agriffis@gentoo.org> pdflib-5.0.2.ebuild:
+  stable on alpha and ia64
+
+  22 Jan 2004; Seemant Kulleen <seemant@gentoo.org> pdflib-5.0.2.ebuild:
+  Fix sandbox violations. Thanks to: Thomas Seifert <ts77@gmx.de> for reporting
+  it in bug #38500
+
+*pdflib-5.0.2 (13 Jan 2004)
+
+  13 Jan 2004; Seemant Kulleen <seemant@gentoo.org> pdflib-5.0.2.ebuild :
+
+  Version bump, coz the previous version seems to have been taken offline
+  upstream.
+
+  10 Jan 2004; Aron Griffis <agriffis@gentoo.org> pdflib-4.0.3-r1.ebuild:
+  stable on alpha and ia64
+
+  24 Nov 2003; Aron Griffis <agriffis@gentoo.org> pdflib-4.0.1-r3.ebuild:
+  Add ~alpha
+
+  25 Sep 2003; Martin Schlemmer <azarah@gentoo.org> pdflib-4.0.3-r1.ebuild:
+  Get python version dynamically.
+
+  21 May 2003; Luca Barbato <lu_zero@gentoo.org> pdflib-4.0.3-r1.ebuild:
+  Added ~ppc keyword
+
+*pdflib-4.0.3-r1 (13 Jan 2003)
+
+  31 Mar 2003; Christian Birchinger <joker@gentoo.org> pdflib-4.0.3-r1.ebuild:
+  Added sparc keyword
+
+  25 Mar 2003; Aron Griffis <agriffis@gentoo.org> pdflib-4.0.3-r1.ebuild:
+  Add ~alpha to KEYWORDS
+
+  20 Mar 2003; Guy Martin <gmsoft@gentoo.org> pdflib-4.0.3-r1.ebuild :
+  Added hppa to KEYWORDS.
+
+  16 Jan 2003; Nick Hadaway <raker@gentoo.org> pdflib-4.0.3-r1.ebuild :
+  Marked stable.
+
+  13 Jan 2003; Nick Hadaway <raker@gentoo.org> pdflib-4.0.3-r1.ebuild,
+  files/digest-pdflib-4.0.3-r1 :
+  Reworked ebuild so python is detected if enabled in use.  Had to limit
+  compatible pythons to the 2.2 series.  No longer building against
+  system png, tiff, and jpeg libs as all language bindings are disabled
+  if linking against them.
+
+*pdflib-4.0.3 (09 Nov 2002)
+
+  16 Dec 2002; Seemant Kulleen <seemant@gentoo.org> pdflib-4.0.3.ebuild :
+
+  Moved to stable, as the previous version caused to much havoc with mod_php
+  and friends.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+  10 Nov 2002; Mike Frysinger <vapier@gentoo.org> :
+  Links libpng against zlib and libstdc++ to fix #10517
+
+  09 Nov 2002; Ryan Phillips <rphillips@gentoo.org> pdflib-4.0.3.ebuild :
+  New version.
+
+*pdflib-4.0.1-r3 (3 Apr 2002)
+
+  28 Oct 2002; Mike Frysinger <vapier@gentoo.org> :
+  Links libpng against zlib and libstdc++ to fix #9793
+
+  7 Sep 2002; Owen Stampflee <owen@gentoo.org> :
+  Added PPC to KEYWORDS.
+
+  14 Aug 2002; Seemant Kulleen <seemant@genoo.org> pdflib-4.0.1-r1.ebuild :
+  Added libpng as a dependency.  Closes bug #6480 by bar4ka@bol.com.br
+  (bar4ka)
+
+  08 Aug 2002; Seemant Kulleen <seemant@gentoo.org> pdflib-4.0.1-r3.ebuild :
+  Added "--with-zlib" configure flag.  Closes bug #6205 by sponge80@msn.com
+  (Nicholas)
+
+  7 Aug 2002; Ryan Phillips <rphillips@gentoo.org> : 
+  Changed package to use system libpng. PHP doesn't like being
+  linked to two separate places.
+  
+  Edward Roper states, "php.net indicates it's a conflict of 
+  pdflib's png support and libpng... if pdflib is compiled to use 
+  system libpng and not internal libpng it will supposedly work..."
+
+  Which he then verified.
+
+  3 Apr 2002; Daniel Robbins <drobbins@gentoo.org> : New revision -- we dodir
+  /usr/bin (required for make install), closing bug 1498.  Also, now some
+  installation steps requiring java are conditional on the java USE variable
+  being set.
+
+*pdflib-4.0.1-r2 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
