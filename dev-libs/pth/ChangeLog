@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/pth
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/ChangeLog,v 1.42 2006/10/27 11:42:01 grobian Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/ChangeLog,v 1.43 2007/02/22 01:09:44 peper Exp $
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
 
   27 Oct 2006; Fabian Groffen <grobian@gentoo.org> pth-1.4.0.ebuild,
   pth-2.0.3.ebuild, pth-2.0.5.ebuild, pth-2.0.6.ebuild:

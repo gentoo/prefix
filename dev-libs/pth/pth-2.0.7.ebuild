@@ -21,8 +21,9 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-2.0.5-parallelfix.patch
-	epatch "${FILESDIR}/${P}-ldflags.patch"
-	epatch "${FILESDIR}/${P}-sigstack.patch"
+	epatch "${FILESDIR}/${PN}-2.0.6-ldflags.patch"
+	epatch "${FILESDIR}/${PN}-2.0.6-sigstack.patch"
+	epatch "${FILESDIR}/${P}-libs.patch"
 
 	ht_fix_file aclocal.m4 configure
 
@@ -31,7 +32,6 @@ src_unpack() {
 
 src_compile() {
 	local myconf
-	[[ ${EPREFIX%/} == "" ]] || myconf="--enable-pthread"
 	econf ${myconf} || die "econf failed"
 	emake || die "emake failed"
 }
