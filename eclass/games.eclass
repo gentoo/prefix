@@ -16,9 +16,9 @@ EXPORT_FUNCTIONS pkg_preinst pkg_postinst src_compile pkg_setup
 
 DESCRIPTION="Based on the ${ECLASS} eclass"
 
-export GAMES_PREFIX=${GAMES_PREFIX:-/usr/games}
+export GAMES_PREFIX=${GAMES_PREFIX:-${EPREFIX}/usr/games}
 export GAMES_PREFIX_OPT=${GAMES_PREFIX_OPT:-/opt}
-export GAMES_DATADIR=${GAMES_DATADIR:-/usr/share/games}
+export GAMES_DATADIR=${GAMES_DATADIR:-${EPREFIX}/usr/share/games}
 export GAMES_DATADIR_BASE=${GAMES_DATADIR_BASE:-/usr/share} # some packages auto append 'games'
 export GAMES_SYSCONFDIR=${GAMES_SYSCONFDIR:-/etc/games}
 export GAMES_STATEDIR=${GAMES_STATEDIR:-/var/games}
@@ -118,7 +118,7 @@ gamesenv() {
 	[[ ${hasit} == "1" ]] \
 		&& GAMES_LIBDIRS=${GAMES_LIBDIRS:1} \
 		|| GAMES_LIBDIRS="${GAMES_LIBDIR}:${GAMES_LIBDIRS}"
-	cat <<-EOF > "${ROOT}"/etc/env.d/${GAMES_ENVD}
+	cat <<-EOF > "${EROOT}"/etc/env.d/${GAMES_ENVD}
 	LDPATH="${GAMES_LIBDIRS}"
 	PATH="${GAMES_BINDIR}"
 	EOF
