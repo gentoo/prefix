@@ -1,6 +1,34 @@
 # ChangeLog for dev-perl/Compress-Zlib
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Compress-Zlib/ChangeLog,v 1.61 2006/11/17 13:08:31 gustavoz Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Compress-Zlib/ChangeLog,v 1.67 2007/01/15 15:09:40 mcummings Exp $
+
+  15 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  Compress-Zlib-1.41.ebuild, Compress-Zlib-1.42.ebuild,
+  Compress-Zlib-2.001.ebuild, -Compress-Zlib-2.002.ebuild,
+  Compress-Zlib-2.003.ebuild:
+  Ebuild maintenance
+
+*Compress-Zlib-2.003 (05 Jan 2007)
+
+  05 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  +Compress-Zlib-2.003.ebuild:
+  Version bump
+
+*Compress-Zlib-2.002 (02 Jan 2007)
+
+  02 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  +Compress-Zlib-2.002.ebuild:
+  Version bump
+
+  16 Dec 2006; Michael Cummings <mcummings@gentoo.org>
+  Compress-Zlib-2.001.ebuild:
+  Marking amd64 stable
+
+  11 Dec 2006; Lars Weiler <pylon@gentoo.org> Compress-Zlib-2.001.ebuild:
+  Stable on ppc; bug #154244.
+
+  03 Dec 2006; Markus Rothe <corsair@gentoo.org> Compress-Zlib-2.001.ebuild:
+  Stable on ppc64
 
   17 Nov 2006; Gustavo Zacarias <gustavoz@gentoo.org>
   Compress-Zlib-2.001.ebuild:

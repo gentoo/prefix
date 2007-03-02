@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Compress-Zlib/Compress-Zlib-2.001.ebuild,v 1.12 2007/01/15 15:09:40 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Compress-Zlib/Compress-Zlib-2.003.ebuild,v 1.2 2007/01/15 15:09:40 mcummings Exp $
 
 EAPI="prefix"
 
@@ -16,9 +16,10 @@ KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
 IUSE=""
 
 DEPEND="sys-libs/zlib
-	dev-perl/Compress-Raw-Zlib
-	dev-perl/IO-Compress-Base
-	dev-perl/IO-Compress-Zlib
+	>=dev-perl/Compress-Raw-Zlib-2.003
+	>=dev-perl/IO-Compress-Base-2.003
+	>=dev-perl/IO-Compress-Zlib-2.003
+	virtual/perl-Scalar-List-Utils
 	dev-lang/perl"
 
 SRC_TEST="do"
