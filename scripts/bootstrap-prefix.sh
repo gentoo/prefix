@@ -83,15 +83,15 @@ setup_portage() {
 	local keywords=""
 	einfo "setting up some guessed defaults"
 	case ${CHOST} in
-		powerpc-*-darwin8)
+		powerpc-apple-darwin8)
 			profile="${PORTDIR}/profiles/default-darwin/macos/10.4/ppc"
 			keywords="~ppc-macos ppc-macos"
 			;;
-		powerpc-*-darwin7)
+		powerpc-apple-darwin7)
 			profile="${PORTDIR}/profiles/default-darwin/macos/10.3"
 			keywords="~ppc-macos ppc-macos"
 			;;
-		i*86-*-darwin8)
+		i*86-apple-darwin8)
 			profile="${PORTDIR}/profiles/default-darwin/macos/10.4/x86"
 			keywords="~x86-macos x86-macos"
 			;;
@@ -114,6 +114,10 @@ setup_portage() {
 		sparc-sun-solaris2.10)
 			profile="${PORTDIR}/profiles/default-sunos/solaris/5.10/sparc"
 			keywords="~sparc-solaris sparc-solaris"
+			;;
+		powerpc-ibm-aix5.2)
+			profile="${PORTDIR}/profiles/default-aix/5.2/ppc"
+			keywords="~ppc-aix ppc-aix"
 			;;
 		*)	
 			einfo "You might need to set up a make.profile symlink to a profile in ${PORTDIR}"
@@ -424,7 +428,7 @@ bootstrap_binutils() {
 unset TMP TMPDIR TEMP
 
 # Try to guess the CHOST if not set.  We currently only support Linux,
-# Darwin and Solaris guessing on a very sloppy base.
+# Darwin, Solaris and AIX guessing on a very sloppy base.
 if [ -z "${CHOST}" ];
 then
 	if [ x$(type -t uname) == "xfile" ];
@@ -449,6 +453,10 @@ then
 				esac
 				# make needs to know it is gmake
 				MAKE=gmake
+				;;
+			AIX)
+				CHOST="`uname -p`-ibm-aix`oslevel | sed 's|([0-9]\.[0-9]).*|\1|'`"
+				MAKE=make
 				;;
 			*)
 				eerror "Nothing known about platform `uname -s`."
