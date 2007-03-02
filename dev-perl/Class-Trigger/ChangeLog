@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Class-Trigger
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Trigger/ChangeLog,v 1.22 2006/08/07 00:23:22 mcummings Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Trigger/ChangeLog,v 1.23 2007/01/15 15:01:45 mcummings Exp $
+
+  15 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  Class-Trigger-0.10.ebuild:
+  Ebuild maintenance
 
   07 Aug 2006; Michael Cummings <mcummings@gentoo.org>
   -Class-Trigger-0.08.ebuild, -Class-Trigger-0.09.ebuild:
