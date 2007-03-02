@@ -7,3 +7,4 @@
 #
 # seems sse needs mmx
 media-video/mplayer mmx mmxext sse sse2 gtk
+media-sound/mpg123 mmx
