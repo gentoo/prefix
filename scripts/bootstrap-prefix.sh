@@ -325,8 +325,7 @@ bootstrap_gnu() {
 	cd ${S}
 
 	einfo "Compiling ${A%-*}"
-	econf \
-		--disable-nls
+	econf
 	$MAKE || exit 1
 
 	einfo "Installing ${A%-*}"
