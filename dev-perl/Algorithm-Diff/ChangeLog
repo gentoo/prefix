@@ -1,6 +1,13 @@
 # ChangeLog for dev-perl/Algorithm-Diff
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Algorithm-Diff/ChangeLog,v 1.24 2006/09/16 20:23:03 dertobi123 Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Algorithm-Diff/ChangeLog,v 1.25 2007/02/06 14:37:01 mcummings Exp $
+
+*Algorithm-Diff-1.1902 (06 Feb 2007)
+
+  06 Feb 2007; Michael Cummings <mcummings@gentoo.org>
+  Algorithm-Diff-1.15.ebuild, Algorithm-Diff-1.1901.ebuild,
+  +Algorithm-Diff-1.1902.ebuild:
+  Version bump
 
   16 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org>
   Algorithm-Diff-1.1901.ebuild:
