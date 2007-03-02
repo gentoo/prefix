@@ -357,11 +357,18 @@ bootstrap_python() {
 	export PYTHON_DISABLE_SSL=1
 	export OPT="${CFLAGS}"
 
+	local myconf=""
+
 	case $CHOST in
 		*-*-solaris*)
 			# Solaris manpage says we need -lrt for fdatasync and
 			# sem_wait & friends, Python apparently doesn't know
 			export LDFLAGS="-lrt -laio -lmd5"
+		;;
+		*-*-aix*)
+			# Python stubbornly insists on using cc_r to compile.  We
+			# know better, so force it to listen to us
+			myconf="${myconf} --with-gcc=yes"
 		;;
 	esac
 
@@ -373,7 +380,8 @@ bootstrap_python() {
 		--disable-ipv6 \
 		--with-threads \
 		--with-cxx=no \
-		--disable-shared
+		--disable-shared \
+		${myconf}
 	$MAKE ${MAKEOPTS} || exit 1
 
 	einfo "Installing ${A%-*}"
