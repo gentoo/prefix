@@ -16,7 +16,10 @@ DEPEND="sqlite? ( >=dev-db/sqlite-3 )"
 RDEPEND="${DEPEND}"
 
 src_compile() {
-	econf $(use_with sqlite) || die "econf failed"
+	econf \
+		--with-portdir-cache-method=none \
+		--with-eprefix-default=${EPREFIX} \
+		$(use_with sqlite) || die "econf failed"
 	emake || die "emake failed"
 	src/eix --dump-defaults >eixrc || die "generating eixrc failed"
 }
@@ -26,7 +29,6 @@ src_install() {
 
 	dodoc AUTHORS ChangeLog TODO
 
-	sed -i -e "s:PORTDIR_CACHE_METHOD.*:PORTDIR_CACHE_METHOD='none':" eixrc
 	insinto /etc
 	doins eixrc
 }
