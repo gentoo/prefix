@@ -6,19 +6,21 @@
 
 virtual/aspell-dict	app-dicts/aspell-en
 virtual/baselayout	sys-apps/baselayout-prefix
+virtual/blackbox	x11-wm/fluxbox
 virtual/bootloader	sys-boot/bootx
-virtual/commonlisp	dev-lisp/sbcl
 virtual/cron		sys-process/vixie-cron
 virtual/dhcpcd		net-misc/dhcpcd
 virtual/editor		app-editors/nano
 virtual/httpd-php	dev-php/mod_php
 virtual/inetd		sys-apps/xinetd
+virtual/jdk			dev-java/sun-jdk
+virtual/jre			dev-java/sun-jdk
+virtual/kerberos	app-crypt/mit-krb5
 virtual/krb5		app-crypt/mit-krb5
 virtual/libc		sys-sunos/libsystem
 virtual/logger		app-admin/sysklogd
 virtual/lpr			net-print/cups
 virtual/mda			mail-filter/procmail
-virtual/mta			mail-mta/postfix
 #virtual/os-headers	sys-sunos/libsystem
 virtual/php			dev-php/mod_php
 virtual/python		dev-lang/python
@@ -28,3 +30,4 @@ virtual/tetex		app-text/tetex
 virtual/textbrowser	www-client/links
 virtual/w3m			www-client/w3m
 virtual/emacs		app-editors/emacs
+

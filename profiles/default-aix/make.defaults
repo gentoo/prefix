@@ -11,7 +11,11 @@ CXXFLAGS=${CFLAGS}
 MAKEOPTS="-j2"
 PLATFORM=$CHOST
 
-FEATURES="-sandbox -userpriv"
+FEATURES="-sandbox -userpriv collision-protect"
 
 USE="berkdb bzip2 python zlib"
-USE_EXPAND="PLATFORM"
+
+USE_EXPAND="PLATFORM LINGUAS USERLAND KERNEL ELIBC"
+USERLAND="AIX"
+KERNEL="AIX"
+ELIBC="AIX"
