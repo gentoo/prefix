@@ -5,6 +5,8 @@
 # This file contains descriptions of KERNEL USE_EXPAND flags.
 
 # Keep it sorted.
+AIX - KERNEL setting for system using the AIX kernel
 Darwin - KERNEL setting for system using the Darwin kernel (i.e.: Mac OS X).
 FreeBSD - KERNEL setting for system using the FreeBSD kernel.
 linux - KERNEL setting for systems using the Linux kernel
+Solaris - KERNEL setting for systems using an SunOS (i.e.: Solaris) kernel

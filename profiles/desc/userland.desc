@@ -6,6 +6,9 @@
 
 # Keep it sorted.
 
+AIX - USERLAND setting for systems using the AIX userland tools
+BSD - USERLAND setting for systems using BSDish userland (FreeBSD OpenBSD NetBSD DragonFly)
 Darwin - USERLAND setting for systems that use the Darwin userland tools
 GNU - USERLAND setting for systems that use the GNU userland tools
-BSD - USERLAND setting for systems using BSDish userland (FreeBSD OpenBSD NetBSD DragonFly)
+Solaris - USERLAND setting for systems that use the Solaris userland
+tools
