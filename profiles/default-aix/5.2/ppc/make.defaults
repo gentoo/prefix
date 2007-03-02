@@ -1,0 +1,5 @@
+ARCH=ppc
+CHOST="powerpc-ibm-aix5.2"
+ACCEPT_KEYWORDS="ppc-aix"
+USE="ppc-aix"
+
