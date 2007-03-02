@@ -24,12 +24,13 @@ fi
 PF=${ebuild/.ebuild}
 P=${PF%-r[1-9]*}
 PN=${P%-*}
+PV=${P/${PN}-}
 
 wget http://sources.gentoo.org/viewcvs.py/*checkout*/gentoo-x86/$catpkg/$ebuild
 mkdir files
 wget -P files http://sources.gentoo.org/viewcvs.py/*checkout*/gentoo-x86/$catpkg/files/digest-${PF}
 
-for i in $(grep FILESDIR $ebuild | sed -e "s:.*/::" -e "s:\${P}:$P:g" -e "s:\${PN}:$PN:g" -e 's:"::g' -e ":'::"); do
+for i in $(eval echo $(grep FILESDIR $ebuild | sed -e "s:.*/::" -e 's:"::g' -e "s:'::" -e "s:#.*::")); do
 	wget -P files http://sources.gentoo.org/viewcvs.py/*checkout*/gentoo-x86/$catpkg/files/$i
 done
 eapify $ebuild
