@@ -40,3 +40,6 @@ x86		default-linux/x86/2006.1/desktop		dev
 # Solaris Profiles
 sparc-solaris	default-sunos/solaris/5.10/sparc	dev
 x86-solaris		default-sunos/solaris/5.10/x86		dev
+
+# AIX Profiles
+ppc-aix			default-aix/5.2/ppc					dev
