@@ -1,0 +1,58 @@
+# ChangeLog for app-text/dvipng
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/ChangeLog,v 1.13 2007/02/08 23:16:34 opfer Exp $
+
+*dvipng-1.9 (08 Feb 2007)
+
+  08 Feb 2007; Christian Faulhammer <opfer@gentoo.org> -dvipng-1.5.ebuild,
+  -dvipng-1.7.ebuild, +dvipng-1.9.ebuild:
+  clean up a bit; version bump: added some quotes around variable; fixes bug
+  #155033
+
+  23 Nov 2006; Tobias Scherbaum <dertobi123@gentoo.org> dvipng-1.8.ebuild:
+  ppc stable, bug #154240
+
+  23 Nov 2006; <blubb@gentoo.org> dvipng-1.8.ebuild:
+  stable on amd64
+
+  15 Nov 2006; Gustavo Zacarias <gustavoz@gentoo.org> dvipng-1.8.ebuild:
+  Stable on sparc wrt #154240
+
+  07 Nov 2006; Christian Faulhammer <opfer@gentoo.org> dvipng-1.8.ebuild:
+  stable x86, bug #154240
+
+  25 Jun 2006; Tobias Scherbaum <dertobi123@gentoo.org> dvipng-1.8.ebuild:
+  Added ~ppc, bug #131761
+
+  19 Jun 2006; Markus Rothe <corsair@gentoo.org> dvipng-1.8.ebuild:
+  Added ~ppc64; bug #131761
+
+  11 Apr 2006; Ferris McCormick <fmccor@gentoo.org> ChangeLog:
+  Fix spelling error in ChangeLog entry.
+
+  11 Apr 2006; Ferris McCormick <fmccor@gentoo.org> dvipng-1.8.ebuild:
+  Add ~sparc keyword.  This package is required for app-text/tetex-3.0_p1-r3 to
+  retain functionality, as tetex relies on this package for dvipng capability.
+  Package builds and runs fine.
+
+  10 Apr 2006; Martin Ehmsen <ehmsen@gentoo.org> dvipng-1.5.ebuild,
+  dvipng-1.7.ebuild:
+  Removed INSTALL, found by QA script.
+
+*dvipng-1.8 (30 Mar 2006)
+
+  30 Mar 2006; Martin Ehmsen <ehmsen@gentoo.org> +dvipng-1.8.ebuild:
+  Version bump to 1.8
+
+*dvipng-1.7 (02 Feb 2006)
+
+  02 Feb 2006; Martin Ehmsen <ehmsen@gentoo.org> +dvipng-1.7.ebuild:
+  Version bump thanks to Darren Dale <dd55@cornell.edu>, bug #100860.
+
+*dvipng-1.5 (29 May 2005)
+
+  29 May 2005; Mamoru KOMACHI <usata@gentoo.org> +metadata.xml,
+  +dvipng-1.5.ebuild:
+  Initial import. Ebuild submitted by Marti Raudsepp <integor@gmail.com>;
+  bug #76046.
+
