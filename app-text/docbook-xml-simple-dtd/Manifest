@@ -1,0 +1,20 @@
+AUX docbook-xml-simple-dtd-4.1.2.4.catalog 1728 RMD160 15e8c95f2240b4563cd0a70fced0d0634eed2ce1 SHA1 8cd10b7e85e54d067f2117570d155cfaaaa4a70d SHA256 30bbe27691f329f9825936fe75243457084262901ebf0eb696f84a7fc9d3aad4
+MD5 3fddcedfea315b3a45cf2c3c15d6061c files/docbook-xml-simple-dtd-4.1.2.4.catalog 1728
+RMD160 15e8c95f2240b4563cd0a70fced0d0634eed2ce1 files/docbook-xml-simple-dtd-4.1.2.4.catalog 1728
+SHA256 30bbe27691f329f9825936fe75243457084262901ebf0eb696f84a7fc9d3aad4 files/docbook-xml-simple-dtd-4.1.2.4.catalog 1728
+DIST sdb4124.zip 35199 RMD160 32bcdf4d38401f7fdf62aaea587699c03d25ea70 SHA1 3debe639734cfce4cd345ace2b7cdb2bb8eb9b42 SHA256 14aea7b901dd07f7725273fe96456599e226792dc2a02556bef6ab970a57bb56
+EBUILD docbook-xml-simple-dtd-4.1.2.4-r2.ebuild 981 RMD160 d4cdd707526ef627cb76394f3d4a02b1bdba0d89 SHA1 dfccea5df3623397578635ff5bdd618d4d3bc645 SHA256 be9e60b636784713e4cb528a3118ea9c33e128c42e7e4b2cffe3d70b39345919
+MD5 7ab12de1f422c43137034e4b637dc20a docbook-xml-simple-dtd-4.1.2.4-r2.ebuild 981
+RMD160 d4cdd707526ef627cb76394f3d4a02b1bdba0d89 docbook-xml-simple-dtd-4.1.2.4-r2.ebuild 981
+SHA256 be9e60b636784713e4cb528a3118ea9c33e128c42e7e4b2cffe3d70b39345919 docbook-xml-simple-dtd-4.1.2.4-r2.ebuild 981
+MISC ChangeLog 5204 RMD160 291e4883e2dcd2b413cac87865bfcddcceefce71 SHA1 c19bcf6f397b1b02305cf06da2cd278d409fcd19 SHA256 c92e0070e640a9b53e70ed92c697221da92936ccfbe578e524f5d41845a1444f
+MD5 079640e2c3903da560339df4b9bdd488 ChangeLog 5204
+RMD160 291e4883e2dcd2b413cac87865bfcddcceefce71 ChangeLog 5204
+SHA256 c92e0070e640a9b53e70ed92c697221da92936ccfbe578e524f5d41845a1444f ChangeLog 5204
+MISC metadata.xml 164 RMD160 698422e821458386b8da17baa6014296f8284e0b SHA1 a805613d38e6e3bff93cba3858d6a92cc79fe2f7 SHA256 7bd4d93c657a26aa9af1dea4232520c0d388cc92115dd9ca0eb04259228e044f
+MD5 c472f5fd1646eb8bca71d8df5cb2bdcc metadata.xml 164
+RMD160 698422e821458386b8da17baa6014296f8284e0b metadata.xml 164
+SHA256 7bd4d93c657a26aa9af1dea4232520c0d388cc92115dd9ca0eb04259228e044f metadata.xml 164
+MD5 22a64f665409ffe8caee0c1f92d6c9da files/digest-docbook-xml-simple-dtd-4.1.2.4-r2 211
+RMD160 a0b2ebd7c76bcbe53d837abe06f2defcbb9ecdca files/digest-docbook-xml-simple-dtd-4.1.2.4-r2 211
+SHA256 50fd099cb99e945798534c90119f4d8407f044598bd558aa426874e907142a56 files/digest-docbook-xml-simple-dtd-4.1.2.4-r2 211
