@@ -10,7 +10,7 @@
 # to the full inner join, because in theory we have (unique) sets.
 
 # these need to reflect the keywords that are valid for the tree
-my_keywords="amd64 ia64 ppc-macos sparc-solaris x86 x86-macos x86-solaris"
+my_keywords="amd64 ia64 ppc-aix ppc-macos sparc-solaris x86 x86-macos x86-solaris"
 
 if [ -z $1 ];
 then
