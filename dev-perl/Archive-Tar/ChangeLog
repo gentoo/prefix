@@ -1,6 +1,20 @@
 # ChangeLog for dev-perl/Archive-Tar
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Tar/ChangeLog,v 1.68 2006/09/16 20:28:53 dertobi123 Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Tar/ChangeLog,v 1.71 2007/01/07 18:39:23 mcummings Exp $
+
+  07 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  Archive-Tar-1.28.ebuild, Archive-Tar-1.29.ebuild, Archive-Tar-1.30.ebuild:
+  Marking sparc stable
+
+  07 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  Archive-Tar-1.30.ebuild:
+  Marking amd64 stable
+
+*Archive-Tar-1.30 (27 Nov 2006)
+
+  27 Nov 2006; Michael Cummings <mcummings@gentoo.org>
+  +Archive-Tar-1.30.ebuild:
+  Version bump, thanks Michele for catching it
 
   16 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org>
   Archive-Tar-1.29.ebuild:
