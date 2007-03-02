@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Data-Inheritable/Class-Data-Inheritable-0.06.ebuild,v 1.1 2006/09/25 21:03:15 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Data-Inheritable/Class-Data-Inheritable-0.06.ebuild,v 1.5 2007/01/22 04:26:45 kloeri Exp $
 
 EAPI="prefix"
 
@@ -17,4 +17,3 @@ IUSE=""
 
 export OPTIMIZE="${CFLAGS}"
 DEPEND="dev-lang/perl"
-RDEPEND="${DEPEND}"
