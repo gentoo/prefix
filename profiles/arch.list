@@ -1,5 +1,6 @@
 amd64
 ia64
+ppc-aix
 ppc-macos
 sparc-solaris
 x86
