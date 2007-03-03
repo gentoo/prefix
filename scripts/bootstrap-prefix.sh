@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Copyright Gentoo Foundation 2006-2007
 
 trap 'exit 1' TERM KILL INT QUIT ABRT
 

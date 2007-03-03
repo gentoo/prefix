@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Copyright Gentoo Foundation 2006-2007
 
 # <grobian@gentoo.org> -- 2006-02-08
 # when adding a new version, also try and copy all extra files from

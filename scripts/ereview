@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Copyright Gentoo Foundation 2006-2007
+
 cd /tmp
 patch=${1##*\/}
 wget $1 -O $patch
