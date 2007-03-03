@@ -42,7 +42,6 @@ PATCHDIR="${WORKDIR}"/mutt-1.5.13-gentoo-patches
 
 src_unpack() {
 	unpack ${A}
-	mv mutt ${P%%_*}
 	cd "${S}" || die "unpack failed"
 
 	epatch "${FILESDIR}"/mutt-1.5.13-smarttime.patch
