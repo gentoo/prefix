@@ -2,6 +2,12 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.1.20.6151 (03 Mar 2007)
+
+  03 Mar 2007; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.1.20.6085.ebuild, +portage-2.1.20.6151.ebuild:
+  New bump, mainly fixes.  Added support for AIX.
+
 *portage-2.1.20.6132 (02 Mar 2007)
 
   02 Mar 2007; Fabian Groffen <grobian@gentoo.org>
