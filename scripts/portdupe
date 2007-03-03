@@ -32,6 +32,8 @@ for PACKAGE in */*; do
 		echo -e "\e[1;33m${PACKAGE}\e[0m"
 		echo -e "  \e[1;35mPortage:\e[0m${PORTPACK_VERS}"
 		echo -e "  \e[1;35mOverlay:\e[0m${OVERPACK_VERS}"
-		diff -u ${PORTDIR}/${PACKAGE}/*.ebuild ${PACKAGE}/*.ebuild
+		for i in ${PACKAGE}/*.ebuild; do
+			diff -u ${PORTDIR}/$i $i
+		done
 	fi
 done

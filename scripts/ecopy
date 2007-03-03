@@ -35,6 +35,6 @@ for i in $(eval echo $(grep FILESDIR $ebuild | sed -e "s:.*/::" -e 's:"::g' -e "
 done
 eapify $ebuild
 ecleankw $ebuild
-source $EPREFIX/etc/make.profile/make.defaults
+source "${EPREFIX:-$(portageq envvar EPREFIX)}"/etc/make.profile/make.defaults
 ekeyword ~$ACCEPT_KEYWORDS $ebuild
 ebuild $ebuild digest
