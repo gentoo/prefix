@@ -1,9 +1,16 @@
 #!/usr/bin/env bash
 # Copyright Gentoo Foundation 2006-2007
 
+source "${EPREFIX:-$(portageq envvar EPREFIX)}"/etc/make.profile/make.defaults
+kw="~$ACCEPT_KEYWORDS"
+
 for i in $@; do
 	svn add $i
-	cd $i
-	repoman ci -m "Add and keyword $i"
-	cd ../../
+	pushd $i > /dev/null
+	if [[ $i != */* ]] ; then
+		d=$(pwd)
+		i=${d##*/}/$i
+	fi
+	repoman commit -m "Add $i and keyword $kw"
+	popd > /dev/null
 done
