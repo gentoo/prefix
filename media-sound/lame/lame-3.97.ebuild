@@ -67,7 +67,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${D}" pkghtmldir="${ED}/usr/share/doc/${PF}/html" install || die
+	make DESTDIR="${D}" pkghtmldir="${EPREFIX}/usr/share/doc/${PF}/html" install || die
 
 	dodoc API ChangeLog HACKING README* STYLEGUIDE TODO USAGE
 	dohtml misc/lameGUI.html Dll/LameDLLInterface.htm
