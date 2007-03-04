@@ -6,5 +6,13 @@
 # mmx2 has another error ..
 #
 # seems sse needs mmx
-media-video/mplayer mmx mmxext sse sse2 gtk
+media-video/mplayer mmx mmxext sse sse2
+# flag returns compile errors
+media-video/mplayer livecd cpudetection
+# libs mising
+media-video/mplayer gtk sdl libcaca dv nas musepack bidi enca real win32codecs cdparanoia samba xanim live openal
+# X only
+media-video/mplayer xvmc xv dga X xinerama
+# linux only
+media-video/mplayer dvb esd lirc svga arts jack joystick matrox
 media-sound/mpg123 mmx

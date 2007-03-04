@@ -7,8 +7,6 @@
 # profile have a USE flag associated with (such as altivec, mmx, etc).
 
 # Unmask x86 instruction sets
--3dnow
--3dnowext
 -icc
 -icc-pgo
 -ifc
