@@ -325,8 +325,13 @@ bootstrap_gnu() {
 	S=${S}/${PN}-${PV}
 	cd ${S}
 
+	local myconf=""
+	# AIX doesn't like it when --disable-nls is set, OSX doesn't like it
+	# when it's not.  Solaris and Linux build fine with --disable-nls.
+	[[ $CHOST == *-aix* ]] || myconf="${myconf} --disable-nls"
+
 	einfo "Compiling ${A%-*}"
-	econf
+	econf ${myconf}
 	$MAKE || exit 1
 
 	einfo "Installing ${A%-*}"
