@@ -53,7 +53,7 @@ src_compile() {
 src_install() {
 	emake -j1 \
 		DESTDIR="${D}" \
-		docdir="${D}/usr/share/doc/${PF}" \
+		docdir="${EPREFIX}/usr/share/doc/${PF}" \
 		install || die "make install failed"
 
 	if use examples; then
