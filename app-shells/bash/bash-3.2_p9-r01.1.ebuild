@@ -77,7 +77,10 @@ src_unpack() {
 		fi
 	fi
 
-	epatch "${FILESDIR}"/${PN}-3.0-configs.patch
+	cp "${FILESDIR}"/${PN}-3.0-configs-prefix.patch \
+		"${T}"/${PN}-3.0-configs.patch
+	eprefixify "${T}"/${PN}-3.0-configs.patch
+	epatch "${T}"/${PN}-3.0-configs.patch
 }
 
 src_compile() {
@@ -118,14 +121,19 @@ src_install() {
 	dosym bash /bin/rbash
 
 	insinto /etc/bash
-	doins "${FILESDIR}"/{bashrc,bash_logout}
+	doins "${FILESDIR}"/{bashrc.prefix,bash_logout}
+	mv "${ED}"/etc/bash/bashrc{.prefix,}
 	insinto /etc/skel
 	for f in bash{_logout,_profile,rc} ; do
 		newins "${FILESDIR}"/dot-${f} .${f}
 	done
 
-	sed -i -e "s:#${USERLAND}#@::" "${ED}"/etc/skel/.bashrc "${ED}"/etc/bash/bashrc
+# prefix USERLAND should be GNU, need to patch this back once we have GNU
+#	sed -i -e "s:#${USERLAND}#@::" "${ED}"/etc/skel/.bashrc "${ED}"/etc/bash/bashrc
+	sed -i -e "s:#GNU#@::" "${ED}"/etc/skel/.bashrc "${ED}"/etc/bash/bashrc
 	sed -i -e '/#@/d' "${ED}"/etc/skel/.bashrc "${ED}"/etc/bash/bashrc
+
+	eprefixify "${ED}"/etc/skel/.bashrc "${ED}"/etc/bash/bashrc
 
 	doman doc/*.1
 	dodoc README NEWS AUTHORS CHANGES COMPAT Y2K doc/FAQ doc/INTRO
