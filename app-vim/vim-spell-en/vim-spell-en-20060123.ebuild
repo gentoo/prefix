@@ -9,6 +9,6 @@ VIM_SPELL_LANGUAGE="English"
 inherit vim-spell
 
 LICENSE="BSD LGPL-2.1 public-domain"
-KEYWORDS="amd64 ppc-macos x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
