@@ -1,6 +1,12 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.133 2007/02/04 23:58:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.134 2007/02/27 17:02:03 grobian Exp $
+
+  27 Feb 2007; Fabian Groffen <grobian@gentoo.org> bash-3.0-r12.ebuild,
+  bash-3.0-r13.ebuild, bash-3.0-r14.ebuild, bash-3.1_p16.ebuild,
+  bash-3.1_p17.ebuild, bash-3.2_p5.ebuild, bash-3.2_p9.ebuild,
+  bash-3.2_p9-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   04 Feb 2007; Mike Frysinger <vapier@gentoo.org> files/bashrc:
   Accept gnome* in enhanced output #165305 by Ed Catmur.
