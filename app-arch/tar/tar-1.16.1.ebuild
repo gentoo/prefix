@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.16-r2.ebuild,v 1.11 2006/12/10 01:41:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.16.1.ebuild,v 1.2 2006/12/30 01:12:48 vapier Exp $
 
 EAPI="prefix"
 
@@ -23,10 +23,8 @@ DEPEND="${RDEPEND}
 
 src_unpack() {
 	unpack ${A}
-	epatch "${FILESDIR}"/${P}-darwin.patch
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-segv.patch
-	epatch "${FILESDIR}"/${P}-remove-GNUTYPE_NAMES.patch #155901
+	epatch "${FILESDIR}"/tar-1.16-darwin.patch
 	if [[ ${USERLAND} != "GNU" ]] && [[ ${EPREFIX%/} == "" ]] ; then
 		sed -i \
 			-e 's:/backup\.sh:/gbackup.sh:' \
@@ -57,9 +55,11 @@ src_install() {
 
 	emake DESTDIR="${D}" install || die "make install failed"
 
-	# a nasty yet required symlink
-	dodir /etc
-	dosym /usr/sbin/${p}rmt /etc/${p}rmt
+	if [[ -z ${p} ]] ; then
+		# a nasty yet required piece of baggage
+		exeinto /etc
+		doexe "${FILESDIR}"/rmt || die
+	fi
 
 	dodoc AUTHORS ChangeLog* NEWS README* PORTS THANKS
 	newman "${FILESDIR}"/tar.1 ${p}tar.1
