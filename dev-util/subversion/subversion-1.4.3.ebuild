@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.3.ebuild,v 1.1 2007/02/22 21:19:55 pauldv Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.3.ebuild,v 1.5 2007/03/03 21:00:31 pauldv Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ IUSE="apache2 berkdb python emacs perl java nls nowebdav ruby"
 RESTRICT="test"
 
 COMMONDEPEND="apache2? ( ${APACHE2_DEPEND} )
-	=dev-libs/apr-util-0*
+	!apache2? ( >=dev-libs/apr-util-0.9.7 )
 	python? ( >=dev-lang/python-2.0 )
 	perl? ( >=dev-lang/perl-5.8.6-r6
 		!=dev-lang/perl-5.8.7 )
@@ -66,6 +66,7 @@ src_unpack() {
 	epatch ${FILESDIR}/subversion-hotbackup-config.patch
 	epatch ${FILESDIR}/subversion-1.3.1-neon-config.patch
 	epatch ${FILESDIR}/subversion-apr_cppflags.patch
+	epatch ${FILESDIR}/subversion-1.4.3-debug-config.patch
 	# rapidsvn developers work with 1.3.2
 
 	export WANT_AUTOCONF=2.5
@@ -77,10 +78,20 @@ src_unpack() {
 
 src_compile() {
 	local myconf
-	myconf="--with-apr=${EPREFIX}/usr --with-apr-util=${EPREFIX}/usr"
+	local apr_suffix=""
 
-	use apache2 && myconf="${myconf} --with-apxs=${APXS2}"
-	use apache2 || myconf="${myconf} --without-apxs"
+	if use apache2; then
+		myconf="--with-apxs=${APXS2}"
+		apache_minor="(best_version apache | cut -d. -f2)"
+		if [ ${apache_minor} -gt 0 ]; then
+			apr_suffix="-1"
+		fi
+	else
+		if has_version ">dev-libs/apr-util-1"; then
+			apr_suffix="-1"
+		fi
+		myconf="--without-apxs"
+	fi
 
 	myconf="${myconf} $(use_enable java javahl)"
 	use java && myconf="${myconf} --without-jikes --with-jdk=${JAVA_HOME}"
@@ -115,6 +126,8 @@ src_compile() {
 		$(use_with berkdb berkeley-db) \
 		$(use_with python) \
 		$(use_enable nls) \
+		--with-apr="${EROOT}usr/bin/apr${apr_suffix}-config" \
+		--with-apr-util="${EROOT}usr/bin/apu${apr_suffix}-config" \
 		--disable-experimental-libtool \
 		--disable-mod-activation || die "econf failed"
 
@@ -263,9 +276,9 @@ EOF
 
 	# Install emacs lisps
 	if use emacs; then
-		insinto /usr/share/emacs/site-lisp/subversion
-		doins contrib/client-side/psvn/psvn.el*
-		doins contrib/client-side/vc-svn.el*
+		elisp-install ${PN} contrib/client-side/psvn/psvn.el*
+		elisp-install ${PN}/compat contrib/client-side/vc-svn.el*
+		touch "${ED}${SITELISP}/${PN}/compat/.nosearch"
 
 		elisp-site-file-install ${FILESDIR}/70svn-gentoo.el
 	fi
