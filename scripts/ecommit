@@ -11,6 +11,10 @@ for i in $@; do
 		d=$(pwd)
 		i=${d##*/}/$i
 	fi
+	# Force repoman to regenerate the Manifest and digests, it seems
+	# that at least genstef often has repoman not committing the
+	# Manifest when using this script.  This hack hopefully solves that.
+	rm Manifest files/digest-*
 	repoman commit -m "Add $i and keyword $kw"
 	popd > /dev/null
 done
