@@ -9,7 +9,7 @@ EAPI="prefix"
 #   in dev-lang/python. It _WILL_ stop people installing from
 #   Gentoo 1.4 images.
 
-inherit eutils flag-o-matic python multilib versionator toolchain-funcs alternatives
+inherit eutils flag-o-matic python multilib versionator toolchain-funcs alternatives autotools
 
 # we need this so that we don't depends on python.eclass
 PYVER_MAJOR=$(get_major_version)
@@ -107,6 +107,11 @@ src_unpack() {
 
 	# fix gentoo/obsd problems (bug 117261)
 	epatch ${WORKDIR}/${PV}/2.4.3-gentoo_obsd.patch
+
+	# python has some gcc-apple specific CFLAGS built in... rip them out
+	epatch "${FILESDIR}"/${P}-darwin-fsf-gcc.patch
+
+	eautoreconf
 }
 
 src_configure() {
