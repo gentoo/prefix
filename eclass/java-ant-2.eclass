@@ -10,7 +10,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.17 2007/01/30 21:51:15 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.18 2007/03/01 14:01:02 betelgeuse Exp $
 
 inherit java-utils-2
 
@@ -246,7 +246,7 @@ java-ant_bsfix_files() {
 			files="${files} -f '${file}'"
 
 			if [[ -z "${using_new}" ]]; then
-				vecho "Rewriting $file (using xml-rewrite.py)"
+				echo "Rewriting $file (using xml-rewrite.py)"
 				# Doing this twice because otherwise the source attributes would
 				# get added to target tags too and javadoc does not like target
 				xml-rewrite.py -f "${file}" \
@@ -259,13 +259,16 @@ java-ant_bsfix_files() {
 		done
 
 		if [[ "${using_new}" ]]; then
-			quiet_mode && local output=">/dev/null"
-			vecho "Rewriting source attributes"
+			# Play nice with paludis
+			if [[ $(type -t quiet_mode) = function ]] && quiet_mode; then
+				local output=">/dev/null"
+			fi
+			eval echo "Rewriting source attributes" ${output}
 			eval xml-rewrite-2.py ${files} \
 				-c -e ${JAVA_PKG_BSFIX_SOURCE_TAGS// / -e } \
 				-a source -v ${want_source} ${output} || _bsfix_die "xml-rewrite2 failed: ${file}"
 
-			vecho "Rewriting target attributes"
+			eval echo "Rewriting target attributes" ${output}
 			eval xml-rewrite-2.py ${files} \
 				-c -e ${JAVA_PKG_BSFIX_TARGET_TAGS// / -e } \
 				-a target -v ${want_target} ${output} || _bsfix_die "xml-rewrite2 failed: ${file}"

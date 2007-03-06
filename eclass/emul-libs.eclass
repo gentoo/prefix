@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/emul-libs.eclass,v 1.4 2007/02/21 09:27:20 blubb Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/emul-libs.eclass,v 1.5 2007/03/03 15:08:38 blubb Exp $
 
 #
 # Original Author: Simon Stelling <blubb@gentoo.org>
@@ -17,6 +17,9 @@ S=${WORKDIR}
 
 SLOT="0"
 IUSE=""
+
+DEPEND=">=sys-apps/findutils-4.2.26"
+RDEPEND=""
 
 emul-libs_src_unpack() {
 	einfo "Note: You can safely ignore the 'trailing garbage after EOF'"

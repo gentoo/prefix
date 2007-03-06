@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.71 2007/02/05 14:51:07 dsd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.72 2007/03/01 06:40:28 vapier Exp $
 
 # Description: This eclass is used to interface with linux-info in such a way
 #              to provide the functionality required and initial functions
@@ -216,7 +216,8 @@ update_moduledb() {
 		[[ ! -d ${MODULEDB_DIR} ]] && mkdir -p ${MODULEDB_DIR}
 		touch ${MODULEDB_DIR}/moduledb
 	fi
-	if [[ -z $(grep ${CATEGORY}/${PN}-${PVR} ${MODULEDB_DIR}/moduledb) ]]; then
+
+	if ! grep -qs ${CATEGORY}/${PN}-${PVR} ${MODULEDB_DIR}/moduledb ; then
 		einfo "Adding module to moduledb."
 		echo "a:1:${CATEGORY}/${PN}-${PVR}" >> ${MODULEDB_DIR}/moduledb
 	fi
@@ -228,7 +229,7 @@ remove_moduledb() {
 	local MODULEDB_DIR=${EROOT}/var/lib/module-rebuild/
 	move_old_moduledb
 
-	if [[ -n $(grep ${CATEGORY}/${PN}-${PVR} ${MODULEDB_DIR}/moduledb) ]]; then
+	if grep -qs ${CATEGORY}/${PN}-${PVR} ${MODULEDB_DIR}/moduledb ; then
 		einfo "Removing ${CATEGORY}/${PN}-${PVR} from moduledb."
 		sed -i -e "/.*${CATEGORY}\/${PN}-${PVR}.*/d" ${MODULEDB_DIR}/moduledb
 	fi

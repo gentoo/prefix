@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.58 2007/02/28 10:45:20 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.63 2007/03/03 20:37:35 betelgeuse Exp $
 
 
 # -----------------------------------------------------------------------------
@@ -185,6 +185,33 @@ JAVA_PKG_QA_VIOLATIONS=0
 # libraries, etc.
 # -----------------------------------------------------------------------------
 
+# -----------------------------------------------------------------------------
+# @ebuild-function java-pkg_doexamples
+#
+# Installs given arguments to /usr/share/doc/${PF}/examples
+# If you give it only one parameter and it is a directory it will install
+# everything in that directory to the examples directory.
+#
+# @example
+#	java-pkg_doexamples demo
+#	java-pkg_doexamples demo/* examples/*
+#
+# @param $* - list of files to install
+# ------------------------------------------------------------------------------
+java-pkg_doexamples() {
+	debug-print-function ${FUNCNAME} $*
+
+	[[ ${#} -lt 1 ]] && die "At least one argument needed"
+
+	java-pkg_check-phase install
+
+	local dest=/usr/share/doc/${PF}/examples
+	if [[ ${#} = 1 && -d ${1} ]]; then
+		INSDESTTREE="${dest}" doins -r ${1}/* || die "Installing examples failed"
+	else
+		INSDESTTREE="${dest}" doins -r "${@}" || die "Installing examples failed"
+	fi
+}
 
 # -----------------------------------------------------------------------------
 # @ebuild-function java-pkg_dojar
@@ -261,7 +288,9 @@ java-pkg_dojar() {
 # ------------------------------------------------------------------------------
 
 depend-java-query() {
-	USE="${USE}" $(which depend-java-query) "${@}"
+	# Used to have a which call here but it caused endless loops for some people
+	# that had some weird bashrc voodoo for which.
+	USE="${USE}" /usr/bin/depend-java-query "${@}"
 }
 
 # ------------------------------------------------------------------------------
@@ -767,7 +796,7 @@ java-pkg_recordjavadoc()
 # Example: get junit.jar which is needed only for building
 #	java-pkg_jar-from --build-only junit junit.jar
 #
-# @param $opt 
+# @param $opt
 #	--build-only - makes the jar(s) not added into package.env DEPEND line.
 #	  (assumed automatically when called inside src_test)
 #	--with-dependencies - get jars also from requested package's dependencies
@@ -785,7 +814,7 @@ java-pkg_jar-from() {
 	local build_only=""
 	local destdir="."
 	local deep=""
-	
+
 	[[ "${EBUILD_PHASE}" == "test" ]] && build_only="true"
 
 	while [[ "${1}" == --* ]]; do
@@ -816,6 +845,15 @@ java-pkg_jar-from() {
 
 	pushd ${destdir} > /dev/null \
 		|| die "failed to change directory to ${destdir}"
+
+	# When we have commas this functions is called to bring jars from multiple
+	# packages. This affects recording of dependencencies because that syntax uses :
+	# if we don't change them to : gjl and java-config -d -p break
+	if [[ ${target_pkg} = *,* ]]; then
+		build_only="true"
+		java-pkg_record-jar_ ${target_pkg//,/:}
+	fi
+
 	local jar
 	for jar in ${classpath//:/ }; do
 		local jar_name=$(basename "${jar}")
@@ -873,7 +911,7 @@ java-pkg_jarfrom() {
 # Example Return:
 #	/usr/share/xerces-2/lib/xml-apis.jar:/usr/share/xerces-2/lib/xmlParserAPIs.jar:/usr/share/xalan/lib/xalan.jar
 #
-# @param $opt 
+# @param $opt
 #	--build-only - makes the jar(s) not added into package.env DEPEND line.
 #	  (assumed automatically when called inside src_test)
 #	--with-dependencies - get jars also from requested package's dependencies
@@ -886,7 +924,7 @@ java-pkg_getjars() {
 
 	local build_only=""
 	local deep=""
-	
+
 	[[ "${EBUILD_PHASE}" == "test" ]] && build_only="true"
 
 	while [[ "${1}" == --* ]]; do
@@ -949,7 +987,7 @@ java-pkg_getjar() {
 	debug-print-function ${FUNCNAME} $*
 
 	local build_only=""
-	
+
 	[[ "${EBUILD_PHASE}" == "test" ]] && build_only="true"
 
 	while [[ "${1}" == --* ]]; do
@@ -1775,7 +1813,7 @@ java-pkg_init() {
 	# This also helps prevent unexpected dependencies on random things
 	# from the CLASSPATH.
 	unset CLASSPATH
-	
+
 	# Unset external ANT_ stuff
 	unset ANT_TASKS
 	unset ANT_OPTS
