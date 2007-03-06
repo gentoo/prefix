@@ -24,7 +24,7 @@ LICENSE="GPL-2 LGPL-2"
 [[ ${CTARGET} != ${CHOST} ]] \
 	&& SLOT="${CTARGET}" \
 	|| SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86 ~x86-solaris"
 IUSE="nls test vanilla"
 
 RDEPEND=">=sys-libs/ncurses-5.2-r2"
