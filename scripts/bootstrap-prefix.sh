@@ -79,7 +79,7 @@ fetch() {
 # 	einfo "${A%-*} succesfully bootstrapped"
 # }
 
-bootstrap_portage() {
+bootstrap_setup() {
 	local profile=""
 	local keywords=""
 	einfo "setting up some guessed defaults"
@@ -201,7 +201,7 @@ bootstrap_portage() {
 		( cd ${ROOT}/tmp/usr/bin && ln -s $(which $MAKE) make )
 	fi
 
-	bootstrap_portage
+	bootstrap_setup
 
 	cd "${ROOT}"
 	rm -Rf ${ptmp} >& /dev/null
