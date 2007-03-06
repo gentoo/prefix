@@ -15,7 +15,7 @@ SRC_URI="http://www.speex.org/download/${MY_P}.tar.gz"
 
 SLOT="0"
 LICENSE="BSD as-is"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 
 DEPEND="ogg? ( >=media-libs/libogg-1.0 )"
 
