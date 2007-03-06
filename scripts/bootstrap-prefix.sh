@@ -116,8 +116,8 @@ setup_portage() {
 			profile="${PORTDIR}/profiles/default-sunos/solaris/5.10/sparc"
 			keywords="~sparc-solaris sparc-solaris"
 			;;
-		powerpc-ibm-aix5.2)
-			profile="${PORTDIR}/profiles/default-aix/5.2/ppc"
+		powerpc-ibm-aix*)
+			profile="${PORTDIR}/profiles/default-aix/${CHOST#powerpc-ibm-aix}/ppc"
 			keywords="~ppc-aix ppc-aix"
 			;;
 		*)	
@@ -468,7 +468,10 @@ then
 				MAKE=gmake
 				;;
 			AIX)
-				CHOST="`uname -p`-ibm-aix`oslevel | sed 's|([0-9]\.[0-9]).*|\1|'`"
+				# GNU coreutils uname sucks, it doesn't know what
+				# processor it is using on AIX.  We mimick GNU CHOST
+				# guessing here, instead of what IBM uses itself.
+				CHOST="`/usr/bin/uname -p`-ibm-aix`oslevel`"
 				MAKE=make
 				;;
 			*)
