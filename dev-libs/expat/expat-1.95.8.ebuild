@@ -37,9 +37,9 @@ src_install() {
 	# make install is heavily broken and wants to deliberately install
 	# into the wrong locations...
 	make \
-		DESTDIR="${ED}" \
+		DESTDIR="${D}" \
 		mandir="${ED}/usr/share/man" \
-		libdir="${ED}/${EPREFIX}/usr/$(get_libdir)" \
+		libdir="${ED}/usr/$(get_libdir)" \
 		install || die "einstall failed"
 	dosed /usr/$(get_libdir)/libexpat.la #81568
 	dodoc Changes README
