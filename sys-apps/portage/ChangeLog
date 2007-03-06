@@ -2,6 +2,13 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.1.20.6185 (06 Mar 2007)
+
+  06 Mar 2007; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.1.20.6132.ebuild, +portage-2.1.20.6185.ebuild:
+  New snapshot, most important: a fix for repoman when used in locales other
+  than C
+
 *portage-2.1.20.6173 (04 Mar 2007)
 
   04 Mar 2007; Fabian Groffen <grobian@gentoo.org>
