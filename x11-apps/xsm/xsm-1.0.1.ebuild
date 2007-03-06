@@ -10,7 +10,7 @@ EAPI="prefix"
 inherit x-modular
 
 DESCRIPTION="X Session Manager"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="xprint"
 RDEPEND="x11-libs/libXaw
 	!userland_Darwin? ( net-misc/netkit-rsh )"
