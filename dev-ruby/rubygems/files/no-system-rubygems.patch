@@ -1,0 +1,12 @@
+diff -ur rubygems-0.9.0/post-install.rb rubygems-0.9.0.new/post-install.rb
+--- rubygems-0.9.0/post-install.rb	2006-06-07 10:39:53.000000000 +0700
++++ rubygems-0.9.0.new/post-install.rb	2007-01-28 16:53:13.000000000 +0700
+@@ -65,7 +65,7 @@
+ end
+ 
+ def install_sources
+-  $: << "lib"
++  $:.unshift "lib"
+   require 'rubygems'
+   Gem::manage_gems
+   Dir.chdir("pkgs/sources") do

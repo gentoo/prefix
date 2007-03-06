@@ -1,6 +1,83 @@
 # ChangeLog for dev-ruby/rubygems
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.36 2006/09/16 12:18:52 killerfox Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.51 2007/02/14 16:06:04 kloeri Exp $
+
+  14 Feb 2007; Bryan Østergaard <kloeri@gentoo.org>
+  rubygems-0.8.11-r6.ebuild:
+  Stable on IA64, bug 163536.
+
+  13 Feb 2007; Markus Rothe <corsair@gentoo.org> rubygems-0.8.11-r6.ebuild:
+  Stable on ppc64; bug #163536
+
+  13 Feb 2007; Marcus D. Hanwell <cryos@gentoo.org>
+  rubygems-0.8.11-r6.ebuild:
+  Stable on amd64, bug 163536.
+
+  12 Feb 2007; Jason Wever <weeve@gentoo.org> rubygems-0.8.11-r6.ebuild:
+  Stable on SPARC wrt bug #163536.
+
+  11 Feb 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  rubygems-0.8.11-r6.ebuild:
+  Stable on ppc wrt bug #163536.
+
+  11 Feb 2007; Christian Faulhammer <opfer@gentoo.org>
+  rubygems-0.8.11-r6.ebuild:
+  stable x86; security bug #163536
+
+  28 Jan 2007; Nguyễn Thái Ngọc Duy <pclouds@gentoo.org>
+  +files/no-system-rubygems.patch, rubygems-0.9.0-r2.ebuild,
+  rubygems-0.9.1.ebuild:
+  Skip system rubygems in favor of new rubygems source
+
+  27 Jan 2007; Nguyễn Thái Ngọc Duy <pclouds@gentoo.org>
+  files/0.8.11-install.rb.extract_files.patch:
+  Fixed the patch not too sensitive about duplicated slashes, #163536
+
+  26 Jan 2007; Nguyễn Thái Ngọc Duy <pclouds@gentoo.org>
+  rubygems-0.8.11-r5.ebuild, rubygems-0.8.11-r6.ebuild,
+  rubygems-0.9.0-r2.ebuild, rubygems-0.9.1.ebuild:
+  Fixed #159922
+
+*rubygems-0.8.11-r6 (26 Jan 2007)
+
+  26 Jan 2007; Nguyễn Thái Ngọc Duy <pclouds@gentoo.org>
+  +files/0.8.11-install.rb.extract_files.patch, +files/no-manage_gems.patch,
+  -rubygems-0.8.11.ebuild, rubygems-0.8.11-r5.ebuild,
+  +rubygems-0.8.11-r6.ebuild, -rubygems-0.9.0.ebuild,
+  -rubygems-0.9.0-r1.ebuild, rubygems-0.9.0-r2.ebuild:
+  Added 0.8.11-r6 (#163536)
+  Patched other ebuilds so that downgrading from rubygems-0.9.1 will not fail
+  Removed old ebuilds
+
+  21 Jan 2007; Nguyễn Thái Ngọc Duy <pclouds@gentoo.org>
+  rubygems-0.8.11.ebuild, rubygems-0.9.0.ebuild, rubygems-0.9.0-r1.ebuild,
+  rubygems-0.9.1.ebuild:
+  Added examples use flag to ebuild, #145222
+
+*rubygems-0.9.1 (17 Jan 2007)
+
+  17 Jan 2007; Nguyễn Thái Ngọc Duy <pclouds@gentoo.org>
+  +files/rubygems-0.9.1-no_post_install.patch,
+  +files/rubygems-0.9.1-no_rdoc_install.patch, +rubygems-0.9.1.ebuild:
+  Version bump
+
+  23 Dec 2006; Nguyễn Thái Ngọc Duy <pclouds@gentoo.org>
+  rubygems-0.9.0-r2.ebuild, rubygems-0.8.11-r5.ebuild:
+  Unset RUBYOPT before installing rubygems to prevent ruby from failing due to
+  missing auto_gem (bug #158455). Also warn people when rubygems is removed
+
+*rubygems-0.9.0-r2 (16 Dec 2006)
+
+  16 Dec 2006; Nguyễn Thái Ngọc Duy <pclouds@gentoo.org>
+  +files/rubygems-0.9.0-build-from-yaml.patch, +rubygems-0.9.0-r2.ebuild:
+  Added patch to fix "gem build gemspec.yaml" failure
+
+*rubygems-0.9.0-r1 (01 Nov 2006)
+
+  01 Nov 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +files/rubygems-0.9.0-build-c-extensions.patch, +rubygems-0.9.0-r1.ebuild:
+  Add patch to fix building of C-based extensions, see bug #143974. Thanks to
+  John W Higgins for suggesting the course of action.
 
   16 Sep 2006; Rene Nussbaumer <killerfox@gentoo.org> rubygems-0.9.0.ebuild:
   Added to ~hppa.
