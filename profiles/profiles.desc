@@ -42,4 +42,5 @@ sparc-solaris	default-sunos/solaris/5.10/sparc	dev
 x86-solaris		default-sunos/solaris/5.10/x86		dev
 
 # AIX Profiles
-ppc-aix			default-aix/5.2/ppc					dev
+ppc-aix			default-aix/5.2.0.0/ppc				dev
+ppc-aix			default-aix/5.3.0.0/ppc				dev
