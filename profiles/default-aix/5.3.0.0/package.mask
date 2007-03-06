@@ -1,0 +1,2 @@
+# seems not to understand arguments properly
+=dev-util/cvs-1.12*
