@@ -15,7 +15,7 @@ SRC_URI="mirror://gnu/ncurses/${MY_P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="5"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="bootstrap build debug doc gpm minimal nocxx trace unicode"
 
 DEPEND="gpm? ( sys-libs/gpm )"
@@ -30,6 +30,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-gfbsd.patch
 	epatch "${FILESDIR}"/${P}-terminfo-gnome.patch
+	epatch "${FILESDIR}"/${P}-aix-shared.patch
 }
 
 src_compile() {

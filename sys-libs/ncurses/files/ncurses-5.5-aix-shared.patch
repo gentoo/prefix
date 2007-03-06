@@ -1,0 +1,12 @@
+--- ncurses-5.6/configure.orig	2007-01-27 09:02:39.521587000 +0100
++++ ncurses-5.6/configure	2007-01-27 09:17:49.261587000 +0100
+@@ -5147,6 +5147,9 @@
+ 		fi
+ 		MK_SHARED_LIB='${LD} -d y -G -o $@'
+ 		;;
++	aix4.[3-9]*|aix5*)
++		MK_SHARED_LIB='${CC} -shared -Wl,-brtl -Wl,-blibpath:${libdir}:/usr/lib -o $@'
++		;;
+ 	*)
+ 		CC_SHARED_OPTS='unknown'
+ 		MK_SHARED_LIB='echo unknown'
