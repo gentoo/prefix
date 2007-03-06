@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/flac
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/ChangeLog,v 1.105 2007/02/14 11:08:16 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/ChangeLog,v 1.107 2007/02/24 20:30:08 aballier Exp $
+
+  24 Feb 2007; Alexis Ballier <aballier@gentoo.org> flac-1.1.2-r3.ebuild,
+  flac-1.1.2-r8.ebuild, flac-1.1.3.ebuild, flac-1.1.4.ebuild:
+  Push libogg deps to 1.1.2, bug #167868
+
+  17 Feb 2007; Fabian Groffen <grobian@gentoo.org> flac-1.1.2-r3.ebuild,
+  flac-1.1.2-r8.ebuild, flac-1.1.3.ebuild, flac-1.1.4.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *flac-1.1.4 (14 Feb 2007)
 
