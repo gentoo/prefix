@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/expat
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.54 2006/09/06 18:19:56 flameeyes Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.56 2007/02/22 00:35:52 peper Exp $
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  11 Feb 2007; Fabian Groffen <grobian@gentoo.org> expat-1.95.7.ebuild,
+  expat-1.95.8.ebuild, expat-2.0.0.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   06 Sep 2006; Diego Pettenò <flameeyes@gentoo.org> expat-1.95.8.ebuild:
   Drop ~x86-fbsd keyword from 1.95.8 so that the missing test dependency is
