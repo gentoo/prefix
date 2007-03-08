@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Text-ChaSen
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-ChaSen/ChangeLog,v 1.10 2006/08/06 00:20:34 mcummings Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-ChaSen/ChangeLog,v 1.11 2007/02/22 01:46:26 peper Exp $
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
 
   06 Aug 2006; Michael Cummings <mcummings@gentoo.org>
   Text-ChaSen-1.03.ebuild, Text-ChaSen-1.03-r1.ebuild:
