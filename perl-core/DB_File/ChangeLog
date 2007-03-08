@@ -1,6 +1,15 @@
 # ChangeLog for perl-core/DB_File
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/DB_File/ChangeLog,v 1.16 2006/10/20 19:58:05 mcummings Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/perl-core/DB_File/ChangeLog,v 1.18 2007/02/08 12:19:21 mcummings Exp $
+
+  08 Feb 2007; Michael Cummings <mcummings@gentoo.org> DB_File-1.815.ebuild:
+  Bug 165785, removed mydoc line
+
+*DB_File-1.815 (06 Feb 2007)
+
+  06 Feb 2007; Michael Cummings <mcummings@gentoo.org>
+  +DB_File-1.815.ebuild:
+  Version bump
 
   20 Oct 2006; Michael Cummings <mcummings@gentoo.org>
   -DB_File-1.811.ebuild, -DB_File-1.811-r1.ebuild, DB_File-1.813.ebuild,
