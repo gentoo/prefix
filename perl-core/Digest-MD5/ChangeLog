@@ -1,6 +1,13 @@
 # ChangeLog for perl-core/Digest-MD5
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Digest-MD5/ChangeLog,v 1.13 2006/10/23 19:06:38 gustavoz Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Digest-MD5/ChangeLog,v 1.15 2007/03/03 20:31:02 ticho Exp $
+
+  03 Mar 2007; Andrej Kacian <ticho@gentoo.org> Digest-MD5-2.36.ebuild:
+  Stable on x86, bug #169153.
+
+  19 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  Digest-MD5-2.33.ebuild, Digest-MD5-2.36.ebuild:
+  Version bump, thanks seemant
 
   23 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org>
   Digest-MD5-2.36.ebuild:
