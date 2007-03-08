@@ -1,6 +1,13 @@
 # ChangeLog for dev-perl/File-Slurp
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Slurp/ChangeLog,v 1.33 2006/10/10 21:09:04 mcummings Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Slurp/ChangeLog,v 1.35 2007/03/05 11:51:20 ticho Exp $
+
+  05 Mar 2007; Andrej Kacian <ticho@gentoo.org> File-Slurp-9999.12.ebuild:
+  Stable on x86, bug #169152.
+
+  15 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  File-Slurp-9999.12.ebuild:
+  Keywording ~mips, tested on swarm
 
   10 Oct 2006; Michael Cummings <mcummings@gentoo.org>
   files/digest-File-Slurp-9999.09, Manifest:
