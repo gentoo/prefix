@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Text-WrapI18N
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-WrapI18N/ChangeLog,v 1.13 2006/10/20 20:12:13 kloeri Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-WrapI18N/ChangeLog,v 1.14 2007/01/19 17:01:22 mcummings Exp $
+
+  19 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  Text-WrapI18N-0.06.ebuild:
+  Ebuild maintenance
 
   20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org>
   Text-WrapI18N-0.06.ebuild:
