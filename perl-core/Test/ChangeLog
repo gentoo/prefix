@@ -1,6 +1,10 @@
 # ChangeLog for perl-core/Test
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Test/ChangeLog,v 1.9 2006/08/04 13:31:50 mcummings Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Test/ChangeLog,v 1.10 2007/01/19 18:04:03 mcummings Exp $
+
+  19 Jan 2007; Michael Cummings <mcummings@gentoo.org> Test-1.24.ebuild,
+  Test-1.25.ebuild:
+  Version bump, thanks seemant
 
   04 Aug 2006; Michael Cummings <mcummings@gentoo.org> Test-1.24.ebuild,
   Test-1.25.ebuild:
