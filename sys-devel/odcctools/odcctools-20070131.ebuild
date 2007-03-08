@@ -47,7 +47,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR=${D} install || die
+	make DESTDIR="${D}" install || die
 
 	# Generate an env.d entry for this binutils
 	cd "${S}"
