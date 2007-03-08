@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Text-WikiFormat
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-WikiFormat/ChangeLog,v 1.18 2006/10/20 23:09:56 agriffis Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-WikiFormat/ChangeLog,v 1.19 2007/03/05 12:35:14 ticho Exp $
+
+  05 Mar 2007; Andrej Kacian <ticho@gentoo.org> Text-WikiFormat-0.78.ebuild:
+  Stable on x86, bug #169152.
 
   20 Oct 2006; Aron Griffis <agriffis@gentoo.org>
   Text-WikiFormat-0.78.ebuild:
