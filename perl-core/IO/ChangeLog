@@ -1,6 +1,18 @@
 # ChangeLog for perl-core/IO
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/IO/ChangeLog,v 1.2 2006/11/07 06:30:45 opfer Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/perl-core/IO/ChangeLog,v 1.6 2007/03/05 13:14:43 ticho Exp $
+
+  05 Mar 2007; Andrej Kacian <ticho@gentoo.org> IO-1.23.01.ebuild:
+  Stable on x86, bug #169152.
+
+  23 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> IO-1.23.01.ebuild:
+  Add ~ia64 keyword.
+
+  08 Jan 2007; Michael Cummings <mcummings@gentoo.org> IO-1.23.01.ebuild:
+  Marking sparc stable
+
+  08 Jan 2007; Michael Cummings <mcummings@gentoo.org> IO-1.23.01.ebuild:
+  Marking amd64 stable
 
   07 Nov 2006; Christian Faulhammer <opfer@gentoo.org> IO-1.23.01.ebuild:
   keyworded ~x86, bug #154253
