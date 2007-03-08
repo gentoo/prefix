@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-perl/XML-Parser/XML-Parser-2.34.ebuild,v 1.22 2007/01/19 17:39:16 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-Parser/XML-Parser-2.34.ebuild,v 1.23 2007/02/28 22:06:25 genstef Exp $
 
 EAPI="prefix"
 
