@@ -1,6 +1,15 @@
 # ChangeLog for perl-core/Getopt-Long
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Getopt-Long/ChangeLog,v 1.14 2006/10/23 19:04:20 gustavoz Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Getopt-Long/ChangeLog,v 1.16 2007/03/03 20:34:12 ticho Exp $
+
+  03 Mar 2007; Andrej Kacian <ticho@gentoo.org> Getopt-Long-2.35.ebuild:
+  Stable on x86, bug #169153.
+
+*Getopt-Long-2.36 (05 Feb 2007)
+
+  05 Feb 2007; Michael Cummings <mcummings@gentoo.org>
+  +Getopt-Long-2.36.ebuild:
+  Version bump
 
   23 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org>
   Getopt-Long-2.35.ebuild:
