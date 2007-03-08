@@ -1,0 +1,46 @@
+$NetBSD: patch-ac,v 1.4 2004/07/21 22:37:10 jlam Exp $
+
+--- curs_main.c.orig	Wed Nov  5 04:41:31 2003
++++ curs_main.c
+@@ -1048,6 +1048,11 @@ CHECK_IMAP_ACL(IMAP_ACL_DELETE);
+           cp = _("Open mailbox");
+ 
+ 	buf[0] = '\0';
++	if (option (OPTCHANGEFOLDERNEXT) && Context && Context->path)
++	{
++	  strfcpy (buf, Context->path, sizeof (buf));
++	  mutt_pretty_mailbox (buf);
++	}
+ 	mutt_buffy (buf, sizeof (buf));
+ 
+ 	if (mutt_enter_fname (cp, buf, sizeof (buf), &menu->redraw, 1) == -1)
+$NetBSD: patch-ah,v 1.1 2004/07/21 22:37:10 jlam Exp $
+
+--- init.h.orig	Sun Feb  1 12:15:17 2004
++++ init.h
+@@ -280,6 +280,13 @@ struct option_t MuttVars[] = {
+   ** .pp
+   ** Character set your terminal uses to display and enter textual data.
+   */
++  { "change_folder_next", DT_BOOL, R_NONE, OPTCHANGEFOLDERNEXT, 0 },
++  /*
++  ** .pp
++  ** When this variable is set, the change-folder command will start at the
++  ** next folder after the current folder in your mailbox list instead of
++  ** starting at the first folder.
++  */
+   { "check_new",	DT_BOOL, R_NONE, OPTCHECKNEW, 1 },
+   /*
+   ** .pp
+$NetBSD: patch-ai,v 1.2 2005/09/03 16:57:07 tonio Exp $
+
+--- mutt.h.orig	2005-09-03 10:51:23.000000000 +0200
++++ mutt.h	2005-09-03 10:52:23.000000000 +0200
+@@ -336,6 +336,7 @@
+   OPTBEEP,
+   OPTBEEPNEW,
+   OPTBOUNCEDELIVERED,
++  OPTCHANGEFOLDERNEXT,
+   OPTBRAILLEFRIENDLY,
+   OPTCHECKNEW,
+   OPTCOLLAPSEUNREAD,
