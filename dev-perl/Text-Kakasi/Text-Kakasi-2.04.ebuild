@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Kakasi/Text-Kakasi-2.04.ebuild,v 1.18 2006/08/06 00:26:44 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Kakasi/Text-Kakasi-2.04.ebuild,v 1.19 2007/01/19 16:58:12 mcummings Exp $
 
 EAPI="prefix"
 
@@ -17,11 +17,9 @@ IUSE=""
 
 DEPEND=">=app-i18n/kakasi-2.3.4
 	dev-lang/perl"
-RDEPEND="${DEPEND}"
 
 src_unpack() {
 	unpack ${A}
 	cd ${S}
 	epatch ${FILESDIR}/Text-Kakasi-1.05-gentoo.diff
 }
-
