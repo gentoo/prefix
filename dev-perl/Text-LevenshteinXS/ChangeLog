@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Text-LevenshteinXS
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-LevenshteinXS/ChangeLog,v 1.8 2006/08/18 01:54:00 mcummings Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-LevenshteinXS/ChangeLog,v 1.9 2007/01/19 16:58:30 mcummings Exp $
+
+  19 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  Text-LevenshteinXS-0.03.ebuild:
+  Version bump, thanks seemant
 
   18 Aug 2006; Michael Cummings <mcummings@gentoo.org>
   Text-LevenshteinXS-0.03.ebuild:
