@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/IO-stringy
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-stringy/ChangeLog,v 1.30 2006/08/05 04:48:02 mcummings Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-stringy/ChangeLog,v 1.31 2007/01/15 23:14:27 mcummings Exp $
+
+  15 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  -IO-stringy-2.109.ebuild, IO-stringy-2.110.ebuild:
+  Ebuild maintenance
 
   05 Aug 2006; Michael Cummings <mcummings@gentoo.org>
   IO-stringy-2.109.ebuild, IO-stringy-2.110.ebuild:

@@ -1,13 +1,13 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-stringy/IO-stringy-2.110.ebuild,v 1.12 2006/08/05 04:48:02 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-stringy/IO-stringy-2.110.ebuild,v 1.13 2007/01/15 23:14:27 mcummings Exp $
 
 EAPI="prefix"
 
 inherit perl-module
 
 DESCRIPTION="A Perl module for I/O on in-core objects like strings and arrays"
-HOMEPAGE="http://www.cpan.org/modules/by-module/IO/ERYQ/${P}.readme"
+HOMEPAGE="http://search.cpan.org/~dskoll/"
 SRC_URI="mirror://cpan/authors/id/D/DS/DSKOLL/${P}.tar.gz"
 LICENSE="Artistic"
 SLOT="0"
@@ -18,4 +18,3 @@ SRC_TEST="do"
 
 
 DEPEND="dev-lang/perl"
-RDEPEND="${DEPEND}"
