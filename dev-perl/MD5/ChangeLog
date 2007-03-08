@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/MD5
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/MD5/ChangeLog,v 1.21 2006/08/05 13:38:57 mcummings Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/MD5/ChangeLog,v 1.22 2007/01/19 14:07:18 mcummings Exp $
+
+  19 Jan 2007; Michael Cummings <mcummings@gentoo.org> MD5-2.03.ebuild:
+  Ebuild maintenance
 
   05 Aug 2006; Michael Cummings <mcummings@gentoo.org> MD5-2.03.ebuild:
   Adding perl dep; fixed DEPEND
