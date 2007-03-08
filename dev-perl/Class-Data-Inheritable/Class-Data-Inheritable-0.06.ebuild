@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Data-Inheritable/Class-Data-Inheritable-0.06.ebuild,v 1.5 2007/01/22 04:26:45 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Data-Inheritable/Class-Data-Inheritable-0.06.ebuild,v 1.6 2007/03/05 11:24:10 ticho Exp $
 
 EAPI="prefix"
 
