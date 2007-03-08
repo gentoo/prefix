@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Glob/Text-Glob-0.07.ebuild,v 1.6 2006/10/23 18:17:15 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Glob/Text-Glob-0.07.ebuild,v 1.7 2007/03/05 12:34:24 ticho Exp $
 
 EAPI="prefix"
 
