@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Harness/Test-Harness-2.64.ebuild,v 1.1 2006/11/06 17:09:34 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Harness/Test-Harness-2.64.ebuild,v 1.6 2007/03/03 20:37:25 ticho Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,8 @@ LICENSE="Artistic"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
-SRC_TEST="do"
 
 DEPEND="dev-lang/perl"
+
+SRC_TEST="do"
 mydoc="rfc*.txt"
