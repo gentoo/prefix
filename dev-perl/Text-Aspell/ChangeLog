@@ -1,6 +1,29 @@
 # ChangeLog for dev-perl/Text-Aspell
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Aspell/ChangeLog,v 1.23 2006/10/21 14:45:29 dertobi123 Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Aspell/ChangeLog,v 1.29 2007/03/05 12:32:43 ticho Exp $
+
+  05 Mar 2007; Andrej Kacian <ticho@gentoo.org> Text-Aspell-0.06.ebuild:
+  Stable on x86, bug #169152.
+
+  22 Jan 2007; Bryan Østergaard <kloeri@gentoo.org>
+  Text-Aspell-0.06.ebuild:
+  Stable on Alpha + IA64.
+
+  19 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  Text-Aspell-0.04.ebuild, Text-Aspell-0.05.ebuild, Text-Aspell-0.06.ebuild:
+  Ebuild maintenance
+
+  24 Dec 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  Text-Aspell-0.06.ebuild:
+  Stable on ppc.
+
+  25 Nov 2006; Michael Cummings <mcummings@gentoo.org>
+  Text-Aspell-0.06.ebuild:
+  sparc stable
+
+  24 Nov 2006; Michael Cummings <mcummings@gentoo.org>
+  Text-Aspell-0.06.ebuild:
+  amd64 stable
 
   21 Oct 2006; Tobias Scherbaum <dertobi123@gentoo.org>
   Text-Aspell-0.05.ebuild:

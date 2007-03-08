@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Aspell/Text-Aspell-0.06.ebuild,v 1.3 2006/09/20 21:38:14 ian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Aspell/Text-Aspell-0.06.ebuild,v 1.9 2007/03/05 12:32:43 ticho Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ inherit perl-module
 
 DESCRIPTION="Perl interface to the GNU Aspell Library"
 SRC_URI="mirror://cpan/authors/id/H/HA/HANK/${P}.tar.gz"
-HOMEPAGE="http://www.cpan.org/modules/by-authors/id/H/HA/HANK/${P}.readme"
+HOMEPAGE="http://search.cpan.org/~hank/"
 
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
@@ -20,4 +20,3 @@ IUSE=""
 
 DEPEND="app-text/aspell
 	dev-lang/perl"
-RDEPEND="${DEPEND}"
