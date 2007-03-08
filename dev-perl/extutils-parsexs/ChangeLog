@@ -1,6 +1,28 @@
 # ChangeLog for dev-perl/extutils-parsexs
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/extutils-parsexs/ChangeLog,v 1.35 2006/11/24 17:47:52 mcummings Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/extutils-parsexs/ChangeLog,v 1.40 2007/03/05 12:45:12 ticho Exp $
+
+  05 Mar 2007; Andrej Kacian <ticho@gentoo.org>
+  extutils-parsexs-2.17.ebuild:
+  Stable on x86, bug #169152.
+
+*extutils-parsexs-2.18 (04 Feb 2007)
+
+  04 Feb 2007; Michael Cummings <mcummings@gentoo.org>
+  +extutils-parsexs-2.18.ebuild:
+  Version bump
+
+  08 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  extutils-parsexs-2.17.ebuild:
+  marking sparc stable
+
+  08 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  extutils-parsexs-2.17.ebuild:
+  marking amd64 stable
+
+  24 Dec 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  extutils-parsexs-2.16.ebuild:
+  Stable on ppc.
 
   24 Nov 2006; Michael Cummings <mcummings@gentoo.org>
   extutils-parsexs-2.16.ebuild:
