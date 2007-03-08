@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Locale-gettext/Locale-gettext-1.05.ebuild,v 1.15 2006/10/10 19:53:59 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Locale-gettext/Locale-gettext-1.05.ebuild,v 1.16 2007/01/08 19:07:44 mcummings Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ MY_P="gettext-${PV}"
 S=${WORKDIR}/${MY_P}
 
 DESCRIPTION="A Perl module for accessing the GNU locale utilities"
-HOMEPAGE="http://search.cpan.org/~pvandry/${P}/"
+HOMEPAGE="http://search.cpan.org/~pvandry/"
 SRC_URI="mirror://cpan/authors/id/P/PV/PVANDRY/${MY_P}.tar.gz"
 
 LICENSE="Artistic"
@@ -19,7 +19,6 @@ KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND="sys-devel/gettext
-	>=virtual/perl-Test-Simple-0.54
 	dev-lang/perl"
 
 # Disabling the tests - not ready for prime time - mcummings

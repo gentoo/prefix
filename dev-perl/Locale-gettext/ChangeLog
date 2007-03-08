@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/Locale-gettext
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Locale-gettext/ChangeLog,v 1.32 2006/10/10 19:53:59 mcummings Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Locale-gettext/ChangeLog,v 1.33 2007/01/08 19:07:44 mcummings Exp $
+
+  08 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  Locale-gettext-1.05.ebuild:
+  Removing spurious dep on virtual/perl-Test-Simple - tests are disabled
+  currently anyway
 
   10 Oct 2006; Michael Cummings <mcummings@gentoo.org>
   -Locale-gettext-1.01-r1.ebuild, -Locale-gettext-1.03.ebuild,
