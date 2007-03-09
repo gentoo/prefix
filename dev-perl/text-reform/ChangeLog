@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/text-reform
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/text-reform/ChangeLog,v 1.17 2006/08/06 03:11:59 mcummings Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/text-reform/ChangeLog,v 1.18 2007/01/19 16:59:20 mcummings Exp $
+
+  19 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  text-reform-1.11.ebuild:
+  Ebuild maintenance
 
   06 Aug 2006; Michael Cummings <mcummings@gentoo.org>
   text-reform-1.11.ebuild:
