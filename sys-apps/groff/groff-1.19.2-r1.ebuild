@@ -50,8 +50,12 @@ src_unpack() {
 
 	if use cjk ; then
 		epatch "${WORKDIR}"/groff-1.19.2-japanese.patch #134377
-		eautoreconf
+#		eautoreconf
 	fi
+
+	# make sure we don't get a crappy `g' nameprefix
+	epatch "${FILESDIR}"/groff-1.19.2-no-g-nameprefix.patch
+	eautoreconf
 }
 
 src_compile() {
