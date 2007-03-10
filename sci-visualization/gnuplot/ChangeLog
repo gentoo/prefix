@@ -1,6 +1,22 @@
 # ChangeLog for sci-visualization/gnuplot
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.7 2006/11/13 02:55:13 dberkholz Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.10 2007/02/26 14:22:33 markusle Exp $
+
+*gnuplot-4.0-r2 (26 Feb 2007)
+
+  26 Feb 2007; Markus Dittrich <markusle@gentoo.org>
+  +files/gnuplot-4.0-filled-arrow.patch, +gnuplot-4.0-r2.ebuild:
+  Added patch to fix problems with failing tests on amd64 
+  (see bug #159653).
+
+  17 Jan 2007; Fabian Groffen <grobian@gentoo.org> gnuplot-4.0-r1.ebuild,
+  gnuplot-4.2_rc1.ebuild:
+  Dropped ppc-macos keyword
+
+  17 Jan 2007; Markus Dittrich <markusle@gentoo.org> gnuplot-4.0-r1.ebuild,
+  gnuplot-4.2_rc1.ebuild:
+  Changed paths passed to addwrite into a properly colon separated
+  list.
 
   13 Nov 2006; Donnie Berkholz <dberkholz@gentoo.org>;
   gnuplot-4.2_rc1.ebuild:

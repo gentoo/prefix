@@ -1,0 +1,41 @@
+diff -Naur gnuplot-4.0.0/src/term.c gnuplot-4.0.0-new/src/term.c
+--- gnuplot-4.0.0/src/term.c	2004-04-13 13:24:02.000000000 -0400
++++ gnuplot-4.0.0-new/src/term.c	2007-01-21 12:14:08.000000000 -0500
+@@ -927,7 +927,7 @@
+ 	    ym = (int) (dy2 + backlen * sin( phi + beta ));
+ 	}
+ #ifdef PM3D
+-	if (curr_arrow_headfilled==2) {
++	if (curr_arrow_headfilled==2 && !clip_point(ex,ey)) {
+ 	    /* draw filled forward arrow head */
+ 	    filledhead[0].x = ex + xm;
+ 	    filledhead[0].y = ey + ym;
+@@ -939,7 +939,8 @@
+ 	    filledhead[3].y = ey + y2;
+ 	    filledhead[4].x = ex + xm;
+ 	    filledhead[4].y = ey + ym;
+-	    (*t->filled_polygon) (5, filledhead);
++	    if (t->filled_polygon)
++	      (*t->filled_polygon) (5, filledhead);
+ 	}
+ #endif
+ 	/* draw outline of forward arrow head */
+@@ -956,7 +957,7 @@
+ 	}
+ 	if (head == 2) { /* backward arrow head */
+ #ifdef PM3D
+-	    if (curr_arrow_headfilled==2) {
++	    if (curr_arrow_headfilled==2 && !clip_point(sx,sy)) {
+ 		/* draw filled backward arrow head */
+ 		filledhead[0].x = sx - xm;
+ 		filledhead[0].y = sy - ym;
+@@ -968,7 +969,8 @@
+ 		filledhead[3].y = sy - y2;
+ 		filledhead[4].x = sx - xm;
+ 		filledhead[4].y = sy - ym;
+-		(*t->filled_polygon) (5, filledhead);
++		if (t->filled_polygon)
++  		  (*t->filled_polygon) (5, filledhead);
+ 	    }
+ #endif
+ 	    /* draw outline of backward arrow head */

@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.0-r1.ebuild,v 1.3 2006/10/10 21:48:15 g2boojum Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.0-r2.ebuild,v 1.1 2007/02/26 14:22:33 markusle Exp $
 
 EAPI="prefix"
 
@@ -36,14 +36,15 @@ E_SITEFILE="50gnuplot-gentoo.el"
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
-	epatch ${FILESDIR}/header-order.patch
-	epatch ${FILESDIR}/pdflib-6-compat.patch
+	cd "${S}"
+	epatch "${FILESDIR}"/header-order.patch
+	epatch "${FILESDIR}"/pdflib-6-compat.patch
+	epatch "${FILESDIR}"/${P}-filled-arrow.patch
 }
 
 src_compile() {
-	# heiko_> gnuplot doesn't compile if several -m's are set (compiler crash)
-	use ppc-macos && filter-flags -m* -fast
+	# gnuplot doesn't compile if several -m's are set (compiler crash)
+	[[ ${CHOST} == powerpc-apple-darwin* ]] && filter-flags -m*
 
 	local myconf="--with-gihdir=${EPREFIX}/usr/share/${PN}/gih"
 
