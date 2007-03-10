@@ -1,0 +1,22 @@
+#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+# Copyright Gentoo Foundation 2006-2007
+
+# Fabian Groffen <grobian@gentoo.org> -- 2007-03-10
+# Enters the prefix environment by starting a login shell from the
+# prefix.  The SHELL environment variable is elevated in order to make
+# applications that start login shells to work, such as `screen`.
+
+# What is our prefix?
+EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
+
+if [[ ${SHELL#${EPREFIX}} != ${SHELL} ]] ; then
+	echo "You appear to be in prefix already (SHELL=$SHELL)" > /dev/stderr
+	exit -1
+fi
+
+# set the prefix shell in the environment
+export SHELL=${EPREFIX}${SHELL}
+# give a small notice
+echo "Entering Gentoo Prefix ${EPREFIX}"
+# start the login shell
+$SHELL -l || echo "Failed to start the Prefix shell, this is probably because you didn't emerge the shell $SHELL" > /dev/stderr

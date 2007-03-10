@@ -161,6 +161,25 @@ bootstrap_tree() {
 	fi
 }
 
+bootstrap_startscript() {
+	theshell=${SHELL##*/}
+	einfo "Trying to emerge the shell you use, if necessary by running:"
+	einfo "emerge -u ${theshell}"
+	emerge -u ${theshell} || \
+		die "Your shell is not available in portage, hence we cannot automate starting your prefix"
+	einfo "Creating the Prefix start script (startprefix)"
+	# currently I think right into the prefix is the best location, as
+	# putting it in /bin or /usr/bin just hides it some more for the
+	# user
+	sed \
+		-e "s|@GENTOO_PORTAGE_EPREFIX|${ROOT}|g" \
+		"${ROOT}"/usr/portage/scripts/startprefix.in \
+		> "${ROOT}"/startprefix
+	chmod 744 "${ROOT}"/startprefix
+	einfo "To start Gentoo Prefix, run the script ${ROOT}/startprefix"
+	einfo "You can copy this file to a more convenient place if you like."
+}
+
 bootstrap_portage() {
 	# don't use "latest" here, as I want to have the bootstrap script to
 	# use a portage in a known "state"
