@@ -35,6 +35,11 @@ src_compile() {
 			libs="-search_paths_first -L${EPREFIX}/lib -L${EPREFIX}/usr/lib"
 			rpaths=""
 		;;
+		AIX)
+			defines="-DNEEDS_LIBRARY_INCLUDES"
+			libs="-L${EPREFIX}/lib -L${EPREFIX}/usr/lib"
+			rpaths=""
+		;;
 		*)
 			defines="-DNEEDS_LIBRARY_INCLUDES -DNEEDS_RPATH_DIRECTIONS"
 			# this is a lousy check for multilib, and should be done properly
@@ -68,7 +73,7 @@ src_install() {
 
 pkg_postinst() {
 	# refresh all links and the wrapper
-	if [[ ${EROOT%/} == ${EPREFIX%/} ]] ; then
+	if [[ ${ROOT%/} == "" ]] ; then
 		[[ -f ${EROOT}/etc/env.d/binutils/config-${CHOST} ]] \
 			&& binutils-config $(${EROOT}/usr/bin/binutils-config --get-current-profile)
 	fi
