@@ -42,9 +42,8 @@ src_unpack() {
 }
 
 src_compile() {
-	# heiko_> gnuplot doesn't compile if both, -m's and -O? is set. then the
-	# compiler crashes
-	use ppc-macos && filter-flags -O?
+	# heiko_> gnuplot doesn't compile if several -m's are set (compiler crash)
+	use ppc-macos && filter-flags -m* -fast
 
 	local myconf="--with-gihdir=${EPREFIX}/usr/share/${PN}/gih"
 
@@ -68,7 +67,7 @@ src_compile() {
 	# This is a hack to avoid sandbox violations when using the Linux console.
 	# Creating the DVI and PDF tutorials require /dev/svga to build the
 	# example plots.
-	addwrite /dev/svga /dev/mouse /dev/tts/0
+	addwrite /dev/svga:/dev/mouse:/dev/tts/0
 
 	econf ${myconf} || die
 	emake || die
