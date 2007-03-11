@@ -24,8 +24,9 @@ virtual/dhcpc				net-misc/dhcpcd
 virtual/editor				app-editors/nano
 virtual/eject				sys-apps/eject
 virtual/emacs				app-editors/emacs
-virtual/fam				app-admin/gamin
+virtual/fam					app-admin/gamin
 virtual/flim				app-emacs/flim
+virtual/gcc					sys-devel/gcc
 virtual/gsasl				net-libs/libgsasl
 virtual/ghc					dev-lang/ghc-bin
 virtual/gnustep-back		gnustep-base/gnustep-back-art
