@@ -53,7 +53,13 @@ src_unpack() {
 }
 
 src_compile() {
-	econf $(use_with X x) || die "econf failed"
+	local myconf="$(use_with X x)"
+	if use X ; then
+		myconf="${myconf} \
+			--x-includes='${EPREFIX}'/usr/include \
+			--x-libraries='${EPREFIX}'/usr/lib"
+	fi
+	econf ${myconf} || die "econf failed"
 	emake || "emake failed"
 }
 
