@@ -9,7 +9,6 @@
 -*sys-process/psmisc
 -*net-misc/iputils
 -*sys-apps/shadow
--*sys-devel/binutils
 -*sys-fs/e2fsprogs
 -*sys-libs/cracklib
 -*sys-fs/udev
