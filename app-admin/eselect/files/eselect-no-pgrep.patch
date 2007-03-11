@@ -1,0 +1,29 @@
+diff -ur eselect-1.0.8.orig/libs/core.bash.in eselect-1.0.8/libs/core.bash.in
+--- eselect-1.0.8.orig/libs/core.bash.in	2007-03-07 18:12:19 -0500
++++ eselect-1.0.8/libs/core.bash.in	2007-03-07 18:12:27 -0500
+@@ -60,9 +60,22 @@
+     fi
+ 
+     # Evil, but effective.
+-    kill ${ESELECT_KILL_TARGET}
+-    childs=$(pgrep -P ${ESELECT_KILL_TARGET})
+-    for process in ${ESELECT_KILL_TARGET} ${childs} ; do
++	#
++	# fafhrd sez ... evil, even more so, since pgrep really isn't portable ...
++	#   ... not that awk is portable, nor ps, but they are certainily more so compared to pgrep
++	# In:
++	#  * ESELECT_KILL_TARGET is a pid / number
++	local killtargets
++	killtargets="${ESELECT_KILL_TARGET}"
++	
++	kill ${ESELECT_KILL_TARGET}
++	
++	for child in $(ps -o pid,ppid -ax | awk "{ if ( \$2 == ${ESELECT_KILL_TARGET} ) { print \$1 }}")
++	do
++		killtargets="${killtargets} ${child}"
++	done
++		
++    for process in ${killtargets} ; do
+         kill -9 ${process}
+     done
+     exit 249

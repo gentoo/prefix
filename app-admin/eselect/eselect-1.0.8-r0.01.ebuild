@@ -22,8 +22,8 @@ DEPEND="sys-apps/sed
 		sys-freebsd/freebsd-bin
 		app-admin/realpath
 	)"
-#	userland_Darwin? ( sys-process/proctools )"
 RDEPEND="sys-apps/sed
+	sys-apps/gawk
 	sys-apps/file"
 
 src_unpack() {
@@ -31,6 +31,8 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}/${P}-fix-parallel-install.patch"
+	epatch "${FILESDIR}/${PN}-no-pgrep.patch"
+	
 	eautoreconf
 
 	epatch "${FILESDIR}"/${P}-prefix.patch
