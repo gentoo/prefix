@@ -1,8 +1,8 @@
+## Begin Darwin specific packages
 *sys-devel/odcctools
-*sys-devel/gcc-apple
-*sys-libs/readline
 *sys-apps/darwin-miscutils
 *sys-apps/bsd-man-pages
+## End Darwin specific packages
 
 ## Begin Linux specific packages
 -*sys-apps/kbd
