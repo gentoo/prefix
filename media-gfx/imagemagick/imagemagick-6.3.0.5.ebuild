@@ -16,7 +16,7 @@ SRC_URI="ftp://ftp.imagemagick.org/pub/${MY_PN}/${MY_P2}.tar.bz2"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="bzip2 doc fpx graphviz gs jbig jpeg jpeg2k lcms mpeg nocxx perl png tiff truetype X wmf xml zlib"
 
 RDEPEND="bzip2? ( app-arch/bzip2 )
