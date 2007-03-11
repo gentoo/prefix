@@ -15,7 +15,7 @@ LICENSE="Ruby"
 # change the filename on the end, it still downloads the same file.
 SRC_URI="http://rubyforge.org/frs/download.php/16452/${P}.tgz"
 
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 SLOT="0"
 IUSE="doc server examples"
 PDEPEND="server? ( dev-ruby/builder )" # index_gem_repository.rb
