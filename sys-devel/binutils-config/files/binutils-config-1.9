@@ -1,13 +1,19 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/bash
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-1.9,v 1.6 2006/11/26 13:40:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-1.9,v 1.9 2007/03/01 21:30:00 vapier Exp $
 
 # Format of /etc/env.d/binutils/:
 #  config-TARGET:	CURRENT=version for TARGET
 #  TARGET-VER:		has a TARGET and VER variable
 
 EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
+
+[[ -z ${ROOT} ]] && ROOT="/"
+[[ ${ROOT} != */ ]] && ROOT="${ROOT}/"
+[[ ${ROOT} != /* ]] && ROOT="${PWD}${ROOT}"
+ROOT="${ROOT}${EPREFIX}/"
+
 cd ${EPREFIX}
 
 trap ":" INT QUIT TSTP
@@ -97,7 +103,7 @@ switch_profile() {
 		# Newer paths: /usr/${HOST}/${TARGET}/...
 		# Older paths: /usr/${TARGET}/...
 		#
-		if [[ -d ${EPREFIX}/usr/${HOST}/${TARGET}/binutils-bin/${VER} ]] ; then
+		if [[ -d ${ROOT}/usr/${HOST}/${TARGET}/binutils-bin/${VER} ]] ; then
 			BINPATH=/usr/${HOST}/${TARGET}/binutils-bin/${VER}
 			BINPATH_LINKS=/usr/libexec/gcc/${TARGET}
 		fi
@@ -107,7 +113,7 @@ switch_profile() {
 		BINPATH_LINKS=/usr/${TARGET}/bin
 	fi
 	cd "${ROOT}/${BINPATH}" || exit 1
-	mkdir -p "${ROOT}/${BINPATH_LINKS}"
+	mkdir -p "${ROOT}/${BINPATH_LINKS}" "${ROOT}/usr/bin"
 	for x in * ; do
 		case ${x} in
 			ld|ld64)
@@ -341,9 +347,6 @@ set_HOST() {
 	fi
 }
 
-[[ -z ${ROOT} ]] && ROOT="/"
-ROOT="${ROOT}${EPREFIX}"
-[[ ${ROOT:0-1} != "/" ]] && ROOT="${ROOT}/"
 ENV_D="${ROOT}etc/env.d/binutils"
 
 DEBUG="no"
@@ -389,7 +392,7 @@ while [[ $# -gt 0 ]] ; do
 			exit 0
 			;;
 		-V|--version)
-			cvsver="$Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-1.9,v 1.6 2006/11/26 13:40:14 vapier Exp $"
+			cvsver="$Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-1.9,v 1.9 2007/03/01 21:30:00 vapier Exp $"
 			cvsver=${cvsver##*binutils-config-}
 			bver=${cvsver%%,v *}
 			cvsver=${cvsver#* }
