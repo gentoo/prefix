@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.611 2007/02/14 11:09:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.612 2007/03/09 22:13:12 vapier Exp $
+
+  09 Mar 2007; Mike Frysinger <vapier@gentoo.org> gcc-3.4.6-r2.ebuild,
+  gcc-4.1.2.ebuild:
+  Add support for version 0.23 of the D language addon.
 
 *gcc-4.1.2 (14 Feb 2007)
 

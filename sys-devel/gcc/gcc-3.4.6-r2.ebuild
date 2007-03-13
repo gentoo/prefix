@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.4.6-r2.ebuild,v 1.14 2007/02/06 14:51:08 blubb Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.4.6-r2.ebuild,v 1.15 2007/03/09 22:13:12 vapier Exp $
 
 EAPI="prefix"
 
@@ -14,6 +14,7 @@ PP_VER="1.0"
 PP_GCC_VER="3.4.6"
 HTB_VER="1.00"
 HTB_GCC_VER="3.4.4"
+D_VER="0.23"
 
 GCC_LIBSSP_SUPPORT="true"
 
