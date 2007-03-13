@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.16.1.ebuild,v 1.9 2007/02/06 02:47:37 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.16.1.ebuild,v 1.11 2007/02/26 01:32:09 vapier Exp $
 
 EAPI="prefix"
 
@@ -73,21 +73,7 @@ src_install() {
 	fi
 	rm -f "${ED}"/usr/share/locale/locale.alias "${ED}"/usr/lib/charset.alias
 
-	# older gettext's sometimes installed libintl ...
-	# need to keep the linked version or the system
-	# could die (things like sed link against it :/)
-	local libname="libintl$(get_libname 7)"
-	if [[ -e ${EROOT}/usr/$(get_libdir)/${libname} ]] ; then
-		cp -pPR ${EROOT}/usr/$(get_libdir)/${libname}* "${ED}"/usr/$(get_libdir)/
-		touch "${ED}"/usr/$(get_libdir)/${libname}*
-	fi
-	if [[ -e ${EROOT}/$(get_libdir)/${libname} ]] ; then
-		dodir /$(get_libdir)
-		cp -pPR ${EROOT}/$(get_libdir)/${libname}* "${ED}"/$(get_libdir)/
-		touch "${ED}"/$(get_libdir)/${libname}*
-	fi
-
-	if [[ $USERLAND == "BSD" ]] ; then
+	if [[ ${USERLAND} == "BSD" ]] ; then
 		libname="libintl$(get_libname 8)"
 		# Move dynamic libs and creates ldscripts into /usr/lib
 		dodir /$(get_libdir)
@@ -110,6 +96,13 @@ src_install() {
 	fi
 
 	dodoc AUTHORS ChangeLog NEWS README THANKS
+}
+
+pkg_preinst() {
+	# older gettext's sometimes installed libintl ...
+	# need to keep the linked version or the system
+	# could die (things like sed link against it :/)
+	preserve_old_lib /{,usr/}$(get_libdir)/libintl$(get_libname 7)
 }
 
 pkg_postinst() {
