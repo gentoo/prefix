@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/pmake
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/pmake/ChangeLog,v 1.31 2006/10/14 14:26:15 drizzt Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/pmake/ChangeLog,v 1.32 2007/02/22 00:51:25 jokey Exp $
+
+  22 Feb 2007; Markus Ullmann <jokey@gentoo.org> ChangeLog:
+  Redigest for Manifest2
 
   14 Oct 2006; Timothy Redaelli <drizzt@gentoo.org> pmake-1.111.1.ebuild:
   Added sys-devel/bmake blocker (both packages uses /usr/share/mk/)
