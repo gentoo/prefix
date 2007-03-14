@@ -1,7 +1,7 @@
 #!/sbin/runscript
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/sys-apps/dbus/files/dbus.init-1.0,v 1.2 2007/01/08 13:10:21 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/files/dbus.init-1.0,v 1.3 2007/02/23 11:00:28 uberlord Exp $
 
 opts="reload"
 
@@ -16,7 +16,7 @@ start() {
 	/usr/bin/dbus-uuidgen --ensure
 
 	# We need to test if /var/run/dbus exists, since script will fail if it does not
-	[[ ! -e /var/run/dbus ]] && mkdir /var/run/dbus 
+	[ ! -e /var/run/dbus ] && mkdir /var/run/dbus 
 
 	start-stop-daemon --start --pidfile /var/run/dbus.pid --exec /usr/bin/dbus-daemon -- --system
 	eend $?
@@ -32,7 +32,7 @@ stop() {
 
 	eend ${retval}
 
-	[[ -S /var/run/dbus/system_bus_socket ]] && rm -f /var/run/dbus/system_bus_socket
+	[ -S /var/run/dbus/system_bus_socket ] && rm -f /var/run/dbus/system_bus_socket
 
 	return ${retval}
 }
