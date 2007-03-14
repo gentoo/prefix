@@ -1,6 +1,18 @@
 # ChangeLog for sys-apps/grep
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/ChangeLog,v 1.68 2007/01/20 15:42:58 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/ChangeLog,v 1.72 2007/03/12 18:09:28 corsair Exp $
+
+  12 Mar 2007; Markus Rothe <corsair@gentoo.org> ChangeLog:
+  Stable on ppc64; bug #170140
+
+  12 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> grep-2.5.1a-r1.ebuild:
+  Stable on sparc wrt #170140
+
+  10 Mar 2007; nixnut <nixnut@gentoo.org> ChangeLog:
+  Stable on ppc wrt bug 170140
+
+  09 Mar 2007; Raúl Porcel <armin76@gentoo.org> grep-2.5.1a-r1.ebuild:
+  x86 stable wrt bug 170140
 
   20 Jan 2007; Alexander H. Færøy <eroyf@gentoo.org>
   grep-2.5.1a-r1.ebuild:

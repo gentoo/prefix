@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/grep-2.5.1a-r1.ebuild,v 1.4 2007/01/20 15:42:58 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/grep-2.5.1a-r1.ebuild,v 1.7 2007/03/12 12:45:56 gustavoz Exp $
 
 EAPI="prefix"
 
