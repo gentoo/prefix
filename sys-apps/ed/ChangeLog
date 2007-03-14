@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/ed
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ChangeLog,v 1.32 2007/01/25 19:56:55 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ChangeLog,v 1.33 2007/03/09 22:16:41 armin76 Exp $
+
+  09 Mar 2007; Raúl Porcel <armin76@gentoo.org> ed-0.4.ebuild:
+  x86 stable
 
   25 Jan 2007; Alexander H. Færøy <eroyf@gentoo.org> ed-0.4.ebuild:
   Stable on Alpha/IA64/MIPS.
