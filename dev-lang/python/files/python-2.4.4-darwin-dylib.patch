@@ -1,0 +1,23 @@
+--- Python-2.4.4/configure.in
++++ Python-2.4.4/configure.in
+@@ -1361,6 +1361,7 @@
+ 	case $ac_sys_system in
+ 	hp*|HP*)   SO=.sl;;
+ 	CYGWIN*)   SO=.dll;;
++	Darwin*)   SO=.dylib;;
+ 	*)	   SO=.so;;
+ 	esac
+ else
+--- Python-2.4.4/Python/dynload_next.c
++++ Python-2.4.4/Python/dynload_next.c
+@@ -9,8 +9,8 @@
+ #include <mach-o/dyld.h>
+ 
+ const struct filedescr _PyImport_DynLoadFiletab[] = {
+-	{".so", "rb", C_EXTENSION},
+-	{"module.so", "rb", C_EXTENSION},
++	{".dylib", "rb", C_EXTENSION},
++	{"module.dylib", "rb", C_EXTENSION},
+ 	{0, 0}
+ };
+ 

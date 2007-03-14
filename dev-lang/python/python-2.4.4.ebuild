@@ -110,6 +110,8 @@ src_unpack() {
 
 	# python has some gcc-apple specific CFLAGS built in... rip them out
 	epatch "${FILESDIR}"/${P}-darwin-fsf-gcc.patch
+	# python defaults to using .so files... so stupid
+	epatch "${FILESDIR}"/${P}-darwin-dylib.patch
 
 	eautoreconf
 }
