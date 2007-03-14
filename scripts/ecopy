@@ -22,6 +22,8 @@ else
 	ebuild=${2:-$(grep "+[^ ]*.ebuild" ChangeLog | head -n 1 | sed -e "s:.*+::" -e "s/://")}
 fi
 
+if [[ -z "$ebuild" ]]; then echo "please specify specific version as additional argument for example: $0 $1 ${catpkg#*/}-0.2.3.ebuild"; exit; fi
+
 PF=${ebuild/.ebuild}
 P=${PF%-r[1-9]*}
 PN=${P%-*}
