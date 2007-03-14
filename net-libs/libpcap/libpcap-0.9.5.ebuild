@@ -34,7 +34,7 @@ src_compile() {
 	local myopts
 	case ${USERLAND} in
 		Darwin)
-			myopts="-dynamiclib -install_name libpcap$(get_libname 0)"
+			myopts="-dynamiclib -install_name ${EPREFIX}/usr/$(get_libdir)/libpcap$(get_libname 0)"
 		;;
 		*)
 			myopts="-Wl,-soname,libpcap$(get_libname 0) -shared -fPIC"
