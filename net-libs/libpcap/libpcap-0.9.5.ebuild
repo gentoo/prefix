@@ -32,8 +32,8 @@ src_compile() {
 
 	# no provision for this in the Makefile, so...
 	local myopts
-	case ${USERLAND} in
-		Darwin)
+	case ${CHOST} in
+		*-darwin*)
 			myopts="-dynamiclib -install_name ${EPREFIX}/usr/$(get_libdir)/libpcap$(get_libname 0)"
 		;;
 		*)
