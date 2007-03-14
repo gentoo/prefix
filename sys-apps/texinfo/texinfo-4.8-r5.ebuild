@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/texinfo-4.8-r5.ebuild,v 1.10 2006/11/15 13:19:04 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/texinfo-4.8-r5.ebuild,v 1.11 2007/02/28 22:22:35 genstef Exp $
 
 EAPI="prefix"
 
