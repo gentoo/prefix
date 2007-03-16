@@ -17,12 +17,12 @@ EXPORT_FUNCTIONS pkg_preinst pkg_postinst src_compile pkg_setup
 DESCRIPTION="Based on the ${ECLASS} eclass"
 
 export GAMES_PREFIX=${GAMES_PREFIX:-${EPREFIX}/usr/games}
-export GAMES_PREFIX_OPT=${GAMES_PREFIX_OPT:-/opt}
+export GAMES_PREFIX_OPT=${GAMES_PREFIX_OPT:-${EPREFIX}/opt}
 export GAMES_DATADIR=${GAMES_DATADIR:-${EPREFIX}/usr/share/games}
-export GAMES_DATADIR_BASE=${GAMES_DATADIR_BASE:-/usr/share} # some packages auto append 'games'
-export GAMES_SYSCONFDIR=${GAMES_SYSCONFDIR:-/etc/games}
-export GAMES_STATEDIR=${GAMES_STATEDIR:-/var/games}
-export GAMES_LOGDIR=${GAMES_LOGDIR:-/var/log/games}
+export GAMES_DATADIR_BASE=${GAMES_DATADIR_BASE:-${EPREFIX}/usr/share} # some packages auto append 'games'
+export GAMES_SYSCONFDIR=${GAMES_SYSCONFDIR:-${EPREFIX}/etc/games}
+export GAMES_STATEDIR=${GAMES_STATEDIR:-${EPREFIX}/var/games}
+export GAMES_LOGDIR=${GAMES_LOGDIR:-${EPREFIX}/var/log/games}
 export GAMES_LIBDIR=${GAMES_LIBDIR:-${GAMES_PREFIX}/$(get_libdir)}
 export GAMES_BINDIR=${GAMES_BINDIR:-${GAMES_PREFIX}/bin}
 export GAMES_ENVD="90games"
@@ -48,8 +48,8 @@ egamesinstall() {
 	epause 30
 	make \
 		prefix="${D}${GAMES_PREFIX}" \
-		mandir="${D}/usr/share/man" \
-		infodir="${D}/usr/share/info" \
+		mandir="${ED}/usr/share/man" \
+		infodir="${ED}/usr/share/info" \
 		datadir="${D}${GAMES_DATADIR}" \
 		sysconfdir="${D}${GAMES_SYSCONFDIR}" \
 		localstatedir="${D}${GAMES_STATEDIR}" \
@@ -58,7 +58,7 @@ egamesinstall() {
 
 gameswrapper() {
 	local oldtree=${DESTTREE}
-	into "${GAMES_PREFIX}"
+	into "${GAMES_PREFIX#${EPREFIX}}"
 	local cmd=$1; shift
 	${cmd} "$@"
 	local ret=$?
