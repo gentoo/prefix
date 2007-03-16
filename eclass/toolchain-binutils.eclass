@@ -174,10 +174,11 @@ toolchain-binutils_src_compile() {
 	use nls \
 		&& myconf="${myconf} --without-included-gettext" \
 		|| myconf="${myconf} --disable-nls"
+	[[ ${CHOST} == *"-solaris"* ]] && use nls && append-flags -lintl
 	use multitarget && myconf="${myconf} --enable-targets=all"
 	[[ -n ${CBUILD} ]] && myconf="${myconf} --build=${CBUILD}"
 	is_cross && myconf="${myconf} --with-sysroot=${EPREFIX}/usr/${CTARGET}"
-	[[ ${EPREFIX/\//} != "" ]] && myconf="${myconf} \
+	[[ ${EPREFIX%/} != "" ]] && myconf="${myconf} \
 		--with-lib-path=${EPREFIX}/lib64:${EPREFIX}/usr/lib64:${EPREFIX}/lib:${EPREFIX}/usr/lib:/lib64:/usr/lib64:/lib:/usr/lib"
 #	glibc-2.3.6 lacks support for this ...
 #		--enable-secureplt   <- this is an alpha-only option
