@@ -24,6 +24,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-4.15-libtool.patch #99593
 	epatch "${FILESDIR}"/${PN}-4.19-init-file.patch #163948
+	epatch "${FILESDIR}"/${PN}-4.20-solaris.patch
 
 	elibtoolize
 	epunt_cxx
