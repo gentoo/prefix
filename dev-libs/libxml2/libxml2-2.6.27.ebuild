@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.27.ebuild,v 1.2 2006/12/18 10:35:41 leonardop Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.27.ebuild,v 1.9 2007/02/11 09:54:18 vapier Exp $
 
 EAPI="prefix"
 
@@ -28,13 +28,11 @@ SRC_URI="ftp://xmlsoft.org/${PN}/${P}.tar.gz
 RDEPEND="sys-libs/zlib
 	python? ( dev-lang/python )
 	readline? ( sys-libs/readline )"
-
 DEPEND="${RDEPEND}
 	hppa? ( >=sys-devel/binutils-2.15.92.0.2 )"
 
-
 src_unpack() {
-	unpack "${P}.tar.gz"
+	unpack ${P}.tar.gz
 	cd "${S}"
 
 	if use test; then
