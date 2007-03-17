@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/boehm-gc
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/ChangeLog,v 1.59 2006/10/20 00:15:20 kloeri Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/ChangeLog,v 1.60 2007/02/11 16:39:53 grobian Exp $
+
+  11 Feb 2007; Fabian Groffen <grobian@gentoo.org> boehm-gc-6.5.ebuild,
+  boehm-gc-6.7.ebuild, boehm-gc-6.8.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> boehm-gc-6.7.ebuild:
   Stable on Alpha.
