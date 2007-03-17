@@ -1,10 +1,13 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-0.9.12.ebuild,v 1.18 2007/02/11 14:25:44 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-0.9.12-r1.ebuild,v 1.5 2007/03/08 18:17:58 phreak Exp $
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic libtool db-use
+WANT_AUTOMAKE="1.7"
+WANT_AUTOCONF="2.1"
+
+inherit autotools eutils flag-o-matic libtool db-use
 
 DESCRIPTION="Apache Portable Runtime Library"
 HOMEPAGE="http://apr.apache.org/"
@@ -23,16 +26,23 @@ DEPEND="dev-libs/expat
 	ldap? ( =net-nds/openldap-2* )"
 
 src_unpack() {
-	unpack ${A} || die
-	cd ${S} || die
+	unpack ${A}
+	cd "${S}"
 
-	epatch ${FILESDIR}/apr-util-0.9.12-linking.patch
-	elibtoolize || die "elibtoolize failed"
+	epatch "${FILESDIR}"/${P}-linking.patch
+	epatch "${FILESDIR}"/${P}-db-4.5.patch
+
+	# Fix the config.layout
+	ebegin "Applying ${P}-config.layout.patch"
+	sed -i "s,prefix:        /usr/local/apr,prefix:        /usr," \
+		"${S}"/config.layout
+	eend $?
+
+	eautoreconf
 }
 
 
 src_compile() {
-
 	local myconf=""
 
 	use ldap && myconf="${myconf} --with-ldap"
@@ -61,16 +71,17 @@ src_install() {
 	make DESTDIR="${D}" installbuilddir=/usr/share/apr-util-0/build install || die
 
 	#bogus values pointing at /var/tmp/portage
-	sed -i -e "s:APU_SOURCE_DIR=.*:APU_SOURCE_DIR=:g" ${ED}/usr/bin/apu-config
-	sed -i -e "s:APU_BUILD_DIR=.*:APU_BUILD_DIR=${EPREFIX}/usr/share/apr-util-0/build:g" ${ED}/usr/bin/apu-config
+	sed -i -e 's:APU_SOURCE_DIR=.*:APU_SOURCE_DIR=:g' "${ED}"/usr/bin/apu-config
+	sed -i -e 's:APU_BUILD_DIR=.*:APU_BUILD_DIR='"${EPREFIX}"'/usr/share/apr-util-0/build:g' \
+		"${ED}"/usr/bin/apu-config
 
 	dodoc CHANGES NOTICE
 
 	# Will install as portage user when using userpriv. Fixing
-	chown -R root:0 ${ED}/usr/include/apr-0/
+	chown -R root:0 "${ED}"/usr/include/apr-0/
 
 	# This file is only used on AIX systems, which gentoo is not,
 	# and causes collisions between the SLOTs, so kill it
-	rm ${ED}/usr/$(get_libdir)/aprutil.exp
+	rm "${ED}"/usr/$(get_libdir)/aprutil.exp
 
 }

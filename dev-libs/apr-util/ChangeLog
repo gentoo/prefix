@@ -1,6 +1,33 @@
 # ChangeLog for dev-libs/apr-util
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.70 2007/01/29 12:41:44 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.76 2007/03/08 18:17:58 phreak Exp $
+
+  08 Mar 2007; Christian Heim <phreak@gentoo.org> apr-util-0.9.12-r1.ebuild:
+  Finally fixing apr-util-0.9.12, forcing autoconf-1.7 (thanks to Marcus
+  Hanwell in #169927).
+
+  08 Mar 2007; Christian Heim <phreak@gentoo.org> apr-util-0.9.12-r1.ebuild:
+  Using fixed versions for autoconf/automake (WANT_AUTO(CONF|MAKE)), as
+  autoconf-2.61 gets --libdir wrong (as in ignores it - which shoots multilib
+  in the foot). Thanks to Alexis Ballier (#169927) for pointing it out.
+
+  07 Mar 2007; Christian Heim <phreak@gentoo.org> apr-util-0.9.12-r1.ebuild:
+  Adding a sed to change the config.layout, as it screws up our PREFIX.
+
+  07 Mar 2007; Christian Heim <phreak@gentoo.org> apr-util-0.9.12-r1.ebuild:
+  Minor syn, whitespace cleanup.
+
+*apr-util-0.9.12-r1 (07 Mar 2007)
+
+  07 Mar 2007; Christian Heim <phreak@gentoo.org>
+  +files/apr-util-0.9.12-db-4.5.patch, +apr-util-0.9.12-r1.ebuild:
+  Fixing compilation of apr-util-0.9.12 against >=sys-libs/db-4.4 (#169507,
+  thanks to Michael Edenfield <kutulu at kutulu.org> for pointing at the
+  UPSTREAM patch).
+
+  11 Feb 2007; Fabian Groffen <grobian@gentoo.org> apr-util-0.9.12.ebuild,
+  apr-util-0.9.13.ebuild, apr-util-1.2.8.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   29 Jan 2007; Christian Heim <phreak@gentoo.org> apr-util-0.9.13.ebuild:
   Reverting the KEYWORDS to ~arch, accidently commited straight to arch.
