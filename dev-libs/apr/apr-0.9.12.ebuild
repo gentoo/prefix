@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-0.9.12.ebuild,v 1.15 2006/10/18 16:10:41 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-0.9.12.ebuild,v 1.17 2007/03/03 22:29:34 genone Exp $
 
 EAPI="prefix"
 
@@ -36,10 +36,10 @@ src_compile() {
 	myconf="${myconf} --enable-threads"
 	myconf="${myconf} --enable-nonportable-atomics"
 	if use urandom; then
-		einfo "Using /dev/urandom as random device"
+		elog "Using /dev/urandom as random device"
 		myconf="${myconf} --with-devrandom=/dev/urandom"
 	else
-		einfo "Using /dev/random as random device"
+		elog "Using /dev/random as random device"
 		myconf="${myconf} --with-devrandom=/dev/random"
 	fi
 

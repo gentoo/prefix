@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/apr
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.78 2007/01/29 12:40:17 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.80 2007/03/03 22:29:34 genone Exp $
+
+  03 Mar 2007; Marius Mauch <genone@gentoo.org> apr-0.9.12.ebuild,
+  apr-0.9.13.ebuild:
+  Replacing einfo with elog
+
+  25 Feb 2007; Christian Faulhammer <opfer@gentoo.org> apr-1.2.8.ebuild:
+  stable x86; bug 168287
 
   29 Jan 2007; Christian Heim <phreak@gentoo.org> apr-0.9.13.ebuild:
   Reverting the KEYWORDS to ~arch, accidently commited straight to arch.
