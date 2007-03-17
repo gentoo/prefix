@@ -1,0 +1,209 @@
+* Michael Haubenwallner <michael.haubenwallner@salomon.at> 
+  Prefix awareness for sandbox
+
+diff -ruN sandbox-1.2.17.orig/configure.ac sandbox-1.2.17/configure.ac
+--- sandbox-1.2.17.orig/configure.ac	2005-12-05 15:03:35.000000000 +0100
++++ sandbox-1.2.17/configure.ac	2006-07-27 16:14:28.000000000 +0200
+@@ -156,5 +156,7 @@
+ 	Makefile
+ 	scripts/Makefile
+ 	data/Makefile
++	data/sandbox.bashrc
++	data/sandbox.profile
+ 	src/Makefile
+ ])
+diff -ruN sandbox-1.2.17.orig/data/sandbox.bashrc sandbox-1.2.17/data/sandbox.bashrc
+--- sandbox-1.2.17.orig/data/sandbox.bashrc	2005-12-01 00:14:28.000000000 +0100
++++ sandbox-1.2.17/data/sandbox.bashrc	1970-01-01 01:00:00.000000000 +0100
+@@ -1,18 +0,0 @@
+-# Copyright (C) 2001 Geert Bevin, Uwyn, http://www.uwyn.com
+-# Distributed under the terms of the GNU General Public License, v2 or later 
+-# Author : Geert Bevin <gbevin@uwyn.com>
+-# $Header$
+-source /etc/profile
+-
+-if [[ -n ${LD_PRELOAD} && ${LD_PRELOAD} != *$SANDBOX_LIB* ]] ; then
+-	export LD_PRELOAD="${SANDBOX_LIB} ${LD_PRELOAD}"
+-elif [[ -z ${LD_PRELOAD} ]] ; then
+-	export LD_PRELOAD="${SANDBOX_LIB}"
+-fi
+-
+-export BASH_ENV="${SANDBOX_BASHRC}"
+-
+-alias make="make LD_PRELOAD=${LD_PRELOAD}"
+-alias su="su -c '/bin/bash -rcfile ${SANDBOX_BASHRC}'"
+-
+-declare -r SANDBOX_ACTIVE
+diff -ruN sandbox-1.2.17.orig/data/sandbox.bashrc.in sandbox-1.2.17/data/sandbox.bashrc.in
+--- sandbox-1.2.17.orig/data/sandbox.bashrc.in	1970-01-01 01:00:00.000000000 +0100
++++ sandbox-1.2.17/data/sandbox.bashrc.in	2006-07-27 16:13:40.000000000 +0200
+@@ -0,0 +1,17 @@
++# Copyright (C) 2001 Geert Bevin, Uwyn, http://www.uwyn.com
++# Distributed under the terms of the GNU General Public License, v2 or later 
++# Author : Geert Bevin <gbevin@uwyn.com>
++# $Header$
++
++if [[ -n ${LD_PRELOAD} && ${LD_PRELOAD} != *$SANDBOX_LIB* ]] ; then
++	export LD_PRELOAD="${SANDBOX_LIB} ${LD_PRELOAD}"
++elif [[ -z ${LD_PRELOAD} ]] ; then
++	export LD_PRELOAD="${SANDBOX_LIB}"
++fi
++
++export BASH_ENV="${SANDBOX_BASHRC}"
++
++alias make="make LD_PRELOAD=${LD_PRELOAD}"
++alias su="su -c '@CU_BASH@ -rcfile ${SANDBOX_PROFILE}'"
++
++declare -r SANDBOX_ACTIVE
+diff -ruN sandbox-1.2.17.orig/data/sandbox.profile.in sandbox-1.2.17/data/sandbox.profile.in
+--- sandbox-1.2.17.orig/data/sandbox.profile.in	1970-01-01 01:00:00.000000000 +0100
++++ sandbox-1.2.17/data/sandbox.profile.in	2006-07-27 16:12:05.000000000 +0200
+@@ -0,0 +1,7 @@
++# Copyright (C) 2001 Michael Haubenwallner, Salomon Automation, http://www.salomon.at
++# Distributed under the terms of the GNU General Public License, v2 or later 
++# Author : Michael Haubenwallner <michael.haubenwallner@salomon.at>
++# $Header$
++
++source @sysconfdir@/profile
++source "${SANDBOX_BASHRC}"
+diff -ruN sandbox-1.2.17.orig/src/Makefile.am sandbox-1.2.17/src/Makefile.am
+--- sandbox-1.2.17.orig/src/Makefile.am	2005-12-05 14:16:52.000000000 +0100
++++ sandbox-1.2.17/src/Makefile.am	2006-07-27 16:12:05.000000000 +0200
+@@ -7,6 +7,7 @@
+ 	-DPIC -fPIC -D_REENTRANT  \
+ 	-DLIBSANDBOX_PATH=\"$(libdir)\"         \
+ 	-DSANDBOX_BASHRC_PATH=\"$(pkgdatadir)\" \
++	-DLOCALSTATEDIR=\"$(localstatedir)\" \
+ 	-I$(top_srcdir) -Wall
+ 
+ LOCAL_INCLUDES = $(top_srcdir)/localdecls.h
+diff -ruN sandbox-1.2.17.orig/src/sandbox.c sandbox-1.2.17/src/sandbox.c
+--- sandbox-1.2.17.orig/src/sandbox.c	2005-12-05 14:15:45.000000000 +0100
++++ sandbox-1.2.17/src/sandbox.c	2006-07-27 16:12:05.000000000 +0200
+@@ -33,6 +33,7 @@
+ 	char sandbox_debug_log[SB_PATH_MAX];
+ 	char sandbox_lib[SB_PATH_MAX];
+ 	char sandbox_rc[SB_PATH_MAX];
++	char sandbox_profile[SB_PATH_MAX];
+ 	char work_dir[SB_PATH_MAX];
+ 	char var_tmp_dir[SB_PATH_MAX];
+ 	char tmp_dir[SB_PATH_MAX];
+@@ -81,6 +82,9 @@
+ 	/* Generate sandbox bashrc path */
+ 	get_sandbox_rc(sandbox_info->sandbox_rc);
+ 
++	/* Generate sandbox bashprofile path */
++	get_sandbox_profile(sandbox_info->sandbox_profile);
++
+ 	/* Generate sandbox log full path */
+ 	get_sandbox_log(sandbox_info->sandbox_log);
+ 	if (1 == exists(sandbox_info->sandbox_log)) {
+@@ -278,6 +282,7 @@
+ 	unsetenv(ENV_SANDBOX_ON);
+ 	unsetenv(ENV_SANDBOX_LIB);
+ 	unsetenv(ENV_SANDBOX_BASHRC);
++	unsetenv(ENV_SANDBOX_PROFILE);
+ 	unsetenv(ENV_SANDBOX_LOG);
+ 	unsetenv(ENV_SANDBOX_DEBUG_LOG);
+ 	
+@@ -322,6 +327,7 @@
+ 	sandbox_setenv(new_environ, ENV_SANDBOX_ON, "1");
+ 	sandbox_setenv(new_environ, ENV_SANDBOX_LIB, sandbox_info->sandbox_lib);
+ 	sandbox_setenv(new_environ, ENV_SANDBOX_BASHRC, sandbox_info->sandbox_rc);
++	sandbox_setenv(new_environ, ENV_SANDBOX_PROFILE, sandbox_info->sandbox_profile);
+ 	sandbox_setenv(new_environ, ENV_SANDBOX_LOG, sandbox_info->sandbox_log);
+ 	sandbox_setenv(new_environ, ENV_SANDBOX_DEBUG_LOG,
+ 			sandbox_info->sandbox_debug_log);
+@@ -458,6 +464,11 @@
+ 		exit(EXIT_FAILURE);
+ 	}
+ 
++	if (0 >= exists(sandbox_info.sandbox_profile)) {
++		perror("sandbox:  Could not open the sandbox profile file");
++		exit(EXIT_FAILURE);
++	}
++
+ 	/* set up the required environment variables */
+ 	if (print_debug)
+ 		printf("Setting up the required environment variables.\n");
+@@ -476,7 +487,7 @@
+ 	argv_bash = (char **)malloc(6 * sizeof(char *));
+ 	argv_bash[0] = strdup("/bin/bash");
+ 	argv_bash[1] = strdup("-rcfile");
+-	argv_bash[2] = strdup(sandbox_info.sandbox_rc);
++	argv_bash[2] = strdup(sandbox_info.sandbox_profile);
+ 
+ 	if (argc < 2)
+ 		argv_bash[3] = NULL;
+diff -ruN sandbox-1.2.17.orig/src/sandbox.h sandbox-1.2.17/src/sandbox.h
+--- sandbox-1.2.17.orig/src/sandbox.h	2005-12-05 14:23:13.000000000 +0100
++++ sandbox-1.2.17/src/sandbox.h	2006-07-27 16:12:05.000000000 +0200
+@@ -17,10 +17,11 @@
+ #define LD_PRELOAD_FILE        "/etc/ld.so.preload"
+ #define LIB_NAME               "libsandbox.so"
+ #define BASHRC_NAME            "sandbox.bashrc"
++#define BASHPROFILE_NAME       "sandbox.profile"
+ #define TMPDIR                 "/tmp"
+-#define VAR_TMPDIR             "/var/tmp"
+-#define PORTAGE_TMPDIR         "/var/tmp/portage"
+-#define SANDBOX_LOG_LOCATION   "/var/log/sandbox"
++#define VAR_TMPDIR             LOCALSTATEDIR "/tmp"
++#define PORTAGE_TMPDIR         VAR_TMPDIR "/portage"
++#define SANDBOX_LOG_LOCATION   LOCALSTATEDIR "/log/sandbox"
+ #define LOG_FILE_PREFIX        "/sandbox-"
+ #define DEBUG_LOG_FILE_PREFIX  "/sandbox-debug-"
+ #define LOG_FILE_EXT           ".log"
+@@ -38,6 +39,7 @@
+ 
+ #define ENV_SANDBOX_LIB        "SANDBOX_LIB"
+ #define ENV_SANDBOX_BASHRC     "SANDBOX_BASHRC"
++#define ENV_SANDBOX_PROFILE    "SANDBOX_PROFILE"
+ #define ENV_SANDBOX_LOG        "SANDBOX_LOG"
+ #define ENV_SANDBOX_DEBUG_LOG  "SANDBOX_DEBUG_LOG"
+ 
+diff -ruN sandbox-1.2.17.orig/src/sandbox_utils.c sandbox-1.2.17/src/sandbox_utils.c
+--- sandbox-1.2.17.orig/src/sandbox_utils.c	2005-12-05 09:36:32.000000000 +0100
++++ sandbox-1.2.17/src/sandbox_utils.c	2006-07-27 16:12:05.000000000 +0200
+@@ -42,6 +42,11 @@
+ 	snprintf(path, SB_PATH_MAX, "%s/%s", SANDBOX_BASHRC_PATH, BASHRC_NAME);
+ }
+ 
++void get_sandbox_profile(char *path)
++{
++	snprintf(path, SB_PATH_MAX, "%s/%s", SANDBOX_BASHRC_PATH, BASHPROFILE_NAME);
++}
++
+ void get_sandbox_log(char *path)
+ {
+ 	char *sandbox_log_env = NULL;
+--- sandbox-1.2.17/data/Makefile.am.orig	2006-07-27 16:25:09.000000000 +0200
++++ sandbox-1.2.17/data/Makefile.am	2006-07-27 16:25:18.000000000 +0200
+@@ -1,3 +1 @@
+-dist_pkgdata_DATA  = sandbox.bashrc
+-
+-EXTRA_DIST = sandbox.bashrc
++dist_pkgdata_DATA  = sandbox.bashrc sandbox.profile
+diff -ru sandbox-1.2.17.orig/configure.ac sandbox-1.2.17/configure.ac
+--- sandbox-1.2.17.orig/configure.ac	2005-12-05 15:03:35.000000000 +0100
++++ sandbox-1.2.17/configure.ac	2006-07-21 13:12:39.000000000 +0200
+@@ -10,6 +10,8 @@
+ AC_PROG_MAKE_SET
+ AC_PROG_AWK
+ AC_CHECK_PROGS([READELF], [readelf], [false])
++AC_PATH_PROGS([CU_BASH], [bash], [/bin/bash])
++AC_DEFINE_UNQUOTED([CU_BASH], ["${CU_BASH}"], [path to bash binary])
+ 
+ AC_ENABLE_SHARED
+ AC_DISABLE_STATIC
+diff -ru sandbox-1.2.17.orig/src/sandbox.c sandbox-1.2.17/src/sandbox.c
+--- sandbox-1.2.17.orig/src/sandbox.c	2005-12-05 14:15:45.000000000 +0100
++++ sandbox-1.2.17/src/sandbox.c	2006-07-21 13:15:29.000000000 +0200
+@@ -474,7 +474,7 @@
+ 		chdir(sandbox_info.work_dir);
+ 
+ 	argv_bash = (char **)malloc(6 * sizeof(char *));
+-	argv_bash[0] = strdup("/bin/bash");
++	argv_bash[0] = strdup(CU_BASH);
+ 	argv_bash[1] = strdup("-rcfile");
+ 	argv_bash[2] = strdup(sandbox_info.sandbox_rc);
+ 

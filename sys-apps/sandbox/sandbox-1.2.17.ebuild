@@ -9,7 +9,7 @@ EAPI="prefix"
 # period.
 #
 
-inherit eutils flag-o-matic eutils toolchain-funcs multilib
+inherit eutils flag-o-matic eutils toolchain-funcs multilib autotools
 
 DESCRIPTION="sandbox'd LD_PRELOAD hack"
 HOMEPAGE="http://www.gentoo.org/"
@@ -51,6 +51,13 @@ abi_fail_check() {
 		eerror "against sandbox."
 		echo
 	fi
+}
+
+src_unpack() {
+	unpack ${A}
+	epatch "${FILESDIR}"/${P}-prefix.patch
+	cd "${S}"
+	eautoreconf
 }
 
 src_compile() {
