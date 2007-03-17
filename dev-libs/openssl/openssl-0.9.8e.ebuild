@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8d.ebuild,v 1.20 2007/02/21 04:59:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8e.ebuild,v 1.1 2007/02/27 13:50:23 vapier Exp $
 
 EAPI="prefix"
 
@@ -169,11 +169,13 @@ src_install() {
 }
 
 pkg_preinst() {
-	preserve_old_lib /usr/$(get_libdir)/lib{crypto,ssl}.so.0.9.{6,7}
+	preserve_old_lib /usr/$(get_libdir)/lib{crypto,ssl}$(get_libname 0.9.6)
+	preserve_old_lib /usr/$(get_libdir)/lib{crypto,ssl}$(get_libname 0.9.7)
 }
 
 pkg_postinst() {
-	preserve_old_lib_notify /usr/$(get_libdir)/lib{crypto,ssl}.so.0.9.{6,7}
+	preserve_old_lib_notify /usr/$(get_libdir)/lib{crypto,ssl}$(get_libname 0.9.6)
+	preserve_old_lib_notify /usr/$(get_libdir)/lib{crypto,ssl}$(get_libname 0.9.7)
 
 	if [[ ${CHOST} == i686* ]] ; then
 		ewarn "Due to the way openssl is architected, you cannot"
