@@ -174,6 +174,8 @@ src_compile() {
 		*-netbsd*) osname="netbsd" ;;
 		*-openbsd*) osname="openbsd" ;;
 		*-darwin*) osname="darwin" ;;
+		*-solaris2*) osname="solaris_2" ;;
+		*-aix4*) osname="aix_4" ;;
 
 		*) osname="linux" ;;
 	esac
@@ -262,7 +264,7 @@ src_compile() {
 		-Dd_dosuid \
 		-Dd_semctl_semun \
 		-Dcf_by="Gentoo" \
-		-Dldflags="${LDFLAGS}" \
+		-Uldflags="${LDFLAGS}" \
 		-Ud_csh \
 		"${myconf[@]}" || die "Unable to configure"
 
