@@ -1,0 +1,12 @@
+--- sed-4.1.4/lib/regex_internal.c
++++ sed-4.1.4/lib/regex_internal.c
+@@ -883,6 +883,9 @@
+      re_node_set *set;
+      int size;
+ {
++  if ( size == 0 )
++    return REG_NOERROR;
++
+   set->alloc = size;
+   set->nelem = 0;
+   set->elems = re_malloc (int, size);

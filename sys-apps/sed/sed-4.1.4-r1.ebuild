@@ -45,6 +45,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-makeinfo-c-locale.patch
 	epatch "${FILESDIR}"/${P}-fix-invalid-ref-error.patch
+	epatch "${FILESDIR}"/${P}-aix-malloc.patch
 	sed -i \
 		-e "/docdir =/s:/doc:/doc/${PF}/html:" \
 		doc/Makefile.in || die "sed html doc"
