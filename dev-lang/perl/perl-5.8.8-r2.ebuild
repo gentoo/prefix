@@ -159,6 +159,8 @@ src_configure() {
 		*-netbsd*) osname="netbsd" ;;
 		*-openbsd*) osname="openbsd" ;;
 		*-darwin*) osname="darwin" ;;
+		*-solaris2*) osname="solaris_2" ;;
+		*-aix4*) osname="aix_4" ;;
 
 		*) osname="linux" ;;
 	esac
@@ -259,7 +261,7 @@ src_configure() {
 		-Dinc_version_list="$inclist" \
 		-Dinc_version_list="$inclist" \
 		-Dcf_by='Gentoo' \
-		-Dldflags="${LDFLAGS}" \
+		-Uldflags="${LDFLAGS}" \
 		-Ud_csh \
 		-Dusenm \
 		"${myconf[@]}" || die "Unable to configure"
