@@ -1,6 +1,21 @@
 # ChangeLog for dev-libs/gmime
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.53 2007/01/02 22:13:27 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.58 2007/02/22 00:38:41 peper Exp $
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  02 Feb 2007; Luis Medinas <metalgod@gentoo.org> gmime-2.2.3.ebuild:
+  Stable on amd64. Bug #164700.
+
+  01 Feb 2007; Gustavo Zacarias <gustavoz@gentoo.org> gmime-2.2.3.ebuild:
+  Stable on sparc
+
+  31 Jan 2007; Andrej Kacian <ticho@gentoo.org> gmime-2.2.3.ebuild:
+  Stable on x86, bug #164700.
+
+  31 Jan 2007; Tobias Scherbaum <dertobi123@gentoo.org> gmime-2.2.3.ebuild:
+  Stable on ppc wrt bug #164700.
 
   02 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> gmime-2.2.3.ebuild:
   Add ~x86-fbsd keyword.
