@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-libs/libsigc++/libsigc++-2.0.17.ebuild,v 1.11 2006/10/20 00:27:23 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigc++/libsigc++-2.0.17.ebuild,v 1.13 2007/03/12 16:35:00 armin76 Exp $
 
 EAPI="prefix"
 

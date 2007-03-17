@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/libsigc++
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-libs/libsigc++/ChangeLog,v 1.100 2007/01/06 14:16:36 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigc++/ChangeLog,v 1.102 2007/03/12 16:35:00 armin76 Exp $
+
+  12 Mar 2007; Raúl Porcel <armin76@gentoo.org> libsigc++-2.0.17.ebuild:
+  x86 stable
+
+  01 Mar 2007; <genstef@gentoo.org> libsigc++-1.2.5.ebuild,
+  libsigc++-2.0.5.ebuild, libsigc++-2.0.11.ebuild, libsigc++-2.0.14.ebuild,
+  libsigc++-2.0.15.ebuild, libsigc++-2.0.16.ebuild, libsigc++-2.0.17.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   06 Jan 2007; Bryan Østergaard <kloeri@gentoo.org>
   libsigc++-1.0.4-r3.ebuild:
