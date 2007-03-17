@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/popt
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.55 2007/01/20 04:01:50 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.56 2007/03/05 21:53:31 sanchan Exp $
+
+  05 Mar 2007; Sandro Bonazzola <sanchan@gentoo.org> ChangeLog:
+  Removing myself from metadata.xml as I'm stepping back.
 
   20 Jan 2007; Jeroen Roovers <jer@gentoo.org> popt-1.10.7.ebuild:
   Stable for HPPA (bug #161177).
