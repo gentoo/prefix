@@ -1,0 +1,104 @@
+# ChangeLog for dev-util/quilt
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/ChangeLog,v 1.23 2007/03/12 19:02:59 armin76 Exp $
+
+  12 Mar 2007; Raúl Porcel <armin76@gentoo.org> quilt-0.45-r1.ebuild:
+  x86 stable
+
+  07 Mar 2007; Christian Heim <phreak@gentoo.org> quilt-0.42-r1.ebuild,
+  quilt-0.45-r1.ebuild, quilt-0.46.ebuild:
+  Hopefully *making* the ebuild(s) pause ..
+
+*quilt-0.46 (07 Mar 2007)
+*quilt-0.45-r1 (07 Mar 2007)
+*quilt-0.42-r1 (07 Mar 2007)
+
+  07 Mar 2007; Christian Heim <phreak@gentoo.org>
+  +files/quilt-0.42-no-graphviz.patch,
+  +files/quilt-0.42-prevent-stripping.patch,
+  +files/quilt-0.45-no-graphviz.patch, +files/quilt-0.46-no-graphviz.patch,
+  metadata.xml, +quilt-0.42-r1.ebuild, +quilt-0.45-r1.ebuild,
+  +quilt-0.46.ebuild:
+  Importing the ebuilds from my overlay, fixing some bugs (#152124, a
+  stripping bug; noone reported yet); also introduction a new USE flag, that
+  adds/removes the graphviz dependency.
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  08 Dec 2006; Luca Barbato <lu_zero@gentoo.org> quilt-0.45.ebuild:
+  Marked ppc64
+
+  26 Aug 2006; <wormo@gentoo.org> quilt-0.45.ebuild:
+  stable on ppc (Bug #144720)
+
+*quilt-0.45 (01 Jul 2006)
+
+  01 Jul 2006; Aaron Walker <ka0ttic@gentoo.org> +quilt-0.45.ebuild:
+  Version bump.
+
+*quilt-0.44 (22 Feb 2006)
+
+  22 Feb 2006; Aaron Walker <ka0ttic@gentoo.org> -quilt-0.43.ebuild,
+  +quilt-0.44.ebuild:
+  Version bump; remove 0.43 due to buggy push subcommand.
+
+*quilt-0.43 (22 Feb 2006)
+
+  22 Feb 2006; Aaron Walker <ka0ttic@gentoo.org> +quilt-0.43.ebuild:
+  Version bump for bug #122763.
+
+  22 Sep 2005; Luis Medinas <metalgod@gentoo.org> quilt-0.42.ebuild:
+  Marked Stable on amd64
+
+  15 Sep 2005; Aaron Walker <ka0ttic@gentoo.org> quilt-0.42.ebuild:
+  Fix deps; marked 0.42 stable on x86.
+
+  22 Aug 2005; Luis Medinas <metalgod@gentoo.org> quilt-0.40.ebuild:
+  Marked Stable on AMD64.
+
+*quilt-0.42 (30 Jul 2005)
+
+  30 Jul 2005; Aaron Walker <ka0ttic@gentoo.org> +quilt-0.42.ebuild:
+  Version bump.
+
+  05 Jul 2005; Aaron Walker <ka0ttic@gentoo.org> -quilt-0.37.ebuild,
+  quilt-0.40.ebuild:
+  Marked 0.40 stable on x86; removed 0.37.
+
+  17 Jun 2005; Aaron Walker <ka0ttic@gentoo.org> metadata.xml:
+  Added to dev-tools herd.
+
+*quilt-0.40 (28 May 2005)
+
+  28 May 2005; Aaron Walker <ka0ttic@gentoo.org> +quilt-0.40.ebuild:
+  Version bump.
+
+  25 May 2005; Aaron Walker <ka0ttic@gentoo.org> quilt-0.39.ebuild:
+  Stable on x86.
+
+  06 May 2005; Aaron Walker <ka0ttic@gentoo.org> quilt-0.37.ebuild:
+  Stable on x86.
+
+*quilt-0.39 (21 Apr 2005)
+
+  21 Apr 2005; Aaron Walker <ka0ttic@gentoo.org> metadata.xml,
+  quilt-0.32-r1.ebuild, quilt-0.37.ebuild, +quilt-0.39.ebuild:
+  Version bump; also fixes bug 89845. Cleaned up ebuilds: fixed deps, removed
+  redundant pkg_postinst, added IUSE.
+
+  09 Mar 2005; Brian Harring <ferringb@gentoo.org> quilt-0.32-r1.ebuild, 
+  quilt-0.37.ebuild:
+  Closed out #79192, #79195, and #79797. Thanks to James Rowe for the fixes/bugs.
+
+  18 Dec 2004; Simon Stelling <blubb@gentoo.org> quilt-0.32.ebuild:
+  added ~amd64
+
+  21 Jul 2004; David Holm <dholm@gentoo.org> quilt-0.32.ebuild:
+  Added to ~ppc.
+
+*quilt-0.32 (20 Jul 2004)
+
+  20 Jul 2004; Brian Harring <ferringb@gentoo.org> quilt-0.32.ebuild :
+  Initial import.  Ebuild written by me, marking myself as maintainer.
+  Initially keyworded ~x86.
