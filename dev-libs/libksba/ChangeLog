@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libksba
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.63 2007/01/25 20:28:07 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.64 2007/03/15 18:07:09 gustavoz Exp $
+
+  15 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> libksba-1.0.0.ebuild:
+  Stable on sparc
 
   25 Jan 2007; Alexander H. Færøy <eroyf@gentoo.org> libksba-1.0.0.ebuild:
   Stable on MIPS.
