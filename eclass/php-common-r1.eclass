@@ -1,25 +1,25 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-common-r1.eclass,v 1.8 2006/07/14 16:02:36 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-common-r1.eclass,v 1.9 2007/03/05 01:50:47 chtekk Exp $
 
-# ########################################################################
+# ========================================================================
 #
-# eclass/php-common-r1.eclass
-#				Contains common functions which are shared between the
-#				PHP4 and PHP5 packages
+# php-common-r1.eclass
+#		Contains common functions which are shared between the
+#		PHP4 and PHP5 packages
 #
-#				USE THIS ECLASS FOR THE "CONSOLIDATED" PACKAGES
+#		USE THIS ECLASS FOR THE "CONSOLIDATED" PACKAGES
 #
-#				Based on robbat2's work on the php4 sapi eclass
-#				Based on stuart's work on the php5 sapi eclass
+#		Based on robbat2's work on the php4 sapi eclass
+#		Based on stuart's work on the php5 sapi eclass
 #
-# Maintained by the PHP Herd <php-bugs@gentoo.org>
+# Maintained by the PHP Team <php-bugs@gentoo.org>
 #
-# ########################################################################
+# ========================================================================
 
-# ########################################################################
+# ========================================================================
 # CFLAG SANITY
-# ########################################################################
+# ========================================================================
 
 php_check_cflags() {
 	# Filter the following from C[XX]FLAGS regardless, as apache won't be
@@ -36,16 +36,16 @@ php_check_cflags() {
 	replace-flags "-march=k6" "-march=i586"
 }
 
-# ########################################################################
+# ========================================================================
 # IMAP SUPPORT
-# ########################################################################
+# ========================================================================
 
 php_check_imap() {
-	if ! useq "imap" && ! phpconfutils_usecheck "imap" ; then
+	if ! use "imap" && ! phpconfutils_usecheck "imap" ; then
 		return
 	fi
 
-	if useq "ssl" || phpconfutils_usecheck "ssl" ; then
+	if use "ssl" || phpconfutils_usecheck "ssl" ; then
 		if ! built_with_use virtual/imap-c-client ssl ; then
 			eerror
 			eerror "IMAP with SSL requested, but your IMAP C-Client libraries are built without SSL!"
@@ -62,15 +62,15 @@ php_check_imap() {
 	fi
 }
 
-# ########################################################################
+# ========================================================================
 # JAVA EXTENSION SUPPORT
 #
-# The bundled java extension is unique to PHP4 at the time of writing, but
-# there is now the PHP-Java-Bridge that works under both PHP4 and PHP5.
-# ########################################################################
+# The bundled java extension is unique to PHP4, but there is
+# now the PHP-Java-Bridge that works under both PHP4 and PHP5.
+# ========================================================================
 
 php_check_java() {
-	if ! useq "java-internal" && ! phpconfutils_usecheck "java-internal" ; then
+	if ! use "java-internal" && ! phpconfutils_usecheck "java-internal" ; then
 		return
 	fi
 
@@ -108,7 +108,7 @@ php_check_java() {
 }
 
 php_install_java() {
-	if ! useq "java-internal" && ! phpconfutils_usecheck "java-internal" ; then
+	if ! use "java-internal" && ! phpconfutils_usecheck "java-internal" ; then
 		return
 	fi
 
@@ -130,7 +130,7 @@ php_install_java() {
 }
 
 php_install_java_inifile() {
-	if ! useq "java-internal" && ! phpconfutils_usecheck "java-internal" ; then
+	if ! use "java-internal" && ! phpconfutils_usecheck "java-internal" ; then
 		return
 	fi
 
@@ -144,9 +144,9 @@ php_install_java_inifile() {
 	dosym "${PHP_EXT_INI_DIR}/java.ini" "${PHP_EXT_INI_DIR_ACTIVE}/java.ini"
 }
 
-# ########################################################################
+# ========================================================================
 # MTA SUPPORT
-# ########################################################################
+# ========================================================================
 
 php_check_mta() {
 	if ! [[ -x "${ROOT}/usr/sbin/sendmail" ]] ; then
@@ -160,12 +160,12 @@ php_check_mta() {
 	fi
 }
 
-# ########################################################################
+# ========================================================================
 # ORACLE SUPPORT
-# ########################################################################
+# ========================================================================
 
 php_check_oracle_all() {
-	if useq "oci8" && [[ -z "${ORACLE_HOME}" ]] ; then
+	if use "oci8" && [[ -z "${ORACLE_HOME}" ]] ; then
 		eerror
 		eerror "You must have the ORACLE_HOME variable set in your environment to"
 		eerror "compile the Oracle extension."
@@ -173,7 +173,7 @@ php_check_oracle_all() {
 		die "Oracle configuration incorrect; user error"
 	fi
 
-	if useq "oci8" || useq "oracle7" ; then
+	if use "oci8" || use "oracle7" ; then
 		if has_version 'dev-db/oracle-instantclient-basic' ; then
 			ewarn
 			ewarn "Please ensure you have a full install of the Oracle client."
@@ -186,7 +186,7 @@ php_check_oracle_all() {
 }
 
 php_check_oracle_8() {
-	if useq "oci8" && [[ -z "${ORACLE_HOME}" ]] ; then
+	if use "oci8" && [[ -z "${ORACLE_HOME}" ]] ; then
 		eerror
 		eerror "You must have the ORACLE_HOME variable set in your environment to"
 		eerror "compile the Oracle extension."
@@ -194,7 +194,7 @@ php_check_oracle_8() {
 		die "Oracle configuration incorrect; user error"
 	fi
 
-	if useq "oci8" ; then
+	if use "oci8" ; then
 		if has_version 'dev-db/oracle-instantclient-basic' ; then
 			ewarn
 			ewarn "Please ensure you have a full install of the Oracle client."
@@ -206,13 +206,13 @@ php_check_oracle_8() {
 	fi
 }
 
-# ########################################################################
+# ========================================================================
 # POSTGRESQL SUPPORT
-# ########################################################################
+# ========================================================================
 
 php_check_pgsql() {
-	if useq "postgres" \
-	&& useq "apache2" && useq "threads" \
+	if use "postgres" \
+	&& use "apache2" && use "threads" \
 	&& has_version ">=dev-db/libpq-8.1.3-r1" \
 	&& ! built_with_use ">=dev-db/libpq-8.1.3-r1" "threads" ; then
 		eerror
@@ -223,6 +223,56 @@ php_check_pgsql() {
 	fi
 }
 
-# ########################################################################
-# END OF ECLASS
-# ########################################################################
+# ========================================================================
+# MYSQL CHARSET DETECTION SUPPORT ## Thanks to hoffie
+# ========================================================================
+
+php_get_mycnf_charset() {
+	local sapi="${1}"
+	local section=""
+	local client_charset=""
+	local sapi_charset=""
+
+	# remove comments and pipe the output to our while loop
+	while read line ; do
+		line=$(echo "${line}" | sed 's:[;#][^\n]*::g')
+
+		# skip empty lines
+		if [[ "${line}" == "" ]] ; then
+			continue
+		fi
+
+		# capture sections
+		tmp=$(echo "${line}" | sed 's:\[\([-a-z0-9\_]*\)\]:\1:')
+		if [[ "${line}" != "${tmp}" ]] ; then
+			section=${tmp}
+		else
+			# we don't need to check lines which are not in a section we are interested about
+			if [[ "${section}" != "client" && "${section}" != "php-${sapi}" ]] ; then
+				continue
+			fi
+
+			# match default-character-set= lines
+			tmp=$(echo "${line}" | sed 's|^[[:space:]\ ]*default-character-set[[:space:]\ ]*=[[:space:]\ ]*\"\?\([a-z0-9\-]*\)\"\?|\1|')
+			if [[ "${line}" == "${tmp}" ]] ; then
+				# nothing changed, irrelevant line
+				continue
+			fi
+			if [[ "${section}" == "client" ]] ; then
+				client_charset="${tmp}"
+			else
+				if [[ "${section}" == "php-${sapi}" ]] ; then
+					sapi_charset="${tmp}"
+				fi
+			fi
+		fi
+	done < "${EROOT}/etc/mysql/my.cnf"
+	# if a sapi-specific section with a default-character-set= value was found we use it, otherwise we use the client charset (which may be empty)
+	if [[ -n "${sapi_charset}" ]] ; then
+		echo "${sapi_charset}"
+	elif [[ -n "${client_charset}" ]] ; then
+		echo "${client_charset}"
+	else
+		echo "empty"
+	fi
+}

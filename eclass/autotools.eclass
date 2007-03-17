@@ -1,9 +1,8 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.64 2007/01/19 23:39:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.65 2007/03/04 21:03:59 vapier Exp $
 #
-# Author: Diego Pettenò <flameeyes@gentoo.org>
-# Enhancements: Martin Schlemmer <azarah@gentoo.org>
+# Maintainer: base-system@gentoo.org
 #
 # This eclass is for handling autotooled software packages that
 # needs to regenerate their build scripts.

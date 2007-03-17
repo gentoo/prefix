@@ -1,11 +1,11 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php4_4-sapi.eclass,v 1.33 2007/03/06 12:46:48 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.2 2007/03/06 12:46:48 chtekk Exp $
 
 # ========================================================================
 #
-# php4_4-sapi.eclass
-#		Eclass for building different php4 SAPI instances
+# php5_2-sapi.eclass
+#		Eclass for building different php5.2 SAPI instances
 #
 #		USE THIS ECLASS FOR THE "CONCENTRATED" PACKAGES
 #
@@ -19,7 +19,7 @@
 #
 # ========================================================================
 
-PHPCONFUTILS_MISSING_DEPS="adabas birdstep db2 dbmaker empress empress-bcs esoob frontbase hyperwave-api informix interbase mnogosearch msql oci8 oracle7 pfpro sapdb solid sybase sybase-ct"
+PHPCONFUTILS_MISSING_DEPS="adabas birdstep db2 dbmaker empress empress-bcs esoob frontbase interbase msql oci8 sapdb solid sybase sybase-ct"
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
@@ -41,7 +41,7 @@ if [[ "${PHP_PACKAGE}" == 1 ]] ; then
 	S="${WORKDIR}/${MY_PHP_P}"
 fi
 
-IUSE="adabas bcmath berkdb birdstep bzip2 calendar cdb cjk crypt ctype curl db2 dbase dbmaker dbx debug doc empress empress-bcs esoob exif expat frontbase fdftk filepro firebird flatfile ftp gd gd-external gdbm gmp hyperwave-api iconv imap informix inifile interbase iodbc ipv6 java-internal java-external kerberos ldap libedit mcal mcve memlimit mhash ming mnogosearch msql mssql mysql ncurses nls oci8 oci8-instant-client odbc oracle7 overload pcntl pcre pfpro pic posix postgres readline recode sapdb session sharedext sharedmem snmp sockets solid spell sqlite ssl suhosin sybase sybase-ct sysvipc tokenizer truetype unicode wddx xml xmlrpc xpm xsl yaz zip zlib"
+IUSE="adabas bcmath berkdb birdstep bzip2 calendar cdb cjk crypt ctype curl curlwrappers db2 dbase dbmaker debug doc empress empress-bcs esoob exif frontbase fdftk filter firebird flatfile ftp gd gd-external gdbm gmp hash iconv imap inifile interbase iodbc ipv6 java-external json kerberos ldap ldap-sasl libedit mcve mhash msql mssql mysql mysqli ncurses nls oci8 oci8-instant-client odbc pcntl pcre pdo pdo-external pic posix postgres qdbm readline reflection recode sapdb session sharedext sharedmem simplexml snmp soap sockets solid spell spl sqlite ssl suhosin sybase sybase-ct sysvipc tidy tokenizer truetype unicode wddx xml xmlreader xmlwriter xmlrpc xpm xsl yaz zip zip-external zlib"
 
 # these USE flags should have the correct dependencies
 DEPEND="adabas? ( >=dev-db/unixODBC-1.8.13 )
@@ -67,35 +67,43 @@ DEPEND="adabas? ( >=dev-db/unixODBC-1.8.13 )
 		iconv? ( virtual/libiconv )
 		imap? ( virtual/imap-c-client )
 		iodbc? ( dev-db/libiodbc >=dev-db/unixODBC-1.8.13 )
-		java-internal? ( >=virtual/jdk-1.4.2 dev-java/java-config )
 		kerberos? ( virtual/krb5 )
 		ldap? ( >=net-nds/openldap-1.2.11 )
+		ldap-sasl? ( dev-libs/cyrus-sasl >=net-nds/openldap-1.2.11 )
 		libedit? ( || ( sys-freebsd/freebsd-lib dev-libs/libedit ) )
-		mcal? ( >=dev-libs/libmcal-0.7-r5 )
-		mcve? ( net-libs/libmonetra >=dev-libs/openssl-0.9.7 )
+		mcve? ( >=dev-libs/openssl-0.9.7 )
 		mhash? ( app-crypt/mhash )
-		ming? ( media-libs/ming )
 		mssql? ( dev-db/freetds )
 		mysql? ( virtual/mysql )
+		mysqli? ( >=virtual/mysql-4.1 )
 		ncurses? ( sys-libs/ncurses )
 		nls? ( sys-devel/gettext )
 		oci8-instant-client? ( dev-db/oracle-instantclient-basic )
 		odbc? ( >=dev-db/unixODBC-1.8.13 )
 		postgres? ( >=dev-db/libpq-7.1 )
+		qdbm? ( dev-db/qdbm )
 		readline? ( sys-libs/readline )
 		recode? ( app-text/recode )
 		sapdb? ( >=dev-db/unixODBC-1.8.13 )
 		sharedmem? ( dev-libs/mm )
+		simplexml? ( >=dev-libs/libxml2-2.6.8 )
 		snmp? ( >=net-analyzer/net-snmp-5.2 )
+		soap? ( >=dev-libs/libxml2-2.6.8 )
 		solid? ( >=dev-db/unixODBC-1.8.13 )
 		spell? ( >=app-text/aspell-0.50 )
+		sqlite? ( =dev-db/sqlite-2* pdo? ( =dev-db/sqlite-3* ) )
 		ssl? ( >=dev-libs/openssl-0.9.7 )
 		sybase? ( dev-db/freetds )
+		tidy? ( app-text/htmltidy )
 		truetype? ( =media-libs/freetype-2* >=media-libs/t1lib-5.0.0 !gd? ( !gd-external? ( >=media-libs/jpeg-6b media-libs/libpng sys-libs/zlib ) ) )
-		xml? ( dev-libs/libxml2 sys-libs/zlib xsl? ( dev-libs/libxslt ) )
-		xmlrpc? ( dev-libs/expat virtual/libiconv )
+		wddx? ( >=dev-libs/libxml2-2.6.8 )
+		xml? ( >=dev-libs/libxml2-2.6.8 )
+		xmlrpc? ( >=dev-libs/libxml2-2.6.8 virtual/libiconv )
+		xmlreader? ( >=dev-libs/libxml2-2.6.8 )
+		xmlwriter? ( >=dev-libs/libxml2-2.6.8 )
 		xpm? ( || ( x11-libs/libXpm virtual/x11 ) >=media-libs/jpeg-6b media-libs/libpng sys-libs/zlib )
-		xsl? ( app-text/sablotron dev-libs/expat virtual/libiconv )
+		xsl? ( dev-libs/libxslt >=dev-libs/libxml2-2.6.8 )
+		zip? ( sys-libs/zlib )
 		zlib? ( sys-libs/zlib )
 		virtual/mta"
 
@@ -104,9 +112,11 @@ DEPEND="adabas? ( >=dev-db/unixODBC-1.8.13 )
 DEPEND="${DEPEND}
 		!media-libs/libswf"
 
-# 9libs causes a configure error
+# force use of the internal extensions,
+# as they're better maintained upstream
 DEPEND="${DEPEND}
-		!dev-libs/9libs"
+		!dev-php5/pecl-filter
+		!dev-php5/pecl-json"
 
 # simplistic for now
 RDEPEND="${DEPEND}"
@@ -120,14 +130,16 @@ DEPEND="${DEPEND}
 #
 # They are in PDEPEND because we need PHP installed first!
 PDEPEND="doc? ( app-doc/php-docs )
-		java-external? ( dev-php4/php-java-bridge )
-		java-internal? ( !dev-php4/php-java-bridge )
-		sqlite? ( dev-php4/pecl-sqlite )
-		yaz? ( dev-php4/pecl-yaz )
-		zip? ( dev-php4/pecl-zip )"
-
-# Until Suhosin is stable on all archs
-[[ "${PV}" == "4.4.6" ]] && PDEPEND="${PDEPEND} suhosin? ( dev-php4/suhosin )"
+		filter? ( !dev-php5/pecl-filter )
+		java-external? ( dev-php5/php-java-bridge )
+		json? ( !dev-php5/pecl-json )
+		mcve? ( dev-php5/pecl-mcve )
+		pdo? ( !dev-php5/pecl-pdo )
+		pdo-external? ( dev-php5/pecl-pdo )
+		suhosin? ( dev-php5/suhosin )
+		yaz? ( dev-php5/pecl-yaz )
+		zip? ( !dev-php5/pecl-zip )
+		zip-external? ( dev-php5/pecl-zip )"
 
 # ========================================================================
 # php.ini Support
@@ -152,7 +164,7 @@ EXPORT_FUNCTIONS pkg_setup src_compile src_install src_unpack pkg_postinst
 # INTERNAL FUNCTIONS
 # ========================================================================
 
-php4_4-sapi_check_use_flags() {
+php5_2-sapi_check_use_flags() {
 	# Multiple USE dependencies
 	phpconfutils_use_depend_any "truetype" "gd" "gd" "gd-external"
 	phpconfutils_use_depend_any "cjk" "gd" "gd" "gd-external"
@@ -161,10 +173,17 @@ php4_4-sapi_check_use_flags() {
 	# Simple USE dependencies
 	phpconfutils_use_depend_all "xpm"				"gd"
 	phpconfutils_use_depend_all "gd"				"zlib"
-	phpconfutils_use_depend_all "xml"				"zlib"
+	phpconfutils_use_depend_all "simplexml"			"xml"
+	phpconfutils_use_depend_all "soap"				"xml"
+	phpconfutils_use_depend_all "wddx"				"xml"
+	phpconfutils_use_depend_all "xmlrpc"			"xml"
+	phpconfutils_use_depend_all "xmlreader"			"xml"
+	phpconfutils_use_depend_all "xmlwriter"			"xml"
+	phpconfutils_use_depend_all "xsl"				"xml"
+	phpconfutils_use_depend_all "filter"			"pcre"
 	phpconfutils_use_depend_all "xmlrpc"			"iconv"
-	phpconfutils_use_depend_all "xsl"				"iconv"
 	phpconfutils_use_depend_all "java-external"		"session"
+	phpconfutils_use_depend_all "ldap-sasl"			"ldap"
 	phpconfutils_use_depend_all "mcve"				"ssl"
 	phpconfutils_use_depend_all "suhosin"			"unicode"
 	phpconfutils_use_depend_all "adabas"			"odbc"
@@ -180,8 +199,10 @@ php4_4-sapi_check_use_flags() {
 
 	# Direct USE conflicts
 	phpconfutils_use_conflict "gd" "gd-external"
-	phpconfutils_use_conflict "java-external" "java-internal"
 	phpconfutils_use_conflict "oci8" "oci8-instant-client"
+	phpconfutils_use_conflict "pdo" "pdo-external"
+	phpconfutils_use_conflict "zip" "zip-external"
+	phpconfutils_use_conflict "qdbm" "gdbm"
 	phpconfutils_use_conflict "readline" "libedit"
 	phpconfutils_use_conflict "recode" "mysql" "imap" "yaz"
 	phpconfutils_use_conflict "sharedmem" "threads"
@@ -192,34 +213,31 @@ php4_4-sapi_check_use_flags() {
 	# Mail support
 	php_check_mta
 
-	# Java support
-	php_check_java
-
 	# PostgreSQL support
 	php_check_pgsql
 
 	# Oracle support
-	php_check_oracle_all
+	php_check_oracle_8
 
 	phpconfutils_warn_about_external_deps
 
 	export PHPCONFUTILS_AUTO_USE="${PHPCONFUTILS_AUTO_USE}"
 }
 
-php4_4-sapi_set_php_ini_dir() {
-	PHP_INI_DIR="/etc/php/${PHPSAPI}-php4"
+php5_2-sapi_set_php_ini_dir() {
+	PHP_INI_DIR="/etc/php/${PHPSAPI}-php5"
 	PHP_EXT_INI_DIR="${PHP_INI_DIR}/ext"
 	PHP_EXT_INI_DIR_ACTIVE="${PHP_INI_DIR}/ext-active"
 }
 
-php4_4-sapi_install_ini() {
-	destdir=/usr/$(get_libdir)/php4
+php5_2-sapi_install_ini() {
+	destdir=/usr/$(get_libdir)/php5
 
 	# get the extension dir, if not already defined
-	[[ -z "${PHPEXTDIR}" ]] && PHPEXTDIR="`"${D}/${destdir}/bin/php-config" --extension-dir`"
+	[[ -z "${PHPEXTDIR}" ]] && PHPEXTDIR="`"${ED}/${destdir}/bin/php-config" --extension-dir`"
 
 	# work out where we are installing the ini file
-	php4_4-sapi_set_php_ini_dir
+	php5_2-sapi_set_php_ini_dir
 
 	cp "${PHP_INI_UPSTREAM}" "${PHP_INI_UPSTREAM}-${PHPSAPI}"
 	local phpinisrc="${PHP_INI_UPSTREAM}-${PHPSAPI}"
@@ -234,36 +252,40 @@ php4_4-sapi_install_ini() {
 
 	# Set the include path to point to where we want to find PEAR packages
 	einfo "Setting correct include_path"
-	sed -e 's|^;include_path = ".:/php/includes".*|include_path = ".:/usr/share/php4:/usr/share/php"|' -i ${phpinisrc}
+	sed -e 's|^;include_path = ".:/php/includes".*|include_path = ".:/usr/share/php5:/usr/share/php"|' -i ${phpinisrc}
 
-	# Add needed MySQL extension charset configuration
+	# Add needed MySQL extensions charset configuration
 	local phpmycnfcharset=""
 
 	if [[ "${PHPSAPI}" == "cli" ]] ; then
 		phpmycnfcharset="`php_get_mycnf_charset cli`"
-		einfo "MySQL extension charset for 'cli' SAPI is: ${phpmycnfcharset}"
+		einfo "MySQL extensions charset for 'cli' SAPI is: ${phpmycnfcharset}"
 	elif [[ "${PHPSAPI}" == "cgi" ]] ; then
 		phpmycnfcharset="`php_get_mycnf_charset cgi-fcgi`"
-		einfo "MySQL extension charset for 'cgi' SAPI is: ${phpmycnfcharset}"
+		einfo "MySQL extensions charset for 'cgi' SAPI is: ${phpmycnfcharset}"
 	elif [[ "${PHPSAPI}" == "apache" ]] ; then
 		phpmycnfcharset="`php_get_mycnf_charset apache`"
-		einfo "MySQL extension charset for 'apache' SAPI is: ${phpmycnfcharset}"
+		einfo "MySQL extensions charset for 'apache' SAPI is: ${phpmycnfcharset}"
 	elif [[ "${PHPSAPI}" == "apache2" ]] ; then
 		phpmycnfcharset="`php_get_mycnf_charset apache2handler`"
-		einfo "MySQL extension charset for 'apache2' SAPI is: ${phpmycnfcharset}"
+		einfo "MySQL extensions charset for 'apache2' SAPI is: ${phpmycnfcharset}"
 	else
 		einfo "No supported SAPI found for which to get the MySQL charset."
 	fi
 
 	if [[ -n "${phpmycnfcharset}" ]] && [[ "${phpmycnfcharset}" != "empty" ]] ; then
-		einfo "Setting MySQL extension charset to ${phpmycnfcharset}"
+		einfo "Setting MySQL extensions charset to ${phpmycnfcharset}"
 		echo "" >> ${phpinisrc}
-		echo "; MySQL extension default connection charset settings" >> ${phpinisrc}
+		echo "; MySQL extensions default connection charset settings" >> ${phpinisrc}
 		echo "mysql.connect_charset = ${phpmycnfcharset}" >> ${phpinisrc}
+		echo "mysqli.connect_charset = ${phpmycnfcharset}" >> ${phpinisrc}
+		echo "pdo_mysql.connect_charset = ${phpmycnfcharset}" >> ${phpinisrc}
 	else
 		echo "" >> ${phpinisrc}
-		echo "; MySQL extension default connection charset settings" >> ${phpinisrc}
+		echo "; MySQL extensions default connection charset settings" >> ${phpinisrc}
 		echo ";mysql.connect_charset = utf8" >> ${phpinisrc}
+		echo ";mysqli.connect_charset = utf8" >> ${phpinisrc}
+		echo ";pdo_mysql.connect_charset = utf8" >> ${phpinisrc}
 	fi
 
 	dodir ${PHP_INI_DIR}
@@ -273,15 +295,12 @@ php4_4-sapi_install_ini() {
 	dodir ${PHP_EXT_INI_DIR}
 	dodir ${PHP_EXT_INI_DIR_ACTIVE}
 
-	# Java needs to insert the correct ini files
-	php_install_java_inifile
-
 	# Install any extensions built as shared objects
-	if useq sharedext ; then
-		for x in `ls "${D}/${PHPEXTDIR}/"*.so | sort | sed -e "s|.*java.*||g"` ; do
+	if use sharedext ; then
+		for x in `ls "${ED}/${PHPEXTDIR}/"*.so | sort` ; do
 			inifilename=${x/.so/.ini}
 			inifilename=`basename ${inifilename}`
-			echo "extension=`basename ${x}`" >> "${D}/${PHP_EXT_INI_DIR}/${inifilename}"
+			echo "extension=`basename ${x}`" >> "${ED}/${PHP_EXT_INI_DIR}/${inifilename}"
 			dosym "${PHP_EXT_INI_DIR}/${inifilename}" "${PHP_EXT_INI_DIR_ACTIVE}/${inifilename}"
 		done
 	fi
@@ -291,13 +310,13 @@ php4_4-sapi_install_ini() {
 # EXPORTED FUNCTIONS
 # ========================================================================
 
-php4_4-sapi_pkg_setup() {
+php5_2-sapi_pkg_setup() {
 	# let's do all the USE flag testing before we do anything else
 	# this way saves a lot of time
-	php4_4-sapi_check_use_flags
+	php5_2-sapi_check_use_flags
 }
 
-php4_4-sapi_src_unpack() {
+php5_2-sapi_src_unpack() {
 	cd "${S}"
 
 	# Change PHP branding
@@ -311,9 +330,9 @@ php4_4-sapi_src_unpack() {
 		ewarn "There is no multilib-strict patch available for this PHP release yet!"
 	fi
 
-	# Apply general PHP4 patches
-	if [[ -d "${WORKDIR}/${MY_PHP_PV}/php4" ]] ; then
-		EPATCH_SOURCE="${WORKDIR}/${MY_PHP_PV}/php4" EPATCH_SUFFIX="patch" EPATCH_FORCE="yes" epatch
+	# Apply general PHP5 patches
+	if [[ -d "${WORKDIR}/${MY_PHP_PV}/php5" ]] ; then
+		EPATCH_SOURCE="${WORKDIR}/${MY_PHP_PV}/php5" EPATCH_SUFFIX="patch" EPATCH_FORCE="yes" epatch
 	fi
 
 	# Apply version-specific PHP patches
@@ -329,8 +348,8 @@ php4_4-sapi_src_unpack() {
 
 	# Stop PHP from activating the Apache config, as we will do that ourselves
 	for i in configure sapi/apache/config.m4 sapi/apache2filter/config.m4 sapi/apache2handler/config.m4 ; do
-		sed -i.orig -e 's,-i -a -n php,-i -n php,g' ${i}
-		sed -i.orig -e 's,-i -A -n php,-i -n php,g' ${i}
+		sed -i.orig -e 's,-i -a -n php5,-i -n php5,g' ${i}
+		sed -i.orig -e 's,-i -A -n php5,-i -n php5,g' ${i}
 	done
 
 	# Patch PHP to support heimdal instead of mit-krb5
@@ -370,10 +389,10 @@ php4_4-sapi_src_unpack() {
 	chmod 0755 configure || die "Failed to chmod configure to 0755"
 }
 
-php4_4-sapi_src_compile() {
-	destdir=/usr/$(get_libdir)/php4
+php5_2-sapi_src_compile() {
+	destdir=/usr/$(get_libdir)/php5
 
-	php4_4-sapi_set_php_ini_dir
+	php5_2-sapi_set_php_ini_dir
 
 	cd "${S}"
 
@@ -387,61 +406,63 @@ php4_4-sapi_src_compile() {
 	phpconfutils_extension_enable	"calendar"		"calendar"		1
 	phpconfutils_extension_disable	"ctype"			"ctype"			0
 	phpconfutils_extension_with		"curl"			"curl"			1
+	phpconfutils_extension_with		"curlwrappers"	"curlwrappers"	0
 	phpconfutils_extension_enable	"dbase"			"dbase"			1
-	phpconfutils_extension_with		"dom"			"xml"			0
+	phpconfutils_extension_disable	"dom"			"xml"			0
 	phpconfutils_extension_enable	"exif"			"exif"			1
 	phpconfutils_extension_with		"fbsql"			"frontbase"		1
 	phpconfutils_extension_with		"fdftk"			"fdftk"			1 "/opt/fdftk-6.0"
-	phpconfutils_extension_enable	"filepro"		"filepro"		1
+	phpconfutils_extension_disable	"filter"		"filter"		0
 	phpconfutils_extension_enable	"ftp"			"ftp"			1
 	phpconfutils_extension_with		"gettext"		"nls"			1
 	phpconfutils_extension_with		"gmp"			"gmp"			1
-	phpconfutils_extension_with		"hwapi"			"hyperwave-api"	1
-	phpconfutils_extension_with		"iconv"			"iconv"			0
-	phpconfutils_extension_with		"informix"		"informix"		1
+	phpconfutils_extension_disable	"hash"			"hash"			0
+	phpconfutils_extension_without	"iconv"			"iconv"			0
 	phpconfutils_extension_disable	"ipv6"			"ipv6"			0
+	phpconfutils_extension_disable	"json"			"json"			0
 	phpconfutils_extension_with		"kerberos"		"kerberos"		0 "/usr"
+	phpconfutils_extension_disable	"libxml"		"xml"			0
 	phpconfutils_extension_enable	"mbstring"		"unicode"		1
-	phpconfutils_extension_with		"mcal"			"mcal"			1 "/usr"
 	phpconfutils_extension_with		"mcrypt"		"crypt"			1
-	phpconfutils_extension_with		"mcve"			"mcve"			1
-	phpconfutils_extension_enable	"memory-limit"	"memlimit"		0
 	phpconfutils_extension_with		"mhash"			"mhash"			1
-	phpconfutils_extension_with		"ming"			"ming"			1
-	phpconfutils_extension_with		"mnogosearch"	"mnogosearch"	1
 	phpconfutils_extension_with		"msql"			"msql"			1
 	phpconfutils_extension_with		"mssql"			"mssql"			1
 	phpconfutils_extension_with		"ncurses"		"ncurses"		1
-	phpconfutils_extension_with		"oci8"			"oci8"			1
-	phpconfutils_extension_with		"oci8-instant-client"	"oci8-instant-client"	1
-	phpconfutils_extension_with		"oracle"		"oracle7"		1
 	phpconfutils_extension_with		"openssl"		"ssl"			0
 	phpconfutils_extension_with		"openssl-dir"	"ssl"			0 "/usr"
-	phpconfutils_extension_disable	"overload"		"overload"		0
 	phpconfutils_extension_enable	"pcntl" 		"pcntl" 		1
 	phpconfutils_extension_without	"pcre-regex"	"pcre"			0
-	phpconfutils_extension_with		"pfpro"			"pfpro"			1
+	phpconfutils_extension_disable	"pdo"			"pdo"			0
 	phpconfutils_extension_with		"pgsql"			"postgres"		1
 	phpconfutils_extension_disable	"posix"			"posix"			0
 	phpconfutils_extension_with		"pspell"		"spell"			1
 	phpconfutils_extension_with		"recode"		"recode"		1
+	phpconfutils_extension_disable	"reflection"	"reflection"	0
+	phpconfutils_extension_disable	"simplexml"		"simplexml"		0
 	phpconfutils_extension_enable	"shmop"			"sharedmem"		0
 	phpconfutils_extension_with		"snmp"			"snmp"			1
+	phpconfutils_extension_enable	"soap"			"soap"			1
 	phpconfutils_extension_enable	"sockets"		"sockets"		1
+	phpconfutils_extension_disable	"spl"			"spl"			0
 	phpconfutils_extension_with		"sybase"		"sybase"		1
 	phpconfutils_extension_with		"sybase-ct"		"sybase-ct"		1
 	phpconfutils_extension_enable	"sysvmsg"		"sysvipc"		1
 	phpconfutils_extension_enable	"sysvsem"		"sysvipc"		1
 	phpconfutils_extension_enable	"sysvshm"		"sysvipc"		1
+	phpconfutils_extension_with		"tidy"			"tidy"			1
 	phpconfutils_extension_disable	"tokenizer"		"tokenizer"		0
 	phpconfutils_extension_enable	"wddx"			"wddx"			1
-	phpconfutils_extension_disable	"xml"			"expat"			0
+	phpconfutils_extension_disable	"xml"			"xml"			0
+	phpconfutils_extension_disable	"xmlreader"		"xmlreader"		0
+	phpconfutils_extension_disable	"xmlwriter"		"xmlwriter"		0
 	phpconfutils_extension_with		"xmlrpc"		"xmlrpc"		1
+	phpconfutils_extension_with		"xsl"			"xsl"			1
+	phpconfutils_extension_enable	"zip"			"zip"			1
 	phpconfutils_extension_with		"zlib"			"zlib"			1
 	phpconfutils_extension_enable	"debug"			"debug"			0
 
 	# DBA support
-	if use cdb || use berkdb || use flatfile || use gdbm || use inifile ; then
+	if use cdb || use berkdb || use flatfile || use gdbm || use inifile || use qdbm ; then
 		my_conf="${my_conf} --enable-dba${shared}"
 	fi
 
@@ -451,9 +472,7 @@ php4_4-sapi_src_compile() {
 	phpconfutils_extension_with "flatfile"	"flatfile"	0
 	phpconfutils_extension_with "gdbm"		"gdbm"		0
 	phpconfutils_extension_with "inifile"	"inifile"	0
-
-	# DBX support
-	phpconfutils_extension_enable	"dbx"	"dbx"		1
+	phpconfutils_extension_with	"qdbm"		"qdbm"		0
 
 	# Support for the GD graphics library
 	if use gd-external || phpconfutils_usecheck gd-external ; then
@@ -472,11 +491,6 @@ php4_4-sapi_src_compile() {
 		phpconfutils_extension_with 	"gd" 			"gd" 			0
 	fi
 
-	# Java support
-	if use java-internal || phpconfutils_usecheck java-internal ; then
-		phpconfutils_extension_with		"java"			"java-internal"	0 "`java-config --jdk-home`"
-	fi
-
 	# IMAP support
 	if use imap || phpconfutils_usecheck imap ; then
 		phpconfutils_extension_with		"imap"			"imap"			1
@@ -491,17 +505,17 @@ php4_4-sapi_src_compile() {
 	# LDAP support
 	if use ldap || phpconfutils_usecheck ldap ; then
 		phpconfutils_extension_with		"ldap"			"ldap"			1
+		phpconfutils_extension_with		"ldap-sasl"		"ldap-sasl"		0
 	fi
 
 	# MySQL support
-	# In PHP4, MySQL is enabled by default, so if no 'mysql' USE flag is set,
-	# we must turn it off explicitely
 	if use mysql ; then
-		phpconfutils_extension_with		"mysql"			"mysql"			1 "/usr"
+		phpconfutils_extension_with		"mysql"			"mysql"			1 "/usr/lib/mysql"
 		phpconfutils_extension_with		"mysql-sock"	"mysql"			0 "/var/run/mysqld/mysqld.sock"
-	else
-		phpconfutils_extension_without	"mysql"			"mysql"			0
 	fi
+
+	# MySQLi support
+	phpconfutils_extension_with			"mysqli"		"mysqli"		1 "/usr/bin/mysql_config"
 
 	# ODBC support
 	if use odbc || phpconfutils_usecheck odbc ; then
@@ -521,24 +535,53 @@ php4_4-sapi_src_compile() {
 		phpconfutils_extension_with		"solid"			"solid"			1
 	fi
 
+	# Oracle support
+	if use oci8 ; then
+		phpconfutils_extension_with		"oci8"			"oci8"			1
+	fi
+	if use oci8-instant-client ; then
+		OCI8IC_PKG="`best_version dev-db/oracle-instantclient-basic`"
+		OCI8IC_PKG="`printf ${OCI8IC_PKG} | sed -e 's|dev-db/oracle-instantclient-basic-||g' | sed -e 's|-r.*||g'`"
+		phpconfutils_extension_with		"oci8"			"oci8-instant-client"	1	"instantclient,/usr/lib/oracle/${OCI8IC_PKG}/client/lib"
+	fi
+
+	# PDO support
+	if use pdo || phpconfutils_usecheck pdo ; then
+		phpconfutils_extension_with		"pdo-dblib"		"mssql"			1
+		# The PDO-Firebird driver is broken and unmaintained upstream
+		# phpconfutils_extension_with	"pdo-firebird"	"firebird"		1
+		phpconfutils_extension_with		"pdo-mysql"		"mysql"			1 "/usr"
+		if use oci8 ; then
+			phpconfutils_extension_with	"pdo-oci"		"oci8"			1
+		fi
+		if use oci8-instant-client ; then
+			OCI8IC_PKG="`best_version dev-db/oracle-instantclient-basic`"
+			OCI8IC_PKG="`printf ${OCI8IC_PKG} | sed -e 's|dev-db/oracle-instantclient-basic-||g' | sed -e 's|-r.*||g'`"
+			phpconfutils_extension_with	"pdo-oci"		"oci8-instant-client"	1	"instantclient,/usr,${OCI8IC_PKG}"
+		fi
+		phpconfutils_extension_with		"pdo-odbc"		"odbc"			1 "unixODBC,/usr"
+		phpconfutils_extension_with		"pdo-pgsql"		"postgres"		1
+		phpconfutils_extension_with		"pdo-sqlite"	"sqlite"		1 "/usr"
+	fi
+
 	# readline/libedit support
 	# You can use readline or libedit, but you can't use both
 	phpconfutils_extension_with			"readline"		"readline"		0
 	phpconfutils_extension_with			"libedit"		"libedit"		0
-
-	# Sablotron/XSLT support
-	phpconfutils_extension_enable		"xslt"			"xsl"			1
-	phpconfutils_extension_with			"xslt-sablot"	"xsl"			1
-	if use xml || phpconfutils_usecheck xml ; then
-		phpconfutils_extension_with		"dom-xslt"		"xsl"			0 	"/usr"
-		phpconfutils_extension_with		"dom-exslt"		"xsl"			0	"/usr"
-	fi
 
 	# Session support
 	if ! use session && ! phpconfutils_usecheck session ; then
 		phpconfutils_extension_disable	"session"		"session"		0
 	else
 		phpconfutils_extension_with		"mm"			"sharedmem"		0
+	fi
+
+	# SQLite support
+	if ! use sqlite && ! phpconfutils_usecheck sqlite ; then
+		phpconfutils_extension_without	"sqlite"		"sqlite"		0
+	else
+		phpconfutils_extension_with		"sqlite"		"sqlite"		0 "/usr"
+		phpconfutils_extension_enable	"sqlite-utf8"	"unicode"		0
 	fi
 
 	# Fix ELF-related problems
@@ -566,8 +609,8 @@ php4_4-sapi_src_compile() {
 	emake || die "make failed"
 }
 
-php4_4-sapi_src_install() {
-	destdir=/usr/$(get_libdir)/php4
+php5_2-sapi_src_install() {
+	destdir=/usr/$(get_libdir)/php5
 
 	cd "${S}"
 
@@ -580,15 +623,30 @@ php4_4-sapi_src_install() {
 	if use unicode || phpconfutils_usecheck unicode ; then
 		dodir ${destdir}/include/php/ext/mbstring
 		insinto ${destdir}/include/php/ext/mbstring
-		doins ext/mbstring/mbregex/mbregex.h
+		for x in `ls "${S}/ext/mbstring/"*.h` ; do
+			file=`basename ${x}`
+			doins ext/mbstring/${file}
+		done
+		dodir ${destdir}/include/php/ext/mbstring/oniguruma
+		insinto ${destdir}/include/php/ext/mbstring/oniguruma
+		for x in `ls "${S}/ext/mbstring/oniguruma/"*.h` ; do
+			file=`basename ${x}`
+			doins ext/mbstring/oniguruma/${file}
+		done
+		dodir ${destdir}/include/php/ext/mbstring/libmbfl/mbfl
+		insinto ${destdir}/include/php/ext/mbstring/libmbfl/mbfl
+		for x in `ls "${S}/ext/mbstring/libmbfl/mbfl/"*.h` ; do
+			file=`basename ${x}`
+			doins ext/mbstring/libmbfl/mbfl/${file}
+		done
 	fi
 
 	# Get the extension dir, if not already defined
-	[[ -z "${PHPEXTDIR}" ]] && PHPEXTDIR="`"${D}/${destdir}/bin/php-config" --extension-dir`"
+	[[ -z "${PHPEXTDIR}" ]] && PHPEXTDIR="`"${ED}/${destdir}/bin/php-config" --extension-dir`"
 
 	# And install the modules to it
 	if use sharedext ; then
-		for x in `ls "${S}/modules/"*.so | sort | sed -e "s|.*java.*||g"` ; do
+		for x in `ls "${S}/modules/"*.so | sort` ; do
 			module=`basename ${x}`
 			modulename=${module/.so/}
 			insinto "${PHPEXTDIR}"
@@ -597,20 +655,17 @@ php4_4-sapi_src_install() {
 		done
 	fi
 
-	# Java module and support needs to be installed
-	php_install_java
-
 	# Generate the USE file for PHP
 	phpconfutils_generate_usefile
 
-	# Create the directory where we'll put php4-only php scripts
-	keepdir /usr/share/php4
+	# Create the directory where we'll put php5-only php scripts
+	keepdir /usr/share/php5
 }
 
-php4_4-sapi_pkg_postinst() {
+php5_2-sapi_pkg_postinst() {
 	ewarn
 	ewarn "If you have additional third party PHP extensions (such as"
-	ewarn "dev-php4/phpdbg) you may need to recompile them now."
+	ewarn "dev-php5/phpdbg) you may need to recompile them now."
 	ewarn "A new way of enabling/disabling PHP extensions was introduced"
 	ewarn "with the newer PHP packages releases, so please reemerge any"
 	ewarn "PHP extensions you have installed to automatically adapt to"
@@ -638,19 +693,30 @@ php4_4-sapi_pkg_postinst() {
 	ewarn "certain PaX options in the kernel."
 	ewarn
 
-	ewarn "The Ovrimos extension was recently removed and has no available"
-	ewarn "substitute, our ebuilds reflect this."
+	ewarn "With PHP 5.2, some extensions were removed from PHP because"
+	ewarn "they were unmaintained or moved to PECL. Our ebuilds reflect"
+	ewarn "this: the Filepro and HwAPI (Hyperwave-API) extensions were"
+	ewarn "removed altogether and have no available substitute."
+	ewarn "The Informix extension was also removed, as well as the optional"
+	ewarn "memory-limit setting: memory-limit is now always enforced!"
+	ewarn "The 'vm-goto' and 'vm-switch' USE flags were also removed,"
+	ewarn "since the alternative VMs aren't really supported upstream"
+	ewarn "and were found to behave badly with PHP 5.2. Once their"
+	ewarn "state becomes clearer, we'll consider readding the USE flags."
+	ewarn "The Ming extension was removed from our PHP 5.2 ebuild, because"
+	ewarn "there were serious problems with compilation and the required"
+	ewarn "Ming library. This functionality will be reintroduced later"
+	ewarn "as an independant, external PHP extension."
 	ewarn "The configure option --enable-gd-native-ttf (enabled by the"
 	ewarn "'truetype' USE flag) was removed at upstreams request,"
 	ewarn "as it's considered old and broken."
-	ewarn "Hardened-PHP was also removed from the PHP 4.4 ebuilds in"
+	ewarn "Hardened-PHP was also removed from the PHP 5.2 ebuilds in"
 	ewarn "favour of its successor Suhosin, enable the 'suhosin' USE"
 	ewarn "flag to install it."
 	ewarn
 
 	ewarn "The 'xml' and 'xml2' USE flags were unified in only the 'xml' USE"
 	ewarn "flag. To get the features that were once controlled by the 'xml2'"
-	ewarn "USE flag, turn the 'xml' USE flag on. To get the features that were"
-	ewarn "once controlled by the 'xml' USE flag, turn the 'expat' USE flag on."
+	ewarn "USE flag, turn the 'xml' USE flag on."
 	ewarn
 }

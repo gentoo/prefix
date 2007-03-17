@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games-etmod.eclass,v 1.12 2006/10/02 06:31:40 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games-etmod.eclass,v 1.13 2007/03/07 15:23:39 wolf31o2 Exp $
 
 inherit games
 
@@ -73,7 +73,7 @@ games-etmod_pkg_postinst() {
 	local samplecfg=${FILESDIR}/server.cfg
 	local realcfg=${GAMES_PREFIX_OPT}/enemy-territory/${MOD_NAME}/server.cfg
 
-	if [ -e "${samplecfg}" ] && [ ! -e "${realcfg}" ] ; then
+	if [[ -e "${samplecfg}" ]] && [[ ! -e "${realcfg}" ]] ; then
 		cp "${samplecfg}" "${realcfg}"
 	fi
 
@@ -118,12 +118,12 @@ start() {
 stop() {
 	ebegin "Stopping ${MOD_NAME} dedicated"
 	local pid=\`screen -list | grep et-${MOD_BINS}-ded | awk -F . '{print \$1}' | sed -e s/.//\`
-	if [ -z "\${pid}" ] ; then
+	if [[ -z "\${pid}" ]] ; then
 		eend 1 "Lost screen session"
 	else
 		pid=\`pstree -p \${pid} | sed -e 's:^.*etded\.x86::'\`
 		pid=\${pid:1:\${#pid}-2}
-		if [ -z "\${pid}" ] ; then
+		if [[ -z "\${pid}" ]] ; then
 			eend 1 "Lost etded session"
 		else
 			kill \${pid}
@@ -139,7 +139,7 @@ EOF
 }
 
 games-etmod_make_conf.d() {
-	if [ -e "${FILESDIR}"/${MOD_NAME}.conf.d ] ; then
+	if [[ -e "${FILESDIR}"/${MOD_NAME}.conf.d ]] ; then
 		cp "${FILESDIR}"/${MOD_NAME}.conf.d "${T}"/et-${MOD_NAME}-ded.conf.d
 		return 0
 	fi

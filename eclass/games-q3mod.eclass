@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games-q3mod.eclass,v 1.35 2006/10/05 18:54:37 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games-q3mod.eclass,v 1.36 2007/03/07 15:23:39 wolf31o2 Exp $
 
 inherit games
 
@@ -110,12 +110,12 @@ start() {
 stop() {
 	ebegin "Stopping ${MOD_NAME} dedicated"
 	local pid=\`screen -list | grep q3${MOD_BINS}-ded | awk -F . '{print \$1}' | sed -e s/.//\`
-	if [ -z "\${pid}" ] ; then
+	if [[ -z "\${pid}" ]] ; then
 		eend 1 "Lost screen session"
 	else
 		pid=\`pstree -p \${pid} | sed -e 's:^.*q3ded::'\`
 		pid=\${pid:1:\${#pid}-2}
-		if [ -z "\${pid}" ] ; then
+		if [[ -z "\${pid}" ]] ; then
 			eend 1 "Lost q3ded session"
 		else
 			kill \${pid}

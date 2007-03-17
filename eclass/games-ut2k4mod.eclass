@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games-ut2k4mod.eclass,v 1.9 2006/09/28 21:32:12 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games-ut2k4mod.eclass,v 1.10 2007/03/07 15:23:39 wolf31o2 Exp $
 
 inherit games
 
@@ -29,16 +29,16 @@ check_dvd() {
 	# to bugs.gentoo.org as I know it is a very ugly hack.
 	USE_DVD=
 	USE_ECE_DVD=
-	if [ -n "${CD_ROOT}" ]
+	if [[ -n "${CD_ROOT}" ]]
 	then
-		[ -d "${CD_ROOT}/CD1" ] && USE_DVD=1
-		[ -d "${CD_ROOT}/CD7" ] && USE_ECE_DVD=1
+		[[ -d "${CD_ROOT}/CD1" ]] && USE_DVD=1
+		[[ -d "${CD_ROOT}/CD7" ]] && USE_ECE_DVD=1
 	else
 		local mline=""
 		for mline in `mount | egrep -e '(iso|cdrom)' | awk '{print $3}'`
 		do
-			[ -d "${mline}/CD1" ] && USE_DVD=1
-			[ -d "${mline}/CD7" ] && USE_ECE_DVD=1
+			[[ -d "${mline}/CD1" ]] && USE_DVD=1
+			[[ -d "${mline}/CD7" ]] && USE_ECE_DVD=1
 		done
 	fi
 }
@@ -49,8 +49,8 @@ games-ut2k4mod_pkg_nofetch() {
 }
 
 games-ut2k4mod_src_unpack() {
-	[ -z "${MOD_TBZ2}" ] && die "what are we supposed to unpack ?"
-	[ -z "${MOD_NAME}" ] && die "what is the name of this ut2k4mod ?"
+	[[ -z "${MOD_TBZ2}" ]] && die "what are we supposed to unpack ?"
+	[[ -z "${MOD_NAME}" ]] && die "what is the name of this ut2k4mod ?"
 
 	for src_uri in ${A}
 	do
@@ -73,15 +73,15 @@ games-ut2k4mod_src_unpack() {
 	mkdir ${S}/unpack
 	for tarball in ${MOD_TBZ2}
 	do
-		if [ -e "${tarball}_${PV}-english.tar.bz2" ]
+		if [[ -e "${tarball}_${PV}-english.tar.bz2" ]]
 		then
 			tar xjf ${tarball}_${PV}-english.tar.bz2 -C ${S}/unpack \
 				|| die "uncompressing tarball"
-		elif [ -e "${tarball}_${PV}.tar.bz2" ]
+		elif [[ -e "${tarball}_${PV}.tar.bz2" ]]
 		then
 			tar xjf ${tarball}_${PV}.tar.bz2 -C ${S}/unpack \
 				|| die "uncompressing tarball"
-		else [ -e "${tarball}.tar.bz2" ]
+		else [[ -e "${tarball}.tar.bz2" ]]
 			tar xjf ${tarball}.tar.bz2 -C ${S}/unpack \
 				|| die "uncompressing tarball"
 		fi
@@ -96,7 +96,7 @@ games-ut2k4mod_src_install() {
 	do
 		dodoc ${readme} || die "dodoc failed"
 	done
-	if [ -n "${MOD_BINS}" ]
+	if [[ -n "${MOD_BINS}" ]]
 	then
 		exeinto ${dir}
 		doexe bin/${MOD_BINS} || die "doexe failed"
@@ -110,7 +110,7 @@ games-ut2k4mod_src_install() {
 }
 
 games-ut2k4mod_pkg_postinst() {
-	if [ -n "${MOD_BINS}" ]
+	if [[ -n "${MOD_BINS}" ]]
 	then
 		einfo "To play this mod run:"
 		einfo " ${MOD_BINS}"

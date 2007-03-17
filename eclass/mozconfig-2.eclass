@@ -1,6 +1,6 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig-2.eclass,v 1.14 2006/11/24 02:15:13 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig-2.eclass,v 1.15 2007/03/12 11:57:49 armin76 Exp $
 #
 # mozconfig.eclass: the new mozilla.eclass
 
@@ -8,12 +8,9 @@ inherit multilib flag-o-matic mozcoreconf
 
 IUSE="debug gnome ipv6 xinerama xprint"
 
-RDEPEND="|| ( ( x11-libs/libXrender
-		x11-libs/libXt
-		x11-libs/libXmu
-		)
-		virtual/x11
-	)
+RDEPEND="x11-libs/libXrender
+	x11-libs/libXt
+	x11-libs/libXmu
 	>=media-libs/jpeg-6b
 	>=media-libs/libpng-1.2.1
 	dev-libs/expat
@@ -33,8 +30,8 @@ RDEPEND="|| ( ( x11-libs/libXrender
 
 
 DEPEND="${RDEPEND}
-	xinerama? ( || ( x11-proto/xineramaproto virtual/x11 ) )
-	xprint? ( || ( x11-proto/printproto virtual/x11 ) )"
+	xinerama? ( x11-proto/xineramaproto )
+	xprint? ( x11-proto/printproto )"
 
 mozconfig_config() {
 	mozconfig_use_enable ipv6

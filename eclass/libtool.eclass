@@ -340,21 +340,7 @@ elibtoolize() {
 				  ${deptoremove} == "" ]]
 			then
 				ewarn "Cannot apply any patches, please file a bug about this"
-				break
-
-				# Sometimes ltmain.sh is in a subdirectory ...
-				if [[ ! -f ${x}/configure.in && ! -f ${x}/configure.ac ]] ; then
-					if [[ -f ${x}/../configure.in || -f ${x}/../configure.ac ]] ; then
-						cd "${x}"/../
-					fi
-				fi
-
-				if type -p libtoolize &> /dev/null ; then
-					ewarn "Cannot apply any patches, running libtoolize..."
-					libtoolize --copy --force
-				fi
-				cd "${x}"
-				break
+				die
 			fi
 		fi
 

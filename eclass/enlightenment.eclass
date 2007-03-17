@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/enlightenment.eclass,v 1.70 2007/01/18 02:09:35 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/enlightenment.eclass,v 1.71 2007/03/13 02:01:44 vapier Exp $
 #
 # Author: vapier@gentoo.org
 
@@ -111,7 +111,7 @@ enlightenment_pkg_setup() {
 # the stupid gettextize script prevents non-interactive mode, so we hax it
 gettext_modify() {
 	use nls || return 0
-	cp $(which gettextize) "${T}"/ || die "could not copy gettextize"
+	cp $(type -P gettextize) "${T}"/ || die "could not copy gettextize"
 	sed -i \
 		-e 's:read dummy < /dev/tty::' \
 		"${T}"/gettextize

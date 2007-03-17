@@ -1,11 +1,11 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.17 2007/02/02 19:09:33 chtekk Exp $
-#
+# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.18 2007/03/05 01:50:47 chtekk Exp $
+
 # ========================================================================
 #
 # depend.php.eclass
-#		functions to allow ebuilds to depend on php4 and/or php5
+#		Functions to allow ebuilds to depend on php4 and/or php5
 #
 # Author:	Stuart Herbert
 #			<stuart@gentoo.org>
@@ -13,7 +13,7 @@
 # Author:	Luca Longinotti
 #			<chtekk@gentoo.org>
 #
-# Maintained by the PHP Herd <php-bugs@gentoo.org>
+# Maintained by the PHP Team <php-bugs@gentoo.org>
 #
 # ========================================================================
 
@@ -117,7 +117,7 @@ need_php_by_category() {
 		dev-php) need_php ;;
 		dev-php4) need_php4 ;;
 		dev-php5) need_php5 ;;
-		*) die "I don't know which version of PHP packages in ${CATEGORY} require"
+		*) die "Version of PHP required by packages in category ${CATEGORY} unknown"
 	esac
 }
 
@@ -291,24 +291,24 @@ has_zts() {
 	return 1
 }
 
-# Check if our PHP was built with Hardened-PHP enabled
-
-has_hardenedphp() {
-	has_php
-
-	if built_with_use =${PHP_PKG} hardenedphp || phpconfutils_built_with_use =${PHP_PKG} hardenedphp ; then
-		return 0
-	fi
-
-	return 1
-}
-
 # Check if our PHP was built with debug support enabled
 
 has_debug() {
 	has_php
 
 	if built_with_use =${PHP_PKG} debug || phpconfutils_built_with_use =${PHP_PKG} debug ; then
+		return 0
+	fi
+
+	return 1
+}
+
+# Check if our PHP was built with the concurrentmodphp support enabled
+
+has_concurrentmodphp() {
+	has_php
+
+	if built_with_use =${PHP_PKG} apache2 concurrentmodphp || phpconfutils_built_with_use =${PHP_PKG} apache2 concurrentmodphp ; then
 		return 0
 	fi
 
@@ -331,11 +331,9 @@ require_pdo() {
 		eerror
 		eerror "This package requires PDO."
 		eerror "PDO is only available for PHP 5."
-		eerror "You must install =dev-lang/php-5.0* with"
-		eerror "the 'pdo-external' USE flag or you must"
-		eerror "install >=dev-lang/php-5.1 with either"
-		eerror "the 'pdo' or the 'pdo-external' USE flags"
-		eerror "turned on."
+		eerror "You must install >=dev-lang/php-5.1 with"
+		eerror "either the 'pdo' or the 'pdo-external'"
+		eerror "USE flags turned on."
 		eerror
 		die "PHP 5 not installed"
 	fi
@@ -355,16 +353,14 @@ require_pdo() {
 		return
 	fi
 
-	# If we get here, then we have no PDO support
+	# If we get here, then we don't have PDO support
 	eerror
 	eerror "No PDO extension for PHP found."
 	eerror "Please note that PDO only exists for PHP 5."
 	eerror "Please install a PDO extension for PHP 5,"
-	eerror "you must install =dev-lang/php-5.0* with"
-	eerror "the 'pdo-external' USE flag or you must"
-	eerror "install >=dev-lang/php-5.1 with either"
-	eerror "the 'pdo' or the 'pdo-external' USE flags"
-	eerror "turned on."
+	eerror "you must install >=dev-lang/php-5.1 with"
+	eerror "either the 'pdo' or the 'pdo-external'"
+	eerror "USE flags turned on."
 	eerror
 	die "No PDO extension for PHP 5 found"
 }
@@ -526,17 +522,7 @@ php_binary_extension() {
 	# are enabled which change the PHP API version, they also
 	# don't provide correctly versioned symbols for our use
 
-	if built_with_use =${PHP_PKG} hardenedphp || phpconfutils_built_with_use =${PHP_PKG} hardenedphp ; then
-		eerror
-		eerror "You cannot install binary PHP extensions"
-		eerror "when the 'hardenedphp' USE flag is enabled!"
-		eerror "Please reemerge dev-lang/php with the"
-		eerror "'hardenedphp' USE flag turned off."
-		eerror
-		PUSE_ENABLED="1"
-	fi
-
-	if built_with_use =${PHP_PKG} debug || phpconfutils_built_with_use =${PHP_PKG} debug ; then
+	if has_debug ; then
 		eerror
 		eerror "You cannot install binary PHP extensions"
 		eerror "when the 'debug' USE flag is enabled!"
@@ -546,7 +532,7 @@ php_binary_extension() {
 		PUSE_ENABLED="1"
 	fi
 
-	if built_with_use =${PHP_PKG} concurrentmodphp || phpconfutils_built_with_use =${PHP_PKG} concurrentmodphp ; then
+	if has_concurrentmodphp ; then
 		eerror
 		eerror "You cannot install binary PHP extensions when"
 		eerror "the 'concurrentmodphp' USE flag is enabled!"
@@ -557,7 +543,7 @@ php_binary_extension() {
 	fi
 
 	if [[ -n ${PUSE_ENABLED} ]] ; then
-		die "'hardenedphp' and/or 'debug' and/or 'concurrentmodphp' USE flags turned on!"
+		die "'debug' and/or 'concurrentmodphp' USE flags turned on!"
 	fi
 }
 

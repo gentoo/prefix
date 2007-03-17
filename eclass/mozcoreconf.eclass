@@ -1,18 +1,15 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf.eclass,v 1.11 2006/11/24 02:15:13 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf.eclass,v 1.12 2007/03/12 11:57:49 armin76 Exp $
 #
 # mozcoreconf.eclass : core options for mozilla
 # inherit mozconfig-2 if you need USE flags
 
 inherit multilib flag-o-matic
 
-RDEPEND="|| ( (	x11-libs/libXrender
-		x11-libs/libXt
-		x11-libs/libXmu
-		)
-		virtual/x11
-	)
+RDEPEND="x11-libs/libXrender
+	x11-libs/libXt
+	x11-libs/libXmu
 	>=sys-libs/zlib-1.1.4"
 
 DEPEND="${RDEPEND}
@@ -251,14 +248,6 @@ mozconfig_use_with() {
 mozconfig_use_extension() {
 	declare minus=$(useq $1 || echo -)
 	mozconfig_annotate "${minus:-+}$1" --enable-extensions=${minus}${2}
-}
-
-# Add all the variables for building the final product.
-mozconfig_build_opts() {
-	echo "export BUILD_OFFICIAL=1" >>.mozconfig
-	echo "export MOZILLA_OFFICIAL=1" >>.mozconfig
-	echo "mk_add_options BUILD_OFFICIAL=1" >>.mozconfig
-	echo "mk_add_options MOZILLA_OFFICIAL=1" >>.mozconfig
 }
 
 # mozconfig_final: display a table describing all configuration options paired

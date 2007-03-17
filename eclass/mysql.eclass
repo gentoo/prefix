@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.70 2007/01/12 23:33:19 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.72 2007/03/16 22:47:29 chtekk Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: Luca Longinotti <chtekk@gentoo.org>
@@ -526,8 +526,8 @@ mysql_src_unpack() {
 		# TODO: check this with a cmake expert 
 		use innodb \
 		&& cmake \
-			-DCMAKE_C_COMPILER=$(which $(tc-getCC)) \
-			-DCMAKE_CXX_COMPILER=$(which $(tc-getCC)) \
+			-DCMAKE_C_COMPILER=$(type -P $(tc-getCC)) \
+			-DCMAKE_CXX_COMPILER=$(type -P $(tc-getCC)) \
 			"storage/innobase"
 	else
 		rebuilddirlist=". innobase"
@@ -543,10 +543,11 @@ mysql_src_unpack() {
 	if mysql_check_version_range "4.1 to 5.0.99.99" \
 	&& use berkdb ; then
 		[[ -w "bdb/dist/ltmain.sh" ]] && cp -f "ltmain.sh" "bdb/dist/ltmain.sh"
-		pushd "bdb/dist" \
-		&& sh s_all \
-		|| die "Failed bdb reconfigure" \
-		&>/dev/null
+		cp -f "/usr/share/aclocal/libtool.m4" "bdb/dist/aclocal/libtool.ac" \
+		|| die "Could not copy libtool.m4 to bdb/dist/"
+		pushd "bdb/dist" &>/dev/null
+		sh s_all \
+		|| die "Failed bdb reconfigure"
 		popd &>/dev/null
 	fi
 }

@@ -1,6 +1,8 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.329 2007/02/22 02:09:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.331 2007/03/10 13:40:51 vapier Exp $
+#
+# Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
 HOMEPAGE="http://gcc.gnu.org/"
 LICENSE="GPL-2 LGPL-2.1"
@@ -1874,19 +1876,17 @@ gcc_quick_unpack() {
 		fi
 	fi
 
-	if [[ -n ${D_VER} ]] ; then
+	if [[ -n ${D_VER} ]] && use d ; then
 		pushd "${S}"/gcc > /dev/null
 		unpack gdc-${D_VER}-src.tar.bz2
 		cd ..
-		if use d ; then
-			ebegin "Adding support for the D language"
-			./gcc/d/setup-gcc.sh >& "${T}"/dgcc.log
-			if ! eend $? ; then
-				eerror "The D gcc package failed to apply"
-				eerror "Please include this log file when posting a bug report:"
-				eerror "  ${T}/dgcc.log"
-				die "failed to include the D language"
-			fi
+		ebegin "Adding support for the D language"
+		./gcc/d/setup-gcc.sh >& "${T}"/dgcc.log
+		if ! eend $? ; then
+			eerror "The D gcc package failed to apply"
+			eerror "Please include this log file when posting a bug report:"
+			eerror "  ${T}/dgcc.log"
+			die "failed to include the D language"
 		fi
 		popd > /dev/null
 	fi

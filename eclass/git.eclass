@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.3 2006/12/30 18:21:02 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.4 2007/03/14 15:48:12 ferdy Exp $
 
 ## --------------------------------------------------------------------------- #
 # subversion.eclass author: Akinori Hattori <hattya@gentoo.org>
@@ -152,14 +152,16 @@ git_fetch() {
 	# EGIT_REPO_URI is empty.
 	[[ -z ${EGIT_REPO_URI} ]] && die "${EGIT}: EGIT_REPO_URI is empty."
 
-	# check for the protocol.
-	case ${EGIT_REPO_URI%%:*} in
-		git*|http|https|rsync|ssh)
-			;;
-		*)
-			die "${EGIT}: fetch from "${EGIT_REPO_URI%:*}" is not yet implemented."
-			;;
-	esac
+	# check for the protocol or pull from a local repo.
+	if [[ -z ${EGIT_REPO_URI%%:*} ]] ; then
+		case ${EGIT_REPO_URI%%:*} in
+			git*|http|https|rsync|ssh)
+				;;
+			*)
+				die "${EGIT}: fetch from "${EGIT_REPO_URI%:*}" is not yet implemented."
+				;;
+		esac
+	fi
 
 	if [[ ! -d ${EGIT_STORE_DIR} ]] ; then
 		debug-print "${FUNCNAME}: initial clone. creating git directory"

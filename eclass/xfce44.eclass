@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xfce44.eclass,v 1.17 2007/02/26 20:07:14 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xfce44.eclass,v 1.18 2007/03/07 19:37:16 drac Exp $
 
 # Xfce44 Eclass
 #
@@ -126,7 +126,7 @@ xfce44_src_compile() {
 	if has debug ${IUSE}; then
 		XFCE_CONFIG="${XFCE_CONFIG} $(use_enable debug)"
 	fi
-	${CONFIGURE} ${XFCE_CONFIG} || die
+	${CONFIGURE} ${XFCE_CONFIG}
 	## JOBS is unset and defaults to make.conf settings
 	## unless set by single_make
 	emake ${JOBS} || die

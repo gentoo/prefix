@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.63 2007/03/03 20:37:35 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.65 2007/03/06 12:14:49 betelgeuse Exp $
 
 
 # -----------------------------------------------------------------------------
@@ -1799,6 +1799,26 @@ use_doc() {
 java-pkg_init() {
 	unset JAVAC
 	unset JAVA_HOME
+
+	# People do all kinds of weird things.
+	# http://forums.gentoo.org/viewtopic-p-3943166.html
+	local silence="${SILENCE_JAVA_OPTIONS_WARNING}"
+	local accept="${I_WANT_GLOBAL_JAVA_OPTIONS}"
+	if [[ -n ${_JAVA_OPTIONS} && -z ${accept} && -z ${silence} ]]; then
+		ewarn "_JAVA_OPTIONS changes what java -version outputs at least for"
+		ewarn "sun-jdk vms and and as such break configure scripts that"
+		ewarn "use it (for example app-office/openoffice) so we filter it out."
+		ewarn "Use SILENCE_JAVA_OPTIONS_WARNING=true in the environment (use"
+		ewarn "make.conf for example) to silence this warning or"
+		ewarn "I_WANT_GLOBAL_JAVA_OPTIONS to not filter it."
+	fi
+
+	if [[ -z ${accept} ]]; then
+		unset _JAVA_OPTIONS
+		# phase hooks make this run many times without this
+		I_WANT_GLOBAL_JAVA_OPTIONS="true"
+	fi
+
 	java-pkg_init_paths_
 	java-pkg_switch-vm
 	PATH=${JAVA_HOME}/bin:${PATH}

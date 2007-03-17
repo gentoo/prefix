@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/fortran.eclass,v 1.16 2006/06/05 08:51:09 spyderous Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/fortran.eclass,v 1.17 2007/03/13 00:40:54 kugelfang Exp $
 #
 # Author: Danny van Dyk <kugelfang@gentoo.org>
 #
@@ -49,26 +49,26 @@ need_fortran() {
 	for PROFILE in $@; do
 		case ${PROFILE} in
 			gfortran)
-				if [ -x "$(which gfortran 2> /dev/null)" ]; then
+				if [ -x "$(type -P gfortran 2> /dev/null)" ]; then
 					AVAILABLE="${AVAILABLE} gfortran"
 				fi
 				;;
 			g77)
-				if [ -x "$(which g77 2> /dev/null)" ]; then
+				if [ -x "$(type -P g77 2> /dev/null)" ]; then
 					AVAILABLE="${AVAILABLE} g77"
 				fi
 				;;
 			f2c)
-				if [ -x "$(which f2c 2> /dev/null)" ]; then
+				if [ -x "$(type -P f2c 2> /dev/null)" ]; then
 					AVAILABLE="${AVAILABLE} f2c"
 				fi
 				;;
 			ifc)
 				case ${ARCH} in
 					x86|ia64|amd64)
-						if [ -x "$(which ifort 2> /dev/null)" ]; then
+						if [ -x "$(type -P ifort 2> /dev/null)" ]; then
 							AVAILABLE="${AVAILABLE} ifort"
-						elif [ -x "$(which ifc 2> /dev/null)" ]; then
+						elif [ -x "$(type -P ifc 2> /dev/null)" ]; then
 							AVAILABLE="${AVAILABLE} ifc"
 						fi
 						;;

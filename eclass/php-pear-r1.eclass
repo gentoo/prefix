@@ -1,41 +1,40 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-pear-r1.eclass,v 1.13 2006/03/10 10:47:49 sebastian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-pear-r1.eclass,v 1.14 2007/03/05 01:50:47 chtekk Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
-# Maintained by the PHP Herd <php-bugs@gentoo.org>
+# Author: Luca Longinotti <chtekk@gentoo.org>
+# Maintained by the PHP Team <php-bugs@gentoo.org>
 #
 # The php-pear-r1 eclass provides means for an easy installation of PEAR
-# packages, see http://pear.php.net
+# packages, see http://pear.php.net/
 
 # Note that this eclass doesn't handle PEAR packages' dependencies on
-# purpose, please use (R)DEPEND to define them.
+# purpose, please use (R)DEPEND to define them correctly!
 
 EXPORT_FUNCTIONS src_install
 
-# Set this is the the package name on PEAR is different than the one in
-# portage (generally shouldn't be the case).
-[ -z "${PHP_PEAR_PKG_NAME}" ] && PHP_PEAR_PKG_NAME=${PN/PEAR-/}
+DEPEND="dev-lang/php >=dev-php/PEAR-PEAR-1.4.6"
+RDEPEND="${DEPEND}"
 
-# We must depend on the base package as we need it to do
-# install tasks (it provides the pear binary).
-DEPEND="${DEPEND} dev-lang/php >=dev-php/PEAR-PEAR-1.3.6"
-RDEPEND="${RDEPEND} ${DEPEND}"
+# Set this if the the PEAR package name is different than the one in
+# Portage (generally shouldn't be the case).
+[[ -z "${PHP_PEAR_PKG_NAME}" ]] && PHP_PEAR_PKG_NAME="${PN/PEAR-/}"
 
 fix_PEAR_PV() {
-	tmp=${PV}
-	tmp=${tmp/_/}
-	tmp=${tmp/rc/RC}
-	tmp=${tmp/beta/b}
-	PEAR_PV=${tmp}
+	tmp="${PV}"
+	tmp="${tmp/_/}"
+	tmp="${tmp/rc/RC}"
+	tmp="${tmp/beta/b}"
+	PEAR_PV="${tmp}"
 }
 
 PEAR_PV=""
 fix_PEAR_PV
-PEAR_PN=${PHP_PEAR_PKG_NAME}-${PEAR_PV}
+PEAR_PN="${PHP_PEAR_PKG_NAME}-${PEAR_PV}"
 
-[ -z "${SRC_URI}" ] && SRC_URI="http://pear.php.net/get/${PEAR_PN}.tgz"
-[ -z "${HOMEPAGE}" ] && HOMEPAGE="http://pear.php.net/${PHP_PEAR_PKG_NAME}"
+[[ -z "${SRC_URI}" ]] && SRC_URI="http://pear.php.net/get/${PEAR_PN}.tgz"
+[[ -z "${HOMEPAGE}" ]] && HOMEPAGE="http://pear.php.net/${PHP_PEAR_PKG_NAME}"
 
 S="${WORKDIR}/${PEAR_PN}"
 

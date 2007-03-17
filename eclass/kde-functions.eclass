@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.143 2006/09/23 00:23:15 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.145 2007/03/04 21:48:11 zmedico Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -28,47 +28,10 @@ kde-base/kdeaddons kde-base/kicker-applets
 kde-base/kdeaddons kde-base/knewsticker-scripts
 kde-base/kdeaddons kde-base/konq-plugins
 kde-base/kdeaddons kde-base/konqueror-akregator
-kde-base/kdeaddons kde-base/konqueror-arkplugin
-kde-base/kdeaddons kde-base/konqueror-autorefresh
-kde-base/kdeaddons kde-base/konqueror-babelfish
-kde-base/kdeaddons kde-base/konqueror-crashes
-kde-base/kdeaddons kde-base/konqueror-dirfilter
-kde-base/kdeaddons kde-base/konqueror-domtreeviewer
-kde-base/kdeaddons kde-base/konqueror-fsview
-kde-base/kdeaddons kde-base/konqueror-imagerotation
-kde-base/kdeaddons kde-base/konqueror-khtmlsettingsplugin
-kde-base/kdeaddons kde-base/konqueror-kimgalleryplugin
-kde-base/kdeaddons kde-base/konqueror-kuick
-kde-base/kdeaddons kde-base/konqueror-minitools
-kde-base/kdeaddons kde-base/konqueror-rellinks
-kde-base/kdeaddons kde-base/konqueror-searchbar
-kde-base/kdeaddons kde-base/konqueror-sidebar
-kde-base/kdeaddons kde-base/konqueror-smbmounter
-kde-base/kdeaddons kde-base/konqueror-uachanger
-kde-base/kdeaddons kde-base/konqueror-validators
-kde-base/kdeaddons kde-base/konqueror-webarchiver
 kde-base/kdeaddons kde-base/ksig
-kde-base/kdeaddons kde-base/noatun-alarm
-kde-base/kdeaddons kde-base/noatun-alsaplayer
-kde-base/kdeaddons kde-base/noatun-blurscope
-kde-base/kdeaddons kde-base/noatun-charlatan
-kde-base/kdeaddons kde-base/noatun-dub
-kde-base/kdeaddons kde-base/noatun-ffrs
-kde-base/kdeaddons kde-base/noatun-luckytag
-kde-base/kdeaddons kde-base/noatun-lyrics
-kde-base/kdeaddons kde-base/noatun-nexscope
-kde-base/kdeaddons kde-base/noatun-noatunmadness
-kde-base/kdeaddons kde-base/noatun-oblique
-kde-base/kdeaddons kde-base/noatun-pitchablespeed
 kde-base/kdeaddons kde-base/noatun-plugins
-kde-base/kdeaddons kde-base/noatun-synaescope
-kde-base/kdeaddons kde-base/noatun-tippercanoe
-kde-base/kdeaddons kde-base/noatun-tyler
-kde-base/kdeaddons kde-base/noatun-wavecapture
 kde-base/kdeaddons kde-base/renamedlg-audio
 kde-base/kdeaddons kde-base/renamedlg-images
-kde-base/kdeaddons kde-base/vimpart
-kde-base/kdeadmin kde-base/kcmlinuz
 kde-base/kdeadmin kde-base/kcron
 kde-base/kdeadmin kde-base/kdat
 kde-base/kdeadmin kde-base/kdeadmin-kfile-plugins
@@ -93,11 +56,8 @@ kde-base/kdebase kde-base/kcheckpass
 kde-base/kdebase kde-base/kcminit
 kde-base/kdebase kde-base/kcontrol
 kde-base/kdebase kde-base/kdcop
-kde-base/kdebase kde-base/kdebase-applnk
 kde-base/kdebase kde-base/kdebase-data
 kde-base/kdebase kde-base/kdebase-kioslaves
-kde-base/kdebase kde-base/kdebase-l10n
-kde-base/kdebase kde-base/kdebase-pics
 kde-base/kdebase kde-base/kdebase-startkde
 kde-base/kdebase kde-base/kdebugdialog
 kde-base/kdebase kde-base/kdepasswd
@@ -155,8 +115,6 @@ kde-base/kdeedu kde-base/kig
 kde-base/kdeedu kde-base/kiten
 kde-base/kdeedu kde-base/klatin
 kde-base/kdeedu kde-base/klettres
-kde-base/kdeedu kde-base/kmathtool
-kde-base/kdeedu kde-base/kmessedwords
 kde-base/kdeedu kde-base/kmplot
 kde-base/kdeedu kde-base/kpercentage
 kde-base/kdeedu kde-base/kstars
@@ -197,7 +155,6 @@ kde-base/kdegames kde-base/ktron
 kde-base/kdegames kde-base/ktuberling
 kde-base/kdegames kde-base/kwin4
 kde-base/kdegames kde-base/libkdegames
-kde-base/kdegames kde-base/libksirtet
 kde-base/kdegames kde-base/lskat
 kde-base/kdegraphics kde-base/kamera
 kde-base/kdegraphics kde-base/kcoloredit
@@ -214,14 +171,11 @@ kde-base/kdegraphics kde-base/kpdf
 kde-base/kdegraphics kde-base/kpovmodeler
 kde-base/kdegraphics kde-base/kruler
 kde-base/kdegraphics kde-base/ksnapshot
-kde-base/kdegraphics kde-base/ksvgplugin
 kde-base/kdegraphics kde-base/ksvg
 kde-base/kdegraphics kde-base/kuickshow
 kde-base/kdegraphics kde-base/kview
 kde-base/kdegraphics kde-base/kviewshell
 kde-base/kdegraphics kde-base/libkscan
-kde-base/kdegraphics kde-base/libksvg
-kde-base/kdemultimedia kde-base/akode
 kde-base/kdemultimedia kde-base/artsplugin-akode
 kde-base/kdemultimedia kde-base/artsplugin-audiofile
 kde-base/kdemultimedia kde-base/artsplugin-mpeglib

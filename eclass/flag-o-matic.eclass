@@ -1,8 +1,8 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.115 2006/12/29 21:30:38 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.117 2007/03/04 21:13:17 vapier Exp $
 #
-# Maintainer: base-system@gentoo.org
+# Maintainer: toolchain@gentoo.org
 
 # need access to emktemp()
 inherit eutils toolchain-funcs multilib
@@ -92,6 +92,7 @@ inherit eutils toolchain-funcs multilib
 #
 
 # C[XX]FLAGS that we allow in strip-flags
+# Note: shell globs and character lists are allowed
 setup-allowed-flags() {
 	if [[ -z ${ALLOWED_FLAGS} ]] ; then
 		export ALLOWED_FLAGS="-pipe"
@@ -99,7 +100,7 @@ setup-allowed-flags() {
 		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -fstack-protector -fstack-protector-all"
 		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -fbounds-checking -fno-bounds-checking"
 		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -fno-PIE -fno-pie -fno-unit-at-a-time"
-		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -g -g0 -g1 -g2 -g3 -ggdb -ggdb0 -ggdb1 -ggdb2 -ggdb3"
+		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -g -g[0-9] -ggdb -ggdb[0-9] -gstabs -gstabs+"
 		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -fno-ident"
 	fi
 	# allow a bunch of flags that negate features / control ABI

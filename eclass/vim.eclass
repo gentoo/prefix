@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.160 2007/02/22 03:23:38 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.161 2007/03/13 01:07:08 pioto Exp $
 
 # Authors:
 # 	Ryan Phillips <rphillips@gentoo.org>
@@ -468,7 +468,7 @@ vim_src_compile() {
 
 	# Let Portage do the stripping. Some people like that.
 	if version_is_at_least "7.0_beta" ; then
-		export ac_cv_prog_STRIP="$(which true ) faking strip"
+		export ac_cv_prog_STRIP="$(type -P true ) faking strip"
 	fi
 
 	myconf="${myconf} --with-modified-by=Gentoo-${PVR}"

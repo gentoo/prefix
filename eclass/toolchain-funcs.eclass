@@ -1,8 +1,8 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.66 2007/02/16 00:12:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.68 2007/03/15 15:55:59 kevquinn Exp $
 #
-# Author: Toolchain Ninjas <toolchain@gentoo.org>
+# Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
 # This eclass contains (or should) functions to get common info
 # about the toolchain (libc/compiler/binutils/etc...)
@@ -201,13 +201,29 @@ gcc-minor-version() {
 gcc-micro-version() {
 	gcc-fullversion "$@" | cut -f3 -d. | cut -f1 -d-
 }
+# Returns the installation directory - internal toolchain
+# function for use by _gcc-specs-exists (for flag-o-matic).
+_gcc-install-dir() {
+	echo "$($(tc-getCC) -print-search-dirs 2> /dev/null |\
+		awk '$1=="install:" {print $2}')"
+}
+# Returns true if the indicated specs file exists - internal toolchain
+# function for use by flag-o-matic.
+_gcc-specs-exists() {
+	[[ -f $(_gcc-install-dir)/$1 ]]
+}
 
-# Returns requested gcc specs directive
+# Returns requested gcc specs directive unprocessed - for used by
+# gcc-specs-directive()
 # Note; later specs normally overwrite earlier ones; however if a later
 # spec starts with '+' then it appends.
 # gcc -dumpspecs is parsed first, followed by files listed by "gcc -v"
-# as "Reading <file>", in order.
-gcc-specs-directive() {
+# as "Reading <file>", in order.  Strictly speaking, if there's a
+# $(gcc_install_dir)/specs, the built-in specs aren't read, however by
+# the same token anything from 'gcc -dumpspecs' is overridden by
+# the contents of $(gcc_install_dir)/specs so the result is the
+# same either way.
+_gcc-specs-directive_raw() {
 	local cc=$(tc-getCC)
 	local specfiles=$(LC_ALL=C ${cc} -v 2>&1 | awk '$1=="Reading" {print $NF}')
 	${cc} -dumpspecs 2> /dev/null | cat - ${specfiles} | awk -v directive=$1 \
@@ -217,6 +233,24 @@ $1=="*"directive":"  { pspec=spec; spec=""; outside=0; next }
 	spec=="" && substr($0,1,1)=="+" { spec=pspec " " substr($0,2); next }
 	{ spec=spec $0 }
 END	{ print spec }'
+	return 0
+}
+
+# Return the requested gcc specs directive, with all included
+# specs expanded.
+# Note, it does not check for inclusion loops, which cause it
+# to never finish - but such loops are invalid for gcc and we're
+# assuming gcc is operational.
+gcc-specs-directive() {
+	local directive subdname subdirective
+	directive="$(_gcc-specs-directive_raw $1)"
+	while [[ ${directive} == *%\(*\)* ]]; do
+		subdname=${directive/*%\(}
+		subdname=${subdname/\)*}
+		subdirective="$(_gcc-specs-directive_raw ${subdname})"
+		directive="${directive//\%(${subdname})/${subdirective}}"
+	done
+	echo "${directive}"
 	return 0
 }
 

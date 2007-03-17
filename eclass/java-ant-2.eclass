@@ -10,7 +10,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.18 2007/03/01 14:01:02 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.20 2007/03/15 13:31:50 caster Exp $
 
 inherit java-utils-2
 
@@ -73,7 +73,7 @@ fi
 
 # We need some tools from javatoolkit. We also need portage 2.1 for phase hooks
 # and ant dependencies constructed above
-DEPEND=">=dev-java/javatoolkit-0.1.5 ${JAVA_PKG_PORTAGE_DEP} ${JAVA_ANT_E_DEPEND}"
+DEPEND=">=dev-java/javatoolkit-0.2.0-r1 ${JAVA_PKG_PORTAGE_DEP} ${JAVA_ANT_E_DEPEND}"
 
 # ------------------------------------------------------------------------------
 # @global JAVA_PKG_BSFIX
@@ -130,8 +130,7 @@ JAVA_PKG_BSFIX_SOURCE_TAGS=${JAVA_PKG_BSFIX_SOURCE_TAGS:-"javadoc javac xjavac j
 # ------------------------------------------------------------------------------
 post_src_unpack() {
 	if java-pkg_func-exists ant_src_unpack; then
-		java-pkg_announce-qa-violation "Using old ant_src_unpack. Should be src_unpack"
-		ant_src_unpack
+		die "ant_src_unpack is no longer support, should use just src_unpack"
 	fi
 	java-ant_bsfix
 	[[ "${JAVA_ANT_IGNORE_SYSTEM_CLASSES}" ]] \

@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vim-doc.eclass,v 1.12 2006/10/25 20:18:53 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vim-doc.eclass,v 1.13 2007/03/13 01:07:08 pioto Exp $
 #
 # This eclass is used by vim.eclass and vim-plugin.eclass to update
 # the documentation tags.  This is necessary since vim doesn't look in
@@ -20,9 +20,9 @@ update_vim_helptags() {
 
 	if [[ $PN != vim-core ]]; then
 		# Find a suitable vim binary for updating tags :helptags
-		vim=$(which vim 2>/dev/null)
-		[[ -z "$vim" ]] && vim=$(which gvim 2>/dev/null)
-		[[ -z "$vim" ]] && vim=$(which kvim 2>/dev/null)
+		vim=$(type -P vim 2>/dev/null)
+		[[ -z "$vim" ]] && vim=$(type -P gvim 2>/dev/null)
+		[[ -z "$vim" ]] && vim=$(type -P kvim 2>/dev/null)
 		if [[ -z "$vim" ]]; then
 			ewarn "No suitable vim binary to rebuild documentation tags"
 		fi
