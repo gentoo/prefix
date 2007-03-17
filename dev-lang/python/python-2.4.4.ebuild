@@ -59,6 +59,13 @@ RESTRICT="confcache"
 
 src_unpack() {
 	unpack ${A}
+
+	# prefix adjustments of python-updater
+	cp "${FILESDIR}"/python-updater-r1 "${T}"/python-updater-r1
+	cd "${T}"
+	epatch "${FILESDIR}"/python-updater-r1-prefix.patch
+	eprefixify python-updater-r1
+
 	cd ${S}
 
 	# fix the readline patch for patch 2.5.4
@@ -215,7 +222,7 @@ src_install() {
 	dosed "1s|^#!/usr/bin/python$|#!${EPREFIX}/usr/bin/python|" /usr/bin/python-config-${PYVER}
 
 	# install python-updater in /usr/sbin
-	newsbin ${FILESDIR}/python-updater-r1 python-updater
+	newsbin "${T}"/python-updater-r1 python-updater
 
 	if use build ; then
 		rm -rf ${ED}/usr/$(get_libdir)/python${PYVER}/{test,encodings,email,lib-tk,bsddb/test}
