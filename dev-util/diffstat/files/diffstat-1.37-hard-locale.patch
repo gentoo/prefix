@@ -1,0 +1,16 @@
+diff -Nur diffstat-1.37.orig/diffstat.c diffstat-1.37/diffstat.c
+--- diffstat-1.37.orig/diffstat.c	2004-12-18 02:08:07.707933653 +0100
++++ diffstat-1.37/diffstat.c	2004-12-18 02:10:48.519539631 +0100
+@@ -805,6 +805,12 @@
+ 			&& !contain_any(b_fname, "*")
+ 			&& !edit_range(b_fname))
++		    || (sscanf(buffer,
++		    	       "*** %[^\t ]\t%d-%d-%d %d:%d:%d",
++			       b_fname,
++			       &year, &month, &day,
++			       &hour, &minute, &second) == 7
++			&& !version_num(b_fname))
+ 		    ) {
+ 		    prev = that;
+ 		    s = do_merging(that, b_fname);
+ 		    that = new_data(s);
