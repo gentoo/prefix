@@ -1,0 +1,49 @@
+diff -Naurd mpfr-2.2.1/VERSION mpfr-2.2.1-p1/VERSION
+--- mpfr-2.2.1/VERSION	2006-11-29 09:49:47.000000000 +0000
++++ mpfr-2.2.1-p1/VERSION	2007-02-02 00:01:41.000000000 +0000
+@@ -1 +1 @@
+-2.2.1
++2.2.1-p1
+diff -Naurd mpfr-2.2.1/mpfr.h mpfr-2.2.1-p1/mpfr.h
+--- mpfr-2.2.1/mpfr.h	2006-11-29 09:49:47.000000000 +0000
++++ mpfr-2.2.1-p1/mpfr.h	2007-02-02 00:01:41.000000000 +0000
+@@ -26,7 +26,7 @@
+ #define MPFR_VERSION_MAJOR 2
+ #define MPFR_VERSION_MINOR 2
+ #define MPFR_VERSION_PATCHLEVEL 1
+-#define MPFR_VERSION_STRING "2.2.1"
++#define MPFR_VERSION_STRING "2.2.1-p1"
+ 
+ /* Macros dealing with MPFR VERSION */
+ #define MPFR_VERSION_NUM(a,b,c) (((a) << 16L) | ((b) << 8) | (c))
+@@ -680,6 +680,8 @@
+  ( mpfr_init(x), mpfr_set_ui((x), (i), (rnd)) )
+ #define mpfr_init_set_d(x, d, rnd) \
+  ( mpfr_init(x), mpfr_set_d((x), (d), (rnd)) )
++#define mpfr_init_set_ld(x, d, rnd) \
++ ( mpfr_init(x), mpfr_set_ld((x), (d), (rnd)) )
+ #define mpfr_init_set_z(x, i, rnd) \
+  ( mpfr_init(x), mpfr_set_z((x), (i), (rnd)) )
+ #define mpfr_init_set_q(x, i, rnd) \
+diff -Naurd mpfr-2.2.1/tests/tversion.c mpfr-2.2.1-p1/tests/tversion.c
+--- mpfr-2.2.1/tests/tversion.c	2006-11-29 09:49:47.000000000 +0000
++++ mpfr-2.2.1-p1/tests/tversion.c	2007-02-02 00:01:41.000000000 +0000
+@@ -45,7 +45,7 @@
+   version = mpfr_get_version ();
+ 
+   /* This test is disabled when a suffix (e.g. -dev) has been defined. */
+-#if 1
++#if 0
+   sprintf (buffer, "%d.%d.%d", MPFR_VERSION_MAJOR, MPFR_VERSION_MINOR,
+            MPFR_VERSION_PATCHLEVEL);
+   if (strcmp (buffer, version) != 0)
+diff -Naurd mpfr-2.2.1/version.c mpfr-2.2.1-p1/version.c
+--- mpfr-2.2.1/version.c	2006-11-29 09:49:47.000000000 +0000
++++ mpfr-2.2.1-p1/version.c	2007-02-02 00:01:41.000000000 +0000
+@@ -24,5 +24,5 @@
+ const char *
+ mpfr_get_version (void)
+ {
+-  return "2.2.1";
++  return "2.2.1-p1";
+ }
