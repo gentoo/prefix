@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.2.3-r1.ebuild,v 1.7 2007/03/03 22:58:06 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.2.4.ebuild,v 1.2 2007/03/03 22:58:06 genone Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ DESCRIPTION="general purpose crypto library based on the code used in GnuPG"
 HOMEPAGE="http://www.gnupg.org/"
 SRC_URI="mirror://gnupg/libgcrypt/${P}.tar.gz
 	mirror://gentoo/${PN}-1.2.1-patches.tar.gz
-	!bindist? ( idea? ( http://www.kfwebs.com/${P}-idea.diff.bz2 ) )"
+	!bindist? ( idea? ( mirror://gentoo/${P}-idea.diff.bz2 ) )"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
@@ -29,7 +29,7 @@ src_unpack() {
 	# fix for miss detection of 32 bit ppc
 	cd "${S}"
 	epatch "${WORKDIR}/${PN}-1.2.1-ppc64-fix.patch"
-	epatch "${FILESDIR}/${P}-strict-aliasing.patch"
+	epatch "${FILESDIR}/${PN}-1.2.3-strict-aliasing.patch"
 
 	if use idea; then
 		if use bindist; then

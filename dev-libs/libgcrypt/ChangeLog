@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/libgcrypt
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.87 2007/01/12 20:48:36 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.89 2007/03/03 22:58:06 genone Exp $
+
+  03 Mar 2007; Marius Mauch <genone@gentoo.org> libgcrypt-1.2.3-r1.ebuild,
+  libgcrypt-1.2.4.ebuild:
+  Replacing einfo with elog/ewarn
+
+*libgcrypt-1.2.4 (02 Feb 2007)
+
+  02 Feb 2007; Alon Bar-Lev <alonbl@gentoo.org> +libgcrypt-1.2.4.ebuild:
+  Version bump
 
   12 Jan 2007; Alon Bar-Lev <alonbl@gentoo.org> libgcrypt-1.2.3-r1.ebuild:
   Remove WANT_AUTO*
