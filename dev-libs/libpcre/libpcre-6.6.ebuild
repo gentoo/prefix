@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-6.6.ebuild,v 1.15 2007/01/27 22:29:00 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-6.6.ebuild,v 1.16 2007/02/11 16:48:18 grobian Exp $
 
 EAPI="prefix"
 
