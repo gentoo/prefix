@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libusb
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.64 2007/02/06 14:25:55 blubb Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.65 2007/03/01 17:26:18 genstef Exp $
+
+  01 Mar 2007; <genstef@gentoo.org> libusb-0.1.8.ebuild,
+  libusb-0.1.10a.ebuild, libusb-0.1.11.ebuild, libusb-0.1.12.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   06 Feb 2007; Simon Stelling <blubb@gentoo.org> libusb-0.1.12.ebuild:
   stable on amd64 as 0.1.11 doesn't compile with gcc4

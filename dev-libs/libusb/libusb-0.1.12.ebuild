@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-libs/libusb/libusb-0.1.12.ebuild,v 1.16 2007/02/06 14:25:55 blubb Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/libusb-0.1.12.ebuild,v 1.17 2007/03/01 17:26:18 genstef Exp $
 
 EAPI="prefix"
 
