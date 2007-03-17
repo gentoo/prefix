@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/lzo
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/lzo/ChangeLog,v 1.45 2007/01/16 20:19:31 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/lzo/ChangeLog,v 1.46 2007/03/01 20:30:29 dragonheart Exp $
+
+  01 Mar 2007; Daniel Black <dragonheart@gentoo.org> lzo-2.02-r1.ebuild:
+  nasm dependency dropped as per bug #168922 thanks to Harald van Dijk
 
   16 Jan 2007; Fabian Groffen <grobian@gentoo.org> lzo-1.08-r1.ebuild,
   lzo-2.02-r1.ebuild:

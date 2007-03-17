@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/lzo/lzo-2.02-r1.ebuild,v 1.16 2007/01/16 20:19:31 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/lzo/lzo-2.02-r1.ebuild,v 1.17 2007/03/01 20:30:29 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ SLOT="2"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="examples"
 
-DEPEND="x86? ( dev-lang/nasm )"
+DEPEND=""
 RDEPEND=""
 
 src_unpack() {
