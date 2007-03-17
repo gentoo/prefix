@@ -291,3 +291,15 @@
  	echo "  (and remove $LLIST.5_order to be evaluated again)"
  	echo "    or"
  	echo "- modify the above emerge command and run it manually"
+--- gentoolkit-0.2.3/src/revdep-rebuild/99revdep-rebuild
++++ gentoolkit-0.2.3/src/revdep-rebuild/99revdep-rebuild
+@@ -15,7 +15,7 @@
+ #
+ # Note: This file is sourced using bash by the revdep-rebuild script
+ 
+-LD_LIBRARY_MASK="libodbcinst.so libodbc.so libjava.so libjvm.so"
++LD_LIBRARY_MASK="libodbcinst.so libodbc.so libjava.so libjvm.so libodbcinst.dylib libodbc.dylib libjava.dylib libjvm.dylib"
+-SEARCH_DIRS="/bin /sbin /usr/bin /usr/sbin /lib* /usr/lib*"
++SEARCH_DIRS="@GENTOO_PORTAGE_EPREFIX@/bin @GENTOO_PORTAGE_EPREFIX@/sbin @GENTOO_PORTAGE_EPREFIX@/usr/bin @GENTOO_PORTAGE_EPREFIX@/usr/sbin @GENTOO_PORTAGE_EPREFIX@/lib* @GENTOO_PORTAGE_EPREFIX@/usr/lib*"
+ SEARCH_DIRS_MASK=""
+ 

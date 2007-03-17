@@ -36,6 +36,7 @@ src_unpack() {
 		-e "s|^#!/bin/bash|#!${EPREFIX}/bin/bash|g" \
 		-e "s|=/etc|=${EPREFIX}/etc|g"
 	eend $?
+	eprefixify src/revdep-rebuild/99revdep-rebuild
 }
 
 src_install() {
