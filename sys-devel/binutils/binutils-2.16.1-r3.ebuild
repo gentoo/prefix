@@ -22,4 +22,5 @@ src_unpack() {
 
 	cd ${S}
 	epatch "${FILESDIR}"/${PN}-2.16-solaris10.patch
+	epatch "${FILESDIR}"/${PN}-2.16-gcc4.patch
 }

@@ -1,0 +1,11 @@
+--- bfd/aix5ppc-core.c
++++ bfd/aix5ppc-core.c
+@@ -117,7 +117,7 @@
+     return return_value;
+ 
+   memcpy (new_core_hdr, &core, sizeof (struct core_dumpxx));
+-  core_hdr(abfd) = (char *)new_core_hdr;
++  abfd->tdata.any = (char *)new_core_hdr;
+ 
+   /* .stack section.  */
+   sec = bfd_make_section_anyway (abfd, ".stack");
