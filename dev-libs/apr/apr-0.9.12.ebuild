@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic libtool
+inherit eutils flag-o-matic libtool autotools
 
 DESCRIPTION="Apache Portable Runtime Library"
 HOMEPAGE="http://apr.apache.org/"
@@ -25,6 +25,11 @@ src_unpack() {
 
 	epatch ${FILESDIR}/apr-0.9.12-linking.patch
 	elibtoolize || die "elibtoolize failed"
+	# if I do this (like I should) then configure doesn't honor --prefix any
+	# more, and just installs in /usr/local... bastards!
+#	epatch "${FILESDIR}"/apr-0.9.12-darwin-fsf-gcc.patch
+#	eautoreconf
+	sed -i -e 's/-no-cpp-precomp//g' configure
 
 }
 

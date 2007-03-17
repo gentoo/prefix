@@ -1,0 +1,15 @@
+* Fabian Groffen <grobian@gentoo.org>
+  -no-cpp-precomp is not supported by FSF GCC, and isn't necessary since
+  gcc 3.1 or something.
+
+--- build/apr_hints.m4
++++ build/apr_hints.m4
+@@ -162,7 +162,7 @@
+ 	APR_ADDTO(CPPFLAGS, [-DRHAPSODY])
+ 	;;
+     *-apple-darwin*)
+-	APR_ADDTO(CPPFLAGS, [-DDARWIN -DSIGPROCMASK_SETS_THREAD_MASK -no-cpp-precomp])
++	APR_ADDTO(CPPFLAGS, [-DDARWIN -DSIGPROCMASK_SETS_THREAD_MASK])
+ 	APR_SETIFNULL(apr_posixsem_is_global, [yes])
+         APR_SETIFNULL(ac_cv_func_poll, [no]) # See issue 34332
+ 	;;
