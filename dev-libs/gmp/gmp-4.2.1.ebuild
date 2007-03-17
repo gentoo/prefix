@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.2.1.ebuild,v 1.14 2006/10/20 00:19:49 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.2.1.ebuild,v 1.16 2007/02/28 22:04:56 genstef Exp $
 
 EAPI="prefix"
 
@@ -29,6 +29,9 @@ src_unpack () {
 	epatch "${FILESDIR}"/${PN}-4.1.4-noexecstack.patch
 	epatch "${FILESDIR}"/${P}-ABI-multilib.patch
 
+	sed -i -e 's:ABI = @ABI@:GMPABI = @GMPABI@:' ${S}/Makefile.in \
+		${S}/*/Makefile.in ${S}/*/*/Makefile.in
+
 	# note: we cannot run autotools here as gcc depends on this package
 	elibtoolize
 }
@@ -38,6 +41,17 @@ src_compile() {
 	if [[ ${CHOST} == hppa2.0-* ]] ; then
 		is_hppa_2_0=1
 		export CHOST="${CHOST/2.0/1.1}"
+	fi
+
+	# ABI mappings (needs all architectures supported)
+	if [ -n "${ABI}" ]; then
+		[ "${ABI}" = "32" ] && export GMPABI=32
+		[ "${ABI}" = "64" ] && export GMPABI=64
+		[ "${ABI}" = "x86" ] && export GMPABI=32
+		[ "${ABI}" = "amd64" ] && export GMPABI=64
+		[ "${ABI}" = "n64" ] && export GMPABI=64
+		[ "${ABI}" = "o32" ] && export GMPABI=o32
+		[ "${ABI}" = "n32" ] && export GMPABI=n32
 	fi
 
 	econf \

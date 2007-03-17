@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/gmp
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.84 2006/10/20 00:19:49 kloeri Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.85 2007/02/22 12:09:46 blubb Exp $
+
+  22 Feb 2007; Simon Stelling <blubb@gentoo.org> gmp-4.2.1.ebuild:
+  replace some more ABIs with GMPABI; fix taken from kanaka's auto-multilib
+  overlay
 
   20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> gmp-4.2.1.ebuild:
   Stable on Alpha.
