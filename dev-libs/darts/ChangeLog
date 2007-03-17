@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/darts
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/darts/ChangeLog,v 1.16 2006/03/30 03:16:32 agriffis Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/darts/ChangeLog,v 1.17 2007/02/22 00:31:21 peper Exp $
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
 
   30 Mar 2006; Aron Griffis <agriffis@gentoo.org> darts-0.3.ebuild:
   Mark 0.3 ~ia64
