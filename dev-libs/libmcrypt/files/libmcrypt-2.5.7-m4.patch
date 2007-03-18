@@ -1,0 +1,9 @@
+Fix aclocal warnings:
+/usr/share/aclocal/libmcrypt.m4:17: warning: underquoted definition of AM_PATH_LIBMCRYPT
+--- libmcrypt-2.5.7/lib/libmcrypt.m4
++++ libmcrypt-2.5.7/lib/libmcrypt.m4
+@@ -16,3 +16,3 @@
+ dnl
+-AC_DEFUN(AM_PATH_LIBMCRYPT,
++AC_DEFUN([AM_PATH_LIBMCRYPT],
+ [dnl

@@ -1,0 +1,123 @@
+# ChangeLog for dev-libs/libmcrypt
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcrypt/ChangeLog,v 1.31 2006/10/04 06:16:54 the_paya Exp $
+
+  04 Oct 2006; Javier Villavicencio <the_paya@gentoo.org>
+  libmcrypt-2.5.7.ebuild:
+  Keyworded ~x86-fbsd.
+
+  11 Jun 2006; Robin H. Johnson <robbat2@gentoo.org> libmcrypt-2.5.7.ebuild:
+  libmcrypt behaves badly with confcache.
+
+  20 Feb 2005; Hardave Riar <hardave@gentoo.org> libmcrypt-2.5.7.ebuild:
+  Stable on mips
+
+  03 Nov 2004; Bret Curtis <psi29a@gentoo.org> libmcrypt-2.5.7.ebuild:
+  added to ~mips for testing
+
+  07 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> libmcrypt-2.5.7.ebuild:
+  Added to ~ppc-macos; bug #63593.
+
+  19 Aug 2004; Tom Gall <tgall@gentoo.org> libmcrypt-2.5.7.ebuild:
+  stable on ppc64
+
+  19 Jul 2004; Robin H. Johnson <robbat2@gentoo.org> metadata.xml:
+  add metadata.xml
+
+  01 Apr 2004; <randy@gentoo.org> libmcrypt-2.5.7.ebuild:
+  adding s390 keywords
+
+  24 Jan 2004; Robin H. Johnson <robbat2@gentoo.org> libmcrypt-2.5.5.ebuild,
+  libmcrypt-2.5.7.ebuild:
+  bug #38110, home/src_uri move.
+
+  10 Jan 2004; <agriffis@gentoo.org> libmcrypt-2.5.7.ebuild:
+  stable on alpha and ia64
+
+  04 Nov 2003; Christian Birchinger <joker@gentoo.org> libmcrypt-2.5.7.ebuild:
+  Added sparc stable keyword
+
+*libmcrypt-2.5.7 (24 Apr 2003)
+
+  23 Jul 2003; Guy Martin <gmsoft@gentoo.org> libmcrypt-2.5.7.ebuild :
+  Added hppa to KEYWORDS.
+
+  24 Apr 2003; Robin Johnson <robbat2@gentoo.org> libmcrypt-2.5.7.ebuild:
+  stuff from bugs #3940 #17462 is fixed upstream so removed our fixes
+  pic supported added
+  install more documentation
+  in unstable for testing
+  
+  24 Apr 2003; Robin Johnson <robbat2@gentoo.org> libmcrypt-2.5.1-r4.ebuild:
+  removed old ebuild
+
+*libmcrypt-2.5.5 (05 Jan 2003)
+
+  25 Mar 2003; Aron Griffis <agriffis@gentoo.org> libmcrypt-2.5.5.ebuild:
+  Mark stable on alpha
+
+  05 Mar 2003; Mark Guertin <gerk@gentoo.org> libmcrypt-2.5.5.ebuild :
+  set ppc in keywords
+
+  25 Feb 2003: Guy Martin <gmsoft@gentoo.org> libmcrypt-2.5.5.ebuild :
+  Added hppa to keywords.
+
+  05 Jan 2003; Daniel Ahlberg <aliz@gentoo.org> :
+  Security update.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*libmcrypt-2.5.1-r4 (1 Jul 2002)
+
+  1 Jul 2002; Martin Schlemmer <azarah@gentoo.org> :
+
+  Ok, officially bug #3940 is fixed with -r3, but r4 is just the
+  final with cleanups, etc.  Thanks Jon.
+
+*libmcrypt-2.5.1-r3 (30 Jun 2002)
+
+  30 Jun 2002; Martin Schlemmer <azarah@gentoo.org> :
+
+  Another stab at bug #3940.
+
+*libmcrypt-2.5.1-r2 (24 Jun 2002)
+
+  24 Jun 2002; Seemant Kulleen <seemant@gentoo.org>
+  libmcrypt-2.5.1-r2.ebuild files/digest-libmcrypt-2.5.1-r2.ebuild :
+
+  elibtoolize
+
+*libmcrypt-2.5.1-r1 (21 Jun 2002)
+
+  21 Jun 2002: Gabriele Giorgetti <stroke@gentoo.org> libmcrypt-2.5.1-r1.ebuild
+
+  Applied patch submitted by Jon Nelson <jnelson@gentoo.org>. Fixes bug #3940
+
+
+*libmcrypt-2.5.1 (17 Jun 2002)
+
+  17 Jun 2002: Gabriele Giorgetti <stroke@gentoo.org> libmcrypt-2.5.1.ebuild :
+
+  New version. (Removed --host=${CHOST} from ebuild.) (#3517)
+
+*libmcrypt-2.5.0 (14 Jun 2002)
+
+  14 Jun 2002: Gabriele Giorgetti <stroke@gentoo.org> libmcrypt-2.5.0.ebuild :
+
+  New version ( masked for testing ).
+
+*libmcrypt-2.4.19-r1 (5 May 2002)
+
+  5 May 2002: Martin Schlemmer <azarah@gentoo.org> libmcrypt-2.4.19-r1.ebuild :
+
+  Resolve bug #2276.  Add CVS Header replacement.
+
+*libmcrypt-2.4.19 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
