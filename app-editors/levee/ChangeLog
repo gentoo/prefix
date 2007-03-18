@@ -1,0 +1,29 @@
+# ChangeLog for app-editors/levee
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/levee/ChangeLog,v 1.12 2007/02/21 21:21:04 peper Exp $
+
+  21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  11 May 2006; Thomas Cort <tcort@gentoo.org> levee-3.4o.ebuild:
+  Stable on amd64.
+
+  28 Aug 2005; Luis Medinas <metalgod@gentoo.org> levee-3.4o.ebuild:
+  Added ~amd64 keywords. Closes bug #103759.
+
+*levee-3.4o (28 Apr 2002)
+
+  10 Feb 2003; Seemant Kulleen <seemant@gentoo.org> levee-3.4o.ebuild :
+
+  Changed sed expression delimiters from : to /, closing bug #15006 by Blu3
+  <david+gentoo.org@blue-labs.org>
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+  06 Aug 2002; Mark Guertin <gerk@gentoo.org> :
+  Added ppc to keywords
+
+  28 Apr 2002; Arcady Genkin <agenkin@thpoon.com> levee-3.4o.ebuild :
+  
+  Initial version of the ebuild, submitted by Wout.Mertens@advalvas.be
+  (Wout Mertens).
