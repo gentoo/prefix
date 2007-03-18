@@ -1,18 +1,19 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/tcsh-6.14-r30.ebuild,v 1.1 2007/03/01 21:29:31 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/tcsh-6.14-r32.ebuild,v 1.1
+# 2007/03/15 20:01:31 grobian Exp $
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic
+inherit eutils flag-o-matic autotools
 
-PATCHVER="1.1"
+PATCHVER="1.3"
 
 MY_P="${P}.00"
 DESCRIPTION="Enhanced version of the Berkeley C shell (csh)"
 HOMEPAGE="http://www.tcsh.org/"
 SRC_URI="ftp://ftp.astron.com/pub/tcsh/${MY_P}.tar.gz
-	mirror://gentoo/tcsh-config-${PATCHVER}.tar.bz2
+	mirror://gentoo/tcsh-config-prefix-${PATCHVER}.tar.bz2
 	http://www.gentoo.org/~grobian/distfiles/tcsh-config-prefix-${PATCHVER}.tar.bz2"
 
 LICENSE="BSD"
@@ -32,6 +33,9 @@ src_unpack() {
 	unpack ${A}
 	epatch "${FILESDIR}/${MY_P}"-debian-dircolors.patch # bug #120792
 	epatch "${FILESDIR}/${P}"-makefile.patch # bug #151951
+	cd ${S}
+	epatch "${FILESDIR}"/${P}-use-ncurses.patch
+	eautoreconf
 
 	if use catalogs ; then
 		einfo "enabling NLS catalogs support..."
@@ -40,7 +44,7 @@ src_unpack() {
 		eend $?
 	fi
 
-	eprefixify "${WORKDIR}"/tcsh-config/*
+	eprefixify "${WORKDIR}"/tcsh-config-prefix/*
 }
 
 src_compile() {
@@ -65,13 +69,13 @@ src_install() {
 
 	insinto /etc
 	doins \
-		"${WORKDIR}"/tcsh-config/csh.cshrc \
-		"${WORKDIR}"/tcsh-config/csh.login
+		"${WORKDIR}"/tcsh-config-prefix/csh.cshrc \
+		"${WORKDIR}"/tcsh-config-prefix/csh.login
 
 	insinto /etc/profile.d
 	doins \
-		"${WORKDIR}"/tcsh-config/tcsh-bindkey.csh \
-		"${WORKDIR}"/tcsh-config/tcsh-settings.csh
+		"${WORKDIR}"/tcsh-config-prefix/tcsh-bindkey.csh \
+		"${WORKDIR}"/tcsh-config-prefix/tcsh-settings.csh
 
 	dodoc FAQ Fixes NewThings Ported README WishList Y2K
 

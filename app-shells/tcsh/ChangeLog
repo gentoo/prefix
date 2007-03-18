@@ -1,6 +1,19 @@
 # ChangeLog for app-shells/tcsh
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/ChangeLog,v 1.67 2007/03/01 21:29:31 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/ChangeLog,v 1.69 2007/03/15 18:57:38 grobian Exp $
+
+*tcsh-6.14-r32 (15 Mar 2007)
+
+  15 Mar 2007; Fabian Groffen <grobian@gentoo.org> -tcsh-6.14-r31.ebuild,
+  +tcsh-6.14-r32.ebuild:
+  Fix TERM not set message for shells like scp
+
+*tcsh-6.14-r31 (14 Mar 2007)
+
+  14 Mar 2007; Fabian Groffen <grobian@gentoo.org> -tcsh-6.14-r30.ebuild,
+  +tcsh-6.14-r31.ebuild:
+  Do the prompt setting in csh.cshrc such that non-login shells, also get a
+  nice prompt
 
 *tcsh-6.14-r30 (01 Mar 2007)
 
