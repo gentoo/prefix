@@ -312,7 +312,7 @@ _tc_gen_usr_ldscript() {
 	[[ -n ${output_format} ]] && output_format="OUTPUT_FORMAT ( ${output_format} )"
 
 	for lib in "$@" ; do
-		if [[ ${USERLAND} == "Darwin" ]] ; then
+		if [[ ${CHOST} == *-darwin* ]] ; then
 			ewarn "Not creating fake dynamic library for $lib on Darwin;"
 			ewarn "making a symlink instead."
 			dosym "/${libdir}/${lib}" "/usr/${libdir}/${lib}"
