@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Jasspa MicroEmacs
+GenericName=Text Editor
+Comment=Advanced Text Editor
+Exec=me %F
+Terminal=False
+Icon=/usr/share/jasspa/icons/32x32/me.png
+Type=Application
+Categories=Utility;TextEditor
