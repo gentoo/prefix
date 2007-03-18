@@ -17,11 +17,11 @@ virtual/jdk			dev-java/sun-jdk
 virtual/jre			dev-java/sun-jdk
 virtual/kerberos	app-crypt/mit-krb5
 virtual/krb5		app-crypt/mit-krb5
-virtual/libc		sys-sunos/libsystem
+virtual/libc		sys-aix/libsystem
 virtual/logger		app-admin/sysklogd
 virtual/lpr			net-print/cups
 virtual/mda			mail-filter/procmail
-#virtual/os-headers	sys-sunos/libsystem
+virtual/os-headers	sys-aix/libsystem
 virtual/php			dev-php/mod_php
 virtual/python		dev-lang/python
 virtual/ruby		dev-lang/ruby
