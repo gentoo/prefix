@@ -17,8 +17,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
-DEPEND="virtual/os-headers
-	>=sys-apps/portage-2.0.51"
+DEPEND=">=sys-apps/portage-2.0.51"
 RDEPEND=">=sys-libs/readline-5.0-r1
 	>=app-shells/bash-3.1_p7
 	>=sys-apps/coreutils-5.2.1"
