@@ -19,8 +19,7 @@ KEYWORDS="~ppc-macos"
 
 IUSE="nls fortran objc nocxx"
 
-RDEPEND="virtual/libc
-	>=sys-libs/zlib-1.1.4
+RDEPEND=">=sys-libs/zlib-1.1.4
 	>=sys-libs/ncurses-5.2-r2
 	nls? ( sys-devel/gettext )
 	>=sys-devel/gcc-config-1.3.12-r4"
