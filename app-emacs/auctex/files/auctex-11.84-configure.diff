@@ -1,0 +1,80 @@
+--- configure.old	2007-01-12 19:32:55.000000000 +0100
++++ configure	2007-01-13 19:27:26.000000000 +0100
+@@ -2007,31 +2007,8 @@
+    { (exit 1); exit 1; }; }
+ fi
+ 
+-{ echo "$as_me:$LINENO: checking if ${EMACS} is XEmacs" >&5
+-echo $ECHO_N "checking if ${EMACS} is XEmacs... $ECHO_C" >&6; }
+-
+-  elisp="(if (featurep (quote xemacs)) \"yes\" \"no\")"
+-  OUTPUT=./conftest-$$
+-  echo "${EMACS}" -batch -no-site-file -eval "(let* ((x ${elisp})) (write-region (if (stringp x) x (prin1-to-string x)) nil \"${OUTPUT}\"))"  >& 5 2>&1
+-  "${EMACS}" -batch -no-site-file -eval "(let* ((x ${elisp})) (write-region (if (stringp x) x (prin1-to-string x)) nil \"${OUTPUT}\"))"  >& 5 2>&1
+-  XEMACS="`cat ${OUTPUT}`"
+-  echo "=> ${XEMACS}" >& 5 2>&1
+-  rm -f ${OUTPUT}
+-
+-if test "${XEMACS}" = "yes"; then
+-  EMACS_FLAVOR=xemacs
+-  EMACS_NAME="XEmacs"
+-elif test "${XEMACS}" = "no"; then
+-  EMACS_FLAVOR=emacs
+-  EMACS_NAME="Emacs"
+-else
+-  { { echo "$as_me:$LINENO: error: Unable to run ${EMACS}!  Aborting!" >&5
+-echo "$as_me: error: Unable to run ${EMACS}!  Aborting!" >&2;}
+-   { (exit 1); exit 1; }; }
+-fi
+-  { echo "$as_me:$LINENO: result: ${XEMACS}" >&5
+-echo "${ECHO_T}${XEMACS}" >&6; }
+-
++EMACS_FLAVOR=emacs
++EMACS_NAME="Emacs"
+ 
+   { echo "$as_me:$LINENO: checking for ${EMACS_NAME} prefix" >&5
+ echo $ECHO_N "checking for ${EMACS_NAME} prefix... $ECHO_C" >&6; }
+@@ -2056,34 +2033,6 @@
+ echo "${ECHO_T}\"${emacsprefix}\"" >&6; }
+ 
+ 
+-if test ${EMACS_FLAVOR} = xemacs
+-then
+-
+-{ echo "$as_me:$LINENO: checking if ${EMACS_NAME} is recent enough" >&5
+-echo $ECHO_N "checking if ${EMACS_NAME} is recent enough... $ECHO_C" >&6; }
+-
+-  elisp="(cond ((< emacs-major-version 21) \"no\")
+-			 ((> emacs-major-version 21) \"yes\")
+-			 ((< emacs-minor-version 04) \"no\")
+-			 (t \"yes\"))"
+-  OUTPUT=./conftest-$$
+-  echo "${EMACS}" -batch -no-site-file -eval "(let* ((x ${elisp})) (write-region (if (stringp x) x (prin1-to-string x)) nil \"${OUTPUT}\"))"  >& 5 2>&1
+-  "${EMACS}" -batch -no-site-file -eval "(let* ((x ${elisp})) (write-region (if (stringp x) x (prin1-to-string x)) nil \"${OUTPUT}\"))"  >& 5 2>&1
+-  result="`cat ${OUTPUT}`"
+-  echo "=> ${result}" >& 5 2>&1
+-  rm -f ${OUTPUT}
+-
+-{ echo "$as_me:$LINENO: result: ${result}" >&5
+-echo "${ECHO_T}${result}" >&6; }
+-if test "${result}" != "yes"
+-then
+-  { { echo "$as_me:$LINENO: error: This package requires at least ${EMACS_NAME} version 21.4  Aborting!" >&5
+-echo "$as_me: error: This package requires at least ${EMACS_NAME} version 21.4  Aborting!" >&2;}
+-   { (exit 1); exit 1; }; }
+-fi
+-
+-else
+-
+ { echo "$as_me:$LINENO: checking if ${EMACS_NAME} is recent enough" >&5
+ echo $ECHO_N "checking if ${EMACS_NAME} is recent enough... $ECHO_C" >&6; }
+ 
+@@ -2107,8 +2056,6 @@
+    { (exit 1); exit 1; }; }
+ fi
+ 
+-fi
+-
+ 
+ { echo "$as_me:$LINENO: checking for MULE support" >&5
+ echo $ECHO_N "checking for MULE support... $ECHO_C" >&6; }
