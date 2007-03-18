@@ -1,2 +1,1 @@
-# need to think of something here for AIX
-#sys-sunos/libsystem-0
+sys-aix/libc-5.3

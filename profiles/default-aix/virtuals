@@ -15,6 +15,7 @@ virtual/jdk			dev-java/sun-jdk
 virtual/jre			dev-java/sun-jdk
 virtual/kerberos	app-crypt/mit-krb5
 virtual/krb5		app-crypt/mit-krb5
+virtual/libc		sys-aix/libc
 virtual/logger		app-admin/sysklogd
 virtual/lpr			net-print/cups
 virtual/mda			mail-filter/procmail
