@@ -1,0 +1,25 @@
+* Fabian Groffen <grobian@gentoo.org>
+  Remove gcc-apple specific flags, such that we can compile with FSF GCC
+
+--- src/s/darwin.h
++++ src/s/darwin.h
+@@ -264,7 +264,7 @@
+ 
+ /* Indicate that we are compiling for Mac OS X and where to find Mac
+    specific headers.  */
+-#define C_SWITCH_SYSTEM -fpascal-strings -DMAC_OSX -I../mac/src
++#define C_SWITCH_SYSTEM -DMAC_OSX -I../mac/src
+ 
+ /* Link in the Carbon lib. */
+ #ifdef HAVE_CARBON
+--- configure
++++ configure
+@@ -2383,7 +2383,7 @@
+     esac
+     opsys=darwin
+     # Define CPP as follows to make autoconf work correctly.
+-    CPP="${CC-cc} -E -no-cpp-precomp"
++    CPP="${CC-cc} -E"
+   ;;
+ 
+   ## AT&T 3b2, 3b5, 3b15, 3b20
