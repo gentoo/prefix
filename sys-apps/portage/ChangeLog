@@ -2,6 +2,14 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.1.22.6243 (18 Mar 2007)
+
+  18 Mar 2007; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.1.20.6185.ebuild, -portage-2.1.22.6204.ebuild,
+  +portage-2.1.22.6243.ebuild:
+  New snapshot which fixes a collision-protect endless-recursion bug on
+  circular symlinks, patch thanks to Tobias Hahn
+
 *portage-2.1.22.6239 (17 Mar 2007)
 
   17 Mar 2007; Fabian Groffen <grobian@gentoo.org>
