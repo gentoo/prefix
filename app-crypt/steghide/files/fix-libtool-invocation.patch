@@ -1,0 +1,11 @@
+--- src/Makefile.orig	2004-07-30 16:52:06.636316472 +0100
++++ src/Makefile	2004-07-30 16:52:21.662032216 +0100
+@@ -190,7 +190,7 @@
+ WavPCMSampleValue.cc error.cc main.cc msg.cc SMDConstructionHeuristic.cc
+ 
+ localedir = $(datadir)/locale
+-LIBTOOL = $(SHELL) libtool
++LIBTOOL = $(SHELL) /usr/bin/libtool
+ MAINTAINERCLEANFILES = Makefile.in
+ subdir = src
+ mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
