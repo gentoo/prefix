@@ -1,6 +1,44 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.120 2007/02/20 22:15:16 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.128 2007/03/07 05:15:42 opfer Exp $
+
+  07 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  -files/40aspell-gentoo.el, emacs-21.4-r7.ebuild, emacs-21.4-r8.ebuild:
+  removed not working aspell support
+
+*emacs-21.4-r8 (07 Mar 2007)
+
+  07 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  +emacs-21.4-r8.ebuild:
+  make subdirs patch obsolete
+
+  02 Mar 2007; Christian Faulhammer <opfer@gentoo.org> emacs-21.4-r4.ebuild,
+  emacs-21.4-r7.ebuild:
+  added elisp-site-regen to actually update the site-lisp files
+
+  02 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  emacs-18.59-r1.ebuild, emacs-21.4-r4.ebuild, emacs-21.4-r7.ebuild:
+  removed virtual/x11 from dependencies
+
+  02 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  -files/emacs-18.59-gcc4.patch, -files/emacs-18.59-gentoo.patch,
+  -files/emacs-18.59-unexelf.patch, emacs-18.59-r1.ebuild:
+  patches are now on Gentoo mirrors as they were too big
+
+  02 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  -emacs-21.4-r6.ebuild:
+  clean up
+
+  02 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  -files/emacs-22.0.50.desktop, -files/emacs-nofink-gentoo.diff:
+  remove some unnecessary files
+
+  02 Mar 2007; Christian Faulhammer <opfer@gentoo.org> emacs-21.4-r4.ebuild,
+  emacs-21.4-r6.ebuild, emacs-21.4-r7.ebuild,
+  -emacs-22.0.50_pre20050225.ebuild:
+  added flags for PPC64, fixes bug 152006, reported by corsair, solution found
+  by Andrew John Hughes <gnu_andrew@member.fsf.org>; removed stale version as
+  it is in prefix overlay for ppc-macos
 
 *emacs-21.4-r7 (20 Feb 2007)
 

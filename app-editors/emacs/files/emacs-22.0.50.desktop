@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=GNU Emacs 22.0.50
-Comment=Emacs is the extensible, customizable, self-documenting real-time display editor.
-Icon=gnome-emacs.png
-Terminal=0
-Type=Application
-Categories=Application;Development;
-Exec=/usr/bin/emacs-22.0.50

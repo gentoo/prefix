@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r7.ebuild,v 1.5 2007/03/07 05:15:42 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r8.ebuild,v 1.2 2007/03/07 05:15:42 opfer Exp $
 
 EAPI="prefix"
 
@@ -51,7 +51,7 @@ src_unpack() {
 
 	unpack ${A}
 
-	cd ${S}
+	cd "${S}"
 	epatch "${FILESDIR}/emacs-21.3-xorg.patch"
 	epatch "${FILESDIR}/emacs-21.3-amd64.patch"
 	epatch "${FILESDIR}/emacs-21.3-hppa.patch"
@@ -60,13 +60,12 @@ src_unpack() {
 
 	use ppc64 && epatch "${FILESDIR}/emacs-21.3-ppc64.patch"
 
-	epatch "${FILESDIR}/emacs-subdirs-el-gentoo.diff"
 	epatch "${FILESDIR}/emacs-21.4-autosave-tmp.patch"
 	epatch "${FILESDIR}/emacs-21.4-blessmail-build.patch"
 
 	# This will need to be updated for X-Compilation
 	sed -i -e "s:/usr/lib/\([^ ]*\).o:/usr/$(get_libdir)/\1.o:g" \
-		   ${S}/src/s/gnu-linux.h
+		   "${S}/src/s/gnu-linux.h"
 }
 
 src_compile() {
@@ -125,32 +124,35 @@ src_compile() {
 
 src_install() {
 	einstall || die
-	for i in ${ED}/usr/bin/* ; do
+	for i in "${ED}"/usr/bin/* ; do
 		mv ${i} ${i}.emacs-${SLOT} || die "mv ${i} failed"
 	done
-	mv ${ED}/usr/bin/emacs{-${PV},}.emacs-${SLOT} || die "mv emacs failed"
+	mv "${ED}"/usr/bin/emacs{-${PV},}.emacs-${SLOT} || die "mv emacs failed"
 	dohard /usr/bin/emacs.emacs-${SLOT} /usr/bin/emacs-${SLOT}
 
 	einfo "Fixing info documentation..."
-	mkdir ${T}/emacs-${SLOT}
-	mv ${ED}/usr/share/info/dir ${T}
-	for i in ${ED}/usr/share/info/*
+	mkdir "${T}/emacs-${SLOT}"
+	mv "${ED}/usr/share/info/dir" "${T}"
+	for i in "${ED}"/usr/share/info/*
 	do
-		mv ${i} ${T}/emacs-${SLOT}/${i##*/}.info
+		mv ${i} "${T}"/emacs-${SLOT}/${i##*/}.info
 	done
-	mv ${T}/emacs-${SLOT} ${ED}/usr/share/info
-	mv ${T}/dir ${ED}/usr/share/info/emacs-${SLOT}
+	mv "${T}/emacs-${SLOT}" "${ED}/usr/share/info"
+	mv "${T}/dir" "${ED}/usr/share/info/emacs-${SLOT}"
 
-	newenvd ${FILESDIR}/60emacs-${SLOT}.envd 60emacs-${SLOT}
+	newenvd "${FILESDIR}/60emacs-${SLOT}.envd" "60emacs-${SLOT}"
 
 	einfo "Fixing manpages..."
-	for m in ${ED}/usr/share/man/man1/* ; do
+	for m in "${ED}"/usr/share/man/man1/* ; do
 		mv ${m} ${m/.1/.emacs-${SLOT}.1} || die "mv ${m} failed"
 	done
 
+	# avoid collision between slots
+	rm "${ED}"/usr/share/emacs/site-lisp/subdirs.el
+
 	einfo "Fixing permissions..."
-	find ${ED} -perm 664 |xargs chmod -f 644 2>/dev/null
-	find ${ED} -type d |xargs chmod -f 755 2>/dev/null
+	find "${ED}" -perm 664 |xargs chmod -f 644 2>/dev/null
+	find "${ED}" -type d |xargs chmod -f 755 2>/dev/null
 
 	keepdir /usr/share/emacs/${PV}/leim
 	keepdir /usr/share/emacs/site-lisp
@@ -158,7 +160,7 @@ src_install() {
 	dodoc BUGS ChangeLog README
 
 	insinto /usr/share/applications
-	doins ${FILESDIR}/${DFILE}
+	doins "${FILESDIR}/${DFILE}"
 }
 
 update-alternatives() {
@@ -179,7 +181,11 @@ update-alternatives() {
 }
 
 pkg_postinst() {
+	test -f ${EROOT}/usr/share/emacs/site-lisp/subdirs.el ||
+		cp ${EROOT}/usr/share/emacs{/${PV},}/site-lisp/subdirs.el
+
 	update-alternatives
+
 	if use nosendmail; then
 		while read line; do einfo "${line}"; done<<'EOF'
 
@@ -200,8 +206,6 @@ Emacs requirements under X11.
 
 EOF
 	fi
-
-
 }
 
 pkg_postrm() {
