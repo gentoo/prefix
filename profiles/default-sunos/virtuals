@@ -12,12 +12,10 @@ virtual/editor		app-editors/nano
 virtual/httpd-php	dev-php/mod_php
 virtual/inetd		sys-apps/xinetd
 virtual/krb5		app-crypt/mit-krb5
-virtual/libc		sys-sunos/libsystem
 virtual/logger		app-admin/sysklogd
 virtual/lpr			net-print/cups
 virtual/mda			mail-filter/procmail
 virtual/mta			mail-mta/postfix
-virtual/os-headers	sys-sunos/libsystem
 virtual/php			dev-php/mod_php
 virtual/python		dev-lang/python
 virtual/ruby		dev-lang/ruby
