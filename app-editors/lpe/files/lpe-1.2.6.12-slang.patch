@@ -1,0 +1,24 @@
+diff -Naur lpe-1.2.6.12_/src/cfg.c lpe-1.2.6.12/src/cfg.c
+--- lpe-1.2.6.12_/src/cfg.c	2005-06-20 06:27:25.000000000 +0200
++++ lpe-1.2.6.12/src/cfg.c	2005-06-25 13:10:16.379831120 +0200
+@@ -37,7 +37,7 @@
+ 	if (SLang_load_file (DATADIR "/lpe/init.sl") == -1)
+ 	{
+ 	    SLang_restart (1);
+-	    SLang_set_error(0);
++	    SLang_exit_error(0);
+ 	}
+     }
+ }
+diff -Naur lpe-1.2.6.12_/src/input.c lpe-1.2.6.12/src/input.c
+--- lpe-1.2.6.12_/src/input.c	2005-06-20 06:27:48.000000000 +0200
++++ lpe-1.2.6.12/src/input.c	2005-06-25 13:10:06.347356288 +0200
+@@ -2262,7 +2262,7 @@
+     SLang_load_string (cmd);
+     /* to avoid slang stack overflows... */
+     SLang_restart (1);
+-    SLang_set_error(0);
++    SLang_exit_error(0);
+ 
+     /* 
+      * This is not the nicest thing to do, but certain slang commnds,

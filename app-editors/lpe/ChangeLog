@@ -1,0 +1,28 @@
+# ChangeLog for app-editors/lpe
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/lpe/ChangeLog,v 1.8 2007/02/09 07:11:51 flameeyes Exp $
+
+  09 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
+
+  08 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
+
+*lpe-1.2.6.12 (25 Jun 2005)
+
+  25 Jun 2005; Markus Nigbur <pyrania@gentoo.org> +files/lpe-1.2.6.12-slang.patch,
+  +lpe-1.2.6.12.ebuild:
+  Version bump. See bug #80398 for details (debian took maintainership).
+
+  05 Oct 2004; Pieter Van den Abeele <pvdabeel@gentoo.org> lpe-1.2.6.ebuild:
+  Masked lpe-1.2.6.ebuild stable for ppc
+
+  11 Apr 2004; Markus Nigbur <pyrania@gentoo.org> lpe-1.2.6.ebuild:
+  Marking stable.
+
+*lpe-1.2.6 (04 Oct 2003)
+
+  04 Oct 2003; Markus Nigbur <pyrania@gentoo.org> lpe-1.2.6.ebuild,
+  files/lpe-1.2.6-gentoo.patch:
+  Initial import. (bug 7859)
+

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>no-herd</herd>
+<maintainer>
+  <email>pYrania@gentoo.org</email>
+  <name>Markus Nigbur</name>
+</maintainer>
+<longdescription>LPE is a small, efficient programmer's editor for UNIX systems.</longdescription>
+</pkgmetadata>
