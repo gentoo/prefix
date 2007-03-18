@@ -1,0 +1,36 @@
+diff -urN djvulibre-3.5.17.orig/gui/djview/Makefile.in djvulibre-3.5.17/gui/djview/Makefile.in
+--- djvulibre-3.5.17.orig/gui/djview/Makefile.in	2004-08-24 19:58:55.000000000 +0200
++++ djvulibre-3.5.17/gui/djview/Makefile.in	2006-06-02 09:11:29.000000000 +0200
+@@ -174,7 +174,7 @@
+ install-bin: ${PROGRAM} FORCE
+ 	${INSTALL} -d ${DESTDIR}${bindir}
+ 	${LIBTOOL} --mode=install \
+-	  ${INSTALL_PROGRAM} -s ${PROGRAM} ${DESTDIR}${bindir}
++	  ${INSTALL_PROGRAM} ${PROGRAM} ${DESTDIR}${bindir}
+ 
+ install-man: FORCE
+ 	${INSTALL} -d ${DESTDIR}${mandir}/man1
+diff -urN djvulibre-3.5.17.orig/tools/Makefile.in djvulibre-3.5.17/tools/Makefile.in
+--- djvulibre-3.5.17.orig/tools/Makefile.in	2005-08-23 18:49:23.000000000 +0200
++++ djvulibre-3.5.17/tools/Makefile.in	2006-06-02 09:10:52.000000000 +0200
+@@ -75,7 +75,7 @@
+ 	${INSTALL} -d ${DESTDIR}${bindir}
+ 	for n in ${PROGRAMS} ; do \
+ 	  ${LIBTOOL} --mode=install \
+-	    ${INSTALL_PROGRAM} -s $$n ${DESTDIR}${bindir} \
++	    ${INSTALL_PROGRAM} $$n ${DESTDIR}${bindir} \
+           || exit ; done
+ 
+ install-scripts: FORCE
+diff -urN djvulibre-3.5.17.orig/xmltools/Makefile.in djvulibre-3.5.17/xmltools/Makefile.in
+--- djvulibre-3.5.17.orig/xmltools/Makefile.in	2004-08-24 19:58:56.000000000 +0200
++++ djvulibre-3.5.17/xmltools/Makefile.in	2006-06-02 09:10:30.000000000 +0200
+@@ -63,7 +63,7 @@
+ 	${INSTALL} -d ${DESTDIR}${bindir}
+ 	for n in ${PROGRAMS} ; do \
+ 	  ${LIBTOOL} --mode=install \
+-	    ${INSTALL_PROGRAM} -s $$n ${DESTDIR}${bindir} \
++	    ${INSTALL_PROGRAM} $$n ${DESTDIR}${bindir} \
+           || exit ; done
+ 
+ install-data: FORCE
