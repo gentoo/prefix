@@ -1,0 +1,225 @@
+# ChangeLog for sys-libs/slang
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.59 2007/03/12 11:20:32 the_paya Exp $
+
+  12 Mar 2007; Javier Villavicencio <the_paya@gentoo.org>
+  slang-1.4.9-r2.ebuild:
+  Added userland_BSD to the conditionals for fsuid.patch. Thanks goes to 
+  Sergey Belyashov in bug 169670.
+
+  17 Oct 2006; Roy Marples <uberlord@gentoo.org> slang-1.4.9-r2.ebuild:
+  Added ~sparc-fbsd keyword.
+
+  19 Sep 2006; Alastair Tse <liquidx@gentoo.org> slang-2.0.6.ebuild:
+  add -j1 to src_compile emakes (#141990)
+
+  28 Aug 2006; Gustavo Zacarias <gustavoz@gentoo.org> slang-1.4.9-r2.ebuild:
+  Stable on hppa
+
+  09 Aug 2006; Alastair Tse <liquidx@gentoo.org> slang-2.0.6.ebuild:
+  mark for ~x86
+
+  29 Jul 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +files/slang-2.0.6-foreground.patch, +files/slang-2.0.6-slsh-libs.patch,
+  slang-2.0.6.ebuild:
+  Add missing patch and add a new one from upstream, thanks to 'galtgendo' in
+  bug #141990.
+
+*slang-2.0.6 (28 Jul 2006)
+
+  28 Jul 2006; Diego Pettenò <flameeyes@gentoo.org> +slang-2.0.6.ebuild:
+  Version bump for slang, slotted to be installed side-by-side with slang 1.x.
+  Thanks to Mark Lee and Alastair Tse in bug #95247 for the work and the
+  brainstorm. Masked till bug #141947 is completed.
+
+  22 Jul 2006; Bryan Østergaard <kloeri@gentoo.org> slang-1.4.9-r2.ebuild:
+  Stable on alpha.
+
+  27 Apr 2006; Alec Warner <antarus@gentoo.org> Manifest:
+  Fixing SHA256 digest, pass four
+
+  29 Apr 2006; Joshua Kinard <kumba@gentoo.org> slang-1.4.9-r2.ebuild:
+  Marked stable on mips.
+
+  30 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +files/slang-1.4.9-fbsdlink.patch, slang-1.4.9-r2.ebuild:
+  Add patch to use linux-style linking on FreeBSD and keyworded ~x86-fbsd.
+
+  14 Mar 2006; Chris White <chriswhite@gentoo.org> slang-1.4.9-r2.ebuild:
+  1.4.9-r2 amd64 stable.
+
+  10 Mar 2006; Aron Griffis <agriffis@gentoo.org> slang-1.4.9-r2.ebuild:
+  Mark 1.4.9-r2 stable on ia64
+
+  10 Mar 2006; Michael Hanselmann <hansmi@gentoo.org> slang-1.4.9-r2.ebuild:
+  Stable on ppc.
+
+  27 Feb 2006; Gustavo Zacarias <gustavoz@gentoo.org> slang-1.4.9-r2.ebuild:
+  Stable on sparc
+
+  27 Feb 2006; Markus Rothe <corsair@gentoo.org> slang-1.4.9-r2.ebuild:
+  Stable on ppc64
+
+  25 Feb 2006; Alastair Tse <liquidx@gentoo.org>
+  -files/slang-utf8-acs.patch, -files/slang-utf8-fix.patch,
+  -files/slang-1.4.9-autoconf.patch, -files/slang-utf8-fix2.patch,
+  -files/slang-1.4.9-fsuid.patch, -files/slang-1.4.9.patch,
+  -files/slang-debian-utf8.patch, slang-1.4.9-r1.ebuild,
+  slang-1.4.9-r2.ebuild:
+  patches moved to gentoo mirror. stable bump for x86
+
+  16 Feb 2006; Alastair Tse <liquidx@gentoo.org> slang-1.4.9-r2.ebuild:
+  workaround build problems for LANG=et_EE (#122713)
+
+*slang-1.4.9-r2 (16 May 2005)
+
+  16 May 2005; Heinrich Wendel <lanius@gentoo.org>
+  +files/slang-utf8-fix2.patch, +slang-1.4.9-r2.ebuild:
+  add another utf8 fix from fedora, bug #92735
+
+  03 Jan 2005; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  07 Nov 2004; Mamoru KOMACHI <usata@gentoo.org> slang-1.4.9-r1.ebuild:
+  Fixed chmod failure when unicode USE flag is set; bug #70328.
+
+  06 Nov 2004; Mamoru KOMACHI <usata@gentoo.org>
+  files/slang-1.4.9-fsuid.patch, files/slang-1.4.9.patch,
+  slang-1.4.9-r1.ebuild:
+  Added a patch to remove glibc specific calls. Thanks to Peter S. Mazinger
+  <ps.m@gmx.net>; bug #67666. Fixed compilation on ppc-macos and LICENSE
+  syntax.
+
+  26 Oct 2004; Tom Martin <slarti@gentoo.org> slang-1.4.9-r1.ebuild:
+  Stable on amd64.
+
+  16 Oct 2004; <gongloo@gentoo.org> slang-1.4.9-r1.ebuild:
+  Keyworded ~ppc-macos.
+
+  06 Oct 2004; Guy Martin <gmsoft@gentoo.org> slang-1.4.9-r1.ebuild:
+  Stable on hppa.
+
+  30 Sep 2004; Bryan Østergaard,,, <kloeri@gentoo.org> slang-1.4.9-r1.ebuild:
+  Stable on alpha.
+
+  25 Sep 2004; Joshua Kinard <kumba@gentoo.org> slang-1.4.9-r1.ebuild:
+  Marked stable on mips.
+
+  22 Sep 2004; Gustavo Zacarias <gustavoz@gentoo.org> slang-1.4.9-r1.ebuild:
+  Stable on sparc
+
+  21 Sep 2004; Heinrich Wendel <lanius@gentoo.org> slang-1.4.9-r1.ebuild:
+  mark slang-1.4.9-r1 stable on x86
+
+  03 Sep 2004; Pieter Van den Abeele <pvdabeel@gentoo.org> slang-1.4.9.ebuild:
+  Masked slang-1.4.9.ebuild stable for ppc
+
+  01 Sep 2004; Travis Tilley <lv@gentoo.org> slang-1.4.9-r1.ebuild,
+  slang-1.4.9.ebuild:
+  made slang use $(get_libdir) for cleanly installing to lib64/lib32
+
+  23 Jul 2004; Mamoru KOMACHI <usata@gentoo.org> slang-1.4.9.ebuild:
+  Added to macos.
+
+*slang-1.4.9-r1 (07 Jun 2004)
+
+  04 Oct 2004; Pieter Van den Abeele <pvdabeel@gentoo.org>:
+  PPC stable
+
+  07 Jun 2004; Mamoru KOMACHI <usata@gentoo.org> metadata.xml,
+  +slang-1.4.9-r1.ebuild:
+  Added unicode patches. Thanks to Alexander Darovsky <adarovsky@users.sf.net>
+  and Stanislav Karchebny <berk@inbox.ru>, see bug #47675 and #52846.
+
+  27 Apr 2004; Mike Frysinger <vapier@gentoo.org> slang-1.4.9.ebuild :
+  Mark arm stable and remove the trimming of the gcc/slang.h stuff since
+  this has been fixed in latest gcc's.
+
+  22 Jan 2004; Guy Martin <gmsoft@gentoo.org> slang-1.4.9.ebuild :
+  Marked stable on hppa.
+
+  15 Jan 2004; Jon Portnoy <avenj@gentoo.org> slang-1.4.9.ebuild :
+  Stable on AMD64.
+
+  09 Jan 2004; Aron Griffis <agriffis@gentoo.org> slang-1.4.9.ebuild:
+  stable on alpha
+
+  28 Dec 2003; Joshua Kinard <kumba@gentoo.org> slang-1.4.9.ebuild:
+  Move to mips stable (~mips -> mips)
+
+  20 Oct 2003; Christian Birchinger <joker@gentoo.org> slang-1.4.9.ebuild:
+  Added sparc stable keyword
+
+  08 Oct 2003; Alastair Tse <liquidx@gentoo.org> slang-1.4.9.ebuild:
+  stable bump for x86
+
+  17 Sep 2003; Jon Portnoy <avenj@gentoo.org> slang-1.4.9.ebuild :
+  ia64 keywords.
+
+  19 Jul 2003; Alastair Tse <liquidx@gentoo.org> slang-1.4.5-r2.ebuild,
+  slang-1.4.5-r3.ebuild:
+  fix library links on first install for 1.4.5
+
+*slang-1.4.9 (10 Jun 2003)
+
+  10 Jun 2003; YAMAKURA Makot <yakina@gentoo.org> slang-1.4.5-r3.ebuild,
+  slang-1.4.9.ebuild, files/digest-slang-1.4.5-r3, files/digest-slang-1.4.9 :
+  New version 1.4.9. Added cjk USE flag to 1.4.9 and 1.4.5-r3.
+
+  18 May 2003; Tavis Ormandy <taviso@gentoo.org> slang-1.4.5-r2.ebuild:
+  removing hardcoded compiler.
+
+*slang-1.4.8 (22 Feb 2003)
+
+  16 Mar 2003; Alastair Tse <liquidx@gentoo.org> slang-1.4.8.ebuild:
+  add postinst cleanup for old ANSIfied slang.h, prevents #16678.
+
+  22 Feb 2003; Aron Griffis <agriffis@gentoo.org> slang-1.4.8.ebuild :
+  Update to latest version; thanks to Robert Bragg for the heads-up.
+  Closes bug #15015.
+
+  18 Feb 2003; Zach Welch <zwelch@gentoo.org> slang-1.4.5-r2.ebuild :
+  Added arm to keywords.
+
+  09 Feb 2003; Guy Martin <gmsoft@gentoo.org> slang-1.4.5-r2.ebuild :
+  Added hppa to keywords.
+  
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*slang-1.4.5-r2 (21 Mar 2002)
+
+        18 Jan 2003; Jan Seidel <tuxus@gentoo.org> :
+        Added mips to keywords
+
+	15 Jul 2002; Mark Guertin <gerk@gentoo.org>
+	Added ppc to keywords
+
+	21 Mar 2002; Seemant Kulleen <seemant@gentoo.org> slang-1.4.5-r2.ebuild :
+
+	html documentation no longer getting gzipped.  caught by 
+	stefan@mdy.univie.ac.at 
+
+*slang-1.4.5-r1 (4 March 2002)
+
+	4 March 2002; Donny Davies <woodchip@gentoo.org> slang-1.4.5-r1.ebuild :
+
+	Fixed to install libslang.so.1.4.5 mode 755.  Also fix a small doc
+	install bug where it wasnt deleting the right directory.
+
+*slang-1.4.5 (20 Feb 2002)
+
+	20 Feb 2002; Aron Griffis <agriffis@gentoo.org> slang-1.4.5.ebuild :
+
+	Updated to 1.4.5.  Removed setting of ELF_CFLAGS since our CFLAGS are
+	picked up anyway.  This seems a safer approach.
+
+*slang-1.4.4-r1 (1 Feb 2002)
+
+	1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+
+	Added initial ChangeLog which should be updated whenever the package is
+	updated in any way. This changelog is targetted to users. This means that
+	the comments should well explained and written in clean English. The
+	details about writing correct changelogs are explained in the
+	skel.ChangeLog file which you can find in the root directory of the
+	portage repository.
