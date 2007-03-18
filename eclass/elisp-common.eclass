@@ -17,8 +17,8 @@ elisp-compile() {
 
 elisp-install() {
 	local subdir=$1
-	dodir ${SITELISP}/${subdir}
-	insinto ${SITELISP}/${subdir}
+	dodir ${SITELISP#${EPREFIX}}/${subdir}
+	insinto ${SITELISP#${EPREFIX}}/${subdir}
 	shift
 	doins $@
 }
@@ -28,7 +28,7 @@ elisp-site-file-install() {
 	pushd ${S}
 	cp ${sitefile} ${T}
 	sed -i "s:@SITELISP@:${SITELISP}/${my_pn}:g" ${T}/$(basename ${sitefile})
-	insinto ${SITELISP}
+	insinto ${SITELISP#${EPREFIX}}
 	doins ${T}/$(basename ${sitefile}) || die "failed to install site file"
 	popd
 }
