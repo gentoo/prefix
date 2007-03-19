@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit eutils gnuconfig flag-o-matic toolchain-funcs
 
-KEYWORDS="~amd64 ~x86-macos"
+KEYWORDS="~amd64 ~x86-macos ~x86-solaris"
 
 DESCRIPTION="PostgreSQL libraries."
 HOMEPAGE="http://www.postgresql.org/"
@@ -48,6 +48,9 @@ src_compile() {
 
 	# Detect mips systems properly
 	gnuconfig_update
+
+	# maybe this is for all non-GNU libc babies...
+	[[ ${CHOST} == *-solaris* ]] && use nls && append-ldflags -lintl
 
 	cd "${S}"
 
