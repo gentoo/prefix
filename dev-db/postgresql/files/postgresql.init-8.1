@@ -1,7 +1,7 @@
 #!/sbin/runscript
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/files/postgresql.init-8.1,v 1.2 2006/11/07 22:48:22 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/files/postgresql.init-8.1,v 1.3 2006/12/13 07:59:07 dev-zero Exp $
 
 opts="${opts} reload"
 
@@ -12,7 +12,8 @@ depend() {
 checkconfig() {
 	if [ ! -d "$PGDATA" ] ; then
 		eerror "Directory not found: $PGDATA"
-		eerror "You must create the $PGDATA directory first!"
+		eerror "Please make sure that PGDATA points to the right path."
+		eerror "You can run 'emerge postgresql --config' to setup a new database cluster."
 		return 1
 	fi
 }
@@ -26,42 +27,32 @@ start() {
 		rm -f "$PGDATA/postmaster.pid"
 	fi
 
-	su - $PGUSER -c "/usr/bin/pg_ctl start -D '$PGDATA' -s -l '$PGLOG' -o '$PGOPTS'"
+	local env_vars
+	for var in ${!ENV_*} ; do env_vars="${env_vars} -e ${!var}" ; done
+	start-stop-daemon --start \
+		--pidfile "${PGDATA}/postmaster.pid" \
+		--chuid ${PGUSER}:${PGGROUP} \
+		--exec /usr/bin/postmaster \
+		${env_vars} -- \
+		-D "${PGDATA}" \
+		--silent-mode=true \
+		${PGOPTS}
 
-	while :
-	do
-		cnt=$(($cnt + 1))
-		if [ -f "$PGDATA/postmaster.pid" ] ; then
-			ret=0
-			break
-		fi
-
-		if [ $cnt -eq 30 ] ; then
-			eerror
-			eerror "Please check the $PGLOG log file for errors."
-			eerror
-			ret=1
-			break
-		fi
-		sleep 1
-	done
-	eend $ret
+	eend $?
 }
 
 stop() {
 	ebegin "Stopping PostgreSQL"
-	su - $PGUSER -c "/usr/bin/pg_ctl stop -D '$PGDATA' -s -m fast"
-	eend $?
-}
-
-svc_restart() {
-	ebegin "Restarting PostgreSQL"
-	su - $PGUSER -c "/usr/bin/pg_ctl restart -D '$PGDATA' -s -m fast -l '$PGLOG' -o '$PGOPTS'"
+	# Note: we have to do --oknodo here, otherwise it will always fail
+	#       when there are open transactions. This bug has been corrected
+	#       in baselayout-1.13.0_alpha8.
+	start-stop-daemon --stop --pidfile "${PGDATA}/postmaster.pid" \
+		--retry -TERM/${WAIT_FOR_DISCONNECT}/-INT/${WAIT_FOR_CLEANUP}/-QUIT --oknodo
 	eend $?
 }
 
 reload() {
 	ebegin "Reloading PostgreSQL configuration"
-	su - $PGUSER -c "/usr/bin/pg_ctl reload -D '$PGDATA' -s"
+	start-stop-daemon --stop --pidfile "${PGDATA}/postmaster.pid" --signal HUP --oknodo
 	eend $?
 }
