@@ -1,0 +1,185 @@
+# ChangeLog for media-libs/audiofile
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/audiofile/ChangeLog,v 1.49 2007/03/12 20:09:40 armin76 Exp $
+
+  12 Mar 2007; Raúl Porcel <armin76@gentoo.org> audiofile-0.2.6-r2.ebuild:
+  x86 stable
+
+*audiofile-0.2.6-r3 (21 Feb 2007)
+
+  21 Feb 2007; Joseph Jezak <josejx@gentoo.org>
+  +files/audiofile-largefile.patch, +audiofile-0.2.6-r3.ebuild:
+  Added largefile support patch for bug #118600.
+
+  20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org>
+  audiofile-0.2.6-r2.ebuild:
+  Stable on Alpha.
+
+  17 Jul 2006; Daniel Gryniewicz <dang@gentoo.org>
+  audiofile-0.2.6-r2.ebuild:
+  Marked stable on amd64 for bug #139612
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  audiofile-0.2.6-r2.ebuild:
+  hppa stable, bug #139612
+
+  14 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  audiofile-0.2.6-r2.ebuild:
+  ppc stable, bug #139612
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org> audiofile-0.2.6-r2.ebuild:
+  Mark 0.2.6-r2 stable on ia64
+
+  10 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  audiofile-0.2.6-r2.ebuild:
+  Stable on sparc wrt #139612
+
+  27 Apr 2006; Marien Zwart <marienz@gentoo.org>
+  files/digest-audiofile-0.2.6-r1, Manifest:
+  Fixing SHA256 digest, pass four
+
+  05 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  audiofile-0.2.6-r2.ebuild:
+  Add ~x86-fbsd keyword.
+
+  23 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  -audiofile-0.2.3-r1.ebuild, -audiofile-0.2.4.ebuild,
+  -audiofile-0.2.5.ebuild, -audiofile-0.2.6.ebuild:
+  Drop old versions.
+
+*audiofile-0.2.6-r2 (23 Mar 2006)
+
+  23 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +files/audiofile-0.2.6-constantise.patch, +audiofile-0.2.6-r2.ebuild:
+  Add patch from Jason Allen to reduce the memory usage.
+
+  06 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  audiofile-0.2.3-r1.ebuild, audiofile-0.2.4.ebuild, audiofile-0.2.5.ebuild,
+  audiofile-0.2.6.ebuild, audiofile-0.2.6-r1.ebuild:
+  Drop virtual/libc dependency.
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  07 Aug 2004; Bryan Østergaard <kloeri@gentoo.org> audiofile-0.2.6-r1.ebuild:
+  Stable on alpha.
+
+  25 Jul 2004; Lina Pezzella <burgundy@gentoo.org> :
+  Fixed Manifest.
+
+  23 Jul 2004; Lina Pezzella <burgundy@gentoo.org> :
+  audiofile-0.2.6-r1.ebuild:
+  Stable macos.
+
+  03 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  audiofile-0.2.6-r1.ebuild:
+  Stable sparc.
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  audiofile-0.2.3-r1.ebuild, audiofile-0.2.4.ebuild, audiofile-0.2.5.ebuild,
+  audiofile-0.2.6-r1.ebuild, audiofile-0.2.6.ebuild:
+  virtual/glibc -> virtual/libc
+
+  20 Jun 2004; Tom Gall <tgall@gentoo.org> audiofile-0.2.6-r1:
+  stable on ppc64, bug #54143
+
+  14 Jun 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  audiofile-0.2.6-r1.ebuild:
+  Stable x86 and amd64.
+
+  28 Apr 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  audiofile-0.2.6-r1.ebuild:
+  Added IUSE.
+
+  21 Apr 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  audiofile-0.2.5.ebuild, audiofile-0.2.6.ebuild:
+  IUSE added.
+
+  17 Apr 2004; Travis Tilley <lv@gentoo.org> audiofile-0.2.5.ebuild,
+  audiofile-0.2.6.ebuild:
+  marked stable on amd64
+
+  14 Apr 2004; Stephen P. Becker <geoman@gentoo.org> audiofile-0.2.6.ebuild:
+  Marked stable on mips.
+
+*audiofile-0.2.6-r1 (05 Apr 2004)
+
+  05 Apr 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  audiofile-0.2.6-r1.ebuild, files/sfconvert-eradicator.patch:
+  Added functionality to sfconvert.  Patch sent upstream.
+
+  09 Mar 2004; <agriffis@gentoo.org> audiofile-0.2.5.ebuild:
+  stable on alpha and ia64
+
+*audiofile-0.2.6 (07 Mar 2004)
+
+  07 Mar 2004; foser <foser@gentoo.org> audiofile-0.2.6.ebuild :
+  New release
+
+  18 Feb 2004; Aron Griffis <agriffis@gentoo.org> audiofile-0.2.5.ebuild:
+  add ~ia64
+
+  10 Feb 2004; <gustavoz@gentoo.org> audiofile-0.2.5.ebuild:
+  stable on hppa and sparc
+
+  10 Feb 2004; Bartosch Pixa <darkspecter@gentoo.org> audiofile-0.2.5.ebuild:
+  set ppc in keywords
+
+  08 Feb 2004; <spider@gentoo.org> audiofile-0.2.5.ebuild:
+  stable x86
+
+  28 Jan 2004; Aron Griffis <agriffis@gentoo.org> audiofile-0.2.4.ebuild:
+  stable on alpha and ia64
+
+  18 Jan 2004; <gustavoz@gentoo.org> audiofile-0.2.4.ebuild:
+  stable on hppa and sparc
+
+  14 Jan 2004; Mike Gardiner <obz@gentoo.org> audiofile-0.2.4.ebuild:
+  Stable on x86 as part of GNOME-2.4.1
+
+*audiofile-0.2.5 (04 Jan 2004)
+
+  04 Jan 2004; jje <jje@gentoo.org> audiofile-0.2.5.ebuild:
+  Version bump.
+
+  14 Nov 2003; Aron Griffis <agriffis@gentoo.org> audiofile-0.2.3-r1.ebuild:
+  Stable on ia64
+
+  01 Nov 2003; Seemant Kulleen <seemant@gentoo.org> audiofile-0.2.3-r1.ebuild:
+  SRC_URI and HOMEPAGE fix, thanks to: Stony Yakovac <stonyy@tek.com> in bug
+  #32425
+
+*audiofile-0.2.4 (14 Oct 2003)
+
+  14 Oct 2003; Martin Holzer <mholzer@gentoo.org> audiofile-0.2.4.ebuild:
+  Version bumped. Closes #30068
+
+*audiofile-0.2.3-r1 (21 March 2002)
+
+  18 Aug 2003; Joshua Kinard <kumba@gentoo.org> audiofile-0.2.3-r1.ebuild:
+  Added gnuconfig_update if 'use mips' returns true so configure can detect mipslinux 
+  systems.
+
+  18 Aug 2003; Joshua Kinard <kumba@gentoo.org> audiofile-0.2.3-r1.ebuild:
+  Added ~mips to KEYWORDS
+  Cleaned up Changelog
+
+  01 Jul 2003; Guy Martin <gmsoft@gentoo.org> audiofile-0.2.3-r1.ebuild :
+  Added hppa to KEYWORDS.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+  03 April 2002; M.Schlemmer <azarah@gentoo.org> : audiofile-0.2.3-r1.ebuild
+  Remove unneeded auto* tools.
+
+  21 March 2002; M.Schlemmer <azarah@gentoo.org> :
+  Libtoolize to fix the "relink bug".
+
+*audiofile-0.2.3 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.

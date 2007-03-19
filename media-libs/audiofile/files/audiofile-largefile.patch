@@ -1,0 +1,13 @@
+--- libaudiofile/audiofile.h	2006/10/05 22:05:50	1.1
++++ libaudiofile/audiofile.h	2006/10/05 22:06:00
+@@ -45,8 +45,8 @@ typedef struct _AFfilesetup *AFfilesetup
+ typedef struct _AFfilehandle *AFfilehandle;
+ typedef void (*AFerrfunc)(long, const char *);
+ 
+-typedef off_t AFframecount;
+-typedef off_t AFfileoffset;
++typedef int64_t AFframecount;
++typedef int64_t AFfileoffset;
+ 
+ #define AF_NULL_FILESETUP	((struct _AFfilesetup *) 0)
+ #define AF_NULL_FILEHANDLE	((struct _AFfilehandle *) 0)
