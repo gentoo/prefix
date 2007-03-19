@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit eutils gnuconfig flag-o-matic multilib toolchain-funcs versionator
 
-KEYWORDS="~amd64 ~ia64 ~x86"
+KEYWORDS="~amd64 ~x86 ~x86-solaris"
 
 DESCRIPTION="Sophisticated and powerful Object-Relational DBMS."
 HOMEPAGE="http://www.postgresql.org/"
@@ -36,7 +36,7 @@ DEPEND="${RDEPEND}
 		nls? ( sys-devel/gettext )
 		xml? ( dev-util/pkgconfig )"
 
-PG_DIR="/var/lib/postgresql"
+PG_DIR="${EPREFIX}/var/lib/postgresql"
 [[ -z "${PG_MAX_CONNECTIONS}" ]] && PG_MAX_CONNECTIONS="512"
 
 pkg_setup() {
@@ -90,15 +90,18 @@ src_compile() {
 	# Detect mips systems properly
 	gnuconfig_update
 
+	# maybe this is for all non-GNU libc babies...
+	[[ ${CHOST} == *-solaris* ]] && use nls && append-ldflags -lintl
+
 	cd "${S}"
 
-	./configure --prefix=/usr \
-		--includedir=/usr/include/postgresql/pgsql \
-		--sysconfdir=/etc/postgresql \
-		--mandir=/usr/share/man \
+	./configure --prefix="${EPREFIX}"/usr \
+		--includedir="${EPREFIX}"/usr/include/postgresql/pgsql \
+		--sysconfdir="${EPREFIX}"/etc/postgresql \
+		--mandir="${EPREFIX}"/usr/share/man \
 		--host=${CHOST} \
-		--with-docdir=/usr/share/doc/${PF} \
-		--libdir=/usr/$(get_libdir) \
+		--with-docdir="${EPREFIX}"/usr/share/doc/${PF} \
+		--libdir="${EPREFIX}"/usr/$(get_libdir) \
 		--enable-depend \
 		$(use_with kerberos krb5) \
 		$(use_enable nls ) \
@@ -131,14 +134,14 @@ src_install() {
 	fi
 
 	cd "${S}"
-	emake -j1 DESTDIR="${D}" LIBDIR="${D}/usr/$(get_libdir)" install || die "main emake install failed"
+	emake -j1 DESTDIR="${D}" LIBDIR="${ED}/usr/$(get_libdir)" install || die "main emake install failed"
 
 	cd "${S}/contrib"
-	emake -j1 DESTDIR="${D}" LIBDIR="${D}/usr/$(get_libdir)" install || die "contrib emake install failed"
+	emake -j1 DESTDIR="${D}" LIBDIR="${ED}/usr/$(get_libdir)" install || die "contrib emake install failed"
 
 	if use xml ; then
 		cd "${S}/contrib/xml2"
-		emake -j1 DESTDIR="${D}" LIBDIR="${D}/usr/$(get_libdir)" install || die "contrib/xml2 emake install failed"
+		emake -j1 DESTDIR="${D}" LIBDIR="${ED}/usr/$(get_libdir)" install || die "contrib/xml2 emake install failed"
 	fi
 
 	cd "${S}"
@@ -203,7 +206,7 @@ pkg_config() {
 				echo ${SEM} ${SEMMNI_MIN} > /proc/sys/kernel/sem
 			fi
 
-			su postgres -c "/usr/bin/initdb --pgdata ${PG_DIR}/data"
+			su postgres -c "${EPREFIX}/usr/bin/initdb --pgdata ${PG_DIR}/data"
 
 			if [ ! `sysctl -n kernel.sem | cut -f4` -eq ${SEMMNI} ] ; then
 				echo ${SEM} ${SEMMNI} > /proc/sys/kernel/sem
@@ -223,7 +226,7 @@ pkg_config() {
 				eerror
 			fi
 		else
-			su postgres -c "/usr/bin/initdb --pgdata ${PG_DIR}/data"
+			su postgres -c "${EPREFIX}/usr/bin/initdb --pgdata ${PG_DIR}/data"
 		fi
 
 		einfo
