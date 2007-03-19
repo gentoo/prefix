@@ -39,7 +39,7 @@ PROVIDE="virtual/emacs virtual/editor"
 
 SLOT="23.0.0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 
 DFILE=emacs-${SLOT}.desktop
 
