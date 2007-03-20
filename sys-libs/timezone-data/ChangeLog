@@ -1,6 +1,40 @@
 # ChangeLog for sys-libs/timezone-data
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.59 2007/02/12 15:46:53 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.68 2007/03/13 22:14:01 vapier Exp $
+
+  13 Mar 2007; Mike Frysinger <vapier@gentoo.org>
+  timezone-data-2007c.ebuild:
+  Respect TIMEZONE="" and switch to elog.
+
+  08 Mar 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  timezone-data-2007c.ebuild:
+  Stable on ppc wrt bug #169640.
+
+  07 Mar 2007; Simon Stelling <blubb@gentoo.org> timezone-data-2007c.ebuild:
+  stable on amd64; bug 169640
+
+  07 Mar 2007; Alexander H. Færøy <eroyf@gentoo.org>
+  timezone-data-2007c.ebuild:
+  Stable on MIPS; bug #169640
+
+  07 Mar 2007; Jeroen Roovers <jer@gentoo.org> timezone-data-2007c.ebuild:
+  Stable for HPPA (bug #169640).
+
+  06 Mar 2007; Markus Rothe <corsair@gentoo.org> timezone-data-2007c.ebuild:
+  Stable on ppc64; bug #169640
+
+  06 Mar 2007; Andrej Kacian <ticho@gentoo.org> timezone-data-2007c.ebuild:
+  Stable on x86, bug #169640.
+
+  06 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  timezone-data-2007c.ebuild:
+  Stable on sparc wrt #169640
+
+*timezone-data-2007c (27 Feb 2007)
+
+  27 Feb 2007; Mike Frysinger <vapier@gentoo.org>
+  +timezone-data-2007c.ebuild:
+  Version bump #168481 by Mr. Bones.
 
 *timezone-data-2007b (12 Feb 2007)
 

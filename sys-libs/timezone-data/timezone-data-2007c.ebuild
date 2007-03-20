@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2006p.ebuild,v 1.3 2007/01/09 00:28:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2007c.ebuild,v 1.10 2007/03/13 22:14:01 vapier Exp $
 
 EAPI="prefix"
 
@@ -52,24 +52,31 @@ src_install() {
 	dohtml *.htm *.jpg
 }
 
-pkg_postinst() {
+pkg_config() {
 	# make sure the /etc/localtime file does not get stale #127899
-	local tz=$(source "${EROOT}"/etc/conf.d/clock ; echo ${TIMEZONE})
-	if [[ -z ${tz} ]] ; then
+	local tz=$(unset TIMEZONE ; source "${EROOT}"/etc/conf.d/clock ; echo ${TIMEZONE-FOOKABLOIE})
+	[[ -z ${tz} ]] && return 0
+	if [[ ${tz} == "FOOKABLOIE" ]] ; then
+		elog "You do not have TIMEZONE set in ${EPREFIX}/etc/conf.d/clock."
 		if [[ ! -e ${EROOT}/etc/localtime ]] ; then
 			cp -f "${EROOT}"/usr/share/zoneinfo/Factory "${EROOT}"/etc/localtime
+			elog "Setting ${EPREFIX}/etc/localtime to Factory."
+		else
+			elog "Skipping auto-update of ${EPREFIX}/etc/localtime."
 		fi
-		ewarn "You do not have TIMEZONE set in /etc/conf.d/clock."
-		ewarn "Skipping auto-update of /etc/localtime."
 		return 0
 	fi
 
 	if [[ ! -e ${EROOT}/usr/share/zoneinfo/${tz} ]] ; then
-		eerror "You have an invalid TIMEZONE setting in /etc/conf.d/clock."
-		eerror "Your /etc/localtime has been reset to Factory; enjoy!"
+		elog "You have an invalid TIMEZONE setting in ${EPREFIX}/etc/conf.d/clock."
+		elog "Your ${EPREFIX}/etc/localtime has been reset to Factory; enjoy!"
 		tz="Factory"
 	fi
-	einfo "Updating /etc/localtime with /usr/share/zoneinfo/${tz}"
-	rm -f "${EROOT}"/etc/localtime
+	einfo "Updating ${EPREFIX}/etc/localtime with ${EPREFIX}/usr/share/zoneinfo/${tz}"
+	[[ -L ${EROOT}/etc/localtime ]] && rm -f "${EROOT}"/etc/localtime
 	cp -f "${EROOT}"/usr/share/zoneinfo/"${tz}" "${EROOT}"/etc/localtime
+}
+
+pkg_postinst() {
+	pkg_config
 }
