@@ -1,6 +1,9 @@
 # ChangeLog for www-client/w3m
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/w3m/ChangeLog,v 1.31 2007/01/12 14:57:44 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/w3m/ChangeLog,v 1.32 2007/02/18 10:12:47 grobian Exp $
+
+  18 Feb 2007; Fabian Groffen <grobian@gentoo.org> w3m-0.5.1-r4.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   12 Jan 2007; MATSUU Takuto <matsuu@gentoo.org> -w3m-0.5.1-r3.ebuild:
   Removed old version.
