@@ -1,6 +1,10 @@
 # ChangeLog for sys-libs/slang
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.59 2007/03/12 11:20:32 the_paya Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.60 2007/03/18 17:15:01 grobian Exp $
+
+  18 Mar 2007; Fabian Groffen <grobian@gentoo.org> slang-1.4.9-r1.ebuild,
+  slang-1.4.9-r2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   12 Mar 2007; Javier Villavicencio <the_paya@gentoo.org>
   slang-1.4.9-r2.ebuild:

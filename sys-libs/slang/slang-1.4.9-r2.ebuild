@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-1.4.9-r2.ebuild,v 1.17 2007/03/12 11:20:32 the_paya Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-1.4.9-r2.ebuild,v 1.18 2007/03/18 17:15:01 grobian Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SRC_URI="ftp://space.mit.edu/pub/davis/slang/v1.4/${P}.tar.bz2
 
 LICENSE="|| ( GPL-2 Artistic )"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
 IUSE="cjk unicode"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2"
