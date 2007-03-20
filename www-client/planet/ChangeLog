@@ -1,6 +1,9 @@
 # ChangeLog for www-client/planet
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/planet/ChangeLog,v 1.5 2006/07/09 21:14:27 rl03 Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-client/planet/ChangeLog,v 1.6 2007/02/27 16:50:44 grobian Exp $
+
+  27 Feb 2007; Fabian Groffen <grobian@gentoo.org> planet-20040808.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   09 Jul 2006; Renat Lumpau <rl03@gentoo.org> planet-20040808.ebuild:
   einfo->elog
