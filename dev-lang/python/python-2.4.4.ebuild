@@ -25,7 +25,7 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
 
 LICENSE="PSF-2.2"
 SLOT="2.4"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="ncurses gdbm ssl readline tk berkdb bootstrap ipv6 build ucs2 doc nocxx"
 
 DEPEND=">=sys-libs/zlib-1.1.3
@@ -120,6 +120,12 @@ src_unpack() {
 	# python defaults to using .so files... so stupid
 	epatch "${FILESDIR}"/${P}-darwin-dylib.patch
 
+	# do not use 'which' to find binaries, but go through the PATH.
+	epatch "${FILESDIR}"/${P}-ld_so_aix-which.patch
+
+	# enforce LINKCC to use gcc to prevent python from being linked to libstdc++.so
+	epatch "${FILESDIR}"/${P}-linkcc.patch
+
 	eautoreconf
 }
 
@@ -191,8 +197,6 @@ src_compile() {
 
 	# export CXX so it ends up in /usr/lib/python2.x/config/Makefile
 	tc-export CXX
-	# set LINKCC to prevent python from being linked to libstdc++.so
-	export LINKCC="\$(PURIFY) \$(CC)"
 	econf \
 		--with-fpectl \
 		--enable-shared \
@@ -203,6 +207,7 @@ src_compile() {
 		--with-libc='' \
 		--disable-framework \
 		--disable-toolbox-glue \
+		--with-gcc \
 		${myconf} || die
 	emake || die "Parallel make failed"
 }

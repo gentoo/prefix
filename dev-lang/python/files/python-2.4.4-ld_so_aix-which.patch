@@ -1,0 +1,29 @@
+diff -ru Python-2.3.5.orig/Modules/ld_so_aix Python-2.3.5/Modules/ld_so_aix
+--- Python-2.3.5.orig/Modules/ld_so_aix	1997-09-03 02:45:30.000000000 +0200
++++ Python-2.3.5/Modules/ld_so_aix	2005-09-15 10:35:08.000000000 +0200
+@@ -73,7 +73,24 @@
+ 
+ # Check for existence of compiler.
+ CC=$1; shift
+-whichcc=`which $CC`
++
++pywhich() {
++	save_IFS=${IFS}
++	IFS=:
++	for p in ${PATH}
++	do
++		if test -x "${p}/$1"
++		then
++			echo "${p}/$1"
++			IFS=${save_IFS}
++			return 0
++		fi
++	done
++	IFS=${save_IFS}
++	return 1
++}
++
++whichcc=`pywhich $CC`
+ 
+ if test ! -x "$whichcc"; then
+   echo "ld_so_aix: Compiler '$CC' not found; exiting."
