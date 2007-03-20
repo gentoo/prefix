@@ -1,6 +1,25 @@
 # ChangeLog for www-client/elinks
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.72 2007/01/27 09:48:28 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.76 2007/03/15 12:06:51 spock Exp $
+
+  15 Mar 2007; Michał Januszewski <spock@gentoo.org> -elinks-0.10.5.ebuild,
+  -elinks-0.10.5-r1.ebuild, -elinks-0.10.6.ebuild:
+  Remove old ebuilds.
+
+  15 Mar 2007; Michał Januszewski <spock@gentoo.org> elinks-0.11.1.ebuild,
+  elinks-0.11.2.ebuild:
+  Make sure elinks is not linked against gnutls when merged with -ssl (bug
+  #170918).
+
+  10 Mar 2007; Michał Januszewski <spock@gentoo.org>
+  +files/elinks-0.11.2-lua-5.1.patch, +files/elinks-0.11.2-lua-5.patch,
+  elinks-0.11.2.ebuild:
+  Fix support for >Guile-1.6.8 and Lua 5.1.
+
+  17 Feb 2007; Fabian Groffen <grobian@gentoo.org>
+  -files/elinks-osx-configure.diff, elinks-0.10.5.ebuild,
+  elinks-0.10.5-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   27 Jan 2007; Markus Rothe <corsair@gentoo.org> elinks-0.11.2.ebuild:
   Stable on ppc64; bug #155358

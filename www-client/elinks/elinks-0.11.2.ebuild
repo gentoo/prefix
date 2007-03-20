@@ -1,13 +1,13 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-0.11.2.ebuild,v 1.11 2007/01/27 09:48:28 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-0.11.2.ebuild,v 1.13 2007/03/15 12:03:13 spock Exp $
 
 EAPI="prefix"
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="1.4"
 
-inherit eutils autotools
+inherit eutils autotools flag-o-matic
 
 MY_P="${P/_/}"
 DESCRIPTION="Advanced and well-established text-mode web browser"
@@ -39,6 +39,15 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}"
 
+pkg_setup() {
+	if use guile && has_version ">dev-scheme/guile-1.6.8" &&
+	   ! built_with_use -a dev-scheme/guile deprecated discouraged; then
+		eerror "To install elinks with the 'guile' USE flag, dev-scheme/guile has to"
+		eerror "be built with 'deprecated' and 'discouraged' USE flags."
+		die "dev-scheme/guile not built with deprecated/discouraged"
+	fi
+}
+
 src_unpack() {
 	unpack ${A}
 	epatch ${FILESDIR}/${PN}-0.10.4.conf-syscharset.diff
@@ -51,9 +60,16 @@ src_unpack() {
 	epatch ${FILESDIR}/${PN}-0.11.0-gcc4-inline.patch
 	epatch ${FILESDIR}/${PN}-0.11.0-ruby.patch
 	epatch ${FILESDIR}/${PN}-0.11.1-time.patch
+	epatch ${FILESDIR}/${PN}-0.11.2-lua-5.patch
+
+	if use lua && has_version ">=dev-lang/lua-5.1"; then
+		epatch ${FILESDIR}/${PN}-0.11.2-lua-5.1.patch
+	fi
+
 	if use unicode ; then
 		epatch ${FILESDIR}/elinks-0.10.1-utf_8_io-default.patch
 	fi
+
 	sed -i -e 's/-Werror//' configure*
 }
 
@@ -76,6 +92,12 @@ src_compile() {
 		myconf="--enable-fastmem"
 	fi
 
+	if use ssl ; then
+		myconf="${myconf} --with-openssl"
+	else
+		myconf="${myconf} --without-openssl --without-gnutls"
+	fi
+
 	econf \
 		--sysconfdir="${EPREFIX}"/etc/elinks \
 		--enable-leds \
@@ -85,7 +107,6 @@ src_compile() {
 		$(use_with gpm) \
 		$(use_with zlib) \
 		$(use_with bzip2 bzlib) \
-		$(use_with ssl openssl) \
 		$(use_with X x) \
 		$(use_with lua) \
 		$(use_with guile) \
@@ -134,12 +155,6 @@ pkg_postinst() {
 	einfo
 	einfo "Please have a look at /etc/elinks/keybind-full.sample and"
 	einfo "/etc/elinks/keybind.conf.sample for some bindings examples."
-	if use guile ; then
-		einfo
-		einfo "Since you have compiled ELinks with Guile support, you will have to"
-		einfo "copy internal-hooks.scm and user-hooks.scm from"
-		einfo "/usr/share/doc/${PF}/contrib/guile/ to ~/.elinks/"
-	fi
 	einfo
 	einfo "You will have to set your TERM variable to 'xterm-256color'"
 	einfo "to be able to use 256 colors in elinks."
