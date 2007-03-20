@@ -1,6 +1,10 @@
 # ChangeLog for net-mail/mailbase
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/mailbase/ChangeLog,v 1.71 2007/01/06 13:44:07 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/mailbase/ChangeLog,v 1.72 2007/02/08 22:22:25 grobian Exp $
+
+  08 Feb 2007; Fabian Groffen <grobian@gentoo.org> mailbase-0.00-r6.ebuild,
+  mailbase-1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   06 Jan 2007; Timothy Redaelli <drizzt@gentoo.org> mailbase-1.ebuild:
   Added stat for BSD wrt bug #153869, acknowledged by Fernando J. Pereda
