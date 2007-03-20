@@ -1,6 +1,44 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.193 2007/02/17 22:42:11 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.200 2007/03/02 17:33:26 caleb Exp $
+
+  02 Mar 2007; Caleb Tennis <caleb@gentoo.org> -files/db-4.1.25-java.patch,
+  -files/db-4.1.25-uclibc.patch, -files/db-4.1.25_p1-jarlocation.patch,
+  -db-4.0.14-r2.ebuild, -db-4.0.14-r3.ebuild, -db-4.1.25_p1-r3.ebuild,
+  -db-4.1.25_p1-r4.ebuild, -db-4.1.25_p2.ebuild:
+  Okay, I did it. I removed db 4.0 and db 4.1. I announced it on -dev and
+  there are no explicit deps on it, so it shouldn't create any issues.
+  However, if it does, please open a bug and let me know.
+
+  28 Feb 2007; Caleb Tennis <caleb@gentoo.org> db-4.4.20_p4.ebuild,
+  db-4.5.20_p2.ebuild:
+  Update 4.4 and 4.5 to use econf instead of gnuconfig_update per bug #160192
+
+  27 Feb 2007; Caleb Tennis <caleb@gentoo.org> db-4.5.20_p2.ebuild:
+  Paul asked to turn uniquename off, since it causes too many issues
+
+  27 Feb 2007; Caleb Tennis <caleb@gentoo.org> -db-4.2.52_p2.ebuild,
+  -db-4.2.52_p4.ebuild:
+  more stale versions
+
+  27 Feb 2007; Caleb Tennis <caleb@gentoo.org> -db-4.3.27.ebuild,
+  -db-4.3.29.ebuild, -db-4.4.20_p2.ebuild:
+  removing a few stale ebuilds, including 4.3.27 which isn't available anymore
+
+*db-4.4.20_p4 (27 Feb 2007)
+
+  27 Feb 2007; Caleb Tennis <caleb@gentoo.org> +db-4.4.20_p4.ebuild:
+  Bump to 4.4.20_p4, change SRC_URI to reflect new location of stuff
+
+*db-4.5.20_p2 (27 Feb 2007)
+
+  27 Feb 2007; Caleb Tennis <caleb@gentoo.org>
+  files/db-4.4-jarlocation.patch, +files/db-4.5-jarlocation.patch,
+  +files/db-4.5-libtool.patch, +db-4.5.20_p2.ebuild:
+  Bump to 4.5. SRC_URI and LICENSE have changed because Oracle bought
+  Sleepycat. I also revered back to --with-uniquename as it's supported again
+  with C++,Java, and RPC (was not in 4.2-4.4 series). >=4.4 is currently
+  masked, so this is currently in for testing
 
   17 Feb 2007; Fabian Groffen <grobian@gentoo.org> db-4.2.52_p2.ebuild,
   db-4.2.52_p2-r1.ebuild, db-4.2.52_p4.ebuild, db-4.2.52_p4-r2.ebuild:
