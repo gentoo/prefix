@@ -186,7 +186,9 @@ pkg_config() {
 	chmod 0700 "${PG_DIR}/data"
 
 	local supostgres=""
-	[[ ${EPREFIX%/} == "" ]] && supostgres="su postgres -c"
+	[[ ${EPREFIX%/} == "" ]] \
+		&& supostgres="su postgres -c" \
+		|| supostgres="eval"
 
 	einfo "Initializing the database ..."
 	if [[ -f "${PG_DIR}/data/PG_VERSION" ]] ; then
