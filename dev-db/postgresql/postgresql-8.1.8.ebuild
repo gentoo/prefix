@@ -185,6 +185,9 @@ pkg_config() {
 	chown -Rf postgres:postgres "${PG_DIR}"
 	chmod 0700 "${PG_DIR}/data"
 
+	local supostgres=""
+	[[ ${EPREFIX%/} == "" ]] && supostgres="su postgres -c"
+
 	einfo "Initializing the database ..."
 	if [[ -f "${PG_DIR}/data/PG_VERSION" ]] ; then
 		eerror "PostgreSQL ${PV} cannot upgrade your existing databases."
@@ -206,7 +209,7 @@ pkg_config() {
 				echo ${SEM} ${SEMMNI_MIN} > /proc/sys/kernel/sem
 			fi
 
-			su postgres -c "${EPREFIX}/usr/bin/initdb --pgdata ${PG_DIR}/data"
+			${supostgres} "${EPREFIX}/usr/bin/initdb --pgdata ${PG_DIR}/data"
 
 			if [ ! `sysctl -n kernel.sem | cut -f4` -eq ${SEMMNI} ] ; then
 				echo ${SEM} ${SEMMNI} > /proc/sys/kernel/sem
@@ -226,7 +229,7 @@ pkg_config() {
 				eerror
 			fi
 		else
-			su postgres -c "${EPREFIX}/usr/bin/initdb --pgdata ${PG_DIR}/data"
+			${supostgres} "${EPREFIX}/usr/bin/initdb --pgdata ${PG_DIR}/data"
 		fi
 
 		einfo
