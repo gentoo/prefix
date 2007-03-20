@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.61-r2.ebuild,v 1.9 2006/10/17 10:53:06 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.61-r2.ebuild,v 1.11 2006/12/04 19:25:36 eroyf Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://debian/pool/main/s/ssmtp/${P/-/_}.orig.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="ssl ipv6 md5sum mailwrapper"
 
 DEPEND="virtual/libc
@@ -29,8 +29,10 @@ src_unpack() {
 	unpack "${A}" ; cd "${S}"
 
 	epatch "${FILESDIR}"/ssmtp-2.61-bug127592.patch
-	epatch "${FILESDIR}"/ssmtp-2.61-respect-LDFLAGS.patch
 	epatch "${FILESDIR}"/ssmtp-2.61-darwin7.patch
+
+	# Respect LDFLAGS (bug #152197)
+	sed -i -e 's:$(CC) -o:$(CC) @LDFLAGS@ -o:' Makefile.in
 }
 
 src_compile() {
