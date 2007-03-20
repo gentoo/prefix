@@ -20,17 +20,6 @@ RDEPEND="${DEPEND}
 	app-shells/bash
 	|| ( net-misc/openssh net-misc/ssh )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-prefix.patch
-	ebegin "Adjusting to prefix"
-	sed -i \
-		-e "s|@GENTOO_PORTAGE_EPREFIX@|${EPREFIX}|g" \
-		keychain
-	eend $?
-}
-
 src_install() {
 	dobin keychain || die "dobin failed"
 	dodoc ChangeLog keychain.pod README
@@ -43,4 +32,6 @@ pkg_postinst() {
 	einfo "http://www.gentoo.org/doc/en/keychain-guide.xml"
 	einfo "for help getting keychain running"
 	echo
+	einfo "Note for prefix users: keychain doesn't use prefix paths and stuff,"
+	einfo "because it is highly tuned to use the original OS supplied tools."
 }
