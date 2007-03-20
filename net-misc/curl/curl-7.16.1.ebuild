@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.16.0.ebuild,v 1.2 2007/02/11 04:07:12 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.16.1.ebuild,v 1.1 2007/02/11 04:07:12 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -9,12 +9,12 @@ EAPI="prefix"
 inherit libtool eutils
 
 DESCRIPTION="A Client that groks URLs"
-HOMEPAGE="http://curl.haxx.se/"
-SRC_URI="http://curl.haxx.se/download/${P}.tar.bz2"
+HOMEPAGE="http://curl.haxx.se/ http://curl.planetmirror.com"
+SRC_URI="http://curl.planetmirror.com/download/${P}.tar.bz2"
 
 LICENSE="MIT X11"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="ssl ipv6 ldap ares gnutls idn kerberos krb4 test"
 
 RDEPEND="gnutls? ( net-libs/gnutls )
@@ -35,7 +35,7 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch ${FILESDIR}/${PN}-7.15-strip-ldflags.patch
+	epatch ${FILESDIR}/${P}-strip-ldflags.patch
 	epatch ${FILESDIR}/curl-7.15.1-test62.patch
 	elibtoolize
 }
