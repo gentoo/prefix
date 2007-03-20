@@ -15,7 +15,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="build debug ipv6 nls socks5 ssl static"
 
 RDEPEND="ssl? ( >=dev-libs/openssl-0.9.6b )
@@ -31,6 +31,7 @@ src_unpack() {
 	EPATCH_SUFFIX="patch"
 	EPATCH_MULTI_MSG="Applying Gentoo patches ..." epatch "${PATCHDIR}"/gentoo
 	EPATCH_MULTI_MSG="Applying Mandrake patches ..." epatch "${PATCHDIR}"/mandrake
+	epatch "${FILESDIR}"/${P}-locale.patch # for AIX
 	autoconf || die "autoconf failed"
 }
 

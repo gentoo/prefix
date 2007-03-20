@@ -1,0 +1,22 @@
+--- src/utils.c
++++ src/utils.c
+@@ -1205,15 +1205,15 @@
+       /* Temporarily switch to the current locale */
+       setlocale (LC_NUMERIC, "");
+       lconv = localeconv ();
+-      cached_sep = xstrdup (lconv->thousands_sep);
+-      cached_grouping = xstrdup (lconv->grouping);
++      cached_sep = lconv->thousands_sep ? xstrdup(lconv->thousands_sep) : "C";
++      cached_grouping = lconv->grouping ? xstrdup(lconv->grouping) : "\x03";
+       /* Restore the locale to previous setting. */
+       setlocale (LC_NUMERIC, oldlocale);
+-      if (!*cached_sep)
+-#endif
++#else
+ 	/* Force separator for locales that specify no separators
+ 	   ("C", "hr", and probably many more.) */
+ 	cached_sep = ",", cached_grouping = "\x03";
++#endif
+       initialized = 1;
+     }
+   *sep = cached_sep;
