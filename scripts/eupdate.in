@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # Copyright Gentoo Foundation 2006-2007
 
+# <grobian@gentoo.org> -- 2006-03-20
+# also update alpha, beta, pre, p, etc. instead of only revisions.
+# Basically everything which is on top of the 'base' version number
+# should be upgraded always.
 # <grobian@gentoo.org> -- 2006-02-08
 # when adding a new version, also try and copy all extra files from
 # FILESDIR.  Also when invoked from an empty directory properly deal
@@ -409,9 +413,10 @@ update_file() {
 		return $?
 	else
 		revision_diff $mtecv $ptecv $1 $2
-		return $?
+		ret=$?
+		fetch_files $1
+		return $ret
 	fi
-	fetch_files $1
 }
 
 do_check_file() {
@@ -451,7 +456,26 @@ do_check_file() {
 # if the user gave some files on the command line, try to update those
 if [[ ${#*} > 0 ]] ; then
 	while [[ ${#*} > 0 ]] ; do
-		do_check_file $1 $1
+		if [[ ${1/->/} != ${1} ]] ; then
+			# if "a.1.ebuild->a.2.ebuild" is given, we force a
+			# cross-diff from a.1 to a.2
+			cross_diff ${1#*->} ${1%->*}
+			fetch_files ${1%->*}
+		elif [[ -f $1 ]] ; then
+			# $1 just exists, just update
+			do_check_file $1 $1
+			fetch_files $1
+		elif [[ ! -f ${MTREEDIR}/${EPACKAGE}/$1 ]] ; then
+			# kind of lazy way of saying "file not found"
+			do_check_file $1 $1
+		else
+			# move over the file
+			ewarn "copying $1"
+			cp "${MTREEDIR}/${EPACKAGE}"/$1 .
+			eapify $1
+			ecleankw $1
+			fetch_files $1
+		fi
 		shift
 	done
 
@@ -518,7 +542,7 @@ for pte in $pt ; do
 			do_check_file $mte $pte
 			# we found this version, so needless to look for it any more
 			mt=${mt/$mte/}
-		elif [[ $vdiff -le -100000 ]] ; then
+		elif [[ $vdiff -le -10000 ]] ; then
 			# this revision is older than one we have, so we certainly
 			# don't want it
 			mt=${mt/$mte/}
@@ -530,23 +554,23 @@ for pte in $pt ; do
 done
 # what's left in $mt is everything which is not in $pt (and not already
 # superseded revisions)
-# find the latest revisions and see if there is a more recent revision
-# in the main tree
+# find the latest revisions/alpha/beta/pre and see if there is a more
+# recent revision in the main tree
 last_pte=""
 for pte in $pt ; do
 	for xpte in $pt ; do
-		[[ $(cmp_ebuild_ver $pte $xpte) -ge 100000 ]] \
+		[[ $(cmp_ebuild_ver $pte $xpte) -ge 10000 ]] \
 			&& pt=${pt/$xpte/}
 	done
 	[[ $(cmp_ebuild_ver $pte $last_pte) > 0 ]] \
 		&& last_pte=$pte
 done
-# for all ebuilds (the latest revisions) we check if there is a more
-# recent revision in the main tree
+# for all ebuilds (the latest revisions/alpha/beta/pre) we check if
+# there is a more recent revision in the main tree
 for pte in $pt ; do
 	last_rev=""
 	for mte in $mt ; do
-		if [[ $(cmp_ebuild_ver $mte $pte) -ge 100000 ]] ; then
+		if [[ $(cmp_ebuild_ver $mte $pte) -ge 10000 ]] ; then
 			[[ $(cmp_ebuild_ver $mte $last_rev) > 0 ]] \
 				&& last_rev=$mte
 			# we will deal with the (newer) revision later, so let's
