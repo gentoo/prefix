@@ -13,7 +13,7 @@ SRC_URI="ftp://alpha.gnu.org/gnu/libtool/libtool-1.5.23b.tar.gz
 
 LICENSE="GPL-2"
 SLOT="1.5"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 RDEPEND="sys-devel/gnuconfig
