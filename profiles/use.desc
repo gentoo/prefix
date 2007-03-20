@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.339 2007/02/07 06:10:03 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.343 2007/03/06 06:18:20 opfer Exp $
 
 # Keep them sorted
 
@@ -60,7 +60,6 @@ cups - Add support for CUPS (Common Unix Printing System)
 curl - Adds support for client-side URL transfer library
 curlwrappers - Adds support for using curl in streams
 db2 - Enables support for IBM DB2 database server
-dba - Enables dbm-compatible layers
 dbase - Adds support for dbase file format
 dbm - Adds support for generic DBM databases.
 dbmaker - Adds support for dbmaker database server
@@ -69,7 +68,6 @@ dbx - Adds database abstraction layer
 debug - Enable extra debug codepaths, like asserts and extra output. If you want to get meaningful backtraces see http://www.gentoo.org/proj/en/qa/backtraces.xml .
 dedicated - Adds support for dedicated game servers (some packages do not provide clients and servers at the same time)
 dga - Adds DGA Support (Xfree86) (DGA=Direct Graphic Access)
-dio - Adds direct i/o support
 directfb - Adds support for DirectFB layer (library for FB devices)
 doc - Adds extra documentation (API, Javadoc, etc)
 dri - Enable direct rendering: used for accelerated 3D and some 2D, like DMA
@@ -81,7 +79,6 @@ dvdr - Adds support for DVD writer hardware (e.g. in xcdroast)
 dvdread - Enables usage of Ogle's libdvdread for DVD playback
 eds - Enables support for Evolution-Data-Server (EDS)
 emacs - Adds support for GNU Emacs
-emacs-w3 - Add support for Emacs/W3 where applicable
 emboss - Adds support for the European Molecular Biology Open Software Suite
 empress - Adds support for the Empress database server
 empress-bcs - Adds local access support for the Empress database server
@@ -132,10 +129,9 @@ gstreamer - Adds support for media-libs/gstreamer (Streaming media)
 gtk - Adds support for x11-libs/gtk+ (The GIMP Toolkit)
 gtk2 - Use gtk+-2.0.0 over gtk+-1.2 in cases where a program supports both.
 gtkhtml - Adds support for gnome-extra/gtkhtml
-guile - Adds support for dev-util/guile (interpreter for Scheme)
+guile - Adds support for the guile Scheme interpreter
 hal - Enable Hardware Abstraction Layer (HAL) support
 hardened - activate default security enhancements for toolchain (gcc, glibc, binutils)
-hardenedphp - include the hardened php security patch for the php group of ebuilds
 howl - Enable howl support, enables DNS Service Discovery (DNS-SD)
 hyperwave-api - Adds support for Hyperwave document storage system
 ibm - Add support for IBM ppc64 specific systems
@@ -149,7 +145,6 @@ imagemagick - Enables support for Imagemagick (image converter)
 imap - Adds support for IMAP (Internet Mail Application Protocol)
 imlib - Adds support for imlib, an image loading and rendering library
 informix - Adds support for Informix database
-ingres - Adds support for Ingres database
 inifile - Adds dbm support for .ini files
 innodb - Adds innodb support for mySQL (transaction support)
 interbase - Adds support for Interbase database
@@ -218,13 +213,13 @@ mp3 - Add support for reading mp3 files
 mpeg - Adds libmpeg3 support to various packages.
 mpi - Adds MPI (Message Passing Interface) layer to the apps that support it.
 mplayer - Enable mplayer support for playback or encoding
-msession - Adds support for msession daemon
 msn - Enable MSN Messenger IM protocol support
 msql - Adds support for the MSQL database server
 mssql - Adds support for Microsoft SQL Server database
 mule - Adds multi-language support to XEmacs
 multilib - On 64bit systems, if you want to be able to compile 32bit and 64bit binaries
 musepack - Enable support for the musepack audio codec
+musicbrainz - Lookup audio metadata using MusicBrainz community service (musicbrainz.org)
 mysql - Adds mySQL Database support
 mysqli - Adds support for the improved mySQL libraries
 nas - Adds support for network audio sound
