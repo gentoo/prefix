@@ -14,7 +14,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="build static"
 
 DEPEND=""
