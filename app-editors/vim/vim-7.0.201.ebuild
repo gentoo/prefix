@@ -30,9 +30,11 @@ RDEPEND="${RDEPEND}
 src_unpack() {
 	vim_src_unpack || die
 	epatch ${FILESDIR}/with-local-dir.patch || die
+#	epatch "${FILESDIR}"/${P}-macos-ruby.patch
 }
 
 src_compile() {
 	[[ ${EPREFIX%/} != "" ]] && EXTRA_ECONF="--without-local-dir"
+	EXTRA_ECONF="${EXTRA_ECONF} --disable-darwin"
 	vim_src_compile || die
 }
