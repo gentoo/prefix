@@ -1,6 +1,42 @@
 # ChangeLog for dev-db/sqlite
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.128 2006/11/11 13:13:18 eroyf Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.136 2007/03/10 18:18:52 chtekk Exp $
+
+  10 Mar 2007; Luca Longinotti <chtekk@gentoo.org>
+  -files/sqlite-3.2.1-data-corruption.patch,
+  -files/sqlite3-configure-debug.patch, -files/sqlite-3.2.1-tcl-fix.patch,
+  -files/sqlite-3-test-fix.patch, metadata.xml, -sqlite-2.8.16-r1.ebuild,
+  sqlite-2.8.16-r4.ebuild, -sqlite-3.2.1-r3.ebuild, sqlite-3.3.5-r1.ebuild,
+  -sqlite-3.3.6.ebuild, sqlite-3.3.12.ebuild:
+  Cleanup/fixup ebuilds, remove old ebuilds and patches, fix bug #156299.
+
+  02 Feb 2007; Petteri Räty <betelgeuse@gentoo.org> sqlite-3.3.12.ebuild:
+  The optional tcl support in sqlite must be enabled in sqlite to run tests.
+  Just having tcl is not enough.
+
+*sqlite-3.3.12 (02 Feb 2007)
+
+  02 Feb 2007; Petteri Räty <betelgeuse@gentoo.org> +sqlite-3.3.12.ebuild:
+  Version bump. Fixes bug #157214 and bug #159197.
+
+  31 Jan 2007; Marius Mauch <genone@gentoo.org> sqlite-2.8.16-r4.ebuild:
+  Replacing einfo with elog
+
+  01 Jan 2007; Petteri Räty <betelgeuse@gentoo.org>
+  sqlite-2.8.16-r1.ebuild, sqlite-3.2.1-r3.ebuild, sqlite-3.3.5-r1.ebuild,
+  sqlite-3.3.6.ebuild:
+  Remove virtual/libc from DEPEND.
+
+  01 Jan 2007; Petteri Räty <betelgeuse@gentoo.org> -sqlite-2.8.15.ebuild,
+  -sqlite-2.8.16-r3.ebuild, -sqlite-3.2.7-r1.ebuild, -sqlite-3.3.4.ebuild,
+  -sqlite-3.3.5.ebuild:
+  Removed old versions.
+
+  01 Jan 2007; Petteri Räty <betelgeuse@gentoo.org> metadata.xml:
+  Removed arj as he is retired
+
+  15 Nov 2006; Diego Pettenò <flameeyes@gentoo.org> sqlite-3.3.6.ebuild:
+  Run elibtoolize.
 
   11 Nov 2006; Alexander H. Færøy <eroyf@gentoo.org>
   sqlite-2.8.16-r4.ebuild:
