@@ -1,0 +1,41 @@
+# ChangeLog for app-text/grutatxt
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/grutatxt/ChangeLog,v 1.11 2007/03/12 22:23:43 leonardop Exp $
+
+  12 Mar 2007; Leonardo Boshell <leonardop@gentoo.org> metadata.xml:
+  Replacing text-markup herd with the new sgml herd.
+
+*grutatxt-2.0.13 (06 Feb 2007)
+
+  06 Feb 2007; Alexandre Buisse <nattfodd@gentoo.org>
+  +grutatxt-2.0.13.ebuild:
+  Bump to 2.0.13.
+
+  28 Nov 2005; <mcumming@gentoo.org> grutatxt-2.0.11.ebuild,
+  grutatxt-2.0.5.ebuild:
+  Switched from perl-module to perl-app eclass
+
+  16 Jul 2005; Joseph Jezak <josejx@gentoo.org> grutatxt-2.0.5.ebuild:
+  Marked ~ppc for bug #99213.
+
+  30 May 2005; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  grutatxt-2.0.11.ebuild:
+  mark ~ppc
+
+*grutatxt-2.0.11 (06 Mar 2005)
+
+  06 Mar 2005; Mamoru KOMACHI <usata@gentoo.org> +grutatxt-2.0.11.ebuild:
+  Version bumped. This closes bug #84087.
+
+  04 Oct 2004; Tom Gall <tgall@gentoo.org> grutatxt-2.0.5.ebuild:
+  stable on ppc64, bug #64271
+
+  26 Apr 2004; Mike Gardiner <obz@gentoo.org> grutatxt-2.0.5.ebuild:
+  Marked stable on x86
+
+*grutatxt-2.0.5 (17 Nov 2003)
+
+  17 Nov 2003; Mike Gardiner <obz@gentoo.org> grutatxt-2.0.5.ebuild,
+  metadata.xml:
+  First version in portage. Thanks to requesters on bug #19276.
+
