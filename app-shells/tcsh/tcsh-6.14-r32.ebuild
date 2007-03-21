@@ -7,7 +7,7 @@ EAPI="prefix"
 
 inherit eutils flag-o-matic autotools
 
-PATCHVER="1.3"
+PATCHVER="1.4"
 
 MY_P="${P}.00"
 DESCRIPTION="Enhanced version of the Berkeley C shell (csh)"
@@ -44,7 +44,7 @@ src_unpack() {
 		eend $?
 	fi
 
-	eprefixify "${WORKDIR}"/tcsh-config-prefix/*
+	eprefixify "${WORKDIR}"/tcsh-config/*
 }
 
 src_compile() {
@@ -69,13 +69,13 @@ src_install() {
 
 	insinto /etc
 	doins \
-		"${WORKDIR}"/tcsh-config-prefix/csh.cshrc \
-		"${WORKDIR}"/tcsh-config-prefix/csh.login
+		"${WORKDIR}"/tcsh-config/csh.cshrc \
+		"${WORKDIR}"/tcsh-config/csh.login
 
 	insinto /etc/profile.d
 	doins \
-		"${WORKDIR}"/tcsh-config-prefix/tcsh-bindkey.csh \
-		"${WORKDIR}"/tcsh-config-prefix/tcsh-settings.csh
+		"${WORKDIR}"/tcsh-config/tcsh-bindkey.csh \
+		"${WORKDIR}"/tcsh-config/tcsh-settings.csh
 
 	dodoc FAQ Fixes NewThings Ported README WishList Y2K
 
