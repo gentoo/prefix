@@ -1,0 +1,167 @@
+diff -ru --exclude=.deps findutils-4.3.2.orig/find/defs.h findutils-4.3.2/find/defs.h
+--- findutils-4.3.2.orig/find/defs.h	2007-03-21 11:21:16.000000000 +0100
++++ findutils-4.3.2/find/defs.h	2007-03-21 12:07:00.000000000 +0100
+@@ -453,8 +453,6 @@
+ 
+ /* parser.c */
+ const struct parser_table* find_parser PARAMS((char *search_name));
+-boolean parse_open  PARAMS((const struct parser_table* entry, char *argv[], int *arg_ptr));
+-boolean parse_close PARAMS((const struct parser_table* entry, char *argv[], int *arg_ptr));
+ boolean parse_print PARAMS((const struct parser_table*, char *argv[], int *arg_ptr));
+ void pred_sanity_check PARAMS((const struct predicate *predicates));
+ void parse_begin_user_args PARAMS((char **args, int argno, const struct predicate *last, const struct predicate *predicates));
+@@ -467,7 +465,7 @@
+ boolean pred_and PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
+ boolean pred_anewer PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
+ boolean pred_atime PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
+-boolean pred_close PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
++boolean pred_closeparen PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
+ boolean pred_cmin PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
+ boolean pred_cnewer PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
+ boolean pred_comma PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
+@@ -501,7 +499,7 @@
+ boolean pred_nouser PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
+ boolean pred_ok PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
+ boolean pred_okdir PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
+-boolean pred_open PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
++boolean pred_openparen PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
+ boolean pred_or PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
+ boolean pred_path PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
+ boolean pred_perm PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
+diff -ru --exclude=.deps findutils-4.3.2.orig/find/parser.c findutils-4.3.2/find/parser.c
+--- findutils-4.3.2.orig/find/parser.c	2007-03-21 11:21:16.000000000 +0100
++++ findutils-4.3.2/find/parser.c	2007-03-21 12:07:45.000000000 +0100
+@@ -199,8 +199,8 @@
+ {
+   PARSE_PUNCTUATION("!",                     negate),
+   PARSE_PUNCTUATION("not",                   negate),	     /* GNU */
+-  PARSE_PUNCTUATION("(",                     open),
+-  PARSE_PUNCTUATION(")",                     close),
++  PARSE_PUNCTUATION("(",                     openparen),
++  PARSE_PUNCTUATION(")",                     closeparen),
+   PARSE_PUNCTUATION(",",                     comma),	     /* GNU */
+   PARSE_PUNCTUATION("a",                     and),
+   PARSE_TEST       ("amin",                  amin),	     /* GNU */
+@@ -556,7 +556,7 @@
+ }
+ 
+ boolean
+-parse_close (const struct parser_table* entry, char **argv, int *arg_ptr)
++parse_closeparen (const struct parser_table* entry, char **argv, int *arg_ptr)
+ {
+   struct predicate *our_pred;
+ 
+@@ -564,7 +564,7 @@
+   (void) arg_ptr;
+   
+   our_pred = get_new_pred (entry);
+-  our_pred->pred_func = pred_close;
++  our_pred->pred_func = pred_closeparen;
+   our_pred->p_type = CLOSE_PAREN;
+   our_pred->p_prec = NO_PREC;
+   our_pred->need_stat = our_pred->need_type = false;
+@@ -1346,7 +1346,7 @@
+ }
+ 
+ boolean
+-parse_open (const struct parser_table* entry, char **argv, int *arg_ptr)
++parse_openparen (const struct parser_table* entry, char **argv, int *arg_ptr)
+ {
+   struct predicate *our_pred;
+ 
+@@ -1354,7 +1354,7 @@
+   (void) arg_ptr;
+   
+   our_pred = get_new_pred_chk_op (entry);
+-  our_pred->pred_func = pred_open;
++  our_pred->pred_func = pred_openparen;
+   our_pred->p_type = OPEN_PAREN;
+   our_pred->p_prec = NO_PREC;
+   our_pred->need_stat = our_pred->need_type = false;
+diff -ru --exclude=.deps findutils-4.3.2.orig/find/pred.c findutils-4.3.2/find/pred.c
+--- findutils-4.3.2.orig/find/pred.c	2007-03-21 11:21:16.000000000 +0100
++++ findutils-4.3.2/find/pred.c	2007-03-21 12:08:59.000000000 +0100
+@@ -168,7 +168,7 @@
+   {pred_and, "and     "},
+   {pred_anewer, "anewer  "},
+   {pred_atime, "atime   "},
+-  {pred_close, ")       "},
++  {pred_closeparen, ")       "},
+   {pred_cmin, "cmin    "},
+   {pred_cnewer, "cnewer  "},
+   {pred_comma, ",       "},
+@@ -201,7 +201,7 @@
+   {pred_nouser, "nouser  "},
+   {pred_ok, "ok      "},
+   {pred_okdir, "okdir   "},
+-  {pred_open, "(       "},
++  {pred_openparen, "(       "},
+   {pred_or, "or      "},
+   {pred_path, "path    "},
+   {pred_perm, "perm    "},
+@@ -305,7 +305,7 @@
+ }
+ 
+ boolean
+-pred_close (char *pathname, struct stat *stat_buf, struct predicate *pred_ptr)
++pred_closeparen (char *pathname, struct stat *stat_buf, struct predicate *pred_ptr)
+ {
+   (void) &pathname;
+   (void) &stat_buf;
+@@ -1159,7 +1159,7 @@
+ }
+ 
+ boolean
+-pred_open (char *pathname, struct stat *stat_buf, struct predicate *pred_ptr)
++pred_openparen (char *pathname, struct stat *stat_buf, struct predicate *pred_ptr)
+ {
+   (void) pathname;
+   (void) stat_buf;
+diff -ru --exclude=.deps findutils-4.3.2.orig/find/tree.c findutils-4.3.2/find/tree.c
+--- findutils-4.3.2.orig/find/tree.c	2007-03-21 11:21:16.000000000 +0100
++++ findutils-4.3.2/find/tree.c	2007-03-21 12:09:13.000000000 +0100
+@@ -988,7 +988,7 @@
+     { pred_and       ,  NeedsNothing,        },
+     { pred_anewer    ,  NeedsStatInfo,       },
+     { pred_atime     ,  NeedsStatInfo,       },
+-    { pred_close     ,  NeedsNothing         },
++    { pred_closeparen,  NeedsNothing         },
+     { pred_cmin      ,  NeedsStatInfo,       },
+     { pred_cnewer    ,  NeedsStatInfo,       },
+     { pred_comma     ,  NeedsNothing,        },
+@@ -1021,7 +1021,7 @@
+     { pred_nouser    ,  NeedsStatInfo        }, /* true for amortised cost if caching is on */
+     { pred_ok        ,  NeedsUserInteraction },
+     { pred_okdir     ,  NeedsUserInteraction },
+-    { pred_open	     ,  NeedsNothing         },
++    { pred_openparen ,  NeedsNothing         },
+     { pred_or        ,  NeedsNothing,        },
+     { pred_path	     ,  NeedsNothing         },
+     { pred_perm	     ,  NeedsStatInfo        },
+@@ -1294,7 +1294,7 @@
+   assert(entry_close != NULL);
+   assert(entry_print != NULL);
+   
+-  parse_open (entry_open, argv, &argc);
++  parse_openparen (entry_open, argv, &argc);
+   last_pred->p_name = "(";
+   predicates->artificial = true;
+   parse_begin_user_args(argv, argc, last_pred, predicates);
+@@ -1366,7 +1366,7 @@
+   else
+     {
+       /* `( user-supplied-expression ) -print'. */
+-      parse_close (entry_close, argv, &argc);
++      parse_closeparen (entry_close, argv, &argc);
+       last_pred->p_name = ")";
+       last_pred->artificial = true;
+       pred_sanity_check(last_pred);
+@@ -1397,7 +1397,7 @@
+   if (cur_pred != NULL)
+     {
+       /* cur_pred->p_name is often NULL here */
+-      if (cur_pred->pred_func == pred_close)
++      if (cur_pred->pred_func == pred_closeparen)
+ 	{
+ 	  /* e.g. "find \( -true \) \)" */
+ 	  error (1, 0, _("you have too many ')'"), cur_pred->p_name);

@@ -15,7 +15,7 @@ SRC_URI="ftp://alpha.gnu.org/gnu/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="nls selinux static"
 
 RDEPEND="selinux? ( sys-libs/libselinux )
@@ -28,6 +28,9 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${P}-check-insert-num-ret.patch #166233
+
+	# rename 'open' and 'close' as they may be defined to open64/close64 (aix fex).
+	epatch "${FILESDIR}"/${P}-aix.patch #166233
 
 	# Don't build or install locate because it conflicts with slocate,
 	# which is a secure version of locate.  See bug 18729
@@ -49,9 +52,7 @@ src_compile() {
 	[[ ${USERLAND} != "GNU" ]] && [[ ${EPREFIX/\//} == "" ]] && \
 		myconf=" --program-prefix=g"
 
-	if echo "#include <regex.h>" | $(tc-getCPP) > /dev/null && \
-		[[ ${USERLAND} != "Darwin" ]] && \
-		[[ ${USERLAND} != "Solaris" ]] ; then
+	if echo "#include <regex.h>" | $(tc-getCPP) | grep re_set_syntax > /dev/null ; then
 		myconf="${myconf} --without-included-regex"
 	fi
 
