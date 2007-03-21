@@ -1,0 +1,51 @@
+# ChangeLog for app-text/catdoc
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/catdoc/ChangeLog,v 1.15 2007/03/12 23:44:45 nattfodd Exp $
+
+  12 Mar 2007; Alexandre Buisse <nattfodd@gentoo.org> metadata.xml:
+  Replaced text-markup by tex as maintaining herd (text-markup split).
+
+  21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  04 Aug 2006; Doug Goldstein <cardoe@gentoo.org> catdoc-0.93.3.ebuild,
+  catdoc-0.93.4.ebuild, catdoc-0.94.1.ebuild:
+  USE flag split tcltk-> tcl & tk per bug #17808
+
+  11 Feb 2006; Joshua Jackson <tsunam@gentoo.org> catdoc-0.93.4.ebuild:
+  Stable on x86; Bug #122300
+
+*catdoc-0.94.1 (09 Feb 2006)
+
+  09 Feb 2006; Alexandre Buisse <nattfodd@gentoo.org> catdoc-0.93.3.ebuild,
+  catdoc-0.93.4.ebuild, +catdoc-0.94.1.ebuild:
+  Bump to 0.94.1 (closing bug #122296). Also removed COPYING and INSTALL from
+  all existing ebuilds and updated homepage.
+
+  16 Jul 2005; Joseph Jezak <josejx@gentoo.org> catdoc-0.93.3.ebuild:
+  Accidently marked ppc instead of ~ppc.
+
+  16 Jul 2005; Joseph Jezak <josejx@gentoo.org> catdoc-0.93.3.ebuild:
+  Marked ppc stable for bug #99211.
+
+  13 May 2005; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  catdoc-0.93.4.ebuild:
+  mark ~ppc
+
+*catdoc-0.93.4 (08 Feb 2005)
+
+  08 Feb 2005; Mamoru KOMACHI <usata@gentoo.org> +catdoc-0.93.4.ebuild:
+  Version bumped. This closes bug #76316.
+
+  05 Sep 2004; Malcolm Lashley <malc@gentoo.org> catdoc-0.93.3.ebuild:
+  ~amd64 - closes bug #62247
+
+  26 Apr 2004; Mamoru KOMACHI <usata@gentoo.org> catdoc-0.93.3.ebuild:
+  Stable on x86
+
+*catdoc-0.93.3 (30 Dec 2003)
+
+  30 Dec 2003; Mike Gardiner <obz@gentoo.org> catdoc-0.93.3.ebuild,
+  metadata.xml:
+  First import into cvs, as requested on bug #18320
+
