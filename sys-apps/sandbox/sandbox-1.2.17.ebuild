@@ -91,7 +91,7 @@ src_compile() {
 
 		einfo "Configuring sandbox for ABI=${ABI}..."
 		ECONF_SOURCE="../${P}/" \
-		econf --libdir="/usr/$(get_libdir)" ${myconf}
+		econf --libdir="${EPREFIX}/usr/$(get_libdir)" ${myconf}
 		einfo "Building sandbox for ABI=${ABI}..."
 		emake || {
 			abi_fail_check "${ABI}"
@@ -110,17 +110,19 @@ src_install() {
 		cd "${WORKDIR}/build-${ABI}-${CHOST}"
 		einfo "Installing sandbox for ABI=${ABI}..."
 		make \
-			DESTDIR="${ED}" \
-			bindir="/usr/bin" \
-			datadir="/usr/share" \
-			infodir="/usr/share/info" \
-			localstatedir="/var/lib" \
-			mandir="/usr/share/man" \
-			sysconfdir="/etc" \
+			DESTDIR="${D}" \
+			bindir="${EPREFIX}/usr/bin" \
+			dir="${EPREFIX}/usr/bin" \
+			datadir="${EPREFIX}/usr/share" \
+			infodir="${EPREFIX}/usr/share/info" \
+			localstatedir="${EPREFIX}/var/lib" \
+			mandir="${EPREFIX}/usr/share/man" \
+			sysconfdir="${EPREFIX}/etc" \
 			install || die "make install failed for ${ABI}"
 	done
 	ABI=${OABI}
 
+	dodir /var/lib/tmp # VAR_TMPDIR
 	keepdir /var/log/sandbox
 	fowners root:portage /var/log/sandbox
 	fperms 0770 /var/log/sandbox
