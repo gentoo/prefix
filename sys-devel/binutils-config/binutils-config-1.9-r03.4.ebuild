@@ -29,18 +29,30 @@ src_compile() {
 	cd "${T}"
 
 	# based on what system we have do some adjusting of the wrapper's work
-	case ${USERLAND} in
-		Darwin)
+	case ${CHOST} in
+		*-darwin*)
 			defines="-DNEEDS_LIBRARY_INCLUDES"
 			libs="-search_paths_first -L${EPREFIX}/lib -L${EPREFIX}/usr/lib"
 			rpaths=""
 		;;
-		AIX)
+		*-aix*)
 			defines="-DNEEDS_LIBRARY_INCLUDES"
 			libs="-L${EPREFIX}/lib -L${EPREFIX}/usr/lib"
 			rpaths=""
 		;;
-		*)
+		*-solaris*)
+			defines="-DNEEDS_LIBRARY_INCLUDES -DNEEDS_RPATH_DIRECTIONS"
+			# this is a lousy check for multilib, and should be done properly
+			# some day/time
+			libs=""
+			for dir in lib64 lib usr/lib64 usr/lib ; do
+				dir=${EPREFIX}/${dir}
+				[[ -d ${dir} ]] && \
+					libs="${libs} -L${dir}"
+			done
+			rpaths=${libs//-L/-R=}
+		;;
+		*-linux-gnu)
 			defines="-DNEEDS_LIBRARY_INCLUDES -DNEEDS_RPATH_DIRECTIONS"
 			# this is a lousy check for multilib, and should be done properly
 			# some day/time
@@ -51,6 +63,9 @@ src_compile() {
 					libs="${libs} -L${dir}"
 			done
 			rpaths=${libs//-L/-rpath=}
+		;;
+		*)
+			die "Don't know how to configure for your system"
 		;;
 	esac
 

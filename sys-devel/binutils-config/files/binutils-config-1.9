@@ -10,9 +10,9 @@
 EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
 
 [[ -z ${ROOT} ]] && ROOT="/"
-[[ ${ROOT} != */ ]] && ROOT="${ROOT}/"
+#[[ ${ROOT} != */ ]] && ROOT="${ROOT}/"
 [[ ${ROOT} != /* ]] && ROOT="${PWD}${ROOT}"
-ROOT="${ROOT}${EPREFIX}/"
+ROOT="${ROOT%/}${EPREFIX}/"
 
 cd ${EPREFIX}
 
@@ -202,12 +202,17 @@ switch_profile() {
 	#
 	# Regen env.d if need/can be
 	#
-	if [[ ${ROOT} == "/" ]] && [[ ${TARGET} == ${HOST} ]] ; then
+	if [[ ${ROOT%/} == ${EPREFIX} ]] && [[ ${TARGET} == ${HOST} ]] ; then
+		# due to our hack, need to restore ROOT into original value for
+		# env-update not to crash
+		ROOT=${ROOT%${EPREFIX}/}/
 		env-update
 		echo
 		ewarn "Please remember to run:"
 		echo
-		ewarn "  # source ${EPREFIX}/etc/profile"
+		ewarn " (bash) # source ${EPREFIX}/etc/profile"
+		ewarn "or"
+		ewarn " (tcsh) # . ${EPREFIX}/etc/csh.login"
 		echo
 	fi
 

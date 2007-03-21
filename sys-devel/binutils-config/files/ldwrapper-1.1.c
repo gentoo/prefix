@@ -22,6 +22,7 @@
 #include <string.h>
 #include <stdarg.h>
 #include <errno.h>
+#include <alloca.h>
 
 #define BINUTILS_CONFIG    "@GENTOO_PORTAGE_EPREFIX@/usr/bin/binutils-config"
 #define ENVD_BASE_BINUTILS "@GENTOO_PORTAGE_EPREFIX@/etc/env.d/05binutils"
