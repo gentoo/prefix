@@ -1,0 +1,20 @@
+--- wdiff.c	2004-08-16 14:21:05.000000000 +0300
++++ wdiff.c.fixed	2004-08-16 14:22:06.000000000 +0300
+@@ -910,7 +910,8 @@
+ static void
+ complete_input_program (void)
+ {
+-  fclose (input_file);
++  if (input_file != NULL)
++    fclose (input_file);
+   wait (NULL);
+ }
+ 
+@@ -1303,6 +1304,7 @@
+       initialize_strings ();
+       reformat_diff_output ();
+       fclose (input_file);
++      input_file = NULL;
+     }
+ 
+   /* Clean up.  Beware that input_file and output_file might not exist,

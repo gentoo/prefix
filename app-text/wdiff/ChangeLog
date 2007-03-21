@@ -1,0 +1,77 @@
+# ChangeLog for app-text/wdiff
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/wdiff/ChangeLog,v 1.23 2006/12/18 20:59:12 eroyf Exp $
+
+  18 Dec 2006; Alexander H. Færøy <eroyf@gentoo.org> wdiff-0.5-r2.ebuild:
+  Stable on MIPS.
+
+  22 Jun 2006; Gustavo Zacarias <gustavoz@gentoo.org> wdiff-0.5-r2.ebuild:
+  Stable on sparc
+
+  10 Sep 2005; Aron Griffis <agriffis@gentoo.org> wdiff-0.5-r2.ebuild:
+  Mark 0.5-r2 stable on alpha
+
+  26 Aug 2005; Aron Griffis <agriffis@gentoo.org> wdiff-0.5-r2.ebuild:
+  stable on ia64
+
+  26 Jul 2005; Aron Griffis <agriffis@gentoo.org> wdiff-0.5-r2.ebuild:
+  add ~alpha ~ia64
+
+  24 Apr 2005; Michael Hanselmann <hansmi@gentoo.org> wdiff-0.5-r2.ebuild:
+  Stable on ppc.
+
+  21 Apr 2005; Simon Stelling <blubb@gentoo.org> wdiff-0.5-r2.ebuild:
+  stable on amd64
+
+  21 Oct 2004; Aaron Walker <ka0ttic@gentoo.org> metadata.xml:
+  Updated metadata (no-herd => shell-tools)
+
+  16 Oct 2004; Mike Frysinger <vapier@gentoo.org> wdiff-0.5-r2.ebuild:
+  Fix stupid dependency on sys-libs/libtermcap-compat (i.e. remove it) #64212.
+
+*wdiff-0.5-r2 (05 Sep 2004)
+
+  05 Sep 2004; Malcolm Lashley <malc@gentoo.org>
+  +files/wdiff-0.5-avoid-wraps.diff, +wdiff-0.5-r2.ebuild:
+  Add avoid-wraps patch from Mikko Ruuska and keyworded ~amd64 - closes bug #62456
+
+  03 Sep 2004; David Holm <dholm@gentoo.org> :
+  Added to ~ppc.
+
+  03 Sep 2004; David Holm <dholm@gentoo.org> wdiff-0.5-r1.ebuild:
+  Added to ~ppc.
+
+  25 Aug 2004; Seemant Kulleen <seemant@gentoo.org> wdiff-0.5-r1.ebuild:
+  Install man page. Problem reported and fixed by: Haroon Rafique
+  <corporate_gadfly@hotmail.com> in bug #61429
+
+*wdiff-0.5-r1 (20 Aug 2004)
+
+  20 Aug 2004; Seemant Kulleen <seemant@gentoo.org>
+  +files/wdiff-0.5-segfault-fix.diff, +wdiff-0.5-r1.ebuild:
+  Add a patch to fix the segfaulting when wdiff is run as a user. Problem
+  reported and fixed by: Mikko Ruuska <mikko.ruuska@solidtech.com> in bug #60543
+
+  28 Jun 2004; Ciaran McCreesh <ciaranm@gentoo.org> wdiff-0.5.ebuild:
+  Added ~sparc, ~mips
+
+  21 Jun 2004; Michael Sterrett <mr_bones_@gentoo.org> wdiff-0.5.ebuild:
+  IUSE sync
+
+  02 Jun 2004; Aron Griffis <agriffis@gentoo.org> wdiff-0.5.ebuild:
+  Fix use invocation
+
+  12 Mar 2004; Michael Sterrett <mr_bones_@gentoo.org> wdiff-0.5.ebuild:
+  Don't assign default to S; header fix
+
+  02 Sep 2003; Martin Holzer <mholzer@gentoo.org> wdiff-0.5.ebuild:
+  Now uses mirror://gnu.
+
+*wdiff-0.5 (12 Feb 2003)
+
+  12 Feb 2003; Seemant Kulleen <seemant@gentoo.org> wdiff-0.5.ebuild
+  ChangeLog files/digest-wdiff-0.5 :
+
+  New ebuild for diff'ing files without worrying about formatting.
+  Ebuild submission and patch (on the gentoo mirrors) creation by the
+  venerable Peter Simons <simons+gentoo@cryp.to> in bug #12511
