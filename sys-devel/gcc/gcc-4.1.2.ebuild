@@ -43,11 +43,16 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 DEPEND="${RDEPEND}
 	test? ( sys-devel/autogen dev-util/dejagnu )
 	>=sys-apps/texinfo-4.2-r4
-	>=sys-devel/bison-1.875
-	|| ( userland_Darwin? ( >=${CATEGORY}/odcctools-20060413 )
-		ppc? ( >=${CATEGORY}/binutils-2.17 )
-		ppc64? ( >=${CATEGORY}/binutils-2.17 )
-		>=${CATEGORY}/binutils-2.15.94 )"
+	>=sys-devel/bison-1.875"
+case ${CHOST} in
+	*-darwin*) DEPEND="${DEPEND} ${CATEGORY}/odcctools" ;;
+	*-aix*)    DEPEND="${DEPEND} ${CATEGORY}/native-cctools" ;;
+# future: for Solaris || ( binutils native-cctools ) ?
+	*)         DEPEND="${DEPEND}
+		|| ( ppc? ( >=${CATEGORY}/binutils-2.17 )
+			ppc64? ( >=${CATEGORY}/binutils-2.17 )
+			>=${CATEGORY}/binutils-2.15.94 )" ;;
+esac
 PDEPEND="|| ( sys-devel/gcc-config app-admin/eselect-compiler )"
 if [[ ${CATEGORY} != cross-* ]] ; then
 	PDEPEND="${PDEPEND} elibc_glibc? ( >=sys-libs/glibc-2.3.6 )"
@@ -66,12 +71,19 @@ src_unpack() {
 	[[ ${CTARGET} == *-softfloat-* ]] && epatch "${FILESDIR}"/4.0.2/gcc-4.0.2-softfloat.patch
 
 	epatch "${FILESDIR}"/4.1.0/gcc-4.1.0-fast-math-i386-Os-workaround.patch
-
-	[[ ${USERLAND} == "Solaris" ]] && EXTRA_ECONF="${EXTRA_ECONF} --with-gnu-ld"
 }
 
 src_compile() {
 	case ${CHOST} in
+		*-solaris*)
+			# todo: some magic for native vs. GNU linking?
+			EXTRA_ECONF="${EXTRA_ECONF} --with-gnu-ld"
+		;;
+		*-aix*)
+			# AIX doesn't use GNU binutils, because it doesn't produce usable
+			# code
+			EXTRA_ECONF="${EXTRA_ECONF} --without-gnu-ld --without-gnu-as"
+		;;
 		*-darwin7)
 			# libintl triggers inclusion of -lc which results in multiply
 			# defined symbols, so disable nls
