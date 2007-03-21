@@ -34,7 +34,7 @@ IUSE="tcl java doc nocxx bootstrap"
 
 DEPEND="tcl? ( >=dev-lang/tcl-8.4 )
 	java? ( >=virtual/jdk-1.4 )
-	>=sys-devel/binutils-2.16.1"
+	!elibc_Darwin? ( >=sys-devel/binutils-2.16.1 )"
 RDEPEND="tcl? ( dev-lang/tcl )
 	java? ( >=virtual/jre-1.4 )"
 
