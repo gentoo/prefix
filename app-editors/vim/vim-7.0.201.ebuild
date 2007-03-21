@@ -30,7 +30,7 @@ RDEPEND="${RDEPEND}
 src_unpack() {
 	vim_src_unpack || die
 	epatch ${FILESDIR}/with-local-dir.patch || die
-#	epatch "${FILESDIR}"/${P}-macos-ruby.patch
+	epatch "${FILESDIR}"/${P}-macos-ruby.patch
 }
 
 src_compile() {
