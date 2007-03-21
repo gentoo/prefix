@@ -2,4 +2,5 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/profiles/default-darwin/virtuals,v 1.21 2006/06/22 18:58:27 grobian Exp $
 
-virtual/libc	sys-darwin/libsystem
+virtual/libc		sys-darwin/libsystem
+virtual/os-headers	sys-darwin/libsystem

@@ -2,29 +2,5 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/profiles/default-darwin/virtuals,v 1.21 2006/06/22 18:58:27 grobian Exp $
 
-virtual/aspell-dict	app-dicts/aspell-en
-virtual/baselayout	sys-apps/baselayout-prefix
-virtual/blackbox	x11-wm/fluxbox
-virtual/bootloader	sys-boot/bootx
-virtual/cron		sys-process/vixie-cron
-virtual/dhcpcd		net-misc/dhcpcd
-virtual/editor		app-editors/nano
-virtual/httpd-php	dev-php/mod_php
-virtual/inetd		sys-apps/xinetd
-virtual/jdk			dev-java/sun-jdk
-virtual/jre			dev-java/sun-jdk
-virtual/kerberos	app-crypt/mit-krb5
-virtual/krb5		app-crypt/mit-krb5
 virtual/libc		sys-aix/libc
-virtual/logger		app-admin/sysklogd
-virtual/lpr			net-print/cups
-virtual/mda			mail-filter/procmail
-virtual/php			dev-php/mod_php
-virtual/python		dev-lang/python
-virtual/ruby		dev-lang/ruby
-virtual/ssh			net-misc/openssh
-virtual/tetex		app-text/tetex
-virtual/textbrowser	www-client/links
-virtual/w3m			www-client/w3m
-virtual/emacs		app-editors/emacs
-
+virtual/os-headers	sys-aix/libc
