@@ -37,6 +37,7 @@ src_compile() {
 src_install() {
 	dobin less lessecho lesskey code2color || die "dobin"
 	newbin "${FILESDIR}"/lesspipe.sh lesspipe.sh || die "newbin"
+	sed -i -e "1s|/bin/bash|${EPREFIX}/bin/bash|" "${ED}"/usr/bin/lesspipe.sh
 
 	# the -R is Needed for groff-1.18 and later ...
 	echo 'LESS="-R -M --shift 5"' > 70less
