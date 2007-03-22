@@ -50,7 +50,7 @@ src_compile() {
 				[[ -d ${dir} ]] && \
 					libs="${libs} -L${dir}"
 			done
-			rpaths=${libs//-L/-R=}
+			rpaths=${libs//-L/-R}
 		;;
 		*-linux-gnu)
 			defines="-DNEEDS_LIBRARY_INCLUDES -DNEEDS_RPATH_DIRECTIONS"
