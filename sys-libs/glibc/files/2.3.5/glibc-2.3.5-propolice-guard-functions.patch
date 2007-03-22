@@ -1,0 +1,138 @@
+The configure check for SSP is taken from glibc HEAD.
+
+diff -ur glibc-2.3.5-orig/config.make.in glibc-2.3.5/config.make.in
+--- glibc-2.3.5-orig/config.make.in	2006-01-18 00:31:17.000000000 -0500
++++ glibc-2.3.5/config.make.in	2006-01-18 00:33:25.000000000 -0500
+@@ -61,6 +61,7 @@
+ have-selinux = @have_selinux@
+ have-cc-with-libunwind = @libc_cv_cc_with_libunwind@
+ fno-unit-at-a-time = @fno_unit_at_a_time@
++have-ssp = @libc_cv_ssp@
+ bind-now = @bindnow@
+ 
+ static-libgcc = @libc_cv_gcc_static_libgcc@
+diff -ur glibc-2.3.5-orig/configure glibc-2.3.5/configure
+--- glibc-2.3.5-orig/configure	2006-01-18 00:31:17.000000000 -0500
++++ glibc-2.3.5/configure	2006-01-18 00:35:54.000000000 -0500
+@@ -313,7 +313,7 @@
+ # include <unistd.h>
+ #endif"
+ 
+-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS with_fp with_cvs enable_check_abi oldest_abi bindnow force_install all_warnings build build_cpu build_vendor build_os host host_cpu host_vendor host_os subdirs add_ons base_machine sysnames INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA LN_S CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC OBJEXT BUILD_CC cross_compiling CPP CXX CXXFLAGS ac_ct_CXX AR OBJDUMP RANLIB ac_ct_RANLIB MIG AS LD PWD_P MAKE MSGFMT MAKEINFO SED AUTOCONF SYSINCLUDES libc_cv_gcc_static_libgcc BASH libc_cv_have_bash2 KSH libc_cv_have_ksh AWK PERL INSTALL_INFO BISON VERSIONING libc_cv_asm_protected_directive libc_cv_initfinit_array libc_cv_cc_with_libunwind libc_cv_z_nodelete libc_cv_z_nodlopen libc_cv_z_initfirst libc_cv_z_relro libc_cv_Bgroup libc_cv_libgcc_s_suffix libc_cv_as_needed ASFLAGS_config libc_cv_z_combreloc libc_cv_z_execstack libc_cv_fpie fno_unit_at_a_time libc_cv_have_initfini libc_cv_cpp_asm_debuginfo no_whole_archive exceptions LIBGD have_selinux EGREP sizeof_long_double libc_cv_gcc_unwind_find_fde uname_sysname uname_release uname_version old_glibc_headers libc_cv_slibdir libc_cv_localedir libc_cv_sysconfdir libc_cv_rootsbindir libc_cv_forced_unwind use_ldconfig ldd_rewrite_script gnu_ld gnu_as elf xcoff static shared pic_default profile omitfp bounded static_nss nopic_initfini DEFINES linux_doors mach_interface_list VERSION RELEASE LIBOBJS LTLIBOBJS'
++ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS with_fp with_cvs enable_check_abi oldest_abi bindnow force_install all_warnings build build_cpu build_vendor build_os host host_cpu host_vendor host_os subdirs add_ons base_machine sysnames INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA LN_S CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC OBJEXT BUILD_CC cross_compiling CPP CXX CXXFLAGS ac_ct_CXX AR OBJDUMP RANLIB ac_ct_RANLIB MIG AS LD PWD_P MAKE MSGFMT MAKEINFO SED AUTOCONF SYSINCLUDES libc_cv_gcc_static_libgcc BASH libc_cv_have_bash2 KSH libc_cv_have_ksh AWK PERL INSTALL_INFO BISON VERSIONING libc_cv_asm_protected_directive libc_cv_initfinit_array libc_cv_cc_with_libunwind libc_cv_z_nodelete libc_cv_z_nodlopen libc_cv_z_initfirst libc_cv_z_relro libc_cv_Bgroup libc_cv_libgcc_s_suffix libc_cv_as_needed ASFLAGS_config libc_cv_z_combreloc libc_cv_z_execstack libc_cv_fpie fno_unit_at_a_time libc_cv_ssp libc_cv_have_initfini libc_cv_cpp_asm_debuginfo no_whole_archive exceptions LIBGD have_selinux EGREP sizeof_long_double libc_cv_gcc_unwind_find_fde uname_sysname uname_release uname_version old_glibc_headers libc_cv_slibdir libc_cv_localedir libc_cv_sysconfdir libc_cv_rootsbindir libc_cv_forced_unwind use_ldconfig ldd_rewrite_script gnu_ld gnu_as elf xcoff static shared pic_default profile omitfp bounded static_nss nopic_initfini DEFINES linux_doors mach_interface_list VERSION RELEASE LIBOBJS LTLIBOBJS'
+ ac_subst_files=''
+ 
+ # Initialize some variables set by options.
+@@ -5785,6 +5785,33 @@
+ fi
+ 
+ 
++echo "$as_me:$LINENO: checking for -fstack-protector" >&5
++echo $ECHO_N "checking for -fstack-protector... $ECHO_C" >&6
++if test "${libc_cv_ssp+set}" = set; then
++  echo $ECHO_N "(cached) $ECHO_C" >&6
++else
++  cat > conftest.c <<EOF
++int foo;
++main () { return 0;}
++EOF
++if { ac_try='${CC-cc} $CFLAGS $CPPFLAGS $LDFLAGS -fstack-protector
++			    -o conftest conftest.c 1>&5'
++  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
++  (eval $ac_try) 2>&5
++  ac_status=$?
++  echo "$as_me:$LINENO: \$? = $ac_status" >&5
++  (exit $ac_status); }; }
++then
++  libc_cv_ssp=yes
++else
++  libc_cv_ssp=no
++fi
++rm -f conftest*
++fi
++echo "$as_me:$LINENO: result: $libc_cv_ssp" >&5
++echo "${ECHO_T}$libc_cv_ssp" >&6
++
++
+ if test $elf != yes; then
+   echo "$as_me:$LINENO: checking for .init and .fini sections" >&5
+ echo $ECHO_N "checking for .init and .fini sections... $ECHO_C" >&6
+@@ -8424,6 +8451,7 @@
+ s,@libc_cv_z_execstack@,$libc_cv_z_execstack,;t t
+ s,@libc_cv_fpie@,$libc_cv_fpie,;t t
+ s,@fno_unit_at_a_time@,$fno_unit_at_a_time,;t t
++s,@libc_cv_ssp@,$libc_cv_ssp,;t t
+ s,@libc_cv_have_initfini@,$libc_cv_have_initfini,;t t
+ s,@libc_cv_cpp_asm_debuginfo@,$libc_cv_cpp_asm_debuginfo,;t t
+ s,@no_whole_archive@,$no_whole_archive,;t t
+diff -ur glibc-2.3.5-orig/configure.in glibc-2.3.5/configure.in
+--- glibc-2.3.5-orig/configure.in	2006-01-18 00:31:17.000000000 -0500
++++ glibc-2.3.5/configure.in	2006-01-18 00:35:50.000000000 -0500
+@@ -1500,6 +1500,21 @@
+ fi
+ AC_SUBST(fno_unit_at_a_time)
+ 
++AC_CACHE_CHECK(for -fstack-protector, libc_cv_ssp, [dnl
++cat > conftest.c <<EOF
++int foo;
++main () { return 0;}
++EOF
++if AC_TRY_COMMAND([${CC-cc} $CFLAGS $CPPFLAGS $LDFLAGS -fstack-protector
++			    -o conftest conftest.c 1>&AS_MESSAGE_LOG_FD])
++then
++  libc_cv_ssp=yes
++else
++  libc_cv_ssp=no
++fi
++rm -f conftest*])
++AC_SUBST(libc_cv_ssp)
++
+ if test $elf != yes; then
+   AC_CACHE_CHECK(for .init and .fini sections, libc_cv_have_initfini,
+ 		 [AC_TRY_COMPILE(, [asm (".section .init");
+diff -ur glibc-2.3.5-orig/sysdeps/generic/libc-start.c glibc-2.3.5/sysdeps/generic/libc-start.c
+--- glibc-2.3.5-orig/sysdeps/generic/libc-start.c	2006-01-18 00:31:35.000000000 -0500
++++ glibc-2.3.5/sysdeps/generic/libc-start.c	2006-01-18 00:30:39.000000000 -0500
+@@ -188,6 +188,9 @@
+     GLRO(dl_debug_printf) ("\ntransferring control: %s\n\n", argv[0]);
+ #endif
+ 
++  /* call the __guard_setup to set up the random __guard value */
++  __guard_setup ();	/* pappy@gentoo.org (pappy rules) */
++
+ #ifdef HAVE_CLEANUP_JMP_BUF
+   /* Memory for the cancellation buffer.  */
+   struct pthread_unwind_buf unwind_buf;
+diff -ur glibc-2.3.5-orig/sysdeps/unix/sysv/linux/Dist glibc-2.3.5/sysdeps/unix/sysv/linux/Dist
+--- glibc-2.3.5-orig/sysdeps/unix/sysv/linux/Dist	2006-01-18 00:31:35.000000000 -0500
++++ glibc-2.3.5/sysdeps/unix/sysv/linux/Dist	2006-01-18 00:30:39.000000000 -0500
+@@ -1,3 +1,4 @@
++ssp.c
+ bits/initspin.h
+ cmsg_nxthdr.c
+ dl-brk.c
+diff -ur glibc-2.3.5-orig/sysdeps/unix/sysv/linux/Makefile glibc-2.3.5/sysdeps/unix/sysv/linux/Makefile
+--- glibc-2.3.5-orig/sysdeps/unix/sysv/linux/Makefile	2006-01-18 00:31:35.000000000 -0500
++++ glibc-2.3.5/sysdeps/unix/sysv/linux/Makefile	2006-01-18 00:33:03.000000000 -0500
+@@ -1,5 +1,8 @@
+ ifeq ($(subdir),csu)
+-sysdep_routines += errno-loc
++sysdep_routines += errno-loc ssp
++ifeq (yes,$(have-ssp))
++CFLAGS-ssp.c += -fno-stack-protector
++endif
+ endif
+ 
+ ifeq ($(subdir),assert)
+diff -ur glibc-2.3.5-orig/sysdeps/unix/sysv/linux/Versions glibc-2.3.5/sysdeps/unix/sysv/linux/Versions
+--- glibc-2.3.5-orig/sysdeps/unix/sysv/linux/Versions	2006-01-18 00:31:35.000000000 -0500
++++ glibc-2.3.5/sysdeps/unix/sysv/linux/Versions	2006-01-18 00:30:39.000000000 -0500
+@@ -108,6 +108,8 @@
+   GLIBC_2.3.2 {
+     # New kernel interfaces.
+     epoll_create; epoll_ctl; epoll_wait;
++    # global objects and functions for the propolice patch in gcc - moved from libgcc by pappy@gentoo.org
++    __guard; __guard_setup; __stack_smash_handler;
+   }
+   GLIBC_2.3.3 {
+     gnu_dev_major; gnu_dev_minor; gnu_dev_makedev;

@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/glibc-2.4-r3.ebuild,v 1.20 2006/08/31 20:28:33 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/glibc-2.5-r1.ebuild,v 1.3 2007/03/15 16:09:05 kevquinn Exp $
 
 EAPI="prefix"
 
@@ -18,7 +18,7 @@ EAPI="prefix"
 #  CHOST = CTARGET  - install into /
 #  CHOST != CTARGET - install into /usr/CTARGET/
 
-KEYWORDS="amd64"
+KEYWORDS="~amd64"
 
 BRANCH_UPDATE=""
 
@@ -29,18 +29,7 @@ GLIBC_MANPAGE_VERSION="none"
 GLIBC_INFOPAGE_VERSION="none"
 
 # Gentoo patchset
-PATCH_VER="1.17"
-
-# PPC cpu addon
-# http://penguinppc.org/dev/glibc/glibc-powerpc-cpu-addon.html
-PPC_CPU_ADDON_VER="0.01"
-PPC_CPU_ADDON_TARBALL="glibc-powerpc-cpu-addon-v${PPC_CPU_ADDON_VER}.tgz"
-PPC_CPU_ADDON_URI="http://penguinppc.org/dev/glibc/${PPC_CPU_ADDON_TARBALL}"
-
-# LinuxThreads addon
-LT_VER="20060605"
-LT_TARBALL="glibc-linuxthreads-${LT_VER}.tar.bz2"
-LT_URI="ftp://sources.redhat.com/pub/glibc/snapshots/${LT_TARBALL} mirror://gentoo/${LT_TARBALL}"
+PATCH_VER="1.4"
 
 GENTOO_TOOLCHAIN_BASE_URI="mirror://gentoo"
 GENTOO_TOOLCHAIN_DEV_URI="http://dev.gentoo.org/~azarah/glibc/XXX http://dev.gentoo.org/~vapier/dist/XXX"
@@ -52,7 +41,7 @@ DESCRIPTION="GNU libc6 (also called glibc2) C library"
 HOMEPAGE="http://www.gnu.org/software/libc/libc.html"
 LICENSE="LGPL-2"
 
-IUSE="nls build nptl nptlonly hardened multilib selinux glibc-omitfp profile"
+IUSE="build debug nls nptl nptlonly hardened multilib selinux glibc-omitfp profile glibc-compat20"
 
 export CBUILD=${CBUILD:-${CHOST}}
 export CTARGET=${CTARGET:-${CHOST}}
@@ -69,13 +58,17 @@ is_crosscompile() {
 	[[ ${CHOST} != ${CTARGET} ]]
 }
 just_headers() {
-	is_crosscompile && has _E_CROSS_HEADERS_ONLY ${USE}
+	is_crosscompile && use crosscompile_opts_headers-only
 }
 
 GLIBC_RELEASE_VER=$(get_version_component_range 1-3)
 
 # Don't set this to :-, - allows BRANCH_UPDATE=""
 BRANCH_UPDATE=${BRANCH_UPDATE-$(get_version_component_range 4)}
+GLIBC_PORTS_VER=${GLIBC_RELEASE_VER}
+#GLIBC_PORTS_VER="20060925"
+GLIBC_LT_VER=${GLIBC_RELEASE_VER}
+#GLIBC_LT_VER="20060605"
 
 # (Recent snapshots fails with 2.6.5 and earlier with NPTL)
 NPTL_KERNEL_VERSION=${NPTL_KERNEL_VERSION:-"2.6.9"}
@@ -124,11 +117,9 @@ LT_KERNEL_VERSION=${LT_KERNEL_VERSION:-"2.4.1"}
 get_glibc_src_uri() {
 	GENTOO_TOOLCHAIN_BASE_URI=${GENTOO_TOOLCHAIN_BASE_URI:-"mirror://gentoo"}
 
-#	GLIBC_SRC_URI="http://ftp.gnu.org/gnu/glibc/glibc-${GLIBC_RELEASE_VER}.tar.bz2
-#	               http://ftp.gnu.org/gnu/glibc/glibc-linuxthreads-${GLIBC_RELEASE_VER}.tar.bz2
-#	               http://ftp.gnu.org/gnu/glibc/glibc-libidn-${GLIBC_RELEASE_VER}.tar.bz2
 	GLIBC_SRC_URI="mirror://gnu/glibc/glibc-${GLIBC_RELEASE_VER}.tar.bz2
-	               mirror://gnu/glibc/glibc-ports-${GLIBC_RELEASE_VER}.tar.bz2
+	               mirror://gnu/glibc/glibc-ports-${GLIBC_PORTS_VER}.tar.bz2
+	               ftp://sources.redhat.com/pub/glibc/snapshots/glibc-ports-${GLIBC_PORTS_VER}.tar.bz2
 	               mirror://gnu/glibc/glibc-libidn-${GLIBC_RELEASE_VER}.tar.bz2"
 
 	if [[ -n ${BRANCH_UPDATE} ]] ; then
@@ -155,9 +146,11 @@ get_glibc_src_uri() {
 			${GENTOO_TOOLCHAIN_DEV_URI//XXX/glibc-infopages-${GLIBC_INFOPAGE_VERSION:-${GLIBC_RELEASE_VER}}.tar.bz2}"
 	fi
 
-	[[ -n ${LT_VER} ]] && GLIBC_SRC_URI="${GLIBC_SRC_URI} ${LT_URI}"
-
-	GLIBC_SRC_URI="${GLIBC_SRC_URI} ${PPC_CPU_ADDON_URI}"
+	if [[ -n ${GLIBC_LT_VER} ]] ; then
+		GLIBC_SRC_URI="${GLIBC_SRC_URI}
+			mirror://gnu/glibc/glibc-linuxthreads-${GLIBC_LT_VER}.tar.bz2
+			ftp://sources.redhat.com/pub/glibc/snapshots/glibc-linuxthreads-${GLIBC_LT_VER}.tar.bz2"
+	fi
 
 	echo "${GLIBC_SRC_URI}"
 }
@@ -178,17 +171,9 @@ toolchain-glibc_src_unpack() {
 	unpack glibc-${GLIBC_RELEASE_VER}.tar.bz2
 
 	cd "${S}"
-	if [[ -n ${LT_VER} ]] ; then
-		unpack ${LT_TARBALL}
-		mv glibc-linuxthreads-${LT_VER}/* . || die
-	fi
+	[[ -n ${GLIBC_LT_VER} ]] && unpack glibc-linuxthreads-${GLIBC_LT_VER}.tar.bz2
 	unpack_addon libidn
-	unpack_addon ports
-
-	if [[ -n ${PPC_CPU_ADDON_TARBALL} ]] ; then
-		cd "${S}"
-		unpack ${PPC_CPU_ADDON_TARBALL}
-	fi
+	unpack_addon ports ${GLIBC_PORTS_VER}
 
 	if [[ -n ${PATCH_VER} ]] ; then
 		cd "${WORKDIR}"
@@ -229,6 +214,38 @@ toolchain-glibc_src_unpack() {
 		EPATCH_SUFFIX="patch" \
 		ARCH=$(tc-arch) \
 		epatch "${WORKDIR}"/patches
+
+		# tag, glibc is it
+		[[ -e csu/Banner ]] && die "need new banner location"
+		echo "Gentoo patchset ${PATCH_VER}" > csu/Banner
+	fi
+
+	if use hardened ; then
+		cd "${S}"
+		einfo "Patching to get working PIE binaries on PIE (hardened) platforms"
+		gcc-specs-pie && epatch "${FILESDIR}"/2.5/glibc-2.5-hardened-pie.patch
+		epatch "${FILESDIR}"/2.5/glibc-2.5-hardened-configure-picdefault.patch
+		epatch "${FILESDIR}"/2.5/glibc-2.5-hardened-inittls-nosysenter.patch
+
+		einfo "Installing Hardened Gentoo SSP handler"
+		cp -f "${FILESDIR}"/2.5/glibc-2.5-gentoo-stack_chk_fail.c \
+			debug/stack_chk_fail.c || die
+
+		if use debug ; then
+			# When using Hardened Gentoo stack handler, have smashes dump core for
+			# analysis - debug only, as core could be an information leak
+			# (paranoia).
+			sed -i \
+				-e '/^CFLAGS-backtrace.c/ iCFLAGS-stack_chk_fail.c = -DSSP_SMASH_DUMPS_CORE' \
+				debug/Makefile \
+				|| die "Failed to modify debug/Makefile for debug stack handler"
+		fi
+
+		# Build nscd with ssp-all
+		sed -i \
+			-e 's:-fstack-protector$:-fstack-protector-all:' \
+			nscd/Makefile \
+			|| die "Failed to ensure nscd builds with ssp-all"
 	fi
 
 	gnuconfig_update
@@ -280,22 +297,13 @@ toolchain-glibc_headers_compile() {
 }
 
 toolchain-glibc_src_test() {
-	# This is wrong, but glibc's tests fail bad when screwing
-	# around with sandbox, so lets just punt it
-	unset LD_PRELOAD
-
-	# do the linuxthreads build unless we're using nptlonly
-	if want_linuxthreads ; then
-		cd "${WORKDIR}"/build-${ABI}-${CTARGET}-linuxthreads
-		einfo "Checking GLIBC with linuxthreads..."
-		make check || die "linuxthreads glibc did not pass make check"
-	fi
-	if want_nptl ; then
-		cd "${WORKDIR}"/build-${ABI}-${CTARGET}-nptl
-		unset LD_ASSUME_KERNEL || :
-		einfo "Checking GLIBC with NPTL..."
-		make check || die "nptl glibc did not pass make check"
-	fi
+	cd "${WORKDIR}"/build-${ABI}-${CTARGET}-$1 || die "cd build-${ABI}-${CTARGET}-$1"
+	unset LD_ASSUME_KERNEL
+	make check && return 0
+	einfo "make check failed - re-running with --keep-going to get the rest of the results"
+	make -k check
+	ewarn "make check failed for ${ABI}-${CTARGET}-$1"
+	return 1
 }
 
 toolchain-glibc_pkg_preinst() {
@@ -334,20 +342,18 @@ toolchain-glibc_src_install() {
 		GBUILDDIR=${WORKDIR}/build-${ABI}-${CTARGET}-nptl
 	fi
 
-	local install_root=${D}
-	if is_crosscompile ; then
-		install_root="${install_root}/usr/${CTARGET}"
-	fi
+	local install_root=${ED}
+	is_crosscompile && install_root="${install_root}/usr/${CTARGET}"
 	if want_linuxthreads ; then
 		cd "${WORKDIR}"/build-${ABI}-${CTARGET}-linuxthreads
 		einfo "Installing GLIBC ${ABI} with linuxthreads ..."
-		make PARALLELMFLAGS="${MAKEOPTS} -j1" \
+		make PARALLELMFLAGS="${MAKEOPTS}" \
 			install_root="${install_root}" \
 			install || die
 	else # nptlonly
 		cd "${WORKDIR}"/build-${ABI}-${CTARGET}-nptl
 		einfo "Installing GLIBC ${ABI} with NPTL ..."
-		make PARALLELMFLAGS="${MAKEOPTS} -j1" \
+		make PARALLELMFLAGS="${MAKEOPTS}" \
 			install_root="${install_root}" \
 			install || die
 	fi
@@ -438,12 +444,12 @@ toolchain-glibc_src_install() {
 	if has_multilib_profile ; then
 		case $(tc-arch) in
 			amd64)
-				[[ ! -e ${D}/lib ]] && dosym $(get_abi_LIBDIR amd64) /lib
-				dosym /$(get_abi_LIBDIR x86)/ld-linux.so.2 /lib/ld-linux.so.2
+				[[ ! -e ${ED}/lib ]] && dosym $(get_abi_LIBDIR amd64) /lib
+				dosym ../$(get_abi_LIBDIR x86)/ld-linux.so.2 /lib/ld-linux.so.2
 				;;
 			ppc64)
-				[[ ! -e ${D}/lib ]] && dosym $(get_abi_LIBDIR ppc64) /lib
-				dosym /$(get_abi_LIBDIR ppc)/ld.so.1 /lib/ld.so.1
+				[[ ! -e ${ED}/lib ]] && dosym $(get_abi_LIBDIR ppc64) /lib
+				dosym ../$(get_abi_LIBDIR ppc)/ld.so.1 /lib/ld.so.1
 				;;
 		esac
 	fi
@@ -454,7 +460,7 @@ toolchain-glibc_src_install() {
 		-e "/^#/d" \
 		-e "/SUPPORTED-LOCALES=/d" \
 		-e "s: \\\\::g" -e "s:/: :g" \
-		"${S}"/localedata/SUPPORTED > "${D}"/usr/share/i18n/SUPPORTED \
+		"${S}"/localedata/SUPPORTED > "${ED}"/usr/share/i18n/SUPPORTED \
 		|| die "generating /usr/share/i18n/SUPPORTED failed"
 	cd "${WORKDIR}"/extra/locale
 	dosbin locale-gen || die
@@ -464,10 +470,11 @@ toolchain-glibc_src_install() {
 
 	# Make sure all the ABI's can find the locales and so we only
 	# have to generate one set
+	local a
 	keepdir /usr/$(get_libdir)/locale
-	for l in $(get_all_libdirs) ; do
-		if [[ ! -e ${D}/usr/${l}/locale ]] ; then
-			dosym /usr/$(get_libdir)/locale /usr/${l}/locale
+	for a in $(get_install_abis) ; do
+		if [[ ! -e ${ED}/usr/$(get_abi_LIBDIR ${a})/locale ]] ; then
+			dosym /usr/$(get_libdir)/locale /usr/$(get_abi_LIBDIR ${a})/locale
 		fi
 	done
 
@@ -476,7 +483,7 @@ toolchain-glibc_src_install() {
 
 		make \
 			-C "${GBUILDDIR}" \
-			PARALLELMFLAGS="${MAKEOPTS} -j1" \
+			PARALLELMFLAGS="${MAKEOPTS}" \
 			install_root="${install_root}" \
 			info -i || die
 	fi
@@ -489,19 +496,19 @@ toolchain-glibc_src_install() {
 		doman *.3thr
 	fi
 
+	cd "${S}"
+
 	# Install misc network config files
 	insinto /etc
-	doins "${FILESDIR}"/nscd.conf
-	doins "${FILESDIR}"/nsswitch.conf
-	doins "${FILESDIR}"/2.3.6/host.conf
-	doinitd "${FILESDIR}"/nscd
+	doins nscd/nscd.conf posix/gai.conf nss/nsswitch.conf || die
+	doins "${WORKDIR}"/extra/etc/*.conf || die
+	doinitd "${WORKDIR}"/extra/etc/nscd || die
 
-	cd "${S}"
-	dodoc BUGS ChangeLog* CONFORMANCE FAQ INTERFACE NEWS NOTES PROJECTS README*
+	dodoc BUGS ChangeLog* CONFORMANCE FAQ NEWS NOTES PROJECTS README*
 
 	# Prevent overwriting of the /etc/localtime symlink.  We'll handle the
 	# creation of the "factory" symlink in pkg_postinst().
-	rm -f "${D}"/etc/localtime
+	rm -f "${ED}"/etc/localtime
 
 	# simple test to make sure our new glibc isnt completely broken.
 	# for now, skip the multilib scenario.  also make sure we don't
@@ -511,9 +518,9 @@ toolchain-glibc_src_install() {
 	for x in date env ls true uname ; do
 		x=$(type -p ${x})
 		[[ -z ${x} ]] && continue
-		striptest=$(file -L ${x} 2>/dev/null)
+		striptest=$(LC_ALL="C" file -L ${x} 2>/dev/null)
 		[[ -z ${striptest} ]] && continue
-		[[ ${striptest/statically linked} != "${striptest}" ]] && continue
+		[[ ${striptest} == *"statically linked"* ]] && continue
 		"${D}"/$(get_libdir)/ld-*.so \
 			--library-path "${D}"/$(get_libdir) \
 			${x} > /dev/null \
@@ -571,7 +578,9 @@ toolchain-glibc_pkg_postinst() {
 			ewarn "Generating all locales; edit /etc/locale.gen to save time/space"
 			locale_list="${ROOT}usr/share/i18n/SUPPORTED"
 		fi
-		locale-gen --config "${locale_list}"
+		local x jobs
+		for x in ${MAKEOPTS} ; do [[ ${x} == -j* ]] && jobs=${x#-j} ; done
+		locale-gen -j ${jobs:-1} --config "${locale_list}"
 	fi
 
 	echo
@@ -637,6 +646,8 @@ setup_flags() {
 	# we are building when pulling glibc on a multilib profile
 	CFLAGS_BASE=${CFLAGS_BASE-${CFLAGS}}
 	CFLAGS=${CFLAGS_BASE}
+	CXXFLAGS_BASE=${CXXFLAGS_BASE-${CXXFLAGS}}
+	CXXFLAGS=${CXXFLAGS_BASE}
 	ASFLAGS_BASE=${ASFLAGS_BASE-${ASFLAGS}}
 	ASFLAGS=${ASFLAGS_BASE}
 
@@ -705,44 +716,35 @@ setup_flags() {
 		CBUILD_OPT=${CTARGET_OPT}
 	fi
 
-	if $(tc-getCC ${CTARGET}) -v 2>&1 | grep -q 'gcc version 3.[0123]'; then
-		append-flags -finline-limit=2000
-	fi
-
-	# We dont want these flags for glibc
-	filter-ldflags -pie
-
-	# We cannot build glibc with Bdirect support
-	filter-flags -Wl,-Bdirect
-	filter-ldflags -Bdirect
-	filter-ldflags -Wl,-Bdirect
-
-	# Same for hashvals ...
-	filter-flags -Wl,-hashvals
-	filter-ldflags -hashvals
-	filter-ldflags -Wl,-hashvals
-
 	# Lock glibc at -O2 -- linuxthreads needs it and we want to be
-	# conservative here
+	# conservative here.  -fno-strict-aliasing is to work around #155906
 	filter-flags -O?
-	append-flags -O2
+	append-flags -O2 -fno-strict-aliasing
+
+	# building glibc with SSP is fraught with difficulty, especially
+	# due to __stack_chk_fail_local which would mean significant changes
+	# to the glibc build process. See bug #94325
+	filter-flags -fstack-protector
+
+	if use hardened && gcc-specs-pie ; then
+		# Force PIC macro definition for all compilations since they're all
+		# either -fPIC or -fPIE with the default-PIE compiler.
+		append-flags -DPIC
+		export ASFLAGS="${ASFLAGS} -DPIC"
+	else
+		# Don't build -fPIE without the default-PIE compiler and the
+		# hardened-pie patch
+		filter-flags -fPIE
+	fi
 }
 
 check_kheader_version() {
-	local header="$(alt_build_headers)/linux/version.h"
-
-	[[ -z $1 ]] && return 1
-
-	if [ -f "${header}" ] ; then
-		local version="`grep 'LINUX_VERSION_CODE' ${header} | \
-			sed -e 's:^.*LINUX_VERSION_CODE[[:space:]]*::'`"
-
-		if [ "${version}" -ge "$1" ] ; then
-			return 0
-		fi
-	fi
-
-	return 1
+	local version=$(
+		printf '#include <linux/version.h>\nLINUX_VERSION_CODE\n' | \
+		$(tc-getCPP ${CTARGET}) -I "$(alt_build_headers)" | \
+		tail -n 1
+	)
+	[[ ${version} -ge "$1" ]]
 }
 
 check_nptl_support() {
@@ -751,7 +753,7 @@ check_nptl_support() {
 	echo
 
 	ebegin "Checking gcc for __thread support"
-	if ! eend $(want__thread) ; then
+	if ! eend $(want__thread ; echo $?) ; then
 		echo
 		eerror "Could not find a gcc that supports the __thread directive!"
 		eerror "Please update your binutils/gcc and try again."
@@ -761,7 +763,7 @@ check_nptl_support() {
 	if ! is_crosscompile && ! tc-is-cross-compiler ; then
 		# Building fails on an non-supporting kernel
 		ebegin "Checking kernel version (>=${NPTL_KERNEL_VERSION})"
-		if ! eend $([[ $(get_KV) -ge ${min_kernel_version} ]]) ; then
+		if ! eend $([[ $(get_KV) -ge ${min_kernel_version} ]] ; echo $?) ; then
 			echo
 			eerror "You need a kernel of at least version ${NPTL_KERNEL_VERSION}"
 			eerror "for NPTL support!"
@@ -771,7 +773,7 @@ check_nptl_support() {
 
 	# Building fails with too low linux-headers
 	ebegin "Checking linux-headers version (>=${NPTL_KERNEL_VERSION})"
-	if ! eend $(check_kheader_version "${min_kernel_version}") ; then
+	if ! eend $(check_kheader_version "${min_kernel_version}" ; echo $?) ; then
 		echo
 		eerror "You need linux-headers of at least version ${NPTL_KERNEL_VERSION}"
 		eerror "for NPTL support!"
@@ -787,10 +789,10 @@ want_nptl() {
 
 	# Only list the arches that cannot do NPTL
 	case $(tc-arch) in
-		hppa|m68k) return 1;;
+		m68k) return 1;;
 		sparc)
 			# >= v9 is needed for nptl.
-			[[ "${PROFILE_ARCH}" == "sparc" ]] && return 1
+			[[ ${PROFILE_ARCH} == "sparc" ]] && return 1
 		;;
 	esac
 
@@ -854,13 +856,6 @@ glibc_do_configure() {
 		-e '/^,\*$/d')
 	popd > /dev/null
 
-	if [[ -n ${PPC_CPU_ADDON_VER} ]] && [[ $(tc-arch) == ppc* ]] ; then
-		ADDONS="${ADDONS},powerpc-cpu"
-		case $(get-flag mcpu) in
-			970|power4|power5|power5+) myconf="${myconf} --with-cpu=$(get-flag mcpu)"
-		esac
-	fi
-
 	use nls || myconf="${myconf} --disable-nls"
 	myconf="${myconf} $(use_enable hardened stackguard-randomization)"
 	if [[ $(<"${T}"/.ssp.compat) == "yes" ]] ; then
@@ -871,16 +866,16 @@ glibc_do_configure() {
 
 	use glibc-omitfp && myconf="${myconf} --enable-omitfp"
 
-	[[ ${CTARGET} == *-softfloat-* ]] && myconf="${myconf} --without-fp"
+	[[ ${CTARGET//_/-} == *-softfloat-* ]] && myconf="${myconf} --without-fp"
 
-	if [ "$1" == "linuxthreads" ] ; then
+	if [[ $1 == "linuxthreads" ]] ; then
 		if want_tls ; then
 			myconf="${myconf} --with-tls"
 
-			if want__thread && ! use glibc-compat20 ; then
-				myconf="${myconf} --with-__thread"
-			else
+			if ! want__thread || use glibc-compat20 || [[ ${LT_KERNEL_VERSION} == 2.[02].* ]] ; then
 				myconf="${myconf} --without-__thread"
+			else
+				myconf="${myconf} --with-__thread"
 			fi
 		else
 			myconf="${myconf} --without-tls --without-__thread"
@@ -889,7 +884,7 @@ glibc_do_configure() {
 		myconf="${myconf} --disable-sanity-checks"
 		myconf="${myconf} --enable-add-ons=ports,linuxthreads${ADDONS}"
 		myconf="${myconf} --enable-kernel=${LT_KERNEL_VERSION}"
-	elif [ "$1" == "nptl" ] ; then
+	elif [[ $1 == "nptl" ]] ; then
 		myconf="${myconf} --with-tls --with-__thread"
 		myconf="${myconf} --enable-add-ons=ports,nptl${ADDONS}"
 		myconf="${myconf} --enable-kernel=${NPTL_KERNEL_VERSION}"
@@ -1060,7 +1055,7 @@ if [[ ${CATEGORY/cross-} != ${CATEGORY} ]] ; then
 		fi
 	fi
 else
-	DEPEND="${DEPEND} sys-libs/timezone-data"
+	DEPEND="${DEPEND} >=sys-libs/timezone-data-2007c"
 	RDEPEND="${RDEPEND} sys-libs/timezone-data"
 fi
 
@@ -1075,10 +1070,11 @@ pkg_setup() {
 		fi
 	fi
 
-	if want_linuxthreads ; then
-		ewarn "glibc-2.4 is nptl-only!"
-		[[ ${CTARGET} == i386-* ]] && eerror "NPTL requires a CHOST of i486 or better"
-		die "please add USE='nptl nptlonly' to make.conf"
+	if [[ ${CTARGET} == i386-* ]] ; then
+		eerror "i386 CHOSTs are no longer supported."
+		eerror "Chances are you don't actually want/need i386."
+		eerror "Please read http://www.gentoo.org/doc/en/change-chost.xml"
+		die "please fix your CHOST"
 	fi
 
 	if use nptlonly && ! use nptl ; then
@@ -1086,24 +1082,18 @@ pkg_setup() {
 		die "nptlonly without nptl"
 	fi
 
+	if [[ -e /proc/xen ]] && [[ $(tc-arch) == "x86" ]] && ! is-flag -mno-tls-direct-seg-refs ; then
+		ewarn "You are using Xen but don't have -mno-tls-direct-seg-refs in your CFLAGS."
+		ewarn "This will result in a 50% performance penalty, which is probably not what you want."
+	fi
+
 	if ! type -p scanelf > /dev/null ; then
 		eerror "You do not have pax-utils installed."
 		die "install pax-utils"
 	fi
 
-	# give some sort of warning about the nptl logic changes...
-	if want_nptl && want_linuxthreads ; then
-		ewarn "Warning! Gentoo's GLIBC with NPTL enabled now behaves like the"
-		ewarn "glibc from almost every other distribution out there. This means"
-		ewarn "that glibc is compiled -twice-, once with linuxthreads and once"
-		ewarn "with nptl. The NPTL version is installed to lib/tls and is still"
-		ewarn "used by default. If you do not need nor want the linuxthreads"
-		ewarn "fallback, you can disable this behavior by adding nptlonly to"
-		ewarn "USE to save yourself some compile time."
-
-		ebeep
-		epause 5
-	fi
+	use hardened && ! gcc-specs-pie && \
+		ewarn "PIE hardening not applied, as your compiler doesn't default to PIE"
 }
 
 src_unpack() {
@@ -1134,14 +1124,6 @@ src_unpack() {
 	echo 'int main(){}' > "${T}"/gcc_eh_test.c
 	if ! $(tc-getCC ${CTARGET}) "${T}"/gcc_eh_test.c -lgcc_eh 2>/dev/null ; then
 		sed -i -e 's:-lgcc_eh::' Makeconfig || die "sed gcc_eh"
-	fi
-
-	# Some configure checks fail on the first emerge through because they
-	# try to link.  This doesn't work well if we don't have a libc yet.
-	# http://sourceware.org/ml/libc-alpha/2005-02/msg00042.html
-	if is_crosscompile && use build; then
-		rm "${S}"/sysdeps/sparc/sparc64/elf/configure{,.in}
-		rm "${S}"/nptl/sysdeps/pthread/configure{,.in}
 	fi
 
 	cd "${WORKDIR}"
@@ -1183,6 +1165,8 @@ src_compile() {
 }
 
 src_test() {
+	local ret=0
+
 	setup_env
 
 	if [[ -z ${OABI} ]] && has_multilib_profile ; then
@@ -1192,13 +1176,18 @@ src_test() {
 			export ABI
 			einfo "   Testing ${ABI} glibc"
 			src_test
+			((ret+=$?))
 		done
 		ABI=${OABI}
 		unset OABI
-		return 0
+		[[ ${ret} -ne 0 ]] \
+			&& die "tests failed" \
+			|| return 0
 	fi
 
-	toolchain-glibc_src_test
+	want_linuxthreads && toolchain-glibc_src_test linuxthreads ; ((ret+=$?))
+	want_nptl && toolchain-glibc_src_test nptl ; ((ret+=$?))
+	return ${ret}
 }
 
 src_strip() {
