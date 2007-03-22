@@ -7,7 +7,7 @@ EAPI="prefix"
 
 inherit eutils flag-o-matic autotools
 
-PATCHVER="1.4"
+PATCHVER="1.5"
 
 MY_P="${P}.00"
 DESCRIPTION="Enhanced version of the Berkeley C shell (csh)"
