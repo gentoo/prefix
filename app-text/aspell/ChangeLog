@@ -1,6 +1,22 @@
 # ChangeLog for app-text/aspell
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/ChangeLog,v 1.81 2006/11/30 20:16:51 kevquinn Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/ChangeLog,v 1.84 2007/03/04 23:30:54 kevquinn Exp $
+
+  04 Mar 2007; Kevin F. Quinn <kevquinn@gentoo.org> aspell-0.60.5.ebuild:
+  Incorporated dictionary pdepends (bug #48072)
+
+  04 Mar 2007; Marius Mauch <genone@gentoo.org> aspell-0.50.5-r4.ebuild,
+  aspell-0.60.3.ebuild, aspell-0.60.3-r1.ebuild, aspell-0.60.4.ebuild,
+  aspell-0.60.4-r1.ebuild, aspell-0.60.4-r2.ebuild, aspell-0.60.5.ebuild:
+  Replacing einfo with elog
+
+*aspell-0.60.5 (03 Mar 2007)
+
+  03 Mar 2007; Kevin F. Quinn <kevquinn@gentoo.org>
+  +files/aspell-0.60.5-nls.patch, +aspell-0.60.5.ebuild:
+  Bump to 0.60.5 - bug #167461
+  Also fix incorrect copyright headers in other ebuilds that had changed in
+  2007 (naughty genstef ;)).
 
 *aspell-0.60.4-r1 (30 Nov 2006)
 *aspell-0.60.3-r1 (30 Nov 2006)
