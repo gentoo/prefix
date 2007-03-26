@@ -10,7 +10,7 @@ DESCRIPTION="Library of GUI classes written in Obj-C"
 HOMEPAGE="http://www.gnustep.org/"
 SRC_URI="ftp://ftp.gnustep.org/pub/gnustep/core/${P}.tar.gz"
 
-KEYWORDS=""
+KEYWORDS="~amd64"
 SLOT="0"
 LICENSE="LGPL-2.1"
 
