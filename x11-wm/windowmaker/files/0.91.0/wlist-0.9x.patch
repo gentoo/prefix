@@ -1,0 +1,92 @@
+diff -ur WindowMaker-0.91.0/WINGs/wlist.c WindowMaker-0.91.0-test/WINGs/wlist.c
+--- WindowMaker-0.91.0/WINGs/wlist.c	2004-10-12 14:36:42.000000000 -0400
++++ WindowMaker-0.91.0-test/WINGs/wlist.c	2005-03-13 13:37:39.914633856 -0500
+@@ -4,6 +4,8 @@
+ 
+ #include "WINGsP.h"
+ 
++#include <X11/keysym.h>
++
+ char *WMListDidScrollNotification = "WMListDidScrollNotification";
+ char *WMListSelectionDidChangeNotification = "WMListSelectionDidChangeNotification";
+ 
+@@ -44,6 +46,7 @@
+         unsigned int redrawPending:1;
+         unsigned int buttonPressed:1;
+         unsigned int buttonWasPressed:1;
++	unsigned int focused:1;
+     } flags;
+ } List;
+ 
+@@ -141,10 +144,10 @@
+     lPtr->view->delegate = &_ListViewDelegate;
+ 
+     WMCreateEventHandler(lPtr->view, ExposureMask|StructureNotifyMask
+-                         |ClientMessageMask, handleEvents, lPtr);
++                         |FocusChangeMask|ClientMessageMask, handleEvents, lPtr);
+ 
+     WMCreateEventHandler(lPtr->view, ButtonPressMask|ButtonReleaseMask
+-                         |EnterWindowMask|LeaveWindowMask|ButtonMotionMask,
++                         |EnterWindowMask|LeaveWindowMask|ButtonMotionMask|KeyPressMask,
+                          handleActionEvents, lPtr);
+ 
+     lPtr->itemHeight = WMFontHeight(scrPtr->normalFont) + 1;
+@@ -1044,6 +1047,11 @@
+     int topItem = lPtr->topItem;
+     static int lastClicked = -1, prevItem = -1;
+ 
++    /* for arrow keys handling */
++    char buffer[64];
++    KeySym ksym;
++    int count, row;
++
+     CHECK_CLASS(data, WC_List);
+ 
+     switch (event->type) {
+@@ -1096,6 +1104,10 @@
+     case ButtonPress:
+         if (event->xbutton.x <= WMWidgetWidth(lPtr->vScroller))
+             break;
++	/* need focus for keyboard events */
++	if (!lPtr->flags.focused);
++	    WMSetFocusToWidget(lPtr);
++
+         if (event->xbutton.button == WINGsConfiguration.mouseWheelDown ||
+             event->xbutton.button == WINGsConfiguration.mouseWheelUp) {
+             int amount = 0;
+@@ -1202,6 +1214,34 @@
+             prevItem = tmp;
+         }
+         break;
++    case KeyPress:
++	/* handle arrow keys, space and return */
++	count = XLookupString(&event->xkey, buffer, 63, &ksym, NULL);
++	buffer[count] = '\0';
++	switch(ksym) {
++	case XK_Up:
++	   row = WMGetListSelectedItemRow(lPtr);
++	   WMSelectListItem(lPtr, row - 1);
++	   if (row <= topItem)
++	       scrollByAmount(lPtr, -1);
++	   break;
++	case XK_Down:
++	   row = WMGetListSelectedItemRow(lPtr);
++	   WMSelectListItem(lPtr, row + 1);
++	   if (row - topItem >= lPtr->fullFitLines)
++	       scrollByAmount(lPtr, 1);
++	   break;
++	case XK_space:
++	   if (lPtr->action)
++	       (*lPtr->action)(lPtr, lPtr->clientData);
++	   break;
++	case XK_Return:
++	   if (lPtr->doubleAction)
++	       (*lPtr->doubleAction)(lPtr, lPtr->clientData);
++	   break;  
++	}
++	break;
++
+     }
+     if (lPtr->topItem != topItem)
+         WMPostNotificationName(WMListDidScrollNotification, lPtr, NULL);
+Only in WindowMaker-0.91.0-test/WINGs: wlist.c.orig
