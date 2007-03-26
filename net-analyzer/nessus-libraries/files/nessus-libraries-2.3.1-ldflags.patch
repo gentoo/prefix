@@ -1,0 +1,25 @@
+diff -ru nessus-libraries~/libnessus/Makefile nessus-libraries/libnessus/Makefile
+--- nessus-libraries~/libnessus/Makefile	2007-01-21 19:49:30.000000000 +0100
++++ nessus-libraries/libnessus/Makefile	2007-01-21 20:17:59.000000000 +0100
+@@ -101,7 +101,7 @@
+ 	$(LIBTOOL) $(CC) $(CIPHER) $(DEFS) $(INCLUDE) $(CFLAGS) -c snprintf.c	
+ libnessus.la: $(OBJS)
+ 	$(LIBTOOL) $(CC) -o libnessus.la $(LO_OBJS) -rpath ${libdir} \
+-	-version-info ${PACKAGE_VERSION}
++	-version-info ${PACKAGE_VERSION} ${PCAP_FLAG} ${SSL_FLAG}
+ 
+ install : libnessus.la
+ 	test -d $(DESTDIR)${libdir} || $(INSTALL_DIR) -m 755 $(DESTDIR)${libdir}
+diff -ru nessus-libraries~/nessus.tmpl.in nessus-libraries/nessus.tmpl.in
+--- nessus-libraries~/nessus.tmpl.in	2007-01-21 19:49:30.000000000 +0100
++++ nessus-libraries/nessus.tmpl.in	2007-01-21 20:17:45.000000000 +0100
+@@ -61,6 +61,9 @@
+ #
+ BUILD_PCAP=@BUILD_PCAP@
+ 
++PCAP_FLAG=@pcap_flag@
++SSL_FLAG=@ssl@
++
+ 
+ # Some defines you may want to modify
+ DEFS=@DEFS@ $(DEBUG_SSL) $(USE_CIPHER) $(DEBUG)
