@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Copyright Gentoo Foundation 2006-2007
 
-# <grobian@gentoo.org> -- 2006-03-20
+# <grobian@gentoo.org> -- 2007-03-20
 # also update alpha, beta, pre, p, etc. instead of only revisions.
 # Basically everything which is on top of the 'base' version number
 # should be upgraded always.
-# <grobian@gentoo.org> -- 2006-02-08
+# <grobian@gentoo.org> -- 2007-02-08
 # when adding a new version, also try and copy all extra files from
 # FILESDIR.  Also when invoked from an empty directory properly deal
 # with "missing" files, so new files are copied.
@@ -303,7 +303,11 @@ cross_diff() {
 	# (attempt to) do it!
 	diff -u /var/tmp/$pte-$ptecv.$tmp /var/tmp/$mte-$mtecv.$tmp \
 		| patch --no-backup-if-mismatch $mte
+	ret=$?
 	rm /var/tmp/$pte-$ptecv.$tmp /var/tmp/$mte-$mtecv.$tmp
+	# try to get new patches and stuff
+	fetch_files $mte
+	return $ret
 }
 
 revision_diff() {
@@ -343,6 +347,8 @@ revision_diff() {
 			| patch --no-backup-if-mismatch $pfile
 		ret=$?
 		rm /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp
+		# try to get new patches and stuff
+		fetch_files $pfile
 		return $ret
 	fi
 }
@@ -381,7 +387,10 @@ fetch_files() {
 
 diff_patch() {
 	diff -u $2 "${MTREEDIR}/${EPACKAGE}"/$1 | patch $2
-	return $?
+	ret=$?
+	# try to get new patches and stuff
+	fetch_files $2
+	return $ret
 }
 
 update_file() {
@@ -413,9 +422,7 @@ update_file() {
 		return $?
 	else
 		revision_diff $mtecv $ptecv $1 $2
-		ret=$?
-		fetch_files $1
-		return $ret
+		return $?
 	fi
 }
 
@@ -457,14 +464,12 @@ do_check_file() {
 if [[ ${#*} > 0 ]] ; then
 	while [[ ${#*} > 0 ]] ; do
 		if [[ ${1/->/} != ${1} ]] ; then
-			# if "a.1.ebuild->a.2.ebuild" is given, we force a
+			# if a a.1.ebuild->a.2.ebuild is given, we force a
 			# cross-diff from a.1 to a.2
 			cross_diff ${1#*->} ${1%->*}
-			fetch_files ${1%->*}
 		elif [[ -f $1 ]] ; then
 			# $1 just exists, just update
 			do_check_file $1 $1
-			fetch_files $1
 		elif [[ ! -f ${MTREEDIR}/${EPACKAGE}/$1 ]] ; then
 			# kind of lazy way of saying "file not found"
 			do_check_file $1 $1
@@ -580,7 +585,6 @@ for pte in $pt ; do
 	done
 	if [[ $last_rev != "" ]] ; then
 		cross_diff $last_rev $pte
-		fetch_files $last_rev
 	fi
 done
 # if there is anything left in mt that is bigger than last_pte we want
@@ -610,6 +614,6 @@ if [[ $last_mte != "" ]] ; then
 		cp "${MTREEDIR}/${EPACKAGE}"/$last_mte .
 		eapify $last_mte
 		ecleankw $last_mte
+		fetch_files $last_mte
 	fi
-	fetch_files $last_mte
 fi
