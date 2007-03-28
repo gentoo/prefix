@@ -930,7 +930,7 @@ gcc-compiler_pkg_postrm() {
 	fi
 
 	# ROOT isnt handled by the script
-	[[ ${EROOT} != "/" ]] && return 0
+	[[ ${ROOT} != "/" ]] && return 0
 
 	if [[ ! -e ${LIBPATH}/libstdc++.so ]] ; then
 		einfo "Running 'fix_libtool_files.sh ${GCC_RELEASE_VER}'"
