@@ -38,7 +38,7 @@ src_unpack() {
 
 	# On OSX/Darwin we have to use glibtool instead
 	cp "${FILESDIR}"/${P}-use-system-libtool.patch "${T}"/
-	[[ ${USERLAND} == "Darwin" ]] && \
+	[[ ${CHOST} == *-darwin* ]] && \
 		sed -i -e '/^+/s|libtool|glibtool|g' \
 			"${T}"/${P}-use-system-libtool.patch
 
