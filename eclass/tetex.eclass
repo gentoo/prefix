@@ -186,12 +186,19 @@ tetex_src_install() {
 			dodir /usr/share/
 			# Install texmf files
 			einfo "Installing texmf ..."
-			cp -Rv texmf ${ED}/usr/share
+			cp -Rv texmf "${ED}"/usr/share
 
 			# Install teTeX files
 			einfo "Installing teTeX ..."
 			dodir ${TEXMF_PATH:-/usr/share/texmf}/web2c
-			emake bindir=${D}${EPREFIX}/usr/bin texmf=${D}${EPREFIX}${TEXMF_PATH:-/usr/share/texmf} install || die
+			emake \
+				bindir="${ED}"/usr/bin \
+				texmf="${ED}"${TEXMF_PATH:-/usr/share/texmf} \
+				mandir="${ED}"/usr/share/man \
+				infodir="${ED}"/usr/share/info \
+				libdir="${ED}"/usr/$(get_libdir) \
+				includedir="${ED}"/usr/include \
+				install || die
 
 			dosbin ${T}/texmf-update
 			;;
