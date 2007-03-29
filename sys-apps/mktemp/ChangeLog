@@ -1,6 +1,15 @@
 # ChangeLog for sys-apps/mktemp
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/mktemp/ChangeLog,v 1.6 2007/03/07 14:22:22 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/mktemp/ChangeLog,v 1.9 2007/03/25 15:22:42 yoswink Exp $
+
+  25 Mar 2007; Jose Luis Rivero <yoswink@gentoo.org> mktemp-1.5.ebuild:
+  Stable on alpha wrt bug #169082
+
+  18 Mar 2007; nixnut <nixnut@gentoo.org> mktemp-1.5.ebuild:
+  Stable on ppc wrt bug 169082
+
+  17 Mar 2007; Steve Dibb <beandog@gentoo.org> mktemp-1.5.ebuild:
+  amd64 stable, bug 169082
 
   07 Mar 2007; Alexander H. Færøy <eroyf@gentoo.org> mktemp-1.5.ebuild:
   Stable on MIPS; bug #169082
