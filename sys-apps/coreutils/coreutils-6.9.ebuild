@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.7-r1.ebuild,v 1.13 2007/03/26 04:21:37 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.9.ebuild,v 1.3 2007/03/25 08:47:11 vapier Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic toolchain-funcs autotools
 
-PATCH_VER="1.1"
+PATCH_VER="1.0"
 DESCRIPTION="Standard GNU file utilities (chmod, cp, dd, dir, ls...), text utilities (sort, tr, head, wc..), and shell utilities (whoami, who,...)"
 HOMEPAGE="http://www.gnu.org/software/coreutils/"
 SRC_URI="ftp://alpha.gnu.org/gnu/coreutils/${P}.tar.bz2
@@ -28,7 +28,7 @@ RDEPEND="selinux? ( sys-libs/libselinux )
 	>=sys-libs/ncurses-5.3-r5"
 DEPEND="${RDEPEND}
 	=sys-devel/automake-1.9*
-	>=sys-devel/autoconf-2.59d
+	>=sys-devel/autoconf-2.61
 	>=sys-devel/m4-1.4-r1
 	sys-apps/help2man"
 

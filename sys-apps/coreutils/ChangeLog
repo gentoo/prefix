@@ -1,6 +1,35 @@
 # ChangeLog for sys-apps/coreutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.190 2007/02/13 23:03:50 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.198 2007/03/26 04:21:37 jer Exp $
+
+  26 Mar 2007; Jeroen Roovers <jer@gentoo.org> coreutils-6.7-r1.ebuild:
+  Stable for HPPA (bug #172003).
+
+  25 Mar 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  coreutils-6.7-r1.ebuild:
+  Stable on ppc wrt bug #172003.
+
+  25 Mar 2007; Markus Rothe <corsair@gentoo.org> coreutils-6.7-r1.ebuild:
+  Stable on ppc64 - now really.. /bin/install missing is no regression.
+
+  24 Mar 2007; Seemant Kulleen <seemant@gentoo.org>
+  files/digest-coreutils-6.9, Manifest:
+  upload the patchball, but I had to generate it myself, hence the need to
+  redigest
+
+  24 Mar 2007; Andrej Kacian <ticho@gentoo.org> coreutils-6.7-r1.ebuild:
+  Stable on x86, bug #172003.
+
+  24 Mar 2007; Markus Rothe <corsair@gentoo.org> coreutils-6.7-r1.ebuild:
+  Back to ~ppc64
+
+  24 Mar 2007; Markus Rothe <corsair@gentoo.org> coreutils-6.7-r1.ebuild:
+  Stable on ppc64; bug #172003
+
+*coreutils-6.9 (24 Mar 2007)
+
+  24 Mar 2007; Mike Frysinger <vapier@gentoo.org> +coreutils-6.9.ebuild:
+  Version bump.
 
   13 Feb 2007; Bryan Østergaard <kloeri@gentoo.org>
   coreutils-6.7-r1.ebuild:
