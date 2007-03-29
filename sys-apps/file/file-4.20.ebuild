@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-4.20.ebuild,v 1.1 2007/03/02 16:49:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-4.20.ebuild,v 1.11 2007/03/25 18:04:11 vapier Exp $
 
 EAPI="prefix"
 
@@ -8,23 +8,27 @@ inherit eutils distutils libtool flag-o-matic
 
 DESCRIPTION="identify a file's format by scanning binary data for patterns"
 HOMEPAGE="ftp://ftp.astron.com/pub/file/"
-SRC_URI="ftp://ftp.gw.com/mirrors/pub/unix/file/${P}.tar.gz
-	ftp://ftp.astron.com/pub/file/${P}.tar.gz"
+SRC_URI="ftp://ftp.astron.com/pub/file/${P}.tar.gz
+	ftp://ftp.gw.com/mirrors/pub/unix/file/${P}.tar.gz
+	ftp://ftp.gw.com/mirrors/pub/unix/file/patch-4.20-REG_STARTEND"
 
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="python"
+RESTRICT="mirror" #171924
 
 DEPEND=""
 
 src_unpack() {
 	unpack ${P}.tar.gz
+	cd "${S}"/src
+	epatch "${DISTDIR}"/patch-4.20-REG_STARTEND
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-4.15-libtool.patch #99593
 	epatch "${FILESDIR}"/${PN}-4.19-init-file.patch #163948
-	epatch "${FILESDIR}"/${PN}-4.20-solaris.patch
+	sed -i -e 's:__unused:file_gcc_unused:' src/file.[ch] #171178
 
 	elibtoolize
 	epunt_cxx
