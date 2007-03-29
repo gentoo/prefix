@@ -467,6 +467,9 @@ if [[ ${#*} > 0 ]] ; then
 			# if a a.1.ebuild->a.2.ebuild is given, we force a
 			# cross-diff from a.1 to a.2
 			cross_diff ${1#*->} ${1%->*}
+		elif [[ ${1#=} != ${1} ]] ; then
+			# try to fetch files for this ebuild
+			fetch_files ${1#=}
 		elif [[ -f $1 ]] ; then
 			# $1 just exists, just update
 			do_check_file $1 $1
