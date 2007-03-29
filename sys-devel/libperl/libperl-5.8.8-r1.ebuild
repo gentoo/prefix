@@ -174,8 +174,8 @@ src_compile() {
 		*-netbsd*) osname="netbsd" ;;
 		*-openbsd*) osname="openbsd" ;;
 		*-darwin*) osname="darwin" ;;
-		*-solaris2*) osname="solaris_2" ;;
-		*-aix4*) osname="aix_4" ;;
+		*-solaris*) osname="solaris" ;;
+		*-aix*) osname="aix" ;;
 
 		*) osname="linux" ;;
 	esac
