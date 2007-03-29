@@ -1,0 +1,25 @@
+* Fabian Groffen
+  The AIX linker complains that eff_uid is undefined.  I guess this is
+  right, as it is unknown where to export from.  So instead of relying
+  on pure luck that it is defined in one of the includes, just use the
+  function that was made for this purpose of retrieving the value.
+
+--- examples/rlfe/pty.c
++++ examples/rlfe/pty.c
+@@ -70,7 +70,7 @@
+ # undef HAVE_SVR4_PTYS
+ #endif
+ 
+-extern int eff_uid;
++static int eff_uid;
+ 
+ /* used for opening a new pty-pair: */
+ static char PtyName[32], TtyName[32];
+@@ -114,6 +114,7 @@
+ initmaster(f)
+ int f;
+ {
++  eff_uid = getuid();
+ #ifdef POSIX
+   tcflush(f, TCIOFLUSH);
+ #else

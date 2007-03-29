@@ -49,6 +49,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.1-rlfe-uclibc.patch
 	epatch "${FILESDIR}"/${PN}-5.1-fbsd-pic.patch
 	epatch "${FILESDIR}"/${PN}-5.1-rlfe-extern.patch
+	epatch "${FILESDIR}"/${PN}-5.2-rlfe-aix-eff_uid.patch
 
 	ln -s ../.. examples/rlfe/readline
 

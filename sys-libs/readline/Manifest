@@ -30,6 +30,10 @@ AUX readline-5.1-rlfe-uclibc.patch 1694 RMD160 715127465c03df7329f23b1a12aece800
 MD5 ae8aaec6f366e3f675d626b157c8cffd files/readline-5.1-rlfe-uclibc.patch 1694
 RMD160 715127465c03df7329f23b1a12aece8001aca96c files/readline-5.1-rlfe-uclibc.patch 1694
 SHA256 8045b4a37c1a3b19171fe4192161af46188223bdd61ab5e32561593f9c89270e files/readline-5.1-rlfe-uclibc.patch 1694
+AUX readline-5.2-rlfe-aix-eff_uid.patch 637 RMD160 d62ef9662f9bb9d22b8ed90e3ae69b5fa9e6b2c2 SHA1 efbec8027e00751aaed3c77e3ed5ec39a8d97fff SHA256 a1ba9c57d5f394ee9d69f690b4ad047d72f1d7198d29180f874b8d60f17bbcd8
+MD5 8b640066499d106684eff6db60933671 files/readline-5.2-rlfe-aix-eff_uid.patch 637
+RMD160 d62ef9662f9bb9d22b8ed90e3ae69b5fa9e6b2c2 files/readline-5.2-rlfe-aix-eff_uid.patch 637
+SHA256 a1ba9c57d5f394ee9d69f690b4ad047d72f1d7198d29180f874b8d60f17bbcd8 files/readline-5.2-rlfe-aix-eff_uid.patch 637
 AUX readline-5.2-rlfe-build.patch 350 RMD160 b6563fbd50795759543f3294c1bf93a9e485cf7b SHA1 de2c1a03e054bdc94c641ff943d2677fb0542d58 SHA256 2a6e8890363b367e4df890c4d4c1afa30437712fbdae98d8f04b7baed3b4c58c
 MD5 9cefb7a0d9c781706561dc4c359d6885 files/readline-5.2-rlfe-build.patch 350
 RMD160 b6563fbd50795759543f3294c1bf93a9e485cf7b files/readline-5.2-rlfe-build.patch 350
@@ -49,10 +53,10 @@ EBUILD readline-5.2.ebuild 2744 RMD160 ecf2640b95ce54484ac5562eec624060de7dc8a8 
 MD5 4e4e370a3ccc3cacbd8485340069dd89 readline-5.2.ebuild 2744
 RMD160 ecf2640b95ce54484ac5562eec624060de7dc8a8 readline-5.2.ebuild 2744
 SHA256 a683c3f059a86675db329c0e900ea332b48a119c4978403dc4735cd3dedb44c0 readline-5.2.ebuild 2744
-EBUILD readline-5.2_p1.ebuild 2802 RMD160 c021854da81c0338ecb9349040d89d5ac33976d2 SHA1 5c14d35c90b4d25191272f2e04ce19a2fa02aaa9 SHA256 d46457702dd7bb77b2c01a2b2ea2cb73cb2f0c48bf8fb9de0fd641f7bd76154d
-MD5 f633bfe6e3c21a68f9d8001e5f22fa20 readline-5.2_p1.ebuild 2802
-RMD160 c021854da81c0338ecb9349040d89d5ac33976d2 readline-5.2_p1.ebuild 2802
-SHA256 d46457702dd7bb77b2c01a2b2ea2cb73cb2f0c48bf8fb9de0fd641f7bd76154d readline-5.2_p1.ebuild 2802
+EBUILD readline-5.2_p1.ebuild 2857 RMD160 63fb35a19db3348a9d48d919ada986aae87eb6e8 SHA1 cbf804d357e5fd2983aa82c20d0c4136a9b7f276 SHA256 913a9d825353d018c99d7227cc356aa30ca43d3d66f9cd67af4f4acf2bcf9392
+MD5 a305ab5f4afcd79746b7e92d294dc482 readline-5.2_p1.ebuild 2857
+RMD160 63fb35a19db3348a9d48d919ada986aae87eb6e8 readline-5.2_p1.ebuild 2857
+SHA256 913a9d825353d018c99d7227cc356aa30ca43d3d66f9cd67af4f4acf2bcf9392 readline-5.2_p1.ebuild 2857
 MISC ChangeLog 11716 RMD160 f423cdb247f00f59a2b2f60b89d041cffc918927 SHA1 9b4f420b6a18dda7a0c944258efaceb65974d9e5 SHA256 5eb57e57e33cfdf92631de27d7878cf476f26c69ea28bd21fa9ffa8c261b08bc
 MD5 d7c98847253a047672791cc05d9657d3 ChangeLog 11716
 RMD160 f423cdb247f00f59a2b2f60b89d041cffc918927 ChangeLog 11716
