@@ -122,7 +122,7 @@ src_install() {
 	done
 	ABI=${OABI}
 
-	dodir /var/lib/tmp # VAR_TMPDIR
+	keepdir /var/lib/tmp # VAR_TMPDIR
 	keepdir /var/log/sandbox
 	fowners root:portage /var/log/sandbox
 	fperms 0770 /var/log/sandbox
