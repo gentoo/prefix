@@ -36,6 +36,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-4.1.4-makeinfo-c-locale.patch
 	epatch "${FILESDIR}"/${P}-alloca.patch
+	epatch "${FILESDIR}"/${PN}-4.1.4-aix-malloc.patch
 	# don't use sed here if we have to recover a broken host sed
 }
 
