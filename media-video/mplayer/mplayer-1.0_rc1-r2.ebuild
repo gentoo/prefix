@@ -130,7 +130,7 @@ DEPEND="${DEPEND} amd64? ( >=sys-apps/portage-2.1.2 )"
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 
 pkg_setup() {
 	if use real && use x86; then
@@ -263,7 +263,7 @@ src_compile() {
 		myconf="${myconf} --enable-x11 $(use_enable xinerama) $(use_enable xv) $(use_enable gtk gui)"
 	fi
 
-	if use ppc-macos || use x86-macos; then
+	if [[ ${CHOST} == "*-apple-darwin*" ]] ; then
 		myconf="$myconf --enable-macosx --enable-macosx-finder-support --enable-macosx-bundle"
 	fi
 
@@ -438,9 +438,9 @@ src_compile() {
 
 	CFLAGS="$CFLAGS" ./configure \
 		"--cc=$(tc-getCC)" "--host-cc=$(tc-getBUILD_CC)" \
-		--prefix=/usr \
-		--confdir=/usr/share/mplayer \
-		--datadir=/usr/share/mplayer \
+		--prefix="${EPREFIX}"/usr \
+		--confdir="${EPREFIX}"/usr/share/mplayer \
+		--datadir="${EPREFIX}"/usr/share/mplayer \
 		--enable-largefiles \
 		--enable-menu \
 		--enable-network --enable-ftp \
