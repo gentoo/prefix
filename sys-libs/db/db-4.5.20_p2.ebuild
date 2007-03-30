@@ -33,7 +33,10 @@ IUSE="tcl java doc nocxx bootstrap"
 
 DEPEND="tcl? ( >=dev-lang/tcl-8.4 )
 	java? ( >=virtual/jdk-1.4 )
-	!elibc_Darwin? ( >=sys-devel/binutils-2.16.1 )"
+	|| ( sys-devel/odcctools
+		 sys-devel/native-cctools
+		 >=sys-devel/binutils-2.16.1
+	)"
 RDEPEND="tcl? ( dev-lang/tcl )
 	java? ( >=virtual/jre-1.4 )"
 
@@ -87,23 +90,27 @@ src_compile() {
 
 	# Add linker versions to the symbols. Easier to do, and safer than header file
 	# mumbo jumbo.
-	if use userland_GNU; then
+	if [[ ${CHOST} == *-linux-gnu ]] ; then
+		# we hopefully use a GNU binutils linker in this case
 		append-ldflags -Wl,--default-symver
 	fi
 
-	cd ${S} && ECONF_SOURCE="${S}"/../dist econf \
-		--prefix=${EPREFIX}/usr \
-		--mandir=${EPREFIX}/usr/share/man \
-		--infodir=${EPREFIX}/usr/share/info \
-		--datadir=${EPREFIX}/usr/share \
-		--sysconfdir=${EPREFIX}/etc \
-		--localstatedir=${EPREFIX}/var/lib \
-		--libdir=${EPREFIX}/usr/"$(get_libdir)" \
+	# AIX's g++ doesn't grok large files (yet)
+	[[ ${CHOST} == *-aix* ]] && myconf="${myconf} --disable-largefile"
+
+	cd ${S} && ECONF_SOURCE="${S}"/../dist CC=$(tc-getCC) econf \
+		--prefix="${EPREFIX}"/usr \
+		--mandir="${EPREFIX}"/usr/share/man \
+		--infodir="${EPREFIX}"/usr/share/info \
+		--datadir="${EPREFIX}"/usr/share \
+		--sysconfdir="${EPREFIX}"/etc \
+		--localstatedir="${EPREFIX}"/var/lib \
+		--libdir="${EPREFIX}"/usr/"$(get_libdir)" \
 		--enable-compat185 \
 		--without-uniquename \
 		--enable-rpc \
 		--host="${CHOST}" \
-		${myconf} "{javaconf}" || die "configure failed"
+		${myconf} "${javaconf}" || die "configure failed"
 
 	emake -j1 || die "make failed"
 }
