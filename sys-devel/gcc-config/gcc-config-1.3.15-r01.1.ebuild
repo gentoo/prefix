@@ -32,7 +32,7 @@ src_unpack() {
 
 src_compile() {
 	$(tc-getCC) -O2 -Wall -o wrapper \
-		"${FILESDIR}"/wrapper-${W_VER}.c || die "compile wrapper"
+		wrapper-${W_VER}.c || die "compile wrapper"
 }
 
 src_install() {
