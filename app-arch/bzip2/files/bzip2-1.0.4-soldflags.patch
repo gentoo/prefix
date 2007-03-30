@@ -1,0 +1,19 @@
+--- Makefile-libbz2_so.orig	2007-03-27 17:34:16 +0200
++++ Makefile-libbz2_so	2007-03-27 17:34:24 +0200
+@@ -25,6 +25,7 @@
+ CC=gcc
+ BIGFILES=-D_FILE_OFFSET_BITS=64
+ CFLAGS+=-fpic -fPIC -Wall -Winline $(BIGFILES)
++SOLDFLAGS=-shared -Wl,-soname -Wl,libbz2.so.1
+ 
+ OBJS= blocksort.o  \
+       huffman.o    \
+@@ -35,7 +36,7 @@
+       bzlib.o
+ 
+ all: $(OBJS)
+-	$(CC) $(LDFLAGS) -shared -Wl,-soname -Wl,libbz2.so.1 -o libbz2.so.1.0.4 $(OBJS)
++	$(CC) $(LDFLAGS) $(SOLDFLAGS) -o libbz2.so.1.0.4 $(OBJS)
+ 	$(CC) $(LDFLAGS) $(CFLAGS) -o bzip2-shared bzip2.c libbz2.so.1.0.4
+ 	rm -f libbz2.so.1.0
+ 	ln -s libbz2.so.1.0.4 libbz2.so.1.0

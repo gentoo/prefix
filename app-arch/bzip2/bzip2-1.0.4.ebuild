@@ -26,6 +26,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.0.2-progress.patch
 	epatch "${FILESDIR}"/${PN}-1.0.3-no-test.patch
 	epatch "${FILESDIR}"/${PN}-1.0.3-dylib.patch
+	epatch "${FILESDIR}"/${PN}-1.0.4-soldflags.patch
 	sed -i -e 's:\$(PREFIX)/man:\$(PREFIX)/share/man:g' Makefile || die "sed manpath"
 
 	# - Generate symlinks instead of hardlinks
@@ -45,6 +46,9 @@ src_compile() {
 	if [[ ${USERLAND} == "Darwin" ]] ; then
 		emake ${makeopts} PREFIX="${EPREFIX}"/usr/lib libbz2.dylib
 	else
+		case "${CHOST}" in
+		*-*-aix*) makeopts="${makeopts} SOLDFLAGS=-shared" ;;
+		esac
 		emake ${makeopts} -f Makefile-libbz2_so all || die "Make failed libbz2"
 	fi
 	use static && append-flags -static
