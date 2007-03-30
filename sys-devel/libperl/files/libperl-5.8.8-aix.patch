@@ -1,0 +1,42 @@
+--- hints/aix.sh.orig	2007-03-26 17:47:44.000000000 +0200
++++ hints/aix.sh	2007-03-26 17:47:56.000000000 +0200
+@@ -295,10 +295,10 @@
+ 	    fi
+ 	if test X"$use64bitint:$quadtype" = X"$define:long" -o X"$use64bitall" = Xdefine; then
+ # Keep this at the left margin.
+-libswanted_uselargefiles="`getconf XBS5_LP64_OFF64_LIBS 2>/dev/null|sed -e 's@^-l@@' -e 's@ -l@ @g`"
++libswanted_uselargefiles="`getconf XBS5_LP64_OFF64_LIBS 2>/dev/null|sed -e 's@^-l@@' -e 's@ -l@ @g'`"
+ 	else
+ # Keep this at the left margin.
+-libswanted_uselargefiles="`getconf XBS5_ILP32_OFFBIG_LIBS 2>/dev/null|sed -e 's@^-l@@' -e 's@ -l@ @g`"
++libswanted_uselargefiles="`getconf XBS5_ILP32_OFFBIG_LIBS 2>/dev/null|sed -e 's@^-l@@' -e 's@ -l@ @g'`"
+ 	    fi
+ 
+ 	case "$ccflags_uselargefiles$ldflags_uselargefiles$libs_uselargefiles" in
+--- Makefile.SH.orig	2007-03-26 17:55:48.000000000 +0200
++++ Makefile.SH	2007-03-26 17:55:28.000000000 +0200
+@@ -81,11 +81,11 @@
+ 		shrpldflags="$shrpldflags -Wl,--image-base,0x57000000"
+ 		;;
+ 	aix*)
+-		shrpldflags="-H512 -T512 -bhalt:4 -bM:SRE -bE:perl.exp"
++		shrpldflags="-Wl,-H512 -Wl,-T512 -Wl,-bhalt:4 -Wl,-bM:SRE -Wl,-bE:perl.exp"
+ 		case "$osvers" in
+ 		3*)	shrpldflags="$shrpldflags -e _nostart"
+ 			;;
+-		*)	shrpldflags="$shrpldflags -b noentry"
++		*)	shrpldflags="$shrpldflags -Wl,-b,noentry"
+ 			;;
+ 		esac
+ 	        shrpldflags="$shrpldflags $ldflags $perllibs $cryptlib"
+@@ -552,9 +552,7 @@
+ 		case "$osname" in
+ 		aix)
+ 			$spitshell >>Makefile <<'!NO!SUBS!'
+-	rm -f libperl$(OBJ_EXT)
+-	mv $@ libperl$(OBJ_EXT)
+-	$(AR) qv $(LIBPERL) libperl$(OBJ_EXT)
++	$(LD) -o $@ $(SHRPLDFLAGS) perl$(OBJ_EXT) $(obj) $(libs)
+ !NO!SUBS!
+ 		;;
+ 		*)
