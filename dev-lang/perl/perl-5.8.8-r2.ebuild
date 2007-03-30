@@ -117,6 +117,10 @@ src_unpack() {
 	# filter it otherwise configure fails. See #125535.
 	epatch ${FILESDIR}/perl-hppa-pa7200-configure.patch
 
+	# fix a typo in hints/aix.sh.
+	# do not create sharedlib-archive, but sharedlib directly.
+	epatch ${FILESDIR}/${P}-aix.patch
+
 	use amd64 && cd ${S} && epatch ${FILESDIR}/${P}-lib64.patch
 
 	[[ ${CHOST} == *-dragonfly* ]] && cd ${S} && epatch ${FILESDIR}/${P}-dragonfly-clean.patch
@@ -236,7 +240,7 @@ src_configure() {
 	[[ ${ELIBC} == "FreeBSD" ]] && myconf "-Dlibc=/usr/$(get_libdir)/libc.a"
 
 	# We need to use " and not ', as the written config.sh use ' ...
-	myconf "-Dlibpth=${EPREFIX}/$(get_libdir) ${EPREFIX}/usr/$(get_libdir) /usr/local/$(get_libdir) /$(get_libdir) /usr/$(get_libdir)"
+	myconf "-Dlibpth=${EPREFIX}/$(get_libdir) ${EPREFIX}/usr/$(get_libdir) /$(get_libdir) /usr/$(get_libdir)"
 
 		sh Configure -des \
 		-Darchname="${myarch}" \
@@ -274,6 +278,7 @@ src_compile() {
 
 	src_configure
 
+	emake -j1 -f Makefile depend || die "Couldn't make depends"
 	emake -j1 || die "Unable to make"
 }
 
