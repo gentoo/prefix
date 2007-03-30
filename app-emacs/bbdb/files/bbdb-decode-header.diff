@@ -1,0 +1,11 @@
+--- lisp/bbdb-hooks.el~	Fri Mar 14 10:00:30 2003
++++ lisp/bbdb-hooks.el	Fri May 16 20:01:39 2003
+@@ -141,7 +141,8 @@
+                (buffer-substring (match-end 0)
+                  (progn (end-of-line 2) (point))))))))
+       (forward-line 1))
+-    done))
++    (and done
++	 (mail-decode-encoded-word-string done))))
+
+ (defcustom bbdb-ignore-most-messages-alist '()
