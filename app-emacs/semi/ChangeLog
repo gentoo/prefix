@@ -1,0 +1,78 @@
+# ChangeLog for app-emacs/semi
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/semi/ChangeLog,v 1.19 2007/03/08 09:37:47 opfer Exp $
+
+  08 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  files/65semi-gentoo.el:
+  add load path correctly, fixes bug 169588, reported by Ulrich Mueller
+  <ulm@kph.uni-mainz.de>
+
+  08 Feb 2007; Christian Faulhammer <opfer@gentoo.org> semi-1.14.6.ebuild:
+  SRC_URI and HOMEPAGE updated for proper Manifest generation; added some
+  quotes; remove virtual/emacs from DEPEND
+
+  01 Jul 2005; Matthew Kennedy <mkennedy@gentoo.org> semi-1.14.6.ebuild:
+  Keywording ~amd64.
+
+  30 Aug 2004; Mamoru KOMACHI <usata@gentoo.org> files/comp.el:
+  Fixed coding system selection bug during info creation.
+
+  21 Aug 2004; Mamoru KOMACHI <usata@gentoo.org> +files/comp.el,
+  -files/semi-1.14.5-gentoo.diff, +files/semi-info.patch,
+  -semi-1.14.5-r1.ebuild, semi-1.14.6.ebuild:
+  Install info files. This closes bug #61044.
+
+  19 Jul 2004; Mamoru KOMACHI <usata@gentoo.org> semi-1.14.6.ebuild:
+  Added to macos
+
+  11 Mar 2004; Jason Wever <weeve@gentoo.org> semi-1.14.6.ebuild:
+  Stable on sparc.
+
+  01 Feb 2004; Mamoru KOMACHI <usata@gentoo.org> semi-1.14.6.ebuild,
+  semi-1.14.6_pre20031218.ebuild:
+  Marked stable on x86 and alpha
+
+*semi-1.14.6 (25 Dec 2003)
+
+  25 Dec 2003; Mamoru KOMACHI <usata@gentoo.org> semi-1.14.6.ebuild:
+  Version bumped
+
+*semi-1.14.6_pre20031218 (20 Dec 2003)
+
+  20 Dec 2003; Mamoru KOMACHI <usata@gentoo.org> semi-1.14.4.ebuild,
+  semi-1.14.5.ebuild, semi-1.14.6_pre20031218.ebuild:
+  Added snapshot. Removed old ebuilds
+
+*semi-1.14.5-r1 (13 Jul 2003)
+
+  13 Aug 2003; Mamoru KOMACHI <usata@gentoo.org> semi-1.14.5-r1.ebuild:
+  Marked ppc and sparc stable
+
+  29 Jul 2003; Mamoru KOMACHI <usata@gentoo.org> semi-1.14.5-r1.ebuild:
+  Marked x86 and alpha stable.  Added eutils to inherit.
+
+  27 Jul 2003; Mamoru KOMACHI <usata@gentoo.org> semi-1.14.5-r1.ebuild:
+  Changed dependency to virtual/flim rather than app-emacs/flim
+
+  13 Jul 2003; Mamoru KOMACHI <usata@gentoo.org> semi-1.14.5-r1.ebuild,
+  files/semi-1.14.5-gentoo.diff:
+  Security fix, insecure temporary file problem as described in
+  http://www.debian.org/security/2003/dsa-339
+  In order to fix the problem, apel's version in DEPEND list bumped.
+  Corrected a typo in dodoc.
+
+*semi-1.14.5 (31 Oct 2002)
+
+  31 Oct 2002; Matthew Kennedy <mkennedy@gentoo.org> ChangeLog,
+  semi-1.14.5.ebuild, files/65semi-gentoo.el, 
+  files/digest-semi-1.14.5 :
+
+  Version bump. Resolves1 #12175.
+
+*semi-1.14.4 (31 Oct 2002)
+
+  31 Oct 2002; Matthew Kennedy <mkennedy@gentoo.org> ChangeLog,
+  semi-1.14.4.ebuild, files/65semi-gentoo.el, 
+  files/digest-semi-1.14.4 :
+
+  Initial import.
