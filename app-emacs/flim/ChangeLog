@@ -1,0 +1,70 @@
+# ChangeLog for app-emacs/flim
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/flim/ChangeLog,v 1.18 2007/03/13 10:51:06 opfer Exp $
+
+  13 Mar 2007; Christian Faulhammer <opfer@gentoo.org> flim-1.14.6.ebuild,
+  flim-1.14.7.ebuild, flim-1.14.8.ebuild:
+  adjusted DESCRIPTION in all three; added a lot of quotes and refinements
+  (make -> emake) to the latest testing
+
+  07 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  files/60flim-gentoo.el:
+  add load path correctly, fixes bug 169588, reported by Ulrich Mueller
+  <ulm@kph.uni-mainz.de>
+
+  23 Feb 2007; Christian Faulhammer <opfer@gentoo.org> -flim-1.14.5.ebuild:
+  clean up
+
+*flim-1.14.8 (05 Mar 2006)
+
+  05 Mar 2006; Matthew Kennedy <mkennedy@gentoo.org> +flim-1.14.8.ebuild:
+  New upstream version; Resolves Bug #124236.
+
+  01 Jul 2005; Matthew Kennedy <mkennedy@gentoo.org> flim-1.14.7.ebuild:
+  Keywording ~amd64.
+
+*flim-1.14.7 (05 Oct 2004)
+
+  05 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> +flim-1.14.7.ebuild:
+  Version bumped.
+
+  19 Jul 2004; Mamoru KOMACHI <usata@gentoo.org> flim-1.14.6.ebuild:
+  Added to macos
+
+  11 Mar 2004; Jason Wever <weeve@gentoo.org> flim-1.14.6.ebuild:
+  Stable on sparc.
+
+  31 Jan 2004; Mamoru KOMACHI <usata@gentoo.org> flim-1.14.6.ebuild:
+  Marked stable on x86 and alpha
+
+*flim-1.14.6 (22 Dec 2003)
+
+  22 Dec 2003; Mamoru KOMACHI <usata@gentoo.org> flim-1.14.6.ebuild,
+  flim-1.14.6_pre20031214.ebuild:
+  Version bumped
+
+*flim-1.14.6_pre20031214 (20 Dec 2003)
+
+  20 Dec 2003; Mamoru KOMACHI <usata@gentoo.org>
+  flim-1.14.6_pre20031214.ebuild:
+  Added snapshot
+
+*flim-1.14.5 (13 Jul 2003)
+
+  13 Aug 2003; Mamoru KOMACHI <usata@gentoo.org> flim-1.14.5.ebuild:
+  Marked stable on sparc and ppc
+
+  29 Jul 2003; Mamoru KOMACHI <usata@gentoo.org> flim-1.14.5.ebuild:
+  Marked x86 and alpha stable.
+
+  13 Jul 2003; Mamoru KOMACHI <usata@gentoo.org> flim-1.14.5.ebuild:
+  New version, added ~sparc, ~ppc and ~alpha to KEYWORDS.
+  Changed HOMEPAGE to point at correct URI.
+
+*flim-1.14.4 (31 Oct 2002)
+
+  31 Oct 2002; Matthew Kennedy <mkennedy@gentoo.org> ChangeLog,
+  flim-1.14.4.ebuild, files/60flim-gentoo.el, 
+  files/digest-flim-1.14.4 :
+
+  Initial import.
