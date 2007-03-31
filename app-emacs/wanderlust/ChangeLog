@@ -1,0 +1,328 @@
+# ChangeLog for app-emacs/wanderlust
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/ChangeLog,v 1.51 2007/03/08 10:00:08 opfer Exp $
+
+  08 Mar 2007; Christian Faulhammer <opfer@gentoo.org> files/70wl-gentoo.el:
+  add load path correctly, fixes bug 169588, reported by Ulrich Mueller
+  <ulm@kph.uni-mainz.de>
+
+*wanderlust-2.14.0-r3 (26 Feb 2007)
+
+  26 Feb 2007; Christian Faulhammer <opfer@gentoo.org>
+  +wanderlust-2.14.0-r3.ebuild:
+  corrected dependencies and added some quotes; fixes bug 168340, reported by
+  Ulrich Mueller <ulm@kph.uni-mainz.de>
+
+  23 Feb 2007; Christian Faulhammer <opfer@gentoo.org>
+  -wanderlust-2.8.1.ebuild:
+  clean up
+
+  21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  28 Jan 2007; Marius Mauch <genone@gentoo.org> wanderlust-2.8.1.ebuild,
+  wanderlust-2.10.1-r2.ebuild:
+  Replacing einfo with elog
+
+*wanderlust-2.14.0-r2 (06 Mar 2006)
+
+  06 Mar 2006; Matthew Kennedy <mkennedy@gentoo.org>
+  +wanderlust-2.14.0-r2.ebuild:
+  Include bbdb-wl.el in the installation; Resolves Bug #102920.
+
+  02 Oct 2005; Aron Griffis <agriffis@gentoo.org>
+  wanderlust-2.14.0-r1.ebuild:
+  Mark 2.14.0-r1 stable on alpha
+
+  02 Oct 2005; Michael Hanselmann <hansmi@gentoo.org>
+  wanderlust-2.14.0-r1.ebuild:
+  Stable on ppc.
+
+  29 Sep 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  wanderlust-2.14.0-r1.ebuild:
+  Stable on sparc
+
+  29 Sep 2005; Mamoru KOMACHI <usata@gentoo.org> files/70wl-gentoo.el,
+  -wanderlust-2.14.0.ebuild, wanderlust-2.14.0-r1.ebuild:
+  Stable on x86. Fixed incorrect load-path in 70wl-gentoo.el; bug #106559.
+
+  28 Aug 2005; Olivier Crête <tester@gentoo.org>
+  wanderlust-2.14.0-r1.ebuild:
+  Marked ~amd64, thanks to AT AJ Armstrong <aja@gentoo.org> for testing
+
+*wanderlust-2.14.0-r1 (08 Apr 2005)
+
+  08 Apr 2005; Mamoru KOMACHI <usata@gentoo.org> -wanderlust-2.12.0.ebuild,
+  -wanderlust-2.14.0_pre.ebuild, +wanderlust-2.14.0-r1.ebuild:
+  Updated to 2.14.1 snapshot.
+
+  27 Mar 2005; Bryan Østergaard <kloeri@gentoo.org>
+  wanderlust-2.12.2.ebuild:
+  Stable on alpha.
+
+*wanderlust-2.14.0 (27 Mar 2005)
+
+  27 Mar 2005; Mamoru KOMACHI <usata@gentoo.org> +wanderlust-2.14.0.ebuild:
+  Version bumped.
+
+  23 Mar 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  wanderlust-2.12.2.ebuild:
+  Stable on sparc
+
+*wanderlust-2.14.0_pre (21 Mar 2005)
+
+  21 Mar 2005; Mamoru KOMACHI <usata@gentoo.org>
+  -wanderlust-2.12.1_pre.ebuild, wanderlust-2.12.2.ebuild,
+  +wanderlust-2.14.0_pre.ebuild:
+  Version bumped.
+
+*wanderlust-2.12.2 (21 Feb 2005)
+
+  21 Feb 2005; Mamoru KOMACHI <usata@gentoo.org> +wanderlust-2.12.2.ebuild:
+  Version bumped.
+
+  13 Feb 2005; Jason Wever <weeve@gentoo.org> wanderlust-2.12.0.ebuild:
+  Stable on sparc.
+
+*wanderlust-2.12.1_pre (12 Feb 2005)
+
+  12 Feb 2005; Mamoru KOMACHI <usata@gentoo.org>
+  +wanderlust-2.12.1_pre.ebuild:
+  Added 2.12.1pre ebuild.
+
+  10 Feb 2005; Mamoru KOMACHI <usata@gentoo.org> wanderlust-2.12.0.ebuild,
+  -wanderlust-2.12.0_pre.ebuild:
+  Stable on x86, ppc and ppc-macos.
+
+*wanderlust-2.12.0 (26 Dec 2004)
+
+  26 Dec 2004; Mamoru KOMACHI <usata@gentoo.org>
+  -wanderlust-2.11.33_pre20041202.ebuild, +wanderlust-2.12.0.ebuild:
+  Version bumped.
+
+*wanderlust-2.12.0_pre (13 Dec 2004)
+
+  13 Dec 2004; Mamoru KOMACHI <usata@gentoo.org>
+  +wanderlust-2.12.0_pre.ebuild:
+  Version bumped.
+
+*wanderlust-2.11.33_pre20041202 (02 Dec 2004)
+
+  02 Dec 2004; Mamoru KOMACHI <usata@gentoo.org>
+  -wanderlust-2.11.33_pre20041106.ebuild,
+  -wanderlust-2.11.33_pre20041130.ebuild,
+  +wanderlust-2.11.33_pre20041202.ebuild:
+  Updated CVS snapshot.
+
+*wanderlust-2.11.33_pre20041130 (30 Nov 2004)
+
+  30 Nov 2004; Mamoru KOMACHI <usata@gentoo.org>
+  -wanderlust-2.11.32_pre20041012.ebuild,
+  +wanderlust-2.11.33_pre20041130.ebuild:
+  Updated CVS snapshot.
+
+*wanderlust-2.11.33_pre20041106 (08 Nov 2004)
+
+  08 Nov 2004; Mamoru KOMACHI <usata@gentoo.org>
+  -wanderlust-2.11.31_pre20040912.ebuild,
+  +wanderlust-2.11.33_pre20041106.ebuild:
+  Version bumped.
+
+*wanderlust-2.11.32_pre20041012 (13 Oct 2004)
+
+  13 Oct 2004; Mamoru KOMACHI <usata@gentoo.org>
+  -wanderlust-2.10.1-r1.ebuild, -wanderlust-2.11.30_pre20040825.ebuild,
+  +wanderlust-2.11.32_pre20041012.ebuild:
+  Updated CVS snapshot.
+
+  12 Sep 2004; Jason Wever <weeve@gentoo.org> wanderlust-2.10.1-r2.ebuild:
+  Stable on sparc.
+
+*wanderlust-2.11.31_pre20040912 (13 Sep 2004)
+
+  13 Sep 2004; Mamoru KOMACHI <usata@gentoo.org>
+  -wanderlust-2.11.30_pre20040618.ebuild,
+  +wanderlust-2.11.31_pre20040912.ebuild:
+  Updated CVS snapshot.
+
+*wanderlust-2.11.30_pre20040825 (27 Aug 2004)
+
+  27 Aug 2004; Mamoru KOMACHI <usata@gentoo.org>
+  +wanderlust-2.11.30_pre20040825.ebuild:
+  Updated CVS snapshot.
+
+  19 Jul 2004; Mamoru KOMACHI <usata@gentoo.org> wanderlust-2.10.1-r2.ebuild,
+  -wanderlust-2.11.29_pre20040522.ebuild,
+  wanderlust-2.11.30_pre20040618.ebuild:
+  Added to macos
+
+*wanderlust-2.11.30_pre20040618 (19 Jun 2004)
+
+  19 Jun 2004; Mamoru KOMACHI <usata@gentoo.org>
+  wanderlust-2.11.30_pre20040618.ebuild:
+  Updated CVS snapshot
+
+*wanderlust-2.10.1-r2 (03 Jun 2004)
+
+  03 Jun 2004; Mamoru KOMACHI <usata@gentoo.org> wanderlust-2.10.1-r2.ebuild,
+  wanderlust-2.11.28_pre20040516.ebuild:
+  Added backport patches from wl-2_10. Removed old CVS snapshot.
+
+  02 Jun 2004; Aron Griffis <agriffis@gentoo.org> wanderlust-2.10.1-r1.ebuild:
+  Fix use invocation
+
+*wanderlust-2.11.29_pre20040522 (23 May 2004)
+
+  23 May 2004; <usata@gentoo.org> wanderlust-2.11.27_pre20040509.ebuild,
+  wanderlust-2.11.29_pre20040522.ebuild:
+  New CVS snapshot. Removed old one.
+
+*wanderlust-2.11.28_pre20040516 (18 May 2004)
+
+  18 May 2004; Mamoru KOMACHI <usata@gentoo.org>
+  wanderlust-2.11.26_pre20040418.ebuild,
+  wanderlust-2.11.28_pre20040516.ebuild:
+  New CVS snapshot. Removed old one.
+
+*wanderlust-2.11.27_pre20040509 (11 May 2004)
+
+  11 May 2004; Mamoru KOMACHI <usata@gentoo.org>
+  wanderlust-2.11.24_pre20040409.ebuild,
+  wanderlust-2.11.25_pre20040416.ebuild,
+  wanderlust-2.11.27_pre20040509.ebuild:
+  Version bumped. Removed old ebuilds.
+
+*wanderlust-2.11.26_pre20040418 (19 Apr 2004)
+
+  19 Apr 2004; Mamoru KOMACHI <usata@gentoo.org>
+  wanderlust-2.11.26_pre20040418.ebuild:
+  New CVS snapshot
+
+*wanderlust-2.11.25_pre20040416 (17 Apr 2004)
+
+  17 Apr 2004; Mamoru KOMACHI <usata@gentoo.org>
+  wanderlust-2.11.24_pre20040209.ebuild,
+  wanderlust-2.11.24_pre20040309.ebuild,
+  wanderlust-2.11.25_pre20040416.ebuild:
+  New CVS snapshot. Removed old versions.
+
+*wanderlust-2.11.24_pre20040409 (11 Apr 2004)
+
+  11 Apr 2004; Mamoru KOMACHI <usata@gentoo.org>
+  wanderlust-2.11.24_pre20040409.ebuild:
+  New CVS snapshot
+
+*wanderlust-2.11.24_pre20040309 (09 Mar 2004)
+
+  09 Mar 2004; Mamoru KOMACHI <usata@gentoo.org>
+  wanderlust-2.11.24_pre20040309.ebuild:
+  New CVS snapshot
+
+*wanderlust-2.11.24_pre20040209 (10 Feb 2004)
+
+  10 Feb 2004; Mamoru KOMACHI <usata@gentoo.org>
+  wanderlust-2.11.24_pre20040209.ebuild:
+  New CVS snapshot
+
+*wanderlust-2.11.23_pre20040111 (12 Jan 2004)
+
+  12 Jan 2004; Mamoru KOMACHI <usata@gentoo.org>
+  wanderlust-2.11.22.20031122.ebuild, wanderlust-2.11.22.20031219.ebuild,
+  wanderlust-2.11.23_pre20040111.ebuild:
+  New CVS snapshot. Changed naming rules and removed old snapshots.
+
+*wanderlust-2.11.22.20031219 (24 Dec 2003)
+
+  24 Dec 2003; Mamoru KOMACHI <usata@gentoo.org>
+  wanderlust-2.11.18.20031008.ebuild, wanderlust-2.11.20.20031114.ebuild,
+  wanderlust-2.11.22.20031219.ebuild, wanderlust-2.11.4.20030728.ebuild:
+  New CVS snapshot. Removed old snapshots
+
+*wanderlust-2.11.22.20031122 (23 Nov 2003)
+
+  23 Nov 2003; Mamoru KOMACHI <usata@gentoo.org>
+  wanderlust-2.11.22.20031122.ebuild:
+  New CVS snapshot
+
+*wanderlust-2.11.20.20031114 (15 Nov 2003)
+
+  15 Nov 2003; Mamoru KOMACHI <usata@gentoo.org>
+  wanderlust-2.11.20.20031114.ebuild:
+  New CVS snapshot
+
+  11 Oct 2003; Mamoru KOMACHI <usata@gentoo.org> metadata.xml,
+  wanderlust-2.10.1-r1.ebuild, wanderlust-2.11.18.20031008.ebuild,
+  wanderlust-2.11.4.20030728.ebuild, wanderlust-2.8.1.ebuild,
+  files/70wl-gentoo.el:
+  Moved from app-emacs/wl to app-emacs/wanderlust. Removed
+  intermediate CVS snapshot (app-emacs/wanderlust-cvs now provides
+  up-to-date version of wl)
+
+*wl-2.11.18.20031008 (09 Oct 2003)
+
+  09 Oct 2003; Mamoru KOMACHI <usata@gentoo.org> wl-2.11.18.20031008.ebuild:
+  New snapshot
+
+*wl-2.11.18.20030927 (01 Oct 2003)
+*wl-2.11.16.20030921 (22 Sep 2003)
+*wl-2.11.13.20030915 (22 Sep 2003)
+*wl-2.11.9.20030823 (25 Aug 2003)
+*wl-2.11.7.20030812 (13 Aug 2003)
+*wl-2.11.6.20030807 (08 Aug 2003)
+
+*wl-2.11.4.20030728 (29 Jul 2003)
+
+  29 Jul 2003; Mamoru KOMACHI <usata@gentoo.org> wl-2.11.4.20030728.ebuild:
+  New beta version (This branch, 2.11.x, shouldn't be marked as stable).
+
+*wanderlust-2.10.1-r1 (09 Jul 2003)
+
+  25 Aug 2003; Mamoru KOMACHI <usata@gentoo.org> wl-2.10.1-r1.ebuild,
+  wl-2.10.1.ebuild:
+  Changed DEPEND to virtual/{flim,semi}
+
+  09 Jul 2003; Masatomo Nakano <nakano@gentoo.org> wl-2.10.1-r1.ebuild:
+  Marked as stable.
+
+*wl-2.10.1 (06 Jul 2003)
+
+  07 Jul 2003; Masatomo Nakano <nakano@gentoo.org> wl-2.10.1.ebuild:
+  Added ssl support.
+
+  06 Jul 2003; Masatomo Nakano <nakano@gentoo.org> wl-2.10.1.ebuild:
+  Version bumped as unstable.
+
+*wl-2.10.0-r1 (18 Jun 2003)
+
+  08 Aug 2003; Mamoru KOMACHI <usata@gentoo.org> wl-2.10.0-r1.ebuild:
+  Removed stale version
+
+  18 Jun 2003; Masatomo Nakano <nakano@gentoo.org> wl-2.10.0-r1.ebuild:
+  Fixed ebuild bug.
+
+*wl-2.10.0 (13 Dec 2002)
+
+  08 Aug 2003; Mamoru KOMACHI <usata@gentoo.org> wl-2.10.0.ebuild:
+  Removed stale version
+
+  29 May 2003; YAMAKURA Makoto <yakina@gentoo.org> wl-2.10.0.ebuild,
+  wl-2.8.1.ebuild:
+  Added S
+
+  24 Dec 2002; Masatomo Nakano <nakano@gentoo.org> ChangeLog,
+  wl-2.10.0.ebuild
+
+	Changed Keywords from ~x86 to x86.
+
+  13 Dec 2002; Masatomo Nakano <nakano@gentoo.org> ChangeLog,
+  wl-2.10.0.ebuild, files/digest-wl-2.10.0
+
+  Version bump.
+
+*wl-2.8.1 (31 Oct 2002)
+
+  31 Oct 2002; Matthew Kennedy <mkennedy@gentoo.org> ChangeLog,
+  wl-2.8.1.ebuild, files/70wl-gentoo.el, 
+  files/digest-wl-2.8.1 :
+
+  Initial import.
