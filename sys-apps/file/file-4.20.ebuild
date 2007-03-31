@@ -14,7 +14,7 @@ SRC_URI="ftp://ftp.astron.com/pub/file/${P}.tar.gz
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="python"
 RESTRICT="mirror" #171924
 
