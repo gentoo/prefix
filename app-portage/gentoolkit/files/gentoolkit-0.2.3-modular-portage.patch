@@ -1,30 +1,29 @@
-diff -ur gentoolkit-0.2.3/src/eclean/eclean gentoolkit-0.2.3/src/eclean/eclean
---- gentoolkit-0.2.3/src/eclean/eclean	2007-03-01 21:00:33 +0100
-+++ gentoolkit-0.2.3/src/eclean/eclean	2007-03-01 21:00:41 +0100
+--- gentoolkit-0.2.3/src/eclean/eclean
++++ gentoolkit-0.2.3/src/eclean/eclean
 @@ -24,7 +24,7 @@
  import signal
- sys.path.insert(0,'/Library/Gentoo/usr/lib/portage/pym')
+ sys.path.insert(0,'/usr/lib/portage/pym')
  import portage
 -from output import *
 +from portage.output import *
  
  listdir = portage.listdir
  
-diff -ur gentoolkit-0.2.3/src/equery/equery gentoolkit-0.2.3/src/equery/equery
---- gentoolkit-0.2.3/src/equery/equery	2007-03-01 21:00:33 +0100
-+++ gentoolkit-0.2.3/src/equery/equery	2007-03-01 21:00:41 +0100
-@@ -26,8 +26,8 @@
+--- gentoolkit-0.2.3/src/equery/equery
++++ gentoolkit-0.2.3/src/equery/equery
+@@ -26,8 +26,9 @@
  
  import gentoolkit
  import portage
 -import portage_checksum
 -from portage_util import unique_array
 +import portage.checksum
++import portage.output
 +from portage.util import unique_array
  
  import gentoolkit.pprinter as pp
  from gentoolkit.pprinter import print_info, print_error, print_warn, die
-@@ -900,7 +900,7 @@
+@@ -900,7 +901,7 @@
  		return (query, opts)
  
  	def getMD5sum(self, file):
@@ -33,9 +32,26 @@ diff -ur gentoolkit-0.2.3/src/equery/equery gentoolkit-0.2.3/src/equery/equery
  	
  	def perform(self, args):
  		(query, opts) = self.parseArgs(args)
-diff -ur gentoolkit-0.2.3/src/etcat/etcat gentoolkit-0.2.3/src/etcat/etcat
---- gentoolkit-0.2.3/src/etcat/etcat	2007-03-01 21:00:33 +0100
-+++ gentoolkit-0.2.3/src/etcat/etcat	2007-03-01 21:00:41 +0100
+@@ -1671,7 +1672,7 @@
+ 	# Guess colour output
+ 	if (Config["color"] == -1 and \
+ 		((not sys.stdout.isatty()) or (gentoolkit.settings["NOCOLOR"] in ["yes","true"]))):
+-			pp.output.nocolor()
++			portage.output.nocolor()
+ 
+ 	# Guess piping output
+ 	if not sys.stdout.isatty():
+@@ -1707,7 +1708,7 @@
+ 			sys.exit(0)
+ 		elif x in ["-C", "--nocolor"]:
+ 			Config["color"] = 0
+-			pp.output.nocolor()
++			portage.output.nocolor()
+ 		elif x in ["-N", "--no-pipe"]:
+ 			Config["piping"] = False
+ 		elif x in ["-q","--quiet"]:
+--- gentoolkit-0.2.3/src/etcat/etcat
++++ gentoolkit-0.2.3/src/etcat/etcat
 @@ -89,7 +89,7 @@
  
  import gentoolkit
@@ -45,15 +61,14 @@ diff -ur gentoolkit-0.2.3/src/etcat/etcat gentoolkit-0.2.3/src/etcat/etcat
  
  __author__ = "Alastair Tse"
  __email__ = "liquidx@gentoo.org"
-diff -ur gentoolkit-0.2.3/src/genpkgindex/genpkgindex gentoolkit-0.2.3/src/genpkgindex/genpkgindex
---- gentoolkit-0.2.3/src/genpkgindex/genpkgindex	2007-03-01 21:00:33 +0100
-+++ gentoolkit-0.2.3/src/genpkgindex/genpkgindex	2007-03-01 21:02:54 +0100
+--- gentoolkit-0.2.3/src/genpkgindex/genpkgindex
++++ gentoolkit-0.2.3/src/genpkgindex/genpkgindex
 @@ -9,7 +9,7 @@
  for x in ['CFLAGS','CXXFLAGS', 'LDFLAGS','USE']:
  	os.environ[x]=''
  
 -import xpak, portage, portage_checksum, portage_dep, portage_util, portage_const
-+import xpak, portage, portage.checksum, portage.dep, portage.util, portage.const
++import portage.xpak, portage, portage.checksum, portage.dep, portage.util, portage.const
  
  argc=len(sys.argv)
  
@@ -75,9 +90,8 @@ diff -ur gentoolkit-0.2.3/src/genpkgindex/genpkgindex gentoolkit-0.2.3/src/genpk
  		if val:
  			fp.write("%s: %s\n" % (name, serialize_depset(val)))
  
-diff -ur gentoolkit-0.2.3/src/gentoolkit/errors.py gentoolkit-0.2.3/src/gentoolkit/errors.py
---- gentoolkit-0.2.3/src/gentoolkit/errors.py	2007-03-01 21:00:33 +0100
-+++ gentoolkit-0.2.3/src/gentoolkit/errors.py	2007-03-01 21:00:41 +0100
+--- gentoolkit-0.2.3/src/gentoolkit/errors.py
++++ gentoolkit-0.2.3/src/gentoolkit/errors.py
 @@ -1,4 +1,4 @@
 -#! /usr/bin/python2
 +#!/usr/bin/python
@@ -91,9 +105,8 @@ diff -ur gentoolkit-0.2.3/src/gentoolkit/errors.py gentoolkit-0.2.3/src/gentoolk
 -		return self._message
 \ No newline at end of file
 +		return self._message
-diff -ur gentoolkit-0.2.3/src/gentoolkit/helpers.py gentoolkit-0.2.3/src/gentoolkit/helpers.py
---- gentoolkit-0.2.3/src/gentoolkit/helpers.py	2007-03-01 21:00:33 +0100
-+++ gentoolkit-0.2.3/src/gentoolkit/helpers.py	2007-03-01 21:04:09 +0100
+--- gentoolkit-0.2.3/src/gentoolkit/helpers.py
++++ gentoolkit-0.2.3/src/gentoolkit/helpers.py
 @@ -10,7 +10,7 @@
  import portage
  from gentoolkit import *
@@ -103,18 +116,16 @@ diff -ur gentoolkit-0.2.3/src/gentoolkit/helpers.py gentoolkit-0.2.3/src/gentool
  
  def find_packages(search_key, masked=False):
  	"""Returns a list of Package objects that matched the search key."""
-diff -ur gentoolkit-0.2.3/src/gentoolkit/package.py gentoolkit-0.2.3/src/gentoolkit/package.py
---- gentoolkit-0.2.3/src/gentoolkit/package.py	2007-03-01 21:00:33 +0100
-+++ gentoolkit-0.2.3/src/gentoolkit/package.py	2007-03-01 21:00:41 +0100
+--- gentoolkit-0.2.3/src/gentoolkit/package.py
++++ gentoolkit-0.2.3/src/gentoolkit/package.py
 @@ -1,4 +1,4 @@
 -#! /usr/bin/python2
 +#!/usr/bin/python
  #
  # Copyright(c) 2004, Karl Trygve Kalleberg <karltk@gentoo.org>
  # Copyright(c) 2004, Gentoo Foundation
-diff -ur gentoolkit-0.2.3/src/gentoolkit/pprinter.py gentoolkit-0.2.3/src/gentoolkit/pprinter.py
---- gentoolkit-0.2.3/src/gentoolkit/pprinter.py	2007-03-01 21:00:33 +0100
-+++ gentoolkit-0.2.3/src/gentoolkit/pprinter.py	2007-03-01 21:00:41 +0100
+--- gentoolkit-0.2.3/src/gentoolkit/pprinter.py
++++ gentoolkit-0.2.3/src/gentoolkit/pprinter.py
 @@ -7,12 +7,12 @@
  # $Header$
  
@@ -229,9 +240,8 @@ diff -ur gentoolkit-0.2.3/src/gentoolkit/pprinter.py gentoolkit-0.2.3/src/gentoo
 -	return output.white(s)
 \ No newline at end of file
 +	return portage.output.white(s)
-diff -ur gentoolkit-0.2.3/src/glsa-check/glsa-check gentoolkit-0.2.3/src/glsa-check/glsa-check
---- gentoolkit-0.2.3/src/glsa-check/glsa-check	2007-03-01 21:00:33 +0100
-+++ gentoolkit-0.2.3/src/glsa-check/glsa-check	2007-03-01 21:04:57 +0100
+--- gentoolkit-0.2.3/src/glsa-check/glsa-check
++++ gentoolkit-0.2.3/src/glsa-check/glsa-check
 @@ -6,7 +6,7 @@
  import os,string,sys
  sys.path.insert(0, "/usr/lib/gentoolkit/pym")
@@ -261,9 +271,8 @@ diff -ur gentoolkit-0.2.3/src/glsa-check/glsa-check gentoolkit-0.2.3/src/glsa-ch
  		
  	sys.exit(0)
  	
-diff -ur gentoolkit-0.2.3/src/revdep-rebuild/revdep-rebuild gentoolkit-0.2.3/src/revdep-rebuild/revdep-rebuild
---- gentoolkit-0.2.3/src/revdep-rebuild/revdep-rebuild	2007-03-01 21:00:33 +0100
-+++ gentoolkit-0.2.3/src/revdep-rebuild/revdep-rebuild	2007-03-01 21:00:41 +0100
+--- gentoolkit-0.2.3/src/revdep-rebuild/revdep-rebuild
++++ gentoolkit-0.2.3/src/revdep-rebuild/revdep-rebuild
 @@ -1,4 +1,4 @@
 -#! /bin/bash 
 +#!/bin/bash 
