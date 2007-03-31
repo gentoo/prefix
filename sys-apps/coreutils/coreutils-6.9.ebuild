@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.9.ebuild,v 1.3 2007/03/25 08:47:11 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.9.ebuild,v 1.4 2007/03/29 03:00:46 pebenito Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic toolchain-funcs autotools
 
-PATCH_VER="1.0"
+PATCH_VER="1.1"
 DESCRIPTION="Standard GNU file utilities (chmod, cp, dd, dir, ls...), text utilities (sort, tr, head, wc..), and shell utilities (whoami, who,...)"
 HOMEPAGE="http://www.gnu.org/software/coreutils/"
 SRC_URI="ftp://alpha.gnu.org/gnu/coreutils/${P}.tar.bz2
@@ -56,7 +56,6 @@ src_unpack() {
 	if use selinux ; then
 		EPATCH_MULTI_MSG="Applying SELINUX patches ..." \
 		EPATCH_SUFFIX="patch" epatch "${PATCHDIR}"/selinux
-		( cd "${PATCHDIR}" ; epatch selinux/GLUE* ) || die "glue failed"
 	else
 		EPATCH_MULTI_MSG="Applying ACL patches ..." \
 		EPATCH_SUFFIX="patch" epatch "${PATCHDIR}"/acl
