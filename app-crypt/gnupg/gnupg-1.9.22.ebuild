@@ -14,7 +14,7 @@ SRC_URI="mirror://gnupg/alpha/gnupg/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="1.9"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
 IUSE="X gpg2-experimental doc ldap nls openct pcsc-lite smartcard selinux"
 
 COMMON_DEPEND="
@@ -77,10 +77,15 @@ src_compile() {
 	# the Darwin linker finds that this is not in the final linking phase...
 	append-ldflags -lpth
 
+	# symcryptrun does some non-portable stuff, which breaks on Solaris,
+	# disable for now, can't easily come up with a patch
+	[[ ${CHOST} != *-solaris* ]] \
+		&& myconf="${myconf} --enable-symcryptrun" \
+		|| myconf="${myconf} --disable-symcryptrun"
+
 	#$(use_with caps capabilities) \
 	econf \
 		--enable-agent \
-		--enable-symcryptrun \
 		$(use_enable gpg2-experimental gpg) \
 		--enable-gpgsm \
 		$(use_enable smartcard scdaemon) \
