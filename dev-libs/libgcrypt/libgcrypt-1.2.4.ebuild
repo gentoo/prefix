@@ -14,7 +14,7 @@ SRC_URI="mirror://gnupg/libgcrypt/${P}.tar.gz
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
 IUSE="nls bindist idea"
 
 RDEPEND="nls? ( virtual/libintl )
