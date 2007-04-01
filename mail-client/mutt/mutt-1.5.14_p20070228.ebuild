@@ -95,7 +95,6 @@ src_compile() {
 		--sysconfdir=${EPREFIX}/etc/${PN} \
 		--with-docdir=${EPREFIX}/usr/share/doc/${PN}-${PVR} \
 		--with-regex \
-		--disable-fcntl --enable-flock \
 		--enable-nfs-fix --enable-external-dotlock \
 		--with-mixmaster"
 
@@ -103,6 +102,13 @@ src_compile() {
 		*-darwin7)
 			# locales are broken on Panther
 			myconf="${myconf} --enable-locales-fix --without-wc-funcs"
+		;;
+		*-solaris*)
+			# Solaris has no flock in the standard headers
+			myconf="${myconf} --enable-fcntl --disable-flock"
+		;;
+		*)
+			myconf="${myconf} --disable-fcntl --enable-flock"
 		;;
 	esac
 
