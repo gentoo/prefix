@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gentoo.org/proj/en/gentoo-alt/"
 SRC_URI=""
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 DEPEND=""
 
@@ -18,9 +18,4 @@ DEPEND=""
 # would lead to problems for libiconv for example
 # - Don't put elibc_glibc? ( sys-libs/glibc ) to avoid circular deps between
 # that and gcc
-RDEPEND="elibc_Darwin? ( sys-devel/gettext )
-	elibc_FreeBSD? ( sys-devel/gettext )
-	elibc_NetBSD? ( sys-devel/gettext )
-	elibc_OpenBSD? ( sys-devel/gettext )
-	elibc_DragonFly? ( sys-devel/gettext )
-	elibc_Solaris? ( sys-devel/gettext )"
+RDEPEND="!elibc_glibc? ( sys-devel/gettext )"
