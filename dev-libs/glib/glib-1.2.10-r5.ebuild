@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-1.2.10-r5.ebuild,v 1.49 2007/02/03 08:34:21 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-1.2.10-r5.ebuild,v 1.51 2007/03/03 15:59:55 falco Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ DESCRIPTION="The GLib library of C routines"
 HOMEPAGE="http://www.gtk.org/"
 SRC_URI="ftp://ftp.gtk.org/pub/gtk/v1.2/${P}.tar.gz
 	 ftp://ftp.gnome.org/pub/GNOME/stable/sources/glib/${P}.tar.gz
-	 mirror://gentoo/glib-1.2.10-as-needed.patch.bz2"
+	 mirror://gentoo/glib-1.2.10-r1-as-needed.patch.bz2"
 
 LICENSE="LGPL-2.1"
 SLOT="1"
@@ -32,7 +32,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-gcc34-fix.patch
 
 	# Fix for -Wl,--as-needed (bug #133818)
-	epatch "${DISTDIR}"/glib-1.2.10-as-needed.patch.bz2
+	epatch "${DISTDIR}"/glib-1.2.10-r1-as-needed.patch.bz2
 
 	use ppc64 && use hardened && replace-flags -O[2-3] -O1
 	append-ldflags $(dlopen_lib)
@@ -63,9 +63,5 @@ src_install() {
 	dohtml -r docs
 
 	cd "${ED}"/usr/$(get_libdir) || die
-	if use ppc-macos ; then
-		chmod 755 libgmodule-1.2.*.dylib
-	else
-		chmod 755 libgmodule-1.2.so.*
-	fi
+	chmod 755 libgmodule-1.2.so.*
 }

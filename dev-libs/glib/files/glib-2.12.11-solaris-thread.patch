@@ -1,0 +1,19 @@
+* Michael Haubenwallner
+  Thing is, one really should not link against both libthread and
+  libpthread, but use '-pthread' gcc-flag or '-mt' suncc-flag instead.
+
+  Don't know where glib-folks have information from found in that
+  comment.
+
+
+--- configure
++++ configure
+@@ -37030,7 +37030,7 @@
+       *-*-cygwin*|*-*-darwin*)
+          # skip cygwin and darwin -pthread or -pthreads test
+          ;;
+-      *-solaris*)
++      xxx*-solaris*)
+         # These compiler/linker flags work with both Sun Studio and gcc
+ 	# Sun Studio expands -mt to -D_REENTRANT and -lthread
+ 	# gcc expands -pthreads to -D_REENTRANT -D_PTHREADS -lpthread

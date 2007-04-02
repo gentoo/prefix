@@ -1,6 +1,38 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.244 2007/02/04 08:46:48 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.253 2007/03/22 21:32:53 wolf31o2 Exp $
+
+  22 Mar 2007; Chris Gianelloni <wolf31o2@gentoo.org> glib-2.12.9.ebuild:
+  Stable on alpha/ia64/ppc wrt bug #163678.
+
+  15 Mar 2007; Markus Rothe <corsair@gentoo.org> glib-2.12.9.ebuild:
+  Stable on ppc64; bug #163678
+
+  15 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> glib-2.12.9.ebuild:
+  Stable on sparc wrt #163678
+
+  15 Mar 2007; Jeroen Roovers <jer@gentoo.org> glib-2.12.9.ebuild:
+  Stable for HPPA (bug #163678).
+
+*glib-2.12.11 (14 Mar 2007)
+
+  14 Mar 2007; Daniel Gryniewicz <dang@gentoo.org> +glib-2.12.11.ebuild:
+  Bump to 2.12.11
+  	- assorted bug fixes
+
+  14 Mar 2007; Simon Stelling <blubb@gentoo.org> glib-2.12.9.ebuild:
+  stable on amd64; bug 163678
+
+  14 Mar 2007; Christian Faulhammer <opfer@gentoo.org> glib-2.12.9.ebuild:
+  stable x86, bug 163678
+
+  03 Mar 2007; Raphael Marichez <falco@gentoo.org> glib-1.2.10-r5.ebuild:
+  Fix as-needed patch mess up reported by Daniel Glöckner (bug #166374)
+
+  11 Feb 2007; Fabian Groffen <grobian@gentoo.org> glib-1.2.10-r5.ebuild,
+  glib-2.10.3-r1.ebuild, glib-2.12.4-r1.ebuild, glib-2.12.6.ebuild,
+  glib-2.12.7.ebuild, glib-2.12.9.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   04 Feb 2007; Markus Rothe <corsair@gentoo.org> glib-2.12.7.ebuild:
   Stable on ppc64; bug #164978

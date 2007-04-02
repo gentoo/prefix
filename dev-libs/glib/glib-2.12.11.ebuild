@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.12.9.ebuild,v 1.9 2007/03/22 21:32:53 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.12.11.ebuild,v 1.1 2007/03/14 14:26:45 dang Exp $
 
 EAPI="prefix"
 
@@ -43,6 +43,9 @@ src_unpack() {
 			epatch "${FILESDIR}/glib-2.10.3-ia64-atomic-ops.patch"
 		fi
 	fi
+
+	epatch "${FILESDIR}"/${P}-solaris-thread.patch
+	# autoreconf is not going to work, as we miss some m4 includes
 }
 
 src_compile() {
