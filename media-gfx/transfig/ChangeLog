@@ -1,0 +1,118 @@
+# ChangeLog for media-gfx/transfig
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/transfig/ChangeLog,v 1.32 2007/02/22 01:41:41 peper Exp $
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  02 Sep 2006; Jeroen Roovers <jer@gentoo.org> transfig-3.2.4-r2.ebuild:
+  Stable for HPPA (bug #140903).
+
+  05 Aug 2006; Jason Wever <weeve@gentoo.org> transfig-3.2.4-r2.ebuild:
+  Stable on SPARC wrt bug #140903.
+
+  03 Aug 2006; Joshua Jackson <tsunam@gentoo.org> transfig-3.2.4-r2.ebuild:
+  Stable x86; bug #140903
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org> transfig-3.2.4-r2.ebuild:
+  Mark 3.2.4-r2 stable on ia64
+
+  08 Jul 2006; Lars Weiler <pylon@gentoo.org> transfig-3.2.4-r2.ebuild:
+  Stable on ppc; gcc-4 related; bug #138099.
+
+  29 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  transfig-3.2.4-r2.ebuild:
+  Respect CFLAGS and LDFLAGS.
+
+  28 Mar 2006; <malverian@gentoo.org> transfig-3.2.4-r2.ebuild:
+  Add proper dependencies for modular xorg. Thanks to Andy Kittner in bug #123073
+
+  22 Mar 2006; Aron Griffis <agriffis@gentoo.org> transfig-3.2.4-r2.ebuild:
+  Mark 3.2.4-r2 ~ia64
+
+  18 Jan 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  transfig-3.2.4-r2.ebuild:
+  Fix dependencies for modular X.
+
+  31 Oct 2005; Fabian Groffen <grobian@gentoo.org> transfig-3.2.4-r2.ebuild:
+  Also apply GGC3.3 patch for GCC4.  Allows compilation on ppc-macos, marked
+  ~ppc-macos (bug #110948)
+
+  13 Sep 2005; Aron Griffis <agriffis@gentoo.org> transfig-3.2.4-r2.ebuild:
+  Mark 3.2.4-r2 stable on alpha
+
+  30 May 2005; Sven Wegener <swegener@gentoo.org> transfig-3.2.4-r1.ebuild,
+  transfig-3.2.4-r2.ebuild:
+  Moved from gcc.eclass to toolchain-funcs.eclass, bug #92745.
+
+  16 Dec 2004; Markus Rothe <corsair@gentoo.org> transfig-3.2.4-r2.ebuild:
+  Stable on ppc64
+
+  01 Nov 2004; Markus Rothe <corsair@gentoo.org> transfig-3.2.4-r2.ebuild:
+  Marked ~ppc64
+
+  01 Nov 2004; Markus Rothe <corsair@gentoo.org> transfig-3.2.4-r1.ebuild:
+  Marked ~ppc64; bug #66756
+
+  06 Oct 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  transfig-3.2.4-r2.ebuild:
+  multilib fixes.
+
+*transfig-3.2.4-r2 (02 Sep 2004)
+
+  02 Sep 2004; Mamoru KOMACHI <usata@gentoo.org> +transfig-3.2.4-r2.ebuild:
+  Added shapepatch. Thanks to Geoffrey <geoffrey@andrews.edu>, see bug #20877.
+
+  27 Apr 2004; Aron Griffis <agriffis@gentoo.org> transfig-3.2.4-r1.ebuild:
+  Add inherit eutils
+
+  05 Dec 2003; Jason Wever <weeve@gentoo.org> transfig-3.2.4-r1.ebuild:
+  Marked stable on sparc.
+
+*transfig-3.2.4-r1 (18 Apr 2003)
+
+  06 Nov 2003; Philip Walls <malverian@gentoo.org> files/transfig-3.2.4.patch :
+  Fixes emerge -K problems, Xpm support, and png support. Thanks to 
+  splite (splite-gentoo@sigint.cs.purdue.edu) for patch. closes #25076
+
+  01 Jul 2003; Guy Martin <gmsoft@gentoo.org> transfig-3.2.4-r1.ebuild
+  Added hppa to KEYWORDS.
+
+  21 Jul 2003; Will Woods <wwoods@gentoo.org> transfig-3.2.4-r1.ebuild:
+  Marked stable for alpha
+
+  24 Jun 2003; Luca Barbato <lu_zero@gentoo.org> transfig-3.2.4-r1.ebuild:
+  Fixed gcc-3.3 problems.
+
+  10 May 2003; Jason Wever <weeve@gentoo.org> transfig-3.2.4-r1.ebuild:
+  Added ~sparc to keywords.
+
+  18 Apr 2003; Philip Walls <malverian@gentoo.org> transfig-3.2.4.ebuild
+  files/transfig-3.2.4.patch :
+  Stopped from installing into /usr/local
+  Fixes bug #18983
+
+*transfig-3.2.4 (08 Jan 2003)
+
+  08 Jan 2003; Martin Holzer <mholzer@gentoo.org> transfig-3.2.4.ebuild 
+  files/digest-transfig-3.2.4 ChangeLog :
+  Version bumped.
+
+*transfig-3.2.3d-r1 (12 Apr 2002)
+
+  7 Sep 2002; Owen Stampflee <owen@gentoo.org> :
+  Added PPC to KEYWORDS.
+
+  12 Apr 2002; Seemant Kulleen <seemant@gentoo.org> transfig-3.2.3d-r1.ebuild :
+
+  Added Description, and compile against newer libpng
+
+*transfig-3.2.3d (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
