@@ -1,6 +1,10 @@
 # ChangeLog for app-misc/mc
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.113 2007/01/28 05:19:46 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.114 2007/03/12 11:57:16 the_paya Exp $
+
+  12 Mar 2007; Javier Villavicencio <the_paya@gentoo.org>
+  +files/mc-4.6.1-charset-locale-aliases.patch, mc-4.6.1-r3.ebuild:
+  Correctly generate charset.alias. Fixes bug 169678.
 
   28 Jan 2007; Marius Mauch <genone@gentoo.org> mc-4.6.1.ebuild,
   mc-4.6.1-r3.ebuild:
