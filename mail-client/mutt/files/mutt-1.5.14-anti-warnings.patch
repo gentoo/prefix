@@ -1,0 +1,159 @@
+diff -ur mutt-1.5.14cvs.orig/copy.c mutt-1.5.14cvs/copy.c
+--- mutt-1.5.14cvs.orig/copy.c	2007-04-03 20:43:31 +0200
++++ mutt-1.5.14cvs/copy.c	2007-04-03 20:44:11 +0200
+@@ -56,7 +56,7 @@
+   int hdr_count;
+   int x;
+   char *this_one = NULL;
+-  size_t this_one_len;
++  size_t this_one_len = 0;
+   int error;
+ 
+   if (ftello (in) != off_start)
+@@ -851,7 +851,7 @@
+   char buf[HUGE_STRING];
+   char cbuf[STRING];
+   char c2buf[STRING];
+-  char *p;
++  char *p = NULL;
+   int l, linelen, buflen, count, cbuflen, c2buflen, plen;
+ 
+   linelen = mutt_strlen (*h);
+diff -ur mutt-1.5.14cvs.orig/hdrline.c mutt-1.5.14cvs/hdrline.c
+--- mutt-1.5.14cvs.orig/hdrline.c	2007-04-03 20:43:31 +0200
++++ mutt-1.5.14cvs/hdrline.c	2007-04-03 20:44:11 +0200
+@@ -32,6 +32,10 @@
+ #include <string.h>
+ #include <locale.h>
+ 
++#if HAVE_ALLOCA_H
++# include <alloca.h>
++#endif
++
+ int mutt_is_mail_list (ADDRESS *addr)
+ {
+   if (!mutt_match_rx_list (addr->mailbox, UnMailLists))
+diff -ur mutt-1.5.14cvs.orig/imap/message.c mutt-1.5.14cvs/imap/message.c
+--- mutt-1.5.14cvs.orig/imap/message.c	2007-04-03 20:43:31 +0200
++++ mutt-1.5.14cvs/imap/message.c	2007-04-03 20:48:02 +0200
+@@ -157,7 +157,7 @@
+         rc = imap_cmd_step (idata);
+         if (rc != IMAP_CMD_CONTINUE)
+ 	{
+-	  imap_free_header_data ((void**) &h.data);
++	  imap_free_header_data ((void**) (void*) &h.data);
+           break;
+ 	}
+ 
+@@ -165,7 +165,7 @@
+           continue;
+         else if (mfhrc < 0)
+ 	{
+-	  imap_free_header_data ((void**) &h.data);
++	  imap_free_header_data ((void**) (void*) &h.data);
+           break;
+ 	}
+ 
+@@ -195,7 +195,7 @@
+ 	else
+ 	  /* bad header in the cache, we'll have to refetch.
+ 	   * TODO: consider the possibility of a holey cache. */
+-          imap_free_header_data((void**) &h.data);
++          imap_free_header_data((void**) (void*) &h.data);
+   
+         FREE(&uid_validity);
+       }
+@@ -205,7 +205,7 @@
+       if ((mfhrc < -1) || ((rc != IMAP_CMD_CONTINUE) && (rc != IMAP_CMD_OK)))
+       {
+         if (h.data)
+-          imap_free_header_data ((void**) &h.data);
++          imap_free_header_data ((void**) (void*) &h.data);
+         fclose (fp);
+         mutt_hcache_close (hc);
+         return -1;
+@@ -308,7 +308,7 @@
+     if ((mfhrc < -1) || ((rc != IMAP_CMD_CONTINUE) && (rc != IMAP_CMD_OK)))
+     {
+       if (h.data)
+-        imap_free_header_data ((void**) &h.data);
++        imap_free_header_data ((void**) (void*) &h.data);
+       fclose (fp);
+ #if USE_HCACHE
+       mutt_hcache_close (hc);
+@@ -877,8 +877,8 @@
+     }
+     else
+       *s = *p;
+-    *p++;
+-    *s++;
++    p++;
++    s++;
+   }
+   *s = '\0';
+ 
+diff -ur mutt-1.5.14cvs.orig/mh.c mutt-1.5.14cvs/mh.c
+--- mutt-1.5.14cvs.orig/mh.c	2007-04-03 20:43:31 +0200
++++ mutt-1.5.14cvs/mh.c	2007-04-03 20:44:11 +0200
+@@ -232,7 +232,6 @@
+   int fd;
+   char path[_POSIX_PATH_MAX];
+   mode_t omask;
+-  struct mh_data* data = mh_data (dest);
+ 
+   omask = umask (mh_umask (dest));
+   FOREVER
+diff -ur mutt-1.5.14cvs.orig/muttlib.c mutt-1.5.14cvs/muttlib.c
+--- mutt-1.5.14cvs.orig/muttlib.c	2007-04-03 20:43:31 +0200
++++ mutt-1.5.14cvs/muttlib.c	2007-04-03 20:49:04 +0200
+@@ -1029,7 +1029,6 @@
+     {
+       BUFFER *srcbuf, *word, *command;
+       char    srccopy[LONG_STRING];
+-      int     i = 0;
+ 
+       dprint(3, (debugfile, "fmtpipe = %s\n", src));
+ 
+@@ -1600,7 +1599,7 @@
+   {
+     offset = buf->dptr - buf->data;
+     buf->dsize += len < 128 ? 128 : len + 1;
+-    safe_realloc ((void**) &buf->data, buf->dsize);
++    safe_realloc ((void**) (void*) &buf->data, buf->dsize);
+     buf->dptr = buf->data + offset;
+   }
+   memcpy (buf->dptr, s, len);
+diff -ur mutt-1.5.14cvs.orig/regex.c mutt-1.5.14cvs/regex.c
+--- mutt-1.5.14cvs.orig/regex.c	2007-04-03 20:43:31 +0200
++++ mutt-1.5.14cvs/regex.c	2007-04-03 20:51:21 +0200
+@@ -2197,7 +2197,7 @@
+                       {
+                         PATFETCH (c);
+                         if (c == ':' || c == ']' || p == pend
+-                            || c1 == CHAR_CLASS_MAX_LENGTH)
++                            || c1 == CHAR_CLASS_MAX_LENGTH - 1)
+                           break;
+                         str[c1++] = c;
+                       }
+@@ -3117,9 +3117,6 @@
+ #ifndef REGEX_MALLOC
+   char *destination;
+ #endif
+-  /* We don't push any register information onto the failure stack.  */
+-  unsigned num_regs = 0;
+-
+   register char *fastmap = bufp->fastmap;
+   unsigned char *pattern = bufp->buffer;
+   unsigned char *p = pattern;
+diff -ur mutt-1.5.14cvs.orig/sendlib.c mutt-1.5.14cvs/sendlib.c
+--- mutt-1.5.14cvs.orig/sendlib.c	2007-04-03 20:43:31 +0200
++++ mutt-1.5.14cvs/sendlib.c	2007-04-03 20:44:11 +0200
+@@ -842,7 +842,7 @@
+   CONTENT *info;
+   CONTENT_STATE state;
+   FILE *fp = NULL;
+-  char *fromcode;
++  char *fromcode = NULL;
+   char *tocode;
+   char buffer[100];
+   char chsbuf[STRING];

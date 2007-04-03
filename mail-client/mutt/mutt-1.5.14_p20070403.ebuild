@@ -44,10 +44,12 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}" || die "unpack failed"
 
-	# back out stupid Debian patch, it causes bus-errors
-	EPATCH_OPTS="-R" epatch "${FILESDIR}"/mutt-1.5.14-debian-hcache.patch
+	# fix from tip for stupid Debian patch, it causes bus-errors
+	epatch "${FILESDIR}"/mutt-1.5.14-e363d7a69046.patch
 	# avoid this warning to allow commpilation on amd64
 	epatch "${FILESDIR}"/mutt-1.5.14-util.c-64bit-compile-warning.patch
+	# remove some warnings
+	epatch "${FILESDIR}"/mutt-1.5.14-anti-warnings.patch
 
 	epatch "${FILESDIR}"/mutt-1.5.13-smarttime.patch
 	# this patch is non-generic and only works because we use a sysconfdir
