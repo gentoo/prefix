@@ -1,6 +1,28 @@
 # ChangeLog for app-misc/mime-types
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mime-types/ChangeLog,v 1.53 2006/09/03 20:46:56 kumba Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mime-types/ChangeLog,v 1.60 2007/03/31 02:36:04 jer Exp $
+
+  31 Mar 2007; Jeroen Roovers <jer@gentoo.org> mime-types-7.ebuild:
+  Stable for HPPA too.
+
+  30 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> mime-types-7.ebuild:
+  Stable on sparc
+
+  30 Mar 2007; Andrej Kacian <ticho@gentoo.org> ChangeLog:
+  Manifest fix
+
+  29 Mar 2007; Andrej Kacian <ticho@gentoo.org> -mime-types-2.ebuild,
+  -mime-types-4.ebuild, -mime-types-6.ebuild, mime-types-7.ebuild:
+  Removed obsolete ebuilds. mime-types-7 stable on x86.
+
+  01 Mar 2007; <genstef@gentoo.org> mime-types-6.ebuild,
+  mime-types-7.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
+
+*mime-types-7 (09 Dec 2006)
+
+  09 Dec 2006; Andrej Kacian <ticho@gentoo.org> +mime-types-7.ebuild:
+  Added video/x-flv. Bug #142432 by J'raxis 270145 <gentoo at jraxis.org>.
 
   04 Sep 2006; Joshua Kinard <kumba@gentoo.org> mime-types-5.ebuild:
   Marked stable on mips.
