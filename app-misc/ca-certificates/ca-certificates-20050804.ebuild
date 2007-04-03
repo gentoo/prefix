@@ -15,15 +15,10 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
+DEPEND="app-arch/deb2targz" # platforms like AIX don't have a good ar
 RDEPEND="dev-libs/openssl"
 
 S=${WORKDIR}
-
-src_unpack() {
-	echo ">>> Unpacking ${A} to ${PWD}"
-	cp "${DISTDIR}"/${A} .
-	ar x ${A} || die "failure unpacking ${A}"
-}
 
 src_install() {
 	mkdir -p "${ED}"
@@ -31,9 +26,14 @@ src_install() {
 	tar zxf "${S}"/data.tar.gz || die "installing data failed"
 	find "${ED}"/usr/share/ca-certificates -name '*.crt' -printf '%P\n' \
 		| sort > etc/ca-certificates.conf
+	# dirty prefix job (someone gotta do it...)
+	sed -i -e "1s|^.*$|#${EPREFIX}/bin/bash -e|" \
+		-e "/^\(CERTSCONF\|CERTSDIR\)=/s|=|=\"${EPREFIX}\"|" \
+		-e "s|^cd /etc/ssl/certs$|cd \"${EPREFIX}\"/etc/ssl/certs|" \
+		usr/sbin/update-ca-certificates || die "Can't prefixify"
 }
 
 pkg_postinst() {
-	[[ ${EROOT} != "/" ]] && return 0
+	[[ ${ROOT} != "/" ]] && return 0
 	update-ca-certificates
 }
