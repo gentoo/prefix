@@ -16,7 +16,7 @@ SRC_URI="http://www.ibiblio.org/pub/Linux/utils/file/managers/${PN}/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86-solaris"
 IUSE="7zip X gpm ncurses nls pam samba slang unicode"
 
 PROVIDE="virtual/editor"
