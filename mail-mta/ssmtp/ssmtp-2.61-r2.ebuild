@@ -12,7 +12,7 @@ SRC_URI="mirror://debian/pool/main/s/ssmtp/${P/-/_}.orig.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="ssl ipv6 md5sum mailwrapper"
 
 DEPEND="virtual/libc
