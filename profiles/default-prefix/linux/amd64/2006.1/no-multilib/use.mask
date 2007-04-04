@@ -1,0 +1,13 @@
+# USE flags masked because providing packages have ABI=x86
+
+# 2006/06/04 Stuart Herbert <stuart@gentoo.org>
+# net-misc/nxclient is x86 only
+nxclient
+
+# 2006/03/22 Danny van Dyk <kugelfang@gentoo.org>
+# media-sound/realplayer is x86 only.
+real
+
+# 2006/05/04 Chris Gianelloni <wolf31o2@gentoo.org>
+# games-fps/quake3-teamarena is 32-bit
+teamarena

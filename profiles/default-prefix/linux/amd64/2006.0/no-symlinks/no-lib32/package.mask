@@ -1,0 +1,54 @@
+# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/amd64/2006.0/no-symlinks/no-lib32/package.mask,v 1.2 2005/10/17 10:33:38 herbs Exp $
+
+# Jeremy Huddleston <eradicator@gentoo.org>
+# multilib aware versions (install to & look in proper $(get_libdir))
+#
+# Make sure the good versions are marked stable before a no-lib32 profile is
+# released as a default profile.  These masks should remain in until all old
+# versions are removed from the tree.
+<app-editors/emacs-21.3-r5
+<dev-db/postgresql-7.4.6
+<dev-db/sqlite-2.8.16
+=dev-db/sqlite-3.0*
+<dev-lang/perl-5.8.6-r4
+<dev-lang/python-python-2.4-r2
+<dev-lang/tcl-8.4.6-r1
+<dev-lang/tk-8.4.6-r1
+<dev-libs/boost-1.32.0-r1
+<dev-libs/cyrus-sasl-2.1.20-r2
+<dev-libs/libmcal-0.7-r4
+<dev-python/PyQt-3.13
+<dev-python/pygtk-2.4.1
+<dev-python/sip-4.1.1
+<dev-tcltk/expect-5.42.1
+<media-libs/ming-0.2a-r1
+<media-video/transcode-0.6.14
+<net-fs/samba-3.0.11
+<net-libs/courier-authlib-0.52
+<net-libs/liblockfile-1.03-r2
+<www-client/mozilla-1.7.8-r1
+<sys-apps/dbus-0.23-r2
+<sys-apps/iproute2-2.6.10.20050112
+<sys-devel/flex-2.5.4a-r6
+<sys-devel/libperl-5.8.6
+<sys-libs/pam-0.77-r7
+<www-client/mozilla-firefox-1.0.4
+<dev-libs/libxml2-2.6.18
+<dev-libs/libxslt-1.1.13-r1
+<sys-fs/e2fsprogs-1.37-r1
+<media-gfx/splashutils-1.1.9.6
+<sys-auth/pam_passwdqc-1.0.2
+<media-video/mplayer-1.0_pre7
+<net-nds/openldap-2.2.26-r2
+<kde-base/kdelibs-3.4.1-r1
+<kde-base/arts-3.4.1-r1
+<x11-base/xorg-x11-6.8.2-r2
+<sys-apps/shadow-4.0.7-r2
+<gnome-base/gdm-2.6.0.9-r3
+<net-ftp/proftpd-1.2.10-r4
+<net-p2p/azureus-bin-2.3.0.0
+<sys-fs/sysfsutils-1.2.0-r2
+<app-admin/usermin-1.130-r1
+<net-misc/hylafax-4.2.1-r1
+<app-i18n/canna-3.7_p2
+media-sound/bossogg

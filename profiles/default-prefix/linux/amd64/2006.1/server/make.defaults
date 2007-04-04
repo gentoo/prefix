@@ -1,0 +1,5 @@
+# Copyright 1999-2005 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/amd64/2006.1/server/make.defaults,v 1.1 2006/06/09 15:12:47 kugelfang Exp $
+
+USE="apache2 ldap mailwrapper mysql snmp truetype xml"
