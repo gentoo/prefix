@@ -17,3 +17,4 @@ move sys-devel/gcc-hppa64 sys-devel/kgcc64
 move net-misc/djmount net-fs/djmount
 slotmove dev-php5/php-gtk 2 0
 slotmove dev-php/Savant2 2 0
+move media-sound/mute media-sound/aldrin
