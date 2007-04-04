@@ -5,6 +5,8 @@
 #
 # Bugs: pauldv@gentoo.org
 
+inherit libtool
+
 IUSE="doc test"
 
 EXPORT_FUNCTIONS src_test
@@ -21,10 +23,12 @@ db_fix_so () {
 	# first clean up old symlinks
 	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*so' -exec rm \{} \;
 	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*so.[23]' -exec rm \{} \;
+	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*.dylib' -exec rm \{} \;
+	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*.[23].dylib' -exec rm \{} \;
 	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*a' -exec rm \{} \;
 
 	# now rebuild all the correct ones
-	for ext in so a; do
+	for ext in so a dylib; do
 		for name in libdb libdb_cxx libdb_tcl libdb_java; do
 			target=`find . -maxdepth 1 -type f -name "${name}-*.${ext}" |sort -n |tail -n 1`
 			[ -n "${target}" ] && ln -sf ${target//.\//} ${name}.${ext}
@@ -32,16 +36,16 @@ db_fix_so () {
 	done;
 
 	# db[23] gets some extra-special stuff
-	if [ -f libdb1.so.2 ]; then
-		ln -sf libdb1.so.2 libdb.so.2
-		ln -sf libdb1.so.2 libdb1.so
-		ln -sf libdb1.so.2 libdb-1.so
+	if [ -f libdb1$(get_libname 2) ]; then
+		ln -sf libdb1$(get_libname 2) libdb$(get_libname 2)
+		ln -sf libdb1$(get_libname 2) libdb1$(get_libname)
+		ln -sf libdb1$(get_libname 2) libdb-1$(get_libame)
 	fi
 	# what do we do if we ever get 3.3 ?
 	for i in libdb libdb_cxx libdb_tcl libdb_java; do
-		if [ -f $i-3.2.so ]; then
-			ln -sf $i-3.2.so $i-3.so
-			ln -sf $i-3.2.so $i.so.3
+		if [ -f $i-3$(get_libname 2) ]; then
+			ln -sf $i-3$(get_libname 2) $i-3$(get_libname)
+			ln -sf $i-3$(get_libname 2) $i$(get_libname 3)
 		fi
 	done
 
@@ -109,6 +113,8 @@ db_src_install_usrlibcleanup() {
 
 	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*so' -exec rm \{} \;
 	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*so.[23]' -exec rm \{} \;
+	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*.dylib' -exec rm \{} \;
+	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*.[23].dylib' -exec rm \{} \;
 	einfo "removing unversioned static archives"
 	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*a' -exec rm \{} \;
 
