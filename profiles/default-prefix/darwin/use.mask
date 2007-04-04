@@ -4,6 +4,19 @@
 -coreaudio
 -aqua
 
+# Re-add Darwin libc
+-elibc_Darwin
+
+# Mask extraneous elibc/kernel combinations
+elibc_glibc
+elibc_uclibc
+elibc_Solaris
+kernel_linux
+kernel_FreeBSD
+userland_GNU
+userland_BSD
+userland_Solaris
+
 
 # these will more than likely never work on darwin
 3dfx
@@ -20,6 +33,7 @@ fmod
 ggi
 gpm
 hardened
+
 # VV requires device-mapper 
 on-the-fly-crypt
 oss
@@ -53,15 +67,3 @@ oracle7
 pfpro
 solid
 
-# Re-add Darwin libc
--elibc_Darwin
-
-# Mask extraneous elibc/kernel combinations
-elibc_glibc
-elibc_uclibc
-elibc_Solaris
-kernel_linux
-kernel_FreeBSD
-userland_GNU
-userland_BSD
-userland_Solaris

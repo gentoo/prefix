@@ -1,7 +1,5 @@
-USE_EXPAND="LINGUAS USERLAND KERNEL ELIBC"
+# this should eventually go
 USERLAND="Darwin"
-KERNEL="Darwin"
-ELIBC="Darwin"
 
-FEATURES="collision-protect"
+# in OSX one should have objc available
 USE="objc objc++"

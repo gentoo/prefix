@@ -1,10 +1,11 @@
-# Copyright 2004 Gentoo Foundation.
+# Copyright 2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/default-darwin/macos/virtuals,v 1.10 2005/10/13 19:03:31 grobian Exp $
+# $Header: $
 
 # Use this virtuals file to either override the Darwin base profile's defined
 # virtuals, or add virtuals that are specific to the Mac OS X profiles
 
-virtual/commonlisp	dev-lisp/clisp
-virtual/blackbox	x11-wm/fluxbox
+# Mac OS X is built with the Apple branch of the GCC compiler, using FSF
+# GCC results in broken packages in some cases (subversion) due to
+# alignment problems with the kernel.  Hence, we default to gcc-apple.
 virtual/gcc			sys-devel/gcc-apple
