@@ -50,6 +50,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.14-util.c-64bit-compile-warning.patch
 	# remove some warnings
 	epatch "${FILESDIR}"/mutt-1.5.14-anti-warnings.patch
+	# add support for db-4.5, with db-4.3 mutt crashes
+	epatch "${FILESDIR}"/mutt-1.5.14-db4.5.patch
 
 	epatch "${FILESDIR}"/mutt-1.5.13-smarttime.patch
 	# this patch is non-generic and only works because we use a sysconfdir
