@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.0-r1.ebuild,v 1.8 2007/03/07 05:21:07 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.0-r1.ebuild,v 1.9 2007/03/18 15:31:37 grobian Exp $
 
 EAPI="prefix"
 
@@ -45,14 +45,14 @@ DFILE=emacs-${SLOT}.desktop
 
 src_unpack() {
 	cvs_src_unpack
-	cd ${S};
-	epatch ${FILESDIR}/emacs-subdirs-el-gentoo.diff
-	epatch ${FILESDIR}/emacs-cvs-nofink.patch
-	epatch ${FILESDIR}/emacs-cvs-darwin-fsf-gcc.patch
+	cd "${S}"
+	epatch "${FILESDIR}"/emacs-subdirs-el-gentoo.diff
+	epatch "${FILESDIR}"/emacs-cvs-nofink.patch
+	epatch "${FILESDIR}"/emacs-cvs-darwin-fsf-gcc.patch
 	sed -i -e "s:/usr/lib/crtbegin.o:$(`tc-getCC` -print-file-name=crtbegin.o):g" \
 		-e "s:/usr/lib/crtend.o:$(`tc-getCC` -print-file-name=crtend.o):g" \
 		"${S}"/src/s/freebsd.h || die "unable to sed freebsd.h settings"
-	epatch "${FILESDIR}/${PN}-freebsd-sparc.patch"
+	epatch "${FILESDIR}"/${PN}-freebsd-sparc.patch
 }
 
 src_compile() {
