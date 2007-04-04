@@ -1,6 +1,0 @@
-# Copyright 2004 Gentoo Foundation.
-# Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/x86/xbox/virtuals,v 1.1 2004/10/25 12:46:49 vapier Exp $
-
-virtual/linux-sources	sys-kernel/xbox-sources
-virtual/bootloader		sys-boot/cromwell

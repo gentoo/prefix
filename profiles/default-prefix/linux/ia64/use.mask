@@ -4,15 +4,6 @@
 blas
 lapack
 
-# These are debatable, since technically an ia64 could support this hardware
-pcmcia
-3dfx
-
-# The rest should work in theory. Feel free to test and remove.
-# No hardware to test
-pda
-sms
-
 # No apm support on ia64
 apm
 
@@ -23,28 +14,6 @@ tcc
 # despite some internal Gentoo efforts (mine) to port it
 afs
 
-# see email to gentoo-dev with subject "use.mask and PHP5's crazy IUSE"
-# Dated Sat, 31 Jul 2004 14:49:28 -0700, from robbat2@gentoo.org
-# all of these are binary-only, and not presently available on this
-# architecture.
-adabas
-birdstep
-dbmaker
-empress
-empress-bcs
-esoob
-filepro
-frontbase
-hyperwave
-informix
-ingres
-oci8
-pfpro
-solid
-sybase
-sybase-ct
-qdbm
-
 hardened
 djbfft
 mzscheme
@@ -54,27 +23,10 @@ diet
 
 jack
 
-# java releated use flags
-# need to get dev-java/ant marked stable  and dev-php4/php-java-bridge stable
-# before unmasking (16 Oct 2006 nichoj)
-java
-java-internal
-java-external
-freetts
-
-# need to keyword openjms-bin, sun-jms
-jms
-# need to keyword sun-jmx
-jmx
-# need to keyword sun-javamail-bin, sun-javamail
-javamail
-
 lirc
 
 # mono compiler doesn't build on ia64 (20 Jan 2005 agriffis)
 mono
-# beagle depends on dev-dotnet/gnome-sharp.. masked for testing (19 Aug 2006 kloeri)
-beagle
 
 emboss
 
@@ -87,9 +39,6 @@ wifi
 pike
 
 timidity
-
-# emacs segfaults during build
-xemacs
 
 # 2006/02/05 - Donnie Berkholz <dberkholz@gentoo.org>
 # Modular X: mask for architectures on which they aren't available

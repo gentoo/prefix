@@ -1,6 +1,0 @@
-# Copyright 2004 Gentoo Foundation.
-# Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/x86/no-nptl/use.mask,v 1.1 2005/11/16 16:34:36 wolf31o2 Exp $
-
-nptl
-nptlonly
