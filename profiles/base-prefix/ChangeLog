@@ -1,8 +1,0 @@
-# ChangeLog for base-prefix
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
-
-  04 Apr 2007; Fabian Groffen <grobian@gentoo.org> -make.defaults, packages,
-  +parent, -use.defaults, -use.mask, virtuals:
-  Depend on the base profile, just only change the defaults then required
-
