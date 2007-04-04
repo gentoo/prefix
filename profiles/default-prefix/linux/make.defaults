@@ -9,3 +9,5 @@ USE="${USE} fortran"
 # on glibc system you cannot turn it off
 USE="${USE} iconv"
 
+# Linux has sandbox support
+FEATURES="sandbox"
