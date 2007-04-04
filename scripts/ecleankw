@@ -11,10 +11,11 @@
 # to the full inner join, because in theory we have (unique) sets.
 
 # these need to reflect the keywords that are valid for the tree
-my_keywords="amd64-linux ia64-linux mips-linux x86-linux" \
-	"ppc-aix" \
-	"ppc-macos x86-macos" \
-	"sparc-solaris x86-solaris"
+my_keywords="
+	amd64-linux ia64-linux mips-linux x86-linux
+	ppc-aix
+	ppc-macos x86-macos
+	sparc-solaris x86-solaris"
 
 if [ -z $1 ] ; then
 	files="*.ebuild"
