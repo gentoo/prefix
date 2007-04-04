@@ -17,3 +17,11 @@ RDEPEND="x11-misc/xorg-cf-files
 	!x11-misc/xmkmf"
 DEPEND="${RDEPEND}
 	x11-proto/xproto"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	# don't use Sun compilers on Solaris, we want GCC from prefix
+	sed -i -e "1s/^.*$/#if defined(sun)\n# undef sun\n#endif/" \
+		imake.c imakemdep.h
+}
