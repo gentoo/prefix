@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="X.Org X11 library"
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="ipv6 xcb"
 RDEPEND=">=x11-libs/xtrans-1.0.1
 	x11-libs/libXau
