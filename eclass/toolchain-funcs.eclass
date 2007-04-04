@@ -312,11 +312,13 @@ _tc_gen_usr_ldscript() {
 	[[ -n ${output_format} ]] && output_format="OUTPUT_FORMAT ( ${output_format} )"
 
 	for lib in "$@" ; do
-		if [[ ${CHOST} == *-darwin* ]] ; then
-			ewarn "Not creating fake dynamic library for $lib on Darwin;"
+		case ${CHOST} in
+		*-darwin*|*-aix*|*-irix*)
+			ewarn "Not creating fake dynamic library for $lib;"
 			ewarn "making a symlink instead."
 			dosym "/${libdir}/${lib}" "/usr/${libdir}/${lib}"
-		else
+			;;
+		*)	
 			cat > "${ED}/usr/${libdir}/${lib}" <<-END_LDSCRIPT
 			/* GNU ld script
 			   Since Gentoo has critical dynamic libraries
@@ -329,7 +331,8 @@ _tc_gen_usr_ldscript() {
 			${output_format}
 			GROUP ( ${EPREFIX}/${libdir}/${lib} )
 			END_LDSCRIPT
-		fi
+			;;
+		esac
 		fperms a+x "/usr/${libdir}/${lib}" || die "could not change perms on ${lib}"
 	done
 }
