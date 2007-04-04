@@ -11,7 +11,7 @@ inherit x-modular flag-o-matic
 
 DESCRIPTION="X.Org Xt library"
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libSM
