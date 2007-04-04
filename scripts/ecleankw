@@ -11,7 +11,10 @@
 # to the full inner join, because in theory we have (unique) sets.
 
 # these need to reflect the keywords that are valid for the tree
-my_keywords="amd64 ia64 mips ppc-aix ppc-macos sparc-solaris x86 x86-macos x86-solaris"
+my_keywords="amd64-linux ia64-linux mips-linux x86-linux" \
+	"ppc-aix" \
+	"ppc-macos x86-macos" \
+	"sparc-solaris x86-solaris"
 
 if [ -z $1 ] ; then
 	files="*.ebuild"
@@ -25,8 +28,8 @@ for f in $files ; do
 	eval `egrep "^KEYWORDS=" "$f"`
 	for kw in $KEYWORDS ; do
 		for mkw in $my_keywords ; do
-			if [[ $kw == $mkw || $kw == ~$mkw  ]] ; then
-				[[ ${mkw%-*} == ${mkw} ]] && mkw=${mkw}-linux
+			mkws=${mkw%-linux}
+			if [[ $kw == $mkws || $kw == ~$mkws ]] ; then
 				newkw="$newkw ~$mkw"
 				break
 			fi
