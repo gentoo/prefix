@@ -10,7 +10,7 @@ EAPI="prefix"
 inherit x-modular
 
 DESCRIPTION="X.Org autotools utility macros"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 RDEPEND=""
 DEPEND="${RDEPEND}"
 
