@@ -17,6 +17,9 @@
 #amd64		default-linux/amd64/2006.1/no-multilib	stable
 amd64		default-linux/amd64/2006.1/fc4		dev
 
+# mips
+mips-linux	default-linux/mips/ps2				dev
+
 # Mac OS X Profiles
 ppc-macos	default-darwin/macos/10.3			dev
 ppc-macos	default-darwin/macos/10.4/ppc		dev
