@@ -17,7 +17,7 @@ SRC_URI="http://elinks.or.cz/download/${MY_P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
 IUSE="bittorrent bzip2 debug finger ftp gopher gpm guile idn ipv6 \
 	  javascript lua nls nntp perl ruby ssl unicode X zlib"
 RESTRICT="test"
