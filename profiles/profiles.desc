@@ -6,44 +6,24 @@
 #layout:
 #arch		profile_directory				status
 
-# AMD64 Profiles
-#amd64		default-linux/amd64/2006.0			stable
-#amd64		default-linux/amd64/2006.1			stable
-#amd64		default-linux/amd64/2006.1/desktop	stable
-#amd64		default-linux/amd64/2006.1/server	stable
-#amd64		default-linux/amd64/2006.0/no-symlinks	dev
-#amd64		default-linux/amd64/2006.1/no-symlinks	dev
-#amd64		default-linux/amd64/2006.0/no-multilib	stable
-#amd64		default-linux/amd64/2006.1/no-multilib	stable
-amd64		default-linux/amd64/2006.1/fc4		dev
-
-# mips
-mips		default-linux/mips/ps2				dev
-
-# IA64 Profiles
-#ia64		default-linux/ia64/2005.0			stable
-ia64		default-linux/ia64/2006.0			dev
-
-# x86 Profiles
-#x86		default-linux/x86/2005.0			stable
-#x86		default-linux/x86/2005.1			stable
-#x86		default-linux/x86/2006.0			stable
-x86			default-linux/x86/2006.1			dev
-#x86		default-linux/x86/no-nptl			stable
-#x86		default-linux/x86/no-nptl/2.4		stable
-x86			default-linux/x86/2006.1/desktop	dev
-#x86		default-linux/x86/2006.1/server		stable
-
+# Linux Profiles
+amd64		default-prefix/linux/amd					dev
+mips		default-prefix/linux/mips					dev
+ia64		default-prefix/linux/ia64					dev
+x86			default-prefix/linux/x86					dev
 
 # Mac OS X Profiles
-ppc-macos	default-darwin/macos/10.3			dev
-ppc-macos	default-darwin/macos/10.4/ppc		dev
-x86-macos	default-darwin/macos/10.4/x86		dev
+ppc-macos	default-prefix/darwin/macos/10.3			dev
+ppc-macos	default-prefix/darwin/macos/10.4/ppc		dev
+x86-macos	default-prefix/darwin/macos/10.4/x86		dev
 
 # Solaris Profiles
-sparc-solaris	default-sunos/solaris/5.10/sparc	dev
-x86-solaris		default-sunos/solaris/5.10/x86		dev
+sparc-solaris	default-prefix/sunos/solaris/5.10/sparc	dev
+x86-solaris		default-prefix/sunos/solaris/5.10/x86	dev
 
 # AIX Profiles
-ppc-aix			default-aix/5.2.0.0/ppc				dev
-ppc-aix			default-aix/5.3.0.0/ppc				dev
+ppc-aix		default-prefix/aix/5.2.0.0/ppc				dev
+ppc-aix		default-prefix/aix/5.3.0.0/ppc				dev
+
+# IRIX Profiles
+mips-irix	default-prefix/irix/XXX/mips				dev
