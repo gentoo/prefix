@@ -1,0 +1,15 @@
+# Copyright 1999-2007 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+# System-wide defaults for all AIX profiles
+# This file should rarely need to be changed
+
+# 'Sane' defaults
+ELIBC="IRIX"
+KERNEL="IRIX"
+
+# This one should eventually go
+USERLAND="IRIX"
+
+# Sandbox is not ported to IRIX (yet?)
+FEATURES="-sandbox"
