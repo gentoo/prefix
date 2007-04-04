@@ -1,6 +1,6 @@
 # TODO: review/add/modify this list
 
-# these will more than likely never work on solaris
+# these will more than likely never work on AIX
 3dfx
 3dnow
 3dnowext

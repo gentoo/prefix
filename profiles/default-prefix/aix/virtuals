@@ -1,6 +1,6 @@
-# Copyright 200r75 Gentoo Foundation.
+# Copyright 2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/default-darwin/virtuals,v 1.21 2006/06/22 18:58:27 grobian Exp $
+# $Header: $
 
 virtual/libc		sys-aix/libc
 virtual/os-headers	sys-aix/libc
