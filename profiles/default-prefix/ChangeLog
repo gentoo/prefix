@@ -2,6 +2,11 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 Apr 2007; Fabian Groffen <grobian@gentoo.org> aix/use.mask,
+  darwin/use.mask, sunos/use.mask, +use.mask:
+  Moved elibc/kernel/userland USE-flags masking to the default-prefix profile,
+  and unmasked them in the specific profiles again
+
   04 Apr 2007; Fabian Groffen <grobian@gentoo.org>:
   Depend on the base profile, just only change the defaults when required
 

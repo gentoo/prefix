@@ -1,0 +1,17 @@
+
+# Mask all elibc/kernel combinations, unmasked in the appropriate
+# profiles
+elibc_glibc
+elibc_Darwin
+elibc_SunOS
+elibc_AIX
+
+kernel_linux
+kernel_Darwin
+kernel_SunOS
+kernel_AIX
+
+userland_GNU
+userland_Darwin
+userland_Solaris
+userland_AIX

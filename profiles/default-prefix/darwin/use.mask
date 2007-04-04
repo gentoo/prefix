@@ -6,16 +6,8 @@
 
 # Re-add Darwin libc
 -elibc_Darwin
-
-# Mask extraneous elibc/kernel combinations
-elibc_glibc
-elibc_uclibc
-elibc_Solaris
-kernel_linux
-kernel_FreeBSD
-userland_GNU
-userland_BSD
-userland_Solaris
+-kernel_Darwin
+-userland_Darwin
 
 
 # these will more than likely never work on darwin
@@ -45,25 +37,3 @@ voodoo3
 pvm
 v4l
 v4l2
-
-# see email to gentoo-dev with subject "use.mask and PHP5's crazy IUSE"
-# Dated Sat, 31 Jul 2004 14:49:28 -0700, from robbat2@gentoo.org
-# all of these are binary-only, and not presently available on this
-# architecture.
-adabas
-birdstep
-db2
-dbmaker
-empress
-empress-bcs
-esoob
-filepro
-frontbase
-hyperwave
-informix
-ingres
-oci8
-oracle7
-pfpro
-solid
-
