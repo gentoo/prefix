@@ -85,43 +85,48 @@ bootstrap_setup() {
 	einfo "setting up some guessed defaults"
 	case ${CHOST} in
 		powerpc-apple-darwin8)
-			profile="${PORTDIR}/profiles/default-darwin/macos/10.4/ppc"
+			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.4/ppc"
 			keywords="~ppc-macos ppc-macos"
 			;;
 		powerpc-apple-darwin7)
-			profile="${PORTDIR}/profiles/default-darwin/macos/10.3"
+			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.3"
 			keywords="~ppc-macos ppc-macos"
 			;;
 		i*86-apple-darwin8)
-			profile="${PORTDIR}/profiles/default-darwin/macos/10.4/x86"
+			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.4/x86"
 			keywords="~x86-macos x86-macos"
 			;;
 		i*86-pc-linux-gnu)
-			profile="${PORTDIR}/profiles/default-linux/x86/2006.1"
+			profile="${PORTDIR}/profiles/default-prefix/linux/x86"
 			keywords="~x86 x86"
 			;;
 		x64_86-pc-linux-gnu)
-			profile="${PORTDIR}/profiles/default-linux/amd64/2005.1/no-multilib"
+			profile="${PORTDIR}/profiles/default-prefix/linux/amd64"
 			keywords="~amd64 amd64"
 			;;
 		ia64-pc-linux-gnu)
-			profile="${PORTDIR}/profiles/default-linux/ia64/2006.0"
+			profile="${PORTDIR}/profiles/default-prefix/linux/ia64"
 			keywords="~ia64 ia64"
 			;;
 		i386-pc-solaris2.10)
-			profile="${PORTDIR}/profiles/default-sunos/solaris/5.10/x86"
+			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.10/x86"
 			keywords="~x86-solaris x86-solaris"
 			;;
 		sparc-sun-solaris2.10)
-			profile="${PORTDIR}/profiles/default-sunos/solaris/5.10/sparc"
+			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.10/sparc"
 			keywords="~sparc-solaris sparc-solaris"
 			;;
 		powerpc-ibm-aix*)
-			profile="${PORTDIR}/profiles/default-aix/${CHOST#powerpc-ibm-aix}/ppc"
+			profile="${PORTDIR}/profiles/default-prefix/aix/${CHOST#powerpc-ibm-aix}/ppc"
 			keywords="~ppc-aix ppc-aix"
 			;;
+		mips-sgi-irix*)
+			profile="${PORTDIR}/profiles/default-prefix/irix/${CHOST#mips-sgi-irix}/mips"
+			keywords="~mips-irix mips-irix"
+			;;
 		*)	
-			einfo "You might need to set up a make.profile symlink to a profile in ${PORTDIR}"
+			einfo "You need to set up a make.profile symlink to a"
+			einfo "profile in ${PORTDIR} for your CHOST ${CHOST}"
 			;;
 	esac
 	if [ ! -z "${profile}" -a ! -e "${ROOT}"/etc/make.profile ];
@@ -492,6 +497,11 @@ then
 				# guessing here, instead of what IBM uses itself.
 				CHOST="`/usr/bin/uname -p`-ibm-aix`oslevel`"
 				MAKE=make
+				;;
+			IRIX|IRIX64)
+				CHOST="mips-sgi-irix`uname -r`"
+				# make needs to know it is gmake
+				MAKE=gmake
 				;;
 			*)
 				eerror "Nothing known about platform `uname -s`."
