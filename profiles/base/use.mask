@@ -1,0 +1,165 @@
+# profile specific USE flags
+selinux
+uclibc
+
+# amd64/x86 arch specific USE flags
+kqemu
+3dnow
+3dnowext
+icc
+icc-pgo
+ifc
+mmx
+mmxext
+sse
+sse2
+svga
+win32codecs
+real
+nvram
+
+# ppc arch specific USE flags
+altivec
+pbbuttonsd
+ppcsha1
+
+# mips arch specific USE flags
+n32
+n64
+
+# ppc64 arch specific USE flags
+ibm
+
+# sparc arch specific USE flags
+vis
+ultra1
+
+# nVidia XvMC requires nvidia-drivers/nvidia-legacy-drivers
+nvidia
+
+# dev-db/oracle-instantclient-basic is only available on x86
+oci8-instant-client
+
+# net-libs/osptoolkit is only available on x86 (used by asterisk, bug 115798)
+osp
+
+# yellownet is only avaible as a binary blob (bug 149970)
+yellownet
+
+# not needed on non-sparc systems
+video_cards_sunbw2
+video_cards_suncg14
+video_cards_suncg3
+video_cards_suncg6
+video_cards_sunffb
+video_cards_sunleo
+video_cards_suntcx
+
+# not needed on non-mips system
+video_cards_newport
+video_cards_impact
+
+# not needed on non-x86, non-amd64 systems
+input_devices_vmmouse
+video_cards_nvidia
+video_cards_fglrx
+video_cards_vmware
+
+# not needed on non-x86, non-amd64, non-ppc systems
+input_devices_synaptics
+input_devices_wacom
+
+# beep-media-player is in package.mask
+bmp
+# media-sound/bmpx is broken, app-admin/conky wants to pull it in (bug #162405)
+bmpx
+
+# xmms is going away
+xmms
+# app-admin/conky deps on xmms with this flag
+infopipe
+
+# psyco only works on x86
+psyco
+
+# Mask ELIBC, KERNEL, and USERLAND flags that apply to specific profiles.
+elibc_FreeBSD
+elibc_NetBSD
+elibc_OpenBSD
+elibc_Darwin
+elibc_DragonFly
+elibc_uclibc
+kernel_Darwin
+kernel_FreeBSD
+userland_BSD
+userland_Darwin
+
+# Diego Pettenò <flameeyes@gentoo.org> (6 Dec 2006)
+# Mask specific Apple drivers
+alsa_cards_aoa
+alsa_cards_aoa-fabric-layout
+alsa_cards_aoa-onyx
+alsa_cards_aoa-soundbus
+alsa_cards_aoa-soundbus-i2s
+alsa_cards_aoa-tas
+alsa_cards_aoa-toonie
+alsa_cards_powermac
+# Mask specific Sun drivers
+alsa_cards_sun-amd7930
+alsa_cards_sun-cs4231
+alsa_cards_sun-dbri
+# Mask specific ARM drivers
+alsa_cards_pxa2xx-i2sound
+alsa_cards_pxa2xx-soc
+alsa_cards_pxa2xx-soc-corgi
+alsa_cards_pxa2xx-soc-poodle
+alsa_cards_pxa2xx-soc-spitz
+alsa_cards_pxa2xx-soc-tosa
+alsa_cards_sa11xx-uda1341ts
+alsa_cards_armaaci
+alsa_cards_at91-soc
+alsa_cards_at91-soc-eti-b1-wm8731
+# Mask specific HPPA drivers
+alsa_cards_harmony
+# Mask specific MIPS drivers
+alsa_cards_au1x00
+
+# Diego Pettenò <flameeyes@gentoo.org> (29 Dec 2006)
+# Adobe FDF toolkit is x86 only.
+fdftk
+
+# Diego Pettenò <flameeyes@gentoo.org> (30 Dec 2006)
+# These are specific of Mac OS X
+aqua
+coreaudio
+
+# Diego Pettenò <flameeyes@gentoo.org> (4 Jan 2007)
+# Mask the flags for PHP that are available only on x86
+fdftk
+sybase-ct
+ingres
+birdstep
+adabas
+filepro
+pfpro
+informix
+empress
+empress-bcs
+sybase
+frontbase
+dbmaker
+esoob
+solid
+# Shared with amd64
+oci8
+oracle7
+firebird
+db2
+
+# Robert Buchholz <rbu@gentoo.org> (18 Jan 2007)
+# Only works on x86
+lcd_devices_svga
+
+# Joseph Jezak <josejx@gentoo.org> (11 Mar 2007)
+# Only for x86 and amd64 (in pbbuttonsd)
+macbook

@@ -1,0 +1,32 @@
+# ChangeLog for Gentoo base-profile
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.9 2007/03/31 19:28:49 antarus Exp $
+
+  30 Mar 2007; Alec Warner <antarus@gentoo.org> make.defaults:
+  Remove autoconfig from FEATURES, it died a long time ago
+
+  12 Mar 2007; Joseph Jezak <josejx@gentoo.org> use.mask:
+  Add macbook USE flag to use.mask.
+
+  05 Mar 2007; Stephen Bennett <spb@gentoo.org> make.defaults:
+  Add /etc/env.d to CONFIG_PROTECT_MASK
+
+  15 Feb 2007; Chris Gianelloni <wolf31o2@gentoo.org> use.defaults:
+  Removed udev remnants using a patch from Arfrever Frehtes Taifersar Arahesis
+  <FFTA@WP.PL> and closing bug #166917.
+
+  29 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> make.defaults:
+  Add midi useflag by default to cope with newer alsa versions.
+
+  27 Jan 2007; Alon Bar-Lev <alonbl@gentoo.org> make.defaults:
+  Added CAMERAS USE_EXPAND bug#139884
+
+  22 Jan 2007; Christian Faulhammer <opfer@gentoo.org> use.mask:
+  masked bmpx USE flag in order to stable conky
+
+  18 Jan 2007; Robert Buchholz <rbu@gentoo.org> use.mask:
+  Masked lcd_devices_svga as it only works on x86
+
+  17 Jan 2007; Robert Buchholz <rbu@gentoo.org> make.defaults:
+  Added LCD_DEVICES to USE_EXPAND and provided some defaults
+
