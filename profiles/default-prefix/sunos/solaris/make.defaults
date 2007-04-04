@@ -1,7 +1,2 @@
-USE_EXPAND="LINGUAS USERLAND KERNEL ELIBC"
+# this should eventually go
 USERLAND="Solaris"
-KERNEL="Solaris"
-ELIBC="Solaris"
-
-FEATURES="collision-protect"
-

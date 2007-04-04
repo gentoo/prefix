@@ -8,5 +8,8 @@
 ELIBC="AIX"
 KERNEL="AIX"
 
+# This one should eventually go
+USERLAND="AIX"
+
 # Sandbox is not ported to AIX yet
 FEATURES="-sandbox"
