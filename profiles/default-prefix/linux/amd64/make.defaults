@@ -11,6 +11,7 @@ USE="amd64"
 # Multilib settings for all amd64 subprofiles.
 MULTILIB_ABIS="amd64 x86"
 DEFAULT_ABI="amd64"
+ABI=amd64
 
 # 64bit specific settings.
 CHOST_amd64="x86_64-pc-linux-gnu"
