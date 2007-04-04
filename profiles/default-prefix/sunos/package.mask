@@ -1,0 +1,4 @@
+
+# Fabian Groffen <grobian@gentoo.org> (04 Apr 2007)
+# Don't use this, it is only provided for experimentation.
+sys-devel/native-cctools
