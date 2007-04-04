@@ -30,7 +30,7 @@ for f in $files ; do
 		for mkw in $my_keywords ; do
 			mkws=${mkw%-linux}
 			if [[ $kw == $mkws || $kw == ~$mkws ]] ; then
-				newkw="$newkw ~$mkw"
+				newkw="$newkw ~$mkws"
 				break
 			fi
 		done
