@@ -1,5 +1,0 @@
-# Copyright 2004 Gentoo Foundation.
-# Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/amd64/virtuals,v 1.20 2005/11/09 21:19:16 wolf31o2 Exp $
-
-virtual/bootloader			sys-boot/grub

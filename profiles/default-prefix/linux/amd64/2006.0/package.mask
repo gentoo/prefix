@@ -1,5 +1,0 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/amd64/2006.0/package.mask,v 1.2 2006/07/30 22:04:07 kugelfang Exp $
-
-# Jeremy Huddleston <eradicator@gentoo.org>
-# These are provided by non-emul packages now
-<app-emulation/emul-linux-x86-glibc-1000

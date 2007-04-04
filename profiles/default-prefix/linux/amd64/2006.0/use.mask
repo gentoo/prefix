@@ -1,5 +1,0 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/amd64/2006.0/use.mask,v 1.1 2005/10/07 02:22:32 eradicator Exp $
-
-# Jeremy Huddleston <eradicator@gentoo.org>
-# multilib is forced on when we have ${MULTILIB_ABIS} defined
-multilib
