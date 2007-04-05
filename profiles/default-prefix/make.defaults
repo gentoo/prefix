@@ -1,0 +1,4 @@
+# without this, somehow USERLAND seems not to be expanded.
+USE_EXPAND="LINGUAS USERLAND KERNEL ELIBC"
+# Prefix profiles are GNU userland profiles
+USERLAND="GNU"
