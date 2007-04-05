@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/sitecopy
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/sitecopy/ChangeLog,v 1.41 2006/07/28 19:16:51 dertobi123 Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/sitecopy/ChangeLog,v 1.42 2007/02/22 02:47:01 peper Exp $
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
 
   28 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
   sitecopy-0.16.3.ebuild:
