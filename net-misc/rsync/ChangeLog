@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/rsync
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.113 2007/02/03 21:35:15 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.114 2007/02/23 11:33:59 uberlord Exp $
+
+  23 Feb 2007; Roy Marples <uberlord@gentoo.org> files/rsyncd.init.d:
+  Use start-stop-daemon correctly.
 
 *rsync-2.6.9-r2 (03 Feb 2007)
 

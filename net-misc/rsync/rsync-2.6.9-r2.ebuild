@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-2.6.9-r2.ebuild,v 1.1 2007/02/03 21:35:15 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-2.6.9-r2.ebuild,v 1.2 2007/03/03 06:05:44 vapier Exp $
 
 EAPI="prefix"
 
@@ -15,10 +15,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="acl ipv6 static xinetd"
 
-RDEPEND=">=dev-libs/popt-1.5
+DEPEND=">=dev-libs/popt-1.5
 	acl? ( kernel_linux? ( sys-apps/acl ) )"
-DEPEND="${RDEPEND}
-	>=sys-apps/portage-2.0.51"
 
 S=${WORKDIR}/${P/_/}
 
