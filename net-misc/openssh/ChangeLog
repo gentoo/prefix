@@ -1,6 +1,38 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.230 2007/01/08 19:36:38 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.235 2007/03/18 18:15:38 robbat2 Exp $
+
+  18 Mar 2007; Robin H. Johnson <robbat2@gentoo.org>
+  openssh-4.5_p1-r2.ebuild:
+  Bug #169665, use slightly modified LPK patch to avoid conflict on configure
+  with SecurID patch.
+
+*openssh-4.6_p1-r1 (13 Mar 2007)
+
+  13 Mar 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.6_p1-ChallengeResponseAuthentication.patch,
+  +openssh-4.6_p1-r1.ebuild:
+  Grab fix from upstream for ChallengeResponseAuthentication (to fix USE=pam
+  defaults) #170670 and add new hpn support.
+
+*openssh-4.6_p1 (11 Mar 2007)
+
+  11 Mar 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.6_p1-include-string-header.patch, +openssh-4.6_p1.ebuild:
+  Version bump #170385 by Wolfram Schlich.
+
+*openssh-4.5_p1-r2 (05 Mar 2007)
+
+  05 Mar 2007; Robin H. Johnson <robbat2@gentoo.org>
+  +openssh-4.5_p1-r2.ebuild:
+  Bug #168681. Bump for new versions of HPN (compile fix for strict compilers)
+  and LPK (Addition of LpkFilter as an LDAP filter).
+
+*openssh-4.5_p1-r1 (23 Feb 2007)
+
+  23 Feb 2007; Roy Marples <uberlord@gentoo.org> files/sshd.rc6,
+  +openssh-4.5_p1-r1.ebuild:
+  Bump for a non bash init script.
 
   08 Jan 2007; Michael Cummings <mcummings@gentoo.org>
   openssh-4.5_p1.ebuild:
