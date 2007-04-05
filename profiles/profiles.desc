@@ -7,7 +7,7 @@
 #arch		profile_directory				status
 
 # Linux Profiles
-amd64		default-prefix/linux/amd					dev
+amd64		default-prefix/linux/amd64					dev
 mips		default-prefix/linux/mips					dev
 ia64		default-prefix/linux/ia64					dev
 x86			default-prefix/linux/x86					dev
@@ -26,4 +26,4 @@ ppc-aix		default-prefix/aix/5.2.0.0/ppc				dev
 ppc-aix		default-prefix/aix/5.3.0.0/ppc				dev
 
 # IRIX Profiles
-mips-irix	default-prefix/irix/XXX/mips				dev
+mips-irix	default-prefix/irix/6.5/mips				dev
