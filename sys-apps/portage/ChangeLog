@@ -5,7 +5,7 @@
 *portage-2.1.23.6336 (05 Apr 2007)
 
   05 Apr 2007; Fabian Groffen <grobian@gentoo.org>
-  -portage-2.1.22.6248.ebuild, +portage-2.1.23.6336.ebuild:
+  -portage-2.1.22.6248.ebuild, +portage-2.1.23.6338.ebuild:
   New snapshot with IRIX support, and interrevision handling bugfix
 
 *portage-2.1.22.6320 (28 Mar 2007)
