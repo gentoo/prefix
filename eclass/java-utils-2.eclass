@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.65 2007/03/06 12:14:49 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.68 2007/03/25 10:02:09 betelgeuse Exp $
 
 
 # -----------------------------------------------------------------------------
@@ -57,6 +57,7 @@ export WANT_JAVA_CONFIG="2"
 # -----------------------------------------------------------------------------
 #WANT_ANT_TASKS
 
+# -----------------------------------------------------------------------------
 # @variable-internal JAVA_PKG_PORTAGE_DEP
 #
 # The version of portage we need to function properly. At this moment it's
@@ -348,6 +349,11 @@ java-pkg_regjar() {
 			# record paths with ${ED} in package.env
 			java-pkg_append_ JAVA_PKG_CLASSPATH	"${jar#${ED}}"
 		else
+			if [[ ${jar} = *\** ]]; then
+				eerror "The argument ${jar} to ${FUNCNAME}"
+				eerror "has * in it. If you want it to glob in"
+				eerror '${ED} add ${ED} to the argument.'
+			fi
 			die "${jar} does not exist"
 		fi
 	done
@@ -586,13 +592,21 @@ java-pkg_dosrc() {
 	debug-print-function ${FUNCNAME} $*
 
 	[ ${#} -lt 1 ] && die "At least one argument needed"
-	if ! hasq source ${IUSE}; then
-		echo "Java QA Notice: ${FUNCNAME} called without source in IUSE"
-	fi
 
 	java-pkg_check-phase install
 
 	[[ ${#} -lt 1 ]] && die "At least one argument needed"
+
+	if ! [[ ${DEPEND} = *app-arch/zip* ]]; then
+		local msg="${FUNCNAME} called without app-arch/zip in DEPEND"
+		if is-java-strict; then
+			eerror "${msg}"
+			die "${msg}"
+		else
+			echo "${msg}"
+			echo "Please report this to http://bugs.gentoo.org."
+		fi
+	fi
 
 	java-pkg_init_paths_
 

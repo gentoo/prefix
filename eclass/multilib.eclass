@@ -1,11 +1,14 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/multilib.eclass,v 1.57 2006/10/13 16:50:53 blubb Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/multilib.eclass,v 1.60 2007/03/27 01:46:50 vapier Exp $
 #
-# Author: Jeremy Huddleston <eradicator@gentoo.org>
+# Maintainer: amd64@gentoo.org / toolchain@gentoo.org
 #
 # This eclass is for all functions pertaining to handling multilib.
 # configurations.
+
+___ECLASS_RECUR_MULTILIB="yes"
+[[ -z ${___ECLASS_RECUR_TOOLCHAIN_FUNCS} ]] && inherit toolchain-funcs
 
 DESCRIPTION="Based on the ${ECLASS} eclass"
 

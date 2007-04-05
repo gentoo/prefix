@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-pear-r1.eclass,v 1.14 2007/03/05 01:50:47 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-pear-r1.eclass,v 1.15 2007/03/22 20:12:56 chtekk Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
 # Author: Luca Longinotti <chtekk@gentoo.org>
@@ -42,6 +42,7 @@ php-pear-r1_src_install() {
 	# SNMP support
 	addpredict /usr/share/snmp/mibs/.index
 	addpredict /var/lib/net-snmp/
+	addpredict /session_mm_cli0.sem
 
 	case "${CATEGORY}" in
 		dev-php)
@@ -52,26 +53,22 @@ php-pear-r1_src_install() {
 			fi ;;
 		dev-php4) PHP_BIN="/usr/lib/php4/bin/php" ;;
 		dev-php5) PHP_BIN="/usr/lib/php5/bin/php" ;;
-		*) die "I don't know which version of PHP packages in ${CATEGORY} require"
+		*) die "Version of PHP required by packages in category ${CATEGORY} unknown"
 	esac
 
 	cd "${S}"
-	mv "${WORKDIR}/package.xml" "${S}"
+	mv -f "${WORKDIR}/package.xml" "${S}"
 
-	if has_version '=dev-php/PEAR-PEAR-1.3*' ; then
-		pear -d php_bin="${PHP_BIN}" install --nodeps --installroot="${D}" "${S}/package.xml" > /dev/null || die "Unable to install PEAR package"
+	if has_version '>=dev-php/PEAR-PEAR-1.4.8' ; then
+		pear -d php_bin="${PHP_BIN}" install --force --loose --nodeps --offline --packagingroot="${ED}" "${S}/package.xml" > /dev/null || die "Unable to install PEAR package"
 	else
-		if has_version '>=dev-php/PEAR-PEAR-1.4.8' ; then
-			pear -d php_bin="${PHP_BIN}" install --force --loose --nodeps --offline --packagingroot="${D}" "${S}/package.xml" > /dev/null || die "Unable to install PEAR package"
-		else
-			pear -d php_bin="${PHP_BIN}" install --nodeps --packagingroot="${D}" "${S}/package.xml" > /dev/null || die "Unable to install PEAR package"
-		fi
+		pear -d php_bin="${PHP_BIN}" install --nodeps --packagingroot="${ED}" "${S}/package.xml" > /dev/null || die "Unable to install PEAR package"
 	fi
 
-	rm -rf "${D}/usr/share/php/.channels" \
-	"${D}/usr/share/php/.depdblock" \
-	"${D}/usr/share/php/.depdb" \
-	"${D}/usr/share/php/.filemap" \
-	"${D}/usr/share/php/.lock" \
-	"${D}/usr/share/php/.registry"
+	rm -Rf "${ED}/usr/share/php/.channels" \
+	"${ED}/usr/share/php/.depdblock" \
+	"${ED}/usr/share/php/.depdb" \
+	"${ED}/usr/share/php/.filemap" \
+	"${ED}/usr/share/php/.lock" \
+	"${ED}/usr/share/php/.registry"
 }

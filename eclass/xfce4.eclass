@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xfce4.eclass,v 1.22 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xfce4.eclass,v 1.23 2007/03/26 19:24:51 drac Exp $
 # Author: Brad Cowan <bcowan@gentoo.org>
 
 # Xfce4 Eclass
@@ -50,8 +50,7 @@ fi
 SLOT="0"
 IUSE="debug doc"
 
-RDEPEND="virtual/x11
-	>=x11-libs/gtk+-2.2
+RDEPEND=">=x11-libs/gtk+-2.2
 	dev-libs/libxml2
 	x11-libs/startup-notification
 	>=dev-libs/dbh-1.0.20

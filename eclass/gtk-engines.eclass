@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-engines.eclass,v 1.35 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-engines.eclass,v 1.36 2007/03/26 20:19:22 genstef Exp $
 
 # IMPORTANT:
 # This eclass is deprecated and should not be used in new ebuilds.
@@ -33,7 +33,7 @@ inherit eutils
 
 KEYWORDS="x86 ppc alpha sparc hppa amd64"
 
-DEPEND="virtual/x11"
+DEPEND=""
 
 case "${SLOT}" in
 	"1" )

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.118 2006/12/20 01:38:35 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.120 2007/03/27 01:48:01 vapier Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -32,10 +32,16 @@ export GAMES_USER=${GAMES_USER:-root}
 export GAMES_USER_DED=${GAMES_USER_DED:-games}
 export GAMES_GROUP=${GAMES_GROUP:-games}
 
+games_get_libdir() {
+	# once everything is converted over from legacy GAMES_LIBDIR, delete next line
+	unset GAMES_LIBDIR
+	echo ${GAMES_LIBDIR:-${GAMES_PREFIX}/$(get_libdir)}
+}
+
 egamesconf() {
 	econf \
 		--prefix="${GAMES_PREFIX}" \
-		--libdir="${GAMES_LIBDIR}" \
+		--libdir="$(games_get_libdir)" \
 		--datadir="${GAMES_DATADIR}" \
 		--sysconfdir="${GAMES_SYSCONFDIR}" \
 		--localstatedir="${GAMES_STATEDIR}" \
@@ -82,7 +88,7 @@ prepgamesdirs() {
 	local dir f
 	for dir in \
 		"${GAMES_PREFIX}" "${GAMES_PREFIX_OPT}" "${GAMES_DATADIR}" \
-		"${GAMES_SYSCONFDIR}" "${GAMES_STATEDIR}" "${GAMES_LIBDIR}" \
+		"${GAMES_SYSCONFDIR}" "${GAMES_STATEDIR}" "$(games_get_libdir)" \
 		"${GAMES_BINDIR}" "$@"
 	do
 		[[ ! -d ${D}/${dir} ]] && continue
@@ -105,7 +111,7 @@ prepgamesdirs() {
 gamesenv() {
 	# As much as I hate doing this, we need to be a bit more flexibility with
 	# our library directories.
-	local hasit=0 GAMES_LIBDIRS=""
+	local hasit=0 GAMES_LIBDIRS="" GAMES_LIBDIR=$(games_get_libdir)
 	if has_multilib_profile ; then
 		for libdir in $(get_all_libdirs) ; do
 			if [[ ${GAMES_LIBDIR} != ${GAMES_PREFIX}/${libdir} ]] ; then
@@ -118,6 +124,8 @@ gamesenv() {
 	[[ ${hasit} == "1" ]] \
 		&& GAMES_LIBDIRS=${GAMES_LIBDIRS:1} \
 		|| GAMES_LIBDIRS="${GAMES_LIBDIR}:${GAMES_LIBDIRS}"
+	# Wish we could use doevnd here, but we dont want the env
+	# file to be tracked in the CONTENTS of every game
 	cat <<-EOF > "${EROOT}"/etc/env.d/${GAMES_ENVD}
 	LDPATH="${GAMES_LIBDIRS}"
 	PATH="${GAMES_BINDIR}"

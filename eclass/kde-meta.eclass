@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-meta.eclass,v 1.81 2006/09/27 23:10:10 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-meta.eclass,v 1.82 2007/03/18 21:39:30 carlo Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 # Simone Gotti <motaboy@gentoo.org>
@@ -325,7 +325,8 @@ function kde-meta_src_unpack() {
 				cd $S
 				mkdir -p ${dirname}
 				cd ${dirname}
-				if [[ ! "$(find ${PREFIX}/$(get_libdir)/ -name "${libname}*")" == "" ]]; then
+				search_path=$(echo ${PREFIX}/$(get_libdir)/{,kde3/{,plugins/{designer,styles}}})
+				if [[ ! "$(find ${search_path} -maxdepth 1 -name "${libname}*" 2>/dev/null)" == "" ]]; then
 					echo "Symlinking library ${libname} under ${PREFIX}/$(get_libdir)/ in source dir"
 					ln -s ${PREFIX}/$(get_libdir)/${libname}* .
 				else

@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vim-plugin.eclass,v 1.19 2007/01/12 05:18:24 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vim-plugin.eclass,v 1.20 2007/03/21 03:40:22 pioto Exp $
 #
 # This eclass simplifies installation of app-vim plugins into
 # /usr/share/vim/vimfiles.  This is a version-independent directory
@@ -110,35 +110,35 @@ display_vim_plugin_help() {
 	local h
 
 	if [[ -n "${VIM_PLUGIN_HELPFILES}" ]] ; then
-		einfo " "
-		einfo "This plugin provides documentation via vim's help system. To"
-		einfo "view it, use:"
+		elog " "
+		elog "This plugin provides documentation via vim's help system. To"
+		elog "view it, use:"
 		for h in ${VIM_PLUGIN_HELPFILES} ; do
-			einfo "    :help ${h}"
+			elog "    :help ${h}"
 		done
-		einfo " "
+		elog " "
 
 	elif [[ -n "${VIM_PLUGIN_HELPTEXT}" ]] ; then
-		einfo " "
+		elog " "
 		while read h ; do
-			einfo "$h"
+			elog "$h"
 		done <<<"${VIM_PLUGIN_HELPTEXT}"
-		einfo " "
+		elog " "
 
 	elif [[ -n "${VIM_PLUGIN_HELPURI}" ]] ; then
-		einfo " "
-		einfo "Documentation for this plugin is available online at:"
-		einfo "    ${VIM_PLUGIN_HELPURI}"
-		einfo " "
+		elog " "
+		elog "Documentation for this plugin is available online at:"
+		elog "    ${VIM_PLUGIN_HELPURI}"
+		elog " "
 	fi
 
 	if hasq "filetype" "${VIM_PLUGIN_MESSAGES}" ; then
-		einfo "This plugin makes use of filetype settings. To enable these,"
-		einfo "add lines like:"
-		einfo "    filetype plugin on"
-		einfo "    filetype indent on"
-		einfo "to your ~/.vimrc file."
-		einfo " "
+		elog "This plugin makes use of filetype settings. To enable these,"
+		elog "add lines like:"
+		elog "    filetype plugin on"
+		elog "    filetype indent on"
+		elog "to your ~/.vimrc file."
+		elog " "
 	fi
 }
 

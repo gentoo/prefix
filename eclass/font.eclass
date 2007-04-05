@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.21 2006/10/30 06:13:48 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.22 2007/03/26 20:04:34 genstef Exp $
 
 # Author: foser <foser@gentoo.org>
 
@@ -26,7 +26,7 @@ DOCS="" # Docs to install
 
 IUSE="X"
 
-DEPEND="X? ( || ( x11-apps/mkfontdir virtual/x11 ) )
+DEPEND="X? ( x11-apps/mkfontdir )
 		media-libs/fontconfig"
 
 #

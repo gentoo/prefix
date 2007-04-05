@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php5_1-sapi.eclass,v 1.39 2007/03/06 12:46:48 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5_1-sapi.eclass,v 1.40 2007/03/26 20:19:22 genstef Exp $
 
 # ========================================================================
 #
@@ -102,7 +102,7 @@ DEPEND="adabas? ( >=dev-db/unixODBC-1.8.13 )
 		xmlrpc? ( >=dev-libs/libxml2-2.6.8 virtual/libiconv )
 		xmlreader? ( >=dev-libs/libxml2-2.6.8 )
 		xmlwriter? ( >=dev-libs/libxml2-2.6.8 )
-		xpm? ( || ( x11-libs/libXpm virtual/x11 ) >=media-libs/jpeg-6b media-libs/libpng sys-libs/zlib )
+		xpm? ( x11-libs/libXpm >=media-libs/jpeg-6b media-libs/libpng sys-libs/zlib )
 		xsl? ( dev-libs/libxslt >=dev-libs/libxml2-2.6.8 )
 		zlib? ( sys-libs/zlib )
 		virtual/mta"
@@ -229,7 +229,7 @@ php5_1-sapi_install_ini() {
 	destdir=/usr/$(get_libdir)/php5
 
 	# get the extension dir, if not already defined
-	[[ -z "${PHPEXTDIR}" ]] && PHPEXTDIR="`"${D}/${destdir}/bin/php-config" --extension-dir`"
+	[[ -z "${PHPEXTDIR}" ]] && PHPEXTDIR="`"${ED}/${destdir}/bin/php-config" --extension-dir`"
 
 	# work out where we are installing the ini file
 	php5_1-sapi_set_php_ini_dir
@@ -291,11 +291,11 @@ php5_1-sapi_install_ini() {
 	dodir ${PHP_EXT_INI_DIR_ACTIVE}
 
 	# Install any extensions built as shared objects
-	if useq sharedext ; then
-		for x in `ls "${D}/${PHPEXTDIR}/"*.so | sort` ; do
+	if use sharedext ; then
+		for x in `ls "${ED}/${PHPEXTDIR}/"*.so | sort` ; do
 			inifilename=${x/.so/.ini}
 			inifilename=`basename ${inifilename}`
-			echo "extension=`basename ${x}`" >> "${D}/${PHP_EXT_INI_DIR}/${inifilename}"
+			echo "extension=`basename ${x}`" >> "${ED}/${PHP_EXT_INI_DIR}/${inifilename}"
 			dosym "${PHP_EXT_INI_DIR}/${inifilename}" "${PHP_EXT_INI_DIR_ACTIVE}/${inifilename}"
 		done
 	fi
@@ -639,7 +639,7 @@ php5_1-sapi_src_install() {
 	fi
 
 	# Get the extension dir, if not already defined
-	[[ -z "${PHPEXTDIR}" ]] && PHPEXTDIR="`"${D}/${destdir}/bin/php-config" --extension-dir`"
+	[[ -z "${PHPEXTDIR}" ]] && PHPEXTDIR="`"${ED}/${destdir}/bin/php-config" --extension-dir`"
 
 	# And install the modules to it
 	if use sharedext ; then

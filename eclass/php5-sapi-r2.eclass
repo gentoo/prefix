@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php5-sapi-r2.eclass,v 1.42 2006/11/23 14:02:50 vivo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5-sapi-r2.eclass,v 1.43 2007/03/26 20:19:22 genstef Exp $
 #
 # eclass/php5-sapi-r2.eclass
 #               Eclass for building different php5 SAPI instances
@@ -85,7 +85,7 @@ DEPEND="$DEPEND
 	tiff? ( media-libs/tiff )
 	truetype? ( =media-libs/freetype-2* >=media-libs/t1lib-5.0.0 )
 	wddx? ( dev-libs/expat )
-	xpm? ( || ( x11-libs/libXpm virtual/x11 ) )
+	xpm? ( x11-libs/libXpm )
 	xsl? ( dev-libs/libxslt )
 	zlib? ( sys-libs/zlib ) "
 

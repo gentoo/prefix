@@ -24,21 +24,21 @@ RDEPEND="sys-libs/glibc
 S=${WORKDIR}
 
 games-etmod_src_install() {
-	[ -z "${MOD_NAME}" ] && die "what is the name of this etmod ?"
+	[[ -z "${MOD_NAME}" ]] && die "what is the name of this etmod ?"
 
 	local bdir=${GAMES_PREFIX_OPT}/enemy-territory
 	local mdir=${bdir}/${MOD_NAME}
 	MOD_BINS=${MOD_BINS:-${MOD_NAME}}
 
-	if [ -d ${MOD_NAME} ] ; then
+	if [[ -d ${MOD_NAME} ]] ; then
 		dodir "${bdir}"
 		cp -PR ${MOD_NAME} "${D}/${bdir}/"
 	fi
-	if [ -d etmain ] ; then
+	if [[ -d etmain ]] ; then
 		dodir "${bdir}"
 		cp -PR etmain "${D}/${bdir}/"
 	fi
-	if [ ! -z "`ls "${S}"/* 2> /dev/null`" ] ; then
+	if [[ ! -z "`ls "${S}"/* 2> /dev/null`" ]] ; then
 		dodir "${mdir}"
 		cp -PR "${S}"/* "${D}/${mdir}/"
 	fi

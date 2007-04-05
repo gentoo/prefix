@@ -1,19 +1,15 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.74 2007/03/01 18:48:02 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.75 2007/03/04 21:03:41 vapier Exp $
 #
-# Author: Martin Schlemmer <azarah@gentoo.org>
+# Maintainer: base-system@gentoo.org
 #
 # This eclass patches ltmain.sh distributed with libtoolized packages with the
 # relink and portage patch among others
-
-# 2004.09.25 rac
-# i have verified that at least one package can use this eclass and
-# build properly even without libtool installed yet, probably using
-# the files in the distribution.  eliminating this dependency fixes
-# bug 65209, which is a showstopper for people doing installs using
-# stageballs <3.  if anybody decides to revert this, please attempt
-# to find an alternate way of resolving that bug at the same time.
+#
+# Note, this eclass does not require libtool as it only applies patches to
+# generated libtool files.  We do not run the libtoolize program because that
+# requires a regeneration of the main autotool files in order to work properly.
 
 DESCRIPTION="Based on the ${ECLASS} eclass"
 

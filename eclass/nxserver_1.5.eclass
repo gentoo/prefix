@@ -1,7 +1,8 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/nxserver_1.5.eclass,v 1.4 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/nxserver_1.5.eclass,v 1.5 2007/03/26 20:24:24 genstef Exp $
 #
+# DEPRECATED
 # eclass for handling the different nxserver binaries available
 # from nomachine's website
 #
@@ -16,7 +17,7 @@ SLOT="0"
 RESTRICT="nomirror strip fetch"
 
 SRC_URI="nxserver-${MY_PV}.i386.rpm"
-DEPEND="|| ( (
+DEPEND="
 			x11-proto/xproto
 			x11-proto/xf86vidmodeproto
 			x11-proto/glproto
@@ -28,9 +29,6 @@ DEPEND="|| ( (
 			x11-libs/libXvMC
 			media-libs/mesa
 			x11-misc/xdialog
-		)
-		virtual/x11
-	)
 	sys-apps/shadow
 	net-misc/openssh
 	!prebuilt? (
@@ -47,7 +45,6 @@ DEPEND="|| ( (
 
 RDEPEND="media-libs/jpeg
 	sys-libs/zlib
-	virtual/x11
 	net-misc/openssh
 	dev-lang/perl
 	=net-misc/nxclient-1.5*"

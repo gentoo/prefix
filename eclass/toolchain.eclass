@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.331 2007/03/10 13:40:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.332 2007/03/24 06:46:33 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -2320,10 +2320,7 @@ disgusting_gcc_multilib_HACK() {
 			;;
 		esac
 	else
-		# Remove this hunk when amd64's 2004.3 is purged from portage.
-		use amd64 || die "Your profile is no longer supported by portage."
-		config="i386/t-linux64"
-		libdirs="../$(get_libdir) ../$(get_multilibdir)"
+		die "Your profile is no longer supported by portage."
 	fi
 
 	einfo "updating multilib directories to be: ${libdirs}"

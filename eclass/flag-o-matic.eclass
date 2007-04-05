@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.117 2007/03/04 21:13:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.118 2007/03/24 07:07:18 vapier Exp $
 #
 # Maintainer: toolchain@gentoo.org
 
@@ -167,6 +167,7 @@ _filter-var() {
 filter-flags() {
 	_filter-hardened "$@"
 	_filter-var CFLAGS "$@"
+	_filter-var CPPFLAGS "$@"
 	_filter-var CXXFLAGS "$@"
 	return 0
 }
@@ -176,9 +177,15 @@ filter-lfs-flags() {
 	filter-flags -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE
 }
 
+append-cppflags() {
+	[[ -z $* ]] && return 0
+	export CPPFLAGS="${CPPFLAGS} $*"
+	return 0
+}
+
 append-lfs-flags() {
 	[[ -n $@ ]] && die "append-lfs-flags takes no arguments"
-	append-flags -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE
+	append-cppflags -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE
 }
 
 append-flags() {

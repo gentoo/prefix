@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozilla.eclass,v 1.32 2007/02/27 17:02:37 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozilla.eclass,v 1.33 2007/03/26 20:19:22 genstef Exp $
 #
 # You probably don't want to change this eclass.  Newer ebuilds use
 # mozconfig.eclass instead.
@@ -14,7 +14,7 @@ IUSE="${IUSE} moznoxft"
 [[ ${PN} == mozilla ]] && \
 	IUSE="${IUSE} mozsvg"
 
-RDEPEND="virtual/x11
+RDEPEND="
 	!moznoxft? ( virtual/xft )
 	>=media-libs/fontconfig-2.1
 	>=sys-libs/zlib-1.1.4

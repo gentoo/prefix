@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/tetex.eclass,v 1.49 2006/11/23 14:02:50 vivo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/tetex.eclass,v 1.50 2007/03/26 20:04:34 genstef Exp $
 #
 # Author: Jaromir Malenko <malenko@email.cz>
 # Author: Mamoru KOMACHI <usata@gentoo.org>
@@ -58,7 +58,7 @@ fi
 DEPEND="${DEPEND}
 	sys-apps/ed
 	sys-libs/zlib
-	X? ( || ( (
+	X? (
 				x11-libs/libXmu
 				x11-libs/libXp
 				x11-libs/libXpm
@@ -66,9 +66,6 @@ DEPEND="${DEPEND}
 				x11-libs/libSM
 				x11-libs/libXaw
 				x11-libs/libXfont
-			)
-			virtual/x11
-		)
 	)
 	>=media-libs/libpng-1.2.1
 	sys-libs/ncurses

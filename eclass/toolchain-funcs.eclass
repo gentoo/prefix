@@ -1,13 +1,14 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.68 2007/03/15 15:55:59 kevquinn Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.69 2007/03/27 01:46:50 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
 # This eclass contains (or should) functions to get common info
 # about the toolchain (libc/compiler/binutils/etc...)
 
-inherit multilib
+___ECLASS_RECUR_TOOLCHAIN_FUNCS="yes"
+[[ -z ${___ECLASS_RECUR_MULTILIB} ]] && inherit multilib
 
 DESCRIPTION="Based on the ${ECLASS} eclass"
 

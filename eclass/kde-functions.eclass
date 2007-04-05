@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.145 2007/03/04 21:48:11 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.146 2007/03/17 16:41:27 carlo Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -115,6 +115,8 @@ kde-base/kdeedu kde-base/kig
 kde-base/kdeedu kde-base/kiten
 kde-base/kdeedu kde-base/klatin
 kde-base/kdeedu kde-base/klettres
+kde-base/kdeedu kde-base/kmathtool
+kde-base/kdeedu kde-base/kmessedwords
 kde-base/kdeedu kde-base/kmplot
 kde-base/kdeedu kde-base/kpercentage
 kde-base/kdeedu kde-base/kstars
@@ -155,6 +157,7 @@ kde-base/kdegames kde-base/ktron
 kde-base/kdegames kde-base/ktuberling
 kde-base/kdegames kde-base/kwin4
 kde-base/kdegames kde-base/libkdegames
+kde-base/kdegames kde-base/libksirtet
 kde-base/kdegames kde-base/lskat
 kde-base/kdegraphics kde-base/kamera
 kde-base/kdegraphics kde-base/kcoloredit
@@ -176,6 +179,7 @@ kde-base/kdegraphics kde-base/kuickshow
 kde-base/kdegraphics kde-base/kview
 kde-base/kdegraphics kde-base/kviewshell
 kde-base/kdegraphics kde-base/libkscan
+kde-base/kdemultimedia kde-base/akode
 kde-base/kdemultimedia kde-base/artsplugin-akode
 kde-base/kdemultimedia kde-base/artsplugin-audiofile
 kde-base/kdemultimedia kde-base/artsplugin-mpeglib

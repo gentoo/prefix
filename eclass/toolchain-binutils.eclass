@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.71 2007/03/04 21:03:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.72 2007/03/24 07:11:40 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -246,8 +246,16 @@ toolchain-binutils_src_install() {
 	local x d
 
 	cd "${MY_BUILDDIR}"
-	make DESTDIR="${D}" tooldir="${EPREFIX}/${LIBPATH}" install || die
+	emake DESTDIR="${D}" tooldir="${EPREFIX}/${LIBPATH}" install || die
 	rm -rf "${ED}"/${LIBPATH}/bin
+
+	# Newer versions of binutils get fancy with ${LIBPATH} #171905
+	cd "${ED}"/${LIBPATH}
+	for d in ../* ; do
+		[[ ${d} == ../${BVER} ]] && continue
+		mv ${d}/* . || die
+		rmdir ${d} || die
+	done
 
 	# Now we collect everything intp the proper SLOT-ed dirs
 	# When something is built to cross-compile, it installs into
@@ -270,7 +278,6 @@ toolchain-binutils_src_install() {
 		mv "${ED}"/${LIBPATH}/lib/* "${ED}"/${LIBPATH}/
 		rm -r "${ED}"/${LIBPATH}/lib
 	fi
-	prepman ${DATAPATH}
 
 	# Insert elf2flt where appropriate
 	if [[ -x ${WORKDIR}/elf2flt-${ELF2FLT_VER}/elf2flt ]] ; then

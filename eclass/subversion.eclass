@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.39 2007/01/19 10:39:51 hattya Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.41 2007/04/01 14:48:37 hattya Exp $
 
 ## --------------------------------------------------------------------------- #
 # Author: Akinori Hattori <hattya@gentoo.org>
@@ -121,6 +121,7 @@ ESVN_UPDATE_CMD="svn update"
 ## -- subversion_fetch() ----------------------------------------------------- #
 #
 # @param $1 - a repository URI. default is the ESVN_REPO_URI.
+# @param $2 - a check out path in S.
 #
 function subversion_fetch() {
 
@@ -296,7 +297,7 @@ function subversion_wc_info() {
 	local k
 
 	for k in url revision; do
-		export ESVN_WC_$(echo "${k}" | tr "[a-z]" "[A-Z]")="$(subversion__svn_info "${wc_path}" "${k}")"
+		export ESVN_WC_$(subversion__to_upper_case "${k}")="$(subversion__svn_info "${wc_path}" "${k}")"
 	done
 
 }
@@ -389,15 +390,33 @@ function subversion__has_peg_revision() {
 	fi
 
 	local peg_rev="${repo_uri##*@}"
-	local rev=$(subversion__svn_info "${repo_uri}" "revision")
+
+	case "$(subversion__to_upper_case "${peg_rev}")" in
+		[[:digit:]]*)
+			# NUMBER
+			;;
+		HEAD|BASE|COMMITED|PREV)
+			;;
+		{[^}]*})
+			# DATE
+			;;
+		*)
+			debug-print "${FUNCNAME}: repo_uri does not have a peg revision."
+			return 1
+			;;
+	esac
 
 	debug-print "${FUNCNAME}: peg_rev = ${peg_rev}"
-	debug-print "${FUNCNAME}: rev = ${rev} "
 
-	if [[ "${peg_rev}" -eq "${rev}" ]]; then
-		return 0
-	fi
+	return 0
 
-	return 1
+}
 
+
+## -- subversion__to_upper_case() ----------------------------------------- #
+#
+# @param $@ - the strings to upper case.
+#
+function subversion__to_upper_case() {
+	echo "${@}" | tr "[a-z]" "[A-Z]"
 }

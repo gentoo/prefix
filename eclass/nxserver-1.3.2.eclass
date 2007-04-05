@@ -1,7 +1,8 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/nxserver-1.3.2.eclass,v 1.13 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/nxserver-1.3.2.eclass,v 1.14 2007/03/26 20:24:24 genstef Exp $
 #
+# DEPRECATED
 # eclass for handling the different nxserver binaries available
 # from nomachine's website
 
@@ -23,7 +24,6 @@ RDEPEND="$RDEPEND
 	>=media-libs/jpeg-6b-r3
 	>=sys-libs/glibc-2.3.2-r1
 	>=sys-libs/zlib-1.1.4-r1
-	virtual/x11
 	>=net-misc/openssh-3.6.1_p2
 	>=dev-lang/perl-5.8.0-r12"
 
