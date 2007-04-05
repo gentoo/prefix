@@ -3,3 +3,6 @@ USERLAND="Darwin"
 
 # in OSX one should have objc available
 USE="objc objc++"
+
+# we have Aqua, so let's use it
+USE="${USE} aqua"

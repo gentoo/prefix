@@ -23,3 +23,6 @@
 -*sys-fs/e2fsprogs
 -*virtual/dev-manager
 -*virtual/modutils
+
+# we don't want binutils everywhere, only in linux and solaris
+-*sys-devel/binutils
