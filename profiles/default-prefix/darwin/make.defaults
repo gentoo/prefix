@@ -8,5 +8,5 @@
 ELIBC="Darwin"
 KERNEL="Darwin"
 
-# Sandbox is not ported to Darwin yet
-FEATURES="-sandbox"
+# Sandbox is not ported to Darwin yet, no scanelf
+FEATURES="-sandbox nostrip"

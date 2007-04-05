@@ -11,5 +11,5 @@ KERNEL="AIX"
 # This one should eventually go
 USERLAND="AIX"
 
-# Sandbox is not ported to AIX yet
-FEATURES="-sandbox"
+# Sandbox is not ported to AIX yet, no scanelf
+FEATURES="-sandbox nostrip"

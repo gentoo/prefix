@@ -2,6 +2,10 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+# 'Sane' defaults
+ELIBC="glibc"
+KERNEL="linuxprefix" # on purpose not "linux" as we don't have control
+
 # make sure toolchain has sane defaults
 USE="${USE} fortran"
 

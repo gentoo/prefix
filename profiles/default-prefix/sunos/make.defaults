@@ -8,5 +8,5 @@
 ELIBC="SunOS"
 KERNEL="SunOS"
 
-# Sandbox is not ported to SunOS yet
-FEATURES="-sandbox"
+# Sandbox is not ported to SunOS yet, no scanelf
+FEATURES="-sandbox nostrip"
