@@ -1,0 +1,92 @@
+# ChangeLog for sys-libs/com_err
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/ChangeLog,v 1.26 2006/11/11 09:18:55 vapier Exp $
+
+  11 Nov 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/com_err-1.38-locale.patch, com_err-1.39.ebuild:
+  Fix building in some locales #131462 by Andres Toomsalu.
+
+  09 Oct 2006; Timothy Redaelli <drizzt@gentoo.org> com_err-1.39.ebuild:
+  Added ~x86-fbsd keyword.
+
+  09 Sep 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/com_err-1.39-parse-types.patch, com_err-1.39.ebuild:
+  Cleanup ugly build code #146903 by throw_away_2002.
+
+*com_err-1.39 (01 Aug 2006)
+
+  01 Aug 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/com_err-1.39-makefile.patch, +com_err-1.39.ebuild:
+  Version bump #141246 by David Brown.
+
+  06 Jan 2006; Diego Pettenò <flameeyes@gentoo.org> com_err-1.38.ebuild:
+  Replace an userland check by $CHOST check; added comment with reasons.
+
+  10 Nov 2005; Diego Pettenò <flameeyes@gentoo.org> com_err-1.38.ebuild:
+  Move exporting of vars in src_compile() and src_install() to work around
+  portage env bug, similar to sys-fs/e2fsprogs-1.38.
+
+  08 Sep 2005; Aaron Walker <ka0ttic@gentoo.org> com_err-1.38.ebuild:
+  Stable on mips.
+
+  11 Aug 2005; Mike Frysinger <vapier@gentoo.org>
+  files/com_err-1.37-makefile.patch:
+  Clean up cross-compile support.
+
+  03 Aug 2005; Mike Frysinger <vapier@gentoo.org> com_err-1.38.ebuild:
+  Use bsd-shlibs on Darwin but elf-shlibs on all other systems #99728 by Kito.
+
+  25 Jul 2005; Rene Nussbaumer <killerfox@gentoo.org> com_err-1.38.ebuild:
+  Stable on hppa.
+
+  20 Jul 2005; Markus Rothe <corsair@gentoo.org> com_err-1.38.ebuild:
+  Stable on ppc64
+
+  19 Jul 2005; Bryan Østergaard <kloeri@gentoo.org> com_err-1.38.ebuild:
+  Stable on alpha.
+
+  15 Jul 2005; Gustavo Zacarias <gustavoz@gentoo.org> com_err-1.38.ebuild:
+  Stable on sparc
+
+  14 Jul 2005; Seemant Kulleen <seemant@gentoo.org> com_err-1.38.ebuild:
+  bumping to stable, fixes bug #98303 by WGi <wgi@muenster.de>
+
+*com_err-1.38 (09 Jul 2005)
+
+  09 Jul 2005; Mike Frysinger <vapier@gentoo.org> +com_err-1.38.ebuild:
+  Version bump #98331 by Joshua.
+
+  29 Jun 2005; Joshua Kinard <kumba@gentoo.org> com_err-1.37.ebuild:
+  Marked stable on mips.
+
+  28 Jun 2005; Bryan Østergaard <kloeri@gentoo.org> com_err-1.37.ebuild:
+  Stable on alpha.
+
+  27 Jun 2005; Michael Hanselmann <hansmi@gentoo.org> com_err-1.37.ebuild:
+  Stable on hppa.
+
+  27 Jun 2005; Seemant Kulleen <seemant@gentoo.org> com_err-1.37.ebuild:
+  stable x86 and amd64 because of bug 96727
+
+  26 Jun 2005; Markus Rothe <corsair@gentoo.org> com_err-1.37.ebuild:
+  Stable on ppc64 (bug #96156)
+
+  24 Jun 2005; Gustavo Zacarias <gustavoz@gentoo.org> com_err-1.37.ebuild:
+  Stable on sparc wrt #96727
+
+  24 Jun 2005; Seemant Kulleen <seemant@gentoo.org> com_err-1.37.ebuild:
+  add postinst message about revdep-rebuild
+
+  22 Jun 2005; Michael Hanselmann <hansmi@gentoo.org> com_err-1.37.ebuild:
+  Stable on ppc (#96727).
+
+  28 Apr 2005; Seemant Kulleen <seemant@gentoo.org> com_err-1.37.ebuild:
+  undo that
+
+  28 Apr 2005; Seemant Kulleen <seemant@gentoo.org> com_err-1.37.ebuild:
+  mask for all but fbsd on x86
+
+*com_err-1.37 (23 Mar 2005)
+
+  23 Mar 2005; Mike Frysinger <vapier@gentoo.org> :
+  Initial import.  Ebuild submitted by me, forked from e2fsprogs.
