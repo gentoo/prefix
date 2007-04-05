@@ -1,6 +1,14 @@
 # ChangeLog for net-misc/neon
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.79 2006/10/18 12:44:23 uberlord Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.81 2007/04/04 13:53:01 grobian Exp $
+
+  04 Apr 2007; Fabian Groffen <grobian@gentoo.org> neon-0.26.1.ebuild,
+  neon-0.26.1-r1.ebuild:
+  Drop userland_Darwin stuff, add virtual/libintl dependency when nls USE-flag
+  in use, bug #160165
+
+  03 Mar 2007; Mike Frysinger <vapier@gentoo.org> neon-0.26.1-r1.ebuild:
+  Fix xml2 configure typo as noted by R Stephan #155952.
 
   18 Oct 2006; Roy Marples <uberlord@gentoo.org> neon-0.26.1-r1.ebuild:
   Added ~sparc-fbsd keyword.

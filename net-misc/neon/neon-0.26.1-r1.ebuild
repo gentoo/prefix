@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.26.1-r1.ebuild,v 1.4 2006/10/18 12:44:23 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.26.1-r1.ebuild,v 1.7 2007/04/04 13:53:01 grobian Exp $
 
 EAPI="prefix"
 
@@ -25,9 +25,6 @@ DEPEND="expat? ( dev-libs/expat )
 
 src_unpack() {
 	unpack ${A}
-	if use userland_Darwin ; then
-		sed -i -e "s:GXX:GCC:g" ${S}/configure || die "sed failed"
-	fi
 
 	elibtoolize
 }
@@ -44,7 +41,7 @@ src_compile() {
 	if use expat; then
 	    myconf="${myconf} --with-expat"
 	else
-	    myconf="${myconf} --with-xml2"
+	    myconf="${myconf} --with-libxml2"
 	fi
 
 	if use ssl; then
