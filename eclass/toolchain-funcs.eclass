@@ -130,6 +130,10 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 					echo sparc-solaris;;
 		i*-pc-solaris*)
 					echo x86-solaris;;
+		powerpc-ibm-aix*)
+					echo ppc-aix;;
+		mips-sgi-irix*)
+					echo mips-irix;;
 
 		alpha*)		echo alpha;;
 		arm*)		echo arm;;
