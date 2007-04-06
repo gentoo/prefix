@@ -1,0 +1,11 @@
+--- e2fsprogs-1.32/lib/ss/mk_cmds.sh.in.orig	2002-12-26 18:44:42.000000000 +0200
++++ e2fsprogs-1.32/lib/ss/mk_cmds.sh.in	2002-12-26 18:45:33.000000000 +0200
+@@ -31,7 +31,7 @@
+ TMP="ct$$.c"
+ 
+ if test ! -f "$FILE" ; then
+-    echo "$FILE: File not found"
++    echo "mk_cmds: $FILE: File not found"
+     exit 1;
+ fi
+ 
