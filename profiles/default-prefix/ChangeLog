@@ -2,6 +2,10 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Apr 2007; Fabian Groffen <fabian@gentoo.org> linux/use.mask,
+  +use.force, use.mask:
+  Unforce linux/glibc use-expanded flags forced in the base profile
+
   05 Apr 2007; Fabian Groffen <grobian@gentoo.org> +aix/packages,
   darwin/macos/make.defaults, +irix/packages, linux/packages, packages,
   +sunos/packages:

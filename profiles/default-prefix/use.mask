@@ -1,4 +1,3 @@
-
 # Mask all elibc/kernel combinations, unmasked in the appropriate
 # profiles
 elibc_glibc
