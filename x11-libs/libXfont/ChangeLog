@@ -1,6 +1,26 @@
 # ChangeLog for x11-libs/libXfont
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/libXfont/ChangeLog,v 1.57 2007/01/28 21:05:32 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfont/ChangeLog,v 1.60 2007/04/05 07:34:40 dberkholz Exp $
+
+*libXfont-1.2.8 (05 Apr 2007)
+
+  05 Apr 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  +libXfont-1.2.8.ebuild:
+  Bump. Includes the security patch as well as a fix to use loadable font
+  modules and other irrelevant stuff.
+
+  05 Apr 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  libXfont-1.2.2-r1.ebuild:
+  Fix keywords.
+
+*libXfont-1.2.7-r1 (05 Apr 2007)
+*libXfont-1.2.2-r1 (05 Apr 2007)
+
+  05 Apr 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  +files/xorg-libXfont-1.2.7-bdf-fontdir.diff, +libXfont-1.2.2-r1.ebuild,
+  +libXfont-1.2.7-r1.ebuild:
+  (#172575) Security bump. CVE 2007-1351: bdf font parsing integer overflow
+  and CVE 2007-1352: fonts.dir file parsing integer overflow.
 
   28 Jan 2007; Donnie Berkholz <dberkholz@gentoo.org>;
   -files/1.2.0-pcfread-git.diff, -libXfont-1.1.0-r1.ebuild,
