@@ -1,6 +1,50 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.105 2007/02/14 01:17:27 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.114 2007/04/04 14:23:26 foser Exp $
+
+*freetype-2.3.2-r3 (04 Apr 2007)
+
+  04 Apr 2007; Marinus Schraal <foser@gentoo.org> freetype-2.3.2-r3.ebuild,
+  freetype-2.1.10-r3.ebuild, files/freetype-2.3.2-bdflib.patch :
+  Fix for CVE-2007-1351 (#172577)
+
+  01 Apr 2007; Ryan Hill <dirtyepic@gentoo.org> freetype-2.1.9-r1.ebuild:
+  Reverse last commit.  Thinko.
+
+  31 Mar 2007; Ryan Hill <dirtyepic@gentoo.org> freetype-2.1.9-r1.ebuild:
+  Drop keywords on all but alpha and ppc for vulnerable ebuild (bug #172907).
+
+*freetype-2.3.2-r2 (31 Mar 2007)
+
+  31 Mar 2007; Ryan Hill <dirtyepic@gentoo.org>
+  +files/freetype-2.3.2-enable-valid.patch, -freetype-2.3.2.ebuild,
+  -freetype-2.3.2-r1.ebuild, +freetype-2.3.2-r2.ebuild:
+  Revision bump:
+    - we now install the ft2demos suite of font-related utilities (ftview,
+      ftvalid, ftgrid, etc.)
+    - added debug support
+    - build the gxvalid and oxvalid modules for use with ftvalid
+  
+  Removed old versions.
+
+  26 Mar 2007; Raúl Porcel <armin76@gentoo.org> freetype-1.3.1-r5.ebuild:
+  ia64 stable wrt bug 166265
+
+*freetype-2.3.2-r1 (25 Mar 2007)
+
+  25 Mar 2007; Ryan Hill <dirtyepic@gentoo.org>
+  +files/freetype-2.3.2-truetype-regression.patch,
+  +freetype-2.3.2-r1.ebuild:
+  Revision bump to fix bug #170512 and bug #170532.
+
+*freetype-2.3.2 (09 Mar 2007)
+
+  09 Mar 2007; Steve Dibb <beandog@gentoo.org> metadata.xml,
+  +freetype-2.3.2.ebuild:
+  version bumpage
+
+  15 Feb 2007; Fabian Groffen <grobian@gentoo.org> freetype-2.1.9-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   14 Feb 2007; Chris Gianelloni <wolf31o2@gentoo.org>
   freetype-1.3.1-r5.ebuild:
