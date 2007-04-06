@@ -1,8 +1,8 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-# NOTE: The comments in this file are for instruction and documentation.  
+# NOTE: The comments in this file are for instruction and documentation.
 # They're not meant to appear with your final, production ebuild.  Please
 # remember to remove them before submitting or committing your ebuild.  That
 # doesn't mean you can't add your own comments though.
@@ -53,15 +53,15 @@ LICENSE=""
 # DO NOT USE SLOT=""! This tells Portage to disable SLOTs for this package.
 SLOT="0"
 
-# Using KEYWORDS, we can record masking information *inside* an ebuild 
-# instead of relying on an external package.mask file.  Right now, you should 
-# set the KEYWORDS variable for every ebuild so that it contains the names of 
-# all the architectures with which the ebuild works.  All of the official 
-# architectures can be found in the keywords.desc file which is in 
-# /usr/portage/profiles/.  Usually you should just set this to "~x86".  The ~ 
-# in front of the architecture indicates that the package is new and should be 
-# considered unstable until testing proves its stability.  So, if you've 
-# confirmed that your ebuild works on x86 and ppc, you'd specify: 
+# Using KEYWORDS, we can record masking information *inside* an ebuild
+# instead of relying on an external package.mask file.  Right now, you should
+# set the KEYWORDS variable for every ebuild so that it contains the names of
+# all the architectures with which the ebuild works.  All of the official
+# architectures can be found in the keywords.desc file which is in
+# /usr/portage/profiles/.  Usually you should just set this to "~x86".  The ~
+# in front of the architecture indicates that the package is new and should be
+# considered unstable until testing proves its stability.  So, if you've
+# confirmed that your ebuild works on x86 and ppc, you'd specify:
 # KEYWORDS="~x86 ~ppc"
 # Once packages go stable, the ~ prefix is removed.
 # For binary packages, use -* and then list the archs the bin package
@@ -73,7 +73,7 @@ KEYWORDS="~x86"
 
 # Comprehensive list of any and all USE flags leveraged in the ebuild,
 # with the exception of any ARCH specific flags, i.e. "ppc", "sparc",
-# "x86" and "alpha".  This is a required variable.  If the ebuild doesn't 
+# "x86" and "alpha".  This is a required variable.  If the ebuild doesn't
 # use any USE flags, set to "".
 IUSE="gnome X"
 
@@ -90,7 +90,7 @@ IUSE="gnome X"
 # a dependency.
 DEPEND=""
 
-# Run-time dependencies. Must be defined to whatever this depends on to run. 
+# Run-time dependencies. Must be defined to whatever this depends on to run.
 # The below is valid if the same run-time depends are required to compile.
 RDEPEND="${DEPEND}"
 
