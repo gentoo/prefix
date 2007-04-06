@@ -1,6 +1,14 @@
 # ChangeLog for x11-libs/libX11
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.62 2007/02/04 18:23:48 joshuabaergen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.63 2007/04/05 06:54:21 dberkholz Exp $
+
+*libX11-1.1.1-r1 (05 Apr 2007)
+*libX11-1.0.3-r2 (05 Apr 2007)
+
+  05 Apr 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  +files/xorg-libX11-1.1.1-xinitimage.diff, +libX11-1.0.3-r2.ebuild,
+  +libX11-1.1.1-r1.ebuild:
+  (#172752) Security bump. CVE 2007-1667: libX11 XInitImage input validation.
 
   04 Feb 2007; Joshua Baergen <joshuabaergen@gentoo.org>
   libX11-1.0.1-r1.ebuild, libX11-1.0.3.ebuild, libX11-1.0.3-r1.ebuild:
