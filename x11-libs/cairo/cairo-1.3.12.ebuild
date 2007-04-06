@@ -60,7 +60,7 @@ src_compile() {
 	  	  $(use_enable directfb) \
 		  $(use_enable svg) $(use_enable glitz) \
 		  $(use_enable debug test-surfaces) --enable-pdf  --enable-png \
-		  $(use_enable X freetype) --enable-ps $(use_enable xcb) \
+		  $(use_enable !aqua freetype) --enable-ps $(use_enable xcb) \
 		  $(use_enable aqua quartz) $(use_enable aqua atsui) \
 		  || die "configure failed"
 
