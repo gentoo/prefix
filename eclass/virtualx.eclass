@@ -6,7 +6,7 @@
 #
 # This eclass can be used for packages that needs a working X environment to build
 
-DEPEND="X? ( x11-base/xorg-server )"
+DEPEND="!prefix? ( X? ( x11-base/xorg-server ) )"
 IUSE="X"
 
 DESCRIPTION="Based on the $ECLASS eclass"
