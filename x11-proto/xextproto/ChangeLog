@@ -1,6 +1,10 @@
 # ChangeLog for x11-proto/xextproto
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-proto/xextproto/ChangeLog,v 1.25 2006/07/19 09:02:47 gmsoft Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xextproto/ChangeLog,v 1.26 2007/02/04 18:08:36 joshuabaergen Exp $
+
+  04 Feb 2007; Joshua Baergen <joshuabaergen@gentoo.org>
+  xextproto-7.0.2.ebuild:
+  Drop mirroring restriction.  Thanks to Zhang Le of bug #163088.
 
   19 Jul 2006; Guy Martin <gmsoft@gentoo.org> xextproto-7.0.2.ebuild:
   Stable on hppa.
