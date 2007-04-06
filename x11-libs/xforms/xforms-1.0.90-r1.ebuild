@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/xforms/xforms-1.0.90-r1.ebuild,v 1.8 2006/11/22 17:44:14 masterdriverz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/xforms/xforms-1.0.90-r1.ebuild,v 1.10 2007/02/18 16:29:06 grobian Exp $
 
 EAPI="prefix"
 
@@ -30,15 +30,18 @@ DEPEND=" || (
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
-	epatch ${FILESDIR}/${P}-as-needed.patch
-	epatch "${FILESDIR}"/${P}-autoconf.patch
-	eautoreconf || die 'eautoreconf failed'
+	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-as-needed.patch
+	epatch "${FILESDIR}"/${P}-Makefile.am.patch
+
+	eautoreconf
 }
 
 src_compile () {
 	local myopts
-	if ! use opengl; then myopts="--disable-gl"; fi
+	use opengl || myopts="--disable-gl"
+
 	econf ${myopts} || die "econf failed"
 	emake || die "emake failed"
 }

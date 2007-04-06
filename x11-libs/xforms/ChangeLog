@@ -1,6 +1,21 @@
 # ChangeLog for x11-libs/xforms
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/xforms/ChangeLog,v 1.36 2006/11/22 17:44:14 masterdriverz Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/xforms/ChangeLog,v 1.39 2007/02/20 16:21:05 phreak Exp $
+
+  20 Feb 2007; Christian Heim <phreak@gentoo.org>
+  files/xforms-1.0.90-Makefile.am.patch:
+  I used the wrong order to create the patch, the as-needed one is applied
+  before the Makefile.am one, so changes stuff in Makefile.am before the
+  Makefile patch is applied and breaks the latter one.
+
+  18 Feb 2007; Fabian Groffen <grobian@gentoo.org> xforms-1.0.90-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
+
+  18 Feb 2007; Christian Heim <phreak@gentoo.org>
+  +files/xforms-1.0.90-Makefile.am.patch, xforms-1.0.90-r1.ebuild:
+  Fixing breakage w/ fdesign/Makefile.am and lib/Makefile.am (eleminating the
+  remaining commented out lines, that make automake fail badly) thanks to
+  Fabian Groffen and Bo Orsted Andresen <bo.andresen at zlin.dk> in #161857.
 
   22 Nov 2006; Charlie Shepherd <masterdriverz@gentoo.org> ChangeLog:
   Add patch to build with --as-needed, thanks to Robert Marmorstein, bug 140179
