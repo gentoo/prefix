@@ -1,6 +1,33 @@
 # ChangeLog for x11-libs/pango
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.163 2007/02/04 03:12:33 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.171 2007/03/27 02:53:28 dang Exp $
+
+*pango-1.16.1 (27 Mar 2007)
+
+  27 Mar 2007; Daniel Gryniewicz <dang@gentoo.org> +pango-1.16.1.ebuild:
+  gnome 2.18.0
+
+  22 Mar 2007; Chris Gianelloni <wolf31o2@gentoo.org> pango-1.14.10.ebuild:
+  Stable on alpha/ia64/ppc wrt bug #163678.
+
+  15 Mar 2007; Markus Rothe <corsair@gentoo.org> pango-1.14.10.ebuild:
+  Stable on ppc64; bug #163678
+
+  15 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> pango-1.14.10.ebuild:
+  Stable on sparc wrt #163678
+
+  15 Mar 2007; Jeroen Roovers <jer@gentoo.org> pango-1.14.10.ebuild:
+  Stable for HPPA (bug #163678).
+
+  14 Mar 2007; Simon Stelling <blubb@gentoo.org> pango-1.14.10.ebuild:
+  stable on amd64; security bug 163768
+
+  14 Mar 2007; Christian Faulhammer <opfer@gentoo.org> pango-1.14.10.ebuild:
+  stable x86, bug 163678
+
+  21 Feb 2007; Simon Stelling <blubb@gentoo.org> pango-1.14.9.ebuild,
+  pango-1.14.10.ebuild:
+  we don't need the use x86 && [[ LIBDIR == lib32 ]] hack anymore
 
   04 Feb 2007; Mart Raudsepp <leio@gentoo.org> pango-1.14.10.ebuild:
   Some QA fixes, bug 164686
