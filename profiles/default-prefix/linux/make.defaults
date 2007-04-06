@@ -4,7 +4,7 @@
 
 # 'Sane' defaults
 ELIBC="glibc"
-KERNEL="linuxprefix" # on purpose not "linux" as we don't have control
+KERNEL="linux"
 
 # make sure toolchain has sane defaults
 USE="${USE} fortran"
