@@ -9,7 +9,7 @@ UCLIBC_PATCHVER="1.1"
 ELF2FLT_VER=""
 inherit toolchain-binutils
 
-KEYWORDS="~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~sparc-solaris ~x86 ~x86-solaris"
 
 src_unpack() {
 	tc-binutils_unpack
