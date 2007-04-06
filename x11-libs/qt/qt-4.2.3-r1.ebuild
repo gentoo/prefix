@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.2.2.ebuild,v 1.17 2007/03/27 13:53:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.2.3-r1.ebuild,v 1.1 2007/03/30 12:43:35 caleb Exp $
 
 EAPI="prefix"
 
@@ -47,7 +47,7 @@ DEPEND="!aqua? ( x11-libs/libXrandr
 	cups? ( net-print/cups )
 	zlib? ( sys-libs/zlib )
 	glib? ( dev-libs/glib )
-	dbus? ( >=sys-apps/dbus-0.93 )
+	dbus? ( >=sys-apps/dbus-1.0.2 )
 	input_devices_wacom? ( x11-drivers/linuxwacom )"
 
 pkg_setup() {
@@ -112,6 +112,7 @@ src_unpack() {
 #	epatch ${FILESDIR}/qt4-parisc-linux.diff
 #	epatch ${FILESDIR}/qt-4.1.4-sparc.patch
 	epatch ${FILESDIR}/qt4-sqlite-configure.patch
+	epatch ${FILESDIR}/utf8-bug-qt4-2.diff
 
 	cd ${S}/mkspecs/$(qt_mkspecs_dir)
 	# set c/xxflags and ldflags
@@ -169,7 +170,7 @@ src_compile() {
 	use gif		&& myconf="${myconf} -qt-gif" || myconf="${myconf} -no-gif"
 	use png		&& myconf="${myconf} -system-libpng" || myconf="${myconf} -qt-libpng"
 	use jpeg	&& myconf="${myconf} -system-libjpeg" || myconf="${myconf} -qt-libjpeg"
-	use debug	&& myconf="${myconf} -debug -separate-debug-info" || myconf="${myconf} -release -no-separate-debug-info"
+	use debug	&& myconf="${myconf} -debug -no-separate-debug-info" || myconf="${myconf} -release -no-separate-debug-info"
 	use zlib	&& myconf="${myconf} -system-zlib" || myconf="${myconf} -qt-zlib"
 
 	use mysql	&& myconf="${myconf} -plugin-sql-mysql -I/usr/include/mysql -L/usr/$(get_libdir)/mysql" || myconf="${myconf} -no-sql-mysql"

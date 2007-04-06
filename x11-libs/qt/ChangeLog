@@ -1,6 +1,56 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.410 2007/02/06 15:03:36 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.421 2007/03/30 12:43:35 caleb Exp $
+
+*qt-4.2.3-r1 (30 Mar 2007)
+*qt-3.3.8-r2 (30 Mar 2007)
+
+  30 Mar 2007; Caleb Tennis <caleb@gentoo.org> +files/utf8-bug-qt3.diff,
+  +files/utf8-bug-qt4-2.diff, +qt-3.3.8-r2.ebuild, +qt-4.2.3-r1.ebuild:
+  Add a patch that fixes a a XSS error in the UTF8 decoder (from kde-packager)
+
+  27 Mar 2007; Raúl Porcel <armin76@gentoo.org> qt-4.2.2.ebuild:
+  ia64 stable wrt bug 164699
+
+  26 Mar 2007; Charlie Shepherd <masterdriverz@gentoo.org>
+  qt-3.3.8-r1.ebuild:
+  Add note about updating the qt3 eclass
+
+*qt-3.3.8-r1 (26 Mar 2007)
+
+  26 Mar 2007; Caleb Tennis <caleb@gentoo.org>
+  +files/qt-3.3.8-mysql-unload-crash.diff, +qt-3.3.8-r1.ebuild:
+  Revbump to include a crash patch (Bug #171883)
+
+  21 Mar 2007; Caleb Tennis <caleb@gentoo.org> qt-3.3.8.ebuild:
+  Update to the latest immqt patch from bug #169852
+
+*qt-4.2.3 (08 Mar 2007)
+
+  08 Mar 2007; Caleb Tennis <caleb@gentoo.org> +qt-4.2.3.ebuild:
+  Version bump. Also, don't use the Qt built in split debug option as portage
+  now supports it via make.conf
+
+  22 Feb 2007; Caleb Tennis <caleb@gentoo.org> -qt-4.2.1.ebuild:
+  remove old version
+
+*qt-3.3.8 (22 Feb 2007)
+
+  22 Feb 2007; Caleb Tennis <caleb@gentoo.org>
+  +files/qt-3.3.8-seli-xinerama.patch, +files/qt-3.3.8-uic-fix.patch,
+  +files/qt-3.3.8-visibility.patch, +qt-3.3.8.ebuild:
+  Bump to latest version
+
+  18 Feb 2007; Fabian Groffen <grobian@gentoo.org>
+  -files/qt-3.3.4-macos.patch, -files/qt-3.3.5-macos.patch,
+  qt-3.3.4-r8.ebuild, qt-3.3.6-r4.ebuild, qt-3.3.6-r5.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
+
+  14 Feb 2007; Christian Faulhammer <opfer@gentoo.org> qt-4.2.2.ebuild:
+  stable x86; bug 164699
+
+  12 Feb 2007; Simon Stelling <blubb@gentoo.org> qt-4.2.2.ebuild:
+  stable on amd64; bug 166478
 
   06 Feb 2007; Roy Marples <uberlord@gentoo.org> qt-4.2.2.ebuild:
   Add ~x86-fbsd keyword.
