@@ -1,6 +1,16 @@
 # ChangeLog for x11-proto/inputproto
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.29 2006/11/02 23:13:00 joshuabaergen Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.31 2007/02/16 03:49:19 joshuabaergen Exp $
+
+*inputproto-1.4.1 (16 Feb 2007)
+
+  16 Feb 2007; Joshua Baergen <joshuabaergen@gentoo.org>
+  +inputproto-1.4.1.ebuild:
+  Bump from upstream to fix a typo.
+
+  04 Feb 2007; Joshua Baergen <joshuabaergen@gentoo.org>
+  inputproto-1.3.2.ebuild:
+  Drop mirroring restriction.  Thanks to Zhang Le of bug #163088.
 
   02 Nov 2006; Joshua Baergen <joshuabaergen@gentoo.org>
   inputproto-1.4.ebuild:
