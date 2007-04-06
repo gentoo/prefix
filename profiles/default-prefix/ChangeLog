@@ -2,6 +2,9 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Apr 2007; Fabian Groffen <grobian@gentoo.org> +make.defaults:
+  Add some USE defaults in make.default
+
   06 Apr 2007; Fabian Groffen <fabian@gentoo.org> use.force:
   Force "prefix" flag to be set, allows to do "prefix? ( ) "-like constucts
 

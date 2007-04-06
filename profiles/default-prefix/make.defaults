@@ -1,0 +1,2 @@
+# Some USE-flags that only die-hards don't want
+USE="readline zlib berkdb"
