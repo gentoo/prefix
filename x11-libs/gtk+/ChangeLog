@@ -1,6 +1,34 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.298 2007/01/25 17:44:43 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.306 2007/03/22 21:35:22 wolf31o2 Exp $
+
+  22 Mar 2007; Chris Gianelloni <wolf31o2@gentoo.org> gtk+-2.10.9.ebuild:
+  Stable on alpha/ia64/ppc wrt bug #163678.
+
+  15 Mar 2007; Markus Rothe <corsair@gentoo.org> gtk+-2.10.9.ebuild:
+  Stable on ppc64; bug #163678
+
+  15 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> gtk+-2.10.9.ebuild:
+  Stable on sparc wrt #163678
+
+  15 Mar 2007; Jeroen Roovers <jer@gentoo.org> gtk+-2.10.9.ebuild:
+  Stable for HPPA (bug #163678).
+
+*gtk+-2.10.11 (14 Mar 2007)
+
+  14 Mar 2007; Daniel Gryniewicz <dang@gentoo.org> +gtk+-2.10.11.ebuild:
+  Bump to 2.10.11
+  	- Tons of bug fixes...
+
+  14 Mar 2007; Simon Stelling <blubb@gentoo.org> gtk+-2.10.9.ebuild:
+  stable on amd64; security bug 163678
+
+  14 Mar 2007; Christian Faulhammer <opfer@gentoo.org> gtk+-2.10.9.ebuild:
+  stable x86, bug 163678
+
+  21 Feb 2007; Simon Stelling <blubb@gentoo.org> gtk+-2.10.6.ebuild,
+  gtk+-2.10.9.ebuild:
+  we don't need the use x86 && [[ LIBDIR == lib32 ]] hack anymore
 
 *gtk+-2.10.9 (25 Jan 2007)
 
