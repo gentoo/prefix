@@ -55,7 +55,7 @@ case ${CHOST} in
 esac
 PDEPEND="|| ( sys-devel/gcc-config app-admin/eselect-compiler )"
 if [[ ${CATEGORY} != cross-* ]] ; then
-	PDEPEND="${PDEPEND} elibc_glibc? ( >=sys-libs/glibc-2.3.6 )"
+	PDEPEND="${PDEPEND} !prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.3.6 ) )"
 fi
 
 src_unpack() {

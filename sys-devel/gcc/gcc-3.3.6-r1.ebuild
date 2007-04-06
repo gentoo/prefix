@@ -44,7 +44,7 @@ KEYWORDS="~amd64 ~x86"
 # well tested in gentoo on any arch other than amd64!!
 RDEPEND="|| ( >=sys-devel/gcc-config-1.3.12-r4 app-admin/eselect-compiler )
 	>=sys-libs/zlib-1.1.4
-	elibc_glibc? ( >=sys-libs/glibc-2.3.2-r9 )
+	!prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.3.2-r9 ) )
 	>=sys-devel/binutils-2.14.90.0.6-r1
 	>=sys-devel/bison-1.875
 	sparc? ( hardened? ( >=sys-libs/glibc-2.3.3.20040420 ) )

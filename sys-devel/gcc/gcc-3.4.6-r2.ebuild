@@ -52,10 +52,10 @@ KEYWORDS="~amd64 ~x86"
 RDEPEND="|| ( >=sys-devel/gcc-config-1.3.12-r4 app-admin/eselect-compiler )
 	>=sys-libs/zlib-1.1.4
 	virtual/libiconv
-	elibc_glibc? (
+	!prefix? ( elibc_glibc? (
 		>=sys-libs/glibc-2.3.3_pre20040420-r1
 		hardened? ( >=sys-libs/glibc-2.3.3_pre20040529 )
-	)
+	) )
 	!build? (
 		gcj? (
 			gtk? (
