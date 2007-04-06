@@ -121,6 +121,8 @@ src_unpack() {
 	# out the line below and give 'er a whirl.
 	strip-flags
 	replace-flags -O3 -O2
+	[[ ${CHOST} == powerpc-*-darwin* ]] && filter-flags -m* # altivec
+	einfo "Using CFLAGS: ${CFLAGS}"
 
 	sed -i -e "s:QMAKE_CFLAGS[^_]*=.*:QMAKE_CFLAGS=${CFLAGS}:" \
 		-e "s:QMAKE_CXXFLAGS[^_]*=.*:QMAKE_CXXFLAGS=${CXXFLAGS}:" \
