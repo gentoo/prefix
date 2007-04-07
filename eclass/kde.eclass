@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.193 2007/03/17 14:52:03 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.194 2007/04/06 12:14:19 carlo Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -446,20 +446,12 @@ slot_rebuild() {
 }
 
 kde_pkg_preinst() {
-	if [[ $(find "${ED}/${PREFIX}/share/applnk" -name '*.desktop' \
+	validate_desktop_entries ${PREFIX}/share/appl{nk,ications}
+	if [[ $(find "${ED}${PREFIX}/share/applnk" -name '*.desktop' \
 		-not -path '*.hidden*' 2>/dev/null | wc -l) != "0" ]]; then
-		ewarn "KDE Team warning: this package (${PF}) is installing"
-		ewarn "	 .desktop files in the obsolete applnk path:"
-		ewarn "	 ${PREFIX}/share/applnk. It won't be shown on non-KDE"
-		ewarn "	 menus and applications."
-	fi
-
-	if [[ $(egrep -q -r --include '*.desktop' --files-without-match \
-		'^Categories' "${ED}/${PREFIX}/share/applications" 2>/dev/null \
-		| wc -l) != "0" ]] ; then
-		ewarn "KDE Team warning: this package (${PF}) is installing"
-		ewarn "	 .desktop files without the Categories attribute; it will"
-		ewarn "	 be shown in the Lost & Found menu."
+		ewarn "This ebuild is installing .desktop files in the deprecated path"
+		ewarn "${PREFIX}/share/applnk/. They will only be visible within KDE."
+		echo ""
 	fi
 }
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.276 2007/02/18 03:11:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.277 2007/04/06 11:43:30 carlo Exp $
 #
 # This eclass is for general purpose functions that most ebuilds
 # have to implement themselves.
@@ -926,6 +926,32 @@ make_desktop_entry() {
 		doins "${desktop}"
 	)
 }
+
+
+# Validatedesktop entries using desktop-file-utils
+# Carsten Lohrke <carlo@gentoo.org>
+#
+# Usage: validate_desktop_entries [directory ...]
+
+validate_desktop_entries() {
+	if [[ -x /usr/bin/desktop-file-validate ]] ; then
+		einfo "Checking desktop entry validity"
+		local directories=""
+		for d in $@ ; do
+			directories="${directories} ${ED}${d}"
+		done
+		for FILE in $(find ${ED}/usr/share/applications ${directories} -name "*\.desktop" \
+			-not -path '*.hidden*' 2>/dev/null)
+		do
+			local temp=$(desktop-file-validate ${FILE} | grep -v "warning:")
+			[[ -n $temp ]] && elog ${temp//${ED}/}
+		done
+		echo ""
+	else
+		einfo "Passing desktop entry validity check. Install dev-util/desktop-file-utils, if you want to help to improve Gentoo."
+	fi
+}
+
 
 # Make a GDM/KDM Session file
 #
