@@ -18,3 +18,5 @@ move net-misc/djmount net-fs/djmount
 slotmove dev-php5/php-gtk 2 0
 slotmove dev-php/Savant2 2 0
 move media-sound/mute media-sound/aldrin
+slotmove sys-libs/libchipcard 3 2
+move net-news/hellanzb net-nntp/hellanzb
