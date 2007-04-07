@@ -1,0 +1,153 @@
+--- configure.ac~	2007-03-04 20:20:30.000000000 +0000
++++ configure.ac	2007-03-04 20:20:39.000000000 +0000
+@@ -606,6 +606,7 @@
+   PERL_ARCHLIB=`$PERL -e 'use Config; print $Config{archlib};'`
+   PERL_INCLUDES=-I$PERL_ARCHLIB/CORE
+   PERL_LIBS="-L$PERL_ARCHLIB/CORE -lperl"
++  PERL_INSTALL_DIR="`$PERL -e 'use Config; print $Config{vendorarch};'`"
+   save_CPPFLAGS=$CPPFLAGS
+   CPPFLAGS="$CPPFLAGS $PERL_INCLUDES"
+   AC_CHECK_HEADER(EXTERN.h,,[
+@@ -616,6 +617,7 @@
+ fi
+ AC_SUBST(PERL_INCLUDES)
+ AC_SUBST(PERL_LIBS)
++AC_SUBST(PERL_INSTALL_DIR)
+ fi
+ fi
+ AM_CONDITIONAL(WITH_PERL, [test "x$PERL" != "x"])
+@@ -684,6 +686,7 @@
+     PYTHON_PREFIX=`$PYTHON -c "import sys; print sys.prefix"`
+     PYTHON_INCLUDES=-I$PYTHON_PREFIX/include/python$PYTHON_VERSION_SHORT
+     PYTHON_LIBS="-L$PYTHON_PREFIX/lib$LIBPOSTFIX -lpython$PYTHON_VERSION_SHORT"
++    PYTHON_INSTALL_DIR="`$PYTHON $srcdir/config/config_python.py archsitelib`"
+     save_CPPFLAGS=$CPPFLAGS
+     CPPFLAGS="$CPPFLAGS $PYTHON_INCLUDES"
+     AC_CHECK_HEADER(Python.h,,[
+@@ -695,6 +698,7 @@
+ fi
+ AC_SUBST(PYTHON_INCLUDES)
+ AC_SUBST(PYTHON_LIBS)
++AC_SUBST(PYTHON_INSTALL_DIR)
+ fi
+ fi
+ fi
+@@ -715,6 +719,7 @@
+ if test "x$RUBY" != "x"; then
+   RUBY_INCLUDES="-I`$RUBY $srcdir/config/config_ruby.rb INCLUDES`"
+   RUBY_LIBS="-L`$RUBY $srcdir/config/config_ruby.rb lib` -lruby"
++  RUBY_INSTALL_DIR="`$RUBY $srcdir/config/config_ruby.rb archsitelib`"
+   save_CPPFLAGS=$CPPFLAGS
+   CPPFLAGS="$CPPFLAGS $RUBY_INCLUDES"
+   AC_CHECK_HEADER(ruby.h,,[
+@@ -725,6 +730,7 @@
+ fi
+ AC_SUBST(RUBY_INCLUDES)
+ AC_SUBST(RUBY_LIBS)
++AC_SUBST(RUBY_INSTALL_DIR)
+ fi
+ fi
+ fi
+--- tclpkg/gv/Makefile.am~	2007-03-04 21:22:38.000000000 +0000
++++ tclpkg/gv/Makefile.am	2007-03-04 21:23:24.000000000 +0000
+@@ -70,7 +70,7 @@
+ gv_ocaml.cpp $(OCAML_hdr): gv.i
+ 	$(SWIG) -c++ -ocaml -o gv_ocaml.cpp $(srcdir)/gv.i
+ 
+-pkgperldir = $(pkglibdir)/perl
++pkgperldir = @PERL_INSTALL_DIR@
+ PERL_hdr = gv.pm
+ nodist_libgv_perl_la_SOURCES = gv_perl.cpp $(PERL_hdr)
+ libgv_perl_la_SOURCES = $(BASESOURCES)
+@@ -88,7 +88,7 @@
+ gv_php.cpp $(PHP_hdr): gv.i
+ 	$(SWIG) -c++ -php -o gv_php.cpp $(srcdir)/gv.i
+ 
+-pkgpythondir = $(pkglibdir)/python
++pkgpythondir = @PYTHON_INSTALL_DIR@
+ PYTHON_hdr = gv.py
+ nodist_libgv_python_la_SOURCES = gv_python.cpp $(PYTHON_hdr)
+ libgv_python_la_SOURCES = $(BASESOURCES)
+@@ -97,7 +97,7 @@
+ gv_python.cpp $(PYTHON_hdr): gv.i
+ 	$(SWIG) -c++ -python -o gv_python.cpp $(srcdir)/gv.i
+ 
+-pkgrubydir = $(pkglibdir)/ruby
++pkgrubydir = @RUBY_INSTALL_DIR@
+ RUBY_hdr = 
+ nodist_libgv_ruby_la_SOURCES = gv_ruby.cpp $(RUBY_hdr)
+ libgv_ruby_la_SOURCES = $(BASESOURCES)
+@@ -118,6 +118,7 @@
+ pkginclude_DATA = gv.i gv.cpp
+ pkglib_LTLIBRARIES = 
+ TESTS =
++mann_MANS =
+ if WITH_SWIG
+ if WITH_SHARP
+ pkgsharp_DATA = $(SHARP_hdr) gv_sharp.man
+@@ -150,9 +151,11 @@
+ TESTS += test_ocaml
+ endif
+ if WITH_PERL
+-pkgperl_DATA = $(PERL_hdr) gv_perl.man
++pkgperl_DATA = $(PERL_hdr)
++if WITH_TCL
++mann_MANS += gv_perl.man
++endif
+ pkgperl_LTLIBRARIES = libgv_perl.la
+-TESTS += test_perl
+ endif
+ if WITH_PHP
+ pkgphp_DATA = $(PHP_hdr) gv_php.man
+@@ -160,19 +163,21 @@
+ TESTS += test_php
+ endif
+ if WITH_PYTHON
+-pkgpython_DATA = $(PYTHON_hdr) gv_python.man
++pkgpython_DATA = $(PYTHON_hdr)
++if WITH_TCL
++mann_MANS += gv_python.man
++endif
+ pkgpython_LTLIBRARIES = libgv_python.la
+-TESTS += test_python
+ endif
+ if WITH_RUBY
+-pkgruby_DATA = $(RUBY_hdr) gv_ruby.man
++if WITH_TCL
++mann_MANS += gv_ruby.man
++endif
+ pkgruby_LTLIBRARIES = libgv_ruby.la
+-TESTS += test_ruby
+ endif
+ if WITH_TCL
+ pkgtcl_DATA = $(TCL_hdr) gv_tcl.man
+ pkgtcl_LTLIBRARIES = libgv_tcl.la
+-TESTS += test_tcl
+ 
+ all-local: pkgIndex.tcl
+ 
+@@ -192,11 +197,21 @@
+ endif
+ 
+ install-data-hook:
++if WITH_LUA
+ 	(cd $(DESTDIR)$(pkgluadir);    rm -f gv.so;  $(LN_S) libgv_lua.so gv.so;)
+-	(cd $(DESTDIR)$(pkgperldir);   rm -f gv.so;  $(LN_S) libgv_perl.so gv.so;)
+-	(cd $(DESTDIR)$(pkgpythondir); rm -f _gv.so; $(LN_S) libgv_python.so _gv.so;)
+-	(cd $(DESTDIR)$(pkgrubydir);   rm -f gv.so;  $(LN_S) libgv_ruby.so gv.so;)
++endif
++if WITH_PERL
++	(cd $(DESTDIR)$(pkgperldir);   rm -f gv.so libgv_perl.so libgv_perl.so.0 libgv_perl.la;  mv libgv_perl.so.0.0.0 gv.so;)
++endif
++if WITH_PYTHON
++	(cd $(DESTDIR)$(pkgpythondir); rm -f _gv.so libgv_python.so libgv_python.so.0 libgv_python.la; mv libgv_python.so.0.0.0 _gv.so;)
++endif
++if WITH_RUBY
++	(cd $(DESTDIR)$(pkgrubydir);   rm -f gv.so libgv_ruby.so libgv_ruby.so.0 libgv_ruby.la;  mv libgv_ruby.so.0.0.0 gv.so;)
++endif
++if WITH_TCL
+ 	(cd $(DESTDIR)$(pkgtcldir);    rm -f gv.so;  $(LN_S) libgv_tcl.so gv.so;)
++endif
+ 
+ uninstall-hook:
+ 	(cd $(DESTDIR)$(pkgluadir);    rm -f gv.so;)

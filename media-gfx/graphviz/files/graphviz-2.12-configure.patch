@@ -1,0 +1,27 @@
+--- configure.ac.orig	2007-02-17 22:39:20.000000000 +0100
++++ configure.ac	2007-02-17 22:41:17.000000000 +0100
+@@ -1255,6 +1255,16 @@
+ dnl -----------------------------------
+ dnl INCLUDES and LIBS for GNOMEUI.
+ 
++AC_ARG_WITH(gtk,
++  [AC_HELP_STRING([--with-gnomeui],
++                  [use gnomeui library])])
++
++### default is to build with gtk+
++if test "x$with_gnomeui" != "xno"; then
++    with_gnomeui=yes
++fi
++
++if test "x$with_gnomeui" = "xyes"; then
+ PKG_CHECK_MODULES(GNOMEUI, [libgnomeui-2.0],
+         [HAVE_GNOMEUI=1
+         AC_DEFINE_UNQUOTED(HAVE_GNOMEUI,1,
+@@ -1262,6 +1272,7 @@
+         [AC_MSG_WARN(gnomeui library not available. using alternate code for firefox interaction)])
+ AC_SUBST(GNOMEUI_CFLAGS)
+ AC_SUBST(GNOMEUI_LIBS)
++fi
+ AM_CONDITIONAL(WITH_GNOMEUI, [test "x$HAVE_GNOMEUI" != "x"])
+ 
+ dnl -----------------------------------
