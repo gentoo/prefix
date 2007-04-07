@@ -355,8 +355,8 @@ switch_profile() {
 			libdir="lib/"$("${ROOT}/${GCC_BIN_PATH}"/gcc ${multiarg} -print-multi-os-directory)
 			if mkdir -p "${EROOT}/${libdir}"/.gcc.config.new ; then
 				for gcclib in gcc_s unwind ; do
-					if [[ -n $(ls "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.so.* 2>/dev/null) ]]; then
-						${CP} -pP "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.so.* "${EROOT}/${libdir}"/.gcc.config.new/
+					if [[ -n $(ls "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.{so.*,*.dylib} 2>/dev/null) ]]; then
+						${CP} -pP "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.{so.*,*.dylib} "${EROOT}/${libdir}"/.gcc.config.new/ 2>/dev/null
 						# no need to sanity remove this as the `mv` should take
 						# care of it.  we also need this step to be completly atomic
 						# for systems that have even `mv` linked against libgcc_s.so.
