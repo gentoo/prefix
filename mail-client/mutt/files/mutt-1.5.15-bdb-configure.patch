@@ -1,0 +1,24 @@
+* reverse patch of pkgsrc configure patch that breaks on Gentoo
+
+--- a/configure.ac	Wed Apr 04 16:31:50 2007 -0700
++++ b/configure.ac	Thu Apr 05 11:22:08 2007 +0200
+@@ -874,9 +874,8 @@ AC_ARG_ENABLE(hcache, AC_HELP_STRING([--
+             for v in / $BDB_VERSIONS; do
+                 if test -r "$d/include/$v/db.h"; then
+                     BDB_INCLUDE_DIR="$d/include/$v"
++                    if test -d "$d/lib/$v"; then
++                        BDB_LIB_DIR="$d/lib/$v"
+-                    for bdblibdir in "$d/lib/$v" "$d/lib"; do
+-                    if test -d "$bdblibdir"; then
+-                        BDB_LIB_DIR="$bdblibdir"
+                         for l in `echo $BDB_VERSIONS`; do
+                             CPPFLAGS="$OLDCPPFLAGS -I$BDB_INCLUDE_DIR"
+                             LIBS="$OLDLIBS -L$BDB_LIB_DIR -l$l"
+@@ -894,7 +893,6 @@ AC_ARG_ENABLE(hcache, AC_HELP_STRING([--
+                         done
+                         test x$ac_cv_dbcreate = xyes && break
+                     fi
+-                    done
+                 fi
+             done
+             test x$BDB_LIB != x && break
