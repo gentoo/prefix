@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dos2unix/dos2unix-3.1-r1.ebuild,v 1.10 2007/01/31 21:04:09 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dos2unix/dos2unix-3.1-r1.ebuild,v 1.11 2007/02/08 21:12:38 grobian Exp $
 
 EAPI="prefix"
 

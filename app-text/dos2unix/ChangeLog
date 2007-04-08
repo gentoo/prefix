@@ -1,6 +1,10 @@
 # ChangeLog for app-text/dos2unix
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dos2unix/ChangeLog,v 1.24 2007/01/31 21:06:49 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dos2unix/ChangeLog,v 1.25 2007/02/08 21:12:38 grobian Exp $
+
+  08 Feb 2007; Fabian Groffen <grobian@gentoo.org> dos2unix-3.1.ebuild,
+  dos2unix-3.1-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   31 Jan 2007; Markus Rothe <corsair@gentoo.org> dos2unix-3.1-r1.ebuild:
   Stable on ppc64; bug #163872
