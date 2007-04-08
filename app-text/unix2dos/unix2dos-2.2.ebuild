@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-text/unix2dos/unix2dos-2.2.ebuild,v 1.24 2006/11/09 06:05:11 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/unix2dos/unix2dos-2.2.ebuild,v 1.25 2007/03/01 17:21:45 genstef Exp $
 
 EAPI="prefix"
 
