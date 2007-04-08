@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/jasper
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-libs/jasper/ChangeLog,v 1.30 2007/01/23 16:21:32 phosphan Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jasper/ChangeLog,v 1.31 2007/02/15 20:21:01 grobian Exp $
+
+  15 Feb 2007; Fabian Groffen <grobian@gentoo.org> jasper-1.701.0.ebuild,
+  jasper-1.900.1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *jasper-1.900.1 (23 Jan 2007)
 

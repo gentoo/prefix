@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-libs/jasper/jasper-1.900.1.ebuild,v 1.1 2007/01/23 16:21:32 phosphan Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jasper/jasper-1.900.1.ebuild,v 1.2 2007/02/15 20:21:01 grobian Exp $
 
 EAPI="prefix"
 
