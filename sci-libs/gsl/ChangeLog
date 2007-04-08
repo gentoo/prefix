@@ -1,6 +1,13 @@
 # ChangeLog for sci-libs/gsl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.28 2007/03/27 19:29:25 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.30 2007/03/28 18:15:07 grobian Exp $
+
+  28 Mar 2007; Fabian Groffen <grobian@gentoo.org> gsl-1.7.ebuild,
+  gsl-1.8.ebuild, gsl-1.9.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
+
+  28 Mar 2007; Raúl Porcel <armin76@gentoo.org> gsl-1.8.ebuild:
+  ia64 stable wrt bug 167860
 
   27 Mar 2007; Michael Cummings <mcummings@gentoo.org> gsl-1.9.ebuild:
   Tested on swarm for USE-flag changes in dev-perl/PDL
