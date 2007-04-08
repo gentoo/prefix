@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-zope/zopeinterface/zopeinterface-3.0.1-r1.ebuild,v 1.2 2006/09/25 20:01:18 the_paya Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-zope/zopeinterface/zopeinterface-3.0.1-r1.ebuild,v 1.3 2007/02/13 13:20:43 vapier Exp $
 
 EAPI="prefix"
 
