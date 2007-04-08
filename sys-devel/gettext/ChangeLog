@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gettext
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.142 2007/02/26 01:32:09 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.143 2007/03/16 17:24:25 yoswink Exp $
+
+  16 Mar 2007; Jose Luis Rivero <yoswink@gentoo.org> gettext-0.16.1.ebuild:
+  Stable on alpha wrt bug #163178
 
   26 Feb 2007; Mike Frysinger <vapier@gentoo.org> gettext-0.16.1.ebuild:
   Use preserve_old_lib rather than screwing with $ROOT ourselves #168046.
