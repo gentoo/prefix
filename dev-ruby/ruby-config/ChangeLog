@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/ruby-config
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-config/ChangeLog,v 1.31 2006/10/18 15:21:47 uberlord Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-config/ChangeLog,v 1.32 2007/01/01 16:33:54 grobian Exp $
+
+  01 Jan 2007; Fabian Groffen <grobian@gentoo.org> ruby-config-0.3.ebuild,
+  ruby-config-0.3.1.ebuild, ruby-config-0.3.2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   18 Oct 2006; Roy Marples <uberlord@gentoo.org> ruby-config-0.3.2.ebuild:
   Added ~sparc-fbsd keyword.
