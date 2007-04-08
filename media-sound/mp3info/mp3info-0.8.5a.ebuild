@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-sound/mp3info/mp3info-0.8.5a.ebuild,v 1.1 2007/01/05 22:34:26 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mp3info/mp3info-0.8.5a.ebuild,v 1.2 2007/03/02 12:47:47 genstef Exp $
 
 EAPI="prefix"
 

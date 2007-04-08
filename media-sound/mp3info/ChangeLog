@@ -1,6 +1,10 @@
 # ChangeLog for media-sound/mp3info
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-sound/mp3info/ChangeLog,v 1.18 2007/01/05 22:34:26 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mp3info/ChangeLog,v 1.19 2007/03/02 12:47:47 genstef Exp $
+
+  02 Mar 2007; <genstef@gentoo.org> mp3info-0.8.4-r1.ebuild,
+  mp3info-0.8.4-r2.ebuild, mp3info-0.8.5a.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *mp3info-0.8.5a (05 Jan 2007)
 
