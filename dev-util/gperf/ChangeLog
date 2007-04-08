@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/gperf
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-util/gperf/ChangeLog,v 1.30 2007/02/22 02:11:18 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gperf/ChangeLog,v 1.31 2007/04/07 16:31:54 opfer Exp $
+
+  07 Apr 2007; Christian Faulhammer <opfer@gentoo.org> gperf-2.7.2.ebuild,
+  gperf-3.0.1.ebuild, gperf-3.0.2.ebuild:
+  SRC_URI changed to mirror://, fixes bug 163194
 
   22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
