@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.2.8.ebuild,v 1.3 2007/02/11 14:25:44 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.2.8.ebuild,v 1.4 2007/03/23 11:51:49 phreak Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,7 @@ DEPEND="dev-libs/expat
 	berkdb? ( =sys-libs/db-4* )
 	gdbm? ( sys-libs/gdbm )
 	ldap? ( =net-nds/openldap-2* )
-	postgres? ( dev-db/postgresql )
+	postgres? ( dev-db/libpq )
 	sqlite? ( =dev-db/sqlite-2* )
 	sqlite3? ( =dev-db/sqlite-3* )"
 
