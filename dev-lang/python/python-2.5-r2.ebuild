@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5-r1.ebuild,v 1.3 2007/02/06 08:39:15 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5-r2.ebuild,v 1.1 2007/03/31 00:29:10 marienz Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,7 @@ S="${WORKDIR}/${MY_P}"
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
 SRC_URI="http://www.python.org/ftp/python/${PYVER}/${MY_P}.tar.bz2
-	mirror://gentoo/python-gentoo-patches-${PV}-r1.tar.bz2"
+	mirror://gentoo/python-gentoo-patches-${PV}-r2.tar.bz2"
 
 LICENSE="PSF-2.2"
 SLOT="2.5"
@@ -32,8 +32,7 @@ IUSE="ncurses gdbm ssl readline tk berkdb bootstrap ipv6 build ucs2 sqlite doc n
 
 DEPEND=">=sys-libs/zlib-1.1.3
 	!build? (
-		sqlite? ( !=dev-python/pysqlite-2*
-				  >=dev-db/sqlite-3 )
+		sqlite? ( >=dev-db/sqlite-3 )
 		tk? ( >=dev-lang/tk-8.0 )
 		ncurses? ( >=sys-libs/ncurses-5.2
 					readline? ( >=sys-libs/readline-4.1 ) )
@@ -98,6 +97,17 @@ src_unpack() {
 
 	# fix gentoo/obsd problems (bug 117261)
 	epatch "${WORKDIR}/${PYVER}/2.4.3-gentoo_obsd.patch"
+
+	# No execstack (at least on x86)
+	epatch "${WORKDIR}/${PYVER}/2.5-execstack.patch"
+
+	# Do not link libpython2.5 statically in distutils extensions
+	epatch "${WORKDIR}/${PYVER}/2.5-linux-shlib.patch"
+
+	# Pass -fno-strict-aliasing instead of a bunch of stuff including -O3
+	# when compiling things with distutils and CFLAGS is set
+	# (python.org/sf/969718).
+	epatch "${WORKDIR}/${PYVER}/2.5-cflags.patch"
 
 	eautoreconf
 }
