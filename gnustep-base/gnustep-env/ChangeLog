@@ -1,6 +1,10 @@
 # ChangeLog for gnustep-base/gnustep-env
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-env/ChangeLog,v 1.27 2006/10/25 04:45:28 tsunam Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-env/ChangeLog,v 1.28 2007/03/18 01:31:33 genone Exp $
+
+  18 Mar 2007; Marius Mauch <genone@gentoo.org> gnustep-env-0.1.6-r1.ebuild,
+  gnustep-env-0.1.8.ebuild, gnustep-env-0.1.8-r1.ebuild:
+  Replacing einfo with elog
 
   25 Oct 2006; Joshua Jackson <tsunam@gentoo.org> gnustep-env-0.1.8.ebuild:
   Stable x86; bug #139385
