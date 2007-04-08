@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-admin/makepasswd/makepasswd-1.10.ebuild,v 1.22 2005/01/01 11:10:29 eradicator Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/makepasswd/makepasswd-1.10.ebuild,v 1.23 2007/03/01 16:29:58 genstef Exp $
 
 EAPI="prefix"
 

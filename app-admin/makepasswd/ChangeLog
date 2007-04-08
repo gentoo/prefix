@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/makepasswd
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-admin/makepasswd/ChangeLog,v 1.14 2007/02/21 19:42:40 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/makepasswd/ChangeLog,v 1.15 2007/03/01 16:29:58 genstef Exp $
+
+  01 Mar 2007; <genstef@gentoo.org> makepasswd-1.10.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
