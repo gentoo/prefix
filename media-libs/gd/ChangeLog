@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/gd
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/ChangeLog,v 1.41 2007/02/13 08:37:41 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/ChangeLog,v 1.42 2007/02/15 21:37:58 grobian Exp $
+
+  15 Feb 2007; Fabian Groffen <grobian@gentoo.org> gd-2.0.32.ebuild,
+  gd-2.0.33.ebuild, gd-2.0.34.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   13 Feb 2007; Markus Rothe <corsair@gentoo.org> gd-2.0.34.ebuild:
   Stable on ppc64; bug #141577
