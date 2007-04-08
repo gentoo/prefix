@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg321/mpg321-0.2.10-r3.ebuild,v 1.3 2006/10/04 17:10:46 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg321/mpg321-0.2.10-r3.ebuild,v 1.4 2007/01/05 17:37:11 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -54,8 +54,8 @@ pkg_postinst() {
 pkg_postrm() {
 	# We delete the symlink if it's nolonger valid.
 	if [ -L "${EROOT}/usr/bin/mpg123" ] && [ ! -x "${EROOT}/usr/bin/mpg123" ]; then
-		einfo "We are removing the ${EROOT}/usr/bin/mpg123 symlink since it is no longer valid."
-		einfo "If you are using another virtual/mpg123 program, you should setup the appropriate symlink."
+		elog "We are removing the ${EROOT}/usr/bin/mpg123 symlink since it is no longer valid."
+		elog "If you are using another virtual/mpg123 program, you should setup the appropriate symlink."
 		rm ${EROOT}/usr/bin/mpg123
 	fi
 }

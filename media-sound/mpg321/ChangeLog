@@ -1,6 +1,10 @@
 # ChangeLog for media-sound/mpg321
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg321/ChangeLog,v 1.35 2006/10/04 17:10:46 grobian Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg321/ChangeLog,v 1.36 2007/01/05 17:37:11 flameeyes Exp $
+
+  05 Jan 2007; Diego Pettenò <flameeyes@gentoo.org>
+  mpg321-0.2.10-r2.ebuild, mpg321-0.2.10-r3.ebuild:
+  Convert to use elog.
 
   04 Oct 2006; Fabian Groffen <grobian@gentoo.org> mpg321-0.2.10-r2.ebuild,
   mpg321-0.2.10-r3.ebuild:
