@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/screen-4.0.3.ebuild,v 1.7 2006/10/26 19:59:08 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/screen-4.0.3.ebuild,v 1.14 2007/01/28 05:24:38 genone Exp $
 
 EAPI="prefix"
 
@@ -79,9 +79,6 @@ src_unpack() {
 }
 
 src_compile() {
-	addpredict "$(tty)"
-	addpredict "${SSH_TTY}"
-
 	append-flags "-DMAXWIN=${MAX_SCREEN_WINDOWS:-100}"
 	append-ldflags $(bindnow-flags)
 	use userland_Solaris && append-ldflags -lsocket -lnsl
@@ -149,7 +146,7 @@ pkg_postinst() {
 		chmod 0775 "${EROOT}"/var/run/screen
 	fi
 
-	einfo "Some dangerous key bindings have been removed or changed to more safe values."
-	einfo "We enable some xterm hacks in our default screenrc, which might break some"
-	einfo "applications. Please check /etc/screenrc for information on these changes."
+	elog "Some dangerous key bindings have been removed or changed to more safe values."
+	elog "We enable some xterm hacks in our default screenrc, which might break some"
+	elog "applications. Please check /etc/screenrc for information on these changes."
 }

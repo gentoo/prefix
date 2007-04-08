@@ -1,6 +1,24 @@
 # ChangeLog for app-misc/screen
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/ChangeLog,v 1.125 2006/10/26 19:59:08 corsair Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/ChangeLog,v 1.132 2007/01/28 05:24:38 genone Exp $
+
+  28 Jan 2007; Marius Mauch <genone@gentoo.org> screen-4.0.3.ebuild:
+  Replacing einfo with elog
+
+  23 Jan 2007; Sven Wegener <swegener@gentoo.org> -screen-4.0.2-r5.ebuild:
+  Cleanup.
+
+  20 Jan 2007; Alexander H. Færøy <eroyf@gentoo.org> screen-4.0.3.ebuild:
+  Stable on MIPS; bug #152770
+
+  17 Jan 2007; Sven Wegener <swegener@gentoo.org> screen-4.0.3.ebuild:
+  Remove the tty addpredict code for bug #162536.
+
+  29 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> screen-4.0.3.ebuild:
+  Stable on Alpha, bug 152770.
+
+  27 Oct 2006; René Nussbaumer <killerfox@gentoo.org> screen-4.0.3.ebuild:
+  Stable on hppa. See bug #152770.
 
   26 Oct 2006; Markus Rothe <corsair@gentoo.org> screen-4.0.3.ebuild:
   Stable on ppc64; bug #152770
