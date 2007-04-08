@@ -1,6 +1,12 @@
 # ChangeLog for app-arch/unp
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-arch/unp/ChangeLog,v 1.11 2007/02/21 20:02:37 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unp/ChangeLog,v 1.13 2007/03/09 07:17:39 opfer Exp $
+
+  09 Mar 2007; Christian Faulhammer <opfer@gentoo.org> unp-1.0.10.ebuild:
+  stable x86; bug 170042
+
+  02 Mar 2007; <genstef@gentoo.org> unp-1.0.9.ebuild, unp-1.0.10.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.

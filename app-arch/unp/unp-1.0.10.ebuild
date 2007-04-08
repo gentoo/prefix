@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-arch/unp/unp-1.0.10.ebuild,v 1.4 2006/09/22 18:46:58 blubb Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unp/unp-1.0.10.ebuild,v 1.6 2007/03/09 07:17:39 opfer Exp $
 
 EAPI="prefix"
 
