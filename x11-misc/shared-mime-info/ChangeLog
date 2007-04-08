@@ -1,6 +1,14 @@
 # ChangeLog for x11-misc/shared-mime-info
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/ChangeLog,v 1.77 2007/02/04 08:47:35 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/ChangeLog,v 1.78 2007/04/04 14:29:25 drac Exp $
+
+*shared-mime-info-0.20 (04 Apr 2007)
+
+  04 Apr 2007; Samuli Suominen <drac@gentoo.org>
+  -files/shared-mime-info-0.18-m4a_offset.patch,
+  -shared-mime-info-0.18-r1.ebuild, +shared-mime-info-0.20.ebuild:
+  Version bump for bug 171570, thanks to Eike Hein <hein AT kde.org> for
+  reporting.
 
   04 Feb 2007; Markus Rothe <corsair@gentoo.org>
   shared-mime-info-0.19.ebuild:

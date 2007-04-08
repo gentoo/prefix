@@ -6,4 +6,8 @@
   <email>foser@gentoo.org</email>
   <name>Marinus Schraal</name>
 </maintainer>
+<maintainer>
+  <email>drac@gentoo.org</email>
+  <name>Samuli Suominen</name>
+</maintainer>
 </pkgmetadata>
