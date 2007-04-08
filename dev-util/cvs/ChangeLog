@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/cvs
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/ChangeLog,v 1.112 2006/10/17 15:08:46 uberlord Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/ChangeLog,v 1.113 2007/02/22 01:58:11 peper Exp $
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
 
   17 Oct 2006; Roy Marples <uberlord@gentoo.org> cvs-1.12.12-r4.ebuild,
   cvs-1.12.13-r1.ebuild:
