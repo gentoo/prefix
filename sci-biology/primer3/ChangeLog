@@ -1,6 +1,14 @@
 # ChangeLog for sci-biology/primer3
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/primer3/ChangeLog,v 1.13 2006/11/03 01:52:10 ribosome Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/primer3/ChangeLog,v 1.15 2007/02/02 15:19:41 ribosome Exp $
+
+*primer3-1.0.1 (02 Feb 2007)
+
+  02 Feb 2007; Olivier Fisette <ribosome@gentoo.org> +primer3-1.0.1.ebuild:
+  New upstream version.
+
+  06 Jan 2007; Danny van Dyk <kugelfang@gentoo.org> -primer3-1.0b.ebuild:
+  QA: Removed unused versions.
 
 *primer3-1.0b (03 Nov 2006)
 
