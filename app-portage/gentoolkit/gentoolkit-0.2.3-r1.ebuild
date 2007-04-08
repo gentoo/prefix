@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/gentoolkit-0.2.3.ebuild,v 1.2 2007/02/28 21:58:08 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/gentoolkit-0.2.3-r1.ebuild,v 1.9 2007/04/06 21:53:56 opfer Exp $
 
 EAPI="prefix"
 
@@ -20,13 +20,15 @@ DEPEND=">=sys-apps/portage-2.1.1_pre1
 	>=dev-lang/python-2.0
 	>=dev-lang/perl-5.6
 	>=sys-apps/grep-2.4
-	!userland_BSD? ( sys-apps/debianutils )"
+	userland_GNU? ( sys-apps/debianutils )"
 
 src_unpack() {
 	unpack ${A}
 	epatch "${FILESDIR}"/${P}-modular-portage.patch
 	epatch "${FILESDIR}"/${P}-revdep-prefix-darwin.patch
 	cd "${S}"
+	# Remove extraneous debug print statement from equery
+	epatch "${FILESDIR}"/${PF}-equery.patch
 	ebegin "Adjusting to prefix (sloppyly)"
 	find . -mindepth 2 -type f | grep -v Makefile | xargs sed -i \
 		-e "s|/usr/lib/gentoolkit/pym|${EPREFIX}/usr/lib/gentoolkit/pym|g" \

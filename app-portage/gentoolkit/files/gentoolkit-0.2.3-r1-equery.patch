@@ -1,0 +1,10 @@
+--- src/equery/equery.orig	2007-02-20 10:30:48.000000000 -0600
++++ src/equery/equery	2007-03-29 22:40:00.000000000 -0500
+@@ -704,7 +704,6 @@
+ 		pkgtbl.append(cpv)
+ 		
+ 		pkgdeps = pkg.get_runtime_deps() + pkg.get_compiletime_deps() + pkg.get_postmerge_deps()
+-		print pkgdeps
+ 		for x in pkgdeps:
+ 			suffix = ""
+ 			cpv = x[2]

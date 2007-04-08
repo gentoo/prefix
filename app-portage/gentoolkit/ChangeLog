@@ -1,6 +1,86 @@
 # ChangeLog for app-portage/gentoolkit
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.95 2007/02/20 16:56:40 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.114 2007/04/06 21:53:56 opfer Exp $
+
+  06 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
+  gentoolkit-0.2.3-r1.ebuild:
+  stable amd64, bug 172741
+
+  04 Apr 2007; Fernando J. Pereda <ferdy@gentoo.org>
+  gentoolkit-0.2.3-r1.ebuild:
+  Stable on alpha as per bug #172741
+
+  01 Apr 2007; Tom Gall <tgall@gentoo.org> gentoolkit-0.2.3-r1.ebuild:
+  stable on ppc64 bug 172741
+
+  30 Mar 2007; nixnut <nixnut@gentoo.org> gentoolkit-0.2.3-r1.ebuild:
+  Stable on ppc wrt bug 172741
+
+  30 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  gentoolkit-0.2.3-r1.ebuild:
+  Stable on sparc wrt #172741
+
+  30 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  gentoolkit-0.2.3-r1.ebuild:
+  stable x86, bug 172741
+
+  30 Mar 2007; Jeroen Roovers <jer@gentoo.org> gentoolkit-0.2.3-r1.ebuild:
+  Stable for HPPA (bug #172741).
+
+*gentoolkit-0.2.3-r1 (30 Mar 2007)
+
+  30 Mar 2007; Paul Varner <fuzzyray@gentoo.org>
+  +files/gentoolkit-0.2.3-r1-equery.patch, +gentoolkit-0.2.3-r1.ebuild:
+  Rev bump to remove debug print statement in equery (Bug #172741)
+
+*gentoolkit-0.2.4_pre3 (25 Mar 2007)
+
+  25 Mar 2007; Paul Varner <fuzzyray@gentoo.org>
+  +gentoolkit-0.2.4_pre3.ebuild:
+  Version bump to make Makefile more portable (Bug #168983)
+
+*gentoolkit-0.2.4_pre2 (19 Mar 2007)
+
+  19 Mar 2007; Paul Varner <fuzzyray@gentoo.org>
+  +gentoolkit-0.2.4_pre2.ebuild:
+  gentoolkit-0.2.4_pre2 version bump. This fixes bugs #77318, #115807, #165165,
+  #168347, #169761, #170702, and #170981.
+  Bug #170220 tracks all fixes made for the gentoolkit-0.2.4 release.
+
+  14 Mar 2007; Chris Gianelloni <wolf31o2@gentoo.org>
+  gentoolkit-0.2.3.ebuild:
+  Stable on alpha/ia64 wrt bug #169040.
+
+*gentoolkit-0.2.4_pre1 (10 Mar 2007)
+
+  10 Mar 2007; Paul Varner <fuzzyray@gentoo.org>
+  +gentoolkit-0.2.4_pre1.ebuild:
+  New release for various bug fixes and enhancements.
+  See http://bugs.gentoo.org/170220 for list.
+
+  07 Mar 2007; Alexander H. Færøy <eroyf@gentoo.org>
+  gentoolkit-0.2.3.ebuild:
+  Stable on MIPS; bug #169040
+
+  06 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  gentoolkit-0.2.3.ebuild:
+  Stable on sparc wrt #169040
+
+  06 Mar 2007; Markus Rothe <corsair@gentoo.org> gentoolkit-0.2.3.ebuild:
+  Stable on ppc64; bug #169040
+
+  03 Mar 2007; Simon Stelling <blubb@gentoo.org> gentoolkit-0.2.3.ebuild:
+  stable on amd64; bug 169040
+
+  02 Mar 2007; Jeroen Roovers <jer@gentoo.org> gentoolkit-0.2.3.ebuild:
+  Stable for HPPA (bug #169040).
+
+  02 Mar 2007; nixnut <nixnut@gentoo.org> gentoolkit-0.2.3.ebuild:
+  Stable on ppc wrt bug 169040
+
+  02 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  gentoolkit-0.2.3.ebuild:
+  stable x86; bug 169040
 
 *gentoolkit-0.2.3 (20 Feb 2007)
 
