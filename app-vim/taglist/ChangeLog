@@ -1,6 +1,10 @@
 # ChangeLog for app-vim/taglist
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/taglist/ChangeLog,v 1.46 2007/01/03 15:45:04 beu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/taglist/ChangeLog,v 1.47 2007/02/11 14:07:54 grobian Exp $
+
+  11 Feb 2007; Fabian Groffen <grobian@gentoo.org> taglist-4.1.ebuild,
+  taglist-4.2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *taglist-4.2 (03 Jan 2007)
 
