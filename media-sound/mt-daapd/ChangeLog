@@ -1,6 +1,17 @@
 # ChangeLog for media-sound/mt-daapd
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mt-daapd/ChangeLog,v 1.47 2006/10/28 23:29:43 flameeyes Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mt-daapd/ChangeLog,v 1.50 2007/02/17 01:03:12 flameeyes Exp $
+
+  17 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Don't abuse $ROOT.
+
+  17 Feb 2007; Diego Pettenò <flameeyes@gentoo.org>
+  mt-daapd-0.3.0_pre1376.ebuild:
+  Don't abuse $ROOT.
+
+  17 Jan 2007; Fabian Groffen <grobian@gentoo.org> mt-daapd-0.2.4.ebuild,
+  mt-daapd-0.3.0_pre1376.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   28 Oct 2006; Diego Pettenò <flameeyes@gentoo.org> mt-daapd-0.2.4.ebuild:
   Add missing automake/autoconf version dependencies. Thanks to Patrick Lauer
