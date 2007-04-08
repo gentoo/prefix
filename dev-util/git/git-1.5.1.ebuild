@@ -1,36 +1,41 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.4.4.1.ebuild,v 1.1 2006/11/26 14:01:48 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.1.ebuild,v 1.1 2007/04/04 10:43:02 ferdy Exp $
 
 EAPI="prefix"
 
-inherit python toolchain-funcs eutils elisp-common perl-module bash-completion
+inherit toolchain-funcs eutils elisp-common perl-module bash-completion
 
-DOC_VER=${PV}
+MY_PV="${PV/_rc/.rc}"
+MY_P="${PN}-${MY_PV}"
+
+DOC_VER=${MY_PV}
 
 DESCRIPTION="GIT - the stupid content tracker"
 HOMEPAGE="http://kernel.org/pub/software/scm/git/"
-SRC_URI="mirror://kernel/software/scm/git/${P}.tar.bz2
+SRC_URI="mirror://kernel/software/scm/git/${MY_P}.tar.bz2
 		mirror://kernel/software/scm/git/${PN}-manpages-${DOC_VER}.tar.bz2
 		doc? ( mirror://kernel/software/scm/git/${PN}-htmldocs-${DOC_VER}.tar.bz2 )"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
-IUSE="curl doc elibc_uclibc emacs gtk mozsha1 ppcsha1 tk webdav"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+IUSE="curl doc elibc_uclibc emacs gtk mozsha1 perl ppcsha1 tk webdav"
 
 DEPEND="dev-libs/openssl
 		sys-libs/zlib
 		!app-misc/git
 		curl? ( net-misc/curl )
 		webdav? ( dev-libs/expat )
-		emacs? ( virtual/emacs )"
+		emacs? ( virtual/emacs )
+		virtual/libintl"
 RDEPEND="${DEPEND}
 		dev-lang/perl
-		>=dev-lang/python-2.3
-		app-text/rcs
+		perl? ( dev-perl/Error )
 		tk? ( dev-lang/tk )
 		gtk? ( >=dev-python/pygtk-2.6 )"
+
+S="${WORKDIR}/${MY_P}"
 
 # This is needed because for some obscure reasons future calls to make don't
 # pick up these exports if we export them in src_unpack()
@@ -51,11 +56,10 @@ exportmakeopts() {
 	fi
 
 	myopts="${myopts} WITH_SEND_EMAIL=YesPlease"
+	# broken assumptions, because of broken build system ...
 	myopts="${myopts} NO_FINK=YesPlease NO_DARWIN_PORTS=YesPlease"
-
-	# Older python versions need own subproccess.py
-	python_version
-	[[ ${PYVER} < 2.4 ]] && myopts="${myopts} WITH_OWN_SUBPROCESS_PY=YesPlease"
+	[[ ${CHOST} == *-solaris* ]] &&
+		myopts="${myopts} NEEDS_LIBICONV=YesPlease INSTALL=install TAR=tar"
 
 	use elibc_uclibc && myopts="${myopts} NO_ICONV=YesPlease"
 
@@ -65,18 +69,21 @@ exportmakeopts() {
 showpkgdeps() {
 	local pkg=$1
 	shift
-	einfo "  $(printf "%-17s:" ${pkg}) ${@}"
+	elog "  $(printf "%-17s:" ${pkg}) ${@}"
 }
 
 src_unpack() {
 	unpack ${A}
 	cd ${S}
 
+	epatch "${FILESDIR}"/${PN}-1.5.0-symlinks.patch
+
 	sed -i \
 		-e "s:^\(CFLAGS = \).*$:\1${CFLAGS} -Wall:" \
 		-e "s:^\(LDFLAGS = \).*$:\1${LDFLAGS}:" \
 		-e "s:^\(CC = \).*$:\1$(tc-getCC):" \
 		-e "s:^\(AR = \).*$:\1$(tc-getAR):" \
+		-e 's:ln :ln -s :g' \
 		-e "s:\(PYTHON_PATH = \)\(.*\)$:\1${EPREFIX}\2:" \
 		-e "s:\(PERL_PATH = \)\(.*\)$:\1${EPREFIX}\2:" \
 		Makefile || die "sed failed"
@@ -130,25 +137,29 @@ src_install() {
 
 src_test() {
 	cd "${S}"
-
 	has_version dev-util/subversion || \
 		MY_MAKEOPTS="${MY_MAKEOPTS} NO_SVN_TESTS=YesPlease"
 	has_version app-arch/unzip || \
 		rm "${S}"/t/t5000-tar-tree.sh
+	# Stupid CVS won't let some people commit as root
+	rm "${S}"/t/t9200-git-cvsexportcommit.sh
 	emake ${MY_MAKEOPTS} DESTDIR="${D}" prefix="${EPREFIX}"/usr test || die "tests failed"
 }
 
 pkg_postinst() {
 	use emacs && elisp-site-regen
-	einfo "These additional scripts need some dependencies:"
-	einfo
+	elog "These additional scripts need some dependencies:"
+	echo
 	showpkgdeps git-archimport "dev-util/tla"
 	showpkgdeps git-cvsimport ">=dev-util/cvsps-2.1"
 	showpkgdeps git-svnimport "dev-util/subversion(USE=perl)"
 	showpkgdeps git-svn "dev-util/subversion(USE=perl)" "dev-perl/libwww-perl"
 	showpkgdeps git-quiltimport "dev-util/quilt"
-	showpkgdeps git-cvsserver "dev-perl/DBI" "dep-perl/DBD-SQLite"
-	einfo
+	showpkgdeps git-cvsserver "dev-perl/DBI" "dev-perl/DBD-SQLite"
+	showpkgdeps git-instaweb "|| ( www-servers/lighttpd net-www/apache(SLOT=2) )"
+	showpkgdeps git-send-email "USE=perl"
+	showpkgdeps git-remote "USE=perl"
+	echo
 }
 
 pkg_postrm() {

@@ -1,6 +1,153 @@
 # ChangeLog for dev-util/git
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.147 2006/11/26 14:01:48 ferdy Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.183 2007/04/06 10:14:29 dertobi123 Exp $
+
+  06 Apr 2007; Tobias Scherbaum <dertobi123@gentoo.org> git-1.5.0.7.ebuild:
+  ppc stable
+
+  04 Apr 2007; Fernando J. Pereda <ferdy@gentoo.org> git-1.5.0.7.ebuild:
+  Stable on alpha wrt bug #173327
+
+  04 Apr 2007; Jeroen Roovers <jer@gentoo.org> git-1.5.0.7.ebuild:
+  Stable for HPPA (bug #173327).
+
+  04 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> git-1.5.0.7.ebuild:
+  Stable on sparc wrt #173327
+
+  04 Apr 2007; Raúl Porcel <armin76@gentoo.org> git-1.5.0.7.ebuild:
+  ia64 + x86 stable wrt bug 173327
+
+  04 Apr 2007; Fernando J. Pereda <ferdy@gentoo.org> -git-1.4.2.4.ebuild,
+  -git-1.4.4.3.ebuild:
+  Remove unused versions.
+
+*git-1.5.1 (04 Apr 2007)
+*git-1.5.0.7 (04 Apr 2007)
+
+  04 Apr 2007; Fernando J. Pereda <ferdy@gentoo.org> -git-1.5.0.6.ebuild,
+  +git-1.5.0.7.ebuild, +git-1.5.1.ebuild:
+  Revision and version bump. Remove 1.5.0.6
+
+*git-1.5.0.6 (29 Mar 2007)
+
+  29 Mar 2007; Fernando J. Pereda <ferdy@gentoo.org> -git-1.5.0.5.ebuild,
+  +git-1.5.0.6.ebuild:
+  New upstream version. Remove 1.5.0.5
+
+*git-1.5.0.5 (19 Mar 2007)
+
+  19 Mar 2007; Fernando J. Pereda <ferdy@gentoo.org> -git-1.5.0.4.ebuild,
+  +git-1.5.0.5.ebuild:
+  New upstream version. Remove old one.
+
+*git-1.5.0.4 (16 Mar 2007)
+
+  16 Mar 2007; Fernando J. Pereda <ferdy@gentoo.org> -git-1.5.0.3.ebuild,
+  -git-1.5.0.3-r1.ebuild, +git-1.5.0.4.ebuild:
+  New upstream version. Remove old ones.
+
+*git-1.5.0.3-r1 (11 Mar 2007)
+
+  11 Mar 2007; Fernando J. Pereda <ferdy@gentoo.org>
+  +files/git-1.5.0-symlinks.patch, +git-1.5.0.3-r1.ebuild:
+  Create relative symlinks instead of absolute ones.
+
+*git-1.5.0.3 (09 Mar 2007)
+
+  09 Mar 2007; Fernando J. Pereda <ferdy@gentoo.org> -git-1.5.0.2.ebuild,
+  +git-1.5.0.3.ebuild:
+  New upstream version. Fix for bug #170066. Remove old version.
+
+*git-1.5.0.2 (27 Feb 2007)
+
+  27 Feb 2007; Fernando J. Pereda <ferdy@gentoo.org> -git-1.5.0.1.ebuild,
+  +git-1.5.0.2.ebuild:
+  New upstream version. Remove .1 since it is buggy
+
+  20 Feb 2007; Fernando J. Pereda <ferdy@gentoo.org> -git-1.5.0.ebuild:
+  Remove unused version, superceed by 1.5.0.1
+
+*git-1.5.0.1 (19 Feb 2007)
+
+  19 Feb 2007; Fernando J. Pereda <ferdy@gentoo.org> +git-1.5.0.1.ebuild:
+  New upstream version.
+
+  15 Feb 2007; Fernando J. Pereda <ferdy@gentoo.org> git-1.5.0.ebuild:
+  Add a showpkgdeps message for git send-email. Fixes bug #167058. Reported by
+  Christian Schlotter <again@gmx.de>
+
+*git-1.5.0 (14 Feb 2007)
+
+  14 Feb 2007; Fernando J. Pereda <ferdy@gentoo.org> +git-1.5.0.ebuild:
+  New upstream version.
+
+  15 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> git-1.4.4.4.ebuild:
+  Stable on sparc wrt #159822
+
+  15 Jan 2007; Jeroen Roovers <jer@gentoo.org> git-1.4.4.4.ebuild:
+  Stable for HPPA (bug #159822).
+
+  15 Jan 2007; Steve Dibb <beandog@gentoo.org> git-1.4.4.4.ebuild:
+  amd64 stable, bug 159822
+
+  14 Jan 2007; Markus Rothe <corsair@gentoo.org> git-1.4.4.4.ebuild:
+  Stable on ppc64; bug #159822
+
+  13 Jan 2007; Andrej Kacian <ticho@gentoo.org> git-1.4.4.4.ebuild:
+  Stable on x86, bug #159822.
+
+  13 Jan 2007; nixnut <nixnut@gentoo.org> git-1.4.4.4.ebuild:
+  Stable on ppc wrt bug 159822
+
+*git-1.4.4.4 (12 Jan 2007)
+
+  12 Jan 2007; Fernando J. Pereda <ferdy@gentoo.org> +git-1.4.4.4.ebuild:
+  Version bump + stable on Alpha. See bug #159822
+
+  09 Jan 2007; Markus Rothe <corsair@gentoo.org> git-1.4.4.3.ebuild:
+  Stable on ppc64; bug #159822
+
+  07 Jan 2007; Tobias Scherbaum <dertobi123@gentoo.org> git-1.4.4.3.ebuild:
+  ppc stable, bug #159822
+
+  06 Jan 2007; Fernando J. Pereda <ferdy@gentoo.org> -git-1.4.3.5.ebuild,
+  -git-1.4.4.2.ebuild:
+  QA: Clean unused versions.
+
+  06 Jan 2007; Fernando J. Pereda <ferdy@gentoo.org> git-1.4.1.1.ebuild,
+  git-1.4.2.4.ebuild, git-1.4.3.5.ebuild, git-1.4.4.2.ebuild,
+  git-1.4.4.3.ebuild:
+  einfo -> elog
+
+  04 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> git-1.4.4.3.ebuild:
+  Stable on IA64.
+
+  04 Jan 2007; Torsten Veller <tove@gentoo.org> git-1.4.4.3.ebuild:
+  Stable on x86 (#159822)
+
+  04 Jan 2007; Fernando J. Pereda <ferdy@gentoo.org> git-1.4.4.3.ebuild:
+  Stable on alpha as per bug #159822
+
+  04 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> git-1.4.4.3.ebuild:
+  Stable on sparc wrt #159822
+
+  03 Jan 2007; Fernando J. Pereda <ferdy@gentoo.org> git-1.4.4.3.ebuild:
+  git-instaweb has some additional dependencies, fixes bug #159698
+
+  31 Dec 2006; Robin H. Johnson <robbat2@gentoo.org> git-1.4.3.5.ebuild,
+  git-1.4.4.2.ebuild, git-1.4.4.3.ebuild:
+  Fix type in einfo.
+
+*git-1.4.4.3 (20 Dec 2006)
+
+  20 Dec 2006; Fernando J. Pereda <ferdy@gentoo.org> +git-1.4.4.3.ebuild:
+  New upstream version.
+
+*git-1.4.4.2 (07 Dec 2006)
+
+  07 Dec 2006; Fernando J. Pereda <ferdy@gentoo.org> -git-1.4.4.ebuild,
+  -git-1.4.4.1.ebuild, +git-1.4.4.2.ebuild:
+  New upstream version. Clean old ebuilds for the 1.4.4 branch.
 
 *git-1.4.4.1 (26 Nov 2006)
 

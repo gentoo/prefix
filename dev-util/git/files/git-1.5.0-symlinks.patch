@@ -1,0 +1,13 @@
+diff --git a/Makefile b/Makefile
+index 084b7fe..ea297a4 100644
+--- a/Makefile
++++ b/Makefile
+@@ -901,7 +901,7 @@ install: all
+ 		cp '$(DESTDIR_SQ)$(bindir_SQ)/git$X' \
+ 			'$(DESTDIR_SQ)$(gitexecdir_SQ)/git$X'; \
+ 	fi
+-	$(foreach p,$(BUILT_INS), rm -f '$(DESTDIR_SQ)$(gitexecdir_SQ)/$p' && ln '$(DESTDIR_SQ)$(gitexecdir_SQ)/git$X' '$(DESTDIR_SQ)$(gitexecdir_SQ)/$p' ;)
++	$(foreach p,$(BUILT_INS), rm -f '$(DESTDIR_SQ)$(gitexecdir_SQ)/$p' && ln '$(gitexecdir_SQ)/git$X' '$(DESTDIR_SQ)$(gitexecdir_SQ)/$p' ;)
+ ifneq (,$X)
+ 	$(foreach p,$(patsubst %$X,%,$(filter %$X,$(ALL_PROGRAMS) $(BUILT_INS) git$X)), rm -f '$(DESTDIR_SQ)$(gitexecdir_SQ)/$p';)
+ endif
