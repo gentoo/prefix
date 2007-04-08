@@ -1,6 +1,10 @@
 # ChangeLog for app-text/djvu
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.57 2007/03/12 23:47:55 nattfodd Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.58 2007/04/07 13:25:23 betelgeuse Exp $
+
+  07 Apr 2007; Petteri Räty <betelgeuse@gentoo.org> -djvu-3.5.12.ebuild,
+  -djvu-3.5.14.ebuild, -djvu-3.5.14-r1.ebuild, -djvu-3.5.16.ebuild:
+  Remove old versions some of which have broken autotools handling (bug #159985).
 
   12 Mar 2007; Alexandre Buisse <nattfodd@gentoo.org> metadata.xml:
   Replaced text-markup by tex as maintaining herd (text-markup split).
