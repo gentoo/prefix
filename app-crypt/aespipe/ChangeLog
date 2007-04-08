@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/aespipe
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/aespipe/ChangeLog,v 1.21 2007/02/22 11:43:48 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/aespipe/ChangeLog,v 1.22 2007/02/27 13:14:44 grobian Exp $
+
+  27 Feb 2007; Fabian Groffen <grobian@gentoo.org> aespipe-2.3b.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   22 Feb 2007; Alon Bar-Lev <alonbl@gentoo.org> metadata.xml,
   -aespipe-2.2a.ebuild, aespipe-2.3b.ebuild:
