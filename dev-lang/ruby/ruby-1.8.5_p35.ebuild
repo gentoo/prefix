@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.5_p12.ebuild,v 1.6 2007/04/07 16:23:57 pclouds Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.5_p35.ebuild,v 1.2 2007/04/07 16:23:57 pclouds Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ SRC_URI="ftp://ftp.ruby-lang.org/pub/ruby/${MY_P}.tar.gz
 
 LICENSE="Ruby"
 SLOT="1.8"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="debug socks5 tk cjk doc threads examples ipv6"
 RESTRICT="confcache"
 

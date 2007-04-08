@@ -1,27 +1,26 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.5_p12.ebuild,v 1.6 2007/04/07 16:23:57 pclouds Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6.ebuild,v 1.2 2007/04/07 16:23:57 pclouds Exp $
 
 EAPI="prefix"
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 
-ONIGURUMA="onigd2_5_7"
+# A new version is needed for 1.8.6, currently disabled.
+ONIGURUMA="onigd2_5_8"
 
 inherit flag-o-matic alternatives eutils multilib autotools versionator
 
-MY_P="${P/_p/-p}"
-
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="http://www.ruby-lang.org/"
-SRC_URI="ftp://ftp.ruby-lang.org/pub/ruby/${MY_P}.tar.gz
-	cjk? ( http://www.geocities.jp/kosako3/oniguruma/archive/${ONIGURUMA}.tar.gz )"
+SRC_URI="ftp://ftp.ruby-lang.org/pub/ruby/$(get_version_component_range 1-2)/${P}.tar.gz"
+#	cjk? ( http://www.geocities.jp/kosako3/oniguruma/archive/${ONIGURUMA}.tar.gz )"
 
 LICENSE="Ruby"
 SLOT="1.8"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
-IUSE="debug socks5 tk cjk doc threads examples ipv6"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+IUSE="debug socks5 tk doc threads examples ipv6" # cjk
 RESTRICT="confcache"
 
 RDEPEND=">=sys-libs/gdbm-1.8.0
@@ -36,20 +35,18 @@ RDEPEND=">=sys-libs/gdbm-1.8.0
 DEPEND="${RDEPEND}"
 PROVIDE="virtual/ruby"
 
-S=${WORKDIR}/${MY_P}
-
 src_unpack() {
 	unpack ${A}
 
-	if use cjk ; then
-		einfo "Applying ${ONIGURUMA}"
-		pushd ${WORKDIR}/oniguruma
-#		epatch ${FILESDIR}/oniguruma-2.3.1-gentoo.patch
-		econf --with-rubydir=${S} || die "econf failed"
-		MY_PV=$(get_version_component_range 1-2)
-		make ${MY_PV/./}
-		popd
-	fi
+#	if use cjk ; then
+#		einfo "Applying ${ONIGURUMA}"
+#		pushd ${WORKDIR}/oniguruma
+##		epatch ${FILESDIR}/oniguruma-2.3.1-gentoo.patch
+#		econf --with-rubydir=${S} || die "econf failed"
+#		MY_PV=$(get_version_component_range 1-2)
+#		make ${MY_PV/./}
+#		popd
+#	fi
 
 	cd "${S}"
 
@@ -120,7 +117,7 @@ src_install() {
 	dosym libruby${SLOT/./}$(get_libname ${PV%_*}) /usr/$(get_libdir)/libruby$(get_libname ${PV%.*})
 	dosym libruby${SLOT/./}$(get_libname ${PV%_*}) /usr/$(get_libdir)/libruby$(get_libname ${PV%_*})
 
-	dodoc ChangeLog MANIFEST README* ToDo
+	dodoc ChangeLog NEWS README* ToDo
 }
 
 pkg_postinst() {
