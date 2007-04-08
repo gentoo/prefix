@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/libsigc++
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigc++/ChangeLog,v 1.102 2007/03/12 16:35:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigc++/ChangeLog,v 1.104 2007/04/07 15:18:05 betelgeuse Exp $
+
+  07 Apr 2007; Petteri Räty <betelgeuse@gentoo.org>
+  -libsigc++-2.0.5.ebuild:
+  Remove ebuild calling libtoolize directly wrt bug #160005.
+
+  19 Mar 2007; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
+  Remove ka0ttic from metadata.xml due to retirement.
 
   12 Mar 2007; Raúl Porcel <armin76@gentoo.org> libsigc++-2.0.17.ebuild:
   x86 stable
@@ -137,7 +144,7 @@
   libsigc++-2.0.14.ebuild:
   Stable on hppa.
 
-*libsigcc++-2.0.15 (12 Jul 2005)
+*libsigc++-2.0.15 (12 Jul 2005)
 
   12 Jul 2005; Aaron Walker <ka0ttic@gentoo.org> -libsigc++-1.2.2.ebuild,
   -libsigc++-1.2.3.ebuild, -libsigc++-2.0.12.ebuild, +libsigc++-2.0.15.ebuild,
