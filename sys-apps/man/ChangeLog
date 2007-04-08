@@ -1,6 +1,27 @@
 # ChangeLog for sys-apps/man
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.108 2007/01/27 05:44:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.115 2007/04/06 22:13:35 opfer Exp $
+
+  06 Apr 2007; Christian Faulhammer <opfer@gentoo.org> man-1.6e-r1.ebuild:
+  stable amd64, bug 172761
+
+  06 Apr 2007; Tobias Scherbaum <dertobi123@gentoo.org> man-1.6e-r3.ebuild:
+  ppc stable
+
+  04 Apr 2007; Fernando J. Pereda <ferdy@gentoo.org> man-1.6e-r1.ebuild:
+  Stable on alpha as per bug #172761
+
+  04 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> man-1.6e-r1.ebuild:
+  Stable on sparc wrt #172761
+
+  01 Apr 2007; Michael Hanselmann <hansmi@gentoo.org> man-1.6e-r1.ebuild:
+  Stable on ppc. See bug #172761.
+
+  31 Mar 2007; Jeroen Roovers <jer@gentoo.org> man-1.6e-r1.ebuild:
+  Stable for HPPA (bug #172761).
+
+  31 Mar 2007; Christian Faulhammer <opfer@gentoo.org> man-1.6e-r1.ebuild:
+  stable x86, bug 172761
 
 *man-1.6e-r3 (27 Jan 2007)
 
