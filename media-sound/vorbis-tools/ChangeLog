@@ -1,6 +1,38 @@
 # ChangeLog for media-sound/vorbis-tools
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/ChangeLog,v 1.45 2006/11/17 23:49:00 aballier Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/ChangeLog,v 1.53 2007/03/09 03:58:23 beandog Exp $
+
+*vorbis-tools-1.1.1-r4 (09 Mar 2007)
+
+  09 Mar 2007; Steve Dibb <beandog@gentoo.org>
+  +vorbis-tools-1.1.1-r4.ebuild:
+  Add minimal use flag, bug 143812
+
+  03 Feb 2007; nixnut <nixnut@gentoo.org> vorbis-tools-1.1.1-r3.ebuild:
+  Stable on ppc wrt bug 121969
+
+  01 Feb 2007; Markus Rothe <corsair@gentoo.org>
+  vorbis-tools-1.1.1-r3.ebuild:
+  Stable on ppc64; bug #121969
+
+  01 Feb 2007; Jeroen Roovers <jer@gentoo.org> vorbis-tools-1.1.1-r3.ebuild:
+  Stable for HPPA (bug #121969).
+
+  31 Jan 2007; Chris Gianelloni <wolf31o2@gentoo.org>
+  vorbis-tools-1.1.1-r3.ebuild:
+  Stable on amd64/x86 wrt bug #121969.
+
+  31 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  vorbis-tools-1.1.1-r3.ebuild:
+  Stable on sparc wrt #121969
+
+  18 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  vorbis-tools-1.1.1-r2.ebuild:
+  Stable on sparc
+
+  09 Dec 2006; Alexis Ballier <aballier@gentoo.org>
+  +files/vorbis-tools-1.1.1-curl-7.16.0.patch, vorbis-tools-1.1.1-r3.ebuild:
+  Patch from Daniel Black <dragonheart@gentoo.org> to build against curl-7.16.0
 
   17 Nov 2006; Alexis Ballier <aballier@gentoo.org>
   vorbis-tools-1.1.1-r3.ebuild:

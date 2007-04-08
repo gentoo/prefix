@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/vorbis-tools-1.1.1-r3.ebuild,v 1.2 2006/11/17 23:49:00 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/vorbis-tools-1.1.1-r3.ebuild,v 1.9 2007/03/17 21:34:20 vapier Exp $
 
 EAPI="prefix"
 
@@ -44,6 +44,7 @@ src_unpack() {
 	epatch "${WORKDIR}/${P}+flac-1.1.3-1.patch"
 	epatch "${WORKDIR}/${P}+flac-1.1.3-2.patch"
 	epatch "${WORKDIR}/${P}+flac-1.1.3-3.patch"
+	epatch "${FILESDIR}/${P}-curl-7.16.0.patch"
 	AT_M4DIR="m4" eautoreconf
 }
 
