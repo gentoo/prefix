@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mhash/mhash-0.9.3-r1.ebuild,v 1.7 2007/03/18 19:50:12 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mhash/mhash-0.9.8.1.ebuild,v 1.1 2007/03/28 03:29:51 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -12,30 +12,25 @@ SRC_URI="mirror://sourceforge/mhash/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
 IUSE=""
 
 DEPEND=""
 RDEPEND=""
-
-src_unpack() {
-	unpack ${A} && cd "${S}"
-	# for 0.9.3 only, please send patch upstream
-	epatch "${FILESDIR}/${P}-mhash_free.patch"
-}
 
 src_compile() {
 	econf \
 		--enable-static \
 		--enable-shared || die
 	emake || die "make failure"
+	cd doc && emake mhash.html || die "failed to build html"
 }
 
 src_install() {
 	dodir /usr/{bin,include,lib}
-	emake install DESTDIR="${D}" || die "install failure"
+	make install DESTDIR="${D}" || die "install failure"
 
 	dodoc AUTHORS INSTALL NEWS README TODO THANKS ChangeLog
-	dodoc doc/*.txt doc/skid*
-	cd doc && make mhash.html && dohtml mhash.html || die "dohtml failed"
+	dodoc doc/*.txt doc/skid* doc/*.c
+	dohtml doc/mhash.html || die "dohtml failed"
 }
