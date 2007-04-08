@@ -1,6 +1,15 @@
 # ChangeLog for net-analyzer/libnasl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/libnasl/ChangeLog,v 1.81 2007/02/01 22:03:54 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/libnasl/ChangeLog,v 1.83 2007/04/03 14:33:26 vanquirius Exp $
+
+*libnasl-2.2.9 (03 Apr 2007)
+
+  03 Apr 2007; Marcelo Goes <vanquirius@gentoo.org> +libnasl-2.2.9.ebuild:
+  2.2.9 version bump for bug 169466. Thanks to Jared Breland <nitro322 at
+  gmail dot com>.
+
+  26 Mar 2007; Fabian Groffen <grobian@gentoo.org> libnasl-2.3.1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   01 Feb 2007; Markus Ullmann <jokey@gentoo.org> -libnasl-2.2.7.ebuild,
   -libnasl-2.2.8.ebuild:
