@@ -1,10 +1,9 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsamplerate/libsamplerate-0.1.2-r1.ebuild,v 1.2 2007/02/14 22:53:06 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsamplerate/libsamplerate-0.1.2-r1.ebuild,v 1.9 2007/04/06 20:44:22 dertobi123 Exp $
 
 EAPI="prefix"
 
-WANT_AUTOCONF=2.5
 WANT_AUTOMAKE=1.7
 
 inherit eutils autotools
@@ -45,7 +44,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die "make install failed"
+	emake DESTDIR="${D}" install || die "make install failed"
 	dodoc AUTHORS ChangeLog NEWS README
 	dohtml doc/*.html doc/*.css doc/*.png
 }
