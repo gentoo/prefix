@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/jbigkit
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-libs/jbigkit/ChangeLog,v 1.33 2006/09/04 04:00:23 kumba Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jbigkit/ChangeLog,v 1.34 2007/02/22 01:49:32 peper Exp $
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
 
   04 Sep 2006; Joshua Kinard <kumba@gentoo.org> jbigkit-1.6-r1.ebuild:
   Marked stable on mips.
