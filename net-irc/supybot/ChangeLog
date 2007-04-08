@@ -1,6 +1,15 @@
 # ChangeLog for net-irc/supybot
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/supybot/ChangeLog,v 1.18 2006/09/25 21:09:35 the_paya Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-irc/supybot/ChangeLog,v 1.21 2007/02/20 12:35:37 armin76 Exp $
+
+  20 Feb 2007; Raúl Porcel <armin76@gentoo.org> supybot-0.83.2.ebuild:
+  x86 stable
+
+  30 Dec 2006; Tiziano Müller <dev-zero@gentoo.org> -supybot-0.77.2.ebuild:
+  Dropped old version.
+
+  30 Dec 2006; Fabian Groffen <grobian@gentoo.org> supybot-0.77.2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   25 Sep 2006; Javier Villavicencio <the_paya@gentoo.org>
   supybot-0.83.2.ebuild:
