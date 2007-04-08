@@ -3,9 +3,6 @@
 <pkgmetadata>
 <herd>net-p2p</herd>
 <maintainer>
- <email>flameeyes@gentoo.org</email>
-</maintainer>
-<maintainer>
  <email>drizzt@gentoo.org</email>
  <description>Secondary Maintainer</description>
 </maintainer>
