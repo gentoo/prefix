@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/IO-Zlib
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Zlib/ChangeLog,v 1.20 2007/01/15 23:15:52 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Zlib/ChangeLog,v 1.21 2007/03/11 20:44:46 mcummings Exp $
+
+*IO-Zlib-1.05 (11 Mar 2007)
+
+  11 Mar 2007; Michael Cummings <mcummings@gentoo.org> +IO-Zlib-1.05.ebuild:
+  Version bump
 
   15 Jan 2007; Michael Cummings <mcummings@gentoo.org> -IO-Zlib-1.01.ebuild,
   IO-Zlib-1.04.ebuild:
