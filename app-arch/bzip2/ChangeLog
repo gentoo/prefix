@@ -1,6 +1,31 @@
 # ChangeLog for app-arch/bzip2
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/ChangeLog,v 1.45 2007/01/06 01:50:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/ChangeLog,v 1.53 2007/04/01 11:58:52 vapier Exp $
+
+  01 Apr 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/bzip2-1.0.4-man-links.patch, bzip2-1.0.4.ebuild:
+  Add symlinks for man pages #172986 by Guido Imperiale.
+
+  17 Mar 2007; nixnut <nixnut@gentoo.org> bzip2-1.0.4.ebuild:
+  Stable on ppc wrt bug 170457
+
+  15 Mar 2007; Markus Rothe <corsair@gentoo.org> bzip2-1.0.4.ebuild:
+  Stable on ppc64; bug #170457
+
+  14 Mar 2007; Simon Stelling <blubb@gentoo.org> bzip2-1.0.4.ebuild:
+  stable on amd64; bug 170457
+
+  12 Mar 2007; Bryan Østergaard <kloeri@gentoo.org> bzip2-1.0.4.ebuild:
+  Stable on Alpha, bug 170457.
+
+  12 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> bzip2-1.0.4.ebuild:
+  Stable on sparc wrt #170457
+
+  12 Mar 2007; Jeroen Roovers <jer@gentoo.org> bzip2-1.0.4.ebuild:
+  Stable for HPPA (bug #170457).
+
+  11 Mar 2007; Raúl Porcel <armin76@gentoo.org> bzip2-1.0.4.ebuild:
+  x86 stable wrt bug 170457
 
 *bzip2-1.0.4 (06 Jan 2007)
 
