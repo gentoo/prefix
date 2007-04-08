@@ -1,6 +1,10 @@
 # ChangeLog for media-sound/mpg123
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.108 2007/02/10 21:50:03 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.109 2007/03/02 12:47:10 genstef Exp $
+
+  02 Mar 2007; <genstef@gentoo.org> mpg123-0.59s-r11.ebuild,
+  mpg123-0.61.ebuild, mpg123-0.65.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *mpg123-0.65 (10 Feb 2007)
 
