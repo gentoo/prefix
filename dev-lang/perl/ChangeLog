@@ -1,6 +1,23 @@
 # ChangeLog for dev-lang/perl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.238 2007/01/11 03:28:29 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.243 2007/03/30 14:35:19 mcummings Exp $
+
+  30 Mar 2007; Michael Cummings <mcummings@gentoo.org> perl-5.8.8-r2.ebuild:
+  Bug 147184, thanks to jweckhart for the patch :)
+
+  08 Mar 2007; Michael Cummings <mcummings@gentoo.org> perl-5.8.8-r2.ebuild:
+  Change to the call for the lib64 patch to enable it for ppc64 - helps with
+  stage 1 building problems. Thanks ranger :)
+
+  07 Mar 2007; Chris Gianelloni <wolf31o2@gentoo.org> perl-5.8.8-r2.ebuild:
+  Change all instances of [ to [[.
+
+  04 Mar 2007; Michael Cummings <mcummings@gentoo.org>
+  +files/perl-5.8.8-asm-page-h-compile-failure.patch, perl-5.8.8-r2.ebuild:
+  Bug 168312, patch from Peter for >=2.6.20 kernel headers.
+
+  11 Feb 2007; Fabian Groffen <grobian@gentoo.org> perl-5.8.8-r2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   11 Jan 2007; Michael Cummings <mcummings@gentoo.org> perl-5.8.8-r2.ebuild:
   Reverting changes made for bug 59328 until we can figure out why this breaks

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r2.ebuild,v 1.28 2007/01/11 03:28:29 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r2.ebuild,v 1.33 2007/03/30 14:35:19 mcummings Exp $
 
 EAPI="prefix"
 
@@ -55,7 +55,7 @@ pkg_setup() {
 		epause 5
 	fi
 
-	if [ ! -f "${EROOT}/usr/$(get_libdir)/${LIBPERL}" ]
+	if [[ ! -f "${EROOT}/usr/$(get_libdir)/${LIBPERL}" ]]
 	then
 		# Make sure we have libperl installed ...
 		eerror "Cannot find ${EROOT}/usr/$(get_libdir)/${LIBPERL}!  Make sure that you"
@@ -121,7 +121,8 @@ src_unpack() {
 	# do not create sharedlib-archive, but sharedlib directly.
 	epatch ${FILESDIR}/${P}-aix.patch
 
-	use amd64 && cd ${S} && epatch ${FILESDIR}/${P}-lib64.patch
+	#[[ ${get_libdir} == lib64 ]] && cd ${S} && epatch ${FILESDIR}/${P}-lib64.patch
+	use amd64 || use ppc64 && cd ${S} && epatch ${FILESDIR}/${P}-lib64.patch
 
 	[[ ${CHOST} == *-dragonfly* ]] && cd ${S} && epatch ${FILESDIR}/${P}-dragonfly-clean.patch
 	[[ ${CHOST} == *-freebsd* ]] && cd ${S} && epatch ${FILESDIR}/${P}-fbsdhints.patch
@@ -131,6 +132,11 @@ src_unpack() {
 	cd ${S}; epatch ${FILESDIR}/${P}-cplusplus.patch
 
 	has_version '>sys-devel/gcc-4.1.9999' && epatch ${FILESDIR}/${P}-gcc42-command-line.patch
+
+	# Newer linux-headers don't include asm/page.h. Fix this.
+	# Patch from bug 168312, thanks Peter!
+	has_version '>sys-kernel/linux-headers-2.6.20' && epatch ${FILESDIR}/${P}-asm-page-h-compile-failure.patch
+
 
 }
 
@@ -475,6 +481,7 @@ src_remove_extra_files()
 	${prVA}/auto/POSIX/load_imports.al
 	${prVA}/auto/POSIX/POSIX.bs
 	${prVA}/auto/POSIX/POSIX$(get_libname)
+	${prVA}/auto/POSIX/assert.al
 	${prVA}/auto/POSIX/stat.al
 	${prVA}/auto/POSIX/tmpfile.al
 	${prVA}/auto/re/re$(get_libname)
@@ -585,11 +592,11 @@ src_remove_extra_files()
 
 pkg_postinst() {
 	INC=$(perl -e 'for $line (@INC) { next if $line eq "."; next if $line =~ m/'${MY_PV}'|etc|local|perl$/; print "$line\n" }')
-	if [ "${EROOT}" = "/" ]
+	if [[ "${EROOT}" = "/" ]]
 	then
 		ebegin "Removing old .ph files"
 		for DIR in $INC; do
-			if [ -d ${EROOT}/$DIR ]; then
+			if [[ -d ${EROOT}/$DIR ]]; then
 				for file in $(find ${EROOT}/$DIR -name "*.ph" -type f); do
 					rm ${EROOT}/$file
 					einfo "<< $file"
@@ -598,7 +605,7 @@ pkg_postinst() {
 		done
 		# Silently remove the now empty dirs
 		for DIR in $INC; do
-		   if [ -d ${EROOT}/$DIR ]; then
+		   if [[ -d ${EROOT}/$DIR ]]; then
 		   	find ${EROOT}/$DIR -depth -type d | xargs -r rmdir &> /dev/null
 		   fi
 		done
@@ -615,7 +622,7 @@ pkg_postinst() {
 # of portage will allow us to check what version was just removed - which means
 # we will be able to invoke this only as needed :)
 	# Tried doing this via  -z, but $INC is too big...
-	if [ "${INC}x" != "x" ]; then
+	if [[ "${INC}x" != "x" ]]; then
 		cleaner_msg
 		epause 5
 	fi
