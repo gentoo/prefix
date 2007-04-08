@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.13-r1.ebuild,v 1.11 2007/02/08 19:29:24 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.13-r1.ebuild,v 1.12 2007/02/19 01:46:44 marienz Exp $
 
 EAPI="prefix"
 
@@ -60,7 +60,9 @@ src_install() {
 
 	# installs a blank directory for whatever broken reason
 	use nls || rm -rf ${ED}usr/share/locale
+}
 
+pkg_preinst() {
 	# Keep around old lib
 	preserve_old_lib /usr/$(get_libdir)/libexif.so.9
 }
