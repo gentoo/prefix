@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/windowmaker-0.92.0-r3.ebuild,v 1.14 2007/01/04 19:12:31 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/windowmaker-0.92.0-r3.ebuild,v 1.15 2007/04/07 22:06:44 grobian Exp $
 
 EAPI="prefix"
 
@@ -14,8 +14,7 @@ SRC_URI="ftp://ftp.windowmaker.info/pub/source/release/${P/windowm/WindowM}.tar.
 HOMEPAGE="http://www.windowmaker.info/"
 
 IUSE="gif gnustep jpeg nls png tiff modelock xinerama"
-DEPEND="|| ( ( x11-libs/libXv
-	x11-libs/libXft )
+DEPEND="|| ( ( x11-libs/libXv x11-libs/libXft x11-libs/libXt )
 	virtual/x11 )
 	media-libs/fontconfig
 	gif? ( >=media-libs/giflib-4.1.0-r3 )

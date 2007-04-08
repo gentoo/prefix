@@ -1,6 +1,10 @@
 # ChangeLog for x11-wm/windowmaker
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/ChangeLog,v 1.78 2007/03/20 04:10:31 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/ChangeLog,v 1.79 2007/04/07 22:06:44 grobian Exp $
+
+  07 Apr 2007; Fabian Groffen <grobian@gentoo.org>
+  windowmaker-0.91.0-r1.ebuild, windowmaker-0.92.0-r3.ebuild:
+  Add x11-libs/libXt dependency, bug #173705, thanks to Ron Lockwood-Childs
 
   20 Mar 2007; Michael Sterrett <mr_bones_@gentoo.org>
   -files/0.80.2/wlist.patch,
