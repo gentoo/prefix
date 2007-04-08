@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/audiofile
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/audiofile/ChangeLog,v 1.49 2007/03/12 20:09:40 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/audiofile/ChangeLog,v 1.50 2007/03/19 18:05:14 grobian Exp $
+
+  19 Mar 2007; Fabian Groffen <grobian@gentoo.org>
+  audiofile-0.2.6-r1.ebuild, audiofile-0.2.6-r2.ebuild,
+  audiofile-0.2.6-r3.ebuild:
+  Dropped ppc-macos, see you in prefix
 
   12 Mar 2007; Raúl Porcel <armin76@gentoo.org> audiofile-0.2.6-r2.ebuild:
   x86 stable
