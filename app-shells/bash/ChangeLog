@@ -1,6 +1,25 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.134 2007/02/27 17:02:03 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.140 2007/03/24 08:18:15 vapier Exp $
+
+*bash-3.2_p15-r1 (24 Mar 2007)
+
+  24 Mar 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/bash-3.2-redisplay-cursor.patch, +bash-3.2_p15-r1.ebuild:
+  Add fix for redisplay bug in unicode locales #155369.
+
+  23 Mar 2007; Roy Marples <uberlord@gentoo.org> bash-3.2_p15.ebuild:
+  Only preserve the /bin/sh symlink if it's bash.
+
+*bash-3.2_p15 (22 Mar 2007)
+
+  22 Mar 2007; Mike Frysinger <vapier@gentoo.org> +bash-3.2_p15.ebuild:
+  Version bump.
+
+*bash-3.2_p10 (06 Mar 2007)
+
+  06 Mar 2007; Mike Frysinger <vapier@gentoo.org> +bash-3.2_p10.ebuild:
+  Version bump.
 
   27 Feb 2007; Fabian Groffen <grobian@gentoo.org> bash-3.0-r12.ebuild,
   bash-3.0-r13.ebuild, bash-3.0-r14.ebuild, bash-3.1_p16.ebuild,
