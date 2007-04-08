@@ -1,6 +1,19 @@
 # ChangeLog for app-emacs/apel
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/apel/ChangeLog,v 1.17 2007/03/07 05:33:43 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/apel/ChangeLog,v 1.21 2007/04/06 20:52:55 opfer Exp $
+
+  06 Apr 2007; Christian Faulhammer <opfer@gentoo.org> apel-10.7.ebuild:
+  stable amd64, bug 173556
+
+  06 Apr 2007; nixnut <nixnut@gentoo.org> apel-10.7.ebuild:
+  Stable on ppc wrt bug 173556
+
+  06 Apr 2007; Christian Faulhammer <opfer@gentoo.org> apel-10.7.ebuild:
+  stable x86
+
+  30 Mar 2007; Fabian Groffen <grobian@gentoo.org> apel-10.6.ebuild,
+  apel-10.7.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   07 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
   files/50apel-gentoo.el:
