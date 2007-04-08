@@ -1,25 +1,26 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mailx-support/mailx-support-20060102-r1.ebuild,v 1.2 2006/07/03 01:43:00 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mailx-support/mailx-support-20060102-r1.ebuild,v 1.7 2007/04/07 13:15:49 opfer Exp $
 
 EAPI="prefix"
 
 inherit eutils toolchain-funcs flag-o-matic
 
-DESCRIPTION="Provides mail.local and lockspool"
+DESCRIPTION="Provides lockspool utility"
 HOMEPAGE="http://www.openbsd.org/"
+SRC_URI="mirror://gentoo/${P}.tar.bz2"
+
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86"
 IUSE=""
-SRC_URI="mirror://gentoo/${P}.tar.bz2"
+
 DEPEND=""
 RDEPEND=""
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
-
+	cd "${S}"
 	epatch "${FILESDIR}/${P}-respect-ldflags.patch"
 	ebegin "Allowing unprivileged install"
 	sed -i \
