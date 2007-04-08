@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/pipeworks
-# Copyright 2000-2005 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/pipeworks/ChangeLog,v 1.8 2005/04/21 19:35:16 blubb Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/pipeworks/ChangeLog,v 1.9 2007/02/08 22:44:59 flameeyes Exp $
+
+  08 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
 
   21 Apr 2005; Simon Stelling <blubb@gentoo.org> pipeworks-0.4.ebuild:
   stable on amd64
