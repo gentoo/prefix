@@ -1,6 +1,63 @@
 # ChangeLog for app-arch/bsdtar
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bsdtar/ChangeLog,v 1.52 2007/02/11 19:46:21 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bsdtar/ChangeLog,v 1.61 2007/04/07 17:30:23 drizzt Exp $
+
+*bsdtar-2.0.28 (07 Apr 2007)
+
+  07 Apr 2007; Timothy Redaelli <drizzt@gentoo.org> +bsdtar-2.0.28.ebuild:
+  Version bump (thx to Flameeyes for reporting on irc)
+
+*bsdtar-2.0.25 (13 Mar 2007)
+
+  13 Mar 2007; Timothy Redaelli <drizzt@gentoo.org> +bsdtar-2.0.25.ebuild:
+  Just another bsdtar bump.
+
+*bsdtar-2.0.24 (11 Mar 2007)
+
+  11 Mar 2007; Timothy Redaelli <drizzt@gentoo.org>
+  -files/libarchive-2.0.21-tests.patch, -bsdtar-2.0.21.ebuild,
+  +bsdtar-2.0.24.ebuild:
+  Just another bsdtar bump
+
+*bsdtar-2.0.21 (10 Mar 2007)
+
+  10 Mar 2007; Timothy Redaelli <drizzt@gentoo.org>
+  +files/libarchive-2.0.21-tests.patch, +bsdtar-2.0.21.ebuild:
+  Version bump, patch taken from Flameeyes overlay
+
+*bsdtar-2.0.20 (04 Mar 2007)
+
+  04 Mar 2007; Timothy Redaelli <drizzt@gentoo.org>
+  -bsdtar-2.0_beta17.ebuild, +bsdtar-2.0.20.ebuild:
+  Finally a 2.0 final release.
+
+*bsdtar-2.0_beta17 (01 Mar 2007)
+
+  01 Mar 2007; Timothy Redaelli <drizzt@gentoo.org>
+  -bsdtar-2.0_beta15.ebuild, +bsdtar-2.0_beta17.ebuild:
+  Just another bsdtar version bump
+
+*bsdtar-2.0_beta15 (27 Feb 2007)
+
+  27 Feb 2007; Timothy Redaelli <drizzt@gentoo.org>
+  -files/libarchive-2.0b12-tests.patch, -bsdtar-2.0_beta13.ebuild,
+  +bsdtar-2.0_beta15.ebuild:
+  Version bump (taken from Flameeyes overlay)
+
+*bsdtar-2.0_beta13 (26 Feb 2007)
+
+  26 Feb 2007; Timothy Redaelli <drizzt@gentoo.org>
+  -files/libarchive-2.0b11-tests.patch,
+  +files/libarchive-2.0b12-tests.patch, -bsdtar-2.0_beta12.ebuild,
+  +bsdtar-2.0_beta13.ebuild:
+  Version bump (taken from Flameeyes overlay)
+
+*bsdtar-2.0_beta12 (25 Feb 2007)
+
+  25 Feb 2007; Timothy Redaelli <drizzt@gentoo.org>
+  -files/libarchive-2.0b7-noacl.patch, -bsdtar-2.0_beta11.ebuild,
+  +bsdtar-2.0_beta12.ebuild:
+  Version Bump
 
   11 Feb 2007; Diego Pettenò <flameeyes@gentoo.org>
   files/libarchive-2.0b11-tests.patch:

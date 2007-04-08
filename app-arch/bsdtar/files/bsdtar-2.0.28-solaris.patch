@@ -1,0 +1,11 @@
+--- libarchive/archive_write_disk.c
++++ libarchive/archive_write_disk.c
+@@ -1718,7 +1718,7 @@
+  * support through ioctl().
+  */
+ static int
+-set_fflags_platform(struct archive_write_disk *a, int fd, const char *name,
++set_fflags_platform(struct archive_write_disk *ad, int fd, const char *name,
+     mode_t mode, unsigned long set, unsigned long clear)
+ {
+ 	(void)ad; /* UNUSED */
