@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/atk
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/ChangeLog,v 1.131 2007/03/01 12:09:34 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/ChangeLog,v 1.132 2007/03/24 01:56:43 dang Exp $
+
+  24 Mar 2007; Daniel Gryniewicz <dang@gentoo.org> +atk-1.18.0.ebuild:
+  add gnome 2.18.0
 
   01 Mar 2007; <genstef@gentoo.org> atk-1.6.1.ebuild:
   Dropped ppc-macos keyword, see you in prefix
