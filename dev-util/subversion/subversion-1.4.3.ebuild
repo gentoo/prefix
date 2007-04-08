@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.3.ebuild,v 1.5 2007/03/03 21:00:31 pauldv Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.3.ebuild,v 1.9 2007/03/22 16:13:53 pauldv Exp $
 
 EAPI="prefix"
 
@@ -43,7 +43,7 @@ S=${WORKDIR}/${P/_rc/-rc}
 pkg_setup() {
 	if use berkdb && has_version '<dev-util/subversion-0.34.0' && [[ -z ${SVN_DUMPED} ]]; then
 		echo
-		ewarn "Presently you have $(best_version subversion)"
+		ewarn "Presently you have $(best_version dev-util/subversion)"
 		ewarn "Subversion has changed the repository filesystem schema from 0.34.0."
 		ewarn "So you MUST dump your repositories before upgrading."
 		ewarn
@@ -82,7 +82,7 @@ src_compile() {
 
 	if use apache2; then
 		myconf="--with-apxs=${APXS2}"
-		apache_minor="(best_version apache | cut -d. -f2)"
+		apache_minor="$(best_version net-www/apache | cut -d. -f2)"
 		if [ ${apache_minor} -gt 0 ]; then
 			apr_suffix="-1"
 		fi
@@ -120,7 +120,7 @@ src_compile() {
 		;;
 	esac
 
-	append-flags `${EPREFIX}/usr/bin/apr-config --cppflags`
+	append-flags `${EPREFIX}/usr/bin/apr-config${apr_suffix} --cppflags`
 
 	econf ${myconf} \
 		$(use_with berkdb berkeley-db) \
@@ -292,64 +292,64 @@ pkg_postinst() {
 	use emacs && elisp-site-regen
 	use perl && perl-module_pkg_postinst
 
-	einfo "Subversion Server Notes"
-	einfo "-----------------------"
-	einfo
+	elog "Subversion Server Notes"
+	elog "-----------------------"
+	elog
 
-	einfo "If you intend to run a server, a repository needs to be created using"
-	einfo "svnadmin (see man svnadmin) or the following command to create it in"
-	einfo "/var/svn:"
-	einfo
-	einfo "    emerge --config =${CATEGORY}/${PF}"
-	einfo
-	einfo "If you upgraded from an older version of berkely db and experience"
-	einfo "problems with your repository then run the following commands as root:"
-	einfo "    db4_recover -h ${SVN_REPOS_LOC}/repos"
-	einfo "    chown -Rf apache:apache ${SVN_REPOS_LOC}/repos"
-	einfo
-	einfo "Subversion has multiple server types, take your pick:"
-	einfo
-	einfo " - svnserve daemon: "
-	einfo "   1. edit /etc/conf.d/svnserve"
-	einfo "   2. start daemon: /etc/init.d/svnserve start"
-	einfo "   3. make persistent: rc-update add svnserve default"
-	einfo
-	einfo " - svnserve via xinetd:"
-	einfo "   1. edit /etc/xinetd.d/svnserve (remove disable line)"
-	einfo "   2. restart xinetd.d: /etc/init.d/xinetd restart"
-	einfo
-	einfo " - svn over ssh:"
-	einfo "   1. Fix the repository permissions:"
-	einfo "        groupadd svnusers"
-	einfo "        chown -R root:svnusers /var/svn/repos/"
-	einfo "        chmod -R g-w /var/svn/repos"
-	einfo "        chmod -R g+rw /var/svn/repos/db"
-	einfo "        chmod -R g+rw /var/svn/repos/locks"
-	einfo "   2. create an svnserve wrapper in /usr/local/bin to set the umask you"
-	einfo "      want, for example:"
-	einfo "         #!/bin/bash"
-	einfo "         umask 002"
-	einfo "         exec /usr/bin/svnserve \"\$@\""
-	einfo
+	elog "If you intend to run a server, a repository needs to be created using"
+	elog "svnadmin (see man svnadmin) or the following command to create it in"
+	elog "/var/svn:"
+	elog
+	elog "	  emerge --config =${CATEGORY}/${PF}"
+	elog
+	elog "If you upgraded from an older version of berkely db and experience"
+	elog "problems with your repository then run the following commands as root:"
+	elog "	  db4_recover -h ${SVN_REPOS_LOC}/repos"
+	elog "	  chown -Rf apache:apache ${SVN_REPOS_LOC}/repos"
+	elog
+	elog "Subversion has multiple server types, take your pick:"
+	elog
+	elog " - svnserve daemon: "
+	elog "	 1. edit /etc/conf.d/svnserve"
+	elog "	 2. start daemon: /etc/init.d/svnserve start"
+	elog "	 3. make persistent: rc-update add svnserve default"
+	elog
+	elog " - svnserve via xinetd:"
+	elog "	 1. edit /etc/xinetd.d/svnserve (remove disable line)"
+	elog "	 2. restart xinetd.d: /etc/init.d/xinetd restart"
+	elog
+	elog " - svn over ssh:"
+	elog "	 1. Fix the repository permissions:"
+	elog "		  groupadd svnusers"
+	elog "		  chown -R root:svnusers /var/svn/repos/"
+	elog "		  chmod -R g-w /var/svn/repos"
+	elog "		  chmod -R g+rw /var/svn/repos/db"
+	elog "		  chmod -R g+rw /var/svn/repos/locks"
+	elog "	 2. create an svnserve wrapper in /usr/local/bin to set the umask you"
+	elog "		want, for example:"
+	elog "		   #!/bin/bash"
+	elog "		   umask 002"
+	elog "		   exec /usr/bin/svnserve \"\$@\""
+	elog
 
 	if use apache2 >/dev/null; then
-		einfo " - http-based server:"
-		einfo "   1. edit /etc/conf.d/apache2 to include both \"-D DAV\" and \"-D SVN\""
-		einfo "   2. create an htpasswd file:"
-		einfo "      htpasswd2 -m -c ${SVN_REPOS_LOC}/conf/svnusers USERNAME"
-		einfo
+		elog " - http-based server:"
+		elog "	 1. edit /etc/conf.d/apache2 to include both \"-D DAV\" and \"-D SVN\""
+		elog "	 2. create an htpasswd file:"
+		elog "		htpasswd2 -m -c ${SVN_REPOS_LOC}/conf/svnusers USERNAME"
+		elog
 	fi
 
-	einfo "If you intend to use svn-hot-backup, you can specify the number of"
-	einfo "backups to keep per repository by specifying an environment variable."
-	einfo "If you want to keep e.g. 2 backups, do the following:"
-	einfo "echo '# hot-backup: Keep that many repository backups around' > /etc/env.d/80subversion"
-	einfo "echo 'SVN_HOTBACKUP_NUM_BACKUPS=2' >> /etc/env.d/80subversion"
-	einfo ""
+	elog "If you intend to use svn-hot-backup, you can specify the number of"
+	elog "backups to keep per repository by specifying an environment variable."
+	elog "If you want to keep e.g. 2 backups, do the following:"
+	elog "echo '# hot-backup: Keep that many repository backups around' > /etc/env.d/80subversion"
+	elog "echo 'SVN_HOTBACKUP_NUM_BACKUPS=2' >> /etc/env.d/80subversion"
+	elog ""
 }
 
 pkg_postrm() {
-	has_version virtual/emacs && elisp-site-regen
+	use emacs && elisp-site-regen
 	use perl && perl-module_pkg_postrm
 }
 
