@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/esearch-0.7.1-r4.ebuild,v 1.1 2006/06/11 20:29:23 antarus Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/esearch-0.7.1-r4.ebuild,v 1.3 2007/02/28 21:57:37 genstef Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="http://david-peter.de/downloads/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86"
-IUSE=""
+IUSE="linguas_it"
 
 RDEPEND=">=dev-lang/python-2.2
 	>=sys-apps/portage-2.0.50"
