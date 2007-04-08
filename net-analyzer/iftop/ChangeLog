@@ -1,6 +1,15 @@
 # ChangeLog for net-analyzer/iftop
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/net-analyzer/iftop/ChangeLog,v 1.32 2007/01/11 17:06:43 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/iftop/ChangeLog,v 1.35 2007/03/10 19:43:00 armin76 Exp $
+
+  10 Mar 2007; Raúl Porcel <armin76@gentoo.org> iftop-0.17.ebuild:
+  x86 stable
+
+  10 Mar 2007; Peter Weller <welp@gentoo.org> iftop-0.17.ebuild:
+  Keyworded ~x86-fbsd
+
+  20 Feb 2007; Markus Ullmann <jokey@gentoo.org> ChangeLog:
+  Redigest for Manifest2
 
   11 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> iftop-0.17.ebuild:
   Stable on sparc
