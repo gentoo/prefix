@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libsoundtouch
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/ChangeLog,v 1.14 2007/03/24 20:41:20 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/ChangeLog,v 1.15 2007/03/30 19:41:15 grobian Exp $
+
+  30 Mar 2007; Fabian Groffen <grobian@gentoo.org>
+  libsoundtouch-1.3.1.ebuild, libsoundtouch-1.3.1-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   24 Mar 2007; Raúl Porcel <armin76@gentoo.org>
   libsoundtouch-1.3.1-r1.ebuild:
