@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmad/libmad-0.15.1b-r2.ebuild,v 1.8 2007/01/28 07:57:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmad/libmad-0.15.1b-r2.ebuild,v 1.9 2007/03/26 17:29:10 armin76 Exp $
 
 EAPI="prefix"
 

@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libmad
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmad/ChangeLog,v 1.48 2007/01/23 18:32:22 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmad/ChangeLog,v 1.49 2007/03/26 17:29:10 armin76 Exp $
+
+  26 Mar 2007; Raúl Porcel <armin76@gentoo.org> libmad-0.15.1b-r2.ebuild:
+  ia64 stable wrt bug 163113
 
   23 Jan 2007; nixnut <nixnut@gentoo.org> libmad-0.15.1b-r2.ebuild:
   Stable on ppc wrt bug 163113
