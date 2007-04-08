@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/deb2targz
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/deb2targz/ChangeLog,v 1.5 2007/02/24 16:17:12 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/deb2targz/ChangeLog,v 1.6 2007/03/30 13:52:54 beandog Exp $
+
+  30 Mar 2007; Steve Dibb <beandog@gentoo.org> deb2targz-1.ebuild:
+  amd64 stable
 
   24 Feb 2007; Andrej Kacian <ticho@gentoo.org> deb2targz-1.ebuild:
   Stable on x86.
