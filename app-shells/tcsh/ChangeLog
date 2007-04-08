@@ -1,6 +1,13 @@
 # ChangeLog for app-shells/tcsh
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/ChangeLog,v 1.69 2007/03/15 18:57:38 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/ChangeLog,v 1.70 2007/03/22 10:39:29 grobian Exp $
+
+*tcsh-6.14-r33 (22 Mar 2007)
+
+  22 Mar 2007; Fabian Groffen <grobian@gentoo.org> -tcsh-6.14-r32.ebuild,
+  +tcsh-6.14-r33.ebuild:
+  New revision that fixes a cosmetic issue of dircolors not being used, so no
+  LS_COLORS env variable set.
 
 *tcsh-6.14-r32 (15 Mar 2007)
 
