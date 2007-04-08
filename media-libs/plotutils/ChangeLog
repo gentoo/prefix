@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/plotutils
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/plotutils/ChangeLog,v 1.35 2007/04/02 13:24:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/plotutils/ChangeLog,v 1.37 2007/04/07 21:09:05 grobian Exp $
+
+  07 Apr 2007; Fabian Groffen <grobian@gentoo.org>
+  plotutils-2.4.1-r3.ebuild, plotutils-2.4.1-r4.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
+
+  07 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
+  plotutils-2.4.1-r2.ebuild, plotutils-2.4.1-r3.ebuild,
+  plotutils-2.4.1-r4.ebuild:
+  SRC_URI changed to mirror://, fixes bug 163186
 
   02 Apr 2007; Raúl Porcel <armin76@gentoo.org> plotutils-2.4.1-r4.ebuild:
   ia64 stable wrt bug 115242
