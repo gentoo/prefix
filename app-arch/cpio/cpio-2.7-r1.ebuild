@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/cpio-2.7-r1.ebuild,v 1.1 2006/11/11 06:58:30 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/cpio-2.7-r1.ebuild,v 1.6 2007/04/01 10:23:34 hansmi Exp $
 
 EAPI="prefix"
 
@@ -34,7 +34,7 @@ src_compile() {
 
 src_install() {
 	emake install DESTDIR="${D}" || die
-	dodoc ChangeLog NEWS README INSTALL
+	dodoc ChangeLog NEWS README
 	rm -f "${ED}"/usr/share/man/man1/mt.1
 	rmdir "${ED}"/usr/libexec || die
 }
