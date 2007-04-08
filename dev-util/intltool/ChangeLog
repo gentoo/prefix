@@ -1,6 +1,27 @@
 # ChangeLog for dev-util/intltool
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-util/intltool/ChangeLog,v 1.90 2007/01/22 22:16:52 leonardop Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/intltool/ChangeLog,v 1.94 2007/03/01 16:58:44 dang Exp $
+
+  01 Mar 2007; Daniel Gryniewicz <dang@gentoo.org>
+  +files/intltool-0.35.5-update.patch, intltool-0.35.5.ebuild:
+  Revert intltool-extract detection; bug #168832
+
+*intltool-0.35.5 (26 Feb 2007)
+
+  26 Feb 2007; Daniel Gryniewicz <dang@gentoo.org> +intltool-0.35.5.ebuild:
+  Bump to 0.35.5
+  * Don't hardcode fallback path to intltool-extract
+  * Fix mkdir race in inltool-merge.in.in
+  * Update an additional check to use $SRCDIR properly for POTFILES.skip
+  * Handle extracting comments from ini-style files
+
+  12 Feb 2007; Michael Sterrett <mr_bones_@gentoo.org>
+  intltool-0.35.0.ebuild:
+  restore stable ppc64 keyword
+
+  11 Feb 2007; Fabian Groffen <grobian@gentoo.org> intltool-0.35.0.ebuild,
+  intltool-0.35.4.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *intltool-0.35.4 (22 Jan 2007)
 
