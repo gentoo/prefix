@@ -1,6 +1,11 @@
 # ChangeLog for perl-core/CGI
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/CGI/ChangeLog,v 1.38 2007/03/03 20:30:20 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/CGI/ChangeLog,v 1.39 2007/03/09 21:40:01 mcummings Exp $
+
+*CGI-3.27 (09 Mar 2007)
+
+  09 Mar 2007; Michael Cummings <mcummings@gentoo.org> +CGI-3.27.ebuild:
+  Version bump
 
   03 Mar 2007; Andrej Kacian <ticho@gentoo.org> CGI-3.25.ebuild:
   Stable on x86, bug #169153.
