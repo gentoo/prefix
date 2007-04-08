@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/egenix-mx-base
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/egenix-mx-base/ChangeLog,v 1.31 2006/04/17 17:39:49 flameeyes Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/egenix-mx-base/ChangeLog,v 1.32 2007/02/21 16:27:39 lucass Exp $
+
+  21 Feb 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  files/digest-egenix-mx-base-2.0.5, files/digest-egenix-mx-base-2.0.6,
+  Manifest:
+  Convert to Manifest2.
 
   17 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
   egenix-mx-base-2.0.6.ebuild:
