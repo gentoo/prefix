@@ -1,6 +1,10 @@
 # ChangeLog for media-fonts/font-misc-misc
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-fonts/font-misc-misc/ChangeLog,v 1.32 2006/07/19 14:21:16 gmsoft Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/font-misc-misc/ChangeLog,v 1.33 2007/02/04 18:45:02 joshuabaergen Exp $
+
+  04 Feb 2007; Joshua Baergen <joshuabaergen@gentoo.org>
+  font-misc-misc-1.0.0.ebuild:
+  Drop mirroring restriction.  Thanks to Zhang Le of bug #163088.
 
   19 Jul 2006; Guy Martin <gmsoft@gentoo.org> font-misc-misc-1.0.0.ebuild:
   Stable on hppa.
