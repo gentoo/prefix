@@ -1,6 +1,10 @@
 # ChangeLog for sci-biology/embassy-memenew
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-memenew/ChangeLog,v 1.4 2006/11/03 08:03:53 je_fro Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-memenew/ChangeLog,v 1.5 2007/02/15 22:54:09 je_fro Exp $
+
+  15 Feb 2007; Jeff Gardner <je_fro@gentoo.org>
+  embassy-memenew-0.1.0.ebuild:
+  Added ~amd64.
 
   03 Nov 2006; Jeff Gardner <je_fro@gentoo.org>
   embassy-memenew-0.1.0.ebuild:
