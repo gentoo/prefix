@@ -1,0 +1,43 @@
+diff -Naurd mpfr-2.2.1-p1/VERSION mpfr-2.2.1-p2/VERSION
+--- mpfr-2.2.1-p1/VERSION	2007-02-02 00:01:41.000000000 +0000
++++ mpfr-2.2.1-p2/VERSION	2007-02-15 23:37:58.000000000 +0000
+@@ -1 +1 @@
+-2.2.1-p1
++2.2.1-p2
+diff -Naurd mpfr-2.2.1-p1/mpfr.h mpfr-2.2.1-p2/mpfr.h
+--- mpfr-2.2.1-p1/mpfr.h	2007-02-02 00:01:41.000000000 +0000
++++ mpfr-2.2.1-p2/mpfr.h	2007-02-15 23:37:58.000000000 +0000
+@@ -26,7 +26,7 @@
+ #define MPFR_VERSION_MAJOR 2
+ #define MPFR_VERSION_MINOR 2
+ #define MPFR_VERSION_PATCHLEVEL 1
+-#define MPFR_VERSION_STRING "2.2.1-p1"
++#define MPFR_VERSION_STRING "2.2.1-p2"
+ 
+ /* Macros dealing with MPFR VERSION */
+ #define MPFR_VERSION_NUM(a,b,c) (((a) << 16L) | ((b) << 8) | (c))
+diff -Naurd mpfr-2.2.1-p1/tests/tget_f.c mpfr-2.2.1-p2/tests/tget_f.c
+--- mpfr-2.2.1-p1/tests/tget_f.c	2006-11-29 09:49:47.000000000 +0000
++++ mpfr-2.2.1-p2/tests/tget_f.c	2007-02-15 23:37:53.000000000 +0000
+@@ -153,8 +153,9 @@
+         }
+       if (i <= - (unsigned long) LONG_MIN)
+         {
+-          mpfr_set_si (y, - (long) i, GMP_RNDN);
+-          if (mpfr_get_f (x, y, GMP_RNDN) || mpf_cmp_si (x, - (long) i))
++          long j = i < - (unsigned long) LONG_MIN ? - (long) i : LONG_MIN;
++          mpfr_set_si (y, j, GMP_RNDN);
++          if (mpfr_get_f (x, y, GMP_RNDN) || mpf_cmp_si (x, j))
+             {
+               printf ("Error: mpfr_get_f(-%lu) fails\n", i);
+               exit (1);
+diff -Naurd mpfr-2.2.1-p1/version.c mpfr-2.2.1-p2/version.c
+--- mpfr-2.2.1-p1/version.c	2007-02-02 00:01:41.000000000 +0000
++++ mpfr-2.2.1-p2/version.c	2007-02-15 23:37:58.000000000 +0000
+@@ -24,5 +24,5 @@
+ const char *
+ mpfr_get_version (void)
+ {
+-  return "2.2.1-p1";
++  return "2.2.1-p2";
+ }

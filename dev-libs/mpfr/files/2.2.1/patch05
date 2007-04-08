@@ -1,0 +1,373 @@
+diff -Naurd mpfr-2.2.1-p4/VERSION mpfr-2.2.1-p5/VERSION
+--- mpfr-2.2.1-p4/VERSION	2007-02-15 23:43:29.000000000 +0000
++++ mpfr-2.2.1-p5/VERSION	2007-02-15 23:46:49.000000000 +0000
+@@ -1 +1 @@
+-2.2.1-p4
++2.2.1-p5
+diff -Naurd mpfr-2.2.1-p4/mpfr.h mpfr-2.2.1-p5/mpfr.h
+--- mpfr-2.2.1-p4/mpfr.h	2007-02-15 23:43:29.000000000 +0000
++++ mpfr-2.2.1-p5/mpfr.h	2007-02-15 23:46:49.000000000 +0000
+@@ -26,7 +26,7 @@
+ #define MPFR_VERSION_MAJOR 2
+ #define MPFR_VERSION_MINOR 2
+ #define MPFR_VERSION_PATCHLEVEL 1
+-#define MPFR_VERSION_STRING "2.2.1-p4"
++#define MPFR_VERSION_STRING "2.2.1-p5"
+ 
+ /* Macros dealing with MPFR VERSION */
+ #define MPFR_VERSION_NUM(a,b,c) (((a) << 16L) | ((b) << 8) | (c))
+diff -Naurd mpfr-2.2.1-p4/mpfr.info mpfr-2.2.1-p5/mpfr.info
+--- mpfr-2.2.1-p4/mpfr.info	2006-11-29 09:51:26.000000000 +0000
++++ mpfr-2.2.1-p5/mpfr.info	2007-02-15 23:46:21.000000000 +0000
+@@ -1,10 +1,10 @@
+ This is mpfr.info, produced by makeinfo version 4.8 from mpfr.texi.
+ 
+    This manual documents how to install and use the Multiple Precision
+-Floating-Point Reliable Library, version 2.2.1.
++Floating-Point Reliable Library, version 2.2.2-p5.
+ 
+    Copyright 1991, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000,
+-2001, 2002, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
++2001, 2002, 2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
+ 
+    Permission is granted to copy, distribute and/or modify this
+ document under the terms of the GNU Free Documentation License, Version
+@@ -26,10 +26,10 @@
+ ****
+ 
+    This manual documents how to install and use the Multiple Precision
+-Floating-Point Reliable Library, version 2.2.1.
++Floating-Point Reliable Library, version 2.2.2-p5.
+ 
+    Copyright 1991, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000,
+-2001, 2002, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
++2001, 2002, 2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
+ 
+    Permission is granted to copy, distribute and/or modify this
+ document under the terms of the GNU Free Documentation License, Version
+@@ -173,7 +173,7 @@
+      This will copy the files `mpfr.h' and `mpf2mpfr.h' to the directory
+      `/usr/local/include', the file `libmpfr.a' to the directory
+      `/usr/local/lib', and the file `mpfr.info' to the directory
+-     `/usr/local/info' (or if you passed the `--prefix' option to
++     `/usr/local/share/info' (or if you passed the `--prefix' option to
+      `configure', using the prefix directory given as argument to
+      `--prefix' instead of `/usr/local').
+ 
+@@ -396,6 +396,53 @@
+ should return an overflow or an underflow if `1' is not representable
+ in the current exponent range.
+ 
++4.5 Exceptions
++==============
++
++MPFR supports 5 exception types:
++
++   * Underflow: An underflow occurs when the exact result of a function
++     is a non-zero real number and the result obtained after the
++     rounding, assuming an unbounded exponent range (for the rounding),
++     has an exponent smaller than the minimum exponent of the current
++     range. In the round-to-nearest mode, the halfway case is rounded
++     toward zero.
++
++     Note: This is not the single definition of the underflow. MPFR
++     chooses to consider the underflow after rounding. The underflow
++     before rounding can also be defined. For instance, consider a
++     function that has the exact result 7 multiplied by two to the power
++     E-4, where E is the smallest exponent (for a mantissa between 1/2
++     and 1) in the current range, with a 2-bit target precision and
++     rounding towards plus infinity.  The exact result has the exponent
++     E-1. With the underflow before rounding, such a function call
++     would yield an underflow, as E-1 is outside the current exponent
++     range. However, MPFR first considers the rounded result assuming
++     an unbounded exponent range.  The exact result cannot be
++     represented exactly in precision 2, and here, it is rounded to 0.5
++     times 2 to E, which is representable in the current exponent
++     range. As a consequence, this will not yield an underflow in MPFR.
++
++   * Overflow: An overflow occurs when the exact result of a function
++     is a non-zero real number and the result obtained after the
++     rounding, assuming an unbounded exponent range (for the rounding),
++     has an exponent larger than the maximum exponent of the current
++     range. In the round-to-nearest mode, the result is infinite.
++
++   * Invalid (NaN): An invalid (or NaN) exception occurs when the
++     result of a function is a NaN.
++
++   * Inexact: An inexact exception occurs when the result of a function
++     cannot be represented exactly and must be rounded.
++
++   * Range error: A range exception occurs when a function that does
++     not return a MPFR number (such as comparisons and conversions to
++     an integer) has an invalid result.
++
++
++   MPFR has a global flag for each exception, which can be cleared, set
++or tested by functions described in *Note Exceptions::.
++
+ 
+ File: mpfr.info,  Node: MPFR Interface,  Next: Contributors,  Prev: MPFR Basics,  Up: Top
+ 
+@@ -950,6 +997,12 @@
+      Set ROP to the absolute value of OP, rounded in the direction RND.
+      Just changes the sign if ROP and OP are the same variable.
+ 
++ -- Function: int mpfr_dim (mpfr_t ROP, mpfr_t OP1, mpfr_t OP2,
++          mp_rnd_t RND)
++     Set ROP to the positive difference of OP1 and OP2, i.e., OP1 - OP2
++     rounded in the direction RND if OP1 > OP2, and +0 otherwise.
++     Returns NaN when OP1 or OP2 is NaN.
++
+  -- Function: int mpfr_mul_2ui (mpfr_t ROP, mpfr_t OP1, unsigned long
+           int OP2, mp_rnd_t RND)
+  -- Function: int mpfr_mul_2si (mpfr_t ROP, mpfr_t OP1, long int OP2,
+@@ -1873,9 +1926,12 @@
+ Meunier helped in the design of the `mpfr_erf' code.
+ 
+    The development of the MPFR library would not have been possible
+-without the continuous support of LORIA, INRIA and INRIA Lorraine.  The
+-development of MPFR was also supported by a grant (202F0659 00 MPN 121)
+-from the Conseil Régional de Lorraine in 2002.
++without the continuous support of INRIA, and of the LORIA and LIP
++laboratories.  In particular the main authors were or are members of the
++PolKA, Spaces, Cacao project-teams at LORIA (Nancy, France) and of the
++Arenaire project-team at LIP (Lyon, France).  The development of MPFR
++was also supported by a grant (202F0659 00 MPN 121) from the Conseil
++Régional de Lorraine in 2002.
+ 
+ 
+ File: mpfr.info,  Node: References,  Next: GNU Free Documentation License,  Prev: Contributors,  Up: Top
+@@ -2387,8 +2443,8 @@
+ * Precision <1>:                         MPFR Interface.       (line 20)
+ * Precision:                             MPFR Basics.          (line 26)
+ * Reporting bugs:                        Reporting Bugs.       (line  6)
+-* Rounding Modes <1>:                    Rounding Modes.       (line  6)
+-* Rounding Modes:                        MPFR Basics.          (line 32)
++* Rounding Modes <1>:                    MPFR Basics.          (line 32)
++* Rounding Modes:                        Rounding Modes.       (line  6)
+ * Special functions:                     Special Functions.    (line  6)
+ 
+ 
+@@ -2477,14 +2533,16 @@
+ * mpfr_custom_init_set:                  Custom Interface.    (line  47)
+ * mpfr_custom_move:                      Custom Interface.    (line  84)
+ * MPFR_DECL_INIT:                        Advanced Functions.  (line  10)
++* mpfr_dim:                              Basic Arithmetic Functions.
++                                                              (line 155)
+ * mpfr_div:                              Basic Arithmetic Functions.
+                                                               (line  58)
+ * mpfr_div_2exp:                         Compatibility with MPF.
+                                                               (line  47)
+ * mpfr_div_2si:                          Basic Arithmetic Functions.
+-                                                              (line 164)
++                                                              (line 170)
+ * mpfr_div_2ui:                          Basic Arithmetic Functions.
+-                                                              (line 162)
++                                                              (line 168)
+ * mpfr_div_q:                            Basic Arithmetic Functions.
+                                                               (line  70)
+ * mpfr_div_si:                           Basic Arithmetic Functions.
+@@ -2625,9 +2683,9 @@
+ * mpfr_mul_2exp:                         Compatibility with MPF.
+                                                               (line  45)
+ * mpfr_mul_2si:                          Basic Arithmetic Functions.
+-                                                              (line 157)
++                                                              (line 163)
+ * mpfr_mul_2ui:                          Basic Arithmetic Functions.
+-                                                              (line 155)
++                                                              (line 161)
+ * mpfr_mul_q:                            Basic Arithmetic Functions.
+                                                               (line  48)
+ * mpfr_mul_si:                           Basic Arithmetic Functions.
+@@ -2808,33 +2866,33 @@
+ 
+ 
+ Tag Table:
+-Node: Top949
+-Node: Copying2260
+-Node: Introduction to MPFR3977
+-Node: Installing MPFR5675
+-Node: Reporting Bugs8343
+-Node: MPFR Basics9895
+-Node: MPFR Interface16074
+-Node: Initialization Functions18238
+-Node: Assignment Functions21660
+-Node: Combined Initialization and Assignment Functions28550
+-Node: Conversion Functions29832
+-Node: Basic Arithmetic Functions35481
+-Node: Comparison Functions42745
+-Node: Special Functions46215
+-Node: Input and Output Functions55364
+-Node: Integer Related Functions57300
+-Node: Miscellaneous Functions60294
+-Node: Rounding Modes64675
+-Node: Exceptions66024
+-Node: Advanced Functions71338
+-Node: Compatibility with MPF73943
+-Node: Custom Interface76212
+-Node: Internals80255
+-Node: Contributors82275
+-Node: References84024
+-Node: GNU Free Documentation License84769
+-Node: Concept Index107212
+-Node: Function Index111074
++Node: Top958
++Node: Copying2278
++Node: Introduction to MPFR3995
++Node: Installing MPFR5693
++Node: Reporting Bugs8367
++Node: MPFR Basics9919
++Node: MPFR Interface18384
++Node: Initialization Functions20548
++Node: Assignment Functions23970
++Node: Combined Initialization and Assignment Functions30860
++Node: Conversion Functions32142
++Node: Basic Arithmetic Functions37791
++Node: Comparison Functions45323
++Node: Special Functions48793
++Node: Input and Output Functions57942
++Node: Integer Related Functions59878
++Node: Miscellaneous Functions62872
++Node: Rounding Modes67253
++Node: Exceptions68602
++Node: Advanced Functions73916
++Node: Compatibility with MPF76521
++Node: Custom Interface78790
++Node: Internals82833
++Node: Contributors84853
++Node: References86790
++Node: GNU Free Documentation License87535
++Node: Concept Index109978
++Node: Function Index113840
+ 
+ End Tag Table
+diff -Naurd mpfr-2.2.1-p4/mpfr.texi mpfr-2.2.1-p5/mpfr.texi
+--- mpfr-2.2.1-p4/mpfr.texi	2006-11-29 09:49:47.000000000 +0000
++++ mpfr-2.2.1-p5/mpfr.texi	2007-02-15 23:46:09.000000000 +0000
+@@ -2,8 +2,8 @@
+ @c %**start of header
+ @setfilename mpfr.info
+ @documentencoding ISO-8859-1
+-@set VERSION 2.2.1
+-@set UPDATED-MONTH November 2006
++@set VERSION 2.2.2-p5
++@set UPDATED-MONTH February 2007
+ @settitle MPFR @value{VERSION}
+ @synindex tp fn
+ @iftex
+@@ -15,7 +15,7 @@
+ This manual documents how to install and use the Multiple Precision
+ Floating-Point Reliable Library, version @value{VERSION}.
+ 
+-Copyright 1991, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
++Copyright 1991, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
+ 
+ Permission is granted to copy, distribute and/or modify this document under
+ the terms of the GNU Free Documentation License, Version 1.1 or any later
+@@ -312,7 +312,7 @@
+ This will copy the files @file{mpfr.h} and @file{mpf2mpfr.h} to the directory
+ @file{/usr/local/include}, the file @file{libmpfr.a} to the directory
+ @file{/usr/local/lib}, and the file @file{mpfr.info} to the directory
+-@file{/usr/local/info} (or if you passed the @samp{--prefix} option to
++@file{/usr/local/share/info} (or if you passed the @samp{--prefix} option to
+  @file{configure}, using the prefix directory given as argument to
+ @samp{--prefix} instead of @file{/usr/local}).
+ @end enumerate
+@@ -559,6 +559,61 @@
+ for special cases (like @code{acos(0)}) should return an overflow or
+ an underflow if @code{1} is not representable in the current exponent range.
+ 
++@section Exceptions
++
++MPFR supports 5 exception types:
++
++@itemize @bullet
++
++@item Underflow:
++An underflow occurs when the exact result of a function is a non-zero
++real number and the result obtained after the rounding, assuming an
++unbounded exponent range (for the rounding), has an exponent smaller
++than the minimum exponent of the current range. In the round-to-nearest
++mode, the halfway case is rounded toward zero.
++
++Note: This is not the single definition of the underflow. MPFR chooses
++to consider the underflow after rounding. The underflow before rounding
++can also be defined. For instance, consider a function that has the
++exact result @m{7 \times 2^{e-4}, 7 multiplied by two to the power
++@var{e}@minus{}4}, where @var{e} is the smallest exponent (for a
++mantissa between 1/2 and 1) in the current
++range, with a 2-bit target precision and rounding towards plus infinity.
++The exact result has the exponent @var{e}@minus{}1. With the underflow
++before rounding, such a function call would yield an underflow, as
++@var{e}@minus{}1 is outside the current exponent range. However, MPFR
++first considers the rounded result assuming an unbounded exponent range.
++The exact result cannot be represented exactly in precision 2, and here,
++it is rounded to @m{0.5 @times 2^e, 0.5 times 2 to @var{e}}, which is
++representable in the current exponent range. As a consequence, this will
++not yield an underflow in MPFR.
++
++@item Overflow:
++An overflow occurs when the exact result of a function is a non-zero
++real number and the result obtained after the rounding, assuming an
++unbounded exponent range (for the rounding), has an exponent larger
++than the maximum exponent of the current range. In the round-to-nearest
++mode, the result is infinite.
++
++@item Invalid (NaN):
++An invalid (or NaN) exception occurs when the result of a function is
++a NaN.
++@c NaN is defined above. So, we don't say anything more.
++
++@item Inexact:
++An inexact exception occurs when the result of a function cannot be
++represented exactly and must be rounded.
++
++@item Range error:
++A range exception occurs when a function that does not return a MPFR
++number (such as comparisons and conversions to an integer) has an
++invalid result.
++
++@end itemize
++
++MPFR has a global flag for each exception, which can be cleared, set
++or tested by functions described in @ref{Exceptions}.
++
+ @node MPFR Interface, Contributors, MPFR Basics, Top
+ @comment  node-name,  next,  previous,  up
+ @chapter MPFR Interface
+@@ -1130,6 +1185,13 @@
+ Just changes the sign if @var{rop} and @var{op} are the same variable.
+ @end deftypefun
+ 
++@deftypefun int mpfr_dim (mpfr_t @var{rop}, mpfr_t @var{op1}, mpfr_t @var{op2}, mp_rnd_t @var{rnd})
++Set @var{rop} to the positive difference of @var{op1} and @var{op2}, i.e.,
++@math{@var{op1} - @var{op2}} rounded in the direction @var{rnd}
++if @math{@var{op1} > @var{op2}}, and +0 otherwise.
++Returns NaN when @var{op1} or @var{op2} is NaN.
++@end deftypefun
++
+ @deftypefun int mpfr_mul_2ui (mpfr_t @var{rop}, mpfr_t @var{op1}, unsigned long int @var{op2}, mp_rnd_t @var{rnd})
+ @deftypefunx int mpfr_mul_2si (mpfr_t @var{rop}, mpfr_t @var{op1}, long int @var{op2}, mp_rnd_t @var{rnd})
+ Set @var{rop} to @m{@var{op1} \times 2^{op2}, @var{op1} times 2 raised
+@@ -2196,7 +2258,10 @@
+ Ludovic Meunier helped in the design of the @code{mpfr_erf} code.
+ 
+ The development of the MPFR library would not have been possible without the
+-continuous support of LORIA, INRIA and INRIA Lorraine.
++continuous support of INRIA, and of the LORIA and LIP laboratories.
++In particular the main authors were or are members of the
++PolKA, Spaces, Cacao project-teams at LORIA (Nancy, France)
++and of the Arenaire project-team at LIP (Lyon, France).
+ The development of MPFR was also supported by a grant
+ (202F0659 00 MPN 121) from the Conseil R@'egional de Lorraine in 2002.
+ 
+diff -Naurd mpfr-2.2.1-p4/version.c mpfr-2.2.1-p5/version.c
+--- mpfr-2.2.1-p4/version.c	2007-02-15 23:43:29.000000000 +0000
++++ mpfr-2.2.1-p5/version.c	2007-02-15 23:46:49.000000000 +0000
+@@ -24,5 +24,5 @@
+ const char *
+ mpfr_get_version (void)
+ {
+-  return "2.2.1-p4";
++  return "2.2.1-p5";
+ }
