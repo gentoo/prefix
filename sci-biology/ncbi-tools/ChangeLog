@@ -1,6 +1,19 @@
 # ChangeLog for sci-biology/ncbi-tools
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.50 2006/11/03 02:53:38 ribosome Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.52 2007/03/10 03:34:18 ribosome Exp $
+
+  10 Mar 2007; Olivier Fisette <ribosome@gentoo.org>
+  +files/ncbi-tools-extra_vib.patch:
+  Added missing patch. Thanks to Walter Meinl <wuno@lsvw.de> for reporting
+  (bug #170202).
+
+*ncbi-tools-20061015-r1 (09 Mar 2007)
+
+  09 Mar 2007; Olivier Fisette <ribosome@gentoo.org>
+  -ncbi-tools-20061015.ebuild, +ncbi-tools-20061015-r1.ebuild:
+  Install ans2all utility. Added support for compiling/installing arbitrary
+  NCBI utilities. Thanks to José María Fernández González
+  <jmfernandez@cnio.es> for his work (see bug #169822). Pruned old version.
 
   03 Nov 2006; Olivier Fisette <ribosome@gentoo.org>
   -ncbi-tools-20050605-r2.ebuild:
