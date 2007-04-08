@@ -1,0 +1,16 @@
+--- mkdirs.sh.orig	2007-03-19 16:28:39.000000000 +0100
++++ mkdirs.sh	2007-03-19 16:28:56.000000000 +0100
+@@ -21,11 +21,11 @@
+      esac
+ 
+      if test ! -d "$pathcomp"; then
+-        echo "mkdir $pathcomp" 1>&2
++        echo "mkdir -p $pathcomp" 1>&2
+         case "$pathcomp" in
+           [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ]: )
+                 ;;               # DOSISH systems
+-          * )          mkdir "$pathcomp" || errstatus=$? ;;
++          * )          mkdir -p "$pathcomp" || errstatus=$? ;;
+         esac
+      fi
+ 
