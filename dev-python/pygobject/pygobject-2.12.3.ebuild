@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-python/pygobject/pygobject-2.12.3.ebuild,v 1.11 2007/01/18 23:48:38 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.12.3.ebuild,v 1.12 2007/02/16 10:05:46 uberlord Exp $
 
 EAPI="prefix"
 
