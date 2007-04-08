@@ -1,6 +1,9 @@
 # ChangeLog for app-vim/vim-spell-en
 # Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/vim-spell-en/ChangeLog,v 1.9 2006/09/04 03:21:07 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/vim-spell-en/ChangeLog,v 1.10 2006/10/27 22:25:14 pylon Exp $
+
+  27 Oct 2006; Lars Weiler <pylon@gentoo.org> vim-spell-en-20060123.ebuild:
+  vimspell dictionaries also work on PowerPC.  Added ~pcc.
 
   04 Sep 2006; Saleem Abdulrasool <compnerd@gentoo.org>
   vim-spell-en-20060123.ebuild:
