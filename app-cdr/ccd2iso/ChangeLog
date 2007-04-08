@@ -1,6 +1,25 @@
 # ChangeLog for app-cdr/ccd2iso
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/ccd2iso/ChangeLog,v 1.9 2006/01/13 09:11:54 vapier Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/ccd2iso/ChangeLog,v 1.13 2007/04/01 07:28:53 vapier Exp $
+
+*ccd2iso-0.3 (01 Apr 2007)
+
+  01 Apr 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/ccd2iso-0.3-headers.patch, +ccd2iso-0.3.ebuild:
+  Version bump #172908 by Alexandru Toma.
+
+*ccd2iso-0.2-r2 (05 Jan 2007)
+
+  05 Jan 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/ccd2iso-0.2-segv.patch, +ccd2iso-0.2-r2.ebuild:
+  Fix from FreeBSD for segfault with non-existent files #160080 by Timothy
+  Redaelli.
+
+  04 Jan 2007; Timothy Redaelli <drizzt@gentoo.org> ccd2iso-0.2-r1.ebuild:
+  Add ~x86-fbsd keyword
+
+  04 Jan 2007; Fabian Groffen <grobian@gentoo.org> ccd2iso-0.2-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *ccd2iso-0.2-r1 (13 Jan 2006)
 

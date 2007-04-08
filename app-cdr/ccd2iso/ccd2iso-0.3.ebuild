@@ -1,12 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/ccd2iso/ccd2iso-0.2-r1.ebuild,v 1.4 2007/01/04 22:38:25 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/ccd2iso/ccd2iso-0.3.ebuild,v 1.1 2007/04/01 07:28:53 vapier Exp $
 
 EAPI="prefix"
 
-WANT_AUTOCONF=latest
-WANT_AUTOMAKE=latest
-inherit autotools
+inherit eutils
 
 DESCRIPTION="Converts CloneCD images (popular under Windows) to ISOs"
 HOMEPAGE="http://sourceforge.net/projects/ccd2iso/"
@@ -14,18 +12,15 @@ SRC_URI="mirror://sourceforge/ccd2iso/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
 IUSE=""
 
 DEPEND=""
 
-S=${WORKDIR}/${PN}
-
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	# bundled autotools are all screwed up
-	eautoreconf
+	epatch "${FILESDIR}"/${P}-headers.patch
 }
 
 src_install() {
