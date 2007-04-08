@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/distcc
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.162 2007/03/05 00:39:20 lisa Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.163 2007/03/26 08:02:13 antarus Exp $
+
+  26 Mar 2007; Alec Warner <antarus@gentoo.org> distcc-2.18.3-r10.ebuild:
+  Remove dependency on portage: ref bug 162516
 
   04 Mar 2007; Lisa Seelye <lisa@gentoo.org> -distcc-2.16-r2.ebuild,
   -distcc-2.16-r3.ebuild, -distcc-2.18.3-r6.ebuild,
