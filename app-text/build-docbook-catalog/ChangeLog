@@ -1,6 +1,12 @@
 # ChangeLog for app-text/build-docbook-catalog
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-text/build-docbook-catalog/ChangeLog,v 1.13 2006/10/24 09:58:36 uberlord Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/build-docbook-catalog/ChangeLog,v 1.15 2007/03/12 21:38:15 leonardop Exp $
+
+  12 Mar 2007; Leonardo Boshell <leonardop@gentoo.org> metadata.xml:
+  Replacing text-markup herd with the new sgml herd.
+
+  01 Mar 2007; <genstef@gentoo.org> build-docbook-catalog-1.2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   24 Oct 2006; Roy Marples <uberlord@gentoo.org>
   build-docbook-catalog-1.2.ebuild:
