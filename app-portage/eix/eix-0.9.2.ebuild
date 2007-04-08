@@ -9,7 +9,7 @@ SRC_URI="mirror://sourceforge/eix/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86-macos ~x86"
+KEYWORDS=""
 IUSE="sqlite"
 
 DEPEND="sqlite? ( >=dev-db/sqlite-3 )"
