@@ -1,6 +1,10 @@
 # ChangeLog for app-text/docbook-xml-simple-dtd
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-text/docbook-xml-simple-dtd/ChangeLog,v 1.42 2007/01/22 01:32:06 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-simple-dtd/ChangeLog,v 1.43 2007/03/12 22:06:30 leonardop Exp $
+
+  12 Mar 2007; Leonardo Boshell <leonardop@gentoo.org> metadata.xml,
+  -docbook-xml-simple-dtd-4.1.2.4.ebuild:
+  Replacing text-markup herd with the new sgml herd.
 
   22 Jan 2007; Bryan Østergaard <kloeri@gentoo.org>
   docbook-xml-simple-dtd-1.0-r1.ebuild:
