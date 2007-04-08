@@ -1,6 +1,28 @@
 # ChangeLog for net-irc/irssi
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/ChangeLog,v 1.105 2007/01/11 17:19:47 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/ChangeLog,v 1.111 2007/03/17 22:11:50 swegener Exp $
+
+  17 Mar 2007; Sven Wegener <swegener@gentoo.org> -irssi-0.8.10-r3.ebuild:
+  Cleanup.
+
+  17 Mar 2007; Steve Dibb <beandog@gentoo.org> irssi-0.8.10-r4.ebuild:
+  amd64 stable, bug 169090
+
+  06 Mar 2007; Markus Rothe <corsair@gentoo.org> irssi-0.8.10-r4.ebuild:
+  Stable on ppc64; bug #169090
+
+  03 Mar 2007; Andrej Kacian <ticho@gentoo.org> irssi-0.8.10-r4.ebuild:
+  Stable on x86, bug #169090.
+
+*irssi-0.8.11_rc1 (22 Feb 2007)
+
+  22 Feb 2007; Sven Wegener <swegener@gentoo.org> irssi-0.8.10-r3.ebuild,
+  irssi-0.8.10-r4.ebuild, +irssi-0.8.11_rc1.ebuild:
+  Version bump, bug #167820.
+
+  17 Jan 2007; Fabian Groffen <grobian@gentoo.org> irssi-0.8.10-r3.ebuild,
+  irssi-0.8.10-r4.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   11 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org>
   irssi-0.8.10-r4.ebuild:

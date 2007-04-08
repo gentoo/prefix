@@ -1,18 +1,20 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/irssi-0.8.10-r4.ebuild,v 1.14 2007/03/17 18:10:33 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/irssi-0.8.11_rc1.ebuild,v 1.1 2007/02/22 20:52:32 swegener Exp $
 
 EAPI="prefix"
 
-inherit perl-module eutils
+inherit perl-module
+
+MY_P="${P/_/-}"
 
 DESCRIPTION="A modular textUI IRC client with IPv6 support"
 HOMEPAGE="http://irssi.org/"
-SRC_URI="http://irssi.org/files/${P}.tar.bz2"
+SRC_URI="http://irssi.org/files/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="ipv6 perl ssl socks5"
 
 RDEPEND="sys-libs/ncurses
@@ -26,13 +28,7 @@ RDEPEND="${RDEPEND}
 	perl? ( !net-im/silc-client )
 	!net-irc/irssi-svn"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	epatch "${FILESDIR}"/${P}-dcc-segv.patch
-	epatch "${FILESDIR}"/${P}-line-split.patch
-}
+S="${WORKDIR}"/${MY_P}
 
 src_compile() {
 	econf \
