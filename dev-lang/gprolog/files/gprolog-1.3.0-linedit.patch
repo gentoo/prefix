@@ -1,0 +1,17 @@
+--- gprolog-1.3.0.orig/src/Linedit/Makefile.in	2007-01-04 23:21:50.000000000 +1300
++++ gprolog-1.3.0/src/Linedit/Makefile.in	2007-03-04 08:33:37.000000000 +1300
+@@ -11,9 +11,14 @@
+ .SUFFIXES:
+ .SUFFIXES: @OBJ_SUFFIX@ .c $(SUFFIXES)
+ 
++all: $(LIBNAME)
++
+ .c@OBJ_SUFFIX@:
+ 	$(CC) -c $(CFLAGS) $*.c
+ 
++linedit.o: linedit.c
++	$(CC) -c $^
++
+ $(LIBNAME): $(OBJLIB)
+ 	rm -f $(LIBNAME)
+ 	$(AR_RC)@AR_SEP@$(LIBNAME) $(OBJLIB)

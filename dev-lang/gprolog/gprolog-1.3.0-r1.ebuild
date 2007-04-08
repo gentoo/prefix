@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/gprolog/gprolog-1.3.0.ebuild,v 1.4 2007/02/27 13:02:00 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/gprolog/gprolog-1.3.0-r1.ebuild,v 1.2 2007/03/03 21:37:40 keri Exp $
 
 EAPI="prefix"
 
@@ -13,8 +13,8 @@ S=${WORKDIR}/${P}/src
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
-IUSE="doc examples"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
+IUSE="debug doc examples"
 
 DEPEND=""
 
@@ -23,11 +23,14 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-CFLAGS_MACHINE.patch
 	epatch "${FILESDIR}"/${P}-TXT_FILES.patch
+	epatch "${FILESDIR}"/${P}-linedit.patch
 	epatch "${FILESDIR}"/${P}-test.patch
 }
 
 src_compile() {
 	CFLAGS_MACHINE="`get-flag -march` `get-flag -mcpu` `get-flag -mtune`"
+
+	use debug && append-flags -DDEBUG
 
 	econf \
 		CFLAGS_MACHINE="${CFLAGS_MACHINE}" \
