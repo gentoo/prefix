@@ -1,6 +1,20 @@
 # ChangeLog for app-arch/sharutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/sharutils/ChangeLog,v 1.44 2007/02/21 20:01:45 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/sharutils/ChangeLog,v 1.48 2007/04/01 10:24:11 hansmi Exp $
+
+  01 Apr 2007; Michael Hanselmann <hansmi@gentoo.org>
+  sharutils-4.6.3.ebuild:
+  Stable on ppc.
+
+  28 Mar 2007; Jeroen Roovers <jer@gentoo.org> :
+  Stable for HPPA too.
+
+  22 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  sharutils-4.6.3.ebuild:
+  Stable on sparc
+
+  20 Mar 2007; Raúl Porcel <armin76@gentoo.org> sharutils-4.6.3.ebuild:
+  x86 stable and add inherit eutils, since it was missing for strip_linguas
 
   21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
