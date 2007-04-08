@@ -1,6 +1,15 @@
 # ChangeLog for app-editors/vim
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.258 2007/02/24 07:01:27 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.261 2007/03/21 16:04:02 wolf31o2 Exp $
+
+  21 Mar 2007; Chris Gianelloni <wolf31o2@gentoo.org> vim-7.0.174.ebuild:
+  Stable on alpha/ia64 wrt bug #167816.
+
+  07 Mar 2007; Alexander H. Færøy <eroyf@gentoo.org> vim-7.0.174.ebuild:
+  Marked ~mips; bug #168008
+
+  26 Feb 2007; Daniel Gryniewicz <dang@gentoo.org> vim-7.0.174.ebuild:
+  Marked stable on amd64 For bug #167816
 
 *vim-7.0.201 (24 Feb 2007)
 
