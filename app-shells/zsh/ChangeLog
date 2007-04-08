@@ -1,6 +1,25 @@
 # ChangeLog for app-shells/zsh
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.102 2007/01/24 03:59:25 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.108 2007/03/01 00:54:14 weeve Exp $
+
+  01 Mar 2007; Jason Wever <weeve@gentoo.org> zsh-4.3.2-r2.ebuild:
+  Stable on SPARC wrt bug #168320.
+
+  28 Feb 2007; Simon Stelling <blubb@gentoo.org> zsh-4.3.2-r2.ebuild:
+  stable on amd64; bug 168320
+
+  27 Feb 2007; Fabian Groffen <grobian@gentoo.org> zsh-4.2.5.ebuild,
+  zsh-4.2.6-r1.ebuild, zsh-4.3.2-r1.ebuild, zsh-4.3.2-r2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
+
+  27 Feb 2007; Guy Martin <gmsoft@gentoo.org> zsh-4.3.2-r2.ebuild:
+  Stable on hppa
+
+  26 Feb 2007; Lars Weiler <pylon@gentoo.org> zsh-4.3.2-r2.ebuild:
+  Stable on ppc; bug #168320.
+
+  26 Feb 2007; Christian Faulhammer <opfer@gentoo.org> zsh-4.3.2-r2.ebuild:
+  stable x86; bug 168320
 
   24 Jan 2007; Marius Mauch <genone@gentoo.org> zsh-4.2.5.ebuild,
   zsh-4.2.6-r1.ebuild, zsh-4.3.2-r1.ebuild, zsh-4.3.2-r2.ebuild:

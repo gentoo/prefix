@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-4.3.2-r2.ebuild,v 1.3 2007/01/24 03:59:25 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-4.3.2-r2.ebuild,v 1.10 2007/03/17 21:13:50 vapier Exp $
 
 EAPI="prefix"
 
@@ -45,7 +45,7 @@ src_compile() {
 	use static && myconf="${myconf} --disable-dynamic" \
 		&& LDFLAGS="${LDFLAGS} -static"
 
-	if use ppc-macos; then
+	if [[ ${CHOST} == *darwin* ]]; then
 		LDFLAGS="${LDFLAGS} -Wl,-x"
 		myconf="${myconf} --enable-libs=-liconv"
 	fi
