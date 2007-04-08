@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/acroread-7.0.9-r1.ebuild,v 1.3 2007/01/28 06:50:37 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/acroread-7.0.9-r1.ebuild,v 1.6 2007/04/07 14:48:46 genstef Exp $
 
 EAPI="prefix"
 
@@ -102,11 +102,11 @@ src_unpack() {
 	for pkg in ${A}; do
 		cd ${WORKDIR}
 		unpack ${pkg}
+		cd ${S}
 		# Note; bash-3.2_p9 doesn't like quotes on the rhs of =~
 		# Seems inconsistent to me; this works for now, awaiting
 		# upstream response.
 		if [[ ${pkg} =~ ^AdobeReader_ ]]; then
-			cd ${S}
 			tar xf ILINXR.TAR ||
 				die "Failed to unpack ILINXR.TAR; is distfile corrupt?"
 			tar xf COMMON.TAR ||
@@ -126,7 +126,7 @@ src_unpack() {
 	done
 	if [[ ${linguas} == ${fl} ]]; then
 		# Only one lingua selected - skip building the wrapper
-		mv ${S}/bin/acroread.${fl} ${S}/bin/acroread ||
+		mv bin/acroread.${fl} bin/acroread ||
 			die "Failed to put acroread.${fl} back to acroread; please report"
 	else
 		# Build wrapper.  Launch the acroread for the environment variable

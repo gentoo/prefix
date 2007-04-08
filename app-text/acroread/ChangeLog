@@ -1,6 +1,22 @@
 # ChangeLog for app-text/acroread
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/ChangeLog,v 1.96 2007/01/28 06:50:37 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/ChangeLog,v 1.100 2007/04/07 14:48:46 genstef Exp $
+
+  07 Apr 2007; Stefan Schweizer <genstef@gentoo.org> -acroread-7.0.9.ebuild,
+  acroread-7.0.9-r1.ebuild:
+  remove old, fix wrapper creation, bug 173146 thanks to Ulrich Mueller
+  <ulm@kph.uni-mainz.de>
+
+  22 Feb 2007; Kevin F. Quinn <kevquinn@gentoo.org> -acroread-7.0.8.ebuild,
+  -acroread-7.0.8-r1.ebuild:
+  Remove old (insecure) versions
+
+  20 Feb 2007; Marcus D. Hanwell <cryos@gentoo.org>
+  acroread-7.0.9-r1.ebuild:
+  Stable on amd64, bug 156215.
+
+  20 Feb 2007; Raúl Porcel <armin76@gentoo.org> acroread-7.0.9-r1.ebuild:
+  x86 stable wrt bug 156215
 
   28 Jan 2007; Marius Mauch <genone@gentoo.org> acroread-7.0.8.ebuild,
   acroread-7.0.8-r1.ebuild, acroread-7.0.9.ebuild, acroread-7.0.9-r1.ebuild:

@@ -3,10 +3,6 @@
 <pkgmetadata>
 <herd>printing</herd>
 <maintainer>
-	<email>genstef@gentoo.org</email>
-	<description>Primary maintainer</description>
-</maintainer>
-<maintainer>
 	<email>kevquinn@gentoo.org</email>
 	<name>Kevin F. Quinn</name>
 	<description>Backup maintainer :)</description>
