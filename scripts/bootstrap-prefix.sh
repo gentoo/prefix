@@ -177,7 +177,7 @@ bootstrap_startscript() {
 	# putting it in /bin or /usr/bin just hides it some more for the
 	# user
 	sed \
-		-e "s|@GENTOO_PORTAGE_EPREFIX|${ROOT}|g" \
+		-e "s|@GENTOO_PORTAGE_EPREFIX@|${ROOT}|g" \
 		"${ROOT}"/usr/portage/scripts/startprefix.in \
 		> "${ROOT}"/startprefix
 	chmod 744 "${ROOT}"/startprefix
