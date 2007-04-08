@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmp4v2/libmp4v2-1.5.0.1.ebuild,v 1.6 2007/02/13 12:15:41 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmp4v2/libmp4v2-1.5.0.1.ebuild,v 1.11 2007/03/10 11:59:51 mabi Exp $
 
 EAPI="prefix"
 
@@ -55,7 +55,6 @@ src_compile() {
 }
 
 src_install() {
-
 	cd "${S}/lib/mp4v2"
 
 	make DESTDIR="${D}" install || die
