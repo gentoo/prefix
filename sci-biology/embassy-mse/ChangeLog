@@ -1,6 +1,17 @@
 # ChangeLog for sci-biology/embassy-mse
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-mse/ChangeLog,v 1.22 2006/12/10 18:31:42 ribosome Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-mse/ChangeLog,v 1.24 2007/02/17 23:13:49 ribosome Exp $
+
+  17 Feb 2007; Olivier Fisette <ribosome@gentoo.org>
+  embassy-mse-1.0.0-r4.ebuild:
+  Added to ~amd64.
+
+*embassy-mse-1.0.0-r4 (17 Feb 2007)
+
+  17 Feb 2007; Olivier Fisette <ribosome@gentoo.org>
+  +embassy-mse-1.0.0-r4.ebuild:
+  Added a fix for multilib-strict on AMD64 suggested by Jeff Gardner
+  <je_fro@gentoo.org>.
 
   10 Dec 2006; Olivier Fisette <ribosome@gentoo.org>
   -embassy-mse-1.0.0-r2.ebuild:
