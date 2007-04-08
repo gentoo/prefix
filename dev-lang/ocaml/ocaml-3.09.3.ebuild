@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.09.3.ebuild,v 1.7 2007/02/06 08:26:45 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.09.3.ebuild,v 1.8 2007/03/13 17:54:52 armin76 Exp $
 
 EAPI="prefix"
 

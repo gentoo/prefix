@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/ocaml
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.94 2007/02/06 08:26:45 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.96 2007/03/13 17:54:52 armin76 Exp $
+
+  13 Mar 2007; Raúl Porcel <armin76@gentoo.org> ocaml-3.09.3.ebuild:
+  x86 stable
+
+  17 Feb 2007; Fabian Groffen <grobian@gentoo.org> ocaml-3.08.3.ebuild,
+  ocaml-3.08.4.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   06 Feb 2007; Marius Mauch <genone@gentoo.org> ocaml-3.08.3.ebuild,
   ocaml-3.08.4.ebuild, ocaml-3.09.2.ebuild, ocaml-3.09.3.ebuild:
