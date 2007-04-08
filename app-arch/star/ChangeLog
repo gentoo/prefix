@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/star
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/star/ChangeLog,v 1.41 2007/02/21 04:15:34 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/star/ChangeLog,v 1.42 2007/03/27 18:19:41 armin76 Exp $
+
+  27 Mar 2007; Raúl Porcel <armin76@gentoo.org> star-1.5_alpha74.ebuild:
+  ia64 stable wrt bug 146750
 
   21 Feb 2007; Joseph Jezak <josejx@gentoo.org> star-1.5_alpha74.ebuild:
   Marked ppc stable for bug #146750.
