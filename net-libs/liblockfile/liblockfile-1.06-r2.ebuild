@@ -1,11 +1,8 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/liblockfile/liblockfile-1.06-r2.ebuild,v 1.1 2006/12/20 13:22:11 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/liblockfile/liblockfile-1.06-r2.ebuild,v 1.8 2007/02/04 19:05:10 beandog Exp $
 
 EAPI="prefix"
-
-WANT_AUTOCONF="latest"
-WANT_AUTOMAKE="latest"
 
 inherit eutils multilib flag-o-matic autotools
 
@@ -20,11 +17,11 @@ IUSE=""
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 
-	epatch "${FILESDIR}/${P}-glibc24.patch"
-	epatch "${FILESDIR}/${P}-respectflags.patch"
-	epatch "${FILESDIR}/${PN}-orphan-file.patch"
+	epatch "${FILESDIR}"/${P}-glibc24.patch
+	epatch "${FILESDIR}"/${P}-respectflags.patch
+	epatch "${FILESDIR}"/${PN}-orphan-file.patch
 
 	# I didn't feel like making the Makefile portable
 	[[ ${USERLAND} == "Darwin" ]] \
@@ -45,5 +42,5 @@ src_compile() {
 
 src_install() {
 	dodir /usr/{bin,include,$(get_libdir)} /usr/share/man/{man1,man3}
-	make ROOT="${D}" install || die
+	emake ROOT="${D}" install || die
 }
