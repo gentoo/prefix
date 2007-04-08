@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.88 2007/02/13 10:58:53 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.89 2007/02/16 11:25:58 flameeyes Exp $
+
+  16 Feb 2007; Diego Pettenò <flameeyes@gentoo.org>
+  fontconfig-2.4.2.ebuild:
+  Add missing pkgconfig dependency, closes bug #167159 reported by Alberto
+  Fiaschi.
 
   13 Feb 2007; Markus Rothe <corsair@gentoo.org> fontconfig-2.4.2.ebuild:
   Stable on ppc64; bug #166029

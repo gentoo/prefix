@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.4.2.ebuild,v 1.9 2007/02/13 10:58:53 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.4.2.ebuild,v 1.10 2007/02/16 11:25:58 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -19,6 +19,7 @@ RDEPEND=">=media-libs/freetype-2.1.4
 	!xml? ( >=dev-libs/expat-1.95.3 )
 	xml? ( >=dev-libs/libxml2-2.6 )"
 DEPEND="${RDEPEND}
+	dev-util/pkgconfig
 	doc? ( app-text/docbook-sgml-utils )"
 
 src_unpack() {
