@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/slib-3.1.4.ebuild,v 1.5 2007/01/17 11:19:19 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/slib-3.1.4-r2.ebuild,v 1.1 2007/01/28 11:19:38 hkbst Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,7 @@ HOMEPAGE="http://swiss.csail.mit.edu/~jaffer/SLIB"
 
 SLOT="0"
 LICENSE="public-domain BSD"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
 IUSE=""
 
 #unzip for unpacking
@@ -34,15 +34,16 @@ RESTRICT="test"
 # maybe also do "make infoz"
 
 src_install() {
-	insinto /usr/lib/slib/ #don't install directly into guile dir
+	insinto /usr/share/slib/ #don't install directly into guile dir
 	doins *.scm
 	doins *.init
 	dodoc ANNOUNCE ChangeLog FAQ README
 	doinfo slib.info
-	dosym /usr/lib/slib/ /usr/share/guile/slib # link from guile dir
+	dosym /usr/share/slib/ /usr/share/guile/slib # link from guile dir
+	dodir /etc/env.d/ && echo "SCHEME_LIBRARY_PATH=${EPREFIX}/usr/share/slib/" > ${ED}/etc/env.d/50slib
 }
 
 pkg_postinst() {
 	einfo "Installing slib for guile..."
-	guile -c "(use-modules (ice-9 slib)) (require 'new-catalog)"
+	${EROOT}/usr/bin/guile -c "(use-modules (ice-9 slib)) (require 'new-catalog)"
 }
