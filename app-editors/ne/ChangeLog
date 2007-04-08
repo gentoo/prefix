@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/ne
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-editors/ne/ChangeLog,v 1.30 2006/09/18 21:26:10 swegener Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/ne/ChangeLog,v 1.31 2007/03/01 17:20:36 genstef Exp $
+
+  01 Mar 2007; <genstef@gentoo.org> ne-1.42.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   18 Sep 2006; Sven Wegener <swegener@gentoo.org> -ne-1.39.ebuild,
   -ne-1.41.ebuild, ne-1.42.ebuild:
