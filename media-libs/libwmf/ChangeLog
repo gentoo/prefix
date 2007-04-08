@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libwmf
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/ChangeLog,v 1.50 2006/09/04 08:57:47 mr_bones_ Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/ChangeLog,v 1.51 2007/02/17 22:27:56 grobian Exp $
+
+  17 Feb 2007; Fabian Groffen <grobian@gentoo.org> libwmf-0.2.8.4.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   04 Sep 2006; Michael Sterrett <mr_bones_@gentoo.org>
   -libwmf-0.2.8.2.ebuild, -libwmf-0.2.8.3.ebuild, -libwmf-0.2.8.3-r1.ebuild:
