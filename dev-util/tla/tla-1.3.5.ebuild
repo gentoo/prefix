@@ -1,17 +1,17 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/tla/tla-1.3.5.ebuild,v 1.6 2007/01/23 15:20:07 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/tla/tla-1.3.5.ebuild,v 1.8 2007/02/11 21:52:43 grobian Exp $
 
 EAPI="prefix"
 
 S="${WORKDIR}/${P}/src/=build"
 DESCRIPTION="Revision control system ideal for widely distributed development"
+HOMEPAGE="http://savannah.gnu.org/projects/gnu-arch http://wiki.gnuarch.org/ http://arch.quackerhead.com/~lord/"
 SRC_URI="mirror://gnu/gnu-arch/${P}.tar.gz
 	http://dev.gentoo.org/~arj/tla.1-2.gz"
-HOMEPAGE="http://savannah.gnu.org/projects/gnu-arch http://wiki.gnuarch.org/ http://arch.quackerhead.com/~lord/"
 
-SLOT="0"
 LICENSE="GPL-2"
+SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86"
 IUSE="doc"
 
@@ -21,7 +21,7 @@ DEPEND="sys-apps/coreutils
 	sys-apps/findutils
 	sys-apps/gawk
 	app-arch/tar
-	!ppc-macos? ( sys-apps/util-linux )
+	sys-apps/util-linux
 	sys-apps/debianutils
 	sys-devel/make"
 
@@ -47,11 +47,9 @@ src_compile() {
 }
 
 src_install () {
-	make install prefix="${ED}/usr" \
-		|| die "make install failed"
+	make install prefix="${ED}/usr" || die "make install failed"
 
 	cd ${S}/..
-	dodoc COPYING
 	dodoc ChangeLog
 
 	if use doc; then
