@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/mrbayes/mrbayes-3.1.2.ebuild,v 1.4 2006/11/03 14:22:28 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/mrbayes/mrbayes-3.1.2.ebuild,v 1.5 2007/03/25 01:57:56 kugelfang Exp $
 
 EAPI="prefix"
 
@@ -31,14 +31,10 @@ src_unpack() {
 		sed -e "s:USEREADLINE ?= yes:USEREADLINE=no:" \
 			-i Makefile || die "Patching readline support."
 	else
-	        # Only needed for OSX with an old (4.x) version of
-	        # libreadline, but it doesn't hurt for other distributions.
-	        epatch "${FILESDIR}"/mb_readline_312.patch
+		# Only needed for OSX with an old (4.x) version of
+		# libreadline, but it doesn't hurt for other distributions.
+		epatch "${FILESDIR}"/mb_readline_312.patch
 	fi
-}
-
-src_compile() {
-	emake || die "Compilation failed"
 }
 
 src_install() {

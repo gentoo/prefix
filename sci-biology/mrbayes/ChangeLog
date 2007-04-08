@@ -1,6 +1,9 @@
 # ChangeLog for sci-biology/mrbayes
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/mrbayes/ChangeLog,v 1.16 2007/01/06 20:47:49 kugelfang Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/mrbayes/ChangeLog,v 1.17 2007/03/25 01:57:56 kugelfang Exp $
+
+  25 Mar 2007; Danny van Dyk <kugelfang@gentoo.org> mrbayes-3.1.2.ebuild:
+  QA: Cleaned up whitespaces. Removed redundant src_compile().
 
   06 Jan 2007; Danny van Dyk <kugelfang@gentoo.org> -mrbayes-3.1.1.ebuild:
   QA: Removed unused versions.
