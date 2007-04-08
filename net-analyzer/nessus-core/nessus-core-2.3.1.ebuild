@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nessus-core/nessus-core-2.3.1.ebuild,v 1.9 2007/02/01 19:59:35 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nessus-core/nessus-core-2.3.1.ebuild,v 1.10 2007/03/26 19:38:47 grobian Exp $
 
 EAPI="prefix"
 
