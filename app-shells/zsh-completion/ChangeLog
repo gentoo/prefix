@@ -1,6 +1,31 @@
 # ChangeLog for app-shells/zsh-completion
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/ChangeLog,v 1.17 2007/01/24 04:00:44 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/ChangeLog,v 1.23 2007/03/01 00:54:55 weeve Exp $
+
+  01 Mar 2007; Jason Wever <weeve@gentoo.org>
+  zsh-completion-20060618.ebuild:
+  Stable on SPARC wrt bug #168320.
+
+  28 Feb 2007; Simon Stelling <blubb@gentoo.org>
+  zsh-completion-20060618.ebuild:
+  stable on amd64; bug 168320
+
+  27 Feb 2007; Fabian Groffen <grobian@gentoo.org>
+  zsh-completion-20040730.ebuild, zsh-completion-20050120.ebuild,
+  zsh-completion-20050503.ebuild, zsh-completion-20060618.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
+
+  27 Feb 2007; Guy Martin <gmsoft@gentoo.org>
+  zsh-completion-20060618.ebuild:
+  Stable on hppa
+
+  26 Feb 2007; Lars Weiler <pylon@gentoo.org>
+  zsh-completion-20060618.ebuild:
+  Stable on ppc; bug #168320.
+
+  26 Feb 2007; Christian Faulhammer <opfer@gentoo.org>
+  zsh-completion-20060618.ebuild:
+  stable x86; bug 168320
 
   24 Jan 2007; Marius Mauch <genone@gentoo.org>
   zsh-completion-20040730.ebuild, zsh-completion-20050120.ebuild,
