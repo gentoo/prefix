@@ -1,6 +1,26 @@
 # ChangeLog for app-portage/g-cpan
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/g-cpan/ChangeLog,v 1.31 2007/03/27 00:11:54 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/g-cpan/ChangeLog,v 1.36 2007/04/02 19:24:59 dertobi123 Exp $
+
+  02 Apr 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  g-cpan-0.15_rc6.ebuild:
+  Added ~ppc, bug #173024
+
+  02 Apr 2007; Raúl Porcel <armin76@gentoo.org> g-cpan-0.15_rc6.ebuild:
+  Add ~ia64 wrt bug 173024
+
+  01 Apr 2007; Jeroen Roovers <jer@gentoo.org> g-cpan-0.15_rc6.ebuild:
+  Marked ~hppa (bug #173024).
+
+  01 Apr 2007; Tom Gall <tgall@gentoo.org>
+  g-cpan-0.15_rc6.ebuild:
+  added ~ppc64
+
+*g-cpan-0.15_rc6 (01 Apr 2007)
+
+  01 Apr 2007; Michael Cummings <mcummings@gentoo.org>
+  -g-cpan-0.15_rc5.ebuild, +g-cpan-0.15_rc6.ebuild:
+  Version bump
 
 *g-cpan-0.15_rc5 (27 Mar 2007)
 
