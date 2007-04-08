@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-shells/bash-completion/bash-completion-20060301-r2.ebuild,v 1.1 2006/11/22 14:54:21 agriffis Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/bash-completion-20060301-r2.ebuild,v 1.2 2007/03/01 10:04:09 genstef Exp $
 
 EAPI="prefix"
 

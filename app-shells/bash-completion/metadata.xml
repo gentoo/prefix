@@ -3,10 +3,6 @@
 <pkgmetadata>
 <herd>shell-tools</herd>
 <maintainer>
-	<email>ka0ttic@gentoo.org</email>
-	<name>Aaron Walker</name>
-</maintainer>
-<maintainer>
 	<email>pioto@gentoo.org</email>
 	<name>Mike Kelly</name>
 </maintainer>
