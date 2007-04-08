@@ -1,6 +1,9 @@
 # ChangeLog for media-fonts/gnu-gs-fonts-std
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/gnu-gs-fonts-std/ChangeLog,v 1.10 2006/04/02 17:44:38 flameeyes Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/gnu-gs-fonts-std/ChangeLog,v 1.11 2007/02/22 01:13:23 peper Exp $
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
 
   02 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
   gnu-gs-fonts-std-8.11.ebuild:
