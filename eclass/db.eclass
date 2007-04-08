@@ -113,8 +113,8 @@ db_src_install_usrlibcleanup() {
 
 	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*so' -exec rm \{} \;
 	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*so.[23]' -exec rm \{} \;
-	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*.dylib' -exec rm \{} \;
-	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*.[23].dylib' -exec rm \{} \;
+	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*dylib' -exec rm \{} \;
+	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*[23].dylib' -exec rm \{} \;
 	einfo "removing unversioned static archives"
 	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*a' -exec rm \{} \;
 
