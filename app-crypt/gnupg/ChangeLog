@@ -1,6 +1,105 @@
 # ChangeLog for app-crypt/gnupg
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.261 2006/12/09 16:57:59 alonbl Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.283 2007/04/02 09:00:32 alonbl Exp $
+
+*gnupg-2.0.3-r1 (02 Apr 2007)
+*gnupg-1.4.7-r1 (02 Apr 2007)
+
+  02 Apr 2007; Alon Bar-Lev <alonbl@gentoo.org> +gnupg-1.4.7-r1.ebuild,
+  +gnupg-2.0.3-r1.ebuild:
+  Removed photo-viewer enforcement, bug#172331, thanks to Daniel Kenzelmann
+
+*gnupg-1.4.7 (14 Mar 2007)
+
+  14 Mar 2007; Alon Bar-Lev <alonbl@gentoo.org> +gnupg-1.4.7.ebuild:
+  Version bump
+
+  08 Mar 2007; Alon Bar-Lev <alonbl@gentoo.org> Manifest:
+  Cleanup
+
+*gnupg-2.0.3 (08 Mar 2007)
+
+  08 Mar 2007; Alon Bar-Lev <alonbl@gentoo.org> +gnupg-2.0.3.ebuild:
+  Version bump
+
+  18 Feb 2007; Daniel Black <dragonheart@gentoo.org>
+  -files/gnupg-1.4.2.2-badruman.patch, -files/gnupg-1.4.2.2-selftest.patch,
+  -files/gnupg-1.4.2.2-test.patch, -files/gnupg-1.4.2-jari.patch,
+  -files/gnupg-1.4.2-keyserver.patch, -files/gnupg-1.4.2-mpicoder.patch,
+  -files/gnupg-1.4.3-badruman.patch, -files/gnupg-1.4.3-jari.patch,
+  -files/gnupg-1.4.5-ecc-helper.patch,
+  -files/gnupg-1.4-emptytrustpackets.patch:
+  old patch cleanout
+
+  11 Feb 2007; Alon Bar-Lev <alonbl@gentoo.org>
+  -files/gnupg-1.4.5_rc1-ecc-helper.patch, -gnupg-1.4.5-r2.ebuild:
+  Finish cleanup as requested by bug#164197
+
+  10 Feb 2007; Alon Bar-Lev <alonbl@gentoo.org> gnupg-1.4.6.ebuild,
+  gnupg-1.4.6-r1.ebuild:
+  Remove duplicate ChangeLog installation
+
+*gnupg-1.4.6-r1 (09 Feb 2007)
+
+  09 Feb 2007; Alon Bar-Lev <alonbl@gentoo.org> +gnupg-1.4.6-r1.ebuild:
+  ecc version bump
+
+  08 Feb 2007; Alon Bar-Lev <alonbl@gentoo.org> gnupg-2.0.2.ebuild:
+  Added curl dependency, bug#165922, thanks to Harald van Dijk
+
+  04 Feb 2007; Alon Bar-Lev <alonbl@gentoo.org> gnupg-2.0.2.ebuild:
+  Modify gpg/gpgv man to be crossref
+
+*gnupg-2.0.2 (02 Feb 2007)
+
+  02 Feb 2007; Alon Bar-Lev <alonbl@gentoo.org> +gnupg-2.0.2.ebuild:
+  Version bump
+
+*gnupg-2.0.1-r3 (29 Jan 2007)
+
+  29 Jan 2007; Alon Bar-Lev <alonbl@gentoo.org>
+  +files/gnupg-2.0.1-agent.patch, +gnupg-2.0.1-r3.ebuild:
+  Fixed gpg-agent-info being ignored
+
+  28 Jan 2007; Alon Bar-Lev <alonbl@gentoo.org> -gnupg-1.4.2.2.ebuild,
+  -gnupg-1.4.4.ebuild, -gnupg-1.4.5.ebuild, -gnupg-1.4.5-r1.ebuild,
+  -gnupg-1.9.20-r3.ebuild:
+  Partial cleanup, per bug#164197
+
+  25 Jan 2007; Alexander H. Færøy <eroyf@gentoo.org> gnupg-1.9.21.ebuild:
+  Stable on MIPS.
+
+  24 Jan 2007; Marius Mauch <genone@gentoo.org> gnupg-1.4.2.2.ebuild,
+  gnupg-1.4.4.ebuild, gnupg-1.4.5.ebuild, gnupg-1.4.5-r1.ebuild,
+  gnupg-1.4.5-r2.ebuild, gnupg-1.4.6.ebuild, gnupg-1.9.20-r3.ebuild,
+  gnupg-1.9.21.ebuild, gnupg-1.9.21-r1.ebuild, gnupg-1.9.22.ebuild,
+  gnupg-1.9.94.ebuild, gnupg-2.0.0.ebuild, gnupg-2.0.1.ebuild:
+  Replacing einfo with elog
+
+  12 Jan 2007; Alon Bar-Lev <alonbl@gentoo.org> gnupg-2.0.1-r2.ebuild:
+  Remove WANT_AUTO*
+
+  12 Jan 2007; Christian Faulhammer <opfer@gentoo.org> gnupg-1.9.21.ebuild:
+  stable x86, bug #161262
+
+  11 Jan 2007; Markus Rothe <corsair@gentoo.org> gnupg-1.9.21.ebuild:
+  Stable on ppc64; bug #161262
+
+  09 Jan 2007; Robin H. Johnson <robbat2@gentoo.org> gnupg-2.0.1-r2.ebuild:
+  Add pinentry dep to gnupg-2 now that pinentry has suitable ~arch flags for
+  sh and arm.
+
+  06 Jan 2007; Alon Bar-Lev <alonbl@gentoo.org> gnupg-2.0.1-r2.ebuild:
+  Added WANT_AUTOCONF, bug#160346, thanks to Wilbur Pan
+
+  05 Jan 2007; Robin H. Johnson <robbat2@gentoo.org>
+  +files/gnupg-2.0.1-bsd-make.patch, gnupg-2.0.1-r2.ebuild:
+  Fix for bug #159962 for the BSD/OSX folks.
+
+*gnupg-2.0.1-r2 (03 Jan 2007)
+
+  03 Jan 2007; Alon Bar-Lev <alonbl@gentoo.org> +gnupg-2.0.1-r2.ebuild:
+  Remove caps as requested by robbat2
 
 *gnupg-2.0.1-r1 (09 Dec 2006)
 

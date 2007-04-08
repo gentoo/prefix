@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-1.9.22.ebuild,v 1.5 2006/10/30 10:09:21 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-1.9.22.ebuild,v 1.6 2007/01/24 17:05:34 genone Exp $
 
 EAPI="prefix"
 
@@ -113,7 +113,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	einfo
-	einfo "See http://www.gentoo.org/doc/en/gnupg-user.xml for documentation on gnupg"
-	einfo
+	elog
+	elog "See http://www.gentoo.org/doc/en/gnupg-user.xml for documentation on gnupg"
+	elog
 }

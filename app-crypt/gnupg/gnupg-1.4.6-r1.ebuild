@@ -1,13 +1,13 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-1.4.6.ebuild,v 1.12 2007/02/11 10:20:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-1.4.6-r1.ebuild,v 1.2 2007/02/10 21:16:17 alonbl Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic
 
-ECCVER=0.1.6
-ECCVER_GNUPG=1.4.5
+ECCVER="0.1.6"
+ECCVER_GNUPG="1.4.6"
 MY_P=${P/_/}
 
 DESCRIPTION="The GNU Privacy Guard, a GPL pgp replacement"
@@ -15,7 +15,7 @@ HOMEPAGE="http://www.gnupg.org/"
 SRC_URI="mirror://gnupg/gnupg/${P}.tar.bz2
 	!bindist? (
 		idea? ( ftp://ftp.gnupg.dk/pub/contrib-dk/idea.c.gz )
-		ecc? ( http://alumnes.eps.udl.es/%7Ed4372211/src/${PN}-${ECCVER_GNUPG}-ecc${ECCVER}.diff.bz2 )
+		ecc? ( http://www.calcurco.cat/eccGnuPG/src/${PN}-${ECCVER_GNUPG}-ecc${ECCVER}.diff.bz2 )
 		)"
 
 LICENSE="GPL-2"
@@ -63,7 +63,6 @@ src_unpack() {
 		if use bindist; then
 			einfo "Skipping ECC patch to comply with binary distribution (bug #148907)."
 		else
-			epatch "${FILESDIR}"/${P}-ecc-helper.patch
 			EPATCH_OPTS="-p1 -d ${S}" epatch ${PN}-${ECCVER_GNUPG}-ecc${ECCVER}.diff
 		fi
 	fi
