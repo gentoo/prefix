@@ -1,6 +1,15 @@
 # ChangeLog for app-cdr/bchunk
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/bchunk/ChangeLog,v 1.14 2006/09/16 13:01:46 dertobi123 Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/bchunk/ChangeLog,v 1.17 2007/03/13 15:50:36 armin76 Exp $
+
+  13 Mar 2007; Raúl Porcel <armin76@gentoo.org> bchunk-1.2.0.ebuild:
+  x86 stable
+
+  11 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> bchunk-1.2.0.ebuild:
+  Stable on sparc
+
+  04 Jan 2007; Fabian Groffen <grobian@gentoo.org> bchunk-1.2.0.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   16 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org> bchunk-1.2.0.ebuild:
   ppc stable
