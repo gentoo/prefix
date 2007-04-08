@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-libs/libmng/libmng-1.0.9-r1.ebuild,v 1.11 2006/11/04 11:26:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmng/libmng-1.0.9-r1.ebuild,v 1.12 2007/02/15 21:45:12 grobian Exp $
 
 EAPI="prefix"
 
