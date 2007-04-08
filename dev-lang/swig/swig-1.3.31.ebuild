@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/swig-1.3.31.ebuild,v 1.2 2007/01/10 17:52:53 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/swig-1.3.31.ebuild,v 1.13 2007/02/17 15:16:19 vapier Exp $
 
 EAPI="prefix"
 
@@ -53,12 +53,11 @@ src_compile() {
 		$(use_with mono csharp) \
 		$(use_with lua) \
 		|| die
-
 	emake || die
 }
 
 src_install() {
-	make install DESTDIR="${D}" || die
+	emake install DESTDIR="${D}" || die
 	dodoc ANNOUNCE CHANGES CHANGES.current FUTURE NEW README TODO
 	use doc && dohtml -r Doc/{Devel,Manual}
 }
