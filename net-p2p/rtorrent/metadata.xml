@@ -3,10 +3,6 @@
 <pkgmetadata>
 <herd>no-herd</herd>
 <maintainer>
-<email>flameeyes@gentoo.org</email>
-<name>Diego Pettenò</name>
-</maintainer>
-<maintainer>
  <email>drizzt@gentoo.org</email>
  <name>Timothy Redaelli</name>
  <description>Secondary Maintainer</description>

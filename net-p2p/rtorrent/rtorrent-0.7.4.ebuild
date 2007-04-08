@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.7.1.ebuild,v 1.7 2007/02/03 15:26:00 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.7.4.ebuild,v 1.1 2007/04/04 20:02:36 drizzt Exp $
 
 EAPI="prefix"
 
@@ -15,12 +15,11 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86 ~x86-macos"
 IUSE="debug"
 
-RDEPEND=">=net-libs/libtorrent-0.11.1
+RDEPEND=">=net-libs/libtorrent-0.11.${PV##*.}
 	>=dev-libs/libsigc++-2.0
-	>=net-misc/curl-7.12
+	>=net-misc/curl-7.15
 	sys-libs/ncurses"
-DEPEND="${RDEPEND}
-	sys-devel/bc"
+DEPEND="${RDEPEND}"
 
 src_compile() {
 	replace-flags -Os -O2

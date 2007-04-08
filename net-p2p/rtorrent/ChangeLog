@@ -1,6 +1,65 @@
 # ChangeLog for net-p2p/rtorrent
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.74 2007/01/05 20:47:10 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.90 2007/04/05 15:44:00 drizzt Exp $
+
+  05 Apr 2007; Timothy Redaelli <drizzt@gentoo.org> rtorrent-0.7.2.ebuild:
+  Stable on ppc wrt bug #172469
+  Thanks to Nathan Smith for testing.
+
+*rtorrent-0.7.4 (04 Apr 2007)
+
+  04 Apr 2007; Timothy Redaelli <drizzt@gentoo.org> +rtorrent-0.7.4.ebuild:
+  Version bump (thx to Flameeyes for reporting on irc)
+
+  29 Mar 2007; Markus Rothe <corsair@gentoo.org> rtorrent-0.7.2.ebuild:
+  Stable on ppc64; bug #172469
+
+  29 Mar 2007; Daniel Gryniewicz <dang@gentoo.org> rtorrent-0.7.2.ebuild:
+  Marked stable on amd64 for bug #172469
+
+  28 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  rtorrent-0.7.2.ebuild:
+  stable x86, bug 172469
+
+  27 Mar 2007; Timothy Redaelli <drizzt@gentoo.org> rtorrent-0.7.2.ebuild,
+  rtorrent-0.7.3.ebuild:
+  Fix bug #170422
+  Thanks to arj
+
+*rtorrent-0.7.3 (27 Mar 2007)
+
+  27 Mar 2007; Timothy Redaelli <drizzt@gentoo.org> +rtorrent-0.7.3.ebuild:
+  Version bump
+
+  19 Mar 2007; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
+  Remove flameeyes from metadata.xml due to retirement.
+
+  23 Feb 2007; Timothy Redaelli <drizzt@gentoo.org> -rtorrent-0.6.4.ebuild:
+  Remove unused version.
+
+  05 Feb 2007; Timothy Redaelli <drizzt@gentoo.org> rtorrent-0.7.2.ebuild:
+  Remove sys-devel/bc dep since 0.7.2 does not need it anymore.
+  Thanks to Sascha Geschwandtner for reporting wrt bug #165393.
+
+  03 Feb 2007; nixnut <nixnut@gentoo.org> rtorrent-0.7.1.ebuild:
+  Stable on ppc wrt bug 164235
+
+  01 Feb 2007; Markus Rothe <corsair@gentoo.org> rtorrent-0.7.1.ebuild:
+  Stable on ppc64; bug #164235
+
+  01 Feb 2007; Timothy Redaelli <drizzt@gentoo.org> rtorrent-0.7.1.ebuild:
+  Stable on amd64 wrt bug #164235
+
+  31 Jan 2007; Markus Rothe <corsair@gentoo.org> ChangeLog:
+  Stable on ppc64; bug #164235
+
+  28 Jan 2007; Raúl Porcel <armin76@gentoo.org> rtorrent-0.7.1.ebuild:
+  x86 stable wrt bug 164235
+
+*rtorrent-0.7.2 (27 Jan 2007)
+
+  27 Jan 2007; Timothy Redaelli <drizzt@gentoo.org> +rtorrent-0.7.2.ebuild:
+  Version bump
 
   05 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> rtorrent-0.6.4.ebuild,
   rtorrent-0.7.1.ebuild:
