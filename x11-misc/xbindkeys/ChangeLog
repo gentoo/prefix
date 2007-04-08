@@ -1,6 +1,15 @@
 # ChangeLog for x11-misc/xbindkeys
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xbindkeys/ChangeLog,v 1.46 2007/02/09 16:31:59 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xbindkeys/ChangeLog,v 1.48 2007/03/14 01:18:50 troll Exp $
+
+  14 Mar 2007; Przemysław Maciąg <troll@gentoo.org>
+  xbindkeys-1.7.3.ebuild, xbindkeys-1.8.0.ebuild:
+  Add check for compilation with guile-1.8 (see #163650). Thx to
+  degrenier@easyconnect.fr
+
+  18 Feb 2007; Fabian Groffen <grobian@gentoo.org> xbindkeys-1.7.3.ebuild,
+  xbindkeys-1.8.0.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *xbindkeys-1.8.0 (09 Feb 2007)
 
