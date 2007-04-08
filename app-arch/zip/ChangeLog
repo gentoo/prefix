@@ -1,6 +1,18 @@
 # ChangeLog for app-arch/zip
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/zip/ChangeLog,v 1.56 2006/09/29 19:55:24 corsair Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/zip/ChangeLog,v 1.60 2007/04/01 10:28:22 hansmi Exp $
+
+  01 Apr 2007; Michael Hanselmann <hansmi@gentoo.org> zip-2.32.ebuild:
+  Stable on ppc.
+
+  22 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> zip-2.32.ebuild:
+  Stable on sparc
+
+  20 Mar 2007; Raúl Porcel <armin76@gentoo.org> zip-2.32.ebuild:
+  x86 stable
+
+  18 Dec 2006; Alexander H. Færøy <eroyf@gentoo.org> zip-2.31-r1.ebuild:
+  Stable on MIPS.
 
   29 Sep 2006; Markus Rothe <corsair@gentoo.org> zip-2.31-r1.ebuild:
   Stable on ppc64
