@@ -1,6 +1,15 @@
 # ChangeLog for app-emacs/auctex
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.54 2007/03/04 11:24:38 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.56 2007/04/07 16:38:33 opfer Exp $
+
+  07 Apr 2007; Christian Faulhammer <opfer@gentoo.org> auctex-11.55.ebuild,
+  auctex-11.82.ebuild, auctex-11.83.ebuild, auctex-11.83-r1.ebuild,
+  auctex-11.84.ebuild, auctex-11.84-r1.ebuild:
+  added FDL to LICENSE
+
+  30 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  +files/auctex-11.84-ppc64_configure.patch, auctex-11.84-r1.ebuild:
+  apply patch for PPC64, so configure won't fail on it
 
 *auctex-11.84-r1 (04 Mar 2007)
 

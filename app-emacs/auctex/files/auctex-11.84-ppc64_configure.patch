@@ -1,0 +1,34 @@
+--- /tmp/configure	2007-03-02 13:33:25.000000000 +0100
++++ configure	2007-03-02 13:35:44.000000000 +0100
+@@ -2032,31 +2032,6 @@
+   { echo "$as_me:$LINENO: result: \"${emacsprefix}\"" >&5
+ echo "${ECHO_T}\"${emacsprefix}\"" >&6; }
+ 
+-
+-{ echo "$as_me:$LINENO: checking if ${EMACS_NAME} is recent enough" >&5
+-echo $ECHO_N "checking if ${EMACS_NAME} is recent enough... $ECHO_C" >&6; }
+-
+-  elisp="(cond ((< emacs-major-version 21) \"no\")
+-			 ((> emacs-major-version 21) \"yes\")
+-			 ((< emacs-minor-version 01) \"no\")
+-			 (t \"yes\"))"
+-  OUTPUT=./conftest-$$
+-  echo "${EMACS}" -batch -no-site-file -eval "(let* ((x ${elisp})) (write-region (if (stringp x) x (prin1-to-string x)) nil \"${OUTPUT}\"))"  >& 5 2>&1
+-  "${EMACS}" -batch -no-site-file -eval "(let* ((x ${elisp})) (write-region (if (stringp x) x (prin1-to-string x)) nil \"${OUTPUT}\"))"  >& 5 2>&1
+-  result="`cat ${OUTPUT}`"
+-  echo "=> ${result}" >& 5 2>&1
+-  rm -f ${OUTPUT}
+-
+-{ echo "$as_me:$LINENO: result: ${result}" >&5
+-echo "${ECHO_T}${result}" >&6; }
+-if test "${result}" != "yes"
+-then
+-  { { echo "$as_me:$LINENO: error: This package requires at least ${EMACS_NAME} version 21.1  Aborting!" >&5
+-echo "$as_me: error: This package requires at least ${EMACS_NAME} version 21.1  Aborting!" >&2;}
+-   { (exit 1); exit 1; }; }
+-fi
+-
+-
+ { echo "$as_me:$LINENO: checking for MULE support" >&5
+ echo $ECHO_N "checking for MULE support... $ECHO_C" >&6; }
+ 

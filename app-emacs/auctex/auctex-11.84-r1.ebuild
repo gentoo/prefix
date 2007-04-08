@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.84-r1.ebuild,v 1.1 2007/03/04 11:24:38 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.84-r1.ebuild,v 1.3 2007/04/07 16:38:33 opfer Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ DESCRIPTION="An extensible package that supports writing and formatting TeX file
 HOMEPAGE="http://www.gnu.org/software/auctex/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 
-LICENSE="GPL-2"
+LICENSE="GPL-2 FDL-1.2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86"
 IUSE="preview-latex"
@@ -27,8 +27,10 @@ src_unpack() {
 	# skip XEmacs detection. this is a workaround for emacs23
 	epatch "${FILESDIR}/${P}-configure.diff"
 	# allow compilation of Japanese TeX files, fixed in upstream's CVS
-	# not needed for next release
+	# not needed for next release (>=11.85)
 	epatch "${FILESDIR}/${P}-japanes.patch"
+	# detection of Emacs fails on ppc64 with version 21, see bug #131761
+	use ppc64 &&	epatch "${FILESDIR}/${P}-ppc64_configure.patch"
 }
 
 src_compile() {
