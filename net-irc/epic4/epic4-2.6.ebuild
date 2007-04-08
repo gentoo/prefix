@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/epic4/epic4-2.6.ebuild,v 1.1 2007/02/19 18:56:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/epic4/epic4-2.6.ebuild,v 1.6 2007/03/28 21:58:26 armin76 Exp $
 
 EAPI="prefix"
 
