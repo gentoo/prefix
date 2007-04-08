@@ -1,6 +1,18 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.96 2007/03/26 07:14:53 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.98 2007/04/04 13:26:16 grobian Exp $
+
+  04 Apr 2007; Fabian Groffen <grobian@gentoo.org> emacs-cvs-22.0.96.ebuild,
+  emacs-cvs-22.0.97.ebuild, emacs-cvs-22.0.9999-r6.ebuild,
+  emacs-cvs-22.0.9999-r7.ebuild:
+  Dropped ppc-macos keywords, see you in prefix
+
+*emacs-cvs-22.0.9999-r7 (04 Apr 2007)
+*emacs-cvs-22.0.97 (04 Apr 2007)
+
+  04 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
+  +emacs-cvs-22.0.97.ebuild, +emacs-cvs-22.0.9999-r7.ebuild:
+  bumps to newer upstream CVS tags
 
   26 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
   -emacs-cvs-22.0.95-r1.ebuild, -emacs-cvs-22.0.9999-r5.ebuild:
