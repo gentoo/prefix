@@ -1,6 +1,32 @@
 # ChangeLog for media-sound/lame
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/lame/ChangeLog,v 1.74 2007/02/05 21:40:54 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/lame/ChangeLog,v 1.82 2007/02/19 03:59:11 weeve Exp $
+
+  19 Feb 2007; Jason Wever <weeve@gentoo.org> lame-3.97.ebuild:
+  Stable on SPARC wrt bug #167391.
+
+  18 Feb 2007; Jeroen Roovers <jer@gentoo.org> lame-3.97.ebuild:
+  Stable for HPPA (bug #167391).
+
+  18 Feb 2007; Steve Dibb <beandog@gentoo.org> lame-3.97.ebuild:
+  amd64 stable, bug 167391
+
+  18 Feb 2007; Raúl Porcel <armin76@gentoo.org> lame-3.97.ebuild:
+  x86 stable wrt bug 167391
+
+  18 Feb 2007; nixnut <nixnut@gentoo.org> lame-3.97.ebuild:
+  Stable on ppc wrt bug 167391
+
+  18 Feb 2007; Markus Rothe <corsair@gentoo.org> lame-3.97.ebuild:
+  Stable on ppc64; bug #167391
+
+  17 Feb 2007; Fabian Groffen <grobian@gentoo.org> lame-3.96.1.ebuild,
+  lame-3.97.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
+
+  17 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> -lame-3.96.1-r1.ebuild,
+  -lame-3.97_beta2.ebuild, -lame-3.97_beta3.ebuild:
+  Remove old versions.
 
   05 Feb 2007; Alexis Ballier <aballier@gentoo.org> lame-3.96.1-r1.ebuild:
   Stick automake version to 1.7 as it's not working with newer versions, bug
