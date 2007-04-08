@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-util/ccache/ccache-2.4-r6.ebuild,v 1.11 2007/01/30 05:19:43 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ccache/ccache-2.4-r6.ebuild,v 1.14 2007/03/05 03:26:45 genone Exp $
 
 EAPI="prefix"
 
@@ -60,10 +60,10 @@ pkg_postinst() {
 	done
 	[[ -d "${EROOT}/usr/lib/ccache.backup" ]] && rm -fr "${EROOT}/usr/lib/ccache.backup"
 
-	einfo "To use ccache with **non-Portage** C compiling, add"
-	einfo "/usr/lib/ccache/bin to the beginning of your path, before /usr/bin."
-	einfo "Portage 2.0.46-r11+ will automatically take advantage of ccache with"
-	einfo "no additional steps.  If this is your first install of ccache, type"
-	einfo "something like this to set a maximum cache size of 2GB:"
-	einfo "# ccache -M 2G"
+	elog "To use ccache with **non-Portage** C compiling, add"
+	elog "/usr/lib/ccache/bin to the beginning of your path, before /usr/bin."
+	elog "Portage 2.0.46-r11+ will automatically take advantage of ccache with"
+	elog "no additional steps.  If this is your first install of ccache, type"
+	elog "something like this to set a maximum cache size of 2GB:"
+	elog "# ccache -M 2G"
 }

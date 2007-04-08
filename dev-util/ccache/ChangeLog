@@ -1,6 +1,18 @@
 # ChangeLog for dev-util/ccache
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-util/ccache/ChangeLog,v 1.57 2007/01/30 05:19:43 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ccache/ChangeLog,v 1.60 2007/03/05 03:26:45 genone Exp $
+
+  05 Mar 2007; Marius Mauch <genone@gentoo.org> ccache-2.4-r6.ebuild:
+  Replacing einfo with elog
+
+  05 Mar 2007; Lisa Seelye <lisa@gentoo.org> -ccache-2.2.ebuild,
+  -ccache-2.3.ebuild, -ccache-2.4.ebuild, -ccache-2.4-r1.ebuild,
+  -ccache-2.4-r2.ebuild:
+  Pruning old ebuilds
+
+  04 Mar 2007; Stuart Longland <redhatter@gentoo.org> ccache-2.4-r6.ebuild:
+  Tested and working on mips. No bugs in the last 30 days. Marking stable as
+  per bug #159527.
 
   30 Jan 2007; Steve Dibb <beandog@gentoo.org> ccache-2.4-r6.ebuild:
   amd64 stable, bug 159527
