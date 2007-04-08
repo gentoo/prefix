@@ -1,43 +1,37 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-lang/lua/Attic/lua-5.1.1-r1.ebuild,v 1.3 2007/01/22 21:40:12 mabi dead $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/lua-5.1.2-r1.ebuild,v 1.1 2007/04/07 11:40:35 mabi Exp $
 
 EAPI="prefix"
 
-inherit eutils portability
+inherit eutils portability versionator
 
 DESCRIPTION="A powerful light-weight programming language designed for extending applications"
 HOMEPAGE="http://www.lua.org/"
 SRC_URI="http://www.lua.org/ftp/${P}.tar.gz"
 
 LICENSE="MIT"
-SLOT="2"
-KEYWORDS="~x86 ~x86-macos"
+SLOT="0"
+KEYWORDS="~x86 ~x86-macos ~x86-solaris"
 IUSE="readline static"
 
-RDEPEND="readline? ( sys-libs/readline )
-		dev-lang/lua-wrapper
-		!=dev-lang/lua-5.1.1
-		!=dev-lang/lua-5.0.3
-		!=dev-lang/lua-5.0.2"
-DEPEND="${RDEPEND}"
+DEPEND="readline? ( sys-libs/readline )"
 
 src_unpack() {
+	local PATCH_PV=$(get_version_component_range 1-2)
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${P}-Makefile.patch
-	epatch "${FILESDIR}"/${P}-module_paths.patch
-	sed -i etc/lua.pc \
-		-e 's:\(prefix= \)/usr/local:\1${EROOT}/usr:' \
-		-e 's:\(INSTALL_INC= ${prefix}/include\):\1/lua-5.1:' \
-		-e 's:\(includedir=${prefix}/include\):\1/lua-5.1:' \
-		-e 's:\(\-llua\):\1-5.1:'
+	epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make.patch
+	epatch "${FILESDIR}"/${PN}-${PATCH_PV}-module_paths.patch
+
+	# correct lua versioning (bug #173611)
+	sed -i -e 's/\(LIB_VERSION = \)6:1:1/\16:2:1/' src/Makefile
 
 	sed -i -e 's:\(/README\)\("\):\1.gz\2:g' doc/readme.html
 
 	if ! use readline ; then
-		epatch "${FILESDIR}"/${P}-readline.patch
+		epatch "${FILESDIR}"/${PN}-${PATCH_PV}-readline.patch
 	fi
 
 	# Using dynamic linked lua is not recommended upstream for performance
@@ -45,18 +39,18 @@ src_unpack() {
 	# Mainly, this is of concern if your arch is poor with GPRs, like x86
 	# Note that the lua compiler is build statically anyway
 	if use static ; then
-		epatch "${FILESDIR}"/${P}-make_static.patch
+		epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make_static.patch
 	fi
+
+	# We want packages to find our things...
+	sed -i -e "s:/usr/local:${EPREFIX}/usr:" etc/lua.pc
 }
 
 src_compile() {
 	myflags=
 	# what to link to liblua
 	liblibs="-lm"
-	if use ppc-macos || use x86-macos; then
-		sed -i -e "s:libtool:glibtool:g" \
-			-e "s:-Wl,-E ::g" \
-			{,src/}Makefile
+	if [[ $CHOST == *-darwin* ]]; then
 		mycflags="${mycflags} -DLUA_USE_MACOSX"
 	else # building for standard linux (and bsd too)
 		mycflags="${mycflags} -DLUA_USE_LINUX"
@@ -71,27 +65,27 @@ src_compile() {
 
 	cd src
 	emake CFLAGS="${mycflags} ${CFLAGS}" \
-			MYLDFLAGS="${LDFLAGS}" \
 			RPATH="${EPREFIX}/usr/$(get_libdir)/" \
 			LUA_LIBS="${mylibs}" \
 			LIB_LIBS="${liblibs}" \
-			V="${PV:0:3}" \
+			V=${PV} \
 			gentoo_all || die "emake failed"
 
 	mv lua_test ../test/lua.static
 }
 
 src_install() {
-	emake INSTALL_TOP="${ED}/usr/" V="${PV:0:3}" gentoo_install \
+	emake INSTALL_TOP="${ED}/usr/" INSTALL_LIB="${ED}/usr/$(get_libdir)/" \
+			V=${PV} gentoo_install \
 	|| die "emake install gentoo_install failed"
 
 	dodoc HISTORY README
 	dohtml doc/*.html doc/*.gif
 
 	insinto /usr/share/pixmaps
-	newins etc/lua.ico lua-5.1.ico
+	doins etc/lua.ico
 	insinto /usr/$(get_libdir)/pkgconfig
-	newins etc/lua.pc lua-5.1.pc
+	doins etc/lua.pc
 }
 
 src_test() {

@@ -1,6 +1,60 @@
 # ChangeLog for dev-lang/lua
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-lang/lua/ChangeLog,v 1.66 2007/02/03 18:06:10 weeve Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.80 2007/04/07 11:40:35 mabi Exp $
+
+*lua-5.1.2-r1 (07 Apr 2007)
+
+  07 Apr 2007; Matti Bickel <mabi@gentoo.org> +lua-5.1.2-r1.ebuild:
+  Fix liblua.so naming (bug #173611)
+
+*lua-5.1.2 (05 Apr 2007)
+
+  05 Apr 2007; Matti Bickel <mabi@gentoo.org> -files/lua-5.1.1-make.patch,
+  -files/lua-5.1.1-make_static.patch, -files/lua-5.1.1-module_paths.patch,
+  -files/lua-5.1.1-readline.patch, +files/lua-5.1-make.patch,
+  +files/lua-5.1-make_static.patch, +files/lua-5.1-module_paths.patch,
+  +files/lua-5.1-readline.patch, -lua-5.1.1.ebuild, lua-5.1.1-r2.ebuild,
+  +lua-5.1.2.ebuild:
+  Version bump. Changed patching to use same patches across minor versions.
+  Cleanup.
+
+  05 Apr 2007; Markus Rothe <corsair@gentoo.org> lua-5.1.1-r2.ebuild:
+  Stable on ppc64
+
+  04 Apr 2007; Fernando J. Pereda <ferdy@gentoo.org> lua-5.1.1-r2.ebuild:
+  Re-add ~alpha keyword as per bug #155518
+
+  29 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> lua-5.1.1-r2.ebuild:
+  Stable on sparc
+
+  28 Mar 2007; Jeroen Roovers <jer@gentoo.org> :
+  Stable for HPPA too.
+
+  26 Mar 2007; Christian Faulhammer <opfer@gentoo.org> lua-5.1.1-r2.ebuild:
+  stable x86, bug 168792
+
+  25 Mar 2007; Raúl Porcel <armin76@gentoo.org> lua-5.1.1-r2.ebuild:
+  Add ~ia64 wrt bug 155518
+
+  25 Mar 2007; Tobias Scherbaum <dertobi123@gentoo.org> lua-5.1.1-r2.ebuild:
+  Stable on ppc wrt bug #168792.
+
+  17 Mar 2007; Steve Dibb <beandog@gentoo.org> lua-5.1.1-r2.ebuild:
+  amd64 stable, bug 168792
+
+  15 Mar 2007; Jeroen Roovers <jer@gentoo.org> lua-5.1.1.ebuild:
+  Stable for HPPA (bug #168792).
+
+  15 Mar 2007; Markus Rothe <corsair@gentoo.org> lua-5.1.1.ebuild:
+  Stable on ppc64; bug #168792
+
+  13 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> lua-5.1.1.ebuild:
+  Stable on sparc wrt #168792
+
+*lua-5.1.1-r2 (06 Mar 2007)
+
+  06 Mar 2007; Matti Bickel <mabi@gentoo.org> +lua-5.1.1-r2.ebuild:
+  fix to the .pc file
 
   03 Feb 2007; Jason Wever <weeve@gentoo.org> lua-5.1.1.ebuild:
   Added ~sparc keyword wrt bugs #155518 and 162985.
