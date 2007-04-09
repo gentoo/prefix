@@ -1,6 +1,14 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.183 2007/02/01 12:47:15 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.185 2007/04/02 20:49:26 hanno Exp $
+
+*gimp-2.3.15 (02 Apr 2007)
+
+  02 Apr 2007; Hanno Boeck <hanno@gentoo.org> +gimp-2.3.15.ebuild:
+  Version bump.
+
+  16 Feb 2007; Alexander H. Færøy <eroyf@gentoo.org> metadata.xml:
+  Removed allanonjl from metadata.xml
 
   01 Feb 2007; Hanno Boeck <hanno@gentoo.org> gimp-2.3.14.ebuild:
   Fix dep on glib, needs more current version.
