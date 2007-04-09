@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.6.1-r1.ebuild,v 1.20 2007/04/03 23:25:41 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.6.1-r2.ebuild,v 1.12 2007/04/03 23:25:41 jokey Exp $
 
 EAPI="prefix"
 
@@ -27,6 +27,8 @@ src_unpack() {
 
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-configure.patch
+	epatch "${FILESDIR}"/${P}-find-egrep.patch
+	eaclocal
 	eautoconf
 }
 

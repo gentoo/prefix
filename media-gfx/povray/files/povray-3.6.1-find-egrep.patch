@@ -1,0 +1,41 @@
+--- acinclude.m4	2006-11-15 15:44:46.000000000 +0000
++++ acinclude.m4	2006-11-15 16:01:14.000000000 +0000
+@@ -95,12 +95,12 @@
+ 
+   # check for -dumpversion
+   AC_TRY_COMMAND([$CXX -dumpversion < /dev/null 2> /dev/null > conftest.out])
+-  pov_prog_cxx_version=`cat conftest.out | $ac_cv_prog_egrep '[[0-9]]'`
++  pov_prog_cxx_version=`cat conftest.out | $EGREP '[[0-9]]'`
+ 
+   # check for -v
+   if test -z "$pov_prog_cxx_version"; then
+     AC_TRY_COMMAND([$CXX -v < /dev/null 2>&1 | tr A-Z a-z > conftest.out])
+-    pov_prog_cxx_version=`cat conftest.out | $ac_cv_prog_egrep "version" | sed 's,\(.*version[[[:space:]]]*\)\(.*\),\2,'`
++    pov_prog_cxx_version=`cat conftest.out | $EGREP "version" | sed 's,\(.*version[[[:space:]]]*\)\(.*\),\2,'`
+   fi
+ 
+   # final compiler version string
+@@ -155,10 +155,10 @@
+       AC_TRY_COMMAND([$CXX -c conftest.$ac_ext > /dev/null 2> conftest.err0])
+       AC_TRY_COMMAND([$CXX -c $1 conftest.$ac_ext > /dev/null 2> conftest.err])
+       AC_TRY_COMMAND([cat conftest.err >&5])
+-      AC_TRY_COMMAND([$ac_cv_prog_egrep \"$pov_prog_cxx_flags_regexp\" conftest.err 2>&1 > /dev/null])
++      AC_TRY_COMMAND([$EGREP \"$pov_prog_cxx_flags_regexp\" conftest.err 2>&1 > /dev/null])
+       # the command above seems to not always return the correct status, so
+       # for safety I rerun it here; I keep the other one for logging purpose.
+-      pov_prog_cxx_flags_err=`$ac_cv_prog_egrep "$pov_prog_cxx_flags_regexp" conftest.err`
++      pov_prog_cxx_flags_err=`$EGREP "$pov_prog_cxx_flags_regexp" conftest.err`
+       AC_TRY_COMMAND([diff conftest.err0 conftest.err >&5])
+       if test -z "$pov_prog_cxx_flags_err" \
+       || test -z "`diff conftest.err0 conftest.err`"; then
+@@ -204,8 +204,8 @@
+       AC_TRY_COMMAND([$CC -c conftest.$ac_ext > /dev/null 2> conftest.err0])
+       AC_TRY_COMMAND([$CC -c $1 conftest.$ac_ext > /dev/null 2> conftest.err])
+       AC_TRY_COMMAND([cat conftest.err >&5])
+-      AC_TRY_COMMAND([$ac_cv_prog_egrep \"$pov_prog_cc_flags_regexp\" conftest.err 2>&1 > /dev/null])
+-      pov_prog_cc_flags_err=`$ac_cv_prog_egrep "$pov_prog_cc_flags_regexp" conftest.err`
++      AC_TRY_COMMAND([$EGREP \"$pov_prog_cc_flags_regexp\" conftest.err 2>&1 > /dev/null])
++      pov_prog_cc_flags_err=`$EGREP "$pov_prog_cc_flags_regexp" conftest.err`
+       AC_TRY_COMMAND([diff conftest.err0 conftest.err >&5])
+       if test -z "$pov_prog_cc_flags_err" \
+       || test -z "`diff conftest.err0 conftest.err`"; then
