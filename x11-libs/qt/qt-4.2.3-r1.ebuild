@@ -206,7 +206,7 @@ src_compile() {
 
 	#emake all
 	#sed -i -e "s:^LINK[^=]*=.*:LINK = c++ -dynamiclib:" src/corelib/Makefile.Release
-	emake all || die
+	emake all || die "remember to use gcc-apple on OSX"
 
 }
 
