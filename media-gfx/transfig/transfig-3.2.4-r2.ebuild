@@ -50,14 +50,14 @@ src_compile() {
 
 	emake \
 		CC="$(tc-getCC)" LOCAL_LDFLAGS="${LDFLAGS}" CDEBUGFLAGS="${CFLAGS}" \
-		BINDIR=/usr/bin LIBDIR=/usr/$(get_libdir) || die "emake failed"
+		BINDIR="${EPREFIX}"/usr/bin LIBDIR="${EPREFIX}"/usr/$(get_libdir) || die "emake failed"
 }
 
 src_install() {
 	make \
-		DESTDIR=${ED} \
-		BINDIR=/usr/bin \
-		LIBDIR=/usr/$(get_libdir) \
+		DESTDIR="${D}" \
+		BINDIR="${EPREFIX}"/usr/bin \
+		LIBDIR="${EPREFIX}"/usr/$(get_libdir) \
 		install || die
 
 	#Install docs
