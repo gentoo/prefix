@@ -21,7 +21,7 @@ DEPEND="sys-apps/coreutils
 	sys-apps/findutils
 	sys-apps/gawk
 	app-arch/tar
-	sys-apps/util-linux
+	!prefix? ( sys-apps/util-linux )
 	sys-apps/debianutils
 	sys-devel/make"
 
