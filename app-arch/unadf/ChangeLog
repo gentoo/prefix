@@ -1,0 +1,22 @@
+# ChangeLog for app-arch/unadf
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unadf/ChangeLog,v 1.5 2007/04/01 19:16:52 robbat2 Exp $
+
+  01 Apr 2007; Robin H. Johnson <robbat2@gentoo.org> unadf-0.7.9b.ebuild:
+  Bug #172246, unadf needs makedepend during build as well.
+
+  08 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
+
+  15 Sep 2005; Fabian Groffen <grobian@gentoo.org> unadf-0.7.9b.ebuild:
+  Marked ~ppc-macos (bug #105864)
+
+  07 Jul 2005; David Holm <dholm@gentoo.org> unadf-0.7.9b.ebuild:
+  Added to ~ppc.
+
+*unadf-0.7.9b (01 Jun 2005)
+
+  01 Jun 2005; Robin H. Johnson <robbat2@gentoo.org>
+  +files/no.in_path.patch, +metadata.xml, +unadf-0.7.9b.ebuild:
+  Bug #61643, ebuild submitted by Jonathan Adamczewski <jadamcze@utas.edu.au>.
+
