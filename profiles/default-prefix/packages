@@ -26,3 +26,7 @@
 
 # we don't want binutils everywhere, only in linux and solaris
 -*sys-devel/binutils
+
+# we don't ever will install these, so no need to depend on them
+-*virtual/libc
+-*virtual/os-headers

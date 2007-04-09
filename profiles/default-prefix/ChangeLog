@@ -2,6 +2,10 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Apr 2007; Fabian Groffen <grobian@gentoo.org> packages:
+  Don't require virtual/libc and virtual/os-headers to be installed, we won't
+  ever install them, will we?
+
   06 Apr 2007; Fabian Groffen <grobian@gentoo.org> +make.defaults:
   Add some USE defaults in make.default
 
