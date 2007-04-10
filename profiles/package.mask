@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7087 2007/04/03 17:49:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7107 2007/04/09 20:03:29 armin76 Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -36,6 +36,62 @@
 ##   End example
 ##
 
+# Raúl Porcel <armin76@gentoo.org> (09 Apr 2007)
+# Pending removal 09 Jun 2007, for treecleaners
+# app-admin/cpu -> bug 173064
+# app-admin/quickswitch -> bug 134335
+# app-misc/jive -> bug 142838
+# app-text/mgv -> bug 154645
+# net-misc/dhcp-agent -> bug 168565
+# x11-plugins/wmmail -> bug 73987
+app-admin/cpu
+app-admin/quickswitch
+app-misc/jive
+app-text/mgv
+net-misc/dhcp-agent
+x11-plugins/wmmail
+
+# Rémi Cardona <remi@gentoo.org> (08 Apr 2007)
+# Meta packages for Gnome 2.18.0
+# See below for actual packages
+>=gnome-base/gnome-2.18.0
+>=gnome-base/gnome-light-2.18.0
+
+# Petteri Räty <betelgeuse@gentoo.org> (08 Apr 2007)
+# Still generation 1 and we are one major version behind
+# 30 days and in junkyard unless someone expresses a need
+# for this package. Do it in:
+# https://bugs.gentoo.org/show_bug.cgi?id=157427
+dev-db/c-jdbc
+
+# Benedikt Böhm <hollow@gentoo.org> (07 Apr 2007)
+# masked for testing
+>=sys-kernel/vserver-sources-2.3
+
+# Christian Faulhammer <opfer@gentoo.org> (01 Feb 2007)
+# live ebuild for the 22 branch
+~dev-lang/erlang-11.2.4
+
+# Petteri Räty <betelgeuse@gentoo.org> (6 Apr 2007)
+# Upstream considers this Trash:
+# http://www.cwi.nl/htbin/sen1/twiki/bin/view/SEN1/ATermLibrary
+# Does not build:
+# https://bugs.gentoo.org/show_bug.cgi?id=168466#c9
+# Submit patches and get upstream going again and we will spare this.
+# This is a library that nothing uses so it's not of much value for us.
+dev-java/aterm-java
+
+# MATSUU Takuto <matsuu@gentoo.org> (5 Apr 2007)
+# to be tested, seems unstable
+>=app-i18n/scim-anthy-1.3.0
+>=app-i18n/skim-scim-anthy-1.3.0
+
+# Carsten Lohrke <carlo@gentoo.org> (4 Apr 2007)
+# mask kmess prereleases
+# bury kde-misc/metabar
+>=net-im/kmess-1.5_pre1
+kde-misc/metabar
+
 # Raúl Porcel <armin76@gentoo.org> (3 Apr 2007)
 # Mask rc versions of rb_libtorrent, and mask
 # qbittorrent-0.9.0, as it depends on it.
@@ -69,10 +125,6 @@
 # Masked for testing
 # See bug 141617 for more information
 >=media-gfx/hugin-0.7_beta4
-
-# Alexis Ballier <aballier@gentoo.org> (1 Apr 2007)
-# Broken with PIC on x86{,64}
-=media-video/ffmpeg-0.4.9_p20070330
 
 # Nguyễn Thái Ngọc Duy <pclouds@gentoo.org> (1 Apr 2007)
 # Masked for testing, #162463
@@ -148,13 +200,13 @@ net-misc/nxssh
 net-misc/nx-x11
 net-misc/nx-x11-bin
 
+# Luca Barbato <lu_zero@gentoo.org (9 Apr 2007)
+# temp mask
+=media-gfx/blender-2.43
+
 # Stefan Schweizer <genstef@gentoo.org> (25 Mar 2007)
 # Please use modular Xorg now
 virtual/x11
-
-# Luca Barbato <lu_zero@gentoo.org> (25 Mar 2007)
-# snapshot not finalized
-=media-video/ffmpeg-0.4.9_p20070325
 
 # Samuli Suominen <drac@gentoo.org> (25 Mar 2007)
 # Snapshots introducing compatibility with freedesktop.org
@@ -166,10 +218,6 @@ xfce-base/libxfce4menu
 # Sorting out media-video/{spca5xx,gspca{,v1}} bug 159176
 media-video/spca5xx
 media-video/gspca
-
-# Steev Klimaszewski <steev@gentoo.org> (24 Mar 2007)
-# Needed for Gnome
->=sys-auth/consolekit-0.2.0
 
 # Stefan Schweizer <genstef@gentoo.org> (24 Mar 2007)
 # as-needed broken, unmaintained, for removal, bug 147550
@@ -373,10 +421,6 @@ dev-java/oscore
 # Still gen 1 package and will be moved to 
 # junkyard overlay
 dev-java/oscore-bin
-
-# Alin Nastac <mrness@gentoo.org> (12 Mar 2007)
-# Work in progress (see bug #167939)
-=net-libs/wvstreams-4.3*
 
 # MATSUU Takuto <matsuu@gentoo.org> (12 Mar 2007)
 # Masked due to security issues bug #159542
@@ -701,12 +745,6 @@ games-strategy/ufo2000
 # Mask cvs version of net-p2p/linuxdcpp
 =net-p2p/linuxdcpp-9999
 
-# Alec Warner <antarus@gentoo.org> (24 Jan 2007)
-# Masked by me cause it's old a crappy.
-# Removal in 60 days.
-# See bug # 159648
-net-misc/e100
-
 # Christian Faulhammer <opfer@gentoo.org> (23 Jan 2007)
 # masked for testing
 app-portage/gatt-svn
@@ -786,10 +824,6 @@ net-www/mod_fastcgi
 # which is already in the tree
 app-crypt/cli-crypt
 
-# Tiziano Müller <dev-zero@gentoo.org> (30 Dec 2006)
-# Masking for pending removal: bug #151927, upstream dead since 2001
-dev-python/snmpy
-
 # Mike Frysinger <vapier@gentoo.org> (28 Dec 2006)
 # Build failure on big-endian #154294 and breaks non-default journals #154974
 ~sys-fs/reiserfsprogs-3.6.20
@@ -801,10 +835,6 @@ games-action/descent2-demodata
 >=games-action/d2x-0.2.5-r3
 games-action/d2x-xl
 games-action/d2x-rebirth
-
-# Andrej Kacian <ticho@gentoo.org> (25 Dec 2006)
-# Masked for debugging
->=app-antivirus/bitdefender-console-7.1
 
 # Konstantin V. Arkhipov <voxus@gentoo.org> (22 Dec 2006)
 # Stability issues on hardened systems: bugs #158217, #158664
@@ -910,10 +940,10 @@ dev-java/bluej-bin
 
 # Piotr Jaroszyński <peper@gentoo.org> (23 Oct 2006)
 # Masking alpha version of mozilla-thunderbird-2.0 and enigmail for it.
-# Raúl Porcel <armin76@gentoo.org> (11 Mar 2007)
+# Raúl Porcel <armin76@gentoo.org> (8 Apr 2007)
 # Update mask
-=x11-plugins/enigmail-0.94.3-r1
->=mail-client/mozilla-thunderbird-2.0_beta2
+=x11-plugins/enigmail-0.94.3-r2
+>=mail-client/mozilla-thunderbird-2.0.0.0_rc1
 
 # Fabian Groffen <grobian@gentoo.org> (23 Oct 2006)
 # MonetDB doesn't compile any more.  Waiting for next release (soon) 
@@ -1069,12 +1099,6 @@ mail-client/mahogany
 # Matthew Kennedy <mkennedy@gentoo.org>
 # libecl.so linking problem
 =dev-lisp/ecls-0.9i
-
-# Krzysiek Pawlik <nelchael@gentoo.org> (08 Jul 2006)
-# Masked, because there's no compatible eclipse-sdk in tree,
-# please use builtin update manager to install plugins for now.
-=dev-util/ecletex-0.0.3
-=dev-util/eclipse-cdt-2.0-r2
 
 # Martin Schlemmer <azarah@gentoo.org> (07 Jul 2006)
 # Testing release to get some feedback.  New features include:
