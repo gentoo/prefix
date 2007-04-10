@@ -36,6 +36,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.9.8-toolchain.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8b-doc-updates.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8-makedepend.patch #149583
+	epatch "${FILESDIR}"/${PN}-0.9.8e-aix.patch # shared aix-gcc
 
 	# allow openssl to be cross-compiled
 	cp "${FILESDIR}"/gentoo.config-0.9.8 gentoo.config || die "cp cross-compile failed"
@@ -53,7 +54,8 @@ src_unpack() {
 		[[ $(tc-arch) == "ppc64" ]] && replace-flags -O? -O
 	fi
 	[[ $(tc-arch) == ppc* ]] && append-flags -fno-strict-aliasing
-	use userland_Darwin || append-flags -Wa,--noexecstack
+	[[ $(tc-arch) == *-macos ]] || [[ $(tc-arch) == *-aix ]] ||
+	append-flags -Wa,--noexecstack
 
 	# using a library directory other than lib requires some magic
 	sed -i \
@@ -118,7 +120,8 @@ src_compile() {
 	# depend is needed to use $confopts
 	# rehash is needed to prep the certs/ dir
 	emake -j1 depend || die "depend failed"
-	emake all rehash || die "make all failed"
+	emake all || die "make all failed"
+	emake rehash || die "make rehash failed"
 
 	# force until we get all the gentoo.config kinks worked out
 	if has test ${FEATURES} && ! tc-is-cross-compiler ; then

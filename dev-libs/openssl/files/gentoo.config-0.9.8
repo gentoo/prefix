@@ -49,6 +49,7 @@ case ${CHOST} in
 	*-linux*)    system="linux";;
 	*-freebsd*)  system="BSD";;
 	*-solaris*)  system="solaris";;
+	*-aix*)      system="aix";;
 	*)           exit 0;;
 esac
 
@@ -105,6 +106,10 @@ solaris)
 	case ${chost_machine} in
 		i386)         machine=x86-${compiler} ;;
 	esac
+	;;
+aix)
+	machine=${compiler}
+	;;
 esac
 
 
