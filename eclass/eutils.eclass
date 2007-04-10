@@ -377,13 +377,16 @@ emktemp() {
 		echo "${tmp}"
 	else
 		if [[ ${exe} == "touch" ]] ; then
-			[[ ${USERLAND} == "GNU" ]] \
-				&& mktemp -p "${topdir}" \
-				|| TMPDIR="${topdir}" mktemp -t tmp
+			# for FreeBSD-mktemp, -t is the prefix
+			# for GNU-mktemp, -t is the template
+			# in eprefix, we might have USERLAND!=GNU, but GNU-mktemp,
+			# and we will end up with empty tempfile names.
+			#
+			# OTOH, having tempfiles called tmp.XXXXXXXXXX.WSqcv4AI
+			# in BSD will not be a problem.
+			TMPDIR="${topdir}" mktemp -t tmp.XXXXXXXXXX
 		else
-			[[ ${USERLAND} == "GNU" ]] \
-				&& mktemp -d "${topdir}" \
-				|| TMPDIR="${topdir}" mktemp -dt tmp
+			TMPDIR="${topdir}" mktemp -dt tmp.XXXXXXXXXX
 		fi
 	fi
 }
