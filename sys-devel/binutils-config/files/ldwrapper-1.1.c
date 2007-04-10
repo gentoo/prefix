@@ -22,7 +22,6 @@
 #include <string.h>
 #include <stdarg.h>
 #include <errno.h>
-#include <alloca.h>
 
 #define BINUTILS_CONFIG    "@GENTOO_PORTAGE_EPREFIX@/usr/bin/binutils-config"
 #define ENVD_BASE_BINUTILS "@GENTOO_PORTAGE_EPREFIX@/etc/env.d/05binutils"
@@ -313,56 +312,53 @@ static char **build_new_argv(char **argv, const char *newflags_str)
 
 int main(int argc, char *argv[])
 {
-	struct wrapper_data *data;
+	struct wrapper_data data;
 	size_t size;
 	int i;
 	char **newargv = argv;
 	char callarg[MAXPATHLEN * 8 + 1];
 
-	data = alloca(sizeof(*data));
-	if (data == NULL)
-		wrapper_exit("%s wrapper: out of memory\n", argv[0]);
-	memset(data, 0, sizeof(*data));
+	memset(&data, 0, sizeof(data));
 
 	if (getenv("PATH")) {
-		data->path = strdup(getenv("PATH"));
-		if (data->path == NULL)
+		data.path = strdup(getenv("PATH"));
+		if (data.path == NULL)
 			wrapper_exit("%s wrapper: out of memory\n", argv[0]);
 	}
 
 	/* What should we find?
 	 * If this is a ${CHOST}-ld{,64} thing, strip the ${CHOST}- */
-	strcpy(data->name, basename(argv[0]));
-	size = strlen(data->name);
+	strcpy(data.name, basename(argv[0]));
+	size = strlen(data.name);
 #ifdef __MACH__
 	/* only Apple/OSX/Darwin has an ld64 as far as I know */
 	if (size > 4) {
-		if (strcmp(&data->name[size - 5], "-ld64") == 0) {
-			strcpy(data->name, "ld64");
+		if (strcmp(&data.name[size - 5], "-ld64") == 0) {
+			strcpy(data.name, "ld64");
 			size = 0;	/* trick the if below in thinking it won't work */
 		}
 	}
 #endif
 	if (size > 2) {
-		if (strcmp(&data->name[size - 3], "-ld") == 0)
-			strcpy(data->name, "ld");
+		if (strcmp(&data.name[size - 3], "-ld") == 0)
+			strcpy(data.name, "ld");
 	}
 
 	/* What is the full name of our wrapper? */
-	size = sizeof(data->fullname);
-	i = snprintf(data->fullname, size, "@GENTOO_PORTAGE_EPREFIX@/usr/bin/%s", data->name);
+	size = sizeof(data.fullname);
+	i = snprintf(data.fullname, size, "@GENTOO_PORTAGE_EPREFIX@/usr/bin/%s", data.name);
 	if ((i == -1) || (i > (int)size))
-		wrapper_exit("invalid wrapper name: \"%s\"\n", data->name);
+		wrapper_exit("invalid wrapper name: \"%s\"\n", data.name);
 
-	find_wrapper_binutils(data);
+	find_wrapper_binutils(&data);
 
-	if (data->path)
-		free(data->path);
-	data->path = NULL;
+	if (data.path)
+		free(data.path);
+	data.path = NULL;
 
 	/* Get the include path for the compiler */
-	if (find_ldpath_in_envd(data, 0) == 0) {
-		data->ldpath[0] = '\0';
+	if (find_ldpath_in_envd(&data, 0) == 0) {
+		data.ldpath[0] = '\0';
 		fprintf(stderr, "binutils-config warning: no GCC found on your system!\n");
 	}
 
@@ -370,7 +366,7 @@ int main(int argc, char *argv[])
 #if !defined(NEEDS_LIBRARY_INCLUDES) && !defined(NEEDS_RPATH_DIRECTIONS)
 # error NEEDS_LIBRARY_INCLUDES and/or NEEDS_RPATH_DIRECTIONS must be defined
 #endif
-	if (data->ldpath[0] == '\0') {
+	if (data.ldpath[0] == '\0') {
 		size = snprintf(callarg, MAXPATHLEN * 8,
 #ifdef NEEDS_LIBRARY_INCLUDES
 				"%s "
@@ -397,12 +393,12 @@ int main(int argc, char *argv[])
 #endif
 				,
 #ifdef NEEDS_LIBRARY_INCLUDES
-				data->ldpath,
+				data.ldpath,
 				"@LIBRARY_INCLUDES@"
 #endif
 #ifdef NEEDS_RPATH_DIRECTIONS
 				,
-				data->ldpath,
+				data.ldpath,
 				"@RUNPATH_DIRECTIONS@"
 #endif
 		);
@@ -413,8 +409,8 @@ int main(int argc, char *argv[])
 		wrapper_exit("%s wrapper: out of memory\n", argv[0]);
 
 	/* Ok, lets do it one more time ... */
-	if (execv(data->bin, newargv) < 0)
-		wrapper_exit("Could not run/locate \"%s\" (%s)\n", data->name, data->bin);
+	if (execv(data.bin, newargv) < 0)
+		wrapper_exit("Could not run/locate \"%s\" (%s)\n", data.name, data.bin);
 
 	return 0;
 }
