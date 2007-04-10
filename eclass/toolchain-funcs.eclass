@@ -342,3 +342,87 @@ _tc_gen_usr_ldscript() {
 	done
 }
 gen_usr_ldscript() { _tc_gen_usr_ldscript "$@" ; }
+
+# This function is for AIX only.
+#
+# Showing a sample IMO is the best description:
+#
+# First, AIX has its own /usr/lib/libiconv.a containing 'shr.o' and 'shr4.o'.
+# Both of them are shared-objects packed into an archive, thus /usr/lib/libiconv.a
+# is a shared library (!), even it is called lib*.a.
+# This is the default layout on aix for shared libraries.
+# Read the ld(1) manpage for more information.
+#
+# But now, we want to install GNU libiconv (sys-libs/libiconv) both as
+# shared and static library.
+# AIX (since 4.3) can create shared libraries if '-brtl' or '-G' linker flags
+# are used.
+#
+# Now assume we have GNU tar installed while GNU libiconv was not.
+# This tar now has a runtime dependency on "libiconv.a(shr4.o)".
+# With our ld-wrapper (from sys-devel/binutils-config) we add EPREFIX/usr/lib
+# as linker path, thus it is recorded as loader path into the binary.
+#
+# When having libiconv.a (the static GNU libiconv) in prefix, the loader finds
+# that one and claims that it does not contain an 'shr4.o' object file:
+#
+#     Could not load program tar:
+#           Dependent module EPREFIX/usr/lib/libiconv.a(shr4.o) could not be loaded.
+#           Member shr4.o is not found in archive
+#
+# According to gcc's "host/target specific installation notes" for *-ibm-aix* [1],
+# we can extract that 'shr4.o' from /usr/lib/libiconv.a, mark it as
+# non-linkable, and include it in our new static library.
+#
+# [1] http://gcc.gnu.org/install/specific.html#x-ibm-aix
+#
+# usage:
+# keep_aix_runtime_object <target-archive inside EPREFIX> <source-archive(objects)>
+# keep_aix_runtime_object "/usr/lib/libiconv.a "/usr/lib/libiconv.a(shr4.o,...)"
+keep_aix_runtime_objects() {
+	[[ ${CHOST} == *-*-aix* ]] || return 0
+
+	local target=$1
+	shift
+	local sources="$@"
+
+	# strip possible ${ED} prefixes
+	target=${target##/}
+	target=${target#${D##/}}
+	target=${target#${EPREFIX##/}}
+	target=${target##/}
+
+	if ! $(tc-getAR) -t "${ED}${target}" &>/dev/null; then
+		if [[ -e ${ED}${target} ]]; then
+			ewarn "${target} is not an archive."
+		fi
+		return 0
+	fi
+
+	local tmpdir=${TMP}/keep_aix_runtime_object-$$
+	mkdir ${tmpdir} || die
+
+	local origdir=$(pwd)
+	local s
+	for s in ${sources}; do
+		local sourcelib sourceobjs so
+		# format of $s: "/usr/lib/libiconv.a(shr4.o,shr.o)"
+		sourcelib=${s%%(*}
+		sourceobjs=${s#*(}
+		sourceobjs=${sourceobjs%)}
+		sourceobjs=${sourceobjs//,/ }
+		cd ${tmpdir} || die
+		for so in ${sourceobjs}; do
+			ebegin "keeping aix runtime object '${sourcelib}(${so})' in '${EPREFIX}/${target}'"
+			if ! $(tc-getAR) -x "${sourcelib}" ${so}; then
+				eend 1
+			   	continue
+			fi
+			$(tc-getSTRIP) -e ${so} &&
+			$(tc-getAR) -q "${ED}${target}" ${so} &&
+			eend 0 ||
+			eend 1
+		done
+	done
+	cd "${origdir}"
+}
