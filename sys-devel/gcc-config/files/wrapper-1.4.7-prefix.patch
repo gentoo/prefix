@@ -14,9 +14,9 @@
 @@ -328,7 +328,7 @@
  
  	/* What is the full name of our wrapper? */
- 	size = sizeof(data->fullname);
--	i = snprintf(data->fullname, size, "/usr/bin/%s", data->name);
-+	i = snprintf(data->fullname, size, "@GENTOO_PORTAGE_EPREFIX@/usr/bin/%s", data->name);
+ 	size = sizeof(data.fullname);
+-	i = snprintf(data.fullname, size, "/usr/bin/%s", data.name);
++	i = snprintf(data.fullname, size, "@GENTOO_PORTAGE_EPREFIX@/usr/bin/%s", data.name);
  	if ((i == -1) || (i > (int)size))
- 		wrapper_exit("invalid wrapper name: \"%s\"\n", data->name);
+ 		wrapper_exit("invalid wrapper name: \"%s\"\n", data.name);
  
