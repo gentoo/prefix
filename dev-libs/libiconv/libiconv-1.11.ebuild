@@ -63,4 +63,6 @@ src_install() {
 	fi
 
 	use build && rm -rf "${ED}/usr"
+
+	keep_aix_runtime_objects /usr/lib/libiconv.a "/usr/lib/libiconv.a(shr4.o)"
 }
