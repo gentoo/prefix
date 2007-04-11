@@ -1,0 +1,11 @@
+--- gnulib/lib/fnmatch_loop.c
++++ gnulib/lib/fnmatch_loop.c
+@@ -149,7 +149,7 @@
+ 	    {
+ 	      const CHAR *endp;
+ 
+-	      endp = MEMCHR (n, (flags & FNM_FILE_NAME) ? L_('/') : L_('\0'),
++	      endp = (const wchar_t *) MEMCHR (n, (flags & FNM_FILE_NAME) ? L_('/') : L_('\0'),
+ 			     string_end - n);
+ 	      if (endp == NULL)
+ 		endp = string_end;

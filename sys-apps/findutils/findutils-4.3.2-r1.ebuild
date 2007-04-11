@@ -29,8 +29,11 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-check-insert-num-ret.patch #166233
 
-	# rename 'open' and 'close' as they may be defined to open64/close64 (aix fex).
-	epatch "${FILESDIR}"/${P}-aix.patch #166233
+	# rename 'open' and 'close' as they may be defined to open64/close64
+	# (AIX fex).
+	epatch "${FILESDIR}"/${P}-aix.patch
+	# IRIX needs an extra cast
+	epatch "${FILESDIR}"/${P}-irix.patch
 
 	# Don't build or install locate because it conflicts with slocate,
 	# which is a secure version of locate.  See bug 18729
