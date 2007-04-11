@@ -18,7 +18,7 @@ IUSE="${IUSE} doc gcc-libffi"
 
 DEPEND="${GNUSTEP_CORE_DEPEND}
 	~gnustep-base/gnustep-make-1.13.0
-	gcc-libffi? ( >=sys-devel/gcc-3.3.5 )
+	gcc-libffi? ( || ( >=sys-devel/gcc-3.3.5 sys-devel/gcc-apple ) )
 	!gcc-libffi? ( dev-libs/ffcall )
 	>=dev-libs/libxml2-2.6
 	>=dev-libs/libxslt-1.1
