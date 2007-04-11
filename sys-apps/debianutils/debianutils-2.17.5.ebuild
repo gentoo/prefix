@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic
+inherit eutils flag-o-matic autotools
 
 DESCRIPTION="A selection of tools from Debian"
 HOMEPAGE="http://packages.debian.org/unstable/utils/debianutils"
@@ -22,10 +22,12 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-2.14.1-no-bs-namespace.patch
 	epatch "${FILESDIR}"/${PN}-2.16.2-palo.patch
+	epatch "${FILESDIR}"/${PN}-2.17.5-nongnu.patch
 }
 
 src_compile() {
 	use static && append-ldflags -static
+	eautoreconf || die
 	econf || die
 	emake || die
 }
