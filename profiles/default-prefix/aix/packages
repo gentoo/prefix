@@ -4,3 +4,5 @@
 
 # AIX uses the native (non-source available) linker
 *sys-devel/native-cctools
+# because AIX ar isn't able to unpack .deb files, we need deb2targz
+*app-arch/deb2targz

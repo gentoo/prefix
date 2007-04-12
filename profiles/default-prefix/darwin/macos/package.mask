@@ -1,0 +1,7 @@
+
+# Fabian Groffen <grobian@gentoo.org> (11 Apr 2007)
+# Results in alignment problems for code that closely interacts with the
+# kernel, breaks compilation of several "heavy" packages.  Probably not
+# all GCC's fault, but just the environment, and the expectations of
+# upstream developers.
+sys-devel/gcc
