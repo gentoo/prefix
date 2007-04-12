@@ -25,12 +25,6 @@ INCPATH=${LIBPATH}/include
 DATAPATH=/usr/share/binutils-data/${CHOST}/${PV}
 BINPATH=/usr/${CHOST}/binutils-bin/${PV}
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-darwin8.8.0.patch
-}
-
 src_compile() {
 	myconf="\
 		--prefix=${EPREFIX}/usr \

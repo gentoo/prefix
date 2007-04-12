@@ -2,6 +2,14 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*odcctools-20070412 (12 Apr 2007)
+
+  12 Apr 2007; Fabian Groffen <grobian@gentoo.org>
+  -files/odcctools-20070131-darwin8.8.0.patch, -odcctools-20070131.ebuild,
+  +odcctools-20070412.ebuild:
+  Bump. Not really new sources, but a new generation of the same sources, with
+  the latest DevTools, which makes a difference (patch no longer necessary!)
+
 *odcctools-20070131 (31 Jan 2007)
 
   31 Jan 2007; Fabian Groffen <grobian@gentoo.org>
