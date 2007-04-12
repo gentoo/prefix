@@ -2,6 +2,10 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Apr 2007; Fabian Groffen <grobian@gentoo.org> +darwin/macos/packages,
+  darwin/macos/virtuals, virtuals:
+  Say bye bye to virtual/gcc.  It was a not so good idea.
+
   12 Apr 2007; Fabian Groffen <grobian@gentoo.org> aix/packages,
   +darwin/macos/package.mask:
   Add deb2targz as system package for AIX, because it's necessary to unpack

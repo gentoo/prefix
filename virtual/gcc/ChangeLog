@@ -1,7 +1,0 @@
-# ChangeLog for prefix-tree/virtual
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
-
-  24 Dec 2006; Fabian Groffen <grobian@gentoo.org> gcc-0.ebuild:
-  Fix wrong dependency
-

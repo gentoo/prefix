@@ -9,6 +9,3 @@
 # KEEP THIS FILE SORTED ALPHABETICALLY OR RISK WRATH
 
 virtual/baselayout			sys-apps/baselayout-prefix
-
-# below are is prefix specific virtuals
-virtual/gcc					sys-devel/gcc

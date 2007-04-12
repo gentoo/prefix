@@ -5,7 +5,3 @@
 # Use this virtuals file to either override the Darwin base profile's defined
 # virtuals, or add virtuals that are specific to the Mac OS X profiles
 
-# Mac OS X is built with the Apple branch of the GCC compiler, using FSF
-# GCC results in broken packages in some cases (subversion) due to
-# alignment problems with the kernel.  Hence, we default to gcc-apple.
-virtual/gcc			sys-devel/gcc-apple

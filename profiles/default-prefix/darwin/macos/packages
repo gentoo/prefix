@@ -1,0 +1,6 @@
+
+# Mac OS X is built with the Apple branch of the GCC compiler, using FSF
+# GCC results in broken packages in some cases (subversion) due to
+# alignment problems with the kernel.  Hence, we default to gcc-apple.
+-*sys-devel/gcc
+*sys-devel/gcc-apple
