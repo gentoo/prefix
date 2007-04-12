@@ -2,6 +2,12 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.1.23.6381 (12 Apr 2007)
+
+  12 Apr 2007; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.1.22.6320.ebuild, +portage-2.1.23.6381.ebuild:
+  New snapshot that uses deb2targz for AIX users
+
 *portage-2.1.23.6370 (10 Apr 2007)
 
   10 Apr 2007; Fabian Groffen <grobian@gentoo.org>
