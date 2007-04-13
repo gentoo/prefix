@@ -4,22 +4,27 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic autotools db-use
+inherit eutils flag-o-matic autotools
+
+PATCHSET_REV="-r1"
 
 DESCRIPTION="a small but very powerful text-based mail client"
 HOMEPAGE="http://www.mutt.org"
 SRC_URI="http://dev.mutt.org/nightlies/mutt-20070409.tar.gz
 	!vanilla? (
-		mirror://gentoo/mutt-1.5.14-gentoo-patches.tar.bz2
+		mirror://gentoo/mutt-1.5.15-gentoo-patches${PATCHSET_REV}.tar.bz2
 	)"
-IUSE="berkdb buffysize cjk crypt debug gdbm gnutls gpgme idn imap mbox nls nntp pop sasl smime smtp ssl vanilla"
+IUSE="berkdb crypt debug gdbm gnutls gpgme idn imap mbox nls nntp pop qdbm sasl
+smime smtp ssl vanilla"
 SLOT="0"
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-solaris"
-RDEPEND="nls? ( sys-devel/gettext )
-	>=sys-libs/ncurses-5.2
-	gdbm?    ( sys-libs/gdbm )
-	!gdbm?   ( berkdb? ( >=sys-libs/db-4 ) )
+RDEPEND=">=sys-libs/ncurses-5.2
+	qdbm?    ( dev-db/qdbm )
+	!qdbm?   (
+		gdbm?  ( sys-libs/gdbm )
+		!gdbm? ( berkdb? ( >=sys-libs/db-4 ) )
+	)
 	imap?    (
 		gnutls?  ( >=net-libs/gnutls-1.0.17 )
 		!gnutls? ( ssl? ( >=dev-libs/openssl-0.9.6 ) )
@@ -30,15 +35,26 @@ RDEPEND="nls? ( sys-devel/gettext )
 		!gnutls? ( ssl? ( >=dev-libs/openssl-0.9.6 ) )
 		sasl?    ( >=dev-libs/cyrus-sasl-2 )
 	)
+	smtp?     (
+		gnutls?  ( >=net-libs/gnutls-1.0.17 )
+		!gnutls? ( ssl? ( >=dev-libs/openssl-0.9.6 ) )
+		sasl?    ( >=dev-libs/cyrus-sasl-2 )
+	)
 	idn?     ( net-dns/libidn )
 	gpgme?   ( >=app-crypt/gpgme-0.9.0 )
 	smime?   ( >=dev-libs/openssl-0.9.6 )
 	app-misc/mime-types"
 DEPEND="${RDEPEND}
-	net-mail/mailbase"
+	net-mail/mailbase
+	!vanilla? (
+		dev-libs/libxml2
+		dev-libs/libxslt
+		app-text/docbook-xsl-stylesheets
+		|| ( www-client/lynx www-client/w3m )
+	)"
 
 S="${WORKDIR}"/mutt-1.5.15cvs
-PATCHDIR="${WORKDIR}"/mutt-1.5.14-gentoo-patches
+PATCHDIR="${WORKDIR}"/mutt-1.5.15-gentoo-patches${PATCHSET_REV}
 
 src_unpack() {
 	unpack ${A}
@@ -54,24 +70,17 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.14-change-folder-next.patch
 
 	if ! use vanilla ; then
+		epatch "${FILESDIR}"/${P%_p*}-parallel-make.patch
+
 		if ! use nntp ; then
-			rm "${PATCHDIR}"/07-vvv.nntp-gentoo.patch
-			rm "${PATCHDIR}"/08-mixmaster_nntp.patch
+			rm "${PATCHDIR}"/07-nntp.patch
 		fi
-		# these are broken with recent snapshots
-		rm "${PATCHDIR}"/03-compressed.patch
-		rm "${PATCHDIR}"/05-mbox_hook.patch
-		rm "${PATCHDIR}"/06-pgp_timeout.patch
-		# already in CVS
-		rm "${PATCHDIR}"/01-assumed_charset.patch
 
 		for p in "${PATCHDIR}"/*.patch ; do
 			epatch "${p}"
 		done
 
 		AT_M4DIR="m4" eautoreconf
-	else
-		eautoconf
 	fi
 
 	# this should be done only when we're not root
@@ -87,11 +96,10 @@ src_compile() {
 		$(use_enable gpgme) \
 		$(use_enable imap) \
 		$(use_enable pop) \
+		$(use_enable smtp) \
 		$(use_enable crypt pgp) \
 		$(use_enable smime) \
-		$(use_enable cjk default-japanese) \
 		$(use_enable debug) \
-		$(use_enable smtp) \
 		$(use_with idn) \
 		--with-curses \
 		--sysconfdir=${EPREFIX}/etc/${PN} \
@@ -104,6 +112,7 @@ src_compile() {
 		*-darwin7)
 			# locales are broken on Panther
 			myconf="${myconf} --enable-locales-fix --without-wc-funcs"
+			myconf="${myconf} --disable-fcntl --enable-flock"
 		;;
 		*-solaris*)
 			# Solaris has no flock in the standard headers
@@ -119,18 +128,24 @@ src_compile() {
 
 	# mutt prioritizes gdbm over bdb, so we will too.
 	# hcache feature requires at least one database is in USE.
-	if use gdbm; then
-		myconf="${myconf} --enable-hcache --with-gdbm --without-bdb"
+	if use qdbm; then
+		myconf="${myconf} --enable-hcache \
+		--with-qdbm --without-gdbm --without-bdb"
+	elif use gdbm ; then
+		myconf="${myconf} --enable-hcache \
+			--without-qdbm --with-gdbm --without-bdb"
 	elif use berkdb; then
-		myconf="${myconf} --enable-hcache --with-bdb --without-gdbm"
+		myconf="${myconf} --enable-hcache \
+			--without-gdbm --without-qdbm --with-bdb"
 	else
-		myconf="${myconf} --disable-hcache --without-gdbm --without-bdb"
+		myconf="${myconf} --disable-hcache \
+			--without-qdbm --without-gdbm --without-bdb"
 	fi
 
 	# there's no need for gnutls, ssl or sasl without either pop or imap.
 	# in fact mutt's configure will bail if you do:
 	#   --without-pop --without-imap --with-ssl
-	if use pop || use imap; then
+	if use pop || use imap || use smtp ; then
 		if use gnutls; then
 			myconf="${myconf} --with-gnutls"
 		elif use ssl; then
@@ -147,11 +162,6 @@ src_compile() {
 		alpha|ppc) replace-flags "-O[3-9]" "-O2" ;;
 	esac
 
-	if use buffysize; then
-		ewarn "USE=buffy-size is just a workaround. Disable it if you don't need it."
-		myconf="${myconf} --enable-buffy-size"
-	fi
-
 	if use mbox; then
 		myconf="${myconf} --with-mailpath=/var/spool/mail"
 	else
@@ -167,7 +177,7 @@ src_compile() {
 	fi
 
 	econf ${myconf} || die "configure failed"
-	emake -j1 || die "make failed"
+	emake || die "make failed"
 }
 
 src_install() {
@@ -190,8 +200,8 @@ src_install() {
 
 pkg_postinst() {
 	echo
-	einfo "If you are new to mutt you may want to take a look at"
-	einfo "the Gentoo QuickStart Guide to Mutt E-Mail:"
-	einfo "   http://www.gentoo.org/doc/en/guide-to-mutt.xml"
+	elog "If you are new to mutt you may want to take a look at"
+	elog "the Gentoo QuickStart Guide to Mutt E-Mail:"
+	elog "   http://www.gentoo.org/doc/en/guide-to-mutt.xml"
 	echo
 }
