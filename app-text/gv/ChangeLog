@@ -1,6 +1,25 @@
 # ChangeLog for app-text/gv
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gv/ChangeLog,v 1.61 2006/11/24 20:14:09 kloeri Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/gv/ChangeLog,v 1.66 2007/04/07 17:30:26 genstef Exp $
+
+  07 Apr 2007; Stefan Schweizer <genstef@gentoo.org>
+  +files/gv-30_config.patch, gv-3.6.2-r1.ebuild:
+  Make gv read its config, bug 158322
+
+  07 Apr 2007; Stefan Schweizer <genstef@gentoo.org> gv-3.6.2-r1.ebuild:
+  Add menu entry thanks to Pacho Ramos <pacho@condmat1.ciencias.uniovi.es> in
+  bug 160218
+
+  07 Apr 2007; Christian Faulhammer <opfer@gentoo.org> gv-3.6.2-r1.ebuild:
+  SRC_URI reverted to mirror://, fixes bug 163183
+
+  19 Feb 2007; <genstef@gentoo.org> -files/gv-3.6.1-landscape.patch,
+  -gv-3.6.1-r3.ebuild, -gv-3.6.1-r5.ebuild, -gv-3.6.2.ebuild:
+  security cleanup bug 164200
+
+  11 Feb 2007; Fabian Groffen <grobian@gentoo.org> gv-3.6.1-r3.ebuild,
+  gv-3.6.1-r5.ebuild, gv-3.6.2.ebuild, gv-3.6.2-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   24 Nov 2006; Bryan Østergaard <kloeri@gentoo.org> gv-3.6.2-r1.ebuild:
   Stable on Alpha, bug 154573.
