@@ -1,6 +1,40 @@
 # ChangeLog for app-text/ghostscript-esp
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ChangeLog,v 1.48 2006/10/23 00:08:43 genstef Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ChangeLog,v 1.51 2007/04/07 13:28:58 genstef Exp $
+
+*ghostscript-esp-8.15.4 (20 Mar 2007)
+
+  20 Mar 2007; Stefan Schweizer <genstef@gentoo.org> +ghostscript-esp-8.15.4.ebuild:
+  version bump
+
+  19 Mar 2007; <genstef@gentoo.org>
+  -files/ghostscript-esp-7.07.1-64bit-cmyk.patch,
+  -files/ghostscript-7.07-bigposttable.patch,
+  -files/ghostscript-7.07-coverage-glyphcount.patch,
+  -files/ghostscript-7.07-fix_cidfontname_Encoding_CIDToGIDMap_DW_W.patch,
+  -files/ghostscript-7.07-fix_rename_font_gs_cidfn.ps.patch,
+  -files/ghostscript-7.07-gsublookuptable.patch,
+  -files/ghostscript-esp-8.15.1-bsd.patch,
+  -files/ghostscript-esp-8.15.1-fPIC.patch,
+  -files/ghostscript-esp-8.15.1-ps2epsi-esp.diff,
+  -files/ghostscript-esp-8.15.1_p20060430-build.patch,
+  -files/ghostscript-esp-8.15.1_p20060430-destdir.diff,
+  -files/ghostscript-esp-8.15.1_p20060430-ps2epsi-esp.diff,
+  -files/ghostscript-esp-8.15.2-big-cmap-post.patch,
+  -files/ghostscript-esp-8.15.2-cups-1.1.patch,
+  -files/ghostscript-esp-8.15.2-destdir.diff,
+  -files/ghostscript-esp-8.15.2-gtk-configure.patch,
+  -files/ghostscript-esp-8.15.2-noopt.patch, -files/ghostscript-badc.patch,
+  -files/ghostscript-build.patch, -files/ghostscript-esp-fontconfig.patch,
+  -files/ghostscript-gtk2.patch, -files/ghostscript-noopt.patch,
+  -files/ghostscript-pagesize.patch, -files/ghostscript-ps2epsi.patch,
+  -files/ghostscript-scripts.patch,
+  -files/ghostscript-split-font-configuration.patch,
+  -files/ghostscript-use-external-freetype.patch,
+  -files/gs7.05.6-tempfile.patch, -files/gs7.07.1-cjk.diff,
+  -files/ijs-dirinstall.diff, -ghostscript-esp-7.07.1-r10.ebuild,
+  -ghostscript-esp-8.15.1_p20060430.ebuild:
+  remove old
 
 *ghostscript-esp-8.15.3-r1 (23 Oct 2006)
 
