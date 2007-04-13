@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/speex
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-libs/speex/ChangeLog,v 1.52 2007/01/18 13:22:52 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/speex/ChangeLog,v 1.54 2007/03/22 17:15:36 beandog Exp $
+
+  22 Mar 2007; Steve Dibb <beandog@gentoo.org> -speex-1.1.5.ebuild:
+  Remove old version
+
+  01 Mar 2007; <genstef@gentoo.org> ChangeLog:
+  Dropped ppc-macos keyword, see you in prefix
 
   18 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> speex-1.1.12.ebuild:
   Stable on sparc
