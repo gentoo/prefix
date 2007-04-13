@@ -1,10 +1,10 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libart_lgpl/libart_lgpl-2.3.17.ebuild,v 1.14 2007/02/28 22:13:52 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libart_lgpl/libart_lgpl-2.3.19-r1.ebuild,v 1.1 2007/03/01 16:43:25 dang Exp $
 
 EAPI="prefix"
 
-inherit gnome2
+inherit gnome2 eutils
 
 DESCRIPTION="a LGPL version of libart"
 HOMEPAGE="http://www.levien.com/libart"
@@ -21,3 +21,9 @@ DOCS="AUTHORS ChangeLog INSTALL NEWS README"
 
 # in prefix, einstall is broken for this package (misses --libdir)
 USE_DESTDIR="yes"
+
+src_unpack() {
+	gnome2_src_unpack
+
+	epatch "${FILESDIR}"/${P}-alloc.patch
+}
