@@ -1,6 +1,13 @@
 # ChangeLog for app-text/tetex
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.141 2007/01/28 06:08:55 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.143 2007/03/19 18:58:55 nattfodd Exp $
+
+  19 Mar 2007; Alexandre Buisse <nattfodd@gentoo.org> tetex-3.0_p1.ebuild,
+  tetex-3.0_p1-r1.ebuild, tetex-3.0_p1-r2.ebuild, tetex-3.0_p1-r3.ebuild:
+  Changed SRC_URI from my devspace to mirror://gentoo/ since I am retiring.
+
+  12 Mar 2007; Alexandre Buisse <nattfodd@gentoo.org> metadata.xml:
+  Replaced text-markup by tex as maintaining herd (text-markup split).
 
   28 Jan 2007; Marius Mauch <genone@gentoo.org> tetex-3.0_p1-r3.ebuild:
   Replacing einfo with elog

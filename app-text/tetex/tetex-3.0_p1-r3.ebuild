@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/tetex-3.0_p1-r3.ebuild,v 1.14 2007/01/28 06:08:55 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/tetex-3.0_p1-r3.ebuild,v 1.16 2007/03/19 18:58:55 nattfodd Exp $
 
 EAPI="prefix"
 
@@ -19,9 +19,9 @@ DESCRIPTION="a complete TeX distribution"
 HOMEPAGE="http://tug.org/teTeX/"
 
 SRC_PATH_TETEX=ftp://cam.ctan.org/tex-archive/systems/unix/teTeX/current/distrib
-SRC_URI="http://dev.gentoo.org/~nattfodd/tetex/${TETEX_SRC}
+SRC_URI="mirror://gentoo/${TETEX_SRC}
 	${SRC_PATH_TETEX}/${TETEX_TEXMF}
-	http://dev.gentoo.org/~nattfodd/tetex/${P}-gentoo.tar.gz"
+	mirror://gentoo/${P}-gentoo.tar.gz"
 
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 
