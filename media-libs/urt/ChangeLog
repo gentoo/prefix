@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/urt
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-libs/urt/ChangeLog,v 1.27 2007/02/22 02:07:28 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/urt/ChangeLog,v 1.28 2007/03/01 17:23:21 genstef Exp $
+
+  01 Mar 2007; <genstef@gentoo.org> urt-3.1b-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
