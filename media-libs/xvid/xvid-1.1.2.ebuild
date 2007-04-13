@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/xvid-1.1.2.ebuild,v 1.5 2007/03/01 17:51:42 genstef Exp $
 
 EAPI="prefix"
 
@@ -17,8 +17,12 @@ SLOT="1"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="doc altivec"
 
-DEPEND="x86? ( >=dev-lang/nasm-0.98.36 )
-	amd64? ( >=dev-lang/yasm-0.5.0 )"
+# once yasm-0.6.0+ comes out, we can switch this to
+# dev-lang/nasm >=dev-lang/yasm-0.6.0
+# and then drop the quotes from section in the noexec-stack.patch
+NASM=">=dev-lang/yasm-0.5.0"
+DEPEND="x86? ( ${NASM} )
+	amd64? ( ${NASM} )"
 RDEPEND=""
 
 S=${WORKDIR}/${MY_P}/build/generic

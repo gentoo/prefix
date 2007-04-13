@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/xvid
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-libs/xvid/ChangeLog,v 1.84 2007/02/21 03:44:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/ChangeLog,v 1.85 2007/03/01 17:51:42 genstef Exp $
+
+  01 Mar 2007; <genstef@gentoo.org> xvid-1.1.0.ebuild, xvid-1.1.0-r1.ebuild,
+  xvid-1.1.0-r2.ebuild, xvid-1.1.0-r3.ebuild, xvid-1.1.2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   21 Feb 2007; Mike Frysinger <vapier@gentoo.org> xvid-1.1.2.ebuild:
   Force just yasm for now #165682 ... it's better than nasm anyways.
