@@ -1,4 +1,4 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -36,6 +36,7 @@ src_unpack() {
 		etc/profile \
 		sbin/env-update.sh \
 		sbin/functions.sh
+	echo 'MANPATH="/usr/share/man"' > etc/env.d/99basic || die "can't make file"
 }
 
 src_compile() {
