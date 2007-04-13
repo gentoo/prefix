@@ -1,0 +1,239 @@
+# ChangeLog for media-fonts/dejavu
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.57 2007/03/19 03:32:29 kloeri Exp $
+
+  19 Mar 2007; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
+  Remove flameeyes from metadata.xml due to retirement.
+
+*dejavu-2.15 (18 Feb 2007)
+
+  18 Feb 2007; Robin H. Johnson <robbat2@gentoo.org> +dejavu-2.15.ebuild:
+  Version bump for flameeyes.
+
+  30 Jan 2007; Steve Dibb <beandog@gentoo.org> dejavu-2.13.ebuild:
+  amd64 stable, bug 163108
+
+  23 Jan 2007; nixnut <nixnut@gentoo.org> dejavu-2.13.ebuild:
+  Stable on ppc wrt bug 163108
+
+  22 Jan 2007; Markus Rothe <corsair@gentoo.org> dejavu-2.13.ebuild:
+  Stable on ppc64; bug #163108
+
+  22 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> dejavu-2.13.ebuild:
+  Stable on sparc wrt #163108
+
+  21 Jan 2007; Andrej Kacian <ticho@gentoo.org> dejavu-2.13.ebuild:
+  Stable on x86, bug #163108.
+
+*dejavu-2.14 (21 Jan 2007)
+
+  21 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> -dejavu-2.7.ebuild,
+  -dejavu-2.12.ebuild, +dejavu-2.14.ebuild:
+  Version bump, old versions cleanup.
+
+*dejavu-2.13 (17 Dec 2006)
+
+  17 Dec 2006; Diego Pettenò <flameeyes@gentoo.org> +dejavu-2.13.ebuild:
+  Version bump.
+
+  16 Dec 2006; Bryan Østergaard <kloeri@gentoo.org> dejavu-2.11.ebuild:
+  Stable on Alpha, bug 155673.
+
+  30 Nov 2006; Markus Rothe <corsair@gentoo.org> dejavu-2.7.ebuild,
+  dejavu-2.11.ebuild, dejavu-2.12.ebuild:
+  Added ~ppc64
+
+  26 Nov 2006; Diego Pettenò <flameeyes@gentoo.org> dejavu-2.12.ebuild:
+  Restrict binchecks and strip, cuts about 20 seconds on the merge, as the
+  package installs only fonts data (and docs).
+
+  23 Nov 2006; <blubb@gentoo.org> dejavu-2.11.ebuild:
+  stable on amd64
+
+  20 Nov 2006; nixnut <nixnut@gentoo.org> dejavu-2.11.ebuild:
+  Stable on ppc wrt bug 155673
+
+  20 Nov 2006; Jason Wever <weeve@gentoo.org> dejavu-2.11.ebuild:
+  Stable on SPARC wrt bug #155673.
+
+  19 Nov 2006; Andrej Kacian <ticho@gentoo.org> dejavu-2.11.ebuild:
+  Stable on x86, bug #155673.
+
+*dejavu-2.12 (19 Nov 2006)
+
+  19 Nov 2006; Diego Pettenò <flameeyes@gentoo.org> -dejavu-2.9.ebuild,
+  -dejavu-2.10.ebuild, +dejavu-2.12.ebuild:
+  Version bump, and remove 2.9, 2.10 versions.
+
+*dejavu-2.11 (23 Oct 2006)
+
+  23 Oct 2006; Diego Pettenò <flameeyes@gentoo.org> +dejavu-2.11.ebuild:
+  Version bump.
+
+*dejavu-2.10 (17 Sep 2006)
+
+  17 Sep 2006; Diego Pettenò <flameeyes@gentoo.org> +dejavu-2.10.ebuild:
+  Version bump.
+
+  08 Sep 2006; Diego Pettenò <flameeyes@gentoo.org> -dejavu-2.6.ebuild,
+  -dejavu-2.8.ebuild:
+  Drop old versions.
+
+  06 Sep 2006; Luis Medinas <metalgod@gentoo.org> dejavu-2.7.ebuild:
+  Stable on amd64.
+
+  05 Sep 2006; Thomas Cort <tcort@gentoo.org> dejavu-2.9.ebuild:
+  Added ~alpha wrt Bug #146369.
+
+*dejavu-2.9 (30 Aug 2006)
+
+  30 Aug 2006; Peter Volkov <pva@gentoo.org> +dejavu-2.9.ebuild:
+  Version bump. Thank Christopher Culver for report (bug #144002).
+
+  23 Jul 2006; Andrej Kacian <ticho@gentoo.org> dejavu-2.7.ebuild:
+  Stable on x86, bug #141108.
+
+  22 Jul 2006; Thomas Cort <tcort@gentoo.org> dejavu-2.7.ebuild:
+  Stable on alpha wrt Bug #141108.
+
+  21 Jul 2006; Luca Barbato <lu_zero@gentoo.org> dejavu-2.7.ebuild:
+  Marked ppc
+
+  20 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org> dejavu-2.7.ebuild:
+  Stable on sparc wrt #141108
+
+*dejavu-2.8 (16 Jul 2006)
+
+  16 Jul 2006; Diego Pettenò <flameeyes@gentoo.org> +dejavu-2.8.ebuild:
+  Version bump.
+
+  11 Jul 2006; Aron Griffis <agriffis@gentoo.org> dejavu-2.7.ebuild:
+  Mark 2.7 stable on ia64
+
+  19 Jun 2006; Diego Pettenò <flameeyes@gentoo.org> -dejavu-2.0.ebuild:
+  Remove 2.0 version.
+
+  19 Jun 2006; Jon Hood <squinky86@gentoo.org> dejavu-2.6.ebuild:
+  Stable on amd64, #137183.
+
+  19 Jun 2006; Ferris McCormick <fmccor@gentoo.org> dejavu-2.6.ebuild:
+  Mark stable for sparc at developer's request ( Bug #137183 ).
+
+  18 Jun 2006; Emanuele Giaquinta <exg@gentoo.org> dejavu-2.6.ebuild:
+  Stable on ppc; bug #137183
+
+*dejavu-2.7 (18 Jun 2006)
+
+  18 Jun 2006; Diego Pettenò <flameeyes@gentoo.org> +dejavu-2.7.ebuild:
+  Add new version 2.7.
+
+  18 Jun 2006; Andrej Kacian <ticho@gentoo.org> dejavu-2.6.ebuild:
+  Stable on x86, bug #137183.
+
+  04 Jun 2006; Diego Pettenò <flameeyes@gentoo.org> -dejavu-1.11.ebuild,
+  -dejavu-1.15.ebuild, -dejavu-2.2.ebuild, -dejavu-2.4.ebuild,
+  -dejavu-2.4.1.ebuild, -dejavu-2.5.ebuild:
+  Remove old versions.
+
+*dejavu-2.6 (20 May 2006)
+
+  20 May 2006; Diego Pettenò <flameeyes@gentoo.org> metadata.xml,
+  +dejavu-2.6.ebuild:
+  Add dejavu 2.6, thanks to Damien Gombault in bug #133352. Add myself as
+  maintainer.
+
+  27 Apr 2006; Marien Zwart <marienz@gentoo.org> files/digest-dejavu-1.11,
+  files/digest-dejavu-1.15, files/digest-dejavu-2.0, Manifest:
+  Fixing SHA256 digest, pass four
+
+*dejavu-2.5 (18 Apr 2006)
+
+  18 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> +dejavu-2.5.ebuild:
+  Version bump.
+
+  02 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> dejavu-2.4.1.ebuild:
+  Add ~x86-fbsd keyword.
+
+*dejavu-2.4.1 (01 Apr 2006)
+
+  01 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> +dejavu-2.4.1.ebuild:
+  Update to bugfix release 2.4.1.
+
+*dejavu-2.4 (28 Mar 2006)
+
+  28 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> +dejavu-2.4.ebuild:
+  Bump dejavu to last version, use versionator to support 3-parts versions
+  (the old 2.3.1). Closes bug #123873.
+
+  15 Feb 2006; Scott Stoddard <deltacow@gentoo.org> dejavu-2.0.ebuild:
+  Stable on amd64.
+
+  15 Feb 2006; Gustavo Zacarias <gustavoz@gentoo.org> dejavu-2.0.ebuild:
+  Stable on sparc
+
+*dejavu-2.2 (14 Feb 2006)
+
+  14 Feb 2006; Marinus Schraal <foser@gentoo.org> dejavu-2.2.ebuild :
+  New release, just bump. Got poked in #116040
+
+*dejavu-2.0 (04 Dec 2005)
+
+  04 Dec 2005; Mamoru KOMACHI <usata@gentoo.org> -dejavu-1.10.ebuild,
+  +dejavu-2.0.ebuild:
+  Vesion bumped. This closes bug #113751.
+
+*dejavu-1.15 (29 Oct 2005)
+
+  29 Oct 2005; Mamoru KOMACHI <usata@gentoo.org> -dejavu-1.8.ebuild,
+  -dejavu-1.9.ebuild, dejavu-1.11.ebuild, +dejavu-1.15.ebuild:
+  Version bumped. This closes bug #103507.
+
+  23 Sep 2005; Gustavo Zacarias <gustavoz@gentoo.org> dejavu-1.11.ebuild:
+  Stable on sparc
+
+  23 Aug 2005; Gustavo Zacarias <gustavoz@gentoo.org> dejavu-1.11.ebuild:
+  Keyworded ~sparc
+
+  03 Jul 2005; David Holm <dholm@gentoo.org> dejavu-1.11.ebuild:
+  Added to ~ppc.
+
+*dejavu-1.11 (02 Jul 2005)
+
+  02 Jul 2005; Mamoru KOMACHI <usata@gentoo.org> dejavu-1.10.ebuild,
+  +dejavu-1.11.ebuild:
+  Version bumped; bug #97689.
+
+*dejavu-1.10 (28 May 2005)
+
+  28 May 2005; Mamoru KOMACHI <usata@gentoo.org> -dejavu-1.4.ebuild,
+  -dejavu-1.7.ebuild, dejavu-1.9.ebuild, +dejavu-1.10.ebuild:
+  Version bumped.
+
+*dejavu-1.9 (03 May 2005)
+
+  03 May 2005; Mamoru KOMACHI <usata@gentoo.org> dejavu-1.8.ebuild,
+  +dejavu-1.9.ebuild:
+  Version bumped. This closes bug #90559.
+
+  24 Apr 2005; Diego Pettenò <flameeyes@gentoo.org> dejavu-1.8.ebuild:
+  Marked ~amd64.
+
+*dejavu-1.8 (22 Mar 2005)
+
+  22 Mar 2005; Mamoru KOMACHI <usata@gentoo.org> dejavu-1.7.ebuild,
+  +dejavu-1.8.ebuild:
+  Version bumped.
+
+*dejavu-1.7 (14 Feb 2005)
+
+  14 Feb 2005; Mamoru KOMACHI <usata@gentoo.org> dejavu-1.4.ebuild,
+  +dejavu-1.7.ebuild:
+  Version bumped; bug #77569. Marked 1.4 stable.
+
+*dejavu-1.4 (17 Oct 2004)
+
+  17 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> +metadata.xml,
+  +dejavu-1.4.ebuild:
+  Initial import. Ebuild submitted by Vaclov Slavik
+  <vaclav.slavik@matfyz.cz>, closing bug #55950.
+
