@@ -179,11 +179,10 @@ bail:
 	return (cross_compile ? 0 : find_binutils_in_envd(data, 1));
 }
 
-/* find_ldpath_in_envd parses /etc/env.d/05gcc, and tries to
- * extract LDPATH, which is set to the LDPATH for all compilers, with
- * the current compiler first, of which only the first path is returned
+/* find_ldpath_in_envd parses the given file, and tries to
+ * extract LDPATH, of which only the first path is returned
  */
-static int find_ldpath_in_envd(struct wrapper_data *data, int cross_compile)
+static int find_ldpath_in_envd(struct wrapper_data *data, char* file, int cross_compile)
 {
 	FILE *envfile = NULL;
 	char *token = NULL, *state;
@@ -192,14 +191,14 @@ static int find_ldpath_in_envd(struct wrapper_data *data, int cross_compile)
 	char envd_file[MAXPATHLEN + 1];
 
 	if (!cross_compile) {
-		snprintf(envd_file, MAXPATHLEN, "%s", ENVD_BASE_GCC);
+		snprintf(envd_file, MAXPATHLEN, "%s", file);
 	} else {
 		char *ctarget, *end = strrchr(data->name, '-');
 		if (end == NULL)
 			return 0;
 		ctarget = strdup(data->name);
 		ctarget[end - data->name] = '\0';
-		snprintf(envd_file, MAXPATHLEN, "%s-%s", ENVD_BASE_GCC, ctarget);
+		snprintf(envd_file, MAXPATHLEN, "%s-%s", file, ctarget);
 		free(ctarget);
 	}
 	envfile = fopen(envd_file, "r");
@@ -242,7 +241,7 @@ static int find_ldpath_in_envd(struct wrapper_data *data, int cross_compile)
 
 bail:
 	fclose(envfile);
-	return (cross_compile ? 0 : find_ldpath_in_envd(data, 1));
+	return (cross_compile ? 0 : find_ldpath_in_envd(data, file, 1));
 }
 
 static void find_wrapper_binutils(struct wrapper_data *data)
@@ -316,7 +315,10 @@ int main(int argc, char *argv[])
 	size_t size;
 	int i;
 	char **newargv = argv;
-	char callarg[MAXPATHLEN * 8 + 1];
+	char callarg[MAXPATHLEN * 13 + 1];
+	char *p = callarg;
+	struct stat sbuf;
+	char str[MAXPATHLEN + 1];
 
 	memset(&data, 0, sizeof(data));
 
@@ -356,54 +358,55 @@ int main(int argc, char *argv[])
 		free(data.path);
 	data.path = NULL;
 
-	/* Get the include path for the compiler */
-	if (find_ldpath_in_envd(&data, 0) == 0) {
-		data.ldpath[0] = '\0';
-		fprintf(stderr, "binutils-config warning: no GCC found on your system!\n");
+#ifdef NEEDS_EXTRAS
+	/* this should always fit at this point */
+	p += sprintf(p, "%s", EXTRA);
+#endif
+
+#if defined(NEEDS_LIBRARY_INCLUDES) && defined(NEEDS_RPATH_DIRECTIONS)
+#define ADDPATH(X) \
+	if (strlen(LIBINC) + strlen(X) + 1 > MAXPATHLEN * 13 - strlen(callarg)) \
+		fprintf(stderr, "binutils-config: warning: out of memory, increase callarg array size"); \
+	else \
+		p += sprintf(p, " " LIBINC "%s", X); \
+	if (strlen(RPATHDIR) + strlen(X) + 1 > MAXPATHLEN * 13 - strlen(callarg)) \
+		fprintf(stderr, "binutils-config: warning: out of memory, increase callarg array size"); \
+	else \
+		p += sprintf(p, " " RPATHDIR "%s", X);
+#elif defined(NEEDS_LIBRARY_INCLUDES)
+#define ADDPATH(X) \
+	if (strlen(LIBINC) + strlen(X) + 1 > MAXPATHLEN * 13 - strlen(callarg)) \
+		fprintf(stderr, "binutils-config: warning: out of memory, increase callarg array size"); \
+	else \
+		p += sprintf(p, " " LIBINC "%s", X);
+#else
+#error "your requirements aren't implemented... go bug someone"
+#endif
+
+	/* Get the include path for the compiler and linker */
+	if (find_ldpath_in_envd(&data, ENVD_BASE_GCC, 0) == 0) {
+		fprintf(stderr, "binutils-config: warning: no GCC found on your system!\n");
+	} else {
+		ADDPATH(data.ldpath);
+	}
+	if (find_ldpath_in_envd(&data, ENVD_BASE_BINUTILS, 0) != 0) {
+		ADDPATH(data.ldpath);
+	} else {
+		fprintf(stderr, "warning, linker not found");
 	}
 
-	/* We add -L and -rpath flags before invoking the real binary */
-#if !defined(NEEDS_LIBRARY_INCLUDES) && !defined(NEEDS_RPATH_DIRECTIONS)
-# error NEEDS_LIBRARY_INCLUDES and/or NEEDS_RPATH_DIRECTIONS must be defined
-#endif
-	if (data.ldpath[0] == '\0') {
-		size = snprintf(callarg, MAXPATHLEN * 8,
-#ifdef NEEDS_LIBRARY_INCLUDES
-				"%s "
-#endif
-#ifdef NEEDS_RPATH_DIRECTIONS
-				"%s"
-#endif
-				,
-#ifdef NEEDS_LIBRARY_INCLUDES
-				"@LIBRARY_INCLUDES@"
-#endif
-#ifdef NEEDS_RPATH_DIRECTIONS
-				,
-				"@RUNPATH_DIRECTIONS@"
-#endif
-		);
-	} else {
-		size = snprintf(callarg, MAXPATHLEN * 8,
-#ifdef NEEDS_LIBRARY_INCLUDES
-				"-L%s %s "
-#endif
-#ifdef NEEDS_RPATH_DIRECTIONS
-				"-rpath=%s %s"
-#endif
-				,
-#ifdef NEEDS_LIBRARY_INCLUDES
-				data.ldpath,
-				"@LIBRARY_INCLUDES@"
-#endif
-#ifdef NEEDS_RPATH_DIRECTIONS
-				,
-				data.ldpath,
-				"@RUNPATH_DIRECTIONS@"
-#endif
-		);
+#define ADDLIBDIR(X) \
+	snprintf(str, MAXPATHLEN, "%s%s", "@GENTOO_PORTAGE_EPREFIX@", X); \
+	i = stat(str, &sbuf); \
+	if ((i == 0) && (sbuf.st_mode & S_IFDIR)) { \
+		ADDPATH(str); \
 	}
-	callarg[size] = '\0';
+
+	ADDLIBDIR("/usr/lib64");
+	ADDLIBDIR("/usr/lib");
+	ADDLIBDIR("/lib64");
+	ADDLIBDIR("/lib");
+
 	newargv = build_new_argv(argv, callarg);
 	if (!newargv)
 		wrapper_exit("%s wrapper: out of memory\n", argv[0]);

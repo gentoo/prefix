@@ -17,7 +17,7 @@ IUSE=""
 
 RDEPEND=">=sys-apps/findutils-4.2"
 
-W_VER=1.1
+W_VER=1.2
 
 src_unpack() {
 	cp "${FILESDIR}"/${PN}-${PV} "${T}"/
@@ -31,49 +31,27 @@ src_compile() {
 	# based on what system we have do some adjusting of the wrapper's work
 	case ${CHOST} in
 		*-darwin*)
-			defines="-DNEEDS_LIBRARY_INCLUDES"
-			libs="-search_paths_first -L${EPREFIX}/lib -L${EPREFIX}/usr/lib"
-			rpaths=""
+			defines='-DNEEDS_LIBRARY_INCLUDES -DLIBINC="-L"'
+			defines="${defines}"' -DNEEDS_EXTRAS -DEXTRA="-search_paths_first"'
 		;;
 		*-aix*)
-			defines="-DNEEDS_LIBRARY_INCLUDES"
-			libs="-L${EPREFIX}/lib -L${EPREFIX}/usr/lib"
-			rpaths=""
+			defines='-DNEEDS_LIBRARY_INCLUDES -DLIBINC="-L"'
 		;;
 		*-solaris*)
-			defines="-DNEEDS_LIBRARY_INCLUDES -DNEEDS_RPATH_DIRECTIONS"
-			# this is a lousy check for multilib, and should be done properly
-			# some day/time
-			libs=""
-			for dir in lib64 lib usr/lib64 usr/lib ; do
-				dir=${EPREFIX}/${dir}
-				[[ -d ${dir} ]] && \
-					libs="${libs} -L${dir}"
-			done
-			rpaths=${libs//-L/-R}
+			defines='-DNEEDS_LIBRARY_INCLUDES -DLIBINC="-L"'
+			defines="${defines}"' -DNEEDS_RPATH_DIRECTIONS -DRPATHDIR="-R"'
 		;;
 		*-linux-gnu)
-			defines="-DNEEDS_LIBRARY_INCLUDES -DNEEDS_RPATH_DIRECTIONS"
-			# this is a lousy check for multilib, and should be done properly
-			# some day/time
-			libs=""
-			for dir in lib64 lib usr/lib64 usr/lib ; do
-				dir=${EPREFIX}/${dir}
-				[[ -d ${dir} ]] && \
-					libs="${libs} -L${dir}"
-			done
-			rpaths=${libs//-L/-rpath=}
+			defines='-DNEEDS_LIBRARY_INCLUDES -DLIBINC="-L"'
+			defines="${defines}"' -DNEEDS_RPATH_DIRECTIONS -DRPATHDIR="-rpath="'
 		;;
 		*)
 			die "Don't know how to configure for your system"
 		;;
 	esac
 
-	sed -i \
-		-e "s|@LIBRARY_INCLUDES@|${libs}|g" \
-		-e "s|@RUNPATH_DIRECTIONS@|${rpaths}|g" \
-		ldwrapper-${W_VER}.c
-
+	echo "$(tc-getCC) -O2 -Wall ${defines} -o ldwrapper \
+		ldwrapper-${W_VER}.c"
 	$(tc-getCC) -O2 -Wall ${defines} -o ldwrapper \
 		ldwrapper-${W_VER}.c || die "compile wrapper"
 }
