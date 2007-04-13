@@ -1,0 +1,75 @@
+--- bin/install-catalog.in
++++ bin/install-catalog.in
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ # Script to install a catalog in the centralized SGML catalog
+ # Send any comments to Eric Bischoff <eric@caldera.de>
+ # This program is under GPL license. See LICENSE file for details.
+@@ -32,6 +32,8 @@
+ # Default ROOT value (usually defined by portage)
+ [ -z "$ROOT" ] && ROOT="/"
+ [[ $ROOT == */ ]] || ROOT="${ROOT}/"
++EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
++EROOT=${ROOT%/}${EPREFIX}/
+ 
+ 
+ # Process options
+@@ -79,23 +81,23 @@
+ 
+ 
+ # Check that the super catalog can be created and changed and deleted
+-if [ ! -w ${ROOT}etc/sgml ]
++if [ ! -w ${EROOT}etc/sgml ]
+ then
+-  echo "`basename $0`: unable to write in ${ROOT}etc/sgml." >&2
++  echo "`basename $0`: unable to write in ${EROOT}etc/sgml." >&2
+   exit 2
+ fi
+ case $SGML_ACTION in
+    addition)
+-	if [ -e ${ROOT}etc/sgml/catalog -a ! -w ${ROOT}etc/sgml/catalog ]
++	if [ -e ${EROOT}etc/sgml/catalog -a ! -w ${EROOT}etc/sgml/catalog ]
+ 	then
+-	  echo "`basename $0`: can not modify \"${ROOT}etc/sgml/catalog\"." >&2
++	  echo "`basename $0`: can not modify \"${EROOT}etc/sgml/catalog\"." >&2
+ 	  exit 2
+ 	fi
+ 	;;
+    removal)
+-	if [ ! -w ${ROOT}etc/sgml/catalog ]
++	if [ ! -w ${EROOT}etc/sgml/catalog ]
+ 	then
+-	  echo "`basename $0`: can not modify \"${ROOT}etc/sgml/catalog\"." >&2
++	  echo "`basename $0`: can not modify \"${EROOT}etc/sgml/catalog\"." >&2
+ 	  exit 2
+ 	fi
+ 	;;
+@@ -150,11 +152,11 @@
+ 	else
+ 	  echo "$SGML_POINTER \"$SGML_ORDINARY\"" >> $SGML_ROOT_CENTRALIZED
+ 	fi
+-	grep -q $SGML_CENTRALIZED ${ROOT}etc/sgml/catalog 2>/dev/null
++	grep -q $SGML_CENTRALIZED ${EROOT}etc/sgml/catalog 2>/dev/null
+ 	if [ $? -ne 0 ]
+ 	then
+-		echo "`basename $0`: addition of $SGML_CENTRALIZED in ${ROOT}etc/sgml/catalog"
+-		echo "$SGML_POINTER \"$SGML_CENTRALIZED\"" >> ${ROOT}etc/sgml/catalog
++		echo "`basename $0`: addition of $SGML_CENTRALIZED in ${EROOT}etc/sgml/catalog"
++		echo "$SGML_POINTER \"$SGML_CENTRALIZED\"" >> ${EROOT}etc/sgml/catalog
+ 	fi
+ 	;;
+    removal)
+@@ -170,9 +172,9 @@
+ 	if [ ! -s "$SGML_ROOT_CENTRALIZED" ]
+ 	then
+ 	  rm $SGML_ROOT_CENTRALIZED
+-	  echo "`basename $0`: removal of $SGML_CENTRALIZED from ${ROOT}etc/sgml/catalog"
+-          sed -e "\:$SGML_POINTER \"$SGML_CENTRALIZED\":d" < ${ROOT}etc/sgml/catalog > ${ROOT}etc/sgml/catalog.new
+-          mv ${ROOT}etc/sgml/catalog.new ${ROOT}etc/sgml/catalog
++	  echo "`basename $0`: removal of $SGML_CENTRALIZED from ${EROOT}etc/sgml/catalog"
++          sed -e "\:$SGML_POINTER \"$SGML_CENTRALIZED\":d" < ${EROOT}etc/sgml/catalog > ${EROOT}etc/sgml/catalog.new
++          mv ${EROOT}etc/sgml/catalog.new ${EROOT}etc/sgml/catalog
+ 	fi
+ 	;;
+ esac

@@ -15,7 +15,7 @@ SRC_URI="mirror://kde/devel/docbook/SOURCES/${P}.tgz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND=""
@@ -28,6 +28,7 @@ src_unpack() {
 	# variable, and puts quotes around the CATALOG files.
 	cp "${FILESDIR}/${P}-install-catalog.in" "${S}/bin/install-catalog.in"
 	cd "${S}"
+	epatch "${FILESDIR}"/${P}-install-catalog.in-prefix.patch
 	eprefixify bin/install-catalog.in
 
 	epatch "${FILESDIR}"/${P}-configure.in.patch

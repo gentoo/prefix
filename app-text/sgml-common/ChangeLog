@@ -1,6 +1,9 @@
 # ChangeLog for app-text/sgml-common
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/sgml-common/ChangeLog,v 1.43 2006/11/14 10:22:13 leonardop Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/sgml-common/ChangeLog,v 1.44 2007/03/12 23:25:29 leonardop Exp $
+
+  12 Mar 2007; Leonardo Boshell <leonardop@gentoo.org> metadata.xml:
+  Replacing text-markup herd with the new sgml herd.
 
   14 Nov 2006; Leonardo Boshell <leonardop@gentoo.org>
   sgml-common-0.6.3-r4.ebuild, sgml-common-0.6.3-r5.ebuild:
