@@ -1,6 +1,21 @@
 # ChangeLog for media-libs/pdflib
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.60 2006/09/29 13:35:11 sebastian Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.63 2007/03/16 22:45:29 chtekk Exp $
+
+  16 Mar 2007; Luca Longinotti <chtekk@gentoo.org>
+  pdflib-5.0.4_p1-r1.ebuild, pdflib-6.0.3.ebuild, pdflib-6.0.3-r1.ebuild:
+  Fix which usage.
+
+*pdflib-6.0.3-r1 (03 Mar 2007)
+
+  03 Mar 2007; Petteri Räty <betelgeuse@gentoo.org>
+  +files/fix-java-compile.patch, +pdflib-6.0.3-r1.ebuild:
+  Migrate to generation 2 java eclasses and add the doc use flag for javadocs.
+  Thanks to Alistair Bush <alistair.bush@gmail.com>. Fixes bug #120264.
+
+  01 Mar 2007; <genstef@gentoo.org> pdflib-5.0.4_p1-r1.ebuild,
+  pdflib-6.0.3.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   29 Sep 2006; Sebastian Bergmann <sebastian@gentoo.org>
   pdflib-5.0.4_p1-r1.ebuild, -pdflib-6.0.1.ebuild, pdflib-6.0.3.ebuild:

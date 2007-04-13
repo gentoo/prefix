@@ -1,0 +1,11 @@
+--- bind/pdflib/java/Makefile.orig	2007-01-30 17:30:46.000000000 +1300
++++ bind/pdflib/java/Makefile	2007-01-30 17:32:04.000000000 +1300
+@@ -38,7 +38,7 @@
+ pdflib.jar:: pdflib.java PDFlibException.java
+ 	$(RM) com
+ 	mkdir -p com/pdflib
+-	javac PDFlibException.java pdflib.java && mv pdflib.class com/pdflib\
++	javac ${JAVACFLAGS} PDFlibException.java pdflib.java && mv pdflib.class com/pdflib\
+ 	    && mv PDFlibException.class com/pdflib/PDFlibException.class
+ 	jar cvf pdflib.jar com/pdflib/pdflib.class \
+ 	    com/pdflib/PDFlibException.class
