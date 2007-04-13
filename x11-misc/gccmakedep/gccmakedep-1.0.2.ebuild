@@ -10,7 +10,7 @@ EAPI="prefix"
 inherit x-modular
 
 DESCRIPTION="create dependencies in makefiles using 'gcc -M'"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 RDEPEND=""
 DEPEND="${RDEPEND}
 	x11-proto/xproto"
