@@ -1,0 +1,11 @@
+diff -bur clamav-0.90.orig/libclamav/clamav.h clamav-0.90/libclamav/clamav.h
+--- clamav-0.90.orig/libclamav/clamav.h	2007-02-25 11:56:29.000000000 +0100
++++ clamav-0.90/libclamav/clamav.h	2007-02-25 11:57:42.000000000 +0100
+@@ -234,6 +234,7 @@
+ /* database handling */
+ extern int cl_load(const char *path, struct cl_engine **engine, unsigned int *signo, unsigned int options);
+ extern const char *cl_retdbdir(void);
++extern int cl_loaddbdir(const char *dirname, struct cl_engine **engine, unsigned int *signo);
+ 
+ /* engine handling */
+ extern int cl_build(struct cl_engine *engine);

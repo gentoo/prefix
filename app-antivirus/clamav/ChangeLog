@@ -1,6 +1,73 @@
 # ChangeLog for app-antivirus/clamav
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.205 2007/02/22 13:22:04 chutzpah Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.220 2007/04/10 20:13:39 ticho Exp $
+
+  10 Apr 2007; Andrej Kacian <ticho@gentoo.org> files/clamd.rc:
+  Make sure clamav-milter starts correctly when --external option is used.
+  Patch submitted by Dean C Bullock <dean at bullock.net> in bug #169561.
+
+  02 Apr 2007; Roy Marples <uberlord@gentoo.org> files/clamd.rc:
+  De bashify init script.
+
+  28 Mar 2007; Raúl Porcel <armin76@gentoo.org> clamav-0.90.ebuild:
+  ia64 stable wrt bug 167201
+
+  27 Mar 2007; Andrej Kacian <ticho@gentoo.org> files/clamav.logrotate:
+  Also reload clamd/freshclam from logrotate script.
+
+  25 Mar 2007; Andrej Kacian <ticho@gentoo.org> files/clamav.logrotate,
+  files/clamd.rc:
+  Move logfile permission/ownership fix to separate logfix() function and call
+  it from start(), and from logrotate script. Closes bug #170739, reported by
+  Sergey Borodich <bor at univ.kiev.ua>. Remove bashism from the initscript,
+  as suggested by Natanael Copa <natanael.copa at gmail.com> in bug #171755.
+
+  20 Mar 2007; Andrej Kacian <ticho@gentoo.org> -clamav-0.88.5.ebuild,
+  -clamav-0.88.6.ebuild, clamav-0.88.7.ebuild, clamav-0.90.ebuild,
+  clamav-0.90.1.ebuild, clamav-0.90.1-r1.ebuild:
+  Removing obsolete ebuilds. Do not install generic INSTALL file.
+
+  15 Mar 2007; Andrej Kacian <ticho@gentoo.org> files/clamd.rc:
+  Always fix permissions for clamd and freshclam logs. Bug #170739, by Sergey
+  Borodich <bor at univ.kiev.ua>.
+
+  11 Mar 2007; Andrej Kacian <ticho@gentoo.org> clamav-0.90.ebuild,
+  clamav-0.90.1.ebuild, clamav-0.90.1-r1.ebuild:
+  Make freshclam use scripted updates by default - they work and they work
+  well. Next best thing since sliced bread.
+
+  09 Mar 2007; Andrej Kacian <ticho@gentoo.org> files/clamd.rc:
+  Revert initscript to previous version, as it creates problems. Bug #169561.
+
+  08 Mar 2007; Stephen Bennett <spb@gentoo.org> clamav-0.90.1-r1.ebuild:
+  Run eautoreconf in src_unpack, by request of ticho
+
+*clamav-0.90.1-r1 (08 Mar 2007)
+
+  08 Mar 2007; Andrej Kacian <ticho@gentoo.org>
+  +files/clamav-0.90-nls.patch, files/clamd.rc, +clamav-0.90.1-r1.ebuild:
+  Wait for clamd socket if clamav-milter is started with --external argument.
+  Patch provided by Dean C Bullock <dean at bullock.net>, bug #169561. Apply
+  patch to allow building without NLS. Patch by Ned Ludd <solar at
+  gentoo.org>, bug #167829.
+
+  03 Mar 2007; Andrej Kacian <ticho@gentoo.org> clamav-0.90.ebuild,
+  clamav-0.90.1.ebuild:
+  Depend on gmp library unconditionally. Bug #169059, reported by Rob Terhaar
+  <rterhaar at allovermedia.com>.
+
+*clamav-0.90.1 (02 Mar 2007)
+
+  02 Mar 2007; Andrej Kacian <ticho@gentoo.org> +clamav-0.90.1.ebuild:
+  Version bump.
+
+  25 Feb 2007; Andrej Kacian <ticho@gentoo.org>
+  +files/clamav-0.90-compat.patch, clamav-0.90.ebuild:
+  Added a patch to include cl_loaddbdir() in clamav.h to prevent other apps
+  using this function from dying during compile-time. Other API
+  incompatibilities will be dealt with as they come (patch if it's trivial,
+  suggest users to whine upstream if it's not). Oh, and marked 0.90 stable on
+  x86, as per security bug #167201.
 
   22 Feb 2007; Patrick McLean <chutzpah@gentoo.org> clamav-0.90.ebuild:
   Stable on amd64 (bug #167201).
