@@ -1,0 +1,19 @@
+
+From: Daniel Drake <d.drake@mmm.com>
+
+Handle --without-windows-font-dir as equivalent to --with-windows-font-dir=
+
+Index: ImageMagick-6.3.0/configure
+===================================================================
+--- ImageMagick-6.3.0.orig/configure
++++ ImageMagick-6.3.0/configure
+@@ -20544,6 +20544,9 @@ else
+   with_windows_font_dir=''
+ fi
+ 
++if test "x$with_windows_font_dir" = "xno"; then
++  with_windows_font_dir=
++fi
+ if test "$with_windows_font_dir" != '' ; then
+   DISTCHECK_CONFIG_FLAGS="${DISTCHECK_CONFIG_FLAGS} --with-windows-font-dir==$with_windows_font_dir "
+ fi

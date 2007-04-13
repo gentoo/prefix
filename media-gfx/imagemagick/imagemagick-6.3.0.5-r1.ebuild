@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.3.0.5.ebuild,v 1.14 2007/03/10 11:09:58 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.3.0.5-r1.ebuild,v 1.1 2007/03/06 23:54:10 jer Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SRC_URI="ftp://ftp.imagemagick.org/pub/${MY_PN}/${MY_P2}.tar.bz2"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="bzip2 doc fpx graphviz gs jbig jpeg jpeg2k lcms mpeg nocxx perl png tiff truetype X wmf xml zlib"
 
 RDEPEND="bzip2? ( app-arch/bzip2 )
@@ -53,13 +53,16 @@ S=${WORKDIR}/${MY_P}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	chmod +x config.sub
-	einfo ${S}
+
 	epatch "${FILESDIR}"/${PN}-6.3.0.5-docs.patch
-	epatch "${FILESDIR}"/${P}-no-lMagick.patch
+
+	# bug #155804:
+	epatch "${FILESDIR}"/${P}-parallel-build.patch
 
 	# from bug #146713, sent upstream
 	epatch "${FILESDIR}"/${P}-configure-windows-fonts.patch
+
+	autoreconf || die "autoreconf failed"
 }
 
 src_compile() {

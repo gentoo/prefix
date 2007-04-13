@@ -1,6 +1,33 @@
 # ChangeLog for media-gfx/imagemagick
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.210 2006/11/24 18:01:41 kloeri Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.215 2007/03/10 11:09:58 eroyf Exp $
+
+  10 Mar 2007; Alexander H. Færøy <eroyf@gentoo.org>
+  imagemagick-6.3.0.5.ebuild:
+  Stable on MIPS; bug #152672
+
+*imagemagick-6.3.0.5-r1 (06 Mar 2007)
+
+  06 Mar 2007; Jeroen Roovers <jer@gentoo.org>
+  +files/imagemagick-6.3.0.5-parallel-build.patch,
+  +imagemagick-6.3.0.5-r1.ebuild:
+  Sven's patches from bug #155804. Undoing my own previous changes because of
+  the loud sucking noises.'
+
+  15 Feb 2007; Jeroen Roovers <jer@gentoo.org>
+  +files/imagemagick-6.3.0.5-no-lMagick.patch, imagemagick-6.3.0.5.ebuild:
+  Fix bug #155804 while sekretarz is MIA. Cross fingers. Thanks to kojiro for
+  the final patch.
+
+  08 Feb 2007; Daniel Drake <dsd@gentoo.org>
+  -files/imagemagick-6.2.5.4-docs.patch,
+  +files/imagemagick-6.3.0.5-configure-windows-fonts.patch,
+  imagemagick-6.3.0.5.ebuild:
+  Make corefonts dependency conditional based on USE=truetype, bug #146713
+
+  07 Feb 2007; Karol Wojtaszek <sekretarz@gentoo.org>
+  -imagemagick-6.2.9.5.ebuild, -imagemagick-6.2.9.5-r1.ebuild:
+  Security clean up, bug #164182
 
   24 Nov 2006; Bryan Østergaard <kloeri@gentoo.org>
   imagemagick-6.3.0.5.ebuild:
