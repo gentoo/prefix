@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit perl-module
+inherit eutils perl-module
 
 MY_P="${P/_/-}"
 
@@ -29,6 +29,12 @@ RDEPEND="${RDEPEND}
 	!net-irc/irssi-svn"
 
 S="${WORKDIR}"/${MY_P}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P%_rc*}-perl-gcc4.patch
+}
 
 src_compile() {
 	econf \
