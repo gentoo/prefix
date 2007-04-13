@@ -1,6 +1,17 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.114 2007/04/04 14:23:26 foser Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.115 2007/04/06 21:31:10 dirtyepic Exp $
+
+*freetype-2.3.3 (06 Apr 2007)
+
+  06 Apr 2007; Ryan Hill <dirtyepic@gentoo.org>
+  +files/freetype-2.3.3-buffer-overwrite.patch, +freetype-2.3.3.ebuild:
+  Version bump.
+   - includes the patch for CVE-2007-1351 present in 2.3.2-r3 along with other
+   various bugfixes
+   - also includes upstream patch for memory buffer overwrite soon to be
+   released as freetype-2.3.4
+   - new ftdiff utility for side-by-side font comparisons
 
 *freetype-2.3.2-r3 (04 Apr 2007)
 
