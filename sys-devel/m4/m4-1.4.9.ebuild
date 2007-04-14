@@ -20,6 +20,12 @@ IUSE="nls"
 DEPEND="nls? ( sys-devel/gettext )"
 RDEPEND=""
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${PN}-1.4.8-darwin7.patch
+}
+
 src_compile() {
 	local myconf=""
 	[[ ${USERLAND} != "GNU" ]] && [[ ${PREFIX/\//} != "" ]] && \
