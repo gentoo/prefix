@@ -1,6 +1,11 @@
 # ChangeLog for app-admin/pwgen
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/pwgen/ChangeLog,v 1.41 2006/11/27 22:02:36 drizzt Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/pwgen/ChangeLog,v 1.42 2007/04/13 18:20:01 wolf31o2 Exp $
+
+*pwgen-2.05 (13 Apr 2007)
+
+  13 Apr 2007; Chris Gianelloni <wolf31o2@gentoo.org> +pwgen-2.05.ebuild:
+  Version bump and closing bug #172282.
 
   27 Nov 2006; Timothy Redaelli <drizzt@gentoo.org> pwgen-2.04.ebuild:
   Added ~x86-fbsd keyword.
