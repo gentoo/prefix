@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/rebase/rebase-611.ebuild,v 1.1 2006/11/03 00:20:40 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/rebase/rebase-704.ebuild,v 1.1 2007/04/11 01:15:11 ribosome Exp $
 
 EAPI="prefix"
 
