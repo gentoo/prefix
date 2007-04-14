@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/auctex
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.56 2007/04/07 16:38:33 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.57 2007/04/09 09:22:45 corsair Exp $
+
+  09 Apr 2007; Markus Rothe <corsair@gentoo.org> auctex-11.84-r1.ebuild:
+  Added ~ppc64 back; bug #131761
 
   07 Apr 2007; Christian Faulhammer <opfer@gentoo.org> auctex-11.55.ebuild,
   auctex-11.82.ebuild, auctex-11.83.ebuild, auctex-11.83-r1.ebuild,
