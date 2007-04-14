@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.6.ebuild,v 1.11 2007/04/10 05:26:01 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.6-r1.ebuild,v 1.1 2007/04/08 06:57:18 vapier Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,8 @@ PV_SNAP=${PV:4}
 MY_P=${PN}-${MY_PV}
 DESCRIPTION="console display library"
 HOMEPAGE="http://www.gnu.org/software/ncurses/ http://dickey.his.com/ncurses/"
-SRC_URI="mirror://gnu/ncurses/${MY_P}.tar.gz"
+SRC_URI="mirror://gnu/ncurses/${MY_P}.tar.gz
+	ftp://invisible-island.net/ncurses/${PV}/${P}-coverity.patch.gz"
 
 LICENSE="MIT"
 SLOT="5"
@@ -19,7 +20,6 @@ KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris
 IUSE="bootstrap build debug doc gpm minimal nocxx trace unicode"
 
 DEPEND="gpm? ( sys-libs/gpm )"
-RDEPEND="${DEPEND}"
 
 S=${WORKDIR}/${MY_P}
 
@@ -27,6 +27,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	[[ -n ${PV_SNAP} ]] && epatch "${WORKDIR}"/${MY_P}-${PV_SNAP}-patch.sh
+	epatch "${WORKDIR}"/${P}-coverity.patch
 	epatch "${FILESDIR}"/${PN}-5.6-gfbsd.patch
 }
 
@@ -73,7 +74,6 @@ do_compile() {
 		--disable-termcap \
 		--with-shared \
 		--with-rcs-ids \
-		--without-ada \
 		--enable-symlinks \
 		--enable-const \
 		--with-chtype='long' \
