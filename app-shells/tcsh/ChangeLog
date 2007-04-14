@@ -1,6 +1,11 @@
 # ChangeLog for app-shells/tcsh
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/ChangeLog,v 1.70 2007/03/22 10:39:29 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/ChangeLog,v 1.71 2007/04/10 18:38:26 grobian Exp $
+
+  10 Apr 2007; Fabian Groffen <grobian@gentoo.org> tcsh-6.14-r3.ebuild,
+  tcsh-6.14-r5.ebuild, tcsh-6.14-r33.ebuild:
+  Make installing html docs not require some sort of input via STDIN.
+  Thanks to Mathieu Seigneurin in bug #173773.
 
 *tcsh-6.14-r33 (22 Mar 2007)
 

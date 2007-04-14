@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/tcsh-6.14-r33.ebuild,v 1.1 2007/03/22 10:39:29 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/tcsh-6.14-r33.ebuild,v 1.2 2007/04/10 18:38:26 grobian Exp $
 
 EAPI="prefix"
 
@@ -62,7 +62,7 @@ src_install() {
 	emake DESTDIR="${D}" install install.man || die
 
 	if use perl ; then
-		perl tcsh.man2html || die
+		perl tcsh.man2html tcsh.man || die
 		dohtml tcsh.html/*.html
 	fi
 
