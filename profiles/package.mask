@@ -6,21 +6,6 @@
 # NOTE: Please add your entry at the top!
 #
 
-# prefix items here, to avoid merge problems
-
-# <grobian@gentoo.org> (9 Feb 2007)
-# can't get them to work with their libtool horror
-=dev-libs/apr-1.2.8
-=dev-libs/apr-util-1.2.8
-
-# <grobian@gentoo.org> (30 Jan 2007)
-# seems to be messed up, hardcoding wrong install_names
-=sys-libs/ncurses-5.6
-
-# <grobian@gentoo.org> (30 Oct 2006)
-# doesn't install pdflatex in prefix and more issues
->=app-text/tetex-3.0
-
 ##
 ##  This is an example
 ##

@@ -2,6 +2,10 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.263 2007/04/03 17:49:04 armin76 Exp $
 
+  14 Apr 2007; Fabian Groffen <grobian@gentoo.org>
+  default-prefix/package.mask, package.mask:
+  Moved prefix masks into default-prefix, and extended ncurses mask.
+
   03 Apr 2007; Raúl Porcel <armin76@gentoo.org> package.mask:
   Mask net-p2p/qbittorrent-0.9.0, as it depends in rc version of rb_libtorrent
 
