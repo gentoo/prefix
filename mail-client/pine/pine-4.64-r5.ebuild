@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/pine/pine-4.64-r5.ebuild,v 1.1 2006/10/07 01:02:45 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/pine/pine-4.64-r5.ebuild,v 1.11 2007/04/04 19:59:52 ferdy Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ CHAPPA_PF="${PF}"
 
 DESCRIPTION="A tool for reading, sending and managing electronic messages."
 HOMEPAGE="http://www.washington.edu/pine/
-	http://www.math.washington.edu/~chappa/pine/patches/"
+	http://staff.washington.edu/chappa/pine/"
 SRC_URI="ftp://ftp.cac.washington.edu/pine/${P/-/}.tar.bz2
 	mirror://gentoo/${CHAPPA_PF}-chappa-all.patch.gz"
 #	ipv6? (
@@ -41,21 +41,21 @@ RDEPEND="${DEPEND}
 S="${WORKDIR}/${P/-/}"
 
 maildir_warn() {
-	einfo
-	einfo "This build of Pine has Maildir support built in as"
-	einfo "part of the chappa-all patch."
-	einfo
-	einfo "If you have a maildir at ~/Maildir it will be your"
-	einfo "default INBOX. The path may be changed with the"
-	einfo "\"maildir-location\" setting in Pine."
-	einfo
-	einfo "To use /var/spool/mail INBOX again, set"
-	einfo "\"disable-these-drivers=md\" in your .pinerc file."
-	einfo
-	einfo "Alternately, you might want to read following webpage, which explains how to"
-	einfo "use multiple mailboxes simultaneously:"
-	echo
-	echo "http://www.math.washington.edu/~chappa/pine/pine-info/collections/incoming-folders/"
+	elog
+	elog "This build of Pine has Maildir support built in as"
+	elog "part of the chappa-all patch."
+	elog
+	elog "If you have a maildir at ~/Maildir it will be your"
+	elog "default INBOX. The path may be changed with the"
+	elog "\"maildir-location\" setting in Pine."
+	elog
+	elog "To use /var/spool/mail INBOX again, set"
+	elog "\"disable-these-drivers=md\" in your .pinerc file."
+	elog
+	elog "Alternately, you might want to read following webpage, which explains how to"
+	elog "use multiple mailboxes simultaneously:"
+	elog
+	elog "http://www.math.washington.edu/~chappa/pine/pine-info/collections/incoming-folders/"
 	echo
 }
 
@@ -101,11 +101,10 @@ src_unpack() {
 	epatch "${FILESDIR}/imap-2000-time.patch"
 	# Bug #23336 - makes pine transparent in terms that support it.
 	epatch "${FILESDIR}/transparency.patch"
-
 	# Bug #72861 - relaxes subject length for base64-encoded subjects
 	epatch "${FILESDIR}/pine-4.61-subjectlength.patch"
-
-	epatch "${FILESDIR}/rename-symlink.patch"
+	# Bug #58664 - preserve symlink if a file gets rewritten
+	epatch "${FILESDIR}/${P}-rename-symlink.patch"
 
 	if use debug ; then
 		sed -e "s:-g -DDEBUG -DDEBUGJOURNAL:${CFLAGS} -g -DDEBUG -DDEBUGJOURNAL:" \
@@ -145,9 +144,9 @@ src_compile() {
 	fi
 
 	if use pam ; then
-		use userland_Darwin && target=oxp || target=lnp
+		[[ ${CHOST} == *-darwin* ]] && target=oxp || target=lnp
 	else
-		use userland_Darwin && target=osx || target=slx
+		[[ ${CHOST} == *-darwin* ]] && target=osx || target=slx
 	fi
 
 	./build ${myconf} ${target} || die "compile problem"
@@ -157,7 +156,7 @@ src_install() {
 	dobin bin/pine bin/pico bin/pilot bin/rpdump bin/rpload
 
 	# Only mailbase should install /etc/mailcap
-#	donewins doc/mailcap.unx mailcap
+#	newins doc/mailcap.unx mailcap
 
 	doman doc/pine.1 doc/pico.1 doc/pilot.1 doc/rpdump.1 doc/rpload.1
 	dodoc CPYRIGHT README doc/brochure.txt doc/tech-notes.txt
@@ -177,4 +176,11 @@ src_install() {
 
 pkg_postinst() {
 	maildir_warn
+
+	if use passfile ; then
+		elog
+		elog "Pine will cache passwords between connections."
+		elog "File ~/.pinepw will be used for this."
+		elog
+	fi
 }
