@@ -1,6 +1,35 @@
 # ChangeLog for dev-ruby/rails
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.67 2006/11/24 01:29:06 caleb Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.73 2007/03/14 14:49:26 rbrown Exp $
+
+  14 Mar 2007; Richard Brown <rbrown@gentoo.org> rails-1.2.3.ebuild:
+  Fix rails-1.2.3 rake dependency
+
+*rails-1.2.3 (14 Mar 2007)
+
+  14 Mar 2007; Joshua Nichols <nichoj@gentoo.org> +rails-1.2.3.ebuild:
+  Version bump for rails 1.2.3.
+
+*rails-1.2.2 (11 Feb 2007)
+
+  11 Feb 2007; Joshua Nichols <nichoj@gentoo.org> +rails-1.2.2.ebuild:
+  Version bump.
+
+  10 Feb 2007; Nguyễn Thái Ngọc Duy <pclouds@gentoo.org>
+  rails-1.1.6.ebuild, rails-1.1.6-r1.ebuild, rails-1.2.0.ebuild,
+  rails-1.2.1.ebuild:
+  Updated rails license to MIT, #165876
+
+*rails-1.2.1 (21 Jan 2007)
+
+  21 Jan 2007; Nguyễn Thái Ngọc Duy <pclouds@gentoo.org>
+  -rails-1.2.0_rc1.ebuild, +rails-1.2.1.ebuild:
+  1.2.1 in, 1.2.0_rc1 out
+
+*rails-1.2.0 (19 Jan 2007)
+
+  19 Jan 2007; Caleb Tennis <caleb@gentoo.org> +rails-1.2.0.ebuild:
+  rails 1.2.0
 
 *rails-1.2.0_rc1 (24 Nov 2006)
 
