@@ -1,11 +1,11 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-text/nopaste/nopaste-1992.ebuild,v 1.4 2006/12/18 16:27:13 agriffis Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/nopaste/nopaste-1992.ebuild,v 1.6 2007/04/13 14:15:51 tove Exp $
 
 EAPI="prefix"
 
 DESCRIPTION="command-line interface to rafb.net/paste"
-HOMEPAGE="http://gentoo.org/~agriffis/nopaste/"
+HOMEPAGE="http://n01se.net/agriffis/nopaste/"
 SRC_URI="${HOMEPAGE}/${P}"
 
 LICENSE="GPL-2"
@@ -21,7 +21,7 @@ RDEPEND="${DEPEND}
 S=${WORKDIR}
 
 src_install() {
-	newbin ${DISTDIR}/${P} ${PN}
+	newbin "${DISTDIR}"/${P} ${PN}
 	sed -i -e "1s|^#!/usr/bin/ruby|#!${EPREFIX}/usr/bin/ruby|" \
 		"${ED}"/usr/bin/${PN}
 }
