@@ -1,6 +1,22 @@
 # ChangeLog for dev-libs/libusb
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.66 2007/03/28 02:36:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.69 2007/04/11 08:02:26 robbat2 Exp $
+
+  11 Apr 2007; Robin H. Johnson <robbat2@gentoo.org> metadata.xml,
+  libusb-0.1.12.ebuild, libusb-0.1.12-r1.ebuild:
+  Fix documentation build process. Add myself to metadata.xml
+
+  10 Apr 2007; Robin H. Johnson <robbat2@gentoo.org>
+  -files/0.1.10a-fbsd.patch, -files/libusb-0.1.8-amd64-fPIC.patch,
+  -libusb-0.1.8.ebuild, -libusb-0.1.10a.ebuild:
+  Clean up old versions and patches.
+
+*libusb-0.1.12-r1 (10 Apr 2007)
+
+  10 Apr 2007; Robin H. Johnson <robbat2@gentoo.org>
+  +libusb-0.1.12-r1.ebuild:
+  Bug #103132 - move libusb to /lib for usage with UPS and other system
+  devices when /usr is a seperate partition.
 
   28 Mar 2007; Jeroen Roovers <jer@gentoo.org> :
   Stable for HPPA too.
