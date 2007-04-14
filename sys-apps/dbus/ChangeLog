@@ -1,6 +1,29 @@
 # ChangeLog for sys-apps/dbus
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.185 2007/02/23 11:00:28 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.189 2007/04/06 19:29:43 cardoe Exp $
+
+  06 Apr 2007; Doug Goldstein <cardoe@gentoo.org> dbus-1.0.2-r2.ebuild:
+  Fix up SELinux support
+
+  04 Apr 2007; Doug Goldstein <cardoe@gentoo.org> files/dbus.init-1.0:
+  Remove init script hack for parallel starting since HAL is now fixed.
+
+  04 Apr 2007; Doug Goldstein <cardoe@gentoo.org> dbus-1.0.2-r2.ebuild:
+  stable for amd64 and x86
+
+*dbus-1.0.2-r2 (03 Apr 2007)
+
+  03 Apr 2007; Doug Goldstein <cardoe@gentoo.org>
+  -files/dbus-0.60-decls-ansi-c.patch,
+  -files/dbus-0.60-mono-return-null-fix.diff, -files/dbus-0.60-qt-pc.patch,
+  -files/dbus.init-0.61, -files/dbus-0.61-i-hate-qt-so-much.patch,
+  -files/dbus-0.61-libxml-dep.patch,
+  -files/dbus-0.61-mono-tools-update.diff,
+  -files/dbus-0.61-qt-disabling.patch,
+  -files/dbus-0.62-match-rule-security-fix.patch, metadata.xml,
+  -dbus-0.61-r1.ebuild, -dbus-0.62-r2.ebuild, -dbus-1.0.2.ebuild,
+  +dbus-1.0.2-r2.ebuild:
+  rev bump to add -rdynamic to get backtraces. Clean up old files and ebuilds.
 
 *dbus-1.0.2-r1 (23 Feb 2007)
 

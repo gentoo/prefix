@@ -5,4 +5,10 @@
 <maintainer>
 	<email>cardoe@gentoo.org</email>
 </maintainer>
+<maintainer>
+	<email>steev@gentoo.org</email>
+</maintainer>
+<maintainer>
+	<email>compnerd@gentoo.org</email>
+</maintainer>
 </pkgmetadata>
