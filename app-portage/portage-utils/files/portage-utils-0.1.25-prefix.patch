@@ -1,0 +1,52 @@
+--- main.c
++++ main.c
+@@ -85,15 +85,15 @@
+ static char pretend = 0;
+ static char reinitialize = 0;
+ static char reinitialize_metacache = 0;
+-static char portdir[_Q_PATH_MAX] = "/usr/portage";
++static char portdir[_Q_PATH_MAX] = "@GENTOO_PORTAGE_EPREFIX@/usr/portage";
+ static char portarch[20] = "";
+ static char portvdb[] = "var/db/pkg";
+ static char portcachedir[] = "metadata/cache";
+-static char portroot[_Q_PATH_MAX] = "/";
+-static char config_protect[_Q_PATH_MAX] = "/etc/";
++static char portroot[_Q_PATH_MAX] = "@GENTOO_PORTAGE_EPREFIX@";
++static char config_protect[_Q_PATH_MAX] = "@GENTOO_PORTAGE_EPREFIX@/etc/";
+ 
+-char pkgdir[512] = "/usr/portage/packages/";
+-char port_tmpdir[512] = "/var/tmp/portage/";
++char pkgdir[512] = "@GENTOO_PORTAGE_EPREFIX@/usr/portage/packages/";
++char port_tmpdir[512] = "@GENTOO_PORTAGE_EPREFIX@/var/tmp/portage/";
+ 
+ char binhost[1024] = PORTAGE_BINHOST;
+ char features[2048] = "noman noinfo nodoc";
+@@ -480,7 +480,7 @@
+ 	char buf[BUFSIZE], *s, *p;
+ 
+ 	char profile[_Q_PATH_MAX], portage_file[_Q_PATH_MAX];
+-	const char *files[] = {portage_file, "/etc/make.globals", "/etc/make.conf"};
++	const char *files[] = {portage_file, "@GENTOO_PORTAGE_EPREFIX@/etc/make.globals", "@GENTOO_PORTAGE_EPREFIX@/etc/make.conf"};
+ 	typedef enum { _Q_BOOL, _Q_STR, _Q_ISTR } var_types;
+ 	struct {
+ 		const char *name;
+@@ -507,8 +507,8 @@
+ 			strncat(portroot, "/", sizeof(portroot));
+ 
+ 	f = 0;
+-	if (readlink("/etc/make.profile", profile, sizeof(profile)) == -1)
+-		strcpy(profile, "/etc/make.profile");
++	if (readlink("@GENTOO_PORTAGE_EPREFIX@/etc/make.profile", profile, sizeof(profile)) == -1)
++		strcpy(profile, "@GENTOO_PORTAGE_EPREFIX@/etc/make.profile");
+ 	if (profile[0] != '/') {
+ 		memmove(profile+5, profile, strlen(profile));
+ 		memcpy(profile, "/etc/", 5);
+@@ -1035,7 +1035,7 @@
+ 
+ #ifdef ENABLE_NLS
+ 	setlocale(LC_ALL, "");
+-	bindtextdomain(argv0, "/usr/share/locale");
++	bindtextdomain(argv0, "@GENTOO_PORTAGE_EPREFIX@/usr/share/locale");
+ 	textdomain(argv0);
+ #endif
+ 

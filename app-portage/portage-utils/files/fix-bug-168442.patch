@@ -1,0 +1,20 @@
+Index: main.c
+===================================================================
+RCS file: /var/cvsroot/gentoo-projects/portage-utils/main.c,v
+retrieving revision 1.136
+retrieving revision 1.137
+diff -u -b -B -r1.136 -r1.137
+--- main.c	8 Apr 2007 19:45:41 -0000	1.136
++++ main.c	9 Apr 2007 23:08:27 -0000	1.137
+@@ -508,7 +508,10 @@
+ 	f = 0;
+ 	if (readlink("/etc/make.profile", profile, sizeof(profile)) == -1)
+ 		strcpy(profile, "/etc/make.profile");
+-	chdir("/etc");
++	if (profile[0] != '/') {
++		memmove(profile+5, profile, strlen(profile));
++		memcpy(profile, "/etc/", 5);
++	}
+ 	do {
+ 		if (f == 0)
+ 			snprintf(portage_file, sizeof(portage_file), "%s/make.defaults", profile);

@@ -1,6 +1,50 @@
 # ChangeLog for app-portage/portage-utils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.69 2007/02/03 00:15:50 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.77 2007/04/10 16:39:11 solar Exp $
+
+  10 Apr 2007; <solar@gentoo.org> -portage-utils-0.1.25.ebuild:
+  - flush broken 0.1.25
+
+*portage-utils-0.1.25-r1 (10 Apr 2007)
+
+  10 Apr 2007; <solar@gentoo.org> +files/fix-bug-168442.patch,
+  +portage-utils-0.1.25-r1.ebuild:
+  - important bugfix.. use memmove vs chdir..
+
+*portage-utils-0.1.25 (05 Apr 2007)
+
+  05 Apr 2007; <solar@gentoo.org> +portage-utils-0.1.25.ebuild:
+  Bug #168334 ; q -r dies with a segfault after emerge --sync
+  Bug #168442 ; does not  properly parse the profile location
+  Bug #170795 ; add a -E/--eclass option to qgrep
+  Bug #170797 ; add a -s/--skip-comments option to qgrep
+  Bug #171024 ; opening '/usr/portage/.metadata.x' failed
+  Bug #171374 ; Misc enhancements for qgrep
+  Bug #172240 ; -A/-B options for qgrep (context lines) 
+  Bug #172338 ; qgrepping through installed ebuilds (in the VDB) 
+  Bug #173005 ; Colorized output for qgrep.
+
+*portage-utils-0.1.24 (11 Feb 2007)
+
+  11 Feb 2007; <solar@gentoo.org> -portage-utils-0.1.20.ebuild,
+  -portage-utils-0.1.21.ebuild, -portage-utils-0.1.22.ebuild,
+  +portage-utils-0.1.24.ebuild:
+  - ver bump
+
+  04 Feb 2007; Markus Rothe <corsair@gentoo.org>
+  portage-utils-0.1.23.ebuild:
+  Stable on ppc64; bug #165074
+
+  03 Feb 2007; Jason Wever <weeve@gentoo.org> portage-utils-0.1.23.ebuild:
+  Stable on SPARC wrt bug #165074.
+
+  03 Feb 2007; Christian Faulhammer <opfer@gentoo.org>
+  portage-utils-0.1.23.ebuild:
+  stable x86; bug #165074
+
+  03 Feb 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  portage-utils-0.1.23.ebuild:
+  Stable on ppc wrt bug #165074.
 
   03 Feb 2007; Jeroen Roovers <jer@gentoo.org> portage-utils-0.1.23.ebuild:
   Stable for HPPA (bug #165074).
