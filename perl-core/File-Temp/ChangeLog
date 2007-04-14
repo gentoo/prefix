@@ -1,6 +1,10 @@
 # ChangeLog for perl-core/File-Temp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/File-Temp/ChangeLog,v 1.26 2007/03/03 20:32:36 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/File-Temp/ChangeLog,v 1.27 2007/04/09 21:36:15 mcummings Exp $
+
+  09 Apr 2007; Michael Cummings <mcummings@gentoo.org>
+  File-Temp-0.18.ebuild:
+  Marking stable amd64
 
   03 Mar 2007; Andrej Kacian <ticho@gentoo.org> File-Temp-0.17.ebuild:
   Stable on x86, bug #169153.
