@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.68 2007/03/25 10:02:09 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.69 2007/04/07 08:52:46 vapier Exp $
 
 
 # -----------------------------------------------------------------------------
@@ -208,9 +208,15 @@ java-pkg_doexamples() {
 
 	local dest=/usr/share/doc/${PF}/examples
 	if [[ ${#} = 1 && -d ${1} ]]; then
-		INSDESTTREE="${dest}" doins -r ${1}/* || die "Installing examples failed"
+		( # dont want to pollute calling env
+			insinto "${dest}"
+			doins -r ${1}/*
+		) || die "Installing examples failed"
 	else
-		INSDESTTREE="${dest}" doins -r "${@}" || die "Installing examples failed"
+		( # dont want to pollute calling env
+			insinto "${dest}"
+			doins -r "$@"
+		) || die "Installing examples failed"
 	fi
 }
 

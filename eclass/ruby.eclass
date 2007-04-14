@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.63 2007/03/10 10:27:45 rbrown Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.64 2007/04/07 08:52:46 vapier Exp $
 #
 # Author: Mamoru KOMACHI <usata@gentoo.org>
 #
@@ -123,16 +123,17 @@ ruby_emake() {
 }
 
 ruby_src_compile() {
-
 	# You can pass configure options via RUBY_ECONF
 	ruby_econf || die
 	ruby_emake "$@" || die
 }
 
 doruby() {
-	INSDESTTREE="$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitedir"]')" \
-	INSOPTIONS="-m 0644" \
-	doins "$@" || die "failed to install $@"
+	( # dont want to pollute calling env
+		insinto $(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitedir"]')
+		insopts -m 0644
+		doins "$@"
+	) || die "failed to install $@"
 }
 
 ruby_einstall() {

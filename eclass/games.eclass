@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.120 2007/03/27 01:48:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.121 2007/04/07 08:52:46 vapier Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -63,13 +63,13 @@ egamesinstall() {
 }
 
 gameswrapper() {
-	local oldtree=${DESTTREE}
-	into "${GAMES_PREFIX#${EPREFIX}}"
-	local cmd=$1; shift
-	${cmd} "$@"
-	local ret=$?
-	into "${oldtree}"
-	return ${ret}
+	# dont want to pollute calling env
+	(
+		into "${GAMES_PREFIX#${EPREFIX}}"
+		cmd=$1
+		shift
+		${cmd} "$@"
+	)
 }
 
 dogamesbin() { gameswrapper ${FUNCNAME/games} "$@"; }

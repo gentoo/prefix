@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/freebsd.eclass,v 1.11 2006/11/22 11:21:37 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/freebsd.eclass,v 1.12 2007/04/07 08:52:46 vapier Exp $
 #
 # Diego Pettenò <flameeyes@gentoo.org>
 
@@ -42,9 +42,11 @@ doperiodic() {
 	local kind=$1
 	shift
 
-	INSDESTTREE="/etc/periodic/${kind}"
-	INSOPTIONS="-m 0755" \
-	doins "$@"
+	( # dont want to pollute calling env
+		insinto /etc/periodic/${kind}
+		insopts -m 0755
+		doins "$@"
+	)
 }
 
 freebsd_get_bmake() {
