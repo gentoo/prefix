@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.20.ebuild,v 1.1 2006/12/09 09:03:57 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.20.ebuild,v 1.6 2007/04/01 10:20:20 hansmi Exp $
+
+EAPI="prefix"
 
 inherit eutils flag-o-matic
-
-EAPI=prefix
 DESCRIPTION="A utility for network exploration or security auditing"
 HOMEPAGE="http://www.insecure.org/nmap/"
 SRC_URI="http://download.insecure.org/nmap/dist/${P}.tar.bz2"
