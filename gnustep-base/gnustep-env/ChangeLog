@@ -1,6 +1,11 @@
 # ChangeLog for gnustep-base/gnustep-env
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-env/ChangeLog,v 1.28 2007/03/18 01:31:33 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-env/ChangeLog,v 1.29 2007/04/09 13:41:31 grobian Exp $
+
+  09 Apr 2007; Fabian Groffen <grobian@gentoo.org>
+  gnustep-env-0.1.6-r1.ebuild, gnustep-env-0.1.8.ebuild,
+  gnustep-env-0.1.8-r1.ebuild:
+  Fix installation of files into /etc/env.d, bug #173884
 
   18 Mar 2007; Marius Mauch <genone@gentoo.org> gnustep-env-0.1.6-r1.ebuild,
   gnustep-env-0.1.8.ebuild, gnustep-env-0.1.8-r1.ebuild:
