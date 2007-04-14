@@ -49,7 +49,7 @@ src_unpack() {
 
 src_compile() {
 	econf \
-		$(with_bindir) \
+		--bindir="${EPREFIX}"/bin \
 		--libexec='$(libdir)/misc' \
 		$(use_enable nls) \
 		--enable-switch \
