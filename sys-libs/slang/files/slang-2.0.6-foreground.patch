@@ -1,0 +1,36 @@
+--- src/sldisply.c.old	2006-02-05 21:47:31.000000000 +0100
++++ src/sldisply.c	2006-07-28 09:41:34.000000000 +0200
+@@ -158,7 +158,7 @@
+ static Brush_Info_Type Brush_Table[JMAX_COLORS];
+ 
+ /* 0 if least significant bit is blue, not red */
+-/* static int Is_Fg_BGR = 0; */
++static int Is_Fg_BGR = 0;
+ static int Is_Bg_BGR = 0;
+ #define COLOR_ARG(color, is_bgr) ((is_bgr) ? RGB_to_BGR[(color)&0x7] : (color))
+ static SLCONST int RGB_to_BGR[] =
+@@ -1394,7 +1394,7 @@
+ 	     if (fg0 == SLSMG_COLOR_DEFAULT)
+ 	       tt_write_string (Default_Color_Fg_Str);
+ 	     else
+-	       tt_printf (Color_Fg_Str, COLOR_ARG(fg0, Is_Bg_BGR), 0);
++	       tt_printf (Color_Fg_Str, COLOR_ARG(fg0, Is_Fg_BGR), 0);
+ 	  }
+ 
+ 	if (unknown_attributes
+@@ -2554,13 +2554,13 @@
+    if (Color_Fg_Str == NULL)
+      {
+ 	Color_Fg_Str = SLtt_tgetstr ("Sf");   /* setf */
+-	/* Is_Fg_BGR = (Color_Fg_Str != NULL); */
++	Is_Fg_BGR = (Color_Fg_Str != NULL);
+      }
+    Color_Bg_Str = SLtt_tgetstr ("AB"); /* ANSI setbf */
+    if (Color_Bg_Str == NULL)
+      {
+ 	Color_Bg_Str = SLtt_tgetstr ("Sb");   /* setb */
+-	/* Is_Fg_BGR = (Color_Bg_Str != NULL); */
++	Is_Bg_BGR = (Color_Bg_Str != NULL);
+      }
+ 
+    if ((Max_Terminfo_Colors = SLtt_tgetnum ("Co")) < 0)

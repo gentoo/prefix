@@ -1,0 +1,11 @@
+--- ./slsh/Makefile.in.old	2006-07-15 22:02:01.000000000 -0700
++++ ./slsh/Makefile.in	2006-07-15 22:02:21.000000000 -0700
+@@ -69,7 +69,7 @@
+ slsh_exe: slsh.o readline.o
+ 	$(CC) slsh.o readline.o -o slsh_exe $(LDFLAGS) $(SRC_LIBS)
+ slsh: slsh.o readline.o
+-	$(CC) slsh.o readline.o -o slsh $(LDFLAGS) $(INST_LIBS)
++	$(CC) slsh.o readline.o -o slsh $(LDFLAGS) $(SRC_LIBS)
+ slsh.o: slsh.c slsh.h config.h
+ 	$(CC) -c $(CFLAGS) $(SLANG_SRCINC) $(DEFS) slsh.c
+ readline.o: readline.c slsh.h config.h
