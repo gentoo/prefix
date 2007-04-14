@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/gentoo-syntax/gentoo-syntax-20061106.ebuild,v 1.3 2007/01/23 16:34:05 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/gentoo-syntax/gentoo-syntax-20061106.ebuild,v 1.4 2007/02/11 14:02:27 grobian Exp $
 
 EAPI="prefix"
 
