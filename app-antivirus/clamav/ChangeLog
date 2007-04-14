@@ -1,6 +1,36 @@
 # ChangeLog for app-antivirus/clamav
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.220 2007/04/10 20:13:39 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.228 2007/04/13 20:56:34 ticho Exp $
+
+  13 Apr 2007; Andrej Kacian <ticho@gentoo.org> files/clamd.rc:
+  Chown freshclam.log to correct user. Patch by Jeremy Huddleston <eradicator
+  at gentoo.org>.
+
+  13 Apr 2007; Jeroen Roovers <jer@gentoo.org> clamav-0.90.2.ebuild:
+  Stable for HPPA (bug #174375).
+
+  13 Apr 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  clamav-0.90.2.ebuild:
+  ppc stable, bug #174375
+
+  13 Apr 2007; <welp@gentoo.org> clamav-0.90.2.ebuild:
+  Stable on amd64 wrt bug 174375
+
+  13 Apr 2007; Fernando J. Pereda <ferdy@gentoo.org> clamav-0.90.2.ebuild:
+  Stable on alpha as per security bug #174375
+
+  13 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> clamav-0.90.2.ebuild:
+  Stable on sparc wrt security #174375
+
+  13 Apr 2007; Raúl Porcel <armin76@gentoo.org> clamav-0.90.2.ebuild:
+  ia64 + x86 stable wrt security bug 174375
+
+*clamav-0.90.2 (13 Apr 2007)
+
+  13 Apr 2007; Andrej Kacian <ticho@gentoo.org> files/clamav-0.90-nls.patch,
+  +clamav-0.90.2.ebuild:
+  Version bump. NLS patch fix - do not include sendfile.h inside ENABLE_NLS
+  ifdef, as it has nothing to do with NLS.
 
   10 Apr 2007; Andrej Kacian <ticho@gentoo.org> files/clamd.rc:
   Make sure clamav-milter starts correctly when --external option is used.

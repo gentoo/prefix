@@ -1,18 +1,27 @@
-diff -bur clamav-0.90.1-orig/clamav-milter/clamav-milter.c clamav-0.90.1/clamav-milter/clamav-milter.c
---- clamav-0.90.1-orig/clamav-milter/clamav-milter.c	2007-03-07 17:56:53.000000000 +0100
-+++ clamav-0.90.1/clamav-milter/clamav-milter.c	2007-03-07 18:00:05.000000000 +0100
-@@ -108,7 +108,7 @@
- #endif
- #endif
+diff -bur clamav-0.90.2-orig/clamav-milter/clamav-milter.c clamav-0.90.2/clamav-milter/clamav-milter.c
+--- clamav-0.90.2-orig/clamav-milter/clamav-milter.c	2007-04-13 10:26:39.000000000 +0200
++++ clamav-0.90.2/clamav-milter/clamav-milter.c	2007-04-13 10:31:02.000000000 +0200
+@@ -110,6 +110,7 @@
  
--#ifdef	C_LINUX
-+#if defined(C_LINUX) && defined(ENABLE_NLS)
+ #ifdef	C_LINUX
  #include <sys/sendfile.h>	/* FIXME: use sendfile on BSD not Linux */
++#ifdef	ENABLE_NLS
  #include <libintl.h>
  #include <locale.h>
-diff -bur clamav-0.90.1-orig/configure.in clamav-0.90.1/configure.in
---- clamav-0.90.1-orig/configure.in	2007-03-07 17:56:53.000000000 +0100
-+++ clamav-0.90.1/configure.in	2007-03-07 17:57:30.000000000 +0100
+ 
+@@ -122,7 +123,8 @@
+ #define	_(s)	s
+ #define	N_(s)	s
+ 
+-#endif
++#endif /* ENABLE_NLS */
++#endif /* C_LINUX */
+ 
+ #ifdef	USE_SYSLOG
+ #include <syslog.h>
+diff -bur clamav-0.90.2-orig/configure.in clamav-0.90.2/configure.in
+--- clamav-0.90.2-orig/configure.in	2007-04-13 10:26:39.000000000 +0200
++++ clamav-0.90.2/configure.in	2007-04-13 10:26:57.000000000 +0200
 @@ -160,6 +160,15 @@
      AC_CHECK_HEADER(dlfcn.h,[LIBCLAMAV_LIBS="$LIBCLAMAV_LIBS -ldl" ; AC_DEFINE(HAVE_NCORE,1,Support for NodalCore acceleration)], AC_MSG_WARN([****** NodalCore support disabled (no support for dlopen)]))
  fi
@@ -29,9 +38,9 @@ diff -bur clamav-0.90.1-orig/configure.in clamav-0.90.1/configure.in
  AC_ARG_ENABLE(dns,
      AC_HELP_STRING([--disable-dns], [disable support for database verification through DNS]),
      [want_dns=$enableval], [want_dns=yes]
-diff -bur clamav-0.90.1-orig/shared/getopt.c clamav-0.90.1/shared/getopt.c
---- clamav-0.90.1-orig/shared/getopt.c	2007-03-07 17:56:53.000000000 +0100
-+++ clamav-0.90.1/shared/getopt.c	2007-03-07 18:00:25.000000000 +0100
+diff -bur clamav-0.90.2-orig/shared/getopt.c clamav-0.90.2/shared/getopt.c
+--- clamav-0.90.2-orig/shared/getopt.c	2007-04-13 10:26:39.000000000 +0200
++++ clamav-0.90.2/shared/getopt.c	2007-04-13 10:26:57.000000000 +0200
 @@ -82,7 +82,7 @@
  
  #ifndef _
@@ -41,9 +50,9 @@ diff -bur clamav-0.90.1-orig/shared/getopt.c clamav-0.90.1/shared/getopt.c
  #  include <libintl.h>
  #  ifndef _
  #   define _(msgid)	gettext (msgid)
-diff -bur clamav-0.90.1-orig/shared/output.c clamav-0.90.1/shared/output.c
---- clamav-0.90.1-orig/shared/output.c	2007-03-07 17:56:53.000000000 +0100
-+++ clamav-0.90.1/shared/output.c	2007-03-07 17:57:30.000000000 +0100
+diff -bur clamav-0.90.2-orig/shared/output.c clamav-0.90.2/shared/output.c
+--- clamav-0.90.2-orig/shared/output.c	2007-04-13 10:26:39.000000000 +0200
++++ clamav-0.90.2/shared/output.c	2007-04-13 10:26:57.000000000 +0200
 @@ -61,7 +61,7 @@
  pthread_mutex_t logg_mutex = PTHREAD_MUTEX_INITIALIZER;
  #endif
