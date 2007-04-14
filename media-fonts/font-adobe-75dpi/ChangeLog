@@ -1,6 +1,10 @@
 # ChangeLog for media-fonts/font-adobe-75dpi
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-fonts/font-adobe-75dpi/ChangeLog,v 1.25 2006/07/19 14:06:05 gmsoft Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/font-adobe-75dpi/ChangeLog,v 1.26 2007/02/04 18:41:47 joshuabaergen Exp $
+
+  04 Feb 2007; Joshua Baergen <joshuabaergen@gentoo.org>
+  font-adobe-75dpi-1.0.0.ebuild:
+  Drop mirroring restriction.  Thanks to Zhang Le of bug #163088.
 
   19 Jul 2006; Guy Martin <gmsoft@gentoo.org> font-adobe-75dpi-1.0.0.ebuild:
   Stable on hppa.
