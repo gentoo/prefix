@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/libtheora-1.0_alpha7.ebuild,v 1.7 2007/03/10 20:27:33 beandog Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ DESCRIPTION="The Theora Video Compression Codec"
 HOMEPAGE="http://www.theora.org/"
 SRC_URI="http://downloads.xiph.org/releases/theora/${P/_}.tar.bz2"
 
-LICENSE="xiph"
+LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="encode doc examples"
