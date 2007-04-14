@@ -1,0 +1,10 @@
+--- gpgme/posix-io.c
++++ gpgme/posix-io.c
+@@ -33,6 +33,7 @@
+ #include <sys/time.h>
+ #include <sys/types.h>
+ #include <sys/wait.h>
++#include <sys/uio.h>
+ 
+ #include "util.h"
+ #include "priv-io.h"

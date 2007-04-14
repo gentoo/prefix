@@ -27,6 +27,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}/${PN}-1.1.3-fbsd.patch"
+	epatch "${FILESDIR}"/${P}-darwin7.patch
 
 	# We need to call elibtoolize so that we get sane .so versioning on fbsd.
 	elibtoolize
