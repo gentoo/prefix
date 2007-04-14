@@ -52,6 +52,9 @@ EPACKAGE="`pwd -P`"; EPACKAGE=${EPACKAGE#*${PTREEDIR}/}
 
 [[ -z $DO_INDENT ]] || RC_INDENTATION=$DO_INDENT
 
+# file used for subshell communication (in /tmp, so swap on Solaris)
+gf=/tmp/eupdate.subshell
+
 # returns the CVS revision number from the $Header
 get_cvsversion() {
 	if [[ -z $1 ]] ; then
@@ -59,7 +62,7 @@ get_cvsversion() {
 		return
 	fi
 
-	ver=`egrep '(^|[^\\])\\\$Header:' "$1" | egrep -m1 -o "v [0-9.]+" | head -n1`
+	ver=`egrep '(^|[^\\])\\\$(Header|Id):' "$1" | egrep -m1 -o "v [0-9.]+" | head -n1`
 	if [[ $ver == "" ]] ; then
 		echo 0
 		return
@@ -274,6 +277,16 @@ cross_diff() {
 	pver=$(get_ebuildversion $2)
 	mte=`basename "${MTREEDIR}/${EPACKAGE}"/$1`
 	pte=`echo $2`
+	# get real main tree corresponding version
+	if [[ ${pte/-r0/-r} == $pte ]] ; then
+		mypte=$pte
+	else
+		# normalise version, so we compare against the original
+		# version from the main tree
+		mypte=${pte%.*.ebuild}.ebuild
+		mypte=${mypte/-r0/-r}
+		mypte=${mypte/-r.ebuild/.ebuild}
+	fi
 	mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$mte)
 	ptecv=$(get_cvsversion $pte)
 	ewarn "new version in main tree: ${mver} [${pver}] ... cross diff from $ptecv to $mtecv"
@@ -281,8 +294,8 @@ cross_diff() {
 	# ignoring keywords
 	tmp="tmp.${package##*.}"
 	cvs -Q -d"${CVSROOT}" \
-		checkout -r$ptecv -p ${CVSMODULE}/${EPACKAGE}/$pte \
-		> /var/tmp/$pte-$ptecv.$tmp
+		checkout -r$ptecv -p ${CVSMODULE}/${EPACKAGE}/$mypte \
+		> /var/tmp/$mypte-$ptecv.$tmp
 	cvs -Q -d"${CVSROOT}" \
 		checkout -r$mtecv -p ${CVSMODULE}/${EPACKAGE}/$mte \
 		> /var/tmp/$mte-$mtecv.$tmp
@@ -293,28 +306,28 @@ cross_diff() {
 	# working.
 	sed -i \
 		-e 's|^# \$Header:.*$|'"`egrep '^# \\\$Header: ' /var/tmp/$mte-$mtecv.$tmp`"'|' \
-		$mte /var/tmp/$pte-$ptecv.$tmp
+		$mte /var/tmp/$mypte-$ptecv.$tmp
 	# make KEYWORDS void in the diff
 	sed -i \
 		-e 's|^KEYWORDS=.*$|'"`egrep '^KEYWORDS=' $pte`"'|' \
-		/var/tmp/$pte-$ptecv.$tmp /var/tmp/$mte-$mtecv.$tmp
+		/var/tmp/$mypte-$ptecv.$tmp /var/tmp/$mte-$mtecv.$tmp
 	# destroy changes (hopefully) with the prefixed version by eapifying
-	eapify -e /var/tmp/$pte-$ptecv.$tmp /var/tmp/$mte-$mtecv.$tmp > /dev/null
+	eapify -e /var/tmp/$mypte-$ptecv.$tmp /var/tmp/$mte-$mtecv.$tmp > /dev/null
 	# (attempt to) do it!
-	diff -u /var/tmp/$pte-$ptecv.$tmp /var/tmp/$mte-$mtecv.$tmp \
+	diff -u /var/tmp/$mypte-$ptecv.$tmp /var/tmp/$mte-$mtecv.$tmp \
 		| patch --no-backup-if-mismatch $mte
 	ret=$?
-	rm /var/tmp/$pte-$ptecv.$tmp /var/tmp/$mte-$mtecv.$tmp
+	rm /var/tmp/$mypte-$ptecv.$tmp /var/tmp/$mte-$mtecv.$tmp
 	# try to get new patches and stuff
 	fetch_files $mte
 	return $ret
 }
 
 revision_diff() {
-	mtecv=$1
-	ptecv=$2
-	package=$3
-	pfile=$4
+	local mtecv=$1
+	local ptecv=$2
+	local package=$3
+	local pfile=$4
 	# Gentoo never increments the major, and branches are not
 	# allowed, so we can make things easy and only use the minor
 	if [[ ${mtecv#1.} -eq ${ptecv#1.} ]] ; then
@@ -323,7 +336,7 @@ revision_diff() {
 		echo "out-of-date, applying diff -r$ptecv -r$mtecv"
 		# checkout both original versions and make the diffs,
 		# ignoring keywords
-		tmp="tmp.${package##*.}"
+		local tmp="tmp.${package##*.}"
 		cvs -Q -d"${CVSROOT}" \
 			checkout -r$ptecv -p ${CVSMODULE}/${EPACKAGE}/$package \
 			> /var/tmp/$package-$ptecv.$tmp
@@ -342,10 +355,12 @@ revision_diff() {
 			$pfile
 		# show what's going to change
 		diff -U 1 /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp
+		local chng=$?
 		# (attempt to) do it!
 		diff -u /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp \
 			| patch --no-backup-if-mismatch $pfile
-		ret=$?
+		local ret=$?
+		[[ $ret == 0 ]] && ret=$chng
 		rm /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp
 		# try to get new patches and stuff
 		fetch_files $pfile
@@ -354,10 +369,11 @@ revision_diff() {
 }
 
 fetch_files() {
-	mver=$(get_ebuildversion $1)
-	pn=${EPACKAGE##*/}
-	pv=${mver%-r*}
-	p=$pn-$pv
+	local mver=$(get_ebuildversion $1)
+	local pn=${EPACKAGE##*/}
+	local pv=${mver%-r*}
+	local p=$pn-$pv
+	local t=""
 
 	# Find all "referenced" files from/to FILESDIR.  We keep ${FILESDIR}
 	# in, to just use a bash eval on what we found to get the right
@@ -386,8 +402,10 @@ fetch_files() {
 }
 
 diff_patch() {
-	diff -u $2 "${MTREEDIR}/${EPACKAGE}"/$1 | patch $2
-	ret=$?
+	( diff -u $2 "${MTREEDIR}/${EPACKAGE}"/$1 ; echo $? > $gf ) | patch $2
+	local ret=$?
+	[[ ${ret} == 0 ]] && ret=$(< $gf)
+	rm $gf
 	# try to get new patches and stuff
 	fetch_files $2
 	return $ret
@@ -399,9 +417,9 @@ update_file() {
 		eindent
 		# recurse into this directory (don't update digests)
 		f=$(ls -p $1 | egrep -v "^digest-")
-		[[ ! -z $f ]] && ( cd $1 && DO_INDENT=$RC_INDENTATION eupdate $f )
+		[[ ! -z $f ]] && ( cd $1 && DO_INDENT=$RC_INDENTATION eupdate $f ; ret=$? )
 		eoutdent
-		return
+		return $ret
 	fi
 
 	# check existence of files
@@ -411,12 +429,12 @@ update_file() {
 	fi
 	if [[ ! -f "${MTREEDIR}/${EPACKAGE}"/$1 ]] ; then
 		echo "$1 not found in the main tree"
-		return -1
+		return 0
 	fi
 
 	# see if the file has a CVS header
-	mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$1)
-	ptecv=$(get_cvsversion $2)
+	local mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$1)
+	local ptecv=$(get_cvsversion $2)
 	if [[ $mtecv == 0 ]] && [[ $ptecv == 0 ]] ; then
 		diff_patch $1 $2
 		return $?
@@ -427,8 +445,9 @@ update_file() {
 }
 
 do_check_file() {
-	mfile=$1
-	pfile=$2
+	local mfile=$1
+	local pfile=$2
+	local msg=""
 	if [[ -z $3 ]] ; then
 		[[ $pfile != $mfile ]] \
 			&& msg="checking $mfile/$pfile" \
@@ -440,24 +459,27 @@ do_check_file() {
 	if [[ -d $mfile ]] ; then
 		einfo "$msg (a directory)"
 		update_file $pfile
-		return
+		return $?
 	fi
 
 	ebegin $msg
-	err=$(update_file $mfile $pfile)
-	ret=$?
-	eend $ret
+	local err=$(update_file $mfile $pfile ; echo $? > $gf)
+	local ret=$(< $gf)
+	rm $gf
+	[[ $ret < 0 ]] && eend -1 || eend 0
 	if [[ ! -z $err ]] ; then
 		if [[ $mfile != $pfile ]] ; then
-			[[ $ret != 0 ]] \
+			[[ $ret < 0 ]] \
 				&& eerror "$mfile/$pfile: $err" \
 				|| ewarn "$mfile/$pfile: $err"
 		else
-			[[ $ret != 0 ]] \
+			[[ $ret < 0 ]] \
 				&& eerror "$mfile: $err" \
 				|| ewarn "$mfile: $err"
 		fi
 	fi
+
+	return $ret
 }
 
 # if the user gave some files on the command line, try to update those
@@ -493,11 +515,12 @@ fi
 
 if [[ ! -d ${MTREEDIR}/${EPACKAGE} ]] ; then
 	eerror "no such package in main tree: ${EPACKAGE}"
-	exit -1
+	exit 2
 fi
 
 if [[ ${EPACKAGE} == "eclass" || ${EPACKAGE} == "licenses" ]] ; then
 	einfo "Processing ${EPACKAGE} directory"
+	excode=0
 	mt=`cd "${MTREEDIR}"/${EPACKAGE}/ && ls -p`
 	pt=`ls -p`
 	# nested loop join
@@ -506,6 +529,12 @@ if [[ ${EPACKAGE} == "eclass" || ${EPACKAGE} == "licenses" ]] ; then
 		for mte in $mt ; do
 			if [[ $pte == $mte ]] ; then
 				do_check_file $mte $pte
+				ret=$?
+				if [[ $ret < 0 ]] || [[ $ret > 1 ]] ; then
+					excode=-1
+				elif [[ $excode == 0 ]] ; then
+					excode=$ret
+				fi
 				had_match=1;
 				# we don't need $pte/$mte any more
 				pt=${pt/$pte/}
@@ -523,10 +552,12 @@ if [[ ${EPACKAGE} == "eclass" || ${EPACKAGE} == "licenses" ]] ; then
 		ewarn "adding from main tree: $mte"
 		cp "${MTREEDIR}"/${EPACKAGE}/$mte .
 	done
-	exit 0
+
+	exit $excode
 fi
 
 einfo "Processing ${EPACKAGE}"
+excode=0
 mt=`cd "${MTREEDIR}"/${EPACKAGE}/ && ls -p | egrep -v "^Manifest$"`
 pt=`ls -p | egrep -v "^Manifest$"`
 # do a nested loop join, we don't assume any order
@@ -541,6 +572,7 @@ for pte in $pt ; do
 			# version from the main tree
 			mypte=${pte%.*.ebuild}.ebuild
 			mypte=${mypte/-r0/-r}
+			mypte=${mypte/-r.ebuild/.ebuild}
 		fi
 		vdiff=$(cmp_ebuild_ver $mte $mypte)
 		# if we have the same ebuild version... (or file)
@@ -548,6 +580,12 @@ for pte in $pt ; do
 			had_match=1
 			# ... look inside the files to see if the file was updated or not
 			do_check_file $mte $pte
+			ret=$?
+			if [[ $ret < 0 ]] || [[ $ret > 1 ]] ; then
+				excode=-1
+			elif [[ $excode == 0 ]] ; then
+				excode=$ret
+			fi
 			# we found this version, so needless to look for it any more
 			mt=${mt/$mte/}
 		elif [[ $vdiff -le -10000 ]] ; then
@@ -588,6 +626,12 @@ for pte in $pt ; do
 	done
 	if [[ $last_rev != "" ]] ; then
 		cross_diff $last_rev $pte
+		ret=$?
+		if [[ $ret < 0 ]] || [[ $ret > 1 ]] ; then
+			excode=-1
+		elif [[ $excode -ge 0 ]] ; then
+			excode=1	# not 0, as we changed something (added a file)
+		fi
 	fi
 done
 # if there is anything left in mt that is bigger than last_pte we want
@@ -602,6 +646,12 @@ if [[ $last_mte != "" ]] ; then
 	# we have to apply an update from $last_pte to $last_mte
 	if [[ $last_pte != "" ]] ; then
 		cross_diff $last_mte $last_pte
+		ret=$?
+		if [[ $ret < 0 ]] || [[ $ret > 1 ]] ; then
+			excode=-1
+		elif [[ $excode -ge 0 ]] ; then
+			excode=1	# not 0, as we changed something (added a file)
+		fi
 	else
 		# this is from an empty directory, get the last one and relevant
 		# files
@@ -620,3 +670,5 @@ if [[ $last_mte != "" ]] ; then
 		fetch_files $last_mte
 	fi
 fi
+
+exit $excode
