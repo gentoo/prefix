@@ -1,6 +1,16 @@
 # ChangeLog for app-misc/ca-certificates
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.5 2006/10/17 06:55:49 uberlord Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.7 2007/02/20 02:54:18 vapier Exp $
+
+*ca-certificates-20061027.2 (20 Feb 2007)
+
+  20 Feb 2007; Mike Frysinger <vapier@gentoo.org>
+  +ca-certificates-20061027.2.ebuild:
+  Version bump #167608 by Peter Gantner.
+
+  03 Feb 2007; Mike Frysinger <vapier@gentoo.org>
+  ca-certificates-20050804.ebuild:
+  Fixup doc installation #164995 by Krzysiek Pawlik.
 
   17 Oct 2006; Roy Marples <uberlord@gentoo.org>
   ca-certificates-20050804.ebuild:
