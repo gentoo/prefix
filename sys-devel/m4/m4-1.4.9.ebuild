@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.9.ebuild,v 1.2 2007/03/24 07:03:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.9.ebuild,v 1.4 2007/04/12 18:49:21 vapier Exp $
 
 EAPI="prefix"
 
@@ -45,4 +45,5 @@ src_install() {
 	[[ ${USERLAND} != "GNU" ]] && [[ ${PREFIX/\//} != "" ]] || \
 		dosym /usr/bin/m4 /usr/bin/gm4
 	dodoc BACKLOG ChangeLog NEWS README* THANKS TODO
+	rm -f "${ED}"/usr/lib/charset.alias #172864
 }
