@@ -14,7 +14,7 @@ LICENSE="Ruby"
 # change the filename on the end, it still downloads the same file.
 SRC_URI="http://rubyforge.org/frs/download.php/11289/${P}.tgz"
 
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 SLOT="0"
 IUSE=""
 DEPEND=">=dev-lang/ruby-1.8"
