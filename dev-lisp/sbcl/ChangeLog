@@ -1,6 +1,32 @@
 # ChangeLog for dev-lisp/sbcl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.100 2007/03/03 23:36:25 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.107 2007/04/11 14:24:36 gustavoz Exp $
+
+  11 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> sbcl-1.0.4.ebuild:
+  Fast track to sparc stable, see #173669
+
+  10 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> sbcl-1.0.1.ebuild,
+  sbcl-1.0.4.ebuild:
+  Keyword ~sparc for 1.0.4 wrt #173669 and -sparc for 1.0.1 wrt #173641
+
+  07 Apr 2007; Fabian Groffen <grobian@gentoo.org> sbcl-0.9.17.ebuild,
+  sbcl-0.9.18.ebuild, sbcl-1.0.ebuild, sbcl-1.0.1.ebuild, sbcl-1.0.4.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
+
+  07 Apr 2007; Christian Faulhammer <opfer@gentoo.org> sbcl-1.0.4.ebuild:
+  keyworded ~amd64/~x86, bug 173669
+
+  07 Apr 2007; Christian Faulhammer <opfer@gentoo.org> sbcl-1.0.1.ebuild:
+  stable amd64, bug 173641
+
+*sbcl-1.0.4 (07 Apr 2007)
+
+  07 Apr 2007; Joshua <joslwah@gentoo.org> sbcl-1.0.1.ebuild,
+  +sbcl-1.0.4.ebuild:
+  Keyworded ppc stable on 1.0.1 and ~ppc for 1.0.4.
+
+  07 Apr 2007; Christian Faulhammer <opfer@gentoo.org> sbcl-1.0.1.ebuild:
+  stable x86, bug 173641
 
   03 Mar 2007; Marius Mauch <genone@gentoo.org> sbcl-0.9.3.ebuild,
   sbcl-0.9.4.ebuild, sbcl-0.9.17.ebuild, sbcl-0.9.18.ebuild,
