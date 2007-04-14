@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/ppmd
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/ppmd/ChangeLog,v 1.24 2007/04/03 18:15:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/ppmd/ChangeLog,v 1.25 2007/04/11 05:21:59 jer Exp $
+
+  11 Apr 2007; Jeroen Roovers <jer@gentoo.org> ppmd-9.1_p10.ebuild:
+  Stable for HPPA too.
 
   03 Apr 2007; Raúl Porcel <armin76@gentoo.org> ppmd-9.1_p10.ebuild:
   ia64 stable
