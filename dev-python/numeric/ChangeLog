@@ -1,6 +1,39 @@
 # ChangeLog for dev-python/numeric
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-python/numeric/ChangeLog,v 1.26 2006/07/28 20:05:01 the_paya Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numeric/ChangeLog,v 1.30 2007/02/24 10:21:18 bicatali Exp $
+
+  24 Feb 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  numeric-24.2-r4.ebuild:
+  fixed minimum cblas dependencies supporting eselect-cblas.
+
+*numeric-24.2-r4 (23 Feb 2007)
+*numeric-24.2-r3 (23 Feb 2007)
+
+  23 Feb 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  files/numeric-24.2-arrayobject.patch, files/numeric-24.2-lapack.patch,
+  +files/numeric-24.2-python25.patch, +files/numeric-24.2-test.patch,
+  metadata.xml, -numeric-24.2-r1.ebuild, -numeric-24.2-r2.ebuild,
+  +numeric-24.2-r3.ebuild, +numeric-24.2-r4.ebuild:
+  Added sci herd in metadata.xml, removed buggy 
+  numeric-24.2-r{1,2}.ebuild, better cblas/lapack treatments, more patches.
+  Use numeric-24.2-r4 with lapack support for arches supporting it.
+
+*numeric-24.2-r2 (07 Feb 2007)
+
+  07 Feb 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  +numeric-24.2-r2.ebuild:
+  Added the possibility to compile linear algebra with installed 
+  blas/cblas/lapack on architectures supporting it. Closing bug #81520.
+
+*numeric-24.2-r1 (07 Feb 2007)
+
+  07 Feb 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/numeric-24.2-arrayobject.patch, +files/numeric-24.2-eigen.patch,
+  +files/numeric-24.2-lapack.patch, +files/numeric-24.2-umath.patch,
+  metadata.xml, +numeric-24.2-r1.ebuild:
+  Fixed an include placement for math.h, allowing acosh and asinh, an 
+  eigenvalue solver hang and a memory leak. Closing bug #114885. Added 
+  longdescription in metadata.xml.
 
   28 Jul 2006; Javier Villavicencio <the_paya@gentoo.org>
   numeric-24.2.ebuild:
