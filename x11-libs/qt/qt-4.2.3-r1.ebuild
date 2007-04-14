@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.2.3-r1.ebuild,v 1.1 2007/03/30 12:43:35 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.2.3-r1.ebuild,v 1.9 2007/04/13 12:25:03 caleb Exp $
 
 EAPI="prefix"
 
@@ -109,10 +109,10 @@ src_unpack() {
 
 	unpack ${A}
 	cd ${S}
-#	epatch ${FILESDIR}/qt4-parisc-linux.diff
 #	epatch ${FILESDIR}/qt-4.1.4-sparc.patch
 	epatch ${FILESDIR}/qt4-sqlite-configure.patch
 	epatch ${FILESDIR}/utf8-bug-qt4-2.diff
+	epatch ${FILESDIR}/${P}-hppa-ldcw-fix.patch
 
 	cd ${S}/mkspecs/$(qt_mkspecs_dir)
 	# set c/xxflags and ldflags
@@ -241,6 +241,10 @@ src_install() {
 	# Move .pc files into the pkgconfig directory
 	dodir ${QTPCDIR/${EPREFIX}}
 	mv ${D}/${QTLIBDIR}/*.pc ${D}/${QTPCDIR}
+
+	# Install .desktop files, from bug #174033
+	insinto /usr/share/applications
+	doins ${FILESDIR}/qt4/*.desktop
 
 	# List all the multilib libdirs
 	local libdirs
