@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.146 2007/03/17 16:41:27 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.147 2007/04/12 14:01:42 carlo Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -324,7 +324,7 @@ get-parent-package() {
 	done <<EOF
 $KDE_DERIVATION_MAP
 EOF
-	die "Package $target not found in KDE_DERIVATION_MAP, please report bug"
+	die "Package $1 not found in KDE_DERIVATION_MAP, please report bug"
 }
 
 # accepts 1 parameter, the name of a monolithic package; echoes the names of all ebuilds derived from it

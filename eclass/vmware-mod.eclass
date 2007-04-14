@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vmware-mod.eclass,v 1.8 2007/03/26 14:54:56 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vmware-mod.eclass,v 1.9 2007/04/09 17:09:07 ikelos Exp $
 
 
 # Ensure vmware comes before linux-mod since we want linux-mod's pkg_preinst and
@@ -27,18 +27,19 @@ S="${WORKDIR}"
 
 EXPORT_FUNCTIONS pkg_setup src_unpack src_install
 
-# Must define VMWARE_VER to make, otherwise it'll try and run getversion.pl
-BUILD_TARGETS="auto-build VMWARE_VER=${VMWARE_VER} KERNEL_DIR=${KERNEL_DIR} KBUILD_OUTPUT=${KV_OUT_DIR}"
-
 vmware-mod_pkg_setup() {
 	linux-mod_pkg_setup
+	# Must define VMWARE_VER to make, otherwise it'll try and run getversion.pl
+	BUILD_TARGETS="auto-build VMWARE_VER=${VMWARE_VER} KERNEL_DIR=${KERNEL_DIR} KBUILD_OUTPUT=${KV_OUT_DIR}"
 
 	vmware_determine_product
 
 	if [[ -z "${VMWARE_MODULE_LIST}" ]]; then
 		case ${product} in
 			vmware-tools)
-				VMWARE_MODULE_LIST="${VMWARE_MODULE_LIST}vmdesched vmhgfs vmmemctl vmxnet"
+				VMWARE_MODULES_LIST="${VMWARE_MODULE_LIST} vmxnet"
+				[ "$shortname" != "server-tools" ] && VMWARE_MODULE_LIST="${VMWARE_MODULE_LIST} vmhgfs vmmemctl"
+				use amd64 || VMWARE_MODULE_LIST="${VMWARE_MODULE_LIST} vmdesched"
 				;;
 			*)
 				VMWARE_MODULE_LIST="${VMWARE_MODULE_LIST}vmmon vmnet"
@@ -55,9 +56,7 @@ vmware-mod_pkg_setup() {
 vmware-mod_src_unpack() {
 	case ${product} in
 		vmware-tools)
-			cp "${CDROM_ROOT}"/"${TARBALL}" "${WORKDIR}"
-			cd "${WORKDIR}"
-			unpack "./${TARBALL}"
+			# Do nothing, this should be dealt with by vmware.eclass unpack
 			;;
 		*)
 			unpack ${A}

@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/nxserver-1.3.2.eclass,v 1.14 2007/03/26 20:24:24 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/nxserver-1.3.2.eclass,v 1.15 2007/04/13 16:56:42 voyageur Exp $
 #
 # DEPRECATED
 # eclass for handling the different nxserver binaries available
@@ -76,8 +76,7 @@ nxserver-1.3.2_src_install() {
 	dodir /usr/NX/var/sessions
 	touch ${D}/usr/NX/var/sessions/NOT_EMPTY
 
-	insinto /etc/env.d
-	doins ${FILESDIR}/1.3.0/50nxserver
+	doenvd ${FILESDIR}/1.3.0/50nxserver
 }
 
 nxserver-1.3.2_pkg_postinst() {

@@ -1,16 +1,16 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.194 2007/04/06 12:14:19 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.195 2007/04/11 17:56:18 carlo Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
 # Revisions Caleb Tennis <caleb@gentoo.org>
-# The kde eclass is inherited by all kde-* eclasses. Few ebuilds inherit
-# straight from here.
+# The kde eclass is inherited by all kde-* eclasses. Few ebuilds inherit straight from here.
 
 WANT_AUTOMAKE="1.9"
 
 inherit base eutils kde-functions flag-o-matic libtool autotools
+
 DESCRIPTION="Based on the $ECLASS eclass"
 HOMEPAGE="http://www.kde.org/"
 IUSE="debug xinerama elibc_FreeBSD"
@@ -125,7 +125,7 @@ kde_src_unpack() {
 			einfo "Enabling all languages"
 		else
 			if [[ -n ${LANGS} ]]; then
-				MAKE_PO=$(echo $(echo "${LINGUAS} ${LANGS}" | fmt -w 1 | sort | uniq -d))
+				MAKE_PO=$(echo $(echo "${LINGUAS} ${LANGS}" | tr ' ' '\n' | sort | uniq -d))
 				einfo "Enabling translations for: ${MAKE_PO}"
 				sed -i -e "s:^SUBDIRS =.*:SUBDIRS = ${MAKE_PO}:" "${KDE_S}/po/Makefile.am" \
 					|| die "sed for locale failed"
@@ -133,7 +133,7 @@ kde_src_unpack() {
 			fi
 
 			if [[ -n ${LANGS_DOC} ]]; then
-				MAKE_DOC=$(echo $(echo "${LINGUAS} ${LANGS_DOC}" | fmt -w 1 | sort | uniq -d))
+				MAKE_DOC=$(echo $(echo "${LINGUAS} ${LANGS_DOC}" | tr ' ' '\n' | sort | uniq -d))
 				einfo "Enabling documentation for: ${MAKE_DOC}"
 				[[ -n ${MAKE_DOC} ]] && [[ -n ${DOC_DIR_SUFFIX} ]] && MAKE_DOC="${MAKE_DOC/ /${DOC_DIR_SUFFIX} }"
 				sed -i -e "s:^SUBDIRS =.*:SUBDIRS = ${MAKE_DOC} ${PN}:" \
@@ -404,7 +404,7 @@ slot_rebuild() {
 			k="$(grep -o "/.*/lib.*\.la" ${j}/CONTENTS)"
 			m=""
 			for l in ${k} ; do [[ -e ${l} ]] && m="${m} ${l}"; done
-			l="$(echo ${k} ${m} | fmt -w 1 | sort | uniq -u)"
+			l="$(echo ${k} ${m} | tr ' ' '\n' | sort | uniq -u)"
 
 			if [[ ${l} != "" ]] || [[ ${m} == "" ]] ; then
 				eerror "Installation of ${j/${VDB_PATH}\//} is broken."
@@ -428,9 +428,9 @@ slot_rebuild() {
 		cd ${VDB_PATH}
 		for i in ${REBUILD_LIST} ; do
 			i="$(echo ${i%-*} | cut -d= -f2)"
-			temp="${temp} $(find .	-iname "DEPEND" -exec grep -H ${i} '{}' \; | cut -f2-3 -d/ | grep -v ${CATEGORY}/${PN})"
+			temp="${temp} $(find . -iname "DEPEND" -exec grep -H ${i} '{}' \; | cut -f2-3 -d/ | grep -v ${CATEGORY}/${PN})"
 		done
-		temp="$(echo ${temp} | fmt -w 1 | sort -u)"
+		temp="$(echo ${temp} | tr ' ' '\n' | sort -u)"
 		for i in ${temp} ; do
 			REBUILD_LIST="${REBUILD_LIST} =${i}"
 		done

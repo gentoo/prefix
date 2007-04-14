@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.121 2007/04/07 08:52:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.122 2007/04/10 01:33:03 nyhm Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -33,8 +33,6 @@ export GAMES_USER_DED=${GAMES_USER_DED:-games}
 export GAMES_GROUP=${GAMES_GROUP:-games}
 
 games_get_libdir() {
-	# once everything is converted over from legacy GAMES_LIBDIR, delete next line
-	unset GAMES_LIBDIR
 	echo ${GAMES_LIBDIR:-${GAMES_PREFIX}/$(get_libdir)}
 }
 

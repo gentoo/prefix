@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/matrox.eclass,v 1.16 2007/01/28 13:16:38 kugelfang Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/matrox.eclass,v 1.17 2007/04/12 18:49:00 genstef Exp $
 #
 # Author: Donnie Berkholz <spyderous@gentoo.org>
 #
@@ -21,9 +21,6 @@ RESTRICT="fetch nostrip"
 RDEPEND="virtual/linux-sources"
 
 matrox_pkg_setup() {
-	# Require correct /usr/src/linux
-	check_KV
-
 	# Set up X11 implementation
 	X11_IMPLEM_P="$(best_version virtual/x11)"
 	X11_IMPLEM="${X11_IMPLEM_P%-[0-9]*}"

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.4 2007/03/14 15:48:12 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.5 2007/04/10 11:42:29 vapier Exp $
 
 ## --------------------------------------------------------------------------- #
 # subversion.eclass author: Akinori Hattori <hattya@gentoo.org>
@@ -230,7 +230,8 @@ git_fetch() {
 	# export to the ${WORKDIR}
 	mkdir -p "${S}"
 	git tar-tree ${EGIT_TREE} | ( cd "${S}" ; tar xf - )
-	echo
+
+	echo ">>> Unpacked to ${S}"
 
 }
 
