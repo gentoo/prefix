@@ -1,6 +1,29 @@
 # ChangeLog for dev-python/twisted
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.83 2006/10/20 20:36:34 kloeri Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.87 2007/03/12 18:57:33 gustavoz Exp $
+
+  12 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> twisted-2.4.0.ebuild:
+  Stable on sparc
+
+  12 Mar 2007; Raúl Porcel <armin76@gentoo.org> twisted-2.4.0.ebuild:
+  x86 stable
+
+  09 Feb 2007; Marien Zwart <marienz@gentoo.org> files/digest-twisted-2.2.0,
+  Manifest:
+  Fix broken digest. Thanks to Benjamin Gehrels for reporting, closes bug
+  #166124.
+
+*twisted-2.5.0 (11 Jan 2007)
+
+  11 Jan 2007; Marien Zwart <marienz@gentoo.org>
+  -files/twisted-2.4.0-python-2.5-compat.patch,
+  -files/twisted-2.4.0-remove-newjelly.patch,
+  -files/twisted-2.4.0-trial-attempted-fix.patch,
+  -files/twisted-2.4.0-trial-python-2.5-compat.patch,
+  -files/twisted-2.4.0-unjellyable.patch, -twisted-2.4.0-r1.ebuild,
+  +twisted-2.5.0.ebuild:
+  Version bump, drop revision patched to work with python 2.5 (use the new
+  bump instead).
 
   20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> twisted-2.4.0.ebuild:
   Stable on Alpha.

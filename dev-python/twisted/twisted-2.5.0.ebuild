@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/twisted-2.4.0-r1.ebuild,v 1.2 2006/09/25 20:08:54 the_paya Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/twisted-2.5.0.ebuild,v 1.2 2007/02/13 13:24:02 vapier Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SRC_URI="http://tmrc.mit.edu/mirror/twisted/Twisted/$(get_version_component_rang
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
 IUSE="gtk serial crypt"
 
 DEPEND=">=dev-lang/python-2.3
@@ -24,7 +24,7 @@ DEPEND=">=dev-lang/python-2.3
 	gtk? ( >=dev-python/pygtk-1.99 )
 	!dev-python/twisted-docs"
 
-S="${WORKDIR}/${MY_P}"
+S=${WORKDIR}/${MY_P}
 
 DOCS="CREDITS INSTALL NEWS README"
 
@@ -37,21 +37,6 @@ src_unpack() {
 
 	# Pass valid arguments to "head" in the zsh completion function.
 	epatch "${FILESDIR}/${PN}-2.1.0-zsh-head.patch"
-
-	# Remove a mostly-empty file with a syntax error ("???" placeholder)
-	rm twisted/test/stdio_test_halfclose.py
-
-	# We need this to make remove-newjelly apply
-	epatch "${FILESDIR}/${P}-unjellyable.patch"
-
-	# We need this to make python-2.5-compat apply
-	epatch "${FILESDIR}/${P}-remove-newjelly.patch"
-	rm twisted/spread/newjelly.py twisted/test/test_newjelly.py
-
-	epatch "${FILESDIR}/${P}-python-2.5-compat.patch"
-
-	epatch "${FILESDIR}/${P}-trial-attempted-fix.patch"
-	epatch "${FILESDIR}/${P}-trial-python-2.5-compat.patch"
 }
 
 src_install() {
