@@ -1,6 +1,100 @@
-# ChangeLog for dev-libs/slib
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/slib/ChangeLog,v 1.19 2006/12/18 18:17:48 masterdriverz Exp $
+# ChangeLog for dev-scheme/slib
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/ChangeLog,v 1.28 2007/04/04 19:32:03 wolf31o2 Exp $
+
+  04 Apr 2007; Chris Gianelloni <wolf31o2@gentoo.org> slib-3.1.1-r1.ebuild:
+  Stable on alpha wrt bug #167706.
+
+  02 Apr 2007; Raúl Porcel <armin76@gentoo.org> slib-3.1.1-r1.ebuild:
+  ia64 stable wrt bug 161781
+
+  28 Mar 2007; Christian Faulhammer <opfer@gentoo.org> ChangeLog:
+  stable x86, security bug 167706
+
+  18 Mar 2007; Steve Dibb <beandog@gentoo.org> slib-3.1.1-r1.ebuild:
+  amd64 stable, bug 161781
+
+  18 Mar 2007; Christian Faulhammer <opfer@gentoo.org> slib-3.1.1-r1.ebuild:
+  stable x86, bug 161781
+
+  16 Mar 2007; nixnut <nixnut@gentoo.org> slib-3.1.1-r1.ebuild:
+  Stable on ppc wrt bug 161781
+
+  16 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> slib-3.1.1-r1.ebuild:
+  Stable on sparc wrt #161781
+
+  04 Mar 2007; Marijn Schouten <hkBst@gentoo.org> slib-3.1.1-r1.ebuild:
+  have guile registration not try when ROOT != /
+
+  04 Feb 2007; nixnut <nixnut@gentoo.org> slib-3.1.1.ebuild:
+  Stable on ppc wrt bug 161781
+
+  02 Feb 2007; Marijn Schouten <hkBst@gentoo.org> -slib-3.1.4-r1.ebuild:
+  remove redundant ebuild
+
+  02 Feb 2007; Seemant Kulleen <seemant@gentoo.org> slib-3.1.1-r1.ebuild:
+  remove the restricted dependency on guile-1.6, this was just because of
+  gnucash, whose problem has been solved
+
+*slib-3.1.4-r2 (28 Jan 2007)
+
+  28 Jan 2007; Marijn Schouten <hkBst@gentoo.org> -slib-3.1.4.ebuild,
+  +slib-3.1.4-r2.ebuild:
+  prepare 3.1.4-r2 for scm
+
+*slib-3.1.1-r1 (24 Jan 2007)
+
+  24 Jan 2007; Marijn Schouten <hkBst@gentoo.org> +slib-3.1.1-r1.ebuild:
+  backport 3.1.4-r1 to 3.1.1-r1
+
+*slib-3.1.4-r1 (24 Jan 2007)
+
+  24 Jan 2007; Marijn Schouten <hkBst@gentoo.org> +slib-3.1.4-r1.ebuild:
+  revision bump 3.1.4 for moving its install destination around. Make install
+  work with ROOT
+
+  22 Jan 2007; Marijn Schouten <hkBst@gentoo.org> slib-3.1.4.ebuild:
+  put slib in /usr/share/ instead of /usr/lib/
+
+  19 Jan 2007; Marijn Schouten <hkBst@gentoo.org> slib-3.1.1.ebuild:
+  depend slib-3.1.1 on guile-1.6.7
+
+  17 Jan 2007; Marijn Schouten <hkBst@gentoo.org> slib-3.1.4.ebuild:
+  some small fixes for 3.1.4
+
+  16 Jan 2007; Christian Faulhammer <opfer@gentoo.org> slib-3.1.4.ebuild:
+  keyworded ~x86, bug #162243
+
+  16 Jan 2007; Christian Faulhammer <opfer@gentoo.org> slib-3.1.1.ebuild:
+  stable x86, bugs #161781 and #162243
+
+  16 Jan 2007; Marijn Schouten <hkBst@gentoo.org> slib-2.4.6.ebuild:
+  depend slib-2.4.6 only on guile-1.6.7
+
+  15 Jan 2007; Marijn Schouten <hkBst@gentoo.org> slib-3.1.4.ebuild:
+  fixed depend to guile-1.6.8
+
+  15 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> slib-3.1.1.ebuild:
+  Stable on sparc wrt #161781
+
+  15 Jan 2007; Steve Dibb <beandog@gentoo.org> slib-3.1.1.ebuild:
+  amd64 stable, bug 161781
+
+  12 Jan 2007; Marijn Schouten hkBst@gentoo.org slib-3.1.4.ebuild:
+  add guile to rdepend
+
+*slib-3.1.4 (12 Jan 2007)
+
+  12 Jan 2007; Marijn Schouten hkBst@gentoo.org +slib-3.1.4.ebuild:
+  Added 3.1.4 ebuild
+
+  10 Jan 2007; Piotr Jaroszyński <peper@gentoo.org> slib-2.4.2.ebuild,
+  slib-2.4.3.ebuild, slib-2.4.6.ebuild, slib-3.1.1.ebuild:
+  Dependency update: dev-util/guile -> dev-scheme/guile.
+
+  10 Jan 2007; <marijn@gentoo.org> +metadata.xml, +slib-2.4.2.ebuild,
+  +slib-2.4.3.ebuild, +slib-2.4.6.ebuild, +slib-3.1.1.ebuild:
+  Moved from dev-libs/slib to dev-scheme/slib.
 
   18 Dec 2006; Charlie Shepherd <masterdriverz@gentoo.org>
   slib-2.4.2.ebuild, slib-2.4.3.ebuild, slib-2.4.6.ebuild,
