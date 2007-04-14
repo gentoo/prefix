@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/docutils-0.4-r1.ebuild,v 1.2 2007/03/28 03:22:12 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/docutils-0.4-r1.ebuild,v 1.4 2007/04/04 18:28:41 pythonhead Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/docutils/${P}.tar.gz
 
 LICENSE="public-domain PYTHON BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
 IUSE="glep emacs"
 
 DEPEND=">=dev-lang/python-2.3
@@ -29,6 +29,8 @@ src_unpack() {
 	# simplified algorithm to select installing optparse and textwrap
 	cd ${S}
 	epatch ${FILESDIR}/${EMP}-extramodules.patch
+	# Fix for Python 2.5 test (bug# 172557)
+	epatch ${FILESDIR}/${P}-python-2.5-fix.patch
 }
 
 src_compile() {
@@ -83,11 +85,11 @@ src_install() {
 	done
 	# Docs
 	cd ${S}
-	dohtml -r docs spec tools
+	dohtml -r docs tools
 	# manually install the stylesheet file
 	insinto /usr/share/doc/${PF}/html
 	doins docutils/writers/html4css1/html4css1.css
-	for doc in $(find docs spec tools -name '*.txt')
+	for doc in $(find docs tools -name '*.txt')
 	do
 		install_txt_doc $doc
 	done

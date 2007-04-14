@@ -1,6 +1,17 @@
 # ChangeLog for dev-python/docutils
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.59 2007/03/28 03:22:12 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.61 2007/04/04 18:28:41 pythonhead Exp $
+
+  04 Apr 2007; Rob Cakebread <pythonhead@gentoo.org>
+  +files/docutils-0.4-python-2.5-fix.patch, docutils-0.4.ebuild,
+  docutils-0.4-r1.ebuild:
+  Python 2.5 test fix bug 172557. Thanks Ali Polatel <polatel@gmail.com>. Also
+  removed non-existent spec dir from dodoc
+
+  30 Mar 2007; Fabian Groffen <grobian@gentoo.org> docutils-0.3.5.ebuild,
+  docutils-0.3.7.ebuild, docutils-0.3.9.ebuild, docutils-0.4.ebuild,
+  docutils-0.4-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   28 Mar 2007; Jeroen Roovers <jer@gentoo.org> :
   Stable for HPPA too.

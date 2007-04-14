@@ -1,0 +1,132 @@
+Index: test/alltests.py
+===================================================================
+--- test/alltests.py	(revision 4628)
++++ test/alltests.py	(revision 4631)
+@@ -19,21 +19,10 @@
+ 
+ import sys
+ import os
+-from types import UnicodeType
+ import DocutilsTestSupport              # must be imported before docutils
+ import docutils
+ 
+ 
+-def new_exception_str(self):
+-    for i in self.args:
+-        if isinstance(i, UnicodeType):
+-            raise RuntimeError('Error (unicode): %r' % (self.args,))
+-    return old_exception_str(self)
+-
+-old_exception_str = Exception.__str__
+-Exception.__str__ = new_exception_str
+-
+-
+ class Tee:
+ 
+     """Write to a file and a stream (default: stdout) simultaneously."""
+Index: test/test_parsers/test_rst/test_directives/test_images.py
+===================================================================
+--- test/test_parsers/test_rst/test_directives/test_images.py	(revision 4628)
++++ test/test_parsers/test_rst/test_directives/test_images.py	(revision 4631)
+@@ -245,11 +245,11 @@
+         <paragraph>
+             Error in "image" directive:
+             invalid option value: (option: "scale"; value: 'fifty')
+-            invalid literal for int(): fifty.
++            %s.
+         <literal_block xml:space="preserve">
+             .. image:: picture.png
+                :scale: fifty
+-"""],
++""" % DocutilsTestSupport.exception_data('int("fifty")')[1][0]],
+ ["""\
+ .. image:: picture.png
+    :scale: 50
+Index: test/test_parsers/test_rst/test_directives/test_contents.py
+===================================================================
+--- test/test_parsers/test_rst/test_directives/test_contents.py	(revision 4628)
++++ test/test_parsers/test_rst/test_directives/test_contents.py	(revision 4631)
+@@ -151,11 +151,11 @@
+         <paragraph>
+             Error in "contents" directive:
+             invalid option value: (option: "depth"; value: 'two')
+-            invalid literal for int(): two.
++            %s.
+         <literal_block xml:space="preserve">
+             .. contents::
+                :depth: two
+-"""],
++""" % DocutilsTestSupport.exception_data('int("two")')[1][0]],
+ ["""\
+ .. contents::
+    :width: 2
+Index: test/test_parsers/test_rst/test_directives/test_tables.py
+===================================================================
+--- test/test_parsers/test_rst/test_directives/test_tables.py	(revision 4628)
++++ test/test_parsers/test_rst/test_directives/test_tables.py	(revision 4631)
+@@ -34,6 +34,16 @@
+ else:
+     unichr_exception_string = str(unichr_exception)
+ 
++null_bytes_code = """
++import csv
++import cStringIO
++csv_data = open('%s', 'rb').read().decode('latin-1')
++csv_file = cStringIO.StringIO(csv_data)
++reader = csv.reader(csv_file)
++reader.next()
++""" % utf_16_csv
++null_bytes_exception = DocutilsTestSupport.exception_data(null_bytes_code)[1][0]
++
+ totest = {}
+ 
+ totest['table'] = [
+@@ -549,7 +559,7 @@
+         <paragraph>
+             Error in "csv-table" directive:
+             invalid option value: (option: "widths"; value: '10,y,z')
+-            invalid literal for int(): y.
++            %s.
+         <literal_block xml:space="preserve">
+             .. csv-table:: bad column widths
+                :widths: 10,y,z
+@@ -565,7 +575,7 @@
+                :widths: 0 0 0
+             \n\
+                some, csv, data
+-"""],
++""" % DocutilsTestSupport.exception_data('int("y")')[1][0]],
+ ["""\
+ .. csv-table:: good delimiter
+    :delim: /
+@@ -734,14 +744,14 @@
+     <system_message level="3" line="1" source="test data" type="ERROR">
+         <paragraph>
+             Error with CSV data in "csv-table" directive:
+-            string with NUL bytes
++            %s
+         <literal_block xml:space="preserve">
+             .. csv-table:: bad encoding
+                :file: %s
+                :encoding: latin-1
+     <paragraph>
+         (7- and 8-bit text encoded as UTF-16 has lots of null/zero bytes.)
+-""" % utf_16_csv],
++""" % (null_bytes_exception, utf_16_csv)],
+ ["""\
+ .. csv-table:: good encoding
+    :file: %s
+Index: docutils/parsers/rst/directives/tables.py
+===================================================================
+--- docutils/parsers/rst/directives/tables.py	(revision 4628)
++++ docutils/parsers/rst/directives/tables.py	(revision 4631)
+@@ -259,7 +259,8 @@
+ 
+ def parse_csv_data_into_rows(csv_data, dialect, source, options):
+     # csv.py doesn't do Unicode; encode temporarily as UTF-8
+-    csv_reader = csv.reader([line.encode('utf-8') for line in csv_data],
++    csv_reader = csv.reader([(line.encode('utf-8') + '\n')
++                             for line in csv_data],
+                             dialect=dialect)
+     rows = []
+     max_cols = 0
