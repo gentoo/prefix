@@ -1,13 +1,13 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/gcc-config-1.3.15-r1.ebuild,v 1.7 2007/04/11 20:13:32 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/gcc-config-1.3.16.ebuild,v 1.1 2007/04/11 08:51:31 vapier Exp $
 
 EAPI="prefix"
 
-inherit eutils toolchain-funcs multilib
+inherit eutils flag-o-matic toolchain-funcs multilib
 
 # Version of .c wrapper to use
-W_VER="1.4.7"
+W_VER="1.4.8"
 
 DESCRIPTION="Utility to change the gcc compiler being used"
 HOMEPAGE="http://www.gentoo.org/"
@@ -31,7 +31,8 @@ src_unpack() {
 }
 
 src_compile() {
-	$(tc-getCC) -O2 -Wall -o wrapper \
+	strip-flags
+	$(tc-getCC) ${CFLAGS} ${LDFLAGS} -Wall -o wrapper \
 		wrapper-${W_VER}.c || die "compile wrapper"
 }
 
@@ -53,7 +54,7 @@ pkg_postinst() {
 		# it is not needed ...
 		[[ -L ${EROOT}/usr/include/g++ ]] && rm -f "${EROOT}"/usr/include/g++
 		[[ -L ${EROOT}/usr/include/g++-v3 ]] && rm -f "${EROOT}"/usr/include/g++-v3
-		[[ ${ROOT} = "/" ]] && gcc-config $(${EPREFIX}/usr/bin/gcc-config --get-current-profile)
+		gcc-config $(${EPREFIX}/usr/bin/gcc-config --get-current-profile)
 	fi
 
 	# Make sure old versions dont exist #79062
