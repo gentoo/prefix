@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.5.20_p2.ebuild,v 1.4 2007/02/28 13:22:15 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.5.20_p2.ebuild,v 1.5 2007/03/25 20:58:24 pauldv Exp $
 
 EAPI="prefix"
 
@@ -112,12 +112,15 @@ src_compile() {
 		--host="${CHOST}" \
 		${myconf} "${javaconf}" || die "configure failed"
 
+	sed -e "s,\(^STRIP *=\).*,\1\"none\"," Makefile > Makefile.cpy \
+	    && mv Makefile.cpy Makefile
+
 	emake -j1 || die "make failed"
 }
 
 src_install() {
 
-	einstall libdir="${ED}/usr/$(get_libdir)" strip="${ED}/bin/strip" || die
+	einstall libdir="${ED}/usr/$(get_libdir)" strip="none" || die
 
 	db_src_install_usrbinslot
 

@@ -1,6 +1,19 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.200 2007/03/02 17:33:26 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.204 2007/04/04 17:02:53 gustavoz Exp $
+
+  04 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> db-4.3.29-r2.ebuild:
+  Stable on sparc
+
+  31 Mar 2007; Christian Faulhammer <opfer@gentoo.org> db-4.3.29-r2.ebuild:
+  stable x86, security bug #170828
+
+  29 Mar 2007; Tobias Scherbaum <dertobi123@gentoo.org> db-4.3.29-r2.ebuild:
+  Stable on ppc wrt bug #170828.
+
+  25 Mar 2007; Paul de Vrieze <pauldv@gentoo.org> db-4.5.20_p2.ebuild:
+  Have a different fix for not stripping as the old fix no longer works for this
+  db version.
 
   02 Mar 2007; Caleb Tennis <caleb@gentoo.org> -files/db-4.1.25-java.patch,
   -files/db-4.1.25-uclibc.patch, -files/db-4.1.25_p1-jarlocation.patch,
