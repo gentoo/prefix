@@ -1,0 +1,10 @@
+--- curl-7.16.2/libcurl.pc.in.orig	2007-04-14 10:11:14.000000000 +1000
++++ curl-7.16.2/libcurl.pc.in	2007-04-14 10:11:26.000000000 +1000
+@@ -33,6 +33,6 @@
+ URL: http://curl.haxx.se/
+ Description: Library to transfer files with ftp, http, etc.
+ Version: @VERSION@
+-Libs: -L${libdir} -lcurl @LDFLAGS@ @LIBS@
++Libs: -L${libdir} -lcurl @LIBS@
+ Libs.private: @LIBCURL_LIBS@ @LIBS@
+ Cflags: -I${includedir}

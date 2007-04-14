@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.15.5.ebuild,v 1.3 2007/02/11 04:07:12 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.15.5.ebuild,v 1.4 2007/04/14 00:35:26 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -15,15 +15,14 @@ SRC_URI="http://curl.haxx.se/download/${P}.tar.bz2"
 LICENSE="MIT X11"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
-IUSE="ssl ipv6 ldap ares gnutls idn kerberos krb4 test"
+IUSE="ssl ipv6 ldap ares gnutls idn kerberos test"
 
 RDEPEND="gnutls? ( net-libs/gnutls )
 	ssl? ( !gnutls? ( dev-libs/openssl ) )
 	ldap? ( net-nds/openldap )
 	idn? ( net-dns/libidn )
 	ares? ( net-dns/c-ares )
-	kerberos? ( virtual/krb5 )
-	krb4? ( app-crypt/kth-krb )"
+	kerberos? ( virtual/krb5 )"
 
 DEPEND="${RDEPEND}
 	test? (
@@ -61,13 +60,6 @@ src_compile() {
 		myconf="${myconf} --disable-ares"
 	else
 		myconf="${myconf} $(use_enable ares)"
-	fi
-
-	if use ipv6 && use krb4; then
-		ewarn "kerberos-4 support disabled because it is incompatible with ipv6."
-		myconf="${myconf} --disable-krb4"
-	else
-		myconf="${myconf} $(use_enable krb4)"
 	fi
 
 	if use gnutls; then
