@@ -1,6 +1,20 @@
 # ChangeLog for dev-python/psycopg
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/psycopg/ChangeLog,v 1.52 2006/11/13 17:41:09 dertobi123 Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/psycopg/ChangeLog,v 1.55 2007/02/13 21:33:12 dev-zero Exp $
+
+  13 Feb 2007; Tiziano Müller <dev-zero@gentoo.org> psycopg-2.0.5.1.ebuild:
+  Cleanup
+
+*psycopg-2.0.5.1 (27 Dec 2006)
+
+  27 Dec 2006; Tiziano Müller <dev-zero@gentoo.org>
+  -files/psycopg-2.0.4-debug.patch, -files/psycopg-2.0.4-fbsd.patch,
+  +files/psycopg-2.0.5.1-debug.patch, +files/psycopg-2.0.5.1-fbsd.patch,
+  -psycopg-2.0.4.ebuild, +psycopg-2.0.5.1.ebuild:
+  Version bump. Dropped old version.
+
+  03 Dec 2006; Markus Rothe <corsair@gentoo.org> psycopg-2.0.2.ebuild:
+  Stable on ppc64
 
   13 Nov 2006; Tobias Scherbaum <dertobi123@gentoo.org>
   psycopg-2.0.2.ebuild:

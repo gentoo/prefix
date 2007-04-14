@@ -1,0 +1,11 @@
+--- psycopg2-2.0.4/psycopg/config.h.orig	2006-02-11 15:56:19 -0300
++++ psycopg2-2.0.4/psycopg/config.h	2006-08-25 06:44:48 -0300
+@@ -102,7 +102,7 @@
+ #define inline
+ #endif
+ 
+-#if defined(__FreeBSD__) || defined(_WIN32) || defined(__sun__)
++#if defined(_WIN32) || defined(__sun__)
+ /* what's this, we have no round function either? */
+ static double round(double num)
+ {

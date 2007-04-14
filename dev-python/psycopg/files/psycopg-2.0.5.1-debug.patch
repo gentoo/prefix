@@ -1,0 +1,9 @@
+--- psycopg2-2.0.4/setup.cfg.orig   2006-07-25 15:38:03.658499592 -0500
++++ psycopg2-2.0.4/setup.cfg	2006-07-25 15:38:11.098395098 -0500
+@@ -1,5 +1,5 @@
+ [build_ext]
+-define=PSYCOPG_EXTENSIONS,PSYCOPG_DISPLAY_SIZE,PSYCOPG_NEW_BOOLEAN,HAVE_PQFREEMEM,HAVE_PQPROTOCOL3
++define=PSYCOPG_EXTENSIONS,PSYCOPG_DISPLAY_SIZE,PSYCOPG_NEW_BOOLEAN,HAVE_PQFREEMEM,HAVE_PQPROTOCOL3,PSYCOPG_DEBUG
+ # PSYCOPG_EXTENSIONS enables extensions to PEP-249 (you really want this)
+ # PSYCOPG_DISPLAY_SIZE enable display size calculation (a little slower)
+ # HAVE_PQFREEMEM should be defined on PostgreSQL >= 7.3

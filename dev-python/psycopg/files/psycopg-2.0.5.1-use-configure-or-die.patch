@@ -1,0 +1,14 @@
+* Not using configure, but just thinking you've got it right means you
+  break, because you're not right.
+
+--- psycopg/config.h
++++ psycopg/config.h
+@@ -102,7 +102,7 @@
+ #define inline
+ #endif
+ 
+-#if defined(_WIN32) || defined(__sun__)
++#if defined(_WIN32)
+ /* what's this, we have no round function either? */
+ static double round(double num)
+ {
