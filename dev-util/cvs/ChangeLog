@@ -1,6 +1,27 @@
 # ChangeLog for dev-util/cvs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/ChangeLog,v 1.113 2007/02/22 01:58:11 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/ChangeLog,v 1.120 2007/04/11 19:14:10 corsair Exp $
+
+  11 Apr 2007; Markus Rothe <corsair@gentoo.org> cvs-1.12.12-r4.ebuild:
+  Stable on ppc64; bug #173880
+
+  10 Apr 2007; Robin H. Johnson <robbat2@gentoo.org> cvs-1.12.12-r4.ebuild:
+  Add a note to -r4 that you must have USE=server if you want a CVS server!.
+
+  10 Apr 2007; Jeroen Roovers <jer@gentoo.org> cvs-1.12.12-r4.ebuild:
+  Stable for HPPA (bug #173880).
+
+  10 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> cvs-1.12.12-r4.ebuild:
+  Stable on sparc wrt #173880
+
+  09 Apr 2007; Bryan Østergaard <kloeri@gentoo.org> cvs-1.12.12-r4.ebuild:
+  Stable on Alpha, bug 173880.
+
+  09 Apr 2007; Peter Weller <welp@gentoo.org> cvs-1.12.12-r4.ebuild:
+  Stable on amd64 wrt bug 173880
+
+  09 Apr 2007; Raúl Porcel <armin76@gentoo.org> cvs-1.12.12-r4.ebuild:
+  x86 + ia64 stable wrt bug 173880
 
   22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
