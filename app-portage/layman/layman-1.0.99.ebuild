@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.0.10.ebuild,v 1.5 2007/04/11 19:17:00 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.0.99.ebuild,v 1.1 2007/04/09 19:44:31 wrobel Exp $
 
 EAPI="prefix"
 
@@ -16,10 +16,11 @@ KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 S=${WORKDIR}/${PF}
 
-DEPEND="dev-util/subversion"
+DEPEND=""
+RDEPEND=""
 
 pkg_setup() {
-	if built_with_use dev-util/subversion nowebdav; then
+	if has_version dev-util/subversion && built_with_use dev-util/subversion nowebdav; then
 		eerror "You must rebuild your subversion without the nowebdav USE flag"
 		die "You must rebuild your subversion without the nowebdav USE flag"
 	fi
@@ -28,7 +29,7 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.0.10-prefix.patch
 	eprefixify layman/config.py etc/layman.cfg
 	find layman/overlays -name "*.py" | xargs sed -i \
 		-e '/binary = '"'"'.*'"'"'/s|'"'"'\(.*\)'"'"'|'"'${EPREFIX}"'\1'"'"'|'

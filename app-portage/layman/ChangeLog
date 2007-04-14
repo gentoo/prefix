@@ -1,6 +1,23 @@
 # ChangeLog for app-portage/layman
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.33 2007/01/09 18:01:15 wrobel Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.38 2007/04/11 19:17:00 corsair Exp $
+
+  11 Apr 2007; Markus Rothe <corsair@gentoo.org> layman-1.0.10.ebuild:
+  Stable on ppc64; bug #173958
+
+  10 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> layman-1.0.10.ebuild:
+  Stable on sparc wrt #173958
+
+  10 Apr 2007; Christian Faulhammer <opfer@gentoo.org> layman-1.0.10.ebuild:
+  stable x86/amd64, bug 173958
+
+  10 Apr 2007; Joseph Jezak <josejx@gentoo.org> layman-1.0.10.ebuild:
+  Marked ppc stable for bug #173958.
+
+*layman-1.0.99 (09 Apr 2007)
+
+  09 Apr 2007; <wrobel@gentoo.org> +layman-1.0.99.ebuild:
+  Added layman-1.0.99 to the tree.
 
 *layman-1.0.10 (09 Jan 2007)
 
