@@ -1,8 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.10.3.ebuild,v 1.12 2007/03/18 00:41:57 marienz Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.10.4.ebuild,v 1.3 2007/03/18 00:41:58 marienz Exp $
 
 EAPI="prefix"
+
+NEED_PYTHON=2.3.5
 
 inherit gnome.org python flag-o-matic
 
@@ -16,10 +18,9 @@ SRC_URI="${SRC_URI}
 LICENSE="LGPL-2.1"
 SLOT="2"
 KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
-IUSE="opengl doc"
+IUSE="doc examples opengl"
 
-RDEPEND=">=dev-lang/python-2.3.5
-	>=dev-libs/glib-2.8.0
+RDEPEND=">=dev-libs/glib-2.8.0
 	>=x11-libs/pango-1.10.0
 	>=dev-libs/atk-1.8.0
 	>=x11-libs/gtk+-2.10.0
@@ -41,9 +42,7 @@ RESTRICT="test"
 
 src_unpack() {
 	unpack ${A}
-	if use doc; then
-		unpack ${DOC_FILE}
-	fi
+	use doc || sed -e 's/\(SUBDIRS =.*\) docs$/\1/' -i "${S}"/Makefile.am
 
 	# disable pyc compiling
 	mv "${S}"/py-compile "${S}"/py-compile.orig
@@ -60,11 +59,17 @@ src_compile() {
 src_install() {
 	make DESTDIR="${D}" install || die
 	dodoc AUTHORS ChangeLog INSTALL MAPPING NEWS README THREADS TODO
-	rm examples/Makefile*
-	cp -r examples ${ED}/usr/share/doc/${PF}/
+
+	if use examples; then
+		rm examples/Makefile*
+		insinto /usr/share/doc/${PF}
+		doins -r examples
+	fi
 
 	if use doc; then
-		cp -r ${WORKDIR}/pygtk2reference/{cursors,icons,images} ${ED}/usr/share/gtk-doc/html/pygtk/
+		insinto /usr/share/gtk-doc/html/pygtk
+		cd "${WORKDIR}"/pygtk2reference
+		doins -r cursors icons images
 	fi
 }
 
