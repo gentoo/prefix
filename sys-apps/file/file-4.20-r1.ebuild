@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-4.20-r1.ebuild,v 1.1 2007/04/07 10:04:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-4.20-r1.ebuild,v 1.2 2007/04/08 07:27:05 vapier Exp $
 
 EAPI="prefix"
 
@@ -10,6 +10,7 @@ DESCRIPTION="identify a file's format by scanning binary data for patterns"
 HOMEPAGE="ftp://ftp.astron.com/pub/file/"
 SRC_URI="ftp://ftp.astron.com/pub/file/${P}.tar.gz
 	ftp://ftp.gw.com/mirrors/pub/unix/file/${P}.tar.gz
+	mirror://gentoo/patch-4.20-REG_STARTEND
 	ftp://ftp.gw.com/mirrors/pub/unix/file/patch-4.20-REG_STARTEND"
 
 LICENSE="as-is"
