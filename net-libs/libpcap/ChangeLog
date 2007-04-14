@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/libpcap
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.63 2007/03/16 13:10:49 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.64 2007/04/08 07:05:53 josejx Exp $
+
+  08 Apr 2007; Joseph Jezak <josejx@gentoo.org> libpcap-0.9.5.ebuild:
+  Marked ppc stable.
 
   16 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> libpcap-0.9.5.ebuild:
   Stable on sparc
