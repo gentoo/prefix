@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-0.9.1.ebuild,v 1.5 2007/02/28 22:07:44 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-0.9.2.ebuild,v 1.1 2007/03/31 18:11:00 pclouds Exp $
 
 EAPI="prefix"
 
@@ -13,20 +13,22 @@ LICENSE="Ruby"
 
 # The URL depends implicitly on the version, unfortunately. Even if you
 # change the filename on the end, it still downloads the same file.
-SRC_URI="http://rubyforge.org/frs/download.php/16452/${P}.tgz"
+SRC_URI="http://rubyforge.org/frs/download.php/17190/${P}.tgz"
 
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 SLOT="0"
 IUSE="doc server examples"
 PDEPEND="server? ( dev-ruby/builder )" # index_gem_repository.rb
 
-PATCHES="${FILESDIR}/${P}-no_post_install.patch
+PATCHES="${FILESDIR}/${PN}-0.9.1-no_post_install.patch
 	${FILESDIR}/no-system-rubygems.patch"
 USE_RUBY="ruby18"
 
 src_unpack() {
 	ruby_src_unpack
-	use doc || epatch "${FILESDIR}/${P}-no_rdoc_install.patch"
+	use doc || epatch "${FILESDIR}/${PN}-0.9.1-no_rdoc_install.patch"
+	cd ${S}
+	find -name '.*' -type f -print0|xargs -0 rm
 }
 
 src_compile() {
