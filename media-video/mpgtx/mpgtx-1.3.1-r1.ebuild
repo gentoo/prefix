@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mpgtx/mpgtx-1.3.1.ebuild,v 1.6 2007/02/28 22:17:33 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mpgtx/mpgtx-1.3.1-r1.ebuild,v 1.2 2007/02/28 22:17:33 genstef Exp $
 
 EAPI="prefix"
 
@@ -10,34 +10,38 @@ DESCRIPTION="mpgtx a command line MPEG audio/video/system file toolbox"
 SRC_URI="mirror://sourceforge/mpgtx/${P}.tar.gz"
 HOMEPAGE="http://mpgtx.sourceforge.net/"
 
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 SLOT="0"
 LICENSE="GPL-2"
 
 DEPEND=""
+RDEPEND=""
+
+src_unpack () {
+	unpack ${A}
+	cd "${S}"
+
+	epatch "${FILESDIR}/${P}-configure.patch"
+	epatch "${FILESDIR}/${P}-dont-ignore-cxx-flags.patch"
+}
 
 src_compile() {
+	tc-export CXX
 	./configure --parachute --prefix=/usr
-
-	if [ "$(gcc-major-version)" -eq "3" -a "$(gcc-minor-version)" -ge "4" ] || \
-	[ "$(gcc-major-version)" -ge "4" ]; then
-		sed -i "s:-O3:-O3 -fno-unit-at-a-time:" Makefile
-	fi
 
 	emake || die "emake failed"
 }
 
 src_install() {
-	exeinto /usr/bin
-	doexe mpgtx
+	dobin mpgtx
 
-	dosym /usr/bin/mpgtx /usr/bin/mpgjoin
-	dosym /usr/bin/mpgtx /usr/bin/mpgsplit
-	dosym /usr/bin/mpgtx /usr/bin/mpgcat
-	dosym /usr/bin/mpgtx /usr/bin/mpginfo
-	dosym /usr/bin/mpgtx /usr/bin/mpgdemux
-	dosym /usr/bin/mpgtx /usr/bin/tagmp3
+	dosym mpgtx /usr/bin/mpgjoin
+	dosym mpgtx /usr/bin/mpgsplit
+	dosym mpgtx /usr/bin/mpgcat
+	dosym mpgtx /usr/bin/mpginfo
+	dosym mpgtx /usr/bin/mpgdemux
+	dosym mpgtx /usr/bin/tagmp3
 
 	doman man/mpgtx.1 man/tagmp3.1
 
