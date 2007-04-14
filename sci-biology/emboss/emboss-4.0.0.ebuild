@@ -57,7 +57,10 @@ src_install() {
 
 	# Install env file for setting libplplot and acd files path.
 	insinto /etc/env.d
-	newins ${FILESDIR}/22emboss-r1 22emboss || \
+	cp "${FILESDIR}"/22emboss-r1 "${T}"
+	( cd "${T}" && epatch "${FILESDIR}"/22emboss-r1-prefix.patch )
+	eprefixify "${T}"/22emboss-r1
+	newins "${T}"/22emboss-r1 22emboss || \
 			die "Failed to install environment file."
 	eprefixify "${ED}"/etc/env.d/22emboss
 

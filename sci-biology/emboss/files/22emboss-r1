@@ -1,4 +1,4 @@
 # plplot libs dir
-PLPLOT_LIB="@GENTOO_PORTAGE_ERPREFIX@/usr/share/EMBOSS/"
+PLPLOT_LIB="/usr/share/EMBOSS/"
 # ACD files location
-EMBOSS_ACDROOT="@GENTOO_PORTAGE_ERPREFIX@/usr/share/EMBOSS/acd"
+EMBOSS_ACDROOT="/usr/share/EMBOSS/acd"
