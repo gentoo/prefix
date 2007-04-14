@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xsl-stylesheets/docbook-xsl-stylesheets-1.72.0.ebuild,v 1.1 2007/01/30 21:42:21 leonardop Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xsl-stylesheets/docbook-xsl-stylesheets-1.72.0.ebuild,v 1.2 2007/04/13 07:26:49 grobian Exp $
 
 EAPI="prefix"
 
