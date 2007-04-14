@@ -1,6 +1,27 @@
 # ChangeLog for sys-devel/gdb
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.108 2007/03/04 23:33:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.114 2007/04/06 16:14:49 jer Exp $
+
+  06 Apr 2007; Jeroen Roovers <jer@gentoo.org> gdb-6.6-r2.ebuild:
+  Stable for HPPA (bug #144833).
+
+  06 Apr 2007; Peter Weller <welp@gentoo.org> gdb-6.6-r2.ebuild:
+  Stable on amd64 wrt bug 144833
+
+  06 Apr 2007; Christian Faulhammer <opfer@gentoo.org> gdb-6.6-r2.ebuild:
+  stable x86, security bug 144833
+
+  05 Apr 2007; Markus Rothe <corsair@gentoo.org> gdb-6.6-r2.ebuild:
+  Stable on ppc64; bug #144833
+
+*gdb-6.6-r2 (31 Mar 2007)
+
+  31 Mar 2007; Mike Frysinger <vapier@gentoo.org> +gdb-6.6-r2.ebuild:
+  Fix .gdbinit checks #169609 and add stack overflow checks #144833 by Tavis
+  Ormandy.
+
+  16 Mar 2007; Jose Luis Rivero <yoswink@gentoo.org> gdb-6.6.ebuild:
+  Stable on alpha wrt bug #164336
 
 *gdb-6.6-r1 (04 Mar 2007)
 
