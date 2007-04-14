@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8d.ebuild,v 1.20 2007/02/21 04:59:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8d.ebuild,v 1.22 2007/04/13 01:56:06 vapier Exp $
 
 EAPI="prefix"
 
@@ -68,13 +68,12 @@ src_compile() {
 	tc-export CC AR RANLIB
 
 	# Clean out patent-or-otherwise-encumbered code
-	# MDC-2: 4,908,861 13/03/2007
 	# IDEA:  5,214,703 25/05/2010
 	# RC5:   5,724,428 03/03/2015
 	# EC:    ????????? ??/??/2015
 	local confopts=""
 	if use bindist ; then
-		confopts="no-idea no-rc5 no-mdc2 no-ec"
+		confopts="no-idea no-rc5 no-ec"
 	else
 		confopts="enable-idea enable-rc5 enable-mdc2 enable-ec"
 	fi
@@ -151,8 +150,9 @@ src_install() {
 	# Namespace openssl programs to prevent conflicts with other man pages
 	cd "${ED}"/usr/share/man
 	local m d s
-	for m in $(find . -type f -printf '%P ' | xargs grep -L '#include') ; do
-		d=${m%/*} ; m=${m##*/}
+	for m in $(find . -type f | xargs grep -L '#include') ; do
+		d=${m%/*} ; d=${d#./} ; m=${m##*/}
+		[[ ${m} == openssl.1* ]] && continue
 		mv ${d}/{,ssl-}${m}
 		ln -s ssl-${m} ${d}/openssl-${m}
 		# locate any symlinks that point to this man page
