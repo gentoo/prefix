@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/faac-1.24-r3.ebuild,v 1.10 2007/03/17 13:34:57 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/faac-1.24-r4.ebuild,v 1.1 2007/03/12 03:39:03 dirtyepic Exp $
 
 EAPI="prefix"
 
@@ -26,8 +26,9 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}/${P}-tracknumber.patch"
-	epatch "${FILESDIR}/${P}-as-needed.patch"
+	epatch "${FILESDIR}"/${P}-tracknumber.patch
+	epatch "${FILESDIR}"/${P}-as-needed.patch
+	epatch "${FILESDIR}"/${P}-fixnoise-hang.patch
 
 	eautoreconf
 	elibtoolize

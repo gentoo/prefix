@@ -1,6 +1,40 @@
 # ChangeLog for media-libs/faac
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/ChangeLog,v 1.41 2007/02/13 12:19:01 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/ChangeLog,v 1.49 2007/03/25 13:18:41 drac Exp $
+
+  25 Mar 2007; Samuli Suominen <drac@gentoo.org> faac-1.25.ebuild:
+  Replace recode with sed for bug 171373, thanks to Arfrever Frehtes Taifersar
+  Arahesis.
+
+*faac-1.25 (17 Mar 2007)
+
+  17 Mar 2007; Steve Dibb <beandog@gentoo.org>
+  +files/faac-1.25-external-libmp4v2.patch, +faac-1.25.ebuild:
+  version bump, bug 152718, thanks to Tim Harder, Christian Shcmidt and
+  stephan for ebuilds and patches
+
+  17 Mar 2007; Steve Dibb <beandog@gentoo.org> faac-1.24-r3.ebuild:
+  amd64 stable
+
+*faac-1.24-r4 (12 Mar 2007)
+
+  12 Mar 2007; Ryan Hill <dirtyepic@gentoo.org>
+  +files/faac-1.24-fixnoise-hang.patch, +faac-1.24-r4.ebuild:
+  Added patch to fix infinite loop when converting MS encoded WAV files.
+  Thanks to Heitzso for bug #103444.
+
+  10 Mar 2007; Matti Bickel <mabi@gentoo.org> faac-1.24-r3.ebuild:
+  ppc stable (bug #166539)
+
+  09 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> faac-1.24-r3.ebuild:
+  Stable on sparc
+
+  28 Feb 2007; Simon Stelling <blubb@gentoo.org> faac-1.24-r2.ebuild:
+  stable on amd64; bug 166539
+
+  17 Feb 2007; Fabian Groffen <grobian@gentoo.org> faac-1.24.ebuild,
+  faac-1.24-r2.ebuild, faac-1.24-r3.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   13 Feb 2007; Christian Faulhammer <opfer@gentoo.org> faac-1.24-r3.ebuild:
   stable x86; bug 166539
