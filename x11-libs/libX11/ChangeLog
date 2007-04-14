@@ -1,6 +1,26 @@
 # ChangeLog for x11-libs/libX11
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.63 2007/04/05 06:54:21 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.69 2007/04/13 15:42:18 dertobi123 Exp $
+
+  13 Apr 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  libX11-1.1.1-r1.ebuild:
+  ppc stable, bug #172752
+
+  12 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  libX11-1.1.1-r1.ebuild:
+  Stable on sparc wrt security #172752
+
+  11 Apr 2007; Jeroen Roovers <jer@gentoo.org> libX11-1.1.1-r1.ebuild:
+  Stable for HPPA (bug #172752).
+
+  11 Apr 2007; Raúl Porcel <armin76@gentoo.org> libX11-1.1.1-r1.ebuild:
+  ia64 + x86 stable wrt security bug 172752
+
+  11 Apr 2007; Peter Weller <welp@gentoo.org> libX11-1.1.1-r1.ebuild:
+  Stable on amd64 wrt bug 172752
+
+  11 Apr 2007; Markus Rothe <corsair@gentoo.org> libX11-1.1.1-r1.ebuild:
+  Stable on ppc64; bug #172752
 
 *libX11-1.1.1-r1 (05 Apr 2007)
 *libX11-1.0.3-r2 (05 Apr 2007)
