@@ -1,6 +1,9 @@
 # ChangeLog for net-irc/epic4
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/epic4/ChangeLog,v 1.70 2007/03/28 21:58:26 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/epic4/ChangeLog,v 1.71 2007/04/09 05:22:07 welp Exp $
+
+  09 Apr 2007; Peter Weller <welp@gentoo.org> epic4-2.6.ebuild:
+  Stable on amd64 wrt bug 170747
 
   28 Mar 2007; Raúl Porcel <armin76@gentoo.org> epic4-2.6.ebuild:
   ia64 stable wrt bug 170747
