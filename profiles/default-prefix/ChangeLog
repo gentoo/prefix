@@ -2,6 +2,10 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Apr 2007; Fabian Groffen <fabian@gentoo.org>
+  darwin/macos/10.3/package.mask:
+  Masked odcctools-20070412 because also that one fails
+
   12 Apr 2007; Fabian Groffen <grobian@gentoo.org> +darwin/macos/packages,
   darwin/macos/virtuals, virtuals:
   Say bye bye to virtual/gcc.  It was a not so good idea.
