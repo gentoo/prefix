@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/emboss/emboss-4.0.0.ebuild,v 1.7 2006/12/10 18:49:20 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/emboss/emboss-4.0.0.ebuild,v 1.8 2007/04/09 23:06:58 je_fro Exp $
 
 EAPI="prefix"
 
@@ -56,13 +56,10 @@ src_install() {
 			|| die "Failed to install documentation."
 
 	# Install env file for setting libplplot and acd files path.
-	insinto /etc/env.d
-	cp "${FILESDIR}"/22emboss-r1 "${T}"
-	( cd "${T}" && epatch "${FILESDIR}"/22emboss-r1-prefix.patch )
-	eprefixify "${T}"/22emboss-r1
-	newins "${T}"/22emboss-r1 22emboss || \
-			die "Failed to install environment file."
-	eprefixify "${ED}"/etc/env.d/22emboss
+	cp "${FILESDIR}"/22emboss "${T}"
+	( cd "${T}" && epatch "${FILESDIR}"/22emboss-prefix.patch )
+	eprefixify "${T}"/22emboss1
+	doenvd "${T}"/22emboss || die "Failed to install environment file."
 
 	# Symlink preinstalled docs to /usr/share/doc.
 	dosym /usr/share/EMBOSS/doc/manuals /usr/share/doc/${PF}/manuals || die
