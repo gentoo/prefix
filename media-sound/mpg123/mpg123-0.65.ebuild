@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-0.65.ebuild,v 1.2 2007/03/02 12:47:10 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-0.65.ebuild,v 1.8 2007/04/11 19:02:47 corsair Exp $
 
 EAPI="prefix"
 
@@ -60,10 +60,10 @@ src_compile() {
 	einfo "alsa oss sdl esd nas jack portaudio"
 	einfo "and recompile ${PN}."
 	epause 5
-	
+
 	econf \
 	      --with-optimization=0 \
-	      --with-audio=$audiodev \
+	      --with-audio=${audiodev} \
 	      ${myconf} || die "econf failed"
 
 	emake || die "emake failed"

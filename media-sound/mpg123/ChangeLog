@@ -1,6 +1,25 @@
 # ChangeLog for media-sound/mpg123
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.109 2007/03/02 12:47:10 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.115 2007/04/11 19:02:47 corsair Exp $
+
+  11 Apr 2007; Markus Rothe <corsair@gentoo.org> mpg123-0.65.ebuild:
+  Stable on ppc64; bug #113414
+
+  10 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> mpg123-0.65.ebuild:
+  Stable on sparc wrt #113414
+
+  10 Apr 2007; Jeroen Roovers <jer@gentoo.org> mpg123-0.65.ebuild:
+  Stable for HPPA (bug #113414) and cleaned up the script some more.
+
+  10 Apr 2007; Joseph Jezak <josejx@gentoo.org> mpg123-0.65.ebuild:
+  Marked ppc stable for bug #113414.
+
+  09 Apr 2007; Raúl Porcel <armin76@gentoo.org> mpg123-0.61.ebuild,
+  mpg123-0.65.ebuild:
+  x86 stable wrt bug 113414 and fix trailing whitespace
+
+  09 Apr 2007; Peter Weller <welp@gentoo.org> mpg123-0.65.ebuild:
+  Stable on amd64 wrt bug 113414
 
   02 Mar 2007; <genstef@gentoo.org> mpg123-0.59s-r11.ebuild,
   mpg123-0.61.ebuild, mpg123-0.65.ebuild:
