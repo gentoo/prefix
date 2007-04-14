@@ -1,6 +1,30 @@
 # ChangeLog for app-portage/gentoolkit-dev
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.47 2007/01/19 19:41:05 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.53 2007/03/26 16:12:35 fuzzyray Exp $
+
+  26 Mar 2007; Paul Varner <fuzzyray@gentoo.org>
+  files/digest-gentoolkit-dev-0.2.6.4, Manifest:
+  Fix digest and Manifest again
+
+  26 Mar 2007; Jeroen Roovers <jer@gentoo.org>
+  files/digest-gentoolkit-dev-0.2.6.4, Manifest:
+  Hopefully fix the digest and Manifest.
+
+*gentoolkit-dev-0.2.6.4 (25 Mar 2007)
+
+  25 Mar 2007; Paul Varner <fuzzyray@gentoo.org>
+  -gentoolkit-dev-0.2.6.3.ebuild, +gentoolkit-dev-0.2.6.4.ebuild:
+  Version bump to remove buggy subversion patch and make Makefile more portable
+
+*gentoolkit-dev-0.2.6.3 (21 Mar 2007)
+
+  21 Mar 2007; Paul Varner <fuzzyray@gentoo.org>
+  +gentoolkit-dev-0.2.6.3.ebuild:
+  revbump to add subversion support to echangelog (Bug #136048)
+
+  20 Jan 2007; Paul Varner <fuzzyray@gentoo.org>
+  -gentoolkit-dev-0.2.5.ebuild, -gentoolkit-dev-0.2.6.1.ebuild:
+  Removed older ebuilds which install epkgmove
 
   19 Jan 2007; Alexander H. Færøy <eroyf@gentoo.org>
   gentoolkit-dev-0.2.6.2.ebuild:
