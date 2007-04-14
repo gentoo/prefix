@@ -1,6 +1,26 @@
 # ChangeLog for sys-devel/m4
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/ChangeLog,v 1.73 2007/02/20 19:53:39 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/ChangeLog,v 1.79 2007/03/26 13:40:37 gustavoz Exp $
+
+  26 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> m4-1.4.8.ebuild:
+  Stable on sparc wrt #172005
+
+  26 Mar 2007; Jeroen Roovers <jer@gentoo.org> m4-1.4.8.ebuild:
+  Stable for HPPA (bug #172005).
+
+  24 Mar 2007; Joseph Jezak <josejx@gentoo.org> m4-1.4.8.ebuild:
+  Marked ppc stable for bug #172005.
+
+  24 Mar 2007; Andrej Kacian <ticho@gentoo.org> m4-1.4.8.ebuild:
+  Stable on x86, bug #172005.
+
+  24 Mar 2007; Markus Rothe <corsair@gentoo.org> m4-1.4.8.ebuild:
+  Stable on ppc64; bug #172005
+
+*m4-1.4.9 (24 Mar 2007)
+
+  24 Mar 2007; Mike Frysinger <vapier@gentoo.org> m4-1.4.9.ebuild:
+  Version bump.
 
   20 Feb 2007; Alexander H. Færøy <eroyf@gentoo.org> m4-1.4.7.ebuild:
   Stable on MIPS; bug #156293

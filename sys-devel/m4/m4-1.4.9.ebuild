@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.8.ebuild,v 1.8 2007/03/26 13:40:37 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.9.ebuild,v 1.2 2007/03/24 07:03:14 vapier Exp $
 
 EAPI="prefix"
 
@@ -19,12 +19,6 @@ IUSE="nls"
 # remember: cannot dep on autoconf since it needs us
 DEPEND="nls? ( sys-devel/gettext )"
 RDEPEND=""
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-darwin7.patch
-}
 
 src_compile() {
 	local myconf=""
