@@ -1,6 +1,13 @@
 # ChangeLog for sys-fs/e2fsprogs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.95 2007/01/26 22:40:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.96 2007/03/24 08:52:42 vapier Exp $
+
+*e2fsprogs-1.39-r2 (24 Mar 2007)
+
+  24 Mar 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/e2fsprogs-1.39-blkid-memleak.patch, +e2fsprogs-1.39-r2.ebuild:
+  Grab fix from upstream for blkid memleak #171844 by Andrej Filipcic and drop
+  ext4 support #167562 by Maurice Volaski.
 
   26 Jan 2007; Mike Frysinger <vapier@gentoo.org>
   files/e2fsprogs-1.39-makefile.patch:

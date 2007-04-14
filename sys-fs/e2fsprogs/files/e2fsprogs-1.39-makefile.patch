@@ -70,14 +70,3 @@
 -	@$(LN_S) -f $(ELF_INSTALL_DIR)/$(ELF_SONAME) \
 +	@$(LN_S) -f $(ELF_SONAME) \
  		$(DESTDIR)$(libdir)/$(ELF_IMAGE).so
---- doc/Makefile.in
-+++ doc/Makefile.in
-@@ -26,8 +26,6 @@
- 		echo "	INSTALL_DATA $(infodir)/$$i" ; \
- 		$(INSTALL_DATA) $$i $(DESTDIR)$(infodir)/$$i ; \
- 	done
--	@echo "	GZIP $(infodir)/libext2fs.info*"
--	@gzip -9 $(DESTDIR)$(infodir)/libext2fs.info*
- 
- uninstall-doc-libs:
- 	$(RM) -rf $(DESTDIR)$(infodir)/libext2fs.info*

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.39-r1.ebuild,v 1.4 2007/03/24 08:51:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.39-r2.ebuild,v 1.1 2007/03/24 08:52:42 vapier Exp $
 
 EAPI="prefix"
 
@@ -8,8 +8,7 @@ inherit eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="Standard EXT2 and EXT3 filesystem utilities"
 HOMEPAGE="http://e2fsprogs.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz
-	http://www.bullopensource.org/ext4/patches/ext4-e2fsprogs-1.39.patch.tar"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -26,6 +25,7 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}"/${P}-blkid-memleak.patch #171844
 	# Fix locale issues while running tests #99766
 	epatch "${FILESDIR}"/${PN}-1.38-tests-locale.patch
 	epatch "${FILESDIR}"/${PN}-1.38-locale.patch #131462
@@ -38,9 +38,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/e2fsprogs-1.39-parse-types.patch #146903
 	# Fixes libintl handling on non-glibc #122368
 	epatch "${FILESDIR}"/${PN}-1.39-libintl.patch
-	# Add ext4 support #156697
-	epatch $(sed -e 's:^:patches/:g' patches/series)
-	epatch "${FILESDIR}"/e2fsprogs-1.39-ext4-prototypes.patch
 	# Fixes sysconfdir being used in prefix correctly
 	epatch "${FILESDIR}"/e2fsprogs-1.39-sysconfdir.patch
 
