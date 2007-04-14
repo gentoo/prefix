@@ -1,6 +1,9 @@
 # ChangeLog for net-analyzer/nessus-core
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nessus-core/ChangeLog,v 1.110 2007/04/03 14:34:03 vanquirius Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nessus-core/ChangeLog,v 1.111 2007/04/11 13:42:29 welp Exp $
+
+  11 Apr 2007; Peter Weller <welp@gentoo.org> nessus-core-2.2.9.ebuild:
+  Keyworded ~x86-fbsd wrt bug 172890
 
 *nessus-core-2.2.9 (03 Apr 2007)
 
