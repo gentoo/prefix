@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.0-r2.ebuild,v 1.2 2007/03/31 17:50:14 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2_rc1.ebuild,v 1.5 2007/01/17 19:39:57 grobian Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils elisp-common
+inherit flag-o-matic eutils elisp-common wxwidgets
 
-MY_P="${P}.0"
+MY_P="${P/_/.}"
 
 DESCRIPTION="Command-line driven interactive plotting program"
 HOMEPAGE="http://www.gnuplot.info/"
@@ -14,10 +14,10 @@ SRC_URI="mirror://sourceforge/gnuplot/${MY_P}.tar.gz"
 
 LICENSE="gnuplot"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
-IUSE="doc emacs gd ggi pdf plotutils png readline svga X xemacs"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
+IUSE="doc emacs gd ggi pdf plotutils png readline svga X xemacs wxwindows"
 
-DEPEND="
+RDEPEND="
 	xemacs? ( virtual/xemacs )
 	emacs? ( virtual/emacs !app-emacs/gnuplot-mode )
 	pdf? ( media-libs/pdflib )
@@ -25,25 +25,34 @@ DEPEND="
 	png? ( media-libs/libpng )
 	gd? ( >=media-libs/gd-2 )
 	doc? ( virtual/tetex )
-	X? ( || ( x11-libs/libXaw virtual/x11 ) )
+	X? ( x11-libs/libXaw )
 	svga? ( media-libs/svgalib )
 	readline? ( >=sys-libs/readline-4.2 )
-	plotutils? ( media-libs/plotutils )"
+	plotutils? ( media-libs/plotutils )
+	wxwindows? ( =x11-libs/wxGTK-2.6*
+		>=x11-libs/cairo-0.9
+		>=x11-libs/pango-1.10.3
+		>=x11-libs/gtk+-2.8 )"
+DEPEND="${RDEPEND}
+	dev-util/pkgconfig"
 
 S=${WORKDIR}/${MY_P}
 
 E_SITEFILE="50gnuplot-gentoo.el"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/header-order.patch
-	epatch "${FILESDIR}"/pdflib-6-compat.patch
-	epatch "${FILESDIR}"/${P}-filled-arrow.patch
-	epatch "${FILESDIR}"/${P}-libggi.patch
-}
+#src_unpack() {
+#	unpack ${A}
+#	cd ${S}
+#	epatch ${FILESDIR}/header-order.patch
+#	epatch ${FILESDIR}/pdflib-6-compat.patch
+#}
 
 src_compile() {
+	if use wxwindows; then
+		WX_GTK_VER="2.6"
+		need-wxwidgets unicode
+	fi
+
 	# gnuplot doesn't compile if several -m's are set (compiler crash)
 	[[ ${CHOST} == powerpc-apple-darwin* ]] && filter-flags -m*
 
@@ -52,6 +61,7 @@ src_compile() {
 	myconf="${myconf} $(use_with X x)"
 	myconf="${myconf} $(use_with svga linux-vga)"
 	myconf="${myconf} $(use_with gd)"
+	myconf="${myconf} $(use_with wxwindows wxwidgets)"
 	myconf="${myconf} $(use_with plotutils plot "${EPREFIX}"/usr/lib)"
 	myconf="${myconf} $(use_with png png "${EPREFIX}"/usr/lib)"
 	myconf="${myconf} $(use_with pdf pdf "${EPREFIX}"/usr/lib)"

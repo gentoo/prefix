@@ -1,6 +1,10 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.10 2007/02/26 14:22:33 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.11 2007/03/31 17:50:14 drac Exp $
+
+  31 Mar 2007; Samuli Suominen <drac@gentoo.org>
+  +files/gnuplot-4.0-libggi.patch, gnuplot-4.0-r2.ebuild:
+  Fix building with libggi-2.2.2, patch from bug 126400 by Kimura Masaru.
 
 *gnuplot-4.0-r2 (26 Feb 2007)
 
