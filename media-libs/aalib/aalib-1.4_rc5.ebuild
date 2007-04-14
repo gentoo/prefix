@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/aalib-1.4_rc5.ebuild,v 1.17 2007/02/13 05:34:53 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/aalib-1.4_rc5.ebuild,v 1.18 2007/02/17 17:21:56 grobian Exp $
 
 EAPI="prefix"
 
@@ -44,7 +44,7 @@ src_compile() {
 		$(use_with slang slang-driver) \
 		$(use_with X x11-driver) \
 		|| die
-	if use userland_Darwin && use X; then
+	if [[ ${CHOST} == *-darwin* ]] && use X; then
 		sed -i -e 's:aafire_LDFLAGS =:aafire_LDFLAGS = -undefined define_a_way:' \
 		${S}/src/Makefile || die "Failed to edit Makefile for X compatibility"
 	fi
