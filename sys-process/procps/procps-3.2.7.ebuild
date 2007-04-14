@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/procps-3.2.7.ebuild,v 1.8 2007/04/01 10:07:02 hansmi Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/procps-3.2.7.ebuild,v 1.9 2007/04/09 05:20:16 welp Exp $
 
 EAPI="prefix"
 
