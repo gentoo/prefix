@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/gperf
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gperf/ChangeLog,v 1.31 2007/04/07 16:31:54 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gperf/ChangeLog,v 1.32 2007/04/08 08:47:42 opfer Exp $
+
+  08 Apr 2007; Christian Faulhammer <opfer@gentoo.org> gperf-2.7.2.ebuild,
+  gperf-3.0.1.ebuild:
+  correct mirror:// syntax
 
   07 Apr 2007; Christian Faulhammer <opfer@gentoo.org> gperf-2.7.2.ebuild,
   gperf-3.0.1.ebuild, gperf-3.0.2.ebuild:
