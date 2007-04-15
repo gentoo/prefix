@@ -10,7 +10,7 @@ PATCHSET_REV="-r2"
 
 DESCRIPTION="a small but very powerful text-based mail client"
 HOMEPAGE="http://www.mutt.org"
-SRC_URI="http://dev.mutt.org/nightlies/mutt-20070409.tar.gz
+SRC_URI="http://dev.mutt.org/nightlies/mutt-${PV#*_p}.tar.gz
 	!vanilla? (
 		mirror://gentoo/mutt-1.5.15-gentoo-patches${PATCHSET_REV}.tar.bz2
 	)"
@@ -60,8 +60,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}" || die "unpack failed"
 
-	epatch "${FILESDIR}"/mutt-1.5.15-change-folder-crash.patch
-
 	epatch "${FILESDIR}"/mutt-1.5.13-smarttime.patch
 	# this patch is non-generic and only works because we use a sysconfdir
 	# different from the one used by the mailbase ebuild
@@ -70,8 +68,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.14-change-folder-next.patch
 
 	if ! use vanilla ; then
-		epatch "${FILESDIR}"/${P%_p*}-parallel-make.patch
-
 		if ! use nntp ; then
 			rm "${PATCHDIR}"/07-nntp.patch
 		fi
