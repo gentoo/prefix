@@ -171,7 +171,7 @@ src_compile() {
 	fi
 
 	econf ${myconf} || die "configure failed"
-	emake || die "make failed"
+	emake -j1 || die "make failed"
 }
 
 src_install() {
