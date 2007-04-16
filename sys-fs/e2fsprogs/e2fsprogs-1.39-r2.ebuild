@@ -40,6 +40,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.39-libintl.patch
 	# Fixes sysconfdir being used in prefix correctly
 	epatch "${FILESDIR}"/e2fsprogs-1.39-sysconfdir.patch
+	# -r1 doesn't have this, so can't use one patch
+	epatch "${FILESDIR}"/e2fsprogs-1.39-more-sysconfdir.patch
 
 	# kernel headers use the same defines as e2fsprogs and can cause issues #48829
 	sed -i \
