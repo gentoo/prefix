@@ -4,14 +4,13 @@
 
 EAPI="prefix"
 
+RESTRICT="mirror"
+
 inherit eutils toolchain-funcs multilib
 
 DESCRIPTION="Baselayout and init scripts (eventually)"
 HOMEPAGE="http://www.gentoo.org/"
-SRC_URI="mirror://gentoo/${P/-prefix/}.tar.bz2
-	http://dev.gentoo.org/~uberlord/baselayout/${P/-prefix/}.tar.bz2
-	http://dev.gentoo.org/~azarah/baselayout/${P/-prefix/}.tar.bz2
-	http://dev.gentoo.org/~vapier/dist/${P/-prefix/}.tar.bz2"
+SRC_URI="http://dev.gentoo.org/~grobian/distfiles/${P/-prefix/}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
