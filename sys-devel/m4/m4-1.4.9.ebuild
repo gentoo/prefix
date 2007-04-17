@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.9.ebuild,v 1.4 2007/04/12 18:49:21 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.9.ebuild,v 1.5 2007/04/17 00:35:11 vapier Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
-IUSE="nls"
+IUSE="examples nls"
 
 # remember: cannot dep on autoconf since it needs us
 DEPEND="nls? ( sys-devel/gettext )"
@@ -45,5 +45,10 @@ src_install() {
 	[[ ${USERLAND} != "GNU" ]] && [[ ${PREFIX/\//} != "" ]] || \
 		dosym /usr/bin/m4 /usr/bin/gm4
 	dodoc BACKLOG ChangeLog NEWS README* THANKS TODO
+	if use examples ; then
+		docinto examples
+		dodoc examples/*
+		rm -f "${ED}"/usr/share/doc/${PF}/examples/Makefile*
+	fi
 	rm -f "${ED}"/usr/lib/charset.alias #172864
 }
