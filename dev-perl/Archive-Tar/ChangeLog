@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Archive-Tar
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Tar/ChangeLog,v 1.72 2007/03/05 11:10:33 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Tar/ChangeLog,v 1.73 2007/04/15 20:26:39 corsair Exp $
+
+  15 Apr 2007; Markus Rothe <corsair@gentoo.org> Archive-Tar-1.30.ebuild:
+  Stable on ppc64
 
   05 Mar 2007; Andrej Kacian <ticho@gentoo.org> Archive-Tar-1.30.ebuild:
   Stable on x86, bug #169152.
