@@ -1,6 +1,13 @@
 # ChangeLog for app-antivirus/clamav
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.228 2007/04/13 20:56:34 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.230 2007/04/16 13:46:34 ticho Exp $
+
+  16 Apr 2007; Andrej Kacian <ticho@gentoo.org> files/clamav-0.90-nls.patch:
+  Fix compile error with -nls, introduced by my nls patch. Bug #174787, by
+  Philipp Riegger <stoile at anderedomain.de>.
+
+  15 Apr 2007; Markus Rothe <corsair@gentoo.org> clamav-0.90.2.ebuild:
+  Stable on ppc64; bug #174375
 
   13 Apr 2007; Andrej Kacian <ticho@gentoo.org> files/clamd.rc:
   Chown freshclam.log to correct user. Patch by Jeremy Huddleston <eradicator
