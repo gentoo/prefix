@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/docutils
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.61 2007/04/04 18:28:41 pythonhead Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.62 2007/04/16 07:24:18 corsair Exp $
+
+  16 Apr 2007; Markus Rothe <corsair@gentoo.org> docutils-0.4-r1.ebuild:
+  Stable on ppc64
 
   04 Apr 2007; Rob Cakebread <pythonhead@gentoo.org>
   +files/docutils-0.4-python-2.5-fix.patch, docutils-0.4.ebuild,
