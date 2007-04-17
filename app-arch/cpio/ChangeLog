@@ -1,6 +1,12 @@
 # ChangeLog for app-arch/cpio
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.54 2007/04/01 10:23:34 hansmi Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.56 2007/04/15 19:45:08 corsair Exp $
+
+  15 Apr 2007; Markus Rothe <corsair@gentoo.org> cpio-2.7-r1.ebuild:
+  Stable on ppc64
+
+  11 Apr 2007; Jeroen Roovers <jer@gentoo.org> cpio-2.7-r1.ebuild:
+  Stable for HPPA too.
 
   01 Apr 2007; Michael Hanselmann <hansmi@gentoo.org> cpio-2.7-r1.ebuild:
   Stable on ppc.
