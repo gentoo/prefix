@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/scons
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.43 2007/04/04 03:12:48 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.44 2007/04/14 12:58:53 genstef Exp $
+
+*scons-0.96.96 (14 Apr 2007)
+
+  14 Apr 2007; Stefan Schweizer <genstef@gentoo.org> -scons-0.96.95.ebuild,
+  +scons-0.96.96.ebuild:
+  version bump
 
   04 Apr 2007; Jeroen Roovers <jer@gentoo.org> scons-0.96.94.ebuild:
   Stable for HPPA (bug #173281).

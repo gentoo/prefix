@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/scons-0.96.95.ebuild,v 1.1 2007/03/02 12:52:03 twp Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/scons-0.96.96.ebuild,v 1.1 2007/04/14 12:58:53 genstef Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ HOMEPAGE="http://www.scons.org/"
 
 SLOT="0"
 LICENSE="as-is"
-KEYWORDS="~x86 ~amd64 ~ia64 ~ppc-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
 IUSE=""
 
 DOCS="RELEASE.txt CHANGES.txt LICENSE.txt"
