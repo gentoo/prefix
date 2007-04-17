@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/ExtUtils-CBuilder
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/ExtUtils-CBuilder/ChangeLog,v 1.41 2007/03/05 11:46:00 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/ExtUtils-CBuilder/ChangeLog,v 1.42 2007/04/15 21:33:18 corsair Exp $
+
+  15 Apr 2007; Markus Rothe <corsair@gentoo.org>
+  ExtUtils-CBuilder-0.18.ebuild:
+  Stable on ppc64
 
   05 Mar 2007; Andrej Kacian <ticho@gentoo.org>
   ExtUtils-CBuilder-0.18.ebuild:
