@@ -1,6 +1,10 @@
 # ChangeLog for mail-client/mailx-support
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mailx-support/ChangeLog,v 1.14 2007/04/07 13:15:49 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mailx-support/ChangeLog,v 1.15 2007/04/16 07:32:13 corsair Exp $
+
+  16 Apr 2007; Markus Rothe <corsair@gentoo.org>
+  mailx-support-20060102-r1.ebuild:
+  Stable on ppc64
 
   07 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
   mailx-support-20060102-r1.ebuild:
