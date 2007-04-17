@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/mime-types
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mime-types/ChangeLog,v 1.61 2007/04/06 08:37:45 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mime-types/ChangeLog,v 1.62 2007/04/15 19:57:16 corsair Exp $
+
+  15 Apr 2007; Markus Rothe <corsair@gentoo.org> mime-types-7.ebuild:
+  Stable on ppc64
 
   06 Apr 2007; Tobias Scherbaum <dertobi123@gentoo.org> mime-types-7.ebuild:
   ppc stable
