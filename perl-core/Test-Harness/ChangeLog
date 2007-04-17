@@ -1,6 +1,9 @@
 # ChangeLog for perl-core/Test-Harness
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Harness/ChangeLog,v 1.28 2007/03/03 20:37:25 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Harness/ChangeLog,v 1.29 2007/04/15 21:07:56 corsair Exp $
+
+  15 Apr 2007; Markus Rothe <corsair@gentoo.org> Test-Harness-2.64.ebuild:
+  Stable on ppc64
 
   03 Mar 2007; Andrej Kacian <ticho@gentoo.org> Test-Harness-2.64.ebuild:
   Stable on x86, bug #169153.
