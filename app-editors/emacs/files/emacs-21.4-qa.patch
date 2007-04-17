@@ -1,0 +1,92 @@
+diff -ur emacs-21.4-orig/lib-src/cvtmail.c emacs-21.4/lib-src/cvtmail.c
+--- emacs-21.4-orig/lib-src/cvtmail.c	2002-02-15 13:06:48.000000000 +0100
++++ emacs-21.4/lib-src/cvtmail.c	2007-03-19 09:02:08.000000000 +0100
+@@ -33,12 +33,15 @@
+  * Author: Larry Kolodney, 1985
+  */
+ 
++#ifdef HAVE_CONFIG_H
++#include <config.h>
++#endif
+ 
+ #include <stdio.h>
+ 
+-char *malloc ();
+-char *realloc ();
++#ifndef HAVE_STDLIB_H
+ char *getenv ();
++#endif
+ 
+ char *xmalloc ();
+ char *xrealloc ();
+diff -ur emacs-21.4-orig/lib-src/yow.c emacs-21.4/lib-src/yow.c
+--- emacs-21.4-orig/lib-src/yow.c	1999-02-26 12:37:05.000000000 +0100
++++ emacs-21.4/lib-src/yow.c	2007-03-19 09:03:50.000000000 +0100
+@@ -10,6 +10,10 @@
+  * With dynamic memory allocation.
+  */
+ 
++#ifdef HAVE_CONFIG_H
++#include <config.h>
++#endif
++
+ #include <stdio.h>
+ #include <ctype.h>
+ #include <../src/epaths.h>      /* For PATH_DATA.  */
+@@ -33,8 +37,6 @@
+     &res;})
+ #endif
+ 
+-char *malloc(), *realloc();
+-
+ void yow();
+ void setup_yow();
+ 
+diff -ur emacs-21.4-orig/src/prefix-args.c emacs-21.4/src/prefix-args.c
+--- emacs-21.4-orig/src/prefix-args.c	2001-02-22 02:49:37.000000000 +0100
++++ emacs-21.4/src/prefix-args.c	2007-03-19 09:20:27.000000000 +0100
+@@ -43,6 +43,10 @@
+    If I can't write a completely portable program to do this in C,
+    I'm quitting and taking up gardening.  */
+ 
++#ifdef HAVE_CONFIG_H
++# include <config.h>
++#endif
++
+ #include <stdio.h>
+ 
+ int
+diff -ur emacs-21.4-orig/src/xterm.c emacs-21.4/src/xterm.c
+--- emacs-21.4-orig/src/xterm.c	2002-10-15 16:21:45.000000000 +0200
++++ emacs-21.4/src/xterm.c	2007-03-19 09:13:01.000000000 +0100
+@@ -10899,7 +10899,7 @@
+ 		    if (!tool_bar_p)
+ 		      if (!dpyinfo->x_focus_frame
+ 			  || f == dpyinfo->x_focus_frame)
+-			construct_mouse_click (&emacs_event, &event, f);
++			construct_mouse_click (&emacs_event, &event.xbutton, f);
+ 		  }
+ 		else
+ 		  {
+diff -ur emacs-21.4-orig/oldXMenu/ChgPane.c emacs-21.4/oldXMenu/ChgPane.c
+--- emacs-21.4-orig/oldXMenu/ChgPane.c	1999-10-03 21:34:53.000000000 +0200
++++ emacs-21.4/oldXMenu/ChgPane.c	2007-03-19 15:10:00.000000000 +0100
+@@ -13,6 +13,7 @@
+  *
+  */
+ 
++#include <config.h>
+ #include "XMenuInt.h"
+ 
+ int
+diff -ur emacs-21.4-orig/oldXMenu/ChgSel.c emacs-21.4/oldXMenu/ChgSel.c
+--- emacs-21.4-orig/oldXMenu/ChgSel.c	1999-10-03 21:34:54.000000000 +0200
++++ emacs-21.4/oldXMenu/ChgSel.c	2007-03-19 15:10:02.000000000 +0100
+@@ -13,6 +13,7 @@
+  *
+  */
+ 
++#include <config.h>
+ #include "XMenuInt.h"
+ 
+ int

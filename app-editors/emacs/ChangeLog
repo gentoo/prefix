@@ -1,6 +1,18 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.130 2007/03/26 08:57:46 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.132 2007/04/16 16:31:46 opfer Exp $
+
+*emacs-21.4-r12 (16 Apr 2007)
+
+  16 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
+  +files/emacs-21.4-qa.patch, +emacs-21.4-r12.ebuild:
+  prepared for the new eselect module; qa patch to shut down QA warnings
+
+*emacs-18.59-r4 (16 Apr 2007)
+
+  16 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
+  +emacs-18.59-r4.ebuild:
+  prepared for the new eselect module
 
   26 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
   -files/60emacs-22.0.50.envd:
