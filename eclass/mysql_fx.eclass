@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql_fx.eclass,v 1.18 2007/01/12 20:51:28 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql_fx.eclass,v 1.19 2007/04/15 12:18:49 robbat2 Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: Luca Longinotti <chtekk@gentoo.org>
@@ -56,8 +56,16 @@ mysql_check_version_range() {
 # True if at least one applicable range is found for the patch.
 #
 _mysql_test_patch_ver_pn() {
-	local filesdir="${WORKDIR}/mysql-extras"
 	local allelements=", version, package name"
+	# So that it fails the directory test if none of them exist
+	local filesdir="/dev/null" 
+	for d in "${WORKDIR}/mysql-extras-${MY_EXTRAS_VER}" \
+		"${WORKDIR}/mysql-extras" ; do
+		if [ -d "${d}" ]; then
+			filesdir="${d}"
+			break
+		fi
+	done
 
 	[[ -d "${filesdir}" ]] || die "Source dir must be a directory"
 	local flags=$1 pname=$2
@@ -85,9 +93,29 @@ _mysql_test_patch_ver_pn() {
 # If the patch applies, print its description.
 #
 mysql_mv_patches() {
-	local index_file="${1:-"${WORKDIR}/mysql-extras/000_index.txt"}"
+	# So that it fails the directory test if none of them exist
+	local filesdir="/dev/null"
+	if [[ -z "${1}" ]]; then
+		for d in "${WORKDIR}/mysql-extras-${MY_EXTRAS_VER}" \
+			"${WORKDIR}/mysql-extras" ; do
+			if [ -d "${d}" ]; then
+				filesdir="${d}"
+				break
+			fi
+		done
+		[[ -d "${filesdir}" ]] || die "No patches directory found!"
+	fi
+
+	local index_file="${1:-"${filesdir}/000_index.txt"}"
 	local my_ver="${2:-"${MYSQL_VERSION_ID}"}"
 	local my_test_fx=${3:-"_mysql_test_patch_ver_pn"}
+	_mysql_mv_patches "${index_file}" "${my_ver}" "${my_test_fx}"
+}
+
+_mysql_mv_patches() {
+	local index_file="${1}"
+	local my_ver="${2}"
+	local my_test_fx="${3}"
 	local dsc ndsc=0 i
 	dsc=( )
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/matrox.eclass,v 1.17 2007/04/12 18:49:00 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/matrox.eclass,v 1.18 2007/04/16 19:20:28 vapier Exp $
 #
 # Author: Donnie Berkholz <spyderous@gentoo.org>
 #
@@ -87,7 +87,7 @@ matrox_base_src_install() {
 matrox_base_pkg_postinst() {
 	if [ "${ROOT}" = "/" ]
 	then
-		/sbin/modules-update
+		/sbin/update-modules
 	fi
 
 	if [ ! -d /dev/video ]
