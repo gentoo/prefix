@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/cairo/cairo-1.3.12.ebuild,v 1.1 2007/01/20 20:23:54 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.4.4.ebuild,v 1.1 2007/04/15 15:32:13 cardoe Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ inherit eutils flag-o-matic libtool
 
 DESCRIPTION="A vector graphics library with cross-device output support"
 HOMEPAGE="http://cairographics.org/"
-SRC_URI="http://cairographics.org/snapshots/${P}.tar.gz"
+SRC_URI="http://cairographics.org/releases/${P}.tar.gz"
 
 LICENSE="|| ( LGPL-2.1 MPL-1.1 )"
 SLOT="0"
@@ -55,6 +55,10 @@ src_unpack() {
 src_compile() {
 	#gets rid of fbmmx.c inlining warnings
 	append-flags -finline-limit=1200
+
+	# get rid of Altivec stuff on PPC, it kills compilation
+	ewarn "Help grobian!  Do we still need to kill -m* flags here on ppc-macos?"
+	[[ ${CHOST} == powerpc-*-darwin* ]] && filter-flags -m*
 
 	econf $(use_enable X xlib) $(use_enable doc gtk-doc) \
 	  	  $(use_enable directfb) \
