@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.2.8.ebuild,v 1.6 2007/04/12 20:05:49 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.2.8.ebuild,v 1.8 2007/04/15 20:18:42 corsair Exp $
 
 EAPI="prefix"
 
@@ -75,7 +75,7 @@ src_install() {
 	# and causes collisions between the SLOTs, so kill it
 	rm "${ED}"/usr/$(get_libdir)/apr.exp
 
-	dodoc CHANGES NOTICE LICENSE
+	dodoc CHANGES NOTICE
 }
 
 pkg_postinst() {
