@@ -1,6 +1,10 @@
 # ChangeLog for media-sound/streamripper
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/streamripper/ChangeLog,v 1.43 2007/03/19 12:28:54 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/streamripper/ChangeLog,v 1.44 2007/04/16 07:41:55 corsair Exp $
+
+  16 Apr 2007; Markus Rothe <corsair@gentoo.org>
+  streamripper-1.61.27.ebuild:
+  Stable on ppc64
 
   19 Mar 2007; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
   Remove tcort from metadata.xml due to retirement.
