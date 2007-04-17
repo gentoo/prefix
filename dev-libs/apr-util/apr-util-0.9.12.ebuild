@@ -67,7 +67,7 @@ src_install() {
 	dodoc CHANGES NOTICE
 
 	# Will install as portage user when using userpriv. Fixing
-	chown -R root:0 ${ED}/usr/include/apr-0/
+	use prefix || chown -R root:0 ${ED}/usr/include/apr-0/
 
 	# This file is only used on AIX systems, which gentoo is not,
 	# and causes collisions between the SLOTs, so kill it
