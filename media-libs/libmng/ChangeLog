@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/libmng
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmng/ChangeLog,v 1.55 2007/02/15 21:45:12 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmng/ChangeLog,v 1.56 2007/04/14 18:38:59 vanquirius Exp $
+
+  14 Apr 2007; Marcelo Goes <vanquirius@gentoo.org>
+  -files/libmng-1.0.9-jpeg-compile.patch, -libmng-1.0.8-r2.ebuild,
+  -libmng-1.0.9.ebuild, libmng-1.0.9-r1.ebuild:
+  Clean-up old ebuilds, do not set RDEPEND=DEPEND.
 
   15 Feb 2007; Fabian Groffen <grobian@gentoo.org> libmng-1.0.8-r1.ebuild,
   libmng-1.0.8-r2.ebuild, libmng-1.0.9.ebuild, libmng-1.0.9-r1.ebuild:
