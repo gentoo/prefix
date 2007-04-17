@@ -8,3 +8,7 @@ x86-macos
 sparc-solaris
 x86-solaris
 mips-irix
+
+# this is a very special entry, which doesn't represent an arch, but
+# silences portage's "prefix not in IUSE" messages
+prefix
