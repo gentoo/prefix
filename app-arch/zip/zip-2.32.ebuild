@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/zip/zip-2.32.ebuild,v 1.7 2007/04/12 11:12:20 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/zip/zip-2.32.ebuild,v 1.8 2007/04/15 19:48:07 corsair Exp $
 
 EAPI="prefix"
 
