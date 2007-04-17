@@ -34,7 +34,7 @@ src_unpack() {
 
 	# Fix the config.layout
 	ebegin "Applying ${P}-config.layout.patch"
-	sed -i "s,prefix:        /usr/local/apr,prefix:        /usr," \
+	sed -i "s,prefix:        /usr/local/apr,prefix:        ${EPREFIX}/usr," \
 		"${S}"/config.layout
 	eend $?
 
@@ -59,9 +59,9 @@ src_compile() {
 	fi
 
 	econf \
-		--datadir=${EPREFIX}/usr/share/apr-util-0 \
-		--with-apr=${EPREFIX}/usr \
-		--with-expat=${EPREFIX}/usr \
+		--datadir="${EPREFIX}"/usr/share/apr-util-0 \
+		--with-apr="${EPREFIX}"/usr \
+		--with-expat="${EPREFIX}"/usr \
 		$myconf || die
 
 	emake || die
