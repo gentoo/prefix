@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/module-build/module-build-0.28.06.ebuild,v 1.3 2007/04/14 13:56:29 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/module-build/module-build-0.28.07.ebuild,v 1.1 2007/04/16 13:11:41 mcummings Exp $
 
 EAPI="prefix"
 
@@ -15,8 +15,8 @@ SRC_URI="mirror://cpan/authors/id/K/KW/KWILLIAMS/${MY_P}.tar.gz"
 
 LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
-IUSE=""
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
+IUSE="test"
 
 # Removing these as hard deps. They are listed as recommended in the Build.PL,
 # but end up causing a dep loop since they require module-build to be built.
@@ -26,6 +26,7 @@ PDEPEND=">=dev-perl/ExtUtils-CBuilder-0.15
 
 DEPEND="dev-lang/perl
 	dev-perl/yaml
+	test? ( <dev-perl/version-0.72.01 )
 	>=dev-perl/Archive-Tar-1.09"
 
 SRC_TEST="do"
