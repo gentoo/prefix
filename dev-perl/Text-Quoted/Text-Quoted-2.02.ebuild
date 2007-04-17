@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Quoted/Text-Quoted-2.02.ebuild,v 1.2 2007/04/09 16:45:10 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Quoted/Text-Quoted-2.02.ebuild,v 1.3 2007/04/14 15:05:21 mcummings Exp $
 
 EAPI="prefix"
 
