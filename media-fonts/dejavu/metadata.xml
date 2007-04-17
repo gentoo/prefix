@@ -2,4 +2,15 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>fonts</herd>
+<maintainer>
+ <email>pva@gentoo.org</email>
+ <name>Peter Volkov</name>
+</maintainer>
+<longdescription>
+The DejaVu fonts are a font family based on the Vera Fonts release 1.10. Its
+purpose is to provide a wider range of characters while maintaining the original
+look and feel through the process of collaborative development. Available
+families (Sans = sans serif, Mono = monospaced): DejaVu Sans, DejaVu Sans Mono,
+DejaVu Sans Condensed (experimental), DejaVu Serif, DejaVu Serif Condensed
+</longdescription>
 </pkgmetadata>
