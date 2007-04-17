@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/libsoundtouch-1.3.1-r1.ebuild,v 1.4 2007/04/13 06:08:19 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/libsoundtouch-1.3.1-r1.ebuild,v 1.5 2007/04/14 12:33:16 drac Exp $
 
 EAPI="prefix"
 
-inherit autotools
+inherit autotools flag-o-matic
 
 IUSE="sse"
 
@@ -30,8 +30,11 @@ src_unpack() {
 	eautoreconf
 
 	# Bug #148695
-	use sse \
-		|| sed -i -e '/^.*#define ALLOW_OPTIMIZATIONS.*$/d' "${S}"/include/STTypes.h
+	if use sse; then
+		append-flags -msse
+	else
+		sed -i -e '/^.*#define ALLOW_OPTIMIZATIONS.*$/d' "${S}"/include/STTypes.h
+	fi
 }
 
 src_compile() {
