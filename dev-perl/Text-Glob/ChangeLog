@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Text-Glob
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Glob/ChangeLog,v 1.24 2007/03/05 12:34:24 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Glob/ChangeLog,v 1.25 2007/04/16 06:30:06 corsair Exp $
+
+  16 Apr 2007; Markus Rothe <corsair@gentoo.org> Text-Glob-0.07.ebuild:
+  Stable on ppc64
 
   05 Mar 2007; Andrej Kacian <ticho@gentoo.org> Text-Glob-0.07.ebuild:
   Stable on x86, bug #169152.
