@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/text-autoformat/text-autoformat-1.13.ebuild,v 1.12 2007/03/05 12:56:55 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/text-autoformat/text-autoformat-1.13.ebuild,v 1.13 2007/04/16 07:19:21 corsair Exp $
 
 EAPI="prefix"
 
