@@ -83,11 +83,13 @@ src_unpack() {
 
 	strip-linguas $(eval $(grep ^LANGUAGES= configure) ; echo ${LANGUAGES//,/ })
 
-	ebegin "Allowing unpriviliged install"
-	sed -i \
-		-e 's/@man_install_flags@//g' \
-		${S}/src/Makefile.in
-	eend $?
+	if use prefix ; then
+		ebegin "Allowing unpriviliged install"
+		sed -i \
+			-e 's/@man_install_flags@//g' \
+			${S}/src/Makefile.in
+		eend $?
+	fi
 }
 
 src_compile() {
@@ -105,7 +107,7 @@ src_compile() {
 	fi
 
 	local myconf=
-	[[ ${EPREFIX%/} == "" ]] && myconf="${myconf} +sgid"
+	use prefix || myconf="${myconf} +sgid"
 
 	./configure \
 		-prefix="${EPREFIX}/usr" \
@@ -130,7 +132,7 @@ src_install() {
 	newexe "${T}"/makewhatis.cron makewhatis
 
 	keepdir /var/cache/man
-	[[ ${EPREFIX%/} == "" ]] && diropts -m0775 -g man || diropts -m0775
+	use prefix || diropts -m0775 -g man && diropts -m0775
 	local mansects=$(grep ^MANSECT "${ED}"/etc/man.conf | cut -f2-)
 	for x in ${mansects//:/ } ; do
 		keepdir /var/cache/man/cat${x}
@@ -138,11 +140,14 @@ src_install() {
 }
 
 pkg_postinst() {
-	einfo "Forcing sane permissions onto ${EROOT}/var/cache/man (Bug #40322)"
-	chown -R root:man "${EROOT}"/var/cache/man
+	if use !prefix ; then
+		einfo "Forcing sane permissions onto ${EROOT}/var/cache/man (Bug #40322)"
+		chown -R root:man "${EROOT}"/var/cache/man
+		[[ -e ${EROOT}/var/cache/man/whatis ]] \
+			&& chown root:0 "${EROOT}"/var/cache/man/whatis
+	fi
+
 	chmod -R g+w "${EROOT}"/var/cache/man
-	[[ -e ${EROOT}/var/cache/man/whatis ]] \
-		&& chown root:0 "${EROOT}"/var/cache/man/whatis
 
 	echo
 
