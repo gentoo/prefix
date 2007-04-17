@@ -1,6 +1,21 @@
 # ChangeLog for app-editors/emacs-cvs
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.99 2007/04/11 20:46:15 tester Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.102 2007/04/16 20:55:03 ulm Exp $
+
+  16 Apr 2007; Ulrich Mueller <ulm@gentoo.org> -files/emacs-22.0.50.desktop,
+  -files/emacs-23.0.0.desktop, -files/50emacs-23.0.0.envd,
+  -files/emacs-cvs-blessmail-build.patch,
+  -files/emacs-cvs-darwin-fsf-gcc.patch:
+  Clean up.
+
+*emacs-cvs-23.0.0-r6 (16 Apr 2007)
+*emacs-cvs-22.0.9999-r10 (16 Apr 2007)
+
+  16 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
+  +files/emacs-cvs-disable_alsa_detection.patch,
+  +emacs-cvs-22.0.9999-r10.ebuild, +emacs-cvs-23.0.0-r6.ebuild:
+  prepared for new eselect module, no more automagic dependencies, cleanups
+  and straighter ebuild. Taken from Emacs Overlay
 
   11 Apr 2007; <tester@gentoo.org> emacs-cvs-23.0.0-r1.ebuild:
   Commenting out non-working patch
