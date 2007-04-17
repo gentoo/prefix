@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/libvorbis
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/ChangeLog,v 1.71 2007/02/05 12:18:48 blubb Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/ChangeLog,v 1.72 2007/04/15 18:07:32 drac Exp $
+
+  15 Apr 2007; Samuli Suominen <drac@gentoo.org> -libvorbis-1.0.1-r2.ebuild,
+  libvorbis-1.1.0.ebuild, -libvorbis-1.1.1.ebuild:
+  Remove old versions and leave only mips with no working vorbis support. Bug
+  155258.
 
   05 Feb 2007; Simon Stelling <blubb@gentoo.org> libvorbis-1.1.2.ebuild:
   stable on amd64; bug 155258
