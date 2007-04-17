@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/faac
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/ChangeLog,v 1.49 2007/03/25 13:18:41 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/ChangeLog,v 1.50 2007/04/16 07:36:25 corsair Exp $
+
+  16 Apr 2007; Markus Rothe <corsair@gentoo.org> faac-1.24-r3.ebuild:
+  Stable on ppc64
 
   25 Mar 2007; Samuli Suominen <drac@gentoo.org> faac-1.25.ebuild:
   Replace recode with sed for bug 171373, thanks to Arfrever Frehtes Taifersar
