@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/CGI/CGI-3.27.ebuild,v 1.3 2007/04/14 16:28:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/CGI/CGI-3.28.ebuild,v 1.1 2007/04/16 11:12:15 mcummings Exp $
 
 EAPI="prefix"
 
@@ -9,7 +9,7 @@ inherit perl-module
 myconf="INSTALLDIRS=vendor"
 MY_P=${PN}.pm-${PV}
 DESCRIPTION="Simple Common Gateway Interface Class"
-HOMEPAGE="http://search.cpan.org/author/L/LD/LDS/CGI.pm-${PV}/"
+HOMEPAGE="http://search.cpan.org/~lds/"
 SRC_URI="mirror://cpan/authors/id/L/LD/LDS/${MY_P}.tar.gz"
 
 LICENSE="|| ( Artistic GPL-2 )"
@@ -17,7 +17,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
 IUSE=""
 
-DEPEND=">=dev-lang/perl-5.8.0-r12"
+DEPEND="dev-lang/perl"
 
 S=${WORKDIR}/${MY_P}
 

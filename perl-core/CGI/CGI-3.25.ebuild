@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/CGI/CGI-3.25.ebuild,v 1.6 2007/03/03 20:30:20 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/CGI/CGI-3.25.ebuild,v 1.7 2007/04/15 21:02:26 corsair Exp $
 
 EAPI="prefix"
 
