@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/speex
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/speex/ChangeLog,v 1.54 2007/03/22 17:15:36 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/speex/ChangeLog,v 1.55 2007/04/16 07:40:11 corsair Exp $
+
+  16 Apr 2007; Markus Rothe <corsair@gentoo.org> speex-1.1.12.ebuild:
+  Stable on ppc64
 
   22 Mar 2007; Steve Dibb <beandog@gentoo.org> -speex-1.1.5.ebuild:
   Remove old version
