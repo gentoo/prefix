@@ -44,8 +44,8 @@ src_compile() {
 	gl_cv_func_chown_follows_symlink=yes \
 	econf \
 		--enable-backup-scripts \
-		$(with_bindir) \
-		--libexecdir=${EPREFIX}/usr/sbin \
+		--bindir="${EPREFIX}"/bin \
+		--libexecdir="${EPREFIX}"/usr/sbin \
 		$(use_enable nls) \
 		${myconf} || die
 	emake || die "emake failed"
@@ -53,7 +53,7 @@ src_compile() {
 
 src_install() {
 	local p=""
-	use userland_GNU || [[ ${EPREFIX%/} != "" ]] || p=g
+	use userland_GNU || use prefix || p=g
 
 	emake DESTDIR="${D}" install || die "make install failed"
 
