@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
-DEPEND="app-arch/deb2targz" # platforms like AIX don't have a good ar
+DEPEND="kernel_AIX? ( app-arch/deb2targz )" # platforms like AIX don't have a good ar
 RDEPEND="dev-libs/openssl"
 
 S=${WORKDIR}
