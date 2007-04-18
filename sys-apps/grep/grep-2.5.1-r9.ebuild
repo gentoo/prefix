@@ -52,7 +52,7 @@ src_compile() {
 	fi
 
 	econf \
-		$(with_bindir) \
+		--bindir="${EPREFIX}"/bin \
 		$(use_enable nls) \
 		--disable-perl-regexp \
 		|| die "econf failed"

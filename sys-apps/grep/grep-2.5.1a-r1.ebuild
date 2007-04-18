@@ -48,7 +48,7 @@ src_compile() {
 	use static && append-ldflags -static
 
 	econf \
-		$(with_bindir) \
+		--bindir="${EPREFIX}"/bin \
 		$(use_enable nls) \
 		$(use_enable pcre perl-regexp) \
 		|| die "econf failed"
