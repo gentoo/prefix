@@ -40,8 +40,8 @@ src_compile() {
 	ac_cv_lib_nsl_gethostname=no \
 	econf \
 		$(use_enable nls) \
-		$(with_bindir) \
-		--with-rmt=${EPREFIX}/usr/sbin/rmt \
+		--with-bindir="${EPREFIX}"/bin \
+		--with-rmt="${EPREFIX}"/usr/sbin/rmt \
 		|| die
 	emake || die
 }
