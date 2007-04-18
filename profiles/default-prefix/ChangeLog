@@ -2,7 +2,11 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
-  14 Apr 2007; Fabian Groffen <fabian@gentoo.org>
+  18 Apr 2007; Fabian Groffen <grobian@gentoo.org> +linux/x86/package.mask:
+  Mask dev-libs/openssl-0.9.8e on x86, see
+  http://article.gmane.org/gmane.linux.gentoo.alt/2351
+
+  14 Apr 2007; Fabian Groffen <grobian@gentoo.org>
   darwin/macos/10.3/package.mask:
   Masked odcctools-20070412 because also that one fails
 
@@ -26,10 +30,10 @@
   06 Apr 2007; Fabian Groffen <grobian@gentoo.org> +make.defaults:
   Add some USE defaults in make.default
 
-  06 Apr 2007; Fabian Groffen <fabian@gentoo.org> use.force:
+  06 Apr 2007; Fabian Groffen <grobian@gentoo.org> use.force:
   Force "prefix" flag to be set, allows to do "prefix? ( ) "-like constucts
 
-  06 Apr 2007; Fabian Groffen <fabian@gentoo.org> linux/use.mask,
+  06 Apr 2007; Fabian Groffen <grobian@gentoo.org> linux/use.mask,
   +use.force, use.mask:
   Unforce linux/glibc use-expanded flags forced in the base profile
 
@@ -39,7 +43,7 @@
   Mask binutils from the base profile, and add binutils, odcctools,
   native-cctools in the sub-profiles
 
-  05 Apr 2007; Fabian Groffen <fabian@gentoo.org> aix/make.defaults,
+  05 Apr 2007; Fabian Groffen <grobian@gentoo.org> aix/make.defaults,
   darwin/make.defaults, irix/make.defaults, linux/make.defaults,
   +package.provided, sunos/make.defaults:
   Add nostip to non-Linux profiles because they don't have scanelf. Added
