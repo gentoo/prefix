@@ -40,8 +40,8 @@ src_compile() {
 	# need to include --exec-prefix and --bindir or our
 	# DESTDIR patch will trigger sandbox hate :(
 	econf \
-		--exec-prefix=${EPREFIX}/usr \
-		$(with_bindir /usr/bin) \
+		--exec-prefix="${EPREFIX}"/usr \
+		--bindir="${EPREFIX}"/usr/bin \
 		--program-suffix="-${PV}" \
 		|| die
 	emake || die
