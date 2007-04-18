@@ -6,6 +6,9 @@
 #layout:
 #arch		profile_directory				status
 
+# prefix repoman-shutup hack
+prefix		default-prefix								dev
+
 # Linux Profiles
 amd64		default-prefix/linux/amd64					dev
 mips		default-prefix/linux/mips					dev
