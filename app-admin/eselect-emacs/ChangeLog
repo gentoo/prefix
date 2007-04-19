@@ -1,0 +1,27 @@
+# ChangeLog for app-admin/eselect-emacs
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.5 2007/04/18 13:55:32 gustavoz Exp $
+
+  18 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  eselect-emacs-0.8-r1.ebuild:
+  Keyworded ~sparc wrt #174882
+
+  18 Apr 2007; Jeroen Roovers <jer@gentoo.org> eselect-emacs-0.8-r1.ebuild:
+  Marked ~hppa (bug #174882).
+
+  17 Apr 2007; Raúl Porcel <armin76@gentoo.org>
+  eselect-emacs-0.8-r1.ebuild:
+  Add ~ia64 wrt bug 174882
+
+  17 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
+  eselect-emacs-0.8-r1.ebuild:
+  keyworded ~amd64, bug 174882
+
+*eselect-emacs-0.8-r1 (16 Apr 2007)
+
+  16 Apr 2007; Christian Faulhammer <opfer@gentoo.org> +metadata.xml,
+  +eselect-emacs-0.8-r1.ebuild:
+  initial import from Emacs Overlay. Features: switch the target of the
+  /usr/bin/emacs symlink, man and info pages so several versions can be
+  installed in parallel on a system
+
