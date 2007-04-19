@@ -44,16 +44,16 @@ src_compile() {
 	econf \
 		$(use_enable debug debug all) \
 		$(use_enable doc build-docs) \
-		--libdir /usr/$(get_libdir) \
+		--libdir ${EPREFIX}/usr/$(get_libdir) \
 		|| die "econf failed"
 	emake || die "emake failed"
 }
 
 src_install() {
 	emake -j1 DESTDIR="${D}" install || die "make install failed"
-	dodir /$(get_libdir)
-	mv ${ED}/usr/$(get_libdir)/*.so* ${ED}/$(get_libdir) \
-		|| die "Failed to put dynamic libs in /$(get_libdir)"
+	#dodir /$(get_libdir)
+	#mv ${ED}/usr/$(get_libdir)/*.so* ${ED}/$(get_libdir) \
+	#	|| die "Failed to put dynamic libs in /$(get_libdir)"
 	gen_usr_ldscript libusb.so
 	gen_usr_ldscript libusbpp.so
 	dodoc AUTHORS NEWS README || die "dodoc failed"
