@@ -1,6 +1,39 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.102 2007/04/16 20:55:03 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.108 2007/04/18 16:13:08 ulm Exp $
+
+  18 Apr 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.0.98.ebuild,
+  emacs-cvs-22.0.9999-r10.ebuild, emacs-cvs-23.0.0-r6.ebuild:
+  Duplicate "--with-x-toolkit=lucid" removed since "athena" and "lucid" are
+  just synonyms. Thanks to <aryixb@gmail.com> for pointing this out.
+
+  18 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  emacs-cvs-22.0.98.ebuild, emacs-cvs-22.0.9999-r10.ebuild,
+  emacs-cvs-23.0.0-r6.ebuild:
+  Keyworded ~sparc wrt #174891
+
+  17 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
+  emacs-cvs-22.0.98.ebuild, emacs-cvs-22.0.9999-r10.ebuild,
+  emacs-cvs-23.0.0-r6.ebuild:
+  keyworded ~amd64, bug 174891
+
+  17 Apr 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.0.98.ebuild,
+  emacs-cvs-22.0.9999-r10.ebuild:
+  Removed dodoc MAINTAINERS since the file is not in the snapshot.
+
+  17 Apr 2007; Ulrich Mueller <ulm@gentoo.org> -emacs-cvs-22.0.96.ebuild,
+  -emacs-cvs-22.0.9999-r6.ebuild:
+  Old versions removed.
+
+*emacs-cvs-22.0.98 (17 Apr 2007)
+
+  17 Apr 2007; Ulrich Mueller <ulm@gentoo.org> +emacs-cvs-22.0.98.ebuild:
+  Taken from Emacs overlay: Prepare for new eselect module; new sound and
+  hesiod USE flags; dropped gnome USE flag; removed font dependencies for X;
+  suffix of emacs executable changed from .emacs- to -emacs- for better
+  compatibility with XEmacs; SLOT changed to 22. Request AUTOCONF 2.61 instead
+  of latest, fixes bug #170969. Remove colliding files between slots, fixes
+  bug #169033.
 
   16 Apr 2007; Ulrich Mueller <ulm@gentoo.org> -files/emacs-22.0.50.desktop,
   -files/emacs-23.0.0.desktop, -files/50emacs-23.0.0.envd,
