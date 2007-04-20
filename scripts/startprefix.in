@@ -14,8 +14,12 @@ if [[ ${SHELL#${EPREFIX}} != ${SHELL} ]] ; then
 	exit -1
 fi
 
+# not all systems have the same location for shells, however what it
+# boils down to, is that we need to know what the shell is, end then we
+# can find it in the bin dir of our prefix
+SHELL=${SHELL##*/}
 # set the prefix shell in the environment
-export SHELL=${EPREFIX}${SHELL}
+export SHELL=${EPREFIX}/bin/${SHELL}
 # give a small notice
 echo "Entering Gentoo Prefix ${EPREFIX}"
 # start the login shell
