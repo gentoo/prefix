@@ -2,6 +2,9 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Apr 2007; Fabian Groffen <grobian@gentoo.org> linux/make.defaults:
+  Drop fortran USE flag in linux profile
+
   20 Apr 2007; Fabian Groffen <grobian@gentoo.org> make.defaults:
   Drop berkdb USE flag, and add ssl as a default. Added little description on
   why

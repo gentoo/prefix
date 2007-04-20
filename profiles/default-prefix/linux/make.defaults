@@ -6,9 +6,6 @@
 ELIBC="glibc"
 KERNEL="linux"
 
-# make sure toolchain has sane defaults
-USE="${USE} fortran"
-
 # 2006/10/28 - Luca Barbato <lu_zero@gentoo.org>
 # on glibc system you cannot turn it off
 USE="${USE} iconv"
