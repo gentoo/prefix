@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/cvs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/ChangeLog,v 1.120 2007/04/11 19:14:10 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/ChangeLog,v 1.121 2007/04/18 13:38:39 eroyf Exp $
+
+  18 Apr 2007; Alexander H. Færøy <eroyf@gentoo.org>
+  cvs-1.12.12-r4.ebuild:
+  Stable on MIPS; bug #173880
 
   11 Apr 2007; Markus Rothe <corsair@gentoo.org> cvs-1.12.12-r4.ebuild:
   Stable on ppc64; bug #173880
