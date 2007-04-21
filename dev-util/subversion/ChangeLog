@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/subversion
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.253 2007/03/22 16:13:53 pauldv Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.254 2007/04/17 14:52:42 opfer Exp $
+
+  17 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
+  files/70svn-gentoo.el:
+  changed Emacs support from mandatory loading to autoload, Emacs starts up
+  faster that way. Fixes bug 174471
 
   22 Mar 2007; Paul de Vrieze <pauldv@gentoo.org> subversion-1.1.3.ebuild,
   subversion-1.2.3-r3.ebuild, subversion-1.3.2-r3.ebuild,
