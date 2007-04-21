@@ -1,6 +1,25 @@
 # ChangeLog for x11-libs/libXrandr
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXrandr/ChangeLog,v 1.33 2007/03/06 04:36:37 joshuabaergen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXrandr/ChangeLog,v 1.39 2007/04/20 14:00:15 opfer Exp $
+
+  20 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
+  libXrandr-1.2.1.ebuild:
+  stable amd64, bug 174959
+
+  18 Apr 2007; Raúl Porcel <armin76@gentoo.org> libXrandr-1.2.1.ebuild:
+  ia64 + x86 stable wrt bug 174959
+
+  18 Apr 2007; Jose Luis Rivero <yoswink@gentoo.org> libXrandr-1.2.1.ebuild:
+  Stable on alpha wrt bug #174959
+
+  18 Apr 2007; Markus Rothe <corsair@gentoo.org> libXrandr-1.2.1.ebuild:
+  Stable on ppc64; bug #174959
+
+  18 Apr 2007; Jeroen Roovers <jer@gentoo.org> libXrandr-1.2.1.ebuild:
+  Stable for HPPA (bug #174959).
+
+  17 Apr 2007; Ferris McCormick <fmccor@gentoo.org> libXrandr-1.2.1.ebuild:
+  Stable on sparc --- Bug #174959 --- I've been running this for over a month.
 
   06 Mar 2007; Joshua Baergen <joshuabaergen@gentoo.org>
   -files/libXrandr-1.2.0-delete-keyword-usage.patch:
