@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/DB_File/DB_File-1.815.ebuild,v 1.4 2007/04/14 16:29:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/DB_File/DB_File-1.815.ebuild,v 1.5 2007/04/17 18:51:42 gustavoz Exp $
 
 EAPI="prefix"
 
