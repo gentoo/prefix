@@ -1,6 +1,13 @@
 # ChangeLog for app-arch/cpio
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.56 2007/04/15 19:45:08 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.57 2007/04/18 19:40:39 vapier Exp $
+
+*cpio-2.7-r2 (18 Apr 2007)
+
+  18 Apr 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/cpio-2.7-copypass.patch, +cpio-2.7-r2.ebuild:
+  Fix from upstream for permission breakage in copy pass through mode #174921
+  by Karl Hakimian.
 
   15 Apr 2007; Markus Rothe <corsair@gentoo.org> cpio-2.7-r1.ebuild:
   Stable on ppc64
