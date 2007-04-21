@@ -1,6 +1,9 @@
 # ChangeLog for perl-core/File-Temp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/File-Temp/ChangeLog,v 1.28 2007/04/15 21:04:51 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/File-Temp/ChangeLog,v 1.29 2007/04/17 18:52:37 gustavoz Exp $
+
+  17 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> File-Temp-0.18.ebuild:
+  Stable on sparc
 
   15 Apr 2007; Markus Rothe <corsair@gentoo.org> File-Temp-0.17.ebuild:
   Stable on ppc64
