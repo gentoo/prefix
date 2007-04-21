@@ -1,6 +1,29 @@
 # ChangeLog for x11-proto/damageproto
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-proto/damageproto/ChangeLog,v 1.24 2007/01/14 16:56:57 joshuabaergen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/damageproto/ChangeLog,v 1.31 2007/04/20 14:07:02 opfer Exp $
+
+  20 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
+  damageproto-1.1.0.ebuild:
+  stable amd64, bug 174959
+
+  18 Apr 2007; Raúl Porcel <armin76@gentoo.org> damageproto-1.1.0.ebuild:
+  ia64 + x86 stable wrt bug 174959
+
+  18 Apr 2007; Ferris McCormick <fmccor@gentoo.org> ChangeLog:
+  Try to fix digest.
+
+  18 Apr 2007; Jose Luis Rivero <yoswink@gentoo.org>
+  damageproto-1.1.0.ebuild:
+  Stable on alpha wrt bug #174959
+
+  18 Apr 2007; Markus Rothe <corsair@gentoo.org> damageproto-1.1.0.ebuild:
+  Stable on ppc64; bug #174959
+
+  18 Apr 2007; Jeroen Roovers <jer@gentoo.org> damageproto-1.1.0.ebuild:
+  Stable for HPPA (bug #174959).
+
+  17 Apr 2007; Ferris McCormick <fmccor@gentoo.org> ChangeLog:
+  Stable on sparc --- needed for Bug #174959
 
 *damageproto-1.1.0 (14 Jan 2007)
 
