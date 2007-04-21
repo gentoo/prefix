@@ -1,6 +1,24 @@
 # ChangeLog for sys-process/psmisc
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/ChangeLog,v 1.49 2007/04/16 08:07:35 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/ChangeLog,v 1.54 2007/04/20 21:58:11 christel Exp $
+
+  20 Apr 2007; <christel@gentoo.org> psmisc-22.3.ebuild:
+  Stable on ALPHA; bug #175094
+
+  19 Apr 2007; Jeroen Roovers <jer@gentoo.org> psmisc-22.3.ebuild:
+  Stable for HPPA too (bug #175094).
+
+  18 Apr 2007; Daniel Gryniewicz <dang@gentoo.org> psmisc-22.3.ebuild:
+  Marked stable on amd64 for bug #175094
+
+  18 Apr 2007; Alexander Færøy <eroyf@gentoo.org> psmisc-22.3.ebuild:
+  Stable on MIPS.
+
+*psmisc-22.4 (18 Apr 2007)
+
+  18 Apr 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/psmisc-22.4-no-peekfd.patch, +psmisc-22.4.ebuild:
+  Version bump.
 
   16 Apr 2007; Markus Rothe <corsair@gentoo.org> psmisc-22.3.ebuild:
   Stable on ppc64

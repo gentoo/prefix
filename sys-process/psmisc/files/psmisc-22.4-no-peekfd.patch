@@ -1,0 +1,17 @@
+peekfd only compiles/runs on x86 (because it pokes around in the processor's
+register file), plus it doesn't build on newer kernel headers, so let's just
+disable it and be done.
+
+http://sourceforge.net/tracker/index.php?func=detail&aid=1702927&group_id=15273&atid=115273
+
+--- src/Makefile.in
++++ src/Makefile.in
+@@ -33,7 +33,7 @@
+ build_triplet = @build@
+ host_triplet = @host@
+ bin_PROGRAMS = fuser$(EXEEXT) killall$(EXEEXT) pstree$(EXEEXT) \
+-	oldfuser$(EXEEXT) peekfd$(EXEEXT)
++	oldfuser$(EXEEXT)
+ subdir = src
+ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
+ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4

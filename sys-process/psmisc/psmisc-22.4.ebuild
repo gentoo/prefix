@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.3.ebuild,v 1.10 2007/04/20 21:58:11 christel Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.4.ebuild,v 1.1 2007/04/18 13:21:19 vapier Exp $
 
 EAPI="prefix"
 
@@ -25,6 +25,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-22.2-gcc2.patch
+	epatch "${FILESDIR}"/${P}-no-peekfd.patch
 }
 
 src_compile() {
@@ -38,14 +39,7 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${D}" || die
+	emake install DESTDIR="${D}" || die
 	dodoc AUTHORS ChangeLog NEWS README
-
-	# Some packages expect these to use /usr, others to use /
-	dodir /usr/bin
-	cd "${ED}"/bin
-	for f in * ; do
-		dosym /bin/${f} /usr/bin/${f}
-	done
-	use X || find "${ED}" -name pstree.x11 -exec rm {} \;
+	use X || rm "${ED}"/bi/pstree.x11
 }
