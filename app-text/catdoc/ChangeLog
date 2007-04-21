@@ -1,6 +1,10 @@
 # ChangeLog for app-text/catdoc
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/catdoc/ChangeLog,v 1.15 2007/03/12 23:44:45 nattfodd Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/catdoc/ChangeLog,v 1.16 2007/04/20 22:11:31 beandog Exp $
+
+  20 Apr 2007; Steve Dibb <beandog@gentoo.org> catdoc-0.93.3.ebuild,
+  catdoc-0.93.4.ebuild, catdoc-0.94.1.ebuild:
+  amd64 stable, bug 175305
 
   12 Mar 2007; Alexandre Buisse <nattfodd@gentoo.org> metadata.xml:
   Replaced text-markup by tex as maintaining herd (text-markup split).
