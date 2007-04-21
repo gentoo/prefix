@@ -1,6 +1,27 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.132 2007/04/16 16:31:46 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.138 2007/04/19 13:47:38 kloeri Exp $
+
+  19 Apr 2007; Bryan Østergaard <kloeri@gentoo.org> emacs-21.4-r12.ebuild:
+  Add ~alpha keyword, bug 174882.
+
+  19 Apr 2007; Ulrich Mueller <ulm@gentoo.org>
+  +files/emacs-21.4-Xaw3d-headers.patch, emacs-21.4-r12.ebuild:
+  Backported Emacs 22 upstream patch for proper including of Xaw3d headers;
+  removed build-time dependency on x11-libs/libXaw; bug #174453.
+
+  18 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> emacs-21.4-r12.ebuild:
+  Keyworded ~sparc wrt #174884
+
+  18 Apr 2007; Jeroen Roovers <jer@gentoo.org> emacs-21.4-r12.ebuild:
+  Marked ~hppa (bug #174884).
+
+  17 Apr 2007; Raúl Porcel <armin76@gentoo.org> emacs-21.4-r12.ebuild:
+  Add ~ia64 wrt bug 174884
+
+  17 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
+  emacs-21.4-r12.ebuild:
+  keyworded ~amd64, bug 174884
 
 *emacs-21.4-r12 (16 Apr 2007)
 
