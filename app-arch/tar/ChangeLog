@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/tar
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.90 2007/04/02 15:24:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.91 2007/04/18 14:30:38 eroyf Exp $
+
+  18 Apr 2007; Alexander Færøy <eroyf@gentoo.org> tar-1.16.1.ebuild:
+  Stable on MIPS; bug #171669
 
   02 Apr 2007; Raúl Porcel <armin76@gentoo.org> tar-1.16.1.ebuild:
   ia64 stable wrt bug 171669
