@@ -1,18 +1,20 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.3.0.5.ebuild,v 1.14 2007/03/10 11:09:58 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.3.3.ebuild,v 1.9 2007/04/19 14:45:37 kloeri Exp $
 
 EAPI="prefix"
+
+#WANT_AUTOCONF=2.59
+#WANT_AUTOMAKE=1.8
 
 inherit eutils multilib perl-app
 
 MY_PN=ImageMagick
-MY_P=${MY_PN}-${PV%.*}
-MY_P2=${MY_PN}-${PV%.*}-${PV#*.*.*.}
+MY_P=${MY_PN}-${PV}
 
 DESCRIPTION="A collection of tools and libraries for many image formats"
 HOMEPAGE="http://www.imagemagick.org/"
-SRC_URI="ftp://ftp.imagemagick.org/pub/${MY_PN}/${MY_P2}.tar.bz2"
+SRC_URI="ftp://ftp.imagemagick.org/pub/${MY_PN}/${MY_P}-8.tar.bz2"
 
 LICENSE="as-is"
 SLOT="0"
@@ -41,7 +43,7 @@ RDEPEND="bzip2? ( app-arch/bzip2 )
 	perl? ( >=dev-lang/perl-5.8.6-r6 !=dev-lang/perl-5.8.7 )
 	!dev-perl/perlmagick
 	!sys-apps/compare
-	graphviz? ( media-gfx/graphviz )
+	graphviz? ( >=media-gfx/graphviz-2.6 )
 	fpx? ( media-libs/libfpx )"
 DEPEND="${RDEPEND}
 	>=sys-apps/sed-4
@@ -53,13 +55,9 @@ S=${WORKDIR}/${MY_P}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	chmod +x config.sub
-	einfo ${S}
-	epatch "${FILESDIR}"/${PN}-6.3.0.5-docs.patch
-	epatch "${FILESDIR}"/${P}-no-lMagick.patch
 
-	# from bug #146713, sent upstream
-	epatch "${FILESDIR}"/${P}-configure-windows-fonts.patch
+	epatch "${FILESDIR}"/${PN}-${PV}-docs.patch
+
 }
 
 src_compile() {
