@@ -1,6 +1,27 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.432 2007/04/13 13:11:10 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.436 2007/04/20 16:41:43 caleb Exp $
+
+  20 Apr 2007; Caleb Tennis <caleb@gentoo.org> qt-3.3.4-r8.ebuild:
+  re-add x86 because this is the preferred hardened version for x86
+
+  18 Apr 2007; Caleb Tennis <caleb@gentoo.org>
+  -files/qt-3.3.5-immodule.patch, -files/qt-3.3.6-CVE-2006-4811-bis.patch,
+  -files/qt-3.3.6-CVE-2006-4811.patch, -files/qt-3.3.6-seli-xinerama.patch,
+  -files/qt-3.3.6-uic-fix.patch, -files/qt-3.3.6-visibility.patch,
+  -files/qt-4.1.4-CVE-2006-4811-bis.patch,
+  -files/qt-4.1.4-CVE-2006-4811.patch, qt-3.3.4-r8.ebuild,
+  -qt-3.3.6-r4.ebuild, -qt-3.3.6-r5.ebuild, -qt-4.1.4-r2.ebuild,
+  -qt-4.2.2.ebuild:
+  remove lots of old security ridden versions. Removing arches on 3.3.4-r8
+  except for mips which hasn't stabilized 3.3.8-r2 yet
+
+  18 Apr 2007; Jose Luis Rivero <yoswink@gentoo.org> qt-3.3.8-r2.ebuild,
+  qt-4.2.3-r1.ebuild:
+  Stable on alpha wrt security #172746
+
+  17 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> qt-4.2.3-r1.ebuild:
+  Stable on sparc wrt security #172746
 
   13 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> qt-3.3.8-r2.ebuild:
   Stable on sparc wrt security #172746
