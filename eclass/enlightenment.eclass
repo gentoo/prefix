@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/enlightenment.eclass,v 1.71 2007/03/13 02:01:44 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/enlightenment.eclass,v 1.72 2007/04/20 04:30:18 vapier Exp $
 #
 # Author: vapier@gentoo.org
 
@@ -18,7 +18,7 @@ inherit eutils libtool
 #		S        $WORKDIR/$P
 #
 #	live         $PV has a 9999 marker
-#		KEYWORDS -*
+#		KEYWORDS ""
 #		SRC_URI  `cvs up`
 #		S        $WORKDIR/$ECVS_MODULE
 #
@@ -69,7 +69,7 @@ SLOT="0"
 case ${EKEY_STATE:-${ECVS_STATE}} in
 	release) KEYWORDS="alpha amd64 arm hppa ia64 mips ppc ppc64 sh sparc x86 ~x86-fbsd";;
 	snap)    KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd";;
-	live)    KEYWORDS="-*";;
+	live)    KEYWORDS="";;
 esac
 IUSE="nls doc"
 

@@ -1,13 +1,13 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.147 2007/04/12 14:01:42 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.149 2007/04/20 18:53:35 carlo Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
 # This contains everything except things that modify ebuild variables
 # and functions (e.g. $P, src_compile() etc.)
 
-inherit qt3
+inherit qt3 eutils
 
 # map of the monolithic->split ebuild derivation; used to build deps describing
 # the relationships between them
@@ -891,6 +891,9 @@ kde_remove_flag() {
 }
 
 buildsycoca() {
+	[[ $EBUILD_PHASE != postinst ]] && [[ $EBUILD_PHASE != postrm ]] && \
+		die "buildsycoca() has to be calles in pkg_postinst() and pkg_postrm()."
+
 	if [[ -x ${KDEDIR}/bin/kbuildsycoca ]] && [[ -z ${ROOT} || ${ROOT} == "/" ]] && has "~${ARCH}" "${ACCEPT_KEYWORDS}"; then
 		# First of all, make sure that the /usr/share/services directory exists
 		# and it has the right permissions
@@ -902,6 +905,26 @@ buildsycoca() {
 		${KDEDIR}/bin/kbuildsycoca --global --noincremental &> /dev/null
 		eend $?
 	fi
+}
+
+postprocess_desktop_entries() {
+	[[ $EBUILD_PHASE != preinst ]] && [[ $EBUILD_PHASE != install ]] && \
+		die "postprocess_desktop_entries() has to be called in src_install() or pkg_preinst()."
+
+	# Only third party apps, KDE 3.x isn't so basedir spec compliant...
+	if [[ -z ${KDEBASE} ]] ; then
+		local desktop_entries="$(find "${ED}${PREFIX}/share/applnk" -name '*.desktop' \
+			-not -path '*.hidden*' 2>/dev/null)"
+	
+		if [[ -n ${desktop_entries} ]]; then
+			for entry in ${desktop_entries} ; do
+				dodir ${PREFIX}/share/applications/kde
+				mv ${entry} ${ED}${PREFIX}/share/applications/kde
+			done
+		fi
+	fi
+
+	validate_desktop_entries ${PREFIX}/share/appl{nk,ications}
 }
 
 # is this a kde-base ebuid?

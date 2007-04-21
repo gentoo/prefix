@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.69 2007/04/07 08:52:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.76 2007/04/20 16:17:49 caster Exp $
 
 
 # -----------------------------------------------------------------------------
@@ -558,12 +558,22 @@ java-pkg_dohtml() {
 #
 # ------------------------------------------------------------------------------
 java-pkg_dojavadoc() {
+	debug-print-function ${FUNCNAME} $*
 	local dir="$1"
+
+	# QA checks
 
 	java-pkg_check-phase install
 
 	[[ -z "${dir}" ]] && die "Must specify a directory!"
 	[[ ! -d "${dir}" ]] && die "${dir} does not exist, or isn't a directory!"
+	if [[ ! -e "${dir}/index.html" ]]; then
+		local msg="No index.html in javadoc directory"
+		ewarn "${msg}"
+		is-java-strict && die "${msg}"
+	fi
+
+	# Renaming to match our directory layout
 
 	local dir_to_install="${dir}"
 	if [[ "$(basename "${dir}")" != "api" ]]; then
@@ -571,6 +581,8 @@ java-pkg_dojavadoc() {
 		# TODO use doins
 		cp -r "${dir}" "${dir_to_install}" || die "cp failed"
 	fi
+
+	# Actual installation
 
 	java-pkg_dohtml -r ${dir_to_install}
 }
@@ -863,6 +875,8 @@ java-pkg_jar-from() {
 	classpath="$(java-config ${deep} --classpath=${target_pkg})"
 	[[ $? != 0 ]] && die ${error_msg}
 
+	java-pkg_ensure-dep "${build_only}" "${target_pkg}"
+
 	pushd ${destdir} > /dev/null \
 		|| die "failed to change directory to ${destdir}"
 
@@ -960,10 +974,15 @@ java-pkg_getjars() {
 
 	[[ ${#} -ne 1 ]] && die "${FUNCNAME} takes only one argument besides --*"
 
+
 	local classpath pkgs="${1}"
 	jars="$(java-config ${deep} --classpath=${pkgs})"
-	[[ -z "${jars}" ]] && die "java-config --classpath=${pkgs} failed"
+	[[ $? != 0 || -z "${jars}" ]] && die "java-config --classpath=${pkgs} failed"
 	debug-print "${pkgs}:${jars}"
+
+	for pkg in ${pkgs//,/ }; do
+		java-pkg_ensure-dep "${build_only}" "${pkg}"
+	done
 
 	if [[ -z "${classpath}" ]]; then
 		classpath="${jars}"
@@ -1029,6 +1048,8 @@ java-pkg_getjar() {
 	local classpath
 	classpath=$(java-config --classpath=${pkg})
 	[[ $? != 0 ]] && die ${error_msg}
+
+	java-pkg_ensure-dep "${build_only}" "${pkg}"
 
 	for jar in ${classpath//:/ }; do
 		if [[ ! -f "${jar}" ]] ; then
@@ -1692,16 +1713,18 @@ eant() {
 	[[ -n ${PORTAGE_QUIET} ]] && antflags="${antflags} -q"
 
 	local gcp="${EANT_GENTOO_CLASSPATH}"
+	local getjarsarg=""
 
 	if [[ ${EBUILD_PHASE} = "test" ]]; then
 		antflags="${antflags} -DJunit.present=true"
 		[[ ${gcp} && ${ANT_TASKS} = *ant-junit* ]] && gcp="${gcp} junit"
+		getjarsarg="--with-dependencies"
 	fi
 
 	local cp
 
 	for atom in ${gcp}; do
-		cp="${cp}:$(java-pkg_getjars ${atom})"
+		cp="${cp}:$(java-pkg_getjars ${getjarsarg} ${atom})"
 	done
 
 	if [[ ${cp} ]]; then
@@ -1710,9 +1733,8 @@ eant() {
 	fi
 
 	[[ -n ${JAVA_PKG_DEBUG} ]] && echo ant ${antflags} "${@}"
-	debug-print "Calling ant: ${antflags} ${@}"
+	debug-print "Calling ant (GENTOO_VM: ${GENTOO_VM}): ${antflags} ${@}"
 	ant ${antflags} "${@}" || die "eant failed"
-
 }
 
 # ------------------------------------------------------------------------------
@@ -2331,6 +2353,50 @@ java-pkg_verify-classes() {
 		[[ -n "${1}" ]] && eerror "in file: ${1}"
 		eerror "See ${log} for more details."
 		die "Incorrect bytecode found"
+	fi
+}
+
+# ----------------------------------------------------------------------------
+# @internal-function java-pkg_ensure-dep
+# Check that a package being used in jarfrom, getjars and getjar is contained
+# within DEPEND or RDEPEND.
+# @param $1 - Is the package a runtime dependency
+# @param $2 - Package name and slot.
+
+java-pkg_ensure-dep() {
+	debug-print-function ${FUNCNAME} $*
+
+	local build_only="${1}"
+	local target_pkg="${2}"
+	local dev_error=""
+
+	local stripped_pkg=$(echo "${target_pkg}" | sed \
+		's/-[0-9]*\(\.[0-9]\)*$//')
+
+	if [[ ! ( "${DEPEND}" =~ "$stripped_pkg" ) ]]; then
+		dev_error="The ebuild is attempting to use ${target_pkg} that is not"
+		dev_error="${dev_error} declared in DEPEND."
+		if is-java-strict; then
+			die "${dev_error}"
+		elif [[ ${BASH_SUBSHELL} = 0 ]]; then
+			eerror "${dev_error}"
+			elog "Because you have this package installed the package will"
+			elog "build without problems, but please report this to"
+			elog "http://bugs.gentoo.org"
+		fi
+	fi
+
+	if [[ -z ${build_only} && ! ( ${RDEPEND} =~ "${stripped_pkg}" ) ]]; then
+		dev_error="The ebuild is attempting to use ${target_pkg},"
+		dev_error="${dev_error} without specifying --build-only, that is not declared in RDEPEND."
+		if is-java-strict; then
+			die "${dev_error}"
+		elif [[ ${BASH_SUBSHELL} = 0 ]]; then
+			eerror "${dev_error}"
+			elog "Because you have this package installed the package will"
+			elog "build without problems, but please report this to"
+			elog "http://bugs.gentoo.org"
+		fi
 	fi
 }
 

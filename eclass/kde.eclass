@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.195 2007/04/11 17:56:18 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.196 2007/04/19 10:24:56 carlo Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -446,13 +446,7 @@ slot_rebuild() {
 }
 
 kde_pkg_preinst() {
-	validate_desktop_entries ${PREFIX}/share/appl{nk,ications}
-	if [[ $(find "${ED}${PREFIX}/share/applnk" -name '*.desktop' \
-		-not -path '*.hidden*' 2>/dev/null | wc -l) != "0" ]]; then
-		ewarn "This ebuild is installing .desktop files in the deprecated path"
-		ewarn "${PREFIX}/share/applnk/. They will only be visible within KDE."
-		echo ""
-	fi
+	postprocess_desktop_entries
 }
 
 kde_pkg_postinst() {
