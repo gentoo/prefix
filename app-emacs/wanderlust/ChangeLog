@@ -1,6 +1,13 @@
 # ChangeLog for app-emacs/wanderlust
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/ChangeLog,v 1.52 2007/03/31 09:42:24 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/ChangeLog,v 1.54 2007/04/20 04:44:57 ulm Exp $
+
+  20 Apr 2007; Ulrich Mueller <ulm@gentoo.org> -wanderlust-2.14.0-r2.ebuild:
+  Removed old revision.
+
+  19 Apr 2007; Bryan Østergaard <kloeri@gentoo.org>
+  wanderlust-2.14.0-r3.ebuild:
+  Add ~alpha keyword, bug 168420.
 
   31 Mar 2007; Fabian Groffen <grobian@gentoo.org>
   wanderlust-2.10.1-r2.ebuild, wanderlust-2.12.2.ebuild,
