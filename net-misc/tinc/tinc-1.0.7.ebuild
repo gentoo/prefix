@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/tinc/tinc-1.0.5.ebuild,v 1.3 2007/04/19 08:45:08 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/tinc/tinc-1.0.7.ebuild,v 1.1 2007/04/19 08:45:08 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -25,8 +25,8 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die
-	dodoc AUTHORS NEWS README THANKS TODO
+	emake DESTDIR="${D}" install || die
+	dodoc AUTHORS NEWS README THANKS
 	doinitd "${FILESDIR}"/tincd
 }
 
