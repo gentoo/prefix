@@ -1,6 +1,28 @@
 # ChangeLog for x11-libs/libXi
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/libXi/ChangeLog,v 1.31 2006/11/02 23:17:17 joshuabaergen Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXi/ChangeLog,v 1.38 2007/04/20 14:02:07 opfer Exp $
+
+  20 Apr 2007; Christian Faulhammer <opfer@gentoo.org> libXi-1.1.0.ebuild:
+  stable amd64, bug 174959
+
+  19 Apr 2007; Donnie Berkholz <dberkholz@gentoo.org>; libXi-1.1.0.ebuild:
+  (#153965) Tell people they might need to recompile xorg-server to fix
+  special keys etc.
+
+  18 Apr 2007; Raúl Porcel <armin76@gentoo.org> libXi-1.1.0.ebuild:
+  ia64 + x86 stable wrt bug 174959
+
+  18 Apr 2007; Jose Luis Rivero <yoswink@gentoo.org> libXi-1.1.0.ebuild:
+  Stable on alpha wrt bug #174959
+
+  18 Apr 2007; Markus Rothe <corsair@gentoo.org> libXi-1.1.0.ebuild:
+  Stable on ppc64; bug #174959
+
+  18 Apr 2007; Jeroen Roovers <jer@gentoo.org> libXi-1.1.0.ebuild:
+  Stable for HPPA (bug #174959).
+
+  17 Apr 2007; Ferris McCormick <fmccor@gentoo.org> libXi-1.1.0.ebuild:
+  Stable on sparc --- Bug $174959
 
 *libXi-1.1.0 (02 Nov 2006)
 

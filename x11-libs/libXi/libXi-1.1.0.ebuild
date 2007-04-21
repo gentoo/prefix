@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/libXi/libXi-1.1.0.ebuild,v 1.1 2006/11/02 23:17:17 joshuabaergen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXi/libXi-1.1.0.ebuild,v 1.8 2007/04/20 14:02:07 opfer Exp $
 
 EAPI="prefix"
 
@@ -18,3 +18,10 @@ RDEPEND="x11-libs/libX11
 DEPEND="${RDEPEND}
 	x11-proto/xproto
 	>=x11-proto/inputproto-1.4"
+
+pkg_postinst() {
+	x-modular_pkg_postinst
+
+	ewarn "Some special keys and keyboard layouts may stop working."
+	ewarn "To fix them, recompile xorg-server."
+}
