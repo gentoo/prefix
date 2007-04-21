@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.16 2007/04/16 15:41:02 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.18 2007/04/19 13:26:37 ulm Exp $
 #
 # Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
 # Copyright 2002-2007 Matthew Kennedy <mkennedy@gentoo.org>
@@ -115,6 +115,16 @@ elisp-compile() {
 	${EPREFIX}/usr/bin/emacs --batch -f batch-byte-compile --no-site-file --no-init-file $*
 }
 
+elisp-make-autoload-file () {
+	local f="${1:-${PN}-autoloads.el}"
+	shift
+	echo >"${f}"
+	emacs --batch -q --no-site-file \
+		--eval "(setq make-backup-files nil)" \
+		--eval "(setq generated-autoload-file (expand-file-name \"${f}\"))" \
+		-f batch-update-autoloads "${@-.}"
+}
+
 elisp-install() {
 	local subdir=$1
 	dodir ${SITELISP#${EPREFIX}}/${subdir}
@@ -144,7 +154,7 @@ EOF
 	ls ${SITELISP}/[0-9][0-9]*-gentoo.el |sort -n | \
 	while read sf
 	do
-		einfo "	 Adding $(basename $sf) ..."
+		einfo "  Adding $(basename $sf) ..."
 		# Great for debugging, too noisy and slow for users though
 #		echo "(message \"Loading $sf ...\")" >>${SITELISP}/site-start.el
 		cat $sf >>${SITELISP}/site-gentoo.el
