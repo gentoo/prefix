@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/inputproto-1.4.1.ebuild,v 1.1 2007/02/16 03:49:19 joshuabaergen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/inputproto-1.4.1.ebuild,v 1.2 2007/04/20 13:46:56 opfer Exp $
 
 EAPI="prefix"
 

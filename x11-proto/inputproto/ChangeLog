@@ -1,6 +1,25 @@
 # ChangeLog for x11-proto/inputproto
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.31 2007/02/16 03:49:19 joshuabaergen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.37 2007/04/20 13:46:56 opfer Exp $
+
+  20 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
+  inputproto-1.4.1.ebuild:
+  stable amd64, bug 174959
+
+  18 Apr 2007; Raúl Porcel <armin76@gentoo.org> inputproto-1.4.ebuild:
+  ia64 + x86 stable wrt bug 174959
+
+  18 Apr 2007; Jose Luis Rivero <yoswink@gentoo.org> inputproto-1.4.ebuild:
+  Stable on alpha wrt bug #174959
+
+  18 Apr 2007; Markus Rothe <corsair@gentoo.org> inputproto-1.4.ebuild:
+  Stable on ppc64; bug #174959
+
+  18 Apr 2007; Jeroen Roovers <jer@gentoo.org> inputproto-1.4.ebuild:
+  Stable for HPPA (bug #174959).
+
+  17 Apr 2007; Ferris McCormick <fmccor@gentoo.org> inputproto-1.4.ebuild:
+  Stable on sparc --- needed by Bug #174959
 
 *inputproto-1.4.1 (16 Feb 2007)
 
