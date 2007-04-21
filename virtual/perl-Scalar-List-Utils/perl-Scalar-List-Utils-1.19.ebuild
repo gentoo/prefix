@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Scalar-List-Utils/perl-Scalar-List-Utils-1.19.ebuild,v 1.3 2007/04/14 17:25:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Scalar-List-Utils/perl-Scalar-List-Utils-1.19.ebuild,v 1.4 2007/04/17 22:30:24 gustavoz Exp $
 
 EAPI="prefix"
 
