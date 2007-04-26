@@ -1,0 +1,424 @@
+# ChangeLog for x11-terms/rxvt-unicode
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.89 2007/03/08 09:46:58 killerfox Exp $
+
+  08 Mar 2007; René Nussbaumer <killerfox@gentoo.org>
+  -rxvt-unicode-5.3.ebuild, -rxvt-unicode-7.0.ebuild,
+  -rxvt-unicode-7.1.ebuild, -rxvt-unicode-7.7-r1.ebuild,
+  -rxvt-unicode-7.7-r2.ebuild, -rxvt-unicode-7.7-r3.ebuild,
+  -rxvt-unicode-7.9.ebuild, -rxvt-unicode-8.0.ebuild:
+  Removed old versions. Clean up.
+
+  01 Mar 2007; Jose Luis Rivero <yoswink@gentoo.org>
+  rxvt-unicode-8.1.ebuild:
+  Stable on alpha wrt bug #167846
+
+  27 Feb 2007; Simon Stelling <blubb@gentoo.org> rxvt-unicode-8.1.ebuild:
+  stable on amd64; bug 167846
+
+  22 Feb 2007; Jason Wever <weeve@gentoo.org> rxvt-unicode-8.1.ebuild:
+  Stable on SPARC wrt bug #167846.
+
+  21 Feb 2007; Markus Rothe <corsair@gentoo.org> rxvt-unicode-8.1.ebuild:
+  Stable on ppc64; bug #167846
+
+  21 Feb 2007; Christian Faulhammer <opfer@gentoo.org>
+  rxvt-unicode-8.1.ebuild:
+  stable x86; bug 167846
+
+  21 Feb 2007; René Nussbaumer <killerfox@gentoo.org>
+  rxvt-unicode-8.1.ebuild:
+  Stable on hppa, ppc.
+
+*rxvt-unicode-8.2 (21 Feb 2007)
+
+  21 Feb 2007; René Nussbaumer <killerfox@gentoo.org>
+  +rxvt-unicode-8.2.ebuild:
+  Version bump from upstream
+
+*rxvt-unicode-8.1 (23 Dec 2006)
+
+  23 Dec 2006; René Nussbaumer <killerfox@gentoo.org>
+  +rxvt-unicode-8.1.ebuild:
+  Version bump from upstream
+
+*rxvt-unicode-8.0 (08 Nov 2006)
+
+  08 Nov 2006; René Nussbaumer <killerfox@gentoo.org>
+  +rxvt-unicode-8.0.ebuild:
+  Version bump from upstream
+
+  12 Aug 2006; Rene Nussbaumer <killerfox@gentoo.org> metadata.xml:
+  Take over comaintainership
+
+*rxvt-unicode-7.9 (08 Aug 2006)
+
+  08 Aug 2006; Emanuele Giaquinta <exg@gentoo.org> -rxvt-unicode-7.8.ebuild,
+  -rxvt-unicode-7.8-r1.ebuild, +rxvt-unicode-7.9.ebuild:
+  Version bump.
+
+*rxvt-unicode-7.8-r1 (31 Jul 2006)
+
+  31 Jul 2006; Emanuele Giaquinta <exg@gentoo.org>
+  +rxvt-unicode-7.8-r1.ebuild:
+  Drop scrolling-one-line.patch as it adds bindings that override default ones,
+  bug #141908.
+
+*rxvt-unicode-7.8 (20 Jul 2006)
+
+  20 Jul 2006; Emanuele Giaquinta <exg@gentoo.org> +rxvt-unicode-7.8.ebuild:
+  Version bump.
+
+*rxvt-unicode-7.7-r3 (15 Jul 2006)
+
+  15 Jul 2006; Rene Nussbaumer <killerfox@gentoo.org>
+  +rxvt-unicode-7.7-r3.ebuild:
+  Revision bump. Made ISO-14755 support now optional (USE-Flag).
+
+  30 May 2006; Emanuele Giaquinta <exg@gentoo.org> -rxvt-unicode-3.0.ebuild,
+  -rxvt-unicode-4.0.ebuild, -rxvt-unicode-5.1.ebuild:
+  Cleanup.
+
+  14 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  rxvt-unicode-7.7-r2.ebuild:
+  Add ~x86-fbsd keyword.
+
+*rxvt-unicode-7.7-r2 (12 Apr 2006)
+
+  12 Apr 2006; Anders Rune Jensen <arj@gentoo.org> +rxvt-unicode-7.7-r2.ebuild:
+  Add one-line trivial scrolling patch. Fixes #114737 and #62371.
+
+*rxvt-unicode-7.7-r1 (31 Mar 2006)
+
+  31 Mar 2006; Emanuele Giaquinta <exg@gentoo.org> -rxvt-unicode-7.7.ebuild,
+  +rxvt-unicode-7.7-r1.ebuild:
+  Correct use_enable for Xft.
+
+*rxvt-unicode-7.7 (30 Mar 2006)
+
+  30 Mar 2006; Emanuele Giaquinta <exg@gentoo.org> +rxvt-unicode-7.7.ebuild:
+  Version bump. Xft support is now optional.
+
+  21 Feb 2006; Michele Noberasco <s4t4n@gentoo.org> rxvt-unicode-5.3.ebuild,
+  rxvt-unicode-5.1.ebuild,rxvt-unicode-4.0.ebuild,rxvt-unicode-3.0.ebuild,:
+  Updated for modular X deps.
+
+*rxvt-unicode-7.1 (20 Jan 2006)
+
+  20 Jan 2006; Ciaran McCreesh <ciaranm@gentoo.org>
+  +rxvt-unicode-7.1.ebuild:
+  New version. Various ebuild tweaks following advice from upstream.
+
+  13 Jan 2006; Ciaran McCreesh <ciaranm@gentoo.org>
+  -rxvt-unicode-5.9.ebuild, -rxvt-unicode-6.1.ebuild,
+  -rxvt-unicode-6.2.ebuild, -rxvt-unicode-6.3.ebuild:
+  Tidy up old versions
+
+*rxvt-unicode-7.0 (13 Jan 2006)
+
+  13 Jan 2006; Ciaran McCreesh <ciaranm@gentoo.org>
+  +rxvt-unicode-7.0.ebuild:
+  New version.
+
+*rxvt-unicode-6.3 (05 Jan 2006)
+
+  05 Jan 2006; Ciaran McCreesh <ciaranm@gentoo.org>
+  +rxvt-unicode-6.3.ebuild:
+  New version.
+
+*rxvt-unicode-6.2 (03 Jan 2006)
+
+  03 Jan 2006; Ciaran McCreesh <ciaranm@gentoo.org>
+  +rxvt-unicode-6.2.ebuild:
+  New version. Modular X deps, see bug #115992.
+
+*rxvt-unicode-6.1 (27 Dec 2005)
+
+  27 Dec 2005; Ciaran McCreesh <ciaranm@gentoo.org>
+  -rxvt-unicode-6.0.ebuild, +rxvt-unicode-6.1.ebuild:
+  Another day, another new version.
+
+*rxvt-unicode-6.0 (24 Dec 2005)
+
+  24 Dec 2005; Ciaran McCreesh <ciaranm@gentoo.org> metadata.xml,
+  +rxvt-unicode-6.0.ebuild:
+  New version. Add myself as comaintainer.
+
+*rxvt-unicode-5.9 (17 Dec 2005)
+
+  17 Dec 2005; Ciaran McCreesh <ciaranm@gentoo.org>
+  -rxvt-unicode-5.7.ebuild, -rxvt-unicode-5.8.ebuild,
+  +rxvt-unicode-5.9.ebuild:
+  New version.
+
+*rxvt-unicode-5.8 (17 Dec 2005)
+
+  17 Dec 2005; Ciaran McCreesh <ciaranm@gentoo.org>
+  +rxvt-unicode-5.8.ebuild:
+  New version.
+
+  22 Oct 2005; Fabian Groffen <grobian@gentoo.org> rxvt-unicode-5.7.ebuild:
+  Marked ~ppc-macos (bug #109216)
+
+  01 Oct 2005; Luis Medinas <metalgod@gentoo.org> rxvt-unicode-5.3.ebuild:
+  Marked Stable on amd64.
+
+  03 Sep 2005; Fernando J. Pereda <ferdy@gentoo.org>
+  rxvt-unicode-5.7.ebuild:
+  keyworded ~alpha, wrt bug #102790
+
+*rxvt-unicode-5.7 (13 Jul 2005)
+
+  13 Jul 2005; Aaron Walker <ka0ttic@gentoo.org> +rxvt-unicode-5.7.ebuild:
+  Version bump.
+
+  27 Jun 2005; Markus Rothe <corsair@gentoo.org> rxvt-unicode-5.3.ebuild:
+  Stable on ppc64
+
+  21 Jun 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  rxvt-unicode-5.3.ebuild:
+  Stable on sparc
+
+  21 Jun 2005; Peter Johanson <latexer@gentoo.org> -rxvt-unicode-4.8.ebuild,
+  -rxvt-unicode-5.2.ebuild, rxvt-unicode-5.3.ebuild:
+  Remove some older versions, and mark 5.3 stable on x86.
+
+  29 Apr 2005; Michael Hanselmann <hansmi@gentoo.org>
+  rxvt-unicode-5.3.ebuild:
+  Added to ~hppa.
+
+  09 Apr 2005; Markus Rothe <corsair@gentoo.org> rxvt-unicode-4.0.ebuild,
+  rxvt-unicode-4.8.ebuild, rxvt-unicode-5.1.ebuild, rxvt-unicode-5.2.ebuild,
+  rxvt-unicode-5.3.ebuild:
+  Stable on ppc64/added ~ppc64 to KEYWORDS
+
+  02 Apr 2005; Michael Hanselmann <hansmi@gentoo.org> rxvt-unicode-4.0.ebuild:
+  Added to ~hppa.
+
+  28 Mar 2005; Peter Johanson <latexer@gentoo.org> rxvt-unicode-5.3.ebuild:
+  Use pkg_setup instead of pkg_preinst. Duh on my part.
+
+  15 Mar 2005; <SeJo@gentoo.org> rxvt-unicode-5.3.ebuild:
+  stable on ppc 84680
+
+*rxvt-unicode-5.3 (14 Mar 2005)
+
+  14 Mar 2005; Ciaran McCreesh <ciaranm@gentoo.org>
+  +rxvt-unicode-5.3.ebuild:
+  New version, bug #84680
+
+  28 Feb 2005; Peter Johanson <latexer@gentoo.org> rxvt-unicode-5.1.ebuild,
+  rxvt-unicode-5.2.ebuild:
+  Fix sed.
+
+  26 Feb 2005; Peter Johanson <latexer@gentoo.org> rxvt-unicode-3.0.ebuild,
+  rxvt-unicode-4.0.ebuild, rxvt-unicode-4.8.ebuild, rxvt-unicode-5.1.ebuild,
+  rxvt-unicode-5.2.ebuild:
+  Add libtool and pkgconfig deps. See bug #80555.
+
+  26 Feb 2005; Peter Johanson <latexer@gentoo.org> rxvt-unicode-4.8.ebuild,
+  rxvt-unicode-5.1.ebuild, rxvt-unicode-5.2.ebuild:
+  Stop trying to install non-existant docs, respect user USE flags, strip some
+  unsafe flags (bug #68715).
+
+*rxvt-unicode-5.2 (20 Feb 2005)
+
+  20 Feb 2005; Ciaran McCreesh <ciaranm@gentoo.org>
+  +rxvt-unicode-5.2.ebuild:
+  Bump
+
+  18 Feb 2005; Ciaran McCreesh <ciaranm@gentoo.org>
+  -rxvt-unicode-2.4.ebuild, -rxvt-unicode-3.6.ebuild,
+  -rxvt-unicode-3.9.ebuild, -rxvt-unicode-4.7.ebuild:
+  Tidy up
+
+*rxvt-unicode-5.1 (18 Feb 2005)
+
+  18 Feb 2005; Ciaran McCreesh <ciaranm@gentoo.org>
+  +rxvt-unicode-5.1.ebuild:
+  Version bump
+
+*rxvt-unicode-4.8 (29 Jan 2005)
+
+  29 Jan 2005; Peter Johanson <latexer@gentoo.org> -rxvt-unicode-4.5.ebuild,
+  -rxvt-unicode-4.6.ebuild, +rxvt-unicode-4.8.ebuild:
+  Bump, and remove a few older versions.
+
+  21 Jan 2005; Lars Weiler <pylon@gentoo.org> rxvt-unicode-4.7.ebuild:
+  Stable on ppc.
+
+*rxvt-unicode-4.7 (29 Dec 2004)
+
+  29 Dec 2004; Don Seiler <rizzo@gentoo.org> +rxvt-unicode-4.7.ebuild:
+  Version bump, also closes bug #75231
+
+*rxvt-unicode-4.6 (20 Dec 2004)
+
+  20 Dec 2004; Peter Johanson <latexer@gentoo.org> +rxvt-unicode-4.6.ebuild:
+  Bump.
+
+  18 Dec 2004; Tom Martin <slarti@gentoo.org> rxvt-unicode-4.0.ebuild:
+  Stable on amd64.
+
+  18 Dec 2004; Jason Wever <weeve@gentoo.org> rxvt-unicode-4.0.ebuild:
+  Stable on sparc.
+
+*rxvt-unicode-4.5 (13 Dec 2004)
+
+  13 Dec 2004; Peter Johanson <latexer@gentoo.org> -rxvt-unicode-3.5.ebuild,
+  rxvt-unicode-4.0.ebuild, +rxvt-unicode-4.5.ebuild:
+  Bump new release, mark 4.0 stable on x86, and remove one older version.
+
+  11 Oct 2004; Peter Johanson <latexer@gentoo.org> rxvt-unicode-2.4.ebuild,
+  rxvt-unicode-3.0.ebuild, rxvt-unicode-3.5.ebuild, rxvt-unicode-3.6.ebuild,
+  rxvt-unicode-3.9.ebuild, rxvt-unicode-4.0.ebuild:
+  Fix the HOMEPAGE to point to the new location. See bug #66538
+
+*rxvt-unicode-4.0 (28 Sep 2004)
+
+  28 Sep 2004; Peter Johanson <latexer@gentoo.org>
+  +files/rxvt-unicode-4.0-64bit.patch, -rxvt-unicode-2.8.ebuild,
+  -rxvt-unicode-2.9.ebuild, -rxvt-unicode-3.1.ebuild, -rxvt-unicode-3.2.ebuild,
+  rxvt-unicode-3.6.ebuild, rxvt-unicode-3.9.ebuild, +rxvt-unicode-4.0.ebuild:
+  Bump, fix a few deps, and do some cleanup of older versions. See bug #62418
+  for dep change info.
+
+  10 Sep 2004; Danny van Dyk <kugelfang@gentoo.org>
+  +files/rxvt-unicode-3.9-64bit.patch, rxvt-unicode-3.9.ebuild:
+  Fixed BUG #59587.
+
+  30 Aug 2004; Tom Gall <tgall@gentoo.org> rxvt-unicode-3.0.ebuild:
+  stable on ppc64, bug #61755
+
+*rxvt-unicode-3.9 (26 Aug 2004)
+
+  26 Aug 2004; Ciaran McCreesh <ciaranm@gentoo.org> +rxvt-unicode-3.9.ebuild:
+  Version bump. TERM will now always be rxvt-unicode so that terminfo works
+  properly.
+
+*rxvt-unicode-3.6 (14 Aug 2004)
+
+  14 Aug 2004; Peter Johanson <latexer@gentoo.org> +rxvt-unicode-3.6.ebuild:
+  Bump. Lots of various fixes.
+
+*rxvt-unicode-3.5 (10 Aug 2004)
+
+  10 Aug 2004; Peter Johanson <latexer@gentoo.org> +rxvt-unicode-3.5.ebuild:
+  Bump. Has new out of focus fading. Had to pass --disable-text-blink to avoid
+  bug. Anybody really want it?
+
+  05 Aug 2004; Tom Martin <slarti@gentoo.org> rxvt-unicode-3.2.ebuild:
+  Marked ~amd64.
+
+*rxvt-unicode-3.2 (26 Jul 2004)
+
+  26 Jul 2004; Peter Johanson <latexer@gentoo.org> +rxvt-unicode-3.2.ebuild:
+  Bump. Bold support.
+
+  14 Jul 2004; Travis Tilley <lv@gentoo.org> rxvt-unicode-3.0.ebuild:
+  stable on amd64
+
+  29 Jun 2004; Ciaran McCreesh <ciaranm@gentoo.org> rxvt-unicode-3.0.ebuild:
+  Stable on sparc
+
+  29 Jun 2004; Ciaran McCreesh <ciaranm@gentoo.org> rxvt-unicode-3.1.ebuild:
+  Put back ~sparc, added ~mips
+
+  28 Jun 2004; Aron Griffis <agriffis@gentoo.org> rxvt-unicode-2.4.ebuild,
+  rxvt-unicode-2.8.ebuild, rxvt-unicode-2.9.ebuild, rxvt-unicode-3.0.ebuild,
+  rxvt-unicode-3.1.ebuild:
+  glibc -> libc
+
+*rxvt-unicode-3.1 (27 Jun 2004)
+
+  27 Jun 2004; Peter Johanson <latexer@gentoo.org> rxvt-unicode-3.0.ebuild,
+  +rxvt-unicode-3.1.ebuild:
+  Bump to new release, and mark 3.0 x86.
+
+  14 May 2004; Ciaran McCreesh <ciaranm@gentoo.org> rxvt-unicode-2.9.ebuild:
+  Stable on sparc
+
+*rxvt-unicode-3.0 (10 May 2004)
+
+  10 May 2004; Peter Johanson <latexer@gentoo.org> rxvt-unicode-3.0.ebuild:
+  Bump. This release fixes the flickering when resizing and makes it work better
+  with gcc-3.4.
+
+*rxvt-unicode-2.9 (09 May 2004)
+
+  09 May 2004; Peter Johanson <latexer@gentoo.org> rxvt-unicode-2.8.ebuild,
+  rxvt-unicode-2.9.ebuild:
+  Bump to latest release, and mark 2.8 stable on x86.
+
+  14 Apr 2004; David Holm <dholm@gentoo.org> rxvt-unicode-2.8.ebuild:
+  Added to ~ppc.
+
+  13 Apr 2004; Peter Johanson <latexer@gentoo.org> rxvt-unicode-1.9.ebuild,
+  rxvt-unicode-1.91.ebuild, rxvt-unicode-2.0.ebuild, rxvt-unicode-2.1.ebuild,
+  rxvt-unicode-2.2.ebuild, rxvt-unicode-2.3.ebuild, rxvt-unicode-2.4.ebuild,
+  files/rxvt-unicode-2.2-set_name-fix.diff:
+  Removing a bunch of old versions, and finally marking a version stable on x86.
+
+*rxvt-unicode-2.8 (13 Apr 2004)
+
+  13 Apr 2004; Peter Johanson <latexer@gentoo.org> rxvt-unicode-2.8.ebuild:
+  Bump. Thanks to khai for pointing out this new version.
+
+  13 Apr 2004; Daniel Ahlberg <aliz@gentoo.org> rxvt-unicode-2.4.ebuild:
+  Added amd64 keyword, closing #47571.
+
+  30 Mar 2004; Sven Blumenstein <bazik@gentoo.org> rxvt-unicode-2.4.ebuild:
+  Stable on sparc, blame me if it breaks :P
+
+*rxvt-unicode-2.4 (21 Mar 2004)
+
+  21 Mar 2004; Peter Johanson <latexer@gentoo.org> rxvt-unicode-2.4.ebuild:
+  Bump. Fix for font setting commited upstream.
+
+*rxvt-unicode-2.3 (15 Mar 2004)
+
+  15 Mar 2004; Peter Johanson <latexer@gentoo.org> rxvt-unicode-2.3.ebuild,
+  files/rxvt-unicode-2.3-font-fix.diff:
+  Bump. Still needs font patch to fix segfaults when exiting. Patch submitted
+  upstream.
+
+  14 Mar 2004; Sven Blumenstein <bazik@gentoo.org> rxvt-unicode-2.2.ebuild:
+  Moved back to ~sparc, latexer broke it :P
+
+  14 Mar 2004; Sven Blumenstein <bazik@gentoo.org> rxvt-unicode-2.2.ebuild:
+  Stable on sparc.
+
+*rxvt-unicode-2.2 (11 Mar 2004)
+
+  11 Mar 2004; Peter Johanson <latexer@gentoo.org> rxvt-unicode-2.2.ebuild,
+  files/rxvt-unicode-2.2-set_name-fix.diff:
+  Bump. Included a small fix to stop segfaults when quiting due to errant string
+  handling.
+
+*rxvt-unicode-2.1 (03 Mar 2004)
+
+  03 Mar 2004; Peter Johanson <latexer@gentoo.org> rxvt-unicode-2.1.ebuild:
+  Bump. As of this version the binaries are named urxvt, urxvtc, urxvtd. This
+  should make it possible to install both rxvt and rxvt-unicode now. This
+  version won't block rxvt, once other's are removed, i'll remove the block from
+  rxvt too.
+
+*rxvt-unicode-2.0 (29 Feb 2004)
+
+  29 Feb 2004; Peter Johanson <latexer@gentoo.org> rxvt-unicode-2.0.ebuild:
+  They're just flying off the press! Bump.
+
+*rxvt-unicode-1.91 (29 Feb 2004)
+
+  29 Feb 2004; Peter Johanson <latexer@gentoo.org> rxvt-unicode-1.91.ebuild:
+  Bump.
+
+  26 Feb 2004; Sven Blumenstein <bazik@gentoo.org> rxvt-unicode-1.9.ebuild:
+  Added ~sparc. Go and use this great terminal!
+
+*rxvt-unicode-1.9 (25 Feb 2004)
+
+  25 Feb 2004; Peter Johanson <latexer@gentoo.org> metadata.xml,
+  rxvt-unicode-1.9.ebuild:
+  Initial commit. Ebuild copied and altered from rxvt ebuild by yours truly.
+
