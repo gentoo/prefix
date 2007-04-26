@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>x11</herd>
+<maintainer>
+  	<email>seemant@gentoo.org</email>
+	<name>Seemant Kulleen</name>
+	<description>Backup maintainer</description>
+</maintainer>
+<longdescription>Default terminal for X-windows servers.</longdescription>
+</pkgmetadata>
