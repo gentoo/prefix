@@ -1,6 +1,9 @@
 # ChangeLog for sys-process/procps
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/ChangeLog,v 1.25 2007/04/09 05:20:16 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/ChangeLog,v 1.26 2007/04/23 23:01:46 kloeri Exp $
+
+  23 Apr 2007; Bryan Østergaard <kloeri@gentoo.org> procps-3.2.7.ebuild:
+  Stable on Mips, bug 172159.
 
   09 Apr 2007; Peter Weller <welp@gentoo.org> procps-3.2.7.ebuild:
   Stable on amd64 wrt bug 172159
