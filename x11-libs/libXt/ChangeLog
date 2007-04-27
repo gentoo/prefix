@@ -1,6 +1,16 @@
 # ChangeLog for x11-libs/libXt
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/ChangeLog,v 1.38 2007/02/04 18:52:54 joshuabaergen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/ChangeLog,v 1.41 2007/04/25 16:58:12 armin76 Exp $
+
+  25 Apr 2007; Raúl Porcel <armin76@gentoo.org> libXt-1.0.5.ebuild:
+  Stable on ia64 wrt bug #175465.
+
+  25 Apr 2007; Markus Rothe <corsair@gentoo.org> libXt-1.0.5.ebuild:
+  Stable on ppc64; bug #175465
+
+  21 Apr 2007; Joshua Baergen <joshuabaergen@gentoo.org>
+  -libXt-1.0.4.ebuild:
+  Drop unused version.
 
   04 Feb 2007; Joshua Baergen <joshuabaergen@gentoo.org> libXt-1.0.5.ebuild:
   Remove an unnecessary mirror restriction.
