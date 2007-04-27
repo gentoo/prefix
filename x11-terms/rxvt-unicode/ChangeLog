@@ -1,6 +1,10 @@
 # ChangeLog for x11-terms/rxvt-unicode
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.89 2007/03/08 09:46:58 killerfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.90 2007/04/26 19:39:37 grobian Exp $
+
+  26 Apr 2007; Fabian Groffen <grobian@gentoo.org> rxvt-unicode-8.1.ebuild,
+  rxvt-unicode-8.2.ebuild:
+  Dropped ppc-macos, see you in prefix
 
   08 Mar 2007; René Nussbaumer <killerfox@gentoo.org>
   -rxvt-unicode-5.3.ebuild, -rxvt-unicode-7.0.ebuild,
