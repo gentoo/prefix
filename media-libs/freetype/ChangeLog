@@ -1,6 +1,19 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.122 2007/04/12 08:52:16 yoswink Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.124 2007/04/21 03:57:10 dirtyepic Exp $
+
+  21 Apr 2007; Ryan Hill <dirtyepic@gentoo.org> -freetype-2.3.2-r2.ebuild,
+  -freetype-2.3.2-r3.ebuild:
+  Remove a couple more old ebuilds.
+
+*freetype-2.3.4 (21 Apr 2007)
+
+  21 Apr 2007; Ryan Hill <dirtyepic@gentoo.org>
+  -files/freetype-2.2.1-foobillard.patch,
+  -files/freetype-2.3.2-truetype-regression.patch,
+  -files/freetype-2-enable_bci.patch, -freetype-2.2.1-r1.ebuild,
+  -freetype-2.3.1.ebuild, +freetype-2.3.4.ebuild:
+  Version bump.  Remove old versions.
 
   12 Apr 2007; Jose Luis Rivero <yoswink@gentoo.org>
   freetype-2.1.10-r3.ebuild:
