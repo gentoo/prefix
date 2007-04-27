@@ -1,6 +1,10 @@
 # ChangeLog for app-emacs/flim
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/flim/ChangeLog,v 1.19 2007/03/30 20:05:46 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/flim/ChangeLog,v 1.20 2007/04/23 09:49:58 opfer Exp $
+
+  23 Apr 2007; Christian Faulhammer <opfer@gentoo.org> flim-1.14.8.ebuild:
+  remove virtual/emacs from DEPEND, it is already pulled in by elisp.eclass;
+  exchanged hard coded part of SITEFILE with PN variable
 
   30 Mar 2007; Fabian Groffen <grobian@gentoo.org> flim-1.14.6.ebuild,
   flim-1.14.7.ebuild, flim-1.14.8.ebuild:
