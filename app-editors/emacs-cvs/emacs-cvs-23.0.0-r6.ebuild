@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.0-r6.ebuild,v 1.4 2007/04/18 16:13:08 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.0-r6.ebuild,v 1.7 2007/04/26 08:59:31 ulm Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ SRC_URI=""
 HOMEPAGE="http://www.gnu.org/software/emacs/"
 IUSE="alsa gif gtk gzip-el hesiod jpeg lesstif motif png spell sound source tiff toolkit-scroll-bars X Xaw3d xft xpm"
 
-RESTRICT="$RESTRICT nostrip"
+RESTRICT="${RESTRICT} nostrip"
 
 X_DEPEND="x11-libs/libXmu x11-libs/libXt x11-misc/xbitmaps"
 
@@ -44,7 +44,6 @@ RDEPEND="sys-libs/ncurses
 		!motif? ( lesstif? ( x11-libs/lesstif ) ) )"
 
 DEPEND="${RDEPEND}
-	X? ( !gtk? ( Xaw3d? ( x11-libs/libXaw ) ) )
 	gzip-el? ( app-arch/gzip )"
 
 PROVIDE="virtual/emacs virtual/editor"
@@ -77,9 +76,10 @@ src_unpack() {
 		sed -i -e "s/ gzip/ PrEvEnTcOmPrEsSiOn/" configure.in || die "unable to sed configure.in"
 	fi
 
+	epatch "${FILESDIR}/${PN}-Xaw3d-headers.patch"
 	epatch "${FILESDIR}/${PN}-freebsd-sparc.patch"
-	# ALSA is detected and used even if not requested by the USE=alsa flag.	So remove the
-	# automagic check
+	# ALSA is detected and used even if not requested by the USE=alsa flag.
+	# So remove the automagic check
 	use alsa || epatch "${FILESDIR}/${PN}-disable_alsa_detection.patch"
 
 	eautoreconf
@@ -97,7 +97,8 @@ src_compile() {
 
 	if use alsa && ! use sound; then
 		echo
-		einfo "Although sound USE flag is disabled you chose to have alsa, so sound is switched on anyway."
+		einfo "Although sound USE flag is disabled you chose to have alsa,"
+		einfo "so sound is switched on anyway."
 		echo
 		myconf="${myconf} --with-sound"
 	else
@@ -196,7 +197,7 @@ src_install () {
 	# move man pages to the correct place
 	einfo "Fixing manpages..."
 	for m in "${ED}"/usr/share/man/man1/* ; do
-		mv ${m} ${m/.1/-emacs-${SLOT}.1} || die "mv man failed"
+		mv ${m} ${m%.1}-emacs-${SLOT}.1 || die "mv man failed"
 	done
 
 	# avoid collision between slots, see bug #169033 e.g.
@@ -217,8 +218,7 @@ EOF
 		elisp-site-file-install 00emacs-cvs-${SLOT}-gentoo.el
 	fi
 
-	dodoc AUTHORS BUGS CONTRIBUTE MAINTAINERS README README.unicode \
-		|| die "dodoc failed"
+	dodoc AUTHORS BUGS CONTRIBUTE README README.unicode || die "dodoc failed"
 }
 
 emacs-infodir-rebuild() {
@@ -253,9 +253,10 @@ pkg_postinst() {
 	fi
 
 	echo
-	elog "You can set the version to be started by /usr/bin/emacs through the Emacs eselect module"
-	elog "Man and info pages are automatically redirected, so you are to test emacs-cvs along with the"
-	elog "stable release"
+	elog "You can set the version to be started by /usr/bin/emacs through"
+	elog "the Emacs eselect module. Man and info pages are automatically"
+	elog "redirected, so you are to test emacs-cvs along with the stable"
+	elog "release. \"man emacs.eselect\" for details."
 }
 
 pkg_postrm() {

@@ -1,6 +1,40 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.108 2007/04/18 16:13:08 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.114 2007/04/26 08:59:31 ulm Exp $
+
+*emacs-cvs-22.1.50 (26 Apr 2007)
+
+  26 Apr 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.0.98.ebuild,
+  emacs-cvs-22.0.99.ebuild, emacs-cvs-22.0.9999-r10.ebuild,
+  +emacs-cvs-22.1.50.ebuild, emacs-cvs-23.0.0-r6.ebuild:
+  New live CVS ebuild for Emacs 22 trunk. Fixed parameter expansion for file
+  name of man pages.
+
+  25 Apr 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.0.97.ebuild,
+  emacs-cvs-23.0.0-r1.ebuild:
+  Change SLOT also in old ebuilds to reflect slotmove.
+
+  24 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
+  emacs-cvs-22.0.9999-r10.ebuild:
+  new branch has been opened, this is now reflected in the ebuild
+
+*emacs-cvs-22.0.99 (24 Apr 2007)
+
+  24 Apr 2007; Ulrich Mueller <ulm@gentoo.org> +emacs-cvs-22.0.99.ebuild:
+  Version bump.
+
+  20 Apr 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.0.98.ebuild,
+  -emacs-cvs-22.0.9999-r7.ebuild, emacs-cvs-22.0.9999-r10.ebuild,
+  emacs-cvs-23.0.0-r6.ebuild:
+  Test for previous symlink and eselect the same SLOT, also for live CVS
+  ebuild. Added braces to variable name; split some long lines. Removed old
+  broken revision.
+
+  19 Apr 2007; Ulrich Mueller <ulm@gentoo.org>
+  +files/emacs-cvs-Xaw3d-headers.patch, emacs-cvs-22.0.98.ebuild,
+  emacs-cvs-22.0.9999-r10.ebuild, emacs-cvs-23.0.0-r6.ebuild:
+  Upstream patch for proper including of Xaw3d headers; removed build-time
+  dependency on x11-libs/libXaw; bug #174453.
 
   18 Apr 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.0.98.ebuild,
   emacs-cvs-22.0.9999-r10.ebuild, emacs-cvs-23.0.0-r6.ebuild:
