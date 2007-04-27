@@ -1,6 +1,13 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.138 2007/04/19 13:47:38 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.140 2007/04/26 07:20:08 ulm Exp $
+
+  26 Apr 2007; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r12.ebuild:
+  Fixed parameter expansion for file name of man pages.
+
+  24 Apr 2007; Ulrich Mueller <ulm@gentoo.org> emacs-18.59-r1.ebuild,
+  emacs-18.59-r4.ebuild:
+  Don't PROVIDE virtual/emacs, it makes no sense for version 18.
 
   19 Apr 2007; Bryan Østergaard <kloeri@gentoo.org> emacs-21.4-r12.ebuild:
   Add ~alpha keyword, bug 174882.

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r12.ebuild,v 1.7 2007/04/19 13:47:38 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r12.ebuild,v 1.8 2007/04/26 07:20:08 ulm Exp $
 
 EAPI="prefix"
 
@@ -144,7 +144,7 @@ src_install() {
 
 	einfo "Fixing manpages..."
 	for m in "${ED}"/usr/share/man/man1/* ; do
-		mv ${m} ${m/.1/-emacs-${SLOT}.1} || die "mv ${m} failed"
+		mv ${m} ${m%.1}-emacs-${SLOT}.1 || die "mv ${m} failed"
 	done
 
 	# avoid collision between slots
