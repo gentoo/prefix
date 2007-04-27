@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/pine/pine-4.64-r5.ebuild,v 1.12 2007/04/11 18:33:40 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/pine/pine-4.64-r5.ebuild,v 1.13 2007/04/21 13:19:41 armin76 Exp $
 
 EAPI="prefix"
 
