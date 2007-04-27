@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/cvs-1.12.12-r4.ebuild,v 1.12 2007/04/18 13:38:39 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/cvs-1.12.12-r4.ebuild,v 1.13 2007/04/22 13:47:48 dertobi123 Exp $
 
 EAPI="prefix"
 
