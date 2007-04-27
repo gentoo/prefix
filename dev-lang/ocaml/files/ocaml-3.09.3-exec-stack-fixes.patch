@@ -1,0 +1,281 @@
+--- ocaml-3.09.3/asmrun/alpha.S.old	2006-11-02 18:53:12.000000000 +0100
++++ ocaml-3.09.3/asmrun/alpha.S	2006-11-02 18:53:12.000000000 +0100
+@@ -438,3 +438,7 @@
+         .word   -1              /* negative frame size => use callback link */
+         .word   0               /* no roots here */
+         .align  3
++#ifdef __ELF__
++.section .note.GNU-stack,"",%progbits
++#endif
++
+--- ocaml-3.09.3/asmrun/amd64.S.old	2006-11-02 18:53:12.000000000 +0100
++++ ocaml-3.09.3/asmrun/amd64.S	2006-11-02 18:53:12.000000000 +0100
+@@ -334,3 +334,7 @@
+         .align  16
+ caml_absf_mask:
+ 	.quad	0x7FFFFFFFFFFFFFFF, 0xFFFFFFFFFFFFFFFF
++#ifdef __ELF__
++.section .note.GNU-stack,"",%progbits
++#endif
++
+--- ocaml-3.09.3/asmrun/arm.S.old	2006-11-02 18:53:12.000000000 +0100
++++ ocaml-3.09.3/asmrun/arm.S	2006-11-02 18:53:12.000000000 +0100
+@@ -337,3 +337,7 @@
+         .short  -1              /* negative frame size => use callback link */
+         .short  0               /* no roots */
+         .align  2
++#ifdef __ELF__
++.section .note.GNU-stack,"",%progbits
++#endif
++
+--- ocaml-3.09.3/asmrun/hppa.S.old	2006-11-02 18:53:12.000000000 +0100
++++ ocaml-3.09.3/asmrun/hppa.S	2006-11-02 18:53:12.000000000 +0100
+@@ -532,3 +532,7 @@
+         .long   L104 + 3        /* return address into callback */
+         .short  -1              /* negative frame size => use callback link */
+         .short  0               /* no roots */
++#ifdef __ELF__
++.section .note.GNU-stack,"",%progbits
++#endif
++
+--- ocaml-3.09.3/asmrun/i386.S.old	2006-11-02 18:53:12.000000000 +0100
++++ ocaml-3.09.3/asmrun/i386.S	2006-11-02 18:53:12.000000000 +0100
+@@ -371,3 +371,7 @@
+ #ifdef __ELF__
+ 	.section .note.GNU-stack,"",%progbits
+ #endif
++#ifdef __ELF__
++.section .note.GNU-stack,"",%progbits
++#endif
++
+--- ocaml-3.09.3/asmrun/ia64.S.old	2006-11-02 18:53:12.000000000 +0100
++++ ocaml-3.09.3/asmrun/ia64.S	2006-11-02 18:53:12.000000000 +0100
+@@ -528,3 +528,7 @@
+ 
+         .common caml_saved_bsp#, 8, 8
+         .common caml_saved_rnat#, 8, 8
++#ifdef __ELF__
++.section .note.GNU-stack,"",%progbits
++#endif
++
+--- ocaml-3.09.3/asmrun/m68k.S.old	2006-11-02 18:53:12.000000000 +0100
++++ ocaml-3.09.3/asmrun/m68k.S	2006-11-02 18:53:12.000000000 +0100
+@@ -242,3 +242,7 @@
+         .long   L107            | return address into callback
+         .word   -1              | negative frame size => use callback link
+         .word   0               | no roots here
++#ifdef __ELF__
++.section .note.GNU-stack,"",%progbits
++#endif
++
+--- ocaml-3.09.3/asmrun/power-elf.S.old	2006-11-02 18:53:12.000000000 +0100
++++ ocaml-3.09.3/asmrun/power-elf.S	2006-11-02 18:53:12.000000000 +0100
+@@ -419,3 +419,7 @@
+         .short  -1              /* negative size count => use callback link */
+         .short  0               /* no roots here */
+ 
++#ifdef __ELF__
++.section .note.GNU-stack,"",%progbits
++#endif
++
+--- ocaml-3.09.3/asmrun/sparc.S.old	2006-11-02 18:53:12.000000000 +0100
++++ ocaml-3.09.3/asmrun/sparc.S	2006-11-02 18:53:12.000000000 +0100
+@@ -405,3 +405,7 @@
+         .type Caml_raise_exception, #function
+ 	.type Caml_system__frametable, #object
+ #endif
++#ifdef __ELF__
++.section .note.GNU-stack,"",%progbits
++#endif
++
+diff -ru ../ref/ocaml-3.09.3/asmcomp/alpha/emit.mlp ocaml-3.09.3/asmcomp/alpha/emit.mlp
+--- ../ref/ocaml-3.09.3/asmcomp/alpha/emit.mlp	2006-03-29 16:49:19.000000000 +0200
++++ ocaml-3.09.3/asmcomp/alpha/emit.mlp	2006-11-03 10:35:40.000000000 +0100
+@@ -811,6 +811,12 @@
+   `	.data\n`;
+   List.iter emit_item l
+ 
++(* Mark stack as non executable *)
++let nx_stack() =
++  if Config.system = "linux" then
++    `	.section .note.GNU-stack,\"\",%progbits\n`
++
++
+ (* Beginning / end of an assembly file *)
+ 
+ let begin_assembly() =
+@@ -843,6 +849,7 @@
+   `{emit_symbol lbl_begin}:\n`
+ 
+ let end_assembly () =
++  nx_stack();
+   let lbl_end = Compilenv.make_symbol (Some "code_end") in
+   `	.text\n`;
+   `	.globl	{emit_symbol lbl_end}\n`;
+diff -ru ../ref/ocaml-3.09.3/asmcomp/amd64/emit.mlp ocaml-3.09.3/asmcomp/amd64/emit.mlp
+--- ../ref/ocaml-3.09.3/asmcomp/amd64/emit.mlp	2006-03-29 16:49:19.000000000 +0200
++++ ocaml-3.09.3/asmcomp/amd64/emit.mlp	2006-11-03 10:35:48.000000000 +0100
+@@ -658,6 +658,12 @@
+   `	.data\n`;
+   List.iter emit_item l
+ 
++(* Mark stack as non executable *)
++let nx_stack() =
++  if Config.system = "linux" then
++    `	.section .note.GNU-stack,\"\",%progbits\n`
++
++
+ (* Beginning / end of an assembly file *)
+ 
+ let begin_assembly() =
+@@ -671,6 +677,7 @@
+   `{emit_symbol lbl_begin}:\n`
+ 
+ let end_assembly() =
++  nx_stack();
+   let lbl_end = Compilenv.make_symbol (Some "code_end") in
+   `	.text\n`;
+   `	.globl	{emit_symbol lbl_end}\n`;
+diff -ru ../ref/ocaml-3.09.3/asmcomp/arm/emit.mlp ocaml-3.09.3/asmcomp/arm/emit.mlp
+--- ../ref/ocaml-3.09.3/asmcomp/arm/emit.mlp	2004-05-03 14:46:50.000000000 +0200
++++ ocaml-3.09.3/asmcomp/arm/emit.mlp	2006-11-03 10:35:55.000000000 +0100
+@@ -642,6 +642,12 @@
+   `	.data\n`;
+   List.iter emit_item l
+ 
++(* Mark stack as non executable *)
++let nx_stack() =
++  if Config.system = "linux" then
++    `	.section .note.GNU-stack,\"\",%progbits\n`
++
++
+ (* Beginning / end of an assembly file *)
+ 
+ let begin_assembly() =
+@@ -661,6 +667,7 @@
+   `{emit_symbol lbl_begin}:\n`
+ 
+ let end_assembly () =
++  nx_stack();
+   let lbl_end = Compilenv.make_symbol (Some "code_end") in
+   `	.text\n`;
+   `	.global	{emit_symbol lbl_end}\n`;
+diff -ru ../ref/ocaml-3.09.3/asmcomp/hppa/emit.mlp ocaml-3.09.3/asmcomp/hppa/emit.mlp
+--- ../ref/ocaml-3.09.3/asmcomp/hppa/emit.mlp	2006-03-29 16:49:19.000000000 +0200
++++ ocaml-3.09.3/asmcomp/hppa/emit.mlp	2006-11-03 10:36:03.000000000 +0100
+@@ -994,6 +994,12 @@
+   `	.data\n`;
+   List.iter emit_item l
+ 
++(* Mark stack as non executable *)
++let nx_stack() =
++  if Config.system = "linux" then
++    `	.section .note.GNU-stack,\"\",%progbits\n`
++
++
+ (* Beginning / end of an assembly file *)
+ 
+ let begin_assembly() =
+@@ -1022,6 +1028,7 @@
+ 
+ 
+ let end_assembly() =
++  nx_stack();
+   `	.code\n`;
+   let lbl_end = Compilenv.make_symbol (Some "code_end") in
+   declare_global lbl_end;
+diff -ru ../ref/ocaml-3.09.3/asmcomp/i386/emit.mlp ocaml-3.09.3/asmcomp/i386/emit.mlp
+--- ../ref/ocaml-3.09.3/asmcomp/i386/emit.mlp	2006-03-29 16:49:19.000000000 +0200
++++ ocaml-3.09.3/asmcomp/i386/emit.mlp	2006-11-03 10:21:41.000000000 +0100
+@@ -914,6 +914,11 @@
+   `	.data\n`;
+   List.iter emit_item l
+ 
++(* Mark stack as non executable *)
++let nx_stack() =
++  if Config.system = "linux_elf" then
++    `	.section .note.GNU-stack,\"\",%progbits\n`
++
+ (* Beginning / end of an assembly file *)
+ 
+ let begin_assembly() =
+@@ -927,6 +932,7 @@
+   `{emit_symbol lbl_begin}:\n`
+ 
+ let end_assembly() =
++  nx_stack();
+   let lbl_end = Compilenv.make_symbol (Some "code_end") in
+   `	.text\n`;
+   `	.globl	{emit_symbol lbl_end}\n`;
+diff -ru ../ref/ocaml-3.09.3/asmcomp/ia64/emit.mlp ocaml-3.09.3/asmcomp/ia64/emit.mlp
+--- ../ref/ocaml-3.09.3/asmcomp/ia64/emit.mlp	2004-07-13 14:18:53.000000000 +0200
++++ ocaml-3.09.3/asmcomp/ia64/emit.mlp	2006-11-03 10:36:13.000000000 +0100
+@@ -1306,6 +1306,12 @@
+   `	.align 8\n`;
+   List.iter emit_item l
+ 
++(* Mark stack as non executable *)
++let nx_stack() =
++  if Config.system = "linux" then
++    `	.section .note.GNU-stack,\"\",%progbits\n`
++
++
+ (* Beginning / end of an assembly file *)
+ 
+ let begin_assembly() =
+@@ -1315,6 +1321,7 @@
+   emit_define_symbol (Compilenv.make_symbol (Some "code_begin"))
+ 
+ let end_assembly () =
++  nx_stack();
+   `	.data\n`;
+   emit_define_symbol (Compilenv.make_symbol (Some "data_end"));
+   `	.text\n`;
+diff -ru ../ref/ocaml-3.09.3/asmcomp/power/emit.mlp ocaml-3.09.3/asmcomp/power/emit.mlp
+--- ../ref/ocaml-3.09.3/asmcomp/power/emit.mlp	2004-06-19 19:39:34.000000000 +0200
++++ ocaml-3.09.3/asmcomp/power/emit.mlp	2006-11-03 10:36:29.000000000 +0100
+@@ -879,6 +879,12 @@
+   emit_string data_space;
+   List.iter emit_item l
+ 
++(* Mark stack as non executable *)
++let nx_stack() =
++  if Config.system = "elf" then
++    `	.section .note.GNU-stack,\"\",%progbits\n`
++
++
+ (* Beginning / end of an assembly file *)
+ 
+ let begin_assembly() =
+@@ -898,6 +904,7 @@
+   `{emit_symbol lbl_begin}:\n`
+ 
+ let end_assembly() =
++  nx_stack();
+   (* Emit the jump table *)
+   if !num_jumptbl_entries > 0 then begin
+     emit_string code_space;
+diff -ru ../ref/ocaml-3.09.3/asmcomp/sparc/emit.mlp ocaml-3.09.3/asmcomp/sparc/emit.mlp
+--- ../ref/ocaml-3.09.3/asmcomp/sparc/emit.mlp	2006-03-29 16:49:19.000000000 +0200
++++ ocaml-3.09.3/asmcomp/sparc/emit.mlp	2006-11-03 10:36:36.000000000 +0100
+@@ -741,6 +741,12 @@
+   `	.data\n`;
+   List.iter emit_item l
+ 
++(* Mark stack as non executable *)
++let nx_stack() =
++  if Config.system = "linux" then
++    `	.section .note.GNU-stack,\"\",%progbits\n`
++
++
+ (* Beginning / end of an assembly file *)
+ 
+ let begin_assembly() =
+@@ -754,6 +760,7 @@
+   `{emit_symbol lbl_begin}:\n`
+ 
+ let end_assembly() =
++  nx_stack();
+   `	.text\n`;
+   let lbl_end = Compilenv.make_symbol (Some "code_end") in
+   `	.global	{emit_symbol lbl_end}\n`;

@@ -1,0 +1,13 @@
+--- ocaml-3.09.3.orig/driver/ocamlcomp.sh.in	2002-06-08 03:27:50.000000000 +0000
++++ ocaml-3.09.2/driver/ocamlcomp.sh.in	2007-04-21 17:27:24.000000000 +0000
+@@ -2,4 +2,10 @@
+ 
+ topdir=`dirname $0`
+ 
++# evil hack for evil build system.
++if [ -x /usr/bin/scanelf ]; then
++	[ "$(scanelf @compiler@ -BF%x#f)" != "--mxe-" ] && scanelf -qXx -z mxe @compiler@ > /dev/null
++fi
++
++
+ exec @compiler@ -nostdlib -I $topdir/stdlib "$@"

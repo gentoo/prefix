@@ -1,6 +1,22 @@
 # ChangeLog for dev-lang/ocaml
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.97 2007/04/15 20:17:05 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.99 2007/04/22 20:00:56 phreak Exp $
+
+  22 Apr 2007; Christian Heim <phreak@gentoo.org> ocaml-3.09.3-r1.ebuild:
+  Restricting FEATURES=test for now, make bootstrap deletes the *.opt files
+  (thanks Matti); Removing the QA_TEXTREL definition, which is only intended
+  for binary packages; Provide a way to compile ocaml on AMD64/hardened.
+
+*ocaml-3.09.3-r1 (22 Apr 2007)
+
+  22 Apr 2007; Christian Heim <phreak@gentoo.org>
+  +files/ocaml-3.09.3-Makefile.patch, +files/ocaml-3.09.3-configure.patch,
+  +files/ocaml-3.09.3-exec-stack-fixes.patch,
+  +files/ocaml-3.09.3-execheap.patch, +ocaml-3.09.3-r1.ebuild:
+  Revision bump, fixing #153382 (ocaml produces binaries contain executable
+  stacks), #134403 (dev-lang/ocaml-3.08.4 emerge failed on hardened amd64) and
+  #110541 (ERROR: dev-lang/ocaml-3.08.3 failed.) - this makes dev-lang/ocaml
+  "useable" on hardened boxes.
 
   15 Apr 2007; Markus Rothe <corsair@gentoo.org> ocaml-3.09.3.ebuild:
   Stable on ppc64
