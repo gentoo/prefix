@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/mpfr
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.47 2007/04/06 14:07:46 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.48 2007/04/23 21:15:50 armin76 Exp $
+
+  23 Apr 2007; Raúl Porcel <armin76@gentoo.org> mpfr-2.2.1_p5.ebuild:
+  ia64 + x86 stable
 
 *mpfr-2.2.1_p5 (06 Apr 2007)
 
