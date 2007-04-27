@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-0.11.2.ebuild,v 1.13 2007/03/15 12:03:13 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-0.11.2.ebuild,v 1.14 2007/04/25 13:44:25 eroyf Exp $
 
 EAPI="prefix"
 
