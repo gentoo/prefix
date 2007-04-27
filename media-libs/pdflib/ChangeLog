@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/pdflib
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.63 2007/03/16 22:45:29 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.64 2007/04/23 22:51:06 anant Exp $
+
+*pdflib-7.0.1 (23 Apr 2007)
+
+  23 Apr 2007; Anant Narayanan <anant@gentoo.org> +pdflib-7.0.1.ebuild:
+  vBump to 7.0.1
 
   16 Mar 2007; Luca Longinotti <chtekk@gentoo.org>
   pdflib-5.0.4_p1-r1.ebuild, pdflib-6.0.3.ebuild, pdflib-6.0.3-r1.ebuild:

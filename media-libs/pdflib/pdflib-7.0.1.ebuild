@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/pdflib-6.0.3.ebuild,v 1.6 2007/03/16 22:45:29 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/pdflib-7.0.1.ebuild,v 1.1 2007/04/23 22:51:06 anant Exp $
 
 EAPI="prefix"
 
 # eutils must be inherited since get_libdir() is only
 # globally available on baselayout-1.11 (still on ~arch)
-inherit eutils java-pkg flag-o-matic
+inherit base eutils java-pkg-opt-2 flag-o-matic
 
 MY_PN="${PN/pdf/PDF}-Lite"
 MY_P="${MY_PN}-${PV}"
@@ -14,20 +14,28 @@ S="${WORKDIR}/${MY_P}"
 
 DESCRIPTION="A library for generating PDF on the fly."
 HOMEPAGE="http://www.pdflib.com/"
-SRC_URI="http://www.pdflib.com/products/pdflib/download/${PV//./}src/${MY_P}.tar.gz"
+SRC_URI="http://www.pdflib.com/binaries/${PN/pdf/PDF}/${PV//./}/${MY_P}.tar.gz"
 LICENSE="Aladdin"
 SLOT="5"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
-IUSE="tcl perl python java"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+IUSE="doc tcl perl python java"
 
-DEPEND=">=sys-apps/sed-4
+COMMON_DEP="
+	>=sys-apps/sed-4
 	tcl? ( >=dev-lang/tcl-8.2 )
 	perl? ( >=dev-lang/perl-5.1 )
-	python? ( >=dev-lang/python-2.2 )
-	java? ( >=virtual/jdk-1.3 )"
+	python? ( >=dev-lang/python-2.2 )"
+
+DEPEND="
+	${COMMON_DEP}
+	java? ( >=virtual/jdk-1.4 )"
+
+RDEPEND="
+	${COMMON_DEP}
+	java? ( >=virtual/jre-1.4 )"
 
 src_compile() {
-	local myconf=
+	local myconf
 
 	# Bug #87004
 	filter-flags -mcpu=*
@@ -52,7 +60,12 @@ src_compile() {
 	econf \
 		--enable-cxx \
 		${myconf} || die
-	emake || die "emake failed"
+
+	JAVACFLAGS="$(java-pkg_javac-args)" emake || die "emake failed"
+	if use java && use doc; then
+		cd ./bind/pdflib/java || die
+		emake javadoc || die "Failed to generate javadoc"
+	fi
 }
 
 src_install() {
@@ -79,7 +92,7 @@ src_install() {
 			|cut -d ' ' -f 4 |cut -d '.' -f 1`"
 		local perlver="`${EPREFIX}/usr/bin/perl -v |grep 'This is perl' \
 			|cut -d ' ' -f 4`"
-		local perlarch="`/usr/bin/perl -v |grep 'This is perl' \
+		local perlarch="`${EPREFIX}/usr/bin/perl -v |grep 'This is perl' \
 			|cut -d ' ' -f 7`"
 		dodir /usr/$(get_libdir)/perl${perlmajver/v/}/site_perl/${perlver/v/}/${perlarch}
 	fi
@@ -97,21 +110,7 @@ src_install() {
 	# seemant: seems like the makefiles for pdflib generate the .jar file
 	# anyway
 	use java && java-pkg_dojar bind/pdflib/java/pdflib.jar
-
-	# karltk: This is definitely NOT how it should be done!
-	# we need this to create pdflib.jar (we will not have the source when
-	# this is a binary package ...)
-#	if use java
-#	then
-#		insinto /usr/share/pdflib
-#		doins ${S}/bind/pdflib/java/pdflib.java
-#
-#		mkdir -p com/pdflib
-#		mv ${S}/bind/pdflib/java/pdflib.java com/pdflib
-#		javac com/pdflib/pdflib.java
-#
-#		jar cf pdflib.jar com/pdflib/*.class
-#
-#		java-pkg_dojar pdflib.jar
-#	fi
+	if use java && use doc; then
+		java-pkg_dojavadoc ./bind/pdflib/java/javadoc
+	fi
 }
