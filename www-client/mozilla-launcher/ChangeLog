@@ -1,0 +1,560 @@
+# ChangeLog for www-client/mozilla-launcher
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-launcher/ChangeLog,v 1.58 2007/03/25 20:42:16 armin76 Exp $
+
+  25 Mar 2007; Raúl Porcel <armin76@gentoo.org>
+  mozilla-launcher-1.56.ebuild:
+  ia64 stable wrt bug 168558
+
+  06 Mar 2007; Marcus D. Hanwell <cryos@gentoo.org>
+  mozilla-launcher-1.56.ebuild:
+  Stable on amd64, bug 168558.
+
+  06 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  mozilla-launcher-1.56.ebuild:
+  Stable on sparc wrt #168558
+
+  06 Mar 2007; Markus Rothe <corsair@gentoo.org>
+  mozilla-launcher-1.56.ebuild:
+  Stable on ppc64; bug #168558
+
+  03 Mar 2007; nixnut <nixnut@gentoo.org> mozilla-launcher-1.56.ebuild:
+  Stable on ppc wrt bug 168558
+
+  02 Mar 2007; Jeroen Roovers <jer@gentoo.org> mozilla-launcher-1.56.ebuild:
+  Stable for HPPA (bug #168558).
+
+  02 Mar 2007; nixnut <nixnut@gentoo.org> mozilla-launcher-1.54.ebuild:
+  Stable on ppc wrt bug 168558
+
+  01 Mar 2007; Raúl Porcel <armin76@gentoo.org>
+  mozilla-launcher-1.56.ebuild:
+  x86 stable wrt bug 168558
+
+  26 Dec 2006; Bryan Østergaard <kloeri@gentoo.org>
+  mozilla-launcher-1.56.ebuild:
+  Add x11-apps/xdpyinfo dependency.
+
+*mozilla-launcher-1.56 (26 Dec 2006)
+
+  26 Dec 2006; Bryan Østergaard <kloeri@gentoo.org>
+  +mozilla-launcher-1.56.ebuild:
+  Bump version, fixing urlOpen and grep -F issues.
+
+*mozilla-launcher-1.55 (16 Dec 2006)
+
+  16 Dec 2006; Bryan Østergaard <kloeri@gentoo.org>
+  +mozilla-launcher-1.55.ebuild:
+  Version bump, add xulrunner support.
+
+  25 Nov 2006; Diego Pettenò <flameeyes@gentoo.org>
+  mozilla-launcher-1.52.ebuild:
+  There is NO stable for x86-fbsd!
+
+*mozilla-launcher-1.54 (31 Oct 2006)
+
+  31 Oct 2006; Aron Griffis <agriffis@gentoo.org>
+  -mozilla-launcher-1.51.ebuild, mozilla-launcher-1.52.ebuild,
+  +mozilla-launcher-1.54.ebuild:
+  Bump to 1.54 (from 1.52-r1). Mark 1.52 stable everywhere. Remove 1.51.
+  Toss the half-baked aoss patch and make aoss usage completely dynamic.
+  Re-add keywords.
+
+  25 Sep 2006; Jason Wever <weeve@gentoo.org>
+  mozilla-launcher-1.52-r1.ebuild:
+  Added ~sparc keyword wrt bug #146108.
+
+  03 Sep 2006; Jeroen Roovers <jer@gentoo.org>
+  mozilla-launcher-1.52-r1.ebuild:
+  Marked ~hppa (bug #146108).
+
+  03 Sep 2006; Diego Pettenò <flameeyes@gentoo.org>
+  mozilla-launcher-1.52-r1.ebuild:
+  Restore ~x86-fbsd keyword as per bug #146108.
+
+  03 Sep 2006; Markus Rothe <corsair@gentoo.org>
+  mozilla-launcher-1.52-r1.ebuild:
+  Added ~ppc64 and dropped ~arm because of bug #146108
+
+*mozilla-launcher-1.52-r1 (03 Sep 2006)
+
+  03 Sep 2006; Krzysiek Pawlik <nelchael@gentoo.org>
+  +files/mozilla-launcher-1.52-aoss.patch, +mozilla-launcher-1.52-r1.ebuild:
+  Added version with optional media-libs/alsa-oss support.
+
+  07 Jul 2006; Diego Pettenò <flameeyes@gentoo.org>
+  mozilla-launcher-1.52.ebuild:
+  Add ~x86-fbsd keyword.
+
+*mozilla-launcher-1.52 (29 Jun 2006)
+
+  29 Jun 2006; anarchy <anarchy@gentoo.org> +mozilla-launcher-1.52.ebuild:
+  fix tabbed browsing prefs for seamonkey
+
+  23 Mar 2006; Aron Griffis <agriffis@gentoo.org>
+  -mozilla-launcher-1.45.ebuild, -mozilla-launcher-1.47.ebuild,
+  mozilla-launcher-1.49.ebuild, -mozilla-launcher-1.50.ebuild:
+  Mark 1.49 stable on alpha/amd64/arm/hppa/ia64/mips/ppc/ppc64/sparc/x86.
+  Remove 1.50, 1.47, 1.45
+
+*mozilla-launcher-1.51 (23 Mar 2006)
+
+  23 Mar 2006; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.51.ebuild:
+  Only use MOZ_NO_REMOTE hack for profile-specific options #126309
+
+*mozilla-launcher-1.50 (09 Mar 2006)
+
+  09 Mar 2006; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.50.ebuild:
+  Bump to 1.50 (from 1.49). Fix bug 114683: -ProfileManager doesn't work with
+  DeerPark
+
+*mozilla-launcher-1.49 (06 Mar 2006)
+
+  06 Mar 2006; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.49.ebuild:
+  Bump with seamonkey-bin capitalization fix from plasmaroo
+
+*mozilla-launcher-1.47 (27 Feb 2006)
+
+  27 Feb 2006; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.47.ebuild:
+  Bump to 1.47 (from 1.45). (seamonkey support from Anarchy)
+
+  30 Jan 2006; Aron Griffis <agriffis@gentoo.org>
+  -mozilla-launcher-1.42.ebuild, -mozilla-launcher-1.44.ebuild,
+  mozilla-launcher-1.45.ebuild:
+  Remove x11-misc/xtoolwait dependency because it pulls in imake, and isn't
+  really necessary. Mark 1.45 stable
+
+  17 Aug 2005; Aron Griffis <agriffis@gentoo.org>
+  -mozilla-launcher-1.35.ebuild, -mozilla-launcher-1.39.ebuild,
+  -mozilla-launcher-1.41.ebuild, mozilla-launcher-1.42.ebuild,
+  mozilla-launcher-1.44.ebuild, mozilla-launcher-1.45.ebuild:
+  Add modular X depends
+
+*mozilla-launcher-1.45 (17 Aug 2005)
+
+  17 Aug 2005; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.45.ebuild:
+  Bump to 1.45 which removes the fake_user stuff, no longer necessary with
+  current browsers. This allows the modular X deps to be shorter
+
+  10 Aug 2005; Jory A. Pratt <anarchy@gentoo.org>
+  mozilla-launcher-1.42.ebuild:
+  stablizing for mozilla-1.7.11
+
+*mozilla-launcher-1.44 (25 Jul 2005)
+
+  25 Jul 2005; Aron Griffis <agriffis@gentoo.org>
+  -mozilla-launcher-1.43.ebuild, +mozilla-launcher-1.44.ebuild:
+  Second try on the -calendar hack
+
+*mozilla-launcher-1.43 (25 Jul 2005)
+
+  25 Jul 2005; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.43.ebuild:
+  Add -calendar hack for sunbird #78087
+
+*mozilla-launcher-1.42 (23 Jul 2005)
+
+  23 Jul 2005; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.42.ebuild:
+  Handle -register gracefully for mozilla and -bin packages instead of
+  screwing things up. This should help people that installed the very really
+  broken mozilla-1.7.10 #99874
+
+  22 Jul 2005; Aron Griffis <agriffis@gentoo.org>
+  mozilla-launcher-1.41.ebuild:
+  Start the stable push for mozilla/firefox/thunderbird security and extension
+  issues
+
+*mozilla-launcher-1.41 (22 Jul 2005)
+
+  22 Jul 2005; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.41.ebuild:
+  Set MOZ_PLUGIN_PATH as a workaround since
+   (1) the nsplugins patch isn't working in mozilla/firefox/thunderbird,
+   (2) we can't patch the binary stuff anyway
+  Eventually it would be nice to set MOZ_PLUGIN_PATH only for the binary stuff,
+  once the patch is fixed.
+  
+  Add remove_chrome() and the associated -unregister command-line arg that will
+  eventually allow firefox/thunderbird to be uninstalled completely without
+  leaving droppings on the filesystem.
+
+*mozilla-launcher-1.39 (21 Jul 2005)
+
+  21 Jul 2005; Aron Griffis <agriffis@gentoo.org>
+  -files/mozilla-launcher-1.32-multilib.patch,
+  -files/mozilla-launcher-1.33-multilib.patch,
+  -files/mozilla-launcher-1.34-multilib.patch,
+  -files/mozilla-launcher-1.37-multilib.patch,
+  +files/mozilla-launcher-1.39-multilib.patch,
+  -mozilla-launcher-1.32.ebuild, -mozilla-launcher-1.33.ebuild,
+  mozilla-launcher-1.34.ebuild, -mozilla-launcher-1.37.ebuild,
+  +mozilla-launcher-1.39.ebuild:
+  Set the umask explicitly in update_chrome() since we're creating new files.
+  Stick with the simpler setup instead of using /var for now.
+
+  20 Jul 2005; Markus Rothe <corsair@gentoo.org>
+  mozilla-launcher-1.34.ebuild:
+  Stable on ppc64
+
+  19 Jul 2005; Aron Griffis <agriffis@gentoo.org>
+  +files/mozilla-launcher-1.37-multilib.patch:
+  Doh!  Forgot to update the (deprecated) multilib patch
+
+*mozilla-launcher-1.37 (19 Jul 2005)
+
+  19 Jul 2005; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.37.ebuild:
+  Set MOZILLA_FIVE_HOME correctly when a -bin package is called by the non-bin
+  launcher (for example when firefox-bin is started using /usr/bin/firefox).
+  Thanks to Martin von Gagern in bug 99512 for the patch. Additionally,
+  continue to make improvements to update_chrome(), in particular add support
+  for -bin packages
+
+  18 Jul 2005; Rene Nussbaumer <killerfox@gentoo.org>
+  mozilla-launcher-1.34.ebuild:
+  Stable on hppa.
+
+  18 Jul 2005; Aron Griffis <agriffis@gentoo.org>
+  mozilla-launcher-1.35.ebuild:
+  Stabilize everywhere
+
+  17 Jul 2005; Homer Parker <hparker@gentoo.org>
+  mozilla-launcher-1.34.ebuild:
+  Stable on amd64
+
+  17 Jul 2005; Bryan Østergaard <kloeri@gentoo.org>
+  mozilla-launcher-1.34.ebuild:
+  Stable on alpha + ia64.
+
+  17 Jul 2005; Jory A. Pratt <anarchy@gentoo.org>
+  mozilla-launcher-1.34.ebuild:
+  0.34 Stable on x86
+
+  15 Jul 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  mozilla-launcher-1.34.ebuild:
+  Stable on sparc wrt #98855
+
+  14 Jul 2005; Jory A. Pratt <anarchy@gentoo.org>
+  mozilla-launcher-1.34.ebuild:
+  Stable on PPC
+
+*mozilla-launcher-1.35 (05 Jul 2005)
+
+  05 Jul 2005; Aron Griffis <agriffis@gentoo.org>
+  +files/mozilla-launcher-1.35-multilib.patch,
+  +mozilla-launcher-1.35.ebuild:
+  unset MOZILLA_LAUNCHER to allow re-entrancy through a symlinked launcher #97832
+
+*mozilla-launcher-1.34 (29 Jun 2005)
+
+  29 Jun 2005; Aron Griffis <agriffis@gentoo.org>
+  +files/mozilla-launcher-1.34-multilib.patch, mozilla-launcher-1.32.ebuild,
+  mozilla-launcher-1.33.ebuild, +mozilla-launcher-1.34.ebuild:
+  Add update_chrome function and -register capability
+
+  28 Jun 2005; Aron Griffis <agriffis@gentoo.org>
+  +files/mozilla-launcher-1.32-multilib.patch,
+  +files/mozilla-launcher-1.33-multilib.patch,
+  -files/mozilla-launcher-multilib.patch, mozilla-launcher-1.32.ebuild,
+  mozilla-launcher-1.33.ebuild:
+  Use versioned multilib patch (which won't be necessary at all with
+  MOZILLA_LIBDIR in future launcher stubs)
+
+*mozilla-launcher-1.33 (28 Jun 2005)
+
+  28 Jun 2005; Aron Griffis <agriffis@gentoo.org>
+  -mozilla-launcher-1.30.ebuild, +mozilla-launcher-1.33.ebuild:
+  Implement MOZILLA_LIBDIR, part of fix for bug 88802. Make
+  moz_pis_startstop_scripts work for -bin installations
+
+  19 Jun 2005; Simon Stelling <blubb@gentoo.org>
+  +files/mozilla-launcher-multilib.patch, mozilla-launcher-1.32.ebuild:
+  make the package multilib-compliant, bug 93860
+
+  18 Apr 2005; Aron Griffis <agriffis@gentoo.org>
+  mozilla-launcher-1.32.ebuild:
+  Stabilize everywhere
+
+*mozilla-launcher-1.32 (26 Mar 2005)
+
+  26 Mar 2005; Aron Griffis <agriffis@gentoo.org>
+  -mozilla-launcher-1.31.ebuild, +mozilla-launcher-1.32.ebuild:
+  Use xfeDoCommand(openBrowser) as done in /usr/lib/MozillaFirefox/firefox
+  instead of openURL(,new-window) when no URL is passed. This should help
+  allowing browser prefs to take effect
+
+*mozilla-launcher-1.31 (26 Mar 2005)
+
+  26 Mar 2005; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.31.ebuild:
+  Ignore -a which xfhelp4 passes incorrectly #86538
+
+*mozilla-launcher-1.30 (24 Mar 2005)
+
+  24 Mar 2005; Aron Griffis <agriffis@gentoo.org>
+  -mozilla-launcher-1.28.ebuild, -mozilla-launcher-1.29.ebuild,
+  +mozilla-launcher-1.30.ebuild:
+  Don't call openURL() without *something* between the parens #86458
+
+*mozilla-launcher-1.29 (24 Mar 2005)
+
+  24 Mar 2005; <agriffis@gentoo.org> +mozilla-launcher-1.29.ebuild:
+  Try #2 fixing 82653; previous attempt could result in mozilla attempting to
+  open new-.com.
+
+  23 Mar 2005; Seemant Kulleen <seemant@gentoo.org> +metadata.xml,
+  +mozilla-launcher-1.22.ebuild, +mozilla-launcher-1.23.ebuild,
+  +mozilla-launcher-1.26.ebuild, +mozilla-launcher-1.28.ebuild:
+  moving to www-client
+
+  23 Mar 2005; Aron Griffis <agriffis@gentoo.org>
+  mozilla-launcher-1.28.ebuild:
+  Stabilize everywhere to prevent build/rebuild cycle since the OOo fix
+  requires application ebuild updates, and there's a security fix going out
+  now anyway
+
+  23 Mar 2005; <agriffis@gentoo.org> mozilla-launcher-1.22.ebuild,
+  mozilla-launcher-1.23.ebuild, mozilla-launcher-1.26.ebuild,
+  mozilla-launcher-1.28.ebuild:
+  Re-order find options #82653
+
+*mozilla-launcher-1.28 (23 Mar 2005)
+
+  23 Mar 2005; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.28.ebuild:
+  Add support for debugging via -g/--debug and -d/--debugger
+  Don't override tabbing preferences set in the browser #82653
+  Honor MOZILLA_LAUNCHER to workaround brokenness in OOo #78890
+
+*mozilla-launcher-1.26 (15 Mar 2005)
+
+  15 Mar 2005; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.26.ebuild:
+  Add support for Mozilla PIS (Pluggable Init Scripts) #62916
+  Handle -compose with an argument #56556
+  Handle absolute file paths #75064
+
+  09 Feb 2005; Aron Griffis <agriffis@gentoo.org>
+  mozilla-launcher-1.22.ebuild, mozilla-launcher-1.23.ebuild:
+  Mark 1.23 stable everywhere
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+*mozilla-launcher-1.23 (14 Nov 2004)
+
+  14 Nov 2004; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.23.ebuild:
+  Error out when profile contains files owned by another user #67052 (and others)
+
+*mozilla-launcher-1.19 (09 Nov 2004)
+
+  09 Nov 2004; Aron Griffis <agriffis@gentoo.org>
+  -mozilla-launcher-1.19.ebuild, -mozilla-launcher-1.21.ebuild,
+  mozilla-launcher-1.22.ebuild:
+  Stable on all arches, trim old versions
+
+*mozilla-launcher-1.22 (19 Oct 2004)
+
+  19 Oct 2004; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.22.ebuild:
+  Add XUL.mfasl to the list of files to delete when the browser is upgraded
+  #67338
+
+  19 Oct 2004; Bryan Østergaard <kloeri@gentoo.org>
+  mozilla-launcher-1.21.ebuild:
+  Stable on alpha.
+
+  03 Oct 2004; Luca Barbato <lu_zero@gentoo.org> mozilla-launcher-1.21.ebuild:
+  Marked ppc
+
+  03 Oct 2004; Jason Wever <weeve@gentoo.org> mozilla-launcher-1.21.ebuild:
+  Stable on sparc wrt security bug #66084.
+
+  02 Oct 2004; Travis Tilley <lv@gentoo.org> mozilla-launcher-1.21.ebuild:
+  stable on amd64
+
+  02 Oct 2004; Brad Laue <brad@gentoo.org> mozilla-launcher-1.21.ebuild:
+  Version bump, needed by firefox 1.0Pre, security update.
+
+*mozilla-launcher-1.21 (28 Sep 2004)
+
+  28 Sep 2004; Aron Griffis <agriffis@gentoo.org>
+  -mozilla-launcher-1.18.ebuild, -mozilla-launcher-1.20.ebuild,
+  +mozilla-launcher-1.21.ebuild:
+  Update to 1.21 to remove chrome.rdf along with compreg.dat on first run of new
+  browser version #63999
+
+*mozilla-launcher-1.20 (27 Sep 2004)
+
+  27 Sep 2004; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.20.ebuild:
+  Update to 1.20, marked ~arch, to remove compreg.dat on first run of a new
+  version #63999
+
+  27 Sep 2004; Aron Griffis <agriffis@gentoo.org>
+  -mozilla-launcher-1.16.ebuild, mozilla-launcher-1.18.ebuild:
+  Update to 1.19 to fix xremote problems with [Tt]hunderbird-0.8 #65128
+
+  20 Aug 2004; Tom Gall <tgall@gentoo.org> mozilla-launcher-1.18.ebuild:
+  stable on ppc64, bug #54583
+
+*mozilla-launcher-1.18 (19 Aug 2004)
+
+  19 Aug 2004; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.18.ebuild:
+  Understand the sunbird name in addition to sunbird-bin
+
+*mozilla-launcher-1.17 (19 Aug 2004)
+
+  19 Aug 2004; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.17.ebuild:
+  Add raw sunbird-bin support #54988
+
+  18 Aug 2004; Aron Griffis <agriffis@gentoo.org>
+  -mozilla-launcher-1.12.ebuild, -mozilla-launcher-1.15.ebuild,
+  mozilla-launcher-1.16.ebuild, -mozilla-launcher-1.7-r1.ebuild:
+  Mark stable on all arches, trim old versions
+
+  14 Aug 2004; Sven Wegener <swegener@gentoo.org> metadata.xml:
+  Corrected metadata.xml to match DTD.
+
+*mozilla-launcher-1.16 (05 Aug 2004)
+
+  05 Aug 2004; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.16.ebuild:
+  Use MOZILLA_FIVE_HOME instead of hardcoded path for thunderbird/Thunderbird
+  test #56894
+
+  26 Jul 2004; Aron Griffis <agriffis@gentoo.org>
+  -mozilla-launcher-1.10.ebuild, mozilla-launcher-1.15.ebuild:
+  Mark 1.15 stable on all arches, trim 1.10
+
+*mozilla-launcher-1.15 (20 Jun 2004)
+
+  20 Jun 2004; Aron Griffis <agriffis@gentoo.org>
+  -mozilla-launcher-1.13.ebuild, -mozilla-launcher-1.14.ebuild,
+  +mozilla-launcher-1.15.ebuild:
+  Fix bug 54357: thunderbird's mozilla-xremote-client requires -a Thunderbird
+  instead of -a thunderbird. Work around the problem in mozilla-launcher for 0.7
+  specifically. Bug filed upstream for this:
+  http://bugzilla.mozilla.org/show_bug.cgi?id=247754
+
+  16 Jun 2004; Aron Griffis <agriffis@gentoo.org>
+  mozilla-launcher-1.12.ebuild:
+  Mark 1.12 stable on all arches
+
+*mozilla-launcher-1.14 (16 Jun 2004)
+
+  16 Jun 2004; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.14.ebuild:
+  Speed up mozilla-launcher by getting rid of an unnecessary call to xwininfo
+
+  16 Jun 2004; Aron Griffis <agriffis@gentoo.org>
+  mozilla-launcher-1.13.ebuild:
+  Add my public_html as an alternate download site for the sake of being able to
+  release before the mirrors are fully populated
+
+*mozilla-launcher-1.13 (16 Jun 2004)
+
+  16 Jun 2004; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.13.ebuild:
+  Fix mozilla-launcher for -bin installations that support
+  mozilla-xremote-launcher -a programname. Previously mozilla-launcher would try
+  to use programname-bin which doesn't work
+
+*mozilla-launcher-1.12 (08 Jun 2004)
+
+  08 Jun 2004; Aron Griffis <agriffis@gentoo.org>
+  -mozilla-launcher-1.11.ebuild, +mozilla-launcher-1.12.ebuild:
+  Revert previous change. The problem is that mozilla-xremote-client will
+  deliver a command to the wrong target (for example thunderbird instead of
+  firefox) unless fake_user is employed. This means that mozilla-launcher-1.11
+  will fail to start a new instance of firefox if it finds an instance of
+  thunderbird because fake_user failed. Instead the only solution to bug 52364
+  at the moment is to set MOZ_NO_FAKE_USER=1 in the environment.
+
+*mozilla-launcher-1.11 (02 Jun 2004)
+
+  02 Jun 2004; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.11.ebuild:
+  Fix bug 52364 by recognizing when fake_user can't find an instance of
+  _MOZILLA_USER in the xprops.  This just goes to show that fake_user is
+  a hack... can't wait for -a to be available in all the
+  mozilla-xremote-client flavors.
+
+  02 Jun 2004; Travis Tilley <lv@gentoo.org> mozilla-launcher-1.10.ebuild:
+  moving to stable ahead of schedule for the new -bin support
+
+*mozilla-launcher-1.10 (26 May 2004)
+
+  26 May 2004; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.10.ebuild, -mozilla-launcher-1.9.ebuild:
+  Fix bug 52069 (mozilla-launcher-1.9 can't load thunderbird anymore) by fixing
+  typos in second case statement in which_browser
+
+*mozilla-launcher-1.9 (26 May 2004)
+
+  26 May 2004; Aron Griffis <agriffis@gentoo.org>
+  -mozilla-launcher-1.1.ebuild, -mozilla-launcher-1.2.ebuild,
+  -mozilla-launcher-1.3.ebuild, -mozilla-launcher-1.5.ebuild,
+  -mozilla-launcher-1.6.ebuild, -mozilla-launcher-1.7.ebuild,
+  +mozilla-launcher-1.9.ebuild:
+  Add -bin support to mozilla-launcher.  Prune old ebuilds
+
+*mozilla-launcher-1.7-r1 (07 May 2004)
+
+  07 May 2004; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.7-r1.ebuild:
+  Move mozilla-launcher to /usr/libexec to reduce confusion for bug
+  46183.  Mark this stable immediately to satisfy existing keywords in
+  mozilla-firefox ebuilds
+
+*mozilla-launcher-1.7 (04 May 2004)
+
+  04 May 2004; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.7.ebuild:
+  Fix bug 47942 (Gaim open two FireFox windows) by simplifying the code and
+  correcting the handling of -remote
+
+*mozilla-launcher-1.6 (04 May 2004)
+
+  04 May 2004; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.6.ebuild:
+  Add support for thunderbird for bug 46544
+
+*mozilla-launcher-1.5 (02 May 2004)
+
+  02 May 2004; Aron Griffis <agriffis@gentoo.org>
+  +mozilla-launcher-1.5.ebuild:
+  Workaround comma-space problem in mozilla-1.7_rc1 and auto-detect xremote
+  capability to do -a programname
+
+*mozilla-launcher-1.3 (02 May 2004)
+
+  02 May 2004; Aron Griffis <agriffis@gentoo.org> mozilla-launcher-1.2.ebuild,
+  +mozilla-launcher-1.3.ebuild:
+  New version 1.3, do URL fixups required for 1.7_rc1, remove
+  deprecated environment stuff for mozilla.  Mark 1.2 stable on mips
+  to bring it up to date with other arches.
+
+  24 Apr 2004; Bret Curtis <psi29a@gentoo.org> mozilla-launcher-1.2.ebuild:
+  Added to ~mips
+
+*mozilla-launcher-1.2 (27 Mar 2004)
+
+  27 Mar 2004; Aron Griffis <agriffis@gentoo.org> mozilla-launcher-1.2.ebuild:
+  Don't use detection or fake_user for remote displays because it takes too long
+  (4 minutes in one test)
+
+*mozilla-launcher-1.1 (23 Mar 2004)
+
+  23 Mar 2004; Aron Griffis <agriffis@gentoo.org> mozilla-launcher-1.1.ebuild:
+  New ebuild for mozilla-launcher; a script to launch either firefox or mozilla
+
