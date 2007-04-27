@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.5_p12.ebuild,v 1.6 2007/04/07 16:23:57 pclouds Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.5_p12.ebuild,v 1.7 2007/04/24 11:22:57 rbrown Exp $
 
 EAPI="prefix"
 
@@ -113,8 +113,8 @@ src_install() {
 	fi
 
 	if use examples; then
-		dodir ${ROOT}usr/share/doc/${PF}
-		cp -pPR sample ${ED}/${ROOT}usr/share/doc/${PF}
+		dodir usr/share/doc/${PF}
+		cp -pPR sample ${ED}/usr/share/doc/${PF}
 	fi
 
 	dosym libruby${SLOT/./}$(get_libname ${PV%_*}) /usr/$(get_libdir)/libruby$(get_libname ${PV%.*})
