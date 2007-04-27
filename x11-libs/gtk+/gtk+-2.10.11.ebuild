@@ -123,7 +123,7 @@ src_compile() {
 	econf ${myconf} || die "configure failed"
 
 	# add correct framework linking options
-	for i in gtk demos demos/gtk-demo tests perf; do
+	use aqua && for i in gtk demos demos/gtk-demo tests perf; do
 		sed -i -e "s:LDFLAGS =:LDFLAGS = -framework AppKit -framework Carbon:" $i/Makefile || die "sed failed"
 	done
 
@@ -153,7 +153,7 @@ src_install() {
 
 pkg_postinst() {
 	# add -framework Carbon to the .pc files
-	for i in gtk+-2.0.pc  gtk+-quartz-2.0.pc  gtk+-unix-print-2.0.pc; do
+	use aqua && for i in gtk+-2.0.pc  gtk+-quartz-2.0.pc  gtk+-unix-print-2.0.pc; do
 		sed -i -e "s:Libs\: :Libs\: -framework Carbon :" ${EPREFIX}/usr/lib/pkgconfig/$i || die "sed failed"
 	done
 
