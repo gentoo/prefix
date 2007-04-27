@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/libXmu/libXmu-1.0.3.ebuild,v 1.1 2006/11/10 03:32:13 joshuabaergen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXmu/libXmu-1.0.3.ebuild,v 1.3 2007/04/25 17:41:37 armin76 Exp $
 
 EAPI="prefix"
 
