@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/screen-4.0.3.ebuild,v 1.14 2007/01/28 05:24:38 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/screen-4.0.3.ebuild,v 1.15 2007/04/22 21:04:25 swegener Exp $
 
 EAPI="prefix"
 
@@ -118,8 +118,8 @@ src_install() {
 		fperms 2755 /usr/bin/screen || die "fperms failed"
 	fi
 
-	insinto /usr/share/terminfo
-	doins terminfo/screencap || die "doins failed"
+	insinto /usr/share/screen
+	doins terminfo/{screencap,screeninfo.src} || die "doins failed"
 	insinto /usr/share/screen/utf8encodings
 	doins utf8encodings/?? || die "doins failed"
 	insinto /etc

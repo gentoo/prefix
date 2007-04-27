@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/screen
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/ChangeLog,v 1.132 2007/01/28 05:24:38 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/ChangeLog,v 1.133 2007/04/22 21:04:25 swegener Exp $
+
+  22 Apr 2007; Sven Wegener <swegener@gentoo.org> screen-4.0.3.ebuild:
+  Install terminfo source files into /usr/share/screen.
 
   28 Jan 2007; Marius Mauch <genone@gentoo.org> screen-4.0.3.ebuild:
   Replacing einfo with elog
