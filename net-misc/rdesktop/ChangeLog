@@ -1,6 +1,19 @@
 # ChangeLog for net-misc/rdesktop
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.80 2007/02/06 21:27:23 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.83 2007/04/26 23:41:24 mjolnir Exp $
+
+  26 Apr 2007; Martin Jackson <mjolnir@gentoo.org> rdesktop-1.5.0-r2.ebuild:
+  Fix syntax warning in 1.5.0-r2 ebuild
+
+  26 Apr 2007; Martin Jackson <mjolnir@gentoo.org> ChangeLog:
+  Should have mentioned that the previous commit was for #174485
+
+*rdesktop-1.5.0-r2 (26 Apr 2007)
+
+  26 Apr 2007; Martin Jackson <mjolnir@gentoo.org>
+  +files/rdesktop-1.5.0-libX11-segfault-fix.patch, metadata.xml,
+  +rdesktop-1.5.0-r2.ebuild:
+  Apply fix for segfault with libX11-1.1.1-r1; take maintainership
 
   06 Feb 2007; Chris Gianelloni <wolf31o2@gentoo.org>
   rdesktop-1.5.0-r1.ebuild:
