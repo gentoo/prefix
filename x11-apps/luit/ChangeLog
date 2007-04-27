@@ -1,6 +1,16 @@
 # ChangeLog for x11-apps/luit
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-apps/luit/ChangeLog,v 1.21 2006/11/09 15:54:32 joshuabaergen Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/luit/ChangeLog,v 1.24 2007/04/25 17:04:53 armin76 Exp $
+
+  25 Apr 2007; Raúl Porcel <armin76@gentoo.org> luit-1.0.2.ebuild:
+  Stable on ia64 wrt bug #175465.
+
+  25 Apr 2007; Markus Rothe <corsair@gentoo.org> luit-1.0.2.ebuild:
+  Stable on ppc64; bug #175465
+
+  21 Apr 2007; Joshua Baergen <joshuabaergen@gentoo.org>
+  -luit-1.0.1-r1.ebuild:
+  Drop unused version.
 
 *luit-1.0.2 (09 Nov 2006)
 
