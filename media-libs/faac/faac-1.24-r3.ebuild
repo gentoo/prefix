@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/faac-1.24-r3.ebuild,v 1.11 2007/04/16 07:36:25 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/faac-1.24-r3.ebuild,v 1.12 2007/04/22 17:59:08 armin76 Exp $
 
 EAPI="prefix"
 
