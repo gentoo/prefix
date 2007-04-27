@@ -89,8 +89,8 @@ src_install () {
 	NSS_VMINOR=`cat ${S}/mozilla/security/nss/lib/nss/nss.h | grep "#define.*NSS_VMINOR" | awk '{print $3}'`
 	NSS_VPATCH=`cat ${S}/mozilla/security/nss/lib/nss/nss.h | grep "#define.*NSS_VPATCH" | awk '{print $3}'`
 
-	sed -e "s,@libdir@,/usr/"$(get_libdir)"/nss,g" \
-		-e "s,@prefix@,/usr,g" \
+	sed -e "s,@libdir@,"${EPREFIX}"/usr/"$(get_libdir)"/nss,g" \
+		-e "s,@prefix@,"${EPREFIX}"/usr,g" \
 		-e "s,@exec_prefix@,\$\{prefix},g" \
 		-e "s,@includedir@,\$\{prefix}/include/nss,g" \
 		-e "s,@MOD_MAJOR_VERSION@,$NSS_VMAJOR,g" \
@@ -99,8 +99,8 @@ src_install () {
 		-i ${ED}/usr/bin/nss-config
 	chmod 755 ${ED}/usr/bin/nss-config
 
-	sed -e "s,@libdir@,/usr/"$(get_libdir)"/nss,g" \
-	      -e "s,@prefix@,/usr,g" \
+	sed -e "s,@libdir@,"${EPREFIX}"/usr/"$(get_libdir)"/nss,g" \
+	      -e "s,@prefix@,"${EPREFIX}"/usr,g" \
 	      -e "s,@exec_prefix@,\$\{prefix},g" \
 	      -e "s,@includedir@,\$\{prefix}/include/nss," \
 	      -e "s,@NSPR_VERSION@,`nspr-config --version`,g" \
