@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/hexedit
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/hexedit/ChangeLog,v 1.29 2007/01/05 23:49:31 kugelfang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/hexedit/ChangeLog,v 1.30 2007/04/16 18:19:33 grobian Exp $
+
+  16 Apr 2007; Fabian Groffen <grobian@gentoo.org> hexedit-1.2.10.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   05 Jan 2007; Danny van Dyk <kugelfang@gentoo.org> -hexedit-1.2.9.ebuild:
   QA: Removed unused versions.
