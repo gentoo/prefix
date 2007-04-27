@@ -1,0 +1,93 @@
+--- Makefile
++++ Makefile
+@@ -116,7 +116,7 @@
+ export MANDIR SMANDIR MANDIRMODE MANMODE
+ export OS_NAME OS_RELEASE
+ 
+-enable_nls=1
++enable_nls=0
+ debug=0
+ export enable_nls
+ export debug
+--- server/Makefile
++++ server/Makefile
+@@ -18,7 +18,7 @@
+ MANMODE ?= 644
+ MANDIRMODE ?= 755
+ INSTALL ?= install
+-LINK_FLAGS ?= -Wl,-E
++LINK_FLAGS = $(LDFLAGS) -Wl,-E
+ 
+ 
+ ifeq ($(without-libsensors),yes)
+@@ -37,7 +37,6 @@
+ 
+ 
+ CC ?= gcc
+-STRIP ?= -s
+ 
+ GKRELLMD_INCLUDES = gkrellmd.h
+ 
+@@ -47,7 +46,7 @@
+ GLIB12_INCLUDE = `glib-config --cflags`
+ GLIB12_LIB = `glib-config --libs glib gmodule`
+ 
+-FLAGS = -O2 -I.. $(PKG_INCLUDE) $(GTOP_INCLUDE)
++FLAGS = -I.. $(PKG_INCLUDE) $(GTOP_INCLUDE)
+ ifeq ($(glib12),1)
+ FLAGS = -O2 -I.. $(GLIB12_INCLUDE) $(GTOP_INCLUDE)
+ endif
+@@ -147,11 +146,9 @@
+ 
+ install:
+ 	$(INSTALL) -d -m $(INSTALLDIRMODE) $(SINSTALLDIR)
+-	$(INSTALL) -c $(STRIP) -m $(BINMODE) gkrellmd $(SINSTALLDIR)/$(PACKAGE_D)
++	$(INSTALL) -c -m $(BINMODE) gkrellmd $(SINSTALLDIR)/$(PACKAGE_D)
+ 	$(INSTALL) -d -m $(INCLUDEDIRMODE) $(INCLUDEDIR)/gkrellm2
+ 	$(INSTALL) -c -m $(INCLUDEMODE) $(GKRELLMD_INCLUDES) $(INCLUDEDIR)/gkrellm2
+-	$(INSTALL) -d -m $(MANDIRMODE) $(SMANDIR)
+-	$(INSTALL) -c -m $(MANMODE) ../gkrellmd.1 $(SMANDIR)/$(PACKAGE_D).1
+ 
+ uninstall:
+ 	rm -f $(SINSTALLDIR)/$(PACKAGE_D)
+--- src/Makefile
++++ src/Makefile
+@@ -16,7 +16,7 @@
+ MANMODE ?= 644
+ MANDIRMODE ?= 755
+ INSTALL ?= install
+-LINK_FLAGS ?= -Wl,-E
++LINK_FLAGS = $(LDFLAGS) -Wl,-E
+ SMC_LIBS ?= -L/usr/X11R6/lib -lSM -lICE
+ 
+ ifeq ($(without-gnutls),1)
+@@ -60,7 +60,6 @@
+ endif
+ 
+ CC ?= gcc
+-STRIP ?= -s
+ 
+ GKRELLM_INCLUDES = gkrellm.h gkrellm-public-proto.h
+ 
+@@ -68,7 +67,7 @@
+ 
+ PKG_LIB = `$(PKG_CONFIG) --libs gtk+-2.0 gthread-2.0`
+ 
+-FLAGS = -O2 -I.. $(PKG_INCLUDE) $(GTOP_INCLUDE)
++FLAGS = -I.. $(PKG_INCLUDE) $(GTOP_INCLUDE)
+ FLAGS+= $(PTHREAD_INC)
+ 
+ LIBS = $(PKG_LIB) $(GTOP_LIBS) $(SMC_LIBS) $(SYS_LIBS) $(SSL_LIBS) $(SENSORS_LIBS)
+@@ -156,11 +155,9 @@
+ 
+ install:
+ 	$(INSTALL) -d -m $(INSTALLDIRMODE) $(INSTALLDIR)
+-	$(INSTALL) -c $(STRIP) -m $(BINMODE) gkrellm $(INSTALLDIR)/$(PACKAGE)
++	$(INSTALL) -c -m $(BINMODE) gkrellm $(INSTALLDIR)/$(PACKAGE)
+ 	$(INSTALL) -d -m $(INCLUDEDIRMODE) $(INCLUDEDIR)/gkrellm2
+ 	$(INSTALL) -c -m $(INCLUDEMODE) $(GKRELLM_INCLUDES) $(INCLUDEDIR)/gkrellm2
+-	$(INSTALL) -d -m $(MANDIRMODE) $(MANDIR)
+-	$(INSTALL) -c -m $(MANMODE) ../gkrellm.1 $(MANDIR)/$(PACKAGE).1
+ 
+ uninstall:
+ 	rm -f $(INSTALLDIR)/$(PACKAGE)
