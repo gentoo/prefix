@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/ccache
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ccache/ChangeLog,v 1.60 2007/03/05 03:26:45 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ccache/ChangeLog,v 1.61 2007/04/21 13:07:19 lisa Exp $
+
+*ccache-2.4-r7 (21 Apr 2007)
+
+  21 Apr 2007; Lisa Seelye <lisa@gentoo.org> +ccache-2.4-r7.ebuild:
+  bug 174839
 
   05 Mar 2007; Marius Mauch <genone@gentoo.org> ccache-2.4-r6.ebuild:
   Replacing einfo with elog
