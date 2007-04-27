@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/aalib-1.4_rc5.ebuild,v 1.18 2007/02/17 17:21:56 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/aalib-1.4_rc5.ebuild,v 1.19 2007/04/22 14:30:32 kugelfang Exp $
 
 EAPI="prefix"
 
@@ -36,6 +36,11 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.4_rc4-m4.patch
 
 	sed -i -e 's:#include <malloc.h>:#include <stdlib.h>:g' ${S}/src/*.c
+
+	# Fix bug #165617.
+	use gpm && sed -i \
+		's/gpm_mousedriver_test=yes/gpm_mousedriver_test=no/' ${S}/configure.in
+
 	eautoreconf
 }
 
