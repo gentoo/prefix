@@ -1,6 +1,18 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.186 2007/04/12 10:51:49 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.189 2007/04/24 16:23:52 ferdy Exp $
+
+  24 Apr 2007; Fernando J. Pereda <ferdy@gentoo.org> -git-1.4.1.1.ebuild,
+  -git-1.4.4.4.ebuild, -git-1.5.1.1.ebuild:
+  Remove unused stuff
+
+  23 Apr 2007; Bryan Østergaard <kloeri@gentoo.org> git-1.5.0.7.ebuild:
+  Stable on Mips, bug 173327.
+
+*git-1.5.1.2 (23 Apr 2007)
+
+  23 Apr 2007; Fernando J. Pereda <ferdy@gentoo.org> +git-1.5.1.2.ebuild:
+  New upstream version.
 
 *git-1.5.1.1 (12 Apr 2007)
 
