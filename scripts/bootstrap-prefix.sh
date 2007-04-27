@@ -149,7 +149,7 @@ bootstrap_setup() {
 }
 
 bootstrap_tree() {
-	PV="20070407"
+	PV="20070426"
 	for x in etc usr/{,s}bin var/tmp var/lib/portage var/log/portage var/db;
 	do
 		[ -d "${ROOT}/${x}" ] || mkdir -p "${ROOT}/${x}"
@@ -161,7 +161,7 @@ bootstrap_tree() {
 		# beware: fetch creates DISTDIR!!!
 		mv portage/distfiles prefix-overlay/
 		rm -Rf portage
-		mv prefix-overlay portage
+		mv prefix-overlay-* portage
 		touch portage/.unpacked
 	fi
 }
