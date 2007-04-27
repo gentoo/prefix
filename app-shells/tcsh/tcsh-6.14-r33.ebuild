@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/tcsh-6.14-r33.ebuild,v 1.2 2007/04/10 18:38:26 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/tcsh-6.14-r33.ebuild,v 1.3 2007/04/21 15:25:12 grobian Exp $
 
 EAPI="prefix"
 
@@ -83,10 +83,10 @@ src_install() {
 }
 
 pkg_postinst() {
-	ewarn "This revision of tcsh does use a completely revamped configuration"
-	ewarn "files system, which is based on the bash equivalents.  It should"
-	ewarn "fix issues for KDE users, and miscelaneous issues of environment"
-	ewarn "variables not set that should have, like EDITOR.  If you rely"
-	ewarn "on the /etc/csh.* files heavily, you may find your setup will be"
-	ewarn "broken now."
+	elog "This revision of tcsh does use a completely revamped configuration"
+	elog "files system, which is based on the bash equivalents.  It should"
+	elog "fix issues for KDE users, and miscelaneous issues of environment"
+	elog "variables not set that should have, like EDITOR.  If you rely"
+	elog "on the /etc/csh.* files heavily, you may find your setup will be"
+	elog "broken now."
 }
