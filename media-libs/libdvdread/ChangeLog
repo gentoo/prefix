@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/libdvdread
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-libs/libdvdread/ChangeLog,v 1.49 2007/01/04 22:39:31 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdread/ChangeLog,v 1.51 2007/04/25 15:02:15 gustavoz Exp $
+
+  25 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  libdvdread-0.9.7.ebuild:
+  Stable on sparc
+
+  24 Apr 2007; Raúl Porcel <armin76@gentoo.org> libdvdread-0.9.7.ebuild:
+  ia64 + x86 stable
 
   04 Jan 2007; Timothy Redaelli <drizzt@gentoo.org> libdvdread-0.9.7.ebuild:
   Add ~x86-fbsd keyword
