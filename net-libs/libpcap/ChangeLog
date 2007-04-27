@@ -1,6 +1,12 @@
 # ChangeLog for net-libs/libpcap
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.67 2007/04/20 18:25:14 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.69 2007/04/22 22:14:42 kanaka Exp $
+
+  22 Apr 2007; Joel Martin <kanaka@gentoo.org> libpcap-0.9.5.ebuild:
+  Fix typo in cross-compile check.
+
+  21 Apr 2007; Cedric Krier <cedk@gentoo.org> libpcap-0.9.5.ebuild:
+  Fix test cross-compile
 
   20 Apr 2007; Cedric Krier <cedk@gentoo.org> libpcap-0.9.5.ebuild:
   Remove is_crosscompile function

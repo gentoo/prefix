@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/libpcap-0.9.5.ebuild,v 1.10 2007/04/20 18:54:47 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/libpcap-0.9.5.ebuild,v 1.12 2007/04/22 22:14:42 kanaka Exp $
 
 EAPI="prefix"
 
@@ -27,8 +27,8 @@ src_unpack() {
 
 src_compile() {
 	MY_OPTS=""
-	if [[ ${CTARGET} = ${CHOST} ]]; then
-		if [[ "{LIBPCAP_PCAP}" == "linux" ]]; then
+	if tc-is-cross-compiler; then
+		if [[ "${LIBPCAP_PCAP}" == "linux" ]]; then
 			MY_OPTS="--with-pcap=linux"
 		elif [[ "${LIBPCAP_PCAP}" == "bpf" ]]; then
 			MY_OPTS="--with-pcap=bpf"
