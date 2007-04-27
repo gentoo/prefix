@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/mc
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.114 2007/03/12 11:57:16 the_paya Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.115 2007/04/23 18:38:33 jokey Exp $
+
+  23 Apr 2007; Markus Ullmann <jokey@gentoo.org> mc-4.6.1-r3.ebuild:
+  some quotation and fix bug #167316
 
   12 Mar 2007; Javier Villavicencio <the_paya@gentoo.org>
   +files/mc-4.6.1-charset-locale-aliases.patch, mc-4.6.1-r3.ebuild:

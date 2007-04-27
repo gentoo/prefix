@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.1-r3.ebuild,v 1.3 2007/03/12 11:57:16 the_paya Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.1-r3.ebuild,v 1.4 2007/04/23 18:38:33 jokey Exp $
 
 EAPI="prefix"
 
@@ -45,31 +45,40 @@ RDEPEND="kernel_linux? ( >=sys-fs/e2fsprogs-1.19 )
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
+pkg_setup() {
+	if use unicode && ! use slang ; then
+		eerror "You must either disable unicode useflag or, if you want a"
+		eerror "unicode-aware mc, set the slang useflag as well."
+		die "set slang or unset unicode"
+	fi
+}
+
 src_unpack() {
 	if ( use x86 || use amd64 || use ppc ) && use 7zip; then
 		unpack ${U7Z}
 	fi
 	unpack ${P}.tar.gz
-	cd ${S}
+	cd "${S}"
 
-	epatch ${FILESDIR}/${P}-find.patch
+	epatch "${FILESDIR}"/${P}-find.patch
 	if ( use x86 || use amd64 || use ppc ) && use 7zip; then
-		epatch ${FILESDIR}/${PN}-4.6.0-7zip.patch
+		epatch "${FILESDIR}"/${PN}-4.6.0-7zip.patch
 	fi
-	epatch ${FILESDIR}/${P}-largefile.patch
+	epatch "${FILESDIR}"/${P}-largefile.patch
 	if use slang && use unicode; then
-		epatch ${DISTDIR}/${P}-utf8-r1.patch.bz2
+		epatch "${DISTDIR}"/${P}-utf8-r1.patch.bz2
 	fi
-	epatch ${FILESDIR}/${P}-nonblock.patch
-	epatch ${FILESDIR}/${P}-bash-all.patch
+	epatch "${FILESDIR}"/${P}-nonblock.patch
+	epatch "${FILESDIR}"/${P}-bash-all.patch
 
 	# Prevent lazy bindings in cons.saver binary. (bug #135009)
 	#  - not using bindnow-flags() because cons.saver is only built on GNU/Linux
 	sed -i -e "s:^\(cons_saver_LDADD = .*\):\1 -Wl,-z,now:" \
 		src/Makefile.in
+
 	# Correctly generate charset.alias.
 	# Fixes bugs  71275, 105960 and 169678
-	epatch ${FILESDIR}/${P}-charset-locale-aliases.patch
+	epatch "${FILESDIR}"/${P}-charset-locale-aliases.patch
 }
 
 src_compile() {
@@ -90,39 +99,39 @@ src_compile() {
 	myconf="${myconf} `use_with gpm gpm-mouse`"
 
 	use nls \
-	    && myconf="${myconf} --with-included-gettext" \
-	    || myconf="${myconf} --disable-nls"
+		&& myconf="${myconf} --with-included-gettext" \
+		|| myconf="${myconf} --disable-nls"
 
 	myconf="${myconf} `use_with X x`"
 
 	use samba \
-	    && myconf="${myconf} --with-samba --with-configdir='${EPREFIX}'/etc/samba --with-codepagedir='${EPREFIX}'/var/lib/samba/codepages --with-privatedir='${EPREFIX}'/etc/samba/private" \
-	    || myconf="${myconf} --without-samba"
+		&& myconf="${myconf} --with-samba --with-configdir='${EPREFIX}'/etc/samba --with-codepagedir='${EPREFIX}'/var/lib/samba/codepages --with-privatedir='${EPREFIX}'/etc/samba/private" \
+		|| myconf="${myconf} --without-samba"
 
 	econf \
-	    --with-vfs \
-	    --with-ext2undel \
-	    --with-edit \
+		--with-vfs \
+		--with-ext2undel \
+		--with-edit \
 		--enable-charset \
-	    ${myconf} || die
+	${myconf} || die "econf failed"
 
-	emake || die
+	emake || die "emake failed"
 }
 
 src_install() {
-	 cat ${FILESDIR}/chdir-4.6.0.gentoo >>\
-		 ${S}/lib/mc-wrapper.sh
+	cat ${FILESDIR}/chdir-4.6.0.gentoo >>\
+		${S}/lib/mc-wrapper.sh
 
-	make install DESTDIR="${D}" || die
+	make install DESTDIR="${D}" || die "make install failed"
 
 	# install cons.saver setuid, to actually work
-	chmod u+s ${ED}/usr/lib/mc/cons.saver
+	fperms u+s /usr/lib/mc/cons.saver
 
 	dodoc ChangeLog AUTHORS MAINTAINERS FAQ INSTALL* NEWS README*
 
 	insinto /usr/share/mc
-	doins ${FILESDIR}/mc.gentoo
-	doins ${FILESDIR}/mc.ini
+	doins "${FILESDIR}"/mc.gentoo
+	doins "${FILESDIR}"/mc.ini
 
 	if ( use x86 || use amd64 || use ppc ) && use 7zip; then
 		cd ../${U7Z_PV}
@@ -133,9 +142,9 @@ src_install() {
 	fi
 
 	insinto /usr/share/mc/syntax
-	doins ${FILESDIR}/ebuild.syntax
-	cd ${ED}/usr/share/mc/syntax
-	epatch ${FILESDIR}/${PN}-4.6.0-ebuild-syntax.patch
+	doins "${FILESDIR}"/ebuild.syntax
+	cd "${ED}"/usr/share/mc/syntax
+	epatch "${FILESDIR}"/${PN}-4.6.0-ebuild-syntax.patch
 }
 
 pkg_postinst() {
