@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.212 2007/02/27 13:50:23 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.213 2007/04/22 22:41:31 kloeri Exp $
+
+  22 Apr 2007; Bryan Østergaard <kloeri@gentoo.org> openssl-0.9.8d.ebuild:
+  Stable on Mips.
 
 *openssl-0.9.8e (27 Feb 2007)
 *openssl-0.9.7m (27 Feb 2007)
