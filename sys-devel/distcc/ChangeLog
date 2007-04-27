@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/distcc
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.163 2007/03/26 08:02:13 antarus Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.164 2007/04/26 07:33:42 dberkholz Exp $
+
+  26 Apr 2007; Donnie Berkholz <dberkholz@gentoo.org>; metadata.xml:
+  Update for cluster herd split to hp-cluster and ha-cluster.
 
   26 Mar 2007; Alec Warner <antarus@gentoo.org> distcc-2.18.3-r10.ebuild:
   Remove dependency on portage: ref bug 162516
