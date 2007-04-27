@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/apr
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.83 2007/04/15 20:18:42 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.84 2007/04/21 10:47:21 armin76 Exp $
+
+  21 Apr 2007; Raúl Porcel <armin76@gentoo.org> apr-1.2.8.ebuild:
+  ia64 stable
 
   15 Apr 2007; Markus Rothe <corsair@gentoo.org> apr-1.2.8.ebuild:
   Stable on ppc64
