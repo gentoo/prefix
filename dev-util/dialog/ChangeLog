@@ -1,6 +1,20 @@
 # ChangeLog for dev-util/dialog
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.73 2007/04/16 07:27:04 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.76 2007/04/24 11:25:54 eroyf Exp $
+
+  24 Apr 2007; Alexander Færøy <eroyf@gentoo.org>
+  dialog-1.1.20070227.ebuild:
+  Stable on MIPS.
+
+*dialog-1.1.20070409 (23 Apr 2007)
+
+  23 Apr 2007; Harald van Dĳk <truedfx@gentoo.org>
+  -files/dialog-1.0.20051107-mouseselect.patch, -dialog-1.0.20050306.ebuild,
+  -dialog-1.0.20051107.ebuild, +dialog-1.1.20070409.ebuild:
+  Version bump, cleanup of older versions
+
+  21 Apr 2007; Raúl Porcel <armin76@gentoo.org> dialog-1.1.20070227.ebuild:
+  ia64 + x86 stable
 
   16 Apr 2007; Markus Rothe <corsair@gentoo.org> dialog-1.0.20060221.ebuild:
   Stable on ppc64

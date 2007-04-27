@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/dialog-1.0.20051107.ebuild,v 1.6 2007/02/28 22:09:16 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/dialog-1.1.20070409.ebuild,v 1.1 2007/04/23 22:27:32 truedfx Exp $
 
 EAPI="prefix"
 
@@ -10,11 +10,11 @@ EAPI="prefix"
 
 inherit eutils
 
-MY_PV="${PV/1.0./1.0-}"
+MY_PV="${PV/1.1./1.1-}"
 S=${WORKDIR}/${PN}-${MY_PV}
 DESCRIPTION="tool to display dialog boxes from a shell"
 HOMEPAGE="http://invisible-island.net/dialog/dialog.html"
-SRC_URI="mirror://debian/pool/main/d/${PN}/${PN}_${MY_PV}.orig.tar.gz"
+SRC_URI="ftp://invisible-island.net/${PN}/${PN}-${MY_PV}.tgz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -34,21 +34,14 @@ pkg_setup() {
 	fi
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-mouseselect.patch
-}
-
 src_compile() {
-	#export LANG=C
 	use unicode && ncursesw="w"
 	econf "--with-ncurses${ncursesw}" || die "configure failed"
 	emake || die "build failed"
 }
 
 src_install() {
-	einstall || die
+	emake install DESTDIR="${D}" || die
 	dodoc CHANGES README VERSION
 
 	if use examples; then
