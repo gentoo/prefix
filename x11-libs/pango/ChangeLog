@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/pango
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.172 2007/04/17 03:55:41 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.173 2007/04/24 16:04:32 dang Exp $
+
+*pango-1.16.3 (24 Apr 2007)
+
+  24 Apr 2007; Daniel Gryniewicz <dang@gentoo.org> +pango-1.16.3.ebuild:
+  Bump to 1.16.3
+  - Quantize kerning value if metrics hinting is on.  This greatly improves
+    screen text rendering with certain fonts like DejaVu Sans.
+    See: http://behdad.org/blog/mces/image/metricshinting-kerning.png
+  - Improved hex-box positioning in the cairo backend
 
 *pango-1.16.2 (17 Apr 2007)
 
