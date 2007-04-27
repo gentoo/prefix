@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/libXrender
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXrender/ChangeLog,v 1.31 2007/02/04 18:25:53 joshuabaergen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXrender/ChangeLog,v 1.33 2007/04/25 16:55:28 armin76 Exp $
+
+  25 Apr 2007; Raúl Porcel <armin76@gentoo.org> libXrender-0.9.2.ebuild:
+  Stable on ia64 wrt bug #175465.
+
+  25 Apr 2007; Markus Rothe <corsair@gentoo.org> libXrender-0.9.2.ebuild:
+  Stable on ppc64; bug #175465
 
   04 Feb 2007; Joshua Baergen <joshuabaergen@gentoo.org>
   libXrender-0.9.1.ebuild, libXrender-0.9.2.ebuild:
