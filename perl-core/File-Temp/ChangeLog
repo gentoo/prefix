@@ -1,6 +1,9 @@
 # ChangeLog for perl-core/File-Temp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/File-Temp/ChangeLog,v 1.29 2007/04/17 18:52:37 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/File-Temp/ChangeLog,v 1.30 2007/04/23 11:58:26 drizzt Exp $
+
+  23 Apr 2007; Timothy Redaelli <drizzt@gentoo.org> File-Temp-0.18.ebuild:
+  Add ~x86-fbsd keyword, thanks to GurliGebis for reporting.
 
   17 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> File-Temp-0.18.ebuild:
   Stable on sparc
