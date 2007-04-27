@@ -1,6 +1,17 @@
 # ChangeLog for app-portage/gentoolkit
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.115 2007/04/11 05:03:10 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.117 2007/04/24 09:31:46 kloeri Exp $
+
+  24 Apr 2007; Bryan Østergaard <kloeri@gentoo.org>
+  gentoolkit-0.2.3-r1.ebuild:
+  Stable on Mips, bug 172741.
+
+*gentoolkit-0.2.4_pre5 (23 Apr 2007)
+
+  23 Apr 2007; Paul Varner <fuzzyray@gentoo.org>
+  +gentoolkit-0.2.4_pre5.ebuild:
+  gentoolkit-0.2.4_pre5 version bump. This fixes bugs #172694 and #175692
+  Bug #170220 tracks all fixes made for the gentoolkit-0.2.4 release.
 
 *gentoolkit-0.2.4_pre4 (11 Apr 2007)
 
