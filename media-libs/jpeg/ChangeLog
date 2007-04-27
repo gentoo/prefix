@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/jpeg
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/ChangeLog,v 1.58 2007/02/15 09:43:44 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/ChangeLog,v 1.60 2007/04/24 19:02:27 armin76 Exp $
+
+  24 Apr 2007; Raúl Porcel <armin76@gentoo.org> jpeg-6b-r8.ebuild:
+  Revert back to unstable, doesn't compile on hardened, thanks to gustavoz for
+  reporting
+
+  24 Apr 2007; Raúl Porcel <armin76@gentoo.org> jpeg-6b-r8.ebuild:
+  ia64 + x86 stable
 
   15 Feb 2007; Fabian Groffen <grobian@gentoo.org> jpeg-6b-r7.ebuild,
   jpeg-6b-r8.ebuild:
