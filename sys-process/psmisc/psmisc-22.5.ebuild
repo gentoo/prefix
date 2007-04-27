@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.4.ebuild,v 1.1 2007/04/18 13:21:19 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.5.ebuild,v 1.1 2007/04/25 02:31:12 vapier Exp $
 
 EAPI="prefix"
 
@@ -25,7 +25,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-22.2-gcc2.patch
-	epatch "${FILESDIR}"/${P}-no-peekfd.patch
 }
 
 src_compile() {

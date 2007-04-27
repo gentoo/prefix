@@ -1,6 +1,14 @@
 # ChangeLog for sys-process/psmisc
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/ChangeLog,v 1.54 2007/04/20 21:58:11 christel Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/ChangeLog,v 1.56 2007/04/25 02:31:12 vapier Exp $
+
+*psmisc-22.5 (25 Apr 2007)
+
+  25 Apr 2007; Mike Frysinger <vapier@gentoo.org> +psmisc-22.5.ebuild:
+  Version bump.
+
+  21 Apr 2007; Markus Rothe <corsair@gentoo.org> ChangeLog:
+  Stable on ppc64; bug #175094
 
   20 Apr 2007; <christel@gentoo.org> psmisc-22.3.ebuild:
   Stable on ALPHA; bug #175094
