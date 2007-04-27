@@ -1,6 +1,15 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.11 2007/03/31 17:50:14 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.13 2007/04/26 02:44:22 zmedico Exp $
+
+  26 Apr 2007; Zac Medico <zmedico@gentoo.org> ChangeLog:
+  Fix broken Manifest due to commit without repoman.
+
+*gnuplot-4.2_rc4 (25 Apr 2007)
+
+  25 Apr 2007; Danny van Dyk <kugelfang@gentoo.org> +gnuplot-4.2_rc4.ebuild:
+  Bumped to 4.2rc4. Tests still fail when there is no X available. Fixed bug
+  #156427.
 
   31 Mar 2007; Samuli Suominen <drac@gentoo.org>
   +files/gnuplot-4.0-libggi.patch, gnuplot-4.0-r2.ebuild:
