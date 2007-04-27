@@ -1,0 +1,343 @@
+# ChangeLog for dev-libs/nss
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.93 2007/04/20 13:26:30 armin76 Exp $
+
+  20 Apr 2007; Raúl Porcel <armin76@gentoo.org> -nss-3.11.3.ebuild,
+  -nss-3.11.3-r1.ebuild, -nss-3.11.4.ebuild:
+  Cleanup
+
+  20 Apr 2007; Stuart Longland <redhatter@gentoo.org> nss-3.11.5.ebuild:
+  Tested and marked stable on mips
+
+  14 Mar 2007; Raúl Porcel <armin76@gentoo.org> nss-3.11.5.ebuild:
+  alpha and ia64 were stable, fixed
+
+  11 Mar 2007; Raúl Porcel <armin76@gentoo.org> nss-3.11.5.ebuild:
+  3.11.5 needs nspr-4.6.5
+
+  11 Mar 2007; Bryan Østergaard <kloeri@gentoo.org> nss-3.11.5.ebuild:
+  Stable on Alpha + IA64.
+
+  09 Mar 2007; Jeroen Roovers <jer@gentoo.org> nss-3.11.5.ebuild:
+  Stable for HPPA (bug #165555).
+
+  08 Mar 2007; Steve Dibb <beandog@gentoo.org> nss-3.11.3.ebuild,
+  nss-3.11.3-r1.ebuild, nss-3.11.4.ebuild:
+  Adding multilib to inheritance
+
+  08 Mar 2007; Steve Dibb <beandog@gentoo.org> nss-3.11.5.ebuild:
+  amd64 stable, security bug 165555
+
+  08 Mar 2007; Tobias Scherbaum <dertobi123@gentoo.org> nss-3.11.5.ebuild:
+  Stable on ppc wrt bug #165555.
+
+  08 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> ChangeLog:
+  Fix manifest
+
+  08 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> nss-3.11.5.ebuild:
+  Stable on sparc wrt security #165555
+
+  08 Mar 2007; Markus Rothe <corsair@gentoo.org> nss-3.11.5.ebuild:
+  Stable on ppc64; bug #165555
+
+  07 Mar 2007; Raúl Porcel <armin76@gentoo.org> nss-3.11.5.ebuild:
+  x86 stable wrt bug 165555
+
+*nss-3.11.5 (07 Mar 2007)
+
+  07 Mar 2007; Raúl Porcel <armin76@gentoo.org>
+  -files/nss-3.9.2-gcc4.patch, -files/nss-3.9.2-ppc64.patch,
+  -files/nss-3.11.1-perl.patch, +files/nss-3.11.5-config-1.patch,
+  -files/nss-3.11-zdefs.patch, +nss-3.11.5.ebuild:
+  Version bump wrt bug 165555 and cleanup old
+
+  07 Mar 2007; Raúl Porcel <armin76@gentoo.org> nss-3.11.4.ebuild:
+  license change, bug 150118
+
+  05 Feb 2007; Raúl Porcel <armin76@gentoo.org> -nss-3.9.2-r2.ebuild,
+  -nss-3.9.2-r3.ebuild, -nss-3.11-r1.ebuild, -nss-3.11.1-r1.ebuild,
+  -nss-3.11.2.ebuild:
+  clean old
+
+  04 Feb 2007; Alexander H. Færøy <eroyf@gentoo.org> nss-3.11.3.ebuild:
+  Stable on MIPS; bug #148283
+
+  28 Jan 2007; Raúl Porcel <armin76@gentoo.org> metadata.xml:
+  Move to mozilla herd, bug 160313
+
+*nss-3.11.4 (21 Dec 2006)
+
+  21 Dec 2006; Alon Bar-Lev <alonbl@gentoo.org> +nss-3.11.4.ebuild:
+  Version bump, closes bug#158707, thanks to Walter Meinl
+
+*nss-3.11.3-r1 (06 Oct 2006)
+
+  06 Oct 2006; Alon Bar-Lev <alonbl@gentoo.org> +nss-3.11.3-r1.ebuild:
+  Make nss respect CFLAGS thanks to Ed Catmur bug#143619
+
+  27 Sep 2006; Bryan Østergaard <kloeri@gentoo.org> nss-3.11.3.ebuild:
+  Stable on ia64.
+
+  27 Sep 2006; Fernando J. Pereda <ferdy@gentoo.org> nss-3.11.3.ebuild:
+  Stable on alpha wrt bug #148283
+
+  21 Sep 2006; <blubb@gentoo.org> nss-3.11.3.ebuild:
+  stable on amd64 wrt bug 148283
+
+  21 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org> nss-3.11.3.ebuild:
+  hppa stable, bug #148283
+
+  21 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org> nss-3.11.3.ebuild:
+  ppc stable, bug #148283
+
+  21 Sep 2006; Gustavo Zacarias <gustavoz@gentoo.org> nss-3.11.3.ebuild:
+  Stable on sparc wrt security #148283
+
+  20 Sep 2006; <ticho@gentoo.org> nss-3.11.3.ebuild:
+  Stable on x86, security bug #148283.
+
+  20 Sep 2006; Markus Rothe <corsair@gentoo.org> nss-3.11.3.ebuild:
+  Stable on ppc64; bug #148283
+
+  16 Sep 2006; Stefan Schweizer <genstef@gentoo.org> nss-3.11.3.ebuild:
+  NSPR_VER="4.6.3", thanks Walter Meinl <wuno@lsvw.de>
+
+*nss-3.11.3 (16 Sep 2006)
+
+  16 Sep 2006; Stefan Schweizer <genstef@gentoo.org> +nss-3.11.3.ebuild:
+  version bump, security bug 147652
+
+*nss-3.11.2 (23 Jul 2006)
+
+  23 Jul 2006; Marcelo Goes <vanquirius@gentoo.org> +nss-3.11.2.ebuild:
+  3.11.2 version bump for bug 141393, thanks to Walter Meinl <wuno at lsvw dot
+  de>.
+
+  12 Jul 2006; Aron Griffis <agriffis@gentoo.org> nss-3.11.1-r1.ebuild:
+  Mark 3.11.1-r1 stable on ia64. #134798
+
+  09 Jul 2006; Joshua Kinard <kumba@gentoo.org> nss-3.11-r1.ebuild:
+  Marked stable on mips.
+
+  07 Jul 2006; Diego Pettenò <flameeyes@gentoo.org> nss-3.11.1-r1.ebuild:
+  Add ~x86-fbsd keyword.
+
+  23 Jun 2006; Thomas Cort <tcort@gentoo.org> nss-3.11-r1.ebuild:
+  Stable on alpha wrt Bug #137198.
+
+*nss-3.11.1-r1 (09 Jun 2006)
+
+  09 Jun 2006; Jory A. Pratt <anarchy@gentoo.org>
+  +files/nss-3.11.1-perl.patch, -files/nss-3.11.1-zdefs.patch,
+  -nss-3.11.ebuild, -nss-3.11.1.ebuild, +nss-3.11.1-r1.ebuild:
+  perl -e cleanup, small clean up to tree
+
+  03 Jun 2006; Guy Martin <gmsoft@gentoo.org> nss-3.11-r1.ebuild:
+  Stable on hppa.
+
+*nss-3.11.1 (02 Jun 2006)
+
+  02 Jun 2006; Jory A. Pratt <anarchy@gentoo.org>
+  +files/nss-3.11.1-zdefs.patch, +nss-3.11.1.ebuild:
+  revision bump
+
+  30 May 2006; Chris Gianelloni <wolf31o2@gentoo.org> nss-3.11-r1.ebuild:
+  Stable on x86 wrt bug #134798.
+
+  29 May 2006; Gustavo Zacarias <gustavoz@gentoo.org> nss-3.11-r1.ebuild:
+  Stable on sparc wrt #134798
+
+  03 May 2006; Markus Rothe <corsair@gentoo.org> nss-3.11-r1.ebuild:
+  Stable on ppc64
+
+  19 Apr 2006; <anarchy@gentoo.org> nss-3.11-r1.ebuild:
+  stable on amd64
+
+  15 Apr 2006; <nixnut@gentoo.org> nss-3.11-r1.ebuild:
+  Stable on ppc
+
+  25 Feb 2006; Stephen P. Becker <spbecker@gentoo.org>
+  -files/nss-3.9.2-mips64.patch, nss-3.9.2-r2.ebuild, nss-3.9.2-r3.ebuild:
+  removing old patch, and converting old ebuilds to use the new form
+
+  25 Feb 2006; Stephen P. Becker <spbecker@gentoo.org>
+  +files/nss-mips64.patch, nss-3.11-r1.ebuild:
+  readding mips64 patch, please do not remove this again
+
+*nss-3.11-r1 (09 Feb 2006)
+
+  09 Feb 2006; <anarchy@gentoo.org> +nss-3.11-r1.ebuild:
+  rpath fix
+
+*nss-3.11 (30 Jan 2006)
+
+  30 Jan 2006; <anarchy@gentoo.org> +files/nss-3.11-config.patch,
+  +files/nss-3.11-zdefs.patch, files/nss.pc.in, +files/nss-config.in,
+  -nss-3.10.ebuild, +nss-3.11.ebuild:
+  revision bump, with proper modification for nss-config
+
+*nss-3.10 (26 Jan 2006)
+
+  26 Jan 2006; Marcelo Goes <vanquirius@gentoo.org> +files/nss.pc.in,
+  +nss-3.10.ebuild:
+  3.10 version bump for bug 120442.
+
+  06 Aug 2005; Daniel Black <dragonheart@gentoo.org>
+  -files/nss-3.8-amd64.patch, -files/nss-3.8-hppa.patch,
+  -files/nss-3.8-mips.patch, metadata.xml, -nss-3.8.ebuild,
+  -nss-3.9.2.ebuild:
+  remove old versions - fixes bug #61166. crypto herd maintaince too.
+
+*nss-3.9.2-r3 (25 Apr 2005)
+
+  25 Apr 2005; Martin Schlemmer <azarah@gentoo.org>
+  +files/nss-3.9.2-gcc4.patch, +nss-3.9.2-r3.ebuild:
+  Fix to build with gcc4.  Patch from halcy0n's overlay.
+
+  04 Feb 2005; Stephen P. Becker <geoman@gentoo.org> nss-3.9.2-r2.ebuild:
+  stable on mips
+
+  28 Jan 2005; Joseph Jezak <josejx@gentoo.org> nss-3.9.2-r2.ebuild:
+  Marked ppc stable.
+
+  20 Jan 2005; Aron Griffis <agriffis@gentoo.org> nss-3.9.2-r2.ebuild:
+  stable on ia64
+
+  23 Dec 2004; Guy Martin <gmsoft@gentoo.org> nss-3.9.2-r2.ebuild:
+  Stable on hppa.
+
+  21 Dec 2004; Bryan Østergaard <kloeri@gentoo.org> nss-3.9.2-r2.ebuild:
+  Stable on alpha.
+
+  17 Dec 2004; Markus Rothe <corsair@gentoo.org> nss-3.9.2-r2.ebuild:
+  Stable on ppc64
+
+  15 Dec 2004; Gustavo Zacarias <gustavoz@gentoo.org> nss-3.9.2-r2.ebuild:
+  Stable on sparc
+
+  11 Dec 2004; Bryan Østergaard <kloeri@gentoo.org> nss-3.9.2.ebuild:
+  Stable on alpha.
+
+  28 Nov 2004; Stephen P. Becker <geoman@gentoo.org>
+  +files/nss-3.9.2-mips64.patch, nss-3.9.2-r2.ebuild:
+  added patch for proper detection of mips64 systems
+
+*nss-3.9.2-r2 (25 Nov 2004)
+
+  25 Nov 2004; Travis Tilley <lv@gentoo.org> -nss-3.9.2-r1.ebuild,
+  +nss-3.9.2-r2.ebuild:
+  get_libdir-ized and made nss work with an nspr in /usr/$(get_libdir)/nspr/.
+  stable on amd64
+
+*nss-3.9.2-r1 (15 Nov 2004)
+
+  15 Nov 2004; Alastair Tse <liquidx@gentoo.org> +nss-3.9.2-r1.ebuild:
+  adding /etc/env.d entry to get around (#71004)
+
+  12 Nov 2004; Mike Gardiner <obz@gentoo.org> nss-3.9.2.ebuild:
+  Keyworded ppc
+
+  11 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org> nss-3.9.2.ebuild:
+  Stable on sparc
+
+  06 Nov 2004; Michael Sterrett <mr_bones_@gentoo.org> nss-3.9.2.ebuild:
+  Don't use sed in global scope
+
+  16 Oct 2004; Alastair Tse <liquidx@gentoo.org> nss-3.8.ebuild,
+  nss-3.9.2.ebuild:
+  fixed mistake in installing shared libs. (#67124)
+
+  26 Aug 2004; Hardave Riar <hardave@gentoo.org> files/nss-3.8-mips.patch:
+  Added mips64 support to the mips patch.
+
+  14 Aug 2004; Tom Gall <tgall@gentoo.org> nss-3.9.2.ebuild:
+  stable on ppc64, bug #58169
+
+  28 Jul 2004; <agriffis@gentoo.org> nss-3.8.ebuild:
+  stable on ia64
+
+*nss-3.9.2 (24 Jul 2004)
+
+  24 Jul 2004; Alastair Tse <liquidx@gentoo.org> +files/nss-3.9.2-ppc64.patch,
+  +nss-3.9.2.ebuild:
+  version bump. add ppc64 patch (#58169). thanks to Markus Rothe
+  <markus@unixforces.net>
+
+  24 Jul 2004; Alastair Tse <liquidx@gentoo.org> nss-3.8.ebuild:
+  added provisions for alternative ROOT (#55350)
+
+  07 Jul 2004; Travis Tilley <lv@gentoo.org> nss-3.8.ebuild:
+  stable on amd64
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org> nss-3.8.ebuild:
+  virtual/glibc -> virtual/libc
+
+  30 Apr 2004; Stephen P. Becker <geoman@gentoo.org> nss-3.8.ebuild:
+  Stable on mips.
+
+  06 Apr 2004; Guy Martin <gmsoft@gentoo.org> nss-3.8.ebuild:
+  Added a build-fix patch for hppa.
+
+  26 Feb 2004; Gustavo Zacarias <gustavoz@gentoo.org> nss-3.8.ebuild:
+  stable on hppa
+
+  16 Feb 2004; Joshua Kinard <kumba@gentoo.org> nss-3.8.ebuild,
+  files/nss-3.8-mips.patch:
+  Added a patch to allow mips to build and added ~mips keyword.
+
+  27 Jan 2004; Aron Griffis <agriffis@gentoo.org> nss-3.8.ebuild:
+  add ~ia64
+
+  09 Jan 2004; Aron Griffis <agriffis@gentoo.org> nss-3.8.ebuild:
+  stable on alpha
+
+  20 Nov 2003; Alastair Tse <liquidx@gentoo.org> nss-3.8.ebuild:
+  fix download location (#33181)
+
+  13 Nov 2003; Brad House <brad_mssw@gentoo.org> nss-3.8.ebuild,
+  files/nss-3.8-amd64.patch:
+  amd64 patch from caleb@webninja.com
+
+  05 Sep 2003; Jason Wever <weeve@gentoo.org> nss-3.8.ebuild:
+  Marked stable for sparc.
+
+  31 Jul 2003; Don Seiler <rizzo@gentoo.org>; nss-3.8.ebuild:
+  Bumping to stable on ppc for gaim-encryption.
+
+  20 Jul 2003; Alastair Tse <liquidx@gentoo.org> nss-3.8.ebuild:
+  workaround for linux-2.6 (#24626)
+
+  19 Jul 2003; Alastair Tse <liquidx@gentoo.org> nss-3.8.ebuild:
+  express stable bump because of evo 1.4.3
+
+  18 Jul 2003; Brad Laue <brad@gentoo.org> nss-3.8.ebuild:
+  Build fix on 2.6 series kernels.
+
+  13 Jul 2003; Alastair Tse <liquidx@gentoo.org> nss-3.8.ebuild:
+  add zip dep
+
+  11 Jul 2003; Will Woods <wwoods@gentoo.org> nss-3.8.ebuild:
+  Added ~alpha to KEYWORDS
+
+  11 Jul 2003; Alastair Tse <liquidx@gentoo.org> nss-3.8.ebuild:
+  putting in ~sparc keyword. thanks to weeve for testing
+
+  11 Jul 2003; Bartosch Pixa <darkspecter@gentoo.org> nss-3.8.ebuild:
+  set ~ppc in keywords
+
+  11 Jul 2003; Brandon Low <lostlogic@gentoo.org> nss-3.8.ebuild:
+  Add an important || die statement, and make work on all kernels, arches, and
+  debug settings
+
+  11 Jul 2003; Alastair Tse <liquidx@gentoo.org> nss-3.8.ebuild:
+  oops. fix HOMEPAGE. thanks to weeve.
+
+  11 Jul 2003; Alastair Tse <liquidx@gentoo.org> nss-3.8.ebuild:
+  no parallel building
+
+*nss-3.8 (11 Jul 2003)
+
+  11 Jul 2003; Alastair Tse <liquidx@gentoo.org> nss-3.8.ebuild:
+  intial ebuild for NSS. this will be used by evolution to avoid the mozilla
+  dependency
+

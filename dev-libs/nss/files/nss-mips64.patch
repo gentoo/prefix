@@ -1,0 +1,21 @@
+--- mozilla/security/coreconf/Linux.mk.orig	2004-08-21 00:07:08.000000000 -0400
++++ mozilla/security/coreconf/Linux.mk	2004-08-20 23:28:52.000000000 -0400
+@@ -106,6 +106,10 @@
+ 	OS_REL_CFLAGS   = -DLINUX1_2 -D_XOPEN_SOURCE
+ 	CPU_ARCH        = mips
+ else
++ifeq ($(OS_TEST),mips64)
++	OS_REL_CFLAGS   = -DLINUX1_2 -D_XOPEN_SOURCE
++	CPU_ARCH        = mips64
++else
+ 	OS_REL_CFLAGS	= -DLINUX1_2 -Di386 -D_XOPEN_SOURCE
+ 	CPU_ARCH	= x86
+ endif
+@@ -122,6 +126,7 @@
+ endif
+ endif
+ endif
++endif
+ 
+ 
+ LIBC_TAG		= _glibc
