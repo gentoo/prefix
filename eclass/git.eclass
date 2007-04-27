@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.5 2007/04/10 11:42:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.6 2007/04/24 16:35:01 ferdy Exp $
 
 ## --------------------------------------------------------------------------- #
 # subversion.eclass author: Akinori Hattori <hattya@gentoo.org>
@@ -29,7 +29,7 @@ DESCRIPTION="Based on the ${ECLASS} eclass"
 
 ## -- add git in DEPEND
 #
-DEPEND=">=dev-util/git-1.4.0"
+DEPEND=">=dev-util/git-1.5"
 
 
 ## -- EGIT_STORE_DIR:  git sources store directory
@@ -212,16 +212,9 @@ git_fetch() {
 
 	einfo "   local clone: ${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}"
 
-	if ${EGIT_REPACK} ; then
-		ebegin "Repacking objects"
-		# Strangely enough mv asks confirmation
-		yes y | git repack -a -d -f -q > /dev/null
-		eend $?
-	fi
-
-	if ${EGIT_PRUNE} ; then
-		ebegin "Removing unreachable objects"
-		git prune
+	if ${EGIT_REPACK} || ${EGIT_PRUNE} ; then
+		ebegin "Garbage collecting the repository"
+		git gc $(${EGIT_PRUNE} && echo '--prune')
 		eend $?
 	fi
 
@@ -229,7 +222,7 @@ git_fetch() {
 
 	# export to the ${WORKDIR}
 	mkdir -p "${S}"
-	git tar-tree ${EGIT_TREE} | ( cd "${S}" ; tar xf - )
+	git archive --format=tar ${EGIT_TREE} | ( cd "${S}" ; tar xf - )
 
 	echo ">>> Unpacked to ${S}"
 

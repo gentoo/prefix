@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.73 2007/04/15 13:00:51 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.75 2007/04/25 18:22:37 robbat2 Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: Luca Longinotti <chtekk@gentoo.org>
@@ -200,25 +200,25 @@ mysql_init_vars() {
 	MY_LOGDIR=${MY_LOGDIR="/var/log/mysql"}
 	MY_INCLUDEDIR=${MY_INCLUDEDIR="/usr/include/mysql"}
 
-	if [[ -z "${DATADIR}" ]] ; then
-		DATADIR=""
+	if [[ -z "${MY_DATADIR}" ]] ; then
+		MY_DATADIR=""
 		if [[ -f "${MY_SYSCONFDIR}/my.cnf" ]] ; then
-			DATADIR=`"my_print_defaults" mysqld 2>/dev/null \
+			MY_DATADIR=`"my_print_defaults" mysqld 2>/dev/null \
 				| sed -ne '/datadir/s|^--datadir=||p' \
 				| tail -n1`
-			if [[ -z "${DATADIR}" ]] ; then
-				DATADIR=`grep ^datadir "${MY_SYSCONFDIR}/my.cnf" \
+			if [[ -z "${MY_DATADIR}" ]] ; then
+				MY_DATADIR=`grep ^datadir "${MY_SYSCONFDIR}/my.cnf" \
 				| sed -e 's/.*=\s*//'`
 			fi
 		fi
-		if [[ -z "${DATADIR}" ]] ; then
-			DATADIR="${MY_LOCALSTATEDIR}"
-			einfo "Using default DATADIR"
+		if [[ -z "${MY_DATADIR}" ]] ; then
+			MY_DATADIR="${MY_LOCALSTATEDIR}"
+			einfo "Using default MY_DATADIR"
 		fi
-		elog "MySQL DATADIR is ${DATADIR}"
+		elog "MySQL MY_DATADIR is ${MY_DATADIR}"
 
 		if [[ -z "${PREVIOUS_DATADIR}" ]] ; then
-			if [[ -e "${DATADIR}" ]] ; then
+			if [[ -e "${MY_DATADIR}" ]] ; then
 				elog "Previous datadir found, it's YOUR job to change"
 				elog "ownership and take care of it"
 				PREVIOUS_DATADIR="yes"
@@ -234,7 +234,7 @@ mysql_init_vars() {
 
 	export MY_SHAREDSTATEDIR MY_SYSCONFDIR
 	export MY_LIBDIR MY_LOCALSTATEDIR MY_LOGDIR
-	export MY_INCLUDEDIR DATADIR MY_SOURCEDIR
+	export MY_INCLUDEDIR MY_DATADIR MY_SOURCEDIR
 }
 
 configure_minimal() {
@@ -524,7 +524,7 @@ mysql_src_unpack() {
 
 	if mysql_version_is_at_least "5.1.12" ; then
 		rebuilddirlist="."
-		# TODO: check this with a cmake expert 
+		# TODO: check this with a cmake expert
 		use innodb \
 		&& cmake \
 			-DCMAKE_C_COMPILER=$(type -P $(tc-getCC)) \
@@ -647,7 +647,7 @@ mysql_src_install() {
 	fi
 	insinto "${MY_SYSCONFDIR}"
 	doins scripts/mysqlaccess.conf
-	sed -e "s!@DATADIR@!${DATADIR}!g" \
+	sed -e "s!@DATADIR@!${MY_DATADIR}!g" \
 		"${FILESDIR}/my.cnf-${mysql_mycnf_version}" \
 		> "${TMPDIR}/my.cnf.ok"
 	if mysql_version_is_at_least "4.1" && use latin1 ; then
@@ -660,9 +660,9 @@ mysql_src_install() {
 		# Empty directories ...
 		diropts "-m0750"
 		if [[ "${PREVIOUS_DATADIR}" != "yes" ]] ; then
-			dodir "${DATADIR}"
-			keepdir "${DATADIR}"
-			chown -R mysql:mysql "${ED}/${DATADIR}"
+			dodir "${MY_DATADIR}"
+			keepdir "${MY_DATADIR}"
+			chown -R mysql:mysql "${ED}/${MY_DATADIR}"
 		fi
 
 		diropts "-m0755"
@@ -760,7 +760,7 @@ mysql_pkg_config() {
 	# Make sure the vars are correctly initialized
 	mysql_init_vars
 
-	[[ -z "${DATADIR}" ]] && die "Sorry, unable to find DATADIR"
+	[[ -z "${MY_DATADIR}" ]] && die "Sorry, unable to find MY_DATADIR"
 
 	if built_with_use ${CATEGORY}/${PN} minimal ; then
 		die "Minimal builds do NOT include the MySQL server"
@@ -770,9 +770,9 @@ mysql_pkg_config() {
 	local pwd2="b"
 	local maxtry=5
 
-	if [[ -d "${EROOT}/${DATADIR}/mysql" ]] ; then
+	if [[ -d "${EROOT}/${MY_DATADIR}/mysql" ]] ; then
 		ewarn "You have already a MySQL database in place."
-		ewarn "(${EROOT}/${DATADIR}/*)"
+		ewarn "(${EROOT}/${MY_DATADIR}/*)"
 		ewarn "Please rename or delete it if you wish to replace it."
 		die "MySQL database already exists!"
 	fi
@@ -803,10 +803,10 @@ mysql_pkg_config() {
 	pushd "${TMPDIR}" &>/dev/null
 	"${EROOT}/usr/bin/mysql_install_db" | grep -B5 -A999 -i "ERROR"
 	popd &>/dev/null
-	[[ -f "${EROOT}/${DATADIR}/mysql/user.frm" ]] \
+	[[ -f "${EROOT}/${MY_DATADIR}/mysql/user.frm" ]] \
 	|| die "MySQL databases not installed"
-	chown -R mysql:mysql "${EROOT}/${DATADIR}" 2> /dev/null
-	chmod 0750 "${EROOT}/${DATADIR}" 2> /dev/null
+	chown -R mysql:mysql "${EROOT}/${MY_DATADIR}" 2> /dev/null
+	chmod 0750 "${EROOT}/${MY_DATADIR}" 2> /dev/null
 
 	if mysql_version_is_at_least "4.1.3" ; then
 		options="--skip-ndbcluster"
@@ -827,7 +827,7 @@ mysql_pkg_config() {
 		--user=mysql \
 		--skip-grant-tables \
 		--basedir=${EROOT}/usr \
-		--datadir=${EROOT}/${DATADIR} \
+		--datadir=${EROOT}/${MY_DATADIR} \
 		--skip-innodb \
 		--skip-bdb \
 		--skip-networking \

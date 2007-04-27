@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/savedconfig.eclass,v 1.4 2007/02/21 20:49:45 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/savedconfig.eclass,v 1.5 2007/04/23 19:35:05 swegener Exp $
 
 # Original Author: Daniel Black <dragonheart@gentoo.org>
 #
@@ -80,8 +80,8 @@ restore_config() {
 	local base=${PORTAGE_CONFIGROOT}/etc/portage/savedconfig
 	for check in {${CATEGORY}/${PF},${CATEGORY}/${P},${CATEGORY}/${PN}}; do
 		configfile=${base}/${CTARGET}/${check}
-		[[ -r ${configfile} ]] || configfile=${base}/${CHOST}/${check} 
-		[[ -r ${configfile} ]] || configfile=${base}/${check} 
+		[[ -r ${configfile} ]] || configfile=${base}/${CHOST}/${check}
+		[[ -r ${configfile} ]] || configfile=${base}/${check}
 		einfo "Checking existence of ${configfile} ..."
 		if [[ -r "${configfile}" ]]; then
 			einfo "found ${configfile}"
@@ -101,7 +101,7 @@ restore_config() {
 		treecopy . "${dest}" \
 			|| die "Failed to restore ${found} to $1"
 		popd
-	elif [[ -a {found} ]]; then 
+	elif [[ -a {found} ]]; then
 		die "do not know how to handle non-file/directory ${found}"
 	else
 		eerror "No saved config to restore - please remove USE=saveconfig or"

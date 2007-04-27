@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.196 2007/04/19 10:24:56 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.198 2007/04/22 23:04:33 philantrop Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -135,7 +135,7 @@ kde_src_unpack() {
 			if [[ -n ${LANGS_DOC} ]]; then
 				MAKE_DOC=$(echo $(echo "${LINGUAS} ${LANGS_DOC}" | tr ' ' '\n' | sort | uniq -d))
 				einfo "Enabling documentation for: ${MAKE_DOC}"
-				[[ -n ${MAKE_DOC} ]] && [[ -n ${DOC_DIR_SUFFIX} ]] && MAKE_DOC="${MAKE_DOC/ /${DOC_DIR_SUFFIX} }"
+				[[ -n ${MAKE_DOC} ]] && [[ -n ${DOC_DIR_SUFFIX} ]] && MAKE_DOC=$(echo "${MAKE_DOC}" | tr '\n' ' ') && MAKE_DOC="${MAKE_DOC// /${DOC_DIR_SUFFIX} }"
 				sed -i -e "s:^SUBDIRS =.*:SUBDIRS = ${MAKE_DOC} ${PN}:" \
 					"${KDE_S}/doc/Makefile.am" || die "sed for locale failed"
 				rm -f "${KDE_S}/configure"

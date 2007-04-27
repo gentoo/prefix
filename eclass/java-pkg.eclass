@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg.eclass,v 1.50 2007/01/03 14:14:22 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg.eclass,v 1.52 2007/04/25 18:24:37 robbat2 Exp $
 
 inherit multilib
 
@@ -447,6 +447,7 @@ java-pkg_getjars()
 {
 	java-config --classpath=$1
 }
+
 
 
 java-pkg_dohtml()

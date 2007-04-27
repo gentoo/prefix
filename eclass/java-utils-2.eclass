@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.76 2007/04/20 16:17:49 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.80 2007/04/26 23:32:12 caster Exp $
 
 
 # -----------------------------------------------------------------------------
@@ -834,7 +834,8 @@ java-pkg_recordjavadoc()
 #	--with-dependencies - get jars also from requested package's dependencies
 #	  transitively.
 #	--into $dir - symlink jar(s) into $dir (must exist) instead of .
-# @param $1 - Package to get jars from.
+# @param $1 - Package to get jars from, or comma-separated list of packages in
+#	case other parameters are not used.
 # @param $2 - jar from package. If not specified, all jars will be used.
 # @param $3 - When a single jar is specified, destination filename of the
 #	symlink. Defaults to the name of the jar.
@@ -847,11 +848,11 @@ java-pkg_jar-from() {
 	local destdir="."
 	local deep=""
 
-	[[ "${EBUILD_PHASE}" == "test" ]] && build_only="true"
+	[[ "${EBUILD_PHASE}" == "test" ]] && build_only="build"
 
 	while [[ "${1}" == --* ]]; do
 		if [[ "${1}" = "--build-only" ]]; then
-			build_only="true"
+			build_only="build"
 		elif [[ "${1}" = "--with-dependencies" ]]; then
 			deep="--with-dependencies"
 		elif [[ "${1}" = "--into" ]]; then
@@ -875,18 +876,22 @@ java-pkg_jar-from() {
 	classpath="$(java-config ${deep} --classpath=${target_pkg})"
 	[[ $? != 0 ]] && die ${error_msg}
 
-	java-pkg_ensure-dep "${build_only}" "${target_pkg}"
+	# When we have commas this functions is called to bring jars from multiple
+	# packages. This affects recording of dependencencies performed later
+	# which expects one package only, so we do it here.
+	if [[ ${target_pkg} = *,* ]]; then
+		for pkg in ${target_pkg//,/ }; do
+			java-pkg_ensure-dep "${build_only}" "${pkg}"
+			[[ -z "${build_only}" ]] && java-pkg_record-jar_ "${pkg}"
+		done
+		# setting this disables further record-jar_ calls later
+		build_only="build"
+	else
+		java-pkg_ensure-dep "${build_only}" "${target_pkg}"
+	fi
 
 	pushd ${destdir} > /dev/null \
 		|| die "failed to change directory to ${destdir}"
-
-	# When we have commas this functions is called to bring jars from multiple
-	# packages. This affects recording of dependencencies because that syntax uses :
-	# if we don't change them to : gjl and java-config -d -p break
-	if [[ ${target_pkg} = *,* ]]; then
-		build_only="true"
-		java-pkg_record-jar_ ${target_pkg//,/:}
-	fi
 
 	local jar
 	for jar in ${classpath//:/ }; do
@@ -959,11 +964,11 @@ java-pkg_getjars() {
 	local build_only=""
 	local deep=""
 
-	[[ "${EBUILD_PHASE}" == "test" ]] && build_only="true"
+	[[ "${EBUILD_PHASE}" == "test" ]] && build_only="build"
 
 	while [[ "${1}" == --* ]]; do
 		if [[ "${1}" = "--build-only" ]]; then
-			build_only="true"
+			build_only="build"
 		elif [[ "${1}" = "--with-dependencies" ]]; then
 			deep="--with-dependencies"
 		else
@@ -992,12 +997,9 @@ java-pkg_getjars() {
 
 	# Only record jars that aren't build-only
 	if [[ -z "${build_only}" ]]; then
-		oldifs="${IFS}"
-		IFS=","
-		for pkg in ${pkgs}; do
+		for pkg in ${pkgs//:/ }; do
 			java-pkg_record-jar_ "${pkg}"
 		done
-		IFS="${oldifs}"
 	fi
 
 	echo "${classpath}"
@@ -1027,11 +1029,11 @@ java-pkg_getjar() {
 
 	local build_only=""
 
-	[[ "${EBUILD_PHASE}" == "test" ]] && build_only="true"
+	[[ "${EBUILD_PHASE}" == "test" ]] && build_only="build"
 
 	while [[ "${1}" == --* ]]; do
 		if [[ "${1}" = "--build-only" ]]; then
-			build_only="true"
+			build_only="build"
 		else
 			die "java-pkg_jar-from called with unknown parameter: ${1}"
 		fi
@@ -1066,6 +1068,59 @@ java-pkg_getjar() {
 
 	die "Could not find ${target_jar} in ${pkg}"
 	return 1
+}
+
+# ------------------------------------------------------------------------------
+# @ebuild-function java-pkg_register-dependency
+#
+# Registers runtime dependency on a package, list of packages, or a single jar
+# from a package, into package.env DEPEND line. Can only be called in
+# src_install phase.
+# Intended for binary packages where you don't need to symlink the jars or get
+# their classpath during build. As such, the dependencies only need to be
+# specified in ebuild's RDEPEND, and should be omitted in DEPEND.
+# Get the classpath provided by any number of packages.
+#
+# @param $1 - comma-separated list of packages, or a single package
+# @param $2 - if param $1 is a single package, optionally specify the jar
+#   to depend on
+#
+# Example: Record the dependency on whole xerces-2 and xalan,
+#	java-pkg_register-dependency xerces-2,xalan
+# Example: Record the dependency on ant.jar from ant-core
+#	java-pkg_register-dependency ant-core ant.jar
+#
+# Note: Passing both list of packages as the first parameter AND specifying the
+# jar as the second is not allowed and will cause the function to die. We assume
+# that there's more chance one passes such combination as a mistake, than that
+# there are more packages providing identically named jar without class
+# collisions.
+# ------------------------------------------------------------------------------
+java-pkg_register-dependency() {
+	debug-print-function ${FUNCNAME} $*
+
+	java-pkg_check-phase install
+
+	[[ ${#} -gt 2 ]] && die "${FUNCNAME} takes at most two arguments"
+
+	local pkgs="${1}"
+	local jar="${2}"
+
+	[[ -z "${pkgs}" ]] && die "${FUNCNAME} called with no package(s) specified"
+
+	if [[ -z "${jar}" ]]; then
+		for pkg in ${pkgs//,/ }; do
+			java-pkg_ensure-dep runtime "${pkg}"
+			java-pkg_record-jar_ "${pkg}"
+		done
+	else
+		[[ ${pkgs} == *,* ]] && \
+			die "${FUNCNAME} called with both package list and jar name"
+		java-pkg_ensure-dep runtime "${pkgs}"
+		java-pkg_record-jar_ "${pkgs}" "${jar}"
+	fi
+
+	java-pkg_do_write_	
 }
 
 # This function reads stdin, and based on that input, figures out how to
@@ -2360,20 +2415,20 @@ java-pkg_verify-classes() {
 # @internal-function java-pkg_ensure-dep
 # Check that a package being used in jarfrom, getjars and getjar is contained
 # within DEPEND or RDEPEND.
-# @param $1 - Is the package a runtime dependency
+# @param $1 - empty - check both vars; "runtime" or "build" - check only
+#	RDEPEND, resp. DEPEND
 # @param $2 - Package name and slot.
-
 java-pkg_ensure-dep() {
 	debug-print-function ${FUNCNAME} $*
 
-	local build_only="${1}"
+	local limit_to="${1}"
 	local target_pkg="${2}"
 	local dev_error=""
 
 	local stripped_pkg=$(echo "${target_pkg}" | sed \
 		's/-[0-9]*\(\.[0-9]\)*$//')
 
-	if [[ ! ( "${DEPEND}" =~ "$stripped_pkg" ) ]]; then
+	if [[ ${limit_to} != runtime && ! ( "${DEPEND}" =~ "$stripped_pkg" ) ]]; then
 		dev_error="The ebuild is attempting to use ${target_pkg} that is not"
 		dev_error="${dev_error} declared in DEPEND."
 		if is-java-strict; then
@@ -2386,16 +2441,16 @@ java-pkg_ensure-dep() {
 		fi
 	fi
 
-	if [[ -z ${build_only} && ! ( ${RDEPEND} =~ "${stripped_pkg}" ) ]]; then
+	if [[ ${limit_to} != build && ! ( ${RDEPEND} =~ "${stripped_pkg}" ) ]]; then
 		dev_error="The ebuild is attempting to use ${target_pkg},"
 		dev_error="${dev_error} without specifying --build-only, that is not declared in RDEPEND."
 		if is-java-strict; then
 			die "${dev_error}"
 		elif [[ ${BASH_SUBSHELL} = 0 ]]; then
 			eerror "${dev_error}"
-			elog "Because you have this package installed the package will"
-			elog "build without problems, but please report this to"
-			elog "http://bugs.gentoo.org"
+			elog "The package will build without problems, but may fail to run"
+			elog "if you don't have ${target_pkg} installed, so please report"
+			elog "this to http://bugs.gentoo.org"
 		fi
 	fi
 }

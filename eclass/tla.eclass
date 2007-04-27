@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/tla.eclass,v 1.9 2007/01/22 17:48:18 antarus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/tla.eclass,v 1.10 2007/04/23 19:35:05 swegener Exp $
 #
 # Original Author:    Jeffrey Yasskin <jyasskin@mail.utexas.edu>
 #
@@ -182,7 +182,7 @@ tla_src_unpack() {
 	local OLD_SHOPTS=$(shopt -p)
 	shopt -s dotglob	# get any dotfiles too.
 	cp -Rf "$ETLA_TOP_DIR/$ETLA_CACHE_DIR"/* "${WORKDIR}/${P}"
-	eval "$OLD_SHOPTS" 
+	eval "$OLD_SHOPTS"
 
 	# implement some of base_src_unpack's functionality;
 	# note however that base.eclass may not have been inherited!

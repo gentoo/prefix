@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.41 2007/04/01 14:48:37 hattya Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.42 2007/04/23 18:55:15 cardoe Exp $
 
 ## --------------------------------------------------------------------------- #
 # Author: Akinori Hattori <hattya@gentoo.org>
@@ -21,7 +21,6 @@ ESVN="subversion.eclass"
 
 EXPORT_FUNCTIONS src_unpack
 
-HOMEPAGE="http://subversion.tigris.org/"
 DESCRIPTION="Based on the ${ECLASS} eclass"
 
 

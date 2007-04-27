@@ -1,6 +1,6 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/freebsd.eclass,v 1.12 2007/04/07 08:52:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/freebsd.eclass,v 1.13 2007/04/21 12:28:43 drizzt Exp $
 #
 # Diego Pettenò <flameeyes@gentoo.org>
 
@@ -54,22 +54,22 @@ freebsd_get_bmake() {
 	bmake=$(get_bmake)
 	[[ ${CBUILD} == *-freebsd* ]] || bmake="${bmake} -m /usr/share/mk/freebsd"
 
-	echo ${bmake}
+	echo "${bmake}"
 }
 
 freebsd_do_patches() {
 	for patch in ${PATCHES}; do
-		epatch ${patch}
+		epatch "${patch}"
 	done
 }
 
 freebsd_rename_libraries() {
 	ebegin "Renaming libraries"
 	# We don't use libtermcap, we use libncurses
-	find ${S} -name Makefile -print0 | xargs -0 \
+	find "${S}" -name Makefile -print0 | xargs -0 \
 		sed -i -e 's:-ltermcap:-lncurses:g; s:{LIBTERMCAP}:{LIBNCURSES}:g'
 	# flex provides libfl, not libl
-	find ${S} -name Makefile -print0 | xargs -0 \
+	find "${S}" -name Makefile -print0 | xargs -0 \
 		sed -i -e 's:-ll:-lfl:g; s:{LIBL}:{LIBFL}:g'
 
 	eend $?
@@ -77,7 +77,7 @@ freebsd_rename_libraries() {
 
 freebsd_src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 
 	dummy_mk ${REMOVE_SUBDIRS}
 
@@ -90,16 +90,16 @@ freebsd_src_compile() {
 	use profile || \
 		case "${RV}" in
 			5.*) mymakeopts="${mymakeopts} NOPROFILE= " ;;
-			6.*) mymakeopts="${mymakeopts} NO_PROFILE= " ;;
+			6.*|7.*) mymakeopts="${mymakeopts} NO_PROFILE= " ;;
 		esac
 
 	mymakeopts="${mymakeopts} NO_MANCOMPRESS= NO_INFOCOMPRESS="
 
 	# Many things breaks when using ricer flags here
-	[[ -z ${NOFLAGSTRIP} ]] && strip-flags
+	[[ -z "${NOFLAGSTRIP}" ]] && strip-flags
 
 	# Make sure to use FreeBSD definitions while crosscompiling
-	[[ -z ${BMAKE} ]] && BMAKE="$(freebsd_get_bmake)"
+	[[ -z "${BMAKE}" ]] && BMAKE="$(freebsd_get_bmake)"
 
 	bsdmk_src_compile
 }
@@ -108,12 +108,12 @@ freebsd_src_install() {
 	use profile || \
 		case "${RV}" in
 			5.*) mymakeopts="${mymakeopts} NOPROFILE= " ;;
-			6.*) mymakeopts="${mymakeopts} NO_PROFILE= " ;;
+			6.*|7.*) mymakeopts="${mymakeopts} NO_PROFILE= " ;;
 		esac
 
 	mymakeopts="${mymakeopts} NO_MANCOMPRESS= NO_INFOCOMPRESS="
 
-	[[ -z ${BMAKE} ]] && BMAKE="$(freebsd_get_bmake)"
+	[[ -z "${BMAKE}" ]] && BMAKE="$(freebsd_get_bmake)"
 
 	bsdmk_src_install
 }

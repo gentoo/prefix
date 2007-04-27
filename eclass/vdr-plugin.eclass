@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.43 2007/03/13 09:48:02 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.44 2007/04/23 07:17:42 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -334,8 +334,7 @@ vdr-plugin_src_install() {
 	[[ -z ${VDR_CONFD_FILE} ]] && [[ -e ${FILESDIR}/confd ]] && VDR_CONFD_FILE=${FILESDIR}/confd
 
 	if [[ -n ${VDR_CONFD_FILE} ]]; then
-		insinto /etc/conf.d
-		newins "${VDR_CONFD_FILE}" vdr.${VDRPLUGIN}
+		newconfd "${VDR_CONFD_FILE}" vdr.${VDRPLUGIN}
 	fi
 
 

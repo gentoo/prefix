@@ -10,7 +10,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.20 2007/03/15 13:31:50 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.21 2007/04/26 23:32:12 caster Exp $
 
 inherit java-utils-2
 
@@ -271,6 +271,11 @@ java-ant_bsfix_files() {
 			eval xml-rewrite-2.py ${files} \
 				-c -e ${JAVA_PKG_BSFIX_TARGET_TAGS// / -e } \
 				-a target -v ${want_target} ${output} || _bsfix_die "xml-rewrite2 failed: ${file}"
+
+			eval echo "Rewriting nowarn attributes" ${output}
+			eval xml-rewrite-2.py ${files} \
+				-c -e ${JAVA_PKG_BSFIX_TARGET_TAGS// / -e } \
+				-a nowarn -v yes ${output} || _bsfix_die "xml-rewrite2 failed: ${file}"
 		fi
 
 		if [[ -n "${JAVA_PKG_DEBUG}" ]]; then

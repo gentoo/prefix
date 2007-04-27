@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/pax-utils.eclass,v 1.5 2006/12/02 12:24:50 kevquinn Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/pax-utils.eclass,v 1.6 2007/04/24 18:27:11 kevquinn Exp $
 
 # Author:
 #	Kevin F. Quinn <kevquinn@gentoo.org>
@@ -81,7 +81,7 @@ PAX_MARKINGS=${PAX_MARKINGS:="EI PT"}
 
 # pax-mark <flags> {<ELF files>}
 pax-mark() {
-	local f flags fail=0 failures=""
+	local f flags fail=0 failures="" zero_load_alignment
 	# Ignore '-' characters - in particular so that it doesn't matter if
 	# the caller prefixes with -
 	flags=${1//-}
@@ -103,14 +103,30 @@ pax-mark() {
 		einfo "PT PaX marking -${flags}"
 		_pax_list_files elog "$@"
 		for f in "$@"; do
+			# First, try modifying the existing PAX_FLAGS header
 			paxctl -q${flags} "${f}" && continue
+			# Second, try stealing the (unused under PaX) PT_GNU_STACK header
 			paxctl -qc${flags} "${f}" && continue
+			# Third, try pulling the base down a page, to create space and
+			# insert a PT_GNU_STACK header (works on ET_EXEC)
 			paxctl -qC${flags} "${f}" && continue
+			# Fourth - check if it loads to 0 (probably an ET_DYN) and if so,
+			# try rebasing with prelink first to give paxctl some space to
+			# grow downwards into.
+			if type -p objdump > /dev/null && type -p prelink > /dev/null; then
+				zero_load_alignment=$(objdump -p "${f}" | \
+					grep -E '^[[:space:]]*LOAD[[:space:]]*off[[:space:]]*0x0+[[:space:]]' | \
+					sed -e 's/.*align\(.*\)/\1/')
+				if [[ ${zero_load_alignment} != "" ]]; then
+					prelink -r $(( 2*(${zero_load_alignment}) )) &&
+					paxctl -qC${flags} "${f}" && continue
+				fi
+			fi
 			fail=1
 			failures="${failures} ${f}"
 		done
 	elif type -p scanelf > /dev/null && [[ ${PAX_MARKINGS} != "none" ]]; then
-		# Try scanelf, Gentoo's swiss-army knife ELF utility
+		# Try scanelf, the Gentoo swiss-army knife ELF utility
 		# Currently this sets EI and PT if it can, no option to
 		# control what it does.
 		einfo "Fallback PaX marking -${flags}"
@@ -131,7 +147,7 @@ pax-mark() {
 
 # list-paxables {<files>}
 list-paxables() {
-	file "$@" 2> /dev/null | grep ELF | sed -e 's/: .*$//'
+	file "$@" 2> /dev/null | grep -E 'ELF.*(executable|shared object)' | sed -e 's/: .*$//'
 }
 
 # host-is-pax

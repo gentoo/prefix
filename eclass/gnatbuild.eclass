@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.24 2007/02/16 14:59:23 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.25 2007/04/23 19:35:05 swegener Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -322,7 +322,7 @@ gnatbuild_pkg_postinst() {
 
 gnatbuild_pkg_postrm() {
 	elog "Automatic cleanup requires a somewhat big rewamp of eclasses to not"
-	elog "breack updates. For now, if you are removing this issue of gnat compiler" 
+	elog "breack updates. For now, if you are removing this issue of gnat compiler"
 	elog "(if this is the last version of gnat-gcc or gnat-gpl that is being "
 	elog "removed),	please manually run:"
 	elog "   rm /etc/env.d/55gnat-*"

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.277 2007/04/06 11:43:30 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.279 2007/04/25 09:14:35 carlo Exp $
 #
 # This eclass is for general purpose functions that most ebuilds
 # have to implement themselves.
@@ -931,24 +931,27 @@ make_desktop_entry() {
 }
 
 
-# Validatedesktop entries using desktop-file-utils
+# Validate desktop entries using desktop-file-utils
 # Carsten Lohrke <carlo@gentoo.org>
 #
 # Usage: validate_desktop_entries [directory ...]
 
 validate_desktop_entries() {
-	if [[ -x /usr/bin/desktop-file-validate ]] ; then
+	if [[ -x "${EPREFIX}"/usr/bin/desktop-file-validate ]] ; then
 		einfo "Checking desktop entry validity"
 		local directories=""
-		for d in $@ ; do
-			directories="${directories} ${ED}${d}"
+		for d in "${EPREFIX}"/usr/share/applications $@ ; do
+			[[ -d ${D}${d} ]] && directories="${directories} ${D}${d}"
 		done
-		for FILE in $(find ${ED}/usr/share/applications ${directories} -name "*\.desktop" \
-			-not -path '*.hidden*' 2>/dev/null)
-		do
-			local temp=$(desktop-file-validate ${FILE} | grep -v "warning:")
-			[[ -n $temp ]] && elog ${temp//${ED}/}
-		done
+		if [[ -n ${directories} ]] ; then
+			for FILE in $(find ${directories} -name "*\.desktop" \
+							-not -path '*.hidden*' | sort -u 2>/dev/null)
+			do
+				local temp=$(desktop-file-validate ${FILE} | grep -v "warning:" | \
+								sed -e "s|error: ||" -e "s|${FILE}:|--|g" )
+				[[ -n $temp ]] && elog ${temp/--/${FILE/${ED}/}:}
+			done
+		fi
 		echo ""
 	else
 		einfo "Passing desktop entry validity check. Install dev-util/desktop-file-utils, if you want to help to improve Gentoo."

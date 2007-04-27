@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gkrellm-plugin.eclass,v 1.2 2007/03/12 17:39:01 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gkrellm-plugin.eclass,v 1.3 2007/04/23 19:35:05 swegener Exp $
 
 #
 # Original Author: Jim Ramsay <lack@gentoo.org>
@@ -52,7 +52,7 @@ gkrellm-plugin_server_dir() {
 }
 
 gkrellm-plugin_pkg_setup() {
-	if [[ -z "${PLUGIN_SERVER_SO}" ]] && 
+	if [[ -z "${PLUGIN_SERVER_SO}" ]] &&
 		! built_with_use app-admin/gkrellm X; then
 		eerror "This plugin requires the X frontend of gkrellm."
 		eerror "Please re-emerge app-admin/gkrellm with USE=\"X\""

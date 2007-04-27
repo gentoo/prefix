@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/versionator.eclass,v 1.12 2007/01/10 05:49:10 antarus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/versionator.eclass,v 1.13 2007/04/23 19:35:05 swegener Exp $
 #
 # Original Author: Ciaran McCreesh <ciaranm@gentoo.org>
 #
@@ -152,7 +152,7 @@ get_major_version() {
 #    1-2    1.2.3       -> 1.2
 #    2-     1.2.3       -> 2.3
 get_version_component_range() {
-	__versionator_shopt_toggle on 
+	__versionator_shopt_toggle on
 	local c v="${2:-${PV}}" range="${1}" range_start range_end i=-1 j=0
 	c=( $(get_all_version_components ${v} ) )
 	range_start="${range%-*}" ; range_start="${range_start:-1}"

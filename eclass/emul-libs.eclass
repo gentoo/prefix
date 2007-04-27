@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/emul-libs.eclass,v 1.5 2007/03/03 15:08:38 blubb Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/emul-libs.eclass,v 1.6 2007/04/23 19:35:05 swegener Exp $
 
 #
 # Original Author: Simon Stelling <blubb@gentoo.org>
-# Purpose: Providing a template for the app-emulation/emul-linux-* packages 
+# Purpose: Providing a template for the app-emulation/emul-linux-* packages
 #
 
 EXPORT_FUNCTIONS src_unpack src_install
@@ -24,10 +24,10 @@ RDEPEND=""
 emul-libs_src_unpack() {
 	einfo "Note: You can safely ignore the 'trailing garbage after EOF'"
 	einfo "      warnings below"
-	
+
 	unpack ${A}
 	cd "${S}"
-	
+
 	ALLOWED=${ALLOWED:-^${S}/etc/env.d}
 	find "${S}" ! -type d ! -name '*.so*' | egrep -v "${ALLOWED}" | xargs -d $'\n' rm -f || die 'failed to remove everything but *.so*'
 }

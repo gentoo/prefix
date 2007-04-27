@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php5_0-sapi.eclass,v 1.33 2007/03/26 20:19:22 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5_0-sapi.eclass,v 1.34 2007/04/24 20:06:20 chtekk Exp $
 
 # ========================================================================
 #
@@ -463,7 +463,7 @@ php5_0-sapi_src_compile() {
 
 	# MySQL support
 	if use mysql ; then
-		phpconfutils_extension_with		"mysql"			"mysql"			1 "/usr/lib/mysql"
+		phpconfutils_extension_with		"mysql"			"mysql"			1 "/usr"
 		phpconfutils_extension_with		"mysql-sock"	"mysql"			0 "/var/run/mysqld/mysqld.sock"
 	fi
 

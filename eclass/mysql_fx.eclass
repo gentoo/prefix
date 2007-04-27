@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql_fx.eclass,v 1.19 2007/04/15 12:18:49 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql_fx.eclass,v 1.20 2007/04/23 19:35:05 swegener Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: Luca Longinotti <chtekk@gentoo.org>
@@ -58,7 +58,7 @@ mysql_check_version_range() {
 _mysql_test_patch_ver_pn() {
 	local allelements=", version, package name"
 	# So that it fails the directory test if none of them exist
-	local filesdir="/dev/null" 
+	local filesdir="/dev/null"
 	for d in "${WORKDIR}/mysql-extras-${MY_EXTRAS_VER}" \
 		"${WORKDIR}/mysql-extras" ; do
 		if [ -d "${d}" ]; then
@@ -77,10 +77,10 @@ _mysql_test_patch_ver_pn() {
 
 	[[ $(( $flags & $(( 2 + 4 )) )) -gt 0 ]] \
 	&& allelements="${allelements//", version"}"
-	
+
 	[[ $(( $flags & $(( 8 + 16 )) )) -gt 0 ]] \
 	&& allelements="${allelements//", package name"}"
-	
+
 	[[ -n "${allelements}" ]] && [[ "${flags}" -gt 0 ]] \
 	&& ewarn "QA notice: ${allelements} missing in ${pname} patch"
 
