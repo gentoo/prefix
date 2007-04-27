@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/libSM
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libSM/ChangeLog,v 1.35 2007/02/04 18:22:15 joshuabaergen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libSM/ChangeLog,v 1.37 2007/04/25 17:33:52 armin76 Exp $
+
+  25 Apr 2007; Raúl Porcel <armin76@gentoo.org> libSM-1.0.2.ebuild:
+  Stable on ia64 wrt bug #175465.
+
+  25 Apr 2007; Markus Rothe <corsair@gentoo.org> libSM-1.0.2.ebuild:
+  Stable on ppc64; bug #175465
 
   04 Feb 2007; Joshua Baergen <joshuabaergen@gentoo.org> libSM-1.0.1.ebuild,
   libSM-1.0.2.ebuild:
