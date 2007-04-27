@@ -1,0 +1,324 @@
+# ChangeLog for net-misc/rdesktop
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.80 2007/02/06 21:27:23 wolf31o2 Exp $
+
+  06 Feb 2007; Chris Gianelloni <wolf31o2@gentoo.org>
+  rdesktop-1.5.0-r1.ebuild:
+  Stable on amd64 wrt bug #161149.
+
+  27 Jan 2007; Joseph Jezak <josejx@gentoo.org> rdesktop-1.5.0-r1.ebuild:
+  Marked ppc stable for bug #161149.
+
+  23 Jan 2007; Jeroen Roovers <jer@gentoo.org> rdesktop-1.5.0-r1.ebuild:
+  Stable for HPPA (bug #161149).
+
+  18 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  rdesktop-1.5.0-r1.ebuild:
+  Stable on sparc wrt #161149
+
+  18 Jan 2007; Christian Faulhammer <opfer@gentoo.org>
+  rdesktop-1.5.0-r1.ebuild:
+  stable x86, bug #161149
+
+  14 Jan 2007; Markus Rothe <corsair@gentoo.org> rdesktop-1.5.0-r1.ebuild:
+  Stable on ppc64; bug #161149
+
+  09 Jan 2007; Fabian Groffen <grobian@gentoo.org> rdesktop-1.4.1.ebuild,
+  rdesktop-1.5.0.ebuild, rdesktop-1.5.0-r1.ebuild:
+  Dropped ppc-macos keyword
+
+  26 Dec 2006; Timothy Redaelli <drizzt@gentoo.org>
+  rdesktop-1.5.0-r1.ebuild:
+  Add ~x86-fbsd keyword.
+
+*rdesktop-1.5.0-r1 (05 Oct 2006)
+
+  05 Oct 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  +rdesktop-1.5.0-r1.ebuild:
+  Revision bump to add libao support to our rdesktop ebuild. Ebuild by Oldrich
+  Jedlicka <oldium.pro@seznam.cz>. Closing bug #150092.
+
+*rdesktop-1.5.0 (13 Sep 2006)
+
+  13 Sep 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  -rdesktop-1.5.0_rc1.ebuild, +rdesktop-1.5.0.ebuild:
+  Version bump.
+
+  22 Jul 2006; <psi29a@gentoo.org> rdesktop-1.4.1.ebuild:
+  stable on mips
+
+  20 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  rdesktop-1.5.0_rc1.ebuild:
+  Fix the sed for strip on 1.5.0_rc1. Thanks go to Jakub Moc
+  <jakub@gentoo.org> for finding it and providing the fix. Closing bug
+  #125545.
+
+*rdesktop-1.5.0_rc1 (05 Jul 2006)
+
+  05 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  +rdesktop-1.5.0_rc1.ebuild:
+  Version bump to 1.5.0_rc1 for testing.
+
+  13 May 2006; Chris Gianelloni <wolf31o2@gentoo.org> metadata.xml:
+  Changed to no-herd for bug #94878.
+
+  14 Apr 2006; Chris Gianelloni <wolf31o2@gentoo.org> rdesktop-1.4.1.ebuild:
+  Adjusted modular X dependencies.
+
+  16 Mar 2006; Chris Gianelloni <wolf31o2@gentoo.org> rdesktop-1.4.1.ebuild:
+  Added sed fix from Flameeyes and closing bug #125545.
+
+  13 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  rdesktop-1.4.1.ebuild:
+  Add modular X dependencies.
+
+  27 Oct 2005; Chris Gianelloni <wolf31o2@gentoo.org>
+  -files/rdesktop-1.3.1-kde.patch,
+  -files/rdesktop-1.4.0-configure-with_arg.patch, -rdesktop-1.3.1-r1.ebuild,
+  -rdesktop-1.4.0-r1.ebuild:
+  Cleaning up older ebuilds.
+
+  27 Jul 2005; Guy Martin <gmsoft@gentoo.org> rdesktop-1.4.1.ebuild:
+  Stable on hppa.
+
+  14 Jul 2005; Hardave Riar <hardave@gentoo.org> rdesktop-1.4.1.ebuild:
+  Keyworded ~mips
+
+  12 Jun 2005; Bryan Østergaard <kloeri@gentoo.org> rdesktop-1.4.1.ebuild:
+  Stable on alpha.
+
+  10 Jun 2005; Chris Gianelloni <wolf31o2@gentoo.org>
+  rdesktop-1.4.0-r1.ebuild, rdesktop-1.4.1.ebuild:
+  Added openssl to DEPEND unconditionally and closing bug #92457.
+
+  05 Jun 2005; Joseph Jezak <josejx@gentoo.org> rdesktop-1.4.1.ebuild:
+  Marked ppc stable.
+
+  29 May 2005; Marcus D. Hanwell <marcus@gentoo.org> rdesktop-1.4.1.ebuild:
+  Stable on amd64, bug 94036.
+
+  28 May 2005; Markus Rothe <corsair@gentoo.org> rdesktop-1.4.1.ebuild:
+  Stable on ppc64; bug #94036
+
+  27 May 2005; Lina Pezzella <j4rg0n@gentoo.org> rdesktop-1.4.0-r1.ebuild,
+  rdesktop-1.4.1.ebuild:
+  Stable ppc-macos
+
+  27 May 2005; Jason Wever <weeve@gentoo.org> rdesktop-1.4.1.ebuild:
+  Stable on SPARC wrt bug #94036.
+
+  26 May 2005; Chris Gianelloni <wolf31o2@gentoo.org> rdesktop-1.4.1.ebuild:
+  Marking stable on x86 for bug #94036.
+
+  17 May 2005; Michael Hanselmann <hansmi@gentoo.org>
+  rdesktop-1.4.0-r1.ebuild:
+  Stable on ppc.
+
+  14 May 2005; Jason Wever <weeve@gentoo.org> rdesktop-1.4.0-r1.ebuild:
+  Stable on SPARC.
+
+*rdesktop-1.4.1 (10 May 2005)
+
+  10 May 2005; Chris Gianelloni <wolf31o2@gentoo.org>
+  rdesktop-1.4.0-r1.ebuild, +rdesktop-1.4.1.ebuild:
+  Version bumped to 1.4.1, marking 1.4.0 stable on x86 and amd64, and closing
+  bug #91932.
+
+*rdesktop-1.4.0-r1 (14 Apr 2005)
+
+  14 Apr 2005; Chris Gianelloni <wolf31o2@gentoo.org>
+  +files/rdesktop-1.4.0-configure-with_arg.patch, -rdesktop-1.3.1.ebuild,
+  +rdesktop-1.4.0-r1.ebuild, -rdesktop-1.4.0.ebuild:
+  Removing old versions. Added configure patch by Richard Brown
+  <mynamewasgone@gmail.com> and closing bug #88684.
+
+*rdesktop-1.4.0 (15 Mar 2005)
+
+  15 Mar 2005; Chris Gianelloni <wolf31o2@gentoo.org>
+  +rdesktop-1.4.0.ebuild:
+  Version bumped to 1.4.0 and marked ~arch for each architecture.
+
+  20 Jan 2005; <gongloo@gentoo.org> rdesktop-1.3.1-r1.ebuild:
+  Stable on ppc-macos.
+
+  24 Nov 2004; Kito <kito@gentoo.org> rdesktop-1.3.1-r1.ebuild:
+  added ~ppc-macos closes Bug 72320
+
+  19 Oct 2004; Jason Wever <weeve@gentoo.org> rdesktop-1.3.1-r1.ebuild:
+  Stable on sparc.
+
+*rdesktop-1.3.1 (11 Oct 2004)
+
+  11 Oct 2004; Jason Wever <weeve@gentoo.org> rdesktop-1.3.1-r1.ebuild,
+  +rdesktop-1.3.1.ebuild:
+  Reverting changes for sparc as this was not stablized by a SPARC approved
+  developer.
+
+  11 Oct 2004; Chris Gianelloni <wolf31o2@gentoo.org> metadata.xml:
+  Fixing metadata.xml to change herd from no-herd to net-misc with me still as
+  maintainer of the ebuild.
+
+  03 Oct 2004; Sven Wegener <swegener@gentoo.org> metadata.xml:
+  Fixed herd in metadata.xml.
+
+  11 Oct 2004; Chris Gianelloni <wolf31o2@gentoo.org> metadata.xml,
+  -files/rdesktop-1.3.0-builtin-license.patch,
+  -files/rdesktop-1.3.0-geometry.patch,
+  -files/rdesktop-1.3.0-last-two-certs.patch, -rdesktop-1.3.0-r1.ebuild,
+  rdesktop-1.3.1-r1.ebuild, -rdesktop-1.3.1.ebuild:
+  Removing old versions and patches. Stabilizing on all arches (zero bugs in
+  43 days) and closing bug #67174.
+
+  15 Sep 2004; <blubb@gentoo.org> rdesktop-1.3.1-r1.ebuild:
+  added ~amd64
+
+*rdesktop-1.3.1-r1 (18 Aug 2004)
+
+  18 Aug 2004; Chris Gianelloni <wolf31o2@gentoo.org>
+  +files/rdesktop-1.3.1-kde.patch, +rdesktop-1.3.1-r1.ebuild:
+  Adding KDE integration patch and closing bug #58312.
+
+  18 Jul 2004; Tom Gall <tgall@gentoo.org> rdesktop-1.3.1.ebuild:
+  stable on ppc64, bug #57126
+
+  14 Jun 2004; Chris Gianelloni <wolf31o2@gentoo.org>
+  rdesktop-1.3.0-r1.ebuild:
+  Fixed sed line and closing bug #52011.
+
+  24 May 2004; Daniel Ostrow <dostrow@gentoo.org> rdesktop-1.3.1.ebuild:
+  Stable on ppc.
+
+  27 Apr 2004; Aron Griffis <agriffis@gentoo.org> rdesktop-1.3.0-r1.ebuild:
+  Add inherit eutils
+
+  08 Apr 2004; Chris Gianelloni <wolf31o2@gentoo.org>
+  rdesktop-1.3.0-r1.ebuild, rdesktop-1.3.1.ebuild:
+  Changed DEPEND to virtual/x11.
+
+  09 Mar 2004; <agriffis@gentoo.org> rdesktop-1.3.1.ebuild:
+  stable on alpha and ia64
+
+  23 Feb 2004; Sven Blumenstein <bazik@gentoo.org> rdesktop-1.3.1.ebuild:
+  Sparcified!
+
+  16 Feb 2004; Lars Weiler <pylon@gentoo.org> rdesktop-1.3.0-r1.ebuild,
+  rdesktop-1.3.1.ebuild:
+  keyworded rdesktop-1.3.0-r1 with ppc and rdesktop-1.3.1.ebuild with ~ppc
+
+*rdesktop-1.3.1 (06 Feb 2004)
+
+  06 Feb 2004; Chris Gianelloni <wolf31o2@gentoo.org> rdesktop-1.3.1.ebuild:
+  Marking stable on x86.
+
+  24 Jan 2004; Chris Gianelloni <wolf31o2@gentoo.org>
+  rdesktop-1.2.0-r1.ebuild, rdesktop-1.2.0.ebuild, rdesktop-1.3.0.ebuild,
+  files/rdesktop-paste.patch:
+  Added version 1.3.1 as ~x86 and cleaning up old versions.
+
+*rdesktop-1.3.0-r1 (10 Dec 2003)
+
+  10 Dec 2003; Chris Gianelloni <wolf31o2@gentoo.org>
+  rdesktop-1.3.0-r1.ebuild, rdesktop-1.3.0.ebuild,
+  files/rdesktop-1.3.0-last-two-certs.patch:
+  Added certificate patch from rdesktop-cvs.  Bumped version.
+
+  19 Nov 2003; Jason Wever <weeve@gentoo.org> rdesktop-1.3.0.ebuild:
+  Marked stable on sparc.
+
+  18 Nov 2003; Aron Griffis <agriffis@gentoo.org> rdesktop-1.3.0.ebuild:
+  Stable on alpha and ia64
+
+  18 Nov 2003; Chris Gianelloni <wolf31o2@gentoo.org> rdesktop-1.3.0.ebuild:
+  Marked stable on x86.
+
+  14 Nov 2003; Brad House <brad_mssw@gentoo.org> rdesktop-1.3.0.ebuild:
+  mark stable on amd64
+
+  10 Nov 2003; Chris Gianelloni <wolf31o2@gentoo.org> rdesktop-1.3.0.ebuild:
+  Changing x86 to ~x86.
+
+*rdesktop-1.3.0 (10 Nov 2003)
+
+  10 Nov 2003; Chris Gianelloni <wolf31o2@gentoo.org> metadata.xml,
+  rdesktop-1.1.0-r1.ebuild, rdesktop-1.1.0.19.9.0.ebuild,
+  rdesktop-1.3.0.ebuild, files/rdesktop-1.3.0-builtin-license.patch,
+  files/rdesktop-1.3.0-geometry.patch:
+  Version bumped to 1.3.0 and closing bug #32855.
+
+  25 Sep 2003; Luca Barbato <agriffis@gentoo.org> rdesktop-1.2.0-r1.ebuild:
+  Marked ~ppc
+
+  28 Apr 2003; Aron Griffis <agriffis@gentoo.org> rdesktop-1.2.0-r1.ebuild:
+  Fix build error where epatch wasn't available due to missing inherit. I don't
+  know why, but it worked fine on my test...
+
+*rdesktop-1.2.0-r1 (28 Apr 2003)
+
+  28 Apr 2003; Aron Griffis <agriffis@gentoo.org> rdesktop-1.2.0-r1.ebuild:
+  Add patch from Steve Fosdick on rdesktop-devel to provide rudimentary
+  clipboard support (X->TS only). This isn't really supported on RDP4 but there
+  will be clipboard support in RDP5. At that point this patch should be removed.
+
+*rdesktop-1.2.0 (27 Feb 2003)
+
+  09 Mar 2003; Aron Griffis <agriffis@gentoo.org> rdesktop-1.2.0.ebuild:
+  Mark stable on alpha
+
+  27 Feb 2003; Brad Cowan <bcowan@gentoo.org> rdesktop-1.2.0.ebuild,
+  files/digest-rdesktop-1.2.0 :
+
+  Version bump.
+
+*rdesktop-1.2_beta1-r1 (28 Dec 2002)
+
+  10 Feb 2003; Seemant Kulleen <seemant@gentoo.org> *.ebuild :
+
+  Changed sed expression delimiters from / to :, closing bug #15006 by Blu3
+  <david+gentoo.org@blue-labs.org>
+
+  05 Feb 2003; Aron Griffis <agriffis@gentoo.org> rdesktop-1.2_beta1-r1.ebuild :
+  Mark stable on alpha
+
+  24 Jan 2003; Jason Wever <weeve@gentoo.org> rdesktop-1.2_beta1-r1.ebuild :
+  Added ~sparc to keywords
+
+  07 Jan 2003; Chris Houser <chouser@gentoo.org> rdesktop-1.2_beta1-r1.ebuild :
+  Added alpha to KEYWORDS
+
+  28 Dec 2002; Brad Cowan <bcowan@gentoo.org> rdesktop-1.2_beta1-r1.ebuild,
+  files/digest-rdesktop-1.2_beta1-r1:
+  
+  Fixed keymap issue and added more robust CFLAGS support.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*rdesktop-1.2_beta1 (03 Dec 2002)
+
+  03 Dec 2002; Brad Cowan <bcowan@gentoo.org> rdesktop-1.2_beta1.ebuild,
+  files/digest-rdesktop-1.2_beta1:
+  
+  Version bump.
+
+*rdesktop-1.1.0.19.9.0 (25 Oct 2002)
+
+  25 Oct 2002; Daniel Ahlberg <aliz@gentoo.org> :
+  Includes rdesktop patches from http://bibl4.oru.se/projects/rdesktop.
+
+*rdesktop-1.1.0-r1 (3 May 2002)
+  
+  21 Sep 2002; Owen Stampflee <owen@gentoo.org> :
+  Added PPC to KEYWORDS.
+
+  09 Jul 2002; phoen][x <phoenix@gentoo.org> rdesktop-1.1.0-r1 :
+  Added KEYWORDS.
+
+  3 May 2002; Donny Davies <woodchip@gentoo.org> :  
+  Added LICENSE, SLOT.
+
+*rdesktop-1.1.0 (8 Feb 2002)
+
+  8 Feb 2002; Donny Davies <woodchip@gentoo.org> rdesktop-1.1.0.ebuild,
+  files/digest-rdesktop-1.1.0 :
+
+  Checkin new package, first version.
+
