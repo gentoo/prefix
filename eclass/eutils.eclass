@@ -940,8 +940,8 @@ validate_desktop_entries() {
 	if [[ -x "${EPREFIX}"/usr/bin/desktop-file-validate ]] ; then
 		einfo "Checking desktop entry validity"
 		local directories=""
-		for d in "${EPREFIX}"/usr/share/applications $@ ; do
-			[[ -d ${D}${d} ]] && directories="${directories} ${D}${d}"
+		for d in /usr/share/applications $@ ; do
+			[[ -d ${ED}${d} ]] && directories="${directories} ${ED}${d}"
 		done
 		if [[ -n ${directories} ]] ; then
 			for FILE in $(find ${directories} -name "*\.desktop" \
