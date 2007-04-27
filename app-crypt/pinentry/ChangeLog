@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/pinentry
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/ChangeLog,v 1.59 2007/04/12 22:44:53 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/ChangeLog,v 1.60 2007/04/24 20:11:55 swegener Exp $
+
+  24 Apr 2007; Sven Wegener <swegener@gentoo.org> -pinentry-0.7.2-r2.ebuild:
+  Cleanup.
 
   12 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
   pinentry-0.7.2-r3.ebuild:
