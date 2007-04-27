@@ -1,0 +1,117 @@
+# ChangeLog for x11-apps/xdpyinfo
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xdpyinfo/ChangeLog,v 1.27 2007/04/25 17:10:34 armin76 Exp $
+
+  25 Apr 2007; Raúl Porcel <armin76@gentoo.org> xdpyinfo-1.0.2.ebuild:
+  Stable on ia64 wrt bug #175465.
+
+  25 Apr 2007; Markus Rothe <corsair@gentoo.org> xdpyinfo-1.0.2.ebuild:
+  Stable on ppc64; bug #175465
+
+*xdpyinfo-1.0.2 (31 Mar 2007)
+
+  31 Mar 2007; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xdpyinfo-1.0.2.ebuild:
+  Version bump.  Fixes several memory leaks and other bugs.
+  
+  I've also added the dga, dmx and xinerama USE-flags per Ingo Bormuth's
+  request.  Adding these USE-flags was not possible before this release. (Bug
+  #132502)
+
+  10 Oct 2006; Donnie Berkholz <dberkholz@gentoo.org>;
+  xdpyinfo-1.0.1.ebuild:
+  Update description to be less generic.
+
+  01 Oct 2006; Donnie Berkholz <dberkholz@gentoo.org>;
+  xdpyinfo-1.0.1.ebuild:
+  libXext has a runtime dep on xextproto now, so we don't need to depend on it
+  here.
+
+  19 Jul 2006; Guy Martin <gmsoft@gentoo.org> xdpyinfo-1.0.1.ebuild:
+  Stable on hppa.
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org> xdpyinfo-1.0.1.ebuild:
+  Mark 1.0.1 stable on ia64
+
+  07 Jul 2006; Diego Pettenò <flameeyes@gentoo.org> xdpyinfo-1.0.1.ebuild:
+  Add ~x86-fbsd keyword.
+
+  01 Jul 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  xdpyinfo-1.0.1.ebuild:
+  ppc/sparc/mips/alpha/arm/sh stable
+
+  30 Jun 2006; Chris Gianelloni <wolf31o2@gentoo.org> xdpyinfo-1.0.1.ebuild:
+  Stable on amd64.
+
+  30 Jun 2006; Markus Rothe <corsair@gentoo.org> xdpyinfo-1.0.1.ebuild:
+  Stable on ppc64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  xdpyinfo-1.0.1.ebuild:
+  x86 stable.
+
+  14 Feb 2006; Markus Rothe <corsair@gentoo.org> xdpyinfo-1.0.1.ebuild:
+  Added ~ppc64; bug #122726
+
+  05 Jan 2006; Doug Goldstein <cardoe@gentoo.org> xdpyinfo-1.0.1.ebuild:
+  Adding ~ppc
+
+  26 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  -xdpyinfo-0.99.2.ebuild, -xdpyinfo-1.0.0.ebuild:
+  Pull old versions.
+
+*xdpyinfo-1.0.1 (23 Dec 2005)
+
+  23 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +xdpyinfo-1.0.1.ebuild:
+  Bump for 7.0.
+
+*xdpyinfo-1.0.0 (18 Dec 2005)
+
+  18 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xdpyinfo-1.0.0.ebuild:
+  Bump for 7.0RC4.
+
+  09 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  -files/xineramaproto.patch:
+  Unused file.
+
+  09 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  -xdpyinfo-0.99.0.ebuild, -xdpyinfo-0.99.1.ebuild:
+  Pull old versions.
+
+*xdpyinfo-0.99.2 (04 Dec 2005)
+
+  04 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xdpyinfo-0.99.2.ebuild:
+  Bump for 7.0RC3.
+
+*xdpyinfo-0.99.1 (20 Oct 2005)
+
+  20 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +xdpyinfo-0.99.1.ebuild:
+  Bump for 7.0 RC1.
+
+  15 Sep 2005; Herbie Hopkins <herbs@gentoo.org> xdpyinfo-0.99.0.ebuild:
+  Marked ~amd64.
+
+  09 Sep 2005; Donnie Berkholz <spyderous@gentoo.org>; +metadata.xml:
+  Add metadata.
+
+  22 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +files/xineramaproto.patch, xdpyinfo-0.99.0.ebuild:
+  Look for xineramaproto, not panoramix. Reported by steev.
+
+  20 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  xdpyinfo-0.99.0.ebuild:
+  panoramixproto moved to xineramaproto.
+
+  08 Aug 2005; Ferris McCormick <fmccor@gentoo.org> xdpyinfo-0.99.0.ebuild:
+  Add ~sparc keyword (Modular X testing).
+
+*xdpyinfo-0.99.0 (08 Aug 2005)
+
+  08 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +xdpyinfo-0.99.0.ebuild:
+  Initial commit for modular X.
+
