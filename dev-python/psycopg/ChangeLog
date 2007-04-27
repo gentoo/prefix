@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/psycopg
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/psycopg/ChangeLog,v 1.55 2007/02/13 21:33:12 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/psycopg/ChangeLog,v 1.56 2007/04/21 15:11:14 armin76 Exp $
+
+  21 Apr 2007; Raúl Porcel <armin76@gentoo.org> psycopg-2.0.2.ebuild:
+  ia64 stable
 
   13 Feb 2007; Tiziano Müller <dev-zero@gentoo.org> psycopg-2.0.5.1.ebuild:
   Cleanup
