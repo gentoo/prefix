@@ -45,7 +45,7 @@ fetch() {
 
 		mkdir -p "${DISTDIR}" >& /dev/null
 		einfo "Fetching ${1##*/}"
-		pushd `pwd` > /dev/null
+		pushd "`pwd`" > /dev/null
 		cd "${DISTDIR}"
 		${FETCH_COMMAND} "$1"
 		popd > /dev/null
