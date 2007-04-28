@@ -154,8 +154,8 @@ bootstrap_tree() {
 	do
 		[ -d "${ROOT}/${x}" ] || mkdir -p "${ROOT}/${x}"
 	done
-	if [ ! -e ${ROOT}/usr/portage/.unpacked ]; then
-		cd ${ROOT}/usr
+	if [ ! -e "${ROOT}"/usr/portage/.unpacked ]; then
+		cd "${ROOT}"/usr
 		fetch "${PORTAGE_URL}/prefix-overlay-${PV}.tar.bz2"
 		bzip2 -dc ${DISTDIR}/prefix-overlay-${PV}.tar.bz2 | $TAR -xf - || exit 1
 		# beware: fetch creates DISTDIR!!!
