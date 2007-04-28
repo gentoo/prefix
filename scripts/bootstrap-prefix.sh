@@ -257,7 +257,7 @@ bootstrap_odcctools() {
 	$MAKE install || exit 1
 
 	cd "${ROOT}"
-	rm -Rf ${S}
+	rm -Rf "${S}"
 }
 
 prep_gcc-apple() {
@@ -298,20 +298,20 @@ bootstrap_gcc() {
 	GCC_LANG="c,c++"
 
 	export S="${PORTAGE_TMPDIR}/gcc-${GCC_PV}"
-	rm -rf ${S}
-	mkdir -p ${S}
-	cd ${S}
-	$TAR ${TAROPTS} ${DISTDIR}/${GCC_A} || exit 1
+	rm -rf "${S}"
+	mkdir -p "${S}"
+	cd "${S}"
+	$TAR ${TAROPTS} "${DISTDIR}"/${GCC_A} || exit 1
 
-	rm -rf ${S}/build
-	mkdir -p ${S}/build
-	cd ${S}/build
+	rm -rf "${S}"/build
+	mkdir -p "${S}"/build
+	cd "${S}"/build
 
-	gcc_config_opts="--prefix=${ROOT}/usr \
+	gcc_config_opts="--prefix='${ROOT}'/usr \
 				--host=${CHOST} \
-				--mandir=${ROOT}/usr/share/man \
-				--infodir=${ROOT}/usr/share/info \
-				--datadir=${ROOT}/usr/share \
+				--mandir='${ROOT}'/usr/share/man \
+				--infodir='${ROOT}'/usr/share/info \
+				--datadir='${ROOT}'/usr/share \
 				--disable-checking \
 				--disable-werror \
 				--disable-nls \
@@ -328,7 +328,7 @@ bootstrap_gcc() {
 	$MAKE install || exit 1
 
 	cd "${ROOT}"
-	rm -Rf ${S}
+	rm -Rf "${S}"
 }
 
 bootstrap_gnu() {
@@ -342,12 +342,12 @@ bootstrap_gnu() {
 
 	einfo "Unpacking ${A%-*}"
 	S="${PORTAGE_TMPDIR}/${PN}-${PV}"
-	rm -rf ${S}
-	mkdir -p ${S}
-	cd ${S}
-	gzip -dc ${DISTDIR}/${A} | $TAR -xf - || exit 1
-	S=${S}/${PN}-${PV}
-	cd ${S}
+	rm -rf "${S}"
+	mkdir -p "${S}"
+	cd "${S}"
+	gzip -dc "${DISTDIR}"/${A} | $TAR -xf - || exit 1
+	S="${S}"/${PN}-${PV}
+	cd "${S}"
 
 	local myconf=""
 	# AIX doesn't like it when --disable-nls is set, OSX doesn't like it
@@ -362,7 +362,7 @@ bootstrap_gnu() {
 	$MAKE install || exit 1
 
 	cd "${ROOT}"
-	rm -Rf ${S}
+	rm -Rf "${S}"
 	einfo "${A%-*} succesfully bootstrapped"
 }
 
@@ -375,12 +375,12 @@ bootstrap_python() {
 
 	einfo "Unpacking ${A%-*}"
 	export S="${PORTAGE_TMPDIR}/python-${PV}"
-	rm -rf ${S}
-	mkdir -p ${S}
-	cd ${S}
-	bzip2 -dc ${DISTDIR}/${A} | $TAR -xf - || exit 1
-	S=${S}/Python-${PV}
-	cd ${S}
+	rm -rf "${S}"
+	mkdir -p "${S}"
+	cd "${S}"
+	bzip2 -dc "${DISTDIR}"/${A} | $TAR -xf - || exit 1
+	S="${S}"/Python-${PV}
+	cd "${S}"
 
 	export PYTHON_DISABLE_MODULES="readline pyexpat dbm gdbm bsddb _curses _curses_panel _tkinter"
 	export PYTHON_DISABLE_SSL=1
@@ -415,7 +415,7 @@ bootstrap_python() {
 
 	einfo "Installing ${A%-*}"
 	$MAKE altinstall || exit 1
-	cd ${ROOT}/usr/bin
+	cd "${ROOT}"/usr/bin
 	ln -sf python2.4 python
 
 	einfo "${A%-*} succesfully bootstrapped"
