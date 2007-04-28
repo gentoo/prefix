@@ -1,5 +1,9 @@
 # prefix items here
 
+# <grobian@gentoo.org> (28 Apr 2007)
+# its SVN support is horrifically broken
+=app-portage/gentoolkit-dev-0.2.6.5
+
 # <grobian@gentoo.org> (9 Feb 2007)
 # can't get them to work with their libtool horror
 =dev-libs/apr-1.2.8
