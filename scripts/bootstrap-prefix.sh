@@ -16,13 +16,13 @@ einfo() { echo "* $*"; }
 
 econf() {
 	./configure \
-		--prefix=${ROOT}/usr \
+		--prefix="${ROOT}"/usr \
 		--host=${CHOST} \
-		--mandir=${ROOT}/usr/share/man \
-		--infodir=${ROOT}/usr/share/info \
-		--datadir=${ROOT}/usr/share \
-		--sysconfdir=${ROOT}/etc \
-		--localstatedir=${ROOT}/var/lib \
+		--mandir="${ROOT}"/usr/share/man \
+		--infodir="${ROOT}"/usr/share/info \
+		--datadir="${ROOT}"/usr/share \
+		--sysconfdir="${ROOT}"/etc \
+		--localstatedir="${ROOT}"/var/lib \
 		"$@" || exit 1
 }
 
