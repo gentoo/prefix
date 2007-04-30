@@ -5,4 +5,4 @@ sys-devel/native-cctools
 
 # Fabian Groffen <grobian@gentoo.org> (30 Apr 2007)
 # Doesn't compile....
-=emacs-cvs-23.0.0-r6
+=app-editors/emacs-cvs-23.0.0-r6
