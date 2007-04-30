@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/vim
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.261 2007/03/21 16:04:02 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.262 2007/04/29 22:27:26 pioto Exp $
+
+  29 Apr 2007; Mike Kelly <pioto@gentoo.org> +vim-7.0.235.ebuild:
+  Version bump. Fixes 2 security issues with modelines and other bugs.
 
   21 Mar 2007; Chris Gianelloni <wolf31o2@gentoo.org> vim-7.0.174.ebuild:
   Stable on alpha/ia64 wrt bug #167816.
