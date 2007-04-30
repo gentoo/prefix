@@ -1,6 +1,13 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.13 2007/04/26 02:44:22 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.15 2007/04/27 23:00:37 jer Exp $
+
+  27 Apr 2007; Jeroen Roovers <jer@gentoo.org> gnuplot-4.0-r1.ebuild:
+  Stable for HPPA too.
+
+  27 Apr 2007; Jeroen Roovers <jer@gentoo.org> gnuplot-4.2_rc1.ebuild,
+  gnuplot-4.2_rc4.ebuild:
+  Drop back to ~arch while 4.2 is still p.masked.
 
   26 Apr 2007; Zac Medico <zmedico@gentoo.org> ChangeLog:
   Fix broken Manifest due to commit without repoman.
