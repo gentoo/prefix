@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/pwgen
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/pwgen/ChangeLog,v 1.42 2007/04/13 18:20:01 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/pwgen/ChangeLog,v 1.43 2007/04/28 16:36:35 tove Exp $
+
+  28 Apr 2007; Torsten Veller <tove@gentoo.org> pwgen-2.04.ebuild,
+  pwgen-2.05.ebuild:
+  Use newinitd
 
 *pwgen-2.05 (13 Apr 2007)
 
