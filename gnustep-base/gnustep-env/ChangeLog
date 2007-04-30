@@ -1,6 +1,10 @@
 # ChangeLog for gnustep-base/gnustep-env
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-env/ChangeLog,v 1.29 2007/04/09 13:41:31 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-env/ChangeLog,v 1.30 2007/04/28 16:41:21 swegener Exp $
+
+  28 Apr 2007; Sven Wegener <swegener@gentoo.org>
+  gnustep-env-0.1.6-r1.ebuild, gnustep-env-0.1.8.ebuild:
+  Fix *initd and *envd calls, bug #173884.
 
   09 Apr 2007; Fabian Groffen <grobian@gentoo.org>
   gnustep-env-0.1.6-r1.ebuild, gnustep-env-0.1.8.ebuild,
