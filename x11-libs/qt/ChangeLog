@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.436 2007/04/20 16:41:43 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.437 2007/04/28 16:56:36 swegener Exp $
+
+  28 Apr 2007; Sven Wegener <swegener@gentoo.org> qt-3.3.4-r8.ebuild,
+  qt-3.3.8-r2.ebuild:
+  Fix *initd, *confd and *envd calls (#17388, #174266)
 
   20 Apr 2007; Caleb Tennis <caleb@gentoo.org> qt-3.3.4-r8.ebuild:
   re-add x86 because this is the preferred hardened version for x86
