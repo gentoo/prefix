@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic toolchain-funcs
+inherit eutils flag-o-matic toolchain-funcs multilib
 
 MY_PV=${PV:0:3}
 PV_SNAP=${PV:4}
@@ -56,14 +56,11 @@ src_compile() {
 	if use unicode ; then
 		mkdir "${WORKDIR}"/widec
 		cd "${WORKDIR}"/widec
-		do_compile ${myconf} --enable-widec --includedir=${EPREFIX}/usr/include/ncursesw
+		do_compile ${myconf} --enable-widec --includedir="${EPREFIX}"/usr/include/ncursesw
 	fi
 }
 do_compile() {
 	ECONF_SOURCE=${S}
-
-	local mylibprefix="${EPREFIX}"
-	[[ ${CHOST} == *-darwin* ]] && mylibprefix="${EPREFIX}/usr"
 
 	# We need the basic terminfo files in /etc, bug #37026.  We will
 	# add '--with-terminfo-dirs' and then populate /etc/terminfo in
@@ -71,7 +68,7 @@ do_compile() {
 	# The chtype/mmask-t settings below are to retain ABI compat
 	# with ncurses-5.4 so dont change em !
 	econf \
-		--libdir=${mylibprefix}/$(get_libdir) \
+		--libdir="${EPREFIX}/$(get_libdir)" \
 		--with-terminfo-dirs="${EPREFIX}/etc/terminfo:${EPREFIX}/usr/share/terminfo" \
 		--disable-termcap \
 		--with-shared \
@@ -108,16 +105,18 @@ src_install() {
 	cd "${WORKDIR}"/narrowc
 	make DESTDIR="${D}" install || die "make narrowc install failed"
 
-	if [[ ${CHOST} != *-darwin* ]] ; then
-		# Move static and extraneous ncurses libraries out of /lib
-		dodir /usr/$(get_libdir)
-		cd "${ED}"/$(get_libdir)
-		mv lib{form,menu,panel}.so* *.a "${ED}"/usr/$(get_libdir)/
-		gen_usr_ldscript lib{,n}curses.so
-		if use unicode ; then
-			mv lib{form,menu,panel}w.so* "${ED}"/usr/$(get_libdir)/
-			gen_usr_ldscript lib{,n}cursesw.so
-		fi
+	# Move static and extraneous ncurses libraries out of /lib
+	dodir /usr/$(get_libdir)
+	cd "${ED}"/$(get_libdir)
+	[[ $(get_libname) == ".so" ]] \
+		&& mv lib{form,menu,panel}.so* *.a "${ED}"/usr/$(get_libdir)/ \
+		|| mv lib{form,menu,panel}.*dylib *.a "${ED}"/usr/$(get_libdir)/
+	gen_usr_ldscript lib{,n}curses$(get_libname)
+	if use unicode ; then
+		[[ $(get_libname) == ".so" ]] \
+			&& mv lib{form,menu,panel}w.so* "${ED}"/usr/$(get_libdir)/ \
+			|| mv lib{form,menu,panel}w.*dylib "${ED}"/usr/$(get_libdir)/
+		gen_usr_ldscript lib{,n}cursesw$(get_libname)
 	fi
 
 	# We need the basic terminfo files in /etc, bug #37026
@@ -161,9 +160,9 @@ src_install() {
 }
 
 pkg_preinst() {
-	use unicode || preserve_old_lib /$(get_libdir)/libncursesw.so.5
+	use unicode || preserve_old_lib /$(get_libdir)/libncursesw$(get_libname 5)
 }
 
 pkg_postinst() {
-	use unicode || preserve_old_lib_notify /$(get_libdir)/libncursesw.so.5
+	use unicode || preserve_old_lib_notify /$(get_libdir)/libncursesw$(get_libname 5)
 }
