@@ -1,6 +1,16 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.140 2007/04/26 07:20:08 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.143 2007/04/29 19:01:15 ulm Exp $
+
+  29 Apr 2007; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r12.ebuild:
+  Don't assign CPPFLAGS, use append-cppflags instead.
+
+  29 Apr 2007; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r12.ebuild:
+  Apply emacs-21.4-ppc64-fix-unexelf.patch only on ppc64 architecture.
+
+  29 Apr 2007; Markus Rothe <corsair@gentoo.org>
+  +files/emacs-21.4-ppc64-fix-unexelf.patch, emacs-21.4-r12.ebuild:
+  Add patch for ppc64 - thanks ulm; bug #152006. Also add ~ppc64; bug #174884
 
   26 Apr 2007; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r12.ebuild:
   Fixed parameter expansion for file name of man pages.

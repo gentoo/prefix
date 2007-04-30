@@ -1,0 +1,67 @@
+Fix unexelf.c (unexec) on ppc64, backported from Emacs 22 by Chip Coldwell,
+see <http://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=183304>
+--- emacs-21.4/src/unexelf.c	2002-10-15 10:21:44.000000000 -0400
++++ emacs-21.4.works/src/unexelf.c	2006-07-26 11:08:05.000000000 -0400
+@@ -697,7 +697,7 @@ unexec (new_name, old_name, data_start, 
+   ElfW(Addr) new_data2_addr;
+ 
+   int n, nn;
+-  int old_bss_index, old_sbss_index;
++  int old_bss_index, old_sbss_index, old_plt_index;
+   int old_data_index, new_data2_index;
+   int old_mdebug_index;
+   struct stat stat_buf;
+@@ -759,12 +759,31 @@ unexec (new_name, old_name, data_start, 
+     if (OLD_SECTION_H (old_sbss_index).sh_type == SHT_PROGBITS)
+       old_sbss_index = -1;
+ 
+-  if (old_sbss_index == -1)
++  /* PowerPC64 has .plt in the BSS section.  */
++  old_plt_index = find_section (".plt", old_section_names,
++				old_name, old_file_h, old_section_h, 1);
++  if (old_plt_index != -1)
++    if (OLD_SECTION_H (old_plt_index).sh_type != SHT_NOBITS)
++      old_plt_index = -1;
++
++  if (old_sbss_index == -1 && old_plt_index == -1)
+     {
+       old_bss_addr = OLD_SECTION_H (old_bss_index).sh_addr;
+       old_bss_size = OLD_SECTION_H (old_bss_index).sh_size;
+       new_data2_index = old_bss_index;
+     }
++  else if (old_plt_index != -1
++	   && (old_sbss_index == -1
++	       || (OLD_SECTION_H (old_sbss_index).sh_addr
++		   > OLD_SECTION_H (old_plt_index).sh_addr)))
++    {
++      old_bss_addr = OLD_SECTION_H (old_plt_index).sh_addr;
++      old_bss_size = OLD_SECTION_H (old_bss_index).sh_size
++	+ OLD_SECTION_H (old_plt_index).sh_size;
++      if (old_sbss_index != -1)
++	old_bss_size += OLD_SECTION_H (old_sbss_index).sh_size;
++      new_data2_index = old_plt_index;
++    }
+   else
+     {
+       old_bss_addr = OLD_SECTION_H (old_sbss_index).sh_addr;
+@@ -955,7 +974,7 @@ unexec (new_name, old_name, data_start, 
+       if (n == old_bss_index
+ 	  /* The new bss and sbss section's size is zero, and its file offset
+ 	     and virtual address should be off by NEW_DATA2_SIZE.  */
+-	  || n == old_sbss_index
++	  || n == old_sbss_index || n == old_plt_index
+ 	  )
+ 	{
+ 	  /* NN should be `old_s?bss_index + 1' at this point. */
+@@ -986,9 +1005,8 @@ unexec (new_name, old_name, data_start, 
+ 	      >= OLD_SECTION_H (old_bss_index-1).sh_offset)
+ 	    NEW_SECTION_H (nn).sh_offset += new_data2_size;
+ #else
+-	  if (round_up (NEW_SECTION_H (nn).sh_offset,
+-			OLD_SECTION_H (old_bss_index).sh_addralign)
+-	      >= new_data2_offset)
++	  if (NEW_SECTION_H (nn).sh_offset + NEW_SECTION_H (nn).sh_size
++	      > new_data2_offset)
+ 	    NEW_SECTION_H (nn).sh_offset += new_data2_size;
+ #endif
+ 	  /* Any section that was originally placed after the section

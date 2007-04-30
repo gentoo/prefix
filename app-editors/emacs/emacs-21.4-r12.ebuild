@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r12.ebuild,v 1.8 2007/04/26 07:20:08 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r12.ebuild,v 1.11 2007/04/29 19:01:15 ulm Exp $
 
 EAPI="prefix"
 
@@ -56,7 +56,10 @@ src_unpack() {
 	epatch "${FILESDIR}/emacs-21.2-sh.patch"
 	epatch "${FILESDIR}/emacs-21.4-libungif-gif-gentoo.patch"
 
-	use ppc64 && epatch "${FILESDIR}/emacs-21.3-ppc64.patch"
+	if use ppc64; then
+		epatch "${FILESDIR}/emacs-21.3-ppc64.patch"
+		epatch "${FILESDIR}/emacs-21.4-ppc64-fix-unexelf.patch"
+	fi
 
 	epatch "${FILESDIR}/emacs-21.4-autosave-tmp.patch"
 	epatch "${FILESDIR}/emacs-21.4-blessmail-build.patch"
@@ -68,7 +71,7 @@ src_unpack() {
 
 	# This will need to be updated for X-Compilation
 	sed -i -e "s:/usr/lib/\([^ ]*\).o:/usr/$(get_libdir)/\1.o:g" \
-		   "${S}/src/s/gnu-linux.h" || die
+		"${S}/src/s/gnu-linux.h" || die
 }
 
 src_compile() {
@@ -83,9 +86,6 @@ src_compile() {
 	# ever since GCC 3.2
 	replace-flags -O[3-9] -O2
 
-	# this fixes bug 152006
-	use ppc64 && append-flags -mno-fp-in-toc -mno-sum-in-toc
-
 	# -march is known to cause signal 6 on some environment
 	filter-flags "-march=*"
 
@@ -96,7 +96,7 @@ src_compile() {
 	if use X ; then
 		if use motif && use lesstif; then
 			append-ldflags -L/usr/X11R6/lib/lesstif -R/usr/X11R6/lib/lesstif
-			export CPPFLAGS="${CPPFLAGS} -I/usr/X11R6/include/lesstif"
+			append-cppflags -I/usr/X11R6/include/lesstif
 		fi
 		myconf="${myconf}
 			--with-x
