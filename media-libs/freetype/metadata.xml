@@ -5,11 +5,4 @@
 <maintainer>
   <email>foser@gentoo.org</email>
 </maintainer>
-<maintainer restrict=">=media-libs/freetype-2.2">
-  <email>flameeyes@gmail.com</email>
-  <description>
-	Proxied maintainer
-    Assign to me bugs that come from versions 2.2, as I unmasked it myself.
-  </description>
-</maintainer>
 </pkgmetadata>
