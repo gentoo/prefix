@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/pth
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/ChangeLog,v 1.47 2007/04/24 13:35:52 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/ChangeLog,v 1.48 2007/04/27 22:26:28 alonbl Exp $
+
+  24 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> pth-2.0.7.ebuild:
+  Version bump
 
   24 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> pth-2.0.6.ebuild:
   Stable on sparc
