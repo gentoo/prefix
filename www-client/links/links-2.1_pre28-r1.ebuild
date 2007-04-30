@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/links/links-2.1_pre28.ebuild,v 1.1 2007/04/14 19:11:04 vanquirius Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/links/links-2.1_pre28-r1.ebuild,v 1.1 2007/04/28 01:50:58 vanquirius Exp $
 
 EAPI="prefix"
 
@@ -42,7 +42,10 @@ RDEPEND="ssl? ( >=dev-libs/openssl-0.9.6c )
 	sdl? ( >=media-libs/libsdl-1.2.0 )
 	sys-libs/zlib
 	virtual/libc
-	sys-libs/ncurses"
+	sys-libs/ncurses
+	livecd? ( >=media-libs/libpng-1.2.1
+		>=media-libs/jpeg-6b
+		sys-libs/gpm )"
 
 DEPEND="${RDEPEND}
 	sys-devel/automake
@@ -57,7 +60,8 @@ src_unpack (){
 
 	if use unicode ; then
 		epatch "${WORKDIR}/${PN}-2.1pre22-utf8.diff"
-		cd "${S}/intl" && ./gen-intl && cd .. || die "gen-intl filed"
+		cd "${S}/intl" && ./gen-intl && cd .. || die "gen-intl failed"
+		cd "${S}/intl" && ./synclang && cd .. || die "synclang failed"
 	fi
 }
 

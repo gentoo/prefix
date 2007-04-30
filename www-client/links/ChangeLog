@@ -1,6 +1,18 @@
 # ChangeLog for www-client/links
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/links/ChangeLog,v 1.86 2007/04/25 14:07:30 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/links/ChangeLog,v 1.88 2007/04/28 01:50:58 vanquirius Exp $
+
+*links-2.1_pre28-r1 (28 Apr 2007)
+
+  28 Apr 2007; Marcelo Goes <vanquirius@gentoo.org> -links-2.1_pre28.ebuild,
+  +links-2.1_pre28-r1.ebuild:
+  Two fixes. The first is to run synclang after gen-intl when the unicode USE
+  flag is set for bug 161891, or else links will segfault. Thanks to oxi
+  <oxiroxt at gmail dot com>. The second is to add livecd dependencies to
+  RDEPEND for bug 148705. Thanks to Daniel Drake <dsd at gentoo dot org>.
+
+  28 Apr 2007; Marcelo Goes <vanquirius@gentoo.org> -links-2.1_pre20.ebuild:
+  Remove old ebuild.
 
   25 Apr 2007; Alexander Færøy <eroyf@gentoo.org> links-2.1_pre26.ebuild:
   Stable on MIPS.
