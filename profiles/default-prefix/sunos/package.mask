@@ -2,3 +2,7 @@
 # Fabian Groffen <grobian@gentoo.org> (04 Apr 2007)
 # Don't use this, it is only provided for experimentation.
 sys-devel/native-cctools
+
+# Fabian Groffen <grobian@gentoo.org> (30 Apr 2007)
+# Doesn't compile....
+=emacs-cvs-23.0.0-r6
