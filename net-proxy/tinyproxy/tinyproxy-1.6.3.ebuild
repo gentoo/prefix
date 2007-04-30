@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-proxy/tinyproxy/tinyproxy-1.6.3.ebuild,v 1.8 2006/08/21 20:21:12 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-proxy/tinyproxy/tinyproxy-1.6.3.ebuild,v 1.9 2007/04/28 16:51:44 swegener Exp $
 
 EAPI="prefix"
 
@@ -38,8 +38,7 @@ src_install() {
 	dodoc AUTHORS ChangeLog NEWS README TODO
 	mv "${ED}/usr/share/tinyproxy" "${ED}/usr/share/doc/${PF}/html"
 
-	exeinto /etc/init.d
-	newexe "${FILESDIR}/tinyproxy.rc" tinyproxy
+	newinitd "${FILESDIR}/tinyproxy.rc" tinyproxy
 }
 
 pkg_postinst() {

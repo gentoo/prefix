@@ -1,6 +1,9 @@
 # ChangeLog for net-proxy/tinyproxy
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-proxy/tinyproxy/ChangeLog,v 1.8 2006/08/21 20:21:12 dang Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-proxy/tinyproxy/ChangeLog,v 1.9 2007/04/28 16:51:44 swegener Exp $
+
+  28 Apr 2007; Sven Wegener <swegener@gentoo.org> tinyproxy-1.6.3.ebuild:
+  Fix *initd, *confd and *envd calls (#17388, #174266)
 
   21 Aug 2006; Daniel Gryniewicz <dang@gentoo.org> tinyproxy-1.6.3.ebuild:
   Marked stable on amd64 for bug #144626
