@@ -37,6 +37,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/libarchive-2.1.9-static.patch
 	epatch "${FILESDIR}"/libarchive-2.1.5-acl.patch
+	epatch "${FILESDIR}"/libarchive-2.1.9-darwin7.patch
 
 	eautoreconf
 	epunt_cxx
