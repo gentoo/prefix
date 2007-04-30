@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/vim-core
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/ChangeLog,v 1.244 2007/03/21 16:02:32 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/ChangeLog,v 1.245 2007/04/29 22:25:51 pioto Exp $
+
+  29 Apr 2007; Mike Kelly <pioto@gentoo.org> +vim-core-7.0.235.ebuild:
+  Version bump. Fixes 2 security issues with modelines and other bugs.
 
   21 Mar 2007; Chris Gianelloni <wolf31o2@gentoo.org>
   vim-core-7.0.174.ebuild:
