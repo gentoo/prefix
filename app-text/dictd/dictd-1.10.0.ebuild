@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/dictd-1.10.0.ebuild,v 1.4 2007/02/10 14:06:16 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/dictd-1.10.0.ebuild,v 1.5 2007/04/28 15:24:55 tove Exp $
 
 EAPI="prefix"
 
@@ -24,7 +24,7 @@ src_compile() {
 
 src_install() {
 	# Now install it.
-	make DESTDIR=${D} install || die "install failed"
+	make DESTDIR="${D}" install || die "install failed"
 
 	# Install docs
 	dodoc README TODO COPYING ChangeLog ANNOUNCE
@@ -34,13 +34,11 @@ src_install() {
 	# conf files.
 	dodir /etc/dict
 	insinto /etc/dict
-	doins ${FILESDIR}/1.9.11-r1/dict.conf
+	doins "${FILESDIR}"/1.9.11-r1/dict.conf
 	doins dictd.conf
-	doins ${FILESDIR}/1.9.11-r1/site.info
+	doins "${FILESDIR}"/1.9.11-r1/site.info
 
 	# startups for dictd
-	exeinto /etc/init.d
-	newexe ${FILESDIR}/1.9.11-r1/dictd dictd
-	insinto /etc/conf.d
-	newins ${FILESDIR}/1.9.11-r1/dictd.confd dictd
+	newinitd "${FILESDIR}"/1.9.11-r1/dictd dictd
+	newconfd "${FILESDIR}"/1.9.11-r1/dictd.confd dictd
 }
