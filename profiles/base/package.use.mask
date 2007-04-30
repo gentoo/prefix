@@ -5,5 +5,12 @@ dev-java/sun-jre-bin nsplugin
 dev-java/ibm-jdk-bin nsplugin 
 dev-java/ibm-jre-bin nsplugin
 
+# Petteri Räty <betelgeuse@gentoo.org> (27 Apr 2007)
+# package.use.masked for security bug #161835
+# Not removed from ebuilds because this is the only 64 bit plugin
+# on amd64.
+dev-java/blackdown-jdk nsplugin
+dev-java/blackdown-jre nsplugin
+
 # These are for BSD only
 net-proxy/squid -pf-transparent pf-transparent

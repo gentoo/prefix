@@ -1,6 +1,10 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.9 2007/03/31 19:28:49 antarus Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.10 2007/04/27 15:42:13 betelgeuse Exp $
+
+  27 Apr 2007; Petteri Räty <betelgeuse@gentoo.org> package.use.mask:
+  package.use.mask nsplugin for blackdown-jdk and blackdown-jre for security
+  bug #161835.
 
   30 Mar 2007; Alec Warner <antarus@gentoo.org> make.defaults:
   Remove autoconfig from FEATURES, it died a long time ago
