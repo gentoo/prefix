@@ -34,6 +34,6 @@ src_unpack() {
 
 src_compile() {
 	use prefix && EXTRA_ECONF="--without-local-dir"
-	EXTRA_ECONF="${EXTRA_ECONF} --disable-darwin"
+#	EXTRA_ECONF="${EXTRA_ECONF} --disable-darwin"
 	vim_src_compile || die
 }
