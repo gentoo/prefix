@@ -14,13 +14,13 @@
 
 
 # Path to gconftool-2
-GCONFTOOL_BIN=${GCONFTOOL_BIN:="${ROOT}usr/bin/gconftool-2"}
+GCONFTOOL_BIN=${GCONFTOOL_BIN:="${EROOT}usr/bin/gconftool-2"}
 
 # Directory where scrollkeeper-update should do its work
-SCROLLKEEPER_DIR=${SCROLLKEEPER_DIR:="${ROOT}var/lib/scrollkeeper"}
+SCROLLKEEPER_DIR=${SCROLLKEEPER_DIR:="${EROOT}var/lib/scrollkeeper"}
 
 # Path to scrollkeeper-update
-SCROLLKEEPER_UPDATE_BIN=${SCROLLKEEPER_UPDATE_BIN:="${ROOT}usr/bin/scrollkeeper-update"}
+SCROLLKEEPER_UPDATE_BIN=${SCROLLKEEPER_UPDATE_BIN:="${EROOT}usr/bin/scrollkeeper-update"}
 
 
 
@@ -41,7 +41,7 @@ gnome2_gconf_install() {
 
 	einfo "Installing GNOME 2 GConf schemas"
 
-	local contents="${ROOT}var/db/pkg/*/${PN}-${PVR}/CONTENTS"
+	local contents="${EROOT}var/db/pkg/*/${PN}-${PVR}/CONTENTS"
 	local F
 
 	for F in $(grep "^obj /etc/gconf/schemas/.\+\.schemas\b" ${contents} | gawk '{print $2}' ); do
@@ -73,7 +73,7 @@ gnome2_gconf_uninstall() {
 
 	einfo "Uninstalling GNOME 2 GConf schemas"
 
-	local contents="${ROOT}/var/db/pkg/*/${PN}-${PVR}/CONTENTS"
+	local contents="${EROOT}/var/db/pkg/*/${PN}-${PVR}/CONTENTS"
 	local F
 
 	for F in $(grep "obj /etc/gconf/schemas" ${contents} | sed 's:obj \([^ ]*\) .*:\1:' ); do
@@ -94,19 +94,12 @@ gnome2_icon_cache_update() {
 		return
 	fi
 
-	if ! grep -q "obj /usr/share/icons" ${ROOT}var/db/pkg/*/${PF}/CONTENTS
-	then
-		debug-print "No items to update"
-
-		return
-	fi
-
 	ebegin "Updating icons cache"
 
 	local retval=0
 	local fails=( )
 
-	for dir in $(find ${ROOT}/usr/share/icons -maxdepth 1 -mindepth 1 -type d)
+	for dir in $(find ${EROOT}/usr/share/icons -maxdepth 1 -mindepth 1 -type d)
 	do
 		if [[ -f "${dir}/index.theme" ]] ; then
 			local rv=0

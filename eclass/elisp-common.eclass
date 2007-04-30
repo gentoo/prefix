@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.18 2007/04/19 13:26:37 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.20 2007/04/29 12:59:39 ulm Exp $
 #
 # Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
 # Copyright 2002-2007 Matthew Kennedy <mkennedy@gentoo.org>
@@ -151,13 +151,11 @@ elisp-site-regen() {
 ;;; -----------------------------------------------------------------
 
 EOF
-	ls ${SITELISP}/[0-9][0-9]*-gentoo.el |sort -n | \
-	while read sf
+	for sf in "${ROOT}${SITELISP}"/[0-9][0-9]*-gentoo.el
 	do
-		einfo "  Adding $(basename $sf) ..."
-		# Great for debugging, too noisy and slow for users though
-#		echo "(message \"Loading $sf ...\")" >>${SITELISP}/site-start.el
-		cat $sf >>${SITELISP}/site-gentoo.el
+		[ -r "${sf}" ] || continue
+		einfo "  Adding $(basename ${sf}) ..."
+		cat "${sf}" >> "${ROOT}${SITELISP}"/site-gentoo.el
 	done
 	while read line; do einfo "${line}"; done <<EOF
 
@@ -169,7 +167,7 @@ site-start.el if there is such a file.
 In order for this site initialization to be loaded for all users
 automatically, as was done previously, you can add a line like this:
 
-	(load "/usr/share/emacs/site-lisp/site-gentoo")
+	(load "/usr/share/emacs/site-lisp/site-gentoo" nil t)
 
 to /usr/share/emacs/site-lisp/site-start.el.  Alternatively, that line
 can be added by individual users to their initialization files, or for

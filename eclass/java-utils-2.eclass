@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.80 2007/04/26 23:32:12 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.82 2007/04/29 13:13:03 caster Exp $
 
 
 # -----------------------------------------------------------------------------
@@ -997,7 +997,7 @@ java-pkg_getjars() {
 
 	# Only record jars that aren't build-only
 	if [[ -z "${build_only}" ]]; then
-		for pkg in ${pkgs//:/ }; do
+		for pkg in ${pkgs//,/ }; do
 			java-pkg_record-jar_ "${pkg}"
 		done
 	fi
@@ -1618,7 +1618,7 @@ java-pkg_ant-tasks-from-deps() {
 	done
 
 	if [[ -n "${found_ant}" || -n "${found_ant_tasks}" ]]; then
-		java-pkg_announce-qa-violation "The ebuild DEPENDS on deprecated ant or ant-tasks"
+		java-pkg_announce-qa-violation --nodie "The ebuild DEPENDS on deprecated ant or ant-tasks"
 		echo "all"
 	else
 		# ebuild doesn't set ANT_TASKS and doesn't depend on ant-tasks or ant
@@ -1678,16 +1678,9 @@ java-pkg_ant-tasks-depend() {
 eant() {
 	debug-print-function ${FUNCNAME} $*
 
-	# FIXME get this working
-#	if is-java-strict && [[ ! ${DEPEND} =~ "dev-java/ant" ]]; then
-#		java-pkg_announce-qa-violation \
-#			"Using eant, but not depending on dev-java/ant or dev-java/ant-core"
-#	fi
-
-	if ! hasq java-ant-2 ${INHERITED} && is-java-strict; then
+	if ! hasq java-ant-2 ${INHERITED}; then
 		local msg="You should inherit java-ant-2 when using eant"
-		java-pkg_announce-qa-violation ${msg}
-		die ${msg}
+		java-pkg_announce-qa-violation "${msg}"
 	fi
 
 	local antflags="-Dnoget=true -Dmaven.mode.offline=true"
@@ -2461,10 +2454,10 @@ java-pkg_ensure-dep() {
 
 java-pkg_check-phase() {
 	local phase=${1}
-	local funcname=${2}
-	if is-java-strict && [[ ${EBUILD_PHASE} != ${phase} ]]; then
-		java-pkg_announce-qa-violation \
-			"${funcname} used outside of src_${phase}"
+	local funcname=${FUNCNAME[1]}
+	if [[ ${EBUILD_PHASE} != ${phase} ]]; then
+		local msg="${funcname} used outside of src_${phase}"
+		java-pkg_announce-qa-violation "${msg}"
 	fi
 }
 
@@ -2483,10 +2476,14 @@ java-pkg_check-jikes() {
 }
 
 java-pkg_announce-qa-violation() {
-	if is-java-strict; then
-		echo "Java QA Notice: $@" >&2
-		increment-qa-violations
+	local nodie
+	if [[ ${1} == "--nodie" ]]; then
+		nodie="true"
+		shift
 	fi
+	echo "Java QA Notice: $@" >&2
+	increment-qa-violations
+	[[ -z "${nodie}" ]] && is-java-strict && die "${@}"
 }
 
 increment-qa-violations() {
