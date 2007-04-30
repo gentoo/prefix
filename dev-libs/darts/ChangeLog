@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/darts
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/darts/ChangeLog,v 1.17 2007/02/22 00:31:21 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/darts/ChangeLog,v 1.18 2007/04/29 13:26:51 usata Exp $
+
+*darts-0.31 (29 Apr 2007)
+
+  29 Apr 2007; Mamoru KOMACHI <usata@gentoo.org> -darts-0.1.ebuild,
+  +darts-0.31.ebuild:
+  Version bumped. Now darts is available under a dual license.
 
   22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
