@@ -5,10 +5,11 @@
 *portage-2.1.25.6464 (01 May 2007)
 
   01 May 2007; Fabian Groffen <grobian@gentoo.org>
-  -portage-2.1.25.6460.ebuild, +portage-2.1.25.6464.ebuild:
+  -portage-2.1.25.6460.ebuild, +portage-2.1.25.6465.ebuild:
   Add bugfix replacement for 6460, fixes backtrace on invalid digest, crash on
   elog_summary (touching /var/log/portage), leaving behind of
-  man.ecompress.dir files
+  man.ecompress.dir files, repoman dieing during commit in
+  manifest1_obsolete repositories
 
 *portage-2.1.25.6460 (30 Apr 2007)
 
