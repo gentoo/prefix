@@ -1,0 +1,20 @@
+Create dirs before trying to install into them.
+
+--- lib/Makefile.darwin-lib
++++ lib/Makefile.darwin-lib
+@@ -30,7 +30,14 @@
+ 	@$(LN) $(BSD_LIB) ../$(BSD_LIB)
+ 	@$(LN) ../$(BSD_LIB) ../$(BSDLIB_IMAGE).dylib
+ 
+-install-shlibs install:: $(BSD_LIB)
++installdirs-bsd-lib::
++	@echo "	MKINSTALLDIRS $(BSDLIB_INSTALL_DIR) $(libdir)"
++	@$(MKINSTALLDIRS) $(DESTDIR)$(BSDLIB_INSTALL_DIR) \
++		$(DESTDIR)$(libdir)
++
++installdirs:: installdirs-bsd-lib
++
++install-shlibs install:: $(BSD_LIB) installdirs-bsd-lib
+ 	@echo "	INSTALL_PROGRAM $(BSDLIB_INSTALL_DIR)/$(BSD_LIB)"
+ 	@$(INSTALL_PROGRAM) $(BSD_LIB) \
+ 		$(DESTDIR)$(BSDLIB_INSTALL_DIR)/$(BSD_LIB)

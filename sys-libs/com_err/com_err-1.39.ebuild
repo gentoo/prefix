@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/e2fsprogs/e2fsprogs-${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86"
 IUSE="nls"
 
 RDEPEND=""
@@ -26,6 +26,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.39-makefile.patch
 	epatch "${FILESDIR}"/${PN}-1.39-parse-types.patch
 	epatch "${FILESDIR}"/${PN}-1.38-locale.patch
+	epatch "${FILESDIR}"/${PN}-1.39-darwin-makefile-install.patch
 }
 
 src_compile() {
@@ -63,13 +64,9 @@ src_install() {
 	dosym et/com_err.h /usr/include/com_err.h
 
 	dolib.a lib/libcom_err.a || die "dolib.a"
-	if [[ ${USERLAND} == "Darwin" ]] ; then
-		dosym /usr/$(get_libdir)/libcom_err.*.dylib /usr/$(get_libdir)/libcom_err.dylib || die
-	else
-		dodir /$(get_libdir)
-		mv "${ED}"/usr/$(get_libdir)/*$(get_libname)* "${ED}"/$(get_libdir)/ || die "move .so"
-		gen_usr_ldscript libcom_err.so
-	fi
+	dodir /$(get_libdir)
+	mv "${ED}"/usr/$(get_libdir)/*$(get_libname)* "${ED}"/$(get_libdir)/ || die "move $(get_libname)"
+	gen_usr_ldscript libcom_err$(get_libname)
 }
 
 pkg_postinst() {
