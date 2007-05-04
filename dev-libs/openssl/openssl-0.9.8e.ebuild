@@ -102,6 +102,12 @@ src_compile() {
 		shared threads \
 		|| die "Configure failed"
 
+	if [[ ${CHOST} == i?86*-*-linux* ]]; then
+		# does not compile without optimization on x86-linux
+		filter-flags -O0
+		is-flagq -O* || append-flags -O1
+	fi
+
 	# Clean out hardcoded flags that openssl uses
 	local CFLAG=$(grep ^CFLAG= Makefile | LC_ALL=C sed \
 		-e 's:^CFLAG=::' \
