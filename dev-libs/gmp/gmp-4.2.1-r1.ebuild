@@ -13,7 +13,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="doc nocxx"
 
 RDEPEND=""
@@ -35,10 +35,19 @@ src_unpack () {
 }
 
 src_compile() {
+	local myconf
+
 	# GMP believes hppa2.0 is 64bit
 	if [[ ${CHOST} == hppa2.0-* ]] ; then
 		is_hppa_2_0=1
 		export CHOST="${CHOST/2.0/1.1}"
+	fi
+
+	# From fink (http://fink.cvs.sourceforge.net): due to assembler
+	# differences on Darwin x86 with ELF based gnu assemblers we need
+	# to "turn off" assembly on the Intel build for now.
+	if [[ ${CHOST} == i?86-apple-darwin* ]] ; then
+		myconf="${myconf} --host=none-apple-darwin"
 	fi
 
 	# ABI mappings (needs all architectures supported)
@@ -57,6 +66,7 @@ src_compile() {
 		--disable-mpfr \
 		--disable-mpbsd \
 		$(use_enable !nocxx cxx) \
+		${myconf} \
 		|| die "configure failed"
 
 	# Fix the ABI for hppa2.0
