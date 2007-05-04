@@ -17,7 +17,7 @@ SRC_URI="mirror://debian/pool/main/p/pmake/${DEBIAN_SOURCE}
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
 RDEPEND="!sys-devel/bmake"
