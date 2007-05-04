@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/modules/by-module/Compress/${P}.tar.gz"
 
 LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
 DEPEND="sys-libs/zlib
