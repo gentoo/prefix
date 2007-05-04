@@ -1,0 +1,33 @@
+diff -ru readline-5.2.orig/support/shlib-install readline-5.2/support/shlib-install
+--- readline-5.2.orig/support/shlib-install	2007-04-04 17:16:06 +0200
++++ readline-5.2/support/shlib-install	2007-04-04 17:17:28 +0200
+@@ -144,7 +144,7 @@
+ 	fi
+ 	;;
+ 
+-solaris2*|aix4.[2-9]*|osf*|irix[56]*|sysv[45]*|dgux*)
++solaris2*|aix4.[2-9]*|aix5*|osf*|irix[56]*|sysv[45]*|dgux*)
+ 	# libname.so -> libname.so.M
+ 	${echo} ${RM} ${INSTALLDIR}/$LINK1
+ 	if [ -z "$uninstall" ]; then
+diff -ru readline-5.2.orig/support/shobj-conf readline-5.2/support/shobj-conf
+--- readline-5.2.orig/support/shobj-conf	2007-04-04 17:16:06 +0200
++++ readline-5.2/support/shobj-conf	2007-04-04 17:17:14 +0200
+@@ -247,7 +247,7 @@
+ 	SHLIB_LIBVERSION='$(SHLIB_LIBSUFF).$(SHLIB_MAJOR)'
+ 	;;
+ 
+-aix4.[2-9]*-*gcc*)		# lightly tested by jik@cisco.com
++aix4.[2-9]*-*gcc*|aix5*-*gcc*)		# lightly tested by jik@cisco.com
+ 	SHOBJ_CFLAGS=-fpic
+ 	SHOBJ_LD='ld'
+ 	SHOBJ_LDFLAGS='-bdynamic -bnoentry -bexpall'
+@@ -258,7 +258,7 @@
+ 	SHLIB_LIBVERSION='$(SHLIB_LIBSUFF).$(SHLIB_MAJOR)'
+ 	;;
+ 
+-aix4.[2-9]*)
++aix4.[2-9]*|aix5*)
+ 	SHOBJ_CFLAGS=-K
+ 	SHOBJ_LD='ld'
+ 	SHOBJ_LDFLAGS='-bdynamic -bnoentry -bexpall'
