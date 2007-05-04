@@ -2,6 +2,9 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 May 2007; Fabian Groffen <grobian@gentoo.org> linux/x86/package.mask:
+  Remove mask for openssl on x86, the cause has been found and a fix checked in
+
   30 Apr 2007; Fabian Groffen <grobian@gentoo.org> sunos/package.mask:
   Mask emacs-cvs-23.0.0-r6 on Solaris because it doesn't compile
 

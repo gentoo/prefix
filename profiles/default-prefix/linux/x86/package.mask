@@ -1,6 +1,1 @@
 
-# <grobian@gentoo.org> (18 Apr 2007)
-# This version doesn't work with -g in CFLAGS, see:
-# http://article.gmane.org/gmane.linux.gentoo.alt/2351
-=dev-libs/openssl-0.9.8e
-
