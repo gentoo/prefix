@@ -10,7 +10,7 @@ SRC_URI="http://libgd.org/releases/${P}.tar.bz2"
 
 LICENSE="|| ( as-is BSD )"
 SLOT="2"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="fontconfig jpeg png truetype xpm"
 
 DEPEND="fontconfig? ( media-libs/fontconfig )
