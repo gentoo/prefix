@@ -418,6 +418,7 @@ keep_aix_runtime_objects() {
 				eend 1
 			   	continue
 			fi
+			chmod +w ${so} &&
 			$(tc-getSTRIP) -e ${so} &&
 			$(tc-getAR) -q "${ED}${target}" ${so} &&
 			eend 0 ||

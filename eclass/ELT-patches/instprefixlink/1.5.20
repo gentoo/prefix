@@ -1,0 +1,16 @@
+--- ltmain.sh	2005-12-17 21:45:58.000000000 +0100
++++ ltmain.sh	2005-12-17 21:47:23.000000000 +0100
+@@ -2698,7 +2698,12 @@
+ 	    add=
+ 	    # Finalize command for both is simple: just hardcode it.
+ 	    if test "$hardcode_direct" = yes; then
+-	      add="$libdir/$linklib"
++	      if test -n "$inst_prefix_dir" &&
++		 test -f "$inst_prefix_dir$libdir/$linklib" ; then
++	        add="$inst_prefix_dir$libdir/$linklib"
++	      else
++	        add="$libdir/$linklib"
++	      fi
+ 	    elif test "$hardcode_minus_L" = yes; then
+ 	      add_dir="-L$libdir"
+ 	      add="-l$name"

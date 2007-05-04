@@ -176,7 +176,7 @@ elibtoolize() {
 		elt_patches="${elt_patches} fbsd-conf fbsd-ltconf"
 
 	[[ ${CHOST} == *"-aix"* ]] && \
-		elt_patches="${elt_patches} aixrtl"
+		elt_patches="${elt_patches} aixrtl instprefixlink"
 
 	[[ ${CHOST} == *"-darwin"* ]] && \
 		elt_patches="${elt_patches} darwin-ltconf darwin-ltmain"
