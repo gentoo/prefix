@@ -100,7 +100,7 @@ bootstrap_setup() {
 			profile="${PORTDIR}/profiles/default-prefix/linux/x86"
 			keywords="~x86 x86"
 			;;
-		x64_86-pc-linux-gnu)
+		x86_64-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/default-prefix/linux/amd64"
 			keywords="~amd64 amd64"
 			;;
@@ -133,7 +133,6 @@ bootstrap_setup() {
 	then
 		ln -s "${profile}" "${ROOT}"/etc/make.profile
 		einfo "Your profile is set to ${profile}."
-		einfo "If your system supports multilib, then this is a no-multilib profile."
 	fi
 	
 	[ -e "${ROOT}"/etc/make.conf ] && return
