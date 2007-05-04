@@ -364,12 +364,12 @@ toolchain-binutils_pkg_postrm() {
 	#       rerun binutils-config if this is a remerge, as
 	#       we want the mtimes on the symlinks updated (if
 	#       it is the same as the current selected profile)
-	if [[ ! -e ${BINPATH}/ld ]] && [[ ${current_profile} == ${CTARGET}-${BVER} ]] ; then
+	if [[ ! -e ${EPREFIX}${BINPATH}/ld ]] && [[ ${current_profile} == ${CTARGET}-${BVER} ]] ; then
 		local choice=$(binutils-config -l | grep ${CTARGET} | awk '{print $2}')
 		choice=${choice//$'\n'/ }
 		choice=${choice/* }
 		if [[ -z ${choice} ]] ; then
-			env -i binutils-config -u ${CTARGET}
+			env -i "${EPREFIX}"/usr/bin/binutils-config -u ${CTARGET}
 		else
 			binutils-config ${choice}
 		fi
