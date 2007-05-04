@@ -43,6 +43,9 @@ src_unpack() {
 }
 
 src_compile() {
+
+	elibtoolize
+
 	local myconf=""
 	# Build with --without-included-gettext (on glibc systems)
 	if use elibc_glibc ; then
