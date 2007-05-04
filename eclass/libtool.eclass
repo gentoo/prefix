@@ -268,6 +268,7 @@ elibtoolize() {
 					ret=1
 					local subret=0
 					while [[ $subret -eq 0 ]]; do
+						subret=1
 						if [[ -e ${x}/configure ]]; then
 							ELT_walk_patches "${x}/configure" "${y}"
 							subret=$?
