@@ -25,7 +25,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/tar-1.16-darwin.patch
-	if [[ ${USERLAND} != "GNU" ]] && [[ ${EPREFIX%/} == "" ]] ; then
+	if [[ ${USERLAND} != "GNU" ]] && use !prefix ; then
 		sed -i \
 			-e 's:/backup\.sh:/gbackup.sh:' \
 			scripts/{backup,dump-remind,restore}.in \
@@ -59,6 +59,12 @@ src_install() {
 		# a nasty yet required piece of baggage
 		exeinto /etc
 		doexe "${FILESDIR}"/rmt || die
+	fi
+
+	# autoconf looks for this, so in prefix, make sure it is there
+	if use prefix ; then
+		dodir /usr/bin
+		dosym /bin/tar /usr/bin/gtar
 	fi
 
 	dodoc AUTHORS ChangeLog* NEWS README* PORTS THANKS
