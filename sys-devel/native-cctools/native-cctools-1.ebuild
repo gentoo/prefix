@@ -54,18 +54,15 @@ src_install() {
 
 	# Generate an env.d entry for this binutils
 	insinto /etc/env.d/binutils
-	cat <<-EOF > env.d
+	cat <<-EOF > "${T}"/env.d
 		TARGET="${CHOST}"
 		VER="native-${PV}"
 		LIBPATH="${EPREFIX}/${LIBPATH}"
 		FAKE_TARGETS="${CHOST}"
 	EOF
-	# indicate we're dealing with a native (non-prefix) linker here, by
-	# replacing the machine (2nd) tuple in the CHOST by "native"
-	FCHOST=${CHOST/-*-/-native-}
-	newins env.d ${FCHOST}-${PV}
+	newins "${T}"/env.d ${CHOST}-native-${PV}
 }
 
 pkg_postinst() {
-	binutils-config ${FCHOST}-${PV}
+	binutils-config ${CHOST}-native-${PV}
 }
