@@ -16,7 +16,7 @@ SRC_URI="http://www.mpfr.org/mpfr-current/${MY_P}.tar.bz2"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND=">=dev-libs/gmp-4.1.4-r2"
