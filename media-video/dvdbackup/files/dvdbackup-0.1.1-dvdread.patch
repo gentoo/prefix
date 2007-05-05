@@ -1,0 +1,12 @@
+Index: dvdbackup/src/dvdbackup.c
+===================================================================
+--- dvdbackup.orig/src/dvdbackup.c
++++ dvdbackup/src/dvdbackup.c
+@@ -30,6 +30,7 @@
+ #include <unistd.h>
+ #include <string.h>
+ #include <limits.h>
++#include <stdint.h>
+ #include <dvdread/dvd_reader.h>
+ #include <dvdread/ifo_read.h>
+ #include <dvdread/ifo_print.h>

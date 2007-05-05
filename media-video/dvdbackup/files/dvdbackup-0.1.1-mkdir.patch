@@ -1,0 +1,29 @@
+--- src/dvdbackup.c.orig	2005-07-01 00:12:36.000000000 -0700
++++ src/dvdbackup.c	2005-07-01 00:12:52.000000000 -0700
+@@ -2506,7 +2506,7 @@
+ 			fprintf(stderr,"The target directory is not valid, it may be a ordinary file\n");
+ 		}
+ 	} else {
+-		if (mkdir(targetname, S_IRUSR | S_IWUSR | S_IXUSR) != 0) {
++		if (mkdir(targetname, 0777) != 0) {
+ 			fprintf(stderr,"Faild creating target directory\n");
+ 			perror("");
+ 			DVDClose(_dvd);
+@@ -2522,7 +2522,7 @@
+ 			fprintf(stderr,"The title directory is not valid, it may be a ordinary file\n");
+ 		}
+ 	} else {
+-		if (mkdir(targetname, S_IRUSR | S_IWUSR | S_IXUSR) != 0) {
++		if (mkdir(targetname, 0777) != 0) {
+ 			fprintf(stderr,"Faild creating title directory\n");
+ 			perror("");
+ 			DVDClose(_dvd);
+@@ -2537,7 +2537,7 @@
+ 			fprintf(stderr,"The VIDEO_TS directory is not valid, it may be a ordinary file\n");
+ 		}
+ 	} else {
+-		if (mkdir(targetname, S_IRUSR | S_IWUSR | S_IXUSR) != 0) {
++		if (mkdir(targetname, 0777) != 0) {
+ 			fprintf(stderr,"Faild creating VIDEO_TS directory\n");
+ 			perror("");
+ 			DVDClose(_dvd);
