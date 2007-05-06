@@ -1,6 +1,11 @@
 # ChangeLog for sys-libs/readline
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.90 2007/04/24 14:45:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.91 2007/05/02 05:40:16 vapier Exp $
+
+*readline-5.2_p4 (02 May 2007)
+
+  02 May 2007; Mike Frysinger <vapier@gentoo.org> +readline-5.2_p4.ebuild:
+  Version bump.
 
   24 Apr 2007; Raúl Porcel <armin76@gentoo.org> readline-5.2_p2.ebuild:
   ia64 + x86 stable

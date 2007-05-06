@@ -1,14 +1,14 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-5.2.ebuild,v 1.6 2007/02/28 22:25:01 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-5.2_p4.ebuild,v 1.1 2007/05/02 05:40:16 vapier Exp $
 
 EAPI="prefix"
 
-inherit eutils multilib toolchain-funcs
+inherit eutils multilib toolchain-funcs flag-o-matic
 
 # Official patches
 # See ftp://ftp.cwru.edu/pub/bash/readline-5.1-patches/
-PLEVEL=0 #${PV##*_p}
+PLEVEL=${PV##*_p}
 MY_PV=${PV/_p*}
 MY_P=${PN}-${MY_PV}
 
@@ -24,7 +24,7 @@ SRC_URI="mirror://gnu/readline/${MY_P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 # We must be certain that we have a bash that is linked
@@ -49,6 +49,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.1-rlfe-uclibc.patch
 	epatch "${FILESDIR}"/${PN}-5.1-fbsd-pic.patch
 	epatch "${FILESDIR}"/${PN}-5.1-rlfe-extern.patch
+	epatch "${FILESDIR}"/${PN}-5.2-rlfe-aix-eff_uid.patch
+	epatch "${FILESDIR}"/${PN}-5.2-aix5.patch
 
 	ln -s ../.. examples/rlfe/readline
 
@@ -57,6 +59,8 @@ src_unpack() {
 }
 
 src_compile() {
+	append-flags -D_GNU_SOURCE
+
 	# the --libdir= is needed because if lib64 is a directory, it will default
 	# to using that... even if CONF_LIBDIR isnt set or we're using a version
 	# of portage without CONF_LIBDIR support.
@@ -71,17 +75,15 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die
 	dodir /$(get_libdir)
 
-	if ! use userland_Darwin ; then
-		mv "${ED}"/usr/$(get_libdir)/*.so* "${ED}"/$(get_libdir)
-		chmod a+rx "${ED}"/$(get_libdir)/*.so*
+	mv "${ED}"/usr/$(get_libdir)/*$(get_libname)* "${ED}"/$(get_libdir)
+	chmod a+rx "${ED}"/$(get_libdir)/*$(get_libname)*
 
-		# Bug #4411
-		gen_usr_ldscript libreadline.so
-		gen_usr_ldscript libhistory.so
-	fi
+	# Bug #4411
+	gen_usr_ldscript libreadline$(get_libname)
+	gen_usr_ldscript libhistory$(get_libname)
 
 	if ! tc-is-cross-compiler; then
 		dobin examples/rlfe/rlfe || die
@@ -94,9 +96,9 @@ src_install() {
 }
 
 pkg_preinst() {
-	preserve_old_lib /$(get_libdir)/lib{history,readline}.so.4 #29865
+	preserve_old_lib /$(get_libdir)/lib{history,readline}$(get_libname 4) #29865
 }
 
 pkg_postinst() {
-	preserve_old_lib_notify /$(get_libdir)/lib{history,readline}.so.4
+	preserve_old_lib_notify /$(get_libdir)/lib{history,readline}$(get_libname 4)
 }
