@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r12.ebuild,v 1.11 2007/04/29 19:01:15 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r12.ebuild,v 1.13 2007/04/30 21:54:09 chainsaw Exp $
 
 EAPI="prefix"
 
@@ -36,7 +36,6 @@ RDEPEND="sys-libs/ncurses
 				!lesstif? ( >=x11-libs/openmotif-2.1.30 ) )
 			)
 	)
-	nls? ( sys-devel/gettext )
 	!nosendmail? ( virtual/mta )
 	>=app-admin/eselect-emacs-0.7-r1"
 
