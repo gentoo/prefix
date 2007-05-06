@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-2.42.ebuild,v 1.3 2006/12/02 22:40:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-2.46.ebuild,v 1.1 2007/04/30 18:50:33 vapier Exp $
 
 EAPI="prefix"
 
@@ -15,8 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="nls"
 
-RDEPEND="virtual/man
-	!dev-libs/libiconv"
+RDEPEND="virtual/man"
 PDEPEND="nls? (
 	linguas_cs? ( app-i18n/man-pages-cs )
 	linguas_da? ( app-i18n/man-pages-da )
@@ -41,8 +40,11 @@ src_unpack() {
 src_compile() { :; }
 
 src_install() {
-	make install prefix="${D}${EPREFIX}" || die
+	emake install prefix="${D}${EPREFIX}" || die
 	dodoc man-pages-*.Announce README Changes* HOWTOHELP
+
+	# upstream is sending these the way of the dodo
+	rm -rf "${ED}"/usr/share/man/man1
 }
 
 pkg_postinst() {
