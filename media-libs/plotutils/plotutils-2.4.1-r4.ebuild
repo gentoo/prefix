@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/plotutils/plotutils-2.4.1-r4.ebuild,v 1.10 2007/04/07 21:09:05 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/plotutils/plotutils-2.4.1-r4.ebuild,v 1.11 2007/04/30 23:33:16 genone Exp $
 
 EAPI="prefix"
 
@@ -67,17 +67,17 @@ src_install() {
 }
 
 pkg_postinst() {
-	if [ 'use X' ] ; then
-		einfo "There are extra fonts available in plotutils package."
-		einfo "The current ebuild does not install them for you."
-		einfo "You may want to do so, but you will have to do it"
-		einfo "manually. You are on your own for now."
-		einfo "See /usr/share/doc/${P}/INSTALL.fonts"
-		einfo ""
-		einfo "If you manually install the extra fonts and use the"
-		einfo "program xfig, you might want to recompile to take"
-		einfo "advantage of the additional ps fonts."
-		einfo "Also, it is possible to enable ghostscript and possibly"
-		einfo "your printer to use the HP fonts."
+	if use X; then
+		elog "There are extra fonts available in plotutils package."
+		elog "The current ebuild does not install them for you."
+		elog "You may want to do so, but you will have to do it"
+		elog "manually. You are on your own for now."
+		elog "See /usr/share/doc/${P}/INSTALL.fonts"
+		elog ""
+		elog "If you manually install the extra fonts and use the"
+		elog "program xfig, you might want to recompile to take"
+		elog "advantage of the additional ps fonts."
+		elog "Also, it is possible to enable ghostscript and possibly"
+		elog "your printer to use the HP fonts."
 	fi
 }
