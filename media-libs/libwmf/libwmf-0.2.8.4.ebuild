@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/libwmf-0.2.8.4.ebuild,v 1.13 2007/02/17 22:27:56 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/libwmf-0.2.8.4.ebuild,v 1.15 2007/05/04 16:49:49 uberlord Exp $
 
 EAPI="prefix"
 
@@ -53,15 +53,19 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-intoverflow.patch
 	epatch "${FILESDIR}"/${P}-build.patch
 
+	# Remove install-sh so eautoreconf/elibtoolize gives us an updated one
+	# This allows us to install on FreeBSD :)
+	rm install-sh
+
 	eautoreconf
 }
 
 src_compile() {
 	if use expat && use xml ; then
-		einfo "You can specify only one USE flag from expat and xml, to use expat"
-		einfo "or libxml2, respectively."
-		einfo
-		einfo "You have both flags enabled, we will default to expat (like autocheck does)."
+		elog "You can specify only one USE flag from expat and xml, to use expat"
+		elog "or libxml2, respectively."
+		elog
+		elog "You have both flags enabled, we will default to expat (like autocheck does)."
 		myconf="${myconf} --with-expat --without-libxml2"
 	else
 		myconf="${myconf} $(use_with expat) $(use_with xml libxml2)"
