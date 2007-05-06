@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/libmcrypt
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcrypt/ChangeLog,v 1.32 2007/03/18 19:37:52 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcrypt/ChangeLog,v 1.34 2007/05/01 06:42:06 robbat2 Exp $
+
+  01 May 2007; Robin H. Johnson <robbat2@gentoo.org> metadata.xml:
+  This is a crypto package, mark metadata as such.
+
+*libmcrypt-2.5.8 (01 May 2007)
+
+  01 May 2007; Robin H. Johnson <robbat2@gentoo.org>
+  +libmcrypt-2.5.8.ebuild:
+  Version bump.
 
   18 Mar 2007; Fabian Groffen <grobian@gentoo.org> libmcrypt-2.5.7.ebuild:
   Dropped ppc-macos, see you in prefix
