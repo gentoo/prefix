@@ -1,6 +1,57 @@
 # ChangeLog for dev-db/libpq
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/ChangeLog,v 1.105 2007/03/04 11:14:22 blubb Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/ChangeLog,v 1.116 2007/05/04 18:49:24 jer Exp $
+
+  04 May 2007; Jeroen Roovers <jer@gentoo.org> libpq-8.0.13.ebuild:
+  Stable for HPPA (bug #175791).
+
+  04 May 2007; Jeroen Roovers <jer@gentoo.org> libpq-7.4.17.ebuild:
+  Stable for HPPA (bug #175791).
+
+  04 May 2007; Jeroen Roovers <jer@gentoo.org> libpq-7.3.19.ebuild:
+  Stable for HPPA (bug #175791).
+
+  04 May 2007; Konstantin V. Arkhipov <voxus@gentoo.org>
+  libpq-7.3.19.ebuild, libpq-7.4.17.ebuild, libpq-8.0.13.ebuild:
+  Stable on amd64 wrt security bug #175791.
+
+  04 May 2007; Gustavo Zacarias <gustavoz@gentoo.org> libpq-7.3.19.ebuild,
+  libpq-7.4.17.ebuild, libpq-8.0.13.ebuild:
+  Stable on sparc wrt security #175791
+
+  04 May 2007; Raúl Porcel <armin76@gentoo.org> libpq-7.3.19.ebuild,
+  libpq-7.4.17.ebuild, libpq-8.0.13.ebuild:
+  ia64 + x86 stable wrt security bug 175791
+
+*libpq-8.1.9 (03 May 2007)
+
+  03 May 2007; Andrew Ross <aross@gentoo.org>
+  +files/libpq-8.1.9-gentoo.patch, +libpq-8.1.9.ebuild:
+  Version bump from 8.1.8 to 8.1.9 (bug #175791).
+
+*libpq-7.4.17 (03 May 2007)
+
+  03 May 2007; Andrew Ross <aross@gentoo.org>
+  +files/libpq-7.4.17-gentoo.patch, +libpq-7.4.17.ebuild:
+  Version bump from 7.4.16 to 7.4.17 (bug #175791).
+
+*libpq-7.3.19 (03 May 2007)
+
+  03 May 2007; Andrew Ross <aross@gentoo.org>
+  +files/libpq-7.3.19-gentoo.patch, +libpq-7.3.19.ebuild:
+  Version bump (bug #175791).
+
+*libpq-8.2.4 (01 May 2007)
+
+  01 May 2007; Konstantin V. Arkhipov <voxus@gentoo.org>
+  +files/libpq-8.2.4-gentoo.patch, +libpq-8.2.4.ebuild:
+  Version bump, closing bug #157337.
+
+*libpq-8.0.13 (30 Apr 2007)
+
+  30 Apr 2007; Andrew Ross <aross@gentoo.org>
+  +files/libpq-8.0.13-gentoo.patch, +libpq-8.0.13.ebuild:
+  Version bump (bug #175791).
 
   04 Mar 2007; Simon Stelling <blubb@gentoo.org> libpq-7.4.16.ebuild,
   libpq-8.0.12.ebuild:
