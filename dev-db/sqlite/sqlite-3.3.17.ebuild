@@ -1,19 +1,19 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.3.12.ebuild,v 1.8 2007/05/04 20:07:01 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.3.17.ebuild,v 1.1 2007/05/03 19:57:57 betelgeuse Exp $
 
 EAPI="prefix"
 
-inherit eutils alternatives libtool
+inherit flag-o-matic eutils alternatives libtool
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 
 DESCRIPTION="SQLite: an SQL Database Engine in a C Library."
 HOMEPAGE="http://www.sqlite.org/"
 SRC_URI="http://www.sqlite.org/${P}.tar.gz"
 LICENSE="as-is"
 SLOT="3"
-IUSE="debug doc nothreadsafe tcl"
+IUSE="debug doc nothreadsafe soundex tcl"
 
 DEPEND="doc? ( dev-lang/tcl )
 		tcl? ( dev-lang/tcl )"
@@ -42,9 +42,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/sqlite-3.3.3-tcl-fix.patch
-	#epatch "${FILESDIR}"/sqlite-3-test-fix-3.3.4.patch
 
-	#epatch "${FILESDIR}"/sandbox-fix1.patch
 	epatch "${FILESDIR}"/sandbox-fix2.patch
 
 	# Fix broken tests that are not portable to 64bit arches
@@ -59,11 +57,13 @@ src_unpack() {
 }
 
 src_compile() {
-	local myconf="--enable-incore-db --enable-tempdb-in-ram --enable-cross-thread-connections"
+	# not available via configure and requested in bug #143794
+	use soundex && append-flags -DSQLITE_SOUNDEX=1
 
 	econf ${myconf} \
 		$(use_enable debug) \
 		$(use_enable !nothreadsafe threadsafe) \
+		$(use_enable !nothreadsafe cross-thread-connections) \
 		$(use_enable tcl) \
 		|| die "econf failed"
 
@@ -94,10 +94,10 @@ src_install () {
 		install \
 		|| die "make install failed"
 
-	newbin lemon lemon-${SLOT}
+	newbin lemon lemon-${SLOT} || die
 
-	dodoc README VERSION
-	doman sqlite3.1
+	dodoc README VERSION || die
+	doman sqlite3.1 || die
 
 	use doc && dohtml doc/* art/*.gif
 }

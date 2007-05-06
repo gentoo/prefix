@@ -1,6 +1,26 @@
 # ChangeLog for dev-db/sqlite
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.136 2007/03/10 18:18:52 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.141 2007/05/04 20:07:01 jer Exp $
+
+  04 May 2007; Jeroen Roovers <jer@gentoo.org> sqlite-3.3.12.ebuild:
+  Stable for HPPA (bug #176942).
+
+  04 May 2007; Gustavo Zacarias <gustavoz@gentoo.org> sqlite-3.3.12.ebuild:
+  Stable on sparc wrt #176942
+
+  04 May 2007; Raúl Porcel <armin76@gentoo.org> sqlite-3.3.12.ebuild:
+  ia64 + x86 stable wrt #176942
+
+*sqlite-3.3.17 (03 May 2007)
+
+  03 May 2007; Petteri Räty <betelgeuse@gentoo.org> metadata.xml,
+  +sqlite-3.3.17.ebuild:
+  Version bump. Makes the soundex function available with the soundex local
+  use flag. Fixes bug #168304 and bug #143794. Add myself to metadata.xml
+  until someone else takes over.
+
+  03 May 2007; Steve Dibb <beandog@gentoo.org> sqlite-3.3.12.ebuild:
+  amd64 stable, bug 176942
 
   10 Mar 2007; Luca Longinotti <chtekk@gentoo.org>
   -files/sqlite-3.2.1-data-corruption.patch,
@@ -114,6 +134,9 @@
   combinations. A warning will suffice. 2. Replaced spaces with tabs for
   indenting
 
+*sqlite-3.3.5-r1 (04 May 2006)
+*sqlite-2.8.16-r4 (04 May 2006)
+
   04 May 2006; Anders Rune Jensen <arj@gentoo.org>
   +sqlite-3.3.5-r1.ebuild, +sqlite-2.8.16-r4.ebuild:
   Last change required a bump. So here it is.
@@ -138,6 +161,9 @@
   13 Feb 2006; Anders Rune Jensen <arj@gentoo.org> +sqlite-3.3.4.ebuild:
   New version. Bugfix release.
 
+*sqlite-3.3.3-r1 (05 Feb 2006)
+*sqlite-2.8.16-r3 (05 Feb 2006)
+
   05 Feb 2006; Anders Rune Jensen <arj@gentoo.org>
   +sqlite-3.3.3-r1.ebuild, +sqlite-2.8.16-r3.ebuild:
   Make test work. Fixes #121489, #118429, #111774, #105524, #69640,
@@ -159,6 +185,9 @@
 
   07 Nov 2005; Anders Rune Jensen <arj@gentoo.org> sqlite-3.2.7.ebuild:
   Removed stable mark on amd64. Has problems with multilib-strict
+
+*sqlite-3.2.7-r1 (06 Nov 2005)
+*sqlite-2.8.16-r2 (06 Nov 2005)
 
   06 Nov 2005; Anders Rune Jensen <arj@gentoo.org>
   +sqlite-3.2.7-r1.ebuild, +sqlite-2.8.16-r2.ebuild:
@@ -219,6 +248,8 @@
   24 Apr 2005; Anders Rune Jensen <arj@gentoo.org>
   sqlite-3.2.1-r3.ebuild:
   Stable on x86 and amd64.
+
+*sqlite-3.2.1-r3 (24 Apr 2005)
 
   24 Apr 2005; Anders Rune Jensen <arj@gentoo.org>
   +sqlite-3.2.1-r3.ebuild, +files/sqlite-3.2.1-tcl-fix:

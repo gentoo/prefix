@@ -2,4 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<herd>no-herd</herd>
+	<maintainer>
+		<email>betelgeuse@gentoo.org</email>
+		<description>Take if you want it</description>
+	</maintainer>
 </pkgmetadata>
