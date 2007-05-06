@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/libperl
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.125 2007/02/17 22:31:17 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.126 2007/04/30 21:25:54 solar Exp $
+
+  30 Apr 2007; <solar@gentoo.org> ChangeLog:
+  - filter ssp on ia64 due to ICE in compiler. revisit when we have a working
+  hardened gcc-4.x
 
   17 Feb 2007; Fabian Groffen <grobian@gentoo.org> libperl-5.8.8-r1.ebuild:
   Dropped ppc-macos keyword, see you in prefix
