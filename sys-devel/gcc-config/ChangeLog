@@ -1,6 +1,36 @@
 # ChangeLog for sys-devel/gcc-config
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.152 2007/04/22 07:55:32 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.161 2007/05/05 17:21:01 nixnut Exp $
+
+  05 May 2007; nixnut <nixnut@gentoo.org> gcc-config-1.3.16.ebuild:
+  Stable on ppc wrt bug 176869
+
+  04 May 2007; Daniel Gryniewicz <dang@gentoo.org> gcc-config-1.3.16.ebuild:
+  Marked stable on amd64 for bug #176869
+
+  03 May 2007; Raúl Porcel <armin76@gentoo.org> gcc-config-1.3.16.ebuild:
+  x86 stable wrt bug 176882
+
+  03 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  gcc-config-1.3.16.ebuild:
+  Stable on sparc wrt #176869
+
+  03 May 2007; Markus Rothe <corsair@gentoo.org> gcc-config-1.3.16.ebuild:
+  Stable on ppc64; bug #176869
+
+  03 May 2007; Jeroen Roovers <jer@gentoo.org> Manifest:
+  Fix manifest.
+
+  03 May 2007; Mike Frysinger <vapier@gentoo.org> +files/gcc-config-1.4.0,
+  +files/wrapper-1.5.0.c, +gcc-config-1.4.0.ebuild:
+  Move to GCC_PATH #174422 and make sure LDPATH is not re-ordered on us all
+  the time #168884.
+
+  03 May 2007; Jeroen Roovers <jer@gentoo.org> gcc-config-1.3.16.ebuild:
+  Stable for HPPA (bug #176869).
+
+  02 May 2007; Mike Frysinger <vapier@gentoo.org> files/gcc-config-1.3.16:
+  Add a wrapper for gcov #175523.
 
   22 Apr 2007; Bryan Østergaard <kloeri@gentoo.org>
   gcc-config-1.3.15-r1.ebuild:

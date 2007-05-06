@@ -1,7 +1,7 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/bash
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.3.16,v 1.1 2007/04/11 08:51:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.3.16,v 1.2 2007/05/02 19:01:38 vapier Exp $
 
 trap ":" INT QUIT TSTP
 
@@ -295,7 +295,7 @@ switch_profile() {
 	done
 
 	# Update the wrappers for this profile
-	for x in {,${CTARGET}-}{cpp,cc,gcc,c++,g++,f77,g77,gcj,gcjh,gfortran,gdc,gdmd} ; do
+	for x in {,${CTARGET}-}{cpp,cc,gcc,c++,g++,f77,g77,gcj,gcjh,gcov,gdc,gdmd,gfortran} ; do
 		# Obviously don't want to touch native stuff for cross-compilers
 		[[ ${x} != ${CTARGET}-* ]] && is_cross_compiler && continue
 
