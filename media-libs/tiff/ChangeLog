@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/tiff
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.93 2006/08/04 03:30:38 nerdboy Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.94 2007/04/30 23:36:45 genone Exp $
+
+  30 Apr 2007; Marius Mauch <genone@gentoo.org> tiff-3.8.2-r2.ebuild:
+  Replacing einfo with elog
 
   04 Aug 2006; Steve Arnold <nerdboy@gentoo.org> tiff-3.8.2-r2.ebuild:
   bumping mips stable, since there is only one clean tiff version at present

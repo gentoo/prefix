@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/tiff-3.8.2-r2.ebuild,v 1.4 2007/02/28 22:16:07 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/tiff-3.8.2-r2.ebuild,v 1.5 2007/04/30 23:36:45 genone Exp $
 
 EAPI="prefix"
 
@@ -50,9 +50,9 @@ src_install() {
 
 pkg_postinst() {
 	echo
-	einfo "JBIG support is intended for Hylafax fax compression, so we"
-	einfo "really need more feedback in other areas (most testing has"
-	einfo "been done with fax).  Be sure to recompile anything linked"
-	einfo "against tiff if you rebuild it with jbig support."
+	elog "JBIG support is intended for Hylafax fax compression, so we"
+	elog "really need more feedback in other areas (most testing has"
+	elog "been done with fax).  Be sure to recompile anything linked"
+	elog "against tiff if you rebuild it with jbig support."
 	echo
 }
