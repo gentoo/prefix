@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.102.20.ebuild,v 1.4 2007/04/22 12:03:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.102.20.ebuild,v 1.5 2007/05/01 00:04:49 genone Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils multilib
+inherit flag-o-matic eutils multilib check-kernel
 
 NETJACK=netjack-0.12rc1
 
@@ -34,15 +34,15 @@ pkg_setup() {
 	fi
 
 	if use caps; then
-		if [[ "${KV:0:3}" == "2.4" ]]; then
-			einfo "will build jackstart for 2.4 kernel"
+		if is_2_4_kernel; then
+			elog "will build jackstart for 2.4 kernel"
 		else
-			einfo "using compatibility symlink for jackstart"
+			elog "using compatibility symlink for jackstart"
 		fi
 	fi
 
 	if use netjack; then
-		einfo "including support for experimental netjack, see http://netjack.sourceforge.net/"
+		elog "including support for experimental netjack, see http://netjack.sourceforge.net/"
 	fi
 }
 
@@ -84,7 +84,7 @@ src_compile() {
 		elif (! grep mmx /proc/cpuinfo >/dev/null) ; then
 			ewarn "Can't build cpudetection (dynsimd) without cpu mmx support. see bug #136565."
 		else
-			einfo "Enabling cpudetection (dynsimd). Adding -mmmx, -msse, -m3dnow and -O2 to CFLAGS."
+			elog "Enabling cpudetection (dynsimd). Adding -mmmx, -msse, -m3dnow and -O2 to CFLAGS."
 			myconf="${myconf} --enable-dynsimd"
 
 			filter-flags -O*
@@ -111,8 +111,8 @@ src_compile() {
 		${myconf} || die "configure failed"
 	emake || die "compilation failed"
 
-	if use caps && [[ "${KV:0:3}" == "2.4" ]]; then
-		einfo "Building jackstart for 2.4 kernel"
+	if use caps && is_2_4_kernel; then
+		elog "Building jackstart for 2.4 kernel"
 		cd ${S}/jackd
 		emake jackstart || die "jackstart build failed."
 	fi
@@ -128,7 +128,7 @@ src_install() {
 	make DESTDIR=${D} datadir=${EPREFIX}/usr/share/doc install || die
 
 	if use caps; then
-		if [[ "${KV:0:3}" == "2.4" ]]; then
+		if is_2_4_kernel; then
 			cd ${S}/jackd
 			dobin jackstart
 		else

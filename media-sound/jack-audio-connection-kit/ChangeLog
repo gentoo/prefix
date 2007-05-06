@@ -1,6 +1,11 @@
 # ChangeLog for media-sound/jack-audio-connection-kit
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/ChangeLog,v 1.84 2007/04/22 12:03:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/ChangeLog,v 1.85 2007/05/01 00:04:49 genone Exp $
+
+  01 May 2007; Marius Mauch <genone@gentoo.org>
+  jack-audio-connection-kit-0.101.1-r1.ebuild,
+  jack-audio-connection-kit-0.102.20.ebuild:
+  Replacing einfo with elog
 
   22 Apr 2007; Raúl Porcel <armin76@gentoo.org>
   jack-audio-connection-kit-0.102.20.ebuild:
