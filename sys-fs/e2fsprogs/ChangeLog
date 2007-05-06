@@ -1,6 +1,22 @@
 # ChangeLog for sys-fs/e2fsprogs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.96 2007/03/24 08:52:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.101 2007/05/03 06:34:45 jer Exp $
+
+  03 May 2007; Jeroen Roovers <jer@gentoo.org> e2fsprogs-1.39-r2.ebuild:
+  Stable for HPPA (bug #176841).
+
+  02 May 2007; Andrej Kacian <ticho@gentoo.org> e2fsprogs-1.39-r2.ebuild:
+  Stable on x86, bug #176841.
+
+  02 May 2007; Markus Rothe <corsair@gentoo.org> e2fsprogs-1.39-r2.ebuild:
+  Stable on ppc64; bug #176841
+
+  02 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  e2fsprogs-1.39-r2.ebuild:
+  Stable on sparc wrt #176841
+
+  02 May 2007; Steve Dibb <beandog@gentoo.org> e2fsprogs-1.39-r2.ebuild:
+  amd64 stable, bug 176841
 
 *e2fsprogs-1.39-r2 (24 Mar 2007)
 
