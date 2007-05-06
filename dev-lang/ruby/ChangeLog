@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.263 2007/04/24 11:22:57 rbrown Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.264 2007/05/01 21:17:42 rbrown Exp $
+
+*ruby-1.8.6-r1 (01 May 2007)
+
+  01 May 2007; Richard Brown <rbrown@gentoo.org>
+  +files/ruby-1.8.6-exit-status.patch, +ruby-1.8.6-r1.ebuild:
+  Add new src_test, and add return code patch from [ruby-core:10609] and
+  [ruby-core:10760]
 
   24 Apr 2007; Richard Brown <rbrown@gentoo.org> ruby-1.8.4-r3.ebuild,
   ruby-1.8.5_p2.ebuild, ruby-1.8.5_p12.ebuild, ruby-1.8.5_p35.ebuild,
