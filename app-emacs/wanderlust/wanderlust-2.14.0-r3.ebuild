@@ -1,14 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/wanderlust-2.14.0-r3.ebuild,v 1.2 2007/04/19 14:05:32 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/wanderlust-2.14.0-r3.ebuild,v 1.3 2007/05/03 20:19:04 ulm Exp $
 
 EAPI="prefix"
 
 inherit elisp eutils
 
 MY_P="wl-${PV/_/}"
-
-IUSE="bbdb ssl"
 
 DESCRIPTION="Yet Another Message Interface on Emacsen"
 HOMEPAGE="http://www.gohome.org/wl/"
@@ -19,10 +17,11 @@ SRC_URI="ftp://ftp.gohome.org/wl/stable/${MY_P}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86"
+IUSE="bbdb ssl"
 
 DEPEND=">=app-emacs/apel-10.6
 	virtual/flim
-	virtual/semi
+	app-emacs/semi
 	bbdb? ( app-emacs/bbdb )
 	!app-emacs/wanderlust-cvs"
 

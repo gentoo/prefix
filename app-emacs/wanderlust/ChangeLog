@@ -1,6 +1,11 @@
 # ChangeLog for app-emacs/wanderlust
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/ChangeLog,v 1.54 2007/04/20 04:44:57 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/ChangeLog,v 1.55 2007/05/03 20:19:04 ulm Exp $
+
+  03 May 2007; Ulrich Mueller <ulm@gentoo.org> wanderlust-2.10.1-r2.ebuild,
+  wanderlust-2.12.2.ebuild, wanderlust-2.14.0-r1.ebuild,
+  wanderlust-2.14.0-r3.ebuild:
+  Dependency on virtual/semi changed to app-emacs/semi.
 
   20 Apr 2007; Ulrich Mueller <ulm@gentoo.org> -wanderlust-2.14.0-r2.ebuild:
   Removed old revision.
