@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.116 2007/04/29 17:50:43 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.117 2007/04/30 22:48:29 chainsaw Exp $
+
+  30 Apr 2007; Tony Vroon <chainsaw@gentoo.org> emacs-cvs-23.0.0-r6.ebuild:
+  Add ~ppc keywor. Tested on a PowerBook 5,9 with GCC 4.1.2
 
   29 Apr 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.0.99.ebuild,
   emacs-cvs-22.1.50.ebuild:
