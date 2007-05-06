@@ -1,0 +1,34 @@
+--- postgresql-8.2.3.orig/src/include/storage/s_lock.h	2006-06-08 00:24:45.000000000 +0200
++++ postgresql-8.2.3/src/include/storage/s_lock.h	2007-03-29 12:25:56.000000000 +0200
+@@ -299,6 +299,31 @@
+ #endif	 /* __s390__ || __s390x__ */
+ 
+ 
++#if defined(__sh__)
++#define HAS_TEST_AND_SET
++
++typedef unsigned char slock_t;
++
++#define TAS(lock) tas(lock)
++
++static __inline__ int
++tas(volatile slock_t *lock)
++{
++       register int _res = 1;
++
++       __asm__ __volatile__(
++               "tas.b  @%1\n\t"
++               "movt   %0\n\t"
++               "xor    #1,%0"
++:               "=z"(_res)
++:               "r"(lock)
++:               "t","memory");
++       return _res;
++}
++
++#endif  /* __sh__ */
++
++
+ #if defined(__sparc__)		/* Sparc */
+ #define HAS_TEST_AND_SET
+ 

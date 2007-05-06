@@ -1,0 +1,15 @@
+diff --git a/src/test/regress/GNUmakefile b/src/test/regress/GNUmakefile
+index f2319d2..b14a6f0 100644
+--- a/src/test/regress/GNUmakefile
++++ b/src/test/regress/GNUmakefile
+@@ -148,7 +148,8 @@ ##
+ check: all
+ 	-rm -rf ./testtablespace
+ 	mkdir ./testtablespace
+-	./pg_regress --temp-install=./tmp_check --top-builddir=$(top_builddir) --temp-port=$(TEMP_PORT) --schedule=$(srcdir)/parallel_schedule --multibyte=$(MULTIBYTE) --load-language=plpgsql $(MAXCONNOPT) $(NOLOCALE)
++	chown portage testtablespace .
++	su -s /bin/sh portage -c "./pg_regress --psqldir=`pwd`/../../bin/psql --temp-install=./tmp_check --top-builddir=$(top_builddir) --temp-port=$(TEMP_PORT) --schedule=$(srcdir)/parallel_schedule --multibyte=$(MULTIBYTE) --load-language=plpgsql $(MAXCONNOPT) $(NOLOCALE)"
+ 
+ installcheck: all
+ 	-rm -rf ./testtablespace
+diff --git a/src/test/regress/pg_regress.c b/src/test/regress/pg_regress.c
