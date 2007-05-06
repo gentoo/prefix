@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/semi
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/semi/ChangeLog,v 1.20 2007/03/30 20:12:31 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/semi/ChangeLog,v 1.21 2007/05/04 21:06:38 ulm Exp $
+
+  04 May 2007; Ulrich Mueller <ulm@gentoo.org> semi-1.14.6.ebuild:
+  Remove virtual/semi since no other package provides it.
 
   30 Mar 2007; Fabian Groffen <grobian@gentoo.org> semi-1.14.6.ebuild:
   Dropped ppc-macos keyword, see you in prefix
