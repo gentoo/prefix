@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/quilt-0.46.ebuild,v 1.3 2007/03/26 20:03:49 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/quilt-0.46.ebuild,v 1.4 2007/05/01 07:44:03 phreak Exp $
 
 EAPI="prefix"
 
@@ -19,10 +19,6 @@ RDEPEND="sys-apps/ed
 	dev-util/diffstat
 	graphviz? ( media-gfx/graphviz )"
 
-# The tests are somewhat broken while being run from within portage, work fine
-# if you run them manually
-RESTRICT="test"
-
 pkg_setup() {
 	use graphviz && return 0
 	echo
@@ -38,6 +34,10 @@ src_unpack() {
 
 	# Add support for USE=graphviz
 	use graphviz || epatch "${FILESDIR}/${P}-no-graphviz.patch"
+
+	# Some tests are somewhat broken while being run from within portage, work
+	# fine if you run them manually
+	rm "${S}"/test/delete.test
 }
 
 src_compile() {
