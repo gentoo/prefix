@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.332 2007/03/24 06:46:33 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.333 2007/05/03 04:51:07 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -632,8 +632,10 @@ create_gcc_env_entry() {
 		gcc_specs_file="${EPREFIX}${LIBPATH}/$1.specs"
 	fi
 
+	# phase PATH/ROOTPATH out ...
 	echo "PATH=\"${EPREFIX}${BINPATH}\"" > ${gcc_envd_file}
 	echo "ROOTPATH=\"${EPREFIX}${BINPATH}\"" >> ${gcc_envd_file}
+	echo "GCC_PATH=\"${EPREFIX}${BINPATH}\"" >> ${gcc_envd_file}
 
 	if use multilib && ! has_multilib_profile; then
 		LDPATH="${EPREFIX}${LIBPATH}"
@@ -2107,9 +2109,6 @@ do_gcc_PIE_patches() {
 }
 
 should_we_gcc_config() {
-	# we only want to switch compilers if installing to / or /tmp/stage1root
-	[[ ${EROOT%/} == ${EPREFIX%/} || ${EROOT} == "/tmp/stage1root" ]] || return 1
-
 	# we always want to run gcc-config if we're bootstrapping, otherwise
 	# we might get stuck with the c-only stage1 compiler
 	use bootstrap && return 0
@@ -2118,12 +2117,12 @@ should_we_gcc_config() {
 	# if the current config is invalid, we definitely want a new one
 	# Note: due to bash quirkiness, the following must not be 1 line
 	local curr_config
-	curr_config=$(env -i gcc-config -c ${CTARGET} 2>&1) || return 0
+	curr_config=$(env -i ROOT="${EROOT}" gcc-config -c ${CTARGET} 2>&1) || return 0
 
 	# if the previously selected config has the same major.minor (branch) as
 	# the version we are installing, then it will probably be uninstalled
 	# for being in the same SLOT, make sure we run gcc-config.
-	local curr_config_ver=$(env -i gcc-config -S ${curr_config} | awk '{print $2}')
+	local curr_config_ver=$(env -i ROOT="${EROOT}" gcc-config -S ${curr_config} | awk '{print $2}')
 
 	local curr_branch_ver=$(get_version_component_range 1-2 ${curr_config_ver})
 
@@ -2155,14 +2154,14 @@ should_we_gcc_config() {
 
 do_gcc_config() {
 	if ! should_we_gcc_config ; then
-		env -i gcc-config --use-old --force
+		env -i ROOT="${EROOT}" gcc-config --use-old --force
 		return 0
 	fi
 
 	local current_gcc_config="" current_specs="" use_specs=""
 
 	# We grep out any possible errors
-	current_gcc_config=$(env -i gcc-config -c ${CTARGET} | grep -v '^ ')
+	current_gcc_config=$(env -i ROOT="${EROOT}" gcc-config -c ${CTARGET} | grep -v '^ ')
 	if [[ -n ${current_gcc_config} ]] ; then
 		# figure out which specs-specific config is active
 		current_specs=$(gcc-config -S ${current_gcc_config} | awk '{print $3}')
@@ -2185,9 +2184,6 @@ do_gcc_config() {
 }
 
 should_we_eselect_compiler() {
-	# we only want to switch compilers if installing to / or /tmp/stage1root
-	[[ ${EROOT%/} == ${EPREFIX%/} || ${EROOT} == "/tmp/stage1root" ]] || return 1
-
 	# we always want to run gcc-config if we're bootstrapping, otherwise
 	# we might get stuck with the c-only stage1 compiler
 	use bootstrap && return 0

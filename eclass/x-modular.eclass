@@ -1,8 +1,8 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.81 2006/12/17 15:30:25 joshuabaergen Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.83 2007/05/02 07:10:33 dberkholz Exp $
 #
-# Author: Donnie Berkholz <spyderous@gentoo.org>
+# Author: Donnie Berkholz <dberkholz@gentoo.org>
 #
 # This eclass is designed to reduce code duplication in the modularized X11
 # ebuilds.
@@ -21,7 +21,16 @@
 # subdirectory of /usr/share/fonts/ it should install into, set FONT_DIR to that
 # directory or directories.
 #
-# IMPORTANT: Both SNAPSHOT and FONT_DIR must be set _before_ the inherit.
+# If you want to change the auto-application of the driver patchset or prevent
+# it from applying, edit XDPVER in the ebuild. Set it to -1 to prevent patch
+# application or positive integers for that patch version.
+#
+# IMPORTANT: SNAPSHOT, FONT_DIR and XDPVER must be set _before_ the inherit.
+#
+# If you want to install to a non-default prefix (e.g., /opt/xorg), change
+# XDIR. This has not been recently tested. You may need to uncomment the
+# setting of datadir and mandir in x-modular_src_install() or add it back in if
+# it's no longer there. You may also want to change the SLOT.
 #
 # Pretty much everything else should be automatic.
 
@@ -474,7 +483,7 @@ create_fonts_scale() {
 			# fonts are present ...
 
 			# NOTE: There is no way to regenerate Speedo/CID fonts.scale
-			# <spyderous@gentoo.org> 2 August 2004
+			# <dberkholz@gentoo.org> 2 August 2004
 			if [[ "${x/encodings}" = "${x}" ]] \
 				&& [[ -n "$(find ${x} -iname '*.[pot][ft][abcf]' -print)" ]]; then
 				mkfontscale \

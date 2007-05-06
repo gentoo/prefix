@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.82 2007/04/29 13:13:03 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.83 2007/05/04 17:20:08 caster Exp $
 
 
 # -----------------------------------------------------------------------------
@@ -2207,13 +2207,14 @@ java-pkg_func-exists() {
 java-pkg_setup-vm() {
 	debug-print-function ${FUNCNAME} $*
 
+	export LANG="C" LC_ALL="C"
+
 	local vendor="$(java-pkg_get-vm-vendor)"
 	if [[ "${vendor}" == "sun" ]] && java-pkg_is-vm-version-ge "1.5" ; then
 		addpredict "/dev/random"
 	elif [[ "${vendor}" == "ibm" ]]; then
 		addpredict "/proc/self/maps"
 		addpredict "/proc/cpuinfo"
-		export LANG="C" LC_ALL="C"
 	elif [[ "${vendor}" == "jrockit" ]]; then
 		addpredict "/proc/cpuinfo"
 	fi

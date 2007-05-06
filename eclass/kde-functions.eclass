@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.151 2007/04/23 19:35:05 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.152 2007/05/01 12:29:25 carlo Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -911,10 +911,10 @@ postprocess_desktop_entries() {
 	[[ $EBUILD_PHASE != preinst ]] && [[ $EBUILD_PHASE != install ]] && \
 		die "postprocess_desktop_entries() has to be called in src_install() or pkg_preinst()."
 
-	# Only third party apps, KDE 3.x isn't so basedir spec compliant...
-	if [[ -z ${KDEBASE} ]] ; then
-		local desktop_entries="$(find "${ED}${PREFIX}/share/applnk" -name '*.desktop' \
-			-not -path '*.hidden*' 2>/dev/null)"
+	if [[ -d ${ED}${PREFIX}/share/applnk ]] ; then
+		# min/max depth is _important_ as it excludes legacy KDE stuff. Moving it would cause breakage.
+		local desktop_entries="$(find "${ED}${PREFIX}/share/applnk" -mindepth 2 -maxdepth 2 \
+									-name '*\.desktop' -not -path '*.hidden*' 2>/dev/null)"
 
 		if [[ -n ${desktop_entries} ]]; then
 			for entry in ${desktop_entries} ; do
