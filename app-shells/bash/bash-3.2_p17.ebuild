@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p15-r1.ebuild,v 1.5 2007/05/03 15:47:48 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p17.ebuild,v 1.1 2007/05/03 05:49:17 vapier Exp $
 
 EAPI="prefix"
 
@@ -62,7 +62,6 @@ src_unpack() {
 		# Fix process substitution on BSD.
 		epatch "${FILESDIR}"/${PN}-3.2-process-subst.patch
 
-		epatch "${FILESDIR}"/${PN}-3.2-redisplay-cursor.patch #155369
 		epatch "${FILESDIR}"/${PN}-3.2-ulimit.patch
 		# Don't barf on handled signals in scripts
 		epatch "${FILESDIR}"/${PN}-3.0-trap-fg-signals.patch
@@ -156,7 +155,7 @@ pkg_preinst() {
 }
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p15-r1.ebuild,v 1.1 2007/03/24 08:18:15 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p17.ebuild,v 1.1 2007/05/03 05:49:17 vapier Exp $
 
 EAPI="prefix"
 
