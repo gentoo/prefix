@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXdmcp
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXdmcp/ChangeLog,v 1.34 2007/04/29 05:47:06 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXdmcp/ChangeLog,v 1.35 2007/05/04 20:58:31 dang Exp $
+
+  04 May 2007; Daniel Gryniewicz <dang@gentoo.org> libXdmcp-1.0.2.ebuild:
+  Marked stable on amd64 for bug #175465
 
   29 Apr 2007; Andrej Kacian <ticho@gentoo.org> libXdmcp-1.0.2.ebuild:
   Stable on x86, bug #175465.
