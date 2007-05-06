@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXext
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXext/ChangeLog,v 1.37 2007/04/29 05:48:35 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXext/ChangeLog,v 1.38 2007/05/04 21:00:21 dang Exp $
+
+  04 May 2007; Daniel Gryniewicz <dang@gentoo.org> libXext-1.0.3.ebuild:
+  Marked stable on amd64 for bug #175465
 
   29 Apr 2007; Andrej Kacian <ticho@gentoo.org> libXext-1.0.3.ebuild:
   Stable on x86, bug #175465.
