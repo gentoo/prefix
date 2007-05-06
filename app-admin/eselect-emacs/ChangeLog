@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect-emacs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.8 2007/04/21 17:39:50 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.9 2007/04/30 21:39:13 chainsaw Exp $
+
+  30 Apr 2007; Tony Vroon <chainsaw@gentoo.org> eselect-emacs-0.8-r1.ebuild:
+  Add ~ppc keyword. Tested on a PowerBook 5,9 with GCC 4.1.2
 
   21 Apr 2007; Markus Rothe <corsair@gentoo.org>
   eselect-emacs-0.8-r1.ebuild:
