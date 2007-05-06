@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r2.ebuild,v 1.33 2007/03/30 14:35:19 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r2.ebuild,v 1.34 2007/04/30 21:21:58 solar Exp $
 
 EAPI="prefix"
 
@@ -154,6 +154,7 @@ src_configure() {
 	use ia64 && replace-flags -O? -O1
 	# Perl has problems compiling with -Os in your flags with glibc
 	use elibc_uclibc || replace-flags "-Os" "-O2"
+	( gcc-specs-ssp && use ia64 ) && append-flags -fno-stack-protector
 	# This flag makes compiling crash in interesting ways
 	filter-flags -malign-double
 	# Fixes bug #97645
