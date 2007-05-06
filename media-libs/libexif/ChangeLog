@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libexif
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.66 2007/02/19 01:46:44 marienz Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.67 2007/04/30 23:13:59 genone Exp $
+
+  30 Apr 2007; Marius Mauch <genone@gentoo.org> libexif-0.5.12-r3.ebuild:
+  Replacing einfo with elog
 
   19 Feb 2007; Marien Zwart <marienz@gentoo.org> libexif-0.6.13-r1.ebuild:
   Move preserve_old_lib call from src_install to pkg_postinst because
