@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.0.4.ebuild,v 1.6 2007/05/03 18:10:36 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.0.6.ebuild,v 1.1 2007/04/30 16:40:31 vapier Exp $
 
 EAPI="prefix"
 
@@ -34,6 +34,7 @@ src_unpack() {
 	if [[ ! -e configure ]] ; then
 		./autogen.sh || die "autogen failed"
 	fi
+	epatch "${FILESDIR}"/${P}-justify.patch
 }
 
 src_compile() {
