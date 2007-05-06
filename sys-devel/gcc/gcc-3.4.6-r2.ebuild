@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.4.6-r2.ebuild,v 1.15 2007/03/09 22:13:12 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.4.6-r2.ebuild,v 1.16 2007/04/30 20:13:27 solar Exp $
 
 EAPI="prefix"
 
@@ -21,10 +21,10 @@ GCC_LIBSSP_SUPPORT="true"
 ETYPE="gcc-compiler"
 
 # arch/libc configurations known to be stable with {PIE,SSP}-by-default
-SSP_STABLE="x86 amd64"
-SSP_UCLIBC_STABLE="x86"
-PIE_GLIBC_STABLE="x86 amd64"
-PIE_UCLIBC_STABLE="x86"
+SSP_STABLE="x86 sparc amd64 ppc ppc64 ia64"
+SSP_UCLIBC_STABLE="arm mips ppc x86"
+PIE_GLIBC_STABLE="x86 sparc amd64 ppc ppc64 ia64"
+PIE_UCLIBC_STABLE="x86 mips ppc"
 
 # arch/libc configurations known to be broken with {PIE,SSP}-by-default
 SSP_UNSUPPORTED=""

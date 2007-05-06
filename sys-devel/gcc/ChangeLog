@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.612 2007/03/09 22:13:12 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.613 2007/04/30 20:13:27 solar Exp $
+
+  30 Apr 2007; <solar@gentoo.org> gcc-3.4.6-r2.ebuild:
+  - mark ia64 pie/ssp as stable in the gcc-3.4.6 ebuild
 
   09 Mar 2007; Mike Frysinger <vapier@gentoo.org> gcc-3.4.6-r2.ebuild,
   gcc-4.1.2.ebuild:
