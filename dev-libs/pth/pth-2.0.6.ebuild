@@ -31,7 +31,7 @@ src_unpack() {
 
 src_compile() {
 	local myconf
-	[[ ${EPREFIX%/} == "" ]] || myconf="--enable-pthread"
+	use prefix && myconf="--enable-pthread"
 	econf ${myconf} || die "econf failed"
 	emake || die "emake failed"
 }

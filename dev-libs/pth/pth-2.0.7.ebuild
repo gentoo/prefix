@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/pth-2.0.6.ebuild,v 1.6 2006/10/27 11:42:01 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/pth-2.0.7.ebuild,v 1.2 2007/05/01 03:09:06 alonbl Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ DEPEND=""
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-2.0.5-parallelfix.patch
+	epatch "${FILESDIR}/${PN}-2.0.5-parallelfix.patch"
 	epatch "${FILESDIR}/${PN}-2.0.6-ldflags.patch"
 	epatch "${FILESDIR}/${PN}-2.0.6-sigstack.patch"
 	epatch "${FILESDIR}/${P}-libs.patch"
@@ -32,6 +32,7 @@ src_unpack() {
 
 src_compile() {
 	local myconf
+	use prefix && myconf="--enable-pthread"
 	econf ${myconf} || die "econf failed"
 	emake || die "emake failed"
 }
