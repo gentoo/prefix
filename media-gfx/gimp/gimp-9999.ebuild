@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-9999.ebuild,v 1.10 2007/04/28 17:48:17 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-9999.ebuild,v 1.11 2007/04/30 21:53:08 genone Exp $
 
 EAPI="prefix"
 
@@ -111,9 +111,9 @@ pkg_postinst() {
 	fdo-mime_desktop_database_update
 	fdo-mime_mime_database_update
 
-	einfo
-	einfo "If you want Postscript file support, emerge ghostscript."
-	einfo
+	elog
+	elog "If you want Postscript file support, emerge ghostscript."
+	elog
 }
 
 pkg_postrm() {
