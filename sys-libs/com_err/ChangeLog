@@ -1,6 +1,12 @@
 # ChangeLog for sys-libs/com_err
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/ChangeLog,v 1.27 2007/05/01 17:15:15 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/ChangeLog,v 1.28 2007/05/05 06:37:11 vapier Exp $
+
+*com_err-1.40_pre20070411 (05 May 2007)
+
+  05 May 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/com_err-1.40-headers.patch, +com_err-1.40_pre20070411.ebuild:
+  Version bump #175790 by Hanno Boeck.
 
   01 May 2007; Fabian Groffen <grobian@gentoo.org> com_err-1.39.ebuild:
   Remove rediculous Darwin handling
