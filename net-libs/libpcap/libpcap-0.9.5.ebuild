@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/libpcap-0.9.5.ebuild,v 1.12 2007/04/22 22:14:42 kanaka Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/libpcap-0.9.5.ebuild,v 1.13 2007/05/05 10:52:19 cedk Exp $
 
 EAPI="prefix"
 
-inherit eutils multilib toolchain-funcs
+inherit autotools eutils multilib toolchain-funcs
 
 DESCRIPTION="A system-independent library for user-level network packet capture"
 HOMEPAGE="http://www.tcpdump.org/"
@@ -23,24 +23,12 @@ src_unpack() {
 	unpack ${A}; cd "${S}"
 	epatch "${FILESDIR}"/${PN}-0.9.3-whitespace.diff
 	epatch "${FILESDIR}"/${PN}-0.8.1-fPIC.patch
+	epatch "${FILESDIR}"/${PN}-cross-linux.patch
+	eautoreconf
 }
 
 src_compile() {
-	MY_OPTS=""
-	if tc-is-cross-compiler; then
-		if [[ "${LIBPCAP_PCAP}" == "linux" ]]; then
-			MY_OPTS="--with-pcap=linux"
-		elif [[ "${LIBPCAP_PCAP}" == "bpf" ]]; then
-			MY_OPTS="--with-pcap=bpf"
-		else
-			eerror "When cross compile, you must set"
-			eerror "the env variable to one of these values:"
-			eerror " linux"
-			eerror " bpf"
-			die "LIBPCAP_PCAP is not set"
-		fi
-	fi
-	econf $(use_enable ipv6) ${MY_OPTS} || die "bad configure"
+	econf $(use_enable ipv6) || die "bad configure"
 	emake || die "compile problem"
 
 	# no provision for this in the Makefile, so...
