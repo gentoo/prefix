@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-4.3.2-r2.ebuild,v 1.10 2007/03/17 21:13:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-4.3.4.ebuild,v 1.2 2007/05/01 11:31:00 corsair Exp $
 
 EAPI="prefix"
 
@@ -37,6 +37,9 @@ src_unpack() {
 	# fix zshall problem with soelim
 	soelim zshall.1 > zshall.1.soelim
 	mv zshall.1.soelim zshall.1
+
+	cp "${FILESDIR}"/zprofile "${T}"/zprofile
+	eprefixify "${T}"/zprofile
 }
 
 src_compile() {
@@ -45,7 +48,7 @@ src_compile() {
 	use static && myconf="${myconf} --disable-dynamic" \
 		&& LDFLAGS="${LDFLAGS} -static"
 
-	if [[ ${CHOST} == *darwin* ]]; then
+	if [[ ${CHOST} == *-darwin* ]]; then
 		LDFLAGS="${LDFLAGS} -Wl,-x"
 		myconf="${myconf} --enable-libs=-liconv"
 	fi
@@ -104,7 +107,7 @@ src_install() {
 		install.info install.fns || die "make install failed"
 
 	insinto /etc/zsh
-	doins ${FILESDIR}/zprofile
+	doins "${T}"/zprofile
 
 	keepdir /usr/share/zsh/site-functions
 	insinto /usr/share/zsh/${PV%_*}/functions/Prompts

@@ -1,14 +1,39 @@
-# /etc/zsh/zprofile
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/files/zprofile,v 1.2 2006/11/02 19:49:32 usata Exp $
+# @GENTOO_PORTAGE_EPREFIX@/etc/zsh/zprofile
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/files/zprofile,v 1.3 2007/04/30 16:26:06 usata Exp $
 
-[[ -e "/etc/profile.env" ]] && source /etc/profile.env
+# Load environment settings from profile.env, which is created by
+# env-update from the files in /etc/env.d
+if [ -e "@GENTOO_PORTAGE_EPREFIX@"/etc/profile.env ] ; then
+	. "@GENTOO_PORTAGE_EPREFIX@"/etc/profile.env
+fi
 
 #077 would be more secure, but 022 is generally quite realistic
 umask 022
 
-if [[ "$USER" == root ]]; then
-	export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${ROOTPATH}"
+# Set up PATH depending on whether we're root or a normal user.
+# There's no real reason to exclude sbin paths from the normal user,
+# but it can make tab-completion easier when they aren't in the
+# user's PATH to pollute the executable namespace.
+#
+# It is intentional in the following line to use || instead of -o.
+# This way the evaluation can be short-circuited and calling whoami is
+# avoided.
+if [ "$EUID" = "0" ] || [ "$USER" = "root" ] ; then
+	PATH="@GENTOO_PORTAGE_EPREFIX@/usr/sbin:@GENTOO_PORTAGE_EPREFIX@/usr/bin:@GENTOO_PORTAGE_EPREFIX@/sbin:@GENTOO_PORTAGE_EPREFIX@/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${ROOTPATH}"
 else
-	export PATH="/usr/local/bin:/usr/bin:/bin:${PATH}"
+	PATH="@GENTOO_PORTAGE_EPREFIX@/usr/bin:@GENTOO_PORTAGE_EPREFIX@/bin:/usr/local/bin:/usr/bin:/bin:${PATH}"
 fi
+export PATH
 unset ROOTPATH
+
+# Extract the value of EDITOR
+[ -z "$EDITOR" ] && EDITOR="`. @GENTOO_PORTAGE_EPREFIX@/etc/rc.conf 2>/dev/null; echo $EDITOR`"
+[ -z "$EDITOR" ] && EDITOR="@GENTOO_PORTAGE_EPREFIX@/bin/nano"
+export EDITOR
+
+for sh in "@GENTOO_PORTAGE_EPREFIX@"/etc/profile.d/*.sh ; do
+	if [ -r "$sh" ] ; then
+		. "$sh"
+	fi
+done
+unset sh
