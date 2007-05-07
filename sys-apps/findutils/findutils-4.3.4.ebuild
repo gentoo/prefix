@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.3.2-r1.ebuild,v 1.2 2007/05/05 05:59:07 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.3.4.ebuild,v 1.1 2007/05/06 08:30:47 vapier Exp $
 
 EAPI="prefix"
 
@@ -27,13 +27,11 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${P}-check-insert-num-ret.patch #166233
-
 	# rename 'open' and 'close' as they may be defined to open64/close64
 	# (AIX fex).
-	epatch "${FILESDIR}"/${P}-aix.patch
+	epatch "${FILESDIR}"/${PN}-4.3.2-aix.patch
 	# IRIX needs an extra cast
-	epatch "${FILESDIR}"/${P}-irix.patch
+	epatch "${FILESDIR}"/${PN}-4.3.2-irix.patch
 
 	# Don't build or install locate because it conflicts with slocate,
 	# which is a secure version of locate.  See bug 18729
