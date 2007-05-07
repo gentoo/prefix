@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.125 2007/04/29 01:40:06 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.126 2007/05/06 19:48:48 corsair Exp $
+
+  06 May 2007; Markus Rothe <corsair@gentoo.org> freetype-2.3.3.ebuild:
+  Stable on ppc64; bug #173804
 
   29 Apr 2007; Ryan Hill <dirtyepic@gentoo.org> metadata.xml:
   Fix up metadata for bugzilla tomfoolery.
