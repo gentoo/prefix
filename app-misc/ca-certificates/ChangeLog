@@ -1,6 +1,18 @@
 # ChangeLog for app-misc/ca-certificates
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.7 2007/02/20 02:54:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.9 2007/05/06 11:33:28 vapier Exp $
+
+*ca-certificates-20070303-r1 (06 May 2007)
+
+  06 May 2007; Mike Frysinger <vapier@gentoo.org>
+  +ca-certificates-20070303-r1.ebuild:
+  Fix ca-certificates.conf generation #177298 by Remy Blank.
+
+*ca-certificates-20070303 (05 May 2007)
+
+  05 May 2007; Mike Frysinger <vapier@gentoo.org>
+  +ca-certificates-20070303.ebuild:
+  Version bump #175999 by Daniel Drake.
 
 *ca-certificates-20061027.2 (20 Feb 2007)
 
