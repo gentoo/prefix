@@ -1,6 +1,9 @@
 # ChangeLog for x11-apps/xrdb
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xrdb/ChangeLog,v 1.29 2007/04/29 06:14:32 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xrdb/ChangeLog,v 1.30 2007/05/05 18:24:12 dang Exp $
+
+  05 May 2007; Daniel Gryniewicz <dang@gentoo.org> xrdb-1.0.3.ebuild:
+  Marked stable on amd64 for bug #175465
 
   29 Apr 2007; Andrej Kacian <ticho@gentoo.org> xrdb-1.0.3.ebuild:
   Stable on x86, bug #175465.
