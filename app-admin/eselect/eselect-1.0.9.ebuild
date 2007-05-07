@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.0.9.ebuild,v 1.1 2007/03/28 19:16:48 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.0.9.ebuild,v 1.2 2007/05/06 23:17:05 pioto Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
-IUSE="doc bash-completion"
+IUSE="doc bash-completion vim-syntax"
 
 DEPEND="sys-apps/sed
 	doc? ( dev-python/docutils )
@@ -38,6 +38,8 @@ src_unpack() {
 		$(find "${S}"/libs -type f) \
 		$(find "${S}"/misc -type f)
 }
+
+PDEPEND="vim-syntax? ( app-vim/eselect-syntax )"
 
 src_compile() {
 	econf || die "econf failed"

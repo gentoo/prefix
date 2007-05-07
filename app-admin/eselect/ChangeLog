@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.58 2007/03/28 19:16:48 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.59 2007/05/06 23:17:05 pioto Exp $
+
+  06 May 2007; Mike Kelly <pioto@gentoo.org> eselect-1.0.9.ebuild:
+  Add vim-syntax USE flag to pull in eselect-syntax.
 
 *eselect-1.0.9 (28 Mar 2007)
 
