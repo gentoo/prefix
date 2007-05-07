@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.20.ebuild,v 1.8 2007/04/24 11:42:17 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.20.ebuild,v 1.9 2007/05/06 15:17:36 spock Exp $
 
 EAPI="prefix"
 
@@ -26,6 +26,7 @@ src_unpack() {
 	echo ";" >> nmapfe.desktop
 	epatch ${FILESDIR}/nmap-shtool-nls.patch
 	epatch ${FILESDIR}/nmap-4.01-nostrip.patch
+	epatch ${FILESDIR}/${P}-osscan.patch
 }
 
 src_compile() {
