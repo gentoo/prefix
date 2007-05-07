@@ -1,6 +1,13 @@
 # ChangeLog for net-irc/epic4
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/epic4/ChangeLog,v 1.71 2007/04/09 05:22:07 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/epic4/ChangeLog,v 1.73 2007/05/06 16:50:31 dertobi123 Exp $
+
+  06 May 2007; Tobias Scherbaum <dertobi123@gentoo.org> epic4-2.6.ebuild:
+  ppc stable, bug #170747
+
+  06 May 2007; Marius Mauch <genone@gentoo.org> epic4-2.4.ebuild,
+  epic4-2.6.ebuild:
+  Replacing einfo with elog
 
   09 Apr 2007; Peter Weller <welp@gentoo.org> epic4-2.6.ebuild:
   Stable on amd64 wrt bug 170747

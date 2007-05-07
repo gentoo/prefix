@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/epic4/epic4-2.6.ebuild,v 1.7 2007/04/09 05:22:07 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/epic4/epic4-2.6.ebuild,v 1.9 2007/05/06 16:50:31 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -73,22 +73,22 @@ src_install () {
 pkg_postinst() {
 	if [ ! -f ${EROOT}/usr/share/epic/script/local ]
 	then
-		einfo "/usr/share/epic/script/local does not exist, I will now"
-		einfo "create it. If you do not like the look/feel of this file, or"
-		einfo "if you'd prefer to use your own script, simply remove this"
-		einfo "file.  If you want to prevent this file from being installed"
-		einfo "in the future, simply create an empty file with this name."
+		elog "/usr/share/epic/script/local does not exist, I will now"
+		elog "create it. If you do not like the look/feel of this file, or"
+		elog "if you'd prefer to use your own script, simply remove this"
+		elog "file.  If you want to prevent this file from being installed"
+		elog "in the future, simply create an empty file with this name."
 		cp ${WORKDIR}/epic4-local ${EROOT}/usr/share/epic/script/local
-		echo
-		einfo "This provided local startup script adds a number of nifty"
-		einfo "features to Epic including tab completion, a comprehensive set"
-		einfo "of aliases, and channel-by-channel logging.  To prevent"
-		einfo "unintentional conflicts with your own scripting, if either the"
-		einfo "~/.ircrc or ~/.epicrc script files exist, then the local script"
-		einfo "is *not* run.  If you like the script but want to make careful"
-		einfo "additions (such as selecting your usual servers or setting your"
-		einfo "nickname), simply copy /usr/share/epic/script/local to ~/.ircrc"
-		einfo "and then add your additions to the copy."
+		elog
+		elog "This provided local startup script adds a number of nifty"
+		elog "features to Epic including tab completion, a comprehensive set"
+		elog "of aliases, and channel-by-channel logging.  To prevent"
+		elog "unintentional conflicts with your own scripting, if either the"
+		elog "~/.ircrc or ~/.epicrc script files exist, then the local script"
+		elog "is *not* run.  If you like the script but want to make careful"
+		elog "additions (such as selecting your usual servers or setting your"
+		elog "nickname), simply copy /usr/share/epic/script/local to ~/.ircrc"
+		elog "and then add your additions to the copy."
 	fi
 
 	# Fix for bug 59075
