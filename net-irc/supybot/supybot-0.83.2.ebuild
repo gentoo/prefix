@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/supybot/supybot-0.83.2.ebuild,v 1.5 2007/02/20 12:35:37 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/supybot/supybot-0.83.2.ebuild,v 1.6 2007/05/06 12:47:11 genone Exp $
 
 EAPI="prefix"
 
@@ -34,7 +34,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	einfo "Use supybot-wizard to create a configuration file"
+	elog "Use supybot-wizard to create a configuration file"
 	use sqlite || \
-		einfo "Some plugins may require emerge with USE=\"sqlite\" to work."
+		elog "Some plugins may require emerge with USE=\"sqlite\" to work."
 }
