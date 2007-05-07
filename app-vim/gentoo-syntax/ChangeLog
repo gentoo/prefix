@@ -1,6 +1,14 @@
 # ChangeLog for app-vim/gentoo-syntax
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/gentoo-syntax/ChangeLog,v 1.75 2007/02/13 06:08:34 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/gentoo-syntax/ChangeLog,v 1.76 2007/05/06 23:07:33 pioto Exp $
+
+*gentoo-syntax-20070506 (06 May 2007)
+
+  06 May 2007; Mike Kelly <pioto@gentoo.org> +gentoo-syntax-20070506.ebuild:
+  Version bump. Eselect stuff was split off to eselect-syntax. Use of $(which)
+  is marked as an error, since people should be using the more portable bash
+  builtin $(type -P) (Bug #176218). ECLASS and INHERITED aren't set anymore in
+  the new eclass template (Bug #175135).
 
 *gentoo-syntax-20070212 (13 Feb 2007)
 
