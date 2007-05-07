@@ -1,6 +1,10 @@
 # ChangeLog for media-video/mpeg2vidcodec
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mpeg2vidcodec/ChangeLog,v 1.18 2006/07/09 12:08:23 the_paya Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-video/mpeg2vidcodec/ChangeLog,v 1.19 2007/05/05 21:46:43 grobian Exp $
+
+  05 May 2007; Fabian Groffen <grobian@gentoo.org>
+  mpeg2vidcodec-12-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   09 Jul 2006; Javier Villavicencio <the_paya@gentoo.org>
   mpeg2vidcodec-12-r1.ebuild:
