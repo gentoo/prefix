@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-9999.ebuild,v 1.11 2007/04/30 21:53:08 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-9999.ebuild,v 1.12 2007/05/06 16:50:48 hanno Exp $
 
 EAPI="prefix"
 
-inherit subversion fdo-mime flag-o-matic
+inherit subversion fdo-mime flag-o-matic multilib python
 
 ESVN_REPO_URI="http://svn.gnome.org/svn/gimp/trunk/"
 
@@ -114,9 +114,14 @@ pkg_postinst() {
 	elog
 	elog "If you want Postscript file support, emerge ghostscript."
 	elog
+
+	python_mod_optimize /usr/$(get_libdir)/gimp/2.0/python \
+		/usr/$(get_libdir)/gimp/2.0/plug-ins
 }
 
 pkg_postrm() {
 	fdo-mime_desktop_database_update
 	fdo-mime_mime_database_update
+	python_mod_cleanup /usr/$(get_libdir)/gimp/2.0/python \
+		/usr/$(get_libdir)/gimp/2.0/plug-ins
 }
