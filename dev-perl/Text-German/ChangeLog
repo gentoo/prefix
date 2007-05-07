@@ -1,6 +1,14 @@
 # ChangeLog for dev-perl/Text-German
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-German/ChangeLog,v 1.13 2007/03/05 12:33:28 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-German/ChangeLog,v 1.15 2007/05/05 19:23:36 dertobi123 Exp $
+
+  05 May 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  Text-German-0.06.ebuild:
+  ppc stable
+
+  05 May 2007; Christian Hartmann <ian@gentoo.org> -Text-German-0.03.ebuild,
+  Text-German-0.06.ebuild:
+  Cleanup
 
   05 Mar 2007; Andrej Kacian <ticho@gentoo.org> Text-German-0.06.ebuild:
   Stable on x86, bug #169152.
