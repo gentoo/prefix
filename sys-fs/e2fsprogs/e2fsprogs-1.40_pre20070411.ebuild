@@ -1,14 +1,18 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.39-r2.ebuild,v 1.8 2007/05/06 15:05:33 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.40_pre20070411.ebuild,v 1.1 2007/05/05 06:37:28 vapier Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic toolchain-funcs
 
+SNAP="${PV##*_pre}"
+MY_PV="${PV%%_pre*}-WIP-${SNAP:0:4}-${SNAP:4:2}-${SNAP:6:2}"
+MY_P="e2fsprogs-${MY_PV}"
+
 DESCRIPTION="Standard EXT2 and EXT3 filesystem utilities"
 HOMEPAGE="http://e2fsprogs.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
+SRC_URI="mirror://sourceforge/e2fsprogs/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -22,13 +26,13 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )
 	sys-apps/texinfo"
 
+S=${WORKDIR}/e2fsprogs-${PV%%_pre*}
+
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-blkid-memleak.patch #171844
 	# Fix locale issues while running tests #99766
-	epatch "${FILESDIR}"/${PN}-1.38-tests-locale.patch
-	epatch "${FILESDIR}"/${PN}-1.38-locale.patch #131462
+	epatch "${FILESDIR}"/${PN}-1.38-tests-locale.patch #99766
 	# Fix a cosmetic error in mk_cmds's help output.
 	epatch "${FILESDIR}"/e2fsprogs-1.32-mk_cmds-cosmetic.patch
 	epatch "${FILESDIR}"/e2fsprogs-1.39-util-strptime.patch
@@ -36,12 +40,12 @@ src_unpack() {
 	# Clean up makefile to suck less
 	epatch "${FILESDIR}"/e2fsprogs-1.39-makefile.patch
 	epatch "${FILESDIR}"/e2fsprogs-1.39-parse-types.patch #146903
-	# Fixes libintl handling on non-glibc #122368
-	epatch "${FILESDIR}"/${PN}-1.39-libintl.patch
+	epatch "${FILESDIR}"/${PN}-1.40-libintl.patch #122368
+
 	# Fixes sysconfdir being used in prefix correctly
 	epatch "${FILESDIR}"/e2fsprogs-1.39-sysconfdir.patch
 	# -r1 doesn't have this, so can't use one patch
-	epatch "${FILESDIR}"/e2fsprogs-1.39-more-sysconfdir.patch
+	epatch "${FILESDIR}"/e2fsprogs-1.40-more-sysconfdir.patch
 
 	# kernel headers use the same defines as e2fsprogs and can cause issues #48829
 	sed -i \
