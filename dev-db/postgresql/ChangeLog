@@ -1,6 +1,20 @@
 # ChangeLog for dev-db/postgresql
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/ChangeLog,v 1.343 2007/05/04 19:02:25 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/ChangeLog,v 1.346 2007/05/06 22:17:43 yoswink Exp $
+
+  07 May 2007; Jose Luis Rivero <yoswink@gentoo.org>
+  postgresql-7.3.19.ebuild, postgresql-7.4.17.ebuild,
+  postgresql-8.0.13.ebuild:
+  Stable on alpha wrt security bug #175791
+
+  05 May 2007; Markus Rothe <corsair@gentoo.org> postgresql-7.4.17.ebuild,
+  postgresql-8.0.13.ebuild:
+  Stable on ppc64; bug #175791
+
+  05 May 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  postgresql-7.3.19.ebuild, postgresql-7.4.17.ebuild,
+  postgresql-8.0.13.ebuild:
+  ppc stable, bug #175791
 
   04 May 2007; Jeroen Roovers <jer@gentoo.org> postgresql-8.0.13.ebuild:
   Stable for HPPA (bug #175791).
