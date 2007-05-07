@@ -1,6 +1,12 @@
 # ChangeLog for sys-devel/binutils-config
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/ChangeLog,v 1.34 2006/11/26 13:40:14 vapier Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/ChangeLog,v 1.35 2007/05/06 09:04:01 vapier Exp $
+
+*binutils-config-1.9-r4 (06 May 2007)
+
+  06 May 2007; Mike Frysinger <vapier@gentoo.org> files/binutils-config-1.9,
+  +binutils-config-1.9-r4.ebuild:
+  Fix ldscript symlink generation #171486 by Alan Hourihane.
 
 *binutils-config-1.9-r3 (26 Nov 2006)
 
