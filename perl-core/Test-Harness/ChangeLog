@@ -1,6 +1,10 @@
 # ChangeLog for perl-core/Test-Harness
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Harness/ChangeLog,v 1.29 2007/04/15 21:07:56 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Harness/ChangeLog,v 1.30 2007/05/05 18:27:44 dertobi123 Exp $
+
+  05 May 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  Test-Harness-2.64.ebuild:
+  ppc stable
 
   15 Apr 2007; Markus Rothe <corsair@gentoo.org> Test-Harness-2.64.ebuild:
   Stable on ppc64
