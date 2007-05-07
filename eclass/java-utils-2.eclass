@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.83 2007/05/04 17:20:08 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.84 2007/05/06 09:47:36 betelgeuse Exp $
 
 
 # -----------------------------------------------------------------------------
@@ -1650,6 +1650,36 @@ java-pkg_ant-tasks-depend() {
 	else
 		return 0
 	fi
+}
+
+# ------------------------------------------------------------------------------
+# @ebuild-function ejunit
+#
+# Junit wrapper function. Makes it easier to run the tests and checks for
+# dev-java/junit in DEPEND. Launches the tests using junit.textui.TestRunner.
+#
+# Examples:
+# ejunit -cp build/classes org.blinkenlights.jid3.test.AllTests
+# ejunit org.blinkenlights.jid3.test.AllTests
+#
+# @param $1 - -cp or -classpath
+# @param $2 - classpath, junit gets appended
+# @param $@ - the rest of the parameters are passed to java
+# ------------------------------------------------------------------------------
+ejunit() {
+	debug-print-function ${FUNCNAME} $*
+
+	local cp
+	if [[ ${1} = -cp || ${1} = -classpath ]]; then
+		cp=${2}:$(java-pkg_getjars --build-only junit)
+		shift 2
+	else
+		cp=$(java-pkg_getjars --build-only junit):.
+	fi
+
+	local runner=junit.textui.TestRunner
+	debug-print "Calling: java -cp \"${cp}\" -Djava.awt.headless=true ${runner} ${@}"
+	java -cp "${cp}" -Djava.awt.headless=true ${runner} "${@}" || die "Running junit failed"
 }
 
 # ------------------------------------------------------------------------------

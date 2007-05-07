@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xfce44.eclass,v 1.18 2007/03/07 19:37:16 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xfce44.eclass,v 1.19 2007/05/06 14:11:32 drac Exp $
 
 # Xfce44 Eclass
 #
@@ -47,6 +47,11 @@ xfce44() {
 ## plugins and base packages default to tar.bz2 unless gzipped is called
 xfce44_gzipped() {
 	COMPRESS=".tar.gz"
+}
+
+## plugins and base packages default to tar.bz2 unless zipped is called
+xfce44_zipped() {
+	COMPRESS=".zip"
 }
 
 ## adds the -plugin string to $P and adds the depend on panel version

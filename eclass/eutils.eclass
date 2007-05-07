@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.279 2007/04/25 09:14:35 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.280 2007/05/05 07:52:26 vapier Exp $
 #
 # This eclass is for general purpose functions that most ebuilds
 # have to implement themselves.
@@ -368,7 +368,8 @@ emktemp() {
 			|| topdir=${T}
 	fi
 
-	if [[ -z $(type -p mktemp) ]] ; then
+	if ! type -P mktemp > /dev/null ; then
+		# system lacks `mktemp` so we have to fake it
 		local tmp=/
 		while [[ -e ${tmp} ]] ; do
 			tmp=${topdir}/tmp.${RANDOM}.${RANDOM}.${RANDOM}
@@ -376,14 +377,9 @@ emktemp() {
 		${exe} "${tmp}" || ${exe} -p "${tmp}"
 		echo "${tmp}"
 	else
+		# the args here will give slightly wierd names on BSD,
+		# but should produce a usable file on all userlands
 		if [[ ${exe} == "touch" ]] ; then
-			# for FreeBSD-mktemp, -t is the prefix
-			# for GNU-mktemp, -t is the template
-			# in eprefix, we might have USERLAND!=GNU, but GNU-mktemp,
-			# and we will end up with empty tempfile names.
-			#
-			# OTOH, having tempfiles called tmp.XXXXXXXXXX.WSqcv4AI
-			# in BSD will not be a problem.
 			TMPDIR="${topdir}" mktemp -t tmp.XXXXXXXXXX
 		else
 			TMPDIR="${topdir}" mktemp -dt tmp.XXXXXXXXXX

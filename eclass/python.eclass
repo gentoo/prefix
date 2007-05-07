@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.31 2007/02/03 02:10:23 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.32 2007/05/06 22:11:12 kloeri Exp $
 #
 # Author: Alastair Tse <liquidx@gentoo.org>
 #
@@ -17,7 +17,7 @@
 #                           orphaned *.pyc *.pyo
 # python_makesym()        - Makes /usr/bin/python symlinks
 
-inherit alternatives
+inherit alternatives multilib
 
 
 if [[ -n "${NEED_PYTHON}" ]] ; then
@@ -185,8 +185,8 @@ python_mod_optimize() {
 	fi
 
 	ebegin "Byte compiling python modules for python-${PYVER} .."
-	python${PYVER} ${myroot}/usr/lib/python${PYVER}/compileall.py ${compileopts} $@
-	python${PYVER} -O ${myroot}/usr/lib/python${PYVER}/compileall.py ${compileopts} $@
+	python${PYVER} ${myroot}/usr/$(get_libdir)/python${PYVER}/compileall.py ${compileopts} $@
+	python${PYVER} -O ${myroot}/usr/$(get_libdir)/python${PYVER}/compileall.py ${compileopts} $@
 	eend $?
 }
 
