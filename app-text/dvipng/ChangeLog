@@ -1,6 +1,9 @@
 # ChangeLog for app-text/dvipng
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/ChangeLog,v 1.14 2007/03/12 23:50:21 nattfodd Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/ChangeLog,v 1.15 2007/05/06 20:04:32 corsair Exp $
+
+  06 May 2007; Markus Rothe <corsair@gentoo.org> dvipng-1.8.ebuild:
+  Stable on ppc64; bug #177348
 
   12 Mar 2007; Alexandre Buisse <nattfodd@gentoo.org> metadata.xml:
   Replaced text-markup by tex as maintaining herd (text-markup split).
