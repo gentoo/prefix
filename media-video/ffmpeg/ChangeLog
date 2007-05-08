@@ -1,6 +1,11 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.194 2007/04/22 01:31:17 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.195 2007/05/05 21:53:57 grobian Exp $
+
+  05 May 2007; Fabian Groffen <grobian@gentoo.org>
+  ffmpeg-0.4.9_p20051216.ebuild, ffmpeg-0.4.9_p20060302.ebuild,
+  ffmpeg-0.4.9_p20060530.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   22 Apr 2007; Bryan Østergaard <kloeri@gentoo.org>
   ffmpeg-0.4.9_p20070330.ebuild:
