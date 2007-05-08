@@ -14,10 +14,10 @@
 
 fdo-mime_desktop_database_update() {
 
-	if [ -x ${ROOT}/usr/bin/update-desktop-database ]
+	if [ -x ${EROOT}/usr/bin/update-desktop-database ]
 	then
 		einfo "Updating desktop mime database ..."
-		${ROOT}/usr/bin/update-desktop-database -q ${ROOT}/usr/share/applications
+		${EROOT}/usr/bin/update-desktop-database -q ${EROOT}/usr/share/applications
 	fi
 
 }
@@ -27,10 +27,10 @@ fdo-mime_desktop_database_update() {
 
 fdo-mime_mime_database_update() {
 
-	if [ -x ${ROOT}/usr/bin/update-mime-database ]
+	if [ -x ${EROOT}/usr/bin/update-mime-database ]
 	then
 		einfo "Updating shared mime info database ..."
-		${ROOT}/usr/bin/update-mime-database ${ROOT}/usr/share/mime
+		${EROOT}/usr/bin/update-mime-database ${EROOT}/usr/share/mime
 	fi
 
 }
