@@ -1,6 +1,15 @@
 # ChangeLog for app-misc/mc
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.118 2007/05/06 19:59:41 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.121 2007/05/07 15:01:14 gustavoz Exp $
+
+  07 May 2007; Gustavo Zacarias <gustavoz@gentoo.org> mc-4.6.1-r3.ebuild:
+  Stable on sparc wrt #177316
+
+  07 May 2007; Jeroen Roovers <jer@gentoo.org> mc-4.6.1-r3.ebuild:
+  Stable for HPPA (bug #177316).
+
+  07 May 2007; Raúl Porcel <armin76@gentoo.org> mc-4.6.1-r3.ebuild:
+  ia64 stable wrt #177316
 
   06 May 2007; Markus Rothe <corsair@gentoo.org> mc-4.6.1-r3.ebuild:
   Stable on ppc64; bug #177316
