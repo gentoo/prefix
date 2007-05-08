@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/curl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.81 2007/04/14 00:35:26 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.82 2007/04/18 11:04:51 dragonheart Exp $
+
+*curl-7.16.3_pre20070418 (18 Apr 2007)
+
+  18 Apr 2007; Daniel Black <dragonheart@gentoo.org>
+  +curl-7.16.3_pre20070418.ebuild:
+  snapshot. still does not fix some self test fails will look later. TESTFAIL:
+  These test cases failed: 300 301 304 305 306 400 401 403 404 405
 
 *curl-7.16.2 (14 Apr 2007)
 
