@@ -1,6 +1,12 @@
 # ChangeLog for app-admin/eselect-vi
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-vi/ChangeLog,v 1.26 2007/02/21 18:26:15 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-vi/ChangeLog,v 1.27 2007/05/07 03:11:08 pioto Exp $
+
+*eselect-vi-1.1.5 (07 May 2007)
+
+  07 May 2007; Mike Kelly <pioto@gentoo.org> +eselect-vi-1.1.5.ebuild:
+  Version bump. Makes missing manpages really not be an issue. Fixes
+  Bug #176874.
 
   21 Feb 2007; Alexander H. Færøy <eroyf@gentoo.org>
   eselect-vi-1.1.4.ebuild:
