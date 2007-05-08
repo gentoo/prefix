@@ -1,0 +1,293 @@
+# ChangeLog for dev-util/gtk-doc
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.76 2007/04/21 17:26:46 armin76 Exp $
+
+  21 Apr 2007; Raúl Porcel <armin76@gentoo.org> gtk-doc-1.6-r1.ebuild:
+  ia64 stable
+
+*gtk-doc-1.8 (19 Feb 2007)
+
+  19 Feb 2007; Daniel Gryniewicz <dang@gentoo.org> +gtk-doc-1.8.ebuild:
+  Bump to 1.8
+   o Made it easier to include example code in the source code comment blocks.
+     "|[ ... ]|" can be used to delineate example code (it just gets converted
+     to "<informalexample><programlisting>"), and most of the text in example
+     code is left as it is. The only thing that is still expanded is
+     '#' to allow links to a symbol's documentation, e.g. '#GtkWidget'.
+   o Made the field widths wider for the HTML output, so it looks a bit nicer.
+   o Added a '--rebuild-sections' option to gtkdoc-scan to automatically rebuild
+     the MODULE-sections.txt file. This only works if all the header files are
+     organized neatly and functions don't need rearranging in the docs.
+   o Added a '--rebuild-types' option to gtkdoc-scan to automatically rebuild
+     the MODULE.types file, so you don't need to add new types manually.
+   o Leave CDATA sections as they are, in the extra XML content files and within
+     source code comment blocks.
+   o Allow the section id and #include's to be set within the "SECTION:" comment
+     block, using "@Section_ID:xxx" and "@Include:".
+   o Added "--default-includes" option to specify the default #include's (for
+     people who are using --rebuild-sections and so can't specify it in
+     MODULE-sections.txt).
+   o Added a '--query-child-properties' argument to help document child
+     properties of arbitrary GObjects (used by things like canvas widgets).
+   o Fixed documentation of signals of interfaces.
+
+  21 Dec 2006; Roy Marples <uberlord@gentoo.org> gtk-doc-1.7.ebuild:
+  Added ~sparc-fbsd keyword.
+
+  20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> gtk-doc-1.6-r1.ebuild:
+  Stable on Alpha.
+
+  16 Aug 2006; Markus Rothe <corsair@gentoo.org> gtk-doc-1.6-r1.ebuild:
+  Stable on ppc64
+
+*gtk-doc-1.7 (01 Aug 2006)
+
+  01 Aug 2006; Leonardo Boshell <leonardop@gentoo.org> +gtk-doc-1.7.ebuild:
+  Version bump (bug #142346).
+
+  17 Jul 2006; Daniel Gryniewicz <dang@gentoo.org> gtk-doc-1.6-r1.ebuild:
+  Marked stable on amd64 for bug #139612
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  gtk-doc-1.6-r1.ebuild:
+  hppa stable, bug #139612
+
+  14 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  gtk-doc-1.6-r1.ebuild:
+  ppc stable, bug #139612
+
+  12 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org> gtk-doc-1.6-r1.ebuild:
+  Stable on x86 wrt bug #139612.
+
+  10 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org> gtk-doc-1.6-r1.ebuild:
+  Stable on sparc wrt #139612
+
+  30 May 2006; Leonardo Boshell <leonardop@gentoo.org>
+  gtk-doc-1.6-r1.ebuild:
+  Use gnome2_src_unpack to avoid sandbox violations.
+
+*gtk-doc-1.6-r1 (29 May 2006)
+
+  29 May 2006; Leonardo Boshell <leonardop@gentoo.org>
+  +files/gtk-doc-1.6-no_dupe_ids.patch, +gtk-doc-1.6-r1.ebuild:
+  Added patch to fix generation of SGML manuals (bug #133825).
+
+*gtk-doc-1.6 (23 May 2006)
+
+  23 May 2006; Leonardo Boshell <leonardop@gentoo.org>
+  +gtk-doc-1.6.ebuild:
+  New release. Added missing 'doc' USE flag. Added pkg-config and
+  scrollkeeper dependencies.
+
+  03 May 2006; Diego Pettenò <flameeyes@gentoo.org> gtk-doc-1.4-r1.ebuild:
+  Add ~x86-fbsd keyword.
+
+*gtk-doc-1.5 (16 Mar 2006)
+
+  16 Mar 2006; John N. Laliberte <allanonjl@gentoo.org> +gtk-doc-1.5.ebuild:
+  new version.
+
+  19 Feb 2006; Stephen P. Becker <geoman@gentoo.org> gtk-doc-1.4-r1.ebuild:
+  stable on mips
+
+  25 Oct 2005; <dang@gentoo.org> gtk-doc-1.4-r1.ebuild:
+  Marked stable on amd64
+
+  24 Sep 2005; Markus Rothe <corsair@gentoo.org> gtk-doc-1.4-r1.ebuild:
+  Stable on ppc64
+
+  12 Sep 2005; Michael Hanselmann <hansmi@gentoo.org> gtk-doc-1.4-r1.ebuild:
+  Stable on ppc.
+
+  12 Sep 2005; Gustavo Zacarias <gustavoz@gentoo.org> gtk-doc-1.4-r1.ebuild:
+  Stable on sparc
+
+  10 Sep 2005; Aron Griffis <agriffis@gentoo.org> gtk-doc-1.4-r1.ebuild:
+  Mark 1.4-r1 stable on alpha
+
+  09 Sep 2005; Aron Griffis <agriffis@gentoo.org> gtk-doc-1.4-r1.ebuild:
+  Mark 1.4-r1 stable on ia64
+
+  08 Sep 2005; Leonardo Boshell <leonardop@gentoo.org>
+  gtk-doc-1.4-r1.ebuild:
+  Stable on x86.
+
+*gtk-doc-1.4-r1 (08 Aug 2005)
+
+  08 Aug 2005; Leonardo Boshell <leonardop@gentoo.org>
+  gtk-doc-1.4-r1.ebuild, files/60gtk-doc-gentoo.el:
+  Install a gentoo-specific emacs file according to the relevant USE flag.
+  Moving elisp-compile call into src_compile().
+
+  08 Aug 2005; Leonardo Boshell <leonardop@gentoo.org>
+  gtk-doc-1.3-r1.ebuild, gtk-doc-1.4.ebuild:
+  Added virtual/emacs dependency if 'emacs' is part of the USE flags.
+
+*gtk-doc-1.4 (19 Jul 2005)
+
+  19 Jul 2005; Leonardo Boshell <leonardop@gentoo.org> gtk-doc-1.4.ebuild:
+  New version (bug #99513).
+
+  02 Jul 2005; Bryan Østergaard <kloeri@gentoo.org> gtk-doc-1.3-r1.ebuild:
+  Stable on alpha.
+
+  23 Jun 2005; Leonardo Boshell <leonardop@gentoo.org> gtk-doc-1.3-r1.ebuild,
+  gtk-doc-1.2-r1.ebuild, gtk-doc-1.1.ebuild:
+  Modified app-text/docbook-xml-dtd and app-text/docbook-sgml-dtd
+  dependencies so they use '~' syntax, as opposed to '=*'.
+
+  22 Jun 2005; Leonardo Boshell <leonardop@gentoo.org> gtk-doc-1.3-r1.ebuild,
+  gtk-doc-1.2-r1.ebuild, gtk-doc-1.1.ebuild:
+  Remove xhtml1 block. The problems being blamed on xhtml1 were unrelated.
+  In case real problems arise, the block is not a reasonable solution. See
+  bug #33843.
+
+  17 Jun 2005; Michael Hanselmann <hansmi@gentoo.org> gtk-doc-1.3-r1.ebuild:
+  Stable on ppc.
+
+  11 Jun 2005; Olivier Crête <tester@gentoo.org> gtk-doc-1.3-r1.ebuild:
+  Stable on amd64
+
+  06 Jun 2005; Markus Rothe <corsair@gentoo.org> gtk-doc-1.3-r1.ebuild:
+  Stable on ppc64
+
+  27 May 2005; Gustavo Zacarias <gustavoz@gentoo.org> gtk-doc-1.3-r1.ebuild:
+  Stable on sparc
+
+  27 May 2005; Leonardo Boshell <leonardop@gentoo.org> gtk-doc-1.3-r1.ebuild,
+  gtk-doc-1.2-r1.ebuild, gtk-doc-1.1.ebuild:
+  Marking 1.3-r1 stable on x86. Updated HOMEPAGE.
+
+  20 Apr 2005; Michael Hanselmann <hansmi@gentoo.org> gtk-doc-1.2-r1.ebuild:
+  Stable on ppc.
+
+  08 Apr 2005; Markus Rothe <corsair@gentoo.org> gtk-doc-1.2-r1.ebuild,
+  gtk-doc-1.3.ebuild, gtk-doc-1.3-r1.ebuild:
+  Stable on ppc64/added ~ppc64 to KEYWORDS
+
+*gtk-doc-1.3-r1 (05 Apr 2005)
+
+  05 Apr 2005; Leonardo Boshell <leonardop@gentoo.org> gtk-doc-1.3-r1.ebuild,
+  files/gtk-doc-1.3-declaration.patch:
+  New revision, includes a patch to correct the SGML declaration, which was
+  breaking some packages. Resolves bug #86716.
+
+*gtk-doc-1.3 (09 Mar 2005)
+
+  09 Mar 2005; Leonardo Boshell <leonardop@gentoo.org> gtk-doc-1.3.ebuild:
+  New release. Resolves bug #81081.
+
+  06 Feb 2005; Simon Stelling <blubb@gentoo.org> gtk-doc-1.2-r1.ebuild:
+  stable on amd64
+
+  19 Dec 2004; Bryan Østergaard <kloeri@gentoo.org> gtk-doc-1.2-r1.ebuild:
+  Stable on alpha.
+
+  23 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org> gtk-doc-1.2-r1.ebuild:
+  Stable on sparc
+
+  23 Nov 2004; Leonardo Boshell <leonardop@gentoo.org> gtk-doc-1.2-r1.ebuild:
+  Don't use einstall. Marked stable on x86.
+
+*gtk-doc-1.2-r1 (18 Sep 2004)
+
+  18 Mar 2004; Leonardo Boshell <leonardop@gentoo.org> gtk-doc-1.2-r1.ebuild:
+  Don't inherit from the gnome2 eclass. Reworked dependencies.
+
+  28 Jun 2004; Tom Gall <tgall@gentoo.org> gtk-doc-1.1.ebuild:
+  stable on ppc64, bug #54792
+
+  30 May 2004; L. Boshell <leonardop@gentoo.org> gtk-doc-1.1.ebuild:
+  Include `debug' in IUSE.
+
+  21 Mar 2004; Joshua Kinard <kumba@gentoo.org> gtk-doc-1.1.ebuild:
+  Marked stable on mips.
+
+  08 Mar 2004; Brian Jackson <iggy@gentoo.org> gtk-doc-1.1.ebuild:
+  remove s390 from keywords
+
+*gtk-doc-1.2 (08 Mar 2004)
+
+  08 Mar 2004; L. Boshell <leonardop@gentoo.org> gtk-doc-1.2.ebuild:
+  New version, dependencies adjustments, install examples, install .el
+  resource if the `emacs' USE var is active.
+
+  04 Mar 2004; Joshua Kinard <kumba@gentoo.org> gtk-doc-1.1.ebuild:
+  Added ~mips to KEYWORDS to satisfy repoman deps.
+
+  02 Mar 2004; Brian Jackson <iggy@gentoo.org> gtk-doc-1.1.ebuild:
+  added s390 to keywords
+
+  14 Feb 2004; <spider@gentoo.org> gtk-doc-0.9-r2.ebuild, gtk-doc-1.0.ebuild,
+  gtk-doc-1.1.ebuild:
+  finish off some DEPEND/RDEPEND bugs. (pkgconfig to DEPEND only)
+
+  12 Jan 2004; Guy Martin <gmsoft@gentoo.org> gtk-doc-1.1.ebuild :
+  Marked stable on hppa.
+
+  09 Jan 2004; Jason Wever <weeve@gentoo.org> gtk-doc-1.1.ebuild:
+  Marked stable on sparc.
+
+  06 Oct 2003; Mike Gardiner <obz@gentoo.org> gtk-doc-1.1.ebuild:
+  Marked stable on x86
+
+  23 Sep 2003; Bartosch Pixa <darkspecter@gentoo.org> gtk-doc-1.1.ebuild:
+  set ppc in keywords
+
+  15 Jul 2003; Todd Sunderlin <todd@gentoo.org> gtk-doc-1.0.ebuild:
+  Marked stable for sparc
+
+  29 Jun 2003; Aron Griffis <agriffis@gentoo.org> gtk-doc-1.1.ebuild:
+  Mark stable on alpha
+
+  30 May 2003; Luca Barbato <lu_zero@gentoo.org> gtk-doc-1.0.ebuild :
+  Added ppc to keywords.
+
+*gtk-doc-1.1 (18 Apr 2003)
+
+  18 Apr 2003; foser <foser@gentoo.org> gtk-doc-1.1.ebuild :
+  New version, now use USE debug
+
+  23 Jan 2003; Aron Griffis <agriffis@gentoo.org> gtk-doc-0.9-r2.ebuild, gtk-doc-1.0.ebuild :
+  Add alpha to KEYWORDS in 0.9, ~alpha in 1.0.
+
+  23 Jan 2003; Aron Griffis <agriffis@gentoo.org> 
+
+*gtk-doc-1.0 (21 Jan 2003)
+
+  09 Apr 2003; Matthew J. Turk <satai@gentoo.org> gtk-doc-1.0.ebuild, gtk-doc-0.9-r2.ebuild :
+  Updated to block xhtml1. Problems with that conflicting with anything
+  generated by gtk-doc.
+
+  19 Mar 2003; Guy Martin <gmsoft@gentoo.org> gtk-doc-1.0.ebuild :
+  Added hppa to keywords.
+
+  17 Feb 2003; foser <foser@gentoo.org> gtk-doc-1.0.ebuild gtk-doc-0.9-r1.ebuild :
+  Fixed docbook-xml-dtd dep (#15270), thanks to Matt for opening my eyes
+
+  21 Jan 2003; foser <foser@gentoo.org> gtk-doc-1.0.ebuild :
+  New version, fixed deps
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*gtk-doc-0.10 (16 Nov 2002)
+  09 Jan 2003; Spider <spider@gentoo.org> :
+  moved DEBUG to be DEBUGBUILD
+  
+  16 Nov 2002; Mike Frysinger <vapier@gentoo.org> :
+  Added dev-libs/libxslt to DEPEND.
+
+  16 Nov 2002; Spider <spider@gentoo.org> gtk-doc-0.10.ebuild :
+  Added the new version, marked as testing, added DEBUG logic to the build.
+  
+*gtk-doc-0.9-r2 (Mar 29 2002)
+
+  18 Jan 2003; Martin Holzer <mholzer@gentoo.org> gtk-doc-0.9-r2.ebuild
+  files/digest-gtk-doc-0.9-r2 ChangeLog :
+  Fixed SRC_URI.
+
+  01 Aug 2002; Mark Guertin <gerk@gentoo.org> :
+  Added ppc to keywords
+
+  29 Mar 2002; Mike Frysinger <vapier@gentoo.org> :
+  Initial changelog and release of gtk-doc
