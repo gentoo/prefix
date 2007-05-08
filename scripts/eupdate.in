@@ -667,6 +667,9 @@ if [[ $last_mte != "" ]] ; then
 		cp "${MTREEDIR}/${EPACKAGE}"/$last_mte .
 		eapify $last_mte
 		ecleankw $last_mte
+		# even though no digests are there any more, the directory still
+		# needs to exist
+		mkdir files
 		fetch_files $last_mte
 	fi
 fi
