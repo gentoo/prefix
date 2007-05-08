@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/man
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.121 2007/05/05 11:42:09 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.122 2007/05/07 02:47:28 dang Exp $
+
+  07 May 2007; Daniel Gryniewicz <dang@gentoo.org> man-1.6e-r3.ebuild:
+  Marked stable on amd64 for bug #177127
 
   05 May 2007; Jeroen Roovers <jer@gentoo.org> man-1.6e-r3.ebuild:
   Stable for HPPA (bug #177127).
