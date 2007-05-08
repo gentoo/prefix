@@ -1,6 +1,10 @@
 # ChangeLog for media-video/dvdbackup
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/dvdbackup/ChangeLog,v 1.19 2006/07/02 13:34:47 pylon Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-video/dvdbackup/ChangeLog,v 1.20 2007/05/05 22:04:43 grobian Exp $
+
+  05 May 2007; Fabian Groffen <grobian@gentoo.org>
+  dvdbackup-0.1.1-r1.ebuild, dvdbackup-0.1.1-r2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   02 Jul 2006; Lars Weiler <pylon@gentoo.org> dvdbackup-0.1.1-r2.ebuild:
   Stable on ppc; bug #138004.
