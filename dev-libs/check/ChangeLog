@@ -1,0 +1,112 @@
+# ChangeLog for dev-libs/check
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/check/ChangeLog,v 1.35 2007/04/24 19:56:22 gustavoz Exp $
+
+  24 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> check-0.9.5.ebuild:
+  Stable on sparc
+
+  05 Feb 2007; Guy Martin <gmsoft@gentoo.org> check-0.9.5.ebuild:
+  Stable on hppa to make gstreamer compile again (-fPIC problem).
+
+  28 Dec 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/check-0.9.5-autotools.patch, check-0.9.5.ebuild:
+  Cleanup autotools.
+
+  14 Dec 2006; <twp@gentoo.org> check-0.9.5.ebuild:
+  Install docs in correct dir.
+
+*check-0.9.5 (14 Dec 2006)
+
+  14 Dec 2006; <twp@gentoo.org> -check-0.9.3.ebuild, +check-0.9.5.ebuild:
+  Version bump.  Bug # 158142.
+
+  20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> check-0.9.3-r1.ebuild:
+  Stable on Alpha.
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org> check-0.9.3-r1.ebuild:
+  Mark 0.9.3-r1 stable on ia64
+
+  05 Jul 2006; Emanuele Giaquinta <exg@gentoo.org> check-0.9.3-r1.ebuild:
+  Stable on ppc.
+
+  22 Jun 2006; Simon Stelling <blubb@gentoo.org> check-0.9.3-r1.ebuild:
+  stable on amd64
+
+  27 Apr 2006; Marien Zwart <marienz@gentoo.org> files/digest-check-0.8.4,
+  files/digest-check-0.9.2, files/digest-check-0.9.3, Manifest:
+  Fixing SHA256 digest, pass four
+
+*check-0.9.3-r1 (01 Mar 2006)
+
+  01 Mar 2006; Tom Payne <twp@gentoo.org> +files/check-0.9.3-libtool.patch,
+  +check-0.9.3-r1.ebuild:
+  Use libtool. Patch from flameeyes. Bug # 104240.
+
+*check-0.9.3 (18 Oct 2005)
+
+  18 Oct 2005; Tom Payne <twp@gentoo.org> +check-0.9.3.ebuild:
+  Version bump. Bug # 109598.
+
+  30 Jul 2005; Kito <kito@gentoo.org> check-0.9.2.ebuild:
+  ~ppc-macos
+
+  09 Apr 2005; Michael Hanselmann <hansmi@gentoo.org> check-0.9.2.ebuild:
+  Stable on ppc.
+
+  08 Apr 2005; Markus Rothe <corsair@gentoo.org> check-0.9.2.ebuild:
+  Stable on ppc64
+
+  03 Feb 2005; Danny van Dyk <kugelfang@gentoo.org> check-0.9.2.ebuild:
+  Directly marked stable on request of carpaski.
+
+  18 Jan 2005; Bryan Østergaard <kloeri@gentoo.org> check-0.9.2.ebuild:
+  Stable on alpha.
+
+  18 Jan 2005; Bryan Østergaard <kloeri@gentoo.org> check-0.9.2.ebuild:
+  Add ~alpha keyword.
+
+  16 Jan 2005; Guy Martin <gmsoft@gentoo.org> check-0.9.2.ebuild:
+  Stable on hppa.
+
+  15 Jan 2005; Jason Wever <weeve@gentoo.org> check-0.9.2.ebuild:
+  Stable on sparc.
+
+  10 Jan 2005; Gustavo Zacarias <gustavoz@gentoo.org> check-0.9.2.ebuild:
+  Keyworded ~sparc
+
+  10 Jan 2005; Tom Payne <twp@gentoo.org> check-0.9.2.ebuild:
+  Stable on x86.
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+*check-0.9.2 (10 Dec 2004)
+
+  10 Dec 2004; Tom Payne <twp@gentoo.org> +metadata.xml,
+  +check-0.9.2.ebuild:
+  Version bump.
+
+  25 Sep 2004; Joshua Kinard <kumba@gentoo.org> check-0.8.4.ebuild:
+  Marked stable on mips.
+
+  24 Sep 2004; Bryan Østergaard,,, <kloeri@gentoo.org> check-0.8.4.ebuild:
+  Add ~alpha keyword.
+
+  23 Sep 2004; Gustavo Zacarias <gustavoz@gentoo.org> check-0.8.4.ebuild:
+  Stable on sparc wrt #65041
+
+  23 Sep 2004; Travis Tilley <lv@gentoo.org> check-0.8.4.ebuild:
+  added ~amd64 keyword
+
+  22 Sep 2004; Tom Gall <tgall@gentoo.org> check-0.8.4.ebuild:
+  stable on ppc64
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org> check-0.8.4.ebuild:
+  virtual/glibc -> virtual/libc
+
+*check-0.8.4 (27 Nov 2002)
+
+  27 Nov 2002; Zach Welch <zwelch@gentoo.org> :
+  User submitted ebuild in bug 11108 by faune@broadpark.no
+
+

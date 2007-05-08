@@ -1,0 +1,14 @@
+Needed with newer autotools:
+
+tests/Makefile.am:22: compiling `check_list.c' with per-target flags requires `AM_PROG_CC_C_O' in `configure.ac'
+
+--- configure.ac
++++ configure.ac
+@@ -68,6 +68,7 @@
+ # Checks for programs.
+ AC_PROG_AWK
+ AC_PROG_CC
++AM_PROG_CC_C_O
+ AC_PROG_INSTALL
+ AC_PROG_LN_S
+ AC_PROG_LIBTOOL
