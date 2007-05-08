@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.9-r1.ebuild,v 1.1 2007/04/30 18:55:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.9-r1.ebuild,v 1.2 2007/05/07 05:32:17 vapier Exp $
 
 EAPI="prefix"
 
@@ -96,6 +96,9 @@ src_compile() {
 	# it doesn't for Linux and Darwin, so we do it the oldfashioned way
 	[[ ${ELIBC} == "glibc" || ${ELIBC} == "uclibc" ]] \
 		&& myconf="${myconf} --without-included-regex"
+
+	# cross-compile workaround #177061
+	[[ ${CHOST} == *-linux* ]] && export fu_cv_sys_stat_statvfs=yes
 
 	use static && append-ldflags -static
 	econf \
