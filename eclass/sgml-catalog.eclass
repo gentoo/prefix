@@ -34,12 +34,12 @@ sgml-catalog_pkg_postinst() {
 	for entry in ${SGML_TOINSTALL}; do
 		arg1=`echo ${entry} | cut -f1 -d\:`
 		arg2=`echo ${entry} | cut -f2 -d\:`
-		if [ ! -e ${arg2} ]
+		if [ ! -e "${EPREFIX}"${arg2} ]
 		then
 			ewarn "${arg2} doesn't appear to exist, although it ought to!"
 			continue
 		fi
-		einfo "Now adding ${EPREFIX}/${arg2} to ${EPREFIX}/${arg1} and ${EPREFIX}/etc/sgml/catalog"
+		einfo "Now adding ${EPREFIX}${arg2} to ${EPREFIX}${arg1} and ${EPREFIX}/etc/sgml/catalog"
 		sgml-catalog_cat_doinstall ${arg1} ${arg2}
 	done
 	sgml-catalog_cleanup
