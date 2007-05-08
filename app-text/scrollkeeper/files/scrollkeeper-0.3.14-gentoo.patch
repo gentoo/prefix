@@ -1,0 +1,32 @@
+diff -NurdB scrollkeeper-0.3.14/Makefile.in scrollkeeper-0.3.14-patched/Makefile.in
+--- scrollkeeper-0.3.14/Makefile.in	2003-12-06 03:17:51.000000000 -0500
++++ scrollkeeper-0.3.14-patched/Makefile.in	2005-06-23 03:57:41.000000000 -0500
+@@ -609,7 +609,7 @@
+ 
+ info-am:
+ 
+-install-data-am: install-scrollkeeperdocDATA
++install-data-am:
+ 	@$(NORMAL_INSTALL)
+ 	$(MAKE) $(AM_MAKEFLAGS) install-data-hook
+ 
+@@ -675,8 +675,6 @@
+ 	$(mkinstalldirs) $(DESTDIR)$(localstatedir)/log
+ 	PATH="$(PATH):$(DESTDIR)$(bindir)" ; \
+ 		echo "`date +\"%b %d %X\"` Installing ScrollKeeper `scrollkeeper-config --version`..." >> $(DESTDIR)$(localstatedir)/log/scrollkeeper.log
+-	PATH="$(PATH):$(DESTDIR)$(bindir)" ; \
+-		$(DESTDIR)$(bindir)/scrollkeeper-rebuilddb -q -p $(DESTDIR)$(scrollkeeper_localstate_dir)
+ 
+ # Remove generated files
+ uninstall-local:
+diff -NurdB scrollkeeper-0.3.14/extract/dtds/Makefile.in scrollkeeper-0.3.14-patched/extract/dtds/Makefile.in
+--- scrollkeeper-0.3.14/extract/dtds/Makefile.in	2003-12-06 03:18:01.000000000 -0500
++++ scrollkeeper-0.3.14-patched/extract/dtds/Makefile.in	2005-06-23 03:55:49.000000000 -0500
+@@ -361,7 +361,6 @@
+ 
+ install-data-am: install-dtdsHEADERS
+ 	@$(NORMAL_INSTALL)
+-	$(MAKE) $(AM_MAKEFLAGS) install-data-hook
+ 
+ install-exec-am:
+ 

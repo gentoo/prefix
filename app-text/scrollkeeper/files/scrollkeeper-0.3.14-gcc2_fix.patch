@@ -1,0 +1,20 @@
+diff -NurB scrollkeeper-0.3.14-orig/libs/install.c scrollkeeper-0.3.14/libs/install.c
+--- scrollkeeper-0.3.14-orig/libs/install.c	2004-02-12 09:34:02.000000000 -0500
++++ scrollkeeper-0.3.14/libs/install.c	2004-02-12 09:35:31.000000000 -0500
+@@ -499,6 +499,7 @@
+ 				    int id, int add_toc, char outputprefs, char **complete_cat_token)
+ {
+     xmlNodePtr node, new_node, s_node;
++    xmlChar *categorycode;
+ 
+     if (sect_node == NULL ||
+         cat_token == NULL)
+@@ -520,8 +521,6 @@
+     	if (xmlStrcmp(node->name, (xmlChar *)"sect"))
+ 	    continue;
+ 	
+-	xmlChar *categorycode;
+-	
+ 	categorycode = xmlGetProp(node, (xmlChar *)"categorycode");
+ 	if (categorycode == NULL)
+ 	    continue;

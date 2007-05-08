@@ -1,0 +1,11 @@
+# $Header: /var/cvsroot/gentoo-x86/app-text/scrollkeeper/files/scrollkeeper-logrotate,v 1.1 2005/06/20 21:49:19 leonardop Exp $
+#
+# Scrollkeeper logrotate snippet for Gentoo Linux
+# contributed by Gad Kadosh
+#
+
+/var/log/scrollkeeper.log {
+  rotate 1
+  size=100k
+}
+

@@ -1,0 +1,409 @@
+Index: scrollkeeper-0.3.14/buildtools/separate.c
+===================================================================
+--- scrollkeeper-0.3.14.orig/buildtools/separate.c
++++ scrollkeeper-0.3.14/buildtools/separate.c
+@@ -25,9 +25,14 @@
+ #include <unistd.h>
+ #include <sys/stat.h>
+ #include <errno.h>
+-#include <libintl.h>
+ #include <scrollkeeper.h>
+ 
++#ifdef ENABLE_NLS
++#include <libintl.h>
++#else
++#define _(x) x
++#endif
++
+ typedef struct {
+ 	char *filename;
+ 	char *locale;
+@@ -306,9 +311,11 @@ main (int argc, char *argv[])
+ 	int locale_num, i;
+ 	int locale_tree_error=0;
+ 
++#ifdef ENABLE_NLS
+     	setlocale (LC_ALL, "");
+     	bindtextdomain (PACKAGE, SCROLLKEEPERLOCALEDIR);
+     	textdomain (PACKAGE);
++#endif
+     
+     	if (argc != 3) {
+     		usage();
+Index: scrollkeeper-0.3.14/libs/database.c
+===================================================================
+--- scrollkeeper-0.3.14.orig/libs/database.c
++++ scrollkeeper-0.3.14/libs/database.c
+@@ -23,12 +23,17 @@
+ #include <unistd.h>
+ #include <sys/stat.h>
+ #include <errno.h>
+-#include <libintl.h>
+ #include <dirent.h>
+ #include <scrollkeeper.h>
+ 
+ #define PATHLEN		256
+ 
++#ifdef ENABLE_NLS
++#include <libintl.h>
++#define _(String) gettext (String)
++#else
++#define _(String) String
++#endif
+ 
+ /*
+  * Create a directory.  Send errors to appropriate places (STDOUT and log 
+Index: scrollkeeper-0.3.14/libs/error.c
+===================================================================
+--- scrollkeeper-0.3.14.orig/libs/error.c
++++ scrollkeeper-0.3.14/libs/error.c
+@@ -22,11 +22,17 @@
+ #include <scrollkeeper.h>
+ #include <errno.h>
+ #include <string.h>
+-#include <libintl.h>
+ #include <stdlib.h>
+ #include <sys/stat.h>
+ #include <time.h>
+ 
++#ifdef ENABLE_NLS
++#include <libintl.h>
++#define _(String) gettext (String)
++#else
++#define _(String) String
++#endif
++
+ /*
+  * sk_warning:
+  *               This is a general purpose function for sending error and 
+Index: scrollkeeper-0.3.14/libs/extract.c
+===================================================================
+--- scrollkeeper-0.3.14.orig/libs/extract.c
++++ scrollkeeper-0.3.14/libs/extract.c
+@@ -18,7 +18,6 @@
+ 
+ #include <config.h>
+ #include <locale.h>
+-#include <libintl.h>
+ #include <libxslt/xslt.h>
+ #include <libxslt/xsltInternals.h>
+ #include <libxslt/transform.h>
+@@ -33,6 +32,13 @@
+ #include <errno.h>
+ #include <sys/stat.h>
+ 
++#ifdef ENABLE_NLS
++#include <libintl.h>
++#define _(String) gettext (String)
++#else
++#define _(String) String
++#endif
++
+ extern int xmlLoadExtDtdDefaultValue;
+ 
+ int apply_stylesheets (char *input_file, char *type, int stylesheet_num,
+Index: scrollkeeper-0.3.14/libs/install.c
+===================================================================
+--- scrollkeeper-0.3.14.orig/libs/install.c
++++ scrollkeeper-0.3.14/libs/install.c
+@@ -25,11 +25,15 @@
+ #include <unistd.h>
+ #include <sys/stat.h>
+ #include <errno.h>
+-#include <libintl.h>
+ #include <dirent.h>
+ #include <scrollkeeper.h>
+ 
++#ifdef ENABLE_NLS
++#include <libintl.h>
+ #define _(String) gettext (String)
++#else
++#define _(String) String
++#endif
+ 
+ #define SEP		"|"
+ #define PATHLEN		256
+Index: scrollkeeper-0.3.14/libs/uninstall.c
+===================================================================
+--- scrollkeeper-0.3.14.orig/libs/uninstall.c
++++ scrollkeeper-0.3.14/libs/uninstall.c
+@@ -23,11 +23,15 @@
+ #include <string.h>
+ #include <unistd.h>
+ #include <sys/stat.h>
+-#include <libintl.h>
+ #include <locale.h>
+ #include <scrollkeeper.h>
+ 
++#ifdef ENABLE_NLS
++#include <libintl.h>
+ #define _(String) gettext (String)
++#else
++#define _(String) String
++#endif
+ 
+ #define PATHLEN		256
+ 
+Index: scrollkeeper-0.3.14/libs/update-url.c
+===================================================================
+--- scrollkeeper-0.3.14.orig/libs/update-url.c
++++ scrollkeeper-0.3.14/libs/update-url.c
+@@ -23,10 +23,14 @@
+ #include <string.h>
+ #include <unistd.h>
+ #include <sys/stat.h>
+-#include <libintl.h>
+ #include <scrollkeeper.h>
+ 
++#ifdef ENABLE_NLS
++#include <libintl.h>
+ #define _(String) gettext (String)
++#else
++#define _(String) String
++#endif
+ 
+ int update_doc_url_in_omf_file(char *omf_name, char *url, char *omf_new_name)
+ {
+Index: scrollkeeper-0.3.14/cl/src/preinstall.c
+===================================================================
+--- scrollkeeper-0.3.14.orig/cl/src/preinstall.c
++++ scrollkeeper-0.3.14/cl/src/preinstall.c
+@@ -23,10 +23,15 @@
+ #include <string.h>
+ #include <unistd.h>
+ #include <sys/stat.h>
+-#include <libintl.h>
+ #include <locale.h>
+ #include <scrollkeeper.h>
+ 
++#ifdef ENABLE_NLS
++#include <libintl.h>
++#else
++#define _(x) x
++#endif
++
+ static xmlExternalEntityLoader defaultEntityLoader = NULL;
+ 
+ static void usage()
+@@ -41,9 +46,11 @@ main (int argc, char *argv[])
+     char *omf_name, *url, *omf_new_name;
+     int i;
+     
++#ifdef ENABLE_NLS
+     setlocale (LC_ALL, "");
+     bindtextdomain (PACKAGE, SCROLLKEEPERLOCALEDIR);
+     textdomain (PACKAGE);
++#endif
+     
+ 	
+     if (argc < 3) {
+Index: scrollkeeper-0.3.14/cl/src/get-cl.c
+===================================================================
+--- scrollkeeper-0.3.14.orig/cl/src/get-cl.c
++++ scrollkeeper-0.3.14/cl/src/get-cl.c
+@@ -25,7 +25,6 @@
+ #include <stdlib.h>
+ #include <stdio.h>
+ #include <string.h>
+-#include <libintl.h>
+ #include <libxml/tree.h>
+ #include <scrollkeeper.h>
+ #include <errno.h>
+@@ -37,6 +36,12 @@
+ #include <utime.h>
+ #include <pwd.h>
+ 
++#ifdef ENABLE_NLS
++#include <libintl.h>
++#else
++#define _(x) x
++#endif
++
+ /*
+  * make_local_tmpdir:
+  * @dirname: directory name.
+@@ -198,9 +203,11 @@ int main(int argc, char **argv)
+ 	xmlDocPtr merged_tree;
+         char outputprefs=0;
+ 
++#ifdef ENABLE_NLS
+     	setlocale (LC_ALL, "");
+     	bindtextdomain (PACKAGE, SCROLLKEEPERLOCALEDIR);
+     	textdomain (PACKAGE);
++#endif
+ 
+     	usage(argc, argv);
+ 
+Index: scrollkeeper-0.3.14/cl/src/scrollkeeper-install.c
+===================================================================
+--- scrollkeeper-0.3.14.orig/cl/src/scrollkeeper-install.c
++++ scrollkeeper-0.3.14/cl/src/scrollkeeper-install.c
+@@ -25,10 +25,15 @@
+ #include <unistd.h>
+ #include <sys/stat.h>
+ #include <errno.h>
+-#include <libintl.h>
+ #include <dirent.h>
+ #include <scrollkeeper.h>
+ 
++#ifdef ENABLE_NLS
++#include <libintl.h>
++#else
++#define _(x) x
++#endif
++
+ static xmlExternalEntityLoader defaultEntityLoader = NULL;
+ 
+ static void usage()
+@@ -47,9 +52,11 @@ main (int argc, char *argv[])
+     char outputprefs=0;
+     int i;
+     
++#ifdef ENABLE_NLS
+     setlocale (LC_ALL, "");
+     bindtextdomain (PACKAGE, SCROLLKEEPERLOCALEDIR);
+     textdomain (PACKAGE);
++#endif
+ 
+     if (argc == 1) {
+ 	usage();
+Index: scrollkeeper-0.3.14/cl/src/scrollkeeper-uninstall.c
+===================================================================
+--- scrollkeeper-0.3.14.orig/cl/src/scrollkeeper-uninstall.c
++++ scrollkeeper-0.3.14/cl/src/scrollkeeper-uninstall.c
+@@ -23,10 +23,15 @@
+ #include <string.h>
+ #include <unistd.h>
+ #include <sys/stat.h>
+-#include <libintl.h>
+ #include <locale.h>
+ #include <scrollkeeper.h>
+ 
++#ifdef ENABLE_NLS
++#include <libintl.h>
++#else
++#define _(x) x
++#endif
++
+ static void usage()
+ {
+     printf(_("Usage: scrollkeeper-uninstall [-v] [-q] [-p <SCROLLKEEPER_DB_DIR>] <OMF FILE>\n"));
+@@ -41,9 +46,11 @@ main (int argc, char *argv[])
+     char outputprefs=0;
+     int i;
+  
++#ifdef ENABLE_NLS
+     setlocale (LC_ALL, "");
+     bindtextdomain (PACKAGE, SCROLLKEEPERLOCALEDIR);
+     textdomain (PACKAGE);
++#endif
+     
+     if (argc == 1)
+ 	usage();
+Index: scrollkeeper-0.3.14/cl/src/update.c
+===================================================================
+--- scrollkeeper-0.3.14.orig/cl/src/update.c
++++ scrollkeeper-0.3.14/cl/src/update.c
+@@ -24,12 +24,17 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <errno.h>
+-#include <libintl.h>
+ #include <locale.h>
+ #include <dirent.h>
+ #include <unistd.h>
+ #include <scrollkeeper.h>
+ 
++#ifdef ENABLE_NLS
++#include <libintl.h>
++#else
++#define _(x) x
++#endif
++
+ static char **av;
+ static char config_omf_dir[PATHLEN];
+ static xmlExternalEntityLoader defaultEntityLoader = NULL;
+@@ -361,9 +366,11 @@ int main(int argc, char **argv)
+ 
+     av = argv;
+     
++#ifdef ENABLE_NLS
+     setlocale (LC_ALL, "");
+     bindtextdomain (PACKAGE, SCROLLKEEPERLOCALEDIR);
+     textdomain (PACKAGE);
++#endif
+ 
+     scrollkeeper_dir[0] = '\0';
+     omf_dir[0] = '\0';
+Index: scrollkeeper-0.3.14/extract/src/scrollkeeper-extract.c
+===================================================================
+--- scrollkeeper-0.3.14.orig/extract/src/scrollkeeper-extract.c
++++ scrollkeeper-0.3.14/extract/src/scrollkeeper-extract.c
+@@ -18,13 +18,18 @@
+ 
+ #include <config.h>
+ #include <locale.h>
+-#include <libintl.h>
+ #include <scrollkeeper.h>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <sys/stat.h>
+ #include <errno.h>
+ 
++#ifdef ENABLE_NLS
++#include <libintl.h>
++#else
++#define _(x) x
++#endif
++
+ static void usage()
+ {
+ 	printf(_("Usage: scrollkeeper-extract <xml file> <stylesheet 1> <output file 1> <stylesheet 2> <output file 2> ...\n"));
+@@ -38,9 +43,11 @@ main (int argc, char *argv[])
+ 	char *extension;
+         char outputprefs=0;
+ 
++#ifdef ENABLE_NLS
+ 	setlocale (LC_ALL, "");
+   	bindtextdomain (PACKAGE, SCROLLKEEPERLOCALEDIR);
+   	textdomain (PACKAGE);
++#endif
+ 
+ 	num = (argc-2)/2;
+ 
+Index: scrollkeeper-0.3.14/scripts/gen-docuid.c
+===================================================================
+--- scrollkeeper-0.3.14.orig/scripts/gen-docuid.c
++++ scrollkeeper-0.3.14/scripts/gen-docuid.c
+@@ -17,13 +17,18 @@
+  */
+ 
+ #include <config.h>
+-#include <libintl.h>
+ #include <locale.h>
+ #include <stdio.h>
+ #include <string.h>
+ #include <uuid.h>
+ #include <scrollkeeper.h>
+ 
++#ifdef ENABLE_NLS
++#include <libintl.h>
++#else
++#define _(x) x
++#endif
++
+ int
+ main (int argc, char *argv[])
+ {
+@@ -32,9 +37,11 @@ main (int argc, char *argv[])
+ 
+ 	if (argc > 1)
+ 	{
++#ifdef ENABLE_NLS
+ 	     setlocale (LC_ALL, "");
+ 	     bindtextdomain (PACKAGE, SCROLLKEEPERLOCALEDIR);
+ 	     textdomain (PACKAGE);
++#endif
+ 
+ 	     if (strcmp (argv[1], "--help") == 0)
+ 	     {
