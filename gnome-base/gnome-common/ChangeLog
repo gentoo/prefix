@@ -1,0 +1,158 @@
+# ChangeLog for gnome-base/gnome-common
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-common/ChangeLog,v 1.43 2007/02/16 20:15:47 uberlord Exp $
+
+  16 Feb 2007; Roy Marples <uberlord@gentoo.org> gnome-common-2.12.0.ebuild:
+  Add ~x86-fbsd keyword, #167237.
+
+  21 Dec 2006; Saleem Abdulrasool <compnerd@gentoo.org>
+  -gnome-common-1.2.4-r3.ebuild, -gnome-common-1.2.4-r4.ebuild:
+  gnome-1.x removal
+
+  20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org>
+  gnome-common-2.12.0.ebuild:
+  Stable on Alpha.
+
+  13 Sep 2006; Aron Griffis <agriffis@gentoo.org>
+  gnome-common-2.12.0.ebuild:
+  Mark 2.12.0 stable on ia64. #139612
+
+  05 Sep 2006; Joshua Kinard <kumba@gentoo.org>
+  gnome-common-1.2.4-r3.ebuild, gnome-common-1.2.4-r4.ebuild,
+  gnome-common-2.8.0.ebuild, gnome-common-2.12.0.ebuild:
+  Removing mips keywords as gnome is no longer supported on mips.
+
+  16 Aug 2006; Markus Rothe <corsair@gentoo.org> gnome-common-2.12.0.ebuild:
+  Stable on ppc64
+
+*gnome-common-1.2.4-r4 (15 Aug 2006)
+
+  15 Aug 2006; John N. Laliberte <allanonjl@gentoo.org>
+  +gnome-common-1.2.4-r4.ebuild, gnome-common-2.8.0.ebuild,
+  gnome-common-2.12.0.ebuild:
+  move gnome-common-2* to SLOT 3. change gnome-autogen.sh name for
+  gnome-common-1. fixes #139517
+
+  15 Aug 2006; Markus Rothe <corsair@gentoo.org>
+  gnome-common-1.2.4-r3.ebuild:
+  Stable on ppc64
+
+  17 Jul 2006; Daniel Gryniewicz <dang@gentoo.org>
+  gnome-common-2.12.0.ebuild:
+  Marked stable on amd64 for bug #139612
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  gnome-common-2.12.0.ebuild:
+  hppa stable, bug #139612
+
+  14 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  gnome-common-2.12.0.ebuild:
+  ppc stable, bug #139612
+
+  12 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  gnome-common-2.12.0.ebuild:
+  Stable on x86 wrt bug #139612.
+
+  10 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  gnome-common-2.12.0.ebuild:
+  Stable on sparc wrt #139612
+
+*gnome-common-2.12.0 (23 Sep 2005)
+
+  23 Sep 2005; <dang@gentoo.org> +gnome-common-2.12.0.ebuild:
+  Revbump
+
+  13 Jul 2005; Stephen P. Becker <geoman@gentoo.org>
+  gnome-common-2.8.0.ebuild:
+  added ~mips keyword
+
+  02 Jul 2005; Bryan Østergaard <kloeri@gentoo.org>
+  gnome-common-2.8.0.ebuild:
+  Stable on alpha.
+
+  18 Jun 2005; Markus Rothe <corsair@gentoo.org> gnome-common-2.8.0.ebuild:
+  Stable on ppc64
+
+  12 Jun 2005; Olivier Crête <tester@gentoo.org> gnome-common-2.8.0.ebuild:
+  Stable on amd64
+
+  12 Jun 2005; Tobias Scherbaum <dertobi123@gentoo.org>
+  gnome-common-2.8.0.ebuild:
+  Stable on ppc.
+
+  02 Jun 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  gnome-common-2.8.0.ebuild:
+  Stable on sparc
+
+  28 May 2005; Leonardo Boshell <leonardop@gentoo.org>
+  gnome-common-2.8.0.ebuild:
+  Stable on x86. Install a couple more documents. Removing pkgconfig
+  dependency.
+
+  20 Feb 2005; Tom Martin <slarti@gentoo.org> gnome-common-2.8.0.ebuild:
+  Marked ~amd64, bug 80847.
+
+*gnome-common-2.8.0 (25 Jan 2005)
+
+  25 Jan 2005; Mike Gardiner <obz@gentoo.org> +gnome-common-2.8.0.ebuild:
+  Version bump, see bug #66376
+
+  16 Dec 2004; Markus Rothe <corsair@gentoo.org> gnome-common-2.4.0.ebuild:
+  Stable on ppc64
+
+  05 Nov 2004; Markus Rothe <corsair@gentoo.org> gnome-common-2.4.0.ebuild:
+  Marked ~ppc64; bug #69450
+
+  06 Aug 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  gnome-common-2.4.0.ebuild:
+  Stable on sparc
+
+  02 Jun 2004; L. Boshell <leonardop@gentoo.org> gnome-common-1.2.4-r3.ebuild:
+  Added IUSE var. Inherit from gnome.org.eclass.
+
+  29 May 2004; Pieter Van den Abeele <pvdabeel@gentoo.org>
+  gnome-common-2.4.0.ebuild:
+  Masked gnome-common-2.4.0.ebuild stable for ppc
+
+  26 May 2004; Guy Martin <gmsoft@gentoo.org> gnome-common-2.4.0.ebuild:
+  Marked stable on hppa.
+
+  13 May 2004; Stephen P. Becker <geoman@gentoo.org>
+  gnome-common-1.2.4-r3.ebuild:
+  Keyworded mips to satisfy repoman deps for xmms.
+
+  13 May 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  gnome-common-2.4.0.ebuild:
+  Keyworded ~sparc
+
+  11 May 2004; L. Boshell <leonardop@gentoo.org> gnome-common-2.4.0.ebuild:
+  Marked stable on x86.
+
+  09 Jan 2004; <agriffis@gentoo.org> gnome-common-1.2.4-r3.ebuild:
+  stable on ia64
+
+  19 Oct 2003; L. Boshell <leonardop@gentoo.org> gnome-common-1.2.4-r3.ebuild :
+  Change its SLOT value to 2, since it provides gnome2-macros, and its
+  contents are replaced by gnome-common-2.4.0. Closes bug #31402.
+  
+*gnome-common-2.4.0 (10 Oct 2003)
+
+  10 Oct 2003; L. Boshell <leonardop@gentoo.org> gnome-common-2.4.0.ebuild :
+  Version bump.
+
+  07 Jan 2003; Daniel Ahlberg <aliz@gentoo.org> gnome-common-1.2.4-r3.ebuild :
+  Updated SRC_URI.
+
+  06 Jan 2003; Aron Griffis <agriffis@gentoo.org> gnome-common-1.2.4-r3.ebuild:
+  added alpha to KEYWORDS
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*gnome-common-1.2.4-r3 (22 May 2002)
+
+  06 Jul 2003; Guy Martin <gmsoft@gentoo.org> gnome-common-1.2.4-r3.ebuild :
+  Added hppa to KEYWORDS.
+
+  22 May 2002; Spider <spider@gentoo.org>  gnome-common-1.2.4-r3.ebuild:
+  part of gnome2 . initial cvs commit
+
