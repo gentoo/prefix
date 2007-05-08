@@ -5,7 +5,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.21 2007/04/07 12:55:52 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.22 2007/05/07 22:10:46 caster Exp $
 
 inherit java-utils-2
 
@@ -65,8 +65,7 @@ java-pkg-2_pkg_setup() {
 # EANT_FILTER_COMPILER - Calls java-pkg_filter-compiler with the value
 # EANT_BUILD_TARGET - the ant target/targets to execute (default: jar)
 # EANT_DOC_TARGET - the target to build extra docs under the doc use flag
-#                   (default: the one provided by use_doc in
-#                   java-utils-2.eclass)
+#                   (default: javadoc; declare empty to disable completely)
 # EANT_GENTOO_CLASSPATH - @see eant documention in java-utils-2.eclass
 # EANT_EXTRA_ARGS - extra arguments to pass to eant
 # EANT_ANT_TASKS - modifies the ANT_TASKS variable in the eant environment
@@ -76,9 +75,10 @@ java-pkg-2_src_compile() {
 	if [[ -e "${EANT_BUILD_XML:=build.xml}" ]]; then
 		[[ "${EANT_FILTER_COMPILER}" ]] && \
 			java-pkg_filter-compiler ${EANT_FILTER_COMPILER}
-
 		local antflags="${EANT_BUILD_TARGET:=jar}"
-		hasq doc ${IUSE} && antflags="${antflags} $(use_doc ${EANT_DOC_TARGET})"
+		if hasq doc ${IUSE} && [[ -n "${EANT_DOC_TARGET=javadoc}" ]]; then
+			antflags="${antflags} $(use_doc ${EANT_DOC_TARGET})"
+		fi
 		local tasks
 		[[ ${EANT_ANT_TASKS} ]] && tasks="${ANT_TASKS} ${EANT_ANT_TASKS}"
 		ANT_TASKS="${tasks:-${ANT_TASKS}}" \

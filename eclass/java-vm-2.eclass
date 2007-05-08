@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.16 2006/11/11 00:13:22 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.17 2007/05/07 15:51:29 betelgeuse Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -23,16 +23,18 @@ RDEPEND="
 
 export WANT_JAVA_CONFIG=2
 
-if [[ "${SLOT}" != "0" ]]; then
-	VMHANDLE=${PN}-${SLOT}
-else
-	VMHANDLE=${PN}
-fi
-
 JAVA_VM_CONFIG_DIR="/usr/share/java-config-2/vm"
 JAVA_VM_DIR="/usr/lib/jvm"
 
-EXPORT_FUNCTIONS pkg_postinst pkg_prerm pkg_postrm
+EXPORT_FUNCTIONS pkg_setup pkg_postinst pkg_prerm pkg_postrm
+
+java-vm-2_pkg_setup() {
+	if [[ "${SLOT}" != "0" ]]; then
+		VMHANDLE=${PN}-${SLOT}
+	else
+		VMHANDLE=${PN}
+	fi
+}
 
 java-vm-2_pkg_postinst() {
 	# Set the generation-2 system VM, if it isn't set

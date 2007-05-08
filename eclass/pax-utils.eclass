@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/pax-utils.eclass,v 1.6 2007/04/24 18:27:11 kevquinn Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/pax-utils.eclass,v 1.7 2007/05/07 09:24:16 kevquinn Exp $
 
 # Author:
 #	Kevin F. Quinn <kevquinn@gentoo.org>
@@ -88,7 +88,7 @@ pax-mark() {
 	shift
 	# Try chpax, for (deprecated) EI legacy marking.
 	if type -p chpax > /dev/null && hasq EI ${PAX_MARKINGS}; then
-		einfo "Legacy EI PaX marking -${flags}"
+		elog "Legacy EI PaX marking -${flags}"
 		_pax_list_files elog "$@"
 		for f in "$@"; do
 			chpax -${flags} "${f}" && continue
@@ -100,7 +100,7 @@ pax-mark() {
 	# over scanelf.
 	if type -p paxctl > /dev/null && hasq PT ${PAX_MARKINGS}; then
 		# Try paxctl, the upstream supported tool.
-		einfo "PT PaX marking -${flags}"
+		elog "PT PaX marking -${flags}"
 		_pax_list_files elog "$@"
 		for f in "$@"; do
 			# First, try modifying the existing PAX_FLAGS header
@@ -129,7 +129,7 @@ pax-mark() {
 		# Try scanelf, the Gentoo swiss-army knife ELF utility
 		# Currently this sets EI and PT if it can, no option to
 		# control what it does.
-		einfo "Fallback PaX marking -${flags}"
+		elog "Fallback PaX marking -${flags}"
 		_pax_list_files elog "$@"
 		scanelf -Xxz ${flags} "$@"
 	elif [[ ${PAX_MARKINGS} != "none" ]]; then
