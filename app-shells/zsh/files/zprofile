@@ -1,5 +1,5 @@
 # @GENTOO_PORTAGE_EPREFIX@/etc/zsh/zprofile
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/files/zprofile,v 1.3 2007/04/30 16:26:06 usata Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/files/zprofile,v 1.4 2007/05/07 06:51:11 usata Exp $
 
 # Load environment settings from profile.env, which is created by
 # env-update from the files in /etc/env.d
@@ -31,9 +31,13 @@ unset ROOTPATH
 [ -z "$EDITOR" ] && EDITOR="@GENTOO_PORTAGE_EPREFIX@/bin/nano"
 export EDITOR
 
+shopts=$-
+setopt nullglob
 for sh in "@GENTOO_PORTAGE_EPREFIX@"/etc/profile.d/*.sh ; do
 	if [ -r "$sh" ] ; then
 		. "$sh"
 	fi
 done
-unset sh
+unsetopt nullglob
+set -$shopts
+unset sh shopts

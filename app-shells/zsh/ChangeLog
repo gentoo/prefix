@@ -1,6 +1,11 @@
 # ChangeLog for app-shells/zsh
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.111 2007/05/01 11:32:31 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.112 2007/05/07 06:51:11 usata Exp $
+
+  07 May 2007; Mamoru KOMACHI <usata@gentoo.org> files/zprofile,
+  -zsh-4.3.2-r1.ebuild:
+  Set nullglob to kill a warning when there are no scripts in /etc/profile.d.
+  See bug #176994.
 
   01 May 2007; Markus Rothe <corsair@gentoo.org> ChangeLog:
   Stable on ppc64
