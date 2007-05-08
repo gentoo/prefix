@@ -1,0 +1,315 @@
+# ChangeLog for gnome-base/orbit
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/ChangeLog,v 1.90 2007/03/17 07:50:05 leio Exp $
+
+*orbit-2.14.7 (17 Mar 2007)
+
+  17 Mar 2007; Mart Raudsepp <leio@gentoo.org> +orbit-2.14.7.ebuild:
+  Bump to 2.14.7
+
+  06 Mar 2007; Daniel Gryniewicz <dang@gentoo.org> -orbit-2.14.3.ebuild:
+  Remove broken 2.14.3 (from bug #146929) now that 2.14.4 is in the tree
+
+*orbit-2.14.4 (06 Mar 2007)
+
+  06 Mar 2007; Daniel Gryniewicz <dang@gentoo.org> +orbit-2.14.4.ebuild:
+  Bump to 2.14.4
+
+  19 Jan 2007; Jeroen Roovers <jer@gentoo.org> orbit-2.14.2.ebuild:
+  Stable for HPPA (bug #147751).
+
+  16 Jan 2007; Roy Marples <uberlord@gentoo.org> orbit-2.14.2.ebuild,
+  orbit-2.14.3.ebuild:
+  Added ~x86-fbsd keyword.
+
+  21 Dec 2006; Markus Rothe <corsair@gentoo.org> orbit-2.14.2.ebuild:
+  Stable on ppc64; bug #156662
+
+  21 Dec 2006; Saleem Abdulrasool <compnerd@gentoo.org>
+  -files/orbit-0.5.17-m4.patch,
+  -files/orbit-0.5.17-rpath-security-fix.patch, -orbit-0.5.17.ebuild,
+  -orbit-0.5.17-r1.ebuild:
+  gnome-1.x removal
+
+  12 Dec 2006; Chris Gianelloni <wolf31o2@gentoo.org> orbit-2.14.2.ebuild:
+  Stable on amd64 wrt bug #156662.
+
+  10 Dec 2006; Andrej Kacian <ticho@gentoo.org> orbit-2.14.2.ebuild:
+  Stable on x86, bug #156662.
+
+  25 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org> orbit-2.14.2.ebuild:
+  Stable on sparc
+
+  21 Oct 2006; Tobias Scherbaum <dertobi123@gentoo.org> orbit-2.14.2.ebuild:
+  ppc stable
+
+  20 Oct 2006; Aron Griffis <agriffis@gentoo.org> orbit-2.14.2.ebuild:
+  Mark 2.14.2 stable on ia64
+
+  19 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> orbit-2.14.2.ebuild:
+  Stable on Alpha.
+
+*orbit-2.14.3 (07 Sep 2006)
+
+  07 Sep 2006; Daniel Gryniewicz <dang@gentoo.org> +orbit-2.14.3.ebuild:
+  New version for gnome 2.16
+
+  19 Aug 2006; Bryan Østergaard <kloeri@gentoo.org> orbit-2.14.0.ebuild:
+  Stable on ia64.
+
+  18 Aug 2006; Saleem Abdulrasool <compnerd@gentoo.org> orbit-2.12.2.ebuild,
+  orbit-2.12.5.ebuild, orbit-2.14.0.ebuild, orbit-2.14.2.ebuild:
+  Adding in unset IDL_DIR to fix compile for people using RSI's IDL
+
+  16 Aug 2006; Markus Rothe <corsair@gentoo.org> orbit-2.14.0.ebuild:
+  Stable on ppc64
+
+  26 Jul 2006; Joshua Kinard <kumba@gentoo.org> orbit-2.14.2.ebuild:
+  Marking stable on mips (dep needed by gnome-vfs).
+
+*orbit-2.14.2 (25 Jul 2006)
+
+  25 Jul 2006; Leonardo Boshell <leonardop@gentoo.org> +orbit-2.14.2.ebuild:
+  New release. Updated dependencies. Dropped 'static' USE flag.
+
+  17 Jul 2006; Daniel Gryniewicz <dang@gentoo.org> orbit-2.14.0.ebuild:
+  Marked stable on amd64 for bug #139612
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org> orbit-2.14.0.ebuild:
+  hppa stable, bug #139612
+
+  14 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org> orbit-2.14.0.ebuild:
+  ppc stable, bug #139612
+
+  12 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org> orbit-2.14.0.ebuild:
+  Stable on x86 wrt bug #139612.
+
+  10 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org> orbit-2.14.0.ebuild:
+  Stable on sparc wrt #139612
+
+  21 Apr 2006; Thomas Cort <tcort@gentoo.org> orbit-2.12.5.ebuild:
+  Stable on alpha wrt Bug #126321.
+
+  22 Mar 2006; Aron Griffis <agriffis@gentoo.org> orbit-0.5.17-r1.ebuild,
+  orbit-2.12.5.ebuild:
+  Mark 0.5.17-r1 stable on ia64 #117606.  Also mark 2.12.5 stable on ia64
+
+  19 Mar 2006; Markus Rothe <corsair@gentoo.org> orbit-2.12.5.ebuild:
+  Stable on ppc64
+
+  18 Mar 2006; Olivier Crête <tester@gentoo.org> orbit-2.12.5.ebuild:
+  Stable on amd64 per bug #126321
+
+  17 Mar 2006; Chris Gianelloni <wolf31o2@gentoo.org> orbit-2.12.5.ebuild:
+  Stable on x86 wrt bug #126321.
+
+  17 Mar 2006; Tobias Scherbaum <dertobi123@gentoo.org> orbit-2.12.5.ebuild:
+  Stable gnome-2.12.3 for ppc, bug #126321
+
+  16 Mar 2006; Marinus Schraal <foser@gentoo.org> orbit-0.5.17*.ebuild :
+  Add indent rdep (#116965)
+
+*orbit-2.14.0 (16 Mar 2006)
+
+  16 Mar 2006; Joe McCann <joem@gentoo.org> +orbit-2.14.0.ebuild:
+  New release for gnome-2.14
+
+  14 Mar 2006; Gustavo Zacarias <gustavoz@gentoo.org> orbit-2.12.5.ebuild:
+  Stable on hppa
+
+  13 Mar 2006; Gustavo Zacarias <gustavoz@gentoo.org> orbit-2.12.5.ebuild:
+  Stable on sparc
+
+*orbit-2.12.5 (06 Feb 2006)
+
+  06 Feb 2006; Saleem Abdulrasool <compnerd@gentoo.org>
+  +orbit-2.12.5.ebuild:
+  Version bump from upstream
+
+  03 Feb 2006; Guy Martin <gmsoft@gentoo.org> orbit-2.12.4.ebuild:
+  Stable on hppa.
+
+  02 Feb 2006; Aron Griffis <agriffis@gentoo.org> orbit-2.12.4.ebuild:
+  Mark 2.12.4 stable on alpha
+
+  02 Feb 2006; Aron Griffis <agriffis@gentoo.org> orbit-2.12.4.ebuild:
+  Mark 2.12.4 stable on ia64
+
+  22 Jan 2006; Markus Rothe <corsair@gentoo.org> orbit-2.12.4.ebuild:
+  Stable on ppc64
+
+  22 Jan 2006; <dang@gentoo.org> orbit-2.12.4.ebuild:
+  Marked stable on amd64 per bug #119634
+
+  22 Jan 2006; Tobias Scherbaum <dertobi123@gentoo.org> orbit-2.12.4.ebuild:
+  Marked ppc stable for bug #119634; Stabilize Gnome-2.12.2
+
+  22 Jan 2006; Joshua Jackson <tsunam@gentoo.org> orbit-2.12.4.ebuild:
+  Stable on x86 for bug #119634; Stabilize Gnome-2.12.2
+
+  20 Jan 2006; Gustavo Zacarias <gustavoz@gentoo.org> orbit-2.12.4.ebuild:
+  Stable on sparc wrt #119634
+
+  16 Jan 2006; Rene Nussbaumer <killerfox@gentoo.org>
+  orbit-0.5.17-r1.ebuild:
+  Stable on hppa. See bug #117606.
+
+  16 Jan 2006; Markus Rothe <corsair@gentoo.org> orbit-0.5.17-r1.ebuild:
+  Stable on ppc64
+
+  15 Jan 2006; Fernando J. Pereda <ferdy@gentoo.org> orbit-0.5.17-r1.ebuild:
+  Stable on alpha wrt bug #117606
+
+  15 Jan 2006; Jason Wever <weeve@gentoo.org> orbit-0.5.17-r1.ebuild:
+  Stable on SPARC wrt security bug #117606.
+
+  15 Jan 2006; John N. Laliberte <allanonjl@gentoo.org> ChangeLog:
+  stable on x86
+
+  15 Jan 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  orbit-0.5.17-r1.ebuild:
+  ppc stable, bug #117606
+
+  15 Jan 2006; Simon Stelling <blubb@gentoo.org> orbit-0.5.17-r1.ebuild:
+  stable on amd64 wrt bug 117606
+
+*orbit-0.5.17-r1 (13 Jan 2006)
+
+  13 Jan 2006; Robin H. Johnson <robbat2@gentoo.org>
+  +files/orbit-0.5.17-rpath-security-fix.patch, +orbit-0.5.17-r1.ebuild:
+  RPATH security fix, bug #117606.
+
+  30 Dec 2005; Markus Rothe <corsair@gentoo.org> orbit-2.12.3.ebuild:
+  Stable on ppc64
+
+  23 Nov 2005; <dang@gentoo.org> orbit-2.12.3.ebuild:
+  Marked stable on amd64
+
+  02 Oct 2005; Aron Griffis <agriffis@gentoo.org> orbit-2.12.3.ebuild:
+  Mark 2.12.3 stable on alpha
+
+  02 Oct 2005; Michael Hanselmann <hansmi@gentoo.org> orbit-2.12.3.ebuild:
+  Stable on ppc.
+
+  02 Oct 2005; Aron Griffis <agriffis@gentoo.org> orbit-2.12.3.ebuild:
+  Mark 2.12.3 stable on ia64
+
+  30 Sep 2005; Gustavo Zacarias <gustavoz@gentoo.org> orbit-2.12.3.ebuild:
+  Stable on sparc
+
+  29 Sep 2005; John N. Laliberte <allanonjl@gentoo.org> orbit-2.12.3.ebuild:
+  stable on x86
+
+*orbit-2.12.4 (11 Sep 2005)
+
+  11 Sep 2005; Stefan Jones <cretin@gentoo.org> +orbit-2.12.4.ebuild:
+  Added orbit-2.12.4 for gnome-vfs-2.12.0
+
+*orbit-2.12.3 (16 Aug 2005)
+
+  16 Aug 2005; Leonardo Boshell <leonardop@gentoo.org> +orbit-2.12.3.ebuild:
+  New version. Added 'static' USE flag.
+
+  31 Jul 2005; John N. Laliberte <allanonjl@gentoo.org> orbit-2.12.0.ebuild:
+  Add back indent for 2.12.0 only, this version still needs it.
+
+  30 Jul 2005; John N. Laliberte <allanonjl@gentoo.org> orbit-2.12.0.ebuild,
+  orbit-2.12.1.ebuild, orbit-2.12.2.ebuild:
+  remove indent from deps since its no longer needed ( in 2.12 ).  fixes #100796
+
+  12 Jul 2005; Stephen P. Becker <geoman@gentoo.org> orbit-2.12.1.ebuild,
+  orbit-2.12.2.ebuild:
+  stable on mips
+
+  02 Jul 2005; Bryan Østergaard <kloeri@gentoo.org> orbit-2.12.2.ebuild:
+  Stable on alpha.
+
+  13 Jun 2005; Markus Rothe <corsair@gentoo.org> orbit-2.12.2.ebuild:
+  Stable on ppc64
+
+  12 Jun 2005; Olivier Crête <tester@gentoo.org> orbit-2.12.2.ebuild:
+  Stable on amd64
+
+  12 Jun 2005; Tobias Scherbaum <dertobi123@gentoo.org> orbit-2.12.2.ebuild:
+  Stable on ppc.
+
+  09 Jun 2005; Gustavo Zacarias <gustavoz@gentoo.org> orbit-2.12.2.ebuild:
+  Stable on sparc
+
+  04 Jun 2005; Leonardo Boshell <joem@gentoo.org> orbit-2.12.2.ebuild:
+  Stable on x86.
+
+  11 May 2005; Guy Martin <gmsoft@gentoo.org> orbit-2.12.1.ebuild:
+  Stable on hppa.
+
+  10 May 2005; Gustavo Zacarias <gustavoz@gentoo.org> orbit-2.12.1.ebuild:
+  Stable on sparc
+
+  08 May 2005; Herbie Hopkins <herbs@gentoo.org> orbit-2.12.1.ebuild:
+  Stable on amd64.
+
+  28 Apr 2005; Bryan Østergaard <kloeri@gentoo.org> orbit-2.12.1.ebuild:
+  Stable on alpha + ia64.
+
+*orbit-2.12.1 (25 Apr 2005)
+
+  25 Apr 2005; Mike Gardiner <obz@gentoo.org> orbit-2.12.1.ebuild:
+  Keyworded ppc x86
+
+  19 Apr 2005; Herbie Hopkins <herbs@gentoo.org> orbit-0.5.17.ebuild:
+  Fixed multilib-strict issue, bug #88549
+
+*orbit-2.12.2 (17 Apr 2005)
+
+  17 Apr 2005; Joe McCann <joem@gentoo.org> +orbit-2.12.2.ebuild:
+  bugfix release
+
+  02 Apr 2005; Stephen P. Becker <geoman@gentoo.org> orbit-2.12.0.ebuild:
+  stable on mips
+
+  17 Feb 2005; Joe McCann <joem@gentoo.org> :
+  gnome-2.8.3 bugfix release
+
+  08 Jan 2005; Tom Martin <slarti@gentoo.org> orbit-2.12.0.ebuild:
+  Stable on amd64.
+
+  23 Dec 2004; Guy Martin <gmsoft@gentoo.org> orbit-2.12.0.ebuild:
+  Stable on hppa.
+
+  11 Dec 2004; Joe McCann <joem@gentoo.org> orbit-2.12.0.ebuild:
+  Bumping libIDL dep, see bug #73521
+
+  11 Dec 2004; Bryan Østergaard <kloeri@gentoo.org> orbit-2.12.0.ebuild:
+  Stable on alpha.
+
+  11 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org> orbit-2.12.0.ebuild:
+  Stable on sparc
+
+  11 Nov 2004; Mike Gardiner <obz@gentoo.org> orbit-2.12.0.ebuild:
+  Keyworded ppc for GNOME 2.8
+
+*orbit-0.5.17 (05 Nov 2004)
+
+  05 Nov 2004; Mike Gardiner <obz@gentoo.org> orbit-0.5.17.ebuild:
+  nls is not optional, and cannot be disabled in orbit-0.5.17, made the
+  dependency on gettext permanent and fixed. see bug #69473
+
+*orbit-2.10.3 (01 Oct 2004)
+
+  01 Oct 2004; Stephen P. Becker <geoman@gentoo.org> orbit-2.10.3.ebuild:
+  stable on mips
+
+*orbit-2.12.0 (14 Sep 2004)
+
+  14 Sep 2004; foser <foser@gentoo.org> orbit-2.12.0.ebuild :
+  Gnome 2.8 release
+
+  24 Aug 2004; foser <foser@gentoo.org> files/libIDLConf.sh-gentoo.diff files/orbit2-alignment_fix.patch :
+  Re-add missing orbit{1,2} patches, remove redundant libc deps
+
+*orbit-2.10.4 (21 Aug 2004)
+
+  21 Aug 2004; Mike Gardiner <obz@gentoo.org> +metadata.xml, +orbit-2.10.4.ebuild:
+  First version using the amalgamated orbit ebuild, combining ORBit and ORBit2
+  and using slots
+
