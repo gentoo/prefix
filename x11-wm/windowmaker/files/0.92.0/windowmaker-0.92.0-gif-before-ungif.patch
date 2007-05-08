@@ -1,0 +1,26 @@
+--- configure.ac
++++ configure.ac
+@@ -705,17 +705,17 @@
+ 
+ if test "$gif" = yes; then
+     my_libname=""
+-    WM_CHECK_LIB(ungif, DGifOpenFileName, [$XLFLAGS $XLIBS])
+-    if test "x$ac_cv_lib_ungif_DGifOpenFileName" = xyes; then
+-        my_libname=-lungif
++    WM_CHECK_LIB(gif, DGifOpenFileName, [$XLFLAGS $XLIBS])
++    if test "x$ac_cv_lib_gif_DGifOpenFileName" = xyes; then
++        my_libname=-lgif
+     fi
+ dnl
+ dnl libungif is the same thing as libgif for all practical purposes.
+ dnl
+     if test "x$my_libname" = x; then
+-        WM_CHECK_LIB(gif, DGifOpenFileName, [$XLFLAGS $XLIBS])
+-        if test "x$ac_cv_lib_gif_DGifOpenFileName" = xyes; then
+-            my_libname=-lgif
++        WM_CHECK_LIB(ungif, DGifOpenFileName, [$XLFLAGS $XLIBS])
++        if test "x$ac_cv_lib_ungif_DGifOpenFileName" = xyes; then
++            my_libname=-lungif
+         fi
+     fi
+ 

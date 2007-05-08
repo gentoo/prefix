@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils gnustep-funcs flag-o-matic multilib
+inherit eutils gnustep-funcs flag-o-matic multilib autotools
 
 S=${WORKDIR}/${P/windowm/WindowM}
 
@@ -46,6 +46,9 @@ src_unpack() {
 	epatch ${FILESDIR}/${PV}/${P}-gcc41.patch
 	epatch ${FILESDIR}/${PV}/${P}-fullscreen.patch
 	epatch ${FILESDIR}/${PV}/${P}-qtdialogsfix.patch
+
+	epatch ${FILESDIR}/${PV}/${P}-gif-before-ungif.patch
+	eautoreconf
 }
 
 src_compile() {
