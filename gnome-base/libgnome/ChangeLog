@@ -1,0 +1,509 @@
+# ChangeLog for gnome-base/libgnome
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnome/ChangeLog,v 1.137 2007/03/24 02:21:01 dang Exp $
+
+  24 Mar 2007; Daniel Gryniewicz <dang@gentoo.org> +libgnome-2.18.0.ebuild:
+  add gnome 2.18.0
+
+  26 Feb 2007; Daniel Gryniewicz <dang@gentoo.org> libgnome-2.14.1.ebuild,
+  libgnome-2.16.0.ebuild:
+  Remove static USE flags; bug #165528
+
+  09 Feb 2007; Roy Marples <uberlord@gentoo.org> libgnome-2.16.0.ebuild:
+  Added ~x86-fbsd keyword.
+
+  21 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> libgnome-2.16.0.ebuild:
+  Stable on IA64, bug 156662.
+
+  19 Jan 2007; Jeroen Roovers <jer@gentoo.org> libgnome-2.16.0.ebuild:
+  Stable for HPPA (bug #147751).
+
+  14 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> libgnome-2.16.0.ebuild:
+  Stable on Alpha.
+
+  08 Jan 2007; Mart Raudsepp <leio@gentoo.org> libgnome-2.14.1.ebuild,
+  libgnome-2.16.0.ebuild:
+  Define WANT_AUTOCONF to latest, fixes bug 160461
+
+  21 Dec 2006; Markus Rothe <corsair@gentoo.org> libgnome-2.16.0.ebuild:
+  Stable on ppc64; bug #156662
+
+  18 Dec 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  libgnome-2.16.0.ebuild:
+  Stable on sparc
+
+  16 Dec 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libgnome-2.16.0.ebuild:
+  Stable on ppc wrt bug #156662.
+
+  12 Dec 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  libgnome-2.16.0.ebuild:
+  Stable on amd64 wrt bug #156662.
+
+  10 Dec 2006; Andrej Kacian <ticho@gentoo.org> libgnome-2.16.0.ebuild:
+  Stable on x86, bug #156662.
+
+  01 Nov 2006; Leonardo Boshell <leonardop@gentoo.org>
+  libgnome-2.14.1.ebuild, libgnome-2.16.0.ebuild:
+  Inherit from autotools in order to fix dependency problems (bug #151530).
+
+  19 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> libgnome-2.14.1.ebuild:
+  Stable on Alpha.
+
+  12 Sep 2006; Daniel Gryniewicz <dang@gentoo.org> libgnome-2.16.0.ebuild:
+  Fix spacing in G2CONF line
+
+*libgnome-2.16.0 (07 Sep 2006)
+
+  07 Sep 2006; Daniel Gryniewicz <dang@gentoo.org> +libgnome-2.16.0.ebuild:
+  New version for gnome 2.16
+
+  06 Sep 2006; Joshua Kinard <kumba@gentoo.org> libgnome-2.10.0.ebuild,
+  libgnome-2.10.1-r1.ebuild, libgnome-2.12.0.1.ebuild,
+  libgnome-2.14.0.ebuild, libgnome-2.14.1.ebuild:
+  Removing all mips keywords except from latest stable to fix mips
+  dependencies for eliminating gnome support.
+
+  19 Aug 2006; Bryan Østergaard <kloeri@gentoo.org> libgnome-2.14.1.ebuild:
+  Stable on ia64.
+
+  16 Aug 2006; Markus Rothe <corsair@gentoo.org> libgnome-2.14.1.ebuild:
+  Stable on ppc64
+
+  17 Jul 2006; Daniel Gryniewicz <dang@gentoo.org> libgnome-2.14.1.ebuild:
+  Marked stable on amd64 for bug #139612
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libgnome-2.14.1.ebuild:
+  hppa stable, bug #139612
+
+  14 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libgnome-2.14.1.ebuild:
+  ppc stable, bug #139612
+
+  12 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  libgnome-2.14.1.ebuild:
+  Stable on x86 wrt bug #139612.
+
+  10 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  libgnome-2.14.1.ebuild:
+  Stable on sparc wrt #139612
+
+*libgnome-2.14.1 (01 May 2006)
+
+  01 May 2006; Daniel Gryniewicz <dang@gentoo.org> +libgnome-2.14.1.ebuild:
+  Bump for 2.14.1
+
+*libgnome-2.14.0 (16 Mar 2006)
+
+  16 Mar 2006; Joe McCann <joem@gentoo.org> +libgnome-2.14.0.ebuild:
+  New version for gnome-2.14
+
+  03 Feb 2006; Guy Martin <gmsoft@gentoo.org> libgnome-2.12.0.1.ebuild:
+  Stable on hppa.
+
+  02 Feb 2006; Aron Griffis <agriffis@gentoo.org> libgnome-2.12.0.1.ebuild:
+  Mark 2.12.0.1 stable on alpha
+
+  02 Feb 2006; Aron Griffis <agriffis@gentoo.org> libgnome-2.12.0.1.ebuild:
+  Mark 2.12.0.1 stable on ia64
+
+  22 Jan 2006; Markus Rothe <corsair@gentoo.org> libgnome-2.12.0.1.ebuild:
+  Stable on ppc64
+
+  22 Jan 2006; <dang@gentoo.org> libgnome-2.12.0.1.ebuild:
+  Marked stable on amd64 per bug #119634
+
+  22 Jan 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libgnome-2.12.0.1.ebuild:
+  Marked ppc stable for bug #119634; Stabilize Gnome-2.12.2
+
+  22 Jan 2006; Joshua Jackson <tsunam@gentoo.org> libgnome-2.12.0.1.ebuild:
+  Stable on x86 for bug #119634; Stabilize Gnome-2.12.2
+
+  20 Jan 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  libgnome-2.12.0.1.ebuild:
+  Stable on sparc wrt #119634
+
+  10 Oct 2005; Hardave Riar <hardave@gentoo.org> libgnome-2.10.1-r1.ebuild:
+  Stable on mips.
+
+  11 Sep 2005; Aron Griffis <agriffis@gentoo.org> libgnome-2.10.1-r1.ebuild:
+  Mark 2.10.1-r1 stable on alpha
+
+*libgnome-2.12.0.1 (09 Sep 2005)
+
+  09 Sep 2005; John N. Laliberte <allanonjl@gentoo.org>
+  -libgnome-2.11.3.ebuild, +libgnome-2.12.0.1.ebuild:
+  2.12 release bump
+
+  03 Sep 2005; Markus Rothe <corsair@gentoo.org> libgnome-2.10.1-r1.ebuild:
+  Stable on ppc64
+
+  02 Sep 2005; Michael Hanselmann <hansmi@gentoo.org>
+  libgnome-2.10.1-r1.ebuild:
+  Stable on ppc.
+
+  31 Aug 2005; Herbie Hopkins <herbs@gentoo.org> libgnome-2.10.1-r1.ebuild:
+  Stable on amd64.
+
+  29 Aug 2005; Guy Martin <gmsoft@gentoo.org> libgnome-2.10.1-r1.ebuild:
+  Stable on hppa.
+
+*libgnome-2.11.3 (28 Aug 2005)
+
+  28 Aug 2005; John N. Laliberte <allanonjl@gentoo.org>
+  -libgnome-2.11.2.ebuild, +libgnome-2.11.3.ebuild:
+  new version
+
+  26 Aug 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  libgnome-2.10.1-r1.ebuild:
+  Stable on sparc
+
+  25 Aug 2005; Aron Griffis <agriffis@gentoo.org> libgnome-2.10.1-r1.ebuild:
+  stable on ia64
+
+  25 Aug 2005; Leonardo Boshell <leonardop@gentoo.org>
+  libgnome-2.10.1-r1.ebuild:
+  Stable on x86.
+
+*libgnome-2.11.2 (16 Aug 2005)
+
+  16 Aug 2005; Leonardo Boshell <leonardop@gentoo.org>
+  +libgnome-2.11.2.ebuild:
+  New version.
+
+  21 Jul 2005; Leonardo Boshell <leonardop@gentoo.org>
+  libgnome-2.10.1-r1.ebuild:
+  Specified version 0.17 or higher for pkgconfig dependency. See bug #99580.
+
+  19 Jul 2005; Leonardo Boshell <leonardop@gentoo.org>
+  libgnome-2.10.1-r1.ebuild:
+  Fix secondary effects from aclocal when gtk-doc is not installed in the
+  user's system (bug #99531).
+
+*libgnome-2.10.1-r1 (19 Jul 2005)
+
+  19 Jul 2005; Leonardo Boshell <leonardop@gentoo.org>
+  libgnome-2.10.1-r1.ebuild, files/libgnome-2.10.1-esd_swith.patch:
+  Implement --enable-esd switch, related to bug #6920.
+
+*libgnome-2.10.1 (19 Jul 2005)
+
+  19 Jul 2005; Leonardo Boshell <leonardop@gentoo.org> libgnome-2.10.1.ebuild:
+  New release. Added 'static' USE flag.
+
+  12 Jul 2005; Stephen P. Becker <geoman@gentoo.org> libgnome-2.10.0.ebuild:
+  stable on mips
+
+  02 Jul 2005; Bryan Østergaard <kloeri@gentoo.org> libgnome-2.10.0.ebuild:
+  Stable on alpha.
+
+  25 Jun 2005; Guy Martin <gmsoft@gentoo.org> libgnome-2.10.0.ebuild:
+  Stable on hppa.
+
+  12 Jun 2005; Olivier Crête <tester@gentoo.org> libgnome-2.10.0.ebuild:
+  Stable on amd64
+
+  12 Jun 2005; Tobias Scherbaum <dertobi123@gentoo.org>
+  libgnome-2.10.0.ebuild:
+  Stable on ppc.
+
+  09 Jun 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  libgnome-2.10.0.ebuild:
+  Stable on sparc
+
+  09 Jun 2005; Markus Rothe <corsair@gentoo.org> libgnome-2.10.0.ebuild:
+  Stable on ppc64
+
+  18 May 2005; Jason Wever <weeve@gentoo.org> libgnome-2.8.1.ebuild:
+  Stable on SPARC.
+
+  11 May 2005; Guy Martin <gmsoft@gentoo.org> libgnome-2.8.1.ebuild:
+  Stable on hppa.
+
+  08 May 2005; Herbie Hopkins <herbs@gentoo.org> libgnome-2.8.1.ebuild:
+  Stable on amd64.
+
+  28 Apr 2005; Bryan Østergaard <kloeri@gentoo.org> libgnome-2.8.1.ebuild:
+  Stable on alpha + ia64.
+
+  25 Apr 2005; Mike Gardiner <obz@gentoo.org> libgnome-2.8.1.ebuild:
+  Keyworded ppc x86
+
+  02 Apr 2005; Stephen P. Becker <geoman@gentoo.org> libgnome-2.8.0.ebuild:
+  stable on mips
+
+  25 Mar 2005; Mark Loeser <halcy0n@gentoo.org> +files/libgnome-gcc4.patch,
+  libgnome-2.8.1.ebuild, libgnome-2.10.0.ebuild:
+  Fix GCC4 compile issue.  Patch by Jonathan Briggs <zlynx@acm.org>.  Bug #85558
+
+*libgnome-2.10.0 (08 Mar 2005)
+
+  08 Mar 2005; Joe McCann <joem@gentoo.org> +libgnome-2.10.0.ebuild:
+  gnome-2.10 release
+
+  24 Feb 2005; Mike Gardiner <obz@gentoo.org>
+  +files/libgnome-2.8.1-va_list.patch, libgnome-2.8.1.ebuild:
+  Applied patch to revert va_list initialisation as in Aron's previous patch
+
+*libgnome-2.8.1 (24 Feb 2005)
+
+  24 Feb 2005; Mike Gardiner <obz@gentoo.org> +libgnome-2.8.1.ebuild:
+  New version
+
+  08 Jan 2005; Tom Martin <slarti@gentoo.org> :
+  Stable on amd64.
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  23 Dec 2004; Guy Martin <gmsoft@gentoo.org> libgnome-2.8.0.ebuild:
+  Stable on hppa.
+
+  11 Dec 2004; Bryan Østergaard <kloeri@gentoo.org> libgnome-2.8.0.ebuild:
+  Stable on alpha.
+
+  11 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org> libgnome-2.8.0.ebuild:
+  Stable on sparc
+
+  11 Nov 2004; Mike Gardiner <obz@gentoo.org> libgnome-2.8.0.ebuild:
+  Keyworded ppc for GNOME 2.8
+
+  21 Oct 2004; Aron Griffis <agriffis@gentoo.org>
+  +files/libgnome-2.8.0-va_list.patch, libgnome-2.8.0.ebuild:
+  add va_list patch for compilation on architectures where va_list isn't
+  implemented as a pointer. Thanks to Andrej Filipcic for the patch #67345
+
+  01 Oct 2004; Stephen P. Becker <geoman@gentoo.org>
+  libgnome-2.6.1.1-r1.ebuild:
+  stable on mips
+
+*libgnome-2.8.0 (15 Sep 2004)
+
+  15 Sep 2004; foser <foser@gentoo.org> libgnome-2.8.0.ebuild :
+  Gnome 2.8 release
+
+  22 Aug 2004; Bryan Østergaard <kloeri@gentoo.org>
+  libgnome-2.6.1.1-r1.ebuild:
+  Stable on alpha.
+
+*libgnome-2.6.1.2 (10 Aug 2004)
+
+  10 Aug 2004; Mike Gardiner <obz@gentoo.org> +libgnome-2.6.1.2.ebuild:
+  New version 2.6.1.2, a bugfix release, which now includes the sound-patch that
+  was in 2.6.1.1-r1
+
+  07 Aug 2004; Travis Tilley <lv@gentoo.org> libgnome-2.6.1.1-r1.ebuild:
+  stable on amd64
+
+  05 Aug 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  libgnome-2.6.1.1-r1.ebuild:
+  Stable on sparc
+
+  05 Aug 2004; Guy Martin <gmsoft@gentoo.org> libgnome-2.6.1.1-r1.ebuild:
+  Stable on hppa.
+
+  31 Jul 2004; <spider@gentoo.org> libgnome-2.6.1.1-r1.ebuild:
+  stable on x86 for gnome 2.6.2
+
+  27 Jul 2004; Tom Gall <tgall@gentoo.org> libgnome-2.6.1.1-r1.ebuild:
+  stable on ppc64, bug #58191
+
+*libgnome-2.6.1.1-r1 (19 Jul 2004)
+
+  19 Jul 2004; foser <foser@gentoo.org> libgnome-2.6.1.1-r1.ebuild, files/libgnome-2.6.1.1-fix_sounds.patch  :
+  Add patch to fix sound events (#50700)
+
+  04 Jul 2004; Bryan Østergaard <kloeri@gentoo.org> libgnome-2.6.0.ebuild:
+  Stable on alpha.
+
+  01 Jul 2004; Tom Gall <tgall@gentoo.org> libgnome-2.6.1.1.ebuild:
+  ~ppc64, bug #54804
+
+  03 Jun 2004; Stephen P. Becker <geoman@gentoo.org> libgnome-2.6.0.ebuild:
+  Stable on mips.
+
+  29 May 2004; Pieter Van den Abeele <pvdabeel@gentoo.org>
+  libgnome-2.6.0.ebuild:
+  Masked libgnome-2.6.0.ebuild stable for ppc
+
+  25 May 2004; Guy Martin <gmsoft@gentoo.org> libgnome-2.6.0.ebuild:
+  Marked stable on hppa.
+
+  13 May 2004; Stephen P. Becker <geoman@gentoo.org> libgnome-2.4.0.ebuild:
+  Stable on mips.
+
+*libgnome-2.6.1.1 (04 May 2004)
+
+  04 May 2004; foser <foser@gentoo.org> libgnome-2.6.1.1.ebuild :
+  New release
+
+*libgnome-2.6.0 (22 Mar 2004)
+
+*libgnome-2.5.92.1 (19 Mar 2004)
+
+  19 Mar 2004; foser <foser@gentoo.org> libgnome-2.5.92.1.ebuild :
+  Gnome 2.6 commit
+  Correct license
+
+  13 Mar 2004; Stephen P. Becker <geoman@gentoo.org> libgnome-2.4.0.ebuild:
+  Added ~mips keyword.
+
+  14 Nov 2003; Aron Griffis <agriffis@gentoo.org> libgnome-2.4.0.ebuild:
+  Stable on ia64
+
+  08 Nov 2003; Todd Sunderlin <todd@gentoo.org> libgnome-2.4.0.ebuild:
+  added sparc keyword
+
+  22 Oct 2003; Bartosch Pixa <darkspecter@gentoo.org> libgnome-2.4.0.ebuild:
+  set ppc in keywords
+
+  20 Oct 2003; Aron Griffis <agriffis@gentoo.org> libgnome-2.4.0.ebuild:
+  Stable on alpha
+
+  20 Oct 2003; Mike Gardiner <obz@gentoo.org> libgnome-2.4.0.ebuild:
+  Fixed gnome-vfs dependency to 2.4, thanks to <drobbins@gentoo.org> on bug
+  #31508
+
+  05 Oct 2003; Mike Gardiner <obz@gentoo.org> libgnome-2.4.0.ebuild:
+  Marked stable on x86
+
+  03 Oct 2003; Mike Gardiner <obz@gentoo.org> libgnome-2.4.0.ebuild:
+  Returning gnome-vfs dependency to it's correct version of >=2, not 2.4 as I
+  previously stated
+
+  23 Sep 2003; Bartosch Pixa <darkspecter@gentoo.org> libgnome-2.2.3.ebuild:
+  set ppc in keywords
+
+  09 Sep 2003; Mike Gardiner <obz@gentoo.org> libgnome-2.4.0.ebuild:
+  Added depends >=gnome-vfs-2.4
+
+  08 Sep 2003; <spider@gentoo.org> libgnome-2.4.0.ebuild:
+  Dependency added to ORBit2
+
+*libgnome-2.4.0 (07 Sep 2003)
+
+  13 Dec 2003; Guy Martin <gmsoft@gentoo.org> libgnome-2.4.0.ebuild :
+  Marked stable on hppa.
+
+  07 Sep 2003; foser <foser@gentoo.org> libgnome-2.4.0.ebuild :
+  Gnome 2.4 rc1 
+
+  25 Aug 2003; Mike Gardiner <obz@gentoo.org> libgnome-2.2.3.ebuild:
+  Moved to stable on x86
+
+  21 Aug 2003; Mike Gardiner <obz@gentoo.org> libgnome-2.2.2.ebuild,
+  libgnome-2.2.3.ebuild:
+  Fixed sandbox errors on versions 2.2.2 and 2.2.3
+
+*libgnome-2.2.3 (12 Jul 2003)
+  
+  12 Jul 2003; foser <foser@gentoo.org> libgnome-2.2.3.ebuild :
+  New version
+
+*libgnome-2.2.2 (10 Jun 2003)
+
+  01 Jul 2003; Guy Martin <gmsoft@gentoo.org> libgnome-2.2.2.ebuild :
+  Added hppa to KEYWORDS.
+
+  10 Jun 2003; foser <foser@gentoo.org> libgnome-2.2.2.ebuild :
+  New version
+
+  30 May 2003; Luca Barbato <lu_zero@gentoo.org> libgnome-2.2.0.1.ebuild :
+  Marked stable for ppc.
+
+*libgnome-2.2.1 (27 May 2003)
+
+  01 Jul 2003; Guy Martin <gmsoft@gentoo.org> libgnome-2.2.1.ebuild :
+  Added hppa to KEYWORDS.
+
+  27 May 2003; foser <foser@gentoo.org> libgnome-2.2.1.ebuild :
+  New version
+
+*libgnome-2.2.0.1
+
+  10 Apr 2003; Todd Sunderlin <todd@gentoo.org> libgnome-2.2.0.1.ebuild :
+  Marked stable for sparc.
+
+  07 Feb 2003; Aron Griffis <agriffis@gentoo.org> libgnome-2.2.0.1.ebuild :
+  Add ~alpha to KEYWORDS
+
+
+  01 Mar 2003; Jason Wever <weeve@gentoo.org> libgnome-2.2.0.1.ebuild :
+  Added ~sparc to keywords.
+
+  21 Feb 2003; Aron Griffis <agriffis@gentoo.org> libgnome-2.2.0.1.ebuild :
+  Mark stable on alpha
+
+  07 Feb 2003; foser <foser@gentoo.org> libgnome-2.2.0.1.ebuild :
+  minor version bump
+
+*libgnome-2.2.0
+
+  30 Jan 2003; foser <foser@gentoo.org> libgnome-2.2.0.ebuild :
+  GNOME 2.2 rc2 commit
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*libgnome-2.0.6 (27 Nov 2002)
+
+  27 Nov 2002; foser <foser@gentoo.org> libgnome-2.0.6.ebuild :
+  GNOME 2.0.3 release
+
+*libgnome-2.1.0 (27 Oct 2002)
+
+  30 Nov 2002; Jon Nall <nall@gentoo.org> libgnome-2.1.0.ebuild :
+  keyworded as ~ppc
+
+  27 Oct 2002; foser <foser@gentoo.org> libgnome-2.1.0.ebuild :
+  Gnome 2.1 commit
+
+*libgnome-2.0.5 (13 Sep 2002)
+  13 Sep 2002; Spider <spider@gentoo.org> libgnome-2.0.5.ebuild :
+  new version, rc1 complete
+  
+*libgnome-2.0.4 (06 Sep 2002)
+  06 Sep 2002; Spider <spider@gentoo.org> libgnome-2.0.4.ebuild :
+  new version
+  
+*libgnome-2.0.2 (07 Aug 2002)
+  07 Aug 2002; Spider <spider@gentoo.org> libgnome-2.0.2.ebuild :
+  new version
+  mirror://
+  dependencies
+  remove cruft
+
+*libgnome-2.0.1-r1 (11 Jun 2002)
+  23 Jul 2002; Mark Guertin <gerk@gentoo.org> :
+  Added ppc to keywords
+
+  11 Jun 2002; Spider <spider@gentoo.org> libgnome-2.0.1-r1.ebuild :
+  tracked down elusive typo
+  
+*libgnome-2.0.1 (10 Jun 2002)
+  10 Jun 2002; Spider <spider@gentoo.org> libgnome-2.0.1.ebuild :
+  new version
+    
+*libgnome-2.0.0-r1 (10 Jun 2002)
+  10 Jun 2002; Spider <spider@gentoo.org> libgnome-2.0.0-r1.ebuild :
+  fix gnome-vfs dep
+    
+*libgnome-2.0.0 (7 Jun 2002)
+  7 Jun 2002; Spider <spider@gentoo.org> libgnome-2.0.0.ebuild :
+  the next generation gnome libraries are stable! 
+
+*libgnome-1.117.2 (27 May 2002)
+  27 May 2002; Spider <spider@gentoo.org>   libgnome-1.117.2.ebuild :
+  Latest version with some updated deps
+
+*libgnome-1.117.1 (23 May 2002)
+  23 May 2002; Spider <spider@gentoo.org>   libgnome-1.117.1.ebuild :
+  Note to self: do not forget ChangeLog.
+  updated version 
+  updated versions in dependencies
+
+*libgnome-1.117.0 (22 May 2002)
+  22 May 2002; Spider <spider@gentoo.org>   libgnome-1.117.0.ebuild :
+  part of gnome2 . initial cvs commit
+
