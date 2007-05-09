@@ -1,0 +1,519 @@
+# ChangeLog for gnome-base/libbonoboui
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonoboui/ChangeLog,v 1.139 2007/03/24 02:18:04 dang Exp $
+
+  24 Mar 2007; Daniel Gryniewicz <dang@gentoo.org>
+  +libbonoboui-2.18.0.ebuild:
+  add gnome 2.18.0
+
+  09 Feb 2007; Roy Marples <uberlord@gentoo.org> libbonoboui-2.16.0.ebuild:
+  Added ~x86-fbsd keyword.
+
+  21 Jan 2007; Bryan Østergaard <kloeri@gentoo.org>
+  libbonoboui-2.16.0.ebuild:
+  Stable on IA64, bug 156662.
+
+  19 Jan 2007; Jeroen Roovers <jer@gentoo.org> libbonoboui-2.16.0.ebuild:
+  Stable for HPPA (bug #147751).
+
+  14 Jan 2007; Bryan Østergaard <kloeri@gentoo.org>
+  libbonoboui-2.16.0.ebuild:
+  Stable on Alpha.
+
+  21 Dec 2006; Markus Rothe <corsair@gentoo.org> libbonoboui-2.16.0.ebuild:
+  Stable on ppc64; bug #156662
+
+  18 Dec 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  libbonoboui-2.16.0.ebuild:
+  Stable on sparc
+
+  16 Dec 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libbonoboui-2.16.0.ebuild:
+  Stable on ppc wrt bug #156662.
+
+  12 Dec 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  libbonoboui-2.16.0.ebuild:
+  Stable on amd64 wrt bug #156662.
+
+  10 Dec 2006; Andrej Kacian <ticho@gentoo.org> libbonoboui-2.16.0.ebuild:
+  Stable on x86, bug #156662.
+
+  20 Nov 2006; Mart Raudsepp <leio@gentoo.org>
+  -files/bonobo-browser-2.10.1-lang.patch, -libbonoboui-2.10.1.ebuild,
+  -libbonoboui-2.10.1-r1.ebuild:
+  Remove old versions
+
+  19 Oct 2006; Bryan Østergaard <kloeri@gentoo.org>
+  libbonoboui-2.14.0.ebuild:
+  Stable on Alpha.
+
+  12 Sep 2006; Daniel Gryniewicz <dang@gentoo.org>
+  libbonoboui-2.16.0.ebuild:
+  Tests need /root/.gnome2_private.  Bug #146967
+
+*libbonoboui-2.16.0 (07 Sep 2006)
+
+  07 Sep 2006; Daniel Gryniewicz <dang@gentoo.org>
+  +libbonoboui-2.16.0.ebuild:
+  New version for gnome 2.16
+
+  05 Sep 2006; Joshua Kinard <kumba@gentoo.org> libbonoboui-2.10.1.ebuild,
+  libbonoboui-2.10.1-r1.ebuild, libbonoboui-2.14.0.ebuild:
+  Removing mips keywords as gnome is no longer supported on mips.
+
+  19 Aug 2006; Bryan Østergaard <kloeri@gentoo.org>
+  libbonoboui-2.14.0.ebuild:
+  Stable on ia64.
+
+  16 Aug 2006; Markus Rothe <corsair@gentoo.org> libbonoboui-2.14.0.ebuild:
+  Stable on ppc64
+
+  17 Jul 2006; Daniel Gryniewicz <dang@gentoo.org>
+  libbonoboui-2.14.0.ebuild:
+  Marked stable on amd64 for bug #139612
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libbonoboui-2.14.0.ebuild:
+  hppa stable, bug #139612
+
+  14 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libbonoboui-2.14.0.ebuild:
+  ppc stable, bug #139612
+
+  12 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  libbonoboui-2.14.0.ebuild:
+  Stable on x86 wrt bug #139612.
+
+  10 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  libbonoboui-2.14.0.ebuild:
+  Stable on sparc wrt #139612
+
+  31 Mar 2006; Leonardo Boshell <leonardop@gentoo.org>
+  libbonoboui-2.14.0.ebuild:
+  Dropped static USE flag.
+
+  18 Mar 2006; Saleem Abdulrasool <compnerd@gentoo.org>
+  libbonoboui-2.14.0.ebuild:
+  Update GTK+ dep as per bug #126565
+
+*libbonoboui-2.14.0 (14 Mar 2006)
+
+  14 Mar 2006; Joe McCann <joem@gentoo.org>
+  +files/libbonoboui-2.13.0-browser-lang.patch, +libbonoboui-2.14.0.ebuild:
+  New version for gnome-2.14 release
+
+  14 Mar 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  libbonoboui-2.10.1-r1.ebuild:
+  Stable on hppa
+
+  02 Feb 2006; Aron Griffis <agriffis@gentoo.org>
+  libbonoboui-2.10.1-r1.ebuild:
+  Mark 2.10.1-r1 stable on alpha
+
+  02 Feb 2006; Aron Griffis <agriffis@gentoo.org>
+  libbonoboui-2.10.1-r1.ebuild:
+  Mark 2.10.1-r1 stable on ia64
+
+  22 Jan 2006; Markus Rothe <corsair@gentoo.org>
+  libbonoboui-2.10.1-r1.ebuild:
+  Stable on ppc64
+
+  22 Jan 2006; <dang@gentoo.org> libbonoboui-2.10.1-r1.ebuild:
+  Marked stable on amd64 per bug #119634
+
+  22 Jan 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libbonoboui-2.10.1-r1.ebuild:
+  Marked ppc stable for bug #119634; Stabilize Gnome-2.12.2
+
+  22 Jan 2006; Joshua Jackson <tsunam@gentoo.org>
+  libbonoboui-2.10.1-r1.ebuild:
+  Stable on x86 for bug #119634; Stabilize Gnome-2.12.2
+
+  20 Jan 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  libbonoboui-2.10.1-r1.ebuild:
+  Stable on sparc wrt #119634
+
+  30 Dec 2005; Markus Rothe <corsair@gentoo.org> libbonoboui-2.10.1.ebuild:
+  Stable on ppc64
+
+  10 Oct 2005; Hardave Riar <hardave@gentoo.org> libbonoboui-2.10.1.ebuild:
+  Stable on mips.
+
+  02 Oct 2005; Aron Griffis <agriffis@gentoo.org> libbonoboui-2.10.1.ebuild:
+  Mark 2.10.1 stable on alpha
+
+  02 Oct 2005; Michael Hanselmann <hansmi@gentoo.org>
+  libbonoboui-2.10.1.ebuild:
+  Stable on ppc.
+
+  02 Oct 2005; Aron Griffis <agriffis@gentoo.org> libbonoboui-2.10.1.ebuild:
+  Mark 2.10.1 stable on ia64
+
+  30 Sep 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  libbonoboui-2.10.1.ebuild:
+  Stable on sparc
+
+  29 Sep 2005; John N. Laliberte <allanonjl@gentoo.org>
+  libbonoboui-2.10.1.ebuild:
+  stable on x86
+
+  13 Sep 2005; Leonardo Boshell <leonardop@gentoo.org>
+  files/digest-libbonoboui-2.10.0, Manifest:
+  Fix the digest again.
+
+  12 Sep 2005; Aron Griffis <agriffis@gentoo.org> libbonoboui-2.10.0.ebuild:
+  Mark 2.10.0 stable on alpha
+
+  10 Sep 2005; Leonardo Boshell <leonardop@gentoo.org>
+  files/digest-libbonoboui-2.10.0, Manifest:
+  Fixing digest for version 2.10.0 since the upstream tarball has been changed
+  (bug #104814).
+
+  08 Sep 2005; Seemant Kulleen <seemant@gentoo.org>
+  libbonoboui-2.10.1.ebuild, libbonoboui-2.10.1-r1.ebuild:
+  fix src_test() to actually succeed
+
+*libbonoboui-2.10.1-r1 (08 Sep 2005)
+
+  08 Sep 2005; Simon Stelling <blubb@gentoo.org>
+  +files/bonobo-browser-2.10.1-lang.patch, +libbonoboui-2.10.1-r1.ebuild:
+  revision bump to fix bug 101017
+
+  03 Sep 2005; Markus Rothe <corsair@gentoo.org> libbonoboui-2.10.0.ebuild:
+  Stable on ppc64
+
+  02 Sep 2005; Michael Hanselmann <hansmi@gentoo.org>
+  libbonoboui-2.10.0.ebuild:
+  Stable on ppc.
+
+  31 Aug 2005; Herbie Hopkins <herbs@gentoo.org> libbonoboui-2.10.0.ebuild:
+  Stable on amd64.
+
+  29 Aug 2005; Guy Martin <gmsoft@gentoo.org> libbonoboui-2.10.0.ebuild:
+  Stable on hppa.
+
+  26 Aug 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  libbonoboui-2.10.0.ebuild:
+  Stable on sparc
+
+  25 Aug 2005; Aron Griffis <agriffis@gentoo.org> libbonoboui-2.10.0.ebuild:
+  stable on ia64
+
+  25 Aug 2005; Leonardo Boshell <leonardop@gentoo.org>
+  libbonoboui-2.10.0.ebuild:
+  Stable on x86.
+
+*libbonoboui-2.10.1 (22 Aug 2005)
+
+  22 Aug 2005; Leonardo Boshell <leonardop@gentoo.org>
+  +libbonoboui-2.10.1.ebuild:
+  New version. Removed RESTRICT. Updated dependencies.
+
+*libbonoboui-2.10.0 (14 Jul 2005)
+
+  14 Jul 2005; Leonardo Boshell <leonardop@gentoo.org>
+  libbonoboui-2.10.0.ebuild:
+  New version. Added 'static' USE flag. Added RESTRICT=test since its test
+  program requires write permissions on $HOME.
+
+  12 Jul 2005; Stephen P. Becker <geoman@gentoo.org>
+  libbonoboui-2.8.1.ebuild:
+  stable on mips
+
+  13 Jun 2005; Markus Rothe <corsair@gentoo.org> libbonoboui-2.8.1.ebuild:
+  Stable on ppc64
+
+  11 May 2005; Guy Martin <gmsoft@gentoo.org> libbonoboui-2.8.1.ebuild:
+  Stable on hppa.
+
+  10 May 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  libbonoboui-2.8.1.ebuild:
+  Stable on sparc
+
+  08 May 2005; Herbie Hopkins <herbs@gentoo.org> libbonoboui-2.8.1.ebuild:
+  Stable on amd64.
+
+  27 Apr 2005; Bryan Østergaard <kloeri@gentoo.org>
+  libbonoboui-2.8.1.ebuild:
+  Stable on alpha + ia64.
+
+  25 Apr 2005; Mike Gardiner <obz@gentoo.org> libbonoboui-2.8.1.ebuild:
+  Keyworded ppc x86
+
+  02 Apr 2005; Stephen P. Becker <geoman@gentoo.org>
+  libbonoboui-2.8.0.ebuild:
+  stable on mips
+
+*libbonoboui-2.8.1 (16 Feb 2005)
+
+  16 Feb 2005; Mike Gardiner <obz@gentoo.org> +libbonoboui-2.8.1.ebuild:
+  New version
+
+  08 Jan 2005; Tom Martin <slarti@gentoo.org> :
+  Stable on amd64.
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  23 Dec 2004; Guy Martin <gmsoft@gentoo.org> libbonoboui-2.8.0.ebuild:
+  Stable on hppa.
+
+  11 Dec 2004; Bryan Østergaard <kloeri@gentoo.org>
+  libbonoboui-2.8.0.ebuild:
+  Stable on alpha.
+
+  11 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  libbonoboui-2.8.0.ebuild:
+  Stable on sparc
+
+  11 Nov 2004; Mike Gardiner <obz@gentoo.org> libbonoboui-2.8.0.ebuild:
+  Keyworded ppc for GNOME 2.8
+
+  01 Oct 2004; Stephen P. Becker <geoman@gentoo.org> libbonoboui-2.6.1.ebuild:
+  stable on mips
+
+*libbonoboui-2.8.0 (14 Sep 2004)
+
+  14 Sep 2004; foser <foser@gentoo.org> libbonoboui-2.8.0.ebuild :
+  Gnome 2.8 release
+
+  22 Aug 2004; Bryan Østergaard <kloeri@gentoo.org> libbonoboui-2.6.1.ebuild:
+  Stable on alpha.
+
+  05 Aug 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  libbonoboui-2.6.1.ebuild:
+  Stable on sparc
+
+  05 Aug 2004; Guy Martin <gmsoft@gentoo.org> libbonoboui-2.6.1.ebuild:
+  Stable on hppa.
+
+  31 Jul 2004; <spider@gentoo.org> libbonoboui-2.6.1.ebuild:
+  stable on x86 for gnome 2.6.2
+
+  27 Jul 2004; Tom Gall <tgall@gentoo.org> libbonoboui-2.6.1.ebuild:
+  stable on ppc64, bug #58191
+
+  13 Jul 2004; Tom Gall <tgall@gentoo.org> libbonoboui-2.6.1.ebuild:
+  added ~ppc64, bug #54807
+
+  04 Jul 2004; Bryan Østergaard <kloeri@gentoo.org> libbonoboui-2.6.0.ebuild:
+  Stable on alpha.
+
+  04 Jun 2004; Stephen P. Becker <geoman@gentoo.org> libbonoboui-2.6.0.ebuild:
+  Stable on mips.
+
+*libbonoboui-2.6.1 (30 May 2004)
+
+  30 May 2004; foser <foser@gentoo.org> libbonoboui-2.6.1.ebuild :
+  New release
+
+  29 May 2004; Pieter Van den Abeele <pvdabeel@gentoo.org>
+  libbonoboui-2.6.0.ebuild:
+  Masked libbonoboui-2.6.0.ebuild stable for ppc
+
+  25 May 2004; Guy Martin <gmsoft@gentoo.org> libbonoboui-2.6.0.ebuild:
+  Marked stable on hppa.
+
+  13 May 2004; Stephen P. Becker <geoman@gentoo.org> libbonoboui-2.4.3.ebuild:
+  Stable on mips.
+
+  17 Apr 2004; Travis Tilley <lv@gentoo.org> libbonoboui-2.4.3.ebuild:
+  stable on amd64
+
+*libbonoboui-2.6.0 (01 Apr 2004)
+
+  01 Apr 2004; foser <foser@gentoo.org> libbonoboui-2.6.0.ebuild :
+  Gnome 2.6 final
+
+*libbonoboui-2.5.4 (20 Mar 2004)
+
+  20 Mar 2004; foser <foser@gentoo.org> libbonoboui-2.5.4.ebuild :
+  Gnome 2.6 commit
+
+  14 Mar 2004; Stephen P. Becker <geoman@gentoo.org> libbonoboui-2.4.3.ebuild:
+  Added ~mips keyword.
+
+  09 Mar 2004; <agriffis@gentoo.org> libbonoboui-2.4.3.ebuild:
+  stable on alpha and ia64
+
+  18 Feb 2004; Aron Griffis <agriffis@gentoo.org> libbonoboui-2.4.3.ebuild:
+  add ~ia64
+
+  10 Feb 2004; <gustavoz@gentoo.org> libbonoboui-2.4.3.ebuild:
+  stable on hppa and sparc
+
+  10 Feb 2004; Bartosch Pixa <darkspecter@gentoo.org>
+  libbonoboui-2.4.3.ebuild:
+  set ppc in keywords
+
+  08 Feb 2004; <spider@gentoo.org> libbonoboui-2.4.3.ebuild:
+  x86 stable
+
+  28 Jan 2004; Aron Griffis <agriffis@gentoo.org> libbonoboui-2.4.1.ebuild:
+  stable on alpha and ia64
+
+  17 Jan 2004; Bartosch Pixa <darkspecter@gentoo.org> :
+  manifest fix
+
+  16 Jan 2004; Bartosch Pixa <darkspecter@gentoo.org>
+  libbonoboui-2.4.1.ebuild:
+  set ppc in keywords
+
+  13 Jan 2004; <gustavoz@gentoo.org> libbonoboui-2.4.1.ebuild:
+  stable on hppa and sparc
+
+*libbonoboui-2.4.3 (08 Jan 2003)
+
+  08 Jan 2003; foser <foser@gentoo.org> libbonoboui-2.4.3.ebuild :
+  New release
+
+  14 Nov 2003; Aron Griffis <agriffis@gentoo.org> libbonoboui-2.4.0.ebuild:
+  Stable on ia64
+
+  08 Nov 2003; Todd Sunderlin <todd@gentoo.org> libbonoboui-2.4.0.ebuild:
+  set stable on sparc
+
+*libbonoboui-2.4.1 (30 Oct 2003)
+
+  30 Oct 2003; foser <foser@gentoo.org> libbonoboui-2.4.1.ebuild :
+  New release
+
+  22 Oct 2003; Bartosch Pixa <darkspecter@gentoo.org>
+  libbonoboui-2.4.0.ebuild:
+  set ppc in keywords
+
+  16 Oct 2003; Aron Griffis <agriffis@gentoo.org> libbonoboui-2.4.0.ebuild:
+  Stable on alpha
+
+  05 Oct 2003; Mike Gardiner <obz@gentoo.org> libbonoboui-2.4.0.ebuild:
+  Marked stable on x86
+
+  23 Sep 2003; Bartosch Pixa <darkspecter@gentoo.org>
+  libbonoboui-2.2.4.ebuild:
+  set ppc in keywords
+
+*libbonoboui-2.4.0 (07 Sep 2003)
+
+  13 Dec 2003; Guy Martin <gmsoft@gentoo.org> libbonobui-2.4.0.ebuild :
+  Marked stable on hppa.
+
+  07 Sep 2003; foser <foser@gentoo.org> libbonobui-2.4.0.ebuild :
+  Gnome 2.4 rc1
+
+  25 Aug 2003; Mike Gardiner <obz@gentoo.org> libbonoboui-2.2.4.ebuild:
+  Moved to stable on x86
+
+*libbonoboui-2.2.4 (05 Jul 2003)
+
+  05 Jul 2003; foser <foser@gentoo.org> libbonoboui-2.2.4.ebuild :
+  New version, should fix problems reported with 2.2.3 (#25776)
+
+*libbonoboui-2.2.3 (30 Jul 2003)
+
+  04 Aug 2003; foser <foser@gentoo.org> libbonoboui-2.2.3.ebuild :
+  Remove ebuild, it is buggy (#25776)
+
+  30 Jul 2003; foser <foser@gentoo.org> libbonoboui-2.2.3.ebuild :
+  New version
+
+*libonoboui-2.2.2 (19 May 2003)
+
+  04 Aug 2003; Guy Martin <gmsoft@gentoo.org> libonoboui-2.2.2.ebuild :
+  Marked stable on hppa.
+
+  01 Jul 2003; Guy Martin <gmsoft@gentoo.org> libonoboui-2.2.2.ebuild :
+  Added ~hppa to KEYWORDS.
+
+  30 May 2003; Luca Barbato <lu_zero@gentoo.org> libbonoboui-2.2.0.1.ebuild:
+  Marked stable for ppc.
+
+*libbonoboui-2.2.0.1 (04 Mar 2003)
+
+  01 Jul 2003; Guy Martin <gmsoft@gentoo.org> libbonoboui-2.2.0.1.ebuild :
+  Added hppa to KEYWORDS.
+
+  09 Apr 2003; Todd Sunderlin <todd@gentoo.org> libbonoboui-2.2.0.1.ebuild:
+  Marked stable for sparc.
+
+  04 Mar 2003; foser <foser@gentoo.org> libbonobui-2.2.0.1.ebuild :
+  New version
+
+  07 Feb 2003; Aron Griffis <agriffis@gentoo.org> libbonoboui-2.2.0.ebuild :
+  Add ~alpha to KEYWORDS
+
+*libbonoboui-2.2.0 (30 Jan 2003)
+
+  01 Mar 2003; Jason Wever <weeve@gentoo.org> libbonoboui-2.2.0.ebuild:
+  Added ~sparc to keywords.
+
+  21 Feb 2003; Aron Griffis <agriffis@gentoo.org> libbonoboui-2.2.0.ebuild :
+  Mark stable on alpha
+
+  08 Feb 2003; foser <foser@gentoo.org> libbonoboui-2.2.0.ebuild :
+  Fixed gtk+ dep (#15289)
+
+  30 Jan 2003; foser <foser@gentoo.org> libbonobui-2.2.0.ebuild :
+  GNOME 2.2 rc2 commit
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*libbonoboui-2.1.0 (12 Nov 2002)
+
+  30 Nov 2002; Jon Nall <nall@gentoo.org> libbonoboui-2.1.0.ebuild :
+  keyworded as ~ppc
+
+  12 Nov 2002; foser <foser@gentoo.org> libbonoboui-2.1.0.ebuild :
+  GNOME 2.1.2 release
+
+*libbonoboui-2.0.3.3 (22 Dec 2002)
+
+  22 Dec 2002; Stefan Jones <cretin@gentoo.org> :
+  New stable version.
+
+*libbonoboui-2.0.3.2 (27 Oct 2002)
+
+  28 nov 2002; Spider <spider@gentoo.org> libbonoboui-2.0.3.2.ebuild :
+  added a CFLAGS hack to work around a dissapearing include problem. this 
+  doesnt solve it, but it makes it dissapear for the moment.
+
+  11 Nov 2002; Spider <spider@gentoo.org> libbonoboui-2.0.3.2.ebuild :
+  marked as stable for x86
+
+  27 Oct 2002; foser <foser@gentoo.org> libbonoboui-2.0.3.2.ebuild :
+  New version
+
+*libbonoboui-2.0.3 (06 Sep 2002)
+  06 Sep 2002; Spider <spider@gentoo.org> libbonoboui-2.0.3.ebuild :
+  versionbump
+  
+*libbonoboui-2.0.1 (15 Aug 2002)
+  05 Aug 2002; Spider <spider@gentoo.org> libbonoboui-2.0.1.ebuild :
+  update version and dependencies
+  
+*libbonoboui-2.0.0 (05 Jun 2002)
+  04 aug 2002; Spider <spider@gentoo.org> :
+  changed to use mirror:// for download
+
+  23 Jul 2002; Mark Guertin <gerk@gentoo.org> :
+  Added ppc to keywords
+
+  05 Jun 2002; Spider <spider@gentoo.org> libbonoboui-2.0.0.ebuild :
+  New, better than ever and eclassed ebuild.
+
+  
+*libbonoboui-1.118.0 (01 Jun 2002) 
+  01 Jun 2002; Spider <spider@gentoo.org> libbonoboui-1.118.0.ebuild :
+  New version out.
+  
+* libbonoboui-1.117.1 (27 May 2002)
+  27 May 2002; Spider <spider@gentoo.org> libbonoboui-1.117.1.ebuild :
+  version bump
+
+* libbonoboui-1.117.0 (23 May 2002)
+  23 May 2002; Spider <spider@gentoo.org> libbonoboui-1.117.0.ebuild :
+  updated version avaiable
+
+* libbonoboui-1.116.0 (22 May 2002)
+  22 May 2002; Spider <spider@gentoo.org> libbonoboui-1.116.0.ebuild :
+  part of gnome2 . initial cvs commit
+
