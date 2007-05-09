@@ -15,7 +15,7 @@ SRC_URI="ftp://lynx.isc.org/${MY_P}/${MY_P}rel.4.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-solaris"
 IUSE="bzip2 cjk ipv6 linguas_ja nls ssl unicode"
 
 RDEPEND="sys-libs/ncurses
