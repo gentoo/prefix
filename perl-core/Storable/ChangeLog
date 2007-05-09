@@ -1,0 +1,191 @@
+# ChangeLog for perl-core/Storable
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Storable/ChangeLog,v 1.17 2007/04/16 12:25:31 mcummings Exp $
+
+*Storable-2.16 (16 Apr 2007)
+
+  16 Apr 2007; Michael Cummings <mcummings@gentoo.org>
+  +Storable-2.16.ebuild:
+  Version bump
+
+  25 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  -Storable-2.13.ebuild:
+  Cleaning up ebuilds
+
+  04 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Storable-2.07-r1.ebuild, Storable-2.13.ebuild, Storable-2.15.ebuild:
+  Adding perl dep
+
+  25 Feb 2006; Joshua Kinard <kumba@gentoo.org> Storable-2.15.ebuild:
+  Marked stable on mips.
+
+  13 Feb 2006; Michael Cummings <mcummings@gentoo.org>
+  Storable-2.07-r1.ebuild:
+  Virtuals for some perl-core deps
+
+  07 Feb 2006; Simon Stelling <blubb@gentoo.org> Storable-2.15.ebuild:
+  stable on amd64
+
+  31 Jan 2006; Aron Griffis <agriffis@gentoo.org> Storable-2.15.ebuild:
+  Mark 2.15 stable on alpha
+
+  21 Jan 2006; Markus Rothe <corsair@gentoo.org> Storable-2.15.ebuild:
+  Stable on ppc64
+
+  15 Jan 2006; Michael Hanselmann <hansmi@gentoo.org> Storable-2.15.ebuild:
+  Stable on ppc.
+
+  14 Jan 2006; Michael Cummings <mcummings@gentoo.org> Storable-2.15.ebuild:
+  marking sparc x86 stable
+
+*Storable-2.15 (11 Nov 2005)
+
+  11 Nov 2005; Michael Cummings <mcummings@gentoo.org>
+  +Storable-2.15.ebuild:
+  Version bump upstream
+
+  30 Sep 2005; MATSUU Takuto <matsuu@gentoo.org> Storable-2.13.ebuild:
+  Stable on sh.
+
+  04 Jun 2005; Michael Cummings <mcummings@gentoo.org> Storable-2.13.ebuild:
+  Tested on raq2, bumping for mips
+
+  25 May 2005; Michael Cummings <mcummings@gentoo.org>
+  Storable-2.07-r1.ebuild:
+  dev-perl/Test-Simple => perl-core/Test-Simple migration
+
+*Storable-2.07-r1 (25 May 2005)
+
+  25 May 2005; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +Storable-2.07-r1.ebuild, +Storable-2.13.ebuild:
+  dev-perl => perl-core migration
+
+  27 Apr 2005; Michael Cummings <mcummings@gentoo.org>
+  -Storable-1.0.14-r1.ebuild, -Storable-1.0.14.ebuild,
+  -Storable-2.04-r1.ebuild, -Storable-2.04.ebuild, -Storable-2.07.ebuild,
+  -Storable-2.09.ebuild, -Storable-2.12.ebuild:
+  Cleaning
+
+  25 Apr 2005; Bryan Østergaard <kloeri@gentoo.org> Storable-2.13.ebuild:
+  Stable on alpha.
+
+  14 Apr 2005; Joseph Jezak <josejx@gentoo.org> Storable-2.13.ebuild:
+  Marked ppc stable for bug #89064.
+
+  08 Apr 2005; Michael Hanselmann <hansmi@gentoo.org> Storable-2.13.ebuild:
+  Readded to ~ppc. Please don't drop keywords.
+
+  08 Apr 2005; Markus Rothe <corsair@gentoo.org> Storable-2.13.ebuild:
+  Stable on ppc64
+
+  02 Apr 2005; Michael Cummings <mcummings@gentoo.org> Storable-2.13.ebuild:
+  Marking stable for x86 and sparc
+
+  23 Nov 2004; Sven Wegener <swegener@gentoo.org> :
+  Fixed digest.
+
+*Storable-2.13 (04 Sep 2004)
+
+  04 Sep 2004; Robert Coie <rac@gentoo.org> +Storable-2.13.ebuild:
+  New upstream, keywording amd64 immediately as 2.07 was failing tests
+
+  09 Jul 2004; Bryan Østergaard <kloeri@gentoo.org> Storable-2.07-r1.ebuild:
+  Stable on alpha.
+
+*Storable-2.12 (06 Jun 2004)
+
+  06 Jun 2004; Michael Cummings <mcummings@gentoo.org> Storable-2.12.ebuild:
+  new version on cpan
+
+  01 Jun 2004; Tom Gall <tgall@gentoo.org> Storable-2.09.ebuild:
+  Stable on ppc64, bug #52701
+
+  17 May 2004; Bryan Østergaard <kloeri@gentoo.org> Storable-2.09.ebuild:
+  Add ~alpha.
+
+  16 Apr 2004; Michael Cummings <mcummings@gentoo.org>
+  Storable-2.07-r1.ebuild:
+  Syntax fix for newdepend, bug 29064
+
+  02 Apr 2004; <randy@gentoo.org> Storable-2.09.ebuild:
+  adding s390 to keywords
+
+  21 Mar 2004; Joshua Kinard <kumba@gentoo.org> Storable-1.0.14-r1.ebuild,
+  Storable-1.0.14.ebuild, Storable-2.04-r1.ebuild, Storable-2.04.ebuild,
+  Storable-2.07-r1.ebuild, Storable-2.07.ebuild, Storable-2.09.ebuild:
+  Marked 2.07-r1 stable on mips, added ~mips to 2.09
+
+  04 Mar 2004; Gustavo Zacarias <gustavoz@gentoo.org> Storable-2.09.ebuild:
+  marked stable on sparc, fixes tests
+
+*Storable-2.09 (30 Jan 2004)
+
+  30 Jan 2004; Michael Cummings <mcummings@gentoo.org>
+  Storable-2.09.ebuild:
+  New version on CPAN; tested on x86 and sparc
+
+  18 Jan 2004; <tuxus@gentoo.org> Storable-2.07-r1.ebuild:
+  Added ~mips to KEYWORDS.
+
+*Storable-2.07-r1 (26 Jul 2003)
+
+  26 Jul 2003; <rac@gentoo.org> Storable-2.07-r1.ebuild:
+  Allow >=perl-5.8.0 to fill the File::Spec dep, clean cruft
+
+  03 Jun 2003; Christian Birchinger <joker@gentoo.org> Storable-2.07.ebuild:
+  Added sparc stable keyword
+
+*Storable-2.07 (31 May 2003)
+
+  02 Jul 2003; Guy Martin <gmsoft@gentoo.org> Storable-2.07.ebuild :
+  Marked stable on hppa.
+
+  31 May 2003; Michael Cummings <mcummings@gentoo.org> Storable-2.07.ebuild:
+  New version from CPAN.
+
+*Storable-2.04-r1 (29 Oct 2002)
+
+  05 Apr 2003; Zach Welch <zwelch@gentoo.org> Storable-2.04-r1.ebuild:
+  add arm keyword
+
+  20 Mar 2003; Guy Martin <gmsoft@gentoo.org> Storable-2.04-r1.ebuild :
+  Added hppa to KEYWORDS.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+  29 Oct 2002; Seemant Kulleen <seemant@gentoo.org> ChangeLog  :
+  forced version bump to install into correct locations
+
+*Storable-2.04 (9 Sep 2002)
+
+  12 Sep 2002;  <mcummings@gentoo.org> Storable-2.04.ebuild :
+  Corrected mising dep (thanks to Tristan Henderson) - bug 7729
+
+  9 Sep 2002; <mcummings@gentoo.org> Storable-2.04.ebuild :
+  Syntax fixes
+  
+*Storable-1.0.14-r1 (21 Jun 2003)
+ 
+  12 Jul 2003; Daniel Ahlberg <aliz@gentoo.org> :
+  Added missing changelog entry.
+
+*Storable-1.0.14 (6 May 2002)
+
+  1 Aug 2002; Calum Selkirk <cselkirk@gentoo.org> Storable-1.0.14.ebuild :
+
+  Added ppc to KEYWORDS.
+
+  6 May 2002; Seemant Kulleen <seemant@gentoo.org> Storable-1.0.14.ebuild
+  files/digest-Storable-1.0.14 :
+
+  Version bump and eclass conversion.
+
+*Storable-1.0.7 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
