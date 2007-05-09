@@ -9,7 +9,7 @@ inherit tetex-2 flag-o-matic
 DESCRIPTION="a complete TeX distribution"
 HOMEPAGE="http://tug.org/teTeX/"
 
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 IUSE=""
 
 src_unpack() {
