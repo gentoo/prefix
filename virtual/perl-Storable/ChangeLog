@@ -1,0 +1,37 @@
+# ChangeLog for virtual/perl-Storable
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Storable/ChangeLog,v 1.8 2007/04/16 12:26:06 mcummings Exp $
+
+*perl-Storable-2.16 (16 Apr 2007)
+
+  16 Apr 2007; Michael Cummings <mcummings@gentoo.org>
+  +perl-Storable-2.16.ebuild:
+  Version bump
+
+  25 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  -perl-Storable-2.13.ebuild:
+  Cleaning up ebuilds
+
+  24 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  perl-Storable-2.15.ebuild:
+  Add ~x86-fbsd keyword.
+
+  26 Feb 2006; Joshua Kinard <kumba@gentoo.org> perl-Storable-2.15.ebuild:
+  Marked stable on mips.
+
+  13 Feb 2006; Michael Cummings <mcummings@gentoo.org>
+  perl-Storable-2.13.ebuild, perl-Storable-2.15.ebuild:
+  Updated RDEPS
+
+  08 Feb 2006; Simon Stelling <blubb@gentoo.org> perl-Storable-2.15.ebuild:
+  stable on amd64
+
+*perl-Storable-2.15 (07 Feb 2006)
+*perl-Storable-2.13 (07 Feb 2006)
+*perl-Storable-2.07 (07 Feb 2006)
+
+  07 Feb 2006; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +perl-Storable-2.07.ebuild, +perl-Storable-2.13.ebuild,
+  +perl-Storable-2.15.ebuild:
+  New virtual for perl-core/Storable
+
