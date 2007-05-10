@@ -1,0 +1,713 @@
+# ChangeLog for media-libs/gstreamer
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.173 2007/04/06 12:42:29 dertobi123 Exp $
+
+  06 Apr 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  gstreamer-0.10.11.ebuild:
+  ppc stable
+
+*gstreamer-0.10.12 (08 Mar 2007)
+
+  08 Mar 2007; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  +gstreamer-0.10.12.ebuild:
+  version bump
+
+  16 Feb 2007; Roy Marples <uberlord@gentoo.org> gstreamer-0.10.11.ebuild:
+  Added ~x86-fbsd keyword.
+
+  15 Feb 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  +files/cothreads-gcc4.patch, gstreamer-0.8.11.ebuild,
+  gstreamer-0.8.12.ebuild:
+  Fix gst-0.8 gcc4 sparc builds, see
+  http://bugzilla.gnome.org/show_bug.cgi?id=312812
+
+  12 Feb 2007; Christian Faulhammer <opfer@gentoo.org>
+  gstreamer-0.10.11.ebuild:
+  stable x86; bug 163541
+
+  31 Jan 2007; Markus Rothe <corsair@gentoo.org> gstreamer-0.10.11.ebuild:
+  Stable on ppc64; bug #163541
+
+  30 Jan 2007; Jeroen Roovers <jer@gentoo.org> gstreamer-0.10.11.ebuild:
+  Stable for HPPA (bug #163541).
+
+  27 Jan 2007; Olivier Crête <tester@gentoo.org> gstreamer-0.10.11.ebuild:
+  Stable on amd64 for bug #163541
+
+  23 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  gstreamer-0.10.11.ebuild:
+  Stable on sparc
+
+  10 Jan 2007; Mart Raudsepp <leio@gentoo.org>
+  -files/gstreamer-0.8.9-64_dataprotocol.patch,
+  -files/gstreamer-0.8.9-fixpluginload.patch,
+  -files/gstreamer-0.8.9-gstqueue_lock.patch, -gstreamer-0.8.10.ebuild,
+  -gstreamer-0.10.4.ebuild, -gstreamer-0.10.5.ebuild,
+  -gstreamer-0.10.6.ebuild, -gstreamer-0.10.9.ebuild,
+  -gstreamer-0.10.10.ebuild:
+  Prune old versions and stray patches
+
+*gstreamer-0.10.11 (07 Dec 2006)
+
+  07 Dec 2006; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  +gstreamer-0.10.11.ebuild:
+  version bump
+
+*gstreamer-0.10.10 (14 Sep 2006)
+
+  14 Sep 2006; <zaheerm@gentoo.org> +gstreamer-0.10.10.ebuild:
+  version bump
+
+  04 Sep 2006; Joshua Kinard <kumba@gentoo.org> gstreamer-0.8.10.ebuild,
+  gstreamer-0.8.11.ebuild, gstreamer-0.8.12.ebuild, gstreamer-0.10.4.ebuild,
+  gstreamer-0.10.5.ebuild, gstreamer-0.10.6.ebuild, gstreamer-0.10.8.ebuild,
+  gstreamer-0.10.9.ebuild:
+  Removing mips keywords as gstreamer is mass brokz0rs for us.
+
+  16 Aug 2006; Markus Rothe <corsair@gentoo.org> gstreamer-0.10.8.ebuild:
+  Stable on ppc64
+
+  22 Jul 2006; Thomas Cort <tcort@gentoo.org> gstreamer-0.10.8.ebuild:
+  Stable on alpha.
+
+  19 Jul 2006; <psi29a@gentoo.org> gstreamer-0.8.12.ebuild,
+  gstreamer-0.10.4.ebuild, gstreamer-0.10.5.ebuild, gstreamer-0.10.6.ebuild,
+  gstreamer-0.10.8.ebuild, gstreamer-0.10.9.ebuild:
+  marked as stable on mips
+
+  17 Jul 2006; Daniel Gryniewicz <dang@gentoo.org> gstreamer-0.10.8.ebuild:
+  Marked stable on amd64 for bug #139612
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  gstreamer-0.10.8.ebuild:
+  hppa stable, bug #139612
+
+*gstreamer-0.10.9 (15 Jul 2006)
+
+  15 Jul 2006; <zaheerm@gentoo.org> +gstreamer-0.10.9.ebuild:
+  version bump
+
+  14 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  gstreamer-0.10.8.ebuild:
+  ppc stable, bug #139612
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org> gstreamer-0.10.8.ebuild:
+  Mark 0.10.8 stable on ia64
+
+  12 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  gstreamer-0.10.8.ebuild:
+  Stable on x86 wrt bug #139612.
+
+  10 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  gstreamer-0.10.8.ebuild:
+  Stable on sparc wrt #139612
+
+*gstreamer-0.10.8 (12 Jun 2006)
+
+  12 Jun 2006; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  +gstreamer-0.10.8.ebuild:
+  version bump, also from now on gstreamer 0.10 requires glib 2.8
+
+  29 May 2006; Guy Martin <gmsoft@gentoo.org> gstreamer-0.10.4.ebuild:
+  Stable on hppa.
+
+  21 May 2006; Thomas Cort <tcort@gentoo.org> gstreamer-0.10.4.ebuild:
+  Stable on alpha.
+
+*gstreamer-0.10.6 (15 May 2006)
+
+  15 May 2006; Zaheer Merali <zaheerm@gentoo.org> +gstreamer-0.10.6.ebuild:
+  version bump
+
+  03 May 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  gstreamer-0.10.4.ebuild:
+  Stable on sparc wrt #128737
+
+  03 May 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  gstreamer-0.10.5.ebuild:
+  Added to ~hppa, bug #125234
+
+*gstreamer-0.10.5 (28 Apr 2006)
+
+  28 Apr 2006; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  +gstreamer-0.10.5.ebuild:
+  version bump
+
+  26 Apr 2006; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  -gstreamer-0.10.0.ebuild, -gstreamer-0.10.1.ebuild,
+  -gstreamer-0.10.2.ebuild, -gstreamer-0.10.3.ebuild:
+  prune old versions
+
+  17 Apr 2006; Markus Rothe <corsair@gentoo.org> gstreamer-0.10.4.ebuild:
+  Stable on ppc64; bug #128737
+
+  16 Apr 2006; Michael Hanselmann <hansmi@gentoo.org>
+  gstreamer-0.10.4.ebuild:
+  Stable on ppc.
+
+  13 Apr 2006; Thomas Cort <tcort@gentoo.org> gstreamer-0.10.4.ebuild:
+  Added ~alpha wrt Bug #125234.
+
+  08 Apr 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  gstreamer-0.10.4.ebuild:
+  Added to ~ppc, bug #125234
+
+  05 Apr 2006; Patrick McLean <chutzpah@gentoo.org> gstreamer-0.10.4.ebuild:
+  Stable on amd64 (bug #128737).
+
+  03 Apr 2006; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  gstreamer-0.10.4.ebuild:
+  stabilize on x86
+
+  24 Mar 2006; Aron Griffis <agriffis@gentoo.org> gstreamer-0.10.4.ebuild:
+  Mark 0.10.4 ~ia64
+
+  23 Mar 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  gstreamer-0.10.4.ebuild:
+  Keyworded ~sparc wrt #125234
+
+  16 Mar 2006; Markus Rothe <corsair@gentoo.org> gstreamer-0.10.4.ebuild:
+  Added ~ppc64
+
+*gstreamer-0.10.4 (11 Mar 2006)
+
+  11 Mar 2006; Saleem Abdulrasool <compnerd@gentoo.org>
+  +gstreamer-0.10.4.ebuild:
+  Version bump from upstream
+
+*gstreamer-0.8.12 (23 Feb 2006)
+
+  23 Feb 2006; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  +gstreamer-0.8.12.ebuild:
+  version bump of 0.8 series
+
+  18 Feb 2006; Aron Griffis <agriffis@gentoo.org> gstreamer-0.8.11.ebuild,
+  gstreamer-0.10.3.ebuild:
+  Mark 0.8.11 stable on ia64
+
+*gstreamer-0.10.3 (09 Feb 2006)
+
+  09 Feb 2006; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  +gstreamer-0.10.3.ebuild:
+  version bump
+
+  07 Feb 2006; Aron Griffis <agriffis@gentoo.org> gstreamer-0.8.11.ebuild:
+  Mark 0.8.11 stable on alpha
+
+  04 Feb 2006; Guy Martin <gmsoft@gentoo.org> gstreamer-0.8.11.ebuild:
+  Stable on hppa.
+
+  29 Jan 2006; John N. Laliberte <allanonjl@gentoo.org>
+  gstreamer-0.8.11.ebuild:
+  add --disable-valgrind to econf, should fix #115421
+
+  22 Jan 2006; Markus Rothe <corsair@gentoo.org> gstreamer-0.8.11.ebuild:
+  Stable on ppc64
+
+  22 Jan 2006; <dang@gentoo.org> gstreamer-0.8.11.ebuild:
+  Marked stable on amd64 per bug #119634
+
+  22 Jan 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  gstreamer-0.8.11.ebuild:
+  Marked ppc stable for bug #119634; Stabilize Gnome-2.12.2
+
+  22 Jan 2006; Joshua Jackson <tsunam@gentoo.org> gstreamer-0.8.11.ebuild:
+  Stable on x86 for bug #119634
+
+  20 Jan 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  gstreamer-0.8.11.ebuild:
+  Stable on sparc wrt #119634 #119512
+
+*gstreamer-0.10.2 (18 Jan 2006)
+
+  18 Jan 2006; Saleem Abdulrasool <compnerd@gentoo.org>
+  +gstreamer-0.10.2.ebuild:
+  Version bump from upstream
+
+*gstreamer-0.10.1 (29 Dec 2005)
+
+  29 Dec 2005; Saleem Abdulrasool <compnerd@gentoo.org>
+  +gstreamer-0.10.1.ebuild:
+  Version bump from upstream (bug #116668)
+
+*gstreamer-0.10.0 (05 Dec 2005)
+
+  05 Dec 2005; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  -gstreamer-0.9.7.ebuild, +gstreamer-0.10.0.ebuild:
+  0.10.0 Release
+
+  04 Dec 2005; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  -gstreamer-0.8.9-r3.ebuild:
+  Not needed anymore
+
+*gstreamer-0.9.7 (02 Dec 2005)
+
+  02 Dec 2005; <zaheer@gentoo.org> +gstreamer-0.9.7.ebuild:
+  Pre-release of GStreamer 0.10
+
+  02 Oct 2005; Hardave Riar <hardave@gentoo.org> gstreamer-0.8.10.ebuild:
+  Stable on mips.
+
+  13 Sep 2005; Aron Griffis <agriffis@gentoo.org> gstreamer-0.8.10.ebuild:
+  Mark 0.8.10 stable on alpha
+
+*gstreamer-0.8.11 (05 Sep 2005)
+
+  05 Sep 2005; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  +gstreamer-0.8.11.ebuild:
+  version bump
+
+  02 Sep 2005; Michael Hanselmann <hansmi@gentoo.org>
+  gstreamer-0.8.10.ebuild:
+  Stable on ppc.
+
+  31 Aug 2005; Herbie Hopkins <herbs@gentoo.org> gstreamer-0.8.10.ebuild:
+  Stable on amd64.
+
+  29 Aug 2005; Guy Martin <gmsoft@gentoo.org> gstreamer-0.8.10.ebuild:
+  Stable on hppa.
+
+  26 Aug 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  gstreamer-0.8.10.ebuild:
+  Stable on sparc
+
+  25 Aug 2005; Leonardo Boshell <leonardop@gentoo.org>
+  gstreamer-0.8.10.ebuild:
+  Stable on x86.
+
+  11 Jul 2005; Stephen P. Becker <geoman@gentoo.org>
+  gstreamer-0.8.9-r3.ebuild:
+  stable on mips
+
+  22 May 2005; Bryan Østergaard <kloeri@gentoo.org>
+  gstreamer-0.8.9-r3.ebuild:
+  Stable on alpha.
+
+  08 May 2005; Aron Griffis <agriffis@gentoo.org> gstreamer-0.8.10.ebuild:
+  stable on ia64
+
+  04 May 2005; Zaheer Abbas Merali <zaheerm@gentoo.org> :
+  version bump
+
+  30 Apr 2005; Michael Hanselmann <hansmi@gentoo.org> :
+  Stable on ppc.
+
+  30 Apr 2005; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  +files/gstreamer-0.8.9-fixpluginload.patch, gstreamer-0.8.9-r3.ebuild:
+  mark ~ppc-macos with plugin loading fix just for os x...works for all
+  platforms but only needed on os x
+
+  29 Apr 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  gstreamer-0.8.9-r3.ebuild:
+  Stable on sparc
+
+  27 Apr 2005; Jan Brinkmann <luckyduck@gentoo.org> gstreamer-0.8.9-r3.ebuild:
+  stable on amd64
+
+  25 Apr 2005; Mike Gardiner <obz@gentoo.org> gstreamer-0.8.9-r3.ebuild:
+  Keyworded ppc
+
+  25 Apr 2005; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  -files/gnu_asm_fix.patch, -gstreamer-0.6.4.ebuild:
+  Removing 0.6.x
+
+  25 Apr 2005; <zaheerm@gentoo.org> gstreamer-0.8.9-r3.ebuild:
+  Stabilise on x86
+
+  08 Apr 2005; Markus Rothe <corsair@gentoo.org> gstreamer-0.8.9-r3.ebuild:
+  Stable on ppc64
+
+  02 Apr 2005; Stephen P. Becker <geoman@gentoo.org> gstreamer-0.8.8.ebuild:
+  stable on mips
+
+*gstreamer-0.8.9-r3 (15 Mar 2005)
+
+  15 Mar 2005; <zaheerm@gentoo.org> gstreamer-0.8.9-r3.ebuild:
+  Add gstqueue patch that fixes mp3 skipping after a few secs. (#84864)
+
+  09 Mar 2005; Mike Gardiner <obz@gentoo.org> gstreamer-0.8.8.ebuild:
+  Keyworded ppc
+
+*gstreamer-0.8.9-r2 (08 Mar 2005)
+
+  08 Mar 2005; foser <foser@gentoo.org> gstreamer-0.8.9-r2.ebuild :
+  Add dataprotocol by zaheerm patch for bug which showed on 64 bit platforms
+
+*gstreamer-0.8.9-r1 (11 Feb 2005)
+
+  11 Feb 2005; foser <foser@gentoo.org> gstreamer-0.8.9-r1.ebuild :
+  Add environment mask to stop gstplugins being prelinked (#81512)
+
+*gstreamer-0.8.9 (09 Feb 2005)
+
+  09 Feb 2005; foser <foser@gentoo.org> gstreamer-0.8.9.ebuild :
+  New release
+
+  08 Feb 2005; Heinrich Wendel <lanius@gentoo.org> gstreamer-0.8.8.ebuild:
+  stable on amd64
+
+  08 Feb 2005; Gustavo Zacarias <gustavoz@gentoo.org> gstreamer-0.8.8.ebuild:
+  Stable on sparc
+
+  07 Feb 2005; Bryan Østergaard <kloeri@gentoo.org> gstreamer-0.8.8.ebuild:
+  Stable on alpha.
+
+  05 Feb 2005; foser <foser@gentoo.org> gstreamer-0.8.8.ebuild :
+  Add Os -> O2 replace (#70886)
+
+  25 Jan 2005; Markus Rothe <corsair@gentoo.org> gstreamer-0.8.5.ebuild:
+  Stable on ppc64
+
+*gstreamer-0.8.8 (29 Dec 2004)
+
+  29 Dec 2004; foser <foser@gentoo.org> gastreamer-0.8.8.ebuild :
+  New release
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  16 Dec 2004; Dylan Carlson <absinthe@gentoo.org> gstreamer-0.8.7.ebuild:
+  Stable on amd64.
+
+  15 Nov 2004; Bryan Østergaard <kloeri@gentoo.org> gstreamer-0.8.7.ebuild:
+  Stable on alpha.
+
+  11 Nov 2004; Mike Gardiner <obz@gentoo.org> gstreamer-0.8.7.ebuild:
+  Keyworded ppc for GNOME 2.8
+
+  03 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org> gstreamer-0.8.7.ebuild:
+  Stable on sparc
+
+  03 Nov 2004; foser <foser@gentoo.org> gstreamer-0.8.{5,7}.ebuild :
+  Add another addpredict for root (#65900)
+
+  17 Oct 2004; Dylan Carlson <absinthe@gentoo.org> gstreamer-0.8.5.ebuild:
+  stable on amd64.
+
+  12 Oct 2004; Gustavo Zacarias <gustavoz@gentoo.org> gstreamer-0.8.5.ebuild:
+  Stable on sparc
+
+*gstreamer-0.8.7 (09 Oct 2004)
+
+  09 Oct 2004; foser <foser@gentoo.org> gstreamer-0.8.7.ebuild :
+  New release
+  Remove sed usage from global scope (notified by Chainsaw)
+
+  01 Oct 2004; Stephen P. Becker <geoman@gentoo.org>
+  gstreamer-0.8.3-r1.ebuild:
+  stable on mips
+
+*gstreamer-0.8.5 (18 Aug 2004)
+
+  18 Aug 2004; foser <foser@gentoo.org> gstreamer-0.8.5.ebuild :
+  New release (#57904)
+
+  07 Aug 2004; Travis Tilley <lv@gentoo.org> gstreamer-0.8.3-r1.ebuild:
+  stable on amd64
+
+  07 Aug 2004; Bryan Østergaard <kloeri@gentoo.org> gstreamer-0.8.3-r1.ebuild:
+  Stable on alpha.
+
+  05 Aug 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  gstreamer-0.8.3-r1.ebuild:
+  Stable on sparc
+
+  05 Aug 2004; Guy Martin <gmsoft@gentoo.org> gstreamer-0.8.3-r1.ebuild:
+  Stable on hppa.
+
+  03 Aug 2004; foser <foser@gentoo.org> gstreamer-0.8.3-r1.ebuild :
+  Make the addpredict cover more ground (#57002)
+
+  31 Jul 2004; <spider@gentoo.org> gstreamer-0.8.3-r1.ebuild:
+  stable on x86 for gnome 2.6.2
+
+  28 Jul 2004; Tom Gall <tgall@gentoo.org> gstream-0.8.3-r1.ebuild,
+  gstream-0.8.1.ebuild:
+  stable on ppc64, bug #58191
+
+*gstreamer-0.8.3-r1 (11 Jul 2004)
+
+  19 Jul 2004; foser <foser@gentoo.org> gstreamer-0.8.3-r1.ebuild :
+  Add addpredict to prevent sandboxing, although it's a bit of hacky solution (#57002)
+
+  11 Jul 2004; foser <foser@gentoo.org> gstreamer-0.8.3-r1.ebuild, gstreamer-0.8-reiser4_register.patch  :
+  Add patch to fix reiser4 registering, patch by Ed Catmur in #49081
+
+  04 Jul 2004; Bryan Østergaard <kloeri@gentoo.org> gstreamer-0.8.1.ebuild:
+  Stable on alpha.
+
+  01 Jul 2004; L. Boshell <leonardop@gentoo.org> gstreamer-0.8.3.ebuild,
+  files/gstreamer-0.8.3-jade_fix.patch:
+  Patch to fix docs building process. Resolves bug #55700.
+
+*gstreamer-0.8.3 (29 Jun 2004)
+
+  29 Jun 2004; foser <foser@gentoo.org> gstreamer-0.8.3.ebuild :
+  Readd docs stuff
+
+  03 Jun 2004; Stephen P. Becker <geoman@gentoo.org> gstreamer-0.8.1.ebuild:
+  Stable on mips.
+
+  25 May 2004; Guy Martin <gmsoft@gentoo.org> gstreamer-0.8.1.ebuild:
+  Marked stable on hppa.
+
+  13 May 2004; Stephen P. Becker <geoman@gentoo.org> gstreamer-0.6.4.ebuild:
+  Stable on mips.
+
+  27 Apr 2004; foser <foser@gentoo.org> gstreamer-0.8.1.ebuild :
+  Add patch to fix gcc 3.4 compilation (#48953)
+
+*gstreamer-0.8.1 (23 Apr 2004)
+
+  23 Apr 2004; foser <foser@gentoo.org> gstreamer-0.8.1.ebuild :
+  New release, fix removal of nonversioned binaries
+
+  28 Mar 2004; Luca Barbato <lu_zero@gentoo.org> gstreamer-0.8.0.ebuild:
+  Removed an unnecessary patch.
+
+  23 Mar 2004; Martin Holzer <mholzer@gentoo.org> :
+  fixing depend qa issue. see 45343.
+
+  23 Mar 2004; foser <foser@gentoo.org> gstreamer-0.8.0.ebuild :
+  Remove eclass functionality, we shouldn't use that here
+
+*gstreamer-0.8.0 (21 Mar 2004)
+
+  21 Mar 2004; foser <foser@gentoo.org> gstreamer-0.8.0.ebuild :
+  Gnome 2.6 commit
+  Remove unversioned binaries by default
+
+  15 Mar 2004; Stephen P. Becker <geoman@gentoo.org> gstreamer-0.6.4.ebuild:
+  Added ~mips keyword.
+
+  07 Mar 2004; Jon Portnoy <avenj@gentoo.org> gstreamer-0.6.4.ebuild :
+  Stable on AMD64.
+
+  10 Feb 2004; Bartosch Pixa <darkspecter@gentoo.org> gstreamer-0.6.4.ebuild:
+  set ppc in keywords
+
+  28 Jan 2004; Aron Griffis <agriffis@gentoo.org> gstreamer-0.6.4.ebuild:
+  stable on alpha and ia64
+
+  18 Jan 2004; <gustavoz@gentoo.org> gstreamer-0.6.4.ebuild:
+  stable on sparc
+
+  09 Dec 2003; Heinrich Wendel <lanius@gentoo.org> gstreamer-0.6.0-r2.ebuild:
+  changed app-text/ghostscript to virtual/ghostscript
+
+  14 Nov 2003; Aron Griffis <agriffis@gentoo.org> gstreamer-0.6.3.ebuild,
+  files/gstreamer-0.6.3-Werror.patch:
+  Mark stable on ia64
+
+  08 Nov 2003; Todd Sunderlin <todd@gentoo.org> gstreamer-0.6.3.ebuild:
+  added sparc keyword
+
+  24 Oct 2003; Luca Barbato <lu_zero@gentoo.org> gstreamer-0.6.4.ebuild :
+  Added a ppc related patch
+
+*gstreamer-0.6.4 (23 Oct 2003)
+
+  21 Nov 2003; Guy Martin <gmsoft@gentoo.org> gstreamer-0.6.4.ebuild, 
+  gstreamer-0.6.3.ebuild :
+  Added build fix for hppa.
+
+  23 Oct 2003; foser <foser@gentoo.org> gstreamer-0.6.4.ebuild :
+  Add some hacks to have at least some docs build
+  Removed old nasm, popt and zlib deps
+
+  22 Oct 2003; Bartosch Pixa <darkspecter@gentoo.org> gstreamer-0.6.3.ebuild:
+  set ppc in keywords
+
+  17 Oct 2003; Aron Griffis <agriffis@gentoo.org> gstreamer-0.6.3.ebuild:
+  Stable on alpha
+
+  28 Sep 2003; Markus Nigbur <pyrania@gentoo.org> gstreamer-0.6.3.ebuild:
+  Turned of -Werror for amd64, suggested by brad@mainstreetsoftworks.com in bug
+  #29807
+
+  23 Sep 2003; Bartosch Pixa <darkspecter@gentoo.org> gstreamer-0.6.2.ebuild:
+  set ppc in keywords
+
+  12 Sep 2003; Aron Griffis <agriffis@gentoo.org> gstreamer-0.6.3.ebuild:
+  Add hack to build on ~alpha
+
+  08 Sep 2003; foser <foser@gentoo.org> gstreamer-0.6.3.ebuild :
+  Replaced hack with proper gcc 3.3.1 fix
+  thanks to <stephane.loeuillet@tiscale.fr> for mailing it
+
+  08 Sep 2003; Alastair Tse <liquidx@gentoo.org> gstreamer-0.6.3.ebuild:
+  added quick workaround for gcc-3.3.1 compiler warnings
+
+*gstreamer-0.6.3 (07 Sep 2003)
+
+  07 Sep 2003; foser <foser@gentoo.org> gstreamer-0.6.3.ebuild :
+  New version
+
+  12 Aug 2003; Jason Wever <weeve@gentoo.org> gstreamer-0.6.1-r1.ebuild:
+  Changed ~sparc keyword to sparc.
+
+  12 Aug 2003; Jason Wever <weeve@gentoo.org> gstreamer-0.6.0-r2.ebuild:
+  Changed ~sparc keyword to sparc.
+
+  15 Jul 2003; Alastair Tse <liquidx@gentoo.org> gstreamer-0.6.2.ebuild:
+  putting this back in ~x86
+
+*gstreamer-0.6.2 (10 Jun 2003)
+
+  10 Jun 2003; foser <foser@gentoo.org> gstreamer-0.6.2.ebuild :
+  Disable docs, they seem broken again. Use gnome.org for SRC_URI
+
+  30 May 2003; Luca Barbato <lu_zero@gentoo.org> gstreamer-0.6.{0-r2.1}.ebuild :
+  Add ppc to KEYWORDS
+
+*gstreamer-0.6.1-r1 (21 Apr 2003)
+
+  21 Apr 2003; foser <foser@gentoo.org> gstreamer-0.6.1-r1.ebuild :
+  re-enabled docs building, just gtk-doc for now
+  bumped to get it some testing
+
+*gstreamer-0.6.1 (19 Apr 2003)
+
+  19 Apr 2003; foser <foser@gentoo.org> gstreamer-0.6.1.ebuild :
+  New version, remove some patching thats incorporated now
+
+  10 Feb 2003; Aron Griffis <agriffis@gentoo.org> gstreamer-0.6.0-r2.ebuild :
+  Add ~alpha to KEYWORDS
+
+*gstreamer-0.6.0-r2 (05 Feb 2003)
+
+  04 Mar 2003; Jason Wever <weeve@gentoo.org> gstreamer-0.6.0-r2.ebuild,
+  files/gstreamer-0.6.0-sparc.patch:
+  Added patch for sparc. Resolves bug #15502. Thanks to Alvaro Figueroa (fede2)
+  for pointing out the fix :)
+
+  05 Feb 2003; foser <foser@gentoo.org> gstreamer-0.6.0-r2.ebuild :
+  Added patch to use opt scheduler as default
+
+*gstreamer-0.6.0-r1 (04 Feb 2003)
+
+  04 Feb 2003; foser <foser@gentoo.org> gstreamer-0.6.0-r1.ebuild :
+  Revision bump with a lot of needed SLOT related changes
+  Disabled docs until the gstreamer team gets things sorted out
+  Added extra error notification patch
+
+*gstreamer-0.6.0 (04 Feb 2003)
+
+  04 Feb 2003; Nick Hadaway <raker@gentoo.org> gstreamer-0.6.0.ebuild,
+  files/digest-gstreamer-0.6.0 :
+  Version bump.  Some problems with USE="doc" which should be worked out
+  soon.
+
+*gstreamer-0.5.2 (30 jan 2003)
+
+  31 Jan 2003; foser <foser@gentoo.org> gstreamer-0.5.2.ebuild :
+  disable doc breaking patch (#13768)
+
+  30 Jan 2003; foser <foser@gentoo.org> gstreamer-0.5.2.ebuild :
+  GNOME 2.2 RC2 
+
+*gstreamer-0.5.1 (10 Jan 2003)
+
+  10 Jan 2003; Luca Barbato <azarah@gentoo.org> gstreamer-0.5.1.ebuild :
+  Version bump
+
+  29 Dec 2002; Matthew Turk <satai@gentoo.org> gstreamer-0.3.4.ebuild
+  gstreamer-0.4.0-r1.ebuild gstreamer-0.4.1-r2.ebuild gstreamer-0.4.2-r1.ebuild
+  gstreamer-0.5.0-r1.ebuild :
+  removed xmltex deps, changed to passivetex.
+
+*gstreamer-0.5.0-r1 (27 Dec 2002)
+
+  27 Dec 2002; Martin Schlemmer <azarah@gentoo.org> gstreamer-0.5.0-r1.ebuild :
+  Redo previous fix.  We path html.xsl to rather need the 'current' version of
+  docbook-xsl-stylesheets, and not a specific version.  This voids the need to
+  depend on a specific version ...
+
+*gstreamer-0.5.0 (26 Dec 2002)
+
+  26 Dec 2002; Martin Schlemmer <azarah@gentoo.org> gstreamer-0.5.0.ebuild :
+  Version update.  Really fix the problems compiling when specifying USE="doc"
+  The problem is that gstreamer's docs imports the wrong version (or different
+  to ours) of app-text/docbook-xsl-stylesheets, and delete files it should not.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> :
+  Changed sparc ~sparc keywords.
+ 
+*gstreamer-0.4.2-r1 (04 Nov 2002)
+
+  04 Nov 2002; L. Boshell <leonardop@gentoo.org> gstreamer-0.4.2-r1.ebuild :
+  Use `einstall' now in an attempt to fix bug #10088.
+
+*gstreamer-0.4.2 (02 Nov 2002)
+
+  02 Nov 2002; foser <foser@gentoo.org> gstreamer-0.4.2.ebuild :
+  New minor version
+
+*gstreamer-0.4.1-r2 (17 Oct 2002)
+
+  17 Oct 2002; foser <foser@gentoo.org> gstreamer-0.4.1-r2.ebuild:
+  Disable compiling with -O3 (bug #8217)
+
+*gstreamer-0.4.1-r1 (23 Sep 2002)
+
+  23 Sep 2002; Nick Hadaway <raker@gentoo.org> gstreamer-0.4.1-r1.ebuild,
+  files/xsl.diff, files/digest-gstreamer-0.4.1-r1 :
+  Revision bump due to testing some fixes I made that only affect
+  installing with USE="doc".  Please see bug #6760
+
+*gstreamer-0.4.1 (22 Sep 2002)
+
+  22 Sep 2002; Spider <spdier@gentoo.org> gstreamer-0.4.1.ebuild : updated
+  the version to latest release
+
+  07 Aug 2002; Mark Guertin <gerk@gentoo.org> :
+  Added ppc to keywords and made nasm a dep only on 
+  x86 with new x86 USE variable (x86? (..))
+
+  18 Jul 2002; Spider <spider@gentoo.org>
+  KEYWORDS and SLOT fixes
+
+*gstreamer-0.4.0-r1 (18 Jul 2002)
+  18 Jul 2002; Spider <spider@gentoo.org>
+  DEPENDS on zlib, build changes and make config work okay
+      
+*gstreamer-0.4.0 (07 Jul 2002)
+  07 Jul 2002; Gabriele Giorgetti <stroke@gentoo.org> gstreamer-0.4.0.ebuild:
+  new version, LICENSE added
+
+*gstreamer-0.3.4 (06 May 2002)
+  06 May 2002; Spider <spider@gentoo.org> gstreamer-0.3.4.ebuild
+  lintool fix
+
+* gstreamer-0.3.4 (26 Apr 2002)
+  26 Apr 2002; Spider <spider@gentoo.org> gstreamer-0.3.4.ebuild
+  libtoolize
+  version bump
+  add sysconfdir  
+  fix use lines and documentation
+
+
+* gstreamer-0.3.3-r3 (3 Apr 2002)
+  
+  3 Apr 2002; A. Baguinski <artm@v2.nl> gstreamer-0.3.3-r3.ebuild
+
+  added gtk-doc dependancy if USE contains "perl", need some more work on 
+  that (some more dependancies and different USE word).
+
+  fixed gtkdoc-fixxref issue (was trying to write outside DESTDIR), added
+  installation of documentation (not everything, dunno what to do with
+  examples and  docs/random, they contain the whole trees of files and dodoc
+  doesnt do recursive, neither does doins). some docs are gzipped, others -
+  not.
+
+* gstreamer-0.3.3-r2 (28 Mar 2002)
+
+  28 Mar 2002; A. Baguinski <artm@v2.nl> gstreamer-0.3.3-r2.ebuild
+
+  Added gst-register to pkg_postinst
+
+* gstreamer-0.3.3-r1 (28 Mar 2002)
+  
+  28 Mar 2002; A. Baguinski <artm@v2.nl> gstreamer-0.3.3-r1.ebuild ChangeLog
+
+  Just started
