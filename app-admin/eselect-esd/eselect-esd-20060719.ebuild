@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit eutils
+
 DESCRIPTION="Manages configuration of ESounD implementation or PulseAudio wrapper"
 HOMEPAGE="http://www.gentoo.org/"
 SRC_URI="mirror://gentoo/esd.eselect-${PVR}.bz2"
@@ -15,6 +17,12 @@ IUSE=""
 
 RDEPEND=">=app-admin/eselect-1.0.2
 	!<media-sound/esound-0.2.36-r2"
+
+src_unpack() {
+	unpack ${A}
+	epatch "${FILESDIR}"/esd.eselect-${PVR}-prefix.patch
+	eprefixify esd.eselect-${PVR}
+}
 
 src_install() {
 	insinto /usr/share/eselect/modules

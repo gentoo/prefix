@@ -1,0 +1,12 @@
+--- esd.eselect-20060719	2007-05-10 09:45:06.000000000 +0200
++++ esd.eselect-20060719prefix	2007-05-10 09:48:36.000000000 +0200
+@@ -7,6 +7,9 @@
+ SVN_DATE='$Date: 2006-03-30 23:11:55 +0200 (gio, 30 mar 2006) $'
+ VERSION=$(svn_date_to_version "${SVN_DATE}" )
+ 
++# prefix hack
++ROOT="@GENTOO_PORTAGE_EPREFIX@"${ROOT}
++
+ # find a list of esd symlink targets, best first
+ find_targets() {
+ 	for f in \
