@@ -1,0 +1,118 @@
+# ChangeLog for x11-apps/xmodmap
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xmodmap/ChangeLog,v 1.30 2007/04/25 17:13:24 armin76 Exp $
+
+  25 Apr 2007; Raúl Porcel <armin76@gentoo.org> xmodmap-1.0.2.ebuild:
+  Stable on ia64 wrt bug #175465.
+
+  25 Apr 2007; Markus Rothe <corsair@gentoo.org> xmodmap-1.0.2.ebuild:
+  Stable on ppc64; bug #175465
+
+*xmodmap-1.0.2 (21 Oct 2006)
+
+  21 Oct 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xmodmap-1.0.2.ebuild:
+  Version bump.
+
+  10 Oct 2006; Donnie Berkholz <dberkholz@gentoo.org>; xmodmap-1.0.1.ebuild:
+  Update description to be less generic.
+
+  19 Jul 2006; Guy Martin <gmsoft@gentoo.org> xmodmap-1.0.1.ebuild:
+  Stable on hppa.
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org> xmodmap-1.0.1.ebuild:
+  Mark 1.0.1 stable on ia64
+
+  01 Jul 2006; Donnie Berkholz <spyderous@gentoo.org>; xmodmap-1.0.1.ebuild:
+  ppc/sparc/mips/alpha/arm/sh stable
+
+  01 Jul 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  -xmodmap-1.0.0.ebuild:
+  Pull old version.
+
+  30 Jun 2006; Chris Gianelloni <wolf31o2@gentoo.org> xmodmap-1.0.1.ebuild:
+  Stable on amd64.
+
+  30 Jun 2006; Markus Rothe <corsair@gentoo.org> xmodmap-1.0.1.ebuild:
+  Stable on ppc64
+
+  30 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; xmodmap-1.0.1.ebuild:
+  x86 stable.
+
+*xmodmap-1.0.1 (29 Apr 2006)
+
+  29 Apr 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xmodmap-1.0.1.ebuild:
+  Version bump.  Allows changing only a few buttons.
+
+  28 Apr 2006; Marien Zwart <marienz@gentoo.org> files/digest-xmodmap-1.0.0,
+  Manifest:
+  Revert to working digest.
+
+  27 Apr 2006; Alec Warner <antarus@gentoo.org> files/digest-xmodmap-1.0.0,
+  Manifest:
+  Fixing SHA256 digest, pass four
+
+  13 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> xmodmap-1.0.0.ebuild:
+  Add ~x86-fbsd keyword.
+
+  24 Mar 2006; Donnie Berkholz <spyderous@gentoo.org>; xmodmap-1.0.0.ebuild:
+  (#127306) Digests changed between release candidates and final release for
+  the same tarballs.
+
+  09 Mar 2006; Aron Griffis <agriffis@gentoo.org> xmodmap-1.0.0.ebuild:
+  Mark 1.0.0 ~ia64
+
+  06 Mar 2006; Stefaan De Roeck <stefaan@gentoo.org> xmodmap-1.0.0.ebuild:
+  Marked ~alpha (bug #122726)
+
+  14 Feb 2006; Markus Rothe <corsair@gentoo.org> xmodmap-1.0.0.ebuild:
+  Added ~ppc64
+
+  31 Jan 2006; Rene Nussbaumer <killerfox@gentoo.org> xmodmap-1.0.0.ebuild:
+  Unstable on hppa.
+
+  26 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  -xmodmap-0.99.2.ebuild:
+  Pull old versions.
+
+*xmodmap-1.0.0 (18 Dec 2005)
+
+  18 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xmodmap-1.0.0.ebuild:
+  Bump for 7.0RC4.
+
+  13 Dec 2005; Doug Goldstein <cardoe@gentoo.org> xmodmap-0.99.2.ebuild:
+  Adding ~ppc
+
+  09 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  -xmodmap-0.99.0.ebuild, -xmodmap-0.99.1.ebuild:
+  Pull old versions.
+
+*xmodmap-0.99.2 (04 Dec 2005)
+
+  04 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xmodmap-0.99.2.ebuild:
+  Bump for 7.0RC3.
+
+*xmodmap-0.99.1 (20 Oct 2005)
+
+  20 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +xmodmap-0.99.1.ebuild:
+  Bump for 7.0 RC1.
+
+  09 Sep 2005; Donnie Berkholz <spyderous@gentoo.org>; +metadata.xml:
+  Add metadata.
+
+  23 Aug 2005; Herbie Hopkins <herbs@gentoo.org> xmodmap-0.99.0.ebuild:
+  Marked ~amd64.
+
+  08 Aug 2005; Ferris McCormick <fmccor@gentoo.org> xmodmap-0.99.0.ebuild:
+  Add ~sparc keyword (Modular X testing).
+
+*xmodmap-0.99.0 (08 Aug 2005)
+
+  08 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +xmodmap-0.99.0.ebuild:
+  Initial commit for modular X.
+
