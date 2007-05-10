@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <herd>gnome-accessibility</herd>
+  <longdescription>
+    GAIL provides accessibility support for gtk+ and libgnomecanvas by
+    implementing AtkObjects for widgets in gtk+ and
+    libgnomecanvas. The GAIL library is a GTK+ module. For example, if
+    the module is loaded in a program which calls
+    gtk_widget_get_accessible() for a GtkEntry an instance of
+    GailEntry is returned. This module is normally used with the
+    atk-bridge GTK+ module from at-spi to allow an assistive
+    technology, e.g a screenreader, to query or drive the program.
+  </longdescription>
+</pkgmetadata>

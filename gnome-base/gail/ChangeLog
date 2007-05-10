@@ -1,0 +1,426 @@
+# ChangeLog for gnome-base/gail
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gail/ChangeLog,v 1.123 2007/03/24 01:57:51 dang Exp $
+
+  24 Mar 2007; Daniel Gryniewicz <dang@gentoo.org> +gail-1.18.0.ebuild:
+  add gnome 2.18.0
+
+  09 Feb 2007; Roy Marples <uberlord@gentoo.org> gail-1.9.3.ebuild:
+  Added ~x86-fbsd keyword.
+
+  21 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> gail-1.9.3.ebuild:
+  Stable on IA64, bug 156662.
+
+  18 Jan 2007; Jeroen Roovers <jer@gentoo.org> gail-1.9.3.ebuild:
+  Stable for HPPA (bug #147751).
+
+  14 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> gail-1.9.3.ebuild:
+  Stable on Alpha.
+
+  09 Jan 2007; Mart Raudsepp <leio@gentoo.org> -gail-1.9.2.ebuild,
+  gail-1.9.3.ebuild:
+  Depend on new enough atk version, bug 159576. Remove a redundant version
+
+  21 Dec 2006; Markus Rothe <corsair@gentoo.org> gail-1.9.3.ebuild:
+  Stable on ppc64; bug #156662
+
+  18 Dec 2006; Gustavo Zacarias <gustavoz@gentoo.org> gail-1.9.3.ebuild:
+  Stable on sparc
+
+  16 Dec 2006; Tobias Scherbaum <dertobi123@gentoo.org> gail-1.9.3.ebuild:
+  Stable on ppc wrt bug #156662.
+
+  12 Dec 2006; Chris Gianelloni <wolf31o2@gentoo.org> gail-1.9.3.ebuild:
+  Stable on amd64 wrt bug #156662.
+
+  10 Dec 2006; Andrej Kacian <ticho@gentoo.org> gail-1.9.3.ebuild:
+  Stable on x86, bug #156662.
+
+*gail-1.9.3 (07 Nov 2006)
+
+  07 Nov 2006; Leonardo Boshell <leonardop@gentoo.org> +gail-1.9.3.ebuild:
+  Version bump.
+
+  20 Oct 2006; Aron Griffis <agriffis@gentoo.org> gail-1.8.11.ebuild:
+  Mark 1.8.11 stable on alpha
+
+  13 Sep 2006; Aron Griffis <agriffis@gentoo.org> gail-1.8.11.ebuild:
+  Mark 1.8.11 stable on ia64. #139612
+
+*gail-1.9.2 (07 Sep 2006)
+
+  07 Sep 2006; Daniel Gryniewicz <dang@gentoo.org> +gail-1.9.2.ebuild:
+  New version for gnome 2.16
+
+  05 Sep 2006; Joshua Kinard <kumba@gentoo.org> gail-1.8.4.ebuild,
+  gail-1.8.8.ebuild, gail-1.8.11.ebuild:
+  Removing mips keywords as gnome is no longer supported on mips.
+
+  16 Aug 2006; Markus Rothe <corsair@gentoo.org> gail-1.8.11.ebuild:
+  Stable on ppc64
+
+  17 Jul 2006; Daniel Gryniewicz <dang@gentoo.org> gail-1.8.11.ebuild:
+  Marked stable on amd64 for bug #139612
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org> gail-1.8.11.ebuild:
+  hppa stable, bug #139612
+
+  14 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org> gail-1.8.11.ebuild:
+  ppc stable, bug #139612
+
+  12 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org> gail-1.8.11.ebuild:
+  Stable on x86 wrt bug #139612.
+
+  10 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org> gail-1.8.11.ebuild:
+  Stable on sparc wrt #139612
+
+*gail-1.8.11 (16 Mar 2006)
+
+  16 Mar 2006; John N. Laliberte <allanonjl@gentoo.org> +gail-1.8.11.ebuild:
+  new version
+
+  03 Feb 2006; Guy Martin <gmsoft@gentoo.org> gail-1.8.8.ebuild:
+  Stable on hppa.
+
+  02 Feb 2006; Aron Griffis <agriffis@gentoo.org> gail-1.8.8.ebuild:
+  Mark 1.8.8 stable on alpha
+
+  02 Feb 2006; Aron Griffis <agriffis@gentoo.org> gail-1.8.8.ebuild:
+  Mark 1.8.8 stable on ia64
+
+  22 Jan 2006; Markus Rothe <corsair@gentoo.org> gail-1.8.8.ebuild:
+  Stable on ppc64
+
+  22 Jan 2006; <dang@gentoo.org> gail-1.8.8.ebuild:
+  Marked stable on amd64 per bug #119634
+
+  22 Jan 2006; Tobias Scherbaum <dertobi123@gentoo.org> gail-1.8.8.ebuild:
+  Marked ppc stable for bug #119634; Stabilize Gnome-2.12.2
+
+  22 Jan 2006; Joshua Jackson <tsunam@gentoo.org> gail-1.8.8.ebuild:
+  Stable on x86 for bug #119634; Stabilize Gnome-2.12.2
+
+  20 Jan 2006; Gustavo Zacarias <gustavoz@gentoo.org> gail-1.8.8.ebuild:
+  Stable on sparc wrt #119634
+
+*gail-1.8.8 (29 Nov 2005)
+
+  29 Nov 2005; Leonardo Boshell <leonardop@gentoo.org> +gail-1.8.8.ebuild:
+  New, bug fix release.
+
+*gail-1.8.6 (23 Nov 2005)
+
+  23 Nov 2005; Leonardo Boshell <leonardop@gentoo.org> +gail-1.8.6.ebuild:
+  New version.
+
+  31 Aug 2005; Herbie Hopkins <herbs@gentoo.org> gail-1.8.4.ebuild:
+  Stable on amd64.
+
+*gail-1.8.5 (31 Aug 2005)
+
+  31 Aug 2005; Leonardo Boshell <leonardop@gentoo.org> +gail-1.8.5.ebuild:
+  New version.
+
+  27 Jul 2005; Guy Martin <gmsoft@gentoo.org> gail-1.8.4.ebuild:
+  Stable on hppa.
+
+  13 Jul 2005; Stephen P. Becker <geoman@gentoo.org> gail-1.8.4.ebuild:
+  stable on mips
+
+  02 Jul 2005; Bryan Østergaard <kloeri@gentoo.org> gail-1.8.4.ebuild:
+  Stable on alpha.
+
+  18 Jun 2005; Markus Rothe <corsair@gentoo.org> gail-1.8.4.ebuild:
+  Stable on ppc64
+
+  17 Jun 2005; Michael Hanselmann <hansmi@gentoo.org> gail-1.8.4.ebuild:
+  Stable on ppc.
+
+  15 Jun 2005; Gustavo Zacarias <gustavoz@gentoo.org> gail-1.8.4.ebuild:
+  Stable on sparc
+
+  13 Jun 2005; Leonardo Boshell <leonardop@gentoo.org> gail-1.8.4.ebuild:
+  Stable on x86.
+
+  13 Jun 2005; Markus Rothe <corsair@gentoo.org> gail-1.8.3.ebuild:
+  Stable on ppc64
+
+  12 Jun 2005; Olivier Crête <tester@gentoo.org> gail-1.8.3.ebuild:
+  Stable on amd64
+
+  05 Jun 2005; Michael Hanselmann <hansmi@gentoo.org> gail-1.8.3.ebuild:
+  Stable on ppc.
+
+  30 May 2005; Gustavo Zacarias <gustavoz@gentoo.org> gail-1.8.3.ebuild:
+  Stable on sparc
+
+  28 May 2005; Leonardo Boshell <leonardop@gentoo.org> gail-1.8.3.ebuild:
+  Stable on x86.
+
+*gail-1.8.4 (13 May 2005)
+
+  13 May 2005; Leonardo Boshell <leonardop@gentoo.org> gail-1.8.4.ebuild:
+  New release.
+
+  11 May 2005; Guy Martin <gmsoft@gentoo.org> gail-1.8.2-r1.ebuild:
+  Stable on hppa.
+
+  08 May 2005; Herbie Hopkins <herbs@gentoo.org> gail-1.8.2-r1.ebuild:
+  Stable on amd64.
+
+  29 Apr 2005; Gustavo Zacarias <gustavoz@gentoo.org> gail-1.8.2-r1.ebuild:
+  Stable on sparc
+
+  28 Apr 2005; Bryan Østergaard <kloeri@gentoo.org> gail-1.8.2-r1.ebuild:
+  Stable on alpha + ia64.
+
+  25 Apr 2005; Mike Gardiner <obz@gentoo.org> gail-1.8.2-r1.ebuild:
+  Keyworded ppc x86
+
+*gail-1.8.3 (22 Apr 2005)
+
+  22 Apr 2005; Leonardo Boshell <leonardop@gentoo.org> gail-1.8.3.ebuild:
+  New release.
+
+  22 Apr 2005; Leonardo Boshell <leonardop@gentoo.org> gail-1.8.2-r1.ebuild:
+  Marked stable on x86.
+
+*gail-1.8.2-r1 (07 Mar 2005)
+
+  07 Mar 2005; Leonardo Boshell <leonardop@gentoo.org> gail-1.8.2-r1.ebuild:
+  New revision, implementing the `static' USE flag.
+
+*gail-1.8.2 (01 Mar 2005)
+
+  01 Mar 2005; Mike Gardiner <obz@gentoo.org> +gail-1.8.2.ebuild:
+  New version
+
+  08 Jan 2005; Tom Martin <slarti@gentoo.org> gail-1.8.1.ebuild:
+  Stable on amd64.
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  23 Dec 2004; Guy Martin <gmsoft@gentoo.org> gail-1.8.1.ebuild:
+  Stable on hppa.
+
+  21 Dec 2004; Gustavo Zacarias <gustavoz@gentoo.org> gail-1.8.1.ebuild:
+  Stable on sparc
+
+  21 Dec 2004; Bryan Østergaard <kloeri@gentoo.org> gail-1.8.1.ebuild:
+  Stable on alpha.
+
+  19 Dec 2004; Mike Gardiner <obz@gentoo.org> gail-1.8.1.ebuild:
+  Keyworded x86 and ppc for GNOME 2.8.1
+
+  11 Dec 2004; Bryan Østergaard <kloeri@gentoo.org> gail-1.8.0.ebuild:
+  Stable on alpha.
+
+*gail-1.8.1 (26 Nov 2004)
+
+  26 Nov 2004; Mike Gardiner <obz@gentoo.org> +gail-1.8.1.ebuild:
+  New version
+
+  18 Nov 2004; Leonardo Boshell <leonardop@gentoo.org> gail-1.6.6.ebuild,
+  gail-1.8.0.ebuild:
+  Use USE_DESTDIR="1". Resolves bug #66065.
+
+  12 Nov 2004; Mike Gardiner <obz@gentoo.org> gail-1.8.0.ebuild:
+  Keyworded ppc for GNOME 2.8
+
+  11 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org> gail-1.8.0.ebuild:
+  Stable on sparc
+
+  01 Oct 2004; Stephen P. Becker <geoman@gentoo.org> gail-1.6.6.ebuild:
+  stable on mips
+
+*gail-1.8.0 (18 Sep 2004)
+
+  18 Sep 2004; Leonardo Boshell <leonardop@gentoo.org> gail-1.8.0.ebuild:
+  New release.
+
+  18 Sep 2004; Leonardo Boshell <leonardop@gentoo.org> gail-1.6.4.ebuild,
+  gail-1.6.5.ebuild:
+  Removed 1.6.4 and 1.6.5.
+
+  22 Aug 2004; Bryan Østergaard <kloeri@gentoo.org> gail-1.6.6.ebuild:
+  Stable on alpha.
+
+  07 Aug 2004; Travis Tilley <lv@gentoo.org> gail-1.6.6.ebuild:
+  stable on amd64
+
+  05 Aug 2004; Gustavo Zacarias <gustavoz@gentoo.org> gail-1.6.6.ebuild:
+  Stable on sparc
+
+  05 Aug 2004; Guy Martin <gmsoft@gentoo.org> gail-1.6.6.ebuild:
+  Stable on hppa.
+
+  31 Jul 2004; <spider@gentoo.org> gail-1.6.6.ebuild:
+  stable on x86 for gnome 2.6.2
+
+  26 Jul 2004; Tom Gall <tgall@gentoo.org> gail-1.6.6.ebuild:
+  stable on ppc64, bug #58191
+
+  04 Jul 2004; Bryan Østergaard <kloeri@gentoo.org> gail-1.6.4.ebuild:
+  Stable on alpha.
+
+*gail-1.6.6 (30 Jun 2004)
+
+  30 Jun 2004; L. Boshell <leonardop@gentoo.org> gail-1.6.6.ebuild:
+  New release.
+
+  14 Jun 2004; L. Boshell <leonardop@gentoo.org> gail-1.6.4.ebuild:
+  Marked stable on x86.
+
+*gail-1.6.5 (30 May 2004)
+
+  30 May 2004; L. Boshell <leonardop@gentoo.org> gail-1.6.5.ebuild:
+  New release.
+
+  30 May 2004; L. Boshell <leonardop@gentoo.org> gail-1.6.2.ebuild:
+  Marked stable on x86.
+
+  29 May 2004; Pieter Van den Abeele <pvdabeel@gentoo.org> gail-1.6.0.ebuild:
+  Masked gail-1.6.0.ebuild stable for ppc
+
+  25 May 2004; Guy Martin <gmsoft@gentoo.org> gail-1.6.0.ebuild:
+  Marked stable on hppa.
+
+*gail-1.6.4 (14 May 2004)
+
+  14 May 2004; L. Boshell <leonardop@gentoo.org> gail-1.6.4.ebuild:
+  New release.
+
+  13 May 2004; Stephen P. Becker <geoman@gentoo.org> gail-1.4.1.ebuild:
+  Stable on mips.
+
+  06 May 2004; L. Boshell <leonardop@gentoo.org> gail-1.6.0.ebuild:
+  Marked stable on x86.
+
+*gail-1.6.2 (22 Apr 2004)
+
+  22 Apr 2004; L. Boshell <leonardop@gentoo.org> gail-1.6.2.ebuild:
+  New release.
+
+  17 Apr 2004; Travis Tilley <lv@gentoo.org> gail-1.4.1.ebuild:
+  stable on amd64
+
+*gail-1.6.0 (23 Mar 2004)
+
+  23 Mar 2004; L. Boshell <leonardop@gentoo.org> gail-1.6.0.ebuild:
+  New release, ready for Gnome 2.6.
+
+  14 Mar 2004; Stephen P. Becker <geoman@gentoo.org> gail-1.4.1.ebuild:
+  Added ~mips keyword.
+
+  13 Mar 2004; foser <foser@gentoo.org> metadata.xml :
+  Move maintainership to gnome-accessibility herd
+
+  10 Feb 2004; Bartosch Pixa <darkspecter@gentoo.org> gail-1.4.1.ebuild:
+  set ppc in keywords
+
+  29 Jan 2004; Aron Griffis <agriffis@gentoo.org> gail-1.4.1.ebuild:
+  stable on alpha and ia64
+
+  18 Jan 2004; <gustavoz@gentoo.org> gail-1.4.1.ebuild:
+  stable on hppa and sparc
+
+  14 Jan 2004; Mike Gardiner <obz@gentoo.org> gail-1.4.1.ebuild:
+  Stable on x86 as part of GNOME-2.4.1
+
+  14 Nov 2003; Aron Griffis <agriffis@gentoo.org> gail-1.4.0.ebuild:
+  Stable on ia64
+
+  08 Nov 2003; Todd Sunderlin <todd@gentoo.org> gail-1.4.0.ebuild:
+  added sparc keyword
+
+*gail-1.4.1 (24 Oct 2003)
+
+  24 Oct 2003; Mike Gardiner <obz@gentoo.org> gail-1.4.1.ebuild:
+  New version
+
+  22 Oct 2003; Bartosch Pixa <darkspecter@gentoo.org> gail-1.4.0.ebuild:
+  set ppc in keywords
+
+  17 Oct 2003; Aron Griffis <agriffis@gentoo.org> gail-1.4.0.ebuild:
+  Stable on alpha
+
+*gail-1.4.0 (05 Oct 2003)
+
+  13 Dec 2003; Guy Martin <gmsoft@gentoo.org> gail-1.4.0.ebuild :
+  Marked stable on hppa.
+
+  05 Oct 2003; Mike Gardiner <obz@gentoo.org> gail-1.4.0.ebuild:
+  Marked stable on x86
+
+  23 Sep 2003; Bartosch Pixa <darkspecter@gentoo.org> gail-1.2.2.ebuild:
+  set ppc in keywords
+
+  15 Jul 2003; Todd Sunderlin <todd@gentoo.org> gail-1.2.0.ebuild:
+  Marked stable for sparc
+
+  30 Jun 2003; Bartosch Pixa <darkspecter@gentoo.org> gail-1.2.0.ebuild:
+  set ppc in keywords
+
+*gail-1.2.2 (13 May 2003)
+
+  04 Jul 2003; Guy Martin <gmsoft@gentoo.org> gail-1.2.2.ebuild :
+  Added hppa to KEYWORDS.
+
+  13 May 2003; foser <foser@gentoo.org> gail-1.2.2.ebuild :
+  New version
+
+*gail-1.2.1 (30 Apr 2003)
+
+  30 Apr 2003; foser <foser@gentoo.org> gail-1.2.1.ebuild :
+  New version, disable scrollkeeper update
+
+  07 Feb 2003; Aron Griffis <agriffis@gentoo.org> gail-1.2.0.ebuild :
+  Add ~alpha to KEYWORDS
+
+*gail-1.2.0 (21 Jan 2003)
+
+  01 Mar 2003; Jason Wever <weeve@gentoo.org> gail-1.2.0.ebuild:
+  Added ~sparc to keywords.
+
+  21 Feb 2003; Aron Griffis <agriffis@gentoo.org> gail-1.2.0.ebuild :
+  Mark stable on Alpha
+
+  21 Jan 2003; foser <foser@gentoo.org> gail-1.2.0.ebuild :
+  New version
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*gail-1.1.2 (27 Oct 2002)
+
+  27 Oct 2002; foser <foser@gentoo.org> gail-1.1.2.ebuild :
+  Gnome 2.2 commit
+
+*gail-0.17 (07 Aug 2002)
+  07 Aug 2002; Gabriele Giorgetti <stroke@gentoo.org> gail-0.17.ebuild:
+  New version, updated deps, mirror://
+
+*gail-0.16 (10 Jun 2002)
+  02 Aug 2002; Mark Guertin <gerk@gentoo.org>:
+  Added ppc to keywords
+
+  10 Jun 2002; Spider <spider@gentoo.org> gail-0.16.ebuild :
+  The dont-fuckup-portage release. 
+
+
+*gail-0.15 (06 Jun 2002)
+  
+  06 Jun 2002; Gabriele Giorgetti <stroke@gentoo.org> gail-0.15.ebuild:
+
+  New version
+
+*gail-0.13-r1 (04 Jun 2002)
+
+  04 Jun 2002; Bruce A. Locke <blocke@shivan.org> gail-0.13-r1.ebuild:
+
+  Converted to gnome2.eclass
+
+*gail-0.13 (22 May 2002)
+  22 May 2002; Spider <spider@gentoo.org>  gail-0.13.ebuild :
+  part of gnome2 . initial cvs commit
+
