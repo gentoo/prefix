@@ -1,0 +1,12 @@
+diff --exclude-from=/home/dang/.diffrc -u -ruN nautilus-2.16.0.orig/src/nautilus-shell-interface.idl nautilus-2.16.0/src/nautilus-shell-interface.idl
+--- nautilus-2.16.0.orig/src/nautilus-shell-interface.idl	2006-07-21 13:18:59.000000000 -0400
++++ nautilus-2.16.0/src/nautilus-shell-interface.idl	2006-09-07 14:08:49.000000000 -0400
+@@ -5,7 +5,7 @@
+ 
+ #include <Bonobo.idl>
+ /* For URI define */
+-#include <../libnautilus-private/nautilus-metafile-server.idl>
++#include <libnautilus-private/nautilus-metafile-server.idl>
+ 
+ module Nautilus {
+ 	typedef sequence<URI> URIList;

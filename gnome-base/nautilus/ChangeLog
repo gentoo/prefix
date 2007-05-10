@@ -1,0 +1,903 @@
+# ChangeLog for gnome-base/nautilus
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.220 2007/04/17 03:34:30 compnerd Exp $
+
+*nautilus-2.18.1 (17 Apr 2007)
+
+  17 Apr 2007; Saleem Abdulrasool <compnerd@gentoo.org>
+  +nautilus-2.18.1.ebuild:
+  Version bump for 2.18.1
+
+  28 Mar 2007; Daniel Gryniewicz <dang@gentoo.org> nautilus-2.18.0.1.ebuild:
+  Missed this one; should be unstable
+
+*nautilus-2.18.0.1 (27 Mar 2007)
+
+  27 Mar 2007; Daniel Gryniewicz <dang@gentoo.org>
+  +nautilus-2.18.0.1.ebuild:
+  gnome 2.18.0
+
+  01 Mar 2007; Daniel Gryniewicz <dang@gentoo.org> nautilus-2.16.3.ebuild:
+  Add back in missing gnome2_pkg_postinst; bug #165583
+
+  05 Feb 2007; Mart Raudsepp <leio@gentoo.org> nautilus-2.16.3.ebuild:
+  Depend on libgnome >=2.14 as it needs a symbol introduced not before, bug
+  165017
+
+  01 Feb 2007; Daniel Gryniewicz <dang@gentoo.org> nautilus-2.14.1.ebuild,
+  nautilus-2.16.3.ebuild:
+  Add info about mpg123 and ogg123.  Bug #125336
+
+  18 Jan 2007; Jeroen Roovers <jer@gentoo.org> nautilus-2.16.3.ebuild:
+  Stable for HPPA (bug #147751).
+
+  14 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> nautilus-2.16.3.ebuild:
+  Stable on Alpha.
+
+  10 Jan 2007; Mart Raudsepp <leio@gentoo.org>
+  -files/nautilus-2.9.90-icon_view_gst.patch,
+  -files/nautilus-2.16.2-desktop-icon-position.patch,
+  -nautilus-2.16.1.ebuild, -nautilus-2.16.2.ebuild,
+  -nautilus-2.16.2-r1.ebuild:
+  Prune old versions
+
+  21 Dec 2006; Markus Rothe <corsair@gentoo.org> nautilus-2.16.3.ebuild:
+  Stable on ppc64; bug #156662
+
+  21 Dec 2006; Saleem Abdulrasool <compnerd@gentoo.org> Manifest:
+  update manifest for removed 1.x macros
+
+  21 Dec 2006; Saleem Abdulrasool <compnerd@gentoo.org>
+  -files/nautilus-1.0.6-hyperbola.diff,
+  -files/nautilus-1.0.6-mozilla-1.0_rc1.diff,
+  -files/nautilus-1.0.6-mozilla-1.0_rc3.diff,
+  -files/nautilus-1.0.6-mozilla-embed-1.0_rc3.diff,
+  -nautilus-1.0.6-r10.ebuild:
+  gnome-1.x removal
+
+  18 Dec 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  nautilus-2.16.3.ebuild:
+  Stable on sparc
+
+  17 Dec 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  nautilus-2.16.3.ebuild:
+  Stable on ppc wrt bug #156662.
+
+  12 Dec 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  nautilus-2.16.3.ebuild:
+  Stable on amd64 wrt bug #156662.
+
+  10 Dec 2006; Andrej Kacian <ticho@gentoo.org> nautilus-2.16.3.ebuild:
+  Stable on x86, bug #156662.
+
+*nautilus-2.16.3 (20 Nov 2006)
+
+  20 Nov 2006; Luis Medinas <metalgod@gentoo.org> +nautilus-2.16.3.ebuild:
+  Version Bump.
+
+  16 Nov 2006; Leonardo Boshell <leonardop@gentoo.org>
+  -files/nautilus-2.10.1-deselect.patch,
+  -files/nautilus-2.10.1-font_sizes.patch,
+  -files/nautilus-2.12.1-symlink-del.patch, -nautilus-2.10.1-r1.ebuild,
+  -nautilus-2.12.2.ebuild, nautilus-2.14.1.ebuild, -nautilus-2.16.0.ebuild,
+  nautilus-2.16.1.ebuild, nautilus-2.16.2.ebuild, nautilus-2.16.2-r1.ebuild:
+  Enable test phase even if FEATURES=-userpriv. Cleaning old ebuilds.
+
+*nautilus-2.16.2-r1 (14 Nov 2006)
+
+  14 Nov 2006; Luis Medinas <metalgod@gentoo.org>
+  +files/nautilus-2.16.2-desktop-icon-position.patch,
+  +nautilus-2.16.2-r1.ebuild:
+  Added a patch to fix desktop icon positions. Fixes bug #154766.
+
+*nautilus-2.16.2 (07 Nov 2006)
+
+  07 Nov 2006; Luis Medinas <metalgod@gentoo.org> +nautilus-2.16.2.ebuild:
+  Version Bump.
+
+  20 Oct 2006; Aron Griffis <agriffis@gentoo.org> nautilus-2.14.1.ebuild:
+  Mark 2.14.1 stable on alpha
+
+  14 Oct 2006; Mart Raudsepp <leio@gentoo.org> nautilus-2.16.0.ebuild,
+  nautilus-2.16.1.ebuild:
+  Remove arm keyword, bug 147751
+
+*nautilus-2.16.1 (12 Oct 2006)
+
+  12 Oct 2006; Mart Raudsepp <leio@gentoo.org> +nautilus-2.16.1.ebuild:
+  Version bump
+
+  19 Sep 2006; Aron Griffis <agriffis@gentoo.org> nautilus-2.14.1.ebuild:
+  Mark 2.14.1 stable on ia64. #139612
+
+  15 Sep 2006; Daniel Gryniewicz <dang@gentoo.org> nautilus-2.16.0.ebuild:
+  Make keywords match 2.14.1
+
+  12 Sep 2006; Daniel Gryniewicz <dang@gentoo.org> nautilus-2.16.0.ebuild:
+  Remove monolithic X deps
+
+  07 Sep 2006; Daniel Gryniewicz <dang@gentoo.org>
+  +files/nautilus-2.16.0-idl_include.patch, nautilus-2.16.0.ebuild:
+  Rebase patch on root directory.  Bug #146663
+
+*nautilus-2.16.0 (07 Sep 2006)
+
+  07 Sep 2006; Daniel Gryniewicz <dang@gentoo.org> +nautilus-2.16.0.ebuild:
+  New version for gnome 2.16
+
+  05 Sep 2006; Joshua Kinard <kumba@gentoo.org> nautilus-1.0.6-r10.ebuild,
+  nautilus-2.10.1-r1.ebuild, nautilus-2.12.2.ebuild:
+  Removing mips keywords as gnome is no longer supported on mips.
+
+  19 Aug 2006; Bryan Østergaard <kloeri@gentoo.org> nautilus-2.14.1.ebuild:
+  Add ~ia64 keyword.
+
+  16 Aug 2006; Markus Rothe <corsair@gentoo.org> nautilus-2.14.1.ebuild:
+  Stable on ppc64
+
+  23 Jul 2006; Daniel Gryniewicz <dang@gentoo.org>
+  -files/nautilus-2.11.91-icon_view_gst.patch,
+  -files/nautilus-2.13.4-no-desktop.patch, -nautilus-2.12.1-r1.ebuild:
+  Clean up unnecessary versions
+
+  17 Jul 2006; Daniel Gryniewicz <dang@gentoo.org> nautilus-2.14.1.ebuild:
+  Marked stable on amd64 for bug #139612
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  nautilus-2.14.1.ebuild:
+  hppa stable, bug #139612
+
+  14 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  nautilus-2.14.1.ebuild:
+  ppc stable, bug #139612
+
+  12 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  nautilus-2.14.1.ebuild:
+  Stable on x86 wrt bug #139612.
+
+  10 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  nautilus-2.14.1.ebuild:
+  Stable on sparc wrt #139612
+
+*nautilus-1.0.6-r10 (03 Jul 2006)
+
+  03 Jul 2006; John N. Laliberte <allanonjl@gentoo.org>
+  -nautilus-1.0.6-r9.ebuild, +nautilus-1.0.6-r10.ebuild:
+  always disable mozilla plugin for nautilus-1. if someone wants to backport
+  some fixes to work with seamonkey, it can be re-enabled.
+
+  17 Jun 2006; Michael Sterrett <mr_bones_@gentoo.org>
+  nautilus-1.0.6-r9.ebuild:
+  make DESCRIPTION consistent
+
+  18 May 2006; Thomas Cort <tcort@gentoo.org> nautilus-2.14.1.ebuild:
+  Added ~alpha keyword wrt Bug #131744.
+
+  14 May 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  nautilus-2.14.1.ebuild:
+  Added ~hppa
+
+  09 May 2006; Marinus Schraal <foser@gentoo.org> nautilus-2.14.1.ebuild,
+  files/nautilus-2.14-idl_include.patch :
+  Fix relative path causing problems compiling with older libIDL (#129366)
+
+  06 May 2006; John N. Laliberte <allanonjl@gentoo.org>
+  -nautilus-2.14.0.ebuild, nautilus-2.14.1.ebuild:
+  drop alpha,arm,hppa,ia64,mips, bug filed. prep for 2.14 unmask
+
+  27 Apr 2006; Marien Zwart <marienz@gentoo.org>
+  files/digest-nautilus-1.0.6-r9, files/digest-nautilus-2.10.1-r1,
+  files/digest-nautilus-2.12.1-r1, files/digest-nautilus-2.12.2, Manifest:
+  Fixing SHA256 digest, pass four
+
+*nautilus-2.14.1 (12 Apr 2006)
+
+  12 Apr 2006; Saleem Abdulrasool <compnerd@gentoo.org>
+  +nautilus-2.14.1.ebuild:
+  Version bump for 2.14.1
+
+  30 Mar 2006; John N. Laliberte <allanonjl@gentoo.org>
+  nautilus-2.14.0.ebuild:
+  remove PDEPEND on gnome-themes, #104969
+
+*nautilus-2.14.0 (16 Mar 2006)
+
+  16 Mar 2006; Joe McCann <joem@gentoo.org>
+  +files/nautilus-2.13.4-no-desktop.patch, +nautilus-2.14.0.ebuild:
+  New version for gnome-2.14 that supports beagle integration.
+
+  13 Feb 2006; Saleem Abdulrasool <compnerd@gentoo.org>
+  nautilus-1.0.6-r9.ebuild:
+  Dropping dep on medusa as it is now masked and it is not a required dep
+
+  03 Feb 2006; Aron Griffis <agriffis@gentoo.org> nautilus-2.12.2.ebuild:
+  Mark 2.12.2 stable on ia64
+
+  03 Feb 2006; Guy Martin <gmsoft@gentoo.org> nautilus-2.12.2.ebuild:
+  Stable on hppa.
+
+  03 Feb 2006; Aron Griffis <agriffis@gentoo.org> nautilus-2.12.2.ebuild:
+  Mark 2.12.2 stable on alpha
+
+  22 Jan 2006; Markus Rothe <corsair@gentoo.org> nautilus-2.12.2.ebuild:
+  Stable on ppc64
+
+  22 Jan 2006; <dang@gentoo.org> nautilus-2.12.2.ebuild:
+  Marked stable on amd64 per bug #119634
+
+  22 Jan 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  nautilus-2.12.2.ebuild:
+  Marked ppc stable for bug #119634; Stabilize Gnome-2.12.2
+
+  22 Jan 2006; Joshua Jackson <tsunam@gentoo.org> nautilus-2.12.2.ebuild:
+  Stable on x86 for bug #119634; Stabilize Gnome-2.12.2
+
+  20 Jan 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  nautilus-2.12.2.ebuild:
+  Stable on sparc wrt #119634
+
+  21 Dec 2005; Markus Rothe <corsair@gentoo.org> nautilus-2.12.2.ebuild:
+  Added ~ppc64
+
+  05 Dec 2005; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  nautilus-2.10.1-r1.ebuild:
+  Fix GStreamer dependencies
+
+*nautilus-2.12.2 (01 Dec 2005)
+
+  01 Dec 2005; <dang@gentoo.org> -nautilus-2.12.1.ebuild,
+  +nautilus-2.12.2.ebuild:
+  New upstream version
+
+  01 Dec 2005; <dang@gentoo.org> -nautilus-2.10.0.ebuild,
+  nautilus-2.10.1-r1.ebuild:
+  Remove oggvorbis flag per bug#94254
+
+  06 Nov 2005; <dang@gentoo.org> nautilus-2.12.1-r1.ebuild:
+  Modular X deps
+
+*nautilus-2.12.1-r1 (01 Nov 2005)
+
+  01 Nov 2005; <dang@gentoo.org> +files/nautilus-2.12.1-symlink-del.patch,
+  +nautilus-2.12.1-r1.ebuild:
+  Pull upstream fix for deleting symlinks across mountpoints. bug 89104
+
+  17 Oct 2005; Aron Griffis <agriffis@gentoo.org> nautilus-2.10.1-r1.ebuild:
+  Mark 2.10.1-r1 stable on alpha
+
+  11 Oct 2005; Seemant Kulleen <seemant@gentoo.org> nautilus-2.12.1.ebuild:
+  the test here needs to be run with userpriv, rather than root.  Also removed
+  ia64 and ppc64, since gnome-vfs does not have those KEYWORDS, and is a DEPEND.
+
+  10 Oct 2005; Hardave Riar <hardave@gentoo.org> nautilus-2.10.1-r1.ebuild:
+  Stable on mips.
+
+*nautilus-2.12.1 (06 Oct 2005)
+
+  06 Oct 2005; Leonardo Boshell <leonardop@gentoo.org>
+  -nautilus-2.12.0.ebuild, +nautilus-2.12.1.ebuild:
+  New version.
+
+  17 Sep 2005; Aron Griffis <agriffis@gentoo.org> nautilus-2.10.1-r1.ebuild,
+  nautilus-2.12.0.ebuild:
+  Mark 2.12.0 2.10.1-r1 ~alpha
+
+*nautilus-2.12.0 (12 Sep 2005)
+
+  12 Sep 2005; <dang@gentoo.org> -nautilus-2.11.92.ebuild,
+  +nautilus-2.12.0.ebuild:
+  Bump to 2.12.0
+
+  24 Aug 2005; Seemant Kulleen <seemant@gentoo.org> nautilus-2.11.92.ebuild:
+  added virtualx magic to make maketest succeed
+
+*nautilus-2.11.92 (24 Aug 2005)
+
+  24 Aug 2005; Leonardo Boshell <leonardop@gentoo.org>
+  -nautilus-2.11.91.ebuild, +nautilus-2.11.92.ebuild:
+  New version. Commented out src_unpack() until the relevant patches are
+  ported.
+
+  23 Aug 2005; Aron Griffis <agriffis@gentoo.org> nautilus-2.10.1-r1.ebuild:
+  stable on ia64
+
+*nautilus-2.11.91 (19 Aug 2005)
+
+  19 Aug 2005; Joe McCann <joem@gentoo.org>
+  +files/nautilus-2.11.91-icon_view_gst.patch, +nautilus-2.11.91.ebuild:
+  New beta version
+
+  08 Aug 2005; Markus Rothe <corsair@gentoo.org> nautilus-2.10.1-r1.ebuild:
+  Stable on ppc64
+
+  02 Aug 2005; Simon Stelling <blubb@gentoo.org> nautilus-2.10.1-r1.ebuild:
+  stable on amd64
+
+  31 Jul 2005; Tobias Scherbaum <dertobi123@gentoo.org>
+  nautilus-2.10.1-r1.ebuild:
+  ppc stable
+
+  27 Jul 2005; Guy Martin <gmsoft@gentoo.org> nautilus-2.10.1-r1.ebuild:
+  Stable on hppa.
+
+  27 Jul 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  nautilus-2.10.1-r1.ebuild:
+  Stable on sparc
+
+  26 Jul 2005; Leonardo Boshell <leonardop@gentoo.org>
+  nautilus-2.10.1-r1.ebuild:
+  Stable on x86.
+
+*nautilus-2.10.1-r1 (12 Jul 2005)
+
+  12 Jul 2005; Leonardo Boshell <leonardop@gentoo.org>
+  nautilus-2.10.1-r1.ebuild, files/nautilus-2.10.1-font_sizes.patch,
+  files/nautilus-2.10.1-deselect.patch:
+  New revision. Added patch from upstream's CVS repository to improve font
+  sizes for the icon view, resolves bug #96721. Added upstream patch to fix
+  deselecting items in list view and single click mode, resolves bug #95606.
+  Added RESTRICT=test since the only implemented check requires write
+  permissions on $HOME, among other things.
+
+  12 Jul 2005; Leonardo Boshell <geoman@gentoo.org> nautilus-2.10.0.ebuild,
+  nautilus-2.10.1.ebuild:
+  Added gst-plugins-gnomevfs dependency when the 'gstreamer' USE flag is
+  enabled, required to preview sound files in nautilus. Noticed by Alessio
+  D'Ascanio on bug #96361.
+
+  11 Jul 2005; Stephen P. Becker <geoman@gentoo.org> nautilus-2.10.0.ebuild,
+  nautilus-2.10.1.ebuild:
+  stable on mips
+
+  02 Jul 2005; Bryan Østergaard <kloeri@gentoo.org> nautilus-2.10.0.ebuild:
+  Stable on alpha.
+
+  25 Jun 2005; Guy Martin <gmsoft@gentoo.org> nautilus-2.10.0.ebuild,
+  nautilus-2.10.1.ebuild:
+  Stable on hppa.
+
+  13 Jun 2005; Bryan Østergaard <kloeri@gentoo.org> nautilus-2.10.0.ebuild:
+  Add ~alpha keyword.
+
+  12 Jun 2005; Olivier Crête <tester@gentoo.org> nautilus-2.10.0.ebuild:
+  Stable on amd64
+
+  12 Jun 2005; Tobias Scherbaum <dertobi123@gentoo.org>
+  nautilus-2.10.0.ebuild:
+  Stable on ppc.
+
+  09 Jun 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  nautilus-2.10.0.ebuild:
+  Stable on sparc
+
+  09 Jun 2005; Markus Rothe <corsair@gentoo.org> nautilus-2.10.0.ebuild:
+  Stable on ppc64
+
+  28 May 2005; foser <foser@gentoo.org> nautilus-2*.ebuild :
+  Fix sys-apps/eject -> virtual/eject (#94236)
+
+  06 May 2005; Markus Rothe <corsair@gentoo.org> nautilus-2.10.0.ebuild,
+  nautilus-2.10.1.ebuild:
+  Added ~ppc64 to KEYWORDS
+
+  24 Apr 2005; foser <foser@gentoo.org> nautilus-2.10.1.ebuild :
+  Remove postinst warning (#89611)
+
+*nautilus-2.10.1 (18 Apr 2005)
+
+  18 Apr 2005; Joe McCann <joem@gentoo.org> +nautilus-2.10.1.ebuild:
+  bugfix release
+
+  02 Apr 2005; Stephen P. Becker <geoman@gentoo.org>
+  nautilus-2.8.2-r1.ebuild:
+  stable on mips
+
+  23 Mar 2005; Seemant Kulleen <seemant@gentoo.org>
+  nautilus-1.0.6-r9.ebuild:
+  change dep from net-www/mozilla to www-client/mozilla
+
+  19 Mar 2005; Mike Doty <kingtaco@gentoo.org> nautilus-2.10.0.ebuild:
+  ~amd64, bug 85028
+
+  12 Mar 2005; Joe McCann <joem@gentoo.org> :
+  bump startup-notification dep. Closes bug 84883
+
+  11 Mar 2005; Gustavo Zacarias <gustavoz@gentoo.org> nautilus-2.10.0.ebuild:
+  To ~sparc
+
+*nautilus-2.10.0 (08 Mar 2005)
+
+  08 Mar 2005; Joe McCann <joem@gentoo.org>
+  +files/nautilus-2.9.90-icon_view_gst.patch, +nautilus-2.10.0.ebuild:
+  gnome-2.10 release
+
+  20 Jan 2005; Mike Gardiner <obz@gentoo.org>
+  +files/nautilus-2.8-x-printers.patch, nautilus-2.8.2-r1.ebuild:
+  Added fix for cups/nautilus compilation failures - see bug #65604
+
+  08 Jan 2005; Tom Martin <slarti@gentoo.org> nautilus-2.8.2-r1.ebuild:
+  Stable on amd64.
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  24 Dec 2004; Bryan Østergaard <kloeri@gentoo.org>
+  nautilus-2.8.2-r1.ebuild:
+  Stable on alpha.
+
+  23 Dec 2004; Guy Martin <gmsoft@gentoo.org> nautilus-2.8.2-r1.ebuild:
+  Stable on hppa.
+
+  21 Dec 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  nautilus-2.8.2-r1.ebuild:
+  Stable on sparc
+
+  19 Dec 2004; Joe McCann <joem@gentoo.org> :
+  fix Manifest, close bug 74943
+
+  19 Dec 2004; Mike Gardiner <obz@gentoo.org> nautilus-2.8.2-r1.ebuild:
+  Keyworded x86 and ppc for GNOME 2.8.1
+
+  11 Dec 2004; Bryan Østergaard <kloeri@gentoo.org> nautilus-2.8.0.ebuild:
+  Stable on alpha.
+
+*nautilus-2.8.2-r1 (30 Nov 2004)
+
+  30 Nov 2004; Mike Gardiner <obz@gentoo.org>
+  +files/nautilus-2-nocdda.patch, +nautilus-2.8.2-r1.ebuild:
+  Added patch from bug #72294 to disable the hidden cdparanoia linking
+
+*nautilus-2.8.2 (25 Nov 2004)
+
+  25 Nov 2004; Mike Gardiner <obz@gentoo.org> +nautilus-2.8.2.ebuild:
+  New version
+
+  21 Nov 2004; foser <foser@gentoo.org> nautilus-*.ebuild :
+  Fix fam -> virtual/fam (#67170)
+
+  12 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org> nautilus-2.8.0.ebuild:
+  Stable on sparc
+
+  11 Nov 2004; Mike Gardiner <obz@gentoo.org> nautilus-2.8.0.ebuild:
+  Keyworded ppc for GNOME 2.8
+
+  11 Nov 2004; Mike Gardiner <obz@gentoo.org>
+  files/nautilus-2-libexif.patch:
+  Fixed the libexif patch to correctly detect no verison of libexif installed,
+  see bug #70789
+
+  10 Nov 2004; Mike Gardiner <obz@gentoo.org> nautilus-2.8.0.ebuild:
+  Added a patch for building against the upcoming libexif-0.6, by doing
+  things the right way. This fixes bug #65602.
+
+  01 Oct 2004; Stephen P. Becker <geoman@gentoo.org> nautilus-2.6.3.ebuild:
+  stable on mips
+
+  28 Sep 2004; Scott W Taylor <swtaylor@gentoo.org>
+  +files/nautilus-2.6.3-libexif-0.6.patch, nautilus-2.6.3-r1.ebuild:
+  handle libexif 0.6 as per bug 13463
+
+*nautilus-2.8.0 (16 Sep 2004)
+
+  16 Sep 2004; foser <foser@gentoo.org> nautilus-2.8.0.ebuild :
+  Gnome 2.8 release
+  Add flac USE for gstreamer
+
+  26 Aug 2004; Bryan Østergaard <kloeri@gentoo.org> nautilus-2.6.3.ebuild:
+  Stable on alpha.
+
+  22 Aug 2004; foser <foser@gentoo.org> nautilus-2.6.3-r1.ebuild :
+  Add gst-plugins-gnomevfs dep (#51787)
+
+*nautilus-2.6.3-r1 (10 Aug 2004)
+
+  10 Aug 2004; Mike Gardiner <obz@gentoo.org>
+  +files/nautilus-2.6.3-novolumes.patch, +nautilus-2.6.3-r1.ebuild:
+  Added patch to optionally remove volumes from the Nautilus desktop. See bug
+  #51343
+
+  07 Aug 2004; Travis Tilley <lv@gentoo.org> nautilus-2.6.3.ebuild:
+  stable on amd64
+
+  05 Aug 2004; Gustavo Zacarias <gustavoz@gentoo.org> nautilus-2.6.3.ebuild:
+  Stable on sparc
+
+  05 Aug 2004; Guy Martin <gmsoft@gentoo.org> nautilus-2.6.3.ebuild:
+  Stable on hppa.
+
+  31 Jul 2004; <spider@gentoo.org> nautilus-2.6.3.ebuild:
+  stable on x86 for gnome 2.6.2
+
+*nautilus-2.6.3 (11 Jul 2004)
+
+  11 Jul 2004; <spider@gentoo.org> +nautilus-2.6.3.ebuild:
+  Versionbump, Adding gstreamer?( ) dependencies for the most common media/audio
+  types (within USE flags ofc.)
+
+  04 Jul 2004; Bryan Østergaard <kloeri@gentoo.org> nautilus-2.6.0.ebuild:
+  Stable on alpha.
+
+  04 Jun 2004; Stephen P. Becker <geoman@gentoo.org> nautilus-2.6.0.ebuild:
+  Stable on mips.
+
+  03 Jun 2004; Aron Griffis <agriffis@gentoo.org> nautilus-1.0.6-r9.ebuild,
+  nautilus-2.6.0.ebuild, nautilus-2.6.1.ebuild:
+  Fix use invocation
+
+  29 May 2004; Pieter Van den Abeele <pvdabeel@gentoo.org>
+  nautilus-2.6.0.ebuild:
+  Masked nautilus-2.6.0.ebuild stable for ppc
+
+  25 May 2004; Guy Martin <gmsoft@gentoo.org> nautilus-2.6.0.ebuild:
+  Marked stable on hppa.
+
+  14 May 2004; Stephen P. Becker <geoman@gentoo.org> nautilus-2.4.2.ebuild:
+  Stable on mips.
+
+  27 Apr 2004; Aron Griffis <agriffis@gentoo.org> nautilus-2.4.2.ebuild,
+  nautilus-2.6.0.ebuild, nautilus-2.6.1.ebuild:
+  Add inherit eutils
+
+*nautilus-2.6.1 (20 Apr 2004)
+
+  20 Apr 2004; foser <foser@gentoo.org> nautilus-2.6.1.ebuild :
+  New release
+
+  30 Mar 2004; Jon Portnoy <avenj@gentoo.org> nautilus-2.4.2.ebuild :
+  Stable on AMD64.
+
+  25 Mar 2004; foser <foser@gentoo.org> nautilus-2.{4.0,4.2,6.0}.ebuild :
+  2.4 : Add patch to fix build with gtk+2.4 (#45391)
+  2.6 : update libgnome* deps (#45687)
+
+*nautilus-2.6.0 (22 Mar 2004)
+
+  22 Mar 2004; foser <foser@gentoo.org> nautilus-2.6.0.ebuild :
+  Gnome 2.6 final
+
+*nautilus-2.5.91 (20 Mar 2004)
+
+  20 Mar 2004; foser <foser@gentoo.org> nautilus-2.5.91.ebuild :
+  Gnome 2.6 commit
+  Dep on icon-them-1.1 because of the default open folder icons
+
+  15 Mar 2004; Stephen P. Becker <geoman@gentoo.org> nautilus-2.4.2.ebuild:
+  Added ~mips keyword.
+
+  09 Mar 2004; <agriffis@gentoo.org> nautilus-2.4.2.ebuild:
+  stable on alpha and ia64
+
+  10 Feb 2004; <spider@gentoo.org> nautilus-2.4.2.ebuild:
+  added intltool dep (XML::Parser)
+
+  10 Feb 2004; foser <foser@gentoo.org> nautilus-2.4.2.ebuild :
+  Add intltool dep to fix XML-Parser issues (#41109)
+
+  10 Feb 2004; Gustavo Zacarias <gustavoz@gentoo.org> nautilus-2.4.2.ebuild:
+  stable on hppa and sparc
+
+  10 Feb 2004; Bartosch Pixa <darkspecter@gentoo.org> nautilus-2.4.2.ebuild:
+  set ppc in keywords
+
+  08 Feb 2004; <spider@gentoo.org> nautilus-2.4.2.ebuild:
+  x86 stable
+
+*nautilus-2.4.2 (05 Feb 2004)
+
+  05 Feb 2004; Alastair Tse <liquidx@gentoo.org> nautilus-2.4.2.ebuild:
+  version bump
+
+  29 Jan 2004; Aron Griffis <agriffis@gentoo.org> nautilus-2.4.1-r2.ebuild:
+  stable on alpha and ia64
+
+  17 Jan 2004; Bartosch Pixa <darkspecter@gentoo.org> :
+  manifest fix
+
+  16 Jan 2004; Bartosch Pixa <darkspecter@gentoo.org>
+  nautilus-2.4.1-r2.ebuild:
+  set ppc in keywords
+
+  05 Jan 2004; <gustavoz@gentoo.org> nautilus-2.4.1-r2.ebuild:
+  marked stable for sparc and hppa
+
+  16 Dec 2003; <spider@gentoo.org> nautilus-2.4.1-r2.ebuild:
+  KEYWORDS="x86", motivated by the fix of a bad crasher bug on file management
+
+*nautilus-2.4.1-r2 (13 Dec 2003)
+
+  13 Dec 2003; <spider@gentoo.org> nautilus-2.4.1-r2.ebuild:
+  Recommiting as -r2
+
+  07 Dec 2003; foser <foser@gentoo.org> nautilus-2*.ebuild :
+  Dep fix fam-oss > fam due to move
+
+*nautilus-2.4.1-r1 (16 Nov 2003)
+
+  16 Nov 2003; Spider <spider@gentoo.org> nautilus-2.4.1-r1.ebuild,
+  files/nautilus-2-disable-cdda.patch:
+  Add a fix to disable random linking to cdparanoia without telling maintainers
+  or developers. This should hopefully go into stable ASAP.
+
+  14 Nov 2003; Aron Griffis <agriffis@gentoo.org> nautilus-2.4.0.ebuild:
+  Stable on ia64
+
+  22 Oct 2003; Bartosch Pixa <darkspecter@gentoo.org> nautilus-2.4.0.ebuild:
+  set ppc in keywords
+
+*nautilus-2.4.1 (21 Oct 2003)
+
+  13 Dec 2003; Guy Martin <gmsoft@gentoo.org> nautilus-2.4.0.ebuild :
+  Marked stable on hppa.
+
+  21 Oct 2003; foser <foser@gentoo.org> nautilus-2.4.0.ebuild :
+  New version, fix automake stuff for cups
+  Add patch to support audio preview via gst (by <foser@gentoo.org>)
+
+  17 Oct 2003; Aron Griffis <agriffis@gentoo.org> nautilus-2.4.0.ebuild:
+  Stable on alpha
+
+  05 Oct 2003; Mike Gardiner <obz@gentoo.org> nautilus-2.4.0.ebuild:
+  Marked stable on x86
+
+  05 Oct 2003; Mike Gardiner <obz@gentoo.org> nautilus-2.4.0.ebuild,
+  files/nautilus-2.4-startup-bonobo.patch:
+  Added patch to fix bug #28778 for nautilus-2.4.0. Shouldnt be required after
+  this version
+
+  13 Sep 2003; <spider@gentoo.org> nautilus-2.4.0.ebuild:
+  Fixing the HOMEPAGE tag
+
+  12 Sep 2003; Alastair Tse <liquidx@gentoo.org> nautilus-2.0.7.ebuild,
+  nautilus-2.2.1.ebuild, nautilus-2.2.3.ebuild, nautilus-2.2.4-r5.ebuild,
+  nautilus-2.2.4.ebuild:
+  removing bonobo-activation deps
+
+*nautilus-2.4.0 (09 Sep 2003)
+
+  09 Sep 2003; foser <foser@gentoo.org> nautilus-2.4.0.ebuild :
+  Gnome 2.4 version, added cups support 
+
+  22 Aug 2003; foser <foser@gentoo.org> nautilus-2.2.{3,4}*.ebuild :
+  Make libbonoboui dep 2.2+ (#26434)
+
+  15 Jul 2003; Todd Sunderlin <todd@gentoo.org> nautilus-2.2.3.ebuild:
+  Marked stable for sparc
+
+  30 Jun 2003; Bartosch Pixa <darkspecter@gentoo.org> nautilus-2.2.4.ebuild:
+  set ppc in keywords
+
+*nautilus-2.2.4-r5 (24 Jun 2003)
+
+  04 Jul 2003; Guy Martin <gmsoft@gentoo.org> nautilus-2.2.4-r5.ebuild :
+  Added ~hppa to KEYWORDS.
+
+  24 Jun 2003; foser <foser@gentoo.org> nautilus-2.2.4-r5.ebuild :
+  Added gnome-cups-manager dep as noticed by <matt@schick.mine.nu> (#23382)
+
+  24 Jun 2004; foser <foser@gentoo.org> nautilus-2.2.4-r5.ebuild :
+  Added libgnomecups printer view patch when cups in USE
+
+  25 May 2003; Alastair Tse <liquidx@gentoo.org> nautilus-1.0.6-r9.ebuild,
+  nautilus-2.0.7.ebuild, nautilus-2.2.1.ebuild, nautilus-2.2.3.ebuild,
+  nautilus-2.2.4.ebuild:
+  new HOMEPAGE for nautilus (#21654)
+
+*nautilus-2.2.4 (08 May 2003)
+
+  24 Aug 2003; Guy Martin <gmsoft@gentoo.org> nautilus-2.2.4.ebuild :
+  Added hppa to KEYWORDS.
+
+  08 May 2003; foser <foser@gentoo.org> nautilus-2.2.4.ebuild :
+  New version, added snap-to-grid patch from HEAD
+
+*nautilus-2.2.3 (31 Mar 2003)
+
+  04 Jul 2003; Guy martin <gmsoft@gentoo.org> nautilus-2.2.3.ebuild :
+  Added hppa to KEYWORDS.
+
+  31 Mar 2003; foser <foser@gentoo.org> nautilus-2.2.3.ebuild :
+  New version 
+  Had to export SED=sed var to make it compile
+
+*nautilus-2.2.2 (10 Mar 2003)
+
+  10 Mar 2003; foser <foser@gentoo.org> nautilus-2.2.2.ebuild :
+  New version
+
+*nautilus-2.2.1 (12 Feb 2003)
+
+  09 Mar 2003; Aron Griffis <agriffis@gentoo.org> nautilus-2.2.1.ebuild:
+  Mark stable on alpha
+
+  01 Mar 2003; Jason Wever <weeve@gentoo.org> nautilus-2.2.1.ebuild:
+  Added ~sparc to keywords.
+
+  22 Feb 2003; foser <foser@gentoo.org> nautilus-2.2.[1,0.2].ebuild :
+  Added patch for larger thumbnailing size in settings (#16192)
+  Patch provided by Matt <matt@schick.mine.nu>
+
+  22 Feb 2003; Aron Griffis <agriffis@gentoo.org> nautilus-2.2.1.ebuild :
+  Add ~alpha to KEYWORDS
+
+  19 Feb 2003; foser <foser@gentoo.org> nautilus-2.2.[1,0.2].ebuild :
+  Added patch for double entry bug (#15984)
+
+  12 Feb 2003; foser <foser@gentoo.org> nautilus-2.2.1.ebuild :
+  New version 
+
+  10 Feb 2003; Aron Griffis <agriffis@gentoo.org> nautilus-2.2.0.2.ebuild files/nautilus-2.2.0.2-locale.patch :
+  Fix bug 15450 so that nautilus can build without optimization.
+  Add ~alpha to KEYWORDS
+
+*nautilus-2.2.0.2 (30 Jan 2003)
+
+  21 Feb 2003; Aron Griffis <agriffis@gentoo.org> nautilus-2.2.0.2.ebuild :
+  Mark stable on Alpha
+
+  30 Jan 2003; foser <foser@gentoo.org> nautilus-2.2.0.2.ebuild :
+  GNOME 2.2 rc2 commit
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*nautilus-2.0.8 (27 Nov 2002)
+
+  27 Nov 2002; foser <foser@gentoo.org> nautilus-2.0.8.ebuild :
+  GNOME 2.0.3 release
+
+*nautilus-2.1.2 (12 Nov 2002)
+
+  03 Dec 2002; Jon Nall <nall@gentoo.org> nautilus-2.1.2.ebuild :
+  keyworded ~ppc
+
+  12 Nov 2002; foser <foser@gentoo.org> nautilus-2.1.2.ebuild :
+  GNOME 2.1.2 release
+
+*nautilus-2.1.1 (27 Oct 2002)
+
+  27 Oct 2002; foser <foser@gentoo.org> nautilus-2.1.1.ebuild :
+  Gnome 2.1 commit
+
+*nautilus-2.0.7 (14 Sep 2002)
+  14 Sep 2002; Spider <spider@gentoo.org> nautilus-2.0.7.ebuild :
+  new version, URI change and dep changes.. the usual
+
+*nautilus-2.0.6 (06 Sep 2002)
+  06 Sep 2002; Spider <spider@gentoo.org> nautilus-2.0.6.ebuild :
+  new version 
+
+*nautilus-2.0.4 (14 Aug 2002)
+  14 Aug 2002; Gabriele Giorgetti <stroke@gentoo.org> nautilus-2.0.4.ebuild:
+  New version, updated dependencies.
+
+*nautilus-2.0.3 (06 Aug 2002)
+  06 Aug 2002; Gabriele Giorgetti <stroke@gentoo.org> nautilus-2.0.3.ebuild :
+  New version, updated dependencies.
+
+*nautilus-2.0.2 (25 Jul 2002)
+  25 Jul 2002; Spider <spider@gentoo.org> nautilus-2.0.2.ebuild :
+  guess what? new version
+
+*nautilus-2.0.1 (25 Jul 2002)
+  25 Jul 2002; Spider <spider@gentoo.org> nautilus-2.0.1.ebuild :
+  versionbumped, changed deps to match
+  thanks to Andreas Kotowicz <koto@mynetix.de>  and Manny <christian-neumair@web.de>
+
+  
+nautilus-2.0.0-r4 (18 Jul 2002)
+  18 Jul 2002; Spider <spider@gentoo.org> nautilus-2.0.0-r4.ebuild :
+  now has gdialog support
+  mirror://
+  KEYWORDS 
+  
+natutils-2.0.0-r3 (30 Jun 2002)
+  30 Jun 2002; Martin Schlemmer <azarah@gentoo.org> natutils-2.0.0-r3.ebuild :
+  Fix the problem where the "tree view" in nautilus was broken on first
+  merge, thanks to Spider for getting the fix on Gnome Bugzilla.
+
+  http://bugzilla.gnome.org/show_bug.cgi?id=75635
+
+natutils-2.0.0-r2 (28 Jun 2002)
+  28 jun 2002; Spider <spider@gentoo.org> natutils-2.0.0-r2.ebuild :
+  moved this to use singlethreaded build, not sure if it will help though,
+  but its worth a try for those with problems in the panel modules
+
+  
+natutils-2.0.0-r1 (15 Jun 2002)
+  15 Jun 2002 ; Spider <spider@gentoo.org> natutils-2.0.0-r1.ebuild :
+  Adding fam-oss as a depend, speedgain is quite good
+
+  
+*natutils-2.0.0-r1 (11 Jun 2002)
+  11 Jun 2002; Spider <spider@gentoo.org> natutils-2.0.0-r1.ebuild :
+  finally a working version with updated dependencies.
+  
+*nautilus-2.0.0 (11 Jun 2002)
+  11 Jun 2002; Gabriele Giorgetti <stroke@gentoo.org> nautilus-2.0.0.ebuild:
+  new version
+
+*nautilus-1.1.19 (05 June 2002)
+ 05 June 2002; Gabriele Giorgetti <stroke@gentoo.org> nautilus-1.1.19.ebuild
+  new version
+
+*nautilus-1.1.18-r1 (04 Jun 2002)
+ 04 Jun 2002; Bruce A. Locke <blocke@shivan.org> nautilus-1.1.18-r1.ebuild:
+  Converted to gnome2 eclass
+
+*nautilus-1.0.6-r9 (26 May 2002)
+  02 Sep 2002; Spider <spider@gentoo.org> nautilus-1.0.6-r9.ebuild :
+  Changed the librsvg dep to get the 1.x versions
+
+  27 Jul 2002; Spider <spider@gentoo.org> nautilus-1.0.6-r9.ebuild :
+  Changed the deps to not use gnome-core.. I can't understand why anyone would want to use this for gnome2, but I needed it to be able to test with gnome 2 and have this working still.... 
+  
+  04 Jun 2002; Bruce A. Locke <blocke@shivan.org> nautilus-1.0.6-r9.ebuild:
+  Hopefully gnome2 proof dependencies
+
+1 June 2002; Matthew Kennedy <mkennedy@gentoo.org> :
+  Patch Nautilus to work with gcc3.1.
+
+*nautilus-1.1.18 (27 May 2002)
+  27 May 2002; Spider <spider@gentoo.org>  nautilus-1.1.18.ebuild:
+  new version, some minor dep changes
+  libtoolize to make it build ok
+
+*nautilus-1.0.6-r9 (26 May 2002)
+  26 May 2002; M.Schlemmer <azarah@gentoo.org> :
+  Patch Nautilus to work with Mozilla-1.0_rc3.
+
+*nautilus-1.1.17 (23 May 2002)
+  23 May 2002; Spider <spider@gentoo.org>  nautilus-1.1.17.ebuild:
+  Updated version, fix dependency versions
+
+*nautilus-1.1.16 (22 May 2002)
+  22 May 2002; Spider <spider@gentoo.org>  nautilus-1.1.16.ebuild:
+  Added the gnome2 version
+
+*nautilus-1.0.6-r8 (27 Apr 2002)
+
+  27 Apr 2002; M.Schlemmer <azarah@gentoo.org> :
+
+  Add missing macros, and po2tbl.sed.in.
+
+*nautilus-1.0.6-r7 (24 Apr 2002)
+
+  24 Apr 2002; Matthew Kennedy <mkennedy@gentoo.org>
+  nautilus-1.0.6-r7.ebuild, files/nautilus-1.0.6-mozilla-1.0_rc1.diff,
+  files/digest-nautilus-1.0.6-r7, ChangeLog :
+
+  This patch to fix http://bugs.gentoo.org/show_bug.cgi?id=2082 (taken
+  from
+  http://lists.eazel.com/pipermail/nautilus-list/2002-April/008473.html)
+  Credit to Kaoru Fukui <k_fukui@highway.ne.jp>. This should allow
+  nautilus to build against mozilla-1.0_rc1.
+
+
+*nautilus-1.0.6-r6 (22 Mar 2002)
+
+  22 Mar 2002; Seemant Kulleen <seemant@gentoo.org> nautilus-1.0.6-r6.ebuild :
+
+  Man pages made LFH compliant and in the MANPATH -- fixes submitted by
+  Matthew Kennedy.
+
+*nautilus-1.0.6-r5 (21 Mar 2002)
+
+  21 Mar 2002; M.Schlemmer <azarah@gentoo.org> :
+
+  Libtoolize.
+
+*nautilus-1.0.6-r4 (10 Mar 2002)
+
+  10 Mar 2002; Bruce A. Locke <blocke@shivan.org> nautilus-1.0.6-r4.ebuild :
+
+  NLS fixes submitted by seemant@rocketmail.com (Seemant Kulleen)
+
+  
+*nautilus-1.0.6-r3 (7 Mar 2002)
+
+  7 Mar 2002; Bruce A. Locke <blocke@shivan.org> nautilus-1.0.6-r3.ebuild :
+
+  Applied a patch from Mandrake brought to our attention by Naresh Donti
+  (ndonti@ndonti.dynodns.net).  A temporary patch to hyperbola to prevent
+  50+ zombie sh processes due to the fact we are not using a cvs version
+  of scrollkeeper.
+  
