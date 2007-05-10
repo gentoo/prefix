@@ -81,20 +81,20 @@ gst-plugins-base_src_unpack() {
 
 	# Link with the syswide installed gst-libs if needed
 	gst-plugins10_find_plugin_dir
-	sed -e "s:\$(top_builddir)/gst-libs/gst/interfaces/libgstinterfaces:/usr/$(get_libdir)/libgstinterfaces:" \
-		-e "s:\${top_builddir}/gst-libs/gst/interfaces/libgstinterfaces:/usr/$(get_libdir)/libgstinterfaces:" \
-		-e "s:\$(top_builddir)/gst-libs/gst/audio/libgstaudio:/usr/$(get_libdir)/libgstaudio:" \
-		-e "s:\${top_builddir}/gst-libs/gst/audio/libgstaudio:/usr/$(get_libdir)/libgstaudio:" \
-		-e "s:\$(top_builddir)/gst-libs/gst/riff/libgstriff:/usr/$(get_libdir)/libgstriff:" \
-		-e "s:\${top_builddir}/gst-libs/gst/riff/libgstriff:/usr/$(get_libdir)/libgstriff:" \
-		-e "s:\$(top_builddir)/gst-libs/gst/tag/libgsttag:/usr/$(get_libdir)/libgsttag:" \
-		-e "s:\${top_builddir}/gst-libs/gst/tag/libgsttag:/usr/$(get_libdir)/libgsttag:" \
-		-e "s:\$(top_builddir)/gst-libs/gst/video/libgstvideo:/usr/$(get_libdir)/libgstvideo:" \
-		-e "s:\${top_builddir}/gst-libs/gst/video/libgstvideo:/usr/$(get_libdir)/libgstvideo:" \
-		-e "s:\$(top_builddir)/gst-libs/gst/netbuffer/libgstnetbuffer:/usr/$(get_libdir)/libgstnetbuffer:" \
-		-e "s:\${top_builddir}/gst-libs/gst/netbuffer/libgstnetbuffer:/usr/$(get_libdir)/libgstnetbuffer:" \
-		-e "s:\$(top_builddir)/gst-libs/gst/rtp/libgstrtp:/usr/$(get_libdir)/libgstrtp:" \
-		-e "s:\${top_builddir}/gst-libs/gst/rtp/libgstrtp:/usr/$(get_libdir)/libgstrtp:" \
+	sed -e "s:\$(top_builddir)/gst-libs/gst/interfaces/libgstinterfaces:${EPREFIX}/usr/$(get_libdir)/libgstinterfaces:" \
+		-e "s:\${top_builddir}/gst-libs/gst/interfaces/libgstinterfaces:${EPREFIX}/usr/$(get_libdir)/libgstinterfaces:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/audio/libgstaudio:${EPREFIX}/usr/$(get_libdir)/libgstaudio:" \
+		-e "s:\${top_builddir}/gst-libs/gst/audio/libgstaudio:${EPREFIX}/usr/$(get_libdir)/libgstaudio:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/riff/libgstriff:${EPREFIX}/usr/$(get_libdir)/libgstriff:" \
+		-e "s:\${top_builddir}/gst-libs/gst/riff/libgstriff:${EPREFIX}/usr/$(get_libdir)/libgstriff:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/tag/libgsttag:${EPREFIX}/usr/$(get_libdir)/libgsttag:" \
+		-e "s:\${top_builddir}/gst-libs/gst/tag/libgsttag:${EPREFIX}/usr/$(get_libdir)/libgsttag:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/video/libgstvideo:${EPREFIX}/usr/$(get_libdir)/libgstvideo:" \
+		-e "s:\${top_builddir}/gst-libs/gst/video/libgstvideo:${EPREFIX}/usr/$(get_libdir)/libgstvideo:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/netbuffer/libgstnetbuffer:${EPREFIX}/usr/$(get_libdir)/libgstnetbuffer:" \
+		-e "s:\${top_builddir}/gst-libs/gst/netbuffer/libgstnetbuffer:${EPREFIX}/usr/$(get_libdir)/libgstnetbuffer:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/rtp/libgstrtp:${EPREFIX}/usr/$(get_libdir)/libgstrtp:" \
+		-e "s:\${top_builddir}/gst-libs/gst/rtp/libgstrtp:${EPREFIX}/usr/$(get_libdir)/libgstrtp:" \
 		-i Makefile.in
 	cd ${S}
 
