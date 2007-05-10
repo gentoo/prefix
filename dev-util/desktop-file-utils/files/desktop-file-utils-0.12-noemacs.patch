@@ -1,0 +1,12 @@
+diff --exclude-from=/home/dang/.diffrc -up -ruN desktop-file-utils-0.12.orig/Makefile.in desktop-file-utils-0.12/Makefile.in
+--- desktop-file-utils-0.12.orig/Makefile.in	2006-11-07 12:11:11.000000000 -0500
++++ desktop-file-utils-0.12/Makefile.in	2007-01-28 17:30:37.000000000 -0500
+@@ -180,7 +180,7 @@ sbindir = @sbindir@
+ sharedstatedir = @sharedstatedir@
+ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+-SUBDIRS = src misc
++SUBDIRS = src
+ all: config.h
+ 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
+ 
