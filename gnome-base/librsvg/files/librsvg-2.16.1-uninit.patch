@@ -1,0 +1,26 @@
+If dst->virgin is set, dst->x, y, w and h are uninitialised. The result
+of the addition is already not used, but the addition itself can trigger
+floating point exceptions, so make sure it's not performed.
+
+--- librsvg-2.16.1/rsvg-base.c
++++ librsvg-2.16.1/rsvg-base.c
+@@ -1678,12 +1678,17 @@
+ void rsvg_bbox_insert(RsvgBbox * dst, RsvgBbox * src)
+ {
+ 	double affine[6];
+-	double xmin = dst->x, ymin = dst->y;
+-	double xmax = dst->x + dst->w, ymax = dst->y + dst->h;
++	double xmin, ymin;
++	double xmax, ymax;
+ 	int i;
+ 
+ 	if (src->virgin)
+ 		return;
++	if (!dst->virgin)
++		{
++			xmin = dst->x, ymin = dst->y;
++			xmax = dst->x + dst->w, ymax = dst->y + dst->h;
++		}
+ 	_rsvg_affine_invert(affine, dst->affine);
+ 	_rsvg_affine_multiply(affine, src->affine, affine);
+ 
