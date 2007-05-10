@@ -1,0 +1,191 @@
+# ChangeLog for dev-libs/liboil
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/ChangeLog,v 1.46 2007/04/21 07:16:28 corsair Exp $
+
+  21 Apr 2007; Markus Rothe <corsair@gentoo.org> liboil-0.3.11.ebuild:
+  Back to ~ppc64
+
+*liboil-0.3.11 (19 Apr 2007)
+
+  19 Apr 2007; Hanno Boeck <hanno@gentoo.org> +liboil-0.3.11.ebuild:
+  Version bump.
+
+  06 Apr 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  liboil-0.3.10-r1.ebuild:
+  ppc stable
+
+  12 Feb 2007; Christian Faulhammer <opfer@gentoo.org>
+  liboil-0.3.10-r1.ebuild:
+  stable x86; bug 163541
+
+  31 Jan 2007; Markus Rothe <corsair@gentoo.org> liboil-0.3.10-r1.ebuild:
+  Stable on ppc64; bug #163541
+
+  28 Jan 2007; Jeroen Roovers <jer@gentoo.org> liboil-0.3.10-r1.ebuild:
+  Stable for HPPA (bug #163541).
+
+  27 Jan 2007; Olivier Crête <tester@gentoo.org> liboil-0.3.10-r1.ebuild:
+  Stable on amd64 for bug #163541
+
+  23 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  liboil-0.3.10-r1.ebuild:
+  Stable on sparc
+
+  31 Dec 2006; Ryan Hill <dirtyepic@gentoo.org> liboil-0.3.10-r1.ebuild:
+  Fix multiple inheritance.
+
+  21 Dec 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  liboil-0.3.10-r1.ebuild:
+  Back to ~sparc
+
+  11 Dec 2006; Peter Volkov <pva@gentoo.org>
+  files/liboil-0.3.10-sse2revert.diff:
+  Fix for broken patch, bug #157819. Thank Pawel Kilian for report.
+
+*liboil-0.3.10-r1 (11 Dec 2006)
+
+  11 Dec 2006; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  +files/liboil-0.3.10-sse2revert.diff, +liboil-0.3.10-r1.ebuild:
+  fix sse2 check and use flag-o-matic
+
+*liboil-0.3.10 (05 Dec 2006)
+
+  05 Dec 2006; Hanno Boeck <hanno@gentoo.org> +liboil-0.3.10.ebuild:
+  Version bump, some minor fixes.
+
+  05 Dec 2006; Hanno Boeck <hanno@gentoo.org> liboil-0.3.6-r1.ebuild,
+  liboil-0.3.7.ebuild, liboil-0.3.8-r1.ebuild:
+  Correct license is BSD-2.
+
+*liboil-0.3.8-r1 (25 Jul 2006)
+*liboil-0.3.6-r1 (25 Jul 2006)
+
+  25 Jul 2006; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  -liboil-0.3.6.ebuild, +liboil-0.3.6-r1.ebuild, -liboil-0.3.8.ebuild,
+  +liboil-0.3.8-r1.ebuild:
+  Force CFLAGS to -O2 -g to not crash software that deps on liboil
+
+  16 Jul 2006; Diego Pettenò <flameeyes@gentoo.org> liboil-0.3.8.ebuild:
+  Add ~x86-fbsd keyword.
+
+  08 Jun 2006; Gustavo Zacarias <gustavoz@gentoo.org> liboil-0.3.7.ebuild,
+  liboil-0.3.8.ebuild:
+  -sparc broke and broke
+
+  27 Apr 2006; Marien Zwart <marienz@gentoo.org> files/digest-liboil-0.2.0,
+  files/digest-liboil-0.2.2, files/digest-liboil-0.3.1,
+  files/digest-liboil-0.3.2, files/digest-liboil-0.3.3,
+  files/digest-liboil-0.3.6, files/digest-liboil-0.3.7,
+  files/digest-liboil-0.3.8, Manifest:
+  Fixing SHA256 digest, pass four
+
+*liboil-0.3.8 (04 Apr 2006)
+
+  04 Apr 2006; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  +liboil-0.3.8.ebuild:
+  version bump
+
+  08 Feb 2006; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  +files/liboil-0.3.7-convfix.diff, liboil-0.3.7.ebuild:
+  fix compile on ppc, fixes bug
+
+  04 Feb 2006; Aron Griffis <agriffis@gentoo.org> liboil-0.3.6.ebuild:
+  Mark 0.3.6 stable on alpha
+
+  04 Feb 2006; Aron Griffis <agriffis@gentoo.org> liboil-0.3.6.ebuild:
+  Mark 0.3.6 stable on ia64
+
+  03 Feb 2006; Guy Martin <gmsoft@gentoo.org> liboil-0.3.6.ebuild:
+  Stable on hppa.
+
+*liboil-0.3.7 (03 Feb 2006)
+
+  03 Feb 2006; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  +liboil-0.3.7.ebuild:
+  version bump
+
+  22 Jan 2006; Markus Rothe <corsair@gentoo.org> liboil-0.3.6.ebuild:
+  Stable on ppc64
+
+  22 Jan 2006; <dang@gentoo.org> liboil-0.3.6.ebuild:
+  Marked stable on amd64 per bug #119634
+
+  22 Jan 2006; Tobias Scherbaum <dertobi123@gentoo.org> liboil-0.3.6.ebuild:
+  Marked ppc stable for bug #119634; Stabilize Gnome-2.12.2
+
+  22 Jan 2006; Joshua Jackson <tsunam@gentoo.org> liboil-0.3.6.ebuild:
+  Stable on x86 for bug #119634
+
+  21 Jan 2006; Jeroen Roovers <jer@gentoo.org> liboil-0.3.6.ebuild:
+  Marked ~hppa (bug #105807).
+
+  20 Jan 2006; Gustavo Zacarias <gustavoz@gentoo.org> liboil-0.3.6.ebuild:
+  Stable on sparc
+
+  27 Nov 2005; Zaheer Abbas Merali <zaheerm@gentoo.org> liboil-0.3.3.ebuild:
+  fixes bug #109270
+
+*liboil-0.3.6 (18 Nov 2005)
+
+  18 Nov 2005; <zaheer@gentoo.org> +liboil-0.3.6.ebuild:
+  version bump
+
+*liboil-0.3.3 (11 Oct 2005)
+
+  11 Oct 2005; <zaheer@gentoo.org> +liboil-0.3.3.ebuild:
+  version bump
+
+  06 Oct 2005; Fernando J. Pereda <ferdy@gentoo.org> liboil-0.3.2.ebuild:
+  marked ~alpha wrt bug #105807
+
+  02 Oct 2005; Aron Griffis <agriffis@gentoo.org> liboil-0.3.2.ebuild:
+  Mark 0.3.2 ~ia64 #105807
+
+  18 Sep 2005; Markus Rothe <corsair@gentoo.org> liboil-0.3.2.ebuild:
+  Added ~ppc64 (bug #105807)
+
+  24 Jun 2005; Zaheer Abbas Merali <zaheerm@gentoo.org> liboil-0.2.0.ebuild,
+  liboil-0.2.2.ebuild, liboil-0.3.1.ebuild, liboil-0.3.2.ebuild:
+  slot liboil
+
+*liboil-0.3.2 (08 Jun 2005)
+
+  08 Jun 2005; Zaheer Abbas Merali <zaheerm@gentoo.org> metadata.xml,
+  +liboil-0.3.2.ebuild:
+  version bump
+
+*liboil-0.3.1 (18 Mar 2005)
+
+  18 Mar 2005; Don Seiler <rizzo@gentoo.org> +liboil-0.3.1.ebuild:
+  Version bump, closes bug #85776
+
+  27 Nov 2004; Luca Barbato <lu_zero@gentoo.org>
+  +files/liboil-0.2.2-clobber-list.patch, liboil-0.2.2.ebuild:
+  Another fix for ppc
+
+*liboil-0.2.2 (23 Nov 2004)
+
+  23 Nov 2004; Don Seiler <rizzo@gentoo.org> +liboil-0.2.2.ebuild:
+  Version bump, should work with gcc 3.4.x now
+
+*liboil-0.2.1 (20 Nov 2004)
+
+  20 Nov 2004; Luca Barbato <lu_zero@gentoo.org> +liboil-0.2.1.ebuild:
+  New version, ppc issues are eventually fixed
+
+  20 Nov 2004; Karol Wojtaszek <sekretarz@gentoo.org> liboil-0.2.0.ebuild:
+  Keyworded ~amd64, bug #71270
+
+  17 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org> liboil-0.2.0.ebuild:
+  Keyworded ~sparc wrt #71270
+
+  17 Nov 2004; Luca Barbato <lu_zero@gentoo.org>
+  +files/liboil-0.2.0-altivec.patch, liboil-0.2.0.ebuild:
+  Fixed for ppc
+
+*liboil-0.2.0 (16 Nov 2004)
+
+  16 Nov 2004; Don Seiler <rizzo@gentoo.org> +metadata.xml,
+  +liboil-0.2.0.ebuild:
+  Initial add.  Closes bug #71270.
+
