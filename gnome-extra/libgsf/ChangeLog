@@ -1,0 +1,343 @@
+# ChangeLog for gnome-extra/libgsf
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/ChangeLog,v 1.94 2007/03/21 05:01:25 leio Exp $
+
+*libgsf-1.14.3 (21 Mar 2007)
+
+  21 Mar 2007; Mart Raudsepp <leio@gentoo.org> +libgsf-1.14.3.ebuild:
+  Version bump to 1.14.3, bug 168652. Also fix up dependencies for optional
+  python bindings
+
+  19 Mar 2007; Daniel Gryniewicz <dang@gentoo.org> libgsf-1.12.0.ebuild,
+  libgsf-1.12.1.ebuild, libgsf-1.14.0.ebuild, libgsf-1.14.2.ebuild:
+  Remove static use flag; bug #165528
+
+  18 Feb 2007; Samuli Suominen <drac@gentoo.org> libgsf-1.14.0.ebuild,
+  libgsf-1.14.2.ebuild:
+  Change from src_install to pkg_preinst for bug 167485.
+
+  21 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> libgsf-1.14.2.ebuild:
+  Stable on IA64, bug 156662.
+
+  10 Dec 2006; Fernando J. Pereda <ferdy@gentoo.org> libgsf-1.14.2.ebuild:
+  Stable on alpha as per security bug #156693
+
+  06 Dec 2006; Olivier Crête <tester@gentoo.org> libgsf-1.14.2.ebuild:
+  Stable on amd64 for security bug #156693
+
+  06 Dec 2006; Jeroen Roovers <jer@gentoo.org> libgsf-1.14.2.ebuild:
+  Stable for HPPA (bug #156693).
+
+  05 Dec 2006; Markus Rothe <corsair@gentoo.org> libgsf-1.14.2.ebuild:
+  Stable on ppc64; bug #156693
+
+  05 Dec 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libgsf-1.14.2.ebuild:
+  ppc stable, bug #156693
+
+  05 Dec 2006; Gustavo Zacarias <gustavoz@gentoo.org> libgsf-1.14.2.ebuild:
+  Stable on sparc wrt security #156693
+
+  05 Dec 2006; Christian Faulhammer <opfer@gentoo.org> libgsf-1.14.2.ebuild:
+  stable x86, security bug #156693
+
+  09 Nov 2006; Luis Medinas <metalgod@gentoo.org> libgsf-1.14.2.ebuild:
+  Added python support.
+
+*libgsf-1.14.2 (05 Nov 2006)
+
+  05 Nov 2006; Luis Medinas <metalgod@gentoo.org> +libgsf-1.14.2.ebuild:
+  Version Bump. Drop libwmf dependency closes bug #150874.
+
+  14 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> libgsf-1.14.0.ebuild:
+  Stable on ia64.
+
+  06 Sep 2006; Joshua Kinard <kumba@gentoo.org> libgsf-1.14.0.ebuild:
+  Re-keywording latest stable to fix mips dependencies for eliminating gnome
+  support.
+
+  05 Sep 2006; Thomas Cort <tcort@gentoo.org> libgsf-1.14.0.ebuild:
+  Stable on alpha wrt Bug #144120.
+
+  05 Sep 2006; Joshua Kinard <kumba@gentoo.org> libgsf-1.10.0.ebuild,
+  libgsf-1.12.0.ebuild, libgsf-1.12.1.ebuild, libgsf-1.14.0.ebuild:
+  Removing mips keywords as gnome is no longer supported on mips.
+
+  17 Aug 2006; Jeroen Roovers <jer@gentoo.org> ChangeLog:
+  Stable for HPPA (bug #144120).
+
+  16 Aug 2006; Markus Rothe <corsair@gentoo.org> libgsf-1.14.0.ebuild:
+  Stable on ppc64
+
+  03 Aug 2006; Gustavo Zacarias <gustavoz@gentoo.org> libgsf-1.14.0.ebuild:
+  Stable on sparc
+
+  02 Aug 2006; Diego Pettenò <flameeyes@gentoo.org> libgsf-1.14.0.ebuild:
+  Add ~x86-fbsd keyword.
+
+  17 Jul 2006; Daniel Gryniewicz <dang@gentoo.org> libgsf-1.14.0.ebuild:
+  Marked stable on amd64 for bug #139612
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libgsf-1.14.0.ebuild:
+  hppa stable, bug #139612
+
+  14 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libgsf-1.14.0.ebuild:
+  ppc stable, bug #139612
+
+  12 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org> libgsf-1.14.0.ebuild:
+  Stable on x86 wrt bug #139612.
+
+*libgsf-1.14.0 (14 Apr 2006)
+
+  14 Apr 2006; Marinus Schraal <foser@gentoo.org> libgsf-1.14.0.ebuild :
+  New release (#129819)
+  Fix gnome deps to make thumbnailer work, inherited eclass in postinst
+  Add gtk-doc dep
+  Update libtool breakage workaround
+
+*libgsf-1.13.3 (07 Jan 2006)
+
+  07 Jan 2006; Joe McCann <joem@gentoo.org> +libgsf-1.13.3.ebuild:
+  version bump
+
+  29 Oct 2005; Joe McCann <joem@gentoo.org> libgsf-1.13.2.ebuild:
+  Fix typo in USE_DESTDIR. Thanks to Matt Hamilton for noticing
+
+  29 Oct 2005; Joe McCann <joem@gentoo.org> libgsf-1.13.2.ebuild:
+  Add preserve_old_lib function to deal with the so name change. This should
+  fix bug #110765
+
+*libgsf-1.13.2 (29 Oct 2005)
+
+  29 Oct 2005; Joe McCann <joem@gentoo.org> +libgsf-1.13.2.ebuild:
+  New version required for gnumeric-1.6 and goffice. Closes bug #109797
+
+  11 Sep 2005; Aron Griffis <agriffis@gentoo.org> libgsf-1.12.1.ebuild:
+  Mark 1.12.1 stable on alpha
+
+  03 Sep 2005; Markus Rothe <corsair@gentoo.org> libgsf-1.12.1.ebuild:
+  Stable on ppc64
+
+  02 Sep 2005; Michael Hanselmann <hansmi@gentoo.org> libgsf-1.12.1.ebuild:
+  Stable on ppc.
+
+  27 Aug 2005; Guy Martin <gmsoft@gentoo.org> libgsf-1.12.1.ebuild:
+  Stable on hppa.
+
+  25 Aug 2005; Aron Griffis <agriffis@gentoo.org> libgsf-1.12.1.ebuild:
+  stable on ia64
+
+  24 Aug 2005; Gustavo Zacarias <gustavoz@gentoo.org> libgsf-1.12.1.ebuild:
+  Stable on sparc
+
+  24 Aug 2005; Leonardo Boshell <leonardop@gentoo.org> libgsf-1.12.1.ebuild:
+  Stable on x86.
+
+  20 Aug 2005; Fabian Groffen <grobian@gentoo.org> libgsf-1.12.1.ebuild:
+  Marking ~ppc-macos
+
+  19 Aug 2005; Luis Medinas <metalgod@gentoo.org> libgsf-1.12.0.ebuild:
+  Marked Stable on AMD64.
+
+  31 Jul 2005; Tobias Scherbaum <dertobi123@gentoo.org>
+  libgsf-1.12.0.ebuild:
+  ppc stable
+
+  13 Jul 2005; Stephen P. Becker <geoman@gentoo.org> libgsf-1.12.0.ebuild:
+  stable on mips
+
+  07 Jul 2005; Markus Rothe <corsair@gentoo.org> libgsf-1.12.0.ebuild:
+  Stable on ppc64
+
+  02 Jul 2005; Bryan Østergaard <kloeri@gentoo.org> libgsf-1.12.0.ebuild:
+  Stable on alpha.
+
+  01 Jul 2005; Gustavo Zacarias <gustavoz@gentoo.org> libgsf-1.12.0.ebuild:
+  Stable on sparc
+
+*libgsf-1.12.1 (30 Jun 2005)
+
+  30 Jun 2005; Leonardo Boshell <leonardop@gentoo.org> libgsf-1.12.1.ebuild:
+  New release. Added support for the 'bzip2' USE flag.
+
+  30 Jun 2005; Leonardo Boshell <leonardop@gentoo.org> libgsf-1.12.0.ebuild:
+  Stable on x86.
+
+*libgsf-1.12.0 (24 May 2005)
+
+  24 May 2005; Leonardo Boshell <leonardop@gentoo.org> libgsf-1.12.0.ebuild:
+  New release, resolves bug #77639. Added support for the 'static' USE flag;
+  resolves bug #93250. Updated dependencies. Don't inherit from eutils as it
+  is no longer necessary.
+
+  28 Apr 2005; Bryan Østergaard <kloeri@gentoo.org> libgsf-1.10.0.ebuild:
+  Stable on alpha.
+
+  06 Apr 2005; Markus Rothe <corsair@gentoo.org> libgsf-1.10.0.ebuild:
+  Stable on ppc64
+
+  28 Mar 2005; Michael Hanselmann <hansmi@gentoo.org> libgsf-1.10.0.ebuild:
+  Stable on ppc.
+
+  01 Feb 2005; Markus Rothe <corsair@gentoo.org> libgsf-1.10.0.ebuild:
+  Added ~ppc64 to KEYWORDS
+
+  06 Mar 2005; Heinrich Wendel <lanius@gentoo.org> libgsf-1.10.0.ebuild:
+  stable on amd64
+
+  17 Jan 2005; Gustavo Zacarias <gustavoz@gentoo.org> libgsf-1.10.0.ebuild:
+  Stable on sparc
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  22 Aug 2004; Bryan Østergaard <kloeri@gentoo.org> libgsf-1.9.0.ebuild:
+  Stable on alpha.
+
+  12 Aug 2004; Travis Tilley <lv@gentoo.org> libgsf-1.9.0.ebuild:
+  stable on amd64
+
+  12 Aug 2004; Guy Martin <gmsoft@gentoo.org> libgsf-1.9.0.ebuild:
+  Stable on hppa.
+
+  09 Aug 2004; Gustavo Zacarias <gustavoz@gentoo.org> libgsf-1.9.0.ebuild:
+  Stable on sparc
+
+*libgsf-1.10.0 (09 Aug 2004)
+
+  09 Aug 2004; foser <foser@gentoo.org> libgsf-1.10.0.ebuild :
+  New release
+
+  30 Jul 2004; Tom Gall <tgall@gentoo.org> libgsf-1.9.0.ebuild:
+  stable on ppc64
+
+  13 Jul 2004; Tom Gall <tgall@gentoo.org> libgsf-1.9.0.ebuild:
+  added ~ppc64, bug #54807
+
+  29 May 2004; Pieter Van den Abeele <pvdabeel@gentoo.org>
+  libgsf-1.6.0.ebuild:
+  Masked libgsf-1.6.0.ebuild stable for ppc
+
+  21 May 2004; L. Boshell <leonardop@gentoo.org> libgsf-1.9.0.ebuild,
+  files/libgsf-1.9.0-gtkdoc_fixes.patch:
+  Updated patch that fixes the destination folder for gtk-doc material.
+
+  13 May 2004; Stephen P. Becker <geoman@gentoo.org> libgsf-1.8.2.ebuild:
+  Stable on mips.
+
+*libgsf-1.9.0 (05 May 2004)
+
+  05 May 2004; foser <foser@gentoo.org> libgsf-1.9.0.ebuild:
+  New release
+
+  20 Mar 2004; L. Boshell <leonardop@gentoo.org> libgsf-1.8.2.ebuild,
+  files/libgsf-1.8.2-gtkdoc_fix.patch:
+  Fix to make it behave with gtk-doc-1.2. Closes bug #45103.
+
+  15 Mar 2004; Bret Curtis <psi29a@gentoo.org> libgsf-1.8.2.ebuild:
+  Added ~mips to KEYWORDS
+
+  28 Jan 2004; Aron Griffis <agriffis@gentoo.org> libgsf-1.8.2.ebuild:
+  stable on alpha and ia64
+
+  17 Jan 2004; Bartosch Pixa <darkspecter@gentoo.org> :
+  manifest fix
+
+  16 Jan 2004; Bartosch Pixa <darkspecter@gentoo.org> libgsf-1.8.2.ebuild:
+  set ppc in keywords
+
+  16 Nov 2003; Brad House <brad_mssw@gentoo.org> libgsf-1.8.2.ebuild:
+  mark stable on amd64
+
+  14 Nov 2003; Aron Griffis <agriffis@gentoo.org> libgsf-1.6.0.ebuild:
+  Stable on ia64
+
+  06 Nov 2003; Jason Wever <weeve@gentoo.org> libgsf-1.8.2.ebuild:
+  Marked stable on sparc, helps resolve bug #32405.
+
+*libgsf-1.8.2 (17 Sep 2003)
+
+  16 Nov 2003; Guy Martin <gmsoft@gentoo.org> libgsf-1.8.2.ebuild :
+  Marked stable on hppa.
+
+  17 Sep 2003; Alastair Tse <liquidx@gentoo.org> libgsf-1.8.2.ebuild:
+  version bump for gnumeric 1.2.0
+
+  01 Sep 2003; Jason Wever <weeve@gentoo.org> libgsf-1.8.1.ebuild:
+  Marked stable for sparc.
+
+  15 Jul 2003; Todd Sunderlin <todd@gentoo.org> libgsf-1.6.0.ebuild:
+  Marked stable for sparc
+
+  30 Jun 2003; Bartosch Pixa <darkspecter@gentoo.org> libgsf-1.8.1.ebuild:
+  set ppc in keywords
+
+*libgsf-1.8.1 (08 Jun 2003)
+
+  04 Jul 2003; Guy Martin <gmsoft@gentoo.org> libgsf-1.8.1.ebuild :
+  Added hppa to KEYWORDS.
+
+  08 Jun 2003; foser <foser@gentoo.org> libgsf-1.8.1.ebuild :
+  New version, properly enable gnome switching, fix licenses
+
+*libgsf-1.8.0 (13 May 2003)
+
+  13 May 2003; foser <foser@gentoo.org> libgsf-1.8.0.ebuild :
+  New version, gnome2ify a bit more, fix dep bug
+
+*libgsf-1.7.2 (16 Feb 2003)
+
+  16 Feb 2003; Bart Verwilst <verwilst@gentoo.org> libgsf-1.7.2.ebuild :
+  New version
+
+  10 Feb 2003; Aron Griffis <agriffis@gentoo.org> libgsf-1.6.0.ebuild :
+  Add ~alpha to KEYWORDS
+
+*libgsf-1.6.0 (05 Jan 2003)
+
+  21 Feb 2003; Aron Griffis <agriffis@gentoo.org> libgsf-1.6.0.ebuild :
+  Mark stable on alpha
+
+  05 Jan 2003; foser <foser@gentoo.org> libgsf-1.6.0.ebuild :
+  New version
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*libgsf-1.5.0 (05 Dec 2002)
+ 
+  10 Dec 2002; Martin Holzer <mholzer@gentoo.org> libgsf-1.5.0.ebuild Changelog :
+  Marked as stable after testing gnumeric.
+
+  05 Dev 2002; foser <foser@gentoo.org> libgsf-1.5.0.ebuild :
+  New version, fixed some deps
+
+*libgsf-1.4.0 (05 Dec 2002)
+
+  05 Dec 2002; Martin Holzer <mholzer@gentoo.org> libgsf-1.4.0.ebuild :
+  Initial Version.
+
+*libgsf-1.3.0-r1 (10 Oct 2002)
+
+  06 Dec 2002; Martin Holzer <mholzer@gentoo.org> libgsf-1.3.0.ebuild libgsf-1.3.0-r1.ebuild :
+  Fixed SRC_URI.
+
+  20 Oct 2002; Calum Selkirk <cselkirk@gentoo.org> libgsf-1.1.0.ebuild 
+  lbgsf-1.3.0.ebuild ibgsf-1.3.0-r1.ebuild :
+
+  Added ppc to KEYWORDS.
+
+  10 Oct 2002; foser <foser@gentoo.org> libgsf-1.3.0-r1.ebuild :
+  Fixed documentation bug #7570 and added doc flag
+
+*libgsf-1.3.0 (01 Sep 2002)
+  01 Sep 2002; Spider <spider@gentoo.org> libgsf-1.3.0.ebuild :
+  New version, changed buildflags some though
+  
+*libgsf-1.1.0 (06 Aug 2002)
+
+  06 Aug 2002; Gabriele Giorgetti <stroke@gentoo.org> libgsf-1.1.0.ebuild:
+  
+  Initial cvs import, The GNOME Structured File Library.
+  
