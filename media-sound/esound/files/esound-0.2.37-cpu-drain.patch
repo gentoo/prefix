@@ -1,0 +1,21 @@
+diff --exclude-from=/home/dang/bin/scripts/diffrc -up -ruN esound-0.2.37.orig/players.c esound-0.2.37/players.c
+--- esound-0.2.37.orig/players.c	2007-03-22 13:58:49.000000000 -0400
++++ esound-0.2.37/players.c	2007-03-22 13:59:49.000000000 -0400
+@@ -309,13 +309,15 @@ int read_player( esd_player_t *player )
+ 			      player->data_buffer + player->actual_length, 
+ 			      player->buffer_length - player->actual_length,
+ 			      actual, "str rd" );
+-		if (actual < player->buffer_length - player->actual_length)
+-			break;
+ 		
+ 		/* check for end of stream */
+ 		if ( actual == 0 
+ 		     || ( actual < 0 && errno != EAGAIN && errno != EINTR ) )
+ 		    return -1;
++
++		if (actual < player->buffer_length - player->actual_length)
++			break;
++
+ 		/* more data, save how much we got */
+ 		if ( actual > 0 )
+ 		   player->actual_length += actual;

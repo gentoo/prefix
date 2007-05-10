@@ -1,0 +1,16 @@
+Index: esound-0.2.36/esddsp.c
+===================================================================
+--- esound-0.2.36.orig/esddsp.c
++++ esound-0.2.36/esddsp.c
+@@ -227,7 +227,10 @@ open (const char *pathname, int flags, .
+   dsp_init ();
+ 
+   va_start (args, flags);
+-  mode = va_arg (args, mode_t);
++  if ( sizeof(mode_t) < sizeof(int) )
++    mode = va_arg (args, int);
++  else
++    mode = va_arg (args, mode_t);
+   va_end (args);
+ 
+   if (!strcmp (pathname, "/dev/dsp"))

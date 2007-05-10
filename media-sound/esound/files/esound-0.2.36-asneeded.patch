@@ -1,0 +1,22 @@
+--- esound-0.2.36/Makefile.am.orig	2006-05-19 08:37:00.000000000 -0700
++++ esound-0.2.36/Makefile.am	2006-05-19 08:31:56.000000000 -0700
+@@ -60,7 +60,7 @@
+ 	audio_win32.c
+ 
+ libesddsp_la_LDFLAGS = -version-info $(ESD_VERSION_INFO)
+-libesddsp_la_LIBADD = $(DL_LIB) -lm
++libesddsp_la_LIBADD = libesd.la $(DL_LIB) -lm
+ 
+ libesddsp_la_SOURCES = \
+ 	esddsp.c
+--- esound-0.2.36/Makefile.in.orig	2006-05-19 08:37:25.000000000 -0700
++++ esound-0.2.36/Makefile.in	2006-05-19 08:32:35.000000000 -0700
+@@ -374,7 +374,7 @@
+ 	audio_win32.c
+ 
+ libesddsp_la_LDFLAGS = -version-info $(ESD_VERSION_INFO)
+-libesddsp_la_LIBADD = $(DL_LIB) -lm
++libesddsp_la_LIBADD = libesd.la $(DL_LIB) -lm
+ libesddsp_la_SOURCES = \
+ 	esddsp.c
+ 
