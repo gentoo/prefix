@@ -1,0 +1,12 @@
+diff -ru libxklavier-3.0/libxklavier/xklavier_config.c libxklavier-3.0-r1/libxklavier/xklavier_config.c
+--- libxklavier-3.0/libxklavier/xklavier_config.c	2006-08-03 18:40:06.000000000 -0400
++++ libxklavier-3.0-r1/libxklavier/xklavier_config.c	2006-12-22 09:56:06.000000000 -0500
+@@ -261,7 +261,7 @@
+ 		return FALSE;
+ 
+ 	nodes = xpath_obj->nodesetval;
+-	if (nodes != NULL && nodes->nodeTab != NULL) {
++	if (nodes != NULL && nodes->nodeTab != NULL && nodes->nodeNr > 0) {
+ 		rv = xkl_read_config_item(config, *nodes->nodeTab, pitem);
+ 		if (pnode != NULL) {
+ 			*pnode = *nodes->nodeTab;

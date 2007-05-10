@@ -1,0 +1,313 @@
+# ChangeLog for x11-libs/libxklavier
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.88 2007/03/12 19:35:08 leio Exp $
+
+  12 Mar 2007; Mart Raudsepp <leio@gentoo.org> libxklavier-3.1.ebuild:
+  Add glib dependency, bug 170563
+
+  04 Feb 2007; Markus Rothe <corsair@gentoo.org> libxklavier-3.1.ebuild:
+  Stable on ppc64; bug #164978
+
+  03 Feb 2007; Andrej Kacian <ticho@gentoo.org> libxklavier-3.1.ebuild:
+  Stable on x86, bug #164978.
+
+  03 Feb 2007; Simon Stelling <blubb@gentoo.org> libxklavier-3.1.ebuild:
+  mark stable on amd64; bug 164978
+
+  03 Feb 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  libxklavier-3.1.ebuild:
+  Stable on ppc wrt bug #164978.
+
+  01 Feb 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  libxklavier-3.1.ebuild:
+  Stable on sparc
+
+  18 Jan 2007; Jeroen Roovers <jer@gentoo.org> libxklavier-3.1.ebuild:
+  Stable for HPPA (bug #147751).
+
+  15 Jan 2007; Roy Marples <uberlord@gentoo.org> libxklavier-3.1.ebuild:
+  Add ~x86-fbsd keyword.
+
+*libxklavier-3.1 (14 Jan 2007)
+
+  14 Jan 2007; Mart Raudsepp <leio@gentoo.org> +libxklavier-3.1.ebuild:
+  Version bump. Solves bug 157934 too
+
+  06 Jan 2007; Bryan Østergaard <kloeri@gentoo.org>
+  libxklavier-3.0-r1.ebuild:
+  Stable on Alpha and IA64.
+
+*libxklavier-3.0-r1 (22 Dec 2006)
+
+  22 Dec 2006; Remi <remi@gentoo.org> +files/libxklavier-3.0-libxml.diff,
+  +libxklavier-3.0-r1.ebuild:
+  adding oneliner patch to fix bug #158832 in libxklavier-3.0
+
+  21 Dec 2006; Markus Rothe <corsair@gentoo.org> libxklavier-3.0.ebuild:
+  Stable on ppc64; bug #156662
+
+  18 Dec 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  libxklavier-3.0.ebuild:
+  Stable on sparc
+
+  16 Dec 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libxklavier-3.0.ebuild:
+  Stable on ppc wrt bug #156662.
+
+  12 Dec 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  libxklavier-3.0.ebuild:
+  Stable on amd64 wrt bug #156662.
+
+  10 Dec 2006; Andrej Kacian <ticho@gentoo.org> libxklavier-3.0.ebuild:
+  Stable on x86, bug #156662.
+
+  20 Oct 2006; Aron Griffis <agriffis@gentoo.org> libxklavier-2.2.ebuild:
+  Mark 2.2 stable on alpha
+
+  13 Sep 2006; Aron Griffis <agriffis@gentoo.org> libxklavier-2.2.ebuild:
+  Mark 2.2 stable on ia64. #139612
+
+*libxklavier-3.0 (07 Sep 2006)
+
+  07 Sep 2006; Daniel Gryniewicz <dang@gentoo.org> +libxklavier-3.0.ebuild:
+  New version for gnome 2.16
+
+  04 Sep 2006; Joshua Kinard <kumba@gentoo.org> libxklavier-2.0.ebuild,
+  libxklavier-2.0-r1.ebuild, libxklavier-2.2.ebuild:
+  Removing mips keywords from gnome-related packages, as gnome no longer is
+  supported for us.
+
+  16 Aug 2006; Markus Rothe <corsair@gentoo.org> libxklavier-2.2.ebuild:
+  Stable on ppc64
+
+  17 Jul 2006; Daniel Gryniewicz <dang@gentoo.org> libxklavier-2.2.ebuild:
+  Marked stable on amd64 for bug #139612
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libxklavier-2.2.ebuild:
+  hppa stable, bug #139612
+
+  14 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libxklavier-2.2.ebuild:
+  ppc stable, bug #139612
+
+  12 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  libxklavier-2.2.ebuild:
+  Stable on x86 wrt bug #139612.
+
+  10 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  libxklavier-2.2.ebuild:
+  Stable on sparc wrt #139612
+
+  28 Apr 2006; Alec Warner <antarus@gentoo.org>
+  files/digest-libxklavier-2.0, Manifest:
+  Fixing SHA256 digest, pass four
+
+  14 Mar 2006; Marinus Schraal <foser@gentoo.org> libxklavier-2.2.ebuild :
+  Depend on xkbdata or xkeyboard-config (#11318)
+  Thanks to Geoff Leach & dsd for the suggestion
+
+*libxklavier-2.2 (12 Mar 2006)
+
+  12 Mar 2006; Marinus Schraal <foser@gentoo.org> libxklavier-2.2.ebuild :
+  New release
+  Add workaround for #11318
+  modular X11 dep fixes
+
+  07 Feb 2006; Aron Griffis <agriffis@gentoo.org> libxklavier-2.0-r1.ebuild:
+  Mark 2.0-r1 stable on alpha
+
+  12 Jan 2006; Markus Rothe <corsair@gentoo.org> libxklavier-2.0-r1.ebuild:
+  Stable on ppc64; bug #118229
+
+  09 Jan 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  libxklavier-2.0-r1.ebuild:
+  Stable on sparc wrt #118229
+
+  08 Jan 2006; Saleem Abdulrasool <compnerd@gentoo.org>
+  libxklavier-2.0-r1.ebuild:
+  Stable on x86 as per bug #118229
+
+  08 Jan 2006; <dang@gentoo.org> libxklavier-2.0-r1.ebuild:
+  Marked stable on amd64 Per bug #118229
+
+  08 Jan 2006; <nixnut@gentoo.org> libxklavier-2.0-r1.ebuild:
+  marked stable on ppc, bug #118229
+
+*libxklavier-2.0-r1 (11 Dec 2005)
+
+  11 Dec 2005; John N. Laliberte <allanonjl@gentoo.org>
+  +files/libxklavier-2.0-config_xkb.patch, +libxklavier-2.0-r1.ebuild:
+  backport patch from cvs, fixes #114601
+
+  04 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org> ChangeLog:
+  Bump for 7.0RC3.
+
+  04 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org> ChangeLog:
+  Bump for 7.0RC3.
+
+  04 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org> ChangeLog:
+  Bump for 7.0RC3.
+
+  04 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org> ChangeLog:
+  Bump for 7.0RC3.
+
+  04 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org> ChangeLog:
+  Bump for 7.0RC3.
+
+  06 Nov 2005; <dang@gentoo.org> libxklavier-2.0.ebuild:
+  Modular X deps
+
+  11 Jul 2005; Stephen P. Becker <geoman@gentoo.org> libxklavier-2.0.ebuild:
+  stable on mips
+
+  23 Jun 2005; Guy Martin <gmsoft@gentoo.org> libxklavier-2.0.ebuild:
+  Stable on hppa.
+
+  12 Jun 2005; Olivier Crête <tester@gentoo.org> libxklavier-2.0.ebuild:
+  Stable on amd64
+
+  12 Jun 2005; Bryan Østergaard <kloeri@gentoo.org> libxklavier-2.0.ebuild:
+  Stable on alpha.
+
+  12 Jun 2005; Tobias Scherbaum <dertobi123@gentoo.org>
+  libxklavier-2.0.ebuild:
+  Stable on ppc.
+
+  09 Jun 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  libxklavier-2.0.ebuild:
+  Stable on sparc
+
+  06 Jun 2005; Markus Rothe <corsair@gentoo.org> libxklavier-2.0.ebuild:
+  Stable on ppc64
+
+  06 May 2005; Markus Rothe <corsair@gentoo.org> libxklavier-2.0.ebuild:
+  Added ~ppc64 to KEYWORDS
+
+  24 Apr 2005; Martin Schlemmer <azarah@gentoo.org>
+  +files/libxklavier-1.14-werror.patch, libxklavier-2.0.ebuild:
+  Do not error on warnings (for gcc4 support).  Patch from Fedora.
+
+  09 Apr 2005; Markus Rothe <corsair@gentoo.org> libxklavier-1.04-r1.ebuild:
+  Stable on ppc64
+
+  24 Mar 2005; Hardave Riar <hardave@gentoo.org> libxklavier-1.04-r1.ebuild:
+  Stable on mips.
+
+  11 Mar 2005; Gustavo Zacarias <gustavoz@gentoo.org> libxklavier-2.0.ebuild:
+  Sparc fix0r
+
+*libxklavier-2.0 (08 Mar 2005)
+
+  08 Mar 2005; Joe McCann <joem@gentoo.org> +libxklavier-2.0.ebuild:
+  gnome-2.10 release
+
+  08 Jan 2005; Tom Martin <slarti@gentoo.org> libxklavier-1.04-r1.ebuild:
+  Stable on amd64.
+
+  28 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  24 Dec 2004; Bryan Østergaard <kloeri@gentoo.org>
+  libxklavier-1.04-r1.ebuild:
+  Stable on alpha.
+
+  23 Dec 2004; Guy Martin <gmsoft@gentoo.org> libxklavier-1.04-r1.ebuild:
+  Stable on hppa.
+
+  21 Dec 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  libxklavier-1.04-r1.ebuild:
+  Stable on sparc
+
+  19 Dec 2004; Mike Gardiner <obz@gentoo.org> libxklavier-1.04-r1.ebuild:
+  Keyworded x86 and ppc for GNOME 2.8.1
+
+*libxklavier-1.04-r1 (29 Nov 2004)
+
+  29 Nov 2004; foser <foser@gentoo.org> libxklavier-1.04-r1.ebuild :
+  Add patch to work around freeing a static var (#70633)
+  Thanks to Serge Ivanchenko for the patch
+
+  11 Nov 2004; Mike Gardiner <obz@gentoo.org> libxklavier-1.03.ebuild:
+  Keyworded ppc for GNOME 2.8
+
+  02 Nov 2004; foser <foser@gentoo.org> libxklavier-1.04.ebuild :
+  Hardcode xkb path for future xorg versions (#69400)
+
+  01 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org> libxklavier-1.03.ebuild:
+  Stable on sparc
+
+  31 Oct 2004; Bryan Østergaard <kloeri@gentoo.org>
+  libxklavier-1.03.ebuild:
+  Stable on alpha.
+
+*libxklavier-1.04 (27 Oct 2004)
+
+  27 Oct 2004; foser <foser@gentoo.org> libxklavier-1.04.ebuild :
+  New release
+
+*libxklavier-1.03 (19 Sep 2004)
+
+  19 Sep 2004; foser <foser@gentoo.org> libxklavier-1.03.ebuild :
+  Forgotten commit
+
+  05 Aug 2004; Gustavo Zacarias <gustavoz@gentoo.org> libxklavier-1.02.ebuild:
+  Stable on sparc
+
+  27 Jul 2004; Tom Gall <tgall@gentoo.org> libxklavier-1.02.ebuild:
+  stable on ppc64, bug #58191
+
+  04 Jul 2004; Bryan Østergaard <kloeri@gentoo.org> libxklavier-1.02.ebuild:
+  Stable on alpha.
+
+  23 Jun 2004; Aron Griffis <agriffis@gentoo.org> libxklavier-1.00.ebuild:
+  QA - fix use invocation
+
+  03 Jun 2004; Stephen P. Becker <geoman@gentoo.org> libxklavier-1.02.ebuild:
+  Stable on mips.
+
+  25 May 2004; Guy Martin <gmsoft@gentoo.org> libxklavier-1.02.ebuild:
+  Marked stable on hppa.
+
+  02 May 2004; Stephen P. Becker <geoman@gentoo.org> libxklavier-1.02.ebuild:
+  Added ~mips keyword.
+
+  24 Apr 2004; Jason Wever <weeve@gentoo.org> +files/sun-keymaps-102.patch,
+  libxklavier-1.02.ebuild:
+  Added todd's fixes to 1.02.
+
+  19 Apr 2004; Michael Sterrett <mr_bones_@gentoo.org>
+  libxklavier-1.02.ebuild:
+  use flag update usage; tidy
+
+  17 Apr 2004; Daniel Ahlberg <aliz@gentoo.org> libxklavier-1.00.ebuild,
+  libxklavier-1.02.ebuild:
+  Inherit eutils.
+
+  17 Apr 2004; Travis Tilley <lv@gentoo.org> libxklavier-1.00.ebuild:
+  stable on amd64
+
+*libxklavier-1.02 (15 Apr 2004)
+
+  15 Apr 2004; foser <foser@gentoo.org> libxklavier-1.02.ebuild :
+  New release, should fix issues with xorg release (#47131)
+
+  05 Apr 2004; Aron Griffis <agriffis@gentoo.org> libxklavier-1.00.ebuild:
+  Add ~alpha and ~ia64
+
+  05 Apr 2004; Chris Aniszczyk <zx@gentoo.org> libxklavier-1.00.ebuild:
+  Marking ~hppa
+
+  23 Mar 2004; Gustavo Zacarias <gustavoz@gentoo.org> libxklavier-1.00.ebuild,
+  files/sun-keymaps.patch, files/sun.xml:
+  keyworded ~sparc, imported keymap workaround
+
+  19 Mar 2004; David Holm <dholm@gentoo.org> libxklavier-1.00.ebuild:
+  Added to ~ppc.
+
+*libxklavier-1.00 (18 Mar 2004)
+
+  18 Mar 2004; foser <foser@gentoo.org> metadata.xml, libxklavier-1.00.ebuild, ChangeLog :
+  Initial commit
+  high-level X KeyBoard library
+  Added to the gnome herd for now
