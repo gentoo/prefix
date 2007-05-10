@@ -1,0 +1,15 @@
+--- capplets/mouse/gnome-mouse-properties.c.orig	2005-08-25 00:33:26.000000000 +0100
++++ capplets/mouse/gnome-mouse-properties.c	2005-08-25 00:39:48.000000000 +0100
+@@ -650,9 +650,11 @@
+ 	// add the XCursor themes - paths taken from <xc/lib/Xcursor.library.c>
+ 	const gchar* const paths[] = {
+ 		"%s/.icons/",
++		"%s/.cursors/",
+ 		"/usr/share/icons/",
+ 		"/usr/share/pixmaps/",
+-		"/usr/X11R6/lib/X11/icons/",
++		"/usr/share/cursors/xorg-x11/",
++		"/usr/share/pixmaps/xorg-x11/",
+ 		NULL
+ 	};
+ 	const gchar* const * iterator;
