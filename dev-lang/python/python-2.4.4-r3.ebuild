@@ -66,6 +66,10 @@ src_unpack() {
 	epatch "${FILESDIR}"/python-updater-r1-prefix.patch
 	eprefixify python-updater-r1
 
+	cd "${WORKDIR}/${PV}"
+	# fix up cross-compile patch so it doesn't fail on Darwin
+	epatch "${FILESDIR}"/${P}-cross-compile-fix.patch
+
 	cd ${S}
 
 	einfo $(pwd)
@@ -170,8 +174,6 @@ src_compile() {
 
 	# export CXX so it ends up in /usr/lib/python2.x/config/Makefile
 	tc-export CXX
-	# set LINKCC to prevent python from being linked to libstdc++.so
-	export LINKCC="\$(PURIFY) \$(CC)"
 	econf \
 		--with-fpectl \
 		--enable-shared \
