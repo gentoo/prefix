@@ -1,0 +1,34 @@
+# ChangeLog for app-admin/python-updater
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/ChangeLog,v 1.8 2007/05/08 21:56:01 uberlord Exp $
+
+  08 May 2007; Roy Marples <uberlord@gentoo.org> python-updater-0.2.ebuild:
+  Added ~sparc-fbsd keyword, #177426.
+  Added ~x86-fbsd keyword, #177426.
+
+  08 May 2007; Raúl Porcel <armin76@gentoo.org> python-updater-0.2.ebuild:
+  Add ~ia64 wrt bug 177270
+
+  07 May 2007; Jeroen Roovers <jer@gentoo.org> python-updater-0.2.ebuild:
+  Marked ~hppa (bug #177270).
+
+*python-updater-0.2 (07 May 2007)
+
+  07 May 2007; Bryan Østergaard <kloeri@gentoo.org>
+  +python-updater-0.2.ebuild:
+  Small bump, ripping out logging and --new option.
+
+  06 May 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  python-updater-0.1.ebuild:
+  Marked ~amd64.
+
+  06 May 2007; Bryan Østergaard <kloeri@gentoo.org>
+  python-updater-0.1.ebuild:
+  Fix RDEPEND.
+
+*python-updater-0.1 (06 May 2007)
+
+  06 May 2007; Bryan Østergaard <kloeri@gentoo.org>
+  +python-updater-0.1.ebuild:
+  Initial import of stand-alone python-updater.
+

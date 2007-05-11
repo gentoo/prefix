@@ -1,0 +1,64 @@
+--- python-updater-0.2
++++ python-updater-0.2
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ #
+ # A bit of hackery to update everything that is humanly possible
+ # that maybe related to an older version of python. This script can
+@@ -26,7 +26,7 @@
+ PKGS_MANUAL="app-office/gnumeric app-office/dia x11-libs/vte"
+ 
+ # portage variables
+-PKG_DBDIR=/var/db/pkg
++PKG_DBDIR="@GENTOO_PORTAGE_EPREFIX@"/var/db/pkg
+ PORTDIR=`portageq portdir`
+ PORTDIR_OVERLAYS=`portageq portdir_overlay`
+ 
+@@ -34,7 +34,7 @@
+ IGNORE_VERSIONS=0
+ PKGS_TO_REMERGE=""
+ PKGS_COUNT_REMERGE=0
+-PORTAGE_PYTHON="/usr/bin/python"
++PORTAGE_PYTHON="@GENTOO_PORTAGE_EPREFIX@/usr/bin/python"
+ 
+ SUPPORTED_PMS="portage pkgcore paludis"
+ PMS_COMMAND=( "emerge" "pmerge" "paludis" )
+@@ -43,7 +43,7 @@
+ # load the gentoo-style info macros, but hack to get around
+ # it thinking this is an rc script
+ EBUILD="1"
+-source /etc/init.d/functions.sh
++source "@GENTOO_PORTAGE_EPREFIX@"/etc/init.d/functions.sh
+ 
+ usage() {
+ 	echo "usage: python-updater [-h|-p|-o X.X|-n X.X]"
+@@ -123,7 +123,7 @@
+ if [[ -z "${OLD_PY_VER}" ]]; then
+ 	for old in 2.5 2.4 2.3 2.2 2.1; do
+ 		if [ "${old}" != "${NEW_PY_VER}" ]; then
+-			if [ -e /usr/bin/python${old} ] ; then
++			if [ -e "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python${old} ] ; then
+ 				OLD_PY_VER=${old}
+ 				break;
+ 			fi
+@@ -141,7 +141,7 @@
+ #
+ # Test where portage is, in python2.2 or somewhere else?
+ #
+-for py in /usr/bin/python /usr/bin/python${OLD_PY_VER} /usr/bin/python${NEW_PY_VER}; do
++for py in "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python${OLD_PY_VER} "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python${NEW_PY_VER}; do
+ 	if ${py} -c "import portage" > /dev/null 2>&1; then
+ 		PORTAGE_PYTHON=${py}
+ 		break;
+@@ -154,8 +154,8 @@
+ # /usr/lib/python${OLD_PY_VER}
+ #
+ #
+-OLD_MODULES_DIRS="/usr/lib/python${OLD_PY_VER} /usr/lib32/python${OLD_PY_VER} /usr/lib64/python${OLD_PY_VER}"
+-OLD_INCLUDE_DIR=/usr/include/python${OLD_PY_VER}
++OLD_MODULES_DIRS="@GENTOO_PORTAGE_EPREFIX@/usr/lib/python${OLD_PY_VER} @GENTOO_PORTAGE_EPREFIX@/usr/lib32/python${OLD_PY_VER} @GENTOO_PORTAGE_EPREFIX@/usr/lib64/python${OLD_PY_VER}"
++OLD_INCLUDE_DIR="@GENTOO_PORTAGE_EPREFIX@"/usr/include/python${OLD_PY_VER}
+ 
+ einfo "Starting Python Updater from ${OLD_PY_VER} to ${NEW_PY_VER} :"
+ einfo "Searching for packages with files in ${OLD_MODULES_DIRS} .."
