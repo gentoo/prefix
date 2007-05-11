@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/cairo
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.117 2007/05/03 06:44:03 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.118 2007/05/07 19:37:35 dang Exp $
+
+  07 May 2007; Daniel Gryniewicz <dang@gentoo.org> cairo-1.4.4.ebuild:
+  Marked stable on amd64 for bug #176367
 
   03 May 2007; Jeroen Roovers <jer@gentoo.org> cairo-1.4.4.ebuild:
   Stable for HPPA (bug #176367).
