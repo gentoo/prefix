@@ -64,6 +64,10 @@ RESTRICT="confcache"
 src_unpack() {
 	unpack ${A}
 
+	cd "${WORKDIR}/${PV}"
+	# fix up cross-compile patch so it doesn't fail on Darwin
+	epatch "${FILESDIR}"/${PN}-2.4.4-cross-compile-fix.patch
+
 	cd "${S}"
 
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
