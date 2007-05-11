@@ -31,8 +31,8 @@
  # load the gentoo-style info macros, but hack to get around
  # it thinking this is an rc script
  EBUILD="1" 
--source /sbin/functions.sh
-+source @GENTOO_PORTAGE_EPREFIX@/sbin/functions.sh
+-source /etc/init.d/functions.sh || exit 1
++source @GENTOO_PORTAGE_EPREFIX@/etc/init.d/functions.sh || exit 1
  
  
  

@@ -1,6 +1,97 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.227 2007/03/31 00:29:10 marienz Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.241 2007/05/10 14:01:01 kloeri Exp $
+
+*python-2.5.1-r1 (10 May 2007)
+*python-2.4.4-r3 (10 May 2007)
+*python-2.3.6-r2 (10 May 2007)
+
+  10 May 2007; Bryan Østergaard <kloeri@gentoo.org>
+  +python-2.3.6-r2.ebuild, +python-2.4.4-r3.ebuild, +python-2.5.1-r1.ebuild:
+  Change threads USE flag to nothreads, fix non-linux linker issue and fix
+  man-page symlink.
+
+  08 May 2007; Roy Marples <uberlord@gentoo.org> python-2.5.1.ebuild:
+  Added ~sparc-fbsd keyword, #177426.
+  Added ~x86-fbsd keyword, #177426.
+  export LDFLAGS="-L." so we link modules correctly on FreeBSD and possibly
+  other systems where python2.5 isn't installed yet.
+
+  08 May 2007; Raúl Porcel <armin76@gentoo.org> python-2.3.6-r1.ebuild,
+  python-2.4.4-r2.ebuild, python-2.5.1.ebuild:
+  Add ~ia64 wrt 177426
+
+  08 May 2007; Roy Marples <uberlord@gentoo.org> python-2.4.4-r2.ebuild:
+  Added ~x86-fbsd keyword, #177426.
+
+  08 May 2007; Bryan Østergaard <kloeri@gentoo.org> python-2.3.6-r1.ebuild,
+  python-2.4.4-r2.ebuild, python-2.5.1.ebuild:
+  Change nptl USE flag to threads.
+
+  08 May 2007; Jeroen Roovers <jer@gentoo.org> python-2.5.1.ebuild:
+  Marked ~hppa (bug #177426).
+
+  07 May 2007; Jeroen Roovers <jer@gentoo.org> python-2.4.4-r2.ebuild:
+  Marked ~hppa (bug #177426).
+
+  07 May 2007; Jeroen Roovers <jer@gentoo.org> python-2.3.6-r1.ebuild:
+  Marked ~hppa (bug #177426).
+
+*python-2.4.4-r2 (07 May 2007)
+
+  07 May 2007; Bryan Østergaard <kloeri@gentoo.org>
+  -python-2.4.4-r1.ebuild, +python-2.4.4-r2.ebuild:
+  Fix broken 2.4.4 patch causing wrong linking.
+
+  07 May 2007; Gustavo Zacarias <gustavoz@gentoo.org> python-2.4.4.ebuild:
+  Stable on sparc
+
+  07 May 2007; Bryan Østergaard <kloeri@gentoo.org> python-2.3.6-r1.ebuild,
+  python-2.4.4.ebuild, python-2.4.4-r1.ebuild:
+  Fix 2.3.6-r1 patch (bug 177464) and disable sax test in 2.4.4.
+
+  07 May 2007; Bryan Østergaard <kloeri@gentoo.org> python-2.3.5-r2.ebuild,
+  python-2.3.5-r3.ebuild, python-2.3.6.ebuild, python-2.3.6-r1.ebuild,
+  python-2.4.3-r1.ebuild, python-2.4.3-r4.ebuild, python-2.4.4.ebuild,
+  python-2.4.4-r1.ebuild, python-2.5-r1.ebuild, python-2.5-r2.ebuild:
+  Stable on Alpha, IA64 and x86 + fix digest issue reported in bug 177440.
+
+*python-2.5.1 (06 May 2007)
+*python-2.4.4-r1 (06 May 2007)
+*python-2.3.6-r1 (06 May 2007)
+
+  06 May 2007; Bryan Østergaard <kloeri@gentoo.org>
+  +python-2.3.6-r1.ebuild, +python-2.4.4-r1.ebuild, +python-2.5.1.ebuild:
+  Build problems fixed:
+  bug 120099 dev-lang/python-2.4.2 builds against sys-libs/gdbm with USE="-gdbm"
+  bug 135239 crosscompiling python. python-2.4.1-bindir-libdir.patch
+  bug 138647 dev-lang/python-x.x.x distutils installer does not link libraries
+  bug 150595 dev-lang/python-2.5 fails to compile with LC_ALL=de_DE@euro
+  bug 150732 python-2.4.3-r4 does not honor ROOT
+  bug 159967 python doesn't add pthread to LIBS correctly on BSD
+  
+  Other problems fixed:
+  bug 148362 File collision between python-2.4* and python-2.5*
+  bug 151695 dev-python/python-docs env.d entry incorrect
+  bug 158383 emerging python-2.4.3-r4 segfaults with -ipv6
+  bug 165268 dev-lang/python-2.4.4 fails to build the dbm module
+  
+  Test failures fixed:
+  bug 82469: QA issue: python-2.3.5-maketest failes with propolice
+  bug 124188 dev-lang/python-2.4.2 fails test_cookielib
+  bug 154247 dev-lang/python-2.4.4 tests failed: test_sax failed -- 1 of 42 tests failed: test_xmlgen_attr_escape
+  
+  Feature requests:
+  bug 131325 python 2.4.4/2.3.6 enable pthreads inconditionaly
+  bug 135617 dev-lang/python should install Tools/freeze
+  bug 176066 dev-lang/python-2.5.1 bump
+  
+  Fixed in current upstream version:
+  bug 90660 python-2.3.5: No module named fcntl
+  bug 144798 dev-lang/python-2.4.3 with TZ=Australia/Melbourne fails test
+  bug 151246 signed integer overflow bug in dev-lang/python-2.4.3
+  bug 159553 dev-lang/python-2.4.3-r4 fails test_openpty
+  bug 162057 dev-lang/python fails tests in test_expanduser
 
 *python-2.5-r2 (31 Mar 2007)
 
