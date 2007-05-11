@@ -1,6 +1,21 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.126 2007/05/06 19:48:48 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.131 2007/05/07 20:25:05 ticho Exp $
+
+  07 May 2007; Andrej Kacian <ticho@gentoo.org> freetype-2.3.3.ebuild:
+  Stable on x86, bug #173804.
+
+  07 May 2007; Daniel Gryniewicz <dang@gentoo.org> freetype-2.3.3.ebuild:
+  Marked stable on amd64 for bug #173804
+
+  07 May 2007; Raúl Porcel <armin76@gentoo.org> freetype-2.3.3.ebuild:
+  ia64 stable wrt bug 173804
+
+  07 May 2007; Gustavo Zacarias <gustavoz@gentoo.org> freetype-2.3.3.ebuild:
+  Stable on sparc wrt #173804
+
+  07 May 2007; Jeroen Roovers <jer@gentoo.org> freetype-2.3.3.ebuild:
+  Stable for HPPA (bug #173804).
 
   06 May 2007; Markus Rothe <corsair@gentoo.org> freetype-2.3.3.ebuild:
   Stable on ppc64; bug #173804
