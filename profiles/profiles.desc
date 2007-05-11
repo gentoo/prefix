@@ -6,27 +6,153 @@
 #layout:
 #arch		profile_directory				status
 
-# prefix repoman-shutup hack
-prefix		default-prefix								dev
+# Alpha Profiles
+alpha		default-linux/alpha/2006.1			stable
+alpha		default-linux/alpha/2006.1/desktop		stable
+#alpha		default-linux/alpha/2006.1/server		stable
+alpha		default-linux/alpha/no-nptl			stable
+alpha		default-linux/alpha/no-nptl/2.4			stable
+alpha		default-linux/alpha/2007.0			stable
+alpha		default-linux/alpha/2007.0/desktop		stable
+alpha		default-linux/alpha/2007.0/server		stable
 
-# Linux Profiles
-amd64		default-prefix/linux/amd64					dev
-mips		default-prefix/linux/mips					dev
-ia64		default-prefix/linux/ia64					dev
-x86			default-prefix/linux/x86					dev
+# AMD64 Profiles
+amd64		default-linux/amd64/2006.1			stable
+amd64		default-linux/amd64/2006.1/desktop		stable
+#amd64		default-linux/amd64/2006.1/server		stable
+amd64		default-linux/amd64/2006.0/no-symlinks		dev
+amd64		default-linux/amd64/2006.1/no-multilib		stable
+amd64		default-linux/amd64/2007.0			stable
+amd64		default-linux/amd64/2007.0/desktop		stable
+amd64		default-linux/amd64/2007.0/no-multilib		dev
+amd64		default-linux/amd64/2007.0/server		stable
 
-# Mac OS X Profiles
-ppc-macos	default-prefix/darwin/macos/10.3			dev
-ppc-macos	default-prefix/darwin/macos/10.4/ppc		dev
-x86-macos	default-prefix/darwin/macos/10.4/x86		dev
+# ARM Profiles
+arm		default-linux/arm/2004.3			stable
 
-# Solaris Profiles
-sparc-solaris	default-prefix/sunos/solaris/5.10/sparc	dev
-x86-solaris		default-prefix/sunos/solaris/5.10/x86	dev
+# HPPA Profiles
+hppa		default-linux/hppa/2006.1			stable
+hppa		default-linux/hppa/2007.0			stable
+hppa		default-linux/hppa/2007.0/desktop		dev
+hppa		default-linux/hppa/2007.0/server		dev
 
-# AIX Profiles
-ppc-aix		default-prefix/aix/5.2.0.0/ppc				dev
-ppc-aix		default-prefix/aix/5.3.0.0/ppc				dev
+# IA64 Profiles
+ia64		default-linux/ia64/2006.0			stable
+ia64		default-linux/ia64/2007.0			stable
+ia64		default-linux/ia64/2007.0/desktop		dev
+ia64		default-linux/ia64/2007.0/server		dev
 
-# IRIX Profiles
-mips-irix	default-prefix/irix/6.5/mips				dev
+# M68K Profiles
+m68k		default-linux/m68k				dev
+
+# MIPS Profiles
+mips		default-linux/mips/2006.1/cobalt/o32		stable
+mips		default-linux/mips/2006.1/generic-be/o32	stable
+mips		default-linux/mips/2006.1/ip27/o32		stable
+mips		default-linux/mips/2006.1/ip28/o32		stable
+mips		default-linux/mips/2006.1/ip30/o32		stable
+mips		default-linux/mips/2006.1/cobalt/o32/nptl	dev
+mips		default-linux/mips/2006.1/generic-be/o32/nptl	dev
+mips		default-linux/mips/2006.1/ip27/o32/nptl		dev
+mips		default-linux/mips/2006.1/ip28/o32/nptl		dev
+mips		default-linux/mips/2006.1/ip30/o32/nptl		dev
+mips		default-linux/mips/2006.1/generic-be/n32	dev
+mips		default-linux/mips/2006.1/ip27/n32		dev
+mips		default-linux/mips/2006.1/ip28/n32		dev
+mips		default-linux/mips/2006.1/ip30/n32		dev
+mips		default-linux/mips/2006.1/generic-be/n32/nptl	dev
+mips		default-linux/mips/2006.1/ip27/n32/nptl		dev
+mips		default-linux/mips/2006.1/ip28/n32/nptl		dev
+mips		default-linux/mips/2006.1/ip30/n32/nptl		dev
+mips		default-linux/mips/2006.1/generic-be/n64	dev
+mips		default-linux/mips/2006.1/generic-be/n64/nptl	dev
+
+
+# PPC32 Profiles
+ppc		default-linux/ppc/ppc32/2006.1			stable
+ppc		default-linux/ppc/ppc32/2007.0			stable
+ppc		default-linux/ppc/ppc32/2007.0/desktop		stable
+ppc		default-linux/ppc/ppc32/2007.0/G3		stable
+ppc		default-linux/ppc/ppc32/2007.0/G3/Pegasos	stable
+ppc		default-linux/ppc/ppc32/2007.0/G4		stable
+ppc		default-linux/ppc/ppc32/2007.0/G4/Pegasos	stable
+ppc		default-linux/ppc/ppc32/2007.0/desktop/G3	stable
+ppc		default-linux/ppc/ppc32/2007.0/desktop/G3/Pegasos	stable
+ppc		default-linux/ppc/ppc32/2007.0/desktop/G4	stable
+ppc		default-linux/ppc/ppc32/2007.0/desktop/G4/Pegasos	stable
+
+# PPC64 Profiles
+#ppc64		default-linux/ppc/ppc64/2006.0/32bit-userland	stable
+#ppc64		default-linux/ppc/ppc64/2006.0/64bit-userland	stable
+ppc64		default-linux/ppc/ppc64/2006.1/64bit-userland	stable
+#ppc64		default-linux/ppc/ppc64/2006.0/multilib		dev
+ppc		default-linux/ppc/ppc64/2007.0/32bit-userland	dev
+ppc64		default-linux/ppc/ppc64/2007.0/64bit-userland	dev
+
+# PPC Mac OS X Profiles
+ppc-macos	default-darwin/macos/10.4			dev
+
+# S/390 Profiles
+s390		default-linux/s390/2006.0			stable
+
+# SuperH Profiles
+sh		default-linux/sh/2006.1				stable
+
+# SPARC Profiles
+#sparc		default-linux/sparc/sparc32/2006.1		dev
+#sparc		default-linux/sparc/sparc32/2006.1/2.4		dev
+sparc		default-linux/sparc/sparc64/2007.0		stable
+sparc		default-linux/sparc/sparc64/2007.0/desktop	stable
+#sparc		default-linux/sparc/sparc64/2007.0/server	stable
+
+# x86 Profiles
+x86		default-linux/x86/2006.1			stable
+x86		default-linux/x86/no-nptl			stable
+x86		default-linux/x86/no-nptl/2.4			stable
+x86		default-linux/x86/2006.1/desktop		stable
+#x86		default-linux/x86/2006.1/server			stable
+x86		default-linux/x86/2007.0			stable
+x86		default-linux/x86/2007.0/desktop		stable
+
+# Gentoo/FreeBSD Profiles
+sparc-fbsd	default-bsd/fbsd/6.2/sparc			dev
+x86-fbsd	default-bsd/fbsd/6.2/x86			dev
+
+
+# hardened multiarch profiles
+amd64		hardened/amd64					stable
+amd64		hardened/amd64/multilib				stable
+ppc		hardened/ppc					dev
+ppc64		hardened/ppc64					dev
+#x86		hardened/x86					stable
+x86		hardened/x86/2.6				stable
+
+# selinux profiles
+#alpha		selinux/alpha/2006.1				dev
+amd64		selinux/amd64/2006.1				dev
+#mips		selinux/mips/mips64/2006.1			dev
+ppc		selinux/ppc/ppc32/2006.1/G3			dev
+ppc		selinux/ppc/ppc32/2006.1/G4			dev
+#sparc		selinux/sparc/sparc64/2006.1			dev
+x86		selinux/x86/2006.1				dev
+
+# uclibc/embedded multiarch profiles
+#amd64		uclibc/amd64					dev
+#arm		uclibc/arm					dev
+#arm		uclibc/arm/2.4					dev
+#mips		uclibc/mips					dev
+#mips		uclibc/mips/hardened				dev
+#ppc		uclibc/ppc					dev
+#ppc		uclibc/ppc/2.4					dev
+#ppc		uclibc/ppc/hardened				dev
+#ppc		uclibc/ppc/hardened/2.4				dev
+#sh		uclibc/sh					dev
+#sh		uclibc/sh/2.4					dev
+#x86		uclibc/x86					dev
+#x86		uclibc/x86/2.4					dev
+#x86		uclibc/x86/2005.1				dev
+#x86		uclibc/x86/2005.1/2.4				dev
+#x86		uclibc/x86/hardened				dev
+#x86		uclibc/x86/hardened/2.4				dev
+
+#vim: ts=8

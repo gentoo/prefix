@@ -1,16 +1,18 @@
 # Copyright 1999-2006 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/lirc_devices.desc,v 1.4 2006/12/01 14:26:21 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/lirc_devices.desc,v 1.6 2007/04/27 09:02:29 zzam Exp $
 
 # This file contains descriptions of LIRC_DEVICES USE_EXPAND flags.
 
 
+accent - LIRC_DEVICES setting to add support for accent receiver device
 act200l - LIRC_DEVICES setting to add support for act200l receiver device
 act220l - LIRC_DEVICES setting to add support for act220l receiver device
 adaptec - LIRC_DEVICES setting to add support for adaptec receiver device
 all - LIRC_DEVICES setting to add support for all receiver devices
 alsa_usb - LIRC_DEVICES setting to add support for alsa_usb receiver device
 animax - LIRC_DEVICES setting to add support for animax receiver device
+asusdh - LIRC_DEVICES setting to add support for asusdh receiver device
 atilibusb - LIRC_DEVICES setting to add support for atilibusb receiver device
 atiusb - LIRC_DEVICES setting to add support for atiusb receiver device
 audio - LIRC_DEVICES setting to add support for audio receiver device
@@ -86,6 +88,7 @@ remotemaster - LIRC_DEVICES setting to add support for remotemaster receiver dev
 remote_wonder_plus - LIRC_DEVICES setting to add support for Remote Wonder Plus (atiusb-based) receiver device
 sa1100 - LIRC_DEVICES setting to add support for sa1100 receiver device
 sasem - LIRC_DEVICES setting to add support for sasem receiver device
+sb0540 - LIRC_DEVICES setting to add support for sb0540 receiver device
 serial - LIRC_DEVICES setting to add support for serial receiver device
 serial_igor_cesko - LIRC_DEVICES setting to add support for serial receiver device (with Igor Cesko design)
 silitek - LIRC_DEVICES setting to add support for silitek receiver device
@@ -95,10 +98,13 @@ streamzap - LIRC_DEVICES setting to add support for streamzap receiver device
 tekram_bt829 - LIRC_DEVICES setting to add support for tekram_bt829 receiver device
 tekram - LIRC_DEVICES setting to add support for tekram receiver device
 tira - LIRC_DEVICES setting to add support for tira receiver device
+tuxbox - LIRC_DEVICES setting to add support for tuxbox receiver device
 tvbox - LIRC_DEVICES setting to add support for tvbox receiver device
 udp - LIRC_DEVICES setting to add support for udp receiver device
 uirt2 - LIRC_DEVICES setting to add support for uirt2 receiver device
 uirt2_raw - LIRC_DEVICES setting to add support for uirt2_raw receiver device
 usbirboy - LIRC_DEVICES setting to add support for the usbirboy homebrew device
+usb_uirt_raw - LIRC_DEVICES setting to add support for usb_uirt_raw receiver device
+usbx - LIRC_DEVICES setting to add support for usbx receiver device
 userspace - LIRC_DEVICES setting to add support for userspace receiver device
 xboxusb - LIRC_DEVICES setting to add support for xboxusb receiver device

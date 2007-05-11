@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.343 2007/03/06 06:18:20 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.348 2007/05/04 16:32:12 compnerd Exp $
 
 # Keep them sorted
 
@@ -102,7 +102,7 @@ flac - Adds support for the flac audio codec
 flatfile - Adds dbm support for flat files
 fltk - Adds support for the Fast Light Toolkit gui interface
 foomaticdb - Adds support for the foomatic printing driver database
-fortran - Adds support for fortran (formally f77)
+fortran - Adds support for fortran (formerly f77)
 freetds - Adds support for the TDS protocol to connect to MSSQL/Sybase databases
 freewnn - Adds support for FreeWnn kana to kanji conversion engine
 frontbase - Adds support for the frontbase sql server
@@ -127,7 +127,6 @@ gps - Adds support for Global Positioning System
 graphviz - Adds support for the Graphviz library
 gstreamer - Adds support for media-libs/gstreamer (Streaming media)
 gtk - Adds support for x11-libs/gtk+ (The GIMP Toolkit)
-gtk2 - Use gtk+-2.0.0 over gtk+-1.2 in cases where a program supports both.
 gtkhtml - Adds support for gnome-extra/gtkhtml
 guile - Adds support for the guile Scheme interpreter
 hal - Enable Hardware Abstraction Layer (HAL) support
@@ -321,7 +320,6 @@ symlink - Force kernel ebuilds to automatically update the /usr/src/linux symlin
 sysvipc - Support for System V-compatible inter-process communication
 szip - Use the szip compression library
 tcl - Adds support the Tcl language
-tcltk - Support for Tcl and/or Tk GUI toolkits (deprecated for tcl/tk USE)
 tcpd - Adds support for TCP wrappers
 test - Workaround to pull in packages needed to run with FEATURES=maketest / FEATURES=test
 tetex - Adds support for teTeX (typesetting package)
