@@ -64,7 +64,7 @@ src_compile() {
 	# the --libdir= is needed because if lib64 is a directory, it will default
 	# to using that... even if CONF_LIBDIR isnt set or we're using a version
 	# of portage without CONF_LIBDIR support.
-	econf --with-curses --libdir=${EPREFIX}/usr/$(get_libdir) || die
+	econf --with-curses --libdir=${EPREFIX}/$(get_libdir) || die
 	emake || die
 
 	if ! tc-is-cross-compiler; then
@@ -76,14 +76,13 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die
-	dodir /$(get_libdir)
 
-	mv "${ED}"/usr/$(get_libdir)/*$(get_libname)* "${ED}"/$(get_libdir)
-	chmod a+rx "${ED}"/$(get_libdir)/*$(get_libname)*
-
+	# Move static and extraneous ncurses libraries out of /lib
+	dodir /usr/$(get_libdir)
+	mv "${ED}"/$(get_libdir)/lib{readline,history}.a "${ED}"/usr/$(get_libdir)/
 	# Bug #4411
-	gen_usr_ldscript libreadline$(get_libname)
-	gen_usr_ldscript libhistory$(get_libname)
+	gen_usr_ldscript lib{readline,history}$(get_libname)
+	chmod a+rx "${ED}"/$(get_libdir)/*$(get_libname)*
 
 	if ! tc-is-cross-compiler; then
 		dobin examples/rlfe/rlfe || die
