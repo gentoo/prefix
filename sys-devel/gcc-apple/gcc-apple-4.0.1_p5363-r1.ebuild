@@ -119,7 +119,7 @@ int main() {
 ' > bits.c
 	gcc -m64 -o bits bits.c
 	# x86_64 gcc building is broken
-	if [[ ${CHOST} != powerpc-*-darwin* ]] && [[ $(./bits) != 64 ]] ; then
+	if [[ ${CHOST} != powerpc-*-darwin* ]] || [[ $(./bits) != 64 ]] ; then
 		myconf="${myconf} --disable-multilib"
 	fi
 
