@@ -1,6 +1,6 @@
 --- baselayout-1.12.5/etc/env.d/00basic
 +++ baselayout-1.12.5/etc/env.d/00basic
-@@ -1,10 +1,10 @@
+@@ -1,10 +1,11 @@
 -# /etc/env.d/00basic
 +# @GENTOO_PORTAGE_EPREFIX@/etc/env.d/00basic
  
@@ -9,7 +9,8 @@
 -LDPATH="/usr/local/lib"
 -MANPATH="/usr/local/share/man:/usr/share/man"
 -INFOPATH="/usr/share/info"
-+PATH="@GENTOO_PORTAGE_EPREFIX@/opt/bin"
++# in prefix we have sbin variants in user path!
++PATH="@GENTOO_PORTAGE_EPREFIX@/opt/bin:@GENTOO_PORTAGE_EPREFIX@/usr/sbin:@GENTOO_PORTAGE_EPREFIX@/sbin"
 +ROOTPATH="@GENTOO_PORTAGE_EPREFIX@/opt/bin"
 +LDPATH="@GENTOO_PORTAGE_EPREFIX@/usr/local/lib"
 +MANPATH="@GENTOO_PORTAGE_EPREFIX@/usr/share/man"
@@ -284,10 +285,10 @@
  # avoided.
  if [ "$EUID" = "0" ] || [ "$USER" = "root" ] ; then
 -	PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${ROOTPATH}"
-+	PATH="@GENTOO_PORTAGE_EPREFIX@/usr/sbin:@GENTOO_PORTAGE_EPREFIX@/usr/bin:@GENTOO_PORTAGE_EPREFIX@/sbin:@GENTOO_PORTAGE_EPREFIX@/bin:/usr/sbin:/usr/bin:/sbin:/bin:${ROOTPATH}"
++	PATH="@GENTOO_PORTAGE_EPREFIX@/usr/sbin:@GENTOO_PORTAGE_EPREFIX@/usr/bin:@GENTOO_PORTAGE_EPREFIX@/sbin:@GENTOO_PORTAGE_EPREFIX@/bin:${ROOTPATH}:/usr/sbin:/usr/bin:/sbin:/bin"
  else
 -	PATH="/usr/local/bin:/usr/bin:/bin:${PATH}"
-+	PATH="@GENTOO_PORTAGE_EPREFIX@/usr/bin:@GENTOO_PORTAGE_EPREFIX@/bin:/usr/bin:/bin:${PATH}"
++	PATH="@GENTOO_PORTAGE_EPREFIX@/usr/bin:@GENTOO_PORTAGE_EPREFIX@/bin:${PATH}:/usr/bin:/bin"
  fi
  export PATH
  unset ROOTPATH
