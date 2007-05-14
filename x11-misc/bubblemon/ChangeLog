@@ -1,0 +1,73 @@
+# ChangeLog for x11-misc/bubblemon
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/bubblemon/ChangeLog,v 1.22 2007/02/21 23:34:01 jokey Exp $
+
+  21 Feb 2007; Markus Ullmann <jokey@gentoo.org> ChangeLog:
+  Redigest for Manifest2
+
+  14 Oct 2006; Krzysiek Pawlik <nelchael@gentoo.org> -bubblemon-1.41.ebuild:
+  Remove old version.
+
+  07 Feb 2006; Simon Stelling <blubb@gentoo.org> bubblemon-1.46.ebuild:
+  stable on amd64
+
+  07 Feb 2006; Aron Griffis <agriffis@gentoo.org> bubblemon-1.46.ebuild:
+  Mark 1.46 stable on alpha
+
+  11 Nov 2005; Michael Hanselmann <hansmi@gentoo.org> bubblemon-1.46.ebuild:
+  Stable on ppc.
+
+  02 Nov 2005; Gustavo Zacarias <gustavoz@gentoo.org> bubblemon-1.46.ebuild:
+  Stable on sparc
+
+  01 Nov 2005; Krzysiek Pawlik <nelchael@gentoo.org> bubblemon-1.46.ebuild:
+  Stable on x86.
+
+  01 Nov 2005; Krzysiek Pawlik <nelchael@gentoo.org> bubblemon-1.41.ebuild,
+  bubblemon-1.46.ebuild:
+  Fixed dodoc not to install COPYING and/or INSTALL.
+
+*bubblemon-1.46 (19 Jun 2005)
+
+  19 Jun 2005; Jonathan Smith <smithj@gentoo.org> -bubblemon-1.4-r1.ebuild,
+  +bubblemon-1.46.ebuild:
+  version bump and old ebuild cleanout
+
+  19 Mar 2005; Jan Brinkmann <luckyduck@gentoo.org> bubblemon-1.41.ebuild:
+  stable on amd64, fixes #85669
+
+  06 Jul 2004; Frank van de Pol <fvdpol@gentoo.org> bubblemon-1.41.ebuild:
+  Added ~amd64 keyword. Fixed IUSE="". Closes bug #56005.
+
+  28 Jun 2004; Aron Griffis <agriffis@gentoo.org> bubblemon-1.4-r1.ebuild,
+  bubblemon-1.41.ebuild:
+  glibc -> libc, add sed-4 dep
+
+  14 Apr 2004; Daniel Ahlberg <aliz@gentoo.org> bubblemon-1.41.ebuild:
+  Added IUSE=
+
+  05 Feb 2004; Aron Griffis <agriffis@gentoo.org> bubblemon-1.41.ebuild:
+  stable on alpha
+
+  03 Nov 2003; Abhishek Amit <abhishek@gentoo.org> metadata.xml:
+  Added metadata.xml
+
+*bubblemon-1.41 (02 Nov 2003)
+
+  02 Nov 2003; Markus Nigbur <pyrania@gentoo.org> bubblemon-1.41.ebuild:
+  Version bump.
+
+  04 Aug 2003; Martin Holzer <mholzer@gentoo.org> bubblemon-1.4-r1.ebuild:
+  Fixing sed state. closes #25300.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*bubblemon-1.4-r1 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.

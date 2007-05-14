@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>desktop-misc</herd>
+	<longdescription>bubblemon is a cute CPU/memory usage monitor. It displays CPU load as bubbles in a jar of water; the water level depends on how much memory is used. It features load average and memory info screens and a transparent CPU load meter. It supports Linux, FreeBSD, and Solaris.</longdescription>
+</pkgmetadata>
