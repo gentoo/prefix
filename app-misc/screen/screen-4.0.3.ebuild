@@ -109,7 +109,7 @@ src_install() {
 	dobin screen || die "dobin failed"
 	keepdir /var/run/screen || die "keepdir failed"
 
-	if use multiuser
+	if use multiuser || use prefix
 	then
 		fperms 4755 /usr/bin/screen || die "fperms failed"
 	else
@@ -137,9 +137,9 @@ src_install() {
 }
 
 pkg_postinst() {
-	if use multiuser
+	if use multiuser || use prefix
 	then
-		chown root:0 "${EROOT}"/var/run/screen
+		use prefix || chown root:0 "${EROOT}"/var/run/screen
 		chmod 0755 "${EROOT}"/var/run/screen
 	else
 		chown root:utmp "${EROOT}"/var/run/screen
