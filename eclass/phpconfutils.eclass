@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/phpconfutils.eclass,v 1.4 2006/07/14 16:02:36 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/phpconfutils.eclass,v 1.5 2007/05/10 20:26:45 chtekk Exp $
 #
 # ########################################################################
 #
@@ -97,7 +97,7 @@ phpconfutils_require_any() {
 			einfo "${success_msg} $1"
 			success="1"
 		else
-			ewarn "${fail_msg} $1"
+			einfo "${fail_msg} $1"
 		fi
 		shift
 	done

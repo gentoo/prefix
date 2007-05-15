@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vim-doc.eclass,v 1.13 2007/03/13 01:07:08 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vim-doc.eclass,v 1.15 2007/05/14 20:04:07 pioto Exp $
 #
 # This eclass is used by vim.eclass and vim-plugin.eclass to update
 # the documentation tags.  This is necessary since vim doesn't look in
@@ -30,7 +30,7 @@ update_vim_helptags() {
 
 	# Make vim not try to connect to X. See :help gui-x11-start
 	# in vim for how this evil trickery works.
-	if ! [[ -z "${vim}" ]] ; then
+	if [[ -n "${vim}" ]] ; then
 		ln -s "${vim}" "${T}/tagvim"
 		vim="${T}/tagvim"
 	fi
@@ -65,7 +65,8 @@ update_vim_helptags() {
 				'+set nobackup nomore' \
 				"+helptags $d/doc" \
 				'+qa!' </dev/null &>/dev/null
-			rm "${vim}"
 		fi
 	done
+
+	[[ -n "${vim}" && -f "${vim}" ]] && rm "${vim}"
 }

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv-plugins.eclass,v 1.20 2007/04/19 23:00:39 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv-plugins.eclass,v 1.21 2007/05/11 13:55:15 cardoe Exp $
 #
 # Author: Doug Goldstein <cardoe@gentoo.org>
 #
@@ -32,7 +32,7 @@ mythtv-plugins_pkg_setup() {
 		MYTHPLUGINS="${MYTHPLUGINS} mytharchive"
 	fi
 
-	if version_is_at_least "0.21" ; then
+	if version_is_at_least "0.21_pre" ; then
 		MYTHPLUGINS="${MYTHPLUGINS} mythzoneminder"
 	fi
 }

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.18 2007/03/05 01:50:47 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.19 2007/05/12 14:22:12 chtekk Exp $
 
 # ========================================================================
 #
@@ -150,7 +150,7 @@ has_php() {
 # Call this function from pkg_setup if your package only works with
 # specific SAPIs
 #
-# $1 ... a list of PHP SAPI USE flags (cli, cgi, apache, apache2)
+# $1 ... a list of PHP SAPI USE flags (cli, cgi, apache2)
 #
 # Returns if any one of the listed SAPIs have been installed
 # Dies if none of the listed SAPIs have been installed

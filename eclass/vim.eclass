@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.163 2007/03/26 20:04:34 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.165 2007/05/09 15:02:02 pioto Exp $
 
 # Authors:
 # 	Ryan Phillips <rphillips@gentoo.org>

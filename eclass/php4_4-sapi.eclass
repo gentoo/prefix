@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php4_4-sapi.eclass,v 1.34 2007/03/26 20:19:22 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php4_4-sapi.eclass,v 1.36 2007/05/12 04:59:41 chtekk Exp $
 
 # ========================================================================
 #
@@ -48,7 +48,7 @@ DEPEND="adabas? ( >=dev-db/unixODBC-1.8.13 )
 		berkdb? ( =sys-libs/db-4* )
 		birdstep? ( >=dev-db/unixODBC-1.8.13 )
 		bzip2? ( app-arch/bzip2 )
-		cdb? ( dev-db/cdb )
+		cdb? ( || ( dev-db/cdb dev-db/tinycdb ) )
 		cjk? ( !gd? ( !gd-external? ( >=media-libs/jpeg-6b media-libs/libpng sys-libs/zlib ) ) )
 		crypt? ( >=dev-libs/libmcrypt-2.4 )
 		curl? ( >=net-misc/curl-7.10.5 )
@@ -245,9 +245,6 @@ php4_4-sapi_install_ini() {
 	elif [[ "${PHPSAPI}" == "cgi" ]] ; then
 		phpmycnfcharset="`php_get_mycnf_charset cgi-fcgi`"
 		einfo "MySQL extension charset for 'cgi' SAPI is: ${phpmycnfcharset}"
-	elif [[ "${PHPSAPI}" == "apache" ]] ; then
-		phpmycnfcharset="`php_get_mycnf_charset apache`"
-		einfo "MySQL extension charset for 'apache' SAPI is: ${phpmycnfcharset}"
 	elif [[ "${PHPSAPI}" == "apache2" ]] ; then
 		phpmycnfcharset="`php_get_mycnf_charset apache2handler`"
 		einfo "MySQL extension charset for 'apache2' SAPI is: ${phpmycnfcharset}"
@@ -328,7 +325,7 @@ php4_4-sapi_src_unpack() {
 	sed -e 's/'`echo "\!getenv('NO_INTERACTION')"`'/false/g' -i run-tests.php
 
 	# Stop PHP from activating the Apache config, as we will do that ourselves
-	for i in configure sapi/apache/config.m4 sapi/apache2filter/config.m4 sapi/apache2handler/config.m4 ; do
+	for i in configure sapi/apache2filter/config.m4 sapi/apache2handler/config.m4 ; do
 		sed -i.orig -e 's,-i -a -n php,-i -n php,g' ${i}
 		sed -i.orig -e 's,-i -A -n php,-i -n php,g' ${i}
 	done

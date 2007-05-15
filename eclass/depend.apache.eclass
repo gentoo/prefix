@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/depend.apache.eclass,v 1.29 2007/01/01 22:27:01 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/depend.apache.eclass,v 1.32 2007/05/13 20:11:37 chtekk Exp $
 
 inherit multilib
 
@@ -23,11 +23,11 @@ inherit multilib
 ####
 ## APACHE_VERSION
 ##
-## Stores the version of apache we are going to be ebuilding.  This variable is
+## Stores the version of apache we are going to be ebuilding. This variable is
 ## set by the need_apache{|1|2} functions.
 ##
 ####
-#APACHE_VERSION='2'
+#APACHE_VERSION="2"
 
 ####
 ## APXS1, APXS2
@@ -56,8 +56,7 @@ APACHE2_BASEDIR="/usr/$(get_libdir)/apache2"
 ####
 ## APACHE1_CONFDIR, APACHE2_CONFDIR
 ##
-## Paths to the configuration file directories (usually under
-## $APACHE?_BASEDIR/conf)
+## Paths to the configuration file directories
 ####
 APACHE1_CONFDIR="/etc/apache"
 APACHE2_CONFDIR="/etc/apache2"
@@ -90,7 +89,7 @@ APACHE2_MODULESDIR="${APACHE2_BASEDIR}/modules"
 ## APACHE1_DEPEND, APACHE2_DEPEND
 ## APACHE2_0_DEPEND, APACHE2_2_DEPEND
 ##
-## Dependencies for apache 1.x and apache 2.x
+## Dependencies for Apache 1.x and Apache 2.x
 ####
 APACHE1_DEPEND="=net-www/apache-1*"
 APACHE2_DEPEND="=net-www/apache-2*"
@@ -104,22 +103,20 @@ APACHE2_2_DEPEND="=net-www/apache-2.2*"
 ## If you change this, please check the DEPENDS in need_apache()
 ####
 
-NEED_APACHE_DEPEND="apache2? ( ${APACHE2_DEPEND} ) !apache2? ( ${APACHE1_DEPEND} )"
-WANT_APACHE_DEPEND="apache2? ( ${APACHE2_DEPEND} ) !apache2? ( apache? ( ${APACHE1_DEPEND} ) )"
+NEED_APACHE_DEPEND="${APACHE2_DEPEND}"
+WANT_APACHE_DEPEND="apache2? ( ${APACHE2_DEPEND} )"
 
 ####
-# uses_apache1()
-#
-# sets up all of the environment variables required by an apache1 module
+# uses_apache1() - !!! DEPRECATED !!!
 ####
 
 uses_apache1() {
 	debug-print-function $FUNCNAME $*
 	# WARNING: Do not use these variables with anything that is put
 	# into the dependency cache (DEPEND/RDEPEND/etc)
-	APACHE_VERSION='1'
-	APXS="$APXS1"
-	USE_APACHE2=
+	APACHE_VERSION="1"
+	APXS="${APXS1}"
+	USE_APACHE2=""
 	APACHECTL="${APACHECTL1}"
 	APACHE_BASEDIR="${APACHE1_BASEDIR}"
 	APACHE_CONFDIR="${APACHE1_CONFDIR}"
@@ -138,9 +135,9 @@ uses_apache2() {
 	debug-print-function $FUNCNAME $*
 	# WARNING: Do not use these variables with anything that is put
 	# into the dependency cache (DEPEND/RDEPEND/etc)
-	APACHE_VERSION='2'
-	USE_APACHE2=2
-	APXS="$APXS2"
+	APACHE_VERSION="2"
+	USE_APACHE2="2"
+	APXS="${APXS2}"
 	APACHECTL="${APACHECTL2}"
 	APACHE_BASEDIR="${APACHE2_BASEDIR}"
 	APACHE_CONFDIR="${APACHE2_CONFDIR}"
@@ -151,34 +148,28 @@ uses_apache2() {
 
 doesnt_use_apache() {
 	debug-print-function $FUNCNAME $*
-	APACHE_VERSION='0'
-	USE_APACHE=
+	APACHE_VERSION="0"
+	USE_APACHE=""
 }
 
 ####
-## need_apache1
-##
-## An ebuild calls this to get the dependency information
-## for apache-1.x.  An ebuild should use this in order for
-## future changes to the build infrastructure to happen
-## seamlessly.  All an ebuild needs to do is include the
-## line need_apache1 somewhere.
+## need_apache1 - !!! DEPRECATED !!!
 ####
 need_apache1() {
 	debug-print-function $FUNCNAME $*
 
 	DEPEND="${DEPEND} ${APACHE1_DEPEND}"
 	RDEPEND="${RDEPEND} ${APACHE1_DEPEND}"
-	APACHE_VERSION='1'
+	APACHE_VERSION="1"
 }
 
 ####
 ## need_apache2
 ##
 ## An ebuild calls this to get the dependency information
-## for apache-2.x.  An ebuild should use this in order for
+## for apache-2.x. An ebuild should use this in order for
 ## future changes to the build infrastructure to happen
-## seamlessly.  All an ebuild needs to do is include the
+## seamlessly. All an ebuild needs to do is include the
 ## line need_apache2 somewhere.
 ####
 need_apache2() {
@@ -186,7 +177,7 @@ need_apache2() {
 
 	DEPEND="${DEPEND} ${APACHE2_DEPEND}"
 	RDEPEND="${RDEPEND} ${APACHE2_DEPEND}"
-	APACHE_VERSION='2'
+	APACHE_VERSION="2"
 }
 
 ####
@@ -194,7 +185,7 @@ need_apache2() {
 ##
 ## Works like need_apache2 above, but its used by modules
 ## that only support apache 2.0 and do not work with
-## higher versions
+## higher versions.
 ##
 ####
 need_apache2_0() {
@@ -202,14 +193,15 @@ need_apache2_0() {
 
 	DEPEND="${DEPEND} ${APACHE2_0_DEPEND}"
 	RDEPEND="${RDEPEND} ${APACHE2_0_DEPEND}"
-	APACHE_VERSION='2'
+	APACHE_VERSION="2"
 }
 
 ####
 ## need_apache2_2
 ##
 ## Works like need_apache2 above, but its used by modules
-## that only support apache 2.2.
+## that only support apache 2.2 and do not work with
+## lower versions.
 ##
 ####
 need_apache2_2() {
@@ -217,103 +209,65 @@ need_apache2_2() {
 
 	DEPEND="${DEPEND} ${APACHE2_2_DEPEND}"
 	RDEPEND="${RDEPEND} ${APACHE2_2_DEPEND}"
-	APACHE_VERSION='2'
+	APACHE_VERSION="2"
 }
 
 ####
 ## DO NOT CHANGE THIS FUNCTION UNLESS YOU UNDERSTAND THE CONSEQUENCES IT
-## WILL HAVE ON THE CACHE! There MUST be a apache2? () block in DEPEND for
-## things to work correct in the dependency calculation stage.
+## WILL HAVE ON THE CACHE!
 ##
 ## This function can take a variable amount of arguments specifying the
 ## versions of apache the ebuild supports
 ##
 ## If no arguments are specified, then all versions are assumed to be supported
 ##
-## If both 1.3 and 2.x are specified, the apache2 USE-flag will be used in
-## DEPEND/RDEPEND to determine which version to use.
-##
-## Currently supported versions: 1.3 2.0 2.2 2.x
+## Currently supported versions: 2.0 2.2 2.x
+####
 need_apache() {
 	debug-print-function $FUNCNAME $*
 
-	local supports13 supports20 supports22 supports2x
+	local supports2x supports20 supports22
 
-	if [ $# -eq 0 ]; then
-		supports13=yes
-		supports2x=yes
+	if [[ $# -eq 0 ]] ; then
+		supports2x="yes"
 	else
-		while [ $# -gt 0 ]; do
+		while [[ $# -gt 0 ]] ; do
 			case "$1" in
-				1.3)	supports13=yes; shift;;
-				2.0)	supports20=yes; shift;;
-				2.2)	supports22=yes; shift;;
-				2.x)	supports2x=yes; shift;;
-				*)		die "Unknown version specifier: $1";;
+				2.0) supports20="yes"; shift;;
+				2.2) supports22="yes"; shift;;
+				2.x) supports2x="yes"; shift;;
+				*) die "Unknown version specifier: $1";;
 			esac
 		done
 	fi
 
-	if [[ "${supports20}" == "yes" && "${supports22}" == "yes" ]]; then
-		supports2x=yes;
+	if [[ "${supports20}" == "yes" ]] && [[ "${supports22}" == "yes" ]] ; then
+		supports2x="yes"
 	fi
 
-	debug-print "supports13: ${supports13}"
 	debug-print "supports20: ${supports20}"
 	debug-print "supports22: ${supports22}"
 	debug-print "supports2x: ${supports2x}"
 
-	if [ "${supports13}" != "yes" ]; then
-		if [ "${supports2x}" == "yes" ]; then
-			need_apache2
-		elif [ "${supports20}" == "yes" ]; then
-			need_apache2_0
-		elif [ "${supports22}" == "yes" ]; then
-			need_apache2_2
-		fi
-	elif [ "${supports13}" == "yes" ]; then
-		if [[ 	"${supports2x}" == "yes" ||
-				"${supports20}" == "yes" ||
-				"${supports22}" == "yes" ]]; then
-
-			# we support both apache-1.3 and apache-2.*, set up USE-flag based
-			# DEPEND and RDEPEND, determined by which apache-2.x we support
-
-			IUSE="${IUSE} apache2"
-
-			if [ "${supports2x}" != "yes" ]; then
-				if [ "${supports20}" == "yes" ]; then
-					NEED_APACHE_DEPEND="apache2? ( ${APACHE2_0_DEPEND} ) !apache2? ( ${APACHE1_DEPEND} )"
-				elif [ "${supports22}" == "yes" ]; then
-					NEED_APACHE_DEPEND="apache2? ( ${APACHE2_2_DEPEND} ) !apache2? ( ${APACHE1_DEPEND} )"
-				fi
-			fi
-
-			DEPEND="${DEPEND} ${NEED_APACHE_DEPEND}"
-			RDEPEND="${RDEPEND} ${NEED_APACHE_DEPEND}"
-
-			if useq apache2; then
-				uses_apache2
-			else
-				uses_apache1
-			fi
-		else
-			need_apache1
-		fi
+	if [[ "${supports2x}" == "yes" ]] ; then
+		need_apache2
+	elif [[ "${supports20}" == "yes" ]] ; then
+		need_apache2_0
+	elif [[ "${supports22}" == "yes" ]] ; then
+		need_apache2_2
 	fi
 
+	uses_apache2
 }
 
 want_apache() {
 	debug-print-function $FUNCNAME $*
 
-	IUSE="${IUSE} apache apache2"
+	IUSE="${IUSE} apache2"
 	DEPEND="${DEPEND} ${WANT_APACHE_DEPEND}"
 	RDEPEND="${RDEPEND} ${WANT_APACHE_DEPEND}"
-	if useq apache2 ; then
+	if use apache2 ; then
 		uses_apache2
-	elif useq apache ; then
-		uses_apache1
 	else
 		doesnt_use_apache
 	fi

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2-utils.eclass,v 1.4 2007/04/24 18:13:14 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2-utils.eclass,v 1.5 2007/05/11 20:52:53 dang Exp $
 
 #
 # gnome2-utils.eclass
@@ -104,7 +104,7 @@ gnome2_icon_cache_update() {
 		if [[ -f "${dir}/index.theme" ]] ; then
 			local rv=0
 
-			${updater} -q ${dir}
+			${updater} -qf ${dir}
 			rv=$?
 
 			if [[ ! $rv -eq 0 ]] ; then
