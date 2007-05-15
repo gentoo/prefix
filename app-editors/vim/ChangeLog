@@ -1,6 +1,33 @@
 # ChangeLog for app-editors/vim
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.270 2007/05/04 21:10:28 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.276 2007/05/14 10:16:09 pioto Exp $
+
+*vim-7.1-r1 (14 May 2007)
+
+  14 May 2007; Mike Kelly <pioto@gentoo.org> +vim-7.1-r1.ebuild:
+  Revision bump. Add a patch to fix the patch to fix the libintl compile error
+  from Bug #176566.
+
+  13 May 2007; Mike Kelly <pioto@gentoo.org> -vim-7.0.17.ebuild:
+  Remove old version.
+
+*vim-7.1 (13 May 2007)
+
+  13 May 2007; Mike Kelly <pioto@gentoo.org> -vim-7.1_beta001.ebuild,
+  +vim-7.1.ebuild:
+  Version bump. New stable version. Remove unstable beta.
+
+  13 May 2007; Joshua Kinard <kumba@gentoo.org> vim-7.0.235.ebuild:
+  Stable on mips, per #176464.
+
+*vim-7.1_beta001 (10 May 2007)
+
+  10 May 2007; Mike Kelly <pioto@gentoo.org> +vim-7.1_beta001.ebuild:
+  Version bump, new beta version w/ updated runtime files, etc.
+
+  09 May 2007; Mike Kelly <pioto@gentoo.org> -vim-7.0.91.ebuild,
+  -vim-7.0.146.ebuild, -vim-7.0.201.ebuild:
+  Remove old versions.
 
   04 May 2007; Daniel Gryniewicz <dang@gentoo.org> vim-7.0.235.ebuild:
   Marked stable on amd64 for bug #176464
