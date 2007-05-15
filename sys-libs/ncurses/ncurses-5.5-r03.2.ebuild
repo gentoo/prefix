@@ -85,7 +85,7 @@ do_compile() {
 		$(use_with trace) \
 		"$@" \
 		|| die "configure failed"
-	
+
 	# Fix for install location of the lib{,n}curses{,w} libs as in Gentoo we
 	# want those in lib not usr/lib.  We cannot move them lateron after
 	# installing, because that will result in broken install_names for
