@@ -2,6 +2,12 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.1.27.6539 (15 May 2007)
+
+  15 May 2007; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.1.25.6465.ebuild, +portage-2.1.27.6539.ebuild:
+  New snapshot with a small fix for Interix/Windows
+
 *portage-2.1.27.6534 (13 May 2007)
 
   13 May 2007; Fabian Groffen <grobian@gentoo.org>
