@@ -1,0 +1,11 @@
+--- Makefile	2004-11-13 00:25:05.091914208 +0100
++++ Makefile	2004-11-13 00:25:32.086810360 +0100
+@@ -35,7 +35,7 @@
+ 
+ # optimization cflags
+ #CFLAGS = -O3 -Wall ${EXTRA}
+-CFLAGS = ${EXTRA}
++CFLAGS = ${GENTOO_CFLAGS} ${EXTRA}
+ 
+ # profiling cflags
+ # CFLAGS = -ansi -Wall -pg -O3 ${EXTRA} -DPRO
