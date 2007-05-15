@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.1-r1.ebuild,v 1.1 2007/05/10 14:01:01 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.1-r2.ebuild,v 1.5 2007/05/14 21:03:52 gustavoz Exp $
 
 EAPI="prefix"
 
@@ -64,11 +64,14 @@ RESTRICT="confcache"
 src_unpack() {
 	unpack ${A}
 
-	cd "${WORKDIR}/${PV}"
-	# fix up cross-compile patch so it doesn't fail on Darwin
-	epatch "${FILESDIR}"/${PN}-2.4.4-cross-compile-fix.patch
-
 	cd "${S}"
+
+	if tc-is-cross-compiler ; then
+		[[ $(python -V) != ${PV} ]] && \
+			die "Crosscompiling requires the same host and build versions."
+	else
+		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
+	fi
 
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
@@ -155,9 +158,6 @@ src_compile() {
 		&& myconf="${myconf} --without-threads" \
 		|| myconf="${myconf} --with-threads"
 
-	# Fix linking on non-linux platforms
-	append-ldflags "-L."
-
 	src_configure
 
 	if tc-is-cross-compiler ; then
@@ -240,14 +240,15 @@ src_install() {
 }
 
 pkg_postrm() {
+	local mansuffix=$(ecompress --suffix)
 	python_makesym
 	alternatives_auto_makesym "/usr/bin/idle" "idle[0-9].[0-9]"
 	alternatives_auto_makesym "/usr/bin/pydoc" "pydoc[0-9].[0-9]"
 	alternatives_auto_makesym "/usr/bin/python-config" \
 								"python-config-[0-9].[0-9]"
-	suffix=$(echo /usr/share/man/man1/python${PYVER}.1* | sed "s/.*python${PYVER}.1//")
-	ln -s "${EROOT}"/usr/share/man/man1/python${PYVER}.1${suffix} \
-		"${EROOT}"/usr/share/man/man1/python.1${suffix}
+
+	alternatives_auto_makesym "/usr/share/man/man1/python.1${mansuffix}" \
+								"python[0-9].[0-9].1${mansuffix}"
 
 	python_mod_cleanup /usr/lib/python${PYVER}
 	[[ "$(get_libdir)" == "lib" ]] || \
@@ -257,15 +258,16 @@ pkg_postrm() {
 pkg_postinst() {
 	local myroot
 	myroot=$(echo $ROOT | sed 's:/$::')
+	local mansuffix=$(ecompress --suffix)
 
 	python_makesym
 	alternatives_auto_makesym "/usr/bin/idle" "idle[0-9].[0-9]"
 	alternatives_auto_makesym "/usr/bin/pydoc" "pydoc[0-9].[0-9]"
 	alternatives_auto_makesym "/usr/bin/python-config" \
 								"python-config-[0-9].[0-9]"
-	suffix=$(echo /usr/share/man/man1/python${PYVER}.1* | sed "s/.*python${PYVER}.1//")
-	ln -s "${EROOT}"/usr/share/man/man1/python${PYVER}.1${suffix} \
-		"${EROOT}"/usr/share/man/man1/python.1${suffix}
+
+	alternatives_auto_makesym "/usr/share/man/man1/python.1${mansuffix}" \
+								"python[0-9].[0-9].1${mansuffix}"
 
 	python_mod_optimize
 	python_mod_optimize -x site-packages \
@@ -302,6 +304,12 @@ pkg_postinst() {
 }
 
 src_test() {
+	# Tests won't work when cross compiling
+	if tc-is-cross-compiler ; then
+		elog "Disabling tests due to crosscompiling."
+		return
+	fi
+
 	# PYTHON_DONTCOMPILE=1 breaks test_import
 	unset PYTHON_DONTCOMPILE
 

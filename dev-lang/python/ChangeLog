@@ -1,6 +1,66 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.241 2007/05/10 14:01:01 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.256 2007/05/14 21:03:52 gustavoz Exp $
+
+  14 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  python-2.3.6-r2.ebuild, python-2.5.1-r2.ebuild:
+  Keyworded ~sparc wrt #177426
+
+  14 May 2007; Bryan Østergaard <kloeri@gentoo.org> python-2.4.4-r4.ebuild:
+  Stable on Alpha and Mips.
+
+  14 May 2007; Daniel Gryniewicz <dang@gentoo.org> python-2.4.4-r4.ebuild:
+  Marked ~amd64 for bug #177804
+
+  14 May 2007; Bryan Østergaard <kloeri@gentoo.org> python-2.4.4-r4.ebuild:
+  Fix 2.4.4-r4 tests always being disabled.
+
+  14 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  python-2.4.4-r4.ebuild:
+  Stable on sparc wrt security #177804
+
+  14 May 2007; Bryan Østergaard <kloeri@gentoo.org> python-2.3.6-r2.ebuild,
+  python-2.4.4-r4.ebuild, -python-2.5.1-r1.ebuild, python-2.5.1-r2.ebuild:
+  Fix small bug preventing tests from running, fix manpage symlinks (bug
+  177471) and filter as-needed in python-2.3.6-r2 (bug 177614).
+
+  14 May 2007; Jeroen Roovers <jer@gentoo.org> python-2.4.4-r4.ebuild:
+  Stable for HPPA (bug #177804).
+
+  13 May 2007; Markus Rothe <corsair@gentoo.org> python-2.4.4-r4.ebuild:
+  Stable on ppc64; bug #177804
+
+  12 May 2007; Roy Marples <uberlord@gentoo.org> python-2.4.4-r4.ebuild:
+  Added ~sparc-fbsd keyword.
+
+  12 May 2007; Raúl Porcel <armin76@gentoo.org> python-2.4.4-r4.ebuild:
+  ia64 + x86 stable wrt security bug #177804
+
+  12 May 2007; Markus Rothe <corsair@gentoo.org> python-2.3.6-r2.ebuild,
+  python-2.4.4-r4.ebuild, python-2.5.1-r2.ebuild:
+  Added ~ppc64; bug #177426
+
+  11 May 2007; Bryan Østergaard <kloeri@gentoo.org> python-2.4.4-r4.ebuild,
+  python-2.5.1-r2.ebuild:
+  Add ~alpha and ~mips keywords.
+
+  11 May 2007; Bryan Østergaard <kloeri@gentoo.org>
+  -python-2.1.3-r1.ebuild, -python-2.2.3-r6.ebuild:
+  More cleanups, this time removing <python-2.3.
+
+  11 May 2007; Bryan Østergaard <kloeri@gentoo.org>
+  -python-2.3.6-r1.ebuild, -python-2.4.4-r2.ebuild, -python-2.4.4-r3.ebuild,
+  -python-2.5-r1.ebuild, -python-2.5.1.ebuild:
+  Clean out some old versions.
+
+*python-2.5.1-r2 (11 May 2007)
+*python-2.4.4-r4 (11 May 2007)
+
+  11 May 2007; Bryan Østergaard <kloeri@gentoo.org>
+  +python-2.4.4-r4.ebuild, +python-2.5.1-r2.ebuild:
+  Only apply crosscompile patch conditionally, drop tests if crosscompiling
+  and fix PyLocale.strxfrm leak from bug 177804. srtxfrm from Debian bug
+  416934
 
 *python-2.5.1-r1 (10 May 2007)
 *python-2.4.4-r3 (10 May 2007)

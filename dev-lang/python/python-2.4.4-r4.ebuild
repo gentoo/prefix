@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.4-r3.ebuild,v 1.1 2007/05/10 14:01:01 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.4-r4.ebuild,v 1.12 2007/05/14 18:20:49 kloeri Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,7 @@ S="${WORKDIR}/${MY_P}"
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
 SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
-	http://dev.gentoo.org/~kloeri/python-gentoo-patches-${PV}-r2.tar.bz2"
+	http://dev.gentoo.org/~kloeri/python-gentoo-patches-${PV}-r3.tar.bz2"
 
 LICENSE="PSF-2.2"
 SLOT="2.4"
@@ -66,13 +66,15 @@ src_unpack() {
 	epatch "${FILESDIR}"/python-updater-r1-prefix.patch
 	eprefixify python-updater-r1
 
-	cd "${WORKDIR}/${PV}"
-	# fix up cross-compile patch so it doesn't fail on Darwin
-	epatch "${FILESDIR}"/${P}-cross-compile-fix.patch
-
 	cd ${S}
 
-	einfo $(pwd)
+	if tc-is-cross-compiler ; then
+		[[ $(python -V) != ${PV} ]] && \
+			die "Crosscompiling requires the same host and build versions."
+	else
+		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
+	fi
+
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
@@ -241,14 +243,14 @@ src_install() {
 }
 
 pkg_postrm() {
-python_makesym
+	local mansuffix=$(ecompress --suffix)
+	python_makesym
 	alternatives_auto_makesym "/usr/bin/idle" "idle[0-9].[0-9]"
 	alternatives_auto_makesym "/usr/bin/pydoc" "pydoc[0-9].[0-9]"
 	alternatives_auto_makesym "/usr/bin/python-config" \
 								"python-config-[0-9].[0-9]"
-	suffix=$(echo /usr/share/man/man1/python${PYVER}.1* | sed "s/.*python${PYVER}.1//")
-	ln -s "${EROOT}"/usr/share/man/man1/python${PYVER}.1${suffix} \
-		"${EROOT}"/usr/share/man/man1/python.1${suffix}
+	alternatives_auto_makesym "/usr/share/man/man1/python.1${mansuffix}" \
+								"python[0-9].[0-9].1${mansuffix}"
 
 	python_mod_cleanup /usr/lib/python${PYVER}
 	[[ "$(get_libdir)" == "lib" ]] || \
@@ -258,15 +260,15 @@ python_makesym
 pkg_postinst() {
 	local myroot
 	myroot=$(echo $ROOT | sed 's:/$::')
+	local mansuffix=$(ecompress --suffix)
 
 	python_makesym
 	alternatives_auto_makesym "/usr/bin/idle" "idle[0-9].[0-9]"
 	alternatives_auto_makesym "/usr/bin/pydoc" "pydoc[0-9].[0-9]"
 	alternatives_auto_makesym "/usr/bin/python-config" \
 								"python-config-[0-9].[0-9]"
-	suffix=$(echo /usr/share/man/man1/python${PYVER}.1* | sed "s/.*python${PYVER}.1//")
-	ln -s "${EROOT}"/usr/share/man/man1/python${PYVER}.1${suffix} \
-		"${EROOT}"/usr/share/man/man1/python.1${suffix}
+	alternatives_auto_makesym "/usr/share/man/man1/python.1${mansuffix}" \
+								"python[0-9].[0-9].1${mansuffix}"
 
 	python_mod_optimize
 	python_mod_optimize -x site-packages \
@@ -303,6 +305,12 @@ pkg_postinst() {
 }
 
 src_test() {
+	# Tests won't work when cross compiling
+	if tc-is-cross-compiler ; then
+		elog "Disabling tests due to crosscompiling."
+		return
+	fi
+
 	# PYTHON_DONTCOMPILE=1 breaks test_import
 	unset PYTHON_DONTCOMPILE
 
