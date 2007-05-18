@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/esearch-0.7.1-r4.ebuild,v 1.3 2007/02/28 21:57:37 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/esearch-0.7.1-r4.ebuild,v 1.4 2007/05/09 15:50:05 drizzt Exp $
 
 EAPI="prefix"
 

@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/esearch
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/ChangeLog,v 1.48 2007/02/11 15:13:09 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/ChangeLog,v 1.49 2007/05/09 15:50:05 drizzt Exp $
+
+  09 May 2007; Timothy Redaelli <drizzt@gentoo.org> esearch-0.7.1-r4.ebuild:
+  Add ~x86-fbsd keyword.
 
   11 Feb 2007; Harald van Dĳk <truedfx@gentoo.org> esearch-0.7.1.ebuild,
   esearch-0.7.1-r2.ebuild, esearch-0.7.1-r3.ebuild, esearch-0.7.1-r4.ebuild:
