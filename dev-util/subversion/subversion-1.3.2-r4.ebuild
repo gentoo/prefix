@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.3.2-r3.ebuild,v 1.19 2007/05/15 18:44:40 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.3.2-r4.ebuild,v 1.1 2007/05/15 18:44:40 carlo Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ IUSE="apache2 berkdb python emacs perl java nls nowebdav zlib ruby"
 RESTRICT="test"
 
 COMMONDEPEND="apache2? ( ${APACHE2_DEPEND} )
-	=dev-libs/apr-util-0*
+	>=dev-libs/apr-util-1.2.8
 	python? ( >=dev-lang/python-2.0 )
 	perl? ( >=dev-lang/perl-5.8.6-r6
 		!=dev-lang/perl-5.8.7 )
@@ -62,18 +62,24 @@ src_unpack() {
 	unpack $A
 	cd ${S}
 
+	# assure we don't use the included libs by accident
+	rm -rf neon apr apr-util
+
 	epatch ${FILESDIR}/subversion-db4.patch
 	epatch ${FILESDIR}/subversion-1.1.1-perl-vendor.patch
 	epatch ${FILESDIR}/subversion-hotbackup-config.patch
 	epatch ${FILESDIR}/subversion-1.3.1-neon-config.patch
 	epatch ${FILESDIR}/subversion-apr_cppflags.patch
 	# rapidsvn developers work with 1.3.2
-	epatch ${FILESDIR}/subversion-1.3.1-neon-0.26.patch
+	epatch ${FILESDIR}/subversion-1.3.2-neon-0.26.patch
+
+	sed -e s:apu-config:apu-1-config:g \
+		-e s:apr-config:apr-1-config:g \
+		-i build/ac-macros/{find_,}ap*
 
 	export WANT_AUTOCONF=2.5
 	autoconf
-	(cd apr; autoconf)
-	(cd apr-util; autoconf)
+
 	sed -i -e 's,\(subversion/svnversion/svnversion.*\)\(>.*svn-revision.txt\),echo "exported" \2,' Makefile.in
 
 	elibtoolize
@@ -103,7 +109,7 @@ src_compile() {
 		myconf="${myconf} --with-neon=${EPREFIX}/usr"
 	fi
 
-	append-flags `/usr/bin/apr-config --cppflags`
+	append-flags `/usr/bin/apr-1-config --cppflags`
 
 	econf ${myconf} \
 		$(use_with berkdb berkeley-db) \

@@ -1,0 +1,39 @@
+--- subversion-1.3.1/build/ac-macros/neon.m4	2005-08-25 16:29:03.000000000 +0000
++++ subversion-1.3.1/build/ac-macros/neon.m4	2006-04-04 09:08:13.506590250 +0000
+@@ -50,9 +50,10 @@
+       NEON_VERSION=`cat $abs_srcdir/neon/.version`
+       AC_MSG_RESULT([$NEON_VERSION])
+ 
+-      if test -n "`echo \"$NEON_VERSION\" | grep '^0\.25\.'`" ; then
++      if test -n "`echo \"$NEON_VERSION\" | grep '^0\.25\.'`" || \
++         test -n "`echo \"$NEON_VERSION\" | grep '^0\.26\.'`" ; then
+         AC_DEFINE_UNQUOTED([SVN_NEON_0_25], [1],
+-                           [Defined if have Neon 0.25.x instead of 0.24.7.])
++                           [Defined if have Neon 0.25.x/0.26.x instead of 0.24.7.])
+       fi
+ 
+       for svn_allowed_neon in $NEON_ALLOWED_LIST; do
+@@ -123,9 +123,10 @@
+       NEON_VERSION=`$neon_config --version | sed -e 's/^neon //'`
+       AC_MSG_RESULT([$NEON_VERSION])
+ 
+-      if test -n "`echo \"$NEON_VERSION\" | grep '^0\.25\.'`" ; then
++      if test -n "`echo \"$NEON_VERSION\" | grep '^0\.25\.'`" || \
++         test -n "`echo \"$NEON_VERSION\" | grep '^0\.26\.'`" ; then
+         AC_DEFINE_UNQUOTED([SVN_NEON_0_25], [1],
+-                           [Defined if have Neon 0.25.x instead of 0.24.7.])
++                           [Defined if have Neon 0.25.x/0.26.x instead of 0.24.7.])
+       fi
+ 
+       for svn_allowed_neon in $NEON_ALLOWED_LIST; do
+--- subversion-1.3.1/configure.in	2006-01-29 00:04:18.000000000 +0000
++++ subversion-1.3.1/configure.in	2006-04-04 09:08:37.508090250 +0000
+@@ -226,7 +226,7 @@
+ 
+ # Either a space-separated list of allowable Neon versions, or "any" to
+ # mean allow anything.
+-NEON_ALLOWED_LIST="0.24.7 0.25.0 0.25.1 0.25.2 0.25.3 0.25.4 0.25.5"
++NEON_ALLOWED_LIST="0.24.7 0.25.0 0.25.1 0.25.2 0.25.3 0.25.4 0.25.5 0.26.0 0.26.1 0.26.3"
+ NEON_LATEST_WORKING_VER=0.25.5
+ NEON_URL="http://www.webdav.org/neon/neon-${NEON_LATEST_WORKING_VER}.tar.gz"
+ dnl You can skip the neon version check only if you know what you are doing 

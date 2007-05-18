@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.3.2-r3.ebuild,v 1.19 2007/05/15 18:44:40 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.3-r1.ebuild,v 1.1 2007/05/15 18:44:40 carlo Exp $
 
 EAPI="prefix"
 
@@ -12,19 +12,18 @@ SRC_URI="http://subversion.tigris.org/downloads/${P/_rc/-rc}.tar.bz2"
 
 LICENSE="Apache-1.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
-IUSE="apache2 berkdb python emacs perl java nls nowebdav zlib ruby"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+IUSE="apache2 berkdb python emacs perl java nls nowebdav ruby"
 RESTRICT="test"
 
 COMMONDEPEND="apache2? ( ${APACHE2_DEPEND} )
-	=dev-libs/apr-util-0*
+	!apache2? ( >=dev-libs/apr-util-0.9.7 )
 	python? ( >=dev-lang/python-2.0 )
 	perl? ( >=dev-lang/perl-5.8.6-r6
 		!=dev-lang/perl-5.8.7 )
 	ruby? ( >=dev-lang/ruby-1.8.2 )
-	!nowebdav? ( >=net-misc/neon-0.26 )
+	!nowebdav? ( net-misc/neon )
 	berkdb? ( =sys-libs/db-4* )
-	zlib? ( sys-libs/zlib )
 	java? ( >=virtual/jdk-1.4 )
 	emacs? ( virtual/emacs )"
 RDEPEND="${COMMONDEPEND}
@@ -39,7 +38,7 @@ S=${WORKDIR}/${P/_rc/-rc}
 # Allow for custion repository locations.
 # This can't be in pkg_setup because the variable needs to be available to
 # pkg_config.
-: ${SVN_REPOS_LOC:=/var/svn}
+: ${SVN_REPOS_LOC:=${EPREFIX}/var/svn}
 
 pkg_setup() {
 	if use berkdb && has_version '<dev-util/subversion-0.34.0' && [[ -z ${SVN_DUMPED} ]]; then
@@ -62,31 +61,38 @@ src_unpack() {
 	unpack $A
 	cd ${S}
 
-	epatch ${FILESDIR}/subversion-db4.patch
+	epatch ${FILESDIR}/subversion-1.4-db4.patch
 	epatch ${FILESDIR}/subversion-1.1.1-perl-vendor.patch
 	epatch ${FILESDIR}/subversion-hotbackup-config.patch
 	epatch ${FILESDIR}/subversion-1.3.1-neon-config.patch
 	epatch ${FILESDIR}/subversion-apr_cppflags.patch
+	epatch ${FILESDIR}/subversion-1.4.3-debug-config.patch
+	epatch ${FILESDIR}/subversion-1.4.3-neon-0.26.3.patch
 	# rapidsvn developers work with 1.3.2
-	epatch ${FILESDIR}/subversion-1.3.1-neon-0.26.patch
 
 	export WANT_AUTOCONF=2.5
 	autoconf
-	(cd apr; autoconf)
-	(cd apr-util; autoconf)
 	sed -i -e 's,\(subversion/svnversion/svnversion.*\)\(>.*svn-revision.txt\),echo "exported" \2,' Makefile.in
 
 	elibtoolize
-
-	use emacs && cp ${FILESDIR}/vc-svn.el ${S}/contrib/client-side/vc-svn.el
 }
 
 src_compile() {
 	local myconf
-	myconf="--with-apr=${EPREFIX}/usr --with-apr-util=${EPREFIX}/usr"
+	local apr_suffix=""
 
-	use apache2 && myconf="${myconf} --with-apxs=${APXS2}"
-	use apache2 || myconf="${myconf} --without-apxs"
+	if use apache2; then
+		myconf="--with-apxs=${APXS2}"
+		apache_minor="$(best_version net-www/apache | cut -d. -f2)"
+		if [ ${apache_minor} -gt 0 ]; then
+			apr_suffix="-1"
+		fi
+	else
+		if has_version ">dev-libs/apr-util-1"; then
+			apr_suffix="-1"
+		fi
+		myconf="--without-apxs"
+	fi
 
 	myconf="${myconf} $(use_enable java javahl)"
 	use java && myconf="${myconf} --without-jikes --with-jdk=${JAVA_HOME}"
@@ -103,15 +109,26 @@ src_compile() {
 		myconf="${myconf} --with-neon=${EPREFIX}/usr"
 	fi
 
-	append-flags `/usr/bin/apr-config --cppflags`
+	case ${CHOST} in
+		*-darwin7)
+			# KeyChain support on OSX Panther is broken, due to some library
+			# includes which don't exist
+			myconf="${myconf} --disable-keychain"
+		;;
+		*-*-solaris*)
+			# -lintl isn't added for some reason
+			use nls && append-ldflags -lintl
+		;;
+	esac
+
+	append-flags `${EPREFIX}/usr/bin/apr-config${apr_suffix} --cppflags`
 
 	econf ${myconf} \
 		$(use_with berkdb berkeley-db) \
-		$(use_with zlib) \
 		$(use_with python) \
 		$(use_enable nls) \
-		--with-apr="${EPREFIX}"/usr \
-		--with-apr-util="${EPREFIX}"/usr \
+		--with-apr="${EROOT}usr/bin/apr${apr_suffix}-config" \
+		--with-apr-util="${EROOT}usr/bin/apu${apr_suffix}-config" \
 		--disable-experimental-libtool \
 		--disable-mod-activation || die "econf failed"
 
@@ -132,6 +149,7 @@ src_compile() {
 	if use perl; then
 		# Work around a buggy Makefile.PL, bug 64634
 		mkdir -p subversion/bindings/swig/perl/native/blib/arch/auto/SVN/{_Client,_Delta,_Fs,_Ra,_Repos,_Wc}
+		export DYLD_LIBRARY_PATH="${S}/subversion"
 		make swig-pl || die "Perl library building failed"
 	fi
 
@@ -151,10 +169,6 @@ src_compile() {
 		elisp-compile ${S}/contrib/client-side/psvn/psvn.el || die "emacs modules failed"
 		elisp-compile ${S}/contrib/client-side/vc-svn.el || die "emacs modules failed"
 	fi
-
-	# svn-config isn't quite built correctly; it contains references to
-	# @SVN_DB_LIBS@ and @SVN_DB_INCLUDES@.  It appears the best thing is to remove that.  #64634
-	sed -i 's/@SVN_DB_[^@]*@//g' svn-config || die "sed failed"
 }
 
 
@@ -162,7 +176,7 @@ src_install () {
 	python_version
 	PYTHON_DIR=/usr/$(get_libdir)/python${PYVER}
 
-	make DESTDIR="${D}" install || die "Installation of subversion failed"
+	make DESTDIR=${D} install || die "Installation of subversion failed"
 
 #	This might not be necessary with the new install
 #	if [[ -e ${ED}/usr/$(get_libdir)/apache2 ]]; then
@@ -176,7 +190,7 @@ src_install () {
 
 	dobin svn-config
 	if use python; then
-		make install-swig-py DESTDIR="${D}" DISTUTIL_PARAM=--prefix=${D}  LD_LIBRARY_PATH="-L${D}/usr/$(get_libdir)" || die "Installation of subversion python bindings failed"
+		make install-swig-py DESTDIR=${D} DISTUTIL_PARAM=--prefix=${D}${EPREFIX} LD_LIBRARY_PATH="-L${D}${EPREFIX}/usr/$(get_libdir)" || die "Installation of subversion python bindings failed"
 
 		# move python bindings
 		mkdir -p ${ED}${PYTHON_DIR}/site-packages
@@ -185,11 +199,11 @@ src_install () {
 		rmdir ${ED}/usr/$(get_libdir)/svn-python
 	fi
 	if use perl; then
-		make DESTDIR="${D}" install-swig-pl || die "Perl library building failed"
+		make DESTDIR=${D} install-swig-pl || die "Perl library building failed"
 		fixlocalpod
 	fi
 	if use ruby; then
-		make DESTDIR="${D}" install-swig-rb || die "Installation of subversion ruby bindings failed"
+		make DESTDIR=${D} install-swig-rb || die "Installation of subversion ruby bindings failed"
 	fi
 	if use java; then
 		make DESTDIR="${D}" install-javahl || die "installation failed"
@@ -200,7 +214,7 @@ src_install () {
 
 	# Install apache module config
 	if useq apache2; then
-		MOD="${APACHE2_MODULESDIR/${APACHE2_BASEDIR}\//}"
+		MOD=`echo "${APACHE2_MODULESDIR/${APACHE2_BASEDIR}\//}"|sed -e "s,^//*,,"`
 		mkdir -p ${ED}/${APACHE2_MODULES_CONFDIR}
 		cat <<EOF >${ED}/${APACHE2_MODULES_CONFDIR}/47_mod_dav_svn.conf
 <IfDefine SVN>
@@ -236,8 +250,13 @@ EOF
 
 	# Install svnserve init-script and xinet.d snippet, bug 43245
 	newinitd ${FILESDIR}/svnserve.initd svnserve
-	newconfd ${FILESDIR}/svnserve.confd svnserve
 	insinto /etc/xinetd.d ; newins ${FILESDIR}/svnserve.xinetd svnserve
+
+	if use apache2 >/dev/null; then
+		newconfd ${FILESDIR}/svnserve.confd svnserve
+	else
+		newconfd ${FILESDIR}/svnserve.confd2 svnserve
+	fi
 
 	# Install documentation
 
@@ -257,9 +276,9 @@ EOF
 
 	# Install emacs lisps
 	if use emacs; then
-		insinto /usr/share/emacs/site-lisp/subversion
-		doins contrib/client-side/psvn/psvn.el*
-		doins contrib/client-side/vc-svn.el*
+		elisp-install ${PN} contrib/client-side/psvn/psvn.el*
+		elisp-install ${PN}/compat contrib/client-side/vc-svn.el*
+		touch "${ED}${SITELISP}/${PN}/compat/.nosearch"
 
 		elisp-site-file-install ${FILESDIR}/70svn-gentoo.el
 	fi
@@ -281,43 +300,43 @@ pkg_postinst() {
 	elog "svnadmin (see man svnadmin) or the following command to create it in"
 	elog "/var/svn:"
 	elog
-	elog "    emerge --config =${CATEGORY}/${PF}"
+	elog "	  emerge --config =${CATEGORY}/${PF}"
 	elog
 	elog "If you upgraded from an older version of berkely db and experience"
 	elog "problems with your repository then run the following commands as root:"
-	elog "    db4_recover -h ${SVN_REPOS_LOC}/repos"
-	elog "    chown -Rf apache:apache ${SVN_REPOS_LOC}/repos"
+	elog "	  db4_recover -h ${SVN_REPOS_LOC}/repos"
+	elog "	  chown -Rf apache:apache ${SVN_REPOS_LOC}/repos"
 	elog
 	elog "Subversion has multiple server types, take your pick:"
 	elog
 	elog " - svnserve daemon: "
-	elog "   1. edit /etc/conf.d/svnserve"
-	elog "   2. start daemon: /etc/init.d/svnserve start"
-	elog "   3. make persistent: rc-update add svnserve default"
+	elog "	 1. edit /etc/conf.d/svnserve"
+	elog "	 2. start daemon: /etc/init.d/svnserve start"
+	elog "	 3. make persistent: rc-update add svnserve default"
 	elog
 	elog " - svnserve via xinetd:"
-	elog "   1. edit /etc/xinetd.d/svnserve (remove disable line)"
-	elog "   2. restart xinetd.d: /etc/init.d/xinetd restart"
+	elog "	 1. edit /etc/xinetd.d/svnserve (remove disable line)"
+	elog "	 2. restart xinetd.d: /etc/init.d/xinetd restart"
 	elog
 	elog " - svn over ssh:"
-	elog "   1. Fix the repository permissions:"
-	elog "        groupadd svnusers"
-	elog "        chown -R root:svnusers /var/svn/repos/"
-	elog "        chmod -R g-w /var/svn/repos"
-	elog "        chmod -R g+rw /var/svn/repos/db"
-	elog "        chmod -R g+rw /var/svn/repos/locks"
-	elog "   2. create an svnserve wrapper in /usr/local/bin to set the umask you"
-	elog "      want, for example:"
-	elog "         #!/bin/bash"
-	elog "         umask 002"
-	elog "         exec /usr/bin/svnserve \"\$@\""
+	elog "	 1. Fix the repository permissions:"
+	elog "		  groupadd svnusers"
+	elog "		  chown -R root:svnusers /var/svn/repos/"
+	elog "		  chmod -R g-w /var/svn/repos"
+	elog "		  chmod -R g+rw /var/svn/repos/db"
+	elog "		  chmod -R g+rw /var/svn/repos/locks"
+	elog "	 2. create an svnserve wrapper in /usr/local/bin to set the umask you"
+	elog "		want, for example:"
+	elog "		   #!/bin/bash"
+	elog "		   umask 002"
+	elog "		   exec /usr/bin/svnserve \"\$@\""
 	elog
 
 	if use apache2 >/dev/null; then
 		elog " - http-based server:"
-		elog "   1. edit /etc/conf.d/apache2 to include both \"-D DAV\" and \"-D SVN\""
-		elog "   2. create an htpasswd file:"
-		elog "      htpasswd2 -m -c ${SVN_REPOS_LOC}/conf/svnusers USERNAME"
+		elog "	 1. edit /etc/conf.d/apache2 to include both \"-D DAV\" and \"-D SVN\""
+		elog "	 2. create an htpasswd file:"
+		elog "		htpasswd2 -m -c ${SVN_REPOS_LOC}/conf/svnusers USERNAME"
 		elog
 	fi
 
@@ -330,12 +349,12 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	has_version virtual/emacs && elisp-site-regen
+	use emacs && elisp-site-regen
 	use perl && perl-module_pkg_postrm
 }
 
 pkg_config() {
-	if [[ ! -x /usr/bin/svnadmin ]]; then
+	if [[ ! -x ${EPREFIX}/usr/bin/svnadmin ]]; then
 		die "You seem to only have built the subversion client"
 	fi
 
@@ -347,10 +366,16 @@ pkg_config() {
 		mkdir -p ${SVN_REPOS_LOC}/conf
 		einfo ">>> Populating repository directory ..."
 		# create initial repository
-		/usr/bin/svnadmin create ${SVN_REPOS_LOC}/repos
+		${EPREFIX}/usr/bin/svnadmin create ${SVN_REPOS_LOC}/repos
 
 		einfo ">>> Setting repository permissions ..."
-		chown -Rf apache:apache ${SVN_REPOS_LOC}/repos
+		if use apache2 >/dev/null; then
+			chown -Rf apache:apache ${SVN_REPOS_LOC}/repos
+		else
+			enewgroup svnusers
+			enewuser svn -1 -1 /var/svn svnusers
+			chown -Rf svn:svnusers ${SVN_REPOS_LOC}/repos
+		fi
 		chmod -Rf 755 ${SVN_REPOS_LOC}/repos
 	fi
 }
