@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/eselect-esd
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-esd/ChangeLog,v 1.18 2006/11/15 22:46:00 jer Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-esd/ChangeLog,v 1.19 2007/05/10 08:00:17 grobian Exp $
+
+  10 May 2007; Fabian Groffen <grobian@gentoo.org>
+  eselect-esd-20060719.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   15 Nov 2006; Jeroen Roovers <jer@gentoo.org> eselect-esd-20060719.ebuild:
   Stable for HPPA (bug #154742).
