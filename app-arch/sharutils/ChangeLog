@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/sharutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/sharutils/ChangeLog,v 1.49 2007/04/15 19:47:22 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/sharutils/ChangeLog,v 1.50 2007/05/11 06:31:03 kumba Exp $
+
+  11 May 2007; Joshua Kinard <kumba@gentoo.org> sharutils-4.6.3.ebuild:
+  Stable on mips.
 
   15 Apr 2007; Markus Rothe <corsair@gentoo.org> sharutils-4.6.3.ebuild:
   Stable on ppc64
