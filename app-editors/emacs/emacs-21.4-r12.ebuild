@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r12.ebuild,v 1.13 2007/04/30 21:54:09 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r12.ebuild,v 1.18 2007/05/15 15:03:56 ulm Exp $
 
 EAPI="prefix"
 
@@ -19,22 +19,22 @@ KEYWORDS="~amd64 ~x86 ~x86-solaris"
 IUSE="X Xaw3d leim lesstif motif nls nosendmail"
 
 RDEPEND="sys-libs/ncurses
-	X? ( x11-libs/libXext
-			x11-libs/libICE
-			x11-libs/libSM
-			x11-libs/libXmu
-			x11-libs/libXpm
-			x11-misc/emacs-desktop
-			>=media-libs/giflib-4.1.0.1b
-			>=media-libs/jpeg-6b-r2
-			>=media-libs/tiff-3.5.5-r3
-			>=media-libs/libpng-1.2.1
-			!arm? (
-				Xaw3d? ( x11-libs/Xaw3d )
-				motif? (
-					lesstif? ( x11-libs/lesstif )
-				!lesstif? ( >=x11-libs/openmotif-2.1.30 ) )
-			)
+	X? (
+		x11-libs/libXext
+		x11-libs/libICE
+		x11-libs/libSM
+		x11-libs/libXmu
+		x11-libs/libXpm
+		x11-misc/emacs-desktop
+		>=media-libs/giflib-4.1.0.1b
+		>=media-libs/jpeg-6b-r2
+		>=media-libs/tiff-3.5.5-r3
+		>=media-libs/libpng-1.2.1
+		Xaw3d? ( x11-libs/Xaw3d )
+		motif? (
+			lesstif? ( x11-libs/lesstif )
+			!lesstif? ( >=x11-libs/openmotif-2.1.30 )
+		)
 	)
 	!nosendmail? ( virtual/mta )
 	>=app-admin/eselect-emacs-0.7-r1"
@@ -42,13 +42,17 @@ RDEPEND="sys-libs/ncurses
 DEPEND="${RDEPEND}
 	X? ( x11-misc/xbitmaps )"
 
-PROVIDE="virtual/emacs virtual/editor"
+PROVIDE="virtual/editor"
 
 src_unpack() {
-
 	unpack ${A}
-
 	cd "${S}"
+
+	sed -i \
+		-e "s:/usr/lib/crtbegin.o:$(`tc-getCC` -print-file-name=crtbegin.o):g" \
+		-e "s:/usr/lib/crtend.o:$(`tc-getCC` -print-file-name=crtend.o):g" \
+		"${S}"/src/s/freebsd.h || die "unable to sed freebsd.h settings"
+
 	epatch "${FILESDIR}/emacs-21.3-xorg.patch"
 	epatch "${FILESDIR}/emacs-21.3-amd64.patch"
 	epatch "${FILESDIR}/emacs-21.3-hppa.patch"
@@ -64,6 +68,7 @@ src_unpack() {
 	epatch "${FILESDIR}/emacs-21.4-blessmail-build.patch"
 	epatch "${FILESDIR}/emacs-21.4-qa.patch"
 	epatch "${FILESDIR}/emacs-21.4-Xaw3d-headers.patch"
+	epatch "${FILESDIR}/emacs-21.4-freebsd-terminfo.patch"
 
 	# install emacsclient.1 man page (#165466)
 	sed -i -e "s/for page in emacs/& emacsclient/" Makefile.in || die

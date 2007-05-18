@@ -1,6 +1,21 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.145 2007/04/30 21:54:09 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.149 2007/05/15 15:03:56 ulm Exp $
+
+  15 May 2007; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r4.ebuild,
+  emacs-21.4-r8.ebuild, emacs-21.4-r12.ebuild:
+  Don't provide virtual/emacs, it is a new-style virtual now.
+
+  15 May 2007; Roy Marples <uberlord@gentoo.org>
+  +files/emacs-21.4-freebsd-terminfo.patch, emacs-21.4-r12.ebuild:
+  Added ~x86-fbsd keyword, #174884
+
+  14 May 2007; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r12.ebuild:
+  Remove !arm inverse arch flag for Xaw3d and motif, according to jokey it is
+  not needed anymore.
+
+  14 May 2007; Markus Ullmann <jokey@gentoo.org> emacs-21.4-r12.ebuild:
+  Works on arm as well
 
   30 Apr 2007; Tony Vroon <chainsaw@gentoo.org> emacs-21.4-r12.ebuild:
   Add ~ppc keyword. Tested on a PowerBook 5,9 with GCC 4.1.2
