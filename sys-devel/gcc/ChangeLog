@@ -1,6 +1,21 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.613 2007/04/30 20:13:27 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.618 2007/05/17 21:51:42 armin76 Exp $
+
+  17 May 2007; Raúl Porcel <armin76@gentoo.org> gcc-4.1.2.ebuild:
+  x86 stable wrt #178768
+
+  16 May 2007; Joseph Jezak <josejx@gentoo.org> gcc-4.1.2.ebuild:
+  Marked ppc stable for bug #178768.
+
+  16 May 2007; Jeroen Roovers <jer@gentoo.org> gcc-4.1.2.ebuild:
+  Stable for HPPA (bug #178768).
+
+  16 May 2007; Gustavo Zacarias <gustavoz@gentoo.org> gcc-4.1.2.ebuild:
+  Stable on sparc wrt #178768
+
+  12 May 2007; Joshua Kinard <kumba@gentoo.org> gcc-4.1.1-r3.ebuild:
+  Stable on mips.
 
   30 Apr 2007; <solar@gentoo.org> gcc-3.4.6-r2.ebuild:
   - mark ia64 pie/ssp as stable in the gcc-3.4.6 ebuild

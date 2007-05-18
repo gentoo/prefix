@@ -1,7 +1,7 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/bash
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/files/fix_libtool_files.sh,v 1.12 2005/01/30 18:45:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/files/fix_libtool_files.sh,v 1.13 2007/05/05 01:10:43 vapier Exp $
 
 usage() {
 cat << "USAGE_END"
@@ -38,8 +38,8 @@ ARGV1=$1
 ARGV2=$2
 ARGV3=$3
 
-source "@GENTOO_PORTAGE_EPREFIX@"/etc/profile
-source "@GENTOO_PORTAGE_EPREFIX@"/sbin/functions.sh
+source "@GENTOO_PORTAGE_EPREFIX@"/etc/profile || exit 1
+source "@GENTOO_PORTAGE_EPREFIX@"/etc/init.d/functions.sh || exit 1
 
 if [[ ${EUID} -ne 0 ]] ; then
 	eerror "${0##*/}: Must be root."
