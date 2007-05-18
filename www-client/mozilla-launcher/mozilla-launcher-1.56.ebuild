@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-launcher/mozilla-launcher-1.56.ebuild,v 1.9 2007/03/25 20:42:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-launcher/mozilla-launcher-1.56.ebuild,v 1.10 2007/05/14 17:15:57 armin76 Exp $
 
 EAPI="prefix"
 
