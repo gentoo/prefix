@@ -1,6 +1,13 @@
 # ChangeLog for net-irc/epic4
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/epic4/ChangeLog,v 1.73 2007/05/06 16:50:31 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/epic4/ChangeLog,v 1.75 2007/05/14 16:50:56 armin76 Exp $
+
+  14 May 2007; Raúl Porcel <armin76@gentoo.org>
+  -files/2.0-toggle-stop-screen.patch, -epic4-2.4.ebuild:
+  old
+
+  14 May 2007; Raúl Porcel <armin76@gentoo.org> epic4-2.6.ebuild:
+  alpha stable wrt #170747
 
   06 May 2007; Tobias Scherbaum <dertobi123@gentoo.org> epic4-2.6.ebuild:
   ppc stable, bug #170747
