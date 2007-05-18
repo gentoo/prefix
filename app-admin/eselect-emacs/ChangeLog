@@ -1,6 +1,14 @@
 # ChangeLog for app-admin/eselect-emacs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.9 2007/04/30 21:39:13 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.11 2007/05/15 09:50:39 uberlord Exp $
+
+  15 May 2007; Roy Marples <uberlord@gentoo.org>
+  eselect-emacs-0.8-r1.ebuild:
+  Added ~x86-fbsd keyword, #174884
+
+  14 May 2007; Markus Ullmann <jokey@gentoo.org>
+  eselect-emacs-0.8-r1.ebuild:
+  Works on arm as well
 
   30 Apr 2007; Tony Vroon <chainsaw@gentoo.org> eselect-emacs-0.8-r1.ebuild:
   Add ~ppc keyword. Tested on a PowerBook 5,9 with GCC 4.1.2
