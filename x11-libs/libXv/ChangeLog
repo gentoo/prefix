@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXv
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXv/ChangeLog,v 1.32 2007/05/05 18:14:03 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXv/ChangeLog,v 1.33 2007/05/12 19:10:13 nixnut Exp $
+
+  12 May 2007; nixnut <nixnut@gentoo.org> libXv-1.0.3.ebuild:
+  Stable on ppc wrt bug 175465
 
   05 May 2007; Daniel Gryniewicz <dang@gentoo.org> libXv-1.0.3.ebuild:
   Marked stable on amd64 for bug #175465
