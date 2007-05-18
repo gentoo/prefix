@@ -1,6 +1,9 @@
 # ChangeLog for app-text/rman
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/rman/ChangeLog,v 1.30 2007/01/06 01:02:53 kugelfang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/rman/ChangeLog,v 1.31 2007/05/14 20:13:36 bangert Exp $
+
+  14 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
+  add <herd>no-herd</herd>
 
   06 Jan 2007; Danny van Dyk <kugelfang@gentoo.org> -rman-3.0.9.ebuild,
   -rman-3.1.ebuild:
