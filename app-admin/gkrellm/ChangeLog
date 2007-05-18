@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/gkrellm
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/ChangeLog,v 1.142 2007/04/28 16:59:11 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/ChangeLog,v 1.143 2007/05/14 16:31:13 armin76 Exp $
+
+  14 May 2007; Raúl Porcel <armin76@gentoo.org> gkrellm-2.2.10.ebuild:
+  alpha stable wrt #169837
 
   28 Apr 2007; Torsten Veller <tove@gentoo.org> gkrellm-2.2.5.ebuild:
   Fix *initd, *confd and *envd calls (#17388, #174266)
