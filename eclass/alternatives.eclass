@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/alternatives.eclass,v 1.13 2006/03/25 02:37:04 agriffis Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/alternatives.eclass,v 1.14 2007/05/15 15:20:59 ulm Exp $
 
 # Author :     Alastair Tse <liquidx@gentoo.org> (03 Oct 2003)
 # Short Desc:  Creates symlink to the latest version of multiple slotted
@@ -106,7 +106,8 @@ alternatives_makesym() {
 		# or absolute path form
 		if [ ! -f "`dirname ${pref}${SYMLINK}`/`readlink ${pref}${SYMLINK}`" -a \
 			 ! -f "`readlink ${pref}${SYMLINK}`" ]; then
-			ewarn "${pref}${SYMLINK} is a dead symlink."
+			ewarn "Removing dead symlink ${pref}${SYMLINK}"
+			rm -f ${pref}${SYMLINK}
 		fi
 	fi
 }

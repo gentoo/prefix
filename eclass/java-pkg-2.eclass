@@ -5,7 +5,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.22 2007/05/07 22:10:46 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.23 2007/05/17 21:04:43 caster Exp $
 
 inherit java-utils-2
 
@@ -109,6 +109,9 @@ pre_src_compile() {
 	if is-java-strict; then
 		echo "Searching for bundled jars:"
 		java-pkg_find-normal-jars || echo "None found."
+		echo "Searching for bundled classes (no output if none found):"
+		find "${WORKDIR}" -name "*.class"
+		echo "Search done."
 	fi
 	java-pkg-2_pkg_setup
 }

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.25 2007/04/23 19:35:05 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.26 2007/05/15 14:05:17 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -575,7 +575,8 @@ gnatbuild_src_install() {
 		# violation (unlink of gprmake). A siple workaround for now.
 		cd "${GNATBUILD}"
 		make DESTDIR=${D} bindir="${D}${BINPATH}"  install || die
-		mv "${ED}${ED}${PREFIX}/${CTARGET}" "${ED}${PREFIX}"
+		mv "${ED}${ED}${PREFIX}/${CTARGET}" "${ED}${PREFIX}" \
+			|| die "please post the fialed mv line to #178140"
 		rm -rf "${ED}var"
 
 		#make a convenience info link
