@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/extutils-parsexs/extutils-parsexs-2.18.ebuild,v 1.5 2007/05/05 18:14:42 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/extutils-parsexs/extutils-parsexs-2.18.ebuild,v 1.6 2007/05/12 05:08:09 kumba Exp $
 
 EAPI="prefix"
 
