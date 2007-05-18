@@ -1,6 +1,14 @@
 # ChangeLog for dev-perl/IO-Compress-Base
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Compress-Base/ChangeLog,v 1.16 2007/05/05 17:52:13 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Compress-Base/ChangeLog,v 1.18 2007/05/16 18:10:35 armin76 Exp $
+
+  16 May 2007; Raúl Porcel <armin76@gentoo.org>
+  IO-Compress-Base-2.004.ebuild:
+  Add ~alpha wrt #154244
+
+  12 May 2007; Joshua Kinard <kumba@gentoo.org>
+  IO-Compress-Base-2.004.ebuild:
+  Stable on mips.
 
   05 May 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   IO-Compress-Base-2.004.ebuild:
