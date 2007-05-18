@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/portage-manpages
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-manpages/ChangeLog,v 1.10 2007/01/22 05:54:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-manpages/ChangeLog,v 1.11 2007/05/15 09:28:15 bangert Exp $
+
+  15 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
+  add <herd>no-herd</herd>
 
 *portage-manpages-20070122 (22 Jan 2007)
 
