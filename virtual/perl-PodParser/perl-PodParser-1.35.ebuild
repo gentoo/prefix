@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-PodParser/perl-PodParser-1.35.ebuild,v 1.8 2007/05/07 08:22:31 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-PodParser/perl-PodParser-1.35.ebuild,v 1.9 2007/05/11 05:21:50 kumba Exp $
 
 EAPI="prefix"
 
