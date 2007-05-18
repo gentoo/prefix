@@ -1,6 +1,10 @@
 # ChangeLog for virtual/perl-digest-base
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-digest-base/ChangeLog,v 1.13 2007/04/15 21:25:20 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-digest-base/ChangeLog,v 1.14 2007/05/11 05:32:20 kumba Exp $
+
+  11 May 2007; Joshua Kinard <kumba@gentoo.org>
+  perl-digest-base-1.15.ebuild:
+  Stable on mips.
 
   15 Apr 2007; Markus Rothe <corsair@gentoo.org>
   perl-digest-base-1.15.ebuild:
