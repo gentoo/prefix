@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6-r1.ebuild,v 1.1 2007/05/01 21:17:42 rbrown Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6-r1.ebuild,v 1.2 2007/05/17 22:22:59 rbrown Exp $
 
 EAPI="prefix"
 
@@ -85,6 +85,7 @@ src_compile() {
 		$(use_enable threads pthread) \
 		$(use_enable ipv6 ipv6) \
 		$(use_enable debug debug) \
+		$(use_with tk) \
 		--with-sitedir="${EPREFIX}"/usr/$(get_libdir)/ruby/site_ruby \
 		|| die "econf failed"
 
