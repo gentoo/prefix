@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/check
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/check/ChangeLog,v 1.35 2007/04/24 19:56:22 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/check/ChangeLog,v 1.36 2007/05/08 18:25:53 grobian Exp $
+
+  08 May 2007; Fabian Groffen <grobian@gentoo.org> check-0.8.4.ebuild,
+  check-0.9.2.ebuild, check-0.9.3-r1.ebuild, check-0.9.5.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   24 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> check-0.9.5.ebuild:
   Stable on sparc
