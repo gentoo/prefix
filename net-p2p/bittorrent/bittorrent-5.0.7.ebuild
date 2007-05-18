@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/bittorrent-5.0.7.ebuild,v 1.10 2007/04/08 10:54:05 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/bittorrent-5.0.7.ebuild,v 1.11 2007/05/15 13:54:44 armin76 Exp $
 
 EAPI="prefix"
 
