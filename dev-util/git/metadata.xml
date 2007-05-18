@@ -6,4 +6,9 @@
 	<email>ferdy@gentoo.org</email>
 	<name>Fernando J. Pereda</name>
 </maintainer>
+<maintainer>
+	<email>robbat2@gentoo.org</email>
+	<name>Robin H. Johnson</name>
+	<description>Backup maintainer</description>
+</maintainer>
 </pkgmetadata>
