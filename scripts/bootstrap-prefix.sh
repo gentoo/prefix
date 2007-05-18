@@ -160,7 +160,7 @@ bootstrap_tree() {
 		# beware: fetch creates DISTDIR!!!
 		mv portage/distfiles prefix-overlay/
 		rm -Rf portage
-		mv prefix-overlay-* portage
+		mv prefix-overlay* portage
 		touch portage/.unpacked
 	fi
 }
