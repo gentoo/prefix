@@ -1,6 +1,12 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.146 2007/05/05 17:17:53 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.148 2007/05/12 03:56:40 beandog Exp $
+
+  12 May 2007; Steve Dibb <beandog@gentoo.org> bash-3.2_p15-r1.ebuild:
+  amd64 stable, bug 176882
+
+  11 May 2007; Joshua Kinard <kumba@gentoo.org> bash-3.2_p15-r1.ebuild:
+  Stable on mips, per #176882.
 
   05 May 2007; nixnut <nixnut@gentoo.org> bash-3.2_p15-r1.ebuild:
   Stable on ppc wrt bug 176882
