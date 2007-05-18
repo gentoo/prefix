@@ -1,6 +1,15 @@
 # ChangeLog for app-emacs/flim
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/flim/ChangeLog,v 1.20 2007/04/23 09:49:58 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/flim/ChangeLog,v 1.22 2007/05/15 14:46:04 ulm Exp $
+
+  15 May 2007; Ulrich Mueller <ulm@gentoo.org> flim-1.14.6.ebuild,
+  flim-1.14.7.ebuild, flim-1.14.8.ebuild:
+  Don't provide virtual/flim, it is a new-style virtual now.
+
+  15 May 2007; Ulrich Mueller <ulm@gentoo.org> flim-1.14.6.ebuild,
+  flim-1.14.7.ebuild, flim-1.14.8.ebuild:
+  Prepare for new-style virtual/flim: change blocking dependency from
+  !virtual/flim to !app-emacs/limit.
 
   23 Apr 2007; Christian Faulhammer <opfer@gentoo.org> flim-1.14.8.ebuild:
   remove virtual/emacs from DEPEND, it is already pulled in by elisp.eclass;
