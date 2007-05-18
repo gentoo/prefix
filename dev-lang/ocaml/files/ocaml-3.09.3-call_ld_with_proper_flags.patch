@@ -1,0 +1,30 @@
+As we now support LDFLAGS in NATIVECCLINKOPTS
+it can happen that -Wl,--foo,--bar option is in that variable
+As ocaml happens to call ld with NATIVECCLINKOPTS
+we have to "translate" it so that ld doesn't bail out with unrecognized option
+Initial patch from Julien Cristau : http://caml.inria.fr/mantis/view.php?id=4142
+Modified a bit to catch comma separated options
+Index: ocaml-3.09.3/Makefile
+===================================================================
+--- ocaml-3.09.3.orig/Makefile
++++ ocaml-3.09.3/Makefile
+@@ -314,6 +314,8 @@ partialclean::
+ 	rm -f ocaml toplevel/toplevellib.cma
+ 
+ # The configuration file
++comma = ,
++Wl = -Wl,
+ 
+ utils/config.ml: utils/config.mlp config/Makefile
+ 	@rm -f utils/config.ml
+@@ -324,8 +326,8 @@ utils/config.ml: utils/config.mlp config
+             -e 's|%%BYTELINK%%|$(BYTECC) $(BYTECCLINKOPTS)|' \
+             -e 's|%%NATIVECC%%|$(NATIVECC) $(NATIVECCCOMPOPTS)|' \
+             -e 's|%%NATIVELINK%%|$(NATIVECC) $(NATIVECCLINKOPTS)|' \
+-            -e 's|%%PARTIALLD%%|ld -r $(NATIVECCLINKOPTS)|' \
+-            -e 's|%%PACKLD%%|ld -r $(NATIVECCLINKOPTS)|' \
++            -e 's|%%PARTIALLD%%|ld -r $(subst $(comma), ,$(subst $(Wl),,$(NATIVECCLINKOPTS)))|' \
++            -e 's|%%PACKLD%%|ld -r $(subst $(comma), ,$(subst $(Wl),,$(NATIVECCLINKOPTS)))|' \
+             -e 's|%%BYTECCLIBS%%|$(BYTECCLIBS)|' \
+             -e 's|%%NATIVECCLIBS%%|$(NATIVECCLIBS)|' \
+             -e 's|%%RANLIBCMD%%|$(RANLIBCMD)|' \

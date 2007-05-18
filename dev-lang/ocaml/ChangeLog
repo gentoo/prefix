@@ -1,6 +1,56 @@
 # ChangeLog for dev-lang/ocaml
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.99 2007/04/22 20:00:56 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.111 2007/05/15 22:29:52 jer Exp $
+
+  15 May 2007; Jeroen Roovers <jer@gentoo.org> ocaml-3.09.3-r1.ebuild:
+  Marked ~hppa (bug #178256).
+
+  15 May 2007; Alexis Ballier <aballier@gentoo.org>
+  +files/ocaml-3.09.3-hppa-optimize-for-size-ocamlp4.patch,
+  ocaml-3.09.3-r1.ebuild:
+  Optimize ocamlp4 for size on hppa, bug #178256
+
+  14 May 2007; Alexis Ballier <aballier@gentoo.org>
+  +files/ocaml-3.09.3-call_ld_with_proper_flags.patch,
+  ocaml-3.09.3-r1.ebuild:
+  Call ld with proper flags to prevent compilation failures of some other
+  ocaml packages
+
+  14 May 2007; Jeroen Roovers <jer@gentoo.org> ocaml-3.09.3-r1.ebuild:
+  Reverting ~hppa keywording due to build failure.
+
+  14 May 2007; Jeroen Roovers <jer@gentoo.org> ocaml-3.09.3-r1.ebuild:
+  Marked ~hppa (bug #178256).
+
+  13 May 2007; Raúl Porcel <armin76@gentoo.org> ocaml-3.09.3-r1.ebuild:
+  Readd ~ia64 wrt bug 178256
+
+  12 May 2007; Alexis Ballier <aballier@gentoo.org>
+  +files/ocaml-3.09.3-automagic.patch, ocaml-3.09.3-r1.ebuild:
+  Fix X and gdbm automagics
+
+  12 May 2007; Alexis Ballier <aballier@gentoo.org> ocaml-3.09.3-r1.ebuild:
+  Add ncurses useflag (was automagic)
+
+  12 May 2007; Alexis Ballier <aballier@gentoo.org>
+  files/ocaml-3.09.3-configure.patch:
+  Do not ignore cflags/ldflags for native compiler
+
+  12 May 2007; Alexis Ballier <aballier@gentoo.org> ocaml-3.09.3-r1.ebuild:
+  Install ocaml-rebuild.sh in /usr/sbin rather than keeping it in PORTDIR, fix
+  bug #175668
+
+  11 May 2007; Alexis Ballier <aballier@gentoo.org> ocaml-3.09.3.ebuild,
+  ocaml-3.09.3-r1.ebuild:
+  Dont run make bootstrap for src_test, it deletes ocamlopt, upstream does not
+  provide a clean test suite, if we want one we definitely should not use make
+  bootstrap, closes bug #159237 and bug #177706
+
+  11 May 2007; Alexis Ballier <aballier@gentoo.org>
+  -files/ocaml-3.08.3-gcc4.patch, -ocaml-3.08.3.ebuild, ocaml-3.08.4.ebuild,
+  ocaml-3.09.2.ebuild, ocaml-3.09.3.ebuild, ocaml-3.09.3-r1.ebuild:
+  Fix bug #135641 again, remove unused version, drop virtual/libc dep as it is
+  in system anyway
 
   22 Apr 2007; Christian Heim <phreak@gentoo.org> ocaml-3.09.3-r1.ebuild:
   Restricting FEATURES=test for now, make bootstrap deletes the *.opt files

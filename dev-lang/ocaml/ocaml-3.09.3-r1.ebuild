@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.09.3-r1.ebuild,v 1.2 2007/04/22 20:00:56 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.09.3-r1.ebuild,v 1.13 2007/05/15 22:29:52 jer Exp $
 
 EAPI="prefix"
 
@@ -13,13 +13,14 @@ SRC_URI="http://caml.inria.fr/distrib/ocaml-$( get_version_component_range 1-2 )
 LICENSE="QPL-1.0 LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
-IUSE="tk latex"
+IUSE="gdbm ncurses tk latex X"
 
-DEPEND="virtual/libc
-	tk? ( >=dev-lang/tk-3.3.3 )"
+DEPEND="tk? ( >=dev-lang/tk-3.3.3 )
+	ncurses? ( sys-libs/ncurses )
+	X? ( x11-libs/libX11 x11-proto/xproto )
+	gdbm? ( sys-libs/gdbm )"
 
-# ocaml deletes the *.opt files when running bootstrap
-RESTRICT="test"
+# ocaml deletes the *.opt files when running make bootstrap
 
 QA_EXECSTACK="${EPREFIX}/usr/lib/ocaml/compiler-*"
 
@@ -52,6 +53,21 @@ src_unpack() {
 	# in driver/ocamlcomp.sh.in. Reported upstream as issue 0004268.
 	epatch "${FILESDIR}"/${P}-Makefile.patch
 
+
+	# ocaml has automagics on libX11 and gdbm
+	# http://caml.inria.fr/mantis/view.php?id=4278
+	epatch "${FILESDIR}/${P}-automagic.patch"
+
+	# Call ld with proper flags, different from gcc ones
+	# This happens when calling ocamlc -pack
+	# See comment in the patch
+	epatch "${FILESDIR}/${P}-call_ld_with_proper_flags.patch"
+
+	# Ocaml native code generation for hppa has a bug
+	# See comments in the patch
+	# http://bugs.gentoo.org/show_bug.cgi?id=178256
+	use hppa && epatch "${FILESDIR}/${P}-hppa-optimize-for-size-ocamlp4.patch"
+
 	# Change the configure script to add the CFLAGS to bytecccompopts, LDFLAGS
 	# to bytecclinkopts.
 	sed -i -e "s,bytecccompopts=\"\",bytecccompopts=\"\${CFLAGS}\"," \
@@ -66,8 +82,10 @@ src_compile() {
 	strip-flags
 	replace-flags "-O?" -O2
 
-	local myconf
-	use tk || myconf="-no-tk"
+	use tk || myconf="${myconf} -no-tk"
+	use ncurses || myconf="${myconf} -no-curses"
+	use X || myconf="${myconf} -no-graph"
+	use gdbm || myconf="${myconf} -no-dbm"
 
 	# ocaml uses a home-brewn configure script, preventing it to use econf.
 	./configure -prefix "${EPREFIX}"/usr \
@@ -84,10 +102,6 @@ src_compile() {
 		make opt.opt || die "make opt.opt failed!"
 	fi
 }
-
-#src_test() {
-#	make bootstrap
-#}
 
 src_install() {
 	make BINDIR="${ED}"/usr/bin \
@@ -122,6 +136,9 @@ src_install() {
 		echo "TEXINPUTS=${EPREFIX}/usr/$(get_libdir)/ocaml/ocamldoc:" > "${T}"/99ocamldoc
 		doenvd "${T}"/99ocamldoc
 	fi
+
+	# Install ocaml-rebuild.sh script rather than keeping it in $PORTDIR
+	dosbin "${FILESDIR}/ocaml-rebuild.sh"
 }
 
 pkg_postinst() {
@@ -135,7 +152,7 @@ pkg_postinst() {
 	elog "OCaml is not binary compatible from version to version, so you (may)"
 	elog "need to rebuild all packages depending on it, that are actually"
 	elog "installed on your system. To do so, you can run:"
-	elog "sh ${FILESDIR}/ocaml-rebuild.sh [-h | emerge options]"
+	elog "/usr/sbin/ocaml-rebuild.sh [-h | emerge options]"
 	elog "Which will call emerge on all old packages with the given options"
 	echo
 }

@@ -91,8 +91,8 @@ Index: ocaml-3.09.3/configure
  
 -nativecccompopts=''
 -nativecclinkopts=''
-+nativecccompopts=""
-+nativecclinkopts=""
++nativecccompopts="${CFLAGS}"
++nativecclinkopts="${LDFLAGS}"
  nativeccrpath="$byteccrpath"
  
  case "$arch,$nativecc,$system,$host_type" in

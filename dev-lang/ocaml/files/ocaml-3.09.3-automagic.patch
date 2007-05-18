@@ -1,0 +1,51 @@
+Index: ocaml-3.09.3/configure
+===================================================================
+--- ocaml-3.09.3.orig/configure
++++ ocaml-3.09.3/configure
+@@ -31,6 +31,8 @@ x11_include_dir=''
+ x11_lib_dir=''
+ tk_wanted=yes
+ pthread_wanted=yes
++graph_wanted=yes
++dbm_wanted=yes
+ tk_defs=''
+ tk_libs=''
+ tk_x11=yes
+@@ -86,6 +88,10 @@ while : ; do
+         ;; # Ignored for backward compatibility
+     -no-pthread*|--no-pthread*)
+         pthread_wanted=no;;
++    -no-dbm|--no-dbm)
++        dbm_wanted=no;;
++    -no-graph|--no-graph)
++        graph_wanted=no;;
+     -no-tk|--no-tk)
+         tk_wanted=no;;
+     -tkdefs*|--tkdefs*)
+@@ -1219,7 +1225,7 @@ do
+ done
+ 
+ 
+-if test "$x11_include" = "not found" || test "$x11_link" = "not found"
++if test "$x11_include" = "not found" || test "$x11_link" = "not found" || test "$graph_wanted" = "no"
+ then
+   echo "X11 not found, the \"graph\" library will not be supported."
+   x11_include=""
+@@ -1267,7 +1273,7 @@ for dir in /usr/include /usr/include/db1
+     break
+   fi
+ done
+-if test "$dbm_include" = "not found" || test "$dbm_link" = "not found"; then
++if test "$dbm_include" = "not found" || test "$dbm_link" = "not found" || test "$dbm_wanted" = "no"; then
+   echo "NDBM not found, the \"dbm\" library will not be supported."
+ else
+   echo "NDBM found (in $dbm_include)"
+@@ -1506,7 +1512,7 @@ echo "        $otherlibraries"
+ echo "Configuration for the \"num\" library:"
+ echo "        target architecture ...... $bng_arch (asm level $bng_asm_level)"
+ 
+-if test "$x11_include" != "not found" && test "$x11_lib" != "not found"; then
++if test "$x11_include" != "not found" && test "$x11_lib" != "not found" && test "$graph_wanted" != "no"; then
+ echo "Configuration for the \"graph\" library:"
+ echo "        options for compiling .... $x11_include"
+ echo "        options for linking ...... $x11_link"
