@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/openmotif
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.135 2007/02/17 17:07:22 blubb Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.136 2007/05/11 21:22:19 bangert Exp $
+
+  11 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
+  fix herd
 
   17 Feb 2007; Simon Stelling <blubb@gentoo.org> openmotif-2.2.3-r9.ebuild:
   libdir fix for LDPATH
