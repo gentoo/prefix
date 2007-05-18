@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/gamin-0.1.8.ebuild,v 1.9 2007/02/10 21:45:32 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/gamin-0.1.8.ebuild,v 1.10 2007/05/10 01:44:01 dsd Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SRC_URI="http://www.gnome.org/~veillard/gamin/sources/${P}.tar.gz
 LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~mips ~x86"
-IUSE="debug doc kernel_FreeBSD kernel_linux"
+IUSE="debug kernel_FreeBSD kernel_linux"
 
 RDEPEND=">=dev-libs/glib-2
 	!app-admin/fam"
@@ -48,6 +48,6 @@ src_install() {
 	emake DESTDIR="${D}" install || die
 
 	dodoc AUTHORS ChangeLog README TODO NEWS doc/*txt
-	use doc && dohtml doc/*
+	dohtml doc/*
 }
 
