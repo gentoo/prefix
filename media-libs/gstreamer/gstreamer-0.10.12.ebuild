@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/gstreamer-0.10.12.ebuild,v 1.1 2007/03/08 17:50:56 zaheerm Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/gstreamer-0.10.12.ebuild,v 1.2 2007/04/30 23:08:27 genone Exp $
 
 EAPI="prefix"
 
@@ -51,11 +51,11 @@ src_install() {
 }
 
 pkg_postinst() {
-	einfo "Gstreamer has known problems with prelinking, as a workaround"
-	einfo "this ebuild adds the gstreamer plugins to the prelink mask"
-	einfo "path to stop them from being prelinked. It is imperative"
-	einfo "that you undo & redo prelinking after building this pack for"
-	einfo "this to take effect. Make sure the gstreamer lib path is indeed"
-	einfo "added to the PRELINK_PATH_MASK environment variable."
-	einfo "For more information see http://bugs.gentoo.org/81512"
+	elog "Gstreamer has known problems with prelinking, as a workaround"
+	elog "this ebuild adds the gstreamer plugins to the prelink mask"
+	elog "path to stop them from being prelinked. It is imperative"
+	elog "that you undo & redo prelinking after building this pack for"
+	elog "this to take effect. Make sure the gstreamer lib path is indeed"
+	elog "added to the PRELINK_PATH_MASK environment variable."
+	elog "For more information see http://bugs.gentoo.org/81512"
 }

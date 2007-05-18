@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/gstreamer
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.173 2007/04/06 12:42:29 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.175 2007/05/04 14:46:54 leio Exp $
+
+  04 May 2007; Mart Raudsepp <leio@gentoo.org> metadata.xml:
+  Add gstreamer herd as the primary herd for the package
+
+  30 Apr 2007; Marius Mauch <genone@gentoo.org> gstreamer-0.8.11.ebuild,
+  gstreamer-0.8.12.ebuild, gstreamer-0.10.8.ebuild,
+  gstreamer-0.10.11.ebuild, gstreamer-0.10.12.ebuild:
+  Replacing einfo with elog
 
   06 Apr 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   gstreamer-0.10.11.ebuild:
