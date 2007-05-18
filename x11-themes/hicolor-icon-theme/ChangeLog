@@ -1,6 +1,22 @@
 # ChangeLog for x11-themes/hicolor-icon-theme
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/hicolor-icon-theme/ChangeLog,v 1.46 2007/02/15 22:58:46 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/hicolor-icon-theme/ChangeLog,v 1.50 2007/05/16 02:02:18 beandog Exp $
+
+  16 May 2007; Steve Dibb <beandog@gentoo.org>
+  hicolor-icon-theme-0.10.ebuild:
+  amd64 stable, bug 178553
+
+  15 May 2007; Raúl Porcel <armin76@gentoo.org>
+  hicolor-icon-theme-0.10.ebuild:
+  alpha/ia64/x86 stable wrt #178553
+
+  15 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  hicolor-icon-theme-0.10.ebuild:
+  Stable on sparc wrt #178553
+
+  15 May 2007; Jeroen Roovers <jer@gentoo.org>
+  hicolor-icon-theme-0.10.ebuild:
+  Stable for HPPA (bug #178553).
 
   15 Feb 2007; Daniel Gryniewicz <dang@gentoo.org>
   hicolor-icon-theme-0.9-r1.ebuild, hicolor-icon-theme-0.10.ebuild:
