@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gdb
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.118 2007/04/11 19:40:06 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.119 2007/05/12 09:28:52 kumba Exp $
+
+  12 May 2007; Joshua Kinard <kumba@gentoo.org> gdb-6.6-r2.ebuild:
+  Stable on mips.
 
   11 Apr 2007; Tobias Scherbaum <dertobi123@gentoo.org> gdb-6.6-r2.ebuild:
   ppc stable, bug #144833
