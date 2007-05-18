@@ -1,6 +1,40 @@
 # ChangeLog for app-editors/gvim
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.231 2007/05/04 21:10:28 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.238 2007/05/14 10:16:15 pioto Exp $
+
+*gvim-7.1-r1 (14 May 2007)
+
+  14 May 2007; Mike Kelly <pioto@gentoo.org> +gvim-7.1-r1.ebuild:
+  Revision bump. Add a patch to fix the patch to fix the libintl compile error
+  from Bug #176566.
+
+  13 May 2007; Mike Kelly <pioto@gentoo.org> -gvim-7.0.17.ebuild:
+  Remove old version.
+
+*gvim-7.1 (13 May 2007)
+
+  13 May 2007; Mike Kelly <pioto@gentoo.org> -gvim-7.1_beta001.ebuild,
+  +gvim-7.1.ebuild:
+  Version bump. New stable version. Remove unstable beta.
+
+  13 May 2007; Joshua Kinard <kumba@gentoo.org> gvim-7.0.235.ebuild:
+  Stable on mips, per #176464.
+
+  13 May 2007; Mike Kelly <pioto@gentoo.org> gvim-7.0.17.ebuild,
+  gvim-7.0.174.ebuild, gvim-7.0.235.ebuild:
+  Remove gnome-2.18 block. See Bug #176566
+
+*gvim-7.1_beta001 (10 May 2007)
+
+  10 May 2007; Mike Kelly <pioto@gentoo.org> +gvim-7.1_beta001.ebuild:
+  Version bump, new beta version w/ updated runtime files, etc. Also includes
+  a patch to fix building against gnome-2.18 from Daniel Drake (dsd); fixes
+  Bug #176566.
+
+  09 May 2007; Mike Kelly <pioto@gentoo.org> gvim-7.0.17.ebuild,
+  -gvim-7.0.91.ebuild, -gvim-7.0.146.ebuild, gvim-7.0.174.ebuild,
+  -gvim-7.0.201.ebuild, gvim-7.0.235.ebuild:
+  Block gnome-2.18 for gnome support, see Bug #176566. Remove old versions.
 
   04 May 2007; Daniel Gryniewicz <dang@gentoo.org> gvim-7.0.235.ebuild:
   Marked stable on amd64 for bug #176464
