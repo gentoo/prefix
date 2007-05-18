@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6e-r3.ebuild,v 1.10 2007/05/07 02:47:28 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6e-r3.ebuild,v 1.11 2007/05/11 15:27:53 yoswink Exp $
 
 EAPI="prefix"
 
