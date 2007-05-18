@@ -1,6 +1,11 @@
 # ChangeLog for app-text/dvipng
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/ChangeLog,v 1.15 2007/05/06 20:04:32 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/ChangeLog,v 1.16 2007/05/15 03:40:13 opfer Exp $
+
+  15 May 2007; Christian Faulhammer <opfer@gentoo.org> metadata.xml,
+  dvipng-1.8.ebuild, dvipng-1.9.ebuild:
+  added check for jpeg and png USE flags enabled in media-libs/gd; added emacs
+  team to metadata.xml
 
   06 May 2007; Markus Rothe <corsair@gentoo.org> dvipng-1.8.ebuild:
   Stable on ppc64; bug #177348
