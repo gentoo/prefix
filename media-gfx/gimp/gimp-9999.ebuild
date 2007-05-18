@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-9999.ebuild,v 1.12 2007/05/06 16:50:48 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-9999.ebuild,v 1.13 2007/05/09 04:44:12 hanno Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ LICENSE="GPL-2"
 SLOT="2"
 KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
 
-IUSE="alsa aalib altivec curl debug doc gtkhtml gnome jpeg lcms mmx mng pdf png python smp sse svg tiff wmf"
+IUSE="alsa aalib altivec curl dbus debug doc gtkhtml gnome jpeg lcms mmx mng pdf png python smp sse svg tiff wmf"
 
 RDEPEND=">=dev-libs/glib-2.12.3
 	>=x11-libs/gtk+-2.10.6
@@ -31,6 +31,8 @@ RDEPEND=">=dev-libs/glib-2.12.3
 	aalib? ( media-libs/aalib )
 	alsa? ( >=media-libs/alsa-lib-1.0.0 )
 	curl? ( net-misc/curl )
+	dbus? ( dev-libs/dbus-glib
+		sys-apps/hal )
 	doc? ( app-doc/gimp-help )
 	gnome? ( >=gnome-base/gnome-vfs-2.10.0
 		>=gnome-base/libgnomeui-2.10.0
@@ -81,6 +83,7 @@ src_compile() {
 		$(use_with curl) \
 		$(use_enable debug) \
 		$(use_enable doc gtk-doc) \
+		$(use_with dbus) \
 		$(use_with gnome) \
 		$(use_with gtkhtml gtkhtml2) \
 		$(use_with jpeg libjpeg) \
