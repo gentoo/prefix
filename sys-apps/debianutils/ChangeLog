@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/debianutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/ChangeLog,v 1.76 2007/05/05 11:08:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/ChangeLog,v 1.77 2007/05/16 15:01:24 uberlord Exp $
+
+*debianutils-2.18.1 (16 May 2007)
+
+  16 May 2007; Roy Marples <uberlord@gentoo.org> +debianutils-2.18.1.ebuild:
+  New version, fixes #177576.
 
   05 May 2007; Raúl Porcel <armin76@gentoo.org> debianutils-2.18.ebuild:
   Back to ~arch
