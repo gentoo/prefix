@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/fribidi
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/fribidi/ChangeLog,v 1.30 2006/10/20 00:17:21 kloeri Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/fribidi/ChangeLog,v 1.31 2007/05/08 18:53:39 grobian Exp $
+
+  08 May 2007; Fabian Groffen <grobian@gentoo.org> fribidi-0.10.4.ebuild,
+  fribidi-0.10.5.ebuild, fribidi-0.10.7.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> fribidi-0.10.7.ebuild:
   Stable on Alpha.
