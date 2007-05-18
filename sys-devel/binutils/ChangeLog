@@ -1,6 +1,19 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.287 2007/04/23 18:14:58 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.290 2007/05/14 17:59:18 kloeri Exp $
+
+  14 May 2007; Bryan Østergaard <kloeri@gentoo.org>
+  binutils-2.17.50.0.16.ebuild:
+  Add ~alpha keyword as .15 and newer fixes an ugly bug in ld on Alpha.
+
+  13 May 2007; Joshua Kinard <kumba@gentoo.org> binutils-2.17.ebuild:
+  Stable on mips.
+
+*binutils-2.17.50.0.16 (12 May 2007)
+
+  12 May 2007; Mike Frysinger <vapier@gentoo.org>
+  +binutils-2.17.50.0.16.ebuild:
+  Version bump.
 
   23 Apr 2007; Jeroen Roovers <jer@gentoo.org> binutils-2.17.50.0.12.ebuild:
   Stable for HPPA (bug #168131).
