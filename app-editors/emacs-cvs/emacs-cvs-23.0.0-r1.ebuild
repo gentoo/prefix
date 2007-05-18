@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.0-r1.ebuild,v 1.11 2007/04/25 06:09:11 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.0-r1.ebuild,v 1.12 2007/05/15 15:02:26 ulm Exp $
 
 EAPI="prefix"
 
@@ -35,7 +35,7 @@ DEPEND=">=sys-libs/ncurses-5.3
 		xft? ( media-libs/fontconfig virtual/xft >=dev-libs/libotf-0.9.4 ) )
 	sys-libs/zlib"
 
-PROVIDE="virtual/emacs virtual/editor"
+PROVIDE="virtual/editor"
 
 SLOT="23"
 OLD_SLOT="23.0.0"

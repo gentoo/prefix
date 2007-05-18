@@ -1,6 +1,24 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.117 2007/04/30 22:48:29 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.121 2007/05/17 22:50:33 ulm Exp $
+
+*emacs-cvs-22.0.990 (17 May 2007)
+
+  17 May 2007; Ulrich Mueller <ulm@gentoo.org> -emacs-cvs-22.0.98.ebuild,
+  +emacs-cvs-22.0.990.ebuild, emacs-cvs-22.0.9999-r10.ebuild,
+  emacs-cvs-22.1.50.ebuild, emacs-cvs-23.0.0-r6.ebuild:
+  Version bump; logic of toolkit USE flags fixed. Clean up old version.
+
+  15 May 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.0.97.ebuild,
+  emacs-cvs-22.0.98.ebuild, emacs-cvs-22.0.99.ebuild,
+  emacs-cvs-22.0.9999-r10.ebuild, emacs-cvs-22.1.50.ebuild,
+  emacs-cvs-23.0.0-r1.ebuild, emacs-cvs-23.0.0-r6.ebuild:
+  Don't provide virtual/emacs, it is a new-style virtual now.
+
+  15 May 2007; Tony Vroon <chainsaw@gentoo.org> emacs-cvs-22.0.99.ebuild,
+  emacs-cvs-22.0.9999-r10.ebuild, emacs-cvs-22.1.50.ebuild:
+  Add ~ppc keywording, tested on a PowerBook 5,9 with GCC 4.1.2; as requested
+  by Opfer.
 
   30 Apr 2007; Tony Vroon <chainsaw@gentoo.org> emacs-cvs-23.0.0-r6.ebuild:
   Add ~ppc keywor. Tested on a PowerBook 5,9 with GCC 4.1.2
