@@ -164,6 +164,10 @@ lcd_devices_svga
 # Only for x86 and amd64 (in pbbuttonsd)
 macbook
 
+# Joseph Jezak <josejx@gentoo.org> (16 May 2007)
+# Only for amd64 (in mplayerplug-in)
+mplayer-bin
+
 # George Shapovalov <george@gentoo.org> (8 Apr 2007)
 # Ada is supported only on x86, amd64 and ppc at present
 ada
