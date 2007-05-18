@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/fte
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/fte/ChangeLog,v 1.39 2006/11/01 20:51:11 mabi Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/fte/ChangeLog,v 1.40 2007/05/13 18:20:02 bangert Exp $
+
+  13 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
+  add herd
 
   01 Nov 2006; Matti Bickel <mabi@gentoo.org> fte-20051115.ebuild:
   Stable on ppc (bug #142835)
