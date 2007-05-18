@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.84-r1.ebuild,v 1.6 2007/05/07 12:00:59 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.84-r1.ebuild,v 1.10 2007/05/15 03:28:35 opfer Exp $
 
 EAPI="prefix"
 
@@ -84,7 +84,7 @@ src_install() {
 	dosed ${SITELISP}/tex-site.el || die
 	elisp-site-file-install "${FILESDIR}/52auctex-gentoo.el"
 	if use preview-latex; then
-	   elisp-site-file-install "${FILESDIR}/60auctex-gentoo.el"
+		elisp-site-file-install "${FILESDIR}/60auctex-gentoo.el"
 	fi
 	dodoc ChangeLog CHANGES README RELEASE TODO FAQ INSTALL*
 }
@@ -96,6 +96,6 @@ pkg_postinst() {
 }
 
 pkg_postrm(){
-	 use preview-latex && latex-package_pkg_postrm
-	 elisp-site-regen
+	use preview-latex && latex-package_pkg_postrm
+	elisp-site-regen
 }
