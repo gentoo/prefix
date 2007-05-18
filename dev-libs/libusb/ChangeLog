@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libusb
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.69 2007/04/11 08:02:26 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.70 2007/05/12 02:52:00 kumba Exp $
+
+  12 May 2007; Joshua Kinard <kumba@gentoo.org> libusb-0.1.12.ebuild:
+  Stable on mips.
 
   11 Apr 2007; Robin H. Johnson <robbat2@gentoo.org> metadata.xml,
   libusb-0.1.12.ebuild, libusb-0.1.12-r1.ebuild:
