@@ -1,6 +1,38 @@
 # ChangeLog for app-admin/python-updater
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/ChangeLog,v 1.8 2007/05/08 21:56:01 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/ChangeLog,v 1.17 2007/05/16 21:10:10 dertobi123 Exp $
+
+  16 May 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  python-updater-0.2.ebuild:
+  ppc stable, bug #177804
+
+  16 May 2007; Daniel Gryniewicz <dang@gentoo.org>
+  python-updater-0.2.ebuild:
+  Marked stable on amd64 for bug #177804
+
+  14 May 2007; Bryan Østergaard <kloeri@gentoo.org>
+  python-updater-0.2.ebuild:
+  Stable on Alpha and Mips.
+
+  14 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  python-updater-0.2.ebuild:
+  Stable on sparc wrt security #177804
+
+  14 May 2007; Jeroen Roovers <jer@gentoo.org> python-updater-0.2.ebuild:
+  Stable for HPPA (preparation for bug #177804).
+
+  13 May 2007; Markus Rothe <corsair@gentoo.org> python-updater-0.2.ebuild:
+  Stable on ppc64; bug #177804
+
+  12 May 2007; Raúl Porcel <armin76@gentoo.org> python-updater-0.2.ebuild:
+  ia64 + x86 stable wrt security bug #177804
+
+  12 May 2007; Markus Rothe <corsair@gentoo.org> python-updater-0.2.ebuild:
+  Added ~ppc64; bug #177270
+
+  11 May 2007; Bryan Østergaard <kloeri@gentoo.org>
+  python-updater-0.2.ebuild:
+  Add ~alpha and ~mips keywords.
 
   08 May 2007; Roy Marples <uberlord@gentoo.org> python-updater-0.2.ebuild:
   Added ~sparc-fbsd keyword, #177426.
