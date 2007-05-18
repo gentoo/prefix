@@ -1,6 +1,13 @@
 # ChangeLog for media-sound/mp3info
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mp3info/ChangeLog,v 1.21 2007/04/18 20:30:51 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mp3info/ChangeLog,v 1.23 2007/05/14 12:29:39 drizzt Exp $
+
+  14 May 2007; Timothy Redaelli <drizzt@gentoo.org> mp3info-0.8.5a.ebuild:
+  Add ~x86-fbsd keyword.
+  Thanks to Joe Peterson for reporting wrt bug #178437.
+
+  13 May 2007; Steve Dibb <beandog@gentoo.org> mp3info-0.8.5a.ebuild:
+  amd64 stable
 
   18 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> mp3info-0.8.5a.ebuild:
   Stable on sparc
