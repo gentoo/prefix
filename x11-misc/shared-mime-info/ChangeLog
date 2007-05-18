@@ -1,6 +1,20 @@
 # ChangeLog for x11-misc/shared-mime-info
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/ChangeLog,v 1.78 2007/04/04 14:29:25 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/ChangeLog,v 1.82 2007/05/16 02:00:37 beandog Exp $
+
+  16 May 2007; Steve Dibb <beandog@gentoo.org> shared-mime-info-0.20.ebuild:
+  amd64 stable, bug 178553
+
+  15 May 2007; Raúl Porcel <armin76@gentoo.org>
+  shared-mime-info-0.20.ebuild:
+  alpha/ia64/x86 stable wrt #178553
+
+  15 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  shared-mime-info-0.20.ebuild:
+  Stable on sparc wrt #178553
+
+  15 May 2007; Jeroen Roovers <jer@gentoo.org> shared-mime-info-0.20.ebuild:
+  Stable for HPPA (bug #178553).
 
 *shared-mime-info-0.20 (04 Apr 2007)
 
