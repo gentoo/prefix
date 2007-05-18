@@ -1,6 +1,11 @@
 # ChangeLog for dev-lisp/sbcl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.107 2007/04/11 14:24:36 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.108 2007/05/08 08:29:59 joslwah Exp $
+
+*sbcl-1.0.5 (08 May 2007)
+
+  08 May 2007; Joshua <joslwah@gentoo.org> +sbcl-1.0.5.ebuild:
+  Adding new release.
 
   11 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> sbcl-1.0.4.ebuild:
   Fast track to sparc stable, see #173669
