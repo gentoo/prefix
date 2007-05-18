@@ -1,6 +1,33 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.131 2007/05/07 20:25:05 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.136 2007/05/13 14:10:35 nixnut Exp $
+
+  13 May 2007; nixnut <nixnut@gentoo.org> freetype-2.3.3.ebuild:
+  Stable on ppc wrt bug 173804
+
+  12 May 2007; Luca Longinotti <chtekk@gentoo.org>
+  -files/digest-freetype-2.3.4:
+  Regen digest to remove unused entry.
+
+*freetype-2.3.4-r1 (09 May 2007)
+
+  09 May 2007; Ryan Hill <dirtyepic@gentoo.org> freetype-1.3.1-r4.ebuild,
+  freetype-1.3.1-r5.ebuild, freetype-2.1.9-r1.ebuild,
+  -freetype-2.3.4.ebuild, +freetype-2.3.4-r1.ebuild:
+  Add X USE to allow building of ft2demos on headless systems. Fix linking of
+  various utilities and parallel make problem; patches applied upstream.
+  Remove virtual/libc RDEPEND from older ebuilds.
+
+  09 May 2007; Ryan Hill <dirtyepic@gentoo.org>
+  +files/freetype-2.3.3-ft2demos-Makefile.patch,
+  -files/freetype-2.3.3-fttimer-noX.patch, freetype-2.3.3.ebuild:
+  Fix parallel make race in ft2demos.
+
+  09 May 2007; Ryan Hill <dirtyepic@gentoo.org>
+  +files/freetype-2.3.3-fttimer-noX.patch, freetype-2.3.3.ebuild:
+  Added an X USE flag to control what utilities get installed. Patch fttimer
+  to not link against X unnecessarily. Thanks to Calum for reporting. (Bug
+  #177597)
 
   07 May 2007; Andrej Kacian <ticho@gentoo.org> freetype-2.3.3.ebuild:
   Stable on x86, bug #173804.
