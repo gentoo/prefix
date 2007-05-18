@@ -1,6 +1,16 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.256 2007/05/14 21:03:52 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.259 2007/05/17 20:00:21 kloeri Exp $
+
+  17 May 2007; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
+  Mark myself as maintainer.
+
+  16 May 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  python-2.4.4-r4.ebuild:
+  ppc stable, bug #177804
+
+  16 May 2007; Daniel Gryniewicz <dang@gentoo.org> python-2.4.4-r4.ebuild:
+  Marked stable on amd64 for bug #177804
 
   14 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
   python-2.3.6-r2.ebuild, python-2.5.1-r2.ebuild:
