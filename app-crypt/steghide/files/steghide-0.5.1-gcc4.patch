@@ -1,6 +1,6 @@
-diff -ur steghide-0.5.1-orig/src/AuData.h steghide-0.5.1/src/AuData.h
---- steghide-0.5.1-orig/src/AuData.h	2006-03-10 02:17:19.000000000 -0500
-+++ steghide-0.5.1/src/AuData.h	2006-03-10 02:19:01.000000000 -0500
+diff -Naur steghide-0.5.1-orig/src/AuData.h steghide-0.5.1/src/AuData.h
+--- steghide-0.5.1-orig/src/AuData.h	2003-09-28 09:30:29.000000000 -0600
++++ steghide-0.5.1/src/AuData.h	2007-05-11 22:04:56.000000000 -0600
 @@ -26,22 +26,30 @@
  
  // AuMuLawAudioData
@@ -32,3 +32,15 @@ diff -ur steghide-0.5.1-orig/src/AuData.h steghide-0.5.1/src/AuData.h
  inline void AuPCM32AudioData::writeValue (BinaryIO* io, SWORD32 v) const { io->write32_be((UWORD32) v) ; }
  
  #endif // ndef SH_AUDATA_H
+diff -Naur steghide-0.5.1-orig/src/MHashPP.cc steghide-0.5.1/src/MHashPP.cc
+--- steghide-0.5.1-orig/src/MHashPP.cc	2003-10-05 04:17:50.000000000 -0600
++++ steghide-0.5.1/src/MHashPP.cc	2007-05-11 22:07:01.000000000 -0600
+@@ -120,7 +120,7 @@
+ 
+ std::string MHashPP::getAlgorithmName (hashid id)
+ {
+-	char *name = mhash_get_hash_name (id) ;
++	char *name = (char *) mhash_get_hash_name (id) ;
+ 	std::string retval ;
+ 	if (name == NULL) {
+ 		retval = std::string ("<algorithm not found>") ;

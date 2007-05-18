@@ -1,6 +1,10 @@
 # ChangeLog for app-crypt/steghide
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/steghide/ChangeLog,v 1.13 2006/08/16 00:39:09 squinky86 Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/steghide/ChangeLog,v 1.14 2007/05/12 04:13:16 dirtyepic Exp $
+
+  12 May 2007; Ryan Hill <dirtyepic@gentoo.org>
+  files/steghide-0.5.1-gcc4.patch, metadata.xml:
+  Fix GCC 4.1 build error.  Bug #178134 by Jochen Schlick.
 
   16 Aug 2006; Jon Hood <squinky86@gentoo.org> steghide-0.5.1.ebuild:
   Stable on amd64, bug #143891. Thanks postmodern <brodigan@pdx.edu>.
