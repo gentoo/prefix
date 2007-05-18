@@ -1,6 +1,34 @@
 # ChangeLog for app-cdr/cdrtools
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.164 2007/04/10 11:36:47 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.171 2007/05/16 06:36:29 jer Exp $
+
+  16 May 2007; Jeroen Roovers <jer@gentoo.org>
+  cdrtools-2.01.01_alpha25.ebuild:
+  Stable for HPPA (bug #177472).
+
+  16 May 2007; Daniel Gryniewicz <dang@gentoo.org>
+  cdrtools-2.01.01_alpha25.ebuild:
+  Marked stable on amd64 for bug #177472
+
+  15 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  cdrtools-2.01.01_alpha25.ebuild:
+  Stable on sparc wrt #177472
+
+  13 May 2007; Raúl Porcel <armin76@gentoo.org>
+  cdrtools-2.01.01_alpha25.ebuild:
+  ia64 + x86 stable wrt bug 177472
+
+  13 May 2007; Markus Rothe <corsair@gentoo.org>
+  cdrtools-2.01.01_alpha25.ebuild:
+  Stable on ppc64; bug #177472
+
+  13 May 2007; Joshua Kinard <kumba@gentoo.org>
+  cdrtools-2.01.01_alpha25.ebuild:
+  Added ~mips to KEYWORDS.
+
+  12 May 2007; Lars Weiler <pylon@gentoo.org> -cdrtools-2.01-r3.ebuild:
+  Removing old version which was stable for m68k, but as no m68k-arch-alias
+  exists, I can't ask for new stabilisations.
 
 *cdrtools-2.01.01_alpha25 (10 Apr 2007)
 
