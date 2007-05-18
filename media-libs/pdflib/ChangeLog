@@ -1,6 +1,20 @@
 # ChangeLog for media-libs/pdflib
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.64 2007/04/23 22:51:06 anant Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.68 2007/05/16 15:09:53 armin76 Exp $
+
+  16 May 2007; Raúl Porcel <armin76@gentoo.org> pdflib-6.0.3-r1.ebuild:
+  alpha/ia64 stable wrt #178185
+
+  16 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  pdflib-6.0.3-r1.ebuild:
+  Stable on sparc wrt #178185
+
+  16 May 2007; Christian Faulhammer <opfer@gentoo.org>
+  pdflib-6.0.3-r1.ebuild:
+  stable x86/amd64, bug 178185
+
+  16 May 2007; Jeroen Roovers <jer@gentoo.org> pdflib-6.0.3-r1.ebuild:
+  Stable for HPPA (bug #178185),
 
 *pdflib-7.0.1 (23 Apr 2007)
 
