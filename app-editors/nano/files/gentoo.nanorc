@@ -14,7 +14,7 @@ color red "\<(ARCH|HOMEPAGE|DESCRIPTION|IUSE|SRC_URI|LICENSE|SLOT|KEYWORDS|FILES
 color red "\<(S|D|T|PV|PF|P|PN|A)\>" "\<C(XX)?FLAGS\>" "\<LDFLAGS\>" "\<C(HOST|TARGET|BUILD)\>"
 ## Highlight portage commands
 color magenta "\<use(_(with|enable))?\> [!a-zA-Z0-9_+ -]*" "inherit.*"
-color brightblue "\<e(begin|end|conf|install|make|warn|infon?|error|log|patch)\>"
+color brightblue "\<e(begin|end|conf|install|make|warn|infon?|error|log|patch|new(group|user))\>"
 color brightblue "\<die\>" "\<use(_(with|enable))?\>" "\<inherit\>" "\<has\>" "\<(has|best)_version\>" "\<unpack\>"
 color brightblue "\<(do|new)(ins|s?bin|doc|lib(|\.so|\.a)|man|info|exe|initd|confd|envd|pam|menu|icon)\>"
 color brightblue "\<do(python|sed|dir|hard|sym|html|jar|mo)\>" "\<keepdir\>"

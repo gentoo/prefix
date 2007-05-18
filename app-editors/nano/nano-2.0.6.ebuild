@@ -1,9 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.0.6.ebuild,v 1.1 2007/04/30 16:40:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.0.6.ebuild,v 1.2 2007/05/08 22:28:38 vapier Exp $
 
 EAPI="prefix"
 
+inherit eutils
 if [[ ${PV} == "9999" ]] ; then
 	ECVS_SERVER="savannah.gnu.org:/cvsroot/nano"
 	ECVS_MODULE="nano"
@@ -34,7 +35,6 @@ src_unpack() {
 	if [[ ! -e configure ]] ; then
 		./autogen.sh || die "autogen failed"
 	fi
-	epatch "${FILESDIR}"/${P}-justify.patch
 }
 
 src_compile() {
