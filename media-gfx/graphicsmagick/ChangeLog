@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/graphicsmagick
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphicsmagick/ChangeLog,v 1.46 2007/02/02 22:54:33 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphicsmagick/ChangeLog,v 1.47 2007/05/15 09:55:15 bangert Exp $
+
+  15 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
+  add <herd>no-herd</herd>
 
   02 Feb 2007; Bryan Østergaard <kloeri@gentoo.org> -files/xwd-dos.patch,
   -graphicsmagick-1.1.7.ebuild, -graphicsmagick-1.1.7-r1.ebuild,
