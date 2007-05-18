@@ -1,6 +1,9 @@
 # ChangeLog for perl-core/Test-Simple
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Simple/ChangeLog,v 1.41 2007/05/05 18:28:18 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Simple/ChangeLog,v 1.42 2007/05/11 02:31:36 kumba Exp $
+
+  11 May 2007; Joshua Kinard <kumba@gentoo.org> Test-Simple-0.67.ebuild:
+  Stable on mips.
 
   05 May 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   Test-Simple-0.67.ebuild:
