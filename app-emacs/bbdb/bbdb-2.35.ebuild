@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/bbdb-2.35.ebuild,v 1.2 2007/04/19 13:59:24 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/bbdb-2.35.ebuild,v 1.5 2007/05/15 03:25:24 opfer Exp $
 
 EAPI="prefix"
 
