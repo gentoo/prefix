@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.6.8.ebuild,v 1.1 2007/01/12 14:45:43 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.6.8.ebuild,v 1.7 2007/05/17 12:37:08 hkbst Exp $
 
 EAPI="prefix"
 
@@ -15,24 +15,31 @@ KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
 IUSE=""
 
 # Problems with parallel builds (#34029), so I'm taking the safer route
-MAKEOPTS="${MAKEOPTS} -j1"
+# MAKEOPTS="${MAKEOPTS} -j1"
 
 DEPEND=">=sys-libs/ncurses-5.1
 	>=sys-libs/readline-4.1"
 
 # NOTE: in README-PACKAGERS, guile recommends different versions be installed
-#       in parallel. They're talking about LIBRARY MAJOR versions and not
-#       the actual guile version that was used in the past.
+#		in parallel. They're talking about LIBRARY MAJOR versions and not
+#		the actual guile version that was used in the past.
 #
-#       So I'm slotting this as 12 beacuse of the library major version
+#		So I'm slotting this as 12 beacuse of the library major version
 SLOT="12"
 MAJOR="1.6"
+
+src_unpack() {
+	unpack "${A}"
+	cd ${S}/test-suite/tests/
+	epatch ${FILESDIR}/slibtest.patch
+	sed 's_sleep 999_sleep 1_' -i popen.test
+}
 
 src_compile() {
 	use ppc && replace-flags -O3 -O2
 
 	# Fix for bug 26484: This package fails to build when built with
-	# -g3, at least on some architectures.  (19 Aug 2003 agriffis)
+	# -g3, at least on some architectures.	(19 Aug 2003 agriffis)
 	filter-flags -g3
 
 	econf \
@@ -44,6 +51,7 @@ src_compile() {
 	# Danny van Dyk <kugelfang@gentoo.org 2004/09/19
 
 	emake || die "make failed"
+#	./pre-inst-guile -c "(use-modules (ice-9 slib)) (require 'new-catalog)"
 }
 
 src_install() {
