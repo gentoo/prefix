@@ -1,6 +1,14 @@
 # ChangeLog for sys-apps/findutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.99 2007/05/06 08:30:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.101 2007/05/13 02:27:23 pebenito Exp $
+
+  13 May 2007; Chris PeBenito <pebenito@gentoo.org>
+  +files/findutils-4.3.4-selinux.diff, findutils-4.3.4.ebuild:
+  Update SELinux patch for 4.3.4.
+
+  12 May 2007; Timothy Redaelli <drizzt@gentoo.org>
+  findutils-4.3.2-r1.ebuild, findutils-4.3.4.ebuild:
+  Remove x86-fbsd keyword wrt bug #178051.
 
 *findutils-4.3.4 (06 May 2007)
 
