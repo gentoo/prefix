@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/libpcap-0.9.5.ebuild,v 1.13 2007/05/05 10:52:19 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/libpcap-0.9.5.ebuild,v 1.14 2007/05/12 18:13:58 kumba Exp $
 
 EAPI="prefix"
 

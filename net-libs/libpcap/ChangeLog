@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/libpcap
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.70 2007/05/05 10:52:19 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.71 2007/05/12 18:13:58 kumba Exp $
+
+  12 May 2007; Joshua Kinard <kumba@gentoo.org> libpcap-0.9.5.ebuild:
+  Stable on mips.
 
   05 May 2007; Cedric Krier <cedk@gentoo.org>
   +files/libpcap-cross-linux.patch, libpcap-0.9.5.ebuild:
