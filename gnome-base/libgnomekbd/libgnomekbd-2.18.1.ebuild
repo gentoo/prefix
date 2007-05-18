@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/libgnomekbd-2.18.1.ebuild,v 1.1 2007/04/21 08:58:22 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/libgnomekbd-2.18.1.ebuild,v 1.2 2007/04/30 17:15:18 uberlord Exp $
 
 EAPI="prefix"
 
@@ -34,3 +34,10 @@ DOCS="AUTHORS ChangeLog INSTALL NEWS README"
 # This collides with
 # /etc/gconf/schemas/desktop_gnome_peripherals_keyboard_xkb.schemas from
 # control-center...
+
+src_compile() {
+	# FreeBSD doesn't like -j
+	MAKEOPTS="${MAKEOPTS} -j1"
+
+	gnome2_src_compile
+}
