@@ -1,0 +1,120 @@
+# ChangeLog for media-gfx/optipng
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/optipng/ChangeLog,v 1.29 2007/02/14 17:25:15 dang Exp $
+
+  14 Feb 2007; Daniel Gryniewicz <dang@gentoo.org> optipng-0.5.4.ebuild:
+  Marked stable on amd64 for bug #165374
+
+  10 Feb 2007; nixnut <nixnut@gentoo.org> optipng-0.5.4.ebuild:
+  Stable on ppc wrt bug 165374
+
+  05 Feb 2007; Raúl Porcel <armin76@gentoo.org> optipng-0.5.4.ebuild:
+  x86 stable wrt bug 165374
+
+*optipng-0.5.4 (20 Oct 2006)
+
+  20 Oct 2006; Tavis Ormandy <taviso@gentoo.org>
+  -files/optipng-0.4.5-more-makefile-options.diff,
+  -files/optipng-more-makefile-options.diff, -optipng-0.4.5.ebuild,
+  -optipng-0.4.7.ebuild, -optipng-0.4.8.ebuild, +optipng-0.5.4.ebuild,
+  -optipng-0.5.ebuild:
+  version bump, new version includes manual.
+  remove stale ebuilds.
+
+*optipng-0.5 (28 Jan 2006)
+
+  28 Jan 2006; Karol Pasternak <reb@gentoo.org> +optipng-0.5.ebuild:
+  Version bump
+
+  30 Oct 2005; Fabian Groffen <grobian@gentoo.org> optipng-0.4.8-r1.ebuild:
+  Marked ~ppc-macos (bug #110826)
+
+  10 Oct 2005; Fernando J. Pereda <ferdy@gentoo.org>
+  optipng-0.4.8-r1.ebuild:
+  stable on alpha wrt bug #108404
+
+  07 Oct 2005; Michael Hanselmann <hansmi@gentoo.org>
+  optipng-0.4.8-r1.ebuild:
+  Stable on ppc.
+
+*optipng-0.4.8-r1 (07 Oct 2005)
+
+  07 Oct 2005; Tavis Ormandy <taviso@gentoo.org>
+  +files/optipng-zlib-security.diff, +optipng-0.4.8-r1.ebuild:
+  fix #108404, mark stable on x86
+
+  13 Jul 2005; Simon Stelling <blubb@gentoo.org> optipng-0.4.8.ebuild:
+  added ~amd64 keyword
+
+  12 Jun 2005; Bryan Østergaard <kloeri@gentoo.org> optipng-0.4.7.ebuild:
+  Stable on alpha.
+
+  05 Jun 2005; Michael Hanselmann <hansmi@gentoo.org> optipng-0.4.7.ebuild:
+  Stable on ppc.
+
+*optipng-0.4.8 (03 Jun 2005)
+
+  03 Jun 2005; Tavis Ormandy <taviso@gentoo.org> +optipng-0.4.8.ebuild:
+  bump
+
+  02 Mar 2005; Tavis Ormandy <taviso@gentoo.org> optipng-0.4.7.ebuild:
+  0.4.7 stable on x86
+
+*optipng-0.4.7 (13 Jan 2005)
+
+  13 Jan 2005; Tavis Ormandy <taviso@gentoo.org>
+  -files/optipng-0.4.3-r1-more-makefile-options.diff,
+  -optipng-0.4.3-r1.ebuild, -optipng-0.4.3.ebuild, +optipng-0.4.7.ebuild:
+  clean out stale ebuilds, new version
+
+  29 Dec 2004; Tom Martin <slarti@gentoo.org> optipng-0.4.5.ebuild:
+  Marked ~amd64, resolves bug 73180.
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  08 Aug 2004; Bryan Østergaard <kloeri@gentoo.org> optipng-0.4.5.ebuild:
+  Stable on alpha.
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  optipng-0.4.3-r1.ebuild, optipng-0.4.3.ebuild, optipng-0.4.5.ebuild:
+  virtual/glibc -> virtual/libc
+
+  27 Jun 2004; Tavis Ormandy <taviso@gentoo.org> optipng-0.4.5.ebuild:
+  stable on x86
+
+  03 Jun 2004; Tavis Ormandy <taviso@gentoo.org> optipng-0.4.5.ebuild,
+  files/optipng-0.4.5-more-makefile-options.diff:
+  use ifeq syntax instead of setting env vars.
+
+*optipng-0.4.5 (02 Jun 2004)
+
+  02 Jun 2004; Tavis Ormandy <taviso@gentoo.org> optipng-0.4.5.ebuild:
+  bump
+
+  27 Apr 2004; Aron Griffis <agriffis@gentoo.org> optipng-0.4.3.ebuild:
+  Add inherit eutils
+
+  27 Mar 2004; Tavis Ormandy <taviso@gentoo.org> optipng-0.4.3-r1.ebuild:
+  stable
+
+*optipng-0.4.3-r1 (13 Mar 2004)
+
+  13 Mar 2004; Tavis Ormandy <taviso@gentoo.org> optipng-0.4.3-r1.ebuild,
+  files/optipng-0.4.3-r1-more-makefile-options.diff:
+  fixing patch (wrong zlib header)
+
+  06 Nov 2003; Tavis Ormandy <taviso@gentoo.org> optipng-0.4.3.ebuild:
+  stable
+
+  31 Oct 2003; Tavis Ormandy <taviso@gentoo.org> optipng-0.4.3.ebuild:
+  typo.
+
+*optipng-0.4.3 (31 Oct 2003)
+
+  31 Oct 2003; Tavis Ormandy <taviso@gentoo.org> optipng-0.4.3.ebuild,
+  files/optipng-more-makefile-options.diff:
+  Initial import, closing bug #23157. 
+  Thanks to brian@jubue.org, who provided the ebuild this was based 
+  on in #23157.
+
