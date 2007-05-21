@@ -32,11 +32,12 @@ src_unpack() {
 
 	epatch "${FILESDIR}/${PN}-no-pgrep.patch"
 
-	epatch "${FILESDIR}"/${PN}-1.0.8-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.0.9-prefix.patch
 	eprefixify \
 		$(find "${S}"/bin -type f) \
 		$(find "${S}"/libs -type f) \
-		$(find "${S}"/misc -type f)
+		$(find "${S}"/misc -type f) \
+		$(find "${S}"/modules -type f)
 }
 
 PDEPEND="vim-syntax? ( app-vim/eselect-syntax )"

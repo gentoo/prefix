@@ -1,0 +1,974 @@
+--- bin/eselect.in
++++ bin/eselect.in
+@@ -1,1 +1,1 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+--- libs/config.bash.in
++++ libs/config.bash.in
+@@ -1,1 +1,1 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+--- libs/core.bash.in
++++ libs/core.bash.in
+@@ -1,1 +1,1 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+--- libs/default.eselect.in
++++ libs/default.eselect.in
+@@ -1,1 +1,1 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+--- libs/manip.bash.in
++++ libs/manip.bash.in
+@@ -1,1 +1,1 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+--- libs/multilib.bash.in
++++ libs/multilib.bash.in
+@@ -1,1 +1,1 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+@@ -25,13 +25,13 @@
+     local dir libdirs
+     libdirs=""
+     for dir in ${ES_VALID_MULTILIB_DIRS} ; do
+-        if grep -q "^/${dir}\(\|/\)$" ${ROOT}/etc/ld.so.conf &> /dev/null ; then
++        if grep -q "^/${dir}\(\|/\)$" ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/ld.so.conf &> /dev/null ; then
+             libdirs=( ${libdirs[@]} ${dir} )
+         fi
+     done
+     if [[ -z ${libdirs[@]} ]] ; then
+     	# Broken or non-existing ld.so.conf
+-    	libdirs=( ${ROOT}/lib* )
++    	libdirs=( ${ROOT}@GENTOO_PORTAGE_EPREFIX@/lib* )
+ 	libdirs=( ${libdirs[@]/\/lib/lib} )
+     fi
+     echo "${libdirs[@]}"
+--- libs/output.bash.in
++++ libs/output.bash.in
+@@ -1,1 +1,1 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+--- libs/package-manager.bash.in
++++ libs/package-manager.bash.in
+@@ -1,1 +1,1 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+@@ -40,6 +40,7 @@
+             mips*) ret=mips ;;
+             sparc*) ret=sparc ;;
+             x86_64) ret=amd64 ;;
++            "Power Macintosh") ret=ppc ;;
+             *) write_warning_msg \
+                 "Unknown architecture. Please submit a bug including the output of 'uname -m'!"
+                 return 1
+@@ -52,6 +53,7 @@
+                 NetBSD) suffix="-nbsd" ;;
+                 OpenBSD) suffix="-obsd" ;;
+                 DragonFly) suffix="-dfly" ;;
++                Darwin) suffix="-macos" ;;
+                 *) write_warning_msg \
+                     "Unknown OS. Please submit a bug including the output of 'uname -s'!"
+                     return 1
+--- libs/paludis.bash.in
++++ libs/paludis.bash.in
+@@ -1,1 +1,1 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+--- libs/path-manipulation.bash.in
++++ libs/path-manipulation.bash.in
+@@ -1,1 +1,1 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+--- libs/portage.bash.in
++++ libs/portage.bash.in
+@@ -1,1 +1,1 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+--- libs/skel.bash.in
++++ libs/skel.bash.in
+@@ -25,7 +25,7 @@
+ find_implems() {
+     local -a implems
+     iface=$1 libdir=$2
+-    for file in ${ROOT}/etc/env.d/${iface}/${libdir}/* ; do
++    for file in ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/${iface}/${libdir}/* ; do
+         [[ -f ${file} ]] || continue
+         [[ "${file##*/}" != "config" ]] || continue
+         implems=(${implems[@]} "${file##*/}")
+@@ -37,7 +37,7 @@
+ # returns true if $implem is currently used for the $iface/$libdir combination
+ is_active() {
+     [[ ${#@} -eq 3 ]] || die "Need exactly 3 arguments!"
+-    current=$(load_config ${ROOT}/etc/env.d/${1}/${2}/config CURRENT)
++    current=$(load_config ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/${1}/${2}/config CURRENT)
+     [[ ${current} == ${3} ]]
+ }
+ 
+@@ -49,9 +49,9 @@
+     local iface=${1}
+     local libdir=${2}
+     local implem=${3##*/}
+-    local implem_file="${ROOT}/etc/env.d/${iface}/${libdir}/${implem}"
+-    local current=$(load_config "${ROOT}"/etc/env.d/${iface}/${libdir}/config CURRENT)
+-    local current_file="${ROOT}/etc/env.d/${iface}/${libdir}/${current}"
++    local implem_file="${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/${iface}/${libdir}/${implem}"
++    local current=$(load_config "${ROOT}@GENTOO_PORTAGE_EPREFIX@"/etc/env.d/${iface}/${libdir}/config CURRENT)
++    local current_file="${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/${iface}/${libdir}/${current}"
+     local dest src
+     if is_active ${iface} ${libdir} ${implem}; then
+         echo "Implementation \"${implem}\" already active for library directory \"${libdir}\"!"
+@@ -68,7 +68,7 @@
+ 
+             set ${line}
+             dest=$2
+-            rm -f ${ROOT}${dest}
++            rm -f ${ROOT}@GENTOO_PORTAGE_EPREFIX@${dest}
+         done < ${current_file}
+     fi
+ 
+@@ -82,11 +82,11 @@
+         set ${line}
+         src=$1
+         dest=$2
+-        ln -sf ${src} ${ROOT}${dest}
++        ln -sf ${src} ${ROOT}@GENTOO_PORTAGE_EPREFIX@${dest}
+     done < ${implem_file}
+ 
+     store_config \
+-        "${ROOT}"/etc/env.d/${iface}/${libdir}/config \
++        "${ROOT}@GENTOO_PORTAGE_EPREFIX@"/etc/env.d/${iface}/${libdir}/config \
+         CURRENT ${implem}
+ }
+ 
+@@ -116,15 +116,15 @@
+ # Shows the current implementation for $libdir
+ iface_do_show() {
+     local iface=$IFACE libdir=$1 implem
+-    config=${ROOT}/etc/env.d/${iface}/${libdir}/config
++    config=${ROOT}"@GENTOO_PORTAGE_EPREFIX@"/etc/env.d/${iface}/${libdir}/config
+     [[ ${#config[@]} -eq 1 ]] \
+         || return
+     [[ -e ${config} ]] \
+         || return
+ 
+-    implem=$(load_config ${ROOT}/etc/env.d/${iface}/${libdir}/config CURRENT)
+-    [[ -e ${ROOT}/etc/env.d/${iface}/${libdir}/${implem} ]] \
+-        || die "File \"${ROOT}/etc/env.d/${iface}/${libdir}/${implem}\" is missing!"
++    implem=$(load_config ${ROOT}"@GENTOO_PORTAGE_EPREFIX@"/etc/env.d/${iface}/${libdir}/config CURRENT)
++    [[ -e ${ROOT}"@GENTOO_PORTAGE_EPREFIX@"/etc/env.d/${iface}/${libdir}/${implem} ]] \
++        || die "File \"${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/${iface}/${libdir}/${implem}\" is missing!"
+ 
+     echo "${libdir}: ${implem}"
+ }
+@@ -148,8 +148,8 @@
+     local i=0
+ 
+     for libdir in $(get_libdirs); do
+-        [[ -d ${ROOT}/usr/${libdir} ]] \
+-            && [[ ! -h ${ROOT}/usr/${libdir} ]] \
++        [[ -d ${ROOT}"@GENTOO_PORTAGE_EPREFIX@"/usr/${libdir} ]] \
++            && [[ ! -h ${ROOT}"@GENTOO_PORTAGE_EPREFIX@"/usr/${libdir} ]] \
+             || continue
+         iface_do_list $libdir
+     done
+@@ -266,8 +266,8 @@
+     [[ -n ${mylibdirs[@]} ]] && libdirs=${mylibdirs[@]}
+ 
+     for libdir in ${libdirs}; do
+-        [[ -d ${ROOT}/usr/${libdir} ]] \
+-            && [[ ! -h ${ROOT}/usr/${libdir} ]] \
++        [[ -d ${ROOT}"@GENTOO_PORTAGE_EPREFIX@"/usr/${libdir} ]] \
++            && [[ ! -h ${ROOT}"@GENTOO_PORTAGE_EPREFIX@"/usr/${libdir} ]] \
+             || continue
+         iface_do_show $libdir
+     done
+@@ -295,7 +295,7 @@
+ 
+     # If $D is set, we're adding from portage so we want to respect sandbox.
+     # Otherwise, respect the ROOT variable.
+-    local PREFIX=${D:-${ROOT}}
++    local PREFIX=${D:-${ROOT}}"@GENTOO_PORTAGE_EPREFIX@"
+ 
+     # Create directory if necessary
+     if [[ ! -e ${PREFIX}/etc/env.d/${IFACE}/${1} ]]; then
+--- libs/tests.bash.in
++++ libs/tests.bash.in
+@@ -1,1 +1,1 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+--- modules/bashcomp.eselect
++++ modules/bashcomp.eselect
+@@ -9,7 +9,7 @@
+ 
+ find_targets() {
+ 	local targets bc x i=0
+-	bcdirs[i]="${ROOT}/usr/share/bash-completion/*"
++	bcdirs[i]="${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/share/bash-completion/*"
+ 
+ 	if [[ -n "${ES_BASHCOMP_DIRS}" ]] ; then
+ 		for x in ${ES_BASHCOMP_DIRS} ; do
+@@ -28,7 +28,7 @@
+ 	local bcdir="${ROOT}/${HOME}/.bash_completion.d"
+ 	
+ 	if [[ ${1} == "--global" ]] ; then
+-		bcdir="${ROOT}/etc/bash_completion.d"
++		bcdir="${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/bash_completion.d"
+ 		shift
+ 	fi
+ 
+@@ -88,7 +88,7 @@
+ 	local bc bcdir="${ROOT}/${HOME}/.bash_completion.d"
+ 
+ 	if [[ ${1} == "--global" ]] ; then
+-		bcdir="${ROOT}/etc/bash_completion.d"
++		bcdir="${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/bash_completion.d"
+ 		shift
+ 	fi
+ 
+@@ -137,9 +137,9 @@
+ 				if [[ -f ${bc} ]] ; then
+ 					file="${ROOT}/${PWD}/${bc}"
+ 				# assume /usr/share/bash-completion
+-				elif [[ -f ${ROOT}/usr/share/bash-completion/${bc} ]]
++				elif [[ -f ${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/share/bash-completion/${bc} ]]
+ 				then
+-					file="${ROOT}/usr/share/bash-completion/${bc}"
++					file="${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/share/bash-completion/${bc}"
+ 				else
+ 					if [[ -n "${ES_BASHCOMP_DIRS}" ]] ; then
+ 						for x in ${ES_BASHCOMP_DIRS} ; do
+@@ -148,7 +148,7 @@
+ 					fi
+ 
+ 					[[ -e ${file} ]] || \
+-						file="${ROOT}/usr/share/bash-completion/${bc}"
++						file="${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/share/bash-completion/${bc}"
+ 				fi
+ 				;;
+ 		esac
+@@ -191,7 +191,7 @@
+ 	local bc bcdir="${ROOT}/${HOME}/.bash_completion.d"
+ 
+ 	if [[ ${1} == "--global" ]] ; then
+-		bcdir="${ROOT}/etc/bash_completion.d"
++		bcdir="${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/bash_completion.d"
+ 		shift
+ 	fi
+ 
+--- modules/binutils.eselect
++++ modules/binutils.eselect
+@@ -9,7 +9,7 @@
+ SVN_DATE='$Date: 2007-03-28 10:35:23 -0400 (Wed, 28 Mar 2007) $'
+ VERSION=$(svn_date_to_version "${SVN_DATE}" )
+ 
+-BINUTILS_ENVFILE="${ROOT}/etc/env.d/05binutils"
++BINUTILS_ENVFILE="${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/05binutils"
+ 
+ # find_targets [patterns]
+ # find all possible targets [that match one of ${@}]
+@@ -19,7 +19,7 @@
+ 	for item in ${args} ; do
+ 		item=${item%%-[1-9]*}
+ 		[[ ${item:0:1} == '-' ]] || item=-${item}
+-		for file in ${ROOT}/etc/env.d/binutils/config${item} ; do
++		for file in ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/binutils/config${item} ; do
+ 			[[ -f ${file} ]] || continue
+ 			targets=(${targets[@]} "${file##*/config-}")
+ 		done
+@@ -34,12 +34,12 @@
+ 	local last_versions_count
+ 	for target in $(find_targets) ; do
+ 		last_version_count=${#versions[@]}
+-		for file in ${ROOT}/etc/env.d/binutils/${target}-* ; do
++		for file in ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/binutils/${target}-* ; do
+ 			[[ -f ${file} ]] || continue
+ 			versions=(${versions[@]} "${file##*/}")
+ 		done
+ 		[[ ${last_version_count} == ${#versions[@]} ]] \
+-			&& die -q "Please remove stray file: ${ROOT}/etc/env.d/binutils/config-${target}"
++			&& die -q "Please remove stray file: ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/binutils/config-${target}"
+ 	done
+ 	echo ${versions[@]}
+ }
+@@ -48,13 +48,13 @@
+ # returns true if $version is currently used
+ is_active() {
+ 	[[ ${#@} -eq 2 ]] || die "Need exactly 2 arguments!"
+-	current=$(load_config ${ROOT}/etc/env.d/binutils/config-${1} CURRENT)
++	current=$(load_config ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/binutils/config-${1} CURRENT)
+ 	[[ ${current} == ${2} ]]
+ }
+ 
+ # is_valid $profile
+ is_valid() {
+-	([[ ${#@} -eq 1 ]] && [[ -e ${ROOT}/etc/env.d/binutils/${profile} ]]) \
++	([[ ${#@} -eq 1 ]] && [[ -e ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/binutils/${profile} ]]) \
+ 		|| die "Need exactly 1 argument!"
+ 	
+ }
+@@ -65,7 +65,7 @@
+ 	# set us up
+ 	[[ ${#@} -eq 1 ]] || die "Need exactly 1 argument!"
+ 	local profile=${1##*/}
+-	local profile_file="${ROOT}/etc/env.d/binutils/${profile}"
++	local profile_file="${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/binutils/${profile}"
+ 	local target targets version binutilspath libpath chost
+ 	version=$(load_config ${profile_file} VER)
+ 	target=$(load_config ${profile_file} TARGET)
+@@ -73,55 +73,55 @@
+ 		&& die -q "Profile \"${profile}\" is already active!"
+ 	chost=$(envvar sys-devel/binutils CHOST)
+ 	libpath=$(load_config ${profile_file} LIBPATH)
+-	libpath=${libpath:-/usr/lib/binutils/${TARGET}/${VER}}
++	libpath=${libpath:-@GENTOO_PORTAGE_EPREFIX@/usr/lib/binutils/${TARGET}/${VER}}
+ 	faketargets=( $(load_config ${profile_file} FAKE_TARGETS) )
+ 
+ 	# Generate binary symlinks
+ 	echo "Switching to ${profile}..."
+-	[[ -d  "${ROOT}/usr/${target}/binutils-bin/${version}" ]] \
+-		|| die -q "Can't cd ${ROOT}/usr/${target}/binutils-bin/${version}!"
+-	mkdir -p "${ROOT}/usr/${target}/bin" \
+-		|| die -q "Can't create ${ROOT}/usr/${target}/bin!"
++	[[ -d  "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/${target}/binutils-bin/${version}" ]] \
++		|| die -q "Can't cd ${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/${target}/binutils-bin/${version}!"
++	mkdir -p "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/${target}/bin" \
++		|| die -q "Can't create ${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/${target}/bin!"
+ 	
+-	binutilspath="/usr/${target}/binutils-bin/${version}"
++	binutilspath="@GENTOO_PORTAGE_EPREFIX@/usr/${target}/binutils-bin/${version}"
+ 	for app in "${ROOT}"/${binutilspath}/* ; do
+ 		app=${app##*/}
+ 		ln -sf \
+ 			"${binutilspath}/${app}" \
+-			"${ROOT}/usr/${target}/bin/${app}" \
+-			|| die -q "Linking ${ROOT}/${binutilspath}/${app} failed!"
++			"${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/${target}/bin/${app}" \
++			|| die -q "Linking ${ROOT}@GENTOO_PORTAGE_EPREFIX@/${binutilspath}/${app} failed!"
+ 		ln -sf \
+ 			../${target}/bin/${app} \
+-			"${ROOT}/usr/bin/${target}-${app}" \
+-			|| die -q "Linking ${ROOT}/usr/bin/${target}-${app} failed!"
++			"${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${target}-${app}" \
++			|| die -q "Linking ${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${target}-${app} failed!"
+ 		for fake in ${faketargets} ; do
+-			[[ -f "${ROOT}/etc/env.d/binutils/config-${fake}" ]] \
++			[[ -f "${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/binutils/config-${fake}" ]] \
+ 				&& continue
+-			ln -sf ../${target}/bin/${app} "${ROOT}/usr/bin/${fake}-${app}"
++			ln -sf ../${target}/bin/${app} "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${fake}-${app}"
+ 		done
+ 		[[ ${chost} == ${target} ]] || continue
+ 		ln -sf \
+ 			${target}-${app} \
+-			"${ROOT}/usr/bin/${app}" \
+-			|| die -q "Linking ${ROOT}/usr/bin/${app} failed!"
++			"${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${app}" \
++			|| die -q "Linking ${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/bin/${app} failed!"
+ 	done	
+ 	
+ 	# Generate library and ldscripts symlinks
+-	mkdir -p "${ROOT}"/usr/${target}/lib
+-	rm -r "${ROOT}"/usr/${target}/lib/ldscripts
+-	ln -sf "${libpath}/ldscripts" "${ROOT}"/usr/${target}/lib/ldscripts
++	mkdir -p "${ROOT}@GENTOO_PORTAGE_EPREFIX@"/usr/${target}/lib
++	rm -r "${ROOT}@GENTOO_PORTAGE_EPREFIX@"/usr/${target}/lib/ldscripts
++	ln -sf "${libpath}/ldscripts" "${ROOT}@GENTOO_PORTAGE_EPREFIX@"/usr/${target}/lib/ldscripts
+ 	[[ ${target} == ${chost} ]] \
+-		&& dest="${ROOT}"/usr/${chost}/lib \
+-		|| dest="${ROOT}"/usr/${chost}/${target}/lib
++		&& dest="${ROOT}@GENTOO_PORTAGE_EPREFIX@"/usr/${chost}/lib \
++		|| dest="${ROOT}@GENTOO_PORTAGE_EPREFIX@"/usr/${chost}/${target}/lib
+ 	mkdir -p "${dest}"
+-	for lib in "${ROOT}"/${libpath}/lib* ; do
++	for lib in "${ROOT}@GENTOO_PORTAGE_EPREFIX@"/${libpath}/lib* ; do
+ 		ln -sf "${libpath}/${lib##*/}" "${dest}/${lib##*/}"
+ 	done
+ 
+ 	# Generate include symlink
+ 	[[ ${target} == ${chost} ]] \
+-		&& dest="${ROOT}/usr/include" \
+-		|| dest="${ROOT}/usr/${target}/include"
++		&& dest="${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/include" \
++		|| dest="${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/${target}/include"
+ 	mkdir -p "${dest}"
+ 	for inc in "${ROOT}"/${libpath}/include/* ; do
+ 		ln -sf "${inc##${ROOT}}" "${dest}/${inc##*/}"
+@@ -129,22 +129,24 @@
+ 
+ 	# Update the environment
+ 	if [[ ${target} == ${chost} ]] ; then
+-		datapath=/usr/share/binutils-date/${target}/${version}
++		datapath=@GENTOO_PORTAGE_EPREFIX@/usr/share/binutils-date/${target}/${version}
+ 		[[ -d ${datapath}/man ]] \
+ 			&& store_config ${BINUTILS_ENVFILE} MANPATH "${datapath}/man"
+ 		[[ -d ${datapath}/info ]] \
+ 			&& store_config ${BINUTILS_ENVFILE} INFOPATH "${datapath}/info"
+-		store_config ${BINUTILS_ENVFILE} LDPATH "/usr/${target}/lib"
++		store_config ${BINUTILS_ENVFILE} LDPATH "@GENTOO_PORTAGE_EPREFIX@/usr/${target}/lib"
+ 	fi
+ 
+ 	store_config \
+-		"${ROOT}"/etc/env.d/binutils/config-${target} \
++		"${ROOT}"@GENTOO_PORTAGE_EPREFIX@/etc/env.d/binutils/config-${target} \
+ 		CURRENT ${version}
+ 	if [[ ${ROOT:-/} == / ]] && [[ ${target} == ${chost} ]] ; then
+ 		do_action env update
+ 		echo "Please remember to run:"
+ 		echo
+-		echo "  # source /etc/profile"
++		echo " (bash) # source @GENTOO_PORTAGE_EPREFIX@/etc/profile"
++		echo "or"
++		echo " (tcsh) # source @GENTOO_PORTAGE_EPREFIX@/etc/csh.login"
+ 		echo
+ 		echo "in order to let changes take effect!"
+ 	fi
+@@ -168,7 +170,7 @@
+ 		[[ ${targets[@]/${target}/} == ${targets[@]} ]] \
+ 			|| write_list_start "Installed binutils for target $(highlight ${target})"
+ 		last_processed_count=${#processed[@]}
+-		for file in ${ROOT}/etc/env.d/binutils/${@:-*} ; do
++		for file in ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/binutils/${@:-*} ; do
+ 			[[ -f ${file} ]] || continue
+ 			version=${file##*/${target}-}
+ 			[[ ${version} == ${file} ]] && continue
+@@ -183,7 +185,7 @@
+ 			write_numbered_list_entry $i "${version}$(highlight "${active}")"
+ 		done
+ 		[[ ${last_processed_count} == ${#processed[@]} ]] \
+-			&& die -q "Please remove stray file: ${ROOT}/etc/env.d/binutils/config-${target}"
++			&& die -q "Please remove stray file: ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/binutils/config-${target}"
+ 	done
+ }
+ 
+@@ -217,7 +219,7 @@
+ 					continue
+ 				fi
+ 			else
+-				file=( ${ROOT}/etc/env.d/binutils/${item} )
++				file=( ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/binutils/${item} )
+ 				if [[ ${#file[@]} -gt 1 ]] ; then
+ 					fail=1
+ 					echo "Ambigious pattern: ${item}"
+@@ -247,15 +249,15 @@
+ 	[[ -n ${chost} ]] \
+ 		|| die -q "Portage returned empty CHOST!"
+ 
+-	config=${ROOT}/etc/env.d/binutils/config-${chost}
++	config=${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/binutils/config-${chost}
+ 	[[ ${#config[@]} -eq 1 ]] \
+ 		|| return
+ 	[[ -e ${config} ]] \
+ 		|| return
+ 
+-	version=$(load_config ${ROOT}/etc/env.d/binutils/config-${chost} CURRENT)
+-	[[ -e ${ROOT}/etc/env.d/binutils/${chost}-${version} ]] \
+-		|| die "File \"${ROOT}/etc/env.d/binutils/${chost}-${version}\" is missing!"
++	version=$(load_config ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/binutils/config-${chost} CURRENT)
++	[[ -e ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/binutils/${chost}-${version} ]] \
++		|| die "File \"${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/binutils/${chost}-${version}\" is missing!"
+ 
+ 	echo "${chost}-${version}"
+ }
+--- modules/env.eselect
++++ modules/env.eselect
+@@ -4,7 +4,7 @@
+ 
+ inherit config multilib
+ 
+-DESCRIPTION="Manage environment variables set in /etc/env.d/"
++DESCRIPTION="Manage environment variables set in @GENTOO_PORTAGE_EPREFIX@/etc/env.d/"
+ MAINTAINER="kugelfang@gentoo.org"
+ SVN_DATE='$Date: 2007-03-28 10:35:23 -0400 (Wed, 28 Mar 2007) $'
+ VERSION=$(svn_date_to_version "${SVN_DATE}" )
+@@ -31,10 +31,10 @@
+ MIME_WHITELIST="text/plain text/x-makefile"
+ 
+ # Configuration files
+-ENVPROFILE="${ROOT}/etc/profile.env"
+-LDCONFIG="${ROOT}/etc/ld.so.conf"
+-PRELINK="${ROOT}/etc/prelink.conf"
+-LDMTIMEDB="${ROOT}/var/lib/eselect/env/ld-mtimedb"
++ENVPROFILE="${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/profile.env"
++LDCONFIG="${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/ld.so.conf"
++PRELINK="${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/prelink.conf"
++LDMTIMEDB="${ROOT}@GENTOO_PORTAGE_EPREFIX@/var/lib/eselect/env/ld-mtimedb"
+ 
+ # Keep all stored LDPATHS
+ ESELECT_LDPATH=( )
+@@ -63,7 +63,7 @@
+ update_envvar_classes() {
+ 	local -a envfiles
+ 	local value
+-	envfiles=( ${ROOT}/etc/env.d/* )
++	envfiles=( ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/* )
+ 
+ 	for envfile in ${envfiles[@]} ; do
+ 		is_envfile ${envfile} || continue
+@@ -87,10 +87,10 @@
+ create_profile_env() {
+ 	local -a envfiles
+ 	local vars store items tmpprofile
+-	envfiles=( ${ROOT}/etc/env.d/* )
++	envfiles=( ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/* )
+ 	
+ 	# Blank the file first!
+-	tmpprofile="$(mktemp ${ROOT}/tmp/profile.XXXXXX)"
++	tmpprofile="$(mktemp ${ROOT}@GENTOO_PORTAGE_EPREFIX@/tmp/profile.XXXXXX)"
+ 	[[ $? = 0 ]] || die "Couldn't create temporary file!"
+ 
+ 	# Gather ye classes while ye may!
+@@ -166,11 +166,11 @@
+ # create_ld_so_conf()
+ # Create ld.so.conf file based upon gathered LDPATHs
+ create_ld_so_conf() {
+-	[[ -z ${ESELECT_LDPATH[@]} ]] && die -q 'No LDPATHs found in ${ROOT}/etc/env.d/*'
++	[[ -z ${ESELECT_LDPATH[@]} ]] && die -q 'No LDPATHs found in ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/*'
+ 
+ 	local str
+ 	str="# ld.so.conf autogenerated by eselect\n"
+-	str="${str}# Make all changes to /etc/env.d files\n"
++	str="${str}# Make all changes to @GENTOO_PORTAGE_EPREFIX@/etc/env.d files\n"
+ 	for x in ${ESELECT_LDPATH[@]} ; do
+ 		str="${str}${x}\n"
+ 	done
+@@ -180,13 +180,13 @@
+ # create_prelink_conf()
+ # Create prelink.conf file based upon existing profile.env
+ create_prelink_conf() {
+-	[[ -z ${ESELECT_LDPATH[@]} ]] && die -q 'No LDPATHs found in ${ROOT}/etc/env.d/*'
++	[[ -z ${ESELECT_LDPATH[@]} ]] && die -q 'No LDPATHs found in ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/env.d/*'
+ 	local str
+ 	str="# prelink.conf autogenerated by eselect\n"
+-	str="${str}# Make all changes to /etc/env.d files\n"
++	str="${str}# Make all changes to @GENTOO_PORTAGE_EPREFIX@/etc/env.d files\n"
+ 	# Add default items
+ 	for x in /bin /sbin /usr/bin /usr/sbin ; do
+-		str="${str}-l ${x}\n"	
++		str="${str}-l @GENTOO_PORTAGE_EPREFIX@${x}\n"	
+ 	done
+ 	for x in $(list_libdirs) ; do
+ 		[[ -e ${ROOT}/${x} ]] && str="${str}-l /${x}\n"
+@@ -232,18 +232,18 @@
+ update_ldcache() {
+ 	case $(uname -s) in
+ 	FreeBSD | DragonFly)
+-		echo "Regenerating ${ROOT}/var/run/ld-elf.so.hints..."
++		echo "Regenerating ${ROOT}@GENTOO_PORTAGE_EPREFIX@/var/run/ld-elf.so.hints..."
+ 		(
+-			cd /
+-			ldconfig -elf -i -f "${ROOT:-/}var/run/ld-elf.so.hints" \
+-				"${ROOT:-/}etc/ld.so.conf"
++			cd @GENTOO_PORTAGE_EPREFIX@
++			ldconfig -elf -i -f "${ROOT:-@GENTOO_PORTAGE_EPREFIX@/}var/run/ld-elf.so.hints" \
++				"${ROOT:-@GENTOO_PORTAGE_EPREFIX@/}etc/ld.so.conf"
+ 		)
+ 		;;
+ 	*)
+-		echo "Regenerating ${ROOT}/etc/ld.so.cache..."
++		echo "Regenerating ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/ld.so.cache..."
+ 		(
+-			cd /
+-			ldconfig ${1} -r ${ROOT:-/}
++			cd @GENTOO_PORTAGE_EPREFIX@
++			ldconfig ${1} -r ${ROOT:-@GENTOO_PORTAGE_EPREFIX@/}
+ 		)
+ 		;;
+ 	esac
+@@ -264,17 +264,17 @@
+ }
+ 
+ do_update() {
+-	if [[ -e ${ROOT}/etc/profile.env ]] ; then
+-		[[ -w ${ROOT}/etc/profile.env ]] \
++	if [[ -e ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/profile.env ]] ; then
++		[[ -w ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/profile.env ]] \
+ 			|| die -q "You need to be root!"
+ 	else
+-		touch ${ROOT}/etc/profile.env
++		touch ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/profile.env
+ 	fi
+ 	
+ 	# Create configuration files
+ 	create_profile_env
+ 	create_ld_so_conf
+-	[[ -e ${ROOT}/usr/sbin/prelink ]] && create_prelink_conf
++	[[ -e ${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/sbin/prelink ]] && create_prelink_conf
+ 	makelinks=$( ( need_links || [[ ${1} == makelinks ]] ) && echo "-X" )
+ 	update_ldcache ${makelinks}
+ 		
+--- modules/kernel.eselect
++++ modules/kernel.eselect
+@@ -2,21 +2,21 @@
+ # Distributed under the terms of the GNU General Public License v2
+ # $Id: kernel.eselect 367 2007-03-28 14:35:23Z pioto $
+ 
+-DESCRIPTION="Manage the /usr/src/linux symlink"
++DESCRIPTION="Manage the @GENTOO_PORTAGE_EPREFIX@/usr/src/linux symlink"
+ MAINTAINER="ciaranm@gentoo.org"
+ SVN_DATE='$Date: 2007-03-28 10:35:23 -0400 (Wed, 28 Mar 2007) $'
+ VERSION=$(svn_date_to_version "${SVN_DATE}" )
+ 
+ # find a list of kernel symlink targets
+ find_targets() {
+-	for f in ${ROOT}/usr/src/linux-[[:digit:]]* ; do
++	for f in ${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/src/linux-[[:digit:]]* ; do
+ 		[[ -d ${f} ]] && echo $(basename ${f} )
+ 	done
+ }
+ 
+ # try to remove the kernel symlink
+ remove_symlink() {
+-	rm "${ROOT}/usr/src/linux"
++	rm "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/src/linux"
+ }
+ 
+ # set the kernel symlink
+@@ -28,12 +28,12 @@
+ 	fi
+ 	if [[ -z ${target} ]] ; then
+ 		die -q "Target \"${1}\" doesn't appear to be valid!"
+-	elif [[ -d "${ROOT}/usr/src/${target}" ]] ; then
+-		pushd "${ROOT}/usr/src" 1>/dev/null
++	elif [[ -d "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/src/${target}" ]] ; then
++		pushd "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/src" 1>/dev/null
+ 		ln -s "${target}" "linux"
+ 		popd 1>/dev/null
+-	elif [[ -d "${ROOT}/usr/src/linux-${target}" ]] ; then
+-		pushd "${ROOT}/usr/src" 1>/dev/null
++	elif [[ -d "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/src/linux-${target}" ]] ; then
++		pushd "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/src" 1>/dev/null
+ 		ln -s "linux-${target}" "linux"
+ 		popd 1>/dev/null
+ 	else
+@@ -51,8 +51,8 @@
+ 	local kernel
+ 
+ 	write_list_start "Current kernel symlink:"
+-	if [[ -L "${ROOT}/usr/src/linux" ]] ; then
+-		kernel=$(canonicalise ${ROOT}/usr/src/linux )
++	if [[ -L "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/src/linux" ]] ; then
++		kernel=$(canonicalise ${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/src/linux )
+ 		write_kv_list_entry "${kernel%/}" ""
+ 	else
+ 		write_kv_list_entry "(unset)" ""
+@@ -71,7 +71,7 @@
+ 	if [[ -n ${targets[@]} ]] ; then
+ 		local i
+ 		for (( i = 0 ; i < ${#targets[@]} ; i = i + 1 )) ; do
+-			[[ ${targets[${i}]} == $(basename $(canonicalise ${ROOT}/usr/src/linux)) ]] && \
++			[[ ${targets[${i}]} == $(basename $(canonicalise ${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/src/linux)) ]] && \
+ 				targets[${i}]="${targets[${i}]} $(highlight '*' )"
+ 		done
+ 		write_numbered_list "${targets[@]}"
+@@ -99,7 +99,7 @@
+ 		# no parameter
+ 		die -q "You didn't tell me what to set the symlink to"
+ 
+-	elif [[ -L "${ROOT}/usr/src/linux" ]] ; then
++	elif [[ -L "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/src/linux" ]] ; then
+ 		# existing symlink
+ 		if ! remove_symlink ; then
+ 			die -q "Couldn't remove existing symlink"
+@@ -107,9 +107,9 @@
+ 			die -q "Couldn't set a new symlink"
+ 		fi
+ 
+-	elif [[ -e "${ROOT}/usr/src/linux" ]] ; then
++	elif [[ -e "${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/src/linux" ]] ; then
+ 		# we have something strange
+-		die -q "Sorry, ${ROOT}/usr/src/linux confuses me"
++		die -q "Sorry, ${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/src/linux confuses me"
+ 
+ 	else
+ 		set_symlink "${1}" || die -q "Couldn't set a new symlink"
+--- modules/mailer.eselect
++++ modules/mailer.eselect
+@@ -2,22 +2,22 @@
+ # Distributed under the terms of the GNU General Public License v2
+ # $Id: mailer.eselect 367 2007-03-28 14:35:23Z pioto $
+ 
+-DESCRIPTION="Manage the mailwrapper profiles in /etc/mail"
++DESCRIPTION="Manage the mailwrapper profiles in @GENTOO_PORTAGE_EPREFIX@/etc/mail"
+ MAINTAINER="slarti@gentoo.org"
+ SVN_DATE='$Date: 2007-03-28 10:35:23 -0400 (Wed, 28 Mar 2007) $'
+ VERSION=$(svn_date_to_version "${SVN_DATE}")
+ 
+ # check we have /etc/mail
+ check_dirs() {
+-	if [[ ! -d ${ROOT}/etc/mail ]] ; then
+-		die -q "/etc/mail does not exist, or is not a directory. Please fix."
++	if [[ ! -d ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/mail ]] ; then
++		die -q "@GENTOO_PORTAGE_EPREFIX@/etc/mail does not exist, or is not a directory. Please fix."
+ 	fi
+ }
+ 
+ # find a list of mailer.conf symlink targets
+ find_targets() {
+ 	check_dirs
+-	for f in ${ROOT}/etc/mail/*.mailer ; do
++	for f in ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/mail/*.mailer ; do
+ 		[[ -e ${f} ]] || continue
+ 		echo ${f##*/}
+ 	done
+@@ -26,7 +26,7 @@
+ # try to remove the mailer.conf symlink
+ remove_symlink() {
+ 	check_dirs
+-	rm "${ROOT}/etc/mail/mailer.conf"
++	rm "${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/mail/mailer.conf"
+ }
+ 
+ # set the mailer.conf symlink
+@@ -39,8 +39,8 @@
+ 	fi
+ 	if [[ -z ${target} ]] ; then
+ 		die -q "Target \"${1}\" doesn't appear to be valid!"
+-	elif [[ -f "${ROOT}/etc/mail/${target}.mailer" ]] ; then
+-		pushd "${ROOT}/etc/mail" 1>/dev/null
++	elif [[ -f "${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/mail/${target}.mailer" ]] ; then
++		pushd "${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/mail" 1>/dev/null
+ 		ln -s "${target}.mailer" "mailer.conf"
+ 		popd 1>/dev/null
+ 	else
+@@ -57,10 +57,10 @@
+ do_show() {
+ 	check_dirs
+ 	write_list_start "Current mailer.conf profile:"
+-	if [[ -L "${ROOT}/etc/mail/mailer.conf" ]] ; then
+-		profile="$(canonicalise ${ROOT}/etc/mail/mailer.conf )"
++	if [[ -L "${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/mail/mailer.conf" ]] ; then
++		profile="$(canonicalise ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/mail/mailer.conf )"
+ 		write_kv_list_entry "${profile%.mailer}" ""
+-	elif [[ -e "${ROOT}/etc/mail/mailer.conf" ]] ; then
++	elif [[ -e "${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/mail/mailer.conf" ]] ; then
+ 		write_kv_list_entry "(not a symlink)" ""
+ 	else
+ 		write_kv_list_entry "(unset)" ""
+@@ -83,7 +83,7 @@
+ 		for (( i = 0 ; i < ${#targets[@]} ; i = i + 1 )) ; do
+ 			# any more elegant way to do this?
+ 			local profile
+-			profile="$(canonicalise ${ROOT}/etc/mail/mailer.conf )"
++			profile="$(canonicalise ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/mail/mailer.conf )"
+ 			[[ ${targets[${i}]} == ${profile%.mailer} ]] && \
+ 				targets[${i}]="${targets[${i}]} $(highlight '*' )"
+ 			done
+@@ -112,16 +112,16 @@
+ 	if [[ -z ${1} ]] ; then
+ 		die -q "You didn't tell me what to set the profile to"
+ 
+-	elif [[ -L "${ROOT}/etc/mail/mailer.conf" ]] ; then
++	elif [[ -L "${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/mail/mailer.conf" ]] ; then
+ 		if ! remove_symlink ; then
+ 			die -q "Couldn't remove existing mailer.conf"
+ 		elif ! set_symlink "${1}" ; then
+ 			die -q "Couldn't set a new profile"
+ 		fi
+ 
+-	elif [[ -e "${ROOT}/etc/mail/mailer.conf" ]] ; then
++	elif [[ -e "${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/mail/mailer.conf" ]] ; then
+ 		# we have something strange
+-		die -q "Sorry, ${ROOT}/etc/mail/mailer.conf confuses me"
++		die -q "Sorry, ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/mail/mailer.conf confuses me"
+ 
+ 	else
+ 		set_symlink "${1}" || die -q "Couldn't set a new symlink"
+--- modules/profile.eselect
++++ modules/profile.eselect
+@@ -5,7 +5,7 @@
+ # This is a portage-only module.
+ inherit package-manager
+ 
+-DESCRIPTION="Manage the /etc/make.profile symlink"
++DESCRIPTION="Manage the @GENTOO_PORTAGE_EPREFIX@/etc/make.profile symlink"
+ MAINTAINER="ka0ttic@gentoo.org"
+ SVN_DATE='$Date: 2007-03-28 10:35:23 -0400 (Wed, 28 Mar 2007) $'
+ VERSION=$(svn_date_to_version "${SVN_DATE}")
+@@ -27,7 +27,7 @@
+ 
+ # remove make.profile symlink
+ remove_symlink() {
+-	rm "${ROOT}/etc/make.profile"
++	rm "${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/make.profile"
+ }
+ 
+ # set the make.profile symlink
+@@ -61,12 +61,12 @@
+ 		# we must call remove_symlink() here instead of calling
+ 		# it from do_set(), since if the link is removed, we
+ 		# cannot determine $ARCH in find_targets()
+-		if [[ -L "${ROOT}/etc/make.profile" ]] ; then
++		if [[ -L "${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/make.profile" ]] ; then
+ 			remove_symlink || \
+ 				die -q "Couldn't remove current make.profile symlink"
+ 		fi
+ 
+-		pushd "${ROOT}/etc" 1>/dev/null
++		pushd "${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc" 1>/dev/null
+ 		ln -s "../${portdir}/profiles/${target}" "make.profile"
+ 		popd 1>/dev/null
+ 	else
+@@ -82,8 +82,8 @@
+ 
+ do_show() {
+ 	write_list_start "Current make.profile symlink:"
+-	if [[ -L "${ROOT}/etc/make.profile" ]] ; then
+-		local link=$(canonicalise ${ROOT}/etc/make.profile)
++	if [[ -L "${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/make.profile" ]] ; then
++		local link=$(canonicalise ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/make.profile)
+ 		local portdir=$(portageq portdir)
+ 		link=${link##..${ROOT}/${portdir}/profiles/}
+ 		write_kv_list_entry "${link}" ""
+@@ -104,7 +104,7 @@
+ 
+ 	[[ -z "${targets}" ]] && die -q "Failed to get a list of valid profiles"
+ 
+-	active=$(canonicalise ${ROOT}/etc/make.profile)
++	active=$(canonicalise ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/make.profile)
+ 	active=${active##*profiles/}
+ 	if [[ -n ${targets[@]} ]] ; then
+ 		local i
+@@ -142,9 +142,9 @@
+ 
+ 	if [[ -z ${1} ]] ; then
+ 		die -q "You didn't tell me what to set the symlink to"
+-	elif [[ -e "${ROOT}/etc/make.profile" ]] &&
+-		[[ ! -L "${ROOT}/etc/make.profile" ]] ; then
+-		die -q "${ROOT}/etc/make.profile isn't a symlink"
++	elif [[ -e "${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/make.profile" ]] &&
++		[[ ! -L "${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/make.profile" ]] ; then
++		die -q "${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/make.profile isn't a symlink"
+ 	else
+ 		set_symlink "${1}" ${force} || die -q "Couldn't set a new symlink"
+ 	fi
+--- modules/rc.eselect
++++ modules/rc.eselect
+@@ -4,17 +4,17 @@
+ 
+ inherit config
+ 
+-DESCRIPTION="Manage /etc/init.d scripts in runlevels"
++DESCRIPTION="Manage @GENTOO_PORTAGE_EPREFIX@/etc/init.d scripts in runlevels"
+ MAINTAINER="Danny van Dyk <kugelfang@gentoo.org>"
+ SVN_DATE='$Date: 2007-03-28 10:35:23 -0400 (Wed, 28 Mar 2007) $'
+ VERSION=$(svn_date_to_version "${SVN_DATE}")
+ 
+ # default setting
+-RC_SVCDIR=/var/lib/init.d/
++RC_SVCDIR=@GENTOO_PORTAGE_EPREFIX@/var/lib/init.d/
+ 
+ # return actual rc service directory
+ rc_svcdir() {
+-	local ret=$(load_config ${ROOT}/etc/conf.d/rc svcdir)
++	local ret=$(load_config ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/conf.d/rc svcdir)
+ 	echo ${ret:-${RC_SVCDIR}}
+ }
+ 
+@@ -23,9 +23,9 @@
+ list_runlevels() {
+ 	[[ ${#@} -eq 1 ]] || return
+ 	local runlevels
+-	for x in ${ROOT}/etc/runlevels/* ; do
++	for x in ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/runlevels/* ; do
+ 		[[ -d ${x} ]] || continue
+-		[[ -L ${ROOT}/etc/runlevels/${x##*/}/${1} ]] \
++		[[ -L ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/runlevels/${x##*/}/${1} ]] \
+ 			&& runlevels=(${runlevels[@]} "${x##*/}")
+ 	done
+ 	echo -ne "${runlevels[@]}"
+@@ -43,7 +43,7 @@
+ 	[[ -e ${file} ]] \
+ 		&& [[ ${file%%.sh} == ${file} ]] \
+ 		&& [[ ${file%%\~} == ${file} ]] \
+-		&& [[ -n `grep "^#\!/sbin/runscript" ${file}` ]]
++		&& [[ -n `grep "^#\!@GENTOO_PORTAGE_EPREFIX@/sbin/runscript" ${file}` ]]
+ }
+ 
+ # find_scripts PRIVATE
+@@ -65,8 +65,8 @@
+ 	write_list_start "${1}"
+ 	shift
+ 	for script in ${@} ; do
+-		is_script ${ROOT}/etc/init.d/${script} \
+-			&& /sbin/runscript ${ROOT}/etc/init.d/${script} ${command}
++		is_script ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/init.d/${script} \
++			&& @GENTOO_PORTAGE_EPREFIX@/sbin/runscript ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/init.d/${script} ${command}
+ 	done
+ }
+ 
+@@ -90,22 +90,22 @@
+ 	[[ ${#@} -gt 0 ]] \
+ 		|| die -q "Please specify the init script to be added!"
+ 	local script=${1##*/}
+-	[[ -e ${ROOT}/etc/init.d/${script} ]] \
++	[[ -e ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/init.d/${script} ]] \
+ 		|| die -q "Please specify a valid init script!"
+ 	shift 1
+ 	local runlevels=${@:-default}
+ 	write_list_start "Adding $(highlight ${script}) to following runlevels"
+ 	for runlevel in ${runlevels} ; do
+-		if [[ ! -d ${ROOT}/etc/runlevels/${runlevel} ]] ; then
++		if [[ ! -d ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/runlevels/${runlevel} ]] ; then
+ 			write_kv_list_entry ${runlevel} "[invalid]"
+ 			continue
+ 		else
+-			if [[ -L ${ROOT}/etc/runlevels/${runlevel}/${script} ]] ; then
++			if [[ -L ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/runlevels/${runlevel}/${script} ]] ; then
+ 				write_kv_list_entry ${runlevel} "[skipped]"
+ 			else
+ 				ln -sf \
+-					${ROOT}/etc/init.d/${script} \
+-					${ROOTi}/etc/runlevels/${runlevel}/${script} \
++					${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/init.d/${script} \
++					${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/runlevels/${runlevel}/${script} \
+ 					&& write_kv_list_entry ${runlevel} "[done]" \
+ 					|| write_kv_list_entry ${runlevel} "[failed]"
+ 			fi
+@@ -133,18 +133,18 @@
+ 	[[ ${#@} -gt 0 ]] \
+ 		|| die -q "Please specify the init script to be deleted!"
+ 	local script=${1##*/}
+-	[[ -e ${ROOT}/etc/init.d/${script} ]] \
++	[[ -e ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/init.d/${script} ]] \
+ 		|| die -q "Please specify a valid init script!"
+ 	shift 1
+ 	local runlevels=${@:-default}
+ 	write_list_start "Deleting $(highlight ${script}) from following runlevels"
+ 	for runlevel  in ${runlevels} ; do
+-		if [[ ! -d ${ROOT}/etc/runlevels/${runlevel} ]] ; then
++		if [[ ! -d ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/runlevels/${runlevel} ]] ; then
+ 			write_kv_list_entry ${runlevel} "[invalid]"
+ 			continue
+ 		else
+-			if [[ -L ${ROOT}/etc/runlevels/${runlevel}/${script} ]] ; then
+-				rm ${ROOT}/etc/runlevels/${runlevel}/${script} \
++			if [[ -L ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/runlevels/${runlevel}/${script} ]] ; then
++				rm ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/runlevels/${runlevel}/${script} \
+ 					&& write_kv_list_entry ${runlevel} "[done]" \
+ 					|| write_kv_list_entry ${runlevel} "[failed]"
+ 			else
+@@ -170,11 +170,11 @@
+ 
+ do_list() {
+ 	local dir file item
+-	if [[ -n ${1} ]] && [[ -d ${ROOT}/etc/runlevels/${1} ]] ; then
+-		dir=${ROOT}/etc/runlevels/${1}
++	if [[ -n ${1} ]] && [[ -d ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/runlevels/${1} ]] ; then
++		dir=${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/runlevels/${1}
+ 		write_list_start "Init scripts to be started by runlevel $(highlight ${1})"
+ 	elif [[ -z ${1} ]] ; then
+-		dir=${ROOT}/etc/init.d
++		dir=${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/init.d
+ 		write_list_start "Available init scripts"
+ 	else
+ 		die -q "${1} is no valid runlevel!"
+@@ -199,7 +199,7 @@
+ 	local softlevel=$(< "$(rc_svcdir)"/softlevel) script stopped
+ 	local runlevel=${1:-${softlevel}}
+ 	write_list_start "Status of init scripts in runlevel $(highlight ${runlevel})"
+-	for script in $(find_scripts ${ROOT}/etc/runlevels/${runlevel}) ; do
++	for script in $(find_scripts ${ROOT}@GENTOO_PORTAGE_EPREFIX@/etc/runlevels/${runlevel}) ; do
+ 		stopped=true
+ 		for x in started starting stopping failed broken ; do
+ 			if [[ -L ${ROOT}/$(rc_svcdir)/${x}/${script} ]] ; then
