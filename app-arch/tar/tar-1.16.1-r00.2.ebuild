@@ -31,6 +31,10 @@ src_unpack() {
 			scripts/{backup,dump-remind,restore}.in \
 			|| die "sed non-GNU"
 	fi
+	cd "${T}"
+	cp "${FILESDIR}"/rmt "${T}"
+	epatch "${FILESDIR}"/rmt-prefix.patch
+	eprefixify rmt
 }
 
 src_compile() {
@@ -58,7 +62,7 @@ src_install() {
 	if [[ -z ${p} ]] ; then
 		# a nasty yet required piece of baggage
 		exeinto /etc
-		doexe "${FILESDIR}"/rmt || die
+		doexe "${T}"/rmt || die
 	fi
 
 	# autoconf looks for this, so in prefix, make sure it is there
