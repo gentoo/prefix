@@ -319,9 +319,12 @@ _tc_gen_usr_ldscript() {
 	for lib in "$@" ; do
 		case ${CHOST} in
 		*-darwin*|*-aix*|*-irix*)
-			ewarn "Not creating fake dynamic library for $lib;"
-			ewarn "making a symlink instead."
-			dosym "/${libdir}/${lib}" "/usr/${libdir}/${lib}"
+			# we don't have GNU binutils on these platforms, so we symlink
+			# instead, which seems to work fine.  Keep it relative, otherwise
+			# we break some QA checks in Portage
+			pushd "${ED}/usr/${libdir}" > /dev/null
+			ln -snf "../../${libdir}/${lib}" "${lib}"
+			popd > /dev/null
 			;;
 		*)	
 			cat > "${ED}/usr/${libdir}/${lib}" <<-END_LDSCRIPT
