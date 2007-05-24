@@ -60,7 +60,12 @@ src_install() {
 	# for NFS based /usr
 	into /
 	dolib libz$(get_libname ${PV})
-	( cd "${ED}"/$(get_libdir) ; chmod 755 libz.so.* libz.*.dylib )
+	(
+		cd "${ED}"/$(get_libdir)
+		[[ ${CHOST} == *-darwin* ]] \
+			|| chmod 755 libz.so.* \
+			&& chmod 755 libz.*.dylib
+	)
 	dosym libz$(get_libname ${PV}) /$(get_libdir)/libz$(get_libname)
 	dosym libz$(get_libname ${PV}) /$(get_libdir)/libz$(get_libname 1)
 	gen_usr_ldscript libz$(get_libname)
