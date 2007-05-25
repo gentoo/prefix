@@ -108,6 +108,10 @@ bootstrap_setup() {
 			profile="${PORTDIR}/profiles/default-prefix/linux/ia64"
 			keywords="~ia64 ia64"
 			;;
+		sparc-sun-solaris2.9)
+			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.9/sparc"
+			keywords="~sparc-solaris sparc-solaris"
+			;;
 		i386-pc-solaris2.10)
 			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.10/x86"
 			keywords="~x86-solaris x86-solaris"
