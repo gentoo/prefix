@@ -1,0 +1,5 @@
+ARCH=sparc
+CHOST="sparc-sun-solaris2.9"
+ACCEPT_KEYWORDS="sparc-solaris"
+USE="sparc-solaris"
+
