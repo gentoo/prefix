@@ -1,6 +1,22 @@
 # ChangeLog for x11-wm/fluxbox
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.214 2007/05/07 15:22:25 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.216 2007/05/14 21:23:18 lack Exp $
+
+*fluxbox-1.0_rc3-r2 (14 May 2007)
+
+  14 May 2007; Jim Ramsay <lack@gentoo.org>
+  -files/0.9.13/fluxbox-0.9.13-4023-overlapping-icons-are-bad-92915.patch,
+  -files/0.9.13/fluxbox-0.9.13-our-styles-go-over-here.patch,
+  -files/1.0_rc1/fluxbox-1.0_rc1-our-styles-go-over-here.patch,
+  -files/1.0_rc2/fluxbox-1.0_rc2-our-styles-go-over-here.patch,
+  +files/1.0_rc3/fluxbox-1.0_rc3-flicker.patch,
+  +files/1.0_rc3/fluxbox-1.0_rc3-generate_menu_icon_fix.patch,
+  +fluxbox-1.0_rc3-r2.ebuild:
+  Added patch from upstream to fix bug 176476.  Also removed some old unneeded
+  patches
+
+  14 May 2007; Raúl Porcel <armin76@gentoo.org> fluxbox-1.0_rc3.ebuild:
+  alpha stable wrt # 167117
 
 *fluxbox-1.0_rc3-r1 (07 May 2007)
 
