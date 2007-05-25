@@ -1,0 +1,4 @@
+ARCH=x86
+CHOST="i586-pc-interix5.2"
+ACCEPT_KEYWORDS="x86-interix"
+USE="x86-interix"

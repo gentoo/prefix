@@ -2,6 +2,17 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 May 2007; Fabian Groffen <grobian@gentoo.org> use.mask, +windows,
+  +windows/interix, +windows/interix/3.5,
+  +windows/interix/3.5/package.provided, +windows/interix/3.5/x86,
+  +windows/interix/3.5/x86/make.defaults, +windows/interix/5.2,
+  +windows/interix/5.2/package.provided, +windows/interix/5.2/parent,
+  +windows/interix/5.2/x86, +windows/interix/5.2/x86/make.defaults,
+  +windows/interix/5.2/x86/parent, +windows/interix/make.defaults,
+  +windows/interix/parent, +windows/interix/use.mask,
+  +windows/interix/virtuals, +windows/parent:
+  Add initial Windows/Interix profile
+
   25 May 2007; Fabian Groffen <grobian@gentoo.org> sunos/package.mask:
   Remove mask for no longer existing version of Portage.
 

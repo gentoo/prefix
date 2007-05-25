@@ -1,0 +1,42 @@
+# Re-add Interix libc
+-elibc_Interix
+-kernel_Interix
+-userland_Interix
+
+# these will more than likely never work on Interix
+3dfx
+3dnow
+3dnowext
+acpi
+alsa
+apm
+cap
+caps
+directfb
+divx4linux
+djbfft
+emul-linux-x86
+fbcon
+fdftk
+fmod
+ggi
+gpm
+hardened
+icc
+icc-pgo
+mmx
+mmx2
+on-the-fly-crypt  # requires device-mapper
+oss
+solid
+sse
+sse2
+svga
+sybase
+sybase-ct
+rtc
+uclibc
+voodoo3
+pvm
+v4l
+v4l2

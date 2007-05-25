@@ -1,0 +1,15 @@
+# Copyright 1999-2007 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+# System-wide defaults for all Interix profiles
+# This file should rarely need to be changed
+
+# 'Sane' defaults
+ELIBC="Interix"
+KERNEL="Interix"
+
+# This one should eventually go
+USERLAND="Interix"
+
+# Sandbox is not ported to Interix yet, no scanelf
+FEATURES="-sandbox nostrip"

@@ -5,15 +5,18 @@ elibc_Darwin
 elibc_SunOS
 elibc_AIX
 elibc_IRIX
+elibc_Interix
 
 kernel_linux
 kernel_Darwin
 kernel_SunOS
 kernel_AIX
 kernel_IRIX
+kernel_Interix
 
 userland_GNU
 userland_Darwin
 userland_Solaris
 userland_AIX
 userland_IRIX
+userland_Interix
