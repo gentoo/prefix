@@ -167,10 +167,16 @@ bootstrap_tree() {
 
 bootstrap_startscript() {
 	theshell=${SHELL##*/}
+	if [[ ${theshell} == "sh" ]] ; then
+		einfo "sh is a prehistoric shell not available in Gentoo, switching to bash instead."
+		theshell="bash"
+	fi
 	einfo "Trying to emerge the shell you use, if necessary by running:"
 	einfo "emerge -u ${theshell}"
-	emerge -u ${theshell} || \
-		die "Your shell is not available in portage, hence we cannot automate starting your prefix"
+	if ! emerge -u ${theshell} ; then
+		eerror "Your shell is not available in portage, hence we cannot automate starting your prefix" > /dev/stderr
+		exit -1
+	fi
 	einfo "Creating the Prefix start script (startprefix)"
 	# currently I think right into the prefix is the best location, as
 	# putting it in /bin or /usr/bin just hides it some more for the
