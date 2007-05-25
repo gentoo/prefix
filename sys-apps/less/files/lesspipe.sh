@@ -127,6 +127,7 @@ lesspipe() {
 	*.flac)       metaflac --list "$1" ;;
 	*.iso)        isoinfo -d -i "$1" ; isoinfo -l -i "$1" ;;
 	*.bin|*.cue)  cd-info --no-header --no-device-info "$1" ;;
+	*.torrent)    torrentinfo-console "$1" ;;
 
 	### Source code ###
 	*.awk|*.groff|*.java|*.js|*.m4|*.php|*.pl|*.pm|*.pod|*.sh|\
@@ -193,7 +194,7 @@ if [[ -z $1 ]] ; then
 	echo "Usage: lesspipe.sh <file>"
 elif [[ $1 == "-V" ]] ; then
 	Id="cvsid"
-	cvsid="$Id: lesspipe.sh,v 1.21 2007/01/18 03:06:58 vapier Exp $"
+	cvsid="$Id: lesspipe.sh,v 1.22 2007/04/24 07:40:31 vapier Exp $"
 	cat <<-EOF
 		$cvsid
 		Copyright 2001-2006 Gentoo Foundation
