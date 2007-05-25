@@ -84,12 +84,12 @@ bootstrap_setup() {
 	local keywords=""
 	einfo "setting up some guessed defaults"
 	case ${CHOST} in
-		powerpc-apple-darwin8)
-			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.4/ppc"
-			keywords="~ppc-macos ppc-macos"
-			;;
 		powerpc-apple-darwin7)
 			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.3"
+			keywords="~ppc-macos ppc-macos"
+			;;
+		powerpc-apple-darwin8)
+			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.4/ppc"
 			keywords="~ppc-macos ppc-macos"
 			;;
 		i*86-apple-darwin8)
@@ -127,6 +127,10 @@ bootstrap_setup() {
 		mips-sgi-irix*)
 			profile="${PORTDIR}/profiles/default-prefix/irix/${CHOST#mips-sgi-irix}/mips"
 			keywords="~mips-irix mips-irix"
+			;;
+		i586-pc-interix*)
+			profile="${PORTDIR}/profiles/default-prefix/windows/interix/${CHOST#i586-pc-interix}/x86"
+			keywords="~x86-interix x86-interix"
 			;;
 		*)	
 			einfo "You need to set up a make.profile symlink to a"
@@ -511,6 +515,14 @@ then
 				CHOST="mips-sgi-irix`uname -r`"
 				# make needs to know it is gmake
 				MAKE=gmake
+				;;
+			Interix)
+				case `uname -m` in
+					x86) CHOST="i586-pc-interix`uname -r`" ;;
+					*) eerror "Can't deal (yet) with interix `uname -m`"
+					   exit 1
+					;;
+				esac
 				;;
 			*)
 				eerror "Nothing known about platform `uname -s`."
