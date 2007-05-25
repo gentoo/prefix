@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/zlib-1.2.3-r1.ebuild,v 1.10 2006/11/01 22:38:20 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/zlib-1.2.3-r1.ebuild,v 1.12 2007/05/14 23:51:14 vapier Exp $
 
 EAPI="prefix"
 
@@ -10,10 +10,11 @@ DESCRIPTION="Standard (de)compression library"
 HOMEPAGE="http://www.zlib.net/"
 SRC_URI="http://www.gzip.org/zlib/${P}.tar.bz2
 	http://www.zlib.net/${P}.tar.bz2"
+KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 
 LICENSE="ZLIB"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+
 IUSE="build"
 
 RDEPEND=""
@@ -45,12 +46,10 @@ src_install() {
 	insinto /usr/include
 	doins zconf.h zlib.h
 
-	if ! use build ; then
-		doman zlib.3
-		dodoc FAQ README ChangeLog
-		docinto txt
-		dodoc algorithm.txt
-	fi
+	doman zlib.3
+	dodoc FAQ README ChangeLog
+	docinto txt
+	dodoc algorithm.txt
 
 	# we don't need the static lib in /lib
 	# as it's only for compiling against
