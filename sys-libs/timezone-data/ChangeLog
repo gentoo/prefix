@@ -1,6 +1,34 @@
 # ChangeLog for sys-libs/timezone-data
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.73 2007/05/08 00:01:21 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.81 2007/05/14 17:18:09 armin76 Exp $
+
+  14 May 2007; Raúl Porcel <armin76@gentoo.org> timezone-data-2007e.ebuild:
+  alpha stable wrt #177948
+
+  13 May 2007; nixnut <nixnut@gentoo.org> timezone-data-2007d.ebuild:
+  Stable on ppc wrt bug 177948
+
+  12 May 2007; Markus Rothe <corsair@gentoo.org> timezone-data-2007d.ebuild,
+  timezone-data-2007e.ebuild:
+  Stable on ppc64; bug #177948
+
+  12 May 2007; Steve Dibb <beandog@gentoo.org> timezone-data-2007d.ebuild,
+  timezone-data-2007e.ebuild:
+  amd64 stable, bug 177948
+
+  11 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  timezone-data-2007e.ebuild:
+  Stable on sparc wrt #177948
+
+  11 May 2007; Raúl Porcel <armin76@gentoo.org> timezone-data-2007e.ebuild:
+  ia64 + x86 stable wrt #177948
+
+  11 May 2007; Joshua Kinard <kumba@gentoo.org> timezone-data-2007d.ebuild:
+  Stable on mips.
+
+  11 May 2007; Jeroen Roovers <jer@gentoo.org> timezone-data-2007d.ebuild,
+  timezone-data-2007e.ebuild:
+  Stable for HPPA (bug #177948).
 
 *timezone-data-2007f (08 May 2007)
 
