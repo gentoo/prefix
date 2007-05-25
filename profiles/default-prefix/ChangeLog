@@ -2,6 +2,9 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 May 2007; Fabian Groffen <grobian@gentoo.org> sunos/package.mask:
+  Mask portage-2.1.27.6600 on Solaris as pty is non-existant there
+
   04 May 2007; Fabian Groffen <grobian@gentoo.org> linux/x86/package.mask:
   Remove mask for openssl on x86, the cause has been found and a fix checked in
 

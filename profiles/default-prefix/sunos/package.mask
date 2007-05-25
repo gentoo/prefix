@@ -1,4 +1,8 @@
 
+# Fabian Groffen <grobian@gentoo.org> (25 May 2007)
+# We don't have pty on Solaris, and Portage uses it
+=sys-apps/portage-2.1.27.6600
+
 # Fabian Groffen <grobian@gentoo.org> (04 Apr 2007)
 # Don't use this, it is only provided for experimentation.
 sys-devel/native-cctools
