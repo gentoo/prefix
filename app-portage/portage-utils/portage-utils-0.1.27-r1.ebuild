@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/portage-utils-0.1.23.ebuild,v 1.12 2007/02/11 09:52:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/portage-utils-0.1.27-r1.ebuild,v 1.2 2007/05/24 16:20:25 solar Exp $
 
 EAPI="prefix"
 
-inherit eutils toolchain-funcs
+inherit toolchain-funcs eutils
 
 DESCRIPTION="small and fast portage helper tools written in C"
 HOMEPAGE="http://www.gentoo.org/"
@@ -18,16 +18,20 @@ IUSE=""
 DEPEND=""
 
 src_unpack() {
-	unpack ${A}
-	cd "${S}"
+	unpack "${A}"
+	cd "${S}" || die
 	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify main.c
 }
 
+src_unpack() {
+	unpack ${A}
+	cd ${S}
+	epatch "${FILESDIR}"/makefile.patch
+}
+
 src_compile() {
 	tc-export CC
-	#use python && export PYTHON=1
-	unset PYTHON
 	emake || die
 }
 
