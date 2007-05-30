@@ -26,6 +26,8 @@ ppcsha1
 # mips arch specific USE flags
 n32
 n64
+ip28
+ip32r10k
 
 # ppc64 arch specific USE flags
 ibm

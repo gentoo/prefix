@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7246 2007/05/10 16:41:31 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7313 2007/05/29 19:43:35 wltjr Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -21,6 +21,165 @@
 ##   End example
 ##
 
+# Samuli Suominen <drac@gentoo.org> (27 May 2007)
+# Orphaned library which was used for Xfce 4.2.
+# Masked for removal in 30 days unless someone
+# wants to take over maintainership from xfce.
+dev-libs/dbh
+
+# Alexis Ballier <aballier@gentoo.org> (26 May 2007)
+# New major release, camlp4 has lots of api chages
+# Thus it breaks lots of ocaml packages
+# Other things that needs to be checked : hardened, hppa
+# Also mask apps that strictly depend on it
+>=dev-lang/ocaml-3.10.0
+>=dev-ml/ulex-1.0
+>=dev-ml/ocamlduce-3.10.0
+
+# Luca Barbato <lu_zero@gentoo.org> (26 May 2007)
+# Temp mask for ffmpeg
+=media-video/ffmpeg-0.4.9_p20070525
+
+# Andrej Kacian <ticho@gentoo.org> (26 May 2007)
+# Use mail-client/claws-mail - upstream changed application name after 2.6.0.
+mail-client/sylpheed-claws
+
+# Zac Medico <zmedico@gentoo.org> (25 May 2007)
+# Bug #179766, USE="-*" destroys USE_EXPAND variables
+=sys-apps/portage-2.1.2.8
+
+# Alon Bar-Lev <alonbl@gentoo.org> (24 May 2007)
+# Masked for removal as per bug #159586
+# Please switch to sys-apps/915resolution.
+sys-apps/855resolution
+
+# Petteri Räty <betelgeuse@gentoo.org> (24 May 2007)
+# Doesn't compile atm. See https://bugs.gentoo.org/show_bug.cgi?id=164074
+# for more details.
+=app-text/jasperreports-1.0.1
+
+# Benedikt Böhm <hollow@gentoo.org> (23 May 2007)
+# masked for removal as per #114453
+net-www/mod_auth_ldap
+
+# Seemant Kulleen <seemant@gentoo.org> (23 May 2007)
+# Masked because 1.2.1 because it is broken
+=net-wireless/ipw3945-1.2.1
+
+# Paul Varner <fuzzyray@gentoo.org> (21 May 2007)
+# Masked for echangelog testing
+=app-portage/gentoolkit-dev-0.2.6.5
+=app-portage/gentoolkit-dev-0.2.6.6
+
+# Benedikt Böhm <hollow@gentoo.org> (22 May 2007)
+# new version with experimental cmake patch for testing
+=dev-libs/xmlrpc-c-1.10.00
+
+# Stefan Briesenick <sbriesen@gentoo.org> (21 May 2007)
+# due to popular wish in portage, but this driver seems
+# to crash on recent kernels. If you like to test it,
+# just unmask it locally.
+=net-wireless/fwlanusb-1.00.00_rc1
+
+# Stefan Briesenick <sbriesen@gentoo.org> (21 May 2007)
+# included in vanilla kernels since 2.6.19
+# Pending removal 20 June 2007
+net-wireless/mcs7780
+
+# Petteri Räty <betelgeuse@gentoo.org> (19 May 2007)
+# Time for the binary ebuild to go as nothing is using it
+# any more. Please use dev-java/sun-javamail instead.
+dev-java/sun-javamail-bin
+
+# Raúl Porcel <armin76@gentoo.org> (18 May 2007)
+# For treecleaners, bug 102174
+# Pending removal 17 Jul 2007
+www-servers/boa
+
+# Robin H. Johnson <robbat2@gentoo.org> (18 May 2007)
+# Pre-release of 2.0 series
+=dev-ruby/capistrano-1.99*
+
+# Chris Gianelloni <wolf31o2@gentoo.org> (17 May 2007)
+# Masked for removal,  See bug #169546 for more information.  Will be removed on
+# 17 Jun 2007.
+games-fps/unreal-tounrament-infiltration
+
+# Marijn Schouten <hkBst@gentoo.org> (14 May 2007)
+# masked for removal, use >=dev-scheme/drscheme-360-r2
+# without X use flag instead
+dev-scheme/mzscheme
+
+# Carsten Lohrke <carlo@gentoo.org> (15 May 2007)
+# Masked for removal unless someone picks up these packages. See Bug #177782.
+app-office/khacc
+app-office/qhacc
+
+# Marijn Schouten <hkBst@gentoo.org> (14 May 2007)
+# development version
+=media-sound/lilypond-2.11*
+
+# Roy Marples <uberlord@gentoo.org> (14 May 2007)
+# debianutils-2.18 requires update-grub which vanilla grub does not supply
+# See bug #177576
+=sys-apps/debianutils-2.18
+
+# Ulrich Mueller <ulm@gentoo.org> (13 May 2007)
+# Live CVS ebuilds for Emacs
+~app-editors/emacs-cvs-22.0.9999
+~app-editors/emacs-cvs-22.1.50
+>=app-editors/emacs-cvs-23
+>=virtual/emacs-23
+
+# Christian Faulhammer <opfer@gentoo.org> (13 May 2007)
+# removal on 14 Jun 2007
+# functionality provided in >=app-emacs/auctex-11.80
+dev-tex/preview-latex
+
+# Ryan Hill <dirtyepic@gentoo.org> (13 May 2007)
+#   Mask for testing.
+=net-fs/sfs-0.8.0_pre20070512
+
+# Luis Araujo <araujo@gentoo.org> (12 May 2007)
+# Keep Himerge masked because it depends on ghc-6.6
+app-portage/himerge
+
+# Luca Longinotti <chtekk@gentoo.org> (12 May 2007)
+# Apache 1.X and stuff only used by it
+=net-www/apache-1*
+net-www/gentoo-webroot-default
+net-www/lingerd
+# Apache 1.X modules: packages supporting both Apache 1.X and 2.X
+# (mask the 1.X versions)
+=dev-python/mod_python-2.7*
+=net-www/mod_auth_external-2.1*
+=net-www/mod_auth_pgsql-0.9*
+=net-www/mod_layout-3.2*
+=net-www/mod_limitipconn-0.04*
+=net-www/mod_loopback-1.04*
+=net-www/mod_roaming-1.0*
+=net-www/mod_watch-3.18*
+=www-apache/mod_macro-1.1.2*
+=www-apache/mod_perl-1*
+# Apache 1.X modules: packages supporting only Apache 1.X
+net-www/mod_bandwidth
+net-www/mod_dav
+net-www/mod_gzip
+net-www/mod_mp3
+net-www/mod_ssl
+net-www/mod_throttle
+www-apache/mod_backhand
+www-apache/mod_lisp
+# Other packages depending on Apache 1.X
+=dev-lisp/cl-imho-1.3.2
+=dev-lisp/cl-modlisp-0.6
+=dev-lisp/cl-tbnl-0.8.9
+=dev-perl/AxKit-1.6-r2
+www-misc/libapreq
+# Other packages depending on libapreq
+=dev-perl/HTML-Mason-1.26
+=www-apps/Apache-Gallery-0.6
+
 # Doug Goldstein <cardoe@gentoo.org< (10 May 2007)
 # package does not compile complains of missing pygtk when
 # --disable-pygtk was passed to econf
@@ -35,7 +194,7 @@
 
 # Gustavo Felisberto <humpback@gentoo.org> (7 may 2007)
 # Alpha software.
-=net-im/skype-1.4.0.58_alpha
+>=net-im/skype-1.4.0
 
 # George Shapovalov (7 May 2007)
 # masked old style ( non split and problematic) gnat compiler
@@ -105,10 +264,6 @@ dev-java/sun-xws-security-bin
 # Generation 1 ebuild with stale upstream
 dev-java/violinstrings
 
-# Benedikt Böhm <hollow@gentoo.org> (3 May 2007)
-# pre release for new SSP stuff; please test
-=dev-libs/dietlibc-0.31_pre20070503
-
 # Daniel Gryniewicz <dang@gentoo.org> (3 May 2007)
 # It's now part of gnome-utils; bug #176864
 app-misc/baobab
@@ -130,16 +285,6 @@ x11-misc/login-app
 # Christian Parpart <trapni@gentoo.org> (01 May 2007)
 # Masked for testing.
 =www-apps/mediawiki-1.10.0_rc1
-
-# Vlastimil Babka <caster@gentoo.org> (30 Apr 2007)
-# Fetch-restricted binary library that nothing in tree uses, upstream
-# unsupported (EOL). Will be removed into java junkyard around 30 May.
-dev-java/infobus-bin
-
-# Vlastimil Babka <caster@gentoo.org> (30 Apr 2007)
-# Stale upstream (since 2002), -bin library that nothing in tree uses
-# so it's not needed. Will be removed into java junkyard around 30 May.
-dev-java/dbconnectionbroker-bin
 
 # Petteri Räty <betelgeuse@gentoo.org> (30 Apr 2007)
 # Please use the Eclipse update manager to install these.
@@ -171,79 +316,10 @@ app-pda/plucker
 #  Masked for removal May 29, 2007
 dev-ruby/wxruby
 
-# William L. Thomson Jr <wltjr@gentoo.org> (28 Apr 2007)
-# Stale package last release in March, 2005
-# Will be moved to junkyard in 30 days Please contact
-# java@gentoo.org if you need or use this package
-media-sound/jsynthlib
-
-# William L. Thomson Jr <wltjr@gentoo.org> (28 Apr 2007)
-# Stale package last release in April 26, 2003
-# Will be moved to junkyard in 30 days Please contact
-# java@gentoo.org if you need or use this package
-net-libs/jaimlib
-
-# Krzysiek Pawlik <nelchael@gentoo.org> (28 Apr 2007)
-# Package uses generation 1 eclasses and has stale upstream.
-# It will be removed from the tree around end of May.
-dev-java/qat
-
-# Vlastimil Babka <caster@gentoo.org> (28 Apr 2007)
-# Unused generation-1 fetch restricted binary libraries.
-# Will be moved to junkyard around 28 May.
-dev-java/sun-connector-bin
-dev-java/sun-dsml-bin
-dev-java/sun-ejb-spec
-
-# William L. Thomson Jr <wltjr@gentoo.org> (28 Apr 2007)
-# Stale package last release in September 24, 2004
-# Will be moved to junkyard in 30 days Please contact
-# java@gentoo.org if you need or use this package
-dev-util/j
-
-# Vlastimil Babka <caster@gentoo.org> (28 Apr 2007)
-# Stale upstream, library that nothing in tree uses
-# so it's not needed. Will be removed around 28 May.
-# Generation 2 revision is in the java-overlay.
-dev-java/jmbus
-
-# Vlastimil Babka <caster@gentoo.org> (28 Apr 2007)
-# Eclipse version slots below 3.2.1 are obsolete ebuilds,
-# please install 3.2.1-r1 instead. Contact java@gentoo.org
-# in case you still need the old version for some reason.
-<dev-util/eclipse-sdk-3.2.1
-
-# Vlastimil Babka <caster@gentoo.org> (28 Apr 2007)
-# Still generation 1 and stale upstream, library that
-# nothing in tree uses so it's not needed. Will be
-# removed around 28 May. Generation 2 revision is in
-# the java-overlay.
-dev-java/joscar
-
-# Krzysiek Pawlik <nelchael@gentoo.org> (28 Apr 2007)
-# Package uses generation 1 eclasses and has stale upstream.
-# For JS use dev-java/rhino.
-# It will be removed from the tree around end of May.
-dev-java/fesi
-
-# Krzysiek Pawlik <nelchael@gentoo.org> (28 Apr 2007)
-# Package uses generation 1 eclasses and has stale upstream.
-# It will be removed from the tree around end of May.
-dev-java/nice
-
-# Krzysiek Pawlik <nelchael@gentoo.org> (27 Apr 2007)
-# Mask binary-only version of jcs, please use dev-java/jcs,
-# will be removed from the tree around end of May.
-dev-java/jcs-bin
-
 # Bryan Stine <battousai@gentoo.org> (26 Apr 2007)
 # Masked until it works with current baselayout and
 # application locations.
 app-admin/bastille
-
-# Ulrich Mueller <ulm@gentoo.org> (26 Apr 2007)
-# Live ebuild for the Emacs 22 CVS trunk
-~app-editors/emacs-cvs-22.1.50
 
 # Petteri Räty <betelgeuse@gentoo.org> (25 Apr 2007)
 # TLS support is included in the JDK since 1.4. If you want
@@ -256,28 +332,11 @@ dev-java/puretls
 # https://bugs.gentoo.org/show_bug.cgi?id=115079
 games-rpg/openrpg
 
-# Paul Varner <fuzzyray@gentoo.org> (25 Apr 2007)
-# Masked for echangelog testing
-=app-portage/gentoolkit-dev-0.2.6.5
-
 # Alistair Bush <ali_bush@gentoo.org> (25 Apr 2007)
 # Masked for removal to junkyard in 30 Days.
 # Package uses generation 1 eclasses and has stale upstream.
 # Contact gentoo-java ml to save this package.
 dev-java/makeme
-
-# Christian Faulhammer <opfer@gentoo.org> (24 Apr 2007)
-# removal on 24 May 2007
-# broken, upstream dead
-app-emacs/cdi
-# they do regular releases, so no live ebuild needed
-app-emacs/erc-cvs
-
-# Alistair Bush <ali_bush@gentoo.org> (22 Apr 2007)
-# Masked for removal to junkyard in 30 days
-# Generation 1 package with stale (2004) upstream.
-# Save this package by contacting the gentoo-java ml.
-dev-java/systray4j
 
 # Andrej Kacian <ticho@gentoo.org> (20 Apr 2007)
 # Support dropped by upstream, buggy, likely to cause data loss.
@@ -302,14 +361,6 @@ media-libs/libdca
 # - No upstream releases since Oct '05
 media-gfx/graphicsmagick
 
-# Alin Năstac <mrness@gentoo.org> (17 Apr 2007)
-# Pending for removal on 17 May 2007
-# Reasons:
-#    - all keywords are -arch (except for x86)
-#    - source has numerous QA violations
-#    - unmaintained for years
-net-dialup/slirp
-
 # Chris Gianelloni <wolf31o2@gentoo.org> (16 Apr 2007)
 # Masked for removal on 16 May 2007, per bug #174763
 games-arcade/ddrmat
@@ -318,27 +369,11 @@ games-arcade/ddrmat
 # Masked as it segfaults and fails with our scripts, #174693.
 =net-wireless/wireless-tools-29_pre17
 
-# Alin Năstac <mrness@gentoo.org> (15 Apr 2007)
-# Pending for removal on 15 May 2007
-# Kernel versions >2.4 have PPPoE support
-net-dialup/pppoed
-
-# Samuli Suominen <drac@gentoo.org> (15 Apr 2007)
-# Using deprecated gdk functions from imlib.
-# Masked for removal in 30 days. See bug #166009.
-# Use gqview or mirage instead.
-media-gfx/qiv
-
 # Mike Kelly <pioto@gentoo.org> (14 Apr 2007)
 # A modified version of app-vim/doxygen-syntax-1.15 is already included in
 # vim7, no point in keeping this around. See Bug #174637. Scheduled for
 # removal in 30 days.
 app-vim/doxygen-syntax
-
-# Hans de Graaff <graaff@gentoo.org> (13 Apr 2007)
-# ruby development is no longer taking place in CVS, leaving ruby-cvs broken
-# An initial ruby-svn ebuild is in bug 173817.
-dev-lang/ruby-cvs
 
 # Petteri Räty <betelgeuse@gentoo.org> (13 Apr 2007)
 # Use dev-java/jdbc-postgresql instead. If you need the 7.3*
@@ -349,23 +384,6 @@ dev-java/jdbc3-postgresql
 # Markus Ullmann <jokey@gentoo.org> (12 Apr 2007)
 # mask for security bug #170569
 net-analyzer/netperf
-
-# Andrej Kacian <ticho@gentoo.org> (12 Apr 2007)
-# Mask pending removal, sylpheed-claws -> claws-mail migration.
-mail-client/sylpheed-claws-acpi-notifier
-mail-client/sylpheed-claws-att-remover
-mail-client/sylpheed-claws-cachesaver
-mail-client/sylpheed-claws-etpan-privacy
-mail-client/sylpheed-claws-fetchinfo
-mail-client/sylpheed-claws-gtkhtml
-mail-client/sylpheed-claws-maildir
-mail-client/sylpheed-claws-mailmbox
-mail-client/sylpheed-claws-newmail
-mail-client/sylpheed-claws-notification
-mail-client/sylpheed-claws-perl
-mail-client/sylpheed-claws-rssyl
-mail-client/sylpheed-claws-smime
-mail-client/sylpheed-claws-vcalendar
 
 # Jeffrey Gardner <je_fro@gentoo.org> (10 Apr 2007)
 # Initial import of experimental folding@home client.
@@ -384,13 +402,6 @@ app-misc/jive
 app-text/mgv
 net-misc/dhcp-agent
 x11-plugins/wmmail
-
-# Petteri Räty <betelgeuse@gentoo.org> (08 Apr 2007)
-# Still generation 1 and we are one major version behind
-# 30 days and in junkyard unless someone expresses a need
-# for this package. Do it in:
-# https://bugs.gentoo.org/show_bug.cgi?id=157427
-dev-db/c-jdbc
 
 # Benedikt Böhm <hollow@gentoo.org> (07 Apr 2007)
 # masked for testing
@@ -476,22 +487,9 @@ app-pda/libopensync-plugin-synce
 dev-util/jcvs
 dev-java/j2ssh
 
-# <falco@gentoo.org> (26 Mar 2007)
-# Masked for security issues #153495 together with
-# <=mpiexec-0.75 which depends on it.
-# Use sys-cluster/torque as a replacement
-sys-cluster/openpbs
-<=sys-cluster/mpiexec-0.75
-
 # Stefan Schweizer <genstef@gentoo.org> (25 Mar 2007)
 # Please use modular Xorg now
 virtual/x11
-
-# Samuli Suominen <drac@gentoo.org> (25 Mar 2007)
-# Snapshots introducing compatibility with freedesktop.org
-# Desktop Menu Specification. Masked for testing.
-xfce-base/libxfce4menu
-=xfce-base/xfdesktop-4.5*
 
 # Mike Doty <kingtaco@gentoo.org> (24 Mar 2007)
 # Sorting out media-video/{spca5xx,gspca{,v1}} bug 159176
@@ -599,18 +597,6 @@ games-puzzle/pingus
 # http://bugs.gentoo.org/show_bug.cgi?id=168792
 games-arcade/stepmania
 
-# Raúl Porcel <armin76@gentoo.org> (19 Mar 2007)
-# Pending removal 18 May 2007, for treecleaners
-# Bug 150966, doesn't work with gcc4 and no new version for 4+ years
-www-servers/plb
-
-# Raúl Porcel <armin76@gentoo.org> (18 Mar 2007)
-# Pending removal 17 May 2007, for treecleaners
-# www-servers/ncsa-httpd -> bug 122134
-# net-im/aim-transport -> bug 145858
-www-servers/ncsa-httpd
-net-im/aim-transport
-
 # Lennart Kolmodin <kolmodin@gentoo.org> (16 Mar 2007)
 # Mask ghc-bin for testing.
 # See bug bug 151012
@@ -653,21 +639,11 @@ net-im/aim-transport
 # Mask for removal. Use app-text/hyperestraier, bug 168179
 app-text/estraier
 
-# Raúl Porcel <armin76@gentoo.org> (11 Mar 2007)
-# Mask for removal in 60 days, for treecleaners
-# Bug 153355, use net-misc/aria2
-net-misc/aria
-
 # Joe Sapp <nixphoeni@gentoo.org> (09 Mar 2007)
 # Masking until I can verify this works with a more recent
 # version of gnome-extra/gdesklets-core.  I blindly removed
 # the version it depended on...
 x11-plugins/desklet-hypertail
-
-# Steve Dibb <beandog@gentoo.org> (8 Mar 2007)
-# dead upstream, requires xmms to build
-# p.masking for treecleaners
-media-sound/DBMix
 
 # Lennart Kolmodin <kolmodin@gentoo.org> (7 Mar 2007)
 # Masked to let us try out our new package dependency scheme.
@@ -786,15 +762,6 @@ media-font/mikachan-font
 # fixed in a newer version
 =net-im/gajim-0.11-r3
 
-# Alon Bar-Lev <alonbl@gentoo.org> (09 Feb 2007)
-# This is a development version
->=sys-kernel/suspend2-sources-2.6.20
->=sys-apps/suspend2-userui-0.7.0
-
-# Renat Lumpau <rl03@gentoo.org> (06 Feb 2007)
-# masking a bleeding edge version
->=www-apps/bugzilla-2.23.0
-
 # Alec Warner <antarus@gentoo.org> (05 Feb 2007)
 # Masked to security problems, use 1.23-r1 until I fix it
 >=app-admin/ulogd-1.24
@@ -822,11 +789,6 @@ dev-ada/garlic
 # Block for early testing
 >=app-office/dia-0.96_pre3
 
-# Christian Faulhammer <opfer@gentoo.org> (01 Feb 2007)
-# live ebuilds for the 22 branch
-~app-editors/emacs-cvs-22.0.9999
-=app-editors/emacs-cvs-23.0.0*
-
 # Leonardo Boshell <leonardop@gentoo.org> (26 Jan 2007)
 # GNOME-DB 3.0 betas. For testing purposes only.
 >=gnome-extra/libgda-1.3
@@ -847,10 +809,6 @@ games-strategy/ufo2000
 # The new versions require the alpha versions of Tor, so
 # mask them together.
 >=kde-misc/tork-0.13
-
-# Gustavo Felisberto <humpback@gentoo.org> (27 Jan 2007)
-# This is alpha and was just added at Flameeyes request.
->net-misc/tor-0.1.2
 
 # Diego Pettenò <flameeyes@gentoo.org> (27 Jan 2007)
 # Masked because a dependency is missing in Portage.
@@ -1163,14 +1121,6 @@ media-gfx/xzgv
 # Initial import. Masked for testing
 mail-filter/sid-milter
 
-# Alastair Tse <liquidx@gentoo.org> (15 Jul 2006)
-# Python 2.1 and 2.2 have reported vunerabilities. Masked pending
-# removal, along with net-zope/zope-2.6. (GLSA: 200509-08, 200502-09,
-# 200510-20)
-<dev-lang/python-2.3
-=net-zope/zope-2.6*
-mail-client/mahogany
-
 # Tuấn Văn <langthang@gentoo.org> (15 Jul 2006)
 # Initial import. Masked for testing
 #mail-filter/libmilter
@@ -1416,10 +1366,6 @@ www-apps/open-xchange
 # This is a binary package version.
 # Masked for more testing.
 =dev-lang/smalltalkx-5.2.6
-
-# Rob Cakebread <pythonhead@gentoo.org> (04 Aug 2005)
-# Needs testing, in particular svn, cvs and darcs control
-dev-util/pida
 
 # Matthew Kennedy <mkennedy@gentoo.org> (31 Jul 2005)
 # Upstream author requests official version ports only.

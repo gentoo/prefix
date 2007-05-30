@@ -1,6 +1,157 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.368 2007/05/10 12:15:21 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.435 2007/05/29 13:28:12 mrness Exp $
+
+  29 May 2007; Alin Năstac <mrness@gentoo.org> use.local.desc:
+  Add dev-util/nsis:config-log (#180060).
+
+  29 May 2007; Vlastimil Babka <caster@gentoo.org> package.mask:
+  Removing removed packages from package.mask.
+
+  28 May 2007; Samuli Suominen <drac@gentoo.org> use.desc, use.local.desc:
+  Moved dozen xscreensaver USE flags from local to global.
+
+  28 May 2007; Wulf C. Krueger <philantrop@gentoo.org> use.local.desc:
+  Added kde-base/kdeutils:xscreensaver.
+
+  28 May 2007; Wulf C. Krueger <philantrop@gentoo.org> use.local.desc:
+  Added kde-base/klaptopdaemon:xscreensaver.
+
+  28 May 2007; Alin Năstac <mrness@gentoo.org> use.local.desc:
+  Add net-proxy/squid:qos (#177020).
+
+  27 May 2007; Krzysiek Pawlik <nelchael@gentoo.org> package.mask:
+  Remove masks of removed packages.
+
+  27 May 2007; Vlastimil Babka <caster@gentoo.org> use.local.desc:
+  Add local bsf flag to dev-java/bsh
+
+  27 May 2007; Vlastimil Babka <caster@gentoo.org> use.local.desc:
+  Add local bsf flag to dev-java/groovy.
+
+  27 May 2007; Vlastimil Babka <caster@gentoo.org> use.local.desc:
+  Add new local useflag "bsf" for dev-java/jruby.
+
+  26 May 2007; Olivier Crête <tester@gentoo.org> use.local.desc:
+  Remove console and custom-cflags use flag from pidgin
+
+  26 May 2007; Olivier Crête <tester@gentoo.org> use.local.desc:
+  Add zephyr flag for net-im/pidgin
+
+  26 May 2007; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask new version of ocamlduce, needs ocaml 3.10
+
+  26 May 2007; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask new release of dev-ml/ulex as it depends on ocaml 3.10
+
+  26 May 2007; Krzysiek Pawlik <nelchael@gentoo.org> package.mask:
+  Remove mask of jcs-bin.
+
+  26 May 2007; Alexis Ballier <aballier@gentoo.org> package.mask:
+  Mask ocaml 3.10.0
+
+  24 May 2007; Alon Bar-Lev <alonbl@gentoo.org> package.mask:
+  sys-apps/855resolution last rites
+
+  24 May 2007; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  Package.masked =app-text/jasperreports-1.0.1 because it doesn't compile. See
+  bug #164074.
+
+  23 May 2007; Wulf C. Krueger <philantrop@gentoo.org> use.desc:
+  Changed description for kdeenablefinal USE flag. Its use is strongly
+  discouraged.
+
+  23 May 2007; Christian Faulhammer <opfer@gentoo.org> use.local.desc:
+  add gnus USE flag for app-emacs/easypg
+
+  23 May 2007; Alistair John Bush <ali_bush@gentoo.org> package.mask:
+  Remove systray4j from package mask as it is gone from the tree.
+
+  21 May 2007; Paul Varner <fuzzyray@gentoo.org> package.mask:
+  Added =app-portage/gentoolkit-dev-0.2.6.6 for echangelog testing.
+
+  21 May 2007; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Unmasking www-client/opera-9.21.
+
+  20 May 2007; Peter Weller <welp@gentoo.org>
+  default-linux/amd64/2006.0/no-multilib/package.mask,
+  default-linux/amd64/2006.1/no-multilib/package.mask,
+  default-linux/amd64/2007.0/no-multilib/package.mask:
+  package.masked dev-lang/dmd-bin on amd64 no-multilib profiles
+
+  19 May 2007; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  Package.mask dev-java/sun-javamail-bin as nothing is using it any more.
+
+  19 May 2007; Denis Dupeyron <calchan@gentoo.org> use.local.desc:
+  Added local USE flag epiphany for dev-embedded/ponyprog.
+
+  19 May 2007; Alon Bar-Lev <alonbl@gentoo.org> package.mask:
+  Remove suspend2 group
+
+  18 May 2007; Raúl Porcel <armin76@gentoo.org> package.mask:
+  Remove www-servers/ncsa-httpd, www-servers/plb and net-im/aim-transport from
+  p.mask as they have been removed, bug 122134 150966 and 145858
+
+  18 May 2007; Robin H. Johnson <robbat2@gentoo.org> package.mask:
+  hardmask the prerelease of capistrano-2.0 for testing.
+
+  17 May 2007; Petteri Räty <betelgeuse@gentoo.org> use.local.desc:
+  Add the test-framework local use flag for dev-java/commons-collections.
+
+  17 May 2007; Denis Dupeyron <calchan@gentoo.org> use.local.desc:
+  Added local USE flag gpac for media-video/kino.
+
+  17 May 2007; Alin Năstac <mrness@gentoo.org> package.mask:
+  Remove net-dialup/slirp & net-dialup/pppoed from the tree.
+
+  17 May 2007; Sven Wegener <swegener@gentoo.org> use.local.desc:
+  Drop gnustep-apps/cynthiune:arts from local USE flags, arts is already global.
+
+  16 May 2007; Vlastimil Babka <caster@gentoo.org> use.local.desc:
+  Add local java5 useflag to dev-java/backport-util-concurrent and hyphenation
+  use flag to dev-java/fop.
+
+  16 May 2007; Joseph Jezak <josejx@gentoo.org> base/use.mask,
+  default-linux/amd64/use.mask, use.local.desc:
+  Add mplayer-bin use flag for mplayerplug-in on amd64.
+
+  16 May 2007; Markus Rothe <corsair@gentoo.org> hardened/ppc64/use.mask:
+  Add qt4 to use.mask in hardened ppc64 profile; bug #178779
+
+  16 May 2007; Petteri Räty <betelgeuse@gentoo.org> use.local.desc:
+  Add old-daemons and test-programs local use flags for net-wireless/bluez-utils.
+
+  16 May 2007; Rob Cakebread <pythonhead@gentoo.org> package.mask:
+  Removed from package.mask bug #167897
+
+  15 May 2007; Matthias Schwarzott <zzam@gentoo.org> use.local.desc:
+  Add media-plugins/vdr-text2skin:direct_blit.
+
+  15 May 2007; Ulrich Mueller <ulm@gentoo.org> base/virtuals,
+  default-bsd/fbsd/6.2/sparc/virtuals, default-darwin/virtuals,
+  embedded/virtuals:
+  Removed old-style virtual/emacs and virtual/flim from profiles.
+
+  14 May 2007; Markus Ullmann <jokey@gentoo.org> use.local.desc:
+  add net-irc/unrealircd:showlistmodes
+
+  14 May 2007; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Mask =www-client/opera-9.21 until it goes into beta.
+
+  13 May 2007; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Mask Emacs live CVS ebuilds.
+
+  13 May 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Mask new net-fs/sfs for testing.
+
+  15 May 2007; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  Remove mask for dev-db/c-jdbc as it's gone from the tree.
+
+  11 May 2007; Raúl Porcel <armin76@gentoo.org> package.mask:
+  net-misc/aria has been removed, bug 153355
+
+  11 May 2007; Timothy Redaelli <drizzt@gentoo.org> package.mask:
+  Mask dev-db/firebird-2.0.1 for testing.
 
   10 May 2007; Daniel Black <dragonheart@gentoo.org> thirdpartymirrors:
   removed bad gnupg mirrors as per bug #177893 thanks Jakub

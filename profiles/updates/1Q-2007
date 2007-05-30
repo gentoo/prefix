@@ -1,4 +1,4 @@
-slotmove =x11-themes/gtk-engines-xfce-2.2* 2 0
+slotmove <=x11-themes/gtk-engines-xfce-2.4.0 2 0
 move dev-libs/slib dev-scheme/slib
 move dev-lang/gauche dev-scheme/gauche
 move dev-util/guile dev-scheme/guile

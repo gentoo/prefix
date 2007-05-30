@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.348 2007/05/04 16:32:12 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.352 2007/05/28 22:26:38 drac Exp $
 
 # Keep them sorted
 
@@ -161,7 +161,7 @@ jpeg - Adds JPEG image support
 jpeg2k - Support for JPEG 2000, a wavelet-based image compression format.
 junit - Adds junit awareness -- useful for developers.
 kde - Adds support for kde-base/kde (K Desktop Enviroment)
-kdeenablefinal - EXPERIMENTAL: KDE ebuilds will use the enable-final flag, yielding big compilation speedups at the cost of heavy mem usage.
+kdeenablefinal - EXPERIMENTAL: KDE ebuilds will use the enable-final flag, yielding compilation speedups at the cost of heavy mem usage and potentially causing problems. We strongly discourage setting this.
 kdehiddenvisibility - Makes KDE symbols hidden by default, requires GCC 4.1 (experimental)
 kdexdeltas - Makes kde ebuilds download binary diffs rather than entire new tarballs for every new release
 kerberos - Adds kerberos support
@@ -229,7 +229,7 @@ netcdf - Enable NetCDF data format support
 nis - Support for NIS/YP services
 nls - Adds Native Language Support (using gettext - GNU locale utilities)
 nntp - Add support for newsgroups (Network News Transfer Protocol)
-nocd - Tells emerge to install all files required to run the application without a CD mounted
+nocd - Install all files required to run the application without a CD mounted
 nocxx - Disable support for C++ (DON'T USE THIS UNLESS YOU KNOW WHAT YOU'RE DOING)
 nptl - Enable support for Native POSIX Threads Library, the new threading module (requires linux-2.6 or better usually)
 nsplugin - Builds plugins for Netscape compatible browsers
@@ -310,7 +310,7 @@ sqlite3 - Adds support for sqlite3 - embedded sql database
 sse - fast floating point optimization for PentiumIII+ class chips
 sse2 - faster floating point optimization for SSE2 capable chips
 ssl - Adds support for Secure Socket Layer connections
-startup-notification - Enable startup-notification support
+startup-notification - Enable application startup event feedback mechanism
 static - !!do not set this during bootstrap!! Causes binaries to be statically linked instead of dynamically
 svg - Adds support for SVG (Scalable Vector Graphics http://www.w3.org/TR/SVG ).  This option is mainly intended for users that tend to browse multimedia sites frequently.
 svga - Adds support for SVGAlib (graphics library)
@@ -338,7 +338,7 @@ vanilla - Do not add extra patches which change default behaviour; DO NOT USE TH
 vcd - Video CD support
 verbose - effects vary across packages; generally used to enable extra informational output during a build or at runtime
 vhosts - Adds support for installing web-based applications into a virtual-hosting environment
-videos - Tells portage to install optional video files (used in some games)
+videos - Install optional video files (used in some games)
 vim-syntax - Pulls in related vim syntax scripts.
 voodoo3 - Adds support for 3Dfx's Voodoo3 video chipset, else defaults to Voodoo4/5 support if not in USE.
 vorbis - Adds support for the OggVorbis audio codec
@@ -358,6 +358,7 @@ xmlrpc - Support for xml-rpc library
 xosd - Sends display using the X On Screen Display library
 xpm - Adds support for XPM graphics format
 xprint - Support for xprint, http://www.mozilla.org/projects/xprint/
+xscreensaver - Adds support for XScreenSaver extension.
 xsl - Check/Support flag for XSL library (version 1)
 xv - Adds in optional support for the Xvideo extension (an X API for video playback)
 xvid - Adds support for xvid.org's open-source mpeg-4 codec
