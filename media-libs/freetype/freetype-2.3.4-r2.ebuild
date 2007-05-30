@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.4-r1.ebuild,v 1.1 2007/05/09 22:39:11 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.4-r2.ebuild,v 1.7 2007/05/22 05:33:58 corsair Exp $
 
 EAPI="prefix"
 
@@ -33,6 +33,9 @@ RDEPEND="${DEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	# Bug #179161
+	epatch "${FILESDIR}"/${P}-CVE-2007-2754.patch
 
 	enable_option() {
 		sed -i -e "/#define $1/a #define $1" \
