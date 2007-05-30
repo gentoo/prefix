@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/dialog-1.1.20070227.ebuild,v 1.10 2007/05/20 16:14:37 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/dialog-1.1.20070514.ebuild,v 1.1 2007/05/19 14:40:35 truedfx Exp $
 
 EAPI="prefix"
 
@@ -32,12 +32,6 @@ pkg_setup() {
 		eerror "ncurses with \`emerge --oneshot sys-libs/ncurses\`."
 		die "Re-emerge ncurses with the unicode flag"
 	fi
-}
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-mkdirs.patch #171348
 }
 
 src_compile() {

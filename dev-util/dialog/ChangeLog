@@ -1,6 +1,24 @@
 # ChangeLog for dev-util/dialog
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.78 2007/05/15 09:10:31 bangert Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.83 2007/05/20 16:14:37 armin76 Exp $
+
+  20 May 2007; Raúl Porcel <armin76@gentoo.org> dialog-1.1.20070227.ebuild:
+  alpha stable wrt #179092
+
+  20 May 2007; Jeroen Roovers <jer@gentoo.org> dialog-1.1.20070227.ebuild:
+  Stable for HPPA (bug #179092).
+
+  19 May 2007; Peter Weller <welp@gentoo.org> dialog-1.1.20070227.ebuild:
+  Stable on amd64 wrt bug 179092
+
+  19 May 2007; Joseph Jezak <josejx@gentoo.org> dialog-1.1.20070227.ebuild:
+  Marked ppc stable for bug #179092.
+
+*dialog-1.1.20070514 (19 May 2007)
+
+  19 May 2007; Harald van Dĳk <truedfx@gentoo.org>
+  +dialog-1.1.20070514.ebuild:
+  Version bump (#179094)
 
   14 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
   add <herd>no-herd</herd>
