@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-0.11.3.ebuild,v 1.2 2007/05/21 17:22:47 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-0.11.2-r1.ebuild,v 1.1 2007/05/21 20:57:59 spock Exp $
 
 EAPI="prefix"
 
@@ -57,7 +57,10 @@ src_unpack() {
 	fi
 	sed -i -e 's/\(.*set protocol.ftp.use_epsv.*\)/# \1/' ${PN}.conf
 	cd ${S}
-	epatch ${FILESDIR}/${PN}-0.11.3-lua-5.patch
+	epatch ${FILESDIR}/${PN}-0.11.0-gcc4-inline.patch
+	epatch ${FILESDIR}/${PN}-0.11.0-ruby.patch
+	epatch ${FILESDIR}/${PN}-0.11.1-time.patch
+	epatch ${FILESDIR}/${PN}-0.11.2-lua-5.patch
 
 	if use lua && has_version ">=dev-lang/lua-5.1"; then
 		epatch ${FILESDIR}/${PN}-0.11.2-lua-5.1.patch
@@ -68,7 +71,6 @@ src_unpack() {
 	fi
 
 	epatch ${FILESDIR}/elinks-po-path.patch
-
 	sed -i -e 's/-Werror//' configure*
 }
 

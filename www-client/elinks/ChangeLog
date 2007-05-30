@@ -1,6 +1,17 @@
 # ChangeLog for www-client/elinks
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.78 2007/05/13 10:03:50 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.80 2007/05/21 20:57:59 spock Exp $
+
+*elinks-0.11.2-r1 (21 May 2007)
+
+  21 May 2007; Michał Januszewski <spock@gentoo.org> -elinks-0.11.1.ebuild,
+  +elinks-0.11.2-r1.ebuild:
+  Remove an old ebuild. Revbump for security bug #177512.
+
+  21 May 2007; Michał Januszewski <spock@gentoo.org>
+  +files/elinks-po-path.patch, elinks-0.11.1.ebuild, elinks-0.11.2.ebuild,
+  elinks-0.11.3.ebuild:
+  Add a fix for bug #177512.
 
 *elinks-0.11.3 (13 May 2007)
 
