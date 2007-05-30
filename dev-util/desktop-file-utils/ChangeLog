@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/desktop-file-utils
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/ChangeLog,v 1.51 2007/04/16 07:26:14 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/ChangeLog,v 1.52 2007/05/24 05:15:13 jer Exp $
+
+  24 May 2007; Jeroen Roovers <jer@gentoo.org>
+  desktop-file-utils-0.12.ebuild:
+  Stable for HPPA (bug #178553).
 
   16 Apr 2007; Markus Rothe <corsair@gentoo.org>
   desktop-file-utils-0.12.ebuild:
