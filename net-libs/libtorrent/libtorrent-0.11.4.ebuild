@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/libtorrent-0.11.4.ebuild,v 1.1 2007/04/04 19:59:17 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/libtorrent-0.11.4.ebuild,v 1.2 2007/05/24 15:44:46 drizzt Exp $
 
 EAPI="prefix"
 
@@ -29,6 +29,7 @@ DEPEND="${RDEPEND}
 
 src_compile() {
 	replace-flags -Os -O2
+	append-flags -fno-strict-aliasing
 
 	if [[ $(tc-arch) = "x86" ]]; then
 		filter-flags -fomit-frame-pointer -fforce-addr
