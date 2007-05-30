@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/prosite/prosite-20.9.ebuild,v 1.1 2007/04/11 01:13:26 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/prosite/prosite-20.12.ebuild,v 1.1 2007/05/22 00:44:50 ribosome Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SLOT="0"
 # Minimal build keeps only the indexed files (if applicable) and the
 # documentation. The non-indexed database is not installed.
 IUSE="emboss minimal"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
 
 DEPEND="emboss? ( >=sci-biology/emboss-3.0.0 )"
 
