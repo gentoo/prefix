@@ -1,6 +1,36 @@
 # ChangeLog for media-libs/libpng
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.127 2007/05/17 16:27:05 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.136 2007/05/21 19:58:51 dertobi123 Exp $
+
+  21 May 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  libpng-1.2.18.ebuild:
+  ppc stable, bug #178004
+
+  21 May 2007; Gustavo Zacarias <gustavoz@gentoo.org> libpng-1.2.18.ebuild:
+  Stable on sparc wrt security #178004
+
+  19 May 2007; Christian Faulhammer <opfer@gentoo.org> libpng-1.2.18.ebuild:
+  stable amd64, security bug 178004
+
+  19 May 2007; nixnut <nixnut@gentoo.org> libpng-1.2.16.ebuild:
+  Stable on ppc wrt bug 178359
+
+  19 May 2007; Jeroen Roovers <jer@gentoo.org> libpng-1.2.18.ebuild:
+  Stable for HPPA (bug #178004).
+
+  19 May 2007; Raúl Porcel <armin76@gentoo.org> libpng-1.2.15.ebuild,
+  libpng-1.2.16.ebuild, libpng-1.2.18.ebuild:
+  alpha stable wrt #156061, #178359. And alpha/ia64/x86 stable wrt security
+  #178004
+
+  19 May 2007; Markus Rothe <corsair@gentoo.org> libpng-1.2.16.ebuild:
+  Stable on ppc64; bug #178359
+
+  19 May 2007; Markus Rothe <corsair@gentoo.org> libpng-1.2.18.ebuild:
+  Stable on ppc64; bug #178004
+
+  18 May 2007; Roy Marples <uberlord@gentoo.org> libpng-1.2.18.ebuild:
+  Run elibtoolize so we get sane .so versioning on FreeBSD.
 
 *libpng-1.2.18 (17 May 2007)
 

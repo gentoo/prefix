@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.18.ebuild,v 1.1 2007/05/17 16:27:05 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.18.ebuild,v 1.8 2007/05/21 19:58:51 dertobi123 Exp $
 
 EAPI="prefix"
 
-inherit multilib eutils
+inherit libtool multilib eutils
 
 DESCRIPTION="Portable Network Graphics library"
 HOMEPAGE="http://www.libpng.org/"
@@ -23,6 +23,9 @@ src_unpack() {
 	cd "${S}"
 	use doc && cp "${WORKDIR}"/${PN}-manual.txt .
 	epatch "${FILESDIR}"/1.2.7-gentoo.diff
+
+	# So we get sane .so versioning on FreeBSD
+	elibtoolize
 }
 
 src_install() {
