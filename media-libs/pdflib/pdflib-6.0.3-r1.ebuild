@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/pdflib-6.0.3-r1.ebuild,v 1.6 2007/05/16 15:09:53 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/pdflib-6.0.3-r1.ebuild,v 1.8 2007/05/20 16:33:40 nixnut Exp $
 
 EAPI="prefix"
 
