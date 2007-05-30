@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/jbigkit
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jbigkit/ChangeLog,v 1.34 2007/02/22 01:49:32 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jbigkit/ChangeLog,v 1.35 2007/05/19 23:18:24 nerdboy Exp $
+
+  19 May 2007; Steve Arnold <nerdboy@gentoo.org>
+  files/jbigkit-1.6-respect-make.patch:
+  Updated patch to fix broken makefile (thanks to flameeyes for the update).
+  This fixes bug #178240 (no rev bump).  Verified/tested fine on amd64.
 
   22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
