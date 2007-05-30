@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.0_rc3-r2.ebuild,v 1.1 2007/05/14 21:23:18 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.0_rc3-r2.ebuild,v 1.2 2007/05/23 23:01:54 lack Exp $
 
 EAPI="prefix"
 
@@ -31,7 +31,8 @@ RDEPEND="|| ( ( x11-libs/libXpm
 	truetype? ( media-libs/freetype )
 	imlib? ( >=media-libs/imlib2-1.2.0 )
 	!<x11-themes/fluxbox-styles-fluxmod-20040809-r1"
-DEPEND=">=sys-devel/autoconf-2.52
+DEPEND="!<=x11-misc/fluxconf-0.9.9
+		>=sys-devel/autoconf-2.52
 		nls? ( sys-devel/gettext )
 		|| ( ( x11-proto/xextproto
 				xinerama? ( x11-proto/xineramaproto )

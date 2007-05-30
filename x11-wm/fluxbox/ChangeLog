@@ -1,6 +1,12 @@
 # ChangeLog for x11-wm/fluxbox
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.216 2007/05/14 21:23:18 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.217 2007/05/23 23:01:54 lack Exp $
+
+  23 May 2007; Jim Ramsay <lack@gentoo.org>
+  +files/0.9.13/fluxbox-0.9.13-our-styles-go-over-here.patch,
+  fluxbox-0.9.15.1-r2.ebuild, fluxbox-1.0_rc3.ebuild,
+  fluxbox-1.0_rc3-r1.ebuild, fluxbox-1.0_rc3-r2.ebuild:
+  Bring patch back from the dead because it is still needed
 
 *fluxbox-1.0_rc3-r2 (14 May 2007)
 
