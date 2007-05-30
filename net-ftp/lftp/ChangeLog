@@ -1,6 +1,10 @@
 # ChangeLog for net-ftp/lftp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.132 2007/04/18 21:42:50 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.133 2007/05/21 19:51:46 grobian Exp $
+
+  21 May 2007; Fabian Groffen <grobian@gentoo.org> lftp-3.4.6.ebuild,
+  lftp-3.5.10.ebuild, lftp-3.5.11.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *lftp-3.5.11 (18 Apr 2007)
 
