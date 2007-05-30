@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/debianutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/ChangeLog,v 1.77 2007/05/16 15:01:24 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/ChangeLog,v 1.78 2007/05/23 20:35:09 gustavoz Exp $
+
+  23 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  debianutils-2.17.5.ebuild:
+  Stable on sparc
 
 *debianutils-2.18.1 (16 May 2007)
 
