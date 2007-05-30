@@ -1,6 +1,21 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.271 2007/05/17 22:22:59 rbrown Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.275 2007/05/24 18:17:45 rbrown Exp $
+
+  24 May 2007; Richard Brown <rbrown@gentoo.org> ruby-1.8.4-r3.ebuild,
+  ruby-1.8.5_p2.ebuild, ruby-1.8.5_p2-r1.ebuild, ruby-1.8.5_p12.ebuild,
+  ruby-1.8.5_p35.ebuild:
+  Add RESTRICT="test" to ebuilds that have no hope of passing.
+
+  24 May 2007; Lars Weiler <pylon@gentoo.org> ruby-1.8.5_p2-r1.ebuild:
+  Stable on ppc; bug #178346.
+
+  19 May 2007; Markus Rothe <corsair@gentoo.org> ruby-1.8.5_p2-r1.ebuild:
+  Stable on ppc64; bug #178346
+
+  18 May 2007; Fernando J. Pereda <ferdy@gentoo.org>
+  ruby-1.8.5_p2-r1.ebuild:
+  Stable on alpha as per bug #178346
 
   17 May 2007; Richard Brown <rbrown@gentoo.org> ruby-1.8.6-r1.ebuild:
   Fix bug #128837, ruby-talk:183494
