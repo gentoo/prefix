@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/perl-module.eclass,v 1.104 2006/12/09 14:34:01 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/perl-module.eclass,v 1.105 2007/05/24 15:11:20 mcummings Exp $
 #
 # Author: Seemant Kulleen <seemant@gentoo.org>
 # Maintained by the Perl herd <perl@gentoo.org>
@@ -115,7 +115,7 @@ perl-module_src_prep() {
 
 
 	SRC_PREP="yes"
-	pwd
+	find ${S} -type d -name "\.svn" -exec "${EPREFIX}"/bin/rm -rf {} \; 2>/dev/null 
 	if [ "${PREFER_BUILDPL}" == "yes" ] && ( [ -f Build.PL ] || [ ${PN} == "module-build" ] ); then
 		einfo "Using Module::Build"
 		echo "$pm_echovar" | perl Build.PL --installdirs=vendor --destdir="$D" --libdoc= || die "Unable to build! (are you using USE=\"build\"?)"

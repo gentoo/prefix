@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.6 2007/05/12 04:59:41 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.8 2007/05/19 00:12:17 chtekk Exp $
 
 # ========================================================================
 #
@@ -24,7 +24,7 @@ PHPCONFUTILS_MISSING_DEPS="adabas birdstep db2 dbmaker empress empress-bcs esoob
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 
-inherit flag-o-matic autotools toolchain-funcs libtool eutils phpconfutils php-common-r1
+inherit db-use flag-o-matic autotools toolchain-funcs libtool eutils phpconfutils php-common-r1
 
 # set MY_PHP_P in the ebuild
 
@@ -462,6 +462,11 @@ php5_2-sapi_src_compile() {
 	if use cdb || use berkdb || use flatfile || use gdbm || use inifile || use qdbm ; then
 		my_conf="${my_conf} --enable-dba${shared}"
 	fi
+
+	# Tell PHP where the db.h is on FreeBSD
+#	if use berkdb ; then
+#		append-cppflags "-I$(db_includedir)"
+#	fi
 
 	# DBA drivers support
 	phpconfutils_extension_with "cdb"		"cdb"		0

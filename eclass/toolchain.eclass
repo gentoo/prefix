@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.333 2007/05/03 04:51:07 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.335 2007/05/24 02:46:53 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -137,7 +137,7 @@ if [[ ${ETYPE} == "gcc-library" ]] ; then
 else
 	IUSE="multislot test"
 
-	if [[ ${PN} != "kgcc64" ]] ; then
+	if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ; then
 		IUSE="${IUSE} altivec build fortran nls nocxx"
 		[[ -n ${PIE_VER} ]] && IUSE="${IUSE} nopie"
 		[[ -n ${PP_VER}	 ]] && IUSE="${IUSE} nossp"
@@ -152,14 +152,9 @@ else
 				IUSE="${IUSE} ip28 ip32r10k n32 n64"
 			fi
 
-			# these are features introduced in 4.0
-			if tc_version_is_at_least "4.0" ; then
-				IUSE="${IUSE} objc-gc mudflap"
-
-				if tc_version_is_at_least "4.1" ; then
-					IUSE="${IUSE} objc++"
-				fi
-			fi
+			tc_version_is_at_least "4.0" && IUSE="${IUSE} objc-gc mudflap"
+			tc_version_is_at_least "4.1" && IUSE="${IUSE} objc++"
+			tc_version_is_at_least "4.2" && IUSE="${IUSE} openmp"
 		fi
 	fi
 
@@ -672,12 +667,6 @@ create_gcc_env_entry() {
 	fi
 
 	echo "LDPATH=\"${LDPATH}\"" >> ${gcc_envd_file}
-
-	local mbits
-	CC=$(XGCC) has_m32 && mbits="${mbits:+${mbits} }32"
-	CC=$(XGCC) has_m64 && mbits="${mbits:+${mbits} }64"
-	echo "GCCBITS=\"${mbits}\"" >> ${gcc_envd_file}
-
 	echo "MANPATH=\"${EPREFIX}${DATAPATH}/man\"" >> ${gcc_envd_file}
 	echo "INFOPATH=\"${EPREFIX}${DATAPATH}/info\"" >> ${gcc_envd_file}
 	echo "STDCXX_INCDIR=\"${STDCXX_INCDIR##*/}\"" >> ${gcc_envd_file}
@@ -1121,7 +1110,7 @@ gcc_src_unpack() {
 		einfo "Touching generated files"
 		./contrib/gcc_update --touch | \
 			while read f ; do
-				einfo "	 ${f%%...}"
+				einfo "  ${f%%...}"
 			done
 	fi
 
@@ -1300,10 +1289,6 @@ gcc_do_configure() {
 		fi
 	elif [[ ${CHOST} != mingw* ]] && [[ ${CHOST} != *-mingw* ]] ; then
 		confgcc="${confgcc} --enable-shared --enable-threads=posix"
-
-		if [[ ${GCCMAJOR}.${GCCMINOR} > 4.1 ]] ; then
-			confgcc="${confgcc} --enable-bootstrap"
-		fi
 
 		if [[ ${EPREFIX%/} != "" ]] ; then
 			# should be /usr, because it's the path to search includes for,

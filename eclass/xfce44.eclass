@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xfce44.eclass,v 1.19 2007/05/06 14:11:32 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xfce44.eclass,v 1.20 2007/05/24 19:05:21 drac Exp $
 
 # Xfce44 Eclass
 #
@@ -142,7 +142,7 @@ xfce44_src_install() {
 	[[ -n "${DOCS}" ]] && dodoc ${DOCS}
 
 	## INSTALL is default make install string
-	${INSTALL} || die
+	${INSTALL} ${JOBS} || die
 }
 
 xfce44_pkg_postinst() {
