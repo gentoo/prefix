@@ -1,6 +1,10 @@
 # ChangeLog for virtual/perl-Scalar-List-Utils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Scalar-List-Utils/ChangeLog,v 1.16 2007/05/11 05:22:55 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Scalar-List-Utils/ChangeLog,v 1.17 2007/05/23 22:01:46 welp Exp $
+
+  23 May 2007; Peter Weller <welp@gentoo.org>
+  perl-Scalar-List-Utils-1.19.ebuild:
+  Keyworded ~x86-fbsd
 
   11 May 2007; Joshua Kinard <kumba@gentoo.org>
   perl-Scalar-List-Utils-1.19.ebuild:
