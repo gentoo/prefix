@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/portaudio-18.1-r6.ebuild,v 1.3 2007/02/28 22:15:41 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/portaudio-18.1-r6.ebuild,v 1.4 2007/04/24 19:31:20 gustavoz Exp $
 
 EAPI="prefix"
 
