@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/tla
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/tla/ChangeLog,v 1.44 2007/02/11 21:52:43 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/tla/ChangeLog,v 1.45 2007/05/21 16:48:02 armin76 Exp $
+
+  21 May 2007; Raúl Porcel <armin76@gentoo.org> tla-1.3.5.ebuild:
+  alpha stable wrt #143099
 
   11 Feb 2007; Fabian Groffen <grobian@gentoo.org> tla-1.3.3-r1.ebuild,
   tla-1.3.4.ebuild, tla-1.3.5.ebuild:
