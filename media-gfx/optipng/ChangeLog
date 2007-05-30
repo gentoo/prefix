@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/optipng
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/optipng/ChangeLog,v 1.29 2007/02/14 17:25:15 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/optipng/ChangeLog,v 1.30 2007/05/21 19:59:35 grobian Exp $
+
+  21 May 2007; Fabian Groffen <grobian@gentoo.org> optipng-0.4.8-r1.ebuild,
+  optipng-0.5.4.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   14 Feb 2007; Daniel Gryniewicz <dang@gentoo.org> optipng-0.5.4.ebuild:
   Marked stable on amd64 for bug #165374
