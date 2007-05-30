@@ -1,6 +1,22 @@
 # ChangeLog for app-arch/zoo
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/zoo/ChangeLog,v 1.31 2007/02/21 20:05:50 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/zoo/ChangeLog,v 1.35 2007/05/24 15:30:56 corsair Exp $
+
+  24 May 2007; Markus Rothe <corsair@gentoo.org> zoo-2.10-r3.ebuild:
+  Stable on ppc64; bug #178986
+
+  24 May 2007; Gustavo Zacarias <gustavoz@gentoo.org> zoo-2.10-r3.ebuild:
+  Stable on sparc wrt security #178986
+
+  24 May 2007; Christian Faulhammer <opfer@gentoo.org> zoo-2.10-r3.ebuild:
+  x86/amd64 stable, security bug 178986
+
+*zoo-2.10-r3 (23 May 2007)
+
+  23 May 2007; Andrej Kacian <ticho@gentoo.org>
+  +files/zoo-2.10-multiple-dos-fix.patch, +zoo-2.10-r3.ebuild:
+  Version bump. Security bug #178986. Patch prepared by Lars Hartmann <lars at
+  chaotika.org>.
 
   21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.

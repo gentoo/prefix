@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/zoo/zoo-2.10-r2.ebuild,v 1.7 2006/03/12 17:48:45 blubb Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/zoo/zoo-2.10-r3.ebuild,v 1.4 2007/05/24 15:30:56 corsair Exp $
 
 EAPI="prefix"
 
@@ -24,6 +24,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-CAN-2005-2349.patch
 	epatch "${FILESDIR}"/${P}-febz-183426.patch
 	epatch "${FILESDIR}"/${P}-security_pathsize.patch
+	epatch "${FILESDIR}"/${P}-multiple-dos-fix.patch
 }
 
 src_compile() {
