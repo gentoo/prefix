@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.3.15.ebuild,v 1.2 2007/04/30 21:53:08 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.3.16.ebuild,v 1.7 2007/05/27 07:39:29 kumba Exp $
 
 EAPI="prefix"
 
-inherit fdo-mime flag-o-matic
+inherit fdo-mime flag-o-matic multilib python
 
 DESCRIPTION="GNU Image Manipulation Program"
 HOMEPAGE="http://www.gimp.org/"
@@ -14,36 +14,39 @@ LICENSE="GPL-2"
 SLOT="2"
 KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
 
-IUSE="alsa aalib altivec debug doc gtkhtml gnome jpeg lcms mmx mng pdf png python smp sse svg tiff wmf"
+IUSE="alsa aalib altivec curl dbus debug doc gtkhtml gnome jpeg lcms mmx mng pdf png python smp sse svg tiff wmf"
 
 RDEPEND=">=dev-libs/glib-2.12.3
-		>=x11-libs/gtk+-2.8.20-r1
-		>=x11-libs/pango-1.12.2
-		>=media-libs/freetype-2.1.7
-		>=media-libs/fontconfig-2.2.0
-		>=media-libs/libart_lgpl-2.3.8-r1
-		sys-libs/zlib
-		dev-libs/libxml2
-		dev-libs/libxslt
-		x11-themes/hicolor-icon-theme
-		aalib? ( media-libs/aalib )
-		alsa? ( >=media-libs/alsa-lib-1.0.0 )
-		doc? ( app-doc/gimp-help )
-		gnome? ( >=gnome-base/gnome-vfs-2.10.0
-			>=gnome-base/libgnomeui-2.10.0
-			>=gnome-base/gnome-keyring-0.4.5 )
-		gtkhtml? ( =gnome-extra/gtkhtml-2* )
-		jpeg? ( >=media-libs/jpeg-6b-r2
-			>=media-libs/libexif-0.6.0 )
-		lcms? ( media-libs/lcms )
-		mng? ( media-libs/libmng )
-		pdf? ( >=app-text/poppler-bindings-0.3.1 )
-		png? ( >=media-libs/libpng-1.2.2 )
-		python?	( >=dev-lang/python-2.2.1
-			>=dev-python/pygtk-2.8 )
-		tiff? ( >=media-libs/tiff-3.5.7 )
-		svg? ( >=gnome-base/librsvg-2.8.0 )
-		wmf? ( >=media-libs/libwmf-0.2.8 )"
+	>=x11-libs/gtk+-2.10.6
+	>=x11-libs/pango-1.12.2
+	>=media-libs/freetype-2.1.7
+	>=media-libs/fontconfig-2.2.0
+	>=media-libs/libart_lgpl-2.3.8-r1
+	sys-libs/zlib
+	dev-libs/libxml2
+	dev-libs/libxslt
+	x11-themes/hicolor-icon-theme
+	aalib? ( media-libs/aalib )
+	alsa? ( >=media-libs/alsa-lib-1.0.0 )
+	curl? ( net-misc/curl )
+	dbus? ( dev-libs/dbus-glib
+		sys-apps/hal )
+	doc? ( app-doc/gimp-help )
+	gnome? ( >=gnome-base/gnome-vfs-2.10.0
+		>=gnome-base/libgnomeui-2.10.0
+		>=gnome-base/gnome-keyring-0.4.5 )
+	gtkhtml? ( =gnome-extra/gtkhtml-2* )
+	jpeg? ( >=media-libs/jpeg-6b-r2
+		>=media-libs/libexif-0.6.0 )
+	lcms? ( media-libs/lcms )
+	mng? ( media-libs/libmng )
+	pdf? ( >=app-text/poppler-bindings-0.3.1 )
+	png? ( >=media-libs/libpng-1.2.2 )
+	python?	( >=dev-lang/python-2.2.1
+		>=dev-python/pygtk-2.10.4 )
+	tiff? ( >=media-libs/tiff-3.5.7 )
+	svg? ( >=gnome-base/librsvg-2.8.0 )
+	wmf? ( >=media-libs/libwmf-0.2.8 )"
 DEPEND="${RDEPEND}
 		>=dev-util/pkgconfig-0.12.0
 		>=dev-util/intltool-0.31
@@ -59,6 +62,12 @@ pkg_setup() {
 	fi
 }
 
+src_unpack() {
+	unpack ${A}
+	cd ${S}
+	epatch ${FILESDIR}/gimp-sunras-bufferoverflow.diff
+}
+
 src_compile() {
 	# workaround portage variable leakage
 	local AA=
@@ -72,8 +81,11 @@ src_compile() {
 		$(use_with aalib aa) \
 		$(use_with alsa) \
 		$(use_enable altivec) \
+		$(use_with curl) \
 		$(use_enable debug) \
 		$(use_enable doc gtk-doc) \
+		$(use_with dbus) \
+		$(use_with gnome) \
 		$(use_with gtkhtml gtkhtml2) \
 		$(use_with jpeg libjpeg) \
 		$(use_with jpeg libexif) \
@@ -87,6 +99,7 @@ src_compile() {
 		$(use_enable sse) \
 		$(use_with svg librsvg) \
 		$(use_with tiff libtiff) \
+		$(use_with wmf) \
 		|| die "econf failed"
 
 	emake || die "emake failed"
@@ -105,9 +118,14 @@ pkg_postinst() {
 	elog
 	elog "If you want Postscript file support, emerge ghostscript."
 	elog
+
+	python_mod_optimize /usr/$(get_libdir)/gimp/2.0/python \
+		/usr/$(get_libdir)/gimp/2.0/plug-ins
 }
 
 pkg_postrm() {
 	fdo-mime_desktop_database_update
 	fdo-mime_mime_database_update
+	python_mod_cleanup /usr/$(get_libdir)/gimp/2.0/python \
+		/usr/$(get_libdir)/gimp/2.0/plug-ins
 }

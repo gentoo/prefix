@@ -1,6 +1,14 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.200 2007/05/11 02:07:06 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.202 2007/05/30 20:39:16 hanno Exp $
+
+*gimp-2.2.15 (30 May 2007)
+
+  30 May 2007; Hanno Boeck <hanno@gentoo.org> +gimp-2.2.15.ebuild:
+  Version bump.
+
+  27 May 2007; Joshua Kinard <kumba@gentoo.org> gimp-2.3.16.ebuild:
+  Stable on mips.
 
   11 May 2007; Joshua Kinard <kumba@gentoo.org> gimp-2.2.14.ebuild:
   Stable on mips, per #176226.
