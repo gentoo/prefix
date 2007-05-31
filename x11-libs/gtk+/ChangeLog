@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.307 2007/05/03 20:46:44 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.308 2007/05/22 15:52:51 dang Exp $
+
+  22 May 2007; Daniel Gryniewicz <dang@gentoo.org>
+  +files/gtk+-2.10.11-update-icon-subdirs.patch, gtk+-2.10.11.ebuild,
+  gtk+-2.10.12.ebuild:
+  Add patch to check intelligently for icon cache updates
 
 *gtk+-2.10.12 (03 May 2007)
 

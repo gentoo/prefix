@@ -1,0 +1,132 @@
+diff --exclude-from=/home/dang/bin/scripts/diffrc -up -ruN gtk+-2.10.11.orig/gtk/updateiconcache.c gtk+-2.10.11/gtk/updateiconcache.c
+--- gtk+-2.10.11.orig/gtk/updateiconcache.c	2007-03-14 00:07:02.000000000 -0400
++++ gtk+-2.10.11/gtk/updateiconcache.c	2007-05-01 17:01:46.000000000 -0400
+@@ -43,6 +43,7 @@ static gboolean force_update = FALSE;
+ static gboolean ignore_theme_index = FALSE;
+ static gboolean quiet = FALSE;
+ static gboolean index_only = FALSE;
++static gboolean check_subdirs = FALSE;
+ static gchar *var_name = "-";
+ 
+ #define CACHE_NAME "icon-theme.cache"
+@@ -61,8 +62,82 @@ static gchar *var_name = "-";
+ #define ALIGN_VALUE(this, boundary) \
+   (( ((unsigned long)(this)) + (((unsigned long)(boundary)) -1)) & (~(((unsigned long)(boundary))-1)))
+ 
++/* returns >0 if dir is newer than time, 0 if dir is older than time,
++ * <0 if stat fails */
++int
++dir_check (const gchar *path, time_t cache_time)
++{
++  struct stat path_stat;
++
++	if (g_stat (path, &path_stat) < 0)
++		{
++			return -1;
++		}
++  return cache_time < path_stat.st_mtime;
++}
++
++/* Check the subdirectories of the cache dir to see if the cache is up-to-date
++ * We check first and second level subdirs. */
++gboolean
++is_cache_up_to_date_subdirs (const gchar *toppath, time_t cache_time)
++{
++	GDir *topdir, *subdir;
++	const gchar *name, *subname;
++	gchar *path, *subpath;
++	int dir_state;
++
++	topdir = g_dir_open (toppath, 0, NULL);
++	if (!topdir)
++		{
++			/* we can't open dir, assume updated cache */
++			return TRUE;
++		}
++
++	while ((name = g_dir_read_name (topdir)))
++		{
++			path = g_build_filename (toppath, name, NULL);
++			dir_state = dir_check (path, cache_time);
++			if (dir_state < 0)
++				{
++					/* cannot stat dir, for some reason; skip */
++					g_free (path);
++					continue;
++				}
++			else if (dir_state > 0)
++				{
++					/* cache is out of date */
++					g_free (path);
++					return FALSE;
++				}
++
++			subdir = g_dir_open (path, 0, NULL);
++			if (!subdir)
++				{
++					/* Cannot open subdir; skip */
++					g_free (path);
++					continue;
++				}
++			while ((subname = g_dir_read_name (subdir)))
++				{
++					subpath = g_build_filename (path, subname, NULL);
++					dir_state = dir_check (subpath, cache_time);
++					g_free (subpath);
++
++					if (dir_state > 0)
++						{
++							/* Cache out of date */
++							return FALSE;
++						}
++				}
++			g_free (path);
++		}
++
++	/* If we get here, the cache is up to date */
++	return TRUE;
++}
++
+ gboolean
+-is_cache_up_to_date (const gchar *path)
++is_cache_up_to_date (const gchar *path, gboolean check_subdirs)
+ {
+   struct stat path_stat, cache_stat;
+   gchar *cache_path;
+@@ -88,7 +163,18 @@ is_cache_up_to_date (const gchar *path)
+     }
+ 
+   /* Check mtime */
+-  return cache_stat.st_mtime >= path_stat.st_mtime;
++  if (cache_stat.st_mtime < path_stat.st_mtime)
++		{
++			/* Cache is out of date */
++			return FALSE;
++		}
++	if (check_subdirs)
++		{
++			return is_cache_up_to_date_subdirs (path, cache_stat.st_mtime);
++		}
++
++	/* Cache is up to date */
++	return TRUE;
+ }
+ 
+ gboolean
+@@ -1284,6 +1370,7 @@ static GOptionEntry args[] = {
+   { "index-only", 'i', 0, G_OPTION_ARG_NONE, &index_only, N_("Don't include image data in the cache"), NULL },
+   { "source", 'c', 0, G_OPTION_ARG_STRING, &var_name, N_("Output a C header file"), "NAME" },
+   { "quiet", 'q', 0, G_OPTION_ARG_NONE, &quiet, N_("Turn off verbose output"), NULL },
++  { "check-subdirs", 's', 0, G_OPTION_ARG_NONE, &check_subdirs, N_("Check subdirectories when determining if cache is up-to-date"), NULL },
+   { NULL }
+ };
+ 
+@@ -1316,7 +1403,7 @@ main (int argc, char **argv)
+       return 1;
+     }
+   
+-  if (!force_update && is_cache_up_to_date (path))
++  if (!force_update && is_cache_up_to_date (path, check_subdirs))
+     return 0;
+ 
+   g_type_init ();
