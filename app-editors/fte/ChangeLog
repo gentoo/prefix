@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/fte
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/fte/ChangeLog,v 1.40 2007/05/13 18:20:02 bangert Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/fte/ChangeLog,v 1.41 2007/05/25 06:33:00 opfer Exp $
+
+  25 May 2007; Christian Faulhammer <opfer@gentoo.org> ChangeLog:
+  corrected ChangeLog, so it conforms to our standards
 
   13 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
   add herd
@@ -27,7 +30,7 @@
   03 Apr 2006; Thomas Cort <tcort@gentoo.org> fte-20051115.ebuild:
   Added ~alpha keyword.
 
-* fte-20051115 (26 Mar 2006)
+*fte-20051115 (26 Mar 2006)
 
   26 Mar 2006; Konstantin Arkhipov <voxus@gentoo.org> +fte-20051115.ebuild:
   Version bump, also closing bug #125509.
