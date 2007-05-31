@@ -18,16 +18,11 @@ IUSE=""
 DEPEND=""
 
 src_unpack() {
-	unpack "${A}"
-	cd "${S}" || die
-	epatch "${FILESDIR}"/${P}-prefix.patch
-	eprefixify main.c
-}
-
-src_unpack() {
 	unpack ${A}
 	cd ${S}
 	epatch "${FILESDIR}"/makefile.patch
+	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify main.c
 }
 
 src_compile() {
