@@ -1,6 +1,9 @@
 # ChangeLog for x11-apps/xrdb
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xrdb/ChangeLog,v 1.31 2007/05/20 22:44:49 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xrdb/ChangeLog,v 1.32 2007/05/27 04:46:03 kumba Exp $
+
+  27 May 2007; Joshua Kinard <kumba@gentoo.org> xrdb-1.0.3.ebuild:
+  Stable on mips.
 
   20 May 2007; Jeroen Roovers <jer@gentoo.org> xrdb-1.0.3.ebuild:
   Stable for HPPA (bug #175465).
