@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXv
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXv/ChangeLog,v 1.33 2007/05/12 19:10:13 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXv/ChangeLog,v 1.34 2007/05/20 21:16:12 jer Exp $
+
+  20 May 2007; Jeroen Roovers <jer@gentoo.org> libXv-1.0.3.ebuild:
+  Stable for HPPA (bug #175465).
 
   12 May 2007; nixnut <nixnut@gentoo.org> libXv-1.0.3.ebuild:
   Stable on ppc wrt bug 175465
