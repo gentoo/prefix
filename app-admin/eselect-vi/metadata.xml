@@ -2,9 +2,5 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<herd>vim</herd>
-	<maintainer>
-		<email>pioto@gentoo.org</email>
-		<name>Mike Kelly</name>
-	</maintainer>
 </pkgmetadata>
 
