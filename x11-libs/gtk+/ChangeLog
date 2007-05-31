@@ -1,6 +1,30 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.308 2007/05/22 15:52:51 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.316 2007/05/31 14:14:23 jer Exp $
+
+  31 May 2007; Jeroen Roovers <jer@gentoo.org> gtk+-2.10.11.ebuild:
+  Stable for HPPA (bug #171107).
+
+  31 May 2007; Daniel Gryniewicz <dang@gentoo.org> gtk+-2.10.11.ebuild:
+  Marked stable on amd64 for bug #171107
+
+  31 May 2007; Brent Baude <ranger@gentoo.org> gtk+-2.10.11.ebuild:
+  Marking gtk+-2.10.11 ppc64 stable for bug #171107
+
+  30 May 2007; Raúl Porcel <armin76@gentoo.org> gtk+-2.10.11.ebuild:
+  alpha/ia64 stable wrt #171107
+
+  29 May 2007; Andrej Kacian <ticho@gentoo.org> gtk+-2.10.11.ebuild:
+  Stable on x86, bug #171107.
+
+  29 May 2007; Gustavo Zacarias <gustavoz@gentoo.org> gtk+-2.10.11.ebuild:
+  Stable on sparc wrt #171107
+
+  27 May 2007; Joshua Kinard <kumba@gentoo.org> gtk+-2.10.11.ebuild:
+  Stable on mips.
+
+  26 May 2007; Daniel Gryniewicz <dang@gentoo.org> gtk+-2.10.11.ebuild:
+  icon cache patch shouldn't have gone into .11
 
   22 May 2007; Daniel Gryniewicz <dang@gentoo.org>
   +files/gtk+-2.10.11-update-icon-subdirs.patch, gtk+-2.10.11.ebuild,

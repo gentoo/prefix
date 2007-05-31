@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.10.11.ebuild,v 1.2 2007/05/22 15:52:51 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.10.11.ebuild,v 1.10 2007/05/31 14:14:23 jer Exp $
 
 EAPI="prefix"
 
@@ -79,9 +79,6 @@ src_unpack() {
 
 	# Optionalize xinerama support
 	epatch "${FILESDIR}"/${PN}-2.8.10-xinerama.patch
-
-	# Make gtk-update-icon-cache check subdirs in it's update check
-	epatch "${FILESDIR}"/${PN}-2.10.11-update-icon-subdirs.patch
 
 	# use an arch-specific config directory so that 32bit and 64bit versions
 	# dont clash on multilib systems
