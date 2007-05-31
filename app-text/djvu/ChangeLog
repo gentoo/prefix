@@ -1,6 +1,16 @@
 # ChangeLog for app-text/djvu
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.58 2007/04/07 13:25:23 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.59 2007/05/22 11:15:24 pva Exp $
+
+*djvu-3.5.19 (22 May 2007)
+
+  22 May 2007; <pva@gentoo.org> metadata.xml, +djvu-3.5.19.ebuild:
+  Version bump (bug #166016). Bug #97995 (mozilla-firefox crash when opening a
+  djvu file using the djvu plugin reported by Amit Kotlovski <krallkrall AT
+  gmail.com>) and bug #150492 (app-text/djvu breaks images with X option
+  "Composite" enabled reported by <rpansky AT mail.ru>) should be fixed.
+  Automatic QT dependency reported by Michal Kurgan <moloh AT gentoo.org> is
+  fixed too.
 
   07 Apr 2007; Petteri Räty <betelgeuse@gentoo.org> -djvu-3.5.12.ebuild,
   -djvu-3.5.14.ebuild, -djvu-3.5.14-r1.ebuild, -djvu-3.5.16.ebuild:
