@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.143 2007/05/22 05:33:58 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.144 2007/05/27 00:28:29 kumba Exp $
+
+  27 May 2007; Joshua Kinard <kumba@gentoo.org> freetype-2.3.3.ebuild:
+  Stable on mips.
 
   22 May 2007; Markus Rothe <corsair@gentoo.org> freetype-2.3.4-r2.ebuild:
   Stable on ppc64; bug #179161
