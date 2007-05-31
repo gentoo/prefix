@@ -1,6 +1,16 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.224 2007/04/22 06:04:45 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.226 2007/05/29 11:51:57 flameeyes Exp $
+
+  29 May 2007; Diego Pettenò <flameeyes@gentoo.org>
+  imagemagick-6.3.4.ebuild:
+  Fix patch naming to apply imagemagick-6.3.3-docs.patch instead (bug #180173).
+
+*imagemagick-6.3.4 (28 May 2007)
+
+  28 May 2007; Bryan Østergaard <kloeri@gentoo.org>
+  +imagemagick-6.3.4.ebuild:
+  Bump version.
 
   22 Apr 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   imagemagick-6.3.3.ebuild:
