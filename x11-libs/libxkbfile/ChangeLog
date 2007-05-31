@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libxkbfile
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxkbfile/ChangeLog,v 1.32 2007/05/04 21:11:53 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxkbfile/ChangeLog,v 1.33 2007/05/20 21:06:26 jer Exp $
+
+  20 May 2007; Jeroen Roovers <jer@gentoo.org> libxkbfile-1.0.4.ebuild:
+  Stable for HPPA (bug #175465).
 
   04 May 2007; Daniel Gryniewicz <dang@gentoo.org> libxkbfile-1.0.4.ebuild:
   Marked stable on amd64 for bug #175465
