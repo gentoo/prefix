@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/XML-LibXML-Common
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-LibXML-Common/ChangeLog,v 1.19 2007/01/19 17:31:08 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-LibXML-Common/ChangeLog,v 1.20 2007/05/27 00:49:29 kumba Exp $
+
+  27 May 2007; Joshua Kinard <kumba@gentoo.org>
+  XML-LibXML-Common-0.13.ebuild:
+  Stable on mips.
 
   19 Jan 2007; Michael Cummings <mcummings@gentoo.org>
   XML-LibXML-Common-0.13.ebuild:
