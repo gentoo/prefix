@@ -1,6 +1,10 @@
 # ChangeLog for app-text/scrollkeeper
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/scrollkeeper/ChangeLog,v 1.72 2007/03/12 23:22:14 leonardop Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/scrollkeeper/ChangeLog,v 1.73 2007/05/27 23:43:25 kumba Exp $
+
+  27 May 2007; Joshua Kinard <kumba@gentoo.org>
+  scrollkeeper-0.3.14-r2.ebuild:
+  Stable on mips.
 
   12 Mar 2007; Leonardo Boshell <leonardop@gentoo.org> metadata.xml:
   Replacing text-markup herd with the new sgml herd.
