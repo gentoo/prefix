@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/nano
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.166 2007/05/11 14:13:56 yoswink Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.167 2007/05/25 06:44:18 opfer Exp $
+
+  25 May 2007; Christian Faulhammer <opfer@gentoo.org> ChangeLog:
+  corrected ChangeLog, so it conforms to our standards
 
   11 May 2007; Jose Luis Rivero <yoswink@gentoo.org> nano-2.0.4.ebuild:
   Stable on alpha wrt bug #176601
@@ -369,6 +372,7 @@
   Version bump.
 
 *nano-1.3.3-r1 (06 Jul 2004)
+*nano-1.3.2-r1 (06 Jul 2004)
 
   09 Jul 2004; Mike Frysinger <vapier@gentoo.org>
   +files/1.3.3-debug-printf-fix.patch:
