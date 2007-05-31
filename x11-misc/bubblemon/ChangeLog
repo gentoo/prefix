@@ -1,6 +1,17 @@
 # ChangeLog for x11-misc/bubblemon
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/bubblemon/ChangeLog,v 1.22 2007/02/21 23:34:01 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/bubblemon/ChangeLog,v 1.24 2007/05/28 15:14:12 drac Exp $
+
+  28 May 2007; Samuli Suominen <drac@gentoo.org>
+  files/bubblemon-1.46-gtk.patch:
+  QA. Don't prestrip binary.
+
+*bubblemon-1.46-r1 (28 May 2007)
+
+  28 May 2007; Samuli Suominen <drac@gentoo.org>
+  +files/bubblemon-1.46-gtk.patch, +bubblemon-1.46-r1.ebuild:
+  Thanks to 6thpink and Bernard Cafarelli for porting bubblemon to GTK+-2.0 in
+  bug 175730.
 
   21 Feb 2007; Markus Ullmann <jokey@gentoo.org> ChangeLog:
   Redigest for Manifest2
