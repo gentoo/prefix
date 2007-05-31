@@ -1,6 +1,16 @@
 # ChangeLog for app-arch/bsdtar
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bsdtar/ChangeLog,v 1.67 2007/05/23 11:39:22 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bsdtar/ChangeLog,v 1.69 2007/05/31 01:39:33 dang Exp $
+
+  31 May 2007; Daniel Gryniewicz <dang@gentoo.org> bsdtar-2.0.31.ebuild:
+  Marked stable on amd64 for bug #180017
+
+*bsdtar-2.2.3 (27 May 2007)
+
+  27 May 2007; Diego Pettenò <flameeyes@gentoo.org> -bsdtar-2.0.20.ebuild,
+  -bsdtar-2.0.24.ebuild, -bsdtar-2.0.25.ebuild, -bsdtar-2.0.28.ebuild,
+  -bsdtar-2.1.5.ebuild, +bsdtar-2.2.3.ebuild:
+  Version bump to 2.2.3 and remove redundant versions.
 
   23 May 2007; Timothy Redaelli <drizzt@gentoo.org> -bsdtar-2.1.9.ebuild,
   -bsdtar-2.1.10.ebuild:
