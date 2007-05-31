@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/eject
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/eject/ChangeLog,v 1.71 2007/02/13 10:25:17 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/eject/ChangeLog,v 1.72 2007/05/25 22:04:59 kloeri Exp $
+
+  25 May 2007; Bryan Østergaard <kloeri@gentoo.org> eject-2.1.5-r1.ebuild:
+  Stable on Alpha, bug 165355.
 
   13 Feb 2007; Markus Rothe <corsair@gentoo.org> eject-2.1.5-r1.ebuild:
   Stable on ppc64; bug #165355
