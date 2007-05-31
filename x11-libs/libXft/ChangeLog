@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXft
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXft/ChangeLog,v 1.40 2007/05/20 21:04:55 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXft/ChangeLog,v 1.41 2007/05/27 04:31:21 kumba Exp $
+
+  27 May 2007; Joshua Kinard <kumba@gentoo.org> libXft-2.1.12.ebuild:
+  Stable on mips.
 
   20 May 2007; Jeroen Roovers <jer@gentoo.org> libXft-2.1.12.ebuild:
   Stable for HPPA (bug #175465).
