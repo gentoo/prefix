@@ -1,6 +1,10 @@
 # ChangeLog for sys-fs/e2fsprogs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.104 2007/05/11 04:08:25 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.105 2007/05/25 16:38:04 welp Exp $
+
+  25 May 2007; Peter Weller <welp@gentoo.org>
+  e2fsprogs-1.40_pre20070411.ebuild:
+  Removed ~x86-fbsd keyword as it fails to build
 
   11 May 2007; Joshua Kinard <kumba@gentoo.org> e2fsprogs-1.39-r2.ebuild:
   Stable on mips, per #176841.
