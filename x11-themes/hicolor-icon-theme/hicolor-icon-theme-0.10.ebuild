@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/hicolor-icon-theme/hicolor-icon-theme-0.10.ebuild,v 1.6 2007/05/16 02:02:18 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/hicolor-icon-theme/hicolor-icon-theme-0.10.ebuild,v 1.8 2007/05/21 02:52:24 josejx Exp $
 
 EAPI="prefix"
 
