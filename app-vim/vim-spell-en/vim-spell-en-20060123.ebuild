@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/vim-spell-en/vim-spell-en-20060123.ebuild,v 1.6 2007/04/29 14:32:47 kugelfang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/vim-spell-en/vim-spell-en-20060123.ebuild,v 1.7 2007/05/31 13:15:35 gustavoz Exp $
 
 EAPI="prefix"
 
