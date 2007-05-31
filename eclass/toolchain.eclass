@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.335 2007/05/24 02:46:53 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.336 2007/05/29 22:48:27 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1133,7 +1133,11 @@ gcc-compiler-configure() {
 	fi
 
 	if tc_version_is_at_least "4.0" ; then
-		confgcc="${confgcc} $(use_enable mudflap libmudflap)"
+		if has mudflap ${IUSE} ; then
+			confgcc="${confgcc} $(use_enable mudflap libmudflap)"
+		else
+			confgcc="${confgcc} --disable-libmudflap"
+		fi
 
 		if want_libssp ; then
 			confgcc="${confgcc} --enable-libssp"

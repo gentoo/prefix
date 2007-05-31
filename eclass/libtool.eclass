@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.75 2007/03/04 21:03:41 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.76 2007/05/30 15:45:34 cardoe Exp $
 #
 # Maintainer: base-system@gentoo.org
 #
@@ -371,12 +371,12 @@ elibtoolize() {
 }
 
 uclibctoolize() {
-	ewarn "uclibctoolize() is depreciated, please just use elibtoolize()!"
+	ewarn "uclibctoolize() is deprecated, please just use elibtoolize()!"
 	elibtoolize
 }
 
 darwintoolize() {
-	ewarn "darwintoolize() is depreciated, please just use elibtoolize()!"
+	ewarn "darwintoolize() is deprecated, please just use elibtoolize()!"
 	elibtoolize
 }
 

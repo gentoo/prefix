@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.65 2007/03/04 21:03:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.66 2007/05/30 15:45:01 cardoe Exp $
 #
 # Maintainer: base-system@gentoo.org
 #
@@ -64,7 +64,7 @@ unset _automake_atom _autoconf_atom
 #	eautomake	   - Runs automake
 #
 
-# XXX: M4DIR should be depreciated
+# XXX: M4DIR should be deprecated
 AT_M4DIR=${AT_M4DIR:-${M4DIR}}
 AT_GNUCONF_UPDATE="no"
 

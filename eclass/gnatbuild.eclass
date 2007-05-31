@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.28 2007/05/18 13:55:36 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.30 2007/05/29 17:45:02 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -46,32 +46,17 @@ ACT_Ver=$(get_version_component_range 4)
 # naming and it may change
 PN_GnatGCC="gnat-gcc"
 PN_GnatGpl="gnat-gpl"
-PN_GnatPro="gnat-pro"
 
 # ATTN! GCCVER stands for the provided backend gcc, not the one on the system
-# so tc-* functions are of no use here
+# so tc-* functions are of no use here. The present versioning scheme makes
+# GCCVER basically a part of PV, but *this may change*!!
 #
-# GCCVER can be set in the ebuild, but then care will have to be taken
-# to set it before inheriting, which is easy to forget
-# so set it here for what we can..
-if  [[ ${PN} == "${PN_GnatGCC}" ]] || \
-	[[ ${PN} == "${PN_GnatGpl}" ]] || \
-	[[ ${PN} == "asis" ]] || \
-	[[ ${PN} == "asis-gcc" ]] || \
-	[[ ${PN} == "asis-gpl" ]];
-then
-	GCCVER="${GNATRELEASE}"
-elif [[ ${PN} == "${PN_GnatPro}" ]] ; then
-# Ada Core provided stuff is really conservative and changes backends rarely
-	case "${GNATMAJOR}" in
-		"3")    GCCVER="2.8.1" ;;
-		"2005") GCCVER="3.4.5" ;;
-	esac
-else
-	# gpc, gdc and possibly others will use a lot of common logic, I'll try to
-	# provide some support for them via this eclass
-	die "no support for other gcc frontends so far. Sorry."
-fi
+# NOTE:
+# GCCVER can, in principle, be set in the ebuild. While at present there is no reason to
+# do so, if this ever becomes the case don't forget to update this assignment
+# (to check if GCCVER was set first)
+GCCVER="${GNATRELEASE}"
+
 
 # finally extract GCC version strings
 GCCMAJOR=$(get_version_component_range 1 "${GCCVER}")
@@ -367,15 +352,16 @@ gnatbuild_src_unpack() {
 					|| eerror "Please file a bug about this"
 				eend $?
 			done
+
+			# regenerate some configures tp fix ACT's omissions
+			pushd ${S}/gnattools &> /dev/null
+				autoconf
+			popd &> /dev/null
 		;;
 
 		common_prep)
 			# Prepare the gcc source directory
-			if [ "2.8.1" == "${GCCVER}" ] ; then
-				cd "${S}"
-			else
-				cd "${S}/gcc"
-			fi
+			cd "${S}/gcc"
 			touch cstamp-h.in
 			touch ada/[es]info.h
 			touch ada/nmake.ad[bs]
@@ -420,14 +406,10 @@ gnatbuild_src_compile() {
 	else
 		# Set some paths to our bootstrap compiler.
 		export PATH="${GNATBOOT}/bin:${PATH}"
-		if [[ "${PN_GnatPro}-3.15p" == "${P}" ]]; then
-			GNATLIB="${GNATBOOT}/lib/gcc-lib/${BOOT_TARGET}/${BOOT_SLOT}"
-		else
-			# !ATTN! the *installed* compilers have ${PN} as part of their
-			# LIBPATH, while the *bootstrap* uses hardset "gnatgcc" in theirs
-			# (which is referenced as GNATLIB below)
-			GNATLIB="${GNATBOOT}/lib/gnatgcc/${BOOT_TARGET}/${BOOT_SLOT}"
-		fi
+		# !ATTN! the *installed* compilers have ${PN} as part of their
+		# LIBPATH, while the *bootstrap* uses hardset "gnatgcc" in theirs
+		# (which is referenced as GNATLIB below)
+		GNATLIB="${GNATBOOT}/lib/gnatgcc/${BOOT_TARGET}/${BOOT_SLOT}"
 
 		export CC="${GNATBOOT}/bin/gnatgcc"
 		export INCLUDE_DIR="${GNATLIB}/include"
@@ -609,7 +591,7 @@ gnatbuild_src_install() {
 			esac
 		fi
 
-		# force gnatgcc to use its own specs - versions prior to 4.x read specs
+		# force gnatgcc to use its own specs - versions prior to 3.4.6 read specs
 		# from system gcc location. Do the simple wrapper trick for now
 		# !ATTN! change this if eselect-gnat starts to follow eselect-compiler
 		if [[ ${GCCVER} < 3.4.6 ]] ; then

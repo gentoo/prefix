@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.22 2007/02/22 15:50:48 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.24 2007/05/28 15:49:48 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -230,7 +230,8 @@ gnat_src_unpack() {
 	unpack ${A}
 	cat /usr/share/eselect/modules/gnat.eselect | \
 		grep -v svn_date_to_version | \
-		grep -v DESCRIPTION >	${EselectScript}
+		grep -v DESCRIPTION | \
+		grep -v env-update > ${EselectScript}
 }
 
 
@@ -304,6 +305,7 @@ gnat_src_compile() {
 			lib_compile ${compilers[${i}]} || die "failed compiling for ${compilers[${i}]}"
 
 			# call install callback
+			cd ${SL}
 			lib_install ${compilers[${i}]} || die "failed installing profile-specific part for ${compilers[${i}]}"
 			# move installed and cleanup
 			mv ${DL} ${DL}-${compilers[${i}]}

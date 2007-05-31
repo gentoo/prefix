@@ -6,8 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.84 2007/05/06 09:47:36 betelgeuse Exp $
-
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.88 2007/05/28 19:28:22 caster Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -1079,7 +1078,6 @@ java-pkg_getjar() {
 # Intended for binary packages where you don't need to symlink the jars or get
 # their classpath during build. As such, the dependencies only need to be
 # specified in ebuild's RDEPEND, and should be omitted in DEPEND.
-# Get the classpath provided by any number of packages.
 #
 # @param $1 - comma-separated list of packages, or a single package
 # @param $2 - if param $1 is a single package, optionally specify the jar
@@ -1120,7 +1118,82 @@ java-pkg_register-dependency() {
 		java-pkg_record-jar_ "${pkgs}" "${jar}"
 	fi
 
-	java-pkg_do_write_	
+	java-pkg_do_write_
+}
+
+# ------------------------------------------------------------------------------
+# @ebuild-function java-pkg_register-optional-dependency
+#
+# Registers optional runtime dependency on a package, list of packages, or a
+# single jar from a package, into package.env OPTIONAL_DEPEND line. Can only be
+# called in src_install phase.
+# Intended for packages that can use other packages when those are in classpath.
+# Will be put on classpath by launcher if they are installed. Typical case is
+# JDBC implementations for various databases. It's better than having USE flag
+# for each implementation triggering hard dependency.
+#
+# @param $1 - comma-separated list of packages, or a single package
+# @param $2 - if param $1 is a single package, optionally specify the jar
+#   to depend on
+#
+# Example: Record the optional dependency on some jdbc providers
+#	java-pkg_register-optional-dependency jdbc-jaybird,jtds-1.2,jdbc-mysql
+#
+# Note: Passing both list of packages as the first parameter AND specifying the
+# jar as the second is not allowed and will cause the function to die. We assume
+# that there's more chance one passes such combination as a mistake, than that
+# there are more packages providing identically named jar without class
+# collisions.
+# ------------------------------------------------------------------------------
+java-pkg_register-optional-dependency() {
+	debug-print-function ${FUNCNAME} $*
+
+	java-pkg_check-phase install
+
+	[[ ${#} -gt 2 ]] && die "${FUNCNAME} takes at most two arguments"
+
+	local pkgs="${1}"
+	local jar="${2}"
+
+	[[ -z "${pkgs}" ]] && die "${FUNCNAME} called with no package(s) specified"
+
+	if [[ -z "${jar}" ]]; then
+		for pkg in ${pkgs//,/ }; do
+			java-pkg_record-jar_ --optional "${pkg}"
+		done
+	else
+		[[ ${pkgs} == *,* ]] && \
+			die "${FUNCNAME} called with both package list and jar name"
+		java-pkg_record-jar_ --optional "${pkgs}" "${jar}"
+	fi
+
+	java-pkg_do_write_
+}
+
+# ------------------------------------------------------------------------------
+# @ebuild-function java-pkg_register-environment-variable
+#
+# Register an arbitrary environment variable into package.env. The gjl launcher
+# for this package or any package depending on this will export it into
+# environement before executing java command.
+# Must only be called in src_install phase.
+#
+# @param $1 - variable name
+# @param $2 - variable value
+# ------------------------------------------------------------------------------
+JAVA_PKG_EXTRA_ENV="${T}/java-pkg-extra-env"
+JAVA_PKG_EXTRA_ENV_VARS=""
+java-pkg_register-environment-variable() {
+	debug-print-function ${FUNCNAME} $*
+
+	java-pkg_check-phase install
+
+	[[ ${#} != 2 ]] && die "${FUNCNAME} takes two arguments"
+
+	echo "${1}=\"${2}\"" >> ${JAVA_PKG_EXTRA_ENV}
+	JAVA_PKG_EXTRA_ENV_VARS="${JAVA_PKG_EXTRA_ENV_VARS} ${1}"
+
+	java-pkg_do_write_
 }
 
 # This function reads stdin, and based on that input, figures out how to
@@ -1663,18 +1736,23 @@ java-pkg_ant-tasks-depend() {
 # ejunit org.blinkenlights.jid3.test.AllTests
 #
 # @param $1 - -cp or -classpath
-# @param $2 - classpath, junit gets appended
+# @param $2 - classpath; junit and recorded dependencies get appended
 # @param $@ - the rest of the parameters are passed to java
 # ------------------------------------------------------------------------------
 ejunit() {
 	debug-print-function ${FUNCNAME} $*
 
-	local cp
+	local pkgs
+	for atom in $(cat ${JAVA_PKG_DEPEND_FILE} | tr : ' '); do
+		pkgs=${pkgs},$(echo ${atom} | sed -re "s/^.*@//")
+	done
+
+	local cp=$(java-pkg_getjars --with-dependencies junit${pkgs})
 	if [[ ${1} = -cp || ${1} = -classpath ]]; then
-		cp=${2}:$(java-pkg_getjars --build-only junit)
+		cp="${2}:${cp}"
 		shift 2
 	else
-		cp=$(java-pkg_getjars --build-only junit):.
+		cp=".:${cp}"
 	fi
 
 	local runner=junit.textui.TestRunner
@@ -2110,10 +2188,13 @@ java-pkg_init_paths_() {
 # ------------------------------------------------------------------------------
 # TODO change to do-write, to match everything else
 java-pkg_do_write_() {
+	debug-print-function ${FUNCNAME} $*
 	java-pkg_init_paths_
 	# Create directory for package.env
 	dodir "${JAVA_PKG_SHAREPATH}"
-	if [[ -n "${JAVA_PKG_CLASSPATH}" || -n "${JAVA_PKG_LIBRARY}" || -f "${JAVA_PKG_DEPEND}" ]]; then
+	if [[ -n "${JAVA_PKG_CLASSPATH}" || -n "${JAVA_PKG_LIBRARY}" || -f \
+			"${JAVA_PKG_DEPEND_FILE}" || -f \
+			"${JAVA_PKG_OPTIONAL_DEPEND_FILE}" ]]; then
 		# Create package.env
 		(
 			echo "DESCRIPTION=\"${DESCRIPTION}\""
@@ -2122,7 +2203,10 @@ java-pkg_do_write_() {
 			[[ -n "${JAVA_PKG_CLASSPATH}" ]] && echo "CLASSPATH=\"${JAVA_PKG_CLASSPATH}\""
 			[[ -n "${JAVA_PKG_LIBRARY}" ]] && echo "LIBRARY_PATH=\"${JAVA_PKG_LIBRARY}\""
 			[[ -n "${JAVA_PROVIDE}" ]] && echo "PROVIDES=\"${JAVA_PROVIDE}\""
-			[[ -f "${JAVA_PKG_DEPEND}" ]] && echo "DEPEND=\"$(cat ${JAVA_PKG_DEPEND} | uniq | tr '\n' ':')\""
+			[[ -f "${JAVA_PKG_DEPEND_FILE}" ]] \
+				&& echo "DEPEND=\"$(cat "${JAVA_PKG_DEPEND_FILE}" | uniq | tr '\n' ':')\""
+			[[ -f "${JAVA_PKG_OPTIONAL_DEPEND_FILE}" ]] \
+				&& echo "OPTIONAL_DEPEND=\"$(cat "${JAVA_PKG_OPTIONAL_DEPEND_FILE}" | uniq | tr '\n' ':')\""
 			echo "VM=\"$(echo ${RDEPEND} ${DEPEND} | sed -e 's/ /\n/g' | sed -n -e '/virtual\/\(jre\|jdk\)/ { p;q }')\"" # TODO cleanup !
 		) > "${JAVA_PKG_ENV}"
 
@@ -2143,22 +2227,43 @@ java-pkg_do_write_() {
 		echo "MERGE_VM=\"${GENTOO_VM}\"" >> "${JAVA_PKG_ENV}"
 		[[ -n ${GENTOO_COMPILER} ]] && echo "MERGE_COMPILER=\"${GENTOO_COMPILER}\"" >> "${JAVA_PKG_ENV}"
 
+		# extra env variables
+		if [[ -n "${JAVA_PKG_EXTRA_ENV_VARS}" ]]; then
+			cat "${JAVA_PKG_EXTRA_ENV}" >> "${JAVA_PKG_ENV}" || die
+			# nested echo to remove leading/trailing spaces
+			echo "ENV_VARS=\"$(echo ${JAVA_PKG_EXTRA_ENV_VARS})\"" \
+				>> "${JAVA_PKG_ENV}" || die
+		fi
+
 		# Strip unnecessary leading and trailing colons
 		# TODO try to cleanup if possible
 		sed -e "s/=\":/=\"/" -e "s/:\"$/\"/" -i "${JAVA_PKG_ENV}" || die "Did you forget to call java_init ?"
+	else
+		debug-print "JAVA_PKG_CLASSPATH, JAVA_PKG_LIBRARY, JAVA_PKG_DEPEND_FILE"
+		debug-print "or JAVA_PKG_OPTIONAL_DEPEND_FILE not defined so can't"
+		debug-print "write package.env."
 	fi
 }
 
 # ------------------------------------------------------------------------------
 # @internal-function java-pkg_record-jar_
 #
-# Record a dependency to the package.env
-#
+# Record an (optional) dependency to the package.env
+# @param --optional - record dependency as optional
+# @param $1 - package to record
+# @param $2 - (optional) jar of package to record
 # ------------------------------------------------------------------------------
-JAVA_PKG_DEPEND="${T}/java-pkg-depend"
+JAVA_PKG_DEPEND_FILE="${T}/java-pkg-depend"
+JAVA_PKG_OPTIONAL_DEPEND_FILE="${T}/java-pkg-optional-depend"
 
 java-pkg_record-jar_() {
 	debug-print-function ${FUNCNAME} $*
+
+	local depend_file="${JAVA_PKG_DEPEND_FILE}"
+	if [[ "${1}" == "--optional" ]]; then
+		depend_file="${JAVA_PKG_OPTIONAL_DEPEND_FILE}"
+		shift
+	fi
 
 	local pkg=${1} jar=${2} append
 	if [[ -z "${jar}" ]]; then
@@ -2167,7 +2272,7 @@ java-pkg_record-jar_() {
 		append="$(basename ${jar})@${pkg}"
 	fi
 
-	echo ${append} >> ${JAVA_PKG_DEPEND}
+	echo "${append}" >> "${depend_file}"
 }
 
 # ------------------------------------------------------------------------------
@@ -2442,6 +2547,7 @@ java-pkg_verify-classes() {
 # @param $1 - empty - check both vars; "runtime" or "build" - check only
 #	RDEPEND, resp. DEPEND
 # @param $2 - Package name and slot.
+
 java-pkg_ensure-dep() {
 	debug-print-function ${FUNCNAME} $*
 
@@ -2452,10 +2558,13 @@ java-pkg_ensure-dep() {
 	local stripped_pkg=$(echo "${target_pkg}" | sed \
 		's/-[0-9]*\(\.[0-9]\)*$//')
 
+	debug-print "Matching against: ${stripped_pkg}"
+
 	if [[ ${limit_to} != runtime && ! ( "${DEPEND}" =~ "$stripped_pkg" ) ]]; then
 		dev_error="The ebuild is attempting to use ${target_pkg} that is not"
 		dev_error="${dev_error} declared in DEPEND."
 		if is-java-strict; then
+			eerror "${dev_error}"
 			die "${dev_error}"
 		elif [[ ${BASH_SUBSHELL} = 0 ]]; then
 			eerror "${dev_error}"
@@ -2465,16 +2574,22 @@ java-pkg_ensure-dep() {
 		fi
 	fi
 
-	if [[ ${limit_to} != build && ! ( ${RDEPEND} =~ "${stripped_pkg}" ) ]]; then
-		dev_error="The ebuild is attempting to use ${target_pkg},"
-		dev_error="${dev_error} without specifying --build-only, that is not declared in RDEPEND."
-		if is-java-strict; then
-			die "${dev_error}"
-		elif [[ ${BASH_SUBSHELL} = 0 ]]; then
-			eerror "${dev_error}"
-			elog "The package will build without problems, but may fail to run"
-			elog "if you don't have ${target_pkg} installed, so please report"
-			elog "this to http://bugs.gentoo.org"
+	if [[ ${limit_to} != build ]]; then
+		if [[ ! ( ${RDEPEND} =~ "${stripped_pkg}" ) ]]; then
+			if [[ ! ( ${PDEPEND} =~ "${stripped_pkg}" ) ]]; then
+				dev_error="The ebuild is attempting to use ${target_pkg},"
+				dev_error="${dev_error} without specifying --build-only, that is not declared in RDEPEND"
+				dev_error="${dev_error} or PDEPEND."
+				if is-java-strict; then
+					eerror "${dev_error}"
+					die "${dev_error}"
+				elif [[ ${BASH_SUBSHELL} = 0 ]]; then
+					eerror "${dev_error}"
+					elog "The package will build without problems, but may fail to run"
+					elog "if you don't have ${target_pkg} installed, so please report"
+					elog "this to http://bugs.gentoo.org"
+				fi
+			fi
 		fi
 	fi
 }

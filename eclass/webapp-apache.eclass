@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/webapp-apache.eclass,v 1.27 2007/05/12 02:54:35 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/webapp-apache.eclass,v 1.28 2007/05/30 15:50:05 cardoe Exp $
 #
 # Author: Stuart Herbert <stuart@gentoo.org>
 #
@@ -8,7 +8,7 @@
 # contributed by Ian Leitch <port001@w0r.mine.nu> in bug #14870,
 # and robbat2's mod_php ebuild
 #
-# This package will be offically depreciated when vhost-config and
+# This package will be offically deprecated when vhost-config and
 # webapp-config from GLEP11 are released.
 
 IUSE="apache2"

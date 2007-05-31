@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mount-boot.eclass,v 1.12 2006/06/15 14:45:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mount-boot.eclass,v 1.13 2007/05/25 05:04:08 vapier Exp $
 #
 # This eclass is really only useful for bootloaders.
 #
@@ -12,11 +12,20 @@
 
 EXPORT_FUNCTIONS pkg_preinst
 
-mount-boot_mount_boot_partition(){
+mount-boot_mount_boot_partition() {
+	if [[ -n ${DONT_MOUNT_BOOT} ]] ; then
+		return
+	else
+		einfo
+		einfo "To avoid automounting and autoinstalling with /boot,"
+		einfo "just export the DONT_MOUNT_BOOT variable."
+		einfo
+	fi
+
 	# note that /dev/BOOT is in the Gentoo default /etc/fstab file
-	local fstabstate="$(cat /etc/fstab | awk '!/^#|^[[:blank:]]+#|^\/dev\/BOOT/ {print $2}' | egrep "^/boot$" )"
-	local procstate="$(cat /proc/mounts | awk '{print $2}' | egrep "^/boot$" )"
-	local proc_ro="$(cat /proc/mounts | awk '{ print $2, $4 }' | sed -n '/\/boot/{ /[ ,]\?ro[ ,]\?/p }' )"
+	local fstabstate=$(awk '!/^#|^[[:blank:]]+#|^\/dev\/BOOT/ {print $2}' /etc/fstab | egrep "^/boot$" )
+	local procstate=$(awk '$2 ~ /^\/boot$/ {print $2}' /proc/mounts)
+	local proc_ro=$(awk '{ print $2, $4 }' /proc/mounts | sed -n '/\/boot/{ /[ ,]\?ro[ ,]\?/p }' )
 
 	if [ -n "${fstabstate}" ] && [ -n "${procstate}" ]; then
 		if [ -n "${proc_ro}" ]; then
@@ -60,6 +69,6 @@ mount-boot_mount_boot_partition(){
 	fi
 }
 
-mount-boot_pkg_preinst(){
+mount-boot_pkg_preinst() {
 	mount-boot_mount_boot_partition
 }
