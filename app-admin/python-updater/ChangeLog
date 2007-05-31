@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/python-updater
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/ChangeLog,v 1.17 2007/05/16 21:10:10 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/ChangeLog,v 1.18 2007/05/31 02:12:33 kloeri Exp $
+
+  31 May 2007; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
+  Remove myself as I'm retiring.
 
   16 May 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   python-updater-0.2.ebuild:
