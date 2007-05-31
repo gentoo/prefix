@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.261 2007/05/19 21:43:29 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.262 2007/05/31 02:14:34 kloeri Exp $
+
+  31 May 2007; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
+  Remove myself as I'm retiring.
 
   19 May 2007; Peter Weller <welp@gentoo.org> python-2.5.1-r2.ebuild:
   Keyworded ~amd64 wrt bug 177426
