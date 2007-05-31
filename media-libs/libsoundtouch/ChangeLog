@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libsoundtouch
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/ChangeLog,v 1.18 2007/05/21 16:22:09 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/ChangeLog,v 1.19 2007/05/25 15:38:47 ranger Exp $
+
+  25 May 2007; Brent Baude <ranger@gentoo.org>
+  libsoundtouch-1.3.1-r1.ebuild:
+  Marking libsoundtouch-1.3.1-r1 ~ppc64 as a dep to audacity and bug 179173
 
   21 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
   libsoundtouch-1.3.1-r1.ebuild:
