@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Compress-Zlib
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Compress-Zlib/ChangeLog,v 1.73 2007/05/16 18:14:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Compress-Zlib/ChangeLog,v 1.74 2007/05/24 14:33:20 flameeyes Exp $
+
+  24 May 2007; Diego Pettenò <flameeyes@gentoo.org>
+  Compress-Zlib-2.004.ebuild:
+  Add ~x86-fbsd keyword, as per bug #154244.
 
   16 May 2007; Raúl Porcel <armin76@gentoo.org> Compress-Zlib-2.004.ebuild:
   Add ~alpha wrt #154244
