@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libICE
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libICE/ChangeLog,v 1.37 2007/05/04 20:51:09 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libICE/ChangeLog,v 1.38 2007/05/20 20:47:49 jer Exp $
+
+  20 May 2007; Jeroen Roovers <jer@gentoo.org> libICE-1.0.3.ebuild:
+  Stable for HPPA (bug #175465).
 
   04 May 2007; Daniel Gryniewicz <dang@gentoo.org> libICE-1.0.3.ebuild:
   Marked stable on amd64 for bug #175465
