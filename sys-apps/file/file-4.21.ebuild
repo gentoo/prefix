@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-4.21.ebuild,v 1.1 2007/05/24 22:33:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-4.21.ebuild,v 1.7 2007/05/28 12:29:25 gustavoz Exp $
 
 EAPI="prefix"
 
