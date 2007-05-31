@@ -1,6 +1,28 @@
 # ChangeLog for dev-lang/ocaml
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.111 2007/05/15 22:29:52 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.115 2007/05/26 19:05:10 armin76 Exp $
+
+  26 May 2007; Raúl Porcel <armin76@gentoo.org> ocaml-3.09.3-r1.ebuild,
+  ocaml-3.10.0.ebuild:
+  Add no-relax to LDFLAGS for alpha, and keyword latest version ~alpha
+
+  26 May 2007; Raúl Porcel <armin76@gentoo.org> ocaml-3.09.3-r1.ebuild:
+  Readd ~alpha wrt #178256
+
+  26 May 2007; Alexis Ballier <aballier@gentoo.org>
+  +files/ocaml-3.10.0-execheap.patch, ocaml-3.10.0.ebuild:
+  merge paxmarking of the compilers and makefile patch to replace multiple
+  occurences of @compiler@ in ocamlcomp.sh.in that allows building with an
+  hardened kernel
+
+*ocaml-3.10.0 (26 May 2007)
+
+  26 May 2007; Alexis Ballier <aballier@gentoo.org>
+  +files/ocaml-3.10.0-automagic.patch,
+  +files/ocaml-3.10.0-call-ld-with-proper-ldflags.patch,
+  +files/ocaml-3.10.0-configure.patch,
+  +files/ocaml-3.10.0-exec-stack-fixes.patch, +ocaml-3.10.0.ebuild:
+  New upstream release
 
   15 May 2007; Jeroen Roovers <jer@gentoo.org> ocaml-3.09.3-r1.ebuild:
   Marked ~hppa (bug #178256).

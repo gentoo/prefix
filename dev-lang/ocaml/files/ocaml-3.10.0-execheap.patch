@@ -1,0 +1,54 @@
+Index: ocaml-3.10.0/Makefile
+===================================================================
+--- ocaml-3.10.0.orig/Makefile
++++ ocaml-3.10.0/Makefile
+@@ -284,7 +284,7 @@ clean:: partialclean
+ 
+ ocamlc: $(COMPOBJS)
+ 	$(CAMLC) $(LINKFLAGS) -o ocamlc $(COMPOBJS)
+-	@sed -e 's|@compiler@|$$topdir/boot/ocamlrun $$topdir/ocamlc|' \
++	@sed -e 's|@compiler@|$$topdir/boot/ocamlrun $$topdir/ocamlc|g' \
+ 	  driver/ocamlcomp.sh.in > ocamlcomp.sh
+ 	@chmod +x ocamlcomp.sh
+ 
+@@ -295,7 +295,7 @@ partialclean::
+ 
+ ocamlopt: $(OPTOBJS)
+ 	$(CAMLC) $(LINKFLAGS) -o ocamlopt $(OPTOBJS)
+-	@sed -e 's|@compiler@|$$topdir/boot/ocamlrun $$topdir/ocamlopt|' \
++	@sed -e 's|@compiler@|$$topdir/boot/ocamlrun $$topdir/ocamlopt|g' \
+ 	  driver/ocamlcomp.sh.in > ocamlcompopt.sh
+ 	@chmod +x ocamlcompopt.sh
+ 
+@@ -385,7 +385,7 @@ ocamlc.opt: $(COMPOBJS:.cmo=.cmx)
+ 	$(CAMLOPT) $(LINKFLAGS) -ccopt "$(BYTECCLINKOPTS)" -o ocamlc.opt \
+           $(COMPOBJS:.cmo=.cmx) \
+           asmrun/meta.o asmrun/dynlink.o -cclib "$(BYTECCLIBS)"
+-	@sed -e 's|@compiler@|$$topdir/ocamlc.opt|' \
++	@sed -e 's|@compiler@|$$topdir/ocamlc.opt|g' \
+ 	  driver/ocamlcomp.sh.in > ocamlcomp.sh
+ 	@chmod +x ocamlcomp.sh
+ 
+@@ -396,7 +396,7 @@ partialclean::
+ 
+ ocamlopt.opt: $(OPTOBJS:.cmo=.cmx)
+ 	$(CAMLOPT) $(LINKFLAGS) -o ocamlopt.opt $(OPTOBJS:.cmo=.cmx)
+-	@sed -e 's|@compiler@|$$topdir/ocamlopt.opt|' \
++	@sed -e 's|@compiler@|$$topdir/ocamlopt.opt|g' \
+ 	  driver/ocamlcomp.sh.in > ocamlcompopt.sh
+ 	@chmod +x ocamlcompopt.sh
+ 
+Index: ocaml-3.10.0/driver/ocamlcomp.sh.in
+===================================================================
+--- ocaml-3.10.0.orig/driver/ocamlcomp.sh.in
++++ ocaml-3.10.0/driver/ocamlcomp.sh.in
+@@ -2,4 +2,9 @@
+ 
+ topdir=`dirname $0`
+ 
++# evil hack for evil build system.
++if [ -x /usr/bin/scanelf ]; then
++       [ "$(scanelf @compiler@ -BF%x#f)" != "--mxe-" ] && scanelf -qXx -z mxe @compiler@ > /dev/null
++fi
++
+ exec @compiler@ -nostdlib -I $topdir/stdlib "$@"
