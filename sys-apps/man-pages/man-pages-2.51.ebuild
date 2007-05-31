@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-2.46.ebuild,v 1.1 2007/04/30 18:50:33 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-2.51.ebuild,v 1.1 2007/05/31 06:29:39 vapier Exp $
 
 EAPI="prefix"
 
@@ -42,9 +42,6 @@ src_compile() { :; }
 src_install() {
 	emake install prefix="${D}${EPREFIX}" || die
 	dodoc man-pages-*.Announce README Changes* HOWTOHELP
-
-	# upstream is sending these the way of the dodo
-	rm -rf "${ED}"/usr/share/man/man1
 }
 
 pkg_postinst() {
