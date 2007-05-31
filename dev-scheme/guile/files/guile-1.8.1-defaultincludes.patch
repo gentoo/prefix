@@ -1,0 +1,12 @@
+Index: guile-1.8.1/libguile/Makefile.am
+===================================================================
+--- guile-1.8.1.orig/libguile/Makefile.am
++++ guile-1.8.1/libguile/Makefile.am
+@@ -22,6 +22,7 @@
+ AUTOMAKE_OPTIONS = gnu
+ 
+ ## Prevent automake from adding extra -I options
++DEFAULT_INCLUDES = 
+ DEFS = @DEFS@
+ ## Check for headers in $(srcdir)/.., so that #include
+ ## <libguile/MUMBLE.h> will find MUMBLE.h in this dir when we're

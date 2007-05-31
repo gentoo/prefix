@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.6.8.ebuild,v 1.9 2007/05/20 16:22:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.6.8.ebuild,v 1.10 2007/05/25 12:17:16 hkbst Exp $
 
 EAPI="prefix"
 
@@ -14,8 +14,8 @@ LICENSE="GPL-2"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
 IUSE=""
 
-# Problems with parallel builds (#34029), so I'm taking the safer route
-# MAKEOPTS="${MAKEOPTS} -j1"
+# bug 179738
+MAKEOPTS="${MAKEOPTS} -j1"
 
 DEPEND=">=sys-libs/ncurses-5.1
 	>=sys-libs/readline-4.1"

@@ -1,0 +1,43 @@
+Index: guile-1.8.1/configure.in
+===================================================================
+--- guile-1.8.1.orig/configure.in
++++ guile-1.8.1/configure.in
+@@ -602,6 +602,7 @@ AC_CHECK_HEADERS([assert.h crt_externs.h
+ #       (DINFINITY and DQNAN are actually global variables, not functions)
+ #   chsize - an MS-DOS-ism, found in mingw
+ #   clog10 - not in mingw (though others like clog and csqrt are)
++#   clog,cexp - not in FreeBSD (though others are, like cabs)
+ #   fesetround - available in C99, but not older systems
+ #   ftruncate - posix, but probably not older systems (current mingw
+ #               has it as an inline for chsize)
+@@ -614,7 +615,7 @@ AC_CHECK_HEADERS([assert.h crt_externs.h
+ #   isblank - available as a GNU extension or in C99
+ #   _NSGetEnviron - Darwin specific
+ #
+-AC_CHECK_FUNCS([DINFINITY DQNAN chsize clog10 ctermid fesetround ftime ftruncate fchown getcwd geteuid gettimeofday gmtime_r ioctl lstat mkdir mknod nice readdir_r readlink rename rmdir select setegid seteuid setlocale setpgid setsid sigaction siginterrupt stat64 strftime strptime symlink sync sysconf tcgetpgrp tcsetpgrp times uname waitpid strdup system usleep atexit on_exit chown link fcntl ttyname getpwent getgrent kill getppid getpgrp fork setitimer getitimer strchr strcmp index bcopy memcpy rindex truncate unsetenv isblank _NSGetEnviron])
++AC_CHECK_FUNCS([DINFINITY DQNAN chsize clog10 clog cexp ctermid fesetround ftime ftruncate fchown getcwd geteuid gettimeofday gmtime_r ioctl lstat mkdir mknod nice readdir_r readlink rename rmdir select setegid seteuid setlocale setpgid setsid sigaction siginterrupt stat64 strftime strptime symlink sync sysconf tcgetpgrp tcsetpgrp times uname waitpid strdup system usleep atexit on_exit chown link fcntl ttyname getpwent getgrent kill getppid getpgrp fork setitimer getitimer strchr strcmp index bcopy memcpy rindex truncate unsetenv isblank _NSGetEnviron])
+ 
+ # Reasons for testing:
+ #   netdb.h - not in mingw
+Index: guile-1.8.1/libguile/numbers.c
+===================================================================
+--- guile-1.8.1.orig/libguile/numbers.c
++++ guile-1.8.1/libguile/numbers.c
+@@ -6018,7 +6018,7 @@ SCM_DEFINE (scm_log, "log", 1, 0, 0,
+ {
+   if (SCM_COMPLEXP (z))
+     {
+-#if HAVE_COMPLEX_DOUBLE
++#if HAVE_COMPLEX_DOUBLE && HAVE_CLOG
+       return scm_from_complex_double (clog (SCM_COMPLEX_VALUE (z)));
+ #else
+       double re = SCM_COMPLEX_REAL (z);
+@@ -6084,7 +6084,7 @@ SCM_DEFINE (scm_exp, "exp", 1, 0, 0,
+ {
+   if (SCM_COMPLEXP (z))
+     {
+-#if HAVE_COMPLEX_DOUBLE
++#if HAVE_COMPLEX_DOUBLE && HAVE_CEXP
+       return scm_from_complex_double (cexp (SCM_COMPLEX_VALUE (z)));
+ #else
+       return scm_c_make_polar (exp (SCM_COMPLEX_REAL (z)),

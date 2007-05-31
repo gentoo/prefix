@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.1-r3.ebuild,v 1.1 2007/03/03 16:13:25 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.1-r3.ebuild,v 1.3 2007/05/25 15:51:07 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,9 @@ KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
 
 DEPEND=">=dev-libs/gmp-4.1 >=sys-devel/libtool-1.5.6 sys-devel/gettext"
 
-# Guile seems to contain some slotting support, /usr/share/guile/ is slotted, but there are lots of collisions. Most in /usr/share/libguile. Therefore I'm slotting this in the same slot as guile-1.6* for now.
+# Guile seems to contain some slotting support, /usr/share/guile/ is slotted,
+# but there are lots of collisions. Most in /usr/share/libguile. Therefore
+# I'm slotting this in the same slot as guile-1.6* for now.
 SLOT="12"
 MAJOR="1.8"
 
@@ -29,6 +31,11 @@ src_unpack() {
 	cp "${EPREFIX}"/usr/share/gettext/config.rpath .
 	epatch ${FILESDIR}/guile-1.8.1-autotools_fixes.patch
 	epatch "${FILESDIR}"/guile-1.8.1-echo-n.patch
+
+	# for free-bsd, bug 179728
+	epatch $FILESDIR/guile-1.8.1-defaultincludes.patch
+	epatch $FILESDIR/guile-1.8.1-clog-cexp.patch
+
 	eautoreconf
 
 	# for lilypond 2.11.x
