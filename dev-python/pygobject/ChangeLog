@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.20 2007/02/16 10:05:46 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.21 2007/05/27 01:45:32 kumba Exp $
+
+  27 May 2007; Joshua Kinard <kumba@gentoo.org> pygobject-2.12.3.ebuild:
+  Stable on mips.
 
   16 Feb 2007; Roy Marples <uberlord@gentoo.org> pygobject-2.12.3.ebuild:
   Added ~x86-fbsd keyword.
