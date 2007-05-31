@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/gnupg
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.289 2007/05/12 20:43:41 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.290 2007/05/19 21:17:56 dang Exp $
+
+  19 May 2007; Daniel Gryniewicz <dang@gentoo.org> gnupg-1.4.7-r1.ebuild:
+  Marked stable on amd64 for bug #177747
 
   12 May 2007; Joshua Kinard <kumba@gentoo.org> gnupg-1.4.7-r1.ebuild:
   Stable on mips, per #177747.
