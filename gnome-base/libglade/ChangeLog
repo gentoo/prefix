@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/libglade
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/gnome-base/libglade/ChangeLog,v 1.93 2007/01/21 19:36:18 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/ChangeLog,v 1.94 2007/05/27 05:29:47 kumba Exp $
+
+  27 May 2007; Joshua Kinard <kumba@gentoo.org> libglade-2.6.0.ebuild:
+  Stable on mips.
 
   21 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> libglade-2.6.0.ebuild:
   Stable on IA64, bug 156662.

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/gnome-base/libglade/libglade-2.6.0.ebuild,v 1.11 2007/01/28 07:42:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/libglade-2.6.0.ebuild,v 1.12 2007/05/27 05:29:47 kumba Exp $
 
 EAPI="prefix"
 
