@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.3.4.ebuild,v 1.9 2007/05/31 01:41:58 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.3.6.ebuild,v 1.1 2007/05/27 17:13:51 vapier Exp $
 
 EAPI="prefix"
 
@@ -27,9 +27,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	# rename 'open' and 'close' as they may be defined to open64/close64
-	# (AIX fex).
-	epatch "${FILESDIR}"/${PN}-4.3.2-aix.patch
 	# IRIX needs an extra cast
 	epatch "${FILESDIR}"/${PN}-4.3.2-irix.patch
 
