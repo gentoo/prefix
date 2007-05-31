@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXext
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXext/ChangeLog,v 1.39 2007/05/20 21:01:13 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXext/ChangeLog,v 1.40 2007/05/27 04:24:46 kumba Exp $
+
+  27 May 2007; Joshua Kinard <kumba@gentoo.org> libXext-1.0.3.ebuild:
+  Stable on mips.
 
   20 May 2007; Jeroen Roovers <jer@gentoo.org> libXext-1.0.3.ebuild:
   Stable for HPPA (bug #175465).
