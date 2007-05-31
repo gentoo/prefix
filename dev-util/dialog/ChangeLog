@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/dialog
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.83 2007/05/20 16:14:37 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.84 2007/05/25 15:21:44 ranger Exp $
+
+  25 May 2007; Brent Baude <ranger@gentoo.org> dialog-1.1.20070227.ebuild:
+  Marking dialog-1.1.2007022 ppc64 stable for bug 179092
 
   20 May 2007; Raúl Porcel <armin76@gentoo.org> dialog-1.1.20070227.ebuild:
   alpha stable wrt #179092
