@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.18.ebuild,v 1.8 2007/05/21 19:58:51 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.18.ebuild,v 1.9 2007/05/27 00:30:57 kumba Exp $
 
 EAPI="prefix"
 
