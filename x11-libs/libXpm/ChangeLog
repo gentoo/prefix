@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXpm
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXpm/ChangeLog,v 1.33 2007/05/04 21:13:30 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXpm/ChangeLog,v 1.34 2007/05/20 21:08:39 jer Exp $
+
+  20 May 2007; Jeroen Roovers <jer@gentoo.org> libXpm-3.5.6.ebuild:
+  Stable for HPPA (bug #175465).
 
   04 May 2007; Daniel Gryniewicz <dang@gentoo.org> libXpm-3.5.6.ebuild:
   Marked stable on amd64 for bug #175465
