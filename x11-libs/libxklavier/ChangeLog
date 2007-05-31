@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/libxklavier
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.88 2007/03/12 19:35:08 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.90 2007/05/21 13:58:06 leio Exp $
+
+  21 May 2007; <leio@gentoo.org> -libxklavier-2.0.ebuild,
+  -libxklavier-3.0.ebuild, -libxklavier-3.0-r1.ebuild:
+  Remove old
+
+  21 May 2007; Raúl Porcel <armin76@gentoo.org> libxklavier-3.1.ebuild:
+  alpha stable wrt #164978
 
   12 Mar 2007; Mart Raudsepp <leio@gentoo.org> libxklavier-3.1.ebuild:
   Add glib dependency, bug 170563
