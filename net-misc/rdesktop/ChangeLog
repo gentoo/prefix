@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/rdesktop
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.83 2007/04/26 23:41:24 mjolnir Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.84 2007/05/30 18:47:28 gustavoz Exp $
+
+  30 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  rdesktop-1.5.0-r2.ebuild:
+  Stable on sparc wrt #180310
 
   26 Apr 2007; Martin Jackson <mjolnir@gentoo.org> rdesktop-1.5.0-r2.ebuild:
   Fix syntax warning in 1.5.0-r2 ebuild
