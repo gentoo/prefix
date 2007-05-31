@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXres
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXres/ChangeLog,v 1.37 2007/05/05 18:12:31 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXres/ChangeLog,v 1.38 2007/05/20 21:13:42 jer Exp $
+
+  20 May 2007; Jeroen Roovers <jer@gentoo.org> libXres-1.0.3.ebuild:
+  Stable for HPPA (bug #175465).
 
   05 May 2007; Daniel Gryniewicz <dang@gentoo.org> libXres-1.0.3.ebuild:
   Marked stable on amd64 for bug #175465
