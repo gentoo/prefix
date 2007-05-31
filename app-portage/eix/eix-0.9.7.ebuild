@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-portage/eix/eix-0.8.5.ebuild,v 1.1 2007/01/11 22:19:11 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/eix-0.9.7.ebuild,v 1.1 2007/05/28 17:39:19 genstef Exp $
 
 EAPI=prefix
 DESCRIPTION="Small utility for searching ebuilds with indexing for fast results"
@@ -9,17 +9,18 @@ SRC_URI="mirror://sourceforge/eix/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="sqlite"
 
-DEPEND="sqlite? ( >=dev-db/sqlite-3 )"
+DEPEND="sqlite? ( >=dev-db/sqlite-3 )
+	app-arch/bzip2"
 RDEPEND="${DEPEND}"
 
 src_compile() {
 	econf \
 		--with-portdir-cache-method=none \
 		--with-eprefix-default=${EPREFIX} \
-		$(use_with sqlite) || die "econf failed"
+		--with-bzip2 $(use_with sqlite) || die "econf failed"
 	emake || die "emake failed"
 	src/eix --dump-defaults >eixrc || die "generating eixrc failed"
 }
