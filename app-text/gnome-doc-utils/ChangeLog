@@ -1,6 +1,10 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.78 2007/04/17 02:37:36 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.79 2007/05/27 23:37:24 kumba Exp $
+
+  27 May 2007; Joshua Kinard <kumba@gentoo.org>
+  gnome-doc-utils-0.8.0.ebuild:
+  Stable on mips.
 
 *gnome-doc-utils-0.10.3 (17 Apr 2007)
 
