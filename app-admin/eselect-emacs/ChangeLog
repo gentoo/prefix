@@ -1,6 +1,24 @@
 # ChangeLog for app-admin/eselect-emacs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.11 2007/05/15 09:50:39 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.16 2007/05/29 11:02:34 armin76 Exp $
+
+  29 May 2007; Raúl Porcel <armin76@gentoo.org>
+  eselect-emacs-0.8-r1.ebuild:
+  alpha/ia64 stable wrt #180100
+
+  29 May 2007; Jeroen Roovers <jer@gentoo.org> eselect-emacs-0.8-r1.ebuild:
+  Stable for HPPA (bug #180100).
+
+  28 May 2007; Christian Faulhammer <opfer@gentoo.org>
+  eselect-emacs-0.8-r1.ebuild:
+  x86/amd64 stable, bug 180100
+
+  28 May 2007; Brent Baude <ranger@gentoo.org> eselect-emacs-0.8-r1.ebuild:
+  marking -0.8-r1 ppc64 stable to support stablization of 180100
+
+  28 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  eselect-emacs-0.8-r1.ebuild:
+  Stable on sparc wrt #180100
 
   15 May 2007; Roy Marples <uberlord@gentoo.org>
   eselect-emacs-0.8-r1.ebuild:
