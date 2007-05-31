@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r12.ebuild,v 1.18 2007/05/15 15:03:56 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r12.ebuild,v 1.24 2007/05/29 11:04:49 armin76 Exp $
 
 EAPI="prefix"
 
@@ -69,6 +69,7 @@ src_unpack() {
 	epatch "${FILESDIR}/emacs-21.4-qa.patch"
 	epatch "${FILESDIR}/emacs-21.4-Xaw3d-headers.patch"
 	epatch "${FILESDIR}/emacs-21.4-freebsd-terminfo.patch"
+	epatch "${FILESDIR}/emacs-21.4-oldxmenu-malloc.patch"
 
 	# install emacsclient.1 man page (#165466)
 	sed -i -e "s/for page in emacs/& emacsclient/" Makefile.in || die

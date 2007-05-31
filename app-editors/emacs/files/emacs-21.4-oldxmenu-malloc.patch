@@ -1,0 +1,11 @@
+--- emacs-21.4/oldXMenu/XMakeAssoc.c~	1999-10-03 21:35:22.000000000 +0200
++++ emacs-21.4/oldXMenu/XMakeAssoc.c	2007-05-28 22:21:57.000000000 +0200
+@@ -91,7 +91,7 @@
+ 	/* If we are here then the new entry should be inserted just */
+ 	/* before the current value of "Entry". */
+ 	/* Create a new XAssoc and load it with new provided data. */
+-	new_entry = (XAssoc *) xmalloc(sizeof(XAssoc));
++	new_entry = (XAssoc *) malloc(sizeof(XAssoc));
+ 	new_entry->display = dpy;
+ 	new_entry->x_id = x_id;
+ 	new_entry->data = data;
