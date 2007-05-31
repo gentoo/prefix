@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.3.29-r2.ebuild,v 1.12 2007/04/23 11:37:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.3.29-r2.ebuild,v 1.13 2007/05/29 01:08:54 jer Exp $
 
 EAPI="prefix"
 
@@ -90,8 +90,8 @@ src_compile() {
 		myconf="${myconf} --disable-test"
 	fi
 
-	# Add linker versions to the symbols. Easier to do, and safer than header file
-	# mumbo jumbo.
+	# Add linker versions to the symbols. Easier to do, and safer than header
+	# file mumbo jumbo.
 	if use userland_GNU; then
 		append-ldflags -Wl,--default-symver
 	fi

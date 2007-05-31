@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.207 2007/04/24 16:44:57 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.208 2007/05/29 01:08:54 jer Exp $
+
+  29 May 2007; Jeroen Roovers <jer@gentoo.org> db-4.3.29-r2.ebuild:
+  Trivial whitespace fix.
 
   24 Apr 2007; Bryan Østergaard <kloeri@gentoo.org> db-4.2.52_p4-r2.ebuild:
   Stable on Mips, bug 168726.
