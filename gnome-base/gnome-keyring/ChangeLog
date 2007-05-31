@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/gnome-keyring
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/ChangeLog,v 1.88 2007/04/21 14:06:05 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/ChangeLog,v 1.89 2007/05/27 04:01:28 kumba Exp $
+
+  27 May 2007; Joshua Kinard <kumba@gentoo.org> gnome-keyring-0.6.0.ebuild:
+  Stable on mips.
 
 *gnome-keyring-0.8.1 (21 Apr 2007)
 
