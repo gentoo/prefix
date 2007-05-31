@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libX11
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.71 2007/04/21 15:39:29 joshuabaergen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.72 2007/05/27 04:21:11 kumba Exp $
+
+  27 May 2007; Joshua Kinard <kumba@gentoo.org> libX11-1.1.1-r1.ebuild:
+  Stable on mips.
 
   21 Apr 2007; Joshua Baergen <joshuabaergen@gentoo.org>
   -libX11-1.0.1-r1.ebuild, -libX11-1.0.3-r1.ebuild,
