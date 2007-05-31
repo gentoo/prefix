@@ -1,6 +1,27 @@
 # ChangeLog for x11-libs/libwnck
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libwnck/ChangeLog,v 1.153 2007/03/27 02:56:13 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libwnck/ChangeLog,v 1.160 2007/05/31 14:34:53 jer Exp $
+
+  31 May 2007; Jeroen Roovers <jer@gentoo.org> libwnck-2.16.3.ebuild:
+  Stable for HPPA (bug #171107).
+
+  31 May 2007; Daniel Gryniewicz <dang@gentoo.org> libwnck-2.16.3.ebuild:
+  Marked stable on amd64 for bug #171107
+
+  31 May 2007; Brent Baude <ranger@gentoo.org> ChangeLog:
+  Marking libwnck-2.16.3 ppc64 stable for bug #171107
+
+  31 May 2007; Brent Baude <ranger@gentoo.org> libwnck-2.16.3.ebuild:
+  Marking libwnck-2.16.3 ppc64 stable for bug #171107
+
+  30 May 2007; Raúl Porcel <armin76@gentoo.org> libwnck-2.16.3.ebuild:
+  alpha/ia64 stable wrt #171107
+
+  29 May 2007; Andrej Kacian <ticho@gentoo.org> libwnck-2.16.3.ebuild:
+  Stable on x86, bug #171107.
+
+  29 May 2007; Gustavo Zacarias <gustavoz@gentoo.org> libwnck-2.16.3.ebuild:
+  Stable on sparc wrt #171107
 
 *libwnck-2.18.0 (27 Mar 2007)
 
