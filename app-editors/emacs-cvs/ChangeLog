@@ -1,6 +1,22 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.122 2007/05/23 10:29:12 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.126 2007/05/31 12:48:58 flameeyes Exp $
+
+  31 May 2007; Diego Pettenò <flameeyes@gentoo.org>
+  emacs-cvs-23.0.0-r1.ebuild, emacs-cvs-23.0.0-r6.ebuild:
+  Add ~x86-fbsd keywords to -r1 and -r6 as per bug #174891.
+
+  30 May 2007; Ulrich Mueller <ulm@gentoo.org>
+  +files/emacs-cvs-disable_alsa_detection-r1.patch,
+  emacs-cvs-22.0.9999-r10.ebuild, emacs-cvs-22.1.50.ebuild,
+  emacs-cvs-23.0.0-r6.ebuild:
+  Fix alsa detection patch.
+
+  29 May 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.0.990.ebuild,
+  emacs-cvs-22.0.9999-r10.ebuild, emacs-cvs-22.1.50.ebuild,
+  emacs-cvs-23.0.0-r6.ebuild:
+  Fix logic for USE=-motif. Handle the case that no toolkit was specified
+  (i.e. -gtk -Xaw3d -motif). Variables in canonical order.
 
   23 May 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.0.990.ebuild,
   emacs-cvs-22.0.9999-r10.ebuild, emacs-cvs-22.1.50.ebuild,
