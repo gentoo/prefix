@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numeric/numeric-24.2-r4.ebuild,v 1.2 2007/02/24 10:21:18 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numeric/numeric-24.2-r4.ebuild,v 1.3 2007/05/25 11:08:56 bicatali Exp $
 
 EAPI="prefix"
 
@@ -73,7 +73,7 @@ src_unpack() {
 			sed -i \
 			-e "s:'atlas',::g" \
 			-e "s:include/atlas:include/cblas:g" \
-			cusomize.py
+			customize.py
 	fi
 }
 
