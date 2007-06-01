@@ -50,19 +50,19 @@ match_lhs=""
 [[ -f ~/.dir_colors   ]] && match_lhs="${match_lhs}$(<~/.dir_colors)"
 [[ -f /etc/DIR_COLORS ]] && match_lhs="${match_lhs}$(</etc/DIR_COLORS)"
 [[ -z ${match_lhs}    ]] \
-	&& type -p dircolors >/dev/null #BSD#@ \
+	&& type -P dircolors >/dev/null \
 	&& match_lhs=$(dircolors --print-database)
 [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] && use_color=true
 
 if ${use_color} ; then
 	# Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
-	if type -p dircolors >/dev/null ; then#BSD#@
+	if type -P dircolors >/dev/null ; then
 		if [[ -f ~/.dir_colors ]] ; then
 			eval $(dircolors -b ~/.dir_colors)
 		elif [[ -f /etc/DIR_COLORS ]] ; then
 			eval $(dircolors -b /etc/DIR_COLORS)
 		fi
-	fi#BSD#@
+	fi
 
 	if [[ ${EUID} == 0 ]] ; then
 		PS1='\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
