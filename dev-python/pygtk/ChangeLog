@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pygtk
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.153 2007/05/31 03:52:05 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.154 2007/05/31 16:10:37 jer Exp $
+
+  31 May 2007; Jeroen Roovers <jer@gentoo.org> pygtk-2.10.4.ebuild:
+  Stable for HPPA (bug #171107).
 
   31 May 2007; Daniel Gryniewicz <dang@gentoo.org> pygtk-2.10.4.ebuild:
   Marked stable on amd64 for bug #171107
