@@ -1,6 +1,100 @@
-# ChangeLog for dev-util/guile
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/guile/ChangeLog,v 1.50 2006/03/18 01:30:03 corsair Exp $
+# ChangeLog for dev-scheme/guile
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.21 2007/05/31 19:15:55 flameeyes Exp $
+
+  31 May 2007; Diego Pettenò <flameeyes@gentoo.org> guile-1.8.1-r3.ebuild:
+  Add ~x86-fbsd keyword.
+
+  25 May 2007; Diego Pettenò <flameeyes@gentoo.org> guile-1.8.1-r3.ebuild:
+  The FreeBSD patches has to be applied before eautoreconf is ran, or they
+  will not be picked up.
+
+  25 May 2007; Marijn Schouten <hkBst@gentoo.org>
+  +files/guile-1.8.1-clog-cexp.patch,
+  +files/guile-1.8.1-defaultincludes.patch, guile-1.8.1-r3.ebuild:
+  add freebsd fixes from flameeyes, bug 179728
+
+  25 May 2007; Marijn Schouten <hkBst@gentoo.org> guile-1.6.8.ebuild:
+  re-enable -j1 for 1.6.8, bug 179738
+
+  20 May 2007; Raúl Porcel <armin76@gentoo.org> guile-1.6.8.ebuild:
+  alpha stable wrt #178360
+
+  19 May 2007; Markus Rothe <corsair@gentoo.org> guile-1.6.8.ebuild:
+  Stable on ppc64; bug #178360
+
+  17 May 2007; Marijn Schouten <hkBst@gentoo.org> +files/slibtest.patch,
+  guile-1.6.8.ebuild:
+  disable the few broken tests, bug 178835; remove large sleep
+
+  16 May 2007; Daniel Gryniewicz <dang@gentoo.org> guile-1.6.8.ebuild:
+  Marked stable on amd64 for bug #178360
+
+  15 May 2007; Ferris McCormick <fmccor@gentoo.org> guile-1.6.8.ebuild:
+  Stable on sparc --- Bug #178360 --- builds, runs all tests, and installs as
+  expected.
+
+  15 May 2007; Jeroen Roovers <jer@gentoo.org> guile-1.6.8.ebuild:
+  Stable for HPPA (bug #178360).
+
+  14 May 2007; Raúl Porcel <armin76@gentoo.org> guile-1.6.8.ebuild:
+  ia64 stable wrt #178360
+
+  14 May 2007; Markus Ullmann <jokey@gentoo.org> guile-1.6.8.ebuild:
+  Stable on x86 wrt bug #178360
+
+  13 Mar 2007; Marijn Schouten <hkBst@gentoo.org> -guile-1.4-r3.ebuild,
+  -guile-1.4.1.ebuild, -guile-1.6.4-r1.ebuild, -guile-1.6.6.ebuild:
+  clean out old guile versions
+
+*guile-1.8.1-r3 (03 Mar 2007)
+
+  03 Mar 2007; Marijn Schouten <hkBst@gentoo.org>
+  +files/guile-1.8.1-autotools_fixes.patch, +files/guile-1.8-rational.patch,
+  -guile-1.8.1-r1.ebuild, +guile-1.8.1-r3.ebuild:
+  add patch for xbindkeys
+
+*guile-1.8.1-r2 (28 Feb 2007)
+
+  28 Feb 2007; Marijn Schouten <hkBst@gentoo.org>
+  +files/guile-1.8-rational.patch, +guile-1.8.1-r2.ebuild:
+  add guile patched for lilypond 2.11.x
+
+  28 Jan 2007; Marijn Schouten <hkBst@gentoo.org> guile-1.8.1-r1.ebuild:
+  deprecated depends on discouraged being enabled, bug 164206
+
+  28 Jan 2007; Marijn Schouten <hkBst@gentoo.org> Manifest:
+  remove guile-1.8.1 with broken econf
+
+*guile-1.8.1-r1 (25 Jan 2007)
+
+  25 Jan 2007; Marijn Schouten <hkBst@gentoo.org> +guile-1.8.1-r1.ebuild:
+  fix missing \ from configure causing all options and use flags to be ignored
+
+*guile-1.8.1 (22 Jan 2007)
+
+  22 Jan 2007; Marijn Schouten <hkBst@gentoo.org> +guile-1.8.1.ebuild:
+  added guile-1.8.1
+
+*guile-1.6.8 (12 Jan 2007)
+
+  12 Jan 2007;  Marijn Schouten <hkBst@gentoo.org> +guile-1.6.8.ebuild:
+  Added 1.6.8 ebuild
+
+  10 Jan 2007;  Marijn Schouten <hkBst@gentoo.org> +files/guile-1.4-inet_aton.patch,
+  +files/guile-amd64.patch, +files/guile-1.6.7-gcc4.patch,
+  +files/guile-1.6.7-posix.patch, +files/guile-1.6.7-scmsigs.patch,
+  +metadata.xml, +guile-1.4-r3.ebuild, +guile-1.4.1.ebuild,
+  +guile-1.6.4-r1.ebuild, +guile-1.6.6.ebuild, +guile-1.6.7.ebuild:
+  Moved from dev-util/guile to dev-scheme/guile.
+
+  05 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> guile-1.4-r3.ebuild:
+  Remove gnuconfig_update usage, leave it to econf.
+
+  18 Dec 2006; Fabian Groffen <grobian@gentoo.org>
+  -files/guile-macos-posix.patch, -files/guile-macos-relink.patch,
+  guile-1.6.4-r1.ebuild, guile-1.6.6.ebuild, guile-1.6.7.ebuild:
+  Dropped ppc-macos keyword, see you in prefix.
 
   18 Mar 2006; Markus Rothe <corsair@gentoo.org> guile-1.6.7.ebuild:
   Stable on ppc64; bug #126569
