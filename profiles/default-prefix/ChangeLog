@@ -2,6 +2,9 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Jun 2007; Fabian Groffen <grobian@gentoo.org> make.defaults:
+  Bring back collision-protect, as we love it
+
   01 Jun 2007; Fabian Groffen <fabian@gentoo.org> +linux/amd64/no-multilib,
   +linux/amd64/no-multilib/make.defaults,
   +linux/amd64/no-multilib/package.mask,
