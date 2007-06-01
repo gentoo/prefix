@@ -1,0 +1,11 @@
+--- gdk/quartz/gdkdrawable-quartz.c	2007-03-23 22:52:59.000000000 +0100
++++ gdk/quartz/gdkdrawable-quartz.c	2007-03-23 22:58:26.000000000 +0100
+@@ -61,7 +61,7 @@
+ 
+   gdk_drawable_get_size (drawable, &width, &height);
+ 
+-  surface = cairo_quartz_surface_create (context, width, height, TRUE);
++  surface = cairo_quartz_surface_create_for_cg_context (context, width, height);
+ 
+   info = g_new (SurfaceInfo, 1);
+   info->drawable = drawable;

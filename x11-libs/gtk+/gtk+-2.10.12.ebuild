@@ -83,6 +83,9 @@ src_unpack() {
 	# Make gtk-update-icon-cache check subdirs in it's update check
 	epatch "${FILESDIR}"/${PN}-2.10.11-update-icon-subdirs.patch
 
+	# http://lists.macosforge.org/pipermail/macports-users/2007-March/002213.html
+	epatch "${FILESDIR}"/${PN}-2.10.12-cairo_quartz.patch
+
 	# use an arch-specific config directory so that 32bit and 64bit versions
 	# dont clash on multilib systems
 	has_multilib_profile && epatch "${FILESDIR}/${PN}-2.8.0-multilib.patch"
