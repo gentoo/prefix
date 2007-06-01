@@ -2,6 +2,13 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Jun 2007; Fabian Groffen <fabian@gentoo.org> +linux/amd64/no-multilib,
+  +linux/amd64/no-multilib/make.defaults,
+  +linux/amd64/no-multilib/package.mask,
+  +linux/amd64/no-multilib/package.use.mask,
+  +linux/amd64/no-multilib/parent, +linux/amd64/no-multilib/use.mask:
+  Add no-multilib profile for AMD64 (a bit overdue, sorry)
+
   25 May 2007; Fabian Groffen <grobian@gentoo.org> use.mask, +windows,
   +windows/interix, +windows/interix/3.5,
   +windows/interix/3.5/package.provided, +windows/interix/3.5/x86,

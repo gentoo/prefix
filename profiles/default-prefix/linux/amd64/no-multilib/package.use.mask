@@ -1,0 +1,7 @@
+# Dec 19, 2006; Joshua Nichols <nichoj@gentoo.org>
+# This flag needs masked app-arch/rar
+xfce-extra/xarchiver rar
+
+# Nov 2, 2006; Jim Ramsay <lack@gentoo.org>
+# This flag needs masked app-arch/rar (sadly not app-arch/unrar)
+rox-extra/archive rar
