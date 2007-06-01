@@ -1,6 +1,14 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.126 2007/05/31 12:48:58 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.128 2007/05/31 17:20:01 flameeyes Exp $
+
+  31 May 2007; Diego Pettenò <flameeyes@gentoo.org>
+  emacs-cvs-22.0.990.ebuild:
+  Add ~x86-fbsd keyword.
+
+  31 May 2007; Diego Pettenò <flameeyes@gentoo.org>
+  emacs-cvs-22.1.50.ebuild:
+  Add ~x86-fbsd keyword.
 
   31 May 2007; Diego Pettenò <flameeyes@gentoo.org>
   emacs-cvs-23.0.0-r1.ebuild, emacs-cvs-23.0.0-r6.ebuild:
