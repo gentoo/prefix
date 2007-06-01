@@ -26,6 +26,7 @@ lesspipe_file() {
 		*" shared object"*) lesspipe "$1" ".so" ;;
 		*" Zip archive"*)   lesspipe "$1" ".zip" ;;
 		*" LHa"*archive*)   lesspipe "$1" ".lha" ;;
+		*" cpio archive"*)  lesspipe "$1" ".cpio" ;;
 		*" ELF "*)          readelf -a -- "$1" ;;
 		*": data")          hexdump -C -- "$1" ;;
 		*)                  return 1 ;;
@@ -194,7 +195,7 @@ if [[ -z $1 ]] ; then
 	echo "Usage: lesspipe.sh <file>"
 elif [[ $1 == "-V" ]] ; then
 	Id="cvsid"
-	cvsid="$Id: lesspipe.sh,v 1.22 2007/04/24 07:40:31 vapier Exp $"
+	cvsid="$Id: lesspipe.sh,v 1.23 2007/05/25 18:05:34 vapier Exp $"
 	cat <<-EOF
 		$cvsid
 		Copyright 2001-2006 Gentoo Foundation
