@@ -13,7 +13,7 @@ HOMEPAGE="http://optipng.sourceforge.net/"
 LICENSE="as-is"
 
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND="virtual/libc"
