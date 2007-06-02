@@ -15,7 +15,7 @@ SRC_URI="ftp://lftp.yar.ru/lftp/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="ssl gnutls socks5 nls"
 
 RDEPEND=">=sys-libs/ncurses-5.1
