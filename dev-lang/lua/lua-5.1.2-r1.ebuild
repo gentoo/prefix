@@ -12,7 +12,7 @@ SRC_URI="http://www.lua.org/ftp/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="readline static"
 
 DEPEND="readline? ( sys-libs/readline )"
@@ -24,6 +24,14 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make.patch
 	epatch "${FILESDIR}"/${PN}-${PATCH_PV}-module_paths.patch
+
+	# fix libtool and ld usage on OSX
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		sed -i \
+			-e 's/libtool/glibtool/g' \
+			-e 's/-Wl,-E//g' \
+			Makefile src/Makefile
+	fi
 
 	# correct lua versioning (bug #173611)
 	sed -i -e 's/\(LIB_VERSION = \)6:1:1/\16:2:1/' src/Makefile
