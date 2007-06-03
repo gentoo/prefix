@@ -10,7 +10,7 @@ PATCHSET_REV="-r2"
 
 DESCRIPTION="a small but very powerful text-based mail client"
 HOMEPAGE="http://www.mutt.org"
-SRC_URI="http://dev.mutt.org/nightlies/mutt-${PV#*_p}.tar.gz
+SRC_URI="http://www.gentoo.org/~grobian/distfiles/mutt-${PV#*_p}.tar.gz
 	!vanilla? (
 		mirror://gentoo/mutt-1.5.15-gentoo-patches${PATCHSET_REV}.tar.bz2
 	)"
