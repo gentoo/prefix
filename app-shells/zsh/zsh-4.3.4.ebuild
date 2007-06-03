@@ -18,7 +18,7 @@ SRC_URI="ftp://ftp.zsh.org/pub/${P}.tar.bz2
 
 LICENSE="ZSH"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="maildir ncurses static doc examples pcre caps unicode"
 
 RDEPEND="pcre? ( >=dev-libs/libpcre-3.9 )
