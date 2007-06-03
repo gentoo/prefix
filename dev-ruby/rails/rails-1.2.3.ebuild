@@ -13,7 +13,7 @@ SRC_URI="http://gems.rubyonrails.org/gems/${P}.gem"
 
 LICENSE="MIT"
 SLOT="1.2"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 
 IUSE="mysql sqlite sqlite3 postgres fastcgi"
 DEPEND=">=dev-lang/ruby-1.8.5
