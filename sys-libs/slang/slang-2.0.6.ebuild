@@ -12,7 +12,7 @@ SRC_URI="ftp://space.mit.edu/pub/davis/slang/v${PV%.*}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="2"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 # USE=cjk is broken; see http://www.jedsoft.org/pipermail/slang-users_jedsoft.org/2006/000399.html
 IUSE="pcre png"
 
