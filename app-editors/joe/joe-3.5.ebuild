@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/joe-editor/${P}.tar.gz"
 
 LICENSE="GPL-1"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 IUSE="xterm"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2"
