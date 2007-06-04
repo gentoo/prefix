@@ -1,6 +1,68 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.469 2007/04/02 22:50:20 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.484 2007/05/20 22:46:57 beandog Exp $
+
+  20 May 2007; Steve Dibb <beandog@gentoo.org> mplayer-1.0.20070321.ebuild,
+  mplayer-1.0.20070427.ebuild:
+  Fix install location of desktop xpm, bug 179257
+
+  03 May 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  mplayer-1.0.20070321.ebuild:
+  ppc stable, bug #168917
+
+  02 May 2007; Jeroen Roovers <jer@gentoo.org> mplayer-1.0.20070321.ebuild:
+  Stable for HPPA (bug #168917).
+
+  02 May 2007; Bryan Østergaard <kloeri@gentoo.org>
+  mplayer-1.0.20070321.ebuild:
+  Stable on Alpha, bug 168917.
+
+*mplayer-1.0.20070321-r1 (01 May 2007)
+
+  01 May 2007; Steve Dibb <beandog@gentoo.org>
+  +mplayer-1.0.20070321-r1.ebuild:
+  Remove .svn directories, bug 172198
+
+  01 May 2007; Markus Rothe <corsair@gentoo.org>
+  mplayer-1.0.20070321.ebuild:
+  Stable on ppc64; bug #168917
+
+  30 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  mplayer-1.0.20070321.ebuild:
+  Stable on sparc wrt security #168917
+
+  30 Apr 2007; Raúl Porcel <armin76@gentoo.org>
+  mplayer-1.0.20070321.ebuild:
+  ia64 + x86 stable wrt security bug 168917
+
+*mplayer-1.0.20070427 (27 Apr 2007)
+
+  27 Apr 2007; Steve Dibb <beandog@gentoo.org> +mplayer-1.0.20070427.ebuild:
+  Version bump, fix bug 172198
+
+  26 Apr 2007; Steve Dibb <beandog@gentoo.org> mplayer-1.0.20070321.ebuild:
+  amd64 stable
+
+  26 Apr 2007; Steve Dibb <beandog@gentoo.org> -mplayer-1.0_rc1.ebuild,
+  -mplayer-1.0_rc1-r1.ebuild:
+  Removing old version with security issue, bug 159727
+
+  26 Apr 2007; Steve Dibb <beandog@gentoo.org> -mplayer-1.0_pre8-r1.ebuild:
+  Removing old version with security issue, bug 159727
+
+*mplayer-1.0.20070321 (26 Apr 2007)
+
+  26 Apr 2007; Steve Dibb <beandog@gentoo.org> +mplayer-1.0.20070321.ebuild,
+  -mplayer-1.0_rc2_pre20070321-r4.ebuild:
+  Fix naming scheme
+
+  09 Apr 2007; Luca Barbato <lu_zero@gentoo.org>
+  mplayer-1.0_rc2_pre20070321-r4.ebuild:
+  missing places...
+
+  09 Apr 2007; Luca Barbato <lu_zero@gentoo.org>
+  mplayer-1.0_rc2_pre20070321-r4.ebuild:
+  MPlayer now installs the default config in /etc/mplayer/mplayer.conf
 
   02 Apr 2007; Luca Barbato <lu_zero@gentoo.org>
   mplayer-1.0_rc2_pre20070321-r4.ebuild:
