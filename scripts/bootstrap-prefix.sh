@@ -519,10 +519,11 @@ then
 			Interix)
 				case `uname -m` in
 					x86) CHOST="i586-pc-interix`uname -r`" ;;
-					*) eerror "Can't deal (yet) with interix `uname -m`"
+					*) eerror "Can't deal with interix `uname -m` (yet)"
 					   exit 1
 					;;
 				esac
+				MAKE=make
 				;;
 			*)
 				eerror "Nothing known about platform `uname -s`."
