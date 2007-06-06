@@ -1,6 +1,26 @@
 # ChangeLog for www-client/elinks
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.80 2007/05/21 20:57:59 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.86 2007/06/02 20:08:30 killerfox Exp $
+
+  02 Jun 2007; René Nussbaumer <killerfox@gentoo.org>
+  elinks-0.11.2-r1.ebuild:
+  Stable on ppc. See bug #177512.
+
+  01 Jun 2007; Jeroen Roovers <jer@gentoo.org> elinks-0.11.2-r1.ebuild:
+  Stable for HPPA (bug #177512).
+
+  01 Jun 2007; Brent Baude <ranger@gentoo.org> elinks-0.11.2-r1.ebuild:
+  Marking elinks-0.11.2-r1 ppc64 for bug #177512
+
+  01 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  elinks-0.11.2-r1.ebuild:
+  Stable on sparc wrt security #177512
+
+  01 Jun 2007; Peter Weller <welp@gentoo.org> elinks-0.11.2-r1.ebuild:
+  Stable on amd64 wrt security bug 177512
+
+  01 Jun 2007; Raúl Porcel <armin76@gentoo.org> elinks-0.11.2-r1.ebuild:
+  alpha/x86 stable wrt security bug #177512
 
 *elinks-0.11.2-r1 (21 May 2007)
 
