@@ -56,10 +56,6 @@ src_compile() {
 	#gets rid of fbmmx.c inlining warnings
 	append-flags -finline-limit=1200
 
-	# get rid of Altivec stuff on PPC, it kills compilation
-	ewarn "Help grobian!  Do we still need to kill -m* flags here on ppc-macos?"
-	[[ ${CHOST} == powerpc-*-darwin* ]] && filter-flags -m*
-
 	econf $(use_enable X xlib) $(use_enable doc gtk-doc) \
 	  	  $(use_enable directfb) \
 		  $(use_enable svg) $(use_enable glitz) \
