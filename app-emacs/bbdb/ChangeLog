@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/bbdb
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/ChangeLog,v 1.25 2007/05/20 21:36:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/ChangeLog,v 1.26 2007/06/01 16:13:08 nixnut Exp $
+
+  01 Jun 2007; nixnut <nixnut@gentoo.org> bbdb-2.35.ebuild:
+  Stable on ppc wrt bug 177921
 
   20 May 2007; Raúl Porcel <armin76@gentoo.org> bbdb-2.35.ebuild:
   alpha stable wrt #177921
