@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.262 2007/05/31 14:06:34 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.264 2007/06/02 05:17:07 leio Exp $
+
+  02 Jun 2007; <leio@gentoo.org> -files/glib-2.12.4-gtimer-fix.patch,
+  -files/glib-2.12.4-tests_pthread.patch, -files/glib-2-macos.patch,
+  -glib-2.12.4-r1.ebuild, -glib-2.12.6.ebuild, -glib-2.12.7.ebuild:
+  Remove redundant versions
+
+  02 Jun 2007; Brent Baude <ranger@gentoo.org> glib-2.12.11.ebuild:
+  Marking glib-2.12.11 ppc stable for bug #171107
 
   31 May 2007; Jeroen Roovers <jer@gentoo.org> glib-2.12.11.ebuild:
   Stable for HPPA (bug #171107).
