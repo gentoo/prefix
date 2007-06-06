@@ -1,15 +1,13 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/w3m/w3m-0.5.2.ebuild,v 1.1 2007/05/31 15:56:15 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/w3m/w3m-0.5.2.ebuild,v 1.2 2007/06/02 02:31:06 matsuu Exp $
 
 EAPI="prefix"
 
 inherit eutils
 
 DESCRIPTION="Text based WWW browser, supports tables and frames"
-HOMEPAGE="http://w3m.sourceforge.net/
-	http://www.page.sannet.ne.jp/knabe/w3m/w3m.html"
-PATCH_PATH="http://www.page.sannet.ne.jp/knabe/w3m/"
+HOMEPAGE="http://w3m.sourceforge.net/"
 SRC_URI="mirror://sourceforge/w3m/${P}.tar.gz"
 
 LICENSE="w3m"
