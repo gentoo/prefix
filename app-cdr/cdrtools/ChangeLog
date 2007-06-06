@@ -1,6 +1,17 @@
 # ChangeLog for app-cdr/cdrtools
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.173 2007/05/20 15:09:23 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.175 2007/06/02 14:24:59 pylon Exp $
+
+  02 Jun 2007; Lars Weiler <pylon@gentoo.org> +files/mkisofs-iconv-25.patch,
+  cdrtools-2.01.01_alpha25.ebuild, cdrtools-2.01.01_alpha27.ebuild:
+  Re-added the mkisofs-unicode-patch from bug #178856.
+
+*cdrtools-2.01.01_alpha27 (02 Jun 2007)
+
+  02 Jun 2007; Lars Weiler <pylon@gentoo.org> -files/mkisofs-iconv-10.patch,
+  -files/mkisofs-iconv-18.patch, cdrtools-2.01.01_alpha25.ebuild,
+  +cdrtools-2.01.01_alpha27.ebuild:
+  Version bump.  Minor fixes.
 
   20 May 2007; Joseph Jezak <josejx@gentoo.org>
   cdrtools-2.01.01_alpha25.ebuild:
@@ -29,6 +40,12 @@
   13 May 2007; Joshua Kinard <kumba@gentoo.org>
   cdrtools-2.01.01_alpha25.ebuild:
   Added ~mips to KEYWORDS.
+
+*cdrtools-2.01.01_alpha26 (12 May 2007)
+
+  12 May 2007; Lars Weiler <pylon@gentoo.org>
+  +cdrtools-2.01.01_alpha26.ebuild:
+  Version bump; bug #176823.
 
   12 May 2007; Lars Weiler <pylon@gentoo.org> -cdrtools-2.01-r3.ebuild:
   Removing old version which was stable for m68k, but as no m68k-arch-alias
