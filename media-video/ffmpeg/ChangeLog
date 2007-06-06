@@ -1,6 +1,14 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.197 2007/05/26 06:53:13 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.199 2007/06/01 11:20:27 drac Exp $
+
+  01 Jun 2007; Samuli Suominen <drac@gentoo.org>
+  ffmpeg-0.4.9_p20070525.ebuild:
+  Append -DBROKEN_RELOCATIONS which is a hack to workaround bug 179872.
+
+  01 Jun 2007; Samuli Suominen <drac@gentoo.org>
+  ffmpeg-0.4.9_p20070525.ebuild:
+  Remove USE dts for bug 180129.
 
 *ffmpeg-0.4.9_p20070525 (26 May 2007)
 

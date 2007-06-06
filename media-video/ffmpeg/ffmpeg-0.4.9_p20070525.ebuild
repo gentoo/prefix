@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20070525.ebuild,v 1.1 2007/05/26 06:53:13 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20070525.ebuild,v 1.3 2007/06/01 11:20:27 drac Exp $
 
 EAPI="prefix"
 
@@ -18,7 +18,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
 IUSE="aac altivec amr debug doc ieee1394 a52 encode imlib mmx ogg vorbis oss
-	test theora threads truetype v4l x264 xvid dts network zlib sdl X"
+	test theora threads truetype v4l x264 xvid network zlib sdl X"
 
 RDEPEND="imlib? ( media-libs/imlib2 )
 	truetype? ( >=media-libs/freetype-2 )
@@ -31,7 +31,6 @@ RDEPEND="imlib? ( media-libs/imlib2 )
 	a52? ( >=media-libs/a52dec-0.7.4-r4 )
 	xvid? ( >=media-libs/xvid-1.1.0 )
 	zlib? ( sys-libs/zlib )
-	dts? ( media-libs/libdts )
 	ieee1394? ( =media-libs/libdc1394-1*
 				sys-libs/libraw1394 )
 	x264? ( >=media-libs/x264-svn-20061014 )
@@ -49,6 +48,10 @@ src_unpack() {
 	unpack ${A} || die
 	cd ${S}
 
+	#Append -DBROKEN_RELOCATIONS to build for bug 179872.
+	#Pretty please fix me if you can.
+	append-flags "-DBROKEN_RELOCATIONS"
+	
 	#Append -fomit-frame-pointer to avoid some common issues
 	use debug || append-flags "-fomit-frame-pointer"
 
@@ -107,7 +110,6 @@ src_compile() {
 	use xvid && myconf="${myconf} --enable-xvid"
 	use X && myconf="${myconf} --enable-x11grab"
 	use ogg && myconf="${myconf} --enable-libogg"
-	use dts && myconf="${myconf} --enable-libdts"
 	use x264 && myconf="${myconf} --enable-x264"
 	use aac && myconf="${myconf} --enable-libfaad --enable-libfaac"
 	use amr && myconf="${myconf} --enable-libamr-nb --enable-libamr-wb"
