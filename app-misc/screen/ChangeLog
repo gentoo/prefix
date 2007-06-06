@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/screen
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/ChangeLog,v 1.133 2007/04/22 21:04:25 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/ChangeLog,v 1.134 2007/06/01 06:53:31 opfer Exp $
+
+  01 Jun 2007; Christian Faulhammer <opfer@gentoo.org> ChangeLog:
+  modified ChangeLog to meet common format
 
   22 Apr 2007; Sven Wegener <swegener@gentoo.org> screen-4.0.3.ebuild:
   Install terminfo source files into /usr/share/screen.
@@ -182,7 +185,7 @@
   #82773. Fix time bug for 64bit systems, bug #71207. Also enable the 256
   colors support, requested via email by Emanuele Giaquinta.
 
-*screen-4.0.2-r1 (13 May 2005)
+*screen-4.0.2-r2 (13 May 2005)
 
   13 May 2005; Mike Frysinger <vapier@gentoo.org> +screen-4.0.2-r2.ebuild:
   Import FreeBSD fixes and redo uClibc fixes to be more generic #92370 by
