@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.4.1.ebuild,v 1.1 2007/05/01 13:19:20 voxus Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.4.1-r1.ebuild,v 1.1 2007/06/02 22:35:39 voxus Exp $
 
 EAPI="prefix"
 
@@ -33,9 +33,9 @@ src_unpack() {
 	}
 
 	# bug #151839
-	sed \
-		-e 's:CDEFINES =:CDEFINES = -USO_BSDCOMPAT:' \
-		-i lib/isc/unix/Makefile.in
+	sed -e \
+		's:struct isc_socket {:#undef SO_BSDCOMPAT\n\nstruct isc_socket {:' \
+		-i lib/isc/unix/socket.c
 }
 
 src_compile() {
