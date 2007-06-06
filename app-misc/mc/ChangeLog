@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/mc
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.124 2007/05/19 12:07:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.125 2007/06/03 10:17:39 philantrop Exp $
+
+  03 Jun 2007; Wulf C. Krueger <philantrop@gentoo.org> mc-4.6.1-r3.ebuild:
+  Added get_libdir instead of hardcoded lib. Fixes bug 180678.
 
   19 May 2007; Raúl Porcel <armin76@gentoo.org> mc-4.6.1-r3.ebuild:
   alpha stable wrt #177316
