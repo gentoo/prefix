@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.44 2007/04/23 07:17:42 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.45 2007/06/02 15:07:43 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -137,6 +137,27 @@ delete_orphan_plugindb_file() {
 	elog "Removing orphaned plugindb-file."
 	elog "\t#rm ${DB_FILE}"
 	rm ${DB_FILE}
+}
+
+
+create_header_checksum_file()
+{
+	# Danger: Not using $ROOT here, as compile will also not use it !!!
+	# If vdr in $ROOT and / differ, plugins will not run anyway
+
+	insinto ${VDR_CHECKSUM_DIR}
+	if [[ -f ${VDR_CHECKSUM_DIR}/header-md5-vdr ]]; then
+		newins ${VDR_CHECKSUM_DIR}/header-md5-vdr header-md5-${PN}
+	else
+		if type -p md5sum >/dev/null 2>&1; then
+			cd ${S}
+			(
+				cd ${VDR_INCLUDE_DIR}
+				md5sum *.h libsi/*.h|LC_ALL=C sort --key=2
+			) > header-md5-${PN}
+			doins header-md5-${PN}
+		fi
+	fi
 }
 
 vdr-plugin_pkg_setup() {
@@ -346,25 +367,7 @@ vdr-plugin_src_install() {
 		newins "${VDR_RCADDON_FILE}" plugin-${VDRPLUGIN}.sh
 	fi
 
-
-
-	# Danger: Not using $ROOT here, as compile will also not use it !!!
-	# If vdr in $ROOT and / differ, plugins will not run anyway
-
-	insinto ${VDR_CHECKSUM_DIR}
-	if [[ -f ${EPREFIX}${VDR_CHECKSUM_DIR}/header-md5-vdr ]]; then
-		newins ${VDR_CHECKSUM_DIR}/header-md5-vdr header-md5-${PN}
-	else
-		if type -p md5sum >/dev/null 2>&1; then
-			cd ${S}
-			(
-				cd ${EPREFIX}${VDR_INCLUDE_DIR}
-				md5sum *.h libsi/*.h|LC_ALL=C sort --key=2
-			) > header-md5-${PN}
-			doins header-md5-${PN}
-		fi
-	fi
-
+	create_header_checksum_file
 	create_plugindb_file
 }
 
