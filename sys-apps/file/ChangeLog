@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/file
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.143 2007/05/28 12:29:25 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.144 2007/06/02 00:47:00 kumba Exp $
+
+  02 Jun 2007; Joshua Kinard <kumba@gentoo.org> file-4.21.ebuild:
+  Stable on mips, per #179583.
 
   28 May 2007; Gustavo Zacarias <gustavoz@gentoo.org> file-4.21.ebuild:
   Stable on sparc wrt security #179583
