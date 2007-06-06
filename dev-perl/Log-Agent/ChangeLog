@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Log-Agent
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Log-Agent/ChangeLog,v 1.21 2006/10/20 19:51:25 kloeri Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Log-Agent/ChangeLog,v 1.22 2007/06/03 04:59:03 kumba Exp $
+
+  07 Jun 2007; Joshua Kinard <kumba@gentoo.org> Log-Agent-0.307.ebuild:
+  Stable on mips.
 
   20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> Log-Agent-0.307.ebuild:
   Stable on Alpha.
