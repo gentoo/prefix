@@ -1,5 +1,5 @@
---- 2.4.2-readline.patch
-+++ 2.4.2-readline.patch
+--- 01_all_readline.patch
++++ 01_all_readline.patch
 @@ -1,7 +1,6 @@
 -diff -u configure configure
 ---- configure	2005-03-29 00:23:02.000000000 +0100

@@ -66,6 +66,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/python-updater-r1-prefix.patch
 	eprefixify python-updater-r1
 
+	cd "${WORKDIR}/${PV}"
+	epatch "${FILESDIR}"/${PN}-2.4.4-readline.delta.patch
+
 	cd ${S}
 
 	if tc-is-cross-compiler ; then
