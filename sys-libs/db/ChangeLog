@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.208 2007/05/29 01:08:54 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.209 2007/06/03 23:20:21 angelos Exp $
+
+  03 Jun 2007; Christoph Mende <angelos@gentoo.org> db-4.5.20_p2.ebuild:
+  Replacing -O0 with -O2 on amd64, bug 171231
 
   29 May 2007; Jeroen Roovers <jer@gentoo.org> db-4.3.29-r2.ebuild:
   Trivial whitespace fix.

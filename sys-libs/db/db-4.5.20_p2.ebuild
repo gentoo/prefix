@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.5.20_p2.ebuild,v 1.5 2007/03/25 20:58:24 pauldv Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.5.20_p2.ebuild,v 1.6 2007/06/03 23:20:21 angelos Exp $
 
 EAPI="prefix"
 
@@ -59,6 +59,11 @@ src_unpack() {
 }
 
 src_compile() {
+	# compilation with -O0 fails on amd64, see bug #171231
+	if use amd64; then
+		replace-flags -O0 -O2
+	fi
+
 	local myconf=""
 
 	use amd64 && myconf="${myconf} --with-mutex=x86/gcc-assembly"
