@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jasper/jasper-1.900.1-r1.ebuild,v 1.1 2007/05/20 17:01:34 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jasper/jasper-1.900.1-r1.ebuild,v 1.3 2007/06/04 18:53:06 gustavoz Exp $
 
 EAPI="prefix"
 
@@ -40,4 +40,11 @@ src_compile() {
 src_install() {
 	make DESTDIR="${D}" install || die
 	dodoc NEWS README doc/*
+}
+
+pkg_postinst() {
+	elog
+	elog "Be noted that API has been changed, and you need to run"
+	elog "revdep-rebuild from gentoolkit to correct deps."
+	elog
 }

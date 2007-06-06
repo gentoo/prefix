@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/jasper
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jasper/ChangeLog,v 1.32 2007/05/20 17:01:34 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jasper/ChangeLog,v 1.34 2007/06/04 18:53:06 gustavoz Exp $
+
+  04 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  jasper-1.900.1-r1.ebuild:
+  Stable on sparc wrt security #179159 and revdep-rebuild note
+
+  04 Jun 2007; Jeroen Roovers <jer@gentoo.org> jasper-1.900.1-r1.ebuild:
+  Stable for HPPA (bug #179159), fixed KEYWORDS assignment whitespace in
+  ebuild for echangelog.
 
 *jasper-1.900.1-r1 (20 May 2007)
 
