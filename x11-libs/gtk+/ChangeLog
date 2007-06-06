@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.316 2007/05/31 14:14:23 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.317 2007/06/02 02:39:38 ranger Exp $
+
+  02 Jun 2007; Brent Baude <ranger@gentoo.org> gtk+-2.10.11.ebuild:
+  Marking gtk+-2.10.11 ppc stable for bug #171107
 
   31 May 2007; Jeroen Roovers <jer@gentoo.org> gtk+-2.10.11.ebuild:
   Stable for HPPA (bug #171107).
