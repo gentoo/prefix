@@ -158,9 +158,10 @@ oracle7
 firebird
 db2
 
-# Robert Buchholz <rbu@gentoo.org> (18 Jan 2007)
-# Only works on x86
+# Robert Buchholz <rbu@gentoo.org> (03 Jun 2007)
+# Only works on x86 or amd64
 lcd_devices_svga
+lcd_devices_luise
 
 # Joseph Jezak <josejx@gentoo.org> (11 Mar 2007)
 # Only for x86 and amd64 (in pbbuttonsd)
