@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2839 2007/05/29 13:28:12 mrness Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2851 2007/06/05 07:04:49 mrness Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -57,7 +57,6 @@ app-cdr/brasero:libburn - Enable libburn backend.
 app-cdr/brasero:totem - Enable support for Totem playlists.
 app-cdr/cdrdao:pccts - Use dev-util/pccts instead of the built-in substitution.
 app-cdr/cdrkit:hfs - Provide building of HFS (Apple) CD-images
-app-cdr/cdrtools:on-the-fly-crypt - On the fly AES encryption for CD-Rs.
 app-cdr/disc-cover:cdrom - Enable audio CD support. This is not needed to make www-apps/disc-cover work.
 app-cdr/k3b:css - Enables ripping of encrypted dvds
 app-cdr/k3b:emovix - Enable burning support for eMoviX images
@@ -86,7 +85,11 @@ app-editors/emacs-cvs:hesiod - Enable support for hesiod
 app-editors/emacs-cvs:sound - Enable sound
 app-editors/emacs-cvs:toolkit-scroll-bars - Use the selected toolkit's scrollbars in preference to Emacs' own scrollbars
 app-editors/emacs-cvs:xft - Build Emacs with support for the XFT font renderer (ie. the XFT_JHD_BRANCH branch from CVS)
+app-editors/emacs:gzip-el - Compress bundled Emacs Lisp source
+app-editors/emacs:hesiod - Enable support for hesiod
 app-editors/emacs:nosendmail - If you do not want to install any MTA
+app-editors/emacs:sound - Enable sound
+app-editors/emacs:toolkit-scroll-bars - Use the selected toolkit's scrollbars in preference to Emacs' own scrollbars
 app-editors/gvim:aqua - Include support for the Aqua / Carbon GUI
 app-editors/gvim:netbeans - Include netbeans integration support
 app-editors/gvim:nextaw - Include support for the neXtaw GUI
@@ -378,12 +381,6 @@ dev-java/gjdoc:xmldoclet - Also build support for the xml doclet that generates 
 dev-java/gnu-classpath:dssi - Enable the DSSI midi synthesizer provider
 dev-java/gnu-classpath:gconf - Enable the GConf based util.peers backend
 dev-java/groovy:bsf - Enable support for Apache Bean Scripting Framework
-dev-java/hibernate:c3p0 - Enable c3p0 support
-dev-java/hibernate:dbcp - Enable Database Connection Pooling support
-dev-java/hibernate:jboss - Enable JBoss support
-dev-java/hibernate:jcs - Java Cache Support
-dev-java/hibernate:oscache - Enable OSCache support
-dev-java/hibernate:swarmcache - Enable SwarmCache support
 dev-java/ibm-jdk-bin:javacomm - Enable Java Communications API support
 dev-java/jamvm:ffi - use dev-libs/libffi to call native methods
 dev-java/jcs:admin - Enable JCS Admin servlets
@@ -587,10 +584,7 @@ dev-util/codeblocks:contrib - Build additional contrib components
 dev-util/cvs:server - Enable server support
 dev-util/debootstrap:nodpkg - Don't install dpkg (useful for building a non-debian system)
 dev-util/devhelp:xulrunner - Enable support for xulrunner instead of firefox
-dev-util/eclipse-sdk:atk - Enable atk (accessibility) support
 dev-util/eclipse-sdk:branding - Enable Gentoo branded splash screen
-dev-util/eclipse-sdk:nodoc - Don't include documentation
-dev-util/eclipse-sdk:nosrc - Don't include source code
 dev-util/eric:idl - Enable omniorb support
 dev-util/git:mozsha1 - Make use of a bundled routine commit with Mozilla that should be fast on non-x86 archs
 dev-util/git:ppcsha1 - Make use of a bundled routine that is optimized for the PPC arch
@@ -651,6 +645,7 @@ games-fps/darkplaces:textures - Install and setup the updated textures
 games-fps/doom-data:doomsday - Add wrapper to run it within doomsday
 games-fps/doom3:roe - Adds support for the Resurrection of Evil expansion
 games-fps/freedoom:doomsday - Add wrapper to run it within doomsday
+games-fps/nexuiz:maps - Install the community map pack
 games-fps/quake2-icculus:demo - Install the demo files (quake2-demodata) and configure for use
 games-fps/quake2-icculus:noqmax - Do not build the pretty version (quake max)
 games-fps/quake2-icculus:qmax - Build the pretty version (quake max)
@@ -799,7 +794,6 @@ mail-client/nail:net - Enable network support (thus enabling POP, IMAP and SMTP)
 mail-client/pine:largeterminal - Add support for large terminals by doubling the size of pine's internal display buffer
 mail-client/pine:passfile - Adds support for caching IMAP passwords into a file between sessions
 mail-client/squirrelmail:filter - Enable amavisd-new filtering
-mail-client/squirrelmail:virus-scan - Install plugin to support virus scanning of email attachments
 mail-filter/amavisd-new:courier - Add support for usage with courierfilter
 mail-filter/amavisd-new:qmail - Add support for qmail
 mail-filter/ask:procmail - Adds support for procmail
@@ -1000,7 +994,6 @@ media-sound/listen:libsexy - Enable libsexy support
 media-sound/mpd:icecast - Enable support for Icecast2
 media-sound/mpfc:cdaudio - Enable cd audio playback support
 media-sound/mpfc:wav - Enable wav audio codec support
-media-sound/mumble:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
 media-sound/murmur:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
 media-sound/musepack-tools:16bit - Higher quality sound output using dithering and noise-shaping
 media-sound/museseq:fluidsynth - compile with support for fluidsynth
@@ -1146,7 +1139,6 @@ media-video/transcode:network - Enables network streaming support
 media-video/transcode:nuv - NuppelVideo container format demuxing
 media-video/transcode:postproc - Build with ffmpeg libpostproc support
 media-video/transcode:v4l2 - Enable video4linux2 support
-media-video/ttcut:ttmpeg2 - Enable ttmpeg2 a MPEG file analyser
 media-video/vdr:aio - Use "all in one" patch (or its successor "liemikuutio") with much additional features
 media-video/vdr:bigpatch - Enables almost all additional features flying around on the net (including aio)
 media-video/vdr:child-protection - Enable support for the plugin vdr-pin (Protecting some recordings / channels with a PIN)
@@ -1383,6 +1375,7 @@ net-im/psi:extras - Enables extra non official patches
 net-im/psi:insecure-patches - Enables extra non official patches that may pose as a security risk
 net-im/psi:jingle - Enables voice calls for jabber
 net-im/psi:plugins - Enables plugins support in psi
+net-im/pyaim-t:webinterface - Install dependencies needed for the web interface
 net-im/pyicq-t:webinterface - Install dependencies needed for the web interface
 net-im/tkabber:extras - Enables extra non official patches
 net-im/tkabber:plugins - Enables instalation the extra plugins
@@ -1391,6 +1384,7 @@ net-im/twinkle:ilbc - Enables use of ilbc (RFC3951) audio encoding
 net-im/twinkle:zrtp - Enables use of secure rtp using the zrtp extension of GNU RTP stack developed by Phil Zimmermen
 net-irc/atheme:largenet - Enable support/tweaks for large networks
 net-irc/charybdis:smallnet - Enables support for smaller IRC networks
+net-irc/eiwic:rss - Enables support for RSS feeds
 net-irc/inspircd:openssl - Build OpenSSL module
 net-irc/ircd-hybrid:contrib - Build contrib modules (eg. cloaking)
 net-irc/ngircd:ident - Enables support for libident
@@ -1491,6 +1485,8 @@ net-misc/openssh:X509 - Adds support for X.509 certificate authentication
 net-misc/openssh:chroot - Enable chrooting support
 net-misc/openssh:hpn - Enable high performance ssh
 net-misc/openssh:sftplogging - Enables sftplogging patch
+net-misc/openswan:extra-algorithms - Include additional algorithms such as Blowfish, Twofish and Serpent
+net-misc/openswan:weak-algorithms - Include weak algorithms such as DH1 and 1DES
 net-misc/openvpn:iproute2 - Enabled iproute2 support instead of net-tools
 net-misc/openvpn:passwordsave - Enables openvpn to save passwords
 net-misc/partysip:syslog - Enable syslog support
@@ -1581,8 +1577,6 @@ net-wireless/bluez-utils:test-programs - Install l2test and rctest
 net-wireless/hostapd:logwatch - Install support files for logwatch
 net-wireless/hostapd:madwifi - Add support for madwifi (Atheros chipset)
 net-wireless/kdebluetooth:irmc - Enable the kitchensync(Multisynk)'s IrMCSync konnector
-net-wireless/linux-wlan-ng-modules:pci - Enable the Prism2.5 native PCI (_pci) driver
-net-wireless/linux-wlan-ng-modules:plx - Enable the Prism2 PLX9052 based PCI (_plx) adapter driver
 net-wireless/madwifi-ng:amrr - Use Adaptive Multi Rate Retry bit rate control algorithm
 net-wireless/madwifi-ng:injection - Adds support for aircrack-ng aireplay-ng packet-injection
 net-wireless/madwifi-ng:onoe - Use Atsushi Onoe's bit rate control algorithm
@@ -1621,7 +1615,6 @@ net-www/mplayerplug-in:gmedia - Google Media Playback Support
 net-www/mplayerplug-in:mplayer-bin - Use binary mplayer for 32 bit codecs on amd64
 net-www/mplayerplug-in:realmedia - Real Media Playback Support
 net-www/mplayerplug-in:wmp - Windows Media Playback Support
-net-www/netscape-flash:flashsupport - Adds libflashsupport for pulseaudio/esd/oss and ssl/gnutls
 net-www/pwauth:domain-aware - Ignore leading domain names in username (Windows compat)
 net-www/pwauth:faillog - Log failed login attempts
 net-www/pwauth:ignore-case - Ignore string case in username (mostly Windows compat)
@@ -1671,6 +1664,8 @@ sci-geosciences/mapserver:gdal - Enables gdal library support
 sci-geosciences/mapserver:geos - Enables geos library support
 sci-geosciences/mapserver:postgis - Enables postgis support 
 sci-geosciences/mapserver:proj - Enables proj library support (geographic projections)
+sci-libs/acml:openmp - Install the OpenMP parallel computing library as well (needs ifc or gfortran-4.2!!)
+sci-libs/acml:int64 - Install the 64 bits integer library.
 sci-libs/fftw:float - Links default library to single precision instead of double (symlinks only)
 sci-libs/gdal:fits - Enables support for NASA's cfitsio library
 sci-libs/gdal:geos - Adds support for geometry engine
@@ -2040,7 +2035,7 @@ x11-wm/fluxbox:disableslit - Disable the silt. Works around bug 122380.
 x11-wm/fluxbox:disabletoolbar - Disable the toolbar.
 x11-wm/fvwm:rplay - Enable rplay support
 x11-wm/fvwm:stroke - Mouse Gesture support
-x11-wm/ion3:iontruetype - Enable *unsupported* and *experimental* TrueType support
+x11-wm/ion3:ion3-voidupstreamsupport-truetype - Enable TrueType support, note this will *void* upstream support for your ion3 installation
 x11-wm/matchbox-desktop:dnotify - Use the linux kernel directory notification feature.
 x11-wm/matchbox-panel:dnotify - Use the linux kernel directory notification feature.
 x11-wm/matchbox-panel:lowres - Optimize for low resolution screens.

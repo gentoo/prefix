@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.352 2007/05/28 22:26:38 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.353 2007/06/02 08:16:27 genone Exp $
 
 # Keep them sorted
 
@@ -321,7 +321,7 @@ sysvipc - Support for System V-compatible inter-process communication
 szip - Use the szip compression library
 tcl - Adds support the Tcl language
 tcpd - Adds support for TCP wrappers
-test - Workaround to pull in packages needed to run with FEATURES=maketest / FEATURES=test
+test - Workaround to pull in packages needed to run with FEATURES=test. Portage-2.1.2 handles this internally, so don't set it in make.conf/package.use anymore.
 tetex - Adds support for teTeX (typesetting package)
 theora - Adds support for the Theora Video Compression Codec
 threads - Adds threads support for various packages. Usually pthreads

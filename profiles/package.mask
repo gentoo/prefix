@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7313 2007/05/29 19:43:35 wltjr Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7338 2007/06/05 11:10:18 armin76 Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -20,6 +20,60 @@
 ##
 ##   End example
 ##
+
+# Mart Raudsepp <leio@gentoo.org> (04 Jun 2007)
+# Obsolete Gnome-1.x component, bug 180808
+# Masked for removal in 30 days.
+net-libs/soup
+
+# Fabian Groffen <grobian@gentoo.org> (03 Jun 2007)
+# muttng is outdated and unmaintained, try plain mutt instead.
+# see http://article.gmane.org/gmane.linux.gentoo.devel/49234
+# Masked pending removal.  Remove in 30 days.
+mail-client/muttng
+
+# Doug Goldstein <cardoe@gentoo.org> (03 Jun 2007)
+# beta drivers for testing
+>x11-drivervs/nvidia-drivers-100
+
+# Stefan Schweizer <genstef@gentoo.org> (31 May 2007)
+# release candidate
+~app-text/poppler-0.5.9
+~app-text/poppler-bindings-0.5.9
+
+# Samuli Suominen <drac@gentoo.org> (31 May 2007)
+# Masked, pending removal in 30 days for bug 178900.
+# Also, upstream is dead. As alternative, use any
+# preferred file manager from tree, there are plenty
+# of them.
+x11-misc/xfm
+
+# Roy Marples <uberlord@gentoo.org> (31 May 2007)
+# Masked, pending removal. Remove in 30 days
+# Use dash instead
+app-shells/ash
+
+# Raúl Porcel <armin76@gentoo.org> (30 May 2007)
+# Mask beta versions
+=net-p2p/deluge-0.5.1_beta*
+
+# Bjarke Istrup Pedersen <gurligebis@gentoo.org> (30 May 2007)
+# masked for removal on 20070629
+# Upstream is dead and there are several issues
+# Please use net-libs/libupnp instead.
+net-misc/upnp
+
+# Michael Sterrett <mr_bones_@gentoo.org> (30 May 2007)
+# masked for removal on 20070629
+# Upstream is dead and there are several open bugs:
+# http://bugs.gentoo.org/show_bug.cgi?id=146620
+# http://bugs.gentoo.org/show_bug.cgi?id=179792
+# http://bugs.gentoo.org/show_bug.cgi?id=180104
+# http://bugs.gentoo.org/show_bug.cgi?id=180105
+# See http://article.gmane.org/gmane.comp.security.firewalls.firestarter.user/1342
+# for a thread on the mailing list regarding the state of things, including
+# mention of the problems with the newest netfilter code.
+net-firewall/firestarter
 
 # Samuli Suominen <drac@gentoo.org> (27 May 2007)
 # Orphaned library which was used for Xfce 4.2.
@@ -44,10 +98,6 @@ dev-libs/dbh
 # Use mail-client/claws-mail - upstream changed application name after 2.6.0.
 mail-client/sylpheed-claws
 
-# Zac Medico <zmedico@gentoo.org> (25 May 2007)
-# Bug #179766, USE="-*" destroys USE_EXPAND variables
-=sys-apps/portage-2.1.2.8
-
 # Alon Bar-Lev <alonbl@gentoo.org> (24 May 2007)
 # Masked for removal as per bug #159586
 # Please switch to sys-apps/915resolution.
@@ -65,11 +115,6 @@ net-www/mod_auth_ldap
 # Seemant Kulleen <seemant@gentoo.org> (23 May 2007)
 # Masked because 1.2.1 because it is broken
 =net-wireless/ipw3945-1.2.1
-
-# Paul Varner <fuzzyray@gentoo.org> (21 May 2007)
-# Masked for echangelog testing
-=app-portage/gentoolkit-dev-0.2.6.5
-=app-portage/gentoolkit-dev-0.2.6.6
 
 # Benedikt Böhm <hollow@gentoo.org> (22 May 2007)
 # new version with experimental cmake patch for testing
@@ -126,9 +171,7 @@ app-office/qhacc
 
 # Ulrich Mueller <ulm@gentoo.org> (13 May 2007)
 # Live CVS ebuilds for Emacs
-~app-editors/emacs-cvs-22.0.9999
-~app-editors/emacs-cvs-22.1.50
->=app-editors/emacs-cvs-23
+>=app-editors/emacs-cvs-22.1
 >=virtual/emacs-23
 
 # Christian Faulhammer <opfer@gentoo.org> (13 May 2007)
@@ -242,31 +285,10 @@ dev-java/jswat
 # Unsupported upstream; doesnt build with current cm3
 dev-util/cvsup
 
-# Krzysiek Pawlik <nelchael@gentoo.org> (4 May 2007)
-# Masked for removal: from source versions are in the
-# tree, so please use that.
-# Will be removed by end of May.
-dev-java/sun-fastinfoset-bin
-dev-java/sun-jaxb-bin
-dev-java/sun-jaxp-bin
-dev-java/sun-jaxr-bin
-dev-java/sun-jaxrpc-bin
-dev-java/sun-jaxws-bin
-dev-java/sun-jwsdp-shared-bin
-dev-java/sun-saaj-bin
-dev-java/sun-sjsxp-bin
-dev-java/sun-wsdp-bin
-dev-java/sun-xmldsig-bin
-dev-java/sun-xws-security-bin
-
 # Alistair Bush <ali_bush@gentoo.org> (4 May 2007)
 # Masked for removal to junkyard in 30 days (3 June)
 # Generation 1 ebuild with stale upstream
 dev-java/violinstrings
-
-# Daniel Gryniewicz <dang@gentoo.org> (3 May 2007)
-# It's now part of gnome-utils; bug #176864
-app-misc/baobab
 
 # Timothy Redaelli <drizzt@gentoo.org> (3 May 2007)
 # Upstream considers beta7 not ready for production use.
@@ -276,11 +298,6 @@ app-misc/baobab
 # Masked for removal to junkyard in 30 days (2 June)
 # Generation 1 ebuild with stale upstream (last release 2002).
 dev-java/openjgraph
-
-# Samuli Suominen <drac@gentoo.org> (2 May 2007)
-# Masked for removal in 30 days. See bug #176150.
-# Use x11-misc/slim instead.
-x11-misc/login-app
 
 # Christian Parpart <trapni@gentoo.org> (01 May 2007)
 # Masked for testing.
@@ -353,13 +370,6 @@ net-misc/tlsproxyd
 # It has an api compatibility layer but some packages
 # try to link using -ldts which just fails
 media-libs/libdca
-
-# Bryan Østergaard <kloeri@gentoo.org> (17 Apr 2007)
-# Pending removal on 17 May due to:
-# - Outstanding security issues (all the recent imagemagick
-#   bugs apply to graphicsmagick as well)
-# - No upstream releases since Oct '05
-media-gfx/graphicsmagick
 
 # Chris Gianelloni <wolf31o2@gentoo.org> (16 Apr 2007)
 # Masked for removal on 16 May 2007, per bug #174763
@@ -434,11 +444,6 @@ dev-java/aterm-java
 >=net-analyzer/nessus-core-2.3.1
 >=net-analyzer/nessus-plugins-2.3.1
 >=net-analyzer/nessus-2.3.1
-
-# Roy Marples <uberlord@gentoo.org> (2 Apr 2007)
-# Masked, pending removal. Remove in 30 days
-# Use dash instead
-#app-shells/ash
 
 # Marcelo Goes <vanquirius@gentoo.org> (1 Apr 2007)
 # Masked for testing
@@ -805,11 +810,6 @@ dev-db/mergeant
 # masked pending new beta due to bug #164186
 games-strategy/ufo2000
 
-# Diego Pettenò <flameeyes@gentoo.org> (28 Jan 2007)
-# The new versions require the alpha versions of Tor, so
-# mask them together.
->=kde-misc/tork-0.13
-
 # Diego Pettenò <flameeyes@gentoo.org> (27 Jan 2007)
 # Masked because a dependency is missing in Portage.
 # See bug #163853.
@@ -839,10 +839,6 @@ games-strategy/ufo2000
 # Christian Faulhammer <opfer@gentoo.org> (23 Jan 2007)
 # masked for testing
 app-portage/gatt-svn
-
-# Lars Weiler <pylon@gentoo.org> (20 Jan 2007)
-# Won't compile on a stable system
->=net-misc/strongswan-2.8.1
 
 # Sandro Bonazzola <sanchan@gentoo.org> (16 Jan 2007)
 # Masked for testing
@@ -1438,7 +1434,6 @@ dev-lisp/cl-imho
 # Considered broken by upstream; future to be decided
 kde-base/qtsharp
 kde-base/xparts
-kde-base/dcopjava
 
 # <dragonheart@gentoo.org> (04 Dec 2004)
 # Bug #70529 indicates problems with configuration file reading

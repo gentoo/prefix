@@ -1,6 +1,60 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.435 2007/05/29 13:28:12 mrness Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.452 2007/06/05 07:04:49 mrness Exp $
+
+  05 Jun 2007; Alin Năstac <mrness@gentoo.org> use.local.desc:
+  Add extra-algorithms and weak-algorithms USE flags for openswan (#180472).
+
+  05 Jun 2007; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Mask for emacs-cvs extended to cover upstream version number change.
+
+  04 Jun 2007; Raúl Porcel <armin76@gentoo.org> thirdpartymirrors:
+  Remove archive.progeny.com, bug #180900
+
+  04 Jun 2007; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Masking media-fonts/liberation-fonts-ttf until it is sorted out.
+
+  03 Jun 2007; Wulf C. Krueger <philantrop@gentoo.org> package.mask:
+  Removed the mask for kde-base/dcopjava.
+
+  03 Jun 2007; Robert Buchholz <rbu@gentoo.org> base/use.mask,
+  default-linux/amd64/use.mask, default-linux/x86/use.mask:
+  Mask lcd_devices_luise in base and unmask in x86/amd64
+
+  03 Jun 2007; Robert Buchholz <rbu@gentoo.org>
+  default-linux/sparc/use.mask, selinux/sparc/use.mask:
+  Removed old use.masks for app-misc/lcdproc (bug #148072)
+
+  02 Jun 2007; Robert Buchholz <rbu@gentoo.org> desc/lcd_devices.desc:
+  Added luise to LCD_DEVICES
+
+  02 Jun 2007; Wulf C. Krueger <philantrop@gentoo.org> package.mask:
+  Removed mask for >=kde-misc/tork-0.13. Fixes bug 180330.
+
+  02 Jun 2007; Krzysiek Pawlik <nelchael@gentoo.org> package.mask:
+  Remove mask for JWSDP.
+
+  02 Jun 2007; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Remove mask for removed app-editors/emacs-cvs-22.0.9999.
+
+  02 Jun 2007; Ulrich Mueller <ulm@gentoo.org> use.local.desc:
+  Add local use flags gzip-el, hesiod, sound, and toolkit-scroll-bars for
+  app-editors/emacs.
+
+  02 Jun 2007; Marius Mauch <genone@gentoo.org> use.desc:
+  Add a notice about internal handling to the description of the "test" flag
+
+  01 Jun 2007; Sébastien Fabbro <bicatali@gentoo.org> use.local.desc:
+  Added local use flag openmp and int64 for sci-libs/acml
+
+  31 May 2007; Christoph Mende <angelos@gentoo.org> use.local.desc:
+  Added local use flag rss for net-irc/eiwic
+
+  31 May 2007; Stefan Schweizer <genstef@gentoo.org> package.mask:
+  Mask new poppler rc
+
+  30 May 2007; Bjarke Istrup Pedersen <gurligebis@gentoo.org> package.mask:
+  Masked net-misc/upnp, going to be removed 20070629.
 
   29 May 2007; Alin Năstac <mrness@gentoo.org> use.local.desc:
   Add dev-util/nsis:config-log (#180060).
