@@ -1,0 +1,20 @@
+--- emacs-22.1-orig/oldXMenu/ChgPane.c	2007-02-27 04:04:22.000000000 +0100
++++ emacs-22.1/oldXMenu/ChgPane.c	2007-06-04 00:47:56.000000000 +0200
+@@ -13,6 +13,7 @@
+  *
+  */
+ 
++#include <config.h>
+ #include "XMenuInt.h"
+ 
+ int
+--- emacs-22.1-orig/oldXMenu/ChgSel.c	2007-02-27 04:04:22.000000000 +0100
++++ emacs-22.1/oldXMenu/ChgSel.c	2007-06-04 00:47:42.000000000 +0200
+@@ -13,6 +13,7 @@
+  *
+  */
+ 
++#include <config.h>
+ #include "XMenuInt.h"
+ 
+ int

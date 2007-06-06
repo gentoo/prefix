@@ -1,6 +1,33 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.157 2007/05/29 11:04:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.164 2007/06/04 17:36:26 ulm Exp $
+
+  04 Jun 2007; Ulrich Mueller <ulm@gentoo.org>
+  +files/emacs-22.1-oldxmenu-qa.patch, emacs-22.1.ebuild:
+  Quiet QA compilation warnings, patch submitted and accepted upstream.
+
+  04 Jun 2007; Brent Baude <ranger@gentoo.org> emacs-22.1.ebuild:
+  Marking emacs-22.1 ppc ~ for bug#180642
+
+  04 Jun 2007; Brent Baude <ranger@gentoo.org> emacs-22.1.ebuild:
+  Marking emacs-22.1 ppc64 ~ for bug#180642
+
+  02 Jun 2007; deedra waters <dmwaters@gentoo.org> emacs-22.1.ebuild:
+  Adding ~amd64 keyword
+
+  02 Jun 2007; Diego Pettenò <flameeyes@gentoo.org> emacs-22.1.ebuild:
+  Add ~x86-fbsd keyword.
+
+*emacs-22.1 (02 Jun 2007)
+
+  02 Jun 2007; Ulrich Mueller <ulm@gentoo.org>
+  +files/emacs-22.1-Xaw3d-headers.patch,
+  +files/emacs-22.1-disable_alsa_detection.patch,
+  +files/emacs-22.1-freebsd-sparc.patch, +emacs-22.1.ebuild:
+  Emacs 22 released. Ebuild and patchset based on emacs-cvs-22.0.990.
+
+  01 Jun 2007; nixnut <nixnut@gentoo.org> emacs-21.4-r12.ebuild:
+  Stable on ppc wrt bug 180100
 
   29 May 2007; Raúl Porcel <armin76@gentoo.org> emacs-21.4-r12.ebuild:
   alpha/ia64 stable wrt #180100

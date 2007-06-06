@@ -1,0 +1,42 @@
+--- configure.in	22 May 2007 15:54:32 -0000	1.448
++++ configure.in	30 May 2007 13:19:39 -0000
+@@ -1590,39 +1590,6 @@
+   # Emulation library used on NetBSD.
+   AC_CHECK_LIB(ossaudio, _oss_ioctl, LIBSOUND=-lossaudio, LIBSOUND=)
+   AC_SUBST(LIBSOUND)
+-
+-  ALSA_REQUIRED=1.0.0
+-  ALSA_MODULES="alsa >= $ALSA_REQUIRED"
+-  dnl Check if --with-pkg-config-prog has been given.
+-  if test "X${with_pkg_config_prog}" != X; then
+-    PKG_CONFIG="${with_pkg_config_prog}"
+-  fi
+-  PKG_CHECK_MODULES(ALSA, $ALSA_MODULES, HAVE_ALSA=yes, HAVE_ALSA=no)
+-  if test $HAVE_ALSA = yes; then
+-    SAVE_CFLAGS="$CFLAGS"
+-    SAVE_LDFLAGS="$LDFLAGS"
+-    CFLAGS="$ALSA_CFLAGS $CFLAGS"
+-    LDFLAGS="$ALSA_LIBS $LDFLAGS"
+-    AC_TRY_COMPILE([#include <asoundlib.h>], [snd_lib_error_set_handler (0);],
+-                    emacs_alsa_normal=yes,
+-	            emacs_alsa_normal=no)
+-    if test "$emacs_alsa_normal" != yes; then
+-      AC_TRY_COMPILE([#include <alsa/asoundlib.h>],
+-                     [snd_lib_error_set_handler (0);],
+-                     emacs_alsa_subdir=yes,
+-	             emacs_alsa_subdir=no)
+-      if test "$emacs_alsa_subdir" != yes; then
+-        AC_MSG_ERROR([pkg-config found alsa, but it does not compile.  See config.log for error messages.])
+-      fi
+-      ALSA_CFLAGS="$ALSA_CFLAGS -DALSA_SUBDIR_INCLUDE"
+-    fi
+-
+-    CFLAGS="$SAVE_CFLAGS"
+-    LDFLAGS="$SAVE_LDFLAGS"
+-    LIBSOUND="$LIBSOUND $ALSA_LIBS"
+-    CFLAGS_SOUND="$CFLAGS_SOUND $ALSA_CFLAGS"
+-    AC_DEFINE(HAVE_ALSA, 1, [Define to 1 if ALSA is available.])
+-  fi
+   AC_SUBST(CFLAGS_SOUND)
+ fi
+ 

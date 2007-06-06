@@ -1,0 +1,13 @@
+Index: emacs/src/alloc.c
+===================================================================
+--- emacs.orig/src/alloc.c
++++ emacs/src/alloc.c
+@@ -4522,7 +4522,7 @@ mark_stack ()
+   /* Fixme: Code in the Boehm GC suggests flushing (with `flushrs') is
+      needed on ia64 too.  See mach_dep.c, where it also says inline
+      assembler doesn't work with relevant proprietary compilers.  */
+-#ifdef sparc
++#if defined(sparc) && !defined(__FreeBSD__)
+   asm ("ta 3");
+ #endif
+ 
