@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/libxklavier
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.91 2007/05/28 00:06:52 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.92 2007/06/04 19:46:11 compnerd Exp $
+
+*libxklavier-3.2 (04 Jun 2007)
+
+  04 Jun 2007; Saleem Abdulrasool <compnerd@gentoo.org>
+  +libxklavier-3.2.ebuild:
+  Version bump from upstream
 
   28 May 2007; Joshua Kinard <kumba@gentoo.org> libxklavier-3.1.ebuild:
   Removing mips keywords from gnome-related packages, as gnome no longer is
