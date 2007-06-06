@@ -1,6 +1,9 @@
 # ChangeLog for dev-scheme/guile
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.21 2007/05/31 19:15:55 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.22 2007/06/02 17:31:14 nixnut Exp $
+
+  02 Jun 2007; nixnut <nixnut@gentoo.org> guile-1.6.8.ebuild:
+  Stable on ppc wrt bug 178360
 
   31 May 2007; Diego Pettenò <flameeyes@gentoo.org> guile-1.8.1-r3.ebuild:
   Add ~x86-fbsd keyword.
