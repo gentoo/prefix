@@ -20,6 +20,7 @@ DEPEND=""
 src_unpack() {
 	unpack ${A}
 	cd ${S}
+	epatch "${FILESDIR}"/${P}-darwin.patch
 	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify main.c
 }
