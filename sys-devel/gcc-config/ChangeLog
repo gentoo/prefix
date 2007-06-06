@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gcc-config
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.162 2007/05/11 05:38:38 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.163 2007/06/02 11:43:58 armin76 Exp $
+
+  02 Jun 2007; Raúl Porcel <armin76@gentoo.org> gcc-config-1.3.16.ebuild:
+  alpha stable wrt #176869
 
   11 May 2007; Joshua Kinard <kumba@gentoo.org> gcc-config-1.3.16.ebuild:
   Stable on mips, per #176869.
