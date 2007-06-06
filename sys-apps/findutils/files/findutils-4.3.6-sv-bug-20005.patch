@@ -1,0 +1,84 @@
+fix from upstream
+
+http://bugs.gentoo.org/180334
+
+Index: parser.c
+===================================================================
+RCS file: /sources/findutils/findutils/find/parser.c,v
+retrieving revision 1.122
+diff -u -p -r1.122 parser.c
+--- find/parser.c	31 May 2007 08:15:05 -0000	1.122
++++ find/parser.c	31 May 2007 09:01:07 -0000
+@@ -3175,19 +3175,22 @@ parse_time (const struct parser_table* e
+   struct predicate *our_pred;
+   struct time_val tval;
+   enum comparison_type comp;
+-  const char *timearg;
++  const char *timearg, *orig_timearg;
+   const char *errmsg = "arithmetic overflow while converting %s days to a number of seconds";
+   time_t origin;
+ 
+   if (!collect_arg(argv, arg_ptr, &timearg))
+     return false;
++  orig_timearg = timearg;
+ 
+   /* Decide the origin by previewing the comparison type. */
+   origin = options.cur_day_start;
+ 
+   if (get_comp_type(&timearg, &comp))
+     {
+-      /* Remember, we invert the sense of the comparison, so this tests against COMP_LT instead of COMP_GT... */
++      /* Remember, we invert the sense of the comparison, so this tests 
++       * against COMP_LT instead of COMP_GT... 
++       */
+       if (COMP_LT == tval.kind)      
+ 	{
+ 	  uintmax_t expected = origin + (DAYSECS-1);
+@@ -3198,11 +3201,14 @@ parse_time (const struct parser_table* e
+ 		    _("arithmetic overflow when trying to calculate the end of today"));
+ 	    }
+ 	}
+-      /* We discard the value of comp here, as get_relative_timestamp
+-       * will set tval.kind. 
+-       */
+     }
+-  
++  /* We discard the value of comp here, as get_relative_timestamp
++   * will set tval.kind.  For that to work, we have to restore
++   * timearg so that it points to the +/- prefix, if any.  get_comp_type()
++   * will have advanced timearg, so we restore it.
++   */
++  timearg = orig_timearg;
++
+   if (!get_relative_timestamp(timearg, &tval, origin, DAYSECS, errmsg))
+     return false;
+ 
+@@ -3224,10 +3230,9 @@ parse_time (const struct parser_table* e
+       fprintf (stderr, "%ju %s", (uintmax_t) our_pred->args.reftime.ts.tv_sec, ctime (&t));
+       if (tval.kind == COMP_EQ)
+ 	{
+-	  t = our_pred->args.reftime.ts.tv_sec += DAYSECS;
++	  t = our_pred->args.reftime.ts.tv_sec + DAYSECS;
+ 	  fprintf (stderr, "                 <  %ju %s",
+-		   (uintmax_t) our_pred->args.reftime.ts.tv_sec, ctime (&t));
+-	  our_pred->args.reftime.ts.tv_sec -= DAYSECS;
++		   (uintmax_t) t, ctime (&t));
+ 	}
+     }
+   
+Index: pred.c
+===================================================================
+RCS file: /sources/findutils/findutils/find/pred.c,v
+retrieving revision 1.97
+diff -u -p -r1.97 pred.c
+--- find/pred.c	27 May 2007 11:04:23 -0000	1.97
++++ find/pred.c	31 May 2007 09:01:08 -0000
+@@ -2207,7 +2207,7 @@ print_list (FILE *fp, struct predicate *
+   cur = node;
+   while (cur != NULL)
+     {
+-      fprintf (fp, "%s ", blank_rtrim (cur->p_name, name));
++      fprintf (fp, "[%s] ", blank_rtrim (cur->p_name, name));
+       cur = cur->pred_next;
+     }
+   fprintf (fp, "\n");

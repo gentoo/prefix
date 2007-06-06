@@ -1,6 +1,33 @@
 # ChangeLog for sys-apps/findutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.109 2007/05/31 01:41:58 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.116 2007/06/02 19:15:23 lu_zero Exp $
+
+  02 Jun 2007; Luca Barbato <lu_zero@gentoo.org> findutils-4.2.31.ebuild:
+  Marked ppc and ppc64
+
+  02 Jun 2007; Jeroen Roovers <jer@gentoo.org> findutils-4.2.31.ebuild:
+  Stable for HPPA (bug #180538).
+
+  02 Jun 2007; Raúl Porcel <armin76@gentoo.org> findutils-4.2.31.ebuild:
+  alpha/ia64/x86 stable wrt #180538
+
+  02 Jun 2007; Christoph Mende <angelos@gentoo.org> findutils-4.2.31.ebuild:
+  Stable on amd64 wrt security bug 180538
+
+*findutils-4.3.6-r1 (02 Jun 2007)
+
+  02 Jun 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/findutils-4.3.6-sv-bug-20005.patch, +findutils-4.3.6-r1.ebuild:
+  Fix from upstream for #180334 by Randy B.
+
+*findutils-4.2.31 (01 Jun 2007)
+
+  01 Jun 2007; Mike Frysinger <vapier@gentoo.org> +findutils-4.2.31.ebuild:
+  Version bump #180538.
+
+  01 Jun 2007; Joshua Kinard <kumba@gentoo.org> findutils-4.2.30.ebuild,
+  findutils-4.3.4.ebuild:
+  Stable on mips, per #180031.
 
   31 May 2007; Daniel Gryniewicz <dang@gentoo.org> findutils-4.2.30.ebuild,
   findutils-4.3.4.ebuild:
