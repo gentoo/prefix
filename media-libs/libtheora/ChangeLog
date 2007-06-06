@@ -1,6 +1,17 @@
 # ChangeLog for media-libs/libtheora
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/ChangeLog,v 1.57 2007/03/10 20:27:33 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/ChangeLog,v 1.59 2007/06/04 16:05:29 lu_zero Exp $
+
+*libtheora-1.0_alpha7-r1 (04 Jun 2007)
+
+  04 Jun 2007; Luca Barbato <lu_zero@gentoo.org>
+  +files/libtheora-1.0alpha7-nocomments.patch,
+  +libtheora-1.0_alpha7-r1.ebuild:
+  Fix memory corruption, patch and report from flameeyes
+
+  01 Jun 2007; Alexis Ballier <aballier@gentoo.org>
+  libtheora-1.0_alpha6-r1.ebuild:
+  Depend on automake 1.9, bug #180300
 
   10 Mar 2007; Steve Dibb <beandog@gentoo.org>
   libtheora-1.0_alpha6-r1.ebuild, libtheora-1.0_alpha7.ebuild:

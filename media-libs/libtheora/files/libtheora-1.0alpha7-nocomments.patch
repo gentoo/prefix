@@ -1,0 +1,40 @@
+Index: libtheora-1.0alpha7/lib/toplevel.c
+===================================================================
+--- libtheora-1.0alpha7.orig/lib/toplevel.c
++++ libtheora-1.0alpha7/lib/toplevel.c
+@@ -182,6 +182,7 @@ static int _theora_unpack_comment(theora
+ 
+   _tp_readlsbint(opb,(long *) &tc->comments);
+   if(tc->comments<0)goto parse_err;
++  if(tc->comments==0)goto nocomments;
+   tc->user_comments=_ogg_calloc(tc->comments,sizeof(*tc->user_comments));
+   tc->comment_lengths=_ogg_calloc(tc->comments,sizeof(*tc->comment_lengths));
+   for(i=0;i<tc->comments;i++){
+@@ -192,6 +193,8 @@ static int _theora_unpack_comment(theora
+     tc->user_comments[i][len]='\0';
+     tc->comment_lengths[i]=len;
+   }
++
++nocomments:
+   return(0);
+ 
+ parse_err:
+Index: libtheora-1.0alpha7/lib/comment.c
+===================================================================
+--- libtheora-1.0alpha7.orig/lib/comment.c
++++ libtheora-1.0alpha7/lib/comment.c
+@@ -99,9 +99,11 @@ int theora_comment_query_count(theora_co
+ void theora_comment_clear(theora_comment *tc){
+   if(tc){
+     long i;
+-    for(i=0;i<tc->comments;i++)
+-      if(tc->user_comments[i])_ogg_free(tc->user_comments[i]);
+-    if(tc->user_comments)_ogg_free(tc->user_comments);
++    if (tc->user_comments) {
++      for(i=0;i<tc->comments;i++)
++	if(tc->user_comments[i])_ogg_free(tc->user_comments[i]);
++      _ogg_free(tc->user_comments);
++    }
+     if(tc->comment_lengths)_ogg_free(tc->comment_lengths);
+     if(tc->vendor)_ogg_free(tc->vendor);
+     memset(tc,0,sizeof(*tc));

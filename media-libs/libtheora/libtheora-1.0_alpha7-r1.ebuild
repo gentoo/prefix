@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/libtheora-1.0_alpha7.ebuild,v 1.7 2007/03/10 20:27:33 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/libtheora-1.0_alpha7-r1.ebuild,v 1.1 2007/06/04 16:05:29 lu_zero Exp $
 
 EAPI="prefix"
 
@@ -28,6 +28,8 @@ src_unpack() {
 	sed -i -e 's:SUBDIRS = .*:SUBDIRS = lib include doc:' Makefile.in
 
 	elibtoolize
+
+	epatch "${FILESDIR}/${P/_}-nocomments.patch"
 
 	if use examples; then
 		# This creates a clean copy of examples sources
