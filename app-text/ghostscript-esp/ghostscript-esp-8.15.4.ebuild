@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ghostscript-esp-8.15.4.ebuild,v 1.1 2007/03/20 13:39:28 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ghostscript-esp-8.15.4.ebuild,v 1.2 2007/06/01 22:40:36 drac Exp $
 
 EAPI="prefix"
 
@@ -33,7 +33,8 @@ DEP="virtual/libc
 	>=media-libs/libpng-1.2.5
 	>=sys-libs/zlib-1.1.4
 	>=media-libs/tiff-3.7
-	X? ( || ( x11-libs/libXt virtual/x11 ) )
+	X? ( x11-libs/libXt
+		x11-libs/libXext )
 	djvu? ( app-text/djvu )
 	gtk? ( >=x11-libs/gtk+-2.0 )
 	cups? ( >=net-print/cups-1.1.20 )
