@@ -12,7 +12,7 @@ SRC_URI="http://www.fftw.org/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="3.0"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos"
 IUSE="altivec sse sse2 test"
 
 DEPEND="test? ( dev-lang/perl )"
