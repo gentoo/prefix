@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-portage/eix/eix-0.9.8.ebuild,v 1.1 2007/06/04 17:08:31 genstef Exp $
 
+inherit eutils
+
 EAPI=prefix
 DESCRIPTION="Small utility for searching ebuilds with indexing for fast results"
 HOMEPAGE="http://dev.croup.de/proj/eix"
@@ -15,6 +17,12 @@ IUSE="sqlite"
 DEPEND="sqlite? ( >=dev-db/sqlite-3 )
 	app-arch/bzip2"
 RDEPEND="${DEPEND}"
+
+src_unpack() {
+	unpack ${A}
+	cd ${S}
+	epatch ${FILESDIR}/eix-0.9.8-gcc-3.patch
+}
 
 src_compile() {
 	econf \
