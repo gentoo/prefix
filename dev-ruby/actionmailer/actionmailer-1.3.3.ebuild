@@ -13,7 +13,7 @@ SRC_URI="http://gems.rubyforge.org/gems/${P}.gem"
 
 LICENSE="MIT"
 SLOT="1.2"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND="=dev-ruby/actionpack-1.13.3
