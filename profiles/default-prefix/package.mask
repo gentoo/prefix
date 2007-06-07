@@ -1,5 +1,10 @@
 # prefix items here
 
+# <grobian@gentoo.org> (04 Jun 2007)
+# Doesn't compile completely on Solaris, doesn't compile at all on Linux
+# (?), not sure about Darwin, masking for now
+media-gfx/transfig
+
 # <grobian@gentoo.org> (28 Apr 2007)
 # its SVN support is horrifically broken
 =app-portage/gentoolkit-dev-0.2.6.5

@@ -2,6 +2,10 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  07 Jun 2007; Fabian Groffen <fabian@gentoo.org> linux/make.defaults,
+  package.mask:
+  Add mudflap and openmp to USE-flags on linux, based on default-linux profile
+
   01 Jun 2007; Fabian Groffen <grobian@gentoo.org> make.defaults:
   Bring back collision-protect, as we love it
 
