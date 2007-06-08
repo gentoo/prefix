@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.164 2007/06/04 17:36:26 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.165 2007/06/05 15:07:43 gustavoz Exp $
+
+  05 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org> emacs-22.1.ebuild:
+  Keyworded ~sparc wrt #180642
 
   04 Jun 2007; Ulrich Mueller <ulm@gentoo.org>
   +files/emacs-22.1-oldxmenu-qa.patch, emacs-22.1.ebuild:
