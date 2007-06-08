@@ -1,6 +1,18 @@
 # ChangeLog for sci-libs/gsl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.30 2007/03/28 18:15:07 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.34 2007/06/07 12:22:09 corsair Exp $
+
+  07 Jun 2007; Markus Rothe <corsair@gentoo.org> gsl-1.9.ebuild:
+  Stable on ppc64; bug #180916
+
+  06 Jun 2007; Raúl Porcel <armin76@gentoo.org> gsl-1.9.ebuild:
+  alpha/ia64/x86 stable wrt #180916
+
+  05 Jun 2007; Jeroen Roovers <jer@gentoo.org> gsl-1.9.ebuild:
+  Stable for HPPA (bug #180916).
+
+  05 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org> gsl-1.9.ebuild:
+  Stable on sparc wrt #180916
 
   28 Mar 2007; Fabian Groffen <grobian@gentoo.org> gsl-1.7.ebuild,
   gsl-1.8.ebuild, gsl-1.9.ebuild:
