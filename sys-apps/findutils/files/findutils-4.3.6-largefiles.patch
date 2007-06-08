@@ -1,0 +1,14 @@
+--- find/tree.c.orig	2007-06-08 15:29:06 +0200
++++ find/tree.c	2007-06-08 15:29:10 +0200
+@@ -17,10 +17,10 @@
+    USA.
+ */
+ 
++#include "defs.h"
+ #include <assert.h>
+ #include <stdlib.h>
+ 
+-#include "defs.h"
+ #include "../gnulib/lib/xalloc.h"
+ #include "error.h"
+ 

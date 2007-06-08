@@ -31,6 +31,9 @@ src_unpack() {
 	# IRIX needs an extra cast
 	epatch "${FILESDIR}"/${PN}-4.3.2-irix.patch
 
+	# include "config.h" first
+	epatch "${FILESDIR}"/${P}-largefiles.patch
+
 	# Don't build or install locate because it conflicts with slocate,
 	# which is a secure version of locate.  See bug 18729
 	sed -i '/^SUBDIRS/s/locate//' Makefile.in
