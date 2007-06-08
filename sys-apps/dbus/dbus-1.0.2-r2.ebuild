@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.0.2-r2.ebuild,v 1.12 2007/05/13 07:12:30 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.0.2-r2.ebuild,v 1.13 2007/06/05 14:59:09 cardoe Exp $
 
 EAPI="prefix"
 
@@ -103,6 +103,12 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
+	# ensure we create the machine uuid here for people that don't use the
+	# system bus so it would never get created otherwise
+	if [[ ${ROOT} == "/" ]] ; then
+		"${EPREFIX}"/usr/bin/dbus-uuidgen --ensure
+	fi
+
 	elog "To start the D-Bus system-wide messagebus by default"
 	elog "you should add it to the default runlevel :"
 	elog "\`rc-update add dbus default\`"
