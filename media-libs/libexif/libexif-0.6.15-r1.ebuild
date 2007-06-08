@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.15-r1.ebuild,v 1.1 2007/05/31 10:41:26 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.15-r1.ebuild,v 1.2 2007/06/05 08:39:38 eradicator Exp $
 
 EAPI="prefix"
 
@@ -32,10 +32,9 @@ src_unpack() {
 }
 
 src_compile() {
-	local my_conf
-	use doc && my_conf="--with-doc-dir=/usr/share/doc/${PF}"
+	local my_conf="--with-doc-dir=/usr/share/doc/${PF}"
 	use nls || my_conf="${my_conf} --without-libintl-prefix"
-	econf $(use_enable nls) $(use_enable doc) \
+	econf $(use_enable nls) $(use_enable doc docs) \
 		--with-pic --disable-rpath ${my_conf} || die
 	emake || die
 }
@@ -54,3 +53,14 @@ src_install() {
 	# installs a blank directory for whatever broken reason
 	use nls || rm -rf ${ED}usr/share/locale
 }
+
+pkg_postinst() {
+	elog "If you are upgrading from a version of libexif older than 0.6.13-r2,"
+	elog "you will need to do the following to rebuild dependencies:"
+	elog "# revdep-rebuild --soname libexif.so.9"
+	elog "# revdep-rebuild --soname libexif.so.10"
+	elog ""
+	elog "Note, it is actually safe to create a symlink from libexif.so.10 to"
+	elog "libexif.so.12 if you need to during the update."
+}
+

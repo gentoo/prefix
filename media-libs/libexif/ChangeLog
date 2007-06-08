@@ -1,6 +1,19 @@
 # ChangeLog for media-libs/libexif
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.75 2007/05/31 10:41:26 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.78 2007/06/05 08:51:04 eradicator Exp $
+
+  05 Jun 2007; Jeremy Huddleston <eradicator@gentoo.org>
+  -libexif-0.5.12-r3.ebuild, libexif-0.6.12-r4.ebuild,
+  libexif-0.6.13-r1.ebuild, -libexif-0.6.13-r2.ebuild,
+  -files/libexif-0.5-CAN-2005-0664.patch,
+  -files/libexif-0.5.12-recurse.patch,
+  -files/libexif-0.6-CAN-2005-0664.patch:
+  Removing old insecure versions and just leaving keyword laggers on remaining
+  insecure versions: arm, mips, s390, sh on <0.6.15.  Cleaned out files dir.
+
+  05 Jun 2007; Jeremy Huddleston <eradicator@gentoo.org>
+  libexif-0.6.15.ebuild, libexif-0.6.15-r1.ebuild:
+  Added elog information about soname change.  Fixed USE=-doc.
 
 *libexif-0.6.15-r1 (31 May 2007)
 
