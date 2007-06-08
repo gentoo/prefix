@@ -1,6 +1,17 @@
 # ChangeLog for x11-wm/fluxbox
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.217 2007/05/23 23:01:54 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.219 2007/06/07 15:14:12 lack Exp $
+
+  07 Jun 2007; Jim Ramsay <lack@gentoo.org>
+  files/1.0_rc3/startfluxbox_doesnt.patch:
+  Bug 181151 - CVS ate my patch
+
+*fluxbox-1.0_rc3-r3 (06 Jun 2007)
+
+  06 Jun 2007; Jim Ramsay <lack@gentoo.org>
+  +files/1.0_rc3/startfluxbox_doesnt.patch, +fluxbox-1.0_rc3-r3.ebuild:
+  Fix for Bug 181039 - patches 'startfluxbox' script so it actually starts
+  fluxbox on your first ever run
 
   23 May 2007; Jim Ramsay <lack@gentoo.org>
   +files/0.9.13/fluxbox-0.9.13-our-styles-go-over-here.patch,
