@@ -13,7 +13,7 @@ HOMEPAGE="http://www.boost.org/"
 SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.bz2"
 LICENSE="freedist Boost-1.0"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~ppc-macos"
 IUSE="bcp bjam debug doc icu pyste threads threadsonly"
 
 # Overriding var from python.eclass

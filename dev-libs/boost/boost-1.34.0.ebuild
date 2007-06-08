@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit distutils flag-o-matic multilib toolchain-funcs versionator check-reqs
 
-KEYWORDS="~amd64 ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 
 MY_P=${PN}_$(replace_all_version_separators _)
 

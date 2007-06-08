@@ -22,3 +22,16 @@ stolen from macports
  }
  
  install test lib
+
+added by grobian@gentoo.org
+
+--- tools/build/v2/tools/darwin.jam
++++ tools/build/v2/tools/darwin.jam
+@@ -43,6 +43,7 @@
+ 
+ flags darwin.compile OPTIONS <link>shared : -dynamic ;
+ flags darwin.compile OPTIONS : -Wno-long-double -no-cpp-precomp  ;
++flags darwin.link OPTIONS : -undefined dynamic_lookup ;
+ 
+ flags darwin.link FRAMEWORK <framework> ;
+ 
