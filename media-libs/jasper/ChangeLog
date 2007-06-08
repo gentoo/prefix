@@ -1,6 +1,24 @@
 # ChangeLog for media-libs/jasper
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jasper/ChangeLog,v 1.34 2007/06/04 18:53:06 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jasper/ChangeLog,v 1.39 2007/06/07 23:29:34 angelos Exp $
+
+  07 Jun 2007; Christoph Mende <angelos@gentoo.org>
+  jasper-1.900.1-r1.ebuild:
+  Stable on amd64 wrt security bug 179159
+
+  06 Jun 2007; Raúl Porcel <armin76@gentoo.org> jasper-1.900.1-r1.ebuild:
+  alpha/ia64 stable wrt security #179159
+
+  06 Jun 2007; Christian Faulhammer <opfer@gentoo.org>
+  jasper-1.900.1-r1.ebuild:
+  stable x86, security bug 179159
+
+  05 Jun 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  jasper-1.900.1-r1.ebuild:
+  ppc stable, bug #179159
+
+  05 Jun 2007; Markus Rothe <corsair@gentoo.org> jasper-1.900.1-r1.ebuild:
+  Stable on ppc64; bug #179159
 
   04 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org>
   jasper-1.900.1-r1.ebuild:
