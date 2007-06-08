@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/rdesktop
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.88 2007/06/02 06:46:10 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.89 2007/06/07 11:04:45 corsair Exp $
+
+  07 Jun 2007; Markus Rothe <corsair@gentoo.org> rdesktop-1.5.0-r2.ebuild:
+  Stable on ppc64; bug #180310
 
   02 Jun 2007; Joshua Kinard <kumba@gentoo.org> rdesktop-1.5.0-r2.ebuild:
   Stable on mips, per #180310.

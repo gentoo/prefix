@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/rdesktop-1.5.0-r2.ebuild,v 1.7 2007/06/02 06:46:10 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/rdesktop-1.5.0-r2.ebuild,v 1.8 2007/06/07 11:04:45 corsair Exp $
 
 EAPI="prefix"
 
