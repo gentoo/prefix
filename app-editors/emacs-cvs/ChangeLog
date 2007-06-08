@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.130 2007/06/02 13:01:02 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.131 2007/06/06 06:14:44 ulm Exp $
+
+  06 Jun 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.1.50.ebuild:
+  Include check for change of upstream version number.
 
   02 Jun 2007; Ulrich Mueller <ulm@gentoo.org> -emacs-cvs-22.0.99.ebuild,
   -emacs-cvs-22.0.9999-r10.ebuild:

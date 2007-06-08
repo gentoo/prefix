@@ -1,14 +1,14 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.0-r6.ebuild,v 1.19 2007/06/01 18:42:08 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.0-r6.ebuild,v 1.20 2007/06/05 07:43:10 ulm Exp $
 
 EAPI="prefix"
 
 ECVS_AUTH="pserver"
 ECVS_SERVER="cvs.savannah.gnu.org:/sources/emacs"
 ECVS_MODULE="emacs"
-ECVS_LOCALNAME="emacs-unicode"
 ECVS_BRANCH="emacs-unicode-2"
+ECVS_LOCALNAME="emacs-unicode"
 
 WANT_AUTOCONF="2.61"
 WANT_AUTOMAKE="latest"
@@ -73,7 +73,8 @@ src_unpack() {
 		| sed -e 's/^[^"]*"\([^"]*\)".*$/\1/')
 	[ "${FULL_VERSION}" ] || die "Cannot determine current Emacs version"
 	echo
-	einfo "Emacs version number is ${FULL_VERSION}"
+	einfo "Emacs CVS branch: ${ECVS_BRANCH}"
+	einfo "Emacs version number: ${FULL_VERSION}"
 	echo
 
 	sed -i -e "s:/usr/lib/crtbegin.o:$(`tc-getCC` -print-file-name=crtbegin.o):g" \
