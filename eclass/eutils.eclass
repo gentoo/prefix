@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.280 2007/05/05 07:52:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.281 2007/06/05 15:59:26 nyhm Exp $
 #
 # This eclass is for general purpose functions that most ebuilds
 # have to implement themselves.
@@ -1468,7 +1468,7 @@ _cdrom_locate_file_on_cd() {
 
 			local point= node= fs= foo=
 			while read point node fs foo ; do
-				[[ " cd9660 iso9660 " != *" ${fs} "* ]] && \
+				[[ " cd9660 iso9660 udf " != *" ${fs} "* ]] && \
 					! [[ ${fs} == "subfs" && ",${opts}," == *",fs=cdfss,"* ]] \
 					&& continue
 				point=${point//\040/ }

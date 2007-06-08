@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/multilib.eclass,v 1.60 2007/03/27 01:46:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/multilib.eclass,v 1.61 2007/06/05 18:21:00 cardoe Exp $
 #
 # Maintainer: amd64@gentoo.org / toolchain@gentoo.org
 #
@@ -10,13 +10,11 @@
 ___ECLASS_RECUR_MULTILIB="yes"
 [[ -z ${___ECLASS_RECUR_TOOLCHAIN_FUNCS} ]] && inherit toolchain-funcs
 
-DESCRIPTION="Based on the ${ECLASS} eclass"
-
 # has_multilib_profile:
 # Return true if the current profile is a multilib profile and lists more than
-# one abi in ${MULTILIB_ABIS}.  You might want to use this like
-# 'use multilib || has_multilib_profile' until all profiles utilizing the
-# 'multilib' use flag are removed from portage
+# one abi in ${MULTILIB_ABIS}.  When has_multilib_profile returns true, that
+# profile should enable the 'multilib' use flag. This is so you can DEPEND on
+# a package only for multilib or not multilib.
 
 # is_final_abi:
 # Return true if ${ABI} is the final abi to be installed (and thus we are
