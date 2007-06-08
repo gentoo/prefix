@@ -41,8 +41,8 @@ src_install() {
 
 	# namepace collision with X/Emacs-provided /usr/bin/ctags -- we
 	# rename ctags to exuberant-ctags (Mandrake does this also).
-	mv ${D}/usr/bin/{ctags,exuberant-ctags}
-	mv ${D}/usr/share/man/man1/{ctags,exuberant-ctags}.1
+	mv ${ED}/usr/bin/{ctags,exuberant-ctags}
+	mv ${ED}/usr/share/man/man1/{ctags,exuberant-ctags}.1
 
 	dodoc FAQ NEWS README
 	dohtml EXTENDING.html ctags.html

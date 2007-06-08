@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ctags-5.6.ebuild,v 1.3 2007/02/28 22:08:46 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ctags-5.6-r1.ebuild,v 1.1 2007/05/08 23:22:34 pioto Exp $
 
 EAPI="prefix"
 
@@ -21,6 +21,7 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-ebuilds.patch"
 	#epatch "${FILESDIR}/${P}-haskell.patch"
 	#epatch "${FILESDIR}/${P}-objc.patch"
+	epatch "${FILESDIR}/${P}-php5.patch"
 }
 
 src_compile() {
@@ -38,8 +39,8 @@ src_install() {
 
 	# namepace collision with X/Emacs-provided /usr/bin/ctags -- we
 	# rename ctags to exuberant-ctags (Mandrake does this also).
-	mv ${D}/usr/bin/{ctags,exuberant-ctags}
-	mv ${D}/usr/share/man/man1/{ctags,exuberant-ctags}.1
+	mv ${ED}/usr/bin/{ctags,exuberant-ctags}
+	mv ${ED}/usr/share/man/man1/{ctags,exuberant-ctags}.1
 
 	dodoc FAQ NEWS README
 	dohtml EXTENDING.html ctags.html
