@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/cmake
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.52 2007/01/29 01:31:52 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.53 2007/06/07 16:25:16 philantrop Exp $
+
+*cmake-2.4.6-r1 (07 Jun 2007)
+
+  07 Jun 2007; Wulf C. Krueger <philantrop@gentoo.org>
+  +files/50cmake-gentoo.el, +files/cmake.vim, +cmake-2.4.6-r1.ebuild:
+  Added patches by Jack Kelly from bug 180667 to add vim and emacs syntax
+  files. Thanks, Jack!
 
 *cmake-2.4.6 (29 Jan 2007)
 
