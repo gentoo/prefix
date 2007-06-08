@@ -1,6 +1,10 @@
 # ChangeLog for www-client/mozilla-launcher
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-launcher/ChangeLog,v 1.59 2007/05/14 17:15:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-launcher/ChangeLog,v 1.60 2007/06/05 16:41:15 armin76 Exp $
+
+  05 Jun 2007; Raúl Porcel <armin76@gentoo.org>
+  -mozilla-launcher-1.52-r1.ebuild, -mozilla-launcher-1.54.ebuild:
+  old
 
   14 May 2007; Raúl Porcel <armin76@gentoo.org>
   mozilla-launcher-1.56.ebuild:
