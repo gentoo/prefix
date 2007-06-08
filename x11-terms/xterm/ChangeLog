@@ -1,6 +1,24 @@
 # ChangeLog for x11-terms/xterm
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.198 2007/03/24 19:58:16 seemant Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.204 2007/06/07 23:46:59 angelos Exp $
+
+  07 Jun 2007; Christoph Mende <angelos@gentoo.org> xterm-225.ebuild:
+  Stable on amd64 wrt bug 180989
+
+  06 Jun 2007; Brent Baude <ranger@gentoo.org> xterm-225.ebuild:
+  Marking xterm-225 ppc stable for bug#180989
+
+  06 Jun 2007; Brent Baude <ranger@gentoo.org> xterm-225.ebuild:
+  Marking xterm-225 ppc64 stable for bug#180989
+
+  06 Jun 2007; Raúl Porcel <armin76@gentoo.org> xterm-225.ebuild:
+  alpha/ia64/x86 stable wrt #180989
+
+  06 Jun 2007; Jeroen Roovers <jer@gentoo.org> xterm-225.ebuild:
+  Stable for HPPA (bug #180989).
+
+  05 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org> xterm-225.ebuild:
+  Stable on sparc wrt #180989
 
 *xterm-225 (24 Mar 2007)
 
