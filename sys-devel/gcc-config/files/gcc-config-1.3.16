@@ -396,7 +396,7 @@ switch_profile() {
 		echo
 		ewarn " (bash) # source ${EPREFIX}/etc/profile"
 		ewarn "or"
-		ewarn " (tcsh) # . ${EPREFIX}/etc/csh.login"
+		ewarn " (tcsh) # source ${EPREFIX}/etc/csh.login"
 		echo
 	fi
 
