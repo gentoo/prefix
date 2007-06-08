@@ -1,0 +1,10 @@
+--- Makefile.old	2007-06-02 13:35:00.000000000 +0200
++++ Makefile	2007-06-02 13:39:41.000000000 +0200
+@@ -259,6 +259,7 @@
+ info:	installinfo
+ installinfo:	$(infodir)slib.info
+ $(infodir)slib.info:	slib.info
++	mkdir -p $(infodir)
+ 	cp -p slib.info $(infodir)slib.info
+ 	-install-info $(infodir)slib.info $(infodir)dir
+ 	-rm $(infodir)slib.info.gz

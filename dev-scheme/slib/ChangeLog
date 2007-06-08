@@ -1,6 +1,15 @@
 # ChangeLog for dev-scheme/slib
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/ChangeLog,v 1.30 2007/05/29 14:04:41 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/ChangeLog,v 1.32 2007/06/07 18:10:34 hkbst Exp $
+
+  07 Jun 2007; Marijn Schouten <hkBst@gentoo.org> slib-3.1.4-r3.ebuild:
+  fix slib gambit support
+
+*slib-3.1.4-r3 (06 Jun 2007)
+
+  06 Jun 2007; Marijn Schouten <hkBst@gentoo.org> +files/Makefile.patch,
+  +slib-3.1.4-r3.ebuild:
+  switch to using slib's own makefile; add slib support for six implementations
 
   29 May 2007; Marijn Schouten <hkBst@gentoo.org> slib-3.1.4-r2.ebuild:
   add bash magic to increase extensibility
