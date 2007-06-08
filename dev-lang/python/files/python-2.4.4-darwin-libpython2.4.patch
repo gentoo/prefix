@@ -5,7 +5,7 @@
  	$(LDSHARED) -o $@ $(LIBRARY_OBJS) $(SHLIBS) $(LIBC) $(LIBM)
  
 +libpython$(VERSION).dylib: $(LIBRARY_OBJS)
-+	$(LINKCC) -dynamiclib -install_name $(LIBDIR)/$@ -current_version $(VERSION) -compatibility_version 2.4 -o $@ -undefined dynamic_lookup $(LIBRARY_OBJS) $(SHLIBS) $(LIBC) $(LIBM)
++	$(LINKCC) -dynamiclib -install_name $(LIBDIR)/$@ -current_version $(VERSION) -compatibility_version 2.4 -o $@ $(LIBRARY_OBJS) $(SHLIBS) $(LIBC) $(LIBM)
 +
 +
  # This rule is here for OPENSTEP/Rhapsody/MacOSX. It builds a temporary

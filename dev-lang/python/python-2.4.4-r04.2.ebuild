@@ -99,8 +99,10 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-darwin-dylib.patch
 	# python doesn't build a libpython2.4.dylib by itself...
 	epatch "${FILESDIR}"/${P}-darwin-libpython2.4.patch
-	# and to build this lib, we need -fno-common, which python doesn't use
-	[[ ${CHOST} == *-darwin* ]] && append-flags -fno-common
+	# and to build this lib, we need -fno-common, which python doesn't use, and
+	# to have _NSGetEnviron being used, which by default it isn't...
+	[[ ${CHOST} == *-darwin* ]] && \
+		append-flags -fno-common -DWITH_NEXT_FRAMEWORK
 
 	# do not use 'which' to find binaries, but go through the PATH.
 	epatch "${FILESDIR}"/${P}-ld_so_aix-which.patch
