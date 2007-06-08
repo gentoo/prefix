@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/libX11
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.72 2007/05/27 04:21:11 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.73 2007/06/05 23:40:23 joshuabaergen Exp $
+
+*libX11-1.1.2 (05 Jun 2007)
+
+  05 Jun 2007; Joshua Baergen <joshuabaergen@gentoo.org>
+  +libX11-1.1.2.ebuild:
+  Version bump.
+  
+  Lots of changes here.  Most notable are the xcb and documentation updates.
+  This version also includes other minor security and bug fixes.
 
   27 May 2007; Joshua Kinard <kumba@gentoo.org> libX11-1.1.1-r1.ebuild:
   Stable on mips.
