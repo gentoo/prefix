@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-util/boost-build/boost-build-1.34_pre20061214.ebuild,v 1.1 2006/12/18 23:06:50 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.34.0.ebuild,v 1.1 2007/06/06 19:24:04 dev-zero Exp $
 
 EAPI="prefix"
 
@@ -12,12 +12,12 @@ MY_PV=$(replace_all_version_separators _)
 
 DESCRIPTION="A system for large project software construction, which is simple to use and powerfull."
 HOMEPAGE="http://www.boost.org/tools/build/v2/index.html"
-SRC_URI="http://dev.gentoo.org/~dev-zero/distfiles/boost_${MY_PV}.tar.bz2"
+SRC_URI="mirror://sourceforge/boost/boost_${MY_PV}.tar.bz2"
 LICENSE="Boost-1.0"
 SLOT="0"
-IUSE="icc"
+IUSE=""
 
-DEPEND="!<dev-libs/boost-1.34_pre20060930"
+DEPEND="!<dev-libs/boost-1.34.0"
 RDEPEND=""
 
 S=${WORKDIR}/boost_${MY_PV}/tools
@@ -47,12 +47,7 @@ src_compile() {
 	cd jam/src
 	local toolset
 
-	if use icc ; then
-		toolset=intel-linux
-		sed -i \
-			-e "s#/opt/intel/cc/9.0#${IA32ROOT}#" \
-			build.sh || die "sed failed"
-	elif [ "${ARCH}" == "ppc-macos" ] ; then
+	if [ "${ARCH}" == "ppc-macos" ] ; then
 		toolset=darwin
 	else
 		# Using boost's generic toolset here, which respects CC and CFLAGS
