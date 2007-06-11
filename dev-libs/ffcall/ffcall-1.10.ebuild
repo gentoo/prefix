@@ -15,7 +15,7 @@ SRC_URI="ftp://ftp.santafe.edu/pub/gnu/${P}.tar.gz"
 # under GNU LGPL." -ffcall author
 LICENSE="|| ( GPL-2 LGPL-2 )"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
 IUSE=""
 
 DEPEND=""
