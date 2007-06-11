@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
-<pkgmetadata>
-<herd>gnustep</herd>
-<longdescription>
-gnustep-env offers a run-script for starting GNUstep daemons (/etc/init.d/gnustep), and an env file that loads correct GNUstep paths for libraries and other important files.
-</longdescription>
-</pkgmetadata>
