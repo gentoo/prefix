@@ -197,7 +197,10 @@ src_compile() {
 		--with-gcc \
 		${myconf} || die
 	emake || die "Parallel make failed"
-	[[ ${CHOST} == *-darwin* ]] && emake libpython2.4.dylib || die
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		# create libpython on Darwin
+		emake libpython2.4.dylib || die
+	fi
 }
 
 src_install() {
