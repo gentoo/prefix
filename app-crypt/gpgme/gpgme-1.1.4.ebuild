@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/gpgme-1.1.4.ebuild,v 1.7 2007/05/19 21:13:15 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/gpgme-1.1.4.ebuild,v 1.8 2007/06/07 18:19:59 armin76 Exp $
 
 EAPI="prefix"
 
