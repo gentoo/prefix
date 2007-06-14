@@ -1,6 +1,16 @@
 # ChangeLog for x11-wm/fluxbox
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.219 2007/06/07 15:14:12 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.220 2007/06/10 18:41:36 lack Exp $
+
+*fluxbox-1.0_rc3-r493700 (10 Jun 2007)
+
+  10 Jun 2007; Jim Ramsay <lack@gentoo.org> +fluxbox-1.0_rc3-r493700.ebuild:
+  First svn snapshot release of fluxbox-1.0_rc3, fixes all previously patched
+  bugs in the 1.0_rc3-r* series, and many others. New naming scheme for this
+  snapshot series: -rXXXXYY where XXXX is the SVN revision number, and YY is a
+  2-digit ebuild revision number. For example, -r493700 is the first ebuild
+  equivalent to the upstream SVN revision 4937. -r500022 would be the 23rd
+  version equivalent to upstream SVN revision 5000.
 
   07 Jun 2007; Jim Ramsay <lack@gentoo.org>
   files/1.0_rc3/startfluxbox_doesnt.patch:
