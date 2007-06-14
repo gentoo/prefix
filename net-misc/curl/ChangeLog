@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/curl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.82 2007/04/18 11:04:51 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.83 2007/06/11 01:21:54 dragonheart Exp $
+
+*curl-7.16.3_pre20070610 (11 Jun 2007)
+
+  11 Jun 2007; Daniel Black <dragonheart@gentoo.org> metadata.xml,
+  +curl-7.16.3_pre20070610.ebuild:
+  upstream snapshot
 
 *curl-7.16.3_pre20070418 (18 Apr 2007)
 
@@ -11,7 +17,7 @@
 
 *curl-7.16.2 (14 Apr 2007)
 
-  14 Apr 2007; <dan@gentoo.org> +files/curl-7.16.2-strip-ldflags.patch,
+  14 Apr 2007; <dragonheart@gentoo.org> +files/curl-7.16.2-strip-ldflags.patch,
   curl-7.15.1-r1.ebuild, curl-7.15.5.ebuild, -curl-7.16.0.ebuild,
   -curl-7.16.1.ebuild, +curl-7.16.2.ebuild:
   version bump. remove old versions. remove krb4 as per bug #173354
