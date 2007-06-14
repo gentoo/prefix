@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-video/mplayer/mplayer-1.0.20070427.ebuild,v 1.2 2007/05/20 22:46:57 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0.20070427.ebuild,v 1.3 2007/06/10 00:56:26 lu_zero Exp $
 
 EAPI="prefix"
 
@@ -406,9 +406,8 @@ src_compile() {
 	fi
 	use debug && myconf="${myconf} --enable-debug=3"
 
-	if use ppc64 && use altivec; then
+	if use altivec; then
 		myconf="${myconf} --enable-altivec"
-		append-flags -maltivec -mabi=altivec
 	else
 		myconf="${myconf} --disable-altivec"
 	fi
