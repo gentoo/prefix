@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/portage-utils-0.1.28.ebuild,v 1.1 2007/06/03 19:44:31 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/portage-utils-0.1.28.ebuild,v 1.2 2007/06/12 15:10:45 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,8 @@ DEPEND=""
 src_unpack() {
 	unpack ${A}
 	cd ${S}
-	epatch "${FILESDIR}"/${P}-darwin.patch
+
+	epatch "${FILESDIR}/qmerge-posix-180871.patch"
 	epatch "${FILESDIR}"/${P}-solaris.patch
 	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify main.c
