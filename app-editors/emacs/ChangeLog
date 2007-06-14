@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.165 2007/06/05 15:07:43 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.166 2007/06/12 18:23:36 flameeyes Exp $
+
+  12 Jun 2007; Diego Pettenò <flameeyes@gentoo.org> emacs-22.1.ebuild:
+  Add ~sparc-fbsd keyword.
 
   05 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org> emacs-22.1.ebuild:
   Keyworded ~sparc wrt #180642
