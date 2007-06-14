@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/dnspython/dnspython-1.5.0.ebuild,v 1.5 2007/04/04 20:24:41 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/dnspython/dnspython-1.5.0.ebuild,v 1.6 2007/06/09 19:11:23 lavajoe Exp $
 
 EAPI="prefix"
 
