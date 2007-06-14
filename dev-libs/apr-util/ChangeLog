@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/apr-util
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.78 2007/03/23 18:51:27 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.79 2007/06/09 15:05:39 corsair Exp $
+
+  09 Jun 2007; Markus Rothe <corsair@gentoo.org> apr-util-1.2.8.ebuild:
+  Stable on ppc64; bug #178264
 
   23 Mar 2007; Christian Heim <phreak@gentoo.org> apr-util-1.2.8.ebuild:
   Updating the postgres? DEPEND, only dev-db/libpq is need, not a full-blown
