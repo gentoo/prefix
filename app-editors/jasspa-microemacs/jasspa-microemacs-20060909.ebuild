@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/jasspa-microemacs/jasspa-microemacs-20060909.ebuild,v 1.1 2006/12/06 18:22:51 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/jasspa-microemacs/jasspa-microemacs-20060909.ebuild,v 1.2 2007/06/12 06:29:18 opfer Exp $
 
 EAPI="prefix"
 
@@ -20,20 +20,18 @@ IUSE="X"
 
 DEPEND="virtual/libc
 	sys-libs/ncurses
-	X? ( || ( ( x11-libs/libX11
-			x11-libs/libXt
-		)
-		  virtual/x11 )
-	)"
+	X? ( x11-libs/libX11
+			x11-libs/libXt )"
+PROVIDE="virtual/editor"
 
 S="${WORKDIR}/me${PV:2}/src"
 
 src_unpack() {
 	unpack jasspa-mesrc-${PV}-2.tar.gz
-	cd ${T}
+	cd "${T}"
 	# everything except jasspa-mesrc
 	unpack ${A/jasspa-mesrc-${PV}-2.tar.gz/}
-	cd ${S}
+	cd "${S}"
 	epatch "${FILESDIR}/20050505-ncurses.patch"
 }
 
@@ -60,8 +58,8 @@ src_install() {
 		dosym /usr/bin/mec /usr/bin/me
 	fi
 	dodoc ../*.txt ../change.log
-	cp -r ${T}/* ${ED}/usr/share/jasspa
+	cp -r "${T}"/* "${ED}"/usr/share/jasspa
 
 	insinto /usr/share/applications
-	doins ${FILESDIR}/jasspa-microemacs.desktop
+	doins "${FILESDIR}/jasspa-microemacs.desktop"
 }
