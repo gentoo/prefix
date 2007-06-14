@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/savedconfig.eclass,v 1.5 2007/04/23 19:35:05 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/savedconfig.eclass,v 1.7 2007/06/11 04:52:42 dragonheart Exp $
 
 # Original Author: Daniel Black <dragonheart@gentoo.org>
 #
@@ -44,6 +44,14 @@ save_config() {
 			treecopy $* "${ED}/${PORTAGE_CONFIGROOT}"/etc/portage/savedconfig/${CATEGORY}/${PF} \
 					|| die "Failed to save $1"
 	esac
+	elog "Your configuration for ${CATEGORY}/${PF} has been saved in "
+	elog "/etc/portage/savedconfig/${CATEGORY}/${PF} for your editing pleasure."
+	elog "You can edit these files by hand and remerge this package with"
+	elog "USE=savedconfig to customise the configuration."
+	elog "You can rename this file/directory to one of the following for"
+	elog "its configuration to apply to multiple versions:"
+	elog '${PORTAGE_CONFIGROOT}/etc/portage/savedconfig/'
+	elog '[${CTARGET}|${CHOST}|""]/${CATEGORY}/[${PF}|${P}|${PN}]'
 }
 
 
@@ -90,12 +98,14 @@ restore_config() {
 		fi
 	done
 	if [[ -f ${found} ]]; then
+		elog "Building using saved configfile ${found}"
 		if [ $# -gt 0 ]; then
 			cp -pPR	"${found}" "$1" || die "Failed to restore ${found} to $1"
 		else
 			die "need to know the restoration filename"
 		fi
 	elif [[ -d ${found} ]]; then
+		elog "Building using saved config directory ${found}"
 		dest=${PWD}
 		pushd "${found}"
 		treecopy . "${dest}" \

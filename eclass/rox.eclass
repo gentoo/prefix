@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/rox.eclass,v 1.20 2007/02/09 17:27:39 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/rox.eclass,v 1.22 2007/06/12 20:15:22 lack Exp $
 
 # ROX eclass Version 2
 
@@ -23,6 +23,7 @@
 # WRAPPERNAME - the name of the wrapper installed into /usr/bin
 #    Defaults to 'rox-${PN}', or just ${PN} if it already starts with 'rox'.
 #    This does not normally need to be overridden.
+#    If overridden with the reserved word 'skip' no wrapper will be created.
 # APPNAME_COLLISION - If not set, the old naming convention for wrappers of
 #    /usr/bin/${APPNAME} will still be around.  Needs only be set in packages
 #    with known collisions (such as Pager, which collides with afterstep)
@@ -38,7 +39,7 @@
 
 # need python to byte compile modules, if any
 # need autotools to run autoreconf, if required
-inherit python autotools eutils
+inherit python autotools eutils multilib
 
 if [[ -z "${ROX_VER}" ]]; then
 	ROX_VER="2.1.0"
@@ -67,8 +68,8 @@ b=${a/rox-rox*}
 WRAPPERNAME=${b:-${PN}}
 
 # This is the location where all applications are installed
-APPDIR="/usr/lib/rox"
-LIBDIR="/usr/lib"
+APPDIR="/usr/$(get_libdir)/rox"
+LIBDIR="/usr/$(get_libdir)"
 
 # Utility Functions
 
@@ -176,9 +177,10 @@ rox_src_install() {
 	# all be preserved.
 	cp -pPR ${APPNAME} ${ED}${APPDIR}/${APPNAME}
 
-	#create a script in bin to run the application from command line
-	dodir /usr/bin/
-	cat >"${ED}/usr/bin/${WRAPPERNAME}" <<EOF
+	if [[ "${WRAPPERNAME}" != "skip" ]]; then
+		#create a script in bin to run the application from command line
+		dodir /usr/bin/
+		cat >"${ED}/usr/bin/${WRAPPERNAME}" <<EOF
 #!/bin/sh
 if [[ "\${LIBDIRPATH}" ]]; then
 	export LIBDIRPATH="\${LIBDIRPATH}:${LIBDIR}"
@@ -193,16 +195,17 @@ else
 fi
 exec "${APPDIR}/${APPNAME}/AppRun" "\$@"
 EOF
-	chmod 755 "${ED}/usr/bin/${WRAPPERNAME}"
+		chmod 755 "${ED}/usr/bin/${WRAPPERNAME}"
 
-	# Old name of cmdline wrapper: /usr/bin/${APPNAME}
-	if [[ ! "${APPNAME_COLLISION}" ]]; then
-		ln -s ${WRAPPERNAME} ${ED}/usr/bin/${APPNAME}
-		# TODO: Migrate this away... eventually
-	else
-		ewarn "The wrapper script /usr/bin/${APPNAME} has been removed"
-		ewarn "due to a name collision.  You must run ${APPNAME} as"
-		ewarn "/usr/bin/${WRAPPERNAME} instead."
+		# Old name of cmdline wrapper: /usr/bin/${APPNAME}
+		if [[ ! "${APPNAME_COLLISION}" ]]; then
+			ln -s ${WRAPPERNAME} ${ED}/usr/bin/${APPNAME}
+			# TODO: Migrate this away... eventually
+		else
+			ewarn "The wrapper script /usr/bin/${APPNAME} has been removed"
+			ewarn "due to a name collision.  You must run ${APPNAME} as"
+			ewarn "/usr/bin/${WRAPPERNAME} instead."
+		fi
 	fi
 
 	# Create a .desktop file if the proper category is supplied
@@ -244,8 +247,12 @@ EOF
 
 rox_pkg_postinst() {
 	einfo "${APPNAME} has been installed into ${APPDIR}"
-	einfo "You can run it by typing ${WRAPPERNAME} at the command line."
-	einfo "Or, you can run it by pointing the ROX file manager to the"
+	if [[ "${WRAPPERNAME}" != "skip" ]]; then
+		einfo "You can run it by typing ${WRAPPERNAME} at the command line."
+		einfo "Or, you can run it by pointing the ROX file manager to the"
+	else
+		einfo "You can run it by pointing the ROX file manager to the"
+	fi
 	einfo "install location -- ${APPDIR} -- and click"
 	einfo "on ${APPNAME}'s icon, drag it to a panel, desktop, etc."
 }

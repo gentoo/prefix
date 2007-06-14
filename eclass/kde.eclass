@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.198 2007/04/22 23:04:33 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.199 2007/06/11 17:07:41 philantrop Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -55,7 +55,7 @@ kde_pkg_setup() {
 	if [[ ${PN} != "arts" ]] && [[ ${PN} != "kdelibs" ]] ; then
 		if [[ ${ARTS_REQUIRED} == 'yes' ]] || \
 			( [[ ${ARTS_REQUIRED} != "never" ]] && use arts )  ; then
-			if ! built_with_use kde-base/kdelibs arts ; then
+			if ! built_with_use =kde-base/kdelibs-3.5* arts ; then
 				use arts && \
 					eerror "You are trying to compile ${CATEGORY}/${PF} with the \"arts\" USE flag enabled." || \
 					eerror "The package ${CATEGORY}/${PF} you're trying to merge requires aRTs."
