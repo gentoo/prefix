@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.4.ebuild,v 1.7 2007/06/04 16:03:04 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.4.ebuild,v 1.8 2007/06/08 14:00:08 armin76 Exp $
 
 EAPI="prefix"
 
@@ -81,7 +81,6 @@ linguas() {
 		fi
 		ewarn "Sorry, but mozilla-firefox does not support the ${LANG} LINGUA"
 	done
-	elog "Selected language packs (first will be default): $linguas"
 }
 
 pkg_setup(){
@@ -107,6 +106,9 @@ src_unpack() {
 	for X in ${linguas}; do
 		[[ ${X} != "en" ]] && xpi_unpack "${P}-${X}.xpi"
 	done
+	if [[ ${linguas} != "" ]]; then
+		einfo "Selected language packs (first will be default): ${linguas}"
+	fi
 
 	# Apply our patches
 	cd "${S}" || die "cd failed"
