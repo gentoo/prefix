@@ -1,6 +1,34 @@
 # ChangeLog for sys-apps/man-pages
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/ChangeLog,v 1.74 2007/05/31 06:29:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/ChangeLog,v 1.82 2007/06/12 22:09:43 vapier Exp $
+
+*man-pages-2.55 (12 Jun 2007)
+
+  12 Jun 2007; Mike Frysinger <vapier@gentoo.org> +man-pages-2.55.ebuild:
+  Version bump.
+
+  11 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org> man-pages-2.53.ebuild:
+  Stable on sparc
+
+  11 Jun 2007; Markus Rothe <corsair@gentoo.org> man-pages-2.53.ebuild:
+  Stable on ppc64; bug #181624
+
+  11 Jun 2007; Raúl Porcel <armin76@gentoo.org> man-pages-2.53.ebuild:
+  alpha/ia64/x86 stable wrt #181624
+
+  11 Jun 2007; nixnut <nixnut@gentoo.org> man-pages-2.53.ebuild:
+  Stable on ppc wrt bug 181624
+
+  11 Jun 2007; Jeroen Roovers <jer@gentoo.org> man-pages-2.53.ebuild:
+  Stable for HPPA (bug #181624).
+
+  11 Jun 2007; Joshua Kinard <kumba@gentoo.org> man-pages-2.53.ebuild:
+  Stable on mips.
+
+*man-pages-2.53 (08 Jun 2007)
+
+  08 Jun 2007; Mike Frysinger <vapier@gentoo.org> +man-pages-2.53.ebuild:
+  Version bump.
 
 *man-pages-2.51 (31 May 2007)
 
