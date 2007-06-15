@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.9-r1.ebuild,v 1.2 2007/05/07 05:32:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.9-r1.ebuild,v 1.9 2007/06/12 11:49:09 armin76 Exp $
 
 EAPI="prefix"
 
@@ -64,6 +64,7 @@ src_unpack() {
 
 	EPATCH_SUFFIX="patch" epatch "${PATCHDIR}"/generic
 	chmod a+rx tests/sort/sort-mb-tests
+	chmod a+rx tests/ls/x-option
 
 	# Since we've patched many .c files, the make process will
 	# try to re-build the manpages by running `./bin --help`.
