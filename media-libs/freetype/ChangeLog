@@ -1,6 +1,18 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.144 2007/05/27 00:28:29 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.147 2007/06/10 20:08:35 dirtyepic Exp $
+
+  10 Jun 2007; Ryan Hill <dirtyepic@gentoo.org> freetype-2.3.3.ebuild,
+  freetype-2.3.4-r2.ebuild:
+  Bug #179736, take two.
+
+  09 Jun 2007; Ryan Hill <dirtyepic@gentoo.org> freetype-2.3.3.ebuild,
+  freetype-2.3.4-r2.ebuild:
+  Revert previous commit as it causes a circular dependency.
+
+  09 Jun 2007; Ryan Hill <dirtyepic@gentoo.org> freetype-2.3.3.ebuild,
+  freetype-2.3.4-r2.ebuild:
+  Added >=fontconfig-2.4.0 to RDEPEND - bug #179736 from armin76.
 
   27 May 2007; Joshua Kinard <kumba@gentoo.org> freetype-2.3.3.ebuild:
   Stable on mips.
