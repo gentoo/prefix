@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6-r1.ebuild,v 1.8 2007/06/10 20:46:28 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p36.ebuild,v 1.1 2007/06/12 18:23:41 rbrown Exp $
 
 EAPI="prefix"
 
@@ -12,9 +12,12 @@ ONIGURUMA="onigd2_5_8"
 
 inherit flag-o-matic alternatives eutils multilib autotools versionator
 
+MY_P="${P/_p/-p}"
+S=${WORKDIR}/${MY_P}
+
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="http://www.ruby-lang.org/"
-SRC_URI="ftp://ftp.ruby-lang.org/pub/ruby/$(get_version_component_range 1-2)/${P}.tar.gz"
+SRC_URI="ftp://ftp.ruby-lang.org/pub/ruby/1.8/${MY_P}.tar.gz"
 #	cjk? ( http://www.geocities.jp/kosako3/oniguruma/archive/${ONIGURUMA}.tar.gz )"
 
 LICENSE="Ruby"
@@ -55,8 +58,6 @@ src_unpack() {
 		configure.in || die "sed failed"
 
 	eautoreconf
-
-	epatch ${FILESDIR}/${P}-exit-status.patch
 }
 
 src_compile() {
@@ -83,8 +84,8 @@ src_compile() {
 		$(use_enable socks5 socks) \
 		$(use_enable doc install-doc) \
 		$(use_enable threads pthread) \
-		$(use_enable ipv6 ipv6) \
-		$(use_enable debug debug) \
+		$(use_enable ipv6) \
+		$(use_enable debug) \
 		$(use_with tk) \
 		--with-sitedir="${EPREFIX}"/usr/$(get_libdir)/ruby/site_ruby \
 		|| die "econf failed"
