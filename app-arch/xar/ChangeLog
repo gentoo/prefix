@@ -1,6 +1,13 @@
 # ChangeLog for app-arch/xar
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/xar/ChangeLog,v 1.8 2007/02/21 20:04:51 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xar/ChangeLog,v 1.9 2007/06/12 17:15:25 drac Exp $
+
+*xar-1.5.1 (12 Jun 2007)
+
+  12 Jun 2007; Samuli Suominen <drac@gentoo.org>
+  -files/xar-20050423-amd64.patch, -files/xar-20050423-ldflags.patch,
+  -xar-1.4.ebuild, +xar-1.5.1.ebuild, -xar-20050423.ebuild:
+  Version bump.
 
   21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
