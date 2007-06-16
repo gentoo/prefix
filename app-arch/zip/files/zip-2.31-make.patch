@@ -1,8 +1,6 @@
-Index: zip-2.31/unix/Makefile
-===================================================================
---- zip-2.31.orig/unix/Makefile
+--- zip-2.31/unix/Makefile
 +++ zip-2.31/unix/Makefile
-@@ -13,7 +13,7 @@ all:
+@@ -13,15 +13,15 @@
  
  list:   all
  
@@ -11,3 +9,13 @@ Index: zip-2.31/unix/Makefile
  SHELL = /bin/sh
  LN = ln -s
  
+ # (to use the Gnu compiler, change cc to gcc in CC)
+-CC = cc
++CC ?= gcc
+ BIND = $(CC)
+ AS = $(CC) -c
+-CPP = /lib/cpp
++CPP ?= $(CC)
+ EXE =
+ 
+ # probably can change this to 'install' if you have it

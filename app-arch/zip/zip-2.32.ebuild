@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/zip/zip-2.32.ebuild,v 1.9 2007/04/24 10:58:18 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/zip/zip-2.32.ebuild,v 1.12 2007/06/13 00:31:02 vapier Exp $
 
 EAPI="prefix"
 
@@ -23,17 +23,16 @@ src_unpack() {
 	epatch "${FILESDIR}"/zip-2.3-unix_configure-pic.patch
 	epatch "${FILESDIR}"/${PN}-2.31-exec-stack.patch
 	epatch "${FILESDIR}"/${PN}-2.31-make.patch
-	cd unix
 	use crypt || append-flags -DNO_CRYPT
-	sed -i -e "s:-O2:${CFLAGS}:" Makefile
+	sed -i \
+		-e "s:-O[23]:${CFLAGS}:" \
+		-e '/^LFLAGS1=""/s:=.*:="${LDFLAGS}":' \
+		unix/configure
 }
 
 src_compile() {
-	emake \
-		-f unix/Makefile \
-		CC="$(tc-getCC)" \
-		CPP="$(tc-getCC) -E" \
-		generic || die
+	tc-export CC CPP
+	emake -f unix/Makefile generic || die
 }
 
 src_install() {
