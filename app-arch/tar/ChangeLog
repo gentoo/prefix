@@ -1,6 +1,15 @@
 # ChangeLog for app-arch/tar
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.92 2007/05/16 10:38:28 yoswink Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.94 2007/06/11 03:40:22 vapier Exp $
+
+  11 Jun 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/tar-1.17-exclude-test.patch, tar-1.17.ebuild:
+  Fix from upstream for exclude.at test failure.
+
+*tar-1.17 (10 Jun 2007)
+
+  10 Jun 2007; Mike Frysinger <vapier@gentoo.org> +tar-1.17.ebuild:
+  Version bump.
 
   16 May 2007; Jose Luis Rivero <yoswink@gentoo.org> tar-1.16.1.ebuild:
   Stable on alpha wrt bug #171669
