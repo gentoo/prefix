@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/openjade/openjade-1.3.2-r1.ebuild,v 1.35 2007/01/26 20:53:53 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/openjade/openjade-1.3.2-r1.ebuild,v 1.36 2007/06/11 14:38:30 hkbst Exp $
 
 EAPI="prefix"
 
@@ -48,9 +48,9 @@ src_compile() {
 		--enable-default-catalog="${EPREFIX}"/etc/sgml/catalog \
 		--enable-default-search-path="${EPREFIX}"/usr/share/sgml \
 		--libdir="${EPREFIX}"/usr/$(get_libdir) \
-		--datadir="${EPREFIX}"/usr/share/sgml/${P} || die
+		--datadir="${EPREFIX}"/usr/share/sgml/${P}
 
-	emake || die
+	emake || die "make failed"
 }
 
 src_install() {
@@ -59,7 +59,7 @@ src_install() {
 
 	make DESTDIR=${D} \
 		libdir="${EPREFIX}"/usr/$(get_libdir) \
-		install install-man || die
+		install install-man || die "make install failed"
 
 	dosym openjade  /usr/bin/jade
 	dosym onsgmls   /usr/bin/nsgmls
