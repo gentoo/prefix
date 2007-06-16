@@ -1,6 +1,9 @@
 # ChangeLog for app-text/tetex
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.143 2007/03/19 18:58:55 nattfodd Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.144 2007/06/11 19:39:35 armin76 Exp $
+
+  11 Jun 2007; Raúl Porcel <armin76@gentoo.org> tetex-3.0_p1-r3.ebuild:
+  alpha stable wrt #155489
 
   19 Mar 2007; Alexandre Buisse <nattfodd@gentoo.org> tetex-3.0_p1.ebuild,
   tetex-3.0_p1-r1.ebuild, tetex-3.0_p1-r2.ebuild, tetex-3.0_p1-r3.ebuild:
