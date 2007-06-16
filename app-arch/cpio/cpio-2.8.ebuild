@@ -1,10 +1,8 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/cpio-2.7-r2.ebuild,v 1.8 2007/06/11 19:14:09 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/cpio-2.8.ebuild,v 1.1 2007/06/11 03:50:37 vapier Exp $
 
 EAPI="prefix"
-
-inherit eutils
 
 DESCRIPTION="A file archival tool which can also read and write tar files"
 HOMEPAGE="http://www.gnu.org/software/cpio/cpio.html"
@@ -16,13 +14,6 @@ KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris
 IUSE="nls"
 
 DEPEND=""
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-2.7-link-terminate.patch #153782
-	epatch "${FILESDIR}"/${PN}-2.7-copypass.patch #174921
-}
 
 src_compile() {
 	econf \
