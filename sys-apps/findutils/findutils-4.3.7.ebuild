@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.3.6-r1.ebuild,v 1.3 2007/06/11 05:35:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.3.7.ebuild,v 1.2 2007/06/11 18:09:27 pebenito Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
-SELINUX_PATCH="findutils-4.3.6-selinux.diff"
+SELINUX_PATCH="findutils-4.3.7-selinux.diff"
 
 DESCRIPTION="GNU utilities for finding files"
 HOMEPAGE="http://www.gnu.org/software/findutils/findutils.html"
@@ -26,14 +26,10 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-sv-bug-20005.patch #180334
-	epatch "${FILESDIR}"/${P}-fprint-unwritable.patch #180412
+	epatch "${FILESDIR}"/${PN}-4.3.6-fprint-unwritable.patch #180412
 
 	# IRIX needs an extra cast
 	epatch "${FILESDIR}"/${PN}-4.3.2-irix.patch
-
-	# include "config.h" first
-	epatch "${FILESDIR}"/${P}-largefiles.patch
 
 	# Don't build or install locate because it conflicts with slocate,
 	# which is a secure version of locate.  See bug 18729

@@ -1,6 +1,30 @@
 # ChangeLog for sys-apps/findutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.116 2007/06/02 19:15:23 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.122 2007/06/11 18:09:27 pebenito Exp $
+
+  11 Jun 2007; Chris PeBenito <pebenito@gentoo.org>
+  +files/findutils-4.3.7-selinux.diff, findutils-4.3.7.ebuild:
+  Update SELinux patch for 4.3.7.
+
+  11 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  findutils-4.2.31.ebuild:
+  Stable on sparc wrt #181625
+
+  11 Jun 2007; Joshua Kinard <kumba@gentoo.org> findutils-4.2.31.ebuild:
+  Stable on mips, per #181625.
+
+*findutils-4.3.7 (11 Jun 2007)
+
+  11 Jun 2007; Mike Frysinger <vapier@gentoo.org> +findutils-4.3.7.ebuild:
+  Version bump.
+
+  11 Jun 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/findutils-4.3.6-fprint-unwritable.patch, findutils-4.3.6-r1.ebuild:
+  Skip fprint-unwritable.exp test when run as root #180412 by Steffen Bergner.
+
+  10 Jun 2007; Chris PeBenito <pebenito@gentoo.org>
+  +files/findutils-4.3.6-selinux.diff, findutils-4.3.6-r1.ebuild:
+  Update SELinux patch.
 
   02 Jun 2007; Luca Barbato <lu_zero@gentoo.org> findutils-4.2.31.ebuild:
   Marked ppc and ppc64

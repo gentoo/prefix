@@ -1,0 +1,21 @@
+this will always fail as root
+
+http://bugs.gentoo.org/180412
+
+--- find/testsuite/find.gnu/fprint-unwritable.exp
++++ find/testsuite/find.gnu/fprint-unwritable.exp
+@@ -3,5 +3,12 @@
+ file mkdir tmp
+ exec touch tmp/unwritable
+ exec chmod 444 tmp/unwritable
+-find_start f { tmp -fprint tmp/unwritable }
+-exec rm -rf tmp
++if [ file readable tmp/unwritable ] {
++    # On Cygwin, a user with admin rights can read all files, and 
++    # access(foo,R_OK) correctly returns 1 for all files.
++    warning "You have superuser privileges, skipping this test."
++    untested {skipping this test because you have superuser privileges}
++} else {
++    find_start f { tmp -fprint tmp/unwritable }
++    exec rm -rf tmp
++}
