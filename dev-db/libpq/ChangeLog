@@ -1,6 +1,23 @@
 # ChangeLog for dev-db/libpq
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/ChangeLog,v 1.119 2007/05/06 22:08:23 yoswink Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/ChangeLog,v 1.122 2007/06/11 01:45:09 kumba Exp $
+
+  11 Jun 2007; Joshua Kinard <kumba@gentoo.org> libpq-8.0.13.ebuild:
+  Stable on mips, per #158075.
+
+  09 Jun 2007; Tiziano Müller <dev-zero@gentoo.org>
+  -files/libpq-7.4.13-gentoo.patch, -files/libpq-7.4.14-gentoo.patch,
+  -libpq-7.4.13.ebuild, -libpq-7.4.14.ebuild:
+  ... and dropped some more.
+
+  09 Jun 2007; Tiziano Müller <dev-zero@gentoo.org>
+  -files/libpq-7.3.15-gentoo.patch, -files/libpq-7.3.16-gentoo.patch,
+  -files/libpq-7.3.18-gentoo.patch, -files/libpq-7.4.16-gentoo.patch,
+  -files/libpq-8.0.9-gentoo.patch, -files/libpq-8.1.5-gentoo.patch,
+  -files/libpq-8.1.8-gentoo.patch, -libpq-7.3.15.ebuild,
+  -libpq-7.3.16.ebuild, -libpq-7.3.18.ebuild, -libpq-7.4.16.ebuild,
+  -libpq-8.0.9.ebuild, -libpq-8.1.5.ebuild, -libpq-8.1.8.ebuild:
+  Dropped old versions.
 
   07 May 2007; Jose Luis Rivero <yoswink@gentoo.org> libpq-7.3.19.ebuild,
   libpq-7.4.17.ebuild, libpq-8.0.13.ebuild:
