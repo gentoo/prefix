@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.622 2007/06/02 11:40:37 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.623 2007/06/12 17:04:09 ferdy Exp $
+
+  12 Jun 2007; Fernando J. Pereda <ferdy@gentoo.org> gcc-4.1.2.ebuild:
+  Stable on alpha as per bug #178768
 
   02 Jun 2007; Raúl Porcel <armin76@gentoo.org> gcc-4.1.2.ebuild:
   ia64 stable wrt #178768
