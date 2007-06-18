@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.209 2007/06/03 23:20:21 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.210 2007/06/09 15:08:36 corsair Exp $
+
+  09 Jun 2007; Markus Rothe <corsair@gentoo.org> db-4.5.20_p2.ebuild:
+  Stable on ppc64; bug #178750
 
   03 Jun 2007; Christoph Mende <angelos@gentoo.org> db-4.5.20_p2.ebuild:
   Replacing -O0 with -O2 on amd64, bug 171231
