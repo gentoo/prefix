@@ -1,6 +1,37 @@
 # ChangeLog for dev-db/postgresql
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/ChangeLog,v 1.346 2007/05/06 22:17:43 yoswink Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/ChangeLog,v 1.348 2007/06/11 02:08:28 kumba Exp $
+
+  11 Jun 2007; Joshua Kinard <kumba@gentoo.org> postgresql-8.0.13.ebuild:
+  Stable on mips, per #158075.
+
+  09 Jun 2007; Tiziano Müller <dev-zero@gentoo.org>
+  -files/postgresql-7.3.16-cubeparse.patch,
+  -files/postgresql-7.3.16-gentoo.patch,
+  -files/postgresql-7.3.18-cubeparse.patch,
+  -files/postgresql-7.3.18-gentoo.patch,
+  -files/postgresql-7.3-cubeparse.patch, -files/postgresql-7.3-gentoo.patch,
+  -files/postgresql-7.4.14-gentoo.patch,
+  -files/postgresql-7.4.14-hppa-testandset.patch,
+  -files/postgresql-7.4.16-gentoo.patch,
+  -files/postgresql-7.4.16-hppa-testandset.patch,
+  -files/postgresql-7.4-gentoo.patch,
+  -files/postgresql-7.4-hppa-testandset.patch,
+  -files/postgresql-7.4-vacuum-delay.patch,
+  -files/postgresql-8.0.9-gentoo.patch, -files/postgresql-8.0.9-sh.patch,
+  -files/postgresql-8.1.5-gentoo.patch,
+  -files/postgresql-8.1.5-regress_fix.patch,
+  -files/postgresql-8.1.5-regress_su.patch,
+  -files/postgresql-8.1.5-sh.patch, -files/postgresql-8.1.8-gentoo.patch,
+  -files/postgresql-8.1.8-regress_fix.patch,
+  -files/postgresql-8.1.8-regress_su.patch,
+  -files/postgresql-8.1.8-sh.patch, -files/postgresql-8.1-gentoo.patch,
+  -files/postgresql-8.1-sh.patch, -postgresql-7.3.15-r1.ebuild,
+  -postgresql-7.3.16.ebuild, -postgresql-7.3.18.ebuild,
+  -postgresql-7.4.13.ebuild, -postgresql-7.4.14.ebuild,
+  -postgresql-7.4.16.ebuild, -postgresql-8.0.9-r1.ebuild,
+  -postgresql-8.1.5-r1.ebuild, -postgresql-8.1.8.ebuild:
+  Dropped old versions.
 
   07 May 2007; Jose Luis Rivero <yoswink@gentoo.org>
   postgresql-7.3.19.ebuild, postgresql-7.4.17.ebuild,
