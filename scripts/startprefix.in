@@ -20,7 +20,17 @@ fi
 SHELL=${SHELL##*/}
 # set the prefix shell in the environment
 export SHELL=${EPREFIX}/bin/${SHELL}
+# check if the shell exists
+if [[ ! -x $SHELL ]] ; then
+	echo "Failed to find the Prefix shell, this is probably" > /dev/stderr
+	echo "because you didn't emerge the shell ${SHELL##*/}" > /dev/stderr
+	exit -1
+fi
 # give a small notice
 echo "Entering Gentoo Prefix ${EPREFIX}"
 # start the login shell
-$SHELL -l || echo "Failed to start the Prefix shell, this is probably because you didn't emerge the shell $SHELL" > /dev/stderr
+$SHELL -l
+# and leave a message when we exit... the shell might return non-zero
+# without having real problems, so don't send alarming messages about
+# that
+echo "Leaving Gentoo Prefix with exit status $?"
