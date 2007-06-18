@@ -286,6 +286,7 @@ cross_diff() {
 		mypte=${pte%.*.ebuild}.ebuild
 		mypte=${mypte/-r0/-r}
 		mypte=${mypte/-r.ebuild/.ebuild}
+		mypte=${mypte/-r0.ebuild/.ebuild}
 	fi
 	mtecv=$(get_cvsversion "${MTREEDIR}/${EPACKAGE}"/$mte)
 	ptecv=$(get_cvsversion $pte)
@@ -309,7 +310,7 @@ cross_diff() {
 		$mte /var/tmp/$mypte-$ptecv.$tmp
 	# make KEYWORDS void in the diff
 	sed -i \
-		-e 's|^KEYWORDS=.*$|'"`egrep '^KEYWORDS=' $pte`"'|' \
+		-e 's|^KEYWORDS=.*$|'"$(egrep '^KEYWORDS=' $pte | head -n1)"'|' \
 		/var/tmp/$mypte-$ptecv.$tmp /var/tmp/$mte-$mtecv.$tmp
 	# destroy changes (hopefully) with the prefixed version by eapifying
 	eapify -e /var/tmp/$mypte-$ptecv.$tmp /var/tmp/$mte-$mtecv.$tmp > /dev/null
@@ -345,8 +346,8 @@ revision_diff() {
 			> /var/tmp/$package-$mtecv.$tmp
 		# make KEYWORDS void in the diff
 		[[ ${package##*.} == "ebuild" ]] && sed -i \
-			-e 's|^KEYWORDS=.*$|'"`egrep '^KEYWORDS=' $package`"'|' \
-			/var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp
+			-e 's|^KEYWORDS=.*$|'"$(egrep '^KEYWORDS=' $pfile | head -n1)"'|' \
+			/var/tmp/$package-$mtecv.$tmp /var/tmp/$package-$ptecv.$tmp
 		# destroy changes (hopefully) with the prefixed version by eapifying
 		eapify /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp > /dev/null
 		# if the file was checked out by ecopy from the web, correct the
@@ -573,6 +574,7 @@ for pte in $pt ; do
 			mypte=${pte%.*.ebuild}.ebuild
 			mypte=${mypte/-r0/-r}
 			mypte=${mypte/-r.ebuild/.ebuild}
+			mypte=${mypte/-r0.ebuild/.ebuild}
 		fi
 		vdiff=$(cmp_ebuild_ver $mte $mypte)
 		# if we have the same ebuild version... (or file)
@@ -596,7 +598,7 @@ for pte in $pt ; do
 	done
 	# stale entry
 	[[ $had_match == 0 ]] \
-		&& ewarn "warning: $pte no longer in the main tree"
+		&& ewarn "warning: $pte (${mypte}) no longer in the main tree"
 done
 # what's left in $mt is everything which is not in $pt (and not already
 # superseded revisions)
