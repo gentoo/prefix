@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.202 2007/06/04 22:15:07 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.204 2007/06/16 18:06:48 ferdy Exp $
+
+*git-1.5.2.2 (16 Jun 2007)
+
+  16 Jun 2007; Fernando J. Pereda <ferdy@gentoo.org> +files/71git-gentoo.el,
+  +git-1.5.2.2.ebuild:
+  New upstream version. Fix for bug #181718
+
+  14 Jun 2007; Jeroen Roovers <jer@gentoo.org> git-1.5.1.6.ebuild:
+  Stable for HPPA (bug #179245).
 
 *git-1.5.2.1 (04 Jun 2007)
 
