@@ -1,31 +1,42 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.281 2007/06/05 15:59:26 nyhm Exp $
-#
-# This eclass is for general purpose functions that most ebuilds
-# have to implement themselves.
-#
-# NB:  If you add anything, please comment it!
-#
-# Maintainer: see each individual function, base-system@gentoo.org as default
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.283 2007/06/16 08:03:28 vapier Exp $
+
+# @ECLASS: eutils.eclass
+# @MAINTAINER:
+# base-system@gentoo.org
+# @BLURB: many extra (but common) functions that are used in ebuilds
+# @DESCRIPTION:
+# The eutils eclass contains a suite of functions that complement
+# the ones that ebuild.sh already contain.  The idea is that the functions
+# are not required in all ebuilds but enough utilize them to have a common
+# home rather than having multiple ebuilds implementing the same thing.
+# 
+# Due to the nature of this eclass, some functions may have maintainers
+# different from the overall eclass!
 
 inherit multilib portability
 
 DESCRIPTION="Based on the ${ECLASS} eclass"
 
-# Wait for the supplied number of seconds. If no argument is supplied, defaults
-# to five seconds. If the EPAUSE_IGNORE env var is set, don't wait. If we're not
-# outputting to a terminal, don't wait. For compatability purposes, the argument
-# must be an integer greater than zero.
-# Bug 62950, Ciaran McCreesh <ciaranm@gentoo.org> (05 Sep 2004)
+# @FUNCTION: epause
+# @USAGE: [seconds]
+# @DESCRIPTION:
+# Sleep for the specified number of seconds (default of 5 seconds).  Useful when
+# printing a message the user should probably be reading and often used in
+# conjunction with the ebeep function.  If the EPAUSE_IGNORE env var is set,
+# don't wait at all.
 epause() {
 	[[ -z ${EPAUSE_IGNORE} ]] && sleep ${1:-5}
 }
 
-# Beep the specified number of times (defaults to five). If our output
-# is not a terminal, don't beep. If the EBEEP_IGNORE env var is set,
-# don't beep.
-# Bug 62950, Ciaran McCreesh <ciaranm@gentoo.org> (05 Sep 2004)
+# @FUNCTION: ebeep
+# @USAGE: [number of beeps]
+# @DESCRIPTION:
+# Issue the specified number of beeps (default of 5 beeps).  Useful when
+# printing a message the user should probably be reading and often used in
+# conjunction with the epause function.  If the EBEEP_IGNORE env var is set,
+# don't beep at all.
 ebeep() {
 	local n
 	if [[ -z ${EBEEP_IGNORE} ]] ; then
@@ -37,54 +48,6 @@ ebeep() {
 		done
 	fi
 }
-
-# This function generate linker scripts in /usr/lib for dynamic
-# libs in /lib.	 This is to fix linking problems when you have
-# the .so in /lib, and the .a in /usr/lib.	What happens is that
-# in some cases when linking dynamic, the .a in /usr/lib is used
-# instead of the .so in /lib due to gcc/libtool tweaking ld's
-# library search path.	This cause many builds to fail.
-# See bug #4411 for more info.
-#
-# To use, simply call:
-#
-#	gen_usr_ldscript libfoo.so
-#
-# Note that you should in general use the unversioned name of
-# the library, as ldconfig should usually update it correctly
-# to point to the latest version of the library present.
-#
-# <azarah@gentoo.org> (26 Oct 2002)
-#
-gen_usr_ldscript() {
-	if [[ $(type -t _tc_gen_usr_ldscript) == "function" ]] ; then
-		_tc_gen_usr_ldscript "$@"
-		return $?
-	fi
-
-	ewarn "QA Notice: Please upgrade your ebuild to use toolchain-funcs"
-	ewarn "QA Notice:  rather than gen_usr_ldscript() from eutils"
-
-	local lib libdir=$(get_libdir)
-	# Just make sure it exists
-	dodir /usr/${libdir}
-
-	for lib in "${@}" ; do
-		cat > "${ED}/usr/${libdir}/${lib}" <<-END_LDSCRIPT
-		/* GNU ld script
-		   Since Gentoo has critical dynamic libraries
-		   in /lib, and the static versions in /usr/lib,
-		   we need to have a "fake" dynamic lib in /usr/lib,
-		   otherwise we run into linking problems.
-
-		   See bug http://bugs.gentoo.org/4411 for more info.
-		 */
-		GROUP ( /${libdir}/${lib} )
-		END_LDSCRIPT
-		fperms a+x "/usr/${libdir}/${lib}" || die "could not change perms on ${lib}"
-	done
-}
-
 
 # Default directory where patches are located
 EPATCH_SOURCE="${WORKDIR}/patch"
@@ -352,11 +315,11 @@ epatch() {
 	fi
 }
 
+# @FUNCTION: emktemp
+# @USAGE: [temp dir]
+# @DESCRIPTION:
 # Cheap replacement for when debianutils (and thus mktemp)
-# does not exist on the users system
-# vapier@gentoo.org
-#
-# Takes just 1 optional parameter (the directory to create tmpfile in)
+# does not exist on the users system.
 emktemp() {
 	local exe="touch"
 	[[ $1 == -d ]] && exe="mkdir" && shift
@@ -387,12 +350,16 @@ emktemp() {
 	fi
 }
 
+# @FUNCTION: egetent
+# @USAGE: <database> <key>
+# @MAINTAINER:
+# base-system@gentoo.org (Linux)
+# Joe Jezak <josejx@gmail.com> (OS X)
+# usata@gentoo.org (OS X)
+# Aaron Walker <ka0ttic@gentoo.org> (FreeBSD)
+# @DESCRIPTION:
 # Small wrapper for getent (Linux), nidump (Mac OS X),
 # and pw (FreeBSD) used in enewuser()/enewgroup()
-# Joe Jezak <josejx@gmail.com> and usata@gentoo.org
-# FBSD stuff: Aaron Walker <ka0ttic@gentoo.org>
-#
-# egetent(database, key)
 egetent() {
 	case ${CHOST} in
 	*-darwin*)
@@ -426,19 +393,14 @@ egetent() {
 	esac
 }
 
-# Simplify/standardize adding users to the system
-# vapier@gentoo.org
-#
-# enewuser(username, uid, shell, homedir, groups, extra options)
-#
-# Default values if you do not specify any:
-# username:	REQUIRED !
-# uid:		next available (see useradd(8))
-#		note: pass -1 to get default behavior
-# shell:	/bin/false
-# homedir:	/dev/null
-# groups:	none
-# extra:	comment of 'added by portage for ${PN}'
+# @FUNCTION: enewuser
+# @USAGE: <user> [uid] [shell] [homedir] [groups] [params]
+# @DESCRIPTION:
+# Same as enewgroup, you are not required to understand how to properly add
+# a user to the system.  The only required parameter is the username.
+# Default uid is (pass -1 for this) next available, default shell is
+# /bin/false, default homedir is /dev/null, there are no default groups,
+# and default params sets the comment as 'added by portage for ${PN}'.
 enewuser() {
 	# in prefix portage, we don't know how to handle this yet
 	ewarn "'enewuser()' currently disabled in prefixed portage"
@@ -641,15 +603,13 @@ enewuser() {
 	export SANDBOX_ON=${oldsandbox}
 }
 
-# Simplify/standardize adding groups to the system
-# vapier@gentoo.org
-#
-# enewgroup(group, gid)
-#
-# Default values if you do not specify any:
-# groupname:	REQUIRED !
-# gid:		next available (see groupadd(8))
-# extra:	none
+# @FUNCTION: enewgroup
+# @USAGE: <group> [gid]
+# @DESCRIPTION:
+# This function does not require you to understand how to properly add a
+# group to the system.  Just give it a group name to add and enewgroup will
+# do the rest.  You may specify the gid for the group or allow the group to
+# allocate the next available one.
 enewgroup() {
 	# in prefix portage, we don't know how to handle this yet
 	ewarn "'enewgroup()' currently disabled in prefixed portage"
@@ -759,20 +719,16 @@ enewgroup() {
 	export SANDBOX_ON="${oldsandbox}"
 }
 
-# Simple script to replace 'dos2unix' binaries
-# vapier@gentoo.org
-#
-# edos2unix(file, <more files> ...)
+# @FUNCTION: edos2unix
+# @USAGE: <file> [more files ...]
+# @DESCRIPTION:
+# A handy replacement for dos2unix, recode, fixdos, etc...  This allows you
+# to remove all of these text utilities from DEPEND variables because this
+# is a script based solution.  Just give it a list of files to convert and
+# they will all be changed from the DOS CRLF format to the UNIX LF format.
 edos2unix() {
 	echo "$@" | xargs sed -i 's/\r$//'
 }
-
-
-##############################################################
-# START: Handle .desktop files and menu entries				 #
-# maybe this should be separated into a new eclass some time #
-# lanius@gentoo.org											 #
-##############################################################
 
 # Make a desktop file !
 # Great for making those icons in kde/gnome startmenu !
@@ -926,12 +882,12 @@ make_desktop_entry() {
 	)
 }
 
-
-# Validate desktop entries using desktop-file-utils
+# @FUNCTION: validate_desktop_entries
+# @USAGE: [directories]
+# @MAINTAINER:
 # Carsten Lohrke <carlo@gentoo.org>
-#
-# Usage: validate_desktop_entries [directory ...]
-
+# @DESCRIPTION:
+# Validate desktop entries using desktop-file-utils
 validate_desktop_entries() {
 	if [[ -x "${EPREFIX}"/usr/bin/desktop-file-validate ]] ; then
 		einfo "Checking desktop entry validity"
@@ -954,13 +910,11 @@ validate_desktop_entries() {
 	fi
 }
 
-
-# Make a GDM/KDM Session file
-#
-# make_session_desktop(<title>, <command>)
-# title: File to execute to start the Window Manager
-# command: Name of the Window Manager
-
+# @FUNCTION: make_session_desktop
+# @USAGE: <title> <command>
+# @DESCRIPTION:
+# Make a GDM/KDM Session file.  The title is the file to execute to start the
+# Window Manager.  The command is the name of the Window Manager.
 make_session_desktop() {
 	[[ -z $1 ]] && eerror "make_session_desktop: You must specify the title" && return 1
 	[[ -z $2 ]] && eerror "make_session_desktop: You must specify the command" && return 1
@@ -987,6 +941,11 @@ make_session_desktop() {
 	)
 }
 
+# @FUNCTION: domenu
+# @USAGE: <menus>
+# @DESCRIPTION:
+# Install the list of .desktop menu files into the appropriate directory
+# (/usr/share/applications).
 domenu() {
 	(
 	# wrap the env here so that the 'insinto' call
@@ -1007,6 +966,11 @@ domenu() {
 	exit ${ret}
 	)
 }
+
+# @FUNCTION: newmenu
+# @USAGE: <menu> <newname>
+# @DESCRIPTION:
+# Like all other new* functions, install the specified menu as newname.
 newmenu() {
 	(
 	# wrap the env here so that the 'insinto' call
@@ -1016,6 +980,11 @@ newmenu() {
 	)
 }
 
+# @FUNCTION: doicon
+# @USAGE: <list of icons>
+# @DESCRIPTION:
+# Install the list of icons into the icon directory (/usr/share/pixmaps).
+# This is useful in conjunction with creating desktop/menu files.
 doicon() {
 	(
 	# wrap the env here so that the 'insinto' call
@@ -1036,6 +1005,11 @@ doicon() {
 	exit ${ret}
 	)
 }
+
+# @FUNCTION: newicon
+# @USAGE: <icon> <newname>
+# @DESCRIPTION:
+# Like all other new* functions, install the specified icon as newname.
 newicon() {
 	(
 	# wrap the env here so that the 'insinto' call
@@ -1044,11 +1018,6 @@ newicon() {
 	newins "$@"
 	)
 }
-
-##############################################################
-# END: Handle .desktop files and menu entries			   #
-##############################################################
-
 
 # for internal use only (unpack_pdv and unpack_makeself)
 find_unpackable_file() {
@@ -1068,26 +1037,30 @@ find_unpackable_file() {
 	echo "${src}"
 }
 
+# @FUNCTION: unpack_pdv
+# @USAGE: <file to unpack> <size of off_t>
+# @DESCRIPTION:
 # Unpack those pesky pdv generated files ...
 # They're self-unpacking programs with the binary package stuffed in
 # the middle of the archive.  Valve seems to use it a lot ... too bad
 # it seems to like to segfault a lot :(.  So lets take it apart ourselves.
+# 
+# You have to specify the off_t size ... I have no idea how to extract that
+# information out of the binary executable myself.  Basically you pass in
+# the size of the off_t type (in bytes) on the machine that built the pdv
+# archive.
 #
-# Usage: unpack_pdv [file to unpack] [size of off_t]
-# - you have to specify the off_t size ... i have no idea how to extract that
-#	information out of the binary executable myself.  basically you pass in
-#	the size of the off_t type (in bytes) on the machine that built the pdv
-#	archive.  one way to determine this is by running the following commands:
+# One way to determine this is by running the following commands:
 #	strings <pdv archive> | grep lseek
 #	strace -elseek <pdv archive>
-#	basically look for the first lseek command (we do the strings/grep because
-#	sometimes the function call is _llseek or something) and steal the 2nd
-#	parameter.	here is an example:
-#	root@vapier 0 pdv_unpack # strings hldsupdatetool.bin | grep lseek
+# Basically look for the first lseek command (we do the strings/grep because
+# sometimes the function call is _llseek or something) and steal the 2nd
+# parameter.  Here is an example:
+#	vapier@vapier 0 pdv_unpack # strings hldsupdatetool.bin | grep lseek
 #	lseek
-#	root@vapier 0 pdv_unpack # strace -elseek ./hldsupdatetool.bin
+#	vapier@vapier 0 pdv_unpack # strace -elseek ./hldsupdatetool.bin
 #	lseek(3, -4, SEEK_END)					= 2981250
-#	thus we would pass in the value of '4' as the second parameter.
+# Thus we would pass in the value of '4' as the second parameter.
 unpack_pdv() {
 	local src=$(find_unpackable_file "$1")
 	local sizeoff_t=$2
@@ -1159,15 +1132,17 @@ unpack_pdv() {
 	#assert "failure unpacking pdv ('${metaskip}' '${tailskip}' '${datafile}')"
 }
 
+# @FUNCTION: unpack_makeself
+# @USAGE: [file to unpack] [offset] [tail|dd]
+# @DESCRIPTION:
 # Unpack those pesky makeself generated files ...
 # They're shell scripts with the binary package tagged onto
 # the end of the archive.  Loki utilized the format as does
 # many other game companies.
-#
-# Usage: unpack_makeself [file to unpack] [offset] [tail|dd]
-# - If the file is not specified then unpack will utilize ${A}.
-# - If the offset is not specified then we will attempt to extract
-#	the proper offset from the script itself.
+# 
+# If the file is not specified, then ${A} is used.  If the
+# offset is not specified then we will attempt to extract
+# the proper offset from the script itself.
 unpack_makeself() {
 	local src_input=${1:-${A}}
 	local src=$(find_unpackable_file "${src_input}")
@@ -1247,10 +1222,11 @@ unpack_makeself() {
 	assert "failure unpacking (${filetype}) makeself ${shrtsrc} ('${ver}' +${skip})"
 }
 
-# Display a license for user to accept.
-#
-# Usage: check_license [license]
-# - If the file is not specified then ${LICENSE} is used.
+# @FUNCTION: check_license
+# @USAGE: [license]
+# @DESCRIPTION:
+# Display a license for user to accept.  If no license is
+# specified, then ${LICENSE} is used.
 check_license() {
 	local lic=$1
 	if [ -z "${lic}" ] ; then
@@ -1306,28 +1282,28 @@ check_license() {
 	esac
 }
 
+# @FUNCTION: cdrom_get_cds
+# @USAGE: <file on cd1> [file on cd2] [file on cd3] [...]
+# @DESCRIPTION:
 # Aquire cd(s) for those lovely cd-based emerges.  Yes, this violates
 # the whole 'non-interactive' policy, but damnit I want CD support !
-#
-# with these cdrom functions we handle all the user interaction and
-# standardize everything.  all you have to do is call cdrom_get_cds()
+# 
+# With these cdrom functions we handle all the user interaction and
+# standardize everything.  All you have to do is call cdrom_get_cds()
 # and when the function returns, you can assume that the cd has been
 # found at CDROM_ROOT.
-#
-# normally the cdrom functions will refer to the cds as 'cd #1', 'cd #2',
-# etc...  if you want to give the cds better names, then just export
+# 
+# The function will attempt to locate a cd based upon a file that is on
+# the cd.  The more files you give this function, the more cds
+# the cdrom functions will handle.
+# 
+# Normally the cdrom functions will refer to the cds as 'cd #1', 'cd #2',
+# etc...  If you want to give the cds better names, then just export
 # the appropriate CDROM_NAME variable before calling cdrom_get_cds().
-#  - CDROM_NAME="fooie cd"	   - for when you only want 1 cd
-#  - CDROM_NAME_1="install cd" - for when you want more than 1 cd
-#	 CDROM_NAME_2="data cd"
-#  - CDROM_NAME_SET=( "install cd" "data cd" ) - short hand for CDROM_NAME_#
-#
-# for those multi cd ebuilds, see the cdrom_load_next_cd() below.
-#
-# Usage: cdrom_get_cds <file on cd1> [file on cd2] [file on cd3] [...]
-# - this will attempt to locate a cd based upon a file that is on
-#	the cd ... the more files you give this function, the more cds
-#	the cdrom functions will handle
+# Use CDROM_NAME for one cd, or CDROM_NAME_# for multiple cds.  You can
+# also use the CDROM_NAME_SET bash array.
+# 
+# For those multi cd ebuilds, see the cdrom_load_next_cd() function.
 cdrom_get_cds() {
 	# first we figure out how many cds we're dealing with by
 	# the # of files they gave us
@@ -1423,10 +1399,14 @@ cdrom_get_cds() {
 	cdrom_load_next_cd
 }
 
-# this is only used when you need access to more than one cd.
-# when you have finished using the first cd, just call this function.
-# when it returns, CDROM_ROOT will be pointing to the second cd.
-# remember, you can only go forward in the cd chain, you can't go back.
+# @FUNCTION: cdrom_load_next_cd
+# @DESCRIPTION:
+# Some packages are so big they come on multiple CDs.  When you're done reading
+# files off a CD and want access to the next one, just call this function.
+# Again, all the messy details of user interaction are taken care of for you.
+# Once this returns, just read the variable CDROM_ROOT for the location of the
+# mounted CD.  Note that you can only go forward in the CD list, so make sure
+# you only call this function when you're done using the current CD.
 cdrom_load_next_cd() {
 	local var
 	((++CDROM_CURRENT_CD))
@@ -1562,13 +1542,9 @@ strip-linguas() {
 	export LINGUAS=${newls:1}
 }
 
-# moved from kernel.eclass since they are generally useful outside of
-# kernel.eclass -iggy (20041002)
-
-# the following functions are useful in kernel module ebuilds, etc.
-# for an example see ivtv or drbd ebuilds
-
-# set's ARCH to match what the kernel expects
+# @FUNCTION: set_arch_to_kernel
+# @DESCRIPTION:
+# Set the env ARCH to match what the kernel expects.
 set_arch_to_kernel() {
 	i=10
 	while ((i--)) ; do
@@ -1585,7 +1561,9 @@ set_arch_to_kernel() {
 	esac
 }
 
-# set's ARCH back to what portage expects
+# @FUNCTION: set_arch_to_portage
+# @DESCRIPTION:
+# Set the env ARCH to match what portage expects.
 set_arch_to_portage() {
 	i=10
 	while ((i--)) ; do
@@ -1594,28 +1572,15 @@ set_arch_to_portage() {
 	export ARCH="${EUTILS_ECLASS_PORTAGE_ARCH}"
 }
 
-# Jeremy Huddleston <eradicator@gentoo.org>:
-# preserve_old_lib /path/to/libblah.so.0
-# preserve_old_lib_notify /path/to/libblah.so.0
-#
-# These functions are useful when a lib in your package changes --library.	Such
-# an example might be from libogg.so.0 to libogg.so.1.	Removing libogg.so.0
+# @FUNCTION: preserve_old_lib
+# @USAGE: <libs to preserve> [more libs]
+# @DESCRIPTION:
+# These functions are useful when a lib in your package changes ABI SONAME.
+# An example might be from libogg.so.0 to libogg.so.1.  Removing libogg.so.0
 # would break packages that link against it.  Most people get around this
 # by using the portage SLOT mechanism, but that is not always a relevant
-# solution, so instead you can add the following to your ebuilds:
-#
-# pkg_preinst() {
-# ...
-# preserve_old_lib /usr/$(get_libdir)/libogg.so.0
-# ...
-# }
-#
-# pkg_postinst() {
-# ...
-# preserve_old_lib_notify /usr/$(get_libdir)/libogg.so.0
-# ...
-# }
-
+# solution, so instead you can call this from pkg_preinst.  See also the
+# preserve_old_lib_notify function.
 preserve_old_lib() {
 	if [[ ${EBUILD_PHASE} != "preinst" ]] ; then
 		eerror "preserve_old_lib() must be called from pkg_preinst() only"
@@ -1633,6 +1598,10 @@ preserve_old_lib() {
 	done
 }
 
+# @FUNCTION: preserve_old_lib_notify
+# @USAGE: <libs to notify> [more libs]
+# @DESCRIPTION:
+# Spit helpful messages about the libraries preserved by preserve_old_lib.
 preserve_old_lib_notify() {
 	if [[ ${EBUILD_PHASE} != "postinst" ]] ; then
 		eerror "preserve_old_lib_notify() must be called from pkg_postinst() only"
@@ -1655,17 +1624,24 @@ preserve_old_lib_notify() {
 	done
 }
 
-# Hack for people to figure out if a package was built with
-# certain USE flags
-#
-# Usage: built_with_use [--missing <action>] [-a|-o] <DEPEND ATOM> <List of USE flags>
-#	 ex: built_with_use xchat gtk2
-#
-# Flags: -a         all USE flags should be utilized
-#        -o         at least one USE flag should be utilized
-#        --missing  peform the specified action if the flag is not in IUSE (true/false/die)
-#        --hidden   USE flag we're checking is hidden expanded so it isnt in IUSE
-# Note: the default flag is '-a'
+# @FUNCTION: built_with_use
+# @USAGE: [--hidden] [--missing <action>] [-a|-o] <DEPEND ATOM> <List of USE flags>
+# @DESCRIPTION:
+# A temporary hack until portage properly supports DEPENDing on USE
+# flags being enabled in packages.  This will check to see if the specified
+# DEPEND atom was built with the specified list of USE flags.  The
+# --missing option controls the behavior if called on a package that does
+# not actually support the defined USE flags (aka listed in IUSE).
+# The default is to abort (call die).  The -a and -o flags control
+# the requirements of the USE flags.  They correspond to "and" and "or"
+# logic.  So the -a flag means all listed USE flags must be enabled
+# while the -o flag means at least one of the listed fIUSE flags must be
+# enabled.  The --hidden option is really for internal use only as it
+# means the USE flag we're checking is hidden expanded, so it won't be found
+# in IUSE like normal USE flags.
+# 
+# Remember that this function isn't terribly intelligent so order of optional
+# flags matter.
 built_with_use() {
 	local hidden="no"
 	if [[ $1 == "--hidden" ]] ; then
@@ -1736,8 +1712,13 @@ built_with_use() {
 	[[ ${opt} = "-a" ]]
 }
 
-# Many configure scripts wrongly bail when a C++ compiler
-# could not be detected. #73450
+# @DESCRIPTION: epunt_cxx
+# @USAGE: [dir to scan]
+# @DESCRIPTION:
+# Many configure scripts wrongly bail when a C++ compiler could not be
+# detected.  If dir is not specified, then it defaults to ${S}.
+#
+# http://bugs.gentoo.org/73450
 epunt_cxx() {
 	local dir=$1
 	[[ -z ${dir} ]] && dir=${S}
@@ -1749,15 +1730,13 @@ epunt_cxx() {
 	eend 0
 }
 
-# make a wrapper script ...
-# NOTE: this was originally games_make_wrapper, but I noticed other places where
-# this could be used, so I have moved it here and made it not games-specific
-# -- wolf31o2
-# $1 == wrapper name
-# $2 == binary to run
-# $3 == directory to chdir before running binary
-# $4 == extra LD_LIBRARY_PATH's (make it : delimited)
-# $5 == path for wrapper
+# @FUNCTION: make_wrapper
+# @USAGE: <wrapper> <target> <chdir> [libpaths] [installpath]
+# @DESCRIPTION:
+# Create a shell wrapper script named wrapper in installpath
+# (defaults to the bindir) to execute target (default of wrapper) by
+# first optionally setting LD_LIBRARY_PATH to the colon-delimited
+# libpaths followed by optionally changing directory to chdir.
 make_wrapper() {
 	local wrapper=$1 bin=$2 chdir=$3 libdir=$4 path=$5
 	local tmpwrapper=$(emktemp)
@@ -1777,9 +1756,11 @@ exec ${bin} "\$@"
 EOF
 	chmod go+rx "${tmpwrapper}"
 	if [[ -n ${path} ]] ; then
+		(
 		exeinto "${path}"
 		newexe "${tmpwrapper}" "${wrapper}"
+		) || die
 	else
-		newbin "${tmpwrapper}" "${wrapper}"
+		newbin "${tmpwrapper}" "${wrapper}" || die
 	fi
 }

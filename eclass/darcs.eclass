@@ -1,6 +1,6 @@
 # Copyright 2004 Gentoo Technologies, Inc.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/darcs.eclass,v 1.4 2007/01/06 18:46:49 kosmikus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/darcs.eclass,v 1.5 2007/06/17 21:33:57 kolmodin Exp $
 #
 # darcs eclass author:  Andres Loeh <kosmikus@gentoo.org>
 # tla eclass author:    <rphillips@gentoo.org>
@@ -83,6 +83,7 @@ darcs_fetch() {
 
 	# in case EDARCS_DARCS_DIR is a symlink to a dir, get the real
 	# dir's path, otherwise addwrite() doesn't work.
+	pushd .
 	cd -P "$EDARCS_TOP_DIR" > /dev/null
 	EDARCS_TOP_DIR="`/bin/pwd`"
 
@@ -110,6 +111,7 @@ darcs_fetch() {
 		eval $cmdupdate || die "darcs update command failed"
 	fi
 
+	popd
 }
 
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.30 2007/05/29 17:45:02 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.31 2007/06/15 19:58:41 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -135,31 +135,6 @@ create_specs_file() {
 	"${WORKDIR}"/build/gcc/xgcc -dumpspecs > "${WORKDIR}"/build/vanilla.specs
 }
 
-
-create_gnat_env_entry() {
-	dodir /etc/env.d/gnat
-	local gnat_envd_base="/etc/env.d/gnat/${CTARGET}-${PN}-${SLOT}"
-
-	gnat_envd_file="${ED}${gnat_envd_base}"
-#	gnat_specs_file=""
-
-	echo "PATH=\"${BINPATH}:${LIBEXECPATH}\"" > ${gnat_envd_file}
-	echo "ROOTPATH=\"${BINPATH}:${LIBEXECPATH}\"" >> ${gnat_envd_file}
-
-	LDPATH="${LIBPATH}"
-	for path in 32 64 o32 ; do
-		[[ -d ${LIBPATH}/${path} ]] && LDPATH="${LDPATH}:${LIBPATH}/${path}"
-	done
-	echo "LDPATH=\"${LDPATH}\"" >> ${gnat_envd_file}
-
-	echo "MANPATH=\"${DATAPATH}/man\"" >> ${gnat_envd_file}
-	echo "INFOPATH=\"${DATAPATH}/info\"" >> ${gnat_envd_file}
-
-	is_crosscompile && echo "CTARGET=${CTARGET}" >> ${gnat_envd_file}
-
-	# Set which specs file to use
-#	[[ -n ${gnat_specs_file} ]] && echo "GCC_SPECS=\"${gnat_specs_file}\"" >> ${gnat_envd_file}
-}
 
 # eselect stuff taken straight from toolchain.eclass and greatly simplified
 add_profile_eselect_conf() {
@@ -524,6 +499,7 @@ gnatbuild_src_compile() {
 		done # while
 	fi   # "all" == "$1"
 }
+# -- end gnatbuild_src_compile
 
 
 gnatbuild_src_install() {
@@ -640,8 +616,6 @@ EOF
 		;;
 
 	prep_env)
-		#dodir /etc/env.d/gnat
-		#create_gnat_env_entry
 		# instead of putting junk under /etc/env.d/gnat we recreate env files as
 		# needed with eselect
 		create_eselect_conf
@@ -654,3 +628,4 @@ EOF
 	shift
 	done # while
 }
+# -- end gnatbuild_src_install

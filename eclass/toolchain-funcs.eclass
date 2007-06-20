@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.69 2007/03/27 01:46:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.70 2007/06/16 07:11:43 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -306,7 +306,7 @@ gcc-specs-ssp-to-all() {
 # Note that you should in general use the unversioned name of
 # the library, as ldconfig should usually update it correctly
 # to point to the latest version of the library present.
-_tc_gen_usr_ldscript() {
+gen_usr_ldscript() {
 	local lib libdir=$(get_libdir) output_format=""
 	# Just make sure it exists
 	dodir /usr/${libdir}
@@ -344,7 +344,6 @@ _tc_gen_usr_ldscript() {
 		fperms a+x "/usr/${libdir}/${lib}" || die "could not change perms on ${lib}"
 	done
 }
-gen_usr_ldscript() { _tc_gen_usr_ldscript "$@" ; }
 
 # This function is for AIX only.
 #
