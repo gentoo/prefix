@@ -1,6 +1,12 @@
 # ChangeLog for app-admin/eselect-emacs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.18 2007/06/12 17:41:08 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.19 2007/06/17 18:35:32 ulm Exp $
+
+*eselect-emacs-1.0 (17 Jun 2007)
+
+  17 Jun 2007; Ulrich Mueller <ulm@gentoo.org> +eselect-emacs-1.0.ebuild:
+  Version bump. Give a message in list command if XEmacs is found. Call
+  env.eselect module for INFOPATH, fixes bug #181166. Other minor changes.
 
   12 Jun 2007; Diego Pettenò <flameeyes@gentoo.org>
   eselect-emacs-0.8-r1.ebuild:
