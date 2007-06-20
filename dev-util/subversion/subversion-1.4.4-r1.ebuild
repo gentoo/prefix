@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.3-r1.ebuild,v 1.3 2007/06/15 09:09:34 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.4-r1.ebuild,v 1.1 2007/06/17 16:37:31 phreak Exp $
 
 EAPI="prefix"
 
-inherit elisp-common libtool python eutils bash-completion flag-o-matic depend.apache perl-module java-pkg-opt-2 multilib
+inherit elisp-common libtool python eutils bash-completion flag-o-matic depend.apache perl-module java-pkg-opt-2
 
 DESCRIPTION="A compelling replacement for CVS"
 HOMEPAGE="http://subversion.tigris.org/"
@@ -121,7 +121,7 @@ src_compile() {
 		;;
 	esac
 
-	append-flags `${EPREFIX}/usr/bin/apr-config${apr_suffix} --cppflags`
+	append-flags $( ${EPREFIX}/usr/bin/apr{apr_suffix}-config --cppflags )
 
 	econf ${myconf} \
 		$(use_with berkdb berkeley-db) \
@@ -352,7 +352,6 @@ pkg_postrm() {
 	use emacs && elisp-site-regen
 	use perl && perl-module_pkg_postrm
 
-	# Cleanup bytecompiled python stuff
 	if use python ; then
 		python_mod_optimize ${EROOT}usr/$(get_libdir)/python*/site-packages/svn
 		python_mod_optimize ${EROOT}usr/$(get_libdir)/python*/site-packages/libsvn

@@ -1,6 +1,45 @@
 # ChangeLog for dev-util/subversion
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.258 2007/06/09 15:07:07 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.265 2007/06/17 16:37:31 phreak Exp $
+
+*subversion-1.4.4-r1 (17 Jun 2007)
+
+  17 Jun 2007; Christian Heim <phreak@gentoo.org>
+  +subversion-1.4.4-r1.ebuild:
+  Fix the usage of /usr/bin/apr-${apr_suffix}-config --cppflags in src_compile
+  (thanks to Arfrever Frehtes Taifersar Arahesis <Arfrever.FTA at gmail.com>
+  in #182168).
+
+  17 Jun 2007; Christian Heim <phreak@gentoo.org> subversion-1.4.4.ebuild:
+  Adding apr_suffix to the apr-config call in src_compile, as apr-config is in
+  fact called apr-1-config w/ apr-1.2.8.
+
+  15 Jun 2007; Raúl Porcel <armin76@gentoo.org> subversion-1.3.2-r4.ebuild:
+  alpha/ia64/x86 stable wrt #178264
+
+  15 Jun 2007; Christian Heim <phreak@gentoo.org>
+  subversion-1.4.3-r1.ebuild, subversion-1.4.4.ebuild:
+  Fixing the usage of ${ROOT}'ed apr/apr-util in src_compile.
+
+  15 Jun 2007; Christian Heim <phreak@gentoo.org>
+  subversion-1.4.3-r1.ebuild, subversion-1.4.4.ebuild:
+  Cleaning out the bytecompiled python modules on postrm (#177536, thanks to
+  Jakub).
+
+  14 Jun 2007; Christoph Mende <angelos@gentoo.org>
+  subversion-1.3.2-r4.ebuild:
+  Stable on amd64 wrt bug 178264
+
+*subversion-1.4.4 (14 Jun 2007)
+
+  14 Jun 2007; Christian Heim <phreak@gentoo.org> +subversion-1.4.4.ebuild:
+  Version bump (fixing #181838 - thanks to Timothy Stotts <devel at
+  tstotts.net>). Subversion 1.4.4 is merly a bugfix release, for a detailed
+  list see http://svn.collab.net/repos/svn/tags/1.4.4/CHANGES.
+
+  13 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  subversion-1.3.2-r4.ebuild:
+  Stable on sparc wrt #178264
 
   09 Jun 2007; Markus Rothe <corsair@gentoo.org> subversion-1.3.2-r4.ebuild:
   Stable on ppc64; bug #178264
