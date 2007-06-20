@@ -1,6 +1,12 @@
 # ChangeLog for sys-apps/diffutils
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/ChangeLog,v 1.51 2007/02/19 23:02:41 wolf31o2 Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/ChangeLog,v 1.52 2007/06/13 23:06:53 vapier Exp $
+
+*diffutils-2.8.7-r2 (13 Jun 2007)
+
+  13 Jun 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/diffutils-2.8.7-headers.patch, +diffutils-2.8.7-r2.ebuild:
+  Install man pages again #177676 by Duncan and touchup build slightly.
 
   19 Feb 2007; Chris Gianelloni <wolf31o2@gentoo.org> ChangeLog:
   Added Manifest2.

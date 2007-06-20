@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/diffutils-2.8.7-r1.ebuild,v 1.13 2007/02/28 22:19:35 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/diffutils-2.8.7-r2.ebuild,v 1.1 2007/06/13 23:06:53 vapier Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="nls static"
 
-RDEPEND=""
+RDEPEND="userland_GNU? ( >=sys-apps/man-pages-2.46 )"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
@@ -31,8 +31,10 @@ src_unpack() {
 	# Fix utf8 support.  Patch from MDK. #71689
 	epatch "${WORKDIR}"/${P}-i18n.patch
 
-	# Make sure we don't try generating the manpages ... this requires 
-	# 'help2man' which is a perl app which is not available in a 
+	epatch "${FILESDIR}"/${P}-headers.patch
+
+	# Make sure we don't try generating the manpages ... this requires
+	# 'help2man' which is a perl app which is not available in a
 	# stage2 / stage3 ... don't DEPEND on it or we get a DEPEND loop :(
 	# for more info, see #55479
 	touch man/*.1
@@ -45,15 +47,12 @@ src_unpack() {
 }
 
 src_compile() {
-	econf $(use_enable nls) || die "econf"
 	use static && append-ldflags -static
-	emake LDFLAGS="${LDFLAGS}" || die "make"
+	econf $(use_enable nls) || die "econf"
+	emake || die "make"
 }
 
 src_install() {
-	make install DESTDIR="${D}" || die
+	emake install DESTDIR="${D}" || die
 	dodoc ChangeLog NEWS README
-
-	# use the manpage from 'sys-apps/man-pages'
-	rm -f "${ED}"/usr/share/man/man1/diff.1*
 }
