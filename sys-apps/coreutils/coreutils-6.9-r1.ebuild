@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.9-r1.ebuild,v 1.9 2007/06/12 11:49:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.9-r1.ebuild,v 1.12 2007/06/13 12:19:30 angelos Exp $
 
 EAPI="prefix"
 
@@ -149,8 +149,9 @@ src_install() {
 		local com="basename chroot cut dir dirname du env expr head mkfifo
 		           readlink seq sleep sort tail touch tr tty vdir wc yes"
 		mv ${com} ../../bin/ || die "could not move common bins"
+		# create a symlink for uname in /usr/bin/ since autotools require it
 		local x
-		for x in ${com} ; do
+		for x in ${com} uname ; do
 			dosym /bin/${x} /usr/bin/${x} || die
 		done
 	else
