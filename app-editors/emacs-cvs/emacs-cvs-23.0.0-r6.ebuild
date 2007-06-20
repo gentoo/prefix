@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.0-r6.ebuild,v 1.20 2007/06/05 07:43:10 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.0-r6.ebuild,v 1.25 2007/06/17 14:51:03 ulm Exp $
 
 EAPI="prefix"
 
@@ -22,7 +22,7 @@ SRC_URI=""
 LICENSE="GPL-2 FDL-1.2"
 SLOT="23"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
-IUSE="alsa gif gtk gzip-el hesiod jpeg lesstif motif png spell sound source tiff toolkit-scroll-bars X Xaw3d xft xpm"
+IUSE="alsa gif gpm gtk gzip-el hesiod jpeg lesstif motif png spell sound source tiff toolkit-scroll-bars X Xaw3d xft xpm"
 RESTRICT="strip"
 
 X_DEPEND="x11-libs/libXmu x11-libs/libXt x11-misc/xbitmaps"
@@ -33,6 +33,7 @@ RDEPEND="sys-libs/ncurses
 	hesiod? ( net-dns/hesiod )
 	spell? ( || ( app-text/ispell app-text/aspell ) )
 	alsa? ( media-sound/alsa-headers )
+	gpm? ( sys-libs/gpm )
 	X? (
 		$X_DEPEND
 		x11-misc/emacs-desktop
@@ -88,7 +89,6 @@ src_unpack() {
 			|| die "unable to sed configure.in"
 	fi
 
-	epatch "${FILESDIR}/${PN}-Xaw3d-headers.patch"
 	epatch "${FILESDIR}/${PN}-freebsd-sparc.patch"
 	# ALSA is detected and used even if not requested by the USE=alsa flag.
 	# So remove the automagic check
@@ -151,9 +151,8 @@ src_compile() {
 		myconf="${myconf} --without-x"
 	fi
 
-	# $(use_with hesiod) is not possible, as "--without-hesiod" breaks
-	# the build system (has been reported upstream)
-	use hesiod && myconf="${myconf} --with-hesiod"
+	myconf="${myconf} $(use_with hesiod)"
+	myconf="${myconf} $(use_with gpm)"
 
 	if use aqua; then
 		einfo "Configuring to build with Carbon Emacs"
