@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.166 2007/06/12 18:23:36 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.167 2007/06/13 17:39:54 ulm Exp $
+
+  13 Jun 2007; Ulrich Mueller <ulm@gentoo.org> emacs-22.1.ebuild:
+  Configure now supports "use_with hesiod" properly.
 
   12 Jun 2007; Diego Pettenò <flameeyes@gentoo.org> emacs-22.1.ebuild:
   Add ~sparc-fbsd keyword.
