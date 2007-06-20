@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/faac
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/ChangeLog,v 1.51 2007/04/22 17:59:08 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/ChangeLog,v 1.52 2007/06/16 14:09:21 flameeyes Exp $
+
+  16 Jun 2007; Diego Pettenò <flameeyes@gentoo.org> faac-1.25.ebuild:
+  Filter out -ftree-vectorize, it crashes mencoder. Reported by drizzt.
 
   22 Apr 2007; Raúl Porcel <armin76@gentoo.org> faac-1.24-r3.ebuild:
   ia64 stable

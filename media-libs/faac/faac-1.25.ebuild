@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/faac-1.25.ebuild,v 1.2 2007/03/25 13:18:41 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/faac-1.25.ebuild,v 1.3 2007/06/16 14:09:21 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -36,8 +36,12 @@ src_unpack() {
 src_compile() {
 	# altivec stuff triggers a definition of bool which causes faac to fail
 	# http://archives.postgresql.org/pgsql-hackers/2005-11/msg00104.php
+	# note this may be an FSF GCC issue only...
 	[[ ${USERLAND} == "Darwin" ]] && \
 		filter-flags "-faltivec" "-mabi=altivec" "-maltivec" "-mcpu=*"
+
+	filter-flags -ftree-vectorize
+
 	econf || die "econf failed"
 	emake || die "emake failed"
 }
