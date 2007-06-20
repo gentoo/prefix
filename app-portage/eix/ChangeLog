@@ -1,6 +1,17 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.168 2007/06/06 10:50:45 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.171 2007/06/17 14:33:59 armin76 Exp $
+
+  17 Jun 2007; Raúl Porcel <armin76@gentoo.org> eix-0.9.1.ebuild:
+  Back to ~arch
+
+  15 Jun 2007; <malc@gentoo.org> eix-0.9.9.ebuild:
+  Remove unneeded patch - per direction of upstream. bug #182150
+
+*eix-0.9.9 (15 Jun 2007)
+
+  15 Jun 2007; Stefan Schweizer <genstef@gentoo.org> +eix-0.9.9.ebuild:
+  version bump
 
   06 Jun 2007; Stefan Schweizer <genstef@gentoo.org>
   +files/eix-0.9.8-gcc-3.patch, eix-0.9.8.ebuild:
