@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.4.ebuild,v 1.8 2007/06/08 14:00:08 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.4.ebuild,v 1.9 2007/06/13 11:36:04 armin76 Exp $
 
 EAPI="prefix"
 
@@ -191,7 +191,7 @@ src_compile() {
 	# requirements while compiling
 	edit_makefiles
 
-	emake -j1 || die
+	emake || die
 }
 
 pkg_preinst() {
