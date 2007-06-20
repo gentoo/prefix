@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/boost-build
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.3 2007/06/10 19:37:04 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.4 2007/06/16 15:17:07 fmccor Exp $
+
+  16 Jun 2007; Ferris McCormick <fmccor@gentoo.org>
+  boost-build-1.34.0.ebuild:
+  Add ~sparc keyword --- part of Bug #182196 --- installs as expected.
 
   10 Jun 2007; Ryan Hill <dirtyepic@gentoo.org> boost-build-1.34.0.ebuild:
   Boost building boost-build with GCC 4.2, bug #181139.
