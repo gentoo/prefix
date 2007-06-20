@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/libsamplerate
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsamplerate/ChangeLog,v 1.47 2007/04/06 20:44:22 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsamplerate/ChangeLog,v 1.49 2007/06/16 06:49:45 kumba Exp $
+
+  20 Jun 2007; Joshua Kinard <kumba@gentoo.org>
+  libsamplerate-0.1.2-r1.ebuild:
+  Stable on mips, per #165779.
+
+  15 Jun 2007; Raúl Porcel <armin76@gentoo.org>
+  libsamplerate-0.1.2-r1.ebuild:
+  alpha stable wrt #165779
 
   06 Apr 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   libsamplerate-0.1.2-r1.ebuild:
