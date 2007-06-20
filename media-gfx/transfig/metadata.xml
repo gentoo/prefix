@@ -3,10 +3,6 @@
 <pkgmetadata>
 	<herd>no-herd</herd>
 	<maintainer>
-		<email>malverian@gentoo.org</email>
-		<name>Philip Walls</name>
-	</maintainer>
-	<maintainer>
 		<email>pva@gentoo.org</email>
 		<name>Peter Volkov</name>
 	</maintainer>
