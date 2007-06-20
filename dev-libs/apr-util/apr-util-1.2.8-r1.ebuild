@@ -1,19 +1,23 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.2.8.ebuild,v 1.8 2007/06/15 15:46:33 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.2.8-r1.ebuild,v 1.1 2007/06/15 17:59:22 hollow Exp $
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic libtool db-use
+inherit autotools eutils flag-o-matic libtool db-use
+
+DBD_MYSQL=84
 
 DESCRIPTION="Apache Portable Runtime Library"
 HOMEPAGE="http://apr.apache.org/"
-SRC_URI="mirror://apache/apr/${P}.tar.gz"
+SRC_URI="mirror://apache/apr/${P}.tar.gz
+	mirror://apache/apr/apr-${PV}.tar.gz
+	mirror://gentoo/apr_dbd_mysql-r${DBD_MYSQL}.c"
 
 LICENSE="Apache-2.0"
 SLOT="1"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
-IUSE="berkdb gdbm ldap postgres sqlite sqlite3"
+IUSE="berkdb gdbm ldap mysql postgres sqlite sqlite3"
 RESTRICT="test"
 
 DEPEND="dev-libs/expat
@@ -25,13 +29,19 @@ DEPEND="dev-libs/expat
 	sqlite? ( =dev-db/sqlite-2* )
 	sqlite3? ( =dev-db/sqlite-3* )"
 
-# NOTE: This package in theory can support mysql,
-# but in reality the build system is broken for it....
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	cp "${DISTDIR}"/apr_dbd_mysql-r${DBD_MYSQL}.c \
+	"${S}"/dbd/apr_dbd_mysql.c || die "could not copy mysql driver"
+
+	./buildconf --with-apr=../apr-${PV} || die "buildconf failed"
+	elibtoolize || die "elibtoolize failed"
+}
 
 src_compile() {
 	local myconf=""
-
-	elibtoolize || die "elibtoolize failed"
 
 	use ldap && myconf="${myconf} --with-ldap"
 
@@ -49,6 +59,7 @@ src_compile() {
 		--with-apr=${EPREFIX}/usr \
 		--with-expat=${EPREFIX}/usr \
 		$(use_with gdbm) \
+		$(use_with mysql) \
 		$(use_with postgres pgsql) \
 		$(use_with sqlite sqlite2) \
 		$(use_with sqlite3) \
