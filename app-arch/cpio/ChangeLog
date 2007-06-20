@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/cpio
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.65 2007/06/11 19:14:09 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.66 2007/06/13 13:39:21 angelos Exp $
+
+  13 Jun 2007; Christoph Mende <angelos@gentoo.org> cpio-2.7-r2.ebuild:
+  Stable on amd64 wrt bug 181621
 
   11 Jun 2007; Markus Rothe <corsair@gentoo.org> cpio-2.7-r2.ebuild:
   Stable on ppc64; bug #181621
