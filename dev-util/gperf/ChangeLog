@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/gperf
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gperf/ChangeLog,v 1.32 2007/04/08 08:47:42 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gperf/ChangeLog,v 1.33 2007/06/16 22:48:32 anant Exp $
+
+*gperf-3.0.3 (16 Jun 2007)
+
+  16 Jun 2007; Anant Narayanan <anant@gentoo.org> +gperf-3.0.3.ebuild:
+  vBump to 3.0.3, close bug #179962
 
   08 Apr 2007; Christian Faulhammer <opfer@gentoo.org> gperf-2.7.2.ebuild,
   gperf-3.0.1.ebuild:
