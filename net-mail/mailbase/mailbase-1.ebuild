@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/mailbase/mailbase-1.ebuild,v 1.17 2007/02/08 22:22:25 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/mailbase/mailbase-1.ebuild,v 1.18 2007/06/17 19:41:28 ferdy Exp $
 
 EAPI="prefix"
 
@@ -63,12 +63,11 @@ src_install() {
 pkg_postinst() {
 	if [[ "$(get_permissions_oct /var/spool/mail)" != "775" ]] ; then
 		echo
-		ewarn
 		ewarn "Your ${EROOT}/var/spool/mail/ directory permissions differ from"
 		ewarn "  those which mailbase set when you first installed it (0775)."
 		ewarn "  If you did not change them on purpose, consider running:"
 		ewarn
-		echo -e "\tchmod 0775 ${EROOT}/var/spool/mail/"
+		ewarn "    chmod 0775 ${EROOT}/var/spool/mail/"
 		echo
 	fi
 }
