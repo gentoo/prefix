@@ -1,0 +1,28 @@
+From: Jamey Sharp <jamey@minilop.net>
+Date: Sun, 10 Jun 2007 23:19:59 +0000 (-0700)
+Subject: Fix locking in _XimGetWindowEventmask.
+X-Git-Url: http://gitweb.freedesktop.org/?p=xorg/lib/libX11.git;a=commitdiff;h=c2f88cdf5cd9c94b77e5bfdac572b5ac06ab4aa8
+
+Fix locking in _XimGetWindowEventmask.
+
+Now that XFilterEvent drops the Display lock before invoking callback
+functions, _XimGetWindowEventmask is called without the lock held. So
+when it called _XGetWindowAttributes, a variant of XGetWindowAttributes
+that does not lock the Display, Xlib/XCB would assert:
+
+xcb_xlib.c:50: xcb_xlib_unlock: Assertion `c->xlib.lock' failed.
+
+Should fix Gentoo #156367, Ubuntu #87947, Debian #427296. And others?
+---
+
+--- a/modules/im/ximcp/imDefLkup.c
++++ b/modules/im/ximcp/imDefLkup.c
+@@ -466,7 +466,7 @@ _XimGetWindowEventmask(
+     Xim			im = (Xim )ic->core.im;
+     XWindowAttributes	atr;
+ 
+-    if (!_XGetWindowAttributes(im->core.display, ic->core.focus_window, &atr))
++    if (!XGetWindowAttributes(im->core.display, ic->core.focus_window, &atr))
+ 	return 0;
+     return (EVENTMASK)atr.your_event_mask;
+ }
