@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/eel-2.18.0.1.ebuild,v 1.1 2007/03/24 03:40:41 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/eel-2.18.0.1.ebuild,v 1.2 2007/06/13 20:38:31 dang Exp $
 
 EAPI="prefix"
 
@@ -36,8 +36,9 @@ DOCS="AUTHORS ChangeLog HACKING MAINTAINERS NEWS README THANKS TODO"
 
 src_test() {
 	if hasq userpriv $FEATURES; then
-		Xmake check || die "make check failed"
-	else
 		einfo "Not running tests without userpriv"
+	else
+		addwrite "/root/.gnome2"
+		Xmake check || die "make check failed"
 	fi
 }
