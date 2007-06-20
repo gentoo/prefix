@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/boost
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.110 2007/06/06 19:25:19 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.112 2007/06/17 23:45:42 fmccor Exp $
+
+  17 Jun 2007; Ferris McCormick <fmccor@gentoo.org> boost-1.34.0.ebuild:
+  Add ~sparc keyword --- Bug #182196 --- after further investigation, seems
+  good.
+
+  16 Jun 2007; Tiziano Müller <dev-zero@gentoo.org> boost-1.34.0.ebuild:
+  Added LC_ALL=C to src_test to make sure that tests don't fail because of
+  unmatched regexps
 
 *boost-1.34.0 (06 Jun 2007)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.34.0.ebuild,v 1.1 2007/06/06 19:25:19 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.34.0.ebuild,v 1.3 2007/06/17 23:45:42 fmccor Exp $
 
 EAPI="prefix"
 
@@ -223,6 +223,9 @@ src_test() {
 	export BOOST_BUILD_PATH=/usr/share/boost-build
 
 	cd "${S}/status"
+
+	# Some of the test-checks seem to rely on regexps
+	export LC_ALL="C"
 
 	# The following is largely taken from tools/regression/run_tests.sh,
 	# but adapted to our needs.
