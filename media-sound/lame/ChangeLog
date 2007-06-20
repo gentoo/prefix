@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/lame
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/lame/ChangeLog,v 1.82 2007/02/19 03:59:11 weeve Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/lame/ChangeLog,v 1.83 2007/06/14 17:55:25 armin76 Exp $
+
+  14 Jun 2007; Raúl Porcel <armin76@gentoo.org> lame-3.97.ebuild:
+  alpha stable wrt #167391
 
   19 Feb 2007; Jason Wever <weeve@gentoo.org> lame-3.97.ebuild:
   Stable on SPARC wrt bug #167391.
