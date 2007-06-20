@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pysqlite/pysqlite-2.3.3.ebuild,v 1.1 2007/05/05 09:53:10 lucass Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pysqlite/pysqlite-2.3.3.ebuild,v 1.6 2007/06/17 11:28:25 armin76 Exp $
 
 EAPI="prefix"
 
