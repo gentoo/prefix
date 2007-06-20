@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.3.18.ebuild,v 1.1 2007/06/12 09:38:00 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.3.18.ebuild,v 1.2 2007/06/14 12:08:01 hanno Exp $
 
 EAPI="prefix"
 
@@ -15,6 +15,9 @@ SLOT="2"
 KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
 
 IUSE="alsa aalib altivec curl dbus debug doc gtkhtml gnome jpeg lcms mmx mng pdf png python smp sse svg tiff wmf"
+
+# Upstream-bug, will be fixed in the next release
+MAKEOPTS="-j1"
 
 RDEPEND=">=dev-libs/glib-2.12.3
 	>=x11-libs/gtk+-2.10.6

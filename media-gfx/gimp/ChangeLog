@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.203 2007/06/12 09:38:00 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.204 2007/06/14 12:08:01 hanno Exp $
+
+  14 Jun 2007; Hanno Boeck <hanno@gentoo.org> gimp-2.3.18.ebuild:
+  Parallel build is broken in 2.3.18, enforcing -j1.
 
 *gimp-2.3.18 (12 Jun 2007)
 
