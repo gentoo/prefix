@@ -1,6 +1,13 @@
 # ChangeLog for app-emacs/auctex
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.62 2007/05/15 03:28:35 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.63 2007/06/14 07:18:13 opfer Exp $
+
+  14 Jun 2007; Christian Faulhammer <opfer@gentoo.org>
+  -files/51auctex-gentoo.el, -files/auctex-11.55-configure.diff,
+  -files/auctex-11.81-configure.diff, -files/auctex-11.82-configure.diff,
+  -files/50auctex-gentoo.el, -auctex-11.55.ebuild, -auctex-11.82.ebuild,
+  -auctex-11.83.ebuild, -auctex-11.83-r1.ebuild, -auctex-11.84.ebuild:
+  clean up
 
   15 May 2007; Christian Faulhammer <opfer@gentoo.org>
   auctex-11.84-r1.ebuild:
