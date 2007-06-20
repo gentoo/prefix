@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.3.ebuild,v 1.9 2007/06/02 02:57:58 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.3.ebuild,v 1.10 2007/06/17 15:31:29 dang Exp $
 
 EAPI="prefix"
 
-inherit eutils gnome2
+inherit eutils gnome2 python multilib
 
 DESCRIPTION="The GNOME Structured File Library"
 HOMEPAGE="http://www.gnome.org/"
@@ -40,6 +40,8 @@ G2CONF="${G2CONF} \
 	$(use_with gnome) \
 	$(use_with python)"
 
+DOCS="AUTHORS BUGS ChangeLog HACKING NEWS README TODO"
+
 pkg_preinst() {
 	preserve_old_lib /usr/$(get_libdir)/libgsf-1.so.1
 	preserve_old_lib /usr/$(get_libdir)/libgsf-gnome-1.so.1
@@ -49,6 +51,7 @@ pkg_preinst() {
 
 pkg_postinst() {
 	gnome2_pkg_postinst
+	use python && python_mod_optimize /usr/$(get_libdir)/python*/site-packages/gsf
 
 	preserve_old_lib_notify /usr/$(get_libdir)/libgsf-1.so.1
 	preserve_old_lib_notify /usr/$(get_libdir)/libgsf-gnome-1.so.1
@@ -56,4 +59,7 @@ pkg_postinst() {
 	preserve_old_lib_notify /usr/$(get_libdir)/libgsf-gnome-1.so.113
 }
 
-DOCS="AUTHORS BUGS ChangeLog HACKING NEWS README TODO"
+pkg_postrm() {
+	gnome2_pkg_postrm
+	use python && python_mod_cleanup /usr/$(get_libdir)/python*/site-packages/gsf
+}
