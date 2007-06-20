@@ -1,6 +1,13 @@
 # ChangeLog for sys-apps/less
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.62 2006/10/17 11:50:30 uberlord Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.63 2007/06/13 23:14:17 vapier Exp $
+
+*less-403 (13 Jun 2007)
+
+  13 Jun 2007; Mike Frysinger <vapier@gentoo.org> +files/less.envd,
+  less-394.ebuild, +less-403.ebuild:
+  Version bump #181912 by Raul Porcel and move LESSOPEN to our env.d from
+  baselayout #180880 by Harald van Dijk.
 
   17 Oct 2006; Roy Marples <uberlord@gentoo.org> less-394.ebuild:
   Added ~sparc-fbsd keyword.
