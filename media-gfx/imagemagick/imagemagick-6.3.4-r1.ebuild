@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.3.4-r1.ebuild,v 1.1 2007/06/17 13:25:42 sekretarz Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.3.4-r1.ebuild,v 1.2 2007/06/18 20:39:03 sekretarz Exp $
 
 EAPI="prefix"
 
@@ -67,18 +67,13 @@ src_compile() {
 		quantum="${quantum} --with-quantum-depth=16"
 	fi
 
-	local hdri
-	if use hdri ; then
-		hdri=" --enable-hdri"
-	fi
-
 	econf \
 		--with-threads \
 		--with-modules \
 		$(use_with perl) \
 		--with-gs-font-dir="${EPREFIX}"/usr/share/fonts/default/ghostscript \
 		${quantum} \
-		${hdri} \
+		$(use_enable hdri) \
 		$(use_with truetype windows-font-dir "${EPREFIX}"/usr/share/fonts/corefonts) \
 		$(use_with !nocxx magick-plus-plus) \
 		$(use_with bzip2 bzlib) \

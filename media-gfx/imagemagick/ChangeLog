@@ -1,6 +1,11 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.227 2007/06/17 13:25:42 sekretarz Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.228 2007/06/18 20:39:03 sekretarz Exp $
+
+  18 Jun 2007; Karol Wojtaszek <sekretarz@gentoo.org>
+  imagemagick-6.3.4-r1.ebuild:
+  Cosmetic changes in code, bug #179943. Thanks to Arfrever Frehtes Taifersar
+  Arahesis and Chris Ritchey
 
 *imagemagick-6.3.4-r1 (17 Jun 2007)
 
