@@ -1,14 +1,13 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p36.ebuild,v 1.1 2007/06/12 18:23:41 rbrown Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p36-r2.ebuild,v 1.1 2007/06/20 14:17:14 rbrown Exp $
 
 EAPI="prefix"
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 
-# A new version is needed for 1.8.6, currently disabled.
-ONIGURUMA="onigd2_5_8"
+ONIGURUMA="onigd2_5_9"
 
 inherit flag-o-matic alternatives eutils multilib autotools versionator
 
@@ -17,13 +16,13 @@ S=${WORKDIR}/${MY_P}
 
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="http://www.ruby-lang.org/"
-SRC_URI="ftp://ftp.ruby-lang.org/pub/ruby/1.8/${MY_P}.tar.gz"
-#	cjk? ( http://www.geocities.jp/kosako3/oniguruma/archive/${ONIGURUMA}.tar.gz )"
+SRC_URI="ftp://ftp.ruby-lang.org/pub/ruby/1.8/${MY_P}.tar.gz
+	cjk? ( http://www.geocities.jp/kosako3/oniguruma/archive/${ONIGURUMA}.tar.gz )"
 
 LICENSE="Ruby"
 SLOT="1.8"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
-IUSE="debug doc examples ipv6 rubytests socks5 threads tk" # cjk
+IUSE="cjk debug doc examples ipv6 rubytests socks5 threads tk"
 RESTRICT="confcache"
 
 RDEPEND=">=sys-libs/gdbm-1.8.0
@@ -41,17 +40,18 @@ PROVIDE="virtual/ruby"
 src_unpack() {
 	unpack ${A}
 
-#	if use cjk ; then
-#		einfo "Applying ${ONIGURUMA}"
-#		pushd ${WORKDIR}/oniguruma
-##		epatch ${FILESDIR}/oniguruma-2.3.1-gentoo.patch
-#		econf --with-rubydir=${S} || die "econf failed"
-#		MY_PV=$(get_version_component_range 1-2)
-#		make ${MY_PV/./}
-#		popd
-#	fi
+	if use cjk ; then
+		einfo "Applying ${ONIGURUMA}"
+		pushd ${WORKDIR}/oniguruma
+		econf --with-rubydir=${S} || die "econf failed"
+		MY_PV=$(get_version_component_range 1-2)
+		make ${MY_PV/./}
+		popd
+	fi
 
 	cd "${S}"
+
+	epatch "${FILESDIR}/${P}-rb_thread_status_prototype.patch"
 
 	# Fix a hardcoded lib path in configure script
 	sed -i -e "s:\(RUBY_LIB_PREFIX=\"\${prefix}/\)lib:\1$(get_libdir):" \
