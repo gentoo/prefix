@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-MethodMaker/Class-MethodMaker-2.09.ebuild,v 1.2 2007/04/02 21:40:34 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-MethodMaker/Class-MethodMaker-2.09.ebuild,v 1.3 2007/06/21 14:45:27 mcummings Exp $
 
 EAPI="prefix"
 
