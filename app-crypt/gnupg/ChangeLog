@@ -1,6 +1,12 @@
 # ChangeLog for app-crypt/gnupg
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.292 2007/06/07 18:25:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.293 2007/06/13 08:05:52 alonbl Exp $
+
+  13 Jun 2007; Alon Bar-Lev <alonbl@gentoo.org> gnupg-1.9.21.ebuild,
+  gnupg-1.9.21-r1.ebuild, gnupg-1.9.22.ebuild, gnupg-1.9.94.ebuild,
+  gnupg-2.0.2.ebuild, gnupg-2.0.3.ebuild, gnupg-2.0.3-r1.ebuild,
+  gnupg-2.0.4.ebuild:
+  Move libassuan to DEPEND per bug#179663
 
   07 Jun 2007; Raúl Porcel <armin76@gentoo.org> gnupg-1.4.7-r1.ebuild:
   alpha stable wrt #177747

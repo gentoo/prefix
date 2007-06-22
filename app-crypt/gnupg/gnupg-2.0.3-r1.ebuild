@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.3-r1.ebuild,v 1.1 2007/04/02 09:00:32 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.3-r1.ebuild,v 1.2 2007/06/13 08:05:52 alonbl Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,6 @@ COMMON_DEPEND="
 	>=dev-libs/libgcrypt-1.2.0
 	>=dev-libs/libksba-1.0.0
 	>=dev-libs/libgpg-error-1.4
-	>=dev-libs/libassuan-1.0.1
 	>=net-misc/curl-7.7.2
 	bzip2? ( app-arch/bzip2 )
 	pcsc-lite? ( >=sys-apps/pcsc-lite-1.3.0 )
@@ -30,6 +29,7 @@ COMMON_DEPEND="
 	app-crypt/pinentry"
 
 DEPEND="${COMMON_DEPEND}
+	>=dev-libs/libassuan-1.0.1
 	nls? ( sys-devel/gettext )
 	doc? ( sys-apps/texinfo )"
 
