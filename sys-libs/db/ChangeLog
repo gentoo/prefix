@@ -1,6 +1,15 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.210 2007/06/09 15:08:36 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.213 2007/06/15 15:22:36 angelos Exp $
+
+  15 Jun 2007; Christoph Mende <angelos@gentoo.org> db-4.5.20_p2.ebuild:
+  Stable on amd64 wrt bug 178750
+
+  13 Jun 2007; Raúl Porcel <armin76@gentoo.org> db-4.5.20_p2.ebuild:
+  Add ~alpha
+
+  13 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org> db-4.5.20_p2.ebuild:
+  Stable on sparc wrt #178750
 
   09 Jun 2007; Markus Rothe <corsair@gentoo.org> db-4.5.20_p2.ebuild:
   Stable on ppc64; bug #178750
