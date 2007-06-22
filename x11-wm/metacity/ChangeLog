@@ -1,6 +1,13 @@
 # ChangeLog for x11-wm/metacity
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.187 2007/05/21 04:15:21 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.188 2007/06/19 01:58:34 leio Exp $
+
+*metacity-2.18.5 (19 Jun 2007)
+
+  19 Jun 2007; Mart Raudsepp <leio@gentoo.org> -metacity-2.18.0.ebuild,
+  -metacity-2.18.1.ebuild, +metacity-2.18.5.ebuild:
+  Version bump for bug fixes, including a fix for KDE applications seeming to
+  demand attention on workspace switches in Gnome environment - bug 172264
 
 *metacity-2.16.8 (21 May 2007)
 
