@@ -1,6 +1,12 @@
 # ChangeLog for x11-proto/inputproto
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.43 2007/05/27 02:17:23 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.44 2007/06/18 01:01:20 joshuabaergen Exp $
+
+*inputproto-1.4.2 (18 Jun 2007)
+
+  18 Jun 2007; Joshua Baergen <joshuabaergen@gentoo.org>
+  +inputproto-1.4.2.ebuild:
+  Version bump for bug #181969 (Hanno Boeck).
 
   27 May 2007; Joshua Kinard <kumba@gentoo.org> inputproto-1.4.1.ebuild:
   Stable on mips.
