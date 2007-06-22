@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.3.17.ebuild,v 1.2 2007/05/23 01:14:54 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.3.17.ebuild,v 1.10 2007/06/15 20:06:13 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -23,13 +23,20 @@ RDEPEND="tcl? ( dev-lang/tcl )"
 SOURCE="/usr/bin/lemon"
 ALTERNATIVES="${SOURCE}-3 ${SOURCE}-0"
 
-RESTRICT="tcl? ( test )"
+RESTRICT="!tcl? ( test )"
 
 src_unpack() {
 	# test
-	if has test ${FEATURES} && ! has userpriv ${FEATURES}; then
-		ewarn "The userpriv feature must be enabled to run tests."
-		eerror "Testsuite will not be run."
+	if has test ${FEATURES}; then
+		if ! has userpriv ${FEATURES}; then
+			ewarn "The userpriv feature must be enabled to run tests."
+			eerror "Testsuite will not be run."
+		fi
+		if ! use tcl; then
+			ewarn "You must enable the tcl use flag if you want to run the test"
+			ewarn "suite."
+			eerror "Testsuite will not be run."
+		fi
 	fi
 
 	unpack ${A}
