@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/rubygems
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.56 2007/05/24 13:42:54 rbrown Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.57 2007/06/21 19:05:43 rbrown Exp $
+
+  21 Jun 2007; Richard Brown <rbrown@gentoo.org> rubygems-0.9.4.ebuild:
+  Quote $S, from peper
 
 *rubygems-0.9.4 (24 May 2007)
 

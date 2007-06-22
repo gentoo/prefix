@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-0.9.4.ebuild,v 1.1 2007/05/24 13:42:54 rbrown Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-0.9.4.ebuild,v 1.2 2007/06/21 19:05:43 rbrown Exp $
 
 EAPI="prefix"
 
@@ -31,7 +31,7 @@ src_unpack() {
 	use doc || epatch "${FILESDIR}/${PN}-0.9.1-no_rdoc_install.patch"
 
 	# Delete mis-packaged . files
-	cd ${S}
+	cd "${S}"
 	find -name '.*' -type f -print0|xargs -0 rm
 }
 
