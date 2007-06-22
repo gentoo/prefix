@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.9-r1.ebuild,v 1.12 2007/06/13 12:19:30 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.9-r1.ebuild,v 1.13 2007/06/18 19:42:45 vapier Exp $
 
 EAPI="prefix"
 
@@ -24,14 +24,13 @@ RESTRICT="confcache"
 RDEPEND="selinux? ( sys-libs/libselinux )
 	acl? ( sys-apps/acl sys-apps/attr )
 	nls? ( >=sys-devel/gettext-0.15 )
-	userland_GNU? ( >=sys-apps/man-pages-2.46 )
+	!elibc_uclibc? ( userland_GNU? ( >=sys-apps/man-pages-2.46 ) )
 	!net-mail/base64
 	>=sys-libs/ncurses-5.3-r5"
 DEPEND="${RDEPEND}
 	=sys-devel/automake-1.9*
 	>=sys-devel/autoconf-2.61
-	>=sys-devel/m4-1.4-r1
-	sys-apps/help2man"
+	>=sys-devel/m4-1.4-r1"
 
 pkg_setup() {
 	# fixup expr for #123342 (rely on path)
@@ -66,11 +65,12 @@ src_unpack() {
 	chmod a+rx tests/sort/sort-mb-tests
 	chmod a+rx tests/ls/x-option
 
-	# Since we've patched many .c files, the make process will
-	# try to re-build the manpages by running `./bin --help`.
-	# When cross-compiling, we can't do that since 'bin' isn't
-	# a native binary, so let's just install outdated man-pages.
-	tc-is-cross-compiler && touch man/*.1
+	# Since we've patched many .c files, the make process will try to
+	# re-build the manpages by running `./bin --help`.  When doing a
+	# cross-compile, we can't do that since 'bin' isn't a native bin.
+	# Also, it's not like we changed the usage on any of these things,
+	# so let's just update the timestamps and skip the help2man step.
+	touch man/*.1
 	# There's no reason for this crap to use the private version
 	sed -i 's:__mempcpy:mempcpy:g' lib/*.c
 
