@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.72 2007/03/24 07:11:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.73 2007/06/19 06:47:31 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -122,8 +122,12 @@ tc-binutils_apply_patches() {
 			|| EPATCH_SUFFIX="patch"
 		EPATCH_MULTI_MSG="Applying uClibc fixes ..." \
 		epatch
-	elif [[ ${CTARGET} == *-uclibc ]] ; then
-		die "sorry, but this binutils doesn't yet support uClibc :("
+	elif [[ ${CTARGET} == *-uclibc* ]] ; then
+		# starting with binutils-2.17.50.0.17, we no longer need
+		# uClibc patchsets :D
+		if grep -qs 'linux-gnu' "${S}"/ltconfig ; then
+			die "sorry, but this binutils doesn't yet support uClibc :("
+		fi
 	fi
 
 	# fix locale issues if possible #122216

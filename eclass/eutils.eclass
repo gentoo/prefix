@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.283 2007/06/16 08:03:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.284 2007/06/21 04:44:45 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -742,7 +742,7 @@ edos2unix() {
 #			this can be relative (to /usr/share/pixmaps) or
 #			a full path to an icon
 # type:		what kind of application is this ?	for categories:
-#			http://www.freedesktop.org/Standards/desktop-entry-spec
+#			http://standards.freedesktop.org/menu-spec/latest/apa.html
 # path:		if your app needs to startup in a specific dir
 make_desktop_entry() {
 	[[ -z $1 ]] && eerror "make_desktop_entry: You must specify the executable" && return 1
@@ -759,14 +759,20 @@ make_desktop_entry() {
 		case ${catmaj} in
 			app)
 				case ${catmin} in
+					accessibility) type=Accessibility;;
 					admin)	   type=System;;
+					antivirus) type=System;;
+					arch)      type=Archiving;;
+					backup)    type=Archiving;;
 					cdr)	   type=DiscBurning;;
 					dicts)	   type=Dictionary;;
+					doc)       type=Documentation;;
 					editors)   type=TextEditor;;
 					emacs)	   type=TextEditor;;
 					emulation) type=Emulator;;
 					laptop)	   type=HardwareSettings;;
 					office)	   type=Office;;
+					pda)       type=PDA;;
 					vim)	   type=TextEditor;;
 					xemacs)	   type=TextEditor;;
 					*)		   type=;;
@@ -782,17 +788,25 @@ make_desktop_entry() {
 					action|fps) type=ActionGame;;
 					arcade)		type=ArcadeGame;;
 					board)		type=BoardGame;;
-					kids)		type=KidsGame;;
 					emulation)	type=Emulator;;
+					kids)		type=KidsGame;;
 					puzzle)		type=LogicGame;;
-					rpg)		type=RolePlaying;;
 					roguelike)	type=RolePlaying;;
+					rpg)		type=RolePlaying;;
 					simulation) type=Simulation;;
 					sports)		type=SportsGame;;
 					strategy)	type=StrategyGame;;
 					*)			type=;;
 				esac
 				type="Game;${type}"
+				;;
+
+			gnome)
+				type="Gnome;GTK"
+				;;
+
+			kde)
+				type="KDE;Qt"
 				;;
 
 			mail)
@@ -828,15 +842,22 @@ make_desktop_entry() {
 
 			sci)
 				case ${catmin} in
-					astro*) type=Astronomy;;
-					bio*)	type=Biology;;
-					calc*)	type=Calculator;;
-					chem*)	type=Chemistry;;
-					geo*)	type=Geology;;
-					math*)	type=Math;;
-					*)		type=;;
+					astro*)  type=Astronomy;;
+					bio*)	 type=Biology;;
+					calc*)	 type=Calculator;;
+					chem*)	 type=Chemistry;;
+					elec*)   type=Electronics;;
+					geo*)	 type=Geology;;
+					math*)	 type=Math;;
+					physics) type=Physics;;
+					visual*) type=DataVisualization;;
+					*)		 type=;;
 				esac
 				type="Science;${type}"
+				;;
+
+			sys)
+				type="System"
 				;;
 
 			www)
@@ -863,7 +884,7 @@ make_desktop_entry() {
 	cat <<-EOF > "${desktop}"
 	[Desktop Entry]
 	Encoding=UTF-8
-	Version=0.9.2
+	Version=1.0
 	Name=${name}
 	Type=Application
 	Comment=${DESCRIPTION}
@@ -871,7 +892,7 @@ make_desktop_entry() {
 	TryExec=${exec%% *}
 	Path=${path}
 	Icon=${icon}
-	Categories=Application;${type};
+	Categories=${type};
 	EOF
 
 	(

@@ -1,6 +1,6 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.15 2007/05/31 14:37:05 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.18 2007/06/20 11:57:28 caleb Exp $
 #
 # Author Caleb Tennis <caleb@gentoo.org>
 #
@@ -13,7 +13,7 @@
 # 08.16.06 - Renamed qt_min_* to qt4_min_* to avoid conflicts with the qt3 eclass.
 #    - Caleb Tennis <caleb@gentoo.org>
 
-inherit versionator
+inherit versionator eutils
 
 QTPKG="x11-libs/qt-"
 QT4MAJORVERSIONS="4.3 4.2 4.1 4.0"
@@ -49,4 +49,15 @@ qt4_min_version_list() {
 	esac
 
 	echo "${VERSIONS}"
+}
+
+EXPORT_FUNCTIONS pkg_setup
+
+qt4_pkg_setup() {
+	for x in $QT4_BUILT_WITH_USE_CHECK; do
+		if ! built_with_use =x11-libs/qt-4* $x; then
+			die "This package requires Qt4 to be built with the ${x} use flag."
+		fi
+	done
+	
 }

@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.89 2007/06/07 12:17:54 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.90 2007/06/19 21:08:57 caster Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -1836,7 +1836,8 @@ eant() {
 		fi
 	done
 
-	if has_version ">=dev-java/ant-core-1.7.0"; then
+	# we use this in src_* so we run ant from /
+	if ROOT=/ has_version ">=dev-java/ant-core-1.7.0"; then
 		# default ANT_TASKS to WANT_ANT_TASKS, if ANT_TASKS is not set explicitly
 		ANT_TASKS="${ANT_TASKS:-${WANT_ANT_TASKS}}"
 
