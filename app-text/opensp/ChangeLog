@@ -1,6 +1,9 @@
 # ChangeLog for app-text/opensp
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/opensp/ChangeLog,v 1.43 2007/03/12 22:55:13 leonardop Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/opensp/ChangeLog,v 1.44 2007/06/19 13:56:08 armin76 Exp $
+
+  19 Jun 2007; Raúl Porcel <armin76@gentoo.org> opensp-1.5.2-r1.ebuild:
+  alpha stable wrt #152364
 
   12 Mar 2007; Leonardo Boshell <leonardop@gentoo.org> metadata.xml:
   Replacing text-markup herd with the new sgml herd.
