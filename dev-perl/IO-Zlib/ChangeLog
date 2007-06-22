@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/IO-Zlib
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Zlib/ChangeLog,v 1.21 2007/03/11 20:44:46 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Zlib/ChangeLog,v 1.22 2007/06/21 16:21:13 mcummings Exp $
+
+  21 Jun 2007; Michael Cummings <mcummings@gentoo.org> IO-Zlib-1.05.ebuild:
+  Marking sparc stable
 
 *IO-Zlib-1.05 (11 Mar 2007)
 
