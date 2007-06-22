@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-config/ruby-config-0.3.2.ebuild,v 1.4 2007/01/01 16:33:54 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-config/ruby-config-0.3.2.ebuild,v 1.5 2007/06/18 05:50:31 graaff Exp $
 
 EAPI="prefix"
 
 inherit eutils multilib
 
-DESCRIPTION="Utility to switch the ruby interpreter beging used"
+DESCRIPTION="Utility to switch the ruby interpreter being used"
 HOMEPAGE="http://www.gentoo.org/"
 SRC_URI=""
 
