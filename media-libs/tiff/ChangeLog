@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/tiff
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.94 2007/04/30 23:36:45 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.95 2007/06/21 12:29:13 taviso Exp $
+
+  21 Jun 2007; Tavis Ormandy <taviso@gentoo.org> tiff-3.8.2-r2.ebuild:
+  fix homepage
 
   30 Apr 2007; Marius Mauch <genone@gentoo.org> tiff-3.8.2-r2.ebuild:
   Replacing einfo with elog

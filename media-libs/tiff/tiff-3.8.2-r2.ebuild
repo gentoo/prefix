@@ -1,13 +1,13 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/tiff-3.8.2-r2.ebuild,v 1.5 2007/04/30 23:36:45 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/tiff-3.8.2-r2.ebuild,v 1.6 2007/06/21 12:29:13 taviso Exp $
 
 EAPI="prefix"
 
 inherit eutils libtool
 
 DESCRIPTION="Library for manipulation of TIFF (Tag Image File Format) images"
-HOMEPAGE="http://www.libtiff.org/"
+HOMEPAGE="http://remotesensing.org/libtiff/"
 SRC_URI="ftp://ftp.remotesensing.org/pub/libtiff/${P}.tar.gz
 	mirror://gentoo/${P}-tiff2pdf.patch.bz2"
 
