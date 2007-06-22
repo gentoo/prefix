@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/dialog-1.1.20070514.ebuild,v 1.1 2007/05/19 14:40:35 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/dialog-1.1.20070514.ebuild,v 1.2 2007/06/18 11:25:36 armin76 Exp $
 
 EAPI="prefix"
 
