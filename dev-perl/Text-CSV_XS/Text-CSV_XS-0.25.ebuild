@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-CSV_XS/Text-CSV_XS-0.25.ebuild,v 1.1 2007/05/12 15:10:10 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-CSV_XS/Text-CSV_XS-0.25.ebuild,v 1.2 2007/06/21 17:53:20 mcummings Exp $
 
 EAPI="prefix"
 
