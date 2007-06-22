@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.0-r6.ebuild,v 1.25 2007/06/17 14:51:03 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.0-r6.ebuild,v 1.26 2007/06/19 08:05:06 ulm Exp $
 
 EAPI="prefix"
 
@@ -22,7 +22,7 @@ SRC_URI=""
 LICENSE="GPL-2 FDL-1.2"
 SLOT="23"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
-IUSE="alsa gif gpm gtk gzip-el hesiod jpeg lesstif motif png spell sound source tiff toolkit-scroll-bars X Xaw3d xft xpm"
+IUSE="alsa gif gpm gtk gzip-el hesiod jpeg motif png spell sound source tiff toolkit-scroll-bars X Xaw3d xft xpm"
 RESTRICT="strip"
 
 X_DEPEND="x11-libs/libXmu x11-libs/libXt x11-misc/xbitmaps"
@@ -47,10 +47,7 @@ RDEPEND="sys-libs/ncurses
 		!gtk? (
 			Xaw3d? ( x11-libs/Xaw3d )
 			!Xaw3d? (
-				motif? (
-					lesstif? ( x11-libs/lesstif )
-					!lesstif? ( x11-libs/openmotif )
-				)
+				motif? ( virtual/motif )
 			)
 		)
 	)"

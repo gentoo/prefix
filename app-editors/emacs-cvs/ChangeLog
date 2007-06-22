@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.140 2007/06/17 14:51:03 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.141 2007/06/19 08:05:06 ulm Exp $
+
+  19 Jun 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.1.50.ebuild,
+  emacs-cvs-23.0.0-r6.ebuild:
+  Depend on virtual/motif and remove lesstif USE flag.
 
   17 Jun 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-23.0.0-r6.ebuild:
   Skip Xaw3d headers patch for unicode-2 branch, too. Fixes #182326.
