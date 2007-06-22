@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.4.4.ebuild,v 1.10 2007/06/14 05:45:29 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.4.8.ebuild,v 1.4 2007/06/15 21:55:05 cardoe Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="http://cairographics.org/releases/${P}.tar.gz"
 LICENSE="|| ( LGPL-2.1 MPL-1.1 )"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
-IUSE="aqua debug directfb doc glitz svg X xcb"
+IUSE="aqua debug directfb doc glitz opengl svg X xcb"
 
 # Test causes a circular depend on gtk+... since gtk+ needs cairo but test needs gtk+ so we need to block it
 RESTRICT="test"
@@ -48,6 +48,9 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	epatch "${FILESDIR}"/${P}-directfb.patch
+	epatch "${FILESDIR}"/${P}-XError.patch
+
 	# We need to run elibtoolize to ensure correct so versioning on FreeBSD
 	elibtoolize
 }
@@ -56,9 +59,9 @@ src_compile() {
 	#gets rid of fbmmx.c inlining warnings
 	append-flags -finline-limit=1200
 
-	# get rid of Altivec stuff on PPC, it kills compilation
-	ewarn "Help grobian!  Do we still need to kill -m* flags here on ppc-macos?"
-	[[ ${CHOST} == powerpc-*-darwin* ]] && filter-flags -m*
+	if use glitz && use opengl; then
+		export glitz_LIBS=-lglitz-glx
+	fi
 
 	econf $(use_enable X xlib) $(use_enable doc gtk-doc) \
 	  	  $(use_enable directfb) \
