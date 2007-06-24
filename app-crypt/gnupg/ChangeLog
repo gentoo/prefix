@@ -1,6 +1,17 @@
 # ChangeLog for app-crypt/gnupg
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.293 2007/06/13 08:05:52 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.295 2007/06/22 16:55:27 alonbl Exp $
+
+  22 Jun 2007; Alon Bar-Lev <alonbl@gentoo.org> -gnupg-1.4.6-r1.ebuild,
+  -gnupg-1.4.7.ebuild, -gnupg-2.0.2.ebuild, -gnupg-2.0.3.ebuild,
+  -gnupg-2.0.3-r1.ebuild, -gnupg-2.0.4.ebuild:
+  Cleanup
+
+*gnupg-2.0.4-r1 (22 Jun 2007)
+
+  22 Jun 2007; Alon Bar-Lev <alonbl@gentoo.org>
+  +files/gnupg-2.0.4-idea.patch, +gnupg-2.0.4-r1.ebuild:
+  Add IDEA workaround, bug#159870, thanks to so many people.
 
   13 Jun 2007; Alon Bar-Lev <alonbl@gentoo.org> gnupg-1.9.21.ebuild,
   gnupg-1.9.21-r1.ebuild, gnupg-1.9.22.ebuild, gnupg-1.9.94.ebuild,
