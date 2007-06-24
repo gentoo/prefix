@@ -1,6 +1,11 @@
 # ChangeLog for app-misc/ca-certificates
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.9 2007/05/06 11:33:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.10 2007/06/23 02:38:57 dsd Exp $
+
+  23 Jun 2007; Daniel Drake <dsd@gentoo.org>
+  ca-certificates-20050804.ebuild, ca-certificates-20061027.2.ebuild,
+  ca-certificates-20070303-r1.ebuild:
+  Change LICENSE to MPL-1.1, bug #176002
 
 *ca-certificates-20070303-r1 (06 May 2007)
 
