@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.1-r3.ebuild,v 1.4 2007/05/31 19:15:55 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.1-r3.ebuild,v 1.5 2007/06/23 15:40:37 flameeyes Exp $
 
 EAPI="prefix"
 
-inherit eutils autotools
+inherit eutils autotools flag-o-matic
 
 DESCRIPTION="Scheme interpreter"
 HOMEPAGE="http://www.gnu.org/software/guile/"
@@ -44,6 +44,9 @@ src_unpack() {
 
 
 src_compile() {
+	# see bug #178499
+	filter-flags -ftree-vectorize
+
 #will fail for me if posix is disabled or without modules -- hkBst
 	econf \
 		--disable-error-on-warning \

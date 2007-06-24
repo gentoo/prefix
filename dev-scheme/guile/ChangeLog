@@ -1,6 +1,9 @@
 # ChangeLog for dev-scheme/guile
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.22 2007/06/02 17:31:14 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.23 2007/06/23 15:40:37 flameeyes Exp $
+
+  23 Jun 2007; Diego Pettenò <flameeyes@gentoo.org> guile-1.8.1-r3.ebuild:
+  Filter -ftree-vectorize flag as per bug #178499.
 
   02 Jun 2007; nixnut <nixnut@gentoo.org> guile-1.6.8.ebuild:
   Stable on ppc wrt bug 178360
