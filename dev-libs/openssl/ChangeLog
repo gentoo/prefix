@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.213 2007/04/22 22:41:31 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.214 2007/06/22 02:38:35 vapier Exp $
+
+*openssl-0.9.8e-r1 (22 Jun 2007)
+
+  22 Jun 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/openssl-0.9.8-evp-key-len.patch, +files/openssl-0.9.8-gcc42.patch,
+  +openssl-0.9.8e-r1.ebuild:
+  Fix from upstream for encfs/ssh troubles #168750 and fix from PLD Linux for
+  gcc-4.2 troubles #158324.
 
   22 Apr 2007; Bryan Østergaard <kloeri@gentoo.org> openssl-0.9.8d.ebuild:
   Stable on Mips.
