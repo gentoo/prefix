@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.40_pre20070411.ebuild,v 1.2 2007/05/25 16:38:04 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.40_pre20070411.ebuild,v 1.3 2007/06/23 02:27:57 dsd Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ DESCRIPTION="Standard EXT2 and EXT3 filesystem utilities"
 HOMEPAGE="http://e2fsprogs.sourceforge.net/"
 SRC_URI="mirror://sourceforge/e2fsprogs/${MY_P}.tar.gz"
 
-LICENSE="GPL-2"
+LICENSE="GPL-2 BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~mips ~x86"
 IUSE="nls static"
