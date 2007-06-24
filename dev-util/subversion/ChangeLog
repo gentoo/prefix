@@ -1,6 +1,22 @@
 # ChangeLog for dev-util/subversion
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.265 2007/06/17 16:37:31 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.268 2007/06/22 15:19:39 chtekk Exp $
+
+  22 Jun 2007; Luca Longinotti <chtekk@gentoo.org>
+  subversion-1.3.2-r4.ebuild, subversion-1.4.4-r2.ebuild:
+  Improve apr-suffix check, thanks to Axel Dyks.
+
+*subversion-1.4.4-r2 (22 Jun 2007)
+
+  22 Jun 2007; Luca Longinotti <chtekk@gentoo.org>
+  -files/subversion-apr-version.patch, -files/subversion-neon-config.patch,
+  -subversion-1.4.4-r1.ebuild, +subversion-1.4.4-r2.ebuild:
+  Sync changes to 1.4.4 ebuild, fixes bug #182870.
+
+  22 Jun 2007; Luca Longinotti <chtekk@gentoo.org>
+  subversion-1.3.2-r4.ebuild, -subversion-1.4.3.ebuild,
+  -subversion-1.4.3-r1.ebuild, -subversion-1.4.4.ebuild:
+  Fix bug #182453 (should be again Apache-2.0 compatible), cleanup ebuild.
 
 *subversion-1.4.4-r1 (17 Jun 2007)
 

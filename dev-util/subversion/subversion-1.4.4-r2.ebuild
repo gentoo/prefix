@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.3.2-r4.ebuild,v 1.7 2007/06/22 15:19:39 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.4-r2.ebuild,v 1.2 2007/06/22 15:19:39 chtekk Exp $
 
 EAPI="prefix"
 
 inherit elisp-common libtool python eutils multilib bash-completion flag-o-matic depend.apache perl-module java-pkg-opt-2
 
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 
 DESCRIPTION="A compelling replacement for CVS."
 HOMEPAGE="http://subversion.tigris.org/"
@@ -14,7 +14,7 @@ SRC_URI="http://subversion.tigris.org/downloads/${P/_rc/-rc}.tar.bz2"
 
 LICENSE="Apache-1.1"
 SLOT="0"
-IUSE="apache2 berkdb emacs java nls nowebdav perl python ruby zlib"
+IUSE="apache2 berkdb emacs java nls nowebdav perl python ruby"
 RESTRICT="test"
 
 COMMONDEPEND="apache2? ( ${APACHE2_DEPEND} )
@@ -24,8 +24,7 @@ COMMONDEPEND="apache2? ( ${APACHE2_DEPEND} )
 			ruby? ( >=dev-lang/ruby-1.8.2 )
 			!nowebdav? ( >=net-misc/neon-0.26 )
 			berkdb? ( =sys-libs/db-4* )
-			emacs? ( virtual/emacs )
-			zlib? ( sys-libs/zlib )"
+			emacs? ( virtual/emacs )"
 
 RDEPEND="${COMMONDEPEND}
 		java? ( >=virtual/jre-1.4 )"
@@ -39,7 +38,7 @@ S=${WORKDIR}/${P/_rc/-rc}
 # Allow for custion repository locations.
 # This can't be in pkg_setup because the variable needs to be available to
 # pkg_config.
-: ${SVN_REPOS_LOC:=/var/svn}
+: ${SVN_REPOS_LOC:=${EPREFIX}/var/svn}
 
 discover_apr_suffix() {
 	if use apache2 ; then
@@ -81,12 +80,13 @@ src_unpack() {
 	# assure we don't use the included libs by accident
 	rm -Rf neon apr apr-util
 
-	epatch "${FILESDIR}"/subversion-db4.patch
+	epatch "${FILESDIR}"/subversion-1.4-db4.patch
 	epatch "${FILESDIR}"/subversion-1.1.1-perl-vendor.patch
 	epatch "${FILESDIR}"/subversion-hotbackup-config.patch
 	epatch "${FILESDIR}"/subversion-1.3.1-neon-config.patch
 	epatch "${FILESDIR}"/subversion-apr_cppflags.patch
-	epatch "${FILESDIR}"/subversion-1.3.2-neon-0.26.patch
+	epatch "${FILESDIR}"/subversion-1.4.3-debug-config.patch
+	epatch "${FILESDIR}"/subversion-1.4.3-neon-0.26.3.patch
 
 	if [[ "$(discover_apr_suffix)" == "-1" ]] ; then
 		sed -e s:apu-config:apu-1-config:g \
@@ -122,6 +122,18 @@ src_compile() {
 		myconf="${myconf} --with-neon=${EPREFIX}/usr"
 	fi
 
+	case ${CHOST} in
+		*-darwin7)
+			# KeyChain support on OSX Panther is broken, due to some library
+			# includes which don't exist
+			myconf="${myconf} --disable-keychain"
+		;;
+		*-*-solaris*)
+			# -lintl isn't added for some reason
+			use nls && append-ldflags -lintl
+		;;
+	esac
+
 	use apache2 && myconf="${myconf} --with-apxs=${APXS2}"
 	use apache2 || myconf="${myconf} --without-apxs"
 
@@ -132,7 +144,6 @@ src_compile() {
 	econf ${myconf} \
 		$(use_with berkdb berkeley-db) \
 		$(use_with python) \
-		$(use_with zlib) \
 		$(use_enable nls) \
 		--disable-experimental-libtool \
 		--disable-mod-activation \
@@ -174,10 +185,6 @@ src_compile() {
 		elisp-compile "${S}"/contrib/client-side/psvn/psvn.el || die "emacs modules failed"
 		elisp-compile "${S}"/contrib/client-side/vc-svn.el || die "emacs modules failed"
 	fi
-
-	# svn-config isn't quite built correctly: it contains references to
-	# @SVN_DB_LIBS@ and @SVN_DB_INCLUDES@. It appears the best thing is to remove that. #64634
-	sed -i 's/@SVN_DB_[^@]*@//g' svn-config || die "svn-config sed failed"
 }
 
 
@@ -187,10 +194,8 @@ src_install () {
 
 	make DESTDIR="${D}" install || die "Installation of ${PN} failed"
 
-	dobin svn-config
-
 	if use python ; then
-		make DESTDIR="${D}" DISTUTIL_PARAM=--prefix=${D} LD_LIBRARY_PATH="-L${D}/usr/$(get_libdir)" install-swig-py \
+		make DESTDIR="${D}" DISTUTIL_PARAM="--prefix=${ED}" LD_LIBRARY_PATH="-L${ED}/usr/$(get_libdir)" install-swig-py \
 			|| die "Installation of ${PN} Python bindings failed"
 
 		# move python bindings
@@ -254,7 +259,11 @@ EOF
 
 	# Install svnserve init-script and xinet.d snippet, bug 43245
 	newinitd "${FILESDIR}"/svnserve.initd svnserve
-	newconfd "${FILESDIR}"/svnserve.confd svnserve
+	if use apache2 ; then
+		newconfd "${FILESDIR}"/svnserve.confd svnserve
+	else
+		newconfd "${FILESDIR}"/svnserve.confd2 svnserve
+	fi
 	insinto /etc/xinetd.d ; newins "${FILESDIR}"/svnserve.xinetd svnserve
 
 	# Install documentation
@@ -352,12 +361,12 @@ pkg_postrm() {
 }
 
 pkg_config() {
-	if [[ ! -x /usr/bin/svnadmin ]] ; then
+	if [[ ! -x ${EPREFIX}/usr/bin/svnadmin ]] ; then
 		die "You seem to only have built the ${PN} client"
 	fi
 
 	einfo ">>> Initializing the database in ${SVN_REPOS_LOC} ..."
-	if [[ -e "${SVN_REPOS_LOC}/repos" ]] ; then
+	if [[ -e ${SVN_REPOS_LOC}/repos ]] ; then
 		echo "A subversion repository already exists and I will not overwrite it."
 		echo "Delete ${SVN_REPOS_LOC}/repos first if you're sure you want to have a clean version."
 	else
@@ -365,10 +374,16 @@ pkg_config() {
 
 		einfo ">>> Populating repository directory ..."
 		# create initial repository
-		/usr/bin/svnadmin create "${SVN_REPOS_LOC}/repos"
+		${EPREFIX}/usr/bin/svnadmin create "${SVN_REPOS_LOC}/repos"
 
 		einfo ">>> Setting repository permissions ..."
-		chown -Rf apache:apache "${SVN_REPOS_LOC}/repos"
+		if use apache2 ; then
+			chown -Rf apache:apache "${SVN_REPOS_LOC}/repos"
+		else
+			enewgroup svnusers
+			enewuser svn -1 -1 /var/svn svnusers
+			chown -Rf svn:svnusers "${SVN_REPOS_LOC}/repos"
+		fi
 		chmod -Rf 755 "${SVN_REPOS_LOC}/repos"
 	fi
 }
