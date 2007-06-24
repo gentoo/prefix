@@ -1,6 +1,13 @@
 # ChangeLog for app-arch/bsdtar
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bsdtar/ChangeLog,v 1.69 2007/05/31 01:39:33 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bsdtar/ChangeLog,v 1.70 2007/06/23 22:39:22 flameeyes Exp $
+
+  23 Jun 2007; Diego Pettenò <flameeyes@gentoo.org>
+  -files/libarchive-1.2.53-strict-aliasing.patch,
+  -files/libarchive-1.2.57-acl.patch,
+  -files/libarchive-1.3.1-infiniteloop.patch, -bsdtar-1.3.1-r2.ebuild,
+  -bsdtar-2.2.2.ebuild:
+  Remove some old files.
 
   31 May 2007; Daniel Gryniewicz <dang@gentoo.org> bsdtar-2.0.31.ebuild:
   Marked stable on amd64 for bug #180017
