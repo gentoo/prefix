@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/graphviz
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.120 2007/04/01 15:22:57 yoswink Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.121 2007/06/23 04:35:05 kumba Exp $
+
+  23 Jun 2007; Joshua Kinard <kumba@gentoo.org> graphviz-2.12.ebuild:
+  Stable on mips.
 
   01 Apr 2007; Jose Luis Rivero <yoswink@gentoo.org> graphviz-2.12.ebuild:
   alpha stable wrt bug #165460
