@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.353 2007/06/02 08:16:27 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.357 2007/06/17 02:06:07 vapier Exp $
 
 # Keep them sorted
 
@@ -125,6 +125,7 @@ gphoto2 - Adds digital camera support
 gpm - Adds support for sys-libs/gpm (Console-based mouse driver)
 gps - Adds support for Global Positioning System
 graphviz - Adds support for the Graphviz library
+gsl - Use the GNU scientific library for calculations
 gstreamer - Adds support for media-libs/gstreamer (Streaming media)
 gtk - Adds support for x11-libs/gtk+ (The GIMP Toolkit)
 gtkhtml - Adds support for gnome-extra/gtkhtml
@@ -239,6 +240,7 @@ odbc - Adds ODBC Support (Open DataBase Connectivity)
 offensive - Enables potentially offensive items in packages
 ofx - Enable support for importing (and exporting) OFX (Open Financial eXchange) data files
 ogg - Adds support for the Ogg container format (commonly used by Vorbis, Theora and flac)
+old-linux - Add support for linux-2.4 and older
 openal - Adds support for the Open Audio Library
 openexr - Support for the OpenEXR graphics file format
 opengl - Adds support for OpenGL (3D graphics)
@@ -346,7 +348,7 @@ wddx - Adds support for Web Distributed Data eXchange
 wifi - Enable wireless network functions
 win32codecs - use win32codecs package for dll avi decoding support (wmv and what not)
 wmf - Adds support for the wmf vector image format
-wxwindows - Adds support for wxWindows/wxGTK GUI toolkit
+wxwindows - Adds support for wxWidgets/wxGTK GUI toolkit
 x264 - Enable h264 encoding using x264
 xcomposite - Enable support for the Xorg composite extension
 xface - Adds xface support used to allow a small image of xface format to be included in an email via the header 'X-Face'.
@@ -360,6 +362,7 @@ xpm - Adds support for XPM graphics format
 xprint - Support for xprint, http://www.mozilla.org/projects/xprint/
 xscreensaver - Adds support for XScreenSaver extension.
 xsl - Check/Support flag for XSL library (version 1)
+xulrunner - Build native browser integration against xulrunner instead of firefox or seamonkey.
 xv - Adds in optional support for the Xvideo extension (an X API for video playback)
 xvid - Adds support for xvid.org's open-source mpeg-4 codec
 yahoo - Enable Yahoo Messenger IM protocol support
