@@ -1,6 +1,25 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.485 2007/06/10 00:56:26 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.490 2007/06/23 18:22:17 angelos Exp $
+
+  23 Jun 2007; Christoph Mende <angelos@gentoo.org>
+  mplayer-1.0.20070622.ebuild:
+  Stable on amd64 wrt security bug 181097
+
+  23 Jun 2007; Jeroen Roovers <jer@gentoo.org> mplayer-1.0.20070622.ebuild:
+  Stable for HPPA (bug #181097).
+
+  23 Jun 2007; Markus Rothe <corsair@gentoo.org>
+  mplayer-1.0.20070622.ebuild:
+  Stable on ppc64; bug #181097
+
+  22 Jun 2007; Steve Dibb <beandog@gentoo.org> mplayer-1.0.20070622.ebuild:
+  Fix dts configuration, bug 182914
+
+*mplayer-1.0.20070622 (22 Jun 2007)
+
+  22 Jun 2007; Steve Dibb <beandog@gentoo.org> +mplayer-1.0.20070622.ebuild:
+  Version bump, security bug 181097
 
   10 Jun 2007; Luca Barbato <lu_zero@gentoo.org>
   mplayer-1.0.20070427.ebuild:
