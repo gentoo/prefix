@@ -174,3 +174,11 @@ mplayer-bin
 # George Shapovalov <george@gentoo.org> (8 Apr 2007)
 # Ada is supported only on x86, amd64 and ppc at present
 ada
+
+# lvm2 clustered use flags (moved from default-linux)
+clvm
+gulm
+cman
+
+# tcc is x86 only
+tcc
