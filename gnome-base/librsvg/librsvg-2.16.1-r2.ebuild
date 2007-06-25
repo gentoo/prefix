@@ -62,7 +62,7 @@ src_unpack() {
 }
 
 src_install() {
-	gnome2_src_install plugindir=/usr/$(get_libdir)/nsbrowser/plugins/
+	gnome2_src_install plugindir="${EPREFIX}"/usr/$(get_libdir)/nsbrowser/plugins/
 
 	# remove gdk-pixbuf loaders (#47766)
 	rm -fr ${ED}/etc
