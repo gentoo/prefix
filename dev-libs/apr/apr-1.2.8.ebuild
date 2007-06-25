@@ -12,7 +12,7 @@ SRC_URI="mirror://apache/apr/${P}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="1"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="ipv6 urandom debug"
 RESTRICT="test"
 
@@ -21,6 +21,10 @@ DEPEND=""
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	# the included libtool.m4 is causing big trouble, use the system one
+	rm -f build/libtool.m4
+	epatch "${FILESDIR}"/${P}-libtool.patch
 
 	# for some reason not all the .m4 files that are referenced in 
 	# configure.in exist, so we remove all references and include every
@@ -59,11 +63,6 @@ src_compile() {
 		 --enable-threads \
 		 --enable-nonportable-atomics \
 		 ${myconf} || die "econf failed!"
-
-	# Make sure we use the system libtool
-	sed -i 's,$(apr_builddir)/libtool,/usr/bin/libtool,' "${S}"/build/apr_rules.mk
-	sed -i 's,${installbuilddir}/libtool,/usr/bin/libtool,' "${S}"/apr-1-config
-	rm -f "${S}"/libtool
 
 	emake || die "Make failed"
 }
