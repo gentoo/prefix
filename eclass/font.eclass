@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.22 2007/03/26 20:04:34 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.23 2007/06/24 06:15:21 dirtyepic Exp $
 
 # Author: foser <foser@gentoo.org>
 
@@ -66,7 +66,7 @@ font_xft_config() {
 
 font_src_install() {
 
-	local suffix
+	local suffix commondoc
 
 	cd "${FONT_S}"
 
@@ -82,10 +82,12 @@ font_src_install() {
 	font_xft_config
 
 	cd "${S}"
-	# try to install some common docs
-	DOCS="${DOCS} COPYRIGHT README NEWS"
 	dodoc ${DOCS} 2> /dev/null
 
+	# install common docs
+	for commondoc in COPYRIGHT README NEWS AUTHORS BUGS ChangeLog; do
+		[ -s ${commondoc} ] && dodoc ${commondoc}
+	done
 }
 
 font_pkg_setup() {
