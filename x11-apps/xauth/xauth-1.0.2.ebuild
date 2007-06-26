@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xauth/xauth-1.0.2.ebuild,v 1.7 2007/05/20 22:03:58 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xauth/xauth-1.0.2.ebuild,v 1.9 2007/06/24 22:43:35 vapier Exp $
 
 EAPI="prefix"
 
