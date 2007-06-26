@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.16.3_pre20070610.ebuild,v 1.1 2007/06/11 01:21:54 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.16.3.ebuild,v 1.1 2007/06/25 12:19:40 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -8,11 +8,11 @@ EAPI="prefix"
 
 inherit libtool eutils
 
-MY_P=${P/_pre/-}
+#MY_P=${P/_pre/-}
 DESCRIPTION="A Client that groks URLs"
 HOMEPAGE="http://curl.haxx.se/ http://curl.planetmirror.com"
-SRC_URI="http://cool.haxx.se/curl-daily/${MY_P}.tar.bz2"
-#SRC_URI="http://curl.planetmirror.com/download/${P}.tar.bz2"
+#SRC_URI="http://cool.haxx.se/curl-daily/${MY_P}.tar.bz2"
+SRC_URI="http://curl.haxx.se/download/${P}.tar.bz2"
 
 LICENSE="MIT X11"
 SLOT="0"
@@ -25,7 +25,8 @@ RDEPEND="gnutls? ( net-libs/gnutls )
 	ldap? ( net-nds/openldap )
 	idn? ( net-dns/libidn )
 	ares? ( >=net-dns/c-ares-1.4.0 )
-	kerberos? ( virtual/krb5 )"
+	kerberos? ( virtual/krb5 )
+	app-misc/ca-certificates"
 
 # net-libs/libssh2 (masked) --with-libssh2
 # fbopenssl (not in gentoo) --with-spnego
@@ -38,7 +39,7 @@ DEPEND="${RDEPEND}
 		dev-lang/perl
 	)"
 # used - but can do without in self test: net-misc/stunnel
-S="${WORKDIR}"/${MY_P}
+#S="${WORKDIR}"/${MY_P}
 
 src_unpack() {
 	unpack ${A}
@@ -65,7 +66,7 @@ src_compile() {
 		--enable-largefile
 		--enable-maintainer-mode
 		--disable-sspi
-		--without-ca-bundle
+		--with-ca-bundle=${EPREFIX}/etc/ssl/certs/ca-certificates.crt
 		--without-krb4
 		--without-libssh2
 		--without-spnego"
@@ -93,6 +94,7 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "installed failed for current version"
+	rm -rf "${ED}"/etc/
 
 	# https://sourceforge.net/tracker/index.php?func=detail&aid=1705197&group_id=976&atid=350976
 	insinto /usr/share/aclocal
