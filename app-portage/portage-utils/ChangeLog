@@ -1,6 +1,10 @@
 # ChangeLog for app-portage/portage-utils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.82 2007/06/12 15:10:45 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.83 2007/06/25 21:57:11 angelos Exp $
+
+  25 Jun 2007; Christoph Mende <angelos@gentoo.org>
+  portage-utils-0.1.28.ebuild:
+  Stable on amd64 wrt bug 183197
 
   12 Jun 2007; Diego Pettenò <flameeyes@gentoo.org>
   +files/qmerge-posix-180871.patch, portage-utils-0.1.28.ebuild:
