@@ -1,6 +1,16 @@
 # ChangeLog for dev-db/postgresql
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/ChangeLog,v 1.348 2007/06/11 02:08:28 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/ChangeLog,v 1.350 2007/06/24 22:50:25 dev-zero Exp $
+
+  24 Jun 2007; Tiziano Müller <dev-zero@gentoo.org>
+  -files/postgresql-8.0.12-gentoo.patch, -files/postgresql-8.0.12-sh.patch,
+  -postgresql-8.0.12.ebuild:
+  Dropped old versions.
+
+  24 Jun 2007; Tiziano Müller <dev-zero@gentoo.org>
+  -files/postgresql-8.0-gentoo.patch, -files/postgresql-8.0-sh.patch,
+  -postgresql-8.0.8.ebuild:
+  Dropped old version.
 
   11 Jun 2007; Joshua Kinard <kumba@gentoo.org> postgresql-8.0.13.ebuild:
   Stable on mips, per #158075.
