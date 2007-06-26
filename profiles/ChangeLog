@@ -1,6 +1,168 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.452 2007/06/05 07:04:49 mrness Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.499 2007/06/25 18:34:40 ulm Exp $
+
+  25 Jun 2007; Ulrich Mueller <ulm@gentoo.org> use.local.desc:
+  Add local use flags bbdb and planner for app-emacs/remember.
+
+  25 Jun 2007; Diego Pettenò <flameeyes@gentoo.org> package.mask:
+  Fix typo in mask.
+
+  25 Jun 2007; Alon Bar-Lev <alonbl@gentoo.org> use.local.desc:
+  Fix ccid, hibernate-script, suspend2-sources, bug#134491
+
+  25 Jun 2007; Steve Dibb <beandog@gentoo.org> use.local.desc:
+  Add ssse3 local use flag for media-video/mplayer
+
+  24 Jun 2007; Piotr Jaroszyński <peper@gentoo.org> package.mask:
+  Mask x11-drivers/mtxdrivers-pro for removal.
+
+  24 Jun 2007; Peter Volkov <pva@gentoo.org> use.local.desc:
+  Updated description of sms USE flag for app-mobilephone/gnokii.
+
+  24 Jun 2007; Raúl Porcel <armin76@gentoo.org> use.local.desc:
+  Remove unused use-flag for www-client/mozilla-launcher, bug 134491
+
+  24 Jun 2007; Ulrich Mueller <ulm@gentoo.org> use.local.desc:
+  Remove unused aqua USE flag for app-editors/emacs-cvs, bug #134491.
+
+  24 Jun 2007; Tiziano Müller <dev-zero@gentoo.org> use.local.desc:
+  Removed pg-hier and pg-vacuum USE flags for dev-db/postgresql (bug ##134491)
+
+  24 Jun 2007; Tiziano Müller <dev-zero@gentoo.org> use.local.desc:
+  Removed libclamav and ldapsam USE flags for net-fs/samba (bug #134491)
+
+  24 Jun 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Mask media-fonts/twmoefonts for bug #115110.
+
+  23 Jun 2007; Wulf C. Krueger <philantrop@gentoo.org> use.local.desc:
+  Added local USE flag taglib for media-sound/kid3.
+
+  23 Jun 2007; Sven Wegener <swegener@gentoo.org> use.local.desc:
+  Add local USE flag system-libvncserver for x11-misc/x11vnc.
+
+  23 Jun 2007; Jeroen Roovers <jer@gentoo.org> use.local.desc:
+  q8/q32: Improve descriptions.
+
+  22 Jun 2007; Chris Gianelloni <wolf31o2@gentoo.org> base/use.mask,
+  default-linux/alpha/use.mask, default-linux/amd64/use.mask,
+  default-linux/ia64/use.mask, default-linux/mips/use.mask,
+  default-linux/ppc/1.0/use.mask, default-linux/ppc/1.0_rc/use.mask,
+  default-linux/ppc/1.2/use.mask, default-linux/ppc/1.4/use.mask,
+  default-linux/ppc/2004.0/use.mask, default-linux/ppc/2004.1/use.mask,
+  default-linux/ppc/2004.2/use.mask, default-linux/ppc/2004.3/use.mask,
+  default-linux/ppc/2005.0/use.mask, default-linux/ppc/2005.1/ppc/use.mask,
+  default-linux/ppc/dev/ppc32/use.mask,
+  default-linux/ppc/dev/ppc64/2007.0/32bit-userland/use.mask,
+  default-linux/ppc/ppc32/use.mask,
+  default-linux/ppc/ppc64/2006.0/32bit-userland/use.mask,
+  default-linux/ppc/ppc64/2006.1/32bit-userland/use.mask,
+  default-linux/ppc/ppc64/2007.0/32bit-userland/use.mask,
+  default-linux/sparc/use.mask, default-linux/use.mask,
+  default-linux/x86/use.mask, hardened/amd64/use.mask,
+  hardened/ppc/use.mask, hardened/ppc64/use.mask, hardened/use.mask,
+  hardened/x86/use.mask, selinux/2005.1/alpha/use.mask,
+  selinux/alpha/use.mask, selinux/amd64/use.mask, selinux/mips/use.mask,
+  selinux/ppc/ppc32/use.mask, selinux/sparc/use.mask, selinux/use.mask,
+  selinux/x86/use.mask:
+  Moved clvm and tcc USE flags masking to the highest possible parent and
+  unmasking at highest possible point, rather than in leaf profiles. This is
+  for bug #159832.
+
+  22 Jun 2007; Steve Dibb <beandog@gentoo.org> use.local.desc:
+  Add amrnb, amrwb local use flags for mplayer
+
+  22 Jun 2007; Wulf C. Krueger <philantrop@gentoo.org> package.mask:
+  Removed the mask for net-print/kink as bug 176857 is most likely resolved
+  and we need proper testing.
+
+  21 Jun 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Mask net-dialup/multiimonc, bug #182748.
+
+  21 Jun 2007; Ulrich Mueller <ulm@gentoo.org> updates/2Q-2007:
+  Package move app-emacs/ebuild-mode to app-emacs/gentoo-syntax.
+
+  21 Jun 2007; Bernard Cafarelli <voyageur@gentoo.org> use.local.desc:
+  vnc USE flag cleanup for NX packages
+
+  21 Jun 2007; Wulf C. Krueger <philantrop@gentoo.org> package.mask:
+  Masked net-print/kink for removal wrt bug #176857.
+
+  21 Jun 2007; Timothy Redaelli <drizzt@gentoo.org> package.mask:
+  Stable version of UPX released, beta version removed.
+
+  21 Jun 2007; Diego Pettenò <flameeyes@gentoo.org> use.local.desc:
+  Add mp4 useflag for Amarok (replaces AAC).
+
+  20 Jun 2007; Diego Pettenò <flameeyes@gentoo.org> use.local.desc:
+  Add dssi USE flag for rosegarden.
+
+  19 Jun 2007; Raúl Porcel <armin76@gentoo.org> package.mask:
+  Remove mask as it has been removed, bug 152520
+
+  18 Jun 2007; Wulf C. Krueger <philantrop@gentoo.org> use.local.desc:
+  Added gammu and obex for app-mobilephone/kmobiletools.
+
+  17 Jun 2007; Ulrich Mueller <ulm@gentoo.org> use.local.desc:
+  Add local nanoemacs flag for app-editors/jasspa-microemacs.
+
+  17 Jun 2007; Peter Weller <welp@gentoo.org> package.mask:
+  Masked dev-util/larch wrt bug 180577
+
+  17 Jun 2007; Mart Raudsepp <leio@gentoo.org> use.desc:
+  Rename wxWindows to wxWidgets in the wxwindows USE flag description for now
+  - later can think about USE flag renaming
+
+  15 Jun 2007; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  pmask dev-java/javahelp-bin and remove mask for dev-util/jcvs and
+  dev-java/j2ssh as they have been removed from the tree some time ago.
+
+  15 Jun 2007; Jeff Gardner <je_fro@gentoo.org> use.local.desc:
+  Add vhosts and client-only USE flags for sci-chemistry/jmol.
+
+  13 Jun 2007; Raúl Porcel <armin76@gentoo.org> use.local.desc:
+  Add restrict-javascript USE-flag for www-client/mozilla-firefox-bin
+
+  12 Jun 2007; Raúl Porcel <armin76@gentoo.org> package.mask:
+  Remove net-p2p/deluge mask
+
+  09 Jun 2007; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  2006 --> 2007. bad drac.
+
+  09 Jun 2007; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  package.mask dev-java/odmg for moving to java-experimental overlay
+
+  09 Jun 2007; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  Remove some entries for packages that I have removed from the tree.
+
+  09 Jun 2007; Rémi Cardona <remi@gentoo.org> package.mask:
+  Move Gnome 2.18 mask to arm/alpha/fbsd subprofiles,
+  effectively unmasking it for all other arches
+
+  09 Jun 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Removed wxruby mask since it has been deleted from the tree.
+
+  07 Jun 2007; Raúl Porcel <armin76@gentoo.org> package.mask:
+  Remove removed packages, bugs 173064 142838 154645 168565 73987
+
+  07 Jun 2007; Alon Bar-Lev <alonbl@gentoo.org> package.mask:
+  Remove 855resolution, bug#159586
+
+  07 Jun 2007; Christian Faulhammer <opfer@gentoo.org> use.desc,
+  use.local.desc:
+  making gsl a global USE flag
+
+  06 Jun 2007; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Unmasking boost-1.34.0
+
+  06 Jun 2007; Sébastien Fabbro <bicatali@gentoo.org> use.local.desc:
+  Added sandbox local flag for sci-libs/scipy
+
+  06 Jun 2007; Samuli Suominen <drac@gentoo.org> use.desc, use.local.desc:
+  Move xulrunner from local to global use.
+
+  06 Jun 2007; Matthias Schwarzott <zzam@gentoo.org> desc/dvb_cards.desc:
+  Added three new dvb_cards entries, Bug 174491.
 
   05 Jun 2007; Alin Năstac <mrness@gentoo.org> use.local.desc:
   Add extra-algorithms and weak-algorithms USE flags for openswan (#180472).
