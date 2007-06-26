@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.1-r2.ebuild,v 1.6 2007/05/19 21:43:29 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.1-r2.ebuild,v 1.7 2007/06/24 23:10:28 vapier Exp $
 
 EAPI="prefix"
 
