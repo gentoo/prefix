@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r12.ebuild,v 1.26 2007/06/24 21:14:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r12.ebuild,v 1.27 2007/06/25 07:22:42 ulm Exp $
 
 EAPI="prefix"
 
@@ -11,6 +11,7 @@ inherit flag-o-matic eutils toolchain-funcs autotools
 DESCRIPTION="An incredibly powerful, extensible text editor"
 HOMEPAGE="http://www.gnu.org/software/emacs"
 SRC_URI="mirror://gnu/emacs/${P}a.tar.gz
+	mirror://gentoo/emacs-21-patches.tar.bz2
 	leim? ( mirror://gnu/emacs/leim-${PV}.tar.gz )"
 
 LICENSE="GPL-2 FDL-1.1"
@@ -53,23 +54,23 @@ src_unpack() {
 		-e "s:/usr/lib/crtend.o:$(`tc-getCC` -print-file-name=crtend.o):g" \
 		"${S}"/src/s/freebsd.h || die "unable to sed freebsd.h settings"
 
-	epatch "${FILESDIR}/emacs-21.3-xorg.patch"
-	epatch "${FILESDIR}/emacs-21.3-amd64.patch"
-	epatch "${FILESDIR}/emacs-21.3-hppa.patch"
-	epatch "${FILESDIR}/emacs-21.2-sh.patch"
-	epatch "${FILESDIR}/emacs-21.4-libungif-gif-gentoo.patch"
+	epatch "${WORKDIR}/emacs-21.3-xorg.patch"
+	epatch "${WORKDIR}/emacs-21.3-amd64.patch"
+	epatch "${WORKDIR}/emacs-21.3-hppa.patch"
+	epatch "${WORKDIR}/emacs-21.2-sh.patch"
+	epatch "${WORKDIR}/emacs-21.4-libungif-gif-gentoo.patch"
 
 	if use ppc64; then
-		epatch "${FILESDIR}/emacs-21.3-ppc64.patch"
-		epatch "${FILESDIR}/emacs-21.4-ppc64-fix-unexelf.patch"
+		epatch "${WORKDIR}/emacs-21.3-ppc64.patch"
+		epatch "${WORKDIR}/emacs-21.4-ppc64-fix-unexelf.patch"
 	fi
 
-	epatch "${FILESDIR}/emacs-21.4-autosave-tmp.patch"
-	epatch "${FILESDIR}/emacs-21.4-blessmail-build.patch"
-	epatch "${FILESDIR}/emacs-21.4-qa.patch"
-	epatch "${FILESDIR}/emacs-21.4-Xaw3d-headers.patch"
-	epatch "${FILESDIR}/emacs-21.4-freebsd-terminfo.patch"
-	epatch "${FILESDIR}/emacs-21.4-oldxmenu-malloc.patch"
+	epatch "${WORKDIR}/emacs-21.4-autosave-tmp.patch"
+	epatch "${WORKDIR}/emacs-21.4-blessmail-build.patch"
+	epatch "${WORKDIR}/emacs-21.4-qa.patch"
+	epatch "${WORKDIR}/emacs-21.4-Xaw3d-headers.patch"
+	epatch "${WORKDIR}/emacs-21.4-freebsd-terminfo.patch"
+	epatch "${WORKDIR}/emacs-21.4-oldxmenu-malloc.patch"
 
 	# install emacsclient.1 man page (#165466)
 	sed -i -e "s/for page in emacs/& emacsclient/" Makefile.in || die

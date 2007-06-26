@@ -1,6 +1,19 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.168 2007/06/24 15:25:34 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.169 2007/06/25 07:22:42 ulm Exp $
+
+  25 Jun 2007; Ulrich Mueller <ulm@gentoo.org> -files/emacs-21.2-sh.patch,
+  -files/emacs-21.3-amd64.patch, -files/emacs-21.3-hppa.patch,
+  -files/emacs-21.3-ppc64.patch, -files/emacs-21.3-xorg.patch,
+  -files/emacs-21.4-Xaw3d-headers.patch,
+  -files/emacs-21.4-autosave-tmp.patch,
+  -files/emacs-21.4-blessmail-build.patch,
+  -files/emacs-21.4-freebsd-terminfo.patch,
+  -files/emacs-21.4-libungif-gif-gentoo.patch,
+  -files/emacs-21.4-oldxmenu-malloc.patch,
+  -files/emacs-21.4-ppc64-fix-unexelf.patch, -files/emacs-21.4-qa.patch,
+  emacs-21.4-r4.ebuild, emacs-21.4-r8.ebuild, emacs-21.4-r12.ebuild:
+  Put patches on Gentoo mirrors.
 
   24 Jun 2007; Ulrich Mueller <ulm@gentoo.org> emacs-22.1.ebuild:
   Depend on virtual/motif and remove lesstif USE flag.
