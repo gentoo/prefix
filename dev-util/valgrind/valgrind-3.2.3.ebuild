@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.2.3.ebuild,v 1.6 2007/05/05 18:11:03 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.2.3.ebuild,v 1.7 2007/06/25 21:59:52 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -39,7 +39,7 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-pkg-config.patch"
 
 	# Remove defaulting to ppc32-linux on ppc64 without multilib
-	# "valgrind: failed to start tool 'memcheck' for platform 'ppc32-linux': 
+	# "valgrind: failed to start tool 'memcheck' for platform 'ppc32-linux':
 	#  No such file or directory"
 	if use ppc64 && ! has_multilib_profile; then
 		epatch "${FILESDIR}/valgrind-3.2.1-only64bit.patch"
@@ -56,7 +56,7 @@ src_compile() {
 	#                       while compiling insn_sse.c in none/tests/x86
 	# -fpie                 valgrind seemingly hangs when built with pie on
 	#                       amd64 (bug #102157)
-	# -fstack-protector     more undefined references to __guard and __stack_smash_handler 
+	# -fstack-protector     more undefined references to __guard and __stack_smash_handler
 	#                       because valgrind doesn't link to glibc (bug #114347)
 	# -ggdb3                segmentation fault on startup
 	filter-flags -fomit-frame-pointer
@@ -85,4 +85,3 @@ src_install() {
 	make DESTDIR="${D}" install || die "Install failed!"
 	dodoc ACKNOWLEDGEMENTS AUTHORS FAQ.txt NEWS README*
 }
-
