@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.6.8.ebuild,v 1.12 2007/06/24 21:36:07 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.6.8.ebuild,v 1.13 2007/06/25 09:20:01 hkbst Exp $
 
 EAPI="prefix"
 
@@ -67,7 +67,7 @@ src_install() {
 	echo "GUILE_LOAD_PATH=\"${EPREFIX}/usr/share/guile/${MAJOR}\"" > ${ED}/etc/env.d/50guile
 
 #	# install a symlink to slib; probably not worth it to test for slib use flag
-#	dosym ${eroot}/usr/lib/slib/ ${eroot}/usr/share/guile/slib
+#	dosym /usr/lib/slib/ /usr/share/guile/slib
 }
 
 # keeping this in slib for now
