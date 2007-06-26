@@ -1,6 +1,13 @@
 # ChangeLog for app-text/djvu
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.59 2007/05/22 11:15:24 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.61 2007/06/24 23:57:52 angelos Exp $
+
+  24 Jun 2007; Christoph Mende <angelos@gentoo.org> djvu-3.5.19.ebuild:
+  Stable on amd64 wrt bug 183056
+
+  24 Jun 2007; Ferris McCormick <fmccor@gentoo.org> djvu-3.5.19.ebuild:
+  Sparc stable --- Bug #183056 --- builds (with USE="jpeg nls qt3 tiff xml
+  doc") and works fine on its own document files.
 
 *djvu-3.5.19 (22 May 2007)
 

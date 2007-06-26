@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.19.ebuild,v 1.2 2007/05/22 11:21:22 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.19.ebuild,v 1.5 2007/06/24 23:57:52 angelos Exp $
 
 EAPI="prefix"
 
