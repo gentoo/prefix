@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.293 2007/06/24 22:29:45 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.294 2007/06/25 07:43:30 opfer Exp $
+
+  25 Jun 2007; Christian Faulhammer <opfer@gentoo.org> binutils-2.17.ebuild:
+  stable x86, security bug 134112
 
   24 Jun 2007; Christoph Mende <angelos@gentoo.org> binutils-2.17.ebuild:
   Stable on amd64 wrt security bug 134112
