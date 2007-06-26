@@ -68,6 +68,11 @@ src_compile() {
 }
 
 src_install() {
+	# rules.mk is copied over, so make reference to libtool correct
+	sed -i \
+		-e 's/^top_builddir=.*$/top_builddir=$(apr_builddir)/' \
+		build/apr_rules.mk
+
 	make DESTDIR="${D}" install || die "make install failed"
 
 	# This file is only used on AIX systems, which gentoo is not,
