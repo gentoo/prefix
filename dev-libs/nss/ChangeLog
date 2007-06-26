@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/nss
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.93 2007/04/20 13:26:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.94 2007/06/24 23:40:19 peper Exp $
+
+  24 Jun 2007; Piotr Jaroszyński <peper@gentoo.org> nss-3.11.5.ebuild:
+  (QA) Fix ${ROOT} abuse. bug #167271.
 
   20 Apr 2007; Raúl Porcel <armin76@gentoo.org> -nss-3.11.3.ebuild,
   -nss-3.11.3-r1.ebuild, -nss-3.11.4.ebuild:

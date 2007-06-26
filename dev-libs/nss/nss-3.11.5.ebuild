@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.11.5.ebuild,v 1.12 2007/04/20 12:14:03 redhatter Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.11.5.ebuild,v 1.13 2007/06/24 23:40:19 peper Exp $
 
 EAPI="prefix"
 
@@ -24,11 +24,11 @@ src_unpack() {
 	unpack ${A}
 
 	# hack nspr paths
-	echo 'INCLUDES += -I${EROOT}/usr/include/nspr -I$(DIST)/include/dbm' \
+	echo 'INCLUDES += -I'"${EPREFIX}"'/usr/include/nspr -I$(DIST)/include/dbm' \
 		>> ${S}/mozilla/security/coreconf/headers.mk || die "failed to append include"
 
 	# cope with nspr being in /usr/$(get_libdir)/nspr
-	sed -e 's:$(DIST)/lib:${EROOT}/usr/'"$(get_libdir)"/nspr':' \
+	sed -e 's:$(DIST)/lib:'"${EPREFIX}"'/usr/'"$(get_libdir)"/nspr':' \
 		-i ${S}/mozilla/security/coreconf/location.mk
 
 	# modify install path
