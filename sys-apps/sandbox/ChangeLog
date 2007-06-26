@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/sandbox
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.72 2006/11/22 14:25:28 flameeyes Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.73 2007/06/24 18:07:40 peper Exp $
+
+  24 Jun 2007; Piotr Jaroszyński <peper@gentoo.org> sandbox-1.2.18.ebuild:
+  (QA) Don't use KEYWORDS="-*". bug #160519.
 
   22 Nov 2006; Diego Pettenò <flameeyes@gentoo.org>
   sandbox-1.2.20_alpha2.ebuild:
