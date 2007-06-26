@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.141 2007/06/19 08:05:06 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.142 2007/06/24 15:39:37 ulm Exp $
+
+  24 Jun 2007; Ulrich Mueller <ulm@gentoo.org>
+  -files/emacs-cvs-Xaw3d-headers.patch,
+  -files/emacs-cvs-disable_alsa_detection.patch, -emacs-cvs-22.0.990.ebuild:
+  Remove old version.
 
   19 Jun 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.1.50.ebuild,
   emacs-cvs-23.0.0-r6.ebuild:
