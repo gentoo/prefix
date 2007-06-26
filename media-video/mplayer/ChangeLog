@@ -1,6 +1,26 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.490 2007/06/23 18:22:17 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.494 2007/06/25 00:26:59 beandog Exp $
+
+  25 Jun 2007; Steve Dibb <beandog@gentoo.org>
+  mplayer-1.0.20070622-r1.ebuild:
+  Add support for SSSE3
+
+*mplayer-1.0.20070622-r1 (24 Jun 2007)
+
+  24 Jun 2007; Steve Dibb <beandog@gentoo.org>
+  +mplayer-1.0.20070622-r1.ebuild:
+  Cleanup dvd use flags, bug 174721; don't disable a52 internal support unless
+  -dvd is used, bug 181082
+
+  24 Jun 2007; Raúl Porcel <armin76@gentoo.org>
+  mplayer-1.0.20070622.ebuild:
+  alpha/ia64 stable wrt security #181097
+
+  24 Jun 2007; Samuli Suominen <drac@gentoo.org>
+  mplayer-1.0.20070622.ebuild:
+  Makefile allready installs both pixmap and desktop file so stop doing that
+  inside ebuild.
 
   23 Jun 2007; Christoph Mende <angelos@gentoo.org>
   mplayer-1.0.20070622.ebuild:
