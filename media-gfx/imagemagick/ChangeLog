@@ -1,6 +1,13 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.230 2007/06/23 22:28:13 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.232 2007/06/24 13:22:15 angelos Exp $
+
+  24 Jun 2007; Christoph Mende <angelos@gentoo.org>
+  imagemagick-6.3.4-r1.ebuild:
+  Stable on amd64 wrt security bug 179943
+
+  24 Jun 2007; Joshua Kinard <kumba@gentoo.org> imagemagick-6.3.4-r1.ebuild:
+  Stable on mips, per #179943.
 
   23 Jun 2007; Jeroen Roovers <jer@gentoo.org> imagemagick-6.3.4-r1.ebuild:
   Stable for HPPA (bug #179943).
