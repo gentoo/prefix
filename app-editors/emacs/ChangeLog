@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.167 2007/06/13 17:39:54 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.168 2007/06/24 15:25:34 ulm Exp $
+
+  24 Jun 2007; Ulrich Mueller <ulm@gentoo.org> emacs-22.1.ebuild:
+  Depend on virtual/motif and remove lesstif USE flag.
 
   13 Jun 2007; Ulrich Mueller <ulm@gentoo.org> emacs-22.1.ebuild:
   Configure now supports "use_with hesiod" properly.
