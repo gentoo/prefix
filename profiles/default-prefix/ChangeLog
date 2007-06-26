@@ -2,6 +2,10 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Jun 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Fixed up messed libtool handling of apr, allowing to unmask it and
+  subversion-1.4.4-r2
+
   21 Jun 2007; Fabian Groffen <grobian@gentoo.org>
   +windows/interix/3.5/parent, +windows/interix/3.5/x86/parent:
   add missing parent files in the windows profile
