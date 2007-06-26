@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/yaml
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/yaml/ChangeLog,v 1.54 2007/05/12 05:18:11 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/yaml/ChangeLog,v 1.55 2007/06/25 10:49:34 mcummings Exp $
+
+*yaml-0.65 (25 Jun 2007)
+
+  25 Jun 2007; Michael Cummings <mcummings@gentoo.org> +yaml-0.65.ebuild:
+  Version bump
 
   12 May 2007; Joshua Kinard <kumba@gentoo.org> yaml-0.62.ebuild:
   Stable on mips.
