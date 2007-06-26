@@ -1,15 +1,9 @@
 # ChangeLog for sys-devel/patch
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/patch/ChangeLog,v 1.39 2007/05/12 09:10:37 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/patch/ChangeLog,v 1.40 2007/06/24 22:18:28 vapier Exp $
 
-  12 May 2007; Joshua Kinard <kumba@gentoo.org> patch-2.5.9-r1.ebuild:
-  Stable on mips.
-
-  25 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> patch-2.5.9-r1.ebuild:
-  Stable on sparc
-
-  24 Apr 2007; Raúl Porcel <armin76@gentoo.org> patch-2.5.9-r1.ebuild:
-  ia64 + x86 stable
+  24 Jun 2007; Mike Frysinger <vapier@gentoo.org> patch-2.5.9-r1.ebuild:
+  Dont stabilize version 2.5.9-r1.
 
   17 Oct 2006; Roy Marples <uberlord@gentoo.org> patch-2.5.9.ebuild,
   patch-2.5.9-r1.ebuild:
