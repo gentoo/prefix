@@ -1,6 +1,9 @@
 # ChangeLog for net-p2p/bittorrent
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/ChangeLog,v 1.115 2007/06/21 14:34:12 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/ChangeLog,v 1.116 2007/06/24 22:24:42 armin76 Exp $
+
+  24 Jun 2007; Raúl Porcel <armin76@gentoo.org> -bittorrent-5.0.5.ebuild:
+  old
 
   21 Jun 2007; Raúl Porcel <armin76@gentoo.org> -bittorrent-5.0.6.ebuild:
   old
