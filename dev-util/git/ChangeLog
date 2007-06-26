@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.205 2007/06/23 17:41:57 mabi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.206 2007/06/25 04:36:12 kumba Exp $
+
+  25 Jun 2007; Joshua Kinard <kumba@gentoo.org> git-1.5.1.6.ebuild:
+  Stable on mips, per #179245.
 
   23 Jun 2007; Matti Bickel <mabi@gentoo.org> git-1.5.1.6.ebuild:
   ppc stable (bug #179245)
