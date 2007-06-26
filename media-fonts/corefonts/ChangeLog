@@ -1,6 +1,12 @@
 # ChangeLog for media-fonts/corefonts
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-fonts/corefonts/ChangeLog,v 1.23 2006/04/18 20:15:15 flameeyes Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/corefonts/ChangeLog,v 1.24 2007/06/24 05:20:46 dirtyepic Exp $
+
+*corefonts-1-r3 (24 Jun 2007)
+
+  24 Jun 2007; Ryan Hill <dirtyepic@gentoo.org> +corefonts-1-r3.ebuild:
+  Install the Tahoma font, which was previously omitted due to licensing
+  issues. Thanks to Christoph Brill in Bug #141219.
 
   18 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> corefonts-1-r2.ebuild:
   Add ~x86-fbsd keyword.
