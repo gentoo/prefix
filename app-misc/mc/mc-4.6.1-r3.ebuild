@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.1-r3.ebuild,v 1.14 2007/06/03 10:17:39 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.1-r3.ebuild,v 1.15 2007/06/24 21:16:15 vapier Exp $
 
 EAPI="prefix"
 
