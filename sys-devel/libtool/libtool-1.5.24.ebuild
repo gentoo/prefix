@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-1.5.23b.ebuild,v 1.7 2007/06/25 15:14:04 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-1.5.24.ebuild,v 1.2 2007/06/25 15:14:04 vapier Exp $
 
 EAPI="prefix"
 
@@ -8,8 +8,7 @@ inherit eutils
 
 DESCRIPTION="A shared library tool for developers"
 HOMEPAGE="http://www.gnu.org/software/libtool/libtool.html"
-SRC_URI="ftp://alpha.gnu.org/gnu/libtool/${P}.tar.gz
-	mirror://gnu/${PN}/${P}.tar.gz"
+SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="1.5"
@@ -58,7 +57,7 @@ src_unpack() {
 	sed -i "s:@_LT_VERSION@:${PV}:" libtool.m4 || die "sed libtool.m4"
 	epatch "${FILESDIR}"/1.5.6/libtool-1.5-filter-host-tags.patch
 	epatch "${FILESDIR}"/1.5.20/libtool-1.5.20-override-LD_LIBRARY_PATH.patch
-	epatch "${FILESDIR}"/${P}-aixrtl.patch
+	epatch "${FILESDIR}"/${PN}-1.5.23b-aixrtl.patch
 
 	ebegin "Generating ltmain.sh"
 	gen_ltmain_sh || die "Failed to generate ltmain.sh!"
