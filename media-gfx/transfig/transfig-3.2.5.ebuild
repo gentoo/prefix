@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/transfig/transfig-3.2.5.ebuild,v 1.2 2007/04/02 15:17:06 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/transfig/transfig-3.2.5.ebuild,v 1.4 2007/06/24 16:57:12 jer Exp $
 
 EAPI="prefix"
 
