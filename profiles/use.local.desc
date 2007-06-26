@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2883 2007/06/23 23:50:53 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2893 2007/06/25 18:34:40 ulm Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -62,7 +62,6 @@ app-cdr/k3b:css - Enables ripping of encrypted dvds
 app-cdr/k3b:emovix - Enable burning support for eMoviX images
 app-cdr/pxlinux:gnuplot - enable gnuplot support
 app-cdr/serpentine:muine - Enable Muine support
-app-crypt/ccid:chipcard2 - Enable libchipcard support
 app-crypt/ccid:nousb - Disable USB support via pcsc-lite
 app-crypt/ccid:twinserial - Enable twinserial reader
 app-crypt/gnupg:ecc - Use elliptic curve cryptosystem patch
@@ -79,7 +78,6 @@ app-crypt/seahorse:nautilus - Add support for nautilus file manager
 app-dicts/aspell-be:classic - Support classic spelling by default
 app-doc/gimp-help:webinstall - optimize images for web installation (fewer colors, depends on imagemagick)
 app-editors/cssed:plugin - Install plugin development files
-app-editors/emacs-cvs:aqua - Build Carbon Emacs
 app-editors/emacs-cvs:gzip-el - Compress bundled Emacs Lisp source
 app-editors/emacs-cvs:hesiod - Enable support for hesiod
 app-editors/emacs-cvs:sound - Enable sound
@@ -113,6 +111,8 @@ app-emacs/auctex:preview-latex - Use bundled preview-latex
 app-emacs/chess:festival - Enable festival support
 app-emacs/delicious:planner - Include support for app-emacs/planner
 app-emacs/easypg:gnus - Include support for the Gnus newsreader
+app-emacs/remember:bbdb - Include support for app-emacs/bbdb
+app-emacs/remember:planner - Include support for app-emacs/planner
 app-emacs/vm:bbdb - Include support for app-emacs/bbdb
 app-emacs/wanderlust:bbdb - Include support for app-emacs/bbdb
 app-emulation/bochs:debugger - Enable the bochs debugger
@@ -218,7 +218,7 @@ app-misc/workrave:distribution - Enable networking. See http://www.workrave.org/
 app-mobilephone/gammu:irda - Enable infrared support
 app-mobilephone/gnokii:ical - Enable libical support
 app-mobilephone/gnokii:irda - Enable infrared support
-app-mobilephone/gnokii:sms - Enable SMS support
+app-mobilephone/gnokii:sms - Enable SMS support (build smsd)
 app-mobilephone/kmobiletools:gammu - Enable the Gammu backend.
 app-mobilephone/kmobiletools:obex - Enable obex transports.
 app-mobilephone/obexftp:swig - Enable rebuild of swig bindings
@@ -316,9 +316,7 @@ dev-db/mysql:raid - deprecated option, removed in the 5.0 series
 dev-db/pgcluster:pg-intdatetime - Enables --enable-integer-datetimes configure option, which changes PG to use 64-bit integers for timestamp storage.
 dev-db/postgis:geos - Add the GEOS library for exact topological tests.
 dev-db/postgis:proj - Add the Proj library for reprojection features.
-dev-db/postgresql:pg-hier - Enables recursive queries like Oracle's 'CONNECT BY' feature.
 dev-db/postgresql:pg-intdatetime - Enables --enable-integer-datetimes configure option, which changes PG to use 64-bit integers for timestamp storage.
-dev-db/postgresql:pg-vacuumdelay - Adds in the vacuum inter-page delay feature.
 dev-db/rekall:xbase - Support for the Xbase db family, covering dBase, Clipper, FoxPro, Visual dBase/Objects/FoxPro plus some older products.
 dev-db/sqlite:nothreadsafe - turn off thread safe operation of sqlite
 dev-db/sqlite:soundex - Enable the soundex function to compute soundex encodings of strings
@@ -579,6 +577,7 @@ dev-scheme/guile:discouraged - (implied by deprecated) enable merely discouraged
 dev-scheme/guile:elisp - enable Emacs Lisp support
 dev-scheme/guile:networking - include networking interfaces
 dev-scheme/guile:regex - include regular expression interfaces
+dev-tex/latex-beamer:lyx - Install with LyX layouts
 dev-tex/preview-latex:xemacs - Adds support for XEmacs
 dev-util/anjuta:glade - Build glade plugin for anjuta
 dev-util/anjuta:inherit-graph - Build inheritance graphing plugin for anjuta
@@ -1147,6 +1146,7 @@ media-video/mplayer:rar - Enable Unique RAR File Library
 media-video/mplayer:real - Adds real video support
 media-video/mplayer:rtc - Enables usage of the linux real time clock.  The alternative is software emulation of rtc
 media-video/mplayer:srt - Internal SRT/SSA/ASS (SubRip / SubStation Alpha) subtitle support
+media-video/mplayer:ssse3 - faster floating point optimization for SSSE3 capable chips (Intel Core 2 and later chips)
 media-video/mplayer:tga - Enables Targa video output
 media-video/mplayer:tivo - Enables TiVo vstream client support
 media-video/mplayer:v4l2 - Enables video4linux2 support
@@ -1326,8 +1326,6 @@ net-fs/netatalk:xfs - Enable support for XFS Quota
 net-fs/nfs-utils:nonfsv4 - Disable support for NFSv4
 net-fs/samba:async - Enables asynchronous input/output
 net-fs/samba:automount - Enables automount support
-net-fs/samba:ldapsam - Enables samba 2.2 ldap support (default passwd backend: ldapsam_compat)
-net-fs/samba:libclamav - Enables clamav libraries, without needing to use the daemon
 net-fs/samba:oav - Enables support for anti-virus from the openantivirus.org project
 net-fs/samba:quotas - Enables support for user quotas
 net-fs/samba:swat - Enables support for swat configuration gui
@@ -1887,7 +1885,6 @@ sys-kernel/mips-sources:ip28 - Enables support for SGI Indigo2 Impact R10000 (IP
 sys-kernel/mips-sources:ip30 - Enables support for SGI Octane (IP30, 'Speedracer')
 sys-kernel/mips-sources:ip32r10k - Enables experimental support for IP32 R10K kernels (SGI O2, 'Moosehead')
 sys-kernel/sparc-sources:ultra1 - If you have a SUN Ultra 1 with a HME interface
-sys-kernel/suspend2-sources:ultra1 - If you have a SUN Ultra 1 with a HME interface
 sys-libs/glibc:erandom - Enable erandom/frandom support in glibc for ssp
 sys-libs/glibc:glibc-compat20 - Enable the glibc-compat addon.
 sys-libs/glibc:glibc-omitfp - Configure glibc with --enable-omitfp which lets the build system determine when it is safe to use -fomit-frame-pointer
@@ -1913,7 +1910,6 @@ sys-power/cpufreqd:nforce2 - Enable for nforce2 voltage settings plug-in
 sys-power/cpufreqd:nvidia - Enable nvidia overclocking (nvclock) plug-in
 sys-power/cpufreqd:pmu - Enable Power Management Unit plug-in
 sys-power/hibernate-script:logrotate - Use logrotate for rotating logs
-sys-power/hibernate-script:vim - Install vim support files
 sys-power/nut:cgi - Add CGI script support
 sys-power/powersave:pam_console - Adds support for pam console from PAM
 sys-process/daemontools-scripts:withsamplescripts - Installs sample supervise scripts
@@ -1971,7 +1967,6 @@ www-client/mozilla-firefox:moznopango - Disable pango during runtime
 www-client/mozilla-firefox:restrict-javascript - Pull in noscript extension to disable javascript globally, putting user fully in control of the sites he/she visits
 www-client/mozilla-firefox:xforms - XForms is a standard to split up XHTML into XForms, instance data, and user interface
 www-client/mozilla-firefox-bin:restrict-javascript - Pull in noscript extension to disable javascript globally, putting user fully in control of the sites she/she visits
-www-client/mozilla-launcher:aoss - Add support for media-libs/alsa-oss - playing sounds from browser via OSS emulation
 www-client/opera:qt-static - Installs binaries statically linked to Qt
 www-client/seamonkey:mozcalendar - Enable mozilla calendar extension
 www-client/seamonkey:mozdevelop - Enable features for web developers (e.g. Venkman)

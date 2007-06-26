@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/dvb_cards.desc,v 1.4 2006/11/16 03:40:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/dvb_cards.desc,v 1.5 2007/06/06 15:39:10 zzam Exp $
 
 # This file contains descriptions of DVB_CARDS USE_EXPAND flags.
 
@@ -17,6 +17,9 @@ or51211 - DVB_CARDS setting to add support for the or51211 DVB-T Demodulator (Ya
 sp8870 - DVB_CARDS setting to add support for the sp8870 chip (T Nexus-T premium rev1.2)
 sp887x - DVB_CARDS setting to add support for the sp887x chip (Avermedia DVB-T 761)
 tda1004x - DVB_CARDS setting to add support for the tda1004x DVB-T Demodulator (Hauppauge/TT Nova-T, TT Nova-USB-T)
+tda10045 - DVB_CARDS setting to add support for the tda10045 DVB-T Demodulator (Hauppauge/TT Nova-T, TT Nova-USB-T)
+tda10046 - DVB_CARDS setting to add support for the tda10046 DVB-T Demodulator (Hauppauge/TT Nova-T, TT Nova-USB-T)
+tda10046lifeview - DVB_CARDS setting to add support for the tda10046 DVB-T Demodulator (Lifeview cards)
 ttpci - DVB_CARDS setting to add support for the Full-Featured Cards built by TechnoTrend, Siemens, Hauppauge
 ttusb-dec - DVB_CARDS setting to add support for the ttusb-dec chip (WinTV NOVA-T USB2)
 usb-a800 - DVB_CARDS setting to add support for the usb-a800 USB DVB-T-device (AVerMedia AVerTV)
