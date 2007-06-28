@@ -1,29 +1,27 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.3.17.ebuild,v 1.11 2007/06/24 21:21:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.3.17.ebuild,v 1.12 2007/06/27 15:01:31 vapier Exp $
 
 EAPI="prefix"
 
 inherit flag-o-matic eutils alternatives libtool
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
-
-DESCRIPTION="SQLite: an SQL Database Engine in a C Library."
+DESCRIPTION="an SQL Database Engine in a C Library"
 HOMEPAGE="http://www.sqlite.org/"
 SRC_URI="http://www.sqlite.org/${P}.tar.gz"
+
 LICENSE="as-is"
 SLOT="3"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="debug doc nothreadsafe soundex tcl"
+RESTRICT="!tcl? ( test )"
 
 DEPEND="doc? ( dev-lang/tcl )
-		tcl? ( dev-lang/tcl )"
-
+	tcl? ( dev-lang/tcl )"
 RDEPEND="tcl? ( dev-lang/tcl )"
 
 SOURCE="/usr/bin/lemon"
 ALTERNATIVES="${SOURCE}-3 ${SOURCE}-0"
-
-RESTRICT="!tcl? ( test )"
 
 src_unpack() {
 	# test
