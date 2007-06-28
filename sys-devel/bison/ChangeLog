@@ -1,6 +1,27 @@
 # ChangeLog for sys-devel/bison
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/ChangeLog,v 1.63 2007/01/05 07:12:45 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/ChangeLog,v 1.70 2007/06/28 00:59:36 kumba Exp $
+
+  28 Jun 2007; Joshua Kinard <kumba@gentoo.org> bison-2.3.ebuild:
+  Stable on mips, per #183254.
+
+  27 Jun 2007; Markus Rothe <corsair@gentoo.org> bison-2.3.ebuild:
+  Stable on ppc64; bug #183254
+
+  27 Jun 2007; Jeroen Roovers <jer@gentoo.org> bison-2.3.ebuild:
+  Stable for HPPA (bug #183254).
+
+  26 Jun 2007; Lars Weiler <pylon@gentoo.org> bison-2.3.ebuild:
+  Stable on ppc; bug #183254.
+
+  26 Jun 2007; Raúl Porcel <armin76@gentoo.org> bison-2.3.ebuild:
+  alpha/ia64/x86 stable wrt #183254
+
+  26 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org> bison-2.3.ebuild:
+  Stable on sparc wrt #183254
+
+  26 Jun 2007; Christoph Mende <angelos@gentoo.org> bison-2.3.ebuild:
+  Stable on amd64 wrt bug 183254
 
   05 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> bison-1.875.ebuild,
   bison-2.0.ebuild, bison-2.1.ebuild, bison-2.2.ebuild:
