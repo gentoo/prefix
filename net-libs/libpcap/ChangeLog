@@ -1,6 +1,10 @@
 # ChangeLog for net-libs/libpcap
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.72 2007/06/23 09:54:53 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.73 2007/06/26 13:37:17 pva Exp $
+
+  26 Jun 2007; <pva@gentoo.org> libpcap-0.9.6.ebuild:
+  Omit installation of unnecessary README files. Thank Samuli Suominen <drac
+  AT gentoo.org> for report in bug 183057.
 
 *libpcap-0.9.6 (23 Jun 2007)
 

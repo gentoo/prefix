@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/libpcap-0.9.6.ebuild,v 1.1 2007/06/23 09:54:53 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/libpcap-0.9.6.ebuild,v 1.2 2007/06/26 13:37:17 pva Exp $
 
 EAPI="prefix"
 
@@ -62,5 +62,6 @@ src_install() {
 	dosym libpcap$(get_libname ${PV:0:3}) /usr/$(get_libdir)/libpcap$(get_libname ${PV:0:1})
 	dosym libpcap$(get_libname ${PV:0:3}) /usr/$(get_libdir)/libpcap$(get_libname)
 
-	dodoc CREDITS CHANGES FILES README* VERSION TODO
+	# We are not installing README.{Win32,aix,hpux,tru64} (bug 183057)
+	dodoc CREDITS CHANGES FILES VERSION TODO README{,.dag,.linux,.macosx,.septel}
 }
