@@ -136,10 +136,10 @@ src_compile() {
 
 	cd ${S}
 	./configure \
-		--prefix=/usr \
-		--libdir=/usr/$(get_libdir) \
-		--shlibdir=/usr/$(get_libdir) \
-		--mandir=/usr/share/man \
+		--prefix="${EPREFIX}"/usr \
+		--libdir="${EPREFIX}"/usr/$(get_libdir) \
+		--shlibdir="${EPREFIX}"/usr/$(get_libdir) \
+		--mandir="${EPREFIX}"/usr/share/man \
 		--enable-static --enable-shared \
 		"--cc=$(tc-getCC)" \
 		${myconf} || die "configure failed"
