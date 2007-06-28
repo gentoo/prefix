@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-1.5.22.ebuild,v 1.13 2006/12/08 15:56:16 seemant Exp ${P}-r1.ebuild,v 1.8 2002/10/04 06:34:42 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-1.5.22.ebuild,v 1.14 2007/06/26 02:53:27 mr_bones_ Exp ${P}-r1.ebuild,v 1.8 2002/10/04 06:34:42 kloeri Exp $
 
 EAPI="prefix"
 
@@ -75,7 +75,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/1.5.10/${PN}-1.5.10-portage.patch
 	# If a package use an older libtool, and libtool.m4 for that
 	# package is updated, but not libtool, then we may run into an
-	# issue where internal variables are named differently.  Often 
+	# issue where internal variables are named differently.  Often
 	# this shows up as libs being built without '.so' extension #73140
 	# Note: concept has already been integrated into libtool-2+
 	epatch "${FILESDIR}"/1.5.20/${PN}-1.5.20-version-checking.patch
@@ -87,14 +87,14 @@ src_unpack() {
 	# <azarah@gentoo.org> - (11 Feb 2004)
 	epatch "${FILESDIR}"/1.5.20/${PN}-1.5.20-ltmain_sh-max_cmd_len.patch
 
-	# Libtool's autoguessing at tag's sucks ... it get's confused 
+	# Libtool's autoguessing at tag's sucks ... it get's confused
 	# if the tag's CC says '<CHOST>-gcc' and the env CC says 'gcc'
 	# or vice versa ... newer automakes specify the tag so no
 	# guessing is needed #67692
 	epatch "${FILESDIR}"/1.5.6/libtool-1.5-filter-host-tags.patch
 
-	# Libtool uses links to handle locking object files with 
-	# dependencies.  Hard links can't cross filesystems though, 
+	# Libtool uses links to handle locking object files with
+	# dependencies.  Hard links can't cross filesystems though,
 	# so we have to use a diff source for the link.  #40992
 	epatch "${FILESDIR}"/1.5.10/libtool-1.5.10-locking.patch
 
