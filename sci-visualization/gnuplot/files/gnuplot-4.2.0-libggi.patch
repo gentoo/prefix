@@ -1,0 +1,68 @@
+--- gnuplot-4.2.0/term/ggi.trm.orig	2007-06-27 14:37:05.000000000 +0900
++++ gnuplot-4.2.0/term/ggi.trm	2007-06-27 14:53:54.000000000 +0900
+@@ -116,9 +116,9 @@
+ } GGI_vertex_t;
+ 
+ TERM_PUBLIC long int GGI_SetTime(const struct timeval* current);
+-TERM_PUBLIC int GGI_from_keysym __PROTO((uint32 keysym));
+-TERM_PUBLIC int GGI_from_button __PROTO((uint32 button));
+-TERM_PUBLIC int GGI_y __PROTO((sint32 y));
++TERM_PUBLIC int GGI_from_keysym __PROTO((uint32_t keysym));
++TERM_PUBLIC int GGI_from_button __PROTO((uint32_t button));
++TERM_PUBLIC int GGI_y __PROTO((int32_t y));
+ TERM_PUBLIC int GGI_dispatch_event __PROTO((const ggi_event* event));
+ TERM_PUBLIC int GGI_eventually_update_modifiers __PROTO((const ggi_event* event, const int add));
+ TERM_PUBLIC int GGI_waitforinput __PROTO((void));
+@@ -134,13 +134,13 @@
+ TERM_PUBLIC void GGI_save_puts __PROTO((GGI_vertex_t* v, const int tag));
+ TERM_PUBLIC void GGI_set_vertex __PROTO((GGI_vertex_t* v, const int x, const int y, const char* str, const int tag));
+ TERM_PUBLIC void GGI_abort_zooming __PROTO((void));
+-TERM_PUBLIC void GGI_put_tmptext __PROTO((int, const char str[]));
+-TERM_PUBLIC void GGI_relative __PROTO((int r[2]));
++TERM_PUBLIC void GGI_put_tmptext __PROTO((int, const char *str));
++TERM_PUBLIC void GGI_relative __PROTO((int *r));
+ TERM_PUBLIC void GGI_clear_hline __PROTO((int x1, int x2, int y));
+ TERM_PUBLIC void GGI_clear_vline __PROTO((int y1, int y2, int x));
+ TERM_PUBLIC void GGI_draw_hline __PROTO((int x1, int x2, int y));
+ TERM_PUBLIC void GGI_draw_vline __PROTO((int y1, int y2, int x));
+-TERM_PUBLIC void GGI_set_clipboard __PROTO((const char[]));
++TERM_PUBLIC void GGI_set_clipboard __PROTO((const char *s));
+ #endif /* USE_MOUSE */
+ 
+ TERM_PUBLIC int GGI_make_palette __PROTO((t_sm_palette*));
+@@ -645,7 +645,7 @@
+ 
+ /* translate ggi keysym to gnuplot keysym */
+ TERM_PUBLIC int
+-GGI_from_keysym(uint32 keysym)
++GGI_from_keysym(uint32_t keysym)
+ {
+     switch (keysym) {
+ 	case GIIUC_BackSpace:
+@@ -811,7 +811,7 @@
+ }
+ 
+ TERM_PUBLIC int
+-GGI_from_button(uint32 button)
++GGI_from_button(uint32_t button)
+ {
+     switch (button) {
+     case GII_PBUTTON_LEFT:
+@@ -827,7 +827,7 @@
+ }
+ 
+ TERM_PUBLIC int
+-GGI_y(sint32 y)
++GGI_y(int32_t y)
+ {
+     return GGIymax - y;
+ }
+@@ -1363,7 +1363,7 @@
+ }
+ 
+ TERM_PUBLIC void
+-GGI_set_clipboard(const char s[])
++GGI_set_clipboard(const char *s)
+ {
+     /* XXX: not implemented */
+     (void) s;			/* avoid -Wunused */

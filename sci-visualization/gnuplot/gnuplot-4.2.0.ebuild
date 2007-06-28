@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.0.ebuild,v 1.3 2007/06/19 06:18:02 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.0.ebuild,v 1.4 2007/06/27 16:59:06 opfer Exp $
 
 EAPI="prefix"
 
@@ -46,6 +46,12 @@ pkg_setup() {
 		eerror "media-libs/gd needs to be built with PNG support"
 		die "please rebuilt media-libs/gd with USE=png"
 	fi
+}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-libggi.patch
 }
 
 src_compile() {

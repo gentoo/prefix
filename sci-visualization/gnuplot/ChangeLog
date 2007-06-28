@@ -1,6 +1,32 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.18 2007/06/19 06:18:02 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.25 2007/06/28 00:59:10 angelos Exp $
+
+  28 Jun 2007; Christoph Mende <angelos@gentoo.org> gnuplot-4.0-r2.ebuild:
+  Stable on amd64
+
+  27 Jun 2007; Lars Weiler <pylon@gentoo.org> gnuplot-4.0-r2.ebuild:
+  Stable on ppc; bug #179533.
+
+  27 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org> gnuplot-4.0-r2.ebuild:
+  Stable on sparc wrt #179533
+
+  27 Jun 2007; Raúl Porcel <armin76@gentoo.org> gnuplot-4.0-r2.ebuild:
+  alpha/ia64 stable wrt #179533
+
+  27 Jun 2007; Christian Faulhammer <opfer@gentoo.org>
+  gnuplot-4.0-r2.ebuild:
+  stable x86, bug 179533
+
+  27 Jun 2007; Christian Faulhammer <opfer@gentoo.org>
+  +files/gnuplot-4.2.0-libggi.patch, gnuplot-4.2.0.ebuild:
+  add new libggi patch, provided by KIMURA Masaru <hiyuh.root@gmail.com> in
+  bug 183427
+
+  26 Jun 2007; Christian Faulhammer <opfer@gentoo.org>
+  -files/gnuplot-3.8j-amd64.diff, -gnuplot-4.2_rc1.ebuild,
+  -gnuplot-4.2_rc4.ebuild:
+  clean up
 
   19 Jun 2007; Christian Faulhammer <opfer@gentoo.org> gnuplot-4.2.0.ebuild:
   use_enable instead of use_with for wxwindows, fixes bug 172701 reported by
