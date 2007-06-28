@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.1-r2.ebuild,v 1.7 2007/06/24 23:10:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.1-r2.ebuild,v 1.9 2007/06/26 16:22:23 vapier Exp $
 
 EAPI="prefix"
 
@@ -45,7 +45,7 @@ DEPEND=">=sys-libs/zlib-1.1.3
 		dev-libs/expat
 	)"
 
-# NOTE: The dev-python/python-fchksum RDEPEND is needed so that this python 
+# NOTE: The dev-python/python-fchksum RDEPEND is needed so that this python
 #       provides the functionality expected from previous pythons.
 
 # NOTE: python-fchksum is only a RDEPEND and not a DEPEND since we don't need
