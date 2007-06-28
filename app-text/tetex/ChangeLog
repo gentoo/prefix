@@ -1,6 +1,9 @@
 # ChangeLog for app-text/tetex
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.144 2007/06/11 19:39:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.145 2007/06/27 06:02:27 opfer Exp $
+
+  27 Jun 2007; Christian Faulhammer <opfer@gentoo.org> ChangeLog:
+  changed email address of contributor
 
   11 Jun 2007; Raúl Porcel <armin76@gentoo.org> tetex-3.0_p1-r3.ebuild:
   alpha stable wrt #155489
@@ -620,7 +623,7 @@
   files/digest-tetex-1.0.7-r10 :
 
   Fixed libwww configure option, so it now knows where to look for the
-  headers.  This closes bug #3928 by fatwreckfan@hotmail.com (Mark Trolley)
+  headers.  This closes bug #3928 by marktrolley@gmail.com (Mark Trolley)
 
 *tetex-1.0.7-r9 (24 Apr 2002)
 
