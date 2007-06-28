@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/cpio-2.6-r5.ebuild,v 1.15 2007/06/23 02:34:05 dsd Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/cpio-2.6-r5.ebuild,v 1.16 2007/06/26 01:32:19 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -34,8 +34,8 @@ src_unpack() {
 }
 
 src_compile() {
-	# The configure script has a useless check for gethostname in 
-	# libnsl ... but cpio doesn't utilize the lib/func anywhere, 
+	# The configure script has a useless check for gethostname in
+	# libnsl ... but cpio doesn't utilize the lib/func anywhere,
 	# so let's force the lib to not be detected
 	ac_cv_lib_nsl_gethostname=no \
 	econf \
