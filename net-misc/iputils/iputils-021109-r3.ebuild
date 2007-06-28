@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/iputils-021109-r3.ebuild,v 1.26 2006/08/20 07:26:41 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/iputils-021109-r3.ebuild,v 1.27 2007/06/26 02:32:34 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -57,8 +57,8 @@ src_compile() {
 	tc-export CC AR
 	emake || die "make main failed"
 
-	# We include the extra check for docbook2html 
-	# because when we emerge from a stage1/stage2, 
+	# We include the extra check for docbook2html
+	# because when we emerge from a stage1/stage2,
 	# it may not exist #23156
 	if use doc && type -p docbook2html ; then
 		emake -j1 html || die
