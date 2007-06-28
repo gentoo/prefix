@@ -48,12 +48,14 @@ sed_Imakefile() {
 src_compile() {
 	sed_Imakefile fig2dev/Imakefile fig2dev/dev/Imakefile
 
-	# without append transfig compiles with warining
-	# incompatible implicit declaration of built-in function âstrlenâ
-	# but are we really SVR4?
-	#append-flags -DSVR4
 	xmkmf || die "xmkmf failed"
 	make Makefiles || die "make Makefiles failed"
+
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		# defining NOSTDHDRS really gets us into trouble on Solaris because it
+		# triggers a problem with a redeclaration of wchar_t, so kill the flag
+		sed -i -e 's/-DNOSTDHDRS//g' fig2dev/Makefile fig2dev/dev/Makefile
+	fi
 
 	emake CC="$(tc-getCC)" LOCAL_LDFLAGS="${LDFLAGS}" CDEBUGFLAGS="${CFLAGS}" \
 	USRLIBDIR="${EPREFIX}"/usr/$(get_libdir) || die "emake failed"
