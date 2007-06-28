@@ -1,6 +1,27 @@
 # ChangeLog for app-portage/portage-utils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.83 2007/06/25 21:57:11 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.89 2007/06/27 06:08:03 corsair Exp $
+
+  27 Jun 2007; Markus Rothe <corsair@gentoo.org>
+  portage-utils-0.1.28.ebuild:
+  Stable on ppc64; bug #183197
+
+  26 Jun 2007; Raúl Porcel <armin76@gentoo.org>
+  portage-utils-0.1.28.ebuild:
+  alpha/ia64/x86 stable wrt #183197
+
+  26 Jun 2007; Lars Weiler <pylon@gentoo.org> portage-utils-0.1.28.ebuild:
+  Stable on ppc; bug #183197.
+
+  26 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  portage-utils-0.1.28.ebuild:
+  Stable on sparc wrt #183197
+
+  26 Jun 2007; Jeroen Roovers <jer@gentoo.org> portage-utils-0.1.28.ebuild:
+  Stable for HPPA (bug #183197).
+
+  26 Jun 2007; Joshua Kinard <kumba@gentoo.org> portage-utils-0.1.28.ebuild:
+  Stable on mips, per #183197.
 
   25 Jun 2007; Christoph Mende <angelos@gentoo.org>
   portage-utils-0.1.28.ebuild:
