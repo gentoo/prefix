@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/flex-2.5.33-r2.ebuild,v 1.7 2007/06/24 22:17:04 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/flex-2.5.33-r2.ebuild,v 1.11 2007/06/27 06:11:33 corsair Exp $
 
 EAPI="prefix"
 
