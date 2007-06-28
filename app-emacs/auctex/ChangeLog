@@ -1,6 +1,12 @@
 # ChangeLog for app-emacs/auctex
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.63 2007/06/14 07:18:13 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.64 2007/06/27 10:40:53 opfer Exp $
+
+*auctex-11.84-r2 (27 Jun 2007)
+
+  27 Jun 2007; Christian Faulhammer <opfer@gentoo.org>
+  +auctex-11.84-r2.ebuild:
+  generate and install reference card in doc directory
 
   14 Jun 2007; Christian Faulhammer <opfer@gentoo.org>
   -files/51auctex-gentoo.el, -files/auctex-11.55-configure.diff,
