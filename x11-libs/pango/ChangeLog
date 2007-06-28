@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/pango
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.174 2007/05/27 02:30:32 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.175 2007/06/27 13:28:20 leio Exp $
+
+*pango-1.16.4 (27 Jun 2007)
+
+  27 Jun 2007; Mart Raudsepp <leio@gentoo.org> -pango-1.14.9.ebuild,
+  -pango-1.16.1.ebuild, -pango-1.16.2.ebuild, +pango-1.16.4.ebuild:
+  Version bump for API doc cross-reference fixes
 
   27 May 2007; Joshua Kinard <kumba@gentoo.org> pango-1.14.10.ebuild:
   Stable on mips.
