@@ -1,10 +1,8 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-1.2.10-r5.ebuild,v 1.51 2007/03/03 15:59:55 falco Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-1.2.10-r5.ebuild,v 1.52 2007/06/27 15:28:52 vapier Exp $
 
 EAPI="prefix"
-
-WANT_AUTOMAKE="1.4"
 
 inherit autotools libtool flag-o-matic eutils portability
 
@@ -25,6 +23,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	epatch "${FILESDIR}"/${P}-automake.patch
 	epatch "${FILESDIR}"/${P}-m4.patch
 	epatch "${FILESDIR}"/${P}-configure-LANG.patch #133679
 
@@ -37,6 +36,7 @@ src_unpack() {
 	use ppc64 && use hardened && replace-flags -O[2-3] -O1
 	append-ldflags $(dlopen_lib)
 
+	rm -f acinclude.m4 #168198
 	eautoreconf
 	elibtoolize
 }
