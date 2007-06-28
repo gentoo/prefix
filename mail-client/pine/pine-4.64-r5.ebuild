@@ -1,14 +1,14 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/pine/pine-4.64-r5.ebuild,v 1.13 2007/04/21 13:19:41 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/pine/pine-4.64-r5.ebuild,v 1.14 2007/06/26 02:08:16 mr_bones_ Exp $
 
 EAPI="prefix"
 
 inherit eutils
 
-# Using this ugly hack, since we're making our own versioned copies of chappa 
+# Using this ugly hack, since we're making our own versioned copies of chappa
 # patch, as upstream doesn't version them, and patch revision number doesn't
-# always have to correspond to ebuild revision number. (see #59573) 
+# always have to correspond to ebuild revision number. (see #59573)
 CHAPPA_PF="${PF}"
 
 DESCRIPTION="A tool for reading, sending and managing electronic messages."
