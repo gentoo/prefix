@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.25.3.ebuild,v 1.9 2007/02/28 22:18:36 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.25.3.ebuild,v 1.10 2007/06/26 02:33:27 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -36,7 +36,7 @@ src_compile() {
 
 #	if use gnutls
 #	then
-#		myc="${myc} --with-ssl=gnutls"		
+#		myc="${myc} --with-ssl=gnutls"
 #	else
 #		myc="${myc} $(use_with ssl ssl openssl)"
 #	fi
