@@ -1,6 +1,14 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.300 2007/06/25 22:57:24 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.302 2007/06/27 11:52:07 pylon Exp $
+
+  27 Jun 2007; Lars Weiler <pylon@gentoo.org>
+  mozilla-firefox-1.5.0.12.ebuild:
+  Stable on ppc; bug #183195.
+
+  26 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  mozilla-firefox-1.5.0.12.ebuild:
+  Stable on sparc wrt #183195
 
   25 Jun 2007; Christoph Mende <angelos@gentoo.org>
   mozilla-firefox-1.5.0.12.ebuild:
