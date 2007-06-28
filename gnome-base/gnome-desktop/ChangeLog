@@ -1,6 +1,12 @@
 # ChangeLog for gnome-base/gnome-desktop
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.182 2007/06/02 02:43:54 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.183 2007/06/27 14:56:36 leio Exp $
+
+*gnome-desktop-2.18.2 (27 Jun 2007)
+
+  27 Jun 2007; Mart Raudsepp <leio@gentoo.org> -gnome-desktop-2.18.0.ebuild,
+  +gnome-desktop-2.18.2.ebuild:
+  Version bump for trivial changes
 
   02 Jun 2007; Brent Baude <ranger@gentoo.org> gnome-desktop-2.16.3.ebuild:
   Marking gnome-desktop-2.16.3 ppc stable for bug #171107
