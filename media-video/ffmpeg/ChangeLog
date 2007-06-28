@@ -1,6 +1,12 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.201 2007/06/16 13:38:01 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.202 2007/06/26 20:21:00 lu_zero Exp $
+
+*ffmpeg-0.4.9_p20070616-r1 (26 Jun 2007)
+
+  26 Jun 2007; Luca Barbato <lu_zero@gentoo.org>
+  +ffmpeg-0.4.9_p20070616-r1.ebuild:
+  Enable swscaler
 
   16 Jun 2007; Samuli Suominen <drac@gentoo.org>
   ffmpeg-0.4.9_p20070616.ebuild:

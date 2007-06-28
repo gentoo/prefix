@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20070616.ebuild,v 1.3 2007/06/26 02:17:28 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20070616-r1.ebuild,v 1.1 2007/06/26 20:21:00 lu_zero Exp $
 
 EAPI="prefix"
 
@@ -114,7 +114,8 @@ src_compile() {
 	use aac && myconf="${myconf} --enable-libfaad --enable-libfaac"
 	use amr && myconf="${myconf} --enable-libamr-nb --enable-libamr-wb"
 
-	myconf="${myconf} --enable-gpl --enable-pp --disable-strip"
+	myconf="${myconf} --enable-gpl --enable-pp \
+			--enable-swscaler --disable-strip"
 
 	tc-is-cross-compiler && myconf="${myconf} --cross-compile --arch=$(tc-arch-kernel)"
 
