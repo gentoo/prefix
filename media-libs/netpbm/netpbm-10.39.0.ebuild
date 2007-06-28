@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.37.0.ebuild,v 1.12 2007/06/26 04:23:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.39.0.ebuild,v 1.1 2007/06/26 04:30:36 vapier Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="jbig jpeg jpeg2k png rle svga tiff xml zlib"
 
 DEPEND="jpeg? ( >=media-libs/jpeg-6b )
@@ -58,6 +58,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/netpbm-10.31-build.patch
 	epatch "${FILESDIR}"/netpbm-10.35.0-xml2.patch #137871
+	epatch "${FILESDIR}"/netpbm-10.39.0-solaris.patch
 
 	rm -f configure
 	cp Makefile.config.in Makefile.config
@@ -96,9 +97,12 @@ src_unpack() {
 src_compile() {
 	replace-flags -mcpu=ultrasparc "-mcpu=v8 -mtune=ultrasparc"
 	replace-flags -mcpu=v9 "-mcpu=v8 -mtune=v9"
-	use userland_Darwin && append-flags -fno-common
+	[[ ${CHOST} == *-darwin* ]] && append-flags -fno-common
+	# Solaris doesn't have vasprintf, libiberty does have it, for gethostbyname
+	# we need -lnsl, for connect -lsocket
+	[[ ${CHOST} == *-solaris* ]] && extlibs="-liberty -lnsl -lsocket"
 
-	emake LIBS="-lz" -j1 || die
+	emake LIBS="-lz ${extlibs}" -j1 || die
 }
 
 src_install() {
