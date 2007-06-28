@@ -1,6 +1,20 @@
 # ChangeLog for dev-libs/apr-util
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.83 2007/06/15 17:59:22 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.87 2007/06/27 19:59:06 pylon Exp $
+
+  27 Jun 2007; Lars Weiler <pylon@gentoo.org> apr-util-1.2.8.ebuild:
+  Stable on ppc; bug #178264.
+
+  27 Jun 2007; Christoph Mende <angelos@gentoo.org>
+  apr-util-0.9.12-r1.ebuild:
+  Stable on amd64
+
+  27 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  apr-util-0.9.12-r1.ebuild:
+  Stable on sparc wrt #169507
+
+  27 Jun 2007; Jeroen Roovers <jer@gentoo.org> apr-util-1.2.8.ebuild:
+  Stable for HPPA (bug #178264).
 
 *apr-util-1.2.8-r1 (15 Jun 2007)
 
