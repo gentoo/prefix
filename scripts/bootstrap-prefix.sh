@@ -166,9 +166,10 @@ bootstrap_tree() {
 		fetch "${PORTAGE_URL}/prefix-overlay-${PV}.tar.bz2"
 		bzip2 -dc "${DISTDIR}"/prefix-overlay-${PV}.tar.bz2 | $TAR -xf - || exit 1
 		# beware: fetch creates DISTDIR!!!
-		mv portage/distfiles prefix-overlay/
+		mv portage/distfiles distfiles
 		rm -Rf portage
 		mv prefix-overlay* portage
+		mv distfiles portage/
 		touch portage/.unpacked
 	fi
 }
