@@ -10,7 +10,7 @@ SRC_URI="http://www.python.org/ftp/python/doc/${PV}/html-${PV}.tar.bz2"
 
 LICENSE="PSF-2.2"
 SLOT="2.5"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
 DEPEND=""
