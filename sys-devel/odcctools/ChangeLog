@@ -2,6 +2,14 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*odcctools-20070629 (30 Jun 2007)
+
+  30 Jun 2007; Fabian Groffen <grobian@gentoo.org>
+  +odcctools-20070629.ebuild:
+  New 'snapshot' that fixes build issues with tcl, by building the tar with
+  --nosdk. Thanks Elias Pipping for testing this snapshot to be sure it
+  doesn't cause trouble
+
 *odcctools-20070412 (12 Apr 2007)
 
   12 Apr 2007; Fabian Groffen <grobian@gentoo.org>
