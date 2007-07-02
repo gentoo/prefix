@@ -1,6 +1,11 @@
 # ChangeLog for sys-fs/e2fsprogs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.107 2007/06/23 02:27:57 dsd Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.108 2007/06/30 16:17:38 vapier Exp $
+
+*e2fsprogs-1.40 (30 Jun 2007)
+
+  30 Jun 2007; Mike Frysinger <vapier@gentoo.org> +e2fsprogs-1.40.ebuild:
+  Version bump.
 
   23 Jun 2007; Daniel Drake <dsd@gentoo.org> e2fsprogs-1.39.ebuild,
   e2fsprogs-1.39-r1.ebuild, e2fsprogs-1.39-r2.ebuild,
