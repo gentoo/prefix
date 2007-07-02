@@ -1,6 +1,9 @@
 # ChangeLog for www-client/elinks
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.86 2007/06/02 20:08:30 killerfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.87 2007/06/28 05:36:06 kumba Exp $
+
+  28 Jun 2007; Joshua Kinard <kumba@gentoo.org> elinks-0.11.2-r1.ebuild:
+  Stable on mips, per #177512.
 
   02 Jun 2007; René Nussbaumer <killerfox@gentoo.org>
   elinks-0.11.2-r1.ebuild:
