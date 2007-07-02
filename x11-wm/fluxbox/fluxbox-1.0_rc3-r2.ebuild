@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.0_rc3-r2.ebuild,v 1.2 2007/05/23 23:01:54 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.0_rc3-r2.ebuild,v 1.3 2007/06/30 04:36:42 lack Exp $
 
 EAPI="prefix"
 
@@ -121,7 +121,7 @@ src_compile() {
 	ebegin "Creating a menu file (may take a while)"
 	mkdir -p "${T}/home/.fluxbox" || die "mkdir home failed"
 	MENUFILENAME="${S}/data/menu" MENUTITLE="Fluxbox ${PV}" \
-		CHECKINIT="no. go away." HOME="${T}/home" \
+		CHECKINIT="no. go away." HOME="${T}/home" sh -x \
 		"${S}/util/fluxbox-generate_menu" -is -ds \
 		|| die "menu generation failed"
 	eend $?

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.0_rc3-r493700.ebuild,v 1.1 2007/06/10 18:41:36 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.0_rc3_p4949.ebuild,v 1.1 2007/06/30 04:36:42 lack Exp $
 
 EAPI="prefix"
 
@@ -62,16 +62,18 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	epatch "${FILESDIR}/${PV}/svn_up_from_4937.patch" || die "Patch failed"
+
 	# We need to be able to include directories rather than just plain
 	# files in menu [include] items. This patch will allow us to do clever
 	# things with style ebuilds.
-	epatch "${FILESDIR}/${PV}/${P}-our-styles-go-over-here.patch" ||	die "Patch failed"
+	epatch "${FILESDIR}/${PV}/gentoo_style_location.patch" ||	die "Patch failed"
 
 	# Add in the Gentoo -r number to fluxbox -version output.
 	if [[ "${PR}" == "r0" ]] ; then
-		suffix="gentoo"
+		suffix="svn-4949-gentoo"
 	else
-		suffix="gentoo-${PR}"
+		suffix="svn-4949-gentoo-${PR}"
 	fi
 	sed -i \
 		-e "s~\(__fluxbox_version .@VERSION@\)~\1-${suffix}~" \

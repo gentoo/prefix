@@ -1,6 +1,25 @@
 # ChangeLog for x11-wm/fluxbox
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.220 2007/06/10 18:41:36 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.222 2007/06/30 04:36:42 lack Exp $
+
+*fluxbox-1.0_rc3_p4949 (30 Jun 2007)
+
+  30 Jun 2007; Jim Ramsay <lack@gentoo.org>
+  +files/1.0_rc3_p4949/gentoo_style_location.patch,
+  +files/1.0_rc3_p4949/svn_up_from_4937.patch, fluxbox-1.0_rc3-r2.ebuild,
+  +fluxbox-1.0_rc3_p4949.ebuild:
+  New snapshot, fixes all previous bugs and bug 183704
+
+*fluxbox-1.0_rc3_p4944 (29 Jun 2007)
+
+  29 Jun 2007; Jim Ramsay <lack@gentoo.org>
+  +files/1.0_rc3_p4944/gentoo_style_location.patch,
+  +files/1.0_rc3_p4944/svn_up_from_4937.patch,
+  -fluxbox-1.0_rc3-r493700.ebuild, +fluxbox-1.0_rc3_p4944.ebuild:
+  Adding new snapshot version with cleaner ebuild version name (now that
+  multiple suffixes are allowed). Also removing previous snapshot ebuild to
+  get rid of the ugly version name I used.
+  This snapshot fixes all previous bugs and also Bug 181192 and Bug 179868.
 
 *fluxbox-1.0_rc3-r493700 (10 Jun 2007)
 
