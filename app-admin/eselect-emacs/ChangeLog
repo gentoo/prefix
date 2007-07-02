@@ -1,6 +1,11 @@
 # ChangeLog for app-admin/eselect-emacs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.19 2007/06/17 18:35:32 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.20 2007/06/29 06:11:05 ulm Exp $
+
+*eselect-emacs-1.1 (29 Jun 2007)
+
+  29 Jun 2007; Ulrich Mueller <ulm@gentoo.org> +eselect-emacs-1.1.ebuild:
+  Version bump, new eselect module for ctags. Bug #29398.
 
 *eselect-emacs-1.0 (17 Jun 2007)
 
