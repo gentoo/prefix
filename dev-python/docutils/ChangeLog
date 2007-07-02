@@ -1,6 +1,25 @@
 # ChangeLog for dev-python/docutils
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.62 2007/04/16 07:24:18 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.67 2007/07/01 15:33:24 pylon Exp $
+
+  01 Jul 2007; Lars Weiler <pylon@gentoo.org> docutils-0.4-r2.ebuild:
+  Stable on ppc; bug #183735.
+
+  01 Jul 2007; Peter Weller <welp@gentoo.org> docutils-0.4-r2.ebuild:
+  Stable on amd64 wrt bug 182394
+
+  01 Jul 2007; Jeroen Roovers <jer@gentoo.org> docutils-0.4-r2.ebuild:
+  Stable for HPPA (bug #183735).
+
+  30 Jun 2007; Raúl Porcel <armin76@gentoo.org> docutils-0.4-r2.ebuild:
+  alpha/ia64/x86 stable wrt #183735
+
+*docutils-0.4-r2 (30 Jun 2007)
+
+  30 Jun 2007; Ulrich Mueller <ulm@gentoo.org> +docutils-0.4-r2.ebuild:
+  Emacs support files split off and moved to app-emacs/rst. This fixes the
+  circular emacs / eselect / docutils dependency, bug #183242. Dropped
+  arm/s390/sh/~sparc-fbsd; to be re-added following rst keywording.
 
   16 Apr 2007; Markus Rothe <corsair@gentoo.org> docutils-0.4-r1.ebuild:
   Stable on ppc64
