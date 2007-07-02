@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.169 2007/06/25 07:22:42 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.170 2007/07/01 16:09:44 ulm Exp $
+
+  01 Jul 2007; Ulrich Mueller <ulm@gentoo.org>
+  files/emacs-22.1-Xaw3d-headers.patch:
+  Properly check for Xaw3d in configure; patch backported from CVS trunk.
+  Thanks to Philantrop for pointing this out.
 
   25 Jun 2007; Ulrich Mueller <ulm@gentoo.org> -files/emacs-21.2-sh.patch,
   -files/emacs-21.3-amd64.patch, -files/emacs-21.3-hppa.patch,

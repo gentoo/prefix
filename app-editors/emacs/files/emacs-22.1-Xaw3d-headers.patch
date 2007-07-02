@@ -1,76 +1,150 @@
-*** emacs/src/xfns.c.~1.681.~	2007-03-24 11:49:48.000000000 -0400
---- emacs/src/xfns.c	2007-04-18 01:18:52.000000000 -0400
-***************
-*** 72,79 ****
---- 72,84 ----
-  #include <X11/Shell.h>
-  
-  #ifndef USE_MOTIF
-+ #ifdef HAVE_XAW3D
-+ #include <X11/Xaw3d/Paned.h>
-+ #include <X11/Xaw3d/Label.h>
-+ #else  /* !HAVE_XAW3D */
-  #include <X11/Xaw/Paned.h>
-  #include <X11/Xaw/Label.h>
-+ #endif /* HAVE_XAW3D */
-  #endif /* USE_MOTIF */
-  
-  #ifdef USG
-*** emacs/src/xmenu.c.~1.317.~	2007-01-20 23:18:14.000000000 -0500
---- emacs/src/xmenu.c	2007-04-18 01:15:43.000000000 -0400
-***************
-*** 82,88 ****
---- 82,92 ----
-  #include <X11/StringDefs.h>
-  #include <X11/Shell.h>
-  #ifdef USE_LUCID
-+ #ifdef HAVE_XAW3D
-+ #include <X11/Xaw3d/Paned.h>
-+ #else  /* !HAVE_XAW3D */
-  #include <X11/Xaw/Paned.h>
-+ #endif /* HAVE_XAW3D */
-  #endif /* USE_LUCID */
-  #include "../lwlib/lwlib.h"
-  #else /* not USE_X_TOOLKIT */
-*** emacs/lwlib/lwlib.c.~1.55.~	2007-02-27 23:25:05.000000000 -0500
---- emacs/lwlib/lwlib.c	2007-04-18 01:21:44.000000000 -0400
-***************
-*** 48,54 ****
---- 48,58 ----
-  #endif /* not USE_MOTIF && USE_LUCID */
-  #endif
-  #if defined (USE_XAW)
-+ #ifdef HAVE_XAW3D
-+ #include <X11/Xaw3d/Paned.h>
-+ #else  /* !HAVE_XAW3D */
-  #include <X11/Xaw/Paned.h>
-+ #endif /* HAVE_XAW3D */
-  #include "lwlib-Xaw.h"
-  #endif
-  
-*** emacs/lwlib/lwlib-Xaw.c.~1.25.~	2007-02-26 22:07:08.000000000 -0500
---- emacs/lwlib/lwlib-Xaw.c	2007-04-18 01:22:33.000000000 -0400
-***************
-*** 35,46 ****
---- 35,55 ----
-  #include <X11/CoreP.h>
-  #include <X11/Shell.h>
-  
-+ #ifdef HAVE_XAW3D
-+ #include <X11/Xaw3d/Scrollbar.h>
-+ #include <X11/Xaw3d/Paned.h>
-+ #include <X11/Xaw3d/Dialog.h>
-+ #include <X11/Xaw3d/Form.h>
-+ #include <X11/Xaw3d/Command.h>
-+ #include <X11/Xaw3d/Label.h>
-+ #else /* !HAVE_XAW3D */
-  #include <X11/Xaw/Scrollbar.h>
-  #include <X11/Xaw/Paned.h>
-  #include <X11/Xaw/Dialog.h>
-  #include <X11/Xaw/Form.h>
-  #include <X11/Xaw/Command.h>
-  #include <X11/Xaw/Label.h>
-+ #endif /* HAVE_XAW3D */
-  
-  #include <X11/Xatom.h>
-  
+--- emacs-22.1-orig/src/xfns.c	2007-06-02 06:00:11.000000000 +0200
++++ emacs-22.1/src/xfns.c	2007-07-01 17:19:35.000000000 +0200
+@@ -72,8 +72,13 @@
+ #include <X11/Shell.h>
+ 
+ #ifndef USE_MOTIF
++#ifdef HAVE_XAW3D
++#include <X11/Xaw3d/Paned.h>
++#include <X11/Xaw3d/Label.h>
++#else  /* !HAVE_XAW3D */
+ #include <X11/Xaw/Paned.h>
+ #include <X11/Xaw/Label.h>
++#endif /* HAVE_XAW3D */
+ #endif /* USE_MOTIF */
+ 
+ #ifdef USG
+--- emacs-22.1-orig/src/xmenu.c	2007-05-14 16:56:31.000000000 +0200
++++ emacs-22.1/src/xmenu.c	2007-07-01 17:19:35.000000000 +0200
+@@ -82,7 +82,11 @@
+ #include <X11/StringDefs.h>
+ #include <X11/Shell.h>
+ #ifdef USE_LUCID
++#ifdef HAVE_XAW3D
++#include <X11/Xaw3d/Paned.h>
++#else  /* !HAVE_XAW3D */
+ #include <X11/Xaw/Paned.h>
++#endif /* HAVE_XAW3D */
+ #endif /* USE_LUCID */
+ #include "../lwlib/lwlib.h"
+ #else /* not USE_X_TOOLKIT */
+--- emacs-22.1-orig/lwlib/lwlib.c	2007-04-20 15:27:29.000000000 +0200
++++ emacs-22.1/lwlib/lwlib.c	2007-07-01 17:19:35.000000000 +0200
+@@ -48,7 +48,11 @@
+ #endif /* not USE_MOTIF && USE_LUCID */
+ #endif
+ #if defined (USE_XAW)
++#ifdef HAVE_XAW3D
++#include <X11/Xaw3d/Paned.h>
++#else  /* !HAVE_XAW3D */
+ #include <X11/Xaw/Paned.h>
++#endif /* HAVE_XAW3D */
+ #include "lwlib-Xaw.h"
+ #endif
+ 
+--- emacs-22.1-orig/lwlib/lwlib-Xaw.c	2007-04-20 15:27:29.000000000 +0200
++++ emacs-22.1/lwlib/lwlib-Xaw.c	2007-07-01 17:19:35.000000000 +0200
+@@ -35,12 +35,21 @@
+ #include <X11/CoreP.h>
+ #include <X11/Shell.h>
+ 
++#ifdef HAVE_XAW3D
++#include <X11/Xaw3d/Scrollbar.h>
++#include <X11/Xaw3d/Paned.h>
++#include <X11/Xaw3d/Dialog.h>
++#include <X11/Xaw3d/Form.h>
++#include <X11/Xaw3d/Command.h>
++#include <X11/Xaw3d/Label.h>
++#else /* !HAVE_XAW3D */
+ #include <X11/Xaw/Scrollbar.h>
+ #include <X11/Xaw/Paned.h>
+ #include <X11/Xaw/Dialog.h>
+ #include <X11/Xaw/Form.h>
+ #include <X11/Xaw/Command.h>
+ #include <X11/Xaw/Label.h>
++#endif /* HAVE_XAW3D */
+ 
+ #include <X11/Xatom.h>
+ 
+--- emacs-22.1-orig/configure.in	2007-05-25 14:43:29.000000000 +0200
++++ emacs-22.1/configure.in	2007-07-01 17:19:35.000000000 +0200
+@@ -2205,29 +2205,45 @@
+ 
+ dnl Do not put whitespace before the #include statements below.
+ dnl Older compilers (eg sunos4 cc) choke on it.
++HAVE_XAW3D=no
+ if test x"${USE_X_TOOLKIT}" = xmaybe || test x"${USE_X_TOOLKIT}" = xLUCID; then
+-  if test x"${HAVE_X11R5}" = xyes; then
+-    AC_MSG_CHECKING(X11 version 5 with Xaw)
+-    AC_CACHE_VAL(emacs_cv_x11_version_5_with_xaw,
++  if test x"${HAVE_X11R5}" != xyes; then
++    USE_X_TOOLKIT=none
++  else
++    AC_MSG_CHECKING(for xaw3d)
++    AC_CACHE_VAL(emacs_cv_xaw3d,
+     [AC_TRY_LINK([
+ #include <X11/Intrinsic.h>
+-#include <X11/Xaw/Simple.h>],
++#include <X11/Xaw3d/Simple.h>],
+       [],
+-      emacs_cv_x11_version_5_with_xaw=yes,
+-      emacs_cv_x11_version_5_with_xaw=no)])
+-    if test $emacs_cv_x11_version_5_with_xaw = yes; then
+-      AC_MSG_RESULT([5 or newer, with Xaw; use toolkit by default])
++      emacs_cv_xaw3d=yes,
++      emacs_cv_xaw3d=no)])
++    if test $emacs_cv_xaw3d = yes; then
++      AC_MSG_RESULT([yes; using Lucid toolkit])
+       USE_X_TOOLKIT=LUCID
++      HAVE_XAW3D=yes
++      AC_DEFINE(HAVE_XAW3D, 1,
++                [Define to 1 if you have the Xaw3d library (-lXaw3d).])
+     else
+-      if test x"${USE_X_TOOLKIT}" = xLUCID; then
++      AC_MSG_RESULT(no)
++      AC_MSG_CHECKING(for libXaw)
++      AC_CACHE_VAL(emacs_cv_xaw,
++      [AC_TRY_LINK([
++#include <X11/Intrinsic.h>
++#include <X11/Xaw/Simple.h>],
++        [],
++        emacs_cv_xaw=yes,
++        emacs_cv_xaw=no)])
++      if test $emacs_cv_xaw = yes; then
++        AC_MSG_RESULT([yes; using Lucid toolkit])
++        USE_X_TOOLKIT=LUCID
++      elif test x"${USE_X_TOOLKIT}" = xLUCID; then
+         AC_MSG_ERROR([Lucid toolkit requires X11/Xaw include files])
+       else
+-        AC_MSG_RESULT(before 5 or no Xaw; do not use toolkit by default)
++        AC_MSG_RESULT([no; do not use toolkit by default])
+         USE_X_TOOLKIT=none
+       fi
+     fi
+-  else
+-    USE_X_TOOLKIT=none
+   fi
+ fi
+ 
+@@ -2315,21 +2331,6 @@
+   fi
+ fi
+ 
+-### Is -lXaw3d available?
+-HAVE_XAW3D=no
+-if test "${HAVE_X11}" = "yes"; then
+-  if test "${USE_X_TOOLKIT}" != "none" && test "${with_toolkit_scroll_bars}" != "no"; then
+-    dnl Fixme: determine what Scrollbar.h needs to avoid compilation
+-    dnl errors from the test without the `-'.
+-    AC_CHECK_HEADER(X11/Xaw3d/Scrollbar.h,
+-	[AC_CHECK_LIB(Xaw3d, XawScrollbarSetThumb, HAVE_XAW3D=yes)], , -)
+-    if test "${HAVE_XAW3D}" = "yes"; then
+-	AC_DEFINE(HAVE_XAW3D, 1,
+-		  [Define to 1 if you have the Xaw3d library (-lXaw3d).])
+-    fi
+-  fi
+-fi
+-
+ dnl Use toolkit scroll bars if configured for GTK or X toolkit and either
+ dnl using Motif or Xaw3d is available, and unless
+ dnl --with-toolkit-scroll-bars=no was specified.
