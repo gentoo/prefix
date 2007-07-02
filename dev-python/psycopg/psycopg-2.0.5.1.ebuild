@@ -14,7 +14,7 @@ DESCRIPTION="PostgreSQL database adapter for Python."
 SRC_URI="http://initd.org/pub/software/psycopg/${MY_P}.tar.gz"
 HOMEPAGE="http://initd.org/projects/psycopg2"
 SLOT="2"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 LICENSE="GPL-2"
 IUSE="debug doc examples"
 
