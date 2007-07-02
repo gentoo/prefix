@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.84-r2.ebuild,v 1.1 2007/06/27 10:40:53 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.84-r2.ebuild,v 1.2 2007/06/28 11:35:45 opfer Exp $
 
 EAPI="prefix"
 
@@ -29,8 +29,6 @@ src_unpack() {
 	# allow compilation of Japanese TeX files, fixed in upstream's CVS
 	# not needed for next release (>=11.85)
 	epatch "${FILESDIR}/${P}-japanes.patch"
-	# detection of Emacs fails on ppc64 with version 21, see bug #131761
-	use ppc64 &&	epatch "${FILESDIR}/${P}-ppc64_configure.patch"
 }
 
 src_compile() {
