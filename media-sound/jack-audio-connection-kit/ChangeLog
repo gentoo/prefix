@@ -1,6 +1,45 @@
 # ChangeLog for media-sound/jack-audio-connection-kit
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/ChangeLog,v 1.85 2007/05/01 00:04:49 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/ChangeLog,v 1.89 2007/07/01 17:47:05 armin76 Exp $
+
+  01 Jul 2007; Raúl Porcel <armin76@gentoo.org>
+  jack-audio-connection-kit-0.103.0.ebuild:
+  Re-add ~alpha, thanks to Tobias Klausmann for testing
+
+  01 Jul 2007; Diego Pettenò <flameeyes@gentoo.org>
+  jack-audio-connection-kit-0.103.0.ebuild:
+  Replace pointless elogs with einfo.
+
+*jack-audio-connection-kit-0.103.0 (29 Jun 2007)
+
+  29 Jun 2007; Diego Pettenò <flameeyes@gentoo.org>
+  +files/jack-audio-connection-kit-0.103.0-riceitdown.patch,
+  +jack-audio-connection-kit-0.103.0.ebuild:
+  Version bump and ebuild cleanup:
+  
+  - add a patch to avoid adding extra CFLAGS;
+  
+  - don't build documentation at all if doc USE flag is disabled but doxygen
+  is found;
+  
+  - update netjack version to 0.12 final (and fetch tarball only if the USE
+  flag is enabled);
+  
+  - fix netjack installation on multilib systems;
+  
+  - don't force PIC, leave it to libtool;
+  
+  - don't prestrip jack when enabling capabilities;
+  
+  - make libsndfile a mandatory dependency (it was automagic before);
+  
+  - move pkgconfig to build-time dependency.
+
+  29 Jun 2007; Diego Pettenò <flameeyes@gentoo.org>
+  jack-audio-connection-kit-0.101.1-r1.ebuild,
+  jack-audio-connection-kit-0.102.20.ebuild:
+  Replace check-kernel usage with linux-info (hopefully this won't make it
+  harder to build on FreeBSD). Patch by Jakub Moc in bug #179732.
 
   01 May 2007; Marius Mauch <genone@gentoo.org>
   jack-audio-connection-kit-0.101.1-r1.ebuild,

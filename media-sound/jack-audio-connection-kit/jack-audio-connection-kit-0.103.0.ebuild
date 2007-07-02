@@ -1,23 +1,23 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.102.20.ebuild,v 1.6 2007/06/29 12:37:29 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.103.0.ebuild,v 1.3 2007/07/01 17:47:05 armin76 Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils multilib linux-info
+inherit flag-o-matic eutils multilib linux-info autotools multilib
 
-NETJACK=netjack-0.12rc1
+NETJACK=netjack-0.12
 
 DESCRIPTION="A low-latency audio server"
 HOMEPAGE="http://www.jackaudio.org"
-SRC_URI="mirror://sourceforge/jackit/${P}.tar.gz http://netjack.sourceforge.net/${NETJACK}.tar.bz2"
+SRC_URI="mirror://sourceforge/jackit/${P}.tar.gz netjack? ( mirror://sourceforge/netjack/${NETJACK}.tar.bz2 )"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~ppc-macos"
-IUSE="altivec alsa caps coreaudio doc debug jack-tmpfs mmx oss portaudio sndfile sse netjack cpudetection"
+IUSE="altivec alsa caps coreaudio doc debug jack-tmpfs mmx oss portaudio sse netjack cpudetection userland_Darwin"
 
-RDEPEND="sndfile? ( >=media-libs/libsndfile-1.0.0 )
+RDEPEND=">=media-libs/libsndfile-1.0.0
 	sys-libs/ncurses
 	caps? ( sys-libs/libcap )
 	portaudio? ( =media-libs/portaudio-18* )
@@ -25,37 +25,36 @@ RDEPEND="sndfile? ( >=media-libs/libsndfile-1.0.0 )
 	!media-sound/jack-cvs"
 
 DEPEND="${RDEPEND}
+	dev-util/pkgconfig
 	doc? ( app-doc/doxygen )
 	netjack? ( dev-util/scons )"
 
 pkg_setup() {
-	if ! use sndfile ; then
-		ewarn "sndfile not in USE flags. jack_rec will not be installed!"
-	fi
-
 	if use caps; then
 		if kernel_is 2 4 ; then
-			elog "will build jackstart for 2.4 kernel"
+			einfo "will build jackstart for 2.4 kernel"
 		else
-			elog "using compatibility symlink for jackstart"
+			einfo "using compatibility symlink for jackstart"
 		fi
 	fi
 
 	if use netjack; then
-		elog "including support for experimental netjack, see http://netjack.sourceforge.net/"
+		einfo "including support for experimental netjack, see http://netjack.sourceforge.net/"
 	fi
 }
 
 src_unpack() {
 	unpack ${A}
-	use netjack && unpack ${NETJACK}.tar.bz2
-	cd ${S}
 
-	epatch ${FILESDIR}/${PN}-transport.patch
+	cd "${S}"
+	epatch "${FILESDIR}/${PN}-transport.patch"
+	epatch "${FILESDIR}/${P}-riceitdown.patch"
+
+	eautoreconf
 }
 
 src_compile() {
-	local myconf
+	local myconf=""
 
 	sed -i "s/^CFLAGS=\$JACK_CFLAGS/CFLAGS=\"\$JACK_CFLAGS $(get-flag -march)\"/" configure
 
@@ -84,7 +83,7 @@ src_compile() {
 		elif (! grep mmx /proc/cpuinfo >/dev/null) ; then
 			ewarn "Can't build cpudetection (dynsimd) without cpu mmx support. see bug #136565."
 		else
-			elog "Enabling cpudetection (dynsimd). Adding -mmmx, -msse, -m3dnow and -O2 to CFLAGS."
+			einfo "Enabling cpudetection (dynsimd). Adding -mmmx, -msse, -m3dnow and -O2 to CFLAGS."
 			myconf="${myconf} --enable-dynsimd"
 
 			filter-flags -O*
@@ -92,40 +91,38 @@ src_compile() {
 		fi
 	fi
 
-	use sndfile && \
-		export SNDFILE_CFLAGS="-I${EPREFIX}/usr/include" \
-		export SNDFILE_LIBS="-L${EPREFIX}/usr/$(get_libdir) -lsndfile"
+	use doc || export ac_cv_prog_HAVE_DOXYGEN=false
 
 	econf \
 		$(use_enable altivec) \
 		$(use_enable alsa) \
-		$(use_enable caps capabilities) $(use_enable caps stripped-jackd) \
+		$(use_enable caps capabilities) \
 		$(use_enable coreaudio) \
 		$(use_enable debug) \
-		$(use_enable doc html-docs) \
 		$(use_enable mmx) \
 		$(use_enable oss) \
 		$(use_enable portaudio) \
 		$(use_enable sse) \
-		--with-pic \
+		--with-html-dir="${EPREFIX}"/usr/share/doc/${PF} \
+		--disable-dependency-tracking \
 		${myconf} || die "configure failed"
 	emake || die "compilation failed"
 
 	if use caps && kernel_is 2 4 ; then
-		elog "Building jackstart for 2.4 kernel"
-		cd ${S}/jackd
+		einfo "Building jackstart for 2.4 kernel"
+		cd "${S}/jackd"
 		emake jackstart || die "jackstart build failed."
 	fi
 
 	if use netjack; then
-		cd ${WORKDIR}/${NETJACK}
-		scons jack_source_dir=${S}
+		cd "${WORKDIR}/${NETJACK}"
+		scons jack_source_dir="${S}"
 	fi
 
 }
 
 src_install() {
-	make DESTDIR=${D} datadir=${EPREFIX}/usr/share/doc install || die
+	make DESTDIR="${D}" install || die
 
 	if use caps; then
 		if kernel_is 2 4 ; then
@@ -138,27 +135,20 @@ src_install() {
 
 	if ! use jack-tmpfs; then
 		keepdir /var/run/jack
-		chmod 4777 ${ED}/var/run/jack
+		chmod 4777 "${ED}/var/run/jack"
 	fi
 
 	if use doc; then
-		mv ${ED}/usr/share/doc/${PF}/reference/html \
-		   ${ED}/usr/share/doc/${PF}/
-
 		insinto /usr/share/doc/${PF}
-		doins -r ${S}/example-clients
-	else
-		rm -rf ${ED}/usr/share/doc
+		doins -r "${S}/example-clients"
 	fi
 
-	rm -rf ${ED}/usr/share/doc/${PF}/reference
-
 	if use netjack; then
-		cd ${WORKDIR}/${NETJACK}
+		cd "${WORKDIR}/${NETJACK}"
 		dobin alsa_in
 		dobin alsa_out
 		dobin jacknet_client
-		insinto /usr/lib/jack
+		insinto /usr/$(get_libdir)/jack
 		doins jack_net.so
 	fi
 }
