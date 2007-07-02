@@ -41,10 +41,8 @@ src_unpack() {
 
 src_compile() {
 	econf \
-		--with-user=${PORTAGE_USER:-portage} \
-		--with-group=${PORTAGE_GROUP:-portage} \
-		--with-rootuser=${PORTAGE_INST_USER:-root} \
-		--with-wheelgid=${PORTAGE_INST_GID:-0} \
+		--with-portage-user=${PORTAGE_USER:-portage} \
+		--with-portage-group=${PORTAGE_GROUP:-portage} \
 		--with-offset-prefix=${EPREFIX} \
 		--with-default-path="/usr/bin:/bin" \
 		|| die "econf failed"
