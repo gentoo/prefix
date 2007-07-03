@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/less
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.63 2007/06/13 23:14:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.64 2007/06/28 13:33:45 vapier Exp $
+
+*less-406 (28 Jun 2007)
+
+  28 Jun 2007; Mike Frysinger <vapier@gentoo.org> +less-406.ebuild:
+  Version bump.
 
 *less-403 (13 Jun 2007)
 
