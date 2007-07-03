@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.4-r4.ebuild,v 1.16 2007/06/26 16:22:23 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.4-r4.ebuild,v 1.17 2007/07/02 14:48:44 peper Exp $
 
 EAPI="prefix"
 
@@ -52,10 +52,6 @@ DEPEND=">=sys-libs/zlib-1.1.3
 PDEPEND="${DEPEND} 	dev-python/python-fchksum app-admin/python-updater"
 
 PROVIDE="virtual/python"
-
-# confcache breaks a dlopen check, causing python to not support
-# loading .so files - marienz
-RESTRICT="confcache"
 
 src_unpack() {
 	unpack ${A}
