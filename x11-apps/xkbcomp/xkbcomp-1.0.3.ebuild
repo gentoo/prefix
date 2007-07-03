@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xkbcomp/xkbcomp-1.0.3.ebuild,v 1.8 2007/06/24 22:44:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xkbcomp/xkbcomp-1.0.3.ebuild,v 1.9 2007/07/02 14:05:57 armin76 Exp $
 
 EAPI="prefix"
 
