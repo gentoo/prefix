@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.262 2007/05/31 02:14:34 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.263 2007/06/30 10:28:34 pylon Exp $
+
+  30 Jun 2007; Lars Weiler <pylon@gentoo.org> python-2.3.6-r2.ebuild,
+  python-2.5.1-r2.ebuild:
+  Keyworded ~ppc; bug #177426.
 
   31 May 2007; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
   Remove myself as I'm retiring.
