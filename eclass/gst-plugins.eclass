@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins.eclass,v 1.33 2006/09/01 16:46:28 zaheerm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins.eclass,v 1.34 2007/06/28 13:46:45 peper Exp $
 
 # Author : foser <foser@gentoo.org>
 
@@ -48,6 +48,11 @@ HOMEPAGE="http://gstreamer.freedesktop.org/modules/gst-plugins.html"
 LICENSE="GPL-2"
 
 SRC_URI="mirror://gnome/sources/gst-plugins/${PV_MAJ_MIN}/${MY_P}.tar.bz2"
+if [ ${PV} == "0.8.11" ]; then
+	SRC_URI="${SRC_URI}
+		http://dev.gentooexperimental.org/~peper/distfiles/gst-plugins-0.8.11-conffix.patch.bz2"
+fi
+
 SLOT=${PV_MAJ_MIN}
 
 S=${WORKDIR}/${MY_P}
@@ -142,7 +147,7 @@ gst-plugins_src_unpack() {
 	# apply patch to fix broken configure in 0.8.11
 	cd ${S}
 	if [ ${PV} == "0.8.11" ]; then
-		epatch ${FILESDIR}/../../../media-libs/gst-plugins/files/gst-plugins-0.8.11-conffix.patch
+		epatch "${WORKDIR}/gst-plugins-0.8.11-conffix.patch"
 		AT_M4DIR="-I m4 -I common/m4"
 		eautoreconf
 		elibtoolize
