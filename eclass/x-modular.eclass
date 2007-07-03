@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.83 2007/05/02 07:10:33 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.84 2007/07/02 14:24:27 peper Exp $
 #
 # Author: Donnie Berkholz <dberkholz@gentoo.org>
 #
@@ -160,11 +160,6 @@ if [[ -z "${FONT}" ]] \
 	; then
 	DEBUGGABLE="yes"
 	IUSE="${IUSE} debug"
-	if use debug; then
-		if ! has splitdebug ${FEATURES}; then
-			RESTRICT="${RESTRICT} nostrip"
-		fi
-	fi
 fi
 
 DEPEND="${DEPEND}

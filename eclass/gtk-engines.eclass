@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-engines.eclass,v 1.36 2007/03/26 20:19:22 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-engines.eclass,v 1.37 2007/07/02 14:24:27 peper Exp $
 
 # IMPORTANT:
 # This eclass is deprecated and should not be used in new ebuilds.
@@ -80,7 +80,7 @@ case "${ENGINE}" in
 			# Do _NOT_ strip symbols in the build! Need both lines for Portage
 			# 1.8.9+
 			DEBUG="yes"
-			RESTRICT="nostrip"
+			RESTRICT="strip"
 			# force debug information
 			CFLAGS="${CFLAGS} -g"
 			CXXFLAGS="${CXXFLAGS} -g"

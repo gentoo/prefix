@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.78 2007/05/11 08:25:11 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.79 2007/07/02 14:24:27 peper Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: Luca Longinotti <chtekk@gentoo.org>
@@ -82,7 +82,6 @@ HOMEPAGE="http://www.mysql.com/"
 LICENSE="GPL-2"
 SLOT="0"
 IUSE="big-tables debug embedded minimal perl selinux ssl static"
-RESTRICT="confcache"
 
 mysql_version_is_at_least "4.1" \
 && IUSE="${IUSE} latin1"

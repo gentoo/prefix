@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.336 2007/05/29 22:48:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.337 2007/07/02 14:16:32 peper Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
 HOMEPAGE="http://gcc.gnu.org/"
 LICENSE="GPL-2 LGPL-2.1"
-RESTRICT="nostrip" # cross-compilers need controlled stripping
+RESTRICT="strip" # cross-compilers need controlled stripping
 
 #---->> eclass stuff <<----
 inherit eutils versionator libtool toolchain-funcs flag-o-matic gnuconfig multilib fixheadtails

@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/nxserver_1.5.eclass,v 1.6 2007/04/13 16:56:42 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/nxserver_1.5.eclass,v 1.7 2007/07/02 14:24:27 peper Exp $
 #
 # DEPRECATED
 # eclass for handling the different nxserver binaries available
@@ -14,7 +14,7 @@ HOMEPAGE="http://www.nomachine.com/"
 IUSE="prebuilt cups"
 LICENSE="nomachine"
 SLOT="0"
-RESTRICT="nomirror strip fetch"
+RESTRICT="mirror strip fetch"
 
 SRC_URI="nxserver-${MY_PV}.i386.rpm"
 DEPEND="

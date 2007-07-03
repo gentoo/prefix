@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/nxserver.eclass,v 1.22 2007/04/13 16:56:42 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/nxserver.eclass,v 1.23 2007/07/02 14:24:27 peper Exp $
 #
 # DEPRECATED
 # eclass for handling the different nxserver binaries available
@@ -14,7 +14,7 @@ IUSE=""
 LICENSE="nomachine"
 SLOT="0"
 KEYWORDS="x86 -ppc -sparc -alpha -mips"
-RESTRICT="nomirror strip"
+RESTRICT="mirror strip"
 
 SRC_URI="nxserver-${MY_PV}.i386.rpm"
 RDEPEND=">=media-libs/jpeg-6b-r3

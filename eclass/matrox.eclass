@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/matrox.eclass,v 1.18 2007/04/16 19:20:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/matrox.eclass,v 1.19 2007/07/02 14:24:27 peper Exp $
 #
 # Author: Donnie Berkholz <spyderous@gentoo.org>
 #
@@ -16,7 +16,7 @@ HOMEPAGE="http://www.matrox.com/mga/products/parhelia/home.cfm"
 
 LICENSE="Matrox"
 SLOT="0"
-RESTRICT="fetch nostrip"
+RESTRICT="fetch strip"
 
 RDEPEND="virtual/linux-sources"
 
