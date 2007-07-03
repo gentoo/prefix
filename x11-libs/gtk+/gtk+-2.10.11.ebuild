@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.10.11.ebuild,v 1.12 2007/06/24 22:28:15 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.10.11.ebuild,v 1.13 2007/07/02 14:53:17 peper Exp $
 
 EAPI="prefix"
 
@@ -50,7 +50,6 @@ DEPEND="${RDEPEND}
 			~app-text/docbook-xml-dtd-4.1.2
 		 )"
 
-RESTRICT="confcache"
 
 pkg_setup() {
 	if use X && use aqua; then
