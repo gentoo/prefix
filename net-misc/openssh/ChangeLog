@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.236 2007/04/24 22:03:29 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.237 2007/07/02 10:04:26 flameeyes Exp $
+
+*openssh-4.6_p1-r2 (02 Jul 2007)
+
+  02 Jul 2007; Diego Pettenò <flameeyes@gentoo.org>
+  +files/sshd.pam_include.1, +openssh-4.6_p1-r2.ebuild:
+  Revision bump to fix the pam.d file.
 
   24 Apr 2007; Alexander Færøy <eroyf@gentoo.org>
   openssh-4.5_p1-r1.ebuild:
