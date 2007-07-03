@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libSM
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libSM/ChangeLog,v 1.42 2007/05/27 04:23:16 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libSM/ChangeLog,v 1.43 2007/07/02 13:27:38 armin76 Exp $
+
+  02 Jul 2007; Raúl Porcel <armin76@gentoo.org> libSM-1.0.2.ebuild:
+  alpha stable wrt #175465
 
   27 May 2007; Joshua Kinard <kumba@gentoo.org> libSM-1.0.2.ebuild:
   Stable on mips.
