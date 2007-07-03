@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXres/libXres-1.0.3.ebuild,v 1.9 2007/06/24 22:38:30 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXres/libXres-1.0.3.ebuild,v 1.10 2007/07/02 13:42:19 armin76 Exp $
 
 EAPI="prefix"
 
