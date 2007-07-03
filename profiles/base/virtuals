@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/virtuals,v 1.101 2007/05/15 11:05:19 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/virtuals,v 1.102 2007/07/02 04:17:23 jmglov Exp $
 
 # This file describes the packages that by default satisfy a certain virtual
 # That this file exists in the base profile implies that these packages will
@@ -24,6 +24,7 @@ virtual/dhcpc				net-misc/dhcpcd
 virtual/editor				app-editors/nano
 virtual/eject				sys-apps/eject
 virtual/fam				app-admin/gamin
+virtual/fuse-python			sys-fs/python-fuse
 virtual/gsasl				net-libs/libgsasl
 virtual/ghc					dev-lang/ghc-bin
 virtual/gnustep-back		gnustep-base/gnustep-back-art

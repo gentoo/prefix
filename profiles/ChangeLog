@@ -1,6 +1,44 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.499 2007/06/25 18:34:40 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.512 2007/07/02 16:15:36 ulm Exp $
+
+  02 Jul 2007; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Mask app-emacs/ognus for removal.
+
+  01 Jul 2007; Jurek Bartuszek <jurek@gentoo.org> use.local.desc:
+  Add aspnet, aspnetedit and subversion flags for dev-util/monodevelop
+
+  01 Jul 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Unmask www-servers/boa.
+
+  01 Jul 2007; Cédric Krier <cedk@gentoo.org> use.local.desc:
+  Add libcrypto flag for libssh2
+
+  01 Jul 2007; Krzysiek Pawlik <nelchael@gentoo.org> package.mask:
+  Mask x11-misc/xnview.
+
+  01 Jul 2007; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  mask kde-misc/kdbus for removal
+
+  01 Jul 2007; Petteri Räty <betelgeuse@gentoo.org> use.local.desc:
+  Add note to libX11 xcb use flag that it can break proprietary binaries like
+  Sun Java.
+
+  30 Jun 2007; Raúl Porcel <armin76@gentoo.org> thirdpartymirrors:
+  Remove ancient GNU mirrors
+
+  29 Jun 2007; Bjarke Istrup Pedersen <gurligebis@gentoo.org> package.mask:
+  Removed the package.mask of net-misc/upnp, since it is gone.
+
+  26 Jun 2007; Ulrich Mueller <ulm@gentoo.org> updates/2Q-2007:
+  Package move app-emacs/rst-mode to app-emacs/rst.
+
+  26 Jun 2007; Raúl Porcel <armin76@gentoo.org> package.mask:
+  Remove mask for removed package, bug 131866
+
+  26 Jun 2007; Wulf C. Krueger <philantrop@gentoo.org> package.mask:
+  Masked app-cdr/konqburn because it's broken in several ways, see bug 171493
+  for details.
 
   25 Jun 2007; Ulrich Mueller <ulm@gentoo.org> use.local.desc:
   Add local use flags bbdb and planner for app-emacs/remember.

@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7396 2007/06/25 14:20:59 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7440 2007/07/02 20:23:10 drac Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -20,6 +20,97 @@
 ##
 ##   End example
 ##
+
+# Samuli Suominen <drac@gentoo.org> (02 Jul 2007)
+# Replaced by glipper, klipper, xclipboard or xfce4-clipman.
+# Upstream has no HOMEPAGE anymore. Still using GTK+-1.2.
+# Masked for removal in 30 days.
+x11-misc/gclipper
+
+# Samuli Suominen <drac@gentoo.org> (02 Jul 2007)
+# Still using GTK+-1.2. Replaced by x11-misc/gcolor2.
+# Masked for removal in 30 days.
+x11-misc/gcolor
+
+# Samuli Suominen <drac@gentoo.org> (02 Jul 2007)
+# Upstream gone, last release from 2004. Still using GTK+-1.2.
+# Masked for removal in 30 days. Use x11-misc/gtodo instead.
+x11-misc/ntodo
+
+# Samuli Suominen <drac@gentoo.org> (02 Jul 2007)
+# Orphaned library. Masked for removal in 30 days. Bug 153439.
+media-libs/allegromp3
+
+# Ulrich Mueller <ulm@gentoo.org> (02 Jul 2007)
+# Gnus alpha branch, obsolete since 2003. Last release was ognus-0.24
+# which was replaced by the identical gnus-5.10.1.
+# Masked for removal in 30 days.
+app-emacs/ognus
+
+# Samuli Suominen <drac@gentoo.org> (02 Jul 2007)
+# Masked for removal in 30 days. Replaced by media-sound/bitmeter.
+media-sound/bitscope
+
+# Raúl Porcel <armin76@gentoo.org> (01 Jul 2007)
+# For treecleaners
+# Pending removal in 60 days, 01 Sep 2007
+# app-admin/nologin -> bug 182215
+# app-office/facturalux -> bug 119971
+# x11-themes/jimmac-xcursors -> bug 182216
+app-admin/nologin
+app-office/facturalux
+x11-themes/jimmac-xcursors
+
+# Krzysiek Pawlik <nelchael@gentoo.org> (01 Jul 2007)
+# Masked for security bug #175670.
+# Waiting for upstream to provide a fixed version.
+# If the fix won't be available the package will be removed.
+x11-misc/xnview
+
+# Petteri Räty <betelgeuse@gentoo.org> (01 Jul 2007)
+# Upstream describes this as:
+# Buggy and unmaintained D-BUS service browser for KDE.
+# Seems to segmentation fault on me on startup with current
+# dbus. Removal in 30 days unless someone else takes this
+# package and fixes the problems.
+kde-misc/kdbus
+
+# Samuli Suominen <drac@gentoo.org> (01 Jul 2007)
+# Large amount of TEXTRELS, installs shared ELF libraries
+# into /usr/share, large amount of invalid declaration of functions,
+# autotools usage is completely wrong, installs desktop files into
+# deprecated locations, installs invalid patch conditionally, upstream is 
+# likely dead plus there is open bug 152864. Unless you're willing 
+# to fix *all* this. Package will be removed in 30 days.
+x11-misc/gwhere
+
+# Roy Marples <uberlord@gentoo.org> (29 Jun 2007)
+# Masked due to several connectivity issues.
+>=net-wireless/wpa_supplicant-0.6.0
+
+# Doug Goldstein <cardoe@gentoo.org> (28 Jun 2007)
+# masked due to security issues see bug #177630
+www-apps/otrs
+
+# Raúl Porcel <armin76@gentoo.org> (28 Jun 2007)
+# Mask rc versions
+=net-p2p/deluge-0.5.2_rc*
+
+# Ali Polatel <hawking@gentoo.org> (28 Jun 2007)
+# Included in python standard library with python-2.1.
+# See bug #145154 for details.
+# Masked for removal in 30 days.
+dev-python/pyunit
+
+# Gilles Dartiguelongue <eva@gentoo.org> (26 Jun 2007)
+# Obsolete pre Gnome-2.6 component, bug #183086.
+# Masked for removal in 30 days.
+net-libs/linc
+
+# Wulf C. Krueger <philantrop@gentoo.org> (26 Jun 2007)
+# Broken in several ways, see bug 171493 for details.
+# The author has abandoned it.
+app-cdr/konqburn
 
 # Mike Auty <ikelos@gentoo.org> (24 Jun 2007)
 # Masked for about a week, for testing
@@ -74,10 +165,6 @@ dev-util/larch
 # stable.
 <=net-im/skype-1.4.0.0
 
-# Luca Barbato <lu_zero@gentoo.org> (16 Jun 2007)
-# Temp mask for ffmpeg
-=media-video/ffmpeg-0.4.9_p20070616
-
 # Petteri Räty <betelgeuse@gentoo.org> (16 Jun 2007)
 # We like our stuff GPL so use dev-java/javahelp instead
 dev-java/javahelp-bin
@@ -113,11 +200,6 @@ app-emacs/ilisp-cvs
 # because some ebuilds there are using this.
 dev-java/odmg
 
-# Samuli Suominen <drac@gentoo.org> (06 Jun 2007)
-# Masked for removal in 30 days. Uncompatible with
-# current lineakd as per upstream page. Bug 181079.
-x11-misc/lineakconfig
-
 # Mart Raudsepp <leio@gentoo.org> (04 Jun 2007)
 # Obsolete Gnome-1.x component, bug 180808
 # Masked for removal in 30 days.
@@ -138,23 +220,10 @@ mail-client/muttng
 ~app-text/poppler-0.5.9
 ~app-text/poppler-bindings-0.5.9
 
-# Samuli Suominen <drac@gentoo.org> (31 May 2007)
-# Masked, pending removal in 30 days for bug 178900.
-# Also, upstream is dead. As alternative, use any
-# preferred file manager from tree, there are plenty
-# of them.
-x11-misc/xfm
-
 # Roy Marples <uberlord@gentoo.org> (31 May 2007)
 # Masked, pending removal. Remove in 30 days
 # Use dash instead
 app-shells/ash
-
-# Bjarke Istrup Pedersen <gurligebis@gentoo.org> (30 May 2007)
-# masked for removal on 20070629
-# Upstream is dead and there are several issues
-# Please use net-libs/libupnp instead.
-net-misc/upnp
 
 # Michael Sterrett <mr_bones_@gentoo.org> (30 May 2007)
 # masked for removal on 20070629
@@ -218,11 +287,6 @@ net-wireless/mcs7780
 # any more. Please use dev-java/sun-javamail instead.
 dev-java/sun-javamail-bin
 
-# Raúl Porcel <armin76@gentoo.org> (18 May 2007)
-# For treecleaners, bug 102174
-# Pending removal 17 Jul 2007
-www-servers/boa
-
 # Robin H. Johnson <robbat2@gentoo.org> (18 May 2007)
 # Pre-release of 2.0 series
 =dev-ruby/capistrano-1.99*
@@ -231,11 +295,6 @@ www-servers/boa
 # Masked for removal,  See bug #169546 for more information.  Will be removed on
 # 17 Jun 2007.
 games-fps/unreal-tounrament-infiltration
-
-# Marijn Schouten <hkBst@gentoo.org> (14 May 2007)
-# masked for removal, use >=dev-scheme/drscheme-360-r2
-# without X use flag instead
-dev-scheme/mzscheme
 
 # Marijn Schouten <hkBst@gentoo.org> (14 May 2007)
 # development version
@@ -489,10 +548,6 @@ games-arcade/stepmania
 =dev-haskell/x11-1.2
 =dev-haskell/xhtml-2006.9.13
 
-# Marijn Schouten <hkBst@gentoo.org> (13 Mar 2007)
-# masked for removal
-<dev-scheme/bigloo-2.7a_p2
-
 # Steve Dibb <beandog@gentoo.org> (12 Mar 2007)
 # needs testing
 >=media-video/transcode-1.1.0_pre0
@@ -629,7 +684,7 @@ media-font/mikachan-font
 =net-misc/dropbear-0.48.1-r1
 
 # Seemant Kulleen <seemant@gentoo.org> (02 Feb 2007)
-# Masked because it causees breakages with guile-1.8 and gnucash-2.
+# Masked because it causes breakages with guile-1.8 and gnucash-2.
 # See Marijn's comment below
 ~dev-libs/g-wrap-1.9.7
 
@@ -774,13 +829,6 @@ games-action/d2x-rebirth
 # can't fix rpath, application checks its checksum
 app-antivirus/vlnx
 
-# Daniel Black <dragonheart@gentoo.org> (09 Dec 2006)
-# needs more compatibilty testing - bug #157718 for incompatibilites
->=net-misc/curl-7.16.0
-# masked because of the above mask
-net-fs/curlftpfs
->=dev-python/pycurl-7.16.2
-
 # Patrick Kursawe <phosphan@gentoo.org> (06 Dec 2006)
 # Only partially working, see bug #153667
 media-tv/nuppelvideo
@@ -855,10 +903,6 @@ dev-db/monetdb
 # Unmasking due to removal being canceled.
 # Updated ebuild addresses current bugs.
 #app-misc/gpsdrive
-
-# Grant Goodyear <g2boojum@gentoo.org> (10 Oct 2006)
-# mask gnuplot rc
-=sci-visualization/gnuplot-4.2*
 
 # Alexis Ballier <aballier@gentoo.org> (10 Oct 2006)
 # Masking newest version
@@ -988,10 +1032,6 @@ app-misc/rolo
 # be able to build.
 app-text/texlive
 
-# Stefan Cornelius <dercorny@gentoo.org> (27 May 2006)
-# Masked because of security bug #131866
-sys-apps/resmgr
-
 # Luca Longinotti <chtekk@gentoo.org> (24 May 2006)
 # Masked for more testing, breaks with stealth mode.
 =app-forensics/samhain-2.2.0
@@ -1024,12 +1064,6 @@ sys-apps/ppc64-utils
 # Stefan Knoblich <stkn@gentoo.org> (18 Apr 2006)
 # Masking until asterisk-1.2 gets released into the wild
 net-misc/asterisk-app_authenticate_ldap
-
-# Mark Loeser <halcy0n@gentoo.org> (11 Apr 2006)
-# GCC snapshots; use with extreme care and only report bugs if you have
-# a patch
-=sys-devel/gcc-4.3*
-=sys-devel/gcc-4.2*
 
 # Michael Sterrett <mr_bones_@gentoo.org> (02 Apr 2006)
 # masked pending unresolved security issues #122845
