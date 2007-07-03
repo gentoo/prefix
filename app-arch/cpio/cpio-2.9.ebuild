@@ -18,8 +18,8 @@ DEPEND=""
 src_compile() {
 	econf \
 		$(use_enable nls) \
-		$(with_bindir) \
-		--with-rmt=${EPREFIX}/usr/sbin/rmt \
+		--bindir="${EPREFIX}"/bin \
+		--with-rmt="${EPREFIX}"/usr/sbin/rmt \
 		|| die
 	emake || die
 }
