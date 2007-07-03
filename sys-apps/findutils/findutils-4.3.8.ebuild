@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.3.7.ebuild,v 1.10 2007/06/30 22:07:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.3.8.ebuild,v 1.1 2007/06/30 22:08:36 vapier Exp $
 
 EAPI="prefix"
 
@@ -26,7 +26,6 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-4.3.6-fprint-unwritable.patch #180412
 
 	# IRIX needs an extra cast
 	epatch "${FILESDIR}"/${PN}-4.3.2-irix.patch
