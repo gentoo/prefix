@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p36-r2.ebuild,v 1.1 2007/06/20 14:17:14 rbrown Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p36-r2.ebuild,v 1.2 2007/07/02 14:50:46 peper Exp $
 
 EAPI="prefix"
 
@@ -23,7 +23,6 @@ LICENSE="Ruby"
 SLOT="1.8"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="cjk debug doc examples ipv6 rubytests socks5 threads tk"
-RESTRICT="confcache"
 
 RDEPEND=">=sys-libs/gdbm-1.8.0
 	>=sys-libs/readline-4.1

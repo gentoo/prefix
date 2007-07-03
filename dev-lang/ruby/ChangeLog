@@ -1,6 +1,12 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.288 2007/06/21 19:04:11 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.289 2007/07/02 14:50:46 peper Exp $
+
+  02 Jul 2007; Piotr Jaroszyński <peper@gentoo.org> ruby-1.8.4-r3.ebuild,
+  ruby-1.8.5_p2.ebuild, ruby-1.8.5_p2-r1.ebuild, ruby-1.8.5_p12.ebuild,
+  ruby-1.8.5_p35.ebuild, ruby-1.8.6-r1.ebuild, ruby-1.8.6_p36-r1.ebuild,
+  ruby-1.8.6_p36-r2.ebuild:
+  (QA) RESTRICT clean up.
 
   21 Jun 2007; Fernando J. Pereda <ferdy@gentoo.org> ruby-1.8.6-r1.ebuild:
   Re-add stable keyword for alpha as per bug #181110
