@@ -1,6 +1,18 @@
 # ChangeLog for app-arch/sharutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/sharutils/ChangeLog,v 1.51 2007/06/11 22:36:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/sharutils/ChangeLog,v 1.53 2007/07/02 13:38:54 dragonheart Exp $
+
+  02 Jul 2007; Daniel Black <dragonheart@gentoo.org>
+  -files/sharutils-4.2.1-buffer-check.patch,
+  -files/sharutils-4.2.1-buffer-limits.patch,
+  -files/sharutils-4.2.1-gentoo.patch,
+  -files/sharutils-4.2.1-tempfile.patch, -sharutils-4.2.1-r11.ebuild,
+  -sharutils-4.5.ebuild, -sharutils-4.6.ebuild, -sharutils-4.6.1.ebuild,
+  -sharutils-4.6.2.ebuild:
+  bit of cleaning
+
+  02 Jul 2007; Christoph Mende <angelos@gentoo.org> sharutils-4.6.3.ebuild:
+  Stable on amd64
 
   11 Jun 2007; Raúl Porcel <armin76@gentoo.org> sharutils-4.6.3.ebuild:
   alpha stable
