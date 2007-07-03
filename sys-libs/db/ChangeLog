@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.215 2007/06/26 18:22:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.216 2007/07/01 12:01:12 angelos Exp $
+
+  01 Jul 2007; Christoph Mende <angelos@gentoo.org> db-4.5.20_p2.ebuild:
+  Appending -O2 for people who don't have any optimization turned on, bug #171231
 
   26 Jun 2007; Raúl Porcel <armin76@gentoo.org> db-4.5.20_p2.ebuild:
   ia64 stable wrt #178750
