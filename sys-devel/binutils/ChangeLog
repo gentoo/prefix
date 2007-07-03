@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.294 2007/06/25 07:43:30 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.295 2007/07/01 20:06:04 yoswink Exp $
+
+  01 Jul 2007; Jose Luis Rivero <yoswink@gentoo.org>
+  binutils-2.17.50.0.16.ebuild:
+  Stable on alpha. This fixes the compilation error (CFI related) when
+  compiling glibc. Details in bug #179353
 
   25 Jun 2007; Christian Faulhammer <opfer@gentoo.org> binutils-2.17.ebuild:
   stable x86, security bug 134112
