@@ -1,6 +1,9 @@
 # ChangeLog for app-shells/tcsh
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/ChangeLog,v 1.72 2007/06/24 12:36:32 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/ChangeLog,v 1.73 2007/06/30 21:38:32 lavajoe Exp $
+
+  30 Jun 2007; Joe Peterson <lavajoe@gentoo.org> tcsh-6.15.ebuild:
+  Add ~x86-fbsd keyword
 
 *tcsh-6.15 (23 Jun 2007)
 
