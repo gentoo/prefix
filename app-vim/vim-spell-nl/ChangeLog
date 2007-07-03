@@ -1,6 +1,10 @@
 # ChangeLog for app-vim/vim-spell-nl
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/vim-spell-nl/ChangeLog,v 1.5 2007/05/31 13:29:21 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/vim-spell-nl/ChangeLog,v 1.6 2007/07/02 14:10:05 gustavoz Exp $
+
+  02 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  vim-spell-nl-20051007.ebuild:
+  Stable on sparc
 
   31 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
   vim-spell-nl-20051007.ebuild:
