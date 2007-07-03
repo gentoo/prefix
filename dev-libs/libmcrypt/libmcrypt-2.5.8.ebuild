@@ -1,12 +1,11 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcrypt/libmcrypt-2.5.8.ebuild,v 1.1 2007/05/01 06:40:44 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcrypt/libmcrypt-2.5.8.ebuild,v 1.2 2007/07/02 14:56:24 peper Exp $
 
 EAPI="prefix"
 
 inherit eutils libtool
 
-RESTRICT="confcache"
 DESCRIPTION="libmcrypt is a library that provides uniform interface to access several encryption algorithms."
 HOMEPAGE="http://mcrypt.sourceforge.net/"
 SRC_URI="mirror://sourceforge/mcrypt/${P}.tar.gz"
