@@ -1,6 +1,20 @@
 # ChangeLog for x11-misc/bubblemon
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/bubblemon/ChangeLog,v 1.24 2007/05/28 15:14:12 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/bubblemon/ChangeLog,v 1.28 2007/06/30 11:54:11 armin76 Exp $
+
+  30 Jun 2007; Raúl Porcel <armin76@gentoo.org> bubblemon-1.46-r1.ebuild:
+  alpha/x86 stable wrt #183638
+
+  29 Jun 2007; Lars Weiler <pylon@gentoo.org> bubblemon-1.46-r1.ebuild:
+  Stable on ppc; bug #183638.
+
+  29 Jun 2007; Christoph Mende <angelos@gentoo.org>
+  bubblemon-1.46-r1.ebuild:
+  Stable on amd64 wrt bug #183638
+
+  29 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  bubblemon-1.46-r1.ebuild:
+  Stable on sparc wrt #183638
 
   28 May 2007; Samuli Suominen <drac@gentoo.org>
   files/bubblemon-1.46-gtk.patch:
