@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/libXt-1.0.5.ebuild,v 1.9 2007/06/24 22:38:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/libXt-1.0.5.ebuild,v 1.10 2007/07/02 13:44:34 armin76 Exp $
 
 EAPI="prefix"
 
