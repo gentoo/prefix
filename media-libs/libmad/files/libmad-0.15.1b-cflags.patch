@@ -1,5 +1,6 @@
---- configure.ac.orig	2006-03-10 15:10:24.000000000 -0500
-+++ configure.ac	2006-03-10 15:14:10.000000000 -0500
+diff -Naur libmad-0.15.1b-orig/configure.ac libmad-0.15.1b/configure.ac
+--- libmad-0.15.1b-orig/configure.ac	2007-06-30 20:22:31.000000000 -0600
++++ libmad-0.15.1b/configure.ac	2007-06-30 20:25:31.000000000 -0600
 @@ -122,74 +122,74 @@
      esac
  done

@@ -1,6 +1,18 @@
 # ChangeLog for media-libs/libmad
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmad/ChangeLog,v 1.50 2007/06/14 17:26:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmad/ChangeLog,v 1.52 2007/07/01 19:14:41 dirtyepic Exp $
+
+  01 Jul 2007; Ryan Hill <dirtyepic@gentoo.org>
+  files/libmad-0.15.1b-cflags.patch, +files/libmad-0.15.1b-cflags-O2.patch,
+  libmad-0.15.1b-r3.ebuild:
+  Restore CFLAGS patch for -r2 and add new patch for -r3.
+
+*libmad-0.15.1b-r3 (01 Jul 2007)
+
+  01 Jul 2007; Ryan Hill <dirtyepic@gentoo.org>
+  files/libmad-0.15.1b-cflags.patch, +libmad-0.15.1b-r3.ebuild:
+  Fix CFLAGS patch to cover a case that was missed. Thanks to Sebastian in bug
+  #123215.
 
   14 Jun 2007; Raúl Porcel <armin76@gentoo.org> libmad-0.15.1b-r2.ebuild:
   alpha stable wrt #163113
