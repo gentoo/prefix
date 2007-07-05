@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.43 2007/07/01 23:19:42 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.44 2007/07/03 08:27:40 peper Exp $
 
 ## --------------------------------------------------------------------------- #
 # Author: Akinori Hattori <hattya@gentoo.org>
@@ -172,7 +172,9 @@ function subversion_fetch() {
 		cd "${ESVN_PROJECT}" || die "${ESVN}: can't chdir to ${ESVN_PROJECT}"
 		${ESVN_FETCH_CMD} ${options} "${repo_uri}" || die "${ESVN}: can't fetch from ${repo_uri}."
 
+		subversion_wc_info "${repo_uri}" || die "${ESVN}: unknown problem occurred while accessing working copy."
 	else
+		subversion_wc_info "${repo_uri}" || die "${ESVN}: unknown problem occurred while accessing working copy."
 		if [ "${ESVN_WC_URL}" != "$(subversion__get_repository_uri "${repo_uri}" 1)" ]; then
 			die "${ESVN}: ESVN_REPO_URI (or specified URI) and working copy's URL are not matched."
 		fi
@@ -186,8 +188,6 @@ function subversion_fetch() {
 		cd "${wc_path}" || die "${ESVN}: can't chdir to ${wc_path}"
 		${ESVN_UPDATE_CMD} ${options} || die "${ESVN}: can't update from ${repo_uri}."
 	fi
-
-	subversion_wc_info "${repo_uri}" || die "${ESVN}: unknown problem occurred while accessing working copy."
 
 	einfo "   working copy: ${wc_path}"
 
