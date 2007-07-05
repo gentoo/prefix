@@ -1,6 +1,12 @@
 # ChangeLog for sys-apps/sandbox
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.73 2007/06/24 18:07:40 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.74 2007/07/01 22:21:19 peper Exp $
+
+  01 Jul 2007; Piotr Jaroszyński <peper@gentoo.org> sandbox-1.2.12.ebuild,
+  sandbox-1.2.16.ebuild, sandbox-1.2.17.ebuild, sandbox-1.2.18.ebuild,
+  sandbox-1.2.18.1.ebuild, sandbox-1.2.20_alpha1-r2.ebuild,
+  sandbox-1.2.20_alpha2.ebuild:
+  (QA) RESTRICT="multilib-pkg-force" -> EMULTILIB_PKG="true"
 
   24 Jun 2007; Piotr Jaroszyński <peper@gentoo.org> sandbox-1.2.18.ebuild:
   (QA) Don't use KEYWORDS="-*". bug #160519.

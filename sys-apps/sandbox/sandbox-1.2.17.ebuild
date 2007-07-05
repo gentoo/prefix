@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.2.17.ebuild,v 1.15 2007/03/10 14:32:07 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.2.17.ebuild,v 1.16 2007/07/01 22:21:19 peper Exp $
 
 EAPI="prefix"
 
@@ -21,9 +21,10 @@ SLOT="0"
 #KEYWORDS=" alpha  amd64  arm  hppa  ia64  m68k  mips  ppc  ppc64  s390  sh  sparc  x86"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
-RESTRICT="multilib-pkg-force"
 
 DEPEND=""
+
+EMULTILIB_PKG="true"
 
 setup_multilib() {
 	if use amd64 && has_m32 && [[ ${CONF_MULTILIBDIR} == "lib32" ]]; then
