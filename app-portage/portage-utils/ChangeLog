@@ -1,6 +1,14 @@
 # ChangeLog for app-portage/portage-utils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.89 2007/06/27 06:08:03 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.91 2007/07/03 17:30:57 solar Exp $
+
+  03 Jul 2007; <solar@gentoo.org> -files/fix-bug-168442.patch,
+  -portage-utils-0.1.24.ebuild, -portage-utils-0.1.25-r1.ebuild,
+  -portage-utils-0.1.26.ebuild:
+  - house cleaning
+
+  03 Jul 2007; <solar@gentoo.org> portage-utils-0.1.28.ebuild:
+  - stable on arm and SuperH
 
   27 Jun 2007; Markus Rothe <corsair@gentoo.org>
   portage-utils-0.1.28.ebuild:
