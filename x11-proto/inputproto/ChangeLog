@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/inputproto
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.46 2007/07/02 13:20:23 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.47 2007/07/03 11:55:59 pylon Exp $
+
+  03 Jul 2007; Lars Weiler <pylon@gentoo.org> inputproto-1.4.1.ebuild:
+  Stable on ppc; bug #175465.
 
   02 Jul 2007; Raúl Porcel <armin76@gentoo.org> inputproto-1.4.1.ebuild:
   alpha stable wrt #175465
