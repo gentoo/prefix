@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.2.8.ebuild,v 1.11 2007/06/15 15:43:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.2.8.ebuild,v 1.14 2007/06/27 19:54:59 pylon Exp $
 
 EAPI="prefix"
 
