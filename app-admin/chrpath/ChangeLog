@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/chrpath
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/chrpath/ChangeLog,v 1.5 2007/02/09 07:07:25 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/chrpath/ChangeLog,v 1.6 2007/07/03 18:58:59 uberlord Exp $
+
+  03 Jul 2007; Roy Marples <uberlord@gentoo.org> chrpath-0.13.ebuild:
+  Added ~x86-fbsd keyword.
 
   09 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
   Regenerate digest in Manifest2 format.
