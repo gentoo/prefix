@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/most
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/most/ChangeLog,v 1.32 2007/06/30 17:59:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/most/ChangeLog,v 1.33 2007/07/03 17:44:07 grobian Exp $
+
+  03 Jul 2007; Fabian Groffen <grobian@gentoo.org> most-4.9.5.ebuild,
+  most-4.10.2-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   30 Jun 2007; Raúl Porcel <armin76@gentoo.org> most-4.10.2-r1.ebuild:
   alpha stable wrt #182435
