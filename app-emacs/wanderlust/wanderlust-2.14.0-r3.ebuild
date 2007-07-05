@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/wanderlust-2.14.0-r3.ebuild,v 1.3 2007/05/03 20:19:04 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/wanderlust-2.14.0-r3.ebuild,v 1.4 2007/07/03 06:53:41 opfer Exp $
 
 EAPI="prefix"
 
@@ -37,8 +37,8 @@ src_unpack() {
 src_compile() {
 	echo '(load "'"${EPREFIX}"'/usr/share/emacs/site-lisp/site-gentoo.el")' >> WL-CFG
 	use ssl && echo "(setq wl-install-utils t)" >> WL-CFG
-	make || die
-	make info || die
+	emake || die "emake failed"
+	emake info || die "emake info failed"
 	if use bbdb; then
 		cd utils
 		EMACS="emacs -L ../../elmo -L ../../wl" elisp-comp bbdb-wl.el
@@ -46,13 +46,13 @@ src_compile() {
 }
 
 src_install() {
-	make \
+	emake \
 		LISPDIR="${ED}/usr/share/emacs/site-lisp" \
 		PIXMAPDIR="${ED}/usr/share/wl/icons" \
-		install || die
+		install || die "emake install failed"
 
 	elisp-install wl utils/bbdb-wl.{el,elc}
-	elisp-site-file-install "${FILESDIR}/70wl-gentoo.el" || die
+	elisp-site-file-install "${FILESDIR}/70wl-gentoo.el" || die "elisp-site-file-install failed"
 
 	dodir /usr/share/wl/samples
 
