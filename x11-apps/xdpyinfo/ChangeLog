@@ -1,6 +1,9 @@
 # ChangeLog for x11-apps/xdpyinfo
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xdpyinfo/ChangeLog,v 1.32 2007/07/02 14:01:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xdpyinfo/ChangeLog,v 1.33 2007/07/03 12:38:15 pylon Exp $
+
+  03 Jul 2007; Lars Weiler <pylon@gentoo.org> xdpyinfo-1.0.2.ebuild:
+  Stable on ppc; bug #175465.
 
   02 Jul 2007; Raúl Porcel <armin76@gentoo.org> xdpyinfo-1.0.2.ebuild:
   alpha stable wrt #175465
