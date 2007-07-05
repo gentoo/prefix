@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXpm/libXpm-3.5.6.ebuild,v 1.9 2007/07/02 13:40:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXpm/libXpm-3.5.6.ebuild,v 1.10 2007/07/03 12:20:05 pylon Exp $
 
 EAPI="prefix"
 
