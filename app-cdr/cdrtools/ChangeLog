@@ -1,6 +1,10 @@
 # ChangeLog for app-cdr/cdrtools
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.175 2007/06/02 14:24:59 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.176 2007/07/03 10:26:41 armin76 Exp $
+
+  03 Jul 2007; Raúl Porcel <armin76@gentoo.org>
+  cdrtools-2.01.01_alpha25.ebuild:
+  alpha stable wrt #177472
 
   02 Jun 2007; Lars Weiler <pylon@gentoo.org> +files/mkisofs-iconv-25.patch,
   cdrtools-2.01.01_alpha25.ebuild, cdrtools-2.01.01_alpha27.ebuild:
