@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.20.ebuild,v 1.13 2007/06/08 13:06:20 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.20.ebuild,v 1.14 2007/07/03 21:31:21 spock Exp $
 
 EAPI="prefix"
 
@@ -16,6 +16,7 @@ IUSE="gtk ssl"
 
 DEPEND="virtual/libc
 	dev-libs/libpcre
+	net-libs/libpcap
 	gtk? ( =x11-libs/gtk+-2* )
 	ssl? ( dev-libs/openssl )"
 
@@ -32,6 +33,7 @@ src_unpack() {
 src_compile() {
 	use ppc-macos && filter-flags -fstrict-aliasing -O2
 	econf \
+		--with-libdnet=included \
 		$(use_with gtk nmapfe) \
 		$(use_with ssl openssl) || die
 	emake -j1 || die

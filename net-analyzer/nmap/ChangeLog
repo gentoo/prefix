@@ -1,6 +1,13 @@
 # ChangeLog for net-analyzer/nmap
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.143 2007/06/08 13:06:20 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.145 2007/07/03 21:35:01 spock Exp $
+
+  03 Jul 2007; Michał Januszewski <spock@gentoo.org> -nmap-3.81.ebuild,
+  -nmap-4.01.ebuild, -nmap-4.10.ebuild:
+  Remove old ebuilds.
+
+  03 Jul 2007; Michał Januszewski <spock@gentoo.org> nmap-4.20.ebuild:
+  Add a dependency on net-libs/libpcap (bug #184085).
 
   08 Jun 2007; Raúl Porcel <armin76@gentoo.org> nmap-4.20.ebuild:
   alpha stable wrt #178183
