@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/boehm-gc-6.8.ebuild,v 1.2 2007/02/11 16:39:53 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/boehm-gc-6.8.ebuild,v 1.3 2007/07/03 12:54:34 armin76 Exp $
 
 EAPI="prefix"
 
