@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/xproto
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xproto/ChangeLog,v 1.53 2007/07/02 13:23:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xproto/ChangeLog,v 1.54 2007/07/03 11:59:06 pylon Exp $
+
+  03 Jul 2007; Lars Weiler <pylon@gentoo.org> xproto-7.0.10.ebuild:
+  Stable on ppc; bug #175465.
 
   02 Jul 2007; Raúl Porcel <armin76@gentoo.org> xproto-7.0.10.ebuild:
   alpha stable wrt #175465
