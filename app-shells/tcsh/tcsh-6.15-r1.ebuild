@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/tcsh-6.15.ebuild,v 1.2 2007/06/30 21:38:32 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/tcsh-6.15-r1.ebuild,v 1.1 2007/07/03 16:49:11 grobian Exp $
 
 EAPI="prefix"
 
@@ -32,6 +32,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}/${MY_P/15/14}"-debian-dircolors.patch # bug #120792
 	epatch "${FILESDIR}"/${PN}-6.14-makefile.patch # bug #151951
+	epatch "${FILESDIR}"/${MY_P}-normalize-command-fix.patch # bug #183754
 	epatch "${FILESDIR}"/${PN}-6.14-use-ncurses.patch
 	eautoreconf
 
