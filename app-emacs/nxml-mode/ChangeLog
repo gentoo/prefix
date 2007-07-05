@@ -1,6 +1,11 @@
 # ChangeLog for app-emacs/nxml-mode
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/ChangeLog,v 1.22 2007/03/30 21:58:07 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/ChangeLog,v 1.23 2007/07/02 07:32:10 opfer Exp $
+
+  02 Jul 2007; Christian Faulhammer <opfer@gentoo.org>
+  nxml-mode-20041004.ebuild:
+  adjusted DESCRIPTION a bit, added primary HOMEPAGE, added some quotes around
+  variables
 
   30 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
   -nxml-mode-20040910.ebuild:
