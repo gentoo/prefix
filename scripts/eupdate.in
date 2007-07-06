@@ -376,6 +376,10 @@ fetch_files() {
 	local p=$pn-$pv
 	local t=""
 
+	# Sometimes patches or other things in the FILESDIR refer to some
+	# variable stored globally.  We grab them from the ebuild for those cases
+	gvars=$(egrep '^[^\t ]*=' $1 | egrep -v '^(([RP]|)DEPEND|DESCRIPTION|HOMEPAGE|SRC_URI|LICENSE|KEYWORDS|IUSE|S)=' | xargs echo)
+
 	# Find all "referenced" files from/to FILESDIR.  We keep ${FILESDIR}
 	# in, to just use a bash eval on what we found to get the right
 	# path.
@@ -388,7 +392,7 @@ fetch_files() {
 		$1 | \
 	while read l ; do
 		t=$(eval a='$l'; for i in $a ; do echo $i ; break ; done)
-		t=$(env -i t=$t P=$p PV=$pv PN=$pn FILESDIR=files bash -c 'eval echo $t')
+		t=$(env -i t=$t P=$p PV=$pv PN=$pn FILESDIR=files bash -c "$gvars"'; eval echo $t')
 		# we can have file{1,2} stuff in the first t here, so iterate
 		# over the result list...
 		for u in $t ; do
