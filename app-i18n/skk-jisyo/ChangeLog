@@ -1,0 +1,184 @@
+# ChangeLog for app-i18n/skk-jisyo
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/skk-jisyo/ChangeLog,v 1.43 2007/07/07 01:57:12 matsuu Exp $
+
+*skk-jisyo-200707 (07 Jul 2007)
+
+  07 Jul 2007; MATSUU Takuto <matsuu@gentoo.org> +skk-jisyo-200707.ebuild:
+  Version bumped.
+
+  27 May 2007; MATSUU Takuto <matsuu@gentoo.org> -skk-jisyo-200410.ebuild,
+  -skk-jisyo-200501.ebuild, skk-jisyo-200705.ebuild:
+  Fixed LICENSE.
+  Removed old versions.
+
+*skk-jisyo-200705 (21 May 2007)
+
+  21 May 2007; MATSUU Takuto <matsuu@gentoo.org> +files/unannotation.awk,
+  +skk-jisyo-200705.ebuild:
+  Version bumped.
+  Aggregated app-i18n/skk-jisyo*.
+
+  03 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
+
+*skk-jisyo-200507 (02 Jul 2005)
+
+  02 Jul 2005; Mamoru KOMACHI <usata@gentoo.org> -skk-jisyo-200407.ebuild,
+  +skk-jisyo-200507.ebuild:
+  Added new snapshot.
+
+*skk-jisyo-200504 (02 Apr 2005)
+
+  02 Apr 2005; Mamoru KOMACHI <usata@gentoo.org> +skk-jisyo-200504.ebuild:
+  New snapshot.
+
+  31 Mar 2005; <blubb@gentoo.org> skk-jisyo-200501.ebuild:
+  stable on amd64
+
+  24 Feb 2005; Gustavo Zacarias <gustavoz@gentoo.org> skk-jisyo-200501.ebuild:
+  Stable on sparc
+
+  10 Feb 2005; Mamoru KOMACHI <usata@gentoo.org> skk-jisyo-200501.ebuild:
+  Stable on x86, alpha, ppc and ppc-macos.
+
+  30 Jan 2005; MATSUU Takuto <matsuu@gentoo.org> skk-jisyo-200410.ebuild:
+  Stable on amd64.
+
+*skk-jisyo-200501 (05 Jan 2005)
+
+  05 Jan 2005; Mamoru KOMACHI <usata@gentoo.org> -skk-jisyo-200310.ebuild,
+  +skk-jisyo-200501.ebuild:
+  New snapshot.
+
+  16 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org> skk-jisyo-200410.ebuild:
+  Stable on sparc
+
+  04 Nov 2004; Mamoru KOMACHI <usata@gentoo.org> -skk-jisyo-200401.ebuild,
+  -skk-jisyo-200404.ebuild, skk-jisyo-200410.ebuild:
+  Removed old ebuilds. Marked 200410 stable on x86, alpha, ppc and ppc-macos.
+
+*skk-jisyo-200410 (02 Oct 2004)
+
+  02 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> +skk-jisyo-200410.ebuild:
+  Added a new snapshot.
+
+  19 Jul 2004; Mamoru KOMACHI <usata@gentoo.org> skk-jisyo-200407.ebuild:
+  Added to macos and marked stable on x86, alpha and ppc
+
+*skk-jisyo-200407 (01 Jul 2004)
+
+  01 Jul 2004; Mamoru KOMACHI <usata@gentoo.org> +skk-jisyo-200407.ebuild:
+  Version bumped.
+
+  23 Jun 2004; <matsuu@gentoo.org> skk-jisyo-200404.ebuild:
+  Added ~sparc and ~amd64 to KEYWORDS.
+
+  10 May 2004; Mamoru KOMACHI <usata@gentoo.org> skk-jisyo-200310.ebuild,
+  skk-jisyo-200401.ebuild, skk-jisyo-200404.ebuild:
+  Stable on x86, alpha and ppc. Don't assign default to S.
+
+*skk-jisyo-200404 (01 Apr 2004)
+
+  01 Apr 2004; Mamoru KOMACHI <usata@gentoo.org> skk-jisyo-200404.ebuild:
+  New CVS snapshot
+
+  28 Mar 2004; Mamoru KOMACHI <usata@gentoo.org> skk-jisyo-200401.ebuild:
+  Marked as stable. Removed old ebuild.
+
+*skk-jisyo-200401 (04 Jan 2004)
+
+  04 Jan 2004; Mamoru KOMACHI <usata@gentoo.org> skk-jisyo-200401.ebuild:
+  Updated snapshot
+
+  06 Nov 2003; Mamoru KOMACHI <usata@gentoo.org> skk-jisyo-200211.ebuild,
+  skk-jisyo-200212.ebuild, skk-jisyo-200303-r1.ebuild,
+  skk-jisyo-200303.ebuild, skk-jisyo-200307.ebuild:
+  Cleaned out old ebuilds
+
+*skk-jisyo-200310 (03 Oct 2003)
+
+  03 Oct 2003; Mamoru KOMACHI <usata@gentoo.org> skk-jisyo-200211.ebuild,
+  skk-jisyo-200212.ebuild, skk-jisyo-200303.ebuild, skk-jisyo-200310.ebuild:
+  Version bumped and marked old versions stable
+
+*skk-jisyo-200309 (02 Sep 2003)
+
+  02 Sep 2003; Mamoru KOMACHI <usata@gentoo.org> skk-jisyo-200309.ebuild:
+  Updated snapshot
+
+*skk-jisyo-200308 (02 Aug 2003)
+
+  20 Aug 2003; Mamoru KOMACHI <usata@gentoo.org> skk-jisyo-200308.ebuild:
+  Marked as stable
+
+  02 Aug 2003; Mamoru KOMACHI <usata@gentoo.org> skk-jisyo-200308.ebuild:
+  Updated snapshot
+
+*skk-jisyo-200307 (13 Jul 2003)
+
+  02 Aug 2003; Mamoru KOMACHI <usata@gentoo.org> skk-jisyo-200307.ebuild:
+  Marked stable on all arch
+
+  13 Jul 2003; MATSUU Takuto <matsuu@gentoo.org> skk-jisyo-200307.ebuild:
+  version bump. Thanks to usata@gentoo.org (Mamoru KOMACHI) in bug #23818.
+
+*skk-jisyo-200303-r1 (27 Mar 2003)
+
+*skk-jisyo-200303 (01 Mar 2003)
+  27 Mar 2003; Masatomo Nakano <nakano@gentoo.org> skk-jisyo-200303-r1.ebuild:
+
+  fixed bug and marked as stable.
+
+  27 Mar 2003; Masatomo Nakano <nakano@gentoo.org> skk-jisyo-200303-r1.ebuild:
+
+  modified dictionary.
+
+  25 Mar 2003; Masatomo Nakano <nakano@gentoo.org> digest-skk-jisyo-200303:
+
+  updated dictionary.
+
+  01 Mar 2003; Masatomo Nakano <nakano@gentoo.org> skk-jisyo-200303.ebuild:
+
+  version bump.
+
+*skk-jisyo-200212 (11 Dec 2002)
+  11 Dec 2002; Masatomo Nakano <nakano@gentoo.org> skk-jisyo-200212.ebuild,
+  files/digest-skk-jisyo-200212, ChangeLog :
+
+  New version.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*skk-jisyo-200211 (06 Nov 2002)
+
+  08 Nov 2002; Masatomo Nakano <nakano@gentoo.org> skk-jisyo-200211.ebuild,
+  ChangeLog :
+
+  modified KEYWORDS from ~x86 to x86
+
+  06 Nov 2002; Masatomo Nakano <nakano@gentoo.org> skk-jisyo-200211.ebuild,
+  files/digest-skk-jisyo-200211, ChangeLog :
+
+  New version. Thanks to matsuu@7501.net (MATSUU Takuto) in bug #10305.
+
+
+*skk-jisyo-200210 (26 Oct 2002)
+
+  26 Oct 2002; Stuart Bouyer <stubear@gentoo.org> skk-jisyo-200210.ebuild,
+  files/digest-skk-jisyo-200210, ChangeLog :
+
+  Version bump. Submitted by MATSUU Takuto <matsuu@7501.net>. New ebuild
+  fixes the digest change problem with the earlier version.
+
+*skk-jisyo-200207 (30 Jul 2002)
+
+  01 Oct 2002; Stuart Bouyer <stubear@gentoo.org> skk-jisyo-200207.ebuild :
+
+  Added the correct headers to the ebuild. Thanks Mike Frysinger
+  <vapier@gentoo.org> for pointing this out.
+
+  30 Jul 2002; Stuart Bouyer <stubear@gentoo.org> skk-jisyo-200207.ebuild :
+
+  Initail ebuild submitted by Matsuu Takuto <matsuu@7501.net>
+
