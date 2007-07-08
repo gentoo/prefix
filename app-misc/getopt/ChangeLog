@@ -1,0 +1,12 @@
+# ChangeLog for app-misc/getopt
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/getopt/ChangeLog,v 1.1 2006/05/24 11:49:47 flameeyes Exp $
+
+*getopt-1.1.4 (24 May 2006)
+
+  24 May 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +files/getopt-1.1.4-libintl.patch, +files/getopt-1.1.4-longrename.patch,
+  +metadata.xml, +getopt-1.1.4.ebuild:
+  Add getopt package providing getopt-long for platforms where getopt(1) does
+  not support GNU style long options.
+
