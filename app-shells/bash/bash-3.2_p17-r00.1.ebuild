@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p15-r1.ebuild,v 1.10 2007/06/24 21:17:04 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p17.ebuild,v 1.1 2007/05/03 05:49:17 vapier Exp $
 
 EAPI="prefix"
 
@@ -62,7 +62,6 @@ src_unpack() {
 		# Fix process substitution on BSD.
 		epatch "${FILESDIR}"/${PN}-3.2-process-subst.patch
 
-		epatch "${FILESDIR}"/${PN}-3.2-redisplay-cursor.patch #155369
 		epatch "${FILESDIR}"/${PN}-3.2-ulimit.patch
 		# Don't barf on handled signals in scripts
 		epatch "${FILESDIR}"/${PN}-3.0-trap-fg-signals.patch
@@ -79,6 +78,15 @@ src_unpack() {
 	fi
 
 	epatch "${FILESDIR}"/${PN}-3.0-configs.patch
+	# this one makes the above one prefix paths + additional prefixes added
+	epatch "${FILESDIR}"/${PN}-3.0-configs-prefix.patch
+	eprefixify config-top.h pathnames.h.in
+
+	# modify the bashrc file for prefix
+	cp "${FILESDIR}"/bashrc "${T}"
+	cd "${T}"
+	epatch "${FILESDIR}"/bashrc-prefix.patch
+	eprefixify "${T}"/bashrc
 }
 
 src_compile() {
@@ -118,7 +126,8 @@ src_install() {
 	dosym bash /bin/rbash
 
 	insinto /etc/bash
-	doins "${FILESDIR}"/{bashrc,bash_logout}
+	doins "${FILESDIR}"/bash_logout
+	doins "${T}"/bashrc
 	insinto /etc/skel
 	for f in bash{_logout,_profile,rc} ; do
 		newins "${FILESDIR}"/dot-${f} .${f}
