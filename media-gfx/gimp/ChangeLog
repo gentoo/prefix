@@ -1,6 +1,14 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.204 2007/06/14 12:08:01 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.206 2007/07/08 09:03:56 corsair Exp $
+
+  08 Jul 2007; Markus Rothe <corsair@gentoo.org> gimp-2.2.16.ebuild:
+  Stable on ppc64; bug #182047
+
+*gimp-2.2.16 (08 Jul 2007)
+
+  08 Jul 2007; Hanno Boeck <hanno@gentoo.org> +gimp-2.2.16.ebuild:
+  Version bump and security fix.
 
   14 Jun 2007; Hanno Boeck <hanno@gentoo.org> gimp-2.3.18.ebuild:
   Parallel build is broken in 2.3.18, enforcing -j1.
