@@ -532,6 +532,7 @@ vim_src_install() {
 		# both vim and gvim
 		insinto /etc/vim/
 		newins ${FILESDIR}/vimrc${VIMRC_FILE_SUFFIX} vimrc
+		eprefixify "${ED}"/etc/vim/vimrc
 
 		if use livecd ; then
 			# To save space, install only a subset of the files if we're on a
@@ -578,6 +579,7 @@ vim_src_install() {
 
 	insinto /etc/vim
 		newins ${FILESDIR}/gvimrc${GVIMRC_FILE_SUFFIX} gvimrc
+		eprefixify "${ED}"/etc/vim/gvimrc
 
 		# as of 6.3-r1, we install a desktop entry. bug #44633, and bug #68622
 		# for the nicer updated version.
