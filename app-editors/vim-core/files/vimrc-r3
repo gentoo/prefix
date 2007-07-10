@@ -120,10 +120,10 @@ endif
 
 " {{{ Fix &shell, see bug #101665.
 if "" == &shell
-  if executable("/bin/bash")
-    set shell=/bin/bash
-  elseif executable("/bin/sh")
-    set shell=/bin/sh
+  if executable("@GENTOO_PORTAGE_EPREFIX@/bin/bash")
+    set shell=@GENTOO_PORTAGE_EPREFIX@/bin/bash
+  elseif executable("@GENTOO_PORTAGE_EPREFIX@/bin/sh")
+    set shell=@GENTOO_PORTAGE_EPREFIX@/bin/sh
   endif
 endif
 "}}}
@@ -175,8 +175,8 @@ endif " has("autocmd")
 " }}}
 
 " {{{ vimrc.local
-if filereadable("/etc/vim/vimrc.local")
-  source /etc/vim/vimrc.local
+if filereadable("@GENTOO_PORTAGE_EPREFIX@/etc/vim/vimrc.local")
+  source @GENTOO_PORTAGE_EPREFIX@/etc/vim/vimrc.local
 endif
 " }}}
 
