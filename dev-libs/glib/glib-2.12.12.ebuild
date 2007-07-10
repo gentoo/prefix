@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.12.12.ebuild,v 1.2 2007/06/05 19:06:25 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.12.12.ebuild,v 1.3 2007/07/06 00:31:30 dang Exp $
 
 EAPI="prefix"
 
@@ -46,6 +46,9 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-2.12.11-solaris-thread.patch
 	# autoreconf is not going to work, as we miss some m4 includes
+
+	# Fix gmodule issues on fbsd; bug #184301
+	epatch "${FILESDIR}"/${P}-fbsd.patch
 
 	[[ ${CHOST} == *-freebsd* ]] && elibtoolize
 }
