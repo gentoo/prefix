@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.2.8-r1.ebuild,v 1.1 2007/06/15 17:59:22 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.2.8-r1.ebuild,v 1.2 2007/07/08 20:21:20 phreak Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ DESCRIPTION="Apache Portable Runtime Library"
 HOMEPAGE="http://apr.apache.org/"
 SRC_URI="mirror://apache/apr/${P}.tar.gz
 	mirror://apache/apr/apr-${PV}.tar.gz
-	mirror://gentoo/apr_dbd_mysql-r${DBD_MYSQL}.c"
+	mysql? ( mirror://gentoo/apr_dbd_mysql-r${DBD_MYSQL}.c )"
 
 LICENSE="Apache-2.0"
 SLOT="1"
@@ -25,6 +25,7 @@ DEPEND="dev-libs/expat
 	berkdb? ( =sys-libs/db-4* )
 	gdbm? ( sys-libs/gdbm )
 	ldap? ( =net-nds/openldap-2* )
+	mysql? ( =virtual/mysql-5* )
 	postgres? ( dev-db/libpq )
 	sqlite? ( =dev-db/sqlite-2* )
 	sqlite3? ( =dev-db/sqlite-3* )"
@@ -33,8 +34,10 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	cp "${DISTDIR}"/apr_dbd_mysql-r${DBD_MYSQL}.c \
-	"${S}"/dbd/apr_dbd_mysql.c || die "could not copy mysql driver"
+	if use mysql ; then
+		cp "${DISTDIR}"/apr_dbd_mysql-r${DBD_MYSQL}.c \
+			"${S}"/dbd/apr_dbd_mysql.c || die "could not copy mysql driver"
+	fi
 
 	./buildconf --with-apr=../apr-${PV} || die "buildconf failed"
 	elibtoolize || die "elibtoolize failed"
