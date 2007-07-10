@@ -1,6 +1,17 @@
 # ChangeLog for dev-libs/libksba
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.67 2007/06/29 22:05:46 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.70 2007/07/06 17:42:45 alonbl Exp $
+
+  06 Jul 2007; Alon Bar-Lev <alonbl@gentoo.org> libksba-1.0.2.ebuild:
+  ebuild cleanups
+
+  06 Jul 2007; Alon Bar-Lev <alonbl@gentoo.org> libksba-1.0.2.ebuild:
+  Update license
+
+*libksba-1.0.2 (06 Jul 2007)
+
+  06 Jul 2007; Alon Bar-Lev <alonbl@gentoo.org> +libksba-1.0.2.ebuild:
+  Version bump
 
   29 Jun 2007; Lars Weiler <pylon@gentoo.org> libksba-1.0.0.ebuild:
   Stable on ppc; bug #183528.
