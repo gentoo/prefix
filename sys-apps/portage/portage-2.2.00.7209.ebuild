@@ -15,7 +15,7 @@ PROVIDE="virtual/portage"
 SLOT="0"
 # USE_EXPAND_HIDDEN hides ELIBC and USERLAND expansions from emerge output (see make.conf.5).
 IUSE_ELIBC="elibc_glibc elibc_uclibc elibc_FreeBSD"
-IUSE_KERNEL="kernel_Darwin"
+IUSE_KERNEL="kernel_linux"
 IUSE="build doc epydoc selinux linguas_pl ${IUSE_ELIBC} ${IUSE_USERLAND}"
 DEPEND=">=dev-lang/python-2.4
 	!build? ( >=sys-apps/sed-4.0.5 )
@@ -26,7 +26,7 @@ RDEPEND=">=dev-lang/python-2.4
 		>=app-shells/bash-3.0 )
 	elibc_glibc? ( >=sys-apps/sandbox-1.2.17 )
 	elibc_uclibc? ( >=sys-apps/sandbox-1.2.17 )
-	!kernel_Darwin? ( >=app-misc/pax-utils-0.1.13 )
+	kernel_linux? ( >=app-misc/pax-utils-0.1.13 )
 	>=sys-apps/coreutils-6.4
 	selinux? ( >=dev-python/python-selinux-2.16 )
 	doc? ( app-portage/portage-manpages )
