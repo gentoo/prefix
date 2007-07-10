@@ -1,6 +1,10 @@
 # ChangeLog for app-emacs/semi
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/semi/ChangeLog,v 1.21 2007/05/04 21:06:38 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/semi/ChangeLog,v 1.22 2007/07/04 23:20:53 opfer Exp $
+
+  04 Jul 2007; Christian Faulhammer <opfer@gentoo.org> semi-1.14.6.ebuild:
+  adjusted DESCRIPTION; SITEFILE handling canonical; manual make calls to
+  emake; added some die comments
 
   04 May 2007; Ulrich Mueller <ulm@gentoo.org> semi-1.14.6.ebuild:
   Remove virtual/semi since no other package provides it.
