@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/nspr
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/ChangeLog,v 1.79 2007/04/20 13:22:26 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/ChangeLog,v 1.80 2007/07/08 17:14:45 armin76 Exp $
+
+*nspr-4.6.7 (08 Jul 2007)
+
+  08 Jul 2007; Raúl Porcel <armin76@gentoo.org> +nspr-4.6.7.ebuild:
+  Version bump
 
   20 Apr 2007; Raúl Porcel <armin76@gentoo.org>
   -files/nspr-4.3-amd64.patch, -files/nspr-4.4.1-hppa.patch,
