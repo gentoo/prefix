@@ -1,6 +1,11 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.202 2007/06/26 20:21:00 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.203 2007/07/07 21:00:46 drac Exp $
+
+  07 Jul 2007; Samuli Suominen <drac@gentoo.org>
+  ffmpeg-0.4.9_p20070616-r1.ebuild:
+  Fix building with USE altivec for bug 183687. Thanks to Laurent G. for
+  reporting, Joe Jezak for solution, Kimura Masaru for testing.
 
 *ffmpeg-0.4.9_p20070616-r1 (26 Jun 2007)
 

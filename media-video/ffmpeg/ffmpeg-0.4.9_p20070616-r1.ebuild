@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20070616-r1.ebuild,v 1.1 2007/06/26 20:21:00 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20070616-r1.ebuild,v 1.2 2007/07/07 21:00:46 drac Exp $
 
 EAPI="prefix"
 
@@ -46,7 +46,7 @@ DEPEND="${DEPEND} amd64? ( >=sys-apps/portage-2.1.2 )"
 
 src_unpack() {
 	unpack ${A} || die
-	cd ${S}
+	cd "${S}"
 
 	#Append -DBROKEN_RELOCATIONS to build for bug 179872.
 	#Pretty please fix me if you can.
@@ -67,6 +67,9 @@ src_unpack() {
 
 	# To make sure the ffserver test will work
 	sed -i -e "s:-e debug=off::" tests/server-regression.sh
+
+	# Fix building with altivec for bug 183687
+	sed -i -e "s:TARGET_ALTIVEC:HAVE_ALTIVEC:" libswscale/Makefile
 
 	epatch "${FILESDIR}/${PN}-shared-gcc4.1.patch"
 	# disable non pic safe asm, bug #172877, bug #172845 and dupes
