@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/pysqlite
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pysqlite/ChangeLog,v 1.74 2007/06/20 10:46:15 lucass Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pysqlite/ChangeLog,v 1.75 2007/07/07 13:44:32 hawking Exp $
+
+*pysqlite-2.3.4-r1 (07 Jul 2007)
+
+  07 Jul 2007; Ali Polatel <hawking@gentoo.org> +pysqlite-2.3.4-r1.ebuild:
+  revbump, fix encoding issues, use PYTHON_MODNAME, don't install tests
 
 *pysqlite-2.3.4 (20 Jun 2007)
 
