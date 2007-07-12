@@ -1,6 +1,11 @@
 # ChangeLog for app-text/gv
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gv/ChangeLog,v 1.66 2007/04/07 17:30:26 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gv/ChangeLog,v 1.67 2007/07/04 09:37:01 genstef Exp $
+
+*gv-3.6.3 (04 Jul 2007)
+
+  04 Jul 2007; Stefan Schweizer <genstef@gentoo.org> +gv-3.6.3.ebuild:
+  version bump thanks to Charles Clement <caratorn@gmail.com> in bug 184019
 
   07 Apr 2007; Stefan Schweizer <genstef@gentoo.org>
   +files/gv-30_config.patch, gv-3.6.2-r1.ebuild:
