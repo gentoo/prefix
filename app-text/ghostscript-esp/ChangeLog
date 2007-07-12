@@ -1,6 +1,11 @@
 # ChangeLog for app-text/ghostscript-esp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ChangeLog,v 1.52 2007/06/01 22:40:36 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ChangeLog,v 1.53 2007/07/04 06:24:51 genstef Exp $
+
+  04 Jul 2007; Stefan Schweizer <genstef@gentoo.org>
+  ghostscript-esp-7.07.1-r8.ebuild, ghostscript-esp-8.15.3.ebuild,
+  -ghostscript-esp-8.15.3-r1.ebuild, ghostscript-esp-8.15.4.ebuild:
+  Drop emacs support thanks opfer in bug 184167
 
   01 Jun 2007; Samuli Suominen <drac@gentoo.org>
   ghostscript-esp-8.15.3.ebuild, ghostscript-esp-8.15.3-r1.ebuild,

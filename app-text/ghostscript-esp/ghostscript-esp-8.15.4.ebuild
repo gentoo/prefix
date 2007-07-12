@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ghostscript-esp-8.15.4.ebuild,v 1.2 2007/06/01 22:40:36 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ghostscript-esp-8.15.4.ebuild,v 1.3 2007/07/04 06:24:51 genstef Exp $
 
 EAPI="prefix"
 
@@ -25,7 +25,7 @@ ESVN_REPO_URI="http://svn.easysw.com/public/espgs/trunk"
 LICENSE="GPL-2 LGPL-2 CPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
-IUSE="X cups cjk emacs gtk threads xml djvu"
+IUSE="X cups cjk gtk threads xml djvu"
 
 DEP="virtual/libc
 	virtual/libiconv
@@ -133,7 +133,6 @@ src_install() {
 
 	rm -fr ${ED}/usr/share/doc/${PF}/html/{README,PUBLIC}
 	dodoc doc/README
-	use emacs && elisp-site-file-install doc/gsdoc.el
 
 	cd ${S}/ijs
 	emake DESTDIR="${D}" install || die "emake ijs install failed"
