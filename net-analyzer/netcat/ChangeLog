@@ -1,6 +1,9 @@
 # ChangeLog for net-analyzer/netcat
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/netcat/ChangeLog,v 1.36 2007/01/17 00:39:41 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/netcat/ChangeLog,v 1.38 2007/07/08 11:39:27 uberlord Exp $
+
+  08 Jul 2007; Roy Marples <uberlord@gentoo.org> netcat-110-r8.ebuild:
+  Keyworded ~x86-fbsd.
 
   17 Jan 2007; Mike Frysinger <vapier@gentoo.org> netcat-110-r8.ebuild:
   Punt USE=GAPING_SECURITY_HOLE support and just enable -e all the time.
