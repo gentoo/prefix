@@ -1,6 +1,11 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.302 2007/06/27 11:52:07 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.303 2007/07/04 21:11:29 armin76 Exp $
+
+  04 Jul 2007; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-2.0.0.4.ebuild:
+  Bump patchset for issues in fbsd, patches provided by Roy Marples <uberlord
+  at gentoo dot org>, bug 184099
 
   27 Jun 2007; Lars Weiler <pylon@gentoo.org>
   mozilla-firefox-1.5.0.12.ebuild:
