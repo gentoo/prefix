@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Compress-Base/IO-Compress-Base-2.004.ebuild,v 1.10 2007/07/05 15:11:03 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Compress-Base/IO-Compress-Base-2.005.ebuild,v 1.1 2007/07/07 14:33:11 mcummings Exp $
 
 EAPI="prefix"
 
