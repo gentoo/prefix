@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/gzip-1.3.12.ebuild,v 1.10 2007/07/03 19:09:42 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/gzip-1.3.12.ebuild,v 1.11 2007/07/06 22:12:00 vapier Exp $
 
 EAPI="prefix"
 
@@ -26,7 +26,9 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	#epatch "${FILESDIR}"/${PN}-1.3.5-rsync.patch
+	epatch "${FILESDIR}"/gnulib-futimens-rename.patch
 	epatch "${FILESDIR}"/${PN}-1.3.8-install-symlinks.patch
+	sed -i 's:\<futimens\>:gl_futimens:' gzip.c
 }
 
 src_compile() {
