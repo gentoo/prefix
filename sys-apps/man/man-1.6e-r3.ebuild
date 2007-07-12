@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6e-r3.ebuild,v 1.11 2007/05/11 15:27:53 yoswink Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6e-r3.ebuild,v 1.12 2007/07/04 18:42:12 vapier Exp $
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic toolchain-funcs
+inherit eutils toolchain-funcs
 
 DESCRIPTION="Standard commands to read man pages"
 HOMEPAGE="http://primates.ximian.com/~flucifredi/man/"
@@ -119,7 +119,6 @@ src_compile() {
 		+lang ${mylang} \
 		|| die "configure failed"
 
-	append-ldflags $(bindnow-flags)
 	emake || die "emake failed"
 }
 
