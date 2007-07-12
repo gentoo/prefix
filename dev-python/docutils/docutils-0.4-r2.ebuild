@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/docutils-0.4-r2.ebuild,v 1.6 2007/07/02 12:35:06 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/docutils-0.4-r2.ebuild,v 1.9 2007/07/05 21:01:16 uberlord Exp $
 
 EAPI="prefix"
 
@@ -56,7 +56,6 @@ src_compile() {
 	rm roman.py html4css1.css
 }
 
-
 install_txt_doc() {
 	local doc=${1}
 	local dir="txt/$(dirname ${doc})"
@@ -71,7 +70,7 @@ src_test() {
 
 src_install() {
 	cd ${S}
-	mydoc="*.txt"
+	DOCS="*.txt"
 	distutils_src_install
 	# Tools
 	cd ${S}/tools
