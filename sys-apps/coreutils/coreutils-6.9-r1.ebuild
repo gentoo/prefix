@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.9-r1.ebuild,v 1.14 2007/07/02 15:27:55 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.9-r1.ebuild,v 1.16 2007/07/07 03:18:10 vapier Exp $
 
 EAPI="prefix"
 
@@ -27,7 +27,7 @@ RDEPEND="selinux? ( sys-libs/libselinux )
 	!net-mail/base64
 	>=sys-libs/ncurses-5.3-r5"
 DEPEND="${RDEPEND}
-	=sys-devel/automake-1.9*
+	>=sys-devel/automake-1.10
 	>=sys-devel/autoconf-2.61
 	>=sys-devel/m4-1.4-r1"
 
@@ -47,6 +47,9 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	epatch "${FILESDIR}"/gnulib-futimens-rename.patch #180764
+	sed -i 's:\<futimens\>:gl_futimens:' src/{copy,touch}.c
 
 	PATCHDIR="${WORKDIR}/patch"
 	rm -f "${PATCHDIR}"/generic/001_*progress*
