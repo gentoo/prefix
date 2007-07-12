@@ -1,18 +1,14 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ss-1.40_pre20070411.ebuild,v 1.1 2007/05/05 06:37:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ss-1.40.1.ebuild,v 1.1 2007/07/09 03:12:54 vapier Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic toolchain-funcs
 
-SNAP="${PV##*_pre}"
-MY_PV="${PV%%_pre*}-WIP-${SNAP:0:4}-${SNAP:4:2}-${SNAP:6:2}"
-MY_P="e2fsprogs-${MY_PV}"
-
 DESCRIPTION="Subsystem command parsing library"
 HOMEPAGE="http://e2fsprogs.sourceforge.net/"
-SRC_URI="mirror://sourceforge/e2fsprogs/${MY_P}.tar.gz"
+SRC_URI="mirror://sourceforge/e2fsprogs/e2fsprogs-${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -23,13 +19,12 @@ RDEPEND="~sys-libs/com_err-${PV}"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
-S=${WORKDIR}/e2fsprogs-${PV%%_pre*}
+S=${WORKDIR}/e2fsprogs-${PV}
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.39-makefile.patch
-	epatch "${FILESDIR}"/${PN}-1.39-parse-types.patch #146903
 }
 
 src_compile() {
