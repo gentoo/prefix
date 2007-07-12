@@ -1,6 +1,14 @@
 # ChangeLog for dev-perl/Class-MethodMaker
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-MethodMaker/ChangeLog,v 1.40 2007/06/21 14:45:27 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-MethodMaker/ChangeLog,v 1.42 2007/07/09 15:05:33 mcummings Exp $
+
+  09 Jul 2007; Michael Cummings <mcummings@gentoo.org>
+  Class-MethodMaker-2.07-r2.ebuild:
+  Marking sparc stable
+
+  05 Jul 2007; Raúl Porcel <armin76@gentoo.org>
+  Class-MethodMaker-2.10.ebuild:
+  alpha/ia64/x86 stable
 
   21 Jun 2007; Michael Cummings <mcummings@gentoo.org>
   Class-MethodMaker-2.09.ebuild, Class-MethodMaker-2.10.ebuild:
