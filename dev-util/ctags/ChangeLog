@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/ctags
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ChangeLog,v 1.58 2007/06/26 20:06:48 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ChangeLog,v 1.59 2007/07/07 14:05:23 george Exp $
+
+*ctags-5.6-r3 (07 Jul 2007)
+
+  07 Jul 2007; George Shapovalov <george@gentoo.org> +ctags-5.6-r3.ebuild:
+  added changes to make ctags coexist with the (x)emacs versions via
+  eselect-emacs (the ctags module). Resolving #29398.
 
 *ctags-5.6-r2 (26 Jun 2007)
 
