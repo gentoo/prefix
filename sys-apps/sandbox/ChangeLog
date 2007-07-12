@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/sandbox
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.74 2007/07/01 22:21:19 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.75 2007/07/06 19:25:25 yoswink Exp $
+
+  06 Jul 2007; Jose Luis Rivero <yoswink@gentoo.org>
+  sandbox-1.2.18.1.ebuild:
+  Stable on alpha. See bug #183673
 
   01 Jul 2007; Piotr Jaroszyński <peper@gentoo.org> sandbox-1.2.12.ebuild,
   sandbox-1.2.16.ebuild, sandbox-1.2.17.ebuild, sandbox-1.2.18.ebuild,
