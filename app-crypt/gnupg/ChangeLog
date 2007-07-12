@@ -1,6 +1,21 @@
 # ChangeLog for app-crypt/gnupg
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.296 2007/06/25 05:37:00 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.300 2007/07/08 11:02:41 alonbl Exp $
+
+  08 Jul 2007; Alon Bar-Lev <alonbl@gentoo.org> gnupg-2.0.5.ebuild:
+  Fix fbsd, bug#184535, thanks to lavajoe
+
+  07 Jul 2007; Alon Bar-Lev <alonbl@gentoo.org>
+  +files/gnupg-2.0.5-test.patch, gnupg-2.0.5.ebuild:
+  Fixed gettime test, bug#184484, thanks to Rickard Närström
+
+  07 Jul 2007; Alon Bar-Lev <alonbl@gentoo.org> gnupg-2.0.5.ebuild:
+  Fix dependencies, bug#184456
+
+*gnupg-2.0.5 (06 Jul 2007)
+
+  06 Jul 2007; Alon Bar-Lev <alonbl@gentoo.org> +gnupg-2.0.5.ebuild:
+  Version bump
 
   25 Jun 2007; Alon Bar-Lev <alonbl@gentoo.org>
   -files/gnupg-1.4.6-ecc-helper.patch, -gnupg-1.4.6.ebuild:
