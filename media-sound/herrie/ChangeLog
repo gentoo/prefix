@@ -1,0 +1,74 @@
+# ChangeLog for media-sound/herrie
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/ChangeLog,v 1.14 2007/07/11 19:39:51 rbu Exp $
+
+*herrie-1.8.1 (11 Jul 2007)
+
+  11 Jul 2007; Robert Buchholz <rbu@gentoo.org> -herrie-1.6.1-r1.ebuild,
+  -herrie-1.8.ebuild, +herrie-1.8.1.ebuild:
+  Version bump introducing russian translation and ebuild cleanup
+
+  07 Jul 2007; Robert Buchholz <rbu@gentoo.org> herrie-1.8.ebuild:
+  Added ~ppc
+
+  04 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org> herrie-1.8.ebuild:
+  Keyworded ~sparc
+
+*herrie-1.8 (01 Jul 2007)
+
+  01 Jul 2007; Robert Buchholz <rbu@gentoo.org>
+  +files/herrie-1.8-chost.patch, +herrie-1.8.ebuild:
+  Version bump, output default is now alsa. Upstream added pulseaudio support
+  and greek locale
+
+*herrie-1.7-r1 (05 Jun 2007)
+
+  05 Jun 2007; Robert Buchholz <rbu@gentoo.org> -herrie-1.7.ebuild,
+  +herrie-1.7-r1.ebuild:
+  Changed a build option to remove noisy output when on ALSA/OSS.
+
+*herrie-1.7 (03 Jun 2007)
+
+  03 Jun 2007; Robert Buchholz <rbu@gentoo.org> +herrie-1.7.ebuild:
+  Version bump:
+  * Removed sdl support as it was completely broken
+  * New swedish locale
+  * removed scrobbler use flag and integrated it into USE=http
+  * Jukebox mode
+
+  12 May 2007; Robert Buchholz <rbu@gentoo.org> metadata.xml:
+  Added to sound herd
+
+*herrie-1.6.1-r1 (30 Apr 2007)
+
+  30 Apr 2007; Robert Buchholz <rbu@gentoo.org> -herrie-1.6.1.ebuild,
+  +herrie-1.6.1-r1.ebuild:
+  Install herrie.conf as .sample to conform with upstream intentions
+
+*herrie-1.6.1 (21 Apr 2007)
+
+  21 Apr 2007; Robert Buchholz <rbu@gentoo.org>
+  -files/herrie-1.5.1-gnu-source-define.patch, -herrie-1.5.1.ebuild,
+  -herrie-1.6.ebuild, +herrie-1.6.1.ebuild:
+  Version bump featuring polish LINGUAS and unicode support, drop old
+
+  17 Apr 2007; Robert Buchholz <rbu@gentoo.org> herrie-1.6.ebuild:
+  ao and sdl at the same time doesn't work. Added a clarification
+
+*herrie-1.6 (17 Apr 2007)
+
+  17 Apr 2007; Robert Buchholz <rbu@gentoo.org> herrie-1.5.1.ebuild,
+  +herrie-1.6.ebuild:
+  Version bump, URI fix for 1.5.1
+
+  13 Apr 2007; Robert Buchholz <rbu@gentoo.org> herrie-1.5.1.ebuild:
+  LICENSE corrected to BSD-2
+
+*herrie-1.5.1 (13 Apr 2007)
+
+  13 Apr 2007; Robert Buchholz <rbu@gentoo.org>
+  +files/herrie-1.5.1-chost.patch,
+  +files/herrie-1.5.1-gnu-source-define.patch, +metadata.xml,
+  +herrie-1.5.1.ebuild:
+  Initial ebuild, based on the contribution by Ruud Althuizen (bug #152371)
+
