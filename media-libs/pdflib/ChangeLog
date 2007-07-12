@@ -1,6 +1,26 @@
 # ChangeLog for media-libs/pdflib
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.70 2007/05/20 16:33:40 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.76 2007/07/06 19:04:51 jer Exp $
+
+  06 Jul 2007; Jeroen Roovers <jer@gentoo.org> pdflib-7.0.1.ebuild:
+  Marked ~hppa (bug #184343).
+
+  06 Jul 2007; Markus Rothe <corsair@gentoo.org> pdflib-7.0.1.ebuild:
+  Added ~ppc64; bug #184343
+
+  06 Jul 2007; Anant Narayanan <anant@gentoo.org> pdflib-7.0.1.ebuild:
+  Add revdep-rebuild instructions to pkg_postinst()
+
+  06 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org> pdflib-7.0.1.ebuild:
+  Keyworded ~sparc wrt #184343
+
+  06 Jul 2007; Raúl Porcel <armin76@gentoo.org> pdflib-7.0.1.ebuild:
+  Add ~alpha/~ia64 and x86 stable wrt #184343
+
+  06 Jul 2007; Anant Narayanan <anant@gentoo.org>
+  -pdflib-5.0.4_p1-r1.ebuild, -pdflib-6.0.3.ebuild, pdflib-6.0.3-r1.ebuild,
+  pdflib-7.0.1.ebuild:
+  Update license and remove old ebuild.
 
   20 May 2007; nixnut <nixnut@gentoo.org> pdflib-6.0.3-r1.ebuild:
   Stable on ppc wrt bug 178185

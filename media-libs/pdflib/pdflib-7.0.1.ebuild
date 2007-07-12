@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/pdflib-7.0.1.ebuild,v 1.1 2007/04/23 22:51:06 anant Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/pdflib-7.0.1.ebuild,v 1.7 2007/07/06 19:04:51 jer Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ S="${WORKDIR}/${MY_P}"
 DESCRIPTION="A library for generating PDF on the fly."
 HOMEPAGE="http://www.pdflib.com/"
 SRC_URI="http://www.pdflib.com/binaries/${PN/pdf/PDF}/${PV//./}/${MY_P}.tar.gz"
-LICENSE="Aladdin"
+LICENSE="PDFLite"
 SLOT="5"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="doc tcl perl python java"
@@ -113,4 +113,12 @@ src_install() {
 	if use java && use doc; then
 		java-pkg_dojavadoc ./bind/pdflib/java/javadoc
 	fi
+}
+
+pkg_postinst() {
+	ewarn "                                                             "
+	ewarn "Please run revdep-rebuild now! All packages that linked with "
+	ewarn "previous versions of PDFLib will no longer work unless you   "
+	ewarn "run it.                                                      "
+	ewarn "                                                             "
 }
