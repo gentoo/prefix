@@ -1,5 +1,4 @@
-ARCH=mips
+ARCH="mips-irix"
 CHOST="mips-sgi-irix6.5"
 ACCEPT_KEYWORDS="mips-irix"
-USE="mips-irix"
 

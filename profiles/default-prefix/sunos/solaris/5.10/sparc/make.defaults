@@ -1,5 +1,4 @@
-ARCH=sparc
+ARCH="sparc-solaris"
 CHOST="sparc-sun-solaris2.10"
 ACCEPT_KEYWORDS="sparc-solaris"
-USE="sparc-solaris"
 

@@ -2,6 +2,19 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Jul 2007; Fabian Groffen <grobian@gentoo.org>
+  aix/5.2.0.0/ppc/make.defaults, aix/5.3.0.0/ppc/make.defaults,
+  darwin/macos/10.4/ppc/make.defaults, darwin/macos/10.4/x86/make.defaults,
+  irix/6.5/mips/make.defaults, linux/amd64/make.defaults,
+  linux/ia64/make.defaults, linux/mips/make.defaults,
+  linux/x86/make.defaults, sunos/solaris/5.9/sparc/make.defaults,
+  sunos/solaris/5.10/sparc/make.defaults,
+  sunos/solaris/5.10/x86/make.defaults,
+  windows/interix/3.5/x86/make.defaults,
+  windows/interix/5.2/x86/make.defaults:
+  Drop USE-forgery, and set ARCH to the KEYWORD to have proper use expansion,
+  see http://article.gmane.org/gmane.linux.gentoo.alt/2758
+
   28 Jun 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
   Made transfig compile on Solaris, checked on Darwin works fine, unmasked
   transfig

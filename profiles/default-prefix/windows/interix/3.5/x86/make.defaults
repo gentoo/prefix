@@ -1,4 +1,3 @@
-ARCH=x86
+ARCH="x86-interix"
 CHOST="i586-pc-interix3.5"
 ACCEPT_KEYWORDS="x86-interix"
-USE="x86-interix"
