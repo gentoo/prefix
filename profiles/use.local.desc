@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2906 2007/07/02 19:58:21 tupone Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2924 2007/07/11 23:38:05 rbu Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -23,6 +23,7 @@ app-admin/gnome-system-tools:nfs - Adds support for NFS shares
 app-admin/lcap:lids - If you have the Linux Intrusion Detection System
 app-admin/prelude-manager:tcpwrapper - Add support for tcp_wrappers
 app-admin/sdsc-syslog:beep - Use beep libraries (net-libs/roadrunner)
+app-admin/sshguard:ipfilter - Enable ipfilter firewall support (only for *bsd)
 app-admin/syslog-ng:spoof-source - Enable support for spoofed source addresses
 app-admin/testdisk:ntfs - Include the ability to read NTFS filesystems
 app-admin/testdisk:reiserfs - include reiserfs reading ability
@@ -167,6 +168,8 @@ app-i18n/im-ja:skk - Support for SKK input method
 app-i18n/kimera:anthy - Support for Anthy input method
 app-i18n/scim-cvs:immqt - Enable immodule for Qt support (binary incompatible)
 app-i18n/scim-cvs:immqt-bc - Enable immodule for Qt support (binary compatible)
+app-i18n/tomoe:hyperestraier - Enable hyperestraier support
+app-i18n/tomoe:subversion - Enable subversion support
 app-i18n/uim-svn:anthy - Enable anthy support
 app-i18n/uim-svn:dict - Build uim-dict (a dictionary utility for uim)
 app-i18n/uim-svn:eb - Enable EB support
@@ -415,6 +418,8 @@ dev-lang/erlang:smp - Enable support for multiprocessors
 dev-lang/gdl:hdf - Adds support for the Hierarchical Data Format
 dev-lang/gdl:hdf5 - Adds support for the Hierarchical Data Format v 5
 dev-lang/gforth:force-reg - Enable a possibly unstable GCC flag for possibly large performance gains
+dev-lang/ghc:binary - Install the binary version directly, rather than using it to build the source version.
+dev-lang/ghc:ghcbootstrap - Internal: Bootstrap GHC from an exsting GHC installation.
 dev-lang/icon:iplsrc - install the icon programming library source
 dev-lang/ocaml:latex - Add ocamldoc support for latex
 dev-lang/perl:ithreads - Enable Perl threads, has some compatibility problems
@@ -515,6 +520,7 @@ dev-lisp/gcl:dlopen - build a GCL which uses dlopen for linking
 dev-lisp/gcl:gprof - build a GCL with profiling support
 dev-lisp/sbcl:ldb - include support for the SBCL low level debugger
 dev-lisp/sbcl:nosource - don't include source code for SBCL in the installation
+dev-lisp/sbcl:cobalt - mips only: use mipsel binary instead of mips big endian binary to bootstrap
 dev-ml/lablgtk:glade - Enable libglade bindings compilation.
 dev-ml/lablgtk:gnomecanvas - Enable libgnomecanvas bindings compilation.
 dev-ml/ocamlnet:httpd - Enables nethttpd web server component 
@@ -546,6 +552,7 @@ dev-python/cgkit:3ds - enable support for importing 3D Studio models
 dev-python/cgkit:ogre - enable support for Ogre rendering
 dev-python/docutils:glep - Install support for GLEPs
 dev-python/ipython:gnuplot - enable gnuplot support
+dev-python/kaa-metadata:css - Enables ripping/reading of encrypted dvds
 dev-python/ldaptor:web - enable the web front end for ldaptor (uses dev-python/nevow)
 dev-python/paste:flup - enable support for flup (and therefore for various wgsi servers and middleware)
 dev-python/paste:openid - enable OpenID support
@@ -615,7 +622,6 @@ dev-util/monodevelop:boo - Enable support for the boo programming language
 dev-util/monodevelop:subversion - Enable subversion support
 dev-util/nsis:config-log - Enable the logging facility (useful in debugging installers)
 dev-util/pbuilder:uml - Enable pbuilder user mode linux support
-dev-util/pida:gvim - Enable gvim as embedded editor
 dev-util/strace:aio - Enable libaio support
 dev-util/subversion:nowebdav - Disables WebDAV support via neon library
 dev-util/svk:pager - Enable perl pager selection support
@@ -632,6 +638,7 @@ games-arcade/bomns:editor - enables building the level editor
 games-arcade/lbreakout2:themes - Install additional themes
 games-arcade/stepmania:force-oss - force using OSS
 games-arcade/triplexinvaders:psyco - psyco python accelerator
+games-arcade/ultrastar-ng:novideo - Disable smpeg video support
 games-board/crafty:no-opts - Don't try to enable crazy CFLAG options
 games-board/freedoko:altenburgcards - Use the Altenburg card set
 games-board/freedoko:kdecards - Use the KDE card set
@@ -788,7 +795,7 @@ mail-client/mail-notification:evolution - Provide an Evolution plugin
 mail-client/mail-notification:gmail - Enable Gmail mailbox checking
 mail-client/mail-notification:pop - Enable support for pop
 mail-client/mail-notification:sylpheed - Enable support for MH mailboxes used by sylpheed
-mail-client/mozilla-thunderbird:mozdom - Enable mozilla DOM
+mail-client/mozilla-thunderbird:mozdom - Enable Mozilla's DOM inspector
 mail-client/mozilla-thunderbird:moznopango - Disable pango during runtime
 mail-client/mozilla-thunderbird:replytolist - Enable reply-to-list plugin
 mail-client/mutt:buffysize - Enables buffysize workaround, see bug 72422
@@ -898,7 +905,6 @@ media-gfx/maya:maya-shaderlibrary - Install the maya shader library
 media-gfx/pstoedit:emf - enables media-libs/libemf support
 media-gfx/sane-frontends:gimp - Build a plugin for the GIMP
 media-gfx/showimg:kipi - Support for the KDE Image Plugin Interface.
-media-gfx/splashutils:kdgraphics - Use KD_GRAPHICS for silent mode. This will cover ALL messages (even when there's a kernel panic) with the silent splash image. If the splash daemon dies, this might leave the console dead.
 media-gfx/ufraw:gimp - Build a plugin for the GIMP
 media-gfx/xsane:gimp - Build a plugin for the GIMP
 media-libs/a52dec:djbfft - Prefer D.J. Bernstein's library for fourier transforms
@@ -1008,7 +1014,6 @@ media-sound/gnusound:cpudetection - Enables runtime cpu detection
 media-sound/gnusound:lame - Enable lame support
 media-sound/herrie:http - Enable http streaming
 media-sound/herrie:modplug - Build with modplug support
-media-sound/herrie:scrobbler - Enable support for AudioScrobbler
 media-sound/herrie:xspf - Enable support for reading and saving XSPF playlists
 media-sound/jack-audio-connection-kit:coreaudio - Build the CoreAudio driver on Mac OS X systems
 media-sound/jack-audio-connection-kit:cpudetection - Enables runtime cpudetection
@@ -1051,6 +1056,9 @@ media-sound/sonata:lyrics - Support for lyrics fetching
 media-sound/sonata:taglib - Enable tagging support with taglib
 media-sound/transkode:amarok - Build Amarok script
 media-sound/transkode:wavpack - Add support for wavpack decoding/encoding
+media-sound/traverso:lv2 - Add support for Ladspa V2
+media-tv/freevo:mixer - Enable support for adjusting volume via media-sound/aumix
+media-tv/freevo:tv - Enable support for the tv guide plugin
 media-tv/gentoo-vdr-scripts:nvram - Add support for using nvram-wakeup to set wakeup time in bios
 media-tv/kdetv:zvbi - Enable VBI Decoding Library for Zapping
 media-tv/mythtv:autostart - Controls whether settings are installed for autostarting MythFrontend on boot
@@ -1165,7 +1173,7 @@ media-video/oxine:polling - Enables support to automatically check the drive for
 media-video/totem:nvtv - Support for nvtv to use tv in on nvidia cards
 media-video/transcode:extrafilters - Install some filters only if we ask for them
 media-video/transcode:fame - Enables libfame support
-media-video/transcode:lzo - Enables LZO compression support
+media-video/transcode:lzo - Enables support for lzo compression
 media-video/transcode:mjpeg - Enables mjpegtools support
 media-video/transcode:network - Enables network streaming support
 media-video/transcode:nuv - NuppelVideo container format demuxing
@@ -1544,6 +1552,7 @@ net-misc/tightvnc:server - Build vncserver. Allows us to only build server on on
 net-misc/tsclient:vnc - Adds vncviewer support.
 net-misc/vino:keyring - Enable gnome-keyring support for storing passwords
 net-misc/vnc:server - Build VNC server
+net-misc/vtun:lzo - Enables support for lzo compression
 net-misc/wanpipe:adsl - Build with adsl support
 net-misc/xf4vnc:vncviewer - Install the vncviewer binary
 net-misc/xf4vnc:xvnc - Install the Xvnc binary
@@ -1611,9 +1620,7 @@ net-wireless/bluez-utils:test-programs - Install l2test and rctest
 net-wireless/hostapd:logwatch - Install support files for logwatch
 net-wireless/hostapd:madwifi - Add support for madwifi (Atheros chipset)
 net-wireless/kdebluetooth:irmc - Enable the kitchensync(Multisynk)'s IrMCSync konnector
-net-wireless/madwifi-ng:amrr - Use Adaptive Multi Rate Retry bit rate control algorithm
 net-wireless/madwifi-ng:injection - Adds support for aircrack-ng aireplay-ng packet-injection
-net-wireless/madwifi-ng:onoe - Use Atsushi Onoe's bit rate control algorithm
 net-wireless/madwifi-old:amrr - Use Adaptive Multi Rate Retry bit rate control algorithm
 net-wireless/madwifi-old:onoe - Use Atsushi Onoe's bit rate control algorithm
 net-wireless/rt2x00:asm - Build ASM files
@@ -1725,6 +1732,8 @@ sci-mathematics/coq:ide - Build the Coq IDE, a clone of proof general using labl
 sci-mathematics/coq:norealanalysis - Do not build real analysis modules (faster compilation).
 sci-mathematics/coq:translator - Install the translator script from coq-7.4 to coq-8.0, and its documentation if doc is set too.
 sci-mathematics/drgeo:no-helpbrowser - Do not install the default help browser
+sci-mathematics/geomview:avg - Enable experimental motion averaging technique
+sci-mathematics/geomview:netpbm - Add NetPBM support for external modules
 sci-mathematics/maxima:auctex - enable auctex in maxima
 sci-mathematics/maxima:clisp - adds clisp support to maxima
 sci-mathematics/maxima:cmucl - adds cmucl (lisp) support to maxima
@@ -1817,6 +1826,7 @@ sys-cluster/heartbeat:management - Adds support for management GUI.
 sys-cluster/lam-mpi:pbs - Add support for PBS scheduling stuff
 sys-cluster/lam-mpi:xmpi - Build support for the external XMPI debugging GUI
 sys-cluster/mpich2:cxx - Add cxx headers
+sys-cluster/mpich2:fast - Enabling fast turns off error checking and timing collection
 sys-cluster/mpich2:mpe - Add mpe support
 sys-cluster/mpich2:mpe-sdk - Include additional SDK support, jar files
 sys-cluster/mpich2:romio - Enable romio, a high-performance portable MPI-IO implementation
@@ -1824,18 +1834,18 @@ sys-cluster/ocfs:aio - Add aio support
 sys-cluster/openmpi:pbs - Add support for the Portable Batch System (PBS)
 sys-cluster/torque:server - Enable compilation of server
 sys-cluster/vzctl:logrotate - Enable logrotate file installation
-sys-devel/binutils-hppa64:multislot - !!!not appropriate for end users!!! Allow for multiple versions of binutils to be emerged at once for same CTARGET
+sys-devel/binutils-hppa64:multislot - Allow for multiple versions of binutils to be emerged at once for same CTARGET
 sys-devel/binutils-hppa64:multitarget - Adds support to binutils for cross compiling (does not work with gas)
-sys-devel/binutils-nios2:multislot - !!!not appropriate for end users!!! Allow for multiple versions of binutils to be emerged at once for same CTARGET
+sys-devel/binutils-nios2:multislot - Allow for multiple versions of binutils to be emerged at once for same CTARGET
 sys-devel/binutils-nios2:multitarget - Adds support to binutils for cross compiling (does not work with gas)
-sys-devel/binutils:multislot - !!!not appropriate for end users!!! Allow for multiple versions of binutils to be emerged at once for same CTARGET
+sys-devel/binutils:multislot - Allow for multiple versions of binutils to be emerged at once for same CTARGET
 sys-devel/binutils:multitarget - Adds support to binutils for cross compiling (does not work with gas)
-sys-devel/gcc-nios2:multislot - !!!not appropriate for end users!!! Allow for SLOTs to include minor version (3.3.4 instead of just 3.3)
+sys-devel/gcc-nios2:multislot - Allow for SLOTs to include minor version (3.3.4 instead of just 3.3)
 sys-devel/gcc:d - Enable support for the D programming language
 sys-devel/gcc:ip28 - Enable building a compiler capable of building a kernel for SGI Indigo2 Impact R10000 (IP28)
 sys-devel/gcc:ip32r10k - Enable building a compiler capable of building an experimental kernel for SGI O2 w/ R1x000 CPUs (IP32)
 sys-devel/gcc:mudflap - Add support for mudflap, a pointer use checking library
-sys-devel/gcc:multislot - !!!not appropriate for end users!!! Allow for SLOTs to include minor version (3.3.4 instead of just 3.3)
+sys-devel/gcc:multislot - Allow for SLOTs to include minor version (3.3.4 instead of just 3.3)
 sys-devel/gcc:n32 - Enable n32 ABI support on mips
 sys-devel/gcc:n64 - Enable n64 ABI support on mips
 sys-devel/gcc:nopie - Disable PIE support (NOT FOR GENERAL USE)
@@ -1844,7 +1854,7 @@ sys-devel/gcc:objc - Build support for the Objective C code language
 sys-devel/gcc:objc++ - Build support for the Objective C++ language
 sys-devel/gcc:objc-gc - Build support for the Objective C code language Garbage Collector
 sys-devel/gcc:openmp - Build support for the OpenMP (support parallel computing)
-sys-devel/kgcc64:multislot - !!!not appropriate for end users!!! Allow for SLOTs to include minor version (3.3.4 instead of just 3.3)
+sys-devel/kgcc64:multislot - Allow for SLOTs to include minor version (3.3.4 instead of just 3.3)
 sys-devel/libperl:ithreads - Enable Perl threads, has some compatibility problems
 sys-freebsd/freebsd-lib:atm - Enable Asynchronous Transfer Mode protocol support
 sys-freebsd/freebsd-lib:gpib - Enable gpib support (TODO improve description)
@@ -1878,7 +1888,6 @@ sys-fs/quota:rpc - Enable quota interaction via RPC
 sys-fs/unionfs:nfs - Adds support for NFS file system
 sys-kernel/ck-sources:ck-server - Tune the kernel for servers
 sys-kernel/gentoo-sources:ultra1 - If you have a SUN Ultra 1 with a HME interface
-sys-kernel/hardened-sources:rsbac - Enables support for RSBAC (2.4 kernels)
 sys-kernel/linux-docs:html - Install HTML documentation
 sys-kernel/linux-headers:gcc64 - Use 64-bit kernel compiler
 sys-kernel/mips-headers:cobalt - Enables support for Cobalt Microserver hardware (Qube2/RaQ2)
