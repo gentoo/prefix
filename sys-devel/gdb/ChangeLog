@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gdb
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.119 2007/05/12 09:28:52 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.120 2007/07/09 04:42:21 vapier Exp $
+
+  09 Jul 2007; Mike Frysinger <vapier@gentoo.org> gdb-6.6-r2.ebuild:
+  Fix building on hppa with sanitized headers #180476.
 
   12 May 2007; Joshua Kinard <kumba@gentoo.org> gdb-6.6-r2.ebuild:
   Stable on mips.
