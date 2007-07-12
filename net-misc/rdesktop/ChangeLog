@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/rdesktop
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.90 2007/06/11 21:11:52 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.91 2007/07/07 15:26:36 armin76 Exp $
+
+  07 Jul 2007; Raúl Porcel <armin76@gentoo.org> rdesktop-1.5.0-r2.ebuild:
+  alpha stable wrt #180310
 
   11 Jun 2007; Daniel Gryniewicz <dang@gentoo.org> rdesktop-1.5.0-r2.ebuild:
   Marked stable on amd64 for bug #180310
