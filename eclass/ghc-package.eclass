@@ -11,7 +11,7 @@
 inherit versionator
 
 # promote /opt/ghc/bin to a better position in the search path
-PATH="/usr/bin:/opt/ghc/bin:${PATH}"
+PATH="${EPREFIX}/usr/bin:${EPREFIX}/opt/ghc/bin:${PATH}"
 
 # for later configuration using environment variables/
 # returns the name of the ghc executable
