@@ -1,6 +1,30 @@
 # ChangeLog for app-arch/tar
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.95 2007/06/29 17:52:00 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.102 2007/07/09 02:04:02 jer Exp $
+
+  09 Jul 2007; Jeroen Roovers <jer@gentoo.org> tar-1.17.ebuild:
+  Stable for HPPA (bug #184453).
+
+  08 Jul 2007; Christoph Mende <angelos@gentoo.org> tar-1.17.ebuild:
+  Stable on amd64 wrt bug #184453
+
+  07 Jul 2007; Lars Weiler <pylon@gentoo.org> tar-1.17.ebuild:
+  Stable on ppc; bug #184453.
+
+  07 Jul 2007; Raúl Porcel <armin76@gentoo.org> tar-1.17.ebuild:
+  alpha/ia64/x86 stable wrt #184453
+
+*tar-1.18-r1 (07 Jul 2007)
+
+  07 Jul 2007; Ulrich Mueller <ulm@gentoo.org> +files/tar.1-1.15.1,
+  files/tar.1, tar-1.15.1-r1.ebuild, -tar-1.18.ebuild, +tar-1.18-r1.ebuild:
+  Update man page on "-l" option, fixes bug #168555. Fix some typos, #170691.
+
+  07 Jul 2007; Markus Rothe <corsair@gentoo.org> tar-1.17.ebuild:
+  Stable on ppc64; bug #184453
+
+  07 Jul 2007; Joshua Kinard <kumba@gentoo.org> tar-1.17.ebuild:
+  Stable on mips, per #184453.
 
 *tar-1.18 (29 Jun 2007)
 
