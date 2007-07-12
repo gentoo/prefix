@@ -2,6 +2,9 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Jul 2007; Fabian Groffen <grobian@gentoo.org> darwin/make.defaults:
+  Block alsa stuff on Darwin
+
   12 Jul 2007; Fabian Groffen <grobian@gentoo.org>
   aix/5.2.0.0/ppc/make.defaults, aix/5.3.0.0/ppc/make.defaults,
   darwin/macos/10.4/ppc/make.defaults, darwin/macos/10.4/x86/make.defaults,
