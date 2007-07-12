@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-SAX/XML-SAX-0.15-r1.ebuild,v 1.6 2007/05/12 05:00:39 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-SAX/XML-SAX-0.15-r1.ebuild,v 1.7 2007/07/08 03:36:28 tgall Exp $
 
 EAPI="prefix"
 
