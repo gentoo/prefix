@@ -1,6 +1,14 @@
 # ChangeLog for dev-lisp/sbcl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.113 2007/06/20 17:27:53 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.115 2007/07/09 12:27:32 hkbst Exp $
+
+  09 Jul 2007; Marijn Schouten <hkBst@gentoo.org> sbcl-1.0.6-r1.ebuild:
+  add alpha SRC_URI
+
+*sbcl-1.0.6-r1 (09 Jul 2007)
+
+  09 Jul 2007; Marijn Schouten <hkBst@gentoo.org> +sbcl-1.0.6-r1.ebuild:
+  bump binary versions
 
   20 Jun 2007; Marijn Schouten <hkBst@gentoo.org> -sbcl-0.9.3.ebuild:
   removed old version, fix bug 151812
