@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/curl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.84 2007/06/25 12:19:40 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.85 2007/07/08 08:32:28 dragonheart Exp $
+
+  08 Jul 2007; Daniel Black <dragonheart@gentoo.org>
+  files/curl-7.16.2-strip-ldflags.patch, curl-7.16.3.ebuild:
+  no LDFLAGS now  - bug #183402
 
 *curl-7.16.3 (25 Jun 2007)
 
