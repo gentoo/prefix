@@ -1,6 +1,9 @@
 # ChangeLog for net-analyzer/gnu-netcat
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/gnu-netcat/ChangeLog,v 1.14 2007/05/22 19:36:40 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/gnu-netcat/ChangeLog,v 1.15 2007/07/09 15:01:59 armin76 Exp $
+
+  09 Jul 2007; Raúl Porcel <armin76@gentoo.org> gnu-netcat-0.7.1-r1.ebuild:
+  alpha/x86 stable
 
 *gnu-netcat-0.7.1-r1 (22 May 2007)
 
