@@ -1,6 +1,9 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.27 2007/07/02 08:50:31 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.28 2007/07/06 18:45:40 jer Exp $
+
+  06 Jul 2007; Jeroen Roovers <jer@gentoo.org> gnuplot-4.0-r2.ebuild:
+  Stable for HPPA (bug #179533).
 
 *gnuplot-4.2.0-r1 (02 Jul 2007)
 
