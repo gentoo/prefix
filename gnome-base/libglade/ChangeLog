@@ -1,6 +1,14 @@
 # ChangeLog for gnome-base/libglade
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/ChangeLog,v 1.94 2007/05/27 05:29:47 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/ChangeLog,v 1.95 2007/07/04 14:35:37 eva Exp $
+
+*libglade-2.6.1 (04 Jul 2007)
+
+  04 Jul 2007; Gilles Dartiguelongue <eva@gentoo.org>
+  +libglade-2.6.1.ebuild:
+  bump to 2.6.1
+  - Added glade_xml_construct_from_buffer(), for language
+    bindings. (Douglas C. MacKenzie)
 
   27 May 2007; Joshua Kinard <kumba@gentoo.org> libglade-2.6.0.ebuild:
   Stable on mips.
