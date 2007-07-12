@@ -1,6 +1,13 @@
 # ChangeLog for app-cdr/cdrtools
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.176 2007/07/03 10:26:41 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.177 2007/07/10 00:03:50 pylon Exp $
+
+*cdrtools-2.01.01_alpha29 (10 Jul 2007)
+
+  10 Jul 2007; Lars Weiler <pylon@gentoo.org>
+  +cdrtools-2.01.01_alpha29.ebuild:
+  Version bump. Removed unicode-patch from ebuild as mkisofs now supports
+  unicode.
 
   03 Jul 2007; Raúl Porcel <armin76@gentoo.org>
   cdrtools-2.01.01_alpha25.ebuild:
