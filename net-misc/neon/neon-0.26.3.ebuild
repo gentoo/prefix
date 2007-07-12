@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.26.3.ebuild,v 1.8 2007/06/27 20:02:35 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.26.3.ebuild,v 1.9 2007/07/06 18:48:48 vapier Exp $
 
 EAPI="prefix"
 
@@ -32,8 +32,8 @@ src_unpack() {
 src_compile() {
 	local myconf=""
 	if has_version sys-libs/glibc; then
-		if built_with_use sys-libs/glibc nptlonly \
-		    || built_with_use sys-libs/glibc nptl; then
+		if built_with_use --missing true sys-libs/glibc nptlonly \
+		    || built_with_use --missing true sys-libs/glibc nptl; then
 		    einfo "Enabling SSL library thread-safety using POSIX threads..."
 		    myconf="${myconf} --enable-threadsafe-ssl=posix"
 		fi

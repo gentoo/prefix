@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/neon
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.88 2007/06/27 20:02:35 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.89 2007/07/06 18:48:48 vapier Exp $
+
+  06 Jul 2007; Mike Frysinger <vapier@gentoo.org> neon-0.26.1.ebuild,
+  neon-0.26.1-r1.ebuild, neon-0.26.3.ebuild:
+  If glibc does not have IUSE=nptl, assume it is enabled as newer versions
+  only support nptl.
 
   27 Jun 2007; Lars Weiler <pylon@gentoo.org> neon-0.26.3.ebuild:
   Stable on ppc; bug #178264.
