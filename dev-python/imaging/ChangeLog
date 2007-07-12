@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/imaging
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/ChangeLog,v 1.32 2007/06/24 20:23:38 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/ChangeLog,v 1.33 2007/07/04 20:05:58 hawking Exp $
+
+  04 Jul 2007; Ali Polatel <hawking@gentoo.org> imaging-1.1.5.ebuild:
+  use DOCS, mydoc is deprecated
 
   24 Jun 2007; Tiziano Müller <dev-zero@gentoo.org> imaging-1.1.5.ebuild:
   Fixed $ROOT abuse (bug #167271)
