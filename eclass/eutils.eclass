@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.284 2007/06/21 04:44:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.285 2007/07/07 17:30:45 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -982,6 +982,8 @@ domenu() {
 				doins "${j}"
 				((ret+=$?))
 			done
+		else
+			((++ret))
 		fi
 	done
 	exit ${ret}
@@ -1021,6 +1023,8 @@ doicon() {
 				doins "${j}"
 				((ret+=$?))
 			done
+		else
+			((++ret))
 		fi
 	done
 	exit ${ret}

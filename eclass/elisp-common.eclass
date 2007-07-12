@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.22 2007/07/02 06:19:18 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.23 2007/07/09 13:40:58 flameeyes Exp $
 #
 # Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
 # Copyright 2002-2007 Matthew Kennedy <mkennedy@gentoo.org>
@@ -121,6 +121,8 @@
 #  As always: Feel free to contact Emacs team through emacs@gentoo.org if you
 # have problems, suggestions or questions.
 
+IUSE="userland_GNU"
+
 SITELISP="${EPREFIX}"/usr/share/emacs/site-lisp
 
 elisp-compile() {
@@ -204,7 +206,9 @@ EOF
 		# A case is a remerge where we have doubled output
 		einfo "... no changes"
 	else
-		mv -b "${T}"/site-gentoo.el "${ROOT}${SITELISP}"/site-gentoo.el
+		local mvopts=""
+		use userland_GNU && mvopts="-b"
+		mv ${mvopts} "${T}"/site-gentoo.el "${ROOT}${SITELISP}"/site-gentoo.el
 		einfo ""
 		for sf in ${sflist}; do
 			einfo "  Adding ${sf} ..."

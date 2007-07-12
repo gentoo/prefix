@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/selinux-policy-2.eclass,v 1.2 2006/10/25 11:27:36 pebenito Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/selinux-policy-2.eclass,v 1.3 2007/07/07 16:21:07 kaiowas Exp $
 
 # Eclass for installing SELinux policy, and optionally
 # reloading the reference-policy based modules
@@ -40,6 +40,12 @@ selinux-policy-2_src_unpack() {
 		cp ${S}/refpolicy/doc/Makefile.example ${S}/${i}/Makefile
 
 		cp ${modfiles} ${S}/${i}
+
+		if [ -n "${POLICY_PATCH}" ]; then
+			cd ${S}/${i}
+			epatch "${POLICY_PATCH}" || die "failed patch ${i}"
+		fi
+
 	done
 }
 

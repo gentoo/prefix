@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.40 2007/06/30 09:44:40 lucass Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.42 2007/07/08 01:29:20 hawking Exp $
 #
 # Author: Jon Nelson <jnelson@gentoo.org>
 # Current Maintainer: Alastair Tse <liquidx@gentoo.org>
@@ -33,6 +33,16 @@ else
 	DEPEND="virtual/python"
 	python="python"
 fi
+
+distutils_src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	# remove ez_setup stuff to prevent packages
+	# from installing setuptools on their own
+	rm -rf ez_setup*
+	echo "def use_setuptools(*args, **kwargs): pass" > ez_setup.py
+}
 
 distutils_src_compile() {
 	${python} setup.py build "$@" || die "compilation failed"
@@ -116,4 +126,4 @@ distutils_python_tkinter() {
 	python_tkinter_exists
 }
 
-EXPORT_FUNCTIONS src_compile src_install pkg_postinst pkg_postrm
+EXPORT_FUNCTIONS src_unpack src_compile src_install pkg_postinst pkg_postrm
