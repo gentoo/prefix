@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/libdvdread
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdread/ChangeLog,v 1.51 2007/04/25 15:02:15 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdread/ChangeLog,v 1.54 2007/07/08 09:00:27 corsair Exp $
+
+  08 Jul 2007; Markus Rothe <corsair@gentoo.org> libdvdread-0.9.7.ebuild:
+  Stable on ppc64; bug #179072
+
+  07 Jul 2007; Lars Weiler <pylon@gentoo.org> libdvdread-0.9.7.ebuild:
+  Stable on ppc; bug #179072.
+
+  07 Jul 2007; Raúl Porcel <armin76@gentoo.org> libdvdread-0.9.7.ebuild:
+  alpha stable wrt #179072
 
   25 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org>
   libdvdread-0.9.7.ebuild:
