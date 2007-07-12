@@ -1,6 +1,9 @@
 # ChangeLog for x11-themes/hicolor-icon-theme
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/hicolor-icon-theme/ChangeLog,v 1.54 2007/06/06 16:39:04 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/hicolor-icon-theme/ChangeLog,v 1.55 2007/07/09 20:40:25 drac Exp $
+
+  09 Jul 2007; Samuli Suominen <drac@gentoo.org> metadata.xml:
+  Add hicolor-icon-theme under freedesktop herd.
 
   06 Jun 2007; Samuli Suominen <drac@gentoo.org>
   hicolor-icon-theme-0.10.ebuild:
