@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/desktop-file-utils
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/ChangeLog,v 1.55 2007/05/27 01:16:22 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/ChangeLog,v 1.56 2007/07/09 20:44:42 drac Exp $
+
+  09 Jul 2007; Samuli Suominen <drac@gentoo.org> metadata.xml:
+  Add desktop-file-utils under freedesktop herd.
 
   27 May 2007; Joshua Kinard <kumba@gentoo.org>
   desktop-file-utils-0.12.ebuild:
