@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/gettext
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.143 2007/03/16 17:24:25 yoswink Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.145 2007/07/07 01:44:18 ulm Exp $
+
+  07 Jul 2007; Ulrich Mueller <ulm@gentoo.org> gettext-0.16.1-r1.ebuild:
+  Fix PDEPEND.
+
+*gettext-0.16.1-r1 (06 Jul 2007)
+
+  06 Jul 2007; Ulrich Mueller <ulm@gentoo.org> +gettext-0.16.1-r1.ebuild:
+  Split off Emacs support to package app-emacs/po-mode, bug #149431.
 
   16 Mar 2007; Jose Luis Rivero <yoswink@gentoo.org> gettext-0.16.1.ebuild:
   Stable on alpha wrt bug #163178

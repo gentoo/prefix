@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.15-r1.ebuild,v 1.5 2007/01/23 19:46:08 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.16.1-r1.ebuild,v 1.2 2007/07/07 01:44:18 ulm Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic eutils multilib toolchain-funcs mono libtool elisp-common
+inherit flag-o-matic eutils multilib toolchain-funcs mono libtool
 
 DESCRIPTION="GNU locale utilities"
 HOMEPAGE="http://www.gnu.org/software/gettext/gettext.html"
@@ -12,11 +12,12 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="emacs nls doc nocxx"
 
 DEPEND="virtual/libiconv
 	dev-libs/expat"
+PDEPEND="emacs? ( app-emacs/po-mode )"
 
 src_unpack() {
 	unpack ${A}
@@ -43,6 +44,9 @@ src_unpack() {
 }
 
 src_compile() {
+
+	elibtoolize
+
 	local myconf=""
 	# Build with --without-included-gettext (on glibc systems)
 	if use elibc_glibc ; then
@@ -51,9 +55,11 @@ src_compile() {
 		myconf="${myconf} --with-included-gettext --enable-nls"
 	fi
 	use nocxx && export CXX=$(tc-getCC)
+
+	# Emacs support is now in a separate package, so configure --without-emacs
 	econf \
-		--docdir="/usr/share/doc/${PF}" \
-		$(use_with emacs) \
+		--docdir="${EPREFIX}/usr/share/doc/${PF}" \
+		--without-emacs \
 		--disable-java \
 		${myconf} \
 		|| die
@@ -73,21 +79,7 @@ src_install() {
 	fi
 	rm -f "${ED}"/usr/share/locale/locale.alias "${ED}"/usr/lib/charset.alias
 
-	# older gettext's sometimes installed libintl ...
-	# need to keep the linked version or the system
-	# could die (things like sed link against it :/)
-	local libname="libintl$(get_libname 7)"
-	if [[ -e ${EROOT}/usr/$(get_libdir)/${libname} ]] ; then
-		cp -pPR ${EROOT}/usr/$(get_libdir)/${libname}* "${ED}"/usr/$(get_libdir)/
-		touch "${ED}"/usr/$(get_libdir)/${libname}*
-	fi
-	if [[ -e ${EROOT}/$(get_libdir)/${libname} ]] ; then
-		dodir /$(get_libdir)
-		cp -pPR ${EROOT}/$(get_libdir)/${libname}* "${ED}"/$(get_libdir)/
-		touch "${ED}"/$(get_libdir)/${libname}*
-	fi
-
-	if [[ $USERLAND == "BSD" ]] ; then
+	if [[ ${USERLAND} == "BSD" ]] ; then
 		libname="libintl$(get_libname 8)"
 		# Move dynamic libs and creates ldscripts into /usr/lib
 		dodir /$(get_libdir)
@@ -102,24 +94,19 @@ src_install() {
 	fi
 	rm -f "${ED}"/usr/share/doc/${PF}/*.html
 
-	# Remove emacs site-lisp stuff if 'emacs' is not in USE
-	if use emacs ; then
-		elisp-site-file-install "${FILESDIR}"/50po-mode-gentoo.el
-	else
-		rm -rf "${ED}"/usr/share/emacs
-	fi
-
 	dodoc AUTHORS ChangeLog NEWS README THANKS
 }
 
+pkg_preinst() {
+	# older gettext's sometimes installed libintl ...
+	# need to keep the linked version or the system
+	# could die (things like sed link against it :/)
+	preserve_old_lib /{,usr/}$(get_libdir)/libintl$(get_libname 7)
+}
+
 pkg_postinst() {
-	use emacs && elisp-site-regen
 	ewarn "Any package that linked against the previous version"
 	ewarn "of gettext will have to be rebuilt."
 	ewarn "Please 'emerge gentoolkit' and run:"
 	ewarn "revdep-rebuild --library libintl.so.7"
-}
-
-pkg_postrm() {
-	use emacs && elisp-site-regen
 }
