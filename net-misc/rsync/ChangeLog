@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/rsync
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.119 2007/06/30 17:22:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.121 2007/07/09 02:59:31 josejx Exp $
+
+  09 Jul 2007; Joseph Jezak <josejx@gentoo.org> rsync-2.6.9-r2.ebuild:
+  Marked ppc and ppc64 stable for bug #184685.
+
+  09 Jul 2007; Mike Frysinger <vapier@gentoo.org> rsync-2.6.9-r2.ebuild:
+  Pull in xinetd when USE=xinetd #184671 by Jeremy Ebler.
 
   30 Jun 2007; Raúl Porcel <armin76@gentoo.org> rsync-2.6.9-r2.ebuild:
   alpha stable
