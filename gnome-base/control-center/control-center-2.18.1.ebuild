@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/control-center-2.18.1.ebuild,v 1.4 2007/06/11 19:36:48 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/control-center-2.18.1.ebuild,v 1.5 2007/07/08 04:50:27 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -52,7 +52,7 @@ RDEPEND=">=gnome-base/gnome-vfs-2.2
 	>=gnome-base/orbit-2.12.4
 	||  (
 		>=dev-libs/dbus-glib-0.71
-		( <sys-apps/dbus-0.90 >=sys-apps/dbus-0.60 )
+		>=sys-apps/dbus-0.60
 	)
 	eds? ( >=gnome-extra/evolution-data-server-1.7 )
 	!arm? ( alsa? ( >=media-libs/alsa-lib-0.9 ) )
