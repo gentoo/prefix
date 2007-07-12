@@ -1,6 +1,14 @@
 # ChangeLog for app-misc/pv
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/pv/ChangeLog,v 1.20 2007/07/02 18:00:32 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/pv/ChangeLog,v 1.23 2007/07/07 01:50:52 angelos Exp $
+
+  07 Jul 2007; Christoph Mende <angelos@gentoo.org>
+  +files/pv-remove-doc-target.patch, pv-0.9.9.ebuild:
+  Removing doc target which is useless and broken with $PAGER != less
+
+  05 Jul 2007; Christoph Mende <angelos@gentoo.org> -pv-0.8.1.ebuild,
+  -pv-0.9.0.ebuild, pv-0.9.9.ebuild:
+  Cleanup and added nls USE flag for pv-0.9.9
 
 *pv-0.9.9 (02 Jul 2007)
 

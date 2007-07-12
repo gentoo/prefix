@@ -1,0 +1,12 @@
+diff -Nru pv-0.9.9.orig/Makefile pv-0.9.9/Makefile
+--- pv-0.9.9.orig/Makefile	2007-07-07 03:33:29.000000000 +0200
++++ pv-0.9.9/Makefile	2007-07-07 03:33:35.000000000 +0200
+@@ -279,7 +279,7 @@
+ 	  test $$STATUS -eq 1 && echo FAILED || echo OK; \
+ 	done; rm -f $$TMP1 $$TMP2; exit $$FAIL
+ 
+-install: all doc
++install: all
+ 	$(srcdir)/autoconf/scripts/mkinstalldirs \
+ 	  "$(DESTDIR)/$(bindir)"
+ 	$(srcdir)/autoconf/scripts/mkinstalldirs \
