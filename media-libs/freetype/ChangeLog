@@ -1,6 +1,22 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.147 2007/06/10 20:08:35 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.150 2007/07/07 01:26:44 dirtyepic Exp $
+
+  07 Jul 2007; Ryan Hill <dirtyepic@gentoo.org> freetype-2.3.5.ebuild:
+  Add warning to the user to rebuild libXfont after emerging freetype-2.3.5.
+
+*freetype-2.3.5 (04 Jul 2007)
+
+  04 Jul 2007; Ryan Hill <dirtyepic@gentoo.org> +freetype-2.3.5.ebuild:
+  Version bump.
+  - should fix a number of crashes some users are experiencing
+  - fixed memory issues with large compressed fonts
+  - better output for non-latin scripts like Indic when USE=bindist
+  - new tool, ftpatchk, checks for presence of patented opcodes in a font file
+
+  04 Jul 2007; Ryan Hill <dirtyepic@gentoo.org> freetype-2.3.3.ebuild,
+  freetype-2.3.4-r2.ebuild:
+  Move fontconfig from PDEPEND to blocker.  Thanks to caster for suggesting.
 
   10 Jun 2007; Ryan Hill <dirtyepic@gentoo.org> freetype-2.3.3.ebuild,
   freetype-2.3.4-r2.ebuild:

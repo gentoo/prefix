@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.3.ebuild,v 1.15 2007/06/24 21:57:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.3.ebuild,v 1.16 2007/07/04 00:56:57 dirtyepic Exp $
 
 EAPI="prefix"
 
@@ -17,23 +17,22 @@ SLOT="2"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
 IUSE="X bindist debug doc zlib"
 
+DEPEND="zlib? ( sys-libs/zlib )
+		X?    ( x11-libs/libX11 )"
+
 # The RDEPEND below makes sure that if there is a version of moz/ff/tb
 # installed, then it will have the freetype-2.1.8+ binary compatibility patch.
 # Otherwise updating freetype will cause moz/ff/tb crashes.  #59849
 # 20 Nov 2004 agriffis
-DEPEND="zlib? ( sys-libs/zlib )
-		X?    ( x11-libs/libX11 )"
-
+# We also need a recent fontconfig version to prevent segfaults. #166029
+# July 3 2007 dirtyepic
 RDEPEND="${DEPEND}
 	!<www-client/mozilla-1.7.3-r3
 	!<www-client/mozilla-firefox-1.0-r3
 	!<mail-client/mozilla-thunderbird-0.9-r3
-	!<media-libs/libwmf-0.2.8.2"
+	!<media-libs/libwmf-0.2.8.2
+	!<media-libs/fontconfig-2.3.2-r2"
 
-# We need a recent fontconfig to prevent segfaulting,
-# however, adding it to RDEPEND creates a circular dependency
-# which is why we use a PDEPEND here.
-PDEPEND=">=media-libs/fontconfig-2.3.2-r2"
 
 src_unpack() {
 	unpack ${A}
