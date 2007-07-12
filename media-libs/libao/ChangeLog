@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libao
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libao/ChangeLog,v 1.72 2007/06/02 06:42:41 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libao/ChangeLog,v 1.73 2007/07/07 15:25:27 armin76 Exp $
+
+  07 Jul 2007; Raúl Porcel <armin76@gentoo.org> libao-0.8.6-r2.ebuild,
+  libao-0.8.6-r3.ebuild:
+  Add ~alpha wrt #149806 and stabilize -r2 wrt #180310
 
   02 Jun 2007; Joshua Kinard <kumba@gentoo.org> libao-0.8.6-r3.ebuild:
   Stable on mips.
