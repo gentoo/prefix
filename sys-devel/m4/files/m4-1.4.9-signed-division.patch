@@ -1,0 +1,28 @@
+http://bugs.gentoo.org/184200
+
+2007-04-25  Eric Blake  <[EMAIL PROTECTED]>
+
+	Fix negative division within eval, regression of 2007-01-06.
+	* src/eval.c (mult_term): Fix it.
+
+Index: src/eval.c
+===================================================================
+RCS file: /cvsroot/m4/m4/src/Attic/eval.c,v
+retrieving revision 1.1.1.1.2.9
+retrieving revision 1.1.1.1.2.10
+diff -u -p -r1.1.1.1.2.9 -r1.1.1.1.2.10
+--- src/eval.c	9 Jan 2007 16:12:43 -0000	1.1.1.1.2.9
++++ src/eval.c	25 Apr 2007 14:04:13 -0000	1.1.1.1.2.10
+@@ -718,10 +718,10 @@ mult_term (eval_token et, int32_t *v1)
+ 	  if (v2 == 0)
+ 	    return DIVIDE_ZERO;
+ 	  else if (v2 == -1)
+-	    /* Avoid the x86 SIGFPE on INT_MIN / -1.  */
++	    /* Avoid overflow, and the x86 SIGFPE on INT_MIN / -1.  */
+ 	    *v1 = (int32_t) -(uint32_t) *v1;
+ 	  else
+-	    *v1 = (int32_t) ((uint32_t) *v1 / (uint32_t) v2);
++	    *v1 /= v2;
+ 	  break;
+ 
+ 	case MODULO:

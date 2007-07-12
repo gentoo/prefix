@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.8.ebuild,v 1.10 2007/04/17 00:31:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.9-r1.ebuild,v 1.1 2007/07/07 06:34:10 vapier Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
-IUSE="nls"
+IUSE="examples nls"
 
 # remember: cannot dep on autoconf since it needs us
 DEPEND="nls? ( sys-devel/gettext )"
@@ -23,7 +23,8 @@ RDEPEND=""
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-darwin7.patch
+	epatch "${FILESDIR}"/${P}-signed-division.patch #184200
+	epatch "${FILESDIR}"/${PN}-1.4.8-darwin7.patch
 }
 
 src_compile() {
@@ -45,4 +46,10 @@ src_install() {
 	[[ ${USERLAND} != "GNU" ]] && [[ ${PREFIX/\//} != "" ]] || \
 		dosym /usr/bin/m4 /usr/bin/gm4
 	dodoc BACKLOG ChangeLog NEWS README* THANKS TODO
+	if use examples ; then
+		docinto examples
+		dodoc examples/*
+		rm -f "${ED}"/usr/share/doc/${PF}/examples/Makefile*
+	fi
+	rm -f "${ED}"/usr/lib/charset.alias #172864
 }
