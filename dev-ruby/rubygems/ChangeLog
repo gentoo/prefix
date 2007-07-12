@@ -1,6 +1,15 @@
 # ChangeLog for dev-ruby/rubygems
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.58 2007/06/23 06:45:41 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.61 2007/07/09 04:41:02 jer Exp $
+
+  09 Jul 2007; Jeroen Roovers <jer@gentoo.org> rubygems-0.9.4.ebuild:
+  Stable for HPPA (bug #181322).
+
+  08 Jul 2007; Lars Weiler <pylon@gentoo.org> rubygems-0.9.4.ebuild:
+  Stable on ppc; bug #181322.
+
+  08 Jul 2007; Markus Rothe <corsair@gentoo.org> rubygems-0.9.4.ebuild:
+  Stable on ppc64; bug #181322
 
   23 Jun 2007; Joshua Kinard <kumba@gentoo.org> rubygems-0.8.11-r6.ebuild:
   Stable on mips.
