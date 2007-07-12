@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/ExtUtils-CBuilder/ExtUtils-CBuilder-0.19.ebuild,v 1.3 2007/06/30 01:53:49 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/ExtUtils-CBuilder/ExtUtils-CBuilder-0.19.ebuild,v 1.5 2007/07/08 01:46:39 tgall Exp $
 
 EAPI="prefix"
 
