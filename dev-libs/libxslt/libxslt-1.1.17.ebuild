@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/libxslt-1.1.17.ebuild,v 1.12 2006/10/20 00:27:28 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/libxslt-1.1.17.ebuild,v 1.13 2007/07/12 02:25:34 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,6 @@ IUSE="crypt debug python"
 DEPEND=">=dev-libs/libxml2-2.6.25
 	crypt? ( >=dev-libs/libgcrypt-1.1.92 )
 	python? ( dev-lang/python )"
-
 
 src_unpack() {
 	unpack ${A}
