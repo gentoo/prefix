@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.16.2.ebuild,v 1.1 2007/04/14 00:35:26 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.15.5-r1.ebuild,v 1.1 2007/07/11 10:47:45 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -9,8 +9,8 @@ EAPI="prefix"
 inherit libtool eutils
 
 DESCRIPTION="A Client that groks URLs"
-HOMEPAGE="http://curl.haxx.se/ http://curl.planetmirror.com"
-SRC_URI="http://curl.planetmirror.com/download/${P}.tar.bz2"
+HOMEPAGE="http://curl.haxx.se/"
+SRC_URI="http://curl.haxx.se/download/${P}.tar.bz2"
 
 LICENSE="MIT X11"
 SLOT="0"
@@ -34,7 +34,9 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-strip-ldflags.patch
+	epatch "${FILESDIR}"/${PN}-7.15-strip-ldflags.patch
+	epatch "${FILESDIR}"/curl-7.15.1-test62.patch
+	epatch "${FILESDIR}"/libcurl-gnutlscert.patch
 	elibtoolize
 }
 
@@ -52,8 +54,7 @@ src_compile() {
 		--enable-manual
 		--enable-telnet
 		--enable-nonblocking
-		--enable-largefile
-		--enable-maintainer-mode"
+		--enable-largefile"
 
 	if use ipv6 && use ares; then
 		ewarn "c-ares support disabled because it is incompatible with ipv6."
@@ -87,12 +88,4 @@ src_install() {
 	dodoc CHANGES README
 	dodoc docs/FEATURES docs/INTERNALS
 	dodoc docs/MANUAL docs/FAQ docs/BUGS docs/CONTRIBUTE
-}
-
-pkg_postinst() {
-	if [[ -e "${EROOT}"/usr/$(get_libdir)/libcurl.so.3 ]] ; then
-		ewarn "You must re-compile all packages that are linked against"
-		ewarn "curl-7.15.* by using revdep-rebuild from gentoolkit:"
-		ewarn "# revdep-rebuild --library libcurl.so.3"
-	fi
 }
