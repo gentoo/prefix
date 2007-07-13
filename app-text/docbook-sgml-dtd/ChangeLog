@@ -1,6 +1,11 @@
 # ChangeLog for app-text/docbook-sgml-dtd
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-sgml-dtd/ChangeLog,v 1.60 2007/03/12 21:46:09 leonardop Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-sgml-dtd/ChangeLog,v 1.62 2007/07/12 09:13:39 uberlord Exp $
+
+  12 Jul 2007; Roy Marples <uberlord@gentoo.org>
+  docbook-sgml-dtd-3.1-r3.ebuild,
+  docbook-sgml-dtd-4.0-r3.ebuild, docbook-sgml-dtd-4.1-r3.ebuild:
+  Keyworded ~sparc-fbsd
 
   12 Mar 2007; Leonardo Boshell <leonardop@gentoo.org> metadata.xml:
   Replacing text-markup herd with the new sgml herd.
