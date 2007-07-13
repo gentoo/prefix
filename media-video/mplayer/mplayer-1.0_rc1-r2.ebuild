@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc1-r2.ebuild,v 1.13 2007/07/02 15:23:40 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc1-r2.ebuild,v 1.14 2007/07/12 02:40:43 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -402,7 +402,6 @@ src_compile() {
 		use altivec && append-flags -maltivec -mabi=altivec
 	fi
 
-
 	if use xanim
 	then
 		myconf="${myconf} --with-xanimlibdir=/usr/lib/xanim/mods"
@@ -577,4 +576,3 @@ pkg_postrm() {
 		rm -f ${EROOT}/usr/share/mplayer/subfont.ttf
 	fi
 }
-

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0.20070622-r1.ebuild,v 1.10 2007/07/05 19:53:54 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0.20070622-r1.ebuild,v 1.11 2007/07/12 02:40:43 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -216,7 +216,6 @@ src_compile() {
 	use enca || myconf="${myconf} --disable-enca"
 	use ftp || myconf="${myconf} --disable-ftp"
 	use tivo || myconf="${myconf} --disable-vstream"
-
 
 	# DVD support
 	# dvdread and libdvdcss are internal libs
