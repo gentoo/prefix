@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/tiff
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.95 2007/06/21 12:29:13 taviso Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.96 2007/07/12 08:54:26 uberlord Exp $
+
+  12 Jul 2007; Roy Marples <uberlord@gentoo.org> tiff-3.8.2-r2.ebuild:
+  Keyworded ~sparc-fbsd
 
   21 Jun 2007; Tavis Ormandy <taviso@gentoo.org> tiff-3.8.2-r2.ebuild:
   fix homepage
