@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.79 2007/07/02 14:24:27 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.80 2007/07/11 08:18:03 robbat2 Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: Luca Longinotti <chtekk@gentoo.org>
@@ -250,7 +250,7 @@ configure_minimal() {
 
 	if use static ; then
 		myconf="${myconf} --with-client-ldflags=-all-static"
-		myconf="${myconf} --disable-shared"
+		myconf="${myconf} --disable-shared --with-pic"
 	else
 		myconf="${myconf} --enable-shared --enable-static"
 	fi
@@ -276,7 +276,7 @@ configure_common() {
 	if use static ; then
 		myconf="${myconf} --with-mysqld-ldflags=-all-static"
 		myconf="${myconf} --with-client-ldflags=-all-static"
-		myconf="${myconf} --disable-shared"
+		myconf="${myconf} --disable-shared --with-pic"
 	else
 		myconf="${myconf} --enable-shared --enable-static"
 	fi

@@ -1,7 +1,7 @@
 # Copyright 2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
 # Author Diego Pettenò <flameeyes@gentoo.org>
-# $Header: /var/cvsroot/gentoo-x86/eclass/pam.eclass,v 1.11 2007/04/07 08:52:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/pam.eclass,v 1.12 2007/07/10 12:54:32 flameeyes Exp $
 #
 # This eclass contains functions to install pamd configuration files and
 # pam modules.
@@ -172,3 +172,38 @@ cleanpamd() {
 		shift
 	done
 }
+
+pam_epam_expand() {
+	sed -n -e 's|#%EPAM-\([[:alpha:]-]\+\):\([-+<>=/.[:alnum:]]\+\)%#.*|\1 \2|p' \
+	"$@" | sort -u | while read condition parameter; do
+
+	disable="# "
+
+	case "$condition" in
+		If-Has)
+		message="This can be used only if you have ${parameter} installed"
+		has_version "$parameter" && disable=""
+		;;
+		Use-Flag)
+		message="This can be used only if you enabled the ${parameter} USE flag"
+		use "$parameter" && disable=""
+		;;
+		*)
+		eerror "Unknown EPAM condition '${condition}' ('${parameter}')"
+		die "Unknown EPAM condition '${condition}' ('${parameter}')"
+		;;
+	esac
+
+	sed -i -e "s|#%EPAM-${condition}:${parameter}%#|# ${message}\n${disable}|" "$@"
+	done
+}
+
+# Think about it before uncommenting this one, for nwo run it by hand
+# pam_pkg_preinst() {
+# 	local shopts=$-
+# 	set -o noglob # so that bash doen't expand "*"
+#
+# 	pam_epam_expand "${ED}"/etc/pam.d/*
+#
+# 	set +o noglob; set -$shopts # reset old shell opts
+# }

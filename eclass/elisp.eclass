@@ -1,28 +1,24 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.19 2007/07/02 06:19:18 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.20 2007/07/10 20:14:52 ulm Exp $
 #
 # Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
-# Copyright 2002-2007 Matthew Kennedy <mkennedy@gentoo.org>
+# Copyright 2002-2003 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003 Jeremy Maitin-Shepard <jbms@attbi.com>
 # Copyright 2007 Ulrich Mueller <ulm@gentoo.org>
 #
 # This eclass sets the site-lisp directory for emacs-related packages.
 #
 # Emacs support for other than pure elisp packages is handled by
-# elisp-common.eclass where you won't have a dependency on Emacs
-# itself.  All elisp-* functions are documented there.
+# elisp-common.eclass where you won't have a dependency on Emacs itself.
+# All elisp-* functions are documented there.
 #
 # Setting SIMPLE_ELISP=t in an ebuild means, that the package's source
 # is a single (in whatever way) compressed elisp file with the file name
 # ${PN}-${PV}.  The consequences:
 #
-# 1.) ${S} is redefined
-# 2.) ${PN}-${PV}.el is moved to ${PN} in the system.
-#
-# SRC_URI should be set to wherever the primary app-emacs/ maintainer
-# keeps the local elisp mirror, since most app-emacs packages are
-# upstream as a single .el file.
+# 1.) ${S} is redefined,
+# 2.) ${PN}-${PV}.el is moved to ${PN}.el in src_unpack().
 #
 # DOCS="blah.txt ChangeLog" is automatically used to install the given
 # files by dodoc in src_install().
@@ -35,6 +31,7 @@ inherit elisp-common versionator
 
 VERSION=${NEED_EMACS:-21}
 DEPEND=">=virtual/emacs-${VERSION}"
+RDEPEND=">=virtual/emacs-${VERSION}"
 IUSE=""
 
 if [ "${SIMPLE_ELISP}" = 't' ]; then

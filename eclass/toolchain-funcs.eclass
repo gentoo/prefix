@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.70 2007/06/16 07:11:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.71 2007/07/11 04:06:29 robbat2 Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -184,6 +184,31 @@ tc-arch-kernel() {
 }
 tc-arch() {
 	tc-ninja_magic_to_arch portage $@
+}
+tc-endian() {
+	local host=$1
+	[[ -z ${host} ]] && host=${CTARGET:-${CHOST}}
+	host=${host%%-*}
+
+	case ${host} in
+		alpha*)		echo big;;
+		arm*b*)		echo big;;
+		arm*)		echo little;;
+		cris*)		echo little;;
+		hppa*)		echo big;;
+		i?86*)		echo little;;
+		ia64*)		echo little;;
+		m68*)		echo big;;
+		mips*l*)	echo little;;
+		mips*)		echo big;;
+		powerpc*)	echo big;;
+		s390*)		echo big;;
+		sh*b*)		echo big;;
+		sh*)		echo little;;
+		sparc*)		echo big;;
+		x86_64*)	echo little;;
+		*)			echo wtf;;
+	esac
 }
 
 # Returns the version as by `$CC -dumpversion`
