@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.39-r1.ebuild,v 1.5 2007/06/23 02:27:57 dsd Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.39-r1.ebuild,v 1.6 2007/07/12 03:00:05 vapier Exp $
 
 EAPI="prefix"
 
@@ -113,7 +113,6 @@ src_install() {
 		gen_usr_ldscript ${x} || die "gen ldscript ${x}"
 	done
 
-	ln -s libext2fs.info.gz  $D/usr/share/info/booga.info.gz
 	# move 'useless' stuff to /usr/
 	dosbin "${ED}"/sbin/mklost+found
 	rm -f "${ED}"/sbin/mklost+found
