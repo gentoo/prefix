@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.12.ebuild,v 1.18 2007/06/23 04:35:05 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.12.ebuild,v 1.19 2007/07/12 16:06:09 uberlord Exp $
 
 EAPI="prefix"
 
@@ -112,6 +112,10 @@ src_unpack() {
 	rm -rf libltdl
 	sed -i -e '/libltdl/d' \
 		configure.ac || die "sed failed"
+
+	# Update this file from our local libtool which is much newer than the
+	# bundled one. This allows MAKEOPTS=-j2 to work on FreeBSD.
+	cp "${EPREFIX}"/usr/share/libtool/install-sh config
 
 	# no nls, no gettext, no iconv macro, so disable it
 	use nls || sed -i '/^AM_ICONV/d' configure.ac

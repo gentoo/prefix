@@ -1,6 +1,12 @@
 # ChangeLog for media-gfx/graphviz
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.121 2007/06/23 04:35:05 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.122 2007/07/12 16:06:09 uberlord Exp $
+
+  12 Jul 2007; Roy Marples <uberlord@gentoo.org> graphviz-2.12.ebuild:
+  Keyworded ~sparc-fbsd.
+
+  12 Jul 2007; Roy Marples <uberlord@gentoo.org> graphviz-2.12.ebuild:
+  Keyworded ~sparc-fbsd.
 
   23 Jun 2007; Joshua Kinard <kumba@gentoo.org> graphviz-2.12.ebuild:
   Stable on mips.
