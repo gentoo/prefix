@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2924 2007/07/11 23:38:05 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2926 2007/07/12 21:13:33 gustavoz Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -1557,6 +1557,7 @@ net-misc/wanpipe:adsl - Build with adsl support
 net-misc/xf4vnc:vncviewer - Install the vncviewer binary
 net-misc/xf4vnc:xvnc - Install the Xvnc binary
 net-misc/xsupplicant:gsm - Add support for EAP-SIM authentication algorithm
+net-misc/zaptel:astribank - Install Xorcom Astribank utilities
 net-misc/zaptel:bri - Enable ISDN BRI support (bristuff)
 net-misc/zaptel:devfs26 - Devfs support for Linux-2.6
 net-misc/zaptel:ecaggressive - Make the mark2 echo canceller a little more aggressive
@@ -1619,6 +1620,8 @@ net-wireless/bluez-utils:old-daemons - Install old daemons like hidd and sdpd th
 net-wireless/bluez-utils:test-programs - Install l2test and rctest
 net-wireless/hostapd:logwatch - Install support files for logwatch
 net-wireless/hostapd:madwifi - Add support for madwifi (Atheros chipset)
+net-wireless/iwlwifi:ipw3945 - Add support for the IPW3945 wireless card
+net-wireless/iwlwifi:ipw4965 - Add support for the IPW4965 wireless card
 net-wireless/kdebluetooth:irmc - Enable the kitchensync(Multisynk)'s IrMCSync konnector
 net-wireless/madwifi-ng:injection - Adds support for aircrack-ng aireplay-ng packet-injection
 net-wireless/madwifi-old:amrr - Use Adaptive Multi Rate Retry bit rate control algorithm
