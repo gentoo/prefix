@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/pdflib
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.76 2007/07/06 19:04:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.77 2007/07/10 17:33:48 angelos Exp $
+
+  10 Jul 2007; Christoph Mende <angelos@gentoo.org> pdflib-7.0.1.ebuild:
+  Added ~amd64 wrt bug #184343
 
   06 Jul 2007; Jeroen Roovers <jer@gentoo.org> pdflib-7.0.1.ebuild:
   Marked ~hppa (bug #184343).
