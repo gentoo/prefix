@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.3.ebuild,v 1.16 2007/07/04 00:56:57 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.3.ebuild,v 1.17 2007/07/12 03:10:24 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -32,7 +32,6 @@ RDEPEND="${DEPEND}
 	!<mail-client/mozilla-thunderbird-0.9-r3
 	!<media-libs/libwmf-0.2.8.2
 	!<media-libs/fontconfig-2.3.2-r2"
-
 
 src_unpack() {
 	unpack ${A}
