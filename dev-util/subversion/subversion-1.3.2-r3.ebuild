@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.3.2-r3.ebuild,v 1.19 2007/05/15 18:44:40 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.3.2-r3.ebuild,v 1.20 2007/07/12 01:05:42 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -157,7 +157,6 @@ src_compile() {
 	sed -i 's/@SVN_DB_[^@]*@//g' svn-config || die "sed failed"
 }
 
-
 src_install () {
 	python_version
 	PYTHON_DIR=/usr/$(get_libdir)/python${PYVER}
@@ -172,7 +171,6 @@ src_install () {
 #			rmdir ${ED}/usr/$(get_libdir)/apache2 2>/dev/null
 #		fi
 #	fi
-
 
 	dobin svn-config
 	if use python; then
