@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-SAX/XML-SAX-0.16.ebuild,v 1.1 2007/06/29 14:33:11 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-SAX/XML-SAX-0.16.ebuild,v 1.2 2007/07/10 23:33:27 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -39,4 +39,3 @@ pkg_postinst() {
 		-e "XML::SAX->add_parser(q(XML::SAX::PurePerl))->save_parsers()" \
 		|| die "error adding parser"
 }
-
