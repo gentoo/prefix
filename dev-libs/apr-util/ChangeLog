@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/apr-util
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.89 2007/07/08 20:21:20 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.93 2007/07/10 21:33:25 armin76 Exp $
+
+  10 Jul 2007; Raúl Porcel <armin76@gentoo.org> apr-util-0.9.12-r1.ebuild:
+  alpha/x86 stable wrt #169507
+
+  10 Jul 2007; Jeroen Roovers <jer@gentoo.org> apr-util-0.9.12-r1.ebuild:
+  Stable for HPPA (bug #169507).
+
+  10 Jul 2007; Markus Rothe <corsair@gentoo.org> apr-util-0.9.12-r1.ebuild:
+  Stable on ppc64; bug #169507
 
   08 Jul 2007; Christian Heim <phreak@gentoo.org> apr-util-1.2.8-r1.ebuild:
   Fix the compilation issue with mysql (#184636 - Rajiv Aaron Manglani <rajiv
