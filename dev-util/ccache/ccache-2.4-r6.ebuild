@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ccache/ccache-2.4-r6.ebuild,v 1.14 2007/03/05 03:26:45 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ccache/ccache-2.4-r6.ebuild,v 1.15 2007/07/12 01:05:42 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -33,7 +33,6 @@ do_links() {
 	    dosym /usr/bin/ccache /usr/lib/ccache/bin/${a}
 	done
 }
-
 
 src_install() {
 	dobin ccache || die
