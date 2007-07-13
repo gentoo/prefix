@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/jbigkit
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jbigkit/ChangeLog,v 1.35 2007/05/19 23:18:24 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jbigkit/ChangeLog,v 1.36 2007/07/12 08:53:33 uberlord Exp $
+
+  12 Jul 2007; Roy Marples <uberlord@gentoo.org> jbigkit-1.6.ebuild,
+  jbigkit-1.6-r1.ebuild:
+  Keyworded ~sparc-fbsd
 
   19 May 2007; Steve Arnold <nerdboy@gentoo.org>
   files/jbigkit-1.6-respect-make.patch:
