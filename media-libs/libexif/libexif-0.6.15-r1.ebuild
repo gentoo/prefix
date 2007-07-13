@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.15-r1.ebuild,v 1.2 2007/06/05 08:39:38 eradicator Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.15-r1.ebuild,v 1.3 2007/07/12 03:10:24 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -63,4 +63,3 @@ pkg_postinst() {
 	elog "Note, it is actually safe to create a symlink from libexif.so.10 to"
 	elog "libexif.so.12 if you need to during the update."
 }
-
