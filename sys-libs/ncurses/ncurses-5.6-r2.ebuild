@@ -65,21 +65,34 @@ do_compile() {
 	# src_install() ...
 	# The chtype/mmask-t settings below are to retain ABI compat
 	# with ncurses-5.4 so dont change em !
+	local conf_abi="
+		--with-chtype=long \
+		--with-mmask-t=long \
+		--disable-ext-colors \
+		--disable-ext-mouse \
+	"
 	econf \
 		--libdir="${EPREFIX}/usr/$(get_libdir)" \
 		--with-terminfo-dirs="${EPREFIX}/etc/terminfo:${EPREFIX}/usr/share/terminfo" \
-		--disable-termcap \
 		--with-shared \
-		--with-rcs-ids \
-		--enable-symlinks \
-		--enable-const \
-		--with-chtype='long' \
-		--with-mmask-t='long' \
-		--with-manpage-format=normal \
 		--enable-overwrite \
 		$(use_with debug) \
+		$(use_with profile) \
 		$(use_with gpm) \
+		--disable-termcap \
+		--enable-symlinks \
+		--with-rcs-ids \
+		--with-manpage-format=normal \
+		--enable-const \
+		--enable-colorfgbg \
+		--enable-echo \
+		--enable-warnings \
+		$(use_with debug assertions) \
+		$(use_with !debug leaks) \
+		$(use_with debug expanded) \
+		$(use_with !debug macros) \
 		$(use_with trace) \
+		${conf_abi} \
 		"$@" \
 		|| die "configure failed"
 
