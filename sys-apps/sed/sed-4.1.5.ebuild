@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/sed-4.1.5.ebuild,v 1.17 2007/02/28 22:22:04 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/sed-4.1.5.ebuild,v 1.19 2007/07/10 23:40:55 uberlord Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://gnu/sed/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
-IUSE="nls static"
+IUSE="nls static userland_GNU"
 
 RDEPEND="nls? ( virtual/libintl )"
 DEPEND="${RDEPEND}
@@ -47,13 +47,14 @@ src_compile() {
 		-e '/docdir =/s:=.*/doc:= $(datadir)/doc/'${PF}'/html:' \
 		doc/Makefile.in || die "sed html doc"
 
-	local myconf=""
+	local myconf= bindir="${EPREFIX}"/bin
 	if ! use userland_GNU && [[ ${EPREFIX%/} == "" ]] ; then
 		myconf="--program-prefix=g"
+		bindir="${EPREFIX}"/usr/bin
 	fi
 	use static && append-ldflags -static
 	econf \
-		--bindir=${EPREFIX}/bin \
+		--bindir="${bindir}" \
 		$(use_enable nls) \
 		${myconf} \
 		|| die "Configure failed"
