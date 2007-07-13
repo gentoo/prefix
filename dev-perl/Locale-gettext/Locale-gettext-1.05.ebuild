@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Locale-gettext/Locale-gettext-1.05.ebuild,v 1.16 2007/01/08 19:07:44 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Locale-gettext/Locale-gettext-1.05.ebuild,v 1.17 2007/07/10 23:33:30 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -23,4 +23,3 @@ DEPEND="sys-devel/gettext
 
 # Disabling the tests - not ready for prime time - mcummings
 #SRC_TEST="do"
-
