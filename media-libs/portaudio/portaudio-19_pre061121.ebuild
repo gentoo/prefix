@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/portaudio-19_pre061121.ebuild,v 1.2 2007/04/12 13:20:01 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/portaudio-19_pre061121.ebuild,v 1.3 2007/07/12 03:10:24 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -21,9 +21,7 @@ DEPEND="alsa? ( media-libs/alsa-lib )
 	jack? ( media-sound/jack-audio-connection-kit )"
 RDEPEND="${DEPEND}"
 
-
 S="${WORKDIR}/${PN}"
-
 
 src_compile() {
 	econf $(use_with alsa)\
