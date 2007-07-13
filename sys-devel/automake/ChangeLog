@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/automake
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.101 2007/01/07 18:51:13 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.102 2007/07/11 20:36:28 uberlord Exp $
+
+  11 Jul 2007; Roy Marples <uberlord@gentoo.org> automake-1.5.ebuild:
+  Keyworded ~sparc-fbsd.
 
   07 Jan 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   automake-1.10.ebuild:
