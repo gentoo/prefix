@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconfig/pkgconfig-0.21-r1.ebuild,v 1.12 2007/06/27 05:51:50 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconfig/pkgconfig-0.21-r1.ebuild,v 1.13 2007/07/12 01:05:42 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,6 @@ IUSE="hardened"
 DEPEND=""
 
 S=${WORKDIR}/${MY_P}
-
 
 src_unpack() {
 	unpack "${A}"
