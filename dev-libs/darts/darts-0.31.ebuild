@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/darts/darts-0.31.ebuild,v 1.1 2007/04/29 13:26:51 usata Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/darts/darts-0.31.ebuild,v 1.2 2007/07/12 02:25:35 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -25,4 +25,3 @@ src_install() {
 	dodoc AUTHORS ChangeLog INSTALL NEWS README || die
 	dohtml doc/* || die
 }
-
