@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.12.3.ebuild,v 1.14 2007/06/24 21:32:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.12.3.ebuild,v 1.15 2007/07/11 06:19:47 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -24,7 +24,6 @@ DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.12.0"
 
 DOCS="AUTHORS ChangeLog INSTALL NEWS README"
-
 
 pkg_setup() {
 	G2CONF="$(use_enable doc docs)"
