@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/getopt
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/getopt/ChangeLog,v 1.1 2006/05/24 11:49:47 flameeyes Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/getopt/ChangeLog,v 1.2 2007/07/11 20:38:10 uberlord Exp $
+
+  11 Jul 2007; Roy Marples <uberlord@gentoo.org> getopt-1.1.4.ebuild:
+  Keyworded ~sparc-fbsd.
 
 *getopt-1.1.4 (24 May 2006)
 
