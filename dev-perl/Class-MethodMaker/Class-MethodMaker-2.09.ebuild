@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-MethodMaker/Class-MethodMaker-2.09.ebuild,v 1.3 2007/06/21 14:45:27 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-MethodMaker/Class-MethodMaker-2.09.ebuild,v 1.4 2007/07/10 23:33:29 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -18,7 +18,6 @@ IUSE=""
 #disabled until distributed with a working sig file
 #SRC_TEST="do"
 PREFER_BUILDPL="no"
-
 
 RDEPEND="dev-lang/perl"
 DEPEND="${RDEPEND}
