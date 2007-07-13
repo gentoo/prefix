@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Storable/perl-Storable-2.16.ebuild,v 1.2 2007/07/04 18:44:37 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Storable/perl-Storable-2.16.ebuild,v 1.4 2007/07/11 05:04:22 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -15,4 +15,3 @@ KEYWORDS="~amd64 ~ia64 ~mips ~x86"
 IUSE=""
 DEPEND=""
 RDEPEND="~perl-core/Storable-${PV}"
-
