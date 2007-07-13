@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha29.ebuild,v 1.1 2007/07/10 00:03:50 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha30.ebuild,v 1.1 2007/07/10 14:13:07 pylon Exp $
 
 EAPI="prefix"
 
@@ -30,8 +30,6 @@ src_unpack() {
 	# CAN-2004-0806 - Bug 63187
 	epatch "${FILESDIR}"/${PN}-2.01-scsi-remote.patch
 	epatch "${FILESDIR}"/${PN}-2.01.01a03-warnings.patch
-	epatch "${FILESDIR}"/${PN}-2.01.01a01-scanbus.patch
-	epatch "${FILESDIR}"/${PN}-2.01.01a18-rezero.patch
 
 	# ppc-macos support
 	cd "${S}"/DEFAULTS
