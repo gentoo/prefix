@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/opensp/opensp-1.5.2-r1.ebuild,v 1.10 2007/06/19 13:56:08 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/opensp/opensp-1.5.2-r1.ebuild,v 1.11 2007/07/12 04:37:47 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -29,7 +29,6 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.5-gcc34.patch
 }
-
 
 src_compile() {
 	#
@@ -64,14 +63,12 @@ src_test() {
 	SANDBOX_PREDICT="${SANDBOX_PREDICT%:/}"
 }
 
-
 src_install() {
 	make DESTDIR="${D}" \
 		pkgdocdir="${EPREFIX}"/usr/share/doc/${PF} install || die "Installation failed"
 
 	dodoc AUTHORS BUGS ChangeLog NEWS README
 }
-
 
 pkg_postinst() {
 	ewarn "Please note that the soname of the library changed."
