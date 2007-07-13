@@ -1,6 +1,12 @@
 # ChangeLog for dev-db/postgresql
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/ChangeLog,v 1.350 2007/06/24 22:50:25 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/ChangeLog,v 1.351 2007/07/11 08:46:50 dev-zero Exp $
+
+  11 Jul 2007; Tiziano Müller <dev-zero@gentoo.org>
+  files/postgresql.conf-8.0, files/postgresql.init-8.0,
+  files/postgresql.conf-8.1, files/postgresql.init-8.1,
+  files/postgresql.conf-8.2, files/postgresql.init-8.2:
+  Fixed s-s-d env var abuse (bug #175210, thanks to Roy Marples)
 
   24 Jun 2007; Tiziano Müller <dev-zero@gentoo.org>
   -files/postgresql-8.0.12-gentoo.patch, -files/postgresql-8.0.12-sh.patch,
