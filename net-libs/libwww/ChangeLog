@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/libwww
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libwww/ChangeLog,v 1.76 2007/05/12 09:20:06 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libwww/ChangeLog,v 1.77 2007/07/12 10:21:05 uberlord Exp $
+
+  12 Jul 2007; Roy Marples <uberlord@gentoo.org> libwww-5.4.0-r7.ebuild:
+  Keyworded ~sparc-fbsd.
 
   12 May 2007; Joshua Kinard <kumba@gentoo.org> libwww-5.4.0-r7.ebuild:
   Stable on mips.
