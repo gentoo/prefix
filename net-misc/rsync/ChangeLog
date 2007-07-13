@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/rsync
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.121 2007/07/09 02:59:31 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.122 2007/07/10 17:42:12 angelos Exp $
+
+  10 Jul 2007; Christoph Mende <angelos@gentoo.org> rsync-2.6.9-r2.ebuild:
+  Stable on amd64 wrt bug #184685
 
   09 Jul 2007; Joseph Jezak <josejx@gentoo.org> rsync-2.6.9-r2.ebuild:
   Marked ppc and ppc64 stable for bug #184685.
