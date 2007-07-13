@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.150 2007/07/07 01:26:44 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.151 2007/07/11 20:29:28 uberlord Exp $
+
+  11 Jul 2007; Roy Marples <uberlord@gentoo.org> freetype-2.3.5.ebuild:
+  Keyworded ~sparc-fbsd
 
   07 Jul 2007; Ryan Hill <dirtyepic@gentoo.org> freetype-2.3.5.ebuild:
   Add warning to the user to rebuild libXfont after emerging freetype-2.3.5.
