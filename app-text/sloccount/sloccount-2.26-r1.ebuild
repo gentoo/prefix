@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/sloccount/sloccount-2.26-r1.ebuild,v 1.7 2007/06/11 09:01:52 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/sloccount/sloccount-2.26-r1.ebuild,v 1.8 2007/07/12 04:37:47 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -18,7 +18,6 @@ RDEPEND="dev-lang/perl
 		>=sys-apps/sed-4
 		app-shells/bash"
 DEPEND="${RDEPEND}"
-
 
 src_unpack() {
 	unpack ${A}
