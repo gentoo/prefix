@@ -1,6 +1,9 @@
 # ChangeLog for app-i18n/skk-jisyo
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/skk-jisyo/ChangeLog,v 1.45 2007/07/08 20:37:50 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/skk-jisyo/ChangeLog,v 1.47 2007/07/11 13:53:33 armin76 Exp $
+
+  11 Jul 2007; Raúl Porcel <armin76@gentoo.org> skk-jisyo-200705.ebuild:
+  alpha stable wrt #184457
 
   08 Jul 2007; Fabian Groffen <grobian@gentoo.org> skk-jisyo-200504.ebuild,
   skk-jisyo-200507.ebuild, skk-jisyo-200705.ebuild, skk-jisyo-200707.ebuild:
