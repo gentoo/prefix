@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/intltool/intltool-0.35.4.ebuild,v 1.2 2007/02/11 16:50:58 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/intltool/intltool-0.35.4.ebuild,v 1.3 2007/07/12 01:05:42 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,6 @@ IUSE=""
 DEPEND=">=dev-lang/perl-5.6
 	dev-perl/XML-Parser"
 RDEPEND="${DEPEND}"
-
 
 src_install() {
 	make DESTDIR="${D}" install || die "Installation failed"
