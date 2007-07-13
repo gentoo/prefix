@@ -139,6 +139,8 @@ src_install() {
 
 	# Install ocaml-rebuild.sh script rather than keeping it in $PORTDIR
 	dosbin "${FILESDIR}/ocaml-rebuild.sh"
+	dosed -i -e "s:\(/bin/sh\|/usr/bin/emerge\|/var/db/pkg\):${EPREFIX}\1:" \
+		usr/sbin/ocaml-rebuild.sh
 }
 
 pkg_postinst() {
@@ -152,7 +154,7 @@ pkg_postinst() {
 	elog "OCaml is not binary compatible from version to version, so you (may)"
 	elog "need to rebuild all packages depending on it, that are actually"
 	elog "installed on your system. To do so, you can run:"
-	elog "/usr/sbin/ocaml-rebuild.sh [-h | emerge options]"
+	elog "${EPREFIX}/usr/sbin/ocaml-rebuild.sh [-h | emerge options]"
 	elog "Which will call emerge on all old packages with the given options"
 	echo
 }
