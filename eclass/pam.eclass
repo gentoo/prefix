@@ -1,7 +1,7 @@
 # Copyright 2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
 # Author Diego Pettenò <flameeyes@gentoo.org>
-# $Header: /var/cvsroot/gentoo-x86/eclass/pam.eclass,v 1.12 2007/07/10 12:54:32 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/pam.eclass,v 1.13 2007/07/12 14:37:40 flameeyes Exp $
 #
 # This eclass contains functions to install pamd configuration files and
 # pam modules.
@@ -174,7 +174,7 @@ cleanpamd() {
 }
 
 pam_epam_expand() {
-	sed -n -e 's|#%EPAM-\([[:alpha:]-]\+\):\([-+<>=/.[:alnum:]]\+\)%#.*|\1 \2|p' \
+	sed -n -e 's|#%EPAM-\([[:alpha:]-]\+\):\([-+<>=/.![:alnum:]]\+\)%#.*|\1 \2|p' \
 	"$@" | sort -u | while read condition parameter; do
 
 	disable="# "
