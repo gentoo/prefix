@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/g-cpan/g-cpan-0.15.0-r1.ebuild,v 1.6 2007/07/11 20:27:23 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/g-cpan/g-cpan-0.15.0-r1.ebuild,v 1.8 2007/07/13 00:56:46 wolf31o2 Exp $
 
 EAPI="prefix"
 
