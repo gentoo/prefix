@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-dtd/docbook-xml-dtd-4.4-r1.ebuild,v 1.14 2006/10/24 11:48:05 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-dtd/docbook-xml-dtd-4.4-r1.ebuild,v 1.15 2007/07/12 04:37:47 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -23,12 +23,10 @@ DEPEND=">=app-arch/unzip-5.41
 
 RDEPEND=""
 
-
 sgml-catalog_cat_include "/etc/sgml/xml-docbook-${PV}.cat" \
 	"/etc/sgml/sgml-docbook.cat"
 sgml-catalog_cat_include "/etc/sgml/xml-docbook-${PV}.cat" \
 	"/usr/share/sgml/docbook/xml-dtd-${PV}/docbook.cat"
-
 
 src_unpack() {
 	mkdir "${S}"
