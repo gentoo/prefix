@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Storable/Storable-2.16.ebuild,v 1.2 2007/07/04 18:42:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Storable/Storable-2.16.ebuild,v 1.3 2007/07/10 11:30:42 mcummings Exp $
 
 EAPI="prefix"
 
