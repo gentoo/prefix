@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Zlib/IO-Zlib-1.05.ebuild,v 1.5 2007/07/08 02:42:31 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Zlib/IO-Zlib-1.05.ebuild,v 1.6 2007/07/11 16:09:06 armin76 Exp $
 
 EAPI="prefix"
 
