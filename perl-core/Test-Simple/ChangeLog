@@ -1,6 +1,10 @@
 # ChangeLog for perl-core/Test-Simple
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Simple/ChangeLog,v 1.43 2007/07/04 18:46:28 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Simple/ChangeLog,v 1.44 2007/07/10 11:30:13 mcummings Exp $
+
+  10 Jul 2007; Michael Cummings <mcummings@gentoo.org>
+  Test-Simple-0.70.ebuild:
+  sparc stable
 
   04 Jul 2007; Raúl Porcel <armin76@gentoo.org> Test-Simple-0.70.ebuild:
   alpha/ia64/x86 stable
