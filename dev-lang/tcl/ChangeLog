@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/tcl
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/ChangeLog,v 1.80 2007/06/24 23:36:14 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/ChangeLog,v 1.81 2007/07/12 18:06:14 matsuu Exp $
+
+*tcl-8.4.14-r1 (12 Jul 2007)
+
+  12 Jul 2007; MATSUU Takuto <matsuu@gentoo.org> +tcl-8.4.14-r1.ebuild:
+  Fixed library filenames issue, bug #149037.
 
   24 Jun 2007; Piotr Jaroszyński <peper@gentoo.org> tcl-8.4.9.ebuild,
   tcl-8.4.14.ebuild:
