@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/jpeg
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/ChangeLog,v 1.60 2007/04/24 19:02:27 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/ChangeLog,v 1.61 2007/07/11 20:33:15 uberlord Exp $
+
+  11 Jul 2007; Roy Marples <uberlord@gentoo.org> jpeg-6b-r8.ebuild:
+  Keyworded ~sparc-fbsd.
 
   24 Apr 2007; Raúl Porcel <armin76@gentoo.org> jpeg-6b-r8.ebuild:
   Revert back to unstable, doesn't compile on hardened, thanks to gustavoz for
