@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/corefonts/corefonts-1-r3.ebuild,v 1.1 2007/06/24 05:20:46 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/corefonts/corefonts-1-r4.ebuild,v 1.1 2007/07/10 00:38:11 dirtyepic Exp $
 
 EAPI="prefix"
 
@@ -18,7 +18,6 @@ SRC_URI="mirror://sourceforge/corefonts/andale32.exe
 	mirror://sourceforge/corefonts/times32.exe
 	mirror://sourceforge/corefonts/trebuc32.exe
 	mirror://sourceforge/corefonts/verdan32.exe
-	mirror://sourceforge/corefonts/wd97vwr32.exe
 	mirror://sourceforge/corefonts/webdin32.exe"
 
 LICENSE="MSttfEULA"
@@ -39,6 +38,4 @@ src_unpack() {
 		cabextract --lowercase ${DISTDIR}/${exe} > /dev/null \
 			|| die "failed to unpack ${exe}"
 	done
-	cabextract --lowercase ${S}/viewer1.cab > /dev/null \
-		|| die "failed to unpack viewer1.cab"
 }

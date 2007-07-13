@@ -1,6 +1,14 @@
 # ChangeLog for media-fonts/corefonts
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/corefonts/ChangeLog,v 1.24 2007/06/24 05:20:46 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/corefonts/ChangeLog,v 1.25 2007/07/10 00:38:11 dirtyepic Exp $
+
+*corefonts-1-r4 (10 Jul 2007)
+
+  10 Jul 2007; Ryan Hill <dirtyepic@gentoo.org> -corefonts-1-r3.ebuild,
+  +corefonts-1-r4.ebuild:
+  Remove Tahoma font as the missing bold face is negatively affecting the font
+  quality of common web pages and apps. Thanks to Peter Ansell for bug
+  #184790.
 
 *corefonts-1-r3 (24 Jun 2007)
 
