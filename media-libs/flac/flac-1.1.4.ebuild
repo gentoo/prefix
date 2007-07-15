@@ -64,7 +64,7 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" docdir="/usr/share/doc/${PF}" \
+	emake DESTDIR="${D}" docdir="${EPREFIX}/usr/share/doc/${PF}" \
 		install || die "make install failed"
 	dodoc AUTHORS README
 
