@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.6-r2.ebuild,v 1.1 2007/07/11 13:20:27 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.6-r2.ebuild,v 1.2 2007/07/14 13:34:21 hkbst Exp $
 
 EAPI="prefix"
 
@@ -123,13 +123,10 @@ src_compile() {
 
 	filter-ldflags -Wl,--as-needed --as-needed # see Bug #132992
 
-	PATH="${bindir}/src/runtime:${PATH}" SBCL_HOME="${bindir}/output" GNUMAKE=make \
-		./make.sh "sbcl
-			--sysinit /dev/null
-			--userinit /dev/null
-			--disable-debugger
-			--core ${bindir}/output/sbcl.core" \
-				|| die
+	# clear the environment to get rid of non-ASCII strings, see bug 174702
+	env - PATH="${bindir}/src/runtime:${PATH}" SBCL_HOME="${bindir}/output" GNUMAKE=make ./make.sh \
+		"sbcl --sysinit /dev/null --userinit /dev/null	--disable-debugger --core ${bindir}/output/sbcl.core" \
+		|| die "make failed"
 
 	if use doc; then
 		cd "${S}/doc/manual"

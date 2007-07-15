@@ -1,6 +1,9 @@
 # ChangeLog for dev-lisp/sbcl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.116 2007/07/11 13:20:27 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.117 2007/07/14 13:34:21 hkbst Exp $
+
+  14 Jul 2007; Marijn Schouten <hkBst@gentoo.org> sbcl-1.0.6-r2.ebuild:
+  build in a clean environment to work around bug 174702
 
 *sbcl-1.0.6-r2 (11 Jul 2007)
 
