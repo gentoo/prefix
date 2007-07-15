@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/icu
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.57 2007/06/02 15:46:21 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.58 2007/07/14 18:13:16 armin76 Exp $
+
+  14 Jul 2007; Raúl Porcel <armin76@gentoo.org> icu-3.6.ebuild:
+  alpha stable
 
   02 Jun 2007; Raúl Porcel <armin76@gentoo.org> icu-3.6.ebuild:
   Add ~alpha wrt #148659
