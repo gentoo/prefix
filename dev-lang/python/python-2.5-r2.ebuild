@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5-r2.ebuild,v 1.3 2007/07/02 14:48:44 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5-r2.ebuild,v 1.4 2007/07/13 06:25:50 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -284,7 +284,6 @@ pkg_postinst() {
 	[[ "$(get_libdir)" == "lib" ]] || \
 		python_mod_optimize -x site-packages \
 							-x test ${myroot}/usr/$(get_libdir)/python${PYVER}
-
 
 	# workaround possible python-upgrade-breaks-portage situation
 	if [ ! -f ${myroot}/usr/lib/portage/pym/portage.py ]; then
