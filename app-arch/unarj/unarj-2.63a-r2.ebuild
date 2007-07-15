@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unarj/unarj-2.63a-r2.ebuild,v 1.14 2007/03/09 20:09:03 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unarj/unarj-2.63a-r2.ebuild,v 1.15 2007/07/14 14:51:34 drizzt Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ src_unpack() {
 	cd ${S}
 	sed -i "/^CFLAGS/s:-O2:${CFLAGS}:" Makefile
 	epatch ${FILESDIR}/unarj-2.65-CAN-2004-0947.patch
-	epatch ${FILESDIR}/unarj-2.65-sanitation.patch
+	epatch ${FILESDIR}/${P}-sanitation.patch
 	 sed -i -e 's@strip unarj@@' Makefile
 }
 
