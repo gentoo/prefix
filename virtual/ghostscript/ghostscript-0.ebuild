@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/virtual/ghostscript/ghostscript-0.ebuild,v 1.4 2006/08/23 21:27:59 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/ghostscript/ghostscript-0.ebuild,v 1.5 2007/07/13 12:37:17 uberlord Exp $
 
 EAPI="prefix"
 
