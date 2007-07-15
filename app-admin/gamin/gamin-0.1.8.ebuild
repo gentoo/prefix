@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/gamin-0.1.8.ebuild,v 1.13 2007/07/12 16:49:06 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/gamin-0.1.8.ebuild,v 1.14 2007/07/13 06:07:38 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -50,4 +50,3 @@ src_install() {
 	dodoc AUTHORS ChangeLog README TODO NEWS doc/*txt
 	dohtml doc/*
 }
-
