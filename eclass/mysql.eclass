@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.80 2007/07/11 08:18:03 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.81 2007/07/15 00:22:13 robbat2 Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: Luca Longinotti <chtekk@gentoo.org>
@@ -68,6 +68,17 @@ PDEPEND="perl? ( >=dev-perl/DBD-mysql-2.9004 )"
 
 # BitKeeper dependency, compile-time only
 [[ ${IS_BITKEEPER} -eq 90 ]] && DEPEND="${DEPEND} dev-util/bk_client"
+
+# Work out the default SERVER_URI correctly
+if [ -z "${SERVER_URI}" ]; then
+	# The community build is on the mirrors
+	if [ "${PN}" == "mysql-community" ]; then
+		SERVER_URI="mirror://mysql/Downloads/MySQL-${PV%.*}/mysql-${PV//_/-}.tar.gz"
+	# The enterprise source is on the primary site only
+	elif [ "${PN}" == "mysql" ]; then
+		SERVER_URI="ftp://ftp.mysql.com/pub/mysql/src/mysql-${PV//_/-}.tar.gz"
+	fi
+fi
 
 # Define correct SRC_URIs
 SRC_URI="${SERVER_URI}
