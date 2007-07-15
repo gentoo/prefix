@@ -1,6 +1,17 @@
 # ChangeLog for app-arch/arc
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/arc/ChangeLog,v 1.26 2007/02/21 19:53:11 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/arc/ChangeLog,v 1.28 2007/07/14 14:25:43 drizzt Exp $
+
+*arc-5.21m-r1 (14 Jul 2007)
+
+  14 Jul 2007; Timothy Redaelli <drizzt@gentoo.org>
+  +files/arc-5.21m-gentoo-fbsd.patch, arc-5.21m.ebuild,
+  +arc-5.21m-r1.ebuild:
+  Revision bump:
+  Add ~x86-fbsd keyword with a patch by gechi.it
+
+  14 Jul 2007; Timothy Redaelli <drizzt@gentoo.org> arc-5.21m.ebuild:
+  Add ~x86-fbsd keyword.
 
   21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
