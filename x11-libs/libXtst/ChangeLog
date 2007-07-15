@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/libXtst
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/libXtst/ChangeLog,v 1.27 2006/10/01 17:01:45 dberkholz Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXtst/ChangeLog,v 1.29 2007/07/14 19:28:57 dberkholz Exp $
+
+  14 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>; libXtst-1.0.2.ebuild:
+  Sorry, didn't mean to go straight to stable (Raúl Porcel).
+
+*libXtst-1.0.2 (14 Jul 2007)
+
+  14 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  +libXtst-1.0.2.ebuild:
+  Bump. Memleak fix, add man pages for functions, and other fixes.
 
   01 Oct 2006; Donnie Berkholz <dberkholz@gentoo.org>; libXtst-1.0.1.ebuild:
   libXext has a runtime dep on xextproto now, so we don't need to depend on it
