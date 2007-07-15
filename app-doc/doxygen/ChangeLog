@@ -1,6 +1,12 @@
 # ChangeLog for app-doc/doxygen
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.129 2007/07/06 18:25:10 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.130 2007/07/12 19:20:57 grobian Exp $
+
+  12 Jul 2007; Fabian Groffen <grobian@gentoo.org> doxygen-1.4.2.ebuild,
+  doxygen-1.4.3-r1.ebuild, doxygen-1.4.4.ebuild, doxygen-1.4.5.ebuild,
+  doxygen-1.4.6.ebuild, doxygen-1.4.7.ebuild, doxygen-1.5.1.ebuild,
+  doxygen-1.5.2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   06 Jul 2007; Lars Weiler <pylon@gentoo.org> doxygen-1.5.2.ebuild:
   Stable on ppc; bug #184044.
