@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/rxvt-unicode-8.2.ebuild,v 1.2 2007/04/26 19:39:37 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/rxvt-unicode-8.2.ebuild,v 1.3 2007/07/14 21:54:51 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -77,4 +77,3 @@ pkg_postinst() {
 	einfo "urxvt now always uses TERM=rxvt-unicode so that the"
 	einfo "upstream-supplied terminfo files can be used."
 }
-
