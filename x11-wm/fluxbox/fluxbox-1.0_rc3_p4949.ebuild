@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.0_rc3_p4949.ebuild,v 1.2 2007/07/12 03:41:53 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.0_rc3_p4949.ebuild,v 1.3 2007/07/13 17:12:45 lack Exp $
 
 EAPI="prefix"
 
@@ -78,11 +78,6 @@ src_unpack() {
 	sed -i \
 		-e "s~\(__fluxbox_version .@VERSION@\)~\1-${suffix}~" \
 		version.h.in || die "version sed failed"
-
-	# Turn on aa by default if possible. Fluxbox fonts are really frickin'
-	# broken, we'll do what we can to make it less painful by default.
-	use truetype 1>/dev/null && \
-		echo "session.screen0.antialias: true" >> data/init.in
 
 	# Fix broken styles
 	ebegin "Fixing backgrounds..."

@@ -1,6 +1,17 @@
 # ChangeLog for x11-wm/fluxbox
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.223 2007/07/03 16:11:11 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.225 2007/07/13 20:25:35 lack Exp $
+
+*fluxbox-1.0_rc3_p4983 (13 Jul 2007)
+
+  13 Jul 2007; Jim Ramsay <lack@gentoo.org>
+  +files/1.0_rc3_p4983/gentoo_style_location.patch,
+  +fluxbox-1.0_rc3_p4983.ebuild:
+  Latest SVN snapshot: 4983.  Fixes all previous bugs and bug 183982.
+
+  13 Jul 2007; Jim Ramsay <lack@gentoo.org> fluxbox-1.0_rc3_p4949.ebuild:
+  Removed old (unneeded) antialias setting from ebuild, thanks to ak|ra on
+  #fluxbox
 
   03 Jul 2007; Jim Ramsay <lack@gentoo.org>
   -files/0.9.13/fluxbox-0.9.13-our-styles-go-over-here.patch,
