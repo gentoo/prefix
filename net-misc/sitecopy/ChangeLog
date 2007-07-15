@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/sitecopy
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/sitecopy/ChangeLog,v 1.42 2007/02/22 02:47:01 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/sitecopy/ChangeLog,v 1.43 2007/07/14 10:09:25 phreak Exp $
+
+  14 Jul 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Assigning net-misc/sitecopy to m-needed, as chriswhite has been retired
+  (#56211).
 
   22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
