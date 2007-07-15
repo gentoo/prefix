@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.09.3-r1.ebuild,v 1.18 2007/07/12 13:42:22 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.09.3-r1.ebuild,v 1.19 2007/07/13 06:25:50 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -52,7 +52,6 @@ src_unpack() {
 	# The sed in the Makefile doesn't replace all occurences of @compiler@
 	# in driver/ocamlcomp.sh.in. Reported upstream as issue 0004268.
 	epatch "${FILESDIR}"/${P}-Makefile.patch
-
 
 	# ocaml has automagics on libX11 and gdbm
 	# http://caml.inria.fr/mantis/view.php?id=4278
