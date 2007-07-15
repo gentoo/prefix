@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/libpng
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.138 2007/07/11 20:34:50 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.139 2007/07/14 17:22:15 vapier Exp $
+
+*libpng-1.2.18-r1 (14 Jul 2007)
+
+  14 Jul 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/libpng-1.2.18-gray.patch, +libpng-1.2.18-r1.ebuild:
+  Add fix from upstream for gray handling #181318 by David Barnett and Steffen
+  Wolf.
 
   11 Jul 2007; Roy Marples <uberlord@gentoo.org> libpng-1.2.18.ebuild:
   Keyworded ~sparc-fbsd.
