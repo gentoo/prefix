@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/xvid-1.1.3.ebuild,v 1.7 2007/07/13 00:27:09 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/xvid-1.1.3.ebuild,v 1.9 2007/07/13 13:46:25 armin76 Exp $
 
 EAPI="prefix"
 
@@ -30,12 +30,11 @@ S="${WORKDIR}"/${MY_P}/build/generic
 
 src_unpack() {
 	unpack ${A}
-
 	cd "${WORKDIR}"/${MY_P}
 	epatch "${FILESDIR}"/${PN}-1.1.0_beta2-altivec.patch
 	epatch "${WORKDIR}"/${PN}-1.1.2-noexec-stack.patch
 	epatch "${FILESDIR}"/${PN}-1.1.0-3dnow-2.patch
-
+	epatch "${FILESDIR}"/${P}-ia64-build.patch
 	cd "${S}"
 	eautoreconf
 }
