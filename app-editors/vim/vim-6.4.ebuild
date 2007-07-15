@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/vim-6.4.ebuild,v 1.11 2006/12/30 02:23:20 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/vim-6.4.ebuild,v 1.12 2007/07/13 05:34:14 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -28,4 +28,3 @@ DEPEND="${DEPEND}
 RDEPEND="${RDEPEND}
 	!minimal? ( ~app-editors/vim-core-${PV} )
 	!app-editors/nvi"
-
