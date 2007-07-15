@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7477 2007/07/11 22:11:00 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7482 2007/07/14 22:47:02 tester Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -20,6 +20,23 @@
 ##
 ##   End example
 ##
+
+# Olivier Crête <tester@gentoo.org> (14 Jul 1007)
+# We can't mirror. Different upstream mirrors have different versions
+# and the tarballs are unversioned
+# And the older versions are affected by critical remote security vulnerability
+# See Gentoo bug #185141
+net-www/netscape-flash
+
+# Doug Goldstein <cardoe@gentoo.org> (14 Jul 2007)
+# ebuilds under active development
+=x11-drivers/nvidia-drivers-1.0.7185
+=x11-drivers/nvidia-drivers-1.0.9639
+=x11-drivers/nvidia-drivers-100.14.11
+
+# Jim Ramsay <lack@gentoo.org> (13 Jul 2007)
+# Masking until the patch hits the mirrors
+=x11-wm/fluxbox-1.0_rc3_p4983
 
 # Michael Cummings <mcummings@gentoo.org> (11 Jul 2007)
 # Masking for removal
@@ -237,10 +254,6 @@ dev-java/odmg
 # see http://article.gmane.org/gmane.linux.gentoo.devel/49234
 # Masked pending removal.  Remove in 30 days.
 mail-client/muttng
-
-# Doug Goldstein <cardoe@gentoo.org> (03 Jun 2007)
-# beta drivers for testing
->x11-drivers/nvidia-drivers-100
 
 # Stefan Schweizer <genstef@gentoo.org> (31 May 2007)
 # release candidate
@@ -824,10 +837,6 @@ dev-db/monetdb
 # Stefan Schweizer <genstef@gentoo.org> (21 Aug 2006)
 # beta psi, with jingle support
 >=net-im/psi-0.11_alpha0
-
-# Diego Pettenò <flameeyes@gentoo.org> (19 Oct 2006)
-# beta version, breaks API badly with other software.
->=media-libs/flac-1.1.3_beta2
 
 # Christian Heim <phreak@gentoo.org> (14 Oct 2006)
 # masking app-misc/gpsdrive for treecleaners, bug(s) 142710

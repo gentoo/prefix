@@ -1,6 +1,30 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.527 2007/07/12 21:13:33 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.534 2007/07/14 22:47:02 tester Exp $
+
+  14 Jul 2007; <tester@gentoo.org> package.mask:
+  Mask net-www/netscape-flash
+
+  14 Jul 2007; Diego Pettenò <flameeyes@gentoo.org> base/make.defaults,
+  default-linux/make.defaults:
+  Move cracklib default from default-linux/ to base/.
+
+  13 Jul 2007; Chris Gianelloni <wolf31o2@gentoo.org> thirdpartymirrors:
+  Adding 'games' to liflg mirror per bug #185119.
+
+  13 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org> use.local.desc:
+  Add USE=ecoslec for zaptel
+
+  13 Jul 2007; Diego Pettenò <flameeyes@gentoo.org> +updates/3Q-2007,
+  default-bsd/fbsd/packages, default-bsd/fbsd/packages.build,
+  use.local.desc:
+  Move app-arch/bsdtar as app-arch/libarchive.
+
+  13 Jul 2007; Steve Dibb <beandog@gentoo.org> use.local.desc:
+  Add replaygain local use flag for media-sound/abcde
+
+  13 Jul 2007; Steve Dibb <beandog@gentoo.org> use.local.desc:
+  Add id3, lame local use flags for media-sound/abcde
 
   12 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org> use.local.desc:
   Add new USE=astribank for zaptel

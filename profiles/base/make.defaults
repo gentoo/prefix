@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/make.defaults,v 1.35 2007/03/31 19:28:49 antarus Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/make.defaults,v 1.36 2007/07/14 19:51:05 flameeyes Exp $
 #
 # System-wide defaults for the Portage system
 # See portage(5) manpage
@@ -37,3 +37,13 @@ LCD_DEVICES="bayrad cfontz cfontz633 glk hd44780 lb216 lcdm001 mtxorb ncurses te
 # As parts of the tree might suffer if you got midi disabled, for now
 # enable midi useflag by default. Many users might disable this.
 USE="${USE} midi"
+
+# 2006/10/17 - Daniel Drake <dsd@gentoo.org>
+# cracklib is becoming optional in shadow (and removed from system) as of
+# today. However, cracklib is very standard across the Linux world so we
+# enable it by default.
+#
+# Diego Pettenò <flameeyes@gentoo.org> (14 Jul 2007)
+# Moved to base/ profile from default-linux/ so that it also applies to
+# embedded and hardened profiles.
+USE="${USE} cracklib"
