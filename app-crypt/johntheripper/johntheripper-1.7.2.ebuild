@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.2.ebuild,v 1.13 2007/04/04 17:57:37 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.2.ebuild,v 1.14 2007/07/13 21:47:34 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -50,7 +50,6 @@ src_unpack() {
 		"${S}"/src/params.h
 	eend $?
 }
-
 
 src_compile() {
 	cd "${S}"/src
@@ -102,7 +101,6 @@ src_compile() {
 	# currently broken
 	#emake bench || die "make failed"
 }
-
 
 src_test() {
 	cd run
