@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-2.58.ebuild,v 1.1 2007/06/25 15:05:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-2.62.ebuild,v 1.1 2007/07/13 22:22:17 vapier Exp $
 
 EAPI="prefix"
 
@@ -35,12 +35,13 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-2.08-updates.patch
+	epatch "${FILESDIR}"/${PN}-2.61-DESTDIR.patch
 }
 
 src_compile() { :; }
 
 src_install() {
-	emake install prefix="${D}${EPREFIX}" || die
+	emake install prefix="${EPREFIX}/usr" DESTDIR="${D}" || die
 	dodoc man-pages-*.Announce README Changes* HOWTOHELP
 }
 
