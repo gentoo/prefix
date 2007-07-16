@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/tcsh-6.14-r33.ebuild,v 1.3 2007/04/21 15:25:12 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/tcsh-6.14-r33.ebuild,v 1.4 2007/07/15 05:23:38 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -26,7 +26,6 @@ DEPEND=">=sys-libs/ncurses-5.1
 	!app-shells/csh" # bug #119703
 
 S=${WORKDIR}/${MY_P}
-
 
 src_unpack() {
 	unpack ${A}
