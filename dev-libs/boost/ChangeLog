@@ -1,6 +1,17 @@
 # ChangeLog for dev-libs/boost
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.117 2007/06/23 18:24:40 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.119 2007/07/15 14:44:36 dev-zero Exp $
+
+*boost-1.34.0-r1 (15 Jul 2007)
+
+  15 Jul 2007; Tiziano Müller <dev-zero@gentoo.org>
+  +files/boost-1.34.0-gcc42-atomicity.h.patch, -boost-1.34.0.ebuild,
+  +boost-1.34.0-r1.ebuild:
+  Added creation of symlinks when built with debug (bug #181972)
+  Added patch for gcc-4.2
+
+  15 Jul 2007; Tiziano Müller <dev-zero@gentoo.org> boost-1.34.0.ebuild:
+  Corrected dohtml usage (thanks to kolmodin)
 
   23 Jun 2007; Joshua Kinard <kumba@gentoo.org> boost-1.34.0.ebuild:
   Marked unstable on mips, per #182196.
