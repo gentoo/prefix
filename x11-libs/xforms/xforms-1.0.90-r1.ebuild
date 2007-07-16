@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/xforms/xforms-1.0.90-r1.ebuild,v 1.10 2007/02/18 16:29:06 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/xforms/xforms-1.0.90-r1.ebuild,v 1.11 2007/07/15 05:53:11 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -26,7 +26,6 @@ DEPEND=" || (
 			 )
 	opengl? ( virtual/opengl )
 	media-libs/jpeg"
-
 
 src_unpack() {
 	unpack ${A}
