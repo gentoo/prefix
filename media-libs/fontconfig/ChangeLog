@@ -1,6 +1,26 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.92 2007/07/12 05:11:22 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.93 2007/07/15 22:16:40 dirtyepic Exp $
+
+  15 Jul 2007; Ryan Hill <dirtyepic@gentoo.org>
+  -files/patch/fontconfig-2.1-slighthint.patch,
+  -files/patch/fontconfig-2.2-blacklist.patch,
+  -files/patch/fontconfig-2.2-local_fontdir-r1.patch,
+  -files/patch/fontconfig-2.2-remove_subpixel_test.patch,
+  -files/fontconfig-2.3.2-noftinternals.patch,
+  -files/fontconfig-2.3.2-pkg_config.patch,
+  -files/fontconfig-2.3.2-symbol_alias.patch, -fontconfig-2.2.3.ebuild,
+  -fontconfig-2.3.2-r1.ebuild, -fontconfig-2.3.2-r2.ebuild,
+  -fontconfig-2.4.1.ebuild:
+  Remove old.
+
+  15 Jul 2007; Ryan Hill <dirtyepic@gentoo.org>
+  -files/fontconfig-2.3.2-noftinternals.patch,
+  -files/fontconfig-2.3.2-pkg_config.patch,
+  -files/fontconfig-2.3.2-symbol_alias.patch, -fontconfig-2.2.3.ebuild,
+  -fontconfig-2.3.2-r1.ebuild, -fontconfig-2.3.2-r2.ebuild,
+  -fontconfig-2.4.1.ebuild:
+  Remove old.
 
   12 Jul 2007; Roy Marples <uberlord@gentoo.org> fontconfig-2.4.2.ebuild:
   Keyworded ~sparc-fbsd.
