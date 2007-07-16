@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzop/lzop-1.02_rc1-r1.ebuild,v 1.4 2007/01/17 17:35:11 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzop/lzop-1.02_rc1-r1.ebuild,v 1.5 2007/07/15 05:44:57 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,6 @@ IUSE=""
 
 DEPEND=">=dev-libs/lzo-2"
 S=${WORKDIR}/${MY_P}
-
 
 src_test() {
 	einfo "compressing config.status to test"
