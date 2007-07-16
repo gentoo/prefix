@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.23 2007/06/24 06:15:21 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.24 2007/07/15 22:24:15 dirtyepic Exp $
 
 # Author: foser <foser@gentoo.org>
 
@@ -20,7 +20,9 @@ FONT_S="${S}" # Dir containing the fonts
 
 FONT_PN="${PN}" # Last part of $FONTDIR
 
-FONTDIR="/usr/share/fonts/${FONT_PN}" # this is where the fonts are installed
+FONTDIR="/usr/share/fonts/${FONT_PN}" # This is where the fonts are installed
+
+FONT_CONF=""  # Space delimited list of fontconfig-2.4 file(s) to install
 
 DOCS="" # Docs to install
 
@@ -60,6 +62,18 @@ font_xft_config() {
 	fi
 }
 
+font_fontconfig() {
+
+	local conffile
+	if has_version '>=media-libs/fontconfig-2.4'; then
+		insinto /etc/fonts/conf.avail/
+		for conffile in "${FONT_CONF}"; do
+			[[ -e  "${FILESDIR}/${conffile}" ]] && doins "${FILESDIR}/${conffile}"
+		done
+	fi
+
+}
+
 #
 # Public inheritable functions
 #
@@ -80,19 +94,20 @@ font_src_install() {
 
 	font_xfont_config
 	font_xft_config
+	font_fontconfig
 
 	cd "${S}"
 	dodoc ${DOCS} 2> /dev/null
 
 	# install common docs
 	for commondoc in COPYRIGHT README NEWS AUTHORS BUGS ChangeLog; do
-		[ -s ${commondoc} ] && dodoc ${commondoc}
+		[[ -s ${commondoc} ]] && dodoc ${commondoc}
 	done
 }
 
 font_pkg_setup() {
 
-	# make sure we get no colissions
+	# make sure we get no collisions
 	# setup is not the nicest place, but preinst doesn't cut it
 	[[ -e "${FONTDIR}/fonts.cache-1" ]] && rm -f "${FONTDIR}/fonts.cache-1"
 
