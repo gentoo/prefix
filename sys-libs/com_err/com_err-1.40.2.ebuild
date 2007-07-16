@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/e2fsprogs/e2fsprogs-${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-solaris"
 IUSE="nls"
 
 RDEPEND=""
@@ -46,7 +46,7 @@ src_compile() {
 		--with-ldopts="${LDFLAGS}" \
 		$(use_enable nls) \
 		|| die
-	emake -C lib/et || die
+	emake -j1 -C lib/et || die
 }
 
 src_test() {
