@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-compiler/eselect-compiler-2.0.0_rc2-r1.ebuild,v 1.6 2007/01/24 14:08:32 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-compiler/eselect-compiler-2.0.0_rc2-r1.ebuild,v 1.7 2007/07/13 06:07:38 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -165,4 +165,3 @@ delete_invalid_profiles() {
 		[[ -d ${binpath} ]] || rm ${file}
 	done
 }
-
