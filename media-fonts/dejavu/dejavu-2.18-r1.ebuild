@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/dejavu-2.15.ebuild,v 1.8 2007/06/24 21:49:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/dejavu-2.18-r1.ebuild,v 1.1 2007/07/15 22:41:45 dirtyepic Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ LICENSE="BitstreamVera"
 SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.bz2"
 
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86"
+KEYWORDS="~amd64 ~ia64 ~x86 ~x86-solaris"
 IUSE=""
 
 DOCS="AUTHORS BUGS NEWS README status.txt langcover.txt unicover.txt"
@@ -24,3 +24,5 @@ FONT_S="${S}"
 
 # Only installs fonts
 RESTRICT="strip binchecks"
+
+FONT_CONF="59-dejavu.conf"
