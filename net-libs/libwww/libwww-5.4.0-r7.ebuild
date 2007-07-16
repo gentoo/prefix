@@ -17,7 +17,7 @@ SRC_URI="http://www.w3.org/Library/Distribution/${MY_P}.tgz
 
 LICENSE="W3C"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="mysql ssl"
 
 RDEPEND=">=sys-libs/zlib-1.1.4
@@ -34,6 +34,7 @@ src_unpack() {
 	cd "${S}"
 	rm -f configure.in
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}"/patch
+	epatch "${FILESDIR}"/${P}-more-ssl-fixing.patch
 	eautoreconf || die "autoreconf failed"
 }
 
