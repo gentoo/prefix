@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/iftop/iftop-0.17.ebuild,v 1.8 2007/06/27 13:27:17 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/iftop/iftop-0.17.ebuild,v 1.9 2007/07/15 19:57:30 pva Exp $
 
 EAPI="prefix"
 
@@ -28,8 +28,5 @@ src_install() {
 	dosbin iftop
 	doman iftop.8
 
-	insinto /etc
-	doins "${FILESDIR}"/iftoprc
-
-	dodoc ChangeLog README
+	dodoc ChangeLog README "${FILESDIR}"/iftoprc
 }
