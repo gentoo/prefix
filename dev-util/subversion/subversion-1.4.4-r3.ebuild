@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.4-r2.ebuild,v 1.2 2007/06/22 15:19:39 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.4-r3.ebuild,v 1.1 2007/07/15 18:09:45 ulm Exp $
 
 EAPI="prefix"
 
@@ -283,9 +283,9 @@ EOF
 
 	# Install emacs lisps
 	if use emacs ; then
-		insinto /usr/share/emacs/site-lisp/subversion
-		doins contrib/client-side/psvn/psvn.el*
-		doins contrib/client-side/vc-svn.el*
+		elisp-install ${PN} contrib/client-side/psvn/psvn.el*
+		elisp-install ${PN}/compat contrib/client-side/vc-svn.el*
+		touch "${ED}${SITELISP}/${PN}/compat/.nosearch"
 
 		elisp-site-file-install "${FILESDIR}"/70svn-gentoo.el
 	fi
@@ -356,7 +356,7 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	has_version virtual/emacs && elisp-site-regen
+	use emacs && elisp-site-regen
 	use perl && perl-module_pkg_postrm
 }
 
