@@ -1,8 +1,8 @@
 # prefix items here
 
-# <grobian@gentoo.org> (15 Jul 2007)
-# configure script dies before doing anything
-=media-libs/flac-1.1.4
+# <grobian@gentoo.org> (16 Jul 2007)
+# autotools get completely broken with it, like on FreeBSD
+=sys-devel/m4-1.4.10
 
 # <grobian@gentoo.org> (30 Jan 2007)
 # seems to be messed up, hardcoding wrong install_names, doesn't even
