@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/libperl-5.8.8-r1.ebuild,v 1.22 2007/04/30 21:23:01 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/libperl-5.8.8-r1.ebuild,v 1.23 2007/07/15 04:37:55 mr_bones_ Exp $
 
 # The basic theory based on comments from Daniel Robbins <drobbins@gentoo.org>.
 #
@@ -403,4 +403,3 @@ pkg_postinst() {
 		fi
 	fi
 }
-
