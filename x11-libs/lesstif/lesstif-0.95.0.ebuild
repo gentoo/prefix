@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/lesstif/lesstif-0.95.0.ebuild,v 1.1 2007/06/29 17:04:50 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/lesstif/lesstif-0.95.0.ebuild,v 1.2 2007/07/15 05:53:11 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -56,7 +56,6 @@ src_install() {
 
 	emake DESTDIR="${D}" install || die "make install"
 
-
 	einfo "Fixing binaries"
 	dodir /usr/$(get_libdir)/lesstif-2.1
 	for file in `ls ${ED}/usr/bin`
@@ -81,7 +80,6 @@ src_install() {
 			mv "${ED}/usr/share/man/man$man/${file}.${man}" "${ED}/usr/share/man/man${man}/${file}-lesstif-2.1.${man}"
 		done
 	done
-
 
 	einfo "Fixing docs"
 	dodir /usr/share/doc/
