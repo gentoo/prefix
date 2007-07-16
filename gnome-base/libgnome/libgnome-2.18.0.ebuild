@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnome/libgnome-2.18.0.ebuild,v 1.1 2007/03/24 02:21:01 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnome/libgnome-2.18.0.ebuild,v 1.2 2007/07/15 05:15:41 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -31,8 +31,6 @@ DEPEND="${RDEPEND}
 
 DOCS="AUTHORS ChangeLog NEWS README"
 
-
 pkg_setup() {
 	G2CONF="${G2CONF} --disable-schemas-install $(use_enable esd)"
 }
-
