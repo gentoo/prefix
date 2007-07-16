@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/IO/IO-1.23.01.ebuild,v 1.7 2007/07/13 20:18:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/IO/IO-1.23.01.ebuild,v 1.8 2007/07/15 23:10:46 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,6 @@ inherit versionator perl-module
 
 MY_P="${PN}-$(delete_version_separator 2)"
 S=${WORKDIR}/${MY_P}
-
 
 DESCRIPTION="load various IO modules"
 HOMEPAGE="http://search.cpan.org/~gbarr"
