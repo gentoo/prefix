@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.5.ebuild,v 1.3 2007/07/11 20:29:28 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.5.ebuild,v 1.4 2007/07/15 21:00:19 dirtyepic Exp $
 
 EAPI="prefix"
 
@@ -87,9 +87,6 @@ src_unpack() {
 }
 
 src_compile() {
-	# https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=118021
-	append-flags "-fno-strict-aliasing"
-
 	type -P gmake &> /dev/null && export GNUMAKE=gmake
 	econf $(use_with zlib) || die "econf failed"
 	emake || die "emake failed"
