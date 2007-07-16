@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libutempter/libutempter-1.1.5.ebuild,v 1.5 2007/07/03 17:47:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libutempter/libutempter-1.1.5.ebuild,v 1.6 2007/07/15 02:08:20 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -47,7 +47,6 @@ src_install() {
 	dosym ../$(get_libdir)/misc/utempter/utempter /usr/sbin/utempter
 	dodoc README
 }
-
 
 pkg_postinst() {
 	if [ -f "${EROOT}/var/log/wtmp" ]
