@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/links/links-2.1_pre26.ebuild,v 1.12 2007/04/25 14:07:30 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/links/links-2.1_pre26.ebuild,v 1.13 2007/07/15 04:26:42 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -116,7 +116,6 @@ src_install() {
 	# Install a compatibility symlink links2:
 	dosym links /usr/bin/links2
 }
-
 
 pkg_postinst() {
 	if use svga ; then
