@@ -20,7 +20,7 @@ FONT_S="${S}" # Dir containing the fonts
 
 FONT_PN="${PN}" # Last part of $FONTDIR
 
-FONTDIR="${EPREFIX}/usr/share/fonts/${FONT_PN}" # This is where the fonts are installed
+FONTDIR="/usr/share/fonts/${FONT_PN}" # This is where the fonts are installed
 
 FONT_CONF=""  # Space delimited list of fontconfig-2.4 file(s) to install
 
@@ -40,11 +40,11 @@ font_xfont_config() {
 	# create Xfont files
 	if use X ; then
 		einfo "Creating fonts.scale & fonts.dir ..."
-		mkfontscale "${D}${FONTDIR}"
+		mkfontscale "${ED}${FONTDIR}"
 		mkfontdir \
 			-e "${EPREFIX}"/usr/share/fonts/encodings \
 			-e "${EPREFIX}"/usr/share/fonts/encodings/large \
-			"${D}${FONTDIR}"
+			"${ED}${FONTDIR}"
 		if [ -e "${FONT_S}/fonts.alias" ] ; then
 			doins "${FONT_S}/fonts.alias"
 		fi
@@ -59,7 +59,7 @@ font_xft_config() {
 		einfo "Creating fontconfig cache ..."
 		# Mac OS X has fc-cache at /usr/X11R6/bin
 		# HOME was /root
-		HOME="${T}" fc-cache -f "${D}${FONTDIR}"
+		HOME="${T}" fc-cache -f "${ED}${FONTDIR}"
 	fi
 }
 
@@ -110,7 +110,7 @@ font_pkg_setup() {
 
 	# make sure we get no collisions
 	# setup is not the nicest place, but preinst doesn't cut it
-	[[ -e "${FONTDIR}/fonts.cache-1" ]] && rm -f "${FONTDIR}/fonts.cache-1"
+	[[ -e "${EPREFIX}${FONTDIR}/fonts.cache-1" ]] && rm -f "${EPREFIX}${FONTDIR}/fonts.cache-1"
 
 }
 
