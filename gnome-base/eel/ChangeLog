@@ -1,6 +1,13 @@
 # ChangeLog for gnome-base/eel
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/ChangeLog,v 1.170 2007/06/13 20:38:31 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/ChangeLog,v 1.171 2007/07/17 00:23:29 eva Exp $
+
+*eel-2.18.3 (16 Jul 2007)
+
+  16 Jul 2007; Gilles Dartiguelongue <eva@gentoo.org> +eel-2.18.3.ebuild:
+  * plug a leak
+  * fix some path search
+  * translations
 
   13 Jun 2007; Daniel Gryniewicz <dang@gentoo.org> eel-2.18.0.1.ebuild:
   Make test pass; bug #100523
