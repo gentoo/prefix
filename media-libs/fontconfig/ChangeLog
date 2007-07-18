@@ -1,6 +1,17 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.93 2007/07/15 22:16:40 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.96 2007/07/16 12:15:59 phreak Exp $
+
+  16 Jul 2007; Christian Heim <phreak@gentoo.org> Manifest:
+  Fixing the Manifest (for real).
+
+  16 Jul 2007; Ryan Hill <dirtyepic@gentoo.org> Manifest:
+  Fix digest.
+
+  16 Jul 2007; Ryan Hill <dirtyepic@gentoo.org>
+  +files/fontconfig-2.3.2-pkg_config.patch,
+  +files/fontconfig-2.3.2-symbol_alias.patch, +fontconfig-2.3.2-r1.ebuild:
+  Readd 2.3.2-r1 for bug #185484.
 
   15 Jul 2007; Ryan Hill <dirtyepic@gentoo.org>
   -files/patch/fontconfig-2.1-slighthint.patch,
