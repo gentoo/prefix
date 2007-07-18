@@ -1,6 +1,14 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.320 2007/07/02 14:53:17 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.321 2007/07/16 23:53:28 leio Exp $
+
+*gtk+-2.10.14 (16 Jul 2007)
+
+  16 Jul 2007; Mart Raudsepp <leio@gentoo.org>
+  -files/gtk+-2.10.7-textview-fix.patch, -gtk+-2.10.6.ebuild,
+  -gtk+-2.10.7-r1.ebuild, -gtk+-2.10.9.ebuild, -gtk+-2.10.12.ebuild,
+  +gtk+-2.10.14.ebuild:
+  Version bump and remove some old versions
 
   02 Jul 2007; Piotr Jaroszyński <peper@gentoo.org> gtk+-2.8.19.ebuild,
   gtk+-2.8.20-r1.ebuild, gtk+-2.10.6.ebuild, gtk+-2.10.7-r1.ebuild,
