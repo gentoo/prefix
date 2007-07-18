@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/epydoc
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/epydoc/ChangeLog,v 1.28 2007/03/12 22:20:48 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/epydoc/ChangeLog,v 1.29 2007/07/16 19:05:15 armin76 Exp $
+
+  16 Jul 2007; Raúl Porcel <armin76@gentoo.org> epydoc-2.1-r2.ebuild:
+  alpha stable
 
   12 Mar 2007; Raúl Porcel <armin76@gentoo.org> epydoc-2.1-r2.ebuild:
   x86 stable
