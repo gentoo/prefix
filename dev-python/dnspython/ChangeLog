@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/dnspython
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/dnspython/ChangeLog,v 1.36 2007/06/09 19:11:23 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/dnspython/ChangeLog,v 1.37 2007/07/16 18:12:54 armin76 Exp $
+
+  16 Jul 2007; Raúl Porcel <armin76@gentoo.org> dnspython-1.5.0.ebuild:
+  alpha/x86 stable
 
   09 Jun 2007; Joe Peterson <lavajoe@gentoo.org> dnspython-1.5.0.ebuild:
   Add ~x86-fbsd keyword
