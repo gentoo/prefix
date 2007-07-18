@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/libwnck
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libwnck/ChangeLog,v 1.162 2007/06/18 08:05:44 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libwnck/ChangeLog,v 1.163 2007/07/16 23:56:49 remi Exp $
+
+*libwnck-2.18.3 (16 Jul 2007)
+
+  16 Jul 2007; Remi Cardona <remi@gentoo.org> +libwnck-2.18.3.ebuild:
+  bump to 2.18.3
 
 *libwnck-2.18.2 (18 Jun 2007)
 
