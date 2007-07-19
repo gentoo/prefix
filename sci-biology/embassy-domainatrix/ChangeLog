@@ -1,6 +1,12 @@
 # ChangeLog for sci-biology/embassy-domainatrix
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-domainatrix/ChangeLog,v 1.22 2007/02/15 20:18:22 je_fro Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-domainatrix/ChangeLog,v 1.23 2007/07/18 01:20:34 ribosome Exp $
+
+*embassy-domainatrix-0.1.0-r2 (18 Jul 2007)
+
+  18 Jul 2007; Olivier Fisette <ribosome@gentoo.org>
+  +embassy-domainatrix-0.1.0-r2.ebuild:
+  New upstream packaging for EMBOSS 5.0.0.
 
   15 Feb 2007; Jeff Gardner <je_fro@gentoo.org>
   embassy-domainatrix-0.1.0-r1.ebuild:
