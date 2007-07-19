@@ -66,13 +66,6 @@ src_test() {
 	Xmake check || die "Test phase failed"
 }
 
-src_unpack() {
-	gnome2_src_unpack
-
-	# fix relative include path breaking libIDL (#129366)
-	epatch "${FILESDIR}"/${PN}-2.16.0-idl_include.patch
-}
-
 pkg_postinst() {
 	gnome2_pkg_postinst
 	elog "nautilus can use mpg123 (media-sound/mpg123 or media-sound/mpg321)"
