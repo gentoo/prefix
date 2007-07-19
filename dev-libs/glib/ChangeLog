@@ -1,6 +1,18 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.269 2007/07/16 22:07:02 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.273 2007/07/18 17:30:59 armin76 Exp $
+
+  18 Jul 2007; Raúl Porcel <armin76@gentoo.org> glib-2.12.12.ebuild:
+  alpha/ia64/x86 stable wrt #185614
+
+  17 Jul 2007; Jeroen Roovers <jer@gentoo.org> glib-2.12.12.ebuild:
+  Stable for HPPA (bug #185614).
+
+  17 Jul 2007; Markus Rothe <corsair@gentoo.org> glib-2.12.12.ebuild:
+  Stable on ppc64; bug #185614
+
+  17 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org> glib-2.12.12.ebuild:
+  Stable on sparc wrt #185614
 
 *glib-2.12.13 (16 Jul 2007)
 
