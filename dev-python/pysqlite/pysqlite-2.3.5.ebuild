@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pysqlite/pysqlite-2.3.4-r1.ebuild,v 1.1 2007/07/07 13:44:32 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pysqlite/pysqlite-2.3.5.ebuild,v 1.1 2007/07/18 18:21:05 lucass Exp $
 
 EAPI="prefix"
 
@@ -12,12 +12,23 @@ DESCRIPTION="Python wrapper for the local database Sqlite"
 SRC_URI="http://initd.org/pub/software/pysqlite/releases/${PV:0:3}/${PV}/pysqlite-${PV}.tar.gz"
 HOMEPAGE="http://initd.org/tracker/pysqlite/"
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 LICENSE="pysqlite"
 SLOT="2"
 IUSE="examples"
 
 DEPEND=">=dev-db/sqlite-3.1"
+
+src_unpack() {
+	unpack ${A}
+
+	# setup.cfg has hardcoded non-prefix paths, kill them
+	cd "${S}"
+	sed -i \
+		-e '/^include_dirs=/d' \
+		-e '/^library_dirs=/d' \
+		setup.cfg
+}
 
 PYTHON_MODNAME="pysqlite2"
 
@@ -32,13 +43,6 @@ src_unpack() {
 	# correct encoding
 	sed -i -e "s/\(coding: \)ISO-8859-1/\1utf-8/" \
 		pysqlite2/__init__.py pysqlite2/dbapi2.py || die "sed failed"
-
-	# setup.cfg has hardcoded non-prefix paths, kill them
-	cd "${S}"
-	sed -i \
-		-e '/^include_dirs=/d' \
-		-e '/^library_dirs=/d' \
-		setup.cfg
 }
 
 src_install() {
