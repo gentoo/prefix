@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.2.3.ebuild,v 1.7 2007/06/25 21:59:52 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.2.3.ebuild,v 1.8 2007/07/17 17:44:15 griffon26 Exp $
 
 EAPI="prefix"
 
@@ -44,6 +44,8 @@ src_unpack() {
 	if use ppc64 && ! has_multilib_profile; then
 		epatch "${FILESDIR}/valgrind-3.2.1-only64bit.patch"
 	fi
+
+	epatch "${FILESDIR}/${P}-glibc-2.6.patch"
 
 	# Regenerate autotools files
 	eautoreconf

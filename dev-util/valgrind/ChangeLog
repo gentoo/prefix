@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/valgrind
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.77 2007/05/05 18:11:03 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.78 2007/07/17 17:44:15 griffon26 Exp $
+
+  17 Jul 2007; Maurice van der Pot <griffon26@gentoo.org>
+  +files/valgrind-3.2.3-glibc-2.6.patch, valgrind-3.2.3.ebuild:
+  Added support for glibc-2.6, which closes bug 185551 reported by
+  Billy DeVincentis <billydv1@verizon.net>
 
   05 May 2007; nixnut <nixnut@gentoo.org> valgrind-3.2.3.ebuild:
   Stable on ppc wrt bug 176707
