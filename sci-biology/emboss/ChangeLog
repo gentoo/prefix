@@ -1,6 +1,15 @@
 # ChangeLog for sci-biology/emboss
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/emboss/ChangeLog,v 1.42 2007/04/09 23:06:58 je_fro Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/emboss/ChangeLog,v 1.44 2007/07/18 01:24:12 ribosome Exp $
+
+  18 Jul 2007; Olivier Fisette <ribosome@gentoo.org>
+  +files/emboss-README.Gentoo-1:
+  Added updated Gentoo README file in reStructuredText format.
+
+*emboss-5.0.0 (18 Jul 2007)
+
+  18 Jul 2007; Olivier Fisette <ribosome@gentoo.org> +emboss-5.0.0.ebuild:
+  New upstream version.
 
   09 Apr 2007; Jeff Gardner <je_fro@gentoo.org> +files/22emboss,
   -files/22emboss-r1, emboss-4.0.0.ebuild:
