@@ -203,7 +203,7 @@ bootstrap_startscript() {
 bootstrap_portage() {
 	# don't use "latest" here, as I want to have the bootstrap script to
 	# use a portage in a known "state"
-	PV=2.2.00.7085
+	PV=2.2.00.7307
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 		
@@ -222,10 +222,8 @@ bootstrap_portage() {
 	einfo "Compiling ${A%-*}"
 	econf \
 		--with-offset-prefix="${ROOT}" \
-		--with-user=`id -un` \
-		--with-group=`id -gn` \
-		--with-wheelgid=`id -g` \
-		--with-rootuser=`id -un` \
+		--with-portage-user=`id -un` \
+		--with-portage-group=`id -gn` \
 		--with-default-path="${ROOT}/tmp/bin:${ROOT}/tmp/usr/bin:/bin:/usr/bin:${PATH}"
 	$MAKE || exit 1
 
