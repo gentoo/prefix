@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.10.6.ebuild,v 1.1 2007/07/17 00:20:14 metalgod Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.10.6.ebuild,v 1.2 2007/07/18 17:44:34 uberlord Exp $
 
 EAPI="prefix"
 
@@ -46,7 +46,7 @@ src_unpack() {
 
 	# disable pyc compiling
 	mv "${S}"/py-compile "${S}"/py-compile.orig
-	ln -s ${EROOT}/bin/true "${S}"/py-compile
+	ln -s $(type -P true) "${S}"/py-compile
 }
 
 src_compile() {
