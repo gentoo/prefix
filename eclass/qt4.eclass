@@ -1,6 +1,6 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.18 2007/06/20 11:57:28 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.19 2007/07/17 11:59:18 swegener Exp $
 #
 # Author Caleb Tennis <caleb@gentoo.org>
 #
@@ -59,5 +59,4 @@ qt4_pkg_setup() {
 			die "This package requires Qt4 to be built with the ${x} use flag."
 		fi
 	done
-	
 }

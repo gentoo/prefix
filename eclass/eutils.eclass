@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.285 2007/07/07 17:30:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.286 2007/07/17 11:59:18 swegener Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -11,7 +11,7 @@
 # the ones that ebuild.sh already contain.  The idea is that the functions
 # are not required in all ebuilds but enough utilize them to have a common
 # home rather than having multiple ebuilds implementing the same thing.
-# 
+#
 # Due to the nature of this eclass, some functions may have maintainers
 # different from the overall eclass!
 
@@ -1069,7 +1069,7 @@ find_unpackable_file() {
 # They're self-unpacking programs with the binary package stuffed in
 # the middle of the archive.  Valve seems to use it a lot ... too bad
 # it seems to like to segfault a lot :(.  So lets take it apart ourselves.
-# 
+#
 # You have to specify the off_t size ... I have no idea how to extract that
 # information out of the binary executable myself.  Basically you pass in
 # the size of the off_t type (in bytes) on the machine that built the pdv
@@ -1164,7 +1164,7 @@ unpack_pdv() {
 # They're shell scripts with the binary package tagged onto
 # the end of the archive.  Loki utilized the format as does
 # many other game companies.
-# 
+#
 # If the file is not specified, then ${A} is used.  If the
 # offset is not specified then we will attempt to extract
 # the proper offset from the script itself.
@@ -1289,7 +1289,7 @@ check_license() {
 	continue.  When you are done viewing, hit 'q'.	If you
 	CTRL+C out of this, the install will not run!
 	**********************************************************
-	
+
 	EOF
 	cat ${lic} >> ${licmsg}
 	${PAGER:-less} ${licmsg} || die "Could not execute pager (${PAGER}) to accept ${lic}"
@@ -1312,22 +1312,22 @@ check_license() {
 # @DESCRIPTION:
 # Aquire cd(s) for those lovely cd-based emerges.  Yes, this violates
 # the whole 'non-interactive' policy, but damnit I want CD support !
-# 
+#
 # With these cdrom functions we handle all the user interaction and
 # standardize everything.  All you have to do is call cdrom_get_cds()
 # and when the function returns, you can assume that the cd has been
 # found at CDROM_ROOT.
-# 
+#
 # The function will attempt to locate a cd based upon a file that is on
 # the cd.  The more files you give this function, the more cds
 # the cdrom functions will handle.
-# 
+#
 # Normally the cdrom functions will refer to the cds as 'cd #1', 'cd #2',
 # etc...  If you want to give the cds better names, then just export
 # the appropriate CDROM_NAME variable before calling cdrom_get_cds().
 # Use CDROM_NAME for one cd, or CDROM_NAME_# for multiple cds.  You can
 # also use the CDROM_NAME_SET bash array.
-# 
+#
 # For those multi cd ebuilds, see the cdrom_load_next_cd() function.
 cdrom_get_cds() {
 	# first we figure out how many cds we're dealing with by
@@ -1664,7 +1664,7 @@ preserve_old_lib_notify() {
 # enabled.  The --hidden option is really for internal use only as it
 # means the USE flag we're checking is hidden expanded, so it won't be found
 # in IUSE like normal USE flags.
-# 
+#
 # Remember that this function isn't terribly intelligent so order of optional
 # flags matter.
 built_with_use() {
