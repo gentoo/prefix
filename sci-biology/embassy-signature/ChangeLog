@@ -1,6 +1,12 @@
 # ChangeLog for sci-biology/embassy-signature
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-signature/ChangeLog,v 1.12 2007/02/16 21:45:59 je_fro Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-signature/ChangeLog,v 1.13 2007/07/18 01:53:11 ribosome Exp $
+
+*embassy-signature-0.1.0-r2 (18 Jul 2007)
+
+  18 Jul 2007; Olivier Fisette <ribosome@gentoo.org>
+  +embassy-signature-0.1.0-r2.ebuild:
+  New upstream packaging for EMBOSS 5.0.0.
 
   16 Feb 2007; Jeff Gardner <je_fro@gentoo.org>
   embassy-signature-0.1.0-r1.ebuild:
