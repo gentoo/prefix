@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit eutils
+
 DESCRIPTION="GnuPG Made Easy is a library for making GnuPG easier to use"
 HOMEPAGE="http://www.gnupg.org/(en)/related_software/gpgme/index.html"
 SRC_URI="mirror://gnupg/gpgme/${P}.tar.gz"
@@ -19,6 +21,12 @@ DEPEND=">=dev-libs/libgpg-error-1.4
 
 RDEPEND="${DEPEND}
 	dev-libs/libgcrypt"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-darwin7.patch
+}
 
 src_compile() {
 	econf \
