@@ -1,6 +1,13 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.305 2007/07/18 17:56:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.306 2007/07/19 20:38:28 armin76 Exp $
+
+  19 Jul 2007; Raúl Porcel <armin76@gentoo.org>
+  files/icon/mozilla-firefox-1.5-unbranded.desktop,
+  files/icon/mozilla-firefox-1.5.desktop, +files/gentoo-default-prefs-r1.js,
+  mozilla-firefox-2.0.0.5.ebuild:
+  Fix desktop files, bug 185869 and now it uses the langpack according to the
+  locale, bug 182175
 
 *mozilla-firefox-2.0.0.5 (18 Jul 2007)
 
