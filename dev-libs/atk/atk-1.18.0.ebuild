@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/atk-1.18.0.ebuild,v 1.5 2007/07/18 17:32:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/atk-1.18.0.ebuild,v 1.6 2007/07/19 13:57:56 angelos Exp $
 
 EAPI="prefix"
 
