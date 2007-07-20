@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/cheetah
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/cheetah/ChangeLog,v 1.35 2007/07/08 21:47:04 pythonhead Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cheetah/ChangeLog,v 1.36 2007/07/19 18:06:40 grobian Exp $
+
+  19 Jul 2007; Fabian Groffen <grobian@gentoo.org> cheetah-0.9.17.ebuild,
+  cheetah-0.9.18.ebuild, cheetah-1.0.ebuild, cheetah-2.0_rc8.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *cheetah-2.0_rc8-r1 (08 Jul 2007)
 
