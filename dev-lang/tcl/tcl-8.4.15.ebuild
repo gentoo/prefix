@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/tcl-8.4.14.ebuild,v 1.0 2007/06/24 23:36:14 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/tcl-8.4.15.ebuild,v 1.1 2007/07/20 18:39:11 matsuu Exp $
 
 EAPI="prefix"
 
@@ -41,7 +41,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-8.4.11-multilib.patch
 
 	# Bug 125971
-#	epatch "${FILESDIR}"/${PN}-8.3.5-tclm4-soname.patch
+	epatch "${FILESDIR}"/${P}-tclm4-soname.patch
 
 	local d
 	for d in */configure ; do
@@ -75,7 +75,7 @@ src_install() {
 	v1=${PV%.*}
 
 	cd "${S}"/unix
-	S= make DESTDIR="${D}" install || die
+	S= emake DESTDIR="${D}" install || die
 
 	# fix the tclConfig.sh to eliminate refs to the build directory
 	local mylibdir=$(get_libdir) ; mylibdir=${mylibdir//\/}
@@ -99,13 +99,17 @@ src_install() {
 	rm -f "${ED}"/usr/${mylibdir}/tcl${v1}/include/generic/tclPlatDecls.h
 
 	# install symlink for libraries
+	if use debug ; then
+		dosym libtcl${v1}g.so /usr/${mylibdir}/libtcl${v1}.so
+		dosym libtclstub${v1}g.a /usr/${mylibdir}/libtclstub${v1}.a
+	fi
 	dosym libtcl${v1}.so /usr/${mylibdir}/libtcl.so
 	dosym libtclstub${v1}.a /usr/${mylibdir}/libtclstub.a
 
-	ln -sf tclsh${v1} "${ED}"/usr/bin/tclsh
+	dosym tclsh${v1} /usr/bin/tclsh
 
 	cd "${S}"
-	dodoc README changes license.terms
+	dodoc ChangeLog* README changes
 }
 
 pkg_postinst() {
