@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/gd
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/ChangeLog,v 1.45 2007/07/12 05:25:37 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/ChangeLog,v 1.47 2007/07/20 20:51:43 gustavoz Exp $
+
+  20 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org> gd-2.0.35.ebuild:
+  Stable on sparc wrt security #179154
+
+  20 Jul 2007; Tobias Scherbaum <dertobi123@gentoo.org> gd-2.0.35.ebuild:
+  ppc stable, bug #179154
 
   12 Jul 2007; Roy Marples <uberlord@gentoo.org> gd-2.0.35.ebuild:
   Keyworded ~sparc-fbsd.
