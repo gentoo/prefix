@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/cmake
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.61 2007/07/18 22:03:05 cryos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.62 2007/07/19 08:02:26 cryos Exp $
+
+  19 Jul 2007; Marcus D. Hanwell <cryos@gentoo.org> cmake-2.4.7.ebuild:
+  Moved to testing, fixes bug 185832. Sorry.
 
 *cmake-2.4.7 (18 Jul 2007)
 
