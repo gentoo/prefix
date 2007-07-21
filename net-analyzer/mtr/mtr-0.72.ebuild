@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/mtr-0.72.ebuild,v 1.10 2007/07/19 17:55:30 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/mtr-0.72.ebuild,v 1.11 2007/07/20 09:15:42 grobian Exp $
 
 EAPI="prefix"
 
@@ -12,8 +12,8 @@ SRC_URI="ftp://ftp.bitwizard.nl/mtr/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
-IUSE="gtk ipv6 ppc-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+IUSE="gtk ipv6"
 
 DEPEND="dev-util/pkgconfig
 	sys-libs/ncurses
@@ -23,7 +23,7 @@ src_compile() {
 	local myconf
 	use gtk || myconf="${myconf} --without-gtk"
 
-	use ppc-macos && append-flags "-DBIND_8_COMPAT"
+	[[ ${CHOST} == *-darwin* ]] && append-flags "-DBIND_8_COMPAT"
 	append-ldflags $(bindnow-flags)
 
 	econf ${myconf} \
