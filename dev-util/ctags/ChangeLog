@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/ctags
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ChangeLog,v 1.59 2007/07/07 14:05:23 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ChangeLog,v 1.60 2007/07/19 14:12:57 hawking Exp $
+
+  19 Jul 2007; Ali Polatel <hawking@gentoo.org> -ctags-5.2.3.ebuild,
+  -ctags-5.5.ebuild, -ctags-5.5-r1.ebuild, -ctags-5.5.4.ebuild,
+  -ctags-5.5.4-r1.ebuild:
+  Drop old
 
 *ctags-5.6-r3 (07 Jul 2007)
 
