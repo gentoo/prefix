@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/pdflib-7.0.1.ebuild,v 1.8 2007/07/10 17:33:48 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/pdflib-7.0.1.ebuild,v 1.9 2007/07/19 19:08:06 anant Exp $
 
 EAPI="prefix"
 
@@ -61,10 +61,14 @@ src_compile() {
 		--enable-cxx \
 		${myconf} || die
 
-	JAVACFLAGS="$(java-pkg_javac-args)" emake || die "emake failed"
-	if use java && use doc; then
-		cd ./bind/pdflib/java || die
-		emake javadoc || die "Failed to generate javadoc"
+	if use java; then
+		JAVACFLAGS="$(java-pkg_javac-args)" emake || die "emake failed"
+		if use doc; then
+			cd ./bind/pdflib/java || die
+			emake javadoc || die "Failed to generate javadoc"
+		fi
+	else
+		emake || die "emake failed"
 	fi
 }
 
