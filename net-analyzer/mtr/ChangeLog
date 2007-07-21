@@ -1,6 +1,10 @@
 # ChangeLog for net-analyzer/mtr
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/ChangeLog,v 1.68 2007/07/10 00:57:23 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/ChangeLog,v 1.69 2007/07/19 17:55:30 grobian Exp $
+
+  19 Jul 2007; Fabian Groffen <grobian@gentoo.org> mtr-0.69.ebuild,
+  mtr-0.69-r1.ebuild, mtr-0.71.ebuild, mtr-0.72.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   10 Jul 2007; Jeroen Roovers <jer@gentoo.org> mtr-0.72.ebuild:
   Stable for HPPA (bug #184750).
