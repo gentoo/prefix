@@ -1,0 +1,53 @@
+# ChangeLog for www-servers/mongrel
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-servers/mongrel/ChangeLog,v 1.14 2007/03/26 13:22:23 pclouds Exp $
+
+  26 Mar 2007; Nguyễn Thái Ngọc Duy <pclouds@gentoo.org>
+  files/digest-mongrel-1.0.1, Manifest:
+  Redigest, #171457
+
+  12 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> mongrel-1.0.1.ebuild:
+  Stable on sparc
+
+  24 Feb 2007; Markus Rothe <corsair@gentoo.org> mongrel-1.0.1.ebuild:
+  Stable on ppc64; bug #166901
+
+  21 Feb 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  mongrel-1.0.1.ebuild:
+  Stable on ppc wrt bug #166901.
+
+  19 Feb 2007; <malc@gentoo.org> mongrel-1.0.ebuild:
+  Stable on amd64 wrt security bug #166901
+
+  15 Feb 2007; Gustavo Zacarias <gustavoz@gentoo.org> mongrel-1.0.ebuild:
+  Stable on sparc wrt security #166901
+
+  15 Feb 2007; Christian Faulhammer <opfer@gentoo.org> mongrel-1.0.ebuild:
+  stable x86; security bug 166901
+
+  04 Feb 2007; Matti Bickel <mabi@gentoo.org> mongrel-1.0.1.ebuild:
+  add ~ppc for bug #164242
+
+  01 Feb 2007; Markus Rothe <corsair@gentoo.org> mongrel-1.0.1.ebuild:
+  Added ~ppc64; bug #164242
+
+*mongrel-1.0.1 (01 Feb 2007)
+
+  01 Feb 2007; Christian Marie <pingu@gentoo.org> +mongrel-1.0.1.ebuild:
+  Version bump, bug #164569. Removed broken ~ppc64 keyword.
+
+  31 Jan 2007; Markus Rothe <corsair@gentoo.org> mongrel-1.0.ebuild:
+  Added ~ppc64; bug #164242
+
+  30 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> mongrel-1.0.ebuild:
+  Keyworded ~sparc wrt #164242
+
+  28 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> mongrel-1.0.ebuild:
+  Add ~amd64 and ~x86-fbsd keywords.
+
+*mongrel-1.0 (04 Jan 2007)
+
+  04 Jan 2007; Nguyễn Thái Ngọc Duy <pclouds@gentoo.org> +metadata.xml,
+  +mongrel-1.0.ebuild:
+  New ebuild, #126925
+
