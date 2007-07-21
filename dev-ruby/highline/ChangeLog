@@ -1,0 +1,29 @@
+# ChangeLog for dev-ruby/highline
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/highline/ChangeLog,v 1.7 2007/07/14 04:49:34 nichoj Exp $
+
+*highline-1.2.9 (14 Jul 2007)
+
+  14 Jul 2007; Joshua Nichols <nichoj@gentoo.org> +highline-1.2.9.ebuild:
+  Version bump. See bug #184631.
+
+*highline-1.2.7 (18 May 2007)
+
+  18 May 2007; Robin H. Johnson <robbat2@gentoo.org> +highline-1.2.7.ebuild:
+  Version bump, dep for capistrano-1.99*
+
+  16 May 2007; Robin H. Johnson <robbat2@gentoo.org> highline-1.2.0.ebuild:
+  Works on ~ppc and ~amd64.
+
+  13 Mar 2007; Tom Gall <tgall@gentoo.org> highline-1.2.0.ebuild:
+  added ~ppc64
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+*highline-1.2.0 (29 Apr 2006)
+
+  29 Apr 2006; Caleb Tennis <caleb@gentoo.org> +metadata.xml,
+  +highline-1.2.0.ebuild:
+  initial commit
+
