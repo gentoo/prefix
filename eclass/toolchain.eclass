@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.338 2007/07/16 02:14:56 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.339 2007/07/20 04:59:51 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1159,16 +1159,21 @@ gcc-compiler-configure() {
 	case $(tc-arch) in
 		# Add --with-abi flags to set default MIPS ABI
 		mips)
-		local mips_abi=""
-		use n64 && mips_abi="--with-abi=64"
-		use n32 && mips_abi="--with-abi=n32"
-		[[ -n ${mips_abi} ]] && confgcc="${confgcc} ${mips_abi}"
-		;;
+			local mips_abi=""
+			use n64 && mips_abi="--with-abi=64"
+			use n32 && mips_abi="--with-abi=n32"
+			[[ -n ${mips_abi} ]] && confgcc="${confgcc} ${mips_abi}"
+			;;
+		# Default arch for x86 is normally i386, lets give it a bump
+		# since glibc will do so based on CTARGET anyways
+		x86)
+			confgcc="${confgcc} --with-arch=${CTARGET%%-*}"
+			;;
 		# Enable sjlj exceptions for backward compatibility on hppa
 		hppa)
 			[[ ${GCC_PV:0:1} == "3" ]] && \
 			confgcc="${confgcc} --enable-sjlj-exceptions"
-		;;
+			;;
 	esac
 
 	GCC_LANG="c"
