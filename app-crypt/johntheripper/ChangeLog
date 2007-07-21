@@ -1,6 +1,24 @@
 # ChangeLog for app-crypt/johntheripper
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.54 2007/04/04 17:59:50 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.57 2007/07/19 18:06:09 alonbl Exp $
+
+  19 Jul 2007; Alon Bar-Lev <alonbl@gentoo.org>
+  johntheripper-1.7.2-r1.ebuild:
+  ebuild cleanups, I think this is better shape
+
+  19 Jul 2007; Alon Bar-Lev <alonbl@gentoo.org>
+  -files/johntheripper-1.7.0.2-stackdef.S, -files/clk_tck.patch,
+  -files/john-ntlm.skey.patch, -johntheripper-1.6.ebuild,
+  -johntheripper-1.6-r3.ebuild, -johntheripper-1.6.40.ebuild,
+  -johntheripper-1.7.0.2.ebuild:
+  Cleanup
+
+*johntheripper-1.7.2-r1 (19 Jul 2007)
+
+  19 Jul 2007; Alon Bar-Lev <alonbl@gentoo.org>
+  +files/johntheripper-1.7.2-stackdef-2.S.patch, johntheripper-1.7.2.ebuild,
+  +johntheripper-1.7.2-r1.ebuild:
+  Patch update, bug#185646, sse2 support, bug#185645, thanks to Erwin Paternotte
 
   04 Apr 2007; Christian Heim <phreak@gentoo.org>
   johntheripper-1.6.40.ebuild, johntheripper-1.7.0.2.ebuild:

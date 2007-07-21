@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.2.ebuild,v 1.14 2007/07/13 21:47:34 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.2.ebuild,v 1.15 2007/07/19 16:16:49 alonbl Exp $
 
 EAPI="prefix"
 
@@ -28,8 +28,11 @@ RDEPEND="virtual/libc
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${DISTDIR}"/${MY_PNBASE}-1.7-all-4.diff.gz
-	epatch "${FILESDIR}"/${P}-*.patch
+	epatch "${WORKDIR}"/${MY_PNBASE}-1.7-all-4.diff
+
+	for p in params.h sha1-memset stackdef.S stripping; do
+		epatch "${FILESDIR}/${P}-${p}.patch"
+	done
 
 	ebegin "Applying ${P}-Makefile.patch"
 	sed -i -e "s|^CFLAGS.*|CFLAGS= -c -Wall ${CFLAGS}|" \
