@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/expat
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.56 2007/02/22 00:35:52 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.57 2007/07/20 18:41:58 cryos Exp $
+
+*expat-2.0.1 (20 Jul 2007)
+
+  20 Jul 2007; Marcus D. Hanwell <cryos@gentoo.org> +expat-2.0.1.ebuild:
+  Version bump, closes bug 183900.
 
   22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
