@@ -1,0 +1,103 @@
+# ChangeLog for dev-ruby/daemons
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/daemons/ChangeLog,v 1.26 2007/07/19 13:50:05 angelos Exp $
+
+  19 Jul 2007; Christoph Mende <angelos@gentoo.org> daemons-1.0.5.ebuild:
+  Stable on amd64 wrt bug #185266
+
+  17 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org> daemons-1.0.5.ebuild:
+  Stable on sparc wrt #185266
+
+  16 Jul 2007; Markus Rothe <corsair@gentoo.org> daemons-1.0.5.ebuild:
+  Stable on ppc64; bug #185205
+
+  16 Jul 2007; Raúl Porcel <armin76@gentoo.org> daemons-1.0.5.ebuild:
+  ia64/x86 stable wrt #185266
+
+*daemons-1.0.7 (14 Jul 2007)
+
+  14 Jul 2007; Joshua Nichols <nichoj@gentoo.org> +daemons-1.0.7.ebuild:
+  Version bump. See bug #184633.
+
+  21 May 2007; Richard Brown <rbrown@gentoo.org> Manifest:
+  Fix Manifest, bug #179217
+
+  20 May 2007; Richard Brown <rbrown@gentoo.org> +daemons-0.4.2.ebuild:
+  Restore daemons-0.4.2 for nitro-0.40.0
+
+*daemons-1.0.5 (13 May 2007)
+
+  13 May 2007; Hans de Graaff <graaff@gentoo.org> -daemons-0.4.2.ebuild,
+  +daemons-1.0.5.ebuild:
+  Version bump: thanks to Jochen Schalanda in #177159.
+  
+  Changes in this version:
+  * Applied patch that causes daemons to use '/var/log' as logfile 
+    directory if you use :dir_mode = :system (thanks to Han Holl).
+  * Daemons should now work with Ruby 1.9 (at least the basic features).
+
+  21 Apr 2007; Raúl Porcel <armin76@gentoo.org> daemons-1.0.4.ebuild:
+  ia64 stable
+
+  14 Mar 2007; Tom Gall <tgall@gentoo.org> daemons-0.4.2.ebuild:
+  added ~ppc64 (nitro dep)
+
+  12 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> daemons-1.0.4.ebuild:
+  Stable on sparc
+
+  24 Feb 2007; Markus Rothe <corsair@gentoo.org> daemons-1.0.4.ebuild:
+  Stable on ppc64; bug #166901
+
+  21 Feb 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  daemons-1.0.4.ebuild:
+  Stable on ppc wrt bug #166901.
+
+  19 Feb 2007; <malc@gentoo.org> daemons-0.4.4.ebuild:
+  Stable on amd64 wrt security bug #166901
+
+  15 Feb 2007; Gustavo Zacarias <gustavoz@gentoo.org> daemons-0.4.4.ebuild:
+  Stable on sparc wrt security #166901
+
+  04 Feb 2007; Matti Bickel <mabi@gentoo.org> daemons-1.0.4.ebuild:
+  add ~ppc for bug #164242
+
+  01 Feb 2007; Markus Rothe <corsair@gentoo.org> daemons-1.0.4.ebuild:
+  Added ~ppc64; bug #164242
+
+*daemons-1.0.4 (01 Feb 2007)
+
+  01 Feb 2007; Christian Marie <pingu@gentoo.org> +daemons-1.0.4.ebuild:
+  Version bump.
+
+  30 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> daemons-0.4.4.ebuild:
+  Keyworded ~sparc wrt #164242
+
+  28 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> daemons-0.4.4.ebuild:
+  Add ~amd64 and ~x86-fbsd keywords.
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org> daemons-0.4.3.ebuild:
+  Mark 0.4.3 stable on ia64
+
+*daemons-0.4.4 (17 Apr 2006)
+
+  17 Apr 2006; Caleb Tennis <caleb@gentoo.org> +daemons-0.4.4.ebuild:
+  version bump
+
+  17 Apr 2006; Caleb Tennis <caleb@gentoo.org> daemons-0.4.3.ebuild:
+  x86 stable
+
+  30 Mar 2006; Aron Griffis <agriffis@gentoo.org> daemons-0.4.2.ebuild,
+  daemons-0.4.3.ebuild:
+  Mark 0.4.3 0.4.2 ~ia64
+
+*daemons-0.4.3 (02 Jan 2006)
+
+  02 Jan 2006; Caleb Tennis <caleb@gentoo.org> +daemons-0.4.3.ebuild:
+  version bump
+
+*daemons-0.4.2 (17 Nov 2005)
+
+  17 Nov 2005; Michael Kohl <citizen428@gentoo.org> +metadata.xml,
+  +daemons-0.4.2.ebuild:
+  Initial import.
+
