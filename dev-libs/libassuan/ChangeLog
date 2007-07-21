@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libassuan
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.39 2007/07/06 17:39:20 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.40 2007/07/20 20:09:06 alonbl Exp $
+
+*libassuan-1.0.2-r1 (20 Jul 2007)
+
+  20 Jul 2007; Alon Bar-Lev <alonbl@gentoo.org> +libassuan-1.0.2-r1.ebuild:
+  Make archive PIC
 
   06 Jul 2007; Alon Bar-Lev <alonbl@gentoo.org> libassuan-1.0.2.ebuild:
   ebuild cleanups
