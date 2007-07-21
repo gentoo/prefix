@@ -15,7 +15,7 @@ SRC_URI="mirror://gnu/emacs/${P}.tar.gz"
 
 LICENSE="GPL-2 FDL-1.2"
 SLOT="22"
-KEYWORDS="~amd64 ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~x86 ~x86-macos ~x86-solaris"
 IUSE="alsa gif gtk gzip-el hesiod jpeg motif png spell sound source tiff toolkit-scroll-bars X Xaw3d xpm"
 RESTRICT="strip"
 
