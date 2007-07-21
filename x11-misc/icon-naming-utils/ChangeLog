@@ -1,6 +1,13 @@
 # ChangeLog for x11-misc/icon-naming-utils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/icon-naming-utils/ChangeLog,v 1.46 2007/06/09 15:53:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/icon-naming-utils/ChangeLog,v 1.47 2007/07/19 15:32:03 drac Exp $
+
+*icon-naming-utils-0.8.2-r1 (19 Jul 2007)
+
+  19 Jul 2007; Samuli Suominen <drac@gentoo.org>
+  +files/icon-naming-utils-0.8.2-pkgconfig.patch,
+  +icon-naming-utils-0.8.2-r1.ebuild:
+  Fix pkgconfig installation location from datadir to libdir.
 
   09 Jun 2007; Raúl Porcel <armin76@gentoo.org>
   icon-naming-utils-0.8.2.ebuild:
