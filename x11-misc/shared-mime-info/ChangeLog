@@ -1,6 +1,19 @@
 # ChangeLog for x11-misc/shared-mime-info
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/ChangeLog,v 1.88 2007/07/09 20:15:36 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/ChangeLog,v 1.90 2007/07/19 15:18:31 drac Exp $
+
+*shared-mime-info-0.21-r1 (19 Jul 2007)
+
+  19 Jul 2007; Samuli Suominen <drac@gentoo.org>
+  +files/shared-mime-info-0.21-pkgconfig.patch,
+  +shared-mime-info-0.21-r1.ebuild:
+  Fix pkgconfig installation location. Patch from upstream.
+
+*shared-mime-info-0.21 (19 Jul 2007)
+
+  19 Jul 2007; Samuli Suominen <drac@gentoo.org>
+  +shared-mime-info-0.21.ebuild:
+  Version bump.
 
   09 Jul 2007; Samuli Suominen <drac@gentoo.org> metadata.xml:
   Add shared-mime-info under freedesktop herd.
