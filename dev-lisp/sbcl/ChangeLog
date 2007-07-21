@@ -1,6 +1,11 @@
 # ChangeLog for dev-lisp/sbcl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.119 2007/07/15 18:31:00 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.120 2007/07/20 18:11:51 hkbst Exp $
+
+*sbcl-1.0.7-r2 (20 Jul 2007)
+
+  20 Jul 2007; Marijn Schouten <hkBst@gentoo.org> +sbcl-1.0.7-r2.ebuild:
+  add 1.0.7, much thanks to Stelian Ionescu <sionescu@common-lisp.net>
 
   15 Jul 2007; Marijn Schouten <hkBst@gentoo.org> sbcl-1.0.6-r2.ebuild:
   fix glibc-2.6 fix
