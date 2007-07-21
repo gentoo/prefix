@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.2-r1.ebuild,v 1.2 2007/07/19 18:06:09 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.2-r1.ebuild,v 1.3 2007/07/20 14:28:08 alonbl Exp $
 
 EAPI="prefix"
 
@@ -22,20 +22,26 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86"
 IUSE="mmx altivec sse2"
 
-RDEPEND="virtual/libc
-	>=dev-libs/openssl-0.9.7"
+RDEPEND=">=dev-libs/openssl-0.9.7"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${WORKDIR}"/${MY_PNBASE}-1.7.2-all-7.diff
 
-	for p in sha1-memset stackdef.S stackdef-2.S stripping; do
+	for p in sha1-memset stackdef.S stackdef-2.S; do
 		epatch "${FILESDIR}/${P}-${p}.patch"
 	done
 }
 
 src_compile() {
+	#
+	# upstream request to strip
+	# any flags, as he optimize the
+	# outputs
+	#
+	strip-flags
+
 	cd "${S}"/src
 	# Note this program uses AS and LD incorrectly
 	OPTIONS="CPP=$(tc-getCXX) CC=$(tc-getCC) AS=$(tc-getCC) LD=$(tc-getCC) \
@@ -90,8 +96,7 @@ src_compile() {
 
 src_test() {
 	cd run
-	if  [[ -f ${EROOT}/etc/john/john.conf || -f ${EROOT}/etc/john/john.ini  ]]
-	then
+	if  [ -f ${EROOT}/etc/john/john.conf -o -f ${EROOT}/etc/john/john.ini ]; then
 		./john --test || die 'self test failed'
 	else
 		ewarn "selftest requires ${EROOT}/etc/john/john.conf or ${EROOT}/etc/john/john.ini"
@@ -99,10 +104,6 @@ src_test() {
 }
 
 src_install() {
-	# config files
-	insinto /etc/john
-	doins run/john.conf
-
 	# executables
 	dosbin run/john
 	newsbin run/mailer john-mailer
@@ -117,6 +118,10 @@ src_install() {
 	dosym john /usr/sbin/undrop
 
 	#newsbin src/bench john-bench
+
+	# config files
+	insinto /etc/john
+	doins run/john.conf
 
 	# share
 	insinto /usr/share/john/
