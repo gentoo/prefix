@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/embassy.eclass,v 1.13 2007/03/26 20:04:34 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/embassy.eclass,v 1.14 2007/07/19 13:21:07 ribosome Exp $
 
 # Author Olivier Fisette <ribosome@gentoo.org>
 
@@ -42,10 +42,11 @@ embassy_src_unpack() {
 	unpack ${A}
 	mkdir EMBOSS-${EBOV}/embassy
 	mv ${EF} EMBOSS-${EBOV}/embassy/
-	cp "${EROOT}"/usr/$(get_libdir)/libplplot.la EMBOSS-${EBOV}/plplot/
-	cp "${EROOT}"/usr/$(get_libdir)/libajax.la EMBOSS-${EBOV}/ajax/
-	cp "${EROOT}"/usr/$(get_libdir)/libajaxg.la EMBOSS-${EBOV}/ajax/
-	cp "${EROOT}"/usr/$(get_libdir)/libnucleus.la EMBOSS-${EBOV}/nucleus/
+	cp "${EPREFIX}"/usr/$(get_libdir)/libplplot.la EMBOSS-${EBOV}/plplot/
+	cp "${EPREFIX}"/usr/$(get_libdir)/libeplplot.la EMBOSS-${EBOV}/plplot/
+	cp "${EPREFIX}"/usr/$(get_libdir)/libajax.la EMBOSS-${EBOV}/ajax/
+	cp "${EPREFIX}"/usr/$(get_libdir)/libajaxg.la EMBOSS-${EBOV}/ajax/
+	cp "${EPREFIX}"/usr/$(get_libdir)/libnucleus.la EMBOSS-${EBOV}/nucleus/
 	if [ -e ${FILESDIR}/${PF}.patch ]; then
 		cd ${S}
 		epatch ${FILESDIR}/${PF}.patch
