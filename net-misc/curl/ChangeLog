@@ -1,6 +1,15 @@
 # ChangeLog for net-misc/curl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.88 2007/07/11 10:53:06 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.91 2007/07/19 18:22:21 armin76 Exp $
+
+  19 Jul 2007; Raúl Porcel <armin76@gentoo.org> curl-7.15.5-r1.ebuild:
+  alpha/ia64/x86 stable wrt security #184934
+
+  19 Jul 2007; Markus Rothe <corsair@gentoo.org> curl-7.15.5-r1.ebuild:
+  Stable on ppc64; bug #184934
+
+  19 Jul 2007; Jeroen Roovers <jer@gentoo.org> curl-7.15.5-r1.ebuild:
+  Stable for HPPA (bug #184934).
 
   11 Jul 2007; Daniel Black <dragonheart@gentoo.org>
   -files/curl-7.16.1-strip-ldflags.patch, -curl-7.15.5.ebuild,
