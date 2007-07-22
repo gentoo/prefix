@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.7-r2.ebuild,v 1.1 2007/07/20 18:11:51 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.7-r2.ebuild,v 1.2 2007/07/21 10:32:56 hkbst Exp $
 
 EAPI="prefix"
 
@@ -59,11 +59,11 @@ pkg_setup() {
 		eerror "refer to Bug #119016 for more information."
 		die
 	fi
-#	if use ppc && use ldb; then
-#		ewarn "Building SBCL on PPC with LDB support is not a supported configuration"
-#		ewarn "in Gentoo.	Please refer to Bug #121830 for more information."
-#		ewarn "Continuing with LDB support disabled."
-#	fi
+	if use ppc && use ldb; then
+		ewarn "Building SBCL on PPC with LDB support is not a supported configuration"
+		ewarn "in Gentoo.	Please refer to Bug #121830 for more information."
+		ewarn "Continuing with LDB support disabled."
+	fi
 }
 
 enable_sbcl_feature() {
