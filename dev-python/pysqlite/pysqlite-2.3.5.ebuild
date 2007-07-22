@@ -19,17 +19,6 @@ IUSE="examples"
 
 DEPEND=">=dev-db/sqlite-3.1"
 
-src_unpack() {
-	unpack ${A}
-
-	# setup.cfg has hardcoded non-prefix paths, kill them
-	cd "${S}"
-	sed -i \
-		-e '/^include_dirs=/d' \
-		-e '/^library_dirs=/d' \
-		setup.cfg
-}
-
 PYTHON_MODNAME="pysqlite2"
 
 src_unpack() {
@@ -43,6 +32,13 @@ src_unpack() {
 	# correct encoding
 	sed -i -e "s/\(coding: \)ISO-8859-1/\1utf-8/" \
 		pysqlite2/__init__.py pysqlite2/dbapi2.py || die "sed failed"
+
+	# setup.cfg has hardcoded non-prefix paths, kill them
+	cd "${S}"
+	sed -i \
+		-e '/^include_dirs=/d' \
+		-e '/^library_dirs=/d' \
+		setup.cfg
 }
 
 src_install() {
