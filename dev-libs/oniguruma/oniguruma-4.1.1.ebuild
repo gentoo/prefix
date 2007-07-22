@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/oniguruma/oniguruma-4.1.1.ebuild,v 1.2 2007/06/24 20:31:21 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/oniguruma/oniguruma-4.1.1.ebuild,v 1.3 2007/07/21 20:43:33 grobian Exp $
 
 EAPI="prefix"
 

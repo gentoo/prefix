@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/oniguruma
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/oniguruma/ChangeLog,v 1.20 2007/06/24 20:31:21 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/oniguruma/ChangeLog,v 1.21 2007/07/21 20:43:33 grobian Exp $
+
+  21 Jul 2007; Fabian Groffen <grobian@gentoo.org> oniguruma-2.3.2.ebuild,
+  oniguruma-2.3.3.ebuild, oniguruma-2.5.6.ebuild, oniguruma-4.0.1.ebuild,
+  oniguruma-4.1.1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   24 Jun 2007; Christoph Mende <angelos@gentoo.org> oniguruma-4.1.1.ebuild:
   Added ~amd64 wrt bug 183033
