@@ -39,7 +39,8 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	local tdir="${EPREFIX}"/usr/share/terminfo
+	local tdir=/usr/share/terminfo
+	dodir $tdir
 	sed -i -e \
 		"s~@TIC@ \(\$(srcdir)/etc/rxvt\)~@TIC@ -o ${ED}/${tdir} \1~" \
 		doc/Makefile.in
