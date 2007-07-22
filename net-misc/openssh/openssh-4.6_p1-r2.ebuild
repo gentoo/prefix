@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.6_p1-r2.ebuild,v 1.6 2007/07/07 16:23:44 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.6_p1-r2.ebuild,v 1.7 2007/07/21 14:41:01 josejx Exp $
 
 EAPI="prefix"
 

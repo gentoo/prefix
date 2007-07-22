@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.246 2007/07/10 20:45:28 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.247 2007/07/21 14:41:01 josejx Exp $
+
+  21 Jul 2007; Joseph Jezak <josejx@gentoo.org> openssh-4.0_p1-r2.ebuild,
+  openssh-4.1_p1-r1.ebuild, openssh-4.5_p1-r2.ebuild,
+  openssh-4.6_p1-r2.ebuild:
+  Marked ppc/ppc64 stable for bug #183958.
 
   10 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org>
   openssh-4.0_p1-r2.ebuild, openssh-4.1_p1-r1.ebuild:
