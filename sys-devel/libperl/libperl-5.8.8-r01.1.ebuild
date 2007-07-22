@@ -122,7 +122,18 @@ src_unpack() {
 	#   LIBPERL=libperl.so.${SLOT}.`echo ${PV} | cut -d. -f1,2`
 	#
 	cd ${S};
-	use userland_Darwin || epatch ${FILESDIR}/${PN}-create-libperl-soname.patch
+	if [[ ${CHOST} != *-darwin* ]] ; then
+		epatch ${FILESDIR}/${PN}-create-libperl-soname.patch
+
+		# fix a typo in hints/aix.sh.
+		# do not create sharedlib-archive, but sharedlib directly.
+		epatch "${FILESDIR}"/${P}-aix.patch
+	fi
+	# the Darwin patch is unconditional
+	epatch "${FILESDIR}"/${PN}-darwin-install_name.patch
+
+	# cut the crap of inventing paths, or adding search paths that we don't use
+	epatch "${FILESDIR}"/${PN}-cleanup-paths.patch
 
 	# Configure makes an unwarranted assumption that /bin/ksh is a
 	# good shell. This patch makes it revert to using /bin/sh unless
@@ -136,11 +147,6 @@ src_unpack() {
 	# On PA7200, uname -a contains a single quote and we need to
 	# filter it otherwise configure fails. See #125535.
 	epatch ${FILESDIR}/perl-hppa-pa7200-configure.patch
-
-	# fix a typo in hints/aix.sh.
-	# do not create sharedlib-archive, but sharedlib directly.
-	# do this _after_ ${PN}-create-libperl-soname.patch.
-	epatch ${FILESDIR}/${P}-aix.patch
 
 	use amd64 && cd ${S} && epatch ${FILESDIR}/${P}-lib64.patch
 	[[ ${CHOST} == *-dragonfly* ]] && cd ${S} && epatch ${FILESDIR}/${P}-dragonfly-clean.patch
@@ -326,9 +332,9 @@ EOF
 		done
 
 		# A poor fix for the miniperl issues
-		dosed 's:./miniperl:/usr/bin/perl:' /usr/$(get_libdir)/perl5/${PV}/ExtUtils/xsubpp
+		dosed 's:./miniperl:'"${EPREFIX}"'/usr/bin/perl:' /usr/$(get_libdir)/perl5/${PV}/ExtUtils/xsubpp
 		fperms 0444 /usr/$(get_libdir)/perl5/${PV}/ExtUtils/xsubpp
-		dosed 's:./miniperl:/usr/bin/perl:' /usr/bin/xsubpp
+		dosed 's:./miniperl:'"${EPREFIX}"'/usr/bin/perl:' /usr/bin/xsubpp
 		fperms 0755 /usr/bin/xsubpp
 
 		./perl installman \
