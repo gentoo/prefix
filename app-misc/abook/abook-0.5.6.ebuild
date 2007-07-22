@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/abook/abook-0.5.6.ebuild,v 1.7 2006/09/27 07:24:15 blubb Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/abook/abook-0.5.6.ebuild,v 1.8 2007/07/21 21:08:54 grobian Exp $
 
 EAPI="prefix"
 

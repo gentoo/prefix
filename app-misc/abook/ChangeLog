@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/abook
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/abook/ChangeLog,v 1.47 2006/09/27 07:24:15 blubb Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/abook/ChangeLog,v 1.48 2007/07/21 21:08:54 grobian Exp $
+
+  21 Jul 2007; Fabian Groffen <grobian@gentoo.org> abook-0.5.6.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   27 Sep 2006; Simon Stelling <blubb@gentoo.org> abook-0.5.6.ebuild:
   stable on amd64
