@@ -1,6 +1,10 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.306 2007/07/19 20:38:28 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.307 2007/07/21 18:06:03 armin76 Exp $
+
+  21 Jul 2007; Raúl Porcel <armin76@gentoo.org>
+  -files/gentoo-default-prefs-r1.js, mozilla-firefox-2.0.0.5.ebuild:
+  Revert the langpack thing, bug 182175
 
   19 Jul 2007; Raúl Porcel <armin76@gentoo.org>
   files/icon/mozilla-firefox-1.5-unbranded.desktop,

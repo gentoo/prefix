@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.5.ebuild,v 1.2 2007/07/19 20:38:28 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.5.ebuild,v 1.4 2007/07/21 18:34:14 armin76 Exp $
 
 EAPI="prefix"
 
@@ -61,6 +61,28 @@ export MOZ_CO_PROJECT=browser
 export BUILD_OFFICIAL=1
 export MOZILLA_OFFICIAL=1
 
+linguas() {
+	local LANG SLANG
+	for LANG in ${LINGUAS}; do
+		if has ${LANG} en en_US; then
+			has en ${linguas} || linguas="${linguas:+"${linguas} "}en"
+			continue
+		elif has ${LANG} ${LANGS//-/_}; then
+			has ${LANG//_/-} ${linguas} || linguas="${linguas:+"${linguas} "}${LANG//_/-}"
+			continue
+		elif [[ " ${LANGS} " == *" ${LANG}-"* ]]; then
+			for X in ${LANGS}; do
+				if [[ "${X}" == "${LANG}-"* ]] && \
+					[[ " ${NOSHORTLANGS} " != *" ${X} "* ]]; then
+					has ${X} ${linguas} || linguas="${linguas:+"${linguas} "}${X}"
+					continue 2
+				fi
+			done
+		fi
+		ewarn "Sorry, but mozilla-firefox does not support the ${LANG} LINGUA"
+	done
+}
+
 pkg_setup(){
 	if ! built_with_use x11-libs/cairo X; then
 		eerror "Cairo is not built with X useflag."
@@ -71,7 +93,9 @@ pkg_setup(){
 	if ! use bindist; then
 		elog "You are enabling official branding. You may not redistribute this build"
 		elog "to any users on your network or the internet. Doing so puts yourself into"
-		elog "a legal problem with mozilla foundation"
+		elog "a legal problem with Mozilla Foundation"
+		elog "You can disable it by emerging ${PN} without the bindist USE-flag"
+
 	fi
 
 	use moznopango && warn_mozilla_launcher_stub
@@ -80,9 +104,13 @@ pkg_setup(){
 src_unpack() {
 	unpack firefox-${PV}-source.tar.bz2  ${PATCH}.tar.bz2
 
-	for X in ${A}; do
-		[[ ${X} == *.xpi ]] && xpi_unpack ${X}
+	linguas
+	for X in ${linguas}; do
+		[[ ${X} != "en" ]] && xpi_unpack "${P}-${X}.xpi"
 	done
+	if [[ ${linguas} != "" ]]; then
+		einfo "Selected language packs (first will be default): ${linguas}"
+	fi
 
 	# Apply our patches
 	cd "${S}" || die "cd failed"
@@ -171,7 +199,7 @@ src_compile() {
 pkg_preinst() {
 	declare MOZILLA_FIVE_HOME="/usr/$(get_libdir)/${PN}"
 
-	elog "Removing old installs though some really ugly code.  It potentially"
+	elog "Removing old installs with some really ugly code.  It potentially"
 	elog "eliminates any problems during the install, however suggestions to"
 	elog "replace this are highly welcome.  Send comments and suggestions to"
 	elog "mozilla@gentoo.org."
@@ -185,9 +213,19 @@ src_install() {
 	dodir "${MOZILLA_FIVE_HOME}"
 	cp -RL "${S}"/dist/bin/* "${ED}"/"${MOZILLA_FIVE_HOME}"/ || die "cp failed"
 
-	for X in ${A}; do
-		[[ ${X} == *.xpi ]] && xpi_install "${WORKDIR}"/${X%.xpi}
+	linguas
+	for X in ${linguas}; do
+		[[ ${X} != "en" ]] && xpi_install "${WORKDIR}"/"${P}-${X}"
 	done
+
+	local LANG=${linguas%% *}
+	if [[ -n ${LANG} && ${LANG} != "en" ]]; then
+		elog "Setting default locale to ${LANG}"
+		dosed -e "s:general.useragent.locale\", \"en-US\":general.useragent.locale\", \"${LANG}\":" \
+			"${MOZILLA_FIVE_HOME}"/defaults/pref/firefox.js \
+			"${MOZILLA_FIVE_HOME}"/defaults/pref/firefox-l10n.js || \
+			die "sed failed to change locale"
+	fi
 
 	# Create /usr/bin/firefox
 	install_mozilla_launcher_stub firefox "${MOZILLA_FIVE_HOME}"
@@ -222,9 +260,9 @@ src_install() {
 	doins "${S}"/build/unix/*.pc
 
 	insinto "${MOZILLA_FIVE_HOME}"/greprefs
-	newins "${FILESDIR}"/gentoo-default-prefs-r1.js all-gentoo.js
+	newins "${FILESDIR}"/gentoo-default-prefs.js all-gentoo.js
 	insinto "${MOZILLA_FIVE_HOME}"/defaults/pref
-	newins "${FILESDIR}"/gentoo-default-prefs-r1.js all-gentoo.js
+	newins "${FILESDIR}"/gentoo-default-prefs.js all-gentoo.js
 }
 
 pkg_postinst() {
@@ -243,11 +281,6 @@ pkg_postinst() {
 	elog "is the case, please search at http://bugs.gentoo.org and open a new bug"
 	elog "if one does not exist. Before filing any bugs, please move or remove ~/.mozilla"
 	elog "and test with a clean profile directory."
-
-	elog
-	elog "The behaviour of the langpacks has changed, now ${PN}"
-	elog "will be displayed in your locale"
-	elog
 }
 
 pkg_postrm() {
