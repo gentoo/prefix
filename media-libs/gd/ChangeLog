@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/gd
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/ChangeLog,v 1.47 2007/07/20 20:51:43 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/ChangeLog,v 1.49 2007/07/21 14:09:22 armin76 Exp $
+
+  21 Jul 2007; Raúl Porcel <armin76@gentoo.org> gd-2.0.35.ebuild:
+  alpha/ia64/x86 stable wrt security #179154
+
+  21 Jul 2007; Jeroen Roovers <jer@gentoo.org> gd-2.0.35.ebuild:
+  Stable for HPPA (bug #179154).
 
   20 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org> gd-2.0.35.ebuild:
   Stable on sparc wrt security #179154
