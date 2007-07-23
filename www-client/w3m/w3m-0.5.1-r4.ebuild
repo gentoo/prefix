@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/w3m/w3m-0.5.1-r4.ebuild,v 1.9 2007/02/18 10:12:47 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/w3m/w3m-0.5.1-r4.ebuild,v 1.10 2007/07/22 06:11:10 dberkholz Exp $
 
 EAPI="prefix"
 
@@ -32,7 +32,7 @@ IUSE="X async fbcon gpm gtk imlib lynxkeymap migemo nls ssl unicode xface"
 DEPEND=">=sys-libs/ncurses-5.2-r3
 	>=sys-libs/zlib-1.1.3-r2
 	>=dev-libs/boehm-gc-6.2
-	X? ( || ( x11-libs/libX11 virtual/x11 ) )
+	X? ( x11-libs/libX11 )
 	gtk? ( >=x11-libs/gtk+-2 )
 	!gtk? ( imlib? ( >=media-libs/imlib2-1.1.0 ) )
 	xface? ( media-libs/compface )
