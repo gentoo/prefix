@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/pdv
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/pdv/ChangeLog,v 1.14 2006/10/13 20:27:05 wormo Exp $
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/pdv/ChangeLog,v 1.15 2007/07/22 08:30:55 omp Exp $
+
+  22 Jul 2007; David Shakaryan <omp@gentoo.org> pdv-1.5.1-r2.ebuild:
+  Remove virtual/x11 from dependencies.
 
   13 Oct 2006; Stephanie Lockwood-Childs <wormo@gentoo.org>
   pdv-1.5.1-r2.ebuild:
