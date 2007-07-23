@@ -1,6 +1,10 @@
 # ChangeLog for www-client/mozilla-launcher
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-launcher/ChangeLog,v 1.60 2007/06/05 16:41:15 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-launcher/ChangeLog,v 1.61 2007/07/22 06:15:33 dberkholz Exp $
+
+  22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  mozilla-launcher-1.49.ebuild, mozilla-launcher-1.52.ebuild:
+  Drop virtual/x11 references.
 
   05 Jun 2007; Raúl Porcel <armin76@gentoo.org>
   -mozilla-launcher-1.52-r1.ebuild, -mozilla-launcher-1.54.ebuild:
