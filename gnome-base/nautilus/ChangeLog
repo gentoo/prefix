@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/nautilus
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.222 2007/07/17 11:08:43 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.223 2007/07/22 10:19:44 graaff Exp $
+
+  22 Jul 2007; Hans de Graaff <graaff@gentoo.org> nautilus-2.14.1.ebuild:
+  Drop virtual/x11 references.
 
   17 Jul 2007; Mart Raudsepp <leio@gentoo.org> nautilus-2.18.3.ebuild:
   Fix patching error
