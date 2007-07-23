@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-3.1.ebuild,v 1.12 2007/05/28 00:06:52 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-3.1.ebuild,v 1.13 2007/07/22 02:58:03 dberkholz Exp $
 
 EAPI="prefix"
 
@@ -15,15 +15,10 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~mips ~x86"
 IUSE="doc"
 
-RDEPEND="||	(
-				(
-					||	( x11-misc/xkeyboard-config x11-misc/xkbdata )
-					x11-apps/xkbcomp
-					x11-libs/libX11
-					x11-libs/libxkbfile
-				)
-				virtual/x11
-			)
+RDEPEND="||	( x11-misc/xkeyboard-config x11-misc/xkbdata )
+		x11-apps/xkbcomp
+		x11-libs/libX11
+		x11-libs/libxkbfile
 		dev-libs/libxml2
 		>=dev-libs/glib-2.6"
 
