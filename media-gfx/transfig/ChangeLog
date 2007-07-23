@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/transfig
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/transfig/ChangeLog,v 1.41 2007/06/27 06:47:01 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/transfig/ChangeLog,v 1.42 2007/07/22 07:25:51 pva Exp $
+
+  22 Jul 2007; <pva@gentoo.org> transfig-3.2.4-r2.ebuild,
+  transfig-3.2.5.ebuild:
+  Removed virtual/x11 dependency.
 
   27 Jun 2007; <pva@gentoo.org> -files/transfig-3.2.3d.patch,
   -transfig-3.2.3d-r1.ebuild, -transfig-3.2.4-r1.ebuild:
