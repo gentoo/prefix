@@ -1,6 +1,10 @@
 # ChangeLog for app-text/gv
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gv/ChangeLog,v 1.67 2007/07/04 09:37:01 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gv/ChangeLog,v 1.68 2007/07/22 10:21:01 omp Exp $
+
+  22 Jul 2007; David Shakaryan <omp@gentoo.org> gv-3.6.2-r1.ebuild,
+  gv-3.6.3.ebuild:
+  Remove virtual/x11 from dependencies.
 
 *gv-3.6.3 (04 Jul 2007)
 

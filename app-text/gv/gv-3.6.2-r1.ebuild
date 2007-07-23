@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gv/gv-3.6.2-r1.ebuild,v 1.12 2007/04/07 17:30:26 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gv/gv-3.6.2-r1.ebuild,v 1.13 2007/07/22 10:21:01 omp Exp $
 
 EAPI="prefix"
 
@@ -26,12 +26,9 @@ RDEPEND="x11-libs/libICE
 	x11-libs/libXt
 	x11-libs/Xaw3d
 	virtual/ghostscript"
-
 DEPEND="${RDEPEND}
-	|| (
-		x11-libs/libXt
-		virtual/x11
-	)"
+	x11-libs/libXt"
+
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
