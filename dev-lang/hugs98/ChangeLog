@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/hugs98
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/hugs98/ChangeLog,v 1.43 2006/10/03 23:21:46 dcoutts Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/hugs98/ChangeLog,v 1.44 2007/07/22 08:56:18 graaff Exp $
+
+  22 Jul 2007; Hans de Graaff <graaff@gentoo.org> hugs98-2005.3-r2.ebuild:
+  Drop virtual/x11 references.
 
   03 Oct 2006; Duncan Coutts <dcoutts@gentoo.org> hugs98-2005.3-r2.ebuild:
   Use eselect-opengl rather than deprecated opengl-update. Fixes bug #147244

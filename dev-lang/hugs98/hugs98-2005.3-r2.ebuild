@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/hugs98/hugs98-2005.3-r2.ebuild,v 1.18 2006/10/03 23:21:46 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/hugs98/hugs98-2005.3-r2.ebuild,v 1.19 2007/07/22 08:56:18 graaff Exp $
 
 EAPI="prefix"
 
@@ -44,7 +44,7 @@ KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 LICENSE="as-is"
 
 RDEPEND="
-	X? ( || ( x11-libs/libX11 virtual/x11 ) )
+	X? ( x11-libs/libX11 )
 	opengl? ( virtual/opengl virtual/glu virtual/glut )
 	openal? ( media-libs/openal )"
 DEPEND="${RDEPEND}
