@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2931 2007/07/13 22:30:27 tupone Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2938 2007/07/22 14:05:43 drac Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -677,6 +677,7 @@ games-fps/qudos:demo - Install the demo files (quake2-demodata) and configure fo
 games-fps/qudos:mods - Build support for the quake2 mission packs
 games-fps/qudos:qmax - Build the pretty version (quake max)
 games-fps/qudos:textures - Install the enchanced textures (quake2-textures)
+games-fps/rott:demo - Install the shareware version
 games-fps/unreal-tournament-goty:S3TC - Add the extra fancy textures to UT ... only works on certain cards (nvidia/ati/s3)
 games-fps/warsow:irc - Enable IRC support
 games-kids/gcompris:gnet - will let GCompris fetch content from a web server
@@ -874,6 +875,7 @@ media-fonts/intlfonts:bdf - Installs BDF fonts in addition to PCF
 media-gfx/asymptote:boehm-gc - Enables using the Boehm-Demers-Weiser conservative garbage collector
 media-gfx/autotrace:flash - Adds support for creating SWF files using Ming
 media-gfx/blender:blender-game - Adds game engine support to blender
+media-gfx/blender:verse - Adds verse clustering features to blender
 media-gfx/comix:rar - Pulls app-arch/unrar for rar file support
 media-gfx/dcraw:gimp - Builds rawphoto plugin for the GIMP
 media-gfx/digikam:nfs - Create sqlite db within ~/.kde, instead in the albums base directory.
@@ -1083,12 +1085,14 @@ media-tv/xdtv:aqua_theme - Enable graphic theme Aqua-style
 media-tv/xdtv:carbone_theme - Adds the Carbone pixmaps theme for the GUI
 media-tv/xdtv:schedule - Adds the possibility to schedule tv recording via xdtv_record.sh
 media-tv/xdtv:zvbi - Enable VBI Decoding Library for Zapping
+media-tv/xmltv:ar - Argentina tv listing grabber
 media-tv/xmltv:be - Belgium and Luxemburg tv listing grabber
 media-tv/xmltv:br - Brazil tv listing grabber
 media-tv/xmltv:brnet - Brazil cable tv listing grabber
 media-tv/xmltv:ch - Switzerland bluewin tv listing grabber
 media-tv/xmltv:de_tvtoday - Germany tv listing grabber
 media-tv/xmltv:dk - Denmark tv listing grabber
+media-tv/xmltv:dtvla - Latin America digital tv listing grabber
 media-tv/xmltv:ee - Estonia tv listing grabber
 media-tv/xmltv:es - Spain tv listing grabber
 media-tv/xmltv:es_laguiatv - Spain alternative grabber
@@ -1102,13 +1106,16 @@ media-tv/xmltv:it - Italy tv listing grabber
 media-tv/xmltv:jp - Japan tv listing grabber
 media-tv/xmltv:na_dd - North America tv listing grabber
 media-tv/xmltv:na_icons - option for na_dd to download icons
+media-tv/xmltv:nc - Caledonie Island tv listing grabber
 media-tv/xmltv:nl - Netherlands tv listing grabber
 media-tv/xmltv:nl_wolf - Netherlands alternative tv listing grabber
 media-tv/xmltv:no - Norway tv listing grabber
+media-tv/xmltv:no_gf - Norway Gfeed tv listing grabber
 media-tv/xmltv:pt - Portugal tv listing grabber
 media-tv/xmltv:re - Reunion Island (France) tv listing grabber
 media-tv/xmltv:se_swedb - Sweden tv listing grabber
 media-tv/xmltv:tv_check - enable GUI checking
+media-tv/xmltv:tv_combiner - enable grabbers combiner
 media-tv/xmltv:tv_pick_cgi - enable CGI support
 media-tv/xmltv:uk_bleb - Britain tv listing grabber
 media-tv/xmltv:uk_rt - Britain alternative tv listing grabber
@@ -1511,6 +1518,7 @@ net-misc/bird:ipv6only - Builds with only IPv6, note that this *disables* IPv4 e
 net-misc/bridge-utils:sysfs - Enable use of the sysfs filesystem (Linux-2.6+) via libsysfs
 net-misc/curl:ares - Enabled c-ares dns support
 net-misc/curl:nss - Use NSS as the crypto engine
+net-misc/directvnc:mouse - Adds mouse support
 net-misc/drivel:rhythmbox - Enables support for currently playing song in rhythmbox
 net-misc/dropbear:multicall - Build all the programs as one little binary (to save space)
 net-misc/gwget:epiphany - Build epiphany extensions
@@ -1593,6 +1601,7 @@ net-p2p/gift:ares - pull in Ares plugin
 net-p2p/gift:fasttrack - pull in FastTrack plugin
 net-p2p/gift:gnutella - pull in Gnutella plugin
 net-p2p/gift:openft - pull in OpenFT plugin
+net-p2p/linkage:upnp - Enables support for Intel UPnP stack.
 net-p2p/mldonkey:fasttrack - enable fasttrack suport
 net-p2p/mldonkey:gnutella - enable gnutella and gnutella2 support
 net-p2p/mldonkey:guionly - enable client build only
@@ -2007,6 +2016,7 @@ www-servers/lighttpd:memcache - Enable memcache support for mod_cml and mod_trig
 www-servers/lighttpd:rrdtool - Enable rrdtool support via mod_rrdtool
 www-servers/lighttpd:webdav - Enables webdev properties
 www-servers/lighttpd:xattr - if you want extended attributes enabled
+www-servers/nginx:flv - Enables special processing module for flv files
 www-servers/nginx:status - Enables stub_status module
 www-servers/nginx:webdav - Enables webdav support
 www-servers/ocsigen:logrotate - Install support files for logrotate
@@ -2090,7 +2100,6 @@ x11-wm/ion3:ion3-voidupstreamsupport-truetype - Enable TrueType support, note th
 x11-wm/matchbox-desktop:dnotify - Use the linux kernel directory notification feature.
 x11-wm/matchbox-panel:dnotify - Use the linux kernel directory notification feature.
 x11-wm/matchbox-panel:lowres - Optimize for low resolution screens.
-x11-wm/openbox:pango - Enable pango support
 x11-wm/sawfish:pango - Enable pango support
 x11-wm/stumpwm-cvs:clisp - Use CLISP for the runtime
 x11-wm/stumpwm-cvs:sbcl - Use SBCL for the runtime

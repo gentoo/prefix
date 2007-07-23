@@ -1,6 +1,42 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.534 2007/07/14 22:47:02 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.546 2007/07/22 11:06:06 dberkholz Exp $
+
+  21 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  embedded/virtuals, selinux/mips/virtuals:
+  Pull old-style virtuals: glu, glut, opengl, x11, xft.
+
+  21 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  default-linux/ppc64/virtuals, default-darwin/macos/virtuals:
+  Drop old-style virtual/x11.
+
+  21 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>; package.mask:
+  Unmask virtual/x11, it's gone.
+
+  21 Jul 2007; Wulf C. Krueger <philantrop@gentoo.org> package.mask:
+  Package.masked =media-video/konverter-0.93 which is badly broken. cf. bug
+  173972. (Wrong bug number on first commit.)
+
+  21 Jul 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Removed net-dialup/multiimonc mask.
+
+  21 Jul 2007; Denis Dupeyron <calchan@gentoo.org> package.mask:
+  Masked =net-print/hplip-2.7.6 for testing.
+
+  19 Jul 2007; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Remove opera-9.22 weeklies mask.
+
+  19 Jul 2007; Alin Năstac <mrness@gentoo.org> package.mask:
+  Mask net-dialup/l2tpd.
+
+  18 Jul 2007; Doug Goldstein <cardoe@gentoo.org> package.mask:
+  unmask nvidia drivers
+
+  18 Jul 2007; Jeff Gardner <je_fro@gentoo.org> package.mask:
+  Remove p.mask for sci-chemistry/nmrpipe
+
+  16 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org> package.mask:
+  Mask zaptel-1.2.18-r1
 
   14 Jul 2007; <tester@gentoo.org> package.mask:
   Mask net-www/netscape-flash

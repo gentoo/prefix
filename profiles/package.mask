@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7482 2007/07/14 22:47:02 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7513 2007/07/22 17:13:45 keytoaster Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -21,22 +21,69 @@
 ##   End example
 ##
 
-# Olivier Crête <tester@gentoo.org> (14 Jul 1007)
-# We can't mirror. Different upstream mirrors have different versions
-# and the tarballs are unversioned
-# And the older versions are affected by critical remote security vulnerability
-# See Gentoo bug #185141
-net-www/netscape-flash
+# Wulf C. Krueger <philantrop@gentoo.org> (21 Jul 2007)
+# Broken by upstream. cf. bug 173972.
+=media-video/konverter-0.93
 
-# Doug Goldstein <cardoe@gentoo.org> (14 Jul 2007)
-# ebuilds under active development
-=x11-drivers/nvidia-drivers-1.0.7185
-=x11-drivers/nvidia-drivers-1.0.9639
-=x11-drivers/nvidia-drivers-100.14.11
+# Samuli Suominen <drac@gentoo.org> (21 Jul 2007)
+# Last release from 1999, still using GTK+-1.2.
+# Masked for removal in 30 days.
+x11-misc/fsv
 
-# Jim Ramsay <lack@gentoo.org> (13 Jul 2007)
-# Masking until the patch hits the mirrors
-=x11-wm/fluxbox-1.0_rc3_p4983
+# Torsten Veller <tove@gentoo.org> (21 Jul 2007)
+# Masked for testing
+=app-office/gnucash-2.2.0
+
+# Denis Dupeyron <calchan@gentoo.org> (21 Jul 2007)
+# Masked for testing
+=net-print/hplip-2.7.6
+
+# Samuli Suominen <drac@gentoo.org> (20 Jul 2007)
+# Masked for being broken with current stable fluxbox.
+# Bugs 138678, 151782, 96631.
+x11-misc/fluxconf
+
+# Samuli Suominen <drac@gentoo.org> (20 Jul 2007)
+# Orphaned configuration files using devfsd.
+# Masked for treecleaners. Removed in 60 days.
+# Bug 64138.
+app-cdr/cdrw-base
+
+# Jim Ramsay <lack@gentoo.org> (19 Jul 2007)
+# netscape-flash-9.0.48.0-r1 addresses Gentoo bug #185141 by using the versioned
+# RPM distributed by Adobe instead of their unversioned tar.gz.
+# However, we must still mask the original ebuild, and any previous versions.
+<=net-www/netscape-flash-9.0.48.0
+
+# Alin Năstac <mrness@gentoo.org> (19 Jul 2007)
+# Dead upstream, forked in net-dialup/xl2tpd.
+# Pending removal 19 Sep 2007
+net-dialup/l2tpd
+
+# Raúl Porcel <armin76@gentoo.org> (18 Jul 2007)
+# Mask rc
+=net-p2p/deluge-0.5.3_rc*
+=net-p2p/qbittorrent-1.0.0_beta*
+=net-libs/rb_libtorrent-0.13_pre*
+
+# Samuli Suominen <drac@gentoo.org> (18 Jul 2007)
+# Masked for treecleaners bug 185386. Unfetchable package,
+# homepage is unavailable and for using GTK+-1.2.
+# Removed in 60 days.
+media-libs/janus
+
+# Olivier Fisette <ribosome@gentoo.org> (17 Jul 2007)
+# Software no longer available (redistribution not allowed).
+sci-chemistry/nmrview
+
+# Ulrich Mueller <ulm@gentoo.org> (17 Jul 2007)
+# CVS snapshot, bug #185106
+~app-emacs/emacs-w3m-1.4.4.20070704
+
+# Gustavo Zacarias <gustavoz@gentoo.org> (16 Jul 2007)
+# Mask zaptel-1.2.18-r1 since it seems to have some issues and is experimental
+# See bug #185268
+=net-misc/zaptel-1.2.18-r1
 
 # Michael Cummings <mcummings@gentoo.org> (11 Jul 2007)
 # Masking for removal
@@ -52,10 +99,6 @@ net-wireless/iwl4965-ucode
 # masking stale versions for removal,
 # talk to mips team before actually removing
 <dev-lisp/sbcl-1.0.4
-
-# Jeroen Roovers <jer@gentoo.org> (07 Jul 2007)
-# Opera weeklies:
->=www-client/opera-9.22
 
 # Sven Wegener <swegener@gentoo.org> (07 Jul 2007)
 # Development releases
@@ -188,15 +231,6 @@ media-fonts/twmoefonts
 # obsolete and don't work correctly with current Apache stuff.
 <dev-util/subversion-1.3.0
 
-# Ryan Hill <dirtyepic@gentoo.org> (21 Jun 2007)
-# Masked for removal for bug #182748.
-# ETR: July 21st, 2007
-net-dialup/multiimonc
-
-# Daniel Black <dragonheart@gentoo.org> (21 Jun 2007)
-# Masked for removal wrt bug #154763
-app-forensics/regviewer
-
 # Daniel Gryniewicz <dang@gentoo.org> (19 Jun 2007)
 # Masked for bug #182612
 dev-cpp/libbonobomm
@@ -228,13 +262,6 @@ dev-java/javahelp-bin
 # unless users express interest in this package.
 dev-java/sablevm
 
-# Christian Faulhammer <opfer@gentoo.org> (12 Jun 2007)
-# mask for removal:
-# upstream dead, does not work with current Emacs 22
-# replacement is app-emacs/slime{,-cvs}
-app-emacs/ilisp
-app-emacs/ilisp-cvs
-
 # MATSUU Takuto <matsuu@gentoo.org> (12 Jun 2007)
 # Mask alpha versions
 =dev-lang/tcl-8.5*
@@ -248,12 +275,6 @@ app-emacs/ilisp-cvs
 # dev-java/glassfish-persistence. After 30 days moved to java-experimental
 # because some ebuilds there are using this.
 dev-java/odmg
-
-# Fabian Groffen <grobian@gentoo.org> (03 Jun 2007)
-# muttng is outdated and unmaintained, try plain mutt instead.
-# see http://article.gmane.org/gmane.linux.gentoo.devel/49234
-# Masked pending removal.  Remove in 30 days.
-mail-client/muttng
 
 # Stefan Schweizer <genstef@gentoo.org> (31 May 2007)
 # release candidate
@@ -450,7 +471,7 @@ dev-java/aterm-java
 
 # Carsten Lohrke <carlo@gentoo.org> (31 Mar 2007)
 # no point to bug around with beta releases
->=kde-misc/krusader-1.80.0_beta1
+=kde-misc/krusader-1.80.0_beta*
 
 # Alexis Ballier <aballier@gentoo.org> (30 Mar 2007)
 # Portaudio v19 : api changes
@@ -463,10 +484,6 @@ app-pda/libopensync-plugin-synce
 # Joshua Baergen <joshuabaergen@gentoo.org> (27 Mar 2007)
 # Release candidate ATI driver
 >=x11-drivers/xf86-video-ati-6.6.191
-
-# Stefan Schweizer <genstef@gentoo.org> (25 Mar 2007)
-# Please use modular Xorg now
-virtual/x11
 
 # Mike Doty <kingtaco@gentoo.org> (24 Mar 2007)
 # Sorting out media-video/{spca5xx,gspca{,v1}} bug 159176
@@ -612,11 +629,6 @@ net-irc/nikibot
 # Masked for remove from tree. Contact me if you need this
 net-misc/ssh
 
-# Luis Medinas <metalgod@gentoo.org> (21 Feb 2007)
-# banshee-official-plugins for removal because
-# the plugins are now included in the core
-media-plugins/banshee-official-plugins
-
 # Alexandre Buisse <nattfodd@gentoo.org> (21 Feb 2007)
 # Depends on xkeyval which was masked earlier today.
 dev-tex/dk-bib
@@ -629,18 +641,12 @@ dev-tex/lineno
 dev-tex/SIunits
 dev-tex/floatflt
 dev-tex/g-brief
-dev-tex/pgf
 dev-tex/xcolor
-dev-tex/xkeyval
 dev-tex/vntex
 
 # Raúl Porcel <armin76@gentoo.org> (17 Feb 2007)
 # Mask beta versions
 =net-irc/dircproxy-1.2.0_beta2
-
-# <dev-zero@gentoo.org> (15 Feb 2007)
-# Giving the kde team time to work out a solution for kexi
-=dev-libs/libpqxx-2.6.9
 
 # Alec Warner <antarus@gentoo.org> (05 Feb 2007)
 # Masked to security problems, use 1.23-r1 until I fix it
@@ -824,11 +830,6 @@ app-emulation/uae
 # Masked until bugs #153325 and #54607 are fixed.
 sci-biology/generic-genome-browser
 
-# Steve Dibb <beandog@gentoo.org> (26 Oct 2006)
-# Masked for removal (treecleaner), see bug #65923
-# remove on 2006-11-26
-dev-java/bluej-bin
-
 # Fabian Groffen <grobian@gentoo.org> (23 Oct 2006)
 # MonetDB doesn't compile any more.  Waiting for next release (soon)
 # hopefully with better luck.
@@ -908,11 +909,6 @@ net-dns/bind-dns-keygen
 # 138296, 139016, 139629, 143684
 >=sys-devel/gcc-config-2.0.0_rc1
 app-admin/eselect-compiler
-
-# Jonathan Smith <smithj@gentoo.org> (07 Aug 2006)
-# pending removal
-# https://bugs.gentoo.org/show_bug.cgi?id=140498
-media-gfx/xzgv
 
 # Tuấn Văn <langthang@gentoo.org> (04 Aug 2006)
 # Incomplete patch.
