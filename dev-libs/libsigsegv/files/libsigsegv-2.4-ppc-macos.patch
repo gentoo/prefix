@@ -1,0 +1,18 @@
+diff -ur libsigsegv-2.4.orig/configure.ac libsigsegv-2.4/configure.ac
+--- libsigsegv-2.4.orig/configure.ac	2006-06-23 15:15:42.000000000 -0500
++++ libsigsegv-2.4/configure.ac	2006-07-05 13:12:54.000000000 -0500
+@@ -404,14 +404,6 @@
+       ;;
+   esac
+ fi
+-if test -z "$CFG_FAULT" && test "$sv_cv_fault_macosdarwin5_ppc" = yes; then
+-  case "$host_cpu" in
+-    powerpc* | rs6000)
+-      CFG_FAULT=fault-macosdarwin5-powerpc.h
+-      FAULT_CONTEXT='struct sigcontext'
+-      ;;
+-  esac
+-fi
+ if test -z "$CFG_FAULT"; then
+   case "$host_os" in
+     mingw* | cygwin*)
