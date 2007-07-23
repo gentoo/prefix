@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/control-center
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/ChangeLog,v 1.237 2007/07/08 04:50:27 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/ChangeLog,v 1.238 2007/07/22 10:31:21 graaff Exp $
+
+  22 Jul 2007; Hans de Graaff <graaff@gentoo.org>
+  control-center-2.14.2.ebuild:
+  Drop virtual/x11 references.
 
   08 Jul 2007; Michael Sterrett <mr_bones_@gentoo.org>
   control-center-2.16.2.ebuild, control-center-2.16.3.ebuild,
