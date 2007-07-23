@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/fte
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/fte/ChangeLog,v 1.41 2007/05/25 06:33:00 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/fte/ChangeLog,v 1.42 2007/07/22 08:45:36 omp Exp $
+
+  22 Jul 2007; David Shakaryan <omp@gentoo.org> fte-20020324-r2.ebuild,
+  fte-20050108-r3.ebuild, fte-20051115.ebuild:
+  Remove virtual/x11 from dependencies.
 
   25 May 2007; Christian Faulhammer <opfer@gentoo.org> ChangeLog:
   corrected ChangeLog, so it conforms to our standards
