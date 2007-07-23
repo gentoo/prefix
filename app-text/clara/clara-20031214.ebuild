@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/clara/clara-20031214.ebuild,v 1.15 2007/02/10 14:01:04 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/clara/clara-20031214.ebuild,v 1.16 2007/07/22 10:10:27 omp Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ LICENSE="GPL-2"
 KEYWORDS="~ppc-macos"
 IUSE=""
 
-DEPEND="|| ( x11-libs/libX11 virtual/x11 )"
+DEPEND="x11-libs/libX11"
 
 src_compile() {
 	emake || die
