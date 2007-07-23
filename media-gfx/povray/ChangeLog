@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/povray
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/ChangeLog,v 1.67 2007/06/15 17:44:21 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/ChangeLog,v 1.68 2007/07/22 09:50:57 dberkholz Exp $
+
+  22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  povray-3.6.1-r1.ebuild, povray-3.6.1-r2.ebuild:
+  Drop virtual/x11 references.
 
   15 Jun 2007; Raúl Porcel <armin76@gentoo.org> povray-3.6.1-r2.ebuild:
   alpha stable wrt #16473

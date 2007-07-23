@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.6.1-r1.ebuild,v 1.20 2007/04/03 23:25:41 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.6.1-r1.ebuild,v 1.21 2007/07/22 09:50:57 dberkholz Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,7 @@ DEPEND="media-libs/libpng
 	>=media-libs/tiff-3.6.1
 	media-libs/jpeg
 	sys-libs/zlib
-	X? ( || ( x11-libs/libXaw virtual/x11 ) )
+	X? ( x11-libs/libXaw )
 	svga? ( media-libs/svgalib )"
 
 src_unpack() {
