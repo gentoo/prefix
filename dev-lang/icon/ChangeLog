@@ -1,0 +1,100 @@
+# ChangeLog for dev-lang/icon
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/icon/ChangeLog,v 1.25 2007/07/22 08:53:40 graaff Exp $
+
+  22 Jul 2007; Hans de Graaff <graaff@gentoo.org> icon-9.4.2.ebuild,
+  icon-9.4.3.ebuild, icon-9.4.3-r1.ebuild, icon-9.4.3-r2.ebuild:
+  Drop virtual/x11 references. Drop ppc-macos keyword due to missing keyword
+  with X dependencies.
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  25 Sep 2006; Markus Rothe <corsair@gentoo.org> icon-9.4.3-r2.ebuild:
+  Added ~ppc64; bug #149013
+
+  15 May 2006; Thomas Cort <tcort@gentoo.org> icon-9.4.3-r2.ebuild:
+  Stable on alpha.
+
+  11 May 2006; Fabian Groffen <grobian@gentoo.org> icon-9.4.3-r2.ebuild:
+  Changed config name to macintosh as upstream seems to have changed it into
+  that, thanks to Cheyenne Wills in bug #131271
+
+  29 Apr 2006; George Shapovalov <george@gentoo.org>
+  -files/icon-9.40-gentoo.diff, -icon-9.40.ebuild:
+  removed old and broken 9.40 version
+
+  29 Apr 2006; Mark Loeser <halcy0n@gentoo.org> icon-9.40.ebuild:
+  Mark -x86; bug #130810
+
+  15 Apr 2006; Ferris McCormick <fmccor@gentoo.org> icon-9.4.3-r2.ebuild:
+  Stable on sparc (Bug #125258).  Still fails one test (general/table),
+  but is a little better than before.
+
+  14 Apr 2006; Mark Loeser <halcy0n@gentoo.org> icon-9.4.3-r2.ebuild:
+  Stable on x86; bug #125258
+
+*icon-9.4.3-r2 (11 Apr 2006)
+
+  11 Apr 2006; George Shapovalov <george@gentoo.org> +files/tests-943.patch,
+  +icon-9.4.3-r2.ebuild:
+  bug #125258 added fixes for the test failures, reenabled experimental
+  features (now fixed). Thanks to Cheyenne Wills for supplying patches
+
+  01 Apr 2006; George Shapovalov <george@gentoo.org> icon-9.40.ebuild:
+  removed sparc and ~amd64 from 9.40, will mask when 9.4.3 is stabilized on x86
+
+*icon-9.4.3-r1 (01 Apr 2006)
+
+  01 Apr 2006; George Shapovalov <george@gentoo.org> +icon-9.4.3-r1.ebuild:
+  falling back to stable CFLAGS, disabled experimental features, as they are
+  causing some tests to fail
+
+  27 Mar 2006; Ferris McCormick <fmccor@gentoo.org> icon-9.4.3.ebuild:
+  Add sparc keyword (Bug #114944).  This seems the least bad of several options:
+  For me, the "stable" version 9.40 flat out won't build; instead, it goes into
+  a '/bin/sh: line 0: cd: gpacks/README: Not a directory' loop.  The requested
+  version --- 9.4.3 --- builds and installs, but a couple of its tests fail with
+  FEATURES=test enabled.  But in this case, I'll mark it stable, just to help
+  get rid of 9.40.  (Note that my system is x11-base/xorg-x11-7.0-r1.)
+
+*icon-9.4.3 (27 Mar 2006)
+
+  27 Mar 2006; George Shapovalov <george@gentoo.org> +icon-9.4.3.ebuild:
+  new version. Install is more FHS and upstream frendly and fixes possible
+  collisions. Updated modular X dependencies. See #125258 for more details.
+  Thanks to Cheyenne Wills for sorting out many issues.
+
+  16 Mar 2006; Caleb Tennis <caleb@gentoo.org> icon-9.4.2.ebuild,
+  icon-9.40.ebuild:
+  Fix X dep to modular X
+
+  03 Nov 2005; Fabian Groffen <grobian@gentoo.org> icon-9.4.2.ebuild:
+  Note: 9.4.2 is newer than 9.40.  Marked 9.4.2 ~ppc-macos (bug #110834)
+
+  22 Apr 2005; Simon Stelling <blubb@gentoo.org> icon-9.40.ebuild:
+  re-added ~amd64
+
+  01 Sep 2004; Mamoru KOMACHI <usata@gentoo.org> icon-9.4.2.ebuild:
+  Added to ~alpha.
+
+*icon-9.4.2 (30 Jul 2004)
+
+  30 Jul 2004; George Shapovalov <george@gentoo.org> icon-9.4.2.ebuild :
+  new version (#56013), thanks to Jens Troeger <jens.troeger@light-speed.de> for the report
+  cleaned up and modernized the ebuild. Changed versioning to match upstream. 
+
+  03 Jun 2004; Aron Griffis <agriffis@gentoo.org> icon-9.40.ebuild:
+  Fix use invocation
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*icon-9.40 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
