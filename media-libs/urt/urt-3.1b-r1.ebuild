@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/urt/urt-3.1b-r1.ebuild,v 1.26 2007/03/01 17:23:21 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/urt/urt-3.1b-r1.ebuild,v 1.27 2007/07/22 09:27:12 dberkholz Exp $
 
 EAPI="prefix"
 
@@ -15,11 +15,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="gif gs tiff X"
 
-DEPEND="X? ( || ( ( x11-libs/libXext
-					x11-proto/xextproto
-				)
-				virtual/x11
-			)
+DEPEND="X? ( x11-libs/libXext
+			x11-proto/xextproto
 		)
 	gif? ( media-libs/giflib )
 	tiff? ( media-libs/tiff )
