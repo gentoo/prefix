@@ -1,6 +1,10 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.28 2007/07/06 18:45:40 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.29 2007/07/22 06:49:01 dberkholz Exp $
+
+  22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  gnuplot-4.0-r1.ebuild, gnuplot-4.0-r2.ebuild:
+  Drop virtual/x11 references.
 
   06 Jul 2007; Jeroen Roovers <jer@gentoo.org> gnuplot-4.0-r2.ebuild:
   Stable for HPPA (bug #179533).
