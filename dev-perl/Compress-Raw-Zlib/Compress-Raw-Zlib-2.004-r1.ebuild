@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Compress-Raw-Zlib/Compress-Raw-Zlib-2.004-r1.ebuild,v 1.4 2007/07/10 23:33:26 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Compress-Raw-Zlib/Compress-Raw-Zlib-2.004-r1.ebuild,v 1.5 2007/07/22 23:12:33 tgall Exp $
 
 EAPI="prefix"
 
