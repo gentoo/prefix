@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/fcgi
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/fcgi/ChangeLog,v 1.30 2007/07/14 18:15:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/fcgi/ChangeLog,v 1.31 2007/07/22 03:26:25 tgall Exp $
+
+  21 Jul 2007; Tom Gall <tgall@gentoo.org> fcgi-2.4.0-r2.ebuild:
+  stable on ppc64
 
   14 Jul 2007; Raúl Porcel <armin76@gentoo.org> fcgi-2.4.0-r2.ebuild:
   alpha/x86 stable
