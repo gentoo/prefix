@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.0_rc3_p4949.ebuild,v 1.3 2007/07/13 17:12:45 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.0_rc3_p4949.ebuild,v 1.4 2007/07/22 04:33:42 omp Exp $
 
 EAPI="prefix"
 
@@ -21,26 +21,20 @@ HOMEPAGE="http://www.fluxbox.org"
 # make the binary a fair bit bigger, so we don't want to turn them on unless
 # the user actually wants them.
 
-RDEPEND="|| ( ( x11-libs/libXpm
-			x11-libs/libXrandr
-			xinerama? ( x11-libs/libXinerama )
-			x11-apps/xmessage
-		)
-		virtual/x11
-	)
+RDEPEND="x11-libs/libXpm
+	x11-libs/libXrandr
+	xinerama? ( x11-libs/libXinerama )
+	x11-apps/xmessage
 	virtual/xft
 	truetype? ( media-libs/freetype )
 	imlib? ( >=media-libs/imlib2-1.2.0 )
 	!<x11-themes/fluxbox-styles-fluxmod-20040809-r1"
 DEPEND="!<=x11-misc/fluxconf-0.9.9
-		>=sys-devel/autoconf-2.52
-		nls? ( sys-devel/gettext )
-		|| ( ( x11-proto/xextproto
-				xinerama? ( x11-proto/xineramaproto )
-			)
-			virtual/x11
-		)
-		${RDEPEND}"
+	>=sys-devel/autoconf-2.52
+	nls? ( sys-devel/gettext )
+	x11-proto/xextproto
+	xinerama? ( x11-proto/xineramaproto )
+	${RDEPEND}"
 PROVIDE="virtual/blackbox"
 
 SLOT="0"

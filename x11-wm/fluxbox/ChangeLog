@@ -1,6 +1,13 @@
 # ChangeLog for x11-wm/fluxbox
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.225 2007/07/13 20:25:35 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.226 2007/07/22 04:33:42 omp Exp $
+
+  22 Jul 2007; David Shakaryan <omp@gentoo.org> fluxbox-0.9.15.1-r2.ebuild,
+  fluxbox-1.0_rc3.ebuild, fluxbox-1.0_rc3-r1.ebuild,
+  fluxbox-1.0_rc3-r2.ebuild, fluxbox-1.0_rc3-r3.ebuild,
+  fluxbox-1.0_rc3_p4944.ebuild, fluxbox-1.0_rc3_p4949.ebuild,
+  fluxbox-1.0_rc3_p4983.ebuild:
+  Remove virtual/x11 from dependencies.
 
 *fluxbox-1.0_rc3_p4983 (13 Jul 2007)
 
