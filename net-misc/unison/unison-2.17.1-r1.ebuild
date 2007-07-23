@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/net-misc/unison/unison-2.17.1-r1.ebuild,v 1.3 2006/11/15 03:04:42 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/unison-2.17.1-r1.ebuild,v 1.4 2007/07/22 08:10:38 dberkholz Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ DEPEND=">=dev-lang/ocaml-3.04
 RDEPEND="gtk? ( >=dev-ml/lablgtk-2.2
 || ( net-misc/x11-ssh-askpass net-misc/gtk2-ssh-askpass ) )"
 
-PDEPEND="gtk? ( || ( media-fonts/font-schumacher-misc <virtual/x11-7 ) )"
+PDEPEND="gtk? ( media-fonts/font-schumacher-misc )"
 
 SRC_URI="http://www.cis.upenn.edu/~bcpierce/unison/download/releases/${P}/${P}.tar.gz
 doc? ( http://www.cis.upenn.edu/~bcpierce/unison/download/releases/${P}/${P}-manual.pdf
