@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.214 2007/07/14 22:54:48 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.215 2007/07/22 09:59:49 dberkholz Exp $
+
+  22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>; gimp-2.2.14.ebuild,
+  gimp-2.2.15.ebuild, gimp-2.2.16.ebuild, gimp-2.2.17.ebuild:
+  Drop virtual/x11 references.
 
 *gimp-2.2.17 (14 Jul 2007)
 
