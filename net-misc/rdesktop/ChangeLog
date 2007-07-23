@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/rdesktop
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.91 2007/07/07 15:26:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.92 2007/07/22 08:15:37 dberkholz Exp $
+
+  22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  rdesktop-1.4.1.ebuild, rdesktop-1.5.0.ebuild:
+  Drop virtual/x11 references.
 
   07 Jul 2007; Raúl Porcel <armin76@gentoo.org> rdesktop-1.5.0-r2.ebuild:
   alpha stable wrt #180310
