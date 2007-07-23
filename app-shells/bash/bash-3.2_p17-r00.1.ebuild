@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p17.ebuild,v 1.1 2007/05/03 05:49:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p17.ebuild,v 1.3 2007/07/22 17:14:40 josejx Exp $
 
 EAPI="prefix"
 
