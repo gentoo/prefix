@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xbindkeys/xbindkeys-1.8.0.ebuild,v 1.3 2007/03/14 01:18:50 troll Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xbindkeys/xbindkeys-1.8.0.ebuild,v 1.4 2007/07/22 03:27:42 dberkholz Exp $
 
 EAPI="prefix"
 
@@ -18,12 +18,11 @@ SLOT="0"
 
 IUSE="guile tk"
 
-RDEPEND="|| ( x11-libs/libX11 virtual/x11 )
+RDEPEND="x11-libs/libX11
 	guile? ( dev-scheme/guile )
 	tk? ( dev-lang/tk )"
-
 DEPEND="${RDEPEND}
-	|| ( x11-proto/xproto virtual/x11 )"
+	x11-proto/xproto"
 
 pkg_setup() {
 	if use guile && has_version ">=dev-scheme/guile-1.8" \
