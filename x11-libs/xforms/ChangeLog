@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/xforms
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/xforms/ChangeLog,v 1.39 2007/02/20 16:21:05 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/xforms/ChangeLog,v 1.40 2007/07/22 03:09:49 dberkholz Exp $
+
+  22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  xforms-1.0.90-r1.ebuild:
+  Drop virtual/x11 references.
 
   20 Feb 2007; Christian Heim <phreak@gentoo.org>
   files/xforms-1.0.90-Makefile.am.patch:
