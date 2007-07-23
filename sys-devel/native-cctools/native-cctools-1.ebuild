@@ -10,7 +10,7 @@ DESCRIPTION="Host OS native assembler as and static linker ld"
 HOMEPAGE="http://youroperatingsystem.com/"
 SRC_URI=""
 
-LICENSE="GPL-2" # actually, we don't know
+LICENSE="GPL-2" # actually, we don't know, the wrapper is
 SLOT="0"
 
 KEYWORDS="~ppc-aix ~x86-solaris"
