@@ -1,6 +1,10 @@
 # ChangeLog for www-client/elinks
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.88 2007/07/03 11:41:33 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.89 2007/07/22 06:12:38 dberkholz Exp $
+
+  22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>; elinks-0.11.2.ebuild,
+  elinks-0.11.2-r1.ebuild, elinks-0.11.3.ebuild:
+  Drop virtual/x11 references.
 
   03 Jul 2007; Raúl Porcel <armin76@gentoo.org> elinks-0.11.3.ebuild:
   alpha/x86 stable
