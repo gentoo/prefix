@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/giflib/giflib-4.1.4.ebuild,v 1.14 2006/12/30 09:15:47 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/giflib/giflib-4.1.4.ebuild,v 1.15 2007/07/22 09:40:53 dberkholz Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,11 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="rle X"
 
-DEPEND="X? ( || ( ( x11-libs/libXt x11-libs/libX11 x11-libs/libICE x11-libs/libSM ) virtual/x11 ) )
+DEPEND="X? ( x11-libs/libXt
+		x11-libs/libX11
+		x11-libs/libICE
+		x11-libs/libSM
+	)
 	rle? ( media-libs/urt )
 	!media-libs/libungif"
 
