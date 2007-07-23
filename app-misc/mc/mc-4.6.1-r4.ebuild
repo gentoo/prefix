@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.1-r4.ebuild,v 1.1 2007/07/05 21:42:35 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.1-r4.ebuild,v 1.2 2007/07/22 09:52:58 omp Exp $
 
 EAPI="prefix"
 
@@ -28,16 +28,11 @@ RDEPEND="kernel_linux? ( >=sys-fs/e2fsprogs-1.19 )
 	gpm? ( >=sys-libs/gpm-1.19.3 )
 	slang? ( ~sys-libs/slang-1.4.9 )
 	samba? ( >=net-fs/samba-3.0.0 )
-	X? ( || ( (
-			x11-libs/libX11
-			x11-libs/libICE
-			x11-libs/libXau
-			x11-libs/libXdmcp
-			x11-libs/libSM
-			)
-			virtual/x11
-		)
-	)
+	X? ( x11-libs/libX11
+		x11-libs/libICE
+		x11-libs/libXau
+		x11-libs/libXdmcp
+		x11-libs/libSM )
 	x86? ( 7zip? ( >=app-arch/p7zip-4.16 ) )
 	ppc? ( 7zip? ( >=app-arch/p7zip-4.16 ) )
 	amd64? ( 7zip? ( >=app-arch/p7zip-4.16 ) )"
