@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/squeak
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/squeak/ChangeLog,v 1.24 2007/02/22 00:11:44 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/squeak/ChangeLog,v 1.25 2007/07/22 08:43:03 graaff Exp $
+
+  22 Jul 2007; Hans de Graaff <graaff@gentoo.org> squeak-3.4.1-r2.ebuild,
+  squeak-3.6_p3.ebuild, squeak-3.7.7-r1.ebuild, squeak-3.9.7.ebuild:
+  Drop virtual/x11 references.
 
   22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.

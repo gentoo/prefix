@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/squeak/squeak-3.9.7.ebuild,v 1.3 2007/02/06 08:57:22 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/squeak/squeak-3.9.7.ebuild,v 1.4 2007/07/22 08:43:03 graaff Exp $
 
 EAPI="prefix"
 
@@ -15,11 +15,8 @@ SLOT="0"
 KEYWORDS="~ppc-macos"
 IUSE="X mmx threads iconv"
 
-DEPEND="
-	X? ( || ( ( x11-libs/libX11
-		x11-libs/libXext
-		x11-libs/libXt )
-	virtual/x11 ) )"
+DEPEND="dev-libs/libffi
+	X? ( x11-libs/libX11 x11-libs/libXext x11-libs/libXt )"
 RDEPEND="${DEPEND}
 	virtual/squeak-image"
 
