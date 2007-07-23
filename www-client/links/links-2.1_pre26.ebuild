@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/links/links-2.1_pre26.ebuild,v 1.13 2007/07/15 04:26:42 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/links/links-2.1_pre26.ebuild,v 1.14 2007/07/22 06:14:14 dberkholz Exp $
 
 EAPI="prefix"
 
@@ -35,8 +35,7 @@ RDEPEND="ssl? ( >=dev-libs/openssl-0.9.6c )
 	tiff? ( >=media-libs/tiff-3.5.7 )
 	svga? ( >=media-libs/svgalib-1.4.3
 		>=media-libs/libpng-1.2.1 )
-	X? ( || ( x11-libs/libXext
-		virtual/x11 )
+	X? ( x11-libs/libXext
 		>=media-libs/libpng-1.2.1 )
 	directfb? ( dev-libs/DirectFB )
 	sdl? ( >=media-libs/libsdl-1.2.0 )
