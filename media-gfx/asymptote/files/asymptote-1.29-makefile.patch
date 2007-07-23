@@ -1,0 +1,63 @@
+--- Makefile.in	2006-12-29 06:16:42.000000000 +0100
++++ ../asymptote-1.20_new/Makefile.in	2007-02-02 22:21:54.000000000 +0100
+@@ -48,7 +48,7 @@
+ datadir = $(DESTDIR)@datadir@
+ asydir = $(datadir)/asymptote
+ docdir = $(DESTDIR)@docdir@
+-exampledir = $(docdir)/examples
++exampledir = $(asydir)/examples
+ animationsdir = $(exampledir)/animations
+ latexdir = $(DESTDIR)@latexdir@
+ INSTALL = @INSTALL@
+@@ -125,11 +125,8 @@
+ 		doc/*.asy doc/*.csv doc/*.dat doc/latexusage.tex $(exampledir)
+ 	${INSTALL} -p -m 644 examples/animations/*.asy $(animationsdir)
+ 	-${INSTALL} -p -m 644 $(addprefix doc/,$(LATEXFILES)) $(latexdir)
+-	-if test -z "$(DESTDIR)"; then \
+-	  texhash; \
+-	fi
+ 
+-install-doc: doc
++install-doc:
+ 	cd doc; $(MAKE) install-all
+ 
+ install-man: man
+--- doc/Makefile	2007-02-02 20:17:18.000000000 +0100
++++ ../asymptote-1.20_new/doc/Makefile	2007-02-02 21:26:45.000000000 +0100
+@@ -4,11 +4,11 @@
+ ASY = ../asy -dir ../base
+ DOCFILES = asymptote.pdf CAD.pdf
+ 
+-doc:	asymptote.dvi asymptote.info html man faq
++doc:	$(DOCFILES) asymptote.info html man faq
+ 
+ html:	asymptote/index.html
+ 
+-man:	$(DOCFILES) asy.1
++man:	$(MANFILES)
+ 
+ faq:	
+ 	cd FAQ; $(MAKE) faq
+@@ -80,15 +80,15 @@
+ 	rm -f CAD.{aux,dvi,log,pdf,toc}
+ 	rm -rf asymptote
+ 
+-install: man faq
+-	cd FAQ; $(MAKE) install
+-	${INSTALL} -d -m 755 $(docdir) $(mandir)/man1
+-	${INSTALL} -p -m 644 $(DOCFILES) $(docdir)
++install: man
++	${INSTALL} -d -m 755 $(mandir)/man1
+ 	${INSTALL} -p -m 644 $(MANFILES) $(mandir)/man1
+ 
+-install-all: doc install
+-	cd FAQ; $(MAKE) install-info
+-	${INSTALL} -d -m 755 $(infodir)
++install-all: doc faq install
++	cd FAQ; $(MAKE) install-all
++	${INSTALL} -d -m 755 $(infodir) $(docdir)/html/asymptote
++	${INSTALL} -p -m 644 $(DOCFILES) $(docdir)
++	${INSTALL} -p -m 644 asymptote/* $(docdir)/html/asymptote
+ 	${INSTALL} -p -m 644 asymptote.info $(infodir)
+ 	-${INSTALL} -p -m 644 asymptote.info-* $(infodir)
+ 	-if test -z "$(DESTDIR)"; then \
