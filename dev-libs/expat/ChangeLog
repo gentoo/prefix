@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/expat
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.57 2007/07/20 18:41:58 cryos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.58 2007/07/23 15:02:52 cryos Exp $
+
+  23 Jul 2007; Marcus D. Hanwell <cryos@gentoo.org> metadata.xml:
+  Updated metadata with the freedesktop herd as maintainer.
 
 *expat-2.0.1 (20 Jul 2007)
 
