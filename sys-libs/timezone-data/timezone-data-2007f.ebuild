@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2007f.ebuild,v 1.8 2007/07/07 00:15:40 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2007f.ebuild,v 1.9 2007/07/23 02:46:17 vapier Exp $
 
 EAPI="prefix"
 
