@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.75 2007/06/28 14:44:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.76 2007/07/23 16:32:13 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -204,8 +204,10 @@ toolchain-binutils_src_compile() {
 	is_cross && myconf="${myconf} --with-sysroot=${EPREFIX}/usr/${CTARGET}"
 	[[ ${EPREFIX%/} != "" ]] && myconf="${myconf} \
 		--with-lib-path=${EPREFIX}/lib64:${EPREFIX}/usr/lib64:${EPREFIX}/lib:${EPREFIX}/usr/lib:/lib64:/usr/lib64:/lib:/usr/lib"
-#	glibc-2.3.6 lacks support for this ...
-#		--enable-secureplt   <- this is an alpha-only option
+	# glibc-2.3.6 lacks support for this ... so rather than force glibc-2.5+
+	# on everyone in alpha (for now), we'll just enable it when possible
+	has_version ">=${CATEGORY}/glibc-2.5" && myconf="${myconf} --enable-secureplt"
+	has_version ">=sys-libs/glibc-2.5" && myconf="${myconf} --enable-secureplt"
 	myconf="--prefix=${EPREFIX}/usr \
 		--host=${CHOST} \
 		--target=${CTARGET} \

@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/bsdmk.eclass,v 1.7 2006/12/01 02:58:32 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/bsdmk.eclass,v 1.8 2007/07/23 05:19:00 vapier Exp $
 #
 # Otavio R. Piske "AngusYoung" <angusyoung@gentoo.org>
 # Diego Pettenò <flameeyes@gentoo.org>
@@ -53,16 +53,6 @@ mkinstall() {
 dummy_mk() {
 	for dir in $@; do
 		echo ".include <bsd.lib.mk>" > ${dir}/Makefile
-	done
-}
-
-#### fix_lazy_bindings <dirnames>
-# set LDFLAGS in order to fix lazy binding warnings in binaries
-#
-############################################################################
-fix_lazy_bindings() {
-	for dir in $@; do
-		echo "LDFLAGS+= $(bindnow-flags)" >> ${dir}/Makefile
 	done
 }
 

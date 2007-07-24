@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-source-r1.eclass,v 1.10 2007/07/11 09:53:26 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-source-r1.eclass,v 1.11 2007/07/21 11:23:11 chtekk Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
 # Author: Stuart Herbert <stuart@gentoo.org>
@@ -38,7 +38,7 @@ php-ext-source-r1_src_compile() {
 	my_conf="--prefix=${PHPPREFIX} --with-php-config=${PHPCONFIG} ${my_conf}"
 
 	# Create configure out of config.m4
-	if [ "${PHP_EXT_SKIP_PHPIZE}" != 'yes' ]; then
+	if [[ "${PHP_EXT_SKIP_PHPIZE}" != 'yes' ]] ; then
 		${PHPIZE}
 	fi
 

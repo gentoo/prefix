@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.71 2007/07/11 04:06:29 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.73 2007/07/22 19:59:48 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -137,6 +137,7 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 
 		alpha*)		echo alpha;;
 		arm*)		echo arm;;
+		avr*)		ninj avr32 avr;;
 		bfin*)		ninj blackfin bfin;;
 		cris*)		echo cris;;
 		hppa*)		ninj parisc hppa;;
@@ -176,7 +177,11 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 					;;
 		vax*)		echo vax;;
 		x86_64*)	ninj x86_64 amd64;;
-		*)			echo ${ARCH};;
+
+		# since our usage of tc-arch is largely concerned with
+		# normalizing inputs for testing ${CTARGET}, let's filter
+		# other cross targets (mingw and such) into the unknown.
+		*)			echo unknown;;
 	esac
 }
 tc-arch-kernel() {
