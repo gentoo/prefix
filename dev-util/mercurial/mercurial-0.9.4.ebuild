@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/mercurial-0.9.4.ebuild,v 1.1 2007/07/04 08:34:39 aross Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/mercurial-0.9.4.ebuild,v 1.2 2007/07/22 03:58:35 aross Exp $
 
 EAPI="prefix"
 
@@ -22,6 +22,7 @@ DEPEND="${RDEPEND}
 	test? ( app-arch/unzip )"
 
 PYTHON_MODNAME="${PN} hgext"
+SITEFILE="70${PN}-gentoo.el"
 
 src_compile() {
 	filter-flags -ftracer -ftree-vectorize
@@ -30,7 +31,7 @@ src_compile() {
 
 	if use emacs; then
 		cd "${S}"/contrib
-		elisp-compile mercurial.el || die "Emacs modules failed!"
+		elisp-compile mercurial.el || die "elisp-compile failed!"
 	fi
 
 	rm -rf contrib/vim	# app-vim/hgcommand app-vim/hgmenu
@@ -54,9 +55,8 @@ src_install() {
 	doman doc/*.?
 
 	if use emacs; then
-		insinto ${SITELISP}/${PN}
-		doins contrib/mercurial.el*
-		elisp-site-file-install "${FILESDIR}"/70mercurial-gentoo.el
+		elisp-install ${PN} contrib/mercurial.el* || die "elisp-install failed!"
+		elisp-site-file-install "${FILESDIR}"/${SITEFILE}
 	fi
 }
 
