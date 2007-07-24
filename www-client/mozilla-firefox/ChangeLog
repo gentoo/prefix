@@ -1,6 +1,16 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.307 2007/07/21 18:06:03 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.309 2007/07/23 11:16:01 armin76 Exp $
+
+  23 Jul 2007; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-2.0.0.5.ebuild:
+  alpha/ia64/x86 stable wrt security #185737
+
+  23 Jul 2007; Christian Marie <pingu@gentoo.org>
+  mozilla-firefox-2.0.0.4.ebuild, mozilla-firefox-2.0.0.5.ebuild:
+  Adding -j1 option to emake which was originally added in bug #135420, removed
+  in bug #181722 and are now being re-added for bug #182929 as it is still
+  causing parallel compilation issues.
 
   21 Jul 2007; Raúl Porcel <armin76@gentoo.org>
   -files/gentoo-default-prefs-r1.js, mozilla-firefox-2.0.0.5.ebuild:

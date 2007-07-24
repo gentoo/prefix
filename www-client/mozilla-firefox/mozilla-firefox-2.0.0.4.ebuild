@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.4.ebuild,v 1.11 2007/07/04 21:11:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.4.ebuild,v 1.12 2007/07/23 08:40:27 pingu Exp $
 
 EAPI="prefix"
 
@@ -191,7 +191,9 @@ src_compile() {
 	# requirements while compiling
 	edit_makefiles
 
-	emake || die
+	# Anything more than -j1 will still break things, please don't remove until
+	# you're sure upstream has fixed this. See bug #135420.
+	emake -j1 || die
 }
 
 pkg_preinst() {
