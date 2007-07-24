@@ -30,13 +30,6 @@ src_unpack() {
 	elibtoolize
 }
 
-src_compile() {
-	local myconf
-	use prefix && myconf="--enable-pthread"
-	econf ${myconf} || die "econf failed"
-	emake || die "emake failed"
-}
-
 src_install() {
 	make DESTDIR="${D}" install || die
 	dodoc ANNOUNCE AUTHORS ChangeLog NEWS README THANKS USERS
