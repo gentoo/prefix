@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.12.ebuild,v 1.19 2007/07/12 16:06:09 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.12.ebuild,v 1.20 2007/07/24 22:05:22 jokey Exp $
 
 EAPI="prefix"
 
@@ -93,6 +93,7 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-find-system-libgd.patch"
 	epatch "${FILESDIR}/${P}-configure.patch"
 	epatch "${FILESDIR}/${P}-bindings.patch"
+	epatch "${FILESDIR}/${P}-parallel-build.patch"
 
 	sed -i \
 		-e 's:LC_COLLATE=C:LC_ALL=C:g' \
