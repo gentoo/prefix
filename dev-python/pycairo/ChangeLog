@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pycairo
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.47 2007/07/20 10:58:54 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.48 2007/07/24 16:17:09 beandog Exp $
+
+  24 Jul 2007; Steve Dibb <beandog@gentoo.org> pycairo-1.4.0.ebuild:
+  amd64 stable, bug 185649
 
   20 Jul 2007; nixnut <nixnut@gentoo.org> pycairo-1.4.0.ebuild:
   Stable on ppc wrt bug 185649
