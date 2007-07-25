@@ -1,6 +1,9 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.29 2007/07/22 06:49:01 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.30 2007/07/24 20:08:57 lavajoe Exp $
+
+  24 Jul 2007; Joe Peterson <lavajoe@gentoo.org> gnuplot-4.2.0-r1.ebuild:
+  Add ~x86-fbsd keyword
 
   22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>;
   gnuplot-4.0-r1.ebuild, gnuplot-4.0-r2.ebuild:
