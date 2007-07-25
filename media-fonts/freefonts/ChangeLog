@@ -1,6 +1,10 @@
 # ChangeLog for media-fonts/freefonts
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/freefonts/ChangeLog,v 1.24 2007/03/19 14:45:55 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/freefonts/ChangeLog,v 1.25 2007/07/24 02:11:00 dirtyepic Exp $
+
+  24 Jul 2007; Ryan Hill <dirtyepic@gentoo.org> -freefonts-0.10-r1.ebuild,
+  -freefonts-0.10-r2.ebuild:
+  Remove old.
 
   19 Mar 2007; Marius Mauch <genone@gentoo.org> freefonts-0.10-r2.ebuild:
   Replacing einfo with elog
