@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.5.ebuild,v 1.6 2007/07/23 11:16:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.5.ebuild,v 1.9 2007/07/24 16:25:37 armin76 Exp $
 
 EAPI="prefix"
 
@@ -201,10 +201,10 @@ src_compile() {
 pkg_preinst() {
 	declare MOZILLA_FIVE_HOME="/usr/$(get_libdir)/${PN}"
 
-	elog "Removing old installs with some really ugly code.  It potentially"
-	elog "eliminates any problems during the install, however suggestions to"
-	elog "replace this are highly welcome.  Send comments and suggestions to"
-	elog "mozilla@gentoo.org."
+	einfo "Removing old installs with some really ugly code.  It potentially"
+	einfo "eliminates any problems during the install, however suggestions to"
+	einfo "replace this are highly welcome.  Send comments and suggestions to"
+	einfo "mozilla@gentoo.org."
 	rm -rf "${EROOT}"/"${MOZILLA_FIVE_HOME}"
 }
 
@@ -249,7 +249,7 @@ src_install() {
 	doins "${S}"/dist/branding/mozicon50.xpm
 
 	# Install files necessary for applications to build against firefox
-	elog "Installing includes and idl files..."
+	einfo "Installing includes and idl files..."
 	cp -LfR "${S}"/dist/include "${ED}"/"${MOZILLA_FIVE_HOME}" || die "cp failed"
 	cp -LfR "${S}"/dist/idl "${ED}"/"${MOZILLA_FIVE_HOME}" || die "cp failed"
 
