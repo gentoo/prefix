@@ -1,6 +1,12 @@
 # ChangeLog for app-shells/tcsh
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/ChangeLog,v 1.74 2007/07/03 16:49:11 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/ChangeLog,v 1.75 2007/07/24 20:53:13 grobian Exp $
+
+*tcsh-6.15-r2 (24 Jul 2007)
+
+  24 Jul 2007; Fabian Groffen <grobian@gentoo.org> -tcsh-6.14-r33.ebuild,
+  -tcsh-6.15-r1.ebuild, +tcsh-6.15-r2.ebuild:
+  Config file bump to hopefully fix the tail of bug #167948.
 
 *tcsh-6.15-r1 (03 Jul 2007)
 
