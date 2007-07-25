@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.3.17.ebuild,v 1.14 2007/07/24 18:42:14 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.4.1.ebuild,v 1.1 2007/07/24 15:24:17 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -40,13 +40,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/sqlite-3.3.3-tcl-fix.patch
-
 	epatch "${FILESDIR}"/sandbox-fix2.patch
-
-	# Fix broken tests that are not portable to 64bit arches
-	epatch "${FILESDIR}"/sqlite-64bit-test-fix.patch
-	epatch "${FILESDIR}"/sqlite-64bit-test-fix2.patch
 
 	# Respect LDFLAGS wrt bug #156299
 	sed -i -e 's/^LTLINK = .*/& $(LDFLAGS)/' Makefile.in
