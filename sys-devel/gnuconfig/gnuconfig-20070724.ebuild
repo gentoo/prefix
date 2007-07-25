@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gnuconfig/gnuconfig-20060702.ebuild,v 1.4 2007/02/28 22:24:01 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gnuconfig/gnuconfig-20070724.ebuild,v 1.1 2007/07/24 18:34:55 vapier Exp $
 
 EAPI="prefix"
 

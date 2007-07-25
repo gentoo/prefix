@@ -1,6 +1,12 @@
 # ChangeLog for sys-devel/gnuconfig
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gnuconfig/ChangeLog,v 1.28 2007/02/08 03:51:09 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gnuconfig/ChangeLog,v 1.29 2007/07/24 18:34:55 vapier Exp $
+
+*gnuconfig-20070724 (24 Jul 2007)
+
+  24 Jul 2007; Mike Frysinger <vapier@gentoo.org>
+  +gnuconfig-20070724.ebuild:
+  Version bump.
 
 *gnuconfig-20070118 (08 Feb 2007)
 
