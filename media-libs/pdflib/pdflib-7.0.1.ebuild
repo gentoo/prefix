@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/pdflib-7.0.1.ebuild,v 1.9 2007/07/19 19:08:06 anant Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/pdflib-7.0.1.ebuild,v 1.10 2007/07/24 20:05:54 lavajoe Exp $
 
 EAPI="prefix"
 
 # eutils must be inherited since get_libdir() is only
 # globally available on baselayout-1.11 (still on ~arch)
-inherit base eutils java-pkg-opt-2 flag-o-matic
+inherit base eutils java-pkg-opt-2 flag-o-matic libtool
 
 MY_PN="${PN/pdf/PDF}-Lite"
 MY_P="${MY_PN}-${PV}"
@@ -33,6 +33,13 @@ DEPEND="
 RDEPEND="
 	${COMMON_DEP}
 	java? ( >=virtual/jre-1.4 )"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	elibtoolize
+}
 
 src_compile() {
 	local myconf

@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/pdflib
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.79 2007/07/19 21:51:29 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.80 2007/07/24 20:05:54 lavajoe Exp $
+
+  24 Jul 2007; Joe Peterson <lavajoe@gentoo.org> pdflib-7.0.1.ebuild:
+  "elibtoolize" & add ~x86-fbsd keyword
 
   19 Jul 2007; Robin H. Johnson <robbat2@gentoo.org> Manifest:
   Fix Manifest.
