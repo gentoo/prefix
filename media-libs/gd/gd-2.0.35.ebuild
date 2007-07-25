@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/gd-2.0.35.ebuild,v 1.6 2007/07/21 14:09:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/gd-2.0.35.ebuild,v 1.7 2007/07/24 17:01:06 beandog Exp $
 
 EAPI="prefix"
 
