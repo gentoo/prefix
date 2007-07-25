@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/curl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.92 2007/07/20 17:37:03 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.93 2007/07/24 15:53:28 gustavoz Exp $
+
+  24 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org> curl-7.15.5-r1.ebuild:
+  Stable on sparc wrt security #184934
 
   20 Jul 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   curl-7.15.5-r1.ebuild:
