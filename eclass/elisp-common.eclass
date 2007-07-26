@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.24 2007/07/10 20:14:52 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.26 2007/07/25 05:07:32 ulm Exp $
 #
 # Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
@@ -8,44 +8,49 @@
 # Copyright 2003 Jeremy Maitin-Shepard <jbms@attbi.com>
 # Copyright 2007 Ulrich Mueller <ulm@gentoo.org>
 #
-# This is not a real eclass, but it does provide Emacs-related installation
-# utilities.
-#
-# USAGE:
+# @ECLASS: elisp-common.eclass
+# @MAINTAINER:
+# Feel free to contact the Emacs team through emacs@gentoo.org if you have
+# problems, suggestions or questions.
+# @BLURB: Emacs-related installation utilities
+# @DESCRIPTION:
 #
 # Usually you want to use this eclass for (optional) GNU Emacs support of
 # your package.  This is NOT for XEmacs!
-#  Many of the steps here are sometimes done by the build system of your
+#
+# Many of the steps here are sometimes done by the build system of your
 # package (especially compilation), so this is mainly for standalone elisp
 # files you gathered from somewhere else.
-#  When relying on the emacs USE flag, you need to add
 #
-#		emacs? ( virtual/emacs )
+# When relying on the emacs USE flag, you need to add
+#
+#   	emacs? ( virtual/emacs )
 #
 # to your DEPEND/RDEPEND line and use the functions provided here to bring
 # the files to the correct locations.
 #
+# .SS
 # src_compile() usage:
-# --------------------
 #
 # An elisp file is compiled by the elisp-compile() function defined here and
-# simply takes the source files as arguments.  In the case of interdependent
-# elisp files, you can use the elisp-comp() function which makes sure all
-# files are loadable.
+# simply takes the source files as arguments.
 #
-#		elisp-compile *.el || die "elisp-compile failed"
-# or
-#		elisp-comp *.el || die "elisp-comp failed"
+#   	elisp-compile *.el || die "elisp-compile failed"
 #
-#  Function elisp-make-autoload-file() can be used to generate a file with
+# In the case of interdependent elisp files, you can use the elisp-comp()
+# function which makes sure all files are loadable.
+#
+#   	elisp-comp *.el || die "elisp-comp failed"
+#
+# Function elisp-make-autoload-file() can be used to generate a file with
 # autoload definitions for the lisp functions.  It takes the output file name
 # (default: "${PN}-autoloads.el") and a list of directories (default: working
 # directory) as its arguments.  Use of this function requires that the elisp
 # source files contain magic ";;;###autoload" comments. See the Emacs Lisp
 # Reference Manual (node "Autoload") for a detailed explanation.
 #
+# .SS
 # src_install() usage:
-# --------------------
 #
 # The resulting compiled files (.elc) should be put in a subdirectory of
 # /usr/share/emacs/site-lisp/ which is named after the first argument
@@ -163,6 +168,11 @@ elisp-make-autoload-file () {
 		-f batch-update-autoloads "${@-.}"
 }
 
+# @FUNCTION: elisp-install
+# @USAGE: <subdirectory> <list of files>
+# @DESCRIPTION:
+# Install files in SITELISP directory.
+
 elisp-install() {
 	local subdir=$1
 	einfo "Installing Elisp files for GNU Emacs support ..."
@@ -171,6 +181,11 @@ elisp-install() {
 	shift
 	doins $@
 }
+
+# @FUNCTION: elisp-site-file-install
+# @USAGE: <site-init file> [subdirectory]
+# @DESCRIPTION:
+# Install Emacs site-init file in SITELISP directory.
 
 elisp-site-file-install() {
 	local sitefile=$1 my_pn=${2:-${PN}}
@@ -183,10 +198,14 @@ elisp-site-file-install() {
 	popd
 }
 
+# @FUNCTION: elisp-site-regen
+# @DESCRIPTION:
+# Regenerate site-gentoo.el file.
+
 elisp-site-regen() {
 	local sflist sf line
 
-	einfo "Regenerating ${SITELISP}/site-gentoo.el ..."
+	einfon "Regenerating ${SITELISP}/site-gentoo.el ..."
 	cat <<-EOF >"${T}"/site-gentoo.el
 	;;; site-gentoo.el --- site initialisation for Gentoo-installed packages
 
@@ -241,8 +260,11 @@ EOF
 	fi
 }
 
-# The following Emacs Lisp compilation routine was originally taken from
-# GNU autotools.
+# @FUNCTION: elisp-comp
+# @USAGE: <list of elisp files>
+# @DESCRIPTION:
+# Byte-compile interdependent Emacs Lisp files.
+# Originally taken from GNU autotools.
 
 elisp-comp() {
 	# Copyright 1995 Free Software Foundation, Inc.

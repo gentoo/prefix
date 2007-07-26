@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ghc-package.eclass,v 1.22 2007/03/13 12:02:04 kosmikus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ghc-package.eclass,v 1.24 2007/07/25 18:40:29 dcoutts Exp $
 #
 # Author: Andres Loeh <kosmikus@gentoo.org>
 # Maintained by: Haskell herd <haskell@gentoo.org>
@@ -58,15 +58,11 @@ ghc-cabal() {
 
 # return the best version of the Cabal library that is available
 ghc-bestcabalversion() {
-	local cabalpackage
 	local cabalversion
 	if ghc-cabal; then
 		# We ask portage, not ghc, so that we only pick up
 		# portage-installed cabal versions.
-		cabalpackage="$(best_version dev-haskell/cabal)"
-		cabalversion="${cabalpackage#dev-haskell/cabal-}"
-		cabalversion="${cabalversion%-r*}"
-		cabalversion="${cabalversion%_pre*}"
+		cabalversion="$(ghc-extractportageversion dev-haskell/cabal)"
 		echo "Cabal-${cabalversion}"
 	else
 		# older ghc's don't support package versioning
@@ -85,6 +81,36 @@ ghc-sanecabal() {
 		[[ -f "${f}" ]] && version_is_at_least "${version}" "${f#*cabal-}" && return
 	done
 	return 1
+}
+
+# checks if ghc and ghc-bin are installed in the same version
+# (if they're both installed); if this is not the case, we 
+# unfortunately cannot trust portage's dependency resolution
+ghc-saneghc() {
+	local ghcversion
+	local ghcbinversion
+	if [[ "${PN}" == "ghc" || "${PN}" == "ghc-bin" ]]; then
+		return
+	fi
+	if has_version dev-lang/ghc && has_version dev-lang/ghc-bin; then
+		ghcversion="$(ghc-extractportageversion dev-lang/ghc)"
+		ghcbinversion="$(ghc-extractportageversion dev-lang/ghc-bin)"
+		if [[ "${ghcversion}" != "${ghcbinversion}" ]]; then
+			return 1
+		fi
+	fi
+	return
+}
+
+# extract the version of a portage-installed package
+ghc-extractportageversion() {
+	local pkg
+	local version
+	pkg="$(best_version $1)"
+	version="${pkg#$1-}"
+	version="${version%-r*}"
+	version="${version%_pre*}"
+	echo "${version}"
 }
 
 # returns the library directory
@@ -252,8 +278,16 @@ ghc-listpkg() {
 
 # exported function: check if we have a consistent ghc installation
 ghc-package_pkg_setup() {
-	#place holder for sanity check of ghc vs ghc-bin version issues
-	return
+	if ! ghc-saneghc; then
+		eerror "You have inconsistent versions of dev-lang/ghc and dev-lang/ghc-bin"
+		eerror "installed. Portage currently cannot work correctly with this setup."
+		eerror "There are several possibilities to work around this problem:"
+		eerror "(1) Up/downgrade ghc-bin to the same version as ghc."
+		eerror "(2) Unmerge ghc-bin."
+		eerror "(3) Unmerge ghc."
+		eerror "You probably want option 1 or 2."
+		die "Inconsistent versions of ghc and ghc-bin."
+	fi
 }
 
 # exported function: registers the package-specific package

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/haskell-cabal.eclass,v 1.10 2007/03/13 12:02:04 kosmikus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/haskell-cabal.eclass,v 1.11 2007/07/25 18:07:02 dcoutts Exp $
 #
 # Original authors: Andres Loeh <kosmikus@gentoo.org>
 #                   Duncan Coutts <dcoutts@gentoo.org>
@@ -40,7 +40,7 @@
 # Special flags to Cabal Configure can now be set by using
 # CABAL_CONFIGURE_FLAGS
 
-inherit ghc-package
+inherit ghc-package multilib
 
 
 for feature in ${CABAL_FEATURES}; do
@@ -90,13 +90,14 @@ fi
 
 # We always use a standalone version of Cabal, rather than the one that comes
 # with GHC. But of course we can't depend on cabal when building cabal itself.
+CABAL_MIN_VERSION=1.1.4
 if [[ -z "${CABAL_BOOTSTRAP}" ]]; then
-	DEPEND="${DEPEND} >=dev-haskell/cabal-1.1.3"
+	DEPEND="${DEPEND} >=dev-haskell/cabal-${CABAL_MIN_VERSION}"
 fi
 
 # Libraries require GHC to be installed.
 if [[ -n "${CABAL_HAS_LIBRARIES}" ]]; then
-	RDEPEND="${RDEPEND} virtual/ghc"
+	RDEPEND="${RDEPEND} dev-lang/ghc"
 fi
 
 cabal-bootstrap() {
@@ -134,10 +135,21 @@ cabal-configure() {
 		cabalconf="${cabalconf} --disable-library-for-ghci"
 	fi
 
+	# Note: with Cabal-1.1.6.x we still do not have enough control
+	# to put the docs into the right place. They're currently going
+	# into			/usr/share/${P}/ghc-x.y/doc/
+	# rather than	/usr/share/doc/${PF}/
+	# Because we can only set the datadir, not the docdir.
+
 	./setup configure \
-		--ghc --prefix=/usr \
+		--ghc --prefix="${EPREFIX}"/usr \
 		--with-compiler="$(ghc-getghc)" \
 		--with-hc-pkg="$(ghc-getghcpkg)" \
+		--prefix="${EPREFIX}"/usr \
+		--libdir="${EPREFIX}"/usr/$(get_libdir) \
+		--libsubdir=${P}/ghc-$(ghc-version) \
+		--datadir="${EPREFIX}"/usr/share/ \
+		--datasubdir=${P}/ghc-$(ghc-version) \
 		${cabalconf} \
 		${CABAL_CONFIGURE_FLAGS} \
 		"$@" || die "setup configure failed"
@@ -150,19 +162,20 @@ cabal-build() {
 
 cabal-copy() {
 	./setup copy \
-		--copy-prefix="${D}/usr" \
+		--copy-prefix="${ED}/usr" \
 		|| die "setup copy failed"
 
 	# cabal is a bit eager about creating dirs,
 	# so remove them if they are empty
-	rmdir "${D}/usr/bin" 2> /dev/null
+	rmdir "${ED}/usr/bin" 2> /dev/null
 
 	# GHC 6.4 has a bug in get/setPermission and Cabal 1.1.1 has
 	# no workaround.
 	# set the +x permission on executables
-	if [[ -d "${D}/usr/bin" ]] ; then
-		chmod +x "${D}/usr/bin/"*
+	if [[ -d "${ED}/usr/bin" ]] ; then
+		chmod +x "${ED}/usr/bin/"*
 	fi
+	# TODO: do we still need this?
 }
 
 cabal-pkg() {
@@ -173,7 +186,7 @@ cabal-pkg() {
 	local err
 
 	if [[ -n ${CABAL_HAS_LIBRARIES} ]]; then
-		sed -i "s|$(ghc-getghcpkg)|$(type -P true)|" .setup-config
+		sed -i "s|$(ghc-getghcpkg)|$(which true)|" .setup-config
 		./setup register || die "setup register failed"
 		if [[ -f .installed-pkg-config ]]; then
 			ghc-setup-pkg .installed-pkg-config
@@ -187,8 +200,8 @@ cabal-pkg() {
 # exported function: check if cabal is correctly installed for
 # the currently active ghc (we cannot guarantee this with portage)
 haskell-cabal_pkg_setup() {
-        ghc-package_pkg_setup
-	if [[ -z "${CABAL_BOOTSTRAP}" ]] && ! ghc-sanecabal "1.1.3"; then
+	ghc-package_pkg_setup
+	if [[ -z "${CABAL_BOOTSTRAP}" ]] && ! ghc-sanecabal "${CABAL_MIN_VERSION}"; then
 		eerror "The package dev-haskell/cabal is not correctly installed for"
 		eerror "the currently active version of ghc ($(ghc-version)). Please"
 		eerror "run ghc-updater or re-emerge dev-haskell/cabal."
@@ -222,7 +235,10 @@ cabal_src_install() {
 	cabal-pkg
 
 	if [[ -n "${CABAL_USE_HADDOCK}" ]] && use doc; then
-		dohtml -r dist/doc/html/*
+		local cabalversion=$(ghc-extractportageversion dev-haskell/cabal)
+		if ! version_is_at_least "1.1.6" "${cabalversion}"; then
+			dohtml -r dist/doc/html/*
+		fi
 	fi
 }
 haskell-cabal_src_install() {
