@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/jasspa-microemacs/jasspa-microemacs-20060909-r1.ebuild,v 1.3 2007/07/23 07:02:36 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/jasspa-microemacs/jasspa-microemacs-20060909-r1.ebuild,v 1.4 2007/07/25 21:30:12 angelos Exp $
 
 EAPI="prefix"
 
