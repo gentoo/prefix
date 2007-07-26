@@ -10,7 +10,7 @@ SRC_URI="mirror://gnupg/libksba/${P}.tar.bz2"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND=">=dev-libs/libgpg-error-1.2
