@@ -1,6 +1,16 @@
 # ChangeLog for dev-lisp/sbcl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.120 2007/07/20 18:11:51 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.122 2007/07/25 17:52:16 hkbst Exp $
+
+  25 Jul 2007; Marijn Schouten <hkBst@gentoo.org> -sbcl-0.9.4.ebuild,
+  -sbcl-0.9.17.ebuild, -sbcl-0.9.18.ebuild, -sbcl-1.0.ebuild,
+  -sbcl-1.0.1.ebuild:
+  remove old versions
+
+*sbcl-1.0.8 (25 Jul 2007)
+
+  25 Jul 2007; Marijn Schouten <hkBst@gentoo.org> +sbcl-1.0.8.ebuild:
+  add 1.0.8 and remove that ldb doesn't work on ppc
 
 *sbcl-1.0.7-r2 (20 Jul 2007)
 
