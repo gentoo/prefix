@@ -1,6 +1,12 @@
 # ChangeLog for gnome-base/gnome-panel
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/ChangeLog,v 1.219 2007/07/08 04:54:05 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/ChangeLog,v 1.220 2007/07/25 00:59:48 leio Exp $
+
+*gnome-panel-2.18.3 (25 Jul 2007)
+
+  25 Jul 2007; Mart Raudsepp <leio@gentoo.org> -gnome-panel-2.16.1.ebuild,
+  -gnome-panel-2.18.1.ebuild, +gnome-panel-2.18.3.ebuild:
+  Version bump for some rare crash fixes and translation updates
 
   08 Jul 2007; Michael Sterrett <mr_bones_@gentoo.org>
   gnome-panel-2.16.1.ebuild, gnome-panel-2.16.2.ebuild,
