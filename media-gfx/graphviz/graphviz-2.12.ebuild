@@ -161,7 +161,7 @@ src_compile() {
 		${myconf} \
 		$(use_with gnome gnomeui) \
 		|| die "econf failed"
-	emake || die "emake failed, use gcc-apple on OSX!"
+	emake || die "emake failed"
 }
 
 src_install() {
