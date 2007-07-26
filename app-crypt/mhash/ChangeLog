@@ -1,6 +1,12 @@
 # ChangeLog for app-crypt/mhash
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mhash/ChangeLog,v 1.46 2007/06/14 01:59:48 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mhash/ChangeLog,v 1.47 2007/07/25 21:05:26 gustavoz Exp $
+
+*mhash-0.9.9-r1 (25 Jul 2007)
+
+  25 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  +files/mhash-0.9.9-mutils-align.patch, +mhash-0.9.9-r1.ebuild:
+  New rev with alignment fixes and sparc stable wrt #181563
 
   14 Jun 2007; Christoph Mende <angelos@gentoo.org> mhash-0.9.9.ebuild:
   Stable on amd64 wrt bug 181563
