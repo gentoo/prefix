@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/liboil
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/ChangeLog,v 1.51 2007/07/14 19:51:33 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/ChangeLog,v 1.52 2007/07/25 22:35:59 gustavoz Exp $
+
+  25 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org> liboil-0.3.12.ebuild:
+  Stable on sparc
 
   14 Jul 2007; Raúl Porcel <armin76@gentoo.org> liboil-0.3.11.ebuild:
   alpha/ia64/x86 stable

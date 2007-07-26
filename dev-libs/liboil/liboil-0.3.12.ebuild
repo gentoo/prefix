@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/liboil-0.3.12.ebuild,v 1.1 2007/06/22 01:59:13 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/liboil-0.3.12.ebuild,v 1.2 2007/07/25 22:35:59 gustavoz Exp $
 
 EAPI="prefix"
 
