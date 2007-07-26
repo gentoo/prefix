@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/audiofile
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/audiofile/ChangeLog,v 1.54 2007/04/25 14:01:57 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/audiofile/ChangeLog,v 1.55 2007/07/25 18:18:30 armin76 Exp $
+
+  25 Jul 2007; Raúl Porcel <armin76@gentoo.org> audiofile-0.2.6-r3.ebuild:
+  alpha stable
 
   25 Apr 2007; Alexander Færøy <eroyf@gentoo.org>
   audiofile-0.2.6-r3.ebuild:
