@@ -14,7 +14,7 @@ SRC_URI="mirror://gnupg/libgcrypt/${P}.tar.gz
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="nls bindist idea"
 
 RDEPEND="nls? ( virtual/libintl )
@@ -47,6 +47,7 @@ src_compile() {
 	local myconf
 
 	use ppc64 && myconf="${myconf} --disable-asm"
+	[[ ${CHOST} == i?86-*-darwin* ]] && myconf="${myconf} --disable-asm"
 
 	econf $(use_enable nls) --disable-dependency-tracking --with-pic \
 		--enable-noexecstack ${myconf} || die
