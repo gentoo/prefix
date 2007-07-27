@@ -1,15 +1,15 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.2.1-r1.ebuild,v 1.1 2007/04/04 21:58:11 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.2.1-r1.ebuild,v 1.2 2007/07/26 19:39:20 vapier Exp $
 
 EAPI="prefix"
 
 inherit flag-o-matic eutils libtool
 
 DESCRIPTION="Library for arithmetic on arbitrary precision integers, rational numbers, and floating-point numbers"
-HOMEPAGE="http://www.swox.com/gmp/"
+HOMEPAGE="http://gmplib.org/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2
-	doc? ( http://www.swox.se/${PN}/${PN}-man-${PV}.pdf )"
+	doc? ( http://gmplib.org/${PN}-man-${PV}.pdf )"
 
 LICENSE="LGPL-2"
 SLOT="0"
