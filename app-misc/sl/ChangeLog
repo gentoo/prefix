@@ -1,0 +1,36 @@
+# ChangeLog for app-misc/sl
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/sl/ChangeLog,v 1.11 2007/05/14 16:47:40 bangert Exp $
+
+  14 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
+  add <herd>no-herd</herd>
+
+  30 Dec 2006; Mamoru KOMACHI <usata@gentoo.org> sl-3.03.ebuild:
+  Ebuild cleanup. Thanks to flameeyes; bug #158688.
+
+  12 May 2005; Guy Martin <gmsoft@gentoo.org> sl-3.03.ebuild:
+  Stable on hppa.
+
+  02 Feb 2005; Jan Brinkmann <luckyduck@gentoo.org> sl-3.03.ebuild:
+  added ~amd64 to KEYWORDS. fixes #80447
+
+  13 Dec 2004; Jason Wever <weeve@gentoo.org> sl-3.03.ebuild:
+  Stable on sparc.
+
+  17 Jul 2004; Tom Gall <tgall@gentoo.org> sl-3.03.ebuild:
+  stable on ppc64, bug #55683
+
+  01 Jun 2004; Aron Griffis <agriffis@gentoo.org> sl-3.03.ebuild:
+  Fix use invocation
+
+*sl-3.03 (07 Sep 2003)
+
+  27 Sep 2003; Mamoru KOMACHI <usata@gentoo.org> sl-3.03.ebuild:
+  Marked as stable on x86 and alpha
+
+  07 Sep 2003; Mamoru KOMACHI <usata@gentoo.org> sl-3.03.ebuild,
+  files/sl-3.03-gentoo.diff:
+  Initial import.  Ebuild submitted by YAMAKURA Makoto <yakina@gentoo.org>
+  at GentooJP BugTrack.  Special thanks to Tomoaki Okayama
+  <okayama@sodan.ecc.u-tokyo.ac.jp> for the contribution of English manpage.
+
