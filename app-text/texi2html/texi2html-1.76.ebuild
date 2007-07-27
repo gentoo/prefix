@@ -10,7 +10,7 @@ SRC_URI="https://texi2html.cvshome.org/files/documents/70/758/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
 DEPEND=">=dev-lang/perl-5.6.1"
