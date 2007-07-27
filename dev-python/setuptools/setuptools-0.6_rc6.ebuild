@@ -15,7 +15,7 @@ SRC_URI="http://cheeseshop.python.org/packages/source/s/setuptools/${MY_P}.tar.g
 
 LICENSE="PSF-2.2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
 RDEPEND=">=dev-lang/python-2.4.2"
