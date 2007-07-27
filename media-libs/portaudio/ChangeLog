@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/portaudio
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/ChangeLog,v 1.44 2007/07/07 08:31:19 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/ChangeLog,v 1.45 2007/07/26 14:09:04 armin76 Exp $
+
+  26 Jul 2007; Raúl Porcel <armin76@gentoo.org> portaudio-18.1-r6.ebuild:
+  alpha/ia64/x86 stable
 
 *portaudio-19_pre070707 (07 Jul 2007)
 
