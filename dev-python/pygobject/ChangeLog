@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.21 2007/05/27 01:45:32 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.22 2007/07/26 21:32:44 uberlord Exp $
+
+  26 Jul 2007; Roy Marples <uberlord@gentoo.org> pygobject-2.12.3.ebuild:
+  true is not always in /bin
 
   27 May 2007; Joshua Kinard <kumba@gentoo.org> pygobject-2.12.3.ebuild:
   Stable on mips.
