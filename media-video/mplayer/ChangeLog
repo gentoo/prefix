@@ -1,6 +1,13 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.502 2007/07/05 19:53:54 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.503 2007/07/26 20:46:50 beandog Exp $
+
+*mplayer-1.0.20070622-r2 (26 Jul 2007)
+
+  26 Jul 2007; Steve Dibb <beandog@gentoo.org>
+  +mplayer-1.0.20070622-r2.ebuild:
+  Remove debug option, since it is broken in this release, add pulseaudio
+  support, bug 183230 (thanks to drizzt for patch)
 
   05 Jul 2007; Markus Rothe <corsair@gentoo.org>
   mplayer-1.0.20070622-r1.ebuild:
