@@ -30,6 +30,8 @@ src_compile() { :; }
 src_install() {
 	make install DSTROOT="${D}${EPREFIX}" || die
 	dodoc ManPageTemplate.man
+	# collides with com_err package itself
+	rm -f "${ED}"/usr/share/man/man3/com_err.3
 }
 
 pkg_postinst() {
