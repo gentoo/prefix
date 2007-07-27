@@ -38,6 +38,8 @@ src_unpack() {
 src_compile() {
 	econf \
 		--localstatedir="${EPREFIX}"/var \
+		--with-omfdirs="${EPREFIX}"/usr/share/omf:"${EPREFIX}"/usr/local/share/omf:"${EPREFIX}"/opt/gnome/share/omf:"${EPREFIX}"/opt/gnome-2.0/share/omf:"${EPREFIX}"/opt/kde/omf \
+		--with-xml-catalog="${EPREFIX}"/etc/xml/catalog \
 		$(use_enable nls) \
 		|| die
 	emake || die
@@ -83,6 +85,6 @@ pkg_postrm() {
 			"${EROOT}"/etc/xml/catalog
 
 		elog "Scrollkeeper ${PV} unmerged, if you removed the package"
-		elog "you might want to clean up /var/lib/scrollkeeper."
+		elog "you might want to clean up ${EPREFIX}/var/lib/scrollkeeper."
 	fi
 }
