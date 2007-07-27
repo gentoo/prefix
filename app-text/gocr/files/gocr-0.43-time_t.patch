@@ -1,0 +1,14 @@
+--- gocr-0.43.orig/src/progress.h	2007-02-17 21:24:02 +0200
++++ gocr-0.43/src/progress.h	2007-02-17 21:25:13 +0200
+@@ -6,6 +6,11 @@
+ #ifndef GOCR_PROGRESS_H
+ #define GOCR_PROGRESS_H "Oct06"
+ 
++/* fix needed to know time_t on OS X. */
++#if defined(__MACH__)
++# include <time.h>
++#endif
++
+ /* initialization of progress output, fname="<fileID>","<filename>","-"  */
+ int ini_progress(char *fname);
+ 
