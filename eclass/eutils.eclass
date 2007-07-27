@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.286 2007/07/17 11:59:18 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.287 2007/07/26 05:43:12 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -1516,18 +1516,16 @@ _cdrom_locate_file_on_cd() {
 	done
 }
 
+# @FUNCTION: strip-linguas
+# @USAGE: [<allow LINGUAS>|<-i|-u> <directories of .po files>]
+# @DESCRIPTION:
 # Make sure that LINGUAS only contains languages that
-# a package can support
-#
-# usage: strip-linguas <allow LINGUAS>
-#		 strip-linguas -i <directories of .po files>
-#		 strip-linguas -u <directories of .po files>
-#
-# The first form allows you to specify a list of LINGUAS.
-# The -i builds a list of po files found in all the
-#	directories and uses the intersection of the lists.
-# The -u builds a list of po files found in all the
-#	directories and uses the union of the lists.
+# a package can support.  The first form allows you to
+# specify a list of LINGUAS.  The -i builds a list of po
+# files found in all the directories and uses the
+# intersection of the lists.  The -u builds a list of po
+# files found in all the directories and uses the union
+# of the lists.
 strip-linguas() {
 	local ls newls nols
 	if [[ $1 == "-i" ]] || [[ $1 == "-u" ]] ; then
