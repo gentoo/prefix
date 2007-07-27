@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.5-r1.ebuild,v 1.1 2007/07/16 18:25:44 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.5-r1.ebuild,v 1.2 2007/07/26 17:07:24 wolf31o2 Exp $
 
 EAPI="prefix"
 
@@ -104,5 +104,6 @@ src_install() {
 pkg_postinst() {
 	elog "If you wish to view images emerge:"
 	elog "media-gfx/xloadimage, media-gfx/xli or any other viewer"
-	elog "Remember to use photo-viewer option in configuration file to activate the right viewer"
+	elog "Remember to use photo-viewer option in configuration file to activate"
+	elog "the right viewer"
 }
