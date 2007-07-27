@@ -104,7 +104,8 @@ src_compile() {
 		--with-docdir=${EPREFIX}/usr/share/doc/${PN}-${PVR} \
 		--with-regex \
 		--enable-nfs-fix --enable-external-dotlock \
-		--with-mixmaster"
+		--with-mixmaster
+		--with-exec-shell=${EPREFIX}/bin/sh"
 
 	case $CHOST in
 		*-darwin7)
