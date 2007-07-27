@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.3.16.ebuild,v 1.9 2007/07/10 14:29:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.3.19.ebuild,v 1.1 2007/07/26 01:04:08 hanno Exp $
 
 EAPI="prefix"
 
@@ -15,6 +15,9 @@ SLOT="2"
 KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
 
 IUSE="alsa aalib altivec curl dbus debug doc gtkhtml gnome jpeg lcms mmx mng pdf png python smp sse svg tiff wmf"
+
+# Upstream-bug, will be fixed in the next release
+MAKEOPTS="-j1"
 
 RDEPEND=">=dev-libs/glib-2.12.3
 	>=x11-libs/gtk+-2.10.6
@@ -60,12 +63,6 @@ pkg_setup() {
 		eerror
 		die "Please reemerge app-text/poppler-bindings with USE=\"gtk\"."
 	fi
-}
-
-src_unpack() {
-	unpack ${A}
-	cd ${S}
-	epatch ${FILESDIR}/gimp-sunras-bufferoverflow.diff
 }
 
 src_compile() {
