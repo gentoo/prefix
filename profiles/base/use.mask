@@ -1,4 +1,5 @@
 # profile specific USE flags
+hardened
 selinux
 uclibc
 

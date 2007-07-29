@@ -1,6 +1,30 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.546 2007/07/22 11:06:06 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.553 2007/07/28 00:28:37 wolf31o2 Exp $
+
+  28 Jul 2007; Chris Gianelloni <wolf31o2@gentoo.org> updates/3Q-2007:
+  Moved vendetta-online-bin from games-fps to games-rpg for bug #184918.
+
+  27 Jul 2007; Chris Gianelloni <wolf31o2@gentoo.org> thirdpartymirrors:
+  Hopefully fixing the liflg mirrors to use both the old and new locations for
+  a short time until we can determine the correct ones for each mirror. I know
+  I should check all of these first, but I would prefer get it fixed as soon
+  as possible since I have let this sit for a while.
+
+  25 Jul 2007; Duncan Coutts <dcoutts@gentoo.org> package.mask:
+  Unmask ghc-6.6.1 and all the new modular libs. See bug #151012.
+
+  25 Jul 2007; Denis Dupeyron <calchan@gentoo.org> package.mask:
+  Removed mask on hplip-2.7.6 as it seems to work.
+
+  24 Jul 2007; Ryan Hill <dirtyepic@gentoo.org> use.local.desc:
+  Remove wxgtk1 local USE flag.
+
+  24 Jul 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Unmask artwiz-fonts due to bug #186431.
+
+  24 Jul 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Mask media-fonts/artwiz-fonts.
 
   21 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>;
   embedded/virtuals, selinux/mips/virtuals:

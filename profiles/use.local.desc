@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2938 2007/07/22 14:05:43 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2945 2007/07/26 05:54:52 vapier Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -71,7 +71,6 @@ app-crypt/gnupg:idea - Use the patented IDEA algorithm
 app-crypt/gnupg:openct - build using dev-libs/openct compatibility
 app-crypt/gnupg:pcsc-lite - build with pcsc-lite
 app-crypt/gringotts:suid - Install the binary suid, acknowledging the usual risks
-app-crypt/johntheripper:ntlm - enables john to crack Windows NT/2000 MD4 (case-sensitive) password hashes
 app-crypt/ophcrack:ophsmall - Makes use of smaller cracking tables
 app-crypt/seahorse:gedit - Enable the gedit plugin
 app-crypt/seahorse:keyring - Enable support for gnome-keyring
@@ -476,6 +475,7 @@ dev-libs/cyrus-sasl:sample - Build sample client and server
 dev-libs/cyrus-sasl:srp - Enables SRP in cyrus-sasl
 dev-libs/cyrus-sasl:urandom - Use /dev/urandom instead of /dev/random
 dev-libs/fcgi:html - Adds HTML documentation.
+dev-libs/ferrisloki:stlport - Include support for STLport
 dev-libs/klibc:n32 - Force klibc to 32bit if on mips64 if not n32 userland.
 dev-libs/libgcrypt:idea - Use the patented IDEA algorithm
 dev-libs/libjit:interpreter - Enable the libjit interpreter
@@ -571,8 +571,12 @@ dev-ruby/ruby-sdl:mixer - enable sdl-mixer support
 dev-ruby/ruby-sdl:sge - enable sdl-sge support
 dev-ruby/rubygems:server - rubygems server support
 dev-ruby/sqlite3-ruby:swig - Use swig to generate binding
-dev-scheme/drscheme:3m - compile drscheme3m binary that uses the 3m GC instead of the Bohem GC
+dev-scheme/drscheme:3m - compile drscheme3m binary that uses the 3m GC instead of the Boehm GC
 dev-scheme/drscheme:backtrace - support GC backtrace dumps
+dev-scheme/drscheme:cgc - compile and install additional executables which use the conservative garbage collector
+dev-scheme/drscheme:llvm - add support for compiling to the low-level virtual machine (llvm)
+dev-scheme/drscheme:xft - add support for xft
+dev-scheme/drscheme:xrender - add support for xrender
 dev-scheme/drscheme:sgc - use Senora GC instead of the Boehm GC
 dev-scheme/gambit:big-iron - use expensive GCC optimizations and compile syntax-case macro system, try only if you have more than 2GB RAM
 dev-scheme/gauche-gl:cg - enable NVidia Cg binding
@@ -743,6 +747,7 @@ kde-base/juk:akode - Support for the aKode audio-decoding frame-work.
 kde-base/kaddressbook:gnokii - Address synchronization with mobile phones via Gnokii.
 kde-base/kbugbuster:kcal - Support for kcal (calendar) format.
 kde-base/kcontrol:logitech-mouse - Build the Control Center module to configure logitech mice.
+kde-base/kdebase:branding - Gentoo specific web shortcusts.
 kde-base/kdebase:logitech-mouse - Build the Control Center module to configure logitech mice
 kde-base/kdebase:zeroconf - Support for DNS Service Discovery (DNS-SD).
 kde-base/kdeedu:kig-scripting - Support Python scripting in kig.
@@ -761,6 +766,7 @@ kde-base/kdesdk:subversion - Support for the subversion ioslave.
 kde-base/kdeutils:pbbuttonsd - Support for the Apple PMU daemon pbbuttonsd.
 kde-base/kig:kig-scripting - Support Python scripting.
 kde-base/kmilo:pbbuttonsd - Support for the Apple PMU daemon pbbuttonsd.
+kde-base/konqueror:branding - Gentoo specific web shortcusts.
 kde-base/kopete:addbookmarks - Builds Add Bookmarks plugin
 kde-base/kopete:alias - Builds Alias plugin
 kde-base/kopete:autoreplace - Builds Auto-Replace plugin
@@ -1518,6 +1524,7 @@ net-misc/bird:ipv6only - Builds with only IPv6, note that this *disables* IPv4 e
 net-misc/bridge-utils:sysfs - Enable use of the sysfs filesystem (Linux-2.6+) via libsysfs
 net-misc/curl:ares - Enabled c-ares dns support
 net-misc/curl:nss - Use NSS as the crypto engine
+net-misc/dhcpcd:vram - Disable DUID due to volatile media, such as a LiveCD
 net-misc/directvnc:mouse - Adds mouse support
 net-misc/drivel:rhythmbox - Enables support for currently playing song in rhythmbox
 net-misc/dropbear:multicall - Build all the programs as one little binary (to save space)
@@ -1906,7 +1913,6 @@ sys-fs/unionfs:nfs - Adds support for NFS file system
 sys-kernel/ck-sources:ck-server - Tune the kernel for servers
 sys-kernel/gentoo-sources:ultra1 - If you have a SUN Ultra 1 with a HME interface
 sys-kernel/linux-docs:html - Install HTML documentation
-sys-kernel/linux-headers:gcc64 - Use 64-bit kernel compiler
 sys-kernel/mips-headers:cobalt - Enables support for Cobalt Microserver hardware (Qube2/RaQ2)
 sys-kernel/mips-headers:ip27 - Enables support for SGI Origin (IP27)
 sys-kernel/mips-headers:ip28 - Enables support for SGI Indigo2 Impact R10000 (IP28)
@@ -2052,7 +2058,6 @@ x11-libs/qt:immqt - Enable binary incompatible version of immodule for Qt
 x11-libs/qt:immqt-bc - Enable binary compatible version of immodule for Qt
 x11-libs/qt:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
 x11-libs/qt:qt3support - Enable the Qt3Support libraries for Qt4
-x11-libs/wxGTK:wxgtk1 - Add gtk1 support in addition to optional gtk2ansi and gtk2unicode
 x11-misc/adesklets:ctrlmenu - force CTRL to be pressed to fire context menu
 x11-misc/adesklets:fontconfig - Support for mananging custom fonts via fontconfig
 x11-misc/dmenu:savedconfig - Add support to user defined configs
