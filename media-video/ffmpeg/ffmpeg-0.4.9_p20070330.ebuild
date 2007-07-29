@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20070330.ebuild,v 1.10 2007/05/16 05:29:05 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20070330.ebuild,v 1.11 2007/07/27 04:39:27 vapier Exp $
 
 EAPI="prefix"
 
