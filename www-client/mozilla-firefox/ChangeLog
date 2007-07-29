@@ -1,6 +1,10 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.314 2007/07/26 16:26:17 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.315 2007/07/27 17:21:38 gustavoz Exp $
+
+  27 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  mozilla-firefox-2.0.0.5.ebuild:
+  Stable on ppc wrt security #185737
 
   26 Jul 2007; Chris Gianelloni <wolf31o2@gentoo.org>
   mozilla-firefox-2.0.0.2.ebuild, mozilla-firefox-2.0.0.3.ebuild,
