@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/intltool
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/intltool/ChangeLog,v 1.102 2007/06/02 02:39:40 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/intltool/ChangeLog,v 1.103 2007/07/27 09:57:57 leio Exp $
+
+  27 Jul 2007; Mart Raudsepp <leio@gentoo.org> -intltool-0.35.0.ebuild,
+  -intltool-0.35.4.ebuild:
+  Remove old versions
 
   02 Jun 2007; Brent Baude <ranger@gentoo.org> intltool-0.35.5.ebuild:
   Marking intltool-0.35.5 ppc stable for bug #171107
