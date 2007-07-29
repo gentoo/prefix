@@ -1,6 +1,13 @@
 # ChangeLog for app-text/gocr
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gocr/ChangeLog,v 1.45 2007/07/04 03:45:13 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gocr/ChangeLog,v 1.46 2007/07/27 19:59:43 aballier Exp $
+
+*gocr-0.44 (27 Jul 2007)
+
+  27 Jul 2007; Alexis Ballier <aballier@gentoo.org>
+  +files/gocr-0.44-makefile.patch, +gocr-0.44.ebuild:
+  version bump, bug #172764, thanks to Roberto Castagnola
+  <roberto.castagnola@gmail.com>
 
   03 Jul 2007; Tom Gall <tgall@gentoo.org> gocr-0.43.ebuild:
   stable on ppc64
