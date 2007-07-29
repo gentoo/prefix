@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/haskell-cabal.eclass,v 1.11 2007/07/25 18:07:02 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/haskell-cabal.eclass,v 1.12 2007/07/27 09:09:20 kolmodin Exp $
 #
 # Original authors: Andres Loeh <kosmikus@gentoo.org>
 #                   Duncan Coutts <dcoutts@gentoo.org>
@@ -127,7 +127,6 @@ cabal-haddock() {
 
 cabal-configure() {
 	if [[ -n "${CABAL_USE_PROFILE}" ]] && use profile; then
-		cabalconf="${cabalconf} --enable-executable-profiling";
 		cabalconf="${cabalconf} --enable-library-profiling"
 	fi
 	# Building GHCi libs on ppc64 causes "TOC overflow".
@@ -186,7 +185,7 @@ cabal-pkg() {
 	local err
 
 	if [[ -n ${CABAL_HAS_LIBRARIES} ]]; then
-		sed -i "s|$(ghc-getghcpkg)|$(which true)|" .setup-config
+		sed -i "s|$(ghc-getghcpkg)|$(type -P true)|" .setup-config
 		./setup register || die "setup register failed"
 		if [[ -f .installed-pkg-config ]]; then
 			ghc-setup-pkg .installed-pkg-config
