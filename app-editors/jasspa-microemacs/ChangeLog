@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/jasspa-microemacs
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/jasspa-microemacs/ChangeLog,v 1.25 2007/07/25 21:30:12 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/jasspa-microemacs/ChangeLog,v 1.26 2007/07/27 05:57:31 ulm Exp $
+
+  27 Jul 2007; Ulrich Mueller <ulm@gentoo.org> -files/me,
+  -jasspa-microemacs-20060909.ebuild:
+  Remove unused files/me and old ebuild.
 
   25 Jul 2007; Christoph Mende <angelos@gentoo.org>
   jasspa-microemacs-20060909-r1.ebuild:
