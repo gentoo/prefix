@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.216 2007/07/26 01:04:08 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.217 2007/07/27 09:59:37 hanno Exp $
+
+  27 Jul 2007; Hanno Boeck <hanno@gentoo.org> gimp-2.3.19.ebuild:
+  Raised gtk+-dep and removed obsolete parallel-build workaround.
 
 *gimp-2.3.19 (26 Jul 2007)
 
