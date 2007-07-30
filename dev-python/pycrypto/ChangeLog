@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pycrypto
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycrypto/ChangeLog,v 1.60 2007/07/27 17:12:39 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycrypto/ChangeLog,v 1.61 2007/07/28 19:19:31 beandog Exp $
+
+  28 Jul 2007; Steve Dibb <beandog@gentoo.org> pycrypto-2.0.1-r6.ebuild:
+  amd64 stable, bug 186789
 
   27 Jul 2007; Joseph Jezak <josejx@gentoo.org> pycrypto-2.0.1-r6.ebuild:
   Marked ppc/ppc64 stable for bug #186789.
