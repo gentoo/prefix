@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/audiofile
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/audiofile/ChangeLog,v 1.55 2007/07/25 18:18:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/audiofile/ChangeLog,v 1.56 2007/07/28 09:29:25 drac Exp $
+
+  28 Jul 2007; Samuli Suominen <drac@gentoo.org>
+  +files/audiofile-0.2.6-fmod.patch, audiofile-0.2.6-r3.ebuild:
+  Apply patch from bug 175710 by Dustin Surawicz, implicit declaration of fmod.
 
   25 Jul 2007; Raúl Porcel <armin76@gentoo.org> audiofile-0.2.6-r3.ebuild:
   alpha stable

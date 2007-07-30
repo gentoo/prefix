@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/audiofile/audiofile-0.2.6-r3.ebuild,v 1.7 2007/07/25 18:18:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/audiofile/audiofile-0.2.6-r3.ebuild,v 1.8 2007/07/28 09:29:25 drac Exp $
 
 EAPI="prefix"
 
@@ -22,6 +22,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-m4.patch
 	epatch "${FILESDIR}"/${P}-constantise.patch
+	epatch "${FILESDIR}"/${P}-fmod.patch
 
 	### Patch for bug #118600
 	epatch "${FILESDIR}"/${PN}-largefile.patch
