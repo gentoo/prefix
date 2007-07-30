@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.3.19.ebuild,v 1.2 2007/07/27 09:59:37 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.3.19.ebuild,v 1.3 2007/07/28 20:49:46 hanno Exp $
 
 EAPI="prefix"
 
@@ -37,7 +37,7 @@ RDEPEND=">=dev-libs/glib-2.12.3
 		>=gnome-base/gnome-keyring-0.4.5 )
 	gtkhtml? ( =gnome-extra/gtkhtml-2* )
 	jpeg? ( >=media-libs/jpeg-6b-r2
-		>=media-libs/libexif-0.6.0 )
+		>=media-libs/libexif-0.6.15 )
 	lcms? ( media-libs/lcms )
 	mng? ( media-libs/libmng )
 	pdf? ( >=app-text/poppler-bindings-0.3.1 )
