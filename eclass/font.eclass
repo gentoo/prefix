@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.24 2007/07/15 22:24:15 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.25 2007/07/29 22:20:39 dirtyepic Exp $
 
 # Author: foser <foser@gentoo.org>
 
@@ -64,15 +64,15 @@ font_xft_config() {
 }
 
 font_fontconfig() {
-
 	local conffile
-	if has_version '>=media-libs/fontconfig-2.4'; then
-		insinto /etc/fonts/conf.avail/
-		for conffile in "${FONT_CONF}"; do
-			[[ -e  "${FILESDIR}/${conffile}" ]] && doins "${FILESDIR}/${conffile}"
-		done
+	if [[ -n ${FONT_CONF} ]]; then
+		if has_version '>=media-libs/fontconfig-2.4'; then
+			insinto /etc/fonts/conf.avail/
+			for conffile in "${FONT_CONF}"; do
+				[[ -e  ${conffile} ]] && doins ${conffile}
+			done
+		fi
 	fi
-
 }
 
 #

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vmware-mod.eclass,v 1.11 2007/07/12 23:57:42 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vmware-mod.eclass,v 1.13 2007/07/28 18:00:42 ikelos Exp $
 
 
 # Ensure vmware comes before linux-mod since we want linux-mod's pkg_preinst and
@@ -11,10 +11,10 @@ DESCRIPTION="Modules for Vmware Programs"
 HOMEPAGE="http://www.vmware.com/"
 SRC_URI="http://platan.vc.cvut.cz/ftp/pub/vmware/${ANY_ANY}.tar.gz
 	http://platan.vc.cvut.cz/ftp/pub/vmware/obselete/${ANY_ANY}.tar.gz
-	http://ftp.cvut.cz/vmware/${ANY_ANY}.tar.gz
-	http://ftp.cvut.cz/vmware/obselete/${ANY_ANY}.tar.gz
 	http://knihovny.cvut.cz/ftp/pub/vmware/${ANY_ANY}.tar.gz
-	http://knihovny.cvut.cz/ftp/pub/vmware/obselete/${ANY_ANY}.tar.gz"
+	http://knihovny.cvut.cz/ftp/pub/vmware/obselete/${ANY_ANY}.tar.gz
+	http://ftp.cvut.cz/vmware/${ANY_ANY}.tar.gz
+	http://ftp.cvut.cz/vmware/obselete/${ANY_ANY}.tar.gz"
 LICENSE="vmware"
 SLOT="0"
 IUSE=""

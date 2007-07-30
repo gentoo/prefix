@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/depend.apache.eclass,v 1.32 2007/05/13 20:11:37 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/depend.apache.eclass,v 1.33 2007/07/29 16:36:23 phreak Exp $
 
 inherit multilib
 
@@ -91,10 +91,10 @@ APACHE2_MODULESDIR="${APACHE2_BASEDIR}/modules"
 ##
 ## Dependencies for Apache 1.x and Apache 2.x
 ####
-APACHE1_DEPEND="=net-www/apache-1*"
-APACHE2_DEPEND="=net-www/apache-2*"
-APACHE2_0_DEPEND="=net-www/apache-2.0*"
-APACHE2_2_DEPEND="=net-www/apache-2.2*"
+APACHE1_DEPEND="=www-servers/apache-1*"
+APACHE2_DEPEND="=www-servers/apache-2*"
+APACHE2_0_DEPEND="=www-servers/apache-2.0*"
+APACHE2_2_DEPEND="=www-servers/apache-2.2*"
 
 ####
 ## NEED_APACHE_DEPEND

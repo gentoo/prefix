@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/webapp-apache.eclass,v 1.28 2007/05/30 15:50:05 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/webapp-apache.eclass,v 1.29 2007/07/29 16:37:20 phreak Exp $
 #
 # Author: Stuart Herbert <stuart@gentoo.org>
 #
@@ -12,7 +12,7 @@
 # webapp-config from GLEP11 are released.
 
 IUSE="apache2"
-DEPEND="${DEPEND} net-www/apache"
+DEPEND="${DEPEND} www-servers/apache"
 
 EXPORT_FUNCTIONS pkg_setup
 
@@ -26,8 +26,8 @@ EXPORT_FUNCTIONS pkg_setup
 function webapp-apache-detect ()
 {
 	APACHEVER=
-	has_version '=net-www/apache-2*' && APACHEVER=2 && CONFVER=2
-	[ -z "${APACHEVER}" ] && has_version '=net-www/apache-2*' && APACHEVER=2 && CONFVER=2
+	has_version '=www-servers/apache-2*' && APACHEVER=2 && CONFVER=2
+	[ -z "${APACHEVER}" ] && has_version '=www-servers/apache-2*' && APACHEVER=2 && CONFVER=2
 
 	if [ "${APACHEVER}+" = "+" ]; then
 		# no apache version detected
