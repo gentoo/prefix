@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/dejavu-2.18-r1.ebuild,v 1.1 2007/07/15 22:41:45 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/dejavu-2.18-r1.ebuild,v 1.2 2007/07/29 22:17:43 dirtyepic Exp $
 
 EAPI="prefix"
 
@@ -25,4 +25,4 @@ FONT_S="${S}"
 # Only installs fonts
 RESTRICT="strip binchecks"
 
-FONT_CONF="59-dejavu.conf"
+FONT_CONF="${FILESDIR}/59-dejavu.conf"
