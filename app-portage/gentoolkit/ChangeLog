@@ -1,6 +1,10 @@
 # ChangeLog for app-portage/gentoolkit
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.118 2007/07/27 21:37:24 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.119 2007/07/29 04:49:35 lavajoe Exp $
+
+  29 Jul 2007; Joe Peterson <lavajoe@gentoo.org>
+  gentoolkit-0.2.4_pre6.ebuild:
+  Remove ~x86-fbsd keyword (bug #183657)
 
 *gentoolkit-0.2.4_pre6 (27 Jul 2007)
 
