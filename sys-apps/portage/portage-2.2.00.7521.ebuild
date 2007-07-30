@@ -38,7 +38,8 @@ SRC_ARCHIVES="http://dev.gentoo.org/~grobian/distfiles"
 
 PV_PL="2.1.2"
 PATCHVER_PL=""
-SRC_URI="mirror://gentoo/prefix-${PN}-${PV}.tar.bz2
+#mirror://gentoo/prefix-${PN}-${PV}.tar.bz2
+SRC_URI="
 	${SRC_ARCHIVES}/prefix-${PN}-${PV}.tar.bz2
 	linguas_pl? ( mirror://gentoo/${PN}-man-pl-${PV_PL}.tar.bz2
 	${SRC_ARCHIVES}/${PN}-man-pl-${PV_PL}.tar.bz2 )"
