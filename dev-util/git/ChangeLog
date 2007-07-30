@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.207 2007/07/27 01:29:46 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.208 2007/07/29 16:56:54 phreak Exp $
+
+  29 Jul 2007; Christian Heim <phreak@gentoo.org> git-1.5.0.7.ebuild,
+  git-1.5.1.6.ebuild, git-1.5.2.ebuild, git-1.5.2.1.ebuild,
+  git-1.5.2.2.ebuild, git-1.5.2.4.ebuild:
+  Fixing the DEPEND/RDEPEND for the move of net-www/apache to
+  www-servers/apache (#78622).
 
 *git-1.5.2.4 (27 Jul 2007)
 

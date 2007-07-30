@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.2.1.ebuild,v 1.2 2007/07/27 01:29:46 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.2.1.ebuild,v 1.3 2007/07/29 16:56:54 phreak Exp $
 
 EAPI="prefix"
 
@@ -159,7 +159,7 @@ pkg_postinst() {
 		"dev-perl/TermReadKey"
 	showpkgdeps git-quiltimport "dev-util/quilt"
 	showpkgdeps git-cvsserver "dev-perl/DBI" "dev-perl/DBD-SQLite"
-	showpkgdeps git-instaweb "|| ( www-servers/lighttpd net-www/apache(SLOT=2) )"
+	showpkgdeps git-instaweb "|| ( www-servers/lighttpd www-servers/apache(SLOT=2) )"
 	showpkgdeps git-send-email "USE=perl"
 	showpkgdeps git-remote "USE=perl"
 	echo
