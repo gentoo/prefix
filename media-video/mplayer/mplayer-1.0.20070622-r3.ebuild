@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0.20070622-r2.ebuild,v 1.2 2007/07/28 15:25:18 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0.20070622-r3.ebuild,v 1.1 2007/07/28 15:25:18 beandog Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ IUSE="3dnow 3dnowext a52 aac aalib alsa altivec amrnb amrwb arts bidi bl bindist
 cddb cpudetection custom-cflags dga doc dts dvb cdparanoia directfb dvd
 dvdnav dv enca encode esd fbcon ftp gif ggi gtk iconv ipv6 ivtv jack joystick
 jpeg libcaca lirc live livecd lzo mad md5sum mmx mmxext mp2 mp3 musepack nas
-unicode vorbis opengl openal oss png pnm pulseaudio quicktime radio rar real rtc samba sdl speex srt sse sse2 ssse3 svga tga theora tivo truetype v4l v4l2 vidix win32codecs X x264 xanim xinerama xv xvid xvmc zoran"
+unicode vorbis opengl openal oss png pnm quicktime radio rar real rtc samba sdl speex srt sse sse2 ssse3 svga tga theora tivo truetype v4l v4l2 vidix win32codecs X x264 xanim xinerama xv xvid xvmc zoran"
 
 VIDEO_CARDS="s3virge mga tdfx vesa"
 
@@ -25,7 +25,6 @@ MY_PV="20070622"
 S="${WORKDIR}/${PN}-${MY_PV}"
 AMR_URI="http://www.3gpp.org/ftp/Specs/archive"
 SRC_URI="mirror://gentoo/${PN}-${MY_PV}.tar.bz2
-	mirror://gentoo/${P}-pulseaudio.patch.bz2
 	!truetype? ( mirror://mplayer/releases/fonts/font-arial-iso-8859-1.tar.bz2
 				 mirror://mplayer/releases/fonts/font-arial-iso-8859-2.tar.bz2
 				 mirror://mplayer/releases/fonts/font-arial-cp1250.tar.bz2 )
@@ -86,7 +85,6 @@ RDEPEND="sys-libs/ncurses
 	opengl? ( virtual/opengl )
 	png? ( media-libs/libpng )
 	pnm? ( media-libs/netpbm )
-	pulseaudio? ( media-sound/pulseaudio )
 	samba? ( net-fs/samba )
 	sdl? ( media-libs/libsdl )
 	speex? ( >=media-libs/speex-1.1.7 )
@@ -153,13 +151,6 @@ pkg_setup() {
 		elog "are also available."
 	fi
 
-	if use pulseaudio; then
-		ewarn "Using the pulseaudio flag adds experimental support for"
-		ewarn "this feature.  Do *not* bug upstream if it doesn't work,"
-		ewarn "instead filing issues at Gentoo's bugzilla.  Thanks"
-		ewarn "http://bugs.gentoo.org/"
-	fi
-
 }
 
 src_unpack() {
@@ -200,9 +191,6 @@ src_unpack() {
 
 	# Fix XShape detection
 	epatch ${FILESDIR}/${PN}-xshape.patch
-
-	# Add pulseaudio support
-	epatch ${DISTDIR}/${P}-pulseaudio.patch.bz2
 
 }
 
@@ -381,8 +369,6 @@ src_compile() {
 	if ! use radio; then
 		use oss || myconf="${myconf} --disable-ossaudio"
 	fi
-	use pulseaudio || myconf="${myconf} --disable-pulse"
-
 	#################
 	# Advanced Options #
 	#################
