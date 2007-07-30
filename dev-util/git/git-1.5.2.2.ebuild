@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.2.2.ebuild,v 1.1 2007/06/16 18:06:48 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.2.2.ebuild,v 1.2 2007/07/27 01:29:46 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ MY_P="${PN}-${MY_PV}"
 
 DOC_VER=${MY_PV}
 
-DESCRIPTION="GIT - the stupid content tracker"
+DESCRIPTION="GIT - the stupid content tracker, the revision control system heavily used by the Linux kernel team"
 HOMEPAGE="http://git.or.cz/"
 SRC_URI="mirror://kernel/software/scm/git/${MY_P}.tar.bz2
 		mirror://kernel/software/scm/git/${PN}-manpages-${DOC_VER}.tar.bz2

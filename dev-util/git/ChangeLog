@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.206 2007/06/25 04:36:12 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.207 2007/07/27 01:29:46 robbat2 Exp $
+
+*git-1.5.2.4 (27 Jul 2007)
+
+  27 Jul 2007; Robin H. Johnson <robbat2@gentoo.org> metadata.xml,
+  git-1.5.0.7.ebuild, git-1.5.1.6.ebuild, git-1.5.2.ebuild,
+  git-1.5.2.1.ebuild, git-1.5.2.2.ebuild, +git-1.5.2.4.ebuild:
+  Add new upstream version, and also improve the DESCRIPTION per bug #185057,
+  and the longdescription in metadata at the same time.
 
   25 Jun 2007; Joshua Kinard <kumba@gentoo.org> git-1.5.1.6.ebuild:
   Stable on mips, per #179245.

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.2.1.ebuild,v 1.2 2007/07/27 01:29:46 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.2.4.ebuild,v 1.1 2007/07/27 01:29:46 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -35,6 +35,7 @@ RDEPEND="${DEPEND}
 		tk? ( dev-lang/tk )
 		gtk? ( >=dev-python/pygtk-2.8 )"
 
+SITEFILE=71${PN}-gentoo.el
 S="${WORKDIR}/${MY_P}"
 
 # This is needed because for some obscure reasons future calls to make don't
@@ -92,7 +93,8 @@ src_unpack() {
 }
 
 src_compile() {
-	emake ${MY_MAKEOPTS} DESTDIR="${ED}" prefix="${EPREFIX}"/usr || die "make failed"
+	emake ${MY_MAKEOPTS} DESTDIR="${ED}" prefix="${EPREFIX}"/usr || \
+		die "make failed"
 
 	if use emacs ; then
 		elisp-compile contrib/emacs/{,vc-}git.el || die "emacs modules failed"
@@ -116,9 +118,9 @@ src_install() {
 	dobashcompletion contrib/completion/git-completion.bash ${PN}
 
 	if use emacs ; then
-		insinto "${SITELISP}"
-		doins contrib/emacs/{,vc-}git.el*
-		elisp-site-file-install "${FILESDIR}"/70git-gentoo.el
+		elisp-install ${PN} contrib/emacs/{,vc-}git.el* || \
+			die "elisp-install failed"
+		elisp-site-file-install "${FILESDIR}/${SITEFILE}"
 	fi
 
 	if use gtk ; then
@@ -166,7 +168,5 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	# regenerate site-gentoo if we are merged USE=emacs and unmerged
-	# USE=-emacs
-	has_version virtual/emacs && elisp-site-regen
+	use emacs && elisp-site-regen
 }
