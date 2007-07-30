@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/boost
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.119 2007/07/15 14:44:36 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.120 2007/07/29 10:33:50 dev-zero Exp $
+
+*boost-1.34.1 (29 Jul 2007)
+
+  29 Jul 2007; Tiziano Müller <dev-zero@gentoo.org> +boost-1.34.1.ebuild:
+  Version bump (bug #186811)
 
 *boost-1.34.0-r1 (15 Jul 2007)
 
