@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.4-r3.ebuild,v 1.1 2007/07/15 18:09:45 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.4-r3.ebuild,v 1.2 2007/07/29 16:56:48 phreak Exp $
 
 EAPI="prefix"
 
@@ -42,7 +42,7 @@ S=${WORKDIR}/${P/_rc/-rc}
 
 discover_apr_suffix() {
 	if use apache2 ; then
-		if has_version '=net-www/apache-2.0*' \
+		if has_version '=www-servers/apache-2.0*' \
 		&& has_version '=dev-libs/apr-util-0.9*' ; then
 			aprsuffix=""
 		else
