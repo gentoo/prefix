@@ -1,6 +1,14 @@
 # ChangeLog for net-misc/rdesktop
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.92 2007/07/22 08:15:37 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.93 2007/07/28 04:30:55 mjolnir Exp $
+
+*rdesktop-1.5.0-r3 (28 Jul 2007)
+
+  28 Jul 2007; Martin Jackson <mjolnir@gentoo.org>
+  +files/rdesktop-keymap-additional, +files/rdesktop-keymap-cs,
+  +files/rdesktop-keymap-sk, -rdesktop-1.4.1.ebuild, -rdesktop-1.5.0.ebuild,
+  -rdesktop-1.5.0-r1.ebuild, +rdesktop-1.5.0-r3.ebuild:
+  Fix #180313 and remove older ebuilds
 
   22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>;
   rdesktop-1.4.1.ebuild, rdesktop-1.5.0.ebuild:
