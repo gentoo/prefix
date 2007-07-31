@@ -2,6 +2,10 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Jul 2007; Fabian Groffen <grobian@gentoo.org>
+  darwin/macos/package.mask:
+  Mask boost-build and boost on OSX because it builds broken libraries
+
   12 Jul 2007; Fabian Groffen <grobian@gentoo.org> darwin/make.defaults:
   Block alsa stuff on Darwin
 

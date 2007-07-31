@@ -1,4 +1,11 @@
 
+# Fabian Groffen <grobian@gentoo.org> (31 Jul 2007)
+# Compiles, but generates dynamic libraries with the DESTDIR in the
+# install_names.  Probably needs some patching in boost-build or
+# something
+dev-libs/boost
+dev-util/boost-build
+
 # Fabian Groffen <grobian@gentoo.org> (11 Apr 2007)
 # Results in alignment problems for code that closely interacts with the
 # kernel, breaks compilation of several "heavy" packages.  Probably not
