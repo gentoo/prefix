@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-proto/glproto/glproto-1.4.8.ebuild,v 1.7 2006/12/01 18:14:36 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/glproto/glproto-1.4.8.ebuild,v 1.8 2007/07/30 08:16:11 dberkholz Exp $
 
 EAPI="prefix"
 
@@ -15,9 +15,8 @@ DESCRIPTION="X.Org GL protocol headers"
 
 KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
 
-RDEPEND=""
-DEPEND="${RDEPEND}
-	app-admin/eselect-opengl"
+RDEPEND="app-admin/eselect-opengl"
+DEPEND=""
 
 src_install() {
 	x-modular_src_install
