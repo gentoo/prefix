@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/flex-2.5.33-r1.ebuild,v 1.9 2007/02/28 22:23:35 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/flex-2.5.33-r3.ebuild,v 1.2 2007/07/30 10:11:43 vapier Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/flex/${P}.tar.bz2"
 
 LICENSE="FLEX"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="nls static"
 
 DEPEND="nls? ( sys-devel/gettext )"
@@ -26,6 +26,8 @@ src_unpack() {
 	[[ -n ${DEB_VER} ]] && epatch "${WORKDIR}"/${PN}_${PV}-${DEB_VER}.diff
 	epatch "${FILESDIR}"/${PN}-2.5.31-include.patch
 	epatch "${FILESDIR}"/${P}-isatty.patch #119598
+	epatch "${FILESDIR}"/${P}-pic.patch
+	epatch "${FILESDIR}"/${P}-setlocale.patch #186092
 }
 
 src_compile() {
@@ -35,7 +37,7 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${D}" || die "make install failed"
-	dodoc AUTHORS ChangeLog NEWS ONEWS README* RoadMap THANKS TODO
+	emake install DESTDIR="${D}" || die "make install failed"
+	dodoc AUTHORS ChangeLog NEWS ONEWS README* THANKS TODO
 	dosym flex /usr/bin/lex
 }
