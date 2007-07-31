@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.2.0.ebuild,v 1.8 2007/07/25 21:13:32 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.2.0.ebuild,v 1.9 2007/07/30 07:03:31 uberlord Exp $
 
 EAPI="prefix"
 
