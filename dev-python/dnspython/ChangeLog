@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/dnspython
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/dnspython/ChangeLog,v 1.37 2007/07/16 18:12:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/dnspython/ChangeLog,v 1.38 2007/07/30 00:51:21 tgall Exp $
+
+  29 Jul 2007; Tom Gall <tgall@gentoo.org> dnspython-1.5.0.ebuild:
+  stable on ppc64
 
   16 Jul 2007; Raúl Porcel <armin76@gentoo.org> dnspython-1.5.0.ebuild:
   alpha/x86 stable
