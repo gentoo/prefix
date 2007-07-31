@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/gnome-vfs-2.18.1.ebuild,v 1.2 2007/07/08 05:03:55 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/gnome-vfs-2.18.1.ebuild,v 1.3 2007/07/30 06:51:04 compnerd Exp $
 
 EAPI="prefix"
 
@@ -42,10 +42,10 @@ RDEPEND=">=gnome-base/gconf-2
 	avahi? ( >=net-dns/avahi-0.6 )"
 DEPEND="${RDEPEND}
 	sys-devel/gettext
-	>=dev-util/gtk-doc-1
 	gnome-base/gnome-common
 	>=dev-util/intltool-0.35
-	>=dev-util/pkgconfig-0.9"
+	>=dev-util/pkgconfig-0.9
+	doc? ( >=dev-util/gtk-doc-1 )"
 PDEPEND="hal? ( >=gnome-base/gnome-mount-0.4 )"
 
 DOCS="AUTHORS ChangeLog HACKING NEWS README TODO"
@@ -86,6 +86,8 @@ src_unpack() {
 
 	# Fix for crashes running programs via sudo
 	epatch "${FILESDIR}"/${PN}-2.16.0-no-dbus-crash.patch
+
+	use doc || epatch "${FILESDIR}/${PN}-2.18.1-drop-gtk-doc-check.patch"
 
 	eautoreconf
 	intltoolize --force
