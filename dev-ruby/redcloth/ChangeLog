@@ -1,0 +1,69 @@
+# ChangeLog for dev-ruby/redcloth
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/redcloth/ChangeLog,v 1.17 2007/05/17 18:37:13 rbrown Exp $
+
+  17 May 2007; Richard Brown <rbrown@gentoo.org> metadata.xml,
+  -redcloth-3.0.3.ebuild:
+  Remove old version. Update metadata: citizen428 has retired.
+
+  17 Mar 2007; Robin H. Johnson <robbat2@gentoo.org> redcloth-3.0.4.ebuild:
+  Add ~ppc.
+
+  14 Mar 2007; Tom Gall <tgall@gentoo.org> redcloth-3.0.4.ebuild:
+  added ~ppc64
+
+  04 Feb 2007; Hans de Graaff <graaff@gentoo.org> redcloth-3.0.4.ebuild:
+  Works fine on amd64, all tests pass.
+
+  05 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> redcloth-3.0.3.ebuild,
+  redcloth-3.0.4.ebuild:
+  Convert to use elog.
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org> redcloth-3.0.4.ebuild:
+  Mark 3.0.4 stable on ia64
+
+  27 Apr 2006; Marien Zwart <marienz@gentoo.org>
+  files/digest-redcloth-3.0.3, files/digest-redcloth-3.0.4, Manifest:
+  Fixing SHA256 digest, pass four
+
+  17 Apr 2006; Caleb Tennis <caleb@gentoo.org> redcloth-3.0.4.ebuild:
+  x86 stable
+
+  17 Apr 2006; Caleb Tennis <caleb@gentoo.org> -redcloth-3.0.2.ebuild:
+  remove old version
+
+  30 Mar 2006; Aron Griffis <agriffis@gentoo.org> redcloth-3.0.3.ebuild,
+  redcloth-3.0.4.ebuild:
+  Mark 3.0.4 3.0.3 ~ia64
+
+*redcloth-3.0.4 (15 Sep 2005)
+
+  15 Sep 2005; Michael Kohl <citizen428@gentoo.org> +redcloth-3.0.4.ebuild:
+  Version bump.
+
+  15 Sep 2005; Michael Kohl <citizen428@gentoo.org> redcloth-3.0.3.ebuild:
+  Marked stable on x86.
+
+  31 Mar 2005; Rob Cakebread <pythonhead@gentoo.org> redcloth-3.0.3.ebuild:
+  Reverted to using MY_P after fixing eclass to recognize MY_P. Closes bug# 87304
+
+*redcloth-3.0.3 (30 Mar 2005)
+
+  30 Mar 2005; Caleb Tennis <caleb@gentoo.org> +redcloth-3.0.3.ebuild:
+  version bump, use the gems eclass instead of the tarball
+
+  12 Mar 2005; Michael Kohl <citizen428@gentoo.org> -redcloth-3.0.1.ebuild,
+  redcloth-3.0.2.ebuild:
+  Marked stable on x86, removed older version.
+
+*redcloth-3.0.2 (03 Feb 2005)
+
+  03 Feb 2005; Michael Kohl <citizen428@gentoo.org> +redcloth-3.0.2.ebuild:
+  Version bump.
+
+*redcloth-3.0.1 (26 Jan 2005)
+
+  26 Jan 2005; Michael Kohl <citizen428@gentoo.org> +metadata.xml,
+  +redcloth-3.0.1.ebuild:
+  Initial import. Ebuild submitted by Leonardo Boshell in bug #71520
+
