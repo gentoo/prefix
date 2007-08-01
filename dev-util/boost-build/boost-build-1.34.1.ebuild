@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.34.1.ebuild,v 1.1 2007/07/29 10:32:34 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.34.1.ebuild,v 1.2 2007/07/31 09:42:07 grobian Exp $
 
 EAPI="prefix"
 
@@ -47,7 +47,7 @@ src_compile() {
 	cd jam/src
 	local toolset
 
-	if [ "${ARCH}" == "ppc-macos" ] ; then
+	if [[ ${CHOST} == *-darwin* ]] ; then
 		toolset=darwin
 	else
 		# Using boost's generic toolset here, which respects CC and CFLAGS
