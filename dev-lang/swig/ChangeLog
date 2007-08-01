@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/swig
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/ChangeLog,v 1.95 2007/07/14 09:31:28 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/ChangeLog,v 1.96 2007/07/31 12:58:47 hkbst Exp $
+
+  31 Jul 2007; Marijn Schouten <hkBst@gentoo.org> metadata.xml:
+  take over maintainership
 
   14 Jul 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Assigning dev-lang/swig to m-needed, as chriswhite has been retired (#56211).
