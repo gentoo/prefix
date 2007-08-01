@@ -222,6 +222,34 @@ src_install () {
 		dohtml *.{html,gif} ../boost.png
 		dodoc regress.log
 	fi
+
+	# boost's build system truely sucks for not having a destdir.  Because for
+	# this reason we are forced to build with a prefix that includes the
+	# DESTROOT, dynamic libraries on Darwin end messed up, referencing the
+	# DESTROOT instread of the actual EPREFIX.  There is no way out of here
+	# but to do it the dirty way of manually setting the right install_names.
+	# For AIX we might have to do the same trick, if we ever end up here on AIX
+	case ${CHOST} in
+		*-darwin*)
+			for d in ${ED}usr/lib/*.dylib ; do
+				if [[ -f ${d} ]] ; then
+					# fix the "self reference"
+					install_name_tool -id "/${d#${D}}" "${d}"
+					# fix references to other libs
+					refs=$(otool -L "${d}" | \
+						sed -e '1d' -e 's/^\t//' | \
+						grep bin.v2 | \
+						cut -f1 -d' ')
+					for r in ${refs} ; do
+						install_name_tool -change \
+							"${r}" \
+							"${EPREFIX}/usr/lib/$(basename "${r}")" \
+							"${d}"
+					done
+				fi
+			done
+		;;
+	esac
 }
 
 src_test() {
