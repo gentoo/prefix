@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.2.9.ebuild,v 1.1 2007/07/30 21:42:59 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.2.9.ebuild,v 1.2 2007/07/31 09:00:08 phreak Exp $
 
 EAPI="prefix"
 
