@@ -12,7 +12,7 @@ SRC_URI="http://www.fastcgi.com/dist/${P}.tar.gz"
 
 LICENSE="FastCGI"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos"
 IUSE="html"
 
 DEPEND=""
