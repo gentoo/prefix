@@ -1,6 +1,18 @@
 # ChangeLog for app-editors/vim-core
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/ChangeLog,v 1.262 2007/07/28 00:14:15 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/ChangeLog,v 1.266 2007/07/31 20:34:17 jer Exp $
+
+  31 Jul 2007; Jeroen Roovers <jer@gentoo.org> vim-core-7.1.042.ebuild:
+  Stable for HPPA (bug #185677).
+
+  31 Jul 2007; Ferris McCormick <fmccor@gentoo.org> vim-core-7.1.042.ebuild:
+  Sparc stable --- Security Bug #185677
+
+  31 Jul 2007; Markus Ullmann <jokey@gentoo.org> vim-core-7.1.042.ebuild:
+  Stable on x86 wrt security bug #185677
+
+  31 Jul 2007; Christoph Mende <angelos@gentoo.org> vim-core-7.1.042.ebuild:
+  Stable on amd64 wrt security bug #185677
 
 *vim-core-7.1.042 (27 Jul 2007)
 
