@@ -20,7 +20,7 @@
    pcrecpp.cc \
    pcre_scanner.cc \
    pcre_stringpiece.cc
-+libpcrecpp_la_CXXCLAGS = -fPIC -DPIC
++libpcrecpp_la_CXXFLAGS = -fPIC -DPIC
  libpcrecpp_la_LDFLAGS = $(EXTRA_LIBPCRECPP_LDFLAGS)
  libpcrecpp_la_LIBADD = libpcre.la
  
