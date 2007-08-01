@@ -1,0 +1,80 @@
+# ChangeLog for dev-ruby/ruby-fcgi
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-fcgi/ChangeLog,v 1.20 2007/03/15 10:07:58 tove Exp $
+
+  14 Mar 2007; Tom Gall <tgall@gentoo.org> ruby-fcgi-0.8.7.ebuild:
+  added ~ppc64
+
+*ruby-fcgi-0.8.7 (06 Mar 2007)
+
+  06 Mar 2007; Hans de Graaff <graaff@gentoo.org>
+  -files/ruby-fcgi-leak.patch, -files/ruby-fcgi-sigabrt.patch,
+  -ruby-fcgi-0.8.4.ebuild, -ruby-fcgi-0.8.5-r1.ebuild,
+  +ruby-fcgi-0.8.7.ebuild:
+  Version bump; remove old versions and patches.
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org> ruby-fcgi-0.8.6.ebuild:
+  Mark 0.8.6 stable on ia64. #138323
+
+  06 Jun 2006; Simon Stelling <blubb@gentoo.org> ruby-fcgi-0.8.6.ebuild:
+  stable on amd64
+
+  22 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> ruby-fcgi-0.8.6.ebuild:
+  Add ~x86-fbsd keyword.
+
+  30 Mar 2006; Aron Griffis <agriffis@gentoo.org> ruby-fcgi-0.8.6.ebuild:
+  Mark 0.8.6 ~ia64
+
+  15 Jan 2006; Michael Hanselmann <hansmi@gentoo.org>
+  ruby-fcgi-0.8.6.ebuild:
+  Stable on ppc.
+
+  10 Jan 2006; Ferris McCormick <fmccor@gentoo.org> ruby-fcgi-0.8.6.ebuild:
+  Stable on sparc (needed for rails).
+
+  02 Jan 2006; Caleb Tennis <caleb@gentoo.org> ruby-fcgi-0.8.6.ebuild:
+  x86 stable
+
+  13 Nov 2005; Jason Wever <weeve@gentoo.org> ruby-fcgi-0.8.5-r1.ebuild:
+  Stable on SPARC.
+
+  20 Oct 2005; Luca Barbato <lu_zero@gentoo.org> ruby-fcgi-0.8.5-r1.ebuild:
+  Marked ppc
+
+*ruby-fcgi-0.8.6 (05 Apr 2005)
+
+  05 Apr 2005; Rob Cakebread <pythonhead@gentoo.org>
+  +ruby-fcgi-0.8.6.ebuild:
+  Version bump.
+
+  01 Apr 2005; Caleb Tennis <caleb@gentoo.org> ruby-fcgi-0.8.5-r1.ebuild:
+  x86 stable
+
+  23 Mar 2005; Ferris McCormick <fmccor@gentoo.org> ruby-fcgi-0.8.5-r1.ebuild:
+  Add ~sparc keyword, Bug 86374.  Package builds and is available for testing.
+
+*ruby-fcgi-0.8.5-r1 (23 Mar 2005)
+
+  23 Mar 2005; Caleb Tennis <caleb@gentoo.org> +ruby-fcgi-0.8.5-r1.ebuild:
+  Bump for memory leak (Bug #86366)
+
+*ruby-fcgi-0.8.5 (01 Feb 2005)
+
+  01 Feb 2005; Mamoru KOMACHI <usata@gentoo.org>
+  +files/ruby-fcgi-sigabrt.patch, +ruby-fcgi-0.8.5.ebuild:
+  Version bumped with a fix to SIGABRT when the client breaks the connection
+  with the server. Thanks to Xavier Neys <neysx@gentoo.org>; bug #79557.
+
+  02 Sep 2004; David Holm <dholm@gentoo.org> ruby-fcgi-0.8.4.ebuild:
+  Added to ~ppc.
+
+*ruby-fcgi-0.8.4 (24 Aug 2004)
+
+  24 Aug 2004; Mamoru KOMACHI <usata@gentoo.org> +metadata.xml,
+  +ruby-fcgi-0.8.4.ebuild:
+  Initial import. Ebuild submitted by awk <glawk01@awks.org>,
+  closing bug #59042.
+
