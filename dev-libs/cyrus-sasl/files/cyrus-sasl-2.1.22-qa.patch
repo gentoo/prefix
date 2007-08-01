@@ -1,0 +1,22 @@
+diff -urNp cyrus-sasl-2.1.22.org/lib/auxprop.c cyrus-sasl-2.1.22/lib/auxprop.c
+--- cyrus-sasl-2.1.22.org/lib/auxprop.c	2006-03-14 16:23:55.000000000 +0200
++++ cyrus-sasl-2.1.22/lib/auxprop.c	2007-02-03 16:28:26.000000000 +0200
+@@ -43,6 +43,7 @@
+  */
+ 
+ #include <config.h>
++#include <stdio.h>
+ #include <sasl.h>
+ #include <prop.h>
+ #include <ctype.h>
+diff -urNp cyrus-sasl-2.1.22.org/pwcheck/pwcheck_getspnam.c cyrus-sasl-2.1.22/pwcheck/pwcheck_getspnam.c
+--- cyrus-sasl-2.1.22.org/pwcheck/pwcheck_getspnam.c	1999-08-26 19:22:44.000000000 +0300
++++ cyrus-sasl-2.1.22/pwcheck/pwcheck_getspnam.c	2007-02-03 16:29:34.000000000 +0200
+@@ -24,6 +24,7 @@ OF OR IN CONNECTION WITH THE USE OR PERF
+ ******************************************************************/
+ 
+ #include <shadow.h>
++#include <string.h>
+ 
+ extern char *crypt();
+ 
