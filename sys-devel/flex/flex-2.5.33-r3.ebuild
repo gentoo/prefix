@@ -28,6 +28,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-isatty.patch #119598
 	epatch "${FILESDIR}"/${P}-pic.patch
 	epatch "${FILESDIR}"/${P}-setlocale.patch #186092
+	touch doc/* # avoid documentation generation
 }
 
 src_compile() {
