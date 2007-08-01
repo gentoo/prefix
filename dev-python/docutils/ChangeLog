@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/docutils
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.71 2007/07/05 21:01:16 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.72 2007/07/31 13:07:35 dev-zero Exp $
+
+*docutils-0.4-r3 (31 Jul 2007)
+
+  31 Jul 2007; Tiziano Müller <dev-zero@gentoo.org>
+  +docutils-0.4-r3.ebuild:
+  Egg'ified docutils
 
   05 Jul 2007; Roy Marples <uberlord@gentoo.org> docutils-0.4-r2.ebuild:
   ~sparc-fbsd keyword should not have been dropped.
