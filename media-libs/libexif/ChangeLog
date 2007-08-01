@@ -1,6 +1,21 @@
 # ChangeLog for media-libs/libexif
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.85 2007/06/15 15:42:18 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.87 2007/07/31 17:35:45 eradicator Exp $
+
+  31 Jul 2007; Jeremy Huddleston <eradicator@gentoo.org>
+  -files/libexif-0.6.12-86740.patch, -files/libexif-0.6.12-gcc4.patch,
+  -files/libexif-0.6.12-recurse.patch,
+  -files/libexif-0.6.13-doxy-stamp-make.patch,
+  -files/libexif-0.6.13-doxygen.patch,
+  -files/libexif-0.6.13-library-versioning.patch,
+  -files/libexif-0.6.13-optional-apidocs.patch,
+  -files/libexif-0.6.13-parallel-build.patch, -libexif-0.6.12-r4.ebuild,
+  -libexif-0.6.13-r1.ebuild, -libexif-0.6.15.ebuild,
+  -libexif-0.6.15-r1.ebuild:
+  Removing older, insecure versions.
+
+  31 Jul 2007; Joshua Kinard <kumba@gentoo.org> libexif-0.6.16.ebuild:
+  Stable on mips, per #181922.
 
   15 Jun 2007; Christoph Mende <angelos@gentoo.org> libexif-0.6.16.ebuild:
   Stable on amd64 wrt security bug 181922
