@@ -1,0 +1,10 @@
+# ChangeLog for dev-ruby/ruby2ruby
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby2ruby/ChangeLog,v 1.1 2007/04/14 00:01:56 robbat2 Exp $
+
+*ruby2ruby-1.1.5 (14 Apr 2007)
+
+  14 Apr 2007; Robin H. Johnson <robbat2@gentoo.org> +metadata.xml,
+  +ruby2ruby-1.1.5.ebuild:
+  Initial commit. Ebuild by Robin H. Johnson <robbat2@gentoo.org>.
+
