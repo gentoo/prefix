@@ -30,7 +30,11 @@ src_compile() {
 
 src_install() {
 	perl-module_src_install
-	dosym /usr/bin/lwp-request /usr/bin/GET
-	dosym /usr/bin/lwp-request /usr/bin/POST
-	dosym /usr/bin/lwp-request /usr/bin/HEAD
+	if [[ ${CHOST} != *-darwin* ]] ; then
+		# most OSX users are on a case-INsensitive filesystem, so don't install
+		# these, as in particular HEAD will collide with head (coreutils)
+		dosym /usr/bin/lwp-request /usr/bin/GET
+		dosym /usr/bin/lwp-request /usr/bin/POST
+		dosym /usr/bin/lwp-request /usr/bin/HEAD
+	fi
 }
