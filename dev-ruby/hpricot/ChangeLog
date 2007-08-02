@@ -1,0 +1,16 @@
+# ChangeLog for dev-ruby/hpricot
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hpricot/ChangeLog,v 1.4 2007/04/13 21:20:16 robbat2 Exp $
+
+  13 Apr 2007; Robin H. Johnson <robbat2@gentoo.org> hpricot-0.5.ebuild:
+  Add ~ppc and ~amd64 so I use this at work.
+
+  13 Mar 2007; Tom Gall <tgall@gentoo.org> hpricot-0.5.ebuild:
+  added ~ppc64
+
+*hpricot-0.5 (04 Feb 2007)
+
+  04 Feb 2007; Nguyễn Thái Ngọc Duy <pclouds@gentoo.org> +metadata.xml,
+  +hpricot-0.5.ebuild:
+  Initial ebuild by Aggelos Orfanakos <agorf@void.gr>, #146373
+
