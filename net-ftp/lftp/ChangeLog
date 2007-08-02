@@ -1,6 +1,11 @@
 # ChangeLog for net-ftp/lftp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.135 2007/07/17 11:39:51 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.136 2007/08/01 21:44:23 dragonheart Exp $
+
+*lftp-3.5.12 (01 Aug 2007)
+
+  01 Aug 2007; Daniel Black <dragonheart@gentoo.org> +lftp-3.5.12.ebuild:
+  version bump thanks to Elias Pipping- bug #186787
 
   17 Jul 2007; Daniel Black <dragonheart@gentoo.org>
   -files/lftp-3.4.6-nossl.patch, -lftp-3.4.6.ebuild, lftp-3.5.11.ebuild:
