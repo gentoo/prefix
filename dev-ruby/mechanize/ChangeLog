@@ -1,0 +1,14 @@
+# ChangeLog for dev-ruby/mechanize
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/mechanize/ChangeLog,v 1.2 2007/04/14 20:57:47 robbat2 Exp $
+
+  14 Apr 2007; Robin H. Johnson <robbat2@gentoo.org> mechanize-0.6.7.ebuild:
+  Add a dep that wasn't described in the upstream documentation, but is needed
+  by the .gem
+
+*mechanize-0.6.7 (14 Apr 2007)
+
+  14 Apr 2007; Robin H. Johnson <robbat2@gentoo.org> +metadata.xml,
+  +mechanize-0.6.7.ebuild:
+  Initial commit. Ebuild by Robin H. Johnson <robbat2@gentoo.org>.
+
