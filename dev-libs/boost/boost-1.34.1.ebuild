@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.34.1.ebuild,v 1.2 2007/07/29 14:20:46 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.34.1.ebuild,v 1.3 2007/08/01 09:19:39 grobian Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ HOMEPAGE="http://www.boost.org/"
 SRC_URI="mirror://sourceforge/boost/${MY_P}.tar.bz2"
 LICENSE="freedist Boost-1.0"
 SLOT="0"
-IUSE="debug doc icu pyste tools userland_Darwin"
+IUSE="debug doc icu pyste tools"
 
 DEPEND="icu? ( >=dev-libs/icu-3.2 )
 		sys-libs/zlib
@@ -54,7 +54,7 @@ src_unpack() {
 	rm boost-build.jam
 
 	# This enables building the boost.random library with /dev/urandom support
-	if ! use userland_Darwin ; then
+	if [[ ${CHOST} != *-darwin* ]] ; then
 		mkdir -p libs/random/build
 		cp "${FILESDIR}/random-Jamfile" libs/random/build/Jamfile.v2
 	fi
@@ -90,7 +90,7 @@ generate_userconfig() {
 	distutils_python_version
 
 	local compiler compilerVersion compilerExecutable
-	if use userland_Darwin ; then
+	if [[ ${CHOST} == *-darwin* ]] ; then
 		compiler=darwin
 		compilerVersion=$(gcc-version)
 		compilerExecutable=$(tc-getCXX)
