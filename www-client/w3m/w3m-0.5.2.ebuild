@@ -76,6 +76,7 @@ src_compile() {
 		--with-editor="${EPREFIX}"/usr/bin/vi \
 		--with-mailer="${EPREFIX}"/bin/mail \
 		--with-browser="${EPREFIX}"/usr/bin/firefox \
+		--with-gc="${EPREFIX}"/usr \
 		--with-termlib=curses \
 		--enable-image=${imageval:-no} \
 		--with-imagelib="${imagelibval:-no}" \
