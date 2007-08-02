@@ -1,0 +1,44 @@
+# ChangeLog for virtual/perl-libnet
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-libnet/ChangeLog,v 1.10 2007/07/27 17:11:53 armin76 Exp $
+
+  27 Jul 2007; Raúl Porcel <armin76@gentoo.org> perl-libnet-1.21.ebuild:
+  alpha/ia64/x86 stable
+
+  12 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  perl-libnet-1.20.ebuild:
+  Stable on sparc
+
+  04 Jul 2007; Raúl Porcel <armin76@gentoo.org> perl-libnet-1.20.ebuild:
+  alpha/ia64/x86 stable
+
+*perl-libnet-1.21 (13 Jun 2007)
+
+  13 Jun 2007; Michael Cummings <mcummings@gentoo.org>
+  +perl-libnet-1.21.ebuild:
+  Version bump
+
+*perl-libnet-1.20 (05 Feb 2007)
+
+  05 Feb 2007; Michael Cummings <mcummings@gentoo.org>
+  +perl-libnet-1.20.ebuild:
+  Version bump
+
+  26 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  perl-libnet-1.19.ebuild:
+  updating deps
+
+  24 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  perl-libnet-1.19.ebuild:
+  Add ~x86-fbsd keyword.
+
+  13 Feb 2006; Michael Cummings <mcummings@gentoo.org>
+  perl-libnet-1.19.ebuild:
+  Updated RDEPS
+
+*perl-libnet-1.19 (07 Feb 2006)
+
+  07 Feb 2006; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +perl-libnet-1.19.ebuild:
+  New virtual for perl-core/libnet
+
