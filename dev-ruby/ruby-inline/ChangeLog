@@ -1,0 +1,14 @@
+# ChangeLog for dev-ruby/ruby-inline
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-inline/ChangeLog,v 1.2 2007/04/13 23:35:32 robbat2 Exp $
+
+  13 Apr 2007; Robin H. Johnson <robbat2@gentoo.org>
+  ruby-inline-3.6.2.ebuild:
+  Add ~ppc and ~amd64 for work.
+
+*ruby-inline-3.6.2 (04 Feb 2007)
+
+  04 Feb 2007; Nguyễn Thái Ngọc Duy <pclouds@gentoo.org> +metadata.xml,
+  +ruby-inline-3.6.2.ebuild:
+  Initial ebuild by Guillaume Benny <guillaume.benny@sympatico.ca>, #147065
+
