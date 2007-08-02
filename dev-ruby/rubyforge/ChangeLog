@@ -1,0 +1,47 @@
+# ChangeLog for dev-ruby/rubyforge
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/ChangeLog,v 1.10 2007/07/24 07:13:05 graaff Exp $
+
+*rubyforge-0.4.3 (24 Jul 2007)
+
+  24 Jul 2007; Hans de Graaff <graaff@gentoo.org> -rubyforge-0.3.1.ebuild,
+  -rubyforge-0.4.1.ebuild, +rubyforge-0.4.3.ebuild:
+  Version bump with very minor bug fixes; remove older versions
+
+*rubyforge-0.4.2 (04 Jun 2007)
+
+  04 Jun 2007; Hans de Graaff <graaff@gentoo.org> +rubyforge-0.4.2.ebuild:
+  Version bump:
+    * Fix for windoze users (spaces in path).
+    * Added check for extant release.
+    * Added default hash for first-time releases.
+
+  13 Apr 2007; Robin H. Johnson <robbat2@gentoo.org> rubyforge-0.4.1.ebuild:
+  Add ~ppc for work.
+
+*rubyforge-0.4.1 (14 Mar 2007)
+
+  14 Mar 2007; Hans de Graaff <graaff@gentoo.org> -rubyforge-0.3.0.ebuild,
+  +rubyforge-0.4.1.ebuild:
+  Version bump; remove old version.
+
+  12 Mar 2007; Tom Gall <tgall@gentoo.org> rubyforge-0.3.1.ebuild:
+  added ~ppc64
+
+  05 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> rubyforge-0.3.1.ebuild:
+  Add ~ia64 keyword.
+
+*rubyforge-0.3.1 (18 Dec 2006)
+
+  18 Dec 2006; Hans de Graaff <graaff@gentoo.org> +rubyforge-0.3.1.ebuild:
+  Version bump.
+
+  04 Dec 2006; Hans de Graaff <graaff@gentoo.org> rubyforge-0.3.0.ebuild:
+  Keyword for ~amd64.
+
+*rubyforge-0.3.0 (03 Dec 2006)
+
+  03 Dec 2006; Nguyễn Thái Ngọc Duy <pclouds@gentoo.org> +metadata.xml,
+  +rubyforge-0.3.0.ebuild:
+  Added rubyforge, part of #147065. Ebuild by Guillaume Benny <guillaume.benny@sympatico.ca>
+
