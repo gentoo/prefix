@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/opencdk
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/opencdk/ChangeLog,v 1.56 2007/07/12 10:12:49 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/opencdk/ChangeLog,v 1.57 2007/08/01 19:32:21 grobian Exp $
+
+  01 Aug 2007; Fabian Groffen <grobian@gentoo.org> opencdk-0.5.7.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   12 Jul 2007; Roy Marples <uberlord@gentoo.org> opencdk-0.5.7.ebuild:
   Keyworded ~sparc-fbsd.
