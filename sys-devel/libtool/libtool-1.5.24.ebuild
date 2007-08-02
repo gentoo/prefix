@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-1.5.24.ebuild,v 1.2 2007/06/25 15:14:04 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-1.5.24.ebuild,v 1.3 2007/08/01 12:15:45 vapier Exp $
 
 EAPI="prefix"
 
@@ -16,8 +16,8 @@ KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-s
 IUSE=""
 
 RDEPEND="sys-devel/gnuconfig
-	>=sys-devel/autoconf-2.59
-	>=sys-devel/automake-1.9"
+	>=sys-devel/autoconf-2.60
+	>=sys-devel/automake-1.10"
 DEPEND="${RDEPEND}
 	sys-apps/help2man"
 
