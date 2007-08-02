@@ -1,0 +1,496 @@
+# ChangeLog for net-libs/gnutls
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.119 2007/07/19 15:33:23 alonbl Exp $
+
+*gnutls-1.6.3 (19 Jul 2007)
+
+  19 Jul 2007; Alon Bar-Lev <alonbl@gentoo.org> +gnutls-1.6.3.ebuild:
+  Version bump, bug#185700
+
+  12 Jul 2007; Roy Marples <uberlord@gentoo.org> gnutls-1.6.2.ebuild:
+  Keyworded ~sparc-fbsd.
+
+*gnutls-1.6.2 (21 Apr 2007)
+
+  21 Apr 2007; Daniel Black <dragonheart@gentoo.org> -gnutls-1.6.0.ebuild,
+  +gnutls-1.6.2.ebuild:
+  version bump. remove older version
+
+  10 Jan 2007; Markus Ullmann <jokey@gentoo.org> gnutls-1.4.4-r1.ebuild:
+  Fix autotools deps, thanks to rangerpb for pointing that out
+
+*gnutls-1.6.1 (30 Dec 2006)
+
+  30 Dec 2006; Daniel Black <dragonheart@gentoo.org> +gnutls-1.6.1.ebuild:
+  version bump - upstream bug fixes
+
+*gnutls-1.6.0 (09 Dec 2006)
+*gnutls-1.4.5 (09 Dec 2006)
+
+  09 Dec 2006; Daniel Black <dragonheart@gentoo.org>
+  -files/gnutls-1.2.10-as-needed.patch, -files/gnutls-1.4.1-as-needed.patch,
+  -gnutls-1.2.10.ebuild, -gnutls-1.2.10-r1.ebuild, -gnutls-1.2.11.ebuild,
+  -gnutls-1.4.1.ebuild, gnutls-1.4.4-r1.ebuild, +gnutls-1.4.5.ebuild,
+  +gnutls-1.6.0.ebuild:
+  purge security vulnerable versions. Version bumps too
+
+  09 Nov 2006; Ilya A. Volynets-Evenbakh <iluxa@gentoo.org>
+  gnutls-1.4.4-r1.ebuild:
+  stabilize on mips (#140530)
+
+  25 Sep 2006; Jason Wever <weeve@gentoo.org> gnutls-1.4.4-r1.ebuild:
+  Stable on SPARC wrt security bug #147682.
+
+  23 Sep 2006; Daniel Black <dragonheart@gentoo.org> gnutls-1.4.4-r1.ebuild:
+  fix nls support as per bug #148778 thanks to Timo Kamph
+
+  22 Sep 2006; Bryan Østergaard <kloeri@gentoo.org> gnutls-1.4.4-r1.ebuild:
+  Stable on Alpha + ia64, bug 147682.
+
+  21 Sep 2006; <blubb@gentoo.org> gnutls-1.4.4-r1.ebuild:
+  stable on amd64
+
+  21 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  gnutls-1.4.4-r1.ebuild:
+  ppc, hppa stable, bug #147682
+
+  21 Sep 2006; Daniel Black <dragonheart@gentoo.org> gnutls-1.4.4-r1.ebuild:
+  added postinst message explaining the need for a rebuild
+
+  21 Sep 2006; Markus Rothe <corsair@gentoo.org> gnutls-1.4.4-r1.ebuild:
+  Stable on ppc64; bug #147682
+
+  20 Sep 2006; <ticho@gentoo.org> gnutls-1.4.4-r1.ebuild:
+  Stable on x86. Security bug #147682.
+
+*gnutls-1.4.4-r1 (19 Sep 2006)
+
+  19 Sep 2006; Daniel Black <dragonheart@gentoo.org>
+  files/gnutls-1.4.4-selflink.patch, -gnutls-1.4.4.ebuild,
+  +gnutls-1.4.4-r1.ebuild:
+  fixed selflink patch thanks to Alon Bar-Lev in bug #147800
+
+  17 Sep 2006; Daniel Black <dragonheart@gentoo.org> gnutls-1.4.4.ebuild:
+  Temporarily added sys-devel/autoconf-2.60 dependency as per bug #147970
+  until a better solution can be found
+
+  17 Sep 2006; Daniel Black <dragonheart@gentoo.org>
+  +files/gnutls-1.4.4-selflink.patch, gnutls-1.4.4.ebuild:
+  partial fix for selflinking - bug #147800 thanks Carsten Lohrke
+
+*gnutls-1.4.4 (16 Sep 2006)
+
+  16 Sep 2006; Daniel Black <dragonheart@gentoo.org> +gnutls-1.4.4.ebuild:
+  version bump for security bug #147682
+
+  10 Sep 2006; Javier Villavicencio <the_paya@gentoo.org>
+  gnutls-1.2.11.ebuild:
+  Add ~x86-fbsd keyword.
+
+  03 Aug 2006; Daniel Black <dragonheart@gentoo.org> gnutls-1.4.1.ebuild:
+  removed --without-included-libtasn1 as oddly enough it uses the included
+  libtasn1. Thanks to Peter Hyman for picking up the missing dependency
+
+*gnutls-1.4.1 (01 Aug 2006)
+*gnutls-1.2.11 (01 Aug 2006)
+
+  01 Aug 2006; Daniel Black <dragonheart@gentoo.org>
+  +files/gnutls-1.2.10-as-needed.patch, +files/gnutls-1.4.1-as-needed.patch,
+  gnutls-1.2.10-r1.ebuild, +gnutls-1.2.11.ebuild, +gnutls-1.4.1.ebuild:
+  fix for selftest with LDFLAGS="-Wl,--as-needed" as per bug #142353 thanks to
+  Brant Gurganus. Version bump to 1.4.1 as well
+
+  15 Jul 2006; Marcelo Goes <vanquirius@gentoo.org> -gnutls-1.2.3.ebuild,
+  -gnutls-1.2.4.ebuild, -gnutls-1.2.9.ebuild, -gnutls-1.2.9-r1.ebuild:
+  Remove ebuilds earlier than 1.2.10 for security cleanup bug 140530, reported
+  by Jakub Moc <jakub at gentoo dot org>.
+
+  09 Jul 2006; Joshua Kinard <kumba@gentoo.org> gnutls-1.2.10.ebuild:
+  Marked stable on mips.
+
+  27 Apr 2006; Alec Warner <antarus@gentoo.org> files/digest-gnutls-1.2.3,
+  files/digest-gnutls-1.2.4, files/digest-gnutls-1.2.9,
+  files/digest-gnutls-1.2.9-r1, Manifest:
+  Fixing SHA256 digest, pass four
+
+  23 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> gnutls-1.2.10.ebuild,
+  gnutls-1.2.10-r1.ebuild:
+  Run elibtoolize and add ~x86-fbsd keyword.
+
+  10 Mar 2006; Marcelo Goes <vanquirius@gentoo.org> gnutls-1.2.3.ebuild,
+  gnutls-1.2.4.ebuild:
+  Use --library=foo instead of --soname foo as a revdep-rebuild argument given
+  by einfo. This is for bug 125506, reported by Carsten Lohrke <carlo at
+  gentoo dot org>.
+
+  12 Feb 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  gnutls-1.2.10.ebuild:
+  ppc stable, bug #122307
+
+  11 Feb 2006; Markus Rothe <corsair@gentoo.org> gnutls-1.2.10.ebuild:
+  Stable on ppc64: bug #122307
+
+  11 Feb 2006; Joshua Jackson <tsunam@gentoo.org> gnutls-1.2.10.ebuild:
+  Stable on x86; bug #122307
+
+  10 Feb 2006; Aron Griffis <agriffis@gentoo.org> gnutls-1.2.10.ebuild:
+  Mark 1.2.10 stable on alpha/ia64 #122307
+
+  10 Feb 2006; Gustavo Zacarias <gustavoz@gentoo.org> gnutls-1.2.10.ebuild:
+  Stable on sparc wrt security #122307
+
+  10 Feb 2006; Simon Stelling <blubb@gentoo.org> gnutls-1.2.10.ebuild:
+  stable on amd64 wrt bug 122307
+
+  10 Feb 2006; Rene Nussbaumer <killerfox@gentoo.org> gnutls-1.2.10.ebuild:
+  Stable on hppa. See bug #122307.
+
+*gnutls-1.2.10-r1 (09 Feb 2006)
+*gnutls-1.2.10 (09 Feb 2006)
+
+  09 Feb 2006; Marcelo Goes <vanquirius@gentoo.org> +gnutls-1.2.10.ebuild,
+  +gnutls-1.2.10-r1.ebuild:
+  1.2.10 version bump for bug 122307.
+
+*gnutls-1.2.9-r1 (03 Jan 2006)
+
+  03 Jan 2006; Daniel Black <dragonheart@gentoo.org>
+  -files/gnutls-1.0.17-extra.h.patch, -files/gnutls-1.2.3-gcc4.patch,
+  -gnutls-1.0.17.ebuild, -gnutls-1.0.25.ebuild, gnutls-1.2.3.ebuild,
+  -gnutls-1.2.3-r1.ebuild, gnutls-1.2.4.ebuild, -gnutls-1.2.6.ebuild,
+  gnutls-1.2.9.ebuild, +gnutls-1.2.9-r1.ebuild:
+  major pruning cause it needed it. Made gnutls-1.2[349] depend on =lzo-1* and
+  gnutls-1.2.9-r1 depend on >=lzo-2 (bug #112357). gnutls-1.2.9-r1 currently
+  masked due to TEXTRELs
+
+  27 Nov 2005; Marcelo Goes <vanquirius@gentoo.org> gnutls-1.0.17.ebuild,
+  gnutls-1.0.25.ebuild, gnutls-1.2.3.ebuild, gnutls-1.2.3-r1.ebuild,
+  gnutls-1.2.4.ebuild, gnutls-1.2.6.ebuild, gnutls-1.2.9.ebuild:
+  Do not install COPYING or COPYING.LIB. Fixes bug 113678. Thanks to Ryan Hill
+  <dirtyepic dot sk at gmail dot com>.
+
+  11 Nov 2005; Daniel Black <dragonheart@gentoo.org> gnutls-1.2.6.ebuild,
+  gnutls-1.2.9.ebuild:
+  really only need lzo-1 dependancy - bug #112139
+
+*gnutls-1.2.9 (10 Nov 2005)
+
+  10 Nov 2005; Marcelo Goes <vanquirius@gentoo.org> -gnutls-1.2.5.ebuild,
+  +gnutls-1.2.9.ebuild:
+  1.2.9 version bump for bug 111928. Depends on libgcrypt-1.2.2 instead of
+  1.2.0. Thanks to Kai <altkai at ml1 dot net>.
+
+  15 Sep 2005; Aron Griffis <agriffis@gentoo.org> gnutls-1.2.4.ebuild:
+  Mark 1.2.4 stable on alpha
+
+  05 Sep 2005; Markus Rothe <corsair@gentoo.org> gnutls-1.2.4.ebuild:
+  Stable on ppc64
+
+  24 Aug 2005; Aron Griffis <agriffis@gentoo.org> gnutls-1.2.4.ebuild:
+  stable on ia64
+
+*gnutls-1.2.6 (17 Jul 2005)
+
+  17 Jul 2005; Daniel Black <dragonheart@gentoo.org> +gnutls-1.2.6.ebuild:
+  version bump - gtk-doc fixed
+
+*gnutls-1.2.5 (17 Jul 2005)
+
+  17 Jul 2005; Daniel Black <dragonheart@gentoo.org> +gnutls-1.2.5.ebuild:
+  version bump - still masked due to lzo-2 dependancy
+
+  10 Jul 2005; Lina Pezzella <j4rg0n@gentoo.org> gnutls-1.2.4.ebuild:
+  Testing ppc-macos. Bug #98390. Submitted on behalf of Fabian Groffen.
+
+  05 Jul 2005; Rene Nussbaumer <killerfox@gentoo.org> gnutls-1.2.3.ebuild:
+  Stable on hppa.
+
+  03 Jul 2005; Hardave Riar <hardave@gentoo.org> gnutls-1.0.25.ebuild,
+  gnutls-1.2.3.ebuild:
+  Stable on mips, bug #90726.
+
+  21 Jun 2005; Daniel Black <dragonheart@gentoo.org> gnutls-1.0.25.ebuild,
+  gnutls-1.2.3.ebuild, gnutls-1.2.3-r1.ebuild, gnutls-1.2.4.ebuild:
+  added dropped keywords
+
+  06 Jun 2005; Danny van Dyk <kugelfang@gentoo.org> gnutls-1.2.4.ebuild:
+  Marked ~s390, BUG #93960.
+
+  04 Jun 2005; Jan Brinkmann <luckyduck@gentoo.org> gnutls-1.2.4.ebuild:
+  stable on amd64 wrt #94913
+
+*gnutls-1.2.4 (03 Jun 2005)
+
+  03 Jun 2005; Daniel Black <dragonheart@gentoo.org> +gnutls-1.2.4.ebuild:
+  Version bump - thanks tigger
+
+*gnutls-1.2.3-r1 (04 May 2005)
+
+  04 May 2005; Martin Schlemmer <azarah@gentoo.org>
+  +files/gnutls-1.2.3-gcc4.patch, +gnutls-1.2.3-r1.ebuild:
+  Fix building with gcc4.
+
+*gnutls-1.0.17 (01 May 2005)
+
+  01 May 2005; Daniel Black <dragonheart@gentoo.org>
+  +files/gnutls-1.0.17-extra.h.patch, +gnutls-1.0.17.ebuild:
+  re-added files so arm and mips still work
+
+  01 May 2005; Daniel Black <dragonheart@gentoo.org>
+  -files/gnutls-1.0.14-extra.h.patch, -files/gnutls-1.1.23-extra.h.patch,
+  -gnutls-1.0.17.ebuild, -gnutls-1.0.23.ebuild, -gnutls-1.2.0.ebuild,
+  -gnutls-1.2.1.ebuild:
+  prune potentially vulnerable versions
+
+  01 May 2005; Daniel Black <dragonheart@gentoo.org> gnutls-1.2.3.ebuild:
+  Removed crypt flag due to bug #90976. Thanks to Alex Murray
+  <murray.alex@gREMOVETHISmail.com>
+
+  30 Apr 2005; Bryan Østergaard <kloeri@gentoo.org> gnutls-1.2.3.ebuild:
+  alpha + ~ia64 keywords.
+
+  29 Apr 2005; Gustavo Zacarias <gustavoz@gentoo.org> gnutls-1.0.25.ebuild,
+  gnutls-1.2.3.ebuild:
+  Stable on sparc wrt #90726
+
+  29 Apr 2005; Michael Hanselmann <hansmi@gentoo.org> gnutls-1.0.25.ebuild:
+  Stable on hppa.
+
+  29 Apr 2005; Jan Brinkmann <luckyduck@gentoo.org> gnutls-1.0.25.ebuild,
+  gnutls-1.2.3.ebuild:
+  stable on amd64 wrt security bug #90726
+
+  29 Apr 2005; Markus Rothe <corsair@gentoo.org> gnutls-1.2.3.ebuild:
+  Stable on ppc64
+
+  29 Apr 2005; Daniel Black <dragonheart@gentoo.org> gnutls-1.0.25.ebuild,
+  gnutls-1.2.3.ebuild:
+  ppc stable. Fixed bug #90841 (bad quotes by Rork <rork@free.fr>).
+
+  29 Apr 2005; Markus Rothe <corsair@gentoo.org> gnutls-1.0.25.ebuild:
+  Stable on ppc64; bug #90726
+
+  28 Apr 2005; Marcelo Goes <vanquirius@gentoo.org> :
+  Took gnutls-1.2.1 out of package.mask, pointless to mask it now.
+
+*gnutls-1.2.3 (28 Apr 2005)
+*gnutls-1.0.25 (28 Apr 2005)
+
+  28 Apr 2005; Daniel Black <dragonheart@gentoo.org> +gnutls-1.0.25.ebuild,
+  +gnutls-1.2.3.ebuild:
+  Version bumps for security bug #90726
+
+*gnutls-1.2.1 (18 Apr 2005)
+
+  18 Apr 2005; Marcelo Goes <vanquirius@gentoo.org> +gnutls-1.2.1.ebuild:
+  Version bump to 1.2.1. Dropped patch since it seems to have been integrated in
+  upstream. I added it to package.mask for testing, but anyone who feels it
+  works OK can take it out. Fixes bug 89588. Thanks to Erinn Looney-Triggs
+  <erinn.looneytriggs@gmail.com> for reporting.
+
+  01 Apr 2005; Aron Griffis <agriffis@gentoo.org> gnutls-1.0.23.ebuild:
+  stable on ia64
+
+  05 Mar 2005; Markus Rothe <corsair@gentoo.org> gnutls-1.0.23.ebuild:
+  Stable on ppc64
+
+  20 Feb 2005; Aron Griffis <agriffis@gentoo.org> gnutls-1.0.23.ebuild:
+  add ~ia64
+
+  06 Feb 2005; Daniel Black <dragonheart@gentoo.org> gnutls-1.2.0.ebuild:
+  Fixed bad parsing in gtk-doc as per bug #80906. Thanks to Ivan Yosifov 
+  <ivan@yosifov.net> and others for reporting it.
+
+  05 Feb 2005; Daniel Black <dragonheart@gentoo.org> -gnutls-1.1.23-r1.ebuild,
+  -gnutls-1.1.23.ebuild:
+  Removed due to working 1.2.0. Fixes bug #79327.
+
+*gnutls-1.2.0 (05 Feb 2005)
+
+  05 Feb 2005; Daniel Black <dragonheart@gentoo.org> +gnutls-1.2.0.ebuild:
+  version bump as per bug #80809. Thanks to Erinn Looney-Triggs
+  <erinn.looneytriggs@gmail.com>
+
+*gnutls-1.1.23-r1 (24 Jan 2005)
+
+  24 Jan 2005; Christian Parpart <trapni@gentoo.org>
+  +files/gnutls-1.1.23-extra.h.patch, +gnutls-1.1.23-r1.ebuild:
+  added C++ header stubs into extra.h
+
+  24 Jan 2005; Daniel Black <dragonheart@gentoo.org> gnutls-1.0.23.ebuild,
+  gnutls-1.1.23.ebuild:
+  Fixed dependacy on dev-libs/libgcrypt >= 1.2.0 as per bug #79232. Fixed
+  version notices for rebuild. Thanks to Alex Tomkins <tomkins-gb@darkzone.net>
+  for the bug report
+
+*gnutls-1.1.23 (22 Jan 2005)
+
+  22 Jan 2005; Tom Martin <slarti@gentoo.org> +gnutls-1.1.23.ebuild:
+  Version bump.
+
+  15 Jan 2005; Daniel Black <dragonheart@gentoo.org> gnutls-1.0.17.ebuild,
+  gnutls-1.0.23.ebuild:
+  Notices placed about version API change requireing revdep-rebuild as per bug
+  #62283
+
+  07 Jan 2005; Markus Rothe <corsair@gentoo.org> gnutls-1.0.23.ebuild:
+  Added ~ppc64 to KEYWORDS
+
+  07 Jan 2005; Daniel Black <dragonheart@gentoo.org>
+  +files/gnutls-1.0.14-extra.h.patch:
+  Over zelously pruned patch. Bug #76890 refers. Thanks to Alex Tomkins
+  <tomkins-gb@darkzone.net> and Dargo (on irc)
+
+  06 Jan 2005; Daniel Black <dragonheart@gentoo.org> gnutls-1.0.17.ebuild,
+  gnutls-1.0.23.ebuild:
+  added dev-libs/libgpg-error to depandencies as per mail by Bussolaro
+  Jean-pierre <jean-pierre.bussolaro@ycom.ch>
+
+*gnutls-1.0.23 (06 Jan 2005)
+
+  06 Jan 2005; Daniel Black <dragonheart@gentoo.org> metadata.xml,
+  -files/gnutls-1.0.14-extra.h.patch, -gnutls-0.8.10.ebuild,
+  -gnutls-0.8.12.ebuild, -gnutls-1.0.14.ebuild, +gnutls-1.0.23.ebuild
+  -gnutls-1.0.4.ebuild:
+  Version bump as per bug #61944. Reported by Daniel Webert
+  <rockoo@rockoo.homelinux.org>. Ebuild by me. Old version cleanout
+  too.
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  23 Dec 2004; Daniel Drake <dsd@gentoo.org> gnutls-1.0.17.ebuild:
+  Fix compilation with included minilzo, bug 64622
+
+  26 Sep 2004; Tom Gall <tgall@gentoo.org> gnutls-1.0.17.ebuild:
+  stable on ppc64, bug #59231
+
+  14 Aug 2004; Hardave Riar <hardave@gentoo.org> gnutls-1.0.17.ebuild:
+  Added gnuconfig_update for mips64 support
+
+  14 Aug 2004; Hardave Riar <hardave@gentoo.org> gnutls-1.0.17.ebuild:
+  Stable on mips, bug 59231.
+
+  09 Aug 2004; Guy Martin <gmsoft@gentoo.org> gnutls-1.0.17.ebuild:
+  Stable on hppa.
+
+  07 Aug 2004; <agriffis@gentoo.org> gnutls-1.0.17.ebuild:
+  stable on ia64, security update #59231
+
+  07 Aug 2004; Luca Barbato <lu_zero@gentoo.org> gnutls-1.0.17.ebuild:
+  Stable on ppc
+
+  07 Aug 2004; Luca Barbato <lu_zero@gentoo.org> gnutls-1.0.17.ebuild:
+  Stable on ppc
+
+  07 Aug 2004; Tom Martin <slarti@gentoo.org> gnutls-1.0.17.ebuild:
+  Stable on amd64, bug 59231.
+
+  07 Aug 2004; Bryan Østergaard <kloeri@gentoo.org> gnutls-1.0.17.ebuild:
+  Stable on alpha, bug 59231.
+
+  06 Aug 2004; Gustavo Zacarias <gustavoz@gentoo.org> gnutls-1.0.17.ebuild:
+  Stable on sparc wrt #59231
+
+  04 Aug 2004; Alastair Tse <liquidx@gentoo.org>
+  files/gnutls-1.0.14-extra.h.patch:
+  fixed extra.h patch
+
+  04 Aug 2004; Alastair Tse <liquidx@gentoo.org> gnutls-1.0.17.ebuild:
+  fixed opencdk dep. people should fix the deps rather than leave comments in
+  the ebuild :)
+
+*gnutls-1.0.17 (04 Aug 2004)
+
+  04 Aug 2004; Alastair Tse <liquidx@gentoo.org> +gnutls-1.0.17.ebuild:
+  version bump. security problems with x509 certificate validation (#59231)
+
+  29 Jul 2004; Stephen P. Becker <geoman@gentoo.org> gnutls-1.0.4.ebuild:
+  Stable on mips.
+
+  24 Jul 2004; Alastair Tse <liquidx@gentoo.org>
+  +files/gnutls-1.0.14-extra.h.patch, gnutls-1.0.14.ebuild:
+  add extern C headers to extra.h (#51206)
+
+  01 Jul 2004; Tom Gall <gentoo.org> gnutls-1.0.14.ebuild:
+  stable on ppc64, bug #54804
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org> gnutls-1.0.14.ebuild:
+  virtual/glibc -> virtual/libc
+
+*gnutls-1.0.14 (16 Jun 2004)
+
+  16 Jun 2004; Daniel Black <dragonheart@gentoo.org> +gnutls-1.0.14.ebuild:
+  version bump
+
+  16 Jun 2004; Daniel Black <dragonheart@gentoo.org> gnutls-0.8.12.ebuild,
+  gnutls-1.0.4.ebuild:
+  marked x86 stable to solve bug #53775. Thanks to Susie Edgeworth
+  <arienadean@yahoo.com>.
+
+  10 Jun 2004; Aron Griffis <agriffis@gentoo.org> gnutls-0.8.10.ebuild,
+  gnutls-0.8.12.ebuild, gnutls-1.0.4.ebuild:
+  Fix use invocation
+
+  17 May 2004; Bryan Østergaard <kloeri@gentoo.org> gnutls-1.0.4.ebuild:
+  Add ~alpha.
+
+  02 May 2004; Stephen P. Becker <geoman@gentoo.org> gnutls-1.0.4.ebuild:
+  Added ~mips keyword.
+
+  09 Apr 2004; David Holm <dholm@gentoo.org> gnutls-1.0.4.ebuild:
+  Added to ~ppc.
+
+  29 Feb 2004; Jason Wever <weeve@gentoo.org> gnutls-1.0.4.ebuild:
+  Riders on the ~sparc.
+
+*gnutls-1.0.4 (04 Feb 2004)
+
+  04 Feb 2004; Alastair Tse <liquidx@gentoo.org> gnutls-1.0.4.ebuild:
+  version bump. removed keyword because of major version upgrade. archs should
+  look at marking this ~. added symlink hack to get around breaking apps because
+  of major lib number change, however, the code is still binary compatible.
+
+  04 Jan 2004; Daniel Ahlberg <aliz@gentoo.org> gnutls-0.8.10.ebuild,
+  gnutls-0.8.12.ebuild:
+  Update SRC_URI.
+
+  26 Dec 2003; Jason Wever <weeve@gentoo.org> gnutls-0.8.10.ebuild:
+  Marked stable on sparc.
+
+  16 Dec 2003; Guy Martin <gmsoft@gentoo.org> gnutls-0.8.10.ebuild:
+  Marked stable on hppa.
+
+  14 Dec 2003; Lars Weiler <pylon@gentoo.org> gnutls-0.8.12.ebuild:
+  Make stable on ppc
+
+  13 Dec 2003; Brad House <brad_mssw@gentoo.org> gnutls-0.8.12.ebuild:
+  mark stable on amd64
+
+  10 Dec 2003; <agriffis@gentoo.org> gnutls-0.8.12.ebuild:
+  stable on ia64
+
+*gnutls-0.8.12 (23 Nov 2003)
+
+  23 Nov 2003; Alastair Tse <liquidx@gentoo.org> gnutls-0.8.12.ebuild:
+  fixed opencdk linking due to faulty configure flags. new version now depends
+  on opencdk-0.5.1 (#33930)
+
+  21 Nov 2003; Jason Wever <weeve@gentoo.org> gnutls-0.8.10.ebuild:
+  Added ~sparc keyword.
+
+  20 Oct 2003; Aron Griffis <agriffis@gentoo.org> gnutls-0.8.10.ebuild:
+  Stable on alpha
+
+  13 Oct 2003; Alastair Tse <liquidx@gentoo.org> gnutls-0.8.10.ebuild:
+  stable bump for x86
+
+  06 Sep 2003; Alastair Tse <liquidx@gentoo.org> gnutls-0.8.10.ebuild:
+  put opencdk dep behind crypt USE flag and removed optional lzo support. also
+  changed build to use included libtasn1 instead of dev-libs/libtasn1
+
+*gnutls-0.8.10 (02 Sep 2003)
+
+  02 Sep 2003; Alastair Tse <liquidx@gentoo.org> gnutls-0.8.10.ebuild:
+  initial ebuild. thanks to Marshall T. Vandegrift <vandem2@rpi.edu> (#19339)
+
