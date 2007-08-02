@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.18-r1.ebuild,v 1.1 2007/07/07 12:26:40 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.18-r1.ebuild,v 1.2 2007/08/01 11:46:06 armin76 Exp $
 
 EAPI="prefix"
 
