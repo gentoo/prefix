@@ -10,4 +10,4 @@ inherit aspell-dict
 
 LICENSE="freedist"
 
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 x86-macos"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos"
