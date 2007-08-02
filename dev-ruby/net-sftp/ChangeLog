@@ -1,0 +1,61 @@
+# ChangeLog for dev-ruby/net-sftp
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/net-sftp/ChangeLog,v 1.18 2007/05/10 19:47:45 cardoe Exp $
+
+  10 May 2007; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
+  Fix metadata
+
+  16 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
+  net-sftp-1.1.0.ebuild:
+  stable amd64, bug 173040
+
+  08 Apr 2007; Markus Rothe <corsair@gentoo.org> net-sftp-1.1.0.ebuild:
+  Stable on ppc64; bug #173040
+
+  04 Mar 2007; Tom Gall <tgall@gentoo.org> net-sftp-1.1.0.ebuild:
+  added ~ppc64
+
+  11 Nov 2006; Piotr Jaroszyński <peper@gentoo.org> net-sftp-1.1.0.ebuild:
+  Add ~amd64 wrt bug #154706.
+
+  20 Oct 2006; Aron Griffis <agriffis@gentoo.org> net-sftp-1.1.0.ebuild:
+  Mark 1.1.0 stable on ia64
+
+  30 Mar 2006; Aron Griffis <agriffis@gentoo.org> net-sftp-1.1.0.ebuild:
+  Mark 1.1.0 ~ia64
+
+  09 Mar 2006; Caleb Tennis <caleb@gentoo.org> -net-sftp-1.0.0.ebuild,
+  -net-sftp-1.0.1.ebuild:
+  remove old versions
+
+  27 Jan 2006; Michael Hanselmann <hansmi@gentoo.org> net-sftp-1.1.0.ebuild:
+  Stable on ppc.
+
+  25 Jan 2006; Caleb Tennis <caleb@gentoo.org> net-sftp-1.1.0.ebuild:
+  x86 stable
+
+  10 Jan 2006; Michael Kohl <citizen428@gentoo.org> net-sftp-1.1.0.ebuild:
+  Version bump.
+
+*net-sftp-1.1.0 (10 Jan 2006)
+
+  10 Jan 2006; Caleb Tennis <caleb@gentoo.org> +net-sftp-1.1.0.ebuild:
+  Version bump
+
+*net-sftp-1.0.1 (06 Dec 2005)
+
+  06 Dec 2005; Michael Kohl <citizen428@gentoo.org> +net-sftp-1.0.1.ebuild:
+  Version bump and switched to gem.
+
+  19 Nov 2005; Joseph Jezak <josejx@gentoo.org> net-sftp-1.0.0.ebuild:
+  Marked ppc stable for bug #108487.
+
+  11 Oct 2005; Andrej Kacian <ticho@gentoo.org> net-sftp-1.0.0.ebuild:
+  Stable on x86, bug #108487.
+
+  11 Aug 2005; David Holm <dholm@gentoo.org> net-sftp-1.0.0.ebuild:
+  Added to ~ppc.
+
+  10 Aug 2005; Michael Kohl <citizen428@gentoo.org> +metadata.xml:
+  Initial import as requested in bug #101243.
+
