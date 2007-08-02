@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.2-r1.ebuild,v 1.3 2007/07/20 14:28:08 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.2-r2.ebuild,v 1.1 2007/08/01 04:37:59 alonbl Exp $
 
 EAPI="prefix"
 
@@ -122,9 +122,6 @@ src_install() {
 	# config files
 	insinto /etc/john
 	doins run/john.conf
-
-	# share
-	insinto /usr/share/john/
 	doins run/*.chr run/password.lst
 
 	# documentation
