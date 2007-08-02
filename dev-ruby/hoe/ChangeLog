@@ -1,0 +1,50 @@
+# ChangeLog for dev-ruby/hoe
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/ChangeLog,v 1.11 2007/07/24 07:21:44 graaff Exp $
+
+*hoe-1.2.2 (24 Jul 2007)
+
+  24 Jul 2007; Hans de Graaff <graaff@gentoo.org> -hoe-1.1.6.ebuild,
+  -hoe-1.2.0.ebuild, +hoe-1.2.2.ebuild:
+  Version bump with minor bug fixes
+
+*hoe-1.2.1 (04 Jun 2007)
+
+  04 Jun 2007; Hans de Graaff <graaff@gentoo.org> +hoe-1.2.1.ebuild:
+  Version bump: 8 minor enhancements and 1 bug fix.
+
+  13 Apr 2007; Robin H. Johnson <robbat2@gentoo.org> hoe-1.2.0.ebuild:
+  Add ~ppc for work.
+
+*hoe-1.2.0 (14 Mar 2007)
+
+  14 Mar 2007; Hans de Graaff <graaff@gentoo.org> -hoe-1.1.1.ebuild,
+  -hoe-1.1.3.ebuild, +hoe-1.2.0.ebuild:
+  Version bump; remove old versions.
+
+  12 Mar 2007; Tom Gall <tgall@gentoo.org> hoe-1.1.6.ebuild:
+  added ~ppc64
+
+*hoe-1.1.6 (06 Jan 2007)
+
+  06 Jan 2007; Hans de Graaff <graaff@gentoo.org> +hoe-1.1.6.ebuild:
+  Version bump.
+
+  05 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> hoe-1.1.3.ebuild:
+  Add ~ia64 keyword.
+
+*hoe-1.1.3 (18 Dec 2006)
+
+  18 Dec 2006; Hans de Graaff <graaff@gentoo.org> +hoe-1.1.3.ebuild:
+  Version bump.
+
+  04 Dec 2006; Hans de Graaff <graaff@gentoo.org> hoe-1.1.1.ebuild:
+  Keyword for ~amd64.
+
+*hoe-1.1.1 (03 Dec 2006)
+
+  03 Dec 2006; Nguyễn Thái Ngọc Duy <pclouds@gentoo.org> +metadata.xml,
+  +hoe-1.1.1.ebuild:
+  Added hoe, part of #147065. Ebuild by Guillaume Benny
+  <guillaume.benny@sympatico.ca>
+
