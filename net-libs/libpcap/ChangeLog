@@ -1,6 +1,14 @@
 # ChangeLog for net-libs/libpcap
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.77 2007/07/24 14:36:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.79 2007/08/02 11:16:32 falco Exp $
+
+*libpcap-0.9.7 (02 Aug 2007)
+
+  02 Aug 2007; Raphael Marichez <falco@gentoo.org> +libpcap-0.9.7.ebuild:
+  Version bump
+
+  02 Aug 2007; Christian Birchinger <joker@gentoo.org> libpcap-0.9.6.ebuild:
+  Added sparc stable keyword
 
   24 Jul 2007; Raúl Porcel <armin76@gentoo.org> libpcap-0.9.6.ebuild:
   alpha/ia64/x86 stable
