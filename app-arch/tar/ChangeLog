@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/tar
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.104 2007/08/01 11:46:06 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.105 2007/08/02 04:53:42 joker Exp $
+
+  02 Aug 2007; Christian Birchinger <joker@gentoo.org> tar-1.18-r1.ebuild:
+  Added sparc stable keyword
 
   01 Aug 2007; Raúl Porcel <armin76@gentoo.org> tar-1.18-r1.ebuild:
   alpha/ia64/x86 stable
