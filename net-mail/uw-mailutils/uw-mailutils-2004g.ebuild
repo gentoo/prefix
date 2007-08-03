@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/uw-mailutils-2004g.ebuild,v 1.12 2007/04/21 13:18:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/uw-mailutils-2004g.ebuild,v 1.13 2007/08/02 17:34:12 uberlord Exp $
 
 EAPI="prefix"
 
@@ -38,11 +38,13 @@ src_unpack() {
 }
 
 src_compile() {
-	if use userland_Darwin ; then
+	if [[ ${CHOST} == *-darwin* ]] ; then
 		yes | make osx EXTRACFLAGS="${CFLAGS}" \
 		    SPECIALS="SSLDIR=${EPREFIX}/etc/ssl SSLINCLUDE=${EPREFIX}/usr/include/openssl SSLLIB=${EPREFIX}/usr/lib" SSLTYPE=none || die
 	else
-		yes | make slx EXTRACFLAGS="${CFLAGS}" SSLTYPE=none || die
+		local port=slx
+		use elibc_FreeBSD && port=bsf
+		yes | make "${port}" EXTRACFLAGS="${CFLAGS}" SSLTYPE=none || die
 	fi
 }
 
