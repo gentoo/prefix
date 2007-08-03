@@ -1,6 +1,10 @@
 # ChangeLog for media-sound/jack-audio-connection-kit
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/ChangeLog,v 1.92 2007/07/30 13:55:07 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/ChangeLog,v 1.93 2007/08/02 21:07:59 opfer Exp $
+
+  02 Aug 2007; Christian Faulhammer <opfer@gentoo.org>
+  jack-audio-connection-kit-0.103.0.ebuild:
+  stable x86, bug 186928
 
   30 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org>
   jack-audio-connection-kit-0.103.0.ebuild:
