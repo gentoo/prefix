@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.174 2007/07/31 20:49:30 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.175 2007/08/02 06:00:22 joker Exp $
+
+  02 Aug 2007; Christian Birchinger <joker@gentoo.org> eix-0.9.9.ebuild:
+  Added sparc stable keyword
 
 *eix-0.9.10 (31 Jul 2007)
 
