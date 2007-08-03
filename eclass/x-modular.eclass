@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.84 2007/07/02 14:24:27 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.85 2007/08/02 01:21:56 dberkholz Exp $
 #
 # Author: Donnie Berkholz <dberkholz@gentoo.org>
 #
@@ -319,7 +319,7 @@ x-modular_src_configure() {
 	x-modular_debug_setup
 
 	# If prefix isn't set here, .pc files cause problems
-	if [[ -x ./configure ]]; then
+	if [[ -x ${ECONF_SOURCE:-.}/configure ]]; then
 		econf --prefix=${XDIR} \
 			--datadir=${XDIR}/share \
 			${FONT_OPTIONS} \
