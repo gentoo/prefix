@@ -8,8 +8,5 @@
 ELIBC="IRIX"
 KERNEL="IRIX"
 
-# This one should eventually go
-USERLAND="IRIX"
-
 # Sandbox is not ported to IRIX (yet?), no scanelf
 FEATURES="-sandbox nostrip"

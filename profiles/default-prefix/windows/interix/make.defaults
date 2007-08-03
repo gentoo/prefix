@@ -8,8 +8,5 @@
 ELIBC="Interix"
 KERNEL="Interix"
 
-# This one should eventually go
-USERLAND="Interix"
-
 # Sandbox is not ported to Interix yet, no scanelf
 FEATURES="-sandbox nostrip"

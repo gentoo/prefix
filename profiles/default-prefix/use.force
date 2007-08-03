@@ -2,7 +2,9 @@
 # flags that come from the base profile
 -elibc_glibc
 -kernel_linux
--userland_GNU
 
 # force prefix flag to be set
 prefix
+
+# force GNU userland (even though base profile sets this too)
+userland_GNU

@@ -5,7 +5,6 @@
 # Re-add linux stuff
 -elibc_glibc
 -kernel_linux
--userland_GNU
 
 # This file masks out USE flags that are simply NOT allowed in the default
 # profile for any architecture.  This works, for example, if a non-default

@@ -6,3 +6,8 @@
 USE="readline zlib ncurses ssl"
 
 FEATURES="collision-protect"
+
+# this probably already is like this, but we assure that in prefix we
+# have a GNU userland
+USERLAND="GNU"
+

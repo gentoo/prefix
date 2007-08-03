@@ -1,7 +1,6 @@
 # Re-add AIX libc
 -elibc_AIX
 -kernel_AIX
--userland_AIX
 
 # these will more than likely never work on AIX
 3dfx

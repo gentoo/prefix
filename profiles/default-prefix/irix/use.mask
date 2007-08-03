@@ -1,7 +1,6 @@
 # Re-add IRIX libc
 -elibc_IRIX
 -kernel_IRIX
--userland_IRIX
 
 # these will more than likely never work on IRIX
 3dfx

@@ -1,7 +1,6 @@
 # Re-add SunOS libc
 -elibc_SunOS
 -kernel_SunOS
--userland_Solaris
 
 # these will more than likely never work on solaris
 3dfx

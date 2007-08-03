@@ -2,6 +2,13 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Aug 2007; Fabian Groffen <grobian@gentoo.org> aix/make.defaults,
+  aix/use.mask, darwin/macos/make.defaults, darwin/use.mask,
+  irix/make.defaults, irix/use.mask, linux/use.mask, make.defaults,
+  -sunos/solaris/make.defaults, sunos/use.mask, use.force, use.mask,
+  windows/interix/make.defaults, windows/interix/use.mask:
+  Bye bye userland != GNU, from now on, prefix has ${USERLAND} == GNU
+
   01 Aug 2007; Fabian Groffen <grobian@gentoo.org>
   darwin/macos/package.mask:
   boost now (after extensive CPU smoking) works on OSX!

@@ -1,7 +1,6 @@
 # Re-add Interix libc
 -elibc_Interix
 -kernel_Interix
--userland_Interix
 
 # these will more than likely never work on Interix
 3dfx

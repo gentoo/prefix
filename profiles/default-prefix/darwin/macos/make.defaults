@@ -1,6 +1,3 @@
-# this should eventually go
-USERLAND="Darwin"
-
 # in OSX one should have objc available
 USE="objc objc++"
 

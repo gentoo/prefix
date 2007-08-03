@@ -14,9 +14,5 @@ kernel_AIX
 kernel_IRIX
 kernel_Interix
 
-userland_GNU
-userland_Darwin
-userland_Solaris
-userland_AIX
-userland_IRIX
-userland_Interix
+# re-add userland GNU
+-userland_GNU

@@ -7,7 +7,6 @@
 # Re-add Darwin libc
 -elibc_Darwin
 -kernel_Darwin
--userland_Darwin
 
 
 # these will more than likely never work on darwin
