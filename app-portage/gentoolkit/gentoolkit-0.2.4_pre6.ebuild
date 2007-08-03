@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/gentoolkit-0.2.4_pre6.ebuild,v 1.2 2007/07/29 04:49:35 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/gentoolkit-0.2.4_pre6.ebuild,v 1.3 2007/08/02 19:15:47 lavajoe Exp $
 
 EAPI="prefix"
 
