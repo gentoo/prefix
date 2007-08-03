@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.5.ebuild,v 1.5 2007/07/04 21:27:43 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.5-r2.ebuild,v 1.1 2007/08/02 08:56:08 uberlord Exp $
 
 EAPI="prefix"
 
@@ -26,11 +26,11 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-22.2-gcc2.patch
 	epatch "${FILESDIR}"/${P}-user-header.patch
+	epatch "${FILESDIR}"/${P}-sockets.patch
 }
 
 src_compile() {
 	econf \
-		--bindir="${EPREFIX}"/bin \
 		$(use_enable selinux) \
 		$(use_enable nls) \
 		$(use_enable ipv6) \
@@ -41,7 +41,10 @@ src_compile() {
 src_install() {
 	emake install DESTDIR="${D}" || die
 	dodoc AUTHORS ChangeLog NEWS README
-	use X || rm "${ED}"/bin/pstree.x11
+	use X || rm "${ED}"/usr/bin/pstree.x11
+	# fuser is needed by init.d scripts
+	dodir /bin
+	mv "${ED}"/usr/bin/fuser "${ED}"/bin/ || die
 	# easier to do this than forcing regen of autotools
 	[[ -e ${ED}/usr/bin/peekfd ]] || rm -f "${ED}"/usr/share/man/man1/peekfd.1
 }
