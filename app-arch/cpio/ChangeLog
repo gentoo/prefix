@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/cpio
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.75 2007/08/01 11:36:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.76 2007/08/02 04:45:54 joker Exp $
+
+  02 Aug 2007; Christian Birchinger <joker@gentoo.org> cpio-2.9.ebuild:
+  Added sparc stable keyword
 
   01 Aug 2007; Raúl Porcel <armin76@gentoo.org> cpio-2.9.ebuild:
   alpha/ia64/x86 stable

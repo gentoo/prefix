@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/cpio-2.9.ebuild,v 1.2 2007/08/01 11:36:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/cpio-2.9.ebuild,v 1.3 2007/08/02 04:45:54 joker Exp $
 
 EAPI="prefix"
 
