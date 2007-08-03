@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/hexedit
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/hexedit/ChangeLog,v 1.33 2007/08/01 22:01:19 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/hexedit/ChangeLog,v 1.34 2007/08/02 05:41:25 joker Exp $
+
+  02 Aug 2007; Christian Birchinger <joker@gentoo.org>
+  hexedit-1.2.12.ebuild:
+  Added sparc stable keyword
 
   01 Aug 2007; Christoph Mende <angelos@gentoo.org> hexedit-1.2.12.ebuild:
   Stable on amd64
