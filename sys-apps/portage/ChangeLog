@@ -2,6 +2,13 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.7563 (04 Aug 2007)
+
+  04 Aug 2007; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.7245.ebuild, +portage-2.2.00.7563.ebuild:
+  New portage snapshot, doesn't do useless metadata import after sync, doesn't
+  show repo any more if the ebuild comes from the standard PORTDIR
+
 *portage-2.2.00.7521 (30 Jul 2007)
 
   30 Jul 2007; Fabian Groffen <grobian@gentoo.org>
