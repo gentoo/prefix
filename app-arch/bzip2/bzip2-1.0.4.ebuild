@@ -71,9 +71,12 @@ src_install() {
 	mv "${ED}"/usr/bin/* "${ED}"/bin/
 	into /
 
-	if [[ ${USERLAND} == "Darwin" ]] ; then
+	if [[ ${CHOST} == *-darwin* ]] ; then
 		make PREFIX="${D}${EPREFIX}"/usr LIBDIR="$(get_libdir)" install-dylib \
 			|| die "install-dylib failed"
+		dodir $(get_libdir)
+		mv "${ED}"/usr/$(get_libdir)/*.dylib "${ED}"/$(get_libdir)/
+		gen_usr_ldscript libbz2.dylib
 	else
 		if ! use static ; then
 			newbin bzip2-shared bzip2 || die "dobin shared"
