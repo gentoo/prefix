@@ -161,7 +161,7 @@ src_compile() {
 		&& myconf="${myconf} --enable-unicode=ucs2" \
 		|| myconf="${myconf} --enable-unicode=ucs4"
 
-	if [[ ${USERLAND} != "Darwin" ]] ; then
+	if [[ ${CHOST} != *-darwin* ]] ; then
 		myconf="${myconf} --disable-toolbox-glue"
 	fi
 
