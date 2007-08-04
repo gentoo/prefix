@@ -53,7 +53,7 @@ src_compile() {
 	# -g3, at least on some architectures.  (19 Aug 2003 agriffis)
 	filter-flags -g3
 
-	use userland_Darwin && append-flags -Dmacosx
+	[[ ${CHOST} == *-darwin* ]] && append-flags -Dmacosx
 
 	econf \
 		--with-threads \
