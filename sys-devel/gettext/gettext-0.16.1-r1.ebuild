@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.16.1-r1.ebuild,v 1.2 2007/07/07 01:44:18 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.16.1-r1.ebuild,v 1.5 2007/08/04 16:03:00 grobian Exp $
 
 EAPI="prefix"
 
@@ -79,12 +79,11 @@ src_install() {
 	fi
 	rm -f "${ED}"/usr/share/locale/locale.alias "${ED}"/usr/lib/charset.alias
 
-	if [[ ${USERLAND} == "BSD" ]] ; then
-		libname="libintl$(get_libname 8)"
+	if use !elibc_glibc ; then
 		# Move dynamic libs and creates ldscripts into /usr/lib
 		dodir /$(get_libdir)
-		mv "${ED}"/usr/$(get_libdir)/${libname}* "${ED}"/$(get_libdir)/
-		gen_usr_ldscript ${libname}
+		mv "${ED}"/usr/$(get_libdir)/libintl*$(get_libname)* "${ED}"/$(get_libdir)/
+		gen_usr_ldscript libintl$(get_libname)
 	fi
 
 	if use doc ; then
