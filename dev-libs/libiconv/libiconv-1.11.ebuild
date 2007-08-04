@@ -56,11 +56,9 @@ src_install() {
 
 	# Move static libs and creates ldscripts into /usr/lib
 	dodir /$(get_libdir)
-	if [[ ${USERLAND} != "Darwin" ]] ; then
-		mv "${ED}"/usr/$(get_libdir)/*.so* "${ED}/$(get_libdir)"
-		gen_usr_ldscript libiconv.so
-		gen_usr_ldscript libcharset.so
-	fi
+	mv "${ED}"/usr/$(get_libdir)/*$(get_libname)* "${ED}/$(get_libdir)"
+	gen_usr_ldscript libiconv$(get_libname)
+	gen_usr_ldscript libcharset$(get_libname)
 
 	use build && rm -rf "${ED}/usr"
 
