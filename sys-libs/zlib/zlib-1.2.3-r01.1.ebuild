@@ -10,12 +10,11 @@ DESCRIPTION="Standard (de)compression library"
 HOMEPAGE="http://www.zlib.net/"
 SRC_URI="http://www.gzip.org/zlib/${P}.tar.bz2
 	http://www.zlib.net/${P}.tar.bz2"
-KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 
 LICENSE="ZLIB"
 SLOT="0"
-
-IUSE="build"
+KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+IUSE=""
 
 RDEPEND=""
 
@@ -36,6 +35,8 @@ src_unpack() {
 }
 
 src_compile() {
+	tc-export CC RANLIB
+	export AR="$(tc-getAR) rc"
 	./configure --shared --prefix="${EPREFIX}"/usr --libdir="${EPREFIX}"/$(get_libdir) || die
 	emake || die
 }
