@@ -34,7 +34,9 @@ src_unpack() {
 src_compile() {
 	use static && append-flags -static
 	# avoid text relocation in gzip
-	use pic || [[ $USERLAND == "Darwin" ]] && export DEFS="NO_ASM"
+	use pic && export DEFS="NO_ASM"
+	# darwin and asm is still a no-no
+	[[ ${CHOST} == *-darwin* ]] && export DEFS="NO_ASM"
 	econf $(use_enable nls) || die
 	emake || die
 }
