@@ -96,7 +96,7 @@ src_unpack() {
 src_compile() {
 	replace-flags -mcpu=ultrasparc "-mcpu=v8 -mtune=ultrasparc"
 	replace-flags -mcpu=v9 "-mcpu=v8 -mtune=v9"
-	use userland_Darwin && append-flags -fno-common
+	[[ ${CHOST} == *-darwin* ]] && append-flags -fno-common
 
 	emake LIBS="-lz" -j1 || die
 }
