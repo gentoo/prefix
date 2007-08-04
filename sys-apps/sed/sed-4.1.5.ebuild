@@ -48,7 +48,7 @@ src_compile() {
 		doc/Makefile.in || die "sed html doc"
 
 	local myconf= bindir="${EPREFIX}"/bin
-	if ! use userland_GNU && [[ ${EPREFIX%/} == "" ]] ; then
+	if ! use userland_GNU ; then
 		myconf="--program-prefix=g"
 		bindir="${EPREFIX}"/usr/bin
 	fi
