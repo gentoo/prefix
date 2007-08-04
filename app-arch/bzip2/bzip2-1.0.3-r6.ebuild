@@ -47,7 +47,7 @@ src_compile() {
 		RANLIB=$(tc-getRANLIB)
 	"
 	if ! use build ; then
-		if [[ ${USERLAND} == "Darwin" ]] ; then
+		if [[ ${CHOST} == *-darwin* ]] ; then
 			emake ${makeopts} PREFIX="${EPREFIX}"/usr/lib libbz2.dylib
 		else
 			emake ${makeopts} -f Makefile-libbz2_so all || die "Make failed libbz2"
@@ -70,7 +70,7 @@ src_install() {
 		mv "${ED}"/usr/bin/* "${ED}"/bin/
 		into /
 
-		if [[ ${USERLAND} == "Darwin" ]] ; then
+		if [[ ${CHOST} == *-darwin* ]] ; then
 			make PREFIX="${D}${EPREFIX}"/usr LIBDIR="$(get_libdir)" install-dylib \
 				|| die "install-dylib failed"
 		else

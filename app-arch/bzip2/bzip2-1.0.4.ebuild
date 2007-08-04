@@ -44,14 +44,17 @@ src_compile() {
 		AR=$(tc-getAR)
 		RANLIB=$(tc-getRANLIB)
 	"
-	if [[ ${USERLAND} == "Darwin" ]] ; then
-		emake ${makeopts} PREFIX="${EPREFIX}"/usr/lib libbz2.dylib
-	else
-		case "${CHOST}" in
-		*-*-aix*) makeopts="${makeopts} SOLDFLAGS=-shared" ;;
-		esac
-		emake ${makeopts} -f Makefile-libbz2_so all || die "Make failed libbz2"
-	fi
+	case "${CHOST}" in
+		*-darwin*)
+			emake ${makeopts} PREFIX="${EPREFIX}"/usr/lib libbz2.dylib || die "Make failed libbz2"
+		;;
+		*-aix*)
+			emake ${makeopts} SOLDFLAGS=-shared -f Makefile-libbz2_so all || die "Make failed libbz2"
+		;;
+		*)
+			emake ${makeopts} -f Makefile-libbz2_so all || die "Make failed libbz2"
+		;;
+	esac
 	use static && append-flags -static
 	emake LDFLAGS="${LDFLAGS}" ${makeopts} all || die "Make failed"
 
