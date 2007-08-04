@@ -839,7 +839,7 @@ gcc-compiler_pkg_preinst() {
 }
 
 gcc-compiler_pkg_postinst() {
-	[[ ${USERLAND} == "Darwin" ]] \
+	[[ ${CHOST} == *-darwin* ]] \
 		&& export DYLD_LIBRARY_PATH=${EPREFIX}/${LIBPATH}:${DYLD_LIBRARY_PATH} \
 		|| export LD_LIBRARY_PATH=${EPREFIX}/${LIBPATH}:${LD_LIBRARY_PATH}
 

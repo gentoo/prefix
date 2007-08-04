@@ -141,7 +141,7 @@ _elibtoolize() {
 
 	[[ -f Makefile.am ]] && opts="--automake"
 
-	[[ "${USERLAND}" == "Darwin" ]] && LIBTOOLIZE="glibtoolize"
+	[[ ${CHOST} == *-darwin* ]] && LIBTOOLIZE="glibtoolize"
 	autotools_run_tool ${LIBTOOLIZE:-libtoolize} "$@" ${opts}
 
 	# Need to rerun aclocal
