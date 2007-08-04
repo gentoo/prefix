@@ -1,0 +1,23 @@
+# ChangeLog for dev-ruby/ruby-filemagic
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-filemagic/ChangeLog,v 1.4 2006/06/05 20:43:53 flameeyes Exp $
+
+  05 Jun 2006; Diego Pettenò <flameeyes@gentoo.org>
+  ruby-filemagic-0.1.1.ebuild:
+  Add ~x86-fbsd keyword.
+
+  30 May 2006; Diego Pettenò <flameeyes@gentoo.org>
+  ruby-filemagic-0.1.1.ebuild:
+  Add ~amd64 keyword.
+
+  10 May 2006; Rene Nussbaumer <killerfox@gentoo.org>
+  ruby-filemagic-0.1.1.ebuild:
+  Added to ~hppa and fixed an access voilation. Thanks to Flameeyes for
+  reporting.
+
+*ruby-filemagic-0.1.1 (20 Sep 2005)
+
+  20 Sep 2005; Rene Nussbaumer <killerfox@gentoo.org> +metadata.xml,
+  +ruby-filemagic-0.1.1.ebuild:
+  Initial import. ebuild written by myself.
+
