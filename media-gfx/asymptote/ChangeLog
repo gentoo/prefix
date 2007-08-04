@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/asymptote
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/ChangeLog,v 1.9 2007/06/01 06:49:17 centic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/ChangeLog,v 1.10 2007/08/03 06:50:43 centic Exp $
+
+  03 Aug 2007; Dominik Stadler <centic@gentoo.org> asymptote-1.26.ebuild,
+  asymptote-1.29.ebuild:
+  Mark stable on x86
 
 *asymptote-1.29 (01 Jun 2007)
 
