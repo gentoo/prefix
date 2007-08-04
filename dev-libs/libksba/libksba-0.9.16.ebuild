@@ -22,7 +22,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	elibtoolize
-	if [[ ${USERLAND} == "Darwin" ]] ; then
+	if [[ ${CHOST} == *-darwin* ]] ; then
 		touch gl/libgnu.la
 		sed -i \
 			-e 's|../gl/libgnu.la||g' \
