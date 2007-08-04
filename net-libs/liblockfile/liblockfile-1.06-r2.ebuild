@@ -24,7 +24,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-orphan-file.patch
 
 	# I didn't feel like making the Makefile portable
-	[[ ${USERLAND} == "Darwin" ]] \
+	[[ ${CHOST} == *-darwin* ]] \
 		&& cp ${FILESDIR}/Makefile.Darwin.in Makefile.in
 
 	eautoreconf
