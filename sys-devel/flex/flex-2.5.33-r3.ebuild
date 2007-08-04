@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/flex-2.5.33-r3.ebuild,v 1.2 2007/07/30 10:11:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/flex-2.5.33-r3.ebuild,v 1.3 2007/08/03 15:38:15 vapier Exp $
 
 EAPI="prefix"
 
@@ -28,7 +28,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-isatty.patch #119598
 	epatch "${FILESDIR}"/${P}-pic.patch
 	epatch "${FILESDIR}"/${P}-setlocale.patch #186092
-	touch doc/* # avoid documentation generation
+	touch doc/flex.1 #187505
 }
 
 src_compile() {
