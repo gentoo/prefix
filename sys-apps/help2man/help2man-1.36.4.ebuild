@@ -6,7 +6,7 @@ EAPI="prefix"
 
 DESCRIPTION="GNU utility to convert program --help output to a man page"
 HOMEPAGE="http://www.gnu.org/software/help2man"
-SRC_URI="http://ftp.gnu.org/gnu/help2man/${P}.tar.gz"
+SRC_URI="mirror://gnu/help2man/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -15,29 +15,27 @@ IUSE="nls"
 
 RDEPEND="dev-lang/perl"
 DEPEND="${RDEPEND}
-	nls? ( dev-perl/Locale-gettext
-		>=sys-devel/gettext-0.12.1-r1 )"
+	elibc_glibc? ( nls? ( dev-perl/Locale-gettext
+		>=sys-devel/gettext-0.12.1-r1 ) )"
 
 src_unpack() {
 	unpack ${A}
 	cd ${S}
-	use userland_Darwin && sed -i \
+	[[ ${CHOST} == *-darwin* ]] && sed -i \
 		-e 's|-fPIC -shared|-dynamiclib|g' \
 		Makefile.in
 }
 
 src_compile() {
-	use userland_Solaris && use nls \
-		&& elog "nls support is broken on Solaris for this package, disabling"
-	if use userland_Solaris ; then
-		econf --disable-nls || die
-	else
-		econf $(use_enable nls) || die
-	fi
+	local myconf
+	use elibc_glibc && myconf="${myconf} $(use_enable nls)" \
+		|| myconf="${myconf} --disable-nls"
+
+	econf ${myconf} || die
 	emake || die "emake failed"
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die "make install failed"
+	emake -j1 DESTDIR="${D}" install || die "make install failed"
 	dodoc ChangeLog NEWS README THANKS
 }
