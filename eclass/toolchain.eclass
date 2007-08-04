@@ -1222,6 +1222,7 @@ gcc_do_configure() {
 		--prefix=${EPREFIX}${PREFIX} \
 		--bindir=${EPREFIX}${BINPATH} \
 		--includedir=${EPREFIX}${INCLUDEPATH} \
+		--libdir=${EPREFIX}${LIBPATH} \
 		--datadir=${EPREFIX}${DATAPATH} \
 		--mandir=${EPREFIX}${DATAPATH}/man \
 		--infodir=${EPREFIX}${DATAPATH}/info \
