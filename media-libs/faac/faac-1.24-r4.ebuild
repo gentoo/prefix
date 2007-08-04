@@ -38,7 +38,7 @@ src_unpack() {
 src_compile() {
 	# altivec stuff triggers a definition of bool which causes faac to fail
 	# http://archives.postgresql.org/pgsql-hackers/2005-11/msg00104.php
-	[[ ${USERLAND} == "Darwin" ]] && \
+	[[ ${CHOST} == *-darwin* ]] && \
 		filter-flags "-faltivec" "-mabi=altivec" "-maltivec" "-mcpu=*"
 	econf || die "econf failed"
 	emake || die "emake failed"
