@@ -56,8 +56,8 @@ src_unpack() {
 		[[ $(tc-arch) == "ppc64" ]] && replace-flags -O? -O
 	fi
 	[[ $(tc-arch) == ppc* ]] && append-flags -fno-strict-aliasing
-	[[ $(tc-arch) == *-macos ]] || [[ $(tc-arch) == *-aix ]] ||
-	append-flags -Wa,--noexecstack
+	[[ $(tc-arch) == *-macos ]] || [[ $(tc-arch) == *-aix ]] || \
+		append-flags -Wa,--noexecstack
 
 	# using a library directory other than lib requires some magic
 	sed -i \
