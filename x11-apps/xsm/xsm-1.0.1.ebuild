@@ -13,7 +13,7 @@ DESCRIPTION="X Session Manager"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="xprint"
 RDEPEND="x11-libs/libXaw
-	!userland_Darwin? ( net-misc/netkit-rsh )"
+	!elibc_Darwin? ( net-misc/netkit-rsh )"
 DEPEND="${RDEPEND}"
 
 CONFIGURE_OPTIONS="$(use_enable xprint)"
