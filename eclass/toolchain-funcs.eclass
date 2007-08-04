@@ -348,7 +348,22 @@ gen_usr_ldscript() {
 
 	for lib in "$@" ; do
 		case ${CHOST} in
-		*-darwin*|*-aix*|*-irix*)
+		*-darwin*)
+			# Mach-O files have an id, which is like a soname, it tells how
+			# another object linking against this lib should reference it.
+			# Since we moved the lib from usr/lib into lib this reference is
+			# wrong.  Hence, we update it here.  We don't configure with
+			# libdir=/lib because that messes up libtool files.
+			install_name_tool \
+				-id "${EPREFIX}"/${libdir}/${lib} \
+				"${ED}"/${libdir}/${lib}
+			# Now as we don't use GNU binutils and our linker doesn't
+			# understand linker scripts, just create a symlink.
+			pushd "${ED}/usr/${libdir}" > /dev/null
+			ln -snf "../../${libdir}/${lib}" "${lib}"
+			popd > /dev/null
+			;;
+		*-aix*|*-irix*)
 			# we don't have GNU binutils on these platforms, so we symlink
 			# instead, which seems to work fine.  Keep it relative, otherwise
 			# we break some QA checks in Portage
