@@ -38,7 +38,7 @@ src_compile() {
 		--with-posix-regex \
 		--without-readlib \
 		--disable-etags \
-		--enable-tmpdir=/tmp \
+		--enable-tmpdir="${EPREFIX}"/tmp \
 		|| die "econf failed"
 	emake || die "emake failed"
 }
