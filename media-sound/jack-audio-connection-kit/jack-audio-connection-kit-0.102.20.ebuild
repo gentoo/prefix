@@ -67,7 +67,7 @@ src_compile() {
 		myconf="${myconf} --with-default-tmpdir=${EPREFIX}/var/run/jack"
 	fi
 
-	if use userland_Darwin ; then
+	if [[ ${CHOST} == *-darwin* ]] ; then
 		append-flags -fno-common
 		use altivec && append-flags -force_cpusubtype_ALL \
 			-maltivec -mabi=altivec -mhard-float -mpowerpc-gfxopt

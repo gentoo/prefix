@@ -15,7 +15,7 @@ SRC_URI="mirror://sourceforge/jackit/${P}.tar.gz netjack? ( mirror://sourceforge
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~ppc-macos"
-IUSE="altivec alsa caps coreaudio doc debug jack-tmpfs mmx oss portaudio sse netjack cpudetection userland_Darwin"
+IUSE="altivec alsa caps coreaudio doc debug jack-tmpfs mmx oss portaudio sse netjack cpudetection"
 
 RDEPEND=">=media-libs/libsndfile-1.0.0
 	sys-libs/ncurses
@@ -66,7 +66,7 @@ src_compile() {
 		myconf="${myconf} --with-default-tmpdir=${EPREFIX}/var/run/jack"
 	fi
 
-	if use userland_Darwin ; then
+	if [[ ${CHOST} == *-darwin* ]] ; then
 		append-flags -fno-common
 		use altivec && append-flags -force_cpusubtype_ALL \
 			-maltivec -mabi=altivec -mhard-float -mpowerpc-gfxopt
