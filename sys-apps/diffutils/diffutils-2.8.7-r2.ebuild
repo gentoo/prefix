@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="nls static"
 
-RDEPEND="userland_GNU? ( >=sys-apps/man-pages-2.46 )"
+RDEPEND="kernel_linux? ( >=sys-apps/man-pages-2.46 )"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
