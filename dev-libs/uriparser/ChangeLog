@@ -1,0 +1,35 @@
+# ChangeLog for dev-libs/uriparser
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/uriparser/ChangeLog,v 1.6 2007/07/14 02:45:14 rbu Exp $
+
+*uriparser-0.4.1 (13 Jul 2007)
+
+  13 Jul 2007; Robert Buchholz <rbu@gentoo.org> -uriparser-0.3.3-r1.ebuild,
+  +uriparser-0.4.1.ebuild:
+  Version bump
+
+  04 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  uriparser-0.3.4.ebuild:
+  Keyworded ~sparc
+
+  03 Jun 2007; Robert Buchholz <rbu@gentoo.org> metadata.xml,
+  uriparser-0.3.4.ebuild:
+  Added ~ppc and long description
+
+*uriparser-0.3.4 (25 Apr 2007)
+
+  25 Apr 2007; Robert Buchholz <rbu@gentoo.org> -uriparser-0.3.3.ebuild,
+  +uriparser-0.3.4.ebuild:
+  Version bump
+
+*uriparser-0.3.3-r1 (13 Apr 2007)
+
+  13 Apr 2007; Steve Dibb <beandog@gentoo.org> +uriparser-0.3.3-r1.ebuild:
+  Compile with -fPIC
+
+*uriparser-0.3.3 (09 Apr 2007)
+
+  09 Apr 2007; Robert Buchholz <rbu@gentoo.org> +metadata.xml,
+  +uriparser-0.3.3.ebuild:
+  Initial ebuild, needed for >media-libs/libspiff-0.6.1
+
