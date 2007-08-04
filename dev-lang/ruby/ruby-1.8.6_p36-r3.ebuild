@@ -51,6 +51,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}/${P}-rb_thread_status_prototype.patch"
+	epatch "${FILESDIR}/${P}-only-ncurses.patch"
 
 	cd "${S}/ext/dl"
 	epatch "${FILESDIR}/${PN}-1.8.6-memory-leak.diff"
