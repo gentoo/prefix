@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/gawk
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.106 2007/07/09 03:36:08 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.107 2007/07/12 09:26:28 uberlord Exp $
+
+*gawk-3.1.5-r4 (12 Jul 2007)
+
+  12 Jul 2007; Roy Marples <uberlord@gentoo.org> +gawk-3.1.5-r4.ebuild:
+  Move gawk to /usr/bin for non GNU userlands.
 
   09 Jul 2007; Jeroen Roovers <jer@gentoo.org> gawk-3.1.5-r3.ebuild:
   Stable for HPPA (bug #184465).
