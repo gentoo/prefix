@@ -1,6 +1,13 @@
 # ChangeLog for app-dicts/aspell-en
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-dicts/aspell-en/ChangeLog,v 1.15 2007/06/03 20:49:09 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-dicts/aspell-en/ChangeLog,v 1.17 2007/08/04 18:21:07 fmccor Exp $
+
+  04 Aug 2007; Ferris McCormick <fmccor@gentoo.org> aspell-en-6.0.0.ebuild:
+  Sparc stable --- Part of Bug #178690
+
+  04 Aug 2007; Wulf C. Krueger <philantrop@gentoo.org>
+  aspell-en-6.0.0.ebuild:
+  Marked stable on amd64 as per bug 178690. Thanks, Thomas!
 
   03 Jun 2007; Joshua Kinard <kumba@gentoo.org> aspell-en-6.0.0.ebuild:
   Marked unstable on mips.
