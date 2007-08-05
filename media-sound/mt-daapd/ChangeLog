@@ -1,6 +1,12 @@
 # ChangeLog for media-sound/mt-daapd
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mt-daapd/ChangeLog,v 1.50 2007/02/17 01:03:12 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mt-daapd/ChangeLog,v 1.51 2007/08/04 21:09:37 drac Exp $
+
+*mt-daapd-0.3.0_pre1586 (04 Aug 2007)
+
+  04 Aug 2007; Samuli Suominen <drac@gentoo.org>
+  +mt-daapd-0.3.0_pre1586.ebuild:
+  Version bump for bug 183127.
 
   17 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
   Don't abuse $ROOT.
