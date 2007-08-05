@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.250 2007/08/02 11:26:41 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.251 2007/08/04 05:13:07 metalgod Exp $
+
+  04 Aug 2007; <metalgod@gentoo.org> openssh-4.0_p1-r2.ebuild,
+  openssh-4.1_p1-r1.ebuild, openssh-4.5_p1-r2.ebuild,
+  openssh-4.6_p1-r2.ebuild:
+  Stable on amd64. See security bug #183958.
 
   02 Aug 2007; Raúl Porcel <armin76@gentoo.org> openssh-4.5_p1-r2.ebuild,
   openssh-4.6_p1-r2.ebuild:
