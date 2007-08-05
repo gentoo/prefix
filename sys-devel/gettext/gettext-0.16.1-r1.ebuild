@@ -84,6 +84,21 @@ src_install() {
 		dodir /$(get_libdir)
 		mv "${ED}"/usr/$(get_libdir)/libintl*$(get_libname)* "${ED}"/$(get_libdir)/
 		gen_usr_ldscript libintl$(get_libname)
+
+		if [[ ${CHOST} == *-darwin* ]] ; then
+			# this is pretty much ugly, but a necessity if we want to
+			# keep up moving libs to /lib
+			for obj in \
+				"${ED}"/usr/bin/* \
+				"${ED}"/usr/lib/*.dylib \
+				"${ED}"/usr/lib/gettext/* \
+			; do
+				install_name_tool -change \
+					"${EPREFIX}"/usr/lib/libintl.8.dylib \
+					"${EPREFIX}"/lib/libintl.8.dylib \
+					"${obj}"
+			done
+		fi
 	fi
 
 	if use doc ; then
