@@ -1,6 +1,6 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.25 2007/07/29 22:20:39 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.26 2007/08/04 06:04:07 dirtyepic Exp $
 
 # Author: foser <foser@gentoo.org>
 
@@ -36,7 +36,6 @@ DEPEND="X? ( x11-apps/mkfontdir )
 #
 
 font_xfont_config() {
-
 	# create Xfont files
 	if use X ; then
 		einfo "Creating fonts.scale & fonts.dir ..."
@@ -49,11 +48,9 @@ font_xfont_config() {
 			doins "${FONT_S}/fonts.alias"
 		fi
 	fi
-
 }
 
 font_xft_config() {
-
 	if ! has_version '>=media-libs/fontconfig-2.4'; then
 		# create fontconfig cache
 		einfo "Creating fontconfig cache ..."
@@ -80,7 +77,6 @@ font_fontconfig() {
 #
 
 font_src_install() {
-
 	local suffix commondoc
 
 	cd "${FONT_S}"
@@ -107,35 +103,29 @@ font_src_install() {
 }
 
 font_pkg_setup() {
-
 	# make sure we get no collisions
 	# setup is not the nicest place, but preinst doesn't cut it
 	[[ -e "${EPREFIX}${FONTDIR}/fonts.cache-1" ]] && rm -f "${EPREFIX}${FONTDIR}/fonts.cache-1"
-
 }
 
 font_pkg_postinst() {
-
 	if has_version '>=media-libs/fontconfig-2.4'; then
 		if [ ${ROOT} == "/" ]; then
 			ebegin "Updating global fontcache"
-			fc-cache -s
+			fc-cache -fs
 			eend $?
 		fi
 	fi
-
 }
 
 font_pkg_postrm() {
-
 	if has_version '>=media-libs/fontconfig-2.4'; then
 		if [ ${ROOT} == "/" ]; then
 			ebegin "Updating global fontcache"
-			fc-cache -s
+			fc-cache -fs
 			eend $?
 		fi
 	fi
-
 }
 
 EXPORT_FUNCTIONS src_install pkg_setup pkg_postinst pkg_postrm
