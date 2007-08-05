@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/gawk-3.1.5-r4.ebuild,v 1.1 2007/07/12 09:26:28 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/gawk-3.1.5-r4.ebuild,v 1.2 2007/08/04 09:04:26 grobian Exp $
 
 EAPI="prefix"
 
@@ -97,7 +97,7 @@ src_install() {
 	# Compat symlinks
 	dosym gawk-${PV} ${bindir}/awk
 	dosym ${bindir}/gawk-${PV} /usr/bin/awk
-	if [[ ${USERLAND} == "GNU" ]] ; then
+	if use userland_GNU ; then
 		dosym /bin/gawk-${PV} /usr/bin/gawk
 	else
 		rm -f "${ED}"/{,usr/}bin/awk{,-${PV}}
@@ -112,7 +112,9 @@ src_install() {
 	cd "${S}"
 	rm -f "${ED}"/usr/share/man/man1/pgawk.1
 	dosym gawk.1 /usr/share/man/man1/pgawk.1
-	[[ ${USERLAND} == "GNU" ]] && dosym gawk.1 /usr/share/man/man1/awk.1
+	if use userland_GNU ; then
+		dosym gawk.1 /usr/share/man/man1/awk.1
+	fi
 	dodoc AUTHORS ChangeLog FUTURES LIMITATIONS NEWS PROBLEMS POSIX.STD README
 	docinto README_d
 	dodoc README_d/*
