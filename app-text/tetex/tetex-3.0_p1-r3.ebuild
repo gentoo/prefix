@@ -23,7 +23,7 @@ SRC_URI="mirror://gentoo/${TETEX_SRC}
 	${SRC_PATH_TETEX}/${TETEX_TEXMF}
 	mirror://gentoo/${P}-gentoo.tar.gz"
 
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 
 # these are defined in tetex.eclass and tetex-3.eclass
 IUSE=""
@@ -61,6 +61,7 @@ src_unpack() {
 
 	# make sure config files also look in the prefix
 	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify texk/kpathsea/texmf.in
 }
 
 src_compile() {
