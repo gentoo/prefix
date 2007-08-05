@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/pmake/pmake-1.111.1.ebuild,v 1.6 2007/02/28 22:24:30 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/pmake/pmake-1.111.1.ebuild,v 1.7 2007/08/04 13:00:35 grobian Exp $
 
 EAPI="prefix"
 
@@ -60,8 +60,8 @@ src_compile() {
 }
 
 src_install() {
-	# Don't install these on BSD (or Darwin), else they conflicts
-	if [[ "${USERLAND}" == "GNU" && ${EPREFIX%/} == "" ]]; then
+	# Don't install these on BSD, else they conflict
+	if [[ "${USERLAND}" == "GNU" ]]; then
 		insinto /usr/share/mk
 		doins mk/*
 	fi
@@ -75,8 +75,5 @@ src_install() {
 	if [[ "${USERLAND}" == "BSD" ]]; then
 		dosym pmake /usr/bin/make
 		dosym pmake.1.gz /usr/share/man/man1/make.1.gz
-	elif [[ "${USERLAND}" == "Darwin" ]]; then
-		dosym pmake /usr/bin/bsdmake
-		dosym pmake.1.gz /usr/share/man/man1/bsdmake.1.gz
 	fi
 }
