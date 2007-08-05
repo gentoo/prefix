@@ -77,6 +77,13 @@ src_install() {
 		dodir $(get_libdir)
 		mv "${ED}"/usr/$(get_libdir)/*.dylib "${ED}"/$(get_libdir)/
 		gen_usr_ldscript libbz2.dylib
+		# fix library references
+		for obj in "${ED}"/bin/bzip2 ; do
+			l=$(otool -L "${obj}" | grep libbz2 | cut -d' ' -f1 | cut -f2)
+			install_name_tool -change \
+				"${l}" "${EPREFIX}"/lib/$(basename ${l}) \
+				"${obj}"
+		done
 	else
 		if ! use static ; then
 			newbin bzip2-shared bzip2 || die "dobin shared"
