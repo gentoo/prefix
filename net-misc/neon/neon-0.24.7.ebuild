@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.24.7.ebuild,v 1.19 2007/02/28 22:18:36 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.24.7.ebuild,v 1.20 2007/08/04 12:54:17 grobian Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,7 @@ DEPEND="expat? ( dev-libs/expat )
 src_unpack() {
 	unpack ${A}
 	cd ${S}
-	if use userland_Darwin ; then
+	if [[ ${CHOST} == *-darwin* ]] ; then
 		sed -i -e "s:GXX:GCC:g" configure || die "sed failed"
 	fi
 }
