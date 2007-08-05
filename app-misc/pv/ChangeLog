@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/pv
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/pv/ChangeLog,v 1.23 2007/07/07 01:50:52 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/pv/ChangeLog,v 1.24 2007/08/04 00:43:37 angelos Exp $
+
+  04 Aug 2007; Christoph Mende <angelos@gentoo.org> pv-0.9.9.ebuild:
+  Stable on amd64
 
   07 Jul 2007; Christoph Mende <angelos@gentoo.org>
   +files/pv-remove-doc-target.patch, pv-0.9.9.ebuild:
