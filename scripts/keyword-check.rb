@@ -1,3 +1,6 @@
+#!/usr/bin/env ruby -w
+# Copyright Gentoo Foundation 2007
+
 require 'pathname'
 
 lines = Pathname.new( 'profiles/arch.list' ).readlines
