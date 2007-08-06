@@ -5,7 +5,7 @@ require 'pathname'
 
 lines = Pathname.new( 'profiles/arch.list' ).readlines
 allowed = lines.collect {|line| line.chomp }.reject {|line|
-  line.slice( 0, 1 ) == '#' or line.empty?
+  line.slice( 0, 1 ) == '#' or line.empty? or line == 'prefix'
 }
 
 Pathname.new( '.' ).find {|file| 
