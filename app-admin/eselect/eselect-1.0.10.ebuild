@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.0.10.ebuild,v 1.8 2007/08/01 04:58:14 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.0.10.ebuild,v 1.9 2007/08/05 15:33:48 nixnut Exp $
 
 EAPI="prefix"
 
