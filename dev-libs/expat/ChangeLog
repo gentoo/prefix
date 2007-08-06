@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/expat
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.58 2007/07/23 15:02:52 cryos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.59 2007/08/05 01:32:00 philantrop Exp $
+
+  05 Aug 2007; Wulf C. Krueger <philantrop@gentoo.org> expat-2.0.1.ebuild:
+  Changed the post-install message for the big stabilisation of KDE and Gnome.
 
   23 Jul 2007; Marcus D. Hanwell <cryos@gentoo.org> metadata.xml:
   Updated metadata with the freedesktop herd as maintainer.
