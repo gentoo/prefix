@@ -2,11 +2,14 @@
 # Copyright Gentoo Foundation 2007
 
 require 'pathname'
+require 'set'
 
 lines = Pathname.new( 'profiles/arch.list' ).readlines
 allowed = lines.collect {|line| line.chomp }.reject {|line|
 	line.slice( 0, 1 ) == '#' or line.empty? or line == 'prefix'
 }
+
+kmods = Set.new [ '~', '-' ]
 
 Pathname.new( '.' ).find {|file| 
 	next unless file.fnmatch? '*.ebuild'
@@ -20,9 +23,10 @@ Pathname.new( '.' ).find {|file|
 			stable    = Array.new
 			kws.split.each {|kw|
 				# keywords are only allowed to start with a tilde for now
-				stable << kw if is_stable = kw.slice( 0, 1 ) != '~'
+				# but keywords are only stable if there is no - in front of them
+				stable << kw if is_stable = !kmods.include?( kw.slice( 0, 1 ) )
 				forbidden << kw unless allowed.include?(
-					is_stable ? kw : kw.slice( 1..-1)
+					is_stable ? kw : kw.slice( 1..-1 )
 				)
 			}
 			if stable.any? or forbidden.any?
