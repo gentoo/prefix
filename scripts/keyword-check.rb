@@ -11,6 +11,9 @@ allowed = lines.collect {|line| line.chomp }.reject {|line|
 
 kmods = Set.new [ '~', '-' ]
 
+start = Time.new
+problemCnt = 0
+
 Pathname.new( '.' ).find {|file| 
 	next unless file.fnmatch? '*.ebuild'
 	file.readlines.each {|line|
@@ -34,9 +37,15 @@ Pathname.new( '.' ).find {|file|
 				puts 'stable    : %s' % stable.join( " "  ) if stable.any?
 				puts 'forbidden : %s' % forbidden.join( " " ) if forbidden.any?
 				puts
+				problemCnt += 1
 			end
 		end
 	}
 }
+
+if problemCnt > 0
+	puts 'found %d packages with problems in %.1fs' %
+		[ problemCnt, (Time.new - start).to_f ]
+end
 
 # vim: set ts=2 sw=2 noexpandtab:
