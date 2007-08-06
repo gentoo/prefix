@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/haskell-cabal.eclass,v 1.12 2007/07/27 09:09:20 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/haskell-cabal.eclass,v 1.13 2007/08/05 18:49:58 kolmodin Exp $
 #
 # Original authors: Andres Loeh <kosmikus@gentoo.org>
 #                   Duncan Coutts <dcoutts@gentoo.org>
@@ -196,6 +196,21 @@ cabal-pkg() {
 	fi
 }
 
+# Some cabal libs are bundled along with some versions of ghc
+# eg filepath-1.0 comes with ghc-6.6.1
+# by putting CABAL_CORE_LIB_GHC_PV="6.6.1" in an ebuild we are declaring that
+# when building with this version of ghc, the ebuild is a dummy that is it will
+# install no files since the package is already included with ghc.
+# However portage still records the dependency and we can upgrade the package
+# to a later one that's not included with ghc.
+# You can also put a space separated list, eg CABAL_CORE_LIB_GHC_PV="6.6 6.6.1".
+cabal-is-dummy-lib() {
+	for version in ${CABAL_CORE_LIB_GHC_PV[*]}; do
+		[[ "$(ghc-version)" == "$version" ]] && return 0
+	done
+	return 1
+}
+
 # exported function: check if cabal is correctly installed for
 # the currently active ghc (we cannot guarantee this with portage)
 haskell-cabal_pkg_setup() {
@@ -212,16 +227,21 @@ haskell-cabal_pkg_setup() {
 	if [[ -n "${CABAL_UNKNOWN}" ]]; then
 		ewarn "Unknown entry in CABAL_FEATURES: ${CABAL_UNKNONW}"
 	fi
+	if cabal-is-dummy-lib; then
+		einfo "${P} is included in ghc-${CABAL_CORE_LIB_GHC_PV}, nothing to install."
+	fi
 }
 
 # exported function: cabal-style bootstrap configure and compile
 cabal_src_compile() {
-	cabal-bootstrap
-	cabal-configure
-	cabal-build
+	if ! cabal-is-dummy-lib; then
+		cabal-bootstrap
+		cabal-configure
+		cabal-build
 
-	if [[ -n "${CABAL_USE_HADDOCK}" ]] && use doc; then
-		cabal-haddock
+		if [[ -n "${CABAL_USE_HADDOCK}" ]] && use doc; then
+			cabal-haddock
+		fi
 	fi
 }
 haskell-cabal_src_compile() {
@@ -230,13 +250,19 @@ haskell-cabal_src_compile() {
 
 # exported function: cabal-style copy and register
 cabal_src_install() {
-	cabal-copy
-	cabal-pkg
+	if cabal-is-dummy-lib; then
+		# create a dummy local package conf file for the sake of ghc-updater
+		dodir "$(ghc-confdir)"
+		echo '[]' > "${ED}/$(ghc-confdir)/$(ghc-localpkgconf)"
+	else
+		cabal-copy
+		cabal-pkg
 
-	if [[ -n "${CABAL_USE_HADDOCK}" ]] && use doc; then
-		local cabalversion=$(ghc-extractportageversion dev-haskell/cabal)
-		if ! version_is_at_least "1.1.6" "${cabalversion}"; then
-			dohtml -r dist/doc/html/*
+		if [[ -n "${CABAL_USE_HADDOCK}" ]] && use doc; then
+			local cabalversion=$(ghc-extractportageversion dev-haskell/cabal)
+			if ! version_is_at_least "1.1.6" "${cabalversion}"; then
+				dohtml -r dist/doc/html/*
+			fi
 		fi
 	fi
 }

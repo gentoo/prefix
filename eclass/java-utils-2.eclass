@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.91 2007/07/20 18:36:02 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.92 2007/08/05 08:17:05 betelgeuse Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -59,10 +59,11 @@ export WANT_JAVA_CONFIG="2"
 # -----------------------------------------------------------------------------
 # @variable-internal JAVA_PKG_PORTAGE_DEP
 #
-# The version of portage we need to function properly. At this moment it's
-# portage with phase hooks support.
+# The version of portage we need to function properly. Previously it was
+# portage with phase hooks support but now we use a version with proper env
+# saving.
 # -----------------------------------------------------------------------------
-JAVA_PKG_PORTAGE_DEP=">=sys-apps/portage-2.1_pre1"
+JAVA_PKG_PORTAGE_DEP=">=sys-apps/portage-2.1.2.7"
 
 # -----------------------------------------------------------------------------
 # @variable-internal JAVA_PKG_E_DEPEND
@@ -1781,10 +1782,35 @@ ejunit() {
 # EANT_GENTOO_CLASSPATH - calls java-pkg_getjars for the value and adds to the
 #                         gentoo.classpath property. Be sure to call
 #                         java-ant_rewrite-classpath in src_unpack.
+# JAVA_PKG_NO_BUNDLED_SEARCH - Don't search for bundled jars or class files
 # *ANT_TASKS - used to determine ANT_TASKS before calling Ant.
 # ------------------------------------------------------------------------------
 eant() {
 	debug-print-function ${FUNCNAME} $*
+
+	if [[ ${EBUILD_PHASE} = compile ]]; then
+		# Used to be done in hooks in java-ant-2.eclass but moved here so that we can
+		# finally get rid of the hooks without breaking stuff
+
+		[[ "${JAVA_ANT_IGNORE_SYSTEM_CLASSES}" && "${JAVA_PKG_BSFIX}" ]] \
+			&& java-ant_ignore-system-classes "${S}/build.xml"
+
+		if hasq java-ant-2 ${INHERITED}; then
+			java-ant_bsfix
+		fi
+
+		# eant can be called multiple times
+		JAVA_PKG_BSFIX="off"
+
+		if [[ -z ${JAVA_PKG_NO_BUNDLED_SEARCH} ]] && is-java-strict; then
+			echo "Searching for bundled jars:"
+			java-pkg_find-normal-jars || echo "None found."
+			echo "Searching for bundled classes (no output if none found):"
+			find "${WORKDIR}" -name "*.class"
+			echo "Search done."
+			JAVA_PKG_NO_BUNDLED_SEARCH=true # eant can be called many times
+		fi
+	fi
 
 	if ! hasq java-ant-2 ${INHERITED}; then
 		local msg="You should inherit java-ant-2 when using eant"
@@ -1797,7 +1823,6 @@ eant() {
 	local compiler="${GENTOO_COMPILER}"
 
 	local compiler_env="${JAVA_PKG_COMPILER_DIR}/${compiler}"
-
 	local build_compiler="$(source ${compiler_env} 1>/dev/null 2>&1; echo ${ANT_BUILD_COMPILER})"
 	if [[ "${compiler}" != "javac" && -z "${build_compiler}" ]]; then
 		die "ANT_BUILD_COMPILER undefined in ${compiler_env}"
@@ -2016,6 +2041,10 @@ java-pkg_init() {
 		unset _JAVA_OPTIONS
 		# phase hooks make this run many times without this
 		I_WANT_GLOBAL_JAVA_OPTIONS="true"
+	fi
+
+	if java-pkg_func-exists ant_src_unpack; then
+		java-pkg_announce-qa-violation "Using old ant_src_unpack. Should be src_unpack"
 	fi
 
 	java-pkg_init_paths_
@@ -2464,14 +2493,11 @@ java-pkg_switch-vm() {
 		java-pkg_append_ LD_LIBRARY_PATH "$(java-config -g LDPATH)"
 
 		local tann="${T}/announced-vm"
+		# With the hooks we should only get here once from pkg_setup but better safe than sorry
+		# if people have for example modified eclasses some where
 		if [[ -n "${JAVA_PKG_DEBUG}" ]] || [[ ! -f "${tann}" ]] ; then
-			# Add a check for setup/preinst phase... to avoid duplicate outputs
-			# for when FEATURES=buildpkg
-			if [[ ${EBUILD_PHASE} != "setup" && ${EBUILD_PHASE} != "preinst" && ${EBUILD_PHASE} != "postinst" ]];
-			then
-				einfo "Using: $(java-config -f)"
-				[[ ! -f "${tann}" ]] && touch "${tann}"
-			fi
+			einfo "Using: $(java-config -f)"
+			[[ ! -f "${tann}" ]] && touch "${tann}"
 		fi
 
 	else

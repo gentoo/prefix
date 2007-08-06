@@ -14,7 +14,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.22 2007/06/01 12:49:03 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.23 2007/08/05 08:17:05 betelgeuse Exp $
 
 inherit java-utils-2
 
@@ -126,33 +126,12 @@ JAVA_PKG_BSFIX_TARGET_TAGS=${JAVA_PKG_BSFIX_TARGET_TAGS:-"javac xjavac javac.pre
 JAVA_PKG_BSFIX_SOURCE_TAGS=${JAVA_PKG_BSFIX_SOURCE_TAGS:-"javadoc javac xjavac javac.preset"}
 
 # ------------------------------------------------------------------------------
-# @public java-ant_src_unpack
+# @global JAVA_ANT_IGNORE_SYSTEM_CLASSES
 #
-# Unpacks the source, and attempts to fix build files.
-# variable JAVA_ANT_IGNORE_SYSTEM_CLASSES:
-#	ignore ant classpath in available tasks
-# ------------------------------------------------------------------------------
-post_src_unpack() {
-	if java-pkg_func-exists ant_src_unpack; then
-		die "ant_src_unpack is no longer support, should use just src_unpack"
-	fi
-	java-ant_bsfix
-	[[ "${JAVA_ANT_IGNORE_SYSTEM_CLASSES}" ]] \
-		&& java-ant_ignore-system-classes "${S}/build.xml"
-}
-
-# ------------------------------------------------------------------------------
-# @private ant_src_unpack
+# Rewrites available tasks to ignore ant classpath.
 #
-# Helper function which does the actual unpacking
+# default: off
 # ------------------------------------------------------------------------------
-# TODO maybe use base.eclass for some patching love?
-#ant_src_unpack() {
-#	debug-print-function ${FUNCNAME} $*
-#	if [[ -n "${A}" ]]; then
-#		unpack ${A}
-#	fi
-#}
 
 # ------------------------------------------------------------------------------
 # @private java-ant_bsfix

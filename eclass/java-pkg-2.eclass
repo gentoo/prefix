@@ -5,7 +5,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.23 2007/05/17 21:04:43 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.24 2007/08/05 08:17:05 betelgeuse Exp $
 
 inherit java-utils-2
 
@@ -86,50 +86,6 @@ java-pkg-2_src_compile() {
 	else
 		echo "${FUNCNAME}: ${EANT_BUILD_XML} not found so nothing to do."
 	fi
-}
-
-# ------------------------------------------------------------------------------
-# @note
-#
-# We need to initialize the environment in every function because Portage
-# will source /etc/profile between phases and trample all over the env.
-# This is accomplished by phase hooks, which is available with newer versions of
-# portage.
-# ------------------------------------------------------------------------------
-
-pre_pkg_setup() {
-	java-pkg-2_pkg_setup
-}
-
-pre_src_unpack() {
-	java-pkg-2_pkg_setup
-}
-
-pre_src_compile() {
-	if is-java-strict; then
-		echo "Searching for bundled jars:"
-		java-pkg_find-normal-jars || echo "None found."
-		echo "Searching for bundled classes (no output if none found):"
-		find "${WORKDIR}" -name "*.class"
-		echo "Search done."
-	fi
-	java-pkg-2_pkg_setup
-}
-
-pre_src_install() {
-	java-pkg-2_pkg_setup
-}
-
-pre_src_test() {
-	java-pkg-2_pkg_setup
-}
-
-pre_pkg_preinst() {
-	java-pkg-2_pkg_setup
-}
-
-pre_pkg_postinst() {
-	java-pkg-2_pkg_setup
 }
 
 # ------------------------------------------------------------------------------
