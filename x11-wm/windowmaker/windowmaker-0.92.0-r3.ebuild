@@ -28,7 +28,7 @@ RDEPEND="${DEPEND}
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~x86 ~x86-solaris"
 
 if use gnustep; then
 	egnustep_install_domain "Local"
@@ -75,6 +75,7 @@ src_compile() {
 
 	if use nls; then
 		[ -z "$LINGUAS" ] && export LINGUAS="`ls po/*.po | sed 's:po/\(.*\)\.po$:\1:'`"
+		append-ldflags -lgettextlib
 	else
 		myconf="${myconf} --disable-locale"
 	fi
