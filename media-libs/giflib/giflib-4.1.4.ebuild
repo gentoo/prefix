@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils libtool
+inherit eutils autotools
 
 DESCRIPTION="Library to handle, display and manipulate GIF images"
 HOMEPAGE="http://sourceforge.net/projects/libungif/"
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/libungif/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="rle X"
 
 DEPEND="X? ( x11-libs/libXt
@@ -25,7 +25,9 @@ DEPEND="X? ( x11-libs/libXt
 
 src_unpack() {
 	unpack ${A}
-	elibtoolize
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-solaris.patch
+	eautoreconf
 	epunt_cxx
 }
 
