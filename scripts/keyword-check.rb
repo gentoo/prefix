@@ -25,8 +25,8 @@ Pathname.new( '.' ).find {|file|
 			forbidden = Array.new
 			stable    = Array.new
 			kws.split.each {|kw|
-				# keywords are only allowed to start with a tilde for now
-				# but keywords are only stable if there is no - in front of them
+				# keywords are only allowed to start with a tilde for now but
+				# keywords are only stable if there is no - in front of them
 				stable << kw if is_stable = !kmods.include?( kw.slice( 0, 1 ) )
 				forbidden << kw unless allowed.include?(
 					is_stable ? kw : kw.slice( 1..-1 )
@@ -48,4 +48,4 @@ if problemCnt > 0
 		[ problemCnt, (Time.new - start).to_f ]
 end
 
-# vim: set ts=2 sw=2 noexpandtab:
+# vim: set ts=4 sw=4 noexpandtab:
