@@ -1,6 +1,27 @@
 # ChangeLog for media-sound/esound
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/esound/ChangeLog,v 1.94 2007/03/22 20:22:19 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/esound/ChangeLog,v 1.97 2007/07/29 18:08:25 drac Exp $
+
+  29 Jul 2007; Samuli Suominen <drac@gentoo.org> esound-0.2.38.ebuild:
+  Make postinst die if eselect fails for bug 175361.
+
+*esound-0.2.38 (30 May 2007)
+
+  30 May 2007; Daniel Gryniewicz <dang@gentoo.org>
+  +files/esound-0.2.38-as-needed.patch, +esound-0.2.38.ebuild:
+  Bump to 0.2.38
+  	* Fix 100% CPU problem introduced in 0.2.37 (Joe Marcus Clarke)
+  	* Fix libesddsp not linking against libesd (Loïc Minier)
+  	* Fix file descriptor leaks (Pierre Ossman)
+  	* Fix a build problem with the read/write wrapper (Jean Bréfort)
+  	* chdir to "/" when starting up (Dan Winship)
+  	* Only install the esddsp man page if we build the binary
+  	(<yselkowitz@users.sourceforge.net>)
+
+  10 May 2007; Fabian Groffen <grobian@gentoo.org>
+  -files/esound-0.2.36-ppc-macos.patch, esound-0.2.36-r1.ebuild,
+  esound-0.2.36-r2.ebuild, esound-0.2.37.ebuild, esound-0.2.37-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   22 Mar 2007; Daniel Gryniewicz <dang@gentoo.org>
   +files/esound-0.2.37-cpu-drain.patch:
