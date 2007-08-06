@@ -1,17 +1,16 @@
 #!/usr/bin/env ruby -w
 # Copyright Gentoo Foundation 2007
 
-require 'pathname'
-require 'set'
+%w{ pathname set }.each {|lib| require lib}
 
 lines = Pathname.new( 'profiles/arch.list' ).readlines
 allowed = lines.collect {|line| line.chomp }.reject {|line|
 	line.slice( 0, 1 ) == '#' or line.empty? or line == 'prefix'
 }
 
-kmods = Set.new [ '~', '-' ]
+kmods = Set.new %w{ ~ - }
 
-start = Time.new
+start = Time.now
 problemCnt = 0
 
 Pathname.new( '.' ).find {|file| 
@@ -45,7 +44,7 @@ Pathname.new( '.' ).find {|file|
 
 if problemCnt > 0
 	puts 'found %d packages with problems in %.1fs' %
-		[ problemCnt, (Time.new - start).to_f ]
+		[ problemCnt, (Time.new - start) ]
 end
 
 # vim: set ts=4 sw=4 noexpandtab:
