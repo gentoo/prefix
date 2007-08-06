@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="X.Org Xv library"
 
-KEYWORDS="~amd64 ~ia64 ~x86"
+KEYWORDS="~amd64 ~ia64 ~x86 ~x86-solaris"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libXext
