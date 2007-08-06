@@ -64,6 +64,8 @@ src_unpack() {
 	# this patch is non-generic and only works because we use a sysconfdir
 	# different from the one used by the mailbase ebuild
 	epatch "${FILESDIR}"/mutt-1.5.13-prefix-mailcap.patch
+	# get back real change-folder-next behaviour!
+	epatch "${FILESDIR}"/mutt-1.5.16-change-folder-next.patch
 
 	if ! use vanilla ; then
 		if ! use nntp ; then
