@@ -16,7 +16,7 @@ SRC_URI="mirror://gnu/aspell/${P}.tar.gz"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="gpm nls"
 # Note; app-text/aspell-0.6 and app-dicts/aspell-en-0.6 must go stable together
 
@@ -51,6 +51,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/aspell-0.60.3-templateinstantiations.patch
 	epatch "${FILESDIR}/${P}-nls.patch"
+	epatch "${FILESDIR}"/${P}-solaris.patch
 
 	eautomake
 	elibtoolize --reverse-deps
