@@ -1,0 +1,66 @@
+# ChangeLog for dev-libs/nettle
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nettle/ChangeLog,v 1.16 2007/08/06 00:08:11 alonbl Exp $
+
+*nettle-1.15 (06 Aug 2007)
+
+  06 Aug 2007; Alon Bar-Lev <alonbl@gentoo.org> +nettle-1.15.ebuild:
+  Version bump, bug#187862
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  27 Dec 2006; Timothy Redaelli <drizzt@gentoo.org> nettle-1.14.ebuild:
+  Add ~x86-fbsd keyword.
+
+  31 Oct 2006; Alon Bar-Lev <alonbl@gentoo.org> nettle-1.14.ebuild:
+  Autotools fixups
+
+*nettle-1.14 (31 Oct 2006)
+
+  31 Oct 2006; Alon Bar-Lev <alonbl@gentoo.org>
+  +files/nettle-1.14-make-as-needed.patch, +nettle-1.14.ebuild:
+  Version bump, fix LDFLAGS="-Wl,--as-needed", closes bug#153138
+
+  14 Oct 2005; Mike Frysinger <vapier@gentoo.org> nettle-1.13-r1.ebuild:
+  Add support for gmp/ssl USE flags.
+
+*nettle-1.13-r1 (13 Oct 2005)
+
+  13 Oct 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/nettle-1.13-PIC.patch, +files/nettle-1.13-no-exec-stack.patch,
+  +files/nettle-1.13-preprocess-asm.patch, +nettle-1.13-r1.ebuild:
+  Fixes from PaX team to address executable stacks and PIC bugs.
+
+*nettle-1.13 (11 Oct 2005)
+
+  11 Oct 2005; Mike Frysinger <vapier@gentoo.org> +nettle-1.13.ebuild:
+  Version bump.
+
+  29 Sep 2005; Marcelo Goes <vanquirius@gentoo.org> nettle-1.10.ebuild,
+  nettle-1.12.ebuild:
+  Do not dodoc INSTALL.
+
+*nettle-1.12 (30 Jul 2005)
+
+  30 Jul 2005; Daniel Black <dragonheart@gentoo.org> metadata.xml,
+  +nettle-1.12.ebuild:
+  version bump thanks to meatoo
+
+  22 Apr 2005; Simon Stelling <blubb@gentoo.org> nettle-1.10.ebuild:
+  stable on amd64
+
+  01 Oct 2004; Danny van Dyk <kugelfang@gentoo.org> nettle-1.10.ebuild:
+  -fPIC _is_ necessary, but not in static libraries. --enable-shared lets it
+  build an additional shared library.
+
+  30 Aug 2004; Danny van Dyk <kugelfang@gentoo.org> nettle-1.10.ebuild:
+  Removed append-flags -fPIC on amd64. Not necessary anymore.
+
+  20 Jul 2004; Rainer Groesslinger <scandium@gentoo.org> nettle-1.10.ebuild:
+  stable on x86, ppc, sparc
+
+*nettle-1.10 (11 Jul 2004)
+
+  11 Jul 2004; Mike Frysinger <vapier@gentoo.org> :
+  Initial import.  Ebuild submitted by Rainer Groesslinger #56156.
