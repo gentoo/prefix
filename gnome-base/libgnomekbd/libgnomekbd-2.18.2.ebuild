@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/libgnomekbd-2.18.2.ebuild,v 1.1 2007/06/29 22:31:23 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/libgnomekbd-2.18.2.ebuild,v 1.2 2007/08/06 08:14:37 leio Exp $
 
 EAPI="prefix"
 
@@ -34,6 +34,12 @@ DOCS="AUTHORS ChangeLog INSTALL NEWS README"
 # This collides with
 # /etc/gconf/schemas/desktop_gnome_peripherals_keyboard_xkb.schemas from
 # control-center...
+
+src_unpack() {
+	gnome2_src_unpack
+	# Fix tests.
+	echo "capplet/gkbd-indicator-plugins-capplet.desktop.in" >> "${S}/po/POTFILES.skip"
+}
 
 src_compile() {
 	# FreeBSD doesn't like -j
