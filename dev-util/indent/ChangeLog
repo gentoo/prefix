@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/indent
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/indent/ChangeLog,v 1.33 2007/05/30 17:03:27 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/indent/ChangeLog,v 1.34 2007/08/06 19:39:16 uberlord Exp $
+
+  06 Aug 2007; Roy Marples <uberlord@gentoo.org> indent-2.2.9-r3.ebuild,
+  indent-2.2.9-r4.ebuild:
+  Keyworded ~x86-fbsd, #141142 thanks to Robert Annessi
 
   30 May 2007; Raúl Porcel <armin76@gentoo.org> indent-2.2.9-r3.ebuild:
   alpha stable wrt #169097
