@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/pdflib
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.80 2007/07/24 20:05:54 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.81 2007/08/06 13:38:27 gustavoz Exp $
+
+  06 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org> pdflib-7.0.1.ebuild:
+  Stable on sparc
 
   24 Jul 2007; Joe Peterson <lavajoe@gentoo.org> pdflib-7.0.1.ebuild:
   "elibtoolize" & add ~x86-fbsd keyword
