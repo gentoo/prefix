@@ -1,12 +1,9 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.5_p1-r2.ebuild,v 1.13 2007/08/06 02:29:41 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.6_p1-r4.ebuild,v 1.1 2007/08/06 08:08:53 vapier Exp $
 
 EAPI="prefix"
 
-WANT_AUTOCONF="latest"
-WANT_AUTOMAKE="latest"
-# Please leave pam at end, so that dopamd and newpamd from eutils eclass are not used
 inherit eutils flag-o-matic ccc multilib autotools pam
 
 # Make it more portable between straight releases
@@ -14,17 +11,17 @@ inherit eutils flag-o-matic ccc multilib autotools pam
 PARCH=${P/_/}
 
 X509_PATCH="${PARCH}+x509-5.5.2.diff.gz"
-SECURID_PATCH="${PARCH/4.5/4.4}+SecurID_v1.3.2.patch"
-LDAP_PATCH="${PARCH/-4.5p1/-lpk-4.5p1}-0.3.8-no-configure.patch"
-HPN_PATCH="${PARCH}-hpn12v15.diff.gz"
+SECURID_PATCH="" #${PARCH/4.6/4.5}+SecurID_v1.3.2.patch"
+LDAP_PATCH="${PARCH/openssh-/openssh-lpk-}-0.3.9.patch"
+HPN_PATCH="${PARCH}-hpn12v17.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.com/"
 SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
 	X509? ( http://roumenpetrov.info/openssh/x509-5.5.2/${X509_PATCH} )
-	ldap? ( mirror://gentoo/${LDAP_PATCH} http://dev.inversepath.com/openssh-lpk/${LDAP_PATCH} )
 	hpn? ( http://www.psc.edu/networking/projects/hpn-ssh/${HPN_PATCH} )
-	smartcard? ( http://omniti.com/~jesus/projects/${SECURID_PATCH} )"
+	ldap? ( http://dev.inversepath.com/openssh-lpk/${LDAP_PATCH} )"
+#	smartcard? ( http://omniti.com/~jesus/projects/${SECURID_PATCH} )
 
 LICENSE="as-is"
 SLOT="0"
@@ -54,9 +51,13 @@ S=${WORKDIR}/${PARCH}
 pkg_setup() {
 	# this sucks, but i'd rather have people unable to `emerge -u openssh`
 	# than not be able to log in to their server any more
-	local fail=""
-	[[ -z ${X509_PATCH}	   ]] && use X509	   && fail="${fail} X509"
-	[[ -z ${SECURID_PATCH} ]] && use smartcard && fail="${fail} smartcard"
+	maybe_fail() { [[ -z ${!2} ]] && use ${1} && echo ${1} ; }
+	local fail="
+		$(maybe_fail X509 X509_PATCH)
+		$(maybe_fail smartcard SECURID_PATCH)
+		$(maybe_fail ldap LDAP_PATCH)
+	"
+	fail=$(echo ${fail})
 	if [[ -n ${fail} ]] ; then
 		eerror "Sorry, but this version does not yet support features"
 		eerror "that you requested:	 ${fail}"
@@ -74,6 +75,9 @@ src_unpack() {
 		-e "/_PATH_XAUTH/s:/usr/X11R6/bin/xauth:${EPREFIX}/usr/bin/xauth:" \
 		pathnames.h || die
 
+	epatch "${FILESDIR}"/${P}-include-string-header.patch
+	epatch "${FILESDIR}"/${P}-ChallengeResponseAuthentication.patch #170670
+	epatch "${FILESDIR}"/${P}-chan-read-failed.patch #181407
 	use X509 && epatch "${DISTDIR}"/${X509_PATCH} "${FILESDIR}"/${PN}-4.4_p1-x509-hpn-glue.patch
 	use chroot && epatch "${FILESDIR}"/openssh-4.3_p1-chroot.patch
 	use smartcard && epatch "${FILESDIR}"/openssh-3.9_p1-opensc.patch
@@ -84,7 +88,7 @@ src_unpack() {
 				"${FILESDIR}"/${PN}-4.3_p2-securid-hpn-glue.patch
 			use ldap && epatch "${FILESDIR}"/openssh-4.0_p1-smartcard-ldap-happy.patch
 		fi
-		if use ldap ; then
+		if [[ -n ${LDAP_PATCH} ]] && use ldap ; then
 			epatch "${DISTDIR}"/${LDAP_PATCH} "${FILESDIR}"/${PN}-4.4_p1-ldap-hpn-glue.patch
 		fi
 	elif [[ -n ${SECURID_PATCH} ]] && use smartcard || use ldap ; then
@@ -143,7 +147,7 @@ src_install() {
 	newconfd "${FILESDIR}"/sshd.confd sshd
 	keepdir /var/empty
 
-	newpamd "${FILESDIR}"/sshd.pam_include sshd
+	newpamd "${FILESDIR}"/sshd.pam_include.1 sshd
 	dosed "/^#Protocol /s:.*:Protocol 2:" /etc/ssh/sshd_config
 	use pam \
 		&& dosed "/^#UsePAM /s:.*:UsePAM yes:" /etc/ssh/sshd_config \
