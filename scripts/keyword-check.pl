@@ -11,19 +11,18 @@ open( ARCHLIST, "< $filename" ) or die "Cannot open $filename : $!";
 
 my @archlist;
 while( <ARCHLIST> ) {
-  chomp $_;
+  chomp;
   push @archlist, $_ unless ($_ =~ /^(?:#|(?:prefix)?$)/)
 }
 
 close( ARCHLIST );
 
-# have we printed a problem to the screen yet?
+# we have yet to print to the screen
 my $first = 1;
 
 # process ebuilds
 while (defined(my $ebuild = <*-*/*/*.ebuild>)) { 
   @ARGV = $ebuild;
-
   while (<>) {
     if ( substr( $_, 0, 9 ) eq 'KEYWORDS=' ) {
       my $str = substr( $_, 9 );
