@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/gnome-common
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-common/ChangeLog,v 1.44 2007/05/13 07:40:14 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-common/ChangeLog,v 1.45 2007/08/06 05:29:16 kumba Exp $
+
+  06 Aug 2007; Joshua Kinard <kumba@gentoo.org> gnome-common-2.12.0.ebuild:
+  Stable on mips, per #185823.
 
   13 May 2007; Joshua Kinard <kumba@gentoo.org> gnome-common-2.12.0.ebuild:
   Added ~mips to KEYWORDS, per #176517.
