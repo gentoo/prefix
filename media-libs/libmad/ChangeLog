@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/libmad
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmad/ChangeLog,v 1.52 2007/07/01 19:14:41 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmad/ChangeLog,v 1.53 2007/08/06 20:26:40 dirtyepic Exp $
+
+*libmad-0.15.1b-r4 (06 Aug 2007)
+
+  06 Aug 2007; Ryan Hill <dirtyepic@gentoo.org> libmad-0.15.1b-r3.ebuild,
+  +libmad-0.15.1b-r4.ebuild:
+  Revision bump. Use 64bit fixed-point math routines on ppc64 to prevent
+  high-pitched noise during playback. Remove fstrict-aliasing conditional.
+  Drop ppc64 keyword from -r3. Thanks to Chainsaw for reporting and testing.
 
   01 Jul 2007; Ryan Hill <dirtyepic@gentoo.org>
   files/libmad-0.15.1b-cflags.patch, +files/libmad-0.15.1b-cflags-O2.patch,
