@@ -1,6 +1,12 @@
 # ChangeLog for media-sound/vorbis-tools
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/ChangeLog,v 1.54 2007/06/05 12:46:33 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/ChangeLog,v 1.55 2007/08/06 18:01:43 drac Exp $
+
+*vorbis-tools-1.1.1-r5 (06 Aug 2007)
+
+  06 Aug 2007; Samuli Suominen <drac@gentoo.org>
+  +vorbis-tools-1.1.1-r5.ebuild:
+  Add largefile support for bug 170677, thanks to Yaroslav Isakov for reporting.
 
   05 Jun 2007; Raúl Porcel <armin76@gentoo.org>
   vorbis-tools-1.1.1-r3.ebuild:
