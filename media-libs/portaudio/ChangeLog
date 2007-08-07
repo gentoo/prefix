@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/portaudio
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/ChangeLog,v 1.45 2007/07/26 14:09:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/ChangeLog,v 1.46 2007/08/06 13:42:40 uberlord Exp $
+
+  06 Aug 2007; Roy Marples <uberlord@gentoo.org> portaudio-18.1-r6.ebuild:
+  Keyworded ~x86-fbsd, #156699.
 
   26 Jul 2007; Raúl Porcel <armin76@gentoo.org> portaudio-18.1-r6.ebuild:
   alpha/ia64/x86 stable
