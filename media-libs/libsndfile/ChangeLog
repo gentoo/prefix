@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libsndfile
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.70 2007/06/21 06:17:16 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.71 2007/08/06 11:35:33 drac Exp $
+
+  06 Aug 2007; Samuli Suominen <drac@gentoo.org> libsndfile-1.0.17.ebuild:
+  Install pkgconfig for bug 187856.
 
   21 Jun 2007; Joshua Kinard <kumba@gentoo.org> libsndfile-1.0.17.ebuild:
   Stable on mips, per #165776.
