@@ -1,0 +1,81 @@
+# ChangeLog for app-emulation/emul-linux-x86-compat
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-compat/ChangeLog,v 1.18 2007/07/02 13:51:36 peper Exp $
+
+  02 Jul 2007; Piotr Jaroszyński <peper@gentoo.org>
+  emul-linux-x86-compat-1.0-r1.ebuild, emul-linux-x86-compat-1.0-r3.ebuild:
+  (QA) RESTRICT clean up.
+
+  02 Mar 2007; Simon Stelling <blubb@gentoo.org>
+  -emul-linux-x86-compat-1.0-r2.ebuild, emul-linux-x86-compat-1.0-r3.ebuild:
+  stable on amd64
+
+  11 Feb 2007; Simon Stelling <blubb@gentoo.org>
+  emul-linux-x86-compat-1.0-r3.ebuild:
+  block against gcc-3.3; bug 160335
+
+  30 Jan 2007; Doug Goldstein <cardoe@gentoo.org>
+  emul-linux-x86-compat-1.0-r3.ebuild:
+  gcc 3.4 does not provide libstdc++.so.5. Fixing this so it checks gcc 3.3
+  instead
+
+  29 Jan 2007; Timothy Redaelli <drizzt@gentoo.org>
+  emul-linux-x86-compat-1.0-r3.ebuild:
+  Install libstdc++.so.5 if gcc 3.4.* is not installed.
+
+*emul-linux-x86-compat-1.0-r3 (29 Jan 2007)
+
+  29 Jan 2007; Timothy Redaelli <drizzt@gentoo.org>
+  +emul-linux-x86-compat-1.0-r3.ebuild:
+  Fix bug #160335, thanks to Nicholas Doyle for reporting and SpanKY for fixing.
+
+*emul-linux-x86-compat-1.0-r2 (03 Jan 2007)
+
+  03 Jan 2007; Mike Frysinger <vapier@gentoo.org>
+  +emul-linux-x86-compat-1.0-r2.ebuild:
+  Move /emul to /lib32 #143390.
+
+  11 Jun 2006; Simon Stelling <blubb@gentoo.org>
+  -emul-linux-x86-compat-1.0.ebuild:
+  removing old version
+
+  09 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  emul-linux-x86-compat-1.0.ebuild, emul-linux-x86-compat-1.0-r1.ebuild:
+  Use nostrip instead of strip restriction for compatibility with older portage.
+
+  09 Mar 2006; Diego Pettenò <flameeyes@gentoo.org>
+  emul-linux-x86-compat-1.0.ebuild, emul-linux-x86-compat-1.0-r1.ebuild:
+  Add strip restriction, as the binaries are already stripped.
+
+  03 Mar 2006; Simon Stelling <blubb@gentoo.org>
+  emul-linux-x86-compat-1.0.ebuild, emul-linux-x86-compat-1.0-r1.ebuild:
+  remove the dependency on app-emulation/emul-linux-x86-glibc since 2004.3 has
+  been deprecated a while ago
+
+  05 Jan 2006; Herbie Hopkins <herbs@gentoo.org>
+  emul-linux-x86-compat-1.0-r1.ebuild:
+  Stable on amd64.
+
+  19 Oct 2005; Herbie Hopkins <herbs@gentoo.org> metadata.xml:
+  Remove lv as maintainer since he's retiring, bug 45408.
+
+*emul-linux-x86-compat-1.0-r1 (14 Oct 2005)
+
+  14 Oct 2005; Simon Stelling <blubb@gentoo.org>
+  +files/75emul-linux-x86-compat, +emul-linux-x86-compat-1.0-r1.ebuild:
+  since it does only depend on emul-linux-x86-glibc which does nothing on
+  2005.0 or later, install the env.d-file ourself
+
+  26 May 2005; Herbie Hopkins <herbs@gentoo.org>
+  emul-linux-x86-compat-1.0.ebuild:
+  Remove libsmpeg as it collides with emul-sdl.
+
+  28 Aug 2004; Travis Tilley <lv@gentoo.org> emul-linux-x86-compat-1.0.ebuild:
+  stable on amd64
+
+*emul-linux-x86-compat-1.0 (16 Aug 2004)
+
+  16 Aug 2004; Travis Tilley <lv@gentoo.org>
+  +emul-linux-x86-compat-1.0.ebuild:
+  initial commit
+
