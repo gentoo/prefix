@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/shared-mime-info-0.21-r1.ebuild,v 1.1 2007/07/19 15:18:31 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/shared-mime-info-0.21-r1.ebuild,v 1.2 2007/08/06 04:46:42 kumba Exp $
 
 EAPI="prefix"
 
