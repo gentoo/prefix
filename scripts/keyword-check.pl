@@ -33,7 +33,7 @@ while (defined(my $ebuild = <*-*/*/*.ebuild>)) {
       my @forbidden;
       my @stable;
       foreach my $kw (@kws) {
-        my $unstable = ( $kw =~ s/^(?:-|~)// );
+        my $unstable = ( $kw =~ s/^[-~]// );
         unless ( $unstable ) {
           push @stable, $kw
         }
