@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/pine/pine-4.64-r6.ebuild,v 1.4 2007/06/26 02:08:16 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/pine/pine-4.64-r6.ebuild,v 1.5 2007/08/06 13:32:17 uberlord Exp $
 
 EAPI="prefix"
 
@@ -29,7 +29,7 @@ IUSE="ssl ldap kerberos largeterminal pam passfile debug"
 DEPEND="virtual/libc
 	>=sys-apps/sed-4
 	>=sys-libs/ncurses-5.1
-	pam? ( >=sys-libs/pam-0.72 )
+	pam? ( virtual/pam )
 	ssl? ( dev-libs/openssl )
 	ldap? ( net-nds/openldap )
 	kerberos? ( app-crypt/mit-krb5 )"
@@ -120,6 +120,15 @@ src_unpack() {
 
 	sed -e "s:/usr/local/lib/pine.conf:${EPREFIX}/etc/pine.conf:" \
 		-i "${S}/pine/osdep/os-lnx.h" || die "sed os-lnx.h failed"
+
+	sed -e "s:/usr/local/lib/pine.conf:/etc/pine.conf:" \
+		-i "${S}/pine/osdep/os-bsf.h" || die "sed os-bsf.h failed"
+
+	# We use ncurses for FreeBSD
+	for x in "${S}"/*/makefile.bsf ; do
+		sed -e "s/-ltermcap/-lcurses/g" -e "s/-ltermlib/-lcurses/g" \
+			-i "${x}" || die "sed ${x} failed"
+	done
 }
 
 src_compile() {
@@ -128,7 +137,7 @@ src_compile() {
 		myconf="${myconf} SSLDIR=${EPREFIX}/usr SSLTYPE=unix SSLCERTS=${EPREFIX}/etc/ssl/certs"
 		sed -e "s:\$(SSLDIR)/certs:${EPREFIX}/etc/ssl/certs:" \
 			-e "s:\$(SSLCERTS):${EPREFIX}/etc/ssl/certs:" \
-			-e "s:-I\$(SSLINCLUDE) :-I${EPREFIX}/usr/include/openssl :" \
+			-e "s:-I\$(SSLINCLUDE):-I${EPREFIX}/usr/include/openssl:" \
 			-i "${S}/imap/src/osdep/unix/Makefile" || die "sed Makefile failed"
 	else
 		myconf="${myconf} NOSSL"
@@ -143,7 +152,9 @@ src_compile() {
 		myconf="${myconf} EXTRAAUTHENTICATORS=gss"
 	fi
 
-	if use pam ; then
+	if use elibc_FreeBSD ; then
+		target=bsf
+	elif use pam ; then
 		[[ ${CHOST} == *-darwin* ]] && target=oxp || target=lnp
 	else
 		[[ ${CHOST} == *-darwin* ]] && target=osx || target=slx
