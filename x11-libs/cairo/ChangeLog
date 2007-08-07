@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/cairo
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.137 2007/07/13 21:58:15 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.138 2007/08/06 04:51:43 kumba Exp $
+
+  06 Aug 2007; Joshua Kinard <kumba@gentoo.org> cairo-1.4.10.ebuild:
+  Stable on mips, per #185823.
 
   13 Jul 2007; Doug Goldstein <cardoe@gentoo.org>
   files/cairo-1.4.6-ctype.patch:
