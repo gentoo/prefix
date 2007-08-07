@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/libperl-5.8.8-r1.ebuild,v 1.23 2007/07/15 04:37:55 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/libperl-5.8.8-r1.ebuild,v 1.24 2007/08/06 16:34:27 truedfx Exp $
 
 # The basic theory based on comments from Daniel Robbins <drobbins@gentoo.org>.
 #
@@ -143,6 +143,10 @@ src_unpack() {
 
 	# we need the same @INC-inversion magic here we do in perl
 	cd ${S}; epatch ${FILESDIR}/${P}-reorder-INC.patch
+
+	# makedepend.SH contains a syntax error which is ignored by bash but causes
+	# dash to abort
+	epatch ${FILESDIR}/${P}-makedepend-syntax.patch
 
 	# On PA7200, uname -a contains a single quote and we need to
 	# filter it otherwise configure fails. See #125535.
