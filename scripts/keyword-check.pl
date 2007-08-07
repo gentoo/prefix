@@ -1,0 +1,63 @@
+#! /usr/bin/env perl
+# Copyright Gentoo Foundation 2007
+
+use strict;
+use warnings;
+
+# process archlist
+my $filename = 'profiles/arch.list';
+
+open( ARCHLIST, "< $filename" ) or die "Cannot open $filename : $!";
+
+my @archlist;
+while( <ARCHLIST> ) {
+  chomp $_;
+  push @archlist, $_ unless ($_ =~ /^(?:#|(?:prefix)?$)/)
+}
+
+close( ARCHLIST );
+
+# have we printed a problem to the screen yet?
+my $first = 1;
+
+# process ebuilds
+while (defined(my $ebuild = <*-*/*/*.ebuild>)) { 
+  @ARGV = $ebuild;
+
+  while (<>) {
+    if ( substr( $_, 0, 9 ) eq 'KEYWORDS=' ) {
+      my $str = substr( $_, 9 );
+      # get rid of the quotes and the newline
+      $str = substr( $str, 1, length ($str)-3 );
+      my @kws = split( /\s+/, $str );
+      my @forbidden;
+      my @stable;
+      foreach my $kw (@kws) {
+        my $unstable = ( $kw =~ s/^(?:-|~)// );
+        unless ( $unstable ) {
+          push @stable, $kw
+        }
+        my $allowed = 0;
+        foreach my $arch (@archlist) {
+          my $included = $arch eq $kw;
+          if ($included) {
+            $allowed = 1;
+            last
+          }
+        }
+        unless ($allowed) {
+          push @forbidden, $kw
+        }
+      }
+      # give a report
+      if ( scalar @forbidden || scalar @stable ) {
+        unless ($first) { print "\n" } else { $first=0 }
+        $ebuild =~ s{/.*?/}{/};
+        $ebuild = substr( $ebuild, 0, length( $ebuild ) - 7 );
+        printf "EBUILD    : %s\n", $ebuild;
+        printf "forbidden : %s\n", @forbidden if ( scalar @forbidden );
+        printf "stable    : %s\n", @stable if ( scalar @stable )
+      }
+    }
+  }
+}
