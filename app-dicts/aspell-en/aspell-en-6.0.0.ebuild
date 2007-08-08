@@ -11,6 +11,6 @@ inherit aspell-dict
 
 LICENSE="as-is public-domain"
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 
 IUSE=""
