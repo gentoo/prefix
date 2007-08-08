@@ -53,9 +53,9 @@ while (defined(my $ebuild = <*-*/*/*.ebuild>)) {
 				unless ($first) { print "\n" } else { $first=0 }
 				$ebuild =~ s{/.*?/}{/};
 				$ebuild = substr( $ebuild, 0, length( $ebuild ) - 7 );
-				printf "EBUILD		: %s\n", $ebuild;
+				printf "EBUILD    : %s\n", $ebuild;
 				printf "forbidden : %s\n", @forbidden if ( scalar @forbidden );
-				printf "stable		: %s\n", @stable if ( scalar @stable )
+				printf "stable    : %s\n", @stable if ( scalar @stable )
 			}
 		}
 	}
