@@ -125,6 +125,9 @@ src_unpack() {
 	# do not create sharedlib-archive, but sharedlib directly.
 	epatch ${FILESDIR}/${P}-aix.patch
 
+	# cut the crap of inventing paths, or adding search paths that we don't use
+	epatch "${FILESDIR}"/${PN}-cleanup-paths.patch
+
 	#[[ ${get_libdir} == lib64 ]] && cd ${S} && epatch ${FILESDIR}/${P}-lib64.patch
 	use amd64 || use ppc64 && cd ${S} && epatch ${FILESDIR}/${P}-lib64.patch
 
