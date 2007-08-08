@@ -71,7 +71,7 @@ install_mozilla_launcher_stub() {
 	dodir /usr/bin
 
 	if [[ ${PN: -4} == "-bin" ]]  || ! use moznopango; then
-	cat <<EOF >${D}/usr/bin/${name}
+	cat <<EOF >${ED}/usr/bin/${name}
 #!/bin/sh
 #
 # Stub script to run mozilla-launcher.  We used to use a symlink here
@@ -80,11 +80,11 @@ install_mozilla_launcher_stub() {
 
 export MOZILLA_LAUNCHER=${name}
 export MOZILLA_LIBDIR=${libdir}
-export MOZ_PLUGIN_PATH=\${MOZ_PLUGIN_PATH:-/usr/$(get_libdir)/$PLUGINS_DIR}
-exec /usr/libexec/mozilla-launcher "\$@"
+export MOZ_PLUGIN_PATH=\${MOZ_PLUGIN_PATH:-${EPREFIX}/usr/$(get_libdir)/$PLUGINS_DIR}
+exec ${EPREFIX}/usr/libexec/mozilla-launcher "\$@"
 EOF
 	else
-	cat <<EOF >${D}/usr/bin/${name}
+	cat <<EOF >${ED}/usr/bin/${name}
 #!/bin/sh
 #
 # Stub script to run mozilla-launcher.  We used to use a symlink here
@@ -93,12 +93,12 @@ EOF
 
 export MOZILLA_LAUNCHER=${name}
 export MOZILLA_LIBDIR=${libdir}
-export MOZ_PLUGIN_PATH=\${MOZ_PLUGIN_PATH:-/usr/$(get_libdir)/$PLUGINS_DIR}
+export MOZ_PLUGIN_PATH=\${MOZ_PLUGIN_PATH:-${EPREFIX}/usr/$(get_libdir)/$PLUGINS_DIR}
 export MOZ_DISABLE_PANGO=1
-exec /usr/libexec/mozilla-launcher "\$@"
+exec ${EPREFIX}/usr/libexec/mozilla-launcher "\$@"
 EOF
 	fi
-	chmod 0755 ${D}/usr/bin/${name}
+	chmod 0755 ${ED}/usr/bin/${name}
 }
 
 warn_mozilla_launcher_stub() {
