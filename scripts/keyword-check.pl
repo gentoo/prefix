@@ -12,7 +12,7 @@ open( ARCHLIST, "< $filename" ) or die "Cannot open $filename : $!";
 my @archlist;
 while( <ARCHLIST> ) {
   chomp;
-  push @archlist, $_ unless ($_ =~ /^(?:#|(?:prefix)?$)/)
+  push @archlist, $_ unless m/^(?:#|(?:prefix)?$)/
 }
 
 close( ARCHLIST );
@@ -31,21 +31,21 @@ while (defined(my $ebuild = <*-*/*/*.ebuild>)) {
       my @kws = split( /\s+/, $str );
       my @forbidden;
       my @stable;
-      foreach my $kw (@kws) {
-        my $unstable = ( $kw =~ s/^[-~]// );
+      foreach (@kws) {
+        my $unstable = s/^[-~]//;
         unless ( $unstable ) {
-          push @stable, $kw
+          push @stable, $_
         }
         my $allowed = 0;
         foreach my $arch (@archlist) {
-          my $included = $arch eq $kw;
+          my $included = $arch eq $_;
           if ($included) {
             $allowed = 1;
             last
           }
         }
         unless ($allowed) {
-          push @forbidden, $kw
+          push @forbidden, $_
         }
       }
       # give a report
