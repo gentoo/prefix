@@ -1,13 +1,13 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p17.ebuild,v 1.8 2007/08/07 03:55:34 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p17-r1.ebuild,v 1.1 2007/08/07 06:10:35 vapier Exp $
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic toolchain-funcs
+inherit eutils flag-o-matic toolchain-funcs multilib
 
 # Official patchlevel
-# See ftp://ftp.cwru.edu/pub/bash/bash-3.1-patches/
+# See ftp://ftp.cwru.edu/pub/bash/bash-3.2-patches/
 PLEVEL=${PV##*_p}
 MY_PV=${PV/_p*}
 MY_P=${PN}-${MY_PV}
@@ -16,13 +16,12 @@ READLINE_PLEVEL=0 # both readline patches are also released as bash patches
 
 DESCRIPTION="The standard GNU Bourne again shell"
 HOMEPAGE="http://cnswww.cns.cwru.edu/~chet/bash/bashtop.html"
-# Hit the GNU mirrors before hitting Chet's site
-#		printf 'mirror://gnu/bash/bash-%s-patches/bash%s-%03d\n' \
-#			${MY_PV} ${MY_PV/\.} ${i}
 SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz
 	ftp://ftp.cwru.edu/pub/bash/${MY_P}.tar.gz
 	$(for ((i=1; i<=PLEVEL; i++)); do
 		printf 'ftp://ftp.cwru.edu/pub/bash/bash-%s-patches/bash%s-%03d\n' \
+			${MY_PV} ${MY_PV/\.} ${i}
+		printf 'mirror://gnu/bash/bash-%s-patches/bash%s-%03d\n' \
 			${MY_PV} ${MY_PV/\.} ${i}
 	done)
 	$(for ((i=1; i<=READLINE_PLEVEL; i++)); do
@@ -35,11 +34,19 @@ SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
-IUSE="afs bashlogger nls vanilla"
+IUSE="afs bashlogger nls plugins vanilla"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2"
 
 S=${WORKDIR}/${MY_P}
+
+pkg_setup() {
+	if is-flag -malign-double ; then #7332
+		eerror "Detected bad CFLAGS '-malign-double'.  Do not use this"
+		eerror "as it breaks LFS (struct stat64) on x86."
+		die "remove -malign-double from your CFLAGS mr ricer"
+	fi
+}
 
 src_unpack() {
 	unpack ${MY_P}.tar.gz
@@ -58,6 +65,7 @@ src_unpack() {
 
 	if ! use vanilla ; then
 		epatch "${FILESDIR}"/${PN}-3.1-gentoo.patch
+		epatch "${FILESDIR}"/${PN}-3.2-loadables.patch
 
 		# Fix process substitution on BSD.
 		epatch "${FILESDIR}"/${PN}-3.2-process-subst.patch
@@ -90,8 +98,6 @@ src_unpack() {
 }
 
 src_compile() {
-	filter-flags -malign-double
-
 	local myconf=
 
 	# Always use the buildin readline, else if we update readline
@@ -110,19 +116,24 @@ src_compile() {
 	# sucks bad compared to ncurses
 	myconf="${myconf} --with-curses"
 
+	use plugins && append-ldflags -Wl,-rpath,/usr/$(get_libdir)/bash
 	econf \
 		$(use_with afs) \
 		--disable-profiling \
 		--without-gnu-malloc \
 		${myconf} || die
-	emake -j1 || die "make failed"	# see bug 102426
+	emake || die "make failed"
+
+	if use plugins ; then
+		emake -C examples/loadables all others || die
+	fi
 }
 
 src_install() {
-	einstall || die
+	emake install DESTDIR="${D}" || die
 
 	dodir /bin
-	mv "${ED}"/usr/bin/bash "${ED}"/bin/
+	mv "${ED}"/usr/bin/bash "${ED}"/bin/ || die
 	dosym bash /bin/rbash
 
 	insinto /etc/bash
@@ -135,6 +146,11 @@ src_install() {
 
 	sed -i -e "s:#${USERLAND}#@::" "${ED}"/etc/skel/.bashrc "${ED}"/etc/bash/bashrc
 	sed -i -e '/#@/d' "${ED}"/etc/skel/.bashrc "${ED}"/etc/bash/bashrc
+
+	if use plugins ; then
+		exeinto /usr/$(get_libdir)/bash
+		doexe $(echo examples/loadables/*.o | sed 's:\.o::g') || die
+	fi
 
 	doman doc/*.1
 	dodoc README NEWS AUTHORS CHANGES COMPAT Y2K doc/FAQ doc/INTRO
