@@ -355,8 +355,8 @@ x-modular_src_install() {
 	prepalldocs
 
 	# Don't install libtool archives for server modules
-	if [[ -e ${D}/usr/$(get_libdir)/xorg/modules ]]; then
-		find ${D}/usr/$(get_libdir)/xorg/modules -name '*.la' \
+	if [[ -e ${ED}/usr/$(get_libdir)/xorg/modules ]]; then
+		find ${ED}/usr/$(get_libdir)/xorg/modules -name '*.la' \
 			| xargs rm -f
 	fi
 
@@ -393,7 +393,7 @@ cleanup_fonts() {
 	local ALLOWED_FILES="encodings.dir fonts.cache-1 fonts.dir fonts.scale"
 	for DIR in ${FONT_DIR}; do
 		unset KEEP_FONTDIR
-		REAL_DIR=${ROOT}usr/share/fonts/${DIR}
+		REAL_DIR=${EROOT}usr/share/fonts/${DIR}
 
 		ebegin "Checking ${REAL_DIR} for useless files"
 		pushd ${REAL_DIR} &> /dev/null
@@ -444,7 +444,7 @@ remove_font_metadata() {
 			[[ "${DIR}" != "CID" ]] ; then
 			# Delete font metadata files
 			# fonts.scale, fonts.dir, fonts.cache-1
-			rm -f ${D}/usr/share/fonts/${DIR}/fonts.{scale,dir,cache-1}
+			rm -f ${ED}/usr/share/fonts/${DIR}/fonts.{scale,dir,cache-1}
 		fi
 	done
 }
@@ -470,7 +470,7 @@ create_fonts_scale() {
 	ebegin "Creating fonts.scale files"
 		local x
 		for DIR in ${FONT_DIR}; do
-			x=${ROOT}/usr/share/fonts/${DIR}
+			x=${EROOT}/usr/share/fonts/${DIR}
 			[[ -z "$(ls ${x}/)" ]] && continue
 			[[ "$(ls ${x}/)" = "fonts.cache-1" ]] && continue
 
@@ -482,7 +482,7 @@ create_fonts_scale() {
 			if [[ "${x/encodings}" = "${x}" ]] \
 				&& [[ -n "$(find ${x} -iname '*.[pot][ft][abcf]' -print)" ]]; then
 				mkfontscale \
-					-a ${ROOT}/usr/share/fonts/encodings/encodings.dir \
+					-a ${EROOT}/usr/share/fonts/encodings/encodings.dir \
 					-- ${x}
 			fi
 		done
@@ -492,14 +492,14 @@ create_fonts_scale() {
 create_fonts_dir() {
 	ebegin "Generating fonts.dir files"
 		for DIR in ${FONT_DIR}; do
-			x=${ROOT}/usr/share/fonts/${DIR}
+			x=${EROOT}/usr/share/fonts/${DIR}
 			[[ -z "$(ls ${x}/)" ]] && continue
 			[[ "$(ls ${x}/)" = "fonts.cache-1" ]] && continue
 
 			if [[ "${x/encodings}" = "${x}" ]]; then
 				mkfontdir \
-					-e ${ROOT}/usr/share/fonts/encodings \
-					-e ${ROOT}/usr/share/fonts/encodings/large \
+					-e ${EROOT}/usr/share/fonts/encodings \
+					-e ${EROOT}/usr/share/fonts/encodings/large \
 					-- ${x}
 			fi
 		done
@@ -509,7 +509,7 @@ create_fonts_dir() {
 fix_font_permissions() {
 	ebegin "Fixing permissions"
 		for DIR in ${FONT_DIR}; do
-			find ${ROOT}/usr/share/fonts/${DIR} -type f -name 'font.*' \
+			find ${EROOT}/usr/share/fonts/${DIR} -type f -name 'font.*' \
 				-exec chmod 0644 {} \;
 		done
 	eend 0
