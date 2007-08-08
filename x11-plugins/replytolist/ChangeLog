@@ -1,0 +1,51 @@
+# ChangeLog for x11-plugins/replytolist
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/replytolist/ChangeLog,v 1.14 2007/06/15 17:26:55 armin76 Exp $
+
+  15 Jun 2007; Raúl Porcel <armin76@gentoo.org> replytolist-0.2.0.ebuild:
+  alpha stable wrt #178983
+
+  07 Jun 2007; Markus Rothe <corsair@gentoo.org> replytolist-0.2.0.ebuild:
+  Stable on ppc64; bug #178983
+
+  24 May 2007; Diego Pettenò <flameeyes@gentoo.org>
+  replytolist-0.2.0.ebuild:
+  Add ~x86-fbsd keyword, as per bug #175183.
+
+  20 May 2007; Joseph Jezak <josejx@gentoo.org> replytolist-0.2.0.ebuild:
+  Marked ppc stable for bug #178983.
+
+  19 May 2007; Christian Faulhammer <opfer@gentoo.org>
+  replytolist-0.2.0.ebuild:
+  stable amd64, bug 178983
+
+  18 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  replytolist-0.2.0.ebuild:
+  Stable on sparc wrt #178983
+
+  18 May 2007; Raúl Porcel <armin76@gentoo.org> replytolist-0.2.0.ebuild:
+  ia64 + x86 stable wrt #178983
+
+  17 May 2007; Raúl Porcel <armin76@gentoo.org> replytolist-0.2.0.ebuild:
+  Add ~alpha wrt #175267
+
+  22 Apr 2007; Markus Rothe <corsair@gentoo.org> replytolist-0.2.0.ebuild:
+  Added ~ppc64; bug #175183
+
+  19 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  replytolist-0.2.0.ebuild:
+  Keyworded ~sparc wrt #175183
+
+  19 Apr 2007; Raúl Porcel <armin76@gentoo.org> replytolist-0.2.0.ebuild:
+  Add ~x86 + ~ia64, bug 175183
+
+  18 Jan 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  replytolist-0.2.0.ebuild:
+  Keyword ~ppc.
+
+*replytolist-0.2.0 (09 Nov 2006)
+
+  09 Nov 2006; Bryan Østergaard <kloeri@gentoo.org> +metadata.xml,
+  +replytolist-0.2.0.ebuild:
+  Initial import, ebuild by Jory A. Pratt <geekypenguin@gmail.com>.
+
