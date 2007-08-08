@@ -42,6 +42,10 @@ src_unpack() {
 			|| die "Failed to install test tarballs"
 	fi
 
+	epatch "${FILESDIR}"/${P}-catalog_path.patch
+
+	eprefixify catalog.c runtest.c xmllint.c
+
 	epunt_cxx
 }
 
