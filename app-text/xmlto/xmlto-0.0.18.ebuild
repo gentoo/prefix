@@ -36,7 +36,8 @@ src_compile() {
 	has_version sys-apps/util-linux \
 		|| myconf="${myconf} --with-getopt=getopt-long"
 
-	econf ${myconf} || die
+	econf ${myconf} \
+		--with-bash="${EPREFIX}"/bin/bash || die
 	emake -j1 || die
 }
 
