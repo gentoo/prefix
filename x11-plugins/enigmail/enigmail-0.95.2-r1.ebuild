@@ -110,6 +110,9 @@ src_unpack() {
 	# Make replytolist work with >0.95.0
 	epatch ${FILESDIR}/0.95.0-replytolist.patch
 
+	rm -f ${S}/config/gcc_hidden.h
+	touch ${S}/config/gcc_hidden.h
+
 	eautoreconf || die "failed running autoreconf"
 }
 
