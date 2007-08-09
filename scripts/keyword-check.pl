@@ -24,7 +24,7 @@ my $first = 1;
 while (defined(my $ebuild = <*-*/*/*.ebuild>)) { 
 	@ARGV = $ebuild;
 	while (<>) {
-		if ( substr( $_, 0, 9 ) eq 'KEYWORDS=' ) {
+		if ( ?^KEYWORDS=? ) {
 			my $str = substr( $_, 9 );
 			# get rid of the quotes and the newline
 			$str = substr( $str, 1, length ($str)-3 );
@@ -51,12 +51,13 @@ while (defined(my $ebuild = <*-*/*/*.ebuild>)) {
 			# give a report
 			if ( scalar @forbidden || scalar @stable ) {
 				unless ($first) { print "\n" } else { $first=0 }
-				$ebuild =~ s{/.*?/}{/};
+				$ebuild =~ s{/[^/]+/}{/};
 				$ebuild = substr( $ebuild, 0, length( $ebuild ) - 7 );
 				printf "EBUILD    : %s\n", $ebuild;
 				printf "forbidden : %s\n", @forbidden if ( scalar @forbidden );
 				printf "stable    : %s\n", @stable if ( scalar @stable )
 			}
+			reset
 		}
 	}
 }
