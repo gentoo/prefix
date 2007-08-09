@@ -26,6 +26,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-0.2.4-revdep-prefix-darwin.patch
+	epatch "${FILESDIR}"/${P}-deprecate.patch
 	ebegin "Adjusting to prefix (sloppyly)"
 	find . -mindepth 2 -type f | grep -v Makefile | xargs sed -i \
 		-e "s|/usr/lib/gentoolkit/pym|${EPREFIX}/usr/lib/gentoolkit/pym|g" \
