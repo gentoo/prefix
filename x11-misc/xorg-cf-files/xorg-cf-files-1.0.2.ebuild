@@ -20,4 +20,6 @@ src_install() {
 	x-modular_src_install
 	echo "#define ManDirectoryRoot ${EPREFIX}/usr/share/man" >> ${ED}/usr/$(get_libdir)/X11/config/host.def
 	sed -i -e "s/LibDirName *lib$/LibDirName $(get_libdir)/" ${ED}/usr/$(get_libdir)/X11/config/Imake.tmpl || die "failed libdir sed"
+	sed -i -e "s|LibDir Concat(ProjectRoot,/lib/X11)|LibDir Concat(ProjectRoot,/$(get_libdir)/X11)|" ${ED}/usr/$(get_libdir)/X11/config/X11.tmpl || die "failed libdir sed"
+
 }
