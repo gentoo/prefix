@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="display information utility for X"
 
-KEYWORDS="~amd64 ~ia64 ~mips ~x86"
+KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~x86-solaris"
 
 IUSE="dga dmx xinerama"
 
