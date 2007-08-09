@@ -12,7 +12,7 @@ SRC_URI="http://www.gnetlibrary.org/src/${P}.tar.gz"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
 
 IUSE="debug doc static"
 
