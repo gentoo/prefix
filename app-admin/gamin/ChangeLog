@@ -1,6 +1,21 @@
 # ChangeLog for app-admin/gamin
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.66 2007/07/12 18:28:39 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.69 2007/08/07 16:41:16 uberlord Exp $
+
+  07 Aug 2007; Roy Marples <uberlord@gentoo.org>
+  +files/gamin-0.1.9-freebsd.patch, gamin-0.1.9.ebuild:
+  Redo the FreeBSD patch for 1.9 - seems we do need it still
+
+  07 Aug 2007; Roy Marples <uberlord@gentoo.org> gamin-0.1.9.ebuild:
+  Fix installing on FreeBSD
+
+*gamin-0.1.9 (07 Aug 2007)
+
+  07 Aug 2007; Daniel Drake <dsd@gentoo.org>
+  +files/gamin-0.1.9-user-cflags.patch, +gamin-0.1.9.ebuild:
+  Version bump, and fix a bug where CFLAGS were being ignored (Arfrever
+  Frehtes Taifersar Arahesis, #178266). x86-fbsd keywords dropped as fbsd
+  patch no longer applies.
 
   12 Jul 2007; Samuli Suominen <drac@gentoo.org> metadata.xml:
   Change metadata from azarah to gnome, kde, and xfce.
