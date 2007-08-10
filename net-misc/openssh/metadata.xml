@@ -2,10 +2,6 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>base-system</herd>
-<maintainer>
- <email>lcars@gentoo.org</email>
- <description>only ldap support, don't bug me for other issues</description>
-</maintainer>
 <longdescription>
 OpenSSH is a FREE version of the SSH protocol suite of network connectivity tools that 
 increasing numbers of people on the Internet are coming to rely on. Many users of telnet, 
