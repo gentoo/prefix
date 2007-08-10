@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Simple/Test-Simple-0.70.ebuild,v 1.3 2007/07/10 11:30:13 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Simple/Test-Simple-0.70.ebuild,v 1.4 2007/08/09 15:42:41 dertobi123 Exp $
 
 EAPI="prefix"
 
