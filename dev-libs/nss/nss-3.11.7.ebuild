@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.11.7.ebuild,v 1.1 2007/07/08 17:18:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.11.7.ebuild,v 1.3 2007/08/08 22:00:41 armin76 Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic multilib
 
-NSPR_VER="4.6.5"
+NSPR_VER="4.6.7"
 RTM_NAME="NSS_${PV//./_}_RTM"
 DESCRIPTION="Mozilla's Netscape Security Services Library that implements PKI support"
 HOMEPAGE="http://www.mozilla.org/projects/security/pki/nss/"
@@ -15,7 +15,7 @@ SRC_URI="ftp://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/${RTM_NAME}
 LICENSE="MPL-1.1 GPL-2 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~mips ~x86"
-IUSE=""
+IUSE="utils"
 
 DEPEND="app-arch/zip
 	>=dev-libs/nspr-${NSPR_VER}"
@@ -107,4 +107,11 @@ src_install () {
 	      -e "s,@NSS_VERSION@,$NSS_VMAJOR.$NSS_VMINOR.$NSS_VPATCH,g" \
 	      -i ${ED}/usr/$(get_libdir)/pkgconfig/nss.pc
 	chmod 644 ${ED}/usr/$(get_libdir)/pkgconfig/nss.pc
+
+	if use utils; then
+		cd ${S}/mozilla/security/dist/*/bin/
+		for f in *; do
+			newbin ${f} nss${f}
+		done
+	fi
 }
