@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/module-build/module-build-0.28.08.ebuild,v 1.5 2007/07/11 19:18:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/module-build/module-build-0.28.08.ebuild,v 1.6 2007/08/09 15:32:05 dertobi123 Exp $
 
 EAPI="prefix"
 
