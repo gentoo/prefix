@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXcursor/libXcursor-1.1.8.ebuild,v 1.10 2007/07/02 13:30:43 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXcursor/libXcursor-1.1.8.ebuild,v 1.11 2007/08/07 13:07:48 gustavoz Exp $
 
 EAPI="prefix"
 
