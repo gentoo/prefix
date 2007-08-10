@@ -1,5 +1,10 @@
 # prefix items here
 
+# <grobian@gentoo.org> (10 Aug 2007)
+# echangelog is completely useless with SVN, probably remains like that
+# for a while
+>=app-portage/gentoolkit-dev-0.2.6.6
+
 # <grobian@gentoo.org> (16 Jul 2007)
 # autotools get completely broken with it, like on FreeBSD
 =sys-devel/m4-1.4.10
