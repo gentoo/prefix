@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r2.ebuild,v 1.37 2007/08/06 16:35:36 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r2.ebuild,v 1.38 2007/08/08 19:21:03 vapier Exp $
 
 EAPI="prefix"
 
@@ -138,7 +138,7 @@ src_unpack() {
 	# c++ patch - should address swig related items
 	cd ${S}; epatch ${FILESDIR}/${P}-cplusplus.patch
 
-	has_version '>sys-devel/gcc-4.1.9999' && epatch ${FILESDIR}/${P}-gcc42-command-line.patch
+	epatch ${FILESDIR}/${P}-gcc42-command-line.patch
 
 	# Newer linux-headers don't include asm/page.h. Fix this.
 	# Patch from bug 168312, thanks Peter!
