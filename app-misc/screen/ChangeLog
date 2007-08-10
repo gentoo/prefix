@@ -1,6 +1,16 @@
 # ChangeLog for app-misc/screen
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/ChangeLog,v 1.134 2007/06/01 06:53:31 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/ChangeLog,v 1.136 2007/08/07 19:59:29 swegener Exp $
+
+  07 Aug 2007; Sven Wegener <swegener@gentoo.org> screen-4.0.3.ebuild,
+  screen-4.0.3_p20070403.ebuild:
+  Port some changes from the new snapshot ebuild to the regular ebuild.
+
+*screen-4.0.3_p20070403 (07 Aug 2007)
+
+  07 Aug 2007; Sven Wegener <swegener@gentoo.org>
+  +files/screen-4.0.3_p20070403-map.patch, +screen-4.0.3_p20070403.ebuild:
+  Version bump, CVS snapshot, package.mask'ed for now.
 
   01 Jun 2007; Christian Faulhammer <opfer@gentoo.org> ChangeLog:
   modified ChangeLog to meet common format

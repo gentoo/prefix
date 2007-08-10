@@ -1,0 +1,14 @@
+diff -Nur screen-4.0.3_p20070403.orig/term.c screen-4.0.3_p20070403/term.c
+--- screen-4.0.3_p20070403.orig/term.c	2005-12-16 18:51:07.000000000 +0000
++++ screen-4.0.3_p20070403/term.c	2007-04-22 19:47:17.002355543 +0000
+@@ -230,8 +230,8 @@
+ /* define T_NAVIGATE */
+   { "kh", T_STR  }, KMAPDEF("\033[1~") KMAPMDEF("\201")
+   { "@1", T_STR  },
+-  { "kH", T_STR  }, KMAPDEF("\033[4~") KMAPMDEF("\205")
+-  { "@7", T_STR  },
++  { "kH", T_STR  },
++  { "@7", T_STR  }, KMAPDEF("\033[4~") KMAPMDEF("\205")
+   { "kN", T_STR  }, KMAPDEF("\033[6~") KMAPMDEF("\006")
+   { "kP", T_STR  }, KMAPDEF("\033[5~") KMAPMDEF("\002")
+   { "kI", T_STR  }, KMAPDEF("\033[2~")

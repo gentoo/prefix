@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/screen-4.0.3.ebuild,v 1.16 2007/08/07 19:59:29 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/screen-4.0.3_p20070403.ebuild,v 1.2 2007/08/07 19:59:29 swegener Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ inherit eutils flag-o-matic toolchain-funcs pam autotools
 
 DESCRIPTION="Screen is a full-screen window manager that multiplexes a physical terminal between several processes"
 HOMEPAGE="http://www.gnu.org/software/screen/"
-SRC_URI="ftp://ftp.uni-erlangen.de/pub/utilities/${PN}/${P}.tar.gz"
+SRC_URI="mirror://gentoo/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -34,33 +34,19 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	# Bug 34599: integer overflow in 4.0.1
-	# (Nov 29 2003 -solar)
-	epatch "${FILESDIR}"/screen-4.0.1-int-overflow-fix.patch
-
-	# Bug 31070: configure problem which affects alpha
-	# (13 Jan 2004 agriffis)
-	epatch "${FILESDIR}"/screen-4.0.1-vsprintf.patch
-
 	# uclibc doesnt have sys/stropts.h
 	if ! (echo '#include <sys/stropts.h>' | $(tc-getCC) -E - &>/dev/null) ; then
 		epatch "${FILESDIR}"/4.0.2-no-pty.patch
 	fi
+
+	# Fix some keybindings
+	epatch "${FILESDIR}"/${P}-map.patch
 
 	# Don't use utempter even if it is found on the system
 	epatch "${FILESDIR}"/4.0.2-no-utempter.patch
 
 	# Don't link against libelf even if it is found on the system
 	epatch "${FILESDIR}"/4.0.2-no-libelf.patch
-
-	# Patch for time function on 64bit systems
-	epatch "${FILESDIR}"/4.0.2-64bit-time.patch
-
-	# Patch that makes %u work for windowlist -b formats
-	epatch "${FILESDIR}"/4.0.2-windowlist-multiuser-fix.patch
-
-	# Open tty in non-blocking mode
-	epatch "${FILESDIR}"/4.0.2-nonblock.patch
 
 	# Fix manpage.
 	sed -i \
@@ -73,9 +59,8 @@ src_unpack() {
 		|| die "sed doc/screen.1 failed"
 
 	# proper setenv detection for Solaris
-	epatch "${FILESDIR}"/${P}-setenv_autoconf.patch
+	epatch "${FILESDIR}"/${PN}-4.0.3-setenv_autoconf.patch
 
-	# reconfigure
 	eautoconf
 }
 
@@ -98,9 +83,6 @@ src_compile() {
 		$(use_enable pam) \
 		|| die "econf failed"
 
-	# Second try to fix bug 12683, this time without changing term.h
-	# The last try seemed to break screen at run-time.
-	# (16 Jan 2003 agriffis)
 	LC_ALL=POSIX make term.h || die "Failed making term.h"
 
 	emake || die "emake failed"
@@ -150,4 +132,7 @@ pkg_postinst() {
 	elog "Some dangerous key bindings have been removed or changed to more safe values."
 	elog "We enable some xterm hacks in our default screenrc, which might break some"
 	elog "applications. Please check /etc/screenrc for information on these changes."
+
+	ewarn "Please terminate your running screen sessions, as screen now uses sockets"
+	ewarn "instead of fifos and the new version can't attach to the old sessions."
 }
