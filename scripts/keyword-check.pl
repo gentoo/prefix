@@ -25,32 +25,22 @@ while (defined(my $ebuild = <*-*/*/*.ebuild>)) {
 	@ARGV = $ebuild;
 	while (<>) {
 		if ( ?^KEYWORDS=? ) {
-			my $str = substr( $_, 9 );
-			# get rid of the quotes and the newline
-			$str = substr( $str, 1, length ($str)-3 );
-			my @kws = split( /\s+/, $str );
-			my @forbidden;
-			my @stable;
-			foreach (@kws) {
-				my $unstable = s/^[-~]//;
-				unless ( $unstable ) {
-					push @stable, $_
-				}
+			my @forbidden; my @stable;
+			# iterate over the keywords
+			foreach ( split( /\s+/, ( split( '"' ) )[1] ) ) {
+				push( @stable, $_ ) unless ( s/^[-~]// );
 				my $allowed = 0;
 				foreach my $arch (@archlist) {
-					my $included = $arch eq $_;
-					if ($included) {
+					if ( $arch eq $_ ) {
 						$allowed = 1;
 						last
 					}
 				}
-				unless ($allowed) {
-					push @forbidden, $_
-				}
+				push( @forbidden, $_ ) unless ( $allowed )
 			}
 			# give a report
 			if ( scalar @forbidden or scalar @stable ) {
-				unless ($first) { print "\n" } else { $first=0 }
+				unless ( $first ) { print "\n" } else { $first=0 }
 				$ebuild =~ s{/[^/]+/}{/};
 				$ebuild = substr( $ebuild, 0, length( $ebuild ) - 7 );
 				printf "EBUILD    : %s\n", $ebuild;
