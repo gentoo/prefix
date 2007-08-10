@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.6.ebuild,v 1.7 2007/08/05 15:57:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.6.ebuild,v 1.8 2007/08/09 11:04:22 armin76 Exp $
 
 EAPI="prefix"
 
@@ -193,9 +193,9 @@ src_compile() {
 	# requirements while compiling
 	edit_makefiles
 
-	# Anything more than -j1 will still break things, please don't remove until
-	# you're sure upstream has fixed this. See bug #135420.
-	emake -j1 || die
+	# Should the build use multiprocessing? Not enabled by default, as it tends to break
+	[ "${WANT_MP}" = "true" ] && jobs=${MAKEOPTS} || jobs="-j1"
+	emake ${jobs} || die
 }
 
 pkg_preinst() {
