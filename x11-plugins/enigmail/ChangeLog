@@ -1,6 +1,10 @@
 # ChangeLog for x11-plugins/enigmail
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/ChangeLog,v 1.93 2007/08/05 20:44:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/ChangeLog,v 1.94 2007/08/09 13:48:54 armin76 Exp $
+
+  09 Aug 2007; Raúl Porcel <armin76@gentoo.org> enigmail-0.95.2-r1.ebuild:
+  Fix amd64 failure with gcc-4.2, thanks to Stefan Hoelldampf <stefan at
+  hoelldampf dot net> for the fix, bug 186089
 
   05 Aug 2007; Raúl Porcel <armin76@gentoo.org> -enigmail-0.94.3.ebuild,
   -enigmail-0.95.0.ebuild, -enigmail-0.95.1.ebuild, -enigmail-0.95.2.ebuild:
