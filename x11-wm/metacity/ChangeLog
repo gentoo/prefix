@@ -1,6 +1,17 @@
 # ChangeLog for x11-wm/metacity
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.188 2007/06/19 01:58:34 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.191 2007/08/08 21:59:40 armin76 Exp $
+
+  08 Aug 2007; Raúl Porcel <armin76@gentoo.org> metacity-2.18.5.ebuild:
+  alpha/ia64 stable wrt #185823
+
+  07 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  metacity-2.18.5.ebuild:
+  Stable on ppc wrt bug #185823.
+
+  07 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  metacity-2.18.5.ebuild:
+  Stable on sparc wrt #185823
 
 *metacity-2.18.5 (19 Jun 2007)
 
