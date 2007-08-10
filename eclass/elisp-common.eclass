@@ -59,79 +59,89 @@
 # something else, but remember to tell elisp-site-file-install() (see below)
 # the change, as it defaults to ${PN}.
 #
-#		elisp-install ${PN} *.el *.elc || die "elisp-install failed"
+#   	elisp-install ${PN} *.el *.elc || die "elisp-install failed"
 #
-#  To let the Emacs support be activated by Emacs on startup, you need
+# To let the Emacs support be activated by Emacs on startup, you need
 # to provide a site file (shipped in ${FILESDIR}) which contains the startup
 # code (have a look in the documentation of your software).  Normally this
 # would look like this:
 #
-#	;;; csv-mode site-lisp configuration
+#   	;;; csv-mode site-lisp configuration
 #
-#	(add-to-list 'load-path "@SITELISP@")
-#	(add-to-list 'auto-mode-alist '("\\.csv\\'" . csv-mode))
-#	(autoload 'csv-mode "csv-mode" "Major mode for editing csv files." t)
+#   	(add-to-list 'load-path "@SITELISP@")
+#   	(add-to-list 'auto-mode-alist '("\\.csv\\'" . csv-mode))
+#   	(autoload 'csv-mode "csv-mode" "Major mode for csv files." t)
 #
-#  If your Emacs support files are installed in a subdirectory of
+# If your Emacs support files are installed in a subdirectory of
 # /usr/share/emacs/site-lisp/ (which is recommended if more than one file is
 # installed), you need to extend Emacs' load-path as shown in the first
 # non-comment.  The elisp-site-file-install() function of this eclass will
 # replace "@SITELISP@" by the actual path.
-#  The next line tells Emacs to load the mode opening a file ending with
+#
+# The next line tells Emacs to load the mode opening a file ending with
 # ".csv" and load functions depending on the context and needed features.
 # Be careful though.  Commands as "load-library" or "require" bloat the
 # editor as they are loaded on every startup.  When having a lot of Emacs
 # support files, users may be annoyed by the start-up time.  Also avoid
 # keybindings as they might interfere with the user's settings.  Give a hint
 # in pkg_postinst(), which should be enough.
-#  The naming scheme for this site file is "[0-9][0-9]*-gentoo.el", where the
+#
+# The naming scheme for this site file is "[0-9][0-9]*-gentoo.el", where the
 # two digits at the beginning define the loading order.  So if you depend on
 # another Emacs package, your site file's number must be higher!
-#  Best practice is to define a SITEFILE variable in the global scope of your
+#
+# Best practice is to define a SITEFILE variable in the global scope of your
 # ebuild (right after DEPEND e.g.):
 #
-#		SITEFILE=50${PN}-gentoo.el
+#   	SITEFILE=50${PN}-gentoo.el
 #
-#  Which is then installed by
+# Which is then installed by
 #
-#		elisp-site-file-install "${FILESDIR}/${SITEFILE}"
+#   	elisp-site-file-install "${FILESDIR}/${SITEFILE}"
 #
 # in src_install().  If your subdirectory is not named ${PN}, give the
 # differing name as second argument.
 #
+# .SS
 # pkg_postinst() / pkg_postrm() usage:
-# ------------------------------------
 #
 # After that you need to recreate the start-up file of Emacs after emerging
 # and unmerging by using
 #
-#		pkg_postinst() {
-#			elisp-site-regen
-#		}
+#   	pkg_postinst() {
+#   		elisp-site-regen
+#   	}
 #
-#		pkg_postrm() {
-#			elisp-site-regen
-#		}
+#   	pkg_postrm() {
+#   		elisp-site-regen
+#   	}
 #
-#  When having optional Emacs support, you should prepend "use emacs &&" to
+# When having optional Emacs support, you should prepend "use emacs &&" to
 # above calls of elisp-site-regen().  Don't use "has_version virtual/emacs"!
-# When unmerging the state of the USE flag emacs is taken from the package
+# When unmerging the state of the emacs USE flag is taken from the package
 # database and not from the environment, so it is no problem when you unset
-# USE=emacs between merge und unmerge of a package.
+# USE=emacs between merge and unmerge of a package.
 #
+# .SS
 # Miscellaneous functions:
-# ------------------------
 #
 # elisp-emacs-version() outputs the version of the currently active Emacs.
-#
-#  As always: Feel free to contact Emacs team through emacs@gentoo.org if you
-# have problems, suggestions or questions.
 
 SITELISP="${EPREFIX}"/usr/share/emacs/site-lisp
+SITEFILE=50${PN}-gentoo.el
+
+# @FUNCTION: elisp-compile
+# @USAGE: <list of elisp files>
+# @DESCRIPTION:
+# Byte-compile Emacs Lisp files.
 
 elisp-compile() {
 	"${EPREFIX}"/usr/bin/emacs --batch -q --no-site-file -f batch-byte-compile $*
 }
+
+# @FUNCTION: elisp-emacs-version
+# @DESCRIPTION:
+# Output version of currently active Emacs.
 
 elisp-emacs-version() {
 	# Output version of currently active Emacs.
@@ -139,6 +149,11 @@ elisp-emacs-version() {
 	echo "(princ emacs-version)" >"${T}"/emacs-version.el
 	"${EPREFIX}"/usr/bin/emacs -batch -q --no-site-file -l "${T}"/emacs-version.el
 }
+
+# @FUNCTION: elisp-make-autoload-file
+# @USAGE: [output file] [list of directories]
+# @DESCRIPTION:
+# Generate a file with autoload definitions for the lisp functions.
 
 elisp-make-autoload-file () {
 	local f="${1:-${PN}-autoloads.el}"
@@ -232,22 +247,22 @@ elisp-site-regen() {
 		# This prevents outputting unnecessary text when there
 		# was actually no change
 		# A case is a remerge where we have doubled output
-		einfo "... no changes"
+		einfo " no changes."
 	else
 		mv "${T}"/site-gentoo.el "${EROOT}${SITELISP}"/site-gentoo.el
-		einfo ""
+		echo; einfo
 		for sf in ${sflist}; do
 			einfo "  Adding ${sf} ..."
 		done
 		while read line; do einfo "${line}"; done <<EOF
 
-All site initialisation for Gentoo-installed packages is now added to
+All site initialisation for Gentoo-installed packages is added to
 ${EPREFIX}/usr/share/emacs/site-lisp/site-gentoo.el; site-start.el is no longer
 managed by Gentoo. You are responsible for all maintenance of
 site-start.el if there is such a file.
 
 In order for this site initialisation to be loaded for all users
-automatically, as was done previously, you can add a line like this:
+automatically, you can add a line like this:
 
 	(load "${EPREFIX}/usr/share/emacs/site-lisp/site-gentoo" nil t)
 

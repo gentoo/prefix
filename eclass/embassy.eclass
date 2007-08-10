@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/embassy.eclass,v 1.14 2007/07/19 13:21:07 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/embassy.eclass,v 1.15 2007/08/07 18:30:04 ribosome Exp $
 
 # Author Olivier Fisette <ribosome@gentoo.org>
 
@@ -63,6 +63,7 @@ embassy_src_compile() {
 		--datadir="${EPREFIX}"/usr/share \
 		--sysconfdir="${EPREFIX}"/etc \
 		--localstatedir="${EPREFIX}"/var/lib \
+		--libdir="${EPREFIX}"/usr/$(get_libdir) \
 		${EXTRA_CONF} || die
 	emake || die "Before reporting this error as a bug, please make sure you compiled
     EMBOSS and the EMBASSY packages with the same \"USE\" flags. Failure to
@@ -73,7 +74,7 @@ embassy_src_compile() {
 }
 
 embassy_src_install() {
-	einstall || die
+	emake DESTDIR="${D}" install || die "Install failed"
 	dodoc AUTHORS ChangeLog NEWS README
 }
 

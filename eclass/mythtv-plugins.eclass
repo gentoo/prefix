@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv-plugins.eclass,v 1.25 2007/06/28 19:19:21 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv-plugins.eclass,v 1.27 2007/08/07 19:19:52 cardoe Exp $
 #
 # Author: Doug Goldstein <cardoe@gentoo.org>
 #
@@ -23,11 +23,11 @@ DEPEND="${DEPEND}
 S="${WORKDIR}/mythplugins-${MY_PV}"
 
 # hijacks the plugins checkout to be:
-# /usr/portage/distfiles/svn-src//mythplugins/mythvideo/
+# /usr/portage/distfiles/svn-src/mythplugins/mythplugins/mythvideo/
 # so that each of the plugins can share the same svn checkout
 # saving HD space and number of svn checkouts reqired
 # Great suggestion by Tom Clift <tom@clift.name>
-ESVN_PROJECT=""
+ESVN_PROJECT="mythplugins"
 
 mythtv-plugins_pkg_setup() {
 	# List of available plugins (needs to include ALL of them in the tarball)
@@ -46,7 +46,12 @@ mythtv-plugins_pkg_setup() {
 }
 
 mythtv-plugins_src_unpack() {
-	unpack ${A}
+	if [ -n "${SVNREV}" ]; then
+		subversion_src_unpack
+	else
+		unpack ${A}
+	fi
+
 	mythtv-plugins_src_unpack_patch
 }
 
