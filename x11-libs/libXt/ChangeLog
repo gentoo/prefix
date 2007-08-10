@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXt
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/ChangeLog,v 1.47 2007/07/03 12:23:31 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/ChangeLog,v 1.48 2007/08/07 13:15:40 gustavoz Exp $
+
+  07 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org> libXt-1.0.5.ebuild:
+  Stable on sparc wrt #175465
 
   03 Jul 2007; Lars Weiler <pylon@gentoo.org> libXt-1.0.5.ebuild:
   Stable on ppc; bug #175465.
