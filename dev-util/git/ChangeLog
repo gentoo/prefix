@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.208 2007/07/29 16:56:54 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.209 2007/08/08 11:04:16 ferdy Exp $
+
+*git-1.5.3_rc4 (08 Aug 2007)
+
+  08 Aug 2007; Fernando J. Pereda <ferdy@gentoo.org>
+  +files/git-1.5.3-symlinks.patch, +git-1.5.3_rc4.ebuild:
+  Version bump
 
   29 Jul 2007; Christian Heim <phreak@gentoo.org> git-1.5.0.7.ebuild,
   git-1.5.1.6.ebuild, git-1.5.2.ebuild, git-1.5.2.1.ebuild,
