@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7538 2007/07/28 13:34:26 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7576 2007/08/09 18:06:18 cardoe Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -21,15 +21,54 @@
 ##   End example
 ##
 
-# Zac Medico <zmedico@gentoo.org> (28 Jul 2007)
-# Mask due to 'OSError: out of pty devices', bug #186876
-=sys-apps/portage-2.1.3
+# Sven Wegener <swegener@gentoo.org> (07 Aug 2007)
+# CVS snapshot, needs some more testing
+~app-misc/screen-4.0.3_p20070403
 
-# Samuli Suominen <drac@gentoo.org> (27 Jul 2007)
-# Incompatible with >= GCC4 and >= FLAC 1.1.3.
-# Upstream missing in action. Masked for removal
-# in 30 days. Bug 151382.
-media-sound/sonic-rainbow
+# Lars Weiler <pylon@gentoo.org> (06 Aug 2007)
+# included in aircrack-ng since version 0.9.0
+# masked for removal in 30 days
+net-wireless/aircrack-ptw
+
+# Samuli Suominen <drac@gentoo.org> (05 Aug 2007)
+# Temp. mask new flac since it could potentially
+# break many apps.
+~media-libs/flac-1.2.0
+
+# Hans de Graaff <graaff@gentoo.org> (05 Aug 2007)
+# Renamed to dev-ruby/capistrano more than a year ago.
+dev-ruby/switchtower
+
+# Daniel Black <dragonheart@gentoo.org> (05 Aug 2007)
+# pending removal see gentoo-dev-announce@lists....
+kde-misc/kxdocker-configurator
+kde-misc/kxdocker-i18n
+kde-misc/kxdocker-dcop
+kde-misc/kxdocker
+kde-misc/kxdocker-trayiconlogger
+kde-misc/kxdocker-resources
+
+# Jeroen Roovers <jer@gentoo.org> (04 Aug 2007)
+# Masking Opera 9.23 weeklies
+=www-client/opera-9.23*
+
+# Marius Mauch <genone@gentoo.org> (03 Aug 2007)
+# Masked for testing, also waiting for updated plugins due to license check
+>=mail-client/claws-mail-3.0.0_rc1
+
+# Andrej Kacian <ticho@gentoo.org> (02 Aug 2007)
+# Deprecated plugin, use pgpmime/pgpinline plugins shipped directly with
+# claws-mail and claws-mail-smime plugin shipped as a separate package.
+mail-client/claws-mail-etpan-privacy
+
+# Samuli Suominen <drac@gentoo.org> (30 Jul 2007)
+# Mask alpha releases.
+=media-sound/moc-2.5.0_alpha*
+
+# Benedikt Boehm <hollow@gentoo.org> (29 Jul 2007)
+# Masked for removal: Does not work with apache 2.2
+# and no release since 2004, use mod_transform instead
+www-apache/mod_xslt
 
 # Ulrich Mueller <ulm@gentoo.org> (26 Jul 2007)
 # CVS snapshots, bug #185106
@@ -37,7 +76,7 @@ media-sound/sonic-rainbow
 
 # Marijn Schouten <hkBst@gentoo.org> (26 Jul 2007)
 # problems starting drscheme (segfault)
->=dev-scheme/drscheme-370
+=dev-scheme/drscheme-370.6_p20070725
 
 # Mike Frysinger <vapier@gentoo.org> (26 Jul 2007)
 # Unsupported upstream; doesnt build with recent tools
@@ -93,12 +132,7 @@ net-dialup/l2tpd
 # Mask rc
 =net-p2p/qbittorrent-1.0.0_beta*
 =net-libs/rb_libtorrent-0.13_pre*
-
-# Samuli Suominen <drac@gentoo.org> (18 Jul 2007)
-# Masked for treecleaners bug 185386. Unfetchable package,
-# homepage is unavailable and for using GTK+-1.2.
-# Removed in 60 days.
-media-libs/janus
+=net-p2p/deluge-0.5.4_rc*
 
 # Olivier Fisette <ribosome@gentoo.org> (17 Jul 2007)
 # Software no longer available (redistribution not allowed).
@@ -108,10 +142,6 @@ sci-chemistry/nmrview
 # Mask zaptel-1.2.18-r1 since it seems to have some issues and is experimental
 # See bug #185268
 =net-misc/zaptel-1.2.18-r1
-
-# Michael Cummings <mcummings@gentoo.org> (11 Jul 2007)
-# Masking for removal
-app-admin/gentoo-bugger
 
 # Saleem Abdulrasool <compnerd@gentoo.org> (10 Jul 2007)
 # Masking to test
@@ -123,11 +153,6 @@ net-wireless/iwl4965-ucode
 # Development releases
 =dev-db/opendbx-1.3*
 
-# Michał Januszewski <spock@gentoo.org> (06 Jul 2007)
-# Unsupported, use media-gfx/splashutils instead.
-# Masked for removal in 30 days.
-media-gfx/bootsplash
-
 # Piotr Jaroszyński <peper@gentoo.org> (06 Jul 2007)
 # Masked for removal. bug #167379.
 x11-themes/gdm-themes
@@ -137,32 +162,6 @@ x11-themes/gdm-themes
 # Upstream discontinued development more than 4 years ago.
 # Masked for removal in 60 days.
 app-text/yodl
-
-# Samuli Suominen <drac@gentoo.org> (02 Jul 2007)
-# Replaced by glipper, klipper, xclipboard or xfce4-clipman.
-# Upstream has no HOMEPAGE anymore. Still using GTK+-1.2.
-# Masked for removal in 30 days.
-x11-misc/gclipper
-
-# Samuli Suominen <drac@gentoo.org> (02 Jul 2007)
-# Still using GTK+-1.2. Replaced by x11-misc/gcolor2.
-# Masked for removal in 30 days.
-x11-misc/gcolor
-
-# Samuli Suominen <drac@gentoo.org> (02 Jul 2007)
-# Upstream gone, last release from 2004. Still using GTK+-1.2.
-# Masked for removal in 30 days. Use x11-misc/gtodo instead.
-x11-misc/ntodo
-
-# Samuli Suominen <drac@gentoo.org> (02 Jul 2007)
-# Orphaned library. Masked for removal in 30 days. Bug 153439.
-media-libs/allegromp3
-
-# Ulrich Mueller <ulm@gentoo.org> (02 Jul 2007)
-# Gnus alpha branch, obsolete since 2003. Last release was ognus-0.24
-# which was replaced by the identical gnus-5.10.1.
-# Masked for removal in 30 days.
-app-emacs/ognus
 
 # Raúl Porcel <armin76@gentoo.org> (01 Jul 2007)
 # For treecleaners
@@ -190,15 +189,6 @@ x11-misc/xnview
 # package and fixes the problems.
 kde-misc/kdbus
 
-# Samuli Suominen <drac@gentoo.org> (01 Jul 2007)
-# Large amount of TEXTRELS, installs shared ELF libraries
-# into /usr/share, large amount of invalid declaration of functions,
-# autotools usage is completely wrong, installs desktop files into
-# deprecated locations, installs invalid patch conditionally, upstream is 
-# likely dead plus there is open bug 152864. Unless you're willing 
-# to fix *all* this. Package will be removed in 30 days.
-x11-misc/gwhere
-
 # Roy Marples <uberlord@gentoo.org> (29 Jun 2007)
 # Masked due to several connectivity issues.
 >=net-wireless/wpa_supplicant-0.6.0
@@ -223,14 +213,6 @@ app-cdr/konqburn
 >=app-emulation/vmware-workstation-6
 >=app-emulation/vmware-player-2
 >=app-emulation/vmware-modules-1.0.0.16
-
-# Piotr Jaroszyński <peper@gentoo.org> (24 Jun 2007)
-# Masked for removal. bug #165898
-x11-drivers/mtxdrivers-pro
-
-# Ryan Hill <dirtyepic@gentoo.org> (23 Jun 2007)
-# Broken, bug #115110.
-media-fonts/twmoefonts
 
 # Jurek Bartuszek <jurek@gentoo.org> (23 Jun 2007)
 # Beta versions, testing required
@@ -308,10 +290,6 @@ mail-client/sylpheed-claws
 # for more details.
 =app-text/jasperreports-1.0.1
 
-# Benedikt Böhm <hollow@gentoo.org> (23 May 2007)
-# masked for removal as per #114453
-net-www/mod_auth_ldap
-
 # Seemant Kulleen <seemant@gentoo.org> (23 May 2007)
 # Masked because 1.2.1 because it is broken
 =net-wireless/ipw3945-1.2.1
@@ -347,15 +325,6 @@ net-wireless/mcs7780
 # Ryan Hill <dirtyepic@gentoo.org> (13 May 2007)
 #   Mask for testing.
 =net-fs/sfs-0.8.0_pre20070512
-
-# Luis Araujo <araujo@gentoo.org> (12 May 2007)
-# Keep Himerge masked because it depends on ghc-6.6
-app-portage/himerge
-
-# Doug Goldstein <cardoe@gentoo.org< (10 May 2007)
-# package does not compile complains of missing pygtk when
-# --disable-pygtk was passed to econf
-=net-dns/avahi-0.6.19
 
 # Stefan Schweizer <genstef@gentoo.org> (9 may 2007)
 # waiting for better upstream versions
@@ -393,10 +362,6 @@ dev-util/cvsup
 # Masked for testing.
 =www-apps/mediawiki-1.10.0_rc1
 
-# Donnie Berkholz <dberkholz@gentoo.org> (29 Apr 2007)
-# Masked for testing
-~media-libs/mesa-6.5.3
-
 # Ryan Hill <dirtyepic@gentoo.org> (29 Apr 2007)
 #  Has a hard dependency on wxGTK-2.4 (bug #121818)
 #  Masked until we can update it for 2.6.
@@ -411,11 +376,6 @@ app-admin/bastille
 # Masked until it's updated to use >=wxpython-2.6
 # https://bugs.gentoo.org/show_bug.cgi?id=115079
 games-rpg/openrpg
-
-# Andrej Kacian <ticho@gentoo.org> (20 Apr 2007)
-# Support dropped by upstream, buggy, likely to cause data loss.
-# Should be gone in 30 days.
-mail-client/claws-mail-maildir
 
 # Alexis Ballier <aballier@gentoo.org> (18 Apr 2007)
 # New version and new name for media-libs/libdts
@@ -502,12 +462,6 @@ games-sports/trophy
 games-action/clanbomber
 games-puzzle/pingus
 
-# Michael Sterrett <mr_bones_@gentoo.org> (19 Mar 2007)
-# Version in portage doesn't work with lua-5.1.
-# Masked so lua-5.1 can be stablized.
-# http://bugs.gentoo.org/show_bug.cgi?id=168792
-games-arcade/stepmania
-
 # Raúl Porcel <armin76@gentoo.org> (15 Mar 2007)
 # Mask snapshots
 =net-p2p/amule-2.2.0_pre*
@@ -533,6 +487,8 @@ net-misc/xsupplicant
 # Doug Goldstein <cardoe@gentoo.org> (5 Mar 2007)
 # experimental SVN to quell the masses
 # complain upstream if something is broken
+# or if it's Gentoo specific any bugs that get
+# filed require a patch
 >media-tv/mythtv-0.20.1_p99999
 >x11-themes/mythtv-themes-0.20.1_p99999
 >media-plugins/mytharchive-0.20.1_p99999
@@ -693,11 +649,6 @@ dev-python/twisted-web2
 # that have not been checked and might have security issues
 # Use at your own risk, bug #158340
 media-video/avidemux
-
-# Christian Heim <phreak@gentoo.org> (08 Jan 2007)
-# Various reasons, please use the these alternatives:
-# net-www/mod_fastcgi -> www-apache/mod_fcgid
-net-www/mod_fastcgi
 
 # Roy Marples <uberlord@gentoo.org> (08 Jan 2007)
 # Masked at the request of upstream, pending removal sometime Feb.
@@ -962,11 +913,6 @@ games-roguelike/noegnud-nethack
 # Jeremy Huddleston <eradicator@gentoo.org> (21 Mar 2006)
 # Development version of squirrelmail
 >=mail-client/squirrelmail-1.5
-
-# Petteri Räty <betelgeuse@gentoo.org> (12 Mar 2006)
-# Because of changes in ebay our current versions do not work
-# See bug #125813 for details.
-<=app-misc/jbidwatcher-0.9.9
 
 # Robin H. Johnson <robbat2@gentoo.org> (11 Mar 2006)
 # Work-in-progress to clean this up

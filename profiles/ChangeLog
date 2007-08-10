@@ -1,6 +1,45 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.553 2007/07/28 00:28:37 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.564 2007/08/08 19:42:19 armin76 Exp $
+
+  08 Aug 2007; Raúl Porcel <armin76@gentoo.org> use.local.desc:
+  Add USE-flag for dev-libs/nss
+
+  08 Aug 2007; Tiziano Müller <dev-zero@gentoo.org> use.desc:
+  Removed libg++ USE-flag (bug #148416)
+
+  08 Aug 2007; Sven Wegener <swegener@gentoo.org> use.local.desc:
+  Add local use flags for net-im/centerim.
+
+  07 Aug 2007; Sven Wegener <swegener@gentoo.org> package.mask:
+  Mask to be added screen CVS snapshot.
+
+  04 Aug 2007; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Masking Opera 9.23 weeklies
+
+  03 Aug 2007; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  Remove <=app-misc/jbidwatcher-0.9.9 mask as the ebuilds are gone.
+
+  02 Aug 2007; Donnie Berkholz <dberkholz@gentoo.org>; package.mask:
+  Unmask mesa 6.5.3.
+
+  01 Aug 2007; Sébastien Fabbro <bicatali@gentoo.org> use.local.desc:
+  sci-mathematics/freemat:arpack - Add sparse eigen value support via 
+  arpack
+  sci-mathematics/freemat:ffcall - Enables uses of ffcall
+  sci-mathematics/freemat:umfpack - Add sparse solving via umfpack
+
+  31 Jul 2007; Piotr Jaroszyński <peper@gentoo.org> package.mask:
+  Remove x11-drivers/mtxdrivers-pro mask as it has been nuked from the tree.
+
+  30 Jul 2007; Christian Faulhammer <opfer@gentoo.org> use.local.desc:
+  media-sound/cmus:pidgin - install support script for net-im/pidgin
+  media-sound/cmus:wavpack - add support for wavpack
+  media-sound/cmus:wma - add support for Windows Media Audio
+  media-sound/cmus:zsh-completion - enable zsh completion support
+
+  29 Jul 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Remove twmoefonts mask due to removal.
 
   28 Jul 2007; Chris Gianelloni <wolf31o2@gentoo.org> updates/3Q-2007:
   Moved vendetta-online-bin from games-fps to games-rpg for bug #184918.
