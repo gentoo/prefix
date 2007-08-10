@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXres
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXres/ChangeLog,v 1.41 2007/07/03 12:22:30 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXres/ChangeLog,v 1.42 2007/08/07 13:15:00 gustavoz Exp $
+
+  07 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org> libXres-1.0.3.ebuild:
+  Stable on sparc wrt #175465
 
   03 Jul 2007; Lars Weiler <pylon@gentoo.org> libXres-1.0.3.ebuild:
   Stable on ppc; bug #175465.
