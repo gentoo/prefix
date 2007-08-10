@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXext
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXext/ChangeLog,v 1.42 2007/07/03 12:10:12 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXext/ChangeLog,v 1.43 2007/08/07 13:09:23 gustavoz Exp $
+
+  07 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org> libXext-1.0.3.ebuild:
+  Stable on sparc wrt #175465
 
   03 Jul 2007; Lars Weiler <pylon@gentoo.org> libXext-1.0.3.ebuild:
   Stable on ppc; bug #175465.
