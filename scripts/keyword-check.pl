@@ -49,7 +49,7 @@ while (defined(my $ebuild = <*-*/*/*.ebuild>)) {
 				}
 			}
 			# give a report
-			if ( scalar @forbidden || scalar @stable ) {
+			if ( scalar @forbidden or scalar @stable ) {
 				unless ($first) { print "\n" } else { $first=0 }
 				$ebuild =~ s{/[^/]+/}{/};
 				$ebuild = substr( $ebuild, 0, length( $ebuild ) - 7 );
@@ -57,8 +57,9 @@ while (defined(my $ebuild = <*-*/*/*.ebuild>)) {
 				printf "forbidden : %s\n", @forbidden if ( scalar @forbidden );
 				printf "stable    : %s\n", @stable if ( scalar @stable )
 			}
-			reset
 		}
+	} continue {
+		reset if eof
 	}
 }
 
