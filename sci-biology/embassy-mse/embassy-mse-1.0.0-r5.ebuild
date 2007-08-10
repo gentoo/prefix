@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-mse/embassy-mse-1.0.0-r5.ebuild,v 1.1 2007/07/18 01:46:19 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-mse/embassy-mse-1.0.0-r5.ebuild,v 1.2 2007/08/07 18:37:50 ribosome Exp $
 
 EAPI="prefix"
 
@@ -15,8 +15,6 @@ SRC_URI="ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-${EBOV}.tar.gz
 KEYWORDS="~ppc-macos ~x86"
 
 src_install() {
-	sed -e "s:libdir = \${exec_prefix}/lib:libdir = \${exec_prefix}/$(get_libdir):g" \
-			-i ckit/Makefile || die "Failed patching Makefile."
 	embassy_src_install
 	insinto /usr/include/emboss/mse
 	doins h/*.h
