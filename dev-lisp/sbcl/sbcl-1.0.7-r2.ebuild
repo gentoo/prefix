@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.7-r2.ebuild,v 1.2 2007/07/21 10:32:56 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.7-r2.ebuild,v 1.3 2007/08/07 11:36:22 hkbst Exp $
 
 EAPI="prefix"
 
@@ -41,7 +41,7 @@ KEYWORDS="~amd64 ~mips ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 
 IUSE="ldb source threads unicode doc"
 
-DEPEND="doc? ( sys-apps/texinfo )"
+DEPEND="doc? ( sys-apps/texinfo media-gfx/graphviz )"
 
 PROVIDE="virtual/commonlisp"
 
@@ -58,11 +58,6 @@ pkg_setup() {
 		eerror "architectures is not a supported configuration in Gentoo.  Please"
 		eerror "refer to Bug #119016 for more information."
 		die
-	fi
-	if use ppc && use ldb; then
-		ewarn "Building SBCL on PPC with LDB support is not a supported configuration"
-		ewarn "in Gentoo.	Please refer to Bug #121830 for more information."
-		ewarn "Continuing with LDB support disabled."
 	fi
 }
 
@@ -85,11 +80,7 @@ EOF
 	if use x86 || use amd64; then
 		use threads && enable_sbcl_feature ":sb-thread"
 	fi
-	if (use ppc-macos || use ppc) && use ldb; then
-		ewarn "Excluding LDB support for ppc."
-	else
-		use ldb && enable_sbcl_feature ":sb-ldb"
-	fi
+	use ldb && enable_sbcl_feature ":sb-ldb"
 	disable_sbcl_feature ":sb-test"
 	! use unicode && disable_sbcl_feature ":sb-unicode"
 	cat >> "${S}/customize-target-features.lisp" <<'EOF'
