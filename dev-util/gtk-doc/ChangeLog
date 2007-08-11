@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/gtk-doc
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.86 2007/08/01 11:11:40 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.87 2007/08/10 19:24:53 ulm Exp $
+
+*gtk-doc-1.8-r2 (10 Aug 2007)
+
+  10 Aug 2007; Ulrich Mueller <ulm@gentoo.org> -gtk-doc-1.8-r1.ebuild,
+  +gtk-doc-1.8-r2.ebuild:
+  Revision bump, bug #187224.
 
   01 Aug 2007; Ulrich Mueller <ulm@gentoo.org> files/61gtk-doc-gentoo.el:
   Fix Emacs site-init file; it was gzipped. Bug #187224.
