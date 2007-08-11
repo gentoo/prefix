@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/control-center
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/ChangeLog,v 1.243 2007/08/08 23:45:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/ChangeLog,v 1.244 2007/08/10 13:19:11 angelos Exp $
+
+  10 Aug 2007; Christoph Mende <angelos@gentoo.org>
+  control-center-2.18.1.ebuild:
+  Stable on amd64 wrt bug #185823
 
   08 Aug 2007; Raúl Porcel <armin76@gentoo.org>
   control-center-2.18.1.ebuild:
