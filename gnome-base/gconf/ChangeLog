@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/gconf
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/ChangeLog,v 1.166 2007/08/08 21:56:44 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/ChangeLog,v 1.167 2007/08/10 12:51:24 angelos Exp $
+
+  10 Aug 2007; Christoph Mende <angelos@gentoo.org> gconf-2.18.0.1.ebuild:
+  Stable on amd64 wrt bug #185823
 
   08 Aug 2007; Raúl Porcel <armin76@gentoo.org> gconf-2.18.0.1.ebuild:
   alpha/ia64 stable wrt #185823
