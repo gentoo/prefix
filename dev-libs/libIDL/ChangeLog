@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libIDL
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.71 2007/08/08 21:53:08 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.72 2007/08/10 12:46:48 angelos Exp $
+
+  10 Aug 2007; Christoph Mende <angelos@gentoo.org> libIDL-0.8.8.ebuild:
+  Stable on amd64 wrt bug #185823
 
   08 Aug 2007; Raúl Porcel <armin76@gentoo.org> libIDL-0.8.8.ebuild:
   alpha/ia64 stable wrt #185823
