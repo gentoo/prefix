@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/gail
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gail/ChangeLog,v 1.126 2007/08/08 22:18:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gail/ChangeLog,v 1.127 2007/08/10 13:09:56 angelos Exp $
+
+  10 Aug 2007; Christoph Mende <angelos@gentoo.org> gail-1.18.0.ebuild:
+  Stable on amd64 wrt bug #185823
 
   08 Aug 2007; Raúl Porcel <armin76@gentoo.org> gail-1.18.0.ebuild:
   alpha/ia64 stable wrt #185823
