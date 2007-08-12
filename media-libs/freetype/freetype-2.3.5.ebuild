@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.5.ebuild,v 1.4 2007/07/15 21:00:19 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.5.ebuild,v 1.5 2007/08/11 00:37:30 dirtyepic Exp $
 
 EAPI="prefix"
 
@@ -69,6 +69,7 @@ src_unpack() {
 	disable_option FT_CONFIG_OPTION_OLD_INTERNALS
 
 	epatch "${FILESDIR}"/${PN}-2.3.2-enable-valid.patch
+	epatch "${FILESDIR}"/${PN}-2.3.5-crossbuild.patch		# bug #185681
 
 	### ft2demos ###
 		cd ../ft2demos-${PV}
