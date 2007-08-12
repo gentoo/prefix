@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/gnome-vfs-2.18.1.ebuild,v 1.8 2007/08/10 12:59:18 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/gnome-vfs-2.18.1.ebuild,v 1.9 2007/08/11 14:52:25 ticho Exp $
 
 EAPI="prefix"
 
