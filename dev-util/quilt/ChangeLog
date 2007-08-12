@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/quilt
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/ChangeLog,v 1.25 2007/05/03 13:57:15 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/ChangeLog,v 1.26 2007/08/11 12:51:12 phreak Exp $
+
+  11 Aug 2007; Christian Heim <phreak@gentoo.org> -quilt-0.32-r1.ebuild,
+  -quilt-0.39.ebuild, -quilt-0.40.ebuild, -quilt-0.42.ebuild,
+  quilt-0.42-r1.ebuild, -quilt-0.44.ebuild, -quilt-0.45.ebuild,
+  quilt-0.45-r1.ebuild, quilt-0.46.ebuild:
+  Cleaning out the older versions. Adding sys-apps/mktemp to RDEPEND (thanks
+  to Dustin J. Mitchell <dustin at v.igoro.us> in #186917). Backporting
+  vapier's changes from 0.45-r1 to 0.42-r1.
 
   01 May 2007; Christian Heim <phreak@gentoo.org> quilt-0.45-r1.ebuild,
   quilt-0.46.ebuild:
