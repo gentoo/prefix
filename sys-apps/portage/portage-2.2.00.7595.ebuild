@@ -27,6 +27,7 @@ RDEPEND=">=dev-lang/python-2.4
 	elibc_glibc? ( >=sys-apps/sandbox-1.2.17 )
 	elibc_uclibc? ( >=sys-apps/sandbox-1.2.17 )
 	kernel_linux? ( >=app-misc/pax-utils-0.1.13 )
+	kernel_solaris? ( >=app-misc/pax-utils-0.1.13 )
 	>=sys-apps/coreutils-6.4
 	selinux? ( >=dev-python/python-selinux-2.16 )
 	doc? ( app-portage/portage-manpages )
