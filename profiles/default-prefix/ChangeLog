@@ -2,6 +2,9 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Aug 2007; Fabian Groffen <grobian@gentoo.org> sunos/make.defaults:
+  Remove nostrip from Solaris profile, as pax-utils now works
+
   03 Aug 2007; Fabian Groffen <grobian@gentoo.org> aix/make.defaults,
   aix/use.mask, darwin/macos/make.defaults, darwin/use.mask,
   irix/make.defaults, irix/use.mask, linux/use.mask, make.defaults,
