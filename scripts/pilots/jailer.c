@@ -84,7 +84,6 @@ int main(int argc, char **argv) {
 				padonwrite(padding, buf, len, fout);
 				break;
 			} else if (tmp == buf) {
-printf("magic found here\n");
 				/* do some magic, overwrite it basically */
 				fwrite(value, valuelen, 1, fout);
 				/* store what we need to correct */
@@ -94,12 +93,10 @@ printf("magic found here\n");
 				memmove(buf, buf + magiclen, pos);
 				continue;
 			} else {
-printf("magic found\n");
 				/* move this bunch to the front */
 				pos = len - (tmp - buf);
 			}
 		} else {
-printf("no magic in block :(\n");
 			/* magic is not in here, but might just start at the end
 			 * missing it's last char, so move that */
 			if (len != BUFSIZE) {
