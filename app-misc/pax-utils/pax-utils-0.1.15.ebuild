@@ -14,10 +14,16 @@ SRC_URI="mirror://gentoo/pax-utils-${PV}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~x86 ~x86-solaris"
 IUSE="caps"
 
 DEPEND="caps? ( sys-libs/libcap )"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-solaris.patch
+}
 
 src_compile() {
 	emake CC=$(tc-getCC) USE_CAP=$(use caps && echo yes) || die

@@ -1,0 +1,76 @@
+--- pax-utils-0.1.15/porting.h
++++ pax-utils-0.1.15/porting.h
+@@ -119,6 +119,12 @@
+ #  define __PAX_UTILS_BO LITTLE_ENDIAN
+ # elif defined(WORDS_BIGENDIAN)
+ #  define __PAX_UTILS_BO BIG_ENDIAN
++# elif defined(__sun__)
++#  if defined(i386)
++#   define __PAX_UTILS_BO LITTLE_ENDIAN
++#  elif defined(sparc)
++#   define __PAX_UTILS_BO BIG_ENDIAN
++#  endif
+ # else
+ #  error "no idea what the native byte order is"
+ # endif
+--- pax-utils-0.1.15/scanelf.c
++++ pax-utils-0.1.15/scanelf.c
+@@ -63,7 +63,8 @@
+ static char *out_format = NULL;
+ static char *search_path = NULL;
+ static char fix_elf = 0;
+-static char gmatch = 0;
++/* gmatch clashes with /usr/include/libgen.h on Solaris */
++static char g_match = 0;
+ static char use_ldcache = 0;
+ 
+ static char **qa_textrels = NULL;
+@@ -436,7 +437,7 @@
+ 		case '$':
+ 			if (fstat(elf->fd, &st) != -1)
+ 				if ((st.st_mode & S_ISUID) || (st.st_mode & S_ISGID))
+-					warnf("Security problem with %s='%s' in %s with mode set of %o",
++					warnf("Security problem with %s='%s' in %s with mode set of %lo",
+ 					      dt_type, item, elf->filename, st.st_mode & 07777);
+ 			break;
+ 		default:
+@@ -749,7 +750,7 @@
+ 						} \
+ 						*found_needed = 1; \
+ 					} else { \
+-						if (!strncmp(find_lib, needed, strlen( !gmatch ? needed : find_lib))) { \
++						if (!strncmp(find_lib, needed, strlen( !g_match ? needed : find_lib))) { \
+ 							*found_lib = 1; \
+ 							return (be_wewy_wewy_quiet ? NULL : needed); \
+ 						} \
+@@ -1702,7 +1703,7 @@
+ 					setpax = flags;
+ 			break;
+ 		}
+-		case 'g': gmatch = 1; break;
++		case 'g': g_match = 1; break;
+ 		case 'L': use_ldcache = 1; break;
+ 		case 'y': scan_symlink = 0; break;
+ 		case 'A': scan_archives = 1; break;
+@@ -1791,8 +1792,10 @@
+ 	if (be_verbose > 2) printf("Format: %s\n", out_format);
+ 
+ 	/* now lets actually do the scanning */
++#ifdef __PAX_UTILS_DEFAULT_LD_CACHE_CONFIG
+ 	if (scan_ldpath || use_ldcache)
+ 		load_ld_cache_config(0, __PAX_UTILS_DEFAULT_LD_CACHE_CONFIG);
++#endif
+ 	if (scan_ldpath) scanelf_ldpath();
+ 	if (scan_envpath) scanelf_envpath();
+ 	if (!from_file && optind == argc && ttyname(0) == NULL && !scan_ldpath && !scan_envpath)
+--- pax-utils-0.1.15/Makefile
++++ pax-utils-0.1.15/Makefile
+@@ -105,7 +105,7 @@
+ 	$(CP) README BUGS TODO $(PREFIX)/share/doc/pax-utils/
+ endif
+ 	for mpage in $(MPAGES) ; do \
+-		[ -e $$mpage ] \
++		[ -f $$mpage ] \
+ 			&& cp $$mpage $(PREFIX)/share/man/man1/ || : ;\
+ 	done
+ 
