@@ -52,4 +52,4 @@ while ( /\G.*?$search/g ) {
 
 my $nlen = length();
 
-die "the file size changed, this should now happen" if $nlen != $olen;
+die "the file size changed, this should not happen" if $nlen != $olen;
