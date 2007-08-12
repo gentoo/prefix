@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-icon-theme/gnome-icon-theme-2.18.0.ebuild,v 1.6 2007/08/10 13:02:23 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-icon-theme/gnome-icon-theme-2.18.0.ebuild,v 1.7 2007/08/11 14:54:09 ticho Exp $
 
 EAPI="prefix"
 
