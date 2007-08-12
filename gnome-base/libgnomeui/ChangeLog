@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/libgnomeui
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeui/ChangeLog,v 1.140 2007/08/10 12:57:15 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeui/ChangeLog,v 1.141 2007/08/11 14:50:01 ticho Exp $
+
+  11 Aug 2007; Andrej Kacian <ticho@gentoo.org> libgnomeui-2.18.1.ebuild:
+  Stable on x86, bug #185823.
 
   10 Aug 2007; Christoph Mende <angelos@gentoo.org>
   libgnomeui-2.18.1.ebuild:
