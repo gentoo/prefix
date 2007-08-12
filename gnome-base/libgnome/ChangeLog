@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/libgnome
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnome/ChangeLog,v 1.143 2007/08/10 13:00:25 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnome/ChangeLog,v 1.144 2007/08/11 14:52:56 ticho Exp $
+
+  11 Aug 2007; Andrej Kacian <ticho@gentoo.org> libgnome-2.18.0.ebuild:
+  Stable on x86, bug #185823.
 
   10 Aug 2007; Christoph Mende <angelos@gentoo.org> libgnome-2.18.0.ebuild:
   Stable on amd64 wrt bug #185823
