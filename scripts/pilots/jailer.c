@@ -11,7 +11,7 @@
  */
 size_t padonwrite(size_t padding, char *buf, size_t len, FILE *fout) {
 	char *z;
-	if (padding == 0 || (z = strchr(buf, '\0')) == NULL || z > buf + len) {
+	if (padding == 0 || (z = memchr(buf, '\0', len)) == NULL) {
 		/* cheap case, nothing complicated to do here */
 		fwrite(buf, len, 1, fout);
 	} else {
@@ -20,12 +20,37 @@ size_t padonwrite(size_t padding, char *buf, size_t len, FILE *fout) {
 		/* now pad with zeros so we don't screw up
 		 * the positions in the file */
 		buf[0] = '\0';
-		while (padding-- > 0)
+		while (padding > 0) {
 			fwrite(buf, 1, 1, fout);
+			padding--;
+		}
 		fwrite(z, len - (z - buf), 1, fout);
 	}
 
 	return(padding);
+}
+
+/**
+ * Searches buf for an occurrence of needle, doing a byte-based match,
+ * disregarding end of string markers (zero-bytes), as strstr does.
+ * Returns a pointer to the first occurrence of needle in buf, or NULL
+ * if not found.
+ */
+char *memstr(const char *buf, const char *needle, size_t len) {
+	const char *ret;
+	size_t off;
+	for (ret = buf; ret - buf < len; ret++) {
+		off = 0;
+		while (needle[off] != '\0' &&
+				(ret - buf) + off < len &&
+				needle[off] == ret[off])
+		{
+			off++;
+		}
+		if (needle[off] == '\0')
+			return((char *)ret);
+	}
+	return(NULL);
 }
 
 int main(int argc, char **argv) {
@@ -77,13 +102,8 @@ int main(int argc, char **argv) {
 	padding = 0;
 	while ((len = fread(buf + pos, 1, BUFSIZE - pos, fin)) != 0 || pos > 0) {
 		len += pos;
-		if ((tmp = strstr(buf, magic)) != NULL) {
-			if (tmp > buf + len) {
-				/* get out of here, we're done (seeing results in
-				 * garbage) */
-				padonwrite(padding, buf, len, fout);
-				break;
-			} else if (tmp == buf) {
+		if ((tmp = memstr(buf, magic, len)) != NULL) {
+			if (tmp == buf) {
 				/* do some magic, overwrite it basically */
 				fwrite(value, valuelen, 1, fout);
 				/* store what we need to correct */
@@ -98,10 +118,10 @@ int main(int argc, char **argv) {
 			}
 		} else {
 			/* magic is not in here, but might just start at the end
-			 * missing it's last char, so move that */
+			 * missing its last char, so move that */
 			if (len != BUFSIZE) {
 				/* last piece */
-				padonwrite(padding, buf, len, fout);
+				padding = padonwrite(padding, buf, len, fout);
 				break;
 			} else {
 				pos = magiclen - 1;
@@ -114,6 +134,11 @@ int main(int argc, char **argv) {
 	fflush(fout);
 	fclose(fout);
 	fclose(fin);
+
+	if (padding != 0) {
+		fprintf(stderr, "warning: couldn't find a location to write "
+				"%zd padding bytes\n", padding);
+	}
 
 	return(0);
 }
