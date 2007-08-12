@@ -1,6 +1,16 @@
 # ChangeLog for gnome-base/control-center
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/ChangeLog,v 1.244 2007/08/10 13:19:11 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/ChangeLog,v 1.246 2007/08/11 17:39:15 leio Exp $
+
+  11 Aug 2007; Mart Raudsepp <leio@gentoo.org>
+  -files/control-center-2.6.0-remove-pmu.patch,
+  -files/control-center-2.14.1-path-fix.patch,
+  -control-center-2.14.2.ebuild:
+  Removing Gnome 2.14
+
+  11 Aug 2007; Andrej Kacian <ticho@gentoo.org>
+  control-center-2.18.1.ebuild:
+  Stable on x86, bug #185823.
 
   10 Aug 2007; Christoph Mende <angelos@gentoo.org>
   control-center-2.18.1.ebuild:
