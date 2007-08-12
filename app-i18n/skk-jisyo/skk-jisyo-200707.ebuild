@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/skk-jisyo/skk-jisyo-200707.ebuild,v 1.2 2007/07/08 20:37:50 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/skk-jisyo/skk-jisyo-200707.ebuild,v 1.3 2007/08/11 17:55:00 matsuu Exp $
 
 EAPI="prefix"
 
@@ -31,6 +31,9 @@ src_unpack() {
 }
 
 src_compile() {
+	# bug 184457
+	unset LANG LC_ALL LC_CTYPE
+
 	for f in SKK-JISYO.* zipcode/SKK-JISYO.* ; do
 		mv ${f} ${f}.annotated
 		awk -f "${FILESDIR}"/unannotation.awk ${f}.annotated > $(basename ${f}) || die
