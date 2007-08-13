@@ -25,12 +25,14 @@ for file in glob.glob( '*/*/*.ebuild' ):
 						stable.append( kw )
 					else:
 						kw=kw.lstrip( '~-' )
-					if not kw in archlist: stable.append( kw )
+					if not kw in archlist: forbidden.append( kw )
 			if len( stable ) != 0 or len( forbidden ) != 0:
 				if not first: print
 				else: first=0
 				print 'EBUILD    : %s' % re.sub( '/[^/]+/', '/', file )
-				print 'stable    : %s' % stable
-				print 'forbidden : %s' % forbidden
+				if len( forbidden ) != 0:
+					print 'forbidden : %s' % ' '.join( forbidden )
+				if len( stable ) != 0:
+					print 'stable    : %s' % ' '.join( stable )
 
 # vim: set ts=4 sw=4 noexpandtab:
