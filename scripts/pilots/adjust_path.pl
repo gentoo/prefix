@@ -18,19 +18,21 @@ $_ = <INFILE>;
 
 my $olen = length();
 
-#print "OLD string: " . $_ . "\n";
-#print "OLD length: " . length() . "\n";
+# prepare regex library
+my $fmatch = qr/\G(?:.|\n)*?$search/o;
+my $cmatch = qr/\G([^\0]*?)$search/o;
+my $tmatch = qr/\G((?:.(?!$search))*?)(?=\0|$)/o;
 
-while ( /\G(?:.|\n)*?$search/g ) {
+while ( m/$fmatch/g ) {
 	my $beg = pos() - length( $search );
 	my $occurrences = 1;
 	my @joints;
-	while ( /\G([^\0]*?)$search/m ) {
+	while ( m/$cmatch/ ) {
 		$occurrences++;
 		push @joints, $1;
 		pos() += length( $1 ) + length( $search );
 	}
-	/\G((?:.(?!$search))*?)(?=\0|$)/gm;
+	m/$tmatch/g;
 	push @joints, $1;
 	my $localrep = '';
 	for ( my $i = 0; $i < $occurrences; $i++ ) {
@@ -46,9 +48,6 @@ while ( /\G(?:.|\n)*?$search/g ) {
 	substr( $_, $beg, $len ) = $localrep;
 	pos() = $buffer;
 }
-
-#print "NEW string: " . $_ . "\n";
-#print "NEW length: " . length() . "\n";
 
 my $nlen = length();
 
