@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/less
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.66 2007/08/02 06:25:09 joker Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.67 2007/08/12 21:11:54 tgall Exp $
+
+  12 Aug 2007; Tom Gall <tgall@gentoo.org> less-406.ebuild:
+  stable on ppc64
 
   02 Aug 2007; Christian Birchinger <joker@gentoo.org> less-406.ebuild:
   Added sparc stable keyword
