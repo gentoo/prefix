@@ -1,0 +1,13 @@
+diff -ur mplayer-20070622.orig/configure mplayer-20070622/configure
+--- mplayer-20070622.orig/configure	2007-06-21 22:01:29.000000000 +0300
++++ mplayer-20070622/configure	2007-08-12 20:54:51.000000000 +0300
+@@ -3923,7 +3923,7 @@
+   (void) DPMSQueryExtension(0, 0, 0);
+ }
+ EOF
+-  cc_check && _xdpms4=yes
++  cc_check -lXext && _xdpms4=yes
+ fi
+ if test "$_xdpms4" = yes ; then
+   _def_xdpms='#define HAVE_XDPMS 1'
+Only in mplayer-20070622.orig: mplayer-20070622

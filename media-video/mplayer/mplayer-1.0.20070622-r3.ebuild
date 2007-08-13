@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0.20070622-r3.ebuild,v 1.1 2007/07/28 15:25:18 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0.20070622-r3.ebuild,v 1.2 2007/08/12 18:04:15 drac Exp $
 
 EAPI="prefix"
 
@@ -191,7 +191,7 @@ src_unpack() {
 
 	# Fix XShape detection
 	epatch ${FILESDIR}/${PN}-xshape.patch
-
+	epatch ${FILESDIR}/${PN}-dpms.patch
 }
 
 src_compile() {

@@ -1,6 +1,10 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.504 2007/07/28 15:25:18 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.505 2007/08/12 18:04:15 drac Exp $
+
+  12 Aug 2007; Samuli Suominen <drac@gentoo.org> +files/mplayer-dpms.patch,
+  mplayer-1.0.20070622-r3.ebuild:
+  Fix DPMS detection at configure time with -Wl,--as-needed.
 
 *mplayer-1.0.20070622-r3 (28 Jul 2007)
 
