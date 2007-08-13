@@ -15,7 +15,7 @@ if ( length( $search ) < length( $replace ) ) {
 # prepare regex library
 my $fmatch = qr/\G(?:.|\n)*?$search/o;
 my $cmatch = qr/\G(.*?)$search/o;
-my $tmatch = qr/\G((?:.(?!$search))*?)(?=\0|$)/o;
+my $tmatch = qr/\G(.*?)(?!$search)(?=\0?$)/o;
 
 $/ = "\0";
 open( INFILE, "<$infile" ) or die "Could not open $infile for reading: $!";
@@ -33,7 +33,7 @@ while (<INFILE>) {
 		}
 		m/$tmatch/g;
 		push @joints, $1;
-		my $localrep = '';
+		my $localrep;
 		for ( my $i = 0; $i < $occurrences; $i++ ) {
 			$localrep .= $replace . $joints[$i];
 		}
