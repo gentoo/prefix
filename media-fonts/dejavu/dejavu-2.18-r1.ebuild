@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/dejavu-2.18-r1.ebuild,v 1.5 2007/08/12 04:14:42 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/dejavu-2.18-r1.ebuild,v 1.7 2007/08/14 21:07:30 dertobi123 Exp $
 
 EAPI="prefix"
 
