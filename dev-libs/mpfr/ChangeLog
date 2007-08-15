@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/mpfr
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.53 2007/07/27 14:53:50 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.54 2007/08/13 20:30:21 dertobi123 Exp $
+
+  13 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  mpfr-2.2.1_p5.ebuild:
+  ppc. stable
 
   27 Jul 2007; Jeroen Roovers <jer@gentoo.org> mpfr-2.2.1_p5.ebuild:
   Stable for HPPA too.
