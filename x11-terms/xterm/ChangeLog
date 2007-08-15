@@ -1,6 +1,11 @@
 # ChangeLog for x11-terms/xterm
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.209 2007/08/11 17:51:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.210 2007/08/13 01:47:36 seemant Exp $
+
+*xterm-229 (13 Aug 2007)
+
+  13 Aug 2007; Seemant Kulleen <seemant@gentoo.org> +xterm-229.ebuild:
+  Version bump to newest upstream
 
   11 Aug 2007; Raúl Porcel <armin76@gentoo.org> xterm-227.ebuild:
   alpha/ia64/x86 stable
