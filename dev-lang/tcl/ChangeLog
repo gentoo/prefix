@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/tcl
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/ChangeLog,v 1.82 2007/07/20 18:39:11 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/ChangeLog,v 1.83 2007/08/13 11:53:47 fmccor Exp $
+
+  13 Aug 2007; Ferris McCormick <fmccor@gentoo.org> tcl-8.4.15.ebuild:
+  Sparc stable --- Bug #178320 --- has been fine for 4 weeks.
 
 *tcl-8.5_alpha6 (20 Jul 2007)
 *tcl-8.4.15 (20 Jul 2007)
