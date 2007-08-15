@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/setuptools
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/ChangeLog,v 1.22 2007/07/05 20:42:24 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/ChangeLog,v 1.23 2007/08/14 13:10:25 gustavoz Exp $
+
+  14 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  setuptools-0.6_rc6.ebuild:
+  Stable on sparc
 
   05 Jul 2007; Samuli Suominen <drac@gentoo.org> setuptools-0.6_rc6.ebuild:
   Keyword for ~arm as it's required by many packages, elementtree for example.
