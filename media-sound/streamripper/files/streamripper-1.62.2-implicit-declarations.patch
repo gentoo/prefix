@@ -1,0 +1,24 @@
+diff -ur streamripper-1.62.2.orig/lib/parse.c streamripper-1.62.2/lib/parse.c
+--- streamripper-1.62.2.orig/lib/parse.c	2007-05-26 22:37:00.000000000 +0300
++++ streamripper-1.62.2/lib/parse.c	2007-08-13 17:48:52.000000000 +0300
+@@ -23,7 +23,7 @@
+ #include "mchar.h"
+ #include "debug.h"
+ #include "srtypes.h"
+-#include "regex.h"
++#include <tre/regex.h>
+ 
+ /* GCS FIX: figure out function prototypes for regwcomp, regwexec */
+ 
+diff -ur streamripper-1.62.2.orig/lib/utf8.c streamripper-1.62.2/lib/utf8.c
+--- streamripper-1.62.2.orig/lib/utf8.c	2005-12-31 18:02:54.000000000 +0200
++++ streamripper-1.62.2/lib/utf8.c	2007-08-13 17:51:29.000000000 +0300
+@@ -25,7 +25,7 @@
+ #include <string.h>
+ 
+ #include "utf8.h"
+-
++#include "charset.h"
+ 
+ #ifdef _WIN32
+ 
