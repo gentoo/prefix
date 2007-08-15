@@ -1,6 +1,9 @@
 # ChangeLog for www-client/w3m
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/w3m/ChangeLog,v 1.36 2007/07/22 06:11:10 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/w3m/ChangeLog,v 1.37 2007/08/13 22:03:55 dertobi123 Exp $
+
+  13 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org> w3m-0.5.2.ebuild:
+  ppc. stable
 
   22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>; w3m-0.5.1-r4.ebuild:
   Drop virtual/x11 references.
