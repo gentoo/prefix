@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/faac
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/ChangeLog,v 1.53 2007/07/25 19:04:12 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/ChangeLog,v 1.54 2007/08/13 20:59:03 dertobi123 Exp $
+
+  13 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org> faac-1.25.ebuild:
+  ppc. stable
 
   25 Jul 2007; Raúl Porcel <armin76@gentoo.org> faac-1.25.ebuild:
   alpha/ia64/x86 stable
