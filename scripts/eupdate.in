@@ -53,7 +53,7 @@ EPACKAGE="`pwd -P`"; EPACKAGE=${EPACKAGE#*${PTREEDIR}/}
 [[ -z $DO_INDENT ]] || RC_INDENTATION=$DO_INDENT
 
 # file used for subshell communication (in /tmp, so swap on Solaris)
-gf=/tmp/eupdate.subshell
+gf=/tmp/eupdate.subshell.$$
 
 # returns the CVS revision number from the $Header
 get_cvsversion() {
