@@ -1,6 +1,33 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.564 2007/08/08 19:42:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.572 2007/08/14 23:34:30 je_fro Exp $
+
+  14 Aug 2007; Jeff Gardner <je_fro@gentoo.org> package.mask:
+  Unmasking ati-drivers-8.40.4 as watermark issue seems resolved - bug 188791.
+
+  14 Aug 2007; Robin H. Johnson <robbat2@gentoo.org> package.mask:
+  Mask mail-filter/spamassassin-ruledujour pending removal. See mail to -dev
+  about moving to sa-update instead.
+
+  14 Aug 2007; Jeff Gardner <je_fro@gentoo.org> package.mask:
+  Mask testing ati-drivers because of annoying watermark.
+
+  14 Aug 2007; Saleem Abdulrasool <compnerd@gentoo.org> use.local.desc:
+  Add useflag for devhelp plugin for anjuta
+
+  13 Aug 2007; Peter Volkov <pva@gentoo.org> package.mask:
+  Unmask app-emulation/uae.
+
+  12 Aug 2007; Peter Volkov <pva@gentoo.org> use.local.desc:
+  Add app-emulation/uae:ui
+
+  12 Aug 2007; Peter Volkov <pva@gentoo.org> use.local.desc:
+  Add www-apps/mantisbt:bundled-adodb
+  Update net-analyzer/cacti:bundled-adodb
+
+  11 Aug 2007; Saleem Abdulrasool <compnerd@gentoo.org>
+  default-linux/x86/no-nptl/use.mask:
+  Mask deskbar-applet in tracker for x86/no-nptl
 
   08 Aug 2007; Raúl Porcel <armin76@gentoo.org> use.local.desc:
   Add USE-flag for dev-libs/nss

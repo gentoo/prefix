@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2965 2007/08/09 08:35:54 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2974 2007/08/14 21:57:46 mr_bones_ Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -135,6 +135,7 @@ app-emulation/qemu-softmmu:kqemu - Enables the kernel module acceleration on the
 app-emulation/uade:audacious - Enables support for media-sound/audacious
 app-emulation/uae:scsi - Enable the uaescsi.device
 app-emulation/uae:sdl-sound - Use libsdl for audio output
+app-emulation/uae:ui - Build User Interface (could be gtk or ncurses based, depending on sdl, dga, svga, and aalib USE flags)
 app-emulation/vice:resid - Enable support for ReSID
 app-emulation/virtualbox-bin:additions - Install Guest System Tools ISO
 app-emulation/virtualbox-bin:nowrapper - Disable the VirtualBox XPCom Server autostart wrapper
@@ -325,7 +326,6 @@ dev-db/sqlite:soundex - Enable the soundex function to compute soundex encodings
 dev-db/tora:oci8-instant-client - Use dev-db/oracle-instantclient-basic as Oracle provider instead of requiring a full Oracle server install
 dev-embedded/ponyprog:epiphany - Enable epiphany support
 dev-games/cegui:devil - image loading support with DevIL
-dev-games/cegui:freeimage - image loading support with FreeImage
 dev-games/cegui:xerces-c - use external Xerces-C++ XML parser instead of tiny embedded XML parser
 dev-games/crystalspace:3ds - Enables support for .3DS files in CrystalSpace
 dev-games/crystalspace:cal3d - include support for skeleton animation
@@ -340,7 +340,6 @@ dev-games/ogre:cegui - build the CEGUI samples
 dev-games/ogre:cg - NVIDIA toolkit plugin
 dev-games/ogre:devil - image loading support with DevIL
 dev-games/ogre:double-precision - more precise calculations at the expense of speed
-dev-games/ogre:freeimage - image loading support with FreeImage
 dev-haskell/gtk2hs:glade - Enable libglade bindings compilation
 dev-java/ant-tasks:jai - Enable JAI (Java Imaging) Ant task
 dev-java/ant-tasks:javamail - Enable JavaMail Ant task
@@ -558,7 +557,6 @@ dev-python/paste:flup - enable support for flup (and therefore for various wgsi 
 dev-python/paste:openid - enable OpenID support
 dev-python/psycopg:mxdatetime - choose MX DateTime support instead of built-in datetime
 dev-python/pycairo:numeric - enable Numeric support
-dev-python/pykde:kjs - include the kjs module (don't enable, if unsure)
 dev-python/pyzor:pyzord - enable support for pyzord
 dev-python/soya:ode - include support for Open Dynamics Engine
 dev-python/twisted:serial - include serial port support
@@ -590,6 +588,7 @@ dev-scheme/guile:networking - include networking interfaces
 dev-scheme/guile:regex - include regular expression interfaces
 dev-tex/latex-beamer:lyx - Install with LyX layouts
 dev-tex/preview-latex:xemacs - Adds support for XEmacs
+dev-util/anjuta:devhelp - Enable devhelp integration
 dev-util/anjuta:glade - Build glade plugin for anjuta
 dev-util/anjuta:inherit-graph - Build inheritance graphing plugin for anjuta
 dev-util/anjuta:sourceview - Build sourceview editing plugin for anjuta
@@ -797,8 +796,6 @@ mail-client/claws-mail:bogofilter - Build bogofilter plugin
 mail-client/claws-mail:dillo - Enables support for inline http email viewing with a plugin (which depends on the dillo browser)
 mail-client/claws-mail:spamassassin - Build spamassassin plugin
 mail-client/evolution:bogofilter - Use bogofilter instead of spamassassin
-mail-client/evolution:networkmanager - Enable networkmanager support
-mail-client/evolution:widescreen - Enable widescreen support
 mail-client/mail-notification:evolution - Provide an Evolution plugin
 mail-client/mail-notification:gmail - Enable Gmail mailbox checking
 mail-client/mail-notification:pop - Enable support for pop
@@ -1046,6 +1043,7 @@ media-sound/moc:modplug - Add support for modplug
 media-sound/moc:sid - Build with SID (Commodore 64 Audio) support
 media-sound/moc:timidity - Add support for timidity
 media-sound/moc:wavpack - Add support for wavpack
+media-sound/mp3blaster:sid - Build with SID (Commodore 64 Audio) support
 media-sound/mpd:icecast - Enable support for Icecast2
 media-sound/mpfc:cdaudio - Enable cd audio playback support
 media-sound/mpfc:wav - Enable wav audio codec support
@@ -1248,7 +1246,7 @@ net-analyzer/bmon:dbi - Enables libdbi support
 net-analyzer/bmon:rrdtool - Enables librrd support
 net-analyzer/bwm-ng:csv - enable csv output
 net-analyzer/bwm-ng:html - enable html output
-net-analyzer/cacti:bundled-adodb - use adodb bundled with cacti itself instead of external one. 
+net-analyzer/cacti:bundled-adodb - use adodb bundled with web-application instead of system wide
 net-analyzer/echoping:http - enable support for http protocol.
 net-analyzer/echoping:icp - enable support for ICP (used to monitor proxies).
 net-analyzer/echoping:priority - enable socket priority support.
@@ -1898,6 +1896,7 @@ sys-freebsd/freebsd-usbin:isdn - Enable ISDN support
 sys-freebsd/freebsd-usbin:nat - Enable Network Address Translation support
 sys-freebsd/freebsd-usbin:suid - Enable setuid root programs
 sys-fs/clvm:nocman - Allow users to build clvm without cman support and with gulm support
+sys-fs/cryptsetup:dynamic - Build cryptsetup dynamically
 sys-fs/cryptsetup-luks:dynamic - Build cryptsetup-luks dynamically
 sys-fs/loop-aes:keyscrub - Protects the encryption key in memory but takes more cpu resources
 sys-fs/loop-aes:padlock - Use VIA padlock instructions, detected at run time, code still works on non-padlock processors
@@ -1980,6 +1979,7 @@ www-apps/knowledgetree:opendoc - Allow to search in opendoc documents
 www-apps/knowledgetree:ps - Allow to search in postscript documents
 www-apps/lxr:cvs - Adds support for indexing CVS
 www-apps/lxr:freetext - Adds support for freetext search using swish-e
+www-apps/mantisbt:bundled-adodb - use adodb bundled with web-application instead of system wide
 www-apps/mediawiki:math - Adds math rendering support
 www-apps/mediawiki:restrict - Initial setup will only allow sysop user to create new accounts, read and edit any pages
 www-apps/moinmoin:rss - Add RSS support
@@ -2004,7 +2004,6 @@ www-client/elinks:bittorrent - Enable support for the BitTorrent protocol
 www-client/elinks:finger - Enable support for the finger protocol
 www-client/elinks:gopher - Enable support for the gopher protocol
 www-client/kazehakase:hyperestraier - enable hyperestraier support for full-text search in history.
-www-client/kazehakase:thumbnail - enable thumbnail support.
 www-client/mozilla-firefox:filepicker - enable old gtkfilepicker from 1.0.x firefox
 www-client/mozilla-firefox:mozdevelop - Enable features for web developers (e.g. Venkman)
 www-client/mozilla-firefox:moznopango - Disable pango during runtime
