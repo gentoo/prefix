@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.45 2007/06/02 15:07:43 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.48 2007/08/14 18:42:22 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -177,6 +177,14 @@ vdr-plugin_pkg_setup() {
 	DVB_INCLUDE_DIR="/usr/include"
 
 
+	TMP_LOCALE_DIR="${WORKDIR}/tmp-locale"
+	LOCDIR="/usr/share/vdr/locale"
+	if has_version ">=media-video/vdr-1.5.7"; then
+		USE_GETTEXT=1
+	else
+		USE_GETTEXT=0
+	fi
+
 	VDRVERSION=$(awk -F'"' '/define VDRVERSION/ {print $2}' ${VDR_INCLUDE_DIR}/config.h)
 	APIVERSION=$(awk -F'"' '/define APIVERSION/ {print $2}' ${VDR_INCLUDE_DIR}/config.h)
 	[[ -z ${APIVERSION} ]] && APIVERSION="${VDRVERSION}"
@@ -193,13 +201,13 @@ vdr-plugin_src_unpack() {
 		eerror "Please report this at bugs.gentoo.org."
 		die "vdr-plugin_pkg_setup not called!"
 	fi
-	[ -z "$1" ] && vdr-plugin_src_unpack unpack add_local_patch patchmakefile
+	[ -z "$1" ] && vdr-plugin_src_unpack unpack add_local_patch patchmakefile i18n
 
 	while [ "$1" ]; do
 
 		case "$1" in
 		all_but_unpack)
-			vdr-plugin_src_unpack add_local_patch patchmakefile
+			vdr-plugin_src_unpack add_local_patch patchmakefile i18n
 			;;
 		unpack)
 			base_src_unpack
@@ -215,7 +223,7 @@ vdr-plugin_src_unpack() {
 
 			einfo "Patching Makefile"
 			[[ -e Makefile ]] || die "Makefile of plugin can not be found!"
-			cp Makefile Makefile.orig
+			cp Makefile "${WORKDIR}"/Makefile.before
 
 			sed -i Makefile \
 				-e '1i\#Makefile was patched by vdr-plugin.eclass'
@@ -266,6 +274,40 @@ vdr-plugin_src_unpack() {
 				done
 			fi
 			;;
+		i18n)
+			cd ${S}
+			if [[ ${USE_GETTEXT} = 0 ]]; then
+				# Remove i18n Target if using older vdr
+				sed -i Makefile \
+					-e '/^all:/s/ i18n//'
+			elif [[ ${USE_GETTEXT} = 1 && ! -d po ]]; then
+				einfo "Converting translations to gettext"
+
+				local i18n_tool=/usr/share/vdr/bin/i18n-to-gettext.pl
+				if [[ ! -x ${i18n_tool} ]]; then
+					eerror "Missing ${i18n_tool}"
+					eerror "Please re-emerge vdr"
+					die "Missing ${i18n_tool}"
+				fi
+
+				# call i18n-to-gettext tool
+				# take all texts missing tr call into special file
+				${i18n_tool} 2>/dev/null \
+					|sed -e '/^"/!d' \
+						-e '/^""$/d' \
+						-e 's/\(.*\)/trNOOP(\1)/' \
+					> dummy-translations-trNOOP.c
+
+				# if there were untranslated texts just run it again
+				# now the missing calls are listed in
+				# dummy-translations-trNOOP.c
+				if [[ -s dummy-translations-trNOOP.c ]]; then
+					${i18n_tool} &>/dev/null
+				fi
+
+				# now use the modified Makefile
+				mv Makefile.new Makefile
+			fi
 		esac
 
 		shift
@@ -276,7 +318,7 @@ vdr-plugin_copy_source_tree() {
 	pushd . >/dev/null
 	cp -r ${S} ${T}/source-tree
 	cd ${T}/source-tree
-	mv Makefile.orig Makefile
+	cp "${WORKDIR}"/Makefile.before Makefile
 	sed -i Makefile \
 		-e "s:^DVBDIR.*$:DVBDIR = ${DVB_INCLUDE_DIR}:" \
 		-e 's:^CXXFLAGS:#CXXFLAGS:' \
@@ -314,7 +356,10 @@ vdr-plugin_src_compile() {
 			fi
 			cd ${S}
 
-			emake ${BUILD_PARAMS} ${VDRPLUGIN_MAKE_TARGET:-all} || die "emake failed"
+			emake ${BUILD_PARAMS} \
+				${VDRPLUGIN_MAKE_TARGET:-all} \
+				LOCALEDIR="${TMP_LOCALE_DIR}" \
+			|| die "emake failed"
 			;;
 		esac
 
@@ -324,12 +369,12 @@ vdr-plugin_src_compile() {
 
 vdr-plugin_src_install() {
 	[[ -n "${VDRSOURCE_DIR}" ]] && vdr-plugin_install_source_tree
-	cd ${S}
+	cd "${WORKDIR}"
 
 	if [[ -n ${VDR_MAINTAINER_MODE} ]]; then
 		local mname=${P}-Makefile
-		cp Makefile ${mname}.patched
-		cp Makefile.orig ${mname}.before
+		cp "${S}"/Makefile ${mname}.patched
+		cp Makefile.before ${mname}.before
 
 		diff -u ${mname}.before ${mname}.patched > ${mname}.diff
 
@@ -344,8 +389,18 @@ vdr-plugin_src_install() {
 
 	fi
 
+	cd "${S}"
 	insinto "${VDR_PLUGIN_DIR}"
 	doins libvdr-*.so.*
+
+	if [[ ${USE_GETTEXT} = 1 && -d ${TMP_LOCALE_DIR} ]]; then
+		einfo "Installing locales"
+		cd "${TMP_LOCALE_DIR}"
+		insinto "${LOCDIR}"
+		doins -r *
+	fi
+
+	cd "${S}"
 	local docfile
 	for docfile in README* HISTORY CHANGELOG; do
 		[[ -f ${docfile} ]] && dodoc ${docfile}
