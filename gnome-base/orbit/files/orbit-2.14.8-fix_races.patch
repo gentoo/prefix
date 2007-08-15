@@ -1,0 +1,177 @@
+from gnome bug #466574
+
+Index: src/orb/GIOP/giop-recv-buffer.c
+===================================================================
+--- src/orb/GIOP/giop-recv-buffer.c	(revision 2016)
++++ src/orb/GIOP/giop-recv-buffer.c	(working copy)
+@@ -736,6 +736,7 @@
+ 			link_io_thread_remove_timeout (ent->cnx->parent.timeout_source_id);
+ 			ent->cnx->parent.timeout_source_id = 0;
+ 			ent->cnx->parent.timeout_status = LINK_TIMEOUT_NO;
++			g_object_unref (&ent->cnx->parent); // we remove the source so we must unref the connection
+ 		} else if (ent->cnx->parent.timeout_status == LINK_TIMEOUT_YES)
+ 			*timeout = TRUE;
+ 		g_mutex_unlock (ent->cnx->parent.timeout_mutex);
+@@ -1355,17 +1356,12 @@
+ 	return TRUE;
+ }
+ 
+-struct timeout_thread_data {
+-	GIOPThread *tdata;
+-	LinkConnection *lcnx;
+-};
+-
+ static gboolean
+-giop_timeout(gpointer data)
++giop_timeout (gpointer data)
+ {
+ 	gboolean retv = FALSE;
+-	LinkConnection *lcnx = ((struct timeout_thread_data*)data)->lcnx;
+-	GIOPThread *tdata =  ((struct timeout_thread_data*)data)->tdata;
++	LinkConnection *lcnx = (LinkConnection*)data;
++	GIOPThread *tdata = (GIOPThread *)lcnx->tdata;
+ 
+ 	g_assert (lcnx->timeout_mutex);
+ 
+@@ -1386,27 +1382,29 @@
+ 	giop_incoming_signal_T (tdata, GIOP_CLOSECONNECTION);
+ 	g_mutex_unlock (tdata->lock); /* ent_lock */
+ 	
+-out:
+-	g_object_unref (lcnx);
+-	g_free (data);
++	g_object_unref (lcnx); // we remove the source so we must unref lcnx
+ 
++out:
+ 	return retv;
+ }
+ 
+ void
+-giop_timeout_add(GIOPConnection *cnx)
++giop_timeout_add (GIOPConnection *cnx)
+ {
+-	struct timeout_thread_data *data = NULL;
++	static GStaticMutex static_mutex = G_STATIC_MUTEX_INIT;
+ 	LinkConnection *lcnx = LINK_CONNECTION (cnx);
+-	GSource *timeout_source = NULL;
+ 
+ 	if (!giop_thread_io ())
+ 		return;
+ 	if (!lcnx->timeout_msec) 
+ 		return;
+ 
+-	g_object_ref (lcnx);
++	g_static_mutex_lock (&static_mutex);
++	if (lcnx->timeout_source_id)
++		goto out;
+ 
++	g_object_ref (lcnx); // to be unref'ed by the one who removes the timeout source
++	
+ 	if (!lcnx->timeout_mutex)
+ 		lcnx->timeout_mutex = g_mutex_new ();
+ 
+@@ -1414,11 +1412,12 @@
+ 	lcnx->timeout_status = LINK_TIMEOUT_UNKNOWN;
+ 	g_mutex_unlock (lcnx->timeout_mutex);
+ 
+-	data = g_new0 (struct timeout_thread_data, 1);
+-	data->tdata = giop_thread_self ();
+-	data->lcnx = lcnx;
++	lcnx->tdata = giop_thread_self ();
+ 
+-	lcnx->timeout_source_id = link_io_thread_add_timeout (lcnx->timeout_msec, giop_timeout, data);
++	lcnx->timeout_source_id = link_io_thread_add_timeout (lcnx->timeout_msec, giop_timeout, (gpointer)lcnx);
++
++out:
++	g_static_mutex_unlock (&static_mutex);
+ }
+ 
+ GIOPRecvBuffer *
+Index: src/orb/GIOP/giop-send-buffer.c
+===================================================================
+--- src/orb/GIOP/giop-send-buffer.c	(revision 2016)
++++ src/orb/GIOP/giop-send-buffer.c	(working copy)
+@@ -456,6 +456,7 @@
+ 
+ 	if (g_thread_supported () 
+ 	    && lcnx->timeout_msec 
++	    && !lcnx->timeout_source_id
+ 	    && !giop_send_buffer_is_oneway (buf)) {
+ 		giop_timeout_add (cnx);
+ 	}
+Index: linc2/include/linc/linc-connection.h
+===================================================================
+--- linc2/include/linc/linc-connection.h	(revision 2016)
++++ linc2/include/linc/linc-connection.h	(working copy)
+@@ -67,6 +67,7 @@
+ 	guint                   timeout_msec;
+ 	guint                   timeout_source_id; // protected by timeout_mutex
+ 	LinkTimeoutStatus       timeout_status;    // protected by timeout_mutex
++	void                   *tdata;             // "do not pollute the namespace"-hack (it's a GIOPThread*)
+ } LinkConnection;
+ 
+ typedef struct {
+Index: linc2/src/linc-connection.c
+===================================================================
+--- linc2/src/linc-connection.c	(revision 2016)
++++ linc2/src/linc-connection.c	(working copy)
+@@ -1269,11 +1269,9 @@
+ 
+ 	if (cnx->timeout_mutex)
+ 		g_mutex_free (cnx->timeout_mutex);
+-
+-	if (cnx->timeout_source_id)
++	if (cnx->timeout_source_id) 
+ 		link_io_thread_remove_timeout (cnx->timeout_source_id);
+ 
+-
+ #ifdef G_ENABLE_DEBUG
+ 	g_assert (g_list_find(cnx_list, cnx) == NULL);
+ #endif
+@@ -1294,6 +1292,7 @@
+ 	cnx->timeout_msec = 0;
+ 	cnx->timeout_source_id = 0;
+ 	cnx->timeout_status = LINK_TIMEOUT_UNKNOWN;
++	cnx->tdata = NULL; 
+ 
+ #ifdef CONNECTION_DEBUG
+ 	cnx->priv->total_read_bytes = 0;
+Index: linc2/ChangeLog
+===================================================================
+--- linc2/ChangeLog	(revision 2016)
++++ linc2/ChangeLog	(working copy)
+@@ -1,3 +1,11 @@
++2007-08-14  Jules Colding  <colding@omesc.com>
++
++	* src/linc-connection.c (link_connection_init): Initialize new
++	data member in connection struct
++
++	* include/linc/linc-connection.h (struct): Add void member 
++	to hold a GIOPThread*
++
+ 2007-08-07  Tor Lillqvist  <tml@novell.com>
+ 
+ 	* src/linc-connection.c (link_connection_from_fd_T): Ifdef
+Index: ChangeLog
+===================================================================
+--- ChangeLog	(revision 2016)
++++ ChangeLog	(working copy)
+@@ -1,3 +1,18 @@
++2007-08-14  Jules Colding  <colding@omesc.com>
++
++	* src/orb/GIOP/giop-send-buffer.c (giop_send_buffer_write): Do
++	not enter giop_timeout_add() if a timeout is already present. This 
++	check is not thread safe, but the additional check in giop_timeout_add()
++	is.
++
++	* src/orb/GIOP/giop-recv-buffer.c (giop_timeout_add): Fix
++	race when creating the timeout mutex.
++	Do not depend on the dynamically created "struct timeout_thread_data". 
++	The right thing to do is to pass the connection directly and add an 
++	additional member to the LincConnection	to hold the GIOPThread.
++	(giop_timeout): Correct to use new input data (LincConnection*).
++	(giop_recv_buffer_get): Fix memory leak.
++
+ 2007-08-07  Tor Lillqvist  <tml@novell.com>
+ 
+ 	* test/timeout_impl.c (impl_Timeout_ping): Use g_usleep() instead

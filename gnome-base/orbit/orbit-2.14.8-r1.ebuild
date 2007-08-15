@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.8.ebuild,v 1.1 2007/08/08 09:28:43 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.8-r1.ebuild,v 1.1 2007/08/14 20:38:33 eva Exp $
 
 EAPI="prefix"
 
@@ -29,6 +29,13 @@ DEPEND="${RDEPEND}
 MAKEOPTS="${MAKEOPTS} -j1"
 
 DOCS="AUTHORS ChangeLog HACKING MAINTAINERS NEWS README* TODO"
+
+src_unpack() {
+	gnome2_src_unpack
+
+	# fix race condition in 2.14.8 (see bug #188825)
+	epatch "${FILESDIR}"/${PN}-2.14.8-fix_races.patch
+}
 
 src_compile() {
 	# We need to unset IDL_DIR, which is set by RSI's IDL.  This causes certain
