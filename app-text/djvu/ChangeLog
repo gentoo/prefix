@@ -1,6 +1,12 @@
 # ChangeLog for app-text/djvu
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.66 2007/07/22 06:34:22 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.67 2007/08/13 10:26:59 pva Exp $
+
+*djvu-3.5.19-r1 (13 Aug 2007)
+
+  13 Aug 2007; <pva@gentoo.org> +djvu-3.5.19-r1.ebuild:
+  Don't install desktop without viewer (bug 188691; thank Justin Blanchard
+  <justinb AT imsa.edu> for report)
 
   22 Jul 2007; <pva@gentoo.org> -files/djvu-3.5.16-gcc41-hash.patch,
   -files/djvu-3.5.16-gcc41.patch,
