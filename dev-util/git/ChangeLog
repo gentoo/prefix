@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.209 2007/08/08 11:04:16 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.210 2007/08/13 22:30:06 ferdy Exp $
+
+  13 Aug 2007; Fernando J. Pereda <ferdy@gentoo.org>
+  -files/git-1.5.2-tempfile.patch, -git-1.5.0.7.ebuild, -git-1.5.2.ebuild,
+  -git-1.5.2.1.ebuild, -git-1.5.2.2.ebuild:
+  Remove old and unused stuff
 
 *git-1.5.3_rc4 (08 Aug 2007)
 
