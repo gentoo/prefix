@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/hexedit
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/hexedit/ChangeLog,v 1.34 2007/08/02 05:41:25 joker Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/hexedit/ChangeLog,v 1.35 2007/08/13 20:04:10 dertobi123 Exp $
+
+  13 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  hexedit-1.2.12.ebuild:
+  ppc. stable
 
   02 Aug 2007; Christian Birchinger <joker@gentoo.org>
   hexedit-1.2.12.ebuild:
