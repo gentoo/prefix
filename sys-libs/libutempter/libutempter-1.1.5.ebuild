@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libutempter/libutempter-1.1.5.ebuild,v 1.7 2007/08/12 20:55:39 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libutempter/libutempter-1.1.5.ebuild,v 1.8 2007/08/13 21:56:54 dertobi123 Exp $
 
 EAPI="prefix"
 
