@@ -1,6 +1,10 @@
 # ChangeLog for www-client/links
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/links/ChangeLog,v 1.90 2007/07/22 06:14:14 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/links/ChangeLog,v 1.91 2007/08/13 22:03:00 dertobi123 Exp $
+
+  13 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  links-2.1_pre28-r1.ebuild:
+  ppc. stable
 
   22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>;
   links-2.1_pre26.ebuild, links-2.1_pre28-r1.ebuild:
