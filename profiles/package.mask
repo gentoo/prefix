@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7587 2007/08/14 23:34:30 je_fro Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7597 2007/08/16 23:06:52 phreak Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -20,6 +20,28 @@
 ##
 ##   End example
 ##
+
+# Samuli Suominen <drac@gentoo.org> (15 Aug 2007)
+# Temporary mask to give arch teams time to keyword
+# media-gfx/raw-thumbnailer
+>=xfce-extra/thunar-thumbnailers-0.3
+
+# Caleb Tennis <caleb@gentoo.org> (15 Aug 2007)
+# Masking for some longer term testing
+=sys-libs/db-4.6*
+
+# Gunnar Wrobel <wrobel@gentoo.org> (15 Aug 2007) 
+# Has open security bugs
+# http://bugs.gentoo.org/show_bug.cgi?id=172525
+# and upstream seems to be unable to deliver a useful 
+# up/downgrade path (will be unmasked with xoops-2.3)
+# http://www.xoops.org/modules/news/article.php?storyid=2905
+www-apps/xoops
+
+# Gunnar Wrobel <wrobel@gentoo.org> (15 Aug 2007) 
+# Has open security bugs and upstream seems to be dead
+# http://bugs.gentoo.org/show_bug.cgi?id=158698
+www-apps/ids
 
 # Tristan Heaven <nyhm@gentoo.org> (14 Aug 2007)
 # Breaks games-rpg/tmw-0.0.23
@@ -82,10 +104,6 @@ kde-misc/kxdocker-dcop
 kde-misc/kxdocker
 kde-misc/kxdocker-trayiconlogger
 kde-misc/kxdocker-resources
-
-# Jeroen Roovers <jer@gentoo.org> (04 Aug 2007)
-# Masking Opera 9.23 weeklies
-=www-client/opera-9.23*
 
 # Marius Mauch <genone@gentoo.org> (03 Aug 2007)
 # Masked for testing, also waiting for updated plugins due to license check
@@ -407,12 +425,6 @@ app-admin/bastille
 # Masked until it's updated to use >=wxpython-2.6
 # https://bugs.gentoo.org/show_bug.cgi?id=115079
 games-rpg/openrpg
-
-# Alexis Ballier <aballier@gentoo.org> (18 Apr 2007)
-# New version and new name for media-libs/libdts
-# It has an api compatibility layer but some packages
-# try to link using -ldts which just fails
-media-libs/libdca
 
 # Roy Marples <uberlord@gentoo.org> (15 Apr 2007)
 # Masked as it segfaults and fails with our scripts, #174693.

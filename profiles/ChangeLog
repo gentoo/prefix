@@ -1,6 +1,24 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.572 2007/08/14 23:34:30 je_fro Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.578 2007/08/16 19:43:48 keytoaster Exp $
+
+  16 Aug 2007; Tobias Heinlein <keytoaster@gentoo.org> updates/3Q-2007:
+  Moving kde-base/kworldwatch to kde-base/kworldclock, see bug 188707
+
+  16 Aug 2007; Steve Dibb <beandog@gentoo.org> package.mask:
+  Unmask transcode-1.0.4
+
+  16 Aug 2007; Steve Dibb <beandog@gentoo.org> use.local.desc:
+  Add pvr local flag for media-video/mplayer
+
+  15 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org> package.mask:
+  Remove opera mask wrt #188987
+
+  15 Aug 2007; Steve Dibb <beandog@gentoo.org> package.mask:
+  Update p.mask for transcode
+
+  14 Aug 2007; Steve Dibb <beandog@gentoo.org> use.local.desc:
+  Add teletext, cdio local use flags for media-video/mplayer
 
   14 Aug 2007; Jeff Gardner <je_fro@gentoo.org> package.mask:
   Unmasking ati-drivers-8.40.4 as watermark issue seems resolved - bug 188791.
@@ -91,6 +109,9 @@
 
   24 Jul 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
   Mask media-fonts/artwiz-fonts.
+
+  22 Jul 2007; Tobias Heinlein <keytoaster@gentoo.org> package.mask:
+  Updating mask on kde-misc/krusader since final version is out
 
   21 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>;
   embedded/virtuals, selinux/mips/virtuals:
