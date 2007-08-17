@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.16.1-r1.ebuild,v 1.5 2007/08/04 16:03:00 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.16.1-r1.ebuild,v 1.7 2007/08/16 07:07:59 opfer Exp $
 
 EAPI="prefix"
 
@@ -79,26 +79,12 @@ src_install() {
 	fi
 	rm -f "${ED}"/usr/share/locale/locale.alias "${ED}"/usr/lib/charset.alias
 
-	if use !elibc_glibc ; then
+	if [[ ${USERLAND} == "BSD" ]] ; then
+		libname="libintl$(get_libname 8)"
 		# Move dynamic libs and creates ldscripts into /usr/lib
 		dodir /$(get_libdir)
-		mv "${ED}"/usr/$(get_libdir)/libintl*$(get_libname)* "${ED}"/$(get_libdir)/
-		gen_usr_ldscript libintl$(get_libname)
-
-		if [[ ${CHOST} == *-darwin* ]] ; then
-			# this is pretty much ugly, but a necessity if we want to
-			# keep up moving libs to /lib
-			for obj in \
-				"${ED}"/usr/bin/* \
-				"${ED}"/usr/lib/*.dylib \
-				"${ED}"/usr/lib/gettext/* \
-			; do
-				install_name_tool -change \
-					"${EPREFIX}"/usr/lib/libintl.8.dylib \
-					"${EPREFIX}"/lib/libintl.8.dylib \
-					"${obj}"
-			done
-		fi
+		mv "${ED}"/usr/$(get_libdir)/${libname}* "${ED}"/$(get_libdir)/
+		gen_usr_ldscript ${libname}
 	fi
 
 	if use doc ; then
