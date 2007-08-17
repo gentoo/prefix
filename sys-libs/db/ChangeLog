@@ -1,6 +1,14 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.221 2007/08/09 03:02:42 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.222 2007/08/15 12:17:11 caleb Exp $
+
+*db-4.6.18 (15 Aug 2007)
+
+  15 Aug 2007; Caleb Tennis <caleb@gentoo.org>
+  +files/db-4.6-jarlocation.patch,
+  +files/db-4.6-jni-check-prefix-first.patch, +files/db-4.6-libtool.patch,
+  +db-4.6.18.ebuild:
+  Next major revision of db.  package.mask'd for now for further testing
 
   09 Aug 2007; Jeroen Roovers <jer@gentoo.org> db-4.5.20_p2.ebuild:
   Stable for HPPA (bug #178750).
