@@ -23,6 +23,7 @@ src_compile() {
 		$(use_enable debug debugging) \
 		|| die "configure failed"
 	#epatch "${FILESDIR}/pv-remove-doc-target.patch"
+	epatch "${FILESDIR}/${P}-inputisoutput.patch"
 	emake || die "make failed"
 }
 
