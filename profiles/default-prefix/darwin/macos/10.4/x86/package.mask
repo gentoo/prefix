@@ -1,1 +1,2 @@
+# masked for bug #188977
 =app-misc/pv-1.0.1
