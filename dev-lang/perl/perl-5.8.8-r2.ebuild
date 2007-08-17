@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r2.ebuild,v 1.38 2007/08/08 19:21:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r2.ebuild,v 1.39 2007/08/16 03:25:39 zmedico Exp $
 
 EAPI="prefix"
 
@@ -35,7 +35,11 @@ DEPEND="berkdb? ( sys-libs/db )
 RDEPEND="~sys-devel/libperl-${PV}
 	berkdb? ( sys-libs/db )
 	gdbm? ( >=sys-libs/gdbm-1.8.3 )
-	build? ( !perl-core/Test-Harness )"
+	build? (
+		!perl-core/Test-Harness
+		!perl-core/PodParser
+		!dev-perl/Locale-gettext
+	)"
 
 PDEPEND=">=app-admin/perl-cleaner-1.03
 		!build? (
