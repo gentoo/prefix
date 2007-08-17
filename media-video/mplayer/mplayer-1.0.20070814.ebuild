@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0.20070622-r2.ebuild,v 1.2 2007/07/28 15:25:18 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0.20070814.ebuild,v 1.2 2007/08/15 18:08:49 drac Exp $
 
 EAPI="prefix"
 
@@ -8,12 +8,13 @@ inherit eutils flag-o-matic multilib
 
 RESTRICT="strip"
 IUSE="3dnow 3dnowext a52 aac aalib alsa altivec amrnb amrwb arts bidi bl bindist
-cddb cpudetection custom-cflags dga doc dts dvb cdparanoia directfb dvd
-dvdnav dv enca encode esd fbcon ftp gif ggi gtk iconv ipv6 ivtv jack joystick
+cddb cdio cdparanoia cpudetection custom-cflags dga doc dts dvb directfb dvd
+dv enca encode esd fbcon ftp gif ggi gtk iconv ipv6 ivtv jack joystick
 jpeg libcaca lirc live livecd lzo mad md5sum mmx mmxext mp2 mp3 musepack nas
-unicode vorbis opengl openal oss png pnm pulseaudio quicktime radio rar real rtc samba sdl speex srt sse sse2 ssse3 svga tga theora tivo truetype v4l v4l2 vidix win32codecs X x264 xanim xinerama xv xvid xvmc zoran"
+unicode vorbis opengl openal oss png pnm quicktime radio rar real rtc samba sdl
+speex srt sse sse2 ssse3 svga teletext tga theora tivo truetype v4l v4l2 vidix win32codecs X x264 xanim xinerama xv xvid xvmc zoran"
 
-VIDEO_CARDS="s3virge mga tdfx vesa"
+VIDEO_CARDS="i810 nvidia s3virge mga tdfx vesa"
 
 for X in ${VIDEO_CARDS}; do
 	IUSE="${IUSE} video_cards_${X}"
@@ -21,11 +22,10 @@ done
 
 BLUV=1.7
 SVGV=1.9.17
-MY_PV="20070622"
+MY_PV="20070814"
 S="${WORKDIR}/${PN}-${MY_PV}"
 AMR_URI="http://www.3gpp.org/ftp/Specs/archive"
 SRC_URI="mirror://gentoo/${PN}-${MY_PV}.tar.bz2
-	mirror://gentoo/${P}-pulseaudio.patch.bz2
 	!truetype? ( mirror://mplayer/releases/fonts/font-arial-iso-8859-1.tar.bz2
 				 mirror://mplayer/releases/fonts/font-arial-iso-8859-2.tar.bz2
 				 mirror://mplayer/releases/fonts/font-arial-cp1250.tar.bz2 )
@@ -35,7 +35,7 @@ SRC_URI="mirror://gentoo/${PN}-${MY_PV}.tar.bz2
 	gtk? ( mirror://mplayer/Skin/Blue-${BLUV}.tar.bz2 )
 	svga? ( http://mplayerhq.hu/~alex/svgalib_helper-${SVGV}-mplayer.tar.bz2 )"
 
-DESCRIPTION="Media Player for Linux "
+DESCRIPTION="Media Player for Linux"
 HOMEPAGE="http://www.mplayerhq.hu/"
 
 RDEPEND="sys-libs/ncurses
@@ -56,12 +56,12 @@ RDEPEND="sys-libs/ncurses
 	arts? ( kde-base/arts )
 	openal? ( media-libs/openal )
 	bidi? ( dev-libs/fribidi )
+	cdio? ( dev-libs/libcdio )
 	cdparanoia? ( media-sound/cdparanoia )
 	directfb? ( dev-libs/DirectFB )
-	dts? ( media-libs/libdts )
+	dts? ( || ( media-libs/libdca media-libs/libdts ) )
 	dv? ( media-libs/libdv )
 	dvb? ( media-tv/linuxtv-dvb-headers )
-	dvd? ( dvdnav? ( media-libs/libdvdnav ) )
 	encode? (
 		aac? ( media-libs/faac )
 		mp2? ( media-sound/twolame )
@@ -86,7 +86,6 @@ RDEPEND="sys-libs/ncurses
 	opengl? ( virtual/opengl )
 	png? ( media-libs/libpng )
 	pnm? ( media-libs/netpbm )
-	pulseaudio? ( media-sound/pulseaudio )
 	samba? ( net-fs/samba )
 	sdl? ( media-libs/libsdl )
 	speex? ( >=media-libs/speex-1.1.7 )
@@ -115,7 +114,6 @@ RDEPEND="sys-libs/ncurses
 #	video_cards_vesa? ( sys-apps/vbetool ) restrict on x86 first
 
 DEPEND="${RDEPEND}
-	app-arch/unzip
 	doc? ( >=app-text/docbook-sgml-dtd-4.1.2
 		app-text/docbook-xml-dtd
 		>=app-text/docbook-xml-simple-dtd-1.50.0
@@ -153,11 +151,10 @@ pkg_setup() {
 		elog "are also available."
 	fi
 
-	if use pulseaudio; then
-		ewarn "Using the pulseaudio flag adds experimental support for"
-		ewarn "this feature.  Do *not* bug upstream if it doesn't work,"
-		ewarn "instead filing issues at Gentoo's bugzilla.  Thanks"
-		ewarn "http://bugs.gentoo.org/"
+	if use dvd && ! use a52; then
+		ewarn "You have DVD support enabled (dvd use flag), but a52 support"
+		ewarn "is disabled.  You probably want to enable this, or the audio"
+		ewarn "on some discs will not work."
 	fi
 
 }
@@ -200,17 +197,13 @@ src_unpack() {
 
 	# Fix XShape detection
 	epatch ${FILESDIR}/${PN}-xshape.patch
-
-	# Add pulseaudio support
-	epatch ${DISTDIR}/${P}-pulseaudio.patch.bz2
-
+	epatch ${FILESDIR}/${PN}-dpms.patch
 }
 
 src_compile() {
 
 	local myconf=" --disable-tv-bsdbt848 \
-		--disable-faad-external \
-		--disable-libcdio"
+		--disable-faad-external"
 
 	# MPlayer reads in the LINGUAS variable from make.conf, and sets
 	# the languages accordingly.  Some will have to be altered to match
@@ -222,27 +215,27 @@ src_compile() {
 	###############
 	use bidi || myconf="${myconf} --disable-fribidi"
 	use bl && myconf="${myconf} --enable-bl"
-	use cddb || myconf="${myconf} --disable-cddb"
-	use cdparanoia || myconf="${myconf} --disable-cdparanoia"
 	use enca || myconf="${myconf} --disable-enca"
 	use ftp || myconf="${myconf} --disable-ftp"
 	use tivo || myconf="${myconf} --disable-vstream"
+
+	# libcdio support: prefer libcdio over cdparanoia
+	# don't check for cddb w/cdio
+	if use cdio; then
+		myconf="${myconf} --disable-cdparanoia"
+	else
+		myconf="${myconf} --disable-libcdio"
+		use cdparanoia || myconf="${myconf} --disable-cdparanoia"
+		use cddb || myconf="${myconf} --disable-cddb"
+	fi
 
 	# DVD support
 	# dvdread and libdvdcss are internal libs
 	# http://www.mplayerhq.hu/DOCS/HTML/en/dvd.html
 	# You can optionally use external dvdread support, but against
 	# upstream's suggestion.  We don't.
-	# dvdnav support is known to be buggy, but it is the only option
-	# for accessing some DVDs.
-	if use dvd; then
-		use dvdnav || myconf="${myconf} --disable-dvdnav"
-	else
+	if ! use dvd; then
 		myconf="${myconf} --disable-dvdnav --disable-dvdread"
-
-		# Don't disable a52 support since it's native to libavcodec, and is
-		# going to be needed on most DVDs.
-		use a52 || myconf="${myconf} --disable-liba52"
 	fi
 
 	if use encode; then
@@ -280,6 +273,7 @@ src_compile() {
 		use dvb || myconf="${myconf} --disable-dvb --disable-dvbhead"
 		use v4l	|| myconf="${myconf} --disable-tv-v4l1"
 		use v4l2 || myconf="${myconf} --disable-tv-v4l2"
+		use teletext || myconf="${myconf} --disable-tv-teletext"
 		if ( use dvb || use v4l || use v4l2 ) && use radio; then
 			myconf="${myconf} --enable-radio $(use_enable encode radio-capture)"
 		else
@@ -288,12 +282,12 @@ src_compile() {
 	else
 		myconf="${myconf} --disable-tv --disable-tv-v4l1 --disable-tv-v4l2 \
 			--disable-radio --disable-radio-v4l2 --disable-radio-bsdbt848 \
-			--disable-dvb --disable-dvbhead"
+			--disable-dvb --disable-dvbhead --disable-tv-teletext"
 	fi
 
 	# disable PVR support
 	# The build will break if you have media-tv/ivtv installed and
-	# linux-headers != 2.6.18, which is currently not keyworded
+	# linux-headers != 2.6.18
 	# See also, bug 164748
 	myconf="${myconf} --disable-pvr"
 
@@ -304,8 +298,10 @@ src_compile() {
 		use ${x} || myconf="${myconf} --disable-${x}"
 	done
 	use aac || myconf="${myconf} --disable-faad-internal"
+	use a52 || myconf="${myconf} --disable-liba52"
 	use amrnb || myconf="${myconf} --disable-libamr_nb"
 	use amrwb || myconf="${myconf} --disable-libamr_wb"
+	use dts || myconf="${myconf} --disable-libdca"
 	! use png && ! use gtk && myconf="${myconf} --disable-png"
 	use lzo || myconf="${myconf} --disable-liblzo"
 	use encode && use mp2 || myconf="${myconf} --disable-twolame \
@@ -352,7 +348,14 @@ src_compile() {
 
 	if use xv; then
 		if use xvmc; then
-			myconf="${myconf} --enable-xvmc --with-xvmclib=XvMCW"
+			myconf="${myconf} --enable-xvmc"
+			if use video_cards_nvidia; then
+				myconf="${myconf} --with-xvmclib=XvMCNVIDIA"
+			elif use video_cards_i810; then
+				myconf="${myconf} --with-xvmclib=I810XvMC"
+			else
+				myconf="${myconf} --with-xvmclib=XvMCW"
+			fi
 		else
 			myconf="${myconf} --disable-xvmc"
 		fi
@@ -381,8 +384,6 @@ src_compile() {
 	if ! use radio; then
 		use oss || myconf="${myconf} --disable-ossaudio"
 	fi
-	use pulseaudio || myconf="${myconf} --disable-pulse"
-
 	#################
 	# Advanced Options #
 	#################
@@ -452,11 +453,6 @@ src_compile() {
 	echo "CFLAGS=\"${CFLAGS}\" ./configure ${myconf}"
 	CFLAGS="${CFLAGS}" ./configure ${myconf} || die
 
-	# we run into problems if -jN > -j1
-	# see #86245
-	# This should have long ago been fixed, commenting out
-	#MAKEOPTS="${MAKEOPTS} -j1"
-
 	einfo "Make"
 	emake || die "Failed to build MPlayer!"
 	use doc && make -C DOCS/xml html-chunked
@@ -524,11 +520,8 @@ subfont-text-scale=3
 EOT
 	fi
 
-	dosym ../../../etc/mplayer.conf /usr/share/mplayer/mplayer.conf
+	dosym ../../../etc/mplayer/mplayer.conf /usr/share/mplayer/mplayer.conf
 
-	#mv the midentify script to /usr/bin for emovix.
-	#cp ${ED}/usr/share/doc/${PF}/TOOLS/midentify ${ED}/usr/bin
-	#chmod a+x ${ED}/usr/bin/midentify
 	dobin ${ED}/usr/share/doc/${PF}/TOOLS/midentify
 
 	insinto /usr/share/mplayer
@@ -550,14 +543,6 @@ pkg_postinst() {
 		depmod -a &>/dev/null || :
 	fi
 
-	if use dvdnav && use dvd; then
-		ewarn "'dvdnav' support in MPlayer is known to be buggy, and will"
-		ewarn "break if you are using it in GUI mode.  It is only"
-		ewarn "included because some DVDs will only play with this feature."
-		ewarn "If using it for playback only (and not menu navigation),"
-		ewarn "specify the track # with your options."
-		ewarn "mplayer dvdnav://1"
-	fi
 }
 
 pkg_postrm() {

@@ -1,6 +1,25 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.505 2007/08/12 18:04:15 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.507 2007/08/15 18:08:49 drac Exp $
+
+  15 Aug 2007; Samuli Suominen <drac@gentoo.org>
+  mplayer-1.0.20070814.ebuild:
+  Flip libdts and libdca deps around, so libdca gets installed over libdts
+  primarily.
+
+*mplayer-1.0.20070814 (14 Aug 2007)
+
+  14 Aug 2007; Steve Dibb <beandog@gentoo.org> +mplayer-1.0.20070814.ebuild:
+  SVN snapshot version bump
+  Fix xinerama scaling, bug 187382
+  Enable libcdio support, bug 184783
+  Fix broken symlink for mplayer.conf, bug 183099
+  Remove app-arch/unzip from DEPEND
+  Add video card + xvmc support for nvidia, i810, bug 184186
+  Remove dvdnav support
+  Restore original a52 use flag check, add ewarn if using dvd use flag
+  Add teletext use flag
+  Fix DTS dependencies, bug 186854
 
   12 Aug 2007; Samuli Suominen <drac@gentoo.org> +files/mplayer-dpms.patch,
   mplayer-1.0.20070622-r3.ebuild:
@@ -23,7 +42,7 @@
   mplayer-1.0.20070622-r1.ebuild:
   Stable on ppc64; bug #181097
 
-  05 Jul 2007; Raúl Porcel <armin76@gentoo.org>
+  05 Jul 2007; RaÃºl Porcel <armin76@gentoo.org>
   mplayer-1.0.20070622-r1.ebuild:
   alpha/ia64 stable
 
@@ -31,11 +50,11 @@
   mplayer-1.0.20070622-r1.ebuild:
   Stable on sparc
 
-  04 Jul 2007; René Nussbaumer <killerfox@gentoo.org>
+  04 Jul 2007; RenÃ© Nussbaumer <killerfox@gentoo.org>
   mplayer-1.0.20070622-r1.ebuild:
   Stable on hppa. See bug #181097.
 
-  02 Jul 2007; Piotr Jaroszyński <peper@gentoo.org>
+  02 Jul 2007; Piotr JaroszyÅski <peper@gentoo.org>
   mplayer-1.0_rc1-r2.ebuild, mplayer-1.0.20070321.ebuild,
   mplayer-1.0.20070321-r1.ebuild, mplayer-1.0.20070427.ebuild,
   mplayer-1.0.20070622.ebuild, mplayer-1.0.20070622-r1.ebuild:
@@ -49,7 +68,7 @@
   mplayer-1.0.20070622.ebuild:
   Stable on sparc wrt security #181097
 
-  25 Jun 2007; Raúl Porcel <armin76@gentoo.org>
+  25 Jun 2007; RaÃºl Porcel <armin76@gentoo.org>
   mplayer-1.0.20070622-r1.ebuild:
   x86 stable wrt security #181097
 
@@ -64,7 +83,7 @@
   Cleanup dvd use flags, bug 174721; don't disable a52 internal support unless
   -dvd is used, bug 181082
 
-  24 Jun 2007; Raúl Porcel <armin76@gentoo.org>
+  24 Jun 2007; RaÃºl Porcel <armin76@gentoo.org>
   mplayer-1.0.20070622.ebuild:
   alpha/ia64 stable wrt security #181097
 
@@ -107,7 +126,7 @@
   02 May 2007; Jeroen Roovers <jer@gentoo.org> mplayer-1.0.20070321.ebuild:
   Stable for HPPA (bug #168917).
 
-  02 May 2007; Bryan Østergaard <kloeri@gentoo.org>
+  02 May 2007; Bryan Ãstergaard <kloeri@gentoo.org>
   mplayer-1.0.20070321.ebuild:
   Stable on Alpha, bug 168917.
 
@@ -125,7 +144,7 @@
   mplayer-1.0.20070321.ebuild:
   Stable on sparc wrt security #168917
 
-  30 Apr 2007; Raúl Porcel <armin76@gentoo.org>
+  30 Apr 2007; RaÃºl Porcel <armin76@gentoo.org>
   mplayer-1.0.20070321.ebuild:
   ia64 + x86 stable wrt security bug 168917
 
@@ -233,11 +252,11 @@
   13 Feb 2007; Markus Rothe <corsair@gentoo.org> mplayer-1.0_rc1-r2.ebuild:
   Stable on ppc64; bug #159727
 
-  12 Feb 2007; Bryan Østergaard <kloeri@gentoo.org>
+  12 Feb 2007; Bryan Ãstergaard <kloeri@gentoo.org>
   mplayer-1.0_rc1-r2.ebuild:
   Stable on Alpha, bug 159727.
 
-  12 Feb 2007; Bryan Østergaard <kloeri@gentoo.org>
+  12 Feb 2007; Bryan Ãstergaard <kloeri@gentoo.org>
   mplayer-1.0_rc1-r2.ebuild:
   Stable on IA64, bug 159727.
 
@@ -248,7 +267,7 @@
   11 Feb 2007; Simon Stelling <blubb@gentoo.org> mplayer-1.0_rc1-r2.ebuild:
   stable on amd64; security bug 159727
 
-  11 Feb 2007; René Nussbaumer <killerfox@gentoo.org>
+  11 Feb 2007; RenÃ© Nussbaumer <killerfox@gentoo.org>
   mplayer-1.0_rc1-r2.ebuild:
   Stable on hppa. See bug #159727.
 
@@ -278,7 +297,7 @@
   mplayer-1.0_rc1.ebuild:
   filter -fomit-frame-pointer when USE=debug is set
 
-  09 Jan 2007; Olivier Crête <tester@gentoo.org> mplayer-1.0_rc1.ebuild:
+  09 Jan 2007; Olivier CrÃªte <tester@gentoo.org> mplayer-1.0_rc1.ebuild:
   Stable on amd64 for bugs #157814 and #161053
 
 *mplayer-1.0_rc1-r1 (06 Jan 2007)
@@ -311,7 +330,7 @@
   10 Dec 2006; Luca Barbato <lu_zero@gentoo.org> mplayer-1.0_rc1.ebuild:
   Fix faac dep
 
-  11 Dec 2006; Diego Pettenò <flameeyes@gentoo.org> mplayer-1.0_rc1.ebuild:
+  11 Dec 2006; Diego PettenÃ² <flameeyes@gentoo.org> mplayer-1.0_rc1.ebuild:
   Tell the configure script to sue the correct CC/BUILD_CC compiler, close bug
   #155515, thanks to Timothy Redaelli for reporting.
 
@@ -349,7 +368,7 @@
   mplayer-1.0_pre20061019.ebuild, mplayer-1.0_rc1.ebuild:
   Fix packaging, do not install codecs.conf anymore
 
-  30 Oct 2006; Diego Pettenò <flameeyes@gentoo.org>
+  30 Oct 2006; Diego PettenÃ² <flameeyes@gentoo.org>
   mplayer-1.0_pre8.ebuild, mplayer-1.0_pre8-r1.ebuild,
   mplayer-1.0_pre20060810.ebuild, mplayer-1.0_pre20061019.ebuild,
   mplayer-1.0_rc1.ebuild:
@@ -493,7 +512,7 @@
   11 Jul 2006; Luca Barbato <lu_zero@gentoo.org> mplayer-1.0_pre8-r1.ebuild:
   Cleanup and modular X only now
 
-  09 Jul 2006; Diego Pettenò <flameeyes@gentoo.org>
+  09 Jul 2006; Diego PettenÃ² <flameeyes@gentoo.org>
   mplayer-1.0_pre7-r1.ebuild, mplayer-1.0_pre8.ebuild,
   mplayer-1.0.20060102.ebuild, mplayer-1.0.20060217.ebuild,
   mplayer-1.0.20060302.ebuild, mplayer-1.0.20060408.ebuild,
@@ -581,7 +600,7 @@
   Added speex useflag, thanks to Roman Polach <rpolach@atlas.cz> for spotting 
   it.
 
-  03 May 2006; Diego Pettenò <flameeyes@gentoo.org> metadata.xml:
+  03 May 2006; Diego PettenÃ² <flameeyes@gentoo.org> metadata.xml:
   Update metadata to list media-video@gentoo.org as maintainer.
 
   30 Apr 2006; Luca Barbato <lu_zero@gentoo.org>
@@ -703,7 +722,7 @@
   Re-add ~alpha keyword wrt bug #124776. Tested by Thomas Cort
   <tcort@cs.ubishops.ca>
 
-  26 Feb 2006; Bryan Østergaard <kloeri@gentoo.org
+  26 Feb 2006; Bryan Ãstergaard <kloeri@gentoo.org
   mplayer-1.0.20060217.ebuild:
   Stable on alpha, bug 115760.
 
@@ -758,7 +777,7 @@
   +mplayer-1.0.20060217.ebuild:
   New snapshot
 
-  15 Feb 2006; Diego Pettenò <flameeyes@gentoo.org>
+  15 Feb 2006; Diego PettenÃ² <flameeyes@gentoo.org>
   mplayer-1.0_pre7-r1.ebuild, mplayer-1.0.20060102.ebuild:
   Put gettext as a build-time dependency, and use virtual/libintl as RDEPEND
   instead.
@@ -817,7 +836,7 @@
   -mplayer-1.0_pre6-r6.ebuild:
   Pruning mplayer-1.0_pre6 ebuilds
 
-  31 Oct 2005; Diego Pettenò <flameeyes@gentoo.org>
+  31 Oct 2005; Diego PettenÃ² <flameeyes@gentoo.org>
   mplayer-1.0_pre6-r4.ebuild, mplayer-1.0_pre6-r5.ebuild,
   mplayer-1.0_pre6-r6.ebuild, mplayer-1.0_pre7.ebuild:
   Disable divx4linux in every version, not just the last one, to avoid
@@ -941,7 +960,7 @@
   21 Apr 2005; Simon Stelling <blubb@gentoo.org> mplayer-1.0_pre6-r6.ebuild:
   minor amd64-specific cleanup
 
-  19 Apr 2005; Bryan Østergaard <kloeri@gentoo.org>
+  19 Apr 2005; Bryan Ãstergaard <kloeri@gentoo.org>
   mplayer-1.0_pre6-r4.ebuild:
   Stable on alpha, bug 89277.
 
@@ -1221,7 +1240,7 @@
   +files/mplayer-1.0_pre6-ppc64.patch, +mplayer-1.0_pre6.ebuild:
   Infamous 1.0_pre6 bump.
 
-  19 Dec 2004; Bryan Østergaard <kloeri@gentoo.org>
+  19 Dec 2004; Bryan Ãstergaard <kloeri@gentoo.org>
   mplayer-1.0_pre5-r5.ebuild:
   Stable on alpha, bug 74473.
 
@@ -1331,7 +1350,7 @@
   19 Oct 2004; Chris White <chriswhite@gentoo.org> :
   Did filter flags on a few problematic flags as per Bug #67903.
 
-  17 Oct 2004; Bryan Østergaard <kloeri@gentoo.org>
+  17 Oct 2004; Bryan Ãstergaard <kloeri@gentoo.org>
   mplayer-1.0_pre5-r3.ebuild:
   alpha happiness, bug 66571.
 
@@ -1465,7 +1484,7 @@
   31 Jul 2004; Chris White <chriswhite@gentoo.org> mplayer-1.0_pre5-r2.ebuild:
   Took pre5-r2 down to unstable.  See Bug #55456 for more information.
 
-  30 Jul 2004; Bryan Østergaard <kloeri@gentoo.org>
+  30 Jul 2004; Bryan Ãstergaard <kloeri@gentoo.org>
   mplayer-1.0_pre4-r7.ebuild:
   Stable on alpha, see bug #55456.
 
@@ -1596,7 +1615,7 @@
   Fixed mplayer pre4-r5 compiling issues with undefined str* references and
   re-stabilized for gui vuln bug for amd64. Added fullscreen patch as well.
 
-  16 Jul 2004; Bryan Østergaard <kloeri@gentoo.org> mplayer-1.0_pre5.ebuild:
+  16 Jul 2004; Bryan Ãstergaard <kloeri@gentoo.org> mplayer-1.0_pre5.ebuild:
   Stable on alpha, see bug #55456.
 
 *mplayer-1.0_pre4-r5 (18 Jul 2004)
@@ -1753,7 +1772,7 @@
   02 May 2004; Jason Wever <weeve@gentoo.org> mplayer-1.0_pre4-r1.ebuild:
   Changed -sparc keyword back to ~sparc.
 
-  30 Apr 2004; Bryan Østergaard <kloeri@gentoo.org>
+  30 Apr 2004; Bryan Ãstergaard <kloeri@gentoo.org>
   mplayer-1.0_pre4-r1.ebuild:
   Stable on alpha.
 
