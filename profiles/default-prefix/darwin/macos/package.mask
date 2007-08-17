@@ -5,3 +5,6 @@
 # all GCC's fault, but just the environment, and the expectations of
 # upstream developers.
 sys-devel/gcc
+
+# pv-1.0.1 is broken on macos, see bug #188977 for details
+=app-misc/pv-1.0.1
