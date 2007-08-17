@@ -1,6 +1,14 @@
 # ChangeLog for dev-ruby/rubyforge
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/ChangeLog,v 1.10 2007/07/24 07:13:05 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/ChangeLog,v 1.11 2007/08/15 06:19:21 graaff Exp $
+
+*rubyforge-0.4.4 (15 Aug 2007)
+
+  15 Aug 2007; Hans de Graaff <graaff@gentoo.org> +rubyforge-0.4.4.ebuild:
+  Version bump:
+  * New type_id values will merge with extant data. 
+  * Scrape processor_ids, merging in with extant data.
+  * Default to "Other" if a file's type is unrecognized.
 
 *rubyforge-0.4.3 (24 Jul 2007)
 
