@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.48 2007/08/14 18:42:22 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.49 2007/08/16 17:59:21 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -280,7 +280,7 @@ vdr-plugin_src_unpack() {
 				# Remove i18n Target if using older vdr
 				sed -i Makefile \
 					-e '/^all:/s/ i18n//'
-			elif [[ ${USE_GETTEXT} = 1 && ! -d po ]]; then
+			elif [[ ${USE_GETTEXT} = 1 && ! -d po && ${NO_GETTEXT_HACK} != 1 ]]; then
 				einfo "Converting translations to gettext"
 
 				local i18n_tool=/usr/share/vdr/bin/i18n-to-gettext.pl

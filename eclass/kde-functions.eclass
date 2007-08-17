@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.155 2007/05/29 17:26:18 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.156 2007/08/16 19:40:22 keytoaster Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -272,7 +272,7 @@ kde-base/kdetoys kde-base/kodo
 kde-base/kdetoys kde-base/kteatime
 kde-base/kdetoys kde-base/ktux
 kde-base/kdetoys kde-base/kweather
-kde-base/kdetoys kde-base/kworldwatch
+kde-base/kdetoys kde-base/kworldclock
 kde-base/kdeutils kde-base/ark
 kde-base/kdeutils kde-base/kcalc
 kde-base/kdeutils kde-base/kcharselect

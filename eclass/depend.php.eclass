@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.19 2007/05/12 14:22:12 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.20 2007/08/16 22:11:00 hoffie Exp $
 
 # ========================================================================
 #
@@ -400,7 +400,7 @@ require_php_cli() {
 	fi
 
 	if [[ -z ${PHP_VERSION} ]] ; then
-		die "No PHP CLI installed"
+		die "No PHP CLI installed. Re-emerge dev-lang/php with USE=cli."
 	fi
 
 	# If we get here, then PHP_VERSION tells us which version of PHP we
@@ -443,7 +443,7 @@ require_php_cgi() {
 	fi
 
 	if [[ -z ${PHP_VERSION} ]] ; then
-		die "No PHP CGI installed"
+		die "No PHP CGI installed. Re-emerge dev-lang/php with USE=cgi."
 	fi
 
 	# If we get here, then PHP_VERSION tells us which version of PHP we
