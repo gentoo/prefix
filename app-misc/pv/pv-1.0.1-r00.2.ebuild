@@ -18,12 +18,14 @@ IUSE="debug nls"
 DEPEND="virtual/libc"
 
 src_compile() {
+	epatch "${FILESDIR}/${P}-inputisoutput.patch"
+	epatch "${FILESDIR}/${P}-sizecalc.patch"
+
 	econf \
 		$(use_enable nls) \
 		$(use_enable debug debugging) \
 		|| die "configure failed"
 	#epatch "${FILESDIR}/pv-remove-doc-target.patch"
-	epatch "${FILESDIR}/${P}-inputisoutput.patch"
 	emake || die "make failed"
 }
 
