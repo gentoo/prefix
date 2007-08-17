@@ -1,6 +1,13 @@
 # ChangeLog for app-emacs/nxml-mode
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/ChangeLog,v 1.23 2007/07/02 07:32:10 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/ChangeLog,v 1.24 2007/08/15 07:37:56 ulm Exp $
+
+*nxml-mode-20041004-r1 (15 Aug 2007)
+
+  15 Aug 2007; Ulrich Mueller <ulm@gentoo.org>
+  +files/xsd-regexp.el.2006-01-26.patch, +nxml-mode-20041004-r1.ebuild:
+  Fix "range striding over charsets" error; bug #188112, reported by
+  Martin von Gagern <Martin.vGagern@gmx.net>. Other minor changes.
 
   02 Jul 2007; Christian Faulhammer <opfer@gentoo.org>
   nxml-mode-20041004.ebuild:
