@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-4.3.4.ebuild,v 1.2 2007/05/01 11:31:00 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-4.3.4.ebuild,v 1.3 2007/08/16 09:52:54 uberlord Exp $
 
 EAPI="prefix"
 
-inherit eutils multilib
+inherit eutils multilib autotools
 
 LOVERS_PV=0.5
 LOVERS_P=zsh-lovers-${LOVERS_PV}
@@ -19,34 +19,38 @@ SRC_URI="ftp://ftp.zsh.org/pub/${P}.tar.bz2
 LICENSE="ZSH"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
-IUSE="maildir ncurses static doc examples pcre caps unicode"
+IUSE="maildir static doc examples pcre caps unicode"
 
-RDEPEND="pcre? ( >=dev-libs/libpcre-3.9 )
+RDEPEND=">=sys-libs/ncurses-5.1
 	caps? ( sys-libs/libcap )
-	ncurses? ( >=sys-libs/ncurses-5.1 )"
+	pcre? ( >=dev-libs/libpcre-3.9 )"
 DEPEND="sys-apps/groff
-	>=sys-apps/sed-4
 	${RDEPEND}"
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
-	epatch ${FILESDIR}/${PN}-init.d-gentoo.diff
-	cd ${S}/Doc
-	ln -sf . man1
+	cd "${S}"
+
 	# fix zshall problem with soelim
-	soelim zshall.1 > zshall.1.soelim
-	mv zshall.1.soelim zshall.1
+	ln -s Doc man1
+	mv Doc/zshall.1 Doc/zshall.1.soelim
+	soelim Doc/zshall.1.soelim > Doc/zshall.1
+
+	epatch "${FILESDIR}/${PN}"-init.d-gentoo.diff
+	epatch "${FILESDIR}/${P}"-configure-changequote.patch
+	eautoreconf
 
 	cp "${FILESDIR}"/zprofile "${T}"/zprofile
 	eprefixify "${T}"/zprofile
 }
 
 src_compile() {
-	local myconf
+	local myconf=
 
-	use static && myconf="${myconf} --disable-dynamic" \
-		&& LDFLAGS="${LDFLAGS} -static"
+	if use static ; then
+		myconf="${myconf} --disable-dynamic"
+		LDFLAGS="${LDFLAGS} -static"
+	fi
 
 	if [[ ${CHOST} == *-darwin* ]]; then
 		LDFLAGS="${LDFLAGS} -Wl,-x"
@@ -66,8 +70,8 @@ src_compile() {
 		--enable-site-fndir="${EPREFIX}"/usr/share/zsh/site-functions \
 		--enable-function-subdirs \
 		--enable-ldflags="${LDFLAGS}" \
+		--enable-curses-terminfo \
 		--with-tcsetpgrp \
-		$(use_with ncurses curses-terminfo) \
 		$(use_enable maildir maildir-support) \
 		$(use_enable pcre) \
 		$(use_enable caps) \
@@ -80,29 +84,27 @@ src_compile() {
 			-e "s/load=no/load=yes/g" \
 			config.modules || die
 	else
-		# avoid linking to libs in /usr/lib, see Bug #27064
-		sed -i -e "/LIBS/s%-lpcre%/usr/$(get_libdir)/libpcre.a%" \
-			Makefile || die
+		sed -i -e "/LIBS/s%-lpcre%/usr/$(get_libdir)/libpcre.a%" Makefile
 	fi
 
-	# emake still b0rks
-	emake -j1 || die "make failed"
+	emake || die "make failed"
 }
 
 src_test() {
+	local f=
 	for f in /dev/pt* ; do
-		addpredict $f
+		addpredict "$f"
 	done
 	make check || die "make check failed"
 }
 
 src_install() {
 	einstall \
-		bindir=${ED}/bin \
-		libdir=${ED}/usr/$(get_libdir) \
-		fndir=${ED}/usr/share/zsh/${PV%_*}/functions \
-		sitefndir=${ED}/usr/share/zsh/site-functions \
-		scriptdir=${ED}/usr/share/zsh/${PV%_*}/scripts \
+		bindir="${ED}"/bin \
+		libdir="${ED}"/usr/$(get_libdir) \
+		fndir="${ED}"/usr/share/zsh/${PV%_*}/functions \
+		sitefndir="${ED}"/usr/share/zsh/site-functions \
+		scriptdir="${ED}"/usr/share/zsh/${PV%_*}/scripts \
 		install.bin install.man install.modules \
 		install.info install.fns || die "make install failed"
 
@@ -111,7 +113,7 @@ src_install() {
 
 	keepdir /usr/share/zsh/site-functions
 	insinto /usr/share/zsh/${PV%_*}/functions/Prompts
-	doins ${FILESDIR}/prompt_gentoo_setup || die
+	doins "${FILESDIR}"/prompt_gentoo_setup || die
 
 	# install miscellaneous scripts; bug #54520
 	sed -i -e "s:/usr/local:${EPREFIX}/usr:g" {Util,Misc}/* || "sed failed"
@@ -120,7 +122,7 @@ src_install() {
 	insinto /usr/share/zsh/${PV%_*}/Misc
 	doins Misc/* || die "doins Misc scripts failed"
 
-	dodoc ChangeLog* META-FAQ README INSTALL LICENCE config.modules
+	dodoc ChangeLog* META-FAQ README config.modules
 
 	if use doc ; then
 		dohtml Doc/*
@@ -129,12 +131,12 @@ src_install() {
 	fi
 
 	if use examples; then
-		cd ${WORKDIR}/${LOVERS_P}
+		cd "${WORKDIR}/${LOVERS_P}"
 		doman  zsh-lovers.1    || die "doman zsh-lovers failed"
 		dohtml zsh-lovers.html || die "dohtml zsh-lovers failed"
 		docinto zsh-lovers
 		dodoc zsh.vim README
-		insinto /usr/share/doc/${PF}/zsh-lovers
+		insinto /usr/share/doc/"${PF}"/zsh-lovers
 		doins zsh-lovers.{ps,pdf} refcard.{dvi,ps,pdf}
 		doins -r zsh_people || die "doins zsh_people failed"
 		cd -

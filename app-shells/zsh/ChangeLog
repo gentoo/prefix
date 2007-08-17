@@ -1,6 +1,11 @@
 # ChangeLog for app-shells/zsh
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.113 2007/06/14 18:16:33 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.114 2007/08/16 09:52:54 uberlord Exp $
+
+  16 Aug 2007; Roy Marples <uberlord@gentoo.org>
+  +files/zsh-4.3.4-configure-changequote.patch, zsh-4.3.4.ebuild:
+  Fix configure.ac to quote correctly, #188930 thanks to Mike Frysigner.
+  Hard depend on ncurses as it's not optional.
 
   14 Jun 2007; Raúl Porcel <armin76@gentoo.org> zsh-4.3.2-r2.ebuild:
   alpha stable wrt #168320
