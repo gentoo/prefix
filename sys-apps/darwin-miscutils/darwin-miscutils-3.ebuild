@@ -1,4 +1,4 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -7,9 +7,9 @@ EAPI="prefix"
 inherit toolchain-funcs
 
 MISC_VER=18
-SHELL_VER=74.1
+SHELL_VER=81
 
-DESCRIPTION="Miscelaneous commands used on Darwin/Mac OS X systems"
+DESCRIPTION="Miscellaneous commands used on Darwin/Mac OS X systems"
 HOMEPAGE="http://www.opensource.apple.com/"
 SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/misc_cmds-${MISC_VER}.tar.gz
 	http://www.opensource.apple.com/darwinsource/tarballs/other/shell_cmds-${SHELL_VER}.tar.gz"

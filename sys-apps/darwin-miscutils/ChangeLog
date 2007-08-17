@@ -1,6 +1,12 @@
 # ChangeLog for sys-apps/darwin-miscutils
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*darwin-miscutils-3 (17 Aug 2007)
+
+  17 Aug 2007; Elias Pipping <pipping@mi.fu-berlin.de>
+  -darwin-miscutils-2.ebuild, +darwin-miscutils-3.ebuild:
+  update to use latest version of shell_cmds, update header, fix typo
 
 *darwin-miscutils-2 (15 Dec 2006)
 
