@@ -1,6 +1,23 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.210 2007/08/13 22:30:06 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.213 2007/08/15 23:46:01 ferdy Exp $
+
+*git-1.5.2.5 (15 Aug 2007)
+
+  15 Aug 2007; Fernando J. Pereda <ferdy@gentoo.org> +git-1.5.2.5.ebuild:
+  New maintenance version for 1.5.2 series
+
+*git-1.5.3_rc5-r1 (15 Aug 2007)
+
+  15 Aug 2007; Fernando J. Pereda <ferdy@gentoo.org>
+  +files/git-1.5.3_rc5-read-tree.patch, -git-1.5.3_rc5.ebuild,
+  +git-1.5.3_rc5-r1.ebuild:
+  Add a patch to fix a segfault in rc5. Remove the buggy version. rc4 is safe.
+
+*git-1.5.3_rc5 (15 Aug 2007)
+
+  15 Aug 2007; Fernando J. Pereda <ferdy@gentoo.org> +git-1.5.3_rc5.ebuild:
+  New upstream version.
 
   13 Aug 2007; Fernando J. Pereda <ferdy@gentoo.org>
   -files/git-1.5.2-tempfile.patch, -git-1.5.0.7.ebuild, -git-1.5.2.ebuild,

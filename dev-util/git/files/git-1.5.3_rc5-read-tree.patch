@@ -1,0 +1,23 @@
+diff --git a/builtin-read-tree.c b/builtin-read-tree.c
+index 1967d10..5b07e9a 100644
+--- a/builtin-read-tree.c
++++ b/builtin-read-tree.c
+@@ -96,7 +96,7 @@ int cmd_read_tree(int argc, const char **argv, const char *unused_prefix)
+ {
+ 	int i, newfd, stage = 0;
+ 	unsigned char sha1[20];
+-	struct tree_desc t[3];
++	struct tree_desc t[20];
+ 	struct unpack_trees_options opts;
+ 
+ 	memset(&opts, 0, sizeof(opts));
+@@ -263,6 +263,9 @@ int cmd_read_tree(int argc, const char **argv, const char *unused_prefix)
+ 			opts.head_idx = 1;
+ 	}
+ 
++	if (ARRAY_SIZE(t) < nr_trees)
++		die("I cannot read more than %d trees", ARRAY_SIZE(t));
++
+ 	for (i = 0; i < nr_trees; i++) {
+ 		struct tree *tree = trees[i];
+ 		parse_tree(tree);
