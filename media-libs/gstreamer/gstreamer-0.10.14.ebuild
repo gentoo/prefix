@@ -1,8 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/gstreamer-0.10.14.ebuild,v 1.1 2007/08/09 15:30:10 zaheerm Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/gstreamer-0.10.14.ebuild,v 1.2 2007/08/15 09:03:00 uberlord Exp $
 
 EAPI="prefix"
+
+inherit libtool
 
 # Create a major/minor combo for our SLOT and executables suffix
 PVP=(${PV//[-\._]/ })
@@ -25,6 +27,14 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 #	dev-util/gtk-doc
 #	=app-text/docbook-xml-dtd-4.2*"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	# Needed for sane .so versioning on Gentoo/FreeBSD
+	elibtoolize
+}
 
 src_compile() {
 	econf --disable-docs-build --with-package-name="Gentoo GStreamer Ebuild"  --with-package-origin="http://www.gentoo.org" || die
