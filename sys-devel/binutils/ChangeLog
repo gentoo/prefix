@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.298 2007/08/01 20:01:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.299 2007/08/17 13:34:22 angelos Exp $
+
+  17 Aug 2007; Christoph Mende <angelos@gentoo.org>
+  binutils-2.17.50.0.18.ebuild:
+  Keyworded ~amd64 to fix PIC generation with gcc-4.2, bug #186089
 
 *binutils-2.17.50.0.18 (01 Aug 2007)
 
