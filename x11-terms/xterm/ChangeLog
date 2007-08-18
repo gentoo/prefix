@@ -1,6 +1,9 @@
 # ChangeLog for x11-terms/xterm
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.210 2007/08/13 01:47:36 seemant Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.211 2007/08/17 13:27:17 gustavoz Exp $
+
+  17 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org> xterm-227.ebuild:
+  Stable on sparc
 
 *xterm-229 (13 Aug 2007)
 
