@@ -1,0 +1,25 @@
+diff -ur a/configure.ac b/configure.ac
+--- a/configure.ac	2007-01-05 13:58:04 +0000
++++ b/configure.ac	2007-08-16 09:17:29 +0100
+@@ -2249,6 +2249,10 @@
+   zsh_cv_sys_elf=yes,
+   zsh_cv_sys_elf=no,
+   zsh_cv_sys_elf=yes)])
++  
++  # We use [0-9]* in case statements, so need to change quoting
++  changequote(, )
++
+   DL_EXT="${DL_EXT=so}"
+   if test x$zsh_cv_sys_elf = xyes; then
+     case "$host" in
+@@ -2352,6 +2356,10 @@
+       esac
+     ;;
+   esac
++
++  # Done with our shell code, so restore autotools quoting
++  changequote([, ])
++  
+   AC_CACHE_CHECK(if your dlsym() needs a leading underscore,
+    zsh_cv_func_dlsym_needs_underscore,
+    [echo failed >conftestval && cat >conftest.c <<EOM
