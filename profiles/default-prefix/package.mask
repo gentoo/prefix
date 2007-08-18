@@ -1,20 +1,47 @@
-# prefix items here
+####################################################################
+# $Header: $
+# When you add an entry to this file, add your name, the date, and an
+# explanation of why something is getting masked.  This file is for
+# Prefix profiles only!
+#
+# NOTE: Please add your entry at the top!
+#
 
-# <grobian@gentoo.org> (10 Aug 2007)
+##
+##  This is an example
+##
+# <bangert@gentoo.org> (28 Jun 2002)
+# psypete says these are broken and i am using the
+# opporturnity to test the masking style :)
+# <bangert@gentoo.org> (28 Jun 2002)
+# psypete says these are not really broken - its just
+# the v4l stuff that does not work
+#=media-video/mplayer-0.90_pre5
+#=media-video/mplayer-0.90_pre5-r1
+##
+##   End example
+##
+
+# Elias Pipping <pipping@mi.fu-berlin.de> (18 Aug 2007)
+# does not compile without USE=nls; --color is broken on single files
+# see bug #189311 for details
+=sys-apps/grep-2.5.3
+
+# Fabian Groffen <grobian@gentoo.org> (10 Aug 2007)
 # echangelog is completely useless with SVN, probably remains like that
 # for a while
 >=app-portage/gentoolkit-dev-0.2.6.6
 
-# <grobian@gentoo.org> (16 Jul 2007)
+# Fabian Groffen <grobian@gentoo.org> (16 Jul 2007)
 # autotools get completely broken with it, like on FreeBSD
 =sys-devel/m4-1.4.10
 
-# <grobian@gentoo.org> (30 Jan 2007)
+# Fabian Groffen <grobian@gentoo.org> (30 Jan 2007)
 # seems to be messed up, hardcoding wrong install_names, doesn't even
 # compile on Solaris
 =sys-libs/ncurses-5.6*
 
-# <grobian@gentoo.org> (30 Oct 2006)
+# Fabian Groffen <grobian@gentoo.org> (30 Oct 2006)
 # doesn't install pdflatex in prefix and more issues
 >=app-text/tetex-3.0
 
@@ -22,8 +49,3 @@
 # dies with "exhausted memory" errors on Darwin, doesn't understand
 # arguments on Solaris.  Probably more problems...
 =dev-util/cvs-1.12*
-
-# Elias Pipping <pipping@mi.fu-berlin.de> (18 Aug 2007)
-# does not compile without USE=nls; --color is broken on single files
-# see bug #189311 for details
-=sys-apps/grep-2.5.3
