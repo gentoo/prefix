@@ -17,10 +17,14 @@ IUSE="debug nls"
 
 DEPEND="virtual/libc"
 
-src_compile() {
+src_unpack() {
+	unpack ${A}
+	cd ${S}
 	epatch "${FILESDIR}/${P}-inputisoutput.patch"
 	epatch "${FILESDIR}/${P}-sizecalc.patch"
+}
 
+src_compile() {
 	econf \
 		$(use_enable nls) \
 		$(use_enable debug debugging) \
