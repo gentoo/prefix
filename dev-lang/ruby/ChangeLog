@@ -1,6 +1,17 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.291 2007/07/05 10:05:35 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.293 2007/08/17 19:37:18 graaff Exp $
+
+  17 Aug 2007; Hans de Graaff <graaff@gentoo.org> ruby-1.8.4-r3.ebuild,
+  ruby-1.8.5_p2-r1.ebuild, ruby-1.8.5_p35.ebuild:
+  MANIFEST was already gone in ruby 1.8.4, so remove it also from the old
+  ebuilds, including the currently stable 1.8.5_p2-r1, #189241.
+
+  17 Aug 2007; Hans de Graaff <graaff@gentoo.org> -ruby-1.8.5_p2.ebuild,
+  -ruby-1.8.5_p12.ebuild, -ruby-1.8.6_p36-r1.ebuild,
+  -ruby-1.8.6_p36-r2.ebuild:
+  Remove some older versions that will not be promoted to stable, keeping at
+  least one version of each release.
 
   05 Jul 2007; Piotr Jaroszyński <peper@gentoo.org>
   ruby-1.8.6_p36-r3.ebuild:

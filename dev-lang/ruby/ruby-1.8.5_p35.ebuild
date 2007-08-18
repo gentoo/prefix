@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.5_p35.ebuild,v 1.5 2007/07/02 14:50:46 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.5_p35.ebuild,v 1.6 2007/08/17 19:37:18 graaff Exp $
 
 EAPI="prefix"
 
@@ -120,7 +120,7 @@ src_install() {
 	dosym libruby${SLOT/./}$(get_libname ${PV%_*}) /usr/$(get_libdir)/libruby$(get_libname ${PV%.*})
 	dosym libruby${SLOT/./}$(get_libname ${PV%_*}) /usr/$(get_libdir)/libruby$(get_libname ${PV%_*})
 
-	dodoc ChangeLog MANIFEST README* ToDo
+	dodoc ChangeLog README* ToDo
 }
 
 pkg_postinst() {
