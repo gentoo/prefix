@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/postgresql-8.2.4-r1.ebuild,v 1.1 2007/05/02 08:50:01 voxus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/postgresql-8.2.4-r1.ebuild,v 1.2 2007/08/17 15:09:02 uberlord Exp $
 
 EAPI="prefix"
 
@@ -37,7 +37,7 @@ DEPEND="${RDEPEND}
 		xml? ( dev-util/pkgconfig )"
 
 PG_DIR="${EPREFIX}/var/lib/postgresql"
-[[ -z "${PG_MAX_CONNECTIONS}" ]] && PG_MAX_CONNECTIONS="512"
+[[ -z "${PG_MAX_CONNECTIONS}" ]] && PG_MAX_CONNECTIONS="40"
 
 pkg_setup() {
 	if [[ -f "${PG_DIR}/data/PG_VERSION" ]] ; then
@@ -58,8 +58,11 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}/${PN}-${PV}-gentoo.patch"
-	epatch "${FILESDIR}/${PN}-${PV}-sh.patch"
+	epatch "${FILESDIR}/${P}-gentoo.patch"
+	epatch "${FILESDIR}/${P}-sh.patch"
+
+	# Gentoo/FreeBSD's python is works fine with threading - unlike FreeBSD's
+	epatch "${FILESDIR}/${P}-python-threads.patch"
 
 	# Prepare package for future tests
 	if use test ; then
@@ -67,7 +70,7 @@ src_unpack() {
 		sed -e "s|/no/such/location|${S}/src/test/regress/tmp_check/no/such/location|g" -i src/test/regress/{input,output}/tablespace.source
 
 		# Fix broken tests
-		epatch "${FILESDIR}/${PN}-${PV}-regress_fix.patch"
+		epatch "${FILESDIR}/${P}-regress_fix.patch"
 
 		# We need to run the tests as a non-root user, portage seems the most fitting here,
 		# so if userpriv is enabled, we use it directly. If userpriv is disabled, we need to
@@ -78,7 +81,7 @@ src_unpack() {
 		if ! hasq userpriv ${FEATURES} ; then
 			mkdir -p "${S}/src/test/regress/results"
 			chown portage "${S}/src/test/regress/results"
-			epatch "${FILESDIR}/${PN}-${PV}-regress_su.patch"
+			epatch "${FILESDIR}/${P}-regress_su.patch"
 		fi
 	fi
 }

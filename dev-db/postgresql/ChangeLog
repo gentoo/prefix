@@ -1,6 +1,14 @@
 # ChangeLog for dev-db/postgresql
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/ChangeLog,v 1.351 2007/07/11 08:46:50 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/ChangeLog,v 1.352 2007/08/17 15:09:02 uberlord Exp $
+
+  17 Aug 2007; Roy Marples <uberlord@gentoo.org> files/postgresql.conf-8.2,
+  +files/postgresql-8.2.4-python-threads.patch, postgresql-8.2.4-r1.ebuild:
+  Drop the default number of allowed connections from 512 to 40
+  so that we work on the default FreeBSD kernel as well, #189141 thanks to Jason.
+  
+  Add a patch that removes the check for a threaded python on *BSD as
+  Gentoo/FreeBSD supplies a working threaded python, #189080.
 
   11 Jul 2007; Tiziano Müller <dev-zero@gentoo.org>
   files/postgresql.conf-8.0, files/postgresql.init-8.0,
