@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.65 2007/05/17 19:25:52 rbrown Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.66 2007/08/17 18:46:07 graaff Exp $
 #
 # Author: Mamoru KOMACHI <usata@gentoo.org>
 #
@@ -258,8 +258,7 @@ prepall() {
 		set +o noglob; set -$shopts # reset old shell opts
 	fi
 
-	prepallman
-	prepallinfo
-	prepallstrip
+	# Continue with the regular prepall, see bug 140697
+	(unset prepall; prepall)
 }
 

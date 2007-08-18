@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/horde.eclass,v 1.34 2006/06/15 18:36:47 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/horde.eclass,v 1.35 2007/08/17 10:14:03 vapier Exp $
 #
 # Help manage the horde project http://www.horde.org/
 #
@@ -120,14 +120,14 @@ horde_src_install() {
 	mv "${T}"/CREDITS docs/
 
 	dodir ${destdir}
-	cp -r . ${D}/${destdir}/ || die "install files"
+	cp -r . ${ED}/${destdir}/ || die "install files"
 	webapp_serverowned ${MY_HTDOCSDIR}
 
 	webapp_src_install
 }
 
 horde_pkg_postinst() {
-	if [[ -e ${ROOT}/usr/share/doc/${PF}/INSTALL.gz ]] ; then
+	if [[ -e ${EROOT}/usr/share/doc/${PF}/INSTALL.gz ]] ; then
 		einfo "Please read /usr/share/doc/${PF}/INSTALL.gz"
 	fi
 	einfo "Before this package will work, you have to setup"

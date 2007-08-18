@@ -1,11 +1,17 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.73 2007/07/22 19:59:48 vapier Exp $
-#
-# Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
-#
-# This eclass contains (or should) functions to get common info
-# about the toolchain (libc/compiler/binutils/etc...)
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.74 2007/08/17 10:14:13 vapier Exp $
+
+# @ECLASS: toolchain-funcs.eclass
+# @MAINTAINER:
+# Toolchain Ninjas <toolchain@gentoo.org>
+# @BLURB: functions to query common info about the toolchain
+# @DESCRIPTION:
+# The toolchain-funcs aims to provide a complete suite of functions
+# for gleaning useful information about the toolchain and to simplify
+# ugly things like cross-compiling and multilib.  All of this is done
+# in such a way that you can rely on the function always returning
+# something sane.
 
 ___ECLASS_RECUR_TOOLCHAIN_FUNCS="yes"
 [[ -z ${___ECLASS_RECUR_MULTILIB} ]] && inherit multilib
@@ -30,34 +36,62 @@ tc-getPROG() {
 	echo "${!var}"
 }
 
-# Returns the name of the archiver
+# @FUNCTION: tc-getAR
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the archiver
 tc-getAR() { tc-getPROG AR ar "$@"; }
-# Returns the name of the assembler
+# @FUNCTION: tc-getAS
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the assembler
 tc-getAS() { tc-getPROG AS as "$@"; }
-# Returns the name of the C compiler
+# @FUNCTION: tc-getCC
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the C compiler
 tc-getCC() { tc-getPROG CC gcc "$@"; }
-# Returns the name of the C preprocessor
+# @FUNCTION: tc-getCPP
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the C preprocessor
 tc-getCPP() { tc-getPROG CPP cpp "$@"; }
-# Returns the name of the C++ compiler
+# @FUNCTION: tc-getCXX
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the C++ compiler
 tc-getCXX() { tc-getPROG CXX g++ "$@"; }
-# Returns the name of the linker
+# @FUNCTION: tc-getLD
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the linker
 tc-getLD() { tc-getPROG LD ld "$@"; }
-# Returns the name of the strip prog
+# @FUNCTION: tc-getSTRIP
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the strip program
 tc-getSTRIP() { tc-getPROG STRIP strip "$@"; }
-# Returns the name of the symbol/object thingy
+# @FUNCTION: tc-getNM
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the symbol/object thingy
 tc-getNM() { tc-getPROG NM nm "$@"; }
-# Returns the name of the archiver indexer
+# @FUNCTION: tc-getRANLIB
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the archiver indexer
 tc-getRANLIB() { tc-getPROG RANLIB ranlib "$@"; }
-# Returns the name of the fortran 77 compiler
+# @FUNCTION: tc-getF77
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the Fortran 77 compiler
 tc-getF77() { tc-getPROG F77 f77 "$@"; }
-# Returns the name of the fortran 90 compiler
+# @FUNCTION: tc-getF90
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the Fortran 90 compiler
 tc-getF90() { tc-getPROG F90 gfortran "$@"; }
-# Returns the name of the fortran compiler
+# @FUNCTION: tc-getFORTRAN
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the Fortran compiler
 tc-getFORTRAN() { tc-getPROG FORTRAN gfortran "$@"; }
-# Returns the name of the java compiler
+# @FUNCTION: tc-getGCJ
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the java compiler
 tc-getGCJ() { tc-getPROG GCJ gcj "$@"; }
 
-# Returns the name of the C compiler for build
+# @FUNCTION: tc-getBUILD_CC
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the C compiler for building binaries to run on the build machine
 tc-getBUILD_CC() {
 	local v
 	for v in CC_FOR_BUILD BUILD_CC HOSTCC ; do
@@ -79,7 +113,10 @@ tc-getBUILD_CC() {
 	echo "${search}"
 }
 
-# Quick way to export a bunch of vars at once
+# @FUNCTION: tc-export
+# @USAGE: <list of toolchain variables>
+# @DESCRIPTION:
+# Quick way to export a bunch of compiler vars at once.
 tc-export() {
 	local var
 	for var in "$@" ; do
@@ -87,16 +124,21 @@ tc-export() {
 	done
 }
 
-# A simple way to see if we're using a cross-compiler ...
+# @FUNCTION: tc-is-cross-compiler
+# @RETURN: Shell true if we are using a cross-compiler, shell false otherwise
 tc-is-cross-compiler() {
 	return $([[ ${CBUILD:-${CHOST}} != ${CHOST} ]])
 }
 
+# @FUNCTION: tc-is-softfloat
+# @DESCRIPTION:
 # See if this toolchain is a softfloat based one.
+# @CODE
 # The possible return values:
 #  - only: the target is always softfloat (never had fpu)
 #  - yes:  the target should support softfloat
 #  - no:   the target should support hardfloat
+# @CODE
 # This allows us to react differently where packages accept
 # softfloat flags in the case where support is optional, but
 # rejects softfloat flags where the target always lacks an fpu.
@@ -184,12 +226,19 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 		*)			echo unknown;;
 	esac
 }
+# @FUNCTION: tc-arch-kernel
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the kernel arch according to the compiler target
 tc-arch-kernel() {
-	tc-ninja_magic_to_arch kern $@
+	tc-ninja_magic_to_arch kern "$@"
 }
+# @FUNCTION: tc-arch
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the portage arch according to the compiler target
 tc-arch() {
-	tc-ninja_magic_to_arch portage $@
+	tc-ninja_magic_to_arch portage "$@"
 }
+
 tc-endian() {
 	local host=$1
 	[[ -z ${host} ]] && host=${CTARGET:-${CHOST}}
@@ -216,26 +265,32 @@ tc-endian() {
 	esac
 }
 
-# Returns the version as by `$CC -dumpversion`
+# @FUNCTION: gcc-fullversion
+# @RETURN: compiler version (major.minor.micro: [3.4.6])
 gcc-fullversion() {
 	$(tc-getCC "$@") -dumpversion
 }
-# Returns the version, but only the <major>.<minor>
+# @FUNCTION: gcc-version
+# @RETURN: compiler version (major.minor: [3.4].6)
 gcc-version() {
 	gcc-fullversion "$@" | cut -f1,2 -d.
 }
-# Returns the Major version
+# @FUNCTION: gcc-major-version
+# @RETURN: major compiler version (major: [3].4.6)
 gcc-major-version() {
 	gcc-version "$@" | cut -f1 -d.
 }
-# Returns the Minor version
+# @FUNCTION: gcc-minor-version
+# @RETURN: minor compiler version (minor: 3.[4].6)
 gcc-minor-version() {
 	gcc-version "$@" | cut -f2 -d.
 }
-# Returns the Micro version
+# @FUNCTION: gcc-micro-version
+# @RETURN: micro compiler version (micro: 3.4.[6])
 gcc-micro-version() {
 	gcc-fullversion "$@" | cut -f3 -d. | cut -f1 -d-
 }
+
 # Returns the installation directory - internal toolchain
 # function for use by _gcc-specs-exists (for flag-o-matic).
 _gcc-install-dir() {
@@ -321,21 +376,20 @@ gcc-specs-ssp-to-all() {
 }
 
 
+# @FUNCTION: gen_usr_ldscript
+# @USAGE: <list of libs to create linker scripts for>
+# @DESCRIPTION:
 # This function generate linker scripts in /usr/lib for dynamic
 # libs in /lib.  This is to fix linking problems when you have
 # the .so in /lib, and the .a in /usr/lib.  What happens is that
 # in some cases when linking dynamic, the .a in /usr/lib is used
 # instead of the .so in /lib due to gcc/libtool tweaking ld's
-# library search path.  This cause many builds to fail.
+# library search path.  This causes many builds to fail.
 # See bug #4411 for more info.
 #
-# To use, simply call:
-#
-#   gen_usr_ldscript libfoo.so
-#
 # Note that you should in general use the unversioned name of
-# the library, as ldconfig should usually update it correctly
-# to point to the latest version of the library present.
+# the library (libfoo.so), as ldconfig should usually update it
+# correctly to point to the latest version of the library present.
 gen_usr_ldscript() {
 	local lib libdir=$(get_libdir) output_format=""
 	# Just make sure it exists
