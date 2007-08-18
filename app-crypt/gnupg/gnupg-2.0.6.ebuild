@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.5-r1.ebuild,v 1.2 2007/07/26 17:07:24 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.6.ebuild,v 1.1 2007/08/17 04:39:13 alonbl Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic
+inherit flag-o-matic eutils
 
 DESCRIPTION="The GNU Privacy Guard, a GPL pgp replacement"
 HOMEPAGE="http://www.gnupg.org/"
@@ -44,21 +44,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}/${PN}-2.0.4-idea.patch"
-
-	# https://bugs.g10code.com/gnupg/issue811
-	epatch "${FILESDIR}/${P}-test.patch"
-
-	# Already fixed
-	epatch "${FILESDIR}/${P}-files.patch"
-
-	# parallel make issue
-	# ack by upstream.
-	sed -i 's#\.\./common/libcommon#libcommon#g' common/Makefile.in
-
-	# Make scripts/install-sh executable
-	# it is used by bsd autoconf as-is as install replacement
-	# https://bugs.g10code.com/gnupg/issue812
-	chmod +x ${S}/scripts/install-sh
 }
 
 src_compile() {

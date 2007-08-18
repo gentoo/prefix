@@ -1,6 +1,14 @@
 # ChangeLog for app-crypt/gnupg
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.302 2007/07/26 17:07:24 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.303 2007/08/17 04:39:13 alonbl Exp $
+
+*gnupg-2.0.6 (17 Aug 2007)
+
+  17 Aug 2007; Alon Bar-Lev <alonbl@gentoo.org>
+  -files/gnupg-2.0.5-files.patch, -files/gnupg-2.0.5-test.patch,
+  -gnupg-2.0.4-r1.ebuild, -gnupg-2.0.5.ebuild, -gnupg-2.0.5-r1.ebuild,
+  +gnupg-2.0.6.ebuild:
+  Version bump, cleanup
 
   26 Jul 2007; Chris Gianelloni <wolf31o2@gentoo.org> gnupg-2.0.4-r1.ebuild,
   gnupg-2.0.5.ebuild, gnupg-2.0.5-r1.ebuild:
