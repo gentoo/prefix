@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-9999.ebuild,v 1.13 2007/05/09 04:44:12 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-9999.ebuild,v 1.14 2007/08/17 16:29:53 hanno Exp $
 
 EAPI="prefix"
 
@@ -50,9 +50,10 @@ RDEPEND=">=dev-libs/glib-2.12.3
 	svg? ( >=gnome-base/librsvg-2.8.0 )
 	wmf? ( >=media-libs/libwmf-0.2.8 )"
 DEPEND="${RDEPEND}
-		>=dev-util/pkgconfig-0.12.0
-		>=dev-util/intltool-0.31
-		doc? ( >=dev-util/gtk-doc-1 )"
+	>=dev-util/pkgconfig-0.12.0
+	>=dev-util/intltool-0.31
+	sys-devel/gettext
+	doc? ( >=dev-util/gtk-doc-1 )"
 
 pkg_setup() {
 	if use pdf && ! built_with_use app-text/poppler-bindings gtk; then
