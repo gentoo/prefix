@@ -29,6 +29,7 @@ src_unpack() {
 	[[ -n ${PV_SNAP} ]] && epatch "${WORKDIR}"/${MY_P}-${PV_SNAP}-patch.sh
 	epatch "${WORKDIR}"/${P}-coverity.patch
 	epatch "${FILESDIR}"/${PN}-5.6-gfbsd.patch
+	epatch "${FILESDIR}"/${P}-dynamic-linking.patch
 }
 
 src_compile() {
