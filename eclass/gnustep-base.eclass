@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.1 2007/08/18 13:12:57 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.2 2007/08/19 18:15:04 grobian Exp $
 
 inherit eutils flag-o-matic
 
@@ -173,7 +173,7 @@ egnustep_install_config() {
 	while read line ; do
 		echo "${line}" >> "${T}"/${cfile}
 	done
-	echo "done" >> "${T}"/${cfile}
+	echo 'echo "done"' >> "${T}"/${cfile}
 
 	exeinto ${GNUSTEP_SYSTEM_TOOLS#${EPREFIX}}/Gentoo
 	doexe "${T}"/${cfile}
