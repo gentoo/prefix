@@ -19,7 +19,7 @@ GNUSTEP_CORE_DEPEND="virtual/libc
 	doc? ( virtual/tetex =dev-tex/latex2html-2002* >=app-text/texi2html-1.64 )"
 
 # Where to install GNUstep
-GNUSTEP_PREFIX="/usr/GNUstep"
+GNUSTEP_PREFIX="${EPREFIX}/usr/GNUstep"
 
 # GNUstep environment array
 typeset -a GS_ENV
@@ -175,7 +175,7 @@ egnustep_install_config() {
 	done
 	echo "done" >> "${T}"/${cfile}
 
-	exeinto ${GNUSTEP_SYSTEM_TOOLS}/Gentoo
+	exeinto ${GNUSTEP_SYSTEM_TOOLS#${EPREFIX}}/Gentoo
 	doexe "${T}"/${cfile}
 }
 
