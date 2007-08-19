@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/tcl-8.4.15.ebuild,v 1.5 2007/08/15 16:13:06 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/tcl-8.4.15.ebuild,v 1.6 2007/08/18 13:34:56 nixnut Exp $
 
 EAPI="prefix"
 
