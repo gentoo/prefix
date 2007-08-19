@@ -1,6 +1,9 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.578 2007/08/16 19:43:48 keytoaster Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.579 2007/08/18 03:37:03 angelos Exp $
+
+  18 Aug 2007; Christoph Mende <angelos@gentoo.org> use.local.desc:
+  Added masquerade USE flag for oidentd
 
   16 Aug 2007; Tobias Heinlein <keytoaster@gentoo.org> updates/3Q-2007:
   Moving kde-base/kworldwatch to kde-base/kworldclock, see bug 188707
