@@ -1,6 +1,22 @@
 # ChangeLog for app-text/dictd
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.36 2007/08/17 21:26:35 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.37 2007/08/18 01:15:54 philantrop Exp $
+
+*dictd-1.10.9 (18 Aug 2007)
+
+  18 Aug 2007; Wulf C. Krueger <philantrop@gentoo.org>
+  +files/1.10.9/dict.conf, +files/1.10.9/dictd.conf, +files/1.10.9/dictd,
+  +files/1.10.9/dictd.confd, +files/1.10.9/site.info,
+  dictd-1.9.11-r1.ebuild, dictd-1.9.14.ebuild, dictd-1.10.0.ebuild,
+  +dictd-1.10.9.ebuild:
+  Removed colorit script and its man page - useless cruft. Fixes bug 107376.
+  Version bump to 1.10.9 (fixes bug 160125): 
+  	- fixed automagic dependencies.
+  	  Fixes bug 137653. 
+  	- Changed init script as the daemon needs to start with --locale=C. 
+  	  Fixes bug 101573. 
+  	- Added an option for unusual umasks. Fixes bug 90657. 
+  	- disabled the plugins; if you need them, file a bug.
 
   17 Aug 2007; Wulf C. Krueger <philantrop@gentoo.org>
   -files/dictd-1.8.0-gcc33-multiline-string-fix.patch:

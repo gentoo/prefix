@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/dictd-1.10.0.ebuild,v 1.5 2007/04/28 15:24:55 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/dictd-1.10.0.ebuild,v 1.6 2007/08/18 01:15:54 philantrop Exp $
 
 EAPI="prefix"
 
@@ -41,4 +41,8 @@ src_install() {
 	# startups for dictd
 	newinitd "${FILESDIR}"/1.9.11-r1/dictd dictd
 	newconfd "${FILESDIR}"/1.9.11-r1/dictd.confd dictd
+
+	# Remove useless cruft, fixes bug 107376
+	rm -f ${ED}/usr/bin/colorit
+	rm -f ${ED}/usr/share/man/man1/colorit.1
 }
