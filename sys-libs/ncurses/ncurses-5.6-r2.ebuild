@@ -29,7 +29,7 @@ src_unpack() {
 	[[ -n ${PV_SNAP} ]] && epatch "${WORKDIR}"/${MY_P}-${PV_SNAP}-patch.sh
 	epatch "${WORKDIR}"/${P}-coverity.patch
 	epatch "${FILESDIR}"/${PN}-5.6-gfbsd.patch
-	epatch "${FILESDIR}"/${P}-dynamic-linking.patch
+	epatch "${FILESDIR}"/${P}-darwin.patch
 }
 
 src_compile() {
@@ -45,7 +45,7 @@ src_compile() {
 	local myconf=""
 	( use build || use bootstrap || use nocxx ) \
 		&& myconf="${myconf} --without-cxx --without-cxx-binding --without-ada"
-
+	
 	# First we build the regular ncurses ...
 	mkdir "${WORKDIR}"/narrowc
 	cd "${WORKDIR}"/narrowc
