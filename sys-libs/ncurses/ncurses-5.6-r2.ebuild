@@ -97,6 +97,9 @@ do_compile() {
 		"$@" \
 		|| die "configure failed"
 
+	[[ ${CHOST} == *-solaris* ]] && \
+		sed -i -e 's/-D_XOPEN_SOURCE_EXTENDED//g' c++/Makefile
+
 	# A little hack to fix parallel builds ... they break when
 	# generating sources so if we generate the sources first (in
 	# non-parallel), we can then build the rest of the package
