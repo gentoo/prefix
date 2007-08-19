@@ -1,6 +1,14 @@
 # ChangeLog for app-text/aspell
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/ChangeLog,v 1.96 2007/08/10 05:15:34 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/ChangeLog,v 1.97 2007/08/18 12:18:25 philantrop Exp $
+
+  18 Aug 2007; Wulf C. Krueger <philantrop@gentoo.org>
+  -files/01-gcc3.3-assert.patch, -files/aspell-0.60.4-gcc-4.1-fix.patch,
+  -files/02-gcc3.3-constcast.patch, -files/aspell-0.60.4-nls.patch,
+  -files/aspell-buffer-fix.patch, -aspell-0.60.3.ebuild,
+  -aspell-0.60.3-r1.ebuild, -aspell-0.60.4.ebuild, -aspell-0.60.4-r1.ebuild,
+  -aspell-0.60.4-r2.ebuild, aspell-0.60.5.ebuild:
+  Added the examples USE flag as per bug 111508. Removed obsolete versions.
 
   10 Aug 2007; Jeroen Roovers <jer@gentoo.org> aspell-0.60.5.ebuild:
   Stable for HPPA (bug #178690).
