@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/pv/pv-1.0.1.ebuild,v 1.1 2007/08/13 02:05:30 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/pv/pv-1.0.1.ebuild,v 1.2 2007/08/18 03:12:00 angelos Exp $
 
 EAPI="prefix"
 
@@ -19,9 +19,9 @@ DEPEND="virtual/libc"
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
-	epatch "${FILESDIR}/${P}-inputisoutput.patch"
-	epatch "${FILESDIR}/${P}-sizecalc.patch"
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-inputisoutput.patch
+	epatch "${FILESDIR}"/${P}-sizecalc.patch
 }
 
 src_compile() {
@@ -29,10 +29,12 @@ src_compile() {
 		$(use_enable nls) \
 		$(use_enable debug debugging) \
 		|| die "configure failed"
-	#epatch "${FILESDIR}/pv-remove-doc-target.patch"
+
 	emake || die "make failed"
 }
 
 src_install() {
 	make DESTDIR=${D} UNINSTALL="${EPREFIX}"/bin/true install || die "install failed"
+
+	dodoc README doc/NEWS doc/TODO
 }
