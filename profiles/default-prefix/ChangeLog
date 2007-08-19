@@ -2,6 +2,10 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  19 Aug 2007; Fabian Groffen <grobian@gentoo.org> package.mask,
+  sunos/package.mask:
+  Moved ncurses-5.6 mask to Solaris, since it seems to be problematic there only.
+
   12 Aug 2007; Fabian Groffen <grobian@gentoo.org> sunos/make.defaults:
   Remove nostrip from Solaris profile, as pax-utils now works
 
