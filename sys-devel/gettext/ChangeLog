@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gettext
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.147 2007/08/16 07:07:59 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.148 2007/08/18 18:11:03 nixnut Exp $
+
+  18 Aug 2007; nixnut <nixnut@gentoo.org> gettext-0.16.1-r1.ebuild:
+  Stable on ppc wrt bug 189031
 
   16 Aug 2007; Christian Faulhammer <opfer@gentoo.org>
   gettext-0.16.1-r1.ebuild:
