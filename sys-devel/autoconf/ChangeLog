@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/autoconf
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.101 2007/08/15 22:00:18 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.102 2007/08/18 17:20:50 nixnut Exp $
+
+  18 Aug 2007; nixnut <nixnut@gentoo.org> autoconf-2.61-r1.ebuild:
+  Stable on ppc wrt bug 189029
 
   15 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org>
   autoconf-2.61-r1.ebuild:
