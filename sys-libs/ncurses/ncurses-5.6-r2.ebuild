@@ -97,12 +97,6 @@ do_compile() {
 		"$@" \
 		|| die "configure failed"
 
-	# Fix for install location of the lib{,n}curses{,w} libs as in Gentoo we
-	# want those in lib not usr/lib.  We cannot move them lateron after
-	# installing, because that will result in broken install_names for
-	# platforms that store pointers to the libs instead of directories.
-	sed -i -e '/^libdir/s|usr/||' ncurses/Makefile || die "nlibdir"
-
 	# A little hack to fix parallel builds ... they break when
 	# generating sources so if we generate the sources first (in
 	# non-parallel), we can then build the rest of the package
@@ -123,10 +117,14 @@ src_install() {
 	fi
 
 	# Move static and extraneous ncurses static libraries out of /lib
+	dodir /$(get_libdir)
 	cd "${ED}"/$(get_libdir)
-	mv *.a "${ED}"/usr/$(get_libdir)/
+	mv ../usr/$(get_libdir)/lib{,n}curses*$(get_libname)* .
 	gen_usr_ldscript lib{,n}curses$(get_libname)
-	use unicode && gen_usr_ldscript lib{,n}cursesw$(get_libname)
+	if use unicode ; then
+		mv ../usr/$(get_libdir)/lib{,n}cursesw*$(get_libname)* .
+		gen_usr_ldscript lib{,n}cursesw$(get_libname)
+	fi
 
 	# We need the basic terminfo files in /etc, bug #37026
 	einfo "Installing basic terminfo files in /etc..."
