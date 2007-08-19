@@ -34,7 +34,6 @@ diff -ur mutt-1.5.16.orig/init.h mutt-1.5.16/init.h
    { "check_new",	DT_BOOL, R_NONE, OPTCHECKNEW, 1 },
    /*
    ** .pp
-Only in mutt-1.5.16: init.h.orig
 diff -ur mutt-1.5.16.orig/mutt.h mutt-1.5.16/mutt.h
 --- mutt-1.5.16.orig/mutt.h	2007-08-06 20:48:16 +0200
 +++ mutt-1.5.16/mutt.h	2007-08-06 21:01:19 +0200
@@ -46,4 +45,20 @@ diff -ur mutt-1.5.16.orig/mutt.h mutt-1.5.16/mutt.h
    OPTBRAILLEFRIENDLY,
    OPTCHECKMBOXSIZE,
    OPTCHECKNEW,
-Only in mutt-1.5.16: mutt.h.orig
+--- mutt-1.5.16-gentoo-patches-r1/06-nntp.patch
++++ mutt-1.5.16-gentoo-patches-r1/06-nntp.patch
+@@ -2430,10 +2430,10 @@
+            cp = _("Open mailbox in read-only mode");
+          else
+            cp = _("Open mailbox");
+-@@ -1085,6 +1255,21 @@ int mutt_index_menu (void)
+- 	}
+- 	else
+- 	{
++@@ -1090,6 +1260,21 @@ int mutt_index_menu (void)
++ 	    strfcpy (buf, Context->path, sizeof (buf));
++ 	    mutt_pretty_mailbox (buf);
++ 	  }
+ +#ifdef USE_NNTP
+ +	  if (op == OP_MAIN_CHANGE_GROUP ||
+ +	      op == OP_MAIN_CHANGE_GROUP_READONLY)

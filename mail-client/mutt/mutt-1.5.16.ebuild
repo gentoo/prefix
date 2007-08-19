@@ -1,21 +1,28 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.16.ebuild,v 1.10 2007/08/16 20:30:10 ferdy Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic autotools
 
-PATCHSET_REV="-r2"
+PATCHSET_REV="-r1"
+
+SIDEBAR_PATCH_N="patch-1.5.16.sidebar.20070704.txt"
 
 DESCRIPTION="a small but very powerful text-based mail client"
 HOMEPAGE="http://www.mutt.org"
-SRC_URI="mirror://sourceforge/mutt/mutt-${PV#*_p}.tar.gz
+SRC_URI="ftp://ftp.mutt.org/mutt/devel/${P}.tar.gz
 	!vanilla? (
-		mirror://gentoo/mutt-1.5.15-gentoo-patches${PATCHSET_REV}.tar.bz2
+		!sidebar? (
+			mirror://gentoo/${P}-gentoo-patches${PATCHSET_REV}.tar.bz2
+		)
+	)
+	sidebar? (
+		http://www.lunar-linux.org/~tchan/mutt/${SIDEBAR_PATCH_N}
 	)"
 IUSE="berkdb crypt debug gdbm gnutls gpgme idn imap mbox nls nntp pop qdbm sasl
-smime smtp ssl vanilla"
+sidebar smime smtp ssl vanilla"
 SLOT="0"
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
@@ -50,38 +57,36 @@ DEPEND="${RDEPEND}
 		dev-libs/libxml2
 		dev-libs/libxslt
 		app-text/docbook-xsl-stylesheets
-		|| ( www-client/lynx www-client/w3m )
+		|| ( www-client/lynx www-client/w3m www-client/elinks )
 	)"
 
-S="${WORKDIR}"/mutt-1.5.16
-PATCHDIR="${WORKDIR}"/mutt-1.5.15-gentoo-patches${PATCHSET_REV}
+PATCHDIR="${WORKDIR}"/${P}-gentoo-patches${PATCHSET_REV}
 
 src_unpack() {
-	unpack ${A}
-	cd "${S}" || die "unpack failed"
+	unpack ${A//${SIDEBAR_PATCH_N}} && cd "${S}" || die "unpack failed"
 
 	epatch "${FILESDIR}"/mutt-1.5.13-smarttime.patch
 	# this patch is non-generic and only works because we use a sysconfdir
 	# different from the one used by the mailbase ebuild
 	epatch "${FILESDIR}"/mutt-1.5.13-prefix-mailcap.patch
 	# get back real change-folder-next behaviour!
-	epatch "${FILESDIR}"/mutt-1.5.16-change-folder-next.patch
+	( cd "${WORKDIR}" && epatch "${FILESDIR}"/${P}-change-folder-next.patch )
 
-	if ! use vanilla ; then
-		if ! use nntp ; then
-			rm "${PATCHDIR}"/07-nntp.patch
-		fi
-
-		# doesn't work
-		rm "${PATCHDIR}"/02-compressed.patch
-		rm "${PATCHDIR}"/06-sidebar.patch
-
+	if ! use vanilla && ! use sidebar ; then
+		use nntp || rm "${PATCHDIR}"/06-nntp.patch
 		for p in "${PATCHDIR}"/*.patch ; do
 			epatch "${p}"
 		done
-
-		AT_M4DIR="m4" eautoreconf
 	fi
+
+	if use sidebar ; then
+		use vanilla || \
+			ewarn "The sidebar patch is only applied to a vanilla mutt tree."
+		epatch "${DISTDIR}"/${SIDEBAR_PATCH_N}
+	fi
+
+	epatch "${FILESDIR}"/${P}-parallel-make.patch
+	AT_M4DIR="m4" eautoreconf
 
 	# this should be done only when we're not root
 	sed -i \
@@ -102,8 +107,8 @@ src_compile() {
 		$(use_enable debug) \
 		$(use_with idn) \
 		--with-curses \
-		--sysconfdir=${EPREFIX}/etc/${PN} \
-		--with-docdir=${EPREFIX}/usr/share/doc/${PN}-${PVR} \
+		--sysconfdir="${EPREFIX}"/etc/${PN} \
+		--with-docdir="${EPREFIX}"/usr/share/doc/${PN}-${PVR} \
 		--with-regex \
 		--enable-nfs-fix --enable-external-dotlock \
 		--with-mixmaster
@@ -176,7 +181,7 @@ src_compile() {
 	fi
 
 	econf ${myconf} || die "configure failed"
-	emake -j1 || die "make failed"
+	emake || die "make failed"
 }
 
 src_install() {
