@@ -7,11 +7,11 @@
 -import portage_checksum
 -from portage_util import unique_array
 +try:
-+  import portage.checksum as portage_checksum
-+  from portage.util import unique_array
++	import portage.checksum as portage_checksum
++	from portage.util import unique_array
 +except ImportError:
-+  import portage_checksum
-+  from portage_util import unique_array
++	import portage_checksum
++	from portage_util import unique_array
  
  import gentoolkit.pprinter as pp
  from gentoolkit.pprinter import print_info, print_error, print_warn, die
@@ -23,9 +23,9 @@
  from package import *
 -from portage_util import unique_array
 +try:
-+  from portage.util import unique_array
++	from portage.util import unique_array
 +except ImportError:
-+  from portage_util import unique_array
++	from portage_util import unique_array
  
  def find_packages(search_key, masked=False):
  	"""Returns a list of Package objects that matched the search key."""
@@ -36,11 +36,11 @@
  # mail mode as requested by solar
  if mode == "mail":
 -	import portage_mail, socket
-+  try:
-+    import portage.mail as portage_mail
-+  except ImportError:
-+    import portage_mail
-+  import socket
++	try:
++		import portage.mail as portage_mail
++	except ImportError:
++		import portage_mail
++	import socket
  	from StringIO import StringIO
  	
  	# color doesn't make any sense for mail
