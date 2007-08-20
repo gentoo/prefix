@@ -34,13 +34,13 @@
 # file to something without the .in and change the paths below.
 
 # Main Tree Directory, an rsynced portage tree is fine
-MTREEDIR='/usr/portage'
+[[ -z $MTREEDIR ]] && MTREEDIR='/usr/portage'
 # Prefix offset
-EPREFIX='/my/prefix'
+[[ -z $EPREFIX ]] && EPREFIX='/my/prefix'
 # Prefix Tree Directory
-PTREEDIR="`cd ${EPREFIX}/usr/portage && pwd -P`"
+[[ -z $PTREEDIR ]] && PTREEDIR="`cd ${EPREFIX}/usr/portage && pwd -P`"
 # How to reach the CVS server for retrieving revision diffs
-CVSROOT=':ext:developer@cvs.gentoo.org:/var/cvsroot/'
+[[ -z $CVSROOT ]] && CVSROOT=':ext:developer@cvs.gentoo.org:/var/cvsroot/'
 # Don't touch this.  You really don't want to.
 CVSMODULE='gentoo-x86'
 # Voodoo to figure out what package you're currently messing with
