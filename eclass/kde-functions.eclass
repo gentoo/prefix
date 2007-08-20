@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.156 2007/08/16 19:40:22 keytoaster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.157 2007/08/19 07:40:38 philantrop Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -46,6 +46,7 @@ kde-base/kdeartwork kde-base/kdeartwork-iconthemes
 kde-base/kdeartwork kde-base/kdeartwork-kscreensaver
 kde-base/kdeartwork kde-base/kdeartwork-kwin-styles
 kde-base/kdeartwork kde-base/kdeartwork-kworldclock
+kde-base/kdeartwork kde-base/kdeartwork-kworldwatch
 kde-base/kdeartwork kde-base/kdeartwork-sounds
 kde-base/kdeartwork kde-base/kdeartwork-styles
 kde-base/kdeartwork kde-base/kdeartwork-wallpapers
@@ -273,6 +274,7 @@ kde-base/kdetoys kde-base/kteatime
 kde-base/kdetoys kde-base/ktux
 kde-base/kdetoys kde-base/kweather
 kde-base/kdetoys kde-base/kworldclock
+kde-base/kdetoys kde-base/kworldwatch
 kde-base/kdeutils kde-base/ark
 kde-base/kdeutils kde-base/kcalc
 kde-base/kdeutils kde-base/kcharselect

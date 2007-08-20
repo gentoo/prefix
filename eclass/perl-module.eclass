@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/perl-module.eclass,v 1.106 2007/07/17 11:59:18 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/perl-module.eclass,v 1.107 2007/08/19 11:39:53 ian Exp $
 #
 # Author: Seemant Kulleen <seemant@gentoo.org>
 # Maintained by the Perl herd <perl@gentoo.org>
@@ -12,13 +12,16 @@ inherit base
 
 EXPORT_FUNCTIONS pkg_setup pkg_preinst pkg_postinst pkg_prerm pkg_postrm src_compile src_install src_test src_unpack
 
+# 2005.08.19 ian
+# Added ${myconf} - bug #176818
+#
 # 2005.04.28 mcummings
 # Mounting problems with src_test functions has forced me to make the
 # compilation of perl modules honor the FEATURES maketest flag rather than what
 # is generally necessary. I've left a block to make sure we still need to set
 # the SRC_TEST="do" flag on the suspicion that otherwise we will face 10 times
 # as many bug reports as we have lately.
-
+#
 # 2004.05.10 rac
 # block on makemaker versions earlier than that in the 5.8.2 core. in
 # actuality, this should be handled in the perl ebuild, so every perl
@@ -118,7 +121,7 @@ perl-module_src_prep() {
 	find ${S} -type d -name "\.svn" -exec "${EPREFIX}"/bin/rm -rf {} \; 2>/dev/null
 	if [ "${PREFER_BUILDPL}" == "yes" ] && ( [ -f Build.PL ] || [ ${PN} == "module-build" ] ); then
 		einfo "Using Module::Build"
-		echo "$pm_echovar" | perl Build.PL --installdirs=vendor --destdir="$D" --libdoc= || die "Unable to build! (are you using USE=\"build\"?)"
+		echo "$pm_echovar" | perl Build.PL ${myconf} --installdirs=vendor --destdir=${D} --libdoc= || die "Unable to build! (are you using USE=\"build\"?)"
 	elif [ -f Makefile.PL ] && [ ! ${PN} == "module-build" ]; then
 		einfo "Using ExtUtils::MakeMaker"
 		echo "$pm_echovar" | perl Makefile.PL ${myconf} INSTALLMAN3DIR='none'\
