@@ -1,6 +1,20 @@
 # ChangeLog for media-libs/libpng
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.139 2007/07/14 17:22:15 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.143 2007/08/19 14:36:37 angelos Exp $
+
+  19 Aug 2007; Christoph Mende <angelos@gentoo.org> libpng-1.2.18-r1.ebuild:
+  Stable on amd64 wrt bug #189424
+
+  19 Aug 2007; Ferris McCormick <fmccor@gentoo.org> libpng-1.2.18-r1.ebuild:
+  Sparc stable --- Bug #189424 --- fixing Bug #181318 (known good for 4 weeks).
+
+  19 Aug 2007; nixnut <nixnut@gentoo.org> libpng-1.2.18-r1.ebuild:
+  Stable on ppc wrt bug 189424
+
+*libpng-1.2.19 (19 Aug 2007)
+
+  19 Aug 2007; Mike Frysinger <vapier@gentoo.org> +libpng-1.2.19.ebuild:
+  Version bump.
 
 *libpng-1.2.18-r1 (14 Jul 2007)
 
