@@ -8,5 +8,6 @@
 ELIBC="SunOS"
 KERNEL="SunOS"
 
-# Sandbox is not ported to SunOS yet
-FEATURES="-sandbox"
+# Sandbox is not ported to SunOS yet, stripping stuff works but makes
+# i.e. ldd output completely empty, which is sort of annoying
+FEATURES="-sandbox nostrip"

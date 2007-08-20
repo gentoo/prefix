@@ -2,6 +2,10 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Aug 2007; Fabian Groffen <grobian@gentoo.org> sunos/make.defaults:
+  On Solaris stripping stuff works but makes i.e. ldd output completely empty,
+  which is sort of annoying, hence adding nostrip to FEATURES
+
   19 Aug 2007; Fabian Groffen <grobian@gentoo.org> package.mask,
   sunos/package.mask:
   Moved ncurses-5.6 mask to Solaris, since it seems to be problematic there only.
