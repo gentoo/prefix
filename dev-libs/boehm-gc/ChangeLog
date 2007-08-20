@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/boehm-gc
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/ChangeLog,v 1.64 2007/08/13 20:18:42 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/ChangeLog,v 1.65 2007/08/19 16:53:04 matsuu Exp $
+
+*boehm-gc-7.0-r1 (19 Aug 2007)
+
+  19 Aug 2007; MATSUU Takuto <matsuu@gentoo.org> +boehm-gc-7.0-r1.ebuild:
+  Fixed bug #187379.
 
   13 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org> boehm-gc-6.8.ebuild:
   ppc. stable
