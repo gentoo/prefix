@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/gnustep-gui-0.12.0.ebuild,v 1.1 2007/08/18 14:52:24 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/gnustep-gui-0.12.0.ebuild,v 1.2 2007/08/19 17:03:39 grobian Exp $
 
 EAPI="prefix"
 
-inherit gnustep-base
+inherit gnustep-base multilib
 
 DESCRIPTION="Library of GUI classes written in Obj-C"
 HOMEPAGE="http://www.gnustep.org/"
@@ -31,7 +31,7 @@ RDEPEND="${DEPEND}"
 src_compile() {
 	egnustep_env
 
-	myconf="--with-tiff-include=${EPREFIX}/usr/include --with-tiff-library=${EPREFIX}/usr/lib"
+	myconf="--with-tiff-include=${EPREFIX}/usr/include --with-tiff-library=${EPREFIX}/usr/$(get_libdir)"
 	use gif && myconf="$myconf --disable-ungif --enable-libgif"
 	myconf="$myconf `use_enable jpeg`"
 	myconf="$myconf `use_enable png`"
