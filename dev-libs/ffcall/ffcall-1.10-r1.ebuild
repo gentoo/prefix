@@ -36,7 +36,7 @@ src_compile() {
 	append-flags -fPIC
 
 	# Doc goes in datadir
-	econf --datadir=/usr/share/doc/${PF} || die "./configure failed"
+	econf --datadir="${EPREFIX}"/usr/share/doc/${PF} || die "./configure failed"
 	make ${cpu_setting} || die
 }
 
