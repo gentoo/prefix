@@ -26,4 +26,4 @@ DEPEND="virtual/libc
 PDEPEND="dev-perl/libwww-perl"
 
 export OPTIMIZE="${CFLAGS}"
-myconf="${myconf} /usr"
+myconf="${myconf} --lib=${EPREFIX}/usr ${EPREFIX}/usr"
