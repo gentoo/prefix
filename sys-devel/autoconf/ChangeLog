@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/autoconf
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.102 2007/08/18 17:20:50 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.103 2007/08/19 19:54:18 jer Exp $
+
+  19 Aug 2007; Jeroen Roovers <jer@gentoo.org> autoconf-2.61-r1.ebuild:
+  Stable for HPPA (bug #189029).
 
   18 Aug 2007; nixnut <nixnut@gentoo.org> autoconf-2.61-r1.ebuild:
   Stable on ppc wrt bug 189029
