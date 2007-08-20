@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/A/AM/AMS/${P}.tar.gz"
 
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
 SRC_TEST="do"
