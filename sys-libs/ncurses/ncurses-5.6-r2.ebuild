@@ -125,7 +125,8 @@ src_install() {
 	mv ../usr/$(get_libdir)/lib{,n}curses*$(get_libname)* .
 	gen_usr_ldscript lib{,n}curses$(get_libname)
 	if use unicode ; then
-		mv ../usr/$(get_libdir)/lib{,n}cursesw*$(get_libname)* .
+		# already moved above
+		#mv ../usr/$(get_libdir)/lib{,n}cursesw*$(get_libname)* .
 		gen_usr_ldscript lib{,n}cursesw$(get_libname)
 	fi
 
