@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r2.ebuild,v 1.39 2007/08/16 03:25:39 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r2.ebuild,v 1.40 2007/08/19 11:29:32 ian Exp $
 
 EAPI="prefix"
 
@@ -148,6 +148,8 @@ src_unpack() {
 	# Patch from bug 168312, thanks Peter!
 	has_version '>sys-kernel/linux-headers-2.6.20' && epatch ${FILESDIR}/${P}-asm-page-h-compile-failure.patch
 
+	# perlcc fix patch - bug #181229
+	epatch ${FILESDIR}/${P}-perlcc.patch
 }
 
 myconf() {

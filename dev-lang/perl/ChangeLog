@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/perl
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.248 2007/08/16 03:25:39 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.249 2007/08/19 11:29:32 ian Exp $
+
+  19 Aug 2007; Christian Hartmann <ian@gentoo.org>
+  +files/perl-5.8.8-perlcc.patch, perl-5.8.8-r2.ebuild:
+  Fixed bug #181229
 
   16 Aug 2007; Zac Medico <zmedico@gentoo.org> perl-5.8.8-r2.ebuild:
   Bug #187866 - Block Test-Harness, PodParser, and Locale-gettext when
