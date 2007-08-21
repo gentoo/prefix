@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/ffcall
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/ffcall/ChangeLog,v 1.31 2007/08/18 13:48:17 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/ffcall/ChangeLog,v 1.32 2007/08/20 20:00:47 grobian Exp $
+
+*ffcall-1.10-r2 (20 Aug 2007)
+
+  20 Aug 2007; Fabian Groffen <grobian@gentoo.org> -ffcall-1.10-r1.ebuild,
+  +ffcall-1.10-r2.ebuild:
+  Make ffcall compile/generate shared libraries too. Thanks PaX Team in bug
+  #189629
 
 *ffcall-1.10-r1 (18 Aug 2007)
 

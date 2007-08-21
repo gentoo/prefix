@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/ffcall/ffcall-1.10-r1.ebuild,v 1.1 2007/08/18 13:48:17 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/ffcall/ffcall-1.10-r2.ebuild,v 1.1 2007/08/20 20:00:47 grobian Exp $
 
 EAPI="prefix"
 
@@ -36,7 +36,10 @@ src_compile() {
 	append-flags -fPIC
 
 	# Doc goes in datadir
-	econf --datadir="${EPREFIX}"/usr/share/doc/${PF} || die "./configure failed"
+	econf \
+		--datadir="${EPREFIX}"/usr/share/doc/${PF} \
+		--enable-shared \
+		|| die "./configure failed"
 	make ${cpu_setting} || die
 }
 
