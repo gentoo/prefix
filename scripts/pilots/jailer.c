@@ -34,7 +34,8 @@ size_t padonwrite(size_t padding, char *buf, size_t len, FILE *fout) {
  * Searches buf for an occurrence of needle, doing a byte-based match,
  * disregarding end of string markers (zero-bytes), as strstr does.
  * Returns a pointer to the first occurrence of needle in buf, or NULL
- * if not found.
+ * if not found.  If a partial match is found at the end of the buffer
+ * (size < strlen(needle)) it is returned as well.
  */
 char *memstr(const char *buf, const char *needle, size_t len) {
 	const char *ret;
@@ -47,7 +48,7 @@ char *memstr(const char *buf, const char *needle, size_t len) {
 		{
 			off++;
 		}
-		if (needle[off] == '\0')
+		if (needle[off] == '\0' || (ret - buf) + off == len)
 			return((char *)ret);
 	}
 	return(NULL);
@@ -117,19 +118,21 @@ int main(int argc, char **argv) {
 				pos = len - (tmp - buf);
 			}
 		} else {
-			/* magic is not in here, but might just start at the end
-			 * missing its last char, so move that */
+			/* magic is not in here, since memchr also returns a match
+			 * if incomplete but at the end of the string, here we can
+			 * always read a new block. */
 			if (len != BUFSIZE) {
 				/* last piece */
 				padding = padonwrite(padding, buf, len, fout);
 				break;
 			} else {
-				pos = magiclen - 1;
-				tmp = buf + (len - pos);
+				pos = 0;
+				tmp = buf + len;
 			}
 		}
 		padding = padonwrite(padding, buf, len - pos, fout);
-		memmove(buf, tmp, pos);
+		if (pos > 0)
+			memmove(buf, tmp, pos);
 	}
 	fflush(fout);
 	fclose(fout);
