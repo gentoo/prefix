@@ -2,6 +2,8 @@
 #include <strings.h>
 #include <errno.h>
 
+/* Don't allocate too much, or you'll be paying for waiting on IO, size
+ * -1 to align in memory. */
 #define BUFSIZE 8095
 
 /**
