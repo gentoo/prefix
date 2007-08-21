@@ -67,8 +67,8 @@ esac
 LICENSE="BSD"
 SLOT="0"
 case ${EKEY_STATE:-${ECVS_STATE}} in
-	release) KEYWORDS="alpha amd64 arm hppa ia64 mips ppc ppc64 sh sparc x86 ~x86-fbsd";;
-	snap)    KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd";;
+	release) KEYWORDS="~amd64 ~x86";;
+	snap)    KEYWORDS="~amd64 ~x86";;
 	live)    KEYWORDS="";;
 esac
 IUSE="nls doc"
