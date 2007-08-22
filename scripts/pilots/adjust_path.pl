@@ -13,9 +13,9 @@ if ( length( $search ) < length( $replace ) ) {
 }
 
 # prepare regex library
-my $imatch = qr/\G[^\0]*?$search/o;				# initial match
-my $cmatch = qr/\G(.*?)$search/o;				# continued match
-my $tmatch = qr/\G(.*?)(?!$search)(?=\0?$)/o;	# tail of match
+my $imatch = qr/\G.*?$search/so;				# initial match
+my $cmatch = qr/\G(.*?)$search/so;				# continued match
+my $tmatch = qr/\G(.*?)(?!$search)(?=\0?$)/so;	# tail of match
 
 $/ = "\0";
 open( IFILE, "<$ifile" ) or die "Could not open $ifile for reading: $!";
