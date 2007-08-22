@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/gamin
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.69 2007/08/07 16:41:16 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.70 2007/08/20 20:11:34 dang Exp $
+
+  20 Aug 2007; Daniel Gryniewicz <dang@gentoo.org>
+  +files/gamin-0.1.9-compile-warnings.patch, gamin-0.1.9.ebuild:
+  Fix compile warnings; bug #188923
 
   07 Aug 2007; Roy Marples <uberlord@gentoo.org>
   +files/gamin-0.1.9-freebsd.patch, gamin-0.1.9.ebuild:
