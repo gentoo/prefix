@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2980 2007/08/18 15:28:24 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2984 2007/08/21 08:34:17 bicatali Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -415,6 +415,7 @@ dev-lang/erlang:kpoll - Enable kernel polling support
 dev-lang/erlang:smp - Enable support for multiprocessors
 dev-lang/gdl:hdf - Adds support for the Hierarchical Data Format
 dev-lang/gdl:hdf5 - Adds support for the Hierarchical Data Format v 5
+dev-lang/gdl:proj - Adds proj library support (geographic projections)
 dev-lang/gforth:force-reg - Enable a possibly unstable GCC flag for possibly large performance gains
 dev-lang/ghc:binary - Install the binary version directly, rather than using it to build the source version.
 dev-lang/ghc:ghcbootstrap - Internal: Bootstrap GHC from an existing GHC installation.
@@ -704,6 +705,8 @@ games-strategy/freelords:editor - Installs optional map editor
 games-strategy/heroes3:maps - Installs optional map data
 games-strategy/heroes3:music - Installs optional music data
 games-strategy/heroes3:sounds - Installs optional sound data
+games-strategy/ufo-ai:master - Enable building master server
+games-strategy/ufo-ai:paranoid - Enable paranoid debugging code
 games-strategy/uqm:music - download and install music files (large)
 games-strategy/uqm:remix - download and install music remix files (large)
 games-strategy/uqm:voice - download and install voice files (large)
@@ -892,7 +895,7 @@ media-gfx/graphicsmagick:depth16 - use 16-bit color depth as default
 media-gfx/graphicsmagick:depth32 - use 32-bit color depth as default
 media-gfx/graphicsmagick:gs - enable ghostscript support
 media-gfx/graphicsmagick:lzw - enable LZW support
-media-gfx/graphviz:pango - Enables the pango plugin
+media-gfx/graphviz:pango - Enables the rendering of the graphs using pango & cairo (with antialiasing support)
 media-gfx/gtkam:gimp - GIMP plugin from gtkam
 media-gfx/gwenview:kipi - Support for the KDE Image Plugin Interface.
 media-gfx/hugin:enblend - Pull media-gfx/enblend as a dependency
@@ -1494,6 +1497,7 @@ net-mail/cyrus-imapd:autosieve - Enable not supported (by upstream) patch from U
 net-mail/cyrus-imapd:drac - Enable dynamic relay support in the cyrus imap server
 net-mail/cyrus-imapd:idled - Enable idled vs poll IMAP IDLE method
 net-mail/cyrus-imapd:unsupported_8bit - Enable 8bit not supported patch
+net-mail/cyrus-imapd:replication - Enable replication support in the cyrus imap server
 net-mail/dbmail:sieve - Enable sieve filter support
 net-mail/dovecot:pop3d - Build pop3d support
 net-mail/dovecot:sieve - Build the sieve plugin

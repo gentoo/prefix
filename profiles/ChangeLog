@@ -1,6 +1,34 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.579 2007/08/18 03:37:03 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.588 2007/08/21 19:54:01 mrness Exp $
+
+  21 Aug 2007; Alin Năstac <mrness@gentoo.org> updates/3Q-2007:
+  Move net-proxy/vultureng to net-proxy/vulture.
+
+  21 Aug 2007; Wulf C. Krueger <philantrop@gentoo.org> package.mask:
+  Added ~app-editors/kile-2.0_beta1.
+
+  21 Aug 2007; Wulf C. Krueger <philantrop@gentoo.org> package.mask:
+  Masked app-cdr/kover for removal. cf. bug 187251.
+
+  21 Aug 2007; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  remove vte-0.16.8 mask, should be fixed now, see bug #189556
+
+  21 Aug 2007; Sébastien Fabbro <bicatali@gentoo.org> use.local.desc:
+  Added proj local USE flag for dev-lang/gdl
+
+  20 Aug 2007; Chris Gianelloni <wolf31o2@gentoo.org>
+  hardened/ppc/package.mask, use.local.desc:
+  Added local USE flags for games-strategy/ufo-ai and masked it on hardened ppc.
+
+  20 Aug 2007; Tiziano Müller <dev-zero@gentoo.org> use.local.desc:
+  Updated description for graphviz's pango USE flag
+
+  20 Aug 2007; Torsten Veller <tove@gentoo.org> package.mask:
+  Masked app-office/gnucash-2.2.1
+
+  20 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org> use.local.desc:
+  Add replication use flag (local) for net-mail/cyrus-imapd
 
   18 Aug 2007; Christoph Mende <angelos@gentoo.org> use.local.desc:
   Added masquerade USE flag for oidentd

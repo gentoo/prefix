@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7604 2007/08/18 21:34:53 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7618 2007/08/21 21:24:00 ulm Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -21,13 +21,40 @@
 ##   End example
 ##
 
+# Ulrich Mueller <ulm@gentoo.org> (21 Aug 2007)
+# Masking due to issues with customisation dependencies.
+# Bug reported upstream.
+=app-emacs/vm-8.0.3.495
+
+# Brent J. Baude <ranger@gentoo.org> (21 Aug 2007)
+# Masking out librtas-2.0.0 in favor of new version with smaller version number
+# to force an upgrade.
+=sys-libs/librtas-2.0.0
+
+# Wulf C. Krueger <philantrop@gentoo.org> (21 Aug 2007)
+# Temporary mask. Beta release.
+~app-editors/kile-2.0_beta1
+
+# Wulf C. Krueger <philantrop@gentoo.org> (21 Aug 2007)
+# Stable version doesn't compile, unstable version is partly broken.
+# Application is conceptionally wrong. More details on bug 187251.
+# Use app-cdr/koverartist instead.
+# Masked for removal in 30 days.
+app-cdr/kover
+
+# Christian Hartmann <ian@gentoo.org> (20 Aug 2007)
+# Unmaintained and non-functional due to changes by ebay.
+# Bug #178382
+net-misc/ebayagent
+
+# Samuli Suominen <drac@gentoo.org> (19 Aug 2007)
+# MySQL API has changed. Broken wrt bug 131111.
+# Upstream quiet. Removed in 30 days.
+media-sound/mp3kult
+
 # Samuli Suominen <drac@gentoo.org> (18 Aug 2007)
 # Needs Python 2.5, masked here also.
 >=media-video/gaupol-0.9
-
-# Fabian Groffen <gnustep@gentoo.org> (18 Aug 2007)
-# No longer needed for GNUstep, please stop using it.
-gnustep-base/gnustep-env
 
 # Samuli Suominen <drac@gentoo.org> (17 Aug 2007)
 # Code has been merged or replaced in 2.6 series kernels.
@@ -177,7 +204,7 @@ net-firewall/fireflier
 
 # Torsten Veller <tove@gentoo.org> (21 Jul 2007)
 # Masked for testing
-=app-office/gnucash-2.2.0
+>=app-office/gnucash-2.2.0
 
 # Samuli Suominen <drac@gentoo.org> (20 Jul 2007)
 # Orphaned configuration files using devfsd.
@@ -260,12 +287,6 @@ kde-misc/kdbus
 # Doug Goldstein <cardoe@gentoo.org> (28 Jun 2007)
 # masked due to security issues see bug #177630
 www-apps/otrs
-
-# Ali Polatel <hawking@gentoo.org> (28 Jun 2007)
-# Included in python standard library with python-2.1.
-# See bug #145154 for details.
-# Masked for removal in 30 days.
-dev-python/pyunit
 
 # Wulf C. Krueger <philantrop@gentoo.org> (26 Jun 2007)
 # Broken in several ways, see bug 171493 for details.
@@ -556,6 +577,7 @@ net-misc/xsupplicant
 >media-plugins/mythflix-0.20.1_p99999
 >media-plugins/mythgallery-0.20.1_p99999
 >media-plugins/mythgame-0.20.1_p99999
+>media-plugins/mythmovies-0.20.1_p99999
 >media-plugins/mythmusic-0.20.1_p99999
 >media-plugins/mythnews-0.20.1_p99999
 >media-plugins/mythphone-0.20.1_p99999
@@ -1163,3 +1185,14 @@ games-fps/aaut
 # <lu_zero@gentoo.org> (16 Mar 2003)
 # to be tested, seems unstable
 net-dialup/hcfusbmodem
+
+# Alec Warner <antarus@gentoo.org> (13 Aug 2007)
+# testing
+# Last Rights 30 days from now
+sys-apps/testing
+
+# Alec Warner <antarus@gentoo.org> (13 Aug 2007)
+# This is a 
+# Last Rights 30 days from now
+sys-apps/testing
+
