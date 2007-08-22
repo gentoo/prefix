@@ -320,11 +320,11 @@ bootstrap_gcc() {
 	mkdir -p "${S}"/build
 	cd "${S}"/build
 
-	gcc_config_opts="--prefix='${ROOT}'/usr \
+	gcc_config_opts="--prefix=${ROOT}/usr \
 				--host=${CHOST} \
-				--mandir='${ROOT}'/usr/share/man \
-				--infodir='${ROOT}'/usr/share/info \
-				--datadir='${ROOT}'/usr/share \
+				--mandir=${ROOT}/usr/share/man \
+				--infodir=${ROOT}/usr/share/info \
+				--datadir=${ROOT}/usr/share \
 				--disable-checking \
 				--disable-werror \
 				--disable-nls \
@@ -468,6 +468,14 @@ bootstrap_gawk() {
 
 bootstrap_binutils() {
 	bootstrap_gnu binutils 2.17
+}
+
+bootstrap_texinfo() {
+	bootstrap_gnu texinfo 4.8
+}
+
+bootstrap_bash() {
+	bootstrap_gnu bash 3.2
 }
 
 ## End Functions
