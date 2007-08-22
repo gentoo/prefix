@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnome.org/~veillard/gamin/"
 SRC_URI="http://www.gnome.org/~veillard/gamin/sources/${P}.tar.gz"
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86"
+KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~x86-solaris"
 IUSE="debug kernel_linux"
 
 RDEPEND=">=dev-libs/glib-2
@@ -30,6 +30,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-compile-warnings.patch
 	epatch "${FILESDIR}/${P}-user-cflags.patch"
 	epatch "${FILESDIR}/${P}-freebsd.patch"
+	epatch "${FILESDIR}/${P}-solaris.patch"
 
 	# FreeBSD requires a newer install-sh - luckily either
 	# elibtoolize or eautoreconf will give us a new one
