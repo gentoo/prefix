@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.1-r2.ebuild,v 1.12 2007/07/13 06:25:50 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.1-r2.ebuild,v 1.13 2007/08/20 08:58:42 uberlord Exp $
 
 EAPI="prefix"
 
@@ -178,7 +178,7 @@ src_compile() {
 	# set LDFLAGS so we link modules with -lpython2.5 correctly.
 	# Needed on FreeBSD unless python2.5 is already installed.
 	# Please query BSD team before removing this!
-	export LDFLAGS="-L."
+	append-ldflags "-L."
 
 	econf \
 		--with-fpectl \

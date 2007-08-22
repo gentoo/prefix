@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.264 2007/07/02 14:48:44 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.265 2007/08/20 08:58:42 uberlord Exp $
+
+  20 Aug 2007; Roy Marples <uberlord@gentoo.org> python-2.5.1-r2.ebuild:
+  export LDFLAGS="-L." -> append-ldflags "-L.", #189298
+  thanks to Arfrever Frehtes Taifersar Arahesis.
 
   02 Jul 2007; Piotr Jaroszyński <peper@gentoo.org> python-2.3.5-r2.ebuild,
   python-2.3.5-r3.ebuild, python-2.3.6.ebuild, python-2.3.6-r2.ebuild,
