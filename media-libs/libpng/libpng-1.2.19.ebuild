@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit libtool multilib eutils
+inherit libtool multilib eutils flag-o-matic
 
 DESCRIPTION="Portable Network Graphics library"
 HOMEPAGE="http://www.libpng.org/"
@@ -26,6 +26,9 @@ src_unpack() {
 
 	# So we get sane .so versioning on FreeBSD
 	elibtoolize
+
+	# MMX stuff doesn't really work on OSX for now
+	[[ ${CHOST} == i?86-*-darwin* ]] && append-flags -DPNG_NO_MMX_CODE
 }
 
 src_install() {
