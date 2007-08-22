@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.8 2007/05/19 00:12:17 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.9 2007/08/20 21:30:56 jokey Exp $
 
 # ========================================================================
 #
@@ -488,7 +488,7 @@ php5_2-sapi_src_compile() {
 		phpconfutils_extension_enable	"gd-jis-conv"	"cjk"			0
 		phpconfutils_extension_with		"jpeg-dir"		"gd"			0 "/usr"
 		phpconfutils_extension_with 	"png-dir" 		"gd" 			0 "/usr"
-		phpconfutils_extension_with 	"xpm-dir" 		"xpm" 			0 "/usr/X11R6"
+		phpconfutils_extension_with 	"xpm-dir" 		"xpm" 			0 "/usr"
 		# enable gd last, so configure can pick up the previous settings
 		phpconfutils_extension_with 	"gd" 			"gd" 			0
 	fi
