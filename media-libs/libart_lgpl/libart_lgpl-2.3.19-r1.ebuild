@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libart_lgpl/libart_lgpl-2.3.19-r1.ebuild,v 1.10 2007/06/24 21:57:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libart_lgpl/libart_lgpl-2.3.19-r1.ebuild,v 1.11 2007/08/20 18:16:40 dang Exp $
 
 EAPI="prefix"
 
@@ -26,4 +26,6 @@ src_unpack() {
 	gnome2_src_unpack
 
 	epatch "${FILESDIR}"/${P}-alloc.patch
+	# Fix crosscompiling; bug #185684
+	epatch "${FILESDIR}"/${P}-crosscompile.patch
 }
