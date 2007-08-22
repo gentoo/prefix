@@ -1,19 +1,19 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-1.5.24.ebuild,v 1.7 2007/08/19 05:30:29 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-1.5.24.ebuild,v 1.9 2007/08/21 00:34:15 ticho Exp $
 
 EAPI="prefix"
 
 inherit eutils
 
 DESCRIPTION="A shared library tool for developers"
-HOMEPAGE="http://www.gnu.org/software/libtool/libtool.html"
+HOMEPAGE="http://www.gnu.org/software/libtool/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="1.5"
 KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
-IUSE=""
+IUSE="vanilla"
 
 RDEPEND="sys-devel/gnuconfig
 	>=sys-devel/autoconf-2.60
@@ -44,6 +44,8 @@ gen_ltmain_sh() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	use vanilla && return 0
 
 	# Make sure non of the patches touch ltmain.sh, but rather ltmain.in
 	rm -f ltmain.sh*
@@ -97,7 +99,7 @@ src_install() {
 	local x
 	for x in libtool libtoolize ; do
 		help2man ${x} > ${x}.1
-		doman ${x}.1
+		doman ${x}.1 || die
 	done
 
 	for x in $(find "${ED}" -name config.guess -o -name config.sub) ; do
