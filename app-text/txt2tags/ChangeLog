@@ -1,6 +1,16 @@
 # ChangeLog for app-text/txt2tags
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/txt2tags/ChangeLog,v 1.24 2007/03/12 23:35:26 leonardop Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/txt2tags/ChangeLog,v 1.26 2007/08/20 16:15:26 grobian Exp $
+
+  20 Aug 2007; Fabian Groffen <grobian@gentoo.org> txt2tags-2.3.ebuild,
+  txt2tags-2.3-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
+
+*txt2tags-2.3-r1 (20 Aug 2007)
+
+  20 Aug 2007; Ulrich Mueller <ulm@gentoo.org> +files/51txt2tags-gentoo.el,
+  +txt2tags-2.3-r1.ebuild:
+  Update Emacs support, bug #184261.
 
   12 Mar 2007; Leonardo Boshell <leonardop@gentoo.org> metadata.xml,
   -txt2tags-1.7.ebuild, -txt2tags-2.2.ebuild:

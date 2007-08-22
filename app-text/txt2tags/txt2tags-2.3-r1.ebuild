@@ -1,27 +1,27 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/txt2tags/txt2tags-2.3.ebuild,v 1.3 2007/08/20 16:15:26 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/txt2tags/txt2tags-2.3-r1.ebuild,v 1.2 2007/08/20 16:15:26 grobian Exp $
 
 EAPI="prefix"
 
 inherit elisp-common
 
-IUSE="emacs tk"
-
-DESCRIPTION="Txt2tags is a tool for generating marked up documents (HTML, SGML, ...) from a plain text file with markup."
-SRC_URI="http://txt2tags.sourceforge.net/src/${P}.tgz"
+DESCRIPTION="A tool for generating marked up documents (HTML, SGML, ...) from a plain text file with markup"
 HOMEPAGE="http://txt2tags.sourceforge.net/"
+SRC_URI="mirror://sourceforge/txt2tags/${P}.tgz"
 
 LICENSE="GPL-2"
-
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86"
+IUSE="emacs tk"
+
 DEPEND="virtual/python
 	tk? ( dev-lang/tk )
 	emacs? ( virtual/emacs )"
 
-pkg_setup() {
+SITEFILE="51${PN}-gentoo.el"
 
+pkg_setup() {
 	# need to test if the tk support in python is working
 	if use tk; then
 		if ! python -c "import _tkinter" 2>&1 > /dev/null ; then
@@ -37,11 +37,9 @@ pkg_setup() {
 
 src_compile() {
 	if use emacs; then
-		elisp-comp extras/txt2tags-mode.el
+		elisp-compile extras/txt2tags-mode.el || die "elisp-compile failed"
 	fi
 }
-
-SITEFILE="50${PN}-gentoo.el"
 
 src_install() {
 	dobin txt2tags
@@ -65,8 +63,8 @@ src_install() {
 
 	# emacs support
 	if use emacs; then
-		elisp-install ${PN} extras/txt2tags-mode.el
-		elisp-site-file-install ${FILESDIR}/${SITEFILE}
+		elisp-install ${PN} extras/txt2tags-mode.{el,elc}
+		elisp-site-file-install "${FILESDIR}/${SITEFILE}"
 	fi
 }
 
