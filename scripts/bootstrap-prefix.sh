@@ -320,22 +320,20 @@ bootstrap_gcc() {
 	mkdir -p "${S}"/build
 	cd "${S}"/build
 
-	gcc_config_opts="--prefix=${ROOT}/usr \
-				--host=${CHOST} \
-				--mandir=${ROOT}/usr/share/man \
-				--infodir=${ROOT}/usr/share/info \
-				--datadir=${ROOT}/usr/share \
-				--disable-checking \
-				--disable-werror \
-				--disable-nls \
-				--with-system-zlib \
-				--enable-languages=${GCC_LANG}
-				${GCC_EXTRA_OPTS}"
-
-
 	${S}/gcc-${GCC_PV}/configure \
-		${gcc_config_opts} \
+		--prefix="${ROOT}"/usr \
+		--host=${CHOST} \
+		--mandir="${ROOT}"/usr/share/man \
+		--infodir="${ROOT}"/usr/share/info \
+		--datadir="${ROOT}"/usr/share \
+		--disable-checking \
+		--disable-werror \
+		--disable-nls \
+		--with-system-zlib \
+		--enable-languages=${GCC_LANG} \
+		${GCC_EXTRA_OPTS} \
 		|| exit 1
+
 	$MAKE ${MAKEOPTS} bootstrap-lean || exit 1
 
 	$MAKE install || exit 1
