@@ -1,6 +1,14 @@
 # ChangeLog for mail-client/mozilla-thunderbird
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.226 2007/08/05 20:46:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.227 2007/08/20 04:55:35 redhatter Exp $
+
+  20 Aug 2007; Stuart Longland <redhatter@gentoo.org>
+  mozilla-thunderbird-2.0.0.6.ebuild:
+  Dropped -mips keyword. Thunderbird is known to work fine on little-endian
+  MIPS (mipsel), however IMAP support is broken for big-endian MIPS. More
+  information at https://bugzilla.mozilla.org/show_bug.cgi?id=390604
+  Daring users _may_ try it by adjusting their package.keywords _at their own
+  risk_.
 
   05 Aug 2007; Raúl Porcel <armin76@gentoo.org>
   -mozilla-thunderbird-2.0.0.5.ebuild:
