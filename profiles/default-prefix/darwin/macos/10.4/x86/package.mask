@@ -1,0 +1,6 @@
+
+# Fabian Groffen <grobian@gentoo.org> (21 Aug 2007)
+# Doesn't compile on OSX/x86, fixed in the next release, non-important
+# release
+=media-libs/libpng-1.2.19
+
