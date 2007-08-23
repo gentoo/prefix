@@ -4,52 +4,47 @@
 use strict;
 use warnings;
 
-# process archlist
+# create a hash of valid architectures
 my $filename = 'profiles/arch.list';
 
-open( ARCHLIST, "< $filename" ) or die "Cannot open $filename : $!";
+open ARCHLIST, "< $filename" or die "Cannot open $filename : $!";
 
-my @archlist;
-while( <ARCHLIST> ) {
+my %arch;
+while ( <ARCHLIST> ) {
 	chomp;
-	push @archlist, $_ unless m/^(?:#|(?:prefix)?$)/
+	$arch{$_} = 1 unless m/^(?:#|(?:prefix)?$)/;
 }
 
-close( ARCHLIST );
+close ARCHLIST;
 
 # we have yet to print to the screen
 my $first = 1;
 
 # process ebuilds
-while (defined(my $ebuild = <*-*/*/*.ebuild>)) { 
+while ( defined( my $ebuild = <*-*/*/*.ebuild> ) ) { 
 	@ARGV = $ebuild;
-	while (<>) {
+	while ( <> ) {
 		if ( ?^KEYWORDS=? ) {
-			my @forbidden; my @stable;
-			# iterate over the keywords
-			foreach ( split( /\s+/, ( split( '"' ) )[1] ) ) {
-				push( @stable, $_ ) unless ( s/^[-~]// );
-				my $allowed = 0;
-				foreach my $arch (@archlist) {
-					if ( $arch eq $_ ) {
-						$allowed = 1;
-						last
-					}
-				}
-				push( @forbidden, $_ ) unless ( $allowed )
+			my ( @forbidden, @stable );
+
+			# check keywords for validity
+			foreach ( split /\s+/, ( split q{"} )[1] ) {
+				push @stable, $_ unless ( s/^[-~]// );
+				push @forbidden, $_ unless ( $arch{$_} );
 			}
-			# give a report
-			if ( scalar @forbidden or scalar @stable ) {
+
+			# print a report if necessary
+			if ( @forbidden || @stable ) {
 				unless ( $first ) { print "\n" } else { $first=0 }
 				$ebuild =~ s{/[^/]+/}{/};
 				$ebuild = substr( $ebuild, 0, length( $ebuild ) - 7 );
 				printf "EBUILD    : %s\n", $ebuild;
-				printf "forbidden : %s\n", @forbidden if ( scalar @forbidden );
-				printf "stable    : %s\n", @stable if ( scalar @stable )
+				printf "forbidden : %s\n", @forbidden if ( @forbidden );
+				printf "stable    : %s\n", @stable if ( @stable );
 			}
 		}
 	} continue {
-		reset if eof
+		reset if eof;
 	}
 }
 
