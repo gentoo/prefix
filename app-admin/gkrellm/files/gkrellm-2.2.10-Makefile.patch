@@ -1,0 +1,12 @@
+diff -Nru gkrellm-2.2.10/src/Makefile gkrellm-2.2.10_patched/src/Makefile
+--- gkrellm-2.2.10/src/Makefile	2007-02-15 17:50:03 +0100
++++ gkrellm-2.2.10_patched/src/Makefile	2007-02-15 17:50:49 +0100
+@@ -95,7 +95,7 @@
+ endif
+ 
+ 
+-override CC += -Wall $(FLAGS)
++CFLAGS += -Wall $(FLAGS)
+ 
+ OBJS =	main.o alerts.o battery.o base64.o clock.o cpu.o disk.o fs.o \
+ 	hostname.o inet.o mail.o mem.o net.o proc.o sensors.o uptime.o \

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/gkrellm-2.2.10.ebuild,v 1.9 2007/05/14 16:31:13 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/gkrellm-2.2.10.ebuild,v 1.10 2007/08/21 14:24:43 uberlord Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="http://members.dslextreme.com/users/billw/${PN}/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="2"
 KEYWORDS="~amd64 ~ia64 ~mips ~x86"
-IUSE="gnutls lm_sensors nls ssl X"
+IUSE="gnutls lm_sensors nls ssl X kernel_FreeBSD"
 
 RDEPEND=">=dev-libs/glib-2
 	gnutls? ( net-libs/gnutls )
@@ -28,6 +28,8 @@ DEPEND="${RDEPEND}
 pkg_setup() {
 	enewgroup gkrellmd
 	enewuser gkrellmd -1 -1 -1 gkrellmd
+	TARGET=
+	use kernel_FreeBSD && TARGET="freebsd"
 }
 
 src_unpack() {
@@ -35,6 +37,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${P}-build.patch
+	epatch "${FILESDIR}"/${P}-Makefile.patch
 	if use gnutls ; then
 		epatch "${FILESDIR}"/${P}-gnutls.patch
 	fi
@@ -50,7 +53,7 @@ src_unpack() {
 
 src_compile() {
 	if use X ; then
-		emake \
+		emake ${TARGET} \
 			CC=$(tc-getCC) \
 			INSTALLROOT="${EPREFIX}"/usr \
 			INCLUDEDIR="${EPREFIX}"/usr/include/gkrellm2 \
@@ -61,7 +64,7 @@ src_compile() {
 			|| die "emake failed"
 	else
 		cd server
-		emake \
+		emake ${TARGET} \
 			CC=$(tc-getCC) \
 			$(use lm_sensors || echo without-libsensors=yes) \
 			|| die "emake failed"
@@ -70,7 +73,7 @@ src_compile() {
 
 src_install() {
 	if use X ; then
-		emake install \
+		emake install${TARGET:+_}${TARGET} \
 			$(use nls || echo enable_nls=0) \
 			INSTALLDIR="${ED}"/usr/bin \
 			INCLUDEDIR="${ED}"/usr/include \
