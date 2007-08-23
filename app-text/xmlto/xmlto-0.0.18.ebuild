@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/xmlto-0.0.18.ebuild,v 1.20 2007/07/12 06:22:16 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/xmlto-0.0.18.ebuild,v 1.21 2007/08/21 23:21:06 leonardop Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,13 @@ DEPEND="app-shells/bash
 	dev-libs/libxslt
 	>=app-text/docbook-xsl-stylesheets-1.62.0-r1
 	~app-text/docbook-xml-dtd-4.2
-	|| ( sys-apps/util-linux app-misc/getopt )"
+	|| (
+		sys-apps/util-linux
+		app-misc/getopt )
+	|| (
+		sys-apps/mktemp
+		~sys-apps/debianutils-2.15
+		sys-freebsd/freebsd-ubin )"
 
 #	tetex? ( >=app-text/passivetex-1.4 )"
 # Passivetex/xmltex need some sorting out <obz@gentoo.org>
