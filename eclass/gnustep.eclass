@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Technologies, Inc.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep.eclass,v 1.36 2007/07/02 14:24:27 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep.eclass,v 1.37 2007/08/22 19:52:21 grobian Exp $
 
 inherit gnustep-funcs eutils flag-o-matic
 
@@ -57,10 +57,10 @@ GNUSTEP_CORE_DEPEND="|| ( >=sys-devel/gcc-3.3.5 sys-devel/gcc-apple )
 # 20050414 - Removing use of the next two entries from all dependent ebuilds;
 # they were doing bad things to dependencies
 GNUSTEP_BASE_DEPEND="${GNUSTEP_CORE_DEPEND}
-	gnustep-base/gnustep-make
-	gnustep-base/gnustep-base"
+	<gnustep-base/gnustep-make-2*
+	<gnustep-base/gnustep-base-1.14*"
 GNUSTEP_GUI_DEPEND="${GNUSTEP_BASE_DEPEND}
-	gnustep-base/gnustep-gui"
+	<gnustep-base/gnustep-gui-0.12*"
 ##########################################
 GS_DEPEND="gnustep-base/gnustep-env"
 DEBUG_DEPEND="debug? ( >=sys-devel/gdb-6.0 )"
