@@ -1,6 +1,13 @@
 # ChangeLog for sci-libs/gsl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.36 2007/06/12 12:08:47 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.37 2007/08/21 17:53:34 bicatali Exp $
+
+*gsl-1.9-r1 (21 Aug 2007)
+
+  21 Aug 2007; Sébastien Fabbro <bicatali@gentoo.org> +files/cblas.pc.in,
+  +files/eselect.cblas.gsl, +gsl-1.9-r1.ebuild:
+  Added eselect and cblas pkg-config files to be a possible implementation of
+  virtual/cblas. General cleanup continued.
 
   12 Jun 2007; Christoph Mende <angelos@gentoo.org> gsl-1.9.ebuild:
   Stable on amd64 wrt bug 180916
