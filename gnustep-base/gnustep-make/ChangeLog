@@ -1,6 +1,9 @@
 # ChangeLog for gnustep-base/gnustep-make
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.44 2007/08/18 13:26:56 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.45 2007/08/22 16:16:00 uberlord Exp $
+
+  22 Aug 2007; Roy Marples <uberlord@gentoo.org> gnustep-make-2.0.1.ebuild:
+  Keyworded ~x86-fbsd, #183467 thanks to Nathan Smith.
 
 *gnustep-make-2.0.1 (18 Aug 2007)
 
