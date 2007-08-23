@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.170 2007/07/01 16:09:44 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.171 2007/08/21 22:57:37 ulm Exp $
+
+  21 Aug 2007; Ulrich Mueller <ulm@gentoo.org> emacs-22.1.ebuild:
+  Generate score files in pkg_postinst.
 
   01 Jul 2007; Ulrich Mueller <ulm@gentoo.org>
   files/emacs-22.1-Xaw3d-headers.patch:
