@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libdvdcss
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdcss/ChangeLog,v 1.66 2007/07/27 14:16:33 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdcss/ChangeLog,v 1.67 2007/08/21 13:29:01 jer Exp $
+
+  21 Aug 2007; Jeroen Roovers <jer@gentoo.org> libdvdcss-1.2.9-r1.ebuild:
+  Stable for HPPA (bug #187190).
 
   27 Jul 2007; Alexis Ballier <aballier@gentoo.org>
   files/libdvdcss-1.2.9-latex-character-encoding.patch:
