@@ -22,6 +22,15 @@
 ##   End example
 ##
 
+# Fabian Groffen <grobian@gentoo.org> (23 Aug 2007)
+# Make sure that python 2.5 remains masked, as it is broken as hell on
+# Darwin building wise:
+# Sorry: UnicodeError: ("\\N escapes not supported (can't load unicodedata module)",)
+# Because python seems to be sort of important to Portage, we can't
+# affort problems here, so we wait a bit more while we try to fix
+# compilation issues.  On Solaris it compiles.
+>=dev-lang/python-2.5
+
 # Elias Pipping <pipping@mi.fu-berlin.de> (18 Aug 2007)
 # does not compile without USE=nls; --color is broken on single files
 # see bug #189311 for details

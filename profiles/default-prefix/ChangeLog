@@ -2,6 +2,10 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Aug 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Mask python-2.5 because it doesn't build for us, while the main tree has
+  just unmasked it.
+
   20 Aug 2007; Fabian Groffen <grobian@gentoo.org> sunos/make.defaults:
   On Solaris stripping stuff works but makes i.e. ldd output completely empty,
   which is sort of annoying, hence adding nostrip to FEATURES
