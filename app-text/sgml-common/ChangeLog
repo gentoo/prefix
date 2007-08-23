@@ -1,6 +1,10 @@
 # ChangeLog for app-text/sgml-common
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/sgml-common/ChangeLog,v 1.47 2007/08/20 18:08:40 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/sgml-common/ChangeLog,v 1.48 2007/08/21 07:47:13 jokey Exp $
+
+  21 Aug 2007; Markus Ullmann <jokey@gentoo.org>
+  sgml-common-0.6.3-r5.ebuild:
+  Stable on x86 wrt bug #182385
 
   20 Aug 2007; Jeroen Roovers <jer@gentoo.org> sgml-common-0.6.3-r5.ebuild:
   Stable for HPPA (bug #182385).
