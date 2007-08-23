@@ -1,6 +1,9 @@
 # ChangeLog for gnustep-base/gnustep-gui
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.45 2007/08/18 14:52:24 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.46 2007/08/22 16:21:38 uberlord Exp $
+
+  22 Aug 2007; Roy Marples <uberlord@gentoo.org> gnustep-gui-0.12.0.ebuild:
+  Keyworded ~x86-fbsd, #183467 thanks to Nathan Smith.
 
 *gnustep-gui-0.12.0 (18 Aug 2007)
 
