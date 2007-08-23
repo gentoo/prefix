@@ -1,6 +1,11 @@
 # ChangeLog for app-text/ghostscript-esp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ChangeLog,v 1.54 2007/07/22 10:17:18 omp Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ChangeLog,v 1.55 2007/08/21 14:43:06 fmccor Exp $
+
+  21 Aug 2007; Ferris McCormick <fmccor@gentoo.org>
+  ghostscript-esp-8.15.4.ebuild:
+  Mark sparc stable: needed for Bug #187280 and hence for Bug #153189 (while
+  waiting for ghostscript-gpl-8.60).
 
   22 Jul 2007; David Shakaryan <omp@gentoo.org>
   ghostscript-esp-7.07.1-r8.ebuild:
