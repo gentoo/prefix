@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/zoo
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/zoo/ChangeLog,v 1.38 2007/07/14 15:07:59 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/zoo/ChangeLog,v 1.39 2007/08/22 14:00:08 uberlord Exp $
+
+  22 Aug 2007; Roy Marples <uberlord@gentoo.org> zoo-2.10-r4.ebuild:
+  emake no workie on FreeBSD
 
 *zoo-2.10-r4 (14 Jul 2007)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/zoo/zoo-2.10-r4.ebuild,v 1.1 2007/07/14 15:07:59 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/zoo/zoo-2.10-r4.ebuild,v 1.2 2007/08/22 14:00:08 uberlord Exp $
 
 EAPI="prefix"
 
@@ -29,7 +29,8 @@ src_unpack() {
 }
 
 src_compile() {
-	emake CC="$(tc-getCC)" linux || die
+	# emake no workie on FreeBSD
+	make CC="$(tc-getCC)" linux || die
 }
 
 src_install() {
