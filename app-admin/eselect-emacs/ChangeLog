@@ -1,6 +1,13 @@
 # ChangeLog for app-admin/eselect-emacs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.27 2007/08/13 20:00:26 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.28 2007/08/22 22:45:24 ulm Exp $
+
+*eselect-emacs-1.2 (22 Aug 2007)
+
+  22 Aug 2007; Ulrich Mueller <ulm@gentoo.org> -eselect-emacs-1.0.ebuild,
+  +eselect-emacs-1.2.ebuild:
+  Version bump; improves behaviour on FreeBSD where /usr/bin/ctags is a real
+  binary. Thanks to Joe Peterson <lavajoe@gentoo.org> for pointing this out.
 
   13 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   eselect-emacs-1.1.ebuild:
