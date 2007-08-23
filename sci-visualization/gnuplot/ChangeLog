@@ -1,6 +1,16 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.30 2007/07/24 20:08:57 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.32 2007/08/21 11:55:20 fmccor Exp $
+
+  21 Aug 2007; Ferris McCormick <fmccor@gentoo.org> gnuplot-4.2.0-r2.ebuild:
+  Sparc stable --- Bug #189672 --- runs all tests and demos.
+
+*gnuplot-4.2.0-r2 (21 Aug 2007)
+
+  21 Aug 2007; Christian Faulhammer <opfer@gentoo.org>
+  +gnuplot-4.2.0-r2.ebuild:
+  fix png support and use get_libdir to install correctly on multilib
+  installations
 
   24 Jul 2007; Joe Peterson <lavajoe@gentoo.org> gnuplot-4.2.0-r1.ebuild:
   Add ~x86-fbsd keyword
