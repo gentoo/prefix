@@ -1,6 +1,13 @@
 # ChangeLog for app-text/docbook-xml-simple-dtd
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-simple-dtd/ChangeLog,v 1.46 2007/07/12 09:15:03 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-simple-dtd/ChangeLog,v 1.47 2007/08/21 23:02:05 leonardop Exp $
+
+*docbook-xml-simple-dtd-4.1.2.5 (21 Aug 2007)
+
+  21 Aug 2007; Leonardo Boshell <leonardop@gentoo.org>
+  +docbook-xml-simple-dtd-4.1.2.5.ebuild:
+  Added DTD for Simplified DocBook 4.1.2.5 (bug #188499). Added code to handle
+  installation/removal of the DTD in the XML catalog.
 
   12 Jul 2007; Roy Marples <uberlord@gentoo.org>
   docbook-xml-simple-dtd-1.0.ebuild, docbook-xml-simple-dtd-1.0-r1.ebuild,
