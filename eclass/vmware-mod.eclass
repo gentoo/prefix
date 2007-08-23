@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vmware-mod.eclass,v 1.13 2007/07/28 18:00:42 ikelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vmware-mod.eclass,v 1.14 2007/08/22 00:10:44 wolf31o2 Exp $
 
 
 # Ensure vmware comes before linux-mod since we want linux-mod's pkg_preinst and
@@ -38,6 +38,8 @@ vmware-mod_pkg_setup() {
 	BUILD_TARGETS="auto-build VMWARE_VER=${VMWARE_VER} KERNEL_DIR=${KERNEL_DIR} KBUILD_OUTPUT=${KV_OUT_DIR}"
 
 	vmware_determine_product
+	# We create a group for VMware users due to bugs #104480 and #106170
+	enewgroup "${VMWARE_GROUP}"
 
 	if [[ -z "${VMWARE_MODULE_LIST}" ]]; then
 		case ${product} in
