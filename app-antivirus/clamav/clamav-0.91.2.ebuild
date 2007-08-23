@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.90.2.ebuild,v 1.8 2007/04/15 19:20:25 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.91.2.ebuild,v 1.1 2007/08/21 09:17:29 ticho Exp $
 
 EAPI="prefix"
 
@@ -13,12 +13,11 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
-IUSE="bzip2 crypt curl logrotate mailwrapper milter nls selinux"
+IUSE="bzip2 crypt logrotate mailwrapper milter nls selinux"
 
 DEPEND="virtual/libc
 	bzip2? ( app-arch/bzip2 )
 	crypt? ( >=dev-libs/gmp-4.1.2 )
-	curl? ( >=net-misc/curl-7.10.0 )
 	milter? ( || ( mail-filter/libmilter mail-mta/sendmail ) )
 	nls? ( sys-devel/gettext )
 	dev-libs/gmp
@@ -46,8 +45,8 @@ pkg_setup() {
 src_unpack() {
 	unpack "${A}"
 	cd "${S}"
-	epatch "${FILESDIR}"/${P%.*}-compat.patch
-	epatch "${FILESDIR}"/${P%.*}-nls.patch
+	epatch "${FILESDIR}"/${PN}-0.90-compat.patch
+	epatch "${FILESDIR}"/${PN}-0.90-nls.patch
 	eautoreconf
 }
 
@@ -70,7 +69,6 @@ src_compile() {
 	ht_fix_file configure
 	econf ${myconf} \
 		$(use_enable bzip2) \
-		$(use_with curl libcurl) \
 		$(use_enable nls) \
 		--disable-experimental \
 		--disable-clamav \
