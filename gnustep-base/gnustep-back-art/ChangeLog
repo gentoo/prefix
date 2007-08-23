@@ -1,6 +1,10 @@
 # ChangeLog for gnustep-base/gnustep-back-art
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-art/ChangeLog,v 1.40 2007/08/18 15:17:47 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-art/ChangeLog,v 1.41 2007/08/22 16:20:17 voyageur Exp $
+
+  22 Aug 2007; Bernard Cafarelli <voyageur@gentoo.org>
+  gnustep-back-art-0.12.0.ebuild:
+  Better nfonts creation command, correct path for mknfonts
 
 *gnustep-back-art-0.12.0 (18 Aug 2007)
 
