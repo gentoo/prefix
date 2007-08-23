@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.16.1.ebuild,v 1.13 2007/05/16 10:38:28 yoswink Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.18-r2.ebuild,v 1.5 2007/08/22 22:30:35 angelos Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="http://ftp.gnu.org/gnu/tar/${P}.tar.bz2
 	ftp://alpha.gnu.org/gnu/tar/${P}.tar.bz2
 	mirror://gnu/tar/${P}.tar.bz2"
 
-LICENSE="GPL-2"
+LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="nls static"
@@ -24,8 +24,11 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
 	epatch "${FILESDIR}"/tar-1.16-darwin.patch
-	if [[ ${USERLAND} != "GNU" ]] && use !prefix ; then
+	epatch "${FILESDIR}"/${PN}-1.15.1-alt-contains-dot-dot.patch #189682
+
+	if ! use userland_GNU ; then
 		sed -i \
 			-e 's:/backup\.sh:/gbackup.sh:' \
 			scripts/{backup,dump-remind,restore}.in \
@@ -40,7 +43,7 @@ src_unpack() {
 src_compile() {
 	local myconf
 	use static && append-ldflags -static
-	[[ ${USERLAND} != "GNU" ]] && [[ ${EPREFIX%/} == "" ]] && \
+	[[ ${USERLAND} != "GNU" ]] && \
 		myconf="--program-prefix=g"
 	# Work around bug in sandbox #67051
 	gl_cv_func_chown_follows_symlink=yes \
@@ -55,7 +58,7 @@ src_compile() {
 
 src_install() {
 	local p=""
-	use userland_GNU || use prefix || p=g
+	use userland_GNU || p=g
 
 	emake DESTDIR="${D}" install || die "make install failed"
 
