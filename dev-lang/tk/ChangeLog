@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/tk
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.88 2007/08/18 13:36:51 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.89 2007/08/21 19:10:34 angelos Exp $
+
+  21 Aug 2007; Christoph Mende <angelos@gentoo.org> tk-8.4.15.ebuild:
+  Stable on amd64 wrt bug #178320
 
   18 Aug 2007; nixnut <nixnut@gentoo.org> tk-8.4.15.ebuild:
   Stable on ppc wrt bug 178320

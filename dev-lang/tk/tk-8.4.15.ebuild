@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/tk-8.4.15.ebuild,v 1.6 2007/08/18 13:36:51 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/tk-8.4.15.ebuild,v 1.7 2007/08/21 19:10:34 angelos Exp $
 
 EAPI="prefix"
 
