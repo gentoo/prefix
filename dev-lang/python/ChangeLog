@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.265 2007/08/20 08:58:42 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.266 2007/08/24 13:36:28 hawking Exp $
+
+*python-2.4.4-r5 (24 Aug 2007)
+
+  24 Aug 2007; Ali Polatel <hawking@gentoo.org> +files/python-config-2.4-r1,
+  +python-2.4.4-r5.ebuild:
+  Revision bump. Use python-config provided by python-2.5 with small changes
+  instead of our custom python-config-2.4. bug 188029
 
   20 Aug 2007; Roy Marples <uberlord@gentoo.org> python-2.5.1-r2.ebuild:
   export LDFLAGS="-L." -> append-ldflags "-L.", #189298
