@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.5.91.ebuild,v 1.2 2007/08/23 18:21:09 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.5.4-r2.ebuild,v 1.2 2007/08/23 19:16:45 genstef Exp $
 
 EAPI="prefix"
 
-inherit libtool
+inherit libtool eutils
 
 DESCRIPTION="PDF rendering library based on the xpdf-3.0 code base"
 HOMEPAGE="http://poppler.freedesktop.org/"
@@ -19,10 +19,17 @@ RDEPEND=">=media-libs/freetype-2.1.8
 	media-libs/fontconfig
 	cjk? ( app-text/poppler-data )
 	jpeg? ( >=media-libs/jpeg-6b )
-	dev-libs/libxml2
 	!app-text/pdftohtml"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch ${FILESDIR}/004_CVE-2007-0104.patch
+	epatch ${FILESDIR}/poppler-cve-2007-3387.patch
+	elibtoolize
+}
 
 src_compile() {
 	econf \

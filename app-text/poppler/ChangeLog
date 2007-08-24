@@ -1,6 +1,15 @@
 # ChangeLog for app-text/poppler
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.128 2007/08/22 20:42:37 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.130 2007/08/23 19:05:59 genstef Exp $
+
+*poppler-0.5.4-r2 (23 Aug 2007)
+
+  23 Aug 2007; Stefan Schweizer <genstef@gentoo.org>
+  +files/poppler-cve-2007-3387.patch, +poppler-0.5.4-r2.ebuild:
+  Backport security patch thanks to steev, bug 188863
+
+  23 Aug 2007; Jeroen Roovers <jer@gentoo.org> poppler-0.5.91.ebuild:
+  Stable for HPPA (bug #188863).
 
 *poppler-0.5.91 (22 Aug 2007)
 
