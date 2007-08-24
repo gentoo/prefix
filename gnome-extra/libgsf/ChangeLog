@@ -1,6 +1,11 @@
 # ChangeLog for gnome-extra/libgsf
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/ChangeLog,v 1.103 2007/06/17 15:31:29 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/ChangeLog,v 1.104 2007/08/23 01:01:45 metalgod Exp $
+
+*libgsf-1.14.5 (23 Aug 2007)
+
+  23 Aug 2007; <metalgod@gentoo.org> +libgsf-1.14.5.ebuild:
+  Version Bump. Closes Bug #187070.
 
   17 Jun 2007; Daniel Gryniewicz <dang@gentoo.org> libgsf-1.14.3.ebuild:
   Add python optimization/cleanup; bug #177552
