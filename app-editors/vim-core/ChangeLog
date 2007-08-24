@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/vim-core
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/ChangeLog,v 1.268 2007/08/01 13:39:31 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/ChangeLog,v 1.269 2007/08/23 06:34:13 hawking Exp $
+
+*vim-core-7.1.087 (23 Aug 2007)
+
+  23 Aug 2007; Ali Polatel <hawking@gentoo.org> +vim-core-7.1.087.ebuild:
+  Version bump.
 
   01 Aug 2007; Brent Baude <ranger@gentoo.org> vim-core-7.1.042.ebuild:
   Marking 7.1.042 ppc and ppc64 stable for bug 185677
