@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gettext
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.149 2007/08/19 19:48:00 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.150 2007/08/23 05:51:53 kumba Exp $
+
+  23 Aug 2007; Joshua Kinard <kumba@gentoo.org> gettext-0.16.1-r1.ebuild:
+  Stable on mips, per #189031.
 
   19 Aug 2007; Jeroen Roovers <jer@gentoo.org> gettext-0.16.1-r1.ebuild:
   Stable for HPPA (bug #189031).
