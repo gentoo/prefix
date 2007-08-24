@@ -1,6 +1,9 @@
 # ChangeLog for mail-client/mutt
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.118 2007/08/16 20:30:10 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.119 2007/08/23 05:06:13 kumba Exp $
+
+  23 Aug 2007; Joshua Kinard <kumba@gentoo.org> mutt-1.5.16.ebuild:
+  Stable on mips, per #178003.
 
   16 Aug 2007; Fernando J. Pereda <ferdy@gentoo.org>
   files/mutt-1.5.16-parallel-make.patch, mutt-1.5.16.ebuild:
