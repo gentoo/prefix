@@ -1,8 +1,3 @@
-
-# Fabian Groffen <grobian@gentoo.org> (19 Aug 2007)
-# Has TEXTRELs which cause at least a broken system upon update.
-~sys-libs/ncurses-5.6
-
 # Fabian Groffen <grobian@gentoo.org> (04 Apr 2007)
 # Don't use this, it is only provided for experimentation.
 sys-devel/native-cctools
