@@ -54,7 +54,7 @@ then
 	then
 		$emerge --pretend $@ $tobuild
 	else
-		$emerge unmerge $toclean
+		$emerge --unmerge $toclean
 		$emerge $@ $tobuild
 	fi
 else
