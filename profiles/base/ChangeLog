@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.15 2007/07/22 11:06:06 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.16 2007/08/24 21:59:50 bicatali Exp $
+
+  24 Aug 2007; Sébastien Fabbro <bicatali@gentoo.org> use.mask:
+  Mask cern in use.mask
 
   22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>; use.defaults:
   virtual/x11 is gone.

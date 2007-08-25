@@ -181,3 +181,8 @@ cman
 
 # tcc is x86 only
 tcc
+
+# Sébastien Fabbro <bicatali@gentoo.org> (24 Aug 2007)
+# cernlib has been tested only on x86 and amd64 at present
+cern
+ 
