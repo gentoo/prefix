@@ -1,6 +1,29 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.588 2007/08/21 19:54:01 mrness Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.594 2007/08/24 23:31:47 marineam Exp $
+
+  24 Aug 2007; Michael Marineau <marineam@gentoo.org> package.mask:
+  Hardmask xen-sources-2.6.16* for the sake of security.
+
+  24 Aug 2007; Michael Marineau <marineam@gentoo.org>
+  default-linux/amd64/2006.0/no-multilib/use.mask,
+  default-linux/amd64/2006.1/no-multilib/use.mask,
+  default-linux/amd64/2007.0/no-multilib/use.mask,
+  hardened/amd64/multilib/use.mask, hardened/amd64/use.mask, use.local.desc:
+  Add hvm USE flag for Xen HVM support in xen-tools. Mask on no-multilib
+  profiles.
+
+  24 Aug 2007; Sébastien Fabbro <bicatali@gentoo.org> use.local.desc:
+  Added cern local USE flag to sci-physics/root
+
+  23 Aug 2007; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Unmasking python-2.5
+
+  23 Aug 2007; Robert Buchholz <rbu@gentoo.org> use.local.desc:
+  Add useflags for kde-misc/knetworkmanager
+
+  23 Aug 2007; Seemant Kulleen <seemant@gentoo.org> package.mask:
+  mask out all the 0.5.9* versions of poppler and poppler bindings
 
   21 Aug 2007; Alin Năstac <mrness@gentoo.org> updates/3Q-2007:
   Move net-proxy/vultureng to net-proxy/vulture.

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2984 2007/08/21 08:34:17 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2991 2007/08/24 23:18:51 marineam Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -148,9 +148,9 @@ app-emulation/virtualbox:sdk - Enable building of SDK
 app-emulation/virtualbox:vboxbfe - Install simple SDL frontend useful for debugging purposes
 app-emulation/virtualbox:vditool - Install the Virtual Disk Image Manager vditool
 app-emulation/xen-tools:custom-cflags - Use CFLAGS from /etc/make.conf rather than the default Xen CFLAGS (not supported)
+app-emulation/xen-tools:hvm - Enable support for hardware based virtualization (VT-x, AMD-v)
 app-emulation/xen-tools:pygrub - Install the pygrub boot loader
 app-emulation/xen-tools:screen - Enable support for running domain U consoles in a screen session
-app-emulation/xen-tools:vnc - Enable support for VNC as a video device for domainUs
 app-emulation/xen-tools:ioemu - Enable support for emulated io devices including video via VNC for domainUs
 app-emulation/xen:custom-cflags - Use CFLAGS from /etc/make.conf rather than the default Xen CFLAGS (not supported)
 app-emulation/xen:pae - Enable support for PAE kernels (usually x86-32 with >4GB memory)
@@ -263,6 +263,7 @@ app-pda/multisync:nokia6600 - Adds support for Nokia 6600.
 app-pda/synce-kde:avantgo - Adds support for syncing Avantgo accounts.
 app-portage/conf-update:colordiff - Use colors when displaying diffs
 app-shells/bash:bashlogger - Log ALL commands typed into bash; should ONLY be used in restricted environments such as honeypots
+app-shells/bash:plugins - Add support for loading builtin's at runtime via `enable`
 app-shells/pdsh:rsh - This allows the use of rsh (remote shell) and rcp (remote copy) for authoring websites. sftp is a much more secure protocol and is preferred.
 app-shells/scsh-install-lib:scsh - Use a non-FHS directory layout.
 app-shells/scsh:scsh - Use a non-FHS directory layout.
@@ -794,6 +795,9 @@ kde-base/kopete:webpresence - Builds Web Presence plugin
 kde-base/kopete:winpopup - Builds WinPopUp protocol handler
 kde-base/ksysguard:zeroconf - Support for DNS Service Discovery (DNS-SD).
 kde-base/kttsd:akode - Support for the aKode audio-decoding frame-work.
+kde-misc/knetworkmanager:cisco - Adds support for the Cisco VPN client (vpnc)
+kde-misc/knetworkmanager:openvpn - Adds support for the OpenVPN client
+kde-misc/knetworkmanager:pptp - Adds support for the PPTP (PPP) VPN client
 kde-misc/ksensors:hddtemp - Enable monitoring of disk temperatures (app-admin/hddtemp)
 kde-misc/ksensors:ibmacpi - Enable monitoring of ACPI sensor data on IBM Thinkpad notebooks.
 mail-client/balsa:gtkspell - Use gtkspell for dictionary support
@@ -1091,6 +1095,7 @@ media-tv/mythtv:autostart - Controls whether settings are installed for autostar
 media-tv/mythtv:backendonly - Builds only the backend component rather then the whole suite
 media-tv/mythtv:crciprec - Enable support for Network Recorder
 media-tv/mythtv:dbox2 - Enable support for Nokia DBOX2 DVB boxes
+media-tv/mythtv:directv - Install DirecTV channel changer script
 media-tv/mythtv:freebox - Enable support for Freebox
 media-tv/mythtv:frontendonly - Only builds the Frontend component rather then the whole suite
 media-tv/mythtv:hdhomerun - Enable support for HDHomeRun boxes
@@ -1634,6 +1639,7 @@ net-p2p/gift:fasttrack - pull in FastTrack plugin
 net-p2p/gift:gnutella - pull in Gnutella plugin
 net-p2p/gift:openft - pull in OpenFT plugin
 net-p2p/linkage:upnp - Enables support for Intel UPnP stack.
+net-p2p/linkage:xfce - Adds Xfce4 support
 net-p2p/mldonkey:fasttrack - enable fasttrack support
 net-p2p/mldonkey:gnutella - enable gnutella and gnutella2 support
 net-p2p/mldonkey:guionly - enable client build only
@@ -1785,6 +1791,7 @@ sci-misc/h5utils:octave - Build Octave plugins
 sci-misc/nco:ncap2 - Build next generation netcdf arithmetic processor (needs dev-java/antlr)
 sci-misc/nco:udunits - Add udunits files support
 sci-misc/ncview:udunits - Add udunits files support
+sci-physics/root:cern - Add cernlib i/o functionality to root
 sci-visualization/gnuplot:xemacs - Add lisp files for emacs
 sci-visualization/hippodraw:fits - Add FITS support to hippodraw, via cfitsio
 sci-visualization/hippodraw:numarray - Add numarray python array support
