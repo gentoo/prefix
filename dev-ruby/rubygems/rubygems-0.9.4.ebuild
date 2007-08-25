@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-0.9.4.ebuild,v 1.10 2007/07/25 16:19:55 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-0.9.4.ebuild,v 1.11 2007/08/24 11:06:42 graaff Exp $
 
 EAPI="prefix"
 
@@ -79,6 +79,6 @@ pkg_postrm()
 	ewarn "Please run \"unset RUBYOPT\" in your shells before using ruby"
 	ewarn "or start new shells"
 	ewarn
-	ewarn "If you have not unstinalled dev-ruby/rubygems, please do not unset "
+	ewarn "If you have not uninstalled dev-ruby/rubygems, please do not unset "
 	ewarn "RUBYOPT"
 }

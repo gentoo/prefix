@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/rubygems
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.67 2007/07/25 16:19:55 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.68 2007/08/24 11:06:42 graaff Exp $
+
+  24 Aug 2007; Hans de Graaff <graaff@gentoo.org> rubygems-0.9.4.ebuild:
+  Fix silly typo, thanks to marc_alec
 
   25 Jul 2007; Raúl Porcel <armin76@gentoo.org> rubygems-0.9.4.ebuild:
   Add ~alpha
