@@ -1,6 +1,12 @@
 # ChangeLog for app-cdr/cdrtools
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.183 2007/08/04 14:38:47 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.184 2007/08/24 19:10:26 pylon Exp $
+
+*cdrtools-2.01.01_alpha34 (24 Aug 2007)
+
+  24 Aug 2007; Lars Weiler <pylon@gentoo.org>
+  +cdrtools-2.01.01_alpha34.ebuild:
+  Version bump with dynamic linking; thanks to Sebastian in bug #189981.
 
   04 Aug 2007; Lars Weiler <pylon@gentoo.org>
   -cdrtools-2.01.01_alpha10.ebuild, -cdrtools-2.01.01_alpha27.ebuild,
