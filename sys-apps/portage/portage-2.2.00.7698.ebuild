@@ -19,17 +19,20 @@ IUSE_KERNEL="kernel_linux"
 IUSE="build doc epydoc selinux linguas_pl ${IUSE_ELIBC} ${IUSE_USERLAND}"
 DEPEND=">=dev-lang/python-2.4
 	!build? ( >=sys-apps/sed-4.0.5 )
+	doc? ( app-text/xmlto ~app-text/docbook-xml-dtd-4.4 )
 	epydoc? ( >=dev-python/epydoc-2.0 )"
 RDEPEND=">=dev-lang/python-2.4
 	!build? ( >=sys-apps/sed-4.0.5
 		dev-python/python-fchksum
 		>=app-shells/bash-3.0 )
+	elibc_FreeBSD? ( dev-python/py-freebsd )
 	elibc_glibc? ( >=sys-apps/sandbox-1.2.17 )
 	elibc_uclibc? ( >=sys-apps/sandbox-1.2.17 )
 	kernel_linux? ( >=app-misc/pax-utils-0.1.13 )
-	>=sys-apps/coreutils-6.4
+	kernel_solaris? ( >=app-misc/pax-utils-0.1.13 )
+	userland_GNU? ( >=sys-apps/coreutils-6.4 )
 	selinux? ( >=dev-python/python-selinux-2.16 )
-	doc? ( app-portage/portage-manpages )
+	doc? ( || ( app-portage/eclass-manpages app-portage/portage-manpages ) )
 	>=dev-python/pycrypto-2.0.1-r5
 	>=net-misc/rsync-2.6.4"
 # coreutils-6.4 rdep is for date format in emerge-webrsync #164532
@@ -99,10 +102,12 @@ src_compile() {
 		mkdir "${WORKDIR}"/api
 		local my_modules
 		my_modules="$(find "${S}/pym" -name "*.py" \
-			| sed -e 's:.*__init__.py$::' -e 's:\.py$::' -e "s:^${S}/pym/::" \
+			| sed -e 's:/__init__.py$::' -e 's:\.py$::' -e "s:^${S}/pym/::" \
 			 -e 's:/:.:g')" || die "error listing modules"
 		PYTHONPATH="${S}/pym:${PYTHONPATH}" epydoc -o "${WORKDIR}"/api \
-			-qqqqq --ignore-param-mismatch ${my_modules} || die "epydoc failed"
+			-qqqqq --ignore-param-mismatch --no-frames --show-imports \
+			--name "${PN}" --url "${HOMEPAGE}" \
+			${my_modules} || die "epydoc failed"
 	fi
 }
 
@@ -112,14 +117,12 @@ src_test() {
 }
 
 src_install() {
+	local libdir=$(get_libdir)
+	local portage_base="/usr/${libdir}/portage"
+
 	make DESTDIR="${D}" install || die "make install failed."
 	dodir /usr/lib/portage/bin
 
-	if use elibc_FreeBSD; then
-		cd "${S}"/src/bsd-flags
-		./setup.py install --root "${ED}" || \
-			die "Failed to install bsd-chflags module"
-	fi
 
 	if use linguas_pl; then
 		doman -i18n=pl "${S_PL}"/man/pl/*.[0-9]
@@ -128,13 +131,12 @@ src_install() {
 	dodoc "${S}"/ChangeLog
 	dodoc "${S}"/NEWS
 	dodoc "${S}"/RELEASE-NOTES
+	use doc && dohtml "${S}"/doc/*.html
 	use epydoc && dohtml -r "${WORKDIR}"/api
 	dodir /etc/portage
-	dodir /var/lib/portage
-	dodir /var/log/portage
 	keepdir /etc/portage
 
-	echo PYTHONPATH=\"${portage_base}/pym\" > "${WORKDIR}"/05portage.envd
+	echo PYTHONPATH=\"${EPREFIX}${portage_base}/pym\" > "${WORKDIR}"/05portage.envd
 	doenvd "${WORKDIR}"/05portage.envd
 }
 
@@ -145,12 +147,11 @@ pkg_preinst() {
 		mv "${ED}"/${portage_base}/bin/tbz2tool "${T}"
 		rm -rf "${ED}"/${portage_base}/bin/*
 		mv "${T}"/tbz2tool "${ED}"/${portage_base}/bin/
-	else
-		for mydir in bin pym pym/cache pym/elog_modules; do
-			rm "${EROOT}"/${portage_base}/${mydir}/*.pyc >& /dev/null
-			rm "${EROOT}"/${portage_base}/${mydir}/*.pyo >& /dev/null
-		done
 	fi
+
+	# Save a list of specific python sources to compile during postinst.
+	find "${D}"${portage_base}/pym -name "*.py" -print | \
+		sed -e "s:^${D}::" > "${T}"/pym_src_file_list
 }
 
 pkg_postinst() {
@@ -168,5 +169,39 @@ pkg_postinst() {
 		[ -e "${x}" ] && mv -f "${x}" "${EROOT}/etc/make.globals"
 	done
 
+	# Wipe out existing bytecodes to prevent possible interference
+	# when the new and old version have namespace differences.
+	remove_python_bytecodes
+
+	# Compile only the source files that have just been installed.
+	python -c 'import py_compile; py_compile.main()' \
+		$(while read x; do echo "${ROOT%/}${x}"; done \
+		< "${T}"/pym_src_file_list)
+	python -O -c 'import py_compile; py_compile.main()' \
+		$(while read x; do echo "${ROOT%/}${x}"; done \
+		< "${T}"/pym_src_file_list)
+
+	elog
+	elog "FEATURES=\"userfetch\" is now enabled by default. Depending on your \${DISTDIR}"
+	elog "permissions, this may result in Permission Denied errors. If you would like"
+	elog "to fetch with superuser privileges, add FEATURES=\"-userfetch\" to make.conf."
+	elog
+	elog "The world file now supports slot atoms such as 'sys-devel/gcc:3.4'. In some"
+	elog "cases, emerge --depclean may remove slots that it would not have removed"
+	elog "in the past. The emerge --noreplace command can be used to add an atom to"
+	elog "the world file and prevent matching packages from being removed.  A slot"
+	elog "atom will be recorded in the world file for any atom that is precise enough"
+	elog "to identify a specific slot."
+
 	portage_docs
+}
+
+remove_python_bytecodes() {
+	local d="${EROOT}/usr/$(get_libdir)/portage/pym"
+	[ -d "${d}" ] || return
+	find "${d}" -type d -print0 | \
+	while read -d $'\0' d ; do
+		cd "${d}"
+		rm -f *.pyc *.pyo
+	done
 }
