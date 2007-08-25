@@ -1,0 +1,14 @@
+--- emacs-22.1-orig/lisp/files.el	2007-05-25 14:43:31.000000000 +0200
++++ emacs-22.1/lisp/files.el	2007-08-21 08:26:36.000000000 +0200
+@@ -3119,9 +3119,8 @@
+ 	  (set-default-file-modes ?\700)
+ 	  (while (condition-case ()
+ 		     (progn
+-		       (condition-case nil
+-			   (delete-file to-name)
+-			 (file-error nil))
++		       (and (file-exists-p to-name)
++			    (delete-file to-name))
+ 		       (copy-file from-name to-name nil t)
+ 		       nil)
+ 		   (file-already-exists t))

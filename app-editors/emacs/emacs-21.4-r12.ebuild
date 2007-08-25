@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r12.ebuild,v 1.27 2007/06/25 07:22:42 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r12.ebuild,v 1.28 2007/08/24 07:25:28 ulm Exp $
 
 EAPI="prefix"
 
@@ -127,6 +127,7 @@ src_compile() {
 
 	einfo "Recompiling patched lisp files..."
 	(cd lisp; emake recompile) || die
+	rm etc/DOC-*
 	emake CC="$(tc-getCC)" || die
 }
 

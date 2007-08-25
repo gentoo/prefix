@@ -1,6 +1,18 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.171 2007/08/21 22:57:37 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.172 2007/08/24 07:25:28 ulm Exp $
+
+*emacs-22.1-r1 (24 Aug 2007)
+
+  24 Aug 2007; Ulrich Mueller <ulm@gentoo.org>
+  +files/emacs-22.1-backup-buffer.patch, +emacs-22.1-r1.ebuild:
+  Fix infinite loop if Emacs lacks permission to remove backup, bug #189627.
+  Thanks to Martin von Gagern <Martin.vGagern@gmx.net>.
+
+  23 Aug 2007; Ulrich Mueller <ulm@gentoo.org> -files/emacs-21.desktop,
+  -files/60emacs-21.envd, -files/emacs-subdirs-el-gentoo.diff,
+  emacs-21.4-r4.ebuild, emacs-21.4-r8.ebuild:
+  Put remaining files for Emacs 21 on Gentoo mirrors.
 
   21 Aug 2007; Ulrich Mueller <ulm@gentoo.org> emacs-22.1.ebuild:
   Generate score files in pkg_postinst.
