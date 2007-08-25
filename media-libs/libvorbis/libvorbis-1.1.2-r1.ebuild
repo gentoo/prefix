@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.1.2-r1.ebuild,v 1.6 2007/08/22 15:26:11 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.1.2-r1.ebuild,v 1.7 2007/08/24 14:53:20 armin76 Exp $
 
 EAPI="prefix"
 
