@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.153 2007/08/11 00:37:30 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.154 2007/08/24 22:42:01 dirtyepic Exp $
+
+*freetype-2.3.5-r1 (24 Aug 2007)
+
+  24 Aug 2007; Ryan Hill <dirtyepic@gentoo.org> +freetype-2.3.5-r1.ebuild:
+  Re-add -fno-strict-aliasing workaround for gnustep as reported by truedfx.
 
   11 Aug 2007; Ryan Hill <dirtyepic@gentoo.org>
   +files/freetype-2.3.5-crossbuild.patch, freetype-2.3.4-r2.ebuild,
