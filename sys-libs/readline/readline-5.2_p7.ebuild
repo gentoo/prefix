@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-5.2_p2.ebuild,v 1.5 2007/05/12 18:29:04 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-5.2_p7.ebuild,v 1.1 2007/08/24 21:03:39 vapier Exp $
 
 EAPI="prefix"
 
@@ -64,7 +64,7 @@ src_compile() {
 	# the --libdir= is needed because if lib64 is a directory, it will default
 	# to using that... even if CONF_LIBDIR isnt set or we're using a version
 	# of portage without CONF_LIBDIR support.
-	econf --with-curses --libdir=${EPREFIX}/usr/$(get_libdir) || die
+	econf --with-curses --libdir=${EPREFIX}/$(get_libdir) || die
 	emake || die
 
 	if ! tc-is-cross-compiler; then
@@ -76,16 +76,13 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die
-	dodir /$(get_libdir)
 
-	if ! use userland_Darwin ; then
-		mv "${ED}"/usr/$(get_libdir)/*.so* "${ED}"/$(get_libdir)
-		chmod a+rx "${ED}"/$(get_libdir)/*.so*
-
-		# Bug #4411
-		gen_usr_ldscript libreadline.so
-		gen_usr_ldscript libhistory.so
-	fi
+	# Move static and extraneous ncurses libraries out of /lib
+	dodir /usr/$(get_libdir)
+	mv "${ED}"/$(get_libdir)/lib{readline,history}.a "${ED}"/usr/$(get_libdir)/
+	# Bug #4411
+	gen_usr_ldscript lib{readline,history}$(get_libname)
+	chmod a+rx "${ED}"/$(get_libdir)/*$(get_libname)*
 
 	if ! tc-is-cross-compiler; then
 		dobin examples/rlfe/rlfe || die
@@ -98,9 +95,9 @@ src_install() {
 }
 
 pkg_preinst() {
-	preserve_old_lib /$(get_libdir)/lib{history,readline}.so.4 #29865
+	preserve_old_lib /$(get_libdir)/lib{history,readline}$(get_libname 4) #29865
 }
 
 pkg_postinst() {
-	preserve_old_lib_notify /$(get_libdir)/lib{history,readline}.so.4
+	preserve_old_lib_notify /$(get_libdir)/lib{history,readline}$(get_libname 4)
 }
