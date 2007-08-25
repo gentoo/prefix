@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/lirc_devices.desc,v 1.6 2007/04/27 09:02:29 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/lirc_devices.desc,v 1.7 2007/07/04 15:52:33 zzam Exp $
 
 # This file contains descriptions of LIRC_DEVICES USE_EXPAND flags.
 
@@ -67,6 +67,7 @@ livedrive_seq - LIRC_DEVICES setting to add support for livedrive_seq receiver d
 logitech - LIRC_DEVICES setting to add support for logitech receiver device
 lpt1 - LIRC_DEVICES setting to add support for parallel receiver device (defaults on using port #1)
 lpt2 - LIRC_DEVICES setting to add support for parallel receiver device (defaults on using port #2)
+macmini - LIRC_DEVICES setting to add support for macmini receiver device
 mceusb2 - LIRC_DEVICES setting to add support for mceusb2 receiver device
 mceusb - LIRC_DEVICES setting to add support for mceusb receiver device
 mediafocusI - LIRC_DEVICES setting to add support for mediafocusI receiver device
@@ -98,6 +99,7 @@ streamzap - LIRC_DEVICES setting to add support for streamzap receiver device
 tekram_bt829 - LIRC_DEVICES setting to add support for tekram_bt829 receiver device
 tekram - LIRC_DEVICES setting to add support for tekram receiver device
 tira - LIRC_DEVICES setting to add support for tira receiver device
+ttusbir - LIRC_DEVICES setting to add support for ttusb receiver device
 tuxbox - LIRC_DEVICES setting to add support for tuxbox receiver device
 tvbox - LIRC_DEVICES setting to add support for tvbox receiver device
 udp - LIRC_DEVICES setting to add support for udp receiver device

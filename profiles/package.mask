@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7631 2007/08/24 23:31:47 marineam Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7632 2007/08/25 07:10:28 zmedico Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -20,6 +20,10 @@
 ##
 ##   End example
 ##
+
+# Zac Medico <zmedico@gentoo.org> (25 Aug 2007)
+# Bug #190128 - bash-3.2_p25 triggers 'hasq: command not found' errors
+=app-shells/bash-3.2_p25
 
 # Michael Marineau <marineam@gentoo.org> (24 Aug 2007)
 # Not maintained for security issues, will be removed soonish.

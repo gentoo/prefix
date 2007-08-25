@@ -1,6 +1,9 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.594 2007/08/24 23:31:47 marineam Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.595 2007/08/25 09:38:46 genone Exp $
+
+  25 Aug 2007; Marius Mauch <genone@gentoo.org> info_vars:
+  removing AUTOCLEAN and PKGDIR as they are rarely relevant.
 
   24 Aug 2007; Michael Marineau <marineam@gentoo.org> package.mask:
   Hardmask xen-sources-2.6.16* for the sake of security.
