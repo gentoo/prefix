@@ -86,7 +86,7 @@ src_unpack() {
 	# python has some gcc-apple specific CFLAGS built in... rip them out
 	epatch "${FILESDIR}"/${PN}-2.4.4-darwin-fsf-gcc.patch
 	# python defaults to using .so files... so stupid
-	epatch "${FILESDIR}"/${PN}-2.4.4-darwin-dylib.patch
+	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-dylib.patch
 
 	# do not use 'which' to find binaries, but go through the PATH.
 	epatch "${FILESDIR}"/${PN}-2.4.4-ld_so_aix-which.patch
