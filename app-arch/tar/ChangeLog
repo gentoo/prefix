@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/tar
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.116 2007/08/23 05:41:20 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.117 2007/08/24 14:24:49 armin76 Exp $
+
+  24 Aug 2007; Raúl Porcel <armin76@gentoo.org> tar-1.18-r2.ebuild:
+  alpha/ia64 stable wrt security #189682
 
   23 Aug 2007; Joshua Kinard <kumba@gentoo.org> tar-1.18-r2.ebuild:
   Stable on mips, per #189682.
