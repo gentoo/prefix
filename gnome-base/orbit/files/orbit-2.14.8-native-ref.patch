@@ -1,0 +1,55 @@
+diff --exclude-from=/home/dang/.scripts/diffrc -up -ruN ORBit2-2.14.8.orig/configure.in ORBit2-2.14.8/configure.in
+--- ORBit2-2.14.8.orig/configure.in	2007-06-03 07:00:44.000000000 -0400
++++ ORBit2-2.14.8/configure.in	2007-08-24 17:34:19.000000000 -0400
+@@ -103,8 +103,8 @@ AC_ARG_ENABLE(compile-warnings, [  --ena
+ 
+ dnl --enable-debug=(yes|minimum|no)
+ AC_ARG_ENABLE(debug, [  --enable-debug=[no/yes] turn on debugging [default=no]],,enable_debug=minimum)
+-if test "$enable_debug" = "yes"; then
+-  ORBIT_DEBUG_CFLAGS="-DG_ENABLE_DEBUG"
++if test "x$enable_debug" = "xyes"; then
++  ORBIT_DEBUG_CFLAGS="-ggdb -DG_ENABLE_DEBUG"
+ else
+   if test "x$enable_debug" = "xno"; then
+     ORBIT_DEBUG_CFLAGS="-DG_DISABLE_ASSERT -DG_DISABLE_CHECKS"
+diff --exclude-from=/home/dang/.scripts/diffrc -up -ruN ORBit2-2.14.8.orig/linc2/src/Makefile.am ORBit2-2.14.8/linc2/src/Makefile.am
+--- ORBit2-2.14.8.orig/linc2/src/Makefile.am	2007-02-24 19:00:43.000000000 -0500
++++ ORBit2-2.14.8/linc2/src/Makefile.am	2007-08-24 17:34:19.000000000 -0400
+@@ -13,6 +13,7 @@ INCLUDES =                         \
+ 	-I$(top_srcdir)/linc2/include    \
+ 	$(LINC_CFLAGS)             \
+ 	$(WARN_CFLAGS)             \
++        $(ORBIT_DEBUG_CFLAGS)      \
+ 	-DG_DISABLE_DEPRECATED	   \
+ 	-D_GNU_SOURCE
+ 
+diff --exclude-from=/home/dang/.scripts/diffrc -up -ruN ORBit2-2.14.8.orig/src/orb/GIOP/giop-recv-buffer.c ORBit2-2.14.8/src/orb/GIOP/giop-recv-buffer.c
+--- ORBit2-2.14.8.orig/src/orb/GIOP/giop-recv-buffer.c	2007-08-24 17:34:36.000000000 -0400
++++ ORBit2-2.14.8/src/orb/GIOP/giop-recv-buffer.c	2007-08-24 17:34:19.000000000 -0400
+@@ -736,7 +736,7 @@ giop_recv_buffer_get (GIOPMessageQueueEn
+ 			link_io_thread_remove_timeout (ent->cnx->parent.timeout_source_id);
+ 			ent->cnx->parent.timeout_source_id = 0;
+ 			ent->cnx->parent.timeout_status = LINK_TIMEOUT_NO;
+-			g_object_unref (&ent->cnx->parent); // we remove the source so we must unref the connection
++			link_connection_unref (&ent->cnx->parent); // we remove the source so we must unref the connection
+ 		} else if (ent->cnx->parent.timeout_status == LINK_TIMEOUT_YES)
+ 			*timeout = TRUE;
+ 		g_mutex_unlock (ent->cnx->parent.timeout_mutex);
+@@ -1382,7 +1382,7 @@ giop_timeout (gpointer data)
+ 	giop_incoming_signal_T (tdata, GIOP_CLOSECONNECTION);
+ 	g_mutex_unlock (tdata->lock); /* ent_lock */
+ 	
+-	g_object_unref (lcnx); // we remove the source so we must unref lcnx
++	link_connection_unref (lcnx); // we remove the source so we must unref lcnx
+ 
+ out:
+ 	return retv;
+@@ -1403,7 +1403,7 @@ giop_timeout_add (GIOPConnection *cnx)
+ 	if (lcnx->timeout_source_id)
+ 		goto out;
+ 
+-	g_object_ref (lcnx); // to be unref'ed by the one who removes the timeout source
++	link_connection_ref (lcnx); // to be unref'ed by the one who removes the timeout source
+ 	
+ 	if (!lcnx->timeout_mutex)
+ 		lcnx->timeout_mutex = g_mutex_new ();
