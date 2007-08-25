@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/quilt-0.46.ebuild,v 1.5 2007/08/11 12:51:12 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/quilt-0.46.ebuild,v 1.6 2007/08/24 23:34:19 phreak Exp $
 
 EAPI="prefix"
 
@@ -38,7 +38,7 @@ src_unpack() {
 
 	# Some tests are somewhat broken while being run from within portage, work
 	# fine if you run them manually
-	rm "${S}"/test/delete.test
+	rm "${S}"/test/delete.test "${S}"/test/mail.test
 }
 
 src_compile() {
