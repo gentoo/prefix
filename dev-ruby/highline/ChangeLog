@@ -1,6 +1,14 @@
 # ChangeLog for dev-ruby/highline
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/highline/ChangeLog,v 1.7 2007/07/14 04:49:34 nichoj Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/highline/ChangeLog,v 1.9 2007/08/25 11:15:13 graaff Exp $
+
+*highline-1.4.0 (25 Aug 2007)
+
+  25 Aug 2007; Hans de Graaff <graaff@gentoo.org> +highline-1.4.0.ebuild:
+  Version bump: support for terminal size grabbing on Solaris.
+
+  25 Aug 2007; Hans de Graaff <graaff@gentoo.org> -highline-1.2.0.ebuild:
+  Remove old version
 
 *highline-1.2.9 (14 Jul 2007)
 
