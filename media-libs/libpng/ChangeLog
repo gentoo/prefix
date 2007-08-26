@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libpng
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.147 2007/08/24 18:21:28 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.148 2007/08/25 16:32:46 vapier Exp $
+
+  25 Aug 2007; Mike Frysinger <vapier@gentoo.org> libpng-1.2.19.ebuild:
+  Add USE=mmx to help workaround #189467.
 
   24 Aug 2007; Raúl Porcel <armin76@gentoo.org> libpng-1.2.18-r1.ebuild:
   alpha/ia64 stable wrt #189424
