@@ -1,6 +1,6 @@
-# ChangeLog for gentoo-x86/virtual
+# ChangeLog for virtual/gnustep-back
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/gnustep-back/ChangeLog,v 1.1 2007/08/18 17:43:46 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/gnustep-back/ChangeLog,v 1.2 2007/08/25 21:56:57 swegener Exp $
 
 *gnustep-back-0.12.0 (18 Aug 2007)
 
