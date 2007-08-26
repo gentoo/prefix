@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mhash/mhash-0.9.9-r1.ebuild,v 1.3 2007/08/13 20:03:19 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mhash/mhash-0.9.9-r1.ebuild,v 1.5 2007/08/25 16:27:25 beandog Exp $
 
 EAPI="prefix"
 
