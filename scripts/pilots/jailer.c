@@ -88,6 +88,11 @@ int main(int argc, char **argv) {
 				"the magic length (%zd)\n", valuelen, magiclen);
 		return(-1);
 	}
+	if (magiclen > BUFSIZE) {
+		fprintf(stderr, "magic length (%zd) is bigger than "
+				"BUFSIZE (%d), unable to process\n", magiclen, BUFSIZE);
+		return(-1);
+	}
 
 	if (strcmp(argv[1], "-") == 0) {
 		fin  = stdin;
