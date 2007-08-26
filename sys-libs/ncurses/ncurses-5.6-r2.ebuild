@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.6-r2.ebuild,v 1.2 2007/07/09 14:57:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.6-r2.ebuild,v 1.3 2007/08/25 17:13:38 vapier Exp $
 
 EAPI="prefix"
 
@@ -29,6 +29,7 @@ src_unpack() {
 	[[ -n ${PV_SNAP} ]] && epatch "${WORKDIR}"/${MY_P}-${PV_SNAP}-patch.sh
 	epatch "${WORKDIR}"/${P}-coverity.patch
 	epatch "${FILESDIR}"/${PN}-5.6-gfbsd.patch
+	epatch "${FILESDIR}"/${PN}-5.6-build.patch #184700
 	epatch "${FILESDIR}"/${P}-darwin.patch
 }
 
@@ -87,7 +88,7 @@ do_compile() {
 		--enable-const \
 		--enable-colorfgbg \
 		--enable-echo \
-		--enable-warnings \
+		$(use_enable !ada warnings) \
 		$(use_with debug assertions) \
 		$(use_with !debug leaks) \
 		$(use_with debug expanded) \
@@ -99,6 +100,12 @@ do_compile() {
 
 	[[ ${CHOST} == *-solaris* ]] && \
 		sed -i -e 's/-D_XOPEN_SOURCE_EXTENDED//g' c++/Makefile
+
+	# Fix for install location of the lib{,n}curses{,w} libs as in Gentoo we
+	# want those in lib not usr/lib.  We cannot move them lateron after
+	# installing, because that will result in broken install_names for
+	# platforms that store pointers to the libs instead of directories.
+	sed -i -e '/^libdir/s|usr/||' ncurses/Makefile || die "nlibdir"
 
 	# A little hack to fix parallel builds ... they break when
 	# generating sources so if we generate the sources first (in
@@ -120,13 +127,10 @@ src_install() {
 	fi
 
 	# Move static and extraneous ncurses static libraries out of /lib
-	dodir /$(get_libdir)
 	cd "${ED}"/$(get_libdir)
-	mv ../usr/$(get_libdir)/lib{,n}curses*$(get_libname)* .
+	mv *.a "${ED}"/usr/$(get_libdir)/
 	gen_usr_ldscript lib{,n}curses$(get_libname)
 	if use unicode ; then
-		# already moved above
-		#mv ../usr/$(get_libdir)/lib{,n}cursesw*$(get_libname)* .
 		gen_usr_ldscript lib{,n}cursesw$(get_libname)
 	fi
 

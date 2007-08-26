@@ -1,6 +1,10 @@
 # ChangeLog for sys-libs/ncurses
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.148 2007/07/23 01:40:58 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.149 2007/08/25 17:13:38 vapier Exp $
+
+  25 Aug 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/ncurses-5.6-build.patch, ncurses-5.6-r2.ebuild:
+  Fix --disable-warnings and use it when USE=ada #184700.
 
   23 Jul 2007; Joshua Kinard <kumba@gentoo.org> ncurses-5.6-r1.ebuild:
   Stable on mips, per #184675.
