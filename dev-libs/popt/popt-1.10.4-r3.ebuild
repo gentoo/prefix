@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/popt-1.10.4-r3.ebuild,v 1.7 2007/01/13 09:47:18 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/popt-1.10.4-r3.ebuild,v 1.8 2007/08/25 22:39:24 vapier Exp $
 
 EAPI="prefix"
 
