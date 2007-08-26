@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-config/ruby-config-0.3.2.ebuild,v 1.12 2007/07/11 20:09:12 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-config/ruby-config-0.3.2.ebuild,v 1.13 2007/08/25 13:07:38 vapier Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,7 @@ PDEPEND="virtual/ruby"
 S=${WORKDIR}
 
 src_unpack() {
-	cp ${FILESDIR}/${PN}-0.3.2 .
+	cp "${FILESDIR}"/${PN}-0.3.2 . || die
 	epatch "${FILESDIR}"/${PN}-0.3.2-prefix.patch
 	eprefixify ${PN}-0.3.2
 	sed -i \
