@@ -12,7 +12,7 @@ HOMEPAGE="http://search.cpan.org/search?module=${PN}"
 
 SLOT="0"
 LICENSE="Artistic"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 SRC_TEST="do"
