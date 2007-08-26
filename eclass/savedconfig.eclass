@@ -1,27 +1,30 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/savedconfig.eclass,v 1.7 2007/06/11 04:52:42 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/savedconfig.eclass,v 1.8 2007/08/25 19:23:16 vapier Exp $
 
-# Original Author: Daniel Black <dragonheart@gentoo.org>
-#
-# Purpose: Define an interface for ebuilds to save and restore
-# complex configuration that may be edited by users.
-#
-# Thanks to Mike Frysinger <vapier@gentoo.org> for the suggestions.
+# @ECLASS: savedconfig.eclass
+# @MAINTAINER:
+# base-system@gentoo.org
+# @BLURB: common API for saving/restoring complex configuration files
+# @DESCRIPTION:
+# It is not uncommon to come across a package which has a very fine
+# grained level of configuration options that go way beyond what
+# USE flags can properly describe.  For this purpose, a common API
+# of saving and restoring the configuration files was developed
+# so users can modify these config files and the ebuild will take it
+# into account as needed.
 
 inherit portability
 
 IUSE="savedconfig"
 
-# save_config
-#
-# Saves the files and/or directories to
-# /etc/portage/savedconfig/${CATEGORY}/${PF}
-#
-# If a single file is specified ${PF} is that file else it is a directory
-# containing all specified files and directories.
-#
-
+# @FUNCTION: save_config
+# @USAGE: <config files to save>
+# @DESCRIPTION:
+# Use this function to save the package's configuration file into the
+# right location.  You may specify any number of configuration files,
+# but just make sure you call save_config with all of them at the same
+# time in order for things to work properly.
 save_config() {
 	if [[ ${EBUILD_PHASE} != "install" ]]; then
 		die "Bad package!  save_config only for use in src_install functions!"
@@ -54,15 +57,15 @@ save_config() {
 	elog '[${CTARGET}|${CHOST}|""]/${CATEGORY}/[${PF}|${P}|${PN}]'
 }
 
-
-# restore_config
+# @FUNCTION: restore_config
+# @USAGE: <config files to restore>
+# @DESCRIPTION:
+# Restores the configuation saved ebuild previously potentially with user edits.
+# You can restore a single file or a whole bunch, just make sure you call
+# restore_config with all of the files to restore at the same time.
 #
-# Restores the configuation saved ebuild previously potentially with user edits
-#
-# Requires the name of the file to restore to if a single file was given to
-# save_config. Otherwise it restores the directory structure.
-#
-# Looks for config files in the following order.
+# Config files can be laid out as:
+# @CODE
 # ${PORTAGE_CONFIGROOT}/etc/portage/savedconfig/${CTARGET}/${CATEGORY}/${PF}
 # ${PORTAGE_CONFIGROOT}/etc/portage/savedconfig/${CHOST}/${CATEGORY}/${PF}
 # ${PORTAGE_CONFIGROOT}/etc/portage/savedconfig/${CATEGORY}/${PF}
@@ -72,9 +75,7 @@ save_config() {
 # ${PORTAGE_CONFIGROOT}/etc/portage/savedconfig/${CTARGET}/${CATEGORY}/${PN}
 # ${PORTAGE_CONFIGROOT}/etc/portage/savedconfig/${CHOST}/${CATEGORY}/${PN}
 # ${PORTAGE_CONFIGROOT}/etc/portage/savedconfig/${CATEGORY}/${PN}
-#
-#
-
+# @CODE
 restore_config() {
 	use savedconfig || return
 
@@ -107,10 +108,9 @@ restore_config() {
 	elif [[ -d ${found} ]]; then
 		elog "Building using saved config directory ${found}"
 		dest=${PWD}
-		pushd "${found}"
-		treecopy . "${dest}" \
-			|| die "Failed to restore ${found} to $1"
-		popd
+		pushd "${found}" > /dev/null
+		treecopy . "${dest}" || die "Failed to restore ${found} to $1"
+		popd > /dev/null
 	elif [[ -a {found} ]]; then
 		die "do not know how to handle non-file/directory ${found}"
 	else
