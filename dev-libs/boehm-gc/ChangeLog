@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/boehm-gc
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/ChangeLog,v 1.65 2007/08/19 16:53:04 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/ChangeLog,v 1.66 2007/08/25 17:06:57 beandog Exp $
+
+  25 Aug 2007; Steve Dibb <beandog@gentoo.org> boehm-gc-6.8.ebuild:
+  amd64 stable
 
 *boehm-gc-7.0-r1 (19 Aug 2007)
 
