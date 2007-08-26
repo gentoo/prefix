@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/quilt
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/ChangeLog,v 1.27 2007/08/24 23:34:19 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/ChangeLog,v 1.30 2007/08/25 20:41:40 armin76 Exp $
+
+  25 Aug 2007; Raúl Porcel <armin76@gentoo.org> quilt-0.46.ebuild:
+  x86 stable wrt #190151
+
+  25 Aug 2007; Steve Dibb <beandog@gentoo.org> quilt-0.46.ebuild:
+  amd64 stable
+
+  25 Aug 2007; Christian Heim <phreak@gentoo.org> quilt-0.46.ebuild:
+  Marking the latest ebuild ~ppc64, as Luca marked 0.45.
 
   24 Aug 2007; Christian Heim <phreak@gentoo.org> quilt-0.46.ebuild:
   Fix the last blocking test.
