@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r1.ebuild,v 1.1 2007/08/24 07:25:28 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r1.ebuild,v 1.3 2007/08/25 20:55:18 opfer Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ DESCRIPTION="The extensible, customizable, self-documenting real-time display ed
 HOMEPAGE="http://www.gnu.org/software/emacs/"
 SRC_URI="mirror://gnu/emacs/${P}.tar.gz"
 
-LICENSE="GPL-2 FDL-1.2"
+LICENSE="GPL-2 FDL-1.2 BSD"
 SLOT="22"
 KEYWORDS="~amd64 ~x86 ~x86-macos ~x86-solaris"
 IUSE="alsa gif gtk gzip-el hesiod jpeg motif png spell sound source tiff toolkit-scroll-bars X Xaw3d xpm"
@@ -143,7 +143,7 @@ src_compile() {
 
 	einfo "Recompiling patched lisp files..."
 	(cd lisp; emake recompile) || die "emake recompile failed"
-	rm etc/DOC-*
+	(cd src; emake versionclean)
 	emake CC="$(tc-getCC)" || die "emake failed"
 }
 

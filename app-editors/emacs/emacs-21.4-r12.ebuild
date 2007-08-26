@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r12.ebuild,v 1.28 2007/08/24 07:25:28 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r12.ebuild,v 1.30 2007/08/25 20:55:18 opfer Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SRC_URI="mirror://gnu/emacs/${P}a.tar.gz
 	mirror://gentoo/emacs-21-patches.tar.bz2
 	leim? ( mirror://gnu/emacs/leim-${PV}.tar.gz )"
 
-LICENSE="GPL-2 FDL-1.1"
+LICENSE="GPL-2 FDL-1.1 BSD"
 SLOT="21"
 KEYWORDS="~amd64 ~x86 ~x86-solaris"
 IUSE="X Xaw3d leim lesstif motif nls nosendmail"
@@ -122,17 +122,17 @@ src_compile() {
 	else
 		myconf="${myconf} --without-x"
 	fi
-	econf ${myconf} || die
-	emake CC="$(tc-getCC)" || die
+	econf ${myconf} || die "econf failed"
+	emake CC="$(tc-getCC)" || die "emake failed"
 
 	einfo "Recompiling patched lisp files..."
-	(cd lisp; emake recompile) || die
-	rm etc/DOC-*
-	emake CC="$(tc-getCC)" || die
+	(cd lisp; emake recompile) || die "emake recompile failed"
+	(cd src; emake versionclean)
+	emake CC="$(tc-getCC)" || die "die emake failed"
 }
 
 src_install() {
-	einstall || die
+	einstall || die "einstall failed"
 	for i in "${ED}"/usr/bin/* ; do
 		mv ${i} ${i}-emacs-${SLOT} || die "mv ${i} failed"
 	done
