@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/unrar
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/ChangeLog,v 1.99 2007/08/13 00:45:00 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/ChangeLog,v 1.100 2007/08/25 17:02:00 vapier Exp $
+
+*unrar-3.7.6 (25 Aug 2007)
+
+  25 Aug 2007; Mike Frysinger <vapier@gentoo.org> +unrar-3.7.6.ebuild:
+  Version bump #180923 by Kalidarn.
 
   13 Aug 2007; Christoph Mende <angelos@gentoo.org> unrar-3.7.5.ebuild:
   Stable on amd64
