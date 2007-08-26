@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/P/PE/PETEK/${P}.tar.gz"
 
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND=">=dev-perl/HTML-Tagset-3.03
