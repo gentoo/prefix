@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.3.8.ebuild,v 1.6 2007/08/25 14:23:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.3.8-r1.ebuild,v 1.1 2007/08/25 15:19:49 vapier Exp $
 
 EAPI="prefix"
 
@@ -9,7 +9,7 @@ inherit eutils flag-o-matic toolchain-funcs multilib
 SELINUX_PATCH="findutils-4.3.7-selinux.diff"
 
 DESCRIPTION="GNU utilities for finding files"
-HOMEPAGE="http://www.gnu.org/software/findutils/findutils.html"
+HOMEPAGE="http://www.gnu.org/software/findutils/"
 # SRC_URI="mirror://gnu/${PN}/${P}.tar.gz mirror://gentoo/${P}.tar.gz"
 SRC_URI="ftp://alpha.gnu.org/gnu/${PN}/${P}.tar.gz"
 
@@ -34,7 +34,7 @@ src_unpack() {
 	# which is a secure version of locate.  See bug 18729
 	sed -i '/^SUBDIRS/s/locate//' Makefile.in
 
-	# Patches for selinux
+	epatch "${FILESDIR}"/${P}-listfile-segv.patch #188249
 	use selinux && epatch "${FILESDIR}/${SELINUX_PATCH}"
 }
 

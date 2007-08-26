@@ -1,0 +1,58 @@
+http://bugs.gentoo.org/188249
+
+RCS file: /sources/findutils/findutils/lib/listfile.c,v
+Working file: lib/listfile.c
+head: 1.27
+branch:
+locks: strict
+access list:
+keyword substitution: kv
+total revisions: 35;	selected revisions: 1
+description:
+----------------------------
+revision 1.27
+date: 2007-08-22 22:33:31 -0400;  author: ericb;  state: Exp;  lines: +2 -5;  commitid: 0LN4VaUTK67hWOus;
+Update to recent gnulib addition of idcache.h.
+* lib/listfile.c (getuser, getgroup): Use header rather than
+declaring things ourself.
+* po/POTFILES.in (locate/frcode.c): Add missing file.
+=============================================================================
+
+Index: lib/listfile.c
+===================================================================
+RCS file: /sources/findutils/findutils/lib/listfile.c,v
+retrieving revision 1.25
+retrieving revision 1.26
+diff -u -p -r1.25 -r1.26
+--- lib/listfile.c	2 Jul 2007 08:25:43 -0000	1.25
++++ lib/listfile.c	19 Aug 2007 15:31:38 -0000	1.26
+@@ -196,7 +196,7 @@ list_file (const char *name,
+ 	   int literal_control_chars,
+ 	   FILE *stream)
+ {
+-  char modebuf[11];
++  char modebuf[12];
+   struct tm const *when_local;
+   char const *user_name;
+   char const *group_name;
+@@ -208,7 +208,6 @@ list_file (const char *name,
+ #else
+   strmode (statp->st_mode, modebuf);
+ #endif
+-  modebuf[10] = '\0';
+ 
+   fprintf (stream, "%6s ",
+ 	   human_readable ((uintmax_t) statp->st_ino, hbuf,
+@@ -221,9 +220,9 @@ list_file (const char *name,
+ 			   ST_NBLOCKSIZE, output_block_size));
+ 
+ 
+-  /* The space between the mode and the number of links is the POSIX
+-     "optional alternate access method flag".  */
+-  fprintf (stream, "%s %3lu ", modebuf, (unsigned long) statp->st_nlink);
++  /* modebuf includes the space between the mode and the number of links,
++     as the POSIX "optional alternate access method flag".  */
++  fprintf (stream, "%s%3lu ", modebuf, (unsigned long) statp->st_nlink);
+ 
+   user_name = getuser (statp->st_uid);
+   if (user_name)
