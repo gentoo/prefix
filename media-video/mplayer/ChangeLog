@@ -1,6 +1,11 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.509 2007/08/20 13:04:50 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.510 2007/08/25 13:48:14 beandog Exp $
+
+*mplayer-1.0.20070824 (25 Aug 2007)
+
+  25 Aug 2007; Steve Dibb <beandog@gentoo.org> +mplayer-1.0.20070824.ebuild:
+  SVN snapshot version bump
 
   16 Aug 2007; Steve Dibb <beandog@gentoo.org> mplayer-1.0.20070814.ebuild:
   Fix ivtv linux-headers dep, re-add PVR use flag
