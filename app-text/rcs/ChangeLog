@@ -1,6 +1,9 @@
 # ChangeLog for app-text/rcs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/rcs/ChangeLog,v 1.31 2007/03/12 15:40:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/rcs/ChangeLog,v 1.32 2007/08/25 16:51:40 beandog Exp $
+
+  25 Aug 2007; Steve Dibb <beandog@gentoo.org> rcs-5.7-r3.ebuild:
+  amd64 stable
 
   12 Mar 2007; Raúl Porcel <armin76@gentoo.org> rcs-5.7-r3.ebuild:
   x86 stable
