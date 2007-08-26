@@ -141,7 +141,7 @@ lesspipe() {
 			always)              LESSCOLOR=2;;
 			[yY][eE][sS]|1|true) LESSCOLOR=1;;
 			[nN][oO]|0|false)    LESSCOLOR=0;;
-			*)                   LESSCOLOR=1;; # default to colorize
+			*)                   LESSCOLOR=0;; # default to no color #188835
 		esac
 		[[ ${LESSCOLORIZER+set} != "set" ]] && LESSCOLORIZER=code2color
 		if [[ ${LESSCOLOR} == "0" ]] || [[ -z ${LESSCOLORIZER} ]] ; then
@@ -195,7 +195,7 @@ if [[ -z $1 ]] ; then
 	echo "Usage: lesspipe.sh <file>"
 elif [[ $1 == "-V" ]] ; then
 	Id="cvsid"
-	cvsid="$Id: lesspipe.sh,v 1.23 2007/05/25 18:05:34 vapier Exp $"
+	cvsid="$Id: lesspipe.sh,v 1.24 2007/08/25 15:42:52 vapier Exp $"
 	cat <<-EOF
 		$cvsid
 		Copyright 2001-2006 Gentoo Foundation
