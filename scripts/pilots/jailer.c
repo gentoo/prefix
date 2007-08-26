@@ -1,9 +1,13 @@
+/* Copyright Gentoo Foundation 2006-2007
+ * Author: Fabian Groffen <grobian@gentoo.org>
+ */
+
 #include <stdio.h>
 #include <strings.h>
 #include <errno.h>
 
-/* Don't allocate too much, or you'll be paying for waiting on IO, size
- * -1 to align in memory. */
+/* Don't allocate too much, or you'll be paying for waiting on IO,
+ * size -1 to align in memory. */
 #define BUFSIZE 8095
 
 /**
@@ -85,13 +89,21 @@ int main(int argc, char **argv) {
 		return(-1);
 	}
 
-	fin      = fopen(argv[1], "r");
+	if (strcmp(argv[1], "-") == 0) {
+		fin  = stdin;
+	} else {
+		fin  = fopen(argv[1], "r");
+	}
 	if (fin == NULL) {
 		fprintf(stderr, "unable to open %s: %s\n", argv[1], strerror(errno));
 		return(-1);
 	}
 
-	fout     = fopen(argv[2], "w");
+	if (strcmp(argv[2], "-") == 0) {
+		fout = stdout;
+	} else {
+		fout = fopen(argv[2], "w");
+	}
 	if (fin == NULL) {
 		fprintf(stderr, "unable to open %s: %s\n", argv[2], strerror(errno));
 		return(-1);
