@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/docutils-0.4-r3.ebuild,v 1.1 2007/07/31 13:07:35 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/docutils-0.4-r3.ebuild,v 1.2 2007/08/25 22:28:08 vapier Exp $
 
 EAPI="prefix"
 
