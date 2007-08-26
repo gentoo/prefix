@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8e.ebuild,v 1.3 2007/04/13 01:56:06 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8e-r2.ebuild,v 1.3 2007/08/25 22:39:19 vapier Exp $
 
 EAPI="prefix"
 
@@ -36,6 +36,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.9.8-toolchain.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8b-doc-updates.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8-makedepend.patch #149583
+	epatch "${FILESDIR}"/${PN}-0.9.8-evp-key-len.patch #168750
+	epatch "${FILESDIR}"/${PN}-0.9.8e-CVE-2007-3108.patch #188799
+	[[ $(gcc-version) == "4.2" ]] && epatch "${FILESDIR}"/${PN}-0.9.8-gcc42.patch #158324
 	epatch "${FILESDIR}"/${PN}-0.9.8e-aix.patch # shared aix-gcc
 
 	# allow openssl to be cross-compiled
@@ -54,8 +57,8 @@ src_unpack() {
 		[[ $(tc-arch) == "ppc64" ]] && replace-flags -O? -O
 	fi
 	[[ $(tc-arch) == ppc* ]] && append-flags -fno-strict-aliasing
-	[[ $(tc-arch) == *-macos ]] || [[ $(tc-arch) == *-aix ]] ||
-	append-flags -Wa,--noexecstack
+	[[ $(tc-arch) == *-macos ]] || [[ $(tc-arch) == *-aix ]] || \
+		append-flags -Wa,--noexecstack
 
 	# using a library directory other than lib requires some magic
 	sed -i \
