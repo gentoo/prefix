@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.6_p1-r4.ebuild,v 1.1 2007/08/06 08:08:53 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.6_p1-r4.ebuild,v 1.2 2007/08/25 17:42:25 vapier Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,6 @@ inherit eutils flag-o-matic ccc multilib autotools pam
 PARCH=${P/_/}
 
 X509_PATCH="${PARCH}+x509-5.5.2.diff.gz"
-SECURID_PATCH="" #${PARCH/4.6/4.5}+SecurID_v1.3.2.patch"
 LDAP_PATCH="${PARCH/openssh-/openssh-lpk-}-0.3.9.patch"
 HPN_PATCH="${PARCH}-hpn12v17.diff.gz"
 
@@ -21,7 +20,6 @@ SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
 	X509? ( http://roumenpetrov.info/openssh/x509-5.5.2/${X509_PATCH} )
 	hpn? ( http://www.psc.edu/networking/projects/hpn-ssh/${HPN_PATCH} )
 	ldap? ( http://dev.inversepath.com/openssh-lpk/${LDAP_PATCH} )"
-#	smartcard? ( http://omniti.com/~jesus/projects/${SECURID_PATCH} )
 
 LICENSE="as-is"
 SLOT="0"
@@ -54,7 +52,6 @@ pkg_setup() {
 	maybe_fail() { [[ -z ${!2} ]] && use ${1} && echo ${1} ; }
 	local fail="
 		$(maybe_fail X509 X509_PATCH)
-		$(maybe_fail smartcard SECURID_PATCH)
 		$(maybe_fail ldap LDAP_PATCH)
 	"
 	fail=$(echo ${fail})
@@ -82,17 +79,11 @@ src_unpack() {
 	use chroot && epatch "${FILESDIR}"/openssh-4.3_p1-chroot.patch
 	use smartcard && epatch "${FILESDIR}"/openssh-3.9_p1-opensc.patch
 	if ! use X509 ; then
-		if [[ -n ${SECURID_PATCH} ]] && use smartcard ; then
-			epatch "${DISTDIR}"/${SECURID_PATCH} \
-				"${FILESDIR}"/${PN}-4.3_p2-securid-updates.patch \
-				"${FILESDIR}"/${PN}-4.3_p2-securid-hpn-glue.patch
-			use ldap && epatch "${FILESDIR}"/openssh-4.0_p1-smartcard-ldap-happy.patch
-		fi
 		if [[ -n ${LDAP_PATCH} ]] && use ldap ; then
 			epatch "${DISTDIR}"/${LDAP_PATCH} "${FILESDIR}"/${PN}-4.4_p1-ldap-hpn-glue.patch
 		fi
-	elif [[ -n ${SECURID_PATCH} ]] && use smartcard || use ldap ; then
-		ewarn "Sorry, X509 and smartcard/ldap don't get along, disabling smartcard/ldap"
+	elif use ldap ; then
+		ewarn "Sorry, X509 and ldap don't get along, disabling ldap"
 	fi
 	[[ -n ${HPN_PATCH} ]] && use hpn && epatch "${DISTDIR}"/${HPN_PATCH}
 
