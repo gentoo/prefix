@@ -12,13 +12,20 @@ SRC_URI="mirror://gentoo/${P}.tar.gz"
 
 LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND="dev-lang/perl
 		>=dev-perl/yaml-0.60
 		dev-perl/Shell-EnvImporter
 		dev-perl/Log-Agent"
+
+src_unpack() {
+		unpack ${A}
+		cd "${S}"
+		epatch "${FILESDIR}"/${P}-prefix.patch
+		eprefixify bin/g-cpan lib/Gentoo/Portage.pm
+}
 
 src_install() {
 		perl-module_src_install

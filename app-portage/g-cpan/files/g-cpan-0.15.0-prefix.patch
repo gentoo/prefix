@@ -1,0 +1,78 @@
+--- bin/g-cpan~	2007-08-26 19:42:50 +0200
++++ bin/g-cpan	2007-08-26 19:45:59 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl -w
+ package main;
+ 
+ # Copyright 1999-2006 Gentoo Foundation
+@@ -32,7 +32,7 @@
+ my $prog = basename($0);
+ 
+ ##### Establish our tmpdir
+-unless ($ENV{TMPDIR}) { $ENV{TMPDIR} = '/var/tmp/g-cpan' }
++unless ($ENV{TMPDIR}) { $ENV{TMPDIR} = '@GENTOO_PORTAGE_EPREFIX@/var/tmp/g-cpan' }
+ 
+ my %dep_list = ();
+ my @perl_dirs = ("perl-gcpan", "dev-perl", "perl-core", "perl-text", "perl-tools", "perl-xml", "perl-dev", "dev-lang",);
+@@ -80,7 +80,7 @@
+ 
+ if ($log)
+ {
+-    open my $log_test, q{>>}, "/var/log/$prog/$prog.err"
++    open my $log_test, q{>>}, "@GENTOO_PORTAGE_EPREFIX@/var/log/$prog/$prog.err"
+       or fatal(print_err("You don't have permission to perform logging to /var/log/$prog/$prog.err: $!"));
+     close($log_test);
+ 
+@@ -89,8 +89,8 @@
+         -magic_open => 0,
+         -stampfmt   => 'date',
+         -channels   => {
+-            'error'  => "/var/log/$prog/$prog.err",
+-            'output' => "/var/log/$prog/$prog.log",
++            'error'  => "@GENTOO_PORTAGE_EPREFIX@/var/log/$prog/$prog.err",
++            'output' => "@GENTOO_PORTAGE_EPREFIX@/var/log/$prog/$prog.log",
+         }
+     );
+     logconfig(-driver => $log_driver);
+@@ -210,7 +210,7 @@
+ 
+ # Confirm that there is an /etc/portage/categories file
+ # and that we have an entry for perl-gcpan in it.
+-my $cat_file = "/etc/portage/categories";
++my $cat_file = "@GENTOO_PORTAGE_EPREFIX@/etc/portage/categories";
+ if (-f "$cat_file")
+ {
+ 
+@@ -493,7 +493,7 @@
+     {
+ 
+             # First, check to see if this came with the core perl install
+-            my $pkgdbdir = "/var/db/pkg/dev-lang/";
++            my $pkgdbdir = "@GENTOO_PORTAGE_EPREFIX@/var/db/pkg/dev-lang/";
+             my $s_perl   = new DirHandle($pkgdbdir);
+             my $eb       = $ebuild_wanted;
+             $eb =~ s{::}{/}gxs;
+@@ -626,8 +626,8 @@
+             if ($overlay) { @overlays = split ' ', $overlay }
+             else
+             {
+-                push @overlays, "/var/tmp/g-cpan"
+-                  and $ENV{PORTDIR_OVERLAY} = "/var/tmp/g-cpan";
++                push @overlays, "@GENTOO_PORTAGE_EPREFIX@/var/tmp/g-cpan"
++                  and $ENV{PORTDIR_OVERLAY} = "@GENTOO_PORTAGE_EPREFIX@/var/tmp/g-cpan";
+             }
+             foreach my $target_dir (@overlays)
+             {
+
+--- lib/Gentoo/Portage.pm~	2007-08-26 20:13:03 +0200
++++ lib/Gentoo/Portage.pm	2007-08-26 20:14:02 +0200
+@@ -47,7 +47,7 @@
+         return($var =~ /^$envvar$/ );
+     };
+ 
+-foreach my $file ( "$ENV{HOME}/.gcpanrc", "/etc/make.conf", "/etc/make.globals" ) {
++foreach my $file ( "$ENV{HOME}/.gcpanrc", "@GENTOO_PORTAGE_EPREFIX@/etc/make.conf", "@GENTOO_PORTAGE_EPREFIX@/etc/make.globals" ) {
+     if ( -f $file) {
+     	my $importer = Shell::EnvImporter->new(
+     		file => $file,
