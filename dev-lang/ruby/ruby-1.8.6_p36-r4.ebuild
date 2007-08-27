@@ -1,28 +1,28 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.5_p12.ebuild,v 1.9 2007/07/02 14:50:46 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p36-r4.ebuild,v 1.1 2007/08/26 06:25:38 pclouds Exp $
 
 EAPI="prefix"
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 
-ONIGURUMA="onigd2_5_7"
+ONIGURUMA="onigd2_5_9"
 
 inherit flag-o-matic alternatives eutils multilib autotools versionator
 
 MY_P="${P/_p/-p}"
+S=${WORKDIR}/${MY_P}
 
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="http://www.ruby-lang.org/"
-SRC_URI="ftp://ftp.ruby-lang.org/pub/ruby/${MY_P}.tar.gz
+SRC_URI="ftp://ftp.ruby-lang.org/pub/ruby/1.8/${MY_P}.tar.gz
 	cjk? ( http://www.geocities.jp/kosako3/oniguruma/archive/${ONIGURUMA}.tar.gz )"
 
 LICENSE="Ruby"
 SLOT="1.8"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
-IUSE="debug socks5 tk cjk doc threads examples ipv6"
-RESTRICT="test"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+IUSE="cjk debug doc examples ipv6 rubytests socks5 threads tk"
 
 RDEPEND=">=sys-libs/gdbm-1.8.0
 	>=sys-libs/readline-4.1
@@ -36,15 +36,12 @@ RDEPEND=">=sys-libs/gdbm-1.8.0
 DEPEND="${RDEPEND}"
 PROVIDE="virtual/ruby"
 
-S=${WORKDIR}/${MY_P}
-
 src_unpack() {
 	unpack ${A}
 
 	if use cjk ; then
 		einfo "Applying ${ONIGURUMA}"
 		pushd ${WORKDIR}/oniguruma
-#		epatch ${FILESDIR}/oniguruma-2.3.1-gentoo.patch
 		econf --with-rubydir=${S} || die "econf failed"
 		MY_PV=$(get_version_component_range 1-2)
 		make ${MY_PV/./}
@@ -53,9 +50,20 @@ src_unpack() {
 
 	cd "${S}"
 
+	epatch "${FILESDIR}/${P}-rb_thread_status_prototype.patch"
+	epatch "${FILESDIR}/${P}-only-ncurses.patch"
+	epatch "${FILESDIR}/${P}-prefix.patch"
+
+	cd "${S}/ext/dl"
+	epatch "${FILESDIR}/${PN}-1.8.6-memory-leak.diff"
+
+	cd "${S}"
 	# Fix a hardcoded lib path in configure script
 	sed -i -e "s:\(RUBY_LIB_PREFIX=\"\${prefix}/\)lib:\1$(get_libdir):" \
 		configure.in || die "sed failed"
+	
+	# Fix hardcoded SHELL var in mkmf library
+	sed -e "s#\(SHELL = \).*#\1${EPREFIX}/bin/sh#" -i lib/mkmf.rb
 
 	eautoreconf
 }
@@ -84,12 +92,31 @@ src_compile() {
 		$(use_enable socks5 socks) \
 		$(use_enable doc install-doc) \
 		$(use_enable threads pthread) \
-		$(use_enable ipv6 ipv6) \
-		$(use_enable debug debug) \
+		$(use_enable ipv6) \
+		$(use_enable debug) \
+		$(use_with tk) \
 		--with-sitedir="${EPREFIX}"/usr/$(get_libdir)/ruby/site_ruby \
 		|| die "econf failed"
 
-	emake || die "emake failed"
+	emake EXTLDFLAGS="${LDFLAGS}" || die "emake failed"
+}
+
+src_test() {
+	emake -j1 test || die "make test failed"
+
+	elog "Ruby's make test has been run. Ruby also ships with a make check"
+	elog "that cannot be run until after ruby has been installed."
+	elog
+	if use rubytests; then
+		elog "You have enabled rubytests, so they will be installed to"
+		elog "/usr/share/${PN}-${SLOT}/test. To run them you must be a user other"
+		elog "than root, and you must place them into a writeable directory."
+		elog "Then call: "
+		elog
+		elog "ruby -C /location/of/tests runner.rb"
+	else
+		elog "Enable the rubytests USE flag to install the make check tests"
+	fi
 }
 
 src_install() {
@@ -120,7 +147,12 @@ src_install() {
 	dosym libruby${SLOT/./}$(get_libname ${PV%_*}) /usr/$(get_libdir)/libruby$(get_libname ${PV%.*})
 	dosym libruby${SLOT/./}$(get_libname ${PV%_*}) /usr/$(get_libdir)/libruby$(get_libname ${PV%_*})
 
-	dodoc ChangeLog MANIFEST README* ToDo
+	dodoc ChangeLog NEWS README* ToDo
+
+	if use rubytests; then
+		dodir /usr/share/${PN}-${SLOT}
+		cp -pPR test ${ED}/usr/share/${PN}-${SLOT}
+	fi
 }
 
 pkg_postinst() {

@@ -1,6 +1,12 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.293 2007/08/17 19:37:18 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.294 2007/08/26 06:25:38 pclouds Exp $
+
+*ruby-1.8.6_p36-r4 (26 Aug 2007)
+
+  26 Aug 2007; Nguyễn Thái Ngọc Duy <pclouds@gentoo.org>
+  +ruby-1.8.6_p36-r4.ebuild:
+  Use user LDFLAGS, #181436
 
   17 Aug 2007; Hans de Graaff <graaff@gentoo.org> ruby-1.8.4-r3.ebuild,
   ruby-1.8.5_p2-r1.ebuild, ruby-1.8.5_p35.ebuild:
