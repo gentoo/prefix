@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.2.3.ebuild,v 1.8 2007/07/17 17:44:15 griffon26 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.2.3.ebuild,v 1.9 2007/08/26 09:32:34 griffon26 Exp $
 
 EAPI="prefix"
 
@@ -46,6 +46,9 @@ src_unpack() {
 	fi
 
 	epatch "${FILESDIR}/${P}-glibc-2.6.patch"
+
+	# Prevent "unhandled instruction bytes: 0x66 0x66 0x66 0x66" (bug #189396)
+	epatch "${FILESDIR}/${P}-unhandled-instr-amd64.patch"
 
 	# Regenerate autotools files
 	eautoreconf

@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/valgrind
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.78 2007/07/17 17:44:15 griffon26 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.79 2007/08/26 09:32:34 griffon26 Exp $
+
+  26 Aug 2007; Maurice van der Pot <griffon26@gentoo.org>
+  +files/valgrind-3.2.3-unhandled-instr-amd64.patch, valgrind-3.2.3.ebuild:
+  Added fix for bug #189396 reported by Tiziano Müller <dev-zero@gentoo.org>.
 
   17 Jul 2007; Maurice van der Pot <griffon26@gentoo.org>
   +files/valgrind-3.2.3-glibc-2.6.patch, valgrind-3.2.3.ebuild:
