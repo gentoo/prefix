@@ -22,10 +22,6 @@
 ##   End example
 ##
 
-# Elias Pipping <pipping@mi.fu-berlin.de> (26 Aug 2007)
-# g-cpan is currently broken; masked, so we can experiment on it.
-app-portage/g-cpan
-
 # Fabian Groffen <grobian@gentoo.org> (30 Jan 2007) 
 # seems to be messed up, hardcoding wrong install_names, doesn't even 
 # compile on Solaris 
