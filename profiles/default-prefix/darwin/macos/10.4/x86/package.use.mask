@@ -16,3 +16,7 @@ media-video/mplayer xvmc xv dga X xinerama
 # linux only
 media-video/mplayer dvb esd lirc svga arts jack joystick matrox
 media-sound/mpg123 mmx
+
+# Elias Pipping <pipping@mi.fu-berlin.de> (27 Aug 2007)
+# elinks does not compile with USE=perl (tested with 0.11.{2,3})
+www-client/elinks perl
