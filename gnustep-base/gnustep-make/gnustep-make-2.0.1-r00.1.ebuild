@@ -31,6 +31,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-destdir.patch
+	cp "${FILESDIR}"/gnustep-2.{csh,sh} "${T}"/
+	eprefixify "${T}"/gnustep-2.{csh,sh}
 }
 
 src_compile() {
@@ -71,8 +73,8 @@ src_install() {
 	fi
 
 	exeinto /etc/profile.d
-	doexe ${FILESDIR}/gnustep-2.sh
-	doexe ${FILESDIR}/gnustep-2.csh
+	doexe "${T}"/gnustep-2.sh
+	doexe "${T}"/gnustep-2.csh
 
 	dodir /etc/env.d
 	cat <<- EOF > "${ED}"/etc/env.d/99gnustep

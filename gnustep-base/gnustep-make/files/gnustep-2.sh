@@ -1,4 +1,4 @@
-#!/bin/sh
+#!@GENTOO_PORTAGE_EPREFIX@/bin/sh
 
 # Test for an interactive shell
 case $- in
@@ -9,7 +9,7 @@ case $- in
 	;;
 esac
 	
-GNUSTEP_SYSTEM_TOOLS=/usr/GNUstep/System/Tools
+GNUSTEP_SYSTEM_TOOLS="@GENTOO_PORTAGE_EPREFIX@"/usr/GNUstep/System/Tools
 
 if [ -x ${GNUSTEP_SYSTEM_TOOLS}/make_services ]; then
     ${GNUSTEP_SYSTEM_TOOLS}/make_services
