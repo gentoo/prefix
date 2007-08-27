@@ -2,6 +2,13 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.7708 (27 Aug 2007)
+
+  27 Aug 2007; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.7707.ebuild, +portage-2.2.00.7708.ebuild:
+  New snapshot which has theoretical support for binary packages on different
+  prefixes
+
 *portage-2.2.00.7698 (25 Aug 2007)
 
   25 Aug 2007; Fabian Groffen <grobian@gentoo.org>

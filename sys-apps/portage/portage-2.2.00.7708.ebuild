@@ -150,7 +150,7 @@ pkg_preinst() {
 	fi
 
 	# Save a list of specific python sources to compile during postinst.
-	find "${D}"${portage_base}/pym -name "*.py" -print | \
+	find "${ED}"${portage_base}/pym -name "*.py" -print | \
 		sed -e "s:^${D}::" > "${T}"/pym_src_file_list
 }
 
