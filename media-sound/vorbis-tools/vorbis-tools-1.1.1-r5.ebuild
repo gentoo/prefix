@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/vorbis-tools-1.1.1-r5.ebuild,v 1.1 2007/08/06 18:01:43 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/vorbis-tools-1.1.1-r5.ebuild,v 1.2 2007/08/26 17:30:36 drac Exp $
 
 EAPI="prefix"
 
@@ -20,14 +20,14 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
 
-RDEPEND=">=media-libs/libvorbis-1.1.0
+RDEPEND=">=media-libs/libvorbis-1.1
 	!minimal? ( >=media-libs/libao-0.8.2
 		>=net-misc/curl-7.9 )
 	speex? ( media-libs/speex )
 	flac? ( media-libs/flac )"
-
 DEPEND="${RDEPEND}
-	nls? ( sys-devel/gettext )"
+	nls? ( sys-devel/gettext )
+	dev-util/pkgconfig"
 
 pkg_setup() {
 	if use flac && ! built_with_use media-libs/flac ogg; then
