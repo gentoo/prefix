@@ -4,26 +4,29 @@ http://bugs.gentoo.org/79505
 insthook:
 update the head/tail syntax since coreutils has deprecated the old style
 
-ccnoco:
-rip patches from fedora
-
 dirname:
 just disable the pos
 
---- automake-1.5/tests/insthook.test.orig	2005-01-30 09:02:48.622592064 -0500
-+++ automake-1.5/tests/insthook.test	2005-01-30 09:03:00.332811840 -0500
+ccnoco:
+rip patches from fedora
+
+depcomp2: #181484
+fix false positive when using newer autoconf -- it throws a warning based
+on dataroot which causes a failure when there was none
+
+--- automake-1.5/tests/insthook.test
++++ automake-1.5/tests/insthook.test
 @@ -17 +17 @@
 -test x$lnum != x && tail +$lnum Makefile.in | head -3 | grep install-exec-hook
 +test x$lnum != x && tail -n +$lnum Makefile.in | head -n 3 | grep install-exec-hook
-diff -u automake-1.5/tests/dirname.test automake-1.6.3/tests/dirname.test
---- automake-1.5/tests/dirname.test	2003-04-25 15:44:56.000000000 +0900
-+++ automake-1.6.3/tests/dirname.test	2003-04-25 15:44:56.000000000 +0900
+--- automake-1.5/tests/dirname.test
++++ automake-1.5/tests/dirname.test
 @@ -1,2 +1,3 @@
  #! /bin/sh
 +exit 0
  
---- automake-1.5/tests/ccnoco.test	2003-06-07 06:34:18.000000000 +0900
-+++ automake-1.6.3/tests/ccnoco.test	2003-06-07 06:34:18.000000000 +0900
+--- automake-1.5/tests/ccnoco.test
++++ automake-1.5/tests/ccnoco.test
 @@ -39,7 +39,6 @@
  }
  END
@@ -51,4 +54,12 @@ diff -u automake-1.5/tests/dirname.test automake-1.6.3/tests/dirname.test
 +
  for conf in configure.1 configure.3; do
     cp $conf configure.in
+ 
+--- automake-1.5/tests/depcomp2.test
++++ automake-1.5/tests/depcomp2.test
+@@ -17,4 +17,5 @@
+ cat > Makefile.am << 'END'
+ SUBDIRS = subdir
++datarootdir = @datarootdir@
+ END
  
