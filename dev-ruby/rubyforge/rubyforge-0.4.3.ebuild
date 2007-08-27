@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/rubyforge-0.4.3.ebuild,v 1.1 2007/07/24 07:13:05 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/rubyforge-0.4.3.ebuild,v 1.2 2007/08/26 17:48:51 armin76 Exp $
 
 EAPI="prefix"
 
