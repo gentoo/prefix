@@ -82,7 +82,7 @@ src_unpack() {
 src_compile() {
 	append-flags "-DMAXWIN=${MAX_SCREEN_WINDOWS:-100}"
 	append-ldflags $(bindnow-flags)
-	use userland_Solaris && append-ldflags -lsocket -lnsl
+	[[ ${CHOST} == *-solaris* ]] && append-ldflags -lsocket -lnsl
 
 	use nethack || append-flags "-DNONETHACK"
 	use debug && append-flags "-DDEBUG"
