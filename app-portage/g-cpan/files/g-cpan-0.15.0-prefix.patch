@@ -1,5 +1,5 @@
---- bin/g-cpan~	2007-08-26 19:42:50 +0200
-+++ bin/g-cpan	2007-08-26 19:45:59 +0200
+--- bin/g-cpan~	2007-08-27 19:42:38 +0200
++++ bin/g-cpan	2007-08-27 19:44:43 +0200
 @@ -1,4 +1,4 @@
 -#!/usr/bin/perl -w
 +#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl -w
@@ -35,7 +35,17 @@
          }
      );
      logconfig(-driver => $log_driver);
-@@ -210,7 +210,7 @@
+@@ -103,7 +103,8 @@
+ 
+ print_warn("*WARNING* - logging debug output can create large logs") if ($log && $debug);
+ 
+-if (($install || $ask || $buildpkg || $buildpkgonly || $upgrade) && $> > 0 && !$pretend)
++#if (($install || $ask || $buildpkg || $buildpkgonly || $upgrade) && $> > 0 && !$pretend)
++if (($install || $ask || $buildpkg || $buildpkgonly || $upgrade) && !$pretend)
+ {
+     print_err("INSUFFICIENT PERMISSIONS TO RUN EMERGE");
+     logerr("ERROR - INSUFFICIENT PERMISSIONS TO RUN EMERGE");
+@@ -210,7 +211,7 @@
  
  # Confirm that there is an /etc/portage/categories file
  # and that we have an entry for perl-gcpan in it.
@@ -44,7 +54,7 @@
  if (-f "$cat_file")
  {
  
-@@ -493,7 +493,7 @@
+@@ -493,7 +494,7 @@
      {
  
              # First, check to see if this came with the core perl install
@@ -53,7 +63,7 @@
              my $s_perl   = new DirHandle($pkgdbdir);
              my $eb       = $ebuild_wanted;
              $eb =~ s{::}{/}gxs;
-@@ -626,8 +626,8 @@
+@@ -626,8 +627,8 @@
              if ($overlay) { @overlays = split ' ', $overlay }
              else
              {
@@ -64,9 +74,51 @@
              }
              foreach my $target_dir (@overlays)
              {
-
---- lib/Gentoo/Portage.pm~	2007-08-26 20:13:03 +0200
-+++ lib/Gentoo/Portage.pm	2007-08-26 20:14:02 +0200
+--- lib/Gentoo/CPAN.pm~	2007-08-27 19:45:00 +0200
++++ lib/Gentoo/CPAN.pm	2007-08-27 19:51:02 +0200
+@@ -34,19 +34,19 @@
+ use constant CPAN_CFG_NAME => 'MyConfig.pm';
+ 
+ # defaults tools for CPAN Config
+-use constant DEF_FTP_PROG      => '/usr/bin/ftp';
+-use constant DEF_GPG_PROG      => '/usr/bin/gpg';
+-use constant DEF_GZIP_PROG     => '/bin/gzip';
+-use constant DEF_LYNX_PROG     => '/usr/bin/lynx';
+-use constant DEF_MAKE_PROG     => '/usr/bin/make';
+-use constant DEF_NCFTPGET_PROG => '/usr/bin/ncftpget';
+-use constant DEF_LESS_PROG     => '/usr/bin/less';
+-use constant DEF_TAR_PROG      => '/bin/tar';
+-use constant DEF_UNZIP_PROG    => '/usr/bin/unzip';
+-use constant DEF_WGET_PROG     => '/usr/bin/wget';
+-use constant DEF_BASH_PROG     => '/bin/bash';
++use constant DEF_FTP_PROG      => '@GENTOO_PORTAGE_EPREFIX@/usr/bin/ftp';
++use constant DEF_GPG_PROG      => '@GENTOO_PORTAGE_EPREFIX@/usr/bin/gpg';
++use constant DEF_GZIP_PROG     => '@GENTOO_PORTAGE_EPREFIX@/bin/gzip';
++use constant DEF_LYNX_PROG     => '@GENTOO_PORTAGE_EPREFIX@/usr/bin/lynx';
++use constant DEF_MAKE_PROG     => '@GENTOO_PORTAGE_EPREFIX@/usr/bin/make';
++use constant DEF_NCFTPGET_PROG => '@GENTOO_PORTAGE_EPREFIX@/usr/bin/ncftpget';
++use constant DEF_LESS_PROG     => '@GENTOO_PORTAGE_EPREFIX@/usr/bin/less';
++use constant DEF_TAR_PROG      => '@GENTOO_PORTAGE_EPREFIX@/bin/tar';
++use constant DEF_UNZIP_PROG    => '@GENTOO_PORTAGE_EPREFIX@/usr/bin/unzip';
++use constant DEF_WGET_PROG     => '@GENTOO_PORTAGE_EPREFIX@/usr/bin/wget';
++use constant DEF_BASH_PROG     => '@GENTOO_PORTAGE_EPREFIX@/bin/bash';
+ 
+-unless ( $ENV{TMPDIR} ) { $ENV{TMPDIR} = '/var/tmp/g-cpan' }
++unless ( $ENV{TMPDIR} ) { $ENV{TMPDIR} = '@GENTOO_PORTAGE_EPREFIX@/var/tmp/g-cpan' }
+ 
+ sub new {
+     my $proto = shift;
+@@ -538,7 +538,7 @@
+   'make' => q[$make_prog],
+   'make_arg' => q[],
+   'make_install_arg' => q[],
+-  'make_install_make_command' => q[/usr/bin/make],
++  'make_install_make_command' => q[$make_prog],
+   'makepl_arg' => q[],
+   'mbuild_arg' => q[],
+   'mbuild_install_arg' => q[],
+--- lib/Gentoo/Portage.pm~	2007-08-27 19:42:52 +0200
++++ lib/Gentoo/Portage.pm	2007-08-27 19:43:02 +0200
 @@ -47,7 +47,7 @@
          return($var =~ /^$envvar$/ );
      };

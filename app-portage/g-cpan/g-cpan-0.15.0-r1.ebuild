@@ -24,7 +24,7 @@ src_unpack() {
 		unpack ${A}
 		cd "${S}"
 		epatch "${FILESDIR}"/${P}-prefix.patch
-		eprefixify bin/g-cpan lib/Gentoo/Portage.pm
+		eprefixify bin/g-cpan lib/Gentoo/Portage.pm lib/Gentoo/CPAN.pm
 }
 
 src_install() {
