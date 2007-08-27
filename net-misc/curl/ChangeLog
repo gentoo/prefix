@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/curl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.101 2007/08/10 12:42:13 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.102 2007/08/26 01:13:21 dragonheart Exp $
+
+  26 Aug 2007; Daniel Black <dragonheart@gentoo.org>
+  -files/curl-7.15.1-test46.patch, -files/curl-7.15-libtftp.patch,
+  -curl-7.15.1-r1.ebuild:
+  purge vulnerable versions (sec bug #184934)
 
   10 Aug 2007; Christoph Mende <angelos@gentoo.org> curl-7.16.4.ebuild:
   Stable on amd64 wrt bug #187731
