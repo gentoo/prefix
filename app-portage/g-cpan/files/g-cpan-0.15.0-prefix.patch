@@ -1,5 +1,5 @@
---- bin/g-cpan~	2007-08-27 19:42:38 +0200
-+++ bin/g-cpan	2007-08-27 19:44:43 +0200
+--- bin/g-cpan~	2007-08-27 20:40:33 +0200
++++ bin/g-cpan	2007-08-27 20:41:12 +0200
 @@ -1,4 +1,4 @@
 -#!/usr/bin/perl -w
 +#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl -w
@@ -35,17 +35,26 @@
          }
      );
      logconfig(-driver => $log_driver);
-@@ -103,7 +103,8 @@
+@@ -103,12 +103,12 @@
  
  print_warn("*WARNING* - logging debug output can create large logs") if ($log && $debug);
  
 -if (($install || $ask || $buildpkg || $buildpkgonly || $upgrade) && $> > 0 && !$pretend)
+-{
+-    print_err("INSUFFICIENT PERMISSIONS TO RUN EMERGE");
+-    logerr("ERROR - INSUFFICIENT PERMISSIONS TO RUN EMERGE");
+-    exit();
+-}
 +#if (($install || $ask || $buildpkg || $buildpkgonly || $upgrade) && $> > 0 && !$pretend)
-+if (($install || $ask || $buildpkg || $buildpkgonly || $upgrade) && !$pretend)
++#{
++#    print_err("INSUFFICIENT PERMISSIONS TO RUN EMERGE");
++#    logerr("ERROR - INSUFFICIENT PERMISSIONS TO RUN EMERGE");
++#    exit();
++#}
+ 
+ if (!$install && defined($ask))
  {
-     print_err("INSUFFICIENT PERMISSIONS TO RUN EMERGE");
-     logerr("ERROR - INSUFFICIENT PERMISSIONS TO RUN EMERGE");
-@@ -210,7 +211,7 @@
+@@ -210,7 +210,7 @@
  
  # Confirm that there is an /etc/portage/categories file
  # and that we have an entry for perl-gcpan in it.
@@ -54,7 +63,7 @@
  if (-f "$cat_file")
  {
  
-@@ -493,7 +494,7 @@
+@@ -493,7 +493,7 @@
      {
  
              # First, check to see if this came with the core perl install
@@ -63,7 +72,7 @@
              my $s_perl   = new DirHandle($pkgdbdir);
              my $eb       = $ebuild_wanted;
              $eb =~ s{::}{/}gxs;
-@@ -626,8 +627,8 @@
+@@ -626,8 +626,8 @@
              if ($overlay) { @overlays = split ' ', $overlay }
              else
              {
@@ -74,6 +83,15 @@
              }
              foreach my $target_dir (@overlays)
              {
+@@ -671,6 +671,8 @@
+ 
+ inherit perl-module
+ 
++EAPI="prefix"
++
+ S=\${WORKDIR}/$gcpan_run->{'cpan'}{lc($original_ebuild)}{'portage_sdir'}
+ 
+ DESCRIPTION="$gcpan_run->{'cpan'}{lc($original_ebuild)}{'description'}"
 --- lib/Gentoo/CPAN.pm~	2007-08-27 19:45:00 +0200
 +++ lib/Gentoo/CPAN.pm	2007-08-27 19:51:02 +0200
 @@ -34,19 +34,19 @@
