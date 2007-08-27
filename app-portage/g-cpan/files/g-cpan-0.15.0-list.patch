@@ -1,0 +1,11 @@
+--- bin/g-cpan~	2007-08-27 21:20:07 +0200
++++ bin/g-cpan	2007-08-27 21:21:25 +0200
+@@ -325,7 +325,7 @@
+     }
+ 
+ }
+-elsif ($generate || $pretend)
++elsif ($generate || $list || $pretend)
+ {
+     print_err("The option you have chosen isn't supported without a configured overlay.\n");
+     exit();
