@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.21 2007/07/25 04:46:01 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.22 2007/08/27 19:41:03 ulm Exp $
 #
 # Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
 # Copyright 2002-2003 Matthew Kennedy <mkennedy@gentoo.org>
@@ -39,7 +39,7 @@ RDEPEND=">=virtual/emacs-${VERSION}"
 IUSE=""
 
 if [ "${SIMPLE_ELISP}" = 't' ]; then
-	S="${WORKDIR}/"
+	S="${WORKDIR}"
 fi
 
 elisp_pkg_setup() {

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.9 2007/08/20 21:30:56 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.10 2007/08/27 11:19:51 jokey Exp $
 
 # ========================================================================
 #
@@ -68,8 +68,8 @@ DEPEND="adabas? ( >=dev-db/unixODBC-1.8.13 )
 		imap? ( virtual/imap-c-client )
 		iodbc? ( dev-db/libiodbc >=dev-db/unixODBC-1.8.13 )
 		kerberos? ( virtual/krb5 )
-		ldap? ( >=net-nds/openldap-1.2.11 )
-		ldap-sasl? ( dev-libs/cyrus-sasl >=net-nds/openldap-1.2.11 )
+		ldap? ( !oci8? ( >=net-nds/openldap-1.2.11 ) )
+		ldap-sasl? ( !oci8? ( dev-libs/cyrus-sasl >=net-nds/openldap-1.2.11 ) )
 		libedit? ( || ( sys-freebsd/freebsd-lib dev-libs/libedit ) )
 		mcve? ( >=dev-libs/openssl-0.9.7 )
 		mhash? ( app-crypt/mhash )
@@ -200,6 +200,7 @@ php5_2-sapi_check_use_flags() {
 	# Direct USE conflicts
 	phpconfutils_use_conflict "gd" "gd-external"
 	phpconfutils_use_conflict "oci8" "oci8-instant-client"
+	phpconfutils_use_conflict "oci8" "ldap-sasl"
 	phpconfutils_use_conflict "pdo" "pdo-external"
 	phpconfutils_use_conflict "zip" "zip-external"
 	phpconfutils_use_conflict "qdbm" "gdbm"
@@ -506,8 +507,12 @@ php5_2-sapi_src_compile() {
 
 	# LDAP support
 	if use ldap || phpconfutils_usecheck ldap ; then
-		phpconfutils_extension_with		"ldap"			"ldap"			1
-		phpconfutils_extension_with		"ldap-sasl"		"ldap-sasl"		0
+		if use oci8 ; then
+			phpconfutils_extension_with	"ldap"			"ldap"			1 "${ORACLE_HOME}"
+		else
+			phpconfutils_extension_with	"ldap"			"ldap"			1
+			phpconfutils_extension_with	"ldap-sasl"		"ldap-sasl"		0
+		fi
 	fi
 
 	# MySQL support

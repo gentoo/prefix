@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-source-r1.eclass,v 1.11 2007/07/21 11:23:11 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-source-r1.eclass,v 1.12 2007/08/27 11:16:13 jokey Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
 # Author: Stuart Herbert <stuart@gentoo.org>
@@ -73,12 +73,12 @@ php-ext-source-r1_src_install() {
 
 	# Let's put the default module away
 	insinto "${EXT_DIR}"
-	newins "${WORKDIR}/${PHP_EXT_NAME}-default.so" "${PHP_EXT_NAME}.so"
+	newins "${WORKDIR}/${PHP_EXT_NAME}-default.so" "${PHP_EXT_NAME}.so" || die "Unable to install extension"
 
 	# And now the versioned one, if it exists
 	if has_concurrentmodphp ; then
 		insinto "${EXT_DIR}-versioned"
-		newins "${WORKDIR}/${PHP_EXT_NAME}-versioned.so" "${PHP_EXT_NAME}.so"
+		newins "${WORKDIR}/${PHP_EXT_NAME}-versioned.so" "${PHP_EXT_NAME}.so" || die "Unable to install extension"
 	fi
 
 	php-ext-base-r1_src_install

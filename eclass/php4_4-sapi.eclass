@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php4_4-sapi.eclass,v 1.37 2007/08/18 12:46:42 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php4_4-sapi.eclass,v 1.38 2007/08/27 11:11:39 jokey Exp $
 
 # ========================================================================
 #
@@ -69,7 +69,7 @@ DEPEND="adabas? ( >=dev-db/unixODBC-1.8.13 )
 		iodbc? ( dev-db/libiodbc >=dev-db/unixODBC-1.8.13 )
 		java-internal? ( >=virtual/jdk-1.4.2 dev-java/java-config )
 		kerberos? ( virtual/krb5 )
-		ldap? ( >=net-nds/openldap-1.2.11 )
+		ldap? ( !oci8? ( >=net-nds/openldap-1.2.11 ) )
 		libedit? ( || ( sys-freebsd/freebsd-lib dev-libs/libedit ) )
 		mcal? ( >=dev-libs/libmcal-0.7-r5 )
 		mcve? ( net-libs/libmonetra >=dev-libs/openssl-0.9.7 )
@@ -491,7 +491,11 @@ php4_4-sapi_src_compile() {
 
 	# LDAP support
 	if use ldap || phpconfutils_usecheck ldap ; then
-		phpconfutils_extension_with	"ldap"		"ldap"			1
+		if use oci8 ; then
+			phpconfutils_extension_with	"ldap"		"ldap"		1 "${ORACLE_HOME}"
+		else
+			phpconfutils_extension_with	"ldap"		"ldap"		1
+		fi
 	fi
 
 	# MySQL support

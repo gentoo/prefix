@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vmware.eclass,v 1.27 2007/08/22 00:24:41 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vmware.eclass,v 1.28 2007/08/27 20:06:50 ikelos Exp $
 
 # This eclass is for all vmware-* ebuilds in the tree and should contain all
 # of the common components across the multiple packages.
@@ -13,7 +13,7 @@ EXPORT_FUNCTIONS pkg_preinst pkg_postinst pkg_setup src_install src_unpack pkg_p
 
 DEPEND="x11-misc/shared-mime-info"
 
-export ANY_ANY="vmware-any-any-update112"
+export ANY_ANY="vmware-any-any-update113"
 #export TOOLS_ANY="vmware-tools-any-update1"
 export VMWARE_GROUP=${VMWARE_GROUP:-vmware}
 export VMWARE_INSTALL_DIR=/opt/${PN//-//}

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.26 2007/07/25 05:07:32 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.27 2007/08/27 19:41:03 ulm Exp $
 #
 # Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
@@ -269,7 +269,7 @@ automatically, you can add a line like this:
 to ${EPREFIX}/usr/share/emacs/site-lisp/site-start.el.  Alternatively, that line
 can be added by individual users to their initialisation files, or for
 greater flexibility, users can select which of the package-specific
-initialisation files in ${EPREFIX}/usr/share/emacs/site-lisp to load.
+initialisation files in ${EPREFIX}/usr/share/emacs/site-lisp/ to load.
 EOF
 		echo
 	fi
