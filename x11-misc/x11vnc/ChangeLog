@@ -1,6 +1,11 @@
 # ChangeLog for x11-misc/x11vnc
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/ChangeLog,v 1.48 2007/08/01 01:09:59 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/ChangeLog,v 1.49 2007/08/27 11:54:58 swegener Exp $
+
+  27 Aug 2007; Sven Wegener <swegener@gentoo.org> -x11vnc-0.8.2.ebuild,
+  -x11vnc-0.8.2-r1.ebuild, -x11vnc-0.8.3.ebuild, -x11vnc-0.8.4.ebuild,
+  -x11vnc-0.9.ebuild:
+  Cleanup.
 
   01 Aug 2007; Christoph Mende <angelos@gentoo.org> x11vnc-0.9.1.ebuild:
   Stable on amd64 wrt bug #179237
