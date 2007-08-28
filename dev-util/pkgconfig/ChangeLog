@@ -1,6 +1,21 @@
 # ChangeLog for dev-util/pkgconfig
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconfig/ChangeLog,v 1.62 2007/06/27 05:51:50 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconfig/ChangeLog,v 1.64 2007/08/27 17:28:55 dang Exp $
+
+  27 Aug 2007; Daniel Gryniewicz <dang@gentoo.org> -pkgconfig-0.19.ebuild,
+  -pkgconfig-0.21.ebuild:
+  Remove intermediate versions
+
+*pkgconfig-0.22 (27 Aug 2007)
+
+  27 Aug 2007; Daniel Gryniewicz <dang@gentoo.org> +pkgconfig-0.22.ebuild:
+  Bump to 0.22
+   - Make Requires.private a whole lot more useful by traversing the
+     whole tree, not just the top-level, for Cflags.
+   - Add support for using the system glib.
+   - Update URL to pkg-config website
+   - Fix some win32 problems.
+   - Other minor fixes.
 
   27 Jun 2007; Markus Rothe <corsair@gentoo.org> pkgconfig-0.21-r1.ebuild:
   Stable on ppc64; bug #182981
