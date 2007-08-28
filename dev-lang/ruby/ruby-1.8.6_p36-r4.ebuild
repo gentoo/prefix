@@ -21,7 +21,7 @@ SRC_URI="ftp://ftp.ruby-lang.org/pub/ruby/1.8/${MY_P}.tar.gz
 
 LICENSE="Ruby"
 SLOT="1.8"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="cjk debug doc examples ipv6 rubytests socks5 threads tk"
 
 RDEPEND=">=sys-libs/gdbm-1.8.0
