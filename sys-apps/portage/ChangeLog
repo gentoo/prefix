@@ -2,6 +2,13 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.7716 (28 Aug 2007)
+
+  28 Aug 2007; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.7708.ebuild, +portage-2.2.00.7716.ebuild:
+  Previous version didn't include a special field in binary packages, this
+  version does.
+
 *portage-2.2.00.7708 (27 Aug 2007)
 
   27 Aug 2007; Fabian Groffen <grobian@gentoo.org>
