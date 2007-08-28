@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.224 2007/08/20 11:40:20 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.225 2007/08/27 17:16:58 jurek Exp $
+
+  27 Aug 2007; Jurek Bartuszek <jurek@gentoo.org> db-4.5.20_p2.ebuild:
+  x86 stable (bug #178750)
 
   20 Aug 2007; Caleb Tennis <caleb@gentoo.org> db-1.85-r1.ebuild,
   -db-1.85-r2.ebuild, -db-4.2.52_p2-r1.ebuild, -db-4.6.18.ebuild:
