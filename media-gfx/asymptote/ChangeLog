@@ -1,6 +1,15 @@
 # ChangeLog for media-gfx/asymptote
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/ChangeLog,v 1.10 2007/08/03 06:50:43 centic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/ChangeLog,v 1.11 2007/08/28 21:13:22 centic Exp $
+
+*asymptote-1.33 (28 Aug 2007)
+
+  28 Aug 2007; Dominik Stadler <centic@gentoo.org>
+  +files/asymptote-1.33-configure-ac.patch,
+  +files/asymptote-1.33-makefile.patch, asymptote-1.29.ebuild,
+  +asymptote-1.33.ebuild:
+  Add version 1.33 including fix for boehm-gc 7.0, fixes Bug 188518, thanks to
+  Peter Ansell for the patches. Also stated boehm-gc < 7.0 for 1.29
 
   03 Aug 2007; Dominik Stadler <centic@gentoo.org> asymptote-1.26.ebuild,
   asymptote-1.29.ebuild:
