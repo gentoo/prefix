@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/treecc
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/treecc/ChangeLog,v 1.25 2007/06/27 09:57:27 jurek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/treecc/ChangeLog,v 1.27 2007/08/28 23:27:35 jurek Exp $
+
+  28 Aug 2007; Jurek Bartuszek <jurek@gentoo.org> treecc-0.3.10.ebuild:
+  Added secondary SRC_URI
+
+*treecc-0.3.10 (19 Aug 2007)
+
+  19 Aug 2007; Jurek Bartuszek <jurek@gentoo.org> +treecc-0.3.10.ebuild:
+  Version bump
 
   27 Jun 2007; Jurek Bartuszek <jurek@gentoo.org> treecc-0.3.4.ebuild,
   treecc-0.3.6.ebuild, treecc-0.3.8.ebuild:
