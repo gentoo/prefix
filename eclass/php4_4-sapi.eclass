@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php4_4-sapi.eclass,v 1.38 2007/08/27 11:11:39 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php4_4-sapi.eclass,v 1.39 2007/08/28 20:25:18 hoffie Exp $
 
 # ========================================================================
 #
@@ -159,24 +159,24 @@ php4_4-sapi_check_use_flags() {
 	phpconfutils_use_depend_any "exif" "gd" "gd" "gd-external"
 
 	# Simple USE dependencies
-	phpconfutils_use_depend_all "xpm"			"gd"
-	phpconfutils_use_depend_all "gd"			"zlib"
-	phpconfutils_use_depend_all "xml"			"zlib"
-	phpconfutils_use_depend_all "xmlrpc"			"iconv"
-	phpconfutils_use_depend_all "xsl"			"iconv"
-	phpconfutils_use_depend_all "java-external"		"session"
-	phpconfutils_use_depend_all "mcve"			"ssl"
-	phpconfutils_use_depend_all "suhosin"			"unicode"
-	phpconfutils_use_depend_all "adabas"			"odbc"
-	phpconfutils_use_depend_all "birdstep"			"odbc"
-	phpconfutils_use_depend_all "dbmaker"			"odbc"
-	phpconfutils_use_depend_all "empress-bcs"		"odbc" "empress"
-	phpconfutils_use_depend_all "empress"			"odbc"
-	phpconfutils_use_depend_all "esoob"			"odbc"
-	phpconfutils_use_depend_all "db2"			"odbc"
-	phpconfutils_use_depend_all "iodbc"			"odbc"
-	phpconfutils_use_depend_all "sapdb"			"odbc"
-	phpconfutils_use_depend_all "solid"			"odbc"
+	phpconfutils_use_depend_all "xpm"		"gd"
+	phpconfutils_use_depend_all "gd"		"zlib"
+	phpconfutils_use_depend_all "xml"		"zlib"
+	phpconfutils_use_depend_all "xmlrpc"		"iconv"
+	phpconfutils_use_depend_all "xsl"		"iconv"
+	phpconfutils_use_depend_all "java-external"	"session"
+	phpconfutils_use_depend_all "mcve"		"ssl"
+	phpconfutils_use_depend_all "suhosin"		"unicode"
+	phpconfutils_use_depend_all "adabas"		"odbc"
+	phpconfutils_use_depend_all "birdstep"		"odbc"
+	phpconfutils_use_depend_all "dbmaker"		"odbc"
+	phpconfutils_use_depend_all "empress-bcs"	"odbc" "empress"
+	phpconfutils_use_depend_all "empress"		"odbc"
+	phpconfutils_use_depend_all "esoob"		"odbc"
+	phpconfutils_use_depend_all "db2"		"odbc"
+	phpconfutils_use_depend_all "iodbc"		"odbc"
+	phpconfutils_use_depend_all "sapdb"		"odbc"
+	phpconfutils_use_depend_all "solid"		"odbc"
 
 	# Direct USE conflicts
 	phpconfutils_use_conflict "gd" 			"gd-external"
@@ -397,7 +397,7 @@ php4_4-sapi_src_compile() {
 	phpconfutils_extension_enable	"ftp"			"ftp"			1
 	phpconfutils_extension_with	"gettext"		"nls"			1
 	phpconfutils_extension_with	"gmp"			"gmp"			1
-	phpconfutils_extension_with	"hwapi"			"hyperwave-api"	1
+	phpconfutils_extension_with	"hwapi"			"hyperwave-api"		1
 	phpconfutils_extension_with	"iconv"			"iconv"			0
 	phpconfutils_extension_with	"informix"		"informix"		1
 	phpconfutils_extension_disable	"ipv6"			"ipv6"			0
