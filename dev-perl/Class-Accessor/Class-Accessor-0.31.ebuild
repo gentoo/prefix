@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/K/KA/KASEI/${P}.tar.gz"
 
 LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 SRC_TEST="do"
 DEPEND="dev-lang/perl"
