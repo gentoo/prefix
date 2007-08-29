@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha34.ebuild,v 1.1 2007/08/24 19:10:26 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha34.ebuild,v 1.2 2007/08/28 20:08:46 drac Exp $
 
 EAPI="prefix"
 
@@ -28,6 +28,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-2.01.01a03-warnings.patch
+	epatch "${FILESDIR}"/${P}-asneeded.patch
 
 	# ppc-macos support
 	cd "${S}"/DEFAULTS
