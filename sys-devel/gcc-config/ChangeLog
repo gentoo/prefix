@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/gcc-config
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.164 2007/06/24 18:16:32 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.165 2007/08/26 03:21:02 vapier Exp $
+
+*gcc-config-1.4.0-r1 (26 Aug 2007)
+
+  26 Aug 2007; Mike Frysinger <vapier@gentoo.org> files/gcc-config-1.4.0,
+  files/wrapper-1.5.0.c, +gcc-config-1.4.0-r1.ebuild:
+  Add a quick symlink for the native compiler gcc env.d so that by default,
+  path look ups are fast even when working under a reduced PATH #190260 by
+  Robert Buchholz.
 
   24 Jun 2007; Piotr Jaroszyński <peper@gentoo.org>
   gcc-config-1.4.0.ebuild:
