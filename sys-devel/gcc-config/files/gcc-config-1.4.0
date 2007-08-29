@@ -738,7 +738,7 @@ if [[ ${DOIT} != "get_current_profile" ]] ; then
 		LDPATH=$(source "${GCC_ENV_D}/${CC_COMP}"; echo ${LDPATH})
 		echo ${LDPATH} | \
  			${SED} -e "s|${EPREFIX}/*|/|g" | \
-			${AWK} -F/ '{ print "/"$2"/"$3"/"$4"/" }'
+			awk -F/ '{ print "/"$2"/"$3"/"$4"/" }'
 	)
 
 	CC_COMP_VERSION=$(chop_gcc_ver_spec ${CC_COMP})
