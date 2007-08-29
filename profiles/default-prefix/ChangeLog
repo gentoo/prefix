@@ -3,6 +3,10 @@
 # $Header: $
 
   29 Aug 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Update masking comment for gcc-config, it works now, but doesn't play nice
+  with our binutils-config (no GCC found on your system!)
+
+  29 Aug 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask gcc-config-1.4.0-r1 because it's completely broken which I didn't
   noticed due to my lack of proper testing
 
