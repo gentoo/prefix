@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2991 2007/08/24 23:18:51 marineam Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2996 2007/08/28 20:38:56 cardoe Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -31,7 +31,6 @@ app-admin/webalizer:search - Include the search patch
 app-admin/webalizer:xtended - Include the 404 extension
 app-admin/webmin:webmin-minimal - Install the minimal webmin distribution
 app-antivirus/clamav:logrotate - Install logrotate script for clamav logs
-app-antivirus/clamav:onaccess - Enable support for on-access scan using dazuko kernel module.
 app-arch/dump:ermt - encrypted rmt support
 app-arch/libarchive:xattr - if you want extended attributes enabled
 app-arch/pdv:nomotif - Disable motif frontend.
@@ -625,6 +624,7 @@ dev-util/monodevelop:aspnet - Enable ASP.NET support
 dev-util/monodevelop:aspnetedit - Enable ASP.NET visual designer support
 dev-util/monodevelop:boo - Enable support for the boo programming language
 dev-util/monodevelop:subversion - Enable subversion support
+dev-util/netbeans:c++ - Adds Netbeans C/C++ Pack
 dev-util/nsis:config-log - Enable the logging facility (useful in debugging installers)
 dev-util/pbuilder:uml - Enable pbuilder user mode linux support
 dev-util/strace:aio - Enable libaio support
@@ -960,6 +960,7 @@ media-libs/sdl-mixer:timidity - Add support for timidity
 media-libs/sdl-sound:physfs - Enable physfs support
 media-libs/sge:image - enable sdl-image support
 media-libs/speex:vorbis-psy - Enable Vorbis-style psychoacoustics
+media-libs/speex:wideband - Enable Wideband codec
 media-libs/svgalib:no-helper - Do not build the helper kernel module
 media-libs/urt:gs - Add support for postscript
 media-libs/win32codecs:real - Installs the real video codecs
@@ -1102,6 +1103,7 @@ media-tv/mythtv:hdhomerun - Enable support for HDHomeRun boxes
 media-tv/mythtv:iptv - Enables support for IP TV based devices
 media-tv/mythtv:ivtv - Enables ivtv support
 media-tv/mythtv:lcd - Enable LCD display support using lcdproc
+media-tv/mythtv:opengl - Use OpenGL for vsync
 media-tv/mythtv:xvmc - Support for XVideo Motion Compensation (accelerated mpeg playback)
 media-tv/tvbrowser:themes - Install extra theme packs
 media-tv/xawtv:xext - Enable use of XFree extensions (DGA,VidMode,DPMS)
@@ -1574,7 +1576,6 @@ net-misc/oidentd:masquerade - Enable support for masqueraded/NAT connections
 net-misc/openssh:X509 - Adds support for X.509 certificate authentication
 net-misc/openssh:chroot - Enable chrooting support
 net-misc/openssh:hpn - Enable high performance ssh
-net-misc/openssh:sftplogging - Enables sftplogging patch
 net-misc/openswan:extra-algorithms - Include additional algorithms such as Blowfish, Twofish and Serpent
 net-misc/openswan:weak-algorithms - Include weak algorithms such as DH1 and 1DES
 net-misc/openvpn:iproute2 - Enabled iproute2 support instead of net-tools

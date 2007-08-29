@@ -2,6 +2,7 @@
 ## These ATOMS are printed with a standard 'emerge info' in
 ## portage as of 2.0.51-r5. Do not overcrowd the output please.
 ##
+app-shells/bash
 sys-devel/autoconf
 sys-devel/automake
 virtual/os-headers
@@ -15,3 +16,6 @@ dev-python/pycrypto
 sys-devel/gcc-config
 app-admin/eselect-compiler
 dev-java/java-config
+# NOTE: portage-2.2 will no longer list /etc/gentoo-release,
+# so this is not redundant
+sys-apps/baselayout
