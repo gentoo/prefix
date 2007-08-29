@@ -1,6 +1,41 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.510 2007/08/25 13:48:14 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.516 2007/08/28 22:58:31 jurek Exp $
+
+  28 Aug 2007; Jurek Bartuszek <jurek@gentoo.org>
+  mplayer-1.0_rc1_p20070622-r4.ebuild:
+  x86 stable (bug #190531)
+
+  28 Aug 2007; Steve Dibb <beandog@gentoo.org> -files/mplayer.desktop:
+  Remove unused mplayer.desktop
+
+*mplayer-1.0_rc1_p20070824 (28 Aug 2007)
+*mplayer-1.0_rc1_p20070622-r4 (28 Aug 2007)
+*mplayer-1.0_rc1_p20070622-r1 (28 Aug 2007)
+
+  28 Aug 2007; Steve Dibb <beandog@gentoo.org>
+  +mplayer-1.0_rc1_p20070622-r1.ebuild,
+  +mplayer-1.0_rc1_p20070622-r4.ebuild, +mplayer-1.0_rc1_p20070824.ebuild:
+  Fix versioning scheme of ebuilds, bug 175688
+
+  28 Aug 2007; Steve Dibb <beandog@gentoo.org>
+  -files/mplayer-1.0_rc1-asmrules.patch,
+  -files/mplayer-undefined-reference-fix.patch, -mplayer-1.0_rc1-r2.ebuild,
+  -mplayer-1.0.20070321.ebuild, -mplayer-1.0.20070321-r1.ebuild,
+  -mplayer-1.0.20070427.ebuild, -mplayer-1.0.20070622-r3.ebuild,
+  -mplayer-1.0.20070814.ebuild:
+  Remove old (some with security bugs) versions of mplayer w/patches, in
+  anticipation of naming scheme reboot
+
+  28 Aug 2007; Steve Dibb <beandog@gentoo.org>
+  mplayer-1.0.20070622-r4.ebuild:
+  amd64 stable, bug 190531
+
+*mplayer-1.0.20070622-r4 (28 Aug 2007)
+
+  28 Aug 2007; Steve Dibb <beandog@gentoo.org>
+  +files/mplayer-libdvdcss.patch, +mplayer-1.0.20070622-r4.ebuild:
+  Backport libdvdcss patch from upstream, bug 189665
 
 *mplayer-1.0.20070824 (25 Aug 2007)
 
