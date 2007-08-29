@@ -1,6 +1,9 @@
 # ChangeLog for x11-wm/metacity
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.193 2007/08/11 15:07:46 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.194 2007/08/28 16:45:51 jer Exp $
+
+  28 Aug 2007; Jeroen Roovers <jer@gentoo.org> metacity-2.18.5.ebuild:
+  Stable for HPPA (bug #185823).
 
   11 Aug 2007; Andrej Kacian <ticho@gentoo.org> metacity-2.18.5.ebuild:
   Stable on x86, bug #185823.

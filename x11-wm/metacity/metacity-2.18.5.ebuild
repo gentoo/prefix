@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/metacity-2.18.5.ebuild,v 1.7 2007/08/25 13:52:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/metacity-2.18.5.ebuild,v 1.8 2007/08/28 16:45:51 jer Exp $
 
 EAPI="prefix"
 
