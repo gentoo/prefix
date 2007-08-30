@@ -1,6 +1,14 @@
 # ChangeLog for gnome-base/gnome-menus
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/ChangeLog,v 1.79 2007/08/28 18:49:53 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/ChangeLog,v 1.80 2007/08/29 07:14:45 leio Exp $
+
+*gnome-menus-2.18.3 (29 Aug 2007)
+
+  29 Aug 2007; Mart Raudsepp <leio@gentoo.org>
+  +files/gnome-menus-2.18.3-other_category_fix.patch,
+  +gnome-menus-2.18.3.ebuild:
+  Version bump for some rare crash cases. Also include a patch that makes the
+  "Other" submenu really show all the menu items that are not shown elsewhere
 
   28 Aug 2007; Jeroen Roovers <jer@gentoo.org> gnome-menus-2.18.2.ebuild:
   Stable for HPPA (bug #185823).
