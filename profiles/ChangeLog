@@ -1,6 +1,14 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.601 2007/08/27 19:56:16 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.603 2007/08/29 19:16:35 ulm Exp $
+
+  29 Aug 2007; Ulrich Mueller <ulm@gentoo.org> updates/2Q-2007,
+  updates/3Q-2007:
+  Slotmove for app-editors/emacs-cvs: move ebuilds for unicode-2 branch to
+  slot "23-unicode".
+
+  29 Aug 2007; Saleem Abdulrasool <compnerd@gentoo.org> use.local.desc:
+  Add pidgin useflag for nautilus-sendto
 
   27 Aug 2007; Chris Gianelloni <wolf31o2@gentoo.org> profiles.desc:
   Marked alpha/x86 2.4 sub-profiles as dev from stable to reduce their impact

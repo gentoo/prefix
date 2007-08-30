@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2996 2007/08/28 20:38:56 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2999 2007/08/29 07:27:57 mr_bones_ Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -730,6 +730,7 @@ gnome-extra/libgda:mdb - Enable Microsoft Access DB support for GnomeDB.
 gnome-extra/libgda:xbase - Enable support for xbase databases (dBase, FoxPro, etc)
 gnome-extra/nautilus-sendto:gaim - Build a gaim plugin for nautilus-sendto
 gnome-extra/nautilus-sendto:gajim - Enable support for gajim client
+gnome-extra/nautilus-sendto:pidgin - Enable support for pidgin
 gnome-extra/nautilus-sendto:sylpheed - Enable support for sylpheed mail client
 gnome-extra/nautilus-sendto:thunderbird - Enable support for thunderbird
 gnome-extra/sensors-applet:hddtemp - Enable support the hddtemp daemon
@@ -930,9 +931,7 @@ media-libs/alsa-lib:midi - Enables MIDI output support (both Hardware and Softwa
 media-libs/cal3d:16bit-indices - Enables use of 16bit indices
 media-libs/coin:fontconfig - Support for managing custom fonts via fontconfig.
 media-libs/devil:allegro - Add support for Allegro
-media-libs/farsight:gnet - Support for the gnet network library
 media-libs/farsight:jingle - Enables voice calls for jabber
-media-libs/farsight:sofia-sip - Enable SIP support utilizing the sofia-sip library
 media-libs/gd:fontconfig - Support for managing custom fonts via fontconfig.
 media-libs/giflib:rle - Build converters for RLE format (utah raster toolkit)
 media-libs/glide-v3:voodoo1 - Support 3DFX Voodoo1 video cards
@@ -1178,7 +1177,6 @@ media-video/mpeg4ip:mpeg2 - Support mpeg2 in the player
 media-video/mpeg4ip:player - Build the player
 media-video/mpeg4ip:v4l2 - Enable video4linux2 support for mp4live
 media-video/mplayer:3dnowext - Enables 3dnow extensions in mplayer
-media-video/mplayer:amr - Enables Adaptive Multi-Rate Audio support
 media-video/mplayer:amrnb - Enables Adaptive Multi-Rate Audio support (Narrow Band)
 media-video/mplayer:amrwb - Enables Adaptive Multi-Rate Audio support (Wide Band)
 media-video/mplayer:bl - Enables Blinkenlights support in mplayer
