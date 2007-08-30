@@ -253,7 +253,7 @@ pkg_postrm() {
 
 pkg_postinst() {
 	local myroot
-	myroot=$(echo $ROOT | sed 's:/$::')
+	myroot=$(echo $EROOT | sed 's:/$::')
 	local mansuffix=$(ecompress --suffix)
 
 	python_makesym
