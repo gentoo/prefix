@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.16 2007/08/24 21:59:50 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.17 2007/08/29 19:33:45 rbu Exp $
+
+  29 Aug 2007; Robert Buchholz <rbu@gentoo.org> package.use.mask:
+  Masking pptp plugin for knetworkmanager
 
   24 Aug 2007; Sébastien Fabbro <bicatali@gentoo.org> use.mask:
   Mask cern in use.mask

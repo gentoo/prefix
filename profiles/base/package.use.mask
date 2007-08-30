@@ -1,5 +1,9 @@
 # This file requires >=portage-2.1.1
 
+# Robert Buchholz <rbu@gentoo.org> (29 Aug 2007)
+# PPTP Plugin doesn't work on amd64
+kde-misc/knetworkmanager pptp
+
 dev-java/sun-jdk nsplugin
 dev-java/sun-jre-bin nsplugin
 dev-java/ibm-jdk-bin nsplugin 
