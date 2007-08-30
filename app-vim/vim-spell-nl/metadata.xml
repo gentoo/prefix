@@ -2,13 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<herd>vim</herd>
-	<maintainer>
-		<email>axxo@gentoo.org</email>
-		<name>Thomas Matthijs</name>
-	</maintainer>
 	<longdescription lang="en">
 		Vim spell files for Dutch (nl). Supported character sets are UTF-8,
 		and latin-1.
 	</longdescription>
 </pkgmetadata>
-
