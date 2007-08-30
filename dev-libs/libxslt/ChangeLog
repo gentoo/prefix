@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/libxslt
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.154 2007/06/02 02:44:54 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.155 2007/08/29 15:13:01 dang Exp $
+
+*libxslt-1.1.20-r1 (29 Aug 2007)
+
+  29 Aug 2007; Daniel Gryniewicz <dang@gentoo.org>
+  +files/libxslt-1.1.20-amd64.patch, +libxslt-1.1.20-r1.ebuild:
+  Zero out allocated memory, to fix a core on amd64.  Bug #190388
 
   02 Jun 2007; Brent Baude <ranger@gentoo.org> libxslt-1.1.20.ebuild:
   Marking libxslt-1.1.20 ppc stable for bug #171107

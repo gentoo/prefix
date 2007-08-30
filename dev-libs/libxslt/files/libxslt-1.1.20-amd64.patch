@@ -1,0 +1,29 @@
+diff --exclude-from=/home/dang/.scripts/diffrc -up -ruN libxslt-1.1.20.orig/python/libxslt.c libxslt-1.1.20/python/libxslt.c
+--- libxslt-1.1.20.orig/python/libxslt.c	2007-01-15 07:51:48.000000000 -0500
++++ libxslt-1.1.20/python/libxslt.c	2007-08-29 10:36:36.000000000 -0400
+@@ -740,7 +740,7 @@ libxslt_xsltApplyStylesheet(PyObject *se
+     PyObject *pyobj_doc;
+     PyObject *pyobj_params;
+     const char **params = NULL;
+-    int len = 0, i = 0, j;
++    int len = 0, i = 0, j, params_size;
+     PyObject *name;
+     PyObject *value;
+ 
+@@ -752,13 +752,14 @@ libxslt_xsltApplyStylesheet(PyObject *se
+ 	if (PyDict_Check(pyobj_params)) {
+ 	    len = PyDict_Size(pyobj_params);
+ 	    if (len > 0) {
+-		params = (const char **) xmlMalloc((len + 1) * 2 *
+-			                           sizeof(char *));
++		params_size = (len + 1) * 2 * sizeof(char *);
++		params = (const char **) xmlMalloc(params_size);
+ 		if (params == NULL) {
+ 		    printf("libxslt_xsltApplyStylesheet: out of memory\n");
+ 		    Py_INCREF(Py_None);
+ 		    return(Py_None);
+ 		}
++		memset(params, 0, params_size);
+ 		j = 0;
+ 		while (PyDict_Next(pyobj_params, &i, &name, &value)) {
+ 		    const char *tmp;
