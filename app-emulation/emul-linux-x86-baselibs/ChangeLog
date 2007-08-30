@@ -1,6 +1,9 @@
 # ChangeLog for app-emulation/emul-linux-x86-baselibs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/ChangeLog,v 1.75 2007/07/02 13:50:50 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/ChangeLog,v 1.76 2007/08/29 17:49:23 phreak Exp $
+
+  29 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing herbs from metadata due to his retirement (see #88780 for reference).
 
   02 Jul 2007; Piotr Jaroszyński <peper@gentoo.org>
   emul-linux-x86-baselibs-2.5.5-r3.ebuild:
