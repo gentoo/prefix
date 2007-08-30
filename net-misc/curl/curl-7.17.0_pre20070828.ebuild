@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.17.0_pre20070828.ebuild,v 1.1 2007/08/28 21:32:23 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.17.0_pre20070828.ebuild,v 1.2 2007/08/29 07:11:27 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -31,7 +31,6 @@ RDEPEND="gnutls? ( net-libs/gnutls )
 # net-libs/libssh2 (masked) --with-libssh2
 # fbopenssl (not in gentoo) --with-spnego
 # krb4 http://web.mit.edu/kerberos/www/krb4-end-of-life.html
-
 
 DEPEND="${RDEPEND}
 	test? (
