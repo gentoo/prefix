@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.3_rc5-r1.ebuild,v 1.1 2007/08/15 23:20:15 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.3_rc7.ebuild,v 1.1 2007/08/29 10:58:32 ferdy Exp $
 
 EAPI="prefix"
 
@@ -22,18 +22,18 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="curl doc elibc_uclibc emacs gtk mozsha1 perl ppcsha1 tk webdav"
 
-DEPEND="dev-libs/openssl
-		sys-libs/zlib
-		!app-misc/git
-		curl? ( net-misc/curl )
-		webdav? ( dev-libs/expat )
-		emacs? ( virtual/emacs )
-		virtual/libintl"
+DEPEND="
+	dev-libs/openssl
+	!app-misc/git
+	sys-libs/zlib
+	dev-lang/perl
+	tk?     ( dev-lang/tk )
+	curl?   ( net-misc/curl )
+	webdav? ( dev-libs/expat )
+	emacs?  ( virtual/emacs )"
 RDEPEND="${DEPEND}
-		dev-lang/perl
-		perl? ( dev-perl/Error )
-		tk? ( dev-lang/tk )
-		gtk? ( >=dev-python/pygtk-2.8 )"
+	perl?   ( dev-perl/Error )
+	gtk?    ( >=dev-python/pygtk-2.8 )"
 
 SITEFILE=71${PN}-gentoo.el
 S="${WORKDIR}/${MY_P}"
@@ -77,7 +77,6 @@ src_unpack() {
 	unpack ${A}
 	cd ${S}
 
-	epatch "${FILESDIR}"/${P}-read-tree.patch
 	epatch "${FILESDIR}"/${PN}-1.5.3-symlinks.patch
 
 	sed -i \
