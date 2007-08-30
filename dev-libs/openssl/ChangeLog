@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.220 2007/08/28 20:23:38 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.221 2007/08/29 10:14:17 corsair Exp $
+
+  29 Aug 2007; Markus Rothe <corsair@gentoo.org> openssl-0.9.8e-r2.ebuild:
+  Stable on ppc64; bug #188799
 
   28 Aug 2007; Christoph Mende <angelos@gentoo.org>
   openssl-0.9.8e-r2.ebuild:
