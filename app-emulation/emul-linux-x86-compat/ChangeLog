@@ -1,6 +1,9 @@
 # ChangeLog for app-emulation/emul-linux-x86-compat
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-compat/ChangeLog,v 1.18 2007/07/02 13:51:36 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-compat/ChangeLog,v 1.19 2007/08/29 17:47:29 phreak Exp $
+
+  29 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing herbs from metadata due to his retirement (see #88780 for reference).
 
   02 Jul 2007; Piotr Jaroszyński <peper@gentoo.org>
   emul-linux-x86-compat-1.0-r1.ebuild, emul-linux-x86-compat-1.0-r3.ebuild:
