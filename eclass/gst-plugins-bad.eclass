@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.8 2007/01/25 16:47:56 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.9 2007/08/29 17:35:44 drac Exp $
 
 #
 # Original Author: Saleem Abdulrasool <compnerd@gentoo.org>
@@ -9,13 +9,17 @@
 # plugin rather than in a single package.
 #
 
-# This list is current to gst-plugins-good-0.10.4 except for:
-#   gst_v4l2 - moved to gst-plugins-good-0.10.5 (not in >=gst-plugins-bad-0.10.4)
+# This list is current to gst-plugins-bad-0.10.4 except for:
+#   gst_v4l2 - moved to gst-plugins-bad-0.10.5 (not in >=gst-plugins-bad-0.10.4)
 #              But it must stay in this list until all <gst-plugins-bad-0.10.4
 #              are removed
-my_gst_plugins_bad="alsa amrwb bz2 cdaudio directfb dts divx dvb faac faad gsm
-gst_v4l2 ivorbis jack ladspa libmms mpeg2enc musepack musicbrainz neon opengl
-sdl sdltest soundtouch spc swfdec theoradec wavpack xvid x"
+# drac at gentoo.org:
+# This list is current to gst-plugins-bad-0.10.5 except for:
+#   Not present in 0.10.5 - wavpack
+my_gst_plugins_bad="opengl vcd x alsa amrwb bz2 cdaudio directfb dts divx faac
+faad gsm gst_v4l2 ivorbis jack ladspa libmms mpeg2enc musepack musicbrainz
+mythtv nas neon timidity wildmidi sdl sdltest sndfile soundtouch spc swfdec
+theoradec x264 xvid dvb wavpack"
 
 #qtdemux spped tta
 

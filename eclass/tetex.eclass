@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/tetex.eclass,v 1.50 2007/03/26 20:04:34 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/tetex.eclass,v 1.51 2007/08/29 21:12:17 peper Exp $
 #
 # Author: Jaromir Malenko <malenko@email.cz>
 # Author: Mamoru KOMACHI <usata@gentoo.org>
@@ -79,18 +79,6 @@ RDEPEND="${DEPEND}
 	tk? ( dev-perl/perl-tk )
 	dev-util/dialog"
 PROVIDE="virtual/tetex"
-
-tetex_pkg_setup() {
-
-	# hundreds of bugs reporting "cannot find -lmysqlclient" :(
-	if ! has_version 'virtual/mysql' && (libwww-config --libs | grep mysql >/dev/null 2>&1); then
-		eerror
-		eerror "Your libwww was compiled with MySQL but MySQL is missing from system."
-		eerror "Please install MySQL or remerge libwww without mysql USE flag."
-		eerror
-		die "libwww was compiled with mysql but virtual/mysql is not installed"
-	fi
-}
 
 tetex_src_unpack() {
 
