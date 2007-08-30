@@ -59,7 +59,6 @@ PROVIDE="virtual/python"
 
 src_unpack() {
 	unpack ${A}
-
 	cd "${S}"
 
 	if tc-is-cross-compiler ; then
