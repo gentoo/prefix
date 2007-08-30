@@ -65,7 +65,6 @@ src_unpack() {
 	cvs_src_unpack
 
 	cd "${S}"
-	epatch "${FILESDIR}"/emacs-cvs-nofink.patch
 	# FULL_VERSION keeps the full version number, which is needed in
 	# order to determine some path information correctly for copy/move
 	# operations later on
