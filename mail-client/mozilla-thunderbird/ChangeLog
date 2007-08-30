@@ -1,6 +1,14 @@
 # ChangeLog for mail-client/mozilla-thunderbird
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.229 2007/08/28 18:32:39 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.231 2007/08/29 18:22:25 dertobi123 Exp $
+
+  29 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  mozilla-thunderbird-1.5.0.13.ebuild:
+  ppc stable, bug #187205
+
+  29 Aug 2007; Christoph Mende <angelos@gentoo.org>
+  mozilla-thunderbird-1.5.0.13.ebuild:
+  Stable on amd64 wrt security bug #187205
 
   28 Aug 2007; Raúl Porcel <armin76@gentoo.org>
   mozilla-thunderbird-1.5.0.13.ebuild:
