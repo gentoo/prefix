@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/compface
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/compface/ChangeLog,v 1.41 2007/07/08 16:46:43 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/compface/ChangeLog,v 1.42 2007/08/29 17:11:41 phreak Exp $
+
+  29 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing bcowan from metadata due to his retirement (see #133108 for
+  reference).
 
   08 Jul 2007; Diego Pettenò <flameeyes@gentoo.org> compface-1.5.2.ebuild:
   Don't prestrip binaries.
