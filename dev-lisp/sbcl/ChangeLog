@@ -1,6 +1,14 @@
 # ChangeLog for dev-lisp/sbcl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.124 2007/08/27 09:48:01 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.125 2007/08/30 05:44:55 redhatter Exp $
+
+  30 Aug 2007; Stuart Longland <redhatter@gentoo.org> sbcl-1.0.4.ebuild,
+  sbcl-1.0.5.ebuild, sbcl-1.0.6.ebuild, sbcl-1.0.6-r1.ebuild,
+  sbcl-1.0.6-r2.ebuild, sbcl-1.0.7-r2.ebuild, sbcl-1.0.8.ebuild,
+  sbcl-1.0.9.ebuild:
+  Added 'cobalt' to IUSE for endianness-detection on MIPS. This is still a bit
+  hackish for my taste, will talk with lisp herd and nut out a better fix
+  later.
 
 *sbcl-1.0.9 (27 Aug 2007)
 
