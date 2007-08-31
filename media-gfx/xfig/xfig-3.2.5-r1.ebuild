@@ -13,7 +13,7 @@ SRC_URI="http://www.xfig.org/software/xfig/3.2.5/${MY_P}.full.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
 IUSE=""
 
 RDEPEND="x11-libs/libXaw
@@ -38,6 +38,8 @@ src_unpack() {
 
 	# We do not have nescape. Let's use firefox instead...
 	sed -i "s+netscape+firefox+g" Fig.ad
+
+	epatch "${FILESDIR}"/${P}-darwin.patch
 }
 
 sed_Imakefile() {
