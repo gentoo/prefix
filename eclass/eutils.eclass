@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.287 2007/07/26 05:43:12 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.288 2007/08/30 22:45:17 ulm Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -1076,15 +1076,23 @@ find_unpackable_file() {
 # archive.
 #
 # One way to determine this is by running the following commands:
-#	strings <pdv archive> | grep lseek
-#	strace -elseek <pdv archive>
+#
+# @CODE
+# 	strings <pdv archive> | grep lseek
+# 	strace -elseek <pdv archive>
+# @CODE
+#
 # Basically look for the first lseek command (we do the strings/grep because
 # sometimes the function call is _llseek or something) and steal the 2nd
 # parameter.  Here is an example:
-#	vapier@vapier 0 pdv_unpack # strings hldsupdatetool.bin | grep lseek
-#	lseek
-#	vapier@vapier 0 pdv_unpack # strace -elseek ./hldsupdatetool.bin
-#	lseek(3, -4, SEEK_END)					= 2981250
+#
+# @CODE
+# 	vapier@vapier 0 pdv_unpack # strings hldsupdatetool.bin | grep lseek
+# 	lseek
+# 	vapier@vapier 0 pdv_unpack # strace -elseek ./hldsupdatetool.bin
+# 	lseek(3, -4, SEEK_END)					= 2981250
+# @CODE
+#
 # Thus we would pass in the value of '4' as the second parameter.
 unpack_pdv() {
 	local src=$(find_unpackable_file "$1")
