@@ -13,7 +13,7 @@ SRC_URI="http://www.xfig.org/software/xfig/3.2.5/${MY_P}.full.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 RDEPEND="x11-libs/libXaw
