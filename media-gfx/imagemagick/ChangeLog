@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.235 2007/06/26 07:10:15 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.236 2007/08/30 01:09:40 lavajoe Exp $
+
+  29 Aug 2007; Joe Peterson <lavajoe@gentoo.org>
+  imagemagick-6.3.4-r1.ebuild:
+  Add ~x86-fbsd keyword
 
   26 Jun 2007; Luca Barbato <lu_zero@gentoo.org>
   imagemagick-6.3.4-r1.ebuild:
