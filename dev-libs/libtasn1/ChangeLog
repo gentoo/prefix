@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libtasn1
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.54 2007/07/12 10:06:46 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.55 2007/08/30 13:23:44 phreak Exp $
+
+  30 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing liquidx from metadata due to his retirement (see #171155 for
+  reference).
 
   12 Jul 2007; Roy Marples <uberlord@gentoo.org> libtasn1-0.3.9.ebuild:
   Keyworded ~sparc-fbsd.
