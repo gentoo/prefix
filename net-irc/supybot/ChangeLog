@@ -1,6 +1,10 @@
 # ChangeLog for net-irc/supybot
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/supybot/ChangeLog,v 1.23 2007/05/06 12:47:11 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/supybot/ChangeLog,v 1.24 2007/08/30 12:42:47 phreak Exp $
+
+  30 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing liquidx from metadata due to his retirement (see #171155 for
+  reference).
 
   06 May 2007; Marius Mauch <genone@gentoo.org> supybot-0.83.2.ebuild:
   Replacing einfo with elog
