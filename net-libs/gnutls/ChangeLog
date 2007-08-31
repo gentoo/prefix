@@ -1,6 +1,10 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.119 2007/07/19 15:33:23 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.120 2007/08/30 12:48:52 phreak Exp $
+
+  30 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing liquidx from metadata due to his retirement (see #171155 for
+  reference).
 
 *gnutls-1.6.3 (19 Jul 2007)
 
