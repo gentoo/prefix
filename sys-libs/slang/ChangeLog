@@ -1,6 +1,10 @@
 # ChangeLog for sys-libs/slang
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.60 2007/03/18 17:15:01 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.61 2007/08/30 12:45:53 phreak Exp $
+
+  30 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing liquidx from metadata due to his retirement (see #171155 for
+  reference).
 
   18 Mar 2007; Fabian Groffen <grobian@gentoo.org> slang-1.4.9-r1.ebuild,
   slang-1.4.9-r2.ebuild:
