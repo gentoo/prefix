@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libgcrypt
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.89 2007/03/03 22:58:06 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.90 2007/08/30 13:22:08 phreak Exp $
+
+  30 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing liquidx from metadata due to his retirement (see #171155 for
+  reference).
 
   03 Mar 2007; Marius Mauch <genone@gentoo.org> libgcrypt-1.2.3-r1.ebuild,
   libgcrypt-1.2.4.ebuild:
