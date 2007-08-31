@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.151 2007/08/29 15:14:40 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.152 2007/08/30 12:38:26 ulm Exp $
+
+  30 Aug 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.1.50-r1.ebuild,
+  emacs-cvs-23.0.0-r7.ebuild, emacs-cvs-23.0.50.ebuild:
+  Remove non-existent file README.multi-tty from dodoc, fixes bug #190762.
+  Moved some comments.
 
 *emacs-cvs-22.1.50_p20070829 (29 Aug 2007)
 
