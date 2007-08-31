@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.358 2007/08/08 19:17:04 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.359 2007/08/30 16:10:59 pva Exp $
 
 # Keep them sorted
 
@@ -86,7 +86,7 @@ encode - Adds support for encoding of audio or video files
 esd - Adds support for media-sound/esound (Enlightened Sound Daemon)
 esoob - Adds support for Easysoft OOD database
 ev6 - Assume Alpha processor is EV6 or better
-evo - Adds support for evolution in gnumeric and multisync
+evo - Adds support for evolution
 examples - Install example source code
 exif - Adds support for reading EXIF headers from JPEG and TIFF images
 expat - Enable the use of dev-libs/expat

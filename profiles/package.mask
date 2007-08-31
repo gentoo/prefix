@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7648 2007/08/29 22:54:05 nichoj Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7656 2007/08/31 00:45:10 mr_bones_ Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -21,6 +21,66 @@
 ##   End example
 ##
 
+# Michael Sterrett <mr_bones_@gentoo.org> (30 Aug 2007)
+# Security bug #190835
+games-fps/doomsday
+
+# Doug Goldstein <cardoe@gentoo.org> (30 Aug 2007)
+# upstream has declared this module dead and broken
+# it is reworked in trunk but will not be moved to 0.20
+# <gbee> not in a fit state for a backport, suppose in a couple or weeks, maybe less it might be usable enough that packagers could backport it themselves - not sure Chutt would want it backported it to -fixes though
+# <gbee> assuming you are talking about mythweather and not some other fix that I was supposed to be backporting
+# <Cardoe> yes, mythweather
+# <Chutt> that's too big for a backport
+# if someone wishes to backport the changes, feel free to open a bug
+<media-plugins/mythweather-0.21_pre10000
+
+# Samuli Suominen <drac@gentoo.org> (30 Aug 2007)
+# GStreamer 0.8 removal mask.
+# Discontinued by upstream, several open bugs and
+# some plugins are incompatible with current libs.
+# Bug 190800. Removed in 30 days.
+=dev-python/gst-python-0.8*
+=media-plugins/gst-plugins-a52dec-0.8*
+=media-plugins/gst-plugins-alsa-0.8*
+=media-plugins/gst-plugins-cdparanoia-0.8*
+=media-plugins/gst-plugins-dts-0.8*
+=media-plugins/gst-plugins-dv-0.8*
+=media-plugins/gst-plugins-dvdnav-0.8*
+=media-plugins/gst-plugins-dvdread-0.8*
+=media-plugins/gst-plugins-esd-0.8*
+=media-plugins/gst-plugins-faac-0.8*
+=media-plugins/gst-plugins-faad-0.8*
+=media-plugins/gst-plugins-ffmpeg-0.8*
+=media-plugins/gst-plugins-flac-0.8*
+=media-plugins/gst-plugins-gnomevfs-0.8*
+=media-plugins/gst-plugins-jpeg-0.8*
+=media-plugins/gst-plugins-lame-0.8*
+=media-plugins/gst-plugins-libpng-0.8*
+=media-plugins/gst-plugins-libvisual-0.8*
+=media-plugins/gst-plugins-mad-0.8*
+=media-plugins/gst-plugins-mikmod-0.8*
+=media-plugins/gst-plugins-mpeg2dec-0.8*
+=media-plugins/gst-plugins-musepack-0.8*
+=media-plugins/gst-plugins-ogg-0.8*
+=media-plugins/gst-plugins-oss-0.8*
+=media-plugins/gst-plugins-pango-0.8*
+=media-plugins/gst-plugins-pitfdll-0.8*
+=media-plugins/gst-plugins-raw1394-0.8*
+=media-plugins/gst-plugins-shout2-0.8*
+=media-plugins/gst-plugins-sidplay-0.8*
+=media-plugins/gst-plugins-speex-0.8*
+=media-plugins/gst-plugins-theora-0.8*
+=media-plugins/gst-plugins-v4l-0.8*
+=media-plugins/gst-plugins-v4l2-0.8*
+=media-plugins/gst-plugins-vorbis-0.8*
+=media-plugins/gst-plugins-xvideo-0.8*
+=media-libs/gstreamer-0.8*
+media-libs/gst-plugins
+dev-ruby/ruby-gstreamer
+media-sound/tunesbrowser
+media-sound/acast
+
 # <nichoj@gentoo.org> (29 Aug 2007)
 # Depends on masked version of capistrano
 dev-ruby/palmtree
@@ -35,7 +95,8 @@ net-misc/networkmanager-pptp
 >=virtual/emacs-23
 
 # Ulrich Mueller <ulm@gentoo.org> (27 Aug 2007)
-# CVS snapshot, masked for testing.
+# CVS snapshots, masked for testing.
+=app-emacs/slime-2.0_p20070809
 =app-emacs/slime-2.0_p20070822
 
 # Ulrich Mueller <ulm@gentoo.org> (27 Aug 2007)
@@ -400,6 +461,8 @@ app-shells/ash
 >=dev-lang/ocaml-3.10.0
 >=dev-ml/ulex-1.0
 >=dev-ml/ocamlduce-3.10.0
+dev-ml/camlp5
+>=app-misc/ledit-1.15
 
 # Andrej Kacian <ticho@gentoo.org> (26 May 2007)
 # Use mail-client/claws-mail - upstream changed application name after 2.6.0.

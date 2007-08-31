@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.2999 2007/08/29 07:27:57 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3003 2007/08/30 21:46:37 dev-zero Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -13,6 +13,7 @@ app-accessibility/freetts:jsapi - build Java Speech API (JSAPI) support
 app-accessibility/freetts:mbrola - Adds support for mbrola voices
 app-accessibility/gnome-speech:freetts - Adds support for the freetts speech driver
 app-accessibility/gnopernicus:brltty - Adds support for braille displays using brltty
+app-accessibility/speech-dispatcher:flite - Adds support for flite speech engine.
 app-admin/conky:audacious - enable monitoring of audio tracks that are playing (media-sound/audacious)
 app-admin/conky:bmpx - enable monitoring of audio tracks that are playing (media-sound/bmpx)
 app-admin/conky:hddtemp - enable monitoring of hdd temperature (app-admin/hddtemp)
@@ -806,7 +807,6 @@ mail-client/claws-mail:bogofilter - Build bogofilter plugin
 mail-client/claws-mail:dillo - Enables support for inline http email viewing with a plugin (which depends on the dillo browser)
 mail-client/claws-mail:spamassassin - Build spamassassin plugin
 mail-client/evolution:bogofilter - Use bogofilter instead of spamassassin
-mail-client/mail-notification:evolution - Provide an Evolution plugin
 mail-client/mail-notification:gmail - Enable Gmail mailbox checking
 mail-client/mail-notification:pop - Enable support for pop
 mail-client/mail-notification:sylpheed - Enable support for MH mailboxes used by sylpheed
@@ -1159,7 +1159,6 @@ media-video/dxr3player:3dnowext - Enables 3dnowext instructions
 media-video/dxr3player:mmxext - Enables mmxext instructions
 media-video/ffmpeg:amr - Enables Adaptive Multi-Rate Audio support
 media-video/ffmpeg:network - Enables network streaming support
-media-video/flumotion:gstreamer08 - Use GStreamer 0.8 over GStreamer 0.10
 media-video/gpac:amr - Adaptive Multi-Rate Audio support (commonly used in telephony)
 media-video/kaffeine:xcb - Support the X C-language Binding, a replacement for Xlib
 media-video/kino:gpac - Enable GPAC support when exporting to 3GPP format
@@ -1915,6 +1914,8 @@ sys-freebsd/freebsd-usbin:suid - Enable setuid root programs
 sys-fs/clvm:nocman - Allow users to build clvm without cman support and with gulm support
 sys-fs/cryptsetup:dynamic - Build cryptsetup dynamically
 sys-fs/cryptsetup-luks:dynamic - Build cryptsetup-luks dynamically
+sys-fs/evms:hb - Enable support for heartbeat-1
+sys-fs/evms:hb2 - Enable support for heartbeat-2
 sys-fs/loop-aes:keyscrub - Protects the encryption key in memory but takes more cpu resources
 sys-fs/loop-aes:padlock - Use VIA padlock instructions, detected at run time, code still works on non-padlock processors
 sys-fs/lvm2:clvm - Allow users to build clustered lvm2

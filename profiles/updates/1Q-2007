@@ -7,7 +7,6 @@ slotmove net-www/mod_bw 1 0
 move www-apache/mod_survey www-apps/mod_survey
 move media-video/requant media-video/m2vrequantizer
 move www-apache/libapreq www-misc/libapreq
-move www-apache/libapreq2 www-misc/libapreq2
 move www-apache/Embperl www-apps/Embperl
 move net-ftp/ftpd net-ftp/netkit-ftpd
 move net-p2p/azureus-bin net-p2p/azureus
