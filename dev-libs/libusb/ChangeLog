@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libusb
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.70 2007/05/12 02:52:00 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.71 2007/08/30 13:23:03 phreak Exp $
+
+  30 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing liquidx from metadata due to his retirement (see #171155 for
+  reference).
 
   12 May 2007; Joshua Kinard <kumba@gentoo.org> libusb-0.1.12.ebuild:
   Stable on mips.
