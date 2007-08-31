@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/rpm2targz
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/ChangeLog,v 1.54 2007/06/18 11:52:18 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/ChangeLog,v 1.55 2007/08/30 12:38:42 phreak Exp $
+
+  30 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing liquidx from metadata due to his retirement (see #171155 for
+  reference).
 
 *rpm2targz-9.0-r6 (18 Jun 2007)
 
