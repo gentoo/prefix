@@ -1,0 +1,82 @@
+# ChangeLog for dev-python/django
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/django/ChangeLog,v 1.18 2007/07/05 06:45:29 lucass Exp $
+
+  05 Jul 2007; Lukasz Strzygowski <lucass@gentoo.org> -django-0.95.1.ebuild:
+  Dropped old version.
+
+  04 Jul 2007; Lukasz Strzygowski <lucass@gentoo.org> django-0.95.1.ebuild,
+  django-0.96.ebuild:
+  Removed use_setuptools sed. Removed setuptools dependency in 0.96.
+
+  24 Apr 2007; Seemant Kulleen <seemant@gentoo.org> django-0.96.ebuild:
+  adjust the mysql-python dependency, as 1.2.1_p2 is the minimum allowed
+  version. Closes bug #175821 by Jean-Claude Repetto
+
+  25 Mar 2007; Seemant Kulleen <seemant@gentoo.org> django-0.96.ebuild:
+  fix the src_test -- thanks to mabi for catching the b0rkedness
+
+*django-0.96 (24 Mar 2007)
+
+  24 Mar 2007; Seemant Kulleen <seemant@gentoo.org> +django-0.96.ebuild:
+  version bump to newest release -- how about a zero-day this time
+
+  01 Feb 2007; Seemant Kulleen <seemant@gentoo.org>
+  -files/django-0.95-auth_fix.patch,
+  -files/django-0.95-compile_messages_fix.patch, -django-0.95-r1.ebuild:
+  remove old ebuild
+
+  22 Jan 2007; Seemant Kulleen <seemant@gentoo.org> django-0.95.1.ebuild:
+  add back the bash completion, docs install fix and stc_test that Tiziano
+  added into -r1
+
+*django-0.95.1 (22 Jan 2007)
+
+  22 Jan 2007; Seemant Kulleen <seemant@gentoo.org> -django-0.95.ebuild,
+  +django-0.95.1.ebuild:
+  version bump to the official security bump release. will remove 0.95-r1 in a
+  couple of days if there are no bug reports
+
+*django-0.95-r1 (21 Jan 2007)
+
+  21 Jan 2007; Tiziano Müller <dev-zero@gentoo.org>
+  +files/django-0.95-auth_fix.patch,
+  +files/django-0.95-compile_messages_fix.patch, +django-0.95-r1.ebuild:
+  Added security patches from Debian (bug #162818). Added bash-completion and
+  examples USE-flag. Corrected psycopg dependency. Added src_test with test
+  USE-flag. Some Cleanups.
+
+  30 Dec 2006; Tiziano Müller <dev-zero@gentoo.org> -django-0.91.ebuild,
+  django-0.95.ebuild:
+  Fixed deps for python-2.5 (thanks to Jokey). Fixed bug #148456 (by removing
+  ez_setup-import). Dropped old version.
+
+  13 Aug 2006; Lukasz Strzygowski <lucass@gentoo.org> django-0.95.ebuild:
+  Added dev-python/imaging rdep, bug #143788.
+
+*django-0.95 (01 Aug 2006)
+
+  01 Aug 2006; Lukasz Strzygowski <lucass@gentoo.org> +django-0.95.ebuild:
+  Version bump, bug #142375.
+
+  28 Jul 2006; Alastair Tse <liquidx@gentoo.org> django-0.91.ebuild:
+  Preparing psycopg deps for slotted psycopg-2.0.2 (#125719)
+
+  01 Apr 2006; <nixnut@gentoo.org> django-0.91.ebuild:
+  Added ~ppc keyword. Bug #114821
+
+  01 Apr 2006; Aron Griffis <agriffis@gentoo.org> django-0.91.ebuild:
+  Mark 0.91 ~ia64
+
+  30 Mar 2006; Lukasz Strzygowski <lucass@gentoo.org> django-0.91.ebuild:
+  Minor fixes, thanks to Halcy0n.
+
+  29 Mar 2006; Karol Wojtaszek <sekretarz@gentoo.org> django-0.91.ebuild:
+  ~amd64 keyworded, bug #114821
+
+*django-0.91 (28 Mar 2006)
+
+  28 Mar 2006; Lukasz Strzygowski <lucass@gentoo.org> +metadata.xml,
+  +django-0.91.ebuild:
+  Initial commit (bug #114821).
+
