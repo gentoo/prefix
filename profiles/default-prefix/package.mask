@@ -24,7 +24,7 @@
 
 # Fabian Groffen <grobian@gentoo.org> (29 Aug 2007)
 # Doesn't play nice with our binutils-config, needs some sorting out
-=sys-devel/gcc-config-1.4.0-r1
+=sys-devel/gcc-config-1.4.0*
 
 # Fabian Groffen <grobian@gentoo.org> (30 Jan 2007) 
 # seems to be messed up, hardcoding wrong install_names
