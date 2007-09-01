@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gettext
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.151 2007/08/24 20:04:20 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.152 2007/08/31 13:57:22 angelos Exp $
+
+  31 Aug 2007; Christoph Mende <angelos@gentoo.org>
+  gettext-0.16.1-r1.ebuild:
+  Stable on amd64 wrt bug #189031
 
   24 Aug 2007; Raúl Porcel <armin76@gentoo.org> gettext-0.16.1-r1.ebuild:
   alpha/ia64 stable wrt #189031
