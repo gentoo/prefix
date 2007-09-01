@@ -24,3 +24,7 @@ www-client/elinks perl
 # Elias Pipping <pipping@mi.fu-berlin.de> (01 Sep 2007)
 # libpng does not compile with USE=mmx
 media-libs/libpng mmx
+
+# Elias Pipping <pipping@mi.fu-berlin.de> (01 Sep 2007)
+# imlib2 does not compile with USE=mmx
+media-libs/imlib2 mmx
