@@ -49,11 +49,11 @@ pkg_postinst() {
 
 	einfo "Installing Catalogs..."
 	$installer --add \
-		${EPREFIX}/etc/sgml/sgml-ent.cat \
-		${EPREFIX}/usr/share/sgml/sgml-iso-entities-8879.1986/catalog
+		"${EPREFIX}"/etc/sgml/sgml-ent.cat \
+		"${EPREFIX}"/usr/share/sgml/sgml-iso-entities-8879.1986/catalog
 	$installer --add \
-		${EPREFIX}/etc/sgml/sgml-docbook.cat \
-		${EPREFIX}/etc/sgml/sgml-ent.cat
+		"${EPREFIX}"/etc/sgml/sgml-docbook.cat \
+		"${EPREFIX}"/etc/sgml/sgml-ent.cat
 
 	local file
 	for file in `find ${EROOT}etc/sgml/ -name "*.cat"` ${EROOT}etc/sgml/catalog
@@ -77,13 +77,13 @@ pkg_postrm() {
 	einfo "Removing Catalogs..."
 	if [ -e "${EROOT}etc/sgml/sgml-ent.cat" ]; then
 		${T}/install-catalog --remove \
-			/etc/sgml/sgml-ent.cat \
-			/usr/share/sgml/sgml-iso-entities-8879.1986/catalog
+			"${EPREFIX}"/etc/sgml/sgml-ent.cat \
+			"${EPREFIX}"/usr/share/sgml/sgml-iso-entities-8879.1986/catalog
 	fi
 
 	if [ -e "${EROOT}etc/sgml/sgml-docbook.cat" ]; then
 		${T}/install-catalog --remove \
-			/etc/sgml/sgml-docbook.cat \
-			/etc/sgml/sgml-ent.cat
+			"${EPREFIX}"/etc/sgml/sgml-docbook.cat \
+			"${EPREFIX}"/etc/sgml/sgml-ent.cat
 	fi
 }
