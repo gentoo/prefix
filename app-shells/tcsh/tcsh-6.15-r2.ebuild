@@ -21,7 +21,9 @@ KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 
 IUSE="perl catalogs"
 
+# we need gettext because we run autoconf
 DEPEND=">=sys-libs/ncurses-5.1
+	sys-devel/gettext
 	perl? ( dev-lang/perl )
 	!app-shells/csh" # bug #119703
 
