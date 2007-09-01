@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/gcc-config
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.165 2007/08/26 03:21:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.166 2007/08/31 01:42:47 vapier Exp $
+
+*gcc-config-1.4.0-r2 (31 Aug 2007)
+
+  31 Aug 2007; Mike Frysinger <vapier@gentoo.org> files/gcc-config-1.4.0,
+  files/wrapper-1.5.0.c, +gcc-config-1.4.0-r2.ebuild:
+  Rename NATIVE symlink to .NATIVE so it doesnt show up in listings and
+  confuse people.
 
 *gcc-config-1.4.0-r1 (26 Aug 2007)
 

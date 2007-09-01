@@ -1,7 +1,7 @@
 /*
  * Copyright 1999-2007 Gentoo Foundation
  * Distributed under the terms of the GNU General Public License v2
- * $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/wrapper-1.5.0.c,v 1.3 2007/08/26 03:21:02 vapier Exp $
+ * $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/wrapper-1.5.0.c,v 1.4 2007/08/31 01:42:47 vapier Exp $
  * Author: Martin Schlemmer <azarah@gentoo.org>
  * az's lackey: Mike Frysinger <vapier@gentoo.org>
  */
@@ -134,7 +134,7 @@ static int find_target_in_envd(struct wrapper_data *data, int cross_compile)
 		/* for the sake of speed, we'll keep a symlink around for
 		 * the native compiler.  #190260
 		 */
-		snprintf(envd_file, sizeof(envd_file)-1, "@GENTOO_PORTAGE_EPREFIX@/etc/env.d/gcc/NATIVE");
+		snprintf(envd_file, sizeof(envd_file)-1, "@GENTOO_PORTAGE_EPREFIX@/etc/env.d/gcc/.NATIVE");
 	} else {
 		char *ctarget, *end = strrchr(data->name, '-');
 		if (end == NULL)

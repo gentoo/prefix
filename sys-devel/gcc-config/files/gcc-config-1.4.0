@@ -1,7 +1,7 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/bash
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.4.0,v 1.20 2007/08/26 03:21:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.4.0,v 1.21 2007/08/31 01:42:47 vapier Exp $
 
 trap ":" INT QUIT TSTP
 
@@ -260,7 +260,8 @@ switch_profile() {
 		echo "CURRENT=${CC_COMP}" > "${GCC_ENV_D}/config-${CTARGET}"
 
 		# Help out the gcc wrapper
-		ln -sf ${CC_COMP} "${GCC_ENV_D}/NATIVE"
+		rm -f "${GCC_ENV_D}/NATIVE" "${GCC_ENV_D}/.NATIVE"
+		ln -sf ${CC_COMP} "${GCC_ENV_D}/.NATIVE"
 
 		# Punt old files
 		rm -f "${ENV_D}/05gcc"
