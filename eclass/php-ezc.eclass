@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-ezc.eclass,v 1.2 2007/03/05 01:50:47 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-ezc.eclass,v 1.3 2007/08/31 09:40:33 jokey Exp $
 #
 # Maintained by the PHP Team <php-bugs@gentoo.org>
 #
@@ -19,8 +19,9 @@ fix_EZC_PV() {
 	EZC_PV="${tmp}"
 }
 
-EZC_PV=""
-fix_EZC_PV
+# set EZC_PV in ebuilds if the PV mangling of beta/rc versions breaks SRC_URI
+[[ -z "${EZC_PV}" ]] && fix_EZC_PV
+
 EZC_PN="${EZC_PKG_NAME}-${EZC_PV}"
 
 S="${WORKDIR}/${EZC_PN}"
