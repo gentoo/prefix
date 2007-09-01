@@ -17,7 +17,7 @@ MY_P="${PN}-${MY_PV}"
 SRC_URI="mirror://gnome/sources/${PN}/${MY_PV_MM}/${PN}-${MY_PV}.tar.bz2"
 
 SLOT="0"
-KEYWORDS="~ppc-macos"
+KEYWORDS="~ppc-macos ~x86-macos"
 IUSE="gnome png python zlib"
 
 RDEPEND=">=x11-libs/gtk+-2.6.0
