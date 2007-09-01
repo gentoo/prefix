@@ -1,0 +1,48 @@
+# ChangeLog for dev-perl/Test-SubCalls
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-SubCalls/ChangeLog,v 1.9 2006/10/15 20:50:33 mcummings Exp $
+
+  15 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  -Test-SubCalls-0.03.ebuild, -Test-SubCalls-0.05.ebuild,
+  Test-SubCalls-1.06.ebuild:
+  Marking amd64, sparc stable; cleaning up stale ebuilds
+
+  18 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-SubCalls-0.05.ebuild:
+  Marking amd64 stable
+
+  05 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-SubCalls-0.03.ebuild, Test-SubCalls-0.05.ebuild,
+  Test-SubCalls-1.06.ebuild:
+  Adding perl dep; fixed DEPEND
+
+  05 Jul 2006; Christian Hartmann <ian@gentoo.org>
+  Test-SubCalls-0.03.ebuild, Test-SubCalls-0.05.ebuild,
+  Test-SubCalls-1.06.ebuild:
+  Fixed RDEPEND wrt bug #134781
+
+*Test-SubCalls-1.06 (23 Jun 2006)
+
+  23 Jun 2006; Michael Cummings <mcummings@gentoo.org>
+  +Test-SubCalls-1.06.ebuild:
+  Version bump upstream
+
+  12 Jun 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-SubCalls-0.03.ebuild, Test-SubCalls-0.05.ebuild:
+  Marking sparc stable
+
+  12 Jun 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-SubCalls-0.05.ebuild:
+  Keywording ~amd64
+
+*Test-SubCalls-0.05 (26 Apr 2006)
+
+  26 Apr 2006; <mcumming@gentoo.org> +Test-SubCalls-0.05.ebuild:
+  Version bump
+
+*Test-SubCalls-0.03 (20 Apr 2006)
+
+  20 Apr 2006; <mcummings@gentoo.org> +metadata.xml,
+  +Test-SubCalls-0.03.ebuild:
+  Dep for perl-critic
+
