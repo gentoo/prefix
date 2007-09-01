@@ -1,0 +1,23 @@
+# ChangeLog for dev-perl/Test-Object
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Object/ChangeLog,v 1.4 2006/10/14 00:57:57 mcummings Exp $
+
+  14 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  -Test-Object-0.06.ebuild, Test-Object-0.07.ebuild:
+  Marking amd64, sparc stable; cleaning stale ebuilds
+
+*Test-Object-0.07 (08 Sep 2006)
+
+  08 Sep 2006; Yuval Yaari <yuval@gentoo.org> +Test-Object-0.07.ebuild:
+  Version bump
+
+  07 Sep 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Object-0.06.ebuild:
+  Bug 146678, keywording ~sparc and ~amd64
+
+*Test-Object-0.06 (07 Sep 2006)
+
+  07 Sep 2006; Yuval Yaari <yuval@gentoo.org> +metadata.xml,
+  +Test-Object-0.06.ebuild:
+  Adding Test-Object to the tree, dependency of dev-perl/PPI-1.117
+
