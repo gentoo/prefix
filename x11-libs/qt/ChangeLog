@@ -1,6 +1,161 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.437 2007/04/28 16:56:36 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.480 2007/08/23 22:53:30 caleb Exp $
+
+  23 Aug 2007; Caleb Tennis <caleb@gentoo.org> -qt-4.2.3-r1.ebuild:
+  remove last of 4.2 series
+
+  23 Aug 2007; Markus Rothe <corsair@gentoo.org>
+  +files/qt-4.3.1-powerpc64.patch, qt-4.3.1.ebuild:
+  Added patch for ppc64 and mark ebuild ~ppc64; bug #178779
+
+  23 Aug 2007; Caleb Tennis <caleb@gentoo.org> -qt-3.3.8-r2.ebuild,
+  -qt-4.3.0.ebuild, -qt-4.3.0-r1.ebuild:
+  remove some older versions
+
+  15 Aug 2007; Jeroen Roovers <jer@gentoo.org> qt-4.3.0-r2.ebuild:
+  Stable for HPPA (bug #185446).
+
+  12 Aug 2007; Caleb Tennis <caleb@gentoo.org> qt-4.3.1.ebuild:
+  Fix pkgconfig dir, per bug #188397
+
+  12 Aug 2007; Steve Dibb <beandog@gentoo.org> qt-3.3.8-r3.ebuild,
+  qt-4.3.0-r2.ebuild:
+  amd64 stable, security bug 185446
+
+  09 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org> qt-4.3.1.ebuild:
+  Keyworded ~sparc wrt #188103
+
+  08 Aug 2007; Raúl Porcel <armin76@gentoo.org> qt-4.3.1.ebuild:
+  Re-add ~alpha wrt #188103
+
+*qt-4.3.1 (08 Aug 2007)
+
+  08 Aug 2007; Caleb Tennis <caleb@gentoo.org> +qt-4.3.1.ebuild:
+  Version bump
+
+  08 Aug 2007; Jeroen Roovers <jer@gentoo.org> qt-3.3.8-r3.ebuild:
+  Stable for HPPA (bug #185446).
+
+  06 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org> qt-4.3.0-r2.ebuild:
+  Stable on sparc wrt security #185446
+
+  05 Aug 2007; Raúl Porcel <armin76@gentoo.org> qt-3.3.8-r3.ebuild,
+  qt-4.3.0-r2.ebuild:
+  alpha/ia64/x86 stable wrt security #185446
+
+  04 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org> qt-3.3.8-r3.ebuild,
+  qt-4.3.0-r2.ebuild:
+  ppc stable, bug #185446
+
+*qt-4.3.0-r2 (03 Aug 2007)
+
+  03 Aug 2007; Carsten Lohrke <carlo@gentoo.org> +qt-4.3.0-r2.ebuild:
+  Patch wasn't applied in previous ebuild revision due to a typo.
+
+  03 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org> qt-3.3.8-r3.ebuild,
+  qt-4.3.0-r1.ebuild:
+  Stable on sparc wrt security #185446
+
+  02 Aug 2007; Christian Faulhammer <opfer@gentoo.org> qt-3.3.8-r3.ebuild,
+  qt-4.3.0-r1.ebuild:
+  stable x86, security bug 185446
+
+  02 Aug 2007; Markus Rothe <corsair@gentoo.org> qt-3.3.8-r3.ebuild:
+  Stable on ppc64; bug #185446
+
+*qt-4.3.0-r1 (02 Aug 2007)
+*qt-3.3.8-r3 (02 Aug 2007)
+
+  02 Aug 2007; Carsten Lohrke <carlo@gentoo.org>
+  +files/0081-format-string-fixes.diff, +files/0185-fix-format-strings.diff,
+  +qt-3.3.8-r3.ebuild, +qt-4.3.0-r1.ebuild:
+  Possible remote code execution, CVE-2007-3388, bug #187465.
+
+  01 Aug 2007; Christoph Mende <angelos@gentoo.org> qt-4.3.0.ebuild:
+  Stable on amd64 wrt bug #186670
+
+  31 Jul 2007; Caleb Tennis <caleb@gentoo.org> qt-4.3.0.ebuild:
+  Incorporate dep changes from flameeyes at bug #181199
+
+  26 Jul 2007; Jeroen Roovers <jer@gentoo.org> qt-4.3.0.ebuild:
+  Stable for HPPA (bug #186670).
+
+  26 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org> qt-4.3.0.ebuild:
+  Stable on sparc wrt #186670
+
+  26 Jul 2007; Raúl Porcel <armin76@gentoo.org> qt-4.3.0.ebuild:
+  ia64/x86 stable wrt #186670
+
+  22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>; qt-3.3.4-r8.ebuild,
+  qt-3.3.8-r2.ebuild:
+  Drop virtual/x11 references.
+
+  20 Jul 2007; Raúl Porcel <armin76@gentoo.org>
+  +files/qt-4.3.0-alpha-threading.patch, qt-4.3.0.ebuild:
+  Add ~alpha to 4.3.0 and add a patch from upstream to make it work on alpha
+
+  10 Jul 2007; Markus Rothe <corsair@gentoo.org> qt-4.3.0.ebuild:
+  Added ~ppc
+
+  20 Jun 2007; Caleb Tennis <caleb@gentoo.org> qt-4.3.0.ebuild:
+  Add -reduce-relocations switch, from bug #178535
+
+  08 Jun 2007; Caleb Tennis <caleb@gentoo.org> -qt-4.3.0_beta1.ebuild,
+  -qt-4.3.0_rc1.ebuild:
+  remove beta and rc ebuilds
+
+  04 Jun 2007; Diego Pettenò <flameeyes@gentoo.org> qt-4.3.0.ebuild:
+  Make png, jpeg, zlib and mng turn off the relative support from Qt 4.3, see
+  bug #180835.
+
+  04 Jun 2007; Diego Pettenò <flameeyes@gentoo.org> qt-4.3.0.ebuild:
+  Add ~x86-fbsd keyword.
+
+  04 Jun 2007; Diego Pettenò <flameeyes@gentoo.org> qt-4.3.0.ebuild:
+  Always avoid stripping during build, fixes bug #138215.
+
+  02 Jun 2007; Raúl Porcel <armin76@gentoo.org> qt-4.3.0.ebuild:
+  Add ~ia64 wrt #180444
+
+  01 Jun 2007; Jeroen Roovers <jer@gentoo.org> qt-4.3.0.ebuild:
+  Marked ~hppa (bug #180444).
+
+  01 Jun 2007; Jeroen Roovers <jer@gentoo.org> qt-4.3.0.ebuild:
+  Return of the hppa-ldcw-fix patch.
+
+  01 Jun 2007; Gustavo Zacarias <gustavoz@gentoo.org> qt-4.3.0.ebuild:
+  Keyworded ~sparc wrt #180444
+
+*qt-4.3.0 (31 May 2007)
+
+  31 May 2007; Caleb Tennis <caleb@gentoo.org> +qt-4.3.0.ebuild:
+  Adding 4.3.0 final
+
+  30 May 2007; Caleb Tennis <caleb@gentoo.org> qt-3.3.8-r2.ebuild:
+  Add firebird include dir
+
+  17 May 2007; Caleb Tennis <caleb@gentoo.org> qt-4.3.0_rc1.ebuild:
+  explicitly disable pch here, from bug #178843
+
+  14 May 2007; Caleb Tennis <caleb@gentoo.org> qt-4.3.0_rc1.ebuild:
+  Some sed foo to change CFLAG stuff, from bug #172219
+
+  13 May 2007; Marcus D. Hanwell <cryos@gentoo.org> qt-4.3.0_rc1.ebuild:
+  Marked ~amd64.
+
+*qt-4.3.0_rc1 (10 May 2007)
+
+  10 May 2007; Caleb Tennis <caleb@gentoo.org> +qt-4.3.0_rc1.ebuild:
+  bump
+
+  03 May 2007; Caleb Tennis <caleb@gentoo.org> qt-3.3.4-r8.ebuild:
+  readd amd64 as it likes this version for hardened as well
+
+*qt-4.3.0_beta1 (01 May 2007)
+
+  01 May 2007; Caleb Tennis <caleb@gentoo.org> +qt-4.3.0_beta1.ebuild:
+  Bump for new beta
 
   28 Apr 2007; Sven Wegener <swegener@gentoo.org> qt-3.3.4-r8.ebuild,
   qt-3.3.8-r2.ebuild:

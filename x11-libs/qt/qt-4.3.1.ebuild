@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.2.3-r1.ebuild,v 1.11 2007/04/18 17:23:12 yoswink Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.3.1.ebuild,v 1.5 2007/08/23 17:47:56 corsair Exp $
 
 EAPI="prefix"
 
@@ -9,10 +9,6 @@ inherit eutils flag-o-matic toolchain-funcs multilib
 SRCTYPE="opensource-src"
 DESCRIPTION="The Qt toolkit is a comprehensive C++ application development framework."
 HOMEPAGE="http://www.trolltech.com/"
-
-IUSE_INPUT_DEVICES="input_devices_wacom"
-
-IUSE="aqua accessibility cups dbus debug doc examples firebird gif glib jpeg mng mysql nas nis odbc opengl pch png postgres qt3support sqlite sqlite3 xinerama zlib ${IUSE_INPUT_DEVICES}"
 
 SRC_URI="!aqua? ( ftp://ftp.trolltech.com/pub/qt/source/qt-x11-${SRCTYPE}-${PV}.tar.gz )
 	aqua? ( ftp://ftp.trolltech.com/pub/qt/source/qt-mac-${SRCTYPE}-${PV}.tar.gz )"
@@ -23,32 +19,41 @@ LICENSE="|| ( QPL-1.0 GPL-2 )"
 SLOT="4"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 
-DEPEND="!aqua? ( x11-libs/libXrandr
+IUSE_INPUT_DEVICES="input_devices_wacom"
+
+IUSE="aqua accessibility cups dbus debug doc examples firebird gif glib jpeg mng mysql nas nis odbc opengl pch png postgres qt3support sqlite sqlite3 ssl tiff xinerama zlib ${IUSE_INPUT_DEVICES}"
+
+RDEPEND="!aqua? ( x11-libs/libXrandr
 	x11-libs/libXcursor
-	x11-libs/libXi
 	x11-libs/libXfont
 	x11-libs/libSM
-	x11-proto/xextproto
-	x11-proto/inputproto
-	virtual/xft )
-	dev-util/pkgconfig
 	xinerama? ( x11-proto/xineramaproto x11-libs/libXinerama )
+	media-libs/fontconfig )
 	>=media-libs/freetype-2
 	png? ( media-libs/libpng )
 	jpeg? ( media-libs/jpeg )
 	mng? ( >=media-libs/libmng-1.0.9 )
+	tiff? ( media-libs/tiff )
 	nas? ( >=media-libs/nas-1.5 )
 	odbc? ( dev-db/unixODBC )
 	mysql? ( virtual/mysql )
 	firebird? ( dev-db/firebird )
 	sqlite3? ( =dev-db/sqlite-3* )
 	sqlite? ( =dev-db/sqlite-2* )
+	opengl? ( virtual/opengl virtual/glu )
 	postgres? ( dev-db/libpq )
 	cups? ( net-print/cups )
 	zlib? ( sys-libs/zlib )
 	glib? ( dev-libs/glib )
 	dbus? ( >=sys-apps/dbus-1.0.2 )
-	input_devices_wacom? ( x11-drivers/linuxwacom )"
+	ssl? ( dev-libs/openssl )
+	input_devices_wacom? ( x11-libs/libXi x11-drivers/linuxwacom )"
+
+DEPEND="${RDEPEND}
+	xinerama? ( x11-proto/xineramaproto )
+	x11-proto/xextproto
+	input_devices_wacom? ( x11-proto/inputproto )
+	dev-util/pkgconfig"
 
 pkg_setup() {
 	QTBASEDIR=${EPREFIX}/usr/$(get_libdir)/qt4
@@ -70,7 +75,14 @@ pkg_setup() {
 }
 
 qt_use() {
-	useq ${1} && echo "-${1}" || echo "-no-${1}"
+	local flag="$1"
+	local feature="$1"
+	local enableval=
+
+	[[ -n $2 ]] && feature=$2
+	[[ -n $3 ]] && enableval="-$3"
+
+	useq $flag && echo "${enableval}-${feature}" || echo "-no-${feature}"
 	return 0
 }
 
@@ -85,7 +97,7 @@ qt_mkspecs_dir() {
 			spec="openbsd" ;;
 		*-netbsd*)
 			spec="netbsd" ;;
-		*-darwin*)
+		*-apple-darwin*)
 			spec="macx" ;;
 		*-linux-*|*-linux)
 			spec="linux" ;;
@@ -109,10 +121,8 @@ src_unpack() {
 
 	unpack ${A}
 	cd ${S}
-#	epatch ${FILESDIR}/qt-4.1.4-sparc.patch
-	epatch ${FILESDIR}/qt4-sqlite-configure.patch
-	epatch ${FILESDIR}/utf8-bug-qt4-2.diff
-	epatch ${FILESDIR}/${P}-hppa-ldcw-fix.patch
+	epatch ${FILESDIR}/qt-4.2.3-hppa-ldcw-fix.patch
+	epatch ${FILESDIR}/qt-4.3.1-powerpc64.patch
 
 	cd ${S}/mkspecs/$(qt_mkspecs_dir)
 	# set c/xxflags and ldflags
@@ -121,12 +131,11 @@ src_unpack() {
 	# out the line below and give 'er a whirl.
 	strip-flags
 	replace-flags -O3 -O2
-	[[ ${CHOST} == powerpc-*-darwin* ]] && filter-flags -m* # altivec
-	einfo "Using CFLAGS: ${CFLAGS}"
 
-	sed -i -e "s:QMAKE_CFLAGS[^_]*=.*:QMAKE_CFLAGS=${CFLAGS}:" \
-		-e "s:QMAKE_CXXFLAGS[^_]*=.*:QMAKE_CXXFLAGS=${CXXFLAGS}:" \
-		-e "s:QMAKE_LFLAGS[^_]*=\(.*\):QMAKE_LFLAGS=\1 ${LDFLAGS}:" \
+	sed -i -e "s:QMAKE_CFLAGS_RELEASE.*=.*:QMAKE_CFLAGS_RELEASE=${CFLAGS}:" \
+		-e "s:QMAKE_CXXFLAGS_RELEASE.*=.*:QMAKE_CXXFLAGS_RELEASE=${CXXFLAGS}:" \
+		-e "s:QMAKE_LFLAGS_RELEASE.*=.*:QMAKE_LFLAGS_RELEASE=${LDFLAGS}:" \
+		-e "/CONFIG/s:$: nostrip:" \
 		qmake.conf
 
 	# Do not link with -rpath. See bug #75181.
@@ -139,9 +148,9 @@ src_unpack() {
 	# separately as well.
 	cd ${S}/mkspecs/common
 
-	sed -i -e "s:QMAKE_CFLAGS[^_]*=.*:QMAKE_CFLAGS+=${CFLAGS}:" \
-		-e "s:QMAKE_CXXFLAGS[^_]*=.*:QMAKE_CXXFLAGS+=${CXXFLAGS}:" \
-		-e "s:QMAKE_LFLAGS[^_]*=.*:QMAKE_LFLAGS+=${LDFLAGS}:" \
+	sed -i -e "s:QMAKE_CFLAGS_RELEASE.*=.*:QMAKE_CFLAGS_RELEASE=${CPPFLAGS} ${CFLAGS} ${ASFLAGS}:" \
+		-e "s:QMAKE_CXXFLAGS_RELEASE.*=.*:QMAKE_CXXFLAGS_RELEASE=${CPPFLAGS} ${CXXFLAGS} ${ASFLAGS}:" \
+		-e "s:QMAKE_LFLAGS_RELEASE.*=.*:QMAKE_LFLAGS_RELEASE=${LDFLAGS}:" \
 		g++.conf
 
 	# Do not link with -rpath. See bug #75181.
@@ -149,6 +158,11 @@ src_unpack() {
 
 	# Replace X11R6/ directories, so /usr/X11R6/lib -> /usr/lib
 	sed -i -e "s:X11R6/::" *.conf
+
+	cd ${S}/qmake
+
+	sed -i -e "s:CXXFLAGS.*=:CXXFLAGS=${CPPFLAGS} ${CXXFLAGS} ${ASFLAGS} :" \
+	-e "s:LFLAGS.*=:LFLAGS=${LDFLAGS} :" Makefile.unix
 
 	cd ${S}
 
@@ -165,19 +179,24 @@ src_compile() {
 		myconf="${myconf} -no-reduce-exports"
 	fi
 
+	# Add a switch that will attempt to use recent binutils to reduce relocations.  Should be harmless for other
+	# cases.  From bug #178535
+	myconf="${myconf} -reduce-relocations"
+
 	myconf="${myconf} $(qt_use accessibility) $(qt_use cups) $(qt_use xinerama)"
 	myconf="${myconf} $(qt_use opengl) $(qt_use nis)"
 
 	use nas		&& myconf="${myconf} -system-nas-sound"
-	use gif		&& myconf="${myconf} -qt-gif" || myconf="${myconf} -no-gif"
-	use png		&& myconf="${myconf} -system-libpng" || myconf="${myconf} -qt-libpng"
-	use jpeg	&& myconf="${myconf} -system-libjpeg" || myconf="${myconf} -qt-libjpeg"
+
+	myconf="${myconf} $(qt_use gif gif qt) $(qt_use png libpng system)"
+	myconf="${myconf} $(qt_use jpeg libjpeg system) $(qt_use tiff libtiff system)"
+	myconf="${myconf} $(qt_use zlib zlib system) $(qt_use mng libmng system)"
+
 	use debug	&& myconf="${myconf} -debug -no-separate-debug-info" || myconf="${myconf} -release -no-separate-debug-info"
-	use zlib	&& myconf="${myconf} -system-zlib" || myconf="${myconf} -qt-zlib"
 
 	use mysql	&& myconf="${myconf} -plugin-sql-mysql -I/usr/include/mysql -L/usr/$(get_libdir)/mysql" || myconf="${myconf} -no-sql-mysql"
 	use postgres	&& myconf="${myconf} -plugin-sql-psql -I/usr/include/postgresql/pgsql" || myconf="${myconf} -no-sql-psql"
-	use firebird	&& myconf="${myconf} -plugin-sql-ibase" || myconf="${myconf} -no-sql-ibase"
+	use firebird	&& myconf="${myconf} -plugin-sql-ibase -I/opt/firebird/include" || myconf="${myconf} -no-sql-ibase"
 	use sqlite3	&& myconf="${myconf} -plugin-sql-sqlite -system-sqlite" || myconf="${myconf} -no-sql-sqlite"
 	use sqlite	&& myconf="${myconf} -plugin-sql-sqlite2" || myconf="${myconf} -no-sql-sqlite2"
 	use odbc	&& myconf="${myconf} -plugin-sql-odbc" || myconf="${myconf} -no-sql-odbc"
@@ -185,8 +204,9 @@ src_compile() {
 	use dbus	&& myconf="${myconf} -qdbus" || myconf="${myconf} -no-qdbus"
 	use glib	&& myconf="${myconf} -glib" || myconf="${myconf} -no-glib"
 	use qt3support		&& myconf="${myconf} -qt3support" || myconf="${myconf} -no-qt3support"
+	use ssl		&& myconf="${myconf} -openssl" || myconf="${myconf} -no-openssl"
 
-	use pch		&& myconf="${myconf} -pch"
+	use pch		&& myconf="${myconf} -pch" || myconf="${myconf} -no-pch"
 
 	use input_devices_wacom	&& myconf="${myconf} -tablet" || myconf="${myconf} -no-tablet"
 
@@ -196,18 +216,17 @@ src_compile() {
 		myconf="${myconf} -nomake examples"
 	fi
 
-
-	./configure -stl -verbose -largefile -confirm-license \
-		-platform ${PLATFORM} -xplatform ${PLATFORM} \
+	myconf="-stl -verbose -largefile -confirm-license \
+		-platform ${PLATFORM} -xplatform ${PLATFORM} -no-rpath \
 		-prefix ${QTPREFIXDIR} -bindir ${QTBINDIR} -libdir ${QTLIBDIR} -datadir ${QTDATADIR} \
 		-docdir ${QTDOCDIR} -headerdir ${QTHEADERDIR} -plugindir ${QTPLUGINDIR} \
 		-sysconfdir ${QTSYSCONFDIR} -translationdir ${QTTRANSDIR} \
-		-examplesdir ${QTEXAMPLESDIR} -demosdir ${QTDEMOSDIR} ${myconf} || die
+		-examplesdir ${QTEXAMPLESDIR} -demosdir ${QTDEMOSDIR} ${myconf}"
 
-	#emake all
-	#sed -i -e "s:^LINK[^=]*=.*:LINK = c++ -dynamiclib:" src/corelib/Makefile.Release
-	emake all || die "remember to use gcc-apple on OSX"
+	echo ./configure ${myconf}
+	./configure ${myconf} || die
 
+	emake all || die
 }
 
 src_install() {
@@ -222,25 +241,21 @@ src_install() {
 		make INSTALL_ROOT=${D} install_htmldocs || die
 	fi
 
-	# Install the translations.  This may get use flagged later somehow
+	# Install the translations.	 This may get use flagged later somehow
 	make INSTALL_ROOT=${D} install_translations || die
 
 	keepdir "${QTSYSCONFDIR/${EPREFIX}}"
 
-	insinto ${QTLIBDIR/${EPREFIX}}
-	doins lib/*.{la,pc}
+	sed -i -e "s:${S}/lib:${QTLIBDIR}:g" ${D}/${QTLIBDIR}/*.la
+	sed -i -e "s:${S}/lib:${QTLIBDIR}:g" ${D}/${QTLIBDIR}/*.prl
+	sed -i -e "s:${S}/lib:${QTLIBDIR}:g" ${D}/${QTLIBDIR}/pkgconfig/*.pc
 
-	(
-		find ${D}/${QTLIBDIR} -name "*.la"
-		find ${D}/${QTLIBDIR} -name "*.prl"
-		find ${D}/${QTLIBDIR} -name "*.pc"
-	) | xargs \
-	sed -i -e "s:${S}/lib:${QTLIBDIR}:g"
-	sed -i -e "s:${S}/bin:${QTBINDIR}:g" ${D}/${QTLIBDIR}/*.pc
+	# pkgconfig files refer to WORKDIR/bin as the moc and uic locations.  Fix:
+	sed -i -e "s:${S}/bin:${QTBINDIR}:g" ${D}/${QTLIBDIR}/pkgconfig/*.pc
 
 	# Move .pc files into the pkgconfig directory
 	dodir ${QTPCDIR/${EPREFIX}}
-	mv ${D}/${QTLIBDIR}/*.pc ${D}/${QTPCDIR}
+	mv ${D}/${QTLIBDIR}/pkgconfig/*.pc ${D}/${QTPCDIR}
 
 	# Install .desktop files, from bug #174033
 	insinto /usr/share/applications

@@ -1,0 +1,12 @@
+diff -ruN qt-x11-opensource-src-4.3.1.orig/src/corelib/arch/qatomic_powerpc.h qt-x11-opensource-src-4.3.1/src/corelib/arch/qatomic_powerpc.h
+--- qt-x11-opensource-src-4.3.1.orig/src/corelib/arch/qatomic_powerpc.h	2007-08-07 15:08:39.000000000 +0200
++++ qt-x11-opensource-src-4.3.1/src/corelib/arch/qatomic_powerpc.h	2007-08-22 21:20:24.153357369 +0200
+@@ -44,7 +44,7 @@
+ QT_BEGIN_HEADER
+ 
+ #if defined(Q_CC_GNU)
+-#ifdef __64BIT__
++#ifdef __powerpc64__
+ #  define LPARX "ldarx"
+ #  define CMPP  "cmpd"
+ #  define STPCX "stdcx."
