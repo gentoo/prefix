@@ -15,7 +15,7 @@ HOMEPAGE="http://www.djangoproject.com/"
 SRC_URI="http://media.djangoproject.com/releases/${RPV}/${MY_P}.tar.gz"
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="examples mysql postgres sqlite test"
 
 RDEPEND="dev-python/imaging
