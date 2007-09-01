@@ -11,7 +11,9 @@ IUSE="3dnow 3dnowext a52 aac aalib alsa altivec amrnb amrwb arts bidi bl bindist
 cddb cpudetection custom-cflags dga doc dts dvb cdparanoia directfb dvd
 dvdnav dv enca encode esd fbcon ftp gif ggi gtk iconv ipv6 ivtv jack joystick
 jpeg libcaca lirc live livecd lzo mad md5sum mmx mmxext mp2 mp3 musepack nas
-unicode vorbis opengl openal oss png pnm quicktime radio rar real rtc samba sdl speex srt sse sse2 ssse3 svga tga theora tivo truetype v4l v4l2 vidix win32codecs X x264 xanim xinerama xv xvid xvmc zoran"
+unicode vorbis opengl openal oss png pnm quicktime radio rar real rtc samba sdl
+speex srt sse sse2 ssse3 svga tga theora tivo truetype v4l v4l2 vidix
+win32codecs X x264 xanim xinerama xv xvid xvmc zoran aqua"
 
 VIDEO_CARDS="s3virge mga tdfx vesa"
 
@@ -138,7 +140,7 @@ DEPEND="${DEPEND} amd64? ( >=sys-apps/portage-2.1.2 )
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~ia64 ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
 
 pkg_setup() {
 
@@ -195,6 +197,9 @@ src_unpack() {
 
 	# libdvdcss patch, bug 189665
 	epatch ${FILESDIR}/${PN}-libdvdcss.patch
+
+	epatch "${FILESDIR}"/${PN}-1.0-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.0-darwin.patch
 }
 
 src_compile() {
@@ -304,13 +309,13 @@ src_compile() {
 	use mp3 || myconf="${myconf} --disable-mp3lib"
 	use quicktime || myconf="${myconf} --disable-qtx"
 	use vorbis || myconf="${myconf} --disable-libvorbis"
-	use xanim && myconf="${myconf} --xanimcodecsdir=/usr/lib/xanim/mods"
+	use xanim && myconf="${myconf} --xanimcodecsdir=${EPREFIX}/usr/lib/xanim/mods"
 	if use x86 || use amd64; then
 		# Real codec support, only available on x86, amd64
 		if use real && use x86; then
-			myconf="${myconf} --realcodecsdir=/opt/RealPlayer/codecs"
+			myconf="${myconf} --realcodecsdir=${EPREFIX}/opt/RealPlayer/codecs"
 		elif use real && use amd64; then
-			myconf="${myconf} --realcodecsdir=/usr/$(get_libdir)/codecs"
+			myconf="${myconf} --realcodecsdir=${EPREFIX}/usr/$(get_libdir)/codecs"
 		else
 			myconf="${myconf} --disable-real"
 		fi
@@ -423,13 +428,16 @@ src_compile() {
 
 	myconf="--cc=$(tc-getCC) \
 		--host-cc=$(tc-getBUILD_CC) \
-		--prefix=/usr \
-		--confdir=/etc/mplayer \
-		--datadir=/usr/share/mplayer \
-		--libdir=/usr/$(get_libdir) \
+		--prefix=${EPREFIX}/usr \
+		--confdir=${EPREFIX}/etc/mplayer \
+		--datadir=${EPREFIX}/usr/share/mplayer \
+		--libdir=${EPREFIX}/usr/$(get_libdir) \
 		--enable-largefiles \
 		--enable-menu \
 		--enable-network \
+		$(use_enable aqua macosx) \
+		$(use_enable aqua macosx-finder-support) \
+		$(use_enable aqua macosx-bundle) \
 		${myconf}"
 	einfo "Running ./configure"
 	echo "CFLAGS=\"${CFLAGS}\" ./configure ${myconf}"

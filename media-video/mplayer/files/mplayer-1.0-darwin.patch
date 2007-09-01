@@ -1,0 +1,19 @@
+* <grobian@gentoo.org> the sourcefiles blindly assume QT is available on
+  OSX (not so weird) so make configure do the same, regardless what the
+  user gives (e.g. --disable-quicktime)
+
+--- configure
++++ configure
+@@ -6854,8 +6854,10 @@
+ 
+ 
+ echocheck "QuickTime codecs"
+-if test "$_qtx" = auto ; then
+-  test "$_win32dll" = yes || darwin && _qtx=yes
++if darwin ; then
++	_qtx=yes
++elif test "$_qtx" = auto ; then
++  test "$_win32dll" = yes && _qtx=yes
+ fi
+ if test "$_qtx" = yes ; then
+     _def_qtx='#define USE_QTX_CODECS 1'
