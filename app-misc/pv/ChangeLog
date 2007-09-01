@@ -1,6 +1,11 @@
 # ChangeLog for app-misc/pv
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/pv/ChangeLog,v 1.28 2007/08/18 03:12:00 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/pv/ChangeLog,v 1.29 2007/08/31 13:55:12 angelos Exp $
+
+*pv-1.1.0 (31 Aug 2007)
+
+  31 Aug 2007; Christoph Mende <angelos@gentoo.org> +pv-1.1.0.ebuild:
+  Version bump
 
   18 Aug 2007; Christoph Mende <angelos@gentoo.org> pv-1.0.1.ebuild:
   Remove unneeded patch and add dodoc
