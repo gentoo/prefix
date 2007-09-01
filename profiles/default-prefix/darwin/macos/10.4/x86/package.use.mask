@@ -20,3 +20,7 @@ media-sound/mpg123 mmx
 # Elias Pipping <pipping@mi.fu-berlin.de> (27 Aug 2007)
 # elinks does not compile with USE=perl (tested with 0.11.{2,3})
 www-client/elinks perl
+
+# Elias Pipping <pipping@mi.fu-berlin.de> (01 Sep 2007)
+# libpng does not compile with USE=mmx
+media-libs/libpng mmx
