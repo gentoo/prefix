@@ -140,7 +140,7 @@ DEPEND="${DEPEND} amd64? ( >=sys-apps/portage-2.1.2 )
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 
 pkg_setup() {
 
