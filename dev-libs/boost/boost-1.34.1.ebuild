@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.34.1.ebuild,v 1.3 2007/08/01 09:19:39 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.34.1.ebuild,v 1.4 2007/08/31 10:34:24 grobian Exp $
 
 EAPI="prefix"
 
@@ -54,7 +54,7 @@ src_unpack() {
 	rm boost-build.jam
 
 	# This enables building the boost.random library with /dev/urandom support
-	if [[ ${CHOST} != *-darwin* ]] ; then
+	if [[ ${CHOST} == *-linux-* ]] ; then
 		mkdir -p libs/random/build
 		cp "${FILESDIR}/random-Jamfile" libs/random/build/Jamfile.v2
 	fi
