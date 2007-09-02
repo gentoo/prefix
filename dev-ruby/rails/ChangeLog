@@ -1,6 +1,14 @@
 # ChangeLog for dev-ruby/rails
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.73 2007/03/14 14:49:26 rbrown Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.74 2007/09/01 05:35:18 nichoj Exp $
+
+*rails-1.2.3-r1 (01 Sep 2007)
+*rails-1.1.6-r2 (01 Sep 2007)
+
+  01 Sep 2007; Joshua Nichols <nichoj@gentoo.org> +rails-1.1.6-r2.ebuild,
+  +rails-1.2.3-r1.ebuild:
+  Revision bumps for both slots. No longer installs /usr/bin/rails. Instead,
+  uses app-admin/eselect-rails to manage the symlink.
 
   14 Mar 2007; Richard Brown <rbrown@gentoo.org> rails-1.2.3.ebuild:
   Fix rails-1.2.3 rake dependency
