@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/less
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.69 2007/08/25 15:42:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.70 2007/09/01 10:32:07 angelos Exp $
+
+  01 Sep 2007; Christoph Mende <angelos@gentoo.org> less-406.ebuild:
+  Stable on amd64
 
   25 Aug 2007; Mike Frysinger <vapier@gentoo.org> files/lesspipe.sh:
   Disable colorization by default #188835.
