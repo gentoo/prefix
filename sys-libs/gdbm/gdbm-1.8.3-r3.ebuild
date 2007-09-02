@@ -27,7 +27,7 @@ src_unpack() {
 
 src_compile() {
 	use berkdb || export ac_cv_lib_dbm_main=no ac_cv_lib_ndbm_main=no
-	econf --includedir=${EPREFIX}/usr/include/gdbm || die
+	econf --includedir="${EPREFIX}"/usr/include/gdbm || die
 	emake || die
 }
 
