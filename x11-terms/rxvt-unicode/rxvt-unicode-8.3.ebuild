@@ -41,8 +41,8 @@ src_compile() {
 	use iso14755 || myconf='--disable-iso14755'
 
 	econf \
-		--with-xpm-includes=${EPREFIX}/usr/include \
-		--with-xpm-library=${EPREFIX}/usr/lib \
+		--with-xpm-includes="${EPREFIX}"/usr/include \
+		--with-xpm-library="${EPREFIX}"/usr/lib \
 		--enable-everything \
 		$(use_enable truetype xft) \
 		$(use_enable perl) \
