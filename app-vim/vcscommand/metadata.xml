@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>vim</herd>
+	<longdescription lang="en">
+		VIM 7 plugin useful for manipulating files controlled by CVS, SVN and
+		SVK within VIM, including committing changes and performings diffs using
+		the vimdiff system.
+	</longdescription>
+</pkgmetadata>
+

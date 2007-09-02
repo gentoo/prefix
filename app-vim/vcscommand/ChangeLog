@@ -1,0 +1,11 @@
+# ChangeLog for app-vim/vcscommand
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-vim/vcscommand/ChangeLog,v 1.1 2007/05/08 05:12:50 pioto Exp $
+
+*vcscommand-0.1_beta16 (08 May 2007)
+
+  08 May 2007; Mike Kelly <pioto@gentoo.org> +metadata.xml,
+  +vcscommand-0.1_beta16.ebuild:
+  Initial ebuild. This package is the successor to cvscommand, and has support
+  for SVN and SVK as well as CVS. Fixes Bug #170957.
+
