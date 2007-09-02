@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/x11vnc-0.9.2-r1.ebuild,v 1.8 2007/08/25 14:01:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/x11vnc-0.9.2-r1.ebuild,v 1.9 2007/09/01 10:41:00 angelos Exp $
 
 EAPI="prefix"
 
