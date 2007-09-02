@@ -86,7 +86,7 @@ src_compile() {
 	econf \
 		--with-portage-user=${PORTAGE_USER:-portage} \
 		--with-portage-group=${PORTAGE_GROUP:-portage} \
-		--with-offset-prefix=${EPREFIX} \
+		--with-offset-prefix="${EPREFIX}" \
 		--with-default-path="/usr/bin:/bin" \
 		|| die "econf failed"
 	emake || die "emake failed"
