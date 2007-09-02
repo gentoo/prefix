@@ -1,6 +1,12 @@
 # ChangeLog for mail-client/pine
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/pine/ChangeLog,v 1.100 2007/08/06 13:32:17 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/pine/ChangeLog,v 1.101 2007/09/01 05:12:37 ticho Exp $
+
+*pine-4.64-r7 (01 Sep 2007)
+
+  01 Sep 2007; Andrej Kacian <ticho@gentoo.org> -pine-4.64.ebuild,
+  -pine-4.64-r1.ebuild, -pine-4.64-r3.ebuild, +pine-4.64-r7.ebuild:
+  Updated chappa-all patchset.
 
   06 Aug 2007; Roy Marples <uberlord@gentoo.org> pine-4.64-r6.ebuild:
   Fix building on FreeBSD and keyword ~x86-fbsd, #104760.
