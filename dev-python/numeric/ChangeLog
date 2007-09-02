@@ -1,6 +1,17 @@
 # ChangeLog for dev-python/numeric
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numeric/ChangeLog,v 1.31 2007/05/25 11:08:56 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numeric/ChangeLog,v 1.32 2007/09/01 22:24:30 bicatali Exp $
+
+*numeric-24.2-r5 (01 Sep 2007)
+
+  01 Sep 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  files/numeric-24.2-arrayobject.patch, +files/numeric-24.2-dotblas.patch,
+  files/numeric-24.2-lapack.patch, files/numeric-24.2-python25.patch,
+  -numeric-24.2-r3.ebuild, -numeric-24.2-r4.ebuild,
+  +numeric-24.2-r5.ebuild, +numeric-24.2-r6.ebuild,
+  Fixed various patches.
+  Added fix for python-2.5 on amd64 thanks to dsd, cleaned ebuild, remove
+  buggy revisions. Closing bug #176914.
 
   25 May 2007; Sébastien Fabbro <bicatali@gentoo.org>
   numeric-24.2-r4.ebuild:
