@@ -44,7 +44,7 @@ src_compile() {
 	econf \
 		$(use_enable debug debug all) \
 		$(use_enable doc build-docs) \
-		--libdir ${EPREFIX}/usr/$(get_libdir) \
+		--libdir "${EPREFIX}"/usr/$(get_libdir) \
 		|| die "econf failed"
 	emake || die "emake failed"
 }
