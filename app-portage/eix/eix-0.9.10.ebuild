@@ -20,7 +20,7 @@ RDEPEND="${DEPEND}"
 src_compile() {
 	econf \
 		--with-portdir-cache-method=none \
-		--with-eprefix-default=${EPREFIX} \
+		--with-eprefix-default="${EPREFIX}" \
 		--with-bzip2 $(use_with sqlite) || die "econf failed"
 	emake || die "emake failed"
 	src/eix --dump-defaults >eixrc || die "generating eixrc failed"
