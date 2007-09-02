@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-pecl-r1.eclass,v 1.7 2007/08/31 10:00:56 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-pecl-r1.eclass,v 1.8 2007/09/01 15:58:17 jokey Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
 # Author: Luca Longinotti <chtekk@gentoo.org>
@@ -15,12 +15,27 @@
 # as a uniform way of installing PECL extensions.
 # For more information about PECL, see http://pecl.php.net/
 
-# @VARIABLE: PHP_EXT_PECL_FILENAME
-# @DESCRIPTION: 
-# Set in ebuild if the filename differs from the package name so that SRC_URI gets set correctly.
+# @ECLASS-VARIABLE: PHP_EXT_PECL_PKG
+# @DESCRIPTION:
+# Set in ebuild before inheriting this eclass if the tarball name
+# differs from ${PN/pecl-/} so that SRC_URI and HOMEPAGE gets set 
+# correctly by the eclass.
+#
+# Setting this variable manually also affects PHP_EXT_NAME and ${S}
+# unless you override those in ebuild. Also see PHP_EXT_PECL_FILENAME
+# if this is not desired for whatever reason.
+
+# @ECLASS-VARIABLE: PHP_EXT_PECL_FILENAME
+# @DESCRIPTION:
+# Set in ebuild before inheriting this eclass if the tarball name
+# differs from ${PN/pecl-/} so that SRC_URI gets set correctly by
+# the eclass.
+#
+# Unlike PHP_EXT_PECL_PKG, setting this variable does not affect
+# HOMEPAGE, PHP_EXT_NAME or ${S}. 
 
 # @VARIABLE: DOCS
-# @DESCRIPTION: 
+# @DESCRIPTION:
 # Set in ebuild if you wish to install additional, package-specific documentation.
 
 [[ -z "${PHP_EXT_PECL_PKG}" ]] && PHP_EXT_PECL_PKG="${PN/pecl-/}"

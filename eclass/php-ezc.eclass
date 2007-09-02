@@ -1,11 +1,14 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-ezc.eclass,v 1.3 2007/08/31 09:40:33 jokey Exp $
-#
-# Maintained by the PHP Team <php-bugs@gentoo.org>
-#
-# The php-ezc eclass provides means for an easy installation
-# of the eZ components, see http://ez.no/products/ez_components
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-ezc.eclass,v 1.4 2007/09/01 15:58:17 jokey Exp $
+
+# @ECLASS: php-ezc.eclass
+# @MAINTAINER:
+# Gentoo PHP team <php-bugs@gentoo.org>
+# @BLURB: Provides an easy installation of the eZcomponents.
+# @DESCRIPTION:
+# This eclass provides means for an easy installation of the eZ components.
+# For more information on eZcomponents see http://ez.no/products/ez_components
 
 inherit php-pear-r1
 
@@ -19,7 +22,9 @@ fix_EZC_PV() {
 	EZC_PV="${tmp}"
 }
 
-# set EZC_PV in ebuilds if the PV mangling of beta/rc versions breaks SRC_URI
+# @ECLASS-VARIABLE: EZC_PV
+# @DESCRIPTION:
+# Set in ebuild if the eclass ${PV} mangling of beta/rc versions breaks SRC_URI.
 [[ -z "${EZC_PV}" ]] && fix_EZC_PV
 
 EZC_PN="${EZC_PKG_NAME}-${EZC_PV}"

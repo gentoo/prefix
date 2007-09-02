@@ -1,37 +1,49 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.20 2007/08/16 22:11:00 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.21 2007/09/01 15:58:17 jokey Exp $
 
-# ========================================================================
-#
-# depend.php.eclass
-#		Functions to allow ebuilds to depend on php4 and/or php5
-#
-# Author:	Stuart Herbert
-#			<stuart@gentoo.org>
-#
-# Author:	Luca Longinotti
-#			<chtekk@gentoo.org>
-#
-# Maintained by the PHP Team <php-bugs@gentoo.org>
-#
-# ========================================================================
+# Author: Stuart Herbert <stuart@gentoo.org>
+# Author: Luca Longinotti <chtekk@gentoo.org>
+# Author: Jakub Moc <jakub@gentoo.org> (documentation)
+
+# @ECLASS: depend.php.eclass
+# @MAINTAINER:
+# Gentoo PHP team <php-bugs@gentoo.org>
+# @BLURB: Functions to allow ebuilds to depend on php[45] and check for specific features.
+# @DESCRIPTION:
+# This eclass provides functions that allow ebuilds to depend on php[45] and check 
+# for specific PHP features, SAPIs etc. Also provides dodoc-php wrapper to install
+# documentation for PHP packages to php-specific location.
+
 
 inherit eutils phpconfutils
 
 # PHP4-only depend functions
+
+# @FUNCTION: need_php4_cli
+# @DESCRIPTION:
+# Set this after setting DEPEND/RDEPEND in your ebuild if the ebuild requires PHP4
+# with cli SAPI.
 need_php4_cli() {
 	DEPEND="${DEPEND} =virtual/php-4*"
 	RDEPEND="${RDEPEND} =virtual/php-4*"
 	PHP_VERSION="4"
 }
 
+# @FUNCTION: need_php4_httpd
+# @DESCRIPTION:
+# Set this after setting DEPEND/RDEPEND in your ebuild if the ebuild requires PHP4
+# with either cgi or apache2 SAPI.
 need_php4_httpd() {
 	DEPEND="${DEPEND} =virtual/httpd-php-4*"
 	RDEPEND="${RDEPEND} =virtual/httpd-php-4*"
 	PHP_VERSION="4"
 }
 
+# @FUNCTION: need_php4
+# @DESCRIPTION:
+# Set this after setting DEPEND/RDEPEND in your ebuild if the ebuild requires PHP4
+# (with any SAPI).
 need_php4() {
 	DEPEND="${DEPEND} =dev-lang/php-4*"
 	RDEPEND="${RDEPEND} =dev-lang/php-4*"
@@ -58,18 +70,31 @@ uses_php4() {
 }
 
 # PHP5-only depend functions
+
+# @FUNCTION: need_php5_cli
+# @DESCRIPTION:
+# Set this after setting DEPEND/RDEPEND in your ebuild if the ebuild requires PHP5
+# with cli SAPI.
 need_php5_cli() {
 	DEPEND="${DEPEND} =virtual/php-5*"
 	RDEPEND="${RDEPEND} =virtual/php-5*"
 	PHP_VERSION="5"
 }
 
+# @FUNCTION: need_php5_httpd
+# @DESCRIPTION:
+# Set this after setting DEPEND/RDEPEND in your ebuild if the ebuild requires PHP5
+# with either cgi or apache2 SAPI.
 need_php5_httpd() {
 	DEPEND="${DEPEND} =virtual/httpd-php-5*"
 	RDEPEND="${RDEPEND} =virtual/httpd-php-5*"
 	PHP_VERSION="5"
 }
 
+# @FUNCTION: need_php5
+# @DESCRIPTION:
+# Set this after setting DEPEND/RDEPEND in your ebuild if the ebuild requires PHP5
+# (with any SAPI).
 need_php5() {
 	DEPEND="${DEPEND} =dev-lang/php-5*"
 	RDEPEND="${RDEPEND} =dev-lang/php-5*"
@@ -96,22 +121,40 @@ uses_php5() {
 }
 
 # general PHP depend functions
+
+# @FUNCTION: need_php_cli
+# @DESCRIPTION:
+# Set this after setting DEPEND/RDEPEND in your ebuild if the ebuild requires PHP
+# (any version) with cli SAPI.
 need_php_cli() {
 	DEPEND="${DEPEND} virtual/php"
 	RDEPEND="${RDEPEND} virtual/php"
 }
 
+# @FUNCTION: need_php_httpd
+# @DESCRIPTION:
+# Set this after setting DEPEND/RDEPEND in your ebuild if the ebuild requires PHP
+# (any version) with either cgi or apache2 SAPI.
 need_php_httpd() {
 	DEPEND="${DEPEND} virtual/httpd-php"
 	RDEPEND="${RDEPEND} virtual/httpd-php"
 }
 
+# @FUNCTION: need_php
+# @DESCRIPTION:
+# Set this after setting DEPEND/RDEPEND in your ebuild if the ebuild requires PHP
+# (any version with any SAPI).
 need_php() {
 	DEPEND="${DEPEND} dev-lang/php"
 	RDEPEND="${RDEPEND} dev-lang/php"
 	PHP_SHARED_CAT="php"
 }
 
+# @FUNCTION: need_php_by_category
+# @DESCRIPTION:
+# Set this after setting DEPEND/RDEPEND in your ebuild to depend on PHP version
+# determined by ${CATEGORY} - any PHP version, PHP4 or PHP5 for dev-php, dev-php4 and
+# dev-php5, respectively.
 need_php_by_category() {
 	case "${CATEGORY}" in
 		dev-php) need_php ;;
@@ -121,9 +164,12 @@ need_php_by_category() {
 	esac
 }
 
-# Call this function from your pkg_setup, src_compile and src_install methods
-# if you need to know where the PHP binaries are installed and their data
 
+# @FUNCTION: has_php
+# @DESCRIPTION:
+# Call this function from your pkg_setup, src_compile, src_install etc. if you
+# need to know which PHP version is being used and where the PHP binaries/data 
+# are installed.
 has_php() {
 	# If PHP_PKG is already set, then we have remembered our PHP settings
 	# from last time
@@ -147,14 +193,21 @@ has_php() {
 	uses_php${PHP_VERSION}
 }
 
+# @FUNCTION: require_php_sapi_from
+# @USAGE: <list of SAPIs>
+# @DESCRIPTION:
 # Call this function from pkg_setup if your package only works with
-# specific SAPIs
+# specific SAPI(s) and specify a list of PHP SAPI USE flags that are
+# required (one or more from cli, cgi, apache2) as arguments.
+# Returns if any of the listed SAPIs have been installed, dies if none
+# of them is available.
 #
-# $1 ... a list of PHP SAPI USE flags (cli, cgi, apache2)
-#
-# Returns if any one of the listed SAPIs have been installed
-# Dies if none of the listed SAPIs have been installed
-
+# Unfortunately, if you want to be really sure that the required SAPI is
+# provided by PHP, you will have to use this function or similar ones (like
+# require_php_cli or require_php_cgi) in pkg_setup until we are able to
+# depend on USE flags being enabled. The above described need_php[45]_cli 
+# and need_php[45]_httpd functions cannot guarantee these requirements.
+# See Bug 2272 for details.
 require_php_sapi_from() {
 	has_php
 
@@ -183,14 +236,30 @@ require_php_sapi_from() {
 	die "No compatible PHP SAPIs found"
 }
 
+# @FUNCTION: require_php_with_use
+# @USAGE: <list of USE flags>
+# @DESCRIPTION:
 # Call this function from pkg_setup if your package requires PHP compiled
-# with specific USE flags
-#
-# $1 ... a list of USE flags
-#
-# Returns if all of the listed USE flags are enabled
-# Dies if any of the listed USE flags are disabled
+# with specific USE flags. Returns if all of the listed USE flags are enabled.
+# Dies if any of the listed USE flags are disabled.
 
+# @VARIABLE: PHPCHECKNODIE
+# @DESCRIPTION:
+# You can set PHPCHECKNODIE to non-empty value in your ebuild to chain multiple
+# require_php_with_(any)_use checks without making the ebuild die on every failure.
+# This is useful in cases when certain PHP features are only required if specific 
+# USE flag(s) are enabled for that ebuild.
+# @CODE
+# Example:
+#
+# local flags="pcre session snmp sockets wddx"
+# use mysql && flags="${flags} mysql"
+# use postgres && flags="${flags} postgres"
+# if ! PHPCHECKNODIE="yes" require_php_with_use ${flags} \
+#	|| ! PHPCHECKNODIE="yes" require_php_with_any_use gd gd-external ; then
+#	die "Re-install ${PHP_PKG} with ${flags} and either gd or gd-external"
+# fi
+# @CODE
 require_php_with_use() {
 	has_php
 
@@ -227,14 +296,12 @@ require_php_with_use() {
 	fi
 }
 
-# Call this function from pkg_setup if your package requires PHP compiled
-# with any of specified USE flags
-#
-# $1 ... a list of USE flags
-#
-# Returns if any of the listed USE flags are enabled
-# Dies if all of the listed USE flags are disabled
-
+# @FUNCTION: require_php_with_any_use
+# @USAGE: <list of USE flags>
+# @DESCRIPTION:
+# Call this function from pkg_setup if your package requires PHP compiled with
+# any of specified USE flags. Returns if any of the listed USE flags are enabled.
+# Dies if all of the listed USE flags are disabled.
 require_php_with_any_use() {
 	has_php
 
@@ -279,8 +346,10 @@ require_php_with_any_use() {
 # These functions return 0 if the condition is satisfied, 1 otherwise
 # ========================================================================
 
-# Check if our PHP was compiled with ZTS (Zend Thread Safety) enabled
-
+# @FUNCTION: has_zts
+# @DESCRIPTION:
+# Check if our PHP was compiled with ZTS (Zend Thread Safety) enabled.
+# @RETURN: 0 if true, 1 otherwise
 has_zts() {
 	has_php
 
@@ -291,8 +360,10 @@ has_zts() {
 	return 1
 }
 
-# Check if our PHP was built with debug support enabled
-
+# @FUNCTION: has_debug
+# @DESCRIPTION:
+# Check if our PHP was built with debug support enabled.
+# @RETURN: 0 if true, 1 otherwise
 has_debug() {
 	has_php
 
@@ -303,8 +374,10 @@ has_debug() {
 	return 1
 }
 
-# Check if our PHP was built with the concurrentmodphp support enabled
-
+# @FUNCTION: has_concurrentmodphp
+# @DESCRIPTION:
+# Check if our PHP was built with the concurrentmodphp support enabled.
+# @RETURN: 0 if true, 1 otherwise
 has_concurrentmodphp() {
 	has_php
 
@@ -321,8 +394,10 @@ has_concurrentmodphp() {
 # These functions die() if PHP was built without the required features
 # ========================================================================
 
-# Require a PHP built with PDO support (PHP5 only)
-
+# @FUNCTION: require_pdo
+# @DESCRIPTION:
+# Require a PHP built with PDO support (PHP5 only).
+# @RETURN: die if feature is missing
 require_pdo() {
 	has_php
 
@@ -365,10 +440,12 @@ require_pdo() {
 	die "No PDO extension for PHP 5 found"
 }
 
-# Determines which installed PHP version has the CLI SAPI enabled,
-# useful for PEAR stuff, or anything which needs to run PHP
-# scripts depending on the CLI SAPI
-
+# @FUNCTION: require_php_cli
+# @DESCRIPTION:
+# Determines which installed PHP version has the CLI SAPI enabled.
+# Useful for PEAR stuff, or anything which needs to run PHP script
+# depending on the CLI SAPI.
+# @RETURN: die if feature is missing
 require_php_cli() {
 	# If PHP_PKG is set, then we have remembered our PHP settings
 	# from last time
@@ -408,10 +485,11 @@ require_php_cli() {
 	uses_php${PHP_VERSION}
 }
 
-# Determines which installed PHP version has the CGI SAPI enabled,
-# useful for anything which needs to run PHP scripts
-# depending on the CGI SAPI
-
+# @FUNCTION: require_php_cgi
+# @DESCRIPTION:
+# Determines which installed PHP version has the CGI SAPI enabled.
+# Useful for anything which needs to run PHP scripts depending on the CGI SAPI.
+# @RETURN: die if feature is missing
 require_php_cgi() {
 	# If PHP_PKG is set, then we have remembered our PHP settings
 	# from last time
@@ -451,8 +529,10 @@ require_php_cgi() {
 	uses_php${PHP_VERSION}
 }
 
+# @FUNCTION: require_sqlite
+# @DESCRIPTION:
 # Require a PHP built with SQLite support
-
+# @RETURN: die if feature is missing
 require_sqlite() {
 	has_php
 
@@ -478,8 +558,10 @@ require_sqlite() {
 	die "No SQLite extension for PHP found"
 }
 
+# @FUNCTION: require_gd
+# @DESCRIPTION:
 # Require a PHP built with GD support
-
+# @RETURN: die if feature is missing
 require_gd() {
 	has_php
 
@@ -510,8 +592,9 @@ require_gd() {
 # These functions provide miscellaneous checks and functionality.
 # ========================================================================
 
-# Executes some checks needed when installing a binary PHP extension
-
+# @FUNCTION: php_binary_extension
+# @DESCRIPTION:
+# Executes some checks needed when installing a binary PHP extension.
 php_binary_extension() {
 	has_php
 
@@ -547,13 +630,13 @@ php_binary_extension() {
 	fi
 }
 
-# Alternative to dodoc function for use in our PHP eclasses and
-# ebuilds.
-# Stored here because depend.php gets always sourced everywhere
-# in the PHP ebuilds and eclasses.
-# It simply is dodoc with a changed path to the docs.
-# NOTE: no support for docinto is given!
-
+# @FUNCTION: dodoc-php
+# @USAGE: <list of docs>
+# @DESCRIPTION:
+# Alternative to dodoc function for use in our PHP eclasses and ebuilds.
+# Stored here because depend.php gets always sourced everywhere in the PHP 
+# ebuilds and eclasses. It simply is dodoc with a changed path to the docs.
+# NOTE: No support for docinto is provided!
 dodoc-php() {
 if [[ $# -lt 1 ]] ; then
 	echo "$0: at least one argument needed" 1>&2

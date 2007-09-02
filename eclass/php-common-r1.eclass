@@ -1,21 +1,19 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-common-r1.eclass,v 1.10 2007/08/27 11:17:32 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-common-r1.eclass,v 1.11 2007/09/01 15:58:17 jokey Exp $
 
-# ========================================================================
-#
-# php-common-r1.eclass
-#		Contains common functions which are shared between the
-#		PHP4 and PHP5 packages
-#
-#		USE THIS ECLASS FOR THE "CONSOLIDATED" PACKAGES
-#
-#		Based on robbat2's work on the php4 sapi eclass
-#		Based on stuart's work on the php5 sapi eclass
-#
-# Maintained by the PHP Team <php-bugs@gentoo.org>
-#
-# ========================================================================
+# Based on robbat2's work on the php4 sapi eclass
+# Based on stuart's work on the php5 sapi eclass
+
+# @ECLASS: php-common-r1.eclass
+# @MAINTAINER:
+# Gentoo PHP team <php-bugs@gentoo.org>
+# @BLURB: Common functions which are shared between the PHP4 and PHP5 packages.
+# @DESCRIPTION:
+# This eclass provides common functions which are shared between the PHP4 and PHP5 packages.
+# It is only used by php*-sapi eclasses currently and the functions are not intended
+# for direct use in ebuilds.
+
 
 # ========================================================================
 # CFLAG SANITY

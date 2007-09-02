@@ -1,14 +1,17 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-lib-r1.eclass,v 1.5 2007/03/05 01:50:47 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-lib-r1.eclass,v 1.6 2007/09/01 15:58:17 jokey Exp $
 #
 # Author: Stuart Herbert <stuart@gentoo.org>
 # Author: Luca Longinotti <chtekk@gentoo.org>
-# Maintained by the PHP Team <php-bugs@gentoo.org>
-#
-# The php-lib-r1 eclass provides a unified interface for adding new
-# PHP libraries. PHP libraries are PHP scripts designed for reuse inside
-# other PHP scripts.
+
+# @ECLASS: php-lib-r1.eclass
+# @MAINTAINER:
+# Gentoo PHP team <php-bugs@gentoo.org>
+# @BLURB: A unified interface for adding new PHP libraries.
+# @DESCRIPTION:
+# This eclass provides a unified interface for adding new PHP libraries.
+# PHP libraries are PHP scripts designed for reuse inside other PHP scripts.
 
 inherit depend.php
 
@@ -17,14 +20,19 @@ EXPORT_FUNCTIONS src_install
 DEPEND="dev-lang/php"
 RDEPEND="${DEPEND}"
 
-# provide default extension name if necessary
+# @ECLASS-VARIABLE: PHP_LIB_NAME
+# @DESCRIPTION:
+# Defaults to ${PN} unless set manually in the ebuild.
 [[ -z "${PHP_LIB_NAME}" ]] && PHP_LIB_NAME="${PN}"
 
-# you have to pass in a list of the PHP files to install
-#
+# @FUNCTION: php-lib-r1_src_install
+# @USAGE: <directory to install from> <list of files>
+# @DESCRIPTION:
+# Takes care of install for PHP libraries.
+# You have to pass in a list of the PHP files to install.
+
 # $1 - directory in ${S} to insert from
 # $2 ... list of files to install
-
 php-lib-r1_src_install() {
 	has_php
 

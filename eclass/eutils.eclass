@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.288 2007/08/30 22:45:17 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.289 2007/09/01 03:24:09 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -1743,7 +1743,7 @@ built_with_use() {
 	[[ ${opt} = "-a" ]]
 }
 
-# @DESCRIPTION: epunt_cxx
+# @FUNCTION: epunt_cxx
 # @USAGE: [dir to scan]
 # @DESCRIPTION:
 # Many configure scripts wrongly bail when a C++ compiler could not be

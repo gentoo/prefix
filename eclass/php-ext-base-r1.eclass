@@ -1,14 +1,19 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-base-r1.eclass,v 1.7 2007/05/12 02:54:35 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-base-r1.eclass,v 1.8 2007/09/01 15:58:17 jokey Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
 # Author: Stuart Herbert <stuart@gentoo.org>
 # Author: Luca Longinotti <chtekk@gentoo.org>
-# Maintained by the PHP Team <php-bugs@gentoo.org>
-#
-# The php-ext-base-r1 eclass provides a unified interface for adding standalone
-# PHP extensions ('modules') to the php.ini files on your system.
+# Author: Jakub Moc <jakub@gentoo.org> (documentation)
+
+# @ECLASS: php-ext-base-r1.eclass
+# @MAINTAINER:
+# Gentoo PHP team <php-bugs@gentoo.org>
+# @BLURB: A unified interface for adding standalone PHP extensions.
+# @DESCRIPTION:
+# This eclass provides a unified interface for adding standalone
+# PHP extensions (modules) to the php.ini files on your system.
 #
 # Combined with php-ext-source-r1, we have a standardised solution for supporting
 # PHP extensions.
@@ -17,16 +22,25 @@ inherit depend.php
 
 EXPORT_FUNCTIONS src_install
 
-# The extension name, this must be set, otherwise we die
+# @ECLASS-VARIABLE: PHP_EXT_NAME
+# @DESCRIPTION:
+# The extension name. This must be set, otherwise the eclass dies.
+# Only automagically set by php-ext-pecl-r1.eclass, so unless your ebuild
+# inherits that eclass, you must set this manually before inherit.
 [[ -z "${PHP_EXT_NAME}" ]] && die "No module name specified for the php-ext-base-r1 eclass"
 
-# Wether or not to add a line to php.ini for the extension
-# (defaults to "yes" and shouldn't be changed in most cases)
+# @ECLASS-VARIABLE: PHP_EXT_INI
+# @DESCRIPTION:
+# Controls whether or not to add a line to php.ini for the extension.
+# Defaults to "yes" and should not be changed in most cases.
 [[ -z "${PHP_EXT_INI}" ]] && PHP_EXT_INI="yes"
 
-# Wether the extension is a ZendEngine extension or not
-# (defaults to "no" and if you don't know what is it, you don't need it)
+# @ECLASS-VARIABLE: PHP_EXT_ZENDEXT
+# @DESCRIPTION:
+# Controls whether the extension is a ZendEngine extension or not.
+# Defaults to "no" and if you don't know what is it, you don't need it.
 [[ -z "${PHP_EXT_ZENDEXT}" ]] && PHP_EXT_ZENDEXT="no"
+
 
 php-ext-base-r1_buildinilist() {
 	# Work out the list of <ext>.ini files to edit/add to
@@ -43,6 +57,9 @@ php-ext-base-r1_buildinilist() {
 	done
 }
 
+# @FUNCTION: php-ext-base-r1_src_install
+# @DESCRIPTION:
+# Takes care of standard install for PHP extensions (modules).
 php-ext-base-r1_src_install() {
 	# Pull in the PHP settings
 	has_php
@@ -100,7 +117,6 @@ php-ext-base-r1_addextension() {
 # $2 - Setting value
 # $3 - File to add to
 # $4 - Sanitized text to output
-
 php-ext-base-r1_addtoinifile() {
 	if [[ ! -d `dirname $3` ]] ; then
 		mkdir -p `dirname $3`
@@ -125,6 +141,25 @@ php-ext-base-r1_addtoinifile() {
 	doins "$3"
 }
 
+# @FUNCTION: php-ext-base-r1_addtoinifiles
+# @USAGE: <setting name> <setting value> [message to output]; or just [section name]
+# @DESCRIPTION:
+# Add value settings to php.ini file installed by the extension (module).
+# You can also add a [section], see examples below.
+#
+# @CODE
+# Add some settings for the extension:
+#
+# php-ext-base-r1_addtoinifiles "zend_optimizer.optimization_level" "15"
+# php-ext-base-r1_addtoinifiles "zend_optimizer.enable_loader" "0"
+# php-ext-base-r1_addtoinifiles "zend_optimizer.disable_licensing" "0"
+#
+# Adding values to a section in php.ini file installed by the extension:
+#
+# php-ext-base-r1_addtoinifiles "[Debugger]"
+# php-ext-base-r1_addtoinifiles "debugger.enabled" "on"
+# php-ext-base-r1_addtoinifiles "debugger.profiler_enabled" "on"
+# @CODE
 php-ext-base-r1_addtoinifiles() {
 	for x in ${PHPINIFILELIST} ; do
 		php-ext-base-r1_addtoinifile "$1" "$2" "$x" "$3"

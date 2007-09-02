@@ -1,20 +1,24 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/phpconfutils.eclass,v 1.5 2007/05/10 20:26:45 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/phpconfutils.eclass,v 1.6 2007/09/01 15:58:17 jokey Exp $
 #
 # ########################################################################
 #
-# eclass/phpconfutils.eclass
-#		Utility functions to help with configuring PHP
+# Based on Stuart's work on the original confutils eclass
 #
-#		Based on Stuart's work on the original confutils eclass
-#
-# Author(s)		Luca Longinotti
-#				<chtekk@gentoo.org>
-#
-# Maintained by the PHP Herd <php-bugs@gentoo.org>
+# Author(s): Luca Longinotti <chtekk@gentoo.org>
 #
 # ========================================================================
+
+# @ECLASS: phpconfutils.eclass
+# @MAINTAINER:
+# Gentoo PHP team <php-bugs@gentoo.org>
+# @BLURB: Provides utility functions to help with configuring PHP.
+# @DESCRIPTION:
+# This eclass provides utility functions to help with configuring PHP.
+# It is only used by other php eclasses currently and the functions 
+# are not generally intended for direct use in ebuilds.
+
 
 # ========================================================================
 # List of USE flags that need deps that aren't yet in Portage

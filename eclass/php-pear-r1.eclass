@@ -1,24 +1,29 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-pear-r1.eclass,v 1.16 2007/08/27 11:15:19 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-pear-r1.eclass,v 1.17 2007/09/01 15:58:17 jokey Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
 # Author: Luca Longinotti <chtekk@gentoo.org>
-# Maintained by the PHP Team <php-bugs@gentoo.org>
-#
-# The php-pear-r1 eclass provides means for an easy installation of PEAR
-# packages, see http://pear.php.net/
 
-# Note that this eclass doesn't handle PEAR packages' dependencies on
-# purpose, please use (R)DEPEND to define them correctly!
+# @ECLASS: php-pear-r1.eclass
+# @MAINTAINER:
+# Gentoo PHP Team <php-bugs@gentoo.org>
+# @BLURB: Provides means for an easy installation of PEAR packages.
+# @DESCRIPTION:
+# This eclass provides means for an easy installation of PEAR packages.
+# For more information on PEAR, see http://pear.php.net/
+# Note that this eclass doesn't handle dependencies of PEAR packages
+# on purpose; please use (R)DEPEND to define them correctly!
 
 EXPORT_FUNCTIONS src_install
 
 DEPEND="dev-lang/php >=dev-php/PEAR-PEAR-1.4.6"
 RDEPEND="${DEPEND}"
 
-# Set this if the the PEAR package name is different than the one in
-# Portage (generally shouldn't be the case).
+# @ECLASS-VARIABLE: PHP_PEAR_PKG_NAME
+# @DESCRIPTION:
+# Set this if the the PEAR package name differs from ${PN/PEAR-/}
+# (generally shouldn't be the case).
 [[ -z "${PHP_PEAR_PKG_NAME}" ]] && PHP_PEAR_PKG_NAME="${PN/PEAR-/}"
 
 fix_PEAR_PV() {
@@ -29,7 +34,9 @@ fix_PEAR_PV() {
 	PEAR_PV="${tmp}"
 }
 
-# Set PEAR_PV in ebuilds if the PV mangling for beta/rc versions breaks SRC_URI
+# @ECLASS-VARIABLE: PEAR_PV
+# @DESCRIPTION:
+# Set in ebuild if the eclass ${PV} mangling breaks SRC_URI for beta/rc versions
 [[ -z "${PEAR_PV}" ]] && fix_PEAR_PV
 
 PEAR_PN="${PHP_PEAR_PKG_NAME}-${PEAR_PV}"
@@ -39,6 +46,9 @@ PEAR_PN="${PHP_PEAR_PKG_NAME}-${PEAR_PV}"
 
 S="${WORKDIR}/${PEAR_PN}"
 
+# @FUNCTION: php-pear-r1_src_install
+# @DESCRIPTION:
+# Takes care of standard install for PEAR packages.
 php-pear-r1_src_install() {
 	# SNMP support
 	addpredict /usr/share/snmp/mibs/.index
