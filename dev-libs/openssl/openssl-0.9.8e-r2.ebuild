@@ -100,8 +100,8 @@ src_compile() {
 	./${config} \
 		${sslout} \
 		${confopts} \
-		--prefix=${EPREFIX}/usr \
-		--openssldir=${EPREFIX}/etc/ssl \
+		--prefix="${EPREFIX}"/usr \
+		--openssldir="${EPREFIX}"/etc/ssl \
 		shared threads \
 		|| die "Configure failed"
 
