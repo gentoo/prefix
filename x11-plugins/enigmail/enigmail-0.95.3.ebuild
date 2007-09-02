@@ -132,7 +132,7 @@ src_compile() {
 	mozconfig_annotate '' \
 		--with-system-nspr \
 		--with-system-nss \
-		--with-default-mozilla-five-home=${EPREFIX}${MOZILLA_FIVE_HOME} \
+		--with-default-mozilla-five-home="${EPREFIX}"${MOZILLA_FIVE_HOME} \
 		--with-user-appdir=.thunderbird
 
 	# Finalize and report settings
