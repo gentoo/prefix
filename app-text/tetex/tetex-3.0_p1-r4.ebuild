@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/tetex-3.0_p1-r3.ebuild,v 1.18 2007/09/01 16:59:06 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/tetex-3.0_p1-r4.ebuild,v 1.1 2007/09/01 17:16:35 rbu Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ inherit tetex-3 flag-o-matic versionator virtualx
 
 SMALL_PV=$(get_version_component_range 1-2 ${PV})
 TETEX_TEXMF_PV=${SMALL_PV}
-S=${WORKDIR}/tetex-src-${SMALL_PV}
+S="${WORKDIR}/tetex-src-${SMALL_PV}"
 
 TETEX_SRC="tetex-src-${PV}.tar.gz"
 TETEX_TEXMF="tetex-texmf-${TETEX_TEXMF_PV:-${TETEX_PV}}.tar.gz"
@@ -27,15 +27,12 @@ KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 
 # these are defined in tetex.eclass and tetex-3.eclass
 IUSE=""
-DEPEND=""
-
-# please leave until 2. sept. 2007
-# see bug 189716
-RESTRICT="mirror"
+DEPEND="${DEPEND} media-libs/gd"
+RDEPEND="${RDEPEND} media-libs/gd"
 
 src_unpack() {
 	tetex-3_src_unpack
-	cd ${S}
+	cd "${S}"
 	epatch ${FILESDIR}/${PN}-${SMALL_PV}-kpathsea-pic.patch
 
 	# bug 85404
@@ -59,6 +56,12 @@ src_unpack() {
 	# bug 94901
 	epatch ${FILESDIR}/${P}-dvipdfm-timezone.patch
 
+	# security bug #170861
+	epatch ${FILESDIR}/${P}-CVE-2007-0650.patch
+
+	# security bug #188172
+	epatch ${FILESDIR}/${P}-xpdf-CVE-2007-3387.patch
+
 	# Construct a Gentoo site texmf directory
 	# that overlays the upstream supplied
 	epatch ${FILESDIR}/${P}-texmf-site.patch
@@ -73,7 +76,8 @@ src_compile() {
 	export LC_ALL=C
 
 	# dvipng has its own ebuild (fix for bug #129044).
-	TETEX_ECONF="${TETEX_ECONF} --without-dvipng"
+	# also, do not build against own lib gd (security #182055)
+	TETEX_ECONF="${TETEX_ECONF} --without-dvipng --with-system-gd"
 
 	tetex-3_src_compile
 }

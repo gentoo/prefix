@@ -1,6 +1,21 @@
 # ChangeLog for app-text/tetex
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.145 2007/06/27 06:02:27 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.147 2007/09/01 17:16:35 rbu Exp $
+
+*tetex-3.0_p1-r4 (01 Sep 2007)
+
+  01 Sep 2007; Robert Buchholz <rbu@gentoo.org>
+  +files/tetex-3.0_p1-CVE-2007-0650.patch,
+  +files/tetex-3.0_p1-xpdf-CVE-2007-3387.patch, +tetex-3.0_p1-r4.ebuild:
+  Revision bump fixing security bugs:
+   * 170861: Fix various buffer overflows in tetex's code (CVE-2007-0650)
+   * 182055: Link to system libgd instead of the old one in tarball (CVE-2007-2756)
+   * 188172: Patch for vulnerable XPDF code (CVE-2007-3387)
+
+  01 Sep 2007; Robert Buchholz <rbu@gentoo.org> -tetex-3.0-r3.ebuild,
+  -tetex-3.0-r4.ebuild, -tetex-3.0_p1.ebuild, -tetex-3.0_p1-r1.ebuild,
+  -tetex-3.0_p1-r2.ebuild, tetex-3.0_p1-r3.ebuild:
+  Clean up old versions, update Manifest to new version of texmf (bug #189716)
 
   27 Jun 2007; Christian Faulhammer <opfer@gentoo.org> ChangeLog:
   changed email address of contributor
