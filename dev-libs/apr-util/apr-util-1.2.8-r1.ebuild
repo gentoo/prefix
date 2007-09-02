@@ -58,9 +58,9 @@ src_compile() {
 		myconf="${myconf} --without-berkeley-db"
 	fi
 
-	econf --datadir=${EPREFIX}/usr/share/apr-util-1 \
-		--with-apr=${EPREFIX}/usr \
-		--with-expat=${EPREFIX}/usr \
+	econf --datadir="${EPREFIX}"/usr/share/apr-util-1 \
+		--with-apr="${EPREFIX}"/usr \
+		--with-expat="${EPREFIX}"/usr \
 		$(use_with gdbm) \
 		$(use_with mysql) \
 		$(use_with postgres pgsql) \

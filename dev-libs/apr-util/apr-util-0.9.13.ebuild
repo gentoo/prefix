@@ -47,9 +47,9 @@ src_compile() {
 	fi
 
 	econf \
-		--datadir=${EPREFIX}/usr/share/apr-util-0 \
-		--with-apr=${EPREFIX}/usr \
-		--with-expat=${EPREFIX}/usr \
+		--datadir="${EPREFIX}"/usr/share/apr-util-0 \
+		--with-apr="${EPREFIX}"/usr \
+		--with-expat="${EPREFIX}"/usr \
 		$myconf || die "econf failed!"
 
 	emake || die "emake failed!"
