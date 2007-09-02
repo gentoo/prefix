@@ -1,0 +1,230 @@
+Index: libdts-0.0.2/configure.ac
+===================================================================
+--- libdts-0.0.2.orig/configure.ac
++++ libdts-0.0.2/configure.ac
+@@ -139,4 +139,7 @@ builtin([include],[src/configure.incl])
+ 
+ AC_C_ATTRIBUTE_ALIGNED
+ 
++CC_ATTRIBUTE_VISIBILITY
++CC_FLAG_VISIBILITY([CFLAGS="$CFLAGS -fvisibility=hidden"])
++
+ AC_OUTPUT
+Index: libdts-0.0.2/include/dts.h
+===================================================================
+--- libdts-0.0.2.orig/include/dts.h
++++ libdts-0.0.2/include/dts.h
+@@ -23,6 +23,14 @@
+ #ifndef DTS_H
+ #define DTS_H
+ 
++#ifndef EXPORTED
++# ifdef SUPPORT_ATTRIBUTE_VISIBILITY
++#  define EXPORTED __attribute__((visibility("default")))
++# else
++#  define EXPORTED
++# endif
++#endif
++
+ /* x86 accelerations */
+ #define MM_ACCEL_X86_MMX	0x80000000
+ #define MM_ACCEL_X86_3DNOW	0x40000000
+@@ -64,22 +72,22 @@ typedef struct dts_state_s dts_state_t;
+ #define DTS_LFE 0x80
+ #define DTS_ADJUST_LEVEL 0x100
+ 
+-dts_state_t * dts_init (uint32_t mm_accel);
++dts_state_t * dts_init (uint32_t mm_accel) EXPORTED;
+ 
+ int dts_syncinfo (dts_state_t *state, uint8_t * buf, int * flags,
+-                  int * sample_rate, int * bit_rate, int *frame_length);
++                  int * sample_rate, int * bit_rate, int *frame_length) EXPORTED;
+ 
+ int dts_frame (dts_state_t * state, uint8_t * buf, int * flags,
+-               level_t * level, sample_t bias);
++               level_t * level, sample_t bias) EXPORTED;
+ 
+ void dts_dynrng (dts_state_t * state,
+-                 level_t (* call) (level_t, void *), void * data);
++                 level_t (* call) (level_t, void *), void * data) EXPORTED;
+ 
+-int dts_blocks_num (dts_state_t * state);
+-int dts_block (dts_state_t * state);
++int dts_blocks_num (dts_state_t * state) EXPORTED;
++int dts_block (dts_state_t * state) EXPORTED;
+ 
+-sample_t * dts_samples (dts_state_t * state);
++sample_t * dts_samples (dts_state_t * state) EXPORTED;
+ 
+-void dts_free (dts_state_t * state);
++void dts_free (dts_state_t * state) EXPORTED;
+ 
+ #endif /* DTS_H */
+Index: libdts-0.0.2/m4/attributes.m4
+===================================================================
+--- /dev/null
++++ libdts-0.0.2/m4/attributes.m4
+@@ -0,0 +1,163 @@
++# Functions to check for attributes support in compiler
++
++AC_DEFUN([CC_ATTRIBUTE_CONSTRUCTOR], [
++	AC_CACHE_CHECK([if compiler supports __attribute__((constructor))],
++		[cc_cv_attribute_constructor],
++		[AC_COMPILE_IFELSE([
++			void ctor() __attribute__((constructor));
++			void ctor() { };
++			],
++			[cc_cv_attribute_constructor=yes],
++			[cc_cv_attribute_constructor=no])
++		])
++	
++	if test "x$cc_cv_attribute_constructor" = "xyes"; then
++		AC_DEFINE([SUPPORT_ATTRIBUTE_CONSTRUCTOR], 1, [Define this if the compiler supports the constructor attribute])
++		$1
++	else
++		true
++		$2
++	fi
++])
++
++AC_DEFUN([CC_ATTRIBUTE_FORMAT], [
++	AC_CACHE_CHECK([if compiler supports __attribute__((format(printf, n, n)))],
++		[cc_cv_attribute_format],
++		[AC_COMPILE_IFELSE([
++			void __attribute__((format(printf, 1, 2))) printflike(const char *fmt, ...) { }
++			],
++			[cc_cv_attribute_format=yes],
++			[cc_cv_attribute_format=no])
++		])
++	
++	if test "x$cc_cv_attribute_format" = "xyes"; then
++		AC_DEFINE([SUPPORT_ATTRIBUTE_FORMAT], 1, [Define this if the compiler supports the format attribute])
++		$1
++	else
++		true
++		$2
++	fi
++])
++
++AC_DEFUN([CC_ATTRIBUTE_FORMAT_ARG], [
++	AC_CACHE_CHECK([if compiler supports __attribute__((format_arg(printf)))],
++		[cc_cv_attribute_format_arg],
++		[AC_COMPILE_IFELSE([
++			void __attribute__((format_arg(printf, 1))) gettextlike(const char *fmt) { }
++			],
++			[cc_cv_attribute_format_arg=yes],
++			[cc_cv_attribute_format_arg=no])
++		])
++	
++	if test "x$cc_cv_attribute_format_arg" = "xyes"; then
++		AC_DEFINE([SUPPORT_ATTRIBUTE_FORMAT_ARG], 1, [Define this if the compiler supports the format_arg attribute])
++		$1
++	else
++		true
++		$2
++	fi
++])
++
++AC_DEFUN([CC_ATTRIBUTE_VISIBILITY], [
++	AC_CACHE_CHECK([if compiler supports __attribute__((visibility("...")))],
++		[cc_cv_attribute_visibility],
++		[AC_COMPILE_IFELSE([
++			void __attribute__((visibility("internal"))) internal_function() { }
++			void __attribute__((visibility("hidden"))) hidden_function() { }
++			void __attribute__((visibility("default"))) external_function() { }
++			],
++			[cc_cv_attribute_visibility=yes],
++			[cc_cv_attribute_visibility=no])
++		])
++	
++	if test "x$cc_cv_attribute_visibility" = "xyes"; then
++		AC_DEFINE([SUPPORT_ATTRIBUTE_VISIBILITY], 1, [Define this if the compiler supports the visibility attribute])
++		$1
++	else
++		true
++		$2
++	fi
++])
++
++AC_DEFUN([CC_FLAG_VISIBILITY], [
++	AC_CACHE_CHECK([if compiler supports -fvisibility=hidden],
++		[cc_cv_flag_visibility],
++		[
++		save_CFLAGS=$CFLAGS
++		CFLAGS="$CFLAGS -fvisibility=hidden"
++		AC_COMPILE_IFELSE([int a;],
++			[cc_cv_flag_visibility=yes],
++			[cc_cv_flag_visibility=no])
++		CFLAGS="$save_CFLAGS"
++		])
++	
++	if test "x$cc_cv_flag_visibility" = "xyes"; then
++		AC_DEFINE([SUPPORT_FLAG_VISIBILITY], 1, [Define this if the compiler supports the -fvisibility flag])
++		$1
++	else
++		true
++		$2
++	fi
++])
++
++AC_DEFUN([CC_ATTRIBUTE_NONNULL], [
++	AC_CACHE_CHECK([if compiler supports __attribute__((nonnull()))],
++		[cc_cv_attribute_nonnull],
++		[AC_COMPILE_IFELSE([
++			void some_function(void *foo, void *bar) __attribute__((nonnull()));
++			void some_function(void *foo, void *bar) { }
++			],
++			[cc_cv_attribute_nonnull=yes],
++			[cc_cv_attribute_nonnull=no])
++		])
++	
++	if test "x$cc_cv_attribute_nonnull" = "xyes"; then
++		AC_DEFINE([SUPPORT_ATTRIBUTE_NONNULL], 1, [Define this if the compiler supports the nonnull attribute])
++		$1
++	else
++		true
++		$2
++	fi
++])
++
++AC_DEFUN([CC_ATTRIBUTE_UNUSED], [
++	AC_CACHE_CHECK([if compiler supports __attribute__((unused))],
++		[cc_cv_attribute_unused],
++		[AC_COMPILE_IFELSE([
++			void some_function(void *foo, __attribute__((unused)) void *bar);
++			],
++			[cc_cv_attribute_unused=yes],
++			[cc_cv_attribute_unused=no])
++		])
++	
++	if test "x$cc_cv_attribute_unused" = "xyes"; then
++		AC_DEFINE([SUPPORT_ATTRIBUTE_UNUSED], 1, [Define this if the compiler supports the unused attribute])
++		$1
++	else
++		true
++		$2
++	fi
++])
++
++AC_DEFUN([CC_FUNC_EXPECT], [
++	AC_CACHE_CHECK([if compiler has __builtin_expect function],
++		[cc_cv_func_expect],
++		[AC_COMPILE_IFELSE([
++			int some_function()
++			{
++				int a = 3;
++				return (int)__builtin_expect(a, 3);
++			}
++			],
++			[cc_cv_func_expect=yes],
++			[cc_cv_func_expect=no])
++		])
++	
++	if test "x$cc_cv_func_expect" = "xyes"; then
++		AC_DEFINE([SUPPORT__BUILTIN_EXPECT], 1, [Define this if the compiler supports __builtin_expect() function])
++		$1
++	else
++		true
++		$2
++	fi
++])
