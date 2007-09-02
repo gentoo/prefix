@@ -28,7 +28,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	# "fix" for prefix
-	sed -i -e "s/\${ROOT}/\${ROOT}${EPREFIX}/g" rails.eselect || die
+	sed -i -e "s|\${ROOT}|\${ROOT}${EPREFIX}|g" rails.eselect || die
 }
 
 src_install() {
