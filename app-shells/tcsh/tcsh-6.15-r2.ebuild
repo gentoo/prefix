@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/tcsh-6.15-r2.ebuild,v 1.2 2007/07/24 20:53:13 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/tcsh-6.15-r2.ebuild,v 1.8 2007/09/01 16:46:29 armin76 Exp $
 
 EAPI="prefix"
 
@@ -20,6 +20,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 
 IUSE="perl catalogs"
+RESTRICT="test"
 
 # we need gettext because we run autoconf
 DEPEND=">=sys-libs/ncurses-5.1
