@@ -39,7 +39,7 @@ src_compile() {
 	# file uses things like strndup() and wcwidth()
 	append-flags -D_GNU_SOURCE
 
-	econf --datadir=${EPREFIX}/usr/share/misc || die
+	econf --datadir="${EPREFIX}"/usr/share/misc || die
 	emake || die "emake failed"
 
 	use python && cd python && distutils_src_compile
