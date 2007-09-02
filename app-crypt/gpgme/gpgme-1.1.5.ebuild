@@ -31,9 +31,9 @@ src_unpack() {
 src_compile() {
 	econf \
 		--with-pth=yes \
-		--includedir=${EPREFIX}/usr/include/gpgme \
-		--with-gpg=${EPREFIX}/usr/bin/gpg \
-		--with-gpgsm=${EPREFIX}/usr/bin/gpgsm \
+		--includedir="${EPREFIX}"/usr/include/gpgme \
+		--with-gpg="${EPREFIX}"/usr/bin/gpg \
+		--with-gpgsm="${EPREFIX}"/usr/bin/gpgsm \
 		|| die "econf failed"
 	emake || die "emake failed"
 }
