@@ -150,8 +150,8 @@ pkg_preinst() {
 	fi
 
 	# Save a list of specific python sources to compile during postinst.
-	find "${D}"${portage_base}/pym -name "*.py" -print | \
-		sed -e "s:^${D}::" > "${T}"/pym_src_file_list
+	find "${ED}"${portage_base}/pym -name "*.py" -print | \
+		sed -e "s:^${ED}::" > "${T}"/pym_src_file_list
 }
 
 pkg_postinst() {
@@ -175,10 +175,10 @@ pkg_postinst() {
 
 	# Compile only the source files that have just been installed.
 	python -c 'import py_compile; py_compile.main()' \
-		$(while read x; do echo "${ROOT%/}${x}"; done \
+		$(while read x; do echo "${EROOT%/}${x}"; done \
 		< "${T}"/pym_src_file_list)
 	python -O -c 'import py_compile; py_compile.main()' \
-		$(while read x; do echo "${ROOT%/}${x}"; done \
+		$(while read x; do echo "${EROOT%/}${x}"; done \
 		< "${T}"/pym_src_file_list)
 
 	elog
