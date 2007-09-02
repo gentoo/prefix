@@ -64,7 +64,7 @@ src_compile() {
 	# the --libdir= is needed because if lib64 is a directory, it will default
 	# to using that... even if CONF_LIBDIR isnt set or we're using a version
 	# of portage without CONF_LIBDIR support.
-	econf --with-curses --libdir=${EPREFIX}/$(get_libdir) || die
+	econf --with-curses --libdir="${EPREFIX}"/$(get_libdir) || die
 	emake || die
 
 	if ! tc-is-cross-compiler; then
