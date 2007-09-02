@@ -50,7 +50,7 @@ src_compile() {
 	econf \
 		--enable-backup-scripts \
 		--bindir="${EPREFIX}"/bin \
-		--libexecdir=${EPREFIX}/usr/sbin \
+		--libexecdir="${EPREFIX}"/usr/sbin \
 		$(use_enable nls) \
 		${myconf} || die
 	emake || die "emake failed"
