@@ -49,11 +49,11 @@ src_compile() {
 		$(use_enable debug verbose-mode) \
 		$(use_enable debug asserts) \
 		--with-xml=expat \
-		--with-system-pid-file=${EPREFIX}/var/run/dbus.pid \
-		--with-system-socket=${EPREFIX}/var/run/dbus/system_bus_socket \
-		--with-session-socket-dir=${EPREFIX}/tmp \
+		--with-system-pid-file="${EPREFIX}"/var/run/dbus.pid \
+		--with-system-socket="${EPREFIX}"/var/run/dbus/system_bus_socket \
+		--with-session-socket-dir="${EPREFIX}"/tmp \
 		--with-dbus-user=messagebus \
-		--localstatedir=${EPREFIX}/var \
+		--localstatedir="${EPREFIX}"/var \
 		$(use_enable doc doxygen-docs) \
 		--disable-xml-docs \
 		${myconf} \
