@@ -38,7 +38,7 @@ src_unpack() {
 src_compile() {
 	use static && append-ldflags -static
 	econf \
-		--sysconfdir=${EPREFIX}/etc/wget \
+		--sysconfdir="${EPREFIX}"/etc/wget \
 		$(use_with ssl) $(use_enable ssl opie) $(use_enable ssl digest) \
 		$(use_enable ipv6) \
 		$(use_enable nls) \
