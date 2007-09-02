@@ -32,7 +32,7 @@ src_compile() {
 		-DCMAKE_C_FLAGS="${CFLAGS}" \
 		-DCMAKE_INSTALL_PREFIX="${GAMES_PREFIX}" \
 		-DDATA_INSTALL_DIR="${GAMES_DATADIR}" \
-		-DQT_PNG_LIBRARY=${EPREFIX}/usr/lib/libpng12.dylib \
+		-DQT_PNG_LIBRARY="${EPREFIX}"/usr/lib/libpng12.dylib \
 		. || die "ecmake failed"
 	emake || die "emake failed"
 }
