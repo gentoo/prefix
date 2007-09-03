@@ -45,7 +45,7 @@ src_compile() {
 }
 
 src_install() {
-	make INS_BASE="${ED}"/usr install || die
+	make INS_BASE=${D}"${EPREFIX}"/usr install || die
 	insinto /etc/default
 	newins ${S}/rmt/rmt.dfl rmt
 
