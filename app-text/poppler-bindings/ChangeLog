@@ -1,0 +1,298 @@
+# ChangeLog for app-text/poppler-bindings
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.66 2007/08/23 06:28:28 genstef Exp $
+
+*poppler-bindings-0.5.91 (23 Aug 2007)
+
+  23 Aug 2007; Stefan Schweizer <genstef@gentoo.org>
+  +poppler-bindings-0.5.91.ebuild:
+  version bump thanks loki_val
+
+*poppler-bindings-0.5.9 (31 May 2007)
+
+  31 May 2007; Stefan Schweizer <genstef@gentoo.org>
+  +files/poppler-0.5.9-bindings.patch, +poppler-bindings-0.5.9.ebuild:
+  version bump
+
+  07 Apr 2007; Stefan Schweizer <genstef@gentoo.org>
+  poppler-bindings-0.5.3.ebuild, poppler-bindings-0.5.4.ebuild:
+  Fix failing tests, bug 139414
+
+  03 Feb 2007; Alexander H. Færøy <eroyf@gentoo.org>
+  poppler-bindings-0.5.3.ebuild:
+  Stable on MIPS.
+
+  18 Jan 2007; Jeroen Roovers <jer@gentoo.org>
+  poppler-bindings-0.5.4.ebuild:
+  Stable for HPPA (bug #147751).
+
+  14 Jan 2007; Bryan Østergaard <kloeri@gentoo.org>
+  poppler-bindings-0.5.4.ebuild:
+  Stable on Alpha.
+
+  21 Dec 2006; Markus Rothe <corsair@gentoo.org>
+  poppler-bindings-0.5.4.ebuild:
+  Stable on ppc64; bug #156662
+
+  18 Dec 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  poppler-bindings-0.5.4.ebuild:
+  Stable on sparc
+
+  17 Dec 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  poppler-bindings-0.5.4.ebuild:
+  Stable on ppc wrt bug #156662.
+
+  12 Dec 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  poppler-bindings-0.5.4.ebuild:
+  Stable on amd64 wrt bug #156662.
+
+  11 Dec 2006; <kloeri@gentoo.org> ChangeLog:
+  Stable on ia64.
+
+  10 Dec 2006; Andrej Kacian <ticho@gentoo.org>
+  poppler-bindings-0.5.4.ebuild:
+  Stable on x86, bug #156662.
+
+  05 Nov 2006; Ilya A. Volynets-Evenbakh <iluxa@gentoo.org>
+  poppler-bindings-0.5.3.ebuild:
+  Add ~mips to keywords
+
+  20 Oct 2006; Stefan Schweizer <genstef@gentoo.org>
+  -files/poppler-0.5.1-arthur.patch, -files/poppler-0.5.1-bindings.patch,
+  -files/poppler-0.5.1-qt-pthread.patch,
+  -files/poppler-0.5.1-r1-bindings.patch, -poppler-bindings-0.5.1-r1.ebuild:
+  old
+
+  19 Oct 2006; Bryan Østergaard <kloeri@gentoo.org>
+  poppler-bindings-0.5.3.ebuild:
+  Stable on Alpha.
+
+*poppler-bindings-0.5.4 (23 Sep 2006)
+
+  23 Sep 2006; Stefan Schweizer <genstef@gentoo.org>
+  -files/poppler-0.5.0-bindings.patch, +files/glib-2.0.fix,
+  -poppler-bindings-0.5.0.ebuild, -poppler-bindings-0.5.1.ebuild,
+  +poppler-bindings-0.5.4.ebuild:
+  version bump, remove old
+
+  03 Sep 2006; Bryan Østergaard <kloeri@gentoo.org>
+  poppler-bindings-0.5.3.ebuild:
+  Stable on ia64.
+
+  16 Aug 2006; Markus Rothe <corsair@gentoo.org>
+  poppler-bindings-0.5.3.ebuild:
+  Stable on ppc64
+
+  22 Jul 2006; <psi29a@gentoo.org> poppler-bindings-0.5.1.ebuild,
+  poppler-bindings-0.5.1-r1.ebuild, poppler-bindings-0.5.3.ebuild:
+  stable on mips
+
+  22 Jul 2006; Thomas Cort <tcort@gentoo.org>
+  poppler-bindings-0.5.1-r1.ebuild:
+  Stable on alpha.
+
+  17 Jul 2006; Daniel Gryniewicz <dang@gentoo.org>
+  poppler-bindings-0.5.3.ebuild:
+  Marked stable on amd64 for bug #139612
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  poppler-bindings-0.5.3.ebuild:
+  hppa stable, bug #139612
+
+  14 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  poppler-bindings-0.5.3.ebuild:
+  ppc stable, bug #139612
+
+  12 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  poppler-bindings-0.5.3.ebuild:
+  Stable on x86 wrt bug #139612.
+
+  12 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  poppler-bindings-0.5.3.ebuild:
+  Stable on x86 wrt bug #139612.
+
+  10 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  poppler-bindings-0.5.3.ebuild:
+  Stable on sparc wrt #139612
+
+  27 Jun 2006; Stefan Schweizer <genstef@gentoo.org>
+  poppler-bindings-0.5.0.ebuild, poppler-bindings-0.5.1.ebuild,
+  poppler-bindings-0.5.1-r1.ebuild, poppler-bindings-0.5.3.ebuild:
+  qt -> qt3 useflag
+
+  14 Jun 2006; Jeroen Roovers <jer@gentoo.org>
+  poppler-bindings-0.5.3.ebuild:
+  Added ~hppa (bug #128411).
+
+  07 Jun 2006; Thomas Cort <tcort@gentoo.org>
+  poppler-bindings-0.5.1-r1.ebuild, poppler-bindings-0.5.3.ebuild:
+  Readd ~alpha keyword.
+
+  05 Jun 2006; Emanuele Giaquinta <exg@gentoo.org>
+  poppler-bindings-0.5.3.ebuild:
+  Do not install libpoppler-cairo.la.
+
+  03 Jun 2006; Guy Martin <gmsoft@gentoo.org>
+  poppler-bindings-0.5.1-r1.ebuild:
+  Stable on hppa.
+
+  01 Jun 2006; Thomas Cort <tcort@gentoo.org> poppler-bindings-0.5.1.ebuild:
+  Stable on alpha wrt Bug #132213.
+
+*poppler-bindings-0.5.3 (31 May 2006)
+
+  31 May 2006; Stefan Schweizer <genstef@gentoo.org>
+  -files/poppler-0.5.2-qt4-annotation-helper.patch,
+  -poppler-bindings-0.5.2.ebuild, +poppler-bindings-0.5.3.ebuild:
+  Version bump, remove old broken version, please unmask after some testing
+
+  30 May 2006; Joseph Jezak <josejx@gentoo.org>
+  poppler-bindings-0.5.1-r1.ebuild:
+  Marked ppc stable.
+
+  29 May 2006; Jason Wever <weeve@gentoo.org>
+  poppler-bindings-0.5.1-r1.ebuild:
+  Stable on SPARC wrt bug #132349.
+
+  26 May 2006; Markus Rothe <corsair@gentoo.org>
+  poppler-bindings-0.5.1-r1.ebuild:
+  Stable on ppc64
+
+  26 May 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  poppler-bindings-0.5.1-r1.ebuild:
+  Stable on amd64 wrt bug #132349
+
+  25 May 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  poppler-bindings-0.5.1-r1.ebuild:
+  Stable on x86 wrt bug #132349.
+
+  23 May 2006; Stefan Schweizer <genstef@gentoo.org>
+  +files/poppler-0.5.2-qt4-annotation-helper.patch,
+  poppler-bindings-0.5.2.ebuild:
+  Fix qt4 build and only install libpoppler-cairo.la with USE=cairo
+
+*poppler-bindings-0.5.2 (23 May 2006)
+
+  23 May 2006; Daniel Gryniewicz <dang@gentoo.org>
+  +files/poppler-0.5.2-bindings.patch, +poppler-bindings-0.5.2.ebuild:
+  New version: 0.5.2
+
+  08 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  files/poppler-0.5.1-qt-pthread.patch:
+  Update patch with the right version. More coffee for me in the morning.
+
+  08 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +files/poppler-0.5.1-qt-pthread.patch, poppler-bindings-0.5.1-r1.ebuild:
+  Add ~x86-fbsd with a patch to check if -pthread is needed while building qt
+  bindings.
+
+*poppler-bindings-0.5.1-r1 (01 Apr 2006)
+
+  01 Apr 2006; Stefan Schweizer <genstef@gentoo.org>
+  +files/poppler-0.5.1-arthur.patch, +files/poppler-0.5.1-r1-bindings.patch,
+  +poppler-bindings-0.5.1-r1.ebuild:
+  add qt4 bindings, add current cvs, remove docs already provided by poppler
+
+  26 Mar 2006; Stefan Schweizer <genstef@gentoo.org>
+  poppler-bindings-0.5.0.ebuild, poppler-bindings-0.5.1.ebuild:
+  change to ~poppler-$PV, thanks to Peter Wendrich <pwsoft@syntiac.com> in bug
+  127653
+
+  25 Mar 2006; Stefan Schweizer <genstef@gentoo.org>
+  -files/poppler-0.4.1-cairo-ft.patch, -files/poppler-0.4.3-bindings.patch,
+  -poppler-bindings-0.4.3-r2.ebuild, -poppler-bindings-0.4.4.ebuild:
+  remove old
+
+  09 Mar 2006; Aron Griffis <agriffis@gentoo.org>
+  poppler-bindings-0.5.0.ebuild:
+  Mark 0.5.0 stable on ia64
+
+*poppler-bindings-0.5.1 (03 Mar 2006)
+
+  03 Mar 2006; Stefan Schweizer <genstef@gentoo.org>
+  +files/poppler-0.5.1-bindings.patch, +poppler-bindings-0.5.1.ebuild:
+  version bump
+
+  09 Feb 2006; Rene Nussbaumer <killerfox@gentoo.org>
+  poppler-bindings-0.5.0.ebuild:
+  Stable on hppa. See bug #120985.
+
+  06 Feb 2006; Mark Loeser <halcy0n@gentoo.org>
+  poppler-bindings-0.5.0.ebuild:
+  Stable on x86; bug #120985
+
+  06 Feb 2006; Markus Rothe <corsair@gentoo.org>
+  poppler-bindings-0.5.0.ebuild:
+  Stable on ppc64: bug #120985
+
+  05 Feb 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  poppler-bindings-0.5.0.ebuild:
+  ppc stable, security bug #120985
+
+  05 Feb 2006; Jose Luis Rivero <yoswink@gentoo.org>
+  poppler-bindings-0.5.0.ebuild:
+  Stable on alpha wrt security bug #120985
+
+  05 Feb 2006; Herbie Hopkins <herbs@gentoo.org>
+  poppler-bindings-0.5.0.ebuild:
+  Fix issue detecting qt libs on amd64's no-symlinks profile.
+
+  05 Feb 2006; Simon Stelling <blubb@gentoo.org>
+  poppler-bindings-0.5.0.ebuild:
+  stable wrt bug 120985
+
+  05 Feb 2006; Jason Wever <weeve@gentoo.org> poppler-bindings-0.5.0.ebuild:
+  Stable on SPARC wrt security bug #120985.
+
+  25 Jan 2006; <dang@gentoo.org> poppler-bindings-0.5.0.ebuild:
+  Add dep on libglade.  Bug #119841
+
+  25 Jan 2006; <dang@gentoo.org> poppler-bindings-0.4.3-r2.ebuild,
+  poppler-bindings-0.4.4.ebuild, poppler-bindings-0.5.0.ebuild:
+  Make sure poppler and poppler-bindings have the same cairo USE flag
+
+  20 Jan 2006; Martin Schlemmer <azarah@gentoo.org>
+  poppler-bindings-0.5.0.ebuild:
+  Fix autotools stuff for rare build issues.  Fix building of qt bindings.
+
+*poppler-bindings-0.5.0 (20 Jan 2006)
+
+  20 Jan 2006; <dang@gentoo.org> +files/poppler-0.5.0-bindings.patch,
+  +poppler-bindings-0.5.0.ebuild:
+  New semi-major rev of poppler
+
+*poppler-bindings-0.4.4 (20 Jan 2006)
+
+  20 Jan 2006; <dang@gentoo.org> +poppler-bindings-0.4.4.ebuild:
+  Add 0.4.4 bindings
+
+  13 Jan 2006; Mark Loeser <halcy0n@gentoo.org>
+  poppler-bindings-0.4.3-r2.ebuild:
+  Stable on x86; bug #117495
+
+  12 Jan 2006; Simon Stelling <blubb@gentoo.org>
+  poppler-bindings-0.4.3-r2.ebuild:
+  stable on amd64 wrt bug 117495
+
+  11 Jan 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  poppler-bindings-0.4.3-r2.ebuild:
+  ppc stable, bug #117495, #117481
+
+  11 Jan 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  poppler-bindings-0.4.3-r2.ebuild:
+  Stable on sparc wrt #117481 #117495
+
+  09 Jan 2006; Jeroen Roovers <jer@gentoo.org>
+  poppler-bindings-0.4.3-r2.ebuild:
+  Marked hppa stable (bug #117495).
+
+  05 Jan 2006; Markus Rothe <corsair@gentoo.org>
+  poppler-bindings-0.4.3-r2.ebuild:
+  Stable on ppc64
+
+*poppler-bindings-0.4.3-r2 (03 Jan 2006)
+
+  03 Jan 2006; <dang@gentoo.org> +files/poppler-0.4.1-cairo-ft.patch,
+  +files/poppler-0.4.3-bindings.patch, +poppler-bindings-0.4.3-r2.ebuild:
+  New package poppler-bindings to install GUI toolkit bindings for poppler
+
