@@ -1,6 +1,5 @@
-diff -Nur Numeric-24.2.orig/customize.py Numeric-24.2/customize.py
 --- Numeric-24.2.orig/customize.py	2005-11-13 02:40:14.000000000 +0000
-+++ Numeric-24.2/customize.py	2007-09-01 22:11:50.123312885 +0100
++++ Numeric-24.2/customize.py	2007-09-03 15:18:16.393643787 +0100
 @@ -13,9 +13,9 @@
  # will be used, except on Mac OS X, where the vecLib framework will be used
  # if found.
@@ -9,7 +8,7 @@ diff -Nur Numeric-24.2.orig/customize.py Numeric-24.2/customize.py
 +use_system_lapack = 1
  lapack_library_dirs = []
 -lapack_libraries = []
-+lapack_libraries = ['lapack']
++lapack_libraries = [@LAPACKLIB@]
  lapack_extra_link_args = []
  
  # Example: using ATLAS
@@ -20,11 +19,12 @@ diff -Nur Numeric-24.2.orig/customize.py Numeric-24.2/customize.py
 -use_dotblas = 0
 -dotblas_include_dirs = []
 +use_dotblas = 1
-+dotblas_include_dirs = ['/usr/include/atlas']
++dotblas_include_dirs = [@CBLASINC@]
  dotblas_cblas_header = '<cblas.h>'
- dotblas_library_dirs = lapack_library_dirs
+-dotblas_library_dirs = lapack_library_dirs
 -dotblas_libraries = lapack_libraries
-+dotblas_libraries = ['cblas', 'blas', 'atlas', 'g2c']
++dotblas_library_dirs = []
++dotblas_libraries = [@CBLASLIB@]
  dotblas_extra_link_args = []
  
  # Example: using ATLAS

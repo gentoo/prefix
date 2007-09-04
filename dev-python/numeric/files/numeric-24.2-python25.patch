@@ -1,6 +1,6 @@
-diff -Nur Numeric-24.2/Src/arrayobject.c Numeric-24.2.new/Src/arrayobject.c
---- Numeric-24.2/Src/arrayobject.c	2007-05-25 18:34:55.000000000 +0100
-+++ Numeric-24.2.new/Src/arrayobject.c	2007-05-25 18:34:04.000000000 +0100
+diff -Nur Numeric-24.2.orig/Src/arrayobject.c Numeric-24.2/Src/arrayobject.c
+--- Numeric-24.2.orig/Src/arrayobject.c	2007-09-02 14:12:11.000000000 +0100
++++ Numeric-24.2/Src/arrayobject.c	2007-09-02 14:12:42.000000000 +0100
 @@ -491,7 +491,8 @@
  
  static PyObject * PyArray_Resize(PyArrayObject *self, PyObject *shape) {
@@ -11,6 +11,15 @@ diff -Nur Numeric-24.2/Src/arrayobject.c Numeric-24.2.new/Src/arrayobject.c
      int refcnt;
      int new_dimensions[MAX_DIMS];
      int new_strides[MAX_DIMS];
+@@ -708,7 +709,7 @@
+ }
+ 
+ static PyObject *
+-array_slice(PyArrayObject *self, int ilow, int ihigh)
++array_slice(PyArrayObject *self, Py_ssize_t ilow, Py_ssize_t ihigh)
+ {
+     PyArrayObject *r;
+     int l;
 @@ -776,7 +777,7 @@
  
      if ((item = index2ptr(self, i)) == NULL) return -1;
@@ -132,9 +141,9 @@ diff -Nur Numeric-24.2/Src/arrayobject.c Numeric-24.2.new/Src/arrayobject.c
  
      if (!PySequence_Check(v)) {
  	PyErr_SetString(PyExc_ValueError,"assignment from non-sequence");
-diff -Nur Numeric-24.2/Src/multiarraymodule.c Numeric-24.2.new/Src/multiarraymodule.c
---- Numeric-24.2/Src/multiarraymodule.c	2005-08-16 06:20:25.000000000 +0100
-+++ Numeric-24.2.new/Src/multiarraymodule.c	2007-05-25 18:28:35.000000000 +0100
+diff -Nur Numeric-24.2.orig/Src/multiarraymodule.c Numeric-24.2/Src/multiarraymodule.c
+--- Numeric-24.2.orig/Src/multiarraymodule.c	2007-09-02 14:12:11.000000000 +0100
++++ Numeric-24.2/Src/multiarraymodule.c	2007-09-02 14:12:42.000000000 +0100
 @@ -36,7 +36,8 @@
  extern PyObject *PyArray_Concatenate(PyObject *op) {
      PyArrayObject *ret, **mps;
@@ -175,9 +184,9 @@ diff -Nur Numeric-24.2/Src/multiarraymodule.c Numeric-24.2.new/Src/multiarraymod
      int savespace=0;
      static char all_zero[16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
      static char *kwlist[] = {"shape", "typecode", "savespace", NULL};
-diff -Nur Numeric-24.2/Src/ufuncobject.c Numeric-24.2.new/Src/ufuncobject.c
---- Numeric-24.2/Src/ufuncobject.c	2005-08-16 06:20:25.000000000 +0100
-+++ Numeric-24.2.new/Src/ufuncobject.c	2007-05-25 18:28:35.000000000 +0100
+diff -Nur Numeric-24.2.orig/Src/ufuncobject.c Numeric-24.2/Src/ufuncobject.c
+--- Numeric-24.2.orig/Src/ufuncobject.c	2007-09-02 14:12:11.000000000 +0100
++++ Numeric-24.2/Src/ufuncobject.c	2007-09-02 14:12:42.000000000 +0100
 @@ -272,7 +272,7 @@
  
  int setup_matrices(PyUFuncObject *self, PyObject *args,  PyUFuncGenericFunction *function, void **data,
@@ -187,24 +196,3 @@ diff -Nur Numeric-24.2/Src/ufuncobject.c Numeric-24.2.new/Src/ufuncobject.c
  
      nargs = PyTuple_Size(args);
      if ((nargs != self->nin) && (nargs != self->nin+self->nout)) {
-
-From: Daniel Drake <d.drake@mmm.com>
-
-Fix list slicing on python 2.5 
-
-Numeric.arange(0,10) was working fine but Numeric.arange(0,10)[:] was
-returning nonsense. Using the correct data type fixes the problem.
-
-Index: Numeric-24.2/Src/arrayobject.c
-===================================================================
---- Numeric-24.2.orig/Src/arrayobject.c
-+++ Numeric-24.2/Src/arrayobject.c
-@@ -708,7 +708,7 @@ extern PyObject *PyArray_Return(PyArrayO
- }
- 
- static PyObject *
--array_slice(PyArrayObject *self, int ilow, int ihigh)
-+array_slice(PyArrayObject *self, Py_ssize_t ilow, Py_ssize_t ihigh)
- {
-     PyArrayObject *r;
-     int l;
