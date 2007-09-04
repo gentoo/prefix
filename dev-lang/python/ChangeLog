@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.266 2007/08/24 13:36:28 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.267 2007/09/03 20:40:00 zmedico Exp $
+
+  03 Sep 2007; Zac Medico <zmedico@gentoo.org> python-2.4.4-r4.ebuild,
+  python-2.4.4-r5.ebuild, python-2.5-r2.ebuild, python-2.5.1-r2.ebuild:
+  Add build? ( !dev-python/python-fchksum ) to RDEPEND in order
+  to enforce correct merge order for bug #88777.
 
 *python-2.4.4-r5 (24 Aug 2007)
 
