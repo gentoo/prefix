@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/liblockfile/liblockfile-1.06-r2.ebuild,v 1.10 2007/06/20 20:35:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/liblockfile/liblockfile-1.06-r2.ebuild,v 1.11 2007/09/03 11:33:14 uberlord Exp $
 
 EAPI="prefix"
 
@@ -26,6 +26,10 @@ src_unpack() {
 	# I didn't feel like making the Makefile portable
 	[[ ${CHOST} == *-darwin* ]] \
 		&& cp ${FILESDIR}/Makefile.Darwin.in Makefile.in
+
+	# Rename an internal function so it does not conflict with
+	# libc's function.
+	sed -i -e 's/eaccess/egidaccess/g' *.c
 
 	eautoreconf
 
