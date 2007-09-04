@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.300 2007/08/29 04:24:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.301 2007/09/04 06:30:56 kumba Exp $
+
+  04 Sep 2007; Joshua Kinard <kumba@gentoo.org> binutils-2.18.ebuild:
+  Update the patchset to 1.1 to pull in a patch for mips to enable support for
+  .gnu.hash capabilities, and mark unstable on mips.
 
 *binutils-2.18 (29 Aug 2007)
 
