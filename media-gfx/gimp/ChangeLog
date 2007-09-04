@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.227 2007/08/17 16:29:53 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.228 2007/09/03 17:56:15 kumba Exp $
+
+  03 Sep 2007; Joshua Kinard <kumba@gentoo.org> gimp-2.4.0_rc1.ebuild:
+  Moved gimp-2.4.0 back to mips unstable as it carried over stable keywords
+  from 2.3.19. Plus it doesn't build for us.
 
   17 Aug 2007; Hanno Boeck <hanno@gentoo.org> gimp-2.2.17.ebuild,
   gimp-2.4.0_rc1.ebuild, gimp-9999.ebuild:
