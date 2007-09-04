@@ -378,7 +378,7 @@ fetch_files() {
 
 	# Sometimes patches or other things in the FILESDIR refer to some
 	# variable stored globally.  We grab them from the ebuild for those cases
-	gvars=$(egrep '^[^\t ]*=' $1 | egrep -v '^(([RP]|)DEPEND|DESCRIPTION|HOMEPAGE|SRC_URI|LICENSE|KEYWORDS|IUSE|S)=' | xargs echo)
+	gvars=$(egrep '^[A-Za-z_]+=' $1 | egrep -v '^(([RP]|)DEPEND|DESCRIPTION|HOMEPAGE|SRC_URI|LICENSE|KEYWORDS|IUSE|S)=')
 
 	# Find all "referenced" files from/to FILESDIR.  We keep ${FILESDIR}
 	# in, to just use a bash eval on what we found to get the right
