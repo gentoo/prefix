@@ -1,0 +1,14 @@
+# ChangeLog for dev-ruby/capistrano-launcher
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano-launcher/ChangeLog,v 1.2 2007/09/01 21:50:42 nichoj Exp $
+
+  01 Sep 2007; Joshua Nichols <nichoj@gentoo.org>
+  capistrano-launcher-1.ebuild:
+  Fixed instructions in pkg_postinst.
+
+*capistrano-launcher-1 (01 Sep 2007)
+
+  01 Sep 2007; Joshua Nichols <nichoj@gentoo.org> +files/cap, +metadata.xml,
+  +capistrano-launcher-1.ebuild:
+  Initial version.
+
