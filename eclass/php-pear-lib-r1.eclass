@@ -1,13 +1,17 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-pear-lib-r1.eclass,v 1.11 2007/03/22 20:12:56 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-pear-lib-r1.eclass,v 1.12 2007/09/02 17:49:20 jokey Exp $
 #
 # Author: Luca Longinotti <chtekk@gentoo.org>
-# Maintained by the PHP Team <php-bugs@gentoo.org>
-#
-# The php-pear-lib-r1 eclass provides means for an easy installation of PEAR
-# based libraries, such as Creole, Jargon, Phing etc., while retaining
-# the functionality to put the libraries into version-dependant directories.
+
+# @ECLASS: php-pear-lib-r1.eclass
+# @MAINTAINER:
+# Gentoo PHP team <php-bugs@gentoo.org>
+# @BLURB: Provides means for an easy installation of PEAR-based libraries.
+# @DESCRIPTION:
+# This class provides means for an easy installation of PEAR-based libraries,
+# such as Creole, Jargon, Phing etc., while retaining the functionality to put
+# the libraries into version-dependant directories.
 
 inherit depend.php
 
@@ -16,6 +20,9 @@ EXPORT_FUNCTIONS src_install
 DEPEND="dev-lang/php >=dev-php/PEAR-PEAR-1.4.6"
 RDEPEND="${DEPEND}"
 
+# @FUNCTION: php-pear-lib-r1_src_install
+# @DESCRIPTION:
+# Takes care of standard install for PEAR-based libraries.
 php-pear-lib-r1_src_install() {
 	has_php
 

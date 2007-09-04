@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-pecl-r1.eclass,v 1.8 2007/09/01 15:58:17 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-pecl-r1.eclass,v 1.9 2007/09/02 17:49:20 jokey Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
 # Author: Luca Longinotti <chtekk@gentoo.org>
@@ -34,9 +34,6 @@
 # Unlike PHP_EXT_PECL_PKG, setting this variable does not affect
 # HOMEPAGE, PHP_EXT_NAME or ${S}. 
 
-# @VARIABLE: DOCS
-# @DESCRIPTION:
-# Set in ebuild if you wish to install additional, package-specific documentation.
 
 [[ -z "${PHP_EXT_PECL_PKG}" ]] && PHP_EXT_PECL_PKG="${PN/pecl-/}"
 
@@ -74,6 +71,10 @@ php-ext-pecl-r1_src_compile() {
 # Takes care of standard install for PECL packages.
 # You can also simply add examples to IUSE to automagically install 
 # examples supplied with the package.
+
+# @VARIABLE: DOCS
+# @DESCRIPTION:
+# Set in ebuild if you wish to install additional, package-specific documentation.
 php-ext-pecl-r1_src_install() {
 	has_php
 	php-ext-source-r1_src_install

@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-lib.eclass,v 1.5 2007/07/02 14:24:27 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-lib.eclass,v 1.6 2007/09/02 17:49:20 jokey Exp $
 #
 # Author: Stuart Herbert <stuart@gentoo.org>
 #
@@ -10,37 +10,16 @@
 #
 # This eclass doesn't do a lot (yet)
 
-RESTRICT="${RESTRICT} strip"
+# DEPRECATED!!! 
+# STOP USING THIS ECLASS, use php-lib-r1.eclass instead!
 
-EXPORT_FUNCTIONS src_install
+inherit php-lib-r1
 
-# ---begin ebuild configurable settings
-
-# provide default extension name if necessary
-[ -z "$PHP_LIB_NAME" ] && PHP_LIB_NAME="${PN}"
-
-PHP_LIB_DIR="/usr/lib/php/${PHP_LIB_NAME}"
-
-# ---end ebuild configurable settings
-
-DEPEND="${DEPEND}
-		virtual/php"
-
-# you have to pass in a list of the PHP files to install
-#
-# $1 - directory in ${S} to insert from
-# $2 ... list of files to install
-
-php-lib_src_install() {
-	local x
-
-	S_DIR="$1"
-	shift
-
-	for x in $@ ; do
-		SUBDIR="`dirname $x`"
-		insinto ${PHP_LIB_DIR}/${SUBDIR}
-		doins ${S_DIR}/$x
-	done
+deprecation_warning() {
+	eerror "Please upgrade ${PF} to use php-lib-r1.eclass!"
 }
 
+php-lib_src_install() {
+	deprecation_warning
+	php-lib-r1_src_install
+}

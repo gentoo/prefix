@@ -1,23 +1,23 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php4_4-sapi.eclass,v 1.39 2007/08/28 20:25:18 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php4_4-sapi.eclass,v 1.40 2007/09/02 17:49:20 jokey Exp $
 
 # ========================================================================
+# Based on robbat2's work on the php4 sapi eclass
 #
-# php4_4-sapi.eclass
-#		Eclass for building different php4 SAPI instances
-#
-#		USE THIS ECLASS FOR THE "CONCENTRATED" PACKAGES
-#
-#		Based on robbat2's work on the php4 sapi eclass
-#
-# Author:	Stuart Herbert
-#			<stuart@gentoo.org>
-#
-# Author:	Luca Longinotti
-#			<chtekk@gentoo.org>
+# Author: Stuart Herbert <stuart@gentoo.org>
+# Author: Luca Longinotti <chtekk@gentoo.org>
 #
 # ========================================================================
+
+# @ECLASS: php4_4-sapi.eclass
+# @MAINTAINER:
+# Gentoo PHP team <php-bugs@gentoo.org>
+# @BLURB: Eclass for building different php4 SAPI instances.
+# @DESCRIPTION:
+# Eclass for building different php4 SAPI instances. Use it for the new-style
+# =dev-lang/php-4* ebuilds.
+
 
 PHPCONFUTILS_MISSING_DEPS="adabas birdstep db2 dbmaker empress empress-bcs esoob frontbase hyperwave-api informix interbase mnogosearch msql oci8 oracle7 pfpro sapdb solid sybase sybase-ct"
 
@@ -26,14 +26,16 @@ WANT_AUTOMAKE="latest"
 
 inherit flag-o-matic autotools toolchain-funcs libtool eutils phpconfutils php-common-r1
 
-# set MY_PHP_P in the ebuild
+# @ECLASS-VARIABLE: MY_PHP_P
+# @DESCRIPTION:
+# Set MY_PHP_P in the ebuild as needed to match tarball version.
 
-# we only set these variables if we're building a copy of php which can be
-# installed as a package in its own right
-#
-# copies of php which are compiled into other packages (e.g. php support
-# for the thttpd web server) don't need these variables
-
+# @ECLASS-VARIABLE: PHP_PACKAGE
+# @DESCRIPTION:
+# We only set this variable if we are building a copy of php which can be
+# installed as a package in its own.
+# Copies of php which are compiled into other packages (e.g. php support
+# for the thttpd web server) don't need this variable.
 if [[ "${PHP_PACKAGE}" == 1 ]] ; then
 	HOMEPAGE="http://www.php.net/"
 	LICENSE="PHP-3"
@@ -123,11 +125,10 @@ PDEPEND="doc? ( app-doc/php-docs )
 		java-external? ( dev-php4/php-java-bridge )
 		java-internal? ( !dev-php4/php-java-bridge )
 		sqlite? ( dev-php4/pecl-sqlite )
+		suhosin? ( dev-php4/suhosin )
 		yaz? ( dev-php4/pecl-yaz )
 		zip? ( dev-php4/pecl-zip )"
 
-# Until Suhosin is stable on all archs
-[[ "${PV}" == "4.4.6" ]] && PDEPEND="${PDEPEND} suhosin? ( dev-php4/suhosin )"
 
 # ========================================================================
 # php.ini Support
@@ -138,10 +139,15 @@ PHP_INI_UPSTREAM="php.ini-dist"
 
 # ========================================================================
 
-# PHP patchsets support
+# @ECLASS-VARIABLE: PHP_PATCHSET_REV
+# @DESCRIPTION:
+# Provides PHP patchsets support.
 SRC_URI="${SRC_URI} http://gentoo.longitekk.com/php-patchset-${MY_PHP_PV}-r${PHP_PATCHSET_REV}.tar.bz2"
 
-# Suhosin patch support
+# @ECLASS-VARIABLE: SUHOSIN_PATCH
+# @DESCRIPTION:
+# Tarball name for Suhosin patch (see http://www.suhosin.org/).
+# This feature will not be available in php if unset.
 [[ -n "${SUHOSIN_PATCH}" ]] && SRC_URI="${SRC_URI} suhosin? ( http://gentoo.longitekk.com/${SUHOSIN_PATCH} )"
 
 # ========================================================================
@@ -288,17 +294,26 @@ php4_4-sapi_install_ini() {
 # EXPORTED FUNCTIONS
 # ========================================================================
 
+# @FUNCTION: php4_4-sapi_pkg_setup
+# @DESCRIPTION:
+# Performs all the USE flag testing and magic before we do anything else.
+# This way saves a lot of time.
 php4_4-sapi_pkg_setup() {
-	# let's do all the USE flag testing before we do anything else
-	# this way saves a lot of time
 	php4_4-sapi_check_use_flags
 }
 
+# @FUNCTION: php4_4-sapi_src_unpack
+# @DESCRIPTION:
+# Takes care of unpacking, patching and autotools magic and disables
+# interactive tests.
+
+# @VARIABLE: PHP_EXTRA_BRANDING
+# @DESCRIPTION:
+# This variable allows an ebuild to add additional information like
+# snapshot dates to the version line.
 php4_4-sapi_src_unpack() {
 	cd "${S}"
 
-	# This variable allows an ebuild to add additional information like
-	# snapshot dates to the version line
 	[[ -z "${PHP_EXTRA_BRANDING}" ]] && PHP_EXTRA_BRANDING=""
 
 	# Change PHP branding
@@ -371,6 +386,10 @@ php4_4-sapi_src_unpack() {
 	chmod 0755 configure || die "Failed to chmod configure to 0755"
 }
 
+# @FUNCTION: php4_4-sapi_src_compile
+# @DESCRIPTION:
+# Takes care of compiling php according to USE flags set by user (and those automagically
+# enabled via phpconfutils eclass if unavoidable).
 php4_4-sapi_src_compile() {
 	destdir=/usr/$(get_libdir)/php4
 
@@ -571,6 +590,9 @@ php4_4-sapi_src_compile() {
 	emake || die "make failed"
 }
 
+# @FUNCTION: php4_4-sapi_src_install
+# @DESCRIPTION:
+# Takes care of installing php (and its shared extensions if enabled).
 php4_4-sapi_src_install() {
 	destdir=/usr/$(get_libdir)/php4
 
@@ -612,6 +634,9 @@ php4_4-sapi_src_install() {
 	keepdir /usr/share/php4
 }
 
+# @FUNCTION: php4_4-sapi_pkg_postinst
+# @DESCRIPTION:
+# Provides important information to users after install is finished.
 php4_4-sapi_pkg_postinst() {
 	ewarn
 	ewarn "If you have additional third party PHP extensions (such as"

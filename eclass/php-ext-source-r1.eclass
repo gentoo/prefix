@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-source-r1.eclass,v 1.13 2007/09/01 15:58:17 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-source-r1.eclass,v 1.14 2007/09/02 17:49:20 jokey Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
 # Author: Stuart Herbert <stuart@gentoo.org>
@@ -34,6 +34,11 @@ DEPEND=">=sys-devel/m4-1.4.3
 		>=sys-devel/libtool-1.5.18"
 RDEPEND=""
 
+
+# @FUNCTION: php-ext-source-r1_src_compile
+# @DESCRIPTION:
+# Takes care of standard compile for PHP extensions (modules).
+
 # @VARIABLE: PHP_EXT_SKIP_PHPIZE
 # @DESCRIPTION:
 # phpize will be run by default for all ebuilds that use php-ext-source-r1_src_compile.
@@ -42,10 +47,6 @@ RDEPEND=""
 # @VARIABLE: my_conf
 # @DESCRIPTION:
 # Set this in the ebuild to pass configure options to econf.
-
-# @FUNCTION: php-ext-source-r1_src_compile
-# @DESCRIPTION:
-# Takes care of standard compile for PHP extensions (modules).
 php-ext-source-r1_src_compile() {
 	# Pull in the PHP settings
 	has_php
