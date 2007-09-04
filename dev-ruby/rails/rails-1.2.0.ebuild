@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-1.2.0.ebuild,v 1.2 2007/02/10 03:17:43 pclouds Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-1.2.0.ebuild,v 1.3 2007/09/03 21:14:44 nichoj Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,8 @@ DEPEND=">=dev-lang/ruby-1.8.5
 	>=dev-ruby/rake-0.7.1
 	=dev-ruby/activerecord-1.15.1
 	=dev-ruby/actionmailer-1.3.1
-	=dev-ruby/actionwebservice-1.2.1"
+	=dev-ruby/actionwebservice-1.2.1
+	!<dev-ruby/rails-1.1.6-r1"
 
 RDEPEND="${DEPEND}
 	fastcgi? ( >=dev-ruby/ruby-fcgi-0.8.6 )

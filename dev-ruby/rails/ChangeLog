@@ -1,6 +1,13 @@
 # ChangeLog for dev-ruby/rails
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.74 2007/09/01 05:35:18 nichoj Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.75 2007/09/03 21:14:44 nichoj Exp $
+
+  03 Sep 2007; Joshua Nichols <nichoj@gentoo.org> rails-1.1.6.ebuild,
+  rails-1.1.6-r1.ebuild, rails-1.1.6-r2.ebuild, rails-1.2.0.ebuild,
+  rails-1.2.1.ebuild, rails-1.2.2.ebuild, rails-1.2.3.ebuild,
+  rails-1.2.3-r1.ebuild:
+  Changed eselect-rails from PDEPEND to DEPEND. Moved blockers from
+  eselect-rails to here. Should address bug #172812.
 
 *rails-1.2.3-r1 (01 Sep 2007)
 *rails-1.1.6-r2 (01 Sep 2007)
