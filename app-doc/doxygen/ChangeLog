@@ -1,6 +1,15 @@
 # ChangeLog for app-doc/doxygen
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.130 2007/07/12 19:20:57 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.131 2007/09/02 18:10:59 nerdboy Exp $
+
+*doxygen-1.5.3 (02 Sep 2007)
+
+  02 Sep 2007; Steve Arnold <nerdboy@gentoo.org> +files/doxywizard.png,
+  +doxygen-1.5.3.ebuild:
+  Updated to latest release, added desktop entry and nodot use flag
+  (addresses bugs 188124 and 181890).  USE=nodot will remove both the
+  graphviz dependency and the capability to generate dot-based graphs.
+  If someone has a better icon for doxywizard, please post a bug :)
 
   12 Jul 2007; Fabian Groffen <grobian@gentoo.org> doxygen-1.4.2.ebuild,
   doxygen-1.4.3-r1.ebuild, doxygen-1.4.4.ebuild, doxygen-1.4.5.ebuild,
@@ -32,8 +41,8 @@
 *doxygen-1.5.2 (24 Apr 2007)
 
   24 Apr 2007; Steve Arnold <nerdboy@gentoo.org> +doxygen-1.5.2.ebuild:
-  updated to latest upstream release, and removed unicode USE flag (russian
-  patch incorporate dupstream).  Closes bug #174831.
+  updated to latest upstream release, and removed unicode USE flag (ru
+  patch incorporated upstream).  Closes bug #174831.
 
   12 Mar 2007; Steve Arnold <nerdboy@gentoo.org> doxygen-1.4.7.ebuild,
   doxygen-1.5.1.ebuild:
