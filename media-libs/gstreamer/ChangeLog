@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/gstreamer
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.180 2007/09/01 07:16:06 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.183 2007/09/03 02:11:24 jer Exp $
+
+  03 Sep 2007; Jeroen Roovers <jer@gentoo.org> gstreamer-0.10.14.ebuild:
+  Stable for HPPA (bug #190900).
+
+  02 Sep 2007; Samuli Suominen <drac@gentoo.org>
+  +files/gstreamer-0.10.14-gstcaps.patch, gstreamer-0.10.14.ebuild:
+  Include a fix from upstream, doesn't fix anything in tree but allows
+  installation of plugins from gst CVS against 0.10.14 core.
 
   01 Sep 2007; Samuli Suominen <drac@gentoo.org> gstreamer-0.10.14.ebuild:
   Remove invalid files from dodoc wrt #189538.

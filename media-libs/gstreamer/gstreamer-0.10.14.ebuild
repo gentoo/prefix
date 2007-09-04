@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/gstreamer-0.10.14.ebuild,v 1.3 2007/09/01 07:16:06 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/gstreamer-0.10.14.ebuild,v 1.5 2007/09/03 02:11:24 jer Exp $
 
 EAPI="prefix"
 
-inherit libtool
+inherit eutils libtool
 
 # Create a major/minor combo for our SLOT and executables suffix
 PVP=(${PV//[-\._]/ })
@@ -31,6 +31,9 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	# Fix from upstream. Is included in next release.
+	epatch "${FILESDIR}"/${P}-gstcaps.patch
 
 	# Needed for sane .so versioning on Gentoo/FreeBSD
 	elibtoolize
