@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/lame/lame-3.97-r1.ebuild,v 1.8 2007/08/25 14:16:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/lame/lame-3.97-r1.ebuild,v 1.9 2007/09/02 16:36:09 drac Exp $
 
 EAPI="prefix"
 
