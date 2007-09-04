@@ -1,6 +1,11 @@
 # ChangeLog for app-text/dictd
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.38 2007/08/25 16:52:10 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.39 2007/09/02 12:16:07 philantrop Exp $
+
+  02 Sep 2007; Wulf C. Krueger <philantrop@gentoo.org> files/1.10.9/dictd,
+  files/1.10.9/dictd.confd:
+  Changed the init script to better accommodate for UTF-8 locales and
+  dictionaries and added a note about this to confd.
 
   25 Aug 2007; Steve Dibb <beandog@gentoo.org> dictd-1.9.14.ebuild:
   amd64 stable
