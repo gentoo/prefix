@@ -1,6 +1,9 @@
 # ChangeLog for dev-lisp/clisp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.60 2007/07/22 08:12:25 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.61 2007/09/04 19:43:41 opfer Exp $
+
+  04 Sep 2007; Christian Faulhammer <opfer@gentoo.org> clisp-2.41.ebuild:
+  stable x86, bug 173050
 
   22 Jul 2007; Hans de Graaff <graaff@gentoo.org> clisp-2.38.ebuild,
   clisp-2.38-r1.ebuild, clisp-2.38-r2.ebuild, clisp-2.39.ebuild,
