@@ -18,7 +18,7 @@ HOMEPAGE="http://ruby.scripting.ca/postgres"
 SRC_URI="http://gems.rubyforge.org/gems/${MY_P}.gem"
 LICENSE="Ruby"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 USE_RUBY="ruby18"
 
