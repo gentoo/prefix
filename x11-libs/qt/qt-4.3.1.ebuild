@@ -172,7 +172,7 @@ src_compile() {
 	export PATH="${S}/bin:${PATH}"
 	export LD_LIBRARY_PATH="${S}/lib:${LD_LIBRARY_PATH}"
 
-	[ $(get_libdir) != "lib" ] && myconf="${myconf} -L/usr/$(get_libdir)"
+	[ $(get_libdir) != "lib" ] && myconf="${myconf} -L${EPREFIX}/usr/$(get_libdir)"
 
 	# Disable visibility explicitly if gcc version isn't 4
 	if [[ "$(gcc-major-version)" != "4" ]]; then
@@ -194,9 +194,9 @@ src_compile() {
 
 	use debug	&& myconf="${myconf} -debug -no-separate-debug-info" || myconf="${myconf} -release -no-separate-debug-info"
 
-	use mysql	&& myconf="${myconf} -plugin-sql-mysql -I/usr/include/mysql -L/usr/$(get_libdir)/mysql" || myconf="${myconf} -no-sql-mysql"
-	use postgres	&& myconf="${myconf} -plugin-sql-psql -I/usr/include/postgresql/pgsql" || myconf="${myconf} -no-sql-psql"
-	use firebird	&& myconf="${myconf} -plugin-sql-ibase -I/opt/firebird/include" || myconf="${myconf} -no-sql-ibase"
+	use mysql	&& myconf="${myconf} -plugin-sql-mysql -I${EPREFIX}/usr/include/mysql -L${EPREFIX}/usr/$(get_libdir)/mysql" || myconf="${myconf} -no-sql-mysql"
+	use postgres	&& myconf="${myconf} -plugin-sql-psql -I${EPREFIX}/usr/include/postgresql/pgsql" || myconf="${myconf} -no-sql-psql"
+	use firebird	&& myconf="${myconf} -plugin-sql-ibase -I${EPREFIX}/opt/firebird/include" || myconf="${myconf} -no-sql-ibase"
 	use sqlite3	&& myconf="${myconf} -plugin-sql-sqlite -system-sqlite" || myconf="${myconf} -no-sql-sqlite"
 	use sqlite	&& myconf="${myconf} -plugin-sql-sqlite2" || myconf="${myconf} -no-sql-sqlite2"
 	use odbc	&& myconf="${myconf} -plugin-sql-odbc" || myconf="${myconf} -no-sql-odbc"
