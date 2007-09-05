@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.254 2007/08/25 17:42:25 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.255 2007/09/05 04:06:54 vapier Exp $
+
+*openssh-4.7_p1 (05 Sep 2007)
+
+  05 Sep 2007; Mike Frysinger <vapier@gentoo.org> +openssh-4.7_p1.ebuild:
+  Version bump #191321 by Rajiv Aaron Manglani.
 
   25 Aug 2007; Mike Frysinger <vapier@gentoo.org> openssh-4.6_p1-r4.ebuild:
   Punt securid stuff as upstream is not fast enough to update.
