@@ -212,12 +212,12 @@ mysql_init_vars() {
 
 	if [[ -z "${MY_DATADIR}" ]] ; then
 		MY_DATADIR=""
-		if [[ -f "${MY_SYSCONFDIR}/my.cnf" ]] ; then
+		if [[ -f ${EPREFIX}${MY_SYSCONFDIR}/my.cnf ]] ; then
 			MY_DATADIR=`"my_print_defaults" mysqld 2>/dev/null \
 				| sed -ne '/datadir/s|^--datadir=||p' \
 				| tail -n1`
 			if [[ -z "${MY_DATADIR}" ]] ; then
-				MY_DATADIR=`grep ^datadir "${MY_SYSCONFDIR}/my.cnf" \
+				MY_DATADIR=`grep ^datadir ${EPREFIX}${MY_SYSCONFDIR}/my.cnf \
 				| sed -e 's/.*=\s*//'`
 			fi
 		fi
@@ -225,10 +225,10 @@ mysql_init_vars() {
 			MY_DATADIR="${MY_LOCALSTATEDIR}"
 			einfo "Using default MY_DATADIR"
 		fi
-		elog "MySQL MY_DATADIR is ${MY_DATADIR}"
+		elog "MySQL MY_DATADIR is ${EPREFIX}${MY_DATADIR}"
 
 		if [[ -z "${PREVIOUS_DATADIR}" ]] ; then
-			if [[ -e "${MY_DATADIR}" ]] ; then
+			if [[ -e ${EPREFIX}${MY_DATADIR} ]] ; then
 				elog "Previous datadir found, it's YOUR job to change"
 				elog "ownership and take care of it"
 				PREVIOUS_DATADIR="yes"
@@ -281,7 +281,7 @@ configure_common() {
 	myconf="${myconf} --with-extra-charsets=all"
 	myconf="${myconf} --with-mysqld-user=mysql"
 	myconf="${myconf} --with-server"
-	myconf="${myconf} --with-unix-socket-path=/var/run/mysqld/mysqld.sock"
+	myconf="${myconf} --with-unix-socket-path=${EPREFIX}/var/run/mysqld/mysqld.sock"
 	myconf="${myconf} --without-libwrap"
 
 	if use static ; then
@@ -320,11 +320,13 @@ configure_common() {
 }
 
 configure_40_41_50() {
+	# TODO: !!!! readd --without-readline
+	#myconf="${myconf} --without-readline"
+	myconf="${myconf} --with-zlib-dir=${EPREFIX}/usr"
 	myconf="${myconf} $(use_with perl bench)"
 	myconf="${myconf} --enable-assembler"
 	myconf="${myconf} --with-extra-tools"
 	myconf="${myconf} --with-innodb"
-	myconf="${myconf} --without-readline"
 	mysql_version_is_at_least "5.0" || myconf="${myconf} $(use_with raid)"
 
 	# --with-vio is not needed anymore, it's on by default and
@@ -336,7 +338,11 @@ configure_40_41_50() {
 	if mysql_version_is_at_least "5.1.11" ; then
 		myconf="${myconf} $(use_with ssl)"
 	else
-		myconf="${myconf} $(use_with ssl openssl)"
+		if use ssl; then
+			myconf="${myconf} --with-openssl=${EPREFIX}/usr"
+		else
+			myconf="${myconf} --without-openssl"
+		fi
 	fi
 
 	if use berkdb ; then
@@ -392,7 +398,7 @@ configure_51() {
 	myconf="${myconf} --with-geometry"
 	myconf="${myconf} --with-readline"
 	myconf="${myconf} --with-row-based-replication"
-	myconf="${myconf} --with-zlib=/usr/$(get_libdir)"
+	myconf="${myconf} --with-zlib=${EPREFIX}/usr/$(get_libdir)"
 	myconf="${myconf} --without-pstack"
 	use max-idx-128 && myconf="${myconf} --with-max-indexes=128"
 
@@ -518,7 +524,7 @@ mysql_src_unpack() {
 
 	# Make charsets install in the right place
 	find . -name 'Makefile.am' \
-		-exec sed --in-place -e 's!$(pkgdatadir)!'${MY_SHAREDSTATEDIR}'!g' {} \;
+		-exec sed --in-place -e 's!$(pkgdatadir)!'"${EPREFIX}"${MY_SHAREDSTATEDIR}'!g' {} \;
 
 	if mysql_version_is_at_least "4.1" ; then
 		# Remove what needs to be recreated, so we're sure it's actually done
@@ -554,7 +560,7 @@ mysql_src_unpack() {
 	if mysql_check_version_range "4.1 to 5.0.99.99" \
 	&& use berkdb ; then
 		[[ -w "bdb/dist/ltmain.sh" ]] && cp -f "ltmain.sh" "bdb/dist/ltmain.sh"
-		cp -f "/usr/share/aclocal/libtool.m4" "bdb/dist/aclocal/libtool.ac" \
+		cp -f "${EPREFIX}/usr/share/aclocal/libtool.m4" "bdb/dist/aclocal/libtool.ac" \
 		|| die "Could not copy libtool.m4 to bdb/dist/"
 		pushd "bdb/dist" &>/dev/null
 		sh s_all \
@@ -594,12 +600,12 @@ mysql_src_compile() {
 	export CXXFLAGS
 
 	econf \
-		--libexecdir="/usr/sbin" \
-		--sysconfdir="${MY_SYSCONFDIR}" \
-		--localstatedir="${MY_LOCALSTATEDIR}" \
-		--sharedstatedir="${MY_SHAREDSTATEDIR}" \
-		--libdir="${MY_LIBDIR}" \
-		--includedir="${MY_INCLUDEDIR}" \
+		--libexecdir="${EPREFIX}"/usr/sbin \
+		--sysconfdir="${EPREFIX}"${MY_SYSCONFDIR} \
+		--localstatedir="${EPREFIX}"${MY_LOCALSTATEDIR} \
+		--sharedstatedir="${EPREFIX}"${MY_SHAREDSTATEDIR} \
+		--libdir="${EPREFIX}"${MY_LIBDIR} \
+		--includedir="${EPREFIX}"${MY_INCLUDEDIR} \
 		--with-low-memory \
 		--with-client-ldflags=-lstdc++ \
 		--enable-thread-safe-client \
@@ -621,7 +627,7 @@ mysql_src_install() {
 	# Make sure the vars are correctly initialized
 	mysql_init_vars
 
-	emake install DESTDIR="${D}" benchdir_root="${MY_SHAREDSTATEDIR}" || die "emake install failed"
+	emake install DESTDIR="${D}" benchdir_root="${EPREFIX}"${MY_SHAREDSTATEDIR} || die "emake install failed"
 
 	mysql_version_is_at_least "5.1.12" && use pbxt && pbxt_src_install
 
@@ -657,7 +663,10 @@ mysql_src_install() {
 	fi
 	insinto "${MY_SYSCONFDIR}"
 	doins scripts/mysqlaccess.conf
-	sed -e "s!@DATADIR@!${MY_DATADIR}!g" \
+	sed -e "s!@DATADIR@!${EPREFIX}${MY_DATADIR}!g" \
+		-e "s!/tmp!${EPREFIX}/tmp!" \
+		-e "s!/usr!${EPREFIX}/usr!" \
+		-e "s!= /var!= ${EPREFIX}/var!" \
 		"${FILESDIR}/my.cnf-${mysql_mycnf_version}" \
 		> "${TMPDIR}/my.cnf.ok"
 	if mysql_version_is_at_least "4.1" && use latin1 ; then
