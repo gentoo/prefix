@@ -1,5 +1,5 @@
 --- Numeric-24.2.orig/customize.py	2005-11-13 02:40:14.000000000 +0000
-+++ Numeric-24.2/customize.py	2007-09-03 15:18:16.393643787 +0100
++++ Numeric-24.2/customize.py	2007-09-04 17:55:31.176332574 +0100
 @@ -13,9 +13,9 @@
  # will be used, except on Mac OS X, where the vecLib framework will be used
  # if found.
@@ -8,7 +8,7 @@
 +use_system_lapack = 1
  lapack_library_dirs = []
 -lapack_libraries = []
-+lapack_libraries = [@LAPACKLIB@]
++lapack_libraries = [@LAPACKLIB@, @FLIB@]
  lapack_extra_link_args = []
  
  # Example: using ATLAS
@@ -24,7 +24,7 @@
 -dotblas_library_dirs = lapack_library_dirs
 -dotblas_libraries = lapack_libraries
 +dotblas_library_dirs = []
-+dotblas_libraries = [@CBLASLIB@]
++dotblas_libraries = [@CBLASLIB@, @FLIB@]
  dotblas_extra_link_args = []
  
  # Example: using ATLAS

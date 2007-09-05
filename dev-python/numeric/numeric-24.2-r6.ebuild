@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numeric/numeric-24.2-r6.ebuild,v 1.3 2007/09/03 15:09:31 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numeric/numeric-24.2-r6.ebuild,v 1.4 2007/09/04 17:18:57 bicatali Exp $
 
 EAPI="prefix"
 
@@ -66,11 +66,11 @@ src_unpack() {
 		epatch "${FILESDIR}"/${P}-lapack.patch
 		local flib=
 		if  [[ "${FORTRANC}" == gfortran ]]; then
-			flib=gfortran
+			flib="'gfortran'"
 		elif [[ "${FORTRANC}" == if* ]]; then
-			flib=imf
+			flib="'imf'"
 		elif [[ "${FORTRANC}" == g77 ]]; then
-			flib=g2c
+			flib="'g2c'"
 		fi
 		local cblaslib= cblasinc=
 		if [[ "${mycblas}" == reference ]]; then
