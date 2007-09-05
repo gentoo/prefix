@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.4-r4.ebuild,v 1.19 2007/09/03 20:40:00 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.4-r4.ebuild,v 1.20 2007/09/04 21:07:12 zmedico Exp $
 
 EAPI="prefix"
 
@@ -51,7 +51,7 @@ DEPEND=">=sys-libs/zlib-1.1.3
 # NOTE: added blocker to enforce correct merge order for bug 88777. - zmedico
 
 RDEPEND="${DEPEND} build? ( !dev-python/python-fchksum )"
-PDEPEND="${DEPEND} 	dev-python/python-fchksum app-admin/python-updater"
+PDEPEND="${DEPEND} !build? ( dev-python/python-fchksum ) app-admin/python-updater"
 
 PROVIDE="virtual/python"
 
