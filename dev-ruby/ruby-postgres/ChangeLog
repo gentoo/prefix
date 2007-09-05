@@ -1,0 +1,64 @@
+# ChangeLog for dev-ruby/ruby-postgres
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-postgres/ChangeLog,v 1.15 2007/07/13 23:05:55 nichoj Exp $
+
+*ruby-postgres-0.7.1.20060406 (13 Jul 2007)
+
+  13 Jul 2007; Joshua Nichols <nichoj@gentoo.org>
+  +ruby-postgres-0.7.1.20060406.ebuild:
+  Version bump. See bug #177150.
+
+  14 Mar 2007; Tom Gall <tgall@gentoo.org> 
+  ruby-postgres-0.7.1.20051221-r1.ebuild:
+  added ~ppc64
+
+  09 Jan 2007; Diego Pettenò <flameeyes@gentoo.org>
+  ruby-postgres-0.7.1.20051221-r1.ebuild:
+  Fix installation with some of the recent changes to gems.eclass.
+
+*ruby-postgres-0.7.1.20051221-r1 (01 Nov 2006)
+
+  01 Nov 2006; Diego Pettenò <flameeyes@gentoo.org>
+  ruby-postgres-0.7.1.ebuild, -ruby-postgres-0.7.1.20051221.ebuild,
+  +ruby-postgres-0.7.1.20051221-r1.ebuild:
+  Revbump the snapshot, and let it depend on rubygems 0.9.0-r1 so to fix bug
+  #143974 for everyone. Also change dependency on libpq rather than full blown
+  postgresql, thanks to Matt Michalowski in bug #153642.
+
+*ruby-postgres-0.7.1.20051221 (07 Aug 2006)
+
+  07 Aug 2006; Caleb Tennis <caleb@gentoo.org>
+  +ruby-postgres-0.7.1.20051221.ebuild:
+  Version bump, move to Gem format
+
+  06 Jun 2006; Simon Stelling <blubb@gentoo.org> ruby-postgres-0.7.1.ebuild:
+  stable on amd64
+
+  17 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  ruby-postgres-0.7.1.ebuild:
+  Add ~x86-fbsd keyword.
+
+  09 Apr 2006; Caleb Tennis <caleb@gentoo.org> ruby-postgres-0.7.1.ebuild:
+  Change homepage and inherit ruby from bug #129271
+
+  31 Jan 2006; Aron Griffis <agriffis@gentoo.org>
+  ruby-postgres-0.7.1.ebuild:
+  Mark 0.7.1 stable on ia64
+
+  20 Dec 2005; <dang@gentoo.org> ruby-postgres-0.7.1.ebuild:
+  Marked ~amd64 Per bug #114693
+
+  11 Dec 2005; Caleb Tennis <caleb@gentoo.org> ruby-postgres-0.7.1.ebuild:
+  Change einstall to make DESTDIR install.  Closes bug #114692
+
+  03 Oct 2005; Aron Griffis <agriffis@gentoo.org>
+  ruby-postgres-0.7.1.ebuild:
+  Mark 0.7.1 ~ia64
+
+*ruby-postgres-0.7.1 (09 May 2003)
+
+  13 May 2003; Tom Payne <twp@gentoo.org> ruby-postgres-0.7.1.ebuild :
+  Marked stable on all ARCHes.
+
+  09 May 2003; Tom Payne <twp@gentoo.org> ruby-postgres-0.7.1.ebuild :
+  Initial import. Ebuild submitted by Jeremy James. Bug # 20664.
