@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-source-r1.eclass,v 1.14 2007/09/02 17:49:20 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-source-r1.eclass,v 1.15 2007/09/04 18:43:27 jokey Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
 # Author: Stuart Herbert <stuart@gentoo.org>
@@ -88,6 +88,10 @@ php-ext-source-r1_src_compile() {
 # @FUNCTION: php-ext-source-r1_src_install
 # @DESCRIPTION:
 # Takes care of standard install for PHP extensions (modules).
+
+# @VARIABLE: DOCS
+# @DESCRIPTION:
+# Set in ebuild if you wish to install additional, package-specific documentation.
 php-ext-source-r1_src_install() {
 	# Pull in the PHP settings
 	has_php
@@ -102,6 +106,10 @@ php-ext-source-r1_src_install() {
 		insinto "${EXT_DIR}-versioned"
 		newins "${WORKDIR}/${PHP_EXT_NAME}-versioned.so" "${PHP_EXT_NAME}.so" || die "Unable to install extension"
 	fi
+
+        for doc in ${DOCS} ; do
+                [[ -s ${doc} ]] && dodoc-php ${doc}
+        done
 
 	php-ext-base-r1_src_install
 }

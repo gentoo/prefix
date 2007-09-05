@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-lib-r1.eclass,v 1.6 2007/09/01 15:58:17 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-lib-r1.eclass,v 1.7 2007/09/04 18:44:02 jokey Exp $
 #
 # Author: Stuart Herbert <stuart@gentoo.org>
 # Author: Luca Longinotti <chtekk@gentoo.org>
@@ -31,6 +31,10 @@ RDEPEND="${DEPEND}"
 # Takes care of install for PHP libraries.
 # You have to pass in a list of the PHP files to install.
 
+# @VARIABLE: DOCS
+# @DESCRIPTION:
+# Set in ebuild if you wish to install additional, package-specific documentation.
+
 # $1 - directory in ${S} to insert from
 # $2 ... list of files to install
 php-lib-r1_src_install() {
@@ -54,4 +58,8 @@ php-lib-r1_src_install() {
 		insinto "${PHP_LIB_DIR}/${SUBDIR}"
 		doins "${S_DIR}/${x}"
 	done
+
+        for doc in ${DOCS} ; do
+                [[ -s ${doc} ]] && dodoc-php ${doc}
+        done
 }

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/tetex-3.eclass,v 1.14 2007/07/22 13:11:59 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/tetex-3.eclass,v 1.15 2007/09/04 12:03:16 peper Exp $
 #
 # Author: Jaromir Malenko <malenko@email.cz>
 # Author: Mamoru KOMACHI <usata@gentoo.org>
@@ -33,8 +33,6 @@ DEPEND="X? ( motif? ( lesstif? ( x11-libs/lesstif )
 	!dev-tex/koma-script"
 
 tetex-3_pkg_setup() {
-	tetex_pkg_setup
-
 	ewarn
 	ewarn "teTeX 3.0 ebuild will remove config files stored in /usr/share/texmf."
 	ewarn "Please make a backup before upgrading if you changed anything."
