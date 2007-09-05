@@ -1,6 +1,49 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.607 2007/08/30 21:46:37 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.623 2007/09/05 06:17:51 ulm Exp $
+
+  05 Sep 2007; Ulrich Mueller <ulm@gentoo.org> updates/3Q-2004,
+  updates/2Q-2007:
+  Fix inconsistent slotmoves for app-editors/emacs-cvs.
+
+  04 Sep 2007; Denis Dupeyron <calchan@gentoo.org> package.mask:
+  Masking new Neverwinter Nights ebuilds until they're confirmed to work.
+
+  04 Sep 2007; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Masking Opera Kestrel (9.50 alphas).
+
+  04 Sep 2007; Stefan Schweizer <genstef@gentoo.org> package.mask:
+  poppler and evince masks for >= instead of = to also cover 0.6
+
+  03 Sep 2007; Daniel Black <dragonheart@gentoo.org> package.mask:
+  removed kde-misc/kxdocker*
+
+  03 Sep 2007; Alin Năstac <mrness@gentoo.org> package.mask:
+  Unmask net-dialup/ppp-2.4.4-r12
+
+  02 Sep 2007; Stefan Schweizer <genstef@gentoo.org> package.mask:
+  last-rite bpalogin for mark_alec
+
+  01 Sep 2007; Joshua Nichols <nichoj@gentoo.org> package.mask:
+  Removed capistrano and palmtree from package.mask.
+
+  01 Sep 2007; Joshua Nichols <nichoj@gentoo.org> updates/3Q-2007:
+  Added slots for dev-ruby/capistrano
+
+  01 Sep 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Also mask wxpython-2.6.4.0.
+
+  01 Sep 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Mask =x11-libs/wxGTK-2.6.4.0 for testing.
+
+  31 Aug 2007; Christian Faulhammer <opfer@gentoo.org> use.local.desc:
+  adding USE flag hybrid-auth for net-misc/vpnc
+
+  31 Aug 2007; Robert Buchholz <rbu@gentoo.org> use.local.desc:
+  Add dialup use flag for knetworkmanager
+
+  31 Aug 2007; Alin Năstac <mrness@gentoo.org> package.mask:
+  Mask ppp-2.4.4-r12.
 
   30 Aug 2007; Tiziano Müller <dev-zero@gentoo.org> use.local.desc:
   Added hb and hb2 USE-flags for sys-fs/evms

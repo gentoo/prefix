@@ -1,6 +1,5 @@
 move net-p2p/dcgui-qt net-p2p/valknut
 move net-p2p/bittorrent-theshadow net-p2p/bittornado
-slotmove <=app-editors/emacs-cvs-21.3.50 0 21.3.50
 move media-libs/sidplay-libs media-libs/libsidplay
 slotmove >=media-libs/libsidplay-2.0 0 2
 move dev-python/wxPython dev-python/wxpython
