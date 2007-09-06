@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.2.0.ebuild,v 1.1 2007/09/04 17:46:17 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.2.0.ebuild,v 1.3 2007/09/05 16:29:50 drac Exp $
 
 EAPI="prefix"
 
@@ -26,6 +26,9 @@ src_unpack() {
 	elibtoolize
 
 	epunt_cxx #74493
+
+	# Insane.
+	sed -i -e "s:-O20::g" configure
 }
 
 src_compile() {
@@ -35,9 +38,6 @@ src_compile() {
 		is-flag -mtune=k6* && filter-flags -ftracer
 		replace-flags -Os -O2
 	fi
-
-	# gcc on hppa causes issues when assembling
-	use hppa && replace-flags -march=2.0 -march=1.0
 
 	econf
 	emake || die "emake failed."
