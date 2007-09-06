@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.165 2007/05/09 15:02:02 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.166 2007/09/05 21:22:23 hawking Exp $
 
 # Authors:
 # 	Ryan Phillips <rphillips@gentoo.org>
@@ -636,7 +636,8 @@ update_vim_symlinks() {
 		# Use eselect vi instead.
 		syms="vimdiff rvim rview"
 		einfo "Calling eselect vi update..."
-		eselect vi update
+		# Call this with --if-unset to respect user's choice (bug 187449)
+		eselect vi update --if-unset
 	fi
 
 	# Make or remove convenience symlink, vim -> gvim

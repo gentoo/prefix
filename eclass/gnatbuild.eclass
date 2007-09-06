@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.32 2007/07/11 21:28:08 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.33 2007/09/05 14:11:00 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -81,7 +81,7 @@ BOOT_SLOT=${SLOT}
 
 # set our install locations
 PREFIX=${GNATBUILD_PREFIX:-${EPREFIX}/usr} # not sure we need this hook, but may be..
-LIBPATH=${PREFIX}/lib/${PN}/${CTARGET}/${SLOT}
+LIBPATH=${PREFIX}/$(get_libdir)/${PN}/${CTARGET}/${SLOT}
 LIBEXECPATH=${PREFIX}/libexec/${PN}/${CTARGET}/${SLOT}
 INCLUDEPATH=${LIBPATH}/include
 BINPATH=${PREFIX}/${CTARGET}/${PN}-bin/${SLOT}
