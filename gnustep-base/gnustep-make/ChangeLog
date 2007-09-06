@@ -1,6 +1,9 @@
 # ChangeLog for gnustep-base/gnustep-make
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.45 2007/08/22 16:16:00 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.46 2007/09/05 19:35:27 josejx Exp $
+
+  05 Sep 2007; Joseph Jezak <josejx@gentoo.org> gnustep-make-1.13.0.ebuild:
+  Marked ppc stable for bug #139385.
 
   22 Aug 2007; Roy Marples <uberlord@gentoo.org> gnustep-make-2.0.1.ebuild:
   Keyworded ~x86-fbsd, #183467 thanks to Nathan Smith.
