@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/hoe
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/ChangeLog,v 1.13 2007/08/26 17:52:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/ChangeLog,v 1.14 2007/09/05 14:29:22 angelos Exp $
+
+  05 Sep 2007; Christoph Mende <angelos@gentoo.org> hoe-1.2.2.ebuild:
+  Stable on amd64 wrt bug #190161
 
   26 Aug 2007; Raúl Porcel <armin76@gentoo.org> hoe-1.2.2.ebuild:
   ia64/x86 stable wrt #190161
