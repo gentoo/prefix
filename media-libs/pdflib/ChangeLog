@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/pdflib
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.81 2007/08/06 13:38:27 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.82 2007/09/05 12:27:54 jokey Exp $
+
+*pdflib-7.0.2 (05 Sep 2007)
+
+  05 Sep 2007; Markus Ullmann <jokey@gentoo.org> +pdflib-7.0.2.ebuild:
+  Version bump from project overlay
+
+  03 Sep 2007; Jakub Moc <jakub@gentoo.org> +pdflib-7.0.2.ebuild
+  Version bump; use perl-module and python eclasses properly and get rid of
+  the nasty hacks, fix inherits, other cleanups
 
   06 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org> pdflib-7.0.1.ebuild:
   Stable on sparc
