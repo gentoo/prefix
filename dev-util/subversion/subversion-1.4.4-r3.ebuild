@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.4-r3.ebuild,v 1.2 2007/07/29 16:56:48 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.4-r3.ebuild,v 1.3 2007/09/05 12:16:36 pauldv Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ DESCRIPTION="A compelling replacement for CVS."
 HOMEPAGE="http://subversion.tigris.org/"
 SRC_URI="http://subversion.tigris.org/downloads/${P/_rc/-rc}.tar.bz2"
 
-LICENSE="Apache-1.1"
+LICENSE="Subversion"
 SLOT="0"
 IUSE="apache2 berkdb emacs java nls nowebdav perl python ruby"
 RESTRICT="test"

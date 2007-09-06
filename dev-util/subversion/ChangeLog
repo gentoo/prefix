@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/subversion
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.272 2007/07/29 16:56:48 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.273 2007/09/05 12:16:36 pauldv Exp $
+
+  05 Sep 2007; <paul@gentoo.org> subversion-1.1.3.ebuild,
+  subversion-1.2.3-r3.ebuild, subversion-1.3.2-r3.ebuild,
+  subversion-1.3.2-r4.ebuild, subversion-1.4.4-r3.ebuild:
+  Fix the license variable to reflect the actual license. Fixes bug #187404.
 
   29 Jul 2007; Christian Heim <phreak@gentoo.org> subversion-1.1.3.ebuild,
   subversion-1.3.2-r4.ebuild, subversion-1.4.4-r3.ebuild:
