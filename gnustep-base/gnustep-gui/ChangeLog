@@ -1,6 +1,9 @@
 # ChangeLog for gnustep-base/gnustep-gui
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.46 2007/08/22 16:21:38 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.47 2007/09/05 19:36:46 josejx Exp $
+
+  05 Sep 2007; Joseph Jezak <josejx@gentoo.org> gnustep-gui-0.11.0.ebuild:
+  Marked ppc stable for bug #139385.
 
   22 Aug 2007; Roy Marples <uberlord@gentoo.org> gnustep-gui-0.12.0.ebuild:
   Keyworded ~x86-fbsd, #183467 thanks to Nathan Smith.
