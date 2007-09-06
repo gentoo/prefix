@@ -1,6 +1,11 @@
 # ChangeLog for app-crypt/opencdk
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/opencdk/ChangeLog,v 1.58 2007/08/30 12:25:14 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/opencdk/ChangeLog,v 1.59 2007/09/05 20:16:44 alonbl Exp $
+
+*opencdk-0.6.4 (05 Sep 2007)
+
+  05 Sep 2007; Alon Bar-Lev <alonbl@gentoo.org> +opencdk-0.6.4.ebuild:
+  Version bump
 
   30 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing liquidx from metadata due to his retirement (see #171155 for
