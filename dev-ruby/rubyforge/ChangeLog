@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/rubyforge
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/ChangeLog,v 1.12 2007/08/26 17:48:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/ChangeLog,v 1.13 2007/09/05 14:28:54 angelos Exp $
+
+  05 Sep 2007; Christoph Mende <angelos@gentoo.org> rubyforge-0.4.3.ebuild:
+  Stable on amd64 wrt bug #190161
 
   26 Aug 2007; Raúl Porcel <armin76@gentoo.org> rubyforge-0.4.3.ebuild:
   ia64/x86 stable wrt #190161
