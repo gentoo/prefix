@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.6.ebuild,v 1.1 2007/09/04 06:53:33 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.6.ebuild,v 1.2 2007/09/06 17:48:22 genstef Exp $
 
 EAPI="prefix"
 
@@ -35,6 +35,7 @@ src_unpack(){
 	cd "${S}"
 
 	epatch "${FILESDIR}"/poppler-0.6-bindings.patch
+	epatch "${FILESDIR}"/poppler-nocairo.patch
 
 	AT_M4DIR="m4" eautoreconf
 	sed -i s:/usr/lib/qt:"${EPREFIX}"/usr/lib/qt4: configure
