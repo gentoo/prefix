@@ -1,6 +1,21 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.255 2007/09/05 04:06:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.260 2007/09/07 04:15:31 jer Exp $
+
+  07 Sep 2007; Jeroen Roovers <jer@gentoo.org> openssh-4.7_p1.ebuild:
+  Stable for HPPA (bug #191321).
+
+  07 Sep 2007; Chris Gianelloni <wolf31o2@gentoo.org> openssh-4.7_p1.ebuild:
+  Stable on amd64 wrt bug #191321.
+
+  06 Sep 2007; Jose Luis Rivero <yoswink@gentoo.org> openssh-4.7_p1.ebuild:
+  Stable on sparc wrt security bug #191321
+
+  06 Sep 2007; Raúl Porcel <armin76@gentoo.org> openssh-4.7_p1.ebuild:
+  alpha/ia64 stable wrt security #191321
+
+  06 Sep 2007; Andrej Kacian <ticho@gentoo.org> openssh-4.7_p1.ebuild:
+  Stable on x86, security bug #191321.
 
 *openssh-4.7_p1 (05 Sep 2007)
 
