@@ -6,7 +6,7 @@ diff --exclude-from=/home/dang/.diffrc -u -ruN tetex-src-3.0.orig/texk/kpathsea/
  
  # Always use our own libtool.
 -LIBTOOL='$(SHELL) $(top_builddir)/libtool'
-+if [ "${USERLAND}" = "Darwin" ]; then
++if [ "${KERNEL}" = "Darwin" ]; then
 +LIBTOOL='glibtool'
 +else
 +LIBTOOL='libtool'
@@ -24,7 +24,7 @@ diff --exclude-from=/home/dang/.diffrc -u -ruN tetex-src-3.0.orig/texk/libtool.m
 -# Always use our own libtool.
 -LIBTOOL='$(SHELL) $(top_builddir)/libtool'
 +# Use the system libtool
-+if [ "${USERLAND}" = "Darwin" ]; then
++if [ "${KERNEL}" = "Darwin" ]; then
 +LIBTOOL='glibtool'
 +else
 +LIBTOOL='libtool'
@@ -40,7 +40,7 @@ diff --exclude-from=/home/dang/.diffrc -u -ruN tetex-src-3.0.orig/texk/make/comm
  
  # Kpathsea needs this for compiling, programs need it for linking.
 -LIBTOOL = $(SHELL) $(kpathsea_parent)/libtool
-+ifeq ($(USERLAND),Darwin)
++ifeq ($(KERNEL),Darwin)
 +LIBTOOL='glibtool'
 +else
 +LIBTOOL='libtool'
