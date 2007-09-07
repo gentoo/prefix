@@ -45,7 +45,7 @@ MYSQL_VERSION_ID=${MYSQL_VERSION_ID##"0"}
 
 # Be warned, *DEPEND are version-dependant
 DEPEND="ssl? ( >=dev-libs/openssl-0.9.6d )
-		userland_GNU? ( sys-process/procps )
+		kernel_linux? ( sys-process/procps )
 		>=sys-apps/sed-4
 		>=sys-apps/texinfo-4.7-r1
 		>=sys-libs/readline-4.1
