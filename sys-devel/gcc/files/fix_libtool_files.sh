@@ -1,7 +1,7 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/bash
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/files/fix_libtool_files.sh,v 1.13 2007/05/05 01:10:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/files/fix_libtool_files.sh,v 1.14 2007/09/06 11:00:44 uberlord Exp $
 
 usage() {
 cat << "USAGE_END"
@@ -67,6 +67,6 @@ OLDVER=${ARGV1}
 export OLDVER OLDCHOST
 
 einfo "Scanning libtool files for hardcoded gcc library paths..."
-@GENTOO_PORTAGE_EPREFIX@/bin/gawk -f "${AWKDIR}/fixlafiles.awk"
+gawk -f "${AWKDIR}/fixlafiles.awk"
 
 # vim:ts=4

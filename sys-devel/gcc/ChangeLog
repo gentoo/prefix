@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.630 2007/09/05 22:20:11 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.631 2007/09/06 11:00:44 uberlord Exp $
+
+  06 Sep 2007; Roy Marples <uberlord@gentoo.org> files/fix_libtool_files.sh:
+  gawk isn't always in /bin
 
   05 Sep 2007; Mike Frysinger <vapier@gentoo.org> gcc-3.4.6-r2.ebuild,
   gcc-4.1.2.ebuild:
