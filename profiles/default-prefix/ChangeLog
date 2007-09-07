@@ -2,6 +2,10 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  07 Sep 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Unmasking tetex-3 as it seems to install pdflatex now, but only very
+  trickily at some after image stage
+
   29 Aug 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
   Update masking comment for gcc-config, it works now, but doesn't play nice
   with our binutils-config (no GCC found on your system!)
