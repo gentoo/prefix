@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/nxml-mode-20041004.ebuild,v 1.10 2007/07/02 07:32:10 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/nxml-mode-20041004-r2.ebuild,v 1.1 2007/09/09 10:00:18 ulm Exp $
 
 EAPI="prefix"
 
@@ -17,17 +17,21 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86"
 IUSE=""
 
-SITEFILE=80nxml-mode-gentoo.el
+SITEFILE=80${PN}-gentoo.el
 
 src_unpack() {
-	unpack ${P}.tar.gz
-	cd ${S}
+	unpack ${A}
+	cd "${S}"
 	epatch "${FILESDIR}/${PN}-info-gentoo.patch"
-	epatch "${DISTDIR}/${PN}-20040910-xmlschema.patch.gz"
+	epatch "${WORKDIR}/${PN}-20040910-xmlschema.patch"
+	epatch "${FILESDIR}/xsd-regexp.el.2006-01-26.patch"		# bug #188112
+	epatch "${FILESDIR}/${PN}-xmlschema-xpath.patch"		# bug #188114
 }
 
 src_compile() {
-	emacs -batch -l rng-auto.el -f rng-byte-compile-load
+	emacs -batch -l rng-auto.el -f rng-byte-compile-load \
+		|| die "byte compilation failed"
+	makeinfo --force nxml-mode.texi || die "makeinfo failed"
 }
 
 src_install() {
@@ -35,7 +39,6 @@ src_install() {
 	elisp-site-file-install "${FILESDIR}/${SITEFILE}"
 	cp -r "${S}/schema" "${ED}/${SITELISP}/${PN}"
 	cp -r "${S}/char-name" "${ED}/${SITELISP}/${PN}"
-	dodoc README VERSION TODO NEWS
-	makeinfo --force nxml-mode.texi
 	doinfo nxml-mode.info
+	dodoc README VERSION TODO NEWS || die "dodoc failed"
 }

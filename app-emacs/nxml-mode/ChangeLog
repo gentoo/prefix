@@ -1,6 +1,13 @@
 # ChangeLog for app-emacs/nxml-mode
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/ChangeLog,v 1.24 2007/08/15 07:37:56 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/ChangeLog,v 1.25 2007/09/09 10:00:18 ulm Exp $
+
+*nxml-mode-20041004-r2 (09 Sep 2007)
+
+  09 Sep 2007; Ulrich Mueller <ulm@gentoo.org>
+  +files/nxml-mode-xmlschema-xpath.patch, +nxml-mode-20041004-r2.ebuild:
+  Fix selector and field regexps in xmlschema.rnc, bug #188114. Patch provided
+  by Martin von Gagern <Martin.vGagern@gmx.net>.
 
 *nxml-mode-20041004-r1 (15 Aug 2007)
 
