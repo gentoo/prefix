@@ -1,6 +1,9 @@
 # ChangeLog for virtual/gnustep-back
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/gnustep-back/ChangeLog,v 1.3 2007/09/06 23:07:12 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/gnustep-back/ChangeLog,v 1.4 2007/09/10 01:18:26 josejx Exp $
+
+  10 Sep 2007; Joseph Jezak <josejx@gentoo.org> gnustep-back-0.12.0.ebuild:
+  Marked ~ppc for bug #189372.
 
   06 Sep 2007; Bernard Cafarelli <voyageur@gentoo.org>
   gnustep-back-0.12.0.ebuild:
