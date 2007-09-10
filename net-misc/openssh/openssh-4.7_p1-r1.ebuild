@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.7_p1.ebuild,v 1.6 2007/09/07 04:15:31 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.7_p1-r1.ebuild,v 1.2 2007/09/08 08:08:30 corsair Exp $
 
 EAPI="prefix"
 
@@ -10,16 +10,16 @@ inherit eutils flag-o-matic ccc multilib autotools pam
 # and _p? releases.
 PARCH=${P/_/}
 
-X509_PATCH="" #${PARCH/4.7/4.6}+x509-6.0.1.diff.gz"
+X509_PATCH="${PARCH}+x509-6.0.1.diff.gz"
 LDAP_PATCH="${PARCH/openssh-4.7/openssh-lpk-4.6}-0.3.9.patch"
-HPN_PATCH="" #${PARCH}-hpn12v17.diff.gz"
+HPN_PATCH="${PARCH}-hpn12v18.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.com/"
 SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
-	ldap? ( http://dev.inversepath.com/openssh-lpk/${LDAP_PATCH} )"
-#	X509? ( http://roumenpetrov.info/openssh/x509-6.0.1/${X509_PATCH} )
-#	hpn? ( http://www.psc.edu/networking/projects/hpn-ssh/${HPN_PATCH} )
+	ldap? ( http://dev.inversepath.com/openssh-lpk/${LDAP_PATCH} )
+	X509? ( http://roumenpetrov.info/openssh/x509-6.0.1/${X509_PATCH} )
+	hpn? ( http://www.psc.edu/networking/projects/hpn-ssh/${HPN_PATCH} )"
 
 LICENSE="as-is"
 SLOT="0"
