@@ -47,6 +47,11 @@ osp
 # yellownet is only avaible as a binary blob (bug 149970)
 yellownet
 
+# not keyworded on non-x86 systems
+video_cards_amd
+video_cards_vermilion
+video_cards_xgi
+
 # not needed on non-sparc systems
 video_cards_sunbw2
 video_cards_suncg14

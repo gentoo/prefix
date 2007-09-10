@@ -1,6 +1,35 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.623 2007/09/05 06:17:51 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.636 2007/09/09 09:23:05 dberkholz Exp $
+
+  09 Sep 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  desc/video_cards.desc:
+  Add amd/vermilion to VIDEO_CARDS entries.
+
+  09 Sep 2007; Donnie Berkholz <dberkholz@gentoo.org>; package.mask:
+  Unmask xf86-input-keyboard-1.2 because xorg-server handles deps properly now.
+
+  09 Sep 2007; Hans de Graaff <graaff@gentoo.org> package.mask:
+  Remove dev-ruby/switchtower as the package is now removed from the tree.
+
+  09 Sep 2007; Alin Năstac <mrness@gentoo.org> package.mask:
+  Mask squid development version.
+
+  08 Sep 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  desc/video_cards.desc:
+  Add xgi.
+
+  08 Sep 2007; Alin Năstac <mrness@gentoo.org> use.local.desc:
+  Update homepage of zero penalty hit patch for squid.
+
+  07 Sep 2007; Tiziano Müller <dev-zero@gentoo.org> use.local.desc:
+  Added ads USE flag for net-fs/samba
+
+  06 Sep 2007; Chris Gianelloni <wolf31o2@gentoo.org> package.mask:
+  Removing my big Descent 2 mask.
+
+  06 Sep 2007; Tobias Scherbaum <dertobi123@gentoo.org> package.mask:
+  Unmasking >=cyrus-imapd-2.3 and >=cyrus-imap-admin-2.3
 
   05 Sep 2007; Ulrich Mueller <ulm@gentoo.org> updates/3Q-2004,
   updates/2Q-2007:
