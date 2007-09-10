@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>no-herd</herd>
+	<herd>python</herd>
 	<maintainer>
-		<email>maintainer-needed@gentoo.org</email>
+		<email>python@gentoo.org</email>
+		<name>Python Project Team</name>
 	</maintainer>
 </pkgmetadata>

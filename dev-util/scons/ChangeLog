@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/scons
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.49 2007/09/01 12:43:51 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.51 2007/09/08 10:28:43 jer Exp $
+
+  08 Sep 2007; Jeroen Roovers <jer@gentoo.org> scons-0.97.ebuild:
+  Stable for HPPA (bug #191658).
+
+  08 Sep 2007; Tiziano Müller <dev-zero@gentoo.org> metadata.xml,
+  -scons-0.96.96.ebuild:
+  Assigning to python-herd, dropped old version.
 
   01 Sep 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing twp from metadata due to his retirement (see #190561 for reference).
