@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdcss/libdvdcss-1.2.9-r1.ebuild,v 1.10 2007/08/24 20:31:48 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdcss/libdvdcss-1.2.9-r1.ebuild,v 1.11 2007/09/09 16:59:51 corsair Exp $
 
 EAPI="prefix"
 
