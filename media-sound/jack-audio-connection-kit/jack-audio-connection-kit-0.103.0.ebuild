@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.103.0.ebuild,v 1.13 2007/09/03 06:37:21 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.103.0.ebuild,v 1.14 2007/09/07 21:16:30 jer Exp $
 
 EAPI="prefix"
 
