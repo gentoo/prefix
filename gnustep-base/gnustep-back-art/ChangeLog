@@ -1,6 +1,10 @@
 # ChangeLog for gnustep-base/gnustep-back-art
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-art/ChangeLog,v 1.44 2007/09/06 22:54:29 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-art/ChangeLog,v 1.45 2007/09/10 01:17:58 josejx Exp $
+
+  10 Sep 2007; Joseph Jezak <josejx@gentoo.org>
+  gnustep-back-art-0.12.0.ebuild:
+  Marked ~ppc for bug #189372.
 
   06 Sep 2007; Bernard Cafarelli <voyageur@gentoo.org>
   -files/font-make-fix.patch-0.9.5, -gnustep-back-art-0.9.5.ebuild,
