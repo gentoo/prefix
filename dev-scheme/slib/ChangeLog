@@ -1,6 +1,11 @@
 # ChangeLog for dev-scheme/slib
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/ChangeLog,v 1.32 2007/06/07 18:10:34 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/ChangeLog,v 1.33 2007/09/07 15:18:06 hkbst Exp $
+
+*slib-3.1.4-r4 (07 Sep 2007)
+
+  07 Sep 2007; Marijn Schouten <hkBst@gentoo.org> +slib-3.1.4-r4.ebuild:
+  slight change to build process, fixes bug 189649
 
   07 Jun 2007; Marijn Schouten <hkBst@gentoo.org> slib-3.1.4-r3.ebuild:
   fix slib gambit support
