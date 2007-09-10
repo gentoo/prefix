@@ -1,6 +1,9 @@
 # ChangeLog for gnustep-base/gnustep-gui
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.49 2007/09/06 22:57:45 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.50 2007/09/10 01:14:53 josejx Exp $
+
+  10 Sep 2007; Joseph Jezak <josejx@gentoo.org> gnustep-gui-0.12.0.ebuild:
+  Marked ~ppc for bug #189372.
 
   06 Sep 2007; Bernard Cafarelli <voyageur@gentoo.org>
   -gnustep-gui-0.9.5.ebuild:
