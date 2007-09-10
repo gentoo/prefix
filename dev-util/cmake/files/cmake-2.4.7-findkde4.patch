@@ -1,0 +1,49 @@
+--- Modules/FindKDE4.cmake.orig	2007-09-05 19:34:40.000000000 +0200
++++ Modules/FindKDE4.cmake	2007-09-05 19:34:46.000000000 +0200
+@@ -1,9 +1,8 @@
+ # Find KDE4 and provide all necessary variables and macros to compile software for it.
+ # It looks for KDE 4 in the following directories in the given order:
+-# - CMAKE_INSTALL_PREFIX
+-# - KDEDIRS
+-# - /opt/kde4
+-# - /opt/kde
++#  CMAKE_INSTALL_PREFIX
++#  KDEDIRS
++#  /opt/kde4
+ #
+ # Please look in FindKDE4Internal.cmake and KDE4Macros.cmake for more information.
+ # They are installed with the KDE 4 libraries in $KDEDIRS/share/apps/cmake/modules/.
+@@ -14,6 +13,7 @@
+ 
+ # For KDE4 kde-config has been renamed to kde4-config
+ FIND_PROGRAM(KDE4_KDECONFIG_EXECUTABLE NAMES kde4-config
++   PATH_SUFFIXES bin               # the suffix is for the paths coming from KDEDIRS
+    PATHS
+    ${CMAKE_INSTALL_PREFIX}/bin
+    ${_KDEDIRS}
+@@ -21,14 +21,11 @@
+    NO_DEFAULT_PATH
+    )
+ 
+-
+-IF (NOT KDE4_KDECONFIG_EXECUTABLE)
+-   FIND_PROGRAM(KDE4_KDECONFIG_EXECUTABLE NAMES kde4-config )
+-ENDIF (NOT KDE4_KDECONFIG_EXECUTABLE)
++FIND_PROGRAM(KDE4_KDECONFIG_EXECUTABLE NAMES kde4-config )
+ 
+ IF (KDE4_KDECONFIG_EXECUTABLE)
+    # then ask kde4-config for the kde data dirs
+-   EXEC_PROGRAM(${KDE4_KDECONFIG_EXECUTABLE} ARGS --path data OUTPUT_VARIABLE _data_DIR )
++   EXECUTE_PROCESS(COMMAND "${KDE4_KDECONFIG_EXECUTABLE}" --path data OUTPUT_VARIABLE _data_DIR ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
+ 
+    FILE(TO_CMAKE_PATH "${_data_DIR}" _data_DIR)
+ 
+@@ -52,7 +49,7 @@
+       FIND_PACKAGE(KDE4Internal ${_req} ${_quiet})
+    ELSE (KDE4_DATA_DIR)
+       IF (KDE4_FIND_REQUIRED)
+-      MESSAGE(FATAL_ERROR "ERROR: cmake/modules/FindKDE4Internal.cmake not found in ${_data_DIR}")
++         MESSAGE(FATAL_ERROR "ERROR: cmake/modules/FindKDE4Internal.cmake not found in ${_data_DIR}")
+       ENDIF (KDE4_FIND_REQUIRED)
+    ENDIF (KDE4_DATA_DIR)
+ 

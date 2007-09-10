@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/cmake
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.62 2007/07/19 08:02:26 cryos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.63 2007/09/07 21:30:53 philantrop Exp $
+
+*cmake-2.4.7-r1 (07 Sep 2007)
+
+  07 Sep 2007; Wulf C. Krueger <philantrop@gentoo.org>
+  +files/cmake-2.4.7-findkde4.patch, +cmake-2.4.7-r1.ebuild:
+  Added an upstream patch to fix cmake failing to detect an existing KDE4
+  installation if the program being built is not going to be installed in the
+  same directory as KDE4. Fixes bug 191412. Thanks, Zephyrus, for reporting
+  this and providing the patch!
 
   19 Jul 2007; Marcus D. Hanwell <cryos@gentoo.org> cmake-2.4.7.ebuild:
   Moved to testing, fixes bug 185832. Sorry.
