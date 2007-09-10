@@ -1,6 +1,17 @@
 # ChangeLog for x11-libs/libXrender
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXrender/ChangeLog,v 1.40 2007/08/07 13:14:21 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXrender/ChangeLog,v 1.42 2007/09/08 07:49:21 dberkholz Exp $
+
+  08 Sep 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  -libXrender-0.9.3.ebuild:
+  Drop, because some apps don't build with it.
+
+*libXrender-0.9.4 (08 Sep 2007)
+*libXrender-0.9.3 (08 Sep 2007)
+
+  08 Sep 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  +libXrender-0.9.3.ebuild, +libXrender-0.9.4.ebuild:
+  Bump for 7.3.
 
   07 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org>
   libXrender-0.9.2.ebuild:
