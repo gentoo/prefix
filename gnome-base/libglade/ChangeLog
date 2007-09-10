@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/libglade
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/ChangeLog,v 1.101 2007/08/11 14:48:53 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/ChangeLog,v 1.102 2007/09/07 21:47:43 jer Exp $
+
+  07 Sep 2007; Jeroen Roovers <jer@gentoo.org> libglade-2.6.1.ebuild:
+  Stable for HPPA too.
 
   11 Aug 2007; Andrej Kacian <ticho@gentoo.org> libglade-2.6.1.ebuild:
   Stable on x86, bug #185823.
