@@ -1,6 +1,9 @@
 # ChangeLog for gnustep-base/gnustep-base
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.47 2007/09/06 23:02:33 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.48 2007/09/10 01:14:18 josejx Exp $
+
+  10 Sep 2007; Joseph Jezak <josejx@gentoo.org> gnustep-base-1.14.0.ebuild:
+  Marked ~ppc for bug #189372.
 
   06 Sep 2007; Bernard Cafarelli <voyageur@gentoo.org>
   -files/base-user-defaults.patch-1.10.0, -gnustep-base-1.10.3.ebuild,
