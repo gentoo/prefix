@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/gst-plugins-base-0.10.14.ebuild,v 1.3 2007/09/03 02:12:12 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/gst-plugins-base-0.10.14.ebuild,v 1.5 2007/09/09 17:07:24 opfer Exp $
 
 EAPI="prefix"
 
@@ -27,7 +27,7 @@ PDEPEND="oss? ( >=media-plugins/gst-plugins-oss-0.10 )
 	X? ( >=media-plugins/gst-plugins-x-0.10 )
 	xv? ( >=media-plugins/gst-plugins-xvideo-0.10 )"
 
-DOCS="AUTHORS INSTALL README RELEASE TODO"
+DOCS="AUTHORS README RELEASE"
 
 src_compile() {
 	elibtoolize
