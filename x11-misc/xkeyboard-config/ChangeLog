@@ -1,6 +1,16 @@
 # ChangeLog for x11-misc/xkeyboard-config
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/ChangeLog,v 1.33 2007/08/07 13:19:58 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/ChangeLog,v 1.36 2007/09/10 03:30:20 jer Exp $
+
+  10 Sep 2007; Jeroen Roovers <jer@gentoo.org> xkeyboard-config-0.9.ebuild:
+  Stable for HPPA (bug #191615).
+
+  09 Sep 2007; Raúl Porcel <armin76@gentoo.org>
+  xkeyboard-config-0.9.ebuild:
+  alpha/ia64 stable wrt #191615
+
+  08 Sep 2007; Joseph Jezak <josejx@gentoo.org> xkeyboard-config-0.9.ebuild:
+  Marked ppc/ppc64 stable for bug #191615.
 
   07 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org>
   xkeyboard-config-0.8-r1.ebuild:
