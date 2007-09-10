@@ -1,6 +1,10 @@
 # ChangeLog for app-text/docbook-dsssl-stylesheets
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-dsssl-stylesheets/ChangeLog,v 1.37 2007/03/12 21:40:29 leonardop Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-dsssl-stylesheets/ChangeLog,v 1.38 2007/09/08 15:40:57 jer Exp $
+
+  08 Sep 2007; <jeroen@gentoo.org> docbook-dsssl-stylesheets-1.77-r2.ebuild,
+  docbook-dsssl-stylesheets-1.79.ebuild:
+  Fix HOMEPAGE (got a 404 on the previous one).
 
   12 Mar 2007; Leonardo Boshell <leonardop@gentoo.org> metadata.xml:
   Replacing text-markup herd with the new sgml herd.
