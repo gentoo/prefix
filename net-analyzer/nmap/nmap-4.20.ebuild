@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.20.ebuild,v 1.14 2007/07/03 21:31:21 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.20.ebuild,v 1.15 2007/09/07 23:16:58 spock Exp $
 
 EAPI="prefix"
 
@@ -14,20 +14,19 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="gtk ssl"
 
-DEPEND="virtual/libc
-	dev-libs/libpcre
+DEPEND="dev-libs/libpcre
 	net-libs/libpcap
 	gtk? ( =x11-libs/gtk+-2* )
 	ssl? ( dev-libs/openssl )"
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 	sed 's:Icon=icon-network:Icon=nmap-logo-64.png:' -i nmapfe.desktop
 	echo ";" >> nmapfe.desktop
-	epatch ${FILESDIR}/nmap-shtool-nls.patch
-	epatch ${FILESDIR}/nmap-4.01-nostrip.patch
-	epatch ${FILESDIR}/${P}-osscan.patch
+	epatch "${FILESDIR}/nmap-shtool-nls.patch"
+	epatch "${FILESDIR}/nmap-4.01-nostrip.patch"
+	epatch "${FILESDIR}/${P}-osscan.patch"
 }
 
 src_compile() {
@@ -41,12 +40,7 @@ src_compile() {
 
 src_install() {
 	einstall -j1 nmapdatadir=${ED}/usr/share/nmap install || die
-	dodoc CHANGELOG HACKING docs/README docs/*.txt
-	dohtml docs/*.html
+	dodoc CHANGELOG HACKING docs/README docs/*.txt || die
 
-	if use gtk; then
-		dodir /usr/share/pixmaps
-		insinto /usr/share/pixmaps
-		doins ${FILESDIR}/nmap-logo-64.png
-	fi
+	use gtk && doicon "${FILESDIR}/nmap-logo-64.png"
 }
