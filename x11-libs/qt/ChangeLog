@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.480 2007/08/23 22:53:30 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.481 2007/09/07 17:39:36 caleb Exp $
+
+  07 Sep 2007; Caleb Tennis <caleb@gentoo.org> qt-3.3.8-r3.ebuild:
+  Fix xineramaproto dep for immqt users, bug #189703
 
   23 Aug 2007; Caleb Tennis <caleb@gentoo.org> -qt-4.2.3-r1.ebuild:
   remove last of 4.2 series
