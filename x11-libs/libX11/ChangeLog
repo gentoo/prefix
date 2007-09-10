@@ -1,6 +1,26 @@
 # ChangeLog for x11-libs/libX11
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.76 2007/09/01 10:42:39 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.81 2007/09/10 03:26:48 jer Exp $
+
+  10 Sep 2007; Jeroen Roovers <jer@gentoo.org> libX11-1.1.2-r1.ebuild:
+  Stable for HPPA (bug #191615).
+
+  09 Sep 2007; Raúl Porcel <armin76@gentoo.org> libX11-1.1.2-r1.ebuild:
+  alpha/ia64 stable wrt #191615
+
+  08 Sep 2007; Joseph Jezak <josejx@gentoo.org> libX11-1.1.2-r1.ebuild:
+  Marked ppc/ppc64 stable for bug #191615.
+
+*libX11-1.1.3 (08 Sep 2007)
+
+  08 Sep 2007; Donnie Berkholz <dberkholz@gentoo.org>; +libX11-1.1.3.ebuild:
+  Maintenance release that fixes a bug (introduced with libX11 1.1.2) which
+  broke the XGetMotionEvents function, contains an XCB-related locking fix in
+  XIM code, and has a few other bits.
+
+  07 Sep 2007; Chris Gianelloni <wolf31o2@gentoo.org>
+  libX11-1.1.2-r1.ebuild:
+  Stable on x86 wrt bug #191615.
 
   01 Sep 2007; Christoph Mende <angelos@gentoo.org> libX11-1.1.2-r1.ebuild:
   Stable on amd64
