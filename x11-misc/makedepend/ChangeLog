@@ -1,6 +1,19 @@
 # ChangeLog for x11-misc/makedepend
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/makedepend/ChangeLog,v 1.29 2007/03/31 14:49:31 joshuabaergen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/makedepend/ChangeLog,v 1.33 2007/09/10 03:30:08 jer Exp $
+
+  10 Sep 2007; Jeroen Roovers <jer@gentoo.org> makedepend-1.0.1.ebuild:
+  Stable for HPPA (bug #191615).
+
+  09 Sep 2007; Raúl Porcel <armin76@gentoo.org> makedepend-1.0.1.ebuild:
+  alpha/ia64 stable wrt #191615
+
+  08 Sep 2007; Joseph Jezak <josejx@gentoo.org> makedepend-1.0.1.ebuild:
+  Marked ppc/ppc64 stable for bug #191615.
+
+  07 Sep 2007; Chris Gianelloni <wolf31o2@gentoo.org>
+  makedepend-1.0.1.ebuild:
+  Stable on x86 wrt bug #191615.
 
 *makedepend-1.0.1 (31 Mar 2007)
 
