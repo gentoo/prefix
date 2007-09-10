@@ -1,6 +1,12 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.301 2007/09/04 06:30:56 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.302 2007/09/09 04:34:17 vapier Exp $
+
+*binutils-2.18.50.0.1 (09 Sep 2007)
+
+  09 Sep 2007; Mike Frysinger <vapier@gentoo.org>
+  +binutils-2.18.50.0.1.ebuild:
+  Version bump.
 
   04 Sep 2007; Joshua Kinard <kumba@gentoo.org> binutils-2.18.ebuild:
   Update the patchset to 1.1 to pull in a patch for mips to enable support for
