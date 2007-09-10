@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/aalib-1.4_rc5.ebuild,v 1.20 2007/07/22 09:44:47 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/aalib-1.4_rc5.ebuild,v 1.21 2007/09/09 15:42:33 coldwind Exp $
 
 EAPI="prefix"
 
@@ -21,13 +21,13 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="X slang gpm"
 
-RDEPEND="X? ( x11-libs/libX11 )"
+RDEPEND="X? ( x11-libs/libX11 )
+	slang? ( >=sys-libs/slang-1.4.2 )"
 
 DEPEND="${RDEPEND}
 	>=sys-libs/ncurses-5.1
 	X? ( x11-proto/xproto )
-	gpm? ( sys-libs/gpm )
-	slang? ( >=sys-libs/slang-1.4.2 )"
+	gpm? ( sys-libs/gpm )"
 
 src_unpack() {
 	unpack ${A}

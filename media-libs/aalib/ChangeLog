@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/aalib
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/ChangeLog,v 1.34 2007/07/22 09:44:48 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/ChangeLog,v 1.35 2007/09/09 15:42:33 coldwind Exp $
+
+  09 Sep 2007; Santiago M. Mola <coldwind@gentoo.org>
+  aalib-1.4_rc4-r2.ebuild, aalib-1.4_rc5.ebuild:
+  rdep on slang, bug #168076 thanks to Chris Slycord <cslycord@gmail.com>
 
   22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>;
   aalib-1.4_rc4-r2.ebuild, aalib-1.4_rc5.ebuild:
