@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hpricot/hpricot-0.5.ebuild,v 1.4 2007/09/09 17:14:44 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hpricot/hpricot-0.6.ebuild,v 1.1 2007/09/07 19:55:32 graaff Exp $
 
 EAPI="prefix"
 
