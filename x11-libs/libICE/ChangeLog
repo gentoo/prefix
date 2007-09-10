@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/libICE
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libICE/ChangeLog,v 1.42 2007/08/07 13:03:06 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libICE/ChangeLog,v 1.43 2007/09/08 07:40:29 dberkholz Exp $
+
+*libICE-1.0.4 (08 Sep 2007)
+
+  08 Sep 2007; Donnie Berkholz <dberkholz@gentoo.org>; +libICE-1.0.4.ebuild:
+  Bump for 7.3.
 
   07 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org> libICE-1.0.3.ebuild:
   Stable on sparc wrt #175465
