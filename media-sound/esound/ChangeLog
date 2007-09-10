@@ -1,6 +1,12 @@
 # ChangeLog for media-sound/esound
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/esound/ChangeLog,v 1.103 2007/08/28 17:47:33 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/esound/ChangeLog,v 1.104 2007/09/09 08:22:34 remi Exp $
+
+*esound-0.2.38-r1 (09 Sep 2007)
+
+  09 Sep 2007; Rémi Cardona <remi@gentoo.org>
+  +files/esound-0.2.38-doc.patch, +esound-0.2.38-r1.ebuild:
+  patch fixes messy html documentation installation (bugs #154902 and #191306)
 
   28 Aug 2007; Jeroen Roovers <jer@gentoo.org> esound-0.2.38.ebuild:
   Stable for HPPA (bug #185823).

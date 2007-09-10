@@ -1,0 +1,23 @@
+--- configure.ac.old	2007-09-09 09:28:00.000000000 +0200
++++ configure.ac	2007-09-09 09:28:12.000000000 +0200
+@@ -25,9 +25,6 @@
+ AC_SUBST(ESD_VERSION)
+ AC_SUBST(ESD_VERSION_INFO)
+ 
+-pkgdocdir="\$(datadir)/doc/esound"
+-AC_SUBST(pkgdocdir)
+-
+ AC_PROG_CC
+ AC_PROG_CPP
+ AC_LIBTOOL_WIN32_DLL
+--- docs/Makefile.am.old	2007-09-09 09:37:28.000000000 +0200
++++ docs/Makefile.am	2007-09-09 09:38:59.000000000 +0200
+@@ -14,8 +14,6 @@
+ 
+ CLEANFILES = esound.dvi esound.ps esound.tex esound.aux esound.log
+ 
+-htmldir=$(pkgdocdir)/html
+-
+ if HAVE_JW
+ noinst_DATA = html/index.html
+ else
