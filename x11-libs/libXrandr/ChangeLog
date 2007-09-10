@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/libXrandr
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXrandr/ChangeLog,v 1.41 2007/05/27 04:33:01 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXrandr/ChangeLog,v 1.42 2007/09/08 07:46:10 dberkholz Exp $
+
+*libXrandr-1.2.2 (08 Sep 2007)
+
+  08 Sep 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  +libXrandr-1.2.2.ebuild:
+  Bump for 7.3.
 
   27 May 2007; Joshua Kinard <kumba@gentoo.org> libXrandr-1.2.1.ebuild:
   Stable on mips.
