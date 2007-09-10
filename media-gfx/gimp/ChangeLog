@@ -1,6 +1,11 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.229 2007/09/06 15:18:35 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.230 2007/09/09 22:30:42 kumba Exp $
+
+  09 Sep 2007; Joshua Kinard <kumba@gentoo.org> gimp-2.4.0_rc1.ebuild,
+  gimp-2.4.0_rc2.ebuild:
+  Removing mips keywords for now, as 2.4 fails to compile properly on mips
+  (see #191916).
 
 *gimp-2.4.0_rc2 (06 Sep 2007)
 
