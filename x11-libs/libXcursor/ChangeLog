@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/libXcursor
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXcursor/ChangeLog,v 1.46 2007/08/07 13:07:48 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXcursor/ChangeLog,v 1.47 2007/09/08 07:42:11 dberkholz Exp $
+
+*libXcursor-1.1.9 (08 Sep 2007)
+
+  08 Sep 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  +libXcursor-1.1.9.ebuild:
+  Bump for 7.3.
 
   07 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org>
   libXcursor-1.1.8.ebuild:
