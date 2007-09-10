@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/depend.apache.eclass,v 1.33 2007/07/29 16:36:23 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/depend.apache.eclass,v 1.34 2007/09/08 14:06:12 hollow Exp $
 
 inherit multilib
 
@@ -107,6 +107,52 @@ NEED_APACHE_DEPEND="${APACHE2_DEPEND}"
 WANT_APACHE_DEPEND="apache2? ( ${APACHE2_DEPEND} )"
 
 ####
+## apr_config/apu_config
+##
+## Version magic to get the correct apr-config/apu-config
+## based on the (probably) installed version of apache.
+## This is needed to get modules to link to the same apr/apu
+## as apache (i.e. link 0.9 for 2.0, 1.x for 2.2)
+####
+apr_config() {
+	local default="${1:-1}"
+	if [[ "${USE_APACHE}" == "2" ]]; then
+		if has_version ${APACHE2_0_DEPEND}; then
+			echo apr-config
+		else
+			echo apr-1-config
+		fi
+	else
+		if [[ "${default}" == "0" ]]; then
+			echo apr-config
+		elif [[ "${default}" == "1" ]]; then
+			echo apr-1-config
+		else
+			die "Unknown version specifier: ${default}"
+		fi
+	fi
+}
+
+apu_config() {
+	local default="${1:-1}"
+	if [[ "${USE_APACHE}" == "2" ]]; then
+		if has_version ${APACHE2_0_DEPEND}; then
+			echo apu-config
+		else
+			echo apu-1-config
+		fi
+	else
+		if [[ "${default}" == "0" ]]; then
+			echo apu-config
+		elif [[ "${default}" == "1" ]]; then
+			echo apu-1-config
+		else
+			die "Unknown version specifier: ${default}"
+		fi
+	fi
+}
+
+####
 # uses_apache1() - !!! DEPRECATED !!!
 ####
 
@@ -116,7 +162,7 @@ uses_apache1() {
 	# into the dependency cache (DEPEND/RDEPEND/etc)
 	APACHE_VERSION="1"
 	APXS="${APXS1}"
-	USE_APACHE2=""
+	USE_APACHE="1"
 	APACHECTL="${APACHECTL1}"
 	APACHE_BASEDIR="${APACHE1_BASEDIR}"
 	APACHE_CONFDIR="${APACHE1_CONFDIR}"
@@ -136,7 +182,7 @@ uses_apache2() {
 	# WARNING: Do not use these variables with anything that is put
 	# into the dependency cache (DEPEND/RDEPEND/etc)
 	APACHE_VERSION="2"
-	USE_APACHE2="2"
+	USE_APACHE="2"
 	APXS="${APXS2}"
 	APACHECTL="${APACHECTL2}"
 	APACHE_BASEDIR="${APACHE2_BASEDIR}"
@@ -149,7 +195,7 @@ uses_apache2() {
 doesnt_use_apache() {
 	debug-print-function $FUNCNAME $*
 	APACHE_VERSION="0"
-	USE_APACHE=""
+	USE_APACHE="0"
 }
 
 ####
