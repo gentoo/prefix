@@ -1,6 +1,14 @@
 # ChangeLog for net-p2p/rtorrent
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.91 2007/05/24 15:47:04 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.93 2007/09/08 22:20:00 hanno Exp $
+
+  08 Sep 2007; Hanno Boeck <hanno@gentoo.org> ChangeLog:
+  Place comment below econf-line, else it breaks.
+
+*rtorrent-0.7.8 (08 Sep 2007)
+
+  08 Sep 2007; Timothy Redaelli <drizzt@gentoo.org> +rtorrent-0.7.8.ebuild:
+  Version bump wrt bug #182816.
 
   24 May 2007; Timothy Redaelli <drizzt@gentoo.org> rtorrent-0.7.4.ebuild:
   append-flags -fno-strict-aliasing wrt bug #179554
