@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/python-updater-0.2.ebuild,v 1.16 2007/06/26 16:23:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/python-updater-0.2.ebuild,v 1.17 2007/09/07 18:33:12 hawking Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,8 @@ KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-s
 IUSE=""
 
 DEPEND=""
-RDEPEND="|| ( >=sys-apps/portage-2.1.2 sys-apps/pkgcore sys-apps/paludis )"
+RDEPEND="!<dev-lang/python-2.3.6-r2
+	|| ( >=sys-apps/portage-2.1.2 sys-apps/pkgcore sys-apps/paludis )"
 
 src_unpack() {
 	unpack ${A}
