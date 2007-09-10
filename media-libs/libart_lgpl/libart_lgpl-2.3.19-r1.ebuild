@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libart_lgpl/libart_lgpl-2.3.19-r1.ebuild,v 1.11 2007/08/20 18:16:40 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libart_lgpl/libart_lgpl-2.3.19-r1.ebuild,v 1.12 2007/09/09 14:02:34 drac Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ IUSE=""
 DEPEND="dev-util/pkgconfig"
 RDEPEND=""
 
-DOCS="AUTHORS ChangeLog INSTALL NEWS README"
+DOCS="AUTHORS ChangeLog NEWS README"
 
 # in prefix, einstall is broken for this package (misses --libdir)
 USE_DESTDIR="yes"

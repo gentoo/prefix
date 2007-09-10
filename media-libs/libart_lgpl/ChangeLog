@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libart_lgpl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libart_lgpl/ChangeLog,v 1.54 2007/08/24 21:02:37 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libart_lgpl/ChangeLog,v 1.55 2007/09/09 14:02:34 drac Exp $
+
+  09 Sep 2007; Samuli Suominen <drac@gentoo.org>
+  libart_lgpl-2.3.19-r1.ebuild:
+  Remove INSTALL from dodoc.
 
   24 Aug 2007; Daniel Gryniewicz <dang@gentoo.org>
   files/libart_lgpl-2.3.19-crosscompile.patch:
