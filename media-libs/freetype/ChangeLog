@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.154 2007/08/24 22:42:01 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.155 2007/09/09 13:31:40 dirtyepic Exp $
+
+  09 Sep 2007; Ryan Hill <dirtyepic@gentoo.org> -freetype-2.1.9-r1.ebuild:
+  Remove old.  Bug #172907.
 
 *freetype-2.3.5-r1 (24 Aug 2007)
 
