@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/apr
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.90 2007/07/31 09:00:08 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.92 2007/09/09 07:08:30 hollow Exp $
+
+  09 Sep 2007; Benedikt Böhm <hollow@gentoo.org> apr-1.2.11.ebuild:
+  fix #188485
+
+*apr-1.2.11 (08 Sep 2007)
+
+  08 Sep 2007; Benedikt Böhm <hollow@gentoo.org> +apr-1.2.11.ebuild:
+  version bump; #191733
 
   31 Jul 2007; Christian Heim <phreak@gentoo.org> apr-1.2.9.ebuild:
   The version bump wasn't designed to go straight to stable.
