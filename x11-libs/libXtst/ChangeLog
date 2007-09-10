@@ -1,6 +1,24 @@
 # ChangeLog for x11-libs/libXtst
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXtst/ChangeLog,v 1.29 2007/07/14 19:28:57 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXtst/ChangeLog,v 1.34 2007/09/10 03:28:18 jer Exp $
+
+  10 Sep 2007; Jeroen Roovers <jer@gentoo.org> libXtst-1.0.2.ebuild:
+  Stable for HPPA (bug #191615).
+
+  09 Sep 2007; Raúl Porcel <armin76@gentoo.org> libXtst-1.0.2.ebuild:
+  alpha/ia64 stable wrt #191615
+
+  08 Sep 2007; Joseph Jezak <josejx@gentoo.org> libXtst-1.0.2.ebuild:
+  Marked ppc/ppc64 stable for bug #191615.
+
+*libXtst-1.0.3 (08 Sep 2007)
+
+  08 Sep 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  +libXtst-1.0.3.ebuild:
+  Bump for 7.3.
+
+  07 Sep 2007; Chris Gianelloni <wolf31o2@gentoo.org> libXtst-1.0.2.ebuild:
+  Stable on x86 wrt bug #191615.
 
   14 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>; libXtst-1.0.2.ebuild:
   Sorry, didn't mean to go straight to stable (Raúl Porcel).
