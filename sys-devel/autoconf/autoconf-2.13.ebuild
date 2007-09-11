@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.13.ebuild,v 1.16 2006/11/03 18:40:55 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.13.ebuild,v 1.17 2007/09/08 06:25:56 vapier Exp $
 
 EAPI="prefix"
 
@@ -22,9 +22,10 @@ DEPEND=">=sys-apps/texinfo-4.3
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
-	epatch ${FILESDIR}/${P}-gentoo.patch
-	epatch ${FILESDIR}/${P}-destdir.patch
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-gentoo.patch
+	epatch "${FILESDIR}"/${P}-destdir.patch
+	epatch "${FILESDIR}"/${P}-test-fixes.patch #146592
 	touch configure # make sure configure is newer than configure.in
 
 	rm -f standards.{texi,info} # binutils installs this infopage
@@ -48,15 +49,10 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${D}" || die
+	emake install DESTDIR="${D}" || die
 
 	dodoc AUTHORS NEWS README TODO \
 		ChangeLog ChangeLog.0 ChangeLog.1
 
 	mv "${ED}"/usr/share/info/autoconf{,-${PV}}.info
-}
-
-pkg_postinst() {
-	einfo "Please note that the 'WANT_AUTOCONF_2_1=1' syntax is now:"
-	einfo "  WANT_AUTOCONF=2.1"
 }

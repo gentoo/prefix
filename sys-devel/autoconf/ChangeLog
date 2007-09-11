@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/autoconf
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.106 2007/08/24 20:06:44 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.108 2007/09/08 06:25:56 vapier Exp $
+
+  08 Sep 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/autoconf-2.13-test-fixes.patch, autoconf-2.13.ebuild:
+  Fixup false test failures with newer gcc versions #146592.
+
+  08 Sep 2007; Joseph Jezak <josejx@gentoo.org> autoconf-2.61-r1.ebuild:
+  Marked ppc64 stable for bug #189029.
 
   24 Aug 2007; Raúl Porcel <armin76@gentoo.org> autoconf-2.61-r1.ebuild:
   alpha/ia64 stable wrt #189029
