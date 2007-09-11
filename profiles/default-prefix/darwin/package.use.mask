@@ -4,3 +4,7 @@ net-libs/gnutls doc
 
 # app-text/docbook-sgml-utils and dependencies are missing. See bug #184580.
 media-libs/fontconfig doc
+
+# media-gfx/graphviz fails to install on systems with dynamic library
+# extensions other than .so, see also bug #188120
+media-gfx/graphviz perl python ruby tcl
