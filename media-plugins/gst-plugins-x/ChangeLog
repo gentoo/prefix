@@ -1,6 +1,10 @@
 # ChangeLog for media-plugins/gst-plugins-x
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-x/ChangeLog,v 1.31 2007/09/03 02:38:50 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-x/ChangeLog,v 1.32 2007/09/09 17:48:53 opfer Exp $
+
+  09 Sep 2007; Christian Faulhammer <opfer@gentoo.org>
+  gst-plugins-x-0.10.14.ebuild:
+  x86 stable, bug 190900
 
   03 Sep 2007; Jeroen Roovers <jer@gentoo.org> gst-plugins-x-0.10.14.ebuild:
   Stable for HPPA (bug #190900).
