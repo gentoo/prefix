@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.8.5-r3.ebuild,v 1.14 2007/07/13 12:46:01 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.8.5-r3.ebuild,v 1.15 2007/09/08 06:46:28 vapier Exp $
 
 EAPI="prefix"
 
@@ -29,11 +29,12 @@ src_unpack() {
 		-e "s|aclocal: (automake)|aclocal v${SLOT}: (automake${SLOT})|" \
 		doc/automake.texi || die "sed failed"
 	epatch "${FILESDIR}"/${PN}-1.8.2-infopage-namechange.patch
+	epatch "${FILESDIR}"/${P}-test-fixes.patch #159557
 	export WANT_AUTOCONF=2.5
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die
 	rm -f "${ED}"/usr/bin/{aclocal,automake}
 
 	dodoc NEWS README THANKS TODO AUTHORS ChangeLog
@@ -45,9 +46,4 @@ src_install() {
 	for x in guess sub ; do
 		dosym ../gnuconfig/config.${x} /usr/share/${PN}-${SLOT}/config.${x}
 	done
-}
-
-pkg_postinst() {
-	einfo "Please note that the 'WANT_AUTOMAKE_1_8=1' syntax has changed to:"
-	einfo "  WANT_AUTOMAKE=1.8"
 }

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.5.ebuild,v 1.28 2007/07/11 20:36:28 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.5.ebuild,v 1.29 2007/09/08 06:46:28 vapier Exp $
 
 EAPI="prefix"
 
@@ -36,7 +36,7 @@ src_unpack() {
 }
 
 src_install() {
-	make install DESTDIR="${D}" || die "make install failed"
+	emake install DESTDIR="${D}" || die "make install failed"
 
 	local x=
 	for x in aclocal automake ; do
@@ -52,9 +52,4 @@ src_install() {
 	for x in guess sub ; do
 		dosym ../gnuconfig/config.${x} /usr/share/${PN}-${SLOT}/config.${x}
 	done
-}
-
-pkg_postinst() {
-	einfo "Please note that the 'WANT_AUTOMAKE_1_5=1' syntax has changed to:"
-	einfo "  WANT_AUTOMAKE=1.5"
 }

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.10.ebuild,v 1.12 2007/01/19 23:34:21 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.10.ebuild,v 1.13 2007/09/08 02:22:10 vapier Exp $
 
 EAPI="prefix"
 
@@ -30,6 +30,11 @@ src_unpack() {
 		-e "s|: (automake)| v${SLOT}: (automake${SLOT})|" \
 		doc/automake.texi || die "sed failed"
 	export WANT_AUTOCONF=2.5
+}
+
+src_compile() {
+	econf --docdir=/usr/share/doc/${PF} || die
+	emake || die
 }
 
 src_install() {
