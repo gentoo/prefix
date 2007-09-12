@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.0.0.ebuild,v 1.1 2007/09/05 20:30:45 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.0.0.ebuild,v 1.2 2007/09/11 09:12:35 uberlord Exp $
 
 EAPI="prefix"
 
-inherit eutils
+inherit libtool
 
 DESCRIPTION="A TLS 1.0 and SSL 3.0 implementation for the GNU project"
 HOMEPAGE="http://www.gnutls.org/"
@@ -30,6 +30,8 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
 src_compile() {
+	elibtoolize # for sane .so versioning on FreeBSD
+
 	econf  \
 		--without-included-opencdk \
 		$(use_with zlib) \

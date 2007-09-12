@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.121 2007/09/05 20:30:45 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.122 2007/09/11 09:12:35 uberlord Exp $
+
+  11 Sep 2007; Roy Marples <uberlord@gentoo.org> gnutls-2.0.0.ebuild:
+  elibtoolize for sane .so versioning on FreeBSD.
 
 *gnutls-2.0.0 (05 Sep 2007)
 
