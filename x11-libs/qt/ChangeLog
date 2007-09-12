@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.481 2007/09/07 17:39:36 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.483 2007/09/12 03:37:01 jer Exp $
+
+  12 Sep 2007; Jeroen Roovers <jer@gentoo.org> qt-4.3.1.ebuild:
+  Stable for HPPA (bug #192134).
+
+  11 Sep 2007; Raúl Porcel <armin76@gentoo.org> qt-4.3.1.ebuild:
+  alpha/ia64/x86 stable wrt #192134
 
   07 Sep 2007; Caleb Tennis <caleb@gentoo.org> qt-3.3.8-r3.ebuild:
   Fix xineramaproto dep for immqt users, bug #189703
