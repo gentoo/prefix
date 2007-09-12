@@ -1,6 +1,21 @@
 # ChangeLog for x11-wm/windowmaker
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/ChangeLog,v 1.82 2007/08/02 15:26:15 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/ChangeLog,v 1.84 2007/09/11 10:47:26 voyageur Exp $
+
+  11 Sep 2007; Bernard Cafarelli <voyageur@gentoo.org>
+  +files/0.92.0/windowmaker-0.92.0-configure.patch:
+  Add missing patch, bug #192104
+
+*windowmaker-0.92.0-r4 (10 Sep 2007)
+
+  10 Sep 2007; Bernard Cafarelli <voyageur@gentoo.org>
+  +windowmaker-0.92.0-r4.ebuild:
+  Ebuild cleanup, includes:
+  * themes path in some default menus (bug #187092)
+  * locale path fixed (bug #103698)
+  * WPrefs.app in GNUstep System domain (bug #170467)
+  * uses new GNUstep eclasses
+  * internal ebuild cleanups
 
   02 Aug 2007; Roy Marples <uberlord@gentoo.org>
   windowmaker-0.91.0-r1.ebuild, windowmaker-0.92.0-r3.ebuild:
