@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mpeg2vidcodec/mpeg2vidcodec-12-r1.ebuild,v 1.30 2007/05/05 21:46:43 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mpeg2vidcodec/mpeg2vidcodec-12-r1.ebuild,v 1.31 2007/09/11 09:42:03 uberlord Exp $
 
 EAPI="prefix"
 
@@ -23,6 +23,7 @@ src_unpack() {
 	unpack ${A}
 	sed -i \
 		-e "s:-O2:${CFLAGS}:" \
+		-e "s:make:\$(MAKE):" \
 		"${S}"/Makefile \
 		|| die "sed Makefile failed"
 }

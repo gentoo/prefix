@@ -1,6 +1,9 @@
 # ChangeLog for media-video/mpeg2vidcodec
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mpeg2vidcodec/ChangeLog,v 1.19 2007/05/05 21:46:43 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mpeg2vidcodec/ChangeLog,v 1.20 2007/09/11 09:42:03 uberlord Exp $
+
+  11 Sep 2007; Roy Marples <uberlord@gentoo.org> mpeg2vidcodec-12-r1.ebuild:
+  Remove the hardcoded make so that -j x works on FreeBSD.
 
   05 May 2007; Fabian Groffen <grobian@gentoo.org>
   mpeg2vidcodec-12-r1.ebuild:
