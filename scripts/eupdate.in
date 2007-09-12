@@ -92,17 +92,17 @@ cmp_ebuild_ver() {
 		return
 	fi
 
-	local lver=`echo $l | cut -d'-' -f1`
-	local lrev=`echo ${l#$lver} | cut -d'-' -f2`
+	local lver=${l%%-*}
+	local lrev=${l#${lver}} ; lrev=${lrev#-}
 	local t=$lver
-	lver=`echo $t | cut -d'_' -f1`
-	local lsuf=`echo ${t#$lver} | cut -d'_' -f2`
+	lver=${lver%%_*}
+	local lsuf=${t#${lver}} ; lsuf=${lsuf#_}
 
-	local rver=`echo $r | cut -d'-' -f1`
-	local rrev=`echo ${r#$rver} | cut -d'-' -f2`
+	local rver=${r%%-*}
+	local rrev=${r#${rver}} ; rrev=${rrev#-}
 	t=$rver
-	rver=`echo $t | cut -d'_' -f1`
-	local rsuf=`echo ${t#$rver} | cut -d'_' -f2`
+	rver=${rver%%_*}
+	local rsuf=${t#${rver}} ; rsuf=${rsuf#_}
 
 	local cnt=1
 	# start "eating" the version from the left, comparing the numbers,
