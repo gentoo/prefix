@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/libxslt-1.1.20.ebuild,v 1.11 2007/07/12 02:25:34 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/libxslt-1.1.22.ebuild,v 1.1 2007/09/11 22:12:20 leonardop Exp $
 
 EAPI="prefix"
 
@@ -15,10 +15,11 @@ KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="crypt debug python"
 
 DEPEND=">=dev-libs/libxml2-2.6.27
-	crypt? ( >=dev-libs/libgcrypt-1.1.92 )
+	crypt?  ( >=dev-libs/libgcrypt-1.1.92 )
 	python? ( dev-lang/python )"
 
 SRC_URI="ftp://xmlsoft.org/${PN}/${P}.tar.gz"
+
 
 src_unpack() {
 	unpack "${A}"
@@ -27,6 +28,9 @@ src_unpack() {
 	# we still require the 1.1.8 patch for the .m4 file, to add
 	# the CXXFLAGS defines <obz@gentoo.org>
 	epatch "${FILESDIR}"/libxslt.m4-${PN}-1.1.8.patch
+
+	# Using the python bindings causes a core; bug #190388
+	epatch "${FILESDIR}"/${PN}-1.1.20-amd64.patch
 
 	# Patch Makefile to fix bug #99382 so that html gets installed in ${PF}
 	sed -i -e 's:libxslt-$(VERSION):${PF}:' doc/Makefile.in
