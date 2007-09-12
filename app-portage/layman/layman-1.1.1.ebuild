@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.0.99.ebuild,v 1.1 2007/04/09 19:44:31 wrobel Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.1.1.ebuild,v 1.1 2007/09/12 06:10:29 wrobel Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ inherit eutils distutils
 
 DESCRIPTION="A python script for retrieving gentoo overlays."
 HOMEPAGE="http://projects.gunnarwrobel.de/scripts"
-SRC_URI="http://build.pardus.de/downloads/${PF}.tar.gz"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -29,7 +29,7 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-1.0.10-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.1.1-prefix.patch
 	eprefixify layman/config.py etc/layman.cfg
 	find layman/overlays -name "*.py" | xargs sed -i \
 		-e '/binary = '"'"'.*'"'"'/s|'"'"'\(.*\)'"'"'|'"'${EPREFIX}"'\1'"'"'|'
@@ -63,9 +63,6 @@ pkg_postinst() {
 	einfo "layman -L"
 	einfo
 	einfo "will display a list of available overlays."
-	einfo
-	ewarn "Use the -k switch to also list overlays that are"
-	ewarn "considered less secure."
 	einfo
 	elog  "Select an overlay and add it using"
 	einfo
