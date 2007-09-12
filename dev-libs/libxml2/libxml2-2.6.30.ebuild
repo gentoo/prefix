@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.27.ebuild,v 1.11 2007/05/21 10:22:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.30.ebuild,v 1.1 2007/09/11 19:56:07 leonardop Exp $
 
 EAPI="prefix"
 
@@ -16,9 +16,9 @@ IUSE="debug doc ipv6 python readline test"
 
 XSTS_HOME="http://www.w3.org/XML/2004/xml-schema-test-suite"
 XSTS_NAME_1="xmlschema2002-01-16"
-XSTS_NAME_2="xmlschema2004-01-14"
+XSTS_NAME_2="xmlschema2006-11-06"
 XSTS_TARBALL_1="xsts-2002-01-16.tar.gz"
-XSTS_TARBALL_2="xsts-2004-01-14.tar.gz"
+XSTS_TARBALL_2="xsts-2006-11-06.tar.gz"
 
 SRC_URI="ftp://xmlsoft.org/${PN}/${P}.tar.gz
 	test? (
@@ -26,8 +26,9 @@ SRC_URI="ftp://xmlsoft.org/${PN}/${P}.tar.gz
 		${XSTS_HOME}/${XSTS_NAME_2}/${XSTS_TARBALL_2} )"
 
 RDEPEND="sys-libs/zlib
-	python? ( dev-lang/python )
+	python?   ( dev-lang/python )
 	readline? ( sys-libs/readline )"
+
 DEPEND="${RDEPEND}
 	hppa? ( >=sys-devel/binutils-2.15.92.0.2 )"
 
@@ -42,8 +43,9 @@ src_unpack() {
 			|| die "Failed to install test tarballs"
 	fi
 
-	# Pass --wildcards option to tar when needed (bug #158386)
-	epatch "${FILESDIR}"/${P}-tar_in_tests.patch
+	epatch "${FILESDIR}"/${PN}-2.6.29-catalog_path.patch
+
+	eprefixify catalog.c runtest.c xmllint.c
 
 	epunt_cxx
 }
