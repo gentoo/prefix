@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXtst/libXtst-1.0.3.ebuild,v 1.1 2007/09/08 07:47:56 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXtst/libXtst-1.0.3.ebuild,v 1.2 2007/09/11 21:00:33 dberkholz Exp $
 
 EAPI="prefix"
 
@@ -16,4 +16,5 @@ KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 RDEPEND="x11-libs/libX11
 	x11-proto/recordproto
 	x11-libs/libXext"
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	x11-proto/inputproto"
