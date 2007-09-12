@@ -610,6 +610,11 @@ done
 # recent revision in the main tree
 last_pte=""
 for pte in $pt ; do
+	# skip over non-ebuilds
+	if [[ ${pte} != *.ebuild ]] ; then
+		pt=${pt/${pte}/}
+		continue
+	fi
 	for xpte in $pt ; do
 		[[ $(cmp_ebuild_ver $pte $xpte) -ge 10000 ]] \
 			&& pt=${pt/$xpte/}
@@ -644,6 +649,8 @@ done
 # the biggest of that
 last_mte=""
 for mte in $mt ; do
+	# skip over non-ebuilds
+	[[ ${mte} != *.ebuild ]] && continue
 	[[ $(cmp_ebuild_ver $mte $last_pte) > 0 ]] && \
 	[[ $(cmp_ebuild_ver $mte $last_mte) > 0 ]] \
 		&& last_mte=$mte
