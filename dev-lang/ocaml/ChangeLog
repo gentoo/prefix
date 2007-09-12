@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/ocaml
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.120 2007/08/23 07:54:19 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.121 2007/09/10 20:19:08 philantrop Exp $
+
+  10 Sep 2007; Wulf C. Krueger <philantrop@gentoo.org>
+  ocaml-3.09.3-r1.ebuild:
+  Marked stable on amd64 as requested by aballier.
 
   23 Aug 2007; Alexis Ballier <aballier@gentoo.org> files/ocaml-rebuild.sh:
   fix usage of deprecated emerge unmerge in ocaml-rebuild.sh, thanks to Jack
