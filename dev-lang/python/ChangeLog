@@ -1,6 +1,12 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.269 2007/09/08 18:36:47 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.270 2007/09/11 19:24:01 kanaka Exp $
+
+  10 Sep 2007; Joel Martin <kanaka@gentoo.org>
+  +files/python-2.4.4-test-cross.patch, python-2.4.4-r4.ebuild,
+  python-2.4.4-r5.ebuild, python-2.5.1-r2.ebuild:
+  Fix cross-compile check and add small cross-compile patch to remove unicode
+  in one of the tests when cross-compiling.
 
   08 Sep 2007; Zac Medico <zmedico@gentoo.org>
   python-2.4.4-r4.ebuild, python-2.4.4-r5.ebuild:
