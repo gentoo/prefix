@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.50.ebuild,v 1.4 2007/09/11 20:55:48 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.50.ebuild,v 1.5 2007/09/12 13:32:00 opfer Exp $
 
 EAPI="prefix"
 
@@ -223,7 +223,7 @@ src_install () {
 		elisp-site-file-install 00${PN}-${SLOT}-gentoo.el
 	fi
 
-	dodoc README BUGS etc/CONTRIBUTE etc/AUTHORS || die "dodoc failed"
+	dodoc README BUGS || die "dodoc failed"
 }
 
 emacs-infodir-rebuild() {
