@@ -44,6 +44,10 @@
 # autotools get completely broken with it, like on FreeBSD
 =sys-devel/m4-1.4.10
 
+# Fabian Groffen <grobian@gentoo.org> (30 Oct 2006)
+# doesn't install pdflatex in prefix
+>=app-text/tetex-3.0
+
 # Fabian Groffen <grobian@gentoo.org> (21 Jan 2007)
 # dies with "exhausted memory" errors on Darwin, doesn't understand
 # arguments on Solaris.  Probably more problems...

@@ -2,6 +2,9 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Sep 2007; Fabian Groffen <fabian@gentoo.org> package.mask:
+  tetex-3 does NOT install pdflatex in prefix!  Masking again
+
   07 Sep 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
   Unmasking tetex-3 as it seems to install pdflatex now, but only very
   trickily at some after image stage
