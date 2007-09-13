@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/libxslt-1.1.22.ebuild,v 1.1 2007/09/11 22:12:20 leonardop Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/libxslt-1.1.22.ebuild,v 1.2 2007/09/13 06:05:14 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,6 @@ DEPEND=">=dev-libs/libxml2-2.6.27
 	python? ( dev-lang/python )"
 
 SRC_URI="ftp://xmlsoft.org/${PN}/${P}.tar.gz"
-
 
 src_unpack() {
 	unpack "${A}"
