@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.483 2007/09/12 03:37:01 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.484 2007/09/12 23:01:51 wolf31o2 Exp $
+
+  12 Sep 2007; Chris Gianelloni <wolf31o2@gentoo.org> qt-4.3.1.ebuild:
+  Stable on amd64 wrt bug #192134.
 
   12 Sep 2007; Jeroen Roovers <jer@gentoo.org> qt-4.3.1.ebuild:
   Stable for HPPA (bug #192134).
