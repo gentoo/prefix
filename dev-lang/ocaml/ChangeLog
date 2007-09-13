@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/ocaml
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.121 2007/09/10 20:19:08 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.122 2007/09/12 14:19:58 armin76 Exp $
+
+  12 Sep 2007; Raúl Porcel <armin76@gentoo.org> ocaml-3.09.3-r1.ebuild:
+  Re-add forced LDFLAGS for alpha, since it still needs it
 
   10 Sep 2007; Wulf C. Krueger <philantrop@gentoo.org>
   ocaml-3.09.3-r1.ebuild:

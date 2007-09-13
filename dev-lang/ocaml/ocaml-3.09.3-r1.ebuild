@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.09.3-r1.ebuild,v 1.22 2007/09/10 20:19:08 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.09.3-r1.ebuild,v 1.23 2007/09/12 14:19:58 armin76 Exp $
 
 EAPI="prefix"
 
@@ -80,6 +80,9 @@ src_compile() {
 	# dev-lang/ocaml tends to break/give unexpected results with "unsafe" CFLAGS.
 	strip-flags
 	replace-flags "-O?" -O2
+
+	# It doesn't compile on alpha without this LDFLAGS
+	use alpha && append-ldflags "-Wl,--no-relax"
 
 	use tk || myconf="${myconf} -no-tk"
 	use ncurses || myconf="${myconf} -no-curses"
