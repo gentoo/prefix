@@ -1,6 +1,10 @@
 # ChangeLog for app-emacs/nxml-mode
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/ChangeLog,v 1.25 2007/09/09 10:00:18 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/ChangeLog,v 1.26 2007/09/12 15:04:56 ulm Exp $
+
+  12 Sep 2007; Ulrich Mueller <ulm@gentoo.org>
+  files/nxml-mode-xmlschema-xpath.patch:
+  Update patch to fix whitespace handling in xpath regexps, bug #188114.
 
 *nxml-mode-20041004-r2 (09 Sep 2007)
 
