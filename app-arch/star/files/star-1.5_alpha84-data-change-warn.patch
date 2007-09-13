@@ -1,0 +1,31 @@
+--- ./star/checkerr.c.orig	2007-09-12 14:22:33.000000000 +0400
++++ ./star/checkerr.c	2007-09-12 14:21:51.000000000 +0400
+@@ -188,13 +188,10 @@
+ {
+ 	register char		*p = eflag;
+ 		char		*ef = _endword(eflag);
+-		char		ec;
+ 	register struct eflags	*ep;
+ 	register int		slen;
+ 	register UInt32_t	nflags = 0;
+ 
+-	ec = *ef;
+-	*ef = '\0';
+ 	do {
+ 		for (ep = eflags; ep->fname; ep++) {
+ 			slen = strlen(ep->fname);
+@@ -208,13 +205,11 @@
+ 		if (ep->fname == NULL) {
+ 			if (doexit)
+ 				comerrno(EX_BAD, "Bad flag '%s'\n", p);
+-			*ef = ec;	/* Restore old character */
+ 			return (0);
+ 		}
+ 		p = strchr(p, '|');
+-	} while (p && *p++ == '|');
++	} while (p < ef && p && *p++ == '|');
+ 
+-	*ef = ec;			/* Restore old character */
+ 	if ((nflags & ~(UInt32_t)(E_ABORT|E_WARN)) == 0) {
+ 		if (doexit)
+ 			comerrno(EX_BAD, "Bad error condition '%s'.\n", eflag);
