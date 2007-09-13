@@ -1,6 +1,14 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.182 2007/09/09 16:50:19 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.184 2007/09/12 20:58:08 genstef Exp $
+
+*eix-0.9.12 (12 Sep 2007)
+
+  12 Sep 2007; Stefan Schweizer <genstef@gentoo.org> +eix-0.9.12.ebuild:
+  version bump
+
+  12 Sep 2007; Christoph Mende <angelos@gentoo.org> eix-0.9.10.ebuild:
+  Stable on amd64
 
   09 Sep 2007; Markus Rothe <corsair@gentoo.org> eix-0.9.9.ebuild:
   Stable on ppc64; bug #185928
