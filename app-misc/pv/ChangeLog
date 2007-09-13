@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/pv
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/pv/ChangeLog,v 1.29 2007/08/31 13:55:12 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/pv/ChangeLog,v 1.30 2007/09/12 15:01:19 angelos Exp $
+
+  12 Sep 2007; Christoph Mende <angelos@gentoo.org> pv-1.0.1.ebuild:
+  Stable on amd64
 
 *pv-1.1.0 (31 Aug 2007)
 
