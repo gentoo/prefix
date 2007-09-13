@@ -5,8 +5,6 @@
 #{standard input}:163:Rest of line ignored. 1st junk character valued 49 (1).
 # mmx2 has another error ..
 #
-# seems sse needs mmx
-media-video/mplayer mmx mmxext sse sse2
 # flag returns compile errors
 media-video/mplayer livecd cpudetection
 # libs mising
