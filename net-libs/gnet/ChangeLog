@@ -1,6 +1,12 @@
 # ChangeLog for net-libs/gnet
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnet/ChangeLog,v 1.51 2007/07/21 20:03:29 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnet/ChangeLog,v 1.52 2007/09/12 22:19:30 eva Exp $
+
+*gnet-2.0.7-r1 (12 Sep 2007)
+
+  12 Sep 2007; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/gnet-2.0.5-gtkdoc_fix.patch, +gnet-2.0.7-r1.ebuild:
+  remove static USE flag to fix bug #165618
 
   21 Jul 2007; Remi Cardona <remi@gentoo.org> gnet-2.0.7.ebuild:
   dropping the ~ppc-macos keyword (see bug #186149)
