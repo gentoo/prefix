@@ -1,6 +1,12 @@
 # ChangeLog for app-portage/gentoolkit
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.120 2007/08/02 19:15:47 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.121 2007/09/12 15:28:16 fuzzyray Exp $
+
+  12 Sep 2007; Paul Varner <fuzzyray@gentoo.org> -gentoolkit-0.2.2.ebuild,
+  -gentoolkit-0.2.3.ebuild, -gentoolkit-0.2.4_pre3.ebuild,
+  -gentoolkit-0.2.4_pre4.ebuild, -gentoolkit-0.2.4_pre5.ebuild,
+  gentoolkit-0.2.4_pre6.ebuild:
+  Cleanup old ebuilds
 
   02 Aug 2007; Joe Peterson <lavajoe@gentoo.org>
   gentoolkit-0.2.4_pre6.ebuild:

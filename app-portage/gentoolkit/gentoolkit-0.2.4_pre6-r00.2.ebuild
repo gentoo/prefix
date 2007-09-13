@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/gentoolkit-0.2.4_pre6.ebuild,v 1.3 2007/08/02 19:15:47 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/gentoolkit-0.2.4_pre6.ebuild,v 1.4 2007/09/12 15:28:16 fuzzyray Exp $
 
 EAPI="prefix"
 
@@ -50,12 +50,12 @@ pkg_postinst() {
 	ewarn "revdep-rebuild. If you encounter issues with the new version,"
 	ewarn "The previous version can be found at:"
 	ewarn "${EPREFIX}/usr/lib/gentoolkit/bin/revdep-rebuild"
-	echo
+	ewarn
 	elog "Another alternative to equery is app-portage/portage-utils"
 	elog
 	elog "For further information on gentoolkit, please read the gentoolkit"
 	elog "guide: http://www.gentoo.org/doc/en/gentoolkit.xml"
-	echo
+	elog
 }
 
 pkg_postrm() {
