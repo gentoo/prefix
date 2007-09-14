@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.6 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.7 2007/09/13 15:38:54 drac Exp $
 
 # Author : foser <foser@gentoo.org>
 
@@ -123,7 +123,7 @@ gst-plugins-base_src_install() {
 	gst-plugins10_find_plugin_dir
 	einstall || die
 
-	dodoc README
+	[[ -e README ]] && dodoc README
 }
 
 

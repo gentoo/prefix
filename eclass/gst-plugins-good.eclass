@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-good.eclass,v 1.13 2007/08/30 10:37:04 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-good.eclass,v 1.14 2007/09/13 15:38:54 drac Exp $
 
 # Author : foser <foser@gentoo.org>, zaheerm <zaheerm@gentoo.org>
 
@@ -110,7 +110,7 @@ gst-plugins-good_src_install() {
 	gst-plugins10_find_plugin_dir
 	einstall || die
 
-	dodoc README
+	[[ -e README ]] && dodoc README
 }
 
 EXPORT_FUNCTIONS src_unpack src_compile src_install

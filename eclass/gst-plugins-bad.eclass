@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.9 2007/08/29 17:35:44 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.10 2007/09/13 15:38:54 drac Exp $
 
 #
 # Original Author: Saleem Abdulrasool <compnerd@gentoo.org>
@@ -94,7 +94,7 @@ gst-plugins-bad_src_install() {
 	gst-plugins10_find_plugin_dir
 	einstall || die "install failed"
 
-	dodoc README
+	[[ -e README ]] && dodoc README
 }
 
 EXPORT_FUNCTIONS src_unpack src_compile src_install

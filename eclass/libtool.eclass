@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.76 2007/05/30 15:45:34 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.77 2007/09/14 06:49:45 uberlord Exp $
 #
 # Maintainer: base-system@gentoo.org
 #
@@ -122,7 +122,7 @@ elibtoolize() {
 	local do_uclibc="yes"
 	local deptoremove=
 	local my_dirlist=
-	local elt_patches="portage relink max_cmd_len sed test tmp"
+	local elt_patches="ltmain portage relink max_cmd_len sed test tmp"
 	local start_dir=${PWD}
 
 	my_dirlist=$(ELT_find_ltmain_sh)
