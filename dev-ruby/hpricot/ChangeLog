@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/hpricot
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hpricot/ChangeLog,v 1.6 2007/09/09 17:14:44 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hpricot/ChangeLog,v 1.7 2007/09/13 19:55:16 maekke Exp $
+
+  13 Sep 2007; Markus Meier <maekke@gentoo.org> hpricot-0.5.ebuild:
+  stable on x86, wrt bug #191586
 
   09 Sep 2007; Christoph Mende <angelos@gentoo.org> hpricot-0.5.ebuild:
   Stable on amd64 wrt bug #191586
