@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/scons
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.52 2007/09/12 21:14:40 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.53 2007/09/13 07:39:13 uberlord Exp $
+
+  13 Sep 2007; Roy Marples <uberlord@gentoo.org> scons-0.97.ebuild:
+  Keyworded ~x86-fbsd, #191658.
 
   12 Sep 2007; Christoph Mende <angelos@gentoo.org> scons-0.97.ebuild:
   Stable on amd64 wrt bug #191658
