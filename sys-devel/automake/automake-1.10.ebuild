@@ -33,7 +33,7 @@ src_unpack() {
 }
 
 src_compile() {
-	econf --docdir=/usr/share/doc/${PF} || die
+	econf --docdir="${EPREFIX}"/usr/share/doc/${PF} || die
 	emake || die
 }
 
