@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/pdflib
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.83 2007/09/08 15:28:35 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.84 2007/09/13 09:33:14 caster Exp $
+
+  13 Sep 2007; Vlastimil Babka <caster@gentoo.org> pdflib-7.0.2.ebuild:
+  Fix bug #191668 by calling pkg_setup of perl and java eclasses manually.
 
   08 Sep 2007; Joseph Jezak <josejx@gentoo.org> pdflib-7.0.1.ebuild,
   pdflib-7.0.2.ebuild:
