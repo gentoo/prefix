@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/confuse
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/confuse/ChangeLog,v 1.20 2007/05/08 18:38:44 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/confuse/ChangeLog,v 1.21 2007/09/13 10:15:24 uberlord Exp $
+
+  13 Sep 2007; Roy Marples <uberlord@gentoo.org>
+  +files/confuse-2.5-libintl.patch, confuse-2.5.ebuild:
+  Link to libintl correctly and work with -j N on non glibc systems
 
   08 May 2007; Fabian Groffen <grobian@gentoo.org> confuse-2.5.ebuild:
   Dropped ppc-macos keyword, see you in prefix
