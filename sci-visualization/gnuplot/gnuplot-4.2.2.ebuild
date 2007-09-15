@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.2.ebuild,v 1.2 2007/09/14 07:17:47 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.2.ebuild,v 1.3 2007/09/14 15:42:36 opfer Exp $
 
 EAPI="prefix"
 
-inherit eutils elisp-common multilib wxwidgets
+inherit eutils elisp-common latex-package multilib wxwidgets
 
 MY_P="${P/_/.}"
 
@@ -163,8 +163,10 @@ pkg_postinst() {
 		einfo "this is usually considered to be a security hazard."
 		einfo "As root, manually \"chmod u+s /usr/bin/gnuplot\"."
 	fi
+	use tetex && latex-package_rehash
 }
 
 pkg_postrm() {
 	use emacs && elisp-site-regen
+	use tetex && latex-package_rehash
 }
