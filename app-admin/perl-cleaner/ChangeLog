@@ -1,6 +1,11 @@
 # ChangeLog for app-admin/perl-cleaner
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/perl-cleaner/ChangeLog,v 1.43 2006/10/17 09:01:27 uberlord Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/perl-cleaner/ChangeLog,v 1.44 2007/09/12 16:29:44 fuzzyray Exp $
+
+*perl-cleaner-1.05 (12 Sep 2007)
+
+  12 Sep 2007; Paul Varner <fuzzyray@gentoo.org> +perl-cleaner-1.05.ebuild:
+  New version to work with all baselayouts and FreeBSD sed. (Bug #183989)
 
   17 Oct 2006; Roy Marples <uberlord@gentoo.org> perl-cleaner-1.04.3.ebuild:
   Added ~sparc-fbsd keyword.
