@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # Copyright Gentoo Foundation 2006-2007
 
+# <grobian@gentoo.org> -- 2007-09-12
+# performance improvements by avoiding comparing ebuilds to non-ebuilds
+# when looking for updates, and by avoiding fork/execs for cut and echo
+# in the version comparator function
 # <grobian@gentoo.org> -- 2007-03-20
 # also update alpha, beta, pre, p, etc. instead of only revisions.
 # Basically everything which is on top of the 'base' version number
