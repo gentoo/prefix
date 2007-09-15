@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libwmf
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/ChangeLog,v 1.53 2007/05/04 16:49:49 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/ChangeLog,v 1.54 2007/09/14 11:51:25 uberlord Exp $
+
+  14 Sep 2007; Roy Marples <uberlord@gentoo.org> libwmf-0.2.8.4.ebuild:
+  elibtoolize now patches install-sh for us.
 
   04 May 2007; Roy Marples <uberlord@gentoo.org> libwmf-0.2.8.4.ebuild:
   Keyworded ~x86-fbsd
