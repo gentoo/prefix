@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/librsvg/librsvg-2.16.1-r2.ebuild,v 1.8 2007/09/07 21:38:29 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/librsvg/librsvg-2.16.1-r2.ebuild,v 1.9 2007/09/14 11:46:44 uberlord Exp $
 
 EAPI="prefix"
 
@@ -57,8 +57,6 @@ src_unpack() {
 
 	# Fix leaks; bug #181532
 	epatch ${FILESDIR}/${PN}-2.16.1-leak-fixes.patch
-
-	cp "${EPREFIX}"/usr/share/libtool/install-sh .
 }
 
 src_install() {

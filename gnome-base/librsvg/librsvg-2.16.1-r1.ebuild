@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/librsvg/librsvg-2.16.1-r1.ebuild,v 1.9 2007/08/25 14:24:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/librsvg/librsvg-2.16.1-r1.ebuild,v 1.10 2007/09/14 11:46:44 uberlord Exp $
 
 EAPI="prefix"
 
@@ -54,8 +54,6 @@ src_unpack() {
 
 	# Patch from truedfx to prevent floating point exceptions
 	epatch ${FILESDIR}/${PN}-2.16.1-uninit.patch
-
-	cp /usr/share/libtool/install-sh .
 }
 
 src_install() {
