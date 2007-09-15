@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/libpcap
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.82 2007/09/13 20:36:29 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.83 2007/09/14 10:57:13 jokey Exp $
+
+  14 Sep 2007; Markus Ullmann <jokey@gentoo.org> libpcap-0.9.7.ebuild:
+  Stable on x86 and sparc
 
   13 Sep 2007; Markus Ullmann <jokey@gentoo.org> libpcap-0.9.7.ebuild:
   convert from einstall to emake install to solve install bug on sparc
