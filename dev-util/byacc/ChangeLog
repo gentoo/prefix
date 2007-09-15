@@ -1,0 +1,46 @@
+# ChangeLog for dev-util/byacc
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/byacc/ChangeLog,v 1.14 2007/05/11 21:59:46 bangert Exp $
+
+  11 May 2007; Thilo Bangert <bangert@gentoo.org> +metadata.xml:
+  add metadata.xml
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  21 Jan 2006; Jason Wever <weeve@gentoo.org> byacc-1.9-r1.ebuild:
+  Stable on SPARC wrt bug #119439.
+
+  06 Apr 2005; Markus Rothe <corsair@gentoo.org> byacc-1.9-r1.ebuild:
+  Stable on ppc64
+
+  26 Feb 2005; Markus Rothe <corsair@gentoo.org> byacc-1.9-r1.ebuild:
+  Added ~ppc64 to KEYWORDS; bug #83341
+
+  31 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  03 Jun 2004; Bryan Østergaard <kloeri@gentoo.org> byacc-1.9-r1.ebuild:
+  Stable on alpha.
+
+  10 May 2004; Travis Tilley <lv@gentoo.org> byacc-1.9-r1.ebuild:
+  marked stable on amd64
+
+  14 Apr 2004; Michael McCabe <randy@gentoo.org> byacc-1.9-r1.ebuild:
+  adding s390 to keywords
+
+*byacc-1.9-r1 (05 Apr 2004)
+
+  05 Apr 2004; Aron Griffis <agriffis@gentoo.org> byacc-1.9-r1.ebuild:
+  I should have bumped the rev for the previous change... doing it now.
+
+  04 Apr 2004; Aron Griffis <agriffis@gentoo.org> byacc-1.9.ebuild,
+  files/byacc-1.9-ia64.patch, files/mkstemp.patch:
+  Add patch from Jaime Alvaro Moreno in bug 46233 to make byacc work correctly
+  on ia64 and other 64-bit arches. Also modify the mkstemp patch to coexist with
+  the new patch.
+
+*byacc-1.9 (17 Dec 2002)
+
+  17 Dec 2002; Mike Frysinger <vapier@gentoo.org> :
+  Initial import.  Ebuild submitted by me for pm3.
