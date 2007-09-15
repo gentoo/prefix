@@ -23,7 +23,7 @@ DEPEND=">=dev-lang/python-2.4
 	epydoc? ( >=dev-python/epydoc-2.0 )"
 RDEPEND=">=dev-lang/python-2.4
 	!build? ( >=sys-apps/sed-4.0.5
-		>=app-shells/bash-3.0 )
+		>=app-shells/bash-3.1_p17 )
 	elibc_FreeBSD? ( dev-python/py-freebsd )
 	elibc_glibc? ( >=sys-apps/sandbox-1.2.17 )
 	elibc_uclibc? ( >=sys-apps/sandbox-1.2.17 )
