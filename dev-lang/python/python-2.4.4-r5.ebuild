@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.4-r5.ebuild,v 1.5 2007/09/11 19:24:01 kanaka Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.4-r5.ebuild,v 1.6 2007/09/15 18:27:57 kanaka Exp $
 
 EAPI="prefix"
 
@@ -70,10 +70,9 @@ src_unpack() {
 	cd ${S}
 
 	if tc-is-cross-compiler ; then
-		[[ "$(python -V 2>&1)" != "Python ${PV}" ]] && \
+		[[ $(python -V 2>&1) != "Python ${PV}" ]] && \
 			die "Crosscompiling requires the same host and build versions."
-		epatch ${FILESDIR}/python-2.4.4-test-cross.patch || \
-			die "cross patch failed"
+		epatch ${FILESDIR}/python-2.4.4-test-cross.patch
 	else
 		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
 	fi
