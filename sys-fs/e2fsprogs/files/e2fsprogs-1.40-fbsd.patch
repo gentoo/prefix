@@ -1,0 +1,21 @@
+--- a/lib/ext2fs/tdb.c.orig	Thu Apr  5 02:43:05 2007
++++ b/lib/ext2fs/tdb.c	Sat Jun 30 16:13:15 2007
+@@ -36,7 +36,6 @@
+ #define HAVE_UTIME_H
+ #define HAVE_UTIME
+ #endif
+-#define _XOPEN_SOURCE 500
+ 
+ #include <unistd.h>
+ #include <stdio.h>
+--- a/lib/ext2fs/ext2_fs.h.orig	Sat Jun 30 16:36:37 2007
++++ b/lib/ext2fs/ext2_fs.h	Sat Jun 30 16:36:43 2007
+@@ -414,7 +414,7 @@
+ 
+ #define i_size_high	i_dir_acl
+ 
+-#if defined(__KERNEL__) || defined(__linux__)
++#if defined(__KERNEL__) || defined(__linux__) || defined(__FreeBSD__)
+ #define i_reserved1	osd1.linux1.l_i_reserved1
+ #define i_frag		osd2.linux2.l_i_frag
+ #define i_fsize		osd2.linux2.l_i_fsize

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.40.2.ebuild,v 1.1 2007/07/14 17:19:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.40.2.ebuild,v 1.3 2007/09/15 14:20:41 uberlord Exp $
 
 EAPI="prefix"
 
@@ -38,6 +38,9 @@ src_unpack() {
 	# -r1 doesn't have this, so can't use one patch
 	epatch "${FILESDIR}"/e2fsprogs-1.40-more-sysconfdir.patch
 
+	# Fix compile on FreeBSD
+	epatch "${FILESDIR}"/${PN}-1.40-fbsd.patch
+
 	# kernel headers use the same defines as e2fsprogs and can cause issues #48829
 	sed -i \
 		-e 's:CONFIG_JBD_DEBUG:__CONFIG_JBD_DEBUG__E2FS:g' \
@@ -49,6 +52,7 @@ src_unpack() {
 		-e '/^LIB_SUBDIRS/s:lib/et::' \
 		-e '/^LIB_SUBDIRS/s:lib/ss::' \
 		Makefile.in || die "remove subdirs"
+
 	ln -s "${EROOT}"/usr/$(get_libdir)/libcom_err.a lib/libcom_err.a
 	ln -s "${EROOT}"/$(get_libdir)/libcom_err.so lib/libcom_err.so
 	ln -s /usr/bin/mk_cmds lib/ss/mk_cmds
@@ -65,9 +69,9 @@ src_unpack() {
 
 src_compile() {
 	# Keep the package from doing silly things
-	export LDCONFIG="${EPREFIX}"/bin/true
+	export LDCONFIG=:
 	export CC=$(tc-getCC)
-	export STRIP="${EPREFIX}"/bin/true
+	export STRIP=:
 
 	econf \
 		--bindir="${EPREFIX}"/bin \
@@ -87,6 +91,12 @@ src_compile() {
 	fi
 	# Parallel make sometimes fails
 	emake -j1 COMPILE_ET=compile_et || die
+
+	# Build the FreeBSD helper
+	if use elibc_FreeBSD ; then
+		cp "${FILESDIR}"/fsck_ext2fs.c .
+		emake fsck_ext2fs || die
+	fi
 }
 
 src_install() {
@@ -111,8 +121,19 @@ src_install() {
 	dosbin "${ED}"/sbin/mklost+found
 	rm -f "${ED}"/sbin/mklost+found
 
-	# these manpages are already provided by FreeBSD libc
-	use elibc_FreeBSD && \
-		rm -f "${ED}"/usr/share/man/man3/{uuid,uuid_compare}.3 \
-			"${ED}"/usr/share/man/man1/uuidgen.1
+	if use elibc_FreeBSD ; then
+		# Install helpers for us
+		into /
+		dosbin "${S}"/fsck_ext2fs || die
+		doman "${FILESDIR}"/fsck_ext2fs.8
+
+		# these manpages are already provided by FreeBSD libc
+		# and filefrag is linux only
+		rm -f \
+			"${ED}"/sbin/filefrag \
+			"${ED}"/usr/share/man/man8/filefrag.8 \
+			"${ED}"/bin/uuidgen \
+			"${ED}"/usr/share/man/man3/{uuid,uuid_compare}.3 \
+			"${ED}"/usr/share/man/man1/uuidgen.1 || die
+	fi
 }
