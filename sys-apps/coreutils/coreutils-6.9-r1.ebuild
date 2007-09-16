@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.9-r1.ebuild,v 1.17 2007/07/24 07:58:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.9-r1.ebuild,v 1.18 2007/09/15 02:31:17 vapier Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,8 @@ KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris
 IUSE="acl nls selinux static xattr"
 
 RDEPEND="selinux? ( sys-libs/libselinux )
-	acl? ( sys-apps/acl sys-apps/attr )
+	acl? ( sys-apps/acl )
+	xattr? ( sys-apps/attr )
 	nls? ( >=sys-devel/gettext-0.15 )
 	!net-mail/base64
 	>=sys-libs/ncurses-5.3-r5"
