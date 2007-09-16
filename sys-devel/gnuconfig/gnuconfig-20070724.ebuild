@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gnuconfig/gnuconfig-20070724.ebuild,v 1.1 2007/07/24 18:34:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gnuconfig/gnuconfig-20070724.ebuild,v 1.2 2007/09/15 01:15:52 vapier Exp $
 
 EAPI="prefix"
 
@@ -20,6 +20,7 @@ S=${WORKDIR}
 src_unpack() {
 	unpack ${A}
 	epatch "${WORKDIR}"/*.patch
+	use elibc_uclibc && sed -i 's:linux-gnu:linux-uclibc:' testsuite/config-guess.data #180637
 }
 
 src_compile() { :;}
