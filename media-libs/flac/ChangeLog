@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/flac
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/ChangeLog,v 1.115 2007/09/10 03:47:22 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/ChangeLog,v 1.116 2007/09/15 07:06:17 drac Exp $
+
+  15 Sep 2007; Samuli Suominen <drac@gentoo.org> flac-1.2.0.ebuild:
+  Changed SRC_URI to gentoo mirrors.
 
   10 Sep 2007; Jeroen Roovers <jer@gentoo.org> flac-1.1.4.ebuild:
   Stable for HPPA (bug #191280).

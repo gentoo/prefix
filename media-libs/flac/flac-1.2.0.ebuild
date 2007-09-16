@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.2.0.ebuild,v 1.3 2007/08/06 19:19:30 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.2.0.ebuild,v 1.4 2007/09/15 07:06:17 drac Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ PATCHLEVEL="15"
 DESCRIPTION="free lossless audio encoder and decoder"
 HOMEPAGE="http://flac.sourceforge.net"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz
-	http://dev.gentoo.org/~drac/distfiles/${PN}-patches-${PATCHLEVEL}.tar.bz2"
+	mirror://gentoo/${PN}-patches-${PATCHLEVEL}.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
