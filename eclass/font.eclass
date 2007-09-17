@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.27 2007/08/16 00:54:11 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.32 2007/09/16 20:00:56 dirtyepic Exp $
 
 # Author: foser <foser@gentoo.org>
 
@@ -84,8 +84,6 @@ font_src_install() {
 	insinto "${FONTDIR}"
 
 	for suffix in ${FONT_SUFFIX}; do
-		# ensure fonts are world readable to prevent fontconfig segfaults
-		chmod 0644 *.${suffix}
 		doins *.${suffix}
 	done
 
@@ -111,6 +109,10 @@ font_pkg_setup() {
 }
 
 font_pkg_postinst() {
+	# unreadable font files = fontconfig segfaults
+	find "${EROOT}"usr/share/fonts/ -type f '!' -perm 0644 -print0 \
+		| xargs -r -0 chmod -v 0644
+
 	if has_version '>=media-libs/fontconfig-2.4'; then
 		if [ ${ROOT} == "/" ]; then
 			ebegin "Updating global fontcache"
@@ -121,6 +123,10 @@ font_pkg_postinst() {
 }
 
 font_pkg_postrm() {
+	# unreadable font files = fontconfig segfaults
+	find "${EROOT}"usr/share/fonts/ -type f '!' -perm 0644 -print0 \
+		| xargs -r -0 chmod -v 0644
+
 	if has_version '>=media-libs/fontconfig-2.4'; then
 		if [ ${ROOT} == "/" ]; then
 			ebegin "Updating global fontcache"

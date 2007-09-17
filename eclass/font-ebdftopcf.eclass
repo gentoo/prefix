@@ -1,6 +1,6 @@
 # Copyright 2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/font-ebdftopcf.eclass,v 1.4 2006/04/02 00:24:51 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/font-ebdftopcf.eclass,v 1.5 2007/09/16 02:56:19 dirtyepic Exp $
 
 # Author: Robin H. Johnson <robbat2@gentoo.org>
 
@@ -8,9 +8,17 @@
 # Eclass to make PCF font generator from BDF uniform and optimal
 # The manpage for this eclass is in media-gfx/ebdftopcf.
 
+# inherit this eclass after font.eclass
+
+# if USE="-X", this eclass is basically a no-op, since bdftopcf requires Xorg.
+IUSE="X"
+
 # Variable declarations
-DEPEND="media-gfx/ebdftopcf"
+DEPEND="X? ( media-gfx/ebdftopcf )"
 RDEPEND=""
+
+use X && FONT_SUFFIX="pcf.gz"
+use X || FONT_SUFFIX="bdf"
 
 #
 # Public functions
@@ -29,8 +37,10 @@ ebdftopcf() {
 # Public inheritable functions
 #
 font-ebdftopcf_src_compile() {
-	[ -z "${BDFFILES}" ] && BDFFILES="$(find . -name '*.bdf')"
-	ebdftopcf ${BDFFILES}
+	if use X; then
+		[ -z "${BDFFILES}" ] && BDFFILES="$(find . -name '*.bdf')"
+		ebdftopcf ${BDFFILES}
+	fi
 }
 
 EXPORT_FUNCTIONS src_compile
