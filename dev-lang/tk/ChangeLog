@@ -1,6 +1,25 @@
 # ChangeLog for dev-lang/tk
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.89 2007/08/21 19:10:34 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.93 2007/09/16 14:57:22 angelos Exp $
+
+  16 Sep 2007; Christoph Mende <angelos@gentoo.org> tk-8.4.15-r1.ebuild:
+  Stable on amd64 wrt security bug #192539
+
+  16 Sep 2007; Markus Meier <maekke@gentoo.org> tk-8.4.15-r1.ebuild:
+  x86 stable, security bug #192539
+
+  16 Sep 2007; Jeroen Roovers <jer@gentoo.org> tk-8.4.15-r1.ebuild:
+  Stable for HPPA (bug #192539).
+
+*tk-8.5_alpha6-r1 (16 Sep 2007)
+*tk-8.4.15-r1 (16 Sep 2007)
+
+  16 Sep 2007; MATSUU Takuto <matsuu@gentoo.org>
+  -files/tk-8.3.5-tclm4-soname.patch, +files/tk-CVE-2007-4851.patch,
+  -tk-8.4.14.ebuild, -tk-8.4.14-r1.ebuild, +tk-8.4.15-r1.ebuild,
+  +tk-8.5_alpha6-r1.ebuild:
+  Fixed CVE-2007-4851, bug #192539.
+  Removed old versions.
 
   21 Aug 2007; Christoph Mende <angelos@gentoo.org> tk-8.4.15.ebuild:
   Stable on amd64 wrt bug #178320
