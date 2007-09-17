@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.304 2007/09/13 07:57:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.305 2007/09/16 13:25:05 angelos Exp $
+
+  16 Sep 2007; Christoph Mende <angelos@gentoo.org> binutils-2.17-r1.ebuild:
+  Stable on amd64 wrt bug #192258
 
   13 Sep 2007; Raúl Porcel <armin76@gentoo.org> binutils-2.17-r1.ebuild:
   ia64/x86 stable wrt #192258
