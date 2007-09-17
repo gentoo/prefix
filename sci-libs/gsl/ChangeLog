@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/gsl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.37 2007/08/21 17:53:34 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.38 2007/09/16 19:19:52 bicatali Exp $
+
+  16 Sep 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  files/eselect.cblas.gsl, metadata.xml:
+  fixed link for cblas.h, closing bug #192718, added longdescription.
 
 *gsl-1.9-r1 (21 Aug 2007)
 
