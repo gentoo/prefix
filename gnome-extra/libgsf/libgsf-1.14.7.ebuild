@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.5.ebuild,v 1.1 2007/08/23 01:01:45 metalgod Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.7.ebuild,v 1.1 2007/09/16 10:57:03 eva Exp $
 
 EAPI="prefix"
 
@@ -14,21 +14,17 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~mips ~x86"
 IUSE="bzip2 doc gnome python"
 
-RDEPEND=">=dev-libs/libxml2-2.4.16
-	>=dev-libs/glib-2.6
-	sys-libs/zlib
+RDEPEND="
+	>=dev-libs/glib-2.8
+	>=dev-libs/libxml2-2.4.16
 	gnome? ( media-gfx/imagemagick
 		>=gnome-base/gconf-2
 		>=gnome-base/libbonobo-2
 		>=gnome-base/gnome-vfs-2.2 )
+	sys-libs/zlib
 	bzip2? ( app-arch/bzip2 )
 	python? ( dev-lang/python
-		>=dev-python/pygtk-2.8 )"
-# This package (currently) needs >=pygobject-2.8 and pygtk-codegen-2.0 for python
-# support, which is provided by either pygtk-2.8* or any pygobject version (they were
-# separated for pygobject version 2.10 and up). As for codegen we already need
-# pygtk, then depending on just >=pygtk-2.8 is sufficient, as 2.8 provides pygobject
-# and 2.10 will pull in the pygobject separate package.
+		>=dev-python/pygobject-2.10 )"
 
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig

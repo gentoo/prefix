@@ -1,6 +1,16 @@
 # ChangeLog for gnome-extra/libgsf
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/ChangeLog,v 1.105 2007/09/06 17:59:23 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/ChangeLog,v 1.106 2007/09/16 10:57:03 eva Exp $
+
+  16 Sep 2007; Gilles Dartiguelongue <eva@gentoo.org> -libgsf-1.14.0.ebuild,
+  -libgsf-1.14.5.ebuild, -libgsf-1.14.6.ebuild:
+  pruning old versions
+
+*libgsf-1.14.7 (16 Sep 2007)
+
+  16 Sep 2007; Gilles Dartiguelongue <eva@gentoo.org> +libgsf-1.14.7.ebuild:
+  bump to 1.14.7
+  * Fix typo that would break all xml output
 
 *libgsf-1.14.6 (06 Sep 2007)
 
