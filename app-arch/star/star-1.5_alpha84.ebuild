@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/star/star-1.5_alpha84.ebuild,v 1.8 2007/09/15 08:20:35 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/star/star-1.5_alpha84.ebuild,v 1.9 2007/09/16 13:52:13 angelos Exp $
 
 EAPI="prefix"
 
