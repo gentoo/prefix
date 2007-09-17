@@ -130,6 +130,13 @@ src_install() {
 
 	dodoc LSM README* TODO
 
+	# Make all Solaris man-pages available
+	if [[ ${CHOST} == *-solaris* && -e /usr/share/man/man.cf ]] ; then
+		source /usr/share/man/man.cf
+		sed -i -e 's/^\(MANSECT.*\)$/\1:'"${MANSECTS//,/:}"'/' \
+			"${ED}"/etc/man.conf || die "failed to adapt to Solaris"
+	fi
+
 	# makewhatis only adds man-pages from the last 24hrs
 	exeinto /etc/cron.daily
 	newexe "${T}"/makewhatis.cron makewhatis
