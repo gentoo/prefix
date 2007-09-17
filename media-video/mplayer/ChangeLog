@@ -1,6 +1,14 @@
 # ChangeLog for media-video/mplayer
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.522 2007/09/16 00:30:13 jurek Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.524 2007/09/16 23:31:50 pylon Exp $
+
+  16 Sep 2007; Lars Weiler <pylon@gentoo.org>
+  mplayer-1.0_rc1_p20070824.ebuild:
+  Stable on ppc; bug #192601.
+
+  16 Sep 2007; Jeroen Roovers <jer@gentoo.org>
+  mplayer-1.0_rc1_p20070824.ebuild:
+  Stable for HPPA (bug #192601).
 
   16 Sep 2007; Jurek Bartuszek <jurek@gentoo.org>
   mplayer-1.0_rc1_p20070824.ebuild:
