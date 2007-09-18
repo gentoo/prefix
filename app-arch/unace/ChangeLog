@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/unace
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unace/ChangeLog,v 1.28 2007/02/01 13:58:51 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unace/ChangeLog,v 1.29 2007/09/17 01:09:44 jer Exp $
+
+  17 Sep 2007; Jeroen Roovers <jer@gentoo.org> unace-1.2b-r1.ebuild:
+  Stable for HPPA too.
 
   01 Feb 2007; Steve Dibb <beandog@gentoo.org> unace-2.5.ebuild:
   Add ~amd64, bug 164512
