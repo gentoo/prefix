@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0.ebuild,v 1.3 2007/09/16 13:34:28 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0.ebuild,v 1.4 2007/09/17 19:00:36 ikelos Exp $
 
 EAPI="prefix"
 
@@ -95,7 +95,7 @@ src_install() {
 		for file in `ls ${ED}/usr/share/man/man${man}`
 		do
 			file=${file/.${man}/}
-			mv ${ED}/usr/share/man/man$man/${file}.${man} ${ED}/usr/share/man/man${man}/${file}-openmotif-2.2.${man}
+			mv ${ED}/usr/share/man/man$man/${file}.${man} ${ED}/usr/share/man/man${man}/${file}-openmotif-${SLOT}.${man}
 		done
 	done
 
