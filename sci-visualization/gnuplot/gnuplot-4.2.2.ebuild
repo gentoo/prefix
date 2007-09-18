@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils elisp-common multilib wxwidgets
+inherit eutils elisp-common multilib wxwidgets flag-o-matic
 
 MY_P="${P/_/.}"
 
@@ -62,6 +62,9 @@ src_unpack() {
 }
 
 src_compile() {
+	# the compiler explodes if you try to optimise this
+	[[ ${CHOST} == *-darwin* ]] && filter-flags -m*
+
 	# See bug #156427.
 	if use tetex ; then
 		sed -i \
