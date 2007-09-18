@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/windowmaker-0.92.0-r4.ebuild,v 1.1 2007/09/10 19:23:21 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/windowmaker-0.92.0-r4.ebuild,v 1.2 2007/09/17 09:32:55 grobian Exp $
 
 EAPI="prefix"
 
@@ -47,10 +47,10 @@ src_unpack() {
 	epatch ${FILESDIR}/${PV}/${P}-gif-before-ungif.patch
 
 	# Fix some paths
+	egnustep_env
 	for file in ${S}/WindowMaker/*menu*; do
 		if [ -r $file ]; then
 			if use gnustep ; then
-				egnustep_env
 				sed -i "s:/usr/local/GNUstep/Applications:${GNUSTEP_SYSTEM_APPS}:g" $file
 			else
 				sed -i "s:/usr/local/GNUstep/Applications/WPrefs.app:${EPREFIX}/usr/bin/:g;" $file

@@ -1,6 +1,11 @@
 # ChangeLog for x11-wm/windowmaker
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/ChangeLog,v 1.84 2007/09/11 10:47:26 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/ChangeLog,v 1.85 2007/09/17 09:32:55 grobian Exp $
+
+  17 Sep 2007; Fabian Groffen <grobian@gentoo.org>
+  windowmaker-0.92.0-r4.ebuild:
+  Take egnustep_env out of the loop so that we don't get a rediculously long
+  LDFLAGS with many times the same paths
 
   11 Sep 2007; Bernard Cafarelli <voyageur@gentoo.org>
   +files/0.92.0/windowmaker-0.92.0-configure.patch:
