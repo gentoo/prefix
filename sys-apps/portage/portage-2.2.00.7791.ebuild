@@ -23,18 +23,22 @@ DEPEND=">=dev-lang/python-2.4
 	epydoc? ( >=dev-python/epydoc-2.0 )"
 RDEPEND=">=dev-lang/python-2.4
 	!build? ( >=sys-apps/sed-4.0.5
-		dev-python/python-fchksum
-		>=app-shells/bash-3.0 )
+		>=app-shells/bash-3.1_p17 )
 	elibc_FreeBSD? ( dev-python/py-freebsd )
 	elibc_glibc? ( >=sys-apps/sandbox-1.2.17 )
 	elibc_uclibc? ( >=sys-apps/sandbox-1.2.17 )
 	kernel_linux? ( >=app-misc/pax-utils-0.1.13 )
 	kernel_solaris? ( >=app-misc/pax-utils-0.1.13 )
-	userland_GNU? ( >=sys-apps/coreutils-6.4 )
-	selinux? ( >=dev-python/python-selinux-2.16 )
-	doc? ( || ( app-portage/eclass-manpages app-portage/portage-manpages ) )
-	>=dev-python/pycrypto-2.0.1-r5
-	>=net-misc/rsync-2.6.4"
+	selinux? ( >=dev-python/python-selinux-2.16 )"
+PDEPEND="
+	doc? (
+		|| ( app-portage/eclass-manpages app-portage/portage-manpages )
+	)
+	!build? (
+		>=net-misc/rsync-2.6.4
+		userland_GNU? ( >=sys-apps/coreutils-6.4 )
+		|| ( >=dev-lang/python-2.5 >=dev-python/pycrypto-2.0.1-r6 )
+	)"
 # coreutils-6.4 rdep is for date format in emerge-webrsync #164532
 # rsync-2.6.4 rdep is for the --filter option #167668
 SRC_ARCHIVES="http://dev.gentoo.org/~grobian/distfiles"
@@ -86,7 +90,7 @@ src_compile() {
 	econf \
 		--with-portage-user=${PORTAGE_USER:-portage} \
 		--with-portage-group=${PORTAGE_GROUP:-portage} \
-		--with-offset-prefix=${EPREFIX} \
+		--with-offset-prefix="${EPREFIX}" \
 		--with-default-path="/usr/bin:/bin" \
 		|| die "econf failed"
 	emake || die "emake failed"
@@ -169,17 +173,9 @@ pkg_postinst() {
 		[ -e "${x}" ] && mv -f "${x}" "${EROOT}/etc/make.globals"
 	done
 
-	# Wipe out existing bytecodes to prevent possible interference
-	# when the new and old version have namespace differences.
-	remove_python_bytecodes
-
-	# Compile only the source files that have just been installed.
-	python -c 'import py_compile; py_compile.main()' \
-		$(while read x; do echo "${EROOT%/}${x}"; done \
-		< "${T}"/pym_src_file_list)
-	python -O -c 'import py_compile; py_compile.main()' \
-		$(while read x; do echo "${EROOT%/}${x}"; done \
-		< "${T}"/pym_src_file_list)
+	# Compile all source files recursively. Any orphans
+	# will be identified and removed in postrm.
+	compile_all_python_bytecodes "${EROOT}usr/$(get_libdir)/portage/pym"
 
 	elog
 	elog "FEATURES=\"userfetch\" is now enabled by default. Depending on your \${DISTDIR}"
@@ -196,12 +192,21 @@ pkg_postinst() {
 	portage_docs
 }
 
-remove_python_bytecodes() {
-	local d="${EROOT}/usr/$(get_libdir)/portage/pym"
-	[ -d "${d}" ] || return
-	find "${d}" -type d -print0 | \
-	while read -d $'\0' d ; do
-		cd "${d}"
-		rm -f *.pyc *.pyo
+pkg_postrm() {
+	remove_orphan_python_bytecodes "${ROOT}usr/$(get_libdir)/portage/pym"
+}
+
+compile_all_python_bytecodes() {
+	python -c "from compileall import compile_dir; compile_dir('${1}', quiet=True)"
+	python -O -c "from compileall import compile_dir; compile_dir('${1}', quiet=True)"
+}
+
+remove_orphan_python_bytecodes() {
+	[[ -d ${1} ]] || return
+	find "${1}" -name '*.py[co]' -print0 | \
+	while read -d $'\0' f ; do
+		src_py=${f%[co]}
+		[[ -f ${src_py} ]] && continue
+		rm -f "${src_py}"[co]
 	done
 }
