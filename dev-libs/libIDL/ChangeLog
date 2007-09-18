@@ -1,6 +1,16 @@
 # ChangeLog for dev-libs/libIDL
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.74 2007/08/28 18:55:49 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.75 2007/09/17 20:52:13 eva Exp $
+
+  17 Sep 2007; Gilles Dartiguelongue <eva@gentoo.org> -libIDL-0.8.5.ebuild,
+  -libIDL-0.8.6.ebuild:
+  prune old versions
+
+*libIDL-0.8.9 (17 Sep 2007)
+
+  17 Sep 2007; Gilles Dartiguelongue <eva@gentoo.org> +libIDL-0.8.9.ebuild:
+  bump to 0.8.9
+   * Add missing braces (Dominique Quatravaux)
 
   28 Aug 2007; Jeroen Roovers <jer@gentoo.org> libIDL-0.8.8.ebuild:
   Stable for HPPA (bug #185823).
