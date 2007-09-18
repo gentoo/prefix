@@ -1,6 +1,9 @@
 # ChangeLog for sys-fs/e2fsprogs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.111 2007/09/15 08:54:25 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.112 2007/09/17 12:57:25 armin76 Exp $
+
+  17 Sep 2007; Raúl Porcel <armin76@gentoo.org> e2fsprogs-1.40.2.ebuild:
+  alpha/ia64/x86 stable
 
   15 Sep 2007; Roy Marples <uberlord@gentoo.org> +files/fsck_ext2fs.8,
   +files/e2fsprogs-1.40-fbsd.patch, +files/fsck_ext2fs.c,
