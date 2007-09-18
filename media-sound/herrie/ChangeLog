@@ -1,6 +1,11 @@
 # ChangeLog for media-sound/herrie
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/ChangeLog,v 1.14 2007/07/11 19:39:51 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/ChangeLog,v 1.15 2007/09/17 22:27:45 rbu Exp $
+
+*herrie-1.8.3 (17 Sep 2007)
+
+  03 Sep 2007; Robert Buchholz <rbu@gentoo.org> +herrie-1.8.3.ebuild:
+  Version bump fixing the ALSA code (bug #188285)
 
 *herrie-1.8.1 (11 Jul 2007)
 
