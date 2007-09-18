@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libpcre
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.99 2007/07/15 13:13:15 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.100 2007/09/17 19:36:33 anant Exp $
+
+*libpcre-7.3 (14 Sep 2007)
+
+  14 Sep 2007; Anant Narayanan <anant@gentoo.org> +libpcre-7.3.ebuild:
+  Version bump to 7.3
 
   15 Jul 2007; Christoph Mende <angelos@gentoo.org>
   +files/pcre-7.1-pic.patch, libpcre-7.1.ebuild, libpcre-7.2.ebuild:
