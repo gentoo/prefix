@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.2 2007/08/19 18:15:04 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.3 2007/09/17 10:58:04 grobian Exp $
 
 inherit eutils flag-o-matic
 
@@ -98,15 +98,14 @@ egnustep_env() {
 		# Set rpath in ldflags when available
 		case ${CHOST} in
 			*-linux-gnu|*-solaris*)
-				append-ldflags \
-					-Wl,-rpath="${GNUSTEP_SYSTEM_LIBRARIES}" \
-					-L"${GNUSTEP_SYSTEM_LIBRARIES}"
-			;;
-			*)
-				append-ldflags \
-					-L"${GNUSTEP_SYSTEM_LIBRARIES}"
+				is-ldflagq -Wl,-rpath="${GNUSTEP_SYSTEM_LIBRARIES}" \
+					|| append-ldflags \
+						-Wl,-rpath="${GNUSTEP_SYSTEM_LIBRARIES}"
 			;;
 		esac
+		is-ldflagq -L"${GNUSTEP_SYSTEM_LIBRARIES}" \
+			|| append-ldflags \
+				-L"${GNUSTEP_SYSTEM_LIBRARIES}"
 
 		# Set up env vars for make operations
 		GS_ENV=( AUXILIARY_LDFLAGS="${LDFLAGS}" \
