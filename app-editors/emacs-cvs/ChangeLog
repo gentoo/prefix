@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.154 2007/09/12 13:32:00 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.155 2007/09/18 22:36:40 ulm Exp $
+
+  18 Sep 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.1.50-r1.ebuild,
+  emacs-cvs-22.1.50_p20070829.ebuild, emacs-cvs-23.0.0-r7.ebuild,
+  emacs-cvs-23.0.50.ebuild:
+  Change WANT_AUTOCONF to "latest" following a change in autotools.eclass.
 
   12 Sep 2007; Christian Faulhammer <opfer@gentoo.org>
   emacs-cvs-23.0.50.ebuild:
