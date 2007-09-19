@@ -1,6 +1,12 @@
 # ChangeLog for sys-libs/slang
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.61 2007/08/30 12:45:53 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.62 2007/09/18 16:47:16 matsuu Exp $
+
+*slang-2.1.2 (18 Sep 2007)
+
+  18 Sep 2007; MATSUU Takuto <matsuu@gentoo.org>
+  +files/slang-2.1.2-slsh-libs.patch, +slang-2.1.2.ebuild:
+  Version bumped, bug #182339.
 
   30 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing liquidx from metadata due to his retirement (see #171155 for
