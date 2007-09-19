@@ -12,7 +12,7 @@ SRC_URI="http://subversion.tigris.org/tarballs/${P/_rc/-rc}.tar.bz2"
 
 LICENSE="Subversion"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
 IUSE="apache2 berkdb python emacs perl java nls nowebdav zlib ruby"
 RESTRICT="test"
 
