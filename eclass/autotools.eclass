@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.67 2007/09/17 23:15:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.68 2007/09/18 13:25:38 vapier Exp $
 #
 # Maintainer: base-system@gentoo.org
 #
@@ -31,7 +31,7 @@ if [[ -n ${WANT_AUTOCONF} ]] ; then
 		none)       _autoconf_atom="" ;; # some packages don't require autoconf at all
 		2.1)        _autoconf_atom="=sys-devel/autoconf-${WANT_AUTOCONF}*" ;;
 		latest|2.5) _autoconf_atom=">=sys-devel/autoconf-2.61" ;;
-		*)          _autoconf_atom=">=sys-devel/autoconf-FAIL" ;;
+		*)          _autoconf_atom="INCORRECT-WANT_AUTOCONF-SETTING-IN-EBUILD" ;;
 	esac
 	[[ ${WANT_AUTOCONF} == "latest" ]] && WANT_AUTOCONF="2.5"
 	export WANT_AUTOCONF
