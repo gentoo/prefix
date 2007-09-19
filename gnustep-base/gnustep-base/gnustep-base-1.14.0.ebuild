@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/gnustep-base-1.14.0.ebuild,v 1.4 2007/09/10 01:14:18 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/gnustep-base-1.14.0.ebuild,v 1.5 2007/09/18 14:31:47 grobian Exp $
 
 EAPI="prefix"
 
@@ -49,7 +49,19 @@ src_compile() {
 }
 
 src_install() {
-	gnustep-base_src_install
+	# We need to set LD_LIBRARY_PATH because the doc generation program
+	# uses the gnustep-base libraries.  Since egnustep_env "cleans the
+	# environment" including our LD_LIBRARY_PATH, we're left no choice
+	# but doing it like this.
+
+	egnustep_env
+	egnustep_install
+
+	if use doc ; then
+		export LD_LIBRARY_PATH="${S}/Source/obj:${LD_LIBRARY_PATH}"
+		egnustep_doc
+	fi
+	egnustep_install_config
 
 	dodir /etc/revdep-rebuild
 	sed -e 's|$GNUSTEP_SEARCH_DIRS|'"$GNUSTEP_SYSTEM_ROOT $GNUSTEP_LOCAL_ROOT"'|' \

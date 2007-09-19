@@ -1,6 +1,11 @@
 # ChangeLog for gnustep-base/gnustep-base
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.48 2007/09/10 01:14:18 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.49 2007/09/18 14:31:47 grobian Exp $
+
+  18 Sep 2007; Fabian Groffen <grobian@gentoo.org>
+  gnustep-base-1.14.0.ebuild:
+  Fix for bug #190744, make sure autogsdoc uses the just compiled gnustep-base
+  library
 
   10 Sep 2007; Joseph Jezak <josejx@gentoo.org> gnustep-base-1.14.0.ebuild:
   Marked ~ppc for bug #189372.
