@@ -12,7 +12,7 @@ SRC_URI="mirror://kernel/linux/docs/manpages/${P}.tar.bz2"
 
 LICENSE="freedist"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~ia64 ~x86"
 IUSE="nls"
 
 RDEPEND="virtual/man"
