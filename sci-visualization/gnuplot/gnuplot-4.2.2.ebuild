@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/gnuplot/${MY_P}.tar.gz"
 
 LICENSE="gnuplot"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="doc emacs gd ggi tetex pdf plotutils readline svga wxwindows X xemacs"
 
 RDEPEND="
@@ -62,8 +62,8 @@ src_unpack() {
 }
 
 src_compile() {
-	# the compiler explodes if you try to optimise this
-	[[ ${CHOST} == *-darwin* ]] && filter-flags -m*
+	# the compiler explodes if you try to optimise this on PPC
+	[[ ${CHOST} == powerpc-apple-darwin* ]] && filter-flags -m*
 
 	# See bug #156427.
 	if use tetex ; then
