@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/sys-devel/patch/Attic/patch-2.5.4-r5.ebuild,v 1.10 2004/11/16 07:08:32 vapier dead $
+# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/sys-devel/patch/patch-2.5.4-r5.ebuild,v 1.10 2004/11/16 07:08:32 vapier dead $
 
 EAPI="prefix"
 
