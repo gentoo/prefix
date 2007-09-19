@@ -14,7 +14,7 @@ SRC_URI="mirror://gentoo/pax-utils-${PV}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~x86 ~x86-solaris"
 IUSE="caps"
 
 DEPEND="caps? ( sys-libs/libcap )"
