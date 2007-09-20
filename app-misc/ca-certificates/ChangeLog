@@ -2,6 +2,10 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.10 2007/06/23 02:38:57 dsd Exp $
 
+  20 Sep 2007; Michael Haubenwallner <haubi@gentoo.org>
+  ca-certificates-20061027.2.ebuild:
+  keyworded ~ppc-aix
+
   23 Jun 2007; Daniel Drake <dsd@gentoo.org>
   ca-certificates-20050804.ebuild, ca-certificates-20061027.2.ebuild,
   ca-certificates-20070303-r1.ebuild:
