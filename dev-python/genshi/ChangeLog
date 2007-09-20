@@ -1,0 +1,45 @@
+# ChangeLog for dev-python/genshi
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/genshi/ChangeLog,v 1.6 2007/07/21 07:09:49 lucass Exp $
+
+*genshi-0.4.3 (21 Jul 2007)
+
+  21 Jul 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  -genshi-0.4.2-r1.ebuild, +genshi-0.4.3.ebuild:
+  Version bump. Dropped old version.
+
+*genshi-0.4.2-r1 (04 Jul 2007)
+
+  04 Jul 2007; Rob Cakebread <pythonhead@gentoo.org> -genshi-0.4.2.ebuild,
+  +genshi-0.4.2-r1.ebuild:
+  Removed setuptools-related sed. bug #183977 Thanks for the report Gergan
+  Penkov <gpp666_999@yahoo.de>
+
+*genshi-0.4.2 (21 Jun 2007)
+
+  21 Jun 2007; Lukasz Strzygowski <lucass@gentoo.org> -genshi-0.4.ebuild,
+  -genshi-0.4.1.ebuild, +genshi-0.4.2.ebuild:
+  Version bump: cleanup, added doc use-flag. Dropped old versions.
+
+*genshi-0.4.1 (22 May 2007)
+
+  22 May 2007; Rob Cakebread <pythonhead@gentoo.org> -genshi-0.3.6.ebuild,
+  genshi-0.4.ebuild, +genshi-0.4.1.ebuild:
+  Change setuptools to RDEPEND because its used for the plugin system at
+  runtime. Version bump, dropped old version.
+
+*genshi-0.4 (18 Apr 2007)
+
+  18 Apr 2007; Rob Cakebread <pythonhead@gentoo.org> +genshi-0.4.ebuild:
+  Version bump. Added postinst about upgrading from 0.3.n
+
+  05 Feb 2007; Tiziano Müller <dev-zero@gentoo.org> genshi-0.3.6.ebuild:
+  Added ~amd64 keyword
+
+  03 Feb 2007; Tiziano Müller <dev-zero@gentoo.org> genshi-0.3.6.ebuild:
+  Added NEED_PYTHON=2.3
+
+  03 Feb 2007; Tiziano Müller <dev-zero@gentoo.org> genshi-0.3.6.ebuild,
+  +metadata.xml:
+  New ebuild for bug #159441 (thanks to Brad Walker)
+
