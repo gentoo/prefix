@@ -1,0 +1,116 @@
+# ChangeLog for app-vim/colorschemes
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-vim/colorschemes/ChangeLog,v 1.27 2007/07/10 19:10:44 nelchael Exp $
+
+*colorschemes-20070707 (10 Jul 2007)
+
+  10 Jul 2007; Krzysiek Pawlik <nelchael@gentoo.org>
+  +colorschemes-20070707.ebuild:
+  Version bump.
+
+  21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  07 Apr 2006; Bryan Østergaard <kloeri@gentoo.org metadata.xml:
+  Remove ciaranm from metadata.xml.
+
+  07 Dec 2005; Ciaran McCreesh <ciaranm@gentoo.org>
+  -colorschemes-20031113.ebuild, -colorschemes-20040821.ebuild:
+  Tidy up old versions
+
+*colorschemes-20051207 (07 Dec 2005)
+
+  07 Dec 2005; Ciaran McCreesh <ciaranm@gentoo.org>
+  +colorschemes-20051207.ebuild:
+  New tarball, made by me.
+
+  29 Nov 2005; Jeroen Roovers <jer@gentoo.org> colorschemes-20040821.ebuild,
+  colorschemes-20050321.ebuild:
+  Marked ~hppa wrt bug 109182.
+
+  24 Apr 2005; Michael Hanselmann <hansmi@gentoo.org>
+  colorschemes-20050321.ebuild:
+  Stable on ppc.
+
+  31 Mar 2005; Aron Griffis <agriffis@gentoo.org>
+  colorschemes-20050321.ebuild:
+  stable on ia64
+
+  31 Mar 2005; Bryan Østergaard <kloeri@gentoo.org>
+  colorschemes-20050321.ebuild:
+  Stable on alpha.
+
+  28 Mar 2005; Ciaran McCreesh <ciaranm@gentoo.org>
+  colorschemes-20050321.ebuild:
+  x86 sparc mips stable
+
+*colorschemes-20050321 (21 Mar 2005)
+
+  21 Mar 2005; Ciaran McCreesh <ciaranm@gentoo.org>
+  -colorschemes-20050226.ebuild, -colorschemes-20050226-r1.ebuild,
+  +colorschemes-20050321.ebuild:
+  New version, prune older releases
+
+*colorschemes-20050226-r1 (03 Mar 2005)
+
+  03 Mar 2005; Ciaran McCreesh <ciaranm@gentoo.org>
+  +colorschemes-20050226-r1.ebuild:
+  Fix dos line endings
+
+*colorschemes-20050226 (26 Feb 2005)
+
+  26 Feb 2005; Ciaran McCreesh <ciaranm@gentoo.org>
+  +colorschemes-20050226.ebuild:
+  New version made by your friendly Gentoo Vim team
+
+  28 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  19 Sep 2004; Bryan Østergaard,,, <kloeri@gentoo.org>
+  colorschemes-20040821.ebuild:
+  Stable on alpha.
+
+  09 Sep 2004; Danny van Dyk <kugelfang@gentoo.org>
+  colorschemes-20040821.ebuild:
+  Marked stable on amd64.
+
+  06 Sep 2004; Ciaran McCreesh <ciaranm@gentoo.org>
+  colorschemes-20040821.ebuild:
+  Stable on x86, sparc, mips
+
+  03 Sep 2004; Ciaran McCreesh <ciaranm@gentoo.org>
+  colorschemes-20040821.ebuild:
+  Help text, bug #62559
+
+  25 Aug 2004; Ciaran McCreesh <ciaranm@gentoo.org>
+  colorschemes-20031113.ebuild, colorschemes-20040821.ebuild:
+  Normalised HOMEPAGE to www.vim.org
+
+*colorschemes-20040821 (21 Aug 2004)
+
+  21 Aug 2004; Ciaran McCreesh <ciaranm@gentoo.org>
+  +colorschemes-20040821.ebuild:
+  Version bump. Thanks to MetaCosm for doing most of the hard work.
+
+  04 Apr 2004; Ciaran McCreesh <ciaranm@gentoo.org>
+  colorschemes-20031113.ebuild:
+  Stable on mips
+
+  06 Feb 2004; Ciaran McCreesh <ciaranm@gentoo.org>
+  colorschemes-20031113.ebuild:
+  Added ~mips
+
+  23 Jan 2004; Aron Griffis <agriffis@gentoo.org>
+  colorschemes-20031113.ebuild:
+  stable on alpha and ia64
+
+  10 Dec 2003; Ciaran McCreesh <ciaranm@gentoo.org>
+  colorschemes-20031113.ebuild:
+  Moving to stable on x86 and sparc
+
+*colorschemes-20031113 (13 Nov 2003)
+
+  13 Nov 2003; Ciaran McCreesh <ciaranm@gentoo.org>
+  colorschemes-20031113.ebuild, metadata.xml:
+  New ebuild
+
