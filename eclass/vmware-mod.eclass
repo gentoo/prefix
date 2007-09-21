@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vmware-mod.eclass,v 1.14 2007/08/22 00:10:44 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vmware-mod.eclass,v 1.15 2007/09/20 17:07:37 ikelos Exp $
 
 
 # Ensure vmware comes before linux-mod since we want linux-mod's pkg_preinst and
@@ -49,7 +49,7 @@ vmware-mod_pkg_setup() {
 				use amd64 || VMWARE_MODULE_LIST="${VMWARE_MODULE_LIST} vmdesched"
 				;;
 			*)
-				VMWARE_MODULE_LIST="${VMWARE_MODULE_LIST}vmmon vmnet"
+				VMWARE_MODULE_LIST="${VMWARE_MODULE_LIST} vmmon vmnet"
 				;;
 		esac
 	fi

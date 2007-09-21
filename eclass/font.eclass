@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.32 2007/09/16 20:00:56 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.33 2007/09/19 02:48:20 dirtyepic Exp $
 
 # Author: foser <foser@gentoo.org>
 
@@ -111,7 +111,7 @@ font_pkg_setup() {
 font_pkg_postinst() {
 	# unreadable font files = fontconfig segfaults
 	find "${EROOT}"usr/share/fonts/ -type f '!' -perm 0644 -print0 \
-		| xargs -r -0 chmod -v 0644
+		| xargs -0 chmod -v 0644 2>/dev/null
 
 	if has_version '>=media-libs/fontconfig-2.4'; then
 		if [ ${ROOT} == "/" ]; then
@@ -125,7 +125,7 @@ font_pkg_postinst() {
 font_pkg_postrm() {
 	# unreadable font files = fontconfig segfaults
 	find "${EROOT}"usr/share/fonts/ -type f '!' -perm 0644 -print0 \
-		| xargs -r -0 chmod -v 0644
+		| xargs -0 chmod -v 0644 2>/dev/null
 
 	if has_version '>=media-libs/fontconfig-2.4'; then
 		if [ ${ROOT} == "/" ]; then

@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.24 2007/05/28 15:49:48 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.25 2007/09/19 20:27:25 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -14,17 +14,29 @@
 # called from the (exported) gnat_src_compile function of eclass. These
 # functions should operate similarly to the starndard src_compile and
 # src_install. The only difference, that they should use $SL variable instead of
-# $S (this is where the working cop of source is held) and $DL instead of $D as
+# $S (this is where the working copy of source is held) and $DL instead of $D as
 # its installation point.
 
 inherit flag-o-matic eutils
 
-EXPORT_FUNCTIONS pkg_setup pkg_postinst src_unpack src_compile
+# The environment is set locally in src_compile and src_install functions
+# by the common code sourced here and in gnat-eselect module.
+# This is the standard location for this code (belongs to eselect-gnat,
+# since eselect should work even in the absense of portage tree and we can 
+# guarantee to some extent presence of gnat-eselect when anything gnat-related
+# gets processed. See #192505)
+#
+# Note!
+# It may not be safe to source this at top level. Only source inside local
+# functions!
+GnatCommon="/usr/share/gnat/lib/gnat-common.bash"
+
+EXPORT_FUNCTIONS pkg_setup pkg_postinst src_compile
 
 DESCRIPTION="Common procedures for building Ada libs using split gnat compilers"
 
 # really need to make sure we have eselect with new eclass version
-DEPEND=">=app-admin/eselect-gnat-0.8"
+DEPEND=">=app-admin/eselect-gnat-1.1"
 
 
 # ----------------------------------
@@ -46,9 +58,6 @@ SL=${WORKDIR}/LocalSource
 # DL is a "localized destination", where ARCH/SLOT dependent binaries should be
 # installed in lib_install
 DL=${WORKDIR}/LocalDest
-
-# location of cleaned-up eselect script, for sourcing
-EselectScript=${WORKDIR}/gnat.eselect
 
 # file containing environment formed by gnat-eselect (build-time)
 BuildEnv=${WORKDIR}/BuildEnv
@@ -225,15 +234,6 @@ gnat_pkg_postinst() {
 
 
 
-gnat_src_unpack() {
-	debug-print-function $FUNCNAME $*
-	unpack ${A}
-	cat /usr/share/eselect/modules/gnat.eselect | \
-		grep -v svn_date_to_version | \
-		grep -v DESCRIPTION | \
-		grep -v env-update > ${EselectScript}
-}
-
 
 # standard lib_compile plug. Adapted from base.eclass
 lib_compile() {
@@ -274,7 +274,7 @@ gnat_src_compile() {
 
 	# We source the eselect-gnat module and use its functions directly, instead of
 	# duplicating code or trying to violate sandbox in some way..
-	. ${EselectScript} || die "cannot source eselect-gnat module"
+	. ${GnatCommon} || die "failed to source gnat-common lib"
 
 	compilers=( $(find_compilers ) )
 	if [[ -n ${compilers[@]} ]] ; then
@@ -289,9 +289,9 @@ gnat_src_compile() {
 			# setup environment
 			# As eselect-gnat also manages the libs, this will ensure the right
 			# lib profiles are activated too (in case we depend on some Ada lib)
-			do_set ${compilers[${i}]} ${BuildEnv}
-			expand_BuildEnv ${BuildEnv}
-			. ${BuildEnv}
+			generate_envFile ${compilers[${i}]} ${BuildEnv} && \
+			expand_BuildEnv ${BuildEnv} && \
+			. ${BuildEnv}  || die "failed to switch to ${compilers[${i}]}"
 			# many libs (notably xmlada and gtkada) do not like to see
 			# themselves installed. Need to strip them from ADA_*_PATH
 			# NOTE: this should not be done in pkg_setup, as we setup
@@ -323,7 +323,7 @@ gnat_src_install() {
 	debug-print-function $FUNCNAME $*
 
 	# prep lib specs directory
-	. ${EselectScript} || die "cannot source eselect-gnat module"
+	. ${GnatCommon} || die "failed to source gnat-common lib"
 	dodir ${SPECSDIR}/${PN}
 
 	compilers=( $(find_compilers ) )
