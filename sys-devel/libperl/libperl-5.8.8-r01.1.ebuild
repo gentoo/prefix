@@ -113,7 +113,7 @@ src_unpack() {
 	unpack ${A}
 
 	# Fix the build scripts to create libperl with a soname of ${SLOT}.
-	# We basically add:
+	# We basically add (for platforms which support it):
 	#
 	#   -Wl,-soname -Wl,libperl.so.`echo $(LIBPERL) | cut -d. -f3`
 	#
@@ -122,13 +122,12 @@ src_unpack() {
 	#   LIBPERL=libperl.so.${SLOT}.`echo ${PV} | cut -d. -f1,2`
 	#
 	cd ${S};
-	if [[ ${CHOST} != *-darwin* ]] ; then
-		epatch ${FILESDIR}/${PN}-create-libperl-soname.patch
+	[[ ${CHOST} == *-linux* || ${CHOST} == *-solaris* ]] &&
+	epatch ${FILESDIR}/${PN}-create-libperl-soname.patch
 
-		# fix a typo in hints/aix.sh.
-		# do not create sharedlib-archive, but sharedlib directly.
-		epatch "${FILESDIR}"/${P}-aix.patch
-	fi
+	# the AIX patch is unconditional
+	epatch "${FILESDIR}"/${P}-aix.patch
+
 	# the Darwin patch is unconditional
 	epatch "${FILESDIR}"/${PN}-darwin-install_name.patch
 

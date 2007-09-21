@@ -1,3 +1,6 @@
+*) Fix a typo in hints/aix.sh.
+*) Need to pass linker flags through gcc.
+*) Create the sharedlib directly, not packed into an archive.
 --- hints/aix.sh.orig	2007-03-26 17:47:44.000000000 +0200
 +++ hints/aix.sh	2007-03-26 17:47:56.000000000 +0200
 @@ -295,10 +295,10 @@
