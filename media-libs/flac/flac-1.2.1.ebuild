@@ -1,22 +1,19 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.2.0.ebuild,v 1.4 2007/09/15 07:06:17 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.2.1.ebuild,v 1.3 2007/09/20 19:46:10 drac Exp $
 
 EAPI="prefix"
 
-inherit autotools eutils libtool toolchain-funcs
-
-PATCHLEVEL="15"
+inherit autotools eutils libtool
 
 DESCRIPTION="free lossless audio encoder and decoder"
 HOMEPAGE="http://flac.sourceforge.net"
-SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz
-	mirror://gentoo/${PN}-patches-${PATCHLEVEL}.tar.bz2"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
-IUSE="3dnow altivec debug doc ogg sse"
+IUSE="3dnow altivec debug doc pic ogg sse"
 
 RDEPEND="ogg? ( >=media-libs/libogg-1.1.2 )"
 DEPEND="${RDEPEND}
@@ -26,47 +23,41 @@ DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )
 	dev-util/pkgconfig"
 
-RESTRICT="test"
-
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
-	# Enable only for GCC 4.1 and later
-	[[ $(gcc-major-version)$(gcc-minor-version) -ge 41 ]] || \
-		export EPATCH_EXCLUDE="180_all_visibility.patch"
-
-	EPATCH_SUFFIX="patch" \
-	epatch "${WORKDIR}/patches"
+	# asneeded fails with libiconv on non glibc systems
+	epatch "${FILESDIR}"/${P}-asneeded.patch
+	# strip upstream forced optimizations
+	epatch "${FILESDIR}"/${P}-cflags.patch
 	AT_M4DIR="m4" eautoreconf
 	elibtoolize
 }
 
 src_compile() {
-	econf \
-		$(use_enable ogg) \
+	local myconf
+
+	# fugly, fixme, x86 asm has text relocations..
+	if use x86 && use pic; then
+		myconf="--disable-asm-optimizations"
+	fi
+
+	econf $(use_enable ogg) \
 		$(use_enable sse) \
 		$(use_enable 3dnow) \
 		$(use_enable altivec) \
 		$(use_enable debug) \
 		$(use_enable doc doxygen-docs) \
 		--disable-dependency-tracking \
-		--disable-xmms-plugin || die "econf failed."
-
-	# the man page ebuild requires docbook2man... yick!
-	sed -i -e 's:include man:include:g' Makefile
-
+		--disable-xmms-plugin \
+		${myconf} || die "econf failed."
 	emake || die "emake failed."
 }
 
 src_install() {
-	emake DESTDIR="${D}" docdir="${EPREFIX}/usr/share/doc/${PF}" \
-		install || die "emake install failed."
+	emake DESTDIR="${D}" install || die "emake install failed."
+	use doc || rm -rf "${ED}"/usr/share/doc/${PN}*
 	dodoc AUTHORS README
-
-	use doc || rm -rf "${ED}"/usr/share/doc/${PF}/api
-
-	doman man/{flac,metaflac}.1
 }
 
 pkg_postinst() {
