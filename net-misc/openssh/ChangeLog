@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.263 2007/09/08 08:08:30 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.264 2007/09/20 07:38:05 vapier Exp $
+
+  20 Sep 2007; Mike Frysinger <vapier@gentoo.org> files/sshd.rc6:
+  If restarting, check the config first #192825 by Hans-Werner Hilse.
 
   08 Sep 2007; Markus Rothe <corsair@gentoo.org> openssh-4.7_p1-r1.ebuild:
   Stable on ppc64; bug #191321

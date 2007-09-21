@@ -1,7 +1,7 @@
 #!/sbin/runscript
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/files/sshd.rc6,v 1.22 2007/02/23 10:51:48 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/files/sshd.rc6,v 1.23 2007/09/20 07:38:06 vapier Exp $
 
 opts="reload"
 
@@ -62,6 +62,10 @@ start() {
 }
 
 stop() {
+	if [ "${RC_CMD}" = "restart" ] ; then
+		checkconfig || return 1
+	fi
+
 	ebegin "Stopping ${SVCNAME}"
 	start-stop-daemon --stop --exec "${SSHD_BINARY}" \
 	    --pidfile "${SSHD_PIDFILE}" --quiet
