@@ -1,6 +1,29 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.216 2007/09/02 11:50:00 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.223 2007/09/20 18:44:29 angelos Exp $
+
+  20 Sep 2007; Christoph Mende <angelos@gentoo.org> git-1.5.2.5.ebuild:
+  Stable on amd64 wrt bug #193113
+
+  20 Sep 2007; Raúl Porcel <armin76@gentoo.org> git-1.5.2.5.ebuild:
+  alpha/ia64 stable wrt #193113
+
+  20 Sep 2007; Jeroen Roovers <jer@gentoo.org> git-1.5.2.5.ebuild:
+  Stable for SPARC (bug #193113).
+
+  20 Sep 2007; Brent Baude <ranger@gentoo.org> git-1.5.2.5.ebuild:
+  Marking git-1.5.2.5 ppc64 for bug 193113
+
+  19 Sep 2007; Lars Weiler <pylon@gentoo.org> git-1.5.2.5.ebuild:
+  Stable on ppc; bug #193113.
+
+  19 Sep 2007; Markus Meier <maekke@gentoo.org> git-1.5.2.5.ebuild:
+  x86 stable, bug #193113
+
+*git-1.5.3.2 (19 Sep 2007)
+
+  19 Sep 2007; Fernando J. Pereda <ferdy@gentoo.org> +git-1.5.3.2.ebuild:
+  New upstream version
 
 *git-1.5.3 (02 Sep 2007)
 
