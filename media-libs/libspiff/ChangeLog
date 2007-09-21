@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libspiff
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libspiff/ChangeLog,v 1.11 2007/09/17 22:20:03 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libspiff/ChangeLog,v 1.12 2007/09/19 14:36:31 rbu Exp $
+
+  19 Sep 2007; Robert Buchholz <rbu@gentoo.org> libspiff-0.8.0.ebuild:
+  einfo->elog
 
 *libspiff-0.8.0 (17 Sep 2007)
 
