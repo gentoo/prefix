@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6_rc6.ebuild,v 1.7 2007/08/25 22:26:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6_rc6.ebuild,v 1.8 2007/09/19 23:31:34 hawking Exp $
 
 EAPI="prefix"
 
@@ -22,6 +22,13 @@ RDEPEND=">=dev-lang/python-2.4.2"
 DEPEND="${RDEPEND}"
 
 DOCS="EasyInstall.txt api_tests.txt pkg_resources.txt setuptools.txt"
+
+src_unpack() {
+	distutils_src_unpack
+
+	# Remove tests that access the network (bug 191117)
+	rm ${PN}/tests/test_packageindex.py
+}
 
 src_test() {
 	"${python}" setup.py test || die "tests failed"
