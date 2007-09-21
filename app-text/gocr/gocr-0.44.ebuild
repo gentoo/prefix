@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gocr/gocr-0.44.ebuild,v 1.1 2007/07/27 19:59:44 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gocr/gocr-0.44.ebuild,v 1.2 2007/09/20 20:00:28 aballier Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86"
 
 DEPEND=">=media-libs/netpbm-9.12
-	doc? ( >=media-gfx/transfig-3.2 )
+	doc? ( >=media-gfx/transfig-3.2 virtual/ghostscript )
 	gtk? ( =x11-libs/gtk+-1*
 	       media-gfx/imagemagick )
 	tk? ( dev-lang/tk )"

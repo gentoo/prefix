@@ -1,6 +1,9 @@
 # ChangeLog for app-text/gocr
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gocr/ChangeLog,v 1.46 2007/07/27 19:59:43 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gocr/ChangeLog,v 1.47 2007/09/20 20:00:28 aballier Exp $
+
+  20 Sep 2007; Alexis Ballier <aballier@gentoo.org> gocr-0.44.ebuild:
+  add dep on ghostscript when building doc, bug #188569
 
 *gocr-0.44 (27 Jul 2007)
 
