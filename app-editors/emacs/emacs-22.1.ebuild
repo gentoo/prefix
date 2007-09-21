@@ -4,7 +4,6 @@
 
 EAPI="prefix"
 
-WANT_AUTOCONF="2.61"
 WANT_AUTOMAKE="latest"
 
 inherit autotools elisp-common eutils flag-o-matic
