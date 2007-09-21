@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.19.ebuild,v 1.2 2007/08/25 16:32:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.20.ebuild,v 1.1 2007/09/20 05:34:20 vapier Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/libpng/${P}.tar.bz2
 LICENSE="as-is"
 SLOT="1.2"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
-IUSE="doc mmx"
+IUSE="doc"
 
 DEPEND="sys-libs/zlib"
 
@@ -26,8 +26,6 @@ src_unpack() {
 
 	# So we get sane .so versioning on FreeBSD
 	elibtoolize
-
-	use mmx || append-cppflags -DPNG_NO_MMX_CODE
 }
 
 src_install() {
