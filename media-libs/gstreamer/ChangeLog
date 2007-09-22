@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/gstreamer
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.185 2007/09/10 16:23:35 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.186 2007/09/21 19:16:54 wolf31o2 Exp $
+
+  21 Sep 2007; Chris Gianelloni <wolf31o2@gentoo.org>
+  gstreamer-0.10.14.ebuild:
+  Stable on amd64 wrt bug #190900.
 
   10 Sep 2007; nixnut <nixnut@gentoo.org> gstreamer-0.10.14.ebuild:
   Stable on ppc wrt bug 190900
