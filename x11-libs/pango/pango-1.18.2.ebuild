@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.16.5.ebuild,v 1.8 2007/09/21 01:42:30 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.18.2.ebuild,v 1.2 2007/09/21 17:59:26 remi Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,7 @@ RDEPEND="X? (
 		x11-libs/libX11
 		x11-libs/libXft
 	)
-	>=dev-libs/glib-2.12
+	>=dev-libs/glib-2.14
 	>=media-libs/fontconfig-1.0.1
 	>=media-libs/freetype-2
 	>=x11-libs/cairo-1.2.6"
@@ -59,6 +59,12 @@ src_compile() {
 	fi
 	econf ${myconf} || die "econf failed"
 	emake || "emake failed"
+}
+
+pkg_setup() {
+	# Passing --disable-debug is not recommended for production use
+	use debug && G2CONF="${G2CONF} --enable-debug=yes"
+	gnome2_pkg_setup
 }
 
 src_install() {

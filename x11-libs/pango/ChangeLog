@@ -1,6 +1,14 @@
 # ChangeLog for x11-libs/pango
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.190 2007/08/28 11:24:23 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.192 2007/09/21 17:17:31 remi Exp $
+
+*pango-1.18.2 (21 Sep 2007)
+
+  21 Sep 2007; Rémi Cardona <remi@gentoo.org> +pango-1.18.2.ebuild:
+  Add pango-1.18.2 (for Gnome 2.20)
+
+  21 Sep 2007; Brent Baude <ranger@gentoo.org> pango-1.16.5.ebuild:
+  Marking pango-1.16.5 ppc64 for bug #190019
 
   28 Aug 2007; nixnut <nixnut@gentoo.org> pango-1.16.5.ebuild:
   Stable on ppc wrt bug 190019
