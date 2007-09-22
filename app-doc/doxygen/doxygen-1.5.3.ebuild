@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.3.ebuild,v 1.1 2007/09/02 18:10:59 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.3.ebuild,v 1.2 2007/09/21 13:07:26 uberlord Exp $
 
 EAPI="prefix"
 
@@ -34,6 +34,13 @@ src_unpack() {
 	    -e 's:^\(TMAKE_LFLAGS_RELEASE\s*\)=.*$:\1= $(ELDFLAGS):' \
 	    tmake/lib/{{linux,freebsd,netbsd,openbsd,solaris}-g++,macosx-c++}/tmake.conf \
 	    || die "sed failed"
+
+	# Ensure we link to -liconv
+	if use elibc_FreeBSD; then
+		for pro in */*.pro.in */*/*.pro.in; do
+			echo "unix:LIBS += -liconv" >> "${pro}"
+		done
+	fi
 
 	# Consolidate patches, apply FreeBSD configure patch, codepage patch,
 	# qtools stuff, and patches for bugs 129142, 121770, and 129560.
