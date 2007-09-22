@@ -1,6 +1,12 @@
 # ChangeLog for gnome-base/eel
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/ChangeLog,v 1.178 2007/08/28 16:38:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/ChangeLog,v 1.180 2007/09/21 23:03:24 wolf31o2 Exp $
+
+  21 Sep 2007; Chris Gianelloni <wolf31o2@gentoo.org> eel-2.18.3.ebuild:
+  Stable on amd64 wrt bug #193339.
+
+  21 Sep 2007; Chris Gianelloni <wolf31o2@gentoo.org> eel-2.18.3.ebuild:
+  Stable on x86 wrt bug #193339.
 
   28 Aug 2007; Jeroen Roovers <jer@gentoo.org> eel-2.18.0.1.ebuild:
   Stable for HPPA (bug #185823).
