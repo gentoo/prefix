@@ -1,6 +1,12 @@
 # ChangeLog for app-admin/gamin
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.71 2007/09/14 11:41:38 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.73 2007/09/21 22:57:44 wolf31o2 Exp $
+
+  21 Sep 2007; Chris Gianelloni <wolf31o2@gentoo.org> gamin-0.1.9.ebuild:
+  Stable on amd64 wrt bug #193339.
+
+  21 Sep 2007; Chris Gianelloni <wolf31o2@gentoo.org> gamin-0.1.9.ebuild:
+  Stable on x86 wrt bug #193339.
 
   14 Sep 2007; Roy Marples <uberlord@gentoo.org> gamin-0.1.9.ebuild:
   elibtoolize how patches install-sh for us.
