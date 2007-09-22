@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/txt2tags/txt2tags-2.3-r1.ebuild,v 1.2 2007/08/20 16:15:26 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/txt2tags/txt2tags-2.3-r1.ebuild,v 1.4 2007/09/21 19:07:54 fmccor Exp $
 
 EAPI="prefix"
 

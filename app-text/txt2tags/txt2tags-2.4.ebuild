@@ -1,55 +1,51 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/txt2tags/txt2tags-2.3.ebuild,v 1.3 2007/08/20 16:15:26 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/txt2tags/txt2tags-2.4.ebuild,v 1.1 2007/09/21 17:57:13 opfer Exp $
 
 EAPI="prefix"
 
-inherit elisp-common
+inherit eutils elisp-common
 
-IUSE="emacs tk"
-
-DESCRIPTION="Txt2tags is a tool for generating marked up documents (HTML, SGML, ...) from a plain text file with markup."
-SRC_URI="http://txt2tags.sourceforge.net/src/${P}.tgz"
+DESCRIPTION="A tool for generating marked up documents (HTML, SGML, ...) from a plain text file with markup"
 HOMEPAGE="http://txt2tags.sourceforge.net/"
+SRC_URI="mirror://sourceforge/txt2tags/${P}.tgz"
 
 LICENSE="GPL-2"
-
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86"
+IUSE="emacs tk"
+
 DEPEND="virtual/python
 	tk? ( dev-lang/tk )
 	emacs? ( virtual/emacs )"
 
-pkg_setup() {
+SITEFILE="51${PN}-gentoo.el"
 
+pkg_setup() {
 	# need to test if the tk support in python is working
 	if use tk; then
-		if ! python -c "import _tkinter" 2>&1 > /dev/null ; then
-			echo
+		if ! built_with_use dev-lang/python tk; then
 			eerror "You have requested tk, but your build of Python"
-			eerror "doesnt support import _tkinter. You may need to"
+			eerror "doesn't support import _tkinter. You may need to"
 			eerror "remerge dev-lang/python, or build ${P}"
 			eerror "with USE=\"-tk\""
-			die
+			die "rebuild python with USE=tk"
 		fi
 	fi
 }
 
 src_compile() {
 	if use emacs; then
-		elisp-comp extras/txt2tags-mode.el
+		elisp-compile extras/txt2tags-mode.el || die "elisp-compile failed"
 	fi
 }
-
-SITEFILE="50${PN}-gentoo.el"
 
 src_install() {
 	dobin txt2tags
 
-	dodoc README* TEAM TODO ChangeLog* doc/txt2tagsrc
-	dohtml -r doc/*
+	dodoc README TODO ChangeLog*
 	insinto /usr/share/doc/${PF}
-	doins doc/userguide.pdf
+	doins doc/*.{pdf,t2t}
 	# samples go into "samples" doc directory
 	docinto samples
 	dodoc samples/sample.*
@@ -57,16 +53,23 @@ src_install() {
 	dodoc samples/css/*
 	docinto samples/img
 	dodoc samples/img/*
+	docinto samples/module
+	dodoc samples/module/*
 	# extras go into "extras" doc directory
 	docinto extras
 	dodoc extras/*
-
 	newman doc/manpage.man txt2tags.1
+
+	# make .po files
+	for pofile in "${S}"/po/*.po; do
+		msgfmt -o ${pofile%%.po}.mo ${pofile}
+	done
+	domo po/*.mo
 
 	# emacs support
 	if use emacs; then
-		elisp-install ${PN} extras/txt2tags-mode.el
-		elisp-site-file-install ${FILESDIR}/${SITEFILE}
+		elisp-install ${PN} extras/txt2tags-mode.{el,elc}
+		elisp-site-file-install "${FILESDIR}/${SITEFILE}"
 	fi
 }
 
