@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.334 2007/08/28 11:27:03 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.336 2007/09/21 18:58:28 remi Exp $
+
+*gtk+-2.12.0 (21 Sep 2007)
+
+  21 Sep 2007; Rémi Cardona <remi@gentoo.org>
+  +files/gtk+-2.12.0-icon-cache-speedup.patch, +gtk+-2.12.0.ebuild:
+  Add gtk+-2.12.0 (Gnome 2.20)
+
+  21 Sep 2007; Brent Baude <ranger@gentoo.org> gtk+-2.10.14.ebuild:
+  Marking gtk+-2.10.14 ppc64 for bug #190019
 
   28 Aug 2007; nixnut <nixnut@gentoo.org> gtk+-2.10.14.ebuild:
   Stable on ppc wrt bug 190019
