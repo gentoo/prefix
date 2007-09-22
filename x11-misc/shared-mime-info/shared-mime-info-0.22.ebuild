@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/shared-mime-info-0.22.ebuild,v 1.1 2007/08/01 10:57:56 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/shared-mime-info-0.22.ebuild,v 1.4 2007/09/21 22:59:35 wolf31o2 Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
-RDEPEND=">=dev-libs/glib-2.2
+RDEPEND=">=dev-libs/glib-2.3.2
 	>=dev-libs/libxml2-2.4"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
