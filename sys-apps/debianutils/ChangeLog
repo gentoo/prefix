@@ -2,10 +2,6 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/ChangeLog,v 1.89 2007/09/18 15:17:57 armin76 Exp $
 
-  20 Sep 2007; Michael Haubenwallner <michael.haubenwallner@salomon.at>
-  debianutils-2.17.5.ebuild:
-  keyworded ~ppc-aix
-
   18 Sep 2007; Raúl Porcel <armin76@gentoo.org> debianutils-2.23.1.ebuild:
   alpha/ia64/x86 stable
 
