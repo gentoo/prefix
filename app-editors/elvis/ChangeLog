@@ -1,6 +1,13 @@
 # ChangeLog for app-editors/elvis
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/elvis/ChangeLog,v 1.32 2007/07/22 08:42:58 omp Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/elvis/ChangeLog,v 1.33 2007/09/21 21:24:30 hawking Exp $
+
+*elvis-2.2.0-r3 (21 Sep 2007)
+
+  21 Sep 2007; Ali Polatel <hawking@gentoo.org>
+  +files/ft2.3-symbol-collision-fix.patch, +elvis-2.2.0-r3.ebuild:
+  revbump. add patch to fix symbol collision between elvis and freetype.
+  bug 189271, thanks to Gordon Malm.
 
   22 Jul 2007; David Shakaryan <omp@gentoo.org> elvis-2.2.0-r1.ebuild,
   elvis-2.2.0-r2.ebuild:
