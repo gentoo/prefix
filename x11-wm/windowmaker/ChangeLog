@@ -1,6 +1,15 @@
 # ChangeLog for x11-wm/windowmaker
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/ChangeLog,v 1.85 2007/09/17 09:32:55 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/ChangeLog,v 1.87 2007/09/21 14:47:42 voyageur Exp $
+
+  21 Sep 2007; Bernard Cafarelli <voyageur@gentoo.org>
+  windowmaker-0.92.0-r4.ebuild:
+  Temporary removal of ~sparc keyword, until gnustep-make-2.0 is available for
+  this arch
+
+  21 Sep 2007; Bernard Cafarelli <voyageur@gentoo.org>
+  windowmaker-0.92.0-r4.ebuild:
+  Only do egnustep_env when USE=gnustep is set, bug #193111
 
   17 Sep 2007; Fabian Groffen <grobian@gentoo.org>
   windowmaker-0.92.0-r4.ebuild:
