@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.282 2007/08/28 11:21:18 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.285 2007/09/21 17:29:39 remi Exp $
+
+*glib-2.14.1 (21 Sep 2007)
+
+  21 Sep 2007; Rémi Cardona <remi@gentoo.org> +glib-2.14.1.ebuild:
+  Add glib-2.14.1 (for Gnome 2.20)
+
+  21 Sep 2007; Brent Baude <ranger@gentoo.org> glib-2.12.13.ebuild:
+  Marking glib-2.12.13 ppc64 for bug#190019
 
   28 Aug 2007; nixnut <nixnut@gentoo.org> glib-2.12.13.ebuild:
   Stable on ppc wrt bug 190019

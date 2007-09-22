@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.12.13.ebuild,v 1.8 2007/09/21 01:40:20 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.14.1.ebuild,v 1.3 2007/09/21 20:23:19 leio Exp $
 
 EAPI="prefix"
 
@@ -25,13 +25,12 @@ DEPEND="${RDEPEND}
 	)"
 
 src_unpack() {
-
-	unpack "${A}"
-	cd "${S}"
+	unpack ${A}
+	cd ${S}
 
 	if use ppc64 && use hardened ; then
 		replace-flags -O[2-3] -O1
-		epatch "${FILESDIR}"/glib-2.6.3-testglib-ssp.patch
+		epatch "${FILESDIR}/glib-2.6.3-testglib-ssp.patch"
 	fi
 
 	if use ia64 ; then
@@ -82,12 +81,6 @@ src_install() {
 
 	# Do not install charset.alias even if generated, leave it tol libiconv
 	rm -f ${ED}/usr/lib/charset.alias
-
-	# Consider invalid UTF-8 filenames as locale-specific.
-	# TODO :: Eventually get rid of G_BROKEN_FILENAMES
-	dodir /etc/env.d
-	echo "G_BROKEN_FILENAMES=1" > ${ED}/etc/env.d/50glib2
-	echo "G_FILENAME_ENCODING=UTF-8" >> ${ED}/etc/env.d/50glib2
 
 	dodoc AUTHORS ChangeLog* NEWS* README
 }
