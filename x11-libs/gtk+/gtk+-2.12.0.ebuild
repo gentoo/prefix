@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit gnome.org flag-o-matic eutils autotools virtualx
+inherit gnome.org flag-o-matic eutils autotools virtualx multilib
 
 DESCRIPTION="Gimp ToolKit +"
 HOMEPAGE="http://www.gtk.org/"
@@ -125,7 +125,9 @@ src_compile() {
 	# Passing --disable-debug is not recommended for production use
 	use debug && myconf="${myconf} --enable-debug=yes"
 
-	econf ${myconf} || die "configure failed"
+	# need libdir here to avoid a double slash in a path that libtool doesn't
+	# grok so well during install (// between $EPREFIX and usr ...)
+	econf --libdir="${EPREFIX}/usr/$(get_libdir)" ${myconf} || die "configure failed"
 
 	# add correct framework linking options
 	use aqua && for i in gtk demos demos/gtk-demo tests perf; do
