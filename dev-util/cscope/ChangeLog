@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/cscope
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/ChangeLog,v 1.95 2007/02/15 10:21:00 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/ChangeLog,v 1.96 2007/09/21 08:46:34 ulm Exp $
+
+*cscope-15.6-r2 (21 Sep 2007)
+
+  21 Sep 2007; Ulrich Mueller <ulm@gentoo.org> +files/50cscope-gentoo.el,
+  +cscope-15.6-r2.ebuild:
+  Fix Emacs support: Use autoload (bug #174469); install files in standard
+  location ${SITELISP}/${PN}. Don't install licence and CVS directories with
+  webcscope documentation. Add GPL-2 to "LICENSE" since it applies to xcscope
+  and webcscope. Add some quotes and some messages to die commands.
 
   15 Feb 2007; Christian Faulhammer <opfer@gentoo.org>
   -cscope-15.5.20060927.ebuild, -cscope-15.5.20060927-r1.ebuild,
