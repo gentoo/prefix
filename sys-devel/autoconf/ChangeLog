@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/autoconf
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.108 2007/09/08 06:25:56 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.109 2007/09/22 20:15:54 philantrop Exp $
+
+  22 Sep 2007; Wulf C. Krueger <philantrop@gentoo.org>
+  autoconf-2.61-r1.ebuild:
+  Marked stable on amd64 as per bug 189029.
 
   08 Sep 2007; Mike Frysinger <vapier@gentoo.org>
   +files/autoconf-2.13-test-fixes.patch, autoconf-2.13.ebuild:
