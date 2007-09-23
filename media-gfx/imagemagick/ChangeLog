@@ -1,6 +1,29 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.240 2007/09/21 23:38:32 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.246 2007/09/22 16:45:19 wolf31o2 Exp $
+
+  22 Sep 2007; Chris Gianelloni <wolf31o2@gentoo.org>
+  imagemagick-6.3.5.9.ebuild:
+  Stable on amd64 wrt bug #186030.
+
+  22 Sep 2007; Raúl Porcel <armin76@gentoo.org> imagemagick-6.3.5.9.ebuild:
+  alpha/ia64 stable wrt security #186030
+
+  22 Sep 2007; Brent Baude <ranger@gentoo.org> imagemagick-6.3.5.9.ebuild:
+  Marking imagemagick-6.3.5.9 ppc64 for bug 186030
+
+  22 Sep 2007; Luca Barbato <lu_zero@gentoo.org> imagemagick-6.3.5.9.ebuild:
+  Marked ppc64
+
+  22 Sep 2007; Luca Barbato <lu_zero@gentoo.org> imagemagick-6.3.5.9.ebuild:
+  Marked ppc
+
+  22 Sep 2007; Hans de Graaff <graaff@gentoo.org>
+  imagemagick-6.3.5.9.ebuild:
+  Add back ~x86-fbsd keyword which got dropped for no apparent reason
+
+  22 Sep 2007; Jeroen Roovers <jer@gentoo.org> imagemagick-6.3.5.9.ebuild:
+  Stable for HPPA (bug #186030).
 
   21 Sep 2007; Ferris McCormick <fmccor@gentoo.org>
   imagemagick-6.3.5.9.ebuild:
