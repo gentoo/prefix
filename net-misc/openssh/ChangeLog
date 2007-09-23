@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.264 2007/09/20 07:38:05 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.265 2007/09/22 18:17:42 vapier Exp $
+
+  22 Sep 2007; Mike Frysinger <vapier@gentoo.org> openssh-4.7_p1-r1.ebuild:
+  Upstream changed openssh-4.7p1-hpn12v18.diff.gz slightly so rebuild manifest
+  and prevent hitting Gentoo mirrors for a little while #193401 by Timothy
+  Redaelli.
 
   20 Sep 2007; Mike Frysinger <vapier@gentoo.org> files/sshd.rc6:
   If restarting, check the config first #192825 by Hans-Werner Hilse.
