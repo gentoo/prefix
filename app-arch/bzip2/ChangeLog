@@ -1,6 +1,12 @@
 # ChangeLog for app-arch/bzip2
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/ChangeLog,v 1.54 2007/04/18 14:37:31 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/ChangeLog,v 1.55 2007/09/22 18:32:38 vapier Exp $
+
+*bzip2-1.0.4-r1 (22 Sep 2007)
+
+  22 Sep 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/bzip2-1.0.4-POSIX-shell.patch, +bzip2-1.0.4-r1.ebuild:
+  Fix bashisms in bzgrep so it works with a POSIX shell #193365.
 
   18 Apr 2007; Alexander Færøy <eroyf@gentoo.org> bzip2-1.0.4.ebuild:
   Stable on MIPS; bug #170457
