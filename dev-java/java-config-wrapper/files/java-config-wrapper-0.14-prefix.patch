@@ -144,7 +144,7 @@
 +#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
  
 -source /etc/init.d/functions.sh
-+source "/Users/pipping/Gentoo"/etc/init.d/functions.sh
++source "@GENTOO_PORTAGE_EPREFIX@"/etc/init.d/functions.sh
  
  # Used to update the global result.
  update_result() {
@@ -153,7 +153,7 @@
  
  	# Check /etc/env.d/java for old env files
 -	for env in $(ls /etc/env.d/java/20* 2>/dev/null); do
-+	for env in $(ls "/Users/pipping/Gentoo"/etc/env.d/java/20* 2>/dev/null); do
++	for env in $(ls "@GENTOO_PORTAGE_EPREFIX@"/etc/env.d/java/20* 2>/dev/null); do
  		generation=$(source ${env}; echo $GENERATION)
  		version=$(source ${env}; echo $VERSION)
  		handle=${env#*20}
@@ -172,8 +172,8 @@
  		# TODO should point this to migration-overlay probably
 -		portdir=$(source /etc/make.conf; echo ${PORTDIR})
 -		portdir=${portdir:="/usr/portage"}
-+		portdir=$(source "/Users/pipping/Gentoo"/etc/make.conf; echo ${PORTDIR})
-+		portdir=${portdir:="/Users/pipping/Gentoo"/usr/portage}
++		portdir=$(source "@GENTOO_PORTAGE_EPREFIX@"/etc/make.conf; echo ${PORTDIR})
++		portdir=${portdir:="@GENTOO_PORTAGE_EPREFIX@"/usr/portage}
  		qecho "# ${portdir}/dev-java/java-config-wrapper/files/java-1.5-fixer"
  		this_result=1
  	fi
@@ -182,7 +182,7 @@
  check_generation_1_system_vm() {
  	local this_result=0
 -	local env="/etc/env.d/20java"
-+	local env="/Users/pipping/Gentoo"/etc/env.d/20java
++	local env="@GENTOO_PORTAGE_EPREFIX@"/etc/env.d/20java
  	# Make sure a generation-1 VM is set
  	if [[ ! -f "${env}" || -z $(java-config-1 -f) ]]; then
  		qeerror "No Generation-1 System VM is set! (no /etc/env.d/20java)"
@@ -191,7 +191,7 @@
  		this_result=1
      fi
 -	if grep "virtual/\(jre\|jdk\)" /etc/portage/profile/virtuals >/dev/null 2>&1; then
-+	if grep "virtual/\(jre\|jdk\)" "/Users/pipping/Gentoo"/etc/portage/profile/virtuals >/dev/null 2>&1; then
++	if grep "virtual/\(jre\|jdk\)" "@GENTOO_PORTAGE_EPREFIX@"/etc/portage/profile/virtuals >/dev/null 2>&1; then
  		qeerror "Found virtual/{jre,jdk} entries in /etc/portage/profile/virtuals"
  		qeerror "Please remove them"
  		
@@ -200,7 +200,7 @@
  	local result=0
  	local pkg owner failed
 -	for penv in /usr/share/*/package.env; do
-+	for penv in "/Users/pipping/Gentoo"/usr/share/*/package.env; do
++	for penv in "@GENTOO_PORTAGE_EPREFIX@"/usr/share/*/package.env; do
  		if grep DEPEND ${penv} | grep , > /dev/null; then
  			owner=$(qfile -qC ${penv})
  			qeerror "Syntax error in ${owner}:"
@@ -209,7 +209,7 @@
  						pkg=${atom}
  					fi
 -					if [[ ! -e /usr/share/${pkg}/package.env ]]; then
-+					if [[ ! -e "/Users/pipping/Gentoo"/usr/share/${pkg}/package.env ]]; then
++					if [[ ! -e "@GENTOO_PORTAGE_EPREFIX@"/usr/share/${pkg}/package.env ]]; then
  						return 1
  					fi
  				done
@@ -218,7 +218,7 @@
  
  check_fastjar() {
 -	local fjar=/usr/bin/fastjar
-+	local fjar="/Users/pipping/Gentoo"/usr/bin/fastjar
++	local fjar="@GENTOO_PORTAGE_EPREFIX@"/usr/bin/fastjar
  	local result=0
  	if [[ -x ${fjar} ]]; then
  		local tmpdir="$(mktemp -d)"
@@ -231,7 +231,7 @@
  WANT_JAVA_CONFIG=${WANT_JAVA_CONFIG:="2"}
  
 -JAVA_CONFIG="/usr/bin/java-config-${WANT_JAVA_CONFIG}"
-+JAVA_CONFIG="/Users/pipping/Gentoo/usr/bin/java-config-${WANT_JAVA_CONFIG}"
++JAVA_CONFIG="@GENTOO_PORTAGE_EPREFIX@/usr/bin/java-config-${WANT_JAVA_CONFIG}"
  
  if [[ -x ${JAVA_CONFIG} ]]; then
  	exec ${JAVA_CONFIG} "$@"
