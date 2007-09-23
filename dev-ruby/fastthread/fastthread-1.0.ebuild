@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/fastthread/fastthread-1.0.ebuild,v 1.1 2007/07/08 16:02:11 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/fastthread/fastthread-1.0.ebuild,v 1.5 2007/09/22 15:50:23 angelos Exp $
 
 EAPI="prefix"
 
