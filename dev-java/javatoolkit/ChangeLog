@@ -1,0 +1,126 @@
+# ChangeLog for dev-java/javatoolkit
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/javatoolkit/ChangeLog,v 1.31 2007/03/15 13:27:00 caster Exp $
+
+  15 Mar 2007; Vlastimil Babka <caster@gentoo.org>
+  -files/javatoolkit-0.1.9-make.patch, -javatoolkit-0.1.9-r1.ebuild:
+  Remove unneeded version.
+
+  15 Mar 2007; Joshua Nichols <nichoj@gentoo.org>
+  javatoolkit-0.2.0-r1.ebuild:
+  Stable on ia64 for bug #165069.
+
+  14 Feb 2007; Vlastimil Babka <caster@gentoo.org>
+  -javatoolkit-0.1.9.ebuild, -javatoolkit-0.2.0.ebuild:
+  Cleanup.
+
+  10 Feb 2007; nixnut <nixnut@gentoo.org> javatoolkit-0.2.0-r1.ebuild:
+  Stable on ppc wrt bug 165069
+
+  04 Feb 2007; Andrej Kacian <ticho@gentoo.org> javatoolkit-0.2.0-r1.ebuild:
+  Stable on x86, bug #165069.
+
+  04 Feb 2007; Markus Rothe <corsair@gentoo.org>
+  javatoolkit-0.2.0-r1.ebuild:
+  Stable on ppc64; bug #165069
+
+  03 Feb 2007; Steve Dibb <beandog@gentoo.org> javatoolkit-0.2.0-r1.ebuild:
+  amd64 stable, bug 165069
+
+  01 Jan 2007; Vlastimil Babka <caster@gentoo.org>
+  -files/0.2.0-use-sax.patch, +files/0.2.0-use-sax-fixed.patch,
+  javatoolkit-0.2.0-r1.ebuild:
+  Fix the use-sax patch wrt bug #159600 by Wilbur Pan <wilburpan@hotmail.com>.
+  Thanks to Flameeyes for teaching me the cvs magic needed.
+
+*javatoolkit-0.2.0-r1 (31 Dec 2006)
+
+  31 Dec 2006; Petteri Räty <betelgeuse@gentoo.org>
+  +files/0.2.0-use-sax.patch, +javatoolkit-0.2.0-r1.ebuild:
+  Patch to xml-rewrite-2.py to switch from direct Expat usage to Sax. Gives
+  proper support for for example entities and preserving doctypes.
+
+  30 Dec 2006; Vlastimil Babka <caster@gentoo.org> javatoolkit-0.1.9.ebuild,
+  javatoolkit-0.1.9-r1.ebuild, javatoolkit-0.2.0.ebuild:
+  Fixed HOMEPAGE wrt bug #159440.
+
+*javatoolkit-0.2.0 (27 Dec 2006)
+
+  27 Dec 2006; Petteri Räty <betelgeuse@gentoo.org>
+  +javatoolkit-0.2.0.ebuild:
+  Version bump. The only improvement is xml-rewrite-2.py that uses expat
+  internally instead of DOM and as such makes the build.xml rewriting much
+  faster.
+
+  26 Nov 2006; Petteri Räty <betelgeuse@gentoo.org> metadata.xml:
+  Moving under the java herd umbrella.
+
+  26 Nov 2006; Petteri Räty <betelgeuse@gentoo.org> metadata.xml,
+  -javatoolkit-0.1.0.ebuild:
+  Removed an old version and fixed ChangeLog syntax for the 0.1.9 version bump.
+
+  18 Oct 2006; Joshua Jackson <tsunam@gentoo.org>
+  javatoolkit-0.1.9-r1.ebuild:
+  Stable x86
+
+  15 Oct 2006; Joshua Nichols <nichoj@gentoo.org>
+  javatoolkit-0.1.9-r1.ebuild:
+  Stabilizing on ppc as part of new Java system, bug #147254.
+
+  15 Oct 2006; Joshua Nichols <nichoj@gentoo.org>
+  javatoolkit-0.1.9-r1.ebuild:
+  Stabilizing on ia64 as part of new Java system, bug #147254.
+
+  14 Oct 2006; Joshua Nichols <nichoj@gentoo.org>
+  javatoolkit-0.1.9-r1.ebuild:
+  Stabilizing on amd64 as part of new Java system, bug #147254.
+
+  14 Oct 2006; Joshua Nichols <nichoj@gentoo.org>
+  javatoolkit-0.1.9-r1.ebuild:
+  Stabilizing on ppc64 as part of new Java system, bug #147254.
+
+  14 Oct 2006; Joshua Jackson <tsunam@gentoo.org> javatoolkit-0.1.9.ebuild:
+  New java stable on x86; bug #147254
+
+*javatoolkit-0.1.9-r1 (28 Sep 2006)
+
+  28 Sep 2006; Joshua Nichols <nichoj@gentoo.org>
+  +javatoolkit-0.1.9-r1.ebuild:
+  Fixed version in makedefs.mak, which fixes where docs get installed.
+
+  13 Sep 2006; <nichoj@gentoo.org> javatoolkit-0.1.9.ebuild:
+  Revert changes to src_unpack.
+
+  13 Sep 2006; <nichoj@gentoo.org> javatoolkit-0.1.9.ebuild:
+  Removed unnecessary dependency on JDK/JRE. Added dependency to python.
+
+  23 Jul 2006; Diego Pettenò <flameeyes@gentoo.org>
+  javatoolkit-0.1.9.ebuild:
+  Add ~x86-fbsd keyword.
+
+  22 Jul 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +files/javatoolkit-0.1.9-make.patch, javatoolkit-0.1.9.ebuild:
+  Add patch to respect $(MAKE), see bug #141420.
+
+  09 Jul 2006; Rene Nussbaumer <killerfox@gentoo.org>
+  javatoolkit-0.1.9.ebuild:
+  Removed from hppa.
+
+  05 Jul 2006; Thomas Cort <tcort@gentoo.org> javatoolkit-0.1.9.ebuild:
+  Drop ~alpha keyword since we don't have java 1.4.
+
+*javatoolkit-0.1.9 (25 Jun 2006)
+
+  25 Jun 2006; <nichoj@gentoo.org> +javatoolkit-0.1.9.ebuild:
+  Version bump.
+
+  20 Oct 2004; Dylan Carlson <absinthe@gentoo.org> javatoolkit-0.1.0.ebuild:
+  Keywords ~amd64.
+
+  28 Sep 2004; Sven Wegener <swegener@gentoo.org> :
+  Gentoo Technologies, Inc. -> Gentoo Foundation
+
+*javatoolkit-0.1.0 (10 Aug 2004)
+
+  10 Aug 2004; Karl Trygve Kalleberg <karltk@gentoo.org> javatoolkit-0.1.0.ebuild:
+  Initial import. Ebuild submitted by myself.

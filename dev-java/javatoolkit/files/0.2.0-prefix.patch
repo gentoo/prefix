@@ -1,0 +1,45 @@
+--- makedefs.mak~	2006-12-27 17:09:43 +0100
++++ makedefs.mak	2007-09-24 01:15:14 +0200
+@@ -8,11 +8,11 @@
+ 
+ VERSION=0.2.0
+ RELEASE_TAG=
+-PYVERSION="`python-config | sed 's/-l//' | sed 's/ -lm.*//'`"
++PYVERSION="`python-config --libs | grep -o 'python[^ ]*'`"
+ DESTDIR=
+ 
+-docdir=$(DESTDIR)/usr/share/doc/javatoolkit-$(VERSION)$(RELEASE_TAG)
+-libdir=$(DESTDIR)/usr/lib/javatoolkit
+-bindir=$(DESTDIR)/usr/bin
+-sbindir=$(DESTDIR)/usr/sbin
+-mandir=$(DESTDIR)/usr/share/man/man1
++docdir=$(DESTDIR)@GENTOO_PORTAGE_EPREFIX@/usr/share/doc/javatoolkit-$(VERSION)$(RELEASE_TAG)
++libdir=$(DESTDIR)@GENTOO_PORTAGE_EPREFIX@/usr/lib/javatoolkit
++bindir=$(DESTDIR)@GENTOO_PORTAGE_EPREFIX@/usr/bin
++sbindir=$(DESTDIR)@GENTOO_PORTAGE_EPREFIX@/usr/sbin
++mandir=$(DESTDIR)@GENTOO_PORTAGE_EPREFIX@/usr/share/man/man1
+--- src/javatoolkit/Makefile~	2007-09-24 01:18:48 +0200
++++ src/javatoolkit/Makefile	2007-09-24 01:19:38 +0200
+@@ -15,6 +15,6 @@
+ 	cp parser/*.py ../../$(distdir)/src/javatoolkit/parser/
+ 
+ install: all
+-	install -d $(DESTDIR)/usr/share/javatoolkit/pym/parser
+-	install -m 0644 *.py *.pyc $(DESTDIR)/usr/share/javatoolkit/pym/
+-	install -m 0644 parser/*.py parser/*.pyc $(DESTDIR)/usr/share/javatoolkit/pym/parser/
++	install -d $(DESTDIR)@GENTOO_PORTAGE_EPREFIX@/usr/share/javatoolkit/pym/parser
++	install -m 0644 *.py *.pyc $(DESTDIR)@GENTOO_PORTAGE_EPREFIX@/usr/share/javatoolkit/pym/
++	install -m 0644 parser/*.py parser/*.pyc $(DESTDIR)@GENTOO_PORTAGE_EPREFIX@/usr/share/javatoolkit/pym/parser/
+--- src/bsfix/Makefile~	2007-09-24 01:22:31 +0200
++++ src/bsfix/Makefile	2007-09-24 01:23:16 +0200
+@@ -14,8 +14,8 @@
+ 
+ install: all
+ 	install -m 0755 bsfix $(bindir)/
+-	install -d $(DESTDIR)/usr/share/javatoolkit/lib
+-	install build-xml-source-target.xslt ${DESTDIR}/usr/share/javatoolkit/
++	install -d $(DESTDIR)@GENTOO_PORTAGE_EPREFIX@/usr/share/javatoolkit/lib
++	install build-xml-source-target.xslt ${DESTDIR}@GENTOO_PORTAGE_EPREFIX@/usr/share/javatoolkit/
+ 	install -m 0755 xml-rewrite.py ${bindir}/
+ 	install -m 0755 xml-rewrite-2.py ${bindir}/
+ 	install -m 0755 class-version-verify.py ${bindir}/
