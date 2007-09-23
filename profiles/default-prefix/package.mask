@@ -22,6 +22,10 @@
 ##   End example
 ##
 
+# Elias Pipping <pipping@mi.fu-berlin.de>
+# work in progress (in prefix)
+dev-java/java-config-wrapper
+
 # Elias Pipping <pipping@mi.fu-berlin.de> (23 Sep 2007)
 # java and ant are missing from the tree, ebuild itself is fine
 app-vim/ant
