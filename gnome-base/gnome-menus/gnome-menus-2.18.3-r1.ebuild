@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/gnome-menus-2.18.3-r1.ebuild,v 1.3 2007/09/21 22:58:40 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/gnome-menus-2.18.3-r1.ebuild,v 1.5 2007/09/22 14:45:15 dertobi123 Exp $
 
 EAPI="prefix"
 
