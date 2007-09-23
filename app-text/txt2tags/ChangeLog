@@ -1,6 +1,9 @@
 # ChangeLog for app-text/txt2tags
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/txt2tags/ChangeLog,v 1.29 2007/09/21 19:07:54 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/txt2tags/ChangeLog,v 1.30 2007/09/22 10:49:10 nixnut Exp $
+
+  22 Sep 2007; nixnut <nixnut@gentoo.org> txt2tags-2.3-r1.ebuild:
+  Stable on ppc wrt bug 182295
 
   21 Sep 2007; Ferris McCormick <fmccor@gentoo.org> txt2tags-2.3-r1.ebuild:
   Sparc stable --- Bug #182295 --- nice.
