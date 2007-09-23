@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.18.3.ebuild,v 1.8 2007/08/28 17:27:48 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.18.3.ebuild,v 1.9 2007/09/22 09:25:48 tgall Exp $
 
 EAPI="prefix"
 
