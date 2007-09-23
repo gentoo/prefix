@@ -1,6 +1,10 @@
 # ChangeLog for net-irc/irssi
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/ChangeLog,v 1.120 2007/08/26 20:45:44 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/ChangeLog,v 1.121 2007/09/22 19:13:41 swegener Exp $
+
+  22 Sep 2007; Sven Wegener <swegener@gentoo.org> irssi-0.8.10-r4.ebuild,
+  irssi-0.8.11.ebuild, irssi-0.8.12_rc1.ebuild:
+  Add epunt_cxx for bug #185602.
 
 *irssi-0.8.12_rc1 (26 Aug 2007)
 

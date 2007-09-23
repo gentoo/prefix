@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/irssi-0.8.10-r4.ebuild,v 1.14 2007/03/17 18:10:33 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/irssi-0.8.10-r4.ebuild,v 1.15 2007/09/22 19:13:41 swegener Exp $
 
 EAPI="prefix"
 
@@ -32,6 +32,8 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-dcc-segv.patch
 	epatch "${FILESDIR}"/${P}-line-split.patch
+
+	epunt_cxx
 }
 
 src_compile() {

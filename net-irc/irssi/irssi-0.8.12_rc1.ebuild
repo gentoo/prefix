@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/irssi-0.8.12_rc1.ebuild,v 1.1 2007/08/26 20:45:45 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/irssi-0.8.12_rc1.ebuild,v 1.2 2007/09/22 19:13:41 swegener Exp $
 
 EAPI="prefix"
 
-inherit perl-module
+inherit perl-module eutils
 
 MY_P="${P/_/-}"
 
@@ -29,6 +29,12 @@ RDEPEND="${RDEPEND}
 	!net-irc/irssi-svn"
 
 S="${WORKDIR}"/${MY_P}
+
+src_unpack() {
+	unpack ${A}
+
+	epunt_cxx
+}
 
 src_compile() {
 	econf \
