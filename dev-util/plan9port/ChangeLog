@@ -1,0 +1,11 @@
+# ChangeLog for dev-util/plan9port
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/plan9port/ChangeLog,v 1.1 2007/05/29 02:11:27 anant Exp $
+
+*plan9port-20070522 (29 May 2007)
+
+  29 May 2007; Anant Narayanan <anant@gentoo.org> +files/30plan9,
+  +metadata.xml, +plan9port-20070522.ebuild:
+  Initial ebuild for Plan9Port, a set of Plan 9 utilities ported to POSIX
+  environments.
+

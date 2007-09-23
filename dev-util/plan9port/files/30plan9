@@ -1,0 +1,3 @@
+PLAN9=/usr/lib/plan9
+PATH=/usr/lib/plan9/bin
+ROOTPATH=/usr/lib/plan9/bin

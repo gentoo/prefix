@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>no-herd</herd>
+	<maintainer>
+		<email>anant@gentoo.org</email>
+		<name>Anant Narayanan</name>
+	</maintainer>
+	<longdescription>
+		Plan9Port is a set of Plan 9 utilities ported to the POSIX
+		environment - also know as Plan 9 from User Space.
+	</longdescription>
+</pkgmetadata>
