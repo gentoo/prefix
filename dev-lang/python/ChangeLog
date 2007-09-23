@@ -1,6 +1,21 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.273 2007/09/21 18:47:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.278 2007/09/22 15:13:39 jer Exp $
+
+  22 Sep 2007; Jeroen Roovers <jer@gentoo.org> python-2.4.4-r5.ebuild:
+  Stable for HPPA (bug #188029).
+
+  22 Sep 2007; Ferris McCormick <fmccor@gentoo.org> python-2.4.4-r5.ebuild:
+  Sparc stable --- Bug #188029 --- all tests pass and portage still works.
+
+  22 Sep 2007; Brent Baude <ranger@gentoo.org> ChangeLog:
+  MArking python-2.4.4-r5 ppc64 for bug 188029
+
+  22 Sep 2007; nixnut <nixnut@gentoo.org> python-2.4.4-r5.ebuild:
+  Stable on ppc wrt bug 188029
+
+  22 Sep 2007; Tom Gall <tgall@gentoo.org> python-2.4.4-r5.ebuild:
+  stable on ppc64
 
   21 Sep 2007; Raúl Porcel <armin76@gentoo.org> python-2.4.4-r5.ebuild:
   alpha/ia64 stable wrt #188029
