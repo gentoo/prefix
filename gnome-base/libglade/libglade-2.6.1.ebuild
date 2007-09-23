@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/libglade-2.6.1.ebuild,v 1.9 2007/09/07 21:47:43 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/libglade-2.6.1.ebuild,v 1.10 2007/09/22 05:47:34 tgall Exp $
 
 EAPI="prefix"
 
