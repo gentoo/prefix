@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.27 2007/08/27 19:41:03 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.28 2007/09/22 20:25:30 ulm Exp $
 #
 # Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
@@ -129,6 +129,9 @@
 
 SITELISP="${EPREFIX}"/usr/share/emacs/site-lisp
 SITEFILE=50${PN}-gentoo.el
+EMACS="${EPREFIX}"/usr/bin/emacs
+# The following works for Emacs versions 18-23, don't change it.
+EMACS_BATCH_CLEAN="${EMACS} -batch -q --no-site-file"
 
 # @FUNCTION: elisp-compile
 # @USAGE: <list of elisp files>
@@ -136,7 +139,8 @@ SITEFILE=50${PN}-gentoo.el
 # Byte-compile Emacs Lisp files.
 
 elisp-compile() {
-	"${EPREFIX}"/usr/bin/emacs --batch -q --no-site-file -f batch-byte-compile $*
+	einfo "Compiling GNU Emacs Elisp files ..."
+	${EMACS_BATCH_CLEAN} -f batch-byte-compile "$@"
 }
 
 # @FUNCTION: elisp-emacs-version
@@ -144,10 +148,9 @@ elisp-compile() {
 # Output version of currently active Emacs.
 
 elisp-emacs-version() {
-	# Output version of currently active Emacs.
-	# The following will work for at least versions 18-22.
+	# The following will work for at least versions 18-23.
 	echo "(princ emacs-version)" >"${T}"/emacs-version.el
-	"${EPREFIX}"/usr/bin/emacs -batch -q --no-site-file -l "${T}"/emacs-version.el
+	${EMACS_BATCH_CLEAN} -l "${T}"/emacs-version.el
 }
 
 # @FUNCTION: elisp-make-autoload-file
@@ -177,7 +180,7 @@ elisp-make-autoload-file () {
 	;;; ${f##*/} ends here
 	EOF
 
-	"${EPREFIX}"/usr/bin/emacs -batch -q --no-site-file \
+	${EMACS_BATCH_CLEAN} \
 		--eval "(setq make-backup-files nil)" \
 		--eval "(setq generated-autoload-file (expand-file-name \"${f}\"))" \
 		-f batch-update-autoloads "${@-.}"
@@ -189,12 +192,13 @@ elisp-make-autoload-file () {
 # Install files in SITELISP directory.
 
 elisp-install() {
-	local subdir=$1
-	einfo "Installing Elisp files for GNU Emacs support ..."
-	dodir ${SITELISP#${EPREFIX}}/${subdir}
-	insinto ${SITELISP#${EPREFIX}}/${subdir}
+	local subdir="$1"
 	shift
-	doins $@
+	einfo "Installing Elisp files for GNU Emacs support ..."
+	( # subshell to avoid pollution of calling environment
+		insinto "${SITELISP#${EPREFIX}}/${subdir}"
+		doins "$@"
+	)
 }
 
 # @FUNCTION: elisp-site-file-install
@@ -203,14 +207,14 @@ elisp-install() {
 # Install Emacs site-init file in SITELISP directory.
 
 elisp-site-file-install() {
-	local sitefile=$1 my_pn=${2:-${PN}}
+	local sf="$1" my_pn="${2:-${PN}}"
 	einfo "Installing site initialisation file for GNU Emacs ..."
-	pushd ${S}
-	cp ${sitefile} ${T}
-	sed -i "s:@SITELISP@:${SITELISP}/${my_pn}:g" ${T}/$(basename ${sitefile})
-	insinto ${SITELISP#${EPREFIX}}
-	doins ${T}/$(basename ${sitefile}) || die "failed to install site file"
-	popd
+	cp "${sf}" "${T}"
+	sed -i "s:@SITELISP@:${SITELISP}/${my_pn}:g" "${T}/$(basename "${sf}")"
+	( # subshell to avoid pollution of calling environment
+		insinto "${SITELISP#${EPREFIX}}"
+		doins "${T}/$(basename "${sf}")"
+	)
 }
 
 # @FUNCTION: elisp-site-regen
@@ -240,6 +244,11 @@ elisp-site-regen() {
 
 	cat <<-EOF >>"${T}"/site-gentoo.el
 
+	(provide 'site-gentoo)
+
+	;; Local Variables:
+	;; no-byte-compile: t
+	;; End:
 	;;; site-gentoo.el ends here
 	EOF
 
@@ -279,19 +288,20 @@ EOF
 # @USAGE: <list of elisp files>
 # @DESCRIPTION:
 # Byte-compile interdependent Emacs Lisp files.
-# Originally taken from GNU autotools.
+#
+# This function byte-compiles all ".el" files which are part of its
+# arguments, using GNU Emacs, and puts the resulting ".elc" files into the
+# current directory, so disregarding the original directories used in ".el"
+# arguments.
+#
+# This function manages in such a way that all Emacs Lisp files to be
+# compiled are made visible between themselves, in the event they require or
+# load one another.
 
 elisp-comp() {
 	# Copyright 1995 Free Software Foundation, Inc.
 	# François Pinard <pinard@iro.umontreal.ca>, 1995.
-	# This script byte-compiles all `.el' files which are part of its
-	# arguments, using GNU Emacs, and put the resulting `.elc' files into
-	# the current directory, so disregarding the original directories used
-	# in `.el' arguments.
-	#
-	# This script manages in such a way that all Emacs LISP files to
-	# be compiled are made visible between themselves, in the event
-	# they require or load-library one another.
+	# Originally taken from GNU autotools.
 
 	test $# -gt 0 || return 1
 
@@ -304,16 +314,15 @@ elisp-comp() {
 
 	tempdir=elc.$$
 	mkdir ${tempdir}
-	cp $* ${tempdir}
+	cp "$@" ${tempdir}
 	pushd ${tempdir}
 
 	echo "(add-to-list 'load-path \"../\")" > script
-	${EMACS} -batch -q --no-site-file --no-init-file -l script \
-		-f batch-byte-compile *.el
-	local status=$?
+	${EMACS_BATCH_CLEAN} -l script -f batch-byte-compile *.el
+	local ret=$?
 	mv *.elc ..
 
 	popd
 	rm -fr ${tempdir}
-	return ${status}
+	return ${ret}
 }

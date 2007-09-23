@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.22 2007/08/27 19:41:03 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.23 2007/09/22 20:25:30 ulm Exp $
 #
 # Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
 # Copyright 2002-2003 Matthew Kennedy <mkennedy@gentoo.org>
@@ -18,15 +18,21 @@
 # Emacs support for other than pure elisp packages is handled by
 # elisp-common.eclass where you won't have a dependency on Emacs itself.
 # All elisp-* functions are documented there.
-#
+
+# @ECLASS-VARIABLE: SIMPLE_ELISP
+# @DESCRIPTION:
 # Setting SIMPLE_ELISP=t in an ebuild means, that the package's source
 # is a single (in whatever way) compressed elisp file with the file name
 # ${PN}-${PV}.  This eclass will then redefine ${S}, and move
 # ${PN}-${PV}.el to ${PN}.el in src_unpack().
-#
+
+# @ECLASS-VARIABLE: DOCS
+# @DESCRIPTION:
 # DOCS="blah.txt ChangeLog" is automatically used to install the given
 # files by dodoc in src_install().
-#
+
+# @ECLASS-VARIABLE: NEED_EMACS
+# @DESCRIPTION:
 # If you need anything different from Emacs 21, use the NEED_EMACS
 # variable before inheriting elisp.eclass.  Set it to the major version
 # your package uses and the dependency will be adjusted.
@@ -63,8 +69,9 @@ elisp_src_compile() {
 }
 
 elisp_src_install() {
-	elisp-install ${PN} *.el *.elc
-	elisp-site-file-install "${FILESDIR}/${SITEFILE}"
+	elisp-install ${PN} *.el *.elc || die "elisp-install failed"
+	elisp-site-file-install "${FILESDIR}/${SITEFILE}" \
+		|| die "elisp-site-file-install failed"
 	if [ -n "${DOCS}" ]; then
 		dodoc ${DOCS} || die "dodoc failed"
 	fi
