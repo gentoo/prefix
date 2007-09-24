@@ -152,10 +152,6 @@ pkg_preinst() {
 		rm -rf "${ED}"/${portage_base}/bin/*
 		mv "${T}"/tbz2tool "${ED}"/${portage_base}/bin/
 	fi
-
-	# Save a list of specific python sources to compile during postinst.
-	find "${ED}"${portage_base}/pym -name "*.py" -print | \
-		sed -e "s:^${ED}::" > "${T}"/pym_src_file_list
 }
 
 pkg_postinst() {
