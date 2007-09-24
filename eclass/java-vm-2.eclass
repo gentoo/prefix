@@ -197,8 +197,8 @@ set_java_env() {
 
 	[[ -n ${JAVA_PROVIDE} ]] && echo "PROVIDES=\"${JAVA_PROVIDE}\"" >> ${env_file}
 
-	local java_home=$(source ${env_file}; echo ${JAVA_HOME})
-	[[ -z ${java_home} ]] && die "No JAVA_HOME defined in ${env_file}"
+	local java_home=$(source ${env_file}; echo ${JAVA_HOME#${EPREFIX}})
+	[[ -z "${EPREFIX}"${java_home} ]] && die "No JAVA_HOME defined in ${env_file}"
 
 	# prefix only - why do we need that in the first place?
 	dodir ${JAVA_VM_DIR}
