@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/tk
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.96 2007/09/20 21:04:31 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.97 2007/09/23 01:19:14 fmccor Exp $
+
+  23 Sep 2007; Ferris McCormick <fmccor@gentoo.org> tk-8.4.15-r1.ebuild:
+  Sparc stable --- security Bug #192539 --- has been running fine.
 
   20 Sep 2007; Brent Baude <ranger@gentoo.org> tk-8.4.15-r1.ebuild:
   keywording tk-8.4.15-r1 ppc64 for bug#190697
