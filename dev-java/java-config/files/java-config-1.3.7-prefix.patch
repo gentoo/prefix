@@ -40,7 +40,27 @@
  import sys
  
 -sys.path.insert(0, '/usr/lib/portage/pym')
-+sys.path.insert(0, '@GENTOO_PORTAGE_EPREFIX@/usr/lib/portage/pym')
++sys.path.insert(0, '/Users/pipping/Gentoo/usr/lib/portage/pym')
  from jc_output import *
  from jc_exceptions import OptionRuntimeError
+ 
+@@ -200,16 +200,16 @@
+ 	return norm_cp(':'.join(classpath_list))
+ 
+ collect_packages.cp_env = lambda pkg: os.path.join(
+-  '/', 'usr', 'share', pkg, 'classpath.env'
++  '@GENTOO_PORTAGE_EPREFIX@', 'usr', 'share', pkg, 'classpath.env'
+ )
+ 
+ collect_packages.pkg_env = lambda pkg: os.path.join(
+-  '/', 'usr', 'share', pkg, 'package.env'
++  '@GENTOO_PORTAGE_EPREFIX@', 'usr', 'share', pkg, 'package.env'
+ )
+ 
+ collect_packages.adl_pkgs = lambda pkg: glob.glob(
+   os.path.join(
+-    '/', 'usr', 'share', pkg, 'packages', '*'
++    '@GENTOO_PORTAGE_EPREFIX@', 'usr', 'share', pkg, 'packages', '*'
+   )
+ )
  
