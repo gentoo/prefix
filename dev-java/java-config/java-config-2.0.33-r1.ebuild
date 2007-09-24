@@ -25,7 +25,12 @@ src_unpack() {
 
 	epatch "${FILESDIR}/${PF}.patch"
 	epatch "${FILESDIR}/${P}-prefix.patch"
-	eprefixify setup.py
+	eprefixify \
+		setup.py \
+		src/{depend-java-query,gjl,java-config-2,launcher.bash,run-java-tool} \
+		src/eselect/java-{nsplugin,vm}.eselect \
+		src/profile.d/java-config-2.{,c}sh \
+		src/java_config/{EnvironmentManager.py,VM.py,VersionManager.py}
 }
 
 src_install() {
