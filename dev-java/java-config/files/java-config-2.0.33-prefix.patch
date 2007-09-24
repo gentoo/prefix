@@ -243,3 +243,9 @@
      _prefs = None
  
      def __init__(self):
+--- config/20java-config~	2007-09-24 15:16:59 +0200
++++ config/20java-config	2007-09-24 15:20:37 +0200
+@@ -1,2 +1,2 @@
+-MANPATH=/etc/java-config/system-vm/man/
++MANPATH="@GENTOO_PORTAGE_EPREFIX@"/etc/java-config/system-vm/man/
+ CONFIG_PROTECT_MASK="/etc/env.d/java/"
