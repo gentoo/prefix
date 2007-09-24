@@ -22,6 +22,11 @@
 ##   End example
 ##
 
+# Fabian Groffen <grobian@gentoo.org>
+# gdkconfig.h is installed in some weird location, non-standard, cannot
+# be found by applications linking to it.
+=x11-libs/gtk+-2.12.0
+
 # Elias Pipping <pipping@mi.fu-berlin.de>
 # work in progress (in prefix)
 dev-java/java-config
