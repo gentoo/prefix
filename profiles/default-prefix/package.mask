@@ -27,6 +27,7 @@
 dev-java/java-config
 dev-java/java-config-wrapper
 dev-java/javatoolkit
+dev-java/jikes
 
 # Elias Pipping <pipping@mi.fu-berlin.de> (23 Sep 2007)
 # java and ant are missing from the tree, ebuild itself is fine
