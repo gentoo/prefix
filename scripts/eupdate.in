@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # Copyright Gentoo Foundation 2006-2007
 
+# <grobian@gentoo.org> -- 2007-09-24
+# added support for all P* variables in fetch_files expansion, avoided
+# getting bash errors due to unterminated quotes
 # <grobian@gentoo.org> -- 2007-09-12
 # performance improvements by avoiding comparing ebuilds to non-ebuilds
 # when looking for updates, and by avoiding fork/execs for cut and echo
@@ -377,12 +380,14 @@ fetch_files() {
 	local mver=$(get_ebuildversion $1)
 	local pn=${EPACKAGE##*/}
 	local pv=${mver%-r*}
+	local pr=${mver#${pv}} ; pr=${pr#-} ; pr=${pr:-r0}
+	local pf=${pn}-${mver}
 	local p=$pn-$pv
 	local t=""
 
 	# Sometimes patches or other things in the FILESDIR refer to some
 	# variable stored globally.  We grab them from the ebuild for those cases
-	gvars=$(egrep '^[A-Za-z_]+=' $1 | egrep -v '^(([RP]|)DEPEND|DESCRIPTION|HOMEPAGE|SRC_URI|LICENSE|KEYWORDS|IUSE|S)=')
+	gvars=$(egrep '^[A-Za-z_]+=(".+"|[^"]+)$' $1 | egrep -v '^(([RP]|)DEPEND|DESCRIPTION|HOMEPAGE|SRC_URI|LICENSE|KEYWORDS|IUSE|S)=')
 
 	# Find all "referenced" files from/to FILESDIR.  We keep ${FILESDIR}
 	# in, to just use a bash eval on what we found to get the right
@@ -396,7 +401,7 @@ fetch_files() {
 		$1 | \
 	while read l ; do
 		t=$(eval a='$l'; for i in $a ; do echo $i ; break ; done)
-		t=$(env -i t=$t P=$p PV=$pv PN=$pn FILESDIR=files bash -c "$gvars"'; eval echo $t')
+		t=$(env -i t=$t P=$p PN=$pn PV=$pv PR=$pr PVR=$mver PF=$pf FILESDIR=files bash -c "$gvars"'; eval echo $t')
 		# we can have file{1,2} stuff in the first t here, so iterate
 		# over the result list...
 		for u in $t ; do
