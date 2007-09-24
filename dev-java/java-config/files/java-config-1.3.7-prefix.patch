@@ -1,0 +1,46 @@
+--- java-config~	2007-09-24 16:22:14 +0200
++++ java-config	2007-09-24 16:22:28 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python -E
++#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/python -E
+ # -*- coding: UTF-8 -*-
+ 
+ # Copyright 2001-2005 Gentoo Foundation
+--- java_config/jc_options.py~	2006-09-21 03:57:05 +0200
++++ java_config/jc_options.py	2007-09-24 16:34:37 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/sbin/env python2
++#!/usr/bin/env python2
+ # -*- coding: UTF-8 -*-
+ 
+ # Author: Jason Mobarak
+@@ -402,15 +402,15 @@
+ 	def __init__ (self):
+ 
+ 		self.glob_pkg = os.path.join(
+-		  '/', 'usr', 'share', '*', 'package.env'
++		  '@GENTOO_PORTAGE_EPREFIX@', 'usr', 'share', '*', 'package.env'
+ 		)
+ 
+ 		self.glob_cp = os.path.join(
+-		  '/', 'usr', 'share', '*', 'classpath.env'
++		  '@GENTOO_PORTAGE_EPREFIX@', 'usr', 'share', '*', 'classpath.env'
+ 		)
+ 
+ 		self.glob_pkg_dir = os.path.join(
+-		  '/', 'usr', 'share', 'java', 'packages', '*'
++		  '@GENTOO_PORTAGE_EPREFIX@', 'usr', 'share', 'java', 'packages', '*'
+ 		)
+ 
+ 	def __call__(self, args):
+--- java_config/jc_util.py~	2007-09-24 16:37:58 +0200
++++ java_config/jc_util.py	2007-09-24 16:37:48 +0200
+@@ -7,7 +7,7 @@
+ import glob
+ import sys
+ 
+-sys.path.insert(0, '/usr/lib/portage/pym')
++sys.path.insert(0, '@GENTOO_PORTAGE_EPREFIX@/usr/lib/portage/pym')
+ from jc_output import *
+ from jc_exceptions import OptionRuntimeError
+ 
