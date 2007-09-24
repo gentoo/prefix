@@ -1,0 +1,19 @@
+--- setup.py~	2007-09-24 02:18:57 +0200
++++ setup.py	2007-09-24 02:19:35 +0200
+@@ -50,11 +50,11 @@
+ 		('share/man/man1', ['man/java-config-2.1']),
+ 		('share/java-config-2/launcher', ['src/launcher.bash']),
+ 		('share/eselect/modules', glob('src/eselect/*.eselect')),
+-		('/etc/java-config-2/', ['config/virtuals']),
+-		('/etc/java-config-2/build/', ['config/jdk.conf','config/compilers.conf']),
+-		('/etc/env.d/',['config/20java-config']),
+-		('/etc/profile.d/', glob('src/profile.d/*')),
+-		('/etc/revdep-rebuild/', ['src/revdep-rebuild/60-java'])
++		('@GENTOO_PORTAGE_EPREFIX@/etc/java-config-2/', ['config/virtuals']),
++		('@GENTOO_PORTAGE_EPREFIX@/etc/java-config-2/build/', ['config/jdk.conf','config/compilers.conf']),
++		('@GENTOO_PORTAGE_EPREFIX@/etc/env.d/',['config/20java-config']),
++		('@GENTOO_PORTAGE_EPREFIX@/etc/profile.d/', glob('src/profile.d/*')),
++		('@GENTOO_PORTAGE_EPREFIX@/etc/revdep-rebuild/', ['src/revdep-rebuild/60-java'])
+ 	]
+ )
+ 
