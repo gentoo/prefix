@@ -133,7 +133,7 @@ JAVA_PKG_ALLOW_VM_CHANGE=${JAVA_PKG_ALLOW_VM_CHANGE:="yes"}
 # Directory where compiler settings are saved, without trailing slash.
 # Probably shouldn't touch this variable.
 # -----------------------------------------------------------------------------
-JAVA_PKG_COMPILER_DIR=${JAVA_PKG_COMPILER_DIR:="/usr/share/java-config-2/compiler"}
+JAVA_PKG_COMPILER_DIR=${JAVA_PKG_COMPILER_DIR:="${EPREFIX}"/usr/share/java-config-2/compiler}
 
 
 # -----------------------------------------------------------------------------
@@ -143,7 +143,7 @@ JAVA_PKG_COMPILER_DIR=${JAVA_PKG_COMPILER_DIR:="/usr/share/java-config-2/compile
 # Path to file containing information about which compiler to use.
 # Can be overloaded, but it should be overloaded for testing.
 # -----------------------------------------------------------------------------
-JAVA_PKG_COMPILERS_CONF=${JAVA_PKG_COMPILERS_CONF:="/etc/java-config-2/build/compilers.conf"}
+JAVA_PKG_COMPILERS_CONF=${JAVA_PKG_COMPILERS_CONF:="${EPREFIX}"/etc/java-config-2/build/compilers.conf}
 
 # -----------------------------------------------------------------------------
 # @variable-external JAVA_PKG_FORCE_COMPILER
@@ -297,7 +297,7 @@ java-pkg_dojar() {
 depend-java-query() {
 	# Used to have a which call here but it caused endless loops for some people
 	# that had some weird bashrc voodoo for which.
-	USE="${USE}" /usr/bin/depend-java-query "${@}"
+	USE="${USE}" "${EPREFIX}"/usr/bin/depend-java-query "${@}"
 }
 
 # ------------------------------------------------------------------------------
@@ -730,7 +730,7 @@ java-pkg_dolauncher() {
 	echo "gjl_package=${JAVA_PKG_NAME}" >> "${target}"
 	cat "${var_tmp}" >> "${target}"
 	rm -f "${var_tmp}"
-	echo "source /usr/share/java-config-2/launcher/launcher.bash" >> "${target}"
+	echo "source ${EPREFIX}/usr/share/java-config-2/launcher/launcher.bash" >> "${target}"
 
 	if [[ -n "${target_dir}" ]]; then
 		DESTTREE="${target_dir}" dobin "${target}"
@@ -1537,7 +1537,7 @@ java-pkg_get-javac() {
 	else
 		# for everything else, try to determine from an env file
 
-		local compiler_env="/usr/share/java-config-2/compiler/${compiler}"
+		local compiler_env="${EPREFIX}/usr/share/java-config-2/compiler/${compiler}"
 		if [[ -f ${compiler_env} ]]; then
 			local old_javac=${JAVAC}
 			unset JAVAC

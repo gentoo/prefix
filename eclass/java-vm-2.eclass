@@ -23,8 +23,8 @@ RDEPEND="
 
 export WANT_JAVA_CONFIG=2
 
-JAVA_VM_CONFIG_DIR="${EPREFIX}"/usr/share/java-config-2/vm
-JAVA_VM_DIR="${EPREFIX}"/usr/lib/jvm
+JAVA_VM_CONFIG_DIR=/usr/share/java-config-2/vm
+JAVA_VM_DIR=/usr/lib/jvm
 
 EXPORT_FUNCTIONS pkg_setup pkg_postinst pkg_prerm pkg_postrm
 
@@ -149,13 +149,23 @@ get_system_arch() {
 # TODO rename to something more evident, like install_env_file
 set_java_env() {
 	local platform="$(get_system_arch)"
-	local env_file="${D}${JAVA_VM_CONFIG_DIR}/${VMHANDLE}"
+	local env_file="${ED}${JAVA_VM_CONFIG_DIR}/${VMHANDLE}"
 	local old_env_file="${ED}/etc/env.d/java/20${P}"
 	local source_env_file="${FILESDIR}/${VMHANDLE}.env"
 
 	if [[ ! -f ${source_env_file} ]]; then
 		die "Unable to find the env file: ${source_env_file}"
 	fi
+
+	# make source_env_file prefix-ready
+	source_env_file_tmp=${VMHANDLE}.env
+	cp "${source_env_file}" ${source_env_file_tmp}
+	potential_patch="${FILESDIR}/${VMHANDLE}.env.prefix.patch"
+	if [[ -e "${potential_patch}" ]]; then
+		epatch "${potential_patch}" || die 'found a patch, failed to apply it'
+		eprefixify ${source_env_file_tmp}
+	fi
+	source_env_file=${source_env_file_tmp}
 
 	dodir ${JAVA_VM_CONFIG_DIR}
 	sed \
@@ -189,6 +199,10 @@ set_java_env() {
 
 	local java_home=$(source ${env_file}; echo ${JAVA_HOME})
 	[[ -z ${java_home} ]] && die "No JAVA_HOME defined in ${env_file}"
+
+	# prefix only - why do we need that in the first place?
+	dodir ${JAVA_VM_DIR}
+
 
 	# Make the symlink
 	dosym ${java_home} ${JAVA_VM_DIR}/${VMHANDLE} \
