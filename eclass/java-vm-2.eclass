@@ -23,8 +23,8 @@ RDEPEND="
 
 export WANT_JAVA_CONFIG=2
 
-JAVA_VM_CONFIG_DIR="/usr/share/java-config-2/vm"
-JAVA_VM_DIR="/usr/lib/jvm"
+JAVA_VM_CONFIG_DIR="${EPREFIX}"/usr/share/java-config-2/vm
+JAVA_VM_DIR="${EPREFIX}"/usr/lib/jvm
 
 EXPORT_FUNCTIONS pkg_setup pkg_postinst pkg_prerm pkg_postrm
 
@@ -48,7 +48,7 @@ java-vm-2_pkg_postinst() {
 		# no generation-1 system-vm was previously set
 		if [[ -z "${systemvm1}" ]]; then
 			# if 20java exists, must be using old VM
-			if [[ -f /etc/env.d/20java ]]; then
+			if [[ -f "${EPREFIX}"/etc/env.d/20java ]]; then
 				ewarn "The current generation-1 system-vm is using an out-of-date VM,"
 				ewarn "as in, it hasn't been updated for use with the new Java sytem."
 			# othewise, it must not have been set before
@@ -94,7 +94,7 @@ java-vm_check-nsplugin() {
 	fi
 	# Install a default nsplugin if we don't already have one
 	if has nsplugin ${IUSE} && use nsplugin; then
-		if [[ ! -f /usr/${libdir}/nsbrowser/plugins/javaplugin.so ]]; then
+		if [[ ! -f "${EPREFIX}"/usr/${libdir}/nsbrowser/plugins/javaplugin.so ]]; then
 			einfo "No system nsplugin currently set."
 			java-vm_set-nsplugin
 		else
@@ -149,7 +149,7 @@ get_system_arch() {
 # TODO rename to something more evident, like install_env_file
 set_java_env() {
 	local platform="$(get_system_arch)"
-	local env_file="${ED}${JAVA_VM_CONFIG_DIR}/${VMHANDLE}"
+	local env_file="${D}${JAVA_VM_CONFIG_DIR}/${VMHANDLE}"
 	local old_env_file="${ED}/etc/env.d/java/20${P}"
 	local source_env_file="${FILESDIR}/${VMHANDLE}.env"
 
@@ -197,7 +197,7 @@ set_java_env() {
 
 
 java_get_plugin_dir_() {
-	echo /usr/$(get_libdir)/nsbrowser/plugins
+	echo "${EPREFIX}"/usr/$(get_libdir)/nsbrowser/plugins
 }
 
 install_mozilla_plugin() {
@@ -207,7 +207,7 @@ install_mozilla_plugin() {
 		die "Cannot find mozilla plugin at ${ED}/${plugin}"
 	fi
 
-	local plugin_dir=/usr/share/java-config-2/nsplugin
+	local plugin_dir="${EPREFIX}"/usr/share/java-config-2/nsplugin
 	dodir ${plugin_dir}
 	dosym ${plugin} ${plugin_dir}/${VMHANDLE}-javaplugin.so
 }
