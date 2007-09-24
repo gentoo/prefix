@@ -47,7 +47,7 @@
 +++ src/bsfix/class-version-verify.py	2007-09-24 15:50:19 +0200
 @@ -1,4 +1,4 @@
 -#!/bin/env python
-+#/usr/bin/env python
++#!/usr/bin/env python
  #
  # Copyright(c) 2005, Thomas Matthijs <axxo@gentoo.org>
  # Copyright(c) 2005, Gentoo Foundation
