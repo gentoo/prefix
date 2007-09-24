@@ -127,7 +127,7 @@ src_compile() {
 
 	# need libdir here to avoid a double slash in a path that libtool doesn't
 	# grok so well during install (// between $EPREFIX and usr ...)
-	econf --libdir="${EPREFIX}/usr/$(get_libdir)" ${myconf} || die "configure failed"
+	econf --libdir="${ED}/usr/$(get_libdir)" ${myconf} || die "configure failed"
 
 	# add correct framework linking options
 	use aqua && for i in gtk demos demos/gtk-demo tests perf; do
