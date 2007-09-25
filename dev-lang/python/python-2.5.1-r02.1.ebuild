@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.1-r2.ebuild,v 1.17 2007/09/15 18:27:57 kanaka Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.1-r2.ebuild,v 1.18 2007/09/24 18:46:38 hawking Exp $
 
 EAPI="prefix"
 
@@ -27,7 +27,7 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
 LICENSE="PSF-2.2"
 SLOT="2.5"
 KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
-IUSE="ncurses gdbm ssl readline tk berkdb bootstrap ipv6 build ucs2 sqlite doc nocxx nothreads examples"
+IUSE="ncurses gdbm ssl readline tk berkdb bootstrap ipv6 build ucs2 sqlite doc nothreads examples"
 
 # NOTE: dev-python/{elementtree,celementtree,pysqlite,ctypes,cjkcodecs}
 #       do not conflict with the ones in python proper. - liquidx
@@ -140,10 +140,6 @@ src_compile() {
 	export OPT="${CFLAGS}"
 
 	local myconf
-	#if we are creating a new build image, we remove the dependency on g++
-	if use build && ! use bootstrap || use nocxx ; then
-		myconf="--with-cxx=no"
-	fi
 
 	# super-secret switch. don't use this unless you know what you're
 	# doing. enabling UCS2 support will break your existing python
@@ -160,7 +156,7 @@ src_compile() {
 
 	if tc-is-cross-compiler ; then
 		OPT="-O1" CFLAGS="" LDFLAGS="" CC="" \
-		./configure --with-cxx=no || die "cross-configure failed"
+		./configure || die "cross-configure failed"
 		emake python Parser/pgen || die "cross-make failed"
 		mv python hostpython
 		mv Parser/pgen Parser/hostpgen
@@ -173,9 +169,6 @@ src_compile() {
 
 	# export CXX so it ends up in /usr/lib/python2.x/config/Makefile
 	tc-export CXX
-
-	# set LINKCC to prevent python from being linked to libstdc++.so
-	export LINKCC="\$(PURIFY) \$(CC)"
 
 	# set LDFLAGS so we link modules with -lpython2.5 correctly.
 	# Needed on FreeBSD unless python2.5 is already installed.

@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.278 2007/09/22 15:13:39 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.279 2007/09/24 18:46:38 hawking Exp $
+
+  24 Sep 2007; Ali Polatel <hawking@gentoo.org> python-2.5.1-r2.ebuild:
+  don't set LINKCC, removed nocxx use flag. don't pass --with-cxx=no to
+  configure. bug 193190
 
   22 Sep 2007; Jeroen Roovers <jer@gentoo.org> python-2.4.4-r5.ebuild:
   Stable for HPPA (bug #188029).
