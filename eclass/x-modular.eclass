@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.85 2007/08/02 01:21:56 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.86 2007/09/24 08:20:00 dberkholz Exp $
 #
 # Author: Donnie Berkholz <dberkholz@gentoo.org>
 #
@@ -144,7 +144,7 @@ if [[ "${PN/#xf86-video}" != "${PN}" ]] || [[ "${PN/#xf86-input}" != "${PN}" ]];
 	if [[ ${XDPVER} != -1 ]]; then
 		# Add driver patchset to SRC_URI
 		SRC_URI="${SRC_URI}
-			http://dev.gentoo.org/~joshuabaergen/distfiles/x11-driver-patches-${XDPVER}.tar.bz2"
+			mirror://gentoo/x11-driver-patches-${XDPVER}.tar.bz2"
 	fi
 fi
 
