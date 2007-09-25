@@ -1,6 +1,18 @@
 # ChangeLog for app-arch/unrar
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/ChangeLog,v 1.101 2007/09/22 18:12:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/ChangeLog,v 1.105 2007/09/24 16:28:00 pylon Exp $
+
+  24 Sep 2007; Lars Weiler <pylon@gentoo.org> unrar-3.7.6.ebuild:
+  stable ppc, bug #193611
+
+  24 Sep 2007; Ferris McCormick <fmccor@gentoo.org> unrar-3.7.6.ebuild:
+  Sparc stable, Bug #193611 (can unrar a .rar file created on amd64).
+
+  24 Sep 2007; Jeroen Roovers <jer@gentoo.org> unrar-3.7.6.ebuild:
+  Stable for HPPA (bug #193611).
+
+  24 Sep 2007; Raúl Porcel <armin76@gentoo.org> unrar-3.7.6.ebuild:
+  alpha/ia64/x86 stable
 
 *unrar-3.7.8 (22 Sep 2007)
 
