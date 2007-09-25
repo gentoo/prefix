@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.336 2007/09/21 18:58:28 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.337 2007/09/24 20:21:41 leio Exp $
+
+*gtk+-2.12.0-r1 (24 Sep 2007)
+
+  24 Sep 2007; Mart Raudsepp <leio@gentoo.org>
+  +files/gtk+-2.12.0-flash-workaround.patch,
+  +files/gtk+-2.12.0-swt-tooltips-fix.patch, +gtk+-2.12.0-r1.ebuild:
+  Hopefully fix netscape-flash crashes and infinite loops and Java SWT
+  tooltips weird behaviour and related crashes. Bug #193513 and part of bug
+  #192310 and self-observation
 
 *gtk+-2.12.0 (21 Sep 2007)
 
