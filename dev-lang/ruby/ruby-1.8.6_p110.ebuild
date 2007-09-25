@@ -51,8 +51,8 @@ src_unpack() {
 
 	cd "${S}"
 
-	epatch "${FILESDIR}/${P}-only-ncurses.patch"
-	epatch "${FILESDIR}/${P}-prefix.patch"
+	epatch "${FILESDIR}/${PN}-1.8.6_p36-only-ncurses.patch"
+	epatch "${FILESDIR}/${PN}-1.8.6_p36-prefix.patch"
 
 	cd "${S}/ext/dl"
 	epatch "${FILESDIR}/${PN}-1.8.6-memory-leak.diff"
