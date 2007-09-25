@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.265 2007/09/22 18:17:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.266 2007/09/25 00:16:23 vapier Exp $
+
+  25 Sep 2007; Mike Frysinger <vapier@gentoo.org> openssh-4.7_p1-r1.ebuild:
+  Force u+x perms on /etc/skel/.ssh for a while to help with older broken
+  installs.
 
   22 Sep 2007; Mike Frysinger <vapier@gentoo.org> openssh-4.7_p1-r1.ebuild:
   Upstream changed openssh-4.7p1-hpn12v18.diff.gz slightly so rebuild manifest
