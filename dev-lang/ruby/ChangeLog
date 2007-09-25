@@ -1,6 +1,17 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.294 2007/08/26 06:25:38 pclouds Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.297 2007/09/24 12:49:03 rbrown Exp $
+
+  24 Sep 2007; Richard Brown <rbrown@gentoo.org> ruby-1.8.6_p110.ebuild:
+  More fixes from gentoo-dev and graaff
+
+  24 Sep 2007; Richard Brown <rbrown@gentoo.org> ruby-1.8.6_p110.ebuild:
+  Implement suggestions from http://archives.gentoo.org/gentoo-dev/msg_147875.xml
+
+*ruby-1.8.6_p110 (24 Sep 2007)
+
+  24 Sep 2007; Richard Brown <rbrown@gentoo.org> +ruby-1.8.6_p110.ebuild:
+  Version bump
 
 *ruby-1.8.6_p36-r4 (26 Aug 2007)
 
