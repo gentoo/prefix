@@ -4,6 +4,8 @@
 
 EAPI=prefix
 
+inherit eutils
+
 DESCRIPTION="Small utility for searching ebuilds with indexing for fast results"
 HOMEPAGE="http://dev.croup.de/proj/eix"
 SRC_URI="mirror://sourceforge/eix/${P}.tar.bz2"
@@ -16,6 +18,11 @@ IUSE="sqlite"
 DEPEND="sqlite? ( >=dev-db/sqlite-3 )
 	app-arch/bzip2"
 RDEPEND="${DEPEND}"
+
+src_unpack() {
+	unpack ${A}
+	epatch "${FILESDIR}"/${P}-missing-symbols.patch
+}
 
 src_compile() {
 	econf \

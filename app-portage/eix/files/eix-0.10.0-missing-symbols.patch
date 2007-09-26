@@ -1,0 +1,12 @@
+--- eix-0.10.0/src/portage/mask.cc
++++ eix-0.10.0/src/portage/mask.cc
+@@ -44,6 +44,9 @@
+ 
+ using namespace std;
+ 
++const size_t Version::SAVEMASK_USER;
++const size_t Version::SAVEMASK_USERFILE;
++
+ /** Data-driven programming is nice :).
+  * Must be in order .. no previous operator is allowed to be a prefix of a
+  * following operator. */
