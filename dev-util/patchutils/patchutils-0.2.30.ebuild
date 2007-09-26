@@ -13,7 +13,7 @@ SRC_URI="http://cyberelk.net/tim/data/patchutils/stable/${P}.tar.bz2"
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-solaris"
 IUSE=""
 
 DEPEND="virtual/libc"
