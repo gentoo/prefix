@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.18.3.ebuild,v 1.8 2007/09/25 04:18:43 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.18.3-r1.ebuild,v 1.1 2007/09/25 10:47:04 leio Exp $
 
 EAPI="prefix"
 
@@ -56,6 +56,12 @@ DEPEND="${RDEPEND}
 PDEPEND="gnome? ( >=x11-themes/gnome-icon-theme-1.1.91 )"
 
 DOCS="AUTHORS ChangeLog* HACKING MAINTAINERS NEWS README THANKS TODO"
+
+src_unpack() {
+	gnome2_src_unpack
+	# Fixes crashes in _browser mode_ folder opening with gtk+-2.12
+	epatch "${FILESDIR}/${P}-gtk2.12-compatibility.patch"
+}
 
 pkg_setup() {
 	G2CONF="--disable-update-mimedb $(use_enable beagle) --disable-tracker"

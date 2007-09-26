@@ -1,0 +1,25 @@
+From http://svn.gnome.org/viewcvs/nautilus?view=revision&revision=13002 to fix
+http://bugzilla.gnome.org/show_bug.cgi?id=459221
+and our bug http://bugs.gentoo.org/show_bug.cgi?id=193536
+
+ChangeLog entry:
+* src/nautilus-navigation-window.c:
+(view_as_menu_switch_views_callback):
+Handle the fact that the gtk+ 2.11.x combobox emits the
+changed signal on removing the active entry without crash.
+
+--- trunk/src/nautilus-navigation-window.c	2007/07/18 12:24:05	13001
++++ trunk/src/nautilus-navigation-window.c	2007/07/18 22:07:07	13002
+@@ -854,8 +854,10 @@
+ 	g_assert (NAUTILUS_IS_WINDOW (window));
+ 
+ 	active = gtk_combo_box_get_active (combo_box);
+-	
+-	if (active < GPOINTER_TO_INT (g_object_get_data (G_OBJECT (combo_box), "num viewers"))  ) {
++
++	if (active < 0) {
++		return;
++	} else if (active < GPOINTER_TO_INT (g_object_get_data (G_OBJECT (combo_box), "num viewers"))) {
+ 		activate_nth_short_list_item (window, active);
+ 	} else {
+ 		activate_extra_viewer (window);
