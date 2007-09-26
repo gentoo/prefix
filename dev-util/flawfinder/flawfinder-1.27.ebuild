@@ -10,7 +10,7 @@ SRC_URI="http://www.dwheeler.com/flawfinder/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~mips ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~mips ~ppc-macos ~x86 ~x86-solaris"
 IUSE=""
 
 DEPEND=""
