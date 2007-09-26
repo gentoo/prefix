@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.3.ebuild,v 1.3 2007/09/23 17:37:57 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.3.ebuild,v 1.4 2007/09/25 16:12:52 armin76 Exp $
 
 EAPI="prefix"
 
