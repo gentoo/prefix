@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/diffstat
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/ChangeLog,v 1.58 2007/03/19 02:43:25 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/ChangeLog,v 1.59 2007/09/25 23:33:55 swegener Exp $
+
+*diffstat-1.45 (25 Sep 2007)
+
+  25 Sep 2007; Sven Wegener <swegener@gentoo.org> +diffstat-1.45.ebuild:
+  Version bump.
 
   19 Mar 2007; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
   Remove ka0ttic from metadata.xml due to retirement.
