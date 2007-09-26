@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.12.0-r1.ebuild,v 1.1 2007/09/24 20:21:41 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.12.0-r2.ebuild,v 1.1 2007/09/25 23:00:34 leio Exp $
 
 EAPI="prefix"
 
@@ -56,15 +56,15 @@ DEPEND="${RDEPEND}
 
 pkg_setup() {
 	if use X && use aqua; then
-		einfo "Please enable either X or aqua USE flag, not both"
+		eerror "Please enable either X or aqua USE flag, not both"
 		die "can't build with X and aqua"
 	fi
 	if use X && ! built_with_use x11-libs/cairo X; then
-		einfo "Please re-emerge x11-libs/cairo with the X USE flag set"
+		eerror "Please re-emerge x11-libs/cairo with the X USE flag set"
 		die "cairo needs the X flag set"
 	fi
 	if use aqua && ! built_with_use x11-libs/cairo aqua; then
-		einfo "Please re-emerge x11-libs/cairo with the aqua USE flag set"
+		eerror "Please re-emerge x11-libs/cairo with the aqua USE flag set"
 		die "cairo needs the aqua flag set"
 	fi
 }
@@ -77,7 +77,7 @@ set_gtk2_confdir() {
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 
 	# use an arch-specific config directory so that 32bit and 64bit versions
 	# dont clash on multilib systems
@@ -99,6 +99,13 @@ src_unpack() {
 	# Gtk tooltips + swt crash at a later point, upstream has committed this by now - http://bugzilla.gnome.org/show_bug.cgi?id=460194
 	# Seems to also fix a weird behaviour where GtkTreeView rows got a tooltip that shouldn't be there
 	epatch "${FILESDIR}/${P}-swt-tooltips-fix.patch"
+
+	# OpenOffice.org might hang at startup (on non-gnome env) without this workaround, bug #193513
+	epatch "${FILESDIR}/${P}-openoffice-freeze-workaround.patch"
+
+	# Fix for crashes with simple search engine (the one used when neither beagle nor tracker are available) when cancelling dialog
+	# before the search is finished - http://bugzilla.gnome.org/show_bug.cgi?id=480123
+	epatch "${FILESDIR}/${P}-searchenginesimple-crash-fix.patch"
 
 	# -O3 and company cause random crashes in applications. Bug #133469
 	replace-flags -O3 -O2
@@ -134,7 +141,7 @@ src_compile() {
 
 	# need libdir here to avoid a double slash in a path that libtool doesn't
 	# grok so well during install (// between $EPREFIX and usr ...)
-	econf --libdir="${ED}/usr/$(get_libdir)" ${myconf} || die "configure failed"
+	econf --libdir='$(DESTDIR)'"${EPREFIX}/usr/$(get_libdir)" ${myconf} || die "configure failed"
 
 	# add correct framework linking options
 	use aqua && for i in gtk demos demos/gtk-demo tests perf; do
@@ -156,17 +163,17 @@ src_install() {
 	keepdir ${GTK2_CONFDIR}
 
 	# see bug #133241
-	echo 'gtk-fallback-icon-theme = "gnome"' > ${ED}/${GTK2_CONFDIR}/gtkrc
+	echo 'gtk-fallback-icon-theme = "gnome"' > "${ED}/${GTK2_CONFDIR}/gtkrc"
 
 	# Enable xft in environment as suggested by <utx@gentoo.org>
 	dodir /etc/env.d
-	echo "GDK_USE_XFT=1" > ${ED}/etc/env.d/50gtk2
+	echo "GDK_USE_XFT=1" > "${ED}/etc/env.d/50gtk2"
 
 	dodoc AUTHORS ChangeLog* HACKING NEWS* README*
 
 	# This has to be removed, because it's multilib specific; generated in
 	# postinst
-	rm ${ED}/etc/gtk-2.0/gtk.immodules
+	rm "${ED}/etc/gtk-2.0/gtk.immodules"
 }
 
 pkg_postinst() {

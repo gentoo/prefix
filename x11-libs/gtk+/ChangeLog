@@ -1,6 +1,19 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.337 2007/09/24 20:21:41 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.339 2007/09/25 23:00:34 leio Exp $
+
+*gtk+-2.12.0-r2 (25 Sep 2007)
+
+  25 Sep 2007; Mart Raudsepp <leio@gentoo.org>
+  +files/gtk+-2.12.0-openoffice-freeze-workaround.patch,
+  +files/gtk+-2.12.0-searchenginesimple-crash-fix.patch,
+  +gtk+-2.12.0-r2.ebuild:
+  Fix a crash in file chooser search functionality and freezes in OpenOffice
+  when ran outside Gnome; upstream bug #480123 and our bug #193513
+  respectively
+
+  25 Sep 2007; Mart Raudsepp <leio@gentoo.org> gtk+-2.12.0-r1.ebuild:
+  QA: Some quoting and other fixes, thanks to Donnie Berkholz
 
 *gtk+-2.12.0-r1 (24 Sep 2007)
 
