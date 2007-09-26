@@ -2,6 +2,9 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Sep 2007; Fabian Groffen <fabian@gentoo.org> package.mask:
+  Unmask gtk+ again, I solved the issue
+
   24 Sep 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
   gdkconfig.h is installed in some weird location, masking gtk-2.12.0 for that
   reason
