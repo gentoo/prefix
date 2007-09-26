@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xemacs-elisp.eclass,v 1.1 2007/09/15 07:19:22 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xemacs-elisp.eclass,v 1.2 2007/09/25 18:27:12 graaff Exp $
 #
 # Copyright 2007 Hans de Graaff <graaff@gentoo.org>
 #
@@ -45,7 +45,7 @@ xemacs-elisp_src_unpack() {
 }
 
 xemacs-elisp_src_compile() {
-	xemacs-elisp-compile *.el || die "Compilation of lisp files failed"
+	xemacs-elisp-compile *.el
 }
 
 xemacs-elisp_src_install () {

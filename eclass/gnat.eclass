@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.25 2007/09/19 20:27:25 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.26 2007/09/25 21:01:02 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -89,46 +89,6 @@ expand_BuildEnv() {
 # ------------------------------------
 # Helpers
 #
-# may be moved to a seperate eclas, if enough accumulated inthis one and in
-# gnatbuild.eclass..
-
-# get_all_profile_components splits gnat profile and returns pace separated list of its components:
-# x86_64-pc-linux-gnu-gnat-gcc-4.1  -> x86_64-pc-linux-gnu gcc 4.1
-# params:
-#  $1 - the string to split
-get_all_profile_components() {
-	local GnatSLOT=${1##*-}
-	local remainder=${1%-*}
-	local GnatPkg=${remainder##*-}
-	remainder=${remainder%-gnat-*}
-	echo "${remainder} ${GnatPkg} ${GnatSLOT}"
-}
-
-# similar to above, returns only SLOT component:
-# x86_64-pc-linux-gnu-gnat-gcc-4.1  -> 4.1
-# params:
-#  $1 - the string to extract the slot from
-get_gnat_SLOT() {
-	echo "${1##*-}"
-}
-
-# returns only Pkg component:
-# x86_64-pc-linux-gnu-gnat-gcc-4.1  -> gcc
-# params:
-#  $1 - the string to extract the slot from
-get_gnat_Pkg() {
-	local remainder=${1%-*}
-	echo "${remainder##*-}"
-}
-
-# returns only Arch component:
-# x86_64-pc-linux-gnu-gnat-gcc-4.1  -> x86_64-pc-linux-gnu
-# params:
-#  $1 - the string to extract the slot from
-get_gnat_Arch() {
-	echo ${1%-gnat-*}
-}
-
 
 
 # The purpose of this one is to remove all parts of the env entry specific to a
