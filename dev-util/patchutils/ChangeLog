@@ -1,0 +1,131 @@
+# ChangeLog for dev-util/patchutils
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/patchutils/ChangeLog,v 1.35 2007/08/07 11:41:19 uberlord Exp $
+
+  07 Aug 2007; Roy Marples <uberlord@gentoo.org> patchutils-0.2.30.ebuild:
+  Keyworded ~x86-fbsd, #141142 thanks to Robert Annessi
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  10 Oct 2006; Seemant Kulleen <seemant@gentoo.org>
+  patchutils-0.2.30.ebuild:
+  add automake-1.8 dependency, closing bug #149755 by Patrick Lauer
+
+  05 Aug 2005; Ciaran McCreesh <ciaranm@gentoo.org>
+  patchutils-0.2.30.ebuild:
+  Make test work
+
+  07 Apr 2005; Simon Stelling <blubb@gentoo.org> patchutils-0.2.30.ebuild:
+  stable on amd64
+
+  01 Apr 2005; Aron Griffis <agriffis@gentoo.org> patchutils-0.2.30.ebuild:
+  stable on ia64
+
+  19 Mar 2005; Yuta SATOH <nigoro@gentoo.org> patchutils-0.2.30.ebuild:
+  Stable on ppc64
+
+  17 Mar 2005; Joseph Jezak <josejx@gentoo.org> patchutils-0.2.30.ebuild:
+  Marked ppc stable.
+
+  06 Feb 2005; Joshua Kinard <kumba@gentoo.org> patchutils-0.2.30.ebuild:
+  Marked stable on mips.
+
+  31 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  29 Dec 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  patchutils-0.2.30.ebuild:
+  Stable on sparc
+
+  28 Dec 2004; Seemant Kulleen <seemant@gentoo.org>
+  -patchutils-0.2.25.ebuild, patchutils-0.2.30.ebuild:
+  move .30 to stable x86
+
+  19 Oct 2004; Dylan Carlson <absinthe@gentoo.org> patchutils-0.2.25.ebuild,
+  patchutils-0.2.29.ebuild:
+  Stable on amd64.
+
+  13 Oct 2004; Tom Martin <slarti@gentoo.org> metadata.xml:
+  Added to the shell-tools herd.
+
+  25 Sep 2004; Jason Wever <weeve@gentoo.org> patchutils-0.2.29.ebuild:
+  Stable on sparc.
+
+*patchutils-0.2.30 (25 Aug 2004)
+
+  25 Aug 2004; Seemant Kulleen <seemant@gentoo.org> patchutils-0.2.29.ebuild,
+  +patchutils-0.2.30.ebuild:
+  version bump, thanks to: Will Buckner <wcc@techmonkeys.org> in bug #61596.
+  Also .29 to stable x86
+
+  22 Aug 2004; Joshua Kinard <kumba@gentoo.org> patchutils-0.2.29.ebuild:
+  Marked stable on mips.
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  patchutils-0.2.23.ebuild, patchutils-0.2.25.ebuild,
+  patchutils-0.2.29.ebuild:
+  virtual/glibc -> virtual/libc
+
+  04 Jun 2004; Bryan Østergaard <kloeri@gentoo.org> patchutils-0.2.29.ebuild:
+  Stable on alpha.
+
+  18 Apr 2004; Jason Wever <weeve@gentoo.org> patchutils-0.2.25.ebuild:
+  Stable on sparc.
+
+*patchutils-0.2.29 (09 Apr 2004)
+
+  09 Apr 2004; Seemant Kulleen <seemant@gentoo.org> patchutils-0.2.25.ebuild,
+  patchutils-0.2.29.ebuild:
+  version bump, thanks to me
+
+*patchutils-0.2.25 (29 Dec 2003)
+
+  29 Dec 2003; Seemant Kulleen <seemant@gentoo.org> patchutils-0.2.22.ebuild,
+  patchutils-0.2.23.ebuild, patchutils-0.2.25.ebuild:
+  version bump
+
+  28 Dec 2003; Joshua Kinard <kumba@gentoo.org> patchutils-0.2.23.ebuild:
+  Move to mips stable (~mips -> mips)
+
+*patchutils-0.2.23 (07 Jun 2003)
+
+  04 Aug 2003; Guy Martin <gmsoft@gentoo.org>
+  Marked stable on hppa.
+
+  07 Jun 2003; Seemant Kulleen <seemant@gentoo.org> patchutils-0.2.20.ebuild,
+  patchutils-0.2.22.ebuild, patchutils-0.2.23.ebuild:
+  version bump
+
+*patchutils-0.2.22 (27 Mar 2003)
+
+  28 Mar 2003; Nicholas Wourms <dragon@gentoo.org> patchutils-0.2.22.ebuild:
+  Fixed the bad digest, also added documentation install.
+
+  27 Mar 2003; Seemant Kulleen <seemant@gentoo.org> patchutils-0.2.17.ebuild,
+  patchutils-0.2.17.ebuild, patchutils-0.2.18.ebuild,
+  patchutils-0.2.18.ebuild, patchutils-0.2.20.ebuild,
+  patchutils-0.2.22.ebuild:
+  version bump
+
+*patchutils-0.2.20 (03 Feb 2003)
+
+  03 Feb 2003; Seemant Kulleen <seemant@gentoo.org> patchutils-0.2.20.ebuild
+  files/digest-patchutils-0.2.20 :
+
+  Version bump.
+
+*patchutils-0.2.18 (16 Dec 2002)
+
+  16 Dec 2002; Seemant Kulleen <seemant@gentoo.org> patchutils-0.2.18.ebuild
+  files/digest-patchutils-0.2.18 :
+
+  Version bump to newest stable
+
+*patchutils-0.2.17 (23 Oct 2002)
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+  23 Oct 2002; Zach Welch <zwelch@gentoo.org> : 
+	Initial import from bug 9475, contributed by jani@iv.ro
+
