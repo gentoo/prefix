@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/libxslt-1.1.20-r1.ebuild,v 1.4 2007/09/22 14:47:47 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/libxslt-1.1.20-r1.ebuild,v 1.5 2007/09/25 04:09:35 jer Exp $
 
 EAPI="prefix"
 
