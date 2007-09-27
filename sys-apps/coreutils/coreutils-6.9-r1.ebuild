@@ -64,6 +64,8 @@ src_unpack() {
 	fi
 
 	EPATCH_SUFFIX="patch" epatch "${PATCHDIR}"/generic
+	epatch "${FILESDIR}"/${PV}-iswblank.patch
+
 	chmod a+rx tests/sort/sort-mb-tests
 	chmod a+rx tests/ls/x-option
 
