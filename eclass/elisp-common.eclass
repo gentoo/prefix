@@ -127,7 +127,8 @@
 #
 # elisp-emacs-version() outputs the version of the currently active Emacs.
 
-SITELISP="${EPREFIX}"/usr/share/emacs/site-lisp
+SITELISP=/usr/share/emacs/site-lisp
+ESITELISP="${EPREFIX}"${SITELISP}
 SITEFILE=50${PN}-gentoo.el
 EMACS="${EPREFIX}"/usr/bin/emacs
 # The following works for Emacs versions 18-23, don't change it.
@@ -196,7 +197,7 @@ elisp-install() {
 	shift
 	einfo "Installing Elisp files for GNU Emacs support ..."
 	( # subshell to avoid pollution of calling environment
-		insinto "${SITELISP#${EPREFIX}}/${subdir}"
+		insinto ${SITELISP}/${subdir}
 		doins "$@"
 	)
 }
@@ -210,9 +211,9 @@ elisp-site-file-install() {
 	local sf="$1" my_pn="${2:-${PN}}"
 	einfo "Installing site initialisation file for GNU Emacs ..."
 	cp "${sf}" "${T}"
-	sed -i "s:@SITELISP@:${SITELISP}/${my_pn}:g" "${T}/$(basename "${sf}")"
+	sed -i "s:@SITELISP@:${ESITELISP}/${my_pn}:g" "${T}/$(basename "${sf}")"
 	( # subshell to avoid pollution of calling environment
-		insinto "${SITELISP#${EPREFIX}}"
+		insinto "${SITELISP}"
 		doins "${T}/$(basename "${sf}")"
 	)
 }
@@ -224,7 +225,7 @@ elisp-site-file-install() {
 elisp-site-regen() {
 	local sflist sf line
 
-	einfon "Regenerating ${SITELISP}/site-gentoo.el ..."
+	einfon "Regenerating ${ESITELISP}/site-gentoo.el ..."
 	cat <<-EOF >"${T}"/site-gentoo.el
 	;;; site-gentoo.el --- site initialisation for Gentoo-installed packages
 
@@ -235,7 +236,7 @@ elisp-site-regen() {
 	;;; Code:
 	EOF
 
-	for sf in "${ROOT}${SITELISP}"/[0-9][0-9]*-gentoo.el
+	for sf in "${EROOT}${SITELISP}"/[0-9][0-9]*-gentoo.el
 	do
 		[ -r "${sf}" ] || continue
 		sflist="${sflist} $(basename "${sf}")"
@@ -252,13 +253,13 @@ elisp-site-regen() {
 	;;; site-gentoo.el ends here
 	EOF
 
-	if cmp -s "${ROOT}${SITELISP}"/site-gentoo.el "${T}"/site-gentoo.el; then
+	if cmp -s "${EROOT}${SITELISP}"/site-gentoo.el "${T}"/site-gentoo.el; then
 		# This prevents outputting unnecessary text when there
 		# was actually no change
 		# A case is a remerge where we have doubled output
 		einfo " no changes."
 	else
-		mv "${T}"/site-gentoo.el "${ROOT}${SITELISP}"/site-gentoo.el
+		mv "${T}"/site-gentoo.el "${EROOT}${SITELISP}"/site-gentoo.el
 		echo; einfo
 		for sf in ${sflist}; do
 			einfo "  Adding ${sf} ..."
