@@ -58,7 +58,7 @@ src_install() {
 	docinto user-guide
 	dodoc doc/en/user-guide/*
 	if use emacs; then
-		insinto ${SITELISP#${EPREFIX}}
+		insinto ${SITELISP}
 		doins contrib/emacs/bzr-mode.el*
 		elisp-site-file-install "${FILESDIR}/70bzr-gentoo.el"
 	fi
