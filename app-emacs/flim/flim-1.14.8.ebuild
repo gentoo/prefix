@@ -12,7 +12,7 @@ SRC_URI="ftp://ftp.m17n.org/pub/mule/flim/flim-1.14/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86 ~ppc-macos ~amd64"
+KEYWORDS="~amd64 ~ppc-macos ~x86"
 IUSE=""
 
 DEPEND="!app-emacs/limit
@@ -22,14 +22,14 @@ SITEFILE=60${PN}-gentoo.el
 
 src_compile() {
 	emake PREFIX="${ED}/usr" \
-		LISPDIR="${D}/${SITELISP}" \
-		VERSION_SPECIFIC_LISPDIR="${D}/${SITELISP}" || die "emake failed"
+		LISPDIR="${DE}/${SITELISP}" \
+		VERSION_SPECIFIC_LISPDIR="${ED}/${SITELISP}" || die "emake failed"
 }
 
 src_install() {
 	emake PREFIX="${ED}/usr" \
-		LISPDIR="${D}/${SITELISP}" \
-		VERSION_SPECIFIC_LISPDIR="${D}/${SITELISP}" install || die "emake install failed"
+		LISPDIR="${ED}/${SITELISP}" \
+		VERSION_SPECIFIC_LISPDIR="${ED}/${SITELISP}" install || die "emake install failed"
 
 	elisp-site-file-install "${FILESDIR}/${SITEFILE}"
 
