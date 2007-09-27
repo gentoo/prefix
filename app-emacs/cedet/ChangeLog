@@ -1,0 +1,139 @@
+# ChangeLog for app-emacs/cedet
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/ChangeLog,v 1.35 2007/09/22 12:58:37 ulm Exp $
+
+  22 Sep 2007; Ulrich Mueller <ulm@gentoo.org>
+  -files/1.0_pre4-semantic-makefile.patch, -cedet-1.0_pre4-r1.ebuild:
+  Remove old revision.
+
+  22 Sep 2007; nixnut <nixnut@gentoo.org> cedet-1.0_pre4-r2.ebuild:
+  Stable on ppc wrt bug 190796
+
+  20 Sep 2007; Christoph Mende <angelos@gentoo.org>
+  cedet-1.0_pre4-r2.ebuild:
+  Stable on amd64 wrt bug #190796
+
+  13 Sep 2007; Christian Faulhammer <opfer@gentoo.org>
+  cedet-1.0_pre4-r2.ebuild:
+  stable x86, bug 190796
+
+*cedet-1.0_pre4-r2 (12 Sep 2007)
+
+  12 Sep 2007; Ulrich Mueller <ulm@gentoo.org>
+  +files/1.0_pre4-semantic-build.patch, +cedet-1.0_pre4-r2.ebuild:
+  Don't require ede while building semantic, fixes bug #191341.
+
+  02 Sep 2007; Ulrich Mueller <ulm@gentoo.org> files/60cedet-gentoo.el:
+  Suppress startup message.
+
+  02 Sep 2007; Christoph Mende <angelos@gentoo.org>
+  cedet-1.0_pre4-r1.ebuild:
+  Stable on amd64 wrt bug #190796
+
+  02 Sep 2007; Christian Faulhammer <opfer@gentoo.org>
+  cedet-1.0_pre4-r1.ebuild:
+  stable x86, bug 190796
+
+  01 Sep 2007; nixnut <nixnut@gentoo.org> cedet-1.0_pre4-r1.ebuild:
+  Stable on ppc wrt bug 190796
+
+*cedet-1.0_pre4-r1 (15 Jul 2007)
+
+  15 Jul 2007; Ulrich Mueller <ulm@gentoo.org> -cedet-1.0_pre4.ebuild,
+  +cedet-1.0_pre4-r1.ebuild:
+  Install INSTALL file again since it contains configuration hints. Thanks to
+  Ivan Miljenovic for pointing this out.
+
+  27 Jun 2007; Ulrich Mueller <ulm@gentoo.org>
+  +files/1.0_pre4-semantic-makefile.patch, cedet-1.0_pre4.ebuild:
+  Fix wisent compilation, bug #183205, reported by Martin von Gagern
+  <Martin.vGagern@gmx.net>.
+
+*cedet-1.0_pre4 (23 Jun 2007)
+
+  23 Jun 2007; Ulrich Mueller <ulm@gentoo.org> cedet-1.0_pre3-r2.ebuild,
+  +cedet-1.0_pre4.ebuild:
+  Version bump, #182952. Drop ~ppc-macos keyword.
+
+  10 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
+  cedet-1.0_pre3-r2.ebuild:
+  added FDL license
+
+  30 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  -cedet-1.0_beta3.ebuild, -cedet-1.0_pre3.ebuild,
+  -cedet-1.0_pre3-r1.ebuild:
+  clean up
+
+  27 Mar 2007; Peter Weller <welp@gentoo.org> cedet-1.0_pre3-r2.ebuild:
+  Stable on amd64 wrt bug 168422
+
+  07 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  cedet-1.0_pre3-r2.ebuild:
+  corrected installation from build dir to image, fixes bug 169617, reported
+  by Ulrich Mueller <ulm@kph.uni-mainz.de>
+
+  02 Mar 2007; nixnut <nixnut@gentoo.org> ChangeLog:
+  Stable on ppc wrt bug 168422
+
+  26 Feb 2007; Christian Faulhammer <opfer@gentoo.org>
+  cedet-1.0_pre3-r2.ebuild:
+  stable x86; bug 168422
+
+  26 Feb 2007; Christian Faulhammer <opfer@gentoo.org>
+  cedet-1.0_pre3-r2.ebuild:
+  added some quotes and braces for better readability and possible breakages
+
+  21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+*cedet-1.0_pre3-r2 (19 Nov 2006)
+
+  19 Nov 2006; Matthew Kennedy <mkennedy@gentoo.org>
+  +files/1.0_pre3-idle-gentoo.patch, +cedet-1.0_pre3-r2.ebuild:
+  Apply patch to fix 100% CPU utilization problem; Resolves Bug #149842.
+
+  09 Aug 2006; Matthew Kennedy <mkennedy@gentoo.org>
+  +files/1.0_pre3-sb-info-circular-dep-gentoo.patch,
+  cedet-1.0_pre3-r1.ebuild:
+  Break circular info file reference; Resolves Bug #138190.
+
+*cedet-1.0_pre3-r1 (15 May 2006)
+
+  15 May 2006; Matthew Kennedy <mkennedy@gentoo.org>
+  +files/1.0_pre3-eieio-tests-gentoo.patch, +cedet-1.0_pre3-r1.ebuild:
+  Fix EIEIO test script for compile time fix; Resolves Bug #124598.
+
+  06 Sep 2005; Matthew Kennedy <mkennedy@gentoo.org> cedet-1.0_pre3.ebuild:
+  Install missing sb-info.el; Rework ebuild not to use GNU specific tar options.
+
+  01 Sep 2005; Matthew Kennedy <mkennedy@gentoo.org> cedet-1.0_pre3.ebuild:
+  Keywording ~ppc-macos; Resolves Bug #103168.
+
+*cedet-1.0_pre3 (01 Sep 2005)
+
+  01 Sep 2005; Matthew Kennedy <mkennedy@gentoo.org> +cedet-1.0_pre3.ebuild:
+  New upstream version; Partially resolves Bug #103168.
+
+  24 Apr 2005; Michael Hanselmann <hansmi@gentoo.org>
+  cedet-1.0_beta3.ebuild:
+  Stable on ppc.
+
+  21 Apr 2005; Simon Stelling <blubb@gentoo.org> cedet-1.0_beta3.ebuild:
+  stable on amd64
+
+  11 Jan 2005; Matthew Kennedy <mkennedy@gentoo.org> cedet-1.0_beta3.ebuild:
+  Marking x86 stable
+
+  11 Sep 2004; Tom Martin <slarti@gentoo.org> cedet-1.0_beta3.ebuild:
+  Marked ~amd64, resolves bug 59276. Thanks to Gabriel Ebner
+  <ge@gabrielebner.at> for reporting.
+
+  01 Aug 2004; David Holm <dholm@gentoo.org> cedet-1.0_beta3.ebuild:
+  Added to ~ppc.
+
+*cedet-1.0_beta3 (22 Jul 2004)
+
+  22 Jul 2004; <mkennedy@gentoo.org> +metadata.xml, +files/60cedet-gentoo.el,
+  +cedet-1.0_beta3.ebuild:
+  Initial port.  Ebuild contributed by Matthew Kennedy <mkennedy@gentoo.org>
+
