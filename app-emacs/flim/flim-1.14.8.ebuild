@@ -22,7 +22,7 @@ SITEFILE=60${PN}-gentoo.el
 
 src_compile() {
 	emake PREFIX="${ED}/usr" \
-		LISPDIR="${DE}/${SITELISP}" \
+		LISPDIR="${ED}/${SITELISP}" \
 		VERSION_SPECIFIC_LISPDIR="${ED}/${SITELISP}" || die "emake failed"
 }
 
