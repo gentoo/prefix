@@ -258,7 +258,7 @@ elisp-site-regen() {
 		# A case is a remerge where we have doubled output
 		einfo " no changes."
 	else
-		mv "${T}"/site-gentoo.el "${EROOT}${SITELISP}"/site-gentoo.el
+		mv "${T}"/site-gentoo.el "${ROOT}${SITELISP}"/site-gentoo.el
 		echo; einfo
 		for sf in ${sflist}; do
 			einfo "  Adding ${sf} ..."
