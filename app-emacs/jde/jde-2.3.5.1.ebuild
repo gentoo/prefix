@@ -27,15 +27,15 @@ S=${WORKDIR}/${P}
 src_compile() {
 	cd ${S}/lisp
 	cat >jde-compile-script-init <<EOF
-(load "${SITELISP}/cedet/common/cedet")
+(load "${ESITELISP}/cedet/common/cedet")
 (add-to-list 'load-path "$PWD")
 EOF
 	emacs -batch -l jde-compile-script-init -f batch-byte-compile *.el
 }
 
 src_install() {
-	dodir ${SITELISP#${EPREFIX}}/${PN}
-	cp -r java ${D}/${SITELISP}/${PN}/
+	dodir ${SITELISP}/${PN}
+	cp -r java ${ED}/${SITELISP}/${PN}/
 	dodir /usr/share/doc/${P}
 	cp -r doc/* ${ED}/usr/share/doc/${P}/
 	cd ${S}/lisp
