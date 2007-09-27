@@ -52,14 +52,14 @@ src_install() {
 				doins ${target}
 				;;
 			*.el | *.elc)
-				insinto ${SITELISP#${EPREFIX}}/${PN}/${sub_directory}
+				insinto ${SITELISP}/${PN}/${sub_directory}
 				doins ${target}
 				;;
 			*.info*)
 				doinfo ${target}
 				;;
 			*)
-				insinto ${SITELISP#${EPREFIX}}/${PN}/${sub_directory}
+				insinto ${SITELISP}/${PN}/${sub_directory}
 				doins ${target}
 				echo ${target} >>"${S}/IMPLICIT_TARGETS"
 				;;
