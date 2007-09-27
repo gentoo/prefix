@@ -126,5 +126,5 @@ pkg_postrm() {
 	einfo 'Updating TeX tree...'
 	texhash &> /dev/null
 
-	[ -f "${SITELISP}"/site-gentoo.el ] && elisp-site-regen
+	[ -f "${ESITELISP}"/site-gentoo.el ] && elisp-site-regen
 }
