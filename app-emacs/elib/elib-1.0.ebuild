@@ -28,7 +28,7 @@ src_compile() {
 }
 
 src_install() {
-	dodir "${SITELISP#${EPREFIX}}"
+	dodir "${SITELISP}"
 	dodir /usr/share/info
 	emake prefix="${ED}/usr" infodir="${ED}/usr/share/info" install || die "emake install failed"
 
