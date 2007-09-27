@@ -25,6 +25,7 @@
 
 # Elias Pipping <pipping@mi.fu-berlin.de>
 # work in progress (in prefix)
+app-emacs/jde
 dev-java/javatoolkit
 dev-java/java-config
 dev-java/java-config-wrapper
