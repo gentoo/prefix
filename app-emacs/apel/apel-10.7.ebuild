@@ -12,7 +12,7 @@ SRC_URI="ftp://ftp.jpl.org/pub/elisp/apel/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
 src_unpack() {
@@ -26,14 +26,14 @@ src_unpack() {
 
 src_compile() {
 	emake PREFIX="${ED}/usr" \
-		LISPDIR="${D}/${SITELISP}" \
-		VERSION_SPECIFIC_LISPDIR="${D}/${SITELISP}" || die "emake failed"
+		LISPDIR="${ED}/${SITELISP}" \
+		VERSION_SPECIFIC_LISPDIR="${ED}/${SITELISP}" || die "emake failed"
 }
 
 src_install() {
 	einstall PREFIX="${ED}/usr" \
-		LISPDIR="${D}/${SITELISP}" \
-		VERSION_SPECIFIC_LISPDIR="${D}/${SITELISP}" || die "einstall failed"
+		LISPDIR="${ED}/${SITELISP}" \
+		VERSION_SPECIFIC_LISPDIR="${ED}/${SITELISP}" || die "einstall failed"
 
 	elisp-site-file-install "${FILESDIR}/50apel-gentoo.el"
 
