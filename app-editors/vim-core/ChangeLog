@@ -1,6 +1,15 @@
 # ChangeLog for app-editors/vim-core
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/ChangeLog,v 1.269 2007/08/23 06:34:13 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/ChangeLog,v 1.270 2007/09/27 09:33:50 hawking Exp $
+
+*vim-core-7.1.123 (27 Sep 2007)
+
+  27 Sep 2007; Ali Polatel <hawking@gentoo.org> -files/vimrc,
+  -files/vimrc-r1, -vim-core-7.0.174.ebuild, -vim-core-7.1.ebuild,
+  -vim-core-7.1-r1.ebuild, -vim-core-7.1.002.ebuild,
+  -vim-core-7.1.028.ebuild, -vim-core-7.1.087.ebuild,
+  +vim-core-7.1.123.ebuild:
+  Version bump. Drop old.
 
 *vim-core-7.1.087 (23 Aug 2007)
 
