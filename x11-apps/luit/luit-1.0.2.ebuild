@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="Locale and ISO 2022 support for Unicode terminals"
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libfontenc"
