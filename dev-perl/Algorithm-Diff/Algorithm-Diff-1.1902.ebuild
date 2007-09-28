@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/T/TY/TYEMQ/${P}.tar.gz"
 LICENSE="|| ( Artistic GPL-2 )"
 IUSE=""
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 
 DEPEND="app-arch/unzip
 	dev-lang/perl"
