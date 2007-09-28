@@ -11,7 +11,7 @@ DESCRIPTION="vim plugin: CVS/SVN/SVK integration plugin"
 HOMEPAGE="http://www.vim.org/scripts/script.php?script_id=90"
 
 LICENSE="public-domain"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 IUSE="cvs subversion svk"
 
 RDEPEND="cvs? ( dev-util/cvs )
