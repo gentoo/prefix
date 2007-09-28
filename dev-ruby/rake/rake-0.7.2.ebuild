@@ -16,7 +16,7 @@ SRC_URI="http://rubyforge.org/frs/download.php/17890/${P}.gem
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 RESTRICT="test"
 
