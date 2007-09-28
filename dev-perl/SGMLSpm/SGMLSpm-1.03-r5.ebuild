@@ -11,7 +11,7 @@ SRC_URI="mirror://cpan/authors/id/D/DM/DMEGG/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~mips ~sparc-solaris ~x86 ~x86-macos"
 IUSE=""
 
 RDEPEND=">=dev-lang/perl-5.8.0-r12"
