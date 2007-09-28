@@ -15,7 +15,7 @@ SRC_URI="mirror://cpan/authors/id/P/PA/PAJAS/${MY_P}.tar.gz"
 
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 IUSE=""
 
 DEPEND=">=dev-perl/XML-SAX-0.12
