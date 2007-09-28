@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/libusb
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.71 2007/08/30 13:23:03 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.73 2007/09/27 14:35:42 jer Exp $
+
+  27 Sep 2007; Jeroen Roovers <jer@gentoo.org> libusb-0.1.12-r1.ebuild:
+  Stable for HPPA (bug #193891).
+
+  27 Sep 2007; Raúl Porcel <armin76@gentoo.org> libusb-0.1.12-r1.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #193891
 
   30 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing liquidx from metadata due to his retirement (see #171155 for
