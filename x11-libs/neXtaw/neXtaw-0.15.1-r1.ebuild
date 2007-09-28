@@ -10,7 +10,7 @@ SRC_URI="http://siag.nu/pub/neXtaw/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86"
 IUSE=""
 
 DEPEND="x11-libs/libICE
