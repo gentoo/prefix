@@ -13,7 +13,7 @@ SRC_URI="http://www.docbook.org/xml/${PV}/${MY_P}.zip"
 
 LICENSE="X11"
 SLOT="4.4"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND=">=app-arch/unzip-5.41
