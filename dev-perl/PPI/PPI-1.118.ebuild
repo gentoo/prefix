@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/A/AD/ADAMK/${P}.tar.gz"
 
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~sparc-solaris ~x86 ~x86-macos"
 IUSE=""
 
 SRC_TEST="do"
