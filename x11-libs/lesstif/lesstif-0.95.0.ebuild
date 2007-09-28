@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 
 LICENSE="LGPL-2"
 SLOT="2.1"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86"
 IUSE="static"
 
 RDEPEND="virtual/libc
