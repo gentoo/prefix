@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/L/LD/LDACHARY/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86"
 IUSE=""
 
 SRC_TEST="do"
