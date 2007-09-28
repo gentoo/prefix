@@ -12,7 +12,7 @@ HOMEPAGE="http://www.tux.org/~ricdude/EsounD.html"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86"
 IUSE="alsa debug ipv6 tcpd"
 
 # esound comes with arts support, but it hasn't been tested yet, feel free to
