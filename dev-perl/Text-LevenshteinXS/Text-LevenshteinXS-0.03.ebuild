@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/J/JG/JGOLDBERG/${P}.tar.gz"
 
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86"
 IUSE=""
 
 SRC_TEST="do"
