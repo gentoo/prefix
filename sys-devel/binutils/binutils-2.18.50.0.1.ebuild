@@ -8,4 +8,15 @@ PATCHVER="1.0"
 ELF2FLT_VER=""
 inherit toolchain-binutils
 
-KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86 ~x86-solaris"
+
+src_compile() {
+	if has noinfo "${FEATURES}" \
+	|| ! type -p makeinfo >/dev/null
+	then
+		# binutils >= 2.17 (accidentally?) requires 'makeinfo'
+		export EXTRA_EMAKE="MAKEINFO=true"
+	fi
+
+	toolchain-binutils_src_compile
+}
