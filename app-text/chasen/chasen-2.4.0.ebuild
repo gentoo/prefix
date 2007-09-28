@@ -16,7 +16,7 @@ SRC_URI="mirror://sourceforge.jp//chasen-legacy/24693/${MY_P}.tar.gz"
 LICENSE="chasen"
 SLOT="0"
 # does not compile
-KEYWORDS="-*"
+KEYWORDS="-* ~sparc-solaris"
 IUSE="perl"
 
 DEPEND=">=dev-libs/darts-0.31"

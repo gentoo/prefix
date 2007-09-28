@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge.jp/chasen-legacy/24339/${P}.tar.gz"
 
 LICENSE="chasen"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
 IUSE="perl"
 
 RDEPEND=">=dev-libs/darts-0.2
