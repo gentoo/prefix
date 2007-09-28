@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/libmng/${P}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 IUSE="lcms"
 
 DEPEND=">=media-libs/jpeg-6b
