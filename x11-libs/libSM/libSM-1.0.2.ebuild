@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="X.Org SM library"
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="ipv6"
 
 RDEPEND="x11-libs/libICE
