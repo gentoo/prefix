@@ -12,7 +12,7 @@ SRC_URI="http://savannah.nongnu.org/download/xforms/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
 IUSE="opengl"
 
 DEPEND="
