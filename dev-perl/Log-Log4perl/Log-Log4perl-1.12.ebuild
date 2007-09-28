@@ -12,7 +12,7 @@ HOMEPAGE="http://log4perl.sourceforge.net/"
 
 SLOT="0"
 LICENSE="as-is"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 IUSE=""
 
 SRC_TEST="do"
