@@ -12,7 +12,7 @@ SRC_URI="mirror://debian/pool/main/s/surfraw/${PN}_${PV}.tar.gz"
 
 SLOT="0"
 LICENSE="public-domain"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
 IUSE=""
 
 src_unpack() {
