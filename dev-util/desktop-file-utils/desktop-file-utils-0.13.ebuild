@@ -12,7 +12,7 @@ SRC_URI="http://www.freedesktop.org/software/${PN}/releases/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86"
+KEYWORDS="~amd64 ~ia64 ~mips ~sparc-solaris ~x86"
 IUSE="emacs"
 
 RDEPEND=">=dev-libs/glib-2.6
