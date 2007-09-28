@@ -12,7 +12,7 @@ SRC_URI="http://dbus.freedesktop.org/releases/dbus/${P}.tar.gz"
 
 LICENSE="|| ( GPL-2 AFL-2.1 )"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86 ~x86-macos"
 IUSE="debug doc selinux X"
 
 RDEPEND="X? ( x11-libs/libXt x11-libs/libX11 )
