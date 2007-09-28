@@ -12,7 +12,7 @@ SRC_URI="ftp://ftp.afterstep.org/apps/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~mips ~x86"
+KEYWORDS="~amd64 ~mips ~sparc-solaris ~x86"
 IUSE="background cjk xgetdefault"
 
 RDEPEND="media-libs/jpeg
