@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86"
+KEYWORDS="~amd64 ~ia64 ~mips ~sparc-solaris ~x86"
 IUSE=""
 
 DEPEND=">=dev-util/pkgconfig-0.12.0
