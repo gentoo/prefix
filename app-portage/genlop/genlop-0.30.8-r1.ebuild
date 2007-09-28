@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/genlop/genlop-0.30.7.ebuild,v 1.10 2007/08/09 15:56:42 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/genlop/genlop-0.30.8-r1.ebuild,v 1.1 2007/09/27 02:15:48 lavajoe Exp $
 
 EAPI="prefix"
 
-inherit bash-completion eutils
+inherit eutils bash-completion
 
 DESCRIPTION="A nice emerge.log parser"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl"
@@ -22,12 +22,19 @@ DEPEND=">=dev-lang/perl-5.8.0-r12
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-prefix.patch
+
+	epatch "${FILESDIR}/${P}-version.patch"
+	epatch "${FILESDIR}"/${PN}-0.30.7-prefix.patch
 	eprefixify genlop
+	# ugly, but I'm not a perl guru
+	[[ ${CHOST} == *-solaris* ]] && \
+		sed -i -e 's/ps ax -o pid,args/ps -ef -o pid,args/' genlop
+	[[ ${CHOST} == *-darwin* ]] && \
+		sed -i -e 's/ps ax -o pid,args/ps ax -o pid,command/' genlop
 }
 
 src_install() {
-	dobin genlop || die
+	dobin genlop || die "failed to install genlop (via dobin)"
 	dodoc README Changelog
 	doman genlop.1
 	dobashcompletion genlop.bash-completion genlop

@@ -9,7 +9,7 @@
 @@ -26,7 +26,7 @@
  use File::Basename;
  
- my $version  = "0.30.7";
+ my $version  = "0.30.8";
 -my @logfiles = ("/var/log/emerge.log");
 +my @logfiles = ("@GENTOO_PORTAGE_EPREFIX@/var/log/emerge.log");
  my %COLORS   = (
