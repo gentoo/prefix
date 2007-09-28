@@ -1,6 +1,23 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.246 2007/09/22 16:45:19 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.250 2007/09/28 00:07:51 kumba Exp $
+
+  28 Sep 2007; Joshua Kinard <kumba@gentoo.org> imagemagick-6.3.5.9.ebuild:
+  Stable on mips, per #186030.
+
+  27 Sep 2007; Brent Baude <ranger@gentoo.org> imagemagick-6.3.5.10.ebuild:
+  Marking imagemagick-6.3.5.10 ppc64 stable for bug 186030
+
+  27 Sep 2007; Hans de Graaff <graaff@gentoo.org>
+  imagemagick-6.3.5.10.ebuild:
+  Review comments: use emake instead of make, add die message, don't install
+  useless installation documents.
+
+*imagemagick-6.3.5.10 (27 Sep 2007)
+
+  27 Sep 2007; Hans de Graaff <graaff@gentoo.org>
+  +imagemagick-6.3.5.10.ebuild:
+  Version bump: fixes some minor regressions including bug #193737.
 
   22 Sep 2007; Chris Gianelloni <wolf31o2@gentoo.org>
   imagemagick-6.3.5.9.ebuild:
