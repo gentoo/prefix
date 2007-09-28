@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/G/GR/GRANTM/${P}.tar.gz"
 
 LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86"
+KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86"
 IUSE=""
 
 DEPEND="virtual/perl-Storable
