@@ -12,7 +12,7 @@ HOMEPAGE="http://www.cpan.org/~gaas/"
 
 SLOT="0"
 LICENSE="Artistic"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
 IUSE=""
 
 DEPEND="virtual/perl-Digest-MD5
