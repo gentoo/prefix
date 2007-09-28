@@ -15,7 +15,7 @@ SRC_URI="mirror://sourceforge/tcl/${PN}${PV}-src.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~sparc-solaris ~x86"
 IUSE="debug threads"
 
 DEPEND=""
