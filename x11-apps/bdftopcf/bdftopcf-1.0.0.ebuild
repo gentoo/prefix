@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="X.Org bdftopcf application"
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 
 RDEPEND="x11-libs/libXfont"
 DEPEND="${RDEPEND}"
