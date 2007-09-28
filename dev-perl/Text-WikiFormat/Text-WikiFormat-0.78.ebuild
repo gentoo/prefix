@@ -12,7 +12,7 @@ HOMEPAGE="http://search.cpan.org/~chromatic/${P}/"
 
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86"
 
 DEPEND="dev-perl/URI
 	virtual/perl-Scalar-List-Utils
