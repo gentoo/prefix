@@ -1,6 +1,9 @@
 # ChangeLog for www-client/elinks
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.94 2007/09/20 20:54:22 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.95 2007/09/27 01:32:46 kumba Exp $
+
+  27 Sep 2007; Joshua Kinard <kumba@gentoo.org> elinks-0.11.3.ebuild:
+  Stable on mips, per #189954.
 
   20 Sep 2007; Brent Baude <ranger@gentoo.org> elinks-0.11.3.ebuild:
   Marking elinks-0.11.3 ppc64 for bug 189954
