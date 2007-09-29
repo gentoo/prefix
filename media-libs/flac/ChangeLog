@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/flac
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/ChangeLog,v 1.121 2007/09/26 16:30:59 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/ChangeLog,v 1.122 2007/09/28 13:03:55 drac Exp $
+
+*flac-1.2.1-r1 (28 Sep 2007)
+
+  28 Sep 2007; Samuli Suominen <drac@gentoo.org>
+  +files/flac-1.2.1-asm.patch, +flac-1.2.1-r1.ebuild:
+  Fix TEXTRELs using patch from PaX Team from bug 193222 and while at it,
+  attempt to clean up ebuild a bit. Revert last commit restoring elibtoolize
+  for fbsd since eautoreconf allready does libtoolize.
 
   26 Sep 2007; Raúl Porcel <armin76@gentoo.org> flac-1.1.4.ebuild:
   alpha/ia64 stable wrt #191280
