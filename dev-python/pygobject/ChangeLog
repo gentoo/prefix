@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.22 2007/07/26 21:32:44 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.23 2007/09/26 13:15:05 leio Exp $
+
+*pygobject-2.14.0 (26 Sep 2007)
+
+  26 Sep 2007; Mart Raudsepp <leio@gentoo.org> +pygobject-2.14.0.ebuild:
+  Adding 2.14 series, to go along with glib-2.14 for Gnome 2.20
 
   26 Jul 2007; Roy Marples <uberlord@gentoo.org> pygobject-2.12.3.ebuild:
   true is not always in /bin
