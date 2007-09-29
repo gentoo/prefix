@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libassuan
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.40 2007/07/20 20:09:06 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.41 2007/09/28 18:34:10 fmccor Exp $
+
+  28 Sep 2007; Ferris McCormick <fmccor@gentoo.org>
+  libassuan-1.0.2-r1.ebuild:
+  Sparc stable --- Bug #194113 --- all tests pass.
 
 *libassuan-1.0.2-r1 (20 Jul 2007)
 
