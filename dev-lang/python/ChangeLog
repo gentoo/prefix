@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.279 2007/09/24 18:46:38 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.280 2007/09/26 01:16:45 kumba Exp $
+
+  26 Sep 2007; Joshua Kinard <kumba@gentoo.org> python-2.4.4-r5.ebuild:
+  Stable on mips, per #188029.
 
   24 Sep 2007; Ali Polatel <hawking@gentoo.org> python-2.5.1-r2.ebuild:
   don't set LINKCC, removed nocxx use flag. don't pass --with-cxx=no to
