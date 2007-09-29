@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.359 2007/08/30 16:10:59 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.363 2007/09/27 15:30:32 drac Exp $
 
 # Keep them sorted
 
-3dfx - Adds support for 3dfx video cards to XFree86. See: voodoo3
+3dfx - Enable support for Voodoo chipsets, also called as 3DFX and TDFX
 3dnow - Adds support for 3dnow multimedia processor instructions
 X - Adds support for X11
 Xaw3d - Adds support of the 3d athena widget set
@@ -21,7 +21,6 @@ aim - Enable AIM IM protocol support
 alsa - Adds support for media-libs/alsa-lib (Advanced Linux Sound Architecture)
 altivec - Adds support for optimizations for G4 and G5/ppc970 processors
 ao - Use libao audio output library for sound playback
-apache - Chooses Apache1 support when a package optionally supports Apache1
 apache2 - Chooses Apache2 support when a package supports both Apache1 and Apache2
 apm - Adds APM (Advanced Power Management) support
 arts - Adds support for aRts: the KDE sound daemon
@@ -67,7 +66,7 @@ dbus - Enable dbus support for anything that needs it (gpsd, gnomemeeting, etc)
 dbx - Adds database abstraction layer
 debug - Enable extra debug codepaths, like asserts and extra output. If you want to get meaningful backtraces see http://www.gentoo.org/proj/en/qa/backtraces.xml .
 dedicated - Adds support for dedicated game servers (some packages do not provide clients and servers at the same time)
-dga - Adds DGA Support (Xfree86) (DGA=Direct Graphic Access)
+dga - Adds DGA (Direct Graphic Access) support for X
 directfb - Adds support for DirectFB layer (library for FB devices)
 doc - Adds extra documentation (API, Javadoc, etc)
 dri - Enable direct rendering: used for accelerated 3D and some 2D, like DMA
@@ -177,7 +176,7 @@ leim - Adds input methods support to Emacs
 lesstif - Use lesstif over openmotif in cases where a program supports both
 libcaca - Add support for colored ASCII-art graphics
 libedit - Use the libedit library (replacement for readline)
-libgda - Adds GNU Data Access (CORBA wrapper) support for gnumeric
+libgda - Adds GNOME Data Access support
 libnotify - Enable notification support
 libsamplerate - Build with support for converting sample rates using libsamplerate
 libwww - Adds libwww support (General purpose WEB API)

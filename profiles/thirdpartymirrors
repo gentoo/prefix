@@ -23,7 +23,7 @@ jpackage	ftp://mirrors.dotsrc.org/jpackage ftp://jpackage.hmdc.harvard.edu/JPack
 kde		http://ibiblio.org/pub/mirrors/kde ftp://ftp.kde.org/pub/kde ftp://ftp.gtlib.cc.gatech.edu/pub/kde ftp://download.au.kde.org/pub/kde ftp://ftp.du.se/pub/mirrors/kde 
 kernel		http://www.kernel.org/pub http://www.us.kernel.org/pub http://www.de.kernel.org/pub http://www.fr.kernel.org/pub http://www.uk.kernel.org/pub http://www.at.kernel.org/pub
 liflg		http://liflg.death-row.org/files/native http://mirrors.ecology.uni-kiel.de/games/liflg/native http://home.coc-ag.de/dressler-ro/liflg/files/native http://liflg.death-row.org/files/final http://mirrors.ecology.uni-kiel.de/games/liflg/final http://home.coc-ag.de/dressler-ro/liflg/files/final
-lokigames	http://mirrors.dotsrc.org/lokigames/updates
+lokigames	http://mirrors.dotsrc.org/lokigames/updates http://lokifiles.tuxgames.com/updates
 macromedia	http://sluglug.ucsc.edu/macromedia http://ruslug.rutgers.edu/macromedia http://macromedia.mplug.org http://macromedia.rediris.es 
 nero		http://ftp3.use.nero.com/software/NeroLINUX http://ftp4.use.nero.com/software/NeroLINUX http://ftp5.use.nero.com/software/NeroLINUX http://ftp6.use.nero.com/software/NeroLINUX ftp://ftp3.use.nero.com/software/NeroLINUX ftp://ftp4.use.nero.com/software/NeroLINUX ftp://ftp5.use.nero.com/software/NeroLINUX ftp://ftp6.use.nero.com/software/NeroLINUX
 mplayer		http://www1.mplayerhq.hu/MPlayer http://www2.mplayerhq.hu/MPlayer

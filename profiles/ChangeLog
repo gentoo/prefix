@@ -1,6 +1,138 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.636 2007/09/09 09:23:05 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.673 2007/09/28 22:55:01 alonbl Exp $
+
+  28 Sep 2007; Alon Bar-Lev <alonbl@gentoo.org> package.mask:
+  Remove app-text/hspell
+
+  28 Sep 2007; Wulf C. Krueger <philantrop@gentoo.org> package.mask:
+  Removed app-cdr/kover from package.mask as it was just removed from the tree.
+
+  28 sep 2007; Peter Volkov <pva@gentoo.org> package.mask:
+  Masked >=app-doc/kchmviewer-4.0_beta1 for testing
+
+  27 Sep 2007; Kevin F. Quinn <kevquinn@gentoo.org> package.mask:
+  Masked acroread-8.1.1 for testing
+
+  27 Sep 2007; Wulf C. Krueger <philantrop@gentoo.org> package.mask:
+  Temporaryly p.masked =dev-util/cmake-2.4.7-r2 for further testing and until
+  xmlrpc-c has been keyworded properly.
+
+  27 Sep 2007; Paul Varner <fuzzyray@gentoo.org> package.mask:
+  Mask gentoolkit-0.2.4_rc1 due to broken revdep-rebuild
+
+  26 Sep 2007; MATSUU Takuto <matsuu@gentoo.org> use.local.desc:
+  Added audit and xattr USE flag for app-forensics/aide.
+
+  26 Sep 2007; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Mask app-emacs/speedbar for removal.
+
+  26 Sep 2007; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Remove app-emacs/slime-cvs from package.mask since the package was removed.
+
+  26 Sep 2007; Jeff Gardner <je_fro@gentoo.org> package.mask:
+  Removed xf86-video-radeonhd from p.mask as it's not going in the tree just
+  yet...
+
+  25 Sep 2007; <solar@gentoo.org> uclibc/package.mask:
+  - remove tar masking in uclibc profile
+
+  25 Sep 2007; <jeff@gentoo.org> package.mask:
+  Adding x11-drivers/xf86-video-radeonhd to p.mask, as it's still experimental.
+
+  23 Sep 2007; Rémi Cardona <remi@gentoo.org> package.mask:
+  Removing the gtkmm-2.12 mask
+
+  23 Sep 2007; Jeroen Roovers <jer@gentoo.org> use.local.desc:
+  Improve mozsha1 description (bug #193134 comment #7).
+
+  23 Sep 2007; Rémi Cardona <remi@gentoo.org> package.mask:
+  Mask gtkmm-2.12 and friends (Gnome 2.20)
+
+  23 Sep 2007; Denis Dupeyron <calchan@gentoo.org> package.mask:
+  Masked net-print/hpijs for removal on 24 Oct 2007 as per bug #176962.
+
+  23 Sep 2007; Mart Raudsepp <leio@gentoo.org> package.mask:
+  Unmasking gtk+-2.12 and co
+
+  22 Sep 2007; Chris Gianelloni <wolf31o2@gentoo.org> package.mask:
+  Masking =net-misc/icaclient-10.6 until we can resolve bug #189884.
+
+  22 Sep 2007; Wulf C. Krueger <philantrop@gentoo.org>
+  default-linux/ppc/ppc64/2007.0/32bit-userland/package.mask,
+  hardened/ppc/package.mask:
+  Masked app-text/bibus as it requires virtual/ooo.
+
+  22 Sep 2007; Christian Faulhammer <opfer@gentoo.org> use.local.desc:
+  remove spurious xemacs USE flag for dev-tex/preview latex (not in the tree
+  anymore); adjust description of xemacs USE flag for
+  sci-visualization/gnuplot
+
+  21 Sep 2007; Rémi Cardona <remi@gentoo.org> package.mask:
+  mask for gtk+-2.12 and relevant deps
+
+  21 Sep 2007; Chris Gianelloni <wolf31o2@gentoo.org> package.mask:
+  Added sys-auth/{pam_,}bioapi to package.mask since sys-auth/tfm-fingerprint
+  is masked for removal and nothing else in the tree uses bioapi.
+
+  20 Sep 2007; Mike Auty <ikelos@gentoo.org> package.mask:
+  Masking vmware packages according to bug 193196.
+
+  20 Sep 2007; Robin H. Johnson <robbat2@gentoo.org> package.mask:
+  Last rites for bk_client. MySQL herd has no further need for this package.
+
+  18 Sep 2007; Robin H. Johnson <robbat2@gentoo.org>
+  default-linux/alpha/use.mask, default-linux/arm/use.mask,
+  default-linux/hppa/use.mask, default-linux/m68k/use.mask,
+  default-linux/ppc/ppc64/use.mask, default-linux/ppc64/use.mask,
+  default-linux/s390/use.mask, default-linux/sh/use.mask,
+  hardened/ppc64/use.mask:
+  Mask USE=audit on alpha, arm, hppa, ppc64, s390, sh until they have
+  keyworded it per bug 184563.
+
+  18 Sep 2007; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Unmask app-emacs/slime-2.0_p20070816 CVS snapshot.
+
+  17 Sep 2007; Gilles Dartiguelongue <eva@gentoo.org>
+  default-linux/amd64/2007.0/package.use.mask,
+  default-linux/amd64/package.use.mask, default-linux/ia64/package.use.mask,
+  default-linux/ppc/package.use.mask, +default-linux/ppc64/package.use.mask,
+  hardened/amd64/package.use.mask, hardened/ia64/package.use.mask,
+  hardened/ppc/package.use.mask, +hardened/ppc64/package.use.mask:
+  fix QA for iptc USE flag in gthumb
+
+  17 Sep 2007; Wulf C. Krueger <philantrop@gentoo.org> package.mask:
+  Removed app-pda/pilot-link-0.12.2 from package.mask.
+
+  17 Sep 2007; Alon Bar-Lev <alonbl@gentoo.org> use.local.desc:
+  Added sys-power/suspend:fbsplash
+
+  16 Sep 2007; Mike Auty <ikelos@gentoo.org> package.mask:
+  Unmask vmware workstation/player now that vmware-modules-1.0.0.16-r1 is
+  checked in.
+
+  16 Sep 2007; Jason Smathers (jsin) <jsin@gentoo.org> use.local.desc:
+  Added xft local use flag for OpenMotif to enable XFT fonts.
+
+  15 Sep 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Unmask wxGTK and wxpython-2.6.4.0
+
+  13 Sep 2007; Daniel Black <dragonheart@gentoo.org> package.mask,
+  use.local.desc:
+  use.local.desc - added net-misc/curl:libssh2 - Enabled SSH urls in curl
+  using libssh2. package.mask - added curl-7.17.0-r1 for ssh2 testing
+
+  12 Sep 2007; Alon Bar-Lev <alonbl@gentoo.org> package.mask:
+  Mask app-text/hspell for removal
+
+  12 Sep 2007; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove a few more dead masks.
+
+  12 Sep 2007; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove a few dead masks.
+
+  12 Sep 2007; Joerg Bornkessel <hd_brummy@gentoo.org>;
+  media-video:vdr 29 new use-flags for new vdr patchset added
 
   09 Sep 2007; Donnie Berkholz <dberkholz@gentoo.org>;
   desc/video_cards.desc:

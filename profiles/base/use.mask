@@ -1,5 +1,5 @@
 # profile specific USE flags
-hardened
+# Don't put hardened in here.
 selinux
 uclibc
 

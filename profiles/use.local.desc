@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3020 2007/09/09 21:10:08 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3047 2007/09/28 16:54:34 drac Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -110,7 +110,6 @@ app-editors/xemacs:eolconv - Support detection and translation of newline conven
 app-editors/xemacs:pop - Support POP for mail retrieval.
 app-editors/xemacs:xim - Enable X11 XiM input method
 app-emacs/auctex:preview-latex - Use bundled preview-latex
-app-emacs/chess:festival - Enable festival support
 app-emacs/delicious:planner - Include support for app-emacs/planner
 app-emacs/easypg:gnus - Include support for the Gnus newsreader
 app-emacs/remember:bbdb - Include support for app-emacs/bbdb
@@ -142,7 +141,6 @@ app-emulation/vice:resid - Enable support for ReSID
 app-emulation/virtualbox-bin:additions - Install Guest System Tools ISO
 app-emulation/virtualbox-bin:nowrapper - Disable the VirtualBox XPCom Server autostart wrapper
 app-emulation/virtualbox-bin:sdk - Enable building of SDK
-app-emulation/virtualbox-bin:vditool - Install the Virtual Disk Image Manager vditool
 app-emulation/virtualbox:additions - Install Guest System Tools ISO
 app-emulation/virtualbox:alsa - Enable support for ALSA instead of OSS
 app-emulation/virtualbox:nowrapper - Disable the VirtualBox XPCom Server autostart wrapper
@@ -156,6 +154,7 @@ app-emulation/xen-tools:screen - Enable support for running domain U consoles in
 app-emulation/xen-tools:ioemu - Enable support for emulated io devices including video via VNC for domainUs
 app-emulation/xen:custom-cflags - Use CFLAGS from /etc/make.conf rather than the default Xen CFLAGS (not supported)
 app-emulation/xen:pae - Enable support for PAE kernels (usually x86-32 with >4GB memory)
+app-forensics/aide:xattr - if you want extended attributes enabled
 app-forensics/samhain:login-watch - Compile in the module to watch for login/logout events
 app-forensics/samhain:mounts-check - Compile in the module to check for correct mount options
 app-forensics/samhain:netclient - Compile a client, rather than a standalone version
@@ -550,14 +549,13 @@ dev-php5/php-gtk:sourceview - Enable GtkSourceView support
 dev-php5/php-gtk:libsexy - Enable libsexy support
 dev-php5/php-gtk:scintilla - Enable Scintilla support
 dev-php5/php-gtk:nolibglade - Disable support for libglade
-dev-php5/znf:pear-db - Include support for PEAR-DB
-dev-php5/znf:smarty - Include support for Smarty
 dev-python/cgkit:3ds - enable support for importing 3D Studio models
 dev-python/cgkit:ogre - enable support for Ogre rendering
 dev-python/docutils:glep - Install support for GLEPs
 dev-python/ipython:gnuplot - enable gnuplot support
 dev-python/kaa-metadata:css - Enables ripping/reading of encrypted dvds
 dev-python/ldaptor:web - enable the web front end for ldaptor (uses dev-python/nevow)
+dev-python/nose:twisted - install nose.twistedtools to integrate tests with twisted
 dev-python/paste:flup - enable support for flup (and therefore for various wgsi servers and middleware)
 dev-python/paste:openid - enable OpenID support
 dev-python/psycopg:mxdatetime - choose MX DateTime support instead of built-in datetime
@@ -592,7 +590,6 @@ dev-scheme/guile:elisp - enable Emacs Lisp support
 dev-scheme/guile:networking - include networking interfaces
 dev-scheme/guile:regex - include regular expression interfaces
 dev-tex/latex-beamer:lyx - Install with LyX layouts
-dev-tex/preview-latex:xemacs - Adds support for XEmacs
 dev-util/anjuta:devhelp - Enable devhelp integration
 dev-util/anjuta:glade - Build glade plugin for anjuta
 dev-util/anjuta:inherit-graph - Build inheritance graphing plugin for anjuta
@@ -609,11 +606,10 @@ dev-util/cvs:server - Enable server support
 dev-util/debootstrap:nodpkg - Don't install dpkg (useful for building a non-debian system)
 dev-util/eclipse-sdk:branding - Enable Gentoo branded splash screen
 dev-util/eric:idl - Enable omniorb support
-dev-util/git:mozsha1 - Make use of a bundled routine commit with Mozilla that should be fast on non-x86 archs
+dev-util/git:mozsha1 - makes git use an optimized SHA1 routine from Mozilla that should be fast on non-x86 machines
 dev-util/git:ppcsha1 - Make use of a bundled routine that is optimized for the PPC arch
 dev-util/git:webdav - Adds support for push'ing to HTTP repositories via DAV
 dev-util/glade:devhelp - Enable help support through devhelp
-dev-util/glade:gnomedb - Enable gnomedb widgets for Glade.
 dev-util/global:vim - vim funny stuff for global
 dev-util/kdevelop:ada - Support for the Ada programming language.
 dev-util/kdevelop:clearcase - Support for the ClearCase version control system.
@@ -742,13 +738,14 @@ gnome-extra/nautilus-sendto:thunderbird - Enable support for thunderbird
 gnome-extra/sensors-applet:hddtemp - Enable support the hddtemp daemon
 gnome-extra/sensors-applet:nvidia - Enable support for nvidia sensors
 gnome-extra/yelp:beagle - Enable beagle support
+gnome-extra/zim:trayicon - Enable support for trayicon
+gnustep-apps/cynthiune:modplug - Build with modplug support
+gnustep-apps/cynthiune:timidity - Build with Timidity++ (MIDI sequencer) support
 gnustep-apps/gnumail:emoticon - Enable extra Emoticon Bundle to see smiley's in e-mail messages.
-gnustep-apps/gworkspace:pdfkit - Enable PDFkit bindings
 gnustep-base/gnustep-back-art:xim - Enable X11 XiM input method
 gnustep-base/gnustep-back-cairo:glitz - Build with glitz support
 gnustep-base/gnustep-back-cairo:xim - Enable X11 XiM input method
 gnustep-base/gnustep-back-xlib:xim - Enable X11 XiM input method
-gnustep-base/gnustep-base:ffcall - enable use of ffcall package in gnustep-base, rather than gcc-libffi
 gnustep-base/gnustep-base:gcc-libffi - Offers a migration path away from the ill fated dev-libs/libffi; gcc-3.* will generally have to be compiled with 'gcj' on, >=gcc-3.4.3-r1 can be used with only 'objc' turned on (this will reduce compile time).
 gnustep-base/gnustep-gui:gsnd - Enable GNUstep sound server
 gnustep-base/gnustep-make:layout-from-conf-file - Layout GNUstep according to /etc/conf.d/gnustep.env; GNUSTEP_SYSTEM_ROOT, GNUSTEP_LOCAL_ROOT, GNUSTEP_NETWORK_ROOT, and GNUSTEP_USER_ROOT (use '~' or '~/whatever' -- SURROUNDED BY SINGLE QUOTES -- for the user root); the only required entry is GNUSTEP_SYSTEM_ROOT; GNUSTEP_SYSTEM_ROOT must end with "System".
@@ -907,6 +904,8 @@ media-gfx/graphicsmagick:depth32 - use 32-bit color depth as default
 media-gfx/graphicsmagick:gs - enable ghostscript support
 media-gfx/graphicsmagick:lzw - enable LZW support
 media-gfx/graphviz:pango - Enables the rendering of the graphs using pango & cairo (with antialiasing support)
+media-gfx/gthumb:iptc - Add support for IPTC metadata
+media-gfx/gthumb:raw - Add support for raw image formats 
 media-gfx/gtkam:gimp - GIMP plugin from gtkam
 media-gfx/gwenview:kipi - Support for the KDE Image Plugin Interface.
 media-gfx/hugin:enblend - Pull media-gfx/enblend as a dependency
@@ -1022,6 +1021,7 @@ media-sound/banshee:boo - Use external Boo instead of the bundled one
 media-sound/banshee:daap - Build with Daap support
 media-sound/banshee:njb - Build with njb audio player support
 media-sound/bmpx:modplug - Build with modplug support
+media-sound/bmpx:networkmanager - Enable networkmanager support
 media-sound/bmpx:ofa - Build with ofa/PUID checking support for MusicBrainz metadata
 media-sound/bmpx:p2p - Enable support for downloading songs from the SoulSeek p2p network with museekd/mooseekd
 media-sound/bmpx:sid - Build with SID (Commodore 64 Audio) support
@@ -1034,9 +1034,8 @@ media-sound/cmus:zsh-completion - enable zsh completion support
 media-sound/darkice:twolame - Build with twolame support
 media-sound/dir2ogg:wma - Add support for wma files through mplayer
 media-sound/easytag:wavpack - Add support for wavpack
+media-sound/exaile:equalizer - Enable equalizer support
 media-sound/exaile:libsexy - Enable libsexy support
-media-sound/exaile:serpentine - Add cd-burning support using serpentine 
-media-sound/exaile:streamripper - Add streamripper support for stream recording
 media-sound/ezstream:taglib - Enable tagging support with taglib
 media-sound/freewheeling:fluidsynth - compile with support for fluidsynth
 media-sound/gnusound:cpudetection - Enables runtime cpu detection
@@ -1062,6 +1061,7 @@ media-sound/mp3blaster:sid - Build with SID (Commodore 64 Audio) support
 media-sound/mpd:icecast - Enable support for Icecast2
 media-sound/mpfc:cdaudio - Enable cd audio playback support
 media-sound/mpfc:wav - Enable wav audio codec support
+media-sound/mpg123:3dnowext - Enable 3dnowext cpu instructions
 media-sound/mt-daapd:upnp - Enables support for Intel UPnP stack.
 media-sound/murmur:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
 media-sound/musepack-tools:16bit - Higher quality sound output using dithering and noise-shaping
@@ -1077,7 +1077,7 @@ media-sound/picard:cdaudio - Enable support for CD Index Lookups.
 media-sound/podcatcher:bittorrent - Enable support for bittorrent downloads
 media-sound/prokyon3:taglib - Enable tagging support with taglib
 media-sound/quodlibet:mmkeys - Enable support for special keys on multimedia keyboards
-media-sound/quodlibet:trayicon - Enable support for tray icon plugins
+media-sound/quodlibet:trayicon - Enable support for trayicon
 media-sound/radiomixer:hwmixer - Use hardware mixer instead of internal mixer routines
 media-sound/radiomixer:songdb - Enable usage of SongDB backend
 media-sound/rezound:16bittmp - Use 16bit temporary files (default 32bit float), usefull for slower computers
@@ -1161,7 +1161,7 @@ media-video/devede:psyco - psyco python accelerator
 media-video/dvd-slideshow:themes - Install theme pack 
 media-video/dvdrip:fping - Enables fping support for cluster rendering
 media-video/dvdrip:subtitles - Enables support for subtitle ripping
-media-video/dxr3player:3dnowext - Enables 3dnowext instructions
+media-video/dxr3player:3dnowext - Enable 3dnowext cpu instructions
 media-video/dxr3player:mmxext - Enables mmxext instructions
 media-video/ffmpeg:amr - Enables Adaptive Multi-Rate Audio support
 media-video/ffmpeg:network - Enables network streaming support
@@ -1181,7 +1181,7 @@ media-video/mpeg4ip:mp4live - Build the live streaming/encoding software
 media-video/mpeg4ip:mpeg2 - Support mpeg2 in the player
 media-video/mpeg4ip:player - Build the player
 media-video/mpeg4ip:v4l2 - Enable video4linux2 support for mp4live
-media-video/mplayer:3dnowext - Enables 3dnow extensions in mplayer
+media-video/mplayer:3dnowext - Enable 3dnowext cpu instructions
 media-video/mplayer:amrnb - Enables Adaptive Multi-Rate Audio support (Narrow Band)
 media-video/mplayer:amrwb - Enables Adaptive Multi-Rate Audio support (Wide Band)
 media-video/mplayer:bl - Enables Blinkenlights support in mplayer
@@ -1196,6 +1196,7 @@ media-video/mplayer:lzo - Enables support for lzo compression
 media-video/mplayer:md5sum - Enables md5sum video output
 media-video/mplayer:mmxext - Enables mmx2 support
 media-video/mplayer:mp2 - Enables support for twolame, an MP2 audio library
+media-video/mplayer:nemesi - Enable Nemesi Streaming Media support
 media-video/mplayer:pnm - Add PNM video output option, to create PPM/PGM/PGMYUV images
 media-video/mplayer:pvr - Video4Linux2 MPEG PVR support
 media-video/mplayer:radio - Enable V4L2 radio interface and support
@@ -1226,19 +1227,48 @@ media-video/transcode:v4l2 - Enable video4linux2 support
 media-video/vdr:aio - Use "all in one" patch (or its successor "liemikuutio") with much additional features
 media-video/vdr:bigpatch - Enables almost all additional features flying around on the net (including aio)
 media-video/vdr:child-protection - Enable support for the plugin vdr-pin (Protecting some recordings / channels with a PIN)
+media-video/vdr:cmdctrl - allows switching remote control on/off
 media-video/vdr:cmdsubmenu - Allows the creation of submenus in the commands menu
+media-video/vdr:cutterlimit - Limit IO bandwith used for cutting
+media-video/vdr:cutterqueue - Adds a queue of recordings to be cutted
+media-video/vdr:ddepgentry - remove duplicate EPG entries
+media-video/vdr:cuttime - Adjust starttime of cutted recording by length of cut out parts
+media-video/vdr:dolbyinrec - add a dedicated switch to control recording of dolby digital
 media-video/vdr:dolby-record-switch - Allows to control separately to record / to replay dolby digital
 media-video/vdr:dvbplayer - Use some special mpeg-repacker features. Most usable for old recordings or software output devices.
+media-video/vdr:dvbsetup - Setup for AC3 transfer, disable primary tuner
+media-video/vdr:dvdarchive - DMH DVD - Archiv ( used by vdr-burn-0.1.0_* )
+media-video/vdr:dvdchapjump - Jump on capitels on DMH DVD - Archiv
+media-video/vdr:dvlfriendlyfnames - filter file names on recording
+media-video/vdr:dvlrecscriptaddon - enhancement for record-script
+media-video/vdr:dvlvidprefer - controls video-dir choice on recording
 media-video/vdr:dxr3-audio-denoise - Mutes audio noise occurring with dxr3-cards using analog audio-out when e.g. cutting
+media-video/vdr:graphtft - support for grapftft plugin up from vdr-graphtft-0.1.7
+media-video/vdr:hardlinkcutter - Speed up cutting by hardlinking unchanged files
 media-video/vdr:jumpplay - Enables automatic jumping over cut marks while watching a recording
+media-video/vdr:liemikuutio - Formerly known as AIO (all-in-one) patch, adds some nice must haves
+media-video/vdr:livebuffer - does timeshifting/background recording all the time, allows to rewind live TV
+media-video/vdr:lnbshare - Enables support for two or more dvb cards sharing the same cable to the lnb
 media-video/vdr:lnbsharing - Enables support for two or more dvb cards sharing the cable to the lnb
+media-video/vdr:mainmenuhooks - Allows to replace main menu entries by some special plugins (like epgsearch, extrecmenu, ...)
 media-video/vdr:noepg - Adds code to selectively disable epg-reception for specific channels
+media-video/vdr:osdmaxitems - Support for text2skin
+media-video/vdr:pinplugin - Support for pin plugin
 media-video/vdr:rotor - Enable support for plugin vdr-rotor for dish-positioner.
+media-video/vdr:settime - set system time per script instead of via syscal
+media-video/vdr:setup - Enable support for the plugin vdr-setup
 media-video/vdr:setup-plugin - Enable support for the plugin vdr-setup
-media-video/vdr:sourcecaps - Adds the ability to define capabilities of dvb-cards (e.g. card1 can receive Sat @28.2E).
+media-video/vdr:sourcecaps - Adds the ability to define capabilities of dvb-cards (e.g. card1 can receive Sat @28.2E)
+media-video/vdr:sortrecords - allows to change sort order of recordings
+media-video/vdr:switchtimer - support for timer that do not record but only switch to a channel
 media-video/vdr:submenu - Enable support for the plugin vdr-submenu.
 media-video/vdr:subtitles - Enable support for the subtitles-plugin
-media-video/vdr:yaepg - Enables support for the plugin vdr-yaepg.
+media-video/vdr:syncearly - start live display as soon as possible, not waiting for sync of audio and video
+media-video/vdr:timercmd - Adds submenu for user defined commands in timer menu
+media-video/vdr:timerinfo - Show with chars +/- if space on HD will suffice for a timer
+media-video/vdr:validinput - Signal if it is possible to go left/right in lists with chars < >
+media-video/vdr:wareagleicon - Replace original icon set in menu
+media-video/vdr:yaepg - Enables support for the plugin vdr-yaepg
 media-video/vlc:cdda - Enables libcdda cd audio playback support.
 media-video/vlc:corba - Enables corba interface support.
 media-video/vlc:daap - Enables DAAP shares services discovery support.
@@ -1407,9 +1437,6 @@ net-ftp/pure-ftpd:noiplog - Disables logging of IP addresses
 net-ftp/pure-ftpd:paranoidmsg - Display paranoid messages instead of normal ones
 net-ftp/pure-ftpd:vchroot - Enable support for virtual chroot (possible security risk)
 net-ftp/vsftpd:logrotate - Use logrotate for rotating logs
-net-im/bitlbee:aimextras - Enables extra AIM patches not supported by upstream
-net-im/bitlbee:flood - Enable flood protection support
-net-im/bitlbee:gtalk - Enable Google Talk support
 net-im/bitlbee:msnextras - Enables extra MSN patches not supported by upstream
 net-im/bitlbee:nss - Use NSS for SSL support in MSN and Jabber.
 net-im/bitlbee:openssl - Use OpenSSL for SSL support in MSN and Jabber.
@@ -1438,7 +1465,7 @@ net-im/gaim:qq - Enable QQ protocol support.
 net-im/gaim:silc - Enable SILC protocol support
 net-im/gajim:idle - Enable idle module
 net-im/gajim:srv - SRV capabilities
-net-im/gajim:trayicon - Enable the trayicon module
+net-im/gajim:trayicon - Enable support for trayicon
 net-im/gajim:xhtml - Enable XHTML support
 net-im/gnugadu:tlen - Enable Tlen.pl protocol support
 net-im/gossip:galago - Enable desktop presence with galago
@@ -1560,6 +1587,7 @@ net-misc/bird:client - Enables the BIRD client
 net-misc/bird:ipv6only - Builds with only IPv6, note that this *disables* IPv4 entirely
 net-misc/bridge-utils:sysfs - Enable use of the sysfs filesystem (Linux-2.6+) via libsysfs
 net-misc/curl:ares - Enabled c-ares dns support
+net-misc/curl:libssh2 - Enabled SSH urls in curl using libssh2
 net-misc/curl:nss - Use NSS as the crypto engine
 net-misc/dhcpcd:vram - Disable DUID due to volatile media, such as a LiveCD
 net-misc/directvnc:mouse - Adds mouse support
@@ -1655,7 +1683,7 @@ net-p2p/mldonkey:gnutella - enable gnutella and gnutella2 support
 net-p2p/mldonkey:guionly - enable client build only
 net-p2p/mldonkey:magic - enable use of libmagic
 net-p2p/museek+:qsa - Enable QSA scripting for museeq
-net-p2p/museek+:trayicon - Enable support for tray icon
+net-p2p/museek+:trayicon - Enable support for trayicon
 net-p2p/transmission:daemon - Enable data collection daemon
 net-print/hplip:fax - Enable fax support
 net-print/hplip:parport - Enable parallel port support
@@ -1749,6 +1777,7 @@ sci-geosciences/grass:gdal - Enables gdal support (Grass 6 only)
 sci-geosciences/grass:glw - Enables libGLw support (requires mesa)
 sci-geosciences/grass:gmath - Enables gmath wrapper for BLAS/Lapack
 sci-geosciences/grass:largefile - Enables LFS support for huge files
+sci-geosciences/mapserver:agg - Enables agg library support
 sci-geosciences/mapserver:flash - Adds support for creating SWF files using Ming
 sci-geosciences/mapserver:gdal - Enables gdal library support
 sci-geosciences/mapserver:geos - Enables geos library support
@@ -1802,7 +1831,7 @@ sci-misc/nco:ncap2 - Build next generation netcdf arithmetic processor (needs de
 sci-misc/nco:udunits - Add udunits files support
 sci-misc/ncview:udunits - Add udunits files support
 sci-physics/root:cern - Add cernlib i/o functionality to root
-sci-visualization/gnuplot:xemacs - Add lisp files for emacs
+sci-visualization/gnuplot:xemacs - Add support for XEmacs
 sci-visualization/hippodraw:fits - Add FITS support to hippodraw, via cfitsio
 sci-visualization/hippodraw:numarray - Add numarray python array support
 sci-visualization/hippodraw:root - Add root i/o, and minuit support
@@ -1962,6 +1991,7 @@ sys-libs/glibc:nptlonly - Disables building the linuxthreads fallback in glibc e
 sys-libs/glibc:userlocales - build only the locales specified in /etc/locales.build
 sys-libs/libuser:quotas - Enables support for user quotas
 sys-libs/ncurses:trace - Enable test trace() support in ncurses calls
+sys-libs/pam:audit - Enable support for sys-process/audit
 sys-libs/pam:pam_chroot - Builds the pam_chroot module (enables per-user chroots at login)
 sys-libs/pam:pam_console - Builds the pam_console module (enables per-user device permissions for console user)
 sys-libs/pam:pam_timestamp - Builds the pam_timestamp module (enables recent successful attempt authentication)
@@ -1980,6 +2010,7 @@ sys-power/cpufreqd:pmu - Enable Power Management Unit plug-in
 sys-power/hibernate-script:logrotate - Use logrotate for rotating logs
 sys-power/nut:cgi - Add CGI script support
 sys-power/powersave:pam_console - Adds support for pam console from PAM
+sys-power/suspend:fbsplash - Add support for framebuffer splash
 sys-process/daemontools-scripts:withsamplescripts - Installs sample supervise scripts
 sys-process/procps:n32 - Enable n32 ABI support on mips
 www-apache/anyterm:opera - Enable workaround for bug in Opera web browser
@@ -2000,7 +2031,7 @@ www-apps/bugzilla:extras - optional Perl modules
 www-apps/bugzilla:modperl - Enable modperl support
 www-apps/egroupware:ical - Add ical support
 www-apps/egroupware:jpgraph - Add jpgraph support
-www-apps/gallery:dcraw - Add dcraw support
+www-apps/gallery:raw - Add support for raw image formats
 www-apps/gallery:netpbm - Add NetPBM support
 www-apps/gallery:unzip - Add unzip support for the archive upload module
 www-apps/gallery:zip - Add zip support for the zip download module
@@ -2085,7 +2116,6 @@ x11-base/kdrive:fbdev - Enables framebuffer kdrive server
 x11-base/kdrive:font-server - Enables font server support
 x11-base/kdrive:speedo - Enables Speedo font support
 x11-base/kdrive:type1 - Enables Type1 font support
-x11-base/xorg-server:aiglx - Includes extra AIGLX patches that allow compiz to function
 x11-base/xorg-server:dmx - Build the Distributed Multiheaded X server
 x11-base/xorg-server:kdrive - Build the kdrive X servers
 x11-base/xorg-server:xorg - Build the Xorg X server (HIGHLY RECOMMENDED)
@@ -2097,6 +2127,7 @@ x11-libs/gtkmathview:t1lib - Enable t1lib support
 x11-libs/libX11:xcb - Support the X C-language Binding, a replacement for Xlib (can break proprietary binaries, for example Sun Java)
 x11-libs/libmatchbox:pango - Enable pango support
 x11-libs/libmatchbox:xsettings - Enable the use of xsettings for settings management.
+x11-libs/openmotif:xft - Build OpenMotif with support for XFT font renderer
 x11-libs/qt:aqua - MacOSX aqua widgets support, disables X11
 x11-libs/qt:glib - Enable glib eventloop support
 x11-libs/qt:immqt - Enable binary incompatible version of immodule for Qt
@@ -2159,5 +2190,5 @@ xfce-base/thunar:plugins - Enable trash panel plugin.
 xfce-base/xfce4-extras:battery - Meta pulls in xfce4-battery dependency.
 xfce-base/xfce4-extras:cpufreq - Meta pulls in xfce4-cpu-freq dependency.
 xfce-extra/thunar-thumbnailers:grace - Enable .agr thumbnailers, grace support.
-xfce-extra/thunar-thumbnailers:raw - Enable .raw thumbnailers, dcraw and libopenraw support.
+xfce-extra/thunar-thumbnailers:raw - Add support for raw image formats
 xfce-extra/xfce4-sensors:hddtemp - Enable monitoring of disk temperatures (app-admin/hddtemp)
