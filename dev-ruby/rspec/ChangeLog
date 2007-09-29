@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/rspec
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rspec/ChangeLog,v 1.12 2007/09/24 06:38:09 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rspec/ChangeLog,v 1.13 2007/09/26 12:22:39 angelos Exp $
+
+  26 Sep 2007; Christoph Mende <angelos@gentoo.org> rspec-1.0.8.ebuild:
+  Stable on amd64 wrt bug #193390
 
   24 Sep 2007; Christian Faulhammer <opfer@gentoo.org> rspec-1.0.8.ebuild:
   stable x86, bug 193390
