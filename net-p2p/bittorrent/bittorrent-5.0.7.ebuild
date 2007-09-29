@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/bittorrent-5.0.7.ebuild,v 1.13 2007/06/24 22:14:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/bittorrent-5.0.7.ebuild,v 1.14 2007/09/29 00:10:25 dirtyepic Exp $
 
 EAPI="prefix"
 
@@ -21,8 +21,7 @@ IUSE="aqua gtk"
 
 RDEPEND=">=dev-lang/python-2.3
 	gtk? (
-		>=x11-libs/wxGTK-2.6
-		>=dev-python/wxpython-2.6
+		=dev-python/wxpython-2.6*
 	)
 	>=dev-python/pycrypto-2.0
 	>=dev-python/twisted-2
