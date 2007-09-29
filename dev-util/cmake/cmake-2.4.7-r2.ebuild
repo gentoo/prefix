@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.4.7.ebuild,v 1.2 2007/07/19 08:02:26 cryos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.4.7-r2.ebuild,v 1.1 2007/09/27 18:47:16 philantrop Exp $
 
 EAPI="prefix"
 
-inherit elisp-common toolchain-funcs eutils versionator qt3
+inherit elisp-common toolchain-funcs eutils versionator qt3 flag-o-matic
 
 DESCRIPTION="Cross platform Make"
 HOMEPAGE="http://www.cmake.org/"
@@ -15,19 +15,40 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="emacs vim-syntax"
 
-DEPEND="emacs? ( virtual/emacs )
-	vim-syntax? ( || (
-		app-editors/vim
-		app-editors/gvim ) )"
+DEPEND=">=net-misc/curl-7.16.4
+		>=dev-libs/expat-2.0.1
+		>=dev-libs/libxml2-2.6.28
+		>=dev-libs/xmlrpc-c-1.06.03
+		emacs? ( virtual/emacs )
+		vim-syntax? ( || (
+			app-editors/vim
+			app-editors/gvim ) )"
 RDEPEND="${DEPEND}"
 
 SITEFILE="50${PN}-gentoo.el"
 VIMFILE="${PN}.vim"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	# Upstream patch to make sure KDE4 is found. cf. bug 191412.
+	epatch "${FILESDIR}/${P}-findkde4.patch"
+
+	# Upstream's version is broken. Reported in upstream bugs 3498, 3637, 4145.
+	# Fixed version kindly provided on 4145 by Axel Roebel.
+	cp "${FILESDIR}/FindSWIG.cmake" "${S}/Modules/"
+}
+
 src_compile() {
-	cd ${S}
+	cd "${S}"
 	tc-export CC CXX LD
+
+	[[ ${CHOST} == *-linux* || ${CHOST} == *-solaris* ]] && \
+		append-ldflags -Wl,--no-as-needed
+
 	./bootstrap \
+		--system-libs \
 		--prefix="${EPREFIX}"/usr \
 		--docdir=/share/doc/${PN} \
 		--datadir=/share/${PN} \
@@ -45,8 +66,8 @@ src_test() {
 }
 
 src_install() {
-	make install DESTDIR=${D} || die "install failed"
-	mv ${ED}usr/share/doc/cmake ${ED}usr/share/doc/${PF}
+	emake install DESTDIR="${D}" || die "install failed"
+	mv "${ED}usr/share/doc/cmake" "${ED}usr/share/doc/${PF}"
 	if use emacs; then
 		elisp-install ${PN} Docs/cmake-mode.el Docs/cmake-mode.elc || die "elisp-install failed"
 		elisp-site-file-install "${FILESDIR}/${SITEFILE}"
