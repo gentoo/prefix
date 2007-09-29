@@ -1,6 +1,22 @@
 # ChangeLog for dev-util/desktop-file-utils
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/ChangeLog,v 1.63 2007/09/25 04:05:54 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/ChangeLog,v 1.67 2007/09/27 14:22:07 drac Exp $
+
+  27 Sep 2007; Samuli Suominen <drac@gentoo.org>
+  desktop-file-utils-0.14.ebuild:
+  arm stable wrt #181999, tested on coral.
+
+  27 Sep 2007; Raúl Porcel <armin76@gentoo.org>
+  desktop-file-utils-0.14.ebuild:
+  sparc stable
+
+  27 Sep 2007; Raúl Porcel <armin76@gentoo.org>
+  desktop-file-utils-0.14.ebuild:
+  alpha/ia64 stable wrt #193339
+
+  26 Sep 2007; Joshua Kinard <kumba@gentoo.org>
+  desktop-file-utils-0.14.ebuild:
+  Stable on mips, per #193339.
 
   25 Sep 2007; Jeroen Roovers <jer@gentoo.org>
   desktop-file-utils-0.14.ebuild:
