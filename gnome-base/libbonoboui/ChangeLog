@@ -1,6 +1,12 @@
 # ChangeLog for gnome-base/libbonoboui
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonoboui/ChangeLog,v 1.149 2007/09/22 09:05:31 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonoboui/ChangeLog,v 1.150 2007/09/26 19:30:55 dang Exp $
+
+*libbonoboui-2.20.0 (26 Sep 2007)
+
+  26 Sep 2007; Daniel Gryniewicz <dang@gentoo.org>
+  +libbonoboui-2.20.0.ebuild:
+  New series for Gnome 2.20
 
   22 Sep 2007; Tom Gall <tgall@gentoo.org> libbonoboui-2.18.0.ebuild:
   stable on ppc64
