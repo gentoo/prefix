@@ -1,6 +1,17 @@
 # ChangeLog for media-libs/t1lib
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/ChangeLog,v 1.62 2007/09/25 20:47:22 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/ChangeLog,v 1.65 2007/09/27 23:37:56 hanno Exp $
+
+  27 Sep 2007; Hanno Boeck <hanno@gentoo.org> +files/t1lib-5.1.1-qa.diff,
+  t1lib-5.1.1.ebuild:
+  QA: Fix compile warnings.
+
+  26 Sep 2007; Christoph Mende <angelos@gentoo.org> t1lib-5.0.2-r1.ebuild,
+  t1lib-5.1.1.ebuild:
+  Fixed amd64 keywords
+
+  26 Sep 2007; Christoph Mende <angelos@gentoo.org> t1lib-5.1.1.ebuild:
+  Stable on amd64 wrt security bug #193437
 
   25 Sep 2007; Fabian Groffen <grobian@gentoo.org> t1lib-5.0.2.ebuild,
   t1lib-5.0.2-r1.ebuild, t1lib-5.1.1.ebuild:
