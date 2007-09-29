@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/subversion
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.275 2007/09/09 11:42:26 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.276 2007/09/26 12:37:40 caleb Exp $
+
+  26 Sep 2007; Caleb Tennis <caleb@gentoo.org> subversion-1.4.4-r4.ebuild:
+  Fix perl dep to be more...up to date
 
   09 Sep 2007; Benedikt Böhm <hollow@gentoo.org>
   subversion-1.4.4-r4.ebuild:
