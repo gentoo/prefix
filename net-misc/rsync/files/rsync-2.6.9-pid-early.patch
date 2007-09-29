@@ -1,0 +1,43 @@
+diff -ur a/clientserver.c b/clientserver.c
+--- a/clientserver.c	2006-10-24 01:36:42 +0100
++++ b/clientserver.c	2007-09-20 10:17:50 +0100
+@@ -830,21 +830,14 @@
+ 		return start_daemon(STDIN_FILENO, STDIN_FILENO);
+ 	}
+ 
+-	if (!no_detach)
+-		become_daemon();
+-
+ 	if (!lp_load(config_file, 1))
+ 		exit_cleanup(RERR_SYNTAX);
+ 
+-	if (rsync_port == 0 && (rsync_port = lp_rsync_port()) == 0)
+-		rsync_port = RSYNC_PORT;
+-	if (bind_address == NULL && *lp_bind_address())
+-		bind_address = lp_bind_address();
+-
+ 	log_init(0);
+ 
+-	rprintf(FLOG, "rsyncd version %s starting, listening on port %d\n",
+-		RSYNC_VERSION, rsync_port);
++	if (!no_detach)
++		become_daemon();
++
+ 	/* TODO: If listening on a particular address, then show that
+ 	 * address too.  In fact, why not just do inet_ntop on the
+ 	 * local address??? */
+@@ -866,6 +859,14 @@
+ 		close(fd);
+ 	}
+ 
++	if (rsync_port == 0 && (rsync_port = lp_rsync_port()) == 0)
++		rsync_port = RSYNC_PORT;
++	if (bind_address == NULL && *lp_bind_address())
++		bind_address = lp_bind_address();
++
++	rprintf(FLOG, "rsyncd version %s starting, listening on port %d\n",
++			RSYNC_VERSION, rsync_port);
++
+ 	start_accept_loop(rsync_port, start_daemon);
+ 	return -1;
+ }
