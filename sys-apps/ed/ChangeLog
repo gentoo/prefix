@@ -1,6 +1,21 @@
 # ChangeLog for sys-apps/ed
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ChangeLog,v 1.56 2007/09/28 00:35:44 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ChangeLog,v 1.61 2007/09/28 17:07:36 nixnut Exp $
+
+  28 Sep 2007; nixnut <nixnut@gentoo.org> ed-0.8.ebuild:
+  Stable on ppc wrt bug 194011
+
+  28 Sep 2007; Jeroen Roovers <jer@gentoo.org> ed-0.8.ebuild:
+  Stable for HPPA (bug #194011).
+
+  28 Sep 2007; Raúl Porcel <armin76@gentoo.org> ed-0.8.ebuild:
+  alpha/ia64/x86 stable wrt #194011
+
+  28 Sep 2007; Ferris McCormick <fmccor@gentoo.org> ed-0.8.ebuild:
+  Sparc stable --- Bug #194011 --- tests run successfully.
+
+  28 Sep 2007; Christoph Mende <angelos@gentoo.org> ed-0.8.ebuild:
+  Stable on amd64 wrt bug #194011
 
   28 Sep 2007; Joshua Kinard <kumba@gentoo.org> ed-0.8.ebuild:
   Stable on mips, per #194011.
