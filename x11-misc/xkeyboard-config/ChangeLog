@@ -1,6 +1,22 @@
 # ChangeLog for x11-misc/xkeyboard-config
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/ChangeLog,v 1.36 2007/09/10 03:30:20 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/ChangeLog,v 1.39 2007/09/26 13:26:51 drac Exp $
+
+  26 Sep 2007; Samuli Suominen <drac@gentoo.org>
+  files/digest-xkeyboard-config-1.1, Manifest:
+  Fix digest wrt #193868.
+
+  26 Sep 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  xkeyboard-config-1.1.ebuild:
+  Use emake on install. Stop adding /usr/share/X11/xkb to CONFIG_PROTECT
+  because of popular demand. If users require protection for this directory,
+  they must create their own file in /etc/env.d/ to do it.
+
+*xkeyboard-config-1.1 (26 Sep 2007)
+
+  26 Sep 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  +xkeyboard-config-1.1.ebuild:
+  Bugfixes, some new layouts.
 
   10 Sep 2007; Jeroen Roovers <jer@gentoo.org> xkeyboard-config-0.9.ebuild:
   Stable for HPPA (bug #191615).
