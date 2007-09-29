@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libksba
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.72 2007/07/22 21:08:00 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.73 2007/09/28 18:37:28 fmccor Exp $
+
+  28 Sep 2007; Ferris McCormick <fmccor@gentoo.org> libksba-1.0.2.ebuild:
+  Sparc stable --- Bug #194113 --- all tests pass.
 
   22 Jul 2007; Tom Gall <tgall@gentoo.org> libksba-1.0.0.ebuild:
   stable on ppc64
