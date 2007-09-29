@@ -1,6 +1,30 @@
 # ChangeLog for sys-process/psmisc
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/ChangeLog,v 1.66 2007/08/13 22:00:26 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/ChangeLog,v 1.74 2007/09/27 15:28:18 josejx Exp $
+
+  27 Sep 2007; Joseph Jezak <josejx@gentoo.org> psmisc-22.5-r2.ebuild:
+  Marked ppc stable for bug #193833.
+
+  27 Sep 2007; Joshua Kinard <kumba@gentoo.org> psmisc-22.5-r2.ebuild:
+  Stable on mips, per #193833.
+
+  26 Sep 2007; Brent Baude <ranger@gentoo.org> psmisc-22.5-r2.ebuild:
+  Marking psmisc-22.5-r2 ppc64 stable for bug 193833
+
+  26 Sep 2007; Jeroen Roovers <jer@gentoo.org> psmisc-22.5-r2.ebuild:
+  Stable for HPPA (bug #193833).
+
+  26 Sep 2007; Raúl Porcel <armin76@gentoo.org> psmisc-22.5-r2.ebuild:
+  alpha/ia64/x86 stable wrt #193833
+
+  26 Sep 2007; Ferris McCormick <fmccor@gentoo.org> psmisc-22.5-r2.ebuild:
+  Sparc stable --- Bug #193833 --- seems fine.
+
+  26 Sep 2007; Christoph Mende <angelos@gentoo.org> psmisc-22.5-r2.ebuild:
+  Stable on amd64 wrt bug #193833
+
+  26 Sep 2007; Mike Frysinger <vapier@gentoo.org> psmisc-22.5-r2.ebuild:
+  Drop C++ cruft from build system.
 
   13 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org> psmisc-22.5.ebuild:
   ppc. stable
