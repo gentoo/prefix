@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libgcrypt
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.90 2007/08/30 13:22:08 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.91 2007/09/28 18:29:42 fmccor Exp $
+
+  28 Sep 2007; Ferris McCormick <fmccor@gentoo.org> libgcrypt-1.2.4.ebuild:
+  Sparc stable --- Bug #194113 --- all tests pass.
 
   30 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing liquidx from metadata due to his retirement (see #171155 for
