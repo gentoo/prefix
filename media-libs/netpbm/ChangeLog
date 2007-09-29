@@ -1,6 +1,20 @@
 # ChangeLog for media-libs/netpbm
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.163 2007/07/10 09:49:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.166 2007/09/28 18:19:58 armin76 Exp $
+
+  28 Sep 2007; Raúl Porcel <armin76@gentoo.org> netpbm-10.26.45.ebuild:
+  Back to ~arch, went straight to stable
+
+*netpbm-10.40.0 (28 Sep 2007)
+
+  28 Sep 2007; Mike Frysinger <vapier@gentoo.org> +netpbm-10.40.0.ebuild:
+  Version bump.
+
+*netpbm-10.26.45 (28 Sep 2007)
+
+  28 Sep 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/netpbm-10.26.45-headers.patch, +netpbm-10.26.45.ebuild:
+  Version bump.
 
 *netpbm-10.26.44 (10 Jul 2007)
 
