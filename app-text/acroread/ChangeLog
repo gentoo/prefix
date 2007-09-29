@@ -1,6 +1,11 @@
 # ChangeLog for app-text/acroread
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/ChangeLog,v 1.100 2007/04/07 14:48:46 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/ChangeLog,v 1.101 2007/09/27 21:13:17 kevquinn Exp $
+
+*acroread-8.1.1 (27 Sep 2007)
+
+  27 Sep 2007; Kevin F. Quinn <kevquinn@gentoo.org> +acroread-8.1.1.ebuild:
+  New version - includes help viewer.
 
   07 Apr 2007; Stefan Schweizer <genstef@gentoo.org> -acroread-7.0.9.ebuild,
   acroread-7.0.9-r1.ebuild:
