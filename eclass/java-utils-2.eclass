@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.92 2007/08/05 08:17:05 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.93 2007/09/27 19:47:08 betelgeuse Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -197,6 +197,7 @@ JAVA_PKG_QA_VIOLATIONS=0
 #	java-pkg_doexamples demo
 #	java-pkg_doexamples demo/* examples/*
 #
+# @param --subdir - If the examples need a certain directory structure
 # @param $* - list of files to install
 # ------------------------------------------------------------------------------
 java-pkg_doexamples() {
@@ -207,6 +208,12 @@ java-pkg_doexamples() {
 	java-pkg_check-phase install
 
 	local dest=/usr/share/doc/${PF}/examples
+	if [[ ${1} == --subdir ]]; then
+		local dest=${dest}/${2}
+		dodir ${dest}
+		shift 2
+	fi
+
 	if [[ ${#} = 1 && -d ${1} ]]; then
 		( # dont want to pollute calling env
 			insinto "${dest}"

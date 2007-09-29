@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.166 2007/09/05 21:22:23 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.167 2007/09/27 09:32:21 hawking Exp $
 
 # Authors:
 # 	Ryan Phillips <rphillips@gentoo.org>
@@ -584,7 +584,7 @@ vim_src_install() {
 		# as of 6.3-r1, we install a desktop entry. bug #44633, and bug #68622
 		# for the nicer updated version.
 		insinto /usr/share/applications
-		doins ${FILESDIR}/gvim.desktop
+		newins ${FILESDIR}/gvim.desktop${GVIM_DESKTOP_SUFFIX} gvim.desktop
 		insinto /usr/share/pixmaps
 		doins ${FILESDIR}/gvim.xpm
 

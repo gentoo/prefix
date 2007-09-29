@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.26 2007/09/25 21:01:02 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.29 2007/09/27 12:56:41 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -48,7 +48,7 @@ DEPEND=">=app-admin/eselect-gnat-1.1"
 PREFIX=/usr
 AdalibSpecsDir=${PREFIX}/include/ada
 AdalibDataDir=${PREFIX}/share/ada
-AdalibLibTop=${PREFIX}/lib/ada
+AdalibLibTop=${PREFIX}/$(get_libdir)/ada
 
 # build-time locations
 # SL is a "localized" S, - location where sources are copied for
@@ -123,6 +123,34 @@ get_gnat_value() {
 	local entries=(${!1//:/ })
 	echo ${entries[0]}
 }
+
+
+# Returns a name of active gnat profile. Peroroms some validity checks. No input
+# parameters, analyzes the system setup directly.
+get_active_profile() {
+	# get common code and settings
+	. ${GnatCommon} || die "failed to source gnat-common lib"
+
+	local profiles=( $(get_env_list) ) 
+
+	if [[ ${profiles[@]} == "${MARKER}*" ]]; then 
+		return 
+		# returning empty string
+	fi
+
+	if (( 1 == ${#profiles[@]} )); then
+		local active=${profiles[0]#${MARKER}}
+	else
+		die "${ENVDIR} contains multiple gnat profiles, please cleanup!"
+	fi
+
+	if [[ -f ${SPECSDIR}/${active} ]]; then
+		echo ${active}
+	else
+		die "The profile active in ${ENVDIR} does not correspond to any installed gnat!"
+	fi
+}
+
 
 
 # ------------------------------------

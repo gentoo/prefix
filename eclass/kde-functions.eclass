@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.157 2007/08/19 07:40:38 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.158 2007/09/27 20:25:32 philantrop Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -896,7 +896,7 @@ buildsycoca() {
 	[[ $EBUILD_PHASE != postinst ]] && [[ $EBUILD_PHASE != postrm ]] && \
 		die "buildsycoca() has to be calles in pkg_postinst() and pkg_postrm()."
 
-	if [[ -x ${KDEDIR}/bin/kbuildsycoca ]] && [[ -z ${ROOT} || ${ROOT} == "/" ]] && has "~${ARCH}" "${ACCEPT_KEYWORDS}"; then
+	if [[ -x ${KDEDIR}/bin/kbuildsycoca ]] && [[ -z ${ROOT} || ${ROOT} == "/" ]] ; then
 		# First of all, make sure that the /usr/share/services directory exists
 		# and it has the right permissions
 		mkdir -p /usr/share/services
