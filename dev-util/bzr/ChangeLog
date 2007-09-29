@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/bzr
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.38 2007/09/06 09:21:25 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.39 2007/09/26 16:46:10 hawking Exp $
+
+*bzr-0.91 (26 Sep 2007)
+
+  26 Sep 2007; Ali Polatel <hawking@gentoo.org> +bzr-0.91.ebuild:
+  version bump.
 
 *bzr-0.90 (06 Sep 2007)
 

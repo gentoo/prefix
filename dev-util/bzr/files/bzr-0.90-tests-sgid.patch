@@ -5,7 +5,7 @@ https://bugs.launchpad.net/bzr/+bug/109124
              return
          path_stat = transport.stat(path)
          actual_mode = stat.S_IMODE(path_stat.st_mode)
-+        # test if running run beneath a directory with the setgid bit set.
++        # test if running beneath a directory with the setgid bit set.
 +        if actual_mode & stat.S_ISGID and not mode & stat.S_ISGID:
 +            mode |= stat.S_ISGID
          self.assertEqual(mode, actual_mode,
