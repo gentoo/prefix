@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/less-406.ebuild,v 1.7 2007/09/01 10:32:07 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/less-406.ebuild,v 1.9 2007/09/28 16:50:02 jer Exp $
 
 EAPI="prefix"
 
