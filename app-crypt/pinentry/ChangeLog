@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/pinentry
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/ChangeLog,v 1.62 2007/07/06 19:09:25 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/ChangeLog,v 1.63 2007/09/28 19:13:33 fmccor Exp $
+
+  28 Sep 2007; Ferris McCormick <fmccor@gentoo.org> pinentry-0.7.3.ebuild:
+  Sparc stable --- Bug #194113 --- Acts like Manual Sec. 2 says.
 
 *pinentry-0.7.3 (06 Jul 2007)
 
