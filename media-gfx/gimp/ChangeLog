@@ -1,6 +1,11 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.230 2007/09/09 22:30:42 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.231 2007/09/26 02:09:26 hanno Exp $
+
+*gimp-2.4.0_rc3 (26 Sep 2007)
+
+  26 Sep 2007; Hanno Boeck <hanno@gentoo.org> +gimp-2.4.0_rc3.ebuild:
+  Version bump.
 
   09 Sep 2007; Joshua Kinard <kumba@gentoo.org> gimp-2.4.0_rc1.ebuild,
   gimp-2.4.0_rc2.ebuild:
