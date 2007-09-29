@@ -1,6 +1,17 @@
 # ChangeLog for dev-python/pygtk
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.162 2007/09/25 04:05:44 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.165 2007/09/27 18:36:28 leio Exp $
+
+*pygtk-2.12.0 (27 Sep 2007)
+
+  27 Sep 2007; Mart Raudsepp <leio@gentoo.org> +pygtk-2.12.0.ebuild:
+  Adding 2.12 series, to go along with gtk+-2.12 for Gnome 2.20
+
+  27 Sep 2007; Raúl Porcel <armin76@gentoo.org> pygtk-2.10.6.ebuild:
+  alpha/ia64 stable wrt #193339
+
+  26 Sep 2007; Joshua Kinard <kumba@gentoo.org> pygtk-2.10.6.ebuild:
+  Stable on mips, per #193339.
 
   25 Sep 2007; Jeroen Roovers <jer@gentoo.org> pygtk-2.10.6.ebuild:
   Stable for HPPA (bug #193339).

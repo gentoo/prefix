@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.10.6.ebuild,v 1.8 2007/09/27 11:43:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.12.0.ebuild,v 1.1 2007/09/27 18:36:28 leio Exp $
 
 EAPI="prefix"
 
@@ -21,12 +21,13 @@ KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
 IUSE="doc examples opengl"
 
 RDEPEND=">=dev-libs/glib-2.8.0
-	>=x11-libs/pango-1.10.0
-	>=dev-libs/atk-1.8.0
-	>=x11-libs/gtk+-2.10.0
+	>=x11-libs/pango-1.16.0
+	>=dev-libs/atk-1.12.0
+	>=x11-libs/gtk+-2.11.6
 	>=gnome-base/libglade-2.5.0
+	>=dev-lang/python-2.4.4-r5
 	>=dev-python/pycairo-1.0.2
-	>=dev-python/pygobject-2.12.1
+	>=dev-python/pygobject-2.14
 	!arm? ( dev-python/numeric )
 	opengl?	(	virtual/opengl
 				dev-python/pyopengl
