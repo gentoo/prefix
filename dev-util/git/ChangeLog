@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.223 2007/09/20 18:44:29 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.225 2007/09/28 12:31:22 ferdy Exp $
+
+  28 Sep 2007; Fernando J. Pereda <ferdy@gentoo.org> -git-1.5.3.ebuild:
+  Remove 1.5.3
+
+  28 Sep 2007; Joshua Kinard <kumba@gentoo.org> git-1.5.2.5.ebuild:
+  Stable on mips, per #193113.
 
   20 Sep 2007; Christoph Mende <angelos@gentoo.org> git-1.5.2.5.ebuild:
   Stable on amd64 wrt bug #193113
