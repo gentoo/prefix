@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-5.2_p7.ebuild,v 1.2 2007/09/27 23:55:03 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-5.2_p7.ebuild,v 1.7 2007/09/28 17:03:05 nixnut Exp $
 
 EAPI="prefix"
 
