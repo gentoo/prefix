@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-2.23.1.ebuild,v 1.2 2007/09/18 15:17:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-2.23.1.ebuild,v 1.3 2007/09/28 06:59:29 kumba Exp $
 
 EAPI="prefix"
 
