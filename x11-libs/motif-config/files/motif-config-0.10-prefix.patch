@@ -1,5 +1,6 @@
 * Johan Hattne
   Prefix patches
+* grobian: fixing + quoting
 
 --- motif-config-0.10
 +++ motif-config-0.10
@@ -26,63 +27,55 @@
 -	if [[ "$(id -u)" -ne 0 ]] ; then
 -		eerror "$0: Must be root."
 +	if [ ! -w ${PROFILE_PATH} \
-+	  -o ! -w ${EPREFIX}/usr/bin \
-+	  -o ! -w ${EPREFIX}/usr/include \
-+	  -o ! -w ${EPREFIX}/usr/@@LIBDIR@@ \
-+	  -o ! -w ${EPREFIX}/usr/share/man ]; then
++	  -o ! -w "${EPREFIX}"/usr/bin \
++	  -o ! -w "${EPREFIX}"/usr/include \
++	  -o ! -w "${EPREFIX}"/usr/@@LIBDIR@@ \
++	  -o ! -w "${EPREFIX}"/usr/share/man ]; then
 +		eerror "$0: Must have proper permissions."
  		exit 1
  	fi
  }
-@@ -69,31 +74,34 @@
+@@ -69,28 +74,28 @@
  	new=${1}
  	files=""
  	# libs
 -	for file in `ls /usr/@@LIBDIR@@/${new}/ | grep lib`; do
 -		files="${files} /usr/@@LIBDIR@@/${file}"
 -		rm -rf /usr/@@LIBDIR@@/${file}
-+	for file in `ls ${EPREFIX}/usr/@@LIBDIR@@/${new}/ | grep lib`; do
++	for file in `ls "${EPREFIX}"/usr/@@LIBDIR@@/${new}/ | grep lib`; do
 +		files="${files} ${EPREFIX}/usr/@@LIBDIR@@/${file}"
-+		rm -rf ${EPREFIX}/usr/@@LIBDIR@@/${file}
++		rm -rf "${EPREFIX}"/usr/@@LIBDIR@@/${file}
  		retval=$((retval | $? ))
 -		ln -s /usr/@@LIBDIR@@/${new}/${file} /usr/@@LIBDIR@@/${file}
-+		ln -s ${EPREFIX}/usr/@@LIBDIR@@/${new}/${file} \
-+		      ${EPREFIX}/usr/@@LIBDIR@@/${file}
++		ln -s "${EPREFIX}"/usr/@@LIBDIR@@/${new}/${file} "${EPREFIX}"/usr/@@LIBDIR@@/${file}
  		retval=$((retval | $? ))
  	done
  	# includes
 -	for file in `ls /usr/include/${new}/`; do
 -		files="${files} /usr/include/${file}"
 -		rm -rf /usr/include/${file}
-+	for file in `ls ${EPREFIX}/usr/include/${new}/`; do
++	for file in `ls "${EPREFIX}"/usr/include/${new}/`; do
 +		files="${files} ${EPREFIX}/usr/include/${file}"
-+		rm -rf ${EPREFIX}/usr/include/${file}
++		rm -rf "${EPREFIX}"/usr/include/${file}
  		retval=$((retval | $? ))
 -		ln -s /usr/include/${new}/${file} /usr/include/${file}
-+		ln -s ${EPREFIX}/usr/include/${new}/${file} \
-+		      ${EPREFIX}/usr/include/${file}
++		ln -s "${EPREFIX}"/usr/include/${new}/${file} "${EPREFIX}"/usr/include/${file}
  		retval=$((retval | $? ))
  	done
- 	# binaries
--	for file in `ls /usr/@@LIBDIR@@/${new} | grep -v lib`; do
--		files="${files} /usr/bin/${file}"
--		rm -rf /usr/bin/${file}
-+	for file in `ls ${EPREFIX}/usr/@@LIBDIR@@/${new} | grep -v lib`; do
-+		files="${files} ${EPREFIX}/usr/bin/${file}"
-+		rm -rf ${EPREFIX}/usr/bin/${file}
- 		retval=$((retval | $? ))
+ 	# executables
+ 	for file in mwm uil xmbind; do
+-		rm -f /usr/bin/${file}
 -		ln -s /usr/@@LIBDIR@@/${new}/${file} /usr/bin/${file}
-+		ln -s ${EPREFIX}/usr/@@LIBDIR@@/${new}/${file} \
-+		      ${EPREFIX}/usr/bin/${file}
- 		retval=$((retval | $? ))
++		rm -f "${EPREFIX}"/usr/bin/${file}
++		ln -s "${EPREFIX}"/usr/@@LIBDIR@@/${new}/${file} "${EPREFIX}"/usr/bin/${file}
  	done
  	# man pages
 -	for file in `find /usr/share/man -regex ".*-${new}\..x?.gz"`; do
-+	for file in `find ${EPREFIX}/usr/share/man -regex ".*-${new}\..x?.gz"`; do
++	for file in `find "${EPREFIX}"/usr/share/man -regex ".*-${new}\..x?.gz"`; do
  		files="${files} ${file/-${new}/}"
  		rm -rf ${file/-${new}/}
  		retval=$((retval | $? ))
-@@ -204,7 +212,7 @@
+@@ -201,7 +206,7 @@
  	if [ $? -eq 1 ]; then
  		eerror "$0: No such profile: $profile"
  	else
@@ -91,7 +84,7 @@
  		exit 0
  	fi
  }
-@@ -219,7 +227,7 @@
+@@ -216,7 +221,7 @@
  	if [ $? -eq 1 ]; then
  		eerror "$0: No such profile: $profile"
  	else
@@ -100,7 +93,7 @@
  		exit 0
  	fi
  }
-@@ -234,7 +242,7 @@
+@@ -231,7 +236,7 @@
  	if [ $? -eq 1 ]; then
  		eerror "$0: No such profile: $profile"
  	else
@@ -109,7 +102,7 @@
  		exit 0
  	fi
  }
-@@ -249,7 +257,7 @@
+@@ -246,7 +251,7 @@
  	if [ $? -eq 1 ]; then
  		eerror "$0: No such profile: $profile"
  	else

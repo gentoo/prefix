@@ -1,6 +1,19 @@
 # ChangeLog for x11-libs/motif-config
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/motif-config/ChangeLog,v 1.25 2006/07/15 13:52:38 kloeri Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/motif-config/ChangeLog,v 1.27 2007/09/27 01:41:12 jer Exp $
+
+  27 Sep 2007; Jeroen Roovers <jer@gentoo.org> files/motif-config-0.9,
+  files/motif-config-0.10:
+  Determine which executables should go into /usr/bin.
+
+*motif-config-0.10-r1 (26 Sep 2007)
+*motif-config-0.9-r1 (26 Sep 2007)
+
+  26 Sep 2007; Jeroen Roovers <jer@gentoo.org> files/motif-config-0.9,
+  files/motif-config-0.10, -motif-config-0.9.ebuild,
+  +motif-config-0.9-r1.ebuild, -motif-config-0.10.ebuild,
+  +motif-config-0.10-r1.ebuild:
+  Don't mess with /usr/bin.
 
   15 Jul 2006; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
   Remove lanius from metadata.xml as he's retired.

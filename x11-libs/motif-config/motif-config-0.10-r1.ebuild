@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/motif-config/motif-config-0.10.ebuild,v 1.4 2007/02/28 22:26:49 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/motif-config/motif-config-0.10-r1.ebuild,v 1.1 2007/09/26 18:17:55 jer Exp $
 
 EAPI="prefix"
 

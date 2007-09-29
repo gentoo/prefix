@@ -84,13 +84,10 @@ _activate_profile() {
 		ln -s /usr/include/${new}/${file} /usr/include/${file}
 		retval=$((retval | $? ))
 	done
-	# binaries
-	for file in `ls /usr/@@LIBDIR@@/${new} | grep -v lib`; do
-		files="${files} /usr/bin/${file}"
-		rm -rf /usr/bin/${file}
-		retval=$((retval | $? ))
+	# executables
+	for file in mwm uil xmbind; do
+		rm -f /usr/bin/${file}
 		ln -s /usr/@@LIBDIR@@/${new}/${file} /usr/bin/${file}
-		retval=$((retval | $? ))
 	done
 	# man pages
 	for file in `find /usr/share/man -regex ".*-${new}\..x?.gz"`; do
