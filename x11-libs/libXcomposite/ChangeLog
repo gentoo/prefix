@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXcomposite
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXcomposite/ChangeLog,v 1.44 2007/09/10 03:29:27 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXcomposite/ChangeLog,v 1.45 2007/09/28 04:29:42 kumba Exp $
+
+  28 Sep 2007; Joshua Kinard <kumba@gentoo.org> libXcomposite-0.4.0.ebuild:
+  Stable on mips, per #191615.
 
   10 Sep 2007; Jeroen Roovers <jer@gentoo.org> libXcomposite-0.4.0.ebuild:
   Stable for HPPA (bug #191615).
