@@ -1,14 +1,14 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.9.ebuild,v 1.3 2007/09/27 11:57:09 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.10.ebuild,v 1.1 2007/09/27 11:49:42 hkbst Exp $
 
 EAPI="prefix"
 
 inherit common-lisp-common-3 eutils flag-o-matic
 
 #same order as http://www.sbcl.org/platform-table.html
-BV_X86=1.0.7
-BV_AMD64=1.0.7
+BV_X86=1.0.9
+BV_AMD64=1.0.9
 BV_PPC=1.0
 BV_SPARC=0.9.17
 BV_ALPHA=0.9.12
@@ -73,16 +73,6 @@ sbcl_feature() {
 #	if [[ $1 == "false" ]]; then echo "(disable $2)" >> "${CONFIG}"; fi
 }
 
-enable_sbcl_feature() {
-	die "deprecated"
-	echo "(enable $1)" >> "${S}/customize-target-features.lisp"
-}
-
-disable_sbcl_feature() {
-	die "deprecated"
-	echo "(disable $1)" >> "${S}/customize-target-features.lisp"
-}
-
 sbcl_apply_features() {
 	cat > "${CONFIG}" <<'EOF'
 (lambda (list)
@@ -90,14 +80,10 @@ sbcl_apply_features() {
 		 (disable (x) (setf list (remove x list))))
 EOF
 	if use x86 || use amd64; then
-#		use threads && enable_sbcl_feature ":sb-thread"
 		sbcl_feature "$(usep threads)" ":sb-thread"
 	fi
-#	use ldb && enable_sbcl_feature ":sb-ldb"
 	sbcl_feature "$(usep ldb)" ":sb-ldb"
-#	disable_sbcl_feature ":sb-test"
 	sbcl_feature "false" ":sb-test"
-#	! use unicode && disable_sbcl_feature ":sb-unicode"
 	sbcl_feature "$(usep unicode)" ":sb-unicode"
 	cat >> "${CONFIG}" <<'EOF'
 	)
@@ -151,7 +137,7 @@ src_compile() {
 }
 
 src_test() {
-	FILES="exhaust.impure.lisp"
+#	FILES="exhaust.impure.lisp"
 	cd tests
 	sh run-tests.sh
 #	sh run-tests.sh ${FILES}
