@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/django/django-0.96.ebuild,v 1.4 2007/07/04 21:23:17 lucass Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/django/django-0.96.ebuild,v 1.5 2007/09/27 23:52:02 ranger Exp $
 
 EAPI="prefix"
 

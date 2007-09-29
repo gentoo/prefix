@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/django
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/django/ChangeLog,v 1.18 2007/07/05 06:45:29 lucass Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/django/ChangeLog,v 1.19 2007/09/27 23:52:02 ranger Exp $
+
+  27 Sep 2007; Brent Baude <ranger@gentoo.org> django-0.96.ebuild:
+  marking django-0.96 ~ppc64 for bug 193965
 
   05 Jul 2007; Lukasz Strzygowski <lucass@gentoo.org> -django-0.95.1.ebuild:
   Dropped old version.
