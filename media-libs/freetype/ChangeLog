@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.155 2007/09/09 13:31:40 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.157 2007/09/28 03:15:23 kumba Exp $
+
+  28 Sep 2007; Joshua Kinard <kumba@gentoo.org> freetype-1.3.1-r5.ebuild:
+  Stable on mips, per #166265.
+
+  28 Sep 2007; Joshua Kinard <kumba@gentoo.org>
+  -files/digest-freetype-2.1.9-r1:
+  remove stray digest file for freetype-2.1.9-r1.
 
   09 Sep 2007; Ryan Hill <dirtyepic@gentoo.org> -freetype-2.1.9-r1.ebuild:
   Remove old.  Bug #172907.
