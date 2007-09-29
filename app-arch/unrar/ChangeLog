@@ -1,6 +1,15 @@
 # ChangeLog for app-arch/unrar
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/ChangeLog,v 1.106 2007/09/25 19:43:20 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/ChangeLog,v 1.108 2007/09/27 05:07:38 kumba Exp $
+
+  27 Sep 2007; Joshua Kinard <kumba@gentoo.org> unrar-3.7.6.ebuild:
+  Stable on mips, per #193611.
+
+  26 Sep 2007; Joseph Jezak <josejx@gentoo.org> unrar-3.7.6.ebuild:
+  Marked ppc64 stable for bug #193611.
+
+  26 Sep 2007; Joseph Jezak <josejx@gentoo.org> unrar-3.7.6.ebuild:
+  Marked ppc64 for bug #193611.
 
   25 Sep 2007; Christoph Mende <angelos@gentoo.org> unrar-3.7.6.ebuild:
   Stable on amd64 wrt bug #193611
