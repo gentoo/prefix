@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/flac
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/ChangeLog,v 1.120 2007/09/20 19:46:10 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/ChangeLog,v 1.121 2007/09/26 16:30:59 armin76 Exp $
+
+  26 Sep 2007; Raúl Porcel <armin76@gentoo.org> flac-1.1.4.ebuild:
+  alpha/ia64 stable wrt #191280
 
   20 Sep 2007; Samuli Suominen <drac@gentoo.org> flac-1.2.1.ebuild:
   Use elibtoolize for fbsd.
