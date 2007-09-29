@@ -1,6 +1,9 @@
 # ChangeLog for app-text/dos2unix
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dos2unix/ChangeLog,v 1.35 2007/08/16 00:24:07 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dos2unix/ChangeLog,v 1.36 2007/09/28 06:49:50 kumba Exp $
+
+  28 Sep 2007; Joshua Kinard <kumba@gentoo.org> dos2unix-3.1-r2.ebuild:
+  Stable on mips.
 
   16 Aug 2007; Christoph Mende <angelos@gentoo.org> dos2unix-3.1-r2.ebuild:
   Stable on amd64 wrt bug #188606
