@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXtst
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXtst/ChangeLog,v 1.35 2007/09/11 21:00:33 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXtst/ChangeLog,v 1.36 2007/09/28 04:36:39 kumba Exp $
+
+  28 Sep 2007; Joshua Kinard <kumba@gentoo.org> libXtst-1.0.2.ebuild:
+  Stable on mips, per #191615.
 
   11 Sep 2007; Donnie Berkholz <dberkholz@gentoo.org>; libXtst-1.0.1.ebuild,
   libXtst-1.0.2.ebuild, libXtst-1.0.3.ebuild:
