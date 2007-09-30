@@ -14,7 +14,7 @@ SRC_URI="http://bbdb.sourceforge.net/${P}.tar.gz
 
 LICENSE="GPL-2 as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
 IUSE="tetex"
 
 DEPEND=""
