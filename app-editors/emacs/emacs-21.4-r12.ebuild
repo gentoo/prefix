@@ -16,7 +16,7 @@ SRC_URI="mirror://gnu/emacs/${P}a.tar.gz
 
 LICENSE="GPL-2 FDL-1.1 BSD"
 SLOT="21"
-KEYWORDS="~amd64 ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~sparc-solaris ~x86 ~x86-solaris"
 IUSE="X Xaw3d leim lesstif motif nls nosendmail"
 
 RDEPEND="sys-libs/ncurses
