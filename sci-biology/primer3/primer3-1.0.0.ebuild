@@ -10,7 +10,7 @@ SRC_URI="http://frodo.wi.mit.edu/${PN}/${PN}_${PV}.tar.gz"
 LICENSE="whitehead"
 
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
 IUSE=""
 
 RDEPEND=""
