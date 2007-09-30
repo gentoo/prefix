@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/libungif/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="rle X"
 
 DEPEND="X? ( x11-libs/libXt
