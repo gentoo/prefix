@@ -12,7 +12,7 @@ SRC_URI="mirror://gentoo/${P}.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~mips ~sparc-solaris ~x86 ~x86-solaris"
 IUSE=""
 
 DEPEND=""
