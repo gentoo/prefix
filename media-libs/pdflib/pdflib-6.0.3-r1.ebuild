@@ -17,7 +17,7 @@ HOMEPAGE="http://www.pdflib.com/"
 SRC_URI="http://www.pdflib.com/products/pdflib/download/${PV//./}src/${MY_P}.tar.gz"
 LICENSE="PDFLite"
 SLOT="5"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 IUSE="doc tcl perl python java"
 
 COMMON_DEP="
