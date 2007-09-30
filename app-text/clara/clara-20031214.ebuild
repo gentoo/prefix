@@ -10,7 +10,7 @@ HOMEPAGE="http://www.geocities.com/claraocr/"
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~ppc-macos"
+KEYWORDS="~ppc-macos ~sparc-solaris"
 IUSE=""
 
 DEPEND="x11-libs/libX11"
