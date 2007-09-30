@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit eutils alternatives libtool
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 
 DESCRIPTION="SQLite: an SQL Database Engine in a C Library."
 HOMEPAGE="http://www.sqlite.org/"
