@@ -17,7 +17,7 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-macos ~x86-macos"
+KEYWORDS="~ppc-macos ~sparc-solaris ~x86-macos"
 IUSE=""
 
 src_unpack() {
