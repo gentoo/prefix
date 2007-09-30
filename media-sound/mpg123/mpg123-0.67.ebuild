@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 IUSE="3dnow 3dnowext alsa altivec esd jack mmx nas oss portaudio sdl sse"
 
 RDEPEND="alsa? ( media-libs/alsa-lib )
