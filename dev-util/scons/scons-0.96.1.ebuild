@@ -12,7 +12,7 @@ HOMEPAGE="http://www.scons.org"
 
 SLOT="0"
 LICENSE="as-is"
-KEYWORDS="~x86 ~amd64 ~ia64 ~ppc-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86"
 IUSE=""
 
 DEPEND=">=dev-lang/python-2.0"

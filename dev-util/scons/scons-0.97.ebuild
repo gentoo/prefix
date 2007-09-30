@@ -14,7 +14,7 @@ HOMEPAGE="http://www.scons.org/"
 
 SLOT="0"
 LICENSE="as-is"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-solaris"
 IUSE=""
 
 DOCS="RELEASE.txt CHANGES.txt LICENSE.txt"
