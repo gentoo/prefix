@@ -414,7 +414,7 @@ src_compile() {
 		# let's play the filtration game!  MPlayer hates on all!
 		strip-flags
 		# ugly optimizations cause MPlayer to cry on x86 systems!
-			if use x86 ; then
+			if use x86 || use x86-macos ; then
 				replace-flags -O* -O2
 				filter-flags -fPIC -fPIE
 
@@ -439,6 +439,7 @@ src_compile() {
 		$(use_enable aqua macosx) \
 		$(use_enable aqua macosx-finder-support) \
 		$(use_enable aqua macosx-bundle) \
+		$(use_enable aqua libdvdcss-internal) \
 		${myconf}"
 	einfo "Running ./configure"
 	echo "CFLAGS=\"${CFLAGS}\" ./configure ${myconf}"
