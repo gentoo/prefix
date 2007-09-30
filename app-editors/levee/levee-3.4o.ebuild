@@ -15,7 +15,7 @@ SRC_URI="http://www.pell.chi.il.us/~orc/Code/${PN}.tar.gz"
 
 SLOT="0"
 LICENSE="levee"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
 
 DEPEND="sys-libs/ncurses"
 
