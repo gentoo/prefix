@@ -23,6 +23,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/no-trailing-newline.patch
 	epatch "${FILESDIR}"/include-fix.patch
 	epatch "${FILESDIR}"/${P}-DESTDIR.patch
+	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify url_handler.sh
 }
 
 src_install() {

@@ -1,0 +1,30 @@
+--- url_handler.sh~	2007-10-01 01:49:36 +0200
++++ url_handler.sh	2007-10-01 01:51:19 +0200
+@@ -1,4 +1,4 @@
+-#! /bin/bash
++#! @GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+ #   Copyright (c) 1998  Martin Schulze <joey@debian.org>
+ #   Slightly modified by Luis Francisco Gonzalez <luisgh@debian.org>
+@@ -28,15 +28,15 @@
+ # VT: Launch in the same terminal
+ 
+ # The lists of programs to be executed are
+-https_prgs="/usr/X11R6/bin/netscape:XW /usr/bin/lynx:XT"
+-http_prgs="/usr/bin/lynx:XT /usr/X11R6/bin/netscape:XW"
+-mailto_prgs="/usr/bin/mutt:VT /usr/bin/elm:VT /usr/bin/pine:VT /usr/bin/mail:VT"
+-gopher_prgs="/usr/bin/lynx:XT /usr/bin/gopher:XT"
+-ftp_prgs="/usr/bin/lynx:XT /usr/bin/ncftp:XT"
++https_prgs="@GENTOO_PORTAGE_EPREFIX@/usr/X11R6/bin/netscape:XW @GENTOO_PORTAGE_EPREFIX@/usr/bin/lynx:XT"
++http_prgs="@GENTOO_PORTAGE_EPREFIX@/usr/bin/lynx:XT @GENTOO_PORTAGE_EPREFIX@/usr/X11R6/bin/netscape:XW"
++mailto_prgs="@GENTOO_PORTAGE_EPREFIX@/usr/bin/mutt:VT @GENTOO_PORTAGE_EPREFIX@/usr/bin/elm:VT @GENTOO_PORTAGE_EPREFIX@/usr/bin/pine:VT @GENTOO_PORTAGE_EPREFIX@/usr/bin/mail:VT"
++gopher_prgs="@GENTOO_PORTAGE_EPREFIX@/usr/bin/lynx:XT @GENTOO_PORTAGE_EPREFIX@/usr/bin/gopher:XT"
++ftp_prgs="@GENTOO_PORTAGE_EPREFIX@/usr/bin/lynx:XT @GENTOO_PORTAGE_EPREFIX@/usr/bin/ncftp:XT"
+ 
+ # Program used as an xterm (if it doesn't support -T you'll need to change
+ # the command line in getprg)
+-XTERM=/usr/X11R6/bin/xterm
++XTERM=@GENTOO_PORTAGE_EPREFIX@/usr/X11R6/bin/xterm
+ 
+ 
+ ###########################################################################
