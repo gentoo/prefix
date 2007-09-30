@@ -10,7 +10,7 @@ DESCRIPTION="powerful text-to-postscript converter"
 SRC_URI="http://www.iki.fi/mtr/genscript/${P}.tar.gz"
 HOMEPAGE="http://www.gnu.org/software/enscript/enscript.html"
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86"
 SLOT="0"
 LICENSE="GPL-2"
 IUSE="nls ruby"
