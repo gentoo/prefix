@@ -10,7 +10,7 @@ SRC_URI="http://www.kix.in/plan9/${PN}-repack-${PV}.tar.bz2"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~x86 ~x86-macos"
+KEYWORDS="~sparc-solaris ~x86 ~x86-macos"
 IUSE=""
 
 DEPEND="kernel_linux? x11-base/xorg-server"
