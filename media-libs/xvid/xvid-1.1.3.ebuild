@@ -15,7 +15,7 @@ SRC_URI="http://downloads.xvid.org/downloads/${MY_P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="1"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 IUSE="examples altivec"
 
 # once yasm-0.6.0+ comes out, we can switch this to
