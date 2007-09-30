@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 SLOT="0"
 IUSE="mpi readline"
-KEYWORDS="~ppc-macos ~x86"
+KEYWORDS="~ppc-macos ~sparc-solaris ~x86"
 
 DEPEND="mpi? ( virtual/mpi )
 	readline? ( sys-libs/readline )"
