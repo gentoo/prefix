@@ -13,7 +13,7 @@ SRC_URI="http://www.nwalsh.com/docbook/simple/${PV}/${MY_P}.zip"
 
 LICENSE="X11"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 IUSE=""
 
 DEPEND=">=app-arch/unzip-5.41"
