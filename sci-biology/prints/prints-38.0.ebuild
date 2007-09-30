@@ -15,7 +15,7 @@ SLOT="0"
 IUSE="emboss minimal"
 # Minimal build keeps only the indexed files (if applicable) and the
 # documentation. The non-indexed database is not installed.
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
 
 DEPEND="emboss? ( sci-biology/emboss )"
 
