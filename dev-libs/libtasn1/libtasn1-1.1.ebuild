@@ -12,7 +12,7 @@ SRC_URI="http://josefsson.org/gnutls/releases/libtasn1/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="doc"
 
 DEPEND=">=dev-lang/perl-5.6
