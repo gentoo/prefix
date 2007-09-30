@@ -15,7 +15,7 @@ SRC_URI="
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86"
 IUSE="selinux doc"
 RESTRICT="test"
 
