@@ -15,7 +15,7 @@ SRC_URI="http://bazaar-vcs.org/releases/src/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86 ~x86-macos"
 IUSE="curl emacs test"
 
 python_rdep="dev-python/celementtree
