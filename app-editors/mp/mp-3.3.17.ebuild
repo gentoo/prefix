@@ -12,7 +12,7 @@ SRC_URI="http://www.triptico.com/download/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-macos"
+KEYWORDS="~ppc-macos ~sparc-solaris"
 IUSE="gtk ncurses nls pcre"
 
 RDEPEND="virtual/libc
