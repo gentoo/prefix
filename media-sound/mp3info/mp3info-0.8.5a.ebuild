@@ -17,7 +17,7 @@ RDEPEND="gtk? ( >=x11-libs/gtk+-2.6.10 )
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 
 src_unpack() {
 	unpack ${A}
