@@ -10,7 +10,7 @@ SRC_URI="http://people.mandriva.com/~prigaux/${P}.src.tgz"
 
 LICENSE="GPL-1"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
 IUSE=""
 
 DEPEND="sys-libs/ncurses"
