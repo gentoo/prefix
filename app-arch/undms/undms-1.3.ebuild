@@ -11,7 +11,7 @@ SRC_URI="ftp://us.aminet.net/pub/aminet/misc/unix/${P}.c.Z ftp://us.aminet.net/p
 HOMEPAGE="ftp://us.aminet.net/pub/aminet/misc/unix/${P}.c.Z.readme"
 LICENSE="freedist"
 SLOT="0"
-KEYWORDS="~ppc-macos ~x86"
+KEYWORDS="~ppc-macos ~sparc-solaris ~x86"
 IUSE=""
 
 DEPEND="app-arch/ncompress"
