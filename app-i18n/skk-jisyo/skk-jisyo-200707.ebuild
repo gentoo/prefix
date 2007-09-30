@@ -10,7 +10,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz"
 
 LICENSE="GPL-2 public-domain freedist"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
 IUSE="cdb"
 
 DEPEND="sys-apps/gawk
