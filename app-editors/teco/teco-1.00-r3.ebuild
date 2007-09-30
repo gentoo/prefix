@@ -16,7 +16,7 @@ SRC_URI="http://www.ibiblio.org/pub/linux/apps/editors/tty/teco.tar.gz
 
 LICENSE="freedist"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
 IUSE="doc"
 
 RDEPEND="sys-libs/ncurses"
