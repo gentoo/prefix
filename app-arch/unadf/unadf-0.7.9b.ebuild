@@ -11,7 +11,7 @@ SRC_URI="http://perso.club-internet.fr/lclevy/adflib/adflib.zip"
 HOMEPAGE="http://perso.club-internet.fr/lclevy/adflib/adflib.html"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-macos ~x86"
+KEYWORDS="~ppc-macos ~sparc-solaris ~x86"
 IUSE=""
 DEPEND="app-arch/unzip
 		x11-misc/makedepend"
