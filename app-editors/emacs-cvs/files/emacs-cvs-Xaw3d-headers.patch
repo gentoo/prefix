@@ -1,0 +1,76 @@
+*** emacs/src/xfns.c.~1.681.~	2007-03-24 11:49:48.000000000 -0400
+--- emacs/src/xfns.c	2007-04-18 01:18:52.000000000 -0400
+***************
+*** 72,79 ****
+--- 72,84 ----
+  #include <X11/Shell.h>
+  
+  #ifndef USE_MOTIF
++ #ifdef HAVE_XAW3D
++ #include <X11/Xaw3d/Paned.h>
++ #include <X11/Xaw3d/Label.h>
++ #else  /* !HAVE_XAW3D */
+  #include <X11/Xaw/Paned.h>
+  #include <X11/Xaw/Label.h>
++ #endif /* HAVE_XAW3D */
+  #endif /* USE_MOTIF */
+  
+  #ifdef USG
+*** emacs/src/xmenu.c.~1.317.~	2007-01-20 23:18:14.000000000 -0500
+--- emacs/src/xmenu.c	2007-04-18 01:15:43.000000000 -0400
+***************
+*** 82,88 ****
+--- 82,92 ----
+  #include <X11/StringDefs.h>
+  #include <X11/Shell.h>
+  #ifdef USE_LUCID
++ #ifdef HAVE_XAW3D
++ #include <X11/Xaw3d/Paned.h>
++ #else  /* !HAVE_XAW3D */
+  #include <X11/Xaw/Paned.h>
++ #endif /* HAVE_XAW3D */
+  #endif /* USE_LUCID */
+  #include "../lwlib/lwlib.h"
+  #else /* not USE_X_TOOLKIT */
+*** emacs/lwlib/lwlib.c.~1.55.~	2007-02-27 23:25:05.000000000 -0500
+--- emacs/lwlib/lwlib.c	2007-04-18 01:21:44.000000000 -0400
+***************
+*** 48,54 ****
+--- 48,58 ----
+  #endif /* not USE_MOTIF && USE_LUCID */
+  #endif
+  #if defined (USE_XAW)
++ #ifdef HAVE_XAW3D
++ #include <X11/Xaw3d/Paned.h>
++ #else  /* !HAVE_XAW3D */
+  #include <X11/Xaw/Paned.h>
++ #endif /* HAVE_XAW3D */
+  #include "lwlib-Xaw.h"
+  #endif
+  
+*** emacs/lwlib/lwlib-Xaw.c.~1.25.~	2007-02-26 22:07:08.000000000 -0500
+--- emacs/lwlib/lwlib-Xaw.c	2007-04-18 01:22:33.000000000 -0400
+***************
+*** 35,46 ****
+--- 35,55 ----
+  #include <X11/CoreP.h>
+  #include <X11/Shell.h>
+  
++ #ifdef HAVE_XAW3D
++ #include <X11/Xaw3d/Scrollbar.h>
++ #include <X11/Xaw3d/Paned.h>
++ #include <X11/Xaw3d/Dialog.h>
++ #include <X11/Xaw3d/Form.h>
++ #include <X11/Xaw3d/Command.h>
++ #include <X11/Xaw3d/Label.h>
++ #else /* !HAVE_XAW3D */
+  #include <X11/Xaw/Scrollbar.h>
+  #include <X11/Xaw/Paned.h>
+  #include <X11/Xaw/Dialog.h>
+  #include <X11/Xaw/Form.h>
+  #include <X11/Xaw/Command.h>
+  #include <X11/Xaw/Label.h>
++ #endif /* HAVE_XAW3D */
+  
+  #include <X11/Xatom.h>
+  
