@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit flag-o-matic toolchain-funcs versionator
 
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 
 MY_PV=$(replace_all_version_separators _)
 
