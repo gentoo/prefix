@@ -11,7 +11,7 @@ SRC_URI="mirror://gimp/fonts/${P}.tar.gz"
 HOMEPAGE="http://www.gimp.org/"
 LICENSE="public-domain"
 
-KEYWORDS="~amd64 ~ia64 ~x86"
+KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86"
 IUSE=""
 SLOT="0"
 
