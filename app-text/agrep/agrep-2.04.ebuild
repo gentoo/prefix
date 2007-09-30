@@ -10,7 +10,7 @@ SRC_URI="ftp://ftp.cs.arizona.edu/agrep/${P}.tar.Z"
 
 LICENSE="AGREP"
 SLOT="0"
-KEYWORDS="~ppc-macos"
+KEYWORDS="~ppc-macos ~sparc-solaris"
 IUSE=""
 
 DEPEND="virtual/libc"
