@@ -13,7 +13,7 @@ SRC_URI="ftp://ftp.kiarchive.ru/pub/unix/arcers/${P}pl1.tar.gz
 
 LICENSE="zoo"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~sparc-solaris ~x86"
 IUSE=""
 
 S=${WORKDIR}
