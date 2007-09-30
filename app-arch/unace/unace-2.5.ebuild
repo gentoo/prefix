@@ -10,7 +10,7 @@ SRC_URI="http://www.winace.com/files/linunace${PV//.}.tgz"
 
 LICENSE="freedist"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~sparc-solaris ~x86"
 IUSE=""
 RESTRICT="strip"
 
