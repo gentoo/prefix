@@ -12,7 +12,7 @@ SRC_URI="http://ibiblio.org/pub/Linux/utils/compress/${P}.tar.gz"
 
 LICENSE="arj"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
 IUSE=""
 
 src_unpack() {
