@@ -19,7 +19,7 @@ SRC_URI="mirror://kernel/software/scm/git/${MY_P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="curl doc elibc_uclibc emacs gtk mozsha1 perl ppcsha1 tk webdav"
 
 DEPEND="
