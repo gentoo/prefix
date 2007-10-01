@@ -11,7 +11,7 @@ HOMEPAGE="http://fishshell.org/"
 SRC_URI="http://fishshell.org/files/${PV}/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86"
 IUSE="X"
 RDEPEND="sys-libs/ncurses
 	sys-devel/bc
