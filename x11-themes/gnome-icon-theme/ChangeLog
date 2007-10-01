@@ -1,6 +1,12 @@
 # ChangeLog for x11-themes/gnome-icon-theme
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-icon-theme/ChangeLog,v 1.134 2007/09/22 07:42:01 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-icon-theme/ChangeLog,v 1.135 2007/09/30 14:43:01 dang Exp $
+
+*gnome-icon-theme-2.20.0 (30 Sep 2007)
+
+  30 Sep 2007; Daniel Gryniewicz <dang@gentoo.org>
+  +gnome-icon-theme-2.20.0.ebuild:
+  New series for Gnome 2.20
 
   22 Sep 2007; Tom Gall <tgall@gentoo.org>
   gnome-icon-theme-2.18.0.ebuild:
