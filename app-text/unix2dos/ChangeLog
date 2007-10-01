@@ -1,6 +1,14 @@
 # ChangeLog for app-text/unix2dos
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/unix2dos/ChangeLog,v 1.18 2007/03/01 17:21:45 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/unix2dos/ChangeLog,v 1.19 2007/09/29 07:26:12 pva Exp $
+
+*unix2dos-2.2-r1 (29 Sep 2007)
+
+  29 Sep 2007; <pva@gentoo.org>
+  +files/unix2dos-2.2-workaround-rename-EXDEV.patch,
+  +unix2dos-2.2-r1.ebuild:
+  Fixes rename() fails with errno = EXDEV reported by Doan Vu
+  <chronic.tautologist AT gmail.com> bug #131313.
 
   01 Mar 2007; <genstef@gentoo.org> unix2dos-2.2.ebuild:
   Dropped ppc-macos keyword, see you in prefix
