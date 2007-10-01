@@ -278,7 +278,7 @@ src_compile() {
 		-Dd_dosuid \
 		-Dd_semctl_semun \
 		-Dcf_by="Gentoo" \
-		-Uldflags="${LDFLAGS}" \
+		-Dldflags="${LDFLAGS}" \
 		-Ud_csh \
 		"${myconf[@]}" || die "Unable to configure"
 
@@ -307,8 +307,8 @@ src_install() {
 		# Fix for "stupid" modules and programs
 		dodir /usr/$(get_libdir)/perl5/site_perl/${PV}/${myarch}${mythreading}
 
-		make DESTDIR="${ED}" \
-			INSTALLMAN1DIR="${EDDEST}/usr/share/man/man1" \
+		make DESTDIR="${D}" \
+			INSTALLMAN1DIR="${ED}/usr/share/man/man1" \
 			INSTALLMAN3DIR="${ED}/usr/share/man/man3" \
 			install || die "Unable to make install"
 
