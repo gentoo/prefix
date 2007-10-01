@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.2.4.ebuild,v 1.3 2007/09/28 18:29:42 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.2.4.ebuild,v 1.6 2007/09/30 14:39:14 maekke Exp $
 
 EAPI="prefix"
 

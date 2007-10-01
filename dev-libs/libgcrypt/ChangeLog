@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/libgcrypt
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.91 2007/09/28 18:29:42 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.94 2007/09/30 14:39:14 maekke Exp $
+
+  30 Sep 2007; Markus Meier <maekke@gentoo.org> libgcrypt-1.2.4.ebuild:
+  x86 stable, bug #194113
+
+  29 Sep 2007; Lars Weiler <pylon@gentoo.org> libgcrypt-1.2.4.ebuild:
+  stable ppc, bug #194113
+
+  29 Sep 2007; Jeroen Roovers <jer@gentoo.org> libgcrypt-1.2.4.ebuild:
+  Stable for HPPA (bug #194113).
 
   28 Sep 2007; Ferris McCormick <fmccor@gentoo.org> libgcrypt-1.2.4.ebuild:
   Sparc stable --- Bug #194113 --- all tests pass.
