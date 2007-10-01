@@ -284,7 +284,7 @@ src_configure() {
 		-Dinc_version_list="$inclist" \
 		-Dinc_version_list="$inclist" \
 		-Dcf_by='Gentoo' \
-		-Uldflags="${LDFLAGS}" \
+		-Dldflags="${LDFLAGS}" \
 		-Ud_csh \
 		-Dusenm \
 		"${myconf[@]}" || die "Unable to configure"
