@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/libksba
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.73 2007/09/28 18:37:28 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.76 2007/09/30 14:41:06 maekke Exp $
+
+  30 Sep 2007; Markus Meier <maekke@gentoo.org> libksba-1.0.2.ebuild:
+  x86 stable, bug #194113
+
+  29 Sep 2007; Lars Weiler <pylon@gentoo.org> libksba-1.0.2.ebuild:
+  stable ppc, bug #194113
+
+  29 Sep 2007; Jeroen Roovers <jer@gentoo.org> libksba-1.0.2.ebuild:
+  Stable for HPPA (bug #194113).
 
   28 Sep 2007; Ferris McCormick <fmccor@gentoo.org> libksba-1.0.2.ebuild:
   Sparc stable --- Bug #194113 --- all tests pass.
