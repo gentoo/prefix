@@ -21,7 +21,7 @@ DEPEND="app-arch/cpio
 	sys-apps/file"
 RDEPEND="${DEPEND}
 	userland_GNU? (
-		sys-apps/util-linux
+		kernel_linux? ( sys-apps/util-linux )
 		sys-apps/which )"
 
 S=${WORKDIR}
