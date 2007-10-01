@@ -77,7 +77,7 @@ fetch() {
 # 	einfo "Installing ${A%-*}"
 # 	$MAKE install || exit 1
 
-# 	einfo "${A%-*} succesfully bootstrapped"
+# 	einfo "${A%-*} successfully bootstrapped"
 # }
 
 bootstrap_setup() {
@@ -242,7 +242,7 @@ bootstrap_portage() {
 
 	cd "${ROOT}"
 	rm -Rf ${ptmp} >& /dev/null
-	einfo "${A%-*} succesfully bootstrapped"
+	einfo "${A%-*} successfully bootstrapped"
 }
 
 bootstrap_odcctools() {
@@ -374,7 +374,7 @@ bootstrap_gnu() {
 
 	cd "${ROOT}"
 	rm -Rf "${S}"
-	einfo "${A%-*} succesfully bootstrapped"
+	einfo "${A%-*} successfully bootstrapped"
 }
 
 bootstrap_python() {
@@ -429,7 +429,7 @@ bootstrap_python() {
 	cd "${ROOT}"/usr/bin
 	ln -sf python2.4 python
 
-	einfo "${A%-*} succesfully bootstrapped"
+	einfo "${A%-*} successfully bootstrapped"
 }
 
 bootstrap_sed() {
