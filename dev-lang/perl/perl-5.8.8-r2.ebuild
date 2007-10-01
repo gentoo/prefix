@@ -182,7 +182,13 @@ src_configure() {
 		*-netbsd*) osname="netbsd" ;;
 		*-openbsd*) osname="openbsd" ;;
 		*-darwin*) osname="darwin" ;;
-		*-solaris*) osname="solaris" ;;
+		*-solaris*)
+			osname="solaris"
+			# solaris2.9 has /lib/libgdbm.so.2 and /lib/libgdbm.so.3,
+			# but no linkable /lib/libgdbm.so.
+			# This might apply to others too, but seen on solaris only yet.
+			myconf -Dignore_versioned_solibs
+			;;
 		*-aix*) osname="aix" ;;
 
 		*) osname="linux" ;;
