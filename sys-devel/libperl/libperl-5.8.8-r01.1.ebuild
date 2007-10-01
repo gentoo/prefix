@@ -267,6 +267,8 @@ src_compile() {
 	# We need to use " and not ', as the written config.sh use ' ...
 	myconf "-Dlibpth=${EPREFIX}/$(get_libdir) ${EPREFIX}/usr/$(get_libdir) /$(get_libdir) /usr/$(get_libdir)"
 
+	[[ -n "${LDFLAGS}" ]] && myconf -Dldflags="${LDFLAGS}"
+
 	sh Configure -des \
 		-Darchname="${myarch}" \
 		-Dcccdlflags="-fPIC" \
@@ -284,7 +286,6 @@ src_compile() {
 		-Dd_dosuid \
 		-Dd_semctl_semun \
 		-Dcf_by="Gentoo" \
-		-Dldflags="${LDFLAGS}" \
 		-Ud_csh \
 		"${myconf[@]}" || die "Unable to configure"
 
