@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.0_rc3.ebuild,v 1.1 2007/09/26 02:09:26 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.0_rc3.ebuild,v 1.2 2007/09/29 01:57:03 hanno Exp $
 
 EAPI="prefix"
 
@@ -56,11 +56,12 @@ S="${WORKDIR}/${P/_/-}"
 
 pkg_setup() {
 	if use pdf && ! built_with_use app-text/poppler-bindings gtk; then
-		eerror
 		eerror "This package requires app-text/poppler-bindings compiled with GTK+ support."
-		eerror "Please reemerge app-text/poppler-bindings with USE=\"gtk\"."
-		eerror
 		die "Please reemerge app-text/poppler-bindings with USE=\"gtk\"."
+	fi
+	if use alsa && ! built_with_use media-libs/alsa-lib midi; then
+		eerror "This package requires media-libs/alsa-lib compiled with midi support."
+		die "Please reemerge media-libs/alsa-lib with USE=\"midi\"."
 	fi
 }
 
