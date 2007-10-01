@@ -1,26 +1,28 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p36-r3.ebuild,v 1.3 2007/07/05 10:05:35 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.5_p113.ebuild,v 1.3 2007/09/30 21:44:52 mr_bones_ Exp $
 
 EAPI="prefix"
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 
-ONIGURUMA="onigd2_5_9"
+ONIGURUMA="onigd2_5_8"
 
-inherit flag-o-matic alternatives eutils multilib autotools versionator
+inherit autotools eutils flag-o-matic multilib versionator
 
-MY_P="${P/_p/-p}"
+MY_P="${PN}-$(replace_version_separator 3 '-')"
 S=${WORKDIR}/${MY_P}
+
+SLOT=$(get_version_component_range 1-2)
+MY_SUFFIX=$(delete_version_separator 1 ${SLOT})
 
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="http://www.ruby-lang.org/"
-SRC_URI="ftp://ftp.ruby-lang.org/pub/ruby/1.8/${MY_P}.tar.gz
+SRC_URI="ftp://ftp.ruby-lang.org/pub/ruby/${SLOT}/${MY_P}.tar.gz
 	cjk? ( http://www.geocities.jp/kosako3/oniguruma/archive/${ONIGURUMA}.tar.gz )"
 
 LICENSE="Ruby"
-SLOT="1.8"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="cjk debug doc examples ipv6 rubytests socks5 threads tk"
 
@@ -30,7 +32,7 @@ RDEPEND=">=sys-libs/gdbm-1.8.0
 	socks5? ( >=net-proxy/dante-1.1.13 )
 	tk? ( dev-lang/tk )
 	>=dev-ruby/ruby-config-0.3.1
-	!=dev-lang/ruby-cvs-1.8*
+	!=dev-lang/ruby-cvs-${SLOT}*
 	!dev-ruby/rdoc
 	!dev-ruby/rexml"
 DEPEND="${RDEPEND}"
@@ -42,28 +44,17 @@ src_unpack() {
 	if use cjk ; then
 		einfo "Applying ${ONIGURUMA}"
 		pushd ${WORKDIR}/oniguruma
-		econf --with-rubydir=${S} || die "econf failed"
-		MY_PV=$(get_version_component_range 1-2)
-		make ${MY_PV/./}
+		econf --with-rubydir="${S}" || die "oniguruma econf failed"
+		emake $MY_SUFFIX || die "oniguruma emake failed"
 		popd
 	fi
 
 	cd "${S}"
+	epatch "${FILESDIR}/${P}-net-http-p114.patch"
 
-	epatch "${FILESDIR}/${P}-rb_thread_status_prototype.patch"
-	epatch "${FILESDIR}/${P}-only-ncurses.patch"
-	epatch "${FILESDIR}/${P}-prefix.patch"
-
-	cd "${S}/ext/dl"
-	epatch "${FILESDIR}/${PN}-1.8.6-memory-leak.diff"
-
-	cd "${S}"
 	# Fix a hardcoded lib path in configure script
 	sed -i -e "s:\(RUBY_LIB_PREFIX=\"\${prefix}/\)lib:\1$(get_libdir):" \
 		configure.in || die "sed failed"
-	
-	# Fix hardcoded SHELL var in mkmf library
-	sed -e "s#\(SHELL = \).*#\1${EPREFIX}/bin/sh#" -i lib/mkmf.rb
 
 	eautoreconf
 }
@@ -88,17 +79,18 @@ src_compile() {
 		append-flags "-DGC_MALLOC_LIMIT=${RUBY_GC_MALLOC_LIMIT}"
 	fi
 
-	econf --program-suffix=${SLOT/./} --enable-shared \
+	econf --program-suffix=$MY_SUFFIX --enable-shared \
 		$(use_enable socks5 socks) \
 		$(use_enable doc install-doc) \
 		$(use_enable threads pthread) \
 		$(use_enable ipv6) \
 		$(use_enable debug) \
 		$(use_with tk) \
+		${myconf} \
 		--with-sitedir="${EPREFIX}"/usr/$(get_libdir)/ruby/site_ruby \
 		|| die "econf failed"
 
-	emake || die "emake failed"
+	emake EXTLDFLAGS="${LDFLAGS}" || die "emake failed"
 }
 
 src_test() {
@@ -109,7 +101,7 @@ src_test() {
 	elog
 	if use rubytests; then
 		elog "You have enabled rubytests, so they will be installed to"
-		elog "/usr/share/${PN}-${SLOT}/test. To run them you must be a user other"
+		elog "${EPREFIX}/usr/share/${PN}-${SLOT}/test. To run them you must be a user other"
 		elog "than root, and you must place them into a writeable directory."
 		elog "Then call: "
 		elog
@@ -120,14 +112,14 @@ src_test() {
 }
 
 src_install() {
-	LD_LIBRARY_PATH="${ED}"/usr/$(get_libdir)
+	LD_LIBRARY_PATH="${ED}/usr/$(get_libdir)"
 	RUBYLIB="${S}:${ED}/usr/$(get_libdir)/ruby/${SLOT}"
-	for d in $(find ${S}/ext -type d) ; do
+	for d in $(find "${S}/ext" -type d) ; do
 		RUBYLIB="${RUBYLIB}:$d"
 	done
 	export LD_LIBRARY_PATH RUBYLIB
 
-	make DESTDIR="${D}" install || die "make install failed"
+	emake DESTDIR="${D}" install || die "make install failed"
 
 	MINIRUBY=$(echo -e 'include Makefile\ngetminiruby:\n\t@echo $(MINIRUBY)'|make -f - getminiruby)
 	d=$(${MINIRUBY} -rrbconfig -e "print Config::CONFIG['sitelibdir']")
@@ -141,29 +133,28 @@ src_install() {
 
 	if use examples; then
 		dodir usr/share/doc/${PF}
-		cp -pPR sample ${ED}/usr/share/doc/${PF}
+		cp -pPR sample "${ED}/usr/share/doc/${PF}"
 	fi
 
-	dosym libruby${SLOT/./}$(get_libname ${PV%_*}) /usr/$(get_libdir)/libruby$(get_libname ${PV%.*})
-	dosym libruby${SLOT/./}$(get_libname ${PV%_*}) /usr/$(get_libdir)/libruby$(get_libname ${PV%_*})
+	dosym libruby$MY_SUFFIX$(get_libname ${PV%_*}) /usr/$(get_libdir)/libruby$(get_libname ${PV%.*})
+	dosym libruby$MY_SUFFIX$(get_libname ${PV%_*}) /usr/$(get_libdir)/libruby$(get_libname ${PV%_*})
 
 	dodoc ChangeLog NEWS README* ToDo
 
 	if use rubytests; then
 		dodir /usr/share/${PN}-${SLOT}
-		cp -pPR test ${ED}/usr/share/${PN}-${SLOT}
+		cp -pPR test "${ED}/usr/share/${PN}-${SLOT}"
 	fi
 }
 
 pkg_postinst() {
-	ewarn
-	ewarn "Warning: Vim won't work if you've just updated ruby from"
-	ewarn "1.6.x to 1.8.x due to the library version change."
-	ewarn "In that case, you will need to remerge vim."
-	ewarn
 
-	if [ ! -n "$(readlink ${EROOT}usr/bin/ruby)" ] ; then
-		${EROOT}usr/sbin/ruby-config ruby${SLOT/./}
+	ewarn "If you upgrade to >=sys-apps/coreutils-6.7-r1,"
+	ewarn "you should re-emerge ruby again."
+	ewarn "See bug #159922 for details"
+	ewarn
+	if [[ ! -n $(readlink "${EROOT}"usr/bin/ruby) ]] ; then
+		"${EROOT}usr/sbin/ruby-config" ruby$MY_SUFFIX
 	fi
 	einfo
 	einfo "You can change the default ruby interpreter by ${EROOT}/usr/sbin/ruby-config"
@@ -171,7 +162,7 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	if [ ! -n "$(readlink ${EROOT}/usr/bin/ruby)" ] ; then
-		${EROOT}/usr/sbin/ruby-config ruby${SLOT/./}
+	if [[ ! -n $(readlink "${EROOT}"usr/bin/ruby) ]] ; then
+		"${EROOT}usr/sbin/ruby-config" ruby$MY_SUFFIX
 	fi
 }

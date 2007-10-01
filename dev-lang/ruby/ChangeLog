@@ -1,6 +1,16 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.297 2007/09/24 12:49:03 rbrown Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.298 2007/09/30 08:44:50 rbrown Exp $
+
+*ruby-1.8.6_p110-r1 (30 Sep 2007)
+*ruby-1.8.5_p113 (30 Sep 2007)
+
+  30 Sep 2007; Richard Brown <rbrown@gentoo.org>
+  +files/ruby-1.8.5_p113-net-http-p114.patch,
+  +files/ruby-1.8.6_p110-net-http-p111.patch, +ruby-1.8.5_p113.ebuild,
+  +ruby-1.8.6_p110-r1.ebuild:
+  Fix bug #194236. Bump 1.8.6 to p111 as p110-r1. Bump 1.8.5 to p114 as p113,
+  using 1.8.6-p110 as base ebuild.
 
   24 Sep 2007; Richard Brown <rbrown@gentoo.org> ruby-1.8.6_p110.ebuild:
   More fixes from gentoo-dev and graaff
