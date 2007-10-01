@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.267 2007/09/27 04:48:53 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.268 2007/09/29 07:54:35 vapier Exp $
+
+*openssh-4.7_p1-r2 (29 Sep 2007)
+
+  29 Sep 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.7_p1-GSSAPI-dns.patch, +openssh-4.7_p1-r2.ebuild:
+  Enable ssl-engine support #194163 by Nikhil Sethi and add GSSAPI/DNS patch
+  #165444 by Alex Iribarren.
 
   27 Sep 2007; Joshua Kinard <kumba@gentoo.org> openssh-4.7_p1-r1.ebuild:
   Stable on mips, per #191321.

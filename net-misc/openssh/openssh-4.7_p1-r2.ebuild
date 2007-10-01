@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.6_p1-r2.ebuild,v 1.9 2007/08/04 05:13:07 metalgod Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.7_p1-r2.ebuild,v 1.1 2007/09/29 07:54:35 vapier Exp $
 
 EAPI="prefix"
 
@@ -10,23 +10,22 @@ inherit eutils flag-o-matic ccc multilib autotools pam
 # and _p? releases.
 PARCH=${P/_/}
 
-X509_PATCH="${PARCH}+x509-5.5.2.diff.gz"
-SECURID_PATCH="" #${PARCH/4.6/4.5}+SecurID_v1.3.2.patch"
-LDAP_PATCH="" #${PARCH/-4.5p1/-lpk-4.5p1}-0.3.8.patch"
-HPN_PATCH="${PARCH}-hpn12v16.diff.gz"
+X509_PATCH="${PARCH}+x509-6.0.1.diff.gz"
+LDAP_PATCH="${PARCH/openssh-4.7/openssh-lpk-4.6}-0.3.9.patch"
+HPN_PATCH="${PARCH}-hpn12v18.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.com/"
 SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
-	X509? ( http://roumenpetrov.info/openssh/x509-5.5.2/${X509_PATCH} )
+	ldap? ( http://dev.inversepath.com/openssh-lpk/${LDAP_PATCH} )
+	X509? ( http://roumenpetrov.info/openssh/x509-6.0.1/${X509_PATCH} )
 	hpn? ( http://www.psc.edu/networking/projects/hpn-ssh/${HPN_PATCH} )"
-#	smartcard? ( http://omniti.com/~jesus/projects/${SECURID_PATCH} )
-#	ldap? ( http://dev.inversepath.com/openssh-lpk/${LDAP_PATCH} )
 
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="static pam tcpd kerberos skey selinux chroot X509 ldap smartcard hpn libedit X"
+RESTRICT="mirror" #193401
 
 RDEPEND="pam? ( virtual/pam )
 	kerberos? ( virtual/krb5 )
@@ -54,7 +53,6 @@ pkg_setup() {
 	maybe_fail() { [[ -z ${!2} ]] && use ${1} && echo ${1} ; }
 	local fail="
 		$(maybe_fail X509 X509_PATCH)
-		$(maybe_fail smartcard SECURID_PATCH)
 		$(maybe_fail ldap LDAP_PATCH)
 	"
 	fail=$(echo ${fail})
@@ -75,25 +73,18 @@ src_unpack() {
 		-e "/_PATH_XAUTH/s:/usr/X11R6/bin/xauth:${EPREFIX}/usr/bin/xauth:" \
 		pathnames.h || die
 
-	epatch "${FILESDIR}"/${P}-include-string-header.patch
-	epatch "${FILESDIR}"/${P}-ChallengeResponseAuthentication.patch #170670
 	use X509 && epatch "${DISTDIR}"/${X509_PATCH} "${FILESDIR}"/${PN}-4.4_p1-x509-hpn-glue.patch
 	use chroot && epatch "${FILESDIR}"/openssh-4.3_p1-chroot.patch
 	use smartcard && epatch "${FILESDIR}"/openssh-3.9_p1-opensc.patch
 	if ! use X509 ; then
-		if [[ -n ${SECURID_PATCH} ]] && use smartcard ; then
-			epatch "${DISTDIR}"/${SECURID_PATCH} \
-				"${FILESDIR}"/${PN}-4.3_p2-securid-updates.patch \
-				"${FILESDIR}"/${PN}-4.3_p2-securid-hpn-glue.patch
-			use ldap && epatch "${FILESDIR}"/openssh-4.0_p1-smartcard-ldap-happy.patch
-		fi
 		if [[ -n ${LDAP_PATCH} ]] && use ldap ; then
 			epatch "${DISTDIR}"/${LDAP_PATCH} "${FILESDIR}"/${PN}-4.4_p1-ldap-hpn-glue.patch
 		fi
-	elif [[ -n ${SECURID_PATCH} ]] && use smartcard || use ldap ; then
-		ewarn "Sorry, X509 and smartcard/ldap don't get along, disabling smartcard/ldap"
+	elif use ldap ; then
+		ewarn "Sorry, X509 and ldap don't get along, disabling ldap"
 	fi
 	[[ -n ${HPN_PATCH} ]] && use hpn && epatch "${DISTDIR}"/${HPN_PATCH}
+	epatch "${FILESDIR}"/${P}-GSSAPI-dns.patch #165444
 
 	sed -i "s:-lcrypto:$(pkg-config --libs openssl):" configure{,.ac} || die
 
@@ -126,6 +117,7 @@ src_compile() {
 		--with-pid-dir="${EPREFIX}"/var/run \
 		--with-privsep-user=sshd \
 		--with-md5-passwords \
+		--with-ssl-engine \
 		$(use_with ldap) \
 		$(use_with libedit) \
 		$(use_with kerberos kerberos5 /usr) \
@@ -147,7 +139,6 @@ src_install() {
 	keepdir /var/empty
 
 	newpamd "${FILESDIR}"/sshd.pam_include.1 sshd
-	dosed "/^#Protocol /s:.*:Protocol 2:" /etc/ssh/sshd_config
 	use pam \
 		&& dosed "/^#UsePAM /s:.*:UsePAM yes:" /etc/ssh/sshd_config \
 		&& dosed "/^#PasswordAuthentication /s:.*:PasswordAuthentication no:" /etc/ssh/sshd_config
@@ -162,6 +153,10 @@ src_install() {
 pkg_postinst() {
 	enewgroup sshd 22
 	enewuser sshd 22 -1 /var/empty sshd
+
+	# help fix broken perms caused by older ebuilds.
+	# can probably cut this after the next stage release.
+	chmod u+x "${EROOT}"/etc/skel/.ssh >& /dev/null
 
 	ewarn "Remember to merge your config files in /etc/ssh/ and then"
 	ewarn "restart sshd: '/etc/init.d/sshd restart'."
