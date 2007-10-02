@@ -11,7 +11,7 @@ HOMEPAGE="http://fishshell.org/"
 SRC_URI="http://fishshell.org/files/${PV}/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="X"
 RDEPEND="sys-libs/ncurses
 	sys-devel/bc
@@ -24,6 +24,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/fish-1.22.3-iconv.patch
+	epatch "${FILESDIR}"/fish-1.22.3-gettext.patch
 	eautoreconf
 }
 
