@@ -1,6 +1,10 @@
 # ChangeLog for app-text/txt2tags
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/txt2tags/ChangeLog,v 1.31 2007/09/28 14:37:59 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/txt2tags/ChangeLog,v 1.32 2007/10/01 18:12:26 opfer Exp $
+
+  01 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  -files/50txt2tags-gentoo.el, -txt2tags-2.1.ebuild, -txt2tags-2.3.ebuild:
+  clean up
 
   28 Sep 2007; Christoph Mende <angelos@gentoo.org> txt2tags-2.3-r1.ebuild:
   Stable on amd64 wrt bug #182295
