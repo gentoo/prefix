@@ -1,0 +1,15 @@
+--- formencode/validators.py	2007-04-01 00:06:43.000000000 +0300
++++ formencode/validators.py	2007-10-01 19:30:53.000000000 +0300
+@@ -1230,8 +1230,10 @@
+         if self.resolve_domain:
+             assert have_dns, "pyDNS should be available"
+ 	    try:
+-                a=DNS.DnsRequest(domain).req().answers
+-                dnsdomains=[x['data'] for x in a if x['typename'] in ('A', 'MX')]
++                a=DNS.DnsRequest(domain, qtype='mx').req().answers
++                if not a:
++                    a=DNS.DnsRequest(domain, qtype='a').req().answers
++                dnsdomains=[x['data'] for x in a]
+ 	    except (socket.error, DNS.DNSError), e:
+ 		raise Invalid(
+ 		    self.message('socketError', state, error=e),

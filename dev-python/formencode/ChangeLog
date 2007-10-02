@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/formencode
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/formencode/ChangeLog,v 1.12 2007/07/04 17:50:20 pythonhead Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/formencode/ChangeLog,v 1.13 2007/10/01 17:16:22 hawking Exp $
+
+*formencode-0.7.1-r2 (01 Oct 2007)
+
+  01 Oct 2007; Ali Polatel <hawking@gentoo.org>
+  +files/formencode-0.7.1-verify_domain.patch, +formencode-0.7.1-r2.ebuild:
+  revbump. fixed domain verification, bug 194093 thanks to Jacob Smullyan
 
 *formencode-0.7.1-r1 (04 Jul 2007)
 *formencode-0.7-r1 (04 Jul 2007)
