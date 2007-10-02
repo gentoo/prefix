@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/debianutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/ChangeLog,v 1.91 2007/09/29 13:41:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/ChangeLog,v 1.92 2007/10/01 11:18:30 joker Exp $
+
+  01 Oct 2007; Christian Birchinger <joker@gentoo.org>
+  debianutils-2.23.1.ebuild:
+  Added sparc stable keyword
 
 *debianutils-2.25 (29 Sep 2007)
 
