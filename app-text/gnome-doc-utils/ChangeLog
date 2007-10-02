@@ -1,6 +1,12 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.87 2007/09/22 07:50:38 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.88 2007/10/01 02:42:58 leio Exp $
+
+*gnome-doc-utils-0.12.0 (01 Oct 2007)
+
+  01 Oct 2007; Mart Raudsepp <leio@gentoo.org>
+  +gnome-doc-utils-0.12.0.ebuild:
+  New series for Gnome 2.20
 
   22 Sep 2007; Tom Gall <tgall@gentoo.org>
   gnome-doc-utils-0.10.3.ebuild:
