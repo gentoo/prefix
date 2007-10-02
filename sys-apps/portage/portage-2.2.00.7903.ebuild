@@ -84,8 +84,6 @@ src_unpack() {
 		use linguas_pl && \
 			epatch "${WORKDIR}/${PN}-man-pl-${PV_PL}${PATCHVER_PL}.patch"
 	fi
-
-	epatch "${FILESDIR}"/${P}-fix_indentation.prefix
 }
 
 src_compile() {
