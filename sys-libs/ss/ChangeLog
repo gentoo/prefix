@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/ss
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ChangeLog,v 1.29 2007/09/17 12:52:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ChangeLog,v 1.30 2007/10/01 11:43:05 joker Exp $
+
+  01 Oct 2007; Christian Birchinger <joker@gentoo.org> ss-1.40.2.ebuild:
+  Added sparc stable keyword
 
   17 Sep 2007; Raúl Porcel <armin76@gentoo.org> ss-1.40.2.ebuild:
   alpha/ia64/x86 stable
