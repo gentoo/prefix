@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.289 2007/09/01 03:24:09 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.290 2007/10/01 13:16:44 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -1571,36 +1571,6 @@ strip-linguas() {
 	[[ -n ${nols} ]] \
 		&& ewarn "Sorry, but ${PN} does not support the LINGUAs:" ${nols}
 	export LINGUAS=${newls:1}
-}
-
-# @FUNCTION: set_arch_to_kernel
-# @DESCRIPTION:
-# Set the env ARCH to match what the kernel expects.
-set_arch_to_kernel() {
-	i=10
-	while ((i--)) ; do
-		ewarn "PLEASE UPDATE TO YOUR PACKAGE TO USE linux-info.eclass"
-	done
-	export EUTILS_ECLASS_PORTAGE_ARCH="${ARCH}"
-	case ${ARCH} in
-		x86)	export ARCH="i386";;
-		amd64)	export ARCH="x86_64";;
-		hppa)	export ARCH="parisc";;
-		mips)	export ARCH="mips";;
-		sparc)	export ARCH="$(tc-arch-kernel)";; # Yeah this is ugly, but it's even WORSE if you don't do this.  linux-info.eclass's set_arch_to_kernel is fixed, but won't get used over this one!
-		*)		export ARCH="${ARCH}";;
-	esac
-}
-
-# @FUNCTION: set_arch_to_portage
-# @DESCRIPTION:
-# Set the env ARCH to match what portage expects.
-set_arch_to_portage() {
-	i=10
-	while ((i--)) ; do
-		ewarn "PLEASE UPDATE TO YOUR PACKAGE TO USE linux-info.eclass"
-	done
-	export ARCH="${EUTILS_ECLASS_PORTAGE_ARCH}"
 }
 
 # @FUNCTION: preserve_old_lib

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.50 2006/12/07 18:52:55 dsd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.51 2007/10/01 13:16:44 vapier Exp $
 #
 # Description: This eclass is used as a central eclass for accessing kernel
 #			   related information for sources already installed.
@@ -69,10 +69,14 @@ case ${ARCH} in
 	ppc64)	BUILD_FIXES="${BUILD_FIXES} TOUT=${T}/.tmp_gas_check";;
 esac
 
-# These are legacy wrappers for toolchain-funcs.
-# I dont like them here, but oh well.
-set_arch_to_kernel() { export ARCH="$(tc-arch-kernel)"; }
-set_arch_to_portage() { export ARCH="$(tc-arch)"; }
+# @FUNCTION: set_arch_to_kernel
+# @DESCRIPTION:
+# Set the env ARCH to match what the kernel expects.
+set_arch_to_kernel() { export ARCH=$(tc-arch-kernel); }
+# @FUNCTION: set_arch_to_portage
+# @DESCRIPTION:
+# Set the env ARCH to match what portage expects.
+set_arch_to_portage() { export ARCH=$(tc-arch); }
 
 # qeinfo "Message"
 # -------------------
