@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/curl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.105 2007/09/14 00:05:30 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.106 2007/10/01 15:09:51 uberlord Exp $
+
+  01 Oct 2007; Roy Marples <uberlord@gentoo.org> curl-7.17.0.ebuild,
+  curl-7.17.0-r1.ebuild:
+  Keyworded ~sparc-fbsd
 
   14 Sep 2007; Daniel Black <dragonheart@gentoo.org> curl-7.17.0.ebuild:
   with!= without (libssh2) thanks to Mikachu
