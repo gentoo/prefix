@@ -9,9 +9,8 @@ S=${WORKDIR}/${MY_P}
 
 inherit flag-o-matic eutils
 
-DESCRIPTION="Standard informational utilities and process-handling tools"
+DESCRIPTION="Utilities and process-handling tools for OpenBSD and Darwin"
 HOMEPAGE="http://proctools.sourceforge.net/"
-#SRC_URI="http://proctools.sourceforge.net/${MY_P}.tar.gz"
 SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.gz"
 
 
