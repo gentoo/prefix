@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.157 2007/09/28 03:15:23 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.158 2007/10/01 05:37:54 dirtyepic Exp $
+
+  01 Oct 2007; Ryan Hill <dirtyepic@gentoo.org> -freetype-1.3.1-r4.ebuild,
+  -freetype-2.3.5.ebuild:
+  Remove old.
 
   28 Sep 2007; Joshua Kinard <kumba@gentoo.org> freetype-1.3.1-r5.ebuild:
   Stable on mips, per #166265.
