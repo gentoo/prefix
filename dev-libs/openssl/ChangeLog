@@ -1,6 +1,26 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.227 2007/09/30 18:58:47 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.233 2007/10/01 13:05:38 jer Exp $
+
+  01 Oct 2007; Jeroen Roovers <jer@gentoo.org> openssl-0.9.8e-r3.ebuild:
+  Stable for HPPA (bug #194039).
+
+  01 Oct 2007; Roy Marples <uberlord@gentoo.org>
+  +files/openssl-0.9.8e-bsd-sparc64.patch, openssl-0.9.8e-r3.ebuild:
+  Love the ~sparc-fbsd keyword.
+
+  01 Oct 2007; Raúl Porcel <armin76@gentoo.org> openssl-0.9.8e-r3.ebuild:
+  alpha/ia64/sparc stable wrt security #194039
+
+  01 Oct 2007; Joe Peterson <lavajoe@gentoo.org> openssl-0.9.8e-r3.ebuild:
+  Add ~x86-fbsd keyword
+
+  01 Oct 2007; Mike Frysinger <vapier@gentoo.org> openssl-0.9.8e-r3.ebuild:
+  Tweak how we do the manpage renaming so that it is POSIX friendly #194335 by
+  Joe Peterson.
+
+  01 Oct 2007; Joshua Kinard <kumba@gentoo.org> openssl-0.9.8e-r3.ebuild:
+  Stable on mips, per #194039.
 
   30 Sep 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   openssl-0.9.8e-r3.ebuild:
