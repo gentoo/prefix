@@ -29,7 +29,7 @@ src_unpack() {
 	unpack ${A}
 
 	epatch "${FILESDIR}"/${P/-prefix/}-prefix.patch
-	cd ${S}
+	cd "${S}"
 	eprefixify \
 		etc/env.d/00basic \
 		etc/profile \
@@ -71,7 +71,7 @@ src_install() {
 
 	# Setup files in /sbin
 	#
-	cd ${S}/sbin
+	cd "${S}"/sbin
 	into /
 	# These moved from /etc/init.d/ to /sbin to help newb systems
 	# from breaking
