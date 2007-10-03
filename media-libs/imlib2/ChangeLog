@@ -1,6 +1,21 @@
 # ChangeLog for media-libs/imlib2
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/ChangeLog,v 1.52 2007/07/22 09:37:57 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/ChangeLog,v 1.57 2007/10/02 16:49:01 pylon Exp $
+
+  02 Oct 2007; Lars Weiler <pylon@gentoo.org> imlib2-1.4.0.ebuild:
+  ppc stable; bug #194446.
+
+  02 Oct 2007; Raúl Porcel <armin76@gentoo.org> imlib2-1.4.0.ebuild:
+  alpha/ia64 stable wrt #194446
+
+  02 Oct 2007; Ferris McCormick <fmccor@gentoo.org> imlib2-1.4.0.ebuild:
+  Sparc stable --- Bug #194446
+
+  02 Oct 2007; Christian Faulhammer <opfer@gentoo.org> imlib2-1.4.0.ebuild:
+  stable x86, bug 194446
+
+  02 Oct 2007; Jeroen Roovers <jer@gentoo.org> imlib2-1.4.0.ebuild:
+  Stable for HPPA (bug #194446).
 
   22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>;
   imlib2-1.2.1.009.ebuild:
