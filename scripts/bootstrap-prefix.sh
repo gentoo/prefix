@@ -588,6 +588,7 @@ then
 						exit 1
 					;;
 				esac
+				MAKE=make
 				;;
 			*)
 				eerror "Nothing known about platform `uname -s`."
