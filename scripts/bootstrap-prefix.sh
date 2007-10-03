@@ -476,6 +476,41 @@ bootstrap_patch() {
 	bootstrap_gnu patch 2.5.4
 }
 
+bootstrap_patch9() {
+	local PN PV A S
+	PN=patch
+	PV=2.5.9
+	A=${PN}-${PV}.tar.gz
+	einfo "Bootstrapping ${A%-*}"
+
+	efetch http://distfiles.gentoo.org/distfiles/${A}
+
+	einfo "Unpacking ${A%-*}"
+	S="${PORTAGE_TMPDIR}/${PN}-${PV}"
+	rm -rf "${S}"
+	mkdir -p "${S}"
+	cd "${S}"
+	gzip -dc "${DISTDIR}"/${A} | $TAR -xf - || exit 1
+	S="${S}"/${PN}-${PV}
+	cd "${S}"
+
+	local myconf=""
+	# AIX doesn't like it when --disable-nls is set, OSX doesn't like it
+	# when it's not.  Solaris and Linux build fine with --disable-nls.
+	[[ $CHOST == *-aix* ]] || myconf="${myconf} --disable-nls"
+
+	einfo "Compiling ${A%-*}"
+	econf ${myconf}
+	$MAKE || exit 1
+
+	einfo "Installing ${A%-*}"
+	$MAKE install || exit 1
+
+	cd "${ROOT}"
+	rm -Rf "${S}"
+	einfo "${A%-*} successfully bootstrapped"
+}
+
 bootstrap_gawk() {
 	bootstrap_gnu gawk 3.1.5
 }
