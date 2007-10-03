@@ -1,0 +1,21 @@
+# ChangeLog for virtual/perl-net-ping
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-net-ping/ChangeLog,v 1.5 2007/02/09 06:11:49 flameeyes Exp $
+
+  09 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
+
+  14 Mar 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  perl-net-ping-2.31.ebuild:
+  Stable on hppa
+
+  12 Mar 2006; Michael Cummings <mcummings@gentoo.org>
+  perl-net-ping-2.31.ebuild:
+  Digest mismatch
+
+*perl-net-ping-2.31 (07 Feb 2006)
+
+  07 Feb 2006; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +perl-net-ping-2.31.ebuild:
+  New virtual for perl-core/net-ping
+
