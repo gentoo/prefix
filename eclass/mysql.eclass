@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.81 2007/07/15 00:22:13 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.82 2007/10/02 10:00:07 robbat2 Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: Luca Longinotti <chtekk@gentoo.org>
@@ -544,7 +544,7 @@ mysql_src_unpack() {
 		use innodb \
 		&& cmake \
 			-DCMAKE_C_COMPILER=$(type -P $(tc-getCC)) \
-			-DCMAKE_CXX_COMPILER=$(type -P $(tc-getCC)) \
+			-DCMAKE_CXX_COMPILER=$(type -P $(tc-getCXX)) \
 			"storage/innobase"
 	else
 		rebuilddirlist=". innobase"
