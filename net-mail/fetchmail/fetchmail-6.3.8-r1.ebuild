@@ -61,7 +61,10 @@ src_install() {
 
 	dodoc FAQ FEATURES ABOUT-NLS NEWS NOTES README README.NTLM README.SSL TODO
 
-	newinitd "${FILESDIR}"/fetchmail fetchmail
+	cp "${FILESDIR}"/fetchmail .
+	epatch "${FILESDIR}"/fetchmail-prefix.patch
+	eprefixify fetchmail
+	newinitd fetchmail fetchmail
 	newconfd "${FILESDIR}"/conf.d-fetchmail fetchmail
 
 	docinto contrib
