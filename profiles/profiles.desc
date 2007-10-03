@@ -35,3 +35,9 @@ mips-irix	default-prefix/irix/6.5/mips				dev
 x86-interix	default-prefix/windows/interix/3.5/x86		dev
 x86-interix	default-prefix/windows/interix/5.2/x86		dev
 
+# HP-UX Profiles
+hppa-hpux default-prefix/hpux/B.11.11/hppa/hppa1.1		dev
+hppa-hpux default-prefix/hpux/B.11.11/hppa/hppa2.0/32	dev
+hppa-hpux default-prefix/hpux/B.11.11/hppa/hppa2.0/64	dev
+
+ia64-hpux default-prefix/hpux/B.11.23/ia64				dev
