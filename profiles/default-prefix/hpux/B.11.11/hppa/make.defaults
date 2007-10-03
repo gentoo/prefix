@@ -1,0 +1,3 @@
+ARCH="hppa-hpux"
+ACCEPT_KEYWORDS="hppa-hpux"
+
