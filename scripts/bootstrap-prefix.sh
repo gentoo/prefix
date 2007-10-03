@@ -133,6 +133,18 @@ bootstrap_setup() {
 			profile="${PORTDIR}/profiles/default-prefix/windows/interix/${CHOST#i586-pc-interix}/x86"
 			keywords="~x86-interix x86-interix"
 			;;
+		hppa*-hp-hpux11*)
+			profile="${PORTDIR}/profiles/default-prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa"
+			keywords="~hppa-hpux hppa-hpux"
+			case "${CHOST}" in
+			hppa2.0n*) profile="${profile}/hppa2.0/32" ;;
+			hppa2.0w*) profile="${profile}/hppa2.0/64" ;;
+			esac
+			;;
+		ia64-hp-hpux11*)
+			profile="${PORTDIR}/profiles/default-prefix/hpux/B.11${CHOST#ia64-hp-hpux11}/ia64"
+			keywords="~ia64-hpux ia64-hpux"
+			;;
 		*)	
 			einfo "You need to set up a make.profile symlink to a"
 			einfo "profile in ${PORTDIR} for your CHOST ${CHOST}"
@@ -530,6 +542,37 @@ then
 					;;
 				esac
 				MAKE=make
+				;;
+			HP-UX)
+				case `uname -m` in
+				ia64) HP_ARCH=ia64 ;;
+				9000/[678][0-9][0-9])
+					if [ ! -x /usr/bin/getconf ]; then
+						eerror "Need /usr/bin/getconf to determine cpu"
+						exit 1
+					fi
+					# from config.guess
+					sc_cpu_version=`/usr/bin/getconf SC_CPU_VERSION 2>/dev/null`
+					sc_kernel_bits=`/usr/bin/getconf SC_KERNEL_BITS 2>/dev/null`
+					case "${sc_cpu_version}" in
+					523) HP_ARCH="hppa1.0" ;; # CPU_PA_RISC1_0
+					528) HP_ARCH="hppa1.1" ;; # CPU_PA_RISC1_1
+					532)                      # CPU_PA_RISC2_0
+						case "${sc_kernel_bits}" in
+						32) HP_ARCH="hppa2.0n" ;;
+						64) HP_ARCH="hppa2.0w" ;;
+						'') HP_ARCH="hppa2.0" ;;   # HP-UX 10.20
+						esac ;;
+					esac
+					;;
+				esac
+				uname_r=`uname -r`
+				if [ -z "${HP_ARCH}" ]; then
+					error "Cannot determine cpu/kernel type"
+					exit ;
+				fi
+				CHOST="${HP_ARCH}-hp-hpux${uname_r#B.}"
+				unset HP_ARCH uname_r
 				;;
 			*)
 				eerror "Nothing known about platform `uname -s`."
