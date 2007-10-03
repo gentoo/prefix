@@ -30,13 +30,17 @@ econf() {
 fetch() {
 	if [ ! -e "${DISTDIR}"/${1##*/} ] ; then
 		if [ -z ${FETCH_COMMAND} ] ; then
-			# Try to find a download manager, we only deal with wget and curl
-			if [ x$(type -t wget) == "xfile" ];
+			# Try to find a download manager, we only deal with wget,
+			# curl and FreeBSD's fetch
+			if [ "x$(type -t wget)" == "xfile" ];
 			then
 				FETCH_COMMAND="wget"
-			elif [ x$(type -t curl) == "xfile" ];
+			elif [ "x$(type -t curl)" == "xfile" ];
 			then
 				FETCH_COMMAND="curl -O"
+			elif [ "x$(type -t fetch)" == "xfile" ];
+			then
+				FETCH_COMMAND="fetch"
 			else
 				eerror "no suitable download manager found (need wget or curl)"
 				eerror "could not download ${1##*/}"
