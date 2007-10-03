@@ -2,7 +2,14 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
-  26 Sep 2007; Fabian Groffen <fabian@gentoo.org> package.mask:
+  03 Oct 2007; Fabian Groffen <grobian@gentoo.org> +bsd, +bsd/freebsd,
+  +bsd/freebsd/6.2, +bsd/freebsd/6.2/parent, +bsd/freebsd/6.2/x86,
+  +bsd/freebsd/6.2/x86/make.defaults, +bsd/freebsd/6.2/x86/parent,
+  +bsd/freebsd/parent, +bsd/make.defaults, +bsd/packages, +bsd/parent,
+  +bsd/use.mask, +bsd/virtuals:
+  Add FreeBSD 6.2 profile, probably needs some tweaking
+
+  26 Sep 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
   Unmask gtk+ again, I solved the issue
 
   24 Sep 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
