@@ -1,6 +1,13 @@
 # ChangeLog for dev-cpp/glibmm
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.88 2007/09/29 11:02:42 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.90 2007/10/02 15:36:21 pylon Exp $
+
+  02 Oct 2007; Lars Weiler <pylon@gentoo.org> glibmm-2.12.10.ebuild:
+  stable ppc, bug #194277
+
+  02 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  glibmm-2.12.10.ebuild:
+  stable x86, bug 194277
 
   29 Sep 2007; Rémi Cardona <remi@gentoo.org> glibmm-2.14.0.ebuild:
   upgrade the glib dep to 2.14 (bug #194023)
