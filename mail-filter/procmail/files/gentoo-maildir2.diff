@@ -1,0 +1,20 @@
+--- procmail-3.22/src/authenticate.c.orig	2002-07-26 20:38:52.000000000 -0400
++++ procmail-3.22/src/authenticate.c	2002-07-26 20:57:56.000000000 -0400
+@@ -39,7 +39,7 @@
+ #include "authenticate.h"
+ 
+ #ifndef MAILSPOOLDIR
+-#define MAILSPOOLDIR	"/var/spool/mail/"	     /* watch the trailing / */
++#define MAILSPOOLDIR	""	     /* watch the trailing / */
+ #endif
+ #ifndef MAILSPOOLSUFFIX
+ #define MAILSPOOLSUFFIX ""	      /* suffix to force maildir or MH style */
+@@ -47,7 +47,7 @@
+ #ifndef MAILSPOOLHASH
+ #define MAILSPOOLHASH	0      /* 2 would deliver to /var/spool/mail/b/a/bar */
+ #endif
+-/*#define MAILSPOOLHOME "/.mail"		      /* watch the leading / */
++#define MAILSPOOLHOME "/.maildir/"		      /* watch the leading / */
+ 						  /* delivers to $HOME/.mail */
+ #define STRLEN(x)	(sizeof(x)-1)
+ 
