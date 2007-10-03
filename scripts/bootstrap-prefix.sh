@@ -574,6 +574,17 @@ then
 				CHOST="${HP_ARCH}-hp-hpux${uname_r#B.}"
 				unset HP_ARCH uname_r
 				;;
+			FreeBSD)
+				case `uname -p` in
+					i386)
+						CHOST="i386-pc-freebsd`uname -r | sed 's|-.*$||'`"
+					;;
+					*)
+						eerror "Sorry, don't know about FreeBSD on `uname -p` yet"
+						exit 1
+					;;
+				esac
+				;;
 			*)
 				eerror "Nothing known about platform `uname -s`."
 				eerror "Please set CHOST appropriately for your system"
