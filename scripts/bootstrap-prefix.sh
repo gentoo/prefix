@@ -27,7 +27,7 @@ econf() {
 		"$@" || exit 1
 }
 
-fetch() {
+efetch() {
 	if [ ! -e "${DISTDIR}"/${1##*/} ] ; then
 		if [ -z ${FETCH_COMMAND} ] ; then
 			# Try to find a download manager, we only deal with wget,
@@ -63,7 +63,7 @@ fetch() {
 # 	A=
 # 	einfo "Bootstrapping ${A%-*}"
 
-# 	fetch ${A}
+# 	efetch ${A}
 
 # 	einfo "Unpacking ${A%-*}"
 # 	export S="${PORTAGE_TMPDIR}/${PN}"
@@ -180,7 +180,7 @@ bootstrap_tree() {
 	done
 	if [ ! -e "${ROOT}"/usr/portage/.unpacked ]; then
 		cd "${ROOT}"/usr
-		fetch "${PORTAGE_URL}/prefix-overlay-${PV}.tar.bz2"
+		efetch "${PORTAGE_URL}/prefix-overlay-${PV}.tar.bz2"
 		bzip2 -dc "${DISTDIR}"/prefix-overlay-${PV}.tar.bz2 | $TAR -xf - || exit 1
 		# beware: fetch creates DISTDIR!!!
 		mv portage/distfiles distfiles
@@ -223,7 +223,7 @@ bootstrap_portage() {
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 		
-	fetch ${PORTAGE_URL}/${A}
+	efetch ${PORTAGE_URL}/${A}
 
 	einfo "Unpacking ${A%-*}"
 	export S="${PORTAGE_TMPDIR}"/portage-${PV}
@@ -265,7 +265,7 @@ bootstrap_odcctools() {
 	PV=20070412
 	A=odcctools-${PV}.tar.bz2
 
-	fetch http://dev.gentoo.org/~grobian/distfiles/${A}
+	efetch http://dev.gentoo.org/~grobian/distfiles/${A}
 	
 	export S="${PORTAGE_TMPDIR}/odcctools-${PV}"
 	rm -rf "${S}"
@@ -295,7 +295,7 @@ prep_gcc-apple() {
 	GCC_A="gcc-${GCC_PV}.tar.gz"
 	TAROPTS="-zxf"
 
-	fetch ${GCC_APPLE_URL}/${GCC_A}
+	efetch ${GCC_APPLE_URL}/${GCC_A}
 
 }
 
@@ -305,7 +305,7 @@ prep_gcc-fsf() {
 	GCC_A=gcc-${GCC_PV}.tar.bz2	
 	TAROPTS="-jxf"
 
-	fetch ${GNU_URL}/gcc/gcc-${GCC_PV}/${GCC_A}
+	efetch ${GNU_URL}/gcc/gcc-${GCC_PV}/${GCC_A}
 
 }
 
@@ -365,7 +365,7 @@ bootstrap_gnu() {
 	A=${PN}-${PV}.tar.gz
 	einfo "Bootstrapping ${A%-*}"
 
-	fetch ${GNU_URL}/${PN}/${A}
+	efetch ${GNU_URL}/${PN}/${A}
 
 	einfo "Unpacking ${A%-*}"
 	S="${PORTAGE_TMPDIR}/${PN}-${PV}"
@@ -398,7 +398,7 @@ bootstrap_python() {
 	A=Python-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 
-	fetch http://www.python.org/ftp/python/${PV%_*}/${A}
+	efetch http://www.python.org/ftp/python/${PV%_*}/${A}
 
 	einfo "Unpacking ${A%-*}"
 	export S="${PORTAGE_TMPDIR}/python-${PV}"
