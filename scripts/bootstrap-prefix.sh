@@ -149,6 +149,10 @@ bootstrap_setup() {
 			profile="${PORTDIR}/profiles/default-prefix/hpux/B.11${CHOST#ia64-hp-hpux11}/ia64"
 			keywords="~ia64-hpux ia64-hpux"
 			;;
+		i386-pc-freebsd*)
+			profile="${PORTDIR}/profiles/default-prefix/bsd/freebsd/${CHOST#i386-pc-freebsd}/x86"
+			keywords="~x86-fbsd x86-fbsd"
+			;;
 		*)	
 			einfo "You need to set up a make.profile symlink to a"
 			einfo "profile in ${PORTDIR} for your CHOST ${CHOST}"
