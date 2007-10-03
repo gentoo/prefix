@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/libassuan-1.0.2-r1.ebuild,v 1.5 2007/09/30 14:37:16 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/libassuan-1.0.2-r1.ebuild,v 1.6 2007/10/02 16:16:55 armin76 Exp $
 
 EAPI="prefix"
 
