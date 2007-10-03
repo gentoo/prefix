@@ -1,6 +1,15 @@
 # ChangeLog for dev-lisp/sbcl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.127 2007/09/27 11:57:09 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.130 2007/10/02 18:28:54 pylon Exp $
+
+  02 Oct 2007; Lars Weiler <pylon@gentoo.org> sbcl-1.0.9.ebuild:
+  stable ppc, bug #194519
+
+  02 Oct 2007; Christian Faulhammer <opfer@gentoo.org> sbcl-1.0.9.ebuild:
+  stable x86, bug 194519
+
+  02 Oct 2007; Ferris McCormick <fmccor@gentoo.org> sbcl-1.0.9.ebuild:
+  Sparc stable --- Bug #194519 --- seems fine.
 
   27 Sep 2007; Marijn Schouten <hkBst@gentoo.org> sbcl-1.0.4.ebuild,
   sbcl-1.0.5.ebuild, sbcl-1.0.6.ebuild, sbcl-1.0.6-r1.ebuild,
