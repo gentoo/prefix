@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libksba
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.76 2007/09/30 14:41:06 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.77 2007/10/02 16:23:58 armin76 Exp $
+
+  02 Oct 2007; Raúl Porcel <armin76@gentoo.org> libksba-1.0.2.ebuild:
+  alpha/ia64 stable wrt #194113
 
   30 Sep 2007; Markus Meier <maekke@gentoo.org> libksba-1.0.2.ebuild:
   x86 stable, bug #194113
