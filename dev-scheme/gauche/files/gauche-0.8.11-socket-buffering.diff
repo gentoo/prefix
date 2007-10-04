@@ -1,0 +1,26 @@
+Index: ext/net/netlib.stub
+===================================================================
+RCS file: /cvsroot/gauche/Gauche/ext/net/netlib.stub,v
+retrieving revision 1.49
+retrieving revision 1.50
+diff -u -r1.49 -r1.50
+--- ext/net/netlib.stub	10 Aug 2007 01:19:36 -0000	1.49
++++ ext/net/netlib.stub	26 Aug 2007 20:07:43 -0000	1.50
+@@ -176,7 +176,7 @@
+                                  &keyword (buffering #f) (buffered? #f))
+   (body <top>
+         (let* ((bufmode :: int))
+-          (cond ((SCM_FALSEP buffered?) ;for backward compatibility
++          (cond ((not (SCM_FALSEP buffered?)) ;for backward compatibility
+                  (set! bufmode SCM_PORT_BUFFER_FULL))
+                 (else
+                  (set! bufmode (Scm_BufferingMode buffering
+@@ -188,7 +188,7 @@
+                                   &keyword (buffering #f) (buffered? #f))
+   (body <top>
+         (let* ((bufmode :: int))
+-          (cond ((SCM_FALSEP buffered?) ;for backward compatibility
++          (cond ((not (SCM_FALSEP buffered?)) ;for backward compatibility
+                  (set! bufmode SCM_PORT_BUFFER_FULL))
+                 (else
+                  (set! bufmode (Scm_BufferingMode buffering
