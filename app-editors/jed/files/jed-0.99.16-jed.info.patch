@@ -1,0 +1,46 @@
+diff -r -u jed-0.99-16-vanilla/info/jed.1in jed-0.99-16/info/jed.1in
+--- jed-0.99-16-vanilla/info/jed.1in	2004-04-19 15:13:23.295493000 -0700
++++ jed-0.99-16/info/jed.1in	2004-04-19 15:16:30.378052696 -0700
+@@ -1,6 +1,11 @@
+ This is Info file jed.info, produced by Makeinfo-1.55 from the input
+ file jed.ti.
+ 
++INFO-DIR-SECTION Editors
++START-INFO-DIR-ENTRY
++* Jed: (jed).       Console S-Lang-based editor.
++END-INFO-DIR-ENTRY
++
+ 
+ File: jed.info,  Node: Top,  Next: Introduction,  Up: (dir)
+ 
+diff -r -u jed-0.99-16-vanilla/info/jed.2in jed-0.99-16/info/jed.2in
+--- jed-0.99-16-vanilla/info/jed.2in	2002-10-19 23:55:30.000000000 -0700
++++ jed-0.99-16/info/jed.2in	2004-04-19 15:16:35.540267920 -0700
+@@ -1,6 +1,12 @@
+ 
+ File: jed.info,  Node: Tab Issues.,  Next: Searching,  Prev: Marking Text (Point and Mark),  Up: Basic Editing
+ 
++INFO-DIR-SECTION Editors
++START-INFO-DIR-ENTRY
++* Jed: (jed).       Console S-Lang-based editor.
++END-INFO-DIR-ENTRY
++
++
+ Tab Issues.
+ -----------
+ 
+diff -r -u jed-0.99-16-vanilla/info/jed.3in jed-0.99-16/info/jed.3in
+--- jed-0.99-16-vanilla/info/jed.3in	2002-10-19 23:55:30.000000000 -0700
++++ jed-0.99-16/info/jed.3in	2004-04-19 15:16:44.429916488 -0700
+@@ -1,6 +1,11 @@
+ This is Info file jed.info, produced by Makeinfo-1.55 from the input
+ file jed.ti.
+ 
++INFO-DIR-SECTION Editors
++START-INFO-DIR-ENTRY
++* Jed: (jed).       Console S-Lang-based editor.
++END-INFO-DIR-ENTRY
++
+ 
+ File: jed.info,  Node: Setting Keys,  Next: Predefined Variables,  Up: Customization
+ 
