@@ -84,7 +84,7 @@ src_compile() {
 			-e "s/load=no/load=yes/g" \
 			config.modules || die
 	else
-		sed -i -e "/LIBS/s%-lpcre%/usr/$(get_libdir)/libpcre.a%" Makefile
+		sed -i -e "/LIBS/s%-lpcre%${EPREFIX}/usr/$(get_libdir)/libpcre.a%" Makefile
 	fi
 
 	emake || die "make failed"
