@@ -1,0 +1,19 @@
+# ChangeLog for dev-scheme/scm
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/scm/ChangeLog,v 1.4 2007/06/25 10:25:57 hkbst Exp $
+
+  25 Jun 2007; Marijn Schouten <hkBst@gentoo.org> scm-5.5.3.ebuild:
+  check for ROOT in pkg_postinst, thanks to peper
+
+  25 Jun 2007; Marijn Schouten <hkBst@gentoo.org> scm-5.5.3.ebuild:
+  remove ROOT abuse, bug 167271
+
+  28 May 2007; Marijn Schouten <hkBst@gentoo.org> scm-5.5.3.ebuild:
+  fix new-catalog creation
+
+*scm-5.5.3 (24 Jan 2007)
+
+  24 Jan 2007; Marijn Schouten <hkBst@gentoo.org> +metadata.xml,
+  +scm-5.5.3.ebuild:
+  Initial ebuild
+
