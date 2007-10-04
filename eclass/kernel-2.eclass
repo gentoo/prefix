@@ -1,11 +1,12 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.205 2007/07/09 04:24:20 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.206 2007/10/03 12:53:10 phreak Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
 #
-# Maintainer: John Mylchreest <johnm@gentoo.org>
+# Original author: John Mylchreest <johnm@gentoo.org>
+# Maintainer: kernel-misc@gentoo.org
 #
 # Please direct your bugs to the current eclass maintainer :)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.51 2007/10/01 13:16:44 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.52 2007/10/03 12:53:10 phreak Exp $
 #
 # Description: This eclass is used as a central eclass for accessing kernel
 #			   related information for sources already installed.
@@ -8,8 +8,8 @@
 #			   out so that any ebuild behaviour "templates" are abstracted out
 #			   using additional eclasses.
 #
-# Maintainer: John Mylchreest <johnm@gentoo.org>
-# Copyright 2004 Gentoo Linux
+# Original author: John Mylchreest <johnm@gentoo.org>
+# Maintainer: kernel-misc@gentoo.org
 #
 # Please direct your bugs to the current eclass maintainer :)
 
