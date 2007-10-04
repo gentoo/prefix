@@ -167,7 +167,7 @@ src_compile() {
 	esac
 
 	if use mbox; then
-		myconf="${myconf} --with-mailpath=/var/spool/mail"
+		myconf="${myconf} --with-mailpath=${EPREFIX}/var/spool/mail"
 	else
 		myconf="${myconf} --with-homespool=Maildir"
 	fi
