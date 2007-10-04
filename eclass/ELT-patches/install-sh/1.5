@@ -1,0 +1,11 @@
+--- install-sh	2007-07-04 14:36:49 +0100
++++ install-sh	2007-09-14 11:00:41 +0100
+@@ -192,7 +192,7 @@
+ 
+ if [ x"$dir_arg" != x ]
+ then
+-	$doit $instcmd $dst &&
++	{ test -d $dst || $doit $instcmd $dst; } &&
+ 
+ 	if [ x"$chowncmd" != x ]; then $doit $chowncmd $dst; else : ; fi &&
+ 	if [ x"$chgrpcmd" != x ]; then $doit $chgrpcmd $dst; else : ; fi &&
