@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/libpcre
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.102 2007/09/18 13:41:20 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.105 2007/10/03 06:57:46 phreak Exp $
+
+  03 Oct 2007; Christian Heim <phreak@gentoo.org> Manifest:
+  Fixing the Manifest/digest for 7.3.
+
+  03 Oct 2007; Joshua Jackson <tsunam@gentoo.org> libpcre-7.3.ebuild:
+  Marking stable for amd64 as well
+
+  03 Oct 2007; Joshua Jackson <tsunam@gentoo.org> ChangeLog:
+  Marking stable on x86
 
   18 Sep 2007; Mike Frysinger <vapier@gentoo.org> libpcre-7.3.ebuild:
   Backout broken PIC patch #182652.
