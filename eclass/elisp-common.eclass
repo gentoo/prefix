@@ -128,9 +128,9 @@
 # elisp-emacs-version() outputs the version of the currently active Emacs.
 
 SITELISP=/usr/share/emacs/site-lisp
-ESITELISP="${EPREFIX}"${SITELISP}
+ESITELISP=${EPREFIX}${SITELISP}
 SITEFILE=50${PN}-gentoo.el
-EMACS="${EPREFIX}"/usr/bin/emacs
+EMACS=${EPREFIX}/usr/bin/emacs
 # The following works for Emacs versions 18-23, don't change it.
 EMACS_BATCH_CLEAN="${EMACS} -batch -q --no-site-file"
 
