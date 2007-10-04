@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/windowmaker-0.92.0-r4.ebuild,v 1.4 2007/09/21 14:47:42 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/windowmaker-0.92.0-r4.ebuild,v 1.5 2007/10/03 14:19:26 armin76 Exp $
 
 EAPI="prefix"
 
