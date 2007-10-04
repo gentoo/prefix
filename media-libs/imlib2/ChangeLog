@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/imlib2
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/ChangeLog,v 1.57 2007/10/02 16:49:01 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/ChangeLog,v 1.58 2007/10/03 12:15:30 angelos Exp $
+
+  03 Oct 2007; Christoph Mende <angelos@gentoo.org> imlib2-1.4.0.ebuild:
+  Stable on amd64 wrt bug #194446
 
   02 Oct 2007; Lars Weiler <pylon@gentoo.org> imlib2-1.4.0.ebuild:
   ppc stable; bug #194446.
