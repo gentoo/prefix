@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/gamin
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.77 2007/09/27 11:24:23 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.78 2007/10/03 06:08:35 tgall Exp $
+
+  03 Oct 2007; Tom Gall <tgall@gentoo.org> gamin-0.1.9.ebuild:
+  stable on ppc64
 
   27 Sep 2007; Raúl Porcel <armin76@gentoo.org> gamin-0.1.9.ebuild:
   alpha/ia64 stable wrt #193339
