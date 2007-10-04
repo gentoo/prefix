@@ -1,0 +1,12 @@
+--- gcc/sys-types.h
++++ gcc/sys-types.h
+@@ -166,7 +166,9 @@
+ typedef int ulong;
+ typedef int uint;
+ 
++#ifndef __GNUC_VA_LIST
+ typedef int __gnuc_va_list;
++#endif
+ 
+ typedef int archdr;
+ typedef int AUTH;
