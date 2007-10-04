@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/pv/pv-1.1.0.ebuild,v 1.5 2007/10/02 16:30:04 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/pv/pv-1.1.0.ebuild,v 1.7 2007/10/03 11:48:50 armin76 Exp $
 
 EAPI="prefix"
 
