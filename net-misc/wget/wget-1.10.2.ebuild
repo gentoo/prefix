@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/wget-1.10.2.ebuild,v 1.15 2006/10/17 12:38:38 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/wget-1.10.2.ebuild,v 1.16 2007/10/03 08:47:20 uberlord Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
-IUSE="build debug ipv6 nls socks5 ssl static"
+IUSE="build debug ipv6 nls socks5 ssl static elibc_FreeBSD"
 
 RDEPEND="ssl? ( >=dev-libs/openssl-0.9.6b )
 	socks5? ( net-proxy/dante )"
@@ -36,6 +36,9 @@ src_unpack() {
 }
 
 src_compile() {
+	# openssl-0.9.8 now builds with -pthread on the BSD's
+	use elibc_FreeBSD && use ssl && append-ldflags -pthread
+
 	use static && append-ldflags -static
 	econf \
 		--sysconfdir="${EPREFIX}"/etc/wget \
