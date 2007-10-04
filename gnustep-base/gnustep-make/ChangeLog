@@ -1,6 +1,9 @@
 # ChangeLog for gnustep-base/gnustep-make
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.50 2007/09/10 01:22:28 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.51 2007/10/03 13:51:48 armin76 Exp $
+
+  03 Oct 2007; Raúl Porcel <armin76@gentoo.org> gnustep-make-2.0.1.ebuild:
+  Re-add ~sparc wrt #189372
 
   10 Sep 2007; Joseph Jezak <josejx@gentoo.org> gnustep-make-2.0.1.ebuild:
   Marked ~ppc64 for bug #189372.
