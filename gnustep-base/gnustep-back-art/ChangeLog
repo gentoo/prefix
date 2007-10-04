@@ -1,6 +1,10 @@
 # ChangeLog for gnustep-base/gnustep-back-art
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-art/ChangeLog,v 1.45 2007/09/10 01:17:58 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-art/ChangeLog,v 1.46 2007/10/03 14:16:53 armin76 Exp $
+
+  03 Oct 2007; Raúl Porcel <armin76@gentoo.org>
+  gnustep-back-art-0.12.0.ebuild:
+  Re-add ~sparc wrt #189372
 
   10 Sep 2007; Joseph Jezak <josejx@gentoo.org>
   gnustep-back-art-0.12.0.ebuild:
