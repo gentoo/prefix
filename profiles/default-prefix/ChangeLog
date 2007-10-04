@@ -2,6 +2,12 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 Oct 2007; Fabian Groffen <grobian@gentoo.org>
+  +bsd/freebsd/6.2/package.provided, +bsd/freebsd/make.defaults,
+  +bsd/freebsd/use.mask, +bsd/freebsd/virtuals, -bsd/make.defaults,
+  bsd/use.mask, -bsd/virtuals:
+  Move files around, provide a FreeBSD libc
+
   03 Oct 2007; Fabian Groffen <grobian@gentoo.org> +bsd, +bsd/freebsd,
   +bsd/freebsd/6.2, +bsd/freebsd/6.2/parent, +bsd/freebsd/6.2/x86,
   +bsd/freebsd/6.2/x86/make.defaults, +bsd/freebsd/6.2/x86/parent,

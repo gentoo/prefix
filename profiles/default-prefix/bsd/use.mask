@@ -1,7 +1,3 @@
-# Re-add BSD libc
--elibc_BSD
--kernel_BSD
-
 # these will more than likely never work on bsd
 3dfx
 3dnow

@@ -2,5 +2,5 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-virtual/libc		sys-bsd/libc
-virtual/os-headers	sys-bsd/libc
+virtual/libc		sys-freebsd/libc
+virtual/os-headers	sys-freebsd/libc
