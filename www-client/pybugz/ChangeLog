@@ -1,0 +1,102 @@
+# ChangeLog for www-client/pybugz
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-client/pybugz/ChangeLog,v 1.22 2007/08/30 23:47:09 williamh Exp $
+
+  30 Aug 2007; William Hubbs <williamh@gentoo.org> metadata.xml:
+  Adding myself as maintainer.
+
+  30 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing liquidx from metadata due to his retirement (see #171155 for
+  reference).
+
+  11 Aug 2007; Santiago M. Mola <coldwind@gentoo.org> pybugz-0.7.0.ebuild:
+  Python 2.5 elementtree dependency updated wrt bug #186410, thanks to James
+  Rowe.
+
+  07 Aug 2007; William Hubbs <williamh@gentoo.org> -pybugz-0.6.11.ebuild:
+  Removed old version.
+
+*pybugz-0.7.0 (22 Jul 2007)
+
+  22 Jul 2007; William Hubbs <williamh@gentoo.org> +pybugz-0.7.0.ebuild:
+  Version bump.
+
+  14 May 2007; Timothy Redaelli <drizzt@gentoo.org> pybugz-0.6.11.ebuild:
+  Add ~x86-fbsd keyword.
+
+  25 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> pybugz-0.6.11.ebuild:
+  Add ~ia64 keyword, requested by Opfer in #-dev.
+
+  24 Jan 2007; Markus Rothe <corsair@gentoo.org> pybugz-0.6.11.ebuild:
+  Added ~ppc64
+
+  15 Jan 2007; Gustavo Zacarias <gustavoz@gentoo.org> pybugz-0.6.11.ebuild:
+  Keyworded ~sparc wrt #161818
+
+*pybugz-0.6.11 (02 Sep 2006)
+
+  02 Sep 2006; Alastair Tse <liquidx@gentoo.org> -pybugz-0.6.9.ebuild,
+  -pybugz-0.6.10.ebuild, +pybugz-0.6.11.ebuild:
+  fix bug with missing description on post
+
+*pybugz-0.6.10 (02 Sep 2006)
+
+  02 Sep 2006; Alastair Tse <liquidx@gentoo.org> +pybugz-0.6.10.ebuild:
+  version bump. fixes stripping of depended bugs issue.
+
+*pybugz-0.6.9 (26 Aug 2006)
+
+  26 Aug 2006; Alastair Tse <liquidx@gentoo.org> -pybugz-0.6.7.ebuild,
+  -pybugz-0.6.8.ebuild, +pybugz-0.6.9.ebuild:
+  version bump, fix crash when unable to detect terminal encoding (#144840)
+
+*pybugz-0.6.8 (22 Aug 2006)
+
+  22 Aug 2006; Alastair Tse <liquidx@gentoo.org> +pybugz-0.6.8.ebuild:
+  version bump. fixed many bugs (bugz post url omission) and added external
+  editor support, comments from file, always auth option for private bugzillas
+  and quiet option.
+
+*pybugz-0.6.7 (17 Aug 2006)
+
+  17 Aug 2006; Alastair Tse <liquidx@gentoo.org> -pybugz-0.6.3.ebuild,
+  -pybugz-0.6.5.ebuild, -pybugz-0.6.6.ebuild, +pybugz-0.6.7.ebuild:
+  version bump. fix attachment download (view is ok, but download was broken.)
+  (#144213). someone needs to write me some unit tests
+
+*pybugz-0.6.6 (16 Aug 2006)
+
+  16 Aug 2006; Alastair Tse <liquidx@gentoo.org> +pybugz-0.6.6.ebuild:
+  Version bump. Fix critical bug introduced into bugz post by last update.
+
+  14 Aug 2006; Tobias Scherbaum <dertobi123@gentoo.org> pybugz-0.6.3.ebuild:
+  Added ~ppc
+
+*pybugz-0.6.3 (10 Aug 2006)
+
+  10 Aug 2006; Alastair Tse <liquidx@gentoo.org> -pybugz-0.6.ebuild,
+  -pybugz-0.6.1.ebuild, -pybugz-0.6.2.ebuild, +pybugz-0.6.3.ebuild:
+  version bump, an incredibly stupid bug in the bugz executable was
+  introduced. (#14352)
+
+*pybugz-0.6.2 (10 Aug 2006)
+
+  10 Aug 2006; Alastair Tse <liquidx@gentoo.org> +pybugz-0.6.2.ebuild:
+  version bump. fixed argument parsing and help example issue. (#143407)
+
+  09 Aug 2006; Thomas Cort <tcort@gentoo.org> pybugz-0.6.1.ebuild:
+  Added ~alpha keyword.
+
+  09 Aug 2006; Mike Doty <kingtaco@gentoo.org> pybugz-0.6.1.ebuild:
+  ~amd64, w00t
+
+*pybugz-0.6.1 (09 Aug 2006)
+
+  09 Aug 2006; Alastair Tse <liquidx@gentoo.org> +pybugz-0.6.1.ebuild:
+  version bump to fix encoding issues
+
+*pybugz-0.6 (09 Aug 2006)
+
+  09 Aug 2006; Alastair Tse <liquidx@gentoo.org> +pybugz-0.6.ebuild:
+  Initial release for the bugzilla command line client.
+
