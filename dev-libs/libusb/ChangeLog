@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libusb
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.75 2007/09/28 18:45:21 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.76 2007/10/03 11:00:15 angelos Exp $
+
+  03 Oct 2007; Christoph Mende <angelos@gentoo.org> libusb-0.1.12-r1.ebuild:
+  Stable on amd64 wrt bug #193891
 
   28 Sep 2007; nixnut <nixnut@gentoo.org> libusb-0.1.12-r1.ebuild:
   Stable on ppc wrt bug 193891
