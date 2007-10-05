@@ -12,7 +12,7 @@ SRC_URI="mirror://openssl/source/${P}.tar.gz"
 
 LICENSE="openssl"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="bindist emacs sse2 test zlib"
 
 RDEPEND=""
@@ -107,8 +107,8 @@ src_compile() {
 		shared threads \
 		|| die "Configure failed"
 
-	if [[ ${CHOST} == i?86*-*-linux* ]]; then
-		# does not compile without optimization on x86-linux
+	if [[ ${CHOST} == i?86*-*-linux* || ${CHOST} == i?86*-*-freebsd* ]]; then
+		# does not compile without optimization on x86-linux and x86-fbsd
 		filter-flags -O0
 		is-flagq -O* || append-flags -O1
 	fi
