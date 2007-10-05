@@ -40,7 +40,7 @@
  import sys
  
 -sys.path.insert(0, '/usr/lib/portage/pym')
-+sys.path.insert(0, '/Users/pipping/Gentoo/usr/lib/portage/pym')
++sys.path.insert(0, '@GENTOO_PORTAGE_EPREFIX@/usr/lib/portage/pym')
  from jc_output import *
  from jc_exceptions import OptionRuntimeError
  
