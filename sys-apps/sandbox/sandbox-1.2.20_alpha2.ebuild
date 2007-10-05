@@ -98,7 +98,7 @@ src_compile() {
 
 		einfo "Configuring sandbox for ABI=${ABI}..."
 		ECONF_SOURCE="../${MY_P}/" \
-		econf --libdir="/usr/$(get_libdir)" ${myconf}
+		econf --libdir="${EPREFIX}/usr/$(get_libdir)" ${myconf}
 		einfo "Building sandbox for ABI=${ABI}..."
 		emake || {
 			abi_fail_check "${ABI}"
@@ -123,7 +123,7 @@ src_install() {
 	doenvd "${FILESDIR}"/09sandbox
 
 	keepdir /var/log/sandbox
-	fowners root:portage /var/log/sandbox
+	use prefix || fowners root:portage /var/log/sandbox
 	fperms 0770 /var/log/sandbox
 
 	cd "${S}"
@@ -131,6 +131,6 @@ src_install() {
 }
 
 pkg_preinst() {
-	chown root:portage "${ED}"/var/log/sandbox
+	use prefix || chown root:portage "${ED}"/var/log/sandbox
 	chmod 0770 "${ED}"/var/log/sandbox
 }
