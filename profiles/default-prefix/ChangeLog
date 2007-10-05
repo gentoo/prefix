@@ -2,6 +2,11 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Oct 2007; Fabian Groffen <grobian@gentoo.org>
+  bsd/freebsd/make.defaults:
+  FreeBSD has sandbox support, but enabling it causes Portage to consider each
+  ebuild as 'masked by corruption'
+
   04 Oct 2007; Fabian Groffen <grobian@gentoo.org>
   +bsd/freebsd/6.2/package.provided, +bsd/freebsd/make.defaults,
   +bsd/freebsd/use.mask, +bsd/freebsd/virtuals, -bsd/make.defaults,
