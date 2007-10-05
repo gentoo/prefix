@@ -152,7 +152,7 @@ src_compile() {
 
 	econf \
 		--program-suffix=-${EMACS_SUFFIX} \
-		--infodir=/usr/share/info/${EMACS_SUFFIX} \
+		--infodir="${EPREFIX}"/usr/share/info/${EMACS_SUFFIX} \
 		--without-carbon \
 		${myconf} || die "econf emacs failed"
 
