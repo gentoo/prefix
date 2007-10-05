@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.93 2007/09/27 19:47:08 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.94 2007/10/04 09:59:29 ali_bush Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -840,6 +840,8 @@ java-pkg_recordjavadoc()
 #	  (assumed automatically when called inside src_test)
 #	--with-dependencies - get jars also from requested package's dependencies
 #	  transitively.
+#	--virtual - Packages passed to this function are to be handled as virtuals
+#	  and will not have individual jar dependencies recorded.
 #	--into $dir - symlink jar(s) into $dir (must exist) instead of .
 # @param $1 - Package to get jars from, or comma-separated list of packages in
 #	case other parameters are not used.
@@ -854,6 +856,7 @@ java-pkg_jar-from() {
 	local build_only=""
 	local destdir="."
 	local deep=""
+	local virtual=""
 
 	[[ "${EBUILD_PHASE}" == "test" ]] && build_only="build"
 
@@ -862,6 +865,8 @@ java-pkg_jar-from() {
 			build_only="build"
 		elif [[ "${1}" = "--with-dependencies" ]]; then
 			deep="--with-dependencies"
+		elif [[ "${1}" = "--virtual" ]]; then
+			virtual="true"
 		elif [[ "${1}" = "--into" ]]; then
 			destdir="${2}"
 			shift
@@ -895,6 +900,14 @@ java-pkg_jar-from() {
 		build_only="build"
 	else
 		java-pkg_ensure-dep "${build_only}" "${target_pkg}"
+	fi
+
+	# Record the entire virtual as a dependency so that
+	# no jars are missed.
+	if [[ -z "${build_only}" && -n "${virtual}" ]]; then
+		java-pkg_record-jar_ "${target_pkg}"
+		# setting this disables further record-jars_ calls later
+		build_only="build"
 	fi
 
 	pushd ${destdir} > /dev/null \
@@ -1028,6 +1041,8 @@ java-pkg_getjars() {
 #
 # @param $opt
 #	--build-only - makes the jar not added into package.env DEPEND line.
+#	--virtual - Packages passed to this function are to be handled as virtuals
+#	  and will not have individual jar dependencies recorded.
 # @param $1 - package to use
 # @param $2 - jar to get
 # ------------------------------------------------------------------------------
@@ -1035,12 +1050,15 @@ java-pkg_getjar() {
 	debug-print-function ${FUNCNAME} $*
 
 	local build_only=""
+	local virtual=""
 
 	[[ "${EBUILD_PHASE}" == "test" ]] && build_only="build"
 
 	while [[ "${1}" == --* ]]; do
 		if [[ "${1}" = "--build-only" ]]; then
 			build_only="build"
+		elif [[ "${1}" == --* ]]; then
+			virtual="true"
 		else
 			die "java-pkg_jar-from called with unknown parameter: ${1}"
 		fi
@@ -1059,6 +1077,13 @@ java-pkg_getjar() {
 	[[ $? != 0 ]] && die ${error_msg}
 
 	java-pkg_ensure-dep "${build_only}" "${pkg}"
+
+	# Record the package(Virtual) as a dependency and then set build_only
+	# So that individual jars are not recorded.
+	if [[ -n "${virtual}" ]]; then
+		java-pkg_record-jar_ "${pkg}"
+		build_only="true"
+	fi
 
 	for jar in ${classpath//:/ }; do
 		if [[ ! -f "${jar}" ]] ; then
@@ -2203,6 +2228,8 @@ java-pkg_init_paths_() {
 	JAVA_PKG_SHAREPATH="${DESTTREE}/share/${JAVA_PKG_NAME}"
 	JAVA_PKG_SOURCESPATH="${JAVA_PKG_SHAREPATH}/sources/"
 	JAVA_PKG_ENV="${ED}${JAVA_PKG_SHAREPATH}/package.env"
+	JAVA_PKG_VIRTUALS_PATH="${DESTTREE}/share/java-config-2/virtuals"
+	JAVA_PKG_VIRTUAL_PROVIDER="${ED}/${JAVA_PKG_VIRTUALS_PATH}/${JAVA_PKG_NAME}"
 
 	[[ -z "${JAVA_PKG_JARDEST}" ]] && JAVA_PKG_JARDEST="${JAVA_PKG_SHAREPATH}/lib"
 	[[ -z "${JAVA_PKG_LIBDEST}" ]] && JAVA_PKG_LIBDEST="${DESTTREE}/$(get_libdir)/${JAVA_PKG_NAME}"
