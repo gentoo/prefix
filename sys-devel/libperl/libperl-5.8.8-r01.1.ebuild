@@ -84,7 +84,7 @@ RESTRICT="test"
 
 DEPEND="berkdb? ( sys-libs/db )
 	gdbm? ( >=sys-libs/gdbm-1.8.0 )
-	elibc_FreeBSD? ( sys-freebsd/freebsd-mk-defs )"
+	!prefix? ( elibc_FreeBSD? ( sys-freebsd/freebsd-mk-defs ) )"
 
 RDEPEND="
 	berkdb? ( sys-libs/db )
