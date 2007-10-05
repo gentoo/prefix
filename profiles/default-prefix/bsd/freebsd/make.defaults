@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-# System-wide defaults for all SunOS profiles
+# System-wide defaults for all FreeBSD profiles
 # This file should rarely need to be changed
 
 # 'Sane' defaults
 ELIBC="FreeBSD"
 KERNEL="FreeBSD"
 
-# Sandbox is not ported to BSD yet
-FEATURES="-sandbox"
+# FreeBSD has sandbox support
+FEATURES="sandbox"
