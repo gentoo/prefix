@@ -6,6 +6,7 @@ elibc_SunOS
 elibc_AIX
 elibc_IRIX
 elibc_Interix
+elibc_FreeBSD
 
 kernel_linux
 kernel_Darwin
@@ -13,6 +14,7 @@ kernel_SunOS
 kernel_AIX
 kernel_IRIX
 kernel_Interix
+kernel_FreeBSD
 
 # re-add userland GNU
 -userland_GNU

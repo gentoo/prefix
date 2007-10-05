@@ -5,8 +5,8 @@
 # This file should rarely need to be changed
 
 # 'Sane' defaults
-ELIBC="BSD"
-KERNEL="BSD"
+ELIBC="FreeBSD"
+KERNEL="FreeBSD"
 
 # Sandbox is not ported to BSD yet
 FEATURES="-sandbox"
