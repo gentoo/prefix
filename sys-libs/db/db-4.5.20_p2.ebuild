@@ -121,6 +121,10 @@ src_compile() {
 	sed -e "s,\(^STRIP *=\).*,\1\"none\"," Makefile > Makefile.cpy \
 	    && mv Makefile.cpy Makefile
 
+	# FreeBSD contains a broken version of rpcgen, see 
+	# http://lists.freebsd.org/pipermail/freebsd-bugs/2005-August/014086.html
+	sed -i -e "s/^extern  \(void db_rpc_serverprog_\)/static \1/" db_server.h || die "failed to fix FreeBSD brokeness"
+
 	emake -j1 || die "make failed"
 }
 
