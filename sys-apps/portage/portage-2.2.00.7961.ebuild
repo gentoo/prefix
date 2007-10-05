@@ -10,7 +10,7 @@ inherit toolchain-funcs eutils flag-o-matic multilib
 DESCRIPTION="Prefix branch of the Portage Package Management System. The primary package management and distribution system for Gentoo."
 HOMEPAGE="http://www.gentoo.org/proj/en/gentoo-alt/prefix/"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 PROVIDE="virtual/portage"
 SLOT="0"
 # USE_EXPAND_HIDDEN hides ELIBC and USERLAND expansions from emerge output (see make.conf.5).
@@ -24,11 +24,13 @@ DEPEND=">=dev-lang/python-2.4
 RDEPEND=">=dev-lang/python-2.4
 	!build? ( >=sys-apps/sed-4.0.5
 		>=app-shells/bash-3.1_p17 )
-	elibc_FreeBSD? ( dev-python/py-freebsd )
+	!prefix? ( elibc_FreeBSD? ( dev-python/py-freebsd ) )
 	elibc_glibc? ( >=sys-apps/sandbox-1.2.17 )
+	elibc_FreeBSD? ( >=sys-apps/sandbox-1.2.17 )
 	elibc_uclibc? ( >=sys-apps/sandbox-1.2.17 )
 	kernel_linux? ( >=app-misc/pax-utils-0.1.13 )
-	kernel_solaris? ( >=app-misc/pax-utils-0.1.13 )
+	kernel_SunOS? ( >=app-misc/pax-utils-0.1.13 )
+	kernel_FreeBSD? ( >=app-misc/pax-utils-0.1.13 )
 	selinux? ( >=dev-python/python-selinux-2.16 )"
 PDEPEND="
 	doc? (
@@ -152,10 +154,6 @@ pkg_preinst() {
 		rm -rf "${ED}"/${portage_base}/bin/*
 		mv "${T}"/tbz2tool "${ED}"/${portage_base}/bin/
 	fi
-
-	# Save a list of specific python sources to compile during postinst.
-	find "${ED}"${portage_base}/pym -name "*.py" -print | \
-		sed -e "s:^${ED}::" > "${T}"/pym_src_file_list
 }
 
 pkg_postinst() {
