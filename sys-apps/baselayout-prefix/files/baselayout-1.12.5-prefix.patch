@@ -327,3 +327,83 @@
  	if [ -r "$sh" ] ; then
  		. "$sh"
  	fi
+--- baselayout-1.12.5/sbin/runscript.sh~	2006-09-14 12:11:34 +0200
++++ baselayout-1.12.5/sbin/runscript.sh	2007-10-06 13:28:40 +0200
+@@ -1,18 +1,18 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ # Copyright 1999-2006 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ 
+ # Common functions
+-[[ ${RC_GOT_FUNCTIONS} != "yes" ]] && source /sbin/functions.sh
++[[ ${RC_GOT_FUNCTIONS} != "yes" ]] && source @GENTOO_PORTAGE_EPREFIX@/sbin/functions.sh
+ 
+-# User must be root to run most script stuff (except status)
+-if [[ ${EUID} != "0" ]] && ! [[ $2 == "status" && $# -eq 2 ]] ; then
+-	eerror "$0: must be root to run init scripts"
+-	exit 1
+-fi
++## User must be root to run most script stuff (except status)
++#if [[ ${EUID} != "0" ]] && ! [[ $2 == "status" && $# -eq 2 ]] ; then
++#    eerror "$0: must be root to run init scripts"
++#    exit 1
++#fi
+ 
+ myscript="$1"
+-if [[ -L $1 && ! -L "/etc/init.d/${1##*/}" ]] ; then
++if [[ -L $1 && ! -L "@GENTOO_PORTAGE_EPREFIX@/etc/init.d/${1##*/}" ]] ; then
+ 	SVCNAME="$(readlink "$1")"
+ else
+ 	SVCNAME="$1"
+@@ -84,12 +84,12 @@
+ #     configuration, if the system administrator chose to put it
+ #     there (if it exists).
+ if net_service "${SVCNAME}" ; then
+-	conf="$(add_suffix /etc/conf.d/net)"
++	conf="$(add_suffix @GENTOO_PORTAGE_EPREFIX@/etc/conf.d/net)"
+ 	[[ -e ${conf} ]] && source "${conf}"
+ fi
+-conf="$(add_suffix "/etc/conf.d/${SVCNAME}")"
++conf="$(add_suffix "@GENTOO_PORTAGE_EPREFIX@/etc/conf.d/${SVCNAME}")"
+ [[ -e ${conf} ]] && source "${conf}"
+-conf="$(add_suffix /etc/rc.conf)"
++conf="$(add_suffix @GENTOO_PORTAGE_EPREFIX@/etc/rc.conf)"
+ [[ -e ${conf} ]] && source "${conf}"
+ 
+ mylevel="${SOFTLEVEL}"
+@@ -146,7 +146,7 @@
+ 	local service="$1" start="$2"
+ 	[[ ! -d "${svcdir}/scheduled/${service}" ]] \
+ 		&& mkdir -p "${svcdir}/scheduled/${service}"
+-	ln -snf "/etc/init.d/${service}" \
++	ln -snf "@GENTOO_PORTAGE_EPREFIX@/etc/init.d/${service}" \
+ 		"${svcdir}/scheduled/${service}/${start}"
+ }
+ 
+@@ -334,9 +334,9 @@
+ 	if [[ ${retval} == "0" && ${RC_NO_DEPS} != "yes" ]] ; then
+ 		local startupservices="$(ineed "${SVCNAME}") $(valid_iuse "${SVCNAME}")"
+ 		local netservices=
+-		for x in $(dolisting "/etc/runlevels/${BOOTLEVEL}/net.*") \
+-			$(dolisting "/etc/runlevels/${mylevel}/net.*") \
+-			$(dolisting "/var/lib/init.d/coldplugged/net.*") ; do 
++		for x in $(dolisting "@GENTOO_PORTAGE_EPREFIX@/etc/runlevels/${BOOTLEVEL}/net.*") \
++			$(dolisting "@GENTOO_PORTAGE_EPREFIX@/etc/runlevels/${mylevel}/net.*") \
++			$(dolisting "@GENTOO_PORTAGE_EPREFIX@/var/lib/init.d/coldplugged/net.*") ; do 
+ 			netservices="${netservices} ${x##*/}"
+ 		done
+ 
+@@ -631,9 +631,9 @@
+ 
+ 		# Simple way to try and detect if the service use svc_{start,stop}
+ 		# to restart if it have a custom restart() funtion.
+-		if [[ -n $(egrep '^[[:space:]]*restart[[:space:]]*()' "/etc/init.d/${SVCNAME}") ]] ; then
+-			if [[ -z $(egrep 'svc_stop' "/etc/init.d/${SVCNAME}") || \
+-			      -z $(egrep 'svc_start' "/etc/init.d/${SVCNAME}") ]] ; then
++		if [[ -n $(egrep '^[[:space:]]*restart[[:space:]]*()' "@GENTOO_PORTAGE_EPREFIX@/etc/init.d/${SVCNAME}") ]] ; then
++			if [[ -z $(egrep 'svc_stop' "@GENTOO_PORTAGE_EPREFIX@/etc/init.d/${SVCNAME}") || \
++			      -z $(egrep 'svc_start' "@GENTOO_PORTAGE_EPREFIX@/etc/init.d/${SVCNAME}") ]] ; then
+ 				echo
+ 				ewarn "Please use 'svc_stop; svc_start' and not 'stop; start' to"
+ 				ewarn "restart the service in its custom 'restart()' function."

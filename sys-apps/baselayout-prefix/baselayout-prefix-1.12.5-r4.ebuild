@@ -34,7 +34,8 @@ src_unpack() {
 		etc/env.d/00basic \
 		etc/profile \
 		sbin/env-update.sh \
-		sbin/functions.sh
+		sbin/functions.sh \
+		sbin/runscript.sh
 	echo 'MANPATH="/usr/share/man"' > etc/env.d/99basic || die "can't make file"
 }
 
