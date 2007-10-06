@@ -1,0 +1,80 @@
+# ChangeLog for virtual/perl-Sys-Syslog
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Sys-Syslog/ChangeLog,v 1.20 2007/07/03 14:23:29 armin76 Exp $
+
+  03 Jul 2007; Raúl Porcel <armin76@gentoo.org>
+  perl-Sys-Syslog-0.18.ebuild:
+  alpha/ia64 stable
+
+  12 May 2007; Joshua Kinard <kumba@gentoo.org> perl-Sys-Syslog-0.18.ebuild:
+  Stable on mips.
+
+  15 Apr 2007; Markus Rothe <corsair@gentoo.org>
+  perl-Sys-Syslog-0.18.ebuild:
+  Stable on ppc64
+
+  05 Mar 2007; Andrej Kacian <ticho@gentoo.org> perl-Sys-Syslog-0.18.ebuild:
+  Stable on x86, bug #169152.
+
+  22 Jan 2007; Bryan Østergaard <kloeri@gentoo.org>
+  perl-Sys-Syslog-0.18.ebuild:
+  Add ~ia64 keyword.
+
+*perl-Sys-Syslog-0.17 (02 Jan 2007)
+
+  02 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  +perl-Sys-Syslog-0.17.ebuild:
+  Adding missing virtual, KEYWORDS match perl-core/Sys-Syslog
+
+  10 Dec 2006; <dams@gentoo.org> perl-Sys-Syslog-0.18.ebuild:
+  mark stable on ppc
+
+  23 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  perl-Sys-Syslog-0.18.ebuild:
+  Stable on hppa
+
+*perl-Sys-Syslog-0.18 (20 Oct 2006)
+
+  20 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  +perl-Sys-Syslog-0.18.ebuild:
+  Updating with missing virtual ebuild for 0.18
+
+  05 Sep 2006; Joshua Kinard <kumba@gentoo.org> perl-Sys-Syslog-0.13.ebuild:
+  Added ~mips to KEYWORDS.
+
+  19 Jun 2006; Bryan Østergaard <kloeri@gentoo.org>
+  perl-Sys-Syslog-0.13.ebuild:
+  Stable on ia64.
+
+  26 May 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  perl-Sys-Syslog-0.13.ebuild:
+  Stable on amd64 wrt bug #133989
+
+  26 May 2006; Guy Martin <gmsoft@gentoo.org> perl-Sys-Syslog-0.13.ebuild:
+  Stable on hppa.
+
+  23 May 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  perl-Sys-Syslog-0.13.ebuild:
+  Stable on x86 wrt bug #133989.
+
+  23 May 2006; <mcummings@gentoo.org> perl-Sys-Syslog-0.13.ebuild:
+  Marking stable sparc, bug 133989
+
+  23 May 2006; Markus Rothe <corsair@gentoo.org>
+  perl-Sys-Syslog-0.13.ebuild:
+  Stable on ppc64; bug #133989
+
+  04 Apr 2006; Aron Griffis <agriffis@gentoo.org>
+  perl-Sys-Syslog-0.13.ebuild:
+  Mark 0.13 ~ia64
+
+  13 Feb 2006; Michael Cummings <mcummings@gentoo.org>
+  perl-Sys-Syslog-0.13.ebuild:
+  Updated RDEPS
+
+*perl-Sys-Syslog-0.13 (07 Feb 2006)
+
+  07 Feb 2006; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +perl-Sys-Syslog-0.13.ebuild:
+  New virtual for perl-core/Sys-Syslog
+
