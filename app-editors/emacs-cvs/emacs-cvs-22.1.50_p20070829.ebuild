@@ -133,11 +133,27 @@ src_compile() {
 	myconf="${myconf} $(use_with hesiod)"
 	myconf="${myconf} $(use_with gpm)"
 
+	if use aqua; then
+		einfo "Configuring to build with Carbon Emacs"
+		econf \
+			--enable-carbon-app="${EPREFIX}"/Applications \
+			--program-suffix=-${EMACS_SUFFIX} \
+			--infodir="${EPREFIX}"/usr/share/info/${EMACS_SUFFIX} \
+			--without-x \
+			$(use_with jpeg) $(use_with tiff) \
+			$(use_with gif) $(use_with png) \
+			$(use_enable xft font-backend) \
+			 || die "econf carbon emacs failed"
+		make bootstrap || die "make carbon emacs bootstrap failed"
+	else # crappy indenting to keep diff small
+
 	econf \
 		--program-suffix=-${EMACS_SUFFIX} \
 		--infodir="${EPREFIX}"/usr/share/info/${EMACS_SUFFIX} \
 		--without-carbon \
 		${myconf} || die "econf emacs failed"
+
+	fi # end crappy indenting
 
 	emake CC="$(tc-getCC)" bootstrap || die "make bootstrap failed"
 }
@@ -149,6 +165,14 @@ src_install () {
 		|| die "removing duplicate emacs executable failed"
 	mv "${ED}"/usr/bin/emacs-${EMACS_SUFFIX} "${ED}"/usr/bin/${EMACS_SUFFIX} \
 		|| die "moving Emacs executable failed"
+
+	if use aqua ; then
+		einfo "Installing Carbon Emacs..."
+		dodir /Applications/Emacs.app
+		pushd mac/Emacs.app
+		tar -chf - . | ( cd ${ED}/Applications/Emacs.app; tar -xf -)
+		popd
+	fi
 
 	# move info documentation to the correct place
 	einfo "Fixing info documentation ..."
