@@ -1,0 +1,10 @@
+# ChangeLog for dev-perl/Encode-Detect
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Encode-Detect/ChangeLog,v 1.1 2007/07/29 10:04:39 ian Exp $
+
+*Encode-Detect-1.00 (29 Jul 2007)
+
+  29 Jul 2007; Christian Hartmann <ian@gentoo.org> +metadata.xml,
+  +Encode-Detect-1.00.ebuild:
+  New package; bug #179390
+
