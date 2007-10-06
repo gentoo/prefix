@@ -25,6 +25,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-0.2.6.1-svn-echangelog.patch
+	sed -i -e "1s:^#!\( \|\):#!${EPREFIX}:" \
+		src/*/{echangelog,ekeyword,eviewcvs,ebump} || die "@!@#"
 }
 
 src_install() {
