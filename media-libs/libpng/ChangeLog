@@ -1,6 +1,24 @@
 # ChangeLog for media-libs/libpng
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.150 2007/09/20 05:34:20 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.153 2007/10/06 22:57:41 vapier Exp $
+
+*libpng-1.2.21-r2 (06 Oct 2007)
+
+  06 Oct 2007; Mike Frysinger <vapier@gentoo.org>
+  files/libpng-1.2.21-off-by-one.patch, +libpng-1.2.21-r2.ebuild:
+  Update the memory corruption fix some more #194864 by Peter Henriksson.
+
+*libpng-1.2.21-r1 (06 Oct 2007)
+
+  06 Oct 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/libpng-1.2.21-off-by-one.patch, +libpng-1.2.21-r1.ebuild:
+  Fix from upstream for memory overflow #194864 by teidakankan and Peter
+  Henriksson.
+
+*libpng-1.2.21 (05 Oct 2007)
+
+  05 Oct 2007; Mike Frysinger <vapier@gentoo.org> +libpng-1.2.21.ebuild:
+  Version bump.
 
 *libpng-1.2.20 (20 Sep 2007)
 
