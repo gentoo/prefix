@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libpcre
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.105 2007/10/03 06:57:46 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.106 2007/10/06 05:09:28 tgall Exp $
+
+  06 Oct 2007; Tom Gall <tgall@gentoo.org> libpcre-7.3.ebuild:
+  stable on ppc64 
 
   03 Oct 2007; Christian Heim <phreak@gentoo.org> Manifest:
   Fixing the Manifest/digest for 7.3.
