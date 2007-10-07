@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/R/RB/RBS/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 IUSE=""
 
 DEPEND="dev-perl/Algorithm-Diff
