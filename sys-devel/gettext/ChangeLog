@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/gettext
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.152 2007/08/31 13:57:22 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.154 2007/10/06 07:29:48 ulm Exp $
+
+  06 Oct 2007; Ulrich Mueller <ulm@gentoo.org> -files/50po-mode-gentoo.el,
+  -gettext-0.16.1.ebuild:
+  Remove old.
+
+  06 Oct 2007; Tom Gall <tgall@gentoo.org> gettext-0.16.1-r1.ebuild:
+  stable on ppc64 bug #189031
 
   31 Aug 2007; Christoph Mende <angelos@gentoo.org>
   gettext-0.16.1-r1.ebuild:
