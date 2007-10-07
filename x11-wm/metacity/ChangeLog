@@ -1,6 +1,11 @@
 # ChangeLog for x11-wm/metacity
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.195 2007/09/22 05:42:44 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.196 2007/10/05 05:39:56 leio Exp $
+
+*metacity-2.20.0 (05 Oct 2007)
+
+  05 Oct 2007; Mart Raudsepp <leio@gentoo.org> +metacity-2.20.0.ebuild:
+  New series for Gnome 2.20
 
   22 Sep 2007; Tom Gall <tgall@gentoo.org> metacity-2.18.5.ebuild:
   stable on ppc64
