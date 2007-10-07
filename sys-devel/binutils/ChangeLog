@@ -1,6 +1,32 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.308 2007/09/26 10:41:08 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.312 2007/10/06 23:17:08 vapier Exp $
+
+  06 Oct 2007; Mike Frysinger <vapier@gentoo.org> binutils-2.17-r2.ebuild,
+  binutils-2.18-r1.ebuild:
+  Fix incorrect CFLAGS being used for build utils #192959 by Woodward Crim
+  Hoffman.
+
+  06 Oct 2007; Mike Frysinger <vapier@gentoo.org> binutils-2.18-r1.ebuild:
+  Prevent makeinfo from being run #193364.
+
+*binutils-2.18-r1 (06 Oct 2007)
+
+  06 Oct 2007; Mike Frysinger <vapier@gentoo.org> +binutils-2.18-r1.ebuild:
+  Fix from upstream for GNU RELRO stripping, disable false positive tests,
+  and add fix from upstream for multitarget on x86_64.
+
+*binutils-2.17-r2 (06 Oct 2007)
+
+  06 Oct 2007; Mike Frysinger <vapier@gentoo.org> +binutils-2.17-r2.ebuild:
+  Add backwards compat support for GNU_HASH for a few anal targets, disable
+  false positive tests, and add fix from upstream for multitarget on x86_64.
+
+*binutils-2.18.50.0.2 (06 Oct 2007)
+
+  06 Oct 2007; Mike Frysinger <vapier@gentoo.org>
+  +binutils-2.18.50.0.2.ebuild:
+  Version bump.
 
   26 Sep 2007; Raúl Porcel <armin76@gentoo.org> binutils-2.17-r1.ebuild:
   sparc stable wrt #192258
