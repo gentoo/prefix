@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-1.2.3-r1.ebuild,v 1.2 2007/09/03 21:14:44 nichoj Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-1.2.3-r1.ebuild,v 1.5 2007/10/06 22:32:30 opfer Exp $
 
 EAPI="prefix"
 

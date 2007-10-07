@@ -1,26 +1,26 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-1.2.0.ebuild,v 1.3 2007/09/03 21:14:44 nichoj Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-1.2.4.ebuild,v 1.1 2007/10/06 16:32:55 graaff Exp $
 
 EAPI="prefix"
 
 inherit ruby gems
 
-USE_RUBY="ruby18"
 DESCRIPTION="ruby on rails is a web-application and persistance framework"
 HOMEPAGE="http://www.rubyonrails.org"
-SRC_URI="http://gems.rubyonrails.org/gems/${P}.gem"
 
 LICENSE="MIT"
 SLOT="1.2"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 
 IUSE="mysql sqlite sqlite3 postgres fastcgi"
 DEPEND=">=dev-lang/ruby-1.8.5
-	>=dev-ruby/rake-0.7.1
-	=dev-ruby/activerecord-1.15.1
-	=dev-ruby/actionmailer-1.3.1
-	=dev-ruby/actionwebservice-1.2.1
+	>=dev-ruby/rake-0.7.2
+	=dev-ruby/activerecord-1.15.4
+	=dev-ruby/actionmailer-1.3.4
+	=dev-ruby/actionwebservice-1.2.4
+	=dev-ruby/activesupport-1.4.3
+	=dev-ruby/actionpack-1.13.4
 	!<dev-ruby/rails-1.1.6-r1"
 
 RDEPEND="${DEPEND}
