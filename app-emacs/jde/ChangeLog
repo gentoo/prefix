@@ -1,6 +1,10 @@
 # ChangeLog for app-emacs/jde
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/jde/ChangeLog,v 1.27 2007/05/24 20:35:39 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/jde/ChangeLog,v 1.28 2007/10/06 19:28:20 ulm Exp $
+
+  06 Oct 2007; Ulrich Mueller <ulm@gentoo.org> jde-2.3.5.1.ebuild:
+  Minor QA: quote some variables, remove redundant virtual/emacs dependency.
+  Drop ~ppc-macos keyword.
 
   24 May 2007; Christian Faulhammer <opfer@gentoo.org> ChangeLog:
   corrected ChangeLog, so it conforms to our standards
