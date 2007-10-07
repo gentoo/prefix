@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.3.4.ebuild,v 1.1 2007/10/04 18:31:12 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.3.4.ebuild,v 1.2 2007/10/05 07:36:58 vapier Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ SRC_URI="mirror://kernel/software/scm/git/${MY_P}.tar.bz2
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
-IUSE="curl doc elibc_uclibc emacs gtk mozsha1 perl ppcsha1 tk webdav"
+IUSE="curl doc emacs gtk iconv mozsha1 perl ppcsha1 tk webdav"
 
 DEPEND="
 	!app-misc/git
@@ -62,7 +62,7 @@ exportmakeopts() {
 	[[ ${CHOST} == *-solaris* ]] &&
 		myopts="${myopts} NEEDS_LIBICONV=YesPlease INSTALL=install TAR=tar"
 
-	use elibc_uclibc && myopts="${myopts} NO_ICONV=YesPlease"
+	use iconv || myopts="${myopts} NO_ICONV=YesPlease"
 
 	export MY_MAKEOPTS=${myopts}
 }
