@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/less
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.72 2007/09/28 16:50:02 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.73 2007/10/06 14:30:58 vapier Exp $
+
+*less-408 (06 Oct 2007)
+
+  06 Oct 2007; Mike Frysinger <vapier@gentoo.org> +less-408.ebuild:
+  Version bump.
 
   28 Sep 2007; Jeroen Roovers <jer@gentoo.org> less-406.ebuild:
   Stable for HPPA (bug #194012).
