@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/bbdb-2.35.ebuild,v 1.7 2007/06/01 16:13:08 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/bbdb-2.35.ebuild,v 1.8 2007/10/06 15:52:04 ulm Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,7 @@ DEPEND=""
 RDEPEND="${DEPEND}
 	tetex? ( virtual/tetex )"
 
-SITEFILE=50bbdb-gentoo.el
+SITEFILE=50${PN}-gentoo.el
 
 src_unpack() {
 	unpack ${P}.tar.gz
@@ -37,11 +37,11 @@ src_compile() {
 	econf || die "econf failed"
 	emake -j1 || die "emake failed"
 
-	cat >${T}/lp.el <<-EOF
+	cat >"${T}"/lp.el <<-EOF
 		(add-to-list 'load-path "${S}/bits")
 		(add-to-list 'load-path "${S}/lisp")
 	EOF
-	emacs -batch -no-site-file -l ${T}/lp.el \
+	emacs -batch -no-site-file -l "${T}"/lp.el \
 		-f batch-byte-compile bits/*.el || die "make bits failed"
 }
 

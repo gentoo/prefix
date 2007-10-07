@@ -1,6 +1,10 @@
 # ChangeLog for app-emacs/bbdb
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/ChangeLog,v 1.27 2007/06/08 06:08:38 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/ChangeLog,v 1.28 2007/10/06 15:52:04 ulm Exp $
+
+  06 Oct 2007; Ulrich Mueller <ulm@gentoo.org>
+  bbdb-2.35_pre20040323-r1.ebuild, bbdb-2.35.ebuild:
+  Minor QA: quote some variables. Add pkg_postrm.
 
   08 Jun 2007; Ulrich Mueller <ulm@gentoo.org>
   -bbdb-2.35_pre20040323.ebuild:
