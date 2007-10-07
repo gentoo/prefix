@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.0-r7.ebuild,v 1.4 2007/09/18 22:36:40 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.0-r7.ebuild,v 1.5 2007/10/06 17:37:13 ulm Exp $
 
 EAPI="prefix"
 
@@ -236,20 +236,20 @@ emacs-infodir-rebuild() {
 
 	local infodir=/usr/share/info/${EMACS_SUFFIX} f
 	einfo "Regenerating Info directory index in ${infodir} ..."
-	rm -f ${EROOT}${infodir}/dir{,.*}
-	for f in ${EROOT}${infodir}/*.info*; do
+	rm -f "${EROOT}"${infodir}/dir{,.*}
+	for f in "${EROOT}"${infodir}/*.info*; do
 		[[ ${f##*/} == *[0-9].info* ]] \
-			|| install-info --info-dir=${EROOT}${infodir} ${f} &>/dev/null
+			|| install-info --info-dir="${EROOT}"${infodir} ${f} &>/dev/null
 	done
 	echo
 }
 
 pkg_postinst() {
-	test -f ${EROOT}/usr/share/emacs/site-lisp/subdirs.el ||
-		cp ${EROOT}/usr/share/emacs{/${FULL_VERSION},}/site-lisp/subdirs.el
+	test -f "${EROOT}"/usr/share/emacs/site-lisp/subdirs.el ||
+		cp "${EROOT}"/usr/share/emacs{/${FULL_VERSION},}/site-lisp/subdirs.el
 
 	local f
-	for f in ${EROOT}/var/lib/games/emacs/{snake,tetris}-scores; do
+	for f in "${EROOT}"/var/lib/games/emacs/{snake,tetris}-scores; do
 		test -e ${f} || touch ${f}
 	done
 

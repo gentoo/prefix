@@ -1,28 +1,22 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-22.1.50-r1.ebuild,v 1.3 2007/09/18 22:36:40 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-22.1.50_p20070829-r1.ebuild,v 1.1 2007/10/06 17:37:13 ulm Exp $
 
 EAPI="prefix"
 
-ECVS_AUTH="pserver"
-ECVS_SERVER="cvs.savannah.gnu.org:/sources/emacs"
-ECVS_MODULE="emacs"
-ECVS_BRANCH="EMACS_22_BASE"
-ECVS_LOCALNAME="emacs-22"
-
-WANT_AUTOCONF="latest"
+WANT_AUTOCONF="2.5"
 WANT_AUTOMAKE="latest"
 
-inherit autotools cvs elisp-common eutils flag-o-matic
+inherit autotools elisp-common eutils flag-o-matic
 
 DESCRIPTION="The extensible, customizable, self-documenting real-time display editor"
 HOMEPAGE="http://www.gnu.org/software/emacs/"
-SRC_URI=""
+SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-3 FDL-1.2 BSD"
 SLOT="22"
 KEYWORDS="~amd64 ~x86 ~x86-macos"
-IUSE="alsa gif gtk gzip-el hesiod jpeg motif png spell sound source tiff toolkit-scroll-bars X Xaw3d xpm"
+IUSE="alsa gif gpm gtk gzip-el hesiod jpeg motif png spell sound source svg tiff toolkit-scroll-bars X Xaw3d xpm"
 RESTRICT="strip"
 
 X_DEPEND="x11-libs/libXmu x11-libs/libXt x11-misc/xbitmaps"
@@ -33,6 +27,7 @@ RDEPEND="sys-libs/ncurses
 	hesiod? ( net-dns/hesiod )
 	spell? ( || ( app-text/ispell app-text/aspell ) )
 	alsa? ( media-sound/alsa-headers )
+	gpm? ( sys-libs/gpm )
 	X? (
 		$X_DEPEND
 		x11-misc/emacs-desktop
@@ -40,6 +35,7 @@ RDEPEND="sys-libs/ncurses
 		jpeg? ( media-libs/jpeg )
 		tiff? ( media-libs/tiff )
 		png? ( media-libs/libpng )
+		svg? ( >=gnome-base/librsvg-2.0 )
 		xpm? ( x11-libs/libXpm )
 		gtk? ( =x11-libs/gtk+-2* )
 		!gtk? (
@@ -55,26 +51,14 @@ DEPEND="${RDEPEND}
 
 PROVIDE="virtual/editor"
 
-S="${WORKDIR}/${ECVS_LOCALNAME}"
-
+# FULL_VERSION keeps the full version number, which is needed in order to
+# determine some path information correctly for copy/move operations later on
+FULL_VERSION="${PV%%_*}"
 EMACS_SUFFIX="emacs-${SLOT}-cvs"
 
 src_unpack() {
-	cvs_src_unpack
-
+	unpack ${A}
 	cd "${S}"
-	# FULL_VERSION keeps the full version number, which is needed in
-	# order to determine some path information correctly for copy/move
-	# operations later on
-	FULL_VERSION=$(grep 'defconst[	 ]*emacs-version' lisp/version.el \
-		| sed -e 's/^[^"]*"\([^"]*\)".*$/\1/')
-	[ "${FULL_VERSION}" ] || die "Cannot determine current Emacs version"
-	echo
-	einfo "Emacs CVS branch: ${ECVS_BRANCH}"
-	einfo "Emacs version number: ${FULL_VERSION}"
-	[ "${FULL_VERSION}" = ${PV} ] \
-		|| die "Upstream version number changed to ${FULL_VERSION}"
-	echo
 
 	sed -i -e "s:/usr/lib/crtbegin.o:$(`tc-getCC` -print-file-name=crtbegin.o):g" \
 		-e "s:/usr/lib/crtend.o:$(`tc-getCC` -print-file-name=crtend.o):g" \
@@ -87,8 +71,8 @@ src_unpack() {
 			|| die "unable to sed configure.in"
 	fi
 
-	epatch "${FILESDIR}/${PN}-Xaw3d-headers.patch"
 	epatch "${FILESDIR}/${PN}-freebsd-sparc.patch"
+	epatch "${FILESDIR}/${PN}-make-tramp-temp-file.patch"
 	# ALSA is detected and used even if not requested by the USE=alsa flag.
 	# So remove the automagic check
 	use alsa || epatch "${FILESDIR}/${PN}-disable_alsa_detection-r1.patch"
@@ -102,7 +86,6 @@ src_compile() {
 	strip-flags
 	unset LDFLAGS
 	replace-flags -O[3-9] -O2
-	sed -i -e "s/-lungif/-lgif/g" configure* src/Makefile* || die
 
 	local myconf
 
@@ -121,7 +104,7 @@ src_compile() {
 		myconf="${myconf} $(use_with toolkit-scroll-bars)"
 		myconf="${myconf} $(use_with jpeg) $(use_with tiff)"
 		myconf="${myconf} $(use_with gif) $(use_with png)"
-		myconf="${myconf} $(use_with xpm)"
+		myconf="${myconf} $(use_with xpm) $(use_with svg rsvg)"
 
 		# GTK+ is the default toolkit if USE=gtk is chosen with other
 		# possibilities. Emacs upstream thinks this should be standard
@@ -232,20 +215,20 @@ emacs-infodir-rebuild() {
 
 	local infodir=/usr/share/info/${EMACS_SUFFIX} f
 	einfo "Regenerating Info directory index in ${infodir} ..."
-	rm -f ${EROOT}${infodir}/dir{,.*}
-	for f in ${EROOT}${infodir}/*.info*; do
+	rm -f "${EROOT}"${infodir}/dir{,.*}
+	for f in "${EROOT}"${infodir}/*.info*; do
 		[[ ${f##*/} == *[0-9].info* ]] \
-			|| install-info --info-dir=${EROOT}${infodir} ${f} &>/dev/null
+			|| install-info --info-dir="${EROOT}"${infodir} ${f} &>/dev/null
 	done
 	echo
 }
 
 pkg_postinst() {
-	test -f ${EROOT}/usr/share/emacs/site-lisp/subdirs.el ||
-		cp ${EROOT}/usr/share/emacs{/${FULL_VERSION},}/site-lisp/subdirs.el
+	test -f "${EROOT}"/usr/share/emacs/site-lisp/subdirs.el ||
+		cp "${EROOT}"/usr/share/emacs{/${FULL_VERSION},}/site-lisp/subdirs.el
 
 	local f
-	for f in ${EROOT}/var/lib/games/emacs/{snake,tetris}-scores; do
+	for f in "${EROOT}"/var/lib/games/emacs/{snake,tetris}-scores; do
 		test -e ${f} || touch ${f}
 	done
 

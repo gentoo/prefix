@@ -1,0 +1,216 @@
+--- emacs-orig/lisp/net/tramp-fish.el	2007-07-29 17:32:55.000000000 +0200
++++ emacs/lisp/net/tramp-fish.el	2007-10-06 17:39:38.000000000 +0200
+@@ -752,8 +752,8 @@
+     (error "Implementation does not handle immediate return"))
+ 
+   (with-parsed-tramp-file-name default-directory nil
+-    (let ((temp-name-prefix (tramp-make-tramp-temp-file v))
+-	  command input output stderr outbuf tmpfil ret)
++    (let (command input tmpinput output tmpoutput stderr tmpstderr
++		  outbuf tmpfil ret)
+       ;; Compute command.
+       (setq command (mapconcat 'tramp-shell-quote-argument
+ 			       (cons program args) " "))
+@@ -765,15 +765,14 @@
+ 	    ;; INFILE is on the same remote host.
+ 	    (setq input (with-parsed-tramp-file-name infile nil localname))
+ 	  ;; INFILE must be copied to remote host.
+-	  (setq input (concat temp-name-prefix ".in"))
+-	  (copy-file
+-	   infile
+-	   (tramp-make-tramp-file-name method user host input)
+-	   t)))
++	  (setq input (tramp-make-tramp-temp-file v)
++		tmpinput (tramp-make-tramp-file-name method user host input))
++	  (copy-file infile tmpinput t)))
+       (when input (setq command (format "%s <%s" command input)))
+ 
+       ;; Determine output.
+-      (setq output (concat temp-name-prefix ".out"))
++      (setq output (tramp-make-tramp-temp-file v)
++	    tmpoutput (tramp-make-tramp-file-name method user host output))
+       (cond
+        ;; Just a buffer
+        ((bufferp destination)
+@@ -799,7 +798,9 @@
+ 			       (cadr destination) nil localname))
+ 	    ;; stderr must be copied to remote host.  The temporary
+ 	    ;; file must be deleted after execution.
+-	    (setq stderr (concat temp-name-prefix ".err"))))
++	    (setq stderr (tramp-make-tramp-temp-file v)
++		  tmpstderr (tramp-make-tramp-file-name
++			     method user host stderr))))
+ 	 ;; stderr to be discarded
+ 	 ((null (cadr destination))
+ 	  (setq stderr "/dev/null"))))
+@@ -808,9 +809,6 @@
+ 	(setq outbuf (current-buffer))))
+       (when stderr (setq command (format "%s 2>%s" command stderr)))
+ 
+-      ;; If we have a temporary file, it must be removed after operation.
+-      (when (and input (string-match temp-name-prefix input))
+-	(setq command (format "%s; rm %s" command input)))
+       ;; Goto working directory.
+       (unless
+ 	  (tramp-fish-send-command-and-check
+@@ -838,16 +836,15 @@
+ 	    ;; We should show the output anyway.
+ 	    (when outbuf
+ 	      (with-current-buffer outbuf (insert-file-contents tmpfil))
+-	      (when display (display-buffer outbuf)))
+-	    ;; Remove output file.
+-	    (delete-file (tramp-make-tramp-file-name method user host output)))
++	      (when display (display-buffer outbuf))))
+ 	;; When the user did interrupt, we should do it also.
+ 	(error (setq ret 1)))
+-      (unless ret
+-	;; Provide error file.
+-	(when (and stderr (string-match temp-name-prefix stderr))
+-	  (rename-file (tramp-make-tramp-file-name method user host stderr)
+-		       (cadr destination) t)))
++
++      ;; Provide error file.
++      (when tmpstderr (rename-file tmpstderr (cadr destination) t))
++      ;; Cleanup.
++      (when tmpinput (delete-file tmpinput))
++      (when tmpoutput (delete-file tmpoutput))
+       ;; Return exit status.
+       ret)))
+ 
+--- emacs-orig/lisp/net/tramp.el	2007-08-28 22:09:58.000000000 +0200
++++ emacs/lisp/net/tramp.el	2007-10-06 17:39:38.000000000 +0200
+@@ -3175,7 +3175,7 @@
+ 
+       ;; Compose copy command.
+       (setq spec `((?h . ,host) (?u . ,user) (?p . ,port)
+-		   (?t . ,(tramp-make-tramp-temp-file v))
++		   (?t . ,(tramp-make-tramp-temp-file v 'dont-create))
+ 		   (?k . ,(if keep-date " " "")))
+ 	    copy-program (tramp-get-method-parameter
+ 			  method 'tramp-copy-program)
+@@ -3584,13 +3584,42 @@
+ 			      (tramp-temporary-file-directory)))
+    (file-name-extension filename t)))
+ 
+-(defsubst tramp-make-tramp-temp-file (vec)
+-  (format
+-   "/tmp/%s%s"
+-   tramp-temp-name-prefix
+-   (if (get-buffer-process (tramp-get-connection-buffer vec))
+-       (process-id (get-buffer-process (tramp-get-connection-buffer vec)))
+-     (emacs-pid))))
++(defsubst tramp-make-tramp-temp-file (vec &optional dont-create)
++  "Create a temporary file on the remote host identified by VEC.
++Return the local name of the temporary file.
++If DONT-CREATE is non-nil, just the file name is returned without
++creation of the temporary file.  This is not the preferred way to run,
++but it is necessary during connection setup, because we cannot create
++a remote file at this time.  This parameter shall NOT be set to
++non-nil else."
++  (if dont-create
++      ;; It sounds a little bit stupid to create a LOCAL file name.
++      ;; But we intend to use the remote directory "/tmp", and we have
++      ;; no chance to check whether a temporary file exists already
++      ;; remotely, because we have no working connection yet.
++      (make-temp-name (expand-file-name tramp-temp-name-prefix "/tmp"))
++
++    (let ((prefix
++	   (tramp-make-tramp-file-name
++	    (tramp-file-name-method vec)
++	    (tramp-file-name-user vec)
++	    (tramp-file-name-host vec)
++	    (expand-file-name tramp-temp-name-prefix "/tmp")))
++	  result)
++      (while (not result)
++	;; `make-temp-file' would be the first choice for
++	;; implementation.  But it calls `write-region' internally,
++	;; which also needs a temporary file - we would end in an
++	;; infinite loop.
++	(setq result (make-temp-name prefix))
++	(if (file-exists-p result)
++	    (setq result nil)
++	  ;; This creates the file by side effect.
++	  (set-file-times result)
++	  (set-file-modes result (tramp-octal-to-decimal "0700"))))
++
++      ;; Return the local part.
++      (with-parsed-tramp-file-name result nil localname))))
+ 
+ (defun tramp-handle-executable-find (command)
+   "Like `executable-find' for Tramp files."
+@@ -3642,8 +3671,7 @@
+     (error "Implementation does not handle immediate return"))
+ 
+   (with-parsed-tramp-file-name default-directory nil
+-    (let ((temp-name-prefix (tramp-make-tramp-temp-file v))
+-	  command input stderr outbuf ret)
++    (let (command input tmpinput stderr tmpstderr outbuf ret)
+       ;; Compute command.
+       (setq command (mapconcat 'tramp-shell-quote-argument
+ 			       (cons program args) " "))
+@@ -3655,11 +3683,9 @@
+ 	    ;; INFILE is on the same remote host.
+ 	    (setq input (with-parsed-tramp-file-name infile nil localname))
+ 	  ;; INFILE must be copied to remote host.
+-	  (setq input (concat temp-name-prefix ".in"))
+-	  (copy-file
+-	   infile
+-	   (tramp-make-tramp-file-name method user host input)
+-	   t)))
++	  (setq input (tramp-make-tramp-temp-file v)
++		tmpinput (tramp-make-tramp-file-name method user host input))
++	  (copy-file infile tmpinput t)))
+       (when input (setq command (format "%s <%s" command input)))
+ 
+       ;; Determine output.
+@@ -3688,7 +3714,9 @@
+ 			       (cadr destination) nil localname))
+ 	    ;; stderr must be copied to remote host.  The temporary
+ 	    ;; file must be deleted after execution.
+-	    (setq stderr (concat temp-name-prefix ".err"))))
++	    (setq stderr (tramp-make-tramp-temp-file v)
++		  tmpstderr (tramp-make-tramp-file-name
++			     method user host stderr))))
+ 	 ;; stderr to be discarded
+ 	 ((null (cadr destination))
+ 	  (setq stderr "/dev/null"))))
+@@ -3697,9 +3725,6 @@
+ 	(setq outbuf (current-buffer))))
+       (when stderr (setq command (format "%s 2>%s" command stderr)))
+ 
+-      ;; If we have a temporary file, it must be removed after operation.
+-      (when (and input (string-match temp-name-prefix input))
+-	(setq command (format "%s; rm %s" command input)))
+       ;; Goto working directory.
+       (tramp-send-command
+        v (format "cd %s" (tramp-shell-quote-argument localname)))
+@@ -3719,13 +3744,13 @@
+ 	(error
+ 	 (kill-buffer (tramp-get-connection-buffer v))
+ 	 (setq ret 1)))
+-      (unless ret
+-	;; Check return code.
+-	(setq ret (tramp-send-command-and-check v nil))
+-	;; Provide error file.
+-	(when (and stderr (string-match temp-name-prefix stderr))
+-	  (rename-file (tramp-make-tramp-file-name method user host stderr)
+-		       (cadr destination) t)))
++
++      ;; Check return code.
++      (unless ret (setq ret (tramp-send-command-and-check v nil)))
++      ;; Provide error file.
++      (when tmpstderr (rename-file tmpstderr (cadr destination) t))
++      ;; Cleanup.
++      (when tmpinput (delete-file tmpinput))
+       ;; Return exit status.
+       ret)))
+ 
+@@ -6113,7 +6138,7 @@
+ 	     l-user (or l-user "")
+ 	     l-port (or l-port "")
+ 	     spec `((?h . ,l-host) (?u . ,l-user) (?p . ,l-port)
+-		    (?t . ,(tramp-make-tramp-temp-file vec)))
++		    (?t . ,(tramp-make-tramp-temp-file vec 'dont-create)))
+ 	     command
+ 	     (concat
+ 	      command " "
