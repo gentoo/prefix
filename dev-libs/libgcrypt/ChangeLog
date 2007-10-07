@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libgcrypt
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.95 2007/10/02 16:18:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.96 2007/10/05 08:17:44 tgall Exp $
+
+  05 Oct 2007; Tom Gall <tgall@gentoo.org> libgcrypt-1.2.4.ebuild:
+  stable on ppc64
 
   02 Oct 2007; Raúl Porcel <armin76@gentoo.org> libgcrypt-1.2.4.ebuild:
   alpha/ia64 stable wrt #194113
