@@ -1,20 +1,34 @@
 Index: configure.in
 ===================================================================
---- configure.in	(revision 841)
-+++ configure.in	(working copy)
+--- configure.in	(revision 844)
++++ configure.in	(revision 845)
 @@ -249,7 +249,7 @@
  AC_ARG_WITH([pam-dir],
              [AC_HELP_STRING([--with-pam-dir=DIR],
                               [directory to install pam modules in])],
 -             [], [with_pam_dir="/usr/lib"])
-+             [], [with_pam_dir="/lib/security"])
++             [], [with_pam_dir="${prefix}/lib/security"])
  PAM_DEST_DIR="$with_pam_dir"
  AC_SUBST(PAM_DEST_DIR)
  	
+Index: Makefile.am
+===================================================================
+--- Makefile.am	(revision 844)
++++ Makefile.am	(revision 845)
+@@ -50,8 +50,4 @@
+ 	@echo "DONE AUTOMATIC UNIT TESTS ------------------------------"
+ 
+ install-pam:
+-	$(MAKE) -C pam install-pam
+-	
+-uninstall-pam:
+-	$(MAKE) -C pam uninstall-pam
+-
++	@echo "WARNING: install-pam is no longer used, use the --with-pam-dir configure option instead"
 Index: pam/Makefile.am
 ===================================================================
---- pam/Makefile.am	(revision 841)
-+++ pam/Makefile.am	(working copy)
+--- pam/Makefile.am	(revision 844)
++++ pam/Makefile.am	(revision 845)
 @@ -3,7 +3,8 @@
  	-I$(top_srcdir) \
  	-DGNOME_KEYRING_DAEMON=\""$(bindir)/gnome-keyring-daemon"\" 
@@ -25,12 +39,10 @@ Index: pam/Makefile.am
  
  pam_gnome_keyring_la_SOURCES = \
  	gkr-pam.h \
-@@ -17,15 +18,3 @@
- pam_gnome_keyring_la_LDFLAGS = \
- 	-module -avoid-version \
+@@ -19,13 +20,5 @@
  	-export-symbols-regex 'pam_sm_'
--
--install-pam: install
+ 
+ install-pam: install
 -	$(mkinstalldirs) "$(DESTDIR)$(PAM_DEST_DIR)"
 -	cp "$(DESTDIR)$(libdir)/pam_gnome_keyring.so" "$(DESTDIR)$(PAM_DEST_DIR)"
 -	( cd "$(DESTDIR)$(PAM_DEST_DIR)"; $(LN_S) -f pam_gnome_keyring.so pam_gnome_keyring_auth.so )
@@ -41,3 +53,6 @@ Index: pam/Makefile.am
 -	rm -f "$(DESTDIR)$(PAM_DEST_DIR)/pam_gnome_keyring_auth.so"
 -	rm -f "$(DESTDIR)$(PAM_DEST_DIR)/pam_gnome_keyring_session.so"
 -	
++	@echo "WARNING: install-pam is no longer used, use the --with-pam-dir configure option instead"
++	
+\ No newline at end of file
