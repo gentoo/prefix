@@ -34,3 +34,4 @@ app-misc/mc unicode slang
 # Elias Pipping <pipping@mi.fu-berlin.de> (06 Oct 2007)
 # tcl does not compile
 dev-db/sqlite doc
+sys-libs/db test
