@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/ncftp/ncftp-3.2.0.ebuild,v 1.6 2007/10/06 17:08:16 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/ncftp/ncftp-3.2.1.ebuild,v 1.1 2007/10/06 12:37:47 vapier Exp $
 
 EAPI="prefix"
 
 inherit eutils
 
-IPV6_P="ncftp-320-v6-20061109b"
+IPV6_P="ncftp-321-v6-20070822"
 DESCRIPTION="An extremely configurable ftp client"
 HOMEPAGE="http://www.ncftp.com/"
 SRC_URI="ftp://ftp.ncftp.com/ncftp/${P}-src.tar.bz2
@@ -23,7 +23,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	use ipv6 && epatch "${DISTDIR}"/${IPV6_P}.diff.gz
-	epatch "${FILESDIR}"/${P}-build.patch
+	epatch "${FILESDIR}"/${P}-build.patch #147371
 	sed -i \
 		-e 's:@SFLAG@::' \
 		-e 's:@STRIP@:true:' \
