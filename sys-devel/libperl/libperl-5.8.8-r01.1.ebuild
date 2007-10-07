@@ -156,6 +156,8 @@ src_unpack() {
 	[[ ${CHOST} == *-freebsd* ]] && cd ${S} && epatch ${FILESDIR}/${P}-fbsdhints.patch
 	cd ${S}; epatch ${FILESDIR}/${P}-cplusplus.patch
 	has_version '>=sys-devel/gcc-4.2' && epatch ${FILESDIR}/${P}-gcc42-command-line.patch
+
+	[[ ${CHOST} != "*-irix*" ]] && myconf="${myconf} -Dcccdlflags=\"-fPIC\""
 }
 
 myconf() {
@@ -271,7 +273,6 @@ src_compile() {
 
 	sh Configure -des \
 		-Darchname="${myarch}" \
-		-Dcccdlflags="-fPIC" \
 		-Dccdlflags="-rdynamic" \
 		-Dcc="$(tc-getCC)" \
 		-Dprefix="${EPREFIX}/usr" \
