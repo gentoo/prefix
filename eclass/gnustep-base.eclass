@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.3 2007/09/17 10:58:04 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.4 2007/10/05 10:51:20 voyageur Exp $
 
 inherit eutils flag-o-matic
 
@@ -166,8 +166,43 @@ egnustep_install_config() {
 
 	local cfile=config-${PN}.sh
 
-	echo '#!/usr/bin/env bash' > "${T}"/${cfile}
-	echo "echo Applying ${P} default configuration ..." >> "${T}"/${cfile}
+	cat << EOF > "${T}"/${cfile}
+#!/usr/bin/env bash
+gnustep_append_default() {
+	if [[ -z \$1 || -z \$2 || -z \$3 ]]; then
+		echo "warning: invalid script invocation"
+		return
+	fi
+	dom=\$1
+	key=\$2
+	val=\$3
+	cur=\$(defaults read \${dom} \${key}) 2> /dev/null
+	if [[ -z \$cur ]] ; then
+		echo " * setting \${dom} \${key}"
+		defaults write \${dom} \${key} "( \${val} )"
+	elif [[ \${cur} != *\${val}* ]] ; then
+		echo " * adding \${val} to \${dom} \${key}"
+		echo "\${cur%)\'}, \"\${val}\" )'" | defaults write
+	else
+		echo " * \${val} already present in \${dom} \${key}"
+	fi
+}
+
+gnustep_set_default() {
+	if [[ -z \$1 || -z \$2 || -z \$3 ]]; then 
+		echo "warning: invalid script invocation" 
+		return 
+	fi 
+	dom=\$1 
+	key=\$2 
+	val=\$3 
+	echo " * setting \${dom} \${key}" 
+	defaults write \${dom} \${key} \${val}
+}
+
+echo "Applying ${P} default configuration ..."
+EOF
+
 	gnustep_config_script | \
 	while read line ; do
 		echo "${line}" >> "${T}"/${cfile}

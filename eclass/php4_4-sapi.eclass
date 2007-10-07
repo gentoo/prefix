@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php4_4-sapi.eclass,v 1.40 2007/09/02 17:49:20 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php4_4-sapi.eclass,v 1.41 2007/10/05 21:35:26 hoffie Exp $
 
 # ========================================================================
 # Based on robbat2's work on the php4 sapi eclass
@@ -191,6 +191,7 @@ php4_4-sapi_check_use_flags() {
 	phpconfutils_use_conflict "readline" 		"libedit"
 	phpconfutils_use_conflict "recode" 		"mysql" "imap" "yaz"
 	phpconfutils_use_conflict "sharedmem" 		"threads"
+	phpconfutils_use_conflict "firebird" 		"interbase"
 
 	# IMAP support
 	php_check_imap
@@ -504,8 +505,17 @@ php4_4-sapi_src_compile() {
 	fi
 
 	# Interbase support
-	if use firebird || use interbase ; then
-		my_conf="${my_conf} --with-interbase=/usr"
+	if use interbase ; then
+		my_conf="${my_conf} --with-interbase=/opt"
+	fi
+
+	# Firebird support - see Bug 186791
+	if use firebird ; then
+		if has_version "<dev-db/firebird-2.0.3.12981.0-r1" ; then
+			my_conf="${my_conf} --with-interbase=/opt"
+		else
+			my_conf="${my_conf} --with-interbase=/usr"
+		fi
 	fi
 
 	# LDAP support
