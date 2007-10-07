@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/boost
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.121 2007/08/31 10:34:24 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.122 2007/10/06 20:43:03 grobian Exp $
+
+  06 Oct 2007; Fabian Groffen <grobian@gentoo.org> boost-1.34.1.ebuild:
+  Revert my changes made to this ebuild per a pending conflict with its
+  maintainer. Prefix keeps these changes.
 
   31 Aug 2007; Fabian Groffen <grobian@gentoo.org> boost-1.34.1.ebuild:
   change CHOST check from !=darwin to ==linux, see
