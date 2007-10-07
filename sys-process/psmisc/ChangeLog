@@ -1,6 +1,11 @@
 # ChangeLog for sys-process/psmisc
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/ChangeLog,v 1.74 2007/09/27 15:28:18 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/ChangeLog,v 1.75 2007/10/06 14:14:01 vapier Exp $
+
+  06 Oct 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/psmisc-22.5-no-nls.patch, psmisc-22.5-r2.ebuild:
+  Fix from impulze for building with USE=-nls and no gettext installed #193920
+  by Julian Golderer.
 
   27 Sep 2007; Joseph Jezak <josejx@gentoo.org> psmisc-22.5-r2.ebuild:
   Marked ppc stable for bug #193833.

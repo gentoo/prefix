@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.5-r2.ebuild,v 1.10 2007/09/27 15:28:18 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.5-r2.ebuild,v 1.11 2007/10/06 14:14:01 vapier Exp $
 
 EAPI="prefix"
 
@@ -29,6 +29,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-sockets.patch
 	# this package doesnt actually need C++
 	sed -i '/AC_PROG_CXX/d' configure.ac || die
+	use nls || epatch "${FILESDIR}"/${P}-no-nls.patch #193920
 	eautoreconf
 }
 
