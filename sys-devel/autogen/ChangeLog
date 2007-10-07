@@ -1,0 +1,87 @@
+# ChangeLog for sys-devel/autogen
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/ChangeLog,v 1.32 2007/10/07 06:31:28 dirtyepic Exp $
+
+  07 Oct 2007; Ryan Hill <dirtyepic@gentoo.org> autogen-5.9.2.ebuild:
+  inherit eutils for built_with_use
+
+*autogen-5.9.2 (07 Oct 2007)
+
+  07 Oct 2007; Mike Frysinger <vapier@gentoo.org> +autogen-5.9.2.ebuild:
+  Version bump #186933 by Elias Pipping.
+
+  06 Jul 2007; Raúl Porcel <armin76@gentoo.org> autogen-5.8.8.ebuild:
+  alpha stable
+
+  05 Jul 2007; Christoph Mende <angelos@gentoo.org> autogen-5.8.8.ebuild:
+  Stable on amd64 wrt bug #183999
+
+  30 May 2007; Gustavo Zacarias <gustavoz@gentoo.org> autogen-5.9.ebuild:
+  Stable on sparc
+
+  28 May 2007; Diego Pettenò <flameeyes@gentoo.org> autogen-5.9.ebuild:
+  Add ~x86-fbsd keyword.
+
+  16 Apr 2007; Markus Rothe <corsair@gentoo.org> autogen-5.9.ebuild:
+  Stable on ppc64
+
+*autogen-5.9 (31 Mar 2007)
+
+  31 Mar 2007; Mike Frysinger <vapier@gentoo.org> +autogen-5.9.ebuild:
+  Version bump.
+
+  30 Mar 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/autogen-5.8.8-scrub-debug.patch, autogen-5.8.8.ebuild:
+  Make sure -ggdb3 in CFLAGS doesnt cause a test failure #172533 by Kevin F.
+  Quinn.
+
+  13 Mar 2007; Raúl Porcel <armin76@gentoo.org> autogen-5.8.8.ebuild:
+  x86 stable
+
+  12 Feb 2007; Bryan Østergaard <kloeri@gentoo.org> autogen-5.8.3.ebuild:
+  Stable on Alpha.
+
+  01 Feb 2007; Mike Frysinger <vapier@gentoo.org> autogen-5.8.8.ebuild:
+  Dont bother checking guile versions older than 1.8 #164640 by Ed Catmur.
+
+  28 Jan 2007; Mike Frysinger <vapier@gentoo.org> autogen-5.8.8.ebuild:
+  Add check for USE="discouraged threads" with dev-scheme/guile #164127 by
+  Pierre Poissinger.
+
+  27 Jan 2007; Mike Frysinger <vapier@gentoo.org> autogen-5.8.8.ebuild:
+  Add check for USE=deprecated with dev-scheme/guile #164023 by Lars S. Jensen.
+
+*autogen-5.8.8 (24 Jan 2007)
+
+  24 Jan 2007; Mike Frysinger <vapier@gentoo.org> +autogen-5.8.8.ebuild:
+  Version bump #163349 by Pierre Poissinger.
+
+  10 Jan 2007; Piotr Jaroszyński <peper@gentoo.org> Manifest:
+  Fix Manifest.
+
+  10 Jan 2007; <marijn@gentoo.org> autogen-5.8.3.ebuild:
+  Dependency update: dev-util/guile -> dev-scheme/guile.
+
+  10 Jan 2007; <marijn@gentoo.org> autogen-5.7.1.ebuild:
+  Dependency update: dev-util/guile -> dev-scheme/guile.
+
+  27 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org> autogen-5.7.1.ebuild:
+  Stable on sparc
+
+  30 Aug 2006; Kevin F. Quinn <kevquinn@gentoo.org> metadata.xml,
+  autogen-5.7.1.ebuild, autogen-5.8.3.ebuild:
+  Fixup test failure when CFLAGS contains '-ggdbX'.  Join package to toolchain
+  herd.
+
+  25 Aug 2006; Markus Rothe <corsair@gentoo.org> autogen-5.7.1.ebuild:
+  Stable on ppc64
+
+  21 Aug 2006; Chris Gianelloni <wolf31o2@gentoo.org> autogen-5.7.1.ebuild:
+  Marking stable on amd64 and x86 for an eventual GCC 4.1.1 going stable.
+
+*autogen-5.8.3 (17 Aug 2006)
+
+  15 Aug 2006; Stephanie Lockwood-Childs <wormo@gentoo.org> metadata.xml,
+  +autogen-5.8.3.ebuild:
+  version bump -- thanks to François Périchon (Bug #127043)
+
