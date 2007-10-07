@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r1.ebuild,v 1.11 2007/09/26 12:54:38 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r1.ebuild,v 1.12 2007/10/06 16:23:39 ulm Exp $
 
 EAPI="prefix"
 
@@ -195,27 +195,27 @@ emacs-infodir-rebuild() {
 
 	local infodir=/usr/share/info/emacs-${SLOT} f
 	einfo "Regenerating Info directory index in ${infodir} ..."
-	rm -f ${EROOT}${infodir}/dir{,.*}
-	for f in ${EROOT}${infodir}/*.info*; do
+	rm -f "${EROOT}"${infodir}/dir{,.*}
+	for f in "${EROOT}"${infodir}/*.info*; do
 		[[ ${f##*/} == *[0-9].info* ]] \
-			|| install-info --info-dir=${EROOT}${infodir} ${f} &>/dev/null
+			|| install-info --info-dir="${EROOT}"${infodir} ${f} &>/dev/null
 	done
 	echo
 }
 
 pkg_postinst() {
-	test -f ${EROOT}/usr/share/emacs/site-lisp/subdirs.el ||
-		cp ${EROOT}/usr/share/emacs{/${FULL_VERSION},}/site-lisp/subdirs.el
+	test -f "${EROOT}"/usr/share/emacs/site-lisp/subdirs.el ||
+		cp "${EROOT}"/usr/share/emacs{/${FULL_VERSION},}/site-lisp/subdirs.el
 
 	local f
-	for f in ${EROOT}/var/lib/games/emacs/{snake,tetris}-scores; do
+	for f in "${EROOT}"/var/lib/games/emacs/{snake,tetris}-scores; do
 		test -e ${f} || touch ${f}
 	done
 
 	elisp-site-regen
 	emacs-infodir-rebuild
 
-	if [[ "$(readlink ${EROOT}/usr/bin/emacs)" == emacs.emacs-${SLOT}* ]]; then
+	if [[ $(readlink "${EROOT}"/usr/bin/emacs) == emacs.emacs-${SLOT}* ]]; then
 		# transition from pre-eselect revision
 		eselect emacs set emacs-${SLOT}
 	else
