@@ -12,7 +12,7 @@ HOMEPAGE="http://search.cpan.org/~tmtm/"
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 IUSE=""
 SRC_TEST="do"
 DEPEND="dev-perl/Text-CSV_XS
