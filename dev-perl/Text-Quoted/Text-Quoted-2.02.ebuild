@@ -16,7 +16,7 @@ IUSE=""
 SRC_TEST="do"
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 
 DEPEND="dev-perl/text-autoformat
 	dev-perl/Text-Tabs+Wrap
