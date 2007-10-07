@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/t1lib-5.1.1.ebuild,v 1.5 2007/09/27 23:37:56 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/t1lib-5.1.1.ebuild,v 1.6 2007/10/05 23:15:27 dirtyepic Exp $
 
 EAPI="prefix"
 
@@ -30,6 +30,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-5.0.2-SA26241_buffer_overflow.patch
 	epatch "${FILESDIR}/${P}-qa.diff"
+	epatch "${FILESDIR}"/${P}-parallel.patch
 
 	sed -i -e "s:dvips:#dvips:" "${S}"/doc/Makefile.in
 	sed -i -e "s:\./\(t1lib\.config\):/etc/t1lib/\1:" "${S}"/xglyph/xglyph.c
@@ -50,7 +51,7 @@ src_compile() {
 	econf \
 		--datadir="${EPREFIX}"/etc \
 		$(use_with X x) \
-		 || die "econf failed."
+		|| die "econf failed."
 
 	emake ${myopt} || die "emake failed."
 }

@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/t1lib
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/ChangeLog,v 1.65 2007/09/27 23:37:56 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/ChangeLog,v 1.66 2007/10/05 23:15:27 dirtyepic Exp $
+
+  05 Oct 2007; Ryan Hill <dirtyepic@gentoo.org>
+  +files/t1lib-5.1.1-parallel.patch, t1lib-5.1.1.ebuild:
+  Fix parallel build for bug #194720.
 
   27 Sep 2007; Hanno Boeck <hanno@gentoo.org> +files/t1lib-5.1.1-qa.diff,
   t1lib-5.1.1.ebuild:
