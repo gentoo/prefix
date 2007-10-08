@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Copyright Gentoo Foundation 2006-2007
 
+# <grobian@gentoo.org> -- 2007-10-08
+# added support for _p in versions after _rc, _pre, etc.
 # <grobian@gentoo.org> -- 2007-09-24
 # added support for all P* variables in fetch_files expansion, avoided
 # getting bash errors due to unterminated quotes
@@ -153,6 +155,7 @@ cmp_ebuild_ver() {
 	done
 
 	# the main version components are equal, dive into the suffices
+	# we need to treat _p special, as it can occur with the other suffices
 
 	# suffix precedence rules:
 	# alpha
@@ -222,13 +225,33 @@ cmp_ebuild_ver() {
 		echo $((-t * cnt))
 		return
 	fi
-	t=$((lsuf - rsuf))
+	t=$((${lsuf%_p*} - ${rsuf%_p*}))
 	if [[ ${t} != 0 ]] ; then
 		[[ $t > 9 ]] && t=9
 		[[ $t < -9 ]] && t=-9
 		echo $((t * cnt))
 		return
 	fi
+	# we may have a _p in the suffices now, need to compare those
+	case ${lsuf}:${rsuf} in
+		*_p*:*_p*)
+			t=$((${lsuf#*_p} - ${rsuf#*_p}))
+			if [[ ${t} != 0 ]] ; then
+				[[ $t > 9 ]] && t=9
+				[[ $t < -9 ]] && t=-9
+				echo $((t * cnt))
+				return
+			fi
+		;;
+		*_p*:*)
+			echo $cnt
+			return
+		;;
+		*:*_p*)
+			echo -$cnt
+			return
+		;;
+	esac
 
 	# suffices were equal too, now lets see the revision
 
