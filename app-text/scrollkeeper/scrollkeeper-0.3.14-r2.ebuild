@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="FDL-1.1 LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~sparc-solaris ~x86"
+KEYWORDS="~amd64 ~ia64 ~mips ~sparc-solaris ~x86 ~x86-macos"
 IUSE="nls"
 
 RDEPEND=">=dev-libs/libxml2-2.4.19
