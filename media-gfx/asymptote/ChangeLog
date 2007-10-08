@@ -1,6 +1,20 @@
 # ChangeLog for media-gfx/asymptote
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/ChangeLog,v 1.11 2007/08/28 21:13:22 centic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/ChangeLog,v 1.12 2007/10/07 09:14:00 opfer Exp $
+
+*asymptote-1.33-r1 (07 Oct 2007)
+
+  07 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  -files/asymptote-1.20-configure-ac.patch,
+  -files/asymptote-1.20-makefile.patch,
+  -files/asymptote-1.21-configure-ac.patch,
+  -files/asymptote-1.21-makefile.patch,
+  -files/asymptote-1.26-configure-ac.patch,
+  -files/asymptote-1.26-makefile.patch, +files/64asymptote-gentoo.el,
+  +files/asy-ftd.vim, -asymptote-1.20.ebuild, -asymptote-1.21.ebuild,
+  -asymptote-1.26.ebuild, -asymptote-1.33.ebuild, +asymptote-1.33-r1.ebuild:
+  clean up; fix Emacs and Vim support (bugs 191008 and 193402); do some
+  quoting; use latex_rehash from latex-package
 
 *asymptote-1.33 (28 Aug 2007)
 
