@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-1.2.4.ebuild,v 1.1 2007/10/06 16:32:55 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-1.2.4.ebuild,v 1.2 2007/10/07 07:59:55 graaff Exp $
 
 EAPI="prefix"
 
@@ -29,3 +29,21 @@ RDEPEND="${DEPEND}
 	sqlite3? ( dev-ruby/sqlite3-ruby )
 	mysql? ( >=dev-ruby/mysql-ruby-2.7 )
 	postgres? ( >=dev-ruby/ruby-postgres-0.7.1 )"
+
+src_install() {
+	gems_src_install
+	# Rename slotted files that may clash so that eselect can handle
+	# them
+	mv ${ED}/usr/bin/rails ${ED}/usr/bin/rails-${PV}
+	mv ${ED}/${GEMSDIR}/bin/rails ${ED}/${GEMSDIR}/bin/rails-${PV}
+}
+
+pkg_postinst() {
+	einfo "To select between slots of rails, use:"
+	einfo "\teselect rails"
+	eselect rails update --if-unset
+}
+
+pkg_postrm() {
+	eselect rails update --if-unset
+}
