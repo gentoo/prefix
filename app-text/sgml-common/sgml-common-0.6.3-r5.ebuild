@@ -32,7 +32,7 @@ src_unpack() {
 	eprefixify bin/install-catalog.in
 
 	epatch "${FILESDIR}"/${P}-prefix.patch
-	eprefixify bin/sgmlwhich
+	eprefixify bin/sgmlwhich config/sgml.conf
 
 	epatch "${FILESDIR}"/${P}-configure.in.patch
 
