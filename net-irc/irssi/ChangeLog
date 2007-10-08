@@ -1,6 +1,11 @@
 # ChangeLog for net-irc/irssi
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/ChangeLog,v 1.121 2007/09/22 19:13:41 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/ChangeLog,v 1.122 2007/10/07 10:00:44 swegener Exp $
+
+*irssi-0.8.12 (07 Oct 2007)
+
+  07 Oct 2007; Sven Wegener <swegener@gentoo.org> +irssi-0.8.12.ebuild:
+  Version bump, bug #194961.
 
   22 Sep 2007; Sven Wegener <swegener@gentoo.org> irssi-0.8.10-r4.ebuild,
   irssi-0.8.11.ebuild, irssi-0.8.12_rc1.ebuild:
