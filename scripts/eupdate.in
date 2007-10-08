@@ -3,6 +3,8 @@
 
 # <grobian@gentoo.org> -- 2007-10-08
 # added support for _p in versions after _rc, _pre, etc.
+# sourcing the versionator eclass when being used now for better
+# expansion of variables in fetch_files
 # <grobian@gentoo.org> -- 2007-09-24
 # added support for all P* variables in fetch_files expansion, avoided
 # getting bash errors due to unterminated quotes
@@ -410,7 +412,11 @@ fetch_files() {
 
 	# Sometimes patches or other things in the FILESDIR refer to some
 	# variable stored globally.  We grab them from the ebuild for those cases
-	gvars=$(egrep '^[A-Za-z_]+=(".+"|[^"]+)$' $1 | egrep -v '^(([RP]|)DEPEND|DESCRIPTION|HOMEPAGE|SRC_URI|LICENSE|KEYWORDS|IUSE|S)=')
+	local gvars=$(egrep '^[A-Za-z_]+=(".+"|[^"]+)$' $1 | egrep -v '^(([RP]|)DEPEND|DESCRIPTION|HOMEPAGE|SRC_URI|LICENSE|KEYWORDS|IUSE|S)=')
+
+	# Figure out if versionator eclass is being used
+	local eclass=$(egrep '^inherit ' $1 | grep -o versionator)
+	[[ -n ${eclass} ]] && eclass="source ${PTREEDIR}/eclass/${eclass}.eclass"
 
 	# Find all "referenced" files from/to FILESDIR.  We keep ${FILESDIR}
 	# in, to just use a bash eval on what we found to get the right
@@ -424,7 +430,7 @@ fetch_files() {
 		$1 | \
 	while read l ; do
 		t=$(eval a='$l'; for i in $a ; do echo $i ; break ; done)
-		t=$(env -i t=$t P=$p PN=$pn PV=$pv PR=$pr PVR=$mver PF=$pf FILESDIR=files bash -c "$gvars"'; eval echo $t')
+		t=$(env -i P=$p PN=$pn PV=$pv PR=$pr PVR=$mver PF=$pf FILESDIR=files bash -c "${eclass}; $gvars; echo $t")
 		# we can have file{1,2} stuff in the first t here, so iterate
 		# over the result list...
 		for u in $t ; do
