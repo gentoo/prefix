@@ -480,6 +480,10 @@ bootstrap_patch() {
 	bootstrap_gnu patch 2.5.4
 }
 
+bootstrap_make() {
+	bootstrap_gnu make 3.81
+}
+
 bootstrap_patch9() {
 	local PN PV A S
 	PN=patch
