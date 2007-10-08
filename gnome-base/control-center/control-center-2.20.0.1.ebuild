@@ -94,7 +94,7 @@ src_unpack() {
 	# Allow building with scrollkeeper
 	epatch "${FILESDIR}/${PN}-2.18.1-gnome-doc-utils-fix.patch"
 
-	epatch "${FILESDIR}/${PN}-2.19.90-no-esd.patch"
+	use esd || epatch "${FILESDIR}/${PN}-2.19.90-no-esd.patch"
 
 	# Fix tests
 	echo "capplets/appearance/data/gnome-appearance-properties.desktop.in" >> "${S}/po/POTFILES.skip"
