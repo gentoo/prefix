@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.2.1-r1.ebuild,v 1.2 2007/07/26 19:39:20 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.2.1-r1.ebuild,v 1.3 2007/10/07 16:41:47 vapier Exp $
 
 EAPI="prefix"
 
@@ -38,9 +38,10 @@ src_compile() {
 	local myconf
 
 	# GMP believes hppa2.0 is 64bit
+	local is_hppa_2_0
 	if [[ ${CHOST} == hppa2.0-* ]] ; then
 		is_hppa_2_0=1
-		export CHOST="${CHOST/2.0/1.1}"
+		export CHOST=${CHOST/2.0/1.1}
 	fi
 
 	# From fink (http://fink.cvs.sourceforge.net): due to assembler
@@ -51,15 +52,11 @@ src_compile() {
 	fi
 
 	# ABI mappings (needs all architectures supported)
-	if [ -n "${ABI}" ]; then
-		[ "${ABI}" = "32" ] && export GMPABI=32
-		[ "${ABI}" = "64" ] && export GMPABI=64
-		[ "${ABI}" = "x86" ] && export GMPABI=32
-		[ "${ABI}" = "amd64" ] && export GMPABI=64
-		[ "${ABI}" = "n64" ] && export GMPABI=64
-		[ "${ABI}" = "o32" ] && export GMPABI=o32
-		[ "${ABI}" = "n32" ] && export GMPABI=n32
-	fi
+	case ${ABI} in
+		32|x86)       export GMPABI=32;;
+		64|amd64|n64) export GMPABI=64;;
+		o32|n32)      export GMPABI=${ABI};;
+	esac
 
 	econf \
 		$(with_localstatedir /var/state/gmp) \
@@ -70,9 +67,11 @@ src_compile() {
 		|| die "configure failed"
 
 	# Fix the ABI for hppa2.0
-	if [ ! -z "${is_hppa_2_0}" ]; then
-		sed -i "${S}/config.h" -e 's:pa32/hppa1_1:pa32/hppa2_0:'
-		export CHOST="${CHOST/1.1/2.0}"
+	if [[ -n ${is_hppa_2_0} ]] ; then
+		sed -i \
+			-e 's:pa32/hppa1_1:pa32/hppa2_0:' \
+			"${S}"/config.h || die
+		export CHOST=${CHOST/1.1/2.0}
 	fi
 
 	emake || die "emake failed"
