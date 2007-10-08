@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.34.1.ebuild,v 1.4 2007/08/31 10:34:24 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.34.1.ebuild,v 1.5 2007/10/06 20:43:03 grobian Exp $
 
 EAPI="prefix"
 
