@@ -1,7 +1,3 @@
-# app-text/openjade does not work. See bug #188075
-dev-libs/glib doc
-net-libs/gnutls doc
-
 # app-text/docbook-sgml-utils and dependencies are missing. See bug #184580.
 media-libs/fontconfig doc
 
