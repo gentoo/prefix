@@ -194,7 +194,7 @@ src_unpack() {
 	epatch "${FILESDIR}/${PN}-xshape.patch"
 	epatch "${FILESDIR}/${PN}-dpms.patch"
 
-	epatch "${FILESDIR}"/${PN}-1.0-prefix.patch
+	epatch "${FILESDIR}"/${P}-prefix.patch
 	epatch "${FILESDIR}"/${PN}-1.0-darwin.patch
 	eprefixify DOCS/xml/configure
 }
