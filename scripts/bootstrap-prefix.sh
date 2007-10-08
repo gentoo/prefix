@@ -76,7 +76,7 @@ efetch() {
 
 # 	einfo "Compiling ${A%-*}"
 # 	econf
-# 	$MAKE || exit 1
+# 	$MAKE ${MAKEOPTS} || exit 1
 
 # 	einfo "Installing ${A%-*}"
 # 	$MAKE install || exit 1
@@ -245,7 +245,7 @@ bootstrap_portage() {
 		--with-portage-user=`id -un` \
 		--with-portage-group=`id -gn` \
 		--with-default-path="${ROOT}/tmp/bin:${ROOT}/tmp/usr/bin:/bin:/usr/bin:${PATH}"
-	$MAKE || exit 1
+	$MAKE ${MAKEOPTS} || exit 1
 
  	einfo "Installing ${A%-*}"
 	$MAKE install || exit 1
@@ -285,7 +285,7 @@ bootstrap_odcctools() {
 		--prefix="${ROOT}"/usr \
 		--mandir="${ROOT}"/usr/share/man \
 		|| exit 1
-	$MAKE || exit 1
+	$MAKE ${MAKEOPTS} || exit 1
 
 	$MAKE install || exit 1
 
@@ -387,7 +387,7 @@ bootstrap_gnu() {
 
 	einfo "Compiling ${A%-*}"
 	econf ${myconf}
-	$MAKE || exit 1
+	$MAKE ${MAKEOPTS} || exit 1
 
 	einfo "Installing ${A%-*}"
 	$MAKE install || exit 1
