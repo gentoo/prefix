@@ -1,0 +1,37 @@
+--- p7zip_4.55/CPP/7zip/Compress/LZMA_Alone/makefile.org	2007-08-15 12:56:22.000000000 +0200
++++ p7zip_4.55/CPP/7zip/Compress/LZMA_Alone/makefile	2007-09-23 21:56:59.000000000 +0200
+@@ -4,7 +4,7 @@
+ LIB = $(LOCAL_LIBS)
+ RM = rm -f
+ CFLAGS = -c -I. -I../../../  -I../../../myWindows  -I../../../include_windows \
+-         -UENV_UNIX -DCOMPRESS_MF_MT -DBENCH_MT
++         -DENV_UNIX -DCOMPRESS_MF_MT -DBENCH_MT
+ 
+ OBJS = \
+   LzmaAlone.o \
+@@ -32,6 +32,9 @@
+   LzmaDecode.o \
+   LzmaRamDecode.o \
+   C_FileIO.o \
++  FileIO.o \
++  FileFind.o \
++  wine_date_and_time.o \
+   System.o \
+   Threads.o \
+   MatchFinderMt.o
+@@ -80,6 +83,15 @@
+ C_FileIO.o: ../../../Common/C_FileIO.cpp
+ 	$(CXX) $(CFLAGS) ../../../Common/C_FileIO.cpp
+ 
++FileIO.o: ../../../Windows/FileIO.cpp
++	$(CXX) $(CFLAGS) ../../../Windows/FileIO.cpp
++
++FileFind.o: ../../../Windows/FileFind.cpp
++	$(CXX) $(CFLAGS) ../../../Windows/FileFind.cpp
++
++wine_date_and_time.o: ../../../myWindows/wine_date_and_time.cpp
++	$(CXX) $(CFLAGS) ../../../myWindows/wine_date_and_time.cpp
++
+ CommandLineParser.o: ../../../Common/CommandLineParser.cpp
+ 	$(CXX) $(CFLAGS) ../../../Common/CommandLineParser.cpp
+ 
