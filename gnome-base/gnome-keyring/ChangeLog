@@ -1,6 +1,11 @@
 # ChangeLog for gnome-base/gnome-keyring
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/ChangeLog,v 1.100 2007/10/06 07:39:20 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/ChangeLog,v 1.101 2007/10/07 21:47:01 remi Exp $
+
+  07 Oct 2007; Rémi Cardona <remi@gentoo.org>
+  files/gnome-keyring-2.20.0-fix_gtk_doc.patch,
+  gnome-keyring-2.20.0-r1.ebuild:
+  fix gtk-doc patch (see bug #195026) and fix quotes
 
   06 Oct 2007; Rémi Cardona <remi@gentoo.org>
   +files/gnome-keyring-2.20.0-fix_gtk_doc.patch,

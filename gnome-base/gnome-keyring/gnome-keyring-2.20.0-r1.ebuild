@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-2.20.0-r1.ebuild,v 1.2 2007/10/06 07:39:20 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/Attic/gnome-keyring-2.20.0-r1.ebuild,v 1.3 2007/10/07 21:47:01 remi Exp $
 
 EAPI="prefix"
 
@@ -32,7 +32,7 @@ src_unpack() {
 	gnome2_src_unpack
 
 	# Fix tests
-	echo "gkr-ask-tool.c" >> ${S}/po/POTFILES.in
+	echo "gkr-ask-tool.c" >> "${S}/po/POTFILES.in"
 
 	epatch "${FILESDIR}/${P}-fix_pam.patch"
 	use doc || epatch "${FILESDIR}/${P}-fix_gtk_doc.patch"
