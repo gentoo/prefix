@@ -1,12 +1,11 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.1.2.ebuild,v 1.15 2007/10/07 02:09:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.2.1.ebuild,v 1.1 2007/10/07 02:12:28 vapier Exp $
 
 EAPI="prefix"
 
-PATCH_VER="1.0.2"
+PATCH_VER="1.0"
 UCLIBC_VER="1.0"
-D_VER="0.24"
 
 ETYPE="gcc-compiler"
 
@@ -19,7 +18,7 @@ inherit toolchain flag-o-matic
 DESCRIPTION="The GNU Compiler Collection.  Includes C/C++, java compilers, pie+ssp extensions, Haj Ten Brugge runtime bounds checking"
 
 LICENSE="GPL-2 LGPL-2.1"
-KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-solaris"
 
 RDEPEND=">=sys-libs/zlib-1.1.4
 	|| ( >=sys-devel/gcc-config-1.3.12-r4 app-admin/eselect-compiler )
@@ -69,14 +68,7 @@ src_unpack() {
 
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
 
-	# Fix cross-compiling
-	epatch "${FILESDIR}"/4.1.0/gcc-4.1.0-cross-compile.patch
-
 	[[ ${CTARGET} == *-softfloat-* ]] && epatch "${FILESDIR}"/4.0.2/gcc-4.0.2-softfloat.patch
-
-	epatch "${FILESDIR}"/4.1.0/gcc-4.1.0-fast-math-i386-Os-workaround.patch
-
-	epatch "${FILESDIR}"/${P}-freebsd.patch
 }
 
 src_compile() {
