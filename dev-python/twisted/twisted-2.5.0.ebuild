@@ -14,7 +14,7 @@ SRC_URI="http://tmrc.mit.edu/mirror/twisted/Twisted/$(get_version_component_rang
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="gtk serial crypt"
 
 DEPEND=">=dev-lang/python-2.3
@@ -94,7 +94,7 @@ src_test() {
 		"${python}" setup.py install --root="${T}/tests" || die
 	fi
 
-	cd "${T}/tests/usr/$(get_libdir)/python${PYVER}/site-packages/" || die
+	cd "${T}/tests/"${EPREFIX}"/usr/$(get_libdir)/python${PYVER}/site-packages/" || die
 
 	# prevent it from pulling in plugins from already installed
 	# twisted packages
@@ -104,7 +104,7 @@ src_test() {
 	# docstrings in all packages
 	echo "'''plugins stub'''" > twisted/plugins/__init__.py || die
 
-	PYTHONPATH=. "${T}"/tests/usr/bin/trial twisted || die "trial failed"
+	PYTHONPATH=. "${T}"/tests/"${EPREFIX}"/usr/bin/trial twisted || die "trial failed"
 	cd "${S}"
 	rm -rf "${T}/tests"
 }
