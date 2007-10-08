@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gtk.org/gtk-doc/"
 
 LICENSE="GPL-2 FDL-1.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~sparc-solaris ~x86"
+KEYWORDS="~amd64 ~ia64 ~mips ~sparc-solaris ~x86 ~x86-macos"
 IUSE="doc emacs"
 
 RDEPEND=">=dev-lang/perl-5.6
@@ -40,6 +40,7 @@ src_unpack() {
 }
 
 src_compile() {
+	G2CONF="--with-xml-catalog=${EPREFIX}/etc/xml/catalog"
 	gnome2_src_compile
 
 	use emacs && elisp-compile tools/gtk-doc.el
