@@ -1,3 +1,3 @@
 # media-gfx/graphviz fails to install on systems with dynamic library
 # extensions other than .so, see also bug #188120
-media-gfx/graphviz perl python ruby tcl
+~media-gfx/graphviz-2.12 perl python ruby tcl
