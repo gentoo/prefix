@@ -31,6 +31,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-install-catalog.in-prefix.patch
 	eprefixify bin/install-catalog.in
 
+	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify bin/sgmlwhich
+
 	epatch "${FILESDIR}"/${P}-configure.in.patch
 
 	eautoreconf

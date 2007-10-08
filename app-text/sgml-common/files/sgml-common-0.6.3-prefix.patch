@@ -1,0 +1,9 @@
+--- bin/sgmlwhich~	2007-10-08 04:21:25 +0200
++++ bin/sgmlwhich	2007-10-08 04:21:36 +0200
+@@ -3,5 +3,5 @@
+ # Send any comments to Eric Bischoff <eric@caldera.de>
+ # This program is under GPL license. See LICENSE file for details.
+ 
+-echo "/etc/sgml/sgml.conf"
++echo "@GENTOO_PORTAGE_EPREFIX@/etc/sgml/sgml.conf"
+ # Simple, isn't it? ;-)
