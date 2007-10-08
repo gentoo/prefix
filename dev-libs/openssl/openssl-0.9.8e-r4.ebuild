@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8e-r3.ebuild,v 1.14 2007/10/07 15:37:15 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8e-r4.ebuild,v 1.1 2007/10/07 16:59:38 vapier Exp $
 
 EAPI="prefix"
 
@@ -13,9 +13,11 @@ SRC_URI="mirror://openssl/source/${P}.tar.gz"
 LICENSE="openssl"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
-IUSE="bindist emacs sse2 test zlib"
+IUSE="bindist emacs gmp kerberos sse2 test zlib"
 
-RDEPEND=""
+RDEPEND="gmp? ( dev-libs/gmp )
+	zlib? ( sys-libs/zlib )
+	kerberos? ( virtual/krb5 )"
 DEPEND="${RDEPEND}
 	sys-apps/diffutils
 	>=dev-lang/perl-5
@@ -75,17 +77,16 @@ src_compile() {
 	tc-export CC AR RANLIB
 
 	# Clean out patent-or-otherwise-encumbered code
-	# IDEA:  5,214,703 25/05/2010
-	# RC5:   5,724,428 03/03/2015
-	# EC:    ????????? ??/??/2015
-	local confopts=""
-	if use bindist ; then
-		confopts="no-idea no-rc5 no-ec"
-	else
-		confopts="enable-idea enable-rc5 enable-mdc2 enable-ec"
-	fi
-	use zlib && confopts="${confopts} zlib-dynamic"
-	use sse2 || confopts="${confopts} no-sse2"
+	# Camellia: Royalty Free            http://en.wikipedia.org/wiki/Camellia_(cipher)
+	# IDEA:     5,214,703 25/05/2010    http://en.wikipedia.org/wiki/International_Data_Encryption_Algorithm
+	# EC:       ????????? ??/??/2015    http://en.wikipedia.org/wiki/Elliptic_Curve_Cryptography
+	# MDC2:     Expired                 http://en.wikipedia.org/wiki/MDC-2
+	# RC5:      5,724,428 03/03/2015    http://en.wikipedia.org/wiki/RC5
+
+	use_ssl() { use $1 && echo "enable-${2:-$1} ${*:3}" || echo "no-${2:-$1}" ; }
+	echoit() { echo "$@" ; "$@" ; }
+
+	local krb5=$(has_version app-crypt/mit-krb5 && echo "MIT" || echo "Heimdal")
 
 	case $CHOST in
 		sparc-sun-solaris*)
@@ -99,9 +100,19 @@ src_compile() {
 	einfo "Use configuration ${sslout:-(openssl knows best)}"
 	local config="Configure"
 	[[ -z ${sslout} ]] && config="config"
+	echoit \
 	./${config} \
 		${sslout} \
-		${confopts} \
+		$(use sse2 || echo "no-sse2") \
+		enable-camellia \
+		$(use_ssl !bindist idea) \
+		$(use_ssl !bindist ec) \
+		enable-mdc2 \
+		$(use_ssl !bindist rc5) \
+		$(use_ssl gmp) \
+		$(use_ssl kerberos krb5 --with-krb5-flavor=${krb5}) \
+		$(use_ssl zlib) \
+		$(use_ssl zlib zlib-dynamic) \
 		--prefix="${EPREFIX}"/usr \
 		--openssldir="${EPREFIX}"/etc/ssl \
 		shared threads \
