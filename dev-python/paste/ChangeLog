@@ -1,0 +1,14 @@
+# ChangeLog for dev-python/paste
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/paste/ChangeLog,v 1.1 2007/02/27 23:40:20 dev-zero Exp $
+
+  04 Feb 2007; Tiziano Müller <dev-zero@gentoo.org> paste-1.2.1.ebuild:
+  Added ~amd64 keyword.
+
+  04 Feb 2007; Tiziano Müller <dev-zero@gentoo.org> paste-1.2.1.ebuild:
+  Setting python-version
+
+  04 Feb 2007; Tiziano Müller <dev-zero@gentoo.org> -paste-1.1.1.ebuild,
+  +paste-1.2.1.ebuild, +metadata.xml:
+  Version bump.
+
