@@ -44,7 +44,7 @@ src_compile() {
 
 src_install() {
 	DOCS="AUTHORS NEWS"
-	distutils_src_install --install-data /usr/share
+	distutils_src_install --install-data "${EPREFIX}"/usr/share
 
 	use doc && dohtml index.html
 
