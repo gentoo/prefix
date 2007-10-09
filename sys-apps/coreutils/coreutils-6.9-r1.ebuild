@@ -79,6 +79,10 @@ src_unpack() {
 	sed -i 's:__mempcpy:mempcpy:g' lib/*.c
 
 	AT_M4DIR="m4" eautoreconf
+
+	# For platforms which don't have /usr/bin/perl (like FreeBSD) make sure we
+	# don't regenerate wheel.h after above patches
+	touch src/wheel.h
 }
 
 src_compile() {
