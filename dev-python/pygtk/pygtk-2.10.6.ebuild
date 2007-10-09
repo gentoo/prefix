@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.10.6.ebuild,v 1.8 2007/09/27 11:43:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.10.6.ebuild,v 1.9 2007/10/08 09:02:15 tgall Exp $
 
 EAPI="prefix"
 
