@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-4.55.ebuild,v 1.2 2007/10/06 16:14:34 radek Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-4.55.ebuild,v 1.3 2007/10/08 16:49:19 grobian Exp $
 
 EAPI="prefix"
 
@@ -32,7 +32,7 @@ src_unpack() {
 	if use amd64; then
 		ewarn "Using suboptimal -fPIC upstream makefile due to amd64 being detected. See #126722"
 		cp -f makefile.linux_amd64 makefile.machine
-	elif use ppc-macos; then
+	elif [[ ${CHOST} == *-darwin* ]] ; then
 		# Mac OS X needs this special makefile, because it has a non-GNU linker
 		cp -f makefile.macosx makefile.machine
 	elif use x86-fbsd; then

@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/p7zip
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.75 2007/10/06 16:14:34 radek Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.76 2007/10/08 16:49:19 grobian Exp $
+
+  08 Oct 2007; Fabian Groffen <grobian@gentoo.org> p7zip-4.44.ebuild,
+  p7zip-4.45.ebuild, p7zip-4.48.ebuild, p7zip-4.51.ebuild,
+  p7zip-4.55.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   06 Oct 2007; Radoslaw Stachowiak <radek@gentoo.org> p7zip-4.55.ebuild:
   added quotes for FILESDIR
