@@ -227,6 +227,8 @@ cmp_ebuild_ver() {
 		echo $((-t * cnt))
 		return
 	fi
+	lsuf=${lsuf:-0}
+	rsuf=${rsuf:-0}
 	t=$((${lsuf%_p*} - ${rsuf%_p*}))
 	if [[ ${t} != 0 ]] ; then
 		[[ $t > 9 ]] && t=9
@@ -416,7 +418,7 @@ fetch_files() {
 
 	# Figure out if versionator eclass is being used
 	local eclass=$(egrep '^inherit ' $1 | grep -o versionator)
-	[[ -n ${eclass} ]] && eclass="source ${PTREEDIR}/eclass/${eclass}.eclass"
+	[[ -n ${eclass} ]] && eclass="source ${PTREEDIR}/eclass/${eclass}.eclass;"
 
 	# Find all "referenced" files from/to FILESDIR.  We keep ${FILESDIR}
 	# in, to just use a bash eval on what we found to get the right
@@ -430,7 +432,7 @@ fetch_files() {
 		$1 | \
 	while read l ; do
 		t=$(eval a='$l'; for i in $a ; do echo $i ; break ; done)
-		t=$(env -i P=$p PN=$pn PV=$pv PR=$pr PVR=$mver PF=$pf FILESDIR=files bash -c "${eclass}; $gvars; echo $t")
+		t=$(env -i P=$p PN=$pn PV=$pv PR=$pr PVR=$mver PF=$pf FILESDIR=files bash -c "${eclass} $gvars; echo $t")
 		# we can have file{1,2} stuff in the first t here, so iterate
 		# over the result list...
 		for u in $t ; do
