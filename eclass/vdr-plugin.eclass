@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.50 2007/10/05 13:56:49 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.51 2007/10/08 14:58:14 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -74,7 +74,7 @@ S="${WORKDIR}/${VDRPLUGIN}-${PV}"
 
 # depend on headers for DVB-driver
 DEPEND=">=media-tv/gentoo-vdr-scripts-0.3.8
-	>=media-tv/vdrplugin-rebuild-0.2
+	|| ( >=media-tv/gentoo-vdr-scripts-0.4.2 >=media-tv/vdrplugin-rebuild-0.2 )
 	>=app-admin/eselect-vdr-0.0.2
 	media-tv/linuxtv-dvb-headers"
 
@@ -98,7 +98,7 @@ create_plugindb_file() {
 #   vdrplugin-rebuild.ebuild converted plugindb and files are
 #   not deleted by portage itself - should only be needed as
 #   long as not every system has switched over to
-#   vdrplugin-rebuild-0.2
+#   vdrplugin-rebuild-0.2 / gentoo-vdr-scripts-0.4.2
 delete_orphan_plugindb_file() {
 	#elog Testing for orphaned plugindb file
 	local NEW_VDRPLUGINDB_DIR=/usr/share/vdr/vdrplugin-rebuild/
