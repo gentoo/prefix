@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.7_p1-r2.ebuild,v 1.1 2007/09/29 07:54:35 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.7_p1-r2.ebuild,v 1.2 2007/10/08 22:29:37 vapier Exp $
 
 EAPI="prefix"
 
@@ -25,7 +25,6 @@ LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="static pam tcpd kerberos skey selinux chroot X509 ldap smartcard hpn libedit X"
-RESTRICT="mirror" #193401
 
 RDEPEND="pam? ( virtual/pam )
 	kerberos? ( virtual/krb5 )
