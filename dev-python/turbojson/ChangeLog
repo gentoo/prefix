@@ -1,0 +1,9 @@
+# ChangeLog for dev-python/turbojson
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/turbojson/ChangeLog,v 1.1 2007/02/28 00:22:28 dev-zero Exp $
+
+  05 Feb 2007; Tiziano Müller <dev-zero@gentoo.org>
+  -turbojson-0.9.9.ebuild, +turbojson-1.0.ebuild, +metadata.xml:
+  Initial ebuild. Version bump. Changed SRC_URI and dependencies.. Fixed tests
+  and added ~amd64 keyword and NEED_PYTHON
+
