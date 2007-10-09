@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7759 2007/09/28 23:47:06 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7782 2007/10/08 20:18:12 eva Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -12,7 +12,7 @@
 # <bangert@gentoo.org> (28 Jun 2002)
 # psypete says these are broken and i am using the
 # opporturnity to test the masking style :)
-# <bangert@gentoo.org> (28 Jun 2002)
+
 # psypete says these are not really broken - its just
 # the v4l stuff that does not work
 #=media-video/mplayer-0.90_pre5
@@ -21,14 +21,77 @@
 ##   End example
 ##
 
+# Samuli Suominen <drac@gentoo.org> (08 Oct 2007)
+# Binary only package shipping vulnerable OpenSSL and links against
+# it. Masked for removal, unless upstream releases a new version 
+# or provides us with source. Bug 194287.
+dev-lang/anubis
+
+# Michele Noberasco <s4t4n@gentoo.org) (06 Oct 2007)
+# Masked pending removal. This package has conflicting
+# files with net-wireless/irda-utils, which also provides
+# a more up-to-date implementation of the same util.
+app-laptop/smcinit
+
+# Sébastien Fabbro <bicatali@gentoo.org> (05 Oct 2007)
+# Masked. Still buggy with gsl-1.10 and fail many tests.
+# Bug #194358. Downgrade to pygsl-0.9.0 for a more stable version.
+=dev-python/pygsl-0.9.1
+
+# Chris Gianelloni <wolf31o2@gentoo.org> (05 Oct 2007)
+# This is masked for removal in 30 days due to security bug #194609 and no
+# newer version of the package being available.  Sorry, folks.
+games-fps/americas-army
+
+# Marijn Schouten <hkBst@gentoo.org> (05 Oct 2007)
+# masked for removal, broken live ebuild with several open bugs
+# gcl to follow soon as it is unmaintained with lots of open bugs
+dev-lisp/gcl-cvs
+
+# Christian Hoffmann <hoffie@gentoo.org> (04 Oct 2007)
+# Outdated (no releases since May 2006), buggy and possibly vulnerable to
+# security problems
+# Masked for removal in 30 days
+# replacement: USE="pdo" emerge =dev-lang/php-5*
+dev-php5/pecl-pdo
+# replacement: USE="pdo sybase mssql" emerge =dev-lang/php-5*
+dev-php5/pecl-pdo-dblib
+# replacement: USE="pdo mysql" emerge =dev-lang/php-5*
+dev-php5/pecl-pdo-mysql
+# replacement: USE="pdo oci8" emerge =dev-lang/php-5*
+dev-php5/pecl-pdo-oci
+# replacement: USE="pdo odbc" emerge =dev-lang/php-5*
+dev-php5/pecl-pdo-odbc
+# replacement: USE="pdo pgsql" emerge =dev-lang/php-5*
+dev-php5/pecl-pdo-pgsql
+# replacement: USE="pdo sqlite" emerge =dev-lang/php-5*
+dev-php5/pecl-pdo-sqlite
+
+# Joe Sapp <nixphoeni@gentoo.org> (02 Oct 2007)
+# Doesn't compile, upstream is dead, and depends
+# on old packages not in portage any more
+# See bug #186440
+x11-wm/kahakai
+
+# Christian Faulhammer <opfer@gentoo.org> (01 Oct 2007)
+# ebuild is borked (see bug 192649)
+# upstream dead
+# removal on 30 Oct 2007
+dev-util/ladebug
+
+# Sven Wegener <swegener@gentoo.org> (30 Sep 2007)
+# Replaced by dev-db/mysql-gui-tools
+dev-db/mysql-administrator
+dev-db/mysql-query-browser
+
+# Christian Hoffmann <hoffie@gentoo.org> (30 Sep 2007)
+# 5.1 is unsupported by upstream and vulnerable to several security issues
+# Masked for removal in 30 days
+=dev-lang/php-5.1*
+
 # Peter Volkov <pva@gentoo.org> (28 Sep 2007)
 # masked for testing
 >=app-doc/kchmviewer-4.0_beta1
-
-# Doug Goldstein <cardoe@gentoo.org> (27 Sep 2007)
-# masked for testing
-=x11-drivers/nvidia-drivers-71.86.01
-=x11-drivers/nvidia-drivers-96.43.01
 
 # Kevin F. Quinn <kevquinn@gentoo.org> (27 Sep 2007)
 # Masked for testing
@@ -52,83 +115,85 @@ app-emacs/speedbar
 
 # Daniel Gryniewicz <dang@gentoo.org> (25 Sep 2007)
 # The Great GNOME 2.20 mask
-=app-admin/sabayon-2.20.1
-=gnome-base/gconf-2.20.0
-=gnome-extra/at-spi-1.20.0
-=gnome-base/gail-1.20.0
-=gnome-base/gnome-vfs-2.20.0
-=gnome-base/libbonobo-2.20.0
-=gnome-base/libbonoboui-2.20.0
-=gnome-base/libgnome-2.20.0
-=gnome-base/libgnomecanvas-2.20.0
-=gnome-base/libgnomeui-2.20.0
-=gnome-extra/bug-buddy-2.20.0
-=app-accessibility/dasher-4.6.0
-=gnome-extra/deskbar-applet-2.20.0
-=gnome-base/eel-2.20.0
-=media-gfx/eog-2.20.0
-=www-client/epiphany-2.20.0
-=www-client/epiphany-extensions-2.20.0
-=mail-client/evolution-2.12.0
-=gnome-extra/evolution-data-server-1.12.0
-=gnome-extra/evolution-exchange-2.12.0
-=gnome-extra/evolution-webcal-2.12.0
-=app-arch/file-roller-2.20.0
-=gnome-extra/gcalctool-5.20.0
-=gnome-extra/gconf-editor-2.20.0
-=gnome-base/gdm-2.20.0
-=app-editors/gedit-2.20.0
-=gnome-base/gnome-applets-2.20.0
-=x11-themes/gnome-backgrounds-2.20.0
-=gnome-base/control-center-2.20.0
-=gnome-base/gnome-desktop-2.20.0
-=app-text/gnome-doc-utils-0.12.0
-=gnome-extra/gnome-games-2.20.0.1
-=x11-themes/gnome-icon-theme-2.20.0
-=gnome-base/gnome-keyring-2.20.0
-=gnome-extra/gnome-keyring-manager-2.20.0
-=gnome-extra/gnome-media-2.20.1
-=gnome-base/gnome-menus-2.20.0
-=net-analyzer/gnome-nettool-2.20.0
-=gnome-base/gnome-panel-2.20.0.1
-=gnome-extra/gnome-power-manager-2.20.0
-=dev-python/gnome-python-desktop-2.20.0
-=gnome-extra/gnome-screensaver-2.20.0
-=gnome-base/gnome-session-2.20.0
-=gnome-extra/gnome-system-monitor-2.20.0
-=app-admin/gnome-system-tools-2.20.0
-=x11-themes/gnome-themes-2.20.0
-=gnome-extra/gnome2-user-docs-2.20.0
-=gnome-extra/gnome-utils-2.20.0.1
-=app-accessibility/gok-1.3.4
-=x11-themes/gtk-engines-2.12.1
-=gnome-extra/gtkhtml-3.16.0
-=x11-libs/gtksourceview-2.0.0
-=gnome-extra/libgail-gnome-1.20.0
-=gnome-base/libgnomekbd-2.20.0
-=gnome-base/libgtop-2.20.0
-=dev-libs/liboobs-2.20.0
-=gnome-base/librsvg-2.18.2
-=x11-libs/libwnck-2.20.0
-=x11-wm/metacity-2.20.0
-=gnome-base/nautilus-2.20.0
-=gnome-extra/nautilus-cd-burner-2.20.0
-=app-accessibility/orca-2.20.0
-=dev-python/pygtksourceview-2.0.0
-=app-crypt/seahorse-2.20.0
-=media-sound/sound-juicer-2.20.0
-=app-misc/tomboy-0.8.0
-=media-video/totem-2.20.0
-=net-misc/vino-2.20.0
-=gnome-extra/zenity-2.20.0
-=dev-cpp/gconfmm-2.20.0
-=dev-cpp/gnome-vfsmm-2.20.0
-=dev-cpp/libgnomecanvasmm-2.20.0
-=dev-cpp/libgnomemm-2.20.0
-=dev-cpp/libgnomeuimm-2.20.0
-=dev-libs/libsigc++-2.1.1
-=dev-cpp/libxmlpp-2.20.0
-=dev-python/gnome-python-2.20.0
+>=gnome-extra/fast-user-switch-applet-2.20.0
+>=gnome-base/gnome-common-2.20.0
+>=app-admin/sabayon-2.20.1
+>=gnome-base/gconf-2.20.0
+>=gnome-extra/at-spi-1.20.0
+>=gnome-base/gail-1.20.0
+>=gnome-base/gnome-vfs-2.20.0
+>=gnome-base/libbonobo-2.20.0
+>=gnome-base/libbonoboui-2.20.0
+>=gnome-base/libgnome-2.20.0
+>=gnome-base/libgnomecanvas-2.20.0
+>=gnome-base/libgnomeui-2.20.0
+>=gnome-extra/bug-buddy-2.20.0
+>=app-accessibility/dasher-4.6.0
+>=gnome-extra/deskbar-applet-2.20.0
+>=gnome-base/eel-2.20.0
+>=media-gfx/eog-2.20.0
+>=www-client/epiphany-2.20.0
+>=www-client/epiphany-extensions-2.20.0
+>=mail-client/evolution-2.12.0
+>=gnome-extra/evolution-data-server-1.12.0
+>=gnome-extra/evolution-exchange-2.12.0
+>=gnome-extra/evolution-webcal-2.12.0
+>=app-arch/file-roller-2.20.0
+>=gnome-extra/gcalctool-5.20.0
+>=gnome-extra/gconf-editor-2.20.0
+>=gnome-base/gdm-2.20.0
+>=app-editors/gedit-2.20.0
+>=gnome-base/gnome-applets-2.20.0
+>=x11-themes/gnome-backgrounds-2.20.0
+>=gnome-base/control-center-2.20.0
+>=gnome-base/gnome-desktop-2.20.0
+>=app-text/gnome-doc-utils-0.12.0
+>=gnome-extra/gnome-games-2.20.0.1
+>=x11-themes/gnome-icon-theme-2.20.0
+>=gnome-base/gnome-keyring-2.20.0
+>=gnome-extra/gnome-keyring-manager-2.20.0
+>=gnome-extra/gnome-media-2.20.1
+>=gnome-base/gnome-menus-2.20.0
+>=net-analyzer/gnome-nettool-2.20.0
+>=gnome-base/gnome-panel-2.20.0.1
+>=gnome-extra/gnome-power-manager-2.20.0
+>=dev-python/gnome-python-desktop-2.20.0
+>=gnome-extra/gnome-screensaver-2.20.0
+>=gnome-base/gnome-session-2.20.0
+>=gnome-extra/gnome-system-monitor-2.20.0
+>=app-admin/gnome-system-tools-2.20.0
+>=x11-themes/gnome-themes-2.20.0
+>=gnome-extra/gnome2-user-docs-2.20.0
+>=gnome-extra/gnome-utils-2.20.0.1
+>=app-accessibility/gok-1.3.4
+>=x11-themes/gtk-engines-2.12.1
+>=gnome-extra/gtkhtml-3.16.0
+>=x11-libs/gtksourceview-2.0.0
+>=gnome-extra/libgail-gnome-1.20.0
+>=gnome-base/libgnomekbd-2.20.0
+>=gnome-base/libgtop-2.20.0
+>=dev-libs/liboobs-2.20.0
+>=gnome-base/librsvg-2.18.2
+>=x11-libs/libwnck-2.20.0
+>=x11-wm/metacity-2.20.0
+>=gnome-base/nautilus-2.20.0
+>=gnome-extra/nautilus-cd-burner-2.20.0
+>=app-accessibility/orca-2.20.0
+>=dev-python/pygtksourceview-2.0.0
+>=app-crypt/seahorse-2.20.0
+>=media-sound/sound-juicer-2.20.0
+>=app-misc/tomboy-0.8.0
+>=media-video/totem-2.20.0
+>=net-misc/vino-2.20.0
+>=gnome-extra/zenity-2.20.0
+>=dev-cpp/gconfmm-2.20.0
+>=dev-cpp/gnome-vfsmm-2.20.0
+>=dev-cpp/libgnomecanvasmm-2.20.0
+>=dev-cpp/libgnomemm-2.20.0
+>=dev-cpp/libgnomeuimm-2.20.0
+>=dev-libs/libsigc++-2.1.1
+>=dev-cpp/libxmlpp-2.20.0
+>=dev-python/gnome-python-2.20.0
 # End The Great GNOME 2.20 mask
 #
 
@@ -231,11 +296,6 @@ sys-auth/bioapi
 # Masked for testing new rules.
 >=sys-fs/udev-115-r2
 
-# Ali Polatel <hawking@gentoo.org> (06 Sept 2007)
-# Masked for removal in 30 days. bug 185041
-# Included to python standard library as of 2.3
-dev-python/logging
-
 # Markus Ullmann <jokey@gentoo.org> (05 Sept 2007)
 # masked for testing
 >=net-analyzer/snort-2.7
@@ -273,50 +333,6 @@ games-fps/doomsday-resources
 # <Chutt> that's too big for a backport
 # if someone wishes to backport the changes, feel free to open a bug
 <media-plugins/mythweather-0.21_pre10000
-
-# Samuli Suominen <drac@gentoo.org> (30 Aug 2007)
-# GStreamer 0.8 removal mask.
-# Discontinued by upstream, several open bugs and
-# some plugins are incompatible with current libs.
-# Bug 190800. Removed in 30 days.
-=dev-python/gst-python-0.8*
-=media-plugins/gst-plugins-a52dec-0.8*
-=media-plugins/gst-plugins-alsa-0.8*
-=media-plugins/gst-plugins-cdparanoia-0.8*
-=media-plugins/gst-plugins-dts-0.8*
-=media-plugins/gst-plugins-dv-0.8*
-=media-plugins/gst-plugins-dvdnav-0.8*
-=media-plugins/gst-plugins-dvdread-0.8*
-=media-plugins/gst-plugins-esd-0.8*
-=media-plugins/gst-plugins-faac-0.8*
-=media-plugins/gst-plugins-faad-0.8*
-=media-plugins/gst-plugins-ffmpeg-0.8*
-=media-plugins/gst-plugins-flac-0.8*
-=media-plugins/gst-plugins-gnomevfs-0.8*
-=media-plugins/gst-plugins-jpeg-0.8*
-=media-plugins/gst-plugins-lame-0.8*
-=media-plugins/gst-plugins-libpng-0.8*
-=media-plugins/gst-plugins-libvisual-0.8*
-=media-plugins/gst-plugins-mad-0.8*
-=media-plugins/gst-plugins-mikmod-0.8*
-=media-plugins/gst-plugins-mpeg2dec-0.8*
-=media-plugins/gst-plugins-musepack-0.8*
-=media-plugins/gst-plugins-ogg-0.8*
-=media-plugins/gst-plugins-oss-0.8*
-=media-plugins/gst-plugins-pango-0.8*
-=media-plugins/gst-plugins-pitfdll-0.8*
-=media-plugins/gst-plugins-raw1394-0.8*
-=media-plugins/gst-plugins-shout2-0.8*
-=media-plugins/gst-plugins-sidplay-0.8*
-=media-plugins/gst-plugins-speex-0.8*
-=media-plugins/gst-plugins-theora-0.8*
-=media-plugins/gst-plugins-v4l-0.8*
-=media-plugins/gst-plugins-v4l2-0.8*
-=media-plugins/gst-plugins-vorbis-0.8*
-=media-plugins/gst-plugins-xvideo-0.8*
-=media-libs/gstreamer-0.8*
-media-libs/gst-plugins
-dev-ruby/ruby-gstreamer
 
 # Robert Buchholz <rbu@gentoo.org> (29 Aug 2007)
 # PPTP Plugin doesn't work on amd64
@@ -598,14 +614,9 @@ net-wireless/mcs7780
 # Stefan Schweizer <genstef@gentoo.org> (9 may 2007)
 # waiting for better upstream versions
 # 170997 doesn't open the configuration dialog
->=sys-power/kpowersave-0.7.0
+=sys-power/kpowersave-0.7.2
 # 175933 cannot suspend because of missing org.freedesktop.PolicyKit
 >=sys-power/powersave-0.15.0
-
-# George Shapovalov (7 May 2007)
-# masked old style ( non split and problematic) gnat compiler
-# gnat-gcc or gnat-gpl are in for ages and should be used instead
-dev-lang/gnat
 
 # Stefan Schweizer <genstef@gentoo.org> (7 may 2007)
 # mask new alsa release. Until it is fully added and tested
@@ -723,7 +734,6 @@ media-video/gspca
 media-libs/hermes
 games-sports/trophy
 games-action/clanbomber
-=games-puzzle/pingus-0.6*
 
 # Raúl Porcel <armin76@gentoo.org> (15 Mar 2007)
 # Mask snapshots
@@ -769,7 +779,9 @@ net-misc/xsupplicant
 # Stefan Cornelius <dercorny@gentoo.org> (3 Mar 2007)
 # Masking wordpress due to a long list of security bugs
 # e.g. check bug #168529
-www-apps/wordpress
+# Anant Narayanan <anant@gentoo.org> (8 Oct 2007)
+# Let's give wordpress another chance with version 2.3
+<www-apps/wordpress-2.3
 
 # Stefan Cornelius <dercorny@gentoo.org> (2 Mar 2007)
 # Masked because it's affected by 7 GLSAs or so, nobody should use it
@@ -782,10 +794,6 @@ www-servers/yaws
 # Samuli Suominen <drac@gentoo.org> (1 Mar 2007)
 # Multiple QA notices. Masked for testing. See bug 146443.
 media-video/dxr3player
-
-# Matti Bickel <mabi@gentoo.org> (28 Feb 2007)
-# Fails to compile against lua-5.1.1, no upstream release for 3 years
-net-irc/nikibot
 
 # Gustavo Felisberto <humpback@gentoo.org> (23 Feb 2007)
 # Masked for remove from tree. Contact me if you need this

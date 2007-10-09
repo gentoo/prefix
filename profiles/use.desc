@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.363 2007/09/27 15:30:32 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.365 2007/10/02 04:47:17 mrness Exp $
 
 # Keep them sorted
 
@@ -317,6 +317,7 @@ svga - Adds support for SVGAlib (graphics library)
 sybase - Adds support for the Sybase SQL Database Server
 sybase-ct - Adds support for Sybase-CT
 symlink - Force kernel ebuilds to automatically update the /usr/src/linux symlink.
+syslog - Enables support for syslog
 sysvipc - Support for System V-compatible inter-process communication
 szip - Use the szip compression library
 tcl - Adds support the Tcl language
@@ -348,6 +349,7 @@ win32codecs - use win32codecs package for dll avi decoding support (wmv and what
 wmf - Adds support for the wmf vector image format
 wxwindows - Adds support for wxWidgets/wxGTK GUI toolkit
 x264 - Enable h264 encoding using x264
+xattr - Adds support for extended attributes (filesystem-stored metadata)
 xcomposite - Enable support for the Xorg composite extension
 xface - Adds xface support used to allow a small image of xface format to be included in an email via the header 'X-Face'.
 xine - Add support for the XINE movie libraries

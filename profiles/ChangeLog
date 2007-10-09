@@ -1,6 +1,84 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.673 2007/09/28 22:55:01 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.698 2007/10/08 20:18:12 eva Exp $
+
+  08 Oct 2007; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  add fast-user-switch-applet to package.mask
+
+  08 Oct 2007; Krzysiek Pawlik <nelchael@gentoo.org> use.local.desc:
+  Add flags for net-im/jabberd2.
+
+  08 Oct 2007; Ryan Hill <dirtyepic@gentoo.org> use.local.desc:
+  Add local flite flag for app-misc/roadnav.
+
+  05 Oct 2007; Ulrich Mueller <ulm@gentoo.org> use.local.desc:
+  Add local xemacs flag for app-misc/gtypist.
+
+  05 Oct 2007; Sébastien Fabbro <bicatali@gentoo.org> package.mask:
+  masked pygsl-0.9.1, still buggy.
+
+  05 Oct 2007; Chris Gianelloni <wolf31o2@gentoo.org> package.mask:
+  Masked America's Army due to security bug #194609.
+
+  05 Oct 2007; Saleem Abdulrasool <compnerd@gentoo.org> use.local.desc:
+  Add galago useflag for totem
+
+  04 Oct 2007; Christian Hoffmann <hoffie@gentoo.org> package.mask:
+  Masking dev-php5/pecl-pdo* for removal in 30 days (no more upstream
+  releases, internal pdo from dev-lang/php-5* more up-to-date)
+
+  04 Oct 2007; Saleem Abdulrasool <compnerd@gentoo.org> use.local.desc:
+  Add new useflags for GDM 2.20
+
+  04 Oct 2007; Ryan Hill <dirtyepic@gentoo.org> use.local.desc:
+  Fix typo in last commit.
+
+  04 Oct 2007; Ryan Hill <dirtyepic@gentoo.org> use.local.desc:
+  Add utils to local USE for freetype.
+
+  03 Oct 2007; Wulf C. Krueger <philantrop@gentoo.org> use.local.desc:
+  Added media-video/kmplayer:npp.
+
+  03 Oct 2007; Rémi Cardona <remi@gentoo.org> package.mask:
+  tiny modification of mask for gnome-keyring for Gnome 2.20
+
+  03 Oct 2007; Saleem Abdulrasool <compnerd@gentoo.org> use.local.desc:
+  Add applet useflag for seahorse
+
+  02 Oct 2007; Sébastien Fabbro <bicatali@gentoo.org> use.local.desc:
+  removed debugger local use flag for dev-lang/ifc
+
+  02 Oct 2007; Alin Năstac <mrness@gentoo.org> use.desc, use.local.desc:
+  Added global syslog use-flag.
+
+  02 Oct 2007; Lars Weiler <pylon@gentoo.org> use.local.desc:
+  Added local cisco use-flag for net-misc/strongswan.
+
+  01 Oct 2007; Christian Faulhammer <opfer@gentoo.org> use.local.desc:
+  add tools USE flag for sci-libs/libsvm
+
+  01 Oct 2007; Christian Faulhammer <opfer@gentoo.org> package.mask:
+  mask dev-util/ladebug
+
+  01 Oct 2007; Gilles Dartiguelongue <eva@gentoo.org> desc/cameras.desc:
+  fix cameras.desc to include new IUSE_CAMERAS from libgphoto-2.4.0
+
+  30 Sep 2007; Stefan Schweizer <genstef@gentoo.org> package.mask:
+  modify kpowersave mask to not cover the new version
+
+  30 Sep 2007; Sven Wegener <swegener@gentoo.org> package.mask:
+  Mask dev-db/mysql-administrator and dev-db/mysql-query-browser, they have
+  been replaced by dev-db/mysql-gui-tools.
+
+  30 Sep 2007; Christian Hoffmann <hoffie@gentoo.org> package.mask:
+  Masking =dev-lang/php-5.1* for removal in 30 days (unfixed security issues +
+  no longer supported by upstream)
+
+  30 Sep 2007; Sébastien Fabbro <bicatali@gentoo.org> use.local.desc:
+  added debugger use flags for dev-lang/ifc and dev-lang/icc
+
+  30 Sep 2007; Rémi Cardona <remi@gentoo.org> use.desc, use.local.desc:
+  move the xattr useflag from local to global
 
   28 Sep 2007; Alon Bar-Lev <alonbl@gentoo.org> package.mask:
   Remove app-text/hspell
