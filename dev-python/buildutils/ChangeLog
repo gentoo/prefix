@@ -1,0 +1,22 @@
+# ChangeLog for dev-python/buildutils
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/buildutils/ChangeLog,v 1.4 2007/07/31 09:10:13 dev-zero Exp $
+
+  31 Jul 2007; Tiziano Müller <dev-zero@gentoo.org>
+  buildutils-0.1.2.ebuild:
+  Removed tests since none available
+
+  04 Jul 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  buildutils-0.1.2.ebuild:
+  Removed use_setuptools sed.
+
+  27 Feb 2007; Tiziano Müller <dev-zero@gentoo.org>
+  buildutils-0.1.2.ebuild:
+  Cleanup.
+
+*buildutils-0.1.2 (07 Jan 2007)
+
+  07 Jan 2007; Tiziano Müller <dev-zero@gentoo.org> +metadata.xml,
+  +buildutils-0.1.2.ebuild:
+  New ebuild for bug #155366, thanks to Brad Walker.
+
