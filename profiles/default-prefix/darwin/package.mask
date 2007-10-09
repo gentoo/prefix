@@ -6,3 +6,12 @@
 # http://sourceforge.net/tracker/?atid=390287&group_id=27435&func=browse
 # clearly indicates more trouble, and a dead upstream
 =sys-process/proctools-0.4_pre1
+
+# Elias Pipping <pipping@mi.fu-berlin.de> (09 Oct 2007)
+# gcc-apple, darwin-miscutils are only available on darwin
+-sys-devel/gcc-apple
+-sys-apps/darwin-miscutils
+
+# Elias Pipping <pipping@mi.fu-berlin.de> (09 Oct 2007)
+# bsd-man-pages are only available on darwin, bsd
+-sys-apps/bsd-man-pages

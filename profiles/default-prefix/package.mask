@@ -23,6 +23,15 @@
 ##
 
 # Elias Pipping <pipping@mi.fu-berlin.de> (09 Oct 2007)
+# gcc-apple, darwin-miscutils are only available on darwin
+sys-devel/gcc-apple
+sys-apps/darwin-miscutils
+
+# Elias Pipping <pipping@mi.fu-berlin.de> (09 Oct 2007)
+# bsd-man-pages are only available on darwin, bsd
+sys-apps/bsd-man-pages
+
+# Elias Pipping <pipping@mi.fu-berlin.de> (09 Oct 2007)
 # texinfo 4.11 blocks tetex-2. there is no other tetex in prefix, though
 =sys-apps/texinfo-4.11
 
