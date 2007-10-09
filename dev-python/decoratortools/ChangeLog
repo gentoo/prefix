@@ -1,0 +1,34 @@
+# ChangeLog for dev-python/decoratortools
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/decoratortools/ChangeLog,v 1.7 2007/07/15 08:56:37 lucass Exp $
+
+*decoratortools-1.5 (15 Jul 2007)
+
+  15 Jul 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  -decoratortools-1.4.ebuild, +decoratortools-1.5.ebuild:
+  Version bump: added setuptools dep. Dropped old version.
+
+  06 Jul 2007; Ali Polatel <hawking@gentoo.org> decoratortools-1.4.ebuild:
+  Added app-arch/unzip to DEPEND, cosmetics
+
+  05 May 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  decoratortools-1.4.ebuild:
+  Marked ~amd64 (bug #176883).
+
+  03 May 2007; Rob Cakebread <pythonhead@gentoo.org>
+  decoratortools-1.4.ebuild:
+  Added die to src_test
+
+  03 May 2007; Rob Cakebread <pythonhead@gentoo.org>
+  decoratortools-1.4.ebuild:
+  Added src_test
+
+  02 May 2007; Rob Cakebread <pythonhead@gentoo.org> metadata.xml:
+  Updated metadata.
+
+*decoratortools-1.4 (02 May 2007)
+
+  02 May 2007; Rob Cakebread <pythonhead@gentoo.org>
+  +decoratortools-1.4.ebuild:
+  Initial commit.
+
