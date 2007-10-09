@@ -65,8 +65,6 @@ src_unpack() {
 
 	EPATCH_SUFFIX="patch" epatch "${PATCHDIR}"/generic
 	epatch "${FILESDIR}"/${PV}-iswblank.patch
-	epatch "${FILESDIR}"/${P}-prefix.patch
-	eprefixify src/wheel-gen.pl
 
 	chmod a+rx tests/sort/sort-mb-tests
 	chmod a+rx tests/ls/x-option
