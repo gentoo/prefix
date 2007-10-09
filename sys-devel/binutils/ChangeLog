@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.313 2007/10/07 01:59:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.314 2007/10/08 14:37:54 vapier Exp $
+
+  08 Oct 2007; Mike Frysinger <vapier@gentoo.org> binutils-2.18-r1.ebuild:
+  Fix makeinfo version check to work with texinfo-4.11 #195074.
 
   07 Oct 2007; Mike Frysinger <vapier@gentoo.org> binutils-2.17-r2.ebuild:
   Add support for DragonFly BSD #189079.
