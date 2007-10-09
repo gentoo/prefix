@@ -157,7 +157,7 @@ src_unpack() {
 	cd ${S}; epatch ${FILESDIR}/${P}-cplusplus.patch
 	has_version '>=sys-devel/gcc-4.2' && epatch ${FILESDIR}/${P}-gcc42-command-line.patch
 
-	[[ ${CHOST} != "*-irix*" ]] && myconf="${myconf} -Dcccdlflags=\"-fPIC\""
+	[[ ${CHOST} != *-irix* ]] && myconf="${myconf} -Dcccdlflags=\"-fPIC\""
 }
 
 myconf() {
