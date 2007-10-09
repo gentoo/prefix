@@ -1,0 +1,94 @@
+# ChangeLog for dev-python/sqlalchemy
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sqlalchemy/ChangeLog,v 1.17 2007/07/21 07:05:20 lucass Exp $
+
+*sqlalchemy-0.3.10 (21 Jul 2007)
+
+  21 Jul 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  -sqlalchemy-0.3.8.ebuild, -sqlalchemy-0.3.9.ebuild,
+  +sqlalchemy-0.3.10.ebuild:
+  Version bump. Dropped old versions.
+
+*sqlalchemy-0.3.9 (16 Jul 2007)
+
+  16 Jul 2007; Rob Cakebread <pythonhead@gentoo.org>
+  +sqlalchemy-0.3.9.ebuild:
+  Version bump.
+
+  24 Jun 2007; Christoph Mende <angelos@gentoo.org> sqlalchemy-0.3.7.ebuild:
+  Stable on amd64 wrt bug 178027
+
+  24 Jun 2007; Raúl Porcel <armin76@gentoo.org> sqlalchemy-0.3.7.ebuild:
+  x86 stable wrt #178027
+
+  15 Jun 2007; Daniel Gryniewicz <dang@gentoo.org> sqlalchemy-0.3.7.ebuild:
+  Marked ~amd64 Oops, pymssql not stable; fricken repoman
+
+  15 Jun 2007; Daniel Gryniewicz <dang@gentoo.org> sqlalchemy-0.3.7.ebuild:
+  Marked stable on amd64 for bug #178027
+
+*sqlalchemy-0.3.8 (03 Jun 2007)
+
+  03 Jun 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  +sqlalchemy-0.3.8.ebuild:
+  Version bump.
+
+  10 May 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  sqlalchemy-0.3.7.ebuild:
+  Fixed sqlite deps, removed src_unpack. Thanks to Betelgeuse.
+
+*sqlalchemy-0.3.7 (03 May 2007)
+
+  03 May 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  -sqlalchemy-0.3.6.ebuild, +sqlalchemy-0.3.7.ebuild:
+  Version bump, bug #176931.
+
+*sqlalchemy-0.3.6 (24 Mar 2007)
+
+  24 Mar 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  -sqlalchemy-0.3.4.ebuild, -sqlalchemy-0.3.5.ebuild,
+  +sqlalchemy-0.3.6.ebuild:
+  Version bump.
+
+  20 Mar 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  sqlalchemy-0.3.5.ebuild:
+  Fixed tests to die on failure. Excluded testorderby and testorderby_desc
+  which cause failure with sqlite-3.3.12.
+
+*sqlalchemy-0.3.5 (25 Feb 2007)
+
+  25 Feb 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  +sqlalchemy-0.3.5.ebuild:
+  Version bump, cleanup, added doc/examples use flags.
+
+*sqlalchemy-0.3.4 (24 Jan 2007)
+
+  24 Jan 2007; Tiziano Müller <dev-zero@gentoo.org>
+  -sqlalchemy-0.3.3.ebuild, +sqlalchemy-0.3.4.ebuild:
+  Version bump.
+
+*sqlalchemy-0.3.3 (26 Dec 2006)
+
+  26 Dec 2006; Tiziano Müller <dev-zero@gentoo.org>
+  -sqlalchemy-0.2.7.ebuild, -sqlalchemy-0.2.8.ebuild,
+  +sqlalchemy-0.3.3.ebuild:
+  Version bump (bug #155660) with some corrections (bug #155658, thanks to
+  Brad Walker). Dropped old versions.
+
+*sqlalchemy-0.2.8 (13 Oct 2006)
+
+  13 Oct 2006; Rob Cakebread <pythonhead@gentoo.org>
+  +sqlalchemy-0.2.8.ebuild:
+  Version bump. bug #149091
+
+  12 Sep 2006; Marien Zwart <marienz@gentoo.org> sqlalchemy-0.2.7.ebuild:
+  Add mssql to IUSE and fix dependencies for <dev-python/psycopg-2. Closes bug
+  #146248, thanks to Jakub Moc for reporting.
+
+*sqlalchemy-0.2.7 (02 Sep 2006)
+
+  02 Sep 2006; Alastair Tse <liquidx@gentoo.org> +metadata.xml,
+  +sqlalchemy-0.2.7.ebuild:
+  initial ebuild. based on ebuild from gentoo-sunrise submitted by Tiziano
+  Müller (dev-zero) (#132037)
+
