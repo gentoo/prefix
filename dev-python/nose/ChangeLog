@@ -1,0 +1,45 @@
+# ChangeLog for dev-python/nose
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/nose/ChangeLog,v 1.7 2007/09/14 09:59:11 hawking Exp $
+
+*nose-0.9.3-r1 (14 Sep 2007)
+
+  14 Sep 2007; Ali Polatel <hawking@gentoo.org>
+  +files/nose-0.9.3-tests-nonetwork.patch,
+  +files/nose-0.10.0_beta1-tests-nonetwork.patch,
+  -files/nose-tests-nonetwork.patch, -nose-0.9.3.ebuild,
+  +nose-0.9.3-r1.ebuild, -nose-0.10.0_alpha2.ebuild,
+  nose-0.10.0_beta1.ebuild:
+  revbumped 0.9.3 backporting the fix, drop old
+
+*nose-0.10.0_beta1 (14 Sep 2007)
+
+  14 Sep 2007; Ali Polatel <hawking@gentoo.org>
+  +files/nose-tests-nonetwork.patch, +nose-0.10.0_beta1.ebuild:
+  Version bump, added twisted use flag and made nose.twistedtools and twisted
+  tests conditional (thanks to Dirkjan Ochtman - bug 187780 )
+
+*nose-0.10.0_alpha2 (31 Jul 2007)
+
+  31 Jul 2007; Tiziano Müller <dev-zero@gentoo.org>
+  -nose-0.10.0_alpha1.ebuild, +nose-0.10.0_alpha2.ebuild:
+  Version bump. Dropped old version.
+
+*nose-0.10.0_alpha1 (08 Jul 2007)
+
+  08 Jul 2007; Rob Cakebread <pythonhead@gentoo.org>
+  +nose-0.10.0_alpha1.ebuild:
+  Version bump.
+
+  04 Jul 2007; Lukasz Strzygowski <lucass@gentoo.org> -nose-0.9.2.ebuild,
+  nose-0.9.3.ebuild:
+  Removed use_setuptools sed. Dropped old version.
+
+*nose-0.9.3 (21 Apr 2007)
+
+  21 Apr 2007; Rob Cakebread <pythonhead@gentoo.org> +nose-0.9.3.ebuild:
+  Version bump.
+
+  03 Feb 2007; Tiziano Müller <dev-zero@gentoo.org> +metadata.xml:
+  Initial ebuild for bug #141662 (thanks to Brad Walker)
+
