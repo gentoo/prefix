@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/xproto
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xproto/ChangeLog,v 1.55 2007/08/07 13:34:47 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xproto/ChangeLog,v 1.56 2007/10/09 09:41:31 dberkholz Exp $
+
+  09 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>; -xproto-7.0.7.ebuild:
+  Drop old ebuilds.
 
   07 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org> xproto-7.0.10.ebuild:
   Stable on sparc wrt #175465
