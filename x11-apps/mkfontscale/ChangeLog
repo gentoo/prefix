@@ -1,6 +1,10 @@
 # ChangeLog for x11-apps/mkfontscale
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/mkfontscale/ChangeLog,v 1.37 2007/09/08 20:47:10 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/mkfontscale/ChangeLog,v 1.38 2007/10/09 09:17:22 dberkholz Exp $
+
+  09 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  -mkfontscale-1.0.1.ebuild:
+  Drop old ebuilds.
 
   08 Sep 2007; Joseph Jezak <josejx@gentoo.org> mkfontscale-1.0.3.ebuild:
   Marked ppc stable for bug #191615.
