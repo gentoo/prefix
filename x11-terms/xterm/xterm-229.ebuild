@@ -12,7 +12,7 @@ SRC_URI="ftp://invisible-island.net/${PN}/${P}.tgz"
 
 LICENSE="X11"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86"
+KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~x86-solaris"
 IUSE="truetype Xaw3d unicode toolbar paste64"
 
 RDEPEND="x11-libs/libX11
@@ -24,7 +24,7 @@ RDEPEND="x11-libs/libX11
 	x11-libs/libXaw
 	unicode? ( x11-apps/luit )
 	Xaw3d? ( x11-libs/Xaw3d )
-	sys-libs/libutempter"
+	kernel_linux? ( sys-libs/libutempter )"
 DEPEND="${RDEPEND}
 	x11-proto/xproto"
 
