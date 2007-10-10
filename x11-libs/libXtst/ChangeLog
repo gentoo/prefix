@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/libXtst
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXtst/ChangeLog,v 1.37 2007/09/29 10:20:42 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXtst/ChangeLog,v 1.38 2007/10/09 09:31:51 dberkholz Exp $
+
+  09 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  -libXtst-1.0.1.ebuild:
+  Drop old ebuilds.
 
   29 Sep 2007; Raúl Porcel <armin76@gentoo.org> libXtst-1.0.2.ebuild:
   sparc stable wrt #191615
