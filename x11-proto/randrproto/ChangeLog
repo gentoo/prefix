@@ -1,6 +1,10 @@
 # ChangeLog for x11-proto/randrproto
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/randrproto/ChangeLog,v 1.44 2007/07/03 11:57:40 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/randrproto/ChangeLog,v 1.45 2007/10/09 09:40:40 dberkholz Exp $
+
+  09 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  -randrproto-1.1.2.ebuild, -randrproto-1.2.0.ebuild:
+  Drop old ebuilds.
 
   03 Jul 2007; Lars Weiler <pylon@gentoo.org> randrproto-1.2.1.ebuild:
   Stable on ppc; bug #175465.
