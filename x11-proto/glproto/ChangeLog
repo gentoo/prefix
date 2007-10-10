@@ -1,6 +1,14 @@
 # ChangeLog for x11-proto/glproto
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/glproto/ChangeLog,v 1.43 2007/07/30 08:16:11 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/glproto/ChangeLog,v 1.45 2007/10/09 09:43:08 dberkholz Exp $
+
+  09 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  -glproto-1.4.7.ebuild:
+  Drop old ebuilds.
+
+  09 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>; glproto-1.4.7.ebuild,
+  glproto-1.4.8.ebuild:
+  Fix quoting issues caught by latest repoman.
 
   30 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>; glproto-1.4.7.ebuild,
   glproto-1.4.8.ebuild:
