@@ -1,6 +1,11 @@
 # ChangeLog for gnome-base/librsvg
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/librsvg/ChangeLog,v 1.157 2007/09/25 04:57:46 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/librsvg/ChangeLog,v 1.158 2007/10/09 04:40:10 leio Exp $
+
+*librsvg-2.18.2 (09 Oct 2007)
+
+  09 Oct 2007; Mart Raudsepp <leio@gentoo.org> +librsvg-2.18.2.ebuild:
+  New series for Gnome 2.20
 
   25 Sep 2007; Joshua Kinard <kumba@gentoo.org> librsvg-2.16.1-r2.ebuild:
   Bumping straight to stable to catch up on some small gnome keywords on mips,
