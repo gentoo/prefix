@@ -24,6 +24,9 @@ src_unpack() {
 
 	cd "${S}"
 	sed -i -e 's:^CFLAGS=\(.*\):CFLAGS=\1 -fPIC:' libmaa/Makefile.in
+	
+	[[ ${CHOST} == *-darwin* ]] && \
+		sed -i -e 's:libtool:glibtool:g' libmaa/Makefile.in Makefile.in
 }
 
 src_compile() {
