@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/oniguruma
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/oniguruma/ChangeLog,v 1.23 2007/10/08 15:47:42 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/oniguruma/ChangeLog,v 1.24 2007/10/09 15:40:14 pylon Exp $
+
+  09 Oct 2007; Lars Weiler <pylon@gentoo.org> oniguruma-5.9.0.ebuild:
+  stable ppc, bug #195113
 
   08 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
   oniguruma-5.9.0.ebuild:
