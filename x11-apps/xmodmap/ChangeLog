@@ -1,6 +1,10 @@
 # ChangeLog for x11-apps/xmodmap
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xmodmap/ChangeLog,v 1.38 2007/09/08 06:24:08 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xmodmap/ChangeLog,v 1.39 2007/10/09 08:52:04 dberkholz Exp $
+
+  09 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  -xmodmap-1.0.1.ebuild:
+  Drop old ebuilds.
 
 *xmodmap-1.0.3 (08 Sep 2007)
 
