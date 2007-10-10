@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.20.0.1.ebuild,v 1.1 2007/10/06 21:28:23 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.20.0.1.ebuild,v 1.2 2007/10/09 11:23:11 leio Exp $
 
 EAPI="prefix"
 
@@ -44,7 +44,7 @@ DOCS="AUTHORS ChangeLog HACKING NEWS README"
 
 pkg_setup() {
 	G2CONF="--disable-scrollkeeper $(use_enable eds) \
-			--with-in-process-applets=notification-area,wncklet"
+			--with-in-process-applets=clock,notification-area,wncklet"
 }
 
 src_unpack() {
