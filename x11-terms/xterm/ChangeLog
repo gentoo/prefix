@@ -1,6 +1,15 @@
 # ChangeLog for x11-terms/xterm
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.214 2007/09/13 18:05:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.217 2007/10/09 18:18:01 armin76 Exp $
+
+  09 Oct 2007; Raúl Porcel <armin76@gentoo.org> xterm-229.ebuild:
+  sparc stable wrt #194017
+
+  09 Oct 2007; Jeroen Roovers <jer@gentoo.org> xterm-229.ebuild:
+  Stable for HPPA (bug #194017).
+
+  09 Oct 2007; Steve Dibb <beandog@gentoo.org> xterm-229.ebuild:
+  amd64 stable, bug 194017
 
   13 Sep 2007; Raúl Porcel <armin76@gentoo.org> xterm-229.ebuild:
   alpha/ia64/x86 stable
