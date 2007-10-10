@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.17 2007/05/07 15:51:29 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.18 2007/10/09 10:18:14 ali_bush Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -15,10 +15,10 @@
 inherit eutils fdo-mime
 
 DEPEND="
-	=dev-java/java-config-2.0*
+	=dev-java/java-config-2*
 	>=sys-apps/portage-2.1"
 RDEPEND="
-	=dev-java/java-config-2.0*
+	=dev-java/java-config-2*
 	=dev-java/java-config-1.3*"
 
 export WANT_JAVA_CONFIG=2
