@@ -95,6 +95,10 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-bindings.patch"
 	epatch "${FILESDIR}/${P}-parallel-build.patch"
 
+	if [[ ${CHOST} == *-darwin* ]]; then
+		epatch "${FILESDIR}/${P}-bindings-prefix.patch"
+	fi
+
 	sed -i \
 		-e 's:LC_COLLATE=C:LC_ALL=C:g' \
 		lib/common/Makefile.* || die "sed failed" # bug 134834
