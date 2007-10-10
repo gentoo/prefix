@@ -122,7 +122,7 @@ src_compile() {
 		--disable-profiling \
 		--without-gnu-malloc \
 		${myconf} || die
-	emake || die "make failed"
+	emake -j1 || die "make failed"
 
 	if use plugins ; then
 		emake -C examples/loadables all others || die
