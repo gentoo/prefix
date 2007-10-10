@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/euses
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/euses/ChangeLog,v 1.33 2007/06/07 11:28:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/euses/ChangeLog,v 1.34 2007/10/09 15:54:32 jer Exp $
+
+  09 Oct 2007; Jeroen Roovers <jer@gentoo.org> euses-2.5.4.ebuild:
+  Bring down src_unpack to bare necessities. Trivial quoting correction.
 
   07 Jun 2007; Raúl Porcel <armin76@gentoo.org> euses-2.5.4.ebuild:
   Add ~alpha wrt #178401
