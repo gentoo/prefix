@@ -8,8 +8,7 @@
 =sys-process/proctools-0.4_pre1
 
 # Elias Pipping <pipping@mi.fu-berlin.de> (09 Oct 2007)
-# gcc-apple, darwin-miscutils are only available on darwin
--sys-devel/gcc-apple
+# darwin-miscutils are only available on darwin
 -sys-apps/darwin-miscutils
 
 # Elias Pipping <pipping@mi.fu-berlin.de> (09 Oct 2007)
