@@ -2,6 +2,13 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*odcctools-20070629-r1 (10 Oct 2007)
+
+  10 Oct 2007; Fabian Groffen <grobian@gentoo.org>
+  +odcctools-20070629-r1.ebuild:
+  Don't install the include files, as they are modified and result in problems
+  for packages like tcl
+
 *odcctools-20070629 (30 Jun 2007)
 
   30 Jun 2007; Fabian Groffen <grobian@gentoo.org>
