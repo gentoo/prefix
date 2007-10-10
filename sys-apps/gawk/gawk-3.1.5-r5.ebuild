@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/gawk-3.1.5-r5.ebuild,v 1.1 2007/08/25 16:10:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/gawk-3.1.5-r5.ebuild,v 1.5 2007/10/09 18:19:07 armin76 Exp $
 
 EAPI="prefix"
 
