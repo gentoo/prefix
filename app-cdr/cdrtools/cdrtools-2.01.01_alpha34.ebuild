@@ -30,9 +30,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.01.01a03-warnings.patch
 	epatch "${FILESDIR}"/${P}-asneeded.patch
 
-	# ppc-macos support
+	# macos support
 	cd "${S}"/DEFAULTS
-	use ppc-macos && MYARCH="mac-os10" || MYARCH="linux"
+	[[ ${CHOST} == *-darwin* ]] && MYARCH="mac-os10" || MYARCH="linux"
 
 	sed -i "s:/opt/schily:/usr:g" Defaults.${MYARCH}
 	sed -i "s:/usr/src/linux/include::g" Defaults.${MYARCH}
@@ -120,7 +120,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	if use ppc-macos ; then
+	if [[ ${CHOST} == *-darwin* ]] ; then
 		einfo
 		einfo "Darwin/OS X use the following device names:"
 		einfo
