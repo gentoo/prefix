@@ -11,7 +11,7 @@ inherit eutils autotools x-modular
 
 DESCRIPTION="X.Org Xaw library"
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="xprint"
 
 RDEPEND="x11-libs/libX11
