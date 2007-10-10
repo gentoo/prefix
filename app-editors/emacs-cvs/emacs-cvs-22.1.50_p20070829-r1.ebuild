@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-22.1.50_p20070829-r1.ebuild,v 1.1 2007/10/06 17:37:13 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-22.1.50_p20070829-r1.ebuild,v 1.2 2007/10/09 17:53:29 ulm Exp $
 
 EAPI="prefix"
 
@@ -73,6 +73,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}/${PN}-freebsd-sparc.patch"
 	epatch "${FILESDIR}/${PN}-make-tramp-temp-file.patch"
+	epatch "${FILESDIR}/${P}-makeinfo-regexp.patch"
 	# ALSA is detected and used even if not requested by the USE=alsa flag.
 	# So remove the automagic check
 	use alsa || epatch "${FILESDIR}/${PN}-disable_alsa_detection-r1.patch"

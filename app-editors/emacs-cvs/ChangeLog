@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.157 2007/10/06 17:37:13 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.158 2007/10/09 17:53:29 ulm Exp $
+
+  09 Oct 2007; Ulrich Mueller <ulm@gentoo.org>
+  +files/emacs-cvs-22.1.50_p20070829-makeinfo-regexp.patch,
+  emacs-cvs-22.1.50_p20070829-r1.ebuild:
+  Fix makeinfo version regexp.
 
 *emacs-cvs-22.1.50_p20070829-r1 (06 Oct 2007)
 
