@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.290 2007/10/01 13:16:44 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.291 2007/10/10 20:34:08 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -1623,6 +1623,11 @@ preserve_old_lib_notify() {
 		fi
 		ewarn "  # revdep-rebuild --library ${lib##*/}"
 	done
+	if [[ ${notice} -eq 1 ]] ; then
+		ewarn
+		ewarn "Once you've finished running revdep-rebuild, it should be safe to"
+		ewarn "delete the old libraries."
+	fi
 }
 
 # @FUNCTION: built_with_use

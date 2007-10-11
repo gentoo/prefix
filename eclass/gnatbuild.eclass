@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.33 2007/09/05 14:11:00 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.34 2007/10/10 18:17:58 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -513,6 +513,21 @@ gnatbuild_src_install() {
 	case $1 in
 	install) # runs provided make install
 		debug-print-section install
+
+		# Looks like we need an access to the bootstrap compiler here too
+		# as gnat apparently wants to compile something during the installation
+		# The spotted obuser was xgnatugn, used to process gnat_ugn_urw.texi,
+		# during prepping the documentation.
+		export PATH="${GNATBOOT}/bin:${PATH}"
+		GNATLIB="${GNATBOOT}/lib/gnatgcc/${BOOT_TARGET}/${BOOT_SLOT}"
+
+		export CC="${GNATBOOT}/bin/gnatgcc"
+		export INCLUDE_DIR="${GNATLIB}/include"
+		export LIB_DIR="${GNATLIB}"
+		export LDFLAGS="-L${GNATLIB}"
+		export ADA_OBJECTS_PATH="${GNATLIB}/adalib"
+		export ADA_INCLUDE_PATH="${GNATLIB}/adainclude"
+
 		# Do not allow symlinks in /usr/lib/gcc/${CHOST}/${MY_PV}/include as
 		# this can break the build.
 		for x in "${GNATBUILD}"/gcc/include/* ; do
