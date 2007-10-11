@@ -1,6 +1,10 @@
 # ChangeLog for app-misc/mc
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.127 2007/07/22 09:52:58 omp Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.128 2007/10/10 07:33:11 opfer Exp $
+
+  10 Oct 2007; Christian Faulhammer <opfer@gentoo.org> mc-4.6.1.ebuild,
+  mc-4.6.1-r3.ebuild, mc-4.6.1-r4.ebuild:
+  remove PROVIDE=virtual/editor as we have now a new-style virtual
 
   22 Jul 2007; David Shakaryan <omp@gentoo.org> mc-4.6.1.ebuild,
   mc-4.6.1-r3.ebuild, mc-4.6.1-r4.ebuild:
