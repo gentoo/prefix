@@ -237,7 +237,7 @@ src_unpack() {
 					# we don't do frameworks!
 					sed -i \
 						-e 's/\(frameworks = \)\["GMP"\]/\1[]/g' \
-						-e 's/\(extraLibraries = \)["m"]/\1["m","gmp"]/g' \
+						-e 's/\(extraLibraries = \)\["m"\]/\1["m","gmp"]/g' \
 						lib/*-apple-darwin/package.conf || die
 				fi
 
