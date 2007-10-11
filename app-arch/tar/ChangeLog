@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/tar
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.118 2007/08/29 10:26:06 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.119 2007/10/10 14:15:58 vapier Exp $
+
+*tar-1.19 (10 Oct 2007)
+
+  10 Oct 2007; Mike Frysinger <vapier@gentoo.org> +tar-1.19.ebuild:
+  Version bump.
 
   29 Aug 2007; Markus Rothe <corsair@gentoo.org> tar-1.18-r2.ebuild:
   Stable on ppc64; bug #189682
