@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.158 2007/10/09 17:53:29 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.159 2007/10/10 06:31:21 opfer Exp $
+
+  10 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  emacs-cvs-22.1.50-r1.ebuild, emacs-cvs-22.1.50_p20070829-r1.ebuild,
+  emacs-cvs-23.0.0-r7.ebuild, emacs-cvs-23.0.50.ebuild:
+  remove PROVIDE=virtual/editor as we have now a new-style virtual
 
   09 Oct 2007; Ulrich Mueller <ulm@gentoo.org>
   +files/emacs-cvs-22.1.50_p20070829-makeinfo-regexp.patch,

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-22.1.50_p20070829-r1.ebuild,v 1.2 2007/10/09 17:53:29 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-22.1.50_p20070829-r1.ebuild,v 1.3 2007/10/10 06:31:21 opfer Exp $
 
 EAPI="prefix"
 
@@ -48,8 +48,6 @@ RDEPEND="sys-libs/ncurses
 
 DEPEND="${RDEPEND}
 	gzip-el? ( app-arch/gzip )"
-
-PROVIDE="virtual/editor"
 
 # FULL_VERSION keeps the full version number, which is needed in order to
 # determine some path information correctly for copy/move operations later on
