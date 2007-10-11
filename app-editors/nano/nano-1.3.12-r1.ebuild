@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-1.3.12-r1.ebuild,v 1.17 2007/01/24 02:43:53 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-1.3.12-r1.ebuild,v 1.18 2007/10/10 06:07:36 opfer Exp $
 
 EAPI="prefix"
 
@@ -24,7 +24,6 @@ IUSE="debug justify minimal ncurses nls slang spell unicode"
 DEPEND=">=sys-libs/ncurses-5.2
 	nls? ( sys-devel/gettext )
 	!ncurses? ( slang? ( sys-libs/slang ) )"
-PROVIDE="virtual/editor"
 
 src_unpack() {
 	unpack ${A}
