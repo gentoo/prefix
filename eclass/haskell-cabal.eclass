@@ -61,27 +61,27 @@ done
 if [[ -n "${CABAL_USE_HADDOCK}" ]]; then
 	IUSE="${IUSE} doc"
 	DEPEND="${DEPEND} doc? ( dev-haskell/haddock )"
-	cabalconf="${cabalconf} --with-haddock=/usr/bin/haddock"
+	cabalconf="${cabalconf} --with-haddock=${EPREFIX}/usr/bin/haddock"
 fi
 
 if [[ -n "${CABAL_USE_ALEX}" ]]; then
 	DEPEND="${DEPEND} dev-haskell/alex"
-	cabalconf="${cabalconf} --with-alex=/usr/bin/alex"
+	cabalconf="${cabalconf} --with-alex=${EPREFIX}/usr/bin/alex"
 fi
 
 if [[ -n "${CABAL_USE_HAPPY}" ]]; then
 	DEPEND="${DEPEND} dev-haskell/happy"
-	cabalconf="${cabalconf} --with-happy=/usr/bin/happy"
+	cabalconf="${cabalconf} --with-happy=${EPREFIX}/usr/bin/happy"
 fi
 
 if [[ -n "${CABAL_USE_C2HS}" ]]; then
 	DEPEND="${DEPEND} dev-haskell/c2hs"
-	cabalconf="${cabalconf} --with-c2hs=/usr/bin/c2hs"
+	cabalconf="${cabalconf} --with-c2hs=${EPREFIX}/usr/bin/c2hs"
 fi
 
 if [[ -n "${CABAL_USE_CPPHS}" ]]; then
 	DEPEND="${DEPEND} dev-haskell/cpphs"
-	cabalconf="${cabalconf} --with-cpphs=/usr/bin/cpphs"
+	cabalconf="${cabalconf} --with-cpphs=${EPREFIX}/usr/bin/cpphs"
 fi
 
 if [[ -n "${CABAL_USE_PROFILE}" ]]; then
@@ -253,7 +253,7 @@ cabal_src_install() {
 	if cabal-is-dummy-lib; then
 		# create a dummy local package conf file for the sake of ghc-updater
 		dodir "$(ghc-confdir)"
-		echo '[]' > "${ED}/$(ghc-confdir)/$(ghc-localpkgconf)"
+		echo '[]' > "${D}/$(ghc-confdir)/$(ghc-localpkgconf)"
 	else
 		cabal-copy
 		cabal-pkg
