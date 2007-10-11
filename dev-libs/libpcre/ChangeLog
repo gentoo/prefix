@@ -1,6 +1,19 @@
 # ChangeLog for dev-libs/libpcre
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.106 2007/10/06 05:09:28 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.109 2007/10/10 19:34:25 cla Exp $
+
+  10 Oct 2007; Dawid Węgliński <cla@gentoo.org> libpcre-7.3-r1.ebuild:
+  Stable on x86 for bug #195416
+
+*libpcre-7.4 (11 Oct 2007)
+
+  11 Oct 2007; Anant Narayanan <anant@gentoo.org> +libpcre-7.4.ebuild:
+  Bump to 7.4 (bug #194269)
+
+*libpcre-7.3-r1 (10 Oct 2007)
+
+  10 Oct 2007; <solar@gentoo.org> +libpcre-7.3-r1.ebuild:
+  - match-limit-recursion
 
   06 Oct 2007; Tom Gall <tgall@gentoo.org> libpcre-7.3.ebuild:
   stable on ppc64 
