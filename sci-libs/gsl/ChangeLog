@@ -1,6 +1,14 @@
 # ChangeLog for sci-libs/gsl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.38 2007/09/16 19:19:52 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.39 2007/10/10 13:22:40 bicatali Exp $
+
+*gsl-1.10 (10 Oct 2007)
+
+  10 Oct 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/gsl-cblas.patch, -gsl-1.4.ebuild, -gsl-1.6.ebuild, -gsl-1.7.ebuild,
+  gsl-1.9-r1.ebuild, +gsl-1.10.ebuild:
+  Version bump, removed old versions, added work around eselect bug #189942.
+  Added new cblas use flag to allow use of external cblas library.
 
   16 Sep 2007; Sébastien Fabbro <bicatali@gentoo.org>
   files/eselect.cblas.gsl, metadata.xml:
