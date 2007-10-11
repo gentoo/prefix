@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/elvis/elvis-2.2.0-r3.ebuild,v 1.2 2007/09/21 22:45:43 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/elvis/elvis-2.2.0-r3.ebuild,v 1.3 2007/10/10 06:16:37 opfer Exp $
 
 EAPI="prefix"
 
@@ -24,7 +24,6 @@ DEPEND=">=sys-libs/ncurses-5.2
 		>=x11-libs/libXpm-3.5.4.2
 		>=x11-libs/libXft-2.1.8.2 )
 	app-admin/eselect-vi"
-PROVIDE="virtual/editor"
 
 S="${WORKDIR}/${PN}-${MY_PV}"
 

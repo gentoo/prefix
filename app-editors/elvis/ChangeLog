@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/elvis
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/elvis/ChangeLog,v 1.33 2007/09/21 21:24:30 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/elvis/ChangeLog,v 1.34 2007/10/10 06:16:37 opfer Exp $
+
+  10 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  elvis-2.2.0-r1.ebuild, elvis-2.2.0-r2.ebuild, elvis-2.2.0-r3.ebuild:
+  remove PROVIDE=virtual/editor as we have now a new-style virtual
 
 *elvis-2.2.0-r3 (21 Sep 2007)
 
