@@ -1,6 +1,18 @@
 # ChangeLog for media-libs/libpng
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.153 2007/10/06 22:57:41 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.156 2007/10/10 18:04:09 cla Exp $
+
+  10 Oct 2007; Dawid Węgliński <cla@gentoo.org> libpng-1.2.21-r3.ebuild:
+  Stable on x86, wrt bug #195387
+
+  10 Oct 2007; Jeroen Roovers <jer@gentoo.org> libpng-1.2.21-r3.ebuild:
+  Stable for HPPA (bug #195387).
+
+*libpng-1.2.21-r3 (10 Oct 2007)
+
+  10 Oct 2007; Doug Goldstein <cardoe@gentoo.org>
+  +files/libpng-1.2.21-null-termination.patch, +libpng-1.2.21-r3.ebuild:
+  Update the memory corruption bug in #194864
 
 *libpng-1.2.21-r2 (06 Oct 2007)
 

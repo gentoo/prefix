@@ -1,0 +1,27 @@
+--- libpng-1.2.21.orig/pngset.c	2007-10-07 16:56:56.062965000 -0500
++++ libpng-1.2.21/pngset.c	2007-10-09 11:47:35.462755000 -0500
+@@ -689,9 +689,10 @@
+    {
+       png_warning(png_ptr, "Insufficient memory to process iCCP chunk.");
+       return;
+    }
+-   png_strncpy(new_iccp_name, name, png_strlen(new_iccp_name)+1);
++   png_strncpy(new_iccp_name, name, png_strlen(name));
++   new_iccp_name[png_strlen(name)] = '\0';
+    new_iccp_profile = (png_charp)png_malloc_warn(png_ptr, proflen);
+    if (new_iccp_profile == NULL)
+    {
+       png_free (png_ptr, new_iccp_name);
+@@ -979,9 +980,10 @@
+            png_warning(png_ptr,
+              "Out of memory while processing sPLT chunk");
+         }
+         /* TODO: use png_malloc_warn */
+-        png_strncpy(to->name, from->name, png_strlen(from->name)+1);
++        png_strncpy(to->name, from->name, png_strlen(from->name));
++        to->name[png_strlen(from->name)] = '\0';
+         to->entries = (png_sPLT_entryp)png_malloc_warn(png_ptr,
+             from->nentries * png_sizeof(png_sPLT_entry));
+         /* TODO: use png_malloc_warn */
+         png_memcpy(to->entries, from->entries,
+
