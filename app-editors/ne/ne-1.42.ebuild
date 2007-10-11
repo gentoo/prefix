@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/ne/ne-1.42.ebuild,v 1.7 2007/03/01 17:20:36 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/ne/ne-1.42.ebuild,v 1.8 2007/10/10 07:09:25 opfer Exp $
 
 EAPI="prefix"
 
@@ -18,8 +18,6 @@ IUSE=""
 RDEPEND=">=sys-libs/ncurses-5.2"
 DEPEND="${RDEPEND}
 	dev-lang/perl"
-
-PROVIDE="virtual/editor"
 
 src_unpack() {
 	unpack ${A}
