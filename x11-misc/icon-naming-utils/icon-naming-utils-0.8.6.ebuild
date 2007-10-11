@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/icon-naming-utils/icon-naming-utils-0.8.6.ebuild,v 1.4 2007/10/09 16:29:44 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/icon-naming-utils/icon-naming-utils-0.8.6.ebuild,v 1.5 2007/10/10 23:40:20 pylon Exp $
 
 EAPI="prefix"
 
