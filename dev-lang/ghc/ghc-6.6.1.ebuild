@@ -226,14 +226,16 @@ src_unpack() {
 					else
 						readline_framework=GNUreadline.framework/Versions/A/GNUreadline
 					fi
-					install_name_tool -change \
-						${readline_framework} \
-						"${EPREFIX}"/lib/libreadline.dylib \
-						lib/*-apple-darwin/ghc-${PV} || die
-					install_name_tool -change \
-						GMP.framework/Versions/A/GMP \
-						"${EPREFIX}"/usr/lib/libgmp.dylib \
-						lib/*-apple-darwin/ghc-${PV} || die
+					for binary in lib/*-apple-darwin/ghc-{${PV},pkg.bin}; do
+						install_name_tool -change \
+							${readline_framework} \
+							"${EPREFIX}"/lib/libreadline.dylib \
+							${binary} || die
+						install_name_tool -change \
+							GMP.framework/Versions/A/GMP \
+							"${EPREFIX}"/usr/lib/libgmp.dylib \
+							${binary} || die
+					done
 					# we don't do frameworks!
 					sed -i \
 						-e 's/\(frameworks = \)\["GMP"\]/\1[]/g' \
