@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/jed/jed-0.99.18.ebuild,v 1.2 2007/06/18 07:10:22 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/jed/jed-0.99.18.ebuild,v 1.3 2007/10/10 06:53:13 opfer Exp $
 
 EAPI="prefix"
 
@@ -24,8 +24,6 @@ RDEPEND="=sys-libs/slang-2*
 	gpm? ( sys-libs/gpm )"
 DEPEND="${RDEPEND}
 	>=sys-apps/sed-4"
-
-PROVIDE="virtual/editor"
 
 src_unpack() {
 	unpack ${A}
