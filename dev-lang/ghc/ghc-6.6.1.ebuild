@@ -230,6 +230,10 @@ src_unpack() {
 						${readline_framework} \
 						"${EPREFIX}"/lib/libreadline.dylib \
 						lib/*-apple-darwin/ghc-${PV} || die
+					install_name_tool -change \
+						GMP.framework/Versions/A/GMP \
+						"${EPREFIX}"/usr/lib/libgmp.dylib \
+						lib/*-apple-darwin/ghc-${PV} || die
 					# we don't do frameworks!
 					sed -i \
 						-e 's/\(frameworks = \)\["GMP"\]/\1[]/g' \
