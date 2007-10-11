@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/jasspa-microemacs
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/jasspa-microemacs/ChangeLog,v 1.26 2007/07/27 05:57:31 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/jasspa-microemacs/ChangeLog,v 1.27 2007/10/10 06:47:18 opfer Exp $
+
+  10 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  jasspa-microemacs-20050505-r3.ebuild,
+  jasspa-microemacs-20060909-r1.ebuild:
+  remove PROVIDE=virtual/editor as we have now a new-style virtual
 
   27 Jul 2007; Ulrich Mueller <ulm@gentoo.org> -files/me,
   -jasspa-microemacs-20060909.ebuild:
