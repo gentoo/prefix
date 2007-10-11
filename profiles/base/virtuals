@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/virtuals,v 1.102 2007/07/02 04:17:23 jmglov Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/virtuals,v 1.104 2007/10/10 12:34:04 bicatali Exp $
 
 # This file describes the packages that by default satisfy a certain virtual
 # That this file exists in the base profile implies that these packages will
@@ -14,14 +14,11 @@ virtual/aspell-dict			app-dicts/aspell-en
 virtual/baselayout			sys-apps/baselayout
 virtual/bittorrent			net-p2p/bittorrent
 virtual/blackbox			x11-wm/blackbox
-virtual/blas				sci-libs/blas-atlas
-virtual/cblas				sci-libs/blas-atlas
 virtual/cdrtools			app-cdr/cdrkit
 virtual/commonlisp			dev-lisp/sbcl
 virtual/cron				sys-process/vixie-cron
 virtual/dev-manager			sys-fs/udev
 virtual/dhcpc				net-misc/dhcpcd
-virtual/editor				app-editors/nano
 virtual/eject				sys-apps/eject
 virtual/fam				app-admin/gamin
 virtual/fuse-python			sys-fs/python-fuse
@@ -36,7 +33,7 @@ virtual/inetd				sys-apps/xinetd
 virtual/j2ee				dev-java/sun-j2ee
 virtual/jabber-server		net-im/jabberd
 virtual/krb5				app-crypt/mit-krb5
-virtual/lapack				sci-libs/lapack-atlas
+virtual/lapack				sci-libs/lapack-reference
 virtual/libc				sys-libs/glibc
 virtual/libpcap				net-libs/libpcap
 virtual/linux-sources		sys-kernel/gentoo-sources

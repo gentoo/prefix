@@ -1,6 +1,40 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.698 2007/10/08 20:18:12 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.709 2007/10/11 00:43:50 cla Exp $
+
+  11 Oct 2007; Dawid Węgliński <cla@gentoo.org> use.local.desc:
+  Added boost flag for net-irc/ezbounce
+
+  10 Oct 2007; Michael Marineau <marineam@gentoo.org> package.mask:
+  Mask ck-sources
+
+  10 Oct 2007; Timo Gurr <tgurr@gentoo.org> use.local.desc:
+  add cups-1.3.3 local USE flag
+
+  10 Oct 2007; Timo Gurr <tgurr@gentoo.org> package.mask:
+  mask cups-1.3.3 for testing
+
+  10 Oct 2007; Stefan Schweizer <genstef@gentoo.org> package.mask:
+  last-rite gfontview
+
+  10 Oct 2007; Christian Faulhammer <opfer@gentoo.org> package.mask:
+  mask app-editors/pico; just useless ebuild, see bug 3464
+
+  10 Oct 2007; Alin Năstac <mrness@gentoo.org> use.local.desc:
+  Rename mail-filter/dkim-milter local flag from approx-regex to diffheaders.
+
+  10 Oct 2007; Sébastien Fabbro <bicatali@gentoo.org> use.local.desc:
+  added local flags: cblas for sci-libs/gsl, int64 for sci-libs/mkl, server
+  for sci-libs/mkl
+
+  09 Oct 2007; Alexis Ballier <aballier@gentoo.org> use.local.desc:
+  add vlc 0.9.0 snapshots local useflags
+
+  09 Oct 2007; Alin Năstac <mrness@gentoo.org> use.local.desc:
+  Add local approx-regex for mail-filter/dkim-milter.
+
+  09 Oct 2007; Krzysiek Pawlik <nelchael@gentoo.org> package.mask:
+  Mask net-im/jabberd2
 
   08 Oct 2007; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
   add fast-user-switch-applet to package.mask
