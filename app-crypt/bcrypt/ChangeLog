@@ -1,0 +1,34 @@
+# ChangeLog for app-crypt/bcrypt
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/bcrypt/ChangeLog,v 1.8 2007/05/13 18:05:41 bangert Exp $
+
+  13 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
+  add herd
+
+  23 Nov 2006; Timothy Redaelli <drizzt@gentoo.org>
+  +files/bcrypt-1.1-Makefile.patch, bcrypt-1.1.ebuild:
+  Added support for custom LDFLAGS and CC.
+
+  20 Sep 2005; Fabian Groffen <grobian@gentoo.org> bcrypt-1.1.ebuild:
+  Marking ~ppc-macos (bug #106599)
+
+  21 Apr 2005; Simon Stelling <blubb@gentoo.org> bcrypt-1.1.ebuild:
+  stable on amd64
+
+  09 Aug 2004; Danny van Dyk <kugelfang@gentoo.org> bcrypt-1.1.ebuild:
+  Marked ~amd64.
+
+*bcrypt-1.1 (18 Jun 2003)
+
+  18 Jun 2003; Dylan Carlson <absinthe@gentoo.org> bcrypt-1.1.ebuild:
+  Initial import.
+
+  NOTE:
+  In addition to encrypting your data, bcrypt will by default overwrite the 
+  original input file with random garbage three times before deleting it in 
+  order to thwart data recovery attempts by persons who may gain access to 
+  your computer. 
+  
+  If you're not quite ready for this level of paranoia yet, use the '-r'
+  switch.  Please see the bcrypt(1) man page for more details.
+
