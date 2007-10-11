@@ -23,7 +23,7 @@ base_src_unpack() {
 	case $1 in
 		unpack)
 			debug-print-section unpack
-			unpack ${A}
+			unpack ${ONLYA:-${A}}
 			;;
 		patch)
 			debug-print-section patch
