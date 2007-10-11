@@ -1,6 +1,24 @@
 # ChangeLog for x11-wm/fluxbox
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.233 2007/09/25 16:20:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.236 2007/10/09 21:28:00 lack Exp $
+
+  09 Oct 2007; Jim Ramsay <lack@gentoo.org>
+  -files/1.0_rc3/fluxbox-1.0_rc3-flicker.patch,
+  -files/1.0_rc3/fluxbox-1.0_rc3-generate_menu_icon_fix.patch,
+  -files/1.0_rc3/fluxbox-1.0_rc3-our-styles-go-over-here.patch,
+  -files/1.0_rc3/startfluxbox_doesnt.patch,
+  -files/1.0_rc3/fluxbox-1.0_rc3-textproperties_segfault.patch,
+  -fluxbox-1.0_rc3.ebuild, -fluxbox-1.0_rc3_p5059.ebuild:
+  Version cleanup
+
+  09 Oct 2007; Jim Ramsay <lack@gentoo.org> fluxbox-1.0.0.ebuild:
+  Small QA changes, thanks dberkholz!
+
+*fluxbox-1.0.0 (09 Oct 2007)
+
+  09 Oct 2007; Jim Ramsay <lack@gentoo.org>
+  +files/1.0.0/gentoo_style_location.patch, +fluxbox-1.0.0.ebuild:
+  New version: 1.0.0 is released! (bug 195197)
 
   25 Sep 2007; Raúl Porcel <armin76@gentoo.org>
   fluxbox-1.0_rc3_p4983.ebuild:
