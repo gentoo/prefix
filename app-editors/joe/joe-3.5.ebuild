@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/joe/joe-3.5.ebuild,v 1.11 2007/05/25 16:46:43 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/joe/joe-3.5.ebuild,v 1.12 2007/10/10 06:57:56 opfer Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,6 @@ IUSE="xterm"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2"
 RDEPEND="xterm? ( >=x11-terms/xterm-215-r1 )"
-PROVIDE="virtual/editor"
 
 pkg_setup() {
 	if use xterm && ! built_with_use x11-terms/xterm paste64; then
