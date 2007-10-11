@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/teco
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/teco/ChangeLog,v 1.16 2007/01/24 02:54:35 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/teco/ChangeLog,v 1.17 2007/10/10 07:22:43 opfer Exp $
+
+  10 Oct 2007; Christian Faulhammer <opfer@gentoo.org> teco-1.00-r2.ebuild,
+  teco-1.00-r3.ebuild:
+  remove PROVIDE=virtual/editor as we have now a new-style virtual
 
   24 Jan 2007; Marius Mauch <genone@gentoo.org> teco-1.00-r2.ebuild,
   teco-1.00-r3.ebuild:

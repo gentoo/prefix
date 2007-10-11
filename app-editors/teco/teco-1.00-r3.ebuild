@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/teco/teco-1.00-r3.ebuild,v 1.6 2007/01/24 02:54:35 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/teco/teco-1.00-r3.ebuild,v 1.7 2007/10/10 07:22:43 opfer Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,6 @@ IUSE="doc"
 
 RDEPEND="sys-libs/ncurses"
 DEPEND="${DEPEND}"
-PROVIDE="virtual/editor"
 
 S=${WORKDIR}
 
