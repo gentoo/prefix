@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vile/vile-9.5-r1.ebuild,v 1.3 2006/10/25 04:21:21 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vile/vile-9.5-r1.ebuild,v 1.4 2007/10/10 07:26:10 opfer Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,6 @@ RDEPEND=">=sys-libs/ncurses-5.2
 DEPEND="${RDEPEND}
 	sys-devel/flex
 	app-admin/eselect-vi"
-PROVIDE="virtual/editor"
 
 src_unpack() {
 	unpack ${A}

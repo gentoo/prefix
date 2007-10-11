@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/vile
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vile/ChangeLog,v 1.30 2007/02/09 21:26:31 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vile/ChangeLog,v 1.31 2007/10/10 07:26:10 opfer Exp $
+
+  10 Oct 2007; Christian Faulhammer <opfer@gentoo.org> vile-9.3h.ebuild,
+  vile-9.4d.ebuild, vile-9.5.ebuild, vile-9.5-r1.ebuild:
+  remove PROVIDE=virtual/editor as we have now a new-style virtual
 
   09 Feb 2007; Fabian Groffen <grobian@gentoo.org> vile-9.4d.ebuild,
   vile-9.5.ebuild:
