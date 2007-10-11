@@ -30,7 +30,7 @@ EAPI="prefix"
 # re-emerge ghc (or ghc-bin). People using vanilla gcc can switch between
 # gcc-3.x and 4.x with no problems.
 
-inherit base eutils flag-o-matic toolchain-funcs ghc-package versionator
+inherit base eutils flag-o-matic toolchain-funcs ghc-package versionator autotools
 
 DESCRIPTION="The Glasgow Haskell Compiler"
 HOMEPAGE="http://www.haskell.org/ghc/"
@@ -220,14 +220,21 @@ src_unpack() {
 						"${EPREFIX}/$(get_libdir):${EPREFIX}/usr/$(get_libdir)" \
 						lib/*-*-solaris2/ghc-${PV} || die
 				elif [[ ${CHOST} == *-darwin* ]] ; then
+					local readline_framework
+					if [[ ${CHOST} == powerpc-*-darwin* ]]; then
+						readline_framework=GNUreadline.framework/GNUreadline
+					else
+						readline_framework=GNUreadline.framework/Versions/A/GNUreadline
+					fi
 					install_name_tool -change \
-						GNUreadline.framework/GNUreadline \
+						${readline_framework} \
 						"${EPREFIX}"/lib/libreadline.dylib \
 						lib/*-apple-darwin/ghc-${PV} || die
-					install_name_tool -change \
-						GMP.framework/Versions/A/GMP \
-						"${EPREFIX}"/usr/lib/libgmp.dylib \
-						lib/*-apple-darwin/ghc-${PV} || die
+					# we don't do frameworks!
+					sed -i \
+						-e 's/\(frameworks = \)\["GMP"\]/\1[]/g' \
+						-e 's/\(extraLibraries = \)["m"]/\1["m","gmp"]/g' \
+						lib/*-apple-darwin/package.conf || die
 				fi
 
 				# Now we need to create some symlinks so this binary looks like
@@ -249,6 +256,9 @@ src_unpack() {
 		# Fix sparc split-objs linking problem
 		epatch "${FILESDIR}/ghc-6.5-norelax.patch"
 
+		# Fix problems with locales other than English
+		epatch "${FILESDIR}"/${P}-detect-gcc-english.patch
+		eautoreconf
 	fi
 }
 
