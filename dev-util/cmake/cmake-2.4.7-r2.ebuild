@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.4.7-r2.ebuild,v 1.2 2007/10/01 17:23:30 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.4.7-r2.ebuild,v 1.3 2007/10/10 19:27:27 phreak Exp $
 
 EAPI="prefix"
 
@@ -42,6 +42,11 @@ src_unpack() {
 
 src_compile() {
 	cd "${S}"
+
+	if [ "$(gcc-major-version)" -eq "3" ] ; then
+		append-flags "-fno-stack-protector"
+	fi
+
 	tc-export CC CXX LD
 
 	[[ ${CHOST} == *-linux* || ${CHOST} == *-solaris* ]] && \

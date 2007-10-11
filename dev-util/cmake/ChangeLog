@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/cmake
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.64 2007/09/27 18:47:16 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.65 2007/10/10 19:27:27 phreak Exp $
+
+  10 Oct 2007; Christian Heim <phreak@gentoo.org> cmake-2.4.6-r1.ebuild,
+  cmake-2.4.7.ebuild, cmake-2.4.7-r1.ebuild, cmake-2.4.7-r2.ebuild:
+  Fixing #156800 by issuing -fno-stack-protector if we are having a GCC_MAJOR
+  equal to 3.
 
 *cmake-2.4.7-r2 (27 Sep 2007)
 

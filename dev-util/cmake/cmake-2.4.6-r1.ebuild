@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.4.6-r1.ebuild,v 1.9 2007/06/26 18:10:09 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.4.6-r1.ebuild,v 1.10 2007/10/10 19:27:27 phreak Exp $
 
 EAPI="prefix"
 
-inherit elisp-common toolchain-funcs eutils versionator qt3
+inherit elisp-common toolchain-funcs eutils versionator qt3 flag-o-matic
 
 DESCRIPTION="Cross platform Make"
 HOMEPAGE="http://www.cmake.org/"
@@ -26,6 +26,11 @@ VIMFILE="${PN}.vim"
 
 src_compile() {
 	cd ${S}
+
+	if [ "$(gcc-major-version)" -eq "3" ] ; then
+		append-flags "-fno-stack-protector"
+	fi
+
 	tc-export CC CXX LD
 	./bootstrap \
 		--prefix="${EPREFIX}"/usr \
