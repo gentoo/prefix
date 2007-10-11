@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/gvim-7.1.123.ebuild,v 1.1 2007/09/27 09:39:57 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/gvim-7.1.123.ebuild,v 1.2 2007/10/10 06:44:32 opfer Exp $
 
 EAPI="prefix"
 
@@ -22,7 +22,6 @@ S="${WORKDIR}/vim${VIM_VERSION/.}"
 DESCRIPTION="GUI version of the Vim text editor"
 KEYWORDS="~amd64 ~ia64 ~x86"
 IUSE="aqua gnome gtk motif nextaw"
-PROVIDE="virtual/editor"
 DEPEND="${DEPEND}
 	~app-editors/vim-core-${PV}
 	x11-libs/libXext
