@@ -89,6 +89,12 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.4.4-darwin-fsf-gcc.patch
 	# python defaults to using .so files... so stupid
 	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-dylib.patch
+	# python doesn't build a libpython2.5.dylib by itself...
+	epatch "${FILESDIR}"/${P}-darwin-libpython2.5.patch
+	# and to build this lib, we need -fno-common, which python doesn't use, and
+	# to have _NSGetEnviron being used, which by default it isn't...
+	[[ ${CHOST} == *-darwin* ]] && \
+		append-flags -fno-common -DWITH_NEXT_FRAMEWORK
 
 	# do not use 'which' to find binaries, but go through the PATH.
 	epatch "${FILESDIR}"/${PN}-2.4.4-ld_so_aix-which.patch
@@ -184,6 +190,10 @@ src_compile() {
 		--with-libc='' \
 		${myconf} || die
 	emake || die "Parallel make failed"
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		# create libpython on Darwin
+		emake libpython2.5.dylib || die
+	fi
 }
 
 src_install() {
