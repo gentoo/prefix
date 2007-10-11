@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/vim
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.287 2007/09/27 09:35:17 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.288 2007/10/10 07:28:10 opfer Exp $
+
+  10 Oct 2007; Christian Faulhammer <opfer@gentoo.org> vim-6.4.ebuild,
+  vim-7.0.235.ebuild, vim-7.1.042.ebuild, vim-7.1.123.ebuild:
+  remove PROVIDE=virtual/editor as we have now a new-style virtual
 
 *vim-7.1.123 (27 Sep 2007)
 

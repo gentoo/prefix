@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/vim-7.1.123.ebuild,v 1.1 2007/09/27 09:35:17 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/vim-7.1.123.ebuild,v 1.2 2007/10/10 07:28:10 opfer Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,6 @@ S="${WORKDIR}/vim${VIM_VERSION/.}"
 DESCRIPTION="Vim, an improved vi-style text editor"
 KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE=""
-PROVIDE="virtual/editor"
 DEPEND="${DEPEND}
 	!minimal? ( ~app-editors/vim-core-${PV} )"
 RDEPEND="${RDEPEND}
