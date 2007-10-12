@@ -252,7 +252,9 @@ haskell-cabal_src_compile() {
 cabal_src_install() {
 	if cabal-is-dummy-lib; then
 		# create a dummy local package conf file for the sake of ghc-updater
-		dodir "$(ghc-confdir)"
+		local ghc_confdir_with_prefix="$(ghc-confdir)"
+		# remove EPREFIX
+		dodir ${ghc_confdir_with_prefix#${EPREFIX}}
 		echo '[]' > "${D}/$(ghc-confdir)/$(ghc-localpkgconf)"
 	else
 		cabal-copy
