@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.10.ebuild,v 1.7 2007/10/10 17:24:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.10.ebuild,v 1.8 2007/10/11 05:39:17 tgall Exp $
 
 EAPI="prefix"
 
