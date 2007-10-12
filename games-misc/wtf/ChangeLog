@@ -1,0 +1,53 @@
+# ChangeLog for games-misc/wtf
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-misc/wtf/ChangeLog,v 1.13 2007/10/08 19:03:20 vapier Exp $
+
+*wtf-20071004 (08 Oct 2007)
+
+  08 Oct 2007; Mike Frysinger <vapier@gentoo.org> +wtf-20071004.ebuild:
+  Version bump.
+
+  18 Jul 2006; Diego Pettenò <flameeyes@gentoo.org> wtf-20051104.ebuild:
+  Add ~x86-fbsd keyword.
+
+*wtf-20051104 (20 Nov 2005)
+
+  20 Nov 2005; Mike Frysinger <vapier@gentoo.org> +wtf-20051104.ebuild:
+  Version bump #113111 by Tony Vroon.
+
+*wtf-20050505-r1 (29 Sep 2005)
+
+  29 Sep 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/wtf-20050505-updates.patch, +wtf-20050505-r1.ebuild:
+  Add some more useful definitions.
+
+  01 Aug 2005; Lina Pezzella <j4rg0n@gentoo.org> wtf-20050505.ebuild:
+  Stable ppc-macos
+
+  01 Jul 2005; Lina Pezzella <j4rg0n@gentoo.org> wtf-20050505.ebuild:
+  Testing ppc-macos. Keyworded on behalf of Fabian Groffen. Bug 75852
+
+*wtf-20050505 (11 May 2005)
+
+  11 May 2005; Mike Frysinger <vapier@gentoo.org> +wtf-20050505.ebuild:
+  Version bump.
+
+*wtf-20040124 (01 Jun 2004)
+
+  01 Jun 2004; Michael Sterrett <mr_bones_@gentoo.org> wtf-20040124.ebuild:
+  version bump - bug #52573
+
+  05 Jan 2004; Jon Portnoy <avenj@gentoo.org> wtf-20021005.ebuild :
+  AMD64 keywords.
+
+  09 Nov 2003; Michael Sterrett <mr_bones_@gentoo.org> wtf-20021005.ebuild:
+  use games eclass; sed in unpack; more error checking/messages
+  Add metadata.xml
+
+  28 Jun 2003; <msterret@gentoo.org> wtf-20021005.ebuild:
+  use sed -i
+
+*wtf-20021005 (04 Mar 2003)
+
+  04 Mar 2003; Mike Frysinger <vapier@gentoo.org> :
+  Initial import.  Ebuild submitted by Paul Thompson <thompson@pobox.com> #14316.
