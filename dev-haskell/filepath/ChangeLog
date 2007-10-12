@@ -1,0 +1,23 @@
+# ChangeLog for dev-haskell/filepath
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/filepath/ChangeLog,v 1.5 2007/08/29 14:30:08 jer Exp $
+
+  29 Aug 2007; Jeroen Roovers <jer@gentoo.org> filepath-1.0.ebuild:
+  Marked ~hppa (bug #187147).
+
+  05 Aug 2007; Lennart Kolmodin <kolmodin@gentoo.org> filepath-1.0.ebuild:
+  Set the CABAL_CORE_LIB_GHC_PV to 6.6.1, ie. this package is bundled with
+  that GHC version.
+
+  27 Jul 2007; Lennart Kolmodin <kolmodin@gentoo.org> filepath-1.0.ebuild:
+  Add profile USE flag and sync KEYWORDS with the overlay.
+
+  11 Jul 2007; Duncan Coutts <dcoutts@gentoo.org> filepath-1.0.ebuild:
+  Marked ~ia64.
+
+*filepath-1.0 (08 Jul 2007)
+
+  08 Jul 2007; Duncan Coutts <dcoutts@gentoo.org> +metadata.xml,
+  +filepath-1.0.ebuild:
+  Initial version.
+
