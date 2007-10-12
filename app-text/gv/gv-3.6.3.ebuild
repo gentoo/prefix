@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gv/gv-3.6.3.ebuild,v 1.2 2007/07/22 10:21:01 omp Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gv/gv-3.6.3.ebuild,v 1.7 2007/10/11 18:26:56 pylon Exp $
 
 EAPI="prefix"
 
@@ -46,5 +46,5 @@ src_install() {
 	make appdefaultsdir="${EPREFIX}/etc/X11/app-defaults" DESTDIR="${D}" install || die "make install failed"
 	doicon src/gv_icon.xbm
 	make_desktop_entry gv "GhostView" /usr/share/pixmaps/gv_icon.xbm "Application;Graphics;Viewer;"
-	dodoc AUTHORS ChangeLog INSTALL README TODO
+	dodoc AUTHORS ChangeLog INSTALL README
 }
