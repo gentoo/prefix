@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.235 2007/10/07 16:59:38 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.236 2007/10/11 05:47:52 vapier Exp $
+
+  11 Oct 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/openssl-0.9.8e-padlock-O0.patch, openssl-0.9.8e-r4.ebuild:
+  Fix from upstream for building with -O0 #185104.
 
 *openssl-0.9.8e-r4 (07 Oct 2007)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8e-r4.ebuild,v 1.1 2007/10/07 16:59:38 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8e-r4.ebuild,v 1.2 2007/10/11 05:47:52 vapier Exp $
 
 EAPI="prefix"
 
@@ -42,6 +42,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.9.8e-CVE-2007-5135.patch #194039
 	epatch "${FILESDIR}"/${PN}-0.9.8e-make.patch #146316
 	epatch "${FILESDIR}"/${PN}-0.9.8e-bsd-sparc64.patch
+	epatch "${FILESDIR}"/${PN}-0.9.8e-padlock-O0.patch #185104
 	[[ $(gcc-version) == "4.2" ]] && epatch "${FILESDIR}"/${PN}-0.9.8-gcc42.patch #158324
 	epatch "${FILESDIR}"/${PN}-0.9.8e-aix.patch # shared aix-gcc
 
