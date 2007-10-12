@@ -264,6 +264,11 @@ src_unpack() {
 
 		# Fix problems with locales other than English
 		epatch "${FILESDIR}"/${P}-detect-gcc-english.patch
+
+		# Make configure find docbook-xsl-stylesheets in prefix
+		epatch "${FILESDIR}"/${P}-prefix.patch
+		eprefixify configure.ac
+
 		eautoreconf
 	fi
 }
