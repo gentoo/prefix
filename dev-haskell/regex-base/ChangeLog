@@ -1,0 +1,25 @@
+# ChangeLog for dev-haskell/regex-base
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-base/ChangeLog,v 1.4 2007/08/29 14:27:03 jer Exp $
+
+  29 Aug 2007; Jeroen Roovers <jer@gentoo.org> regex-base-0.91.ebuild:
+  Marked ~hppa (bug #187147).
+
+  06 Aug 2007; Lennart Kolmodin <kolmodin@gentoo.org>
+  regex-base-0.71.ebuild, regex-base-0.72.ebuild, regex-base-0.91.ebuild:
+  Set ~ia64. Tested by Duncan Coutts <dcoutts@gentoo.org>.
+
+*regex-base-0.71 (06 Aug 2007)
+
+  06 Aug 2007; Lennart Kolmodin <kolmodin@gentoo.org>
+  +regex-base-0.71.ebuild:
+  Add 0.71 too as it is bundled by GHC 6.6
+
+*regex-base-0.91 (05 Aug 2007)
+*regex-base-0.72 (05 Aug 2007)
+
+  05 Aug 2007; Lennart Kolmodin <kolmodin@gentoo.org>
+  +files/regex-base-0.71-0.72.patch, +metadata.xml, +regex-base-0.72.ebuild,
+  +regex-base-0.91.ebuild:
+  Initial import.
+
