@@ -1,0 +1,60 @@
+# ChangeLog for perl-core/Memoize
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Memoize/ChangeLog,v 1.4 2006/08/04 13:28:44 mcummings Exp $
+
+  04 Aug 2006; Michael Cummings <mcummings@gentoo.org> Memoize-1.01.ebuild:
+  Adding perl dep
+
+  26 Aug 2005; Aron Griffis <agriffis@gentoo.org> Memoize-1.01.ebuild:
+  add ia64
+
+*Memoize-1.01 (25 May 2005)
+
+  25 May 2005; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +Memoize-1.01.ebuild:
+  dev-perl => perl-core migration
+
+  28 Apr 2005; Michael Cummings <mcummings@gentoo.org>
+  -Memoize-1.00-r1.ebuild, -Memoize-1.00-r2.ebuild, Memoize-1.01.ebuild:
+  Cleaning
+
+  07 Apr 2005; Michael Hanselmann <hansmi@gentoo.org> Memoize-1.01.ebuild:
+  Stable on ppc.
+
+  30 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  26 May 2004; Bryan Østergaard <kloeri@gentoo.org> Memoize-1.01.ebuild:
+  Stable on alpha.
+
+  19 Jan 2004; <gustavoz@gentoo.org> Memoize-1.01.ebuild:
+  stable on sparc
+
+*Memoize-1.01 (31 May 2003)
+
+  31 May 2003; Michael Cummings <mcummings@gentoo.org> Memoize-1.01.ebuild:
+  New version on CPAN
+
+  13 Feb 2003; Mark Guertin <gerk@gentoo.org> Memoize-1.00-r1.ebuild Memoize-1.00-r2.ebuild:
+  set ppc in keywords
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+  29 Oct 2002; Seemant Kulleen <seemant@gentoo.org> ChangeLog  :
+  forced version bump to install into correct locations
+
+*Memoize-1.00-r2 (21 Jun 2003)
+ 
+  12 Jul 2003; Daniel Ahlberg <aliz@gentoo.org> :
+  Added missing changelog entry.
+
+*Memoize-1.00-r1 (8 Sep 2002)
+  08 Sep 2002; <mcummings@gentoo.org> Memoize-1.00-r1.ebuild
+  Added support for perl-module eclass
+
+*Memoize-1.00 (28 Jun 2002)
+
+  28 Jun 2002; Seemant Kulleen <seemant@gentoo.org> Memoize-1.00.ebuild
+  files/digest-Memoize-1.00 :
+
+  New package courtesy of : rac@intrigue.com (Robert Coie) in bug #4185
