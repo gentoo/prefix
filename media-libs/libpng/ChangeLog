@@ -1,6 +1,23 @@
 # ChangeLog for media-libs/libpng
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.156 2007/10/10 18:04:09 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.161 2007/10/11 18:36:19 armin76 Exp $
+
+  11 Oct 2007; Raúl Porcel <armin76@gentoo.org> libpng-1.2.21-r3.ebuild:
+  alpha/ia64/sparc stable wrt #195387
+
+  11 Oct 2007; Jeroen Roovers <jer@gentoo.org>
+  files/digest-libpng-1.2.18-r1, files/digest-libpng-1.2.20,
+  files/digest-libpng-1.2.21-r2, files/digest-libpng-1.2.21-r3, Manifest:
+  Fix libpng-manual.txt digest.
+
+  11 Oct 2007; Lars Weiler <pylon@gentoo.org> libpng-1.2.21-r3.ebuild:
+  stable ppc, bug #195387
+
+  11 Oct 2007; Mike Doty <kingtaco@gentoo.org> libpng-1.2.21-r3.ebuild:
+  amd64 stable bug 195387
+
+  11 Oct 2007; Tom Gall <tgall@gentoo.org> libpng-1.2.21-r3.ebuild:
+  stable on ppc64, bug #195387
 
   10 Oct 2007; Dawid Węgliński <cla@gentoo.org> libpng-1.2.21-r3.ebuild:
   Stable on x86, wrt bug #195387
