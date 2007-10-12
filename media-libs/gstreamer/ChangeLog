@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/gstreamer
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.187 2007/09/26 15:56:03 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.188 2007/10/11 07:58:12 tgall Exp $
+
+  11 Oct 2007; Tom Gall <tgall@gentoo.org> gstreamer-0.10.14.ebuild:
+  stable on ppc64
 
   26 Sep 2007; Raúl Porcel <armin76@gentoo.org> gstreamer-0.10.14.ebuild:
   alpha/ia64 stable wrt #190900
