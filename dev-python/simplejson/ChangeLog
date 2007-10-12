@@ -1,6 +1,14 @@
 # ChangeLog for dev-python/simplejson
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/simplejson/ChangeLog,v 1.5 2007/07/04 21:30:14 lucass Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/simplejson/ChangeLog,v 1.6 2007/10/11 11:19:21 hansmi Exp $
+
+  11 Oct 2007; Michael Hanselmann <hansmi@gentoo.org>
+  simplejson-1.7.1.ebuild:
+  Stable on amd64, x86.
+
+  11 Oct 2007; Michael Hanselmann <hansmi@gentoo.org>
+  simplejson-1.7.1.ebuild:
+  Stable on amd64, x86.
 
   04 Jul 2007; Lukasz Strzygowski <lucass@gentoo.org>
   -simplejson-1.6.ebuild, simplejson-1.7.1.ebuild:
