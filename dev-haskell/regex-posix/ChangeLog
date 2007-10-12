@@ -1,0 +1,18 @@
+# ChangeLog for dev-haskell/regex-posix
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-posix/ChangeLog,v 1.3 2007/08/29 14:27:24 jer Exp $
+
+  29 Aug 2007; Jeroen Roovers <jer@gentoo.org> regex-posix-0.92.ebuild:
+  Marked ~hppa (bug #187147).
+
+  06 Aug 2007; Lennart Kolmodin <kolmodin@gentoo.org>
+  regex-posix-0.71.ebuild, regex-posix-0.92.ebuild:
+  Add ~ia64. Tested by Duncan Coutts <dcoutts@gentoo.org>.
+
+*regex-posix-0.92 (05 Aug 2007)
+*regex-posix-0.71 (05 Aug 2007)
+
+  05 Aug 2007; Lennart Kolmodin <kolmodin@gentoo.org> +metadata.xml,
+  +regex-posix-0.71.ebuild, +regex-posix-0.92.ebuild:
+  Initial import.
+
