@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.633 2007/10/07 02:12:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.634 2007/10/11 04:46:22 vapier Exp $
+
+*gcc-4.2.2 (11 Oct 2007)
+
+  11 Oct 2007; Mike Frysinger <vapier@gentoo.org> +gcc-4.2.2.ebuild:
+  Version bump.
 
 *gcc-4.2.1 (07 Oct 2007)
 
