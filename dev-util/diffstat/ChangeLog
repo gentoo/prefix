@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/diffstat
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/ChangeLog,v 1.59 2007/09/25 23:33:55 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/ChangeLog,v 1.60 2007/10/11 12:09:52 swegener Exp $
+
+  11 Oct 2007; Sven Wegener <swegener@gentoo.org> diffstat-1.43.ebuild,
+  diffstat-1.45.ebuild:
+  Switch to make install, diffutils is only a runtime dependency.
 
 *diffstat-1.45 (25 Sep 2007)
 
