@@ -1,6 +1,11 @@
 # ChangeLog for x11-wm/fluxbox
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.236 2007/10/09 21:28:00 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.237 2007/10/11 18:19:43 lack Exp $
+
+  11 Oct 2007; Jim Ramsay <lack@gentoo.org> fluxbox-1.0.0.ebuild,
+  fluxbox-1.0_rc3_p4983.ebuild:
+  Newest fluxbox is incompatible with fbdesk-1.2.1 (will be fixed by upstream
+  in next fbdesk release, bug 191717)
 
   09 Oct 2007; Jim Ramsay <lack@gentoo.org>
   -files/1.0_rc3/fluxbox-1.0_rc3-flicker.patch,
