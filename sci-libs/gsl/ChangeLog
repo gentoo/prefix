@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/gsl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.39 2007/10/10 13:22:40 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.40 2007/10/11 16:55:45 bicatali Exp $
+
+  11 Oct 2007; Sébastien Fabbro <bicatali@gentoo.org> gsl-1.9-r1.ebuild,
+  gsl-1.10.ebuild:
+  fixed lib->get_libdir for eselect bug workaround
 
 *gsl-1.10 (10 Oct 2007)
 
