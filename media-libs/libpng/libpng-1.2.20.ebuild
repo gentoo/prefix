@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.20.ebuild,v 1.1 2007/09/20 05:34:20 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.20.ebuild,v 1.2 2007/10/12 14:50:11 vapier Exp $
 
 EAPI="prefix"
 
@@ -8,20 +8,18 @@ inherit libtool multilib eutils flag-o-matic
 
 DESCRIPTION="Portable Network Graphics library"
 HOMEPAGE="http://www.libpng.org/"
-SRC_URI="mirror://sourceforge/libpng/${P}.tar.bz2
-	doc? ( http://www.libpng.org/pub/png/libpng-manual.txt )"
+SRC_URI="mirror://sourceforge/libpng/${P}.tar.bz2"
 
 LICENSE="as-is"
 SLOT="1.2"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
-IUSE="doc"
+IUSE=""
 
 DEPEND="sys-libs/zlib"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	use doc && cp "${WORKDIR}"/${PN}-manual.txt .
 	epatch "${FILESDIR}"/1.2.7-gentoo.diff
 
 	# So we get sane .so versioning on FreeBSD
@@ -31,7 +29,6 @@ src_unpack() {
 src_install() {
 	emake DESTDIR="${D}" install || die
 	dodoc ANNOUNCE CHANGES KNOWNBUG README TODO Y2KINFO
-	use doc && dodoc libpng-manual.txt
 }
 
 pkg_postinst() {
