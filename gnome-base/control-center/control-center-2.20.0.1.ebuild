@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/control-center-2.20.0.1.ebuild,v 1.1 2007/10/04 04:25:18 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/control-center-2.20.0.1.ebuild,v 1.2 2007/10/12 09:50:48 leio Exp $
 
 EAPI="prefix"
 
@@ -43,7 +43,7 @@ RDEPEND=">=gnome-base/gnome-vfs-2.2
 	>=gnome-base/gnome-menus-2.11.1
 	>=gnome-base/gnome-panel-2
 	>=gnome-base/libgnomekbd-0.1
-	esd? ( media-sound/esound )
+	esd? ( >=media-sound/esound-0.2.38 )
 	hal? ( >=sys-apps/hal-0.5.6 )
 	dev-libs/libxml2
 	>=x11-wm/metacity-2.8.6-r1
@@ -51,11 +51,8 @@ RDEPEND=">=gnome-base/gnome-vfs-2.2
 	>=gnome-base/libgnome-2.2
 	media-libs/freetype
 	>=gnome-base/orbit-2.12.4
-	||  (
-		>=dev-libs/dbus-glib-0.71
-		( <sys-apps/dbus-0.90 >=sys-apps/dbus-0.60 )
-	)
-	eds? ( >=gnome-extra/evolution-data-server-1.7 )
+	>=dev-libs/dbus-glib-0.71
+	eds? ( >=gnome-extra/evolution-data-server-1.7.90 )
 	!arm? ( alsa? ( >=media-libs/alsa-lib-0.9 ) )
 	>=media-libs/gst-plugins-base-0.10.2
 	>=media-libs/gstreamer-0.10.2"
@@ -95,12 +92,6 @@ src_unpack() {
 	epatch "${FILESDIR}/${PN}-2.18.1-gnome-doc-utils-fix.patch"
 
 	use esd || epatch "${FILESDIR}/${PN}-2.19.90-no-esd.patch"
-
-	# Fix tests
-	echo "capplets/appearance/data/gnome-appearance-properties.desktop.in" >> "${S}/po/POTFILES.skip"
-	echo "capplets/appearance/data/gnome-theme-installer.desktop.in" >> "${S}/po/POTFILES.skip"
-	echo "capplets/appearance/data/gnome-appearance-properties.desktop.in" >> "${S}/po/POTFILES.skip"
-	echo "capplets/appearance/data/gnome-theme-installer.desktop.in" >> "${S}/po/POTFILES.skip"
 
 	eautoreconf
 }

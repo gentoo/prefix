@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/control-center-2.18.1.ebuild,v 1.15 2007/09/23 04:56:49 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/control-center-2.18.1.ebuild,v 1.16 2007/10/12 09:55:01 leio Exp $
 
 EAPI="prefix"
 
@@ -91,16 +91,16 @@ src_unpack() {
 	gnome2_src_unpack
 
 	# Gentoo-specific support for xcursor themes. See bug #103638.
-	epatch ${FILESDIR}/${PN}-2.11-gentoo_xcursor.patch
+	epatch "${FILESDIR}/${PN}-2.11-gentoo_xcursor.patch"
 
 	# Disable the master pty check, as it causes sandbox violations
-	epatch ${FILESDIR}/${PN}-2.13.5-disable-master-pty.patch
+	epatch "${FILESDIR}/${PN}-2.13.5-disable-master-pty.patch"
 
 	# Allow building with scrollkeeper
-	epatch ${FILESDIR}/${PN}-2.18.1-gnome-doc-utils-fix.patch
+	epatch "${FILESDIR}/${PN}-2.18.1-gnome-doc-utils-fix.patch"
 
 	# Build on fbsd.  Bug #176655
-	epatch ${FILESDIR}/${PN}-2.18.1-fbsd.patch
+	epatch "${FILESDIR}/${PN}-2.18.1-fbsd.patch"
 
 	eautoreconf
 	intltoolize --force || die
