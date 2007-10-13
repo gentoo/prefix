@@ -16,7 +16,7 @@ SRC_URI="http://www.haskell.org/ghc/dist/${GHC_PV}/ghc-${GHC_PV}-src-extralibs.t
 LICENSE="BSD"
 SLOT="0"
 
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND=">=dev-lang/ghc-6.6"
