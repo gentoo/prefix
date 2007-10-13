@@ -14,7 +14,7 @@ SRC_URI="http://abridgegame.org/darcs/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="doc"
 
 DEPEND=">=net-misc/curl-7.10.2
