@@ -14,7 +14,7 @@ LICENSE="BSD"
 SLOT="0"
 
 #if possible try testing with "~ppc"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND=">=virtual/ghc-6.4"
