@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/libpng
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.162 2007/10/12 14:50:11 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.163 2007/10/13 19:03:55 vapier Exp $
+
+*libpng-1.2.22 (13 Oct 2007)
+
+  13 Oct 2007; Mike Frysinger <vapier@gentoo.org> +libpng-1.2.22.ebuild:
+  Version bump.
 
   12 Oct 2007; Mike Frysinger <vapier@gentoo.org> libpng-1.2.18-r1.ebuild,
   libpng-1.2.20.ebuild, libpng-1.2.21-r2.ebuild, libpng-1.2.21-r3.ebuild:
