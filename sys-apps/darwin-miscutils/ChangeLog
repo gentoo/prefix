@@ -2,6 +2,12 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*darwin-miscutils-4 (14 Oct 2007)
+
+  14 Oct 2007; Fabian Groffen <grobian@gentoo.org>
+  -darwin-miscutils-3.ebuild, +darwin-miscutils-4.ebuild:
+  Add some tools of developer_cmds, to have rpcgen and unifdef
+
 *darwin-miscutils-3 (17 Aug 2007)
 
   17 Aug 2007; Elias Pipping <pipping@mi.fu-berlin.de>

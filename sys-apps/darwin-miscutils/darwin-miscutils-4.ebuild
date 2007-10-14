@@ -8,11 +8,13 @@ inherit toolchain-funcs
 
 MISC_VER=18
 SHELL_VER=81
+DEV_VER=39
 
 DESCRIPTION="Miscellaneous commands used on Darwin/Mac OS X systems"
 HOMEPAGE="http://www.opensource.apple.com/"
 SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/misc_cmds-${MISC_VER}.tar.gz
-	http://www.opensource.apple.com/darwinsource/tarballs/other/shell_cmds-${SHELL_VER}.tar.gz"
+	http://www.opensource.apple.com/darwinsource/tarballs/other/shell_cmds-${SHELL_VER}.tar.gz
+	http://www.opensource.apple.com/darwinsource/tarballs/other/developer_cmds-${DEV_VER}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
@@ -27,17 +29,12 @@ S=${WORKDIR}
 src_compile() {
 	local TS=${S}/misc_cmds-${MISC_VER}
 	# tsort is provided by coreutils
-	for t in cal leave lock units ; do
+	for t in cal leave lock units calendar; do
 		cd "${TS}/${t}"
 		echo "in ${TS}/${t}:"
-		echo "$(tc-getCC) -o ${t} ${t}.c"
-		$(tc-getCC) -o ${t} ${t}.c || die "failed to compile $t"
+		echo "$(tc-getCC) -o ${t}" *.c
+		$(tc-getCC) -o ${t} *.c || die "failed to compile $t"
 	done
-	cd "${TS}/calendar"
-	echo "in ${TS}/calendar:"
-	echo "$(tc-getCC) -o calendar calendar.c io.c day.c ostern.c paskha.c"
-	$(tc-getCC) -o calendar calendar.c io.c day.c ostern.c paskha.c \
-		|| die "failed to compile calendar"
 
 	TS=${S}/shell_cmds-${SHELL_VER}
 	# only pick those tools not provided by coreutils, findutils
@@ -59,6 +56,20 @@ src_compile() {
 	echo "$(tc-getCC) -DSUCKAGE -lresolv -o w w.c pr_time.c proc_compare.c"
 	$(tc-getCC) -DSUCKAGE -lresolv -o w w.c pr_time.c proc_compare.c \
 		|| die "failed to compile w"
+
+	TS=${S}/developer_cmds-${DEV_VER}
+	# only pick those tools that do not conflict (no ctags and indent)
+	# do not install lorder, mkdep and vgrind as they are a non-prefix-aware
+	# shell scripts
+	for t in \
+		asa error hexdump rpcgen unifdef what;
+	do
+		echo "in ${TS}/${t}:"
+		echo "$(tc-getCC) -o ${t}" *.c
+		cd "${TS}/${t}"
+		sed -i -e '/^__FBSDID/d' *.c
+		$(tc-getCC) -o ${t} *.c || die "failed to compile $t"
+	done
 }
 
 src_install() {
@@ -77,12 +88,21 @@ src_install() {
 		renice script shlock su time w whereis;
 	do
 		cp "${TS}/${t}/${t}" "${ED}"/usr/bin/
-		doman "${TS}/${t}/${t}.1"
+		[[ -f "${TS}/${t}/${t}.1" ]] && doman "${TS}/${t}/${t}.1"
+		[[ -f "${TS}/${t}/${t}.8" ]] && doman "${TS}/${t}/${t}.8"
 	done
 	cp "${TS}/w/w" "${ED}"/usr/bin/uptime
 	doman "${TS}/w/uptime.1"
 	for t in hostname kill; do
 		cp "${TS}/${t}/${t}" "${ED}"/bin/
+		doman "${TS}/${t}/${t}.1"
+	done
+
+	TS=${S}/developer_cmds-${DEV_VER}
+	for t in \
+		asa error hexdump rpcgen unifdef what;
+	do
+		cp "${TS}/${t}/${t}" "${ED}"/usr/bin/
 		doman "${TS}/${t}/${t}.1"
 	done
 }
