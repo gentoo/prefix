@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/activesupport-1.4.3.ebuild,v 1.1 2007/10/06 16:25:55 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/activesupport-1.4.3.ebuild,v 1.2 2007/10/13 05:27:58 tgall Exp $
 
 EAPI="prefix"
 
