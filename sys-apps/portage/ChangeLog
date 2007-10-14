@@ -2,6 +2,12 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.8123 (14 Oct 2007)
+
+  14 Oct 2007; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.8027.ebuild, +portage-2.2.00.8123.ebuild:
+  New snapshot that gets rid of the usr/share: no such file or directory error
+
 *portage-2.2.00.8110 (13 Oct 2007)
 
   13 Oct 2007; Fabian Groffen <grobian@gentoo.org>
