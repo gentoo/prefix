@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit distutils
+inherit distutils eutils
 
 DESCRIPTION="Command line interface to (Gentoo) Bugzilla"
 HOMEPAGE="http://www.liquidx.net/pybugz/"
@@ -16,3 +16,10 @@ IUSE=""
 DEPEND="|| ( >=dev-lang/python-2.5
 	( >=dev-lang/python-2.4
 		dev-python/elementtree ) )"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify bugz.py
+}
