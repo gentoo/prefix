@@ -82,6 +82,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/subversion-apr_cppflags.patch
 	epatch "${FILESDIR}"/subversion-1.4.3-debug-config.patch
 	epatch "${FILESDIR}"/subversion-1.4.3-neon-0.26.3.patch
+	epatch "${FILESDIR}"/subversion-prefix.patch
+	eprefixify contrib/client-side/svn_load_dirs.pl.in
 
 	sed -e "s:apr-config:$(apr_config):g" \
 		-e "s:apu-config:$(apu_config):g" \
