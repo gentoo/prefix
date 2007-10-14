@@ -59,6 +59,10 @@ src_unpack() {
 	epatch "${FILESDIR}"/netpbm-10.31-build.patch
 	epatch "${FILESDIR}"/netpbm-10.35.0-xml2.patch #137871
 
+	epatch "${FILESDIR}"/netpbm-prefix.patch
+	eprefixify converter/pbm/pbmtox10bm generator/ppmrainbow \
+	editor/{ppmfade,pnmflip,pnmquant,ppmquant,ppmshadow}
+
 	rm -f configure
 	cp Makefile.config.in Makefile.config
 	cat >> Makefile.config <<-EOF

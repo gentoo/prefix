@@ -1,0 +1,56 @@
+--- converter/pbm/pbmtox10bm~	2007-10-14 11:12:34 +0200
++++ converter/pbm/pbmtox10bm	2007-10-14 11:14:12 +0200
+@@ -1,4 +1,4 @@
+-#! /usr/bin/perl
++#! @GENTOO_PORTAGE_EPREFIX@/usr/bin/perl
+ 
+ #============================================================================
+ #  This is a compatibility interface to Pbmtoxbm.
+--- editor/ppmfade~	2007-10-14 11:17:35 +0200
++++ editor/ppmfade	2007-10-14 11:20:02 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl -w
+ #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+ #
+ #  This program creates a fade (a sequence of frames) between two images.
+--- editor/pnmflip~	2007-10-14 11:20:37 +0200
++++ editor/pnmflip	2007-10-14 11:20:45 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl -w
+ 
+ #============================================================================
+ #  This is a compatibility interface to Pamflip.
+--- editor/pnmquant~	2007-10-14 11:21:02 +0200
++++ editor/pnmquant	2007-10-14 11:21:13 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl -w
+ 
+ ##############################################################################
+ #                         pnmquant 
+--- editor/ppmquant~	2007-10-14 11:21:35 +0200
++++ editor/ppmquant	2007-10-14 11:21:43 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl -w
+ ##############################################################################
+ #  This is nothing but a compatibility interface for Pnmquant.
+ #  An old program coded to call Ppmquant will continue working because
+--- editor/ppmshadow~	2007-10-14 11:33:01 +0200
++++ editor/ppmshadow	2007-10-14 11:33:13 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl -w
+ 
+ #                         P P M S H A D O W
+ 
+--- generator/ppmrainbow~	2007-10-14 11:22:04 +0200
++++ generator/ppmrainbow	2007-10-14 11:22:14 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -wl
++#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl -wl
+ use strict;
+ use Getopt::Long;
+ 
