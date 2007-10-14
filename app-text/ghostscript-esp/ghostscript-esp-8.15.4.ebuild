@@ -87,6 +87,9 @@ src_unpack() {
 		-e "s:GS_DOCDIR=.*:GS_DOCDIR=${EPREFIX}/usr/share/doc/${PF}/html:" \
 		src/Makefile.in src/*.mak || die "sed failed"
 
+	epatch "${FILESDIR}"/${PN}-prefix.patch
+	eprefixify lib/fixmswrd.pl
+
 	epatch "${FILESDIR}"/ghostscript-esp-8.15.3-darwin.patch
 	cp "${EPREFIX}"/usr/share/automake-1.9/install-sh "${S}"
 	AT_NOELIBTOOLIZE="yes" eautoreconf

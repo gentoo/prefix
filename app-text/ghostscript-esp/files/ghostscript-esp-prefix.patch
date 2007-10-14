@@ -1,0 +1,8 @@
+--- lib/fixmswrd.pl~	2007-10-14 10:58:15 +0200
++++ lib/fixmswrd.pl	2007-10-14 10:59:37 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl
+ # $Id: fixmswrd.pl,v 1.4 2002/02/21 21:53:01 giles Exp $
+ 
+ #   (C) 1997 Anthony Shipman
