@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.6.1.ebuild,v 1.1 2007/10/12 17:03:14 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.6.1.ebuild,v 1.2 2007/10/13 14:39:37 dirtyepic Exp $
 
 EAPI="prefix"
 
@@ -9,12 +9,21 @@ inherit autotools eutils multilib
 MY_P=${P/-bindings/}
 DESCRIPTION="rendering bindings for GUI toolkits for poppler"
 HOMEPAGE="http://poppler.freedesktop.org/"
-SRC_URI="http://poppler.freedesktop.org/${MY_P}.tar.gz"
+
+# Creating the testsuite tarball (must be done for every release)
+#
+# cvs -d :pserver:anoncvs@cvs.freedesktop.org:/cvs/poppler login
+# cvs -d :pserver:anoncvs@cvs.freedesktop.org:/cvs/poppler co test
+# tar czf poppler-test-${PV}.tar.gz
+# upload to d.g.o/space/distfiles-local
+
+SRC_URI="http://poppler.freedesktop.org/${MY_P}.tar.gz
+		test? ( mirror://gentoo/poppler-test-0.6.1.tar.gz )"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~x86"
-IUSE="gtk qt3 cairo qt4"
+IUSE="gtk qt3 cairo qt4 test"
 
 RDEPEND="~app-text/poppler-${PV}
 	cairo? ( >=x11-libs/cairo-0.5 )
