@@ -1,6 +1,9 @@
 # ChangeLog for media-fonts/dejavu
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.92 2007/09/28 17:53:13 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.93 2007/10/13 07:30:02 tgall Exp $
+
+  13 Oct 2007; Tom Gall <tgall@gentoo.org> dejavu-2.19.ebuild:
+  stable on ppc64, bug #194104
 
   28 Sep 2007; Raúl Porcel <armin76@gentoo.org> dejavu-2.19.ebuild:
   alpha/ia64/x86 stable wrt #194104
