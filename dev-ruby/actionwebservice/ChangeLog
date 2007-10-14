@@ -1,6 +1,16 @@
 # ChangeLog for dev-ruby/actionwebservice
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionwebservice/ChangeLog,v 1.57 2007/10/06 22:27:53 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionwebservice/ChangeLog,v 1.59 2007/10/13 06:33:49 graaff Exp $
+
+*actionwebservice-1.2.5 (13 Oct 2007)
+
+  13 Oct 2007; Hans de Graaff <graaff@gentoo.org>
+  +actionwebservice-1.2.5.ebuild:
+  Version bump with security fixes, bug 195315
+
+  13 Oct 2007; Tom Gall <tgall@gentoo.org>
+  actionwebservice-1.2.3.ebuild, actionwebservice-1.2.4.ebuild:
+  stable on ppc64 and added ~ppc64
 
   06 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
   actionwebservice-1.2.3.ebuild:
