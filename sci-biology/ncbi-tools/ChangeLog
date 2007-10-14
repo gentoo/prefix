@@ -1,6 +1,15 @@
 # ChangeLog for sci-biology/ncbi-tools
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.53 2007/06/05 11:00:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.54 2007/10/13 23:09:17 je_fro Exp $
+
+  13 Oct 2007; <jeff@gentoo.org> ncbi-tools-20050605.ebuild,
+  +ncbi-tools-20070826.ebuild:
+  Added quotes to make repoman happy.
+
+*ncbi-tools-20070826 (13 Oct 2007)
+
+  13 Oct 2007; <jeff@gentoo.org> +ncbi-tools-20070826.ebuild:
+  New version - mpiblast compilation broken at present.
 
   05 Jun 2007; Raúl Porcel <armin76@gentoo.org> ncbi-tools-20060507.ebuild:
   alpha stable wrt #152292
