@@ -72,3 +72,19 @@
    ARGS="-dump"
  else
    echo >&2 "No way to convert HTML to text found."
+--- configure.in~	2004-02-11 15:14:15 +0100
++++ configure.in	2007-10-14 10:40:51 +0200
+@@ -20,11 +20,11 @@
+ AC_SUBST(docdir)
+ 
+ dnl Checks for programs.
+-jade_bindirs="/usr/bin /usr/local/bin"
++jade_bindirs="@GENTOO_PORTAGE_EPREFIX@/usr/bin"
+ AC_FIND_PROGRAM(nsgmls, $jade_bindirs, jade_bindir)
+ AC_SUBST(jade_bindir)
+ 
+-perl_bindirs="/usr/bin /usr/local/bin"
++perl_bindirs="@GENTOO_PORTAGE_EPREFIX@/usr/bin"
+ AC_FIND_PROGRAM(perl, $perl_bindirs, perl_bindir)
+ AC_SUBST(perl_bindir)
+ 

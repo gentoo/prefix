@@ -47,7 +47,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${MY_P}-elinks.patch
 	epatch "${FILESDIR}"/${MY_P}-prefix.patch
-	eprefixify doc/{man,HTML}/Makefile.am bin/jw.in backends/txt
+	eprefixify doc/{man,HTML}/Makefile.am bin/jw.in backends/txt configure.in
 	eautoreconf
 }
 
