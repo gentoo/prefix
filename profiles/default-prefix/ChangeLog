@@ -2,6 +2,9 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Oct 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
+  mask =dev-libs/openssl-0.9.8f
+
   13 Oct 2007; Fabian Groffen <grobian@gentoo.org> sunos/package.mask:
   Mask sqlite-3.4.2 on Solaris as it doesn't compile
 
