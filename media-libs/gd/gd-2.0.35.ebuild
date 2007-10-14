@@ -26,6 +26,9 @@ src_unpack() {
 	cd "${S}"
 	eautoconf
 	find . -type f -print0 | xargs -0 touch -r configure
+
+	epatch "${FILESDIR}"/${PN}-prefix.patch
+	eprefixify bdftogd
 }
 
 src_compile() {
