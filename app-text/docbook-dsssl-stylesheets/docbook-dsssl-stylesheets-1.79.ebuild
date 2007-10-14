@@ -28,6 +28,8 @@ src_unpack() {
 	unpack ${A}
 	cd ${S}
 	cp ${FILESDIR}/${PN}-1.77.Makefile Makefile
+	epatch "${FILESDIR}"/${PN}-prefix.patch
+	eprefixify bin/collateindex.pl
 }
 
 src_compile() {
