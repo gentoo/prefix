@@ -1,6 +1,9 @@
 # ChangeLog for x11-plugins/enigmail
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/ChangeLog,v 1.98 2007/09/25 16:12:52 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/ChangeLog,v 1.99 2007/10/13 16:04:45 corsair Exp $
+
+  13 Oct 2007; Markus Rothe <corsair@gentoo.org> enigmail-0.95.3.ebuild:
+  Stable on ppc64; bug #193542
 
   25 Sep 2007; Raúl Porcel <armin76@gentoo.org> enigmail-0.95.3.ebuild:
   sparc stable wrt #193542
