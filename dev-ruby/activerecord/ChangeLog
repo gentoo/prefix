@@ -1,6 +1,16 @@
 # ChangeLog for dev-ruby/activerecord
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.55 2007/10/06 22:24:44 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.57 2007/10/13 06:29:02 graaff Exp $
+
+*activerecord-1.15.5 (13 Oct 2007)
+
+  13 Oct 2007; Hans de Graaff <graaff@gentoo.org>
+  +activerecord-1.15.5.ebuild:
+  Version bump with security fixes, bug 195315
+
+  13 Oct 2007; Tom Gall <tgall@gentoo.org>
+  activerecord-1.15.3.ebuild, activerecord-1.15.4.ebuild:
+  added ~ppc64, stable on ppc64
 
   06 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
   activerecord-1.15.3.ebuild:

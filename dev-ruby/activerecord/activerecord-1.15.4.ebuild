@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/activerecord-1.15.4.ebuild,v 1.1 2007/10/06 16:28:41 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/activerecord-1.15.4.ebuild,v 1.2 2007/10/13 05:43:04 tgall Exp $
 
 EAPI="prefix"
 
