@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/rails
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.81 2007/10/07 07:59:55 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.82 2007/10/13 06:36:11 graaff Exp $
+
+*rails-1.2.5 (13 Oct 2007)
+
+  13 Oct 2007; Hans de Graaff <graaff@gentoo.org> +rails-1.2.5.ebuild:
+  Version bump with security fixes, bug 195315
 
   07 Oct 2007; Hans de Graaff <graaff@gentoo.org> rails-1.2.4.ebuild:
   Add back the code that handles eselect, I must have used the wrong file to
