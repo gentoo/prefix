@@ -37,6 +37,9 @@ src_unpack() {
 	sed -i \
 		-e 's/from distutils.core/from setuptools/' \
 		setup.py || die "sed failed"
+
+	epatch "${FILESDIR}"/${PN}-prefix.patch
+	eprefixify tools/rst2s5.py
 }
 
 src_compile() {
