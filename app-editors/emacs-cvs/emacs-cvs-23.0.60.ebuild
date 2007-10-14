@@ -1,17 +1,23 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.0_p20070920.ebuild,v 1.3 2007/10/13 21:22:15 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.60.ebuild,v 1.1 2007/10/12 23:31:12 ulm Exp $
 
 EAPI="prefix"
 
-WANT_AUTOCONF="2.5"
+ECVS_AUTH="pserver"
+ECVS_SERVER="cvs.savannah.gnu.org:/sources/emacs"
+ECVS_MODULE="emacs"
+ECVS_BRANCH="emacs-unicode-2"
+ECVS_LOCALNAME="emacs-unicode"
+
+WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 
-inherit autotools elisp-common eutils flag-o-matic
+inherit autotools cvs elisp-common eutils flag-o-matic
 
 DESCRIPTION="The extensible, customizable, self-documenting real-time display editor"
 HOMEPAGE="http://www.gnu.org/software/emacs/"
-SRC_URI="mirror://gentoo/${P}.tar.bz2"
+SRC_URI=""
 
 LICENSE="GPL-3 FDL-1.2 BSD"
 SLOT="23-unicode"
@@ -50,14 +56,26 @@ RDEPEND="sys-libs/ncurses
 DEPEND="${RDEPEND}
 	gzip-el? ( app-arch/gzip )"
 
-# FULL_VERSION keeps the full version number, which is needed in order to
-# determine some path information correctly for copy/move operations later on
-FULL_VERSION="${PV%%_*}"
+S="${WORKDIR}/${ECVS_LOCALNAME}"
+
 EMACS_SUFFIX="emacs-${SLOT}"
 
 src_unpack() {
-	unpack ${A}
+	cvs_src_unpack
+
 	cd "${S}"
+	# FULL_VERSION keeps the full version number, which is needed in
+	# order to determine some path information correctly for copy/move
+	# operations later on
+	FULL_VERSION=$(grep 'defconst[	 ]*emacs-version' lisp/version.el \
+		| sed -e 's/^[^"]*"\([^"]*\)".*$/\1/')
+	[ "${FULL_VERSION}" ] || die "Cannot determine current Emacs version"
+	echo
+	einfo "Emacs CVS branch: ${ECVS_BRANCH}"
+	einfo "Emacs version number: ${FULL_VERSION}"
+	[ "${FULL_VERSION}" = ${PV} ] \
+		|| die "Upstream version number changed to ${FULL_VERSION}"
+	echo
 
 	sed -i -e "s:/usr/lib/crtbegin.o:$(`tc-getCC` -print-file-name=crtbegin.o):g" \
 		-e "s:/usr/lib/crtend.o:$(`tc-getCC` -print-file-name=crtend.o):g" \
@@ -71,9 +89,6 @@ src_unpack() {
 	fi
 
 	epatch "${FILESDIR}/${PN}-freebsd-sparc.patch"
-	epatch "${FILESDIR}/${PN}-make-tramp-temp-file.patch"
-	epatch "${FILESDIR}/${PN}-makeinfo-regexp.patch"
-	epatch "${FILESDIR}/${PN}-no-x-compile.patch"
 	# ALSA is detected and used even if not requested by the USE=alsa flag.
 	# So remove the automagic check
 	use alsa || epatch "${FILESDIR}/${PN}-disable_alsa_detection-r1.patch"
@@ -209,7 +224,7 @@ src_install () {
 		elisp-site-file-install 00${PN}-${SLOT}-gentoo.el
 	fi
 
-	dodoc AUTHORS BUGS CONTRIBUTE README README.unicode || die "dodoc failed"
+	dodoc README README.unicode BUGS || die "dodoc failed"
 }
 
 emacs-infodir-rebuild() {
