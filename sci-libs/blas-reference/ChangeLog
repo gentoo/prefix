@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/blas-reference
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-reference/ChangeLog,v 1.37 2007/10/10 12:30:50 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-reference/ChangeLog,v 1.38 2007/10/11 16:50:10 bicatali Exp $
+
+  11 Oct 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  blas-reference-20070226.ebuild:
+  fixed lib->get_libdir for eselect bug workaround
 
   10 Oct 2007; Sébastien Fabbro <bicatali@gentoo.org>
   -files/blas-reference-19940131-autotool.patch, -files/Makefile,
