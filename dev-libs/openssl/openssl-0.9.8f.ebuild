@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8f.ebuild,v 1.2 2007/10/13 18:40:31 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8f.ebuild,v 1.5 2007/10/14 18:09:27 jer Exp $
 
 EAPI="prefix"
 
