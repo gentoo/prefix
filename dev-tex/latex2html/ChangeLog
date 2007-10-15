@@ -1,6 +1,18 @@
 # ChangeLog for dev-tex/latex2html
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/latex2html/ChangeLog,v 1.38 2007/04/11 03:30:00 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/latex2html/ChangeLog,v 1.41 2007/10/14 21:43:06 aballier Exp $
+
+  14 Oct 2007; Alexis Ballier <aballier@gentoo.org>
+  latex2html-2002.2.1_pre20041025-r1.ebuild:
+  virtual/tetex -> virtual/latex-base
+
+  14 Oct 2007; Alexis Ballier <aballier@gentoo.org>
+  latex2html-2002.2.1_pre20041025-r1.ebuild:
+  variable quoting
+
+  14 Oct 2007; Alexis Ballier <aballier@gentoo.org>
+  -latex2html-2002.2.ebuild, -latex2html-2002.2.1_pre20041025.ebuild:
+  remove old versions
 
   11 Apr 2007; Jeroen Roovers <jer@gentoo.org>
   latex2html-2002.2.1_pre20041025-r1.ebuild:
