@@ -563,6 +563,7 @@ bootstrap_bzip2() {
 	cd "${S}"
 
 	einfo "Compiling ${A%-*}"
+	econf
 	$MAKE || exit 1
 
 	einfo "Installing ${A%-*}"
