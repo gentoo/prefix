@@ -367,6 +367,7 @@ bootstrap_gnu() {
 	PN=$1
 	PV=$2
 	A=${PN}-${PV}.tar.gz
+	[[ $PN == "gzip" ]] && A=${PN}-${PV}.tar
 	einfo "Bootstrapping ${A%-*}"
 
 	efetch ${GNU_URL}/${PN}/${A}
@@ -376,7 +377,11 @@ bootstrap_gnu() {
 	rm -rf "${S}"
 	mkdir -p "${S}"
 	cd "${S}"
-	gzip -dc "${DISTDIR}"/${A} | $TAR -xf - || exit 1
+	if [[ $PN == "gzip" ]]; then
+		$TAR -xf "${DISTDIR}"/${A} || exit 1
+	else
+		gzip -dc "${DISTDIR}"/${A} | $TAR -xf - || exit 1
+	fi
 	S="${S}"/${PN}-${PV}
 	cd "${S}"
 
@@ -533,6 +538,10 @@ bootstrap_texinfo() {
 
 bootstrap_bash() {
 	bootstrap_gnu bash 3.2
+}
+
+bootstrap_gzip() {
+	 bootstrap_gnu gzip 1.3.12
 }
 
 bootstrap_bzip2
