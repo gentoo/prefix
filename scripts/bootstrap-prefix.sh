@@ -664,7 +664,6 @@ ROOT="$1"
 
 CFLAGS="-O2 -pipe"
 CXXFLAGS="${CFLAGS:--O2 -pipe}"
-MAKEOPTS="${MAKEOPTS:--j2}"
 PORTDIR=${ROOT}/usr/portage
 DISTDIR=${PORTDIR}/distfiles
 PORTAGE_TMPDIR=${ROOT}/var/tmp
