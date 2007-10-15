@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r12.ebuild,v 1.32 2007/10/10 06:22:17 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r12.ebuild,v 1.33 2007/10/14 08:34:43 ulm Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ SRC_URI="mirror://gnu/emacs/${P}a.tar.gz
 LICENSE="GPL-2 FDL-1.1 BSD"
 SLOT="21"
 KEYWORDS="~amd64 ~sparc-solaris ~x86 ~x86-solaris"
-IUSE="X Xaw3d leim lesstif motif nls nosendmail"
+IUSE="X Xaw3d leim lesstif motif nls sendmail"
 
 RDEPEND="sys-libs/ncurses
 	X? (
@@ -37,7 +37,7 @@ RDEPEND="sys-libs/ncurses
 			!lesstif? ( >=x11-libs/openmotif-2.1.30 )
 		)
 	)
-	!nosendmail? ( virtual/mta )
+	sendmail? ( virtual/mta )
 	>=app-admin/eselect-emacs-0.7-r1"
 
 DEPEND="${RDEPEND}
@@ -193,18 +193,16 @@ pkg_postinst() {
 		eselect emacs update --if-unset
 	fi
 
-	if use nosendmail; then
-		elog "You disabled sendmail support for Emacs. If you later install a MTA"
-		elog "then you will need to recompile Emacs.	See Bug #11104."
+	if ! use sendmail && ! has_version "virtual/mta"; then
+		elog "You disabled sendmail support for Emacs. If you later install"
+		elog "a MTA then you will need to recompile Emacs. See Bug #11104."
 	fi
 	if use X; then
 		elog "You need to install some fonts for Emacs. Under monolithic"
-		elog "XFree86/Xorg you typically had such fonts installed by default. With"
-		elog "modular Xorg, you will have to perform this step yourself on the machine"
-		elog  "your X server is running."
-		echo
-		elog "Installing media-fonts/font-adobe-{75,100}dpi would satisfy basic"
-		elog "Emacs requirements under X11."
+		elog "XFree86/Xorg you typically had such fonts installed by default."
+		elog "With modular Xorg, you will have to perform this step yourself."
+		elog "Installing media-fonts/font-adobe-{75,100}dpi on the X server's"
+		elog "machine would satisfy basic Emacs requirements under X11."
 	fi
 }
 
