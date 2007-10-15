@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.86 2007/09/24 08:20:00 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.87 2007/10/14 10:12:24 dberkholz Exp $
 #
 # Author: Donnie Berkholz <dberkholz@gentoo.org>
 #
@@ -46,34 +46,41 @@ fi
 IUSE=""
 HOMEPAGE="http://xorg.freedesktop.org/"
 
+if [[ ${PV} = 9999* ]]; then
+	GIT_ECLASS="git"
+	SNAPSHOT="yes"
+	SRC_URI=""
+fi
+
 # Set up SRC_URI for individual modular releases
 BASE_INDIVIDUAL_URI="http://xorg.freedesktop.org/releases/individual"
 if [[ ${CATEGORY} = x11-apps ]] || [[ ${CATEGORY} = x11-wm ]]; then
-	SRC_URI="${SRC_URI}
-		${BASE_INDIVIDUAL_URI}/app/${P}.tar.bz2"
+	MODULE="app"
 elif [[ ${CATEGORY} = app-doc ]]; then
-	SRC_URI="${SRC_URI}
-		${BASE_INDIVIDUAL_URI}/doc/${P}.tar.bz2"
+	MODULE="doc"
 # x11-misc contains data and util, x11-themes contains data
 elif [[ ${CATEGORY} = x11-misc ]] || [[ ${CATEGORY} = x11-themes ]]; then
-	SRC_URI="${SRC_URI}
-		${BASE_INDIVIDUAL_URI}/data/${P}.tar.bz2
-		${BASE_INDIVIDUAL_URI}/util/${P}.tar.bz2"
+	if [[ ${PN} == xbitmaps || ${PN} == xcursor-themes || ${PN} == xkbdata ]]; then
+		MODULE="data"
+	else
+		MODULE="data"
+	fi
 elif [[ ${CATEGORY} = x11-drivers ]]; then
-	SRC_URI="${SRC_URI}
-		${BASE_INDIVIDUAL_URI}/driver/${P}.tar.bz2"
+	MODULE="driver"
 elif [[ ${CATEGORY} = media-fonts ]]; then
-	SRC_URI="${SRC_URI}
-		${BASE_INDIVIDUAL_URI}/font/${P}.tar.bz2"
+	MODULE="font"
 elif [[ ${CATEGORY} = x11-libs ]]; then
-	SRC_URI="${SRC_URI}
-		${BASE_INDIVIDUAL_URI}/lib/${P}.tar.bz2"
+	MODULE="lib"
 elif [[ ${CATEGORY} = x11-proto ]]; then
-	SRC_URI="${SRC_URI}
-		${BASE_INDIVIDUAL_URI}/proto/${P}.tar.bz2"
+	MODULE="proto"
 elif [[ ${CATEGORY} = x11-base ]]; then
-	SRC_URI="${SRC_URI}
-		${BASE_INDIVIDUAL_URI}/xserver/${P}.tar.bz2"
+	MODULE="xserver"
+fi
+
+if [[ -n ${GIT_ECLASS} ]]; then
+	EGIT_REPO_URI="git://anongit.freedesktop.org/git/xorg/${MODULE}/${PN}"
+else
+	SRC_URI="${SRC_URI} ${BASE_INDIVIDUAL_URI}/${MODULE}/${P}.tar.bz2"
 fi
 
 SLOT="0"
@@ -177,7 +184,8 @@ RDEPEND="${RDEPEND}
 # Provides virtual/x11 for temporary use until packages are ported
 #	x11-base/x11-env"
 
-inherit eutils libtool multilib toolchain-funcs flag-o-matic autotools ${FONT_ECLASS}
+inherit eutils libtool multilib toolchain-funcs flag-o-matic autotools \
+	${FONT_ECLASS} ${GIT_ECLASS}
 
 x-modular_specs_check() {
 	if [[ ${PN:0:11} = "xorg-server" ]] || [[ -n "${DRIVER}" ]]; then
@@ -214,7 +222,11 @@ x-modular_server_supports_drivers_check() {
 }
 
 x-modular_unpack_source() {
-	unpack ${A}
+	if [[ -n ${GIT_ECLASS} ]]; then
+		git_src_unpack
+	else
+		unpack ${A}
+	fi
 	cd ${S}
 
 	if [[ -n ${FONT_OPTIONS} ]]; then
@@ -346,6 +358,12 @@ x-modular_src_install() {
 # einstall forces datadir, so we need to re-force it
 #		datadir=${XDIR}/share \
 #		mandir=${XDIR}/share/man \
+
+	if [[ -n ${GIT_ECLASS} ]]; then
+		pushd "${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}"
+		git log ${GIT_TREE} > "${S}"/ChangeLog
+		popd
+	fi
 
 	if [[ -e ${S}/ChangeLog ]]; then
 		dodoc ${S}/ChangeLog

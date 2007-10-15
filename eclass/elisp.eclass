@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.23 2007/09/22 20:25:30 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.24 2007/10/14 22:12:30 ulm Exp $
 #
 # Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
 # Copyright 2002-2003 Matthew Kennedy <mkennedy@gentoo.org>
@@ -9,7 +9,8 @@
 #
 # @ECLASS: elisp.eclass
 # @MAINTAINER:
-# emacs@gentoo.org
+# Feel free to contact the Emacs team through <emacs@gentoo.org> if you
+# have problems, suggestions or questions.
 # @BLURB: Eclass for Emacs Lisp packages
 # @DESCRIPTION:
 #

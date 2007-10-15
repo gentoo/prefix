@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.291 2007/10/10 20:34:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.292 2007/10/14 21:55:35 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -1485,6 +1485,7 @@ _cdrom_locate_file_on_cd() {
 					! [[ ${fs} == "subfs" && ",${opts}," == *",fs=cdfss,"* ]] \
 					&& continue
 				point=${point//\040/ }
+				[[ ! -d ${point}/${dir} ]] && continue
 				[[ -z $(find "${point}/${dir}" -maxdepth 1 -iname "${file}") ]] && continue
 				export CDROM_ROOT=${point}
 				export CDROM_SET=${i}

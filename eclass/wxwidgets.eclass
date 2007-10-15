@@ -1,124 +1,232 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/wxwidgets.eclass,v 1.19 2007/07/30 01:34:13 dirtyepic Exp $
-#
-# Original Author:      Rob Cakebread <pythonhead@gentoo.org>
-# Current Maintainers:  wxWidgets team <wxwidgets@gentoo.org>
+# $Header: /var/cvsroot/gentoo-x86/eclass/wxwidgets.eclass,v 1.20 2007/10/14 02:46:29 dirtyepic Exp $
 
-# This eclass helps you find the correct wx-config script so ebuilds
-# can use gtk, gtk2 or gtk2+unicode versions of wxGTK
-
-# FUNCTIONS:
-# need-wxwidgets:
-#   Arguments:
-#     2.4: gtk gtk2 unicode !!! 2.4 is being removed from the tree !!!
-#     2.6: gtk2 unicode base base-unicode mac mac-unicode
+# @ECLASS:			wxwidgets.eclass
+# @MAINTAINER:
+#  dirtyepic@gentoo.org
+#  wxwindows@gentoo.org
+# @BLURB:			Manages build configuration for wxGTK-using packages.
+# @DESCRIPTION:
+#  The wxGTK libraries come in several different possible configurations
+#  (release/debug, ansi/unicode, etc.), most of which can be installed
+#  side-by-side.  The purpose of this eclass is to give ebuilds the ability to
+#  specify what particular flavour they require to build against without
+#  interfering with the user-set system configuration.
 #
-# set-wxconfig
-#   Arguments: (wxGTK 2.4) wxgtk, wxgtk2, or wxgtk2u
-#   Arguments: (wxGTK 2.6) gtk-ansi gtk2-ansi unicode base-ansi base-unicode mac-ansi mac-unicode
-#   Note: Don't call this function directly from ebuilds
+#  Ebuilds that use wxGTK must inherit this eclass.  Otherwise the system
+#  default will be used, which would be anything the user set it to.
 #
-# check_wxuse
-#   Check if wxGTK was built with the specified USE flag.
-#   Usage:  check_wxuse <USE flag>
-#	Note: for now, requires WX_GTK_VER to be set.
+#  Ebuilds are also required to set the global variable WX_GTK_VER, containing
+#  the wxGTK SLOT the ebuild requires.
+#
+#
+#  Simple Usage:
+#
+#   inherit wxwidgets
+#   DEPEND="=x11-libs/wxGTK-2.6*"
+#   RDEPEND="=x11-libs/wxGTK-2.6*"
+#   WX_GTK_VER="2.6"
+#
+#  That's it.  The eclass will select a sane default configuration to use.  In
+#  wxGTK-2.6 the default is ansi.  In wxGTK-2.8 and later it's unicode.  These
+#  are the defaults because they are always guaranteed to exist.  (Note: we lock
+#  the DEPEND to the needed SLOT to prevent another SLOT from fulfilling the
+#  dependency.)
+#
+#  You'll often find yourself in need of a bit more control.  For that see the
+#  need-wxwidgets function below.
 
-inherit multilib flag-o-matic
+inherit eutils multilib
+
+# We do this globally so ebuilds can get sane defaults just by inheriting.  They
+# can be overridden with need-wxwidgets later if need be.
+
+if [[ -n ${WX_CONFIG} ]]; then
+	if [[ -n ${WX_GTK_VER} ]]; then
+		if [[ ${WX_GTK_VER} == 2.6 ]]; then
+			wxchar="ansi"
+		elif [[ ${WX_GTK_VER} == 2.8 ]]; then
+			wxchar="unicode"
+		fi
+
+		for wxtoolkit in gtk2 base; do
+			for wxdebug in release debug; do
+				wxconf="${wxtoolkit}-${wxchar}-${wxdebug}-${WX_GTK_VER}"
+				[[ -f /usr/$(get_libdir)/wx/config/${wxconf} ]] || continue
+				WX_CONFIG="/usr/$(get_libdir)/wx/config/${wxconf}"
+				# TODO: needed for the wx-config wrapper
+				WX_ECLASS_CONFIG="${WX_CONFIG}"
+				break
+			done
+			[[ -n ${WX_CONFIG} ]] && break
+		done
+		[[ -n ${WX_CONFIG} ]] && export WX_CONFIG WX_ECLASS_CONFIG
+	fi
+fi
+
+
+# @FUNCTION:		need-wxwidgets
+# @USAGE:			<configuration>
+# @DESCRIPTION:
+#  need-wxwidgets is called with one argument, the wxGTK configuration to use.
+#
+#  Available configurations are:
+#
+#		ansi
+#		unicode
+#		base-ansi
+#		base-unicode
+#
+#  Note that in >=wxGTK-2.8, only the unicode versions are available.  The
+#  eclass will automatically map ansi to unicode if WX_GTK_VER is set to 2.8 or
+#  later.
+#
+#  There is one deprecated configuration, gtk2, that is equivalent to ansi.
+#  It is around for historical reasons and shouldn't be used by new ebuilds.
+#
+#  This function will set the variable WX_CONFIG to the path of the wx-config
+#  script to use.  In most cases you shouldn't have to use it since the
+#  /usr/bin/wx-config wrapper points to ${WX_CONFIG} when called from portage.
 
 need-wxwidgets() {
 	debug-print-function $FUNCNAME $*
-	#If you want to use wxGTK-2.6* export WX_GTK_VER in your ebuild:
-	if [ "${WX_GTK_VER}" = "2.6" ]; then
-		case $1 in
-			gtk)		set-wxconfig gtk-ansi;;
-			gtk2)		set-wxconfig gtk2-ansi;;
-			unicode)	set-wxconfig gtk2-unicode;;
-			base)		set-wxconfig base-ansi;;
-			base-unicode)	set-wxconfig base-unicode;;
-			mac)		set-wxconfig mac-ansi;;
-			mac-unicode)	set-wxconfig mac-unicode;;
-			*)		echo "!!! $FUNCNAME: Error: wxGTK was not comipled with $1."
-					echo "!!! Adjust your USE flags or re-emerge wxGTK with version you want."
-			exit 1;;
-		esac
 
-	else
-		WX_GTK_VER="2.4"
-		case $1 in
-			gtk)		set-wxconfig wxgtk;;
-			gtk2)		set-wxconfig wxgtk2;;
-			unicode)	set-wxconfig wxgtk2u;;
-			*)		echo "!!! $FUNCNAME: Error: wxGTK was not compiled with $1."
-					echo "!!! Adjust your USE flags or re-emerge wxGTK with the version you want."
-			exit 1;;
-		esac
-	fi
-}
+	local wxtoolkit wxchar wxdebug wxconf
 
-set-wxconfig() {
-
-	debug-print-function $FUNCNAME $*
-
-	if [ "${WX_GTK_VER}" = "2.6" ] ; then
-		wxconfig_prefix="/usr/$(get_libdir)/wx/config"
-		wxconfig_name="${1}-release-${WX_GTK_VER}"
-		wxconfig="${wxconfig_prefix}/${wxconfig_name}"
-		wxconfig_debug_name="${1}-debug-${WX_GTK_VER}"
-		wxconfig_debug="${wxconfig_prefix}/${wxconfig_debug_name}"
-	else
-		# Default is 2.4:
-		wxconfig_prefix="/usr/bin"
-		wxconfig_name="${1}-${WX_GTK_VER}-config"
-		wxconfig="${wxconfig_prefix}/${wxconfig_name}"
-		wxconfig_debug_name="${1}d-${WX_GTK_VER}-config"
-		wxconfig_debug="${wxconfig_prefix}/${wxconfig_debug_name}"
-	fi
-
-	if [ -e ${wxconfig} ] ; then
-		export WX_CONFIG=${wxconfig}
-		export WX_CONFIG_NAME=${wxconfig_name}
-		export WXBASE_CONFIG_NAME=${wxconfig_name}
-		echo " * Using ${wxconfig}"
-	elif [ -e ${wxconfig_debug} ] ; then
-		export WX_CONFIG=${wxconfig_debug}
-		export WX_CONFIG_NAME=${wxconfig_debug_name}
-		export WXBASE_CONFIG_NAME=${wxconfig_debug_name}
-		echo " * Using ${wxconfig_debug}"
-	else
-		echo "!!! $FUNCNAME: Error:  Can't find normal or debug version:"
-		echo "!!! $FUNCNAME:         ${wxconfig} not found"
-		echo "!!! $FUNCNAME:         ${wxconfig_debug} not found"
-		case $1 in
-			wxgtk)	 echo "!!! You need to emerge wxGTK with wxgtk1 in your USE";;
-			wxgtkd)	 echo "!!! You need to emerge wxGTK with wxgtk1 in your USE";;
-			gtk-ansi)  echo "!!! GTK-1 support is not available in wxGTK-2.6."
-			           echo "!!! Please search bugzilla for this package and file a new bug if one is not already present.";;
-			gtkd-ansi) echo "!!! GTK-1 support is not available in wxGTK-2.6.";;
-
-			wxgtk2)	 echo "!!! You need to emerge wxGTK with gtk in your USE";;
-			wxgtk2d) echo "!!! You need to emerge wxGTK with gtk in your USE";;
-			gtk2-ansi)  echo "!!! You need to emerge wxGTK with gtk in your USE";;
-			gtk2d-ansi) echo "!!! You need to emerge wxGTK with gtk in your USE";;
-
-			wxgtk2u)  echo "!!! You need to emerge wxGTK with unicode in your USE";;
-			wxgtk2ud) echo "!!! You need to emerge wxGTK with unicode in your USE";;
-			gtk2-unicode)  echo "!!! You need to emerge wxGTK with unicode in your USE";;
-			gtk2d-unicode) echo "!!! You need to emerge wxGTK with unicode in your USE";;
-		esac
-		exit 1
-	fi
-}
-
-check_wxuse() {
 	if [[ -z ${WX_GTK_VER} ]]; then
 		echo
-		eerror "You need to set WX_GTK_VER before calling ${FUNCNAME}."
-		die "Missing WX_GTK_VER."
+		eerror "WX_GTK_VER must be set before calling $FUNCNAME."
+		echo
+		die "WX_GTK_VER missing"
 	fi
 
+	if [[ ${WX_GTK_VER} != 2.6 \
+		&& ${WX_GTK_VER} != 2.8 ]]; then
+			echo
+			eerror "Invalid WX_GTK_VER: ${WX_GTK_VER} - must be set to a valid wxGTK SLOT."
+			echo
+			die "Invalid WX_GTK_VER"
+	fi
+
+	debug-print "WX_GTK_VER is ${WX_GTK_VER}"
+
+	case $1 in
+		ansi)
+			debug-print-section ansi
+			if [[ ${WX_GTK_VER} == 2.6 ]]; then
+				wxchar="ansi"
+			else
+				wxchar="unicode"
+			fi
+			check_wxuse X
+			;;
+		unicode)
+			debug-print-section unicode
+			check_wxuse X
+			[[ ${WX_GTK_VER} == 2.6 ]] && check_wxuse unicode
+			wxchar="unicode"
+			;;
+		base)
+			debug-print-section base
+			if [[ ${WX_GTK_VER} == 2.6 ]]; then
+				wxchar="ansi"
+			else
+				wxchar="unicode"
+			fi
+			;;
+		base-unicode)
+			debug-print-section base-unicode
+			[[ ${WX_GTK_VER} == 2.6 ]] && check_wxuse unicode
+			wxchar="unicode"
+			;;
+		# backwards compatibility
+		gtk2)
+			debug-print-section gtk2
+			if [[ ${WX_GTK_VER} == 2.6 ]]; then
+				wxchar="ansi"
+			else
+				wxchar="unicode"
+			fi
+			check_wxuse X
+			;;
+		*)
+			echo
+			eerror "Invalid $FUNCNAME argument: $1"
+			echo
+			die "Invalid argument"
+			;;
+	esac
+
+	debug-print "wxchar is ${wxchar}"
+
+	# since we're no longer in global scope we call built_with_use instead of
+	# all the crazy looping
+
+	# base can be provided by both gtk2 and base installations
+	if $(built_with_use =x11-libs/wxGTK-${WX_GTK_VER}* X); then
+		wxtoolkit="gtk2"
+	else
+		wxtoolkit="base"
+	fi
+
+	debug-print "wxtoolkit is ${wxtoolkit}"
+
+	# debug or release?
+	if $(built_with_use =x11-libs/wxGTK-${WX_GTK_VER}* debug); then
+		wxdebug="debug"
+	else
+		wxdebug="release"
+	fi
+
+	debug-print "wxdebug is ${wxdebug}"
+
+	# put it all together
+	wxconf="${wxtoolkit}-${wxchar}-${wxdebug}-${WX_GTK_VER}"
+
+	debug-print "wxconf is ${wxconf}"
+
+	# if this doesn't work, something is seriously screwed
+	if [[ ! -f /usr/$(get_libdir)/wx/config/${wxconf} ]]; then
+		echo
+		eerror "Failed to find configuration ${wxconf}"
+		echo
+		die "Missing wx-config"
+	fi
+
+	debug-print "Found config ${wxconf} - setting WX_CONFIG"
+
+	# This is exported as some configure scripts will check for its presence in
+	# the environment.
+	export WX_CONFIG="/usr/$(get_libdir)/wx/config/${wxconf}"
+
+	debug-print "WX_CONFIG is ${WX_CONFIG}"
+
+	# TODO: Used by the wx-config wrapper
+	export WX_ECLASS_CONFIG="${WX_CONFIG}"
+
+	echo
+	einfo "Requested:        ${1} ${WX_GTK_VER}"
+	einfo "Using:            ${wxconf}"
+	echo
+}
+
+
+# @FUNCTION:		check_wxuse
+# @USAGE:			<USE flag>
+# @DESCRIPTION:
+#  Provides a consistant way to check if wxGTK was built with a particular USE
+#  flag enabled.
+
+check_wxuse() {
+	debug-print-function $FUNCNAME $*
+
+	[[ -n ${WX_GTK_VER} ]] \
+		|| _wxerror "WX_GTK_VER must be set before calling"
+
+
 	ebegin "Checking wxGTK-${WX_GTK_VER} for ${1} support"
-	if $(built_with_use =x11-libs/wxGTK-${WX_GTK_VER}* ${1}); then
+	if $(built_with_use =x11-libs/wxGTK-${WX_GTK_VER}* "${1}"); then
 		eend 0
 	else
 		eend 1

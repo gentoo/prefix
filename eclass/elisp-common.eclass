@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.28 2007/09/22 20:25:30 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.29 2007/10/14 22:12:30 ulm Exp $
 #
 # Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
@@ -10,7 +10,7 @@
 #
 # @ECLASS: elisp-common.eclass
 # @MAINTAINER:
-# Feel free to contact the Emacs team through emacs@gentoo.org if you have
+# Feel free to contact the Emacs team through <emacs@gentoo.org> if you have
 # problems, suggestions or questions.
 # @BLURB: Emacs-related installation utilities
 # @DESCRIPTION:
@@ -73,10 +73,10 @@
 #   	(autoload 'csv-mode "csv-mode" "Major mode for csv files." t)
 #
 # If your Emacs support files are installed in a subdirectory of
-# /usr/share/emacs/site-lisp/ (which is recommended if more than one file is
-# installed), you need to extend Emacs' load-path as shown in the first
-# non-comment.  The elisp-site-file-install() function of this eclass will
-# replace "@SITELISP@" by the actual path.
+# /usr/share/emacs/site-lisp/ (which is recommended), you need to extend
+# Emacs' load-path as shown in the first non-comment.
+# The elisp-site-file-install() function of this eclass will replace
+# "@SITELISP@" by the actual path.
 #
 # The next line tells Emacs to load the mode opening a file ending with
 # ".csv" and load functions depending on the context and needed features.
@@ -97,7 +97,7 @@
 #
 # Which is then installed by
 #
-#   	elisp-site-file-install "${FILESDIR}/${SITEFILE}"
+#   	elisp-site-file-install "${FILESDIR}/${SITEFILE}" || die
 #
 # in src_install().  If your subdirectory is not named ${PN}, give the
 # differing name as second argument.
@@ -127,11 +127,19 @@
 #
 # elisp-emacs-version() outputs the version of the currently active Emacs.
 
+# @ECLASS-VARIABLE: SITELISP
+# @DESCRIPTION:
+# Directory where Emacs Lisp files are installed.
 SITELISP=/usr/share/emacs/site-lisp
 ESITELISP=${EPREFIX}${SITELISP}
+
+# @ECLASS-VARIABLE: SITEFILE
+# @DESCRIPTION:
+# Name of package's site-init file.
 SITEFILE=50${PN}-gentoo.el
+
 EMACS=${EPREFIX}/usr/bin/emacs
-# The following works for Emacs versions 18-23, don't change it.
+# The following works for Emacs versions 18--23, don't change it.
 EMACS_BATCH_CLEAN="${EMACS} -batch -q --no-site-file"
 
 # @FUNCTION: elisp-compile
@@ -159,7 +167,7 @@ elisp-emacs-version() {
 # @DESCRIPTION:
 # Generate a file with autoload definitions for the lisp functions.
 
-elisp-make-autoload-file () {
+elisp-make-autoload-file() {
 	local f="${1:-${PN}-autoloads.el}"
 	shift
 	einfo "Generating autoload file for GNU Emacs ..."
@@ -225,6 +233,25 @@ elisp-site-file-install() {
 elisp-site-regen() {
 	local sflist sf line
 
+	if [ ! -e "${EROOT}${SITELISP}"/site-gentoo.el ] \
+		&& [ ! -e "${EROOT}${SITELISP}"/site-start.el ]; then
+		einfo "Creating default ${SITELISP}/site-start.el ..."
+		cat <<-EOF >"${T}"/site-start.el
+		;;; site-start.el
+
+		;;; Commentary:
+		;; This default site startup file is installed by elisp-common.eclass.
+		;; You may replace this file by your own site initialisation, or even
+		;; remove it completely; it will not be recreated.
+
+		;;; Code:
+		;; Load site initialisation for Gentoo-installed packages.
+		(require 'site-gentoo)
+
+		;;; site-start.el ends here
+		EOF
+	fi
+
 	einfon "Regenerating ${ESITELISP}/site-gentoo.el ..."
 	cat <<-EOF >"${T}"/site-gentoo.el
 	;;; site-gentoo.el --- site initialisation for Gentoo-installed packages
@@ -255,11 +282,14 @@ elisp-site-regen() {
 
 	if cmp -s "${EROOT}${SITELISP}"/site-gentoo.el "${T}"/site-gentoo.el; then
 		# This prevents outputting unnecessary text when there
-		# was actually no change
-		# A case is a remerge where we have doubled output
+		# was actually no change.
+		# A case is a remerge where we have doubled output.
 		einfo " no changes."
 	else
 		mv "${T}"/site-gentoo.el "${EROOT}${SITELISP}"/site-gentoo.el
+		[ -f "${T}"/site-start.el ] \
+			&& [ ! -e "${EROOT}${SITELISP}"/site-start.el ] \
+			&& mv "${T}"/site-start.el "${EROOT}${SITELISP}"/site-start.el
 		echo; einfo
 		for sf in ${sflist}; do
 			einfo "  Adding ${sf} ..."
@@ -274,7 +304,7 @@ site-start.el if there is such a file.
 In order for this site initialisation to be loaded for all users
 automatically, you can add a line like this:
 
-	(load "${EPREFIX}/usr/share/emacs/site-lisp/site-gentoo" nil t)
+	(require 'site-gentoo)
 
 to ${EPREFIX}/usr/share/emacs/site-lisp/site-start.el.  Alternatively, that line
 can be added by individual users to their initialisation files, or for
