@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby2ruby/ruby2ruby-1.1.7.ebuild,v 1.1 2007/08/25 13:04:18 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby2ruby/ruby2ruby-1.1.7.ebuild,v 1.2 2007/10/14 05:43:58 tgall Exp $
 
 EAPI="prefix"
 
