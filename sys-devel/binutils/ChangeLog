@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.315 2007/10/12 20:52:01 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.316 2007/10/14 09:50:31 opfer Exp $
+
+  14 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  binutils-2.18-r1.ebuild:
+  stable x86, bug 195511
 
   12 Oct 2007; Lars Weiler <pylon@gentoo.org> binutils-2.18-r1.ebuild:
   stable ppc, bug #195511
