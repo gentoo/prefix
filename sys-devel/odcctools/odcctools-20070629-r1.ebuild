@@ -13,7 +13,7 @@ SRC_URI="http://www.gentoo.org/~grobian/distfiles/${P}.tar.bz2"
 LICENSE="APSL-2"
 SLOT="0"
 
-KEYWORDS="~ppc-macos ~x86-macos"
+KEYWORDS="~ppc-macos ~x86-macos ~x86-solaris"
 
 IUSE=""
 
@@ -25,8 +25,26 @@ INCPATH=${LIBPATH}/include
 DATAPATH=/usr/share/binutils-data/${CHOST}/${PV}
 BINPATH=/usr/${CHOST}/binutils-bin/${PV}
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	if [[ ${CHOST} != *-apple-darwin* ]] ; then
+		# this patch should still allow for compilation on Darwin, but I don't
+		# want of run the risk of breaking something, so I make sure it stays
+		# vanilla on Darwin
+		epatch "${FILESDIR}"/${P}-solaris.patch
+
+		# ld64 depends on Darwin kernel headers, so its unlikely this can/will
+		# compile
+		sed -i -e '/^COMPONENTS=/s/ld64//' configure
+	fi
+}
+
 src_compile() {
 	myconf="\
+		--host=${CHOST} \
+		--build=${CBUILD} \
+		--target=${CTARGET} \
 		--prefix=${EPREFIX}/usr \
 		--datadir=${EPREFIX}${DATAPATH} \
 		--infodir=${EPREFIX}${DATAPATH}/info \
