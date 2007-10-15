@@ -1,6 +1,14 @@
 # ChangeLog for x11-misc/icon-naming-utils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/icon-naming-utils/ChangeLog,v 1.59 2007/10/10 23:40:20 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/icon-naming-utils/ChangeLog,v 1.61 2007/10/14 15:54:10 corsair Exp $
+
+  14 Oct 2007; Markus Rothe <corsair@gentoo.org>
+  icon-naming-utils-0.8.6.ebuild:
+  Stable on ppc64; bug #195254
+
+  14 Oct 2007; Raúl Porcel <armin76@gentoo.org>
+  icon-naming-utils-0.8.6.ebuild:
+  alpha/ia64/sparc stable wrt #195254
 
   10 Oct 2007; Lars Weiler <pylon@gentoo.org>
   icon-naming-utils-0.8.6.ebuild:
