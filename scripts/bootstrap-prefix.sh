@@ -535,6 +535,10 @@ bootstrap_bash() {
 	bootstrap_gnu bash 3.2
 }
 
+bootstrap_bzip2
+	bootstrap_gnu bzip2 1.0.4
+}
+
 ## End Functions
 
 ## some vars
@@ -620,6 +624,7 @@ then
 				fi
 				CHOST="${HP_ARCH}-hp-hpux${uname_r#B.}"
 				unset HP_ARCH uname_r
+				MAKE=make
 				;;
 			FreeBSD)
 				case `uname -p` in
