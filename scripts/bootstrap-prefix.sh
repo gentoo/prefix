@@ -545,7 +545,32 @@ bootstrap_gzip() {
 }
 
 bootstrap_bzip2() {
-	bootstrap_gnu bzip2 1.0.4
+	local PN PV A S
+	PN=bzip2
+	PV=1.0.4
+	A=${PN}-${PV}.tar.gz
+	einfo "Bootstrapping ${A%-*}"
+
+	efetch http://www.bzip.org/${PV}/${A}
+
+	einfo "Unpacking ${A%-*}"
+	S="${PORTAGE_TMPDIR}/${PN}-${PV}"
+	rm -rf "${S}"
+	mkdir -p "${S}"
+	cd "${S}"
+	gzip -dc "${DISTDIR}"/${A} | $TAR -xf - || exit 1
+	S="${S}"/${PN}-${PV}
+	cd "${S}"
+
+	einfo "Compiling ${A%-*}"
+	$MAKE || exit 1
+
+	einfo "Installing ${A%-*}"
+	$MAKE install || exit 1
+
+	cd "${ROOT}"
+	rm -Rf "${S}"
+	einfo "${A%-*} successfully bootstrapped"
 }
 
 ## End Functions
