@@ -1,6 +1,12 @@
 # ChangeLog for sys-libs/slang
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.62 2007/09/18 16:47:16 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.63 2007/10/14 07:04:57 matsuu Exp $
+
+  14 Oct 2007; <matsuu@gentoo.org> -files/slang-2.0.6-foreground.patch,
+  -files/slang-2.0.6-slsh-libs.patch, -slang-1.4.9-r1.ebuild,
+  slang-1.4.9-r2.ebuild, -slang-2.0.6.ebuild:
+  Removed old versions.
+  Fixed distcc issue, bug #194233.
 
 *slang-2.1.2 (18 Sep 2007)
 

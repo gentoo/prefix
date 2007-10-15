@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-1.4.9-r2.ebuild,v 1.18 2007/03/18 17:15:01 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-1.4.9-r2.ebuild,v 1.19 2007/10/14 07:04:57 matsuu Exp $
 
 EAPI="prefix"
 
-inherit eutils multilib
+inherit eutils multilib toolchain-funcs
 
 # Patches are taken from http://www.suse.de/~nadvornik/slang/
 # They were originally Red Hat and Debian's patches
@@ -48,7 +48,8 @@ src_compile() {
 	export LANG=C
 	export LC_ALL=C
 	econf || die "econf failed"
-	emake -j1 all elf || die "make failed"
+	sed -i -e "/^ELF_LINK/s:gcc:$(tc-getCC):" src/Makefile || die
+	emake CC="$(tc-getCC)" ELF_CC="$(tc-getCC)" -j1 all elf || die "make failed"
 }
 
 src_install() {
