@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ncbi-tools-20070826.ebuild,v 1.1 2007/10/13 23:09:17 je_fro Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ncbi-tools-20070826.ebuild,v 1.2 2007/10/14 21:24:46 je_fro Exp $
 
 EAPI="prefix"
 
@@ -53,10 +53,10 @@ src_unpack() {
 		epatch "${FILESDIR}"/${PN}-lop.patch
 	fi
 
-	if use mpi; then
-		cd "${WORKDIR}"
-		epatch "${WORKDIR}"/mpiblast/ncbi_Mar2007_evalue.patch
-	fi
+#	if use mpi; then
+#		cd "${WORKDIR}"
+#		epatch "${WORKDIR}"/mpiblast/ncbi_Mar2007_evalue.patch
+#	fi
 
 	if ! use X; then
 		cd "${S}"/make

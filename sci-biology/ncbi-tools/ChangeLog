@@ -1,6 +1,9 @@
 # ChangeLog for sci-biology/ncbi-tools
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.54 2007/10/13 23:09:17 je_fro Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.55 2007/10/14 21:24:46 je_fro Exp $
+
+  14 Oct 2007; Jeff Gardner <je_fro@gentoo.org> ncbi-tools-20070826.ebuild:
+  Commented out a stray reference to mpi that I missed the first time.
 
   13 Oct 2007; <jeff@gentoo.org> ncbi-tools-20050605.ebuild,
   +ncbi-tools-20070826.ebuild:
