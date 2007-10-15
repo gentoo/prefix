@@ -1,6 +1,9 @@
 # ChangeLog for dev-cpp/glibmm
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.93 2007/10/03 15:42:34 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.94 2007/10/14 15:28:06 corsair Exp $
+
+  14 Oct 2007; Markus Rothe <corsair@gentoo.org> glibmm-2.12.10.ebuild:
+  Stable on ppc64; bug #194277
 
   03 Oct 2007; Raúl Porcel <armin76@gentoo.org> glibmm-2.12.10.ebuild:
   alpha/ia64/sparc stable wrt #194277
