@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.17.0-r1.ebuild,v 1.2 2007/10/01 15:09:51 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.17.1_pre20071013.ebuild,v 1.2 2007/10/14 08:09:18 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -8,17 +8,17 @@ EAPI="prefix"
 
 inherit libtool eutils
 
-#MY_P=${P/_pre/-}
+MY_P=${P/_pre/-}
 DESCRIPTION="A Client that groks URLs"
 HOMEPAGE="http://curl.haxx.se/ http://curl.planetmirror.com"
-#SRC_URI="http://cool.haxx.se/curl-daily/${MY_P}.tar.bz2"
-SRC_URI="http://curl.haxx.se/download/${P}.tar.bz2"
+SRC_URI="http://cool.haxx.se/curl-daily/${MY_P}.tar.bz2"
 #SRC_URI="http://curl.planetmirror.com/download/${P}.tar.bz2"
 
 LICENSE="MIT X11"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
-IUSE="ssl libssh2 ipv6 ldap ares gnutls nss idn kerberos test"
+IUSE="ssl ipv6 ldap ares gnutls nss idn kerberos test"
+#IUSE="ssl ipv6 ldap ares gnutls libssh2 nss idn kerberos test"
 
 RDEPEND="gnutls? ( net-libs/gnutls )
 	nss? ( !gnutls? ( dev-libs/nss ) )
@@ -27,8 +27,8 @@ RDEPEND="gnutls? ( net-libs/gnutls )
 	idn? ( net-dns/libidn )
 	ares? ( >=net-dns/c-ares-1.4.0 )
 	kerberos? ( virtual/krb5 )
-	app-misc/ca-certificates
-	libssh2? ( >=net-libs/libssh2-0.16 )"
+	app-misc/ca-certificates"
+#	libssh2? ( >=net-libs/libssh2-0.16 )"
 
 # net-libs/libssh2 (masked) --with-libssh2
 # fbopenssl (not in gentoo) --with-spnego
@@ -40,24 +40,22 @@ DEPEND="${RDEPEND}
 		dev-lang/perl
 	)"
 # used - but can do without in self test: net-misc/stunnel
-#S="${WORKDIR}"/${MY_P}
+S="${WORKDIR}"/${MY_P}
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-strip-ldflags.patch
-#	epatch "${FILESDIR}"/curl-7.16.2-strip-ldflags.patch
+#	epatch "${FILESDIR}"/${P}-strip-ldflags.patch
+	epatch "${FILESDIR}"/curl-7.16.2-strip-ldflags.patch
 	elibtoolize
 }
 
 src_compile() {
 
 	myconf="$(use_enable ldap)
-	    $(use_enable ldap ldaps)
 		$(use_with idn libidn)
 		$(use_enable kerberos gssapi)
 		$(use_enable ipv6)
-		$(use_with libssh2)
 		--enable-http
 		--enable-ftp
 		--enable-gopher
@@ -71,8 +69,9 @@ src_compile() {
 		--disable-sspi
 		--with-ca-bundle=${EPREFIX}/etc/ssl/certs/ca-certificates.crt
 		--without-krb4
+		--without-libssh2
 		--without-spnego"
-#		--with-libssh2
+#		$(use_with libssh2)
 
 	if use ipv6 && use ares; then
 		elog "c-ares support disabled because it is incompatible with ipv6."
