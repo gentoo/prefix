@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/control-center-2.18.1.ebuild,v 1.16 2007/10/12 09:55:01 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/control-center-2.18.1.ebuild,v 1.17 2007/10/14 11:13:07 eva Exp $
 
 EAPI="prefix"
 
@@ -54,6 +54,7 @@ RDEPEND=">=gnome-base/gnome-vfs-2.2
 	eds? ( >=gnome-extra/evolution-data-server-1.7 )
 	!arm? ( alsa? ( >=media-libs/alsa-lib-0.9 ) )
 	>=media-libs/gst-plugins-base-0.10.2
+	media-plugins/gst-plugins-gconf
 	>=media-libs/gstreamer-0.10.2"
 
 DEPEND="${RDEPEND}
