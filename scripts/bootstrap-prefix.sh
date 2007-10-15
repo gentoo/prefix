@@ -544,7 +544,7 @@ bootstrap_gzip() {
 	 bootstrap_gnu gzip 1.3.12
 }
 
-bootstrap_bzip2
+bootstrap_bzip2() {
 	bootstrap_gnu bzip2 1.0.4
 }
 
