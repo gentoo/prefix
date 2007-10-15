@@ -1,5 +1,5 @@
---- unit_tests/test_twisted.py.orig	2007-08-11 19:09:41.000000000 +0300
-+++ unit_tests/test_twisted.py	2007-09-14 11:30:40.000000000 +0300
+--- unit_tests/test_twisted.py.orig	2007-05-10 19:11:17.000000000 +0300
++++ unit_tests/test_twisted.py	2007-10-11 09:23:05.000000000 +0300
 @@ -13,31 +13,6 @@
  class CustomError(Exception):
      pass
