@@ -1,6 +1,10 @@
 # ChangeLog for sys-kernel/linux-headers
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/ChangeLog,v 1.241 2007/10/13 15:42:00 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/ChangeLog,v 1.242 2007/10/14 17:17:21 jer Exp $
+
+  14 Oct 2007; Jeroen Roovers <jer@gentoo.org>
+  linux-headers-2.6.22-r2.ebuild:
+  Stable for HPPA (bug #195704).
 
 *linux-headers-2.6.23 (13 Oct 2007)
 
