@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.232 2007/09/29 01:57:03 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.233 2007/10/15 14:33:29 corsair Exp $
+
+  15 Oct 2007; Markus Rothe <corsair@gentoo.org> gimp-2.3.19.ebuild:
+  Stable on ppc64
 
   29 Sep 2007; Hanno Boeck <hanno@gentoo.org> gimp-2.4.0_rc3.ebuild:
   Add check for alsa-support.
