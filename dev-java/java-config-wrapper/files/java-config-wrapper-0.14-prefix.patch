@@ -14,7 +14,7 @@
  	local item
  	for item in ${list}; do
 -		if [[ ${item} == ${target} ]]; then
-+		if [[ "@GENTOO_PORTAGE_EPREFIX@"${item} == ${target} ]]; then
++		if [[ "@GENTOO_PORTAGE_EPREFIX@"${item} == "${target}" ]]; then
  			return 0;
  		fi
  	done
