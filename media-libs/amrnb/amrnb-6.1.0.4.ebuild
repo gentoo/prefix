@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/amrnb/amrnb-6.1.0.4.ebuild,v 1.2 2007/09/24 20:31:05 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/amrnb/amrnb-6.1.0.4.ebuild,v 1.3 2007/10/15 05:38:32 tgall Exp $
 
 EAPI="prefix"
 
