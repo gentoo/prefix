@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/nopaste/nopaste-1992.ebuild,v 1.7 2007/08/17 13:12:30 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/nopaste/nopaste-1992.ebuild,v 1.8 2007/10/15 08:12:06 nelchael Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ IUSE="X"
 DEPEND=""
 RDEPEND="${DEPEND}
 	dev-lang/ruby
-	X? ( || ( x11-misc/xclip x11-misc/xcut ) )"
+	X? ( x11-misc/xclip )"
 
 S=${WORKDIR}
 
