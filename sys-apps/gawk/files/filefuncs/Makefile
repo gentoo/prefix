@@ -44,7 +44,7 @@ SHLIB = -shared
 SHLDFLAGS = -Wl,-G
 else
   ifeq ($(KERNEL),Darwin)
-SHLIB = -dynamiclib -undefined define_a_way
+SHLIB = -dynamiclib -undefined define_a_way -install_name $(LIBDIR)/rcscripts/$(TARGET_LIB)
 SHLDFLAGS = 
   else
 SHLIB = -shared

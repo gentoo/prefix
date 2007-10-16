@@ -60,7 +60,7 @@ src_compile() {
 	emake || die "emake failed"
 
 	cd "${SFFS}"
-	emake CC=$(tc-getCC) || die "filefuncs emake failed"
+	emake CC=$(tc-getCC) LIBDIR="${EPREFIX}/$(get_libdir)" || die "filefuncs emake failed"
 }
 
 src_install() {
