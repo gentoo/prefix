@@ -1,6 +1,13 @@
 # ChangeLog for app-misc/colordiff
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/colordiff/ChangeLog,v 1.61 2007/06/21 23:25:44 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/colordiff/ChangeLog,v 1.62 2007/10/15 08:23:08 dberkholz Exp $
+
+*colordiff-1.0.6a-r1 (15 Oct 2007)
+
+  15 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  +colordiff-1.0.6a-r1.ebuild:
+  (#152141) Fix an error message 'Invalid colour specification for setting
+  color_patch (no) in /etc/colordiffrc' (Bo Ørsted Andresen).
 
 *colordiff-1.0.6a (21 Jun 2007)
 
