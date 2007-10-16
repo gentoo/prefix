@@ -1,6 +1,12 @@
 # ChangeLog for sys-devel/m4
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/ChangeLog,v 1.99 2007/10/12 20:19:38 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/ChangeLog,v 1.100 2007/10/15 09:03:09 uberlord Exp $
+
+*m4-1.4.10-r1 (15 Oct 2007)
+
+  15 Oct 2007; Roy Marples <uberlord@gentoo.org>
+  +files/m4-1.4.10-seek.patch, +m4-1.4.10-r1.ebuild:
+  Pull upstream fix for BSD systems.
 
   12 Oct 2007; Lars Weiler <pylon@gentoo.org> m4-1.4.10.ebuild:
   stable ppc, bug #195257
