@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/t1lib
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/ChangeLog,v 1.66 2007/10/05 23:15:27 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/ChangeLog,v 1.67 2007/10/15 12:55:21 aballier Exp $
+
+  15 Oct 2007; Alexis Ballier <aballier@gentoo.org> t1lib-5.0.2.ebuild,
+  t1lib-5.0.2-r1.ebuild, t1lib-5.1.1.ebuild:
+  virtual/tetex -> virtual/latex-base, bug #195894
 
   05 Oct 2007; Ryan Hill <dirtyepic@gentoo.org>
   +files/t1lib-5.1.1-parallel.patch, t1lib-5.1.1.ebuild:

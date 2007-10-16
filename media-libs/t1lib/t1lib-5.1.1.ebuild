@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/t1lib-5.1.1.ebuild,v 1.6 2007/10/05 23:15:27 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/t1lib-5.1.1.ebuild,v 1.7 2007/10/15 12:55:21 aballier Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,7 @@ RDEPEND="X? ( x11-libs/libXaw
 			x11-libs/libX11
 			x11-libs/libXt )"
 DEPEND="${RDEPEND}
-	doc? ( virtual/tetex )
+	doc? ( virtual/latex-base )
 	X? ( x11-libs/libXfont
 		x11-proto/xproto
 		x11-proto/fontsproto )"
