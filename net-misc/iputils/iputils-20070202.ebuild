@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/iputils-20070202.ebuild,v 1.2 2007/06/26 02:32:34 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/iputils-20070202.ebuild,v 1.5 2007/10/15 21:37:49 opfer Exp $
 
 EAPI="prefix"
 
@@ -34,6 +34,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-20070202-makefile.patch
 	epatch "${FILESDIR}"/${PN}-20060512-kernel-ifaddr.patch
 	epatch "${FILESDIR}"/${PN}-20060512-linux-headers.patch
+	epatch "${FILESDIR}"/${PN}-20070202-no-open-max.patch #195861
 
 	use static && append-ldflags -static
 	use ipv6 || sed -i -e 's:IPV6_TARGETS=:#IPV6_TARGETS=:' Makefile

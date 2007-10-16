@@ -1,6 +1,18 @@
 # ChangeLog for net-misc/iputils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/ChangeLog,v 1.54 2007/04/30 20:34:35 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/ChangeLog,v 1.57 2007/10/15 21:37:49 opfer Exp $
+
+  15 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  iputils-20070202.ebuild:
+  stable x86, bug 195915
+
+  15 Oct 2007; Jeroen Roovers <jer@gentoo.org> iputils-20070202.ebuild:
+  Stable for HPPA (bug #195915).
+
+  15 Oct 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/iputils-20070202-no-open-max.patch, iputils-20070202.ebuild:
+  Fix building with newer kernel headers that lack OPEN_MAX #195861 by Markus
+  Meier.
 
 *iputils-9999 (30 Apr 2007)
 
