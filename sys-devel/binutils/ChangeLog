@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.316 2007/10/14 09:50:31 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.317 2007/10/15 13:01:11 corsair Exp $
+
+  15 Oct 2007; Markus Rothe <corsair@gentoo.org> binutils-2.18-r1.ebuild:
+  Stable on ppc64; bug #195511
 
   14 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
   binutils-2.18-r1.ebuild:
