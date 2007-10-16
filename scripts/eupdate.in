@@ -608,11 +608,10 @@ pt=`ls -p | egrep -v "^Manifest$"`
 # do a nested loop join, we don't assume any order
 for pte in $pt ; do
 	had_match=0
+	mypte=$pte
 	for mte in $mt ; do
 		# calculate the diffs between prefix and main
-		if [[ ${pte/-r0/-r} == $pte ]] ; then
-			mypte=$pte
-		else
+		if [[ ${pte} == *-r0* ]] ; then
 			# normalise version, so we compare against the original
 			# version from the main tree
 			mypte=${pte%.*.ebuild}.ebuild
