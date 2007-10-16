@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numeric/numeric-24.2-r6.ebuild,v 1.4 2007/09/04 17:18:57 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numeric/numeric-24.2-r6.ebuild,v 1.5 2007/10/15 14:19:12 bicatali Exp $
 
 EAPI="prefix"
 
 NEED_PYTHON=2.3
 
-inherit distutils eutils fortran
+inherit distutils eutils
 
 MY_P=Numeric-${PV}
 
@@ -15,33 +15,24 @@ HOMEPAGE="http://numeric.scipy.org/"
 SRC_URI="mirror://sourceforge/numpy/${MY_P}.tar.gz
 	doc? ( http://numpy.scipy.org/numpy.pdf )"
 
-# numeric needs cblas (virtual/cblas work in progress)
-# and lapack. needs fortran to get the proper fortran to C library.
-RDEPEND="lapack? ( || ( >=sci-libs/blas-atlas-3.7.11-r1
-						>=sci-libs/cblas-reference-20030223-r3 )
-					virtual/lapack )"
+RDEPEND="lapack? ( virtual/cblas virtual/lapack )"
 DEPEND="${RDEPEND}
-	lapack? ( app-admin/eselect-cblas )"
+	lapack? ( dev-util/pkgconfig )"
 
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~x86"
 IUSE="doc lapack"
 
-S=${WORKDIR}/${MY_P}
+S="${WORKDIR}/${MY_P}"
 
-pkg_setup() {
-	if use lapack; then
-		FORTRAN="gfortran g77 ifc"
-		fortran_pkg_setup
-		for d in $(eselect cblas show); do mycblas=${d}; done
-		if [[ -z "${mycblas/reference/}" ]] && [[ -z "${mycblas/atlas/}" ]]; then
-			ewarn "You need to set cblas to atlas or reference. Do:"
-			ewarn "   eselect cblas set <impl>"
-			ewarn "where <impl> is atlas, threaded-atlas or reference"
-			die "setup failed"
-		fi
-	fi
+# ex usage: pkgconf_cfg --libs-only-l cblas: ['cblas','atlas']
+pkgconf_cfg() {
+	local cfg="["
+	for i in $(pkg-config "$1" "$2"); do
+		cfg="${cfg}'${i:2}'"
+	done
+	echo "${cfg//\'\'/','}]"
 }
 
 src_unpack() {
@@ -61,35 +52,19 @@ src_unpack() {
 	# fix for dotblas from uncommited cvs
 	epatch "${FILESDIR}"/${P}-dotblas.patch
 
-	# adapt lapack support
+	# adapt lapack/cblas support
 	if use lapack; then
-		epatch "${FILESDIR}"/${P}-lapack.patch
-		local flib=
-		if  [[ "${FORTRANC}" == gfortran ]]; then
-			flib="'gfortran'"
-		elif [[ "${FORTRANC}" == if* ]]; then
-			flib="'imf'"
-		elif [[ "${FORTRANC}" == g77 ]]; then
-			flib="'g2c'"
-		fi
-		local cblaslib= cblasinc=
-		if [[ "${mycblas}" == reference ]]; then
-			cblaslib="'blas','cblas'"
-			cblasinc="'/usr/include/cblas'"
-		elif [[ "${mycblas}" == atlas ]]; then
-			cblaslib="'blas','cblas','atlas'"
-			cblasinc="'/usr/include/atlas'"
-		elif [[ "${mycblas}" == threaded-atlas ]]; then
-			cblaslib="'blas','cblas','atlas','pthread'"
-			cblasinc="'/usr/include/atlas'"
-		fi
-		sed -i \
-			-e "s:@FLIB@:${flib}:g" \
-			-e "s:@LAPACKLIB@:'lapack':g" \
-			-e "s:@CBLASLIB@:${cblaslib}:g" \
-			-e "s:@CBLASINC@:${EPREFIX}${cblasinc}:g" \
-			"${S}"/customize.py \
-			|| die "sed for lapack support failed"
+		cd "${S}"
+		mv customize.py customize.py.orig
+		cat > customize.py << EOF
+use_system_lapack = 1
+lapack_libraries = $(pkgconf_cfg --libs-only-l lapack)
+lapack_library_dirs = $(pkgconf_cfg --libs-only-L lapack)
+use_system_blas = 1
+dotblas_libraries = $(pkgconf_cfg --libs-only-l cblas)
+dotblas_library_dirs = $(pkgconf_cfg --libs-only-L cblas)
+dotblas_cblas_header = '<cblas.h>'
+EOF
 	fi
 }
 
@@ -103,14 +78,14 @@ src_install() {
 	distutils_src_install
 
 	# install various README from packages
-	newdoc Packages/MA/README README.MA
-	newdoc Packages/RNG/README README.RNG
+	newdoc Packages/MA/README README.MA || die
+	newdoc Packages/RNG/README README.RNG || die
 
 	if use lapack; then
 		docinto dotblas
-		dodoc Packages/dotblas/{README,profileDot}.txt
+		dodoc Packages/dotblas/{README,profileDot}.txt || die "doc for dotblas failed"
 		insinto /usr/share/doc/${PF}/dotblas
-		doins Packages/dotblas/profileDot.py
+		doins Packages/dotblas/profileDot.py || die "example for dotblas failed"
 	fi
 
 	# install tutorial and docs
