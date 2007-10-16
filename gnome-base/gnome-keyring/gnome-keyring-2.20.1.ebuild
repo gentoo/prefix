@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-2.20.0-r2.ebuild,v 1.1 2007/10/08 08:53:11 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-2.20.1.ebuild,v 1.1 2007/10/15 17:34:56 remi Exp $
 
 EAPI="prefix"
 
-inherit gnome2 eutils autotools pam
+inherit gnome2 eutils pam
 
 DESCRIPTION="Password and keyring managing daemon"
 HOMEPAGE="http://www.gnome.org/"
@@ -27,17 +27,6 @@ DEPEND="${RDEPEND}
 		doc? ( dev-util/gtk-doc )"
 
 DOCS="AUTHORS ChangeLog NEWS README TODO"
-
-src_unpack() {
-	gnome2_src_unpack
-
-	# Fix tests
-	echo "gkr-ask-tool.c" >> "${S}/po/POTFILES.in"
-
-	epatch "${FILESDIR}/${P}-fix_pam.patch"
-	use doc || epatch "${FILESDIR}/${P}-fix_gtk_doc.patch"
-	eautoreconf
-}
 
 pkg_setup() {
 	G2CONF="$(use_enable hal) \
