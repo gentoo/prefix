@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/texinfo-4.11.ebuild,v 1.2 2007/10/08 13:32:07 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/texinfo-4.11.ebuild,v 1.4 2007/10/15 10:25:49 uberlord Exp $
 
 EAPI="prefix"
 
@@ -43,4 +43,6 @@ src_install() {
 	dodoc AUTHORS ChangeLog INTRODUCTION NEWS README TODO
 	newdoc info/README README.info
 	newdoc makeinfo/README README.makeinfo
+
+	rm -f "${ED}"/usr/lib/charset.alias #195148
 }
