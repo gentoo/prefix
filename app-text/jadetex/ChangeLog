@@ -1,6 +1,9 @@
 # ChangeLog for app-text/jadetex
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/jadetex/ChangeLog,v 1.31 2007/03/12 23:52:55 nattfodd Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/jadetex/ChangeLog,v 1.32 2007/10/15 20:17:42 aballier Exp $
+
+  15 Oct 2007; Alexis Ballier <aballier@gentoo.org> jadetex-3.13-r1.ebuild:
+  Fixes for texlive integration
 
   12 Mar 2007; Alexandre Buisse <nattfodd@gentoo.org> metadata.xml:
   Replaced text-markup by tex as maintaining herd (text-markup split).
