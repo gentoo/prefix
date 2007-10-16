@@ -1,0 +1,14 @@
+# ChangeLog for gentoo-x86/virtual
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/latex-base/ChangeLog,v 1.2 2007/10/14 20:45:47 aballier Exp $
+
+  14 Oct 2007; Alexis Ballier <aballier@gentoo.org> latex-base-1.0.ebuild:
+  use texlive-latexrecommended rather than just texlive-latex, it provides
+  more packages and will be more reliable for deps
+
+*latex-base-1.0 (14 Oct 2007)
+
+  14 Oct 2007; Alexis Ballier <aballier@gentoo.org> +metadata.xml,
+  +latex-base-1.0.ebuild:
+  initial import of latex-base virtual, see gentoo-dev ml
+
