@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/flex
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/ChangeLog,v 1.68 2007/10/12 20:00:13 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/ChangeLog,v 1.69 2007/10/16 14:10:48 angelos Exp $
+
+  16 Oct 2007; Christoph Mende <angelos@gentoo.org> flex-2.5.33-r3.ebuild:
+  Stable on amd64 wrt bug #195255
 
   12 Oct 2007; Lars Weiler <pylon@gentoo.org> flex-2.5.33-r3.ebuild:
   stable ppc, bug #195255
