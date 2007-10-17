@@ -1,6 +1,11 @@
 # ChangeLog for www-client/mozilla-launcher
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-launcher/ChangeLog,v 1.62 2007/08/29 16:28:34 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-launcher/ChangeLog,v 1.63 2007/10/16 17:13:24 armin76 Exp $
+
+  16 Oct 2007; Raúl Porcel <armin76@gentoo.org>
+  mozilla-launcher-1.49.ebuild, mozilla-launcher-1.52.ebuild,
+  mozilla-launcher-1.55.ebuild, mozilla-launcher-1.56.ebuild:
+  Fix HOMEPAGE, bug 195284
 
   29 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing agriffis from metadata due to his retirement (see #182294 for
