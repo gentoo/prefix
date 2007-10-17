@@ -1,6 +1,10 @@
 # ChangeLog for app-emacs/wanderlust
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/ChangeLog,v 1.62 2007/10/11 15:27:27 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/ChangeLog,v 1.63 2007/10/16 06:31:23 opfer Exp $
+
+  16 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  wanderlust-2.14.0-r3.ebuild:
+  stable amd64, bug 195158
 
   11 Oct 2007; Ulrich Mueller <ulm@gentoo.org> -wanderlust-2.14.0-r1.ebuild:
   Remove old.
