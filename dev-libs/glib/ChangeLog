@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.285 2007/09/21 17:29:39 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.286 2007/10/16 07:35:00 leio Exp $
+
+*glib-2.14.2 (16 Oct 2007)
+
+  16 Oct 2007; Mart Raudsepp <leio@gentoo.org> +glib-2.14.2.ebuild:
+  Version bump
 
 *glib-2.14.1 (21 Sep 2007)
 
