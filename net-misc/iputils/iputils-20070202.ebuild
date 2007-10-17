@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/iputils-20070202.ebuild,v 1.5 2007/10/15 21:37:49 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/iputils-20070202.ebuild,v 1.7 2007/10/16 14:22:49 angelos Exp $
 
 EAPI="prefix"
 
