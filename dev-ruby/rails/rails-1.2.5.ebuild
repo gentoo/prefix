@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-1.2.5.ebuild,v 1.1 2007/10/13 06:36:11 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-1.2.5.ebuild,v 1.4 2007/10/16 13:32:26 armin76 Exp $
 
 EAPI="prefix"
 
@@ -15,6 +15,7 @@ KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 
 IUSE="mysql sqlite sqlite3 postgres fastcgi"
 DEPEND=">=dev-lang/ruby-1.8.5
+	app-admin/eselect-rails
 	>=dev-ruby/rake-0.7.2
 	=dev-ruby/activerecord-1.15.5
 	=dev-ruby/actionmailer-1.3.5
