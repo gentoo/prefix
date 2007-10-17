@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.11.5.ebuild,v 1.13 2007/06/24 23:40:19 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.11.5.ebuild,v 1.14 2007/10/16 17:19:36 armin76 Exp $
 
 EAPI="prefix"
 
@@ -17,8 +17,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~mips ~x86"
 IUSE=""
 
-DEPEND="app-arch/zip
-	>=dev-libs/nspr-${NSPR_VER}"
+DEPEND=">=dev-libs/nspr-${NSPR_VER}"
 
 src_unpack() {
 	unpack ${A}
