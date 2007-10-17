@@ -77,10 +77,6 @@ app-vim/ant
 # for a while
 >=app-portage/gentoolkit-dev-0.2.6.6
 
-# Fabian Groffen <grobian@gentoo.org> (16 Jul 2007)
-# autotools get completely broken with it, like on FreeBSD
-=sys-devel/m4-1.4.10
-
 # Fabian Groffen <grobian@gentoo.org> (30 Oct 2006)
 # doesn't install pdflatex in prefix
 >=app-text/tetex-3.0
