@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/pyyaml
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyyaml/ChangeLog,v 1.1 2007/10/05 23:01:23 sbriesen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyyaml/ChangeLog,v 1.3 2007/10/16 01:11:09 sbriesen Exp $
+
+  16 Oct 2007; Stefan Briesenick <sbriesen@gentoo.org> pyyaml-3.05.ebuild:
+  added NEED_PYTHON
+
+  16 Oct 2007; Stefan Briesenick <sbriesen@gentoo.org>
+  +files/pyyaml-3.05-libyaml.diff, pyyaml-3.05.ebuild:
+  some cleanups
 
 *pyyaml-3.05 (05 Oct 2007)
 
