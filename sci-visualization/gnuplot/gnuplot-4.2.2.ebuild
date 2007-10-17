@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.2.ebuild,v 1.10 2007/10/15 06:22:48 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.2.ebuild,v 1.11 2007/10/16 10:03:55 corsair Exp $
 
 EAPI="prefix"
 
