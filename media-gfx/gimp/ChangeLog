@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.233 2007/10/15 14:33:29 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.234 2007/10/16 03:40:58 lu_zero Exp $
+
+  16 Oct 2007; Luca Barbato <lu_zero@gentoo.org> gimp-2.4.0_rc3.ebuild:
+  workaround transformation preview on ppc
 
   15 Oct 2007; Markus Rothe <corsair@gentoo.org> gimp-2.3.19.ebuild:
   Stable on ppc64

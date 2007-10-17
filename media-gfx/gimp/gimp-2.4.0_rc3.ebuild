@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.0_rc3.ebuild,v 1.2 2007/09/29 01:57:03 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.0_rc3.ebuild,v 1.3 2007/10/16 03:40:58 lu_zero Exp $
 
 EAPI="prefix"
 
@@ -72,6 +72,10 @@ src_compile() {
 	# gimp uses inline functions (e.g. plug-ins/common/grid.c) (#23078)
 	# gimp uses floating point math, needs accuracy (#98685)
 	filter-flags "-fno-inline" "-ffast-math"
+	# gimp assumes char is signed (fixes preview corruption)
+	if use ppc || use ppc64; then
+		append-flags "-fsigned-char"
+	fi
 
 	econf --enable-default-binary \
 		--with-x \
