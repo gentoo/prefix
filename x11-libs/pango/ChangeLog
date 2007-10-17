@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/pango
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.192 2007/09/21 17:17:31 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.193 2007/10/16 07:55:29 leio Exp $
+
+*pango-1.18.3 (16 Oct 2007)
+
+  16 Oct 2007; Mart Raudsepp <leio@gentoo.org> +pango-1.18.3.ebuild:
+  Version bump for two OpenType engine fixes
 
 *pango-1.18.2 (21 Sep 2007)
 
