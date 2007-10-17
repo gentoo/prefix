@@ -18,7 +18,6 @@ einfo() { echo "* $*"; }
 econf() {
 	./configure \
 		--prefix="${ROOT}"/usr \
-		--host=${CHOST} \
 		--mandir="${ROOT}"/usr/share/man \
 		--infodir="${ROOT}"/usr/share/info \
 		--datadir="${ROOT}"/usr/share \
@@ -342,7 +341,6 @@ bootstrap_gcc() {
 
 	${S}/gcc-${GCC_PV}/configure \
 		--prefix="${ROOT}"/usr \
-		--host=${CHOST} \
 		--mandir="${ROOT}"/usr/share/man \
 		--infodir="${ROOT}"/usr/share/info \
 		--datadir="${ROOT}"/usr/share \
