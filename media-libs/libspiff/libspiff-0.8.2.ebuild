@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libspiff/libspiff-0.7.1.ebuild,v 1.3 2007/07/07 19:27:54 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libspiff/libspiff-0.8.2.ebuild,v 1.1 2007/10/16 18:36:32 rbu Exp $
 
 EAPI="prefix"
 
@@ -35,4 +35,8 @@ src_install() {
 	if use doc; then
 		dohtml doc/html/*
 	fi
+}
+
+pkg_postinst() {
+	elog "libspiff-0.8.0 changed its SONAME. Please run # revdep-rebuild to recompile your XSPF applications."
 }
