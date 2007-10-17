@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.3.ebuild,v 1.5 2007/10/13 16:04:45 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.3.ebuild,v 1.6 2007/10/16 17:28:15 armin76 Exp $
 
 EAPI="prefix"
 
@@ -155,20 +155,24 @@ src_compile() {
 	# requirements while compiling
 	edit_makefiles
 
+	# Doesn't like to build with CHOST-specific commands.
+	MY_CC=$(tc-getCC)
+	MY_CXX=$(tc-getCXX)
+
 	# Only build the parts necessary to support building enigmail
-	emake -j1 export || die "make export failed"
-	emake -C modules/libreg || die "make modules/libreg failed"
-	emake -C xpcom/string || die "make xpcom/string failed"
-	emake -C xpcom || die "make xpcom failed"
-	emake -C xpcom/obsolete || die "make xpcom/obsolete failed"
+	emake CC=$MY_CC CXX=$MY_CXX -j1 export || die "make export failed"
+	emake CC=$MY_CC CXX=$MY_CXX -C modules/libreg || die "make modules/libreg failed"
+	emake CC=$MY_CC CXX=$MY_CXX -C xpcom/string || die "make xpcom/string failed"
+	emake CC=$MY_CC CXX=$MY_CXX -C xpcom || die "make xpcom failed"
+	emake CC=$MY_CC CXX=$MY_CXX -C xpcom/obsolete || die "make xpcom/obsolete failed"
 
 	# Build the enigmail plugin
 	einfo "Building Enigmail plugin..."
-	emake -C ${S}/mailnews/extensions/enigmail || die "make enigmail failed"
+	emake CC=$MY_CC CXX=$MY_CXX -C ${S}/mailnews/extensions/enigmail || die "make enigmail failed"
 
 	# Package the enigmail plugin; this may be the easiest way to collect the
 	# necessary files
-	emake -j1 -C ${S}/mailnews/extensions/enigmail xpi || die "make xpi failed"
+	emake CC=$MY_CC CXX=$MY_CXX -j1 -C ${S}/mailnews/extensions/enigmail xpi || die "make xpi failed"
 }
 
 src_install() {
