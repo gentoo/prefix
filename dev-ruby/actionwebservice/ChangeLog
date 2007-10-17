@@ -1,6 +1,14 @@
 # ChangeLog for dev-ruby/actionwebservice
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionwebservice/ChangeLog,v 1.59 2007/10/13 06:33:49 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionwebservice/ChangeLog,v 1.61 2007/10/16 13:27:09 armin76 Exp $
+
+  16 Oct 2007; Raúl Porcel <armin76@gentoo.org>
+  actionwebservice-1.2.5.ebuild:
+  ia64/sparc stable wrt security #195315
+
+  16 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  actionwebservice-1.2.5.ebuild:
+  stable x86, security bug 195315
 
 *actionwebservice-1.2.5 (13 Oct 2007)
 
