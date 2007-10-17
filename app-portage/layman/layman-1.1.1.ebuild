@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.1.1.ebuild,v 1.1 2007/09/12 06:10:29 wrobel Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.1.1.ebuild,v 1.4 2007/10/17 00:56:21 wolf31o2 Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
-S=${WORKDIR}/${PF}
+S="${WORKDIR}/${PF}"
 
 DEPEND=""
 RDEPEND=""
@@ -40,7 +40,7 @@ src_install() {
 	distutils_src_install
 
 	dodir /etc/layman
-	cp etc/* ${ED}/etc/layman/
+	cp etc/* "${ED}"/etc/layman/
 
 	doman doc/layman.8
 	dohtml doc/layman.8.html
@@ -48,7 +48,7 @@ src_install() {
 }
 
 src_test() {
-	cd ${S}
+	cd "${S}"
 	einfo "Running layman doctests..."
 	echo
 	if ! PYTHONPATH="." ${python} layman/tests/dtest.py; then
