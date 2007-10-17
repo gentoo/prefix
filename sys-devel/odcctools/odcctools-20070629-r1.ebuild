@@ -11,7 +11,6 @@ HOMEPAGE="http://trac.macosforge.org/projects/odcctools"
 SRC_URI="http://www.gentoo.org/~grobian/distfiles/${P}.tar.bz2"
 
 LICENSE="APSL-2"
-SLOT="0"
 
 KEYWORDS="~ppc-macos ~x86-macos ~x86-solaris"
 
@@ -20,10 +19,29 @@ IUSE=""
 DEPEND="sys-devel/binutils-config"
 RDEPEND="${DEPEND}"
 
-LIBPATH=/usr/$(get_libdir)/binutils/${CHOST}/${PV}
+# Magic from toolchain-binutils.eclass
+export CTARGET=${CTARGET:-${CHOST}}
+if [[ ${CTARGET} == ${CHOST} ]] ; then
+	if [[ ${CATEGORY/cross-} != ${CATEGORY} ]] ; then
+		export CTARGET=${CATEGORY/cross-}
+	fi
+fi
+is_cross() { [[ ${CHOST} != ${CTARGET} ]] ; }
+
+if is_cross ; then
+	SLOT="${CTARGET}"
+else
+	SLOT="0"
+fi
+
+LIBPATH=/usr/$(get_libdir)/binutils/${CTARGET}/${PV}
 INCPATH=${LIBPATH}/include
-DATAPATH=/usr/share/binutils-data/${CHOST}/${PV}
-BINPATH=/usr/${CHOST}/binutils-bin/${PV}
+DATAPATH=/usr/share/binutils-data/${CTARGET}/${PV}
+if is_cross ; then
+	BINPATH=/usr/${CHOST}/${CTARGET}/binutils-bin/${PV}
+else
+	BINPATH=/usr/${CTARGET}/binutils-bin/${PV}
+fi
 
 src_unpack() {
 	unpack ${A}
@@ -53,6 +71,7 @@ src_compile() {
 		--libdir=${EPREFIX}${LIBPATH} \
 		--libexecdir=${EPREFIX}${LIBPATH} \
 		--includedir=${EPREFIX}${INCPATH}"
+	is_cross && myconf="${myconf} --with-sysroot=${EPREFIX}/usr/${CTARGET}"
 	echo -e "./configure ${myconf//--/\n\t--}"
 	./configure ${myconf} || die "econf failed"
 	emake || die "emake failed"
@@ -61,21 +80,37 @@ src_compile() {
 src_install() {
 	make DESTDIR="${D}" install || die
 
+	# nuke the include files, in the end they result in conflicts
+	rm -Rf "${ED}/${INCPATH}" || die
+
+	# Now we collect everything into the proper SLOT-ed dirs
+	# When something is built to cross-compile, it installs into
+	# /usr/$CHOST/ by default ... we have to 'fix' that :)
+	if is_cross ; then
+		cd "${ED}"/${BINPATH}
+		for x in * ; do
+			mv ${x} ${x/${CTARGET}-}
+		done
+
+		if [[ -d ${ED}/usr/${CHOST}/${CTARGET} ]] ; then
+			mv "${ED}"/usr/${CHOST}/${CTARGET}/include "${ED}"/${INCPATH}
+			mv "${ED}"/usr/${CHOST}/${CTARGET}/lib/* "${ED}"/${LIBPATH}/
+			rm -r "${ED}"/usr/${CHOST}/{include,lib}
+		fi
+	fi
+
 	# Generate an env.d entry for this binutils
 	cd "${S}"
 	insinto /etc/env.d/binutils
 	cat <<-EOF > env.d
-		TARGET="${CHOST}"
+		TARGET="${CTARGET}"
 		VER="${PV}"
 		LIBPATH="${EPREFIX}/${LIBPATH}"
-		FAKE_TARGETS="${CHOST}"
+		FAKE_TARGETS="${CTARGET}"
 	EOF
-	newins env.d ${CHOST}-${PV}
-
-	# nuke the include files, in the end they result in conflicts
-	rm -Rf "${ED}/${INCPATH}" || die
+	newins env.d ${CTARGET}-${PV}
 }
 
 pkg_postinst() {
-	binutils-config ${CHOST}-${PV}
+	binutils-config ${CTARGET}-${PV}
 }
