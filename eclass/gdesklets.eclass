@@ -1,6 +1,6 @@
 # Copyright 2004-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
-# $Header: /var/cvsroot/gentoo-x86/eclass/gdesklets.eclass,v 1.14 2006/05/26 04:18:43 nixphoeni Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gdesklets.eclass,v 1.15 2007/10/16 22:46:31 nixphoeni Exp $
 #
 # Authors:	Joe Sapp <nixphoeni@gentoo.org>
 #		Mike Gardiner <obz@gentoo.org>
@@ -29,7 +29,7 @@ SLOT="0"
 IUSE=""
 RDEPEND=">=gnome-extra/gdesklets-core-0.34.3-r1"
 
-GDESKLETS_INST_DIR="/usr/$(get_libdir)/gdesklets"
+GDESKLETS_INST_DIR="${EROOT}usr/$(get_libdir)/gdesklets"
 
 gdesklets_src_install() {
 
@@ -47,8 +47,8 @@ gdesklets_src_install() {
 	# This should be done by the gdesklets-core ebuild
 	# It makes the Displays or Controls directory in the
 	# global installation directory if it doesn't exist
-	[[ -d ${GDESKLETS_INST_DIR}/Displays ]] || \
-		dodir ${GDESKLETS_INST_DIR}/Displays
+	[[ -d "${GDESKLETS_INST_DIR}/Displays" ]] || \
+		dodir "${GDESKLETS_INST_DIR}/Displays"
 
 	# The displays only need to be readable
 	insopts -m0744
@@ -85,8 +85,8 @@ gdesklets_src_install() {
 
 		# This creates the subdirectory of ${DESKLET_NAME}
 		# in the global Displays directory
-		[[ -d ${DESKLET_INSDIR} ]] || \
-			dodir ${DESKLET_INSDIR}
+		[[ -d "${DESKLET_INSDIR}" ]] || \
+			dodir "${DESKLET_INSDIR}"
 
 		# For each of the Display files, there may be
 		# scripts included inline which don't necessarily
@@ -99,7 +99,7 @@ gdesklets_src_install() {
 			einfo "Installing Display `basename ${DSP} .display`"
 			debug-print "Installing ${DSP} into ${DESKLET_INSDIR}"
 			DSP=`basename ${DSP}`
-			insinto ${DESKLET_INSDIR}
+			insinto "${DESKLET_INSDIR}"
 			doins ${DSP}
 
 			SCRIPTS=$(grep "script .*uri" ${DSP} | \
@@ -111,8 +111,8 @@ gdesklets_src_install() {
 			# relative to the display.
 			for SCR in ${SCRIPTS[@]}; do
 
-				insinto ${DESKLET_INSDIR}/`dirname ${SCR}`
-				doins ${SCR}
+				insinto "${DESKLET_INSDIR}/`dirname ${SCR}`"
+				doins "${SCR}"
 				debug-print "Installed ${SCR} into ${DESKLET_INSDIR}/`dirname ${SCR}`"
 
 			done # for in ${SCRIPTS}
@@ -129,13 +129,13 @@ gdesklets_src_install() {
 
 			for G in ${GFX[@]}; do
 
-				insinto ${DESKLET_INSDIR}/`dirname ${G}`
-				doins ${G}
+				insinto "${DESKLET_INSDIR}/`dirname ${G}`"
+				doins "${G}"
 				debug-print "Installed ${G} into ${DESKLET_INSDIR}/`dirname ${G}`"
 
 			done # for in ${GFX}
 
-			cd ${S}
+			cd "${S}"
 
 		done # for in ${DISPLAY_FILES}
 
@@ -164,14 +164,14 @@ gdesklets_src_install() {
 			einfo "Installing Control ${CTRL_NAME}"
 			# This creates the subdirectory of ${CTRL_NAME}
 			# in the global Controls directory
-			[[ -d ${CONTROL_INSDIR}/${CTRL_NAME} ]] || \
-				dodir ${CONTROL_INSDIR}/${CTRL_NAME}
+			[[ -d "${CONTROL_INSDIR}/${CTRL_NAME}" ]] || \
+				dodir "${CONTROL_INSDIR}/${CTRL_NAME}"
 
-			insinto ${CONTROL_INSDIR}/${CTRL_NAME}
+			insinto "${CONTROL_INSDIR}/${CTRL_NAME}"
 
 			doins -r *
 
-			cd ${S}
+			cd "${S}"
 
 		done # for in ${CONTROL_INITS}
 
@@ -188,14 +188,14 @@ gdesklets_src_install() {
 	if [[ -n "${GFX}" ]]; then
 
 		# Install to the Displays directory of the Desklet
-		insinto ${GDESKLETS_INST_DIR}/Displays/${DESKLET_NAME}
-		doins ${GFX}
+		insinto "${GDESKLETS_INST_DIR}/Displays/${DESKLET_NAME}"
+		doins "${GFX}"
 		debug-print "Installed ${GFX} into ${GDESKLETS_INST_DIR}/Displays/${DESKLET_NAME}"
 
 	fi # if -n "${GFX}"
 
 	# Install some docs if so requested
-	[[ -n "${DOCS}" ]] && dodoc ${DOCS} && \
+	[[ -n "${DOCS}" ]] && dodoc "${DOCS}" && \
 	debug-print "Installed ${DOCS}"
 
 }

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/latex-package.eclass,v 1.30 2007/10/15 21:53:22 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/latex-package.eclass,v 1.31 2007/10/16 20:21:27 aballier Exp $
 #
 # Author Matthew Turk <satai@gentoo.org>
 # Martin Ehmsen <ehmsen@gentoo.org>
@@ -58,7 +58,7 @@ TEXMF="/usr/share/texmf"
 SUPPLIER="misc" # This refers to the font supplier; it should be overridden
 
 latex-package_has_tetex_3() {
-	if has_version '>=app-text/tetex-3' || has_version '>=app-text/ptex-3.1.8' ; then
+	if has_version '>=app-text/tetex-3' || has_version '>=app-text/ptex-3.1.8' || has_version '>=app-text/texlive-core-2007' ; then
 		true
 	else
 		false
