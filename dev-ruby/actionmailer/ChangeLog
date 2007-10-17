@@ -1,6 +1,13 @@
 # ChangeLog for dev-ruby/actionmailer
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionmailer/ChangeLog,v 1.59 2007/10/13 06:31:31 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionmailer/ChangeLog,v 1.61 2007/10/16 13:26:22 armin76 Exp $
+
+  16 Oct 2007; Raúl Porcel <armin76@gentoo.org> actionmailer-1.3.5.ebuild:
+  ia64/sparc stable wrt security #195315
+
+  16 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  actionmailer-1.3.5.ebuild:
+  stable x86, security bug 195315
 
 *actionmailer-1.3.5 (13 Oct 2007)
 
