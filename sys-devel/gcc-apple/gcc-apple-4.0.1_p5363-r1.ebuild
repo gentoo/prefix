@@ -12,10 +12,25 @@ DESCRIPTION="Apple branch of the GNU Compiler Collection, Xcode 2.4"
 HOMEPAGE="http://gcc.gnu.org"
 SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/gcc-${APPLE_VERS}.tar.gz"
 
-LICENSE="APSL-2 GPL-2"
-SLOT="40"
+# Magic from toolchain.eclass
+export CTARGET=${CTARGET:-${CHOST}}
+if [[ ${CTARGET} = ${CHOST} ]] ; then
+	if [[ ${CATEGORY/cross-} != ${CATEGORY} ]] ; then
+		export CTARGET=${CATEGORY/cross-}
+	fi
+fi
+is_crosscompile() {
+	[[ ${CHOST} != ${CTARGET} ]]
+}
 
-KEYWORDS="~ppc-macos ~x86-macos"
+LICENSE="APSL-2 GPL-2"
+if is_crosscompile; then
+	SLOT="${CTARGET}-40"
+else
+	SLOT="40"
+fi
+
+KEYWORDS="~ppc-macos ~x86-macos ~x86-solaris"
 
 IUSE="nls objc objc++ nocxx"
 
@@ -26,9 +41,15 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 DEPEND="${RDEPEND}
 	>=sys-apps/texinfo-4.2-r4
 	>=sys-devel/bison-1.875
-	sys-devel/odcctools"
+	${CATEGORY}/odcctools"
 
 S=${WORKDIR}/gcc-${APPLE_VERS}
+
+if is_crosscompile ; then
+	BINPATH=${EPREFIX}/usr/${CHOST}/${CTARGET}/gcc-bin/${GCC_VERS}
+else
+	BINPATH=${EPREFIX}/usr/${CTARGET}/gcc-bin/${GCC_VERS}
+fi
 
 src_unpack() {
 	unpack ${A}
@@ -55,14 +76,30 @@ src_compile() {
 
 	local myconf="${myconf} \
 		--prefix=${EPREFIX}/usr \
-		--bindir=${EPREFIX}/usr/${CHOST}/gcc-bin/${GCC_VERS} \
-		--includedir=${EPREFIX}/usr/lib/gcc/${CHOST}/${GCC_VERS}/include \
-		--datadir=${EPREFIX}/usr/share/gcc-data/${CHOST}/${GCC_VERS} \
-		--mandir=${EPREFIX}/usr/share/gcc-data/${CHOST}/${GCC_VERS}/man \
-		--infodir=${EPREFIX}/usr/share/gcc-data/${CHOST}/${GCC_VERS}/info \
-		--with-gxx-include-dir=${EPREFIX}/usr/lib/gcc/${CHOST}/${GCC_VERS}/include/g++-v${GCC_VERS/\.*/} \
+		--bindir=${BINPATH} \
+		--includedir=${EPREFIX}/usr/lib/gcc/${CTARGET}/${GCC_VERS}/include \
+		--datadir=${EPREFIX}/usr/share/gcc-data/${CTARGET}/${GCC_VERS} \
+		--mandir=${EPREFIX}/usr/share/gcc-data/${CTARGET}/${GCC_VERS}/man \
+		--infodir=${EPREFIX}/usr/share/gcc-data/${CTARGET}/${GCC_VERS}/info \
+		--with-gxx-include-dir=${EPREFIX}/usr/lib/gcc/${CTARGET}/${GCC_VERS}/include/g++-v${GCC_VERS/\.*/} \
 		--host=${CHOST} \
 		--enable-version-specific-runtime-libs"
+	if is_crosscompile ; then
+		# Straight from the GCC install doc:
+		# "GCC has code to correctly determine the correct value for target
+		# for nearly all native systems. Therefore, we highly recommend you
+		# not provide a configure target when configuring a native compiler."
+		myconf="${myconf} --target=${CTARGET}"
+
+		# Tell compiler where to find what it needs
+		myconf="${myconf} --with-sysroot=${EPREFIX}/usr/${CTARGET}"
+
+		# Set this to something sane for both native and target
+		CFLAGS="-O2 -pipe"
+
+		local VAR="CFLAGS_"${CTARGET//-/_}
+		CXXFLAGS=${!VAR}
+	fi
 	[[ -n ${CBUILD} ]] && myconf="${myconf} --build=${CBUILD}"
 
 	# Straight from the GCC install doc:
@@ -99,8 +136,8 @@ src_compile() {
 	# we don't use a GNU linker, so tell GCC where to find the linker stuff we
 	# want it to use
 	myconf="${myconf} \
-		--with-as=${EPREFIX}/usr/bin/as \
-		--with-ld=${EPREFIX}/usr/bin/ld"
+		--with-as=${EPREFIX}/usr/bin/${CTARGET}-as \
+		--with-ld=${EPREFIX}/usr/bin/${CTARGET}-ld"
 
 	# <grobian@gentoo.org> - 2006-09-19:
 	# figure out whether the CPU we're on is 64-bits capable using a
@@ -109,18 +146,20 @@ src_compile() {
 	# will always compile 64-bits code, but might fail running,
 	# depending on the CPU, so the resulting program might fail.  Thanks
 	# Tobias Hahn for working that out.
-	cd "${T}"
-	echo '
+	if [[ ${CHOST} == *-apple-darwin* ]] && ! is_crosscompile ; then
+		cd "${T}"
+		echo '
 #include <stdio.h>
 
 int main() {
 	printf("%d\n", sizeof(size_t) * 8);
 }
 ' > bits.c
-	gcc -m64 -o bits bits.c
-	# x86_64 gcc building is broken
-	if [[ ${CHOST} != powerpc-*-darwin* ]] || [[ $(./bits) != 64 ]] ; then
-		myconf="${myconf} --disable-multilib"
+		gcc -m64 -o bits bits.c
+		# x86_64 gcc building is broken
+		if [[ ${CHOST} != powerpc-*-darwin* ]] || [[ $(./bits) != 64 ]] ; then
+			myconf="${myconf} --disable-multilib"
+		fi
 	fi
 
 	mkdir -p ${WORKDIR}/build
@@ -158,9 +197,22 @@ src_install() {
 	echo "MANPATH=\"${EPREFIX}/usr/share/gcc-data/${CHOST}/${GCC_VERS}/man\"" >> ${gcc_envd_file}
 	echo "INFOPATH=\"${EPREFIX}/usr/share/gcc-data/${CHOST}/${GCC_VERS}/info\"" >> ${gcc_envd_file}
 	echo "STDCXX_INCDIR=\"g++-v${GCC_VERS/\.*/}\"" >> ${gcc_envd_file}
+	is_crosscompile && echo "CTARGET=${CTARGET}" >> ${gcc_envd_file}
 }
 
 pkg_postinst() {
 	# beware this also switches when it's on another branch version of GCC
-	gcc-config ${CHOST}-${GCC_VERS}
+	gcc-config ${CTARGET}-${GCC_VERS}
+}
+
+pkg_postrm() {
+	# clean up the cruft left behind by cross-compilers
+	if is_crosscompile ; then
+		if [[ -z $(ls "${EROOT}"/etc/env.d/gcc/${CTARGET}* 2>/dev/null) ]] ; then
+			rm -f "${EROOT}"/etc/env.d/gcc/config-${CTARGET}
+			rm -f "${EROOT}"/etc/env.d/??gcc-${CTARGET}
+			rm -f "${EROOT}"/usr/bin/${CTARGET}-{gcc,{g,c}++}{,32,64}
+		fi
+		return 0
+	fi
 }
