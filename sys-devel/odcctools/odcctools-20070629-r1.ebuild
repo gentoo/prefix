@@ -70,7 +70,8 @@ src_compile() {
 		--bindir=${EPREFIX}${BINPATH} \
 		--libdir=${EPREFIX}${LIBPATH} \
 		--libexecdir=${EPREFIX}${LIBPATH} \
-		--includedir=${EPREFIX}${INCPATH}"
+		--includedir=${EPREFIX}${INCPATH} \
+		--program-prefix="
 	is_cross && myconf="${myconf} --with-sysroot=${EPREFIX}/usr/${CTARGET}"
 	echo -e "./configure ${myconf//--/\n\t--}"
 	./configure ${myconf} || die "econf failed"
