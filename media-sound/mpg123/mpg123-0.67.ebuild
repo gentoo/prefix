@@ -42,7 +42,7 @@ src_compile() {
 	elif use portaudio; then
 		audiodev="portaudio"
 	elif [[ ${CHOST} == *apple-darwin* ]] ; then
-		audiodev="macosx";
+		audiodev="coreaudio";
 	else audiodev="dummy"
 	fi
 
