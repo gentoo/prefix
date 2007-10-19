@@ -247,20 +247,20 @@
  	/* One of -dmpqrtsx required. */
  	if (!(options & (AR_D|AR_M|AR_P|AR_Q|AR_R|AR_S|AR_T|AR_X))) {
 -		warnx("one of options -dmpqrtsx is required");
-+		fprintf(stderr, "ar: one of options -dmpqrtsx is required");
++		fprintf(stderr, "ar: one of options -dmpqrtsx is required\n");
  		usage();
  	}
  	/* Only one of -a and -bi allowed. */
  	if (options & AR_A && options & AR_B) {
 -		warnx("only one of -a and -[bi] options allowed");
-+		fprintf(stderr, "ar: only one of -a and -[bi] options allowed");
++		fprintf(stderr, "ar: only one of -a and -[bi] options allowed\n");
  		usage();
  	}
  	/* -ab require a position argument. */
  	if (options & (AR_A|AR_B)) {
  		if (!(posarg = *argv++)) {
 -			warnx("no position operand specified");
-+			fprintf(stderr, "ar: no position operand specified");
++			fprintf(stderr, "ar: no position operand specified\n");
  			usage();
  		}
  		posname = rname(posarg);
@@ -269,14 +269,14 @@
  
  	if (!(archive = *argv++)) {
 -		warnx("no archive specified");
-+		fprintf(stderr, "ar: no archive specified");
++		fprintf(stderr, "ar: no archive specified\n");
  		usage();
  	}
  
  	/* -dmqr require a list of archive elements. */
  	if (options & (AR_D|AR_M|AR_Q|AR_R) && !*argv) {
 -		warnx("no archive members specified");
-+		fprintf(stderr, "ar: no archive members specified");
++		fprintf(stderr, "ar: no archive members specified\n");
  		usage();
  	}
  
@@ -285,7 +285,7 @@
  {
  
 -	warnx("illegal option combination for %s", arg);
-+	fprintf(stderr, "ar: illegal option combination for %s", arg);
++	fprintf(stderr, "ar: illegal option combination for %s\n", arg);
  	usage();
  }
  
@@ -355,7 +355,7 @@
 +#ifdef DEFFILEMODE
  		if ((fd = open(archive, mode, DEFFILEMODE)) >= 0) {
 +#else
-+		if ((fd = open(archive, mode)) >= 0) {
++		if ((fd = open(archive, mode, (S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH))) >= 0) {
 +#endif
  			/* POSIX.2 puts create message on stderr. */
  			if (!(options & AR_C))
@@ -371,7 +371,7 @@
 +#ifdef DEFFILEMODE
  	if ((fd = open(archive, mode, DEFFILEMODE)) < 0)
 +#else
-+	if ((fd = open(archive, mode)) < 0)
++	if ((fd = open(archive, mode, (S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH))) < 0)
 +#endif
  		error(archive);
  
@@ -393,7 +393,7 @@
  			if (lname > OLDARMAXNAME) {
  				(void)fflush(stdout);
 -				warnx("warning: %s truncated to %.*s",
-+				fprintf(stderr, "ar: warning: %s truncated to %.*s",
++				fprintf(stderr, "ar: warning: %s truncated to %.*s\n",
  				    name, OLDARMAXNAME, name);
  				(void)fflush(stderr);
  			}
@@ -402,7 +402,7 @@
  	to = cfp->wfd;
  	sz = size;
 +#ifndef MIN
-+#define MIN(X,Y) (X <= Y ? X : Y)
++#define MIN(a,b) (((a)<(b))?(a):(b))
 +#endif
  	while (sz && (nr = read(from, buf, MIN(sz, sizeof(buf)))) > 0) {
  		sz -= nr;
