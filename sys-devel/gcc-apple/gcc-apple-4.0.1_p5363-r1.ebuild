@@ -1,4 +1,4 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -55,9 +55,10 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	# we use our libtool
-	sed -i -e "s:/usr/bin/libtool:${EPREFIX}/usr/bin/libtool:" \
+	sed -i -e "s:/usr/bin/libtool:${EPREFIX}/usr/bin/${CTARGET}-libtool:" \
 		gcc/config/darwin.h || die "sed gcc/config/darwin.h failed"
-	# add prefixed Frameworks to default search paths
+	# add prefixed Frameworks to default search paths (may want to change this
+	# in a cross-compile)
 	sed -i -e "/\"\/System\/Library\/Frameworks\"\,/i\ \   \"${EPREFIX}/Frameworks\"\, " \
 		gcc/config/darwin-c.c || die "sed  gcc/config/darwin-c.c failed"
 
@@ -129,9 +130,7 @@ src_compile() {
 	myconf="${myconf} --enable-shared --enable-threads=posix"
 
 	# make clear we're in an offset
-	if [[ ${EPREFIX%/} != "" ]] ; then
-		myconf="${myconf} --with-local-prefix=${EPREFIX}/usr"
-	fi
+	use prefix && myconf="${myconf} --with-local-prefix=${EPREFIX}/usr"
 
 	# we don't use a GNU linker, so tell GCC where to find the linker stuff we
 	# want it to use
@@ -162,15 +161,16 @@ int main() {
 		fi
 	fi
 
-	mkdir -p ${WORKDIR}/build
-	cd ${WORKDIR}/build
+	mkdir -p "${WORKDIR}"/build
+	cd "${WORKDIR}"/build
 	einfo "Configuring GCC with: ${myconf//--/\n\t--}"
-	${S}/configure ${myconf} || die "conf failed"
+	"${S}"/configure ${myconf} || die "conf failed"
 	make -j1 bootstrap || die "emake failed"
 }
 
 src_install() {
-	cd ${WORKDIR}/build
+	cd "${WORKDIR}"/build
+	# -jX doesn't work
 	make DESTDIR="${D}" install || die
 
 	use build && rm -rf "${ED}"/usr/{man,share}
