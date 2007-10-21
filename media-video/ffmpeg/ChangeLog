@@ -1,6 +1,10 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.208 2007/10/08 17:32:04 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.209 2007/10/21 00:01:05 fmccor Exp $
+
+  20 Oct 2007; Ferris McCormick <fmccor@gentoo.org>
+  ffmpeg-0.4.9_p20070616.ebuild:
+  sparc stable --- Bug #193563 --- builds and works.
 
   08 Oct 2007; Markus Rothe <corsair@gentoo.org>
   ffmpeg-0.4.9_p20070616.ebuild:
