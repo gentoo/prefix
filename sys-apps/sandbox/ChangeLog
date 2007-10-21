@@ -1,6 +1,14 @@
 # ChangeLog for sys-apps/sandbox
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.76 2007/10/15 14:53:56 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.77 2007/10/17 15:55:16 dsd Exp $
+
+*sandbox-1.2.18.1-r1 (17 Oct 2007)
+
+  17 Oct 2007; Daniel Drake <dsd@gentoo.org>
+  +files/sandbox-1.2.18.1-open-normal-fail.patch,
+  +sandbox-1.2.18.1-r1.ebuild:
+  Allow open() on non-existent files to fail in the normal way without
+  violation. Fixes bug #135745.
 
   15 Oct 2007; Markus Rothe <corsair@gentoo.org> sandbox-1.2.18.1.ebuild:
   Stable on ppc64

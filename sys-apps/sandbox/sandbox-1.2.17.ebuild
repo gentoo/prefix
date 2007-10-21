@@ -58,6 +58,7 @@ src_unpack() {
 	unpack ${A}
 	epatch "${FILESDIR}"/${P}-prefix.patch
 	cd "${S}"
+	epatch "${FILESDIR}"/${PN}-1.2.18.1-open-normal-fail.patch
 	eautoreconf
 }
 
