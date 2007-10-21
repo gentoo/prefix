@@ -1,6 +1,36 @@
 # ChangeLog for dev-scheme/guile
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.28 2007/10/15 14:25:25 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.30 2007/10/18 10:41:59 hkbst Exp $
+
+*guile-1.8.3-r1 (18 Oct 2007)
+
+  18 Oct 2007; Marijn Schouten <hkBst@gentoo.org> +files/fix-reader-cr.diff,
+  +guile-1.8.3-r1.ebuild:
+  fix reader regression
+
+*guile-1.8.3 (17 Oct 2007)
+
+  17 Oct 2007; Marijn Schouten <hkBst@gentoo.org> +guile-1.8.3.ebuild:
+  Add bugfix release 1.8.3:
+  - New modules (see the manual for details)
+
+   - `(srfi srfi-35)'
+   - `(srfi srfi-37)'
+
+  - Bugs fixed
+
+   - The `(ice-9 slib)' module now works as expected
+   - Expressions like "(set! 'x #t)" no longer yield a crash
+   - Warnings about duplicate bindings now go to stderr
+   - A memory leak in `make-socket-address' was fixed
+   - Alignment issues (e.g., on SPARC) in network routines were fixed
+   - A threading issue that showed up at least on NetBSD was fixed
+   - Build problems on Solaris and IRIX fixed
+
+  - Implementation improvements
+
+   - The reader is now faster, which reduces startup time
+   - Procedures returned by `record-accessor' and `record-modifier' are faster
 
   15 Oct 2007; Markus Rothe <corsair@gentoo.org> guile-1.8.2.ebuild:
   Stable on ppc64
