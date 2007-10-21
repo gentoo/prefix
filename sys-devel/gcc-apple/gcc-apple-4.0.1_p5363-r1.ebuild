@@ -23,6 +23,9 @@ is_crosscompile() {
 	[[ ${CHOST} != ${CTARGET} ]]
 }
 
+# TPREFIX is the prefix of the CTARGET installation
+export TPREFIX=${TPREFIX:-${EPREFIX}}
+
 LICENSE="APSL-2 GPL-2"
 if is_crosscompile; then
 	SLOT="${CTARGET}-40"
@@ -130,7 +133,7 @@ src_compile() {
 	myconf="${myconf} --enable-shared --enable-threads=posix"
 
 	# make clear we're in an offset
-	use prefix && myconf="${myconf} --with-local-prefix=${EPREFIX}/usr"
+	use prefix && myconf="${myconf} --with-local-prefix=${TPREFIX}/usr"
 
 	# we don't use a GNU linker, so tell GCC where to find the linker stuff we
 	# want it to use
@@ -145,7 +148,7 @@ src_compile() {
 	# will always compile 64-bits code, but might fail running,
 	# depending on the CPU, so the resulting program might fail.  Thanks
 	# Tobias Hahn for working that out.
-	if [[ ${CHOST} == *-apple-darwin* ]] && ! is_crosscompile ; then
+	if [[ ${CHOST} == powerpc-apple-darwin* ]] && ! is_crosscompile ; then
 		cd "${T}"
 		echo '
 #include <stdio.h>
@@ -154,11 +157,15 @@ int main() {
 	printf("%d\n", sizeof(size_t) * 8);
 }
 ' > bits.c
+		# native gcc doesn't come in a ${CHOST}-gcc fashion if on older Xcode
 		gcc -m64 -o bits bits.c
-		# x86_64 gcc building is broken
-		if [[ ${CHOST} != powerpc-*-darwin* ]] || [[ $(./bits) != 64 ]] ; then
+		if [[ $(./bits) != 64 ]] ; then
 			myconf="${myconf} --disable-multilib"
 		fi
+	else
+		# ld64 doesn't compile on non-Darwin hosts, 64-bits building is broken
+		# on x86_64-darwin
+		myconf="${myconf} --disable-multilib"
 	fi
 
 	mkdir -p "${WORKDIR}"/build
