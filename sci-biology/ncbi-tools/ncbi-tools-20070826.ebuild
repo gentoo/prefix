@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ncbi-tools-20070826.ebuild,v 1.2 2007/10/14 21:24:46 je_fro Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ncbi-tools-20070826.ebuild,v 1.3 2007/10/19 22:22:41 je_fro Exp $
 
 EAPI="prefix"
 
@@ -10,8 +10,9 @@ DESCRIPTION="Development toolkit and applications for computational biology"
 LICENSE="public-domain"
 HOMEPAGE="http://www.ncbi.nlm.nih.gov/"
 SRC_URI="mirror://gentoo/${P}.tar.gz
-	doc? ( mirror://gentoo/${PN}-sdk-doc.tar.bz2 )
-	mpi? ( mirror://gentoo/mpiblast-20070826.tar.gz )"
+	doc? ( mirror://gentoo/${PN}-sdk-doc.tar.bz2 )"
+
+#	mpi? ( mirror://gentoo/mpiblast-20070826.tar.gz )
 
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86"
@@ -26,8 +27,9 @@ DEPEND="app-shells/tcsh
 	dev-lang/perl
 	media-libs/libpng
 	sys-devel/pmake
-	mpi? ( virtual/mpi )
 	X? ( virtual/motif )"
+
+#	mpi? ( virtual/mpi )
 
 S="${WORKDIR}/ncbi"
 
