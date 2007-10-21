@@ -1,6 +1,12 @@
 # ChangeLog for gnome-base/libbonobo
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonobo/ChangeLog,v 1.133 2007/09/25 20:44:48 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonobo/ChangeLog,v 1.134 2007/10/17 22:37:58 eva Exp $
+
+*libbonobo-2.20.1 (17 Oct 2007)
+
+  17 Oct 2007; Gilles Dartiguelongue <eva@gentoo.org>
+  +libbonobo-2.20.1.ebuild:
+  bump to 2.20.1
 
 *libbonobo-2.20.0 (25 Sep 2007)
 
