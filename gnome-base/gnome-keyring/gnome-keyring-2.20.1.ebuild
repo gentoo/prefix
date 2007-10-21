@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-2.20.1.ebuild,v 1.1 2007/10/15 17:34:56 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-2.20.1.ebuild,v 1.2 2007/10/18 13:36:07 uberlord Exp $
 
 EAPI="prefix"
 
@@ -18,7 +18,7 @@ RDEPEND=">=dev-libs/glib-2.6
 		>=x11-libs/gtk+-2.6
 		>=sys-apps/dbus-1.0
 		hal? ( >=sys-apps/hal-0.5.7 )
-		pam? ( sys-libs/pam )
+		pam? ( virtual/pam )
 		>=dev-libs/libgcrypt-1.2.2"
 DEPEND="${RDEPEND}
 		sys-devel/gettext
