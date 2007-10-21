@@ -88,7 +88,7 @@ src_unpack() {
 	# python has some gcc-apple specific CFLAGS built in... rip them out
 	epatch "${FILESDIR}"/${PN}-2.4.4-darwin-fsf-gcc.patch
 	# python defaults to using .so files... so stupid
-	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-dylib.patch
+	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-bundle.patch
 	# python doesn't build a libpython2.5.dylib by itself...
 	epatch "${FILESDIR}"/${P}-darwin-libpython2.5.patch
 	# and to build this lib, we need -fno-common, which python doesn't use, and

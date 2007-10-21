@@ -4,7 +4,7 @@
  	case $ac_sys_system in
  	hp*|HP*)   SO=.sl;;
  	CYGWIN*)   SO=.dll;;
-+	Darwin*)   SO=.dylib;;
++	Darwin*)   SO=.bundle;;
  	*)	   SO=.so;;
  	esac
  else
@@ -16,8 +16,8 @@
  const struct filedescr _PyImport_DynLoadFiletab[] = {
 -	{".so", "rb", C_EXTENSION},
 -	{"module.so", "rb", C_EXTENSION},
-+	{".dylib", "rb", C_EXTENSION},
-+	{"module.dylib", "rb", C_EXTENSION},
++	{".bundle", "rb", C_EXTENSION},
++	{"module.bundle", "rb", C_EXTENSION},
  	{0, 0}
  };
  

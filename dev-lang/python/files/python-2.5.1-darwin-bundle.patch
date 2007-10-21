@@ -1,5 +1,5 @@
 * The last file's patch is thanks to Philipp Bunge in bug #189982
-* This patch just makes OSX/Darwin/NeXT use .dylib as extention for
+* This patch just makes OSX/Darwin/NeXT use .bundle as extention for
   dynamic libraries, as .so is an ugly thing on Darwin.
 
 --- Python-2.5.1/configure.in
@@ -8,7 +8,7 @@
  	case $ac_sys_system in
  	hp*|HP*)   SO=.sl;;
  	CYGWIN*)   SO=.dll;;
-+	Darwin*)   SO=.dylib;;
++	Darwin*)   SO=.bundle;;
  	*)	   SO=.so;;
  	esac
  else
@@ -20,8 +20,8 @@
  const struct filedescr _PyImport_DynLoadFiletab[] = {
 -	{".so", "rb", C_EXTENSION},
 -	{"module.so", "rb", C_EXTENSION},
-+	{".dylib", "rb", C_EXTENSION},
-+	{"module.dylib", "rb", C_EXTENSION},
++	{".bundle", "rb", C_EXTENSION},
++	{"module.bundle", "rb", C_EXTENSION},
  	{0, 0}
  };
  
@@ -32,8 +32,8 @@
          {"MODULE.EXE", "rb", C_EXTENSION},
  #else
 +#ifdef __MACH__
-+	{".dylib", "rb", C_EXTENSION},
-+	{"module.dylib", "rb", C_EXTENSION},
++	{".bundle", "rb", C_EXTENSION},
++	{"module.bundle", "rb", C_EXTENSION},
 +#else
  	{".so", "rb", C_EXTENSION},
  	{"module.so", "rb", C_EXTENSION},
