@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.18.2.ebuild,v 1.8 2007/08/28 17:05:19 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.18.2.ebuild,v 1.9 2007/10/17 20:26:26 eva Exp $
 
 EAPI="prefix"
 
@@ -42,7 +42,7 @@ src_unpack() {
 	# Fix bug 16853 by building gnome-about with IEEE to prevent
 	# floating point exceptions on alpha
 	if use alpha; then
-		sed -i '/^CFLAGS/s/$/ -mieee/' ${S}/gnome-about/Makefile.in \
+		sed -i '/^CFLAGS/s/$/ -mieee/' "${S}"/gnome-about/Makefile.in \
 		|| die "sed failed (2)"
 	fi
 }

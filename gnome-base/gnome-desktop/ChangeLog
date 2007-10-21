@@ -1,6 +1,12 @@
 # ChangeLog for gnome-base/gnome-desktop
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.198 2007/10/02 19:34:36 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.199 2007/10/17 20:26:26 eva Exp $
+
+*gnome-desktop-2.20.1 (17 Oct 2007)
+
+  17 Oct 2007; Gilles Dartiguelongue <eva@gentoo.org>
+  +gnome-desktop-2.20.1.ebuild:
+  bump to 2.20.1
 
 *gnome-desktop-2.20.0 (02 Oct 2007)
 
