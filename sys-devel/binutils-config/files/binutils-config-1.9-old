@@ -8,7 +8,6 @@
 #  TARGET-VER:		has a TARGET and VER variable
 
 EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
-TPREFIX=${TPREFIX:-${EPREFIX}}
 
 [[ -z ${ROOT} ]] && ROOT="/"
 #[[ ${ROOT} != */ ]] && ROOT="${ROOT}/"
@@ -33,6 +32,7 @@ cat << USAGE_END
 Usage: ${HILITE}binutils-config${NORMAL} ${GOOD}[options]${NORMAL} ${BRACKET}[binutils profile]${NORMAL}
 
 ${HILITE}General Options:${NORMAL}
+  ${GOOD}-B, --get-bin-path${NORMAL}         Print current linker bin path
   ${GOOD}-c, --get-current-profile${NORMAL}  Print current profile
   ${GOOD}-l, --list-profiles${NORMAL}        Print a list of available profiles
   ${GOOD}-u, --uninstall${NORMAL}            Remove all signs of specified target
@@ -119,81 +119,34 @@ switch_profile() {
 			ld|ld64)
 				# remove symlink first if exists, to avoid overwriting
 				# the target in the cp that follows
-				rm -f "${ROOT}${BINPATH_LINKS}/${x}" > /dev/null
-				cp -f "${wrapper}" "${ROOT}${BINPATH_LINKS}/${x}"
-				# based on what system we have do some adjusting of the
-				# wrapper's work
-				case ${TARGET} in
-					*-darwin*)
-						sed -i \
-							-e "s:@GENTOO_PORTAGE_TPREFIX@:${TPREFIX}:g" \
-							-e 's:@GENTOO_PORTAGE_LINKER_OPTIONS@:-search_paths_first:g' \
-							-e '/Rlocations/d' \
-							-e "s:@GENTOO_PORTAGE_LIB_PATHS@:/usr/lib /lib:g" \
-							-e 's:@GENTOO_PORTAGE_LIBFLAG@:-L:g' \
-							-e "s:@GENTOO_PORTAGE_CTARGET_LINKER@:${EPREFIX}/${BINPATH}/${x}:g" \
-							"${ROOT}${BINPATH_LINKS}/${x}" || die
-					;;
-					*-aix*)
-						sed -i \
-							-e "s:@GENTOO_PORTAGE_TPREFIX@:${TPREFIX}:g" \
-							-e '/@GENTOO_PORTAGE_LINKER_OPTIONS@/d' \
-							-e '/Rlocations/d' \
-							-e "s:@GENTOO_PORTAGE_LIB_PATHS@:/usr/lib /lib:g" \
-							-e 's:@GENTOO_PORTAGE_LIBFLAG@:-L:g' \
-							-e "s:@GENTOO_PORTAGE_CTARGET_LINKER@:${EPREFIX}/${BINPATH}/${x}:g" \
-							"${ROOT}${BINPATH_LINKS}/${x}" || die
-					;;
-					*-solaris*)
-						sed -i \
-							-e "s:@GENTOO_PORTAGE_TPREFIX@:${TPREFIX}:g" \
-							-e '/@GENTOO_PORTAGE_LINKER_OPTIONS@/d' \
-							-e "s:@GENTOO_PORTAGE_LIB_PATHS@:/usr/lib /lib:g" \
-							-e 's:@GENTOO_PORTAGE_LIBFLAG@:-L:g' \
-							-e 's:@GENTOO_PORTAGE_RPATHFLAG@:-R:g' \
-							-e "s:@GENTOO_PORTAGE_CTARGET_LINKER@:${EPREFIX}/${BINPATH}/${x}:g" \
-							"${ROOT}${BINPATH_LINKS}/${x}" || die
-					;;
-					*-linux-gnu|*-freebsd*)
-						sed -i \
-							-e "s:@GENTOO_PORTAGE_TPREFIX@:${TPREFIX}:g" \
-							-e '/@GENTOO_PORTAGE_LINKER_OPTIONS@/d' \
-							-e "s:@GENTOO_PORTAGE_LIB_PATHS@:/usr/lib64 /usr/lib /lib64 /lib:g" \
-							-e 's:@GENTOO_PORTAGE_LIBFLAG@:-L:g' \
-							-e 's:@GENTOO_PORTAGE_RPATHFLAG@:-rpath=:g' \
-							-e "s:@GENTOO_PORTAGE_CTARGET_LINKER@:${EPREFIX}/${BINPATH}/${x}:g" \
-							"${ROOT}${BINPATH_LINKS}/${x}" || die
-					;;
-					*)
-						die "Don't know how to configure for your system"
-					;;
-				esac
-				touch -r "${EPREFIX}/${BINPATH}/${x}" "${ROOT}${BINPATH_LINKS}/${x}"
+				rm -f "${ROOT}/${BINPATH_LINKS}/${x}" > /dev/null
+				cp -f "${wrapper}" "${ROOT}/${BINPATH_LINKS}/${x}"
+				touch -r "${EPREFIX}/${BINPATH}/${x}" "${ROOT}/${BINPATH_LINKS}/${x}"
 			;;
 			*)
-				ln -sf "${EPREFIX}/${BINPATH}/${x}" "${ROOT}${BINPATH_LINKS}/${x}"
+				ln -sf "${EPREFIX}/${BINPATH}/${x}" "${ROOT}/${BINPATH_LINKS}/${x}"
 			;;
 		esac
-		ln -sf "${EPREFIX}/${BINPATH_LINKS}/${x}" "${ROOT}"usr/bin/${TARGET}-${x}
+		ln -sf "${EPREFIX}/${BINPATH_LINKS}/${x}" "${ROOT}"/usr/bin/${TARGET}-${x}
 		for fake in ${FAKE_TARGETS} ; do
 			[[ -f ${ENV_D}/config-${fake} ]] && continue
-			ln -sf "${EPREFIX}/${BINPATH_LINKS}/${x}" "${ROOT}"usr/bin/${fake}-${x}
+			ln -sf "${EPREFIX}/${BINPATH_LINKS}/${x}" "${ROOT}"/usr/bin/${fake}-${x}
 		done
 		if [[ ${TARGET} == ${HOST} ]] ; then
-			ln -sf ${TARGET}-${x} "${ROOT}"usr/bin/${x}
+			ln -sf ${TARGET}-${x} "${ROOT}"/usr/bin/${x}
 		fi
 	done
 
 	#
 	# Generate library / ldscripts symlinks
 	#
+	LIBPATH=$(echo "${LIBPATH}" | sed -e "s|${EPREFIX}|/|g" )
 	LIBPATH=${LIBPATH:-/usr/lib/binutils/${TARGET}/${VER}}
-	LIBPATH=${LIBPATH#${EPREFIX}}
 	cd "${ROOT}/${LIBPATH}" || exit 1
 	if [[ ${TARGET} == ${HOST} ]] ; then
-		dstlib=${ROOT}usr/${HOST}/lib
+		dstlib=${ROOT}/usr/${HOST}/lib
 	else
-		dstlib=${ROOT}usr/${HOST}/${TARGET}/lib
+		dstlib=${ROOT}/usr/${HOST}/${TARGET}/lib
 		# Clean out old path
 		rm -rf "${ROOT}"/usr/${TARGET}/lib/ldscripts
 		rmdir "${ROOT}"/usr/${TARGET}/lib >& /dev/null
@@ -216,7 +169,7 @@ switch_profile() {
 		if [[ ${HOST} == ${TARGET} ]] ; then
 			mkdir -p "${ROOT}/usr/include"
 			for x in * ; do
-				ln -sf "${EPREFIX}/${INCPATH}/${x}" "${ROOT}usr/include/${x}"
+				ln -sf "${EPREFIX}/${INCPATH}/${x}" "${ROOT}/usr/include/${x}"
 			done
 		else
 			# Clean out old path
@@ -231,6 +184,8 @@ switch_profile() {
 	# Make sure proper paths get updated
 	#
 	if [[ ${TARGET} == ${HOST} ]] ; then
+		echo "PATH=${EPREFIX}${BINPATH}" > "${ROOT}"/etc/env.d/05binutils
+		echo "ROOTPATH=${EPREFIX}${BINPATH}" >> "${ROOT}"/etc/env.d/05binutils
 		DATAPATH=${EPREFIX}/usr/share/binutils-data/${TARGET}/${VER}
 		[[ -d ${DATAPATH}/man ]] && \
 		echo "MANPATH=${DATAPATH}/man" >> "${ROOT}"/etc/env.d/05binutils
@@ -308,6 +263,35 @@ uninstall_target() {
 	rm -f "${ENV_D}"/${TARGET}-*
 }
 
+get_bin_path() {
+	if [[ ! -f ${ENV_D}/config-${PROFILE} ]] ; then
+		eerror "${argv0}: No binutils profile is active!"
+		return 1
+	fi
+
+	source "${ENV_D}/config-${PROFILE}"
+
+	if [[ -z ${CURRENT} ]] ; then
+		eerror "${argv0}: No binutils profile is active!"
+		return 1
+	fi
+
+	unset TARGET VER
+	source "${ENV_D}/${PROFILE}-${CURRENT}"
+	if [[ -z ${TARGET} ]] ; then
+		eerror "${PROFILE}-${CURRENT} is invalid (no \$TARGET defined) :("
+		return 1
+	fi
+	if [[ -z ${VER} ]] ; then
+		eerror "${PROFILE}-${CURRENT} is invalid (no \$VER defined) :("
+		return 1
+	fi
+
+	echo "@GENTOO_PORTAGE_EPREFIX@/usr/${TARGET}/binutils-bin/${VER}"
+
+	return 0
+}
+
 get_current_profile() {
 	if [[ ! -f ${ENV_D}/config-${PROFILE} ]] ; then
 		eerror "${argv0}: No binutils profile is active!"
@@ -381,6 +365,10 @@ while [[ $# -gt 0 ]] ; do
 	x=$1
 	shift
 	case ${x} in
+		-B|--get-bin-path)
+			DOIT="get_bin_path"
+			NEED_ACTION="no"
+			;;
 		-c|--get-current-profile)
 			if [[ ${NEED_ACTION} == "yes" ]] ; then
 				NEED_ACTION="no"

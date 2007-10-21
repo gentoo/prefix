@@ -1,7 +1,7 @@
 /*
- * Copyright 1999-2006 Gentoo Foundation
+ * Copyright 1999-2007 Gentoo Foundation
  * Distributed under the terms of the GNU General Public License v2
- * $Id: $
+ * $Id$
  * Author: Fabian Groffen <grobian@gentoo.org>
  * based on the work of gcc wrapper done by:
  * Martin Schlemmer <azarah@gentoo.org>
@@ -328,24 +328,6 @@ int main(int argc, char *argv[])
 			wrapper_exit("%s wrapper: out of memory\n", argv[0]);
 	}
 
-	/* What should we find?
-	 * If this is a ${CHOST}-ld{,64} thing, strip the ${CHOST}- */
-	strcpy(data.name, basename(argv[0]));
-	size = strlen(data.name);
-#ifdef __MACH__
-	/* only Apple/OSX/Darwin has an ld64 as far as I know */
-	if (size > 4) {
-		if (strcmp(&data.name[size - 5], "-ld64") == 0) {
-			strcpy(data.name, "ld64");
-			size = 0;	/* trick the if below in thinking it won't work */
-		}
-	}
-#endif
-	if (size > 2) {
-		if (strcmp(&data.name[size - 3], "-ld") == 0)
-			strcpy(data.name, "ld");
-	}
-
 	/* What is the full name of our wrapper? */
 	size = sizeof(data.fullname);
 	i = snprintf(data.fullname, size, "@GENTOO_PORTAGE_EPREFIX@/usr/bin/%s", data.name);
@@ -366,21 +348,21 @@ int main(int argc, char *argv[])
 #if defined(NEEDS_LIBRARY_INCLUDES) && defined(NEEDS_RPATH_DIRECTIONS)
 #define ADDPATH(X) \
 	if (strlen(LIBINC) + strlen(X) + 1 > MAXPATHLEN * 13 - strlen(callarg)) \
-		fprintf(stderr, "binutils-config: warning: out of memory, increase callarg array size"); \
+		wrapper_exit("warning: out of memory, increase callarg array size"); \
 	else \
 		p += sprintf(p, " " LIBINC "%s", X); \
 	if (strlen(RPATHDIR) + strlen(X) + 1 > MAXPATHLEN * 13 - strlen(callarg)) \
-		fprintf(stderr, "binutils-config: warning: out of memory, increase callarg array size"); \
+		wrapper_exit("warning: out of memory, increase callarg array size"); \
 	else \
 		p += sprintf(p, " " RPATHDIR "%s", X);
 #elif defined(NEEDS_LIBRARY_INCLUDES)
 #define ADDPATH(X) \
 	if (strlen(LIBINC) + strlen(X) + 1 > MAXPATHLEN * 13 - strlen(callarg)) \
-		fprintf(stderr, "binutils-config: warning: out of memory, increase callarg array size"); \
+		wrapper_exit("warning: out of memory, increase callarg array size"); \
 	else \
 		p += sprintf(p, " " LIBINC "%s", X);
 #else
-#error "your requirements aren't implemented... go bug someone"
+#error "your requirements aren't implemented... please mail gentoo-alt@lists.gentoo.org"
 #endif
 
 	/* Get the include path for the compiler and linker */
@@ -392,7 +374,7 @@ int main(int argc, char *argv[])
 	if (find_ldpath_in_envd(&data, ENVD_BASE_BINUTILS, 0) != 0) {
 		ADDPATH(data.ldpath);
 	} else {
-		fprintf(stderr, "warning, linker not found");
+		fprintf(stderr, "binutils-config: warning: no linker found on your system!");
 	}
 
 #define ADDLIBDIR(X) \

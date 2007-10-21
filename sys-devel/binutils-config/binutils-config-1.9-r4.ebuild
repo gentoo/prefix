@@ -20,7 +20,7 @@ RDEPEND=">=sys-apps/findutils-4.2"
 W_VER=1.2
 
 src_unpack() {
-	cp "${FILESDIR}"/${PN}-${PV} "${T}"/
+	cp "${FILESDIR}"/${PN}-${PV}-old "${T}"/${PN}-${PV}
 	cp "${FILESDIR}"/ldwrapper-${W_VER}.c "${T}"/
 	eprefixify "${T}"/${PN}-${PV} "${T}"/ldwrapper-${W_VER}.c
 }
