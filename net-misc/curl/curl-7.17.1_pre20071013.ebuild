@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.17.1_pre20071013.ebuild,v 1.2 2007/10/14 08:09:18 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.17.1_pre20071013.ebuild,v 1.3 2007/10/17 20:32:13 dragonheart Exp $
 
 EAPI="prefix"
 
@@ -20,14 +20,13 @@ KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="ssl ipv6 ldap ares gnutls nss idn kerberos test"
 #IUSE="ssl ipv6 ldap ares gnutls libssh2 nss idn kerberos test"
 
-RDEPEND="gnutls? ( net-libs/gnutls )
-	nss? ( !gnutls? ( dev-libs/nss ) )
-	ssl? ( !gnutls? ( !nss? ( dev-libs/openssl ) ) )
+RDEPEND="gnutls? ( net-libs/gnutls app-misc/ca-certificates )
+	nss? ( !gnutls? ( dev-libs/nss app-misc/ca-certificates ) )
+	ssl? ( !gnutls? ( !nss? ( dev-libs/openssl app-misc/ca-certificates ) ) )
 	ldap? ( net-nds/openldap )
 	idn? ( net-dns/libidn )
 	ares? ( >=net-dns/c-ares-1.4.0 )
-	kerberos? ( virtual/krb5 )
-	app-misc/ca-certificates"
+	kerberos? ( virtual/krb5 )"
 #	libssh2? ( >=net-libs/libssh2-0.16 )"
 
 # net-libs/libssh2 (masked) --with-libssh2

@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/curl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.107 2007/10/14 06:40:18 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.108 2007/10/17 20:32:13 dragonheart Exp $
+
+  17 Oct 2007; Daniel Black <dragonheart@gentoo.org> curl-7.17.0.ebuild,
+  curl-7.17.1_pre20071013.ebuild:
+  remove app-misc/ca-certificates from RDEPEND unless using a crypto USE flag
+  thanks to beandog
 
 *curl-7.17.1_pre20071013 (13 Oct 2007)
 
