@@ -30,9 +30,9 @@ AWKINCDIR = $(S)
 endif
 
 ifeq ($(KERNEL),Darwin)
-TARGET_LIB = $(TARGET).$(MAJORVER).$(MINORVER).dylib
-TARGET_LIB_M = $(TARGET).$(MAJORVER).dylib
-TARGET_LIB_O = $(TARGET).dylib
+TARGET_LIB = $(TARGET).$(MAJORVER).$(MINORVER).bundle
+TARGET_LIB_M = $(TARGET).$(MAJORVER).bundle
+TARGET_LIB_O = $(TARGET).bundle
 else
 TARGET_LIB = $(TARGET).so.$(MAJORVER).$(MINORVER)
 TARGET_LIB_M = $(TARGET).so.$(MAJORVER)
@@ -44,7 +44,7 @@ SHLIB = -shared
 SHLDFLAGS = -Wl,-G
 else
   ifeq ($(KERNEL),Darwin)
-SHLIB = -dynamiclib -undefined define_a_way -install_name $(LIBDIR)/rcscripts/$(TARGET_LIB)
+SHLIB = -bundle -undefined define_a_way
 SHLDFLAGS = 
   else
 SHLIB = -shared
@@ -55,7 +55,7 @@ endif
 all: $(TARGET_LIB)
 
 $(TARGET).o: $(TARGET).c
-	$(CC) $(CLAGS) $(SHLIB) -Wall -DHAVE_CONFIG_H -c -O2 -fPIC -I$(AWKINCDIR) $^
+	$(CC) $(CFLAGS) $(SHLIB) -Wall -DHAVE_CONFIG_H -c -O2 -fPIC -I$(AWKINCDIR) $^
 
 $(TARGET_LIB): $(TARGET).o
 	$(LD) $(LDFLAGS) -o $@ $(SHLIB) $(SHLDFLAGS) $^
