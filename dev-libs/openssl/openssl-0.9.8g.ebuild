@@ -28,7 +28,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${PN}-0.9.7e-gentoo.patch
+# this patch kills Darwin, but seems not necessary on Solaris and Linux
+#	epatch "${FILESDIR}"/${PN}-0.9.7e-gentoo.patch
 	epatch "${FILESDIR}"/${PN}-0.9.7-alpha-default-gcc.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8b-parallel-build.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8-make-engines-dir.patch
