@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/wxwidgets.eclass,v 1.20 2007/10/14 02:46:29 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/wxwidgets.eclass,v 1.21 2007/10/18 03:25:56 dirtyepic Exp $
 
 # @ECLASS:			wxwidgets.eclass
 # @MAINTAINER:
@@ -18,21 +18,19 @@
 #  default will be used, which would be anything the user set it to.
 #
 #  Ebuilds are also required to set the global variable WX_GTK_VER, containing
-#  the wxGTK SLOT the ebuild requires.
-#
+#  the wxGTK SLOT the ebuild requires.  Note that in order for this to work,
+#  WX_GTK_VER needs to be set before inheriting the eclass.
 #
 #  Simple Usage:
 #
+#   WX_GTK_VER="2.6"
 #   inherit wxwidgets
 #   DEPEND="=x11-libs/wxGTK-2.6*"
 #   RDEPEND="=x11-libs/wxGTK-2.6*"
-#   WX_GTK_VER="2.6"
 #
 #  That's it.  The eclass will select a sane default configuration to use.  In
 #  wxGTK-2.6 the default is ansi.  In wxGTK-2.8 and later it's unicode.  These
-#  are the defaults because they are always guaranteed to exist.  (Note: we lock
-#  the DEPEND to the needed SLOT to prevent another SLOT from fulfilling the
-#  dependency.)
+#  are the defaults because they are always guaranteed to exist.
 #
 #  You'll often find yourself in need of a bit more control.  For that see the
 #  need-wxwidgets function below.
@@ -42,7 +40,7 @@ inherit eutils multilib
 # We do this globally so ebuilds can get sane defaults just by inheriting.  They
 # can be overridden with need-wxwidgets later if need be.
 
-if [[ -n ${WX_CONFIG} ]]; then
+if [[ -z ${WX_CONFIG} ]]; then
 	if [[ -n ${WX_GTK_VER} ]]; then
 		if [[ ${WX_GTK_VER} == 2.6 ]]; then
 			wxchar="ansi"
