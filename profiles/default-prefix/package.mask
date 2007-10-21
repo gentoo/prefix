@@ -22,6 +22,10 @@
 ##   End example
 ##
 
+# Fabian Groffen <grobian@gentoo.org> (21 Oct 2007)
+# This package isn't prefix ready, work in progress
+sys-apps/slocate
+
 # Fabian Groffen <grobian@gentoo.org> (14 Oct 2007)
 # Doesn't compile on Darwin, had to drop patch for AIX, fear the worst
 =dev-libs/openssl-0.9.8f
