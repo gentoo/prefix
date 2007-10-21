@@ -29,6 +29,7 @@ sys-apps/slocate
 # Fabian Groffen <grobian@gentoo.org> (14 Oct 2007)
 # Doesn't compile on Darwin, had to drop patch for AIX, fear the worst
 =dev-libs/openssl-0.9.8f
+=dev-libs/openssl-0.9.8g
 
 # Elias Pipping <pipping@mi.fu-berlin.de> (09 Oct 2007)
 # darwin-miscutils are only available on darwin
