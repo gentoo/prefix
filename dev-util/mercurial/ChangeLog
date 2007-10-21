@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/mercurial
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.55 2007/07/22 03:58:35 aross Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.56 2007/10/18 06:44:19 tgall Exp $
+
+  18 Oct 2007; Tom Gall <tgall@gentoo.org> mercurial-0.9.4.ebuild:
+  added ~ppc64
 
   22 Jul 2007; Andrew Ross <aross@gentoo.org> mercurial-0.9.4.ebuild:
   Use canonical emacs support code, thanks to Christian Faulhammer
