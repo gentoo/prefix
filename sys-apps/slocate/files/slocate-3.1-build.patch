@@ -1,0 +1,52 @@
+--- src/slocate.h
++++ src/slocate.h
+@@ -35,20 +35,11 @@
+ #define MTAB_FILE "/etc/mtab"
+ #define UPDATEDB_FILE "/etc/updatedb.conf"
+ 
+-/* More fitting paths for FreeBSD -matt */
+-#if defined(__FreeBSD__)
+-# define DEFAULT_DB "/var/db/slocate/slocate.db"
+-# define DEFAULT_DB_DIR "/var/db/slocate/"
+-#elif defined(__SunOS__)
+-# define DEFAULT_DB "/var/db/slocate/slocate.db"
+-# define DEFAULT_DB_DIR "/var/db/slocate/"
+-#else
+-# define DEFAULT_DB "/var/lib/slocate/slocate.db"
+-# define DEFAULT_DB_DIR "/var/lib/slocate/"
+-#endif
++#define DEFAULT_DB "/var/lib/slocate/slocate.db"
++#define DEFAULT_DB_DIR "/var/lib/slocate/"
+ 
+ #define DB_UID 0
+-#define DB_GROUP "slocate"
++#define DB_GROUP "locate"
+ #define DB_MODE 00640
+ 
+ #define SLOC_ESC -0x80
+--- src/Makefile
++++ src/Makefile
+@@ -1,16 +1,18 @@
+ OBJS=slocate.o cmds.o conf.o utils.o
+ HEADERS=slocate.h cmds.h conf.h utils.h
+ 	
+-CFLAGS=-Wall -Wshadow
+-CFLAGS+=-O2
++CFLAGS+=-Wall -Wshadow
++#CFLAGS+=-O2
+ #CFLAGS+=-g3
+ #LDFLAGS+=-lefence
+ 
+ PROG=slocate
+-CC=gcc
++CC?=gcc
+ 
+-all: $(OBJS) $(MOD_OBJS)
+-	$(CC) $(LDFLAGS) -o $(PROG) $(OBJS) $(MOD_OBJS)
++all: $(PROG)
++
++$(PROG): $(OBJS) $(MOD_OBJS)
++	$(CC) $(CFLAGS) $(LDFLAGS) -o $(PROG) $(OBJS) $(MOD_OBJS)
+ 
+ %.o: %.c $(HEADERS)
+ 	$(CC) -c $(CFLAGS) -o $@ $<
