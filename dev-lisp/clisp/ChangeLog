@@ -1,7 +1,82 @@
 # ChangeLog for dev-lisp/clisp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.63 2007/09/09 18:01:53 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.65 2007/10/17 14:09:32 hkbst Exp $
 
+  17 Oct 2007; Marijn Schouten <hkBst@gentoo.org> clisp-2.42.ebuild:
+  remove mangling of HyperSpec URL
+
+*clisp-2.42 (17 Oct 2007)
+
+  17 Oct 2007; Marijn Schouten <hkBst@gentoo.org> +clisp-2.42.ebuild:
+  bump
+User visible changes
+--------------------
+
+* New module gtk2 interfaces to GTK+ v2 and makes it possible to build
+  GUI with Glade.
+  Thanks to James Bailey <dgym.bailey@gmail.com> for the original code.
+  See <http://clisp.cons.org/impnotes/gtk.html> for details.
+
+* New module gdbm interfaces to GNU DataBase Manager.
+  Thanks to Masayuki Onjo <masayuki.onjo@gmail.com>.
+  See <http://clisp.cons.org/impnotes/gdbm.html> for details.
+
+* A kind of Meta-Object Protocol for structures is now available.
+  See <http://clisp.cons.org/impnotes/defstruct-mop.html> for details.
+
+* Module libsvm has been upgraded to the upstream version 2.84.
+  See <http://clisp.cons.org/impnotes/libsvm.html> for details.
+
+* NEW-CLX module now supports Stumpwm <http://www.nongnu.org/stumpwm/>.
+  Thanks to Shawn Betts <sabetts@vcn.bc.ca>.
+  New NEW-CLX demos: bball bwindow greynetic hanoi petal plaid recurrence from
+  <http://www.cs.cmu.edu/afs/cs/project/ai-repository/ai/lang/lisp/gui/clx/clx_demo.cl>.
+  New NEW-CLX demo: clclock based on <http://common-lisp.net/~crhodes/clx>.
+  New function XLIB:OPEN-DEFAULT-DISPLAY from portable CLX.
+
+* Function EXT:ARGLIST now works on macros too.
+  See <http://clisp.cons.org/impnotes/flow-dict.html#arglist> for details.
+
+* Macro TRACE has a new option :BINDINGS, which is useful to share data
+  between PRE-* and POST-* forms.
+  See <http://clisp.cons.org/environment-dict.html#trace> for details.
+
+* Macro FFI:DEF-C-TYPE can now be called with one argument to define an
+  integer type.
+  See <http://clisp.cons.org/impnotes/dffi.html#def-c-type> for details.
+
+* New function EXT:RENAME-DIR can be used to rename directories.
+  See <http://clisp.cons.org/impnotes/file-dict.html#rename-dir> for details.
+
+* Functions FILE-LENGTH and FILE-POSITION now work on unbuffered streams too.
+  See  <http://clisp.cons.org/impnotes/stream-dict.html#file-pos> for details.
+
+* Bug fixes:
+  + Fixed EXT:LETF to work with more than one place. [ 1731462 ]
+  + Fixed rounding of long floats [even+1/2]. [ 1589311 ]
+  + Fixed stdio when running without a TTY, e.g., under SSH. [ 1592343 ]
+  + ANSI compliance: PPRINT dispatch is now respected for nested
+    objects, not just the top-level. [ 1483768, 1598053 ]
+  + Fixed print-read-consistency of strings containing #\Return characters
+    (manifested by COMPILE-FILE). [ 1578179 ]
+  + Fixed "clisp-link run". [ 1469663 ]
+  + Fixed ATANH branch cut continuity. [ 1436987 ]
+  + Reset the function lambda expression when loading a compiled file.
+    [ 1603260 ]
+  + DOCUMENTATION set by SETF is now preserved by COMPILE. [ 1604579 ]
+  + LISTEN now calls STREAM-LISTEN as per the Gray proposal. [ 1607666 ]
+  + IMPORT into the KEYWORD package does not make a symbol a constant
+    variable. [ 1612859 ]
+  + DEFPACKAGE code was executed during non top-level compilation. [ 1612313 ]
+  + Fixed format error message formatting. [ 1482465 ]
+  + Fixed *PPRINT-FIRST-NEWLINE* handling. [ 1412454 ]
+  + Improved hash code generation for very large bignums and for long lists.
+    [ 948868, 1208124 ]
+  + Some bugs related to UNICODE-16 & UNICODE-32. [ 1564818, 1631760, 1632718 ]
+  + All exported defined symbols are now properly locked. [ 1713130 ]
+  + Berkeley-DB module no longer fills up error log file. [ 1779416 ]
+  + New-clx now supports 64-bit KeySym. [ 1797132 ]
+	
   09 Sep 2007; Joseph Jezak <josejx@gentoo.org> clisp-2.41.ebuild:
   Marked ppc stable for bug #173050.
 
