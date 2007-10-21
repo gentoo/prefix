@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.20.0.ebuild,v 1.1 2007/10/03 03:45:41 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.20.0.ebuild,v 1.2 2007/10/19 09:50:59 uberlord Exp $
 
 EAPI="prefix"
 
@@ -63,6 +63,7 @@ pkg_setup() {
 src_unpack() {
 	gnome2_src_unpack
 	epatch "${FILESDIR}/${PN}-2.19.90-noesd.patch"
+	epatch "${FILESDIR}/${P}-statfs.patch"
 
 	eautoreconf
 }
