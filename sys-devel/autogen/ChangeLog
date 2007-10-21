@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/autogen
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/ChangeLog,v 1.35 2007/10/12 19:27:43 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/ChangeLog,v 1.36 2007/10/18 13:41:25 angelos Exp $
+
+  18 Oct 2007; Christoph Mende <angelos@gentoo.org> autogen-5.9.ebuild:
+  Stable on amd64 wrt bug #194955
 
   12 Oct 2007; Lars Weiler <pylon@gentoo.org> autogen-5.9.ebuild:
   stable ppc, bug #194955
