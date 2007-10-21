@@ -1,6 +1,7 @@
 
-;;; Wanderlust site-lisp configuration
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/wl")
+;;; wanderlust site-lisp configuration
+
+(add-to-list 'load-path "@SITELISP@")
 
 (autoload 'wl "wl" "Wanderlust" t)
 (autoload 'wl-other-frame "wl" "Wanderlust on new frame." t)

@@ -1,18 +1,14 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/wanderlust-2.14.0-r3.ebuild,v 1.13 2007/10/19 22:31:08 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/wanderlust-2.15.5_pre20070921.ebuild,v 1.1 2007/10/20 07:43:36 ulm Exp $
 
 EAPI="prefix"
 
-inherit elisp eutils
-
-MY_P="wl-${PV/_/}"
+inherit elisp
 
 DESCRIPTION="Yet Another Message Interface on Emacsen"
 HOMEPAGE="http://www.gohome.org/wl/"
-SRC_URI="ftp://ftp.gohome.org/wl/stable/${MY_P}.tar.gz
-	ftp://ftp.gohome.org/wl/beta/${MY_P}.tar.gz
-	http://dev.gentoo.org/~usata/distfiles/${MY_P}-20050405.diff"
+SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -25,15 +21,7 @@ DEPEND=">=app-emacs/apel-10.6
 	bbdb? ( app-emacs/bbdb )
 	!app-emacs/wanderlust-cvs"
 
-S="${WORKDIR}/${MY_P}"
 SITEFILE=70wl-gentoo.el
-
-src_unpack() {
-	unpack ${MY_P}.tar.gz
-
-	cd "${S}"
-	epatch "${DISTDIR}/${MY_P}-20050405.diff"
-}
 
 src_compile() {
 	echo '(load "'"${EPREFIX}"'/usr/share/emacs/site-lisp/site-gentoo.el")' >> WL-CFG
@@ -57,5 +45,5 @@ src_install() {
 	doins samples/en/*
 
 	doinfo doc/wl-ja.info doc/wl.info
-	dodoc BUGS* ChangeLog INSTALL* README*
+	dodoc BUGS* ChangeLog INSTALL* NEWS* README*
 }
