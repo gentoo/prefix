@@ -1,6 +1,12 @@
 # ChangeLog for dev-perl/Pod-Coverage
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Pod-Coverage/ChangeLog,v 1.48 2007/04/24 08:57:02 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Pod-Coverage/ChangeLog,v 1.49 2007/10/19 20:28:31 ian Exp $
+
+*Pod-Coverage-0.19 (19 Oct 2007)
+
+  19 Oct 2007; Christian Hartmann <ian@gentoo.org>
+  +Pod-Coverage-0.19.ebuild:
+  Version bump
 
   24 Apr 2007; Bryan Østergaard <kloeri@gentoo.org>
   Pod-Coverage-0.18.ebuild:
