@@ -1,6 +1,10 @@
 # ChangeLog for gnustep-base/mknfonts
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/mknfonts/ChangeLog,v 1.17 2007/10/03 14:15:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/mknfonts/ChangeLog,v 1.18 2007/10/17 17:45:16 opfer Exp $
+
+  17 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  mknfonts-0.5-r1.ebuild:
+  stable x86, bug 195990
 
   03 Oct 2007; Raúl Porcel <armin76@gentoo.org> mknfonts-0.5-r1.ebuild:
   Re-add ~sparc wrt #189372
