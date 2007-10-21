@@ -23,6 +23,11 @@
 ##
 
 # Fabian Groffen <grobian@gentoo.org> (21 Oct 2007)
+# This is a completely rewritten from scratch version to facilitate
+# cross-compilation.  Testing this out.
+=sys-devel/binutils-config-1.9-r04.1
+
+# Fabian Groffen <grobian@gentoo.org> (21 Oct 2007)
 # This package isn't prefix ready, work in progress
 sys-apps/slocate
 

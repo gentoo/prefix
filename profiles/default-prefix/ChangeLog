@@ -3,6 +3,10 @@
 # $Header: $
 
   21 Oct 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Add mask for binutils-config-1.9-r04.1 which is a complete rewritten from
+  scratch version
+
+  21 Oct 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
   openssl compilation is fixed for Darwin, so unmask
 
   21 Oct 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
