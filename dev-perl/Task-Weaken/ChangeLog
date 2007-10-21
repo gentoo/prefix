@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/Task-Weaken
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Task-Weaken/ChangeLog,v 1.4 2006/10/15 19:20:45 mcummings Exp $
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Task-Weaken/ChangeLog,v 1.5 2007/10/19 19:53:01 ian Exp $
+
+*Task-Weaken-1.00 (19 Oct 2007)
+
+  19 Oct 2007; Christian Hartmann <ian@gentoo.org> +Task-Weaken-1.00.ebuild:
+  Version bump
 
   15 Oct 2006; Michael Cummings <mcummings@gentoo.org> ChangeLog:
   Keywording amd64, sparc stable
