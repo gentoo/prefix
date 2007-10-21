@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8f.ebuild,v 1.8 2007/10/20 04:02:09 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8g.ebuild,v 1.1 2007/10/20 04:21:16 vapier Exp $
 
 EAPI="prefix"
 
@@ -28,7 +28,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${PN}-0.9.8f-fix-version.patch
 	epatch "${FILESDIR}"/${PN}-0.9.7e-gentoo.patch
 	epatch "${FILESDIR}"/${PN}-0.9.7-alpha-default-gcc.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8b-parallel-build.patch
@@ -99,10 +98,11 @@ src_compile() {
 		${sslout} \
 		$(use sse2 || echo "no-sse2") \
 		enable-camellia \
-		$(use_ssl !bindist idea) \
 		$(use_ssl !bindist ec) \
+		$(use_ssl !bindist idea) \
 		enable-mdc2 \
 		$(use_ssl !bindist rc5) \
+		enable-tlsext \
 		$(use_ssl gmp) \
 		$(use_ssl kerberos krb5 --with-krb5-flavor=${krb5}) \
 		$(use_ssl zlib) \
@@ -139,7 +139,7 @@ src_compile() {
 	emake rehash || die "make rehash failed"
 
 	# force until we get all the gentoo.config kinks worked out
-	if has test ${FEATURES} && ! tc-is-cross-compiler ; then
+	if ! use test && ! tc-is-cross-compiler ; then
 		src_test
 	fi
 }
