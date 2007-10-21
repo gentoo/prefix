@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.2 2007/10/17 14:34:09 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.4 2007/10/20 17:15:24 aballier Exp $
 
 #
 # Original Author: Alexis Ballier <aballier@gentoo.org>
@@ -81,11 +81,21 @@ texlive-module_src_compile() {
 # Install texmf and config files to the system
 
 texlive-module_src_install() {
+	for i in texmf/fmtutil/format*.cnf; do
+		[ -f "${i}" ] && etexlinks "${i}"
+	done
+
 	insinto /usr/share
+	if use doc; then
+		[ -d texmf-doc ] && doins -r texmf-doc
+	else
+		[ -d texmf/doc ] && rm -rf texmf/doc
+		[ -d texmf-dist/doc ] && rm -rf texmf-dist/doc
+	fi
+
 	[ -d texmf ] && doins -r texmf
 	[ -d texmf-dist ] && doins -r texmf-dist
-	use doc && [ -d texmf-doc ] && doins -r texmf-doc
-	
+
 	TEXMFSYSVAR="$(kpsewhich -var-value=TEXMFSYSVAR)"
 	insinto "${TEXMFSYSVAR}"
 	[ -d texmf-var ] && doins -r texmf-var/*

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-common.eclass,v 1.1 2007/10/14 07:44:09 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-common.eclass,v 1.2 2007/10/20 12:51:25 aballier Exp $
 
 #
 # Original Author: Alexis Ballier <aballier@gentoo.org>
@@ -42,3 +42,49 @@ texlive-common_is_file_present_in_texmf() {
 	find texmf-dist -name $1 -exec touch "${mark}" \;
 	[ -f "${mark}" ]
 }
+
+# Mimic the install_link function of texlinks
+# Should have the same behavior as the one in /usr/bin/texlinks
+# except that it is under the control of the package manager
+# Note that $1 corresponds to $src and $2 to $dest in this function
+# ( Arguments are switched because texlinks main function sends them switched )
+# This function should not be called from an ebuild, prefer etexlinks that will
+# also do the fmtutil file parsing.
+
+texlive-common_do_symlinks() {
+	while [ $# != 0 ]; do
+		case $1 in
+			cont-??|metafun|mptopdf)
+				elog "Symlink $1 skipped (special case)"
+				;;
+			*)
+				if [ $1 = $2 ];
+				then
+					elog "Symlink $1 -> $2 skipped"
+				elif [ -e "${ED}/usr/bin/$1" ];
+				then
+					elog "Symlink $1 skipped (file exists)"
+				else
+					elog "Making symlink from $1 to $2"
+					dosym $2 /usr/bin/$1
+				fi
+				;;
+		esac
+		shift; shift;
+	done
+}
+
+# Mimic texlinks on a fmtutil format file
+# $1 has to be a fmtutil format file like fmtutil.cnf
+# etexlinks foo will install the symlinks that texlinks --cnffile foo would have
+# created. We cannot use texlinks with portage as it is not DESTDIR aware.
+# (It would not fail but will not create the symlinks if the target is not in
+# the same dir as the source)
+# Also, as this eclass must not depend on a tex distribution to be installed we
+# cannot use texlinks from here.
+
+etexlinks() {
+	# Install symlinks from formats to engines
+	texlive-common_do_symlinks $(sed '/^[      ]*#/d; /^[      ]*$/d' "$1" | awk '{print $1, $2}')
+}
+
