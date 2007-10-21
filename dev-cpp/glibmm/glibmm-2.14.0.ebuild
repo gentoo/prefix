@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/glibmm-2.14.0.ebuild,v 1.3 2007/10/18 14:47:43 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/glibmm-2.14.0.ebuild,v 1.4 2007/10/19 09:17:20 uberlord Exp $
 
 EAPI="prefix"
 
-inherit gnome2
+inherit gnome2 eutils
 
 DESCRIPTION="C++ interface for glib2"
 HOMEPAGE="http://gtkmm.sourceforge.net/"
@@ -30,6 +30,9 @@ src_unpack() {
 		sed -i 's/^\(SUBDIRS =.*\)examples\(.*\)$/\1\2/' Makefile.in || \
 			die "sed Makefile.in failed"
 	fi
+
+	# GTime and time_t are equivalent on fbsd, so we cannot define both
+	use x86-fbsd && epatch "${FILESDIR}/${P}-date.patch"
 }
 
 src_install() {

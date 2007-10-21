@@ -1,6 +1,11 @@
 # ChangeLog for dev-cpp/glibmm
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.95 2007/10/18 14:47:43 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.96 2007/10/19 09:17:20 uberlord Exp $
+
+  19 Oct 2007; Roy Marples <uberlord@gentoo.org>
+  +files/glibmm-2.14.0-date.patch, glibmm-2.14.0.ebuild:
+  GTime and time_t are equivalent for bsd, so we cannot define them both. As
+  such we punt the deprecated function.
 
   18 Oct 2007; Roy Marples <uberlord@gentoo.org> glibmm-2.14.0.ebuild:
   2.14 fails on x86-fbsd, keyword dropped
