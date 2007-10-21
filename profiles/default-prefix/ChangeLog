@@ -3,6 +3,9 @@
 # $Header: $
 
   21 Oct 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
+  openssl compilation is fixed for Darwin, so unmask
+
+  21 Oct 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask sys-apps/slocate as it isn't prefix ready, work in progress
 
   17 Oct 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
