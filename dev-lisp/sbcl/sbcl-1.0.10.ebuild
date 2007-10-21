@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.10.ebuild,v 1.1 2007/09/27 11:49:42 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.10.ebuild,v 1.2 2007/10/18 17:01:12 hkbst Exp $
 
 EAPI="prefix"
 
@@ -174,6 +174,9 @@ EOF
 		cp -pPR "${S}/src" "${ED}/usr/$(get_libdir)/sbcl"
 		find "${ED}/usr/$(get_libdir)/sbcl/src" -type f -name \*.fasl -print0 | xargs -0 rm -f
 	fi
+
+	# necessary for running newly-saved images
+	echo "SBCL_HOME=${EPREFIX}/usr/$(get_libdir)/sbcl" >> "${T}/50sbcl"; doenvd "${T}/50sbcl"
 
 	impl-save-timestamp-hack sbcl
 }
