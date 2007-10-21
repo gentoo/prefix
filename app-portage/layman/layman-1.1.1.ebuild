@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.1.1.ebuild,v 1.4 2007/10/17 00:56:21 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.1.1.ebuild,v 1.8 2007/10/20 13:07:53 wrobel Exp $
 
 EAPI="prefix"
 
@@ -13,10 +13,10 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
-IUSE=""
+IUSE="test"
 S="${WORKDIR}/${PF}"
 
-DEPEND=""
+DEPEND="test? ( dev-util/subversion )"
 RDEPEND=""
 
 pkg_setup() {
