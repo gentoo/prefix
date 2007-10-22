@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.365 2007/10/02 04:47:17 mrness Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.369 2007/10/20 14:26:00 drac Exp $
 
 # Keep them sorted
 
@@ -21,7 +21,7 @@ aim - Enable AIM IM protocol support
 alsa - Adds support for media-libs/alsa-lib (Advanced Linux Sound Architecture)
 altivec - Adds support for optimizations for G4 and G5/ppc970 processors
 ao - Use libao audio output library for sound playback
-apache2 - Chooses Apache2 support when a package supports both Apache1 and Apache2
+apache2 - Add Apache2 support
 apm - Adds APM (Advanced Power Management) support
 arts - Adds support for aRts: the KDE sound daemon
 audiofile - Adds support for libaudiofile where applicable
@@ -70,7 +70,7 @@ dga - Adds DGA (Direct Graphic Access) support for X
 directfb - Adds support for DirectFB layer (library for FB devices)
 doc - Adds extra documentation (API, Javadoc, etc)
 dri - Enable direct rendering: used for accelerated 3D and some 2D, like DMA
-dts - Enables libdts (DTS Coherent Acoustics decoder) support
+dts - Enables DTS Coherent Acoustics decoder support
 dv - Enables support for a codec used by many camcorders
 dvb - Adds support for DVB (Digital Video Broadcasting)
 dvd - Adds support for DVDs
@@ -168,6 +168,7 @@ kerberos - Adds kerberos support
 krb4 - Adds optional kerberos 4 compatibility support
 ladcca - Adds Linux Audio Developer's Configuration and Connection API support (LADCCA) - DEPRECATED, will be replaced by lash
 ladspa - Enables the ability to support ladspa plugins
+lame - Prefer using LAME libraries for MP3 encoding support
 lapack - Adds support for the virtual/lapack numerical library
 lash - Adds LASH Audio Session Handler support
 lcms - Adds lcms support (color management engine)

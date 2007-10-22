@@ -1,6 +1,155 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.709 2007/10/11 00:43:50 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.751 2007/10/21 16:27:23 ulm Exp $
+
+  21 Oct 2007; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Add >=app-emacs/ocaml-mode-3.10.0 to ocaml masks, to avoid unnecessary
+  download of the tarball.
+
+  21 Oct 2007; Wulf C. Krueger <philantrop@gentoo.org> desc/linguas.desc:
+  Added the Walloon (wa) locale.
+
+  20 Oct 2007; Mike Auty <ikelos@gentoo.org> package.mask:
+  Mask old versions of vmware-player and vmware-workstation for security
+  reasons (see bug 193196).
+
+  20 Oct 2007; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Mask new CVS snapshot of app-emacs/wanderlust.
+
+  20 Oct 2007; <alistair@gentoo.org> package.mask:
+  Add revbump of mx4j and mx4j-tools to my list of packages masked for
+  java-virtuals support.
+
+  19 Oct 2007; Christian Hoffmann <hoffie@gentoo.org> package.mask:
+  as announced, p.mask =dev-lang/php-4* and dev-php4/* (bug 189172), current
+  www-apps/knowledgetree (bug 194894) and <net-nds/phpldapadmin-1.0
+
+  19 Oct 2007; Wulf C. Krueger <philantrop@gentoo.org> use.local.desc:
+  Added kde-base/kalzium:solver.
+
+  19 Oct 2007; Wulf C. Krueger <philantrop@gentoo.org> use.local.desc:
+  Added kde-base/kdeedu:solver.
+
+  18 Oct 2007; Gilles Dartiguelongue <eva@gentoo.org>
+  default-bsd/fbsd/6.2/x86/package.use.mask,
+  default-linux/alpha/no-nptl/2.4/package.use.mask,
+  default-linux/arm/package.use.mask, default-linux/mips/package.use.mask,
+  default-linux/ppc/ppc64/package.use.mask,
+  +default-linux/sh/package.use.mask,
+  default-linux/x86/no-nptl/2.4/package.use.mask:
+  fix package.use.mask so that repoman stop complaining on gnome-base/gdm
+
+  18 Oct 2007; Gilles Dartiguelongue <eva@gentoo.org>
+  default-linux/ppc64/package.use.mask:
+  removing iptc from package.use.mask because iptc is now properly keyworded
+
+  18 Oct 2007; Gilles Dartiguelongue <eva@gentoo.org> use.local.desc:
+  add networkmanager for evolution
+
+  18 Oct 2007; Jeroen Roovers <jer@gentoo.org> use.local.desc:
+  Spelling correction for disableslit.
+
+  17 Oct 2007; Rémi Cardona <remi@gentoo.org> package.mask:
+  remove Gnome 2.20 from package.mask (except dasher)
+
+  17 Oct 2007; Timo Gurr <tgurr@gentoo.org> package.mask:
+  Mask ghostscript-gpl-8.60 for testing, first release with ghostscript-esp
+  merged.
+
+  17 Oct 2007; Ulrich Mueller <ulm@gentoo.org> updates/4Q-2007:
+  Move app-emacs/simple-wiki to app-emacs/http-emacs, since the two packages
+  are identical.
+
+  17 Oct 2007; Alexis Ballier <aballier@gentoo.org> package.mask:
+  adapt texlive mask
+
+  17 Oct 2007; Alexis Ballier <aballier@gentoo.org> use.local.desc:
+  add texlive local use flags
+
+  17 Oct 2007; <alistair@gentoo.org> package.mask:
+  Adding =dev-java/gnu-javamail-1.0-r2 to package.mask as it will break its
+  rdeps before I bump them to use java-virtuals.
+
+  15 Oct 2007; Ulrich Mueller <ulm@gentoo.org> updates/3Q-2007,
+  +updates/4Q-2007:
+  New file 4Q-2007, move gtksourceview and vlc slotmoves from 3Q-2007 to it.
+  Move app-emacs/gnus-cvs to app-emacs/ngnus.
+
+  15 Oct 2007; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Mask app-emacs/ngnus live cvs ebuild.
+
+  15 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>; thirdpartymirrors:
+  Add a fedora-dev mirror class, for development RPMs. They're only on ~10% of
+  mirrors, so it wastes a whole lot of time checking all mirrors.
+
+  15 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>; thirdpartymirrors:
+  Update fedora mirrors based on http://mirrors.fedoraproject.org/publiclist
+
+  15 Oct 2007; Krzysiek Pawlik <nelchael@gentoo.org> package.mask:
+  Mask x11-misc/xcut.
+
+  14 Oct 2007; Christoph Mende <angelos@gentoo.org> use.local.desc:
+  Add local use flags for net-p2p/btg
+
+  14 Oct 2007; Ryan Hill <dirtyepic@gentoo.org> use.local.desc:
+  Drop local USE flags for muttng, which was removed in July.
+
+  14 Oct 2007; Alexis Ballier <aballier@gentoo.org> package.mask:
+  update xcolor mask, 2.11 supports texmf-site
+
+  14 Oct 2007; Ulrich Mueller <ulm@gentoo.org> use.local.desc:
+  Change app-editors/emacs local use flag "nosendmail" to "sendmail".
+
+  14 Oct 2007; Stefan Schweizer <genstef@gentoo.org> package.mask:
+  mask openslp 1.3
+
+  14 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>; package.mask:
+  Unmask =xorg-server-1.3.0.0-r2, I made all the changes but forgot to close
+  one bug.
+
+  14 Oct 2007; <alistair@gentoo.org> categories, package.mask:
+  Adding new category java-virtuals and package mask for the first java-virtual.
+
+  13 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>; package.mask:
+  Mask =x11-base/xorg-server-1.3.0.0-r2 because I'm still making changes to it.
+
+  13 Oct 2007; Jeroen Roovers <jer@gentoo.org> use.local.desc:
+  Improve bacula-console description yet again (bug #181238).
+
+  13 Oct 2007; Jeroen Roovers <jer@gentoo.org> use.local.desc:
+  Fix bacula-console description (bug #181238).
+
+  13 Oct 2007; Chris Gianelloni <wolf31o2@gentoo.org> use.desc:
+  Change description on the lame USE flag to make it a little bit more
+  descriptive in its function.
+
+  13 Oct 2007; Rémi Cardona <remi@gentoo.org> package.mask:
+  add gnome-games-extra-data to Gnome 2.20 p.mask
+
+  12 Oct 2007; Rémi Cardona <remi@gentoo.org> package.mask:
+  add gnome-python-extras to package.mask for Gnome 2.20
+
+  12 Oct 2007; Rémi Cardona <remi@gentoo.org> package.mask:
+  add scrollkeeper to package.mask for Gnome 2.20
+
+  12 Oct 2007; Rémi Cardona <remi@gentoo.org> package.mask:
+  add yelp and rarian to package.mask for Gnome 2.20
+
+  12 Oct 2007; Christian Faulhammer <opfer@gentoo.org> use.desc:
+  change description of apache2 USE flag...there is no Apache 1.x in the tree
+  anymore
+
+  12 Oct 2007; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Mask =emacs-cvs-23.0.0*, CVS snapshots of unicode-2 branch.
+
+  11 Oct 2007; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Add media-gfx/fontforge as app-misc/gfontview replacement.
+
+  11 Oct 2007; Christian Faulhammer <opfer@gentoo.org> package.mask:
+  remove misspelled mask on net-misc/icaclient; bug is fixed
+
+  11 Oct 2007; Alin Năstac <mrness@gentoo.org> use.local.desc:
+  Add poll local flag for mail-filter/libmilter (#178501).
 
   11 Oct 2007; Dawid Węgliński <cla@gentoo.org> use.local.desc:
   Added boost flag for net-irc/ezbounce

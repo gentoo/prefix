@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7792 2007/10/10 22:04:28 marineam Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7832 2007/10/21 17:51:50 drac Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -21,6 +21,101 @@
 ##   End example
 ##
 
+# Markus Ullmann <jokey@gentoo.org> (20 Oct 2007)
+# dependency unneeded now, merged upstream
+dev-util/portatosourceview
+
+# Ulrich Mueller <ulm@gentoo.org> (20 Oct 2007)
+# CVS snapshot, needs testing
+=app-emacs/wanderlust-2.15.5_pre*
+
+# Christian Hoffmann <hoffie@gentoo.org> (19 Oct 2007)
+# masked for security reasons, bug 189172, removal scheduled for beginning of
+# 2008
+=dev-lang/php-4*
+dev-php4/creole
+dev-php4/pecl-yaz
+dev-php4/pecl-crack
+dev-php4/jargon
+dev-php4/pecl-mailparse
+dev-php4/jpgraph
+dev-php4/pecl-radius
+dev-php4/pecl-json
+dev-php4/pecl-fileinfo
+dev-php4/syck-php-bindings
+dev-php4/eaccelerator
+dev-php4/pecl-memcache
+dev-php4/phpdbg
+dev-php4/ZendOptimizer
+dev-php4/php-java-bridge
+dev-php4/pecl-translit
+dev-php4/pecl-apc
+dev-php4/ffmpeg-php
+dev-php4/adodb-ext
+dev-php4/pecl-tidy
+dev-php4/pecl-imagick
+dev-php4/xdebug
+dev-php4/pecl-id3
+dev-php4/suhosin
+dev-php4/pecl-ps
+dev-php4/xcache
+dev-php4/pecl-zip
+dev-php4/phpunit
+dev-php4/pecl-pdflib
+dev-php4/pecl-sqlite
+dev-php4/pecl-http
+# only >=1.0 seems to be php-5 compatible
+<net-nds/phpldapadmin-1.0
+# incompatible with php-5 as well, bug 194894
+<=www-apps/knowledgetree-3.4.3
+
+# Rémi Cardona <remi@gentoo.org> (18 Oct 2007)
+# Dasher still fails to build
+>=app-accessibility/dasher-4.6.0
+
+# Timo Gurr <tgurr@gentoo.org> (17 Oct 2007)
+# First release with ghostscript-esp merged.
+# Masked for testing, see bug 187502.
+>=app-text/ghostscript-gpl-8.60
+
+# Eldad Zack <eldadz@gentoo.org> (16 Oct 2007)
+# ardour-2.1 using syslibs, see bug #194437
+=media-sound/ardour-2.1
+
+# Ulrich Mueller <ulm@gentoo.org> (15 Oct 2007)
+# Live CVS ebuild
+~app-emacs/ngnus-9999
+
+# Krzysiek Pawlik <nelchael@gentoo.org> (15 Oct 2007)
+# Copying does't work, use xclip instead, see bug #191553
+x11-misc/xcut
+
+# Stefan Schweizer <genstef@gentoo.org> (14 Oct 2007)
+# Development release
+>=net-libs/openslp-1.3.0
+
+# Alistair Bush <ali_bush@gentoo.org> (14 Oct 2007)
+# Masked to enable me to add everything to the tree.
+java-virtuals/javamail
+=dev-java/gnu-javamail-1.0-r2
+=dev-java/mx4j-tools-3.0.1-r1
+=dev-java/mx4j-3.0.1-r3
+
+# Andrej Kacian <ticho@gentoo.org> (13 Oct 2007)
+# RC is not for general public
+=app-antivirus/clamav-0.92_rc2
+
+# Ulrich Mueller <ulm@gentoo.org> (12 Oct 2007)
+# Live CVS and snapshot of Emacs unicode-2 branch
+~app-editors/emacs-cvs-23.0.0_p20070920
+~app-editors/emacs-cvs-23.0.60
+>=virtual/emacs-23
+
+# Ali Polatel <hawking@gentoo.org> (11 Oct 2007)
+# Newer pyrex versions have problems with setuptools.
+# See bug 195354 and bug 195466.
+>=dev-python/pyrex-0.9.6
+
 # Michael Marineau <marineam@gentoo.org> (10 Oct 2007)
 # The ck patchest is gone, will be removed shortly.
 sys-kernel/ck-sources
@@ -31,7 +126,8 @@ sys-kernel/ck-sources
 
 # Stefan Schweizer <genstef@gentoo.org> (10 Oct 2007)
 # removal because of starting problems in Bug 189775, gtk+-1.2 usage
-# last release was in 2001, possible replacement: media-gfx/opcion
+# last release was in 2001, possible replacements: media-gfx/opcion
+# and media-gfx/fontforge
 app-misc/gfontview
 
 # Christian Faulhammer <opfer@gentoo.org> (10 Oct 2007)
@@ -147,97 +243,9 @@ dev-db/mysql-query-browser
 # Masked for removal in 30 days. Bug #190768.
 app-emacs/speedbar
 
-# Daniel Gryniewicz <dang@gentoo.org> (25 Sep 2007)
-# The Great GNOME 2.20 mask
->=gnome-extra/fast-user-switch-applet-2.20.0
->=gnome-base/gnome-common-2.20.0
->=app-admin/sabayon-2.20.1
->=gnome-base/gconf-2.20.0
->=gnome-extra/at-spi-1.20.0
->=gnome-base/gail-1.20.0
->=gnome-base/gnome-vfs-2.20.0
->=gnome-base/libbonobo-2.20.0
->=gnome-base/libbonoboui-2.20.0
->=gnome-base/libgnome-2.20.0
->=gnome-base/libgnomecanvas-2.20.0
->=gnome-base/libgnomeui-2.20.0
->=gnome-extra/bug-buddy-2.20.0
->=app-accessibility/dasher-4.6.0
->=gnome-extra/deskbar-applet-2.20.0
->=gnome-base/eel-2.20.0
->=media-gfx/eog-2.20.0
->=www-client/epiphany-2.20.0
->=www-client/epiphany-extensions-2.20.0
->=mail-client/evolution-2.12.0
->=gnome-extra/evolution-data-server-1.12.0
->=gnome-extra/evolution-exchange-2.12.0
->=gnome-extra/evolution-webcal-2.12.0
->=app-arch/file-roller-2.20.0
->=gnome-extra/gcalctool-5.20.0
->=gnome-extra/gconf-editor-2.20.0
->=gnome-base/gdm-2.20.0
->=app-editors/gedit-2.20.0
->=gnome-base/gnome-applets-2.20.0
->=x11-themes/gnome-backgrounds-2.20.0
->=gnome-base/control-center-2.20.0
->=gnome-base/gnome-desktop-2.20.0
->=app-text/gnome-doc-utils-0.12.0
->=gnome-extra/gnome-games-2.20.0.1
->=x11-themes/gnome-icon-theme-2.20.0
->=gnome-base/gnome-keyring-2.20.0
->=gnome-extra/gnome-keyring-manager-2.20.0
->=gnome-extra/gnome-media-2.20.1
->=gnome-base/gnome-menus-2.20.0
->=net-analyzer/gnome-nettool-2.20.0
->=gnome-base/gnome-panel-2.20.0.1
->=gnome-extra/gnome-power-manager-2.20.0
->=dev-python/gnome-python-desktop-2.20.0
->=gnome-extra/gnome-screensaver-2.20.0
->=gnome-base/gnome-session-2.20.0
->=gnome-extra/gnome-system-monitor-2.20.0
->=app-admin/gnome-system-tools-2.20.0
->=x11-themes/gnome-themes-2.20.0
->=gnome-extra/gnome2-user-docs-2.20.0
->=gnome-extra/gnome-utils-2.20.0.1
->=app-accessibility/gok-1.3.4
->=x11-themes/gtk-engines-2.12.1
->=gnome-extra/gtkhtml-3.16.0
->=x11-libs/gtksourceview-2.0.0
->=gnome-extra/libgail-gnome-1.20.0
->=gnome-base/libgnomekbd-2.20.0
->=gnome-base/libgtop-2.20.0
->=dev-libs/liboobs-2.20.0
->=gnome-base/librsvg-2.18.2
->=x11-libs/libwnck-2.20.0
->=x11-wm/metacity-2.20.0
->=gnome-base/nautilus-2.20.0
->=gnome-extra/nautilus-cd-burner-2.20.0
->=app-accessibility/orca-2.20.0
->=dev-python/pygtksourceview-2.0.0
->=app-crypt/seahorse-2.20.0
->=media-sound/sound-juicer-2.20.0
->=app-misc/tomboy-0.8.0
->=media-video/totem-2.20.0
->=net-misc/vino-2.20.0
->=gnome-extra/zenity-2.20.0
->=dev-cpp/gconfmm-2.20.0
->=dev-cpp/gnome-vfsmm-2.20.0
->=dev-cpp/libgnomecanvasmm-2.20.0
->=dev-cpp/libgnomemm-2.20.0
->=dev-cpp/libgnomeuimm-2.20.0
->=dev-libs/libsigc++-2.1.1
->=dev-cpp/libxmlpp-2.20.0
->=dev-python/gnome-python-2.20.0
-# End The Great GNOME 2.20 mask
-#
-
 # Denis Dupeyron <calchan@gentoo.org> (23 Sep 2007)
 # Masked for removal in 30 days as per bug #176962.
 net-print/hpijs
-
-# Chris Gianelloni <wolf31o2@gentoo.org> (22 Sep 2007)
-# Masking this temporarily until I can figure out bug #189884.  Patches welcome.
-=net-misc/iceclient-10.6
 
 # Ulrich Mueller <ulm@gentoo.org> (22 Sep 2007)
 # Does not work with Emacs 22. Last upstream release as separate
@@ -258,26 +266,16 @@ app-emacs/semantic
 =app-emulation/vmware-server-console-1.0.3.44356
 #=app-emulation/vmware-workstation-4.5.3.19414-r7
 #=app-emulation/vmware-workstation-5.5.4.44386
-#=app-emulation/vmware-workstation-6.0.0.45731
+=app-emulation/vmware-workstation-6.0.0.45731
 #=app-emulation/vmware-player-1.0.2.29634
 #=app-emulation/vmware-player-1.0.3.34682-r1
-#=app-emulation/vmware-player-2.0.0.45731
+=app-emulation/vmware-player-2.0.0.45731
 
 # Christian Faulhammer <opfer@gentoo.org> (20 Sep 2007)
 # Is dead upstream
 # Junkbuster has been replaced by Privoxy, so no need
 # for that mode
 app-emacs/junkbust
-
-# Samuli Suominen <drac@gentoo.org> ((20 Sep 2007)
-# These packages don't meet needed quality standards,
-# and maintaining ebuilds based on current building
-# system and release timing is not possible.
-# For pd, use pd-overlay found in layman global list.
-# For supercollider, use upstream subversion.
-# Removed from tree in 30 days.
-media-sound/pd
-media-sound/supercollider
 
 # Robin H. Johnson <robbat2@gentoo.org> (20 Sep 2007)
 # last rites
@@ -286,12 +284,6 @@ dev-util/bk_client
 # Daniel Gryniewicz <dang@gentoo.org> (18 Sep 2007)
 # Re-mask; bug #191408
 >=net-news/liferea-1.4
-
-# Matti Bickel <mabi@gentoo.org> (18 Sep 2007)
-# Masked for removal in 30 days
-# Last release 2005, only works with
-# unsupported FXRuby-1.0 or -1.2. (bug #177785)
-net-irc/xdcc-fetch
 
 # <hollow@gentoo.org> (15 Sep 2007)
 # Masked for removal. Bug #20899
@@ -368,11 +360,6 @@ games-fps/doomsday-resources
 # PPTP Plugin doesn't work on amd64
 net-misc/networkmanager-pptp
 
-# Ulrich Mueller <ulm@gentoo.org> (29 Aug 2007)
-# Live CVS ebuild for Emacs unicode-2 branch
-~app-editors/emacs-cvs-23.0.0
->=virtual/emacs-23
-
 # Alin Năstac <mrness@gentoo.org> (25 Aug 2007)
 # Has been inactive for several years; scheduled for removal in 60 days.
 # Please use net-dialup/xl2tpd (fork actively maintained by Xelerance)
@@ -387,23 +374,6 @@ net-dialup/l2tpd
 # Not maintained for security issues, will be removed soonish.
 =sys-kernel/xen-sources-2.6.16*
 
-# Samuli Suominen <drac@gentoo.org> (23 Aug 2007)
-# Deprecated GTK+-1.2 applications.
-# app-misc/dfm broken wrt bug 186100.
-# app-misc/emelfm replaced by app-misc/emelfm2,
-# bug 186351. Masked for treecleaners, removed in
-# 60 days.
-app-misc/dfm
-app-misc/emelfm
-
-# Samuli Suominen <drac@gentoo.org> (23 Aug 2007)
-# Obsolete ebuild for XFree86 and X.org 6.x.
-# Broken wrt bugs 130176 and 149872.
-# Gatos code has been relicensed and merged into
-# upstream xf86-video-ati RandR 1.2 branch.
-# Masked for treecleaners, removed in 60 days.
-media-video/ati-gatos
-
 # Brent J. Baude <ranger@gentoo.org> (21 Aug 2007)
 # Masking out librtas-2.0.0 in favor of new version with smaller version number
 # to force an upgrade.
@@ -412,11 +382,6 @@ media-video/ati-gatos
 # Wulf C. Krueger <philantrop@gentoo.org> (21 Aug 2007)
 # Temporary mask. Beta release.
 ~app-editors/kile-2.0_beta1
-
-# Christian Hartmann <ian@gentoo.org> (20 Aug 2007)
-# Unmaintained and non-functional due to changes by ebay.
-# Bug #178382
-net-misc/ebayagent
 
 # Gunnar Wrobel <wrobel@gentoo.org> (15 Aug 2007) 
 # Has open security bugs
@@ -527,10 +492,6 @@ kde-misc/kdbus
 # Masked due to several connectivity issues.
 >=net-wireless/wpa_supplicant-0.6.0
 
-# Doug Goldstein <cardoe@gentoo.org> (28 Jun 2007)
-# masked due to security issues see bug #177630
-www-apps/otrs
-
 # Wulf C. Krueger <philantrop@gentoo.org> (26 Jun 2007)
 # Broken in several ways, see bug 171493 for details.
 # The author has abandoned it.
@@ -595,6 +556,7 @@ app-shells/ash
 >=dev-ml/ocamlduce-3.10.0
 dev-ml/camlp5
 >=app-misc/ledit-1.15
+>=app-emacs/ocaml-mode-3.10.0
 
 # Andrej Kacian <ticho@gentoo.org> (26 May 2007)
 # Use mail-client/claws-mail - upstream changed application name after 2.6.0.
@@ -833,7 +795,7 @@ dev-tex/SIunits
 dev-tex/floatflt
 dev-tex/g-brief
 <dev-tex/pgf-1.18
-dev-tex/xcolor
+<dev-tex/xcolor-2.11
 dev-tex/vntex
 
 # Raúl Porcel <armin76@gentoo.org> (17 Feb 2007)
@@ -1086,7 +1048,7 @@ app-misc/rolo
 # Masked until ready for the public.
 # There are still some work to be done, but should
 # be able to build.
-app-text/texlive
+<app-text/texlive-2007
 
 # Luca Longinotti <chtekk@gentoo.org> (24 May 2006)
 # Masked for more testing, breaks with stealth mode.
