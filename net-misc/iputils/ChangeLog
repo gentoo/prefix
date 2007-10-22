@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/iputils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/ChangeLog,v 1.60 2007/10/19 20:33:39 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/ChangeLog,v 1.61 2007/10/21 14:42:14 nixnut Exp $
+
+  21 Oct 2007; nixnut <nixnut@gentoo.org> iputils-20070202.ebuild:
+  Stable on ppc wrt bug 195915
 
   19 Oct 2007; Raúl Porcel <armin76@gentoo.org> iputils-20070202.ebuild:
   alpha/ia64/sparc stable wrt #195915
