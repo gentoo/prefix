@@ -10,7 +10,7 @@ DESCRIPTION="UNIX Shell similar to the Korn shell"
 HOMEPAGE="http://www.zsh.org/"
 SRC_URI="ftp://ftp.zsh.org/pub/${P}.tar.bz2
 	linguas_ja? ( http://www.ono.org/software/dist/${PN}-4.2.4-euc-0.3.patch.gz )
-  	doc? ( ftp://ftp.zsh.org/pub/${P}-doc.tar.bz2 )"
+	doc? ( ftp://ftp.zsh.org/pub/${P}-doc.tar.bz2 )"
 
 LICENSE="ZSH"
 SLOT="0"
@@ -64,11 +64,11 @@ src_compile() {
 		--enable-site-fndir="${EPREFIX}"/usr/share/zsh/site-functions \
 		--enable-function-subdirs \
 		--enable-ldflags="${LDFLAGS}" \
+		--with-tcsetpgrp \
 		$(use_with ncurses curses-terminfo) \
 		$(use_enable maildir maildir-support) \
 		$(use_enable pcre) \
 		$(use_enable cap) \
-		$(use_enable unicode multibyte) \
 		${myconf} || die "configure failed"
 
 	if use static ; then
@@ -87,7 +87,6 @@ src_compile() {
 }
 
 src_test() {
-	local f=
 	for f in /dev/pt* ; do
 		addpredict $f
 	done
