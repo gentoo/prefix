@@ -20,6 +20,7 @@ Rlocations=( ${GCC_LIBS} ${LD_LIBS} ${locations[@]} )
 
 @GENTOO_PORTAGE_CTARGET_LINKER@ \
 	@GENTOO_PORTAGE_LINKER_OPTIONS@ \
+	"${@}" \
 	"${Llocations[@]/#/@GENTOO_PORTAGE_LIBFLAG@}" \
 	"${Rlocations[@]/#/@GENTOO_PORTAGE_RPATHFLAG@}" \
-	"${@}"
+
