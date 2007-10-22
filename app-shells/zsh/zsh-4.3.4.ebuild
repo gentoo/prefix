@@ -70,7 +70,7 @@ src_compile() {
 		--enable-site-fndir="${EPREFIX}"/usr/share/zsh/site-functions \
 		--enable-function-subdirs \
 		--enable-ldflags="${LDFLAGS}" \
-		--enable-curses-terminfo \
+		--with-curses-terminfo \
 		--with-tcsetpgrp \
 		$(use_enable maildir maildir-support) \
 		$(use_enable pcre) \
