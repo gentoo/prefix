@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/activerecord
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.60 2007/10/18 17:14:26 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.61 2007/10/21 15:09:40 beandog Exp $
+
+  21 Oct 2007; Steve Dibb <beandog@gentoo.org> activerecord-1.15.5.ebuild:
+  amd64 stable
 
   18 Oct 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   activerecord-1.15.5.ebuild:
