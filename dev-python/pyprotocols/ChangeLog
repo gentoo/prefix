@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pyprotocols
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyprotocols/ChangeLog,v 1.14 2007/07/04 21:08:52 lucass Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyprotocols/ChangeLog,v 1.15 2007/10/21 20:09:57 maekke Exp $
+
+  21 Oct 2007; Markus Meier <maekke@gentoo.org> pyprotocols-0.9.3.ebuild:
+  x86 stable, bug #145000
 
   04 Jul 2007; Lukasz Strzygowski <lucass@gentoo.org>
   -pyprotocols-1.0_pre2082.ebuild:
