@@ -1,6 +1,9 @@
 # ChangeLog for app-doc/lapack-docs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/lapack-docs/ChangeLog,v 1.9 2007/10/10 19:30:22 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/lapack-docs/ChangeLog,v 1.10 2007/10/21 16:41:07 nixnut Exp $
+
+  21 Oct 2007; nixnut <nixnut@gentoo.org> lapack-docs-3.1.1.ebuild:
+  Added ~ppc
 
   10 Oct 2007; Markus Rothe <corsair@gentoo.org> lapack-docs-3.1.1.ebuild:
   Stable on ppc64; bug #189738
