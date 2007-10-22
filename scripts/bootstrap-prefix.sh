@@ -52,6 +52,10 @@ efetch() {
 		pushd "`pwd`" > /dev/null
 		cd "${DISTDIR}"
 		${FETCH_COMMAND} "$1"
+		if [[ ! -f ${1##*/} ]] ; then
+			eerror "downloading ${1} failed!"
+			exit 1
+		fi
 		popd > /dev/null
 	fi
 }
