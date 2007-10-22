@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect-rails
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-rails/ChangeLog,v 1.6 2007/10/16 13:19:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-rails/ChangeLog,v 1.7 2007/10/21 15:23:42 beandog Exp $
+
+  21 Oct 2007; Steve Dibb <beandog@gentoo.org> eselect-rails-0.10.ebuild:
+  amd64 stable, security bug 195315
 
   16 Oct 2007; Raúl Porcel <armin76@gentoo.org> eselect-rails-0.10.ebuild:
   ia64 stable
