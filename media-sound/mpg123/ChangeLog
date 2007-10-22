@@ -1,6 +1,11 @@
 # ChangeLog for media-sound/mpg123
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.119 2007/09/18 14:37:36 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.120 2007/10/21 15:27:14 chainsaw Exp $
+
+  21 Oct 2007; Tony Vroon <chainsaw@gentoo.org>
+  +files/0.67-no-faltivec.patch, mpg123-0.67.ebuild:
+  GCC 4.2.2 really hates the -faltivec this build system wants to specify,
+  remove it so USE=altivec can actually be used.
 
 *mpg123-0.67 (18 Sep 2007)
 

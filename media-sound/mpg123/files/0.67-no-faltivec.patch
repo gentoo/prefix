@@ -1,0 +1,11 @@
+--- mpg123-0.67/configure.ac.orig	2007-10-21 16:07:05.000000000 +0100
++++ mpg123-0.67/configure.ac	2007-10-21 16:07:24.000000000 +0100
+@@ -445,7 +445,7 @@
+     CFLAGS="$CFLAGS -DOPT_GENERIC -DREAL_IS_FIXED"
+   ;;
+   altivec)
+-    CFLAGS="$CFLAGS -maltivec -faltivec -DREAL_IS_FLOAT -DOPT_ALTIVEC"
++    CFLAGS="$CFLAGS -maltivec -DREAL_IS_FLOAT -DOPT_ALTIVEC"
+   ;;
+   i386) 
+     CFLAGS="$CFLAGS -DOPT_I386 -DREAL_IS_FLOAT"
