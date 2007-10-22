@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.307 2007/10/13 02:47:26 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.308 2007/10/21 13:49:04 graaff Exp $
+
+*ruby-1.8.6_p110-r2 (21 Oct 2007)
+
+  21 Oct 2007; Hans de Graaff <graaff@gentoo.org>
+  +ruby-1.8.6_p110-r2.ebuild:
+  Add emacs and xemacs USE flags and use them to pull in the correct editing
+  mode for each. Had to drop several arch keywords as reported on bug 196413.
 
   13 Oct 2007; Steve Dibb <beandog@gentoo.org> ruby-1.8.6_p110-r1.ebuild:
   amd64 stable, security bug 194236
