@@ -1,11 +1,12 @@
 # Copyright 1999-2006 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/video_cards.desc,v 1.3 2006/06/30 01:57:16 geoman Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/video_cards.desc,v 1.5 2007/09/09 09:23:06 dberkholz Exp $
 
 # This file contains descriptions of VIDEO_CARDS USE_EXPAND flags.
 
 # Keep it sorted.
 
+amd - VIDEO_CARDS setting to build driver for AMD Geode GX and LX video cards
 apm - VIDEO_CARDS setting to build driver for apm video cards
 ark - VIDEO_CARDS setting to build driver for ark video cards
 chips - VIDEO_CARDS setting to build driver for chips video cards
@@ -50,8 +51,10 @@ tga - VIDEO_CARDS setting to build driver for tga video cards
 trident - VIDEO_CARDS setting to build driver for trident video cards
 tseng - VIDEO_CARDS setting to build driver for tseng video cards
 v4l - VIDEO_CARDS setting to build driver for v4l video cards
+vermilion - VIDEO_CARDS setting to build driver for Intel Vermilion video cards
 vesa - VIDEO_CARDS setting to build driver for vesa video cards
 vga - VIDEO_CARDS setting to build driver for vga video cards
 via - VIDEO_CARDS setting to build driver for via video cards
 vmware - VIDEO_CARDS setting to build driver for vmware video cards
 voodoo - VIDEO_CARDS setting to build driver for voodoo video cards
+xgi - VIDEO_CARDS setting to build driver for xgi video cards
