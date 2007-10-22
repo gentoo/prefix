@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.2.1-r1.ebuild,v 1.1 2007/09/28 13:03:55 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.2.1-r1.ebuild,v 1.4 2007/10/21 19:52:27 beandog Exp $
 
 EAPI="prefix"
 
@@ -14,6 +14,8 @@ LICENSE="GPL-2 LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
 IUSE="3dnow altivec debug doc ogg sse"
+
+RESTRICT="test"
 
 RDEPEND="ogg? ( >=media-libs/libogg-1.1.3 )"
 DEPEND="${RDEPEND}
