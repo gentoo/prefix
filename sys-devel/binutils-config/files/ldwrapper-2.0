@@ -6,15 +6,15 @@
 # script picks up EPREFIX from the environment, or sets it to the
 # compile-time default.
 
-EPREFIX=${EPREFIX:-@GENTOO_PORTAGE_TPREFIX@}
+TPREFIX=@GENTOO_PORTAGE_TPREFIX@
 
 [[ -e ${EPREFIX}/etc/env.d/05gcc ]] &&
-	GCC_LIBS=$(source "${EPREFIX}"/etc/env.d/05gcc; echo ${LDPATH/:*/})
+	GCC_LIBS=$(source "${TPREFIX}"/etc/env.d/05gcc; echo ${LDPATH/:*/})
 [[ -e ${EPREFIX}/etc/env.d/05binutils ]] &&
-	LD_LIBS=$(source "${EPREFIX}"/etc/env.d/05binutils; echo ${LDPATH/:*/})
+	LD_LIBS=$(source "${TPREFIX}"/etc/env.d/05binutils; echo ${LDPATH/:*/})
 
 locations=( @GENTOO_PORTAGE_LIB_PATHS@ )
-locations=( ${locations[@]/#/${EPREFIX}} )
+locations=( ${locations[@]/#/${TPREFIX}} )
 Llocations=( ${GCC_LIBS} ${LD_LIBS} ${locations[@]} )
 Rlocations=( ${GCC_LIBS} ${LD_LIBS} ${locations[@]} )
 

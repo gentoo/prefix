@@ -8,7 +8,6 @@
 #  TARGET-VER:		has a TARGET and VER variable
 
 EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
-TPREFIX=${TPREFIX:-${EPREFIX}}
 
 [[ -z ${ROOT} ]] && ROOT="/"
 #[[ ${ROOT} != */ ]] && ROOT="${ROOT}/"
@@ -61,6 +60,16 @@ switch_profile() {
 	if [[ -z ${VER} ]] ; then
 		eerror "${PROFILE} is invalid (no \$VER defined) :("
 		return 1
+	fi
+	if [[ -z ${TPREFIX} ]] ; then
+		if [[ ${TARGET} != ${HOST} ]] ; then
+			eerror "${PROFILE} is invalid (no \$TPREFIX defined) :("
+			return 1
+		else
+			# avoid major complaints and floods of bugs, if we're not
+			# crossing TPREFIX should equal EPREFIX
+			TPREFIX=${EPREFIX}
+		fi
 	fi
 
 	#
