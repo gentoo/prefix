@@ -49,6 +49,10 @@ if [[ ${CTARGET} == ${CHOST} ]] ; then
 fi
 is_cross() { [[ ${CHOST} != ${CTARGET} ]] ; }
 
+# TPREFIX is the prefix of the CTARGET installation, not used during
+# compilation, but stored in the env.d file such that the wrapper can use it
+export TPREFIX=${TPREFIX:-${EPREFIX}}
+
 DESCRIPTION="Tools necessary to build programs"
 HOMEPAGE="http://sources.redhat.com/binutils/"
 
@@ -340,6 +344,7 @@ toolchain-binutils_src_install() {
 		VER="${BVER}"
 		LIBPATH="${EPREFIX}/${LIBPATH}"
 		FAKE_TARGETS="${FAKE_TARGETS}"
+		TPREFIX="${TPREFIX}"
 	EOF
 	newins env.d ${CTARGET}-${BVER}
 
