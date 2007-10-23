@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/wget
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.87 2006/10/17 12:38:38 uberlord Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.88 2007/10/22 21:06:47 seemant Exp $
+
+  22 Oct 2007; Seemant Kulleen <seemant@gentoo.org> wget-1.9.1-r5.ebuild,
+  wget-1.10.2.ebuild:
+  homepage update thanks to Petr Pisar in bug #196738
 
   17 Oct 2006; Roy Marples <uberlord@gentoo.org> wget-1.10.2.ebuild:
   Added ~sparc-fbsd keyword.
