@@ -1,6 +1,15 @@
 # ChangeLog for dev-python/numeric
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numeric/ChangeLog,v 1.37 2007/10/15 14:19:12 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numeric/ChangeLog,v 1.40 2007/10/22 19:28:00 maekke Exp $
+
+  22 Oct 2007; Markus Meier <maekke@gentoo.org> numeric-24.2-r6.ebuild:
+  x86 stable, bug #182392
+
+  22 Oct 2007; Jeroen Roovers <jer@gentoo.org> numeric-24.2-r6.ebuild:
+  Stable for HPPA (bug #182392).
+
+  22 Oct 2007; Ferris McCormick <fmccor@gentoo.org> numeric-24.2-r6.ebuild:
+  Sparc stable --- Bug #182392
 
   15 Oct 2007; Sébastien Fabbro <bicatali@gentoo.org>
   numeric-24.2-r5.ebuild, numeric-24.2-r6.ebuild:
