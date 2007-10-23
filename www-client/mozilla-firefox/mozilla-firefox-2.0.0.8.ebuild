@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.8.ebuild,v 1.4 2007/10/21 20:24:48 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.8.ebuild,v 1.7 2007/10/22 16:51:56 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -187,7 +187,7 @@ src_compile() {
 	sed -i -e \
 		's|-DARON_WAS_HERE|-DGENTOO_NSPLUGINS_DIR=\\\"'"${EPREFIX}"'/usr/'"$(get_libdir)"'/nsplugins\\\" -DGENTOO_NSBROWSER_PLUGINS_DIR=\\\"'"${EPREFIX}"'/usr/'"$(get_libdir)"'/nsbrowser/plugins\\\"|' \
 		${S}/config/autoconf.mk \
-		${S}/toolkit/global/buildconfig.html
+		${S}/toolkit/content/buildconfig.html
 
 	# This removes extraneous CFLAGS from the Makefiles to reduce RAM
 	# requirements while compiling
