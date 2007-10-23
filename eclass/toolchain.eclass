@@ -842,9 +842,11 @@ gcc-compiler_pkg_preinst() {
 }
 
 gcc-compiler_pkg_postinst() {
-	[[ ${CHOST} == *-darwin* ]] \
-		&& export DYLD_LIBRARY_PATH=${EPREFIX}/${LIBPATH}:${DYLD_LIBRARY_PATH} \
-		|| export LD_LIBRARY_PATH=${EPREFIX}/${LIBPATH}:${LD_LIBRARY_PATH}
+	# This breaks hard for a cross-compile, and I have no clue why it would be
+	# necessary either.
+#	[[ ${CHOST} == *-darwin* ]] \
+#		&& export DYLD_LIBRARY_PATH=${EPREFIX}/${LIBPATH}:${DYLD_LIBRARY_PATH} \
+#		|| export LD_LIBRARY_PATH=${EPREFIX}/${LIBPATH}:${LD_LIBRARY_PATH}
 
 	if has_version 'app-admin/eselect-compiler' ; then
 		do_eselect_compiler
@@ -1048,6 +1050,12 @@ gcc_src_unpack() {
 	# in a cross-compile)
 	sed -i -e "/\"\/System\/Library\/Frameworks\"\,/i\ \   \"${EPREFIX}/Frameworks\"\, " \
 		"${S}"/gcc/config/darwin-c.c || die "sed  gcc/config/darwin-c.c failed"
+	
+	# for some reason the LD_LIBRARY_PATH (or whatever it is on the used
+	# platform) is set with the target libs in it, that kills the host tools
+	if is_crosscompile ; then
+		sed -i -e 's/@RPATH_ENVVAR@/NO@RPATH_ENVVAR@/g' "${S}"/Makefile.in || die
+	fi
 
 	fix_files=""
 	for x in contrib/test_summary libstdc++-v3/scripts/check_survey.in ; do
