@@ -202,8 +202,6 @@ toolchain-binutils_src_compile() {
 	use multitarget && myconf="${myconf} --enable-targets=all"
 	[[ -n ${CBUILD} ]] && myconf="${myconf} --build=${CBUILD}"
 	is_cross && myconf="${myconf} --with-sysroot=${EPREFIX}/usr/${CTARGET}"
-	[[ ${EPREFIX%/} != "" ]] && myconf="${myconf} \
-		--with-lib-path=${EPREFIX}/lib64:${EPREFIX}/usr/lib64:${EPREFIX}/lib:${EPREFIX}/usr/lib:/lib64:/usr/lib64:/lib:/usr/lib"
 	# glibc-2.3.6 lacks support for this ... so rather than force glibc-2.5+
 	# on everyone in alpha (for now), we'll just enable it when possible
 	has_version ">=${CATEGORY}/glibc-2.5" && myconf="${myconf} --enable-secureplt"
