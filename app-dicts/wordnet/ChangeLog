@@ -1,6 +1,9 @@
 # ChangeLog for app-dicts/wordnet
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-dicts/wordnet/ChangeLog,v 1.13 2007/08/05 08:37:11 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-dicts/wordnet/ChangeLog,v 1.14 2007/10/22 16:42:18 cla Exp $
+
+  22 Oct 2007; Dawid Węgliński <cla@gentoo.org> wordnet-3.0.ebuild:
+  Stable on x86 (bug #73107)
 
   05 Aug 2007; Fabian Groffen <grobian@gentoo.org>
   -files/wordnet-2.0-macos.patch, wordnet-2.0.ebuild, wordnet-2.1.ebuild:
