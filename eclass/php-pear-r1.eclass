@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-pear-r1.eclass,v 1.17 2007/09/01 15:58:17 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-pear-r1.eclass,v 1.18 2007/10/22 22:55:04 jokey Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
 # Author: Luca Longinotti <chtekk@gentoo.org>
@@ -17,7 +17,7 @@
 
 EXPORT_FUNCTIONS src_install
 
-DEPEND="dev-lang/php >=dev-php/PEAR-PEAR-1.4.6"
+DEPEND="dev-lang/php >=dev-php/PEAR-PEAR-1.4.8"
 RDEPEND="${DEPEND}"
 
 # @ECLASS-VARIABLE: PHP_PEAR_PKG_NAME
@@ -70,10 +70,10 @@ php-pear-r1_src_install() {
 	cd "${S}"
 	mv -f "${WORKDIR}/package.xml" "${S}"
 
-	if has_version '>=dev-php/PEAR-PEAR-1.4.8' ; then
-		pear -d php_bin="${PHP_BIN}" install --force --loose --nodeps --offline --packagingroot="${ED}" "${S}/package.xml" > /dev/null || die "Unable to install PEAR package"
+	if [[ -f "${S}"/package2.xml ]] ; then
+		pear -d php_bin="${PHP_BIN}" install --force --loose --nodeps --offline --packagingroot="${ED}" "${S}/package2.xml" > /dev/null || die "Unable to install PEAR package"
 	else
-		pear -d php_bin="${PHP_BIN}" install --nodeps --packagingroot="${ED}" "${S}/package.xml" > /dev/null || die "Unable to install PEAR package"
+		pear -d php_bin="${PHP_BIN}" install --force --loose --nodeps --offline --packagingroot="${ED}" "${S}/package.xml" > /dev/null || die "Unable to install PEAR package"
 	fi
 
 	rm -Rf "${ED}/usr/share/php/.channels" \

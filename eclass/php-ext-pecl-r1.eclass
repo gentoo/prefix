@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-pecl-r1.eclass,v 1.9 2007/09/02 17:49:20 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-pecl-r1.eclass,v 1.10 2007/10/22 22:54:19 jokey Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
 # Author: Luca Longinotti <chtekk@gentoo.org>
@@ -79,10 +79,7 @@ php-ext-pecl-r1_src_install() {
 	has_php
 	php-ext-source-r1_src_install
 
-	# Those two are always present.
-	dodoc-php "${WORKDIR}/package.xml" CREDITS
-
-	for doc in ${DOCS} ; do
+	for doc in ${DOCS} "${WORKDIR}"/package.xml CREDITS ; do
 		[[ -s ${doc} ]] && dodoc-php ${doc}
 	done
 
