@@ -1,6 +1,10 @@
 # ChangeLog for app-vim/vim-spell-nl
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/vim-spell-nl/ChangeLog,v 1.7 2007/08/29 17:06:36 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/vim-spell-nl/ChangeLog,v 1.8 2007/10/22 15:25:27 cla Exp $
+
+  22 Oct 2007; Dawid Węgliński <cla@gentoo.org>
+  vim-spell-nl-20051007.ebuild:
+  Stable on x86 (bug #180064)
 
   29 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing axxo from metadata due to his retirement (see #54674 for reference).
