@@ -57,6 +57,9 @@ is_crosscompile() {
 	[[ ${CHOST} != ${CTARGET} ]]
 }
 
+# TPREFIX is the prefix of the CTARGET installation
+export TPREFIX=${TPREFIX:-${EPREFIX}}
+
 tc_version_is_at_least() { version_is_at_least "$1" "${2:-${GCC_PV}}" ; }
 
 
@@ -1038,6 +1041,14 @@ gcc_src_unpack() {
 		sed -i -e '/^LANGUAGES =/s:$: proto:' "${S}"/gcc/Makefile.in
 	fi
 
+	# we use our libtool on Darwin
+	sed -i -e "s:/usr/bin/libtool:${EPREFIX}/usr/bin/${CTARGET}-libtool:" \
+		"${S}"/gcc/config/darwin.h || die "sed gcc/config/darwin.h failed"
+	# add prefixed Frameworks to default search paths (may want to change this
+	# in a cross-compile)
+	sed -i -e "/\"\/System\/Library\/Frameworks\"\,/i\ \   \"${EPREFIX}/Frameworks\"\, " \
+		"${S}"/gcc/config/darwin-c.c || die "sed  gcc/config/darwin-c.c failed"
+
 	fix_files=""
 	for x in contrib/test_summary libstdc++-v3/scripts/check_survey.in ; do
 		[[ -e ${x} ]] && fix_files="${fix_files} ${x}"
@@ -1276,12 +1287,15 @@ gcc_do_configure() {
 			*-linux)		 needed_libc=no-fucking-clue;;
 			*-dietlibc)		 needed_libc=dietlibc;;
 			*-elf)			 needed_libc=newlib;;
-			*-freebsd*)		 needed_libc=freebsd-lib;;
+			*-gentoo-freebsd*) needed_libc=freebsd-lib;;
 			*-gnu*)			 needed_libc=glibc;;
 			*-klibc)		 needed_libc=klibc;;
 			*-uclibc*)		 needed_libc=uclibc;;
 			mingw*|*-mingw*) needed_libc=mingw-runtime;;
 			avr)			 confgcc="${confgcc} --enable-shared --disable-threads";;
+			*-apple-darwin*) confgcc="${confgcc} --with-sysroot=${EPREFIX}/${PREFIX}/${CTARGET}";;
+			*-solaris*)      confgcc="${confgcc} --with-sysroot=${EPREFIX}/${PREFIX}/${CTARGET}";;
+			*-freebsd*)      confgcc="${confgcc} --with-sysroot=${EPREFIX}/${PREFIX}/${CTARGET}";;
 		esac
 		if [[ -n ${needed_libc} ]] ; then
 			if ! has_version ${CATEGORY}/${needed_libc} ; then
@@ -1302,7 +1316,7 @@ gcc_do_configure() {
 		if [[ ${EPREFIX%/} != "" ]] ; then
 			# should be /usr, because it's the path to search includes for,
 			# which is unrelated to TOOLCHAIN_PREFIX, a.k.a. PREFIX
-			confgcc="${confgcc} --with-local-prefix=${EPREFIX}/usr"
+			confgcc="${confgcc} --with-local-prefix=${TPREFIX}/usr"
 		fi
 	fi
 	[[ ${CTARGET} == *-elf ]] && confgcc="${confgcc} --with-newlib"
