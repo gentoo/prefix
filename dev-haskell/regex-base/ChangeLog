@@ -1,6 +1,10 @@
 # ChangeLog for dev-haskell/regex-base
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-base/ChangeLog,v 1.4 2007/08/29 14:27:03 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-base/ChangeLog,v 1.5 2007/10/23 16:30:31 opfer Exp $
+
+  23 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  regex-base-0.72.ebuild:
+  stable x86, bug 196616
 
   29 Aug 2007; Jeroen Roovers <jer@gentoo.org> regex-base-0.91.ebuild:
   Marked ~hppa (bug #187147).
