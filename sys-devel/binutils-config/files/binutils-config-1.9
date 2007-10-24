@@ -163,7 +163,17 @@ switch_profile() {
 							-e "s:@GENTOO_PORTAGE_CTARGET_LINKER@:${EPREFIX}/${BINPATH}/${x}:g" \
 							"${ROOT}${BINPATH_LINKS}/${x}" || die
 					;;
-					*-linux-gnu|*-freebsd*)
+					*-freebsd*)
+						sed -i \
+							-e "s:@GENTOO_PORTAGE_TPREFIX@:${TPREFIX}:g" \
+							-e '/@GENTOO_PORTAGE_LINKER_OPTIONS@/d' \
+							-e "s:@GENTOO_PORTAGE_LIB_PATHS@:/usr/lib /lib:g" \
+							-e 's:@GENTOO_PORTAGE_LIBFLAG@:-L:g' \
+							-e 's:@GENTOO_PORTAGE_RPATHFLAG@:-rpath=:g' \
+							-e "s:@GENTOO_PORTAGE_CTARGET_LINKER@:${EPREFIX}/${BINPATH}/${x}:g" \
+							"${ROOT}${BINPATH_LINKS}/${x}" || die
+					;;
+					*-linux-gnu)
 						sed -i \
 							-e "s:@GENTOO_PORTAGE_TPREFIX@:${TPREFIX}:g" \
 							-e '/@GENTOO_PORTAGE_LINKER_OPTIONS@/d' \
