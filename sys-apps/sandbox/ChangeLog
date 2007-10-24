@@ -1,6 +1,12 @@
 # ChangeLog for sys-apps/sandbox
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.77 2007/10/17 15:55:16 dsd Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.78 2007/10/23 23:47:27 vapier Exp $
+
+*sandbox-1.2.18.1-r2 (23 Oct 2007)
+
+  23 Oct 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/sandbox-1.2.18.1-open-cloexec.patch, +sandbox-1.2.18.1-r2.ebuild:
+  Work with new "e" fopen() flag in glibc-2.7 #196720.
 
 *sandbox-1.2.18.1-r1 (17 Oct 2007)
 
