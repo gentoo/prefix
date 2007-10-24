@@ -2,6 +2,13 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.8276 (24 Oct 2007)
+
+  24 Oct 2007; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.8123.ebuild, +portage-2.2.00.8276.ebuild:
+  New snapshot, includes makefile fix, includes a complete cleanup of repoman,
+  so I expect breakage there.
+
 *portage-2.2.00.8227 (22 Oct 2007)
 
   22 Oct 2007; Fabian Groffen <grobian@gentoo.org>
