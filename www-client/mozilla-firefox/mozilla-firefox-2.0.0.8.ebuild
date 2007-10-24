@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.8.ebuild,v 1.7 2007/10/22 16:51:56 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.8.ebuild,v 1.10 2007/10/23 20:18:55 angelos Exp $
 
 EAPI="prefix"
 
@@ -119,7 +119,7 @@ src_unpack() {
 	epatch "${WORKDIR}"/patch
 
 	if use filepicker; then
-		epatch ${FILESDIR}/mozilla-filepicker.patch
+		epatch "${FILESDIR}"/mozilla-filepicker.patch
 	fi
 
 	eautoreconf
@@ -186,8 +186,8 @@ src_compile() {
 	# to econf, but the quotes cause configure to fail.
 	sed -i -e \
 		's|-DARON_WAS_HERE|-DGENTOO_NSPLUGINS_DIR=\\\"'"${EPREFIX}"'/usr/'"$(get_libdir)"'/nsplugins\\\" -DGENTOO_NSBROWSER_PLUGINS_DIR=\\\"'"${EPREFIX}"'/usr/'"$(get_libdir)"'/nsbrowser/plugins\\\"|' \
-		${S}/config/autoconf.mk \
-		${S}/toolkit/content/buildconfig.html
+		"${S}"/config/autoconf.mk \
+		"${S}"/toolkit/content/buildconfig.html
 
 	# This removes extraneous CFLAGS from the Makefiles to reduce RAM
 	# requirements while compiling
