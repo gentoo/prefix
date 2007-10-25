@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r1.ebuild,v 1.14 2007/10/23 09:47:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r1.ebuild,v 1.15 2007/10/24 09:29:51 ulm Exp $
 
 EAPI="prefix"
 
@@ -176,6 +176,9 @@ src_install () {
 		# C source you might find via find-function
 		doins src/*.[ch]
 		sed 's/^X//' >00${PN}-${SLOT}-gentoo.el <<-EOF
+
+		;;; emacs-${SLOT} site-lisp configuration
+
 		(if (string-match "\\\\\`${FULL_VERSION//./\\\\.}\\\\>" emacs-version)
 		X    (setq find-function-C-source-directory
 		X	  "${EPREFIX}/usr/share/emacs/${FULL_VERSION}/src"))

@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.188 2007/10/23 09:47:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.189 2007/10/24 09:29:51 ulm Exp $
+
+  24 Oct 2007; Ulrich Mueller <ulm@gentoo.org> emacs-22.1-r1.ebuild:
+  Add standard comment to site-init file.
 
   23 Oct 2007; Raúl Porcel <armin76@gentoo.org> emacs-22.1-r1.ebuild:
   alpha/ia64 stable
