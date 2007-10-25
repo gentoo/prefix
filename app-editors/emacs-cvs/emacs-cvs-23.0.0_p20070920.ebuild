@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.0_p20070920.ebuild,v 1.3 2007/10/13 21:22:15 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.0_p20070920.ebuild,v 1.4 2007/10/24 09:30:23 ulm Exp $
 
 EAPI="prefix"
 
@@ -202,6 +202,9 @@ src_install () {
 		# C source you might find via find-function
 		doins src/*.[ch]
 		sed 's/^X//' >00${PN}-${SLOT}-gentoo.el <<-EOF
+
+		;;; emacs-${SLOT} site-lisp configuration
+
 		(if (string-match "\\\\\`${FULL_VERSION//./\\\\.}\\\\>" emacs-version)
 		X    (setq find-function-C-source-directory
 		X	  "${EPREFIX}/usr/share/emacs/${FULL_VERSION}/src"))
