@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/decoratortools
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/decoratortools/ChangeLog,v 1.7 2007/07/15 08:56:37 lucass Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/decoratortools/ChangeLog,v 1.8 2007/10/24 16:14:29 armin76 Exp $
+
+  24 Oct 2007; Raúl Porcel <armin76@gentoo.org> decoratortools-1.5.ebuild:
+  Add ~ia64 wrt bug #145000
 
 *decoratortools-1.5 (15 Jul 2007)
 
