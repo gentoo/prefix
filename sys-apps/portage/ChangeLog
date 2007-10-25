@@ -2,6 +2,13 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.8299 (25 Oct 2007)
+
+  25 Oct 2007; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.8228.ebuild, +portage-2.2.00.8299.ebuild:
+  New snapshot, fixes doins problem. I retained 2.2.00.8127 as it is the only
+  one with ~ia64-hpux keyword.
+
 *portage-2.2.00.8280 (24 Oct 2007)
 
   24 Oct 2007; Fabian Groffen <grobian@gentoo.org>
