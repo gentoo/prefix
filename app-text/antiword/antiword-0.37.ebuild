@@ -23,15 +23,16 @@ src_unpack() {
 	unpack ${A} ; cd ${S}
 	EPATCH_SUFFIX="diff" \
 		epatch ${PATCHDIR}
+	epatch "${FILESDIR}"/${P}-prefix.patch
 }
 
 src_compile() {
-	emake OPT="${CFLAGS}" || die
+	emake PREFIX="${EPREFIX}" OPT="${CFLAGS}" || die
 }
 
 src_install() {
 	# no configure, so use the prefix in the install here
-	make DESTDIR="${D}${EPREFIX}" global_install || die
+	make PREFIX="${EPREFIX}" DESTDIR="${D}" global_install || die
 
 	use kde || rm -f ${ED}/usr/bin/kantiword
 
