@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.4.20_p4.ebuild,v 1.3 2007/03/02 17:27:15 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.4.20_p4.ebuild,v 1.4 2007/10/24 07:07:55 wltjr Exp $
 
 EAPI="prefix"
 
@@ -91,7 +91,7 @@ src_compile() {
 		append-ldflags -Wl,--default-symver
 	fi
 
-	cd ${S} && ECONF_SOURCE="${S}"/../dist econf \
+	cd "${S}" && ECONF_SOURCE="${S}"/../dist econf \
 		--prefix=${EPREFIX}/usr \
 		--mandir=${EPREFIX}/usr/share/man \
 		--infodir=${EPREFIX}/usr/share/info \

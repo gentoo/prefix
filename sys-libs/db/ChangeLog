@@ -1,6 +1,11 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.226 2007/09/03 17:07:56 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.227 2007/10/24 07:07:55 wltjr Exp $
+
+  24 Oct 2007; William L. Thomson Jr. <wltjr@gentoo.org> db-1.85-r1.ebuild,
+  -db-3.2.9-r10.ebuild, db-3.2.9-r11.ebuild, db-4.4.20_p4.ebuild,
+  db-4.5.20_p2.ebuild, db-4.6.19.ebuild:
+  Removed java gen 1 ebuild, quoted vars
 
   03 Sep 2007; Caleb Tennis <caleb@gentoo.org> db-3.2.9-r11.ebuild:
   Changing java dep per bug #181832
