@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/p7zip
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.79 2007/10/23 21:00:39 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.80 2007/10/24 15:28:50 armin76 Exp $
+
+  24 Oct 2007; Raúl Porcel <armin76@gentoo.org> p7zip-4.55.ebuild:
+  sparc/x86 stable
 
   23 Oct 2007; Peter Weller <welp@gentoo.org> p7zip-4.51.ebuild:
   Stable on amd64 wrt bug 193771
