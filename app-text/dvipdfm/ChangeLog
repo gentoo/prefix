@@ -1,0 +1,57 @@
+# ChangeLog for app-text/dvipdfm
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/dvipdfm/ChangeLog,v 1.18 2007/10/25 16:35:50 armin76 Exp $
+
+  25 Oct 2007; Raúl Porcel <armin76@gentoo.org> dvipdfm-0.13.2d.ebuild:
+  Add ~alpha/~ia64 wrt #195815
+
+  25 Oct 2007; Markus Rothe <corsair@gentoo.org> dvipdfm-0.13.2d.ebuild:
+  Added ~ppc64
+
+  14 Oct 2007; Alexis Ballier <aballier@gentoo.org> dvipdfm-0.13.2c.ebuild:
+  quote variables, fix header date, thanks repoman
+
+*dvipdfm-0.13.2d (14 Oct 2007)
+
+  14 Oct 2007; Alexis Ballier <aballier@gentoo.org> +dvipdfm-0.13.2d.ebuild:
+  version bump, ~amd64, virtual/tetex -> virtual/latex-base
+
+  12 Mar 2007; Alexandre Buisse <nattfodd@gentoo.org> metadata.xml:
+  Replaced text-markup by tex as maintaining herd (text-markup split).
+
+  21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  10 Apr 2006; Martin Ehmsen <ehmsen@gentoo.org> dvipdfm-0.13.2c.ebuild:
+  Removed INSTALL, found by QA script.
+
+  16 Mar 2006; Martin Ehmsen <ehmsen@gentoo.org> dvipdfm-0.13.2c.ebuild:
+  Changed depend from =app-tetex-1* to !>=app-tetex-2.
+
+  24 Aug 2005; Leonardo Boshell <leonardop@gentoo.org>
+  dvipdfm-0.13.2c.ebuild:
+  Use 'cp -pPR' instead of 'cp -a' (bug #103487).
+
+  05 Jun 2004; Mamoru KOMACHI <usata@gentoo.org> dvipdfm-0.13.2c.ebuild:
+  Blocks teTeX-2 based TeX distributions
+
+  02 Oct 2003; Mike Gardiner <obz@gentoo.org> dvipdfm-0.13.2c.ebuild,
+  metadata.xml:
+  Changed depends to tetex-1 as tetex-2 provides this package and hence
+  conflicts, see bug #29721
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*dvipdfm-0.13.2c (24 Apr 2002)
+
+  2 Aug 2002; phoen][x <phoenix@gentoo.org> dvipdfm-0.13.2c.ebuild :
+  Added LICENSE, KEYWORDS, SLOT.
+
+  24 Apr 2002; Matthew Kennedy <mkennedy@gentoo.org> ChangeLog,
+  dvipdfm-0.13.2c.ebuild, files/digest-dvipdfm-0.13.2c,
+  files/README.Gentoo :
+  
+  New ebuild. Resolves bug #1743.
+
+  dvipdfm is a DVI to PDF translator. It includes many features not
+  found in dvips which is part of tetex.
