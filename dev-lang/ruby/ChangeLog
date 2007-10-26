@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.308 2007/10/21 13:49:04 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.309 2007/10/25 09:56:42 graaff Exp $
+
+  25 Oct 2007; Hans de Graaff <graaff@gentoo.org> ruby-1.8.6_p110-r2.ebuild:
+  Add back ~hppa keyword now that XEmacs support files have been keyworded,
+  bug 196413
 
 *ruby-1.8.6_p110-r2 (21 Oct 2007)
 
