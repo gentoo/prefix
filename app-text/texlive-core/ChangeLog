@@ -1,0 +1,79 @@
+# ChangeLog for app-text/texlive-core
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.14 2007/10/25 15:32:09 corsair Exp $
+
+  25 Oct 2007; Markus Rothe <corsair@gentoo.org>
+  texlive-core-2007-r2.ebuild:
+  Added ~ppc64; bug #195815
+
+  25 Oct 2007; Raúl Porcel <armin76@gentoo.org>
+  texlive-core-2007-r2.ebuild:
+  Add ~alpha/~ia64 wrt #195815
+
+  25 Oct 2007; Ferris McCormick <fmccor@gentoo.org>
+  texlive-core-2007-r2.ebuild:
+  Add ~sparc --- Bug #195815
+
+  25 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  texlive-core-2007-r2.ebuild:
+  keyworded ~x86, bug 195815
+
+*texlive-core-2007-r2 (22 Oct 2007)
+
+  22 Oct 2007; Alexis Ballier <aballier@gentoo.org>
+  +files/2007/texlive-core-2007-dvips_bufferoverflow.patch,
+  -texlive-core-2007-r1.ebuild, +texlive-core-2007-r2.ebuild:
+  Add a patch from upstream to prevent buffer overflow with too long hrefs
+  using dvips -z
+
+*texlive-core-2007-r1 (21 Oct 2007)
+
+  21 Oct 2007; Alexis Ballier <aballier@gentoo.org>
+  -texlive-core-2007.ebuild, +texlive-core-2007-r1.ebuild:
+  push changes
+
+  21 Oct 2007; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2007.ebuild:
+  cosmetics, use dosym instead of ln
+
+  21 Oct 2007; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2007.ebuild:
+  remove the chown on the texmf tree, other texmf packages dont do it anyway
+  and it wasnt chowning texmf-dist; will reenable it if it is really needed,
+  but it shouldnt
+
+  20 Oct 2007; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2007.ebuild:
+  also remove texmf-dist/doc when doc useflag is off, will save a few bits
+
+  20 Oct 2007; Alexis Ballier <aballier@gentoo.org> files/texmf-update:
+  No need to run texlinks in texmf-update anymore now that we have etexlinks
+
+  20 Oct 2007; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2007.ebuild:
+  make use of the new etexlinks helper function, bug #196246
+
+  19 Oct 2007; Alexis Ballier <aballier@gentoo.org>
+  +files/2007/texmf.d/00header.cnf, +files/2007/texmf.d/10standardpaths.cnf,
+  -files/2007/texlive-core-2007-gentoo-texmf-site.patch,
+  +files/2007/texmf.d/05searchpaths.cnf, +files/2007/texmf.d/15options.cnf,
+  +files/2007/texmf.d/20sizes.cnf, texlive-core-2007.ebuild:
+  Ship our own texmf.cnf defaults, greatly based on texlive's dvd one, this
+  should fix bug #196167
+
+  15 Oct 2007; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2007.ebuild:
+  block tex4ht, texlive provides it
+
+*texlive-core-2007 (14 Oct 2007)
+
+  14 Oct 2007; Alexis Ballier <aballier@gentoo.org>
+  +files/2007/tetex-3.0-CVE-2007-0650.patch,
+  +files/2007/tetex-3.0_p1-xpdf-CVE-2007-3387.patch,
+  +files/2007/texlive-core-2007-gentoo-texmf-site.patch,
+  +files/2007/texlive-core-2007-icu-xetex-execstacks.patch,
+  +files/2007/texlive-core-2007-libteckit-asneeded.patch,
+  +files/2007/texlive-core-2007-mpware.patch, +files/texmf-update,
+  +metadata.xml, +texlive-core-2007.ebuild:
+  Initial import
+

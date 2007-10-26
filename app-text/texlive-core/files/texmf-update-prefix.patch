@@ -1,0 +1,41 @@
+--- texmf-update.orig	2007-10-26 17:15:41 +0200
++++ texmf-update	2007-10-26 17:18:25 +0200
+@@ -1,11 +1,11 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ #
+ # Utility to update Gentoo TeXLive distribution configuration files
+ #
+ 
+ echo "Configuring TeXLive ..."
+ 
+-PATH=/bin:/usr/bin
++PATH="@GENTOO_PORTAGE_EPREFIX@"/bin:"@GENTOO_PORTAGE_EPREFIX@"/usr/bin
+ 
+ # Fix for all those with altered umask for root
+ umask 022
+@@ -29,17 +29,17 @@
+ done
+ 
+ if [ "$TEXINPUTS" ]; then
+-	if $(echo ${TEXINPUTS} | grep '/usr/share/texmf' &>/dev/null) ; then
+-		export TEXINPUTS=$(echo ${TEXINPUTS} | sed -e 's|/usr/share/texmf/*:\?||g')
+-	elif $(echo ${TEXINPUTS} | grep '/var/lib/texmf' &>/dev/null) ; then
+-		export TEXINPUTS=$(echo ${TEXINPUTS} | sed -e 's|/var/lib/texmf/*:\?||g')
++	if $(echo ${TEXINPUTS} | grep '@GENTOO_PORTAGE_EPREFIX@/usr/share/texmf' &>/dev/null) ; then
++		export TEXINPUTS=$(echo ${TEXINPUTS} | sed -e 's|@GENTOO_PORTAGE_EPREFIX@/usr/share/texmf/*:\?||g')
++	elif $(echo ${TEXINPUTS} | grep '@GENTOO_PORTAGE_EPREFIX@/var/lib/texmf' &>/dev/null) ; then
++		export TEXINPUTS=$(echo ${TEXINPUTS} | sed -e 's|@GENTOO_PORTAGE_EPREFIX@/var/lib/texmf/*:\?||g')
+ 	fi
+ fi
+ 
+ for conf in texmf.cnf fmtutil.cnf updmap.cfg; do
+-	if [ -d "/etc/texmf/${conf/.*/.d}" ] ; then
+-		echo "Generating /etc/texmf/web2c/${conf} from /etc/texmf/${conf/.*/.d} ..."
+-		cat /etc/texmf/${conf/.*/.d}/* > "/etc/texmf/web2c/${conf}"
++	if [ -d "@GENTOO_PORTAGE_EPREFIX@/etc/texmf/${conf/.*/.d}" ] ; then
++		echo "Generating @GENTOO_PORTAGE_EPREFIX@/etc/texmf/web2c/${conf} from @GENTOO_PORTAGE_EPREFIX@/etc/texmf/${conf/.*/.d} ..."
++		cat "@GENTOO_PORTAGE_EPREFIX@"/etc/texmf/${conf/.*/.d}/* > "@GENTOO_PORTAGE_EPREFIX@/etc/texmf/web2c/${conf}"
+ 	fi
+ done
+ 
