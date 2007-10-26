@@ -80,8 +80,8 @@ newgamessbin() { gameswrapper ${FUNCNAME/games} "$@"; }
 
 games_make_wrapper() { gameswrapper ${FUNCNAME/games_} "$@"; }
 
-gamesowners() { chown ${GAMES_USER}:${GAMES_GROUP} "$@"; }
-gamesperms() { chmod u+rw,g+r-w,o-rwx "$@"; }
+gamesowners() { use prefix && chown ${GAMES_USER}:${GAMES_GROUP} "$@"; }
+gamesperms() { use prefix && chmod u+rw,g+r-w,o-rwx "$@"; }
 prepgamesdirs() {
 	local dir f
 	for dir in \
@@ -90,7 +90,7 @@ prepgamesdirs() {
 		"${GAMES_BINDIR}" "$@"
 	do
 		[[ ! -d ${D}/${dir} ]] && continue
-		(
+		use prefix || (
 			gamesowners -R "${D}/${dir}"
 			find "${D}/${dir}" -type d -print0 | xargs -0 chmod 750
 			find "${D}/${dir}" -type f -print0 | xargs -0 chmod o-rwx,g+r
@@ -103,7 +103,7 @@ prepgamesdirs() {
 		fi
 	done
 	[[ -d ${D}/${GAMES_BINDIR} ]] || return 0
-	find "${D}/${GAMES_BINDIR}" -maxdepth 1 -type f -exec chmod 750 '{}' \;
+	use prefix || find "${D}/${GAMES_BINDIR}" -maxdepth 1 -type f -exec chmod 750 '{}' \;
 }
 
 gamesenv() {
