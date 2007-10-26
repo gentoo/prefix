@@ -1,6 +1,10 @@
 # ChangeLog for net-libs/libtorrent
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.98 2007/09/08 14:36:56 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.100 2007/10/25 19:23:13 drizzt Exp $
+
+  25 Oct 2007; Timothy Redaelli <drizzt@gentoo.org>
+  +libtorrent-0.11.9.ebuild:
+  Version bump, thanks to Flameeyes for poking me.
 
 *libtorrent-0.11.8 (08 Sep 2007)
 
