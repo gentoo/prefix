@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.43 2007/08/21 18:17:59 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.44 2007/10/25 13:49:10 hawking Exp $
 #
 # Author: Jon Nelson <jnelson@gentoo.org>
 # Current Maintainer: Alastair Tse <liquidx@gentoo.org>
@@ -74,9 +74,6 @@ distutils_src_install() {
 	done
 
 	[ -n "${DOCS}" ] && dodoc ${DOCS}
-
-	# deprecated! please use DOCS instead.
-	[ -n "${mydoc}" ] && dodoc ${mydoc}
 }
 
 # generic pyc/pyo cleanup script.
