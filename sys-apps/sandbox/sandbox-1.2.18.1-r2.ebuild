@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.2.18.1-r2.ebuild,v 1.1 2007/10/23 23:47:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.2.18.1-r2.ebuild,v 1.6 2007/10/25 18:17:11 cla Exp $
 
 EAPI="prefix"
 
@@ -123,11 +123,11 @@ src_install() {
 	fowners root:portage /var/log/sandbox
 	fperms 0770 /var/log/sandbox
 
-	cd ${S}
+	cd "${S}"
 	dodoc AUTHORS ChangeLog NEWS README
 }
 
 pkg_preinst() {
-	chown root:portage ${ED}/var/log/sandbox
-	chmod 0770 ${ED}/var/log/sandbox
+	chown root:portage "${ED}"/var/log/sandbox
+	chmod 0770 "${ED}"/var/log/sandbox
 }
