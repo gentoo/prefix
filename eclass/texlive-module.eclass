@@ -97,7 +97,7 @@ texlive-module_src_install() {
 	[ -d texmf-dist ] && doins -r texmf-dist
 
 	TEXMFSYSVAR="$(kpsewhich -var-value=TEXMFSYSVAR)"
-	insinto "${TEXMFSYSVAR}"
+	insinto "${TEXMFSYSVAR#${EPREFIX}}"
 	[ -d texmf-var ] && doins -r texmf-var/*
 
 	insinto /etc/texmf/updmap.d
