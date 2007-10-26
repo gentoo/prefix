@@ -1,6 +1,32 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.281 2007/10/24 21:39:42 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.288 2007/10/25 23:53:30 jer Exp $
+
+  25 Oct 2007; Jeroen Roovers <jer@gentoo.org> python-2.4.4-r6.ebuild:
+  Stable for HPPA (bug #192876). Fixed quoting issues.
+
+  25 Oct 2007; Jeroen Roovers <jer@gentoo.org> python-2.3.6-r3.ebuild:
+  Stable for HPPA (bug #192876).
+
+  25 Oct 2007; Raúl Porcel <armin76@gentoo.org> python-2.3.6-r3.ebuild,
+  python-2.4.4-r6.ebuild:
+  alpha/ia64/sparc stable wrt security #192876
+
+  25 Oct 2007; Daniel Gryniewicz <dang@gentoo.org> python-2.3.6-r3.ebuild,
+  python-2.4.4-r6.ebuild:
+  Marked stable on amd64 for bug #192876
+
+  25 Oct 2007; Markus Rothe <corsair@gentoo.org> python-2.3.6-r3.ebuild,
+  python-2.4.4-r6.ebuild:
+  Stable on ppc64; bug #192876
+
+  25 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  python-2.3.6-r3.ebuild:
+  stable x86, security bug 192876
+
+  25 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  python-2.4.4-r6.ebuild:
+  stable x86, security bug 192876
 
 *python-2.5.1-r3 (24 Oct 2007)
 *python-2.4.4-r6 (24 Oct 2007)
