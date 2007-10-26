@@ -1,6 +1,12 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.227 2007/10/24 07:07:55 wltjr Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.229 2007/10/25 18:02:47 mr_bones_ Exp $
+
+  25 Oct 2007; Michael Sterrett <mr_bones_@gentoo.org> +db-3.2.9-r10.ebuild:
+  Restored removed version since it broke deps on mips and hppa.
+
+  25 Oct 2007; Torsten Veller <tove@gentoo.org> db-3.2.9-r11.ebuild:
+  Added a missing quote (#196944)
 
   24 Oct 2007; William L. Thomson Jr. <wltjr@gentoo.org> db-1.85-r1.ebuild,
   -db-3.2.9-r10.ebuild, db-3.2.9-r11.ebuild, db-4.4.20_p4.ebuild,
