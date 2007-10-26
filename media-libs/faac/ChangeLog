@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/faac
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/ChangeLog,v 1.57 2007/10/15 05:59:13 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/ChangeLog,v 1.58 2007/10/25 17:45:35 beandog Exp $
+
+*faac-1.26-r1 (25 Oct 2007)
+
+  25 Oct 2007; Steve Dibb <beandog@gentoo.org> +faac-1.26-r1.ebuild:
+  Drop unnecessary rdepend of libsndfile
 
   15 Oct 2007; Tom Gall <tgall@gentoo.org> faac-1.24.ebuild:
   stable on ppc64
