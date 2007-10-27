@@ -44,7 +44,7 @@ SHLIB = -shared
 SHLDFLAGS = -Wl,-G
 else
   ifeq ($(KERNEL),Darwin)
-SHLIB = -bundle -undefined define_a_way
+SHLIB = -bundle -undefined dynamic_lookup
 SHLDFLAGS = 
   else
 SHLIB = -shared
