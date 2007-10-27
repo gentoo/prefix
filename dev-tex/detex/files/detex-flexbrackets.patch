@@ -1,0 +1,12 @@
+diff -Nau detex-2.7.orig/detex.l detex-2.7/detex.l
+--- detex-2.7.orig/detex.l	2006-04-01 05:32:33.000000000 -0500
++++ detex-2.7/detex.l	2006-04-01 05:32:58.000000000 -0500
+@@ -4,7 +4,7 @@
+ #endif
+ 
+ /*
+- * detex [-e environment-list] [-c] [-l] [-n] [-s] [-t] [-w] [file[.tex]]
++ * detex [-e environment-list] [-c] [-l] [-n] [-s] [-t] [-w] [file[.tex] ]
+  *
+  *	This program is used to remove TeX or LaTeX constructs from a text
+  *	file.
