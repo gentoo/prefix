@@ -2,6 +2,13 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.8328 (27 Oct 2007)
+
+  27 Oct 2007; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.8321.ebuild, +portage-2.2.00.8328.ebuild:
+  New snapshot, this snapshot contains a few fixes which makes it usable when
+  configured with --offset-prefix="".
+
 *portage-2.2.00.8321 (27 Oct 2007)
 
   27 Oct 2007; Fabian Groffen <grobian@gentoo.org>
