@@ -104,6 +104,14 @@ bootstrap_setup() {
 			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.4/x86"
 			keywords="~x86-macos x86-macos"
 			;;
+		powerpc-apple-darwin9)
+			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.5/ppc"
+			keywords="~ppc-macos ppc-macos"
+			;;
+		i*86-apple-darwin9)
+			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.5/x86"
+			keywords="~x86-macos x86-macos"
+			;;
 		i*86-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/default-prefix/linux/x86"
 			keywords="~x86 x86"
