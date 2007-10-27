@@ -2,6 +2,12 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 Oct 2007; Fabian Groffen <grobian@gentoo.org>
+  +darwin/macos/10.5, darwin/macos/10.5/make.defaults,
+  darwin/macos/10.5/ppc/make.defaults, darwin/macos/10.5/profile.bashrc,
+  darwin/macos/10.5/x86/make.defaults:
+  Add macos/10.5 profile for OSX Leopard
+
   21 Oct 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
   Add mask for binutils-config-1.9-r04.1 which is a complete rewritten from
   scratch version
