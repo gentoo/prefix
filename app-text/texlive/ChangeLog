@@ -1,0 +1,49 @@
+# ChangeLog for app-text/texlive
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.10 2007/10/25 16:36:17 corsair Exp $
+
+  25 Oct 2007; Markus Rothe <corsair@gentoo.org> texlive-2007.ebuild:
+  Added ~ppc64; bug #195815
+
+  25 Oct 2007; Ferris McCormick <fmccor@gentoo.org> texlive-2007.ebuild:
+  Add ~sparc keyword --- Bug #195815 --- builds and initial test is good.
+
+  25 Oct 2007; Christian Faulhammer <opfer@gentoo.org> texlive-2007.ebuild:
+  keyworded ~x86, bug 195815
+
+*texlive-2007 (17 Oct 2007)
+
+  17 Oct 2007; Alexis Ballier <aballier@gentoo.org> +texlive-2007.ebuild:
+  Add meta ebuild for easy install, it will pull in what texlive distributes,
+  optional stuff can be added/removed via useflags
+
+  22 Jul 2007; Denis Dupeyron <calchan@gentoo.org> texlive-2005.ebuild:
+  Drop virtual/x11 dependency.
+
+  12 Mar 2007; Alexandre Buisse <nattfodd@gentoo.org> metadata.xml:
+  Replaced text-markup by tex as maintaining herd (text-markup split).
+
+  28 Jan 2007; Marius Mauch <genone@gentoo.org> texlive-2005.ebuild:
+  Replacing einfo with elog
+
+  02 Dec 2006; Christian Faulhammer <opfer@gentoo.org> texlive-2005.ebuild:
+  removed tcl from IUSE, added tk; reported by Jakub Moc <jakub@gentoo.org> in
+  bug 156829
+
+  28 Nov 2006; Christian Faulhammer <opfer@gentoo.org> texlive-2005.ebuild:
+  moved tcltk USE flag over to separate tk and tcl flags, see bug #17808
+
+*texlive-2005 (28 May 2006)
+
+  28 May 2006; Martin Ehmsen <ehmsen@gentoo.org>
+  +files/2005/texlive-2005-amd64-xdvik-wp.patch,
+  +files/2005/texlive-2005-create-empty-files.patch,
+  +files/2005/texlive-2005-fmtutil-in.patch,
+  +files/2005/texlive-2005-gentoo-texmf-site.patch,
+  +files/2005/texlive-2005-mptest.patch,
+  +files/2005/texlive-2005-pdftosrc-install.patch,
+  +files/2005/texlive-2005-use-system-libtool.patch,
+  +files/2005/texlive-2005-xpdf-vulnerabilities.patch, +files/texmf-update,
+  +metadata.xml, +texlive-2005.ebuild:
+  Initial import of a monolithic TeXLive ebuild.
+
