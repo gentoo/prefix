@@ -1,6 +1,9 @@
 # ChangeLog for app-vim/vim-spell-de
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/vim-spell-de/ChangeLog,v 1.9 2007/09/17 20:11:19 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/vim-spell-de/ChangeLog,v 1.10 2007/10/26 16:51:43 nixnut Exp $
+
+  26 Oct 2007; nixnut <nixnut@gentoo.org> vim-spell-de-20051008.ebuild:
+  Stable on ppc wrt bug 180064
 
   17 Sep 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing citizen428 from metadata.xml (see #56803 for reference).
