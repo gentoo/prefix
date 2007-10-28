@@ -158,6 +158,11 @@ src_unpack() {
 	has_version '>=sys-devel/gcc-4.2' && epatch ${FILESDIR}/${P}-gcc42-command-line.patch
 
 	[[ ${CHOST} != *-irix* ]] && myconf="${myconf} -Dcccdlflags=\"-fPIC\""
+
+	# perl tries to link against gdbm if present, even without USE=gdbm
+	if ! use gdbm; then
+		sed -i '/^libswanted=/s/gdbm //' Configure
+	fi
 }
 
 myconf() {
