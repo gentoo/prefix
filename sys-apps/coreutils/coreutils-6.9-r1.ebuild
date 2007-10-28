@@ -86,6 +86,9 @@ src_unpack() {
 }
 
 src_compile() {
+
+	[[ ${CHOST} == *-darwin9 ]] && append-flags -D__DARWIN_UNIX03=0
+
 	if ! type -p cvs > /dev/null ; then
 		# Fix issues with gettext's autopoint if cvs is not installed,
 		# bug #28920.
