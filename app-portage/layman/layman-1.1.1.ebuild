@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.1.1.ebuild,v 1.8 2007/10/20 13:07:53 wrobel Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.1.1.ebuild,v 1.9 2007/10/26 09:19:07 wrobel Exp $
 
 EAPI="prefix"
 
@@ -14,15 +14,15 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="test"
-S="${WORKDIR}/${PF}"
 
 DEPEND="test? ( dev-util/subversion )"
 RDEPEND=""
 
 pkg_setup() {
-	if has_version dev-util/subversion && built_with_use dev-util/subversion nowebdav; then
-		eerror "You must rebuild your subversion without the nowebdav USE flag"
-		die "You must rebuild your subversion without the nowebdav USE flag"
+	if has_version dev-util/subversion && \
+	(! built_with_use --missing true dev-util/subversion webdav || built_with_use --missing false dev-util/subversion nowebdav); then
+		eerror "You must rebuild your Subversion with support for WebDAV."
+		die "You must rebuild your Subversion with support for WebDAV"
 	fi
 }
 
