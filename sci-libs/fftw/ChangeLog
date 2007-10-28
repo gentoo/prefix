@@ -1,6 +1,9 @@
 # ChangeLog for sci-libs/fftw
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.61 2007/06/16 06:45:51 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.62 2007/10/26 13:40:02 markusle Exp $
+
+  26 Oct 2007; Markus Dittrich <markusle@gentoo.org> fftw-3.0.1-r2.ebuild:
+  Added missing quotation marks.
 
   20 Jun 2007; Joshua Kinard <kumba@gentoo.org> fftw-3.1.2.ebuild:
   Stable on mips, per #180963.
@@ -96,7 +99,7 @@
 
   11 Jul 2006; Markus Dittrich <markusle@gentoo.org> +fftw-3.1.2.ebuild:
   Version bump and added fortran.eclass since configure checks for
-  fortran. Thanks to Adam Piatyszek <ediap@et.put.poznan.pl>
+  fortran. Thanks to Adam Piątyszek <ediap@et.put.poznan.pl>
   for his ebuild. This fixes bug #139849.
 
   28 Jun 2006; Robin H. Johnson <robbat2@gentoo.org> fftw-3.1.1.ebuild:
