@@ -1,0 +1,65 @@
+--- ../media-gfx/asymptote-1.33/work/asymptote-1.33/Makefile.in	2007-07-30 02:27:31.000000000 +1000
++++ Makefile.in	2007-08-12 08:15:32.000000000 +1000
+@@ -49,7 +49,7 @@
+ datadir = $(DESTDIR)@datadir@
+ asydir = $(datadir)/asymptote
+ docdir = $(DESTDIR)@docdir@
+-exampledir = $(docdir)/examples
++exampledir = $(asydir)/examples
+ animationsdir = $(exampledir)/animations
+ latexdir = $(DESTDIR)@latexdir@
+ INSTALL = @INSTALL@
+@@ -127,11 +127,9 @@
+ 	  doc/extra/*.asy doc/*.csv doc/*.dat doc/latexusage.tex $(exampledir)
+ 	${INSTALL} -p -m 644 examples/animations/*.asy $(animationsdir)
+ 	-${INSTALL} -p -m 644 $(addprefix doc/,$(LATEXFILES)) $(latexdir)
+-	-if test -z "$(DESTDIR)"; then \
+-	  texhash; \
+-	fi
+ 
+-install-doc: html
++
++install-doc:
+ 	cd doc; $(MAKE) install-all
+ 
+ install-man: man
+--- ../media-gfx/asymptote-1.33/work/asymptote-1.33/doc/Makefile	2007-07-30 02:28:22.000000000 +1000
++++ doc/Makefile	2007-08-12 08:21:29.000000000 +1000
+@@ -16,12 +16,12 @@
+ 
+ html:	asymptote/index.html
+ 
+-man:	$(DOCFILES) asy.1
++man:	$(MANFILES) asy.1
+ 
+ faq:	
+ 	cd FAQ; $(MAKE) faq
+ 
+-doc:	asymptote.dvi asymptote.info html man faq
++doc:	$(DOCFILES) asymptote.info html man faq
+ 
+ %.png:	%.asy
+ 	$(ASY) -f png $<
+@@ -84,15 +84,14 @@
+ 	rm -f CAD.{aux,dvi,log,pdf,toc}
+ 	rm -rf asymptote
+ 
+-install: man faq
+-	cd FAQ; $(MAKE) install
+-	${INSTALL} -d -m 755 $(docdir) $(mandir)/man1
+-	${INSTALL} -p -m 644 $(DOCFILES) $(docdir)
+-	${INSTALL} -p -m 644 $(MANFILES) $(mandir)/man1
++install: man
++	${INSTALL} -d -m 755 $(mandir)/man1
+ 
+-install-all: doc install
+-	cd FAQ; $(MAKE) install-info
+-	${INSTALL} -d -m 755 $(infodir)
++install-all: doc faq install
++	cd FAQ; $(MAKE) install-all
++	${INSTALL} -d -m 755 $(infodir) $(docdir)/html/asymptote
++	${INSTALL} -p -m 644 $(DOCFILES) $(docdir)
++	${INSTALL} -p -m 644 asymptote/* $(docdir)/html/asymptote
+ 	${INSTALL} -p -m 644 asymptote.info $(infodir)
+ 	-${INSTALL} -p -m 644 asymptote.info-* $(infodir)
+ 	-if test -z "$(DESTDIR)"; then \

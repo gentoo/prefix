@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/asymptote-1.29.ebuild,v 1.3 2007/08/28 21:13:22 centic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/asymptote-1.29.ebuild,v 1.4 2007/10/27 20:15:58 centic Exp $
 
 EAPI="prefix"
 
@@ -57,10 +57,10 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 
-	cd ${S}
+	cd "${S}"
 
 	# Fixing fftw and gsl enabling
-	epatch ${FILESDIR}/${P}-configure-ac.patch
+	epatch "${FILESDIR}/${P}-configure-ac.patch"
 	einfo "Patching configure.ac"
 	sed -i \
 		-e "s:Datadir/doc/asymptote:Datadir/doc/${PF}:" \
@@ -69,7 +69,7 @@ src_unpack() {
 	einfo "Building configure"
 	WANT_AUTOCONF=2.5 autoconf
 
-	epatch ${FILESDIR}/${P}-makefile.patch
+	epatch "${FILESDIR}/${P}-makefile.patch"
 }
 
 src_compile() {
@@ -96,7 +96,7 @@ src_install() {
 		target="install"
 	fi
 
-	make DESTDIR=${D} ${target} || die "make install failed"
+	make DESTDIR="${D}" ${target} || die "make install failed"
 
 	dodoc BUGS ChangeLog README ReleaseNotes TODO
 
