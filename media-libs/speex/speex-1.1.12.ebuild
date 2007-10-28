@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/speex/speex-1.1.12.ebuild,v 1.10 2007/08/13 21:11:34 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/speex/speex-1.1.12.ebuild,v 1.11 2007/10/26 06:05:05 jer Exp $
 
 EAPI="prefix"
 
@@ -20,12 +20,12 @@ DEPEND="${RDEPEND}"
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 
 	# This is needed to fix parallel make issues.
 	# As this changes the Makefile.am, need to rebuild autotools.
 	sed -i -e 's:\$(top_builddir)/libspeex/libspeex.la:libspeex.la:' \
-		${S}/libspeex/Makefile.am
+		"${S}"/libspeex/Makefile.am
 
 	epatch "${FILESDIR}/${P}-malloc.patch"
 

@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/speex
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/speex/ChangeLog,v 1.59 2007/08/27 15:51:24 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/speex/ChangeLog,v 1.60 2007/10/26 06:05:05 jer Exp $
+
+  26 Oct 2007; Jeroen Roovers <jer@gentoo.org> speex-1.1.12.ebuild:
+  Stable for HPPA too. Fixed quoting issues.
 
   27 Aug 2007; Samuli Suominen <drac@gentoo.org> speex-1.2_beta2.ebuild:
   Add largefile support.
