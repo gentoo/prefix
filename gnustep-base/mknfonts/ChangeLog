@@ -1,6 +1,9 @@
 # ChangeLog for gnustep-base/mknfonts
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/mknfonts/ChangeLog,v 1.18 2007/10/17 17:45:16 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/mknfonts/ChangeLog,v 1.19 2007/10/27 15:53:55 nixnut Exp $
+
+  27 Oct 2007; nixnut <nixnut@gentoo.org> mknfonts-0.5-r1.ebuild:
+  Stable on ppc wrt bug 195278
 
   17 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
   mknfonts-0.5-r1.ebuild:
