@@ -1,6 +1,11 @@
 # ChangeLog for dev-lisp/sbcl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.131 2007/10/18 17:01:12 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.132 2007/10/26 12:23:03 hkbst Exp $
+
+*sbcl-1.0.11 (26 Oct 2007)
+
+  26 Oct 2007; Marijn Schouten <hkBst@gentoo.org> +sbcl-1.0.11.ebuild:
+  bump, add SBCL_SOURCE_ROOT, -* keyword
 
   18 Oct 2007; Marijn Schouten <hkBst@gentoo.org> sbcl-1.0.10.ebuild:
   small fix for running your own dumped images
