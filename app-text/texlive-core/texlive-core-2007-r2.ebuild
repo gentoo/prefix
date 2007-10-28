@@ -83,12 +83,8 @@ src_unpack() {
 	epatch "${FILESDIR}/${PV}/${P}-dvips_bufferoverflow.patch"
 
 	cp "${FILESDIR}"/texmf-update "${T}" || die
-	cp "${FILESDIR}"/${PV}/texmf.d/05searchpaths.cnf "${T}" || die
-	cd "${T}"
-	epatch "${FILESDIR}"/texmf-update-prefix.patch
-	epatch "${FILESDIR}"/texmf-${PV}-searchpaths-prefix.patch
-	cd "${S}"
-	eprefixify "${T}"/texmf-update "${T}"/05searchpaths.cnf
+	cd "${T}"; epatch "${FILESDIR}"/texmf-update-prefix.patch; cd "${S}"
+	eprefixify "${T}"/texmf-update
 
 	sed -i -e "/mktexlsr/,+3d" -e "s/\(updmap-sys\)/\1 --nohash/" \
 		Makefile.in || die "sed failed"
@@ -227,8 +223,7 @@ src_install() {
 	rm -f "${ED}${TEXMF_PATH}/web2c/texmf.cnf"
 
 	insinto /etc/texmf/texmf.d
-	doins "${FILESDIR}/${PV}/texmf.d/"{00header,10standardpaths,15options,20sizes}.cnf
-	doins "${T}"/05searchpaths.cnf
+	doins "${FILESDIR}/${PV}/texmf.d/"{00header,05searchpaths,10standardpaths,15options,20sizes}.cnf
 
 	mv "${ED}${TEXMF_PATH}/web2c/updmap.cfg"	"${ED}/etc/texmf/updmap.d/00updmap.cfg" || die "moving updmap.cfg failed"
 
