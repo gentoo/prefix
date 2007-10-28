@@ -87,8 +87,6 @@ src_unpack() {
 
 src_compile() {
 
-	[[ ${CHOST} == *-darwin9 ]] && append-flags -D__DARWIN_UNIX03=0
-
 	if ! type -p cvs > /dev/null ; then
 		# Fix issues with gettext's autopoint if cvs is not installed,
 		# bug #28920.
@@ -108,6 +106,8 @@ src_compile() {
 	# it doesn't for Linux and Darwin, so we do it the oldfashioned way
 	[[ ${ELIBC} == "glibc" || ${ELIBC} == "uclibc" ]] \
 		&& myconf="${myconf} --without-included-regex"
+
+	[[ ${CHOST} == *-darwin9 ]] && append-flags -D__DARWIN_UNIX03=0
 
 	# cross-compile workaround #177061
 	[[ ${CHOST} == *-linux* ]] && export fu_cv_sys_stat_statvfs=yes
