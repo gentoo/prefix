@@ -91,7 +91,7 @@ src_compile() {
 	fi
 
 	if use ssl ; then
-		myconf="${myconf} --with-openssl"
+		myconf="${myconf} --with-openssl=${EPREFIX}/usr"
 	else
 		myconf="${myconf} --without-openssl --without-gnutls"
 	fi
