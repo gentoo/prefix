@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/irssi-0.8.11.ebuild,v 1.10 2007/10/15 14:43:39 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/irssi-0.8.11.ebuild,v 1.11 2007/10/26 03:27:26 jer Exp $
 
 EAPI="prefix"
 
