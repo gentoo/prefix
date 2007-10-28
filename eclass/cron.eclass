@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cron.eclass,v 1.10 2006/10/31 17:20:38 wschlich Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cron.eclass,v 1.11 2007/10/27 21:21:11 bangert Exp $
 
 # Original Author: Aaron Walker <ka0ttic@gentoo.org>
 #
@@ -134,8 +134,8 @@ docrontab() {
 
 cron_pkg_postinst() {
 	echo
-	# vixie is the only daemon that has a true system crontab
-	if [[ "${PN}" != "vixie-cron" ]] ; then
+	#  daemons that have a true system crontab set CRON_SYSTEM_CRONTAB="yes"
+	if [ "${CRON_SYSTEM_CRONTAB:-no}" != "yes" ] ; then
 		einfo "To activate /etc/cron.{hourly|daily|weekly|monthly} please run:"
 		einfo " crontab /etc/crontab"
 		einfo

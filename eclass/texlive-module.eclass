@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.4 2007/10/20 17:15:24 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.5 2007/10/27 14:30:38 aballier Exp $
 
 #
 # Original Author: Alexis Ballier <aballier@gentoo.org>
@@ -96,8 +96,7 @@ texlive-module_src_install() {
 	[ -d texmf ] && doins -r texmf
 	[ -d texmf-dist ] && doins -r texmf-dist
 
-	TEXMFSYSVAR="$(kpsewhich -var-value=TEXMFSYSVAR)"
-	insinto "${TEXMFSYSVAR#${EPREFIX}}"
+	insinto /var/lib/texmf
 	[ -d texmf-var ] && doins -r texmf-var/*
 
 	insinto /etc/texmf/updmap.d
