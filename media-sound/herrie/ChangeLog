@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/herrie
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/ChangeLog,v 1.17 2007/10/18 14:10:19 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/ChangeLog,v 1.18 2007/10/27 17:28:54 nixnut Exp $
+
+  27 Oct 2007; nixnut <nixnut@gentoo.org> herrie-1.8.3.ebuild:
+  Stable on ppc wrt bug 196074
 
   18 Oct 2007; Christoph Mende <angelos@gentoo.org> herrie-1.8.3.ebuild:
   Stable on amd64 wrt bug #196074
