@@ -165,7 +165,8 @@ src_compile() {
 		${myconf} \
 		$(use_with gnome gnomeui) \
 		|| die "econf failed"
-	emake || die "emake failed"
+	# parallel build known to fail on e.g. darwin8/9
+	emake -j1 || die "emake failed"
 }
 
 src_install() {
