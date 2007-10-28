@@ -1,6 +1,19 @@
 # ChangeLog for app-misc/mc
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.128 2007/10/10 07:33:11 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.132 2007/10/26 21:09:08 dang Exp $
+
+  26 Oct 2007; Daniel Gryniewicz <dang@gentoo.org> mc-4.6.1-r4.ebuild:
+  Marked stable on amd64 for bug #197144
+
+  26 Oct 2007; nixnut <nixnut@gentoo.org> mc-4.6.1-r4.ebuild:
+  Stable on ppc wrt bug 197144
+
+  26 Oct 2007; Raúl Porcel <armin76@gentoo.org> mc-4.6.1-r4.ebuild:
+  alpha/ia64/sparc/x86 stable
+
+  26 Oct 2007; Raúl Porcel <armin76@gentoo.org> -mc-4.6.1.ebuild,
+  mc-4.6.1-r4.ebuild:
+  Fix HOMEPAGE, bug #197139, remove old
 
   10 Oct 2007; Christian Faulhammer <opfer@gentoo.org> mc-4.6.1.ebuild,
   mc-4.6.1-r3.ebuild, mc-4.6.1-r4.ebuild:
