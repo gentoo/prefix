@@ -1,6 +1,10 @@
 # ChangeLog for dev-texlive/texlive-latexrecommended
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexrecommended/ChangeLog,v 1.5 2007/10/25 15:38:45 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexrecommended/ChangeLog,v 1.6 2007/10/26 19:21:47 fmccor Exp $
+
+  26 Oct 2007; Ferris McCormick <fmccor@gentoo.org>
+  texlive-latexrecommended-2007.ebuild:
+  Add ~amd64 keyword --- Bug #195815
 
   25 Oct 2007; Markus Rothe <corsair@gentoo.org>
   texlive-latexrecommended-2007.ebuild:
