@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-xlib/gnustep-back-xlib-0.12.0.ebuild,v 1.4 2007/10/03 14:16:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-xlib/gnustep-back-xlib-0.12.0.ebuild,v 1.5 2007/10/27 15:57:54 nixnut Exp $
 
 EAPI="prefix"
 
