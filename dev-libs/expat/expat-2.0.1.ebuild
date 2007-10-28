@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/expat-2.0.1.ebuild,v 1.11 2007/08/25 22:38:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/expat-2.0.1.ebuild,v 1.12 2007/10/27 15:15:01 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -17,6 +17,11 @@ IUSE=""
 
 DEPEND=""
 RDEPEND=""
+
+src_unpack() {
+	unpack ${A}
+	elibtoolize
+}
 
 src_install() {
 	make install DESTDIR="${D}" || die
