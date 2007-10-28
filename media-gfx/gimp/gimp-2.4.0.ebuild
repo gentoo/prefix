@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.0.ebuild,v 1.1 2007/10/24 10:26:57 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.0.ebuild,v 1.2 2007/10/27 11:37:51 hanno Exp $
 
 EAPI="prefix"
 
@@ -27,7 +27,7 @@ RDEPEND=">=dev-libs/glib-2.12.3
 	dev-libs/libxslt
 	x11-themes/hicolor-icon-theme
 	aalib? ( media-libs/aalib )
-	alsa? ( >=media-libs/alsa-lib-1.0.0 )
+	alsa? ( >=media-libs/alsa-lib-1.0.14a-r1 )
 	curl? ( net-misc/curl )
 	dbus? ( dev-libs/dbus-glib
 		sys-apps/hal )
