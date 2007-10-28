@@ -1,6 +1,9 @@
 # ChangeLog for app-text/t1utils
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/t1utils/ChangeLog,v 1.26 2007/10/13 06:13:01 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/t1utils/ChangeLog,v 1.27 2007/10/27 18:00:44 grobian Exp $
+
+  27 Oct 2007; Fabian Groffen <grobian@gentoo.org> t1utils-1.32.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   13 Oct 2007; Tom Gall <tgall@gentoo.org> t1utils-1.32.ebuild:
   added ~pc64, bug #193969
