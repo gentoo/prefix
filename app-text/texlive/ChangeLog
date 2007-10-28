@@ -1,6 +1,12 @@
 # ChangeLog for app-text/texlive
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.10 2007/10/25 16:36:17 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.12 2007/10/26 20:29:22 armin76 Exp $
+
+  26 Oct 2007; Raúl Porcel <armin76@gentoo.org> texlive-2007.ebuild:
+  Add ~alpha/~ia64 wrt #195815
+
+  26 Oct 2007; Ferris McCormick <fmccor@gentoo.org> texlive-2007.ebuild:
+  Keyword for ~amd64 --- Bug #195815
 
   25 Oct 2007; Markus Rothe <corsair@gentoo.org> texlive-2007.ebuild:
   Added ~ppc64; bug #195815
