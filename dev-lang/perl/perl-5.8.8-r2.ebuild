@@ -150,6 +150,11 @@ src_unpack() {
 
 	# perlcc fix patch - bug #181229
 	epatch ${FILESDIR}/${P}-perlcc.patch
+
+	# perl tries to link against gdbm if present, even without USE=gdbm
+	if ! use gdbm; then
+		sed -i '/^libswanted=/s/gdbm //' Configure
+	fi
 }
 
 myconf() {
