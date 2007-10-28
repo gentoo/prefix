@@ -32,7 +32,8 @@ media-libs/imlib2 mmx
 app-misc/mc unicode slang
 
 # Elias Pipping <pipping@gentoo.org> (28 Oct 2007)
-# perl and mutt fail to link against gdbm
+# perl and mutt fail to link against gdbm.
+# LDFLAGS=-L${EPREFIX}/usr/$(get_libdir) works around this.
 sys-devel/libperl gdbm
 dev-lang/perl gdbm
 mail-client/mutt gdbm
