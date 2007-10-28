@@ -1,0 +1,30 @@
+# ChangeLog for app-portage/eclass-manpages
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eclass-manpages/ChangeLog,v 1.8 2007/09/01 03:49:05 vapier Exp $
+
+  01 Sep 2007; Mike Frysinger <vapier@gentoo.org>
+  files/eclass-to-manpage.awk:
+  Add support for global-scope variables #190871 and improve handling of
+  variables and errors in general.
+
+  30 Aug 2007; Ulrich Mueller <ulm@gentoo.org> files/eclass-to-manpage.awk:
+  Finally fix whitespace issues of bug #184779.
+
+  07 Aug 2007; Mike Frysinger <vapier@gentoo.org>
+  files/eclass-to-manpage.awk:
+  Add support for @VARIABLE descriptions.
+  Add support for @RETURN values.
+  Add support for @CODE and re-order trailing sections.
+
+  02 Aug 2007; Zac Medico <zmedico@gentoo.org> eclass-manpages-20070615.ebuild:
+  Block app-portage/portage-manpages due to eutils.eclass.5 file collision.
+
+  24 Jul 2007; Mike Frysinger <vapier@gentoo.org>
+  files/eclass-to-manpage.awk:
+  Dont require trailing whitespace to continue paragraphs as that just sets
+  off QA checkers #184779 by Ulrich Mueller.
+
+*eclass-manpages-20070615 (16 Jun 2006)
+
+  16 Jun 2006; Mike Frysinger <vapier@gentoo.org> :
+  Initial import.  Ebuild submitted by me.
