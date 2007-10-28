@@ -1,5 +1,14 @@
 --- support/shobj-conf~
 +++ support/shobj-conf
+@@ -142,7 +142,7 @@
+ 	;;
+ 
+ # Darwin/MacOS X
+-darwin8*)
++darwin[89]*)
+ 	SHOBJ_STATUS=supported
+ 	SHLIB_STATUS=supported
+ 	
 @@ -171,7 +171,7 @@
  	SHLIB_LIBSUFF='dylib'
  

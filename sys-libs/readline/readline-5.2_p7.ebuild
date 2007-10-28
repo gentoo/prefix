@@ -53,6 +53,10 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.2-aix5.patch
 	epatch "${FILESDIR}"/${PN}-5.2-darwin9.patch || die
 
+	if [[ ${CHOST} == *-darwin9 ]]; then
+		epatch "${FILESDIR}"/${PN}-5.2-darwin9-rlfe.patch || die
+	fi
+
 	ln -s ../.. examples/rlfe/readline
 
 	# force ncurses linking #71420
