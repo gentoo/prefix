@@ -30,3 +30,8 @@ media-libs/imlib2 mmx
 # Elias Pipping <pipping@mi.fu-berlin.de> (13 Sep 2007)
 # mc fails to compile with USE=slang (unicode implies slang)
 app-misc/mc unicode slang
+
+# Elias Pipping <pipping@gentoo.org> (28 Oct 2007)
+# perl fails to link against gdbm
+sys-devel/libperl gdbm
+dev-lang/perl gdbm
