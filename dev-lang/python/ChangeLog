@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.288 2007/10/25 23:53:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.289 2007/10/26 09:43:04 hawking Exp $
+
+  26 Oct 2007; Ali Polatel <hawking@gentoo.org> python-2.4.4-r4.ebuild,
+  python-2.4.4-r5.ebuild, python-2.4.4-r6.ebuild:
+  Changed SRC_URI of python-gentoo-patches-2.4* to mirror://gentoo
 
   25 Oct 2007; Jeroen Roovers <jer@gentoo.org> python-2.4.4-r6.ebuild:
   Stable for HPPA (bug #192876). Fixed quoting issues.
