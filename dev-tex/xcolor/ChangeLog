@@ -1,6 +1,10 @@
 # ChangeLog for dev-tex/xcolor
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/xcolor/ChangeLog,v 1.24 2007/10/26 14:48:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/xcolor/ChangeLog,v 1.25 2007/10/27 14:01:48 grobian Exp $
+
+  27 Oct 2007; Fabian Groffen <grobian@gentoo.org> xcolor-2.00-r1.ebuild,
+  xcolor-2.11.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   26 Oct 2007; Raúl Porcel <armin76@gentoo.org> xcolor-2.11.ebuild:
   Add ~ia64
