@@ -54,7 +54,7 @@ src_compile() {
 		$(use_enable pcre perl-regexp) \
 		|| die "econf failed"
 
-	use static || sed -i 's:-lpcre:-Wl,-Bstatic -lpcre -Wl,-Bdynamic:g' src/Makefile
+	use static || [[ ${CHOST} == *-darwin* ]] || sed -i 's:-lpcre:-lpcre -Wl,-Bdynamic:g' src/Makefile
 
 	emake || die "emake failed"
 }
