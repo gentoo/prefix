@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/xdvik-22.84.10.ebuild,v 1.15 2007/10/17 07:43:31 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/xdvik-22.84.10.ebuild,v 1.17 2007/10/26 17:38:54 ulm Exp $
 
 EAPI="prefix"
 
@@ -104,14 +104,14 @@ src_install() {
 
 	local TEXMF_PATH=$(kpsewhich --expand-var='$TEXMFMAIN')
 
-	cd ${S}/texk/xdvik
-	einstall texmf="${ED}${TEXMF_PATH}" || die "install failed"
+	cd "${S}/texk/xdvik"
+	einstall texmf="${D}${TEXMF_PATH}" || die "install failed"
 
-	mv "${ED}${TEXMF_PATH}/xdvi/XDvi" "${ED}etc/X11/app-defaults"
-	dosym {/etc/X11/app-defaults,"${TEXMF_PATH}"}/XDvi
-	for i in $(find "${ED}${TEXMF_PATH}/xdvi" -type f -maxdepth 1) ; do
+	mv "${D}${TEXMF_PATH}/xdvi/XDvi" "${ED}etc/X11/app-defaults"
+	dosym {/etc/X11/app-defaults,"${TEXMF_PATH#${EPREFIX}}"}/XDvi
+	for i in $(find "${D}${TEXMF_PATH}/xdvi" -type f -maxdepth 1) ; do
 		mv ${i} "${ED}etc/texmf/xdvi"
-		dosym {/etc/texmf,"${TEXMF_PATH}"}/xdvi/$(basename ${i})
+		dosym {/etc/texmf,"${TEXMF_PATH#${EPREFIX}}"}/xdvi/$(basename ${i})
 	done
 
 	dodoc BUGS FAQ README.*
@@ -127,7 +127,7 @@ src_install() {
 pkg_postinst() {
 	if use emacs; then
 		elog "Add"
-		elog "	(add-to-list 'load-path (\"${EPREFIX}/usr/share/emacs/site-lisp/tex-utils\"))"
+		elog "	(add-to-list 'load-path \"${SITELISP}/tex-utils\")"
 		elog "	(require 'xdvi-search)"
 		elog "to your ~/.emacs file"
 	fi
