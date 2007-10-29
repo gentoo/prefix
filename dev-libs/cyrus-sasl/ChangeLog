@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/cyrus-sasl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/ChangeLog,v 1.190 2007/06/19 19:50:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/ChangeLog,v 1.191 2007/10/28 21:49:37 tove Exp $
+
+  28 Oct 2007; Torsten Veller <tove@gentoo.org>
+  +files/cyrus-sasl-2.1.22-db4.patch, cyrus-sasl-2.1.22-r2.ebuild:
+  Support latest sys-libs/db versions. Thanks Tuan Van in #192753.
 
   19 Jun 2007; Raúl Porcel <armin76@gentoo.org>
   cyrus-sasl-2.1.22-r2.ebuild:

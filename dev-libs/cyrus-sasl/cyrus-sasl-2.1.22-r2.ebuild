@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/cyrus-sasl-2.1.22-r2.ebuild,v 1.13 2007/06/19 19:50:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/cyrus-sasl-2.1.22-r2.ebuild,v 1.14 2007/10/28 21:49:37 tove Exp $
 
 EAPI="prefix"
 
@@ -81,6 +81,9 @@ src_unpack() {
 
 	# Fix QA issues.
 	epatch "${FILESDIR}/${P}-qa.patch"
+
+	# support new db versions  #192753
+	epatch "${FILESDIR}/${P}-db4.patch"
 
 	# Recreate configure.
 	rm -f "${S}/config/libtool.m4" || die "rm libtool.m4 failed"
