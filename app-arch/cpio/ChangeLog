@@ -1,6 +1,15 @@
 # ChangeLog for app-arch/cpio
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.81 2007/10/03 06:06:28 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.83 2007/10/29 00:15:45 compnerd Exp $
+
+  29 Oct 2007; Saleem Abdulrasool <compnerd@gentoo.org> cpio-2.9-r1.ebuild:
+  inherit eutils for epatch
+
+*cpio-2.9-r1 (28 Oct 2007)
+
+  28 Oct 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/cpio-2.9-CVE-2007-4476.patch, +cpio-2.9-r1.ebuild:
+  Add fix for CVE-2007-4476 #196978.
 
   02 Oct 2007; Tom Gall <tgall@gentoo.org> cpio-2.9.ebuild:
   stable on ppc64
