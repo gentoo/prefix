@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2007-r2.ebuild,v 1.6 2007/10/26 19:06:25 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2007-r3.ebuild,v 1.1 2007/10/28 19:03:24 aballier Exp $
 
 EAPI="prefix"
 
@@ -26,6 +26,10 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 for i in ${TEXLIVE_CORE_INCLUDED_TEXMF}; do
 	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.zip"
 done
+
+# Ship an updated config.ps, see bug #195815 comment 51
+# Or alternatively: http://tug.org/texlive/bugs.html
+SRC_URI="${SRC_URI} mirror://gentoo/${P}-updated-config.ps.bz2"
 
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
 IUSE="X doc"
@@ -93,6 +97,10 @@ src_unpack() {
 
 	cd libs/teckit
 	eautoreconf
+
+# Ship an updated config.ps, see bug #195815 comment 51
+# Or alternatively: http://tug.org/texlive/bugs.html
+	cp -f "${WORKDIR}/${P}-updated-config.ps" "${S}/texmf/dvips/config/config.ps"
 }
 
 src_compile() {
@@ -223,7 +231,7 @@ src_install() {
 	rm -f "${ED}${TEXMF_PATH}/web2c/texmf.cnf"
 
 	insinto /etc/texmf/texmf.d
-	doins "${FILESDIR}/${PV}/texmf.d/"{00header,05searchpaths,10standardpaths,15options,20sizes}.cnf
+	doins "${FILESDIR}/${PV}/texmf.d/"{00header,05searchpaths,10standardpaths,15options,20sizes,25misc}.cnf
 
 	mv "${ED}${TEXMF_PATH}/web2c/updmap.cfg"	"${ED}/etc/texmf/updmap.d/00updmap.cfg" || die "moving updmap.cfg failed"
 

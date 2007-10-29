@@ -36,12 +36,20 @@ if [ "$TEXINPUTS" ]; then
 	fi
 fi
 
-for conf in texmf.cnf fmtutil.cnf updmap.cfg; do
-	if [ -d "/etc/texmf/${conf/.*/.d}" ] ; then
-		echo "Generating /etc/texmf/web2c/${conf} from /etc/texmf/${conf/.*/.d} ..."
-		cat /etc/texmf/${conf/.*/.d}/* > "/etc/texmf/web2c/${conf}"
-	fi
-done
+if [ -d /etc/texmf/texmf.d ]; then
+    echo "Generating /etc/texmf/web2c/texmf.cnf from /etc/texmf/texmf.d ..."
+    cat /etc/texmf/texmf.d/*.cnf > "/etc/texmf/web2c/texmf.cnf"
+fi
+
+if [ -d /etc/texmf/fmtutil.d ]; then
+    echo "Generating /etc/texmf/web2c/fmtutil.cnf from /etc/texmf/fmtutil.d ..."
+    cat /etc/texmf/fmtutil.d/*.cnf > "/etc/texmf/web2c/fmtutil.cnf"
+fi
+
+if [ -d /etc/texmf/updmap.d ]; then
+    echo "Generating /etc/texmf/web2c/updmap.cfg from /etc/texmf/updmap.d ..."
+    cat /etc/texmf/updmap.d/*.cfg > "/etc/texmf/web2c/updmap.cfg"
+fi
 
 echo "Generating ls-R files"
 mktexlsr &>/dev/null

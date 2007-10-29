@@ -66,3 +66,31 @@ trie_size = 300000
 hyph_size = 8191        % prime number of hyphenation exceptions, >610, <32767.
                         % http://primes.utm.edu/curios/page.php/8191.html
 nest_size = 500         % simultaneous semantic levels (e.g., groups)
+max_in_open = 15        % simultaneous input files and error insertions
+param_size = 10000      % simultaneous macro parameters
+save_size = 5000        % for saving values outside current group
+stack_size = 5000       % simultaneous input sources
+
+% These are Omega-specific.
+ocp_buf_size = 500000   % character buffers for ocp filters.
+ocp_stack_size = 10000  % stacks for ocp computations.
+ocp_list_size = 1000    % control for multiple ocps.
+
+% Parameter specific to MetaPost.
+% Maximum number of knots between breakpoints of a path.
+% Set to 2000 by default.
+% path_size.mpost = 10000
+
+% These work best if they are the same as the I/O buffer size, but it
+% doesn't matter much.  Must be a multiple of 8.
+dvi_buf_size = 16384 % TeX
+gf_buf_size = 16384  % MF
+
+% It's probably inadvisable to change these. At any rate, we must have:
+% 45 < error_line      < 255;
+% 30 < half_error_line < error_line - 15;
+% 60 <= max_print_line;
+% These apply to Metafont and MetaPost as well.
+error_line = 79
+half_error_line = 50
+max_print_line = 79
