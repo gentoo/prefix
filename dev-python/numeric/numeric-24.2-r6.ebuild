@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numeric/numeric-24.2-r6.ebuild,v 1.8 2007/10/22 19:28:00 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numeric/numeric-24.2-r6.ebuild,v 1.9 2007/10/28 13:33:33 corsair Exp $
 
 EAPI="prefix"
 
