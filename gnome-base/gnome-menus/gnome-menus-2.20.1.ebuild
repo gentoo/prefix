@@ -27,7 +27,7 @@ DEPEND="${RDEPEND}
 DOCS="AUTHORS ChangeLog HACKING NEWS README"
 
 pkg_setup() {
-	if use kernel_linux ; then
+	if use !prefix && use kernel_linux ; then
 		CONFIG_CHECK="~INOTIFY"
 		linux-info_pkg_setup
 	fi
