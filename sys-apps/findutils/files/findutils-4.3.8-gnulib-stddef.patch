@@ -1,0 +1,19 @@
+https://bugs.gentoo.org/197326
+
+2007-06-10  Bruno Haible  <bruno@clisp.org>
+ 
+	* lib/mbiter.h: Include <stddef.h>, needed for ptrdiff_t.
+	* lib/mbuiter.h: Likewise.
+
+diff --git a/gnulib/lib/mbuiter.h b/gnulib/lib/mbuiter.h
+index e6ad488..c4ceddb 100644
+--- a/gnulib/lib/mbuiter.h
++++ b/gnulib/lib/mbuiter.h
+@@ -92,6 +92,7 @@
+ 
+ #include <assert.h>
+ #include <stdbool.h>
++#include <stddef.h>
+ #include <stdlib.h>
+ #include <string.h>
+ 

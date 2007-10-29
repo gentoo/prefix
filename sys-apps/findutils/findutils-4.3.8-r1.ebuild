@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.3.8-r1.ebuild,v 1.8 2007/09/28 17:14:23 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.3.8-r1.ebuild,v 1.9 2007/10/28 21:21:25 vapier Exp $
 
 EAPI="prefix"
 
@@ -34,6 +34,7 @@ src_unpack() {
 	# which is a secure version of locate.  See bug 18729
 	sed -i '/^SUBDIRS/s/locate//' Makefile.in
 
+	epatch "${FILESDIR}"/${P}-gnulib-stddef.patch #197326
 	epatch "${FILESDIR}"/${P}-listfile-segv.patch #188249
 	use selinux && epatch "${FILESDIR}/${SELINUX_PATCH}"
 }
