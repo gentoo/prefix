@@ -27,7 +27,7 @@ for i in ${TEXLIVE_CORE_INCLUDED_TEXMF}; do
 	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.zip"
 done
 
-KEYWORDS="~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
 IUSE="X doc"
 
 MODULAR_X_DEPEND="X? (
