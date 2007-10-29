@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.12.1.ebuild,v 1.1 2007/10/20 05:44:35 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.12.1.ebuild,v 1.2 2007/10/28 23:17:32 eva Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ HOMEPAGE="http://www.gtk.org/"
 LICENSE="LGPL-2"
 SLOT="2"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
-IUSE="aqua cups debug doc jpeg tiff X xinerama"
+IUSE="aqua cups debug doc jpeg tiff vim-syntax xinerama"
 
 RDEPEND="X? (
 		x11-libs/libXrender
@@ -53,6 +53,7 @@ DEPEND="${RDEPEND}
 			>=dev-util/gtk-doc-1.6
 			~app-text/docbook-xml-dtd-4.1.2
 		 )"
+PDEPEND="vim-syntax? ( app-vim/gtk-syntax )"
 
 pkg_setup() {
 	if use X && use aqua; then
@@ -171,8 +172,8 @@ pkg_postinst() {
 	set_gtk2_confdir
 
 	if [ -d "${EROOT}${GTK2_CONFDIR}" ]; then
-		gtk-query-immodules-2.0  > ${EROOT}${GTK2_CONFDIR}/gtk.immodules
-		gdk-pixbuf-query-loaders > ${EROOT}${GTK2_CONFDIR}/gdk-pixbuf.loaders
+		gtk-query-immodules-2.0  > "${EROOT}${GTK2_CONFDIR}/gtk.immodules"
+		gdk-pixbuf-query-loaders > "${EROOT}${GTK2_CONFDIR}/gdk-pixbuf.loaders"
 	else
 		ewarn "The destination path ${EROOT}${GTK2_CONFDIR} doesn't exist;"
 		ewarn "to complete the installation of GTK+, please create the"
@@ -187,4 +188,7 @@ pkg_postinst() {
 		elog "to do that you can use qfile from portage-utils:"
 		elog "emerge -va1 \$(qfile -qC ${EPREFIX}/usr/lib/gtk-2.0/2.[^1]*)"
 	fi
+
+	elog "Please install app-text/evince for print preview functionality"
 }
+
