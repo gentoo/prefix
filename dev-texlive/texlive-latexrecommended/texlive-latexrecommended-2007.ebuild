@@ -17,4 +17,4 @@ DESCRIPTION="TeXLive LaTeX recommended packages"
 
 LICENSE="GPL-2 LPPL-1.3c Artistic Artistic-2"
 SLOT="0"
-KEYWORDS="~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
