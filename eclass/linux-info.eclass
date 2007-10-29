@@ -54,7 +54,7 @@ inherit toolchain-funcs versionator
 
 EXPORT_FUNCTIONS pkg_setup
 
-DEPEND="kernel_linux? ( virtual/linux-sources )"
+DEPEND="!prefix? ( kernel_linux? ( virtual/linux-sources ) )"
 RDEPEND=""
 
 # Overwritable environment Var's
