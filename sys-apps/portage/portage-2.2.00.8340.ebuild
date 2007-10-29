@@ -23,10 +23,9 @@ DEPEND=">=dev-lang/python-2.4
 	epydoc? ( >=dev-python/epydoc-2.0 )"
 RDEPEND=">=dev-lang/python-2.4
 	!build? ( >=sys-apps/sed-4.0.5
-		>=app-shells/bash-3.1_p17 )
-	!prefix? ( elibc_FreeBSD? ( dev-python/py-freebsd ) )
+		>=app-shells/bash-3.2_p17 )
+	!prefix? ( elibc_FreeBSD? ( sys-freebsd/freebsd-bin ) )
 	elibc_glibc? ( >=sys-apps/sandbox-1.2.17 )
-	elibc_FreeBSD? ( >=sys-apps/sandbox-1.2.17 )
 	elibc_uclibc? ( >=sys-apps/sandbox-1.2.17 )
 	kernel_linux? ( >=app-misc/pax-utils-0.1.13 )
 	kernel_SunOS? ( >=app-misc/pax-utils-0.1.13 )
@@ -93,6 +92,7 @@ src_compile() {
 		--with-portage-user=${PORTAGE_USER:-portage} \
 		--with-portage-group=${PORTAGE_GROUP:-portage} \
 		--with-offset-prefix="${EPREFIX}" \
+		--with-eapi='"prefix"' \
 		--with-default-path="/usr/bin:/bin" \
 		|| die "econf failed"
 	emake || die "emake failed"
@@ -101,6 +101,13 @@ src_compile() {
 		cd "${S}"/src/bsd-flags
 		chmod +x setup.py
 		./setup.py build || die "Failed to install bsd-chflags module"
+	fi
+
+	if use doc; then
+		cd "${S}"/doc
+		touch fragment/date
+		sed -i "s/svn-trunk/${PVR}/" fragment/version
+		make xhtml-nochunks || die "failed to make docs"
 	fi
 
 	if use epydoc; then
