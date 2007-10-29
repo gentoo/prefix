@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.189 2007/10/24 09:29:51 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.190 2007/10/28 20:27:37 ulm Exp $
+
+*emacs-21.4-r13 (28 Oct 2007)
+
+  28 Oct 2007; Ulrich Mueller <ulm@gentoo.org> +emacs-21.4-r13.ebuild:
+  Security fix for crash on malformed GIF images, CVE-2007-2833, bug #197313.
 
   24 Oct 2007; Ulrich Mueller <ulm@gentoo.org> emacs-22.1-r1.ebuild:
   Add standard comment to site-init file.
