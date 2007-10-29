@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/iputils-20070202.ebuild,v 1.9 2007/10/21 14:42:14 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/iputils-20070202.ebuild,v 1.11 2007/10/28 21:24:54 vapier Exp $
 
 EAPI="prefix"
 
@@ -22,7 +22,7 @@ DEPEND="virtual/os-headers
 		app-text/docbook-sgml-dtd
 		app-text/docbook-sgml-utils
 	)"
-RDEPEND=""
+RDEPEND="!net-misc/rarpd"
 
 S=${WORKDIR}/${PN}-s${PV}
 
