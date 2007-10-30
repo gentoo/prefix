@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.10.0.ebuild,v 1.5 2007/10/29 14:52:52 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.09.3-r2.ebuild,v 1.1 2007/10/29 14:52:52 ulm Exp $
 
 EAPI="prefix"
 
@@ -8,11 +8,11 @@ inherit flag-o-matic eutils multilib pax-utils versionator toolchain-funcs
 
 DESCRIPTION="fast modern type-inferring functional programming language descended from the ML (Meta Language) family"
 HOMEPAGE="http://www.ocaml.org/"
-SRC_URI="http://caml.inria.fr/distrib/ocaml-$( get_version_component_range 1-2)/${P}.tar.gz"
+SRC_URI="http://caml.inria.fr/distrib/ocaml-$( get_version_component_range 1-2 )/${P}.tar.bz2"
 
 LICENSE="QPL-1.0 LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-solaris"
 IUSE="emacs gdbm latex ncurses tk X xemacs"
 
 DEPEND="tk? ( >=dev-lang/tk-3.3.3 )
@@ -22,6 +22,8 @@ DEPEND="tk? ( >=dev-lang/tk-3.3.3 )
 
 PDEPEND="emacs? ( app-emacs/ocaml-mode )
 	xemacs? ( app-xemacs/ocaml )"
+
+# ocaml deletes the *.opt files when running make bootstrap
 
 QA_EXECSTACK="${EPREFIX}/usr/lib/ocaml/compiler-*"
 
@@ -43,14 +45,16 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-exec-stack-fixes.patch
 
 	# Quick and somewhat dirty fix for bug #110541
-	# The sed in the Makefile doesn't replace all occurences of @compiler@
-	# in driver/ocamlcomp.sh.in. Reported upstream as issue 0004268.
 	epatch "${FILESDIR}"/${P}-execheap.patch
 
 	# The configure script doesn't inherit previous defined variables,
 	# overwriting previous declarations of bytecccompopts, bytecclinkopts,
 	# nativecccompopts and nativecclinkopts. Reported upstream as issue 0004267.
 	epatch "${FILESDIR}"/${P}-configure.patch
+
+	# The sed in the Makefile doesn't replace all occurences of @compiler@
+	# in driver/ocamlcomp.sh.in. Reported upstream as issue 0004268.
+	epatch "${FILESDIR}"/${P}-Makefile.patch
 
 	# ocaml has automagics on libX11 and gdbm
 	# http://caml.inria.fr/mantis/view.php?id=4278
@@ -59,12 +63,18 @@ src_unpack() {
 	# Call ld with proper flags, different from gcc ones
 	# This happens when calling ocamlc -pack
 	# See comment in the patch
-	epatch "${FILESDIR}/${P}-call-ld-with-proper-ldflags.patch"
+	epatch "${FILESDIR}/${P}-call_ld_with_proper_flags.patch"
 
 	# Ocaml native code generation for hppa has a bug
 	# See comments in the patch
 	# http://bugs.gentoo.org/show_bug.cgi?id=178256
-#	use hppa && epatch "${FILESDIR}/${P}-hppa-optimize-for-size-ocamlp4.patch"
+	use hppa && epatch "${FILESDIR}/${P}-hppa-optimize-for-size-ocamlp4.patch"
+
+	# Change the configure script to add the CFLAGS to bytecccompopts, LDFLAGS
+	# to bytecclinkopts.
+	sed -i -e "s,bytecccompopts=\"\",bytecccompopts=\"\${CFLAGS}\"," \
+		-e "s,bytecclinkopts=\"\",bytecclinkopts=\"\${LDFLAGS}\"," \
+		"${S}"/configure
 }
 
 src_compile() {
@@ -134,6 +144,8 @@ src_install() {
 
 	# Install ocaml-rebuild.sh script rather than keeping it in $PORTDIR
 	dosbin "${FILESDIR}/ocaml-rebuild.sh"
+	dosed -i -e "s:\(/bin/sh\|/usr/bin/emerge\|/var/db/pkg\):${EPREFIX}\1:" \
+		usr/sbin/ocaml-rebuild.sh
 }
 
 pkg_postinst() {
@@ -147,7 +159,7 @@ pkg_postinst() {
 	elog "OCaml is not binary compatible from version to version, so you (may)"
 	elog "need to rebuild all packages depending on it, that are actually"
 	elog "installed on your system. To do so, you can run:"
-	elog "/usr/sbin/ocaml-rebuild.sh [-h | emerge options]"
+	elog "${EPREFIX}/usr/sbin/ocaml-rebuild.sh [-h | emerge options]"
 	elog "Which will call emerge on all old packages with the given options"
 	echo
 }
