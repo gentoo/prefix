@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-icon-theme/gnome-icon-theme-2.20.0.ebuild,v 1.1 2007/09/30 14:43:01 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-icon-theme/gnome-icon-theme-2.20.0.ebuild,v 1.2 2007/10/29 19:42:00 dang Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86"
 IUSE=""
 
-RDEPEND="x11-themes/hicolor-icon-theme"
+RDEPEND=">=x11-themes/hicolor-icon-theme-0.10"
 DEPEND="${RDEPEND}
 	>=x11-misc/icon-naming-utils-0.8.1
 	>=dev-util/pkgconfig-0.19
