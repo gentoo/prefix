@@ -89,6 +89,11 @@ src_unpack() {
 
 	sed -i 's|AC_PATH_PROG($1, $2)|AC_PATH_PROG($1, $2, no, '"$PATH"')|' aclocal.m4 || die
 
+	# needs testing on architectures other than darwin9
+	if [[ ${CHOST} == *-darwin9 ]]; then
+		epatch "${FILESDIR}"/${P}-pwcopy.patch
+	fi
+
 	eautoreconf
 }
 

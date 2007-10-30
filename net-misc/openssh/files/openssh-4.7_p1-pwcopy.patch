@@ -1,0 +1,10 @@
+--- ssh.c
++++ ssh.c
+@@ -1242,6 +1242,7 @@
+ #endif /* SMARTCARD */
+ 	if ((pw = getpwuid(original_real_uid)) == NULL)
+ 		fatal("load_public_identity_files: getpwuid failed");
++	pw = pwcopy(pw);
+ 	if (gethostname(thishost, sizeof(thishost)) == -1)
+ 		fatal("load_public_identity_files: gethostname: %s",
+ 		    strerror(errno));
