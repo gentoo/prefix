@@ -1,6 +1,6 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.190 2007/10/28 20:27:37 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.191 2007/10/29 09:04:41 ulm Exp $
 
 *emacs-21.4-r13 (28 Oct 2007)
 
@@ -659,9 +659,9 @@
   13 May 2004; <mkennedy@gentoo.org> +files/emacs-18.59-gcc-gentoo.patch,
   +files/emacs-18.59-gentoo.patch, +files/emacs-18.59-unexelf.patch,
   +emacs-18.59.ebuild, +emacs-21.3-r3.ebuild:
-  Added retro emacs-18.59 w/ SLOT=1 (ebuild contributed by Ulrich Mueller 
-  <ulm@kph.uni-mainz.de>), resolves Bug #44766; Added new emacs-21.3-r3 
-  with support for using LessTif instead of OpenMotif (OpenMotif has 
+  Added retro emacs-18.59 w/ SLOT=1 (ebuild contributed by Ulrich Mueller
+  <ulm@kph.uni-mainz.de>), resolves Bug #44766; Added new emacs-21.3-r3
+  with support for using LessTif instead of OpenMotif (OpenMotif has
   problems which causes Emacs to be unstable); Marked emacs-21.3-r3 as
   ~arch.
 
@@ -709,18 +709,15 @@
   resolves bug 18419 -- adds gif support
 
 *emacs-21.3 (27 Mar 2003)
-
 *emacs-21.2-r2 (14 Sep 2002)
 
   06 Jan 2003; Seemant Kulleen <seemant@gentoo.org> *.ebuild :
-
   PROVIDE virtual/editor as well as virtual/emacs now
 
   06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
- 
+
   14 Sep 2002; Matthew Kennedy <mkennedy@gentoo.org>
   emacs-21.2-r2.ebuild, files/digest-emacs-21.2-r2.ebuild :
-
   Added support for LEIM (input methods for Emacs) based on new leim
   USE flag. Credits to Ryan Shaw <ryan.shaw@stanfordalumni.org> of bug
   6557.
@@ -729,7 +726,6 @@
 
   07 Aug 2002; Matthew Kennedy <mkennedy@gentoo.org>
   emacs-21.2-r1.ebuild :
-
   Sandbox.
 
   06 Aug 2002; Mark Guertin <gerk@gentoo.org> :
@@ -737,22 +733,20 @@
 
   06 Aug 2002; Matthew Kennedy <mkennedy@gentoo.org>
   emacs-21.2-r1.ebuild :
-
   Documentation install fix. Sandbox adjustment.
 
   29 Jul 2002; Matthew Kennedy <mkennedy@gentoo.org>
   emacs-21.2-r1.ebuild, files/digest-emacs-21.1-r1 :
-
   Permissions fix. Resolves bug #3724
 
 *emacs-21.2 (28 Apr 2002)
-  
+
   28 Apr 2002; pvdabeel <pvdabeel@gentoo.org>
   Version bump
 
 *emacs-21.1-r4 (11 Apr 2002)
 
-  11 Apr 2002; Spider <spider@gentoo.org> 
+  11 Apr 2002; Spider <spider@gentoo.org>
   Update libpng dependency
 
   28 Apr 2002; pvdabeel <pvdabeel@gentoo.org>
@@ -761,7 +755,7 @@
 *emacs-21.1-r3 (1 Feb 2002)
 
   1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
-  
+
   Added initial ChangeLog which should be updated whenever the package is
   updated in any way. This changelog is targetted to users. This means that the
   comments should well explained and written in clean English. The details about
