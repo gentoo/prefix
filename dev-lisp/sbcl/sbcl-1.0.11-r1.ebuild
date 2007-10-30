@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.11-r1.ebuild,v 1.1 2007/10/28 11:08:47 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.11-r1.ebuild,v 1.2 2007/10/29 18:15:55 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -35,7 +35,6 @@ SRC_URI="mirror://sourceforge/sbcl/${P}-source.tar.bz2
 
 # SRC_URI is part of the metadata cache; it's evaluated contents must be independent of the system that creates the metadata cache.
 # ILLEGAL: mips? ( mirror://sourceforge/sbcl/${PN}-${BV_MIPS}-$([[$(tc-endian) = big]] && echo mips || echo mipsel)-linux-binary.tar.bz2 )
-
 
 LICENSE="MIT"
 SLOT="0"
