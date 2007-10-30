@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/genshi
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/genshi/ChangeLog,v 1.6 2007/07/21 07:09:49 lucass Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/genshi/ChangeLog,v 1.7 2007/10/29 13:02:08 jokey Exp $
+
+*genshi-0.4.4 (29 Oct 2007)
+
+  29 Oct 2007; Markus Ullmann <jokey@gentoo.org> +genshi-0.4.4.ebuild:
+  Version bump, just minor upstream fixes
 
 *genshi-0.4.3 (21 Jul 2007)
 
