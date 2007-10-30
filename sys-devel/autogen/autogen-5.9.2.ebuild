@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/autogen-5.9.2.ebuild,v 1.2 2007/10/07 06:31:28 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/autogen-5.9.2.ebuild,v 1.3 2007/10/29 08:51:06 vapier Exp $
 
 EAPI="prefix"
 
@@ -21,9 +21,9 @@ DEPEND=">=dev-scheme/guile-1.6.6
 
 pkg_setup() {
 	has_version '>=dev-scheme/guile-1.8' || return 0
-	if ! built_with_use --missing false dev-scheme/guile deprecated discouraged threads ; then
-		eerror "You need to build dev-scheme/guile with USE='deprecated discouraged threads'"
-		die "re-emerge dev-scheme/guile with USE='deprecated discouraged threads'"
+	if ! built_with_use --missing false dev-scheme/guile discouraged threads ; then
+		eerror "You need to build dev-scheme/guile with USE='discouraged threads'"
+		die "re-emerge dev-scheme/guile with USE='discouraged threads'"
 	fi
 }
 
