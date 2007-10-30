@@ -1,6 +1,6 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.165 2007/10/24 09:30:23 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.166 2007/10/29 09:05:29 ulm Exp $
 
   24 Oct 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.1.50-r1.ebuild,
   emacs-cvs-22.1.50_p20070829-r1.ebuild, emacs-cvs-23.0.0_p20070920.ebuild,
@@ -774,30 +774,25 @@
 
   12 Mar 2003; Matthew Kennedy <mkennedy@gentoo.org>
   emacs-cvs-21.3.50.ebuid :
-
   Added support for GTK+ 2. Added GNOME menu support.
 
   06 Jan 2003; Seemant Kulleen <seemant@gentoo.org> emacs-cvs-21.3.50.ebuild :
-
   PROVIDE virtual/editor in addition to virtual/emacs
 
   06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
- 
+
   06 Dec 2002; Matthew Kennedy <mkennedy@gentoo.org> ChangeLog,
   emacs-cvs-21.3.50.ebuild :
-
   Back out of last ChangeLog entry as consensus on -core seems to be that
   -cvs ebuilds should not be in the stable profiles. Added fix for info
   documentation file names.
-	
+
   02 Dev 2002; Matthew Kennedy <mkennedy@gentoo.org> ChangeLog,
   emacs-cvs-21.3.50.ebuild :
-
   Moved out of ~x86 into x86 (only for x86) by popular request. Reduced
   dependency on ncurses to version 5.2 and added missing dev-util/cvs
   dependency.
 
   22 Nov 2002; Matthew Kennedy <mkennedy@gentoo.org> ChangeLog,
   emacs-cvs-21.3.50.ebuild, files/digest-emacs-cvs-21.3.50 :
-
   Initial import.
