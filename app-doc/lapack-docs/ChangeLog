@@ -1,6 +1,9 @@
 # ChangeLog for app-doc/lapack-docs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/lapack-docs/ChangeLog,v 1.10 2007/10/21 16:41:07 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/lapack-docs/ChangeLog,v 1.11 2007/10/29 15:27:56 armin76 Exp $
+
+  29 Oct 2007; Raúl Porcel <armin76@gentoo.org> lapack-docs-3.1.1.ebuild:
+  alpha stable wrt #189738
 
   21 Oct 2007; nixnut <nixnut@gentoo.org> lapack-docs-3.1.1.ebuild:
   Added ~ppc
