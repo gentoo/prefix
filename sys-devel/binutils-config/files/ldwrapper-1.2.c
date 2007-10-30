@@ -328,6 +328,24 @@ int main(int argc, char *argv[])
 			wrapper_exit("%s wrapper: out of memory\n", argv[0]);
 	}
 
+	/* What should we find?
+	 * If this is a ${CHOST}-ld{,64} thing, strip the ${CHOST}- */
+	strcpy(data.name, basename(argv[0]));
+	size = strlen(data.name);
+#ifdef __MACH__
+	/* only Apple/OSX/Darwin has an ld64 as far as I know */
+	if (size > 4) {
+		if (strcmp(&data.name[size - 5], "-ld64") == 0) {
+			strcpy(data.name, "ld64");
+			size = 0;	/* trick the if below in thinking it won't work */
+		}
+	}
+#endif
+	if (size > 2) {
+		if (strcmp(&data.name[size - 3], "-ld") == 0)
+			strcpy(data.name, "ld");
+	}
+
 	/* What is the full name of our wrapper? */
 	size = sizeof(data.fullname);
 	i = snprintf(data.fullname, size, "@GENTOO_PORTAGE_EPREFIX@/usr/bin/%s", data.name);
