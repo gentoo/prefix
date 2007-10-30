@@ -188,7 +188,7 @@ bootstrap_setup() {
 }
 
 bootstrap_tree() {
-	PV="20071023"
+	PV="20071030"
 	for x in etc usr/{,s}bin var/tmp var/lib/portage var/log/portage var/db;
 	do
 		[ -d "${ROOT}/${x}" ] || mkdir -p "${ROOT}/${x}"
@@ -234,7 +234,7 @@ bootstrap_startscript() {
 bootstrap_portage() {
 	# don't use "latest" here, as I want to have the bootstrap script to
 	# use a portage in a known "state"
-	PV=2.2.00.8328
+	PV=2.2.00.8340
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 		
@@ -255,6 +255,7 @@ bootstrap_portage() {
 		--with-offset-prefix="${ROOT}" \
 		--with-portage-user=`id -un` \
 		--with-portage-group=`id -gn` \
+		--with-eapi='"prefix"' \
 		--with-default-path="${ROOT}/tmp/bin:${ROOT}/tmp/usr/bin:/bin:/usr/bin:${PATH}"
 	$MAKE ${MAKEOPTS} || exit 1
 
