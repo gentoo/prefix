@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-6.5-r2.ebuild,v 1.1 2006/08/24 00:53:49 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-6.7.1.ebuild,v 1.1 2007/10/29 20:42:44 vapier Exp $
 
 EAPI="prefix"
 
@@ -24,7 +24,7 @@ LICENSE="GPL-2 LGPL-2"
 [[ ${CTARGET} != ${CHOST} ]] \
 	&& SLOT="${CTARGET}" \
 	|| SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86"
+KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86 ~x86-solaris"
 IUSE="nls test vanilla"
 
 RDEPEND=">=sys-libs/ncurses-5.2-r2"
@@ -53,11 +53,11 @@ src_test() {
 }
 
 src_install() {
-	make \
-		DESTDIR="$D" \
-		libdir=/nukeme includedir=/nukeme \
+	emake \
+		DESTDIR="${D}" \
+		libdir=/nukeme/pretty/pretty/please includedir=/nukeme/pretty/pretty/please \
 		install || die
-	rm -r "$D"/nukeme || die
+	rm -r "${D}"/nukeme || die
 
 	# Don't install docs when building a cross-gdb
 	if [[ ${CTARGET} != ${CHOST} ]] ; then
@@ -76,4 +76,9 @@ src_install() {
 
 	# Remove shared info pages
 	rm -f "${ED}"/usr/share/info/{annotate,bfd,configure,standards}.info*
+}
+
+pkg_postinst() {
+	# portage sucks and doesnt unmerge files in /etc
+	rm -vf "${EROOT}"/etc/skel/.gdbinit
 }
