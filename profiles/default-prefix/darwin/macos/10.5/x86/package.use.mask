@@ -30,3 +30,7 @@ media-libs/imlib2 mmx
 # Elias Pipping <pipping@mi.fu-berlin.de> (13 Sep 2007)
 # mc fails to compile with USE=slang (unicode implies slang)
 app-misc/mc unicode slang
+
+# Elias Pipping <pipping@gentoo.org> (31 Oct 2007)
+# doxygen does not compile on Leopard
+media-libs/libtheora doc
