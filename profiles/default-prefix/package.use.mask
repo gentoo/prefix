@@ -1,0 +1,3 @@
+# Elias Pipping <pipping@gentoo.org> (31 Oct 2007)
+# depends on =dev-python/sancho-0.11-r1, which is not in the tree.
+dev-python/pycrypto test
