@@ -1,7 +1,7 @@
 # Elias Pipping <pipping@gentoo.org> (28 Oct 2007)
-# gnupg 2.x does not compile on Leopard
+# gnupg 2.x does not compile
 =app-crypt/gnupg-2*
 
 # Elias Pipping <pipping@gentoo.org> (31 Oct 2007)
-# doxygen does not compile on Leopard
+# doxygen does not compile
 app-doc/doxygen

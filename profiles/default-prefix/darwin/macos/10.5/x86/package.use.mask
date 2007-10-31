@@ -32,5 +32,5 @@ media-libs/imlib2 mmx
 app-misc/mc unicode slang
 
 # Elias Pipping <pipping@gentoo.org> (31 Oct 2007)
-# doxygen does not compile on Leopard
+# doxygen does not compile
 media-libs/libtheora doc
