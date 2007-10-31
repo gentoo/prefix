@@ -30,7 +30,7 @@ RDEPEND="~dev-db/libpq-${PV}
 		tcl? ( >=dev-lang/tcl-8 )
 		xml? ( dev-libs/libxml2 dev-libs/libxslt )
 		zlib? ( >=sys-libs/zlib-1.1.3 )
-		virtual/logger"
+		!prefix? ( virtual/logger )"
 DEPEND="${RDEPEND}
 		sys-devel/autoconf
 		>=sys-devel/bison-1.875
