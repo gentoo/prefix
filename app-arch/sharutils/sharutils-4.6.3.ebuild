@@ -14,7 +14,7 @@ SRC_URI="mirror://gnu/${PN}/REL-${PV}/${P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 IUSE="nls doc"
 
 DEPEND="sys-apps/texinfo
