@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/gvim
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.251 2007/10/10 06:44:32 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.252 2007/10/30 06:00:28 jer Exp $
+
+  30 Oct 2007; Jeroen Roovers <jer@gentoo.org> gvim-7.1.123.ebuild:
+  Stable for HPPA.
 
   10 Oct 2007; Christian Faulhammer <opfer@gentoo.org> gvim-6.4.ebuild,
   gvim-7.0.235.ebuild, gvim-7.1.042.ebuild, gvim-7.1.123.ebuild:
