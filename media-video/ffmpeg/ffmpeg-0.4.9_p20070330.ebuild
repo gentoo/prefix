@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20070330.ebuild,v 1.11 2007/07/27 04:39:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.4.9_p20070330.ebuild,v 1.12 2007/10/31 11:54:03 zzam Exp $
 
 EAPI="prefix"
 
@@ -188,7 +188,7 @@ src_test() {
 }
 
 pkg_postinst() {
-	ewarn "ffmpeg may had ABI changes, if ffmpeg based programs"
+	ewarn "ffmpeg may have had ABI changes, if ffmpeg based programs"
 	ewarn "like xine-lib or vlc stop working as expected please"
 	ewarn "rebuild them."
 }

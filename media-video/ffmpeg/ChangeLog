@@ -1,6 +1,15 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.211 2007/10/26 22:57:44 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.212 2007/10/31 11:54:03 zzam Exp $
+
+  31 Oct 2007; Matthias Schwarzott <zzam@gentoo.org>
+  ffmpeg-0.4.9_p20051216.ebuild, ffmpeg-0.4.9_p20060302.ebuild,
+  ffmpeg-0.4.9_p20060530.ebuild, ffmpeg-0.4.9_p20060816.ebuild,
+  ffmpeg-0.4.9_p20061016.ebuild, ffmpeg-0.4.9_p20070129.ebuild,
+  ffmpeg-0.4.9_p20070325.ebuild, ffmpeg-0.4.9_p20070330.ebuild,
+  ffmpeg-0.4.9_p20070525.ebuild, ffmpeg-0.4.9_p20070616.ebuild,
+  ffmpeg-0.4.9_p20070616-r1.ebuild, ffmpeg-0.4.9_p20070616-r2.ebuild:
+  Improved text about possible ABI changes, noticed by mark_alec.
 
 *ffmpeg-0.4.9_p20070616-r2 (26 Oct 2007)
 
