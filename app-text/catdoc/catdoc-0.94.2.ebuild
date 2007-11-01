@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/catdoc/catdoc-0.94.1.ebuild,v 1.6 2007/10/31 22:08:17 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/catdoc/catdoc-0.94.2.ebuild,v 1.1 2007/10/31 22:18:26 aballier Exp $
 
 EAPI="prefix"
 
 DESCRIPTION="A convertor for Microsoft Word, Excel and RTF Files to text"
 HOMEPAGE="http://www.wagner.pp.ru/~vitus/software/catdoc/"
-SRC_URI="ftp://ftp.45.free.net/pub/${PN}/${P}.tar.gz"
+SRC_URI="http://ftp.wagner.pp.ru/pub/${PN}/${P}.tar.gz"
 LICENSE="GPL-2"
 
 IUSE="tk"
@@ -33,7 +33,7 @@ src_compile() {
 src_install() {
 
 	rm -f install # stupid system, this file prevents a make install
-	make mandir="${EPREFIX}"/usr/share/man/man1 install || die
+	emake -j1 mandir="${EPREFIX}"/usr/share/man/man1 install || die
 	dodoc ${DOCS}
 
 }
