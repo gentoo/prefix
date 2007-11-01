@@ -1,0 +1,30 @@
+--- slrn-0.9.8.1/src/slrnpull.c	2004-02-28 23:08:17.000000000 +0100
++++ slrn/src/slrnpull.c	2004-10-10 01:42:31.000000000 +0200
+@@ -1647,7 +1647,7 @@
+ 	    || (((unsigned int)server_max <= gmax) && (gmin <= gmax)))
+ 	  {
+ 	     log_message (_("%s: no new articles available."), g->name);
+-	     return 0;
++	     goto fetch_marked_bodies;
+ 	  }
+ 	
+ 	Num_Duplicates = 0;
+@@ -1667,7 +1667,7 @@
+ 	     g->max = g->server_max;
+ 	     log_message (_("%s: No new articles available."), g->name);
+ 	     slrn_free ((char *) numbers);
+-	     return 0;
++	     goto fetch_marked_bodies;
+ 	  }
+ 	
+ 	log_message (_("%s: %u articles available."), g->name, num_numbers - i);
+@@ -1716,7 +1716,8 @@
+      }
+ 
+    /* Now, fetch marked article bodies. */
+-   
++
++   fetch_marked_bodies:
+    /* Don't request bodies that are no longer there. */
+    if (server_min > 1)
+      g->requests = slrn_ranges_remove (g->requests, 1, server_min-1);

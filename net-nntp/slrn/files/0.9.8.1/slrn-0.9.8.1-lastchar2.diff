@@ -1,0 +1,150 @@
+diff -ru slrn-0.9.8.1.orig/src/group.c slrn-0.9.8.1/src/group.c
+--- slrn-0.9.8.1.orig/src/group.c	2004-08-15 23:09:31.000000000 +0200
++++ slrn-0.9.8.1/src/group.c	2004-11-05 23:01:51.391610936 +0100
+@@ -3,7 +3,7 @@
+  This file is part of SLRN.
+ 
+  Copyright (c) 1994, 1999 John E. Davis <davis@space.mit.edu>
+- Copyright (c) 2001-2003 Thomas Schultz <tststs@gmx.de>
++ Copyright (c) 2001-2004 Thomas Schultz <tststs@gmx.de>
+ 
+  This program is free software; you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as published by the Free
+@@ -2605,7 +2605,10 @@
+ 	if ((p == pmax) || (p == vline))
+ 	  continue;
+      
+-	vline[vlen-1] = 0;	       /* kill \n and NULL terminate */
++	if (vline[vlen-1] == '\n')
++	  vline[vlen-1] = 0;
++	else
++	  vline[vlen] = 0;
+ 
+ 	if (-1 == add_group (vline, (unsigned int) (p - vline),
+ 			     ((ch == '!') ? GROUP_UNSUBSCRIBED : 0), 0, 0))
+diff -ru slrn-0.9.8.1.orig/src/misc.c slrn-0.9.8.1/src/misc.c
+--- slrn-0.9.8.1.orig/src/misc.c	2004-09-27 23:30:35.000000000 +0200
++++ slrn-0.9.8.1/src/misc.c	2004-11-05 23:02:09.519855024 +0100
+@@ -1165,8 +1165,11 @@
+ 	     if (vlen == 0) continue;
+ 	     
+ 	     line = slrn_safe_malloc (vlen+512); /* add some for MIME overhead */
+-	     slrn_strncpy (line, vline, vlen);
+-	     line[vlen-1] = 0;		/* kill \n and NULL terminate */
++	     strncpy (line, vline, vlen);
++	     if (line[vlen-1] == '\n')
++	       line[vlen-1] = 0;
++	     else
++	       line[vlen] = 0;
+ 
+ 	     if (header)
+ 	       {
+diff -ru slrn-0.9.8.1.orig/src/post.c slrn-0.9.8.1/src/post.c
+--- slrn-0.9.8.1.orig/src/post.c	2004-09-28 11:05:54.000000000 +0200
++++ slrn-0.9.8.1/src/post.c	2004-11-05 23:02:53.936102728 +0100
+@@ -467,7 +467,10 @@
+    linenum = 0;
+    while ((NULL != (vline = vgets (vp, &vlen))) && (*vline != '\n'))
+      {
+-	vline[vlen-1] = 0;
++	if (vline[vlen-1] == '\n')
++	  vline[vlen-1] = 0;
++	else
++	  vline[vlen] = 0;
+ 	linenum++;
+ 	if (0 == slrn_case_strncmp ((unsigned char *)vline,
+ 				    (unsigned char *) "Cc: ", 4))
+@@ -540,7 +543,10 @@
+ 
+    while ((NULL != (vline = vgets (vp, &vlen))) && (*vline != '\n'))
+      {
+-	vline[vlen-1] = 0;
++	if (vline[vlen-1] == '\n')
++	  vline[vlen-1] = 0;
++	else
++	  vline[vlen] = 0;	
+ 	linenum++;
+ 	if (linenum == cc_line) continue;
+ 	if (is_empty_header (vline)) continue;
+@@ -593,7 +599,10 @@
+ 
+    while (NULL != (vline = vgets (vp, &vlen)))
+      {
+-	vline[vlen-1] = 0;
++	if (vline[vlen-1] == '\n')
++	  vline[vlen-1] = 0;
++	else
++	  vline[vlen] = 0;	
+ 	fputs (vline, pp);
+ 	fputs ("\n", pp);
+      }
+@@ -1411,8 +1420,11 @@
+ 	if (vlen == 0) continue;
+ 
+ 	linep = slrn_safe_malloc (vlen+512); /* add some for MIME overhead */
+-	slrn_strncpy (linep, vline, vlen);
+-	linep[vlen-1] = 0;	/* kill \n and NULL terminate */
++	strncpy (linep, vline, vlen);
++	if (linep[vlen-1] == '\n')
++	  linep[vlen-1] = 0;	/* kill \n and NULL terminate */
++	else
++	  linep[vlen] = 0;
+ 	
+ 	if (header)
+ 	  {
+diff -ru slrn-0.9.8.1.orig/src/slrnpull.c slrn-0.9.8.1/src/slrnpull.c
+--- slrn-0.9.8.1.orig/src/slrnpull.c	2004-02-28 23:08:17.000000000 +0100
++++ slrn-0.9.8.1/src/slrnpull.c	2004-11-05 23:03:18.859313824 +0100
+@@ -3273,7 +3273,10 @@
+ 	
+ 	if (NULL != (vline = vgets (vp, &vlen)))
+ 	  {
+-	     vline[vlen] = 0; /* make sure line is NULL terminated */
++	     if (vline[vlen-1] == '\n')
++	       vline[vlen-1] = 0; /* make sure line is NULL terminated */
++	     else
++	       vline[vlen] = 0;
+ 	     group->headers = slrn_ranges_from_newsrc_line (vline);
+ 	  }
+ 	
+@@ -3382,7 +3385,10 @@
+ 	     if (NULL == (group = find_group_type (vline)))
+ 	       continue;
+ 	     
+-	     vline[vlen-1] = 0;	       /* kill \n and NULL terminate */
++	     if (vline[vlen-1] == '\n')
++	       vline[vlen-1] = 0;
++	     else
++	       vline[vlen] = 0;
+ 	     
+ 	     r = slrn_ranges_from_newsrc_line (p+1);
+ 	     group->requests = slrn_ranges_merge (group->requests, r);
+diff -ru slrn-0.9.8.1.orig/src/spool.c slrn-0.9.8.1/src/spool.c
+--- slrn-0.9.8.1.orig/src/spool.c	2004-08-15 22:48:13.000000000 +0200
++++ slrn-0.9.8.1/src/spool.c	2004-11-05 23:04:17.628379568 +0100
+@@ -1757,7 +1757,10 @@
+    
+    if (NULL != (vline = vgets (vp, &vlen)))
+      {
+-	vline[vlen] = 0; /* make sure line is NULL terminated */
++	if (vline[vlen-1] == '\n')
++	  vline[vlen-1] = 0; /* make sure line is NULL terminated */
++	else
++	  vline[vlen] = 0;
+ 	retval = slrn_ranges_from_newsrc_line (vline);
+      }
+    
+@@ -1787,8 +1790,11 @@
+ 	if ((p == pmax) || (p == vline) ||
+ 	    (strncmp(vline, group, (p-vline))))
+ 	  continue;
+-     
+-	vline[vlen-1] = 0;	       /* kill \n and NULL terminate */
++
++	if (vline[vlen-1] == '\n')
++	  vline[vlen-1] = 0;
++	else
++	  vline[vlen] = 0;
+ 	
+ 	retval = slrn_ranges_from_newsrc_line (p+1);
+ 	break;

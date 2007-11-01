@@ -1,0 +1,11 @@
+--- src/misc.c
++++ src/misc.c
+@@ -458,7 +458,7 @@
+    
+    while (s1 < smax)
+      {
+-	if ((*s1 & 0x80) && (eight_bit > (unsigned int) *s1))
++	if ((*s1 & 0x80) && ((eight_bit > (unsigned int) *s1) || (SLsmg_Is_Unicode)))
+ 	  {
+ 	     if (s != (char *) s1)
+ 	       SLsmg_write_nchars (s, (unsigned int) ((char *)s1 - s));
