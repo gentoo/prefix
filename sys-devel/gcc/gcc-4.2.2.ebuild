@@ -47,7 +47,7 @@ DEPEND="${RDEPEND}
 	test? ( sys-devel/autogen dev-util/dejagnu )
 	>=sys-apps/texinfo-4.2-r4
 	>=sys-devel/bison-1.875"
-case ${CHOST} in
+case ${CTARGET} in
 	*-darwin*) DEPEND="${DEPEND} ${CATEGORY}/odcctools" ;;
 	*-aix*)    DEPEND="${DEPEND} ${CATEGORY}/native-cctools" ;;
 # future: for Solaris || ( binutils native-cctools ) ?
@@ -72,7 +72,7 @@ src_unpack() {
 }
 
 src_compile() {
-	case ${CHOST} in
+	case ${CTARGET} in
 		*-solaris*)
 			# todo: some magic for native vs. GNU linking?
 			EXTRA_ECONF="${EXTRA_ECONF} --with-gnu-ld"
