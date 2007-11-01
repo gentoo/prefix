@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/quickcheck
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/quickcheck/ChangeLog,v 1.18 2007/07/11 18:24:54 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/quickcheck/ChangeLog,v 1.19 2007/10/31 13:09:55 dcoutts Exp $
+
+  31 Oct 2007; Duncan Coutts <dcoutts@gentoo.org> quickcheck-1.0.ebuild:
+  Drop virtual/ghc in favour of dev-lang/ghc
 
   11 Jul 2007; Duncan Coutts <dcoutts@gentoo.org> quickcheck-1.0.1.ebuild:
   Marked ~ia64.
