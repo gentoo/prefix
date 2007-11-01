@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-9999.ebuild,v 1.14 2007/08/17 16:29:53 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-9999.ebuild,v 1.15 2007/10/31 23:57:28 hanno Exp $
 
 EAPI="prefix"
 
@@ -29,7 +29,7 @@ RDEPEND=">=dev-libs/glib-2.12.3
 	dev-libs/libxslt
 	x11-themes/hicolor-icon-theme
 	aalib? ( media-libs/aalib )
-	alsa? ( >=media-libs/alsa-lib-1.0.0 )
+	alsa? ( >=media-libs/alsa-lib-1.0.14a-r1 )
 	curl? ( net-misc/curl )
 	dbus? ( dev-libs/dbus-glib
 		sys-apps/hal )
@@ -39,7 +39,7 @@ RDEPEND=">=dev-libs/glib-2.12.3
 		>=gnome-base/gnome-keyring-0.4.5 )
 	gtkhtml? ( =gnome-extra/gtkhtml-2* )
 	jpeg? ( >=media-libs/jpeg-6b-r2
-		>=media-libs/libexif-0.6.0 )
+		>=media-libs/libexif-0.6.15 )
 	lcms? ( media-libs/lcms )
 	mng? ( media-libs/libmng )
 	pdf? ( >=app-text/poppler-bindings-0.3.1 )
@@ -57,11 +57,12 @@ DEPEND="${RDEPEND}
 
 pkg_setup() {
 	if use pdf && ! built_with_use app-text/poppler-bindings gtk; then
-		eerror
 		eerror "This package requires app-text/poppler-bindings compiled with GTK+ support."
-		eerror "Please reemerge app-text/poppler-bindings with USE=\"gtk\"."
-		eerror
 		die "Please reemerge app-text/poppler-bindings with USE=\"gtk\"."
+	fi
+	if use alsa && ! built_with_use media-libs/alsa-lib midi; then
+		eerror "This package requires media-libs/alsa-lib compiled with midi support."
+		die "Please reemerge media-libs/alsa-lib with USE=\"midi\"."
 	fi
 }
 
@@ -72,6 +73,10 @@ src_compile() {
 	# gimp uses inline functions (e.g. plug-ins/common/grid.c) (#23078)
 	# gimp uses floating point math, needs accuracy (#98685)
 	filter-flags "-fno-inline" "-ffast-math"
+	# gimp assumes char is signed (fixes preview corruption)
+	if use ppc || use ppc64; then
+		append-flags "-fsigned-char"
+	fi
 
 	sed -i -e 's:\$srcdir/configure:#:g' autogen.sh
 	"${S}"/autogen.sh $(use_enable doc gtk-doc) || die
