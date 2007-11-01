@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/xdvik-22.84.10.ebuild,v 1.17 2007/10/26 17:38:54 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/xdvik-22.84.10.ebuild,v 1.18 2007/10/31 10:43:22 aballier Exp $
 
 EAPI="prefix"
 
@@ -27,7 +27,7 @@ RDEPEND=">=media-libs/t1lib-5.0.2
 	motif? ( virtual/motif )
 	!motif? ( neXt? ( x11-libs/neXtaw )
 		!neXt? ( Xaw3d? ( x11-libs/Xaw3d ) ) )
-	cjk? ( || ( app-text/ptex app-text/texlive-core )
+	cjk? ( || ( app-text/texlive-core app-text/ptex )
 		>=media-libs/freetype-2
 		>=media-fonts/kochi-substitute-20030809-r3 )
 	!cjk? ( virtual/latex-base )

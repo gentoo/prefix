@@ -1,6 +1,10 @@
 # ChangeLog for app-text/xdvik
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/ChangeLog,v 1.42 2007/10/26 17:35:38 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/ChangeLog,v 1.43 2007/10/31 10:43:22 aballier Exp $
+
+  31 Oct 2007; Alexis Ballier <aballier@gentoo.org> xdvik-22.84.10.ebuild:
+  switch ptex and texlive-core deps in the || dep, so that it is more
+  consistent with latex-base virtual
 
   26 Oct 2007; Ulrich Mueller <ulm@gentoo.org> xdvik-22.84.10.ebuild:
   Delete spurious parentheses in elog message, bug #184259.
