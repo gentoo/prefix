@@ -31,6 +31,9 @@ src_unpack() {
 	# .m4 file in build using aclocal via eautoreconf
 	# See bug 135463
 	sed -i -e '/sinclude/d' configure.in
+
+	epatch "${FILESDIR}"/${P}-darwin9.patch
+
 	AT_M4DIR="build" eautoreconf
 
 	epatch "${FILESDIR}"/config.layout.patch
