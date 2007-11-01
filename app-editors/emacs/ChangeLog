@@ -1,6 +1,19 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.191 2007/10/29 09:04:41 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.195 2007/10/31 16:49:28 jer Exp $
+
+  31 Oct 2007; Jeroen Roovers <jer@gentoo.org> emacs-21.4-r13.ebuild:
+  Stable for HPPA (bug #197313).
+
+  30 Oct 2007; nixnut <nixnut@gentoo.org> emacs-21.4-r13.ebuild:
+  Stable on ppc wrt bug 197313
+
+  30 Oct 2007; Ferris McCormick <fmccor@gentoo.org> emacs-21.4-r13.ebuild:
+  Sparc stable --- Security Bug #197313
+
+  30 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  emacs-21.4-r13.ebuild:
+  stable x86, bug 197313
 
 *emacs-21.4-r13 (28 Oct 2007)
 
