@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/darcs
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/ChangeLog,v 1.78 2007/08/29 01:09:40 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/ChangeLog,v 1.79 2007/10/31 13:17:50 dcoutts Exp $
+
+  31 Oct 2007; Duncan Coutts <dcoutts@gentoo.org> darcs-1.0.5.ebuild,
+  darcs-1.0.6.ebuild, darcs-1.0.7.ebuild, darcs-1.0.8-r2.ebuild:
+  Drop virtual/ghc in favour of dev-lang/ghc
 
   29 Aug 2007; Jeroen Roovers <jer@gentoo.org> darcs-1.0.9.ebuild:
   Marked ~hppa too.
