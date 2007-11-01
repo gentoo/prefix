@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.0-r2.ebuild,v 1.8 2007/10/04 00:03:32 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.2-r1.ebuild,v 1.2 2007/10/31 07:00:37 opfer Exp $
 
 EAPI="prefix"
 
-inherit eutils elisp-common multilib wxwidgets
+inherit eutils elisp-common multilib wxwidgets flag-o-matic
 
 MY_P="${P/_/.}"
 
@@ -14,17 +14,17 @@ SRC_URI="mirror://sourceforge/gnuplot/${MY_P}.tar.gz"
 
 LICENSE="gnuplot"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="doc emacs gd ggi tetex pdf plotutils readline svga wxwindows X xemacs"
 
 RDEPEND="
-	xemacs? ( virtual/xemacs )
+	xemacs? ( virtual/xemacs app-xemacs/texinfo app-xemacs/xemacs-base )
 	emacs? ( virtual/emacs !app-emacs/gnuplot-mode )
 	pdf? ( media-libs/pdflib )
 	ggi? ( media-libs/libggi )
 	gd? ( >=media-libs/gd-2 )
-	doc? ( virtual/tetex )
-	tetex? ( virtual/tetex )
+	doc? ( virtual/latex-base )
+	tetex? ( virtual/latex-base )
 	X? ( x11-libs/libXaw )
 	svga? ( media-libs/svgalib )
 	readline? ( >=sys-libs/readline-4.2 )
@@ -40,6 +40,14 @@ S=${WORKDIR}/${MY_P}
 
 E_SITEFILE="50gnuplot-gentoo.el"
 
+latex_rehash() {
+	if has_version '>=app-text/tetex-3' || has_version '>=app-text/ptex-3.1.8' ; then
+		texmf-update
+	else
+		texconfig rehash
+	fi
+}
+
 pkg_setup() {
 	if use gd && ! built_with_use media-libs/gd png; then
 		eerror "media-libs/gd needs to be built with PNG support"
@@ -50,17 +58,27 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-libggi.patch
+	# not sane enough for upstream, but we will keep it
+	epatch "${FILESDIR}"/${PN}-4.2.0-libggi.patch
+	# Texinfo source is already shipped, so separate preparation not needed
+	# and error-prone, see bug 194216
+	epatch "${FILESDIR}"/${P}-disable_texi_generation.patch
 }
 
 src_compile() {
+	# the compiler explodes if you try to optimise this on PPC
+	[[ ${CHOST} == powerpc-apple-darwin* ]] && filter-flags -m*
+
 	# See bug #156427.
 	if use tetex ; then
 		sed -i \
-			-e 's/TEXMFLOCAL/TEXMFSITE/g' share/Makefile.in || die "sed failed"
+			-e 's/TEXMFLOCAL/TEXMFSITE/g' share/LaTeX/Makefile.in || die "sed failed"
+		sed -i \
+			-e 's|installdir=|installdir="'"${EPREFIX}"'"|' \
+			share/LaTeX/Makefile.in || die "sed failed"
 	else
 		sed -i \
-			-e '/^SUBDIRS/ s/LaTeX//' share/Makefile.in || die "sed failed"
+			-e '/^SUBDIRS/ s/LaTeX//' share/LaTeX/Makefile.in || die "sed failed"
 	fi
 
 	if use wxwindows ; then
@@ -93,7 +111,10 @@ src_compile() {
 	# example plots.
 	addwrite /dev/svga:/dev/mouse:/dev/tts/0
 
-	econf ${myconf} || die "econf failed"
+	TEMACS=no
+	use xemacs && TEMACS=xemacs
+	use emacs && TEMACS=emacs
+	EMACS=${TEMACS} econf ${myconf} || die "econf failed"
 	emake || die "emake failed"
 
 	if use doc ; then
@@ -110,7 +131,7 @@ src_install () {
 	if use emacs; then
 		cd lisp
 		einfo "Configuring gnuplot-mode for GNU Emacs..."
-		EMACS="emacs" econf --with-lispdir="${ESITELISP}/${PN}" || die "econf Emacs files failed"
+		EMACS="emacs" econf --with-lispdir="${ESITELISP}/${PN}" || die "econf Emacs files faild"
 		emake DESTDIR="${D}" install || die "make install Emacs files failed"
 		emake clean
 		cd ..
@@ -125,15 +146,8 @@ src_install () {
 	if use xemacs; then
 		cd lisp
 		einfo "Configuring gnuplot-mode for XEmacs..."
-		EMACS="xemacs" econf --with-lispdir="${EPREFIX}/usr/$(get_libdir)/xemacs/site-packages/${PN}" || die
-		emake DESTDIR="${D}" install || {
-			ewarn "Compiling/installing gnuplot-mode for xemacs has failed."
-			ewarn "I need xemacs-base to be installed before I can compile"
-			ewarn "the gnuplot-mode lisp files for xemacs successfully."
-			ewarn "Please try re-emerging me after app-xemacs/xemacs-base"
-			ewarn "has been successfuly emerged."
-			die
-			}
+		EMACS="xemacs" econf --with-lispdir="${EPREFIX}/usr/lib/xemacs/site-packages/${PN}" || die
+		emake DESTDIR="${D}" install || die
 		cd ..
 	fi
 
@@ -168,8 +182,10 @@ pkg_postinst() {
 		einfo "this is usually considered to be a security hazard."
 		einfo "As root, manually \"chmod u+s /usr/bin/gnuplot\"."
 	fi
+	use tetex && latex_rehash
 }
 
 pkg_postrm() {
 	use emacs && elisp-site-regen
+	use tetex && latex_rehash
 }

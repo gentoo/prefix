@@ -1,6 +1,24 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.50 2007/10/24 19:11:41 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.53 2007/10/31 07:00:37 opfer Exp $
+
+  31 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  gnuplot-4.2.2-r1.ebuild:
+  change DEPEND from virtual/tetex to virtual/latex-base
+
+  31 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  -gnuplot-4.0-r1.ebuild, -gnuplot-4.2.0.ebuild, -gnuplot-4.2.0-r1.ebuild,
+  -gnuplot-4.2.0-r2.ebuild:
+  clean up
+
+*gnuplot-4.2.2-r1 (30 Oct 2007)
+
+  30 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  +files/gnuplot-4.2.2-disable_texi_generation.patch,
+  +gnuplot-4.2.2-r1.ebuild:
+  add new correct dependency for USE=xemacs; straighten XEmacs support (not
+  multilib); patch to disable regeneration of Texinfo files, just useless and
+  error-prone (various bugs)
 
   24 Oct 2007; Daniel Gryniewicz <dang@gentoo.org> gnuplot-4.2.2.ebuild:
   Marked stable on amd64 for bug #189672
