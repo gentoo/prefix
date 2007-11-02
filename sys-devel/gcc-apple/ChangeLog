@@ -2,6 +2,14 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*gcc-apple-4.2.0_p5531 (02 Nov 2007)
+*gcc-apple-4.0.1_p5465 (02 Nov 2007)
+
+  02 Nov 2007; Fabian Groffen <grobian@gentoo.org>
+  +gcc-apple-4.0.1_p5465.ebuild, +gcc-apple-4.2.0_p5531.ebuild:
+  Adding gcc-apple versions as released in 10.5, both don't compile on 10.4,
+  removed all keywords
+
   19 Oct 2007; Fabian Groffen <grobian@gentoo.org>
   gcc-apple-4.0.1_p5363-r1.ebuild:
   Slight change to make gcc use Darwin libtool also in a cross-compile
