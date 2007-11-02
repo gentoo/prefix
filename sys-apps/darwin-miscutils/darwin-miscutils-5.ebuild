@@ -29,33 +29,58 @@ S=${WORKDIR}
 src_compile() {
 	local TS=${S}/misc_cmds-${MISC_VER}
 	# tsort is provided by coreutils
-	for t in cal leave lock units calendar; do
+	for t in leave units calendar; do
 		cd "${TS}/${t}"
 		echo "in ${TS}/${t}:"
 		echo "$(tc-getCC) -o ${t}" *.c
 		$(tc-getCC) -o ${t} *.c || die "failed to compile $t"
 	done
+	# compile cal separately
+	cd "${TS}/ncal"
+	echo "in ${TS}/ncal:"
+	local flags
+	flags[0]=-I.
+	flags[1]=-D__FBSDID=__RCSID
+	flags[2]=-Wsystem-headers
+	echo "$(tc-getCC) ${flags[@]} -c calendar.c"
+	$(tc-getCC) ${flags[@]} -c calendar.c || die "failed to compile cal"
+	echo "$(tc-getCC) ${flags[@]} -c easter.c"
+	$(tc-getCC) ${flags[@]} -c easter.c || die "failed to compile cal"
+	echo "$(tc-getCC) ${flags[@]} -c ncal.c"
+	$(tc-getCC) ${flags[@]} -c ncal.c || die "failed to compile cal"
+	echo "$(tc-getCC) ${flags[@]} -o cal calendar.o easter.o ncal.o"
+	$(tc-getCC) ${flags[@]} -o cal calendar.o easter.o ncal.o || die "failed to compile cal"
 
 	TS=${S}/shell_cmds-${SHELL_VER}
 	# only pick those tools not provided by coreutils, findutils
 	for t in \
-		alias apply getopt hostname jot kill killall \
-		lastcomm renice script shlock time whereis;
+		alias apply getopt hostname jot kill \
+		lastcomm renice shlock time whereis;
 	do
 		echo "in ${TS}/${t}:"
 		echo "$(tc-getCC) -o ${t} ${t}.c"
 		cd "${TS}/${t}"
 		$(tc-getCC) -o ${t} ${t}.c || die "failed to compile $t"
 	done
+	# script and killall need additonal flags
+	for t in \
+		killall script
+	do
+		echo "in ${TS}/${t}:"
+		echo "$(tc-getCC) -D__FBSDID=__RCSID -o ${t} ${t}.c"
+		cd "${TS}/${t}"
+		$(tc-getCC) -D__FBSDID=__RCSID -o ${t} ${t}.c || die "failed to compile $t"
+	done
 	cd "${TS}/su"
 	echo "in ${TS}/su:"
 	echo "$(tc-getCC) -lpam -o su su.c"
 	$(tc-getCC) -lpam -o su su.c || die "failed to compile su"
-	cd "${TS}/w"
-	echo "in ${TS}/w:"
-	echo "$(tc-getCC) -DSUCKAGE -lresolv -o w w.c pr_time.c proc_compare.c"
-	$(tc-getCC) -DSUCKAGE -lresolv -o w w.c pr_time.c proc_compare.c \
-		|| die "failed to compile w"
+	### w does not compile
+	#cd "${TS}/w"
+	#echo "in ${TS}/w:"
+	#echo "$(tc-getCC) -DSUCKAGE -DHAVE_UTMPX=1 -lresolv -o w w.c pr_time.c proc_compare.c"
+	#$(tc-getCC) -DSUCKAGE -DHAVE_UTMPX=1 -lresolv -o w w.c pr_time.c proc_compare.c \
+	#	|| die "failed to compile w"
 
 	TS=${S}/developer_cmds-${DEV_VER}
 	# only pick those tools that do not conflict (no ctags and indent)
@@ -77,21 +102,26 @@ src_install() {
 	mkdir -p "${ED}"/usr/bin
 
 	local TS=${S}/misc_cmds-${MISC_VER}
-	for t in cal leave lock units calendar ; do
+	for t in leave units calendar ; do
 		cp "${TS}/${t}/${t}" "${ED}"/usr/bin/
 		doman "${TS}/${t}/${t}.1"
 	done
+	# copy cal separately
+	cp "${TS}/ncal/cal" "${ED}"/usr/bin/
+	doman "${TS}/ncal/ncal.1"
 
 	TS=${S}/shell_cmds-${SHELL_VER}
+	### w does not compile
 	for t in \
 		alias apply getopt jot killall lastcomm \
-		renice script shlock su time w whereis;
+		renice script shlock su time whereis;
 	do
 		cp "${TS}/${t}/${t}" "${ED}"/usr/bin/
 		[[ -f "${TS}/${t}/${t}.1" ]] && doman "${TS}/${t}/${t}.1"
 		[[ -f "${TS}/${t}/${t}.8" ]] && doman "${TS}/${t}/${t}.8"
 	done
-	cp "${TS}/w/w" "${ED}"/usr/bin/uptime
+	### w does not compile
+	#cp "${TS}/w/w" "${ED}"/usr/bin/uptime
 	doman "${TS}/w/uptime.1"
 	for t in hostname kill; do
 		cp "${TS}/${t}/${t}" "${ED}"/bin/
