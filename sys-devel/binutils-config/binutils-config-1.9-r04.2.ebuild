@@ -8,12 +8,12 @@ inherit eutils toolchain-funcs
 
 DESCRIPTION="Utility to change the binutils version being used - prefix version"
 HOMEPAGE="http://www.gentoo.org/"
-W_VER="0.svn92"
-SRC_URI="mirror://sourceforge/prefix-launcher/toolchain-prefix-wrapper-${W_VER}.tar.bz2"
+W_VER="0.1.0.1593"
+SRC_URI="http://dev.gentoo.org/~haubi/distfiles/toolchain-prefix-wrapper-${W_VER}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ia64-hpux"
+KEYWORDS="~ia64-hpux ~ppc-aix"
 IUSE=""
 
 RDEPEND=">=sys-apps/findutils-4.2"
@@ -22,8 +22,7 @@ S="${WORKDIR}/toolchain-prefix-wrapper-${W_VER}"
 
 src_unpack() {
 	unpack ${A}
-	sed -e "/-z \${TPREFIX}/ifalse &&" -e "/wrapper's work/afalse &&" \
-	< "${FILESDIR}"/${PN}-${PV} > "${T}"/${PN}-${PV} \
+	cp "${FILESDIR}"/${PN}-${PV}-old "${T}"/${PN}-${PV} \
 	|| die "cannot cp ${PN}-${PV}"
 	eprefixify "${T}"/${PN}-${PV}
 }
