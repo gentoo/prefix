@@ -47,8 +47,13 @@ else
 SHLIB = -bundle -undefined dynamic_lookup
 SHLDFLAGS = 
   else
+    ifeq ($(KERNEL),HPUX)
+SHLIB = -shared
+SHLDFLAGS = -Wl,+h -Wl,$(TARGET_LIB_M)
+    else
 SHLIB = -shared
 SHLDFLAGS = -Wl,-soname -Wl,$(TARGET_LIB_M)
+    endif
   endif
 endif
 
