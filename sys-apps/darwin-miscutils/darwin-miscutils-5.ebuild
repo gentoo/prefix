@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit toolchain-funcs
+inherit toolchain-funcs eutils
 
 MISC_VER=23
 SHELL_VER=116
@@ -18,13 +18,19 @@ SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/misc_cmds-$
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~x86-macos"
 IUSE=""
 
 DEPEND=""
 RDEPEND=""
 
 S=${WORKDIR}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-w.patch
+}
 
 src_compile() {
 	local TS=${S}/misc_cmds-${MISC_VER}
@@ -75,12 +81,11 @@ src_compile() {
 	echo "in ${TS}/su:"
 	echo "$(tc-getCC) -lpam -o su su.c"
 	$(tc-getCC) -lpam -o su su.c || die "failed to compile su"
-	### w does not compile
-	#cd "${TS}/w"
-	#echo "in ${TS}/w:"
-	#echo "$(tc-getCC) -DSUCKAGE -DHAVE_UTMPX=1 -lresolv -o w w.c pr_time.c proc_compare.c"
-	#$(tc-getCC) -DSUCKAGE -DHAVE_UTMPX=1 -lresolv -o w w.c pr_time.c proc_compare.c \
-	#	|| die "failed to compile w"
+	cd "${TS}/w"
+	echo "in ${TS}/w:"
+	echo "$(tc-getCC) -DHAVE_UTMPX=1 -lresolv -o w w.c pr_time.c proc_compare.c"
+	$(tc-getCC) -DHAVE_UTMPX=1 -lresolv -o w w.c pr_time.c proc_compare.c \
+		|| die "failed to compile w"
 
 	TS=${S}/developer_cmds-${DEV_VER}
 	# only pick those tools that do not conflict (no ctags and indent)
@@ -111,17 +116,15 @@ src_install() {
 	doman "${TS}/ncal/ncal.1"
 
 	TS=${S}/shell_cmds-${SHELL_VER}
-	### w does not compile
 	for t in \
 		alias apply getopt jot killall lastcomm \
-		renice script shlock su time whereis;
+		renice script shlock su time w whereis;
 	do
 		cp "${TS}/${t}/${t}" "${ED}"/usr/bin/
 		[[ -f "${TS}/${t}/${t}.1" ]] && doman "${TS}/${t}/${t}.1"
 		[[ -f "${TS}/${t}/${t}.8" ]] && doman "${TS}/${t}/${t}.8"
 	done
-	### w does not compile
-	#cp "${TS}/w/w" "${ED}"/usr/bin/uptime
+	cp "${TS}/w/w" "${ED}"/usr/bin/uptime
 	doman "${TS}/w/uptime.1"
 	for t in hostname kill; do
 		cp "${TS}/${t}/${t}" "${ED}"/bin/
