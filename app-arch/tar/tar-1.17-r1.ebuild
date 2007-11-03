@@ -15,7 +15,7 @@ SRC_URI="http://ftp.gnu.org/gnu/tar/${P}.tar.bz2
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
-IUSE="nls static"
+IUSE="nls static userland_GNU prefix"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
@@ -29,7 +29,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-exclude-test.patch
 
 	epatch "${FILESDIR}"/tar-1.16-darwin.patch
-	if [[ ${USERLAND} != "GNU" ]] && use !prefix ; then
+	if ! use userland_GNU ; then
 		sed -i \
 			-e 's:/backup\.sh:/gbackup.sh:' \
 			scripts/{backup,dump-remind,restore}.in \
@@ -44,8 +44,7 @@ src_unpack() {
 src_compile() {
 	local myconf
 	use static && append-ldflags -static
-	[[ ${USERLAND} != "GNU" ]] && [[ ${EPREFIX%/} == "" ]] && \
-		myconf="--program-prefix=g"
+	use userland_GNU || myconf="--program-prefix=g"
 	# Work around bug in sandbox #67051
 	gl_cv_func_chown_follows_symlink=yes \
 	econf \
@@ -59,7 +58,7 @@ src_compile() {
 
 src_install() {
 	local p=""
-	use userland_GNU || use prefix || p=g
+	use userland_GNU || p=g
 
 	emake DESTDIR="${D}" install || die "make install failed"
 

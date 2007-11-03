@@ -15,7 +15,7 @@ SRC_URI="http://ftp.gnu.org/gnu/tar/${P}.tar.bz2
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
-IUSE="nls static"
+IUSE="nls static userland_GNU prefix"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
@@ -43,8 +43,7 @@ src_unpack() {
 src_compile() {
 	local myconf
 	use static && append-ldflags -static
-	[[ ${USERLAND} != "GNU" ]] && \
-		myconf="--program-prefix=g"
+	use userland_GNU || myconf="--program-prefix=g"
 	# Work around bug in sandbox #67051
 	gl_cv_func_chown_follows_symlink=yes \
 	econf \
