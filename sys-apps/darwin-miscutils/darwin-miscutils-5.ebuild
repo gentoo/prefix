@@ -113,7 +113,9 @@ src_install() {
 	done
 	# copy cal separately
 	cp "${TS}/ncal/cal" "${ED}"/usr/bin/
+	dosym /usr/bin/cal /usr/bin/ncal
 	doman "${TS}/ncal/ncal.1"
+	dosym /usr/share/man/man1/ncal.1 /usr/share/man/man1/cal.1
 
 	TS=${S}/shell_cmds-${SHELL_VER}
 	for t in \
