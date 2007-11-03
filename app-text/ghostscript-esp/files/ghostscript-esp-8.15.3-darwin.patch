@@ -39,7 +39,7 @@
  # ------------------------- Recursive make targets ------------------------- #
  
 +ifeq ($(CPU),Darwin)
-+SODEFS=LDFLAGS='$(LDFLAGS) $(CFLAGS_SO) -dynamiclib -install_name $(GS_SO_MAJOR)'\
++SODEFS=LDFLAGS='$(LDFLAGS) $(CFLAGS_SO) -dynamiclib -install_name $(libdir)/$(GS_SO_MAJOR)'\
 + GS_XE=$(BINDIR)/$(SOBINRELDIR)/$(GS_SONAME_MAJOR_MINOR)\
 + STDIO_IMPLEMENTATION=c\
 + DISPLAY_DEV=$(DD)$(SOOBJRELDIR)/display.dev\
