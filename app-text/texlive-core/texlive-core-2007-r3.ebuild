@@ -112,7 +112,7 @@ src_compile() {
 	econf --bindir="${EPREFIX}"/usr/bin \
 		--datadir="${S}" \
 		--with-system-freetype2 \
-		--with-freetype2-include=/usr/include \
+		--with-freetype2-include="${EPREFIX}"/usr/include \
 		--with-system-zlib \
 		--with-system-pnglib \
 		--without-texinfo \
