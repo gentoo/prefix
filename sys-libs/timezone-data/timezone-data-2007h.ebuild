@@ -16,7 +16,7 @@ SRC_URI="ftp://elsie.nci.nih.gov/pub/tzdata${data_ver}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="nls elibc_FreeBSD elibc_glibc"
+IUSE="nls"
 
 DEPEND=""
 
