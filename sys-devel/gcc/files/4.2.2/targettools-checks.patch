@@ -1,0 +1,108 @@
+# Since http://gcc.gnu.org/bugzilla/show_bug.cgi?id=33637 lacks
+# a real fix, this is just an ugly workaround required for AIX.
+
+--- gcc/configure.ac.orig	2007-10-08 16:18:43 +0200
++++ gcc/configure.ac	2007-10-08 16:22:22 +0200
+@@ -1877,7 +1877,7 @@
+ elif test -x as$build_exeext; then
+ 	# Build using assembler in the current directory.
+ 	gcc_cv_as=./as$build_exeext
+-elif test -x $AS_FOR_TARGET; then
++elif ( set dummy $AS_FOR_TARGET; test -x $[2] ); then
+         gcc_cv_as="$AS_FOR_TARGET"
+ else
+         AC_PATH_PROG(gcc_cv_as, $AS_FOR_TARGET)
+@@ -1928,7 +1928,7 @@
+ elif test -x collect-ld$build_exeext; then
+ 	# Build using linker in the current directory.
+ 	gcc_cv_ld=./collect-ld$build_exeext
+-elif test -x $LD_FOR_TARGET; then
++elif ( set dummy $LD_FOR_TARGET; test -x $[2] ); then
+         gcc_cv_ld="$LD_FOR_TARGET"
+ else
+         AC_PATH_PROG(gcc_cv_ld, $LD_FOR_TARGET)
+@@ -1975,7 +1975,7 @@
+ 	gcc_cv_nm=../binutils/nm-new$build_exeext
+ elif test -x nm$build_exeext; then
+ 	gcc_cv_nm=./nm$build_exeext
+-elif test -x $NM_FOR_TARGET; then
++elif ( set dummy $NM_FOR_TARGET; test -x $[2] ); then
+         gcc_cv_nm="$NM_FOR_TARGET"
+ else
+         AC_PATH_PROG(gcc_cv_nm, $NM_FOR_TARGET)
+@@ -2003,7 +2003,7 @@
+ 	gcc_cv_objdump=../binutils/objdump$build_exeext
+ elif test -x objdump$build_exeext; then
+ 	gcc_cv_objdump=./objdump$build_exeext
+-elif test -x $OBJDUMP_FOR_TARGET; then
++elif ( set dummy $OBJDUMP_FOR_TARGET; test -x $[2] ); then
+         gcc_cv_objdump="$OBJDUMP_FOR_TARGET"
+ else
+         AC_PATH_PROG(gcc_cv_objdump, $OBJDUMP_FOR_TARGET)
+--- gcc/configure.orig	2007-10-08 16:18:46 +0200
++++ gcc/configure	2007-10-08 16:23:26 +0200
+@@ -13303,7 +13303,7 @@
+ elif test -x as$build_exeext; then
+ 	# Build using assembler in the current directory.
+ 	gcc_cv_as=./as$build_exeext
+-elif test -x $AS_FOR_TARGET; then
++elif ( set dummy $AS_FOR_TARGET; test -x $2 ); then
+         gcc_cv_as="$AS_FOR_TARGET"
+ else
+         # Extract the first word of "$AS_FOR_TARGET", so it can be a program name with args.
+@@ -13419,7 +13419,7 @@
+ elif test -x collect-ld$build_exeext; then
+ 	# Build using linker in the current directory.
+ 	gcc_cv_ld=./collect-ld$build_exeext
+-elif test -x $LD_FOR_TARGET; then
++elif ( set dummy $LD_FOR_TARGET; test -x $2 ); then
+         gcc_cv_ld="$LD_FOR_TARGET"
+ else
+         # Extract the first word of "$LD_FOR_TARGET", so it can be a program name with args.
+@@ -13510,7 +13510,7 @@
+ 	gcc_cv_nm=../binutils/nm-new$build_exeext
+ elif test -x nm$build_exeext; then
+ 	gcc_cv_nm=./nm$build_exeext
+-elif test -x $NM_FOR_TARGET; then
++elif ( set dummy $NM_FOR_TARGET; test -x $2 ); then
+         gcc_cv_nm="$NM_FOR_TARGET"
+ else
+         # Extract the first word of "$NM_FOR_TARGET", so it can be a program name with args.
+@@ -13584,7 +13584,7 @@
+ 	gcc_cv_objdump=../binutils/objdump$build_exeext
+ elif test -x objdump$build_exeext; then
+ 	gcc_cv_objdump=./objdump$build_exeext
+-elif test -x $OBJDUMP_FOR_TARGET; then
++elif ( set dummy $OBJDUMP_FOR_TARGET; test -x $2 ); then
+         gcc_cv_objdump="$OBJDUMP_FOR_TARGET"
+ else
+         # Extract the first word of "$OBJDUMP_FOR_TARGET", so it can be a program name with args.
+--- gcc/Makefile.in.orig	2007-10-10 18:02:25 +0200
++++ gcc/Makefile.in	2007-10-10 18:07:12 +0200
+@@ -1328,7 +1328,7 @@
+ # Go through an additional indirection, because the file we create
+ # can be either `sometool' (if it is a script) or `sometool$(exeext)'
+ # (if it is a hard link).
+-stamp-as: $(ORIGINAL_AS_FOR_TARGET)
++stamp-as: $(firstword $(ORIGINAL_AS_FOR_TARGET))
+ 	@echo creating as; \
+ 	case "$(ORIGINAL_AS_FOR_TARGET)" in \
+ 	  ./as) ;; \
+@@ -1344,7 +1344,7 @@
+ 	esac
+ 	echo timestamp > $@
+ 
+-stamp-collect-ld: $(ORIGINAL_LD_FOR_TARGET)
++stamp-collect-ld: $(firstword $(ORIGINAL_LD_FOR_TARGET))
+ 	@echo creating collect-ld; \
+ 	case "$(ORIGINAL_LD_FOR_TARGET)" in \
+ 	  ./collect-ld) ;; \
+@@ -1360,7 +1360,7 @@
+ 	esac
+ 	echo timestamp > $@
+ 
+-stamp-nm: $(ORIGINAL_NM_FOR_TARGET)
++stamp-nm: $(firstword $(ORIGINAL_NM_FOR_TARGET))
+ 	@echo creating nm; \
+ 	case "$(ORIGINAL_NM_FOR_TARGET)" in \
+ 	  ./nm) ;; \

@@ -18,7 +18,7 @@ inherit toolchain flag-o-matic
 DESCRIPTION="The GNU Compiler Collection.  Includes C/C++, java compilers, pie+ssp extensions, Haj Ten Brugge runtime bounds checking"
 
 LICENSE="GPL-2 LGPL-2.1"
-KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 
 RDEPEND=">=sys-libs/zlib-1.1.4
 	|| ( >=sys-devel/gcc-config-1.3.12-r4 app-admin/eselect-compiler )
@@ -64,6 +64,9 @@ fi
 src_unpack() {
 	gcc_src_unpack
 
+	# work around http://gcc.gnu.org/bugzilla/show_bug.cgi?id=33637
+	epatch "${FILESDIR}"/${PV}/targettools-checks.patch
+
 	use vanilla && return 0
 
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
@@ -81,6 +84,7 @@ src_compile() {
 			# AIX doesn't use GNU binutils, because it doesn't produce usable
 			# code
 			EXTRA_ECONF="${EXTRA_ECONF} --without-gnu-ld --without-gnu-as"
+			append-ldflags -Wl,-bbigtoc
 		;;
 		*-darwin7)
 			# libintl triggers inclusion of -lc which results in multiply
@@ -89,7 +93,8 @@ src_compile() {
 		;;
 	esac
 	# Since GCC 4.1.2 some non-posix (?) /bin/sh compatible code is used, at
-	# least on Solaris, so force it into our own bash
+	# least on Solaris, and AIX /bin/sh is ways too slow,
+	# so force it into our own bash.
 	export CONFIG_SHELL="${EPREFIX}/bin/sh"
 	gcc_src_compile
 }
