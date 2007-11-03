@@ -11,10 +11,10 @@ SRC_URI="http://www.tinc-vpn.org/packages/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-macos ~x86 ~x86-macos"
-IUSE="nls"
+IUSE="nls kernel_linux"
 
 DEPEND=">=dev-libs/openssl-0.9.7c
-	kernel_Linux? ( virtual/linux-sources )
+	kernel_linux? ( virtual/linux-sources )
 	>=dev-libs/lzo-2
 	>=sys-libs/zlib-1.1.4-r2
 	nls? ( sys-devel/gettext )"
