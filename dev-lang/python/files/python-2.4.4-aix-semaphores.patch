@@ -1,0 +1,29 @@
+http://bugs.python.org/issue1234
+
+--- Python-2.4.2/configure.in.orig	2007-10-25 10:07:57.295538000 +0200
++++ Python-2.4.2/configure.in	2007-10-25 10:08:10.555139000 +0200
+@@ -1794,6 +1794,9 @@
+       SunOS/5.8) AC_DEFINE(HAVE_BROKEN_POSIX_SEMAPHORES, 1,
+ 		       Define if the Posix semaphores do not work on your system)
+ 		       ;;
++      AIX/5) AC_DEFINE(HAVE_BROKEN_POSIX_SEMAPHORES, 1,
++		       Define if the Posix semaphores do not work on your system)
++		       ;;
+       esac
+ 
+       AC_MSG_CHECKING(if PTHREAD_SCOPE_SYSTEM is supported)
+--- Python-2.4.2/configure.orig	2007-10-25 10:19:50.713877000 +0200
++++ Python-2.4.2/configure	2007-10-25 10:09:04.653466000 +0200
+@@ -12650,6 +12650,12 @@
+ _ACEOF
+ 
+ 		       ;;
++      AIX/5)
++cat >>confdefs.h <<\_ACEOF
++#define HAVE_BROKEN_POSIX_SEMAPHORES 1
++_ACEOF
++
++		       ;;
+       esac
+ 
+       echo "$as_me:$LINENO: checking if PTHREAD_SCOPE_SYSTEM is supported" >&5

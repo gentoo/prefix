@@ -96,11 +96,18 @@ src_unpack() {
 	[[ ${CHOST} == *-darwin* ]] && \
 		append-flags -fno-common -DWITH_NEXT_FRAMEWORK
 
+	# set RUNSHARED for 'regen' in Lib/plat-*
+	epatch "${FILESDIR}"/${P}-platdir-runshared.patch
+
+	# on hpux, use gcc to link if used to compile
+	epatch "${FILESDIR}"/${P}-hpux-ldshared.patch
+
 	# do not use 'which' to find binaries, but go through the PATH.
 	epatch "${FILESDIR}"/${PN}-2.4.4-ld_so_aix-which.patch
-
-	# also use gcc to link if used to compile on hpux
-	epatch "${FILESDIR}"/${P}-hpux-ldshared.patch
+	# better use mutexes on aix5 instead of semaphores.
+	epatch "${FILESDIR}"/${PN}-2.4.4-aix-semaphores.patch
+	# build shared library on aix
+	epatch "${FILESDIR}"/${P}-aix-ldshared.patch
 
 	eautoreconf
 }
@@ -180,6 +187,9 @@ src_compile() {
 	# Needed on FreeBSD unless python2.5 is already installed.
 	# Please query BSD team before removing this!
 	append-ldflags "-L."
+
+	# python defaults to use 'cc_r' on aix
+	[[ ${CHOST} == *-aix* ]] && myconf="${myconf} --with-gcc=$(tc-getCC)"
 
 	econf \
 		--with-fpectl \

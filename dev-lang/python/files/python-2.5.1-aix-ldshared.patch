@@ -1,0 +1,49 @@
+--- configure.in.orig	2007-11-03 20:38:42 +0100
++++ configure.in	2007-11-03 20:39:03 +0100
+@@ -659,6 +659,11 @@
+ 	  BLDLIBRARY='-Wl,+b,$(LIBDIR) -L. -lpython$(VERSION)'
+ 	  RUNSHARED=SHLIB_PATH=`pwd`:${SHLIB_PATH}
+ 	  ;;
++    AIX*)
++	  BLDLIBRARY='-Wl,-blibpath:$(LIBDIR) $(LDLIBRARY)'
++	  RUNSHARED=LIBPATH=`pwd`:${LIBPATH}
++	  INSTSONAME='libpython$(VERSION).so'.$SOVERSION
++	  ;;
+     OSF*)
+ 	  LDLIBRARY='libpython$(VERSION).so'
+ 	  BLDLIBRARY='-rpath $(LIBDIR) -L. -lpython$(VERSION)'
+@@ -1413,6 +1418,7 @@
+ 		;;
+ 	CYGWIN*)   SO=.dll;;
+ 	Darwin*)   SO=.bundle;;
++	AIX*)      SO=.a;;
+ 	*)	   SO=.so;;
+ 	esac
+ else
+--- Makefile.pre.in.orig	2007-11-03 22:50:00 +0100
++++ Makefile.pre.in	2007-11-03 23:14:40 +0100
+@@ -360,6 +360,15 @@
+ 	$(AR) cr $@ $(PYTHON_OBJS)
+ 	$(AR) cr $@ $(MODULE_OBJS) $(SIGNAL_OBJS)
+ 	$(AR) cr $@ $(MODOBJS)
++	if test "$(SO)" = .a \
++	     && test "`echo $(MACHDEP) | sed 's/^\(...\).*/\1/'`" = "aix" \
++	; then set -e \
++	     ; $(MAKE) Modules/python.exp LDSHARED='$(BLDSHARED)' OPT='$(OPT)' CC='$(CC)' \
++	     ; $(MAKE) libpython$(VERSION).so LDSHARED='$(BLDSHARED)' OPT='$(OPT)' CC='$(CC)' INSTSONAME=$(LDLIBRARY) \
++	     ; test "$(INSTSONAME)" = libpython$(VERSION).so || mv libpython$(VERSION).so $(INSTSONAME) \
++	     ; rm -f $@ \
++	     ; $(AR) cr $@ $(INSTSONAME) \
++	; fi
+ 	$(RANLIB) $@
+ 
+ libpython$(VERSION).so: $(LIBRARY_OBJS)
+@@ -376,6 +385,8 @@
+ libpython$(VERSION).dylib: $(LIBRARY_OBJS)
+ 	$(LINKCC) -dynamiclib -install_name $(LIBDIR)/$@ -current_version $(VERSION) -compatibility_version 2.5 -o $@ $(LIBRARY_OBJS) $(SHLIBS) $(LIBC) $(LIBM)
+ 
++Modules/python.exp: $(LIBRARY)
++	`echo "$(LINKCC)" | sed -e 's,;.*,,'`
+ 
+ # This rule is here for OPENSTEP/Rhapsody/MacOSX. It builds a temporary
+ # minimal framework (not including the Lib directory and such) in the current
