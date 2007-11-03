@@ -30,7 +30,7 @@ done
 LICENSE="DB"
 SLOT="4.3"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
-IUSE="tcl java doc nocxx bootstrap"
+IUSE="tcl java doc nocxx bootstrap elibc_Darwin"
 
 DEPEND="tcl? ( >=dev-lang/tcl-8.4 )
 	java? ( >=virtual/jdk-1.4 )
