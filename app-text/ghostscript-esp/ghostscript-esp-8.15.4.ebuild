@@ -25,7 +25,7 @@ ESVN_REPO_URI="http://svn.easysw.com/public/espgs/trunk"
 LICENSE="GPL-2 LGPL-2 CPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
-IUSE="X cups cjk gtk threads xml djvu"
+IUSE="X cups cjk gtk threads xml djvu elibc_glibc"
 
 DEP="virtual/libc
 	virtual/libiconv
