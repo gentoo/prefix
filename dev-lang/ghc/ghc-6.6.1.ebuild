@@ -57,7 +57,7 @@ LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 #KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
-IUSE="binary doc ghcbootstrap"
+IUSE="binary doc ghcbootstrap kernel_Darwin kernel_linux kernel_SunOS"
 
 LOC="/opt/ghc" # location for installation of binary version
 S="${WORKDIR}/${MY_P}"
