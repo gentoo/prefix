@@ -73,10 +73,8 @@ src_unpack() {
 src_compile() {
 	local langs="c"
 	use nocxx || langs="${langs},c++"
-#	use fortran && langs="${langs},f95"
 	use objc && langs="${langs},objc"
 	use objc++ && langs="${langs/,objc/},objc,obj-c++" # need objc with objc++
-#	use gcj && langs="${langs},java"
 
 	local myconf="${myconf} \
 		--prefix=${EPREFIX}/usr \
@@ -139,7 +137,7 @@ src_compile() {
 	# want it to use
 	myconf="${myconf} \
 		--with-as=${EPREFIX}/usr/bin/${CTARGET}-as \
-		--with-ld=${EPREFIX}/usr/bin/${CTARGET}-ld"
+		--with-ld=${EPREFIX}/usr/bin/${CTARGET}-ld64"
 
 	# <grobian@gentoo.org> - 2006-09-19:
 	# figure out whether the CPU we're on is 64-bits capable using a
