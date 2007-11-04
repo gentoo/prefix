@@ -8,11 +8,11 @@ inherit eutils
 
 DESCRIPTION="Darwin assembler as(1) and static linker ld(1)"
 HOMEPAGE="http://trac.macosforge.org/projects/odcctools"
-SRC_URI="http://www.gentoo.org/~grobian/distfiles/${P}.tar.bz2"
+SRC_URI="http://www.gentoo.org/~pipping/distfiles/${P}.tar.bz2"
 
 LICENSE="APSL-2"
 
-KEYWORDS=""
+KEYWORDS="~x86-macos"
 
 IUSE=""
 
@@ -75,8 +75,6 @@ src_compile() {
 	is_cross && myconf="${myconf} --with-sysroot=${EPREFIX}/usr/${CTARGET}"
 	echo -e "./configure ${myconf//--/\n\t--}"
 	./configure ${myconf} || die "econf failed"
-	# nasty hack - we need otool eventually but it doesn't compile right now
-	sed -i '/^COMPONENTS/s/otool$//' Makefile
 	emake || die "emake failed"
 }
 
@@ -85,6 +83,9 @@ src_install() {
 
 	# nuke the include files, in the end they result in conflicts
 	rm -Rf "${ED}/${INCPATH}" || die
+
+	mv "${ED}"${BINPATH}/ld64 "${ED}"${BINPATH}/ld
+	dosym ld ${BINPATH}/ld64
 
 	# Now we collect everything into the proper SLOT-ed dirs
 	# When something is built to cross-compile, it installs into
