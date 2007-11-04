@@ -5,3 +5,7 @@
 # Elias Pipping <pipping@gentoo.org> (31 Oct 2007)
 # doxygen does not compile
 app-doc/doxygen
+
+# Elias Pipping <pipping@gentoo.org> (04 Nov 2007)
+# tar fails to link
+>=app-arch/tar-1.17
