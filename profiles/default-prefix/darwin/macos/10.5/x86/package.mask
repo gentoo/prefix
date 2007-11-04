@@ -7,5 +7,6 @@
 app-doc/doxygen
 
 # Elias Pipping <pipping@gentoo.org> (04 Nov 2007)
-# tar fails to link
+# tar, cpio fail to link
 >=app-arch/tar-1.17
+>=app-arch/cpio-2.8
