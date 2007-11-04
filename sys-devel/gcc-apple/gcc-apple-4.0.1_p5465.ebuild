@@ -33,7 +33,7 @@ else
 	SLOT="40"
 fi
 
-KEYWORDS=""
+KEYWORDS="~x86-macos"
 
 IUSE="nls objc objc++ nocxx"
 
@@ -73,10 +73,8 @@ src_unpack() {
 src_compile() {
 	local langs="c"
 	use nocxx || langs="${langs},c++"
-#	use fortran && langs="${langs},f95"
 	use objc && langs="${langs},objc"
 	use objc++ && langs="${langs/,objc/},objc,obj-c++" # need objc with objc++
-#	use gcj && langs="${langs},java"
 
 	local myconf="${myconf} \
 		--prefix=${EPREFIX}/usr \
