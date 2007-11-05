@@ -73,9 +73,6 @@ src_compile() {
 	if use tetex ; then
 		sed -i \
 			-e 's/TEXMFLOCAL/TEXMFSITE/g' share/LaTeX/Makefile.in || die "sed failed"
-		sed -i \
-			-e 's|installdir=|installdir="'"${EPREFIX}"'"|' \
-			share/LaTeX/Makefile.in || die "sed failed"
 	else
 		sed -i \
 			-e '/^SUBDIRS/ s/LaTeX//' share/LaTeX/Makefile.in || die "sed failed"
