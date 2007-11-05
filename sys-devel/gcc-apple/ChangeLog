@@ -2,6 +2,12 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Nov 2007; Fabian Groffen <grobian@gentoo.org>
+  gcc-apple-4.0.1_p5363-r1.ebuild, gcc-apple-4.0.1_p5465.ebuild,
+  gcc-apple-4.0.1_p5465.ebuild, gcc-apple-4.2.1_p5531.ebuild:
+  Cleaned up ebuilds, keyworded 4.2.1_p5531 ~ppc-macos, compiles on 10.4 after
+  removing any -m* flags.
+
 *gcc-apple-4.2.0_p5531 (02 Nov 2007)
 *gcc-apple-4.0.1_p5465 (02 Nov 2007)
 

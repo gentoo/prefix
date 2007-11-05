@@ -86,6 +86,7 @@ src_compile() {
 		--with-gxx-include-dir=${EPREFIX}/usr/lib/gcc/${CTARGET}/${GCC_VERS}/include/g++-v${GCC_VERS/\.*/} \
 		--host=${CHOST} \
 		--enable-version-specific-runtime-libs"
+
 	if is_crosscompile ; then
 		# Straight from the GCC install doc:
 		# "GCC has code to correctly determine the correct value for target
@@ -103,11 +104,6 @@ src_compile() {
 		CXXFLAGS=${!VAR}
 	fi
 	[[ -n ${CBUILD} ]] && myconf="${myconf} --build=${CBUILD}"
-
-	# Straight from the GCC install doc:
-	# "GCC has code to correctly determine the correct value for target
-	# for nearly all native systems. Therefore, we highly recommend you
-	# not provide a configure target when configuring a native compiler."
 
 	# Native Language Support
 	if use nls ; then

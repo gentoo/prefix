@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils flag-o-matic
 
 GCC_VERS=${PV/_p*/}
 APPLE_VERS=${PV/*_p/}
@@ -28,12 +28,12 @@ export TPREFIX=${TPREFIX:-${EPREFIX}}
 
 LICENSE="APSL-2 GPL-2"
 if is_crosscompile; then
-	SLOT="${CTARGET}-40"
+	SLOT="${CTARGET}-42"
 else
-	SLOT="40"
+	SLOT="42"
 fi
 
-KEYWORDS=""
+KEYWORDS="~ppc-macos"
 
 IUSE="nls objc objc++ nocxx"
 
@@ -86,6 +86,7 @@ src_compile() {
 		--with-gxx-include-dir=${EPREFIX}/usr/lib/gcc/${CTARGET}/${GCC_VERS}/include/g++-v${GCC_VERS/\.*/} \
 		--host=${CHOST} \
 		--enable-version-specific-runtime-libs"
+
 	if is_crosscompile ; then
 		# Straight from the GCC install doc:
 		# "GCC has code to correctly determine the correct value for target
@@ -104,11 +105,6 @@ src_compile() {
 	fi
 	[[ -n ${CBUILD} ]] && myconf="${myconf} --build=${CBUILD}"
 
-	# Straight from the GCC install doc:
-	# "GCC has code to correctly determine the correct value for target
-	# for nearly all native systems. Therefore, we highly recommend you
-	# not provide a configure target when configuring a native compiler."
-
 	# Native Language Support
 	if use nls ; then
 		myconf="${myconf} --enable-nls --without-included-gettext"
@@ -117,12 +113,10 @@ src_compile() {
 	fi
 
 	# reasonably sane globals (hopefully)
-	# --disable-libunwind-exceptions needed till unwind sections get fixed. see ps.m for details
 	myconf="${myconf} \
 		--with-system-zlib \
 		--disable-checking \
-		--disable-werror \
-		--disable-libunwind-exceptions"
+		--disable-werror"
 
 	# languages to build
 	myconf="${myconf} --enable-languages=${langs}"
@@ -133,11 +127,8 @@ src_compile() {
 	# make clear we're in an offset
 	use prefix && myconf="${myconf} --with-local-prefix=${TPREFIX}/usr"
 
-	# we don't use a GNU linker, so tell GCC where to find the linker stuff we
-	# want it to use
-	myconf="${myconf} \
-		--with-as=${EPREFIX}/usr/bin/${CTARGET}-as \
-		--with-ld=${EPREFIX}/usr/bin/${CTARGET}-ld"
+	# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=25127
+	[[ ${CHOST} == powerpc-apple-darwin* ]] && filter-flags "-m*"
 
 	# <grobian@gentoo.org> - 2006-09-19:
 	# figure out whether the CPU we're on is 64-bits capable using a
@@ -163,8 +154,15 @@ int main() {
 	else
 		# ld64 doesn't compile on non-Darwin hosts, 64-bits building is broken
 		# on x86_64-darwin
+# TODO: check this!
 		myconf="${myconf} --disable-multilib"
 	fi
+
+	# we don't use a GNU linker, so tell GCC where to find the linker stuff we
+	# want it to use
+	myconf="${myconf} \
+		--with-as=${EPREFIX}/usr/bin/${CTARGET}-as \
+		--with-ld=${EPREFIX}/usr/bin/${CTARGET}-ld"
 
 	mkdir -p "${WORKDIR}"/build
 	cd "${WORKDIR}"/build
