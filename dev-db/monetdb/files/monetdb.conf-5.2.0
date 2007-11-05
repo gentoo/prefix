@@ -1,0 +1,7 @@
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+# The user to run the MonetDB database as.  It is recommended to
+# leave this as is, portage created this user during installation
+MDB_USER=monetdb
+MDB_GROUP=monetdb
