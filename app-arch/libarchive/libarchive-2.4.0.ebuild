@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.3.4.ebuild,v 1.1 2007/10/10 09:41:44 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.4.0.ebuild,v 1.1 2007/11/04 17:54:42 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ SRC_URI="http://people.freebsd.org/~kientzle/libarchive/src/${MY_P}.tar.gz"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
-IUSE="build static acl xattr"
+IUSE="build static acl xattr kernel_linux"
 
 RDEPEND="!dev-libs/libarchive
 	kernel_linux? (
@@ -42,7 +42,7 @@ src_unpack() {
 }
 
 src_compile() {
-	local myconf
+	local myconf=
 
 	if use static || use build ; then
 		myconf="${myconf} --enable-static-bsdtar"
@@ -56,6 +56,7 @@ src_compile() {
 
 	econf \
 		--bindir="${EPREFIX}"/bin \
+		--enable-bsdcpio \
 		$(use_enable acl) \
 		$(use_enable xattr) \
 		${myconf} || die "econf failed"
@@ -69,7 +70,10 @@ src_install() {
 	if [[ ${CHOST} == *-freebsd* ]]; then
 		dosym bsdtar /bin/tar
 		dosym bsdtar.1 /usr/share/man/man1/tar.1
+		# We may wish to switch to symlink bsdcpio to cpio too one day
 	fi
+
+	dodoc README NEWS
 
 	if use build; then
 		rm -rf "${ED}"/usr
