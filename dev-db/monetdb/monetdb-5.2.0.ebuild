@@ -18,7 +18,7 @@ SRC_URI="mirror://sourceforge/monetdb/MonetDB-${COMMON_PV}.tar.gz
 	mirror://sourceforge/monetdb/MonetDB5-${M5_PV}.tar.gz
 	mirror://sourceforge/monetdb/sql-${SQL_PV}.tar.gz"
 
-LICENSE="MPL-1.1"
+LICENSE="MonetDBPL-1.1"
 SLOT="5"
 KEYWORDS="~amd64 ~x86"
 IUSE="python perl php java"
