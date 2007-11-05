@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/tcl
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/ChangeLog,v 1.88 2007/08/21 19:10:21 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/ChangeLog,v 1.89 2007/11/03 21:03:55 jokey Exp $
+
+*tcl-8.5b (03 Nov 2007)
+
+  03 Nov 2007; Markus Ullmann <jokey@gentoo.org> +tcl-8.5b.ebuild:
+  Version bump, dropping keywords as status wrt other packages is untested
 
   21 Aug 2007; Christoph Mende <angelos@gentoo.org> tcl-8.4.15.ebuild:
   Stable on amd64 wrt bug #178320
