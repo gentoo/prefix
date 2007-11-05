@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.40.0.ebuild,v 1.6 2007/10/20 14:15:46 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.40.0.ebuild,v 1.7 2007/11/02 04:01:26 beandog Exp $
 
 EAPI="prefix"
 
