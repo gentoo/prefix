@@ -1,0 +1,16 @@
+# ChangeLog for virtual/flim
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/flim/ChangeLog,v 1.3 2007/10/15 22:03:47 opfer Exp $
+
+  15 Oct 2007; Christian Faulhammer <opfer@gentoo.org> flim-0.ebuild:
+  stable amd64, bug 195107
+
+  24 Sep 2007; Ulrich Mueller <ulm@gentoo.org> flim-0.ebuild:
+  Drop ppc-macos keyword since the dependencies do not provide it anymore.
+
+*flim-0 (15 May 2007)
+
+  15 May 2007; Ulrich Mueller <ulm@gentoo.org> +metadata.xml,
+  +flim-0.ebuild:
+  New-style virtual/flim.
+
