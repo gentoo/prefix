@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sqlobject/sqlobject-0.9.1.ebuild,v 1.1 2007/09/04 09:31:39 lucass Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sqlobject/sqlobject-0.9.2.ebuild,v 1.1 2007/11/04 23:41:47 lucass Exp $
 
 EAPI="prefix"
 
@@ -45,7 +45,8 @@ src_install() {
 #	cd sqlobject/tests
 #	sed -i \
 #		-e "s/\('-transactions': 'mysql\)',/\1 sqlite',/" \
-#		sqlobject/tests/dbtest.py
+#		dbtest.py
+#	rm test_sqlobject_admin.py
 #	py.test | tee pytest.log
 #	tail -n 1 pytest.log | grep -q "failed" && die "tests failed"
 #}
