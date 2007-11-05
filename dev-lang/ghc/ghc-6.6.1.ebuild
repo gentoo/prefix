@@ -141,6 +141,8 @@ ghc_setup_cflags() {
 	# non-exectable stack. This it a hack until ghc does it itself properly.
 	[[ ${CHOST} == *-linux-gnu || ${CHOST} == *-solaris* ]] && \
 		append-ghc-cflags assemble		"-Wa,--noexecstack"
+	[[ ${CHOST} == *-darwin9 ]] && \
+		append-ghc-cflags compile "-D__DARWIN_UNIX03=0"
 }
 
 pkg_setup() {
