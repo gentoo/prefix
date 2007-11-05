@@ -96,6 +96,8 @@ src_unpack() {
 	[[ ${CHOST} == *-darwin* ]] && \
 		append-flags -fno-common -DWITH_NEXT_FRAMEWORK
 
+	use prefix && epatch "${FILESDIR}"/${P}-no-usrlocal.patch
+
 	# set RUNSHARED for 'regen' in Lib/plat-*
 	epatch "${FILESDIR}"/${P}-platdir-runshared.patch
 
