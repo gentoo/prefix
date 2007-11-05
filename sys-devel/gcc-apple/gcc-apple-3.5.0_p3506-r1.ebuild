@@ -1,4 +1,4 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -100,15 +100,15 @@ src_compile() {
 		--with-as=${EPREFIX}/usr/bin/as \
 		--with-ld=${EPREFIX}/usr/bin/ld"
 
-	mkdir -p ${WORKDIR}/build
-	cd ${WORKDIR}/build
+	mkdir -p "${WORKDIR}"/build
+	cd "${WORKDIR}"/build
 	einfo "Configuring GCC with: ${myconf//--/\n\t--}"
-	${S}/configure ${myconf} || die "conf failed"
+	"${S}"/configure ${myconf} || die "conf failed"
 	make -j1 bootstrap || die "emake failed"
 }
 
 src_install() {
-	cd ${WORKDIR}/build
+	cd "${WORKDIR}"/build
 	make DESTDIR="${D}" install || die
 
 	use build && rm -rf "${ED}"/usr/{man,share}
