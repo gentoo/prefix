@@ -12,7 +12,7 @@ SRC_URI="ftp://ftp.m17n.org/pub/mule/flim/flim-1.14/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 IUSE=""
 
 DEPEND="!app-emacs/limit
