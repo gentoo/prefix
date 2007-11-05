@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/help2man/help2man-1.36.4.ebuild,v 1.12 2007/02/20 19:51:42 eroyf Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/help2man/help2man-1.36.4.ebuild,v 1.13 2007/11/03 19:52:48 grobian Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ SRC_URI="mirror://gnu/help2man/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
-IUSE="nls"
+IUSE="nls elibc_glibc"
 
 RDEPEND="dev-lang/perl"
 DEPEND="${RDEPEND}
