@@ -1,6 +1,23 @@
 # ChangeLog for media-fonts/dejavu
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.93 2007/10/13 07:30:02 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.98 2007/11/04 04:39:13 pylon Exp $
+
+  04 Nov 2007; Lars Weiler <pylon@gentoo.org> dejavu-2.20.ebuild:
+  stable ppc, bug #197728
+
+  03 Nov 2007; Raúl Porcel <armin76@gentoo.org> dejavu-2.20.ebuild:
+  alpha/ia64 stable wrt #197728
+
+  02 Nov 2007; Steve Dibb <beandog@gentoo.org> dejavu-2.20.ebuild:
+  amd64 stable, bug 197728
+
+  01 Nov 2007; Ferris McCormick <fmccor@gentoo.org> dejavu-2.20.ebuild:
+  Sparc stable --- Buf #197728 --- charmap looks fine.
+
+*dejavu-2.21 (01 Nov 2007)
+
+  01 Nov 2007; <pva@gentoo.org> +dejavu-2.21.ebuild:
+  Version bump.
 
   13 Oct 2007; Tom Gall <tgall@gentoo.org> dejavu-2.19.ebuild:
   stable on ppc64, bug #194104
