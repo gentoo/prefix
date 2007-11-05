@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.3.ebuild,v 1.2 2007/09/21 13:07:26 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.3.ebuild,v 1.3 2007/11/03 16:39:24 grobian Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="ftp://ftp.stack.nl/pub/users/dimitri/${P}.src.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
-IUSE="debug doc nodot qt3 tetex"
+IUSE="debug doc nodot qt3 tetex elibc_FreeBSD"
 
 RDEPEND="qt3? ( $(qt_min_version 3.3) )
 	tetex? ( virtual/tetex )
