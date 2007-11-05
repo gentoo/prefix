@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2007h.ebuild,v 1.1 2007/10/05 05:11:30 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2007h.ebuild,v 1.2 2007/11/03 16:33:38 grobian Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SRC_URI="ftp://elsie.nci.nih.gov/pub/tzdata${data_ver}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="nls"
+IUSE="nls elibc_FreeBSD elibc_glibc"
 
 DEPEND=""
 
