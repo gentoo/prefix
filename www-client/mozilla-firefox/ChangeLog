@@ -1,6 +1,24 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.338 2007/10/23 20:18:55 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.342 2007/11/03 21:42:08 corsair Exp $
+
+  03 Nov 2007; Markus Rothe <corsair@gentoo.org>
+  mozilla-firefox-2.0.0.9.ebuild:
+  Stable on ppc64; bug #196480
+
+  03 Nov 2007; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-2.0.0.9.ebuild:
+  alpha/ia64/sparc stable wrt security #196480
+
+  03 Nov 2007; Jurek Bartuszek <jurek@gentoo.org>
+  mozilla-firefox-2.0.0.9.ebuild:
+  x86 stable (bug #196480)
+
+*mozilla-firefox-2.0.0.9 (02 Nov 2007)
+
+  02 Nov 2007; Raúl Porcel <armin76@gentoo.org>
+  +mozilla-firefox-2.0.0.9.ebuild:
+  Version bump
 
   23 Oct 2007; Christoph Mende <angelos@gentoo.org>
   mozilla-firefox-2.0.0.8.ebuild:
