@@ -137,7 +137,7 @@ src_compile() {
 	# want it to use
 	myconf="${myconf} \
 		--with-as=${EPREFIX}/usr/bin/${CTARGET}-as \
-		--with-ld=${EPREFIX}/usr/bin/${CTARGET}-ld64"
+		--with-ld=${EPREFIX}/usr/bin/${CTARGET}-ld"
 
 	# <grobian@gentoo.org> - 2006-09-19:
 	# figure out whether the CPU we're on is 64-bits capable using a
