@@ -110,7 +110,10 @@ src_install() {
 		"${ED}/usr/bin/Mtimeout" \
 		"${ED}/usr/bin/prof.py" \
 		"${ED}/usr/share/MonetDB/Mprofile-commands.lst" \
-		"${ED}/usr/MonetDB" \
+		"${ED}/usr/MonetDB/subprocess26.py" \
+		"${ED}/usr/MonetDB/trace.py" \
+		"${ED}/usr/MonetDB/__init__.py" \
+		"${ED}/usr/MonetDB/monet_options.py" \
 		|| die "removing testing tools"
 	rm -Rf \
 		"${ED}/usr/lib/MonetDB/Tests" \
