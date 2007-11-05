@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6_rc7.ebuild,v 1.1 2007/10/04 07:26:04 kutsuya Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6_rc7-r1.ebuild,v 1.1 2007/11/04 08:01:24 hawking Exp $
 
 EAPI="prefix"
 
-inherit distutils
+inherit distutils eutils
 
 MY_P=${P/_rc/c}
 S="${WORKDIR}/${MY_P}"
@@ -22,6 +22,11 @@ RDEPEND=">=dev-lang/python-2.4.2"
 DEPEND="${RDEPEND}"
 
 DOCS="EasyInstall.txt api_tests.txt pkg_resources.txt setuptools.txt README.txt"
+
+src_unpack() {
+	distutils_src_unpack
+	epatch "${FILESDIR}/${P}-noexe.patch"
+}
 
 src_test() {
 	"${python}" setup.py test || die "tests failed"
