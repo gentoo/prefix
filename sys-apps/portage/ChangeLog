@@ -2,6 +2,13 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.8435 (05 Nov 2007)
+
+  05 Nov 2007; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.8328.ebuild, +portage-2.2.00.8435.ebuild:
+  New snapshot with hack/fix/workaround for binpkg's Packages file and elibc_*
+  etc USE conditionals, compilation support for Interix
+
 *portage-2.2.00.8400 (03 Nov 2007)
 
   03 Nov 2007; Fabian Groffen <grobian@gentoo.org>

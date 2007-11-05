@@ -10,13 +10,13 @@ inherit toolchain-funcs eutils flag-o-matic multilib
 DESCRIPTION="Prefix branch of the Portage Package Management System. The primary package management and distribution system for Gentoo."
 HOMEPAGE="http://www.gentoo.org/proj/en/gentoo-alt/prefix/"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 PROVIDE="virtual/portage"
 SLOT="0"
 # USE_EXPAND_HIDDEN hides ELIBC and USERLAND expansions from emerge output (see make.conf.5).
 IUSE_ELIBC="elibc_glibc elibc_uclibc elibc_FreeBSD"
 IUSE_KERNEL="kernel_linux"
-IUSE="build doc epydoc selinux linguas_pl ${IUSE_ELIBC} ${IUSE_USERLAND}"
+IUSE="build doc epydoc selinux linguas_pl ${IUSE_ELIBC} ${IUSE_KERNEL}"
 DEPEND=">=dev-lang/python-2.4
 	!build? ( >=sys-apps/sed-4.0.5 )
 	doc? ( app-text/xmlto ~app-text/docbook-xml-dtd-4.4 )
