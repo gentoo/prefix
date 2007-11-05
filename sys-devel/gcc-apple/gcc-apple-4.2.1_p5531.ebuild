@@ -33,7 +33,7 @@ else
 	SLOT="42"
 fi
 
-KEYWORDS="~ppc-macos"
+KEYWORDS="~ppc-macos ~x86-macos"
 
 IUSE="nls objc objc++ nocxx"
 
