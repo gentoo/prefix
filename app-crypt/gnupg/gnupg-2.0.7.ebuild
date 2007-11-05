@@ -44,6 +44,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}/${PN}-2.0.4-idea.patch"
+	epatch "${FILESDIR}/${P}-darwin9.patch"
 }
 
 src_compile() {

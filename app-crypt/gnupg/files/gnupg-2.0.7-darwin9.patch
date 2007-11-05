@@ -1,0 +1,13 @@
+taken from http://trac.macports.org/projects/macports/attachment/ticket/13151/gnupg2.patch
+--- g10/status.c
++++ g10/status.c
+@@ -37,6 +37,9 @@
+ 
+ #define CONTROL_D ('D' - 'A' + 1)
+ 
++#ifdef bool
++#undef bool
++#endif
+ 
+ 
+ static FILE *statusfp;
