@@ -1,7 +1,7 @@
 # Copyright 2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
 # Author Diego Pettenò <flameeyes@gentoo.org>
-# $Header: /var/cvsroot/gentoo-x86/eclass/pam.eclass,v 1.13 2007/07/12 14:37:40 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/pam.eclass,v 1.14 2007/11/04 15:00:27 flameeyes Exp $
 #
 # This eclass contains functions to install pamd configuration files and
 # pam modules.
@@ -177,16 +177,16 @@ pam_epam_expand() {
 	sed -n -e 's|#%EPAM-\([[:alpha:]-]\+\):\([-+<>=/.![:alnum:]]\+\)%#.*|\1 \2|p' \
 	"$@" | sort -u | while read condition parameter; do
 
-	disable="# "
+	disable="yes"
 
 	case "$condition" in
 		If-Has)
 		message="This can be used only if you have ${parameter} installed"
-		has_version "$parameter" && disable=""
+		has_version "$parameter" && disable="no"
 		;;
 		Use-Flag)
 		message="This can be used only if you enabled the ${parameter} USE flag"
-		use "$parameter" && disable=""
+		use "$parameter" && disable="no"
 		;;
 		*)
 		eerror "Unknown EPAM condition '${condition}' ('${parameter}')"
@@ -194,11 +194,16 @@ pam_epam_expand() {
 		;;
 	esac
 
-	sed -i -e "s|#%EPAM-${condition}:${parameter}%#|# ${message}\n${disable}|" "$@"
+	if [ "${disable}" = "yes" ]; then
+		sed -i -e "/#%EPAM-${condition}:${parameter/\//\\/}%#/d" "$@"
+	else
+		sed -i -e "s|#%EPAM-${condition}:${parameter}%#||" "$@"
+	fi
+
 	done
 }
 
-# Think about it before uncommenting this one, for nwo run it by hand
+# Think about it before uncommenting this one, for now run it by hand
 # pam_pkg_preinst() {
 # 	local shopts=$-
 # 	set -o noglob # so that bash doen't expand "*"

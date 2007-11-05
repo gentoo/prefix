@@ -1,0 +1,154 @@
+# Copyright 1999-2007 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.1 2007/11/04 13:17:35 philantrop Exp $
+
+# @ECLASS: cmake-utils.eclass
+# @MAINTAINER:
+# kde@gentoo.org
+# @BLURB: common ebuild functions for cmake-based packages
+# @DESCRIPTION:
+# The cmake-utils eclass contains functions that make creating ebuilds for
+# cmake-based packages much easier.
+# Its main features are support of out-of-source builds as well as in-source
+# builds and an implementation of the well-known use_enable and use_with
+# functions for CMake.
+
+# Original author: Zephyrus (zephyrus@mirach.it)
+
+inherit toolchain-funcs multilib
+
+DESCRIPTION="Based on the ${ECLASS} eclass"
+
+DEPEND="dev-util/cmake"
+
+EXPORT_FUNCTIONS src_compile src_test src_install
+
+# Internal function use by cmake-utils_use_with and cmake-utils_use_enable
+_use_me_now() {
+	debug-print-function $FUNCNAME $*
+	[[ -z $2 ]] && die "cmake-utils_use-$1 <USE flag> [<flag name>]"
+	echo "-D$1_${3:-$2}=$(use $2 && echo ON || echo OFF)"
+}
+
+# @FUNCTION: cmake-utils_use_with
+# @USAGE: <USE flag> [flag name]
+# @DESCRIPTION:
+# Based on use_with. See ebuild.sh
+cmake-utils_use_with() { _use_me_now WITH "$@" ; }
+
+# @FUNCTION: cmake-utils_use_enable
+# @USAGE: <USE flag> [flag name]
+# @DESCRIPTION:
+# Based on use_enable. See ebuild.sh
+cmake-utils_use_enable() { _use_me_now ENABLE "$@" ; }
+
+# @FUNCTION: cmake-utils_src_compile
+# @DESCRIPTION:
+# General function for compiling with cmake. Default behaviour is to start an
+# out-of-source build
+cmake-utils_src_compile() {
+	debug-print-function $FUNCNAME $*
+
+	cmake-utils_src_configureout
+	cmake-utils_src_make
+}
+
+# @FUNCTION: cmake-utils_src_configurein
+# @DESCRIPTION:
+# Function for software that requires configure and building in the source
+# directory.
+cmake-utils_src_configurein() {
+	debug-print-function $FUNCNAME $*
+
+	local cmakeargs="${mycmakeargs} $(_common_configure_code)"
+
+	debug-print "$LINENO $ECLASS $FUNCNAME: mycmakeargs is $cmakeargs"
+	cmake ${cmakeargs} . || die "Cmake failed"
+}
+
+# @FUNCTION: cmake-utils_src_configureout
+# @DESCRIPTION:
+# Function for software that requires configure and building outside the source
+# tree - default.
+cmake-utils_src_configureout() {
+	debug-print-function $FUNCNAME $*
+
+	local cmakeargs="${mycmakeargs} $(_common_configure_code)"
+	mkdir "${WORKDIR}"/${PN}_build
+	cd "${WORKDIR}"/${PN}_build
+
+	debug-print "$LINENO $ECLASS $FUNCNAME: mycmakeargs is $cmakeargs"
+	cmake ${cmakeargs} "${S}" || die "Cmake failed"
+}
+
+# Internal use only. Common configuration options for all types of builds.
+_common_configure_code() {
+	local tmp_libdir=$(get_libdir)
+	if has debug ${IUSE} && use debug; then
+		echo -DCMAKE_BUILD_TYPE=debug
+	fi
+	echo -DCMAKE_C_COMPILER=$(type -P $(tc-getCC))
+	echo -DCMAKE_CXX_COMPILER=$(type -P $(tc-getCXX))
+	echo -DCMAKE_INSTALL_PREFIX=${PREFIX:-/usr}
+	echo -DLIB_SUFFIX=${tmp_libdir/lib}
+	[[ -n ${CMAKE_NO_COLOR} ]] && echo -DCMAKE_COLOR_MAKEFILE=OFF
+}
+
+# @FUNCTION: cmake-utils_src_make
+# @DESCRIPTION:
+# Function for building the package. Automatically detects the build type.
+cmake-utils_src_make() {
+	debug-print-function $FUNCNAME $*
+
+	# At this point we can automatically check if it's an out-of-source or an
+	# in-source build
+	if [[ -d ${WORKDIR}/${PN}_build ]]; then
+		cd "${WORKDIR}"/${PN}_build;
+	fi
+	if ! [[ -z ${CMAKE_COMPILER_VERBOSE} ]]; then
+		emake VERBOSE=1 || die "Make failed!";
+	else
+		emake || die "Make failed!";
+	fi
+}
+
+# @FUNCTION: cmake-utils_src_install
+# @DESCRIPTION:
+# Function for installing the package. Automatically detects the build type.
+cmake-utils_src_install() {
+	debug-print-function $FUNCNAME $*
+
+	# At this point we can automatically check if it's an out-of-source or an
+	# in-source build
+	if [[ -d  ${WORKDIR}/${PN}_build ]]; then
+		cd "${WORKDIR}"/${PN}_build;
+	fi
+	emake install DESTDIR="${D}" || die "Make install failed"
+}
+
+# @FUNCTION: cmake-utils_src_test
+# @DESCRIPTION:
+# Function for testing the package. Automatically detects the build type.
+cmake-utils_src_test() {
+	debug-print-function $FUNCNAME $*
+
+	# At this point we can automatically check if it's an out-of-source or an
+	# in-source build
+	if [[ -d ${WORKDIR}/${PN}_build ]]; then
+		cd "${WORKDIR}"/${PN}_build
+	fi
+	# Standard implementation of src_test
+	if emake -j1 check -n &> /dev/null; then
+		einfo ">>> Test phase [check]: ${CATEGORY}/${PF}"
+		if ! emake -j1 check; then
+			die "Make check failed. See above for details."
+		fi
+	elif emake -j1 test -n &> /dev/null; then
+		einfo ">>> Test phase [test]: ${CATEGORY}/${PF}"
+		if ! emake -j1 test; then
+			die "Make test failed. See above for details."
+		fi
+	else
+		einfo ">>> Test phase [none]: ${CATEGORY}/${PF}"
+	fi
+}
