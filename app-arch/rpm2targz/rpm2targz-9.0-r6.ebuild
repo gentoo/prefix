@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/rpm2targz-9.0-r6.ebuild,v 1.6 2007/09/28 12:03:40 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/rpm2targz-9.0-r6.ebuild,v 1.7 2007/11/03 19:43:33 grobian Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz"
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
-IUSE=""
+IUSE="userland_GNU"
 
 # NOTE: rpm2targz autodetects rpm2cpio at runtime, and uses it if available,
 #       so we don't explicitly set it as a dependency.
