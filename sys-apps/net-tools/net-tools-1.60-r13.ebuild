@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/net-tools-1.60-r13.ebuild,v 1.10 2007/10/09 14:52:43 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/net-tools-1.60-r13.ebuild,v 1.11 2007/11/01 15:43:39 solar Exp $
 
 EAPI="prefix"
 
@@ -40,6 +40,10 @@ src_unpack() {
 		-e "/^COPTS =/s:=:=${CFLAGS}:" \
 		-e "/^LOPTS =/s:=:=${LDFLAGS}:" \
 		Makefile || die "sed FLAGS Makefile failed"
+
+	sed -i \
+		-e s/CFLAGS=/CFLAGS?=/ ethercard-diag/pub/diag/Makefile \
+		|| die "I like turtles"
 
 	if ! use nls ; then
 		sed -i \
