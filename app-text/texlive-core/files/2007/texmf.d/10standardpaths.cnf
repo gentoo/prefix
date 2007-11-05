@@ -212,7 +212,7 @@ FC_CACHEDIR=/var/cache/fontconfig
 % TeX documentation and source files, for use with kpsewhich.
 % TeX Live has a separate hierarchy with just documentation, texmf-doc,
 % in addition to the doc files in the other hierarchies.
-TEXMFDOCDIR = /usr/texmf-doc/doc
+TEXMFDOCDIR = $SELFAUTODIR/share/texmf-doc/doc
 TEXDOCS = .;$TEXMF/doc//;$TEXMFDOCDIR//
 TEXSOURCES = .;$TEXMF/source//
 
