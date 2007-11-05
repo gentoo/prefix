@@ -12,7 +12,7 @@ SRC_URI="http://kanji.zinbun.kyoto-u.ac.jp/~tomo/lemi/dist/semi/semi-1.14-for-fl
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
 DEPEND=">=app-emacs/apel-10.6
@@ -27,8 +27,8 @@ src_unpack() {
 
 src_compile() {
 	emake PREFIX="${ED}"/usr \
-		LISPDIR="${D}/${SITELISP}" \
-		VERSION_SPECIFIC_LISPDIR="${D}/${SITELISP}" || die "emake failed"
+		LISPDIR="${ED}/${SITELISP}" \
+		VERSION_SPECIFIC_LISPDIR="${ED}/${SITELISP}" || die "emake failed"
 
 	emacs -batch -q --no-site-file -l "${FILESDIR}/comp.el" \
 		|| die "compile info failed"
@@ -36,8 +36,8 @@ src_compile() {
 
 src_install() {
 	emake PREFIX="${ED}/usr" \
-		LISPDIR="${D}/${SITELISP}" \
-		VERSION_SPECIFIC_LISPDIR="${D}/${SITELISP}" install || die "emake install failed"
+		LISPDIR="${ED}/${SITELISP}" \
+		VERSION_SPECIFIC_LISPDIR="${ED}/${SITELISP}" install || die "emake install failed"
 
 	elisp-site-file-install "${FILESDIR}/${SITEFILE}"
 
