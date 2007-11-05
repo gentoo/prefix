@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/speex/speex-1.2_beta2.ebuild,v 1.2 2007/08/27 15:51:24 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/speex/speex-1.2_beta2.ebuild,v 1.4 2007/11/04 03:55:59 pylon Exp $
 
 EAPI="prefix"
 
