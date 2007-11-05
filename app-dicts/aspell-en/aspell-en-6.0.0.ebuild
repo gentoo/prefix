@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-dicts/aspell-en/aspell-en-6.0.0.ebuild,v 1.17 2007/08/25 11:55:30 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-dicts/aspell-en/aspell-en-6.0.0.ebuild,v 1.18 2007/11/03 13:01:27 uberlord Exp $
 
 EAPI="prefix"
 
