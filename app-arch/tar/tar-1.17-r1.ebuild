@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.17-r1.ebuild,v 1.1 2007/08/22 09:09:15 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.17-r1.ebuild,v 1.2 2007/11/03 18:19:02 grobian Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ SRC_URI="http://ftp.gnu.org/gnu/tar/${P}.tar.bz2
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
-IUSE="nls static userland_GNU prefix"
+IUSE="nls static userland_GNU"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
