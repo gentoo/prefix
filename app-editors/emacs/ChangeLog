@@ -1,6 +1,30 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.195 2007/10/31 16:49:28 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.202 2007/11/03 22:27:09 corsair Exp $
+
+  03 Nov 2007; Markus Rothe <corsair@gentoo.org> emacs-22.1-r2.ebuild:
+  Stable on ppc64; bug #197958
+
+  03 Nov 2007; Dawid Węgliński <cla@gentoo.org> emacs-22.1-r2.ebuild:
+  Stable on x86 (bug #197958)
+
+  03 Nov 2007; Raúl Porcel <armin76@gentoo.org> emacs-22.1-r2.ebuild:
+  alpha/ia64/sparc stable wrt security #197958
+
+  03 Nov 2007; Ulrich Mueller <ulm@gentoo.org> emacs-18.59-r4.ebuild:
+  Use epatch for bulk patching.
+
+*emacs-22.1-r2 (03 Nov 2007)
+
+  03 Nov 2007; Ulrich Mueller <ulm@gentoo.org>
+  +files/emacs-22.1-hack-local-variables.patch, +emacs-22.1-r2.ebuild:
+  Security fix for function hack-local-variables, CVE-2007-5795, bug #197958.
+
+  02 Nov 2007; Ulrich Mueller <ulm@gentoo.org> emacs-22.1-r1.ebuild:
+  Partial sync of emacs and emacs-cvs ebuilds.
+
+  01 Nov 2007; Raúl Porcel <armin76@gentoo.org> emacs-21.4-r13.ebuild:
+  alpha/ia64 stable wrt #197313
 
   31 Oct 2007; Jeroen Roovers <jer@gentoo.org> emacs-21.4-r13.ebuild:
   Stable for HPPA (bug #197313).

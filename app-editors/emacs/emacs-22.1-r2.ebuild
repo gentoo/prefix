@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r1.ebuild,v 1.16 2007/11/02 09:37:33 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r2.ebuild,v 1.4 2007/11/03 22:27:09 corsair Exp $
 
 EAPI="prefix"
 
@@ -71,6 +71,7 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-freebsd-sparc.patch"
 	epatch "${FILESDIR}/${P}-oldxmenu-qa.patch"
 	epatch "${FILESDIR}/${P}-backup-buffer.patch"
+	epatch "${FILESDIR}/${P}-hack-local-variables.patch"
 	# ALSA is detected and used even if not requested by the USE=alsa flag.
 	# So remove the automagic check
 	use alsa || epatch "${FILESDIR}/${P}-disable_alsa_detection.patch"
