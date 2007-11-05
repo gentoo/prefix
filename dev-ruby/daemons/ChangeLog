@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/daemons
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/daemons/ChangeLog,v 1.27 2007/07/29 19:07:46 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/daemons/ChangeLog,v 1.28 2007/11/03 08:31:41 drac Exp $
+
+  03 Nov 2007; Samuli Suominen <drac@gentoo.org> daemons-0.4.2.ebuild:
+  Keyword ~amd64 wrt #185492.
 
   29 Jul 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   daemons-1.0.5.ebuild:
