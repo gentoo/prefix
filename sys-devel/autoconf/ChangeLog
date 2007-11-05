@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/autoconf
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.109 2007/09/22 20:15:54 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.110 2007/11/02 06:30:50 vapier Exp $
+
+*autoconf-9999 (02 Nov 2007)
+
+  02 Nov 2007; Mike Frysinger <vapier@gentoo.org> +autoconf-9999.ebuild:
+  Add support for git.
 
   22 Sep 2007; Wulf C. Krueger <philantrop@gentoo.org>
   autoconf-2.61-r1.ebuild:
