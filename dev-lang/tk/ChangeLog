@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/tk
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.97 2007/09/23 01:19:14 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.98 2007/11/03 21:29:26 jokey Exp $
+
+*tk-8.5b (03 Nov 2007)
+
+  03 Nov 2007; Markus Ullmann <jokey@gentoo.org> +tk-8.5b.ebuild:
+  Version bump, dropping keywords as status wrt other packages is untested
 
   23 Sep 2007; Ferris McCormick <fmccor@gentoo.org> tk-8.4.15-r1.ebuild:
   Sparc stable --- security Bug #192539 --- has been running fine.
