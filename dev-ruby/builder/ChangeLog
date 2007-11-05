@@ -1,6 +1,16 @@
 # ChangeLog for dev-ruby/builder
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/builder/ChangeLog,v 1.21 2007/07/25 16:19:15 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/builder/ChangeLog,v 1.23 2007/11/04 07:42:57 graaff Exp $
+
+*builder-2.1.2 (04 Nov 2007)
+
+  04 Nov 2007; Hans de Graaff <graaff@gentoo.org> +builder-2.1.2.ebuild:
+  Version bump.
+  
+  * Fixed bug where private methods in kernel could leak through using tag!().
+
+  03 Nov 2007; Raúl Porcel <armin76@gentoo.org> builder-2.1.1.ebuild:
+  alpha stable
 
   25 Jul 2007; Raúl Porcel <armin76@gentoo.org> builder-2.1.1.ebuild:
   Add ~alpha
