@@ -1,6 +1,15 @@
 # ChangeLog for dev-lang/ghc
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.138 2007/10/23 16:37:50 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.140 2007/11/05 10:27:49 dcoutts Exp $
+
+  05 Nov 2007; Duncan Coutts <dcoutts@gentoo.org> ghc-6.2.2.ebuild,
+  ghc-6.4.2.ebuild:
+  Use new unified ghc ebuild for 6.2.2 and 6.4.2. This merges the
+  functionality of ghc-bin into the ghc ebuild and eliminates virtual/ghc.
+  To get the binary version emerge with the "binary" USE flag.
+
+  05 Nov 2007; Duncan Coutts <dcoutts@gentoo.org> ghc-6.6.1.ebuild:
+  Add sparc and ppc binaries. Also fix some var quoting QA warnings.
 
   23 Oct 2007; Christian Faulhammer <opfer@gentoo.org> ghc-6.6.1.ebuild:
   stable x86, bug 196616
