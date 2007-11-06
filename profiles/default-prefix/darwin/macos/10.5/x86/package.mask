@@ -6,3 +6,7 @@
 # tar, cpio fail to link
 >=app-arch/tar-1.17
 >=app-arch/cpio-2.8
+
+# Elias Pipping <pipping@gentoo.org> (06 Nov 2007)
+# gcc-apple 4.2.1 fails to compile odcctools
+=sys-devel/gcc-apple-4.2.1*
