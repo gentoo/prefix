@@ -91,7 +91,7 @@ src_unpack() {
 
 	# needs testing on architectures other than darwin9
 	if [[ ${CHOST} == *-darwin9 ]]; then
-		epatch "${FILESDIR}"/${P}-pwcopy.patch
+		epatch "${FILESDIR}"/${P}-darwin9.patch
 	fi
 
 	eautoreconf
