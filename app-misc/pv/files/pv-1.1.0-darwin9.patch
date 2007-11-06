@@ -1,0 +1,112 @@
+--- src/pv/cursor.c
++++ src/pv/cursor.c
+@@ -13,9 +13,6 @@
+  * Copyright 2007 Andrew Wood, distributed under the Artistic License 2.0.
+  */
+ 
+-#ifdef HAVE_CONFIG_H
+-#include "config.h"
+-#endif
+ #include "options.h"
+ #include "pv.h"
+ 
+@@ -28,6 +25,10 @@
+ #include <sys/stat.h>
+ #include <fcntl.h>
+ 
++#ifdef HAVE_CONFIG_H
++#include "config.h"
++#endif
++
+ #ifdef HAVE_IPC
+ #include <sys/types.h>
+ #include <sys/ipc.h>
+--- src/pv/file.c
++++ src/pv/file.c
+@@ -5,9 +5,6 @@
+  */
+ 
+ #include <stdio.h>
+-#ifdef HAVE_CONFIG_H
+-#include "config.h"
+-#endif
+ #include "options.h"
+ 
+ #include <stdlib.h>
+@@ -19,6 +16,9 @@
+ #include <unistd.h>
+ #include <fcntl.h>
+ 
++#ifdef HAVE_CONFIG_H
++#include "config.h"
++#endif
+ 
+ /*
+  * Try to work out the total size of all data by adding up the sizes of all
+--- src/pv/loop.c
++++ src/pv/loop.c
+@@ -5,9 +5,6 @@
+  * Copyright 2007 Andrew Wood, distributed under the Artistic License 2.0.
+  */
+ 
+-#ifdef HAVE_CONFIG_H
+-#include "config.h"
+-#endif
+ #include "options.h"
+ #include "pv.h"
+ 
+@@ -19,6 +16,10 @@
+ #include <sys/stat.h>
+ #include <sys/time.h>
+ 
++#ifdef HAVE_CONFIG_H
++#include "config.h"
++#endif
++
+ #define RATE_GRANULARITY	100000	    /* usec between -L rate chunks */
+ 
+ extern struct timeval pv_sig_toffset;
+--- src/pv/signal.c
++++ src/pv/signal.c
+@@ -4,9 +4,6 @@
+  * Copyright 2007 Andrew Wood, distributed under the Artistic License 2.0.
+  */
+ 
+-#ifdef HAVE_CONFIG_H
+-#include "config.h"
+-#endif
+ #include "pv.h"
+ 
+ #include <signal.h>
+@@ -18,6 +15,9 @@
+ #include <fcntl.h>
+ #include <sys/time.h>
+ 
++#ifdef HAVE_CONFIG_H
++#include "config.h"
++#endif
+ 
+ static int pv__sig_old_stderr;		 /* see pv__sig_ttou() */
+ static struct timeval pv__sig_tstp_time; /* see pv__sig_tstp() / __cont() */
+--- src/pv/transfer.c
++++ src/pv/transfer.c
+@@ -4,9 +4,6 @@
+  * Copyright 2007 Andrew Wood, distributed under the Artistic License 2.0.
+  */
+ 
+-#ifdef HAVE_CONFIG_H
+-#include "config.h"
+-#endif
+ #include "options.h"
+ 
+ #define BUFFER_SIZE	409600
+@@ -27,6 +24,9 @@
+ #include <fcntl.h>
+ #include <signal.h>
+ 
++#ifdef HAVE_CONFIG_H
++#include "config.h"
++#endif
+ 
+ static unsigned long long pv__bufsize = BUFFER_SIZE;
+ 

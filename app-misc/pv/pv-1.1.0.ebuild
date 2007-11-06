@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit eutils
+
 DESCRIPTION="Pipe Viewer: a tool for monitoring the progress of data through a pipe"
 HOMEPAGE="http://www.ivarch.com/programs/pv.shtml"
 SRC_URI="mirror://sourceforge/pipeviewer/${P}.tar.gz"
@@ -12,6 +14,12 @@ LICENSE="Artistic-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="debug nls"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-darwin9.patch
+}
 
 src_compile() {
 	econf \
