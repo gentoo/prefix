@@ -16,7 +16,7 @@ SRC_URI="mirror://sourceforge/monetdb/MonetDB4-${M4_PV}.tar.gz
 
 LICENSE="MonetDBPL-1.1 PathfinderPL-1.1"
 SLOT="4"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~x86 ~x86-solaris"
 IUSE="java boehmgc"
 
 S=${WORKDIR}
