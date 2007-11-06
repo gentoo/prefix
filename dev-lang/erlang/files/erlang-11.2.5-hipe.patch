@@ -1,0 +1,12 @@
+Fix duplicate entry in makefile
+
+--- otp_src_R11B-5.orig/lib/hipe/regalloc/Makefile	2007-09-12 12:45:03.000000000 -0600
++++ otp_src_R11B-5/lib/hipe/regalloc/Makefile	2007-09-12 12:46:01.000000000 -0600
+@@ -43,7 +43,6 @@
+ 	  hipe_temp_map \
+ 	  hipe_optimistic_regalloc \
+ 	  hipe_coalescing_regalloc \
+-	  hipe_optimistic_regalloc \
+ 	  hipe_graph_coloring_regalloc \
+ 	  hipe_regalloc_loop \
+ 	  hipe_ls_regalloc \

@@ -1,0 +1,11 @@
+--- Makefile.in
++++ Makefile.in
+@@ -85,7 +85,7 @@
+ MAKE    = @MAKE_PROG@
+ 
+ # This should be set to the target "arch-vendor-os"
+-TARGET  = @TARGET@
++export TARGET  = @TARGET@
+ 
+ # A BSD compatible install program
+ INSTALL         = @INSTALL@
