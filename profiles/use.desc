@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.369 2007/10/20 14:26:00 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.370 2007/11/02 14:31:26 drac Exp $
 
 # Keep them sorted
 
@@ -205,6 +205,7 @@ mmap - Adds mmap (memory map) support
 mmx - Adds support for optimizations for Pentium MMX and Athlon class processors
 mng - Adds support for libmng (MNG images)
 mnogosearch - Adds support for the mnoGoSearch search engine
+modplug - Adds libmodplug support
 mono - Build Mono bindings to support dotnet type stuff
 motif - Adds motif support (x11-libs/openmotif x11-libs/lesstif)
 mozilla - Adds support for the Mozilla web-browser

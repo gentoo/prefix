@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3098 2007/10/21 12:31:38 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3123 2007/11/05 18:59:18 tgurr Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -18,6 +18,7 @@ app-admin/conky:audacious - enable monitoring of audio tracks that are playing (
 app-admin/conky:bmpx - enable monitoring of audio tracks that are playing (media-sound/bmpx)
 app-admin/conky:hddtemp - enable monitoring of hdd temperature (app-admin/hddtemp)
 app-admin/conky:mpd - enable monitoring mpd controlled music  (media-sound/mpd)
+app-admin/conky:rss - enable the fetching of rss feeds into conky
 app-admin/diradm:automount - Support for automount data in LDAP
 app-admin/diradm:irixpasswd - Support for storing separate IRIX passwords
 app-admin/gkrellm:hddtemp - enable monitoring of hdd temperature (app-admin/hddtemp)
@@ -60,6 +61,7 @@ app-cdr/cdrkit:hfs - Provide building of HFS (Apple) CD-images
 app-cdr/disc-cover:cdrom - Enable audio CD support. This is not needed to make www-apps/disc-cover work.
 app-cdr/k3b:css - Enables ripping of encrypted dvds
 app-cdr/k3b:emovix - Enable burning support for eMoviX images
+app-cdr/mybashburn:normalize - Add support for normalizing audio file volume levels
 app-cdr/pxlinux:gnuplot - enable gnuplot support
 app-cdr/serpentine:muine - Enable Muine support
 app-crypt/ccid:nousb - Disable USB support via pcsc-lite
@@ -100,7 +102,6 @@ app-editors/nano:justify - Toggle the justify option ...
 app-editors/nvu:moznoxft - placeholder until mozilla eclass is modified for nvu
 app-editors/tea:enchant - Enable spell checking using enchant
 app-editors/tea:hacking - Enable hacking support...
-app-editors/tea:sounds - Enable sound support
 app-editors/vim:vim-pager - Install vimpager and vimmanpager links
 app-editors/vim:vim-with-x - Link console vim against X11 libraries to enable title and clipboard features in xterm
 app-editors/xemacs:athena - Chooses the MIT Athena widget set
@@ -138,14 +139,10 @@ app-emulation/uae:sdl-sound - Use libsdl for audio output
 app-emulation/uae:ui - Build User Interface (could be gtk or ncurses based, depending on sdl, dga, svga, and aalib USE flags)
 app-emulation/vice:resid - Enable support for ReSID
 app-emulation/virtualbox-bin:additions - Install Guest System Tools ISO
-app-emulation/virtualbox-bin:nowrapper - Disable the VirtualBox XPCom Server autostart wrapper
 app-emulation/virtualbox-bin:sdk - Enable building of SDK
 app-emulation/virtualbox:additions - Install Guest System Tools ISO
 app-emulation/virtualbox:alsa - Enable support for ALSA instead of OSS
-app-emulation/virtualbox:nowrapper - Disable the VirtualBox XPCom Server autostart wrapper
 app-emulation/virtualbox:sdk - Enable building of SDK
-app-emulation/virtualbox:vboxbfe - Install simple SDL frontend useful for debugging purposes
-app-emulation/virtualbox:vditool - Install the Virtual Disk Image Manager vditool
 app-emulation/xen-tools:custom-cflags - Use CFLAGS from /etc/make.conf rather than the default Xen CFLAGS (not supported)
 app-emulation/xen-tools:hvm - Enable support for hardware based virtualization (VT-x, AMD-v)
 app-emulation/xen-tools:ioemu - Enable support for emulated io devices including video via VNC for domainUs
@@ -242,7 +239,6 @@ app-office/kmymoney2:hbci - Adds HBCI online banking support
 app-office/ledger:gnuplot - Enable gnuplot support
 app-office/mozilla-sunbird:moznopango - Disable pango during runtime
 app-office/openoffice:binfilter - Enable support for legacy StarOffice 5.x and earlier file formats
-app-office/openoffice:branding - Enable Gentoo branded splash screen
 app-office/openoffice:odk - Build the Office Development Kit
 app-office/openoffice:sound - Enable sound support through portaudio and libsndfile
 app-office/openoffice:webdav - Enable webdav support
@@ -435,6 +431,7 @@ dev-lang/ghc:binary - Install the binary version directly, rather than using it 
 dev-lang/ghc:ghcbootstrap - Internal: Bootstrap GHC from an existing GHC installation.
 dev-lang/icon:iplsrc - install the icon programming library source
 dev-lang/ocaml:latex - Add ocamldoc support for latex
+dev-lang/ocaml:xemacs - Add support for XEmacs
 dev-lang/perl:ithreads - Enable Perl threads, has some compatibility problems
 dev-lang/perl:perlsuid - Enable Perl SUID install. Has some risks associated.
 dev-lang/php:cgi - Enable CGI SAPI
@@ -454,7 +451,6 @@ dev-lang/php:ming - Adds support for creating SWF files using Ming
 dev-lang/php:oci8-instant-client - Use dev-db/oracle-instantclient-basic as Oracle provider instead of requiring a full Oracle server install
 dev-lang/php:overload - Enable the overload extension
 dev-lang/php:pdo - Enable the bundled PDO extensions
-dev-lang/php:pdo-external - Use the external pecl-pdo extension rather than the bundled one
 dev-lang/php:reflection - Enable the reflection extension (Reflection API)
 dev-lang/php:suhosin - Add Suhosin support (patch and extension from http://www.suhosin.org/)
 dev-lang/php:xmlreader - Enable XMLReader support
@@ -510,6 +506,7 @@ dev-libs/opencryptoki:tpmtok - offer support for TPM token
 dev-libs/openobex:irda - enable IrDA support
 dev-libs/opensc:openct - build using dev-libs/openct compatibility
 dev-libs/opensc:pcsc-lite - build with pcsc-lite
+dev-libs/pkcs11-helper:nss - Enable NSS crypto engine
 dev-libs/pwlib:v4l2 - Enable video4linux2 support
 dev-libs/qsa:ide - enable the qsa ide
 dev-libs/wx-xmingw:gdb - Enable gdb debugging
@@ -524,6 +521,7 @@ dev-lisp/abcl:jad - Enable support for disassembling compiled code using JAD
 dev-lisp/cl-araneida:standalone - tired of waiting for the lisp team to add this
 dev-lisp/cl-tbnl:standalone - use TBNL without a front-end (ie. no Apache dependency)
 dev-lisp/clisp:new-clx - Build CLISP with support for the NEW-CLX module which is a C binding to the Xorg libraries
+dev-lisp/clisp:svm - Build CLISP with support for the Support Vector Machine module
 dev-lisp/cmucl:nosource - don't include source code for CMUCL in installation
 dev-lisp/ecls:c++ - Build ECL with a C++ compiler
 dev-lisp/gcl-cvs:custreloc - build a GCL which uses custom GCL code for linking
@@ -537,6 +535,7 @@ dev-lisp/sbcl:cobalt - mips only: use mipsel binary instead of mips big endian b
 dev-lisp/sbcl:ldb - include support for the SBCL low level debugger
 dev-ml/lablgtk:glade - Enable libglade bindings compilation.
 dev-ml/lablgtk:gnomecanvas - Enable libgnomecanvas bindings compilation.
+dev-ml/lablgtk:sourceview - Enable GtkSourceView support
 dev-ml/ocamlnet:httpd - Enables nethttpd web server component 
 dev-perl/Eidetic:auth - Enables Apache-AuthTicket based cookie authentication
 dev-perl/GD:animgif - Enable animated gif support
@@ -755,7 +754,6 @@ gnome-extra/sensors-applet:hddtemp - Enable support the hddtemp daemon
 gnome-extra/sensors-applet:nvidia - Enable support for nvidia sensors
 gnome-extra/yelp:beagle - Enable beagle support
 gnome-extra/zim:trayicon - Enable support for trayicon
-gnustep-apps/cynthiune:modplug - Build with modplug support
 gnustep-apps/cynthiune:timidity - Build with Timidity++ (MIDI sequencer) support
 gnustep-apps/gnumail:emoticon - Enable extra Emoticon Bundle to see smiley's in e-mail messages.
 gnustep-base/gnustep-back-art:xim - Enable X11 XiM input method
@@ -988,7 +986,6 @@ media-libs/urt:gs - Add support for postscript
 media-libs/win32codecs:real - Installs the real video codecs
 media-libs/x264-svn:mp4 - Enables mp4 encoding support
 media-libs/xine-lib:dxr3 - Support for DXR3 mpeg accelleration cards
-media-libs/xine-lib:modplug - Build with modplug support
 media-libs/xine-lib:real - Adds real video support
 media-libs/xine-lib:vidix - Support for vidix video output
 media-libs/xine-lib:wavpack - Build with WavPack support
@@ -998,7 +995,7 @@ media-plugins/audacious-plugins-ugly:cube - Build with CUBE input plugin (suppor
 media-plugins/audacious-plugins-ugly:iris - Build with Iris 3D visual plugin
 media-plugins/audacious-plugins:adplug - Build with AdPlug (Adlib sound card emulation) support
 media-plugins/audacious-plugins:chardet - Try to handle non-UTF8 chinese/japanese/korean ID3 tags
-media-plugins/audacious-plugins:modplug - Build with modplug support
+media-plugins/audacious-plugins:mtp - Build with Media Transfer Protocol music upload support
 media-plugins/audacious-plugins:sid - Build with SID (Commodore 64 Audio) support
 media-plugins/audacious-plugins:timidity - Build with Timidity++ (MIDI sequencer) support
 media-plugins/audacious-plugins:tta - Build with TTA (True-Audio lossless) support
@@ -1030,17 +1027,14 @@ media-sound/amarok:njb - Enable support for NJB (Creative) devices access throug
 media-sound/amarok:real - Build with real/helix player support
 media-sound/amarok:visualization - Support visualization plugins through media-libs/libvisual
 media-sound/audacious:chardet - Try to handle non-UTF8 chinese/japanese/korean ID3 tags
-media-sound/audacious:modplug - Build with modplug support
 media-sound/audacious:sid - Build with SID (Commodore 64 Audio) support
 media-sound/audacious:timidity - Build with Timidity++ (MIDI sequencer) support
 media-sound/audacious:wma - Build with WMA (Windows Media Audio) support
 media-sound/banshee:boo - Use external Boo instead of the bundled one
 media-sound/banshee:daap - Build with Daap support
 media-sound/banshee:njb - Build with njb audio player support
-media-sound/bmpx:modplug - Build with modplug support
 media-sound/bmpx:networkmanager - Enable networkmanager support
 media-sound/bmpx:sid - Build with SID (Commodore 64 Audio) support
-media-sound/cmus:modplug - Build with modplug support
 media-sound/cmus:mp4 - enable mp4 decoding
 media-sound/cmus:pidgin - install support script for net-im/pidgin
 media-sound/cmus:wavpack - add support for wavpack
@@ -1055,7 +1049,6 @@ media-sound/ezstream:taglib - Enable tagging support with taglib
 media-sound/freewheeling:fluidsynth - compile with support for fluidsynth
 media-sound/gnusound:cpudetection - Enables runtime cpu detection
 media-sound/herrie:http - Enable http streaming
-media-sound/herrie:modplug - Build with modplug support
 media-sound/herrie:xspf - Enable support for reading and saving XSPF playlists
 media-sound/jack-audio-connection-kit:coreaudio - Build the CoreAudio driver on Mac OS X systems
 media-sound/jack-audio-connection-kit:cpudetection - Enables runtime cpudetection
@@ -1067,7 +1060,6 @@ media-sound/lastfm-ripper:amazon - Enable advanced tagging using amazon webservi
 media-sound/lastfm-ripper:tagwriting - Enable MP3 tagging
 media-sound/lilypond:vim - Enable installation of lilypond vim plugins
 media-sound/listen:libsexy - Enable libsexy support
-media-sound/moc:modplug - Add support for modplug
 media-sound/moc:sid - Build with SID (Commodore 64 Audio) support
 media-sound/moc:timidity - Add support for timidity
 media-sound/moc:wavpack - Add support for wavpack
@@ -1188,7 +1180,8 @@ media-video/linux-uvc:isight - Apply patch to work _only_ with the Apple iSight
 media-video/lives:libvisual - Enable libvisual support
 media-video/mjpegtools:yv12 - Enables support for the YV12 pixel format
 media-video/mkvtoolnix:lzo - Enables support for lzo compression
-media-video/mmsv2:dxr3 - Support for DXR3 mpeg acceleration cards
+media-video/mmsv2:dxr3 - Enable support for RealMagic Hollywood+/Creative DXR3 cards
+media-video/mmsv2:radio - Enable support for Internet Radio and BTTV Hardware Tuners
 media-video/motiontrack:multiprocess - Enables multi-process support (SMP/cluster) for motiontrack programs
 media-video/mpeg4ip:id3 - Support ID3 in the player
 media-video/mpeg4ip:mp4live - Build the live streaming/encoding software
@@ -1294,7 +1287,6 @@ media-video/vlc:httpd - Enables a web based interface for vlc.
 media-video/vlc:id3tag - Enables id3tag metadata reader plugin.
 media-video/vlc:libgcrypt - Enables libgcrypt support (depends on gnutls).
 media-video/vlc:live - Enables LIVE.com support.
-media-video/vlc:mod - Enables Mod demux support.
 media-video/vlc:optimisememory - Enable optimisation for memory rather than performance.
 media-video/vlc:pvr - Enables PVR cards access module.
 media-video/vlc:rtsp - Enables real audio and RTSP modules.
@@ -1422,6 +1414,7 @@ net-dns/pdns:opendbx - Enable the OpenDBX backend
 net-dns/pdns:tdb - Enable the Trivial Database (xdb) backend
 net-dns/pdnsd:isdn - Enable ISDN features
 net-dns/pdnsd:underscores - Enable support for domain names containing underscores
+net-dns/pdnsd:urandom - Use /dev/urandom instead of /dev/random
 net-firewall/ipsec-tools:hybrid - Makes available both mode-cfg and xauth support
 net-firewall/ipsec-tools:idea - Enable support for the patented IDEA algorithm
 net-firewall/ipsec-tools:nat - Enable NAT-Traversal
@@ -1462,13 +1455,13 @@ net-ftp/vsftpd:logrotate - Use logrotate for rotating logs
 net-im/bitlbee:msnextras - Enables extra MSN patches not supported by upstream
 net-im/bitlbee:nss - Use NSS for SSL support in MSN and Jabber.
 net-im/bitlbee:openssl - Use OpenSSL for SSL support in MSN and Jabber.
-net-im/centericq:irc - Enable support for the IRC protocol
-net-im/centericq:lj - Enable support for the LiveJournal weblog system
-net-im/centericq:rss - Enable support for RSS/RDF feeds
 net-im/centerim:gadu - Enable support for the Gadu-Gadu protocol
 net-im/centerim:irc - Enable support for the IRC protocol
 net-im/centerim:lj - Enable support for the LiveJournal weblog system
+net-im/centerim:otr - Enable encrypted conversations
 net-im/centerim:rss - Enable support for RSS/RDF feeds
+net-im/climm:gloox - Enable support for Jabber/XMPP using gloox
+net-im/climm:otr - Enable encrypted conversations
 net-im/ejabberd:mod_irc - Irc support in ejabberd
 net-im/ejabberd:mod_muc - Multi user chat support in ejabberd
 net-im/ejabberd:mod_pubsub - Pubsub support in ejabberd
@@ -1477,13 +1470,6 @@ net-im/ejabberd:statsdx - Collect (much) more detailed statistics
 net-im/ejabberd:web - Web support in ejabberd
 net-im/ekg2:gsm - Enable gsm plugin
 net-im/ekg2:nogg - Disable Gadu-Gadu plugin
-net-im/gaim:bonjour - Enable bonjour support
-net-im/gaim:console - Enable gaim-text
-net-im/gaim:custom-cflags - Disables stripping of "unsafe C[XX]FLAGS"
-net-im/gaim:gadu - Enable Gadu Gadu protocol support.
-net-im/gaim:groupwise - Enable Novell Groupwise protocol support.
-net-im/gaim:meanwhile - Enable meanwhile support for Sametime protocol.
-net-im/gaim:qq - Enable QQ protocol support.
 net-im/gaim:silc - Enable SILC protocol support
 net-im/gajim:idle - Enable idle module
 net-im/gajim:srv - SRV capabilities
@@ -1715,13 +1701,13 @@ net-p2p/mldonkey:magic - enable use of libmagic
 net-p2p/museek+:qsa - Enable QSA scripting for museeq
 net-p2p/museek+:trayicon - Enable support for trayicon
 net-p2p/transmission:daemon - Enable data collection daemon
-net-print/cups:bonjour - Enable bonjour support
 net-print/hplip:fax - Enable fax support
 net-print/hplip:parport - Enable parallel port support
 net-print/omni:epson - include the epson drivers
 net-print/pkpgcounter:psyco - psyco python accelerator
 net-proxy/dansguardian:kaspersky - Adds support for Kaspersky AntiVirus software
 net-proxy/dansguardian:ntlm - Enable support for the NTLM auth plugin
+net-proxy/squid:icap-client - Adds ICAP client support
 net-proxy/squid:ipf-transparent - Adds transparent proxy support for systems using IP-Filter (only for *bsd)
 net-proxy/squid:logrotate - Use logrotate for rotating logs
 net-proxy/squid:pf-transparent - Adds transparent proxy support for systems using PF (only for *bsd)
@@ -1894,6 +1880,7 @@ sys-apps/paludis:inquisitio - Enable inquisitio, the search client
 sys-apps/paludis:pink - Use a less boring colourscheme than the default
 sys-apps/paludis:portage - Enable experimental support for Portage configuration formats
 sys-apps/paludis:qa - Enable QA tools.
+sys-apps/paludis:visibility - Enable visibility support (g++ >=4.1)
 sys-apps/paludis:zsh-completion - Enable zsh completion support
 sys-apps/parted:device-mapper - Enable device-mapper support in parted
 sys-apps/pciutils:network-cron - Monthly cronjob the update-pciids script
@@ -1912,6 +1899,7 @@ sys-apps/shadow:nousuid - When nousuid is enabled only su from the shadow packag
 sys-apps/suspend2-userui:fbsplash - Add support for framebuffer splash
 sys-apps/tcng:tcsim - enable traffic simulator
 sys-apps/tinylogin:make-symlinks - Create all the appropriate symlinks in /bin and /sbin
+sys-apps/tuxonice-userui:fbsplash - Add support for framebuffer splash
 sys-apps/usbutils:network-cron - Monthly cronjob the update-usbids script
 sys-apps/util-linux:old-crypt - build support for the older cryptoapi that earlier util-linux's included
 sys-auth/pam_mysql:openssl - Use OpenSSL for md5 and sha1 support.
@@ -1974,6 +1962,7 @@ sys-devel/kgcc64:multislot - Allow for SLOTs to include minor version (3.3.4 ins
 sys-devel/libperl:ithreads - Enable Perl threads, has some compatibility problems
 sys-freebsd/freebsd-lib:atm - Enable Asynchronous Transfer Mode protocol support
 sys-freebsd/freebsd-lib:gpib - Enable gpib support (TODO improve description)
+sys-freebsd/freebsd-lib:hesiod - Enable hesiod support
 sys-freebsd/freebsd-rescue:atm - Enable Asynchronous Transfer Mode protocol support
 sys-freebsd/freebsd-sbin:atm - Enable Asynchronous Transfer Mode protocol support
 sys-freebsd/freebsd-sbin:ipfilter - Enable ipfilter firewall support

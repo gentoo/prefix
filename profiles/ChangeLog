@@ -1,6 +1,138 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.751 2007/10/21 16:27:23 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.789 2007/11/05 21:50:55 eva Exp $
+
+  05 Nov 2007; Gilles Dartiguelongue <eva@gentoo.org>
+  default-bsd/package.use.mask:
+  acl and attr not keyworded
+
+  05 Nov 2007; Timo Gurr <tgurr@gentoo.org> package.mask:
+  Remove package.mask for cups 1.3.
+
+  05 Nov 2007; Timo Gurr <tgurr@gentoo.org> use.local.desc:
+  Drop cups local bonjour USE flag in favor of avahi global USE flag.
+
+  05 Nov 2007; Peter Volkov <pva@gentoo.org> package.mask:
+  Unmasking tcpreplay as it's no more beta.
+
+  05 Nov 2007; Piotr Jaroszyński <peper@gentoo.org> use.local.desc:
+  Add visibility useflag for sys-apps/paludis.
+
+  05 Nov 2007; Duncan Coutts <dcoutts@gentoo.org> base/virtuals,
+  embedded/virtuals, package.mask:
+  Mask dev-lang/ghc-bin, it's subsumed by the new dev-lang/ghc ebuild
+
+  05 Nov 2007; Alin Năstac <mrness@gentoo.org> use.local.desc:
+  Added urandom flag for net-dns/pdnsd.
+
+  04 Nov 2007; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  Add libgnome-java to the java-gnome removal list
+
+  04 Nov 2007; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  package.mask java-gnome-2* and dependency packages for removal
+
+  03 Nov 2007; Christian Hoffmann <hoffie@gentoo.org> package.mask:
+  removing =dev-lang/php-5.1* mask (related ebuilds are gone)
+
+  03 Nov 2007; Vlastimil Babka <caster@gentoo.org> updates/4Q-2007:
+  Slotmove app-emulation/emul-linux-x86-java-1.4* to unify with sun-jre-bin.
+
+  03 Nov 2007; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  package.mask dev-java/sun-jaf-bin
+
+  03 Nov 2007; Sven Wegener <swegener@gentoo.org> use.local.desc:
+  Add otr USE flag for net-im/centerim.
+
+  03 Nov 2007; Sven Wegener <swegener@gentoo.org> use.local.desc:
+  net-im/centericq has been removed from the tree.
+
+  02 Nov 2007; Daniel Black <dragonheart@gentoo.org> use.local.desc:
+  added rss for app-admin/conky
+
+  31 Oct 2007; Gilles Dartiguelongue <eva@gentoo.org>
+  default-bsd/package.use.mask:
+  use.mask pda (gnome-pilot{,-conduits}) aren't keyworded
+
+  31 Oct 2007; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  remove app-accessibility/dasher mask, bug #188213 fixed
+
+  31 Oct 2007; Chris Gianelloni <wolf31o2@gentoo.org> package.mask:
+  Masking genkernel versions for testing.
+
+  30 Oct 2007; Diego Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask also the new PulseAudio version (the revision using the new init script).
+
+  30 Oct 2007; Christian Faulhammer <opfer@gentoo.org> package.mask:
+  remove entry for dev-util/ladebug...it is gone from the tree
+
+  29 Oct 2007; Gilles Dartiguelongue <eva@gentoo.org>
+  default-linux/x86/no-nptl/2.4/package.mask, package.mask:
+  remove a superseeded package.mask entry
+  mask >=app-mobilephone/gnome-phone-manager-0.20 on 2.4 profile
+
+  29 Oct 2007; Ulrich Mueller <ulm@gentoo.org> use.local.desc:
+  Add local xemacs flag for dev-lang/ocaml.
+
+  28 Oct 2007; Gilles Dartiguelongue <eva@gentoo.org>
+  default-bsd/package.use.mask, default-linux/arm/package.use.mask,
+  default-linux/hppa/package.use.mask, default-linux/sh/package.use.mask:
+  fix the QA warnings with app-vim/gtk-syntax
+
+  28 Oct 2007; Gilles Dartiguelongue <eva@gentoo.org>
+  default-linux/ia64/package.use.mask, package.mask:
+  unmask gnome-bluetooth and co.
+  remove iptc from package.use.mask on ia64 since it's now keyworded
+
+  27 Oct 2007; Alon Bar-Lev <alonbl@gentoo.org> use.local.desc:
+  Added sys-apps/tuxonice-userui:fbsplash
+
+  26 Oct 2007; Diego Pettenò <flameeyes@gentoo.org> package.mask:
+  Add an experimental revision of pulseaudio depending on baselayout 2.
+
+  25 Oct 2007; Alin Năstac <mrness@gentoo.org> use.local.desc:
+  Added icap-client flag for net-proxy/squid-3.
+
+  25 Oct 2007; Alin Năstac <mrness@gentoo.org> package.mask:
+  Remove squid-3.0_pre and l2tpd masks.
+
+  25 Oct 2007; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Removing Opera 9.50 mask because beta 1 is out there.
+
+  24 Oct 2007; Torsten Veller <tove@gentoo.org> package.mask:
+  Unmask app-office/gnucash
+
+  24 Oct 2007; William L. Thomson Jr. <wltjr@gentoo.org> package.mask:
+  Masking xpg, last release Sep 2005
+
+  23 Oct 2007; Stefan Schweizer <genstef@gentoo.org> package.mask:
+  unmask gs-gpl
+
+  23 Oct 2007; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  mask gnome-phone-manager and bluetooth related stuff for testing
+
+  23 Oct 2007; Gilles Dartiguelongue <eva@gentoo.org>
+  default-bsd/fbsd/package.use.mask, default-linux/arm/package.use.mask,
+  default-linux/sh/package.use.mask:
+  use.masking galago for media-video/totem
+
+  23 Oct 2007; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  package.mask jdbc2-stdext
+
+  23 Oct 2007; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Packages app-emacs/eieio and app-emacs/semantic have been removed.
+  Mask app-emacs/wanderlust-cvs for removal.
+
+  22 Oct 2007; Gilles Dartiguelongue <eva@gentoo.org>
+  default-linux/alpha/no-nptl/2.4/package.mask,
+  default-linux/x86/no-nptl/2.4/package.mask:
+  add gnome-themes-extra to package.mask
+
+  22 Oct 2007; Alon Bar-Lev <alonbl@gentoo.org> use.local.desc:
+  Added dev-libs/pkcs11-helper:nss
+
+  22 Oct 2007; Gilles Dartiguelongue <eva@gentoo.org>
+  default-bsd/fbsd/package.use.mask:
+  use.masking xattr for gedit
 
   21 Oct 2007; Ulrich Mueller <ulm@gentoo.org> package.mask:
   Add >=app-emacs/ocaml-mode-3.10.0 to ocaml masks, to avoid unnecessary

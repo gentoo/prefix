@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7832 2007/10/21 17:51:50 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7871 2007/11/05 19:57:40 tgurr Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -20,6 +20,122 @@
 ##
 ##   End example
 ##
+
+# Samuli Suominen <drac@gentoo.org> (05 Nov 2007)
+# Masked for treecleaners, removed in 60 days.
+# See http://tinyurl.com/yu5t35 for references.
+net-im/jit
+sys-apps/tcng
+net-analyzer/snmpmon
+mail-client/elmo
+net-im/jud
+sys-apps/yard
+mail-client/sylpheed-claws
+app-editors/beaver
+media-radio/ktrack
+app-portage/portagemaster
+x11-themes/ximian-artwork
+mail-filter/popfile
+x11-misc/fluxter
+x11-misc/fluxspace
+app-vim/hgmenu
+app-vim/hgcommand
+sys-libs/gi-detect
+sys-apps/discover-data
+sys-apps/discover
+x11-wm/flwm
+dev-db/dbdesigner
+
+# Duncan Coutts <dcoutts@gentoo.otg> (05 Nov 2007)
+# dev-lang/ghc-bin is going away, use dev-lang/ghc instead.
+# You can USE=binary with dev-lang/ghc to get the effect of ghc-bin.
+dev-lang/ghc-bin
+
+# Petteri Räty <betelgeuse@gentoo.org> (04 Nov 2007)
+# java-gnome is now a single package so you only need
+# =dev-java/java-gnome-4.0*
+dev-java/cairo-java
+dev-java/glib-java
+dev-java/libgconf-java
+dev-java/libglade-java
+dev-java/libgtk-java
+dev-java/libvte-java
+dev-java/libgnome-java
+=dev-java/java-gnome-2*
+
+# Petteri Räty <betelgeuse@gentoo.org> (3 Nov 2007)
+# Replaced by dev-java/sun-jaf. Will be moved to Junkyard
+# after the month is up.
+dev-java/sun-jaf-bin
+
+# Steve Dibb <beandog@gentoo.org> (01 Nov 2007)
+# Forked version of libdvdnav provided by upstream MPlayer
+# May work for you.  May not.
+>=media-libs/libdvdnav-4.1.1
+
+# Doug Goldstein <cardoe@gentoo.org> (01 Nov 2007)
+# beta NVIDIA drivers, not supported. bug #196679
+=x11-drivers/nvidia-drivers-100.14.23
+
+# Chris Gianelloni <wolf31o2@gentoo.org> (31 Oct 2007)
+# Masking due to bug #197582 that makes genkernel unusable.  I apologize for
+# this and am forcing a downgrade so people have a working genkernel.  I am
+# masking future versions, too.  This way we can test them properly (and easily)
+# without affecting users.  Sorry for any trouble caused.
+>=sys-kernel/genkernel-3.4.9_pre4
+
+# Tony Vroon <chainsaw@gentoo.org> (31 Oct 2007)
+# Mask 1.4 for testing and sorting out dependencies.
+# Note that we do not accept bug reports for this
+# package on bugs.gentoo.org as long as this mask 
+# is in place.
+=media-sound/audacious-1.4*
+=media-plugins/audacious-plugins-1.4*
+
+# Markus Ullmann <jokey@gentoo.org> (29 Oct 2007)
+# mask 2.2 as announced on gwn half a year ago
+<net-nds/openldap-2.3
+
+# Santiago M. Mola <coldwind@gentoo.org> (29 Oct 2007)
+# Butterfly is broken with new Empathy due to API changes.
+# Waiting for a new release of pymsn and butterfly.
+net-voip/telepathy-butterfly
+
+# Ulrich Mueller <ulm@gentoo.org> (27 Oct 2007)
+# Emacs snapshots and live CVS of Emacs unicode-2 branch
+~app-editors/emacs-cvs-22.1.50_p20070829
+~app-editors/emacs-cvs-23.0.0_p20070920
+~app-editors/emacs-cvs-23.0.60
+>=virtual/emacs-23
+
+# Diego Pettenò <flameeyes@gentoo.org> (26 Oct 2007)
+# Still-experimental support for dynamic service dependencies
+# needs baselayout-2, wait masked here till that's available.
+# Note: the init script might change without warning while
+# the ebuild is masked.
+=media-sound/pulseaudio-0.9.6-r2
+# This too uses the same init script
+=media-sound/pulseaudio-0.9.7-r1
+
+# Benedikt Böhm <hollow@gentoo.org> (25 Oct 2007)
+# Masked for testing TLS Server Name Indication
+=www-servers/apache-2.2.6-r3
+
+# William L Thomson Jr <wltjr@gentoo.org> (24 Oct 2007)
+# Stale upstreamno release since September 2005.
+# Package will be moved to junkyard overlay after 30 days
+# unless users express interest in this package.
+dev-db/xpg
+
+# Petteri Räty <betelgeuse@gentoo.org> (23 Oct 2007)
+# These classes are included in the JDK since 1.4
+# Will be moved to Java overlays after a month
+dev-java/jdbc2-stdext
+
+# Ulrich Mueller <ulm@gentoo.org> (23 Oct 2007)
+# Live CVS ebuild, masked for removal in 30 days.
+# Use CVS snapshot in app-emacs/wanderlust as replacement.
+app-emacs/wanderlust-cvs
 
 # Markus Ullmann <jokey@gentoo.org> (20 Oct 2007)
 # dependency unneeded now, merged upstream
@@ -69,15 +185,6 @@ dev-php4/pecl-http
 # incompatible with php-5 as well, bug 194894
 <=www-apps/knowledgetree-3.4.3
 
-# Rémi Cardona <remi@gentoo.org> (18 Oct 2007)
-# Dasher still fails to build
->=app-accessibility/dasher-4.6.0
-
-# Timo Gurr <tgurr@gentoo.org> (17 Oct 2007)
-# First release with ghostscript-esp merged.
-# Masked for testing, see bug 187502.
->=app-text/ghostscript-gpl-8.60
-
 # Eldad Zack <eldadz@gentoo.org> (16 Oct 2007)
 # ardour-2.1 using syslibs, see bug #194437
 =media-sound/ardour-2.1
@@ -105,35 +212,15 @@ java-virtuals/javamail
 # RC is not for general public
 =app-antivirus/clamav-0.92_rc2
 
-# Ulrich Mueller <ulm@gentoo.org> (12 Oct 2007)
-# Live CVS and snapshot of Emacs unicode-2 branch
-~app-editors/emacs-cvs-23.0.0_p20070920
-~app-editors/emacs-cvs-23.0.60
->=virtual/emacs-23
-
-# Ali Polatel <hawking@gentoo.org> (11 Oct 2007)
-# Newer pyrex versions have problems with setuptools.
-# See bug 195354 and bug 195466.
->=dev-python/pyrex-0.9.6
-
 # Michael Marineau <marineam@gentoo.org> (10 Oct 2007)
 # The ck patchest is gone, will be removed shortly.
 sys-kernel/ck-sources
-
-# Timo Gurr <tgurr@gentoo.org> (10 Oct 2007)
-# Masked for testing, see bug 188993.
->=net-print/cups-1.3.3
 
 # Stefan Schweizer <genstef@gentoo.org> (10 Oct 2007)
 # removal because of starting problems in Bug 189775, gtk+-1.2 usage
 # last release was in 2001, possible replacements: media-gfx/opcion
 # and media-gfx/fontforge
 app-misc/gfontview
-
-# Christian Faulhammer <opfer@gentoo.org> (10 Oct 2007)
-# masked for removal, just useless because
-# it does not install anything, see bug 3464
-app-editors/pico
 
 # Doug Goldstein <cardoe@gentoo.org> (10 Oct 2007)
 # the Asterisk is coming! the Asterisk is coming!
@@ -203,21 +290,10 @@ dev-php5/pecl-pdo-sqlite
 # See bug #186440
 x11-wm/kahakai
 
-# Christian Faulhammer <opfer@gentoo.org> (01 Oct 2007)
-# ebuild is borked (see bug 192649)
-# upstream dead
-# removal on 30 Oct 2007
-dev-util/ladebug
-
 # Sven Wegener <swegener@gentoo.org> (30 Sep 2007)
 # Replaced by dev-db/mysql-gui-tools
 dev-db/mysql-administrator
 dev-db/mysql-query-browser
-
-# Christian Hoffmann <hoffie@gentoo.org> (30 Sep 2007)
-# 5.1 is unsupported by upstream and vulnerable to several security issues
-# Masked for removal in 30 days
-=dev-lang/php-5.1*
 
 # Peter Volkov <pva@gentoo.org> (28 Sep 2007)
 # masked for testing
@@ -236,24 +312,9 @@ dev-db/mysql-query-browser
 # revdep-rebuild is broken in this release
 =app-portage/gentoolkit-0.2.4_rc1
 
-# Ulrich Mueller <ulm@gentoo.org> (26 Sep 2007)
-# Last upstream release as separate package was in 2002.
-# Speedbar is included with Emacs 22; users of Emacs 21
-# may use app-emacs/cedet as replacement.
-# Masked for removal in 30 days. Bug #190768.
-app-emacs/speedbar
-
 # Denis Dupeyron <calchan@gentoo.org> (23 Sep 2007)
 # Masked for removal in 30 days as per bug #176962.
 net-print/hpijs
-
-# Ulrich Mueller <ulm@gentoo.org> (22 Sep 2007)
-# Does not work with Emacs 22. Last upstream release as separate
-# packages in 2002 and 2003, respectively; eieio and semantic are now
-# included with app-emacs/cedet which should be used as replacement.
-# Masked for removal in 30 days. Bug #190768.
-app-emacs/eieio
-app-emacs/semantic
 
 # Hanno Boeck <hanno@gentoo.org> (21 Sep 2007)
 # experimental new ebuild, changes a lot and breaks configuration
@@ -281,32 +342,9 @@ app-emacs/junkbust
 # last rites
 dev-util/bk_client
 
-# Daniel Gryniewicz <dang@gentoo.org> (18 Sep 2007)
-# Re-mask; bug #191408
->=net-news/liferea-1.4
-
-# <hollow@gentoo.org> (15 Sep 2007)
-# Masked for removal. Bug #20899
-mail-mta/qmail-mysql
-
 # Daniel Black <dragonheart@gentoo.org> (14 Sep 2007)
 # Added for testing libssh2
 =net-misc/curl-7.17.0-r1
-
-# Matti Bickel <mabi@gentoo.org> (12 Sep 2007)
-# Broken (bug #167468), use x11-wm/ion3 instead
-x11-wm/ion2
-
-# Bernard Cafarelli <voyageur@gentoo.org> (11 Sep 2007)
-# Mask PDFkit and the applications that use/need it
-# Bugs #131690, #172887, #188146, and security bug #188185
-gnustep-libs/imagekits
-gnustep-libs/pdfkit
-gnustep-apps/viewpdf
-
-# Alin Năstac <mrness@gentoo.org> (09 Sep 2007)
-# Development version.
-=net-proxy/squid-3.0_pre*
 
 # Benedikt Boehm <hollow@gentoo.org> (08 Sep 2007)
 # breaks apr and openldap
@@ -332,10 +370,6 @@ sys-auth/bioapi
 =games-rpg/nwn-data-1.29-r2
 =games-rpg/nwn-1.68-r2
 
-# Jeroen Roovers <jer@gentoo.org> (04 Sep 2007)
-# Opera Kestrel (alpha) is not deemed stable enough yet. Beware!
-=www-client/opera-9.5*
-
 # Stefan Schweizer <genstef@gentoo.org> (02 Sep 2007)
 # last-rite bpalogin for mark_alec, as the package is useless now (ISP
 # no longer needs it) and the initscript is broken with baselayout2
@@ -359,12 +393,6 @@ games-fps/doomsday-resources
 # Robert Buchholz <rbu@gentoo.org> (29 Aug 2007)
 # PPTP Plugin doesn't work on amd64
 net-misc/networkmanager-pptp
-
-# Alin Năstac <mrness@gentoo.org> (25 Aug 2007)
-# Has been inactive for several years; scheduled for removal in 60 days.
-# Please use net-dialup/xl2tpd (fork actively maintained by Xelerance)
-# or use net-dialup/rp-l2tp.
-net-dialup/l2tpd
 
 # Zac Medico <zmedico@gentoo.org> (25 Aug 2007)
 # Bug #190128 - bash-3.2_p25 triggers 'hasq: command not found' errors
@@ -435,20 +463,11 @@ dev-lang/ezm3
 # Broken by upstream. cf. bug 173972.
 =media-video/konverter-0.93
 
-# Torsten Veller <tove@gentoo.org> (21 Jul 2007)
-# Masked for testing
->=app-office/gnucash-2.2.0
-
 # Jim Ramsay <lack@gentoo.org> (19 Jul 2007)
 # netscape-flash-9.0.48.0-r1 addresses Gentoo bug #185141 by using the versioned
 # RPM distributed by Adobe instead of their unversioned tar.gz.
 # However, we must still mask the original ebuild, and any previous versions.
 <=net-www/netscape-flash-9.0.48.0
-
-# Alin Năstac <mrness@gentoo.org> (19 Jul 2007)
-# Dead upstream, forked in net-dialup/xl2tpd.
-# Pending removal 19 Sep 2007
-net-dialup/l2tpd
 
 # Raúl Porcel <armin76@gentoo.org> (18 Jul 2007)
 # Mask rc
@@ -547,9 +566,9 @@ dev-java/odmg
 app-shells/ash
 
 # Alexis Ballier <aballier@gentoo.org> (26 May 2007)
-# New major release, camlp4 has lots of api chages
+# New major release of ocaml (3.10), camlp4 has lots of api chages
 # Thus it breaks lots of ocaml packages
-# Other things that needs to be checked : hardened, hppa
+# Other things that need to be checked : hardened, hppa
 # Also mask apps that strictly depend on it
 >=dev-lang/ocaml-3.10.0
 >=dev-ml/ulex-1.0
@@ -1132,10 +1151,6 @@ net-libs/libpcap-ringbuffer
 # deprecated in favour of app-shells/tcsh
 app-shells/csh
 
-# Marcelo Goes <vanquirius@gentoo.org> (06 Feb 2006)
-# Mask tcpreplay beta branch. If you want it, unmask it.
->=net-analyzer/tcpreplay-3.0_beta1
-
 # Marius Mauch <genone@gentoo.org> (17 Jan 2006)
 # Development version
 >=dev-util/gambas-1.9
@@ -1258,10 +1273,6 @@ kde-base/xparts
 # bincima-1.3* are beta versions for testing purposes,
 # probably very unstable.
 =net-mail/bincimap-1.3*
-
-# <pfeifer@gentoo.org> (12 Aug 2004)
-# Masked for following ebuilds for testing:
-=app-backup/mondo-rescue-2.10
 
 # <mkennedy@gentoo.org> (08 Aug 2004)
 # won't build for now

@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.21 2007/10/10 12:34:04 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.22 2007/11/05 10:45:43 dcoutts Exp $
+
+  05 Nov 2007; Duncan Coutts <dcoutts@gentoo.org> virtuals:
+  Switch to ghc rather than ghc-bin for virtual as we're p.masking ghc-bin
 
   10 Oct 2007; Christian Faulhammer <opfer@gentoo.org> virtuals:
   remove virtual/editor, we have a new-style virtual now
