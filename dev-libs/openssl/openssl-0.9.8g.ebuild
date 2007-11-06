@@ -38,6 +38,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.9.8-makedepend.patch #149583
 	epatch "${FILESDIR}"/${PN}-0.9.8e-make.patch #146316
 	epatch "${FILESDIR}"/${PN}-0.9.8e-bsd-sparc64.patch
+	epatch "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
 
 	# allow openssl to be cross-compiled
 	cp "${FILESDIR}"/gentoo.config-0.9.8 gentoo.config || die "cp cross-compile failed"

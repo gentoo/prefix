@@ -1,0 +1,14 @@
+* grobian@gentoo.org: shared objects, even when disguised as .so files,
+                      need to have a proper install_name in order to
+					  work without getting trapped by the kernel
+
+--- Makefile.shared
++++ Makefile.shared
+@@ -213,6 +213,7 @@
+ 	if [ -n "$$SHLIB_SOVER_NODOT" ]; then \
+ 		SHAREDFLAGS="$$SHAREDFLAGS -compatibility_version $$SHLIB_SOVER_NODOT"; \
+ 	fi; \
++	SHAREDFLAGS="$$SHAREDFLAGS -install_name ${INSTALLTOP}/lib/engines/$$SHLIB$$SHLIB_SUFFIX"; \
+ 	$(LINK_SO_O)
+ link_a.darwin:
+ 	@ $(CALC_VERSIONS); \
