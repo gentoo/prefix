@@ -20,7 +20,7 @@ SRC_URI="mirror://sourceforge/monetdb/MonetDB-${COMMON_PV}.tar.gz
 
 LICENSE="MonetDBPL-1.1"
 SLOT="5"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~x86 ~x86-solaris"
 IUSE="python perl php java"
 
 S=${WORKDIR}
@@ -126,4 +126,7 @@ src_install() {
 
 	newinitd "${FILESDIR}/${PN}.init-5.2.0" monetdb || die "init.d script"
 	newconfd "${FILESDIR}/${PN}.conf-5.2.0" monetdb || die "conf.d file"
+
+	# merovingian needs this
+	keepdir /var/lib/MonetDB5/dbfarm
 }
