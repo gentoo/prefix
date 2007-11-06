@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/regex-posix
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-posix/ChangeLog,v 1.4 2007/10/23 16:32:02 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-posix/ChangeLog,v 1.5 2007/11/05 02:12:30 dcoutts Exp $
+
+  05 Nov 2007; Duncan Coutts <dcoutts@gentoo.org> regex-posix-0.71.ebuild:
+  Added ~ppc and ~sparc to keywords
 
   23 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
   regex-posix-0.71.ebuild:
