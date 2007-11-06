@@ -1,6 +1,15 @@
 # ChangeLog for x11-misc/shared-mime-info
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/ChangeLog,v 1.107 2007/09/27 11:37:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/ChangeLog,v 1.108 2007/11/05 16:56:13 dang Exp $
+
+*shared-mime-info-0.22-r1 (05 Nov 2007)
+
+  05 Nov 2007; Daniel Gryniewicz <dang@gentoo.org>
+  +files/shared-mime-info-0.22-html-fix.patch,
+  +shared-mime-info-0.22-r1.ebuild:
+  Bump to 0.22-r1
+  	- Include upstream patch to make html files recognized as html
+  	  files, rather than as netscape bookmark files.  Bug #198118
 
   27 Sep 2007; Raúl Porcel <armin76@gentoo.org>
   shared-mime-info-0.22.ebuild:
