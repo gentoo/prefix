@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/filepath
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/filepath/ChangeLog,v 1.7 2007/10/28 12:48:19 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/filepath/ChangeLog,v 1.8 2007/11/05 02:10:42 dcoutts Exp $
+
+  05 Nov 2007; Duncan Coutts <dcoutts@gentoo.org> filepath-1.0.ebuild:
+  Added ~ppc to keywords
 
   28 Oct 2007; Lennart Kolmodin <kolmodin@gentoo.org> filepath-1.0.ebuild:
   Stricten dependency of virtual/ghc into dev-lang/ghc as otherwise ghc-bin
