@@ -2,9 +2,14 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Nov 2007; Fabian Groffen <grobian@gentoo.org>
+  gcc-apple-4.0.1_p5465.ebuild:
+  Set odcctools dependency to the 10.5 released one for 4.0.1_p5465, otherwise
+  it won't compile.  Marked ~ppc-macos.
+
   05 Nov 2007; Fabian Groffen <grobian@gentoo.org>
   gcc-apple-4.0.1_p5363-r1.ebuild, gcc-apple-4.0.1_p5465.ebuild,
-  gcc-apple-4.0.1_p5465.ebuild, gcc-apple-4.2.1_p5531.ebuild:
+  gcc-apple-4.2.1_p5531.ebuild:
   Cleaned up ebuilds, keyworded 4.2.1_p5531 ~ppc-macos, compiles on 10.4 after
   removing any -m* flags.
 

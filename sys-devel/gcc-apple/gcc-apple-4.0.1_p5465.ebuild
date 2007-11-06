@@ -33,7 +33,7 @@ else
 	SLOT="40"
 fi
 
-KEYWORDS="~x86-macos"
+KEYWORDS="~ppc-macos ~x86-macos"
 
 IUSE="nls objc objc++ nocxx"
 
@@ -44,7 +44,7 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 DEPEND="${RDEPEND}
 	>=sys-apps/texinfo-4.2-r4
 	>=sys-devel/bison-1.875
-	${CATEGORY}/odcctools"
+	>=${CATEGORY}/odcctools-20071104"
 
 S=${WORKDIR}/gcc-${APPLE_VERS}
 
@@ -113,12 +113,10 @@ src_compile() {
 	fi
 
 	# reasonably sane globals (hopefully)
-	# --disable-libunwind-exceptions needed till unwind sections get fixed. see ps.m for details
 	myconf="${myconf} \
 		--with-system-zlib \
 		--disable-checking \
-		--disable-werror \
-		--disable-libunwind-exceptions"
+		--disable-werror"
 
 	# languages to build
 	myconf="${myconf} --enable-languages=${langs}"
@@ -142,7 +140,8 @@ src_compile() {
 	# will always compile 64-bits code, but might fail running,
 	# depending on the CPU, so the resulting program might fail.  Thanks
 	# Tobias Hahn for working that out.
-	if [[ ${CHOST} == powerpc-apple-darwin* ]] && ! is_crosscompile ; then
+# let's forget about multilib until we know what to do with it
+	if [[ ${CHOST} == no-powerpc-apple-darwin* ]] && ! is_crosscompile ; then
 		cd "${T}"
 		echo '
 #include <stdio.h>
