@@ -2,6 +2,9 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Nov 2007; Fabian Groffen <grobian@gentoo.org> darwin/package.mask:
+  Mask sys-devel/gcc-apple-4.2.1_p5531 as it is an c++ incapable compiler
+
   27 Oct 2007; Fabian Groffen <grobian@gentoo.org>
   +darwin/macos/10.5, darwin/macos/10.5/make.defaults,
   darwin/macos/10.5/ppc/make.defaults, darwin/macos/10.5/profile.bashrc,

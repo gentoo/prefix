@@ -1,4 +1,17 @@
 
+# Fabian Groffen <grobian@gentoo.org> (06 Nov 2007)
+# This seems to be some developer snapshot, geared towards objc2, not
+# being able to do any useful c++ compilation
+=sys-devel/gcc-apple-4.2.1_p5531
+
+# Elias Pipping <pipping@gentoo.org> (09 Oct 2007)
+# darwin-miscutils are only available on darwin
+-sys-apps/darwin-miscutils
+
+# Elias Pipping <pipping@gentoo.org> (09 Oct 2007)
+# bsd-man-pages are only available on darwin, bsd
+-sys-apps/bsd-man-pages
+
 # Fabian Groffen <grobian@gentoo.org> (28 Feb 2007)
 # do not use this package, it is broken with regard to answers returned
 # by the utilities.  pgrep -P <pid> for example returns all processes,
@@ -7,10 +20,3 @@
 # clearly indicates more trouble, and a dead upstream
 =sys-process/proctools-0.4_pre1
 
-# Elias Pipping <pipping@mi.fu-berlin.de> (09 Oct 2007)
-# darwin-miscutils are only available on darwin
--sys-apps/darwin-miscutils
-
-# Elias Pipping <pipping@mi.fu-berlin.de> (09 Oct 2007)
-# bsd-man-pages are only available on darwin, bsd
--sys-apps/bsd-man-pages
