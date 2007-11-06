@@ -6,3 +6,7 @@
 # Elias Pipping <pipping@gentoo.org> (06 Nov 2007)
 # gcc-apple 4.2.1 fails to compile odcctools
 =sys-devel/gcc-apple-4.2.1*
+
+# Elias Pipping <pipping@gentoo.org> (06 Nov 2007)
+# ocaml 3.10 does not compile, whereas 3.09 does
+=dev-lang/ocaml-3.10*
