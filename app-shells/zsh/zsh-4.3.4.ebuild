@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-4.3.4.ebuild,v 1.3 2007/08/16 09:52:54 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-4.3.4.ebuild,v 1.4 2007/11/06 00:39:19 wolf31o2 Exp $
 
 EAPI="prefix"
 
@@ -83,8 +83,8 @@ src_compile() {
 		sed -i -e "s/link=no/link=static/g" \
 			-e "s/load=no/load=yes/g" \
 			config.modules || die
-	else
-		sed -i -e "/LIBS/s%-lpcre%${EPREFIX}/usr/$(get_libdir)/libpcre.a%" Makefile
+#	else
+#		sed -i -e "/LIBS/s%-lpcre%${EPREFIX}/usr/$(get_libdir)/libpcre.a%" Makefile
 	fi
 
 	emake || die "make failed"

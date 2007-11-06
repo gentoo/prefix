@@ -1,6 +1,11 @@
 # ChangeLog for app-shells/zsh
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.114 2007/08/16 09:52:54 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.115 2007/11/06 00:39:19 wolf31o2 Exp $
+
+  06 Nov 2007; Chris Gianelloni <wolf31o2@gentoo.org> zsh-4.3.2-r2.ebuild,
+  zsh-4.3.4.ebuild:
+  Removing sed that tried to force static linking with libpcre and closing bug
+  #182534.
 
   16 Aug 2007; Roy Marples <uberlord@gentoo.org>
   +files/zsh-4.3.4-configure-changequote.patch, zsh-4.3.4.ebuild:
