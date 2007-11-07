@@ -147,7 +147,9 @@ src_install() {
 	if use emacs ; then
 		pushd "${S}"
 		elisp-install erlang lib/tools/emacs/*.{el,elc}
-		elisp-site-file-install "${FILESDIR}"/${SITEFILE}
+		sed -e "s:/usr/share:${EPREFIX}/usr/share:g" \
+			"${FILESDIR}"/${SITEFILE} > "${T}"/${SITEFILE}
+		elisp-site-file-install "${T}"/${SITEFILE}
 		popd
 	fi
 
