@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/gamin-0.1.9.ebuild,v 1.13 2007/10/08 01:31:41 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/gamin-0.1.9.ebuild,v 1.15 2007/11/06 21:57:25 leio Exp $
 
 EAPI="prefix"
 
@@ -24,7 +24,7 @@ PROVIDE="virtual/fam"
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 
 	# Fix compile warnings; bug #188923
 	epatch "${FILESDIR}"/${P}-compile-warnings.patch

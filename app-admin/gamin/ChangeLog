@@ -1,6 +1,13 @@
 # ChangeLog for app-admin/gamin
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.78 2007/10/03 06:08:35 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.80 2007/11/06 21:51:35 leio Exp $
+
+  06 Nov 2007; Mart Raudsepp <leio@gentoo.org> -gamin-0.1.7.ebuild,
+  -gamin-0.1.8.ebuild:
+  Remove old CPU wakeup happy versions
+
+  06 Nov 2007; Raúl Porcel <armin76@gentoo.org> gamin-0.1.9.ebuild:
+  sparc stable wrt #193339
 
   03 Oct 2007; Tom Gall <tgall@gentoo.org> gamin-0.1.9.ebuild:
   stable on ppc64
