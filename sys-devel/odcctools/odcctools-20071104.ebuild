@@ -12,7 +12,7 @@ SRC_URI="http://www.gentoo.org/~pipping/distfiles/${P}.tar.bz2"
 
 LICENSE="APSL-2"
 
-KEYWORDS="~x86-macos"
+KEYWORDS="~ppc-macos ~x86-macos"
 
 IUSE=""
 
