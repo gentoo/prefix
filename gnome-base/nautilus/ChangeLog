@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/nautilus
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.242 2007/10/29 17:28:00 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.243 2007/11/06 17:03:46 armin76 Exp $
+
+  06 Nov 2007; Raúl Porcel <armin76@gentoo.org> nautilus-2.18.3.ebuild:
+  sparc stable wrt #193339
 
 *nautilus-2.20.0-r1 (29 Oct 2007)
 
