@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.122 2007/04/10 01:33:03 nyhm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.123 2007/11/06 22:38:13 wolf31o2 Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -195,7 +195,7 @@ games_pkg_postinst() {
 	fi
 }
 
-# Unpack .uz(2) files for UT/UT2003/UT2004
+# Unpack .uz2 files for UT2003/UT2004
 # $1: directory or file to unpack
 games_ut_unpack() {
 	local ut_unpack="$1"
@@ -209,7 +209,7 @@ games_ut_unpack() {
 			|| die "uncompressing file ${ut_unpack}"
 	fi
 	if [[ -d ${ut_unpack} ]] ; then
-		for f in $(find "${ut_unpack}" -name '*.uz*' -printf '%f ') ; do
+		for f in $(find "${ut_unpack}" -name '*.uz2' -printf '%f ') ; do
 			uz2unpack "${ut_unpack}/${f}" "${ut_unpack}/${f/.uz2}" &>/dev/null \
 				|| die "uncompressing file ${f}"
 			rm -f "${ut_unpack}/${f}" || die "deleting compressed file ${f}"

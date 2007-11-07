@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-common.eclass,v 1.2 2007/10/20 12:51:25 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-common.eclass,v 1.3 2007/11/06 23:34:43 aballier Exp $
 
 #
 # Original Author: Alexis Ballier <aballier@gentoo.org>
@@ -12,7 +12,7 @@
 
 TEXMF_PATH=/usr/share/texmf
 TEXMF_DIST_PATH=/usr/share/texmf-dist
-TEXMF_VAR_PATH=/usr/share/texmf-var
+TEXMF_VAR_PATH=/var/lib/texmf
 
 # Has to be called in src_install after having installed the files in ${D}
 # This function will move the relevant files to /etc/texmf and symling them
