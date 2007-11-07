@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha34.ebuild,v 1.6 2007/11/03 17:15:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha34.ebuild,v 1.7 2007/11/06 17:38:16 corsair Exp $
 
 EAPI="prefix"
 
