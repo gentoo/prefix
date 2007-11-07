@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/gtk-doc
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.87 2007/08/10 19:24:53 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.88 2007/11/06 22:28:37 lavajoe Exp $
+
+  06 Nov 2007; Joe Peterson <lavajoe@gentoo.org> gtk-doc-1.8-r2.ebuild:
+  Add ~x86-fbsd keyword (bug #197349)
 
 *gtk-doc-1.8-r2 (10 Aug 2007)
 

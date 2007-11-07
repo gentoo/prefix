@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/gtk-doc-1.8-r2.ebuild,v 1.1 2007/08/10 19:24:53 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/gtk-doc-1.8-r2.ebuild,v 1.2 2007/11/06 22:28:37 lavajoe Exp $
 
 EAPI="prefix"
 
@@ -58,7 +58,7 @@ src_install() {
 
 	if use emacs; then
 		elisp-install ${PN} tools/gtk-doc.el*
-		elisp-site-file-install ${FILESDIR}/${SITEFILE}
+		elisp-site-file-install "${FILESDIR}/${SITEFILE}"
 	fi
 }
 
