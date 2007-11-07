@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/monetdb/monetdb-5.2.0.ebuild,v 1.1 2007/11/06 10:44:06 grobian Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ SRC_URI="mirror://sourceforge/monetdb/MonetDB-${COMMON_PV}.tar.gz
 
 LICENSE="MonetDBPL-1.1"
 SLOT="5"
-KEYWORDS="~amd64 ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~x86"
 IUSE="python perl php java"
 
 S=${WORKDIR}

@@ -1,6 +1,25 @@
 # ChangeLog for dev-db/monetdb
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/monetdb/ChangeLog,v 1.14 2007/04/28 22:07:02 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/monetdb/ChangeLog,v 1.15 2007/11/06 10:44:06 grobian Exp $
+
+*monetdb-5.2.0 (06 Nov 2007)
+
+  06 Nov 2007; Fabian Groffen <grobian@gentoo.org>
+  +files/xquery-0.20.0-bool-undeclared.patch, -files/monetdb.conf-4.8.2,
+  -files/monetdb.init-4.8.2, -files/monetdb-4.8.2-startup.mil,
+  -files/monetdb.JdbcClient-4.10.0,
+  -files/monetdb-4.10.2-gentoo-MapiClient.patch,
+  -files/monetdb-4.10.2-gentoo-conf.patch,
+  -files/monetdb-4.12.0-gentoo-MapiClient.patch,
+  -files/monetdb-4.12.0-gentoo-conf.patch,
+  -files/monetdb-4.12.0-startup.mil, +files/monetdb.conf-5.2.0,
+  +files/monetdb.init-5.2.0, -files/monetdb-start.sh,
+  -files/monetdb-stop.sh, -files/monetdb_config.sh, metadata.xml,
+  -monetdb-4.10.2.ebuild, -monetdb-4.12.0.ebuild, +monetdb-4.20.0.ebuild,
+  +monetdb-5.2.0.ebuild:
+  Backport latest release from Gentoo/Alt:Prefix overlay. Keep it still masked
+  as it needs to be tested non-prefix first.  Remove old non-compiling
+  cruft.
 
   06 Nov 2007; Fabian Groffen <grobian@gentoo.org> monetdb-5.2.0.ebuild,
   monetdb-5.2.0.ebuild:
