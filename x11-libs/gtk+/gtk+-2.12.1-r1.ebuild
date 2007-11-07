@@ -100,6 +100,9 @@ src_unpack() {
 	replace-flags -O3 -O2
 	strip-flags
 
+	# Kill -m* on ppc-macos, as it triggers altivec problems
+	[[ ${CHOST} == powerpc-apple-darwin* ]] && filter-flags "-m*"
+
 	use ppc64 && append-flags -mminimal-toc
 
 	# remember, eautoreconf applies elibtoolize.
