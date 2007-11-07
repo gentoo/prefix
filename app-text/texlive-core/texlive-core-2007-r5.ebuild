@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2007-r4.ebuild,v 1.1 2007/10/30 17:59:39 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2007-r5.ebuild,v 1.1 2007/11/06 23:28:02 aballier Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,8 @@ TEXLIVE_CORE_EXTRA_BUILT_BINARIES="bin-xetex bin-aleph bin-omega"
 
 TEXLIVE_CORE_INCLUDED_TEXMF="${TEXLIVE_BASICBIN_CONTENTS} ${TEXLIVE_FONTBIN_CONTENTS} ${TEXLIVE_BINEXTRA_CONTENTS} ${TEXLIVE_CORE_EXTRA_BUILT_BINARIES}"
 
-SRC_URI="mirror://gentoo/${P}.tar.bz2"
+SRC_URI="mirror://gentoo/${P}.tar.bz2
+	mirror://gentoo/${P}-dviljk-security-fixes.patch.bz2"
 
 for i in ${TEXLIVE_CORE_INCLUDED_TEXMF}; do
 	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.zip"
@@ -88,6 +89,10 @@ src_unpack() {
 	cp "${FILESDIR}"/texmf-update "${T}" || die
 	cd "${T}"; epatch "${FILESDIR}"/texmf-update-prefix.patch; cd "${S}"
 	eprefixify "${T}"/texmf-update
+
+# dviljk buffer overflow issues, bug #198229
+	epatch "${WORKDIR}/${P}-dviljk-security-fixes.patch"
+
 
 	sed -i -e "/mktexlsr/,+3d" -e "s/\(updmap-sys\)/\1 --nohash/" \
 		Makefile.in || die "sed failed"

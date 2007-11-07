@@ -1,6 +1,13 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.23 2007/11/02 10:02:06 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.24 2007/11/06 23:28:02 aballier Exp $
+
+*texlive-core-2007-r5 (06 Nov 2007)
+
+  06 Nov 2007; Alexis Ballier <aballier@gentoo.org>
+  -texlive-core-2007-r3.ebuild, -texlive-core-2007-r4.ebuild,
+  +texlive-core-2007-r5.ebuild:
+  fixes for buffer overflow in dviljk, bug #198229
 
   02 Nov 2007; Alexis Ballier <aballier@gentoo.org>
   files/2007/texmf.d/10standardpaths.cnf:
