@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2007.ebuild,v 1.8 2007/11/06 20:12:51 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2007-r1.ebuild,v 1.3 2007/11/06 23:43:27 fmccor Exp $
 
 EAPI="prefix"
 
@@ -50,6 +50,7 @@ RDEPEND="${DEPEND}
 	>=dev-tex/xcolor-2.11
 	>=dev-tex/latex-beamer-3.06
 	${TEXLIVE_CAT}/texlive-metapost
+		dev-tex/feynmf
 	${TEXLIVE_CAT}/texlive-genericrecommended
 	extra? (
 		dev-tex/chktex

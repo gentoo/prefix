@@ -1,6 +1,20 @@
 # ChangeLog for app-text/texlive
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.12 2007/10/26 20:29:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.15 2007/11/06 23:43:27 fmccor Exp $
+
+  06 Nov 2007; Ferris McCormick <fmccor@gentoo.org> texlive-2007-r1.ebuild:
+  (Re)add ~sparc --- Bug #198289 --- dev-tex/feynmf is good on sparc.
+
+  06 Nov 2007; Alexis Ballier <aballier@gentoo.org> texlive-2007.ebuild,
+  texlive-2007-r1.ebuild:
+  Add hu linguas variable to use expand, somehow I missed it when refactoring
+  them; thanks to András <cucaracha@loco.hu>
+
+*texlive-2007-r1 (06 Nov 2007)
+
+  06 Nov 2007; Alexis Ballier <aballier@gentoo.org> +texlive-2007-r1.ebuild:
+  depend on feynmf as it has been removed from texlive-metapost and is part of
+  texlive distribution, drop relevant keywords
 
   26 Oct 2007; Raúl Porcel <armin76@gentoo.org> texlive-2007.ebuild:
   Add ~alpha/~ia64 wrt #195815
