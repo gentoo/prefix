@@ -1,6 +1,10 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.343 2007/11/05 16:59:42 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.344 2007/11/06 14:55:04 jer Exp $
+
+  06 Nov 2007; Jeroen Roovers <jer@gentoo.org>
+  mozilla-firefox-2.0.0.9.ebuild:
+  Stable for HPPA (bug #196480).
 
   05 Nov 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   mozilla-firefox-2.0.0.9.ebuild:
