@@ -1,6 +1,19 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.244 2007/10/20 04:21:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.248 2007/11/07 20:47:14 corsair Exp $
+
+  07 Nov 2007; Markus Rothe <corsair@gentoo.org> openssl-0.9.8g.ebuild:
+  Stable on ppc64; bug #198370
+
+  07 Nov 2007; Raúl Porcel <armin76@gentoo.org> openssl-0.9.8g.ebuild:
+  alpha/ia64 stable wrt #198370
+
+  07 Nov 2007; Jurek Bartuszek <jurek@gentoo.org> openssl-0.9.8g.ebuild:
+  x86 stable (bug #198370)
+
+  07 Nov 2007; Ferris McCormick <fmccor@gentoo.org> openssl-0.9.8g.ebuild:
+  Sparc stable, Bug #198370; early, but all tests check out and can't
+  duplicate reported problems.
 
 *openssl-0.9.8g (20 Oct 2007)
 
