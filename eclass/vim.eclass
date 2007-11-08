@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.167 2007/09/27 09:32:21 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.168 2007/11/07 15:01:18 hawking Exp $
 
 # Authors:
 # 	Ryan Phillips <rphillips@gentoo.org>
@@ -161,7 +161,7 @@ apply_vim_patches() {
 	p=${WORKDIR}/${VIM_ORG_PATCHES%.tar*}.patch
 	ls ${WORKDIR}/vimpatches | sort | \
 	while read f; do gzip -dc ${WORKDIR}/vimpatches/${f}; done | gawk '
-		/^Subject: Patch/ {
+		/^Subject: [Pp]atch/ {
 			if (patchnum) {printf "\n" >"/dev/stderr"}
 			patchnum = $3
 			printf "%s:", patchnum >"/dev/stderr"
