@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # Copyright Gentoo Foundation 2006-2007
 
+# <grobian@gentoo.org> -- 2007-11-08
+# changed EAPI injection to extend for prefix in case a main tree EAPI
+# was defined
 # <grobian@gentoo.org> -- 2006-12-21
 # added -e flag to indicate to the script that the given file(s) should
 # be treated as ebuilds
@@ -71,16 +74,21 @@ for f in $files ; do
 	if [[ $isebuild == 1 ]] || [[ ${f##*.} == "ebuild" ]] ; then
 		unset EAPI
 		echo -n "  EAPI ... "
-		eval "`egrep "^EAPI=" "$f"`"
+		eval "$(egrep "^EAPI=" "$f")"
 
-		if [[ $EAPI != "" ]] ; then
+		if [[ ${EAPI} == *prefix* ]] ; then
 			echo "already $EAPI"
 			# don't process any more, we're done with this ebuild
 			# (unless we were forced)
 			[[ $force == 1 ]] || continue
+		elif [[ -n ${EAPI} ]] ; then
+			sed -i \
+				-e '/^EAPI=/cEAPI="prefix '"${EAPI}"'"' \
+				"$f"
+			echo 'extended to EAPI="prefix '"${EAPI}"'"'
 		else
 			sed -i \
-				-e 's|^# \$Header:.*$|&\n\nEAPI="prefix"|' \
+				-e '/^# \$Header:.*$/a\\nEAPI="prefix"' \
 				"$f"
 			echo 'added EAPI="prefix"'
 		fi
