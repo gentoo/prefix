@@ -1,6 +1,13 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.24 2007/11/06 23:28:02 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.25 2007/11/07 23:31:17 aballier Exp $
+
+*texlive-core-2007-r6 (07 Nov 2007)
+
+  07 Nov 2007; Alexis Ballier <aballier@gentoo.org>
+  +files/2007/xpdf-3.02pl2.patch, -texlive-core-2007-r5.ebuild,
+  +texlive-core-2007-r6.ebuild:
+  security fix for libxpdf, bug #196735
 
 *texlive-core-2007-r5 (06 Nov 2007)
 

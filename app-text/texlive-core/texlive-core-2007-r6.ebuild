@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2007-r5.ebuild,v 1.1 2007/11/06 23:28:02 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2007-r6.ebuild,v 1.1 2007/11/07 23:31:17 aballier Exp $
 
 EAPI="prefix"
 
@@ -93,6 +93,8 @@ src_unpack() {
 # dviljk buffer overflow issues, bug #198229
 	epatch "${WORKDIR}/${P}-dviljk-security-fixes.patch"
 
+# security bug #196735
+	epatch "${FILESDIR}/${PV}/xpdf-3.02pl2.patch"
 
 	sed -i -e "/mktexlsr/,+3d" -e "s/\(updmap-sys\)/\1 --nohash/" \
 		Makefile.in || die "sed failed"
