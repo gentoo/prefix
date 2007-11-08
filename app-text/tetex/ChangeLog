@@ -1,6 +1,14 @@
 # ChangeLog for app-text/tetex
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.154 2007/09/08 01:13:26 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.155 2007/11/07 23:05:19 aballier Exp $
+
+*tetex-3.0_p1-r5 (07 Nov 2007)
+
+  07 Nov 2007; Alexis Ballier <aballier@gentoo.org>
+  +files/tetex-3.0_p1-dvips_bufferoverflow.patch, +files/xpdf-3.02pl2.patch,
+  +tetex-3.0_p1-r5.ebuild:
+  security fixes for dvips, dviljk bug #198238 and libxpdf bug #196735; quote
+  variables
 
   08 Sep 2007; Steve Dibb <beandog@gentoo.org> tetex-3.0_p1-r4.ebuild:
   amd64 stable, security bug 170861
