@@ -2,6 +2,13 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.8470 (08 Nov 2007)
+
+  08 Nov 2007; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.8459.ebuild, +portage-2.2.00.8470.ebuild:
+  Replace just released snapshot with one that fixes a bug in binpkg handling.
+  Includes quickpg fix to create PKGDIR if it doesn't exist
+
 *portage-2.2.00.8459 (08 Nov 2007)
 
   08 Nov 2007; Fabian Groffen <grobian@gentoo.org>
