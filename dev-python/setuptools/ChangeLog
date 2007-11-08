@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/setuptools
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/ChangeLog,v 1.29 2007/11/04 08:01:24 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/ChangeLog,v 1.30 2007/11/07 19:16:31 lucass Exp $
+
+  07 Nov 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  setuptools-0.6_rc7-r1.ebuild:
+  Skip test_packageindex.py, bug #198312. Added NEED_PYTHON.
 
 *setuptools-0.6_rc7-r1 (04 Nov 2007)
 
