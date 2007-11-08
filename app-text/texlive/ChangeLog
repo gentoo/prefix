@@ -1,6 +1,9 @@
 # ChangeLog for app-text/texlive
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.15 2007/11/06 23:43:27 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.16 2007/11/07 19:50:19 armin76 Exp $
+
+  07 Nov 2007; Raúl Porcel <armin76@gentoo.org> texlive-2007-r1.ebuild:
+  Readd ~alpha/~ia64 wrt #198289
 
   06 Nov 2007; Ferris McCormick <fmccor@gentoo.org> texlive-2007-r1.ebuild:
   (Re)add ~sparc --- Bug #198289 --- dev-tex/feynmf is good on sparc.
