@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/mercurial
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.56 2007/10/18 06:44:19 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.58 2007/11/07 10:57:51 aross Exp $
+
+*mercurial-0.9.5 (07 Nov 2007)
+
+  07 Nov 2007; Andrew Ross <aross@gentoo.org> +mercurial-0.9.5.ebuild:
+  Version bump (bug #196713).
+
+  07 Nov 2007; Andrew Ross <aross@gentoo.org> mercurial-0.9.1-r2.ebuild:
+  Fix quoting issues caught by repoman.
 
   18 Oct 2007; Tom Gall <tgall@gentoo.org> mercurial-0.9.4.ebuild:
   added ~ppc64
