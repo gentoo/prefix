@@ -2,6 +2,12 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.8459 (08 Nov 2007)
+
+  08 Nov 2007; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.8340.ebuild, +portage-2.2.00.8459.ebuild:
+  New snapshot, added support for eapi identification from the main tree
+
 *portage-2.2.00.8435 (05 Nov 2007)
 
   05 Nov 2007; Fabian Groffen <grobian@gentoo.org>
