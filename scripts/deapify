@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+# Copyright Gentoo Foundation 2006-2007
+
+# <grobian@gentoo.org> -- 2007-11-08
+# initial version of the reverse of eapify, in its simplest form, only
+# working for the latest prefix API
+
+
+files=$*
+# default to all ebuilds if no files given
+[[ -z $files ]] && files="*.ebuild"
+
+
+replace() {
+	echo -n "  replacing $1 -> $2 ... "
+	local cnt=$(sed -e "${4:-s}|$1|$2|g" "$3" | diff "$3" - | grep -o "$2" | wc -l)
+	if [[ $cnt > 0 ]];
+	then
+		sed -i -e "${4:-s}|$1|$2|g" "$3"
+		echo -n "$cnt occurence"
+		[[ $cnt == 1 ]] \
+			&& echo "" \
+			|| echo "s"
+	else
+		echo "not found"
+	fi
+}
+
+for f in $files ; do
+	if [[ ! -f $f ]] ; then
+		echo "no such file: $f"
+		exit -1
+	fi
+
+	echo "Processing $f"
+
+	unset EAPI
+	echo -n "  EAPI ... "
+	eval "$(egrep "^EAPI=" "$f")"
+
+	if [[ ${EAPI} == "prefix "* ]] ; then
+		echo "demoting ${EAPI}"
+		sed -i \
+			-e '/^EAPI=/cEAPI='"${EAPI#prefix }" \
+			"$f"
+	elif [[ ${EAPI} == "prefix" ]] ; then
+		echo "removing ${EAPI}"
+		sed -i \
+			-e '/^$/{' \
+			-e 'N' \
+			-e '/^\nEAPI=/d' \
+			-e '}' \
+			"$f"
+	elif [[ -n ${EAPI} ]] ; then
+		echo "retaining ${EAPI}"
+	else
+		echo "absent"
+	fi
+
+	# we replace all ${ED} with ${D}, no need to care about make install
+	replace '${ED}' '${D}' "$f"
+
+	# replace ${EROOT} with ${ROOT}
+	replace '${EROOT}' '${ROOT}' "$f"
+
+	# get rid of ${EPREFIX}
+	replace '${EPREFIX}' '' "$f"
+done
