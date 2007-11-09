@@ -44,7 +44,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${D}" libdir=/nukeme includedir=/nukeme install || die
+	emake DESTDIR="${D}" libdir=/nukeme includedir=/nukeme install || die
 	rm -r "$D"/nukeme || die
 	rm -Rf "${ED}"/usr/${CHOST} || die
 	mv "${ED}"/usr/bin/gdb ${ED}/
