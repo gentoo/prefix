@@ -1,0 +1,119 @@
+# ChangeLog for sci-libs/geos
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/geos/ChangeLog,v 1.24 2007/04/16 07:59:15 corsair Exp $
+
+  16 Apr 2007; Markus Rothe <corsair@gentoo.org> geos-2.2.3.ebuild:
+  Stable on ppc64
+
+  16 Dec 2006; Tiziano Müller <dev-zero@gentoo.org>
+  +files/geos-3.0.0_rc3-amd64.patch, geos-3.0.0_rc3.ebuild:
+  Added patch to fix #158262
+
+*geos-3.0.0_rc3 (14 Dec 2006)
+*geos-2.2.3 (14 Dec 2006)
+
+  14 Dec 2006; Tiziano Müller <dev-zero@gentoo.org>
+  -files/geos-2.2.2-swig.patch, +files/geos-2.2.3-swig.patch,
+  -geos-2.1.4.ebuild, -geos-2.2.2.ebuild, -geos-2.2.2-r1.ebuild,
+  +geos-2.2.3.ebuild, -geos-3.0.0_rc1.ebuild, +geos-3.0.0_rc3.ebuild:
+  Version bumps. Dropped old versions. Cleanups.
+
+  07 Nov 2006; Gustavo Zacarias <gustavoz@gentoo.org> geos-2.2.1.ebuild:
+  Stable on sparc
+
+  17 Oct 2006; <djay@gentoo.org> ChangeLog:
+  Version bump, with simplifications.
+
+  24 Sep 2006; Luca Longinotti <chtekk@gentoo.org> geos-2.2.2.ebuild,
+  geos-2.2.2-r1.ebuild:
+  Remove need-autoconf usage, now done with WANT_AUTOCONF & autotools eclass,
+  fixes bug #148719.
+
+  24 Aug 2006; Markus Dittrich <markusle@gentoo.org> geos-2.2.2-r1.ebuild:
+  Added RUBY_OPTIONAL to prevent ruby from being pulled in by
+  the eclass for USE='-ruby'. Thanks to Emiliano Vavassori
+  <syntaxerrormmm@gmail.com> for the fix (see bug #139322).
+
+  08 Jul 2006; Markus Rothe <corsair@gentoo.org> geos-2.2.1.ebuild:
+  Stable on ppc64
+
+*geos-2.2.2-r1 (04 Jul 2006)
+
+  04 Jul 2006; Steve Arnold <nerdboy@gentoo.org> +geos-2.2.2-r1.ebuild:
+  Updated for ruby support (such as it is) and cleaned up old version.  Note
+  the tests are not complete (only the basic framework is there).  Needs more
+  testing by a ruby-ish person (including the tests :)  The ruby eclass also
+  needs more helper functions...
+
+  04 Jul 2006; Steve Arnold <nerdboy@gentoo.org> geos-2.2.2.ebuild:
+  The dodoc ordering got messed up (wrong working directory).
+
+  03 Jul 2006; Steve Arnold <nerdboy@gentoo.org>
+  +files/geos-2.2.2-swig.patch, +files/python.i, geos-2.2.2.ebuild:
+  Patched the swig stuff so python works correctly; the 3.0 release should
+  fix it (and add ruby support).  Note that the python wrapper implies static.
+
+  25 May 2006; Steve Arnold <nerdboy@gentoo.org> geos-2.2.1.ebuild:
+  Should have picked this one up earlier (inadvertantly omitted ppc).
+
+*geos-2.2.2 (25 May 2006)
+
+  25 May 2006; Steve Arnold <nerdboy@gentoo.org>
+  -files/geos-2.1.1-multilib.patch, -geos-2.1.1.ebuild, geos-2.1.2.ebuild,
+  geos-2.1.4.ebuild, geos-2.2.1.ebuild, +geos-2.2.2.ebuild:
+  Overdue stable bumps, added newest version, removed oldest, added ~ppc64
+  to latest versions (for gdal support).
+
+*geos-2.2.1 (14 Apr 2006)
+
+  14 Apr 2006; Marcus D. Hanwell <cryos@gentoo.org>
+  +files/geos-2.2.1-gcc-41.patch, +geos-2.2.1.ebuild:
+  Version bump, thanks to Etienne Dube <etdube@globetrotter.net> for the
+  bumped ebuild and Lucas Chiesa <lucas.chiesa@gmail.com> for his work on it,
+  closes bug 120479. Thanks to Bret Towe <magnade@gmail.com> for the GCC 4.1
+  patch, closes bug 126490.
+
+  21 Nov 2005; Simon Stelling <blubb@gentoo.org> geos-2.1.2.ebuild:
+  stable on amd64
+
+  17 Sep 2005; Michael Hanselmann <hansmi@gentoo.org> geos-2.1.2.ebuild:
+  Stable on ppc.
+
+  11 Sep 2005; Steve Arnold <nerdboy@gentoo.org> geos-2.1.1.ebuild,
+  geos-2.1.2.ebuild:
+  stable bump for sparc
+
+*geos-2.1.4 (27 Aug 2005)
+
+  27 Aug 2005; Masatomo Nakano <nakano@gentoo.org> +geos-2.1.4.ebuild:
+  Version bump.
+
+  23 Jul 2005; Steve Arnold <nerdboy@gentoo.org> geos-2.1.1.ebuild,
+  geos-2.1.2.ebuild:
+  stable bump for x86 and keyworded for ~sparc
+
+*geos-2.1.2 (03 Jul 2005)
+
+  03 Jul 2005; Masatomo Nakano <nakano@gentoo.org> +geos-2.1.2.ebuild:
+  Version bump.
+
+  17 May 2005; Chris White <chriswhite@gentoo.org> geos-2.1.1.ebuild:
+  Marked ppc unstable.
+
+  14 May 2005; MATSUU Takuto <matsuu@gentoo.org>
+  +files/geos-2.1.1-multilib.patch, geos-2.1.1.ebuild:
+  clean up ebuild. Fixed multilib problem.
+
+  14 May 2005; MATSUU Takuto <matsuu@gentoo.org> geos-2.1.1.ebuild:
+  mark ~amd64
+
+*geos-2.1.1 (11 May 2005)
+
+  11 May 2005; Masatomo Nakano <nakano@gentoo.org> +metadata.xml,
+  +geos-2.1.1.ebuild:
+  Initial import. Ebuild submitted by
+    Nathaniel C. Domingo <nathaniel.domingo@up.edu.ph>,
+    Paul Sumner <paul@zanfx.com>,
+    Jeff Kowalczyk <jtk@yahoo.com>,
+    MZM <marazm@navigator.lv>,
+    FENOY Gérald  djayweb@djayux.net>.
