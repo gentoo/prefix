@@ -15,7 +15,7 @@ HOMEPAGE="http://sourceforge.net/projects/xdvi/ http://xdvi.sourceforge.jp/"
 SRC_URI="mirror://sourceforge/xdvi/${P}.tar.gz
 	cjk? ( mirror://sourceforge.jp/xdvi/20703/${XDVIK_JP} )"
 
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-fbsd"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd"
 SLOT="0"
 LICENSE="GPL-2"
 IUSE="cjk motif neXt Xaw3d emacs"
