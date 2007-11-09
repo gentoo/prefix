@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/gdb-apple
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*gdb-apple-768 (09 Nov 2007)
+
+  09 Nov 2007; Fabian Groffen <grobian@gentoo.org> +gdb-apple-768.ebuild:
+  New snapshot, as released with 10.5, had to disable no-64-bits patch
 
   10 Dec 2006; Fabian Groffen <grobian@gentoo.org> +metadata.xml:
   Add metadata.xml
