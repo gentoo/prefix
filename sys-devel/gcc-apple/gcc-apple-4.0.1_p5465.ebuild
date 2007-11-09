@@ -140,8 +140,7 @@ src_compile() {
 	# will always compile 64-bits code, but might fail running,
 	# depending on the CPU, so the resulting program might fail.  Thanks
 	# Tobias Hahn for working that out.
-# let's forget about multilib until we know what to do with it
-	if [[ ${CHOST} == no-powerpc-apple-darwin* ]] && ! is_crosscompile ; then
+	if [[ ${CHOST} == *-apple-darwin* ]] && ! is_crosscompile ; then
 		cd "${T}"
 		echo '
 #include <stdio.h>
@@ -156,8 +155,7 @@ int main() {
 			myconf="${myconf} --disable-multilib"
 		fi
 	else
-		# ld64 doesn't compile on non-Darwin hosts, 64-bits building is broken
-		# on x86_64-darwin
+		# ld64 doesn't compile on non-Darwin hosts
 		myconf="${myconf} --disable-multilib"
 	fi
 
