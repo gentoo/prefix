@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Copyright Gentoo Foundation 2006-2007
 
+# <grobian@gentoo.org> -- 2007-11-09
+# also take notion of local variables for expansion in fetch_files
 # <grobian@gentoo.org> -- 2007-10-08
 # added support for _p in versions after _rc, _pre, etc.
 # sourcing the versionator eclass when being used now for better
@@ -413,8 +415,11 @@ fetch_files() {
 	local t=""
 
 	# Sometimes patches or other things in the FILESDIR refer to some
-	# variable stored globally.  We grab them from the ebuild for those cases
-	local gvars=$(egrep '^[A-Za-z_]+=(".+"|[^"]+)$' $1 | egrep -v '^(([RP]|)DEPEND|DESCRIPTION|HOMEPAGE|SRC_URI|LICENSE|KEYWORDS|IUSE|S)=')
+	# variable stored globally.  We grab them from the ebuild for those
+	# cases.  Actually, also local variables are sometimes used :(
+	# GNU grep can (unlike UNIX grep) not match the meta character \t,
+	# so sed it out as workaround :(
+	local gvars=$(sed -e 's/^\t\+//' -e 's/^local //' $1 | egrep '^[A-Za-z_]+=(".+"|[^"]+)$' | egrep -v '^(([RP]|)DEPEND|DESCRIPTION|HOMEPAGE|SRC_URI|LICENSE|KEYWORDS|IUSE|S)=')
 
 	# Figure out if versionator eclass is being used
 	local eclass=$(egrep '^inherit ' $1 | grep -o versionator)
