@@ -14,7 +14,7 @@ SRC_URI="http://thaiopensource.com/download/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 IUSE=""
 
 SITEFILE=80${PN}-gentoo.el
