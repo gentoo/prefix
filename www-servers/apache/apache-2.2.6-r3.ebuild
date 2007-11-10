@@ -106,15 +106,29 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	# Sloppily prefixify
-	if use prefix ; then
-		local files=$(find "${GENTOO_PATCHDIR}" -type f)
-		for f in ${files} ; do
-			ebegin "adjusting ${f##*/} to prefix"
-			sed -i -e "s:\(/var\|/usr\|/etc\|/sbin\):${EPREFIX}\1:" "${f}"
-			eend $?
-		done
-	fi
+	pushd "${GENTOO_PATCHDIR}"
+		epatch "${FILESDIR}"/${P}-prefix.patch
+		eprefixify \
+			conf/httpd.conf \
+			scripts/gentestcrt.sh \
+			docs/ip-based-vhost.conf.example \
+			docs/name-based-vhost.conf.example \
+			docs/ssl-vhost.conf.example \
+			patches/config.layout \
+			scripts/apache2-logrotate \
+			init/apache2.initd \
+			conf/vhosts.d/00_default_ssl_vhost.conf \
+			conf/vhosts.d/00_default_vhost.conf \
+			conf/vhosts.d/default_vhost.include \
+			conf/modules.d/00_apache_manual.conf \
+			conf/modules.d/00_autoindex.conf \
+			conf/modules.d/00_error_documents.conf \
+			conf/modules.d/00_mod_log_config.conf \
+			conf/modules.d/00_mod_mime.conf \
+			conf/modules.d/00_mpm.conf \
+			conf/modules.d/40_mod_ssl.conf \
+			conf/modules.d/45_mod_dav.conf
+	popd
 
 	# 03_all_gentoo-apache-tools.patch injects -Wl,-z,now, which is not a good
 	# idea for everyone
