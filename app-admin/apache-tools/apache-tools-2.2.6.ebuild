@@ -44,7 +44,7 @@ src_compile() {
 	# Instead of filtering --as-needed (bug #128505), append --no-as-needed
 	# Thanks to Harald van Dijk
 	case ${CHOST} in
-		*-linux-gnu|*-solaris*)
+		*-linux-gnu|*-solaris*|*-freebsd*)
 			append-ldflags -Wl,--no-as-needed
 		;;
 	esac
