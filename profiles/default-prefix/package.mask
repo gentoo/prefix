@@ -22,6 +22,10 @@
 ##   End example
 ##
 
+# Elias Pipping <pipping@gentoo.org> (10 Nov 2007)
+# Still a WIP -- not yet ready for use
+www-servers/apache
+
 # Fabian Groffen <grobian@gentoo.org> (21 Oct 2007)
 # This is a completely rewritten from scratch version to facilitate
 # cross-compilation.  Testing this out.
