@@ -119,7 +119,7 @@ src_unpack() {
 	# 03_all_gentoo-apache-tools.patch injects -Wl,-z,now, which is not a good
 	# idea for everyone
 	case ${CHOST} in
-		*-linux-gnu|*-solaris*)
+		*-linux-gnu|*-solaris*|*-freebsd*)
 			# do nothing, these use GNU binutils
 			:
 		;;
@@ -168,7 +168,7 @@ src_compile() {
 	# Instead of filtering --as-needed (bug #128505), append --no-as-needed
 	# Thanks to Harald van Dijk
 	case ${CHOST} in
-		*-linux-gnu|*-solaris*)
+		*-linux-gnu|*-solaris*|*-freebsd*)
 			append-ldflags -Wl,--no-as-needed
 		;;
 	esac
