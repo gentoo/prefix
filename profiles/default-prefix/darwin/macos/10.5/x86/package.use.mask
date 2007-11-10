@@ -23,3 +23,7 @@ media-libs/imlib2 mmx
 # Elias Pipping <pipping@mi.fu-berlin.de> (13 Sep 2007)
 # mc fails to compile with USE=slang (unicode implies slang)
 app-misc/mc unicode slang
+
+# Elias Pipping <pipping@gentoo.org> (10 Nov 2007)
+# ruby fails to compile with USE=threads
+dev-lang/ruby threads
