@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/deb2targz
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/deb2targz/ChangeLog,v 1.7 2007/07/24 15:19:54 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/deb2targz/ChangeLog,v 1.8 2007/11/09 19:54:18 armin76 Exp $
+
+  09 Nov 2007; Raúl Porcel <armin76@gentoo.org> deb2targz-1.ebuild:
+  Add ~alpha/~ia64/~sparc
 
   24 Jul 2007; Jeroen Roovers <jer@gentoo.org> deb2targz-1.ebuild:
   Stable for HPPA too.
