@@ -1,6 +1,12 @@
 # ChangeLog for x11-terms/xterm
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.219 2007/10/13 13:57:02 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.220 2007/11/09 21:30:11 seemant Exp $
+
+  09 Nov 2007; Seemant Kulleen <seemant@gentoo.org> xterm-225.ebuild,
+  -xterm-227.ebuild, xterm-228.ebuild, xterm-229.ebuild:
+  Fixed quoting issues, and added xmessage as a dependency, since it is
+  required for uxterm to function. Thanks to drizztbsd@gentoo.org for the note
+  on that.  And stabled 229 for sh, arm, and s390.
 
   13 Oct 2007; nixnut <nixnut@gentoo.org> xterm-229.ebuild:
   Stable on ppc wrt bug 194017
