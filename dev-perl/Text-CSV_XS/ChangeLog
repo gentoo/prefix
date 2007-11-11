@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Text-CSV_XS
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-CSV_XS/ChangeLog,v 1.21 2007/10/19 20:05:45 ian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-CSV_XS/ChangeLog,v 1.22 2007/11/10 14:54:42 drac Exp $
+
+  10 Nov 2007; Samuli Suominen <drac@gentoo.org> Text-CSV_XS-0.30.ebuild:
+  amd64 stable
 
 *Text-CSV_XS-0.31 (19 Oct 2007)
 
