@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.6.1.ebuild,v 1.2 2007/10/13 14:39:37 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.6.1.ebuild,v 1.5 2007/11/10 00:12:17 corsair Exp $
 
 EAPI="prefix"
 

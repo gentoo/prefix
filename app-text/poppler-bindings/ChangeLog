@@ -1,6 +1,18 @@
 # ChangeLog for app-text/poppler-bindings
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.71 2007/10/13 14:39:37 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.74 2007/11/10 00:12:17 corsair Exp $
+
+  10 Nov 2007; Markus Rothe <corsair@gentoo.org>
+  poppler-bindings-0.6.1.ebuild:
+  Stable on ppc64; bug #196735
+
+  09 Nov 2007; Ferris McCormick <fmccor@gentoo.org>
+  poppler-bindings-0.6.1.ebuild:
+  Sparc stable --- Security Bug #196735
+
+  09 Nov 2007; Christian Faulhammer <opfer@gentoo.org>
+  poppler-bindings-0.6.1.ebuild:
+  stable x86, security bug 196735
 
   13 Oct 2007; Ryan Hill <dirtyepic@gentoo.org>
   poppler-bindings-0.6.1.ebuild:
