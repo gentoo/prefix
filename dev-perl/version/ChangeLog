@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/version
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/version/ChangeLog,v 1.47 2007/10/19 20:12:50 ian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/version/ChangeLog,v 1.48 2007/11/10 19:23:59 drac Exp $
+
+  10 Nov 2007; Samuli Suominen <drac@gentoo.org> version-0.73.ebuild:
+  amd64 stable
 
 *version-0.73 (19 Oct 2007)
 
