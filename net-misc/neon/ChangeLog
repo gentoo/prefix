@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/neon
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.89 2007/07/06 18:48:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.90 2007/11/10 19:37:18 hollow Exp $
+
+*neon-0.26.4 (10 Nov 2007)
+
+  10 Nov 2007; Benedikt Böhm <hollow@gentoo.org> +neon-0.26.4.ebuild:
+  version bump; fixes #114759, #162318, #186929, #197964
 
   06 Jul 2007; Mike Frysinger <vapier@gentoo.org> neon-0.26.1.ebuild,
   neon-0.26.1-r1.ebuild, neon-0.26.3.ebuild:
