@@ -225,7 +225,9 @@ src_compile() {
 
 	use aqua && myconf="${myconf} -no-framework"
 
-	sed -i "/^QMAKE_LFLAGS_SONAME/s,$,${EPREFIX}/usr/$(get_libdir)/qt4/," mkspecs/common/mac-g++.conf
+	sed -i \
+		-e "/^QMAKE_LFLAGS_SONAME/s,$,${EPREFIX}/usr/$(get_libdir)/qt4/," \
+	mkspecs/common/mac-g++.conf
 
 	echo ./configure ${myconf}
 	./configure ${myconf} || die
