@@ -1,6 +1,30 @@
 # ChangeLog for app-crypt/johntheripper
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.60 2007/11/04 10:06:29 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.66 2007/11/10 23:45:40 fmccor Exp $
+
+  10 Nov 2007; Ferris McCormick <fmccor@gentoo.org>
+  johntheripper-1.7.2-r2.ebuild:
+  Sparc stable, bug #198659.
+
+  10 Nov 2007; Markus Rothe <corsair@gentoo.org>
+  johntheripper-1.7.2-r2.ebuild:
+  Stable on ppc64; bug #198659
+
+  10 Nov 2007; Alon Bar-Lev <alonbl@gentoo.org>
+  +files/johntheripper-1.7.2-mkdir-sandbox.patch,
+  johntheripper-1.7.2-r2.ebuild:
+  Fix access denied for sandbox, bug#198659
+
+  10 Nov 2007; Dawid Węgliński <cla@gentoo.org>
+  johntheripper-1.7.2-r2.ebuild:
+  Reverting back to ~x86
+
+  10 Nov 2007; Dawid Węgliński <cla@gentoo.org>
+  johntheripper-1.7.2-r2.ebuild:
+  Stable on x86 (bug #198659)
+
+  10 Nov 2007; nixnut <nixnut@gentoo.org> johntheripper-1.7.2-r2.ebuild:
+  Stable on ppc wrt bug 198659
 
   04 Nov 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing myself as the maintainer.
