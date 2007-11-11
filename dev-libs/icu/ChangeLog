@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/icu
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.61 2007/11/09 23:01:09 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.62 2007/11/10 22:06:23 corsair Exp $
+
+  10 Nov 2007; Markus Rothe <corsair@gentoo.org> icu-3.6-r1.ebuild:
+  Stable on ppc64; bug #198580
 
   09 Nov 2007; nixnut <nixnut@gentoo.org> icu-3.6-r1.ebuild:
   Stable on ppc wrt bug 198580
