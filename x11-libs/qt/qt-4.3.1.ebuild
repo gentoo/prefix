@@ -51,7 +51,7 @@ RDEPEND="!aqua? ( x11-libs/libXrandr
 
 DEPEND="${RDEPEND}
 	xinerama? ( x11-proto/xineramaproto )
-	x11-proto/xextproto
+	!aqua? ( x11-proto/xextproto )
 	input_devices_wacom? ( x11-proto/inputproto )
 	dev-util/pkgconfig"
 
@@ -222,6 +222,10 @@ src_compile() {
 		-docdir ${QTDOCDIR} -headerdir ${QTHEADERDIR} -plugindir ${QTPLUGINDIR} \
 		-sysconfdir ${QTSYSCONFDIR} -translationdir ${QTTRANSDIR} \
 		-examplesdir ${QTEXAMPLESDIR} -demosdir ${QTDEMOSDIR} ${myconf}"
+
+	use aqua && myconf="${myconf} -no-framework"
+
+	sed -i "/^QMAKE_LFLAGS_SONAME/s,$,${EPREFIX}/usr/$(get_libdir)/qt4/," mkspecs/common/mac-g++.conf
 
 	echo ./configure ${myconf}
 	./configure ${myconf} || die
