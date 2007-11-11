@@ -1,6 +1,9 @@
 # ChangeLog for sys-kernel/linux-headers
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/ChangeLog,v 1.244 2007/10/17 16:45:41 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/ChangeLog,v 1.245 2007/11/09 20:09:25 nixnut Exp $
+
+  09 Nov 2007; nixnut <nixnut@gentoo.org> linux-headers-2.6.22-r2.ebuild:
+  Stable on ppc wrt bug 195704
 
   17 Oct 2007; Raúl Porcel <armin76@gentoo.org>
   linux-headers-2.6.22-r2.ebuild:
