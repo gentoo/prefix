@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic
+inherit eutils
 
 DESCRIPTION="Lightweight Programmers Editor"
 HOMEPAGE="http://cdsmith.twu.net/professional/opensource/lpe.html"
@@ -12,7 +12,7 @@ SRC_URI="mirror://debian/pool/main/l/${PN}/${PN}_${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="x86"
+KEYWORDS="~x86"
 IUSE="nls"
 
 DEPEND="sys-libs/slang"
