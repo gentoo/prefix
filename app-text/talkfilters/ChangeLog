@@ -1,6 +1,10 @@
 # ChangeLog for app-text/talkfilters
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/talkfilters/ChangeLog,v 1.25 2007/11/02 21:18:55 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/talkfilters/ChangeLog,v 1.26 2007/11/09 21:15:13 grobian Exp $
+
+  09 Nov 2007; Fabian Groffen <grobian@gentoo.org>
+  talkfilters-2.3.4-r1.ebuild, talkfilters-2.3.7.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   02 Nov 2007; Lars Weiler <pylon@gentoo.org> talkfilters-2.3.7.ebuild:
   stable ppc, bug #197741
