@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/com_err-1.40.2.ebuild,v 1.4 2007/10/11 07:37:38 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/com_err-1.40.2.ebuild,v 1.5 2007/11/09 06:09:10 kingtaco Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,8 @@ KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-sola
 IUSE="nls"
 
 RDEPEND=""
-DEPEND="nls? ( sys-devel/gettext )"
+DEPEND="nls? ( sys-devel/gettext )
+        sys-devel/bc"
 
 S=${WORKDIR}/e2fsprogs-${PV}
 
