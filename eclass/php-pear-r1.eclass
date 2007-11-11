@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-pear-r1.eclass,v 1.18 2007/10/22 22:55:04 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-pear-r1.eclass,v 1.19 2007/11/08 16:07:22 jokey Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
 # Author: Luca Longinotti <chtekk@gentoo.org>
@@ -31,12 +31,13 @@ fix_PEAR_PV() {
 	tmp="${tmp/_/}"
 	tmp="${tmp/rc/RC}"
 	tmp="${tmp/beta/b}"
+	tmp="${tmp/alpha/a}"
 	PEAR_PV="${tmp}"
 }
 
 # @ECLASS-VARIABLE: PEAR_PV
 # @DESCRIPTION:
-# Set in ebuild if the eclass ${PV} mangling breaks SRC_URI for beta/rc versions
+# Set in ebuild if the eclass ${PV} mangling breaks SRC_URI for alpha/beta/rc versions
 [[ -z "${PEAR_PV}" ]] && fix_PEAR_PV
 
 PEAR_PN="${PHP_PEAR_PKG_NAME}-${PEAR_PV}"

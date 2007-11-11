@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.82 2007/10/02 10:00:07 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.83 2007/11/08 09:42:55 robbat2 Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: Luca Longinotti <chtekk@gentoo.org>
@@ -461,8 +461,13 @@ pbxt_src_install() {
 #
 
 mysql_pkg_setup() {
-	enewgroup mysql 60 || die "problem adding 'mysql' group"
-	enewuser mysql 60 -1 /dev/null mysql || die "problem adding 'mysql' user"
+	if hasq test ${FEATURES} ; then
+		if ! use minimal ; then
+			if ! hasq userpriv ${FEATURES} ; then
+				die "Testing with FEATURES=-userpriv is no longer supported by upstream"
+			fi
+		fi
+	fi
 
 	# Check for USE flag problems in pkg_setup
 	if use static && use ssl ; then
@@ -484,6 +489,10 @@ mysql_pkg_setup() {
 		eerror "USE flags 'cluster' and 'extraengine' conflict with 'minimal' USE flag!"
 		die "USE flags 'cluster' and 'extraengine' conflict with 'minimal' USE flag!"
 	fi
+	
+	# This should come after all of the die statements
+	enewgroup mysql 60 || die "problem adding 'mysql' group"
+	enewuser mysql 60 -1 /dev/null mysql || die "problem adding 'mysql' user"
 
 	mysql_check_version_range "4.0 to 5.0.99.99" \
 	&& use berkdb \
