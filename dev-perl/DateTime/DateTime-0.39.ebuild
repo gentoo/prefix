@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DateTime/DateTime-0.39.ebuild,v 1.3 2007/10/15 14:16:32 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DateTime/DateTime-0.39.ebuild,v 1.4 2007/11/10 12:34:31 drac Exp $
 
 EAPI="prefix"
 
@@ -19,6 +19,6 @@ SRC_TEST="do"
 
 DEPEND=">=dev-perl/Params-Validate-0.76
 	>=virtual/perl-Time-Local-1.04
-		>=dev-perl/DateTime-TimeZone-0.59
-		>=dev-perl/DateTime-Locale-0.31
+	>=dev-perl/DateTime-TimeZone-0.59
+	>=dev-perl/DateTime-Locale-0.31
 	dev-lang/perl"
