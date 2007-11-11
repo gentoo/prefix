@@ -1,6 +1,15 @@
 # ChangeLog for app-crypt/gpgme
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/ChangeLog,v 1.117 2007/10/17 14:55:36 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/ChangeLog,v 1.120 2007/11/10 22:11:23 corsair Exp $
+
+  10 Nov 2007; Markus Rothe <corsair@gentoo.org> gpgme-1.1.5.ebuild:
+  Stable on ppc64; bug #198656
+
+  10 Nov 2007; Ferris McCormick <fmccor@gentoo.org> gpgme-1.1.5.ebuild:
+  Sparc stable --- Bug #198656 --- builds itself and all tests good.
+
+  10 Nov 2007; nixnut <nixnut@gentoo.org> gpgme-1.1.5.ebuild:
+  Stable on ppc wrt bug 198656
 
   17 Oct 2007; Roy Marples <uberlord@gentoo.org> gpgme-1.1.5.ebuild:
   Restore elibtoolize again.
