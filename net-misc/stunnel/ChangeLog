@@ -1,6 +1,16 @@
 # ChangeLog for net-misc/stunnel
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/ChangeLog,v 1.74 2007/11/03 16:00:15 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/ChangeLog,v 1.77 2007/11/10 05:26:34 drac Exp $
+
+  10 Nov 2007; Samuli Suominen <drac@gentoo.org> stunnel-3.26.ebuild:
+  Keyword ~amd64 wrt #193770.
+
+  09 Nov 2007; Ulrich Mueller <ulm@gentoo.org> stunnel-3.26.ebuild,
+  -stunnel-4.09-r1.ebuild, -stunnel-4.14-r1.ebuild, -stunnel-4.15.ebuild:
+  Install stunnel.so again. Remove redundant src_compile. Clean up.
+
+  09 Nov 2007; Fabian Groffen <grobian@gentoo.org> stunnel-3.26.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   03 Nov 2007; Samuli Suominen <drac@gentoo.org> stunnel-4.20.ebuild:
   Stable on arm; bug #113778
