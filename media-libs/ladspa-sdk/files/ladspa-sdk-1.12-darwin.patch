@@ -1,0 +1,122 @@
+--- ladspa_sdk/src/applyplugin.c
++++ ladspa_sdk/src/applyplugin.c
+@@ -6,7 +6,7 @@
+ /*****************************************************************************/
+ 
+ #include <dlfcn.h>
+-#ifdef __FreeBSD__
++#if defined(__FreeBSD__) || defined (__MACH__)
+ #include <machine/endian.h>
+ #else
+ #include <endian.h>
+--- ladspa_sdk/src/load.c
++++ ladspa_sdk/src/load.c
+@@ -41,8 +42,14 @@
+        doing and simply dlopen() it. */
+ 
+     pvResult = dlopen(pcFilename, iFlag);
+-    if (pvResult != NULL)
++    if (pvResult != NULL) {
++#ifdef __APPLE_CC__
++      void (*f)(void) = dlsym(pvResult, "_init");
++      if (f != NULL)
++        (*f)();
++#endif
+       return pvResult;
++    }
+ 
+   }
+   else {
+@@ -77,8 +84,14 @@
+ 	pvResult = dlopen(pcBuffer, iFlag);
+ 	
+ 	free(pcBuffer);
+-	if (pvResult != NULL)
+-	  return pvResult;
++    if (pvResult != NULL) {
++#ifdef __APPLE_CC__
++      void (*f)(void) = dlsym(pvResult, "_init");
++      if (f != NULL)
++        (*f)();
++#endif
++      return pvResult;
++    }
+ 	
+ 	pcStart = pcEnd;
+ 	if (*pcStart == ':')
+@@ -90,12 +90,21 @@
+   /* As a last ditch effort, check if filename does not end with
+      ".so". In this case, add this suffix and recurse. */
+   iEndsInSO = 0;
++#ifndef __APPLE_CC__
+   if (iFilenameLength > 3)
+     iEndsInSO = (strcmp(pcFilename + iFilenameLength - 3, ".so") == 0);
+   if (!iEndsInSO) {
+     pcBuffer = malloc(iFilenameLength + 4);
+     strcpy(pcBuffer, pcFilename);
+     strcat(pcBuffer, ".so");
++#else
++  if (iFilenameLength > 7)
++    iEndsInSO = (strcmp(pcFilename + iFilenameLength - 7, ".bundle") == 0);
++  if (!iEndsInSO) {
++    pcBuffer = malloc(iFilenameLength + 8);
++    strcpy(pcBuffer, pcFilename);
++    strcat(pcBuffer, ".bundle");
++#endif
+     pvResult = dlopenLADSPA(pcBuffer, iFlag);
+     free(pcBuffer);
+   }
+@@ -119,7 +133,13 @@
+      will be kept when multiple calls are made to dlopen(). We've
+      covered the former case - now we can handle the latter by calling
+      dlopen() again here. */
+-  return dlopen(pcFilename, iFlag);
++  pvResult = dlopen(pcFilename, iFlag);
++#ifdef __APPLE_CC__
++  void (*f)(void) = dlsym(pvResult, "_init");
++  if (f != NULL)
++    (*f)();
++#endif
++  return pvResult;
+ }
+ 
+ /*****************************************************************************/
+--- ladspa_sdk/src/makefile
++++ ladspa_sdk/src/makefile
+@@ -23,11 +23,16 @@
+ endif
+ CFLAGS		=	$(INCLUDES) -Wall -Werror -O3 -fPIC
+ CXXFLAGS	=	$(CFLAGS)
+-PLUGINS		=	../plugins/amp.so				\
+-			../plugins/delay.so				\
+-			../plugins/filter.so				\
+-			../plugins/noise.so				\
+-			../plugins/sine.so				
++ifeq ($(shell uname -s), Darwin)
++MODEXT      = bundle
++else
++MODEXT      = so
++endif
++PLUGINS		=	../plugins/amp.$(MODEXT)				\
++			../plugins/delay.$(MODEXT)				\
++			../plugins/filter.$(MODEXT)				\
++			../plugins/noise.$(MODEXT)				\
++			../plugins/sine.$(MODEXT)				
+ PROGRAMS	=	../bin/analyseplugin				\
+ 			../bin/applyplugin 				\
+ 			../bin/listplugins
+@@ -47,6 +52,14 @@
+ 	$(CPP) $(CXXFLAGS) -o plugins/$*.o -c plugins/$*.cpp
+ 	$(CPP) -o ../plugins/$*.so plugins/$*.o -shared
+ 
++../plugins/%.bundle:	plugins/%.c ladspa.h
++	$(CC) $(CFLAGS) -o plugins/$*.o -c plugins/$*.c
++	$(CC) -bundle -o ../plugins/$*.bundle plugins/$*.o
++
++../plugins/%.bundle:	plugins/%.cpp ladspa.h
++	$(CPP) $(CXXFLAGS) -o plugins/$*.o -c plugins/$*.cpp
++	$(CPP) -bundle -o ../plugins/$*.bundle plugins/$*.o
++
+ ###############################################################################
+ #
+ # TARGETS

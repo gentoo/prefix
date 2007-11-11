@@ -1,0 +1,127 @@
+# ChangeLog for media-libs/ladspa-sdk
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ChangeLog,v 1.34 2007/07/02 15:54:03 flameeyes Exp $
+
+  02 Jul 2007; Diego Pettenò <flameeyes@gentoo.org> metadata.xml:
+  Hand to newly-born proaudio herd.
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  31 Oct 2006; Javier Villavicencio <the_paya@gentoo.org>
+  +files/ladspa-sdk-1.12-fbsd.patch, ladspa-sdk-1.12-r2.ebuild:
+  Add fix to enable compilation on Gentoo/FreeBSD, and keyword ~x86-fbsd.
+
+  18 Jan 2006; Hanno Boeck <hanno@gentoo.org>
+  +files/ladspa-sdk-1.12-gcc4.patch, ladspa-sdk-1.12-r2.ebuild:
+  Fix for gcc 4.
+
+  30 Sep 2005; Diego Pettenò <flameeyes@gentoo.org>
+  ladspa-sdk-1.12-r2.ebuild:
+  Respect user-defined CXXFLAGS.
+
+  21 Apr 2005; Michael Hanselmann <hansmi@gentoo.org>
+  ladspa-sdk-1.12-r2.ebuild:
+  Stable on ppc.
+
+  21 Apr 2005; Kito <kito@gentoo.org> ladspa-sdk-1.12-r2.ebuild:
+  Stable on ppc-macos
+
+  06 Feb 2005; Markus Rothe <corsair@gentoo.org> ladspa-sdk-1.12-r2.ebuild:
+  Stable on ppc64
+
+  02 Jan 2005; Mike Frysinger <vapier@gentoo.org> ladspa-sdk-1.12-r2.ebuild:
+  hppa KEYWORDS for #75669
+
+  29 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  26 Dec 2004; Markus Rothe <corsair@gentoo.org> ladspa-sdk-1.12-r2.ebuild:
+  Added ~ppc64 to KEYWORDS; bug #75669
+
+  23 Nov 2004; Bryan Østergaard <kloeri@gentoo.org>
+  ladspa-sdk-1.12-r2.ebuild:
+  Stable on alpha.
+
+  21 Nov 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  ladspa-sdk-1.12-r1.ebuild, ladspa-sdk-1.12-r2.ebuild,
+  ladspa-sdk-1.12.ebuild:
+  -j1 to fix bug #71956.
+
+  06 Oct 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  ladspa-sdk-1.12-r2.ebuild:
+  get_libdir fixes.
+
+  15 Sep 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  ladspa-sdk-1.12-r2.ebuild:
+  Stable amd64, sparc, x86.
+
+  10 Sep 2004; Kito <kito@gentoo.org> +files/ladspa-sdk-1.12-macos.patch,
+  ladspa-sdk-1.12-r2.ebuild:
+  Added Mac OS X/Darwin compatibility patch. Closes Bug #63433
+
+*ladspa-sdk-1.12-r2 (16 Aug 2004)
+
+  16 Aug 2004; <frank@gentoo.org> +files/ladspa-sdk-1.12-test.patch,
+  +ladspa-sdk-1.12-r2.ebuild:
+  Patched to make the maketest work. Closes bug #60159.
+
+*ladspa-sdk-1.12-r1 (15 Jul 2004)
+
+  15 Jul 2004; Marc Hildebrand <zypher@gentoo.org>
+  ladspa-sdk-1.12-r1.ebuild:
+  Added LADSPA_PATH=/usr/lib/ladspa (via /etc/env.d/60ladspa)
+  
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  ladspa-sdk-1.0.ebuild, ladspa-sdk-1.12.ebuild:
+  virtual/glibc -> virtual/libc
+
+  05 Jun 2004; Bryan Østergaard <kloeri@gentoo.org> ladspa-sdk-1.12.ebuild:
+  Stable on alpha.
+
+  28 Feb 2004; Dylan Carlson <absinthe@gentoo.org> ladspa-sdk-1.12.ebuild:
+  Added amd64 to KEYWORDS.
+
+  06 Feb 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  ladspa-sdk-1.12.ebuild:
+  Makefile patch to allow compilation on systems without XFree86 installed.
+  Closes bug #34468.
+
+  19 Jun 2003; <msterret@gentoo.org> ladspa-sdk-1.12.ebuild:
+  use sed -i, emake, and dohtml (bug 23048)
+
+  10 Feb 2003; Aron Griffis <agriffis@gentoo.org> ladspa-sdk-1.12.ebuild :
+  Add ~alpha to KEYWORDS
+
+*ladspa-sdk-1.12 (25 Dec 2002)
+
+  12 Jan 2003; Tobias Eichert <viz@gentoo.org> ladspa-sdk-1.12.ebuild :
+  Removed ALSA as a dependency. Closes bug #13556 .
+
+  08 Jan 2003; Nick Hadaway <raker@gentoo.org> ladspa-sdk-1.12.ebuild :
+  Marked stable.
+
+  25 Dec 2002; Tobias Eichert <viz@gentoo.org> ladspa-sdk-1.12.ebuild
+  files/digest-ladspa-sdk-1.12 :
+
+  Version bump.
+  Did a few ebuild cleanups.
+  Thanks to vaino.jarvela@pp.inet.fi (Vaino Jarvela) for bug report
+  and jkraut1@nyc.rr.com (Jonathan Kraut) for pointing to this update.
+  
+  Closes bug #11072.
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*ladspa-sdk-1.0 (09 June 2002)
+
+  07 Aug 2002; Mark Guertin <gerk@gentoo.org> :
+  Added ppc to keywords
+
+  09 June 2002; Ryan Phillips <rphillips@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
