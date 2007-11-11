@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Email-Address/Email-Address-1.88.8.ebuild,v 1.4 2007/08/09 15:04:54 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Email-Address/Email-Address-1.88.8.ebuild,v 1.5 2007/11/10 12:45:09 drac Exp $
 
 EAPI="prefix"
 
@@ -21,6 +21,6 @@ IUSE="test"
 SRC_TEST="do"
 
 DEPEND="test? ( virtual/perl-Test-Simple
-		>=dev-perl/Test-Pod-1.14
-		>=dev-perl/Test-Pod-Coverage-1.08 )
+	>=dev-perl/Test-Pod-1.14
+	>=dev-perl/Test-Pod-Coverage-1.08 )
 	dev-lang/perl"
