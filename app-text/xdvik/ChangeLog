@@ -1,6 +1,9 @@
 # ChangeLog for app-text/xdvik
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/ChangeLog,v 1.44 2007/11/07 10:46:24 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/ChangeLog,v 1.45 2007/11/09 21:37:27 grobian Exp $
+
+  09 Nov 2007; Fabian Groffen <grobian@gentoo.org> xdvik-22.40y-r2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   07 Nov 2007; Raúl Porcel <armin76@gentoo.org> xdvik-22.40y-r2.ebuild,
   xdvik-22.84.5.ebuild, xdvik-22.84.10.ebuild:
