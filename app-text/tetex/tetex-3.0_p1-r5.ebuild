@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/tetex-3.0_p1-r5.ebuild,v 1.1 2007/11/07 23:05:19 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/tetex-3.0_p1-r5.ebuild,v 1.6 2007/11/08 18:13:06 corsair Exp $
 
 EAPI="prefix"
 
