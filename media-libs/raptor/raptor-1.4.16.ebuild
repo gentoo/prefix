@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils flag-o-matic
 
 DESCRIPTION="The RDF Parser Toolkit"
 HOMEPAGE="http://librdf.org/raptor"
@@ -38,6 +38,8 @@ src_compile() {
 	else
 		myconf="${myconf} --with-xml-parser=expat"
 	fi
+	# libtool needs help to find {libxml2,expat}.la from our prefix
+	append-ldflags -L${EPREFIX}/usr/$(get_libdir)
 
 	if use curl; then
 		myconf="${myconf} --with-www=curl"
