@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Text-Aspell
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Aspell/ChangeLog,v 1.35 2007/10/19 20:34:38 ian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Aspell/ChangeLog,v 1.36 2007/11/10 15:00:12 drac Exp $
+
+  10 Nov 2007; Samuli Suominen <drac@gentoo.org> Text-Aspell-0.08.ebuild:
+  amd64 stable
 
 *Text-Aspell-0.09 (19 Oct 2007)
 
