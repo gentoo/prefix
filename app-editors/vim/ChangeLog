@@ -1,6 +1,12 @@
 # ChangeLog for app-editors/vim
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.292 2007/11/09 22:21:46 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.294 2007/11/10 22:02:45 corsair Exp $
+
+  10 Nov 2007; Markus Rothe <corsair@gentoo.org> vim-7.1.123.ebuild:
+  Stable on ppc64; bug #198574
+
+  10 Nov 2007; Daniel Gryniewicz <dang@gentoo.org> vim-7.1.123.ebuild:
+  Marked stable on amd64 for bug #198574
 
   09 Nov 2007; nixnut <nixnut@gentoo.org> vim-7.1.123.ebuild:
   Stable on ppc wrt bug 198574
