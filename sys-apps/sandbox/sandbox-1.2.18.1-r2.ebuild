@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.2.18.1-r2.ebuild,v 1.9 2007/10/27 18:36:49 yoswink Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.2.18.1-r2.ebuild,v 1.10 2007/11/08 07:04:07 vapier Exp $
 
 EAPI="prefix"
 
