@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/PlRPC
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/PlRPC/ChangeLog,v 1.42 2007/10/06 06:29:47 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/PlRPC/ChangeLog,v 1.43 2007/11/10 14:20:07 drac Exp $
+
+  10 Nov 2007; Samuli Suominen <drac@gentoo.org> PlRPC-0.2020-r1.ebuild:
+  amd64 stable
 
   06 Oct 2007; Tom Gall <tgall@gentoo.org> PlRPC-0.2020-r1.ebuild:
   stable on ppc64
