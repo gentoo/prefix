@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-WikiFormat/Text-WikiFormat-0.79.ebuild,v 1.4 2007/08/09 15:25:14 gustavoz Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-WikiFormat/Text-WikiFormat-0.79.ebuild,v 1.5 2007/11/10 14:58:42 drac Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 
 DEPEND="dev-perl/URI
 	virtual/perl-Scalar-List-Utils
-		>=dev-perl/module-build-0.28
+	>=dev-perl/module-build-0.28
 	dev-lang/perl"
 IUSE=""
 
