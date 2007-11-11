@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/SVN-Mirror
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/SVN-Mirror/ChangeLog,v 1.37 2007/07/14 13:27:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/SVN-Mirror/ChangeLog,v 1.38 2007/11/10 14:30:28 drac Exp $
+
+  10 Nov 2007; Samuli Suominen <drac@gentoo.org> SVN-Mirror-0.73.ebuild:
+  amd64 stable
 
   14 Jul 2007; Raúl Porcel <armin76@gentoo.org> SVN-Mirror-0.73.ebuild:
   ia64/x86 stable
