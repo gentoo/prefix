@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.2-r1.ebuild,v 1.2 2007/10/31 07:00:37 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.2-r1.ebuild,v 1.3 2007/11/10 14:27:58 opfer Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ SRC_URI="mirror://sourceforge/gnuplot/${MY_P}.tar.gz"
 LICENSE="gnuplot"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
-IUSE="doc emacs gd ggi tetex pdf plotutils readline svga wxwindows X xemacs"
+IUSE="doc emacs gd ggi latex pdf plotutils readline svga wxwindows X xemacs"
 
 RDEPEND="
 	xemacs? ( virtual/xemacs app-xemacs/texinfo app-xemacs/xemacs-base )
@@ -24,7 +24,7 @@ RDEPEND="
 	ggi? ( media-libs/libggi )
 	gd? ( >=media-libs/gd-2 )
 	doc? ( virtual/latex-base )
-	tetex? ( virtual/latex-base )
+	latex? ( virtual/latex-base )
 	X? ( x11-libs/libXaw )
 	svga? ( media-libs/svgalib )
 	readline? ( >=sys-libs/readline-4.2 )
@@ -41,7 +41,7 @@ S=${WORKDIR}/${MY_P}
 E_SITEFILE="50gnuplot-gentoo.el"
 
 latex_rehash() {
-	if has_version '>=app-text/tetex-3' || has_version '>=app-text/ptex-3.1.8' ; then
+	if has_version '>=app-text/tetex-3' || has_version '>=app-text/ptex-3.1.8' || has_version 'app-text/texlive'; then
 		texmf-update
 	else
 		texconfig rehash
@@ -70,7 +70,7 @@ src_compile() {
 	[[ ${CHOST} == powerpc-apple-darwin* ]] && filter-flags -m*
 
 	# See bug #156427.
-	if use tetex ; then
+	if use latex ; then
 		sed -i \
 			-e 's/TEXMFLOCAL/TEXMFSITE/g' share/LaTeX/Makefile.in || die "sed failed"
 	else
@@ -179,10 +179,10 @@ pkg_postinst() {
 		einfo "this is usually considered to be a security hazard."
 		einfo "As root, manually \"chmod u+s /usr/bin/gnuplot\"."
 	fi
-	use tetex && latex_rehash
+	use latex && latex_rehash
 }
 
 pkg_postrm() {
 	use emacs && elisp-site-regen
-	use tetex && latex_rehash
+	use latex && latex_rehash
 }

@@ -1,6 +1,10 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.54 2007/11/08 17:52:14 g2boojum Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.55 2007/11/10 14:27:58 opfer Exp $
+
+  10 Nov 2007; Christian Faulhammer <opfer@gentoo.org>
+  gnuplot-4.2.2-r1.ebuild:
+  transition from tetex USE flag to latex; check for app-text/texlive, too
 
   08 Nov 2007; Grant Goodyear <g2boojum@gentoo.org> metadata.xml:
   -m removed myself as maintainer
