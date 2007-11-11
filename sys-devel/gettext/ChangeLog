@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/gettext
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.154 2007/10/06 07:29:48 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.155 2007/11/10 07:24:09 vapier Exp $
+
+*gettext-0.17 (10 Nov 2007)
+
+  10 Nov 2007; Mike Frysinger <vapier@gentoo.org> +gettext-0.17.ebuild:
+  Version bump.
 
   06 Oct 2007; Ulrich Mueller <ulm@gentoo.org> -files/50po-mode-gentoo.el,
   -gettext-0.16.1.ebuild:
