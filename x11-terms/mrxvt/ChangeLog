@@ -1,0 +1,236 @@
+# ChangeLog for x11-terms/mrxvt
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/ChangeLog,v 1.54 2007/11/10 21:17:24 cla Exp $
+
+  10 Nov 2007; Dawid Węgliński <cla@gentoo.org> mrxvt-0.5.3-r1.ebuild:
+  Stable on x86 (bug #198727)
+
+  10 Nov 2007; Krzysiek Pawlik <nelchael@gentoo.org> mrxvt-0.5.3-r1.ebuild:
+  Fix variable quoting.
+
+*mrxvt-0.5.3-r1 (27 Aug 2007)
+
+  27 Aug 2007; Krzysiek Pawlik <nelchael@gentoo.org>
+  +files/mrxvt-0.5.3-no-scroll-with-buffer.patch, -mrxvt-0.5.3.ebuild,
+  +mrxvt-0.5.3-r1.ebuild:
+  Fix scrolling bug.
+
+*mrxvt-0.5.3 (22 Aug 2007)
+
+  22 Aug 2007; Krzysiek Pawlik <nelchael@gentoo.org> +mrxvt-0.5.3.ebuild:
+  Version bump, see bug #189872, thanks to Gautam Iyer
+  <gi1242@users.sourceforge.net>.
+
+  22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>; mrxvt-0.5.1.ebuild,
+  mrxvt-0.5.2-r1.ebuild:
+  Drop virtual/x11 references.
+
+  02 Nov 2006; Mamoru KOMACHI <usata@gentoo.org> mrxvt-0.5.2-r1.ebuild:
+  Added utempter USE flag. Thanks to Daniel Webert <rockoo@gmail.com>, James
+  Rowe <jnrowe@ukfsn.org> and Jimmy Zhou <jmzhou13@hotmail.com>. This closes
+  bug #67887.
+
+*mrxvt-0.5.2-r1 (16 Oct 2006)
+
+  16 Oct 2006; Krzysiek Pawlik <nelchael@gentoo.org>
+  +files/mrxvt-0.5.2-no_debug_x.patch, -mrxvt-0.5.2.ebuild,
+  +mrxvt-0.5.2-r1.ebuild:
+  Add a patch to speed up mrxvt by removing X debug. See bug #151532.
+
+  11 Oct 2006; Krzysiek Pawlik <nelchael@gentoo.org> mrxvt-0.5.2.ebuild:
+  Fix useage of LINGUAS.
+
+  04 Oct 2006; Krzysiek Pawlik <nelchael@gentoo.org> mrxvt-0.5.2.ebuild:
+  Add missing xpm USE flag.
+
+*mrxvt-0.5.2 (04 Oct 2006)
+
+  04 Oct 2006; Krzysiek Pawlik <nelchael@gentoo.org> +mrxvt-0.5.2.ebuild:
+  Version bump, see bug #149864.
+
+  09 Jul 2006; Krzysiek Pawlik <nelchael@gentoo.org>
+  -files/mrxvt-0.3.13-xdefaults.patch, -files/noflicker-0.4.2.patch,
+  -files/xft-colorbd-0.4.2.patch, -mrxvt-0.3.13-r1.ebuild,
+  -mrxvt-0.4.1.ebuild, -mrxvt-0.4.2.ebuild, -mrxvt-0.5.0.ebuild:
+  Remove old versions.
+
+  09 Jul 2006; Joshua Kinard <kumba@gentoo.org> mrxvt-0.5.0.ebuild,
+  mrxvt-0.5.1.ebuild:
+  Marked stable on mips.  Bug #138343.
+
+  05 Jul 2006; <nixnut@gentoo.org> mrxvt-0.5.1.ebuild:
+  Stable on ppc. Bug #138343
+
+  05 Jul 2006; Krzysiek Pawlik <nelchael@gentoo.org> mrxvt-0.5.1.ebuild:
+  Stable on x86.
+
+  03 Jul 2006; Thomas Cort <tcort@gentoo.org> mrxvt-0.5.1.ebuild:
+  Stable on alpha and amd64 wrt Bug #138343.
+
+  03 Jul 2006; Fabian Groffen <grobian@gentoo.org> mrxvt-0.5.1.ebuild:
+  Marked ppc-macos stable (bug #138343)
+
+  02 Jul 2006; Lars Weiler <pylon@gentoo.org> mrxvt-0.5.0.ebuild:
+  Stable on ppc; bug #138343.
+
+  28 Jun 2006; Thomas Cort <tcort@gentoo.org> mrxvt-0.5.0.ebuild:
+  Stable on alpha and amd64 wrt Bug #138343.
+
+  28 Jun 2006; Krzysiek Pawlik <nelchael@gentoo.org> mrxvt-0.5.0.ebuild:
+  Stable on x86.
+
+*mrxvt-0.5.1 (28 Jun 2006)
+
+  28 Jun 2006; Krzysiek Pawlik <nelchael@gentoo.org> +mrxvt-0.5.1.ebuild:
+  Version bump, see bug #138144.
+
+  16 Apr 2006; Michael Hanselmann <hansmi@gentoo.org> mrxvt-0.4.2.ebuild:
+  Stable on ppc.
+
+*mrxvt-0.5.0 (15 Apr 2006)
+
+  15 Apr 2006; Krzysiek Pawlik <nelchael@gentoo.org> mrxvt-0.4.2.ebuild,
+  +mrxvt-0.5.0.ebuild:
+  Version bump, thanks to Gautam Iyer. See bug #129650. Version 0.4.2 stable
+  on x86.
+
+*mrxvt-0.4.2 (03 Feb 2006)
+
+  03 Feb 2006; Krzysiek Pawlik <nelchael@gentoo.org>
+  +files/noflicker-0.4.2.patch, +files/xft-colorbd-0.4.2.patch,
+  metadata.xml, mrxvt-0.3.13-r1.ebuild, -mrxvt-0.4.0.ebuild,
+  -mrxvt-0.4.0-r1.ebuild, +mrxvt-0.4.2.ebuild:
+  Version bump, see bug #116438. Patches by Gautam Iyer
+  <gautam@math.uchicago.edu>. Added myself as maintainer.
+
+  13 Jan 2006; Krzysiek Pawlik <nelchael@gentoo.org> mrxvt-0.4.1.ebuild:
+  Fixed DEPEND for modular X.
+
+  19 Oct 2005; Stephen P. Becker <geoman@gentoo.org> mrxvt-0.4.1.ebuild:
+  added ~mips keyword
+
+  17 Jun 2005; Michael Hanselmann <hansmi@gentoo.org> mrxvt-0.4.1.ebuild:
+  Stable on ppc.
+
+  12 Jun 2005; Bryan Østergaard <kloeri@gentoo.org> mrxvt-0.4.1.ebuild:
+  Stable on alpha.
+
+  29 May 2005; Mamoru KOMACHI <usata@gentoo.org> mrxvt-0.4.1.ebuild:
+  Stable on x86.
+
+  14 May 2005; Bryan Østergaard <kloeri@gentoo.org> mrxvt-0.4.0.ebuild:
+  Stable on alpha.
+
+*mrxvt-0.4.1 (03 May 2005)
+
+  03 May 2005; Mamoru KOMACHI <usata@gentoo.org> +mrxvt-0.4.1.ebuild:
+  Version bumped; bug #91315.
+
+  01 May 2005; Michael Hanselmann <hansmi@gentoo.org> mrxvt-0.4.0.ebuild:
+  Stable on ppc.
+
+*mrxvt-0.4.0-r1 (23 Apr 2005)
+
+  23 Apr 2005; Mamoru KOMACHI <usata@gentoo.org> +mrxvt-0.4.0-r1.ebuild:
+  Added menubar USE flag and tidied up. Thanks to James Rowe
+  <jnrowe@ukfsn.org>; bug #89251, #89254, #89255 and #89256.
+
+  16 Apr 2005; Mamoru KOMACHI <usata@gentoo.org> mrxvt-0.4.0.ebuild:
+  Stable on x86.
+
+  06 Apr 2005; Mamoru KOMACHI <usata@gentoo.org> -mrxvt-0.3.9.ebuild,
+  -mrxvt-0.3.12.ebuild:
+  Removed old versions.
+
+  19 Mar 2005; Bryan Østergaard <kloeri@gentoo.org> mrxvt-0.3.13-r1.ebuild:
+  Stable on alpha.
+
+*mrxvt-0.4.0 (13 Mar 2005)
+
+  13 Mar 2005; Mamoru KOMACHI <usata@gentoo.org> mrxvt-0.3.13-r1.ebuild,
+  -mrxvt-0.3.13.ebuild, +mrxvt-0.4.0.ebuild:
+  Version bumped. This closes bug #83862.
+
+  19 Feb 2005; Mamoru KOMACHI <usata@gentoo.org>
+  files/mrxvt-0.3.13-xdefaults.patch, mrxvt-0.3.13-r1.ebuild:
+  Changed -ppc-macos to ~ppc-macos. Fixed xdefaults patch's header.
+
+*mrxvt-0.3.13-r1 (18 Feb 2005)
+
+  18 Feb 2005; Mamoru KOMACHI <usata@gentoo.org>
+  +files/mrxvt-0.3.13-xdefaults.patch, +mrxvt-0.3.13-r1.ebuild:
+  Fixed bug #81574. Thanks to Jimmy Zhou <jmzhou13@hotmail.com> for providing
+  a pointer and patch.
+
+  13 Feb 2005; Bryan Østergaard <kloeri@gentoo.org> mrxvt-0.3.12.ebuild:
+  Stable on alpha.
+
+*mrxvt-0.3.13 (10 Feb 2005)
+
+  10 Feb 2005; Mamoru KOMACHI <usata@gentoo.org> -mrxvt-0.3.10.ebuild,
+  -mrxvt-0.3.11.ebuild, mrxvt-0.3.12.ebuild, +mrxvt-0.3.13.ebuild,
+  -mrxvt-0.3.6.ebuild, mrxvt-0.3.9.ebuild:
+  Version bumped. Cleaned out old versions.
+
+*mrxvt-0.3.12 (18 Jan 2005)
+
+  18 Jan 2005; Mamoru KOMACHI <usata@gentoo.org> +mrxvt-0.3.12.ebuild:
+  Version bumped.
+
+*mrxvt-0.3.11 (16 Dec 2004)
+
+  16 Dec 2004; Mamoru KOMACHI <usata@gentoo.org> +mrxvt-0.3.11.ebuild:
+  Version bumped; bug #74197.
+
+*mrxvt-0.3.10 (08 Dec 2004)
+
+  08 Dec 2004; Mamoru KOMACHI <usata@gentoo.org> +mrxvt-0.3.10.ebuild,
+  -mrxvt-0.3.7.ebuild, -mrxvt-0.3.8.ebuild, mrxvt-0.3.9.ebuild:
+  Version bumped; bug #73581. Marked 0.3.9 stable on x86, alpha and ppc.
+
+*mrxvt-0.3.9 (23 Nov 2004)
+
+  23 Nov 2004; Mamoru KOMACHI <usata@gentoo.org> mrxvt-0.3.6.ebuild,
+  +mrxvt-0.3.9.ebuild:
+  Version bumped; bug #71886. Marked 0.3.6 stable on x86, ppc and ppc-macos.
+
+*mrxvt-0.3.8 (10 Nov 2004)
+
+  10 Nov 2004; Mamoru KOMACHI <usata@gentoo.org> mrxvt-0.3.7.ebuild,
+  +mrxvt-0.3.8.ebuild:
+  Version bumped; contains fix for bug #69961.
+
+*mrxvt-0.3.7 (05 Nov 2004)
+
+  05 Nov 2004; Mamoru KOMACHI <usata@gentoo.org> -mrxvt-0.3.4.ebuild,
+  -mrxvt-0.3.5.ebuild, +mrxvt-0.3.7.ebuild:
+  Version bumped; bug #69961.
+
+  01 Nov 2004; Daniel Black <dragonheart@gentoo.org> mrxvt-0.3.6.ebuild:
+  ~ppc keyword added
+
+  23 Oct 2004; Tom Martin <slarti@gentoo.org> mrxvt-0.3.6.ebuild:
+  Marked ~amd64.
+
+*mrxvt-0.3.6 (23 Oct 2004)
+
+  23 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> +mrxvt-0.3.6.ebuild:
+  Version bumped.
+
+  18 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> mrxvt-0.3.5.ebuild:
+  Modified DESCRIPTION, thanks to Daniel Webert <rockoo@rockoo.homelinux.org>.
+
+*mrxvt-0.3.5 (17 Oct 2004)
+
+  17 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> +mrxvt-0.3.5.ebuild:
+  Version bumped; bug #67782.
+
+  14 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> mrxvt-0.3.4.ebuild:
+  Added to ~ppc-macos.
+
+*mrxvt-0.3.4 (10 Oct 2004)
+
+  10 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> +metadata.xml,
+  +mrxvt-0.3.4.ebuild:
+  Initial import. This closes bug #66831.
+
