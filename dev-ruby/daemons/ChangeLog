@@ -1,6 +1,13 @@
 # ChangeLog for dev-ruby/daemons
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/daemons/ChangeLog,v 1.28 2007/11/03 08:31:41 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/daemons/ChangeLog,v 1.29 2007/11/10 08:14:10 graaff Exp $
+
+*daemons-1.0.9 (10 Nov 2007)
+
+  10 Nov 2007; Hans de Graaff <graaff@gentoo.org> +daemons-1.0.9.ebuild:
+  Version bump as per #198507, thanks to Jochen Schalanda.
+  
+    * New Pid.running? function.
 
   03 Nov 2007; Samuli Suominen <drac@gentoo.org> daemons-0.4.2.ebuild:
   Keyword ~amd64 wrt #185492.
