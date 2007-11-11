@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.4-r3.ebuild,v 1.3 2007/09/05 12:16:36 pauldv Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.5.ebuild,v 1.1 2007/11/10 20:41:38 hollow Exp $
 
 EAPI="prefix"
 
-inherit elisp-common libtool python eutils multilib bash-completion flag-o-matic depend.apache perl-module java-pkg-opt-2
+inherit bash-completion depend.apache flag-o-matic elisp-common eutils java-pkg-opt-2 libtool multilib perl-module python
 
-KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 
 DESCRIPTION="A compelling replacement for CVS."
 HOMEPAGE="http://subversion.tigris.org/"
@@ -14,60 +14,56 @@ SRC_URI="http://subversion.tigris.org/downloads/${P/_rc/-rc}.tar.bz2"
 
 LICENSE="Subversion"
 SLOT="0"
-IUSE="apache2 berkdb emacs java nls nowebdav perl python ruby"
+IUSE="apache2 berkdb debug doc emacs extras java nls nowebdav perl python ruby svnserve vim-syntax"
 RESTRICT="test"
 
-COMMONDEPEND="apache2? ( ${APACHE2_DEPEND} )
-			>=dev-libs/apr-util-1.2.8
-			perl? ( >=dev-lang/perl-5.8.6-r6 !=dev-lang/perl-5.8.7 )
-			python? ( >=dev-lang/python-2.0 )
-			ruby? ( >=dev-lang/ruby-1.8.2 )
-			!nowebdav? ( >=net-misc/neon-0.26 )
+COMMONDEPEND=">=dev-libs/apr-util-1.2.8
 			berkdb? ( =sys-libs/db-4* )
-			emacs? ( virtual/emacs )"
+			doc? ( app-doc/doxygen )
+			emacs? ( virtual/emacs )
+			nls? ( sys-devel/gettext )
+			!nowebdav? ( >=net-misc/neon-0.26 )
+			ruby? ( >=dev-lang/ruby-1.8.2 )
+			perl? ( >=dev-lang/perl-5.8.8 )
+			python? ( >=dev-lang/python-2.0 )"
 
 RDEPEND="${COMMONDEPEND}
-		java? ( >=virtual/jre-1.4 )"
+		java? ( >=virtual/jre-1.4 )
+		perl? ( dev-perl/URI )"
 
 DEPEND="${COMMONDEPEND}
 		java? ( >=virtual/jdk-1.4 )
 		>=sys-devel/autoconf-2.59"
 
-S=${WORKDIR}/${P/_rc/-rc}
+want_apache
+
+S="${WORKDIR}"/${P/_rc/-rc}
 
 # Allow for custion repository locations.
 # This can't be in pkg_setup because the variable needs to be available to
 # pkg_config.
 : ${SVN_REPOS_LOC:=${EPREFIX}/var/svn}
 
-discover_apr_suffix() {
-	if use apache2 ; then
-		if has_version '=www-servers/apache-2.0*' \
-		&& has_version '=dev-libs/apr-util-0.9*' ; then
-			aprsuffix=""
-		else
-			aprsuffix="-1"
-		fi
-	else
-		aprsuffix="-1"
-	fi
-
-	echo "${aprsuffix}"
-}
-
 pkg_setup() {
-	if use berkdb && has_version '<dev-util/subversion-0.34.0' && [[ -z ${SVN_DUMPED} ]] ; then
-		echo
-		ewarn "Presently you have $(best_version dev-util/subversion) installed."
-		ewarn "Subversion has changed the repository filesystem schema from 0.34.0."
-		ewarn "So you MUST dump your repositories before upgrading."
-		ewarn
-		ewarn 'After doing so call emerge with SVN_DUMPED=1 emerge !*'
-		ewarn
-		ewarn "More details on dumping:"
-		ewarn "http://svn.collab.net/repos/svn/trunk/notes/repos_upgrade_HOWTO"
-		echo
-		die "Ensure that you dump your repository first"
+	if use berkdb ; then
+		if ! built_with_use 'dev-libs/apr-util' berkdb ; then
+			eerror "dev-libs/apr-util is missing USE=berkdb"
+			die "dev-libs/apr-util is missing USE=berkdb"
+		fi
+
+		if has_version '<dev-util/subversion-0.34.0' && [[ -z ${SVN_DUMPED} ]] ; then
+			echo
+			ewarn "Presently you have $(best_version dev-util/subversion) installed."
+			ewarn "Subversion has changed the repository filesystem schema from 0.34.0."
+			ewarn "So you MUST dump your repositories before upgrading."
+			ewarn
+			ewarn 'After doing so call emerge with SVN_DUMPED=1 emerge !*'
+			ewarn
+			ewarn "More details on dumping:"
+			ewarn "http://svn.collab.net/repos/svn/trunk/notes/repos_upgrade_HOWTO"
+			echo
+			die "Ensure that you dump your repository first"
+		fi
 	fi
 
 	java-pkg-opt-2_pkg_setup
@@ -86,13 +82,15 @@ src_unpack() {
 	epatch "${FILESDIR}"/subversion-1.3.1-neon-config.patch
 	epatch "${FILESDIR}"/subversion-apr_cppflags.patch
 	epatch "${FILESDIR}"/subversion-1.4.3-debug-config.patch
-	epatch "${FILESDIR}"/subversion-1.4.3-neon-0.26.3.patch
+	epatch "${FILESDIR}"/subversion-prefix.patch
+	eprefixify contrib/client-side/svn_load_dirs.pl.in
 
-	if [[ "$(discover_apr_suffix)" == "-1" ]] ; then
-		sed -e s:apu-config:apu-1-config:g \
-			-e s:apr-config:apr-1-config:g \
-			-i build/ac-macros/{find_,}ap*
-	fi
+	sed -e 's/\(NEON_ALLOWED_LIST=.* 0.26.2\)"/\1 0.26.3 0.26.4"/' \
+		-i configure.in
+
+	sed -e "s:apr-config:$(apr_config):g" \
+		-e "s:apu-config:$(apu_config):g" \
+		-i build/ac-macros/{find_,}ap*
 
 	export WANT_AUTOCONF=2.5
 	autoconf
@@ -105,7 +103,7 @@ src_unpack() {
 }
 
 src_compile() {
-	local myconf=""
+	local myconf=
 
 	myconf="${myconf} $(use_enable java javahl)"
 	use java && myconf="${myconf} --without-jikes --with-jdk=${JAVA_HOME}"
@@ -134,23 +132,21 @@ src_compile() {
 		;;
 	esac
 
-	use apache2 && myconf="${myconf} --with-apxs=${APXS2}"
-	use apache2 || myconf="${myconf} --without-apxs"
-
-	apr_suffix="$(discover_apr_suffix)"
-	myconf="${myconf} --with-apr=${EPREFIX}/usr/bin/apr${apr_suffix}-config --with-apr-util=${EPREFIX}/usr/bin/apu${apr_suffix}-config"
-	append-flags $("${EPREFIX}"/usr/bin/apr${apr_suffix}-config --cppflags)
+	append-flags $("${EPREFIX}"/usr/bin/$(apr_config) --cppflags)
 
 	econf ${myconf} \
+		--with-apr="${EPREFIX}"/usr/bin/$(apr_config) \
+		--with-apr-util="${EPREFIX}"/usr/bin/$(apu_config) \
+		$(use_with apache2 apxs ${APXS2}) \
 		$(use_with berkdb berkeley-db) \
-		$(use_with python) \
+		$(use_enable debug maintainer-mode) \
 		$(use_enable nls) \
 		--disable-experimental-libtool \
 		--disable-mod-activation \
 		|| die "econf failed"
 
 	# Respect the user LDFLAGS
-	export EXTRA_LDFLAGS="${LDFLAGS}"
+	export SWIG_LDFLAGS="${LDFLAGS}"
 
 	# Build subversion, but do it in a way that is safe for parallel builds.
 	# Also apparently the included apr has a libtool that doesn't like -L flags.
@@ -166,11 +162,11 @@ src_compile() {
 	if use perl ; then
 		# Work around a buggy Makefile.PL, bug 64634
 		mkdir -p subversion/bindings/swig/perl/native/blib/arch/auto/SVN/{_Client,_Delta,_Fs,_Ra,_Repos,_Wc}
-		make swig-pl || die "Compilation of ${PN} Perl bindings failed"
+		emake swig-pl || die "Compilation of ${PN} Perl bindings failed"
 	fi
 
 	if use ruby ; then
-		make swig-rb || die "Compilation of ${PN} Ruby bindings failed"
+		emake swig-rb || die "Compilation of ${PN} Ruby bindings failed"
 	fi
 
 	if use java ; then
@@ -184,6 +180,12 @@ src_compile() {
 		einfo "Compiling emacs support"
 		elisp-compile "${S}"/contrib/client-side/psvn/psvn.el || die "emacs modules failed"
 		elisp-compile "${S}"/contrib/client-side/vc-svn.el || die "emacs modules failed"
+		elisp-compile "${S}"/doc/svn-doc.el || die "emacs modules failed"
+		elisp-compile "${S}"/doc/tools/svnbook.el || die "emacs modules failed"
+	fi
+
+	if use doc ; then
+		doxygen doc/doxygen.conf || die "doxygen failed"
 	fi
 }
 
@@ -199,7 +201,7 @@ src_install () {
 			|| die "Installation of ${PN} Python bindings failed"
 
 		# move python bindings
-		mkdir -p "${ED}${PYTHON_DIR}/site-packages"
+		dodir "${PYTHON_DIR}/site-packages"
 		mv "${ED}"/usr/$(get_libdir)/svn-python/svn "${ED}${PYTHON_DIR}/site-packages"
 		mv "${ED}"/usr/$(get_libdir)/svn-python/libsvn "${ED}${PYTHON_DIR}/site-packages"
 		rm -Rf "${ED}"/usr/$(get_libdir)/svn-python
@@ -224,75 +226,107 @@ src_install () {
 	# Install apache2 module config
 	if use apache2 ; then
 		MOD="${APACHE2_MODULESDIR/${APACHE2_BASEDIR}\//}"
-		mkdir -p "${ED}/${APACHE2_MODULES_CONFDIR}"
+		dodir "${APACHE2_MODULES_CONFDIR}"
 		cat <<EOF >"${ED}/${APACHE2_MODULES_CONFDIR}"/47_mod_dav_svn.conf
 <IfDefine SVN>
 	<IfModule !mod_dav_svn.c>
 		LoadModule dav_svn_module	${MOD}/mod_dav_svn.so
 	</IfModule>
-	<Location /svn/repos>
-		DAV svn
-		SVNPath ${SVN_REPOS_LOC}/repos
-		AuthType Basic
-		AuthName "Subversion repository"
-		AuthUserFile ${SVN_REPOS_LOC}/conf/svnusers
-		Require valid-user
-	</Location>
 	<IfDefine SVN_AUTHZ>
 		<IfModule !mod_authz_svn.c>
 			LoadModule authz_svn_module	${MOD}/mod_authz_svn.so
 		</IfModule>
 	</IfDefine>
+
+	# example configuration:
+	#<Location /svn/repos>
+	#	DAV svn
+	#	SVNPath ${SVN_REPOS_LOC}/repos
+	#	AuthType Basic
+	#	AuthName "Subversion repository"
+	#	AuthUserFile ${SVN_REPOS_LOC}/conf/svnusers
+	#	Require valid-user
+	#</Location>
 </IfDefine>
 EOF
 	fi
 
 	# Bug 43179 - Install bash-completion if user wishes
 	dobashcompletion tools/client-side/bash_completion subversion
+	rm -f tools/client-side/bash_completion
 
 	# Install hot backup script, bug 54304
 	newbin tools/backup/hot-backup.py svn-hot-backup
+	rm -fr tools/backup
 
 	# The svn_load_dirs script is installed by Debian and looks like a good
 	# candidate for us to install as well
-	newbin contrib/client-side/svn_load_dirs.pl svn-load-dirs
+	if use perl ; then
+		newbin contrib/client-side/svn_load_dirs.pl svn-load-dirs
+	fi
+	rm -f contrib/client-side/svn_load_dirs.pl
 
 	# Install svnserve init-script and xinet.d snippet, bug 43245
-	newinitd "${FILESDIR}"/svnserve.initd svnserve
-	if use apache2 ; then
-		newconfd "${FILESDIR}"/svnserve.confd svnserve
-	else
-		newconfd "${FILESDIR}"/svnserve.confd2 svnserve
+	if use svnserve; then
+		newinitd "${FILESDIR}"/svnserve.initd svnserve
+		if use apache2 ; then
+			newconfd "${FILESDIR}"/svnserve.confd svnserve
+		else
+			newconfd "${FILESDIR}"/svnserve.confd2 svnserve
+		fi
+		insinto /etc/xinetd.d
+		newins "${FILESDIR}"/svnserve.xinetd svnserve
 	fi
-	insinto /etc/xinetd.d ; newins "${FILESDIR}"/svnserve.xinetd svnserve
 
 	# Install documentation
-	dodoc BUGS COMMITTERS COPYING HACKING INSTALL README
-	dodoc CHANGES
-	dodoc tools/xslt/svnindex.css tools/xslt/svnindex.xsl
-	find contrib tools -name \*.in -print0 | xargs -0 rm -f
-	mkdir -p "${ED}/usr/share/doc/${PF}/"
-	cp -R tools/{client-side,examples,hook-scripts} "${ED}/usr/share/doc/${PF}/"
-	cp -R contrib/hook-scripts "${ED}/usr/share/doc/${PF}/"
+	dodoc BUGS CHANGES COMMITTERS COPYING HACKING INSTALL README TRANSLATING
+	dodoc tools/xslt/svnindex.{css,xsl}
+	rm -fr tools/xslt
 
-	docinto notes
-	for f in notes/*
-	do
-		[[ -f ${f} ]] && dodoc ${f}
-	done
+	if use doc ; then
+		dohtml doc/doxygen/html/*
+		cp -R notes "${ED}usr/share/doc/${PF}"
+		ecompressdir "/usr/share/doc/${PF}/notes"
+	fi
+
+	# Install Vim syntax files.
+	if use vim-syntax ; then
+		insinto /usr/share/vim/vimfiles/syntax
+		doins contrib/client-side/svn.vim
+	fi
+	rm -f contrib/client-side/svn.vim
 
 	# Install emacs lisps
 	if use emacs ; then
 		elisp-install ${PN} contrib/client-side/psvn/psvn.el*
 		elisp-install ${PN}/compat contrib/client-side/vc-svn.el*
+		elisp-install ${PN} doc/svn-doc.el*
+		elisp-install ${PN} doc/tools/svnbook.el*
 		touch "${ED}${SITELISP}/${PN}/compat/.nosearch"
 
 		elisp-site-file-install "${FILESDIR}"/70svn-gentoo.el
 	fi
+	rm -fr contrib/client-side/psvn/
+	rm -f contrib/client-side/vc-svn.el*
+
+	# Install extra files
+	if use extras ; then
+		find contrib tools '(' -name "*.bat" -o -name "*.in" ')' -print0 | xargs -0 rm -f
+		rm -fr tools/{dev,po}
+		dodir "/usr/share/${PN}"
+		cp -R contrib tools "${ED}usr/share/${PN}"
+	fi
 }
 
-src_test() {
-	ewarn "Testing disabled for ${PN}"
+pkg_preinst() {
+	# Compare versions of Berkeley DB.
+	if use berkdb && [[ -f "${EROOT}usr/bin/svn" ]] ; then
+		OLD_BDB_VERSION="$(scanelf -qn "${EROOT}usr/lib/libsvn_subr-1.so.0" | grep -Eo "libdb-[[:digit:]]+\.[[:digit:]]+" | sed -e "s/libdb-\(.*\)/\1/")"
+		NEW_BDB_VERSION="$(scanelf -qn "${ED}usr/lib/libsvn_subr-1.so.0" | grep -Eo "libdb-[[:digit:]]+\.[[:digit:]]+" | sed -e "s/libdb-\(.*\)/\1/")"
+		if [[ "${OLD_BDB_VERSION}" != "${NEW_BDB_VERSION}" ]] ; then
+			CHANGED_BDB_VERSION=1
+		fi
+	fi
 }
 
 pkg_postinst() {
@@ -302,44 +336,40 @@ pkg_postinst() {
 	elog "Subversion Server Notes"
 	elog "-----------------------"
 	elog
-
 	elog "If you intend to run a server, a repository needs to be created using"
 	elog "svnadmin (see man svnadmin) or the following command to create it in"
-	elog "/var/svn:"
+	elog "${SVN_REPOS_LOC}:"
 	elog
 	elog "    emerge --config =${CATEGORY}/${PF}"
 	elog
-	elog "If you upgraded from an older version of berkely db and experience"
-	elog "problems with your repository then run the following commands as root:"
-	elog "    db4_recover -h ${SVN_REPOS_LOC}/repos"
-	elog "    chown -Rf apache:apache ${SVN_REPOS_LOC}/repos"
-	elog
 	elog "Subversion has multiple server types, take your pick:"
 	elog
-	elog " - svnserve daemon: "
-	elog "   1. edit /etc/conf.d/svnserve"
-	elog "   2. start daemon: /etc/init.d/svnserve start"
-	elog "   3. make persistent: rc-update add svnserve default"
-	elog
-	elog " - svnserve via xinetd:"
-	elog "   1. edit /etc/xinetd.d/svnserve (remove disable line)"
-	elog "   2. restart xinetd.d: /etc/init.d/xinetd restart"
-	elog
+	if use svnserve; then
+		elog " - svnserve daemon: "
+		elog "   1. edit /etc/conf.d/svnserve"
+		elog "   2. start daemon: /etc/init.d/svnserve start"
+		elog "   3. make persistent: rc-update add svnserve default"
+		elog
+		elog " - svnserve via xinetd:"
+		elog "   1. edit /etc/xinetd.d/svnserve (remove disable line)"
+		elog "   2. restart xinetd.d: /etc/init.d/xinetd restart"
+		elog
+	fi
 	elog " - svn over ssh:"
 	elog "   1. Fix the repository permissions:"
 	elog "        groupadd svnusers"
-	elog "        chown -R root:svnusers /var/svn/repos/"
-	elog "        chmod -R g-w /var/svn/repos"
-	elog "        chmod -R g+rw /var/svn/repos/db"
-	elog "        chmod -R g+rw /var/svn/repos/locks"
+	elog "        chown -R root:svnusers ${SVN_REPOS_LOC}/repos/"
+	elog "        chmod -R g-w ${SVN_REPOS_LOC}/repos"
+	elog "        chmod -R g+rw ${SVN_REPOS_LOC}/repos/db"
+	elog "        chmod -R g+rw ${SVN_REPOS_LOC}/repos/locks"
 	elog "   2. create an svnserve wrapper in /usr/local/bin to set the umask you"
 	elog "      want, for example:"
 	elog "         #!/bin/bash"
+	elog "         . /etc/conf.d/svnserve"
 	elog "         umask 002"
-	elog "         exec /usr/bin/svnserve \"\$@\""
+	elog "         exec /usr/bin/svnserve \${SVNSERVE_OPTS} \"\$@\""
 	elog
-
-	if use apache2 ; then
+	if use apache2; then
 		elog " - http-based server:"
 		elog "   1. edit /etc/conf.d/apache2 to include both \"-D DAV\" and \"-D SVN\""
 		elog "   2. create an htpasswd file:"
@@ -353,6 +383,13 @@ pkg_postinst() {
 	elog "echo '# hot-backup: Keep that many repository backups around' > /etc/env.d/80subversion"
 	elog "echo 'SVN_HOTBACKUP_NUM_BACKUPS=2' >> /etc/env.d/80subversion"
 	elog
+
+	if [[ -n "${CHANGED_BDB_VERSION}" ]]; then
+		ewarn "You upgraded from an older version of Berkely DB and may experience"
+		ewarn "problems with your repository. Run the following commands as root to fix it:"
+		ewarn "    db4_recover -h ${SVN_REPOS_LOC}/repos"
+		ewarn "    chown -Rf apache:apache ${SVN_REPOS_LOC}/repos"
+	fi
 }
 
 pkg_postrm() {
@@ -361,29 +398,36 @@ pkg_postrm() {
 }
 
 pkg_config() {
-	if [[ ! -x ${EPREFIX}/usr/bin/svnadmin ]] ; then
-		die "You seem to only have built the ${PN} client"
+	if [[ ! -x "${EROOT}usr/bin/svnadmin" ]] ; then
+		die "You seem to only have built the Subversion client"
 	fi
 
-	einfo ">>> Initializing the database in ${SVN_REPOS_LOC} ..."
-	if [[ -e ${SVN_REPOS_LOC}/repos ]] ; then
+	einfo ">>> Initializing the database in ${EROOT}${SVN_REPOS_LOC} ..."
+	if [[ -e "${EROOT}${SVN_REPOS_LOC}/repos" ]] ; then
 		echo "A subversion repository already exists and I will not overwrite it."
-		echo "Delete ${SVN_REPOS_LOC}/repos first if you're sure you want to have a clean version."
+		echo "Delete ${EROOT}${SVN_REPOS_LOC}/repos first if you're sure you want to have a clean version."
 	else
-		mkdir -p "${SVN_REPOS_LOC}/conf"
+		mkdir -p "${EROOT}${SVN_REPOS_LOC}/conf"
 
 		einfo ">>> Populating repository directory ..."
 		# create initial repository
-		${EPREFIX}/usr/bin/svnadmin create "${SVN_REPOS_LOC}/repos"
+		"${EROOT}usr/bin/svnadmin" create "${EROOT}${SVN_REPOS_LOC}/repos"
 
 		einfo ">>> Setting repository permissions ..."
-		if use apache2 ; then
-			chown -Rf apache:apache "${SVN_REPOS_LOC}/repos"
-		else
-			enewgroup svnusers
-			enewuser svn -1 -1 /var/svn svnusers
-			chown -Rf svn:svnusers "${SVN_REPOS_LOC}/repos"
+		if use svnserve; then
+			SVNSERVE_USER="$(. ${EROOT}etc/conf.d/svnserve ; echo ${SVNSERVE_USER})"
+			SVNSERVE_GROUP="$(. ${EROOT}etc/conf.d/svnserve ; echo ${SVNSERVE_GROUP})"
 		fi
-		chmod -Rf 755 "${SVN_REPOS_LOC}/repos"
+		if use apache2 ; then
+			[[ -z "${SVNSERVE_USER}" ]] && SVNSERVE_USER="apache"
+			[[ -z "${SVNSERVE_GROUP}" ]] && SVNSERVE_GROUP="apache"
+		else
+			[[ -z "${SVNSERVE_USER}" ]] && SVNSERVE_USER="svn"
+			[[ -z "${SVNSERVE_GROUP}" ]] && SVNSERVE_GROUP="svnusers"
+			enewgroup "${SVNSERVE_GROUP}"
+			enewuser "${SVNSERVE_USER}" -1 -1 ${SVN_REPOS_LOC} "${SVNSERVE_GROUP}"
+		fi
+		chown -Rf "${SVNSERVE_USER}:${SVNSERVE_GROUP}" "${EROOT}${SVN_REPOS_LOC}/repos"
+		chmod -Rf 755 "${EROOT}${SVN_REPOS_LOC}/repos"
 	fi
 }
