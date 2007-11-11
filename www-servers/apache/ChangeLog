@@ -1,6 +1,9 @@
 # ChangeLog for www-servers/apache
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.34 2007/10/25 02:07:54 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.35 2007/11/10 18:19:01 hollow Exp $
+
+  10 Nov 2007; Benedikt Böhm <hollow@gentoo.org> apache-2.2.6-r3.ebuild:
+  fix SNI patch, #198701
 
 *apache-2.2.6-r3 (25 Oct 2007)
 
