@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libksba
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.79 2007/10/09 14:57:54 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.80 2007/11/10 18:28:53 alonbl Exp $
+
+  10 Nov 2007; Alon Bar-Lev <alonbl@gentoo.org> -libksba-0.9.11.ebuild,
+  -libksba-0.9.14.ebuild, -libksba-0.9.15.ebuild, -libksba-0.9.16.ebuild:
+  Cleanup
 
   09 Oct 2007; Christoph Mende <angelos@gentoo.org> libksba-1.0.2.ebuild:
   Stable on amd64 wrt bug #194113
