@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2007-r1.ebuild,v 1.4 2007/11/07 19:50:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2007-r2.ebuild,v 1.4 2007/11/10 21:34:44 corsair Exp $
 
 EAPI="prefix"
 
@@ -39,6 +39,7 @@ RDEPEND="${DEPEND}
 	app-text/lcdf-typetools
 	=media-libs/freetype-1*
 	dev-tex/detex
+	app-text/ps2eps
 	>=app-text/dvipdfm-0.13.2d
 	png? ( app-text/dvipng )
 	X? ( >=app-text/xdvik-22.84.10 )

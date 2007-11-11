@@ -1,6 +1,25 @@
 # ChangeLog for app-text/texlive
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.16 2007/11/07 19:50:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.21 2007/11/10 22:05:15 aballier Exp $
+
+  10 Nov 2007; Alexis Ballier <aballier@gentoo.org> -texlive-2007.ebuild,
+  -texlive-2007-r1.ebuild:
+  remove old
+
+  10 Nov 2007; Markus Rothe <corsair@gentoo.org> texlive-2007-r2.ebuild:
+  Added ~ppc64; bug #125153
+
+  10 Nov 2007; Raúl Porcel <armin76@gentoo.org> texlive-2007-r2.ebuild:
+  Add ~alpha/~ia64 wrt #125153
+
+  10 Nov 2007; Ferris McCormick <fmccor@gentoo.org> texlive-2007-r2.ebuild:
+  Keyworded ~sparc as part of Bug #125153
+
+*texlive-2007-r2 (10 Nov 2007)
+
+  10 Nov 2007; Alexis Ballier <aballier@gentoo.org> +texlive-2007-r2.ebuild:
+  depend on ps2eps now that it has its own ebuild and is not included anymore
+  in texlive-core
 
   07 Nov 2007; Raúl Porcel <armin76@gentoo.org> texlive-2007-r1.ebuild:
   Readd ~alpha/~ia64 wrt #198289
