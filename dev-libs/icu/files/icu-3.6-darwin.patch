@@ -1,0 +1,56 @@
+--- tools/ctestfw/Makefile.in~
++++ tools/ctestfw/Makefile.in
+@@ -31,7 +31,6 @@
+ endif
+ 
+ ifneq ($(ENABLE_SHARED),)
+-SO_TARGET = $(LIBICU)$(TARGET_STUBNAME)$(ICULIBSUFFIX).$(SO)
+ ALL_SO_TARGETS = $(SO_TARGET) $(MIDDLE_SO_TARGET) $(FINAL_SO_TARGET) $(SHARED_OBJECT)
+ endif
+ 
+--- config/mh-darwin
++++ config/mh-darwin
+@@ -4,6 +4,10 @@
+ ## Copyright (c) 1999-2006 International Business Machines Corporation and
+ ## others. All Rights Reserved.
+ 
++SO_TARGET = $(LIBDIR)/$(LIBICU)$(TARGET_STUBNAME)$(ICULIBSUFFIX).$(SO)
++MIDDLE_SO_TARGET = $(LIBDIR)/$(LIBICU)$(TARGET_STUBNAME)$(ICULIBSUFFIX).$(SO_TARGET_VERSION_MAJOR).$(SO)
++FINAL_SO_TARGET = $(LIBDIR)/$(LIBICU)$(TARGET_STUBNAME)$(ICULIBSUFFIX).$(SO_TARGET_VERSION).$(SO)
++
+ ## Flags for position independent code
+ SHAREDLIBCFLAGS = -dynamic
+ SHAREDLIBCXXFLAGS = -dynamic
+@@ -25,7 +29,7 @@
+ SHLIB.cc=	$(CXX) -dynamiclib -dynamic $(CXXFLAGS) $(LDFLAGS)
+ 
+ ## Compiler switches to embed a library name and version information
+-LD_SONAME = -Wl,-compatibility_version -Wl,$(SO_TARGET_VERSION_MAJOR) -Wl,-current_version -Wl,$(SO_TARGET_VERSION) -install_name $(notdir $(MIDDLE_SO_TARGET))
++LD_SONAME = -Wl,-compatibility_version -Wl,$(SO_TARGET_VERSION_MAJOR) -Wl,-current_version -Wl,$(SO_TARGET_VERSION) -install_name $(libdir)/$(LIBICU)$(TARGET_STUBNAME)$(ICULIBSUFFIX).$(SO_TARGET_VERSION).$(SO)
+ 
+ ## Compiler switch to embed a runtime search path
+ LD_RPATH=
+@@ -72,9 +76,10 @@
+ 
+ ## Versioned libraries rules
+ 
+-%.$(SO).$(SO_TARGET_VERSION_MAJOR): %.$(SO).$(SO_TARGET_VERSION)
++#../lib/$(SO_TARGET) : BAR
++%.$(SO_TARGET_VERSION_MAJOR).$(SO): %.$(SO_TARGET_VERSION).$(SO)
+ 	$(RM) $@ && ln -s ${<F} $@
+-%.$(SO): %.$(SO).$(SO_TARGET_VERSION_MAJOR)
+-	$(RM) $@ && ln -s ${*F}.$(SO).$(SO_TARGET_VERSION) $@
++%.$(SO): %.$(SO_TARGET_VERSION_MAJOR).$(SO)
++	$(RM) $@ && ln -s ${*F}.$(SO_TARGET_VERSION).$(SO) $@
+ 
+ ## End Darwin-specific setup
+--- stubdata/Makefile.in
++++ stubdata/Makefile.in
+@@ -32,7 +32,6 @@
+ 
+ 
+ ifneq ($(ENABLE_SHARED),)
+-SO_TARGET = $(STUBDATA_LIBDIR)$(LIBICU)$(TARGET_STUBNAME)$(ICULIBSUFFIX)$(STUB_SUFFIX).$(SO)
+ ALL_SO_TARGETS = $(FINAL_SO_TARGET) $(MIDDLE_SO_TARGET) $(SO_TARGET) $(BATCH_STUB_TARGET) $(SHARED_OBJECT)
+ endif
+ 

@@ -4,19 +4,27 @@
 
 EAPI="prefix"
 
+inherit eutils
+
 DESCRIPTION="IBM Internationalization Components for Unicode"
 HOMEPAGE="http://ibm.com/software/globalization/icu/"
 SRC_URI="ftp://ftp.software.ibm.com/software/globalization/icu/${PV}/icu4c-${PV/./_}-src.tgz"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="debug"
 
 DEPEND=""
 RDEPEND=""
 
 S=${WORKDIR}/${PN}/source
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-darwin.patch
+}
 
 src_compile() {
 	econf --enable-static $(use_enable debug) || die "econf failed"
