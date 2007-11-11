@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-ClassAPI/Test-ClassAPI-1.04-r1.ebuild,v 1.4 2007/08/09 15:17:00 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-ClassAPI/Test-ClassAPI-1.04-r1.ebuild,v 1.5 2007/11/10 11:47:00 drac Exp $
 
 EAPI="prefix"
 
