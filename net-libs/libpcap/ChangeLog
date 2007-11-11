@@ -1,6 +1,12 @@
 # ChangeLog for net-libs/libpcap
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.90 2007/10/13 06:05:17 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.92 2007/11/09 21:14:31 nixnut Exp $
+
+  09 Nov 2007; nixnut <nixnut@gentoo.org> libpcap-0.9.8.ebuild:
+  Stable on ppc wrt bug 198476
+
+  08 Nov 2007; Raúl Porcel <armin76@gentoo.org> libpcap-0.9.8.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #198476
 
   13 Oct 2007; Tom Gall <tgall@gentoo.org> libpcap-0.9.7.ebuild:
   stable on ppc64, bug #193787
