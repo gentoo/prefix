@@ -1,6 +1,13 @@
 # ChangeLog for x11-apps/xmessage
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xmessage/ChangeLog,v 1.23 2007/09/08 06:18:15 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xmessage/ChangeLog,v 1.25 2007/11/09 21:25:58 seemant Exp $
+
+  09 Nov 2007; Seemant Kulleen <seemant@gentoo.org> xmessage-1.0.1.ebuild:
+  stabling sh
+
+  09 Nov 2007; Seemant Kulleen <seemant@gentoo.org> xmessage-1.0.1.ebuild,
+  xmessage-1.0.2.ebuild:
+  added the sh architecture, because of xterm.
 
 *xmessage-1.0.2 (08 Sep 2007)
 
