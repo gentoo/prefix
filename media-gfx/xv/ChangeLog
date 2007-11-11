@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/xv
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xv/ChangeLog,v 1.88 2007/10/14 15:35:29 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xv/ChangeLog,v 1.89 2007/11/09 22:32:58 grobian Exp $
+
+  09 Nov 2007; Fabian Groffen <grobian@gentoo.org> xv-3.10a-r12.ebuild,
+  xv-3.10a-r14.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   14 Oct 2007; Markus Rothe <corsair@gentoo.org> xv-3.10a-r14.ebuild:
   Stable on ppc64; bug #194381
