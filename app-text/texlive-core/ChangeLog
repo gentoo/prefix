@@ -1,6 +1,16 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.25 2007/11/07 23:31:17 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.27 2007/11/10 18:08:16 aballier Exp $
+
+  10 Nov 2007; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2007-r7.ebuild:
+  block cjk-latex for now as they collide
+
+*texlive-core-2007-r7 (10 Nov 2007)
+
+  10 Nov 2007; Alexis Ballier <aballier@gentoo.org>
+  -texlive-core-2007-r6.ebuild, +texlive-core-2007-r7.ebuild:
+  remove ps2eps from here, will give it its own ebuild
 
 *texlive-core-2007-r6 (07 Nov 2007)
 
