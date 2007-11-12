@@ -132,6 +132,9 @@ src_compile() {
 	# enable new features, need to be done via defines
 	append-flags -DBOUNCE_APP -DNEWAPPICON -DVIRTUAL_DESKTOP
 
+	# Solaris has inet_aton, but it's hidden in -lresolv
+	[[ ${CHOST} == *-solaris* ]] && append-ldflags -lresolv
+
 	# default settings with $myconf appended
 	econf \
 		--sysconfdir="${EPREFIX}"/etc/X11 \
