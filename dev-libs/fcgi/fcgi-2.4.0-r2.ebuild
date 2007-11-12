@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/fcgi/fcgi-2.4.0-r2.ebuild,v 1.7 2007/07/22 03:26:25 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/fcgi/fcgi-2.4.0-r2.ebuild,v 1.8 2007/11/11 07:05:55 drac Exp $
 
 EAPI="prefix"
 
