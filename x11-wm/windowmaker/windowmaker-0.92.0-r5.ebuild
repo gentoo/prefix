@@ -117,6 +117,8 @@ src_compile() {
 
 	if use gnustep ; then
 		egnustep_env
+		# Gentoo installs everything in System, make sure configure honors that
+		export GNUSTEP_LOCAL_ROOT=${GNUSTEP_SYSTEM_ROOT}
 		myconf="${myconf} --with-gnustepdir=${GNUSTEP_SYSTEM_ROOT}"
 	fi
 
