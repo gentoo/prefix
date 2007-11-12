@@ -1,6 +1,21 @@
 # ChangeLog for media-libs/liblrdf
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/liblrdf/ChangeLog,v 1.25 2007/11/10 21:43:05 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/liblrdf/ChangeLog,v 1.30 2007/11/11 16:41:57 grobian Exp $
+
+  11 Nov 2007; Fabian Groffen <grobian@gentoo.org> liblrdf-0.3.7.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
+
+  11 Nov 2007; Raúl Porcel <armin76@gentoo.org> liblrdf-0.4.0.ebuild:
+  sparc stable wrt #198416
+
+  11 Nov 2007; Markus Meier <maekke@gentoo.org> liblrdf-0.4.0.ebuild:
+  x86 stable, bug #198416
+
+  11 Nov 2007; nixnut <nixnut@gentoo.org> liblrdf-0.4.0.ebuild:
+  Stable on ppc wrt bug 198416
+
+  11 Nov 2007; Samuli Suominen <drac@gentoo.org> liblrdf-0.4.0.ebuild:
+  amd64 stable wrt #198416 and use emake in src_install with D quoted.
 
   10 Nov 2007; Markus Rothe <corsair@gentoo.org> liblrdf-0.4.0.ebuild:
   Stable on ppc64; bug #198416
