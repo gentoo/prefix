@@ -2,6 +2,9 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Nov 2007; Elias Pipping <pipping@gentoo.org> package.mask:
+  Unmask sys-libs/ncurses-5.6
+
   11 Nov 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask sys-devel/gettext-0.17 as it has linkage problems
 
