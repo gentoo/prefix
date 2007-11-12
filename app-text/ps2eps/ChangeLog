@@ -1,0 +1,19 @@
+# ChangeLog for app-text/ps2eps
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/ps2eps/ChangeLog,v 1.4 2007/11/10 21:30:21 corsair Exp $
+
+  10 Nov 2007; Markus Rothe <corsair@gentoo.org> ps2eps-1.64.ebuild:
+  Added ~ppc64; bug #125153
+
+  10 Nov 2007; Raúl Porcel <armin76@gentoo.org> ps2eps-1.64.ebuild:
+  Add ~alpha/~ia64 wrt #125153
+
+  10 Nov 2007; Ferris McCormick <fmccor@gentoo.org> ps2eps-1.64.ebuild:
+  Keyworded ~sparc as part of Bug #125153
+
+*ps2eps-1.64 (10 Nov 2007)
+
+  10 Nov 2007; Alexis Ballier <aballier@gentoo.org> +metadata.xml,
+  +ps2eps-1.64.ebuild:
+  initial import, bug #125153
+
