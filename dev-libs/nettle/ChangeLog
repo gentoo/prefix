@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/nettle
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nettle/ChangeLog,v 1.18 2007/11/10 21:03:09 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nettle/ChangeLog,v 1.19 2007/11/11 09:51:57 cla Exp $
+
+  11 Nov 2007; Dawid Węgliński <cla@gentoo.org> nettle-1.15.ebuild:
+  Stable on x86 (bug #198689)
 
   10 Nov 2007; Samuli Suominen <drac@gentoo.org> nettle-1.15.ebuild:
   amd64 stable
