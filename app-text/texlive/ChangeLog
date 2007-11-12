@@ -1,6 +1,17 @@
 # ChangeLog for app-text/texlive
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.21 2007/11/10 22:05:15 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.24 2007/11/11 18:19:39 aballier Exp $
+
+  11 Nov 2007; Alexis Ballier <aballier@gentoo.org> -texlive-2007-r2.ebuild:
+  remove old
+
+  11 Nov 2007; Raúl Porcel <armin76@gentoo.org> texlive-2007-r3.ebuild:
+  Add ~alpha/~ia64 wrt #198149
+
+*texlive-2007-r3 (11 Nov 2007)
+
+  11 Nov 2007; Alexis Ballier <aballier@gentoo.org> +texlive-2007-r3.ebuild:
+  depend on cjk-latex with cjk useflag now that it can be cleanly integrated
 
   10 Nov 2007; Alexis Ballier <aballier@gentoo.org> -texlive-2007.ebuild,
   -texlive-2007-r1.ebuild:

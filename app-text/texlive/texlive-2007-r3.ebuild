@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2007-r2.ebuild,v 1.4 2007/11/10 21:34:44 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2007-r3.ebuild,v 1.2 2007/11/11 15:26:12 armin76 Exp $
 
 EAPI="prefix"
 
@@ -104,7 +104,8 @@ RDEPEND="${DEPEND}
 	linguas_af? ( ${TEXLIVE_CAT}/texlive-langafrican )
 	linguas_ar? ( ${TEXLIVE_CAT}/texlive-langarab )
 	linguas_hy? ( ${TEXLIVE_CAT}/texlive-langarmenian )
-	cjk? ( ${TEXLIVE_CAT}/texlive-langcjk )
+	cjk? ( >=${TEXLIVE_CAT}/texlive-langcjk-2007-r1
+		>=dev-tex/cjk-latex-4.7.0 )
 	linguas_hr? ( ${TEXLIVE_CAT}/texlive-langcroatian )
 	cyrillic? ( ${TEXLIVE_CAT}/texlive-langcyrillic )
 	linguas_cs? ( ${TEXLIVE_CAT}/texlive-langczechslovak )
