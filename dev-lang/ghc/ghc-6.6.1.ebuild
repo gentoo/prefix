@@ -58,7 +58,7 @@ SRC_URI="!binary? ( http://haskell.org/ghc/dist/${EXTRA_SRC_URI}/${MY_P}-src.tar
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
-IUSE="binary doc ghcbootstrap kernel_Darwin kernel_linux kernel_SunOS"
+IUSE="binary doc ghcbootstrap"
 
 LOC="/opt/ghc" # location for installation of binary version
 S="${WORKDIR}/${MY_P}"
