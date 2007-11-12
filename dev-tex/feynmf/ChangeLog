@@ -1,0 +1,61 @@
+# ChangeLog for dev-tex/feynmf
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/feynmf/ChangeLog,v 1.15 2007/11/10 21:33:29 corsair Exp $
+
+  10 Nov 2007; Markus Rothe <corsair@gentoo.org> feynmf-1.08-r2.ebuild:
+  Added ~ppc64; bug #125153
+
+  07 Nov 2007; Raúl Porcel <armin76@gentoo.org> feynmf-1.08-r2.ebuild:
+  Add ~alpha/~ia64 wrt #198289
+
+  07 Nov 2007; Christian Faulhammer <opfer@gentoo.org>
+  feynmf-1.08-r2.ebuild:
+  stable x86, security bug 198231
+
+  06 Nov 2007; Ferris McCormick <fmccor@gentoo.org> feynmf-1.08-r2.ebuild:
+  Add sparc, needed for Bug #198289 and works beautifully with texlive.
+
+*feynmf-1.08-r2 (06 Nov 2007)
+
+  06 Nov 2007; Ulrich Mueller <ulm@gentoo.org>
+  +files/feynmf-1.08-tempfile.patch, +feynmf-1.08-r2.ebuild:
+  Fix insecure temp file creation, security bug #198231.
+
+  15 Oct 2007; Alexis Ballier <aballier@gentoo.org> feynmf-1.08-r1.ebuild:
+  adapt deps for texlive, bug #195894
+
+  15 Oct 2007; Ulrich Mueller <ulm@gentoo.org> -feynmf-1.08.ebuild:
+  Remove old.
+
+  21 Jun 2007; Christian Faulhammer <opfer@gentoo.org>
+  feynmf-1.08-r1.ebuild:
+  stable x86, bug 106909
+
+  20 Jun 2007; Christoph Mende <angelos@gentoo.org> feynmf-1.08-r1.ebuild:
+  Stable on amd64 wrt bug 106909
+
+*feynmf-1.08-r1 (20 May 2007)
+
+  20 May 2007; Ulrich Mueller <ulm@gentoo.org> metadata.xml,
+  +feynmf-1.08-r1.ebuild:
+  Add myself as maintainer. New doc useflag and additional documentation.
+
+  12 Mar 2007; Alexandre Buisse <nattfodd@gentoo.org> metadata.xml:
+  Replaced text-markup by tex as maintaining herd (text-markup split).
+
+  05 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
+
+  28 Dec 2004; Dylan Carlson <absinthe@gentoo.org> feynmf-1.08.ebuild:
+  Keywords ~amd64.
+
+  17 Oct 2004; David Holm <dholm@gentoo.org> feynmf-1.08.ebuild:
+  Added to ~ppc.
+
+*feynmf-1.08 (02 Oct 2004)
+
+  02 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> +metadata.xml,
+  +files/feynmf-1.08.patch, +feynmf-1.08.ebuild:
+  Initial import. Ebuild submitted by Ulrich Mueller <ulm@kph.uni-mainz.de>,
+  closing bug #62800.
+
