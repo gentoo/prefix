@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.1 2007/11/04 13:17:35 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.2 2007/11/11 20:02:11 philantrop Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -42,6 +42,12 @@ cmake-utils_use_with() { _use_me_now WITH "$@" ; }
 # Based on use_enable. See ebuild.sh
 cmake-utils_use_enable() { _use_me_now ENABLE "$@" ; }
 
+# @FUNCTION: cmake-utils_use_want
+# @USAGE: <USE flag> [flag name]
+# @DESCRIPTION:
+# Based on use_enable. See ebuild.sh
+cmake-utils_use_want() { _use_me_now WANT "$@" ; }
+
 # @FUNCTION: cmake-utils_src_compile
 # @DESCRIPTION:
 # General function for compiling with cmake. Default behaviour is to start an
@@ -49,7 +55,11 @@ cmake-utils_use_enable() { _use_me_now ENABLE "$@" ; }
 cmake-utils_src_compile() {
 	debug-print-function $FUNCNAME $*
 
-	cmake-utils_src_configureout
+	if [[ -n "${CMAKE_IN_SOURCE_BUILD}" ]]; then
+		cmake-utils_src_configurein
+	else
+		cmake-utils_src_configureout
+	fi
 	cmake-utils_src_make
 }
 
@@ -74,11 +84,13 @@ cmake-utils_src_configureout() {
 	debug-print-function $FUNCNAME $*
 
 	local cmakeargs="${mycmakeargs} $(_common_configure_code)"
-	mkdir "${WORKDIR}"/${PN}_build
-	cd "${WORKDIR}"/${PN}_build
+	mkdir -p "${WORKDIR}"/${PN}_build
+	pushd "${WORKDIR}"/${PN}_build > /dev/null
 
 	debug-print "$LINENO $ECLASS $FUNCNAME: mycmakeargs is $cmakeargs"
 	cmake ${cmakeargs} "${S}" || die "Cmake failed"
+
+	popd > /dev/null
 }
 
 # Internal use only. Common configuration options for all types of builds.
@@ -91,6 +103,7 @@ _common_configure_code() {
 	echo -DCMAKE_CXX_COMPILER=$(type -P $(tc-getCXX))
 	echo -DCMAKE_INSTALL_PREFIX=${PREFIX:-/usr}
 	echo -DLIB_SUFFIX=${tmp_libdir/lib}
+	echo -DLIB_INSTALL_DIR=${PREFIX:-/usr}/${tmp_libdir}
 	[[ -n ${CMAKE_NO_COLOR} ]] && echo -DCMAKE_COLOR_MAKEFILE=OFF
 }
 
@@ -103,12 +116,15 @@ cmake-utils_src_make() {
 	# At this point we can automatically check if it's an out-of-source or an
 	# in-source build
 	if [[ -d ${WORKDIR}/${PN}_build ]]; then
-		cd "${WORKDIR}"/${PN}_build;
+		pushd "${WORKDIR}"/${PN}_build > /dev/null
 	fi
 	if ! [[ -z ${CMAKE_COMPILER_VERBOSE} ]]; then
-		emake VERBOSE=1 || die "Make failed!";
+		emake VERBOSE=1 || die "Make failed!"
 	else
-		emake || die "Make failed!";
+		emake || die "Make failed!"
+	fi
+	if [[ -d ${WORKDIR}/${PN}_build ]]; then
+		popd > /dev/null
 	fi
 }
 
@@ -121,9 +137,12 @@ cmake-utils_src_install() {
 	# At this point we can automatically check if it's an out-of-source or an
 	# in-source build
 	if [[ -d  ${WORKDIR}/${PN}_build ]]; then
-		cd "${WORKDIR}"/${PN}_build;
+		pushd "${WORKDIR}"/${PN}_build > /dev/null
 	fi
 	emake install DESTDIR="${D}" || die "Make install failed"
+	if [[ -d  ${WORKDIR}/${PN}_build ]]; then
+		popd > /dev/null
+	fi
 }
 
 # @FUNCTION: cmake-utils_src_test
@@ -135,7 +154,7 @@ cmake-utils_src_test() {
 	# At this point we can automatically check if it's an out-of-source or an
 	# in-source build
 	if [[ -d ${WORKDIR}/${PN}_build ]]; then
-		cd "${WORKDIR}"/${PN}_build
+		pushd "${WORKDIR}"/${PN}_build > /dev/null
 	fi
 	# Standard implementation of src_test
 	if emake -j1 check -n &> /dev/null; then
@@ -150,5 +169,8 @@ cmake-utils_src_test() {
 		fi
 	else
 		einfo ">>> Test phase [none]: ${CATEGORY}/${PF}"
+	fi
+	if [[ -d  ${WORKDIR}/${PN}_build ]]; then
+		popd > /dev/null
 	fi
 }

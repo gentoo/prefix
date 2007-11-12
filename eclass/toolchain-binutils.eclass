@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.76 2007/07/23 16:32:13 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.77 2007/11/11 19:55:42 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -183,6 +183,12 @@ toolchain-binutils_src_unpack() {
 }
 
 toolchain-binutils_src_compile() {
+	# prevent makeinfo from running in releases.  it may not always be
+	# installed, and older binutils may fail with newer texinfo.
+	# besides, we never patch the doc files anyways, so regenerating
+	# in the first place is useless. #193364
+	find . '(' -name '*.info' -o -name '*.texi' ')' -print0 | xargs -0 touch -r .
+
 	# make sure we filter $LINGUAS so that only ones that
 	# actually work make it through #42033
 	strip-linguas -u */po
