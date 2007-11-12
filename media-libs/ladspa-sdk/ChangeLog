@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/ladspa-sdk
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ChangeLog,v 1.34 2007/07/02 15:54:03 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ChangeLog,v 1.35 2007/11/11 15:34:26 grobian Exp $
+
+  11 Nov 2007; Fabian Groffen <grobian@gentoo.org>
+  -files/ladspa-sdk-1.12-ppc-macos.patch, ladspa-sdk-1.12-r2.ebuild:
+  Dropped ppc-macos keyword, dropped ppc-macos patch which didn't work/apply
+  any more. See you in prefix, where we have a working, non-conditional Darwin
+  patch.
 
   02 Jul 2007; Diego Pettenò <flameeyes@gentoo.org> metadata.xml:
   Hand to newly-born proaudio herd.
