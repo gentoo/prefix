@@ -1,6 +1,18 @@
 # ChangeLog for app-cdr/cdrtools
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.191 2007/11/07 15:28:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.193 2007/11/11 11:55:17 pylon Exp $
+
+*cdrtools-2.01.01_alpha36 (11 Nov 2007)
+
+  11 Nov 2007; Lars Weiler <pylon@gentoo.org>
+  -files/cdrtools-2.01.01a03-rezero.patch,
+  -files/cdrtools-2.01a27-writemode.patch, -cdrtools-2.01.01_alpha32.ebuild,
+  +cdrtools-2.01.01_alpha36.ebuild:
+  Version bump; bug #193544.  Cleaned out old version.
+
+  10 Nov 2007; Samuli Suominen <drac@gentoo.org>
+  cdrtools-2.01.01_alpha34.ebuild:
+  amd64 stable wrt #197665, thanks to Kenneth Prugh for testing.
 
   07 Nov 2007; Raúl Porcel <armin76@gentoo.org>
   cdrtools-2.01.01_alpha34.ebuild:
