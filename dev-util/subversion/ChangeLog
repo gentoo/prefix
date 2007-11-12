@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/subversion
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.277 2007/11/10 20:41:38 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.280 2007/11/11 20:09:16 armin76 Exp $
+
+  11 Nov 2007; Raúl Porcel <armin76@gentoo.org> subversion-1.4.5.ebuild:
+  alpha/ia64 stable wrt security #198590
+
+  11 Nov 2007; Markus Ullmann <jokey@gentoo.org> subversion-1.4.5.ebuild:
+  SPARC'enstein
+
+  11 Nov 2007; Dawid Węgliński <cla@gentoo.org> subversion-1.4.5.ebuild:
+  Stable on x86 (bug #198590)
 
 *subversion-1.4.5 (10 Nov 2007)
 
