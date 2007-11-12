@@ -1,6 +1,22 @@
 # ChangeLog for media-libs/raptor
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/raptor/ChangeLog,v 1.50 2007/10/15 14:37:36 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/raptor/ChangeLog,v 1.55 2007/11/11 15:52:29 armin76 Exp $
+
+  11 Nov 2007; Raúl Porcel <armin76@gentoo.org> raptor-1.4.16.ebuild:
+  ia64/sparc stable wrt #198768
+
+  11 Nov 2007; Fabian Groffen <grobian@gentoo.org> raptor-1.4.9.ebuild,
+  raptor-1.4.12.ebuild, raptor-1.4.15.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
+
+  11 Nov 2007; nixnut <nixnut@gentoo.org> raptor-1.4.16.ebuild:
+  Stable on ppc wrt bug 198768
+
+  11 Nov 2007; Dawid Węgliński <cla@gentoo.org> raptor-1.4.16.ebuild:
+  Stable on x86 (bug #198768)
+
+  11 Nov 2007; Samuli Suominen <drac@gentoo.org> raptor-1.4.16.ebuild:
+  amd64 stable
 
   15 Oct 2007; Markus Rothe <corsair@gentoo.org> raptor-1.4.15.ebuild:
   Stable on ppc64
