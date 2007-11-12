@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/mrxvt-0.5.3-r1.ebuild,v 1.3 2007/11/10 21:17:24 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/mrxvt-0.5.3-r1.ebuild,v 1.6 2007/11/11 13:09:04 nixnut Exp $
 
 EAPI="prefix"
 
@@ -17,9 +17,8 @@ KEYWORDS="~amd64 ~mips ~ppc-macos ~x86"
 LINGUAS_IUSE="linguas_el linguas_ja linguas_ko linguas_th linguas_zh_CN linguas_zh_TW"
 IUSE="debug png jpeg session truetype menubar utempter xpm ${LINGUAS_IUSE}"
 
-RDEPEND="!ppc-macos? (
-		png? ( media-libs/libpng )
-		utempter? ( sys-libs/libutempter ) )
+RDEPEND="png? ( media-libs/libpng )
+	utempter? ( sys-libs/libutempter )
 	jpeg? ( media-libs/jpeg )
 	truetype? ( virtual/xft
 		media-libs/fontconfig
