@@ -1,6 +1,21 @@
 # ChangeLog for x11-terms/rxvt-unicode
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.92 2007/08/21 19:31:31 killerfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.96 2007/11/11 21:47:12 killerfox Exp $
+
+*rxvt-unicode-8.4 (11 Nov 2007)
+
+  11 Nov 2007; René Nussbaumer <killerfox@gentoo.org>
+  +rxvt-unicode-8.4.ebuild:
+  Version bump by upstream
+
+  11 Nov 2007; nixnut <nixnut@gentoo.org> rxvt-unicode-8.3.ebuild:
+  Stable on ppc wrt bug 198780
+
+  11 Nov 2007; Dawid Węgliński <cla@gentoo.org> rxvt-unicode-8.3.ebuild:
+  Stable on x86 (bug #198780)
+
+  11 Nov 2007; Samuli Suominen <drac@gentoo.org> rxvt-unicode-8.3.ebuild:
+  amd64 stable wrt #198780
 
 *rxvt-unicode-8.3 (21 Aug 2007)
 
