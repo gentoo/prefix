@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.635 2007/10/25 14:41:50 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.636 2007/11/11 20:29:52 vapier Exp $
+
+  11 Nov 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/gcc-configure-texinfo.patch:
+  Disable makeinfo version checking #198182.
 
   25 Oct 2007; Markus Rothe <corsair@gentoo.org> gcc-4.2.2.ebuild:
   On ppc64 gcc 4.2.2 is in a much better shape than 4.2.0 was. Add ~ppc64 to
