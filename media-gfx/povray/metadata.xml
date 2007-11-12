@@ -3,7 +3,6 @@
 <pkgmetadata>
 <herd>no-herd</herd>
 <maintainer>
-  <email>maintainer-needed@gentoo.org</email>
- <description>Persistence of Vision Ray-Tracer</description>
+  <email>lavajoe@gentoo.org</email>
 </maintainer>
 </pkgmetadata>
