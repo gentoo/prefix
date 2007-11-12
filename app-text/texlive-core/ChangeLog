@@ -1,6 +1,12 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.27 2007/11/10 18:08:16 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.28 2007/11/11 10:45:20 aballier Exp $
+
+*texlive-core-2007-r8 (11 Nov 2007)
+
+  11 Nov 2007; Alexis Ballier <aballier@gentoo.org>
+  -texlive-core-2007-r7.ebuild, +texlive-core-2007-r8.ebuild:
+  remove cjk-utils from here, dev-tex/cjk-latex takes care of these
 
   10 Nov 2007; Alexis Ballier <aballier@gentoo.org>
   texlive-core-2007-r7.ebuild:
