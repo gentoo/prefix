@@ -1,6 +1,21 @@
 # ChangeLog for app-emulation/emul-linux-x86-baselibs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/ChangeLog,v 1.76 2007/08/29 17:49:23 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/ChangeLog,v 1.79 2007/11/11 17:52:26 kingtaco Exp $
+
+  11 Nov 2007; Mike Doty <kingtaco@gentoo.org>
+  files/digest-emul-linux-x86-baselibs-10.1,
+  files/digest-emul-linux-x86-baselibs-10.2, Manifest:
+  Manifest regeneration again, missed libperl on the last round.  bug 198751
+
+  11 Nov 2007; Mike Doty <kingtaco@gentoo.org>
+  -emul-linux-x86-baselibs-11.0.ebuild:
+  Remove testing only 11.0 and refresh Manifest. bug #198751
+
+*emul-linux-x86-baselibs-11.0 (10 Nov 2007)
+
+  10 Nov 2007; Mike Doty <kingtaco@gentoo.org>
+  +emul-linux-x86-baselibs-11.0.ebuild:
+  Bump to 11.0, for internal testing only.  DO NOT USE
 
   29 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing herbs from metadata due to his retirement (see #88780 for reference).
