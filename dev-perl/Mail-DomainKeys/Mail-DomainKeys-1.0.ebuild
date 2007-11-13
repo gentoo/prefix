@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Mail-DomainKeys/Mail-DomainKeys-1.0.ebuild,v 1.3 2007/07/11 19:09:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Mail-DomainKeys/Mail-DomainKeys-1.0.ebuild,v 1.4 2007/11/10 13:56:56 drac Exp $
 
 EAPI="prefix"
 
