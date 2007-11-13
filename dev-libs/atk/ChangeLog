@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/atk
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/ChangeLog,v 1.149 2007/09/21 18:31:01 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/ChangeLog,v 1.150 2007/11/12 22:18:50 drac Exp $
+
+  12 Nov 2007; Samuli Suominen <drac@gentoo.org> atk-1.20.0.ebuild:
+  amd64 stable wrt #198845
 
 *atk-1.20.0 (21 Sep 2007)
 
