@@ -1,6 +1,14 @@
 # ChangeLog for app-text/poppler
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.146 2007/11/11 11:03:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.148 2007/11/12 19:07:27 genstef Exp $
+
+*poppler-0.6.2 (12 Nov 2007)
+
+  12 Nov 2007; Stefan Schweizer <genstef@gentoo.org> +poppler-0.6.2.ebuild:
+  version bump
+
+  12 Nov 2007; Jeroen Roovers <jer@gentoo.org> poppler-0.6.1-r1.ebuild:
+  Stable for HPPA (bug #196735).
 
   11 Nov 2007; Raúl Porcel <armin76@gentoo.org> poppler-0.6.1-r1.ebuild:
   alpha/ia64 stable wrt security #196735
