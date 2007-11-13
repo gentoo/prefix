@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7871 2007/11/05 19:57:40 tgurr Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7900 2007/11/12 21:00:01 chainsaw Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -21,6 +21,68 @@
 ##   End example
 ##
 
+# Alexis Ballier <aballier@gentoo.org> (11 Nov 2007)
+# Lots of security issues: bug #196673
+# The experience with babel in tetex-3, texlive 
+# and xetex is good. Skilled users recommended to migrate.
+# Masking for removal: Due 11 Dec 2007
+app-text/cstetex
+
+# Robin H. Johnson <robbat2@gentoo.org> (02 Nov 2007)
+# Brokeness in these, but hanging on to them while getting 1.04 ready
+=mail-mta/nullmailer-1.03*
+# Block 1.04 until it's ready
+>=mail-mta/nullmailer-1.04
+
+# Rajiv Aaron Manglani <rajiv@gentoo.org> (11 Nov 2007)
+# no longer supported upstream.
+<net-misc/zaptel-1.2
+<net-misc/asterisk-sounds-1.2
+
+# Krzysiek Pawlik <nelchael@gentoo.org> (10 Nov 2007)
+# Masking for removal: last Resin 2.x release ws almost two years ago,
+# please move to 3.0 series. Resin 2.1.17 will be removed in 30 days.
+=www-servers/resin-2.1.17
+
+# Mike Doty <kingtaco@gentoo.org> (09 Nov 2007)
+# New build system, currently meant for ATs only.  DO NOT COME
+# CRYING IF YOU IGNORE THIS AND YOU BREAK YOUR SYSTEM.  I WILL
+# LAUGH UNCONTROLLABLY AT YOU!  --YOU HAVE BEEN WARNED--
+>=app-emulation/emul-linux-x86-baselibs-11.0
+
+# Alin Năstac <mrness@gentoo.org> (08 Nov 2007)
+# Versions with kernel 2.4 support will be removed in 30 days.
+=net-dialup/ltmodem-8.31*
+
+# Ryan Hill <dirtyepic@gentoo.org> (07 Nov 2007)
+# mask for GLSA 200710-12 (bug #198053)
+# sched removal 07 Dec 2007
+=media-libs/t1lib-1.3.1
+
+# Chris Gianelloni <wolf31o2@gentoo.org> (07 Nov 2007)
+# Masking for testing, since we introduced a fairly invasive patch set and I
+# don't want this hitting user machines just yet.
+~sys-kernel/genkernel-3.4.9_pre8
+
+# Gustavo Felisberto <humpback@gentoo.org> (07 Nov 2007)
+# Beta version
+>=net-im/skype-2.0.0.13
+
+# Hanno Boeck <hanno@gentoo.org (11 Nov 2007)
+# Remaining beryl-related packages, beryl has been removed
+x11-wm/heliodor
+x11-wm/aquamarine
+
+# William L Thomson Jr <wltjr@gentoo.org> (06 Nov 2007)
+# Old release notes, and pdf docs provided by main package
+# No deps that I could find, no reason to be a package
+# in tree. Punting ASAP ~30 days maybe :)
+dev-db/firebird-docs
+
+# Fabian Groffen <grobian@gentoo.org> (06 Nov 2007)
+# Needs some thorough testing, feel welcome to try it out
+dev-db/monetdb
+
 # Samuli Suominen <drac@gentoo.org> (05 Nov 2007)
 # Masked for treecleaners, removed in 60 days.
 # See http://tinyurl.com/yu5t35 for references.
@@ -30,7 +92,6 @@ net-analyzer/snmpmon
 mail-client/elmo
 net-im/jud
 sys-apps/yard
-mail-client/sylpheed-claws
 app-editors/beaver
 media-radio/ktrack
 app-portage/portagemaster
@@ -75,22 +136,7 @@ dev-java/sun-jaf-bin
 
 # Doug Goldstein <cardoe@gentoo.org> (01 Nov 2007)
 # beta NVIDIA drivers, not supported. bug #196679
-=x11-drivers/nvidia-drivers-100.14.23
-
-# Chris Gianelloni <wolf31o2@gentoo.org> (31 Oct 2007)
-# Masking due to bug #197582 that makes genkernel unusable.  I apologize for
-# this and am forcing a downgrade so people have a working genkernel.  I am
-# masking future versions, too.  This way we can test them properly (and easily)
-# without affecting users.  Sorry for any trouble caused.
->=sys-kernel/genkernel-3.4.9_pre4
-
-# Tony Vroon <chainsaw@gentoo.org> (31 Oct 2007)
-# Mask 1.4 for testing and sorting out dependencies.
-# Note that we do not accept bug reports for this
-# package on bugs.gentoo.org as long as this mask 
-# is in place.
-=media-sound/audacious-1.4*
-=media-plugins/audacious-plugins-1.4*
+~x11-drivers/nvidia-drivers-100.14.23
 
 # Markus Ullmann <jokey@gentoo.org> (29 Oct 2007)
 # mask 2.2 as announced on gwn half a year ago
@@ -193,10 +239,6 @@ dev-php4/pecl-http
 # Live CVS ebuild
 ~app-emacs/ngnus-9999
 
-# Krzysiek Pawlik <nelchael@gentoo.org> (15 Oct 2007)
-# Copying does't work, use xclip instead, see bug #191553
-x11-misc/xcut
-
 # Stefan Schweizer <genstef@gentoo.org> (14 Oct 2007)
 # Development release
 >=net-libs/openslp-1.3.0
@@ -216,22 +258,10 @@ java-virtuals/javamail
 # The ck patchest is gone, will be removed shortly.
 sys-kernel/ck-sources
 
-# Stefan Schweizer <genstef@gentoo.org> (10 Oct 2007)
-# removal because of starting problems in Bug 189775, gtk+-1.2 usage
-# last release was in 2001, possible replacements: media-gfx/opcion
-# and media-gfx/fontforge
-app-misc/gfontview
-
 # Doug Goldstein <cardoe@gentoo.org> (10 Oct 2007)
 # the Asterisk is coming! the Asterisk is coming!
 >=net-misc/zaptel-1.4.0
 >=net-misc/asterisk-1.4.0
-
-# Ulrich Mueller <ulm@gentoo.org> (09 Oct 2007)
-# Broken. Last upstream release as separate package in 2003;
-# newer version is included with Emacs 22.
-# Masked for removal in 30 days, bug #195232.
-app-emacs/ses
 
 # Krzysiek Pawlik <nelchael@gentoo.org> (08 Oct 2007)
 # Masked untill the split from net-im/jabberd is complete.
@@ -265,35 +295,11 @@ games-fps/americas-army
 # gcl to follow soon as it is unmaintained with lots of open bugs
 dev-lisp/gcl-cvs
 
-# Christian Hoffmann <hoffie@gentoo.org> (04 Oct 2007)
-# Outdated (no releases since May 2006), buggy and possibly vulnerable to
-# security problems
-# Masked for removal in 30 days
-# replacement: USE="pdo" emerge =dev-lang/php-5*
-dev-php5/pecl-pdo
-# replacement: USE="pdo sybase mssql" emerge =dev-lang/php-5*
-dev-php5/pecl-pdo-dblib
-# replacement: USE="pdo mysql" emerge =dev-lang/php-5*
-dev-php5/pecl-pdo-mysql
-# replacement: USE="pdo oci8" emerge =dev-lang/php-5*
-dev-php5/pecl-pdo-oci
-# replacement: USE="pdo odbc" emerge =dev-lang/php-5*
-dev-php5/pecl-pdo-odbc
-# replacement: USE="pdo pgsql" emerge =dev-lang/php-5*
-dev-php5/pecl-pdo-pgsql
-# replacement: USE="pdo sqlite" emerge =dev-lang/php-5*
-dev-php5/pecl-pdo-sqlite
-
 # Joe Sapp <nixphoeni@gentoo.org> (02 Oct 2007)
 # Doesn't compile, upstream is dead, and depends
 # on old packages not in portage any more
 # See bug #186440
 x11-wm/kahakai
-
-# Sven Wegener <swegener@gentoo.org> (30 Sep 2007)
-# Replaced by dev-db/mysql-gui-tools
-dev-db/mysql-administrator
-dev-db/mysql-query-browser
 
 # Peter Volkov <pva@gentoo.org> (28 Sep 2007)
 # masked for testing
@@ -332,12 +338,6 @@ net-print/hpijs
 #=app-emulation/vmware-player-1.0.3.34682-r1
 =app-emulation/vmware-player-2.0.0.45731
 
-# Christian Faulhammer <opfer@gentoo.org> (20 Sep 2007)
-# Is dead upstream
-# Junkbuster has been replaced by Privoxy, so no need
-# for that mode
-app-emacs/junkbust
-
 # Robin H. Johnson <robbat2@gentoo.org> (20 Sep 2007)
 # last rites
 dev-util/bk_client
@@ -369,11 +369,6 @@ sys-auth/bioapi
 # Masking new Neverwinter Nights ebuilds until they're confirmed to work
 =games-rpg/nwn-data-1.29-r2
 =games-rpg/nwn-1.68-r2
-
-# Stefan Schweizer <genstef@gentoo.org> (02 Sep 2007)
-# last-rite bpalogin for mark_alec, as the package is useless now (ISP
-# no longer needs it) and the initscript is broken with baselayout2
-net-dialup/bpalogin
 
 # Michael Sterrett <mr_bones_@gentoo.org> (30 Aug 2007)
 # Security bug #190835
@@ -540,12 +535,6 @@ dev-util/larch
 # Mask livesvn ebuild
 =net-p2p/deluge-9999
 
-# William L Thomson Jr <wltjr@gentoo.org> (13 Jun 2007)
-# Stale upstream older versions than last release in tree.
-# Package will be moved to junkyard overlay after 30 days
-# unless users express interest in this package.
-dev-java/sablevm
-
 # MATSUU Takuto <matsuu@gentoo.org> (12 Jun 2007)
 # Mask alpha versions
 =dev-lang/tcl-8.5*
@@ -576,10 +565,6 @@ app-shells/ash
 dev-ml/camlp5
 >=app-misc/ledit-1.15
 >=app-emacs/ocaml-mode-3.10.0
-
-# Andrej Kacian <ticho@gentoo.org> (26 May 2007)
-# Use mail-client/claws-mail - upstream changed application name after 2.6.0.
-mail-client/sylpheed-claws
 
 # Petteri Räty <betelgeuse@gentoo.org> (24 May 2007)
 # Doesn't compile atm. See https://bugs.gentoo.org/show_bug.cgi?id=164074
@@ -614,23 +599,8 @@ net-wireless/mcs7780
 =net-fs/sfs-0.8.0_pre20070512
 
 # Stefan Schweizer <genstef@gentoo.org> (9 may 2007)
-# waiting for better upstream versions
-# 170997 doesn't open the configuration dialog
-=sys-power/kpowersave-0.7.2
 # 175933 cannot suspend because of missing org.freedesktop.PolicyKit
 >=sys-power/powersave-0.15.0
-
-# Stefan Schweizer <genstef@gentoo.org> (7 may 2007)
-# mask new alsa release. Until it is fully added and tested
-~media-libs/alsa-lib-1.0.14_rc4
-~media-plugins/alsa-plugins-1.0.14_rc4
-~media-libs/alsa-oss-1.0.14_rc4
-~media-sound/alsa-headers-1.0.14_rc4
-#need to figure out which drivers/firmwares got added
-~media-sound/alsa-driver-1.0.14_rc4
-~media-sound/alsa-firmware-1.0.14_rc4
-#seq patch needs to be ported
-~media-sound/alsa-utils-1.0.14_rc4
 
 # Rajiv Aaron Manglani <rajiv@gentoo.org> (6 May 2007)
 # open security issues, no longer supported upstream.
@@ -960,11 +930,6 @@ sci-mathematics/gturing
 # Olivier Fisette <ribosome@gentoo.org> (30 Oct 2006)
 # Masked until bugs #153325 and #54607 are fixed.
 sci-biology/generic-genome-browser
-
-# Fabian Groffen <grobian@gentoo.org> (23 Oct 2006)
-# MonetDB doesn't compile any more.  Waiting for next release (soon)
-# hopefully with better luck.
-dev-db/monetdb
 
 # Stefan Schweizer <genstef@gentoo.org> (21 Aug 2006)
 # beta psi, with jingle support

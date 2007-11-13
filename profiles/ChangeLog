@@ -1,6 +1,105 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.789 2007/11/05 21:50:55 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.816 2007/11/12 20:59:08 genstef Exp $
+
+  12 Nov 2007; Stefan Schweizer <genstef@gentoo.org> package.mask:
+  cleanup
+
+  12 Nov 2007; Alin Năstac <mrness@gentoo.org> use.local.desc:
+  Remove mail-filter/dspam:logrotate (#198901).
+
+  12 Nov 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  base/package.use.mask:
+  Mask =media-libs/mesa-7.0*:nptl. freedesktop.org bug #7459 committed fix
+  breaks 3D apps but "fix" is only relevant on USE=nptl.
+
+  11 Nov 2007; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask cstetex, bug #196673
+
+  10 Nov 2007; Diego Pettenò <flameeyes@gentoo.org>
+  +default-linux/alpha/2006.1/package.use.mask,
+  +default-linux/alpha/no-nptl/package.use.mask,
+  default-linux/hppa/2006.1/package.mask,
+  +default-linux/hppa/2006.1/package.use.mask,
+  +default-linux/ia64/2006.0/package.use.mask,
+  +default-linux/m68k/package.use.mask,
+  +default-linux/ppc/ppc64/2006.1/64bit-userland/package.use.mask,
+  hardened/ppc/package.use.mask, hardened/ppc64/package.use.mask:
+  Mask the test USE flag for sys-libs/pam-0.99 wherever glibc-2.4 is masked,
+  unmask pam-0.99 in hppa profile now.
+
+  10 Nov 2007; Alon Bar-Lev <alonbl@gentoo.org> use.local.desc:
+  Add ecryptfs-utils flags
+
+  10 Nov 2007; Christian Birchinger <joker@gentoo.org> package.mask:
+  Added >=x11-plugins/wmauda-0.7 until Audacious 1.4 gets unmasked
+
+  10 Nov 2007; Christian Birchinger <joker@gentoo.org> package.mask:
+  Added >=media-plugins/audacious-dumb-0.56 and
+  >=media-plugins/audacious-xosd-0.9 until Audacious 1.4 gets unmasked
+
+  10 Nov 2007; Gilles Dartiguelongue <eva@gentoo.org>
+  default-bsd/package.use.mask:
+  use.mask apm for gnome-base/gnome-applets
+
+  10 Nov 2007; Christian Faulhammer <opfer@gentoo.org> use.local.desc:
+  add latex USE flag for sci-visualization/gnuplot
+
+  10 Nov 2007; Krzysiek Pawlik <nelchael@gentoo.org> package.mask:
+  Remove mask of x11-misc/xcut
+
+  10 Nov 2007; Krzysiek Pawlik <nelchael@gentoo.org> package.mask:
+  Mask www-servers/resin-2.1.17
+
+  10 Nov 2007; Christian Hoffmann <hoffie@gentoo.org> package.mask:
+  removing =dev-lang/php-5.2.5 mask, our mirror system has the tarball and most
+  upstream mirrors have it as well
+
+  09 Nov 2007; Christian Hoffmann <hoffie@gentoo.org> package.mask:
+  masking =dev-lang/php-5.2.5 until all upstream mirrors have the tarball which
+  is referenced by SRC_URI
+
+  09 Nov 2007; Christian Hoffmann <hoffie@gentoo.org> package.mask:
+  removing dev-php5/pecl-pdo* masks, it's gone now
+
+  09 Nov 2007; Sébastien Fabbro <bicatali@gentoo.org> use.local.desc:
+  Added fits local use flag for veusz
+
+  08 Nov 2007; Timo Gurr <tgurr@gentoo.org> use.local.desc:
+  Add cups-1.3.4 zeroconf local USE flag.
+
+  08 Nov 2007; Alin Năstac <mrness@gentoo.org> package.mask:
+  Mask net-dialup/ltmodem versions with kernel 2.4 support.
+
+  08 Nov 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Mask media-libs/t1lib-1.3.1 for bug #198053.
+  GLSA 200710-12
+
+  07 Nov 2007; Chris Gianelloni <wolf31o2@gentoo.org> package.mask:
+  Adding ~sys-kernel/genkernel-3.4.9_pre8 to package.mask so we can test it
+  more thoroughly before unleashing it on our users.
+
+  07 Nov 2007; Chris Gianelloni <wolf31o2@gentoo.org> package.mask:
+  Removing mask on genkernel.
+
+  07 Nov 2007; Sven Wegener <swegener@gentoo.org> package.mask:
+  Remove the old mysql-administrator and mysql-query-browser mask.
+
+  07 Nov 2007; Gustavo Felisberto <humpback@gentoo.org> package.mask:
+  Added >=net-im/skype-2.0.0.13 as it is still beta software.
+
+  07 Nov 2007; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Remove app-emacs/junkbust and app-emacs/ses from package.mask since the
+  packages have been removed.
+
+  07 Nov 2007; Ulrich Mueller <ulm@gentoo.org> updates/4Q-2007:
+  Move app-emacs/circe-cvs to app-emacs/circe.
+
+  07 Nov 2007; Sébastien Fabbro <bicatali@gentoo.org> use.local.desc:
+  Added sourceview local use flag for sci-mathematics/gretl
+
+  06 Nov 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Change mask entry for monetdb to reflect the current status
 
   05 Nov 2007; Gilles Dartiguelongue <eva@gentoo.org>
   default-bsd/package.use.mask:

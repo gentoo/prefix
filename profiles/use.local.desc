@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3123 2007/11/05 18:59:18 tgurr Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3138 2007/11/12 12:56:54 aballier Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -307,6 +307,7 @@ app-vim/vcscommand:subversion - Enable subversion support
 app-vim/vcscommand:svk - Enable SVK support
 dev-cpp/sptk:excel - Enable Excel support
 dev-db/libpq:pg-intdatetime - Enables --enable-integer-datetimes configure option, which changes PG to use 64-bit integers for timestamp storage.
+dev-db/monetdb:boehmgc - enables Boehm Garbage Collector for XQuery
 dev-db/mysql-community:big-tables - Make tables contain up to 1.844E+19 rows
 dev-db/mysql-community:cluster - Add support for NDB clustering.
 dev-db/mysql-community:embedded - Build embedded server (libmysqld)
@@ -631,7 +632,13 @@ dev-util/kdevelop:pascal - Support for the Pascal programming language.
 dev-util/kdevelop:perforce - Support for the Perforce version control system.
 dev-util/kdevelop:sql - Support for the Structured Query Language (SQL).
 dev-util/kdevelop:subversion - Support for the Subversion version control system.
-dev-util/mercurial:zsh-completion - Install zsh command completion for hg
+dev-util/mercurial:bugzilla - Support bugzilla integration.
+dev-util/mercurial:cvs - Support conversion of CVS repositories to Mercurial.
+dev-util/mercurial:darcs - Support conversion of Darcs repositories to Mercurial.
+dev-util/mercurial:git - Support conversion of Git repositories to Mercurial.
+dev-util/mercurial:gpg - Support signing with GnuPG.
+dev-util/mercurial:subversion - Support conversion of Subversion repositories to Mercurial.
+dev-util/mercurial:zsh-completion - Install zsh command completion for hg.
 dev-util/monodevelop:aspnet - Enable ASP.NET support
 dev-util/monodevelop:aspnetedit - Enable ASP.NET visual designer support
 dev-util/monodevelop:boo - Enable support for the boo programming language
@@ -642,6 +649,7 @@ dev-util/pbuilder:uml - Enable pbuilder user mode linux support
 dev-util/strace:aio - Enable libaio support
 dev-util/subversion:extras - Install extras scripts (examples, tools, hooks)
 dev-util/subversion:nowebdav - Disables WebDAV support via neon library
+dev-util/subversion:svnserve - Install scripts for svnserve
 dev-util/svk:pager - Enable perl pager selection support
 dev-util/svk:patch - Enable patch creation, import support
 dev-util/svk:svn-mirror - Enable SVN-Mirror support
@@ -745,7 +753,6 @@ gnome-extra/evolution-data-server:keyring - Use gnome-keyring for password stora
 gnome-extra/gnome-games:artworkextra - Add extra Artwork to gnome-games
 gnome-extra/libgda:mdb - Enable Microsoft Access DB support for GnomeDB.
 gnome-extra/libgda:xbase - Enable support for xbase databases (dBase, FoxPro, etc)
-gnome-extra/nautilus-sendto:gaim - Build a gaim plugin for nautilus-sendto
 gnome-extra/nautilus-sendto:gajim - Enable support for gajim client
 gnome-extra/nautilus-sendto:pidgin - Enable support for pidgin
 gnome-extra/nautilus-sendto:sylpheed - Enable support for sylpheed mail client
@@ -859,7 +866,6 @@ mail-filter/dovecot-antispam:mailtrain - Build mailtrain backend
 mail-filter/dovecot-antispam:signature-log - Build signature-log backend
 mail-filter/dspam:daemon - Enable support for DSPAM to run in --daemon mode
 mail-filter/dspam:large-domain - Builds for large domain rather than for domain scale
-mail-filter/dspam:logrotate - Install support files for logrotate
 mail-filter/dspam:user-homedirs - Build with user homedir support
 mail-filter/dspam:virtual-users - Build with virtual-users support
 mail-filter/libmilter:poll - Use poll instead of select
@@ -898,7 +904,6 @@ mail-mta/netqmail:qmail-spp - Add support for the qmail SMTP plugin patch
 mail-mta/postfix:dovecot-sasl - Enable Dovecot protocol version 1 (server only) SASL implementation
 mail-mta/postfix:vda - Adds support for virtual delivery agent quota enforcing
 mail-mta/qmail-ldap:cluster - Enable this if you want to have cluster support in qmail-ldap
-mail-mta/qmail-ldap:controldb - Add support for the QmailLDAP/Control patch (stores control files in ldap)
 mail-mta/qmail-ldap:gencertdaily - Generate SSL certificates daily instead of hourly
 mail-mta/qmail-ldap:highvolume - Prepare qmail for high volume servers
 mail-mta/qmail-ldap:qmail-spp - Add support for the qmail SMTP plugin patch
@@ -1027,9 +1032,6 @@ media-sound/amarok:njb - Enable support for NJB (Creative) devices access throug
 media-sound/amarok:real - Build with real/helix player support
 media-sound/amarok:visualization - Support visualization plugins through media-libs/libvisual
 media-sound/audacious:chardet - Try to handle non-UTF8 chinese/japanese/korean ID3 tags
-media-sound/audacious:sid - Build with SID (Commodore 64 Audio) support
-media-sound/audacious:timidity - Build with Timidity++ (MIDI sequencer) support
-media-sound/audacious:wma - Build with WMA (Windows Media Audio) support
 media-sound/banshee:boo - Use external Boo instead of the bundled one
 media-sound/banshee:daap - Build with Daap support
 media-sound/banshee:njb - Build with njb audio player support
@@ -1253,6 +1255,7 @@ media-video/vdr:dvlvidprefer - controls video-dir choice on recording
 media-video/vdr:dxr3-audio-denoise - Mutes audio noise occurring with dxr3-cards using analog audio-out when e.g. cutting
 media-video/vdr:graphtft - support for grapftft plugin up from vdr-graphtft-0.1.7
 media-video/vdr:hardlinkcutter - Speed up cutting by hardlinking unchanged files
+media-video/vdr:iptv - Enables support for vdr-iptv
 media-video/vdr:jumpplay - Enables automatic jumping over cut marks while watching a recording
 media-video/vdr:liemikuutio - Formerly known as AIO (all-in-one) patch, adds some nice must haves
 media-video/vdr:livebuffer - does timeshifting/background recording all the time, allows to rewind live TV
@@ -1479,8 +1482,6 @@ net-im/gnugadu:tlen - Enable Tlen.pl protocol support
 net-im/gossip:galago - Enable desktop presence with galago
 net-im/jabberd2:memdebug - Enable nad and pool debug
 net-im/jabberd2:pipe - Enable pipe auth
-net-im/jabberd:memdebug - Enable nad and pool debug
-net-im/jabberd:pipe - Enable pipe auth
 net-im/kadu:amarok - Enables amarok support in kadu
 net-im/kadu:config_wizard - Enables configuration wizard module
 net-im/kadu:extraicons - Enables extra icon sets
@@ -1701,6 +1702,7 @@ net-p2p/mldonkey:magic - enable use of libmagic
 net-p2p/museek+:qsa - Enable QSA scripting for museeq
 net-p2p/museek+:trayicon - Enable support for trayicon
 net-p2p/transmission:daemon - Enable data collection daemon
+net-print/cups:zeroconf - Enable printer advertising via zeroconf
 net-print/hplip:fax - Enable fax support
 net-print/hplip:parport - Enable parallel port support
 net-print/omni:epson - include the epson drivers
@@ -1835,6 +1837,7 @@ sci-mathematics/freemat:ffcall - Enables uses of ffcall
 sci-mathematics/freemat:umfpack - Add sparse solving via umfpack
 sci-mathematics/geomview:avg - Enable experimental motion averaging technique
 sci-mathematics/geomview:netpbm - Add NetPBM support for external modules
+sci-mathematics/gretl:sourceview - Enable GtkSourceView support
 sci-mathematics/maxima:auctex - enable auctex in maxima
 sci-mathematics/maxima:clisp - adds clisp support to maxima
 sci-mathematics/maxima:cmucl - adds cmucl (lisp) support to maxima
@@ -1852,8 +1855,9 @@ sci-misc/nco:ncap2 - Build next generation netcdf arithmetic processor (needs de
 sci-misc/nco:udunits - Add udunits files support
 sci-misc/ncview:udunits - Add udunits files support
 sci-physics/root:cern - Add cernlib i/o functionality to root
+sci-visualization/gnuplot:latex - Enable LaTeX output terminal
 sci-visualization/gnuplot:xemacs - Add support for XEmacs
-sci-visualization/hippodraw:fits - Add FITS support to hippodraw, via cfitsio
+sci-visualization/hippodraw:fits - Add FITS format support to hippodraw, via cfitsio
 sci-visualization/hippodraw:numarray - Add numarray python array support
 sci-visualization/hippodraw:root - Add root i/o, and minuit support
 sci-visualization/labplot:cdf - Adds cdf data exchange format support
@@ -1861,6 +1865,7 @@ sci-visualization/labplot:kexi - Import and export data from/to MySQL, PostgreSQ
 sci-visualization/opendx:cdf - Adds cdf data exchange format support
 sci-visualization/opendx:hdf - Adds support for the Hierarchical Data Format
 sci-visualization/paraview:hdf5 - Adds support for the Hierarchical Data Format v5
+sci-visualization/veusz:fits - Adds FITS format format, via pyfits
 sec-policy/selinux-desktop:avahi - Add avahi SELinux policy.
 sys-apps/acl:nfs - add support for NFS acls
 sys-apps/busybox:make-symlinks - Create all the appropriate symlinks in /bin and /sbin
@@ -1979,6 +1984,9 @@ sys-freebsd/freebsd-usbin:suid - Enable setuid root programs
 sys-fs/clvm:nocman - Allow users to build clvm without cman support and with gulm support
 sys-fs/cryptsetup-luks:dynamic - Build cryptsetup-luks dynamically
 sys-fs/cryptsetup:dynamic - Build cryptsetup dynamically
+sys-fs/ecryptfs-utils:openssl - Enable OpenSSL key module.
+sys-fs/ecryptfs-utils:pkcs11 - Enable PKCS#11 (Smartcards) key module.
+sys-fs/ecryptfs-utils:gpg - Enable gnupg key module.
 sys-fs/evms:hb - Enable support for heartbeat-1
 sys-fs/evms:hb2 - Enable support for heartbeat-2
 sys-fs/loop-aes:keyscrub - Protects the encryption key in memory but takes more cpu resources
@@ -2124,7 +2132,6 @@ www-servers/nginx:flv - Enables special processing module for flv files
 www-servers/nginx:status - Enables stub_status module
 www-servers/nginx:sub - Enables sub_filter module
 www-servers/nginx:webdav - Enables webdav support
-www-servers/ocsigen:logrotate - Install support files for logrotate
 www-servers/ocsigen:ocamlduce - Enables ocamlduce XML typechecking for generated web pages
 www-servers/pound:dynscaler - enable dynamic rescaling of back-end priorities
 www-servers/pound:msdav - if you want the Microsoft DAV extensions enabled
