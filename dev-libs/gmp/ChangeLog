@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/gmp
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.86 2007/04/04 21:58:11 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.87 2007/11/12 06:20:33 vapier Exp $
+
+*gmp-4.2.2 (12 Nov 2007)
+
+  12 Nov 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/gmp-4.2.2-ABI-multilib.patch, +gmp-4.2.2.ebuild:
+  Version bump #198851.
 
 *gmp-4.2.1-r1 (04 Apr 2007)
 

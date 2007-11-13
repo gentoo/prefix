@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.2.1-r1.ebuild,v 1.3 2007/10/07 16:41:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.2.2.ebuild,v 1.2 2007/11/12 08:14:06 vapier Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://gmplib.org/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2
 	doc? ( http://gmplib.org/${PN}-man-${PV}.pdf )"
 
-LICENSE="LGPL-2"
+LICENSE="LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="doc nocxx"
@@ -22,10 +22,10 @@ DEPEND=""
 src_unpack () {
 	unpack ${A}
 	cd "${S}"
-	EPATCH_SUFFIX="diff" EPATCH_FORCE="yes" epatch "${FILESDIR}"/${PV}
+	[[ -d ${FILESDIR}/${PV} ]] && EPATCH_SUFFIX="diff" EPATCH_FORCE="yes" epatch "${FILESDIR}"/${PV}
 	epatch "${FILESDIR}"/${PN}-4.1.4-noexecstack.patch
-	epatch "${FILESDIR}"/${P}-ABI-multilib.patch
-	epatch "${FILESDIR}"/${P}-s390.diff
+	epatch "${FILESDIR}"/${PN}-4.2.2-ABI-multilib.patch
+	epatch "${FILESDIR}"/${PN}-4.2.1-s390.diff
 
 	sed -i -e 's:ABI = @ABI@:GMPABI = @GMPABI@:' \
 		Makefile.in */Makefile.in */*/Makefile.in
