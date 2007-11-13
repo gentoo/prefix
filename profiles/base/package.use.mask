@@ -1,5 +1,10 @@
 # This file requires >=portage-2.1.1
 
+# Donnie Berkholz <dberkholz@gentoo.org> (12 Nov 2007)
+# freedesktop.org bug #7459 committed fix breaks 3D apps
+# but "fix" is only relevant on USE=nptl
+=media-libs/mesa-7.0* nptl
+
 # Robert Buchholz <rbu@gentoo.org> (29 Aug 2007)
 # PPTP Plugin doesn't work on amd64
 kde-misc/knetworkmanager pptp
