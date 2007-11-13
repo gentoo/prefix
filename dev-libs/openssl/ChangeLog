@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.250 2007/11/09 17:36:05 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.253 2007/11/12 21:01:40 vapier Exp $
+
+  12 Nov 2007; Mike Frysinger <vapier@gentoo.org> openssl-0.9.8g.ebuild:
+  Filter out $APPS from the environment #197996.
 
   09 Nov 2007; Daniel Gryniewicz <dang@gentoo.org> openssl-0.9.8g.ebuild:
   Marked stable on amd64 for bug #198370

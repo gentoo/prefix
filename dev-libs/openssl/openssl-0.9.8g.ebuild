@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8g.ebuild,v 1.7 2007/11/09 17:36:05 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8g.ebuild,v 1.11 2007/11/12 21:01:40 vapier Exp $
 
 EAPI="prefix"
 
@@ -69,6 +69,8 @@ src_unpack() {
 }
 
 src_compile() {
+	unset APPS #197996
+
 	tc-export CC AR RANLIB
 
 	# Clean out patent-or-otherwise-encumbered code
@@ -150,7 +152,7 @@ src_test() {
 	# make sure sandbox doesnt die on *BSD
 	addpredict /dev/crypto
 
-	make test || die "make test failed"
+	emake -j1 test || die "make test failed"
 }
 
 src_install() {
