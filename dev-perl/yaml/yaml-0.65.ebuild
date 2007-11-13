@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/yaml/yaml-0.65.ebuild,v 1.9 2007/10/08 07:59:05 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/yaml/yaml-0.65.ebuild,v 1.10 2007/11/10 19:26:15 drac Exp $
 
 EAPI="prefix"
 
