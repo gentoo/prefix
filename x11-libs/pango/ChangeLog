@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/pango
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.193 2007/10/16 07:55:29 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.194 2007/11/12 22:17:35 drac Exp $
+
+  12 Nov 2007; Samuli Suominen <drac@gentoo.org> pango-1.18.3.ebuild:
+  amd64 stable wrt #198845
 
 *pango-1.18.3 (16 Oct 2007)
 
