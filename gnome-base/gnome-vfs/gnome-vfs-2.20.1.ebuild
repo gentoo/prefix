@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/gnome-vfs-2.20.0.ebuild,v 1.1 2007/09/25 20:32:21 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/gnome-vfs-2.20.1.ebuild,v 1.1 2007/11/12 14:38:14 leio Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENSE="GPL-2 LGPL-2"
 SLOT="2"
 KEYWORDS="~amd64 ~ia64 ~mips ~x86"
-IUSE="avahi doc gnutls hal ipv6 samba ssl"
+IUSE="acl avahi doc gnutls hal ipv6 kerberos samba ssl"
 
 RDEPEND=">=gnome-base/gconf-2
 	>=dev-libs/glib-2.9.3
@@ -38,7 +38,12 @@ RDEPEND=">=gnome-base/gconf-2
 	hal?	(
 				>=sys-apps/hal-0.5.7
 			)
-	avahi? ( >=net-dns/avahi-0.6 )"
+	avahi? ( >=net-dns/avahi-0.6 )
+	kerberos? ( virtual/krb5 )
+	acl? (
+		sys-apps/acl
+		sys-apps/attr
+	)"
 DEPEND="${RDEPEND}
 	sys-devel/gettext
 	gnome-base/gnome-common
@@ -66,7 +71,9 @@ pkg_setup() {
 		$(use_enable samba)           \
 		$(use_enable ipv6)            \
 		$(use_enable hal)             \
-		$(use_enable avahi)"
+		$(use_enable avahi)			  \
+		$(use_enable kerberos krb5)	  \
+		$(use_enable acl)"
 
 	# this works because of the order of conifgure parsing
 	# so should always be behind the use_enable options
@@ -85,6 +92,9 @@ src_unpack() {
 
 	# Fix for crashes running programs via sudo
 	epatch "${FILESDIR}"/${PN}-2.16.0-no-dbus-crash.patch
+
+	# Fix automagic dependencies
+	epatch "${FILESDIR}"/${PN}-2.20.0-automagic-deps.patch
 
 	use doc || epatch "${FILESDIR}/${PN}-2.18.1-drop-gtk-doc-check.patch"
 
