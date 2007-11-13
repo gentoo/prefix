@@ -90,7 +90,7 @@ do_compile() {
 	# want those in lib not usr/lib.  We cannot move them lateron after
 	# installing, because that will result in broken install_names for
 	# platforms that store pointers to the libs instead of directories.
-	sed -i -e '/^libdir/s|/usr/lib$|/lib|' ncurses/Makefile || die "nlibdir"
+	sed -i -e '/^libdir/s:/usr/lib\(64\|\)$:/lib\1:' ncurses/Makefile || die "nlibdir"
 
 	# A little hack to fix parallel builds ... they break when
 	# generating sources so if we generate the sources first (in
