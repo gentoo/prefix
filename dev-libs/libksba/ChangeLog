@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libksba
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.80 2007/11/10 18:28:53 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.81 2007/11/12 05:36:09 alonbl Exp $
+
+  12 Nov 2007; Alon Bar-Lev <alonbl@gentoo.org> libksba-1.0.2.ebuild:
+  Fixed amd64 optimization issue, bug#198648, thanks to Robert Spillner
 
   10 Nov 2007; Alon Bar-Lev <alonbl@gentoo.org> -libksba-0.9.11.ebuild,
   -libksba-0.9.14.ebuild, -libksba-0.9.15.ebuild, -libksba-0.9.16.ebuild:
