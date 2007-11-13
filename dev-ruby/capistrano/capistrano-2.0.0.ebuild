@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/capistrano-2.0.0.ebuild,v 1.1 2007/09/01 21:58:33 nichoj Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/capistrano-2.0.0.ebuild,v 1.2 2007/11/12 23:29:30 cla Exp $
 
 EAPI="prefix"
 

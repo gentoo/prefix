@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/capistrano
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/ChangeLog,v 1.22 2007/10/17 06:42:02 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/ChangeLog,v 1.23 2007/11/12 23:29:30 cla Exp $
+
+  12 Nov 2007; Dawid Węgliński <cla@gentoo.org>
+  capistrano-1.4.1-r1.ebuild, capistrano-2.0.0.ebuild:
+  Both stable on x86 (bug #198966)
 
 *capistrano-2.1.0 (17 Oct 2007)
 
