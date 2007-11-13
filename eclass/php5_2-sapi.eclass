@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.16 2007/10/05 21:35:26 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.17 2007/11/12 18:13:29 wltjr Exp $
 
 # ========================================================================
 # Based on robbat2's work on the php4 sapi eclass
@@ -527,11 +527,7 @@ php5_2-sapi_src_compile() {
 
 	# Firebird support - see Bug 186791
 	if use firebird ; then
-		if has_version "<dev-db/firebird-2.0.3.12981.0-r1" ; then
-			my_conf="${my_conf} --with-interbase=/opt"
-		else
-			my_conf="${my_conf} --with-interbase=/usr"
-		fi
+		my_conf="${my_conf} --with-interbase=/usr"
 	fi
 
 	# LDAP support
