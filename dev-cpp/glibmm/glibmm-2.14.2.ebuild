@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/glibmm-2.14.2.ebuild,v 1.1 2007/10/24 18:09:33 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/glibmm-2.14.2.ebuild,v 1.2 2007/11/12 22:22:13 drac Exp $
 
 EAPI="prefix"
 
