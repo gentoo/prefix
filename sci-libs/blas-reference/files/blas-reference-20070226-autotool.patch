@@ -1,7 +1,7 @@
 --- configure.ac 	1970-01-01 01:00:00.000000000 +0100
 +++ configure.ac	2007-07-16 10:14:29.000000000 +0100
 @@ -0,0 +1,14 @@
-+AC_PREREQ(2.61)
++AC_PREREQ(2.59)
 +AC_INIT(blas, 20070226, lapack@cs.utk.edu)
 +AM_INIT_AUTOMAKE([foreign])
 +
