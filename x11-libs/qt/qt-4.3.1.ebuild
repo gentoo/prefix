@@ -123,6 +123,7 @@ src_unpack() {
 	cd ${S}
 	epatch ${FILESDIR}/qt-4.2.3-hppa-ldcw-fix.patch
 	epatch ${FILESDIR}/qt-4.3.1-powerpc64.patch
+	epatch ${FILESDIR}/qt-4.3.1-darwin.patch
 
 	cd ${S}/mkspecs/$(qt_mkspecs_dir)
 	# set c/xxflags and ldflags
@@ -222,12 +223,6 @@ src_compile() {
 		-docdir ${QTDOCDIR} -headerdir ${QTHEADERDIR} -plugindir ${QTPLUGINDIR} \
 		-sysconfdir ${QTSYSCONFDIR} -translationdir ${QTTRANSDIR} \
 		-examplesdir ${QTEXAMPLESDIR} -demosdir ${QTDEMOSDIR} ${myconf}"
-
-	use aqua && myconf="${myconf} -no-framework"
-
-	sed -i \
-		-e "/^QMAKE_LFLAGS_SONAME/s,$,${EPREFIX}/usr/$(get_libdir)/qt4/," \
-	mkspecs/common/mac-g++.conf
 
 	echo ./configure ${myconf}
 	./configure ${myconf} || die
