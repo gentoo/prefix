@@ -42,6 +42,8 @@ src_unpack() {
 
 src_compile() {
 	local myconf
+	# hack around ld: duplicate symbol _argp_fmtstream_putc problem
+	[[ ${CHOST} == *-darwin* ]] && append-flags -U__OPTIMIZE__
 	use static && append-ldflags -static
 	use userland_GNU || myconf="--program-prefix=g"
 	# Work around bug in sandbox #67051
