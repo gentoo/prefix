@@ -1,6 +1,5 @@
 # Elias Pipping <pipping@gentoo.org> (04 Nov 2007)
-# tar, cpio fail to link
->=app-arch/tar-1.17
+# cpio fails to link
 >=app-arch/cpio-2.8
 
 # Elias Pipping <pipping@gentoo.org> (06 Nov 2007)
