@@ -159,17 +159,22 @@ int main() {
 		myconf="${myconf} --disable-multilib"
 	fi
 
+	# The produced libgcc_s.dylib is faulty if using a bit too much
+	# optimisation.  Nail it down to something sane
+	CFLAGS="-O2 -pipe"
+	CXXFLAGS=${CFLAGS}
+
 	mkdir -p "${WORKDIR}"/build
 	cd "${WORKDIR}"/build
 	einfo "Configuring GCC with: ${myconf//--/\n\t--}"
 	"${S}"/configure ${myconf} || die "conf failed"
-	make -j1 bootstrap || die "emake failed"
+	emake bootstrap || die "emake failed"
 }
 
 src_install() {
 	cd "${WORKDIR}"/build
 	# -jX doesn't work
-	make DESTDIR="${D}" install || die
+	emake -j1 DESTDIR="${D}" install || die
 
 	use build && rm -rf "${ED}"/usr/{man,share}
 	find "${ED}" -name libiberty.a -exec rm -f {} \;
