@@ -56,7 +56,7 @@ sys-apps/bsd-man-pages
 
 # Elias Pipping <pipping@mi.fu-berlin.de> (09 Oct 2007)
 # texinfo 4.11 blocks tetex-2. there is no other tetex in prefix, though
-=sys-apps/texinfo-4.11
+~sys-apps/texinfo-4.11
 
 # Michael Haubenwallner <haubi@gentoo.org> (03 Oct 2007)
 # too broken, waiting for gcc-4.2.2 in main tree (bug #186321),
