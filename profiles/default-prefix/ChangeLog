@@ -2,6 +2,11 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Nov 2007; Fabian Groffen <grobian@gentoo.org>
+  darwin/macos/10.4/package.mask, darwin/macos/package.mask:
+  Remove gcc-apple mask for 10.4 as I found the problem (optimisation) which
+  was probably bugging on 10.5 as well anyway
+
   13 Nov 2007; Fabian Groffen <grobian@gentoo.org>
   +darwin/macos/10.4/package.mask:
   Mask sys-devel/gcc-apple-4.0.1_p5465 on OSX/10.4 as it does nasty things to

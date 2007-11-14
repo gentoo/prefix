@@ -2,4 +2,4 @@
 # Fabian Groffen <grobian@gentoo.org> (13 Nov 2007)
 # Leopard's gcc seems to generate bus-errors in Leopard's odcctools on
 # Tiger.  Mask it to avoid more errors like these popping up.
-=sys-devel/gcc-apple-4.0.1_p5465
+#=sys-devel/gcc-apple-4.0.1_p5465
