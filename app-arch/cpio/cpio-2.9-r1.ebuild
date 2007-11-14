@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils flag-o-matic
 
 DESCRIPTION="A file archival tool which can also read and write tar files"
 HOMEPAGE="http://www.gnu.org/software/cpio/cpio.html"
@@ -24,6 +24,8 @@ src_unpack() {
 }
 
 src_compile() {
+	# workaround ld: duplicate symbol _argp_fmtstream_putc
+	[[ ${CHOST} == *-darwin* ]] && append-flags -U__OPTIMIZE__
 	econf \
 		$(use_enable nls) \
 		--bindir="${EPREFIX}"/bin \
