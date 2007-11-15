@@ -117,13 +117,17 @@ src_compile() {
 	# sucks bad compared to ncurses
 	myconf="${myconf} --with-curses"
 
+	# Parallel building is still broken with USE=nls
+	local mymake=
+	use nls && mymake=-j1
+
 	use plugins && append-ldflags -Wl,-rpath,/usr/$(get_libdir)/bash
 	econf \
 		$(use_with afs) \
 		--disable-profiling \
 		--without-gnu-malloc \
 		${myconf} || die
-	emake || die "make failed"
+	emake ${mymake} || die "make failed"
 
 	if use plugins ; then
 		emake -C examples/loadables all others || die
