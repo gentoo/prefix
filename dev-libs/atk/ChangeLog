@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/atk
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/ChangeLog,v 1.150 2007/11/12 22:18:50 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/ChangeLog,v 1.154 2007/11/14 17:57:11 armin76 Exp $
+
+  14 Nov 2007; Raúl Porcel <armin76@gentoo.org> atk-1.20.0.ebuild:
+  sparc stable wrt #198845
+
+  14 Nov 2007; Raúl Porcel <armin76@gentoo.org> atk-1.20.0.ebuild:
+  alpha/ia64 stable wrt #198845
+
+  13 Nov 2007; Christian Faulhammer <opfer@gentoo.org> atk-1.20.0.ebuild:
+  stable x86, bug 198845
 
   12 Nov 2007; Samuli Suominen <drac@gentoo.org> atk-1.20.0.ebuild:
   amd64 stable wrt #198845
