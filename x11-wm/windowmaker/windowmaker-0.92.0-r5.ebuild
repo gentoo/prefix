@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/windowmaker-0.92.0-r5.ebuild,v 1.1 2007/11/13 10:22:31 grobian Exp $
 
 EAPI="prefix"
 
@@ -165,7 +165,7 @@ src_install() {
 	newdoc README README.extra
 
 	# create wmaker session shell script
-	echo "#!${EPREFIX}/bin/bash" > wmaker
+	echo "#!/usr/bin/env bash" > wmaker
 	echo "${EPREFIX}/usr/bin/wmaker" >> wmaker
 	exeinto /etc/X11/Sessions/
 	doexe wmaker

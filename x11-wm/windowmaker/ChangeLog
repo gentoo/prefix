@@ -1,6 +1,15 @@
 # ChangeLog for x11-wm/windowmaker
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/ChangeLog,v 1.88 2007/10/03 14:19:26 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/ChangeLog,v 1.89 2007/11/13 10:22:31 grobian Exp $
+
+*windowmaker-0.92.0-r5 (13 Nov 2007)
+
+  13 Nov 2007; Fabian Groffen <grobian@gentoo.org>
+  +windowmaker-0.92.0-r5.ebuild:
+  Backport WindowMaker 0.92.0-r5 from Prefix. This revision bump includes a
+  lot of patches which fix misc issues, and add some cool features, like a
+  bouncing dock icon upon program start. This is in line with Fedora
+  packaging.
 
   03 Oct 2007; Raúl Porcel <armin76@gentoo.org>
   windowmaker-0.92.0-r4.ebuild:
