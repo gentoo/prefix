@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.2-r2.ebuild,v 1.12 2007/11/11 14:57:05 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.2-r2.ebuild,v 1.14 2007/11/13 20:13:26 alonbl Exp $
 
 EAPI="prefix"
 
@@ -43,11 +43,13 @@ src_compile() {
 	strip-flags
 
 	cd "${S}"/src
-	# Note this program uses AS and LD incorrectly
+
+	# Remove default OPT_NORMAL -funroll-loops bug#198659 for unknown archs
 	OPTIONS="CPP=$(tc-getCXX) CC=$(tc-getCC) AS=$(tc-getCC) LD=$(tc-getCC) \
 		CFLAGS=\"-c -Wall ${CFLAGS} -DJOHN_SYSTEMWIDE \
 		-DJOHN_SYSTEMWIDE_HOME=\\\"\\\\\\\"${EPREFIX}/etc/john\\\\\\\"\\\"\" \
-		LDFLAGS=\"${LDFLAGS}\""
+		LDFLAGS=\"${LDFLAGS}\"
+		OPT_NORMAL=\"\""
 
 	if use x86 ; then
 		if use sse2 ; then
