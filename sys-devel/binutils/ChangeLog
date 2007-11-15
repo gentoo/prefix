@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.320 2007/11/04 20:06:23 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.321 2007/11/14 16:24:18 jer Exp $
+
+  14 Nov 2007; Jeroen Roovers <jer@gentoo.org> binutils-2.18-r1.ebuild:
+  Stable for HPPA too (not quite bug #195511).
 
 *binutils-2.18.50.0.3 (04 Nov 2007)
 
