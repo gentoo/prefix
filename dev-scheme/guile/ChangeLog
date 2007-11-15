@@ -1,6 +1,9 @@
 # ChangeLog for dev-scheme/guile
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.30 2007/10/18 10:41:59 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.31 2007/11/13 17:58:53 drac Exp $
+
+  13 Nov 2007; Samuli Suominen <drac@gentoo.org> guile-1.8.2.ebuild:
+  amd64 stable wrt #182995
 
 *guile-1.8.3-r1 (18 Oct 2007)
 
