@@ -1,6 +1,28 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.816 2007/11/12 20:59:08 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.822 2007/11/14 21:59:01 flameeyes Exp $
+
+  14 Nov 2007; Diego Pettenò <flameeyes@gentoo.org>
+  default-linux/amd64/package.use.mask, default-linux/x86/package.use.mask:
+  Mask glibc-omitfp on ~glibc-2.7 until bug #196926 is fixed.
+
+  14 Nov 2007; Lukasz Strzygowski <lucass@gentoo.org> use.local.desc:
+  Added dev-util/bzr:sftp.
+
+  14 Nov 2007; Christian Faulhammer <opfer@gentoo.org> use.local.desc:
+  adding USE=resolvconf for net-misc/vpnc
+
+  13 Nov 2007; Chris Gianelloni <wolf31o2@gentoo.org> package.mask:
+  Added a mask on my new testing livecd-tools and updating the genkernel mask
+  description so it'll fit for both packages.
+
+  13 Nov 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  base/package.use.mask:
+  Also add ~arch xorg-server to mesa's nptl mask, since the two require the
+  same setting.
+
+  13 Nov 2007; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Masking Opera weeklies (again).
 
   12 Nov 2007; Stefan Schweizer <genstef@gentoo.org> package.mask:
   cleanup

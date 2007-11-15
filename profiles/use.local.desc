@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3138 2007/11/12 12:56:54 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3142 2007/11/14 10:12:21 lucass Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -612,6 +612,7 @@ dev-util/astyle:libs - builds and installs both shared and static library interf
 dev-util/buildbot:irc - Add support for status delivery through an ircbot.
 dev-util/buildbot:mail - Add support for watching a maildir for commits.
 dev-util/buildbot:web - Add a web interface ("waterfall" page).
+dev-util/bzr:sftp - Enable sftp support
 dev-util/catalyst:ccache - Enables ccache support
 dev-util/codeblocks:contrib - Build additional contrib components
 dev-util/ctags:ada - Enable Ada support
@@ -1425,7 +1426,6 @@ net-firewall/ipsec-tools:rc5 - Enable support for the patented RC5 algorithm
 net-firewall/iptables:extensions - Enable support for 3rd patch-o-matic extensions
 net-firewall/iptables:imq - Enable support for intermediate queueing devices (http://www.linuximq.net)
 net-firewall/iptables:l7filter - Enable support for layer 7 filtering (http://l7-filter.sourceforge.net)
-net-firewall/nufw:ident - Add support ident for users authentication
 net-firewall/nufw:nfconntrack - Use netfilter_conntrack
 net-firewall/nufw:nfqueue - Use NFQUEUE instead of QUEUE
 net-firewall/nufw:pam_nuauth - Add support for pam nufw from PAM
@@ -1653,6 +1653,7 @@ net-misc/tsclient:vnc - Adds vncviewer support.
 net-misc/vino:keyring - Enable gnome-keyring support for storing passwords
 net-misc/vnc:server - Build VNC server
 net-misc/vpnc:hybrid-auth - Enable hybrid authentication (certificates), only if not redistributed as compiled binary
+net-misc/vpnc:resolvconf - Enable support for DNS managing framework net-dns/resolv-conf
 net-misc/vtun:lzo - Enables support for lzo compression
 net-misc/wanpipe:adsl - Build with adsl support
 net-misc/xf4vnc:vncviewer - Install the vncviewer binary
@@ -2039,7 +2040,6 @@ sys-power/apcupsd:lighttpd - Enable support for lighttpd
 sys-power/cpufreqd:nforce2 - Enable for nforce2 voltage settings plug-in
 sys-power/cpufreqd:nvidia - Enable nvidia overclocking (nvclock) plug-in
 sys-power/cpufreqd:pmu - Enable Power Management Unit plug-in
-sys-power/hibernate-script:logrotate - Use logrotate for rotating logs
 sys-power/nut:cgi - Add CGI script support
 sys-power/powersave:pam_console - Adds support for pam console from PAM
 sys-power/suspend:fbsplash - Add support for framebuffer splash
