@@ -5,7 +5,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.24 2007/08/05 08:17:05 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-2.eclass,v 1.25 2007/11/13 19:36:50 betelgeuse Exp $
 
 inherit java-utils-2
 
@@ -20,8 +20,9 @@ inherit java-utils-2
 # ------------------------------------------------------------------------------
 # @IUSE
 #
-# ebuilds using this eclass can set JAVA_PKG_IUSE and then this eclass
-# will automatically add deps for them.
+# Use JAVA_PKG_IUSE instead of IUSE for doc, source and examples so that
+# the eclass can automatically add the needed dependencies for the java-pkg_do*
+# functions.
 #
 # ------------------------------------------------------------------------------
 IUSE="${JAVA_PKG_IUSE}"
@@ -34,8 +35,6 @@ IUSE="${JAVA_PKG_IUSE}"
 # JAVA_PKG_E_DEPEND is defined in java-utils.eclass.
 # ------------------------------------------------------------------------------
 DEPEND="${JAVA_PKG_E_DEPEND}"
-
-hasq source ${JAVA_PKG_IUSE} && DEPEND="${DEPEND} source? ( app-arch/zip )"
 
 # ------------------------------------------------------------------------------
 # @rdepend

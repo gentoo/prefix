@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.6 2007/04/24 16:35:01 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.7 2007/11/14 20:43:43 ferdy Exp $
 
 ## --------------------------------------------------------------------------- #
 # subversion.eclass author: Akinori Hattori <hattya@gentoo.org>
@@ -195,8 +195,11 @@ git_fetch() {
 			|| die "${EGIT}: can't fetch from ${EGIT_REPO_URI}."
 
 		# We use --bare cloning, so git doesn't do this for us.
-		git repo-config remote.origin.url "${EGIT_REPO_URI}"
+		git config remote.origin.url "${EGIT_REPO_URI}"
 	else
+		# Git urls might change, so unconditionally set it here
+		git config remote.origin.url "${EGIT_REPO_URI}"
+
 		# fetch updates
 		einfo "git update start -->"
 		einfo "   repository: ${EGIT_REPO_URI}"

@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.88 2007/10/15 23:57:37 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.89 2007/11/13 22:50:04 dberkholz Exp $
 #
 # Author: Donnie Berkholz <dberkholz@gentoo.org>
 #
@@ -157,13 +157,13 @@ fi
 
 # Debugging -- ignore packages that can't be built with debugging
 if [[ -z "${FONT}" ]] \
-	|| [[ "${PN/app-doc}" != "${PN}" ]] \
-	|| [[ "${PN/x11-proto}" != "${PN}" ]] \
-	|| [[ "${PN/util-macros}" != "${PN}" ]] \
-	|| [[ "${PN/xbitmaps}" != "${PN}" ]] \
-	|| [[ "${PN/xkbdata}" != "${PN}" ]] \
-	|| [[ "${PN/xorg-cf-files}" != "${PN}" ]] \
-	|| [[ "${PN/xcursor}" != "${PN}" ]] \
+	&& [[ "${CATEGORY/app-doc}" = "${CATEGORY}" ]] \
+	&& [[ "${CATEGORY/x11-proto}" = "${CATEGORY}" ]] \
+	&& [[ "${PN/util-macros}" = "${PN}" ]] \
+	&& [[ "${PN/xbitmaps}" = "${PN}" ]] \
+	&& [[ "${PN/xkbdata}" = "${PN}" ]] \
+	&& [[ "${PN/xorg-cf-files}" = "${PN}" ]] \
+	&& [[ "${PN/xcursor}" = "${PN}" ]] \
 	; then
 	DEBUGGABLE="yes"
 	IUSE="${IUSE} debug"

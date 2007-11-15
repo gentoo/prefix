@@ -1,13 +1,16 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/emul-libs.eclass,v 1.8 2007/11/14 17:31:04 kingtaco Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/emul-linux-x86.eclass,v 1.3 2007/11/14 17:31:04 kingtaco Exp $
 
 #
-# Original Author: Simon Stelling <blubb@gentoo.org>
+# Original Author: Mike Doty <kingtaco@gentoo.org>
+# Adapted from emul-libs.eclass
 # Purpose: Providing a template for the app-emulation/emul-linux-* packages
 #
 
 EXPORT_FUNCTIONS src_unpack src_install
+
+SRC_URI="mirror://gentoo/${PN}-${PVR}.tar.bz2"
 
 DESCRIPTION="Provides precompiled 32bit libraries"
 HOMEPAGE="http://amd64.gentoo.org/emul/content.xml"
@@ -21,10 +24,7 @@ IUSE=""
 DEPEND=">=sys-apps/findutils-4.2.26"
 RDEPEND=""
 
-emul-libs_src_unpack() {
-	einfo "Note: You can safely ignore the 'trailing garbage after EOF'"
-	einfo "      warnings below"
-
+emul-linux-x86_src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
@@ -32,7 +32,7 @@ emul-libs_src_unpack() {
 	find "${S}" ! -type d ! -name '*.so*' | egrep -v "${ALLOWED}" | xargs -d $'\n' rm -f || die 'failed to remove everything but *.so*'
 }
 
-emul-libs_src_install() {
+emul-linux-x86_src_install() {
 	for dir in etc/env.d etc/revdep-rebuild ; do
 		if [[ -d "${S}"/${dir} ]] ; then
 			for f in "${S}"/${dir}/* ; do

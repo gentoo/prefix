@@ -10,7 +10,7 @@
 #       Removed phase hooks because Portage does proper env saving now.
 #       <betelgeuse@gentoo.org>
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-opt-2.eclass,v 1.7 2007/08/05 08:24:30 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-pkg-opt-2.eclass,v 1.8 2007/11/13 19:36:50 betelgeuse Exp $
 
 inherit java-utils-2
 
@@ -33,7 +33,8 @@ RDEPEND="${DEPEND}"
 
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
-IUSE="${JAVA_PKG_OPT_USE}"
+# See java-pkg-2.eclass for JAVA_PKG_IUSE documentation
+IUSE="${JAVA_PKG_IUSE} ${JAVA_PKG_OPT_USE}"
 
 EXPORT_FUNCTIONS pkg_setup
 
