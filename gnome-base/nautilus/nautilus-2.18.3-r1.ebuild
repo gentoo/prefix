@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.18.3-r1.ebuild,v 1.2 2007/11/12 20:02:17 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.18.3-r1.ebuild,v 1.4 2007/11/14 15:09:40 armin76 Exp $
 
 EAPI="prefix"
 
