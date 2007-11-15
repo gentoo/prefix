@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.3.4.ebuild,v 1.2 2007/10/05 07:36:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.3.5.ebuild,v 1.1 2007/11/14 20:25:02 ferdy Exp $
 
 EAPI="prefix"
 
@@ -127,9 +127,14 @@ src_install() {
 	fi
 
 	if use gtk ; then
-		dobin contrib/gitview/gitview
-		use doc && dodoc contrib/gitview/gitview.txt
+		dobin "${S}"/contrib/gitview/gitview
+		use doc && dodoc "${S}"/contrib/gitview/gitview.txt
 	fi
+
+	dodir /usr/share/${PN}/contrib
+	cp -rf \
+		"${S}"/contrib/{vim,stats,workdir,hg-to-git,fast-import,hooks} \
+		"${ED}"/usr/share/${PN}/contrib
 
 	insinto /etc/xinetd.d
 	newins "${FILESDIR}"/git-daemon.xinetd git-daemon
