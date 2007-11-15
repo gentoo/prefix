@@ -1,6 +1,25 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.343 2007/11/12 22:20:36 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.348 2007/11/14 17:58:37 armin76 Exp $
+
+  14 Nov 2007; Raúl Porcel <armin76@gentoo.org> gtk+-2.12.1-r1.ebuild:
+  sparc stable wrt #198845
+
+  14 Nov 2007; Raúl Porcel <armin76@gentoo.org> gtk+-2.12.1-r1.ebuild:
+  alpha/ia64 stable wrt #198845
+
+  13 Nov 2007; Christian Faulhammer <opfer@gentoo.org>
+  gtk+-2.12.1-r1.ebuild:
+  stable x86, bug 198845
+
+  13 Nov 2007; Mart Raudsepp <leio@gentoo.org> gtk+-2.6.10-r1.ebuild,
+  gtk+-2.8.19.ebuild, gtk+-2.8.20-r1.ebuild, gtk+-2.10.13.ebuild,
+  gtk+-2.10.14.ebuild:
+  QA: Fix quoting of variables in old versions
+
+  13 Nov 2007; Mart Raudsepp <leio@gentoo.org> -gtk+-2.10.11.ebuild,
+  -gtk+-2.12.0-r2.ebuild, -gtk+-2.12.1.ebuild:
+  Remove old unnecessary versions
 
   12 Nov 2007; Samuli Suominen <drac@gentoo.org> gtk+-2.12.1-r1.ebuild:
   amd64 stable wrt #198845
