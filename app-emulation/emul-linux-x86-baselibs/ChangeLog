@@ -1,6 +1,12 @@
 # ChangeLog for app-emulation/emul-linux-x86-baselibs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/ChangeLog,v 1.79 2007/11/11 17:52:26 kingtaco Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/ChangeLog,v 1.80 2007/11/14 06:49:09 kingtaco Exp $
+
+*emul-linux-x86-baselibs-20071114 (14 Nov 2007)
+
+  14 Nov 2007; Mike Doty <kingtaco@gentoo.org>
+  +emul-linux-x86-baselibs-20071114.ebuild:
+  New emul-linux-x86-* build system.  Latest x86 stable packages.
 
   11 Nov 2007; Mike Doty <kingtaco@gentoo.org>
   files/digest-emul-linux-x86-baselibs-10.1,
