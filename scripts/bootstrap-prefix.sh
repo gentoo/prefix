@@ -729,9 +729,6 @@ einfo "Bootstrapping Gentoo prefixed portage installation using"
 einfo "host:   ${CHOST}"
 einfo "prefix: ${ROOT}"
 
-[[ ${CHOST} == *-apple-darwin9 ]] && \
-	einfo "WARNING: bootstrapping on OSX 10.5 (Leopard) is not yet working!"
-
 TODO=${2}
 if [[ $(type -t bootstrap_${TODO}) != "function" ]];
 then
