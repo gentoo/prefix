@@ -1,6 +1,17 @@
 # ChangeLog for dev-ruby/capistrano-launcher
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano-launcher/ChangeLog,v 1.3 2007/11/12 23:28:48 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano-launcher/ChangeLog,v 1.6 2007/11/14 06:56:43 welp Exp $
+
+  14 Nov 2007; Peter Weller <welp@gentoo.org> capistrano-launcher-1.ebuild:
+  Stable on amd64 wrt bug 198966
+
+  13 Nov 2007; Markus Rothe <corsair@gentoo.org>
+  capistrano-launcher-1.ebuild:
+  Stable on ppc64; bug #198966
+
+  13 Nov 2007; Raúl Porcel <armin76@gentoo.org>
+  capistrano-launcher-1.ebuild:
+  ia64 stable wrt #198966
 
   12 Nov 2007; Dawid Węgliński <cla@gentoo.org>
   capistrano-launcher-1.ebuild:
