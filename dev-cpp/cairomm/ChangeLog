@@ -1,6 +1,9 @@
 # ChangeLog for dev-cpp/cairomm
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/cairomm/ChangeLog,v 1.18 2007/11/12 22:43:56 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/cairomm/ChangeLog,v 1.19 2007/11/13 10:51:03 opfer Exp $
+
+  13 Nov 2007; Christian Faulhammer <opfer@gentoo.org> cairomm-1.4.4.ebuild:
+  stable x86, bug 198845
 
   12 Nov 2007; Samuli Suominen <drac@gentoo.org> cairomm-1.4.4.ebuild:
   amd64 stable
