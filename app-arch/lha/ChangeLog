@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/lha
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lha/ChangeLog,v 1.44 2007/11/10 22:08:42 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lha/ChangeLog,v 1.45 2007/11/13 17:01:26 jer Exp $
+
+  13 Nov 2007; Jeroen Roovers <jer@gentoo.org> lha-114i-r7.ebuild:
+  Stable for HPPA (bug #198596).
 
   10 Nov 2007; Markus Rothe <corsair@gentoo.org> lha-114i-r7.ebuild:
   Stable on ppc64; bug #198596
