@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/apr-util
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.98 2007/11/12 13:38:39 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.101 2007/11/13 22:54:22 cla Exp $
+
+  13 Nov 2007; Dawid Węgliński <cla@gentoo.org> apr-util-1.2.10.ebuild:
+  Stable on x86 (bug #198866)
+
+  13 Nov 2007; Markus Rothe <corsair@gentoo.org> apr-util-1.2.10.ebuild:
+  Stable on ppc64; bug #198866
+
+  13 Nov 2007; Jeroen Roovers <jer@gentoo.org> apr-util-1.2.10.ebuild:
+  Stable for HPPA (bug #198866).
 
   12 Nov 2007; Ferris McCormick <fmccor@gentoo.org> apr-util-1.2.10.ebuild:
   Sparc stable --- Bug #198866 --- Good for two months.
