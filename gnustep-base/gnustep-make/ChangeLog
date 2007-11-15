@@ -1,6 +1,9 @@
 # ChangeLog for gnustep-base/gnustep-make
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.54 2007/10/27 15:40:01 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.55 2007/11/13 18:20:42 corsair Exp $
+
+  13 Nov 2007; Markus Rothe <corsair@gentoo.org> gnustep-make-2.0.1.ebuild:
+  Stable on ppc64; bug #195990
 
   27 Oct 2007; nixnut <nixnut@gentoo.org> gnustep-make-2.0.1.ebuild:
   Stable on ppc wrt bug 195990
