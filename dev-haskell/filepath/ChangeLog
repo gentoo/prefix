@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/filepath
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/filepath/ChangeLog,v 1.8 2007/11/05 02:10:42 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/filepath/ChangeLog,v 1.9 2007/11/14 19:21:47 beandog Exp $
+
+  14 Nov 2007; Steve Dibb <beandog@gentoo.org> filepath-1.0.ebuild:
+  amd64 stable, bug 196616
 
   05 Nov 2007; Duncan Coutts <dcoutts@gentoo.org> filepath-1.0.ebuild:
   Added ~ppc to keywords
