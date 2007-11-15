@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/twolame
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/twolame/ChangeLog,v 1.26 2007/11/11 13:48:27 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/twolame/ChangeLog,v 1.27 2007/11/13 18:35:18 corsair Exp $
+
+  13 Nov 2007; Markus Rothe <corsair@gentoo.org> twolame-0.3.10.ebuild:
+  Stable on ppc64; bug #198790
 
   11 Nov 2007; Dawid Węgliński <cla@gentoo.org> twolame-0.3.10.ebuild:
   Stable on x86 (bug #198790)
