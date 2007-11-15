@@ -1,6 +1,10 @@
 # ChangeLog for app-antivirus/clamav
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.255 2007/10/10 08:47:41 lordvan Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.256 2007/11/14 19:25:05 ticho Exp $
+
+  14 Nov 2007; Andrej Kacian <ticho@gentoo.org> -clamav-0.91.ebuild,
+  -clamav-0.91.1.ebuild, clamav-0.91.2.ebuild, clamav-0.92_rc2.ebuild:
+  Version cleanup. Get rid of logrotate USE flag - bug #198901.
 
 *clamav-0.92_rc2 (10 Oct 2007)
 

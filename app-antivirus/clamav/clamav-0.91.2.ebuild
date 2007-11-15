@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.91.2.ebuild,v 1.8 2007/08/29 10:27:34 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.91.2.ebuild,v 1.9 2007/11/14 19:25:05 ticho Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-solaris"
-IUSE="bzip2 crypt logrotate mailwrapper milter nls selinux"
+IUSE="bzip2 crypt mailwrapper milter nls selinux"
 
 DEPEND="virtual/libc
 	bzip2? ( app-arch/bzip2 )
@@ -25,7 +25,6 @@ DEPEND="virtual/libc
 	>=sys-apps/sed-4"
 RDEPEND="${DEPEND}
 	selinux? ( sec-policy/selinux-clamav )
-	logrotate? ( app-admin/logrotate )
 	sys-apps/grep"
 PROVIDE="virtual/antivirus"
 
@@ -77,11 +76,11 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR=${D} install || die
+	make DESTDIR="${D}" install || die
 	dodoc AUTHORS BUGS NEWS README ChangeLog FAQ
-	newconfd ${FILESDIR}/clamd.conf clamd
-	newinitd ${FILESDIR}/clamd.rc clamd
-	dodoc ${FILESDIR}/clamav-milter.README.gentoo
+	newconfd "${FILESDIR}"/clamd.conf clamd
+	newinitd "${FILESDIR}"/clamd.rc clamd
+	dodoc "${FILESDIR}"/clamav-milter.README.gentoo
 
 	dodir /var/run/clamav
 	keepdir /var/run/clamav
@@ -97,7 +96,7 @@ src_install() {
 		-e "s:.*\(User\) .*:\1 clamav:" \
 		-e "s:^\#\(LogFile\) .*:\1 ${EPREFIX}/var/log/clamav/clamd.log:" \
 		-e "s:^\#\(LogTime\).*:\1 yes:" \
-		${ED}/etc/clamd.conf
+		"${ED}"/etc/clamd.conf
 
 	# Do the same for /etc/freshclam.conf
 	sed -i -e "s:^\(Example\):\# \1:" \
@@ -106,24 +105,22 @@ src_install() {
 		-e "s:^\#\(UpdateLogFile\) .*:\1 ${EPREFIX}/var/log/clamav/freshclam.log:" \
 		-e "s:^\#\(NotifyClamd\).*:\1 ${EPREFIX}/etc/clamd.conf:" \
 		-e "s:^\#\(ScriptedUpdates\).*:\1 yes:" \
-		${ED}/etc/freshclam.conf
+		"${ED}"/etc/freshclam.conf
 
 	if use milter ; then
 		echo "START_MILTER=no" \
-			>> ${ED}/etc/conf.d/clamd
+			>> "${ED}"/etc/conf.d/clamd
 		echo "MILTER_SOCKET=\"${EPREFIX}/var/run/clamav/clmilter.sock\"" \
-			>>${ED}/etc/conf.d/clamd
+			>>"${ED}"/etc/conf.d/clamd
 		echo "MILTER_OPTS=\"-m 10 --timeout=0\"" \
-			>>${ED}/etc/conf.d/clamd
+			>>"${ED}"/etc/conf.d/clamd
 	fi
 
-	if use logrotate ; then
-		diropts ""
-		dodir /etc/logrotate.d
-		insopts -m0644
-		insinto /etc/logrotate.d
-		newins ${FILESDIR}/${PN}.logrotate ${PN}
-	fi
+	diropts ""
+	dodir /etc/logrotate.d
+	insopts -m0644
+	insinto /etc/logrotate.d
+	newins "${FILESDIR}"/${PN}.logrotate ${PN}
 }
 
 pkg_postinst() {
