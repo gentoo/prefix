@@ -1,6 +1,12 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.55 2007/11/10 14:27:58 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.56 2007/11/14 06:13:25 opfer Exp $
+
+  14 Nov 2007; Christian Faulhammer <opfer@gentoo.org>
+  gnuplot-4.2.2-r1.ebuild:
+  disable test suite when emerging with USE=wxwindows, see bug 197417,
+  reported by Dustin Surawicz <bugzilla.20.dsurawicz@spamgourmet.com>; really
+  user system specific
 
   10 Nov 2007; Christian Faulhammer <opfer@gentoo.org>
   gnuplot-4.2.2-r1.ebuild:

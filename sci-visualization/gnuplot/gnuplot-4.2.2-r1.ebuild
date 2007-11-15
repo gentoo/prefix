@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.2-r1.ebuild,v 1.3 2007/11/10 14:27:58 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.2-r1.ebuild,v 1.4 2007/11/14 06:13:25 opfer Exp $
 
 EAPI="prefix"
 
@@ -16,6 +16,7 @@ LICENSE="gnuplot"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="doc emacs gd ggi latex pdf plotutils readline svga wxwindows X xemacs"
+RESTRICT="wxwindows? ( test )"
 
 RDEPEND="
 	xemacs? ( virtual/xemacs app-xemacs/texinfo app-xemacs/xemacs-base )
