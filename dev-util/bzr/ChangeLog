@@ -1,6 +1,24 @@
 # ChangeLog for dev-util/bzr
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.40 2007/10/05 12:49:10 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.43 2007/11/14 18:54:27 hawking Exp $
+
+*bzr-0.92-r1 (14 Nov 2007)
+
+  14 Nov 2007; Ali Polatel <hawking@gentoo.org>
+  +files/bzr-0.92-no-pyrex.patch, -bzr-0.92.ebuild, +bzr-0.92-r1.ebuild:
+  revbump. don't regenerate .c files from .pyx when pyrex is found, upstream
+  ships them already.
+
+  14 Nov 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  -files/bzr-0.16-timed-tests-fix.patch, -bzr-0.16.ebuild, -bzr-0.90.ebuild,
+  -bzr-0.91.ebuild, -bzr-0.91-r1.ebuild:
+  Dropped old versions.
+
+*bzr-0.92 (14 Nov 2007)
+
+  14 Nov 2007; Lukasz Strzygowski <lucass@gentoo.org> +bzr-0.92.ebuild:
+  Version bump (bug #199112). Fixed celementtree dep, added sftp use-flag
+  (bug #196486). Cleanup.
 
 *bzr-0.91-r1 (05 Oct 2007)
 
