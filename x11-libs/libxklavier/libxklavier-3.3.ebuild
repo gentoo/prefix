@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-3.1.ebuild,v 1.13 2007/07/22 02:58:03 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-3.3.ebuild,v 1.1 2007/11/13 03:55:49 compnerd Exp $
 
 EAPI="prefix"
 
@@ -12,26 +12,18 @@ SRC_URI="mirror://sourceforge/gswitchit/${P}.tar.gz"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86"
+KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~x86-solaris"
 IUSE="doc"
 
-RDEPEND="||	( x11-misc/xkeyboard-config x11-misc/xkbdata )
-		x11-apps/xkbcomp
-		x11-libs/libX11
-		x11-libs/libxkbfile
-		dev-libs/libxml2
-		>=dev-libs/glib-2.6"
-
+RDEPEND="|| ( x11-misc/xkeyboard-config x11-misc/xkbdata )
+		 x11-libs/libX11
+		 x11-apps/xkbcomp
+		 x11-libs/libxkbfile
+		 >=dev-libs/glib-2.6
+		 >=dev-libs/libxml2-2.0"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
-	doc? ( app-doc/doxygen )"
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	epatch "${FILESDIR}/${PN}-3.0-libxml.diff"
-}
+		dev-util/pkgconfig
+		doc? ( app-doc/doxygen )"
 
 src_compile() {
 	local xkbbase
