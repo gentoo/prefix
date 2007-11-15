@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.7.9.ebuild,v 1.1 2007/10/25 19:24:21 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.7.9.ebuild,v 1.2 2007/11/13 15:24:59 armin76 Exp $
 
 EAPI="prefix"
 
