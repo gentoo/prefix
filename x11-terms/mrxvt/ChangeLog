@@ -1,6 +1,9 @@
 # ChangeLog for x11-terms/mrxvt
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/ChangeLog,v 1.57 2007/11/11 13:09:04 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/ChangeLog,v 1.58 2007/11/13 16:16:39 drac Exp $
+
+  13 Nov 2007; Samuli Suominen <drac@gentoo.org> mrxvt-0.5.3-r1.ebuild:
+  amd64 stable wrt #198727
 
   11 Nov 2007; nixnut <nixnut@gentoo.org> mrxvt-0.5.3-r1.ebuild:
   Stable on ppc wrt bug 198727
