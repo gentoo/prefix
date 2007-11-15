@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/lapack-docs/lapack-docs-3.1.1.ebuild,v 1.8 2007/10/29 15:27:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/lapack-docs/lapack-docs-3.1.1.ebuild,v 1.9 2007/11/14 14:30:24 bicatali Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
 IUSE=""
 
-S=${WORKDIR}/lapack-${PV}/manpages
+S="${WORKDIR}/lapack-${PV}/manpages"
 
 src_install() {
 	# These belong to the blas-docs
