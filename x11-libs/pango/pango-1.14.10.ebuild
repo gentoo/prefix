@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.14.10.ebuild,v 1.11 2007/06/24 22:41:00 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.14.10.ebuild,v 1.12 2007/11/13 02:59:02 leio Exp $
 
 EAPI="prefix"
 
@@ -38,12 +38,12 @@ src_unpack() {
 
 	# Some enhancements from Redhat
 	# These NEED to go upstream.
-	epatch ${FILESDIR}/pango-1.11.3-xfonts.patch
-	epatch ${FILESDIR}/${PN}-1.10.2-slighthint.patch
+	epatch "${FILESDIR}/pango-1.11.3-xfonts.patch"
+	epatch "${FILESDIR}/${PN}-1.10.2-slighthint.patch"
 
 	# make config file location host specific so that a 32bit and 64bit pango
 	# wont fight with each other on a multilib system
-	use amd64 && epatch ${FILESDIR}/pango-1.2.5-lib64.patch
+	use amd64 && epatch "${FILESDIR}/pango-1.2.5-lib64.patch"
 
 	epunt_cxx
 }

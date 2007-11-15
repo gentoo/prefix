@@ -1,6 +1,21 @@
 # ChangeLog for x11-libs/pango
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.194 2007/11/12 22:17:35 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.199 2007/11/14 17:56:32 armin76 Exp $
+
+  14 Nov 2007; Raúl Porcel <armin76@gentoo.org> pango-1.18.3.ebuild:
+  sparc stable wrt #198845
+
+  14 Nov 2007; Raúl Porcel <armin76@gentoo.org> pango-1.18.3.ebuild:
+  alpha/ia64 stable wrt #198845
+
+  13 Nov 2007; Christian Faulhammer <opfer@gentoo.org> pango-1.18.3.ebuild:
+  stable x86, bug 198845
+
+  13 Nov 2007; Mart Raudsepp <leio@gentoo.org> pango-1.8.1-r1.ebuild,
+  pango-1.10.3.ebuild, pango-1.10.4.ebuild, pango-1.12.3.ebuild,
+  pango-1.14.10.ebuild, pango-1.16.4.ebuild, pango-1.16.5.ebuild,
+  -pango-1.18.2.ebuild:
+  QA: Remove an old versions and fix variable quoting in the rest
 
   12 Nov 2007; Samuli Suominen <drac@gentoo.org> pango-1.18.3.ebuild:
   amd64 stable wrt #198845
