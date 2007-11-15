@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/mailbase/mailbase-1.ebuild,v 1.18 2007/06/17 19:41:28 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/mailbase/mailbase-1.ebuild,v 1.19 2007/11/14 07:57:49 vapier Exp $
 
 EAPI="prefix"
 
-inherit eutils
+inherit pam eutils
 
 DESCRIPTION="MTA layout package"
 SRC_URI=""
@@ -19,18 +19,16 @@ RDEPEND="pam? ( virtual/pam )"
 
 S=${WORKDIR}
 
-get_permissions_oct() {
-	if [[ ${USERLAND} = GNU ]] || [[ ${EPREFIX%/} != "" ]] ; then
-		stat -c%a "${EROOT}$1"
-	elif [[ ${USERLAND} = BSD ]] ; then
-		stat -f%p "${EROOT}$1" | cut -c 3-
-	fi
+pkg_setup() {
+	enewgroup mail 12
+	enewuser mail 8 -1 /var/spool/mail mail
+	enewuser postmaster 14 -1 /var/spool/mail
 }
 
 src_install() {
 	dodir /etc/mail
 	insinto /etc/mail
-	doins ${FILESDIR}/aliases
+	doins "${FILESDIR}"/aliases
 	cp "${FILESDIR}"/mailcap .
 	epatch "${FILESDIR}"/mailcap-prefix.patch
 	eprefixify mailcap
@@ -42,21 +40,24 @@ src_install() {
 	fperms 0775 /var/spool/mail
 	dosym /var/spool/mail /var/mail
 
-	if use pam;
-	then
-		insinto /etc/pam.d/
+	newpamd "${FILESDIR}"/common-pamd-include pop
+	newpamd "${FILESDIR}"/common-pamd-include imap
+	if use pam ; then
+		local p
+		for p in pop3 pop3s pops ; do
+			dosym pop /etc/pam.d/${p} || die
+		done
+		for p in imap4 imap4s imaps ; do
+			dosym imap /etc/pam.d/${p} || die
+		done
+	fi
+}
 
-		# pop file and its symlinks
-		newins ${FILESDIR}/common-pamd-include pop
-		dosym /etc/pam.d/pop /etc/pam.d/pop3
-		dosym /etc/pam.d/pop /etc/pam.d/pop3s
-		dosym /etc/pam.d/pop /etc/pam.d/pops
-
-		# imap file and its symlinks
-		newins ${FILESDIR}/common-pamd-include imap
-		dosym /etc/pam.d/imap /etc/pam.d/imap4
-		dosym /etc/pam.d/imap /etc/pam.d/imap4s
-		dosym /etc/pam.d/imap /etc/pam.d/imaps
+get_permissions_oct() {
+	if [[ ${USERLAND} = GNU ]] ; then
+		stat -c%a "${EROOT}$1"
+	elif [[ ${USERLAND} = BSD ]] ; then
+		stat -f%p "${EROOT}$1" | cut -c 3-
 	fi
 }
 
