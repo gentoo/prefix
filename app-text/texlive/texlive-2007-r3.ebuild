@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2007-r3.ebuild,v 1.2 2007/11/11 15:26:12 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2007-r3.ebuild,v 1.3 2007/11/13 18:27:31 aballier Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ KEYWORDS="~amd64 ~ppc-macos ~x86"
 IUSE="cjk context cyrillic doc extra games graphics humanities music omega
 	png pstricks publishers science xetex xml X"
 
-LANGS="af ar bg bn cs cy da de el en en_GB eo es et fi fr he hi hr hsb hu hy id
+LANGS="af ar bg bn bo cs cy da de el en en_GB eo es et fi fr he hi hr hsb hu hy id
 	is it ja ko la ml mn nl no pl pt ro ru sk sl sr sv ta th tr uk vi zh"
 
 for X in ${LANGS}; do
@@ -141,6 +141,7 @@ RDEPEND="${DEPEND}
 	linguas_pt? ( ${TEXLIVE_CAT}/texlive-langportuguese )
 	linguas_es? ( ${TEXLIVE_CAT}/texlive-langspanish )
 	linguas_sv? ( ${TEXLIVE_CAT}/texlive-langswedish )
+	linguas_bo? ( ${TEXLIVE_CAT}/texlive-langtibetan )
 	linguas_en_GB? ( ${TEXLIVE_CAT}/texlive-langukenglish )
 	linguas_vi? ( ${TEXLIVE_CAT}/texlive-langvietnamese )
 "
