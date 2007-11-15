@@ -1,6 +1,12 @@
 # ChangeLog for x11-terms/rxvt-unicode
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.97 2007/11/12 10:59:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.99 2007/11/13 20:01:59 jer Exp $
+
+  13 Nov 2007; Jeroen Roovers <jer@gentoo.org> rxvt-unicode-8.3.ebuild:
+  Stable for HPPA (bug #198780).
+
+  13 Nov 2007; Markus Rothe <corsair@gentoo.org> rxvt-unicode-8.3.ebuild:
+  Stable on ppc64; bug #198780
 
   12 Nov 2007; Raúl Porcel <armin76@gentoo.org> rxvt-unicode-8.3.ebuild:
   alpha/sparc stable wrt #198780
