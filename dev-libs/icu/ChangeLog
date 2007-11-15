@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/icu
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.64 2007/11/11 18:49:03 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.66 2007/11/14 20:04:35 drac Exp $
+
+  14 Nov 2007; Samuli Suominen <drac@gentoo.org> icu-3.6-r1.ebuild:
+  amd64 stable wrt #198580
+
+  14 Nov 2007; Jeroen Roovers <jer@gentoo.org> icu-3.6-r1.ebuild:
+  Stable for HPPA (bug #198580).
 
   11 Nov 2007; Raúl Porcel <armin76@gentoo.org> icu-3.6-r1.ebuild:
   alpha/ia64/sparc stable wrt #198580
