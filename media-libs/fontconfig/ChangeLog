@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.98 2007/09/02 15:02:47 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.99 2007/11/14 23:11:57 dirtyepic Exp $
+
+*fontconfig-2.5.0 (14 Nov 2007)
+
+  14 Nov 2007; Ryan Hill <dirtyepic@gentoo.org> +fontconfig-2.5.0.ebuild:
+  Version bump.
 
   02 Sep 2007; Ryan Hill <dirtyepic@gentoo.org> fontconfig-2.4.2.ebuild:
   Use CONFIG_PROTECT_MASK to force updates to /etc/fonts/fonts.conf rather
