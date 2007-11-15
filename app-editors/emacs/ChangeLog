@@ -1,6 +1,12 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.205 2007/11/06 23:52:17 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.207 2007/11/14 15:54:13 ranger Exp $
+
+  14 Nov 2007; Brent Baude <ranger@gentoo.org> emacs-21.4-r13.ebuild:
+  Marking emacs-21.4-r13 ppc64 stable for bug 197313
+
+  14 Nov 2007; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r13.ebuild:
+  Stable on amd64, bug #197313.
 
   06 Nov 2007; Ulrich Mueller <ulm@gentoo.org> -emacs-22.1-r1.ebuild:
   Remove vulnerable revision wrt bug #197958.
