@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/feynmf/feynmf-1.08-r2.ebuild,v 1.6 2007/11/10 21:33:29 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/feynmf/feynmf-1.08-r2.ebuild,v 1.7 2007/11/14 03:48:25 beandog Exp $
 
 EAPI="prefix"
 

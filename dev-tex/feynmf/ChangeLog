@@ -1,6 +1,12 @@
 # ChangeLog for dev-tex/feynmf
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/feynmf/ChangeLog,v 1.15 2007/11/10 21:33:29 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/feynmf/ChangeLog,v 1.17 2007/11/14 06:47:35 ulm Exp $
+
+  14 Nov 2007; Ulrich Mueller <ulm@gentoo.org> -feynmf-1.08-r1.ebuild:
+  Remove vulnerabe version wrt bug #198231.
+
+  14 Nov 2007; Steve Dibb <beandog@gentoo.org> feynmf-1.08-r2.ebuild:
+  amd64 stable, bug 198231
 
   10 Nov 2007; Markus Rothe <corsair@gentoo.org> feynmf-1.08-r2.ebuild:
   Added ~ppc64; bug #125153
