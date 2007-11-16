@@ -1,3 +1,7 @@
+# Elias Pipping <pipping@gentoo.org> (16 Nov 2007)
+# make fails
+sys-devel/gcc objc-gc
+
 # media-gfx/graphviz fails to install on systems with dynamic library
 # extensions other than .so, see also bug #188120
 ~media-gfx/graphviz-2.12 perl python ruby tcl
