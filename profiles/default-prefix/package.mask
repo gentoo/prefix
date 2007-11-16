@@ -28,11 +28,6 @@
 # gnulib-lib/.libs/libgettextlib.so: undefined reference to `acl_trivial'
 =sys-devel/gettext-0.17
 
-# Fabian Groffen <grobian@gentoo.org> (11 Nov 2007)
-# pipping is playing with this package, resulting in some partial
-# (complete) b0rkeneness ;)
-dev-libs/icu
-
 # Elias Pipping <pipping@gentoo.org> (10 Nov 2007)
 # Still a WIP -- not yet ready for use
 www-servers/apache
