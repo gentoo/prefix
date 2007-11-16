@@ -32,7 +32,7 @@ done
 # Or alternatively: http://tug.org/texlive/bugs.html
 SRC_URI="${SRC_URI} mirror://gentoo/${P}-updated-config.ps.bz2"
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
 IUSE="X doc"
 
 MODULAR_X_DEPEND="X? (
