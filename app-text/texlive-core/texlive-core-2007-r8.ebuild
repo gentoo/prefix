@@ -32,7 +32,7 @@ done
 # Or alternatively: http://tug.org/texlive/bugs.html
 SRC_URI="${SRC_URI} mirror://gentoo/${P}-updated-config.ps.bz2"
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="X doc"
 
 MODULAR_X_DEPEND="X? (
@@ -96,6 +96,9 @@ src_unpack() {
 # security bug #196735
 	epatch "${FILESDIR}/${PV}/xpdf-3.02pl2.patch"
 
+# Mac OS X has some ObjC compilation, make it use our CFLAGS
+	epatch "${FILESDIR}"/${PV}/${P}-objcflags.patch
+
 	sed -i -e "/mktexlsr/,+3d" -e "s/\(updmap-sys\)/\1 --nohash/" \
 		Makefile.in || die "sed failed"
 
@@ -114,6 +117,8 @@ src_compile() {
 
 	export LC_ALL=C
 	tc-export CC CXX
+
+	export CONFIG_SHELL="${EPREFIX}"/bin/bash
 
 	econf --bindir="${EPREFIX}"/usr/bin \
 		--datadir="${S}" \
