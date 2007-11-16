@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3142 2007/11/14 10:12:21 lucass Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3143 2007/11/15 20:06:31 mr_bones_ Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -33,7 +33,6 @@ app-admin/testdisk:reiserfs - include reiserfs reading ability
 app-admin/webalizer:search - Include the search patch
 app-admin/webalizer:xtended - Include the 404 extension
 app-admin/webmin:webmin-minimal - Install the minimal webmin distribution
-app-antivirus/clamav:logrotate - Install logrotate script for clamav logs
 app-arch/dump:ermt - encrypted rmt support
 app-arch/pdv:nomotif - Disable motif frontend.
 app-backup/amanda:xfs - Support for backing up raw XFS filesystems using xfsdump
@@ -1562,7 +1561,6 @@ net-mail/gnubiff:password - Enable save passwords to connect mail servers in use
 net-mail/hotwayd:smtp - Build SMTP proxy (hotsmtpd)
 net-mail/lbdb:abook - Enables app-misc/abook support
 net-mail/lbdb:finger - Enables finger support
-net-mail/mailgraph:logrotate - Install logrotate script for clamav logs
 net-mail/mailman:courier - Build with delivery options for courier
 net-mail/mailman:exim - Build with delivery options for exim
 net-mail/mailman:postfix - Build with delivery options for postfix

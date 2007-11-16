@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7905 2007/11/14 20:59:56 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7906 2007/11/15 13:16:42 flameeyes Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -20,6 +20,11 @@
 ##
 ##   End example
 ##
+
+# Diego Pettenò <flameeyes@gentoo.org> (15 Nov 2007)
+# Masked for security vulnerability, see bug #199193.
+# Will be removed on December 15th 2007.
+sys-auth/pam_console
 
 # Mike Doty <kingtaco@gentoo.org> (13 Nov 2007)
 # New emul-linux-x86 ebuilds.
