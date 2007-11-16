@@ -9,7 +9,7 @@ SRC_URI="http://gaspra.kettering.edu/dvipdfm/${P}.tar.gz"
 HOMEPAGE="http://gaspra.kettering.edu/dvipdfm/"
 LICENSE="GPL-2"
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 SLOT="0"
 IUSE=""
 
