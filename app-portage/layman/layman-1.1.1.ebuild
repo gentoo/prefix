@@ -1,13 +1,13 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.1.1.ebuild,v 1.9 2007/10/26 09:19:07 wrobel Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.1.1.ebuild,v 1.10 2007/11/15 07:16:23 wrobel Exp $
 
 EAPI="prefix"
 
 inherit eutils distutils
 
 DESCRIPTION="A python script for retrieving gentoo overlays."
-HOMEPAGE="http://projects.gunnarwrobel.de/scripts"
+HOMEPAGE="http://layman.sourceforge.net"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"

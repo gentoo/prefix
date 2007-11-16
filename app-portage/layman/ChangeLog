@@ -1,6 +1,10 @@
 # ChangeLog for app-portage/layman
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.53 2007/10/26 11:28:44 wrobel Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.54 2007/11/15 07:16:23 wrobel Exp $
+
+  15 Nov 2007; <wrobel@gentoo.org> layman-1.0.6.ebuild,
+  layman-1.0.10.ebuild, layman-1.1.1.ebuild:
+  Fixed homepage of layman (thanks to dberkholz).
 
   26 Oct 2007; wrobel@gentoo.org Manifest:
   Let my last repo commit hang in limbo. Digest update.
