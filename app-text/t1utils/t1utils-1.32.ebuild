@@ -9,7 +9,7 @@ IUSE=""
 DESCRIPTION="Type 1 Font utilities"
 SRC_URI="http://www.lcdf.org/type/${P}.tar.gz"
 HOMEPAGE="http://www.lcdf.org/type/#t1utils"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 SLOT="0"
 LICENSE="BSD"
 
