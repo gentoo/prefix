@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/genlop
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/genlop/ChangeLog,v 1.65 2007/11/13 14:50:38 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/genlop/ChangeLog,v 1.66 2007/11/15 17:33:47 drac Exp $
+
+  15 Nov 2007; Samuli Suominen <drac@gentoo.org> genlop-0.30.8-r1.ebuild:
+  amd64 stable wrt #197215
 
   13 Nov 2007; Jeroen Roovers <jer@gentoo.org> genlop-0.30.8-r1.ebuild:
   Stable for HPPA too.
