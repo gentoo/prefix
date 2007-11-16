@@ -1,0 +1,17 @@
+Index: tetex-src-3.0/libs/t1lib/t1env.c
+===================================================================
+--- tetex-src-3.0.orig/libs/t1lib/t1env.c
++++ tetex-src-3.0/libs/t1lib/t1env.c
+@@ -568,6 +568,12 @@ char *intT1_Env_GetCompletePath( char *F
+ #endif 
+     strcat( pathbuf, DIRECTORY_SEP);
+     /* And finally the filename: */
++	/* If current pathbuf + StrippedName + 1 byte for NULL is bigger than pathbuf
++	 * let's try next pathbuf */
++	if( strlen(pathbuf) + strlen(StrippedName) + 1 > sizeof(pathbuf) ) {
++		i++;
++		continue;
++	}
+     strcat( pathbuf, StrippedName);
+     
+     /* Check for existence of the path: */
