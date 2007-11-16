@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils flag-o-matic
 
 DESCRIPTION="An extremely fast compression and decompression library"
 HOMEPAGE="http://www.oberhumer.com/opensource/lzo/"
@@ -25,7 +25,11 @@ src_unpack() {
 }
 
 src_compile() {
-	econf --enable-shared || die
+	# workaround for Darwin 9 until ASM works
+	local myconf=
+	[[ ${CHOST} == *-darwin9 ]] && myconf="--disable-asm"
+
+	econf --enable-shared ${myconf} || die
 	emake || die
 }
 
