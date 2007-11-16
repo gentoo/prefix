@@ -12,7 +12,7 @@ SRC_URI="http://www.cs.purdue.edu/homes/trinkle/detex/${P}.tar"
 
 LICENSE="freedist"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND="virtual/libc
