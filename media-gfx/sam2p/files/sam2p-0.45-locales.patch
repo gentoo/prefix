@@ -1,0 +1,15 @@
+--- ccdep.pl.orig	2007-11-16 22:12:22 +0100
++++ ccdep.pl	2007-11-16 22:13:13 +0100
+@@ -5,7 +5,11 @@
+ #!perl -w
+ +($0=~/(.*)/s);do$1;die$@if$@;__END__+if 0;
+ # Don't touch/remove lines 1--7: http://www.inf.bme.hu/~pts/Magic.Perl.Header
+-#
++
++# kill out locales such that recognising the error messages works...
++$ENV{"LC_ALL"} = "C";
++$ENV{"LANG"} = "C";
++
+ # ccdep.pl v0.32 -- semiautomatic dependency discovery for C/C++ programs
+ # by pts@math.bme.hu at Fri May 31 13:36:29 CEST 2002
+ # 0.31 by pts@math.bme.hu at Sat Jun  1 15:19:55 CEST 2002

@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit toolchain-funcs
+inherit toolchain-funcs eutils
 
 DESCRIPTION="Utility to convert raster images to EPS, PDF and many others"
 HOMEPAGE="http://www.inf.bme.hu/~pts/sam2p/"
@@ -12,12 +12,19 @@ HOMEPAGE="http://www.inf.bme.hu/~pts/sam2p/"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="gif"
 DEPEND="dev-lang/perl"
 RDEPEND="virtual/libc"
 
 RESTRICT="test"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	# force an US locale, otherwise make Makedep will bail out
+	epatch "${FILESDIR}"/${P}-locales.patch
+}
 
 src_compile() {
 	# Makedep fails with distcc
