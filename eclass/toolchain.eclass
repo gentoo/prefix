@@ -1247,6 +1247,12 @@ gcc_do_configure() {
 		--infodir=${EPREFIX}${DATAPATH}/info \
 		--with-gxx-include-dir=${EPREFIX}${STDCXX_INCDIR}"
 
+	# On Darwin we need libdir to be set in order to get correct install names
+	# for things like libobjc-gnu, libgcj and libfortran.  If we enable it on
+	# non-Darwin we break compilation interestingly.
+	[[ ${CHOST} == *-darwin* ]] && \
+		confgcc="${confgcc} --libdir=${EPREFIX}${LIBPATH}"
+
 	# All our cross-compile logic goes here !  woo !
 	confgcc="${confgcc} --host=${CHOST}"
 	if is_crosscompile || tc-is-cross-compiler ; then
