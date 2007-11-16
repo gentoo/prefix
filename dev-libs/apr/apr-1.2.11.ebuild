@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.2.11.ebuild,v 1.6 2007/11/13 22:53:52 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.2.11.ebuild,v 1.7 2007/11/16 00:00:20 beandog Exp $
 
 EAPI="prefix"
 
