@@ -30,6 +30,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-w.patch
+	epatch "${FILESDIR}"/${P}-error.patch
 }
 
 src_compile() {
@@ -95,9 +96,9 @@ src_compile() {
 		asa error hexdump rpcgen unifdef what;
 	do
 		echo "in ${TS}/${t}:"
-		echo "$(tc-getCC) -o ${t}" *.c
 		cd "${TS}/${t}"
 		sed -i -e '/^__FBSDID/d' *.c
+		echo "$(tc-getCC) -o ${t}" *.c
 		$(tc-getCC) -o ${t} *.c || die "failed to compile $t"
 	done
 }
