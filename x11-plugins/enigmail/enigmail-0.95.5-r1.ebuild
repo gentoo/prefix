@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.5.ebuild,v 1.1 2007/11/02 14:48:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.5-r1.ebuild,v 1.3 2007/11/15 23:44:51 beandog Exp $
 
 EAPI="prefix"
 
@@ -12,8 +12,8 @@ LANGS="de el es-ES nb-NO pt-BR zh-CN"
 SHORTLANGS="ca-AD cs-CZ es-ES fi-FI fr-FR hu-HU it-IT ja-JP nb-NO pl-PL pt-PT ru-RU sl-SI sv-SE tr-TR zh-TW"
 
 EMVER=${PV}
-TBVER="2.0.0.6"
-TBPATCH="2.0.0.4-patches-0.1"
+TBVER="2.0.0.9"
+TBPATCH="2.0.0.9-patches-0.1"
 
 DESCRIPTION="GnuPG encryption plugin for thunderbird."
 HOMEPAGE="http://enigmail.mozdev.org"
@@ -109,10 +109,6 @@ src_unpack() {
 	epatch ${FILESDIR}/70_enigmail-fix.patch
 	# Make replytolist work with >0.95.0
 	epatch ${FILESDIR}/0.95.0-replytolist.patch
-
-	# Fix for gcc-4.2 and amd64, bug 186089
-	rm -f ${S}/config/gcc_hidden.h
-	touch ${S}/config/gcc_hidden.h
 
 	eautoreconf || die "failed running autoreconf"
 }
