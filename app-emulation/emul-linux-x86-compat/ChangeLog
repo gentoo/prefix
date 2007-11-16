@@ -1,6 +1,12 @@
 # ChangeLog for app-emulation/emul-linux-x86-compat
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-compat/ChangeLog,v 1.22 2007/11/14 07:48:05 kingtaco Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-compat/ChangeLog,v 1.23 2007/11/15 06:01:05 kingtaco Exp $
+
+*emul-linux-x86-compat-20071114-r1 (15 Nov 2007)
+
+  15 Nov 2007; Mike Doty <kingtaco@gentoo.org>
+  +emul-linux-x86-compat-20071114-r1.ebuild:
+  fixed libstdc++.so.5 symlink, bug 199161
 
   14 Nov 2007; Mike Doty <kingtaco@gentoo.org>
   emul-linux-x86-compat-20071114.ebuild:
