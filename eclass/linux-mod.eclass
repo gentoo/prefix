@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.76 2007/10/03 12:55:18 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.77 2007/11/16 06:12:01 zmedico Exp $
 
 # Description: This eclass is used to interface with linux-info in such a way
 #              to provide the functionality required and initial functions
@@ -555,9 +555,9 @@ linux-mod_src_install() {
 linux-mod_pkg_preinst() {
 	debug-print-function ${FUNCNAME} $*
 
-	[ -d ${IMAGE}/lib/modules ] && UPDATE_DEPMOD=true || UPDATE_DEPMOD=false
-	[ -d ${IMAGE}/etc/modules.d ] && UPDATE_MODULES=true || UPDATE_MODULES=false
-	[ -d ${IMAGE}/lib/modules ] && UPDATE_MODULEDB=true || UPDATE_MODULEDB=false
+	[ -d "${ED}lib/modules" ] && UPDATE_DEPMOD=true || UPDATE_DEPMOD=false
+	[ -d "${ED}etc/modules.d" ] && UPDATE_MODULES=true || UPDATE_MODULES=false
+	[ -d "${ED}lib/modules" ] && UPDATE_MODULEDB=true || UPDATE_MODULEDB=false
 }
 
 linux-mod_pkg_postinst() {
