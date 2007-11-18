@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pyprotocols
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyprotocols/ChangeLog,v 1.16 2007/10/24 16:17:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyprotocols/ChangeLog,v 1.17 2007/11/16 19:32:56 drac Exp $
+
+  16 Nov 2007; Samuli Suominen <drac@gentoo.org> pyprotocols-0.9.3.ebuild:
+  amd64 stable wrt #145000, fix test suite.
 
   24 Oct 2007; Raúl Porcel <armin76@gentoo.org>
   pyprotocols-1.0_pre2306.ebuild:
