@@ -13,7 +13,7 @@ SRC_URI="ftp://ftp.remotesensing.org/pub/libtiff/${P}.tar.gz
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="jpeg jbig nocxx zlib"
 
 DEPEND="jpeg? ( >=media-libs/jpeg-6b )
