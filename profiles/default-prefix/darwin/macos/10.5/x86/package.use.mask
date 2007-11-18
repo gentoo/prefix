@@ -1,3 +1,23 @@
+# Elias Pipping <pipping@gentoo.org> (10 Nov 2007)
+# ruby fails to compile with USE=threads
+dev-lang/ruby threads
+
+# Elias Pipping <pipping@mi.fu-berlin.de> (13 Sep 2007)
+# mc fails to compile with USE=slang (unicode implies slang)
+app-misc/mc unicode slang
+
+# Elias Pipping <pipping@mi.fu-berlin.de> (01 Sep 2007)
+# imlib2 does not compile with USE=mmx
+media-libs/imlib2 mmx
+
+# Elias Pipping <pipping@mi.fu-berlin.de> (01 Sep 2007)
+# libpng does not compile with USE=mmx
+media-libs/libpng mmx
+
+# Elias Pipping <pipping@mi.fu-berlin.de> (27 Aug 2007)
+# elinks does not compile with USE=perl (tested with 0.11.{2,3})
+www-client/elinks perl
+
 # flag returns compile errors
 media-video/mplayer livecd cpudetection
 # libs mising
@@ -7,23 +27,3 @@ media-video/mplayer xvmc xv dga X xinerama
 # linux only
 media-video/mplayer dvb esd lirc svga arts jack joystick matrox
 media-sound/mpg123 mmx
-
-# Elias Pipping <pipping@mi.fu-berlin.de> (27 Aug 2007)
-# elinks does not compile with USE=perl (tested with 0.11.{2,3})
-www-client/elinks perl
-
-# Elias Pipping <pipping@mi.fu-berlin.de> (01 Sep 2007)
-# libpng does not compile with USE=mmx
-media-libs/libpng mmx
-
-# Elias Pipping <pipping@mi.fu-berlin.de> (01 Sep 2007)
-# imlib2 does not compile with USE=mmx
-media-libs/imlib2 mmx
-
-# Elias Pipping <pipping@mi.fu-berlin.de> (13 Sep 2007)
-# mc fails to compile with USE=slang (unicode implies slang)
-app-misc/mc unicode slang
-
-# Elias Pipping <pipping@gentoo.org> (10 Nov 2007)
-# ruby fails to compile with USE=threads
-dev-lang/ruby threads
