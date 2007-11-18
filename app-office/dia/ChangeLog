@@ -1,6 +1,9 @@
 # ChangeLog for app-office/dia
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/dia/ChangeLog,v 1.97 2007/04/10 09:07:08 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/dia/ChangeLog,v 1.98 2007/11/17 18:30:06 eva Exp $
+
+  17 Nov 2007; Gilles Dartiguelongue <eva@gentoo.org> dia-0.96.1.ebuild:
+  added conditional doc generation, fix bug #199412
 
 *dia-0.96.1 (10 Apr 2007)
 
