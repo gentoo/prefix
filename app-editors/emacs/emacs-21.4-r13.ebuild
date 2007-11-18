@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r13.ebuild,v 1.8 2007/11/14 15:54:13 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r13.ebuild,v 1.9 2007/11/17 23:15:40 ulm Exp $
 
 EAPI="prefix"
 
@@ -9,7 +9,7 @@ WANT_AUTOCONF="2.1"
 inherit flag-o-matic eutils toolchain-funcs autotools
 
 DESCRIPTION="An incredibly powerful, extensible text editor"
-HOMEPAGE="http://www.gnu.org/software/emacs"
+HOMEPAGE="http://www.gnu.org/software/emacs/"
 SRC_URI="mirror://gnu/emacs/${P}a.tar.gz
 	mirror://gentoo/${P}-patches.tar.bz2
 	leim? ( mirror://gnu/emacs/leim-${PV}.tar.gz )"
