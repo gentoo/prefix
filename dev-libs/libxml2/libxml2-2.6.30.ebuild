@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.30.ebuild,v 1.1 2007/09/11 19:56:07 leonardop Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.30.ebuild,v 1.2 2007/11/16 16:57:26 drac Exp $
 
 EAPI="prefix"
 
