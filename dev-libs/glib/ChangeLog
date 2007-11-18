@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.292 2007/11/14 17:55:48 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.293 2007/11/17 13:29:08 nixnut Exp $
+
+  17 Nov 2007; nixnut <nixnut@gentoo.org> glib-2.14.3.ebuild:
+  Stable on ppc wrt bug 198845
 
   14 Nov 2007; Raúl Porcel <armin76@gentoo.org> glib-2.14.3.ebuild:
   sparc stable wrt #198845
