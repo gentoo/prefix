@@ -9,7 +9,7 @@ inherit eutils
 IUSE="truetype"
 DESCRIPTION="A program to translate a DVI (DeVice Independent) files into PNG (Portable Network Graphics) bitmaps"
 HOMEPAGE="http://dvipng.sourceforge.net/"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
