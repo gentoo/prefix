@@ -1,6 +1,9 @@
 # ChangeLog for gnustep-base/gnustep-base
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.52 2007/10/27 15:44:03 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.53 2007/11/16 14:59:54 beandog Exp $
+
+  16 Nov 2007; Steve Dibb <beandog@gentoo.org> gnustep-base-1.14.0.ebuild:
+  amd64 stable, bug 195990
 
   27 Oct 2007; nixnut <nixnut@gentoo.org> gnustep-base-1.14.0.ebuild:
   Stable on ppc wrt bug 195990
