@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/nautilus
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.246 2007/11/14 15:09:40 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.247 2007/11/17 13:27:02 nixnut Exp $
+
+  17 Nov 2007; nixnut <nixnut@gentoo.org> nautilus-2.18.3-r1.ebuild:
+  Stable on ppc wrt bug 198845
 
   14 Nov 2007; Raúl Porcel <armin76@gentoo.org> nautilus-2.18.3-r1.ebuild:
   alpha/ia64/sparc stable wrt #198845
