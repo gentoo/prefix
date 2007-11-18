@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/editor/editor-0.ebuild,v 1.9 2007/11/06 11:58:54 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/editor/editor-0.ebuild,v 1.10 2007/11/16 08:17:32 ulm Exp $
 
 EAPI="prefix"
 
@@ -13,8 +13,13 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-fbsd ~x86-macos"
 IUSE=""
 
+# Add a package to RDEPEND only if the editor:
+# - can edit ordinary text files,
+# - works on the console.
+
 DEPEND=""
 RDEPEND="|| ( app-editors/nano
+	app-editors/dav
 	app-editors/e3
 	app-editors/easyedit
 	app-editors/elvis
@@ -23,16 +28,20 @@ RDEPEND="|| ( app-editors/nano
 	app-editors/emact
 	app-editors/ersatz-emacs
 	app-editors/fe
+	app-editors/geresh
 	app-editors/gvim
 	app-editors/jasspa-microemacs
 	app-editors/jed
 	app-editors/joe
 	app-editors/jove
 	app-editors/le
+	app-editors/levee
+	app-editors/lpe
 	app-editors/mg
 	app-editors/ne
 	app-editors/ng
 	app-editors/nvi
+	app-editors/qe
 	app-editors/qemacs
 	app-editors/teco
 	app-editors/uemacs-pk
