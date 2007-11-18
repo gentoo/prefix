@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.14.0.ebuild,v 1.2 2007/09/27 01:45:34 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.14.0.ebuild,v 1.4 2007/11/16 16:40:43 drac Exp $
 
 EAPI="prefix"
 
@@ -28,7 +28,7 @@ DEPEND="${RDEPEND}
 	doc? ( dev-libs/libxslt >=app-text/docbook-xsl-stylesheets-1.70.1 )
 	>=dev-util/pkgconfig-0.12.0"
 
-DOCS="AUTHORS ChangeLog INSTALL NEWS README"
+DOCS="AUTHORS ChangeLog NEWS README"
 
 pkg_setup() {
 	G2CONF="$(use_enable doc docs)"
@@ -68,7 +68,7 @@ pkg_postinst() {
 	python_mod_optimize /usr/$(get_libdir)/python${PYVER}/site-packages/gtk-2.0
 	alternatives_auto_makesym /usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py pygtk.py-[0-9].[0-9]
 	alternatives_auto_makesym /usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.pth pygtk.pth-[0-9].[0-9]
-	python_mod_compile ${EROOT}usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py
+	python_mod_compile "${EROOT}"usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py
 }
 
 pkg_postrm() {

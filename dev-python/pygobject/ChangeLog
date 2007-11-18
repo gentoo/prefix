@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.23 2007/09/26 13:15:05 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.24 2007/11/16 16:39:01 drac Exp $
+
+  16 Nov 2007; Samuli Suominen <drac@gentoo.org> pygobject-2.14.0.ebuild:
+  amd64 stable wrt #199322
 
 *pygobject-2.14.0 (26 Sep 2007)
 
