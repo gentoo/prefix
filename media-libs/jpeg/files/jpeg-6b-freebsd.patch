@@ -1,0 +1,10 @@
+* grobian@gentoo.org: vanilla FreeBSD doesn't have /bin/bash
+
+--- libtool-wrap
++++ libtool-wrap
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!/usr/bin/env bash
+ 
+ export PATH=${PATH}:/usr/bin
+ 
