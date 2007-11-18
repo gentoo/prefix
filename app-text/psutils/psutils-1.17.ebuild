@@ -12,7 +12,7 @@ SRC_URI="ftp://ftp.enst.fr/pub/unix/a2ps/${P}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE=""
 
 RDEPEND="virtual/libc"
@@ -24,6 +24,7 @@ S=${WORKDIR}/${PN}
 src_unpack() {
 	unpack ${A}
 	sed \
+		-e '/^PERL =/c\PERL = perl' \
 		-e "s:/usr/local:\$(DESTDIR)/usr:" \
 		-e "s:-DUNIX -O:-DUNIX ${CFLAGS}:" \
 		"${S}/Makefile.unix" > "${S}/Makefile"
