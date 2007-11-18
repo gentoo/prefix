@@ -1,12 +1,11 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.2.1.ebuild,v 1.5 2007/01/02 01:18:09 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.2.11.ebuild,v 1.1 2007/11/18 01:21:03 compnerd Exp $
 
 EAPI="prefix"
 
 inherit gnome2 eutils mono libtool
 
-IUSE="doc ipv6 mono"
 DESCRIPTION="Utilities for creating and parsing messages using MIME"
 SRC_URI="http://spruce.sourceforge.net/gmime/sources/v${PV%.*}/${P}.tar.gz"
 HOMEPAGE="http://spruce.sourceforge.net/gmime/"
@@ -14,20 +13,22 @@ HOMEPAGE="http://spruce.sourceforge.net/gmime/"
 SLOT="0"
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+IUSE="doc mono"
 
 RDEPEND=">=dev-libs/glib-2
 	doc? ( >=dev-util/gtk-doc-1.0 )
 	mono? ( dev-lang/mono
 			>=dev-dotnet/gtk-sharp-2.4.0 )
 	sys-libs/zlib"
+DEPEND="${RDEPEND}
+		dev-util/pkgconfig
+		doc? ( app-text/docbook-sgml-utils )"
 
-DEPEND="dev-util/pkgconfig
-	doc? ( app-text/docbook-sgml-utils )
-	${RDEPEND}"
+DOCS="AUTHORS ChangeLog COPYING INSTALL NEWS PORTING README TODO doc/html/"
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 
 	if use doc ; then
 		#db2html should be docbook2html
@@ -41,24 +42,21 @@ src_unpack() {
 
 	# Use correct libdir for mono assembly
 	sed -i -e 's:^libdir.*:libdir=@libdir@:' \
-		-e 's:^prefix=:exec_prefix=:' \
-		-e 's:prefix)/lib:libdir):' \
+		   -e 's:^prefix=:exec_prefix=:' \
+		   -e 's:prefix)/lib:libdir):' \
 		mono/gmime-sharp.pc.in mono/Makefile.{am,in} || die "sed failed (2)"
 
 	elibtoolize
 }
 
 src_compile() {
-	econf \
-		`use_enable ipv6` \
-		`use_enable mono` \
-		`use_enable doc gtk-doc` || die "configure failed"
-	MONO_PATH=${S} emake -j1 || die
+	econf $(use_enable mono) $(use_enable doc gtk-doc) || die "configure failed"
+	MONO_PATH="${S}" emake -j1 || die "make failed"
 }
 
 src_install() {
-	make GACUTIL_FLAGS="${EPREFIX}/root ${ED}/usr/$(get_libdir) ${EPREFIX}/gacdir ${EPREFIX}/usr/$(get_libdir) ${EPREFIX}/package ${EPREFIX}/${PN}" \
-		DESTDIR=${D} install || die
+	make GACUTIL_FLAGS="${EPREFIX}/root '${ED}/usr/$(get_libdir)' ${EPREFIX}/gacdir ${EPREFIX}/usr/$(get_libdir) ${EPREFIX}/package ${PN}" \
+		DESTDIR="${ED}" install || die
 
 	if use doc ; then
 		# we don't use docinto/dodoc, because we don't want html doc gzipped
@@ -68,8 +66,6 @@ src_install() {
 
 	# rename these two, so they don't conflict with app-arch/sharutils
 	# (bug #70392)	Ticho, 2004-11-10
-	mv ${ED}/usr/bin/uuencode ${ED}/usr/bin/gmime-uuencode
-	mv ${ED}/usr/bin/uudecode ${ED}/usr/bin/gmime-uudecode
+	mv "${ED}/usr/bin/uuencode" "${ED}/usr/bin/gmime-uuencode"
+	mv "${ED}/usr/bin/uudecode" "${ED}/usr/bin/gmime-uudecode"
 }
-
-DOCS="AUTHORS ChangeLog COPYING INSTALL NEWS PORTING README TODO doc/html/"
