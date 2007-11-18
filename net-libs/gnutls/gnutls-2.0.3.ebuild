@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.0.1.ebuild,v 1.1 2007/09/22 16:54:30 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.0.3.ebuild,v 1.1 2007/11/16 18:04:14 alonbl Exp $
 
 EAPI="prefix"
 
