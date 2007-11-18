@@ -1,6 +1,12 @@
 # ChangeLog for dev-cpp/cairomm
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/cairomm/ChangeLog,v 1.19 2007/11/13 10:51:03 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/cairomm/ChangeLog,v 1.21 2007/11/17 18:10:27 armin76 Exp $
+
+  17 Nov 2007; Raúl Porcel <armin76@gentoo.org> cairomm-1.4.4.ebuild:
+  alpha/ia64/sparc stable wrt #199322
+
+  17 Nov 2007; nixnut <nixnut@gentoo.org> cairomm-1.4.4.ebuild:
+  Stable on ppc wrt bug 199322
 
   13 Nov 2007; Christian Faulhammer <opfer@gentoo.org> cairomm-1.4.4.ebuild:
   stable x86, bug 198845
