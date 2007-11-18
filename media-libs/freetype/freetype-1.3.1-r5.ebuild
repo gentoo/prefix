@@ -15,7 +15,7 @@ EAPI="prefix"
 # When we update to freetype-pre1.4 or any later version, we should use
 # the included contrib directory and not download any additional files.
 
-inherit eutils libtool
+inherit eutils libtool flag-o-matic
 
 P2=${PN}1-contrib
 DESCRIPTION="TTF-Library"
@@ -27,7 +27,7 @@ SRC_URI="ftp://ftp.freetype.org/freetype/freetype1/${P}.tar.gz
 
 LICENSE="FTL"
 SLOT="1"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="nls tetex"
 
 DEPEND="tetex? ( virtual/latex-base )"
@@ -54,6 +54,11 @@ src_compile() {
 	local myconf
 
 	use nls || myconf="${myconf} --disable-nls"
+
+	# nls is currently broken, and I don't feel like fix it properly, the
+	# problem is the sub modules don't linking properly because of missing
+	# libint_gettext symbols.
+	[[ ${CHOST} == *-freebsd* ]] && myconf="${myconf} --disable-nls"
 
 	econf ${myconf} || die
 
