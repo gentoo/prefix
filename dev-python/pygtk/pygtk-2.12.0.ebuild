@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.12.0.ebuild,v 1.1 2007/09/27 18:36:28 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.12.0.ebuild,v 1.3 2007/11/16 16:46:43 drac Exp $
 
 EAPI="prefix"
 
@@ -88,7 +88,7 @@ pkg_postrm() {
 	python_version
 	python_mod_cleanup /usr/share/pygtk/2.0/codegen
 	python_mod_cleanup
-	rm -f ${EROOT}/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.{py,pth}
+	rm -f "${EROOT}"/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.{py,pth}
 	alternatives_auto_makesym /usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py pygtk.py-[0-9].[0-9]
 	alternatives_auto_makesym /usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.pth pygtk.pth-[0-9].[0-9]
 }
