@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/esound/esound-0.2.38-r1.ebuild,v 1.1 2007/09/09 08:22:34 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/esound/esound-0.2.38-r1.ebuild,v 1.2 2007/11/16 15:44:16 drac Exp $
 
 EAPI="prefix"
 
