@@ -1,6 +1,9 @@
 # ChangeLog for app-text/xmlto
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/ChangeLog,v 1.42 2007/08/21 23:21:06 leonardop Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/ChangeLog,v 1.43 2007/11/16 19:44:43 mr_bones_ Exp $
+
+  16 Nov 2007; Michael Sterrett <mr_bones_@gentoo.org> xmlto-0.0.18.ebuild:
+  remove reference to really old sys-apps/debianutils
 
   21 Aug 2007; Leonardo Boshell <leonardop@gentoo.org> xmlto-0.0.18.ebuild:
   Added mktemp dependency (bug #170147).
