@@ -1,6 +1,10 @@
 # ChangeLog for app-crypt/johntheripper
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.72 2007/11/13 20:13:26 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.73 2007/11/16 16:29:04 armin76 Exp $
+
+  16 Nov 2007; Raúl Porcel <armin76@gentoo.org>
+  johntheripper-1.7.2-r2.ebuild:
+  alpha stable wrt #198659
 
   13 Nov 2007; Alon Bar-Lev <alonbl@gentoo.org>
   -files/johntheripper-1.7.2-funroll-loops.patch,
