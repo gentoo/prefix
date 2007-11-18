@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.29 2007/10/14 22:12:30 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.30 2007/11/17 15:39:35 ulm Exp $
 #
 # Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
@@ -140,7 +140,7 @@ SITEFILE=50${PN}-gentoo.el
 
 EMACS=${EPREFIX}/usr/bin/emacs
 # The following works for Emacs versions 18--23, don't change it.
-EMACS_BATCH_CLEAN="${EMACS} -batch -q --no-site-file"
+EMACSFLAGS="-batch -q --no-site-file"
 
 # @FUNCTION: elisp-compile
 # @USAGE: <list of elisp files>
@@ -149,7 +149,45 @@ EMACS_BATCH_CLEAN="${EMACS} -batch -q --no-site-file"
 
 elisp-compile() {
 	einfo "Compiling GNU Emacs Elisp files ..."
-	${EMACS_BATCH_CLEAN} -f batch-byte-compile "$@"
+	${EMACS} ${EMACSFLAGS} -f batch-byte-compile "$@"
+}
+
+# @FUNCTION: elisp-comp
+# @USAGE: <list of elisp files>
+# @DESCRIPTION:
+# Byte-compile interdependent Emacs Lisp files.
+#
+# This function byte-compiles all ".el" files which are part of its
+# arguments, using GNU Emacs, and puts the resulting ".elc" files into the
+# current directory, so disregarding the original directories used in ".el"
+# arguments.
+#
+# This function manages in such a way that all Emacs Lisp files to be
+# compiled are made visible between themselves, in the event they require or
+# load one another.
+
+elisp-comp() {
+	# Copyright 1995 Free Software Foundation, Inc.
+	# François Pinard <pinard@iro.umontreal.ca>, 1995.
+	# Originally taken from GNU autotools.
+
+	[ $# -gt 0 ] || return 1
+
+	einfo "Compiling GNU Emacs Elisp files ..."
+
+	tempdir=elc.$$
+	mkdir ${tempdir}
+	cp "$@" ${tempdir}
+	pushd ${tempdir}
+
+	echo "(add-to-list 'load-path \"../\")" > script
+	${EMACS} ${EMACSFLAGS} -l script -f batch-byte-compile *.el
+	local ret=$?
+	mv *.elc ..
+
+	popd
+	rm -fr ${tempdir}
+	return ${ret}
 }
 
 # @FUNCTION: elisp-emacs-version
@@ -159,7 +197,7 @@ elisp-compile() {
 elisp-emacs-version() {
 	# The following will work for at least versions 18-23.
 	echo "(princ emacs-version)" >"${T}"/emacs-version.el
-	${EMACS_BATCH_CLEAN} -l "${T}"/emacs-version.el
+	${EMACS} ${EMACSFLAGS} -l "${T}"/emacs-version.el
 }
 
 # @FUNCTION: elisp-make-autoload-file
@@ -189,7 +227,7 @@ elisp-make-autoload-file() {
 	;;; ${f##*/} ends here
 	EOF
 
-	${EMACS_BATCH_CLEAN} \
+	${EMACS} ${EMACSFLAGS} \
 		--eval "(setq make-backup-files nil)" \
 		--eval "(setq generated-autoload-file (expand-file-name \"${f}\"))" \
 		-f batch-update-autoloads "${@-.}"
@@ -313,47 +351,4 @@ initialisation files in ${EPREFIX}/usr/share/emacs/site-lisp/ to load.
 EOF
 		echo
 	fi
-}
-
-# @FUNCTION: elisp-comp
-# @USAGE: <list of elisp files>
-# @DESCRIPTION:
-# Byte-compile interdependent Emacs Lisp files.
-#
-# This function byte-compiles all ".el" files which are part of its
-# arguments, using GNU Emacs, and puts the resulting ".elc" files into the
-# current directory, so disregarding the original directories used in ".el"
-# arguments.
-#
-# This function manages in such a way that all Emacs Lisp files to be
-# compiled are made visible between themselves, in the event they require or
-# load one another.
-
-elisp-comp() {
-	# Copyright 1995 Free Software Foundation, Inc.
-	# François Pinard <pinard@iro.umontreal.ca>, 1995.
-	# Originally taken from GNU autotools.
-
-	test $# -gt 0 || return 1
-
-	if test -z "${EMACS}" || test "${EMACS}" = "t"; then
-		# Value of "t" means we are running in a shell under Emacs.
-		# Just assume Emacs is called "emacs".
-		EMACS="${EPREFIX}"/usr/bin/emacs
-	fi
-	einfo "Compiling GNU Emacs Elisp files ..."
-
-	tempdir=elc.$$
-	mkdir ${tempdir}
-	cp "$@" ${tempdir}
-	pushd ${tempdir}
-
-	echo "(add-to-list 'load-path \"../\")" > script
-	${EMACS_BATCH_CLEAN} -l script -f batch-byte-compile *.el
-	local ret=$?
-	mv *.elc ..
-
-	popd
-	rm -fr ${tempdir}
-	return ${ret}
 }

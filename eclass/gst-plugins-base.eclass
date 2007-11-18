@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.7 2007/09/13 15:38:54 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.8 2007/11/17 12:17:50 drac Exp $
 
 # Author : foser <foser@gentoo.org>
 
@@ -26,6 +26,10 @@ MY_P=${MY_PN}-${PV}
 # All relevant configure options for gst-plugins
 # need a better way to extract these
 # gst-plugins-base 0.9
+# update: gst_v4l2 is part of -good, not -base, remove when 0.10.15 is only
+# version in tree. -drac
+# update: no configure option tests, remove when 0.10.15 is only version in
+# tree. -drac
 my_gst_plugins_base="x xvideo xshm gst_v4l gst_v4l2 alsa cdparanoia gnome_vfs
 libvisual ogg oggtest theora vorbis vorbistest tests examples freetypetest pango"
 
