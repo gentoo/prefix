@@ -1,0 +1,311 @@
+diff -ur a/forward.c b/forward.c
+--- a/forward.c	2007-04-25 22:38:46 +0100
++++ b/forward.c	2007-08-01 17:55:20 +0100
+@@ -942,7 +942,7 @@
+        * The --passtos and --mssfix options require
+        * us to examine the IPv4 header.
+        */
+-      process_ipv4_header (c, PIPV4_PASSTOS|PIPV4_MSSFIX, &c->c2.buf);
++      process_ip_header (c, PIPV4_PASSTOS|PIPV4_MSSFIX, &c->c2.buf);
+ 
+ #ifdef PACKET_TRUNCATION_CHECK
+       /* if (c->c2.buf.len > 1) --c->c2.buf.len; */
+@@ -964,7 +964,7 @@
+ }
+ 
+ void
+-process_ipv4_header (struct context *c, unsigned int flags, struct buffer *buf)
++process_ip_header (struct context *c, unsigned int flags, struct buffer *buf)
+ {
+   if (!c->options.mssfix)
+     flags &= ~PIPV4_MSSFIX;
+@@ -986,17 +986,22 @@
+ #endif
+ 	{
+ 	  struct buffer ipbuf = *buf;
+-	  if (is_ipv4 (TUNNEL_TYPE (c->c1.tuntap), &ipbuf))
++	  switch (get_ipversion(TUNNEL_TYPE (c->c1.tuntap), &ipbuf))
+ 	    {
++	      case OPENVPN_PROTO_IPV4:
+ #if PASSTOS_CAPABILITY
+-	      /* extract TOS from IP header */
+-	      if (flags & PIPV4_PASSTOS)
+-		link_socket_extract_tos (c->c2.link_socket, &ipbuf);
+-#endif
+-			  
+-	      /* possibly alter the TCP MSS */
+-	      if (flags & PIPV4_MSSFIX)
+-		mss_fixup (&ipbuf, MTU_TO_MSS (TUN_MTU_SIZE_DYNAMIC (&c->c2.frame)));
++	        /* extract TOS from IP header */
++	        if (flags & PIPV4_PASSTOS)
++	  	  link_socket_extract_tos (c->c2.link_socket, &ipbuf);
++#endif
++	        /* possibly alter the TCP MSS */
++	        if (flags & PIPV4_MSSFIX)
++		  mss_fixup_ipv4 (&ipbuf, MTU_TO_MSS (TUN_MTU_SIZE_DYNAMIC (&c->c2.frame)));
++                break;
++	      case OPENVPN_PROTO_IPV6:
++	        if (flags & PIPV4_MSSFIX)
++		  mss_fixup_ipv6 (&ipbuf, MTU_TO_MSS (TUN_MTU_SIZE_DYNAMIC (&c->c2.frame)));
++
+ 	    }
+ 	}
+     }
+@@ -1145,7 +1150,7 @@
+    * The --mssfix option requires
+    * us to examine the IPv4 header.
+    */
+-  process_ipv4_header (c, PIPV4_MSSFIX|PIPV4_OUTGOING, &c->c2.to_tun);
++  process_ip_header (c, PIPV4_MSSFIX|PIPV4_OUTGOING, &c->c2.to_tun);
+ 
+   if (c->c2.to_tun.len <= MAX_RW_SIZE_TUN (&c->c2.frame))
+     {
+diff -ur a/forward.h b/forward.h
+--- a/forward.h	2007-04-25 22:38:46 +0100
++++ b/forward.h	2007-08-01 17:54:10 +0100
+@@ -76,7 +76,7 @@
+ #define PIPV4_MSSFIX          (1<<1)
+ #define PIPV4_OUTGOING        (1<<2)
+ 
+-void process_ipv4_header (struct context *c, unsigned int flags, struct buffer *buf);
++void process_ip_header (struct context *c, unsigned int flags, struct buffer *buf);
+ 
+ #if P2MP
+ void schedule_exit (struct context *c, const int n_seconds);
+diff -ur a/mroute.c b/mroute.c
+--- a/mroute.c	2007-08-01 17:57:36 +0100
++++ b/mroute.c	2007-08-01 17:54:10 +0100
+@@ -101,9 +101,9 @@
+ 	  switch (OPENVPN_IPH_GET_VER (*BPTR(buf)))
+ 	    {
+ 	    case 4:
+-	      if (BLEN (buf) >= (int) sizeof (struct openvpn_iphdr))
++	      if (BLEN (buf) >= (int) sizeof (struct openvpn_ip4hdr))
+ 		{
+-		  const struct openvpn_iphdr *ip = (const struct openvpn_iphdr *) BPTR (buf);
++		  const struct openvpn_ip4hdr *ip = (const struct openvpn_ip4hdr *) BPTR (buf);
+ 		  if (src)
+ 		    {
+ 		      src->type = MR_ADDR_IPV4;
+diff -ur a/mss.c b/mss.c
+--- a/mss.c	2007-04-25 22:38:46 +0100
++++ b/mss.c	2007-08-01 17:54:10 +0100
+@@ -39,16 +39,16 @@
+  * encapsulation.
+  */
+ void
+-mss_fixup (struct buffer *buf, int maxmss)
++mss_fixup_ipv4 (struct buffer *buf, int maxmss)
+ {
+-  const struct openvpn_iphdr *pip;
++  const struct openvpn_ip4hdr *pip;
+   int hlen;
+ 
+-  if (BLEN (buf) < (int) sizeof (struct openvpn_iphdr))
++  if (BLEN (buf) < (int) sizeof (struct openvpn_ip4hdr))
+     return;
+   
+   verify_align_4 (buf);
+-  pip = (struct openvpn_iphdr *) BPTR (buf);
++  pip = (struct openvpn_ip4hdr *) BPTR (buf);
+ 
+   hlen = OPENVPN_IPH_GET_LEN (pip->version_len);
+ 
+@@ -70,6 +70,31 @@
+ }
+ 
+ void
++mss_fixup_ipv6 (struct buffer *buf, int maxmss)
++{
++  const struct openvpn_ip6hdr *pip;
++  if (BLEN (buf) < (int) sizeof (struct openvpn_ip6hdr))
++    return;
++
++  verify_align_4 (buf);
++  pip = (struct openvpn_ip6hdr *) BPTR (buf);
++  if (pip->ip6_ctlun.ip6_un1.ip6_un1_nxt == OPENVPN_IPPROTO_TCP
++      && ntohs (pip->ip6_ctlun.ip6_un1.ip6_un1_plen) 
++         == BLEN (buf) - sizeof(struct openvpn_ip6hdr)
++      && BLEN(buf) - sizeof(struct openvpn_ip6hdr) 
++         >= (int) sizeof (struct openvpn_tcphdr))
++  {
++      struct buffer newbuf = *buf;
++      if (buf_advance (&newbuf, sizeof(struct openvpn_ip6hdr)))
++	{
++	  struct openvpn_tcphdr *tc = (struct openvpn_tcphdr *) BPTR (&newbuf);
++	  if (tc->flags & OPENVPN_TCPH_SYN_MASK)
++	    mss_fixup_dowork (&newbuf, (uint16_t) maxmss);
++	}
++  }
++}
++
++void
+ mss_fixup_dowork (struct buffer *buf, uint16_t maxmss)
+ {
+   int hlen, olen, optlen;
+@@ -118,3 +143,4 @@
+     }
+   }
+ }
++
+diff -ur a/mss.h b/mss.h
+--- a/mss.h	2007-04-25 22:38:46 +0100
++++ b/mss.h	2007-08-01 17:54:10 +0100
+@@ -28,7 +28,8 @@
+ #include "proto.h"
+ #include "error.h"
+ 
+-void mss_fixup (struct buffer *buf, int maxmss);
++void mss_fixup_ipv4 (struct buffer *buf, int maxmss);
++void mss_fixup_ipv6 (struct buffer *buf, int maxmss);
+ void mss_fixup_dowork (struct buffer *buf, uint16_t maxmss);
+ 
+ #endif
+diff -ur a/multi.c b/multi.c
+--- a/multi.c	2007-08-01 17:57:36 +0100
++++ b/multi.c	2007-08-01 17:54:10 +0100
+@@ -1984,7 +1984,7 @@
+       item.instance->context.c2.buf = item.buffer->buf;
+       if (item.buffer->flags & MF_UNICAST) /* --mssfix doesn't make sense for broadcast or multicast */
+ 	pipv4_flags |= PIPV4_MSSFIX;
+-      process_ipv4_header (&item.instance->context, pipv4_flags, &item.instance->context.c2.buf);
++      process_ip_header (&item.instance->context, pipv4_flags, &item.instance->context.c2.buf);
+       encrypt_sign (&item.instance->context, true);
+       mbuf_free_buf (item.buffer);
+ 
+diff -ur a/proto.c b/proto.c
+--- a/proto.c	2007-04-25 22:38:46 +0100
++++ b/proto.c	2007-08-01 17:54:10 +0100
+@@ -39,39 +39,43 @@
+  * If raw tunnel packet is IPv4, return true and increment
+  * buffer offset to start of IP header.
+  */
+-bool
+-is_ipv4 (int tunnel_type, struct buffer *buf)
++int
++get_ipversion (int tunnel_type, struct buffer *buf)
+ {
+   int offset;
+-  const struct openvpn_iphdr *ih;
++  uint8_t version;
+ 
+   verify_align_4 (buf);
+   if (tunnel_type == DEV_TYPE_TUN)
+     {
+-      if (BLEN (buf) < (int) sizeof (struct openvpn_iphdr))
+-	return false;
++      if (BLEN (buf) < (int) sizeof (struct openvpn_ip4hdr))
++	return OPENVPN_PROTO_UNK;
+       offset = 0;
+     }
+   else if (tunnel_type == DEV_TYPE_TAP)
+     {
+       const struct openvpn_ethhdr *eh;
+       if (BLEN (buf) < (int)(sizeof (struct openvpn_ethhdr)
+-	  + sizeof (struct openvpn_iphdr)))
++	  + sizeof (struct openvpn_ip4hdr)))
+ 	return false;
+       eh = (const struct openvpn_ethhdr *) BPTR (buf);
+-      if (ntohs (eh->proto) != OPENVPN_ETH_P_IPV4)
+-	return false;
++      if (!(ntohs (eh->proto) == OPENVPN_ETH_P_IPV4 ||
++      	    ntohs (eh->proto) == OPENVPN_ETH_P_IPV6 ))
++	return OPENVPN_PROTO_UNK;
+       offset = sizeof (struct openvpn_ethhdr);
+     }
+   else
+-    return false;
+-
+-  ih = (const struct openvpn_iphdr *) (BPTR (buf) + offset);
++    return OPENVPN_PROTO_UNK;
+ 
+-  if (OPENVPN_IPH_GET_VER (ih->version_len) == 4)
+-    return buf_advance (buf, offset);
++  version = (*((uint8_t *)(BPTR (buf) + offset)) >> 4) & 0xf;
++  if (version == OPENVPN_PROTO_IPV4 || version == OPENVPN_PROTO_IPV6)
++    {
++       if (!buf_advance (buf, offset))
++         return OPENVPN_PROTO_UNK;
++       return version; 
++    }
+   else
+-    return false;
++    return OPENVPN_PROTO_UNK;
+ }
+ 
+ #ifdef PACKET_TRUNCATION_CHECK
+diff -ur a/proto.h b/proto.h
+--- a/proto.h	2007-04-25 22:38:46 +0100
++++ b/proto.h	2007-08-01 17:54:10 +0100
+@@ -62,7 +62,7 @@
+   uint16_t proto;                     /* packet type ID field */
+ };
+ 
+-struct openvpn_iphdr {
++struct openvpn_ip4hdr {
+ # define OPENVPN_IPH_GET_VER(v) (((v) >> 4) & 0x0F)
+ # define OPENVPN_IPH_GET_LEN(v) (((v) & 0x0F) << 2)
+   uint8_t    version_len;
+@@ -87,6 +87,27 @@
+   /*The options start here. */
+ };
+ 
++struct openvpn_in6_addr {
++        union {
++                uint8_t         __u6_addr8[16];
++                uint16_t        __u6_addr16[8];
++                uint32_t        __u6_addr32[4];
++        } __u6_addr;                    /* 128-bit IP6 address */
++}; 
++struct openvpn_ip6hdr {
++        union {
++                struct ip6_hdrctl {
++                        uint32_t ip6_un1_flow; /* 20 bits of flow-ID */
++                        uint16_t ip6_un1_plen; /* payload length */
++                        uint8_t  ip6_un1_nxt;  /* next header */
++                        uint8_t  ip6_un1_hlim; /* hop limit */
++                } ip6_un1;
++                uint8_t ip6_un2_vfc;   /* 4 bits version, top 4 bits class */
++        } ip6_ctlun;
++        struct openvpn_in6_addr ip6_src;        /* source address */
++        struct openvpn_in6_addr ip6_dst;        /* destination address */
++};
++
+ /*
+  * UDP header
+  */
+@@ -159,14 +180,19 @@
+  *
+  * (RFC 879, section 7).
+  */
+-#define MTU_TO_MSS(mtu) (mtu - sizeof(struct openvpn_iphdr) \
++#define MTU_TO_MSS(mtu) (mtu - sizeof(struct openvpn_ip4hdr) \
+                              - sizeof(struct openvpn_tcphdr))
+ 
+ /*
+- * If raw tunnel packet is IPv4, return true and increment
++ * Check if raw tunnel packet is IPv4 or IPv6, 
++ * return the version and increment
+  * buffer offset to start of IP header.
+  */
+-bool is_ipv4 (int tunnel_type, struct buffer *buf);
++
++#define OPENVPN_PROTO_IPV6 6
++#define OPENVPN_PROTO_IPV4 4
++#define OPENVPN_PROTO_UNK  0
++int get_ipversion(int tunnel_type, struct buffer *buf);
+ 
+ #ifdef PACKET_TRUNCATION_CHECK
+ void ipv4_packet_size_verify (const uint8_t *data,
+diff -ur a/socket.h b/socket.h
+--- a/socket.h	2007-08-01 17:57:36 +0100
++++ b/socket.h	2007-08-01 17:54:10 +0100
+@@ -1009,7 +1009,7 @@
+ {
+   if (ls && ipbuf)
+     {
+-      struct openvpn_iphdr *iph = (struct openvpn_iphdr *) BPTR (ipbuf);
++      struct openvpn_ip4hdr *iph = (struct openvpn_ip4hdr *) BPTR (ipbuf);
+       ls->ptos = iph->tos;
+       ls->ptos_defined = true;
+     }
