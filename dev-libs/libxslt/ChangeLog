@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/libxslt
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.165 2007/11/16 16:58:46 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.168 2007/11/17 17:49:11 armin76 Exp $
+
+  17 Nov 2007; Raúl Porcel <armin76@gentoo.org> libxslt-1.1.22.ebuild:
+  alpha/ia64/sparc stable wrt #199322
+
+  17 Nov 2007; nixnut <nixnut@gentoo.org> libxslt-1.1.22.ebuild:
+  Stable on ppc wrt bug 199322
+
+  17 Nov 2007; Dawid Węgliński <cla@gentoo.org> libxslt-1.1.22.ebuild:
+  Stable on x86 (bug #199322)
 
   16 Nov 2007; Samuli Suominen <drac@gentoo.org> libxslt-1.1.22.ebuild:
   amd64 stable wrt #199322
