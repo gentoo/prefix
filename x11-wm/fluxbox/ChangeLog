@@ -1,6 +1,9 @@
 # ChangeLog for x11-wm/fluxbox
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.241 2007/11/13 18:02:04 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.242 2007/11/16 16:43:50 nixnut Exp $
+
+  16 Nov 2007; nixnut <nixnut@gentoo.org> fluxbox-1.0.0.ebuild:
+  Stable on ppc wrt bug 198968
 
   13 Nov 2007; Markus Rothe <corsair@gentoo.org> fluxbox-1.0.0.ebuild:
   Stable on ppc64; bug #198968
