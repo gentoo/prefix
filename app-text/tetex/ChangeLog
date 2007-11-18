@@ -1,6 +1,15 @@
 # ChangeLog for app-text/tetex
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.163 2007/11/15 19:52:55 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/tetex/ChangeLog,v 1.166 2007/11/16 16:30:50 armin76 Exp $
+
+  16 Nov 2007; Raúl Porcel <armin76@gentoo.org> tetex-3.0_p1-r6.ebuild:
+  alpha/ia64 stable wrt security #198238
+
+  16 Nov 2007; Ferris McCormick <fmccor@gentoo.org> tetex-3.0_p1-r6.ebuild:
+  Sparc stable, security Bug #198238.
+
+  16 Nov 2007; Jeroen Roovers <jer@gentoo.org> tetex-3.0_p1-r6.ebuild:
+  Stable for HPPA (bug #198238).
 
   15 Nov 2007; Markus Meier <maekke@gentoo.org> tetex-3.0_p1-r6.ebuild:
   x86 stable, security bug #198238
