@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/mozilla-thunderbird-2.0.0.9.ebuild,v 1.3 2007/11/15 23:46:43 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/mozilla-thunderbird-2.0.0.9.ebuild,v 1.4 2007/11/16 15:32:56 armin76 Exp $
 
 EAPI="prefix"
 
