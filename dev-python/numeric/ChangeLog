@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/numeric
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numeric/ChangeLog,v 1.43 2007/11/16 16:26:43 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numeric/ChangeLog,v 1.44 2007/11/17 15:09:05 drac Exp $
+
+  17 Nov 2007; Samuli Suominen <drac@gentoo.org> numeric-24.2-r6.ebuild:
+  amd64 stable wrt #182392
 
   16 Nov 2007; nixnut <nixnut@gentoo.org> numeric-24.2-r6.ebuild:
   Stable on ppc wrt bug 182392
