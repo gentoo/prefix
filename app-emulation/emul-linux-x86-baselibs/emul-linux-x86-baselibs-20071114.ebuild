@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/emul-linux-x86-baselibs-20071114.ebuild,v 1.1 2007/11/14 06:49:09 kingtaco Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/emul-linux-x86-baselibs-20071114.ebuild,v 1.2 2007/11/16 17:21:36 kingtaco Exp $
 
 EAPI="prefix"
 
@@ -23,5 +23,5 @@ src_unpack() {
 			"${S}/usr/lib32/openldap/" \
 			"${S}/usr/lib32/python2.4/"
 
-	ln -s ../share/terminfo ${S}/usr/lib32/terminfo
+	ln -s ../share/terminfo "${S}/usr/lib32/terminfo"
 }
