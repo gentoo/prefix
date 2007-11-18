@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/atk
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/ChangeLog,v 1.154 2007/11/14 17:57:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/ChangeLog,v 1.155 2007/11/17 13:32:43 nixnut Exp $
+
+  17 Nov 2007; nixnut <nixnut@gentoo.org> atk-1.20.0.ebuild:
+  Stable on ppc wrt bug 198845
 
   14 Nov 2007; Raúl Porcel <armin76@gentoo.org> atk-1.20.0.ebuild:
   sparc stable wrt #198845
