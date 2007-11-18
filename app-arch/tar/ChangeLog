@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/tar
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.120 2007/11/10 15:03:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.121 2007/11/16 19:28:14 drac Exp $
+
+  16 Nov 2007; Samuli Suominen <drac@gentoo.org> tar-1.19.ebuild:
+  amd64 stable
 
   10 Nov 2007; Raúl Porcel <armin76@gentoo.org> tar-1.19.ebuild:
   alpha/ia64/sparc/x86 stable
