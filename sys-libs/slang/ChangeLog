@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/slang
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.63 2007/10/14 07:04:57 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.64 2007/11/16 16:51:49 fmccor Exp $
+
+  16 Nov 2007; Ferris McCormick <fmccor@gentoo.org> slang-2.1.2.ebuild:
+  Add ~sparc for testing.  Why is this still package.masked?
 
   14 Oct 2007; <matsuu@gentoo.org> -files/slang-2.0.6-foreground.patch,
   -files/slang-2.0.6-slsh-libs.patch, -slang-1.4.9-r1.ebuild,
