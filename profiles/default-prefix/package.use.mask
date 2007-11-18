@@ -1,3 +1,7 @@
+# Elias Pipping <pipping@gentoo.org> (18 Nov 2007)
+# draws in tetex as a dependency -- there's only tetex 2, which blocks texlive
+dev-util/darcs doc
+
 # Elias Pipping <pipping@gentoo.org> (15 Nov 2007)
 # pkg_postinst tries to create/delete a user, fails
 dev-libs/cyrus-sasl berkdb gdbm
