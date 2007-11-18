@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/amrwb
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/amrwb/ChangeLog,v 1.21 2007/11/14 17:30:55 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/amrwb/ChangeLog,v 1.22 2007/11/16 17:35:09 armin76 Exp $
+
+  16 Nov 2007; Raúl Porcel <armin76@gentoo.org> amrwb-7.0.0.2.ebuild:
+  alpha/ia64/sparc stable wrt #198788
 
   14 Nov 2007; Jeroen Roovers <jer@gentoo.org> amrwb-7.0.0.2.ebuild:
   Stable for HPPA (bug #198788).
