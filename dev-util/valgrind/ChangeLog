@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/valgrind
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.81 2007/11/06 00:57:44 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.82 2007/11/17 19:53:06 griffon26 Exp $
+
+  17 Nov 2007; Maurice van der Pot <griffon26@gentoo.org>
+  +files/valgrind-3.2.3-glibc-2.7.patch, valgrind-3.2.3-r1.ebuild:
+  Added glibc-2.7 suppression file and build fix as requested in bug #199001 by
+  <nedrandersoff@yahoo.com>. Thanks to Florian Maier <floma@onlinehome.de> for
+  the patch.
 
   06 Nov 2007; Chris Gianelloni <wolf31o2@gentoo.org>
   valgrind-3.2.3-r1.ebuild:

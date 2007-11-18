@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.2.3-r1.ebuild,v 1.2 2007/11/06 00:57:44 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.2.3-r1.ebuild,v 1.3 2007/11/17 19:53:06 griffon26 Exp $
 
 EAPI="prefix"
 
@@ -46,6 +46,7 @@ src_unpack() {
 	fi
 
 	epatch "${FILESDIR}/${P}-glibc-2.6.patch"
+	epatch "${FILESDIR}/${P}-glibc-2.7.patch"
 
 	# Prevent "unhandled instruction bytes: 0x66 0x66 0x66 0x66" (bug #189396)
 	epatch "${FILESDIR}/${P}-unhandled-instr-amd64.patch"
