@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8g.ebuild,v 1.11 2007/11/12 21:01:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8g.ebuild,v 1.12 2007/11/16 14:35:15 cardoe Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ IUSE="bindist emacs gmp kerberos sse2 test zlib"
 
 RDEPEND="gmp? ( dev-libs/gmp )
 	zlib? ( sys-libs/zlib )
-	kerberos? ( virtual/krb5 )"
+	kerberos? ( app-crypt/mit-krb5 )"
 DEPEND="${RDEPEND}
 	sys-apps/diffutils
 	>=dev-lang/perl-5
