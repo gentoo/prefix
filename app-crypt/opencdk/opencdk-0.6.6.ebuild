@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/opencdk/opencdk-0.6.4.ebuild,v 1.1 2007/09/05 20:16:44 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/opencdk/opencdk-0.6.6.ebuild,v 1.1 2007/11/16 18:03:08 alonbl Exp $
 
 EAPI="prefix"
 
