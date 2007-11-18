@@ -22,6 +22,9 @@
 ##   End example
 ##
 
+# Elias Pipping <pipping@gentoo.org> (18 Nov 2007)
+# testing
+net-misc/openvpn
 
 # Fabian Groffen <grobian@gentoo.org> (11 Nov 2007)
 # Has linkage problems:
