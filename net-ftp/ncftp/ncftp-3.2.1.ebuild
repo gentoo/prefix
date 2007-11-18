@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/ncftp/ncftp-3.2.1.ebuild,v 1.5 2007/11/14 04:19:53 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/ncftp/ncftp-3.2.1.ebuild,v 1.6 2007/11/16 18:03:38 nixnut Exp $
 
 EAPI="prefix"
 
