@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/apr
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.97 2007/11/16 00:00:20 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.99 2007/11/16 20:38:53 nixnut Exp $
+
+  16 Nov 2007; nixnut <nixnut@gentoo.org> apr-1.2.11.ebuild:
+  Stable on ppc wrt bug 198866
+
+  16 Nov 2007; Raúl Porcel <armin76@gentoo.org> apr-1.2.11.ebuild:
+  alpha/ia64 stable wrt #198866
 
   15 Nov 2007; Steve Dibb <beandog@gentoo.org> apr-1.2.11.ebuild:
   amd64 stable, bug 198866
