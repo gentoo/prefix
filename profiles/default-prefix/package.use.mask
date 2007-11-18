@@ -1,4 +1,8 @@
 # Elias Pipping <pipping@gentoo.org> (18 Nov 2007)
+# feynmf fails to build documentation
+dev-tex/feynmf doc
+
+# Elias Pipping <pipping@gentoo.org> (18 Nov 2007)
 # draws in tetex as a dependency -- there's only tetex 2, which blocks texlive
 dev-util/darcs doc
 
