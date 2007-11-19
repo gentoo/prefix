@@ -82,7 +82,7 @@ SYSTEXMF = $TEXMFLOCAL;$TEXMFMAIN;$TEXMFDIST;$TEXMFSITE
 % Where generated fonts may be written.  This tree is used when the sources
 % were found in a system tree and either that tree wasn't writable, or the
 % varfonts feature was enabled in MT_FEATURES in mktex.cnf.
-VARTEXFONTS = $SELFAUTOPARENT/var/tmp/texfonts
+VARTEXFONTS = $SELFAUTOPARENT/var/cache/fonts
 
 % Where to look for ls-R files.  There need not be an ls-R in the
 % directories in this path, but if there is one, Kpathsea will use it.

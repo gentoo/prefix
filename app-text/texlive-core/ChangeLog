@@ -1,6 +1,11 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.28 2007/11/11 10:45:20 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.29 2007/11/18 23:22:00 aballier Exp $
+
+  18 Nov 2007; Alexis Ballier <aballier@gentoo.org>
+  files/2007/texmf.d/05searchpaths.cnf:
+  set VARTEXFONTS to the correct value; its overwritten by texmf-update but
+  better safe than sorry if we want to drop this at some point
 
 *texlive-core-2007-r8 (11 Nov 2007)
 
