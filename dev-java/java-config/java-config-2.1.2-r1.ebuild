@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.1.ebuild,v 1.1 2007/10/08 17:27:01 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.2-r1.ebuild,v 1.1 2007/10/14 07:45:00 ali_bush Exp $
 
 EAPI="prefix"
 
@@ -12,24 +12,27 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="2"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
 DEPEND="dev-lang/python"
 RDEPEND="${DEPEND}
 	>=dev-java/java-config-wrapper-0.13"
 
+PYTHON_MODNAME="java_config_2"
+
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}/${PF}.patch"
+	epatch "${FILESDIR}"/${PN}-2.1.2-prefix.patch
 
-	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify \
 		config/20java-config setup.py \
 		src/{depend-java-query,gjl,java-config-2,launcher.bash,run-java-tool} \
 		src/eselect/java-{nsplugin,vm}.eselect \
 		src/profile.d/java-config-2.{,c}sh \
-		src/java_config/{EnvironmentManager.py,VM.py,VersionManager.py}
+		src/java_config_2/{EnvironmentManager.py,VM.py,VersionManager.py}
 }
 
 src_install() {
@@ -41,11 +44,12 @@ src_install() {
 }
 
 pkg_postrm() {
-	python_mod_cleanup /usr/share/java-config-2/pym/java_config
+	distutils_python_version
+	distutils_pkg_postrm
 }
 
 pkg_postinst() {
-	python_mod_optimize /usr/share/java-config-2/pym/java_config
+	distutils_pkg_postinst
 
 	elog "The way Java is handled on Gentoo has been recently updated."
 	elog "If you have not done so already, you should follow the"

@@ -1,6 +1,25 @@
 # ChangeLog for dev-java/java-config
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.172 2007/08/25 22:38:56 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.175 2007/10/14 07:45:00 ali_bush Exp $
+
+*java-config-2.1.2-r1 (14 Oct 2007)
+
+  14 Oct 2007; <alistair@gentoo.org> +files/java-config-2.1.2-r1.patch,
+  +java-config-2.1.2-r1.ebuild:
+  Fixed SyntaxError that occurs with python2.4 which is currently stable.
+  Issue doesn't appear in 2.5.
+
+*java-config-2.1.2 (13 Oct 2007)
+
+  13 Oct 2007; <alistair@gentoo.org> +java-config-2.1.2.ebuild:
+  Version bump java-config for fix #195382 and various other improvements.
+
+*java-config-2.1.1 (08 Oct 2007)
+
+  08 Oct 2007; <alistair@gentoo.org> +java-config-2.1.1.ebuild:
+  New Version on java-config, with support for virtuals. Thank you for
+  everyone who has had feedback/input into this. especially Elvanor (
+  elvanor@gmail.com ).
 
   25 Aug 2007; Vlastimil Babka <caster@gentoo.org>
   -files/java-config-2.profiled.csh, -files/60-java,
