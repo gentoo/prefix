@@ -40,15 +40,15 @@ www-servers/apache
 # This package isn't prefix ready, work in progress
 sys-apps/slocate
 
-# Elias Pipping <pipping@mi.fu-berlin.de> (09 Oct 2007)
+# Elias Pipping <pipping@gentoo.org> (09 Oct 2007)
 # darwin-miscutils are only available on darwin
 sys-apps/darwin-miscutils
 
-# Elias Pipping <pipping@mi.fu-berlin.de> (09 Oct 2007)
+# Elias Pipping <pipping@gentoo.org> (09 Oct 2007)
 # bsd-man-pages are only available on darwin, bsd
 sys-apps/bsd-man-pages
 
-# Elias Pipping <pipping@mi.fu-berlin.de> (09 Oct 2007)
+# Elias Pipping <pipping@gentoo.org> (09 Oct 2007)
 # texinfo 4.11 blocks tetex-2. there is no other tetex in prefix, though
 ~sys-apps/texinfo-4.11
 
@@ -58,18 +58,14 @@ sys-apps/bsd-man-pages
 =sys-devel/gcc-4.2.0*
 =sys-devel/gcc-4.2.1*
 
-# Elias Pipping <pipping@mi.fu-berlin.de>
+# Elias Pipping <pipping@gentoo.org>
 # work in progress (in prefix)
 app-emacs/jde
 dev-java/javatoolkit
-dev-java/java-config
-dev-java/java-config-wrapper
 dev-java/jikes
 dev-java/kaffe
-virtual/jdk
-virtual/jre
 
-# Elias Pipping <pipping@mi.fu-berlin.de> (23 Sep 2007)
+# Elias Pipping <pipping@gentoo.org> (23 Sep 2007)
 # java and ant are missing from the tree, ebuild itself is fine
 app-vim/ant
 
@@ -77,7 +73,7 @@ app-vim/ant
 # Doesn't play nice with our binutils-config, needs some sorting out
 =sys-devel/gcc-config-1.4.0*
 
-# Elias Pipping <pipping@mi.fu-berlin.de> (18 Aug 2007)
+# Elias Pipping <pipping@gentoo.org> (18 Aug 2007)
 # does not compile without USE=nls; --color is broken on single files
 # see bug #189311 for details
 =sys-apps/grep-2.5.3
