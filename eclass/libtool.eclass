@@ -181,6 +181,9 @@ elibtoolize() {
 	[[ ${CHOST} == *"-darwin"* ]] && \
 		elt_patches="${elt_patches} darwin-ltconf darwin-ltmain"
 
+	[[ ${CHOST} == *"-hpux"* ]] && \
+		elt_patches="${elt_patches} hpux-conf hpux-ltmain"
+
 	for x in ${my_dirlist} ; do
 		local tmp=$(echo "${x}" | sed -e "s|${WORKDIR}||")
 		export ELT_APPLIED_PATCHES=
@@ -282,6 +285,16 @@ elibtoolize() {
 							ret=0
 						fi
 					done
+					;;
+				"hpux-conf")
+					if [[ -e ${x}/configure ]] ; then
+						ELT_walk_patches "${x}/configure" "${y}"
+						ret=$?
+					# ltmain.sh and co might be in a subdirectory ...
+					elif [[ ! -e ${x}/configure && -e ${x}/../configure ]] ; then
+						ELT_walk_patches "${x}/../configure" "${y}"
+						ret=$?
+					fi
 					;;
 				"install-sh")
 					ELT_walk_patches "${x}/install-sh" "${y}"

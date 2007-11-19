@@ -1,0 +1,36 @@
+http://lists.gnu.org/archive/html/libtool/2006-01/msg00012.html
+
+--- configure.orig	2007-11-19 16:37:26.399592000 +0100
++++ configure	2007-11-19 17:06:10.629109000 +0100
+@@ -10078,7 +10078,6 @@
+ 
+ 	case $host_cpu in
+ 	hppa*64*|ia64*)
+-	  hardcode_libdir_flag_spec_ld='+b $libdir'
+ 	  hardcode_direct=no
+ 	  hardcode_shlibpath_var=no
+ 	  ;;
+@@ -13231,7 +13230,6 @@
+ 
+       case $host_cpu in
+       hppa*64*|ia64*)
+-	hardcode_libdir_flag_spec_ld_CXX='+b $libdir'
+         ;;
+       *)
+ 	export_dynamic_flag_spec_CXX='${wl}-E'
+@@ -16834,7 +16832,6 @@
+ 
+ 	case $host_cpu in
+ 	hppa*64*|ia64*)
+-	  hardcode_libdir_flag_spec_ld_F77='+b $libdir'
+ 	  hardcode_direct_F77=no
+ 	  hardcode_shlibpath_var_F77=no
+ 	  ;;
+@@ -19492,7 +19489,6 @@
+ 
+ 	case $host_cpu in
+ 	hppa*64*|ia64*)
+-	  hardcode_libdir_flag_spec_ld_GCJ='+b $libdir'
+ 	  hardcode_direct_GCJ=no
+ 	  hardcode_shlibpath_var_GCJ=no
+ 	  ;;
