@@ -176,6 +176,8 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 					echo ppc-aix;;
 		mips-sgi-irix*)
 					echo mips-irix;;
+		ia64-hp-hpux*)
+					echo ia64-hpux;;
 
 		alpha*)		echo alpha;;
 		arm*)		echo arm;;
@@ -417,7 +419,7 @@ gen_usr_ldscript() {
 			ln -snf "../../${libdir}/${lib}" "${lib}"
 			popd > /dev/null
 			;;
-		*-aix*|*-irix*)
+		*-aix*|*-irix*|*-hpux*)
 			# we don't have GNU binutils on these platforms, so we symlink
 			# instead, which seems to work fine.  Keep it relative, otherwise
 			# we break some QA checks in Portage
