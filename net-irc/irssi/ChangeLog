@@ -1,6 +1,9 @@
 # ChangeLog for net-irc/irssi
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/ChangeLog,v 1.126 2007/11/07 19:08:33 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/ChangeLog,v 1.127 2007/11/18 11:06:37 angelos Exp $
+
+  18 Nov 2007; Christoph Mende <angelos@gentoo.org> irssi-0.8.12.ebuild:
+  Stable on amd64
 
   07 Nov 2007; Sven Wegener <swegener@gentoo.org>
   -files/irssi-0.8.10-dcc-segv.patch, -files/irssi-0.8.10-line-split.patch,
