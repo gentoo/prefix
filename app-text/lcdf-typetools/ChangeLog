@@ -1,6 +1,10 @@
 # ChangeLog for app-text/lcdf-typetools
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/lcdf-typetools/ChangeLog,v 1.7 2007/10/25 16:45:05 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/lcdf-typetools/ChangeLog,v 1.8 2007/11/18 09:57:09 aballier Exp $
+
+  18 Nov 2007; Alexis Ballier <aballier@gentoo.org>
+  lcdf-typetools-2.66.ebuild:
+  rename tetex useflag to kpathsea which makes more sense
 
   25 Oct 2007; Raúl Porcel <armin76@gentoo.org> lcdf-typetools-2.66.ebuild:
   Add ~alpha/~ia64 wrt #195815
