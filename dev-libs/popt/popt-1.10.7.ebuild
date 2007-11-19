@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils libtool
 
 DESCRIPTION="Parse Options - Command line parser"
 HOMEPAGE="http://www.rpm.org/"
@@ -12,7 +12,7 @@ SRC_URI="ftp://jbj.org/pub/rpm-4.4.x/${P}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="nls"
 
 RDEPEND="nls? ( virtual/libintl )"
@@ -24,6 +24,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.10.4-regression.patch
 	epatch "${FILESDIR}"/${PN}-1.10.4-lib64.patch
 	epatch "${FILESDIR}"/${PN}-1.10.7-scrub-lame-gettext.patch
+	elibtoolize # for ia64-hpux
 }
 
 src_compile() {
