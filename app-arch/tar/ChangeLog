@@ -1,6 +1,13 @@
 # ChangeLog for app-arch/tar
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.121 2007/11/16 19:28:14 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.123 2007/11/19 00:54:45 kumba Exp $
+
+  19 Nov 2007; Joshua Kinard <kumba@gentoo.org> tar-1.19.ebuild:
+  Stable on mips.
+
+  18 Nov 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/tar-1.19-gnu-inline.patch, tar-1.19.ebuild:
+  Fixes from upstream for changes in "extern inline" #198817 by Ryan Hill.
 
   16 Nov 2007; Samuli Suominen <drac@gentoo.org> tar-1.19.ebuild:
   amd64 stable

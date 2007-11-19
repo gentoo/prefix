@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.19.ebuild,v 1.4 2007/11/16 19:28:14 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.19.ebuild,v 1.7 2007/11/19 00:54:45 kumba Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ SRC_URI="http://ftp.gnu.org/gnu/tar/${P}.tar.bz2
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
-IUSE="nls static userland_GNU"
+IUSE="nls static"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
@@ -24,6 +24,7 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}"/${P}-gnu-inline.patch #198817
 
 	epatch "${FILESDIR}"/tar-1.16-darwin.patch
 	epatch "${FILESDIR}"/${P}-hpux.patch
@@ -42,8 +43,6 @@ src_unpack() {
 
 src_compile() {
 	local myconf
-	# hack around ld: duplicate symbol _argp_fmtstream_putc problem
-	[[ ${CHOST} == *-darwin* ]] && append-flags -U__OPTIMIZE__
 	use static && append-ldflags -static
 	use userland_GNU || myconf="--program-prefix=g"
 	# Work around bug in sandbox #67051
