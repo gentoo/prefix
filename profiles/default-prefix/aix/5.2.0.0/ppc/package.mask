@@ -1,0 +1,5 @@
+
+# Fabian Groffen <grobian@gentoo.org> (29 Nov 2007)
+# Fails to configure:
+# configure: error: Shared libraries are not supported in this version
+~sys-libs/ncurses-5.6
