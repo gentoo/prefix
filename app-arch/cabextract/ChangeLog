@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/cabextract
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/ChangeLog,v 1.45 2007/07/10 12:54:54 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/ChangeLog,v 1.46 2007/11/19 01:24:47 kumba Exp $
+
+  19 Nov 2007; Joshua Kinard <kumba@gentoo.org> cabextract-1.2.ebuild:
+  Stable on mips.
 
   10 Jul 2007; Christoph Mende <angelos@gentoo.org> cabextract-1.2.ebuild:
   Stable on amd64
