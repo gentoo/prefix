@@ -38,8 +38,8 @@ src_compile() {
 	econf ${myconf} \
 		$(use_enable cxx cpp) \
 		--enable-static \
-		--htmldir=/usr/share/doc/${PF}/html \
-		--docdir=/usr/share/doc/${PF} \
+		--htmldir="${EPREFIX}"/usr/share/doc/${PF}/html \
+		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		|| die "econf failed"
 	emake all || die "emake failed"
 }
