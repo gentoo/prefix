@@ -25,6 +25,8 @@ src_unpack() {
 }
 
 src_compile() {
+	# hack around ld: duplicate symbol _argp_fmtstream_putc problem
+	[[ ${CHOST} == *-darwin* ]] && append-flags -U__OPTIMIZE__
 	econf \
 		$(use_enable nls) \
 		--bindir="${EPREFIX}"/bin \
