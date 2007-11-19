@@ -1,6 +1,19 @@
 # ChangeLog for dev-lang/perl
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.258 2007/11/14 01:11:18 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.261 2007/11/18 17:46:35 ian Exp $
+
+  18 Nov 2007; Christian Hartmann <ian@gentoo.org>
+  +files/perl-5.8.8-lib64.patch:
+  Readding perl-5.8.8-lib64.patch; thanks angelos
+
+  18 Nov 2007; Christian Hartmann <ian@gentoo.org> perl-5.8.8-r2.ebuild,
+  perl-5.8.8-r3.ebuild:
+  Reverting solars changes; bug #199518
+
+  18 Nov 2007; <solar@gentoo.org> -files/perl-5.8.8-lib64.patch,
+  +files/perl-5.8.8-libbits.patch, perl-5.8.8-r2.ebuild,
+  perl-5.8.8-r3.ebuild:
+  - fixed the lib64 patch that was breaking on amd64 32ul.
 
   14 Nov 2007; Chris Gianelloni <wolf31o2@gentoo.org> perl-5.8.8-r3.ebuild:
   Stable on amd64 wrt bug #198196.
