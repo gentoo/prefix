@@ -1,6 +1,12 @@
 # ChangeLog for app-emulation/emul-linux-x86-gtklibs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-gtklibs/ChangeLog,v 1.49 2007/11/15 07:21:38 kingtaco Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-gtklibs/ChangeLog,v 1.50 2007/11/18 05:56:18 kingtaco Exp $
+
+*emul-linux-x86-gtklibs-20071118 (18 Nov 2007)
+
+  18 Nov 2007; Mike Doty <kingtaco@gentoo.org>
+  +emul-linux-x86-gtklibs-20071118.ebuild:
+  fixed pango/gtk+ conf file seperation, bug 199201
 
   15 Nov 2007; Mike Doty <kingtaco@gentoo.org>
   emul-linux-x86-gtklibs-20071114.ebuild:
