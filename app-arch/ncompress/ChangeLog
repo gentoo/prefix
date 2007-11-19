@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/ncompress
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/ncompress/ChangeLog,v 1.38 2007/11/13 15:48:44 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/ncompress/ChangeLog,v 1.39 2007/11/19 01:19:59 kumba Exp $
+
+  19 Nov 2007; Joshua Kinard <kumba@gentoo.org> ncompress-4.2.4.2.ebuild:
+  Stable on mips, per #198597.
 
   13 Nov 2007; Jeroen Roovers <jer@gentoo.org> ncompress-4.2.4.2.ebuild:
   Stable for HPPA (bug #198597).
