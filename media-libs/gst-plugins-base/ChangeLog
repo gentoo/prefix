@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/gst-plugins-base
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/ChangeLog,v 1.65 2007/11/17 12:04:36 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/ChangeLog,v 1.66 2007/11/18 19:00:20 drac Exp $
+
+  18 Nov 2007; Samuli Suominen <drac@gentoo.org>
+  gst-plugins-base-0.10.15.ebuild:
+  Restore flag filtering, it still breaks.
 
 *gst-plugins-base-0.10.15 (17 Nov 2007)
 
