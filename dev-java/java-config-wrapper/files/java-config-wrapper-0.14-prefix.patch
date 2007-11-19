@@ -18,7 +18,7 @@
  			return 0;
  		fi
  	done
-@@ -203,17 +203,13 @@
+@@ -203,17 +203,18 @@
  	
  }
  
@@ -26,6 +26,11 @@
 -	ewarn "You aren't root, so we'll just show what packages we'd emerge"
 -fi
 -
++# disable this for the time being in prefix
++#if [[ ${UID} != 0 ]]; then
++#	ewarn "You aren't root, so we'll just show what packages we'd emerge"
++#fi
++
 -QFILE="${ROOT}/usr/bin/qfile"
 +QFILE="${EROOT}/usr/bin/qfile"
  if [[ ! -x ${QFILE} ]]; then
@@ -69,7 +74,7 @@
  eend 0
  
  ebegin "Checking for > 1.4 bytecode in system jars"
-@@ -253,19 +247,17 @@
+@@ -253,19 +247,18 @@
  eend 0
  
  if [[ -n ${broken_packages} || -n ${broken_ant_packages} ]]; then
@@ -85,6 +90,7 @@
 -		fi
 -		eend $result
 -		exit $result
++   # warning: UID check removed for prefix
 +	ebegin "Attempting to fix broken packages"
 +	fix_packages ${broken_ant_packages} ${broken_packages}
 +	result=$?
