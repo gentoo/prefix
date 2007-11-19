@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.34.1.ebuild,v 1.5 2007/10/06 20:43:03 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.34.1.ebuild,v 1.6 2007/11/18 12:15:12 dev-zero Exp $
 
 EAPI="prefix"
 
@@ -125,7 +125,7 @@ src_compile() {
 
 	for linkoption in ${LINK_OPTIONS} ; do
 		einfo "Building ${linkoption} libraries"
-		bjam ${NUMJOBS} \
+		bjam ${NUMJOBS} -q \
 			${OPTIONS} \
 			threading=single,multi \
 			runtime-link=${linkoption} link=${linkoption} \
@@ -143,7 +143,7 @@ src_compile() {
 		cd "${S}/tools/"
 		# We have to set optimization to -O0 or -O1 to work around a gcc-bug
 		# optimization=off adds -O0 to the compiler call and overwrites our settings.
-		bjam ${NUMJOBS} \
+		bjam ${NUMJOBS} -q \
 			release debug-symbols=none \
 			optimization=off \
 			--prefix="${ED}/usr" \
@@ -154,7 +154,7 @@ src_compile() {
 
 	if has test ${FEATURES} ; then
 		cd "${S}/tools/regression/build"
-		bjam \
+		bjam -q \
 			${OPTIONS} \
 			--prefix="${ED}/usr" \
 			--layout=system \
@@ -171,7 +171,7 @@ src_install () {
 	export BOOST_BUILD_PATH=${EPREFIX}/usr/share/boost-build
 
 	for linkoption in ${LINK_OPTIONS} ; do
-		bjam \
+		bjam -q \
 			${OPTIONS} \
 			threading=single,multi \
 			runtime-link=${linkoption} link=${linkoption} \
@@ -186,8 +186,13 @@ src_install () {
 
 	if use doc ; then
 		dohtml -A pdf,txt \
-			*.htm *.gif *.css \
+			*.htm *.png *.css \
 			-r doc libs more people wiki
+
+		insinto /usr/share/doc/${PF}/html
+		doins LICENSE_1_0.txt
+
+		dosym /usr/include/boost /usr/share/doc/${PF}/html/boost
 	fi
 
 	cd "${ED}/usr/$(get_libdir)"

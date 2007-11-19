@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/boost
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.122 2007/10/06 20:43:03 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.123 2007/11/18 12:15:12 dev-zero Exp $
+
+  18 Nov 2007; Tiziano Müller <dev-zero@gentoo.org> boost-1.34.1.ebuild:
+  Fixed broken links in documentation (bug #194789) and added '-q' to the bjam
+  call to make boost-build fail on first error (bug #197465)
 
   06 Oct 2007; Fabian Groffen <grobian@gentoo.org> boost-1.34.1.ebuild:
   Revert my changes made to this ebuild per a pending conflict with its
