@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.290 2007/10/27 11:19:03 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.291 2007/11/18 22:43:32 hawking Exp $
+
+*python-2.5.1-r4 (18 Nov 2007)
+*python-2.4.4-r7 (18 Nov 2007)
+
+  18 Nov 2007; Ali Polatel <hawking@gentoo.org> +python-2.4.4-r7.ebuild,
+  +python-2.5.1-r4.ebuild:
+  revbump(s). don't install windows executables, bug 198021. updated patchset
+  to fix implicit dependency on openssl, bug 198398. fix quoting.
 
   27 Oct 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   python-2.3.6-r3.ebuild, python-2.4.4-r6.ebuild:
