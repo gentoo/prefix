@@ -1,0 +1,20 @@
+This patch is taken from r1441 of rubygems's SVN repository to fix
+rewriting of /usr/bin/env shebang patch with additional arguments to
+the ruby interpreter. Without the patch the regexp would not match,
+leaving the /usr/bin/env in place. This causes problems on platforms
+that pass the remainder of the shebang line as a single argument, such
+as Linux. See bug #199378 for all the details.
+
+This patch should no longer be needed with rubygems 0.9.5.
+
+--- lib/rubygems/installer.rb.~1~	2007-05-10 21:01:45.000000000 +0200
++++ lib/rubygems/installer.rb	2007-11-18 14:18:31.000000000 +0100
+@@ -254,7 +254,7 @@
+         path_to_ruby = File.join(Config::CONFIG['bindir'], Config::CONFIG['ruby_install_name'])
+         if first_line =~ /^#!/
+           # Preserve extra words on shebang line, like "-w".  Thanks RPA.
+-          shebang = first_line.sub(/\A\#!\s*\S*ruby\S*/, "#!" + path_to_ruby)
++          shebang = first_line.sub(/\A\#!.*?ruby\S*/, "#!" + path_to_ruby)
+         else
+           # Create a plain shebang line.
+           shebang = "#!" + path_to_ruby

@@ -1,6 +1,12 @@
 # ChangeLog for dev-ruby/rubygems
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.71 2007/11/04 07:48:01 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.72 2007/11/18 13:40:21 graaff Exp $
+
+*rubygems-0.9.4-r2 (18 Nov 2007)
+
+  18 Nov 2007; Hans de Graaff <graaff@gentoo.org>
+  +files/rubygems-0.9.4-shebang-env-fix.patch, +rubygems-0.9.4-r2.ebuild:
+  Backport a patch from rubygems SVN to fix #199378.
 
   04 Nov 2007; Hans de Graaff <graaff@gentoo.org>
   -files/rubygems-0.9.0-build-c-extensions.patch,
