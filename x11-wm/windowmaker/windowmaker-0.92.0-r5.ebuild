@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/windowmaker-0.92.0-r5.ebuild,v 1.1 2007/11/13 10:22:31 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/windowmaker-0.92.0-r5.ebuild,v 1.2 2007/11/18 15:22:27 truedfx Exp $
 
 EAPI="prefix"
 
@@ -73,6 +73,9 @@ src_unpack() {
 	epatch "${psd}"/WindowMaker-0.91.0-sga-swpanel-customization.patch
 	epatch "${psd}"/WindowMaker-0.92.0-alt-newpo.patch
 
+	# Bug 199520
+	epatch "${FILESDIR}"/${PV}/${P}-as-needed.patch
+
 	# Add UK localisation
 	cp "${psd}"/WindowMaker-uk.po po/uk.po
 	cp "${psd}"/WPrefs-uk.po WPrefs.app/po/uk.po
@@ -89,16 +92,16 @@ src_unpack() {
 	if use gnustep; then
 		egnustep_env
 	fi
-	for file in ${S}/WindowMaker/*menu*; do
-		if [ -r $file ]; then
+	for file in "${S}"/WindowMaker/*menu*; do
+		if [ -r "$file" ]; then
 			if use gnustep ; then
-				sed -i "s:/usr/local/GNUstep/Applications:${GNUSTEP_SYSTEM_APPS}:g" $file
+				sed -i "s:/usr/local/GNUstep/Applications:${GNUSTEP_SYSTEM_APPS}:g" "$file"
 			else
-				sed -i "s:/usr/local/GNUstep/Applications/WPrefs.app:${EPREFIX}/usr/bin/:g;" $file
+				sed -i "s:/usr/local/GNUstep/Applications/WPrefs.app:${EPREFIX}/usr/bin/:g;" "$file"
 			fi
 
-			sed -i 's:/usr/local/share/WindowMaker:${EPREFIX}/usr/share/WindowMaker:g;' $file
-			sed -i 's:/opt/share/WindowMaker:${EPREFIX}/usr/share/WindowMaker:g;' $file
+			sed -i 's:/usr/local/share/WindowMaker:${EPREFIX}/usr/share/WindowMaker:g;' "$file"
+			sed -i 's:/opt/share/WindowMaker:${EPREFIX}/usr/share/WindowMaker:g;' "$file"
 		fi;
 	done;
 
@@ -171,6 +174,6 @@ src_install() {
 	doexe wmaker
 
 	insinto /etc/X11/dm/Sessions
-	doins ${FILESDIR}/wmaker.desktop
+	doins "${FILESDIR}"/wmaker.desktop
 	make_desktop_entry /usr/bin/wmaker
 }
