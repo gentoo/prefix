@@ -48,7 +48,7 @@ DEPEND="doc? ( sys-apps/texinfo media-gfx/graphviz )"
 PROVIDE="virtual/commonlisp"
 
 pkg_setup() {
-	if built_with_use sys-devel/gcc hardened && gcc-config -c | grep -qv vanilla; then
+	if has_version sys-devel/gcc && built_with_use sys-devel/gcc hardened && gcc-config -c | grep -qv vanilla; then
 		eerror "So-called \"hardened\" compiler features are incompatible with SBCL. You"
 		eerror "must use gcc-config to select a profile with non-hardened features"
 		eerror "(the \"vanilla\" profile) and \"source /etc/profile\" before continuing."
