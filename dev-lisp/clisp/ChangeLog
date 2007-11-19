@@ -1,6 +1,14 @@
 # ChangeLog for dev-lisp/clisp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.66 2007/10/22 13:32:17 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.68 2007/11/18 21:48:00 hkbst Exp $
+
+  18 Nov 2007; Marijn Schouten <hkBst@gentoo.org> clisp-2.43.ebuild:
+  remove version fix
+
+*clisp-2.43 (18 Nov 2007)
+
+  18 Nov 2007; Marijn Schouten <hkBst@gentoo.org> +clisp-2.43.ebuild:
+  bump
 
 *clisp-2.42-r1 (22 Oct 2007)
 
