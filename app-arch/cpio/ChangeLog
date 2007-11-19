@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/cpio
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.88 2007/11/06 18:41:26 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.89 2007/11/18 02:43:01 vapier Exp $
+
+  18 Nov 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/cpio-2.9-gnu-inline.patch, cpio-2.9-r1.ebuild:
+  Fixes from upstream for changes in "extern inline" #198817 by Ryan Hill.
 
   06 Nov 2007; Samuli Suominen <drac@gentoo.org> cpio-2.9-r1.ebuild:
   amd64 stable wrt #196978

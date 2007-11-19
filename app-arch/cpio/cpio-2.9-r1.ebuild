@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/cpio-2.9-r1.ebuild,v 1.7 2007/11/06 18:41:26 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/cpio-2.9-r1.ebuild,v 1.9 2007/11/18 02:43:01 vapier Exp $
 
 EAPI="prefix"
 
@@ -21,11 +21,10 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-CVE-2007-4476.patch #196978
+	epatch "${FILESDIR}"/${P}-gnu-inline.patch #198817
 }
 
 src_compile() {
-	# workaround ld: duplicate symbol _argp_fmtstream_putc
-	[[ ${CHOST} == *-darwin* ]] && append-flags -U__OPTIMIZE__
 	econf \
 		$(use_enable nls) \
 		--bindir="${EPREFIX}"/bin \
