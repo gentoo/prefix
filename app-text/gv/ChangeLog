@@ -1,6 +1,11 @@
 # ChangeLog for app-text/gv
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gv/ChangeLog,v 1.74 2007/10/18 13:21:14 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gv/ChangeLog,v 1.75 2007/11/18 20:45:11 genstef Exp $
+
+  18 Nov 2007; Stefan Schweizer <genstef@gentoo.org>
+  -files/gv-3.6.1-fixedmedia.patch, -files/gv-30_config.patch,
+  -files/gv-update.patch, -gv-3.6.2-r1.ebuild:
+  old
 
   18 Oct 2007; Christoph Mende <angelos@gentoo.org> gv-3.6.3.ebuild:
   Stable on amd64 wrt bug #187109
