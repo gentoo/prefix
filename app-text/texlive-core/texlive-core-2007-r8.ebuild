@@ -96,6 +96,9 @@ src_unpack() {
 # security bug #196735
 	epatch "${FILESDIR}/${PV}/xpdf-3.02pl2.patch"
 
+# fix for path length problem, bug #199590
+	epatch "${FILESDIR}/"${PV}/${P}-style_filename_length.patch
+
 # Mac OS X has some ObjC compilation, make it use our CFLAGS
 	epatch "${FILESDIR}"/${PV}/${P}-objcflags.patch
 

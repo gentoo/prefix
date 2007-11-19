@@ -1,0 +1,11 @@
+--- texk/makeindexk/mkind.c
++++ texk/makeindexk/mkind.c
+@@ -53,7 +53,7 @@
+ FILE   *ilg_fp;
+ 
+ char   *pgm_fn;
+-char    sty_fn[LINE_MAX];
++char    sty_fn[STRING_MAX];
+ char   *idx_fn;
+ char    ind[STRING_MAX];
+ char   *ind_fn;
