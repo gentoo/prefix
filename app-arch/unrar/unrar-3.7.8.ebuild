@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/unrar-3.7.8.ebuild,v 1.4 2007/11/06 21:31:34 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/unrar-3.7.8.ebuild,v 1.5 2007/11/19 01:01:29 kumba Exp $
 
 EAPI="prefix"
 
