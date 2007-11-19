@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ladspa-sdk-1.12-r2.ebuild,v 1.19 2007/11/18 15:45:47 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ladspa-sdk-1.13.ebuild,v 1.1 2007/11/18 15:39:54 aballier Exp $
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils toolchain-funcs
 
 MY_PN=${PN/-/_}
 MY_P=${MY_PN}_${PV}
@@ -18,48 +18,37 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-fbsd"
 IUSE=""
 
-RDEPEND="virtual/libc"
-DEPEND="${RDEPEND}
-	>=sys-apps/sed-4"
+RDEPEND=""
+DEPEND=">=sys-apps/sed-4"
 
-S=${WORKDIR}/${MY_PN}/src
+S="${WORKDIR}/${MY_PN}/src"
 
 src_unpack() {
 	unpack ${A}
-	epatch "${FILESDIR}/${P}-fbsd.patch"
-	epatch "${FILESDIR}/${P}-darwin.patch"
-	sed -i \
-		-e "/^CFLAGS/ s:-O3:${CFLAGS}:" \
+	epatch "${FILESDIR}/${PN}-1.12-fbsd.patch"
+	epatch "${FILESDIR}/${PN}-1.12-darwin.patch"
+	sed -i -e "/^CFLAGS/ s:-O3:${CFLAGS}:" \
 		"${S}/makefile" || die "sed makefile failed (CFLAGS)"
-	sed -i \
-		-e 's:-mkdirhier:mkdir\ -p:g' \
+	sed -i -e "s/^CXXFLAGS*/CXXFLAGS = ${CXXFLAGS} \$(INCLUDES) -Wall -fPIC\n#/" \
+		 "${S}/makefile" || die "sed makefile failed (CXXFLAGS)"
+	sed -i -e 's:-mkdirhier:mkdir\ -p:g' \
 		"${S}/makefile" || die "sed makefile failed (mkdirhier)"
-	epatch "${FILESDIR}/${P}-test.patch"
-	epatch "${FILESDIR}/${P}-gcc4.patch"
+	sed -i -e 's:-sndfile-play*:@echo Disabled \0:' \
+		"${S}/makefile" || die "sed makefile failed (sound playing tests)"
 }
 
 src_compile() {
-	# It sets CXXFLAGS to CFLAGS, can be wrong..
-	# Just set CXXFLAGS to what they should be
-	emake -j1 targets CXXFLAGS="$CXXFLAGS -I. -fPIC" || die
-}
-
-src_test() {
-	# needed for sox to allow playback of the test sounds
-	addwrite /dev/dsp
-
-	emake test || die
+	emake targets CC=$(tc-getCC) CPP=$(tc-getCXX) || die
 }
 
 src_install() {
-	make \
+	emake \
 		INSTALL_PLUGINS_DIR="${ED}/usr/$(get_libdir)/ladspa" \
 		INSTALL_INCLUDE_DIR="${ED}/usr/include" \
-		INSTALL_BINARY_DIR="${ED}/usr/bin" \
+		INSTALL_BINARY_DIR=$"${ED}/usr/bin" \
 		install || die "make install failed"
 
-	cd ../doc && \
-		dohtml *.html || die "dohtml failed"
+	dohtml ../doc/*.html || die "dohtml failed"
 
 	# Needed for apps like rezound
 	dodir /etc/env.d
