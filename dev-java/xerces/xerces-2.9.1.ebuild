@@ -19,7 +19,7 @@ SRC_URI="mirror://apache/${PN}/j/${DIST_PN}-src.${PV}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="2"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos"
 IUSE=""
 
 # ships with external-1.3.04, need slot dep with lower limit
