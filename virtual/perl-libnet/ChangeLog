@@ -1,6 +1,9 @@
 # ChangeLog for virtual/perl-libnet
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-libnet/ChangeLog,v 1.13 2007/11/10 11:39:36 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-libnet/ChangeLog,v 1.14 2007/11/19 04:32:38 kumba Exp $
+
+  19 Nov 2007; Joshua Kinard <kumba@gentoo.org> perl-libnet-1.21.ebuild:
+  Stable on mips.
 
   10 Nov 2007; Samuli Suominen <drac@gentoo.org> perl-libnet-1.21.ebuild:
   amd64 stable
