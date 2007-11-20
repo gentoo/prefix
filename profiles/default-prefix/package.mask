@@ -61,7 +61,6 @@ sys-apps/bsd-man-pages
 # Elias Pipping <pipping@gentoo.org>
 # work in progress (in prefix)
 app-emacs/jde
-dev-java/javatoolkit
 dev-java/jikes
 dev-java/kaffe
 
