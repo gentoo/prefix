@@ -11,7 +11,7 @@ HOMEPAGE="http://jakarta.apache.org/bcel/"
 SRC_URI="mirror://apache/jakarta/${PN}/source/${P}-src.tar.gz"
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos"
 IUSE="doc source"
 #COMMON_DEP="=dev-java/jakarta-regexp-1.3*"
 RDEPEND=">=virtual/jre-1.4
