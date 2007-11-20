@@ -1,6 +1,9 @@
 # ChangeLog for virtual/perl-PodParser
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-PodParser/ChangeLog,v 1.26 2007/08/02 15:23:44 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-PodParser/ChangeLog,v 1.27 2007/11/19 03:29:03 kumba Exp $
+
+  19 Nov 2007; Joshua Kinard <kumba@gentoo.org> ChangeLog:
+  Stable on mips.
 
   02 Aug 2007; Roy Marples <uberlord@gentoo.org> perl-PodParser-1.35.ebuild:
   Keyworded ~x86-fbsd
