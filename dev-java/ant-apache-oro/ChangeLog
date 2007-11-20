@@ -1,0 +1,41 @@
+# ChangeLog for dev-java/ant-apache-oro
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-apache-oro/ChangeLog,v 1.9 2007/05/12 17:57:26 wltjr Exp $
+
+  12 May 2007; William L. Thomson Jr. <wltjr@gentoo.org>
+  ant-apache-oro-1.7.0.ebuild:
+  Stable on amd64, bug #176856
+
+  06 May 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  ant-apache-oro-1.7.0.ebuild:
+  ppc stable
+
+  05 May 2007; Andrej Kacian <ticho@gentoo.org> ant-apache-oro-1.7.0.ebuild:
+  Stable on x86, bug #176856.
+
+  03 May 2007; Markus Rothe <corsair@gentoo.org>
+  ant-apache-oro-1.7.0.ebuild:
+  Stable on ppc64; bug #176856
+
+  27 Jan 2007; Vlastimil Babka <caster@gentoo.org>
+  ant-apache-oro-1.7.0.ebuild:
+  Add ~ia64 keyword, bug #159820.
+
+  26 Jan 2007; Krzysiek Pawlik <nelchael@gentoo.org>
+  ant-apache-oro-1.7.0.ebuild:
+  Added ~ppc.
+
+  25 Jan 2007; William L. Thomson Jr. <wltjr@gentoo.org>
+  ant-apache-oro-1.7.0.ebuild:
+  Added ~amd64 keyword
+
+  22 Jan 2007; Markus Rothe <corsair@gentoo.org>
+  ant-apache-oro-1.7.0.ebuild:
+  Added ~ppc64; bug #159820
+
+*ant-apache-oro-1.7.0 (21 Jan 2007)
+
+  21 Jan 2007; Vlastimil Babka <caster@gentoo.org> +metadata.xml,
+  +ant-apache-oro-1.7.0.ebuild:
+  New package, part of split-ant-1.7.0, bug #159820.
+
