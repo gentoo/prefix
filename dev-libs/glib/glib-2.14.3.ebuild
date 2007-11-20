@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.14.3.ebuild,v 1.7 2007/11/17 13:29:09 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.14.3.ebuild,v 1.8 2007/11/19 18:00:19 corsair Exp $
 
 EAPI="prefix"
 
