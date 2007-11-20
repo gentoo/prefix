@@ -1,6 +1,27 @@
 # ChangeLog for app-text/scrollkeeper
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/scrollkeeper/ChangeLog,v 1.75 2007/10/13 07:51:41 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/scrollkeeper/ChangeLog,v 1.82 2007/11/17 16:09:08 nixnut Exp $
+
+  17 Nov 2007; nixnut <nixnut@gentoo.org> scrollkeeper-9999.ebuild:
+  Added ~ppc wrt bug 196360
+
+  28 Oct 2007; Markus Rothe <corsair@gentoo.org> scrollkeeper-9999.ebuild:
+  Added ~ppc64; bug #196360
+
+  23 Oct 2007; Raúl Porcel <armin76@gentoo.org> scrollkeeper-9999.ebuild:
+  Add ~ia64/~sparc wrt #196360
+
+  23 Oct 2007; Roy Marples <uberlord@gentoo.org> scrollkeeper-9999.ebuild:
+  Keyworded ~sparc-fbsd
+
+  22 Oct 2007; Raúl Porcel <armin76@gentoo.org> scrollkeeper-9999.ebuild:
+  Add ~alpha wrt #196360
+
+  19 Oct 2007; Jeroen Roovers <jer@gentoo.org> scrollkeeper-9999.ebuild:
+  Marked ~hppa (bug #196360).
+
+  18 Oct 2007; Roy Marples <uberlord@gentoo.org> scrollkeeper-9999.ebuild:
+  Keyworded ~x86-fbsd
 
   13 Oct 2007; Mart Raudsepp <leio@gentoo.org> scrollkeeper-9999.ebuild:
   Try to have a smooth migration to rarian by using a PDEPEND
