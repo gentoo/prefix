@@ -17,7 +17,7 @@ SRC_URI="http://www.clarkware.com/software/${P}.zip"
 
 LICENSE="jdepend"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos"
 
 DEPEND=">=virtual/jdk-1.4
 	>=app-arch/unzip-5.50-r1"
