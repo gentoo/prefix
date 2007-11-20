@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libpcre
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.116 2007/11/18 21:24:51 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.117 2007/11/19 06:24:13 kumba Exp $
+
+  19 Nov 2007; Joshua Kinard <kumba@gentoo.org> libpcre-7.3-r1.ebuild:
+  Marked unstable on mips, per #195416.
 
   18 Nov 2007; Diego Pettenò <flameeyes@gentoo.org> metadata.xml:
   Remove carlo from metadata who didn't commit to the package since March 2006.
