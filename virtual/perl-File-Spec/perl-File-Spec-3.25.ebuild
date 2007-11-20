@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-File-Spec/perl-File-Spec-3.25.ebuild,v 1.7 2007/11/10 11:37:31 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-File-Spec/perl-File-Spec-3.25.ebuild,v 1.8 2007/11/19 03:50:23 kumba Exp $
 
 EAPI="prefix"
 

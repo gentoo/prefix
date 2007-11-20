@@ -1,6 +1,9 @@
 # ChangeLog for virtual/perl-File-Spec
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-File-Spec/ChangeLog,v 1.31 2007/11/10 11:37:31 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-File-Spec/ChangeLog,v 1.32 2007/11/19 03:50:23 kumba Exp $
+
+  19 Nov 2007; Joshua Kinard <kumba@gentoo.org> perl-File-Spec-3.25.ebuild:
+  Stable on mips.
 
   10 Nov 2007; Samuli Suominen <drac@gentoo.org> perl-File-Spec-3.25.ebuild:
   amd64 stable
