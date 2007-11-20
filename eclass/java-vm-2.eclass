@@ -163,8 +163,8 @@ set_java_env() {
 	potential_patch="${FILESDIR}/${VMHANDLE}.env.prefix.patch"
 	if [[ -e "${potential_patch}" ]]; then
 		epatch "${potential_patch}" || die 'found a patch, failed to apply it'
-		eprefixify ${source_env_file_tmp}
 	fi
+	eprefixify ${source_env_file_tmp}
 	source_env_file=${source_env_file_tmp}
 
 	dodir ${JAVA_VM_CONFIG_DIR}
