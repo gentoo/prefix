@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gentoo.org/proj/en/java/"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
 src_unpack() {
@@ -20,6 +20,7 @@ src_unpack() {
 	epatch "${FILESDIR}/0.2.0-use-sax-fixed.patch"
 	epatch "${FILESDIR}/0.2.0-prefix.patch"
 	eprefixify makedefs.mak src/{javatoolkit,bsfix}/Makefile
+	find . -name "*.py" -print0 | xargs -0 sed -i -e '/^#\( \|\)!.*python/c\#!/usr/bin/env python'
 	# Fix version
 	sed -i -e s/${PV}/${PVR}/ makedefs.mak
 }
@@ -29,9 +30,9 @@ src_install() {
 }
 
 pkg_postinst() {
-	python_mod_optimize /usr/share/javatoolkit
+	python_mod_optimize "${EPREFIX}"/usr/share/javatoolkit
 }
 
 pkg_postrm() {
-	python_mod_cleanup /usr/share/javatoolkit
+	python_mod_cleanup "${EPREFIX}"/usr/share/javatoolkit
 }
