@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit ant-tasks
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos"
 
 DEPEND=">=dev-java/commons-net-1.4.1-r1"
 RDEPEND="${DEPEND}"
