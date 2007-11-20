@@ -12,7 +12,7 @@ SRC_URI="http://primates.ximian.com/~flucifredi/man/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="nls"
 
 DEPEND="nls? ( sys-devel/gettext )"
@@ -65,6 +65,9 @@ src_unpack() {
 
 	# Solaris needs fcntl.h included for O_CREAT etc, like SYSV
 	epatch "${FILESDIR}"/man-1.6e-solaris.patch
+
+	# hpux does not have setenv()
+	epatch "${FILESDIR}"/man-1.6e-hpux.patch
 
 	# Results in grabbing as much tools from the prefix, instead of main
 	# system in a prefixed environment
