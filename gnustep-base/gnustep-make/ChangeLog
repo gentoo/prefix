@@ -1,6 +1,12 @@
 # ChangeLog for gnustep-base/gnustep-make
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.56 2007/11/16 15:00:32 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.57 2007/11/19 12:18:04 voyageur Exp $
+
+*gnustep-make-2.0.2 (19 Nov 2007)
+
+  19 Nov 2007; Bernard Cafarelli <voyageur@gentoo.org>
+  gnustep-make-2.0.1.ebuild, +gnustep-make-2.0.2.ebuild:
+  Version bump, fix some quoting
 
   16 Nov 2007; Steve Dibb <beandog@gentoo.org> gnustep-make-2.0.1.ebuild:
   amd64 stable, bug 195990
