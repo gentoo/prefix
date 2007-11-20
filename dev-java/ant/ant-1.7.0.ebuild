@@ -9,7 +9,7 @@ HOMEPAGE="http://ant.apache.org/"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos"
 IUSE=""
 
 DEPEND="~dev-java/ant-core-${PV}
