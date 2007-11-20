@@ -87,7 +87,7 @@ src_compile() {
 src_install() {
 	for binding in perl python tcl ; do
 		sed -i \
-			-e "s:^\(LANG_LIBDIR\).*= \(.*\):\1\t = ${ED}/\2:" \
+			-e "s:^\(LANG_LIBDIR\).*= \(.*\):\1\t = ${D}/\2:" \
 			"${S}/bind/pdflib/${binding}/Makefile" \
 				|| die "sed bind/pdflib/${binding}/Makefile failed"
 	done
