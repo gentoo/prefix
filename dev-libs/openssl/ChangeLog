@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.254 2007/11/16 14:35:15 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.255 2007/11/19 02:18:16 kumba Exp $
+
+  19 Nov 2007; Joshua Kinard <kumba@gentoo.org> openssl-0.9.8g.ebuild:
+  Stable on mips, per #198370.
 
   16 Nov 2007; Doug Klima <cardoe@gentoo.org> openssl-0.9.8g.ebuild:
   change depend to mit-krb5 since openssl's Configure script specifically
