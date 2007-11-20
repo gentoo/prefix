@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/mc
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.134 2007/10/30 07:04:55 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.135 2007/11/19 01:36:09 kumba Exp $
+
+  19 Nov 2007; Joshua Kinard <kumba@gentoo.org> mc-4.6.1-r4.ebuild:
+  Stable on mips, per #197144.
 
   30 Oct 2007; Jeroen Roovers <jer@gentoo.org> mc-4.6.1-r4.ebuild:
   Stable for HPPA (bug #197144).
