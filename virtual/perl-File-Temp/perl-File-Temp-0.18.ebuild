@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-File-Temp/perl-File-Temp-0.18.ebuild,v 1.7 2007/10/15 15:02:59 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-File-Temp/perl-File-Temp-0.18.ebuild,v 1.8 2007/11/19 03:24:07 kumba Exp $
 
 EAPI="prefix"
 
