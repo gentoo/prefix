@@ -1,6 +1,63 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.486 2007/09/13 20:41:39 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.500 2007/11/14 18:15:40 drac Exp $
+
+  14 Nov 2007; Samuli Suominen <drac@gentoo.org> qt-4.3.2.ebuild:
+  amd64 stable wrt #198454, thanks to Thomas A. for testing.
+
+  12 Nov 2007; Caleb Tennis <caleb@gentoo.org> -qt-3.3.8-r3.ebuild:
+  remove old version
+
+  10 Nov 2007; Markus Rothe <corsair@gentoo.org> qt-4.3.2.ebuild:
+  Stable on ppc64; bug #198454
+
+  10 Nov 2007; Christian Heim <phreak@gentoo.org> qt-3.3.4-r8.ebuild,
+  qt-3.3.8-r3.ebuild, qt-3.3.8-r4.ebuild, qt-4.3.1-r1.ebuild,
+  qt-4.3.2.ebuild:
+  Workaround the hardened issues with SSP in QT by adding -fno-stack-protector
+  to CFLAGS/CXXFLAGS.
+
+  09 Nov 2007; nixnut <nixnut@gentoo.org> qt-4.3.2.ebuild:
+  Stable on ppc wrt bug 198454
+
+  08 Nov 2007; Raúl Porcel <armin76@gentoo.org> qt-4.3.2.ebuild:
+  alpha/ia64/x86 stable wrt #198454
+
+  08 Nov 2007; Jeroen Roovers <jer@gentoo.org> qt-4.3.2.ebuild:
+  Stable for HPPA (bug #198454).
+
+  08 Nov 2007; Ferris McCormick <fmccor@gentoo.org> qt-4.3.2.ebuild:
+  Sparc stable --- Bug #198454 --- Good for me since 10 Oct., designer works, ...
+
+  23 Oct 2007; Caleb Tennis <caleb@gentoo.org> -files/qt-4.1.4-sparc.patch,
+  -files/qt4-parisc-linux.diff, -files/utf8-bug-qt4-2.diff,
+  -files/qt-4.3.0-alpha-threading.patch, -files/qt4-sqlite-configure.patch,
+  -files/qt4-nomkdir.patch, -qt-4.3.0-r2.ebuild, -qt-4.3.1.ebuild,
+  qt-4.3.2.ebuild:
+  remove old versions
+
+  03 Oct 2007; Caleb Tennis <caleb@gentoo.org> qt-4.3.2.ebuild:
+  Fix some quoting issues
+
+*qt-4.3.2 (03 Oct 2007)
+
+  03 Oct 2007; Caleb Tennis <caleb@gentoo.org> +qt-4.3.2.ebuild:
+  Version bump
+
+  25 Sep 2007; Caleb Tennis <caleb@gentoo.org> qt-4.3.1-r1.ebuild:
+  This guy is required whether we have a wacom tablet or not
+
+  15 Sep 2007; Tobias Scherbaum <dertobi123@gentoo.org> qt-4.3.1-r1.ebuild:
+  ppc stable, bug #192134
+
+*qt-4.3.1-r1 (14 Sep 2007)
+*qt-3.3.8-r4 (14 Sep 2007)
+
+  14 Sep 2007; Caleb Tennis <caleb@gentoo.org>
+  +files/qt-3.3.8-unicode-off-by-one.patch,
+  +files/qt-4.3.1-unicode-off-by-one.patch, +qt-3.3.8-r4.ebuild,
+  +qt-4.3.1-r1.ebuild:
+  Bump for security bug #192472
 
   13 Sep 2007; Markus Rothe <corsair@gentoo.org> qt-4.3.1.ebuild:
   Stable on ppc64; bug #192134

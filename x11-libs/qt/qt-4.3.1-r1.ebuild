@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.3.1.ebuild,v 1.10 2007/09/13 20:41:39 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.3.1-r1.ebuild,v 1.4 2007/11/10 08:49:05 phreak Exp $
 
 EAPI="prefix"
 
@@ -52,7 +52,7 @@ RDEPEND="!aqua? ( x11-libs/libXrandr
 DEPEND="${RDEPEND}
 	xinerama? ( x11-proto/xineramaproto )
 	!aqua? ( x11-proto/xextproto )
-	input_devices_wacom? ( x11-proto/inputproto )
+	x11-proto/inputproto
 	dev-util/pkgconfig"
 
 pkg_setup() {
@@ -125,6 +125,9 @@ src_unpack() {
 	epatch ${FILESDIR}/qt-4.3.1-powerpc64.patch
 	epatch ${FILESDIR}/qt-4.3.1-darwin.patch
 
+	# Bug #182472
+	epatch ${FILESDIR}/${P}-unicode-off-by-one.patch
+
 	cd ${S}/mkspecs/$(qt_mkspecs_dir)
 	# set c/xxflags and ldflags
 
@@ -132,6 +135,11 @@ src_unpack() {
 	# out the line below and give 'er a whirl.
 	strip-flags
 	replace-flags -O3 -O2
+
+	if [[ $( gcc-fullversion ) == "3.4.6" && gcc-specs-ssp ]] ; then
+		ewarn "Appending -fno-stack-protector to CFLAGS/CXXFLAGS"
+		append-flags -fno-stack-protector
+	fi
 
 	sed -i -e "s:QMAKE_CFLAGS_RELEASE.*=.*:QMAKE_CFLAGS_RELEASE=${CFLAGS}:" \
 		-e "s:QMAKE_CXXFLAGS_RELEASE.*=.*:QMAKE_CXXFLAGS_RELEASE=${CXXFLAGS}:" \
