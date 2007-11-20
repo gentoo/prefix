@@ -1,0 +1,465 @@
+# ChangeLog for dev-java/ant-tasks
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-tasks/ChangeLog,v 1.73 2007/11/03 11:43:15 betelgeuse Exp $
+
+  03 Nov 2007; Petteri Räty <betelgeuse@gentoo.org>
+  -ant-tasks-1.6.5-r3.ebuild:
+  Delete old revision.
+
+  03 Nov 2007; Lars Weiler <pylon@gentoo.org> ant-tasks-1.6.5-r4.ebuild:
+  stable ppc, bug #197477
+
+  02 Nov 2007; William L. Thomson Jr. <wltjr@gentoo.org>
+  ant-tasks-1.6.5-r4.ebuild:
+  amd64 stable, bug #197477.
+
+  31 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  ant-tasks-1.6.5-r4.ebuild:
+  stable x86, bug 197477
+
+  30 Oct 2007; Markus Rothe <corsair@gentoo.org> ant-tasks-1.6.5-r4.ebuild:
+  Stable on ppc64; bug #197477
+
+  30 Oct 2007; Petteri Räty <betelgeuse@gentoo.org>
+  ant-tasks-1.7.0-r2.ebuild:
+  Add missing quotes.
+
+*ant-tasks-1.6.5-r4 (30 Oct 2007)
+
+  30 Oct 2007; Petteri Räty <betelgeuse@gentoo.org>
+  +ant-tasks-1.6.5-r4.ebuild:
+  Add missing dependency on xml-commons-external and switch to from source
+  sun-jaf.
+
+  12 May 2007; William L. Thomson Jr. <wltjr@gentoo.org>
+  ant-tasks-1.7.0-r2.ebuild:
+  Stable on amd64, bug #176856
+
+  06 May 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  ant-tasks-1.7.0-r2.ebuild:
+  ppc stable
+
+  05 May 2007; Andrej Kacian <ticho@gentoo.org> ant-tasks-1.7.0-r2.ebuild:
+  Stable on x86, bug #176856.
+
+  03 May 2007; Markus Rothe <corsair@gentoo.org> ant-tasks-1.7.0-r2.ebuild:
+  Stable on ppc64; bug #176856
+
+  26 Apr 2007; Vlastimil Babka <caster@gentoo.org>
+  ant-tasks-1.7.0-r2.ebuild:
+  Remove IFS mangling to prevent potential breakage.
+
+  25 Apr 2007; Vlastimil Babka <caster@gentoo.org> -ant-tasks-1.7.0.ebuild,
+  -ant-tasks-1.7.0-r1.ebuild:
+  Clean unused version.
+
+*ant-tasks-1.7.0-r2 (28 Mar 2007)
+
+  28 Mar 2007; Vlastimil Babka <caster@gentoo.org>
+  +ant-tasks-1.7.0-r2.ebuild:
+  Revbump to register also ant-nodeps into package.env which was forgotten.
+  Fixes bug #166864.
+
+*ant-tasks-1.7.0-r1 (11 Mar 2007)
+
+  11 Mar 2007; Vlastimil Babka <caster@gentoo.org>
+  +ant-tasks-1.7.0-r1.ebuild:
+  Revbump that symlinks all ant-core and tasks jars into one lib dir in
+  /usr/share/ant and points ANT_HOME there, for stuff that loads the jars
+  directly without launcher.
+
+  18 Feb 2007; Petteri Räty <betelgeuse@gentoo.org>
+  -ant-tasks-1.6.5-r2.ebuild:
+  Removed old revision.
+
+  10 Feb 2007; nixnut <nixnut@gentoo.org> ant-tasks-1.6.5-r3.ebuild:
+  Stable on ppc wrt bug 165058
+
+  05 Feb 2007; Christian Faulhammer <opfer@gentoo.org>
+  ant-tasks-1.6.5-r3.ebuild:
+  stable x86; bug #165058
+
+  04 Feb 2007; Petteri Räty <betelgeuse@gentoo.org>
+  ant-tasks-1.6.5-r3.ebuild:
+  The ebuild was still using jar-from on sun-javamail-bin but dependent on
+  sun-javamail. Thanks to Markus Meier <meier_markus@bluewin.ch> in bug
+  #165058.
+
+  04 Feb 2007; Markus Rothe <corsair@gentoo.org> ant-tasks-1.6.5-r3.ebuild:
+  Stable on ppc64; bug #165058
+
+  03 Feb 2007; Steve Dibb <beandog@gentoo.org> ant-tasks-1.6.5-r3.ebuild:
+  amd64 stable, bug 165058
+
+  03 Feb 2007; Steve Dibb <beandog@gentoo.org> ant-tasks-1.6.5-r3.ebuild:
+  amd64 stable, bug 165058
+
+  27 Jan 2007; Vlastimil Babka <caster@gentoo.org> ant-tasks-1.7.0.ebuild:
+  Add ~ia64 keyword, bug #159820.
+
+  26 Jan 2007; Krzysiek Pawlik <nelchael@gentoo.org> ant-tasks-1.7.0.ebuild:
+  Added ~ppc.
+
+  25 Jan 2007; William L. Thomson Jr. <wltjr@gentoo.org>
+  ant-tasks-1.7.0.ebuild:
+  Added ~amd64 keyword
+
+  22 Jan 2007; Markus Rothe <corsair@gentoo.org> ant-tasks-1.7.0.ebuild:
+  Added ~ppc64; bug #159820
+
+*ant-tasks-1.7.0 (21 Jan 2007)
+
+  21 Jan 2007; Vlastimil Babka <caster@gentoo.org> +ant-tasks-1.7.0.ebuild:
+  Version bump, bug #159820. Now just a meta-packagedepending on split ant tasks.
+
+  14 Jan 2007; Petteri Räty <betelgeuse@gentoo.org>
+  ant-tasks-1.6.5-r3.ebuild:
+  Remove bundled jars in src_unpack.
+
+  03 Jan 2007; Vlastimil Babka <caster@gentoo.org>
+  ant-tasks-1.6.5-r2.ebuild, ant-tasks-1.6.5-r3.ebuild:
+  Correct jakarta-regexp dependency to hit the right slot.
+
+*ant-tasks-1.6.5-r3 (17 Dec 2006)
+
+  17 Dec 2006; William L. Thomson Jr. <wltjr@gentoo.org>
+  +ant-tasks-1.6.5-r3.ebuild:
+  Updated dep to javamail, instead of -bin version. Keywording ~arch for
+  testing, although that might be a bit extreme :)
+
+  09 Dec 2006; Vlastimil Babka <caster@gentoo.org>
+  ant-tasks-1.6.5-r2.ebuild:
+  Block on dev-java/ant-optional because some people still seem to have it. If
+  you get the block, unmerge ant-optional.
+
+  07 Dec 2006; Diego Pettenò <flameeyes@gentoo.org>
+  ant-tasks-1.6.5-r2.ebuild:
+  Add ~x86-fbsd keyword.
+
+  26 Nov 2006; Petteri Räty <betelgeuse@gentoo.org>
+  ant-tasks-1.6.5-r2.ebuild:
+  Changing sun-javamail-bin dependency to >=1.3.1-r1 as java-pkg.eclass used
+  to produce bad package.env files. Hopefully will get to more people this
+  way.
+
+  26 Nov 2006; Petteri Räty <betelgeuse@gentoo.org> -files/1.6.2-scp.patch,
+  -ant-tasks-1.6.2-r9.ebuild, -ant-tasks-1.6.2-r10.ebuild,
+  -ant-tasks-1.6.5.ebuild:
+  Removed old versions.
+
+  17 Oct 2006; Joshua Nichols <nichoj@gentoo.org> ant-tasks-1.6.5-r2.ebuild:
+  Keyworded ~ia64.
+
+  15 Oct 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  ant-tasks-1.6.5-r2.ebuild:
+  ppc stable. bug #147254
+
+  14 Oct 2006; Joshua Nichols <nichoj@gentoo.org> ant-tasks-1.6.5-r2.ebuild:
+  Stabilizing on amd64 as part of new Java system, bug #147254.
+
+  14 Oct 2006; Joshua Nichols <nichoj@gentoo.org> ant-tasks-1.6.5-r2.ebuild:
+  Stabilizing on ppc64 as part of new Java system, bug #147254.
+
+  14 Oct 2006; Joshua Jackson <tsunam@gentoo.org> ant-tasks-1.6.5-r2.ebuild:
+  New java stable on x86; bug #147254
+
+  05 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  ant-tasks-1.6.2-r9.ebuild, ant-tasks-1.6.2-r10.ebuild,
+  ant-tasks-1.6.5.ebuild, ant-tasks-1.6.5-r2.ebuild:
+  Dropping sparc keywords, see #96229
+
+  16 Sep 2006; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  ant-tasks-1.6.5.ebuild:
+  stable on ppc (Bug #147754)
+
+  13 Sep 2006; Joshua Nichols <nichoj@gentoo.org> ant-tasks-1.6.2-r9.ebuild,
+  ant-tasks-1.6.2-r10.ebuild, ant-tasks-1.6.5.ebuild,
+  ant-tasks-1.6.5-r2.ebuild:
+  Removed redundant src_unpack. Removed block on nonexistant package,
+  ant-optional.
+
+  13 Sep 2006; Vlastimil Babka <caster@gentoo.org>
+  ant-tasks-1.6.5-r2.ebuild:
+  Raised xerces dep to >=2.7.1 to pull xml-commons-external-1.3, which is
+  added to CLASSPATH for compiling to ensure it works with 1.4 JDK. Dies
+  properly if compile failed.
+
+  22 Jul 2006; Diego Pettenò <flameeyes@gentoo.org>
+  ant-tasks-1.6.5-r2.ebuild:
+  Replace arch with uname -m for Gentoo/FreeBSD compatibility. See bug #141422.
+
+*ant-tasks-1.6.5-r2 (26 Jun 2006)
+
+  26 Jun 2006; Joshua Nichols <nichoj@gentoo.org>
+  +ant-tasks-1.6.5-r2.ebuild:
+  Revision bump to add support for new Java system.
+
+  09 Jul 2005; Thomas Matthijs <axxo@gentoo.org> -ant-tasks-1.6.2-r8.ebuild,
+  ant-tasks-1.6.2-r9.ebuild, ant-tasks-1.6.5.ebuild:
+  fix deps
+
+  02 Jun 2005; Thomas Matthijs <axxo@gentoo.org> -ant-tasks-1.6.3-r1.ebuild,
+  -ant-tasks-1.6.4.ebuild:
+  prune
+
+*ant-tasks-1.6.5 (02 Jun 2005)
+
+  02 Jun 2005; Thomas Matthijs <axxo@gentoo.org> +ant-tasks-1.6.5.ebuild:
+  version bump
+
+*ant-tasks-1.6.4 (23 May 2005)
+
+  23 May 2005; Thomas Matthijs <axxo@gentoo.org> +ant-tasks-1.6.4.ebuild:
+  version bump
+
+*ant-tasks-1.6.3-r1 (14 May 2005)
+*ant-tasks-1.6.2-r10 (14 May 2005)
+*ant-tasks-1.6.2-r9 (14 May 2005)
+*ant-tasks-1.6.2-r8 (14 May 2005)
+
+  14 May 2005; Jan Brinkmann <luckyduck@gentoo.org>
+  -ant-tasks-1.6.2-r5.ebuild, -ant-tasks-1.6.2-r6.ebuild,
+  -ant-tasks-1.6.2-r7.ebuild, +ant-tasks-1.6.2-r8.ebuild,
+  +ant-tasks-1.6.2-r9.ebuild, +ant-tasks-1.6.2-r10.ebuild,
+  -ant-tasks-1.6.3.ebuild, +ant-tasks-1.6.3-r1.ebuild:
+  updated commons-beanutils dependency to reflect new slotting. see #71952
+
+*ant-tasks-1.6.3 (28 Apr 2005)
+
+  28 Apr 2005; Thomas Matthijs <axxo@gentoo.org>
+  -ant-tasks-1.6.3_beta1.ebuild, +ant-tasks-1.6.3.ebuild:
+  version bump
+
+  18 Apr 2005; Jan Brinkmann <luckyduck@gentoo.org> ant-tasks-1.6.2-r5.ebuild,
+  ant-tasks-1.6.2-r6.ebuild:
+  fixed jakarta-regexp dep, see #89477
+
+  10 Apr 2005; Thomas Matthijs <axxo@gentoo.org> ant-tasks-1.6.2-r7.ebuild,
+  ant-tasks-1.6.3_beta1.ebuild:
+  fix dep
+
+  10 Apr 2005; Thomas Matthijs <axxo@gentoo.org> ant-tasks-1.6.2-r7.ebuild:
+  fix dep
+
+*ant-tasks-1.6.3_beta1 (03 Apr 2005)
+
+  03 Apr 2005; Thomas Matthijs <axxo@gentoo.org>
+  +ant-tasks-1.6.3_beta1.ebuild:
+  version bump
+
+  03 Apr 2005; Jan Brinkmann <luckyduck@gentoo.org> ant-tasks-1.6.2-r5.ebuild,
+  ant-tasks-1.6.2-r6.ebuild:
+  updated oro and regexp dependencies to reflect moves oro->jakarta-oro and
+  regexp->jakarta-regexp
+
+*ant-tasks-1.6.2-r7 (29 Mar 2005)
+
+  29 Mar 2005; Jan Brinkmann <luckyduck@gentoo.org>
+  +ant-tasks-1.6.2-r7.ebuild:
+  moved from dev-java/oro to dev-java/jakarta-oro dependency. see #71337. also
+  readded generation of the bsf.jar, fixes #59799
+
+*ant-tasks-1.6.2-r6 (27 Mar 2005)
+
+  27 Mar 2005; Jan Brinkmann <luckyduck@gentoo.org>
+  +ant-tasks-1.6.2-r6.ebuild:
+  moved from dev-java/regexp to dev-java/jakarta-regexp dependency. see #71336
+
+  03 Feb 2005; Jan Brinkmann <luckyduck@gentoo.org> ant-tasks-1.6.2-r5.ebuild:
+  applied an patch to fix scp with openssh-3.9. also see #77365
+
+  29 Jan 2005; Jan Brinkmann <luckyduck@gentoo.org> ant-tasks-1.6.2-r5.ebuild:
+  update to reflect the new rhino slots.
+
+  26 Jan 2005; Markus Rothe <corsair@gentoo.org> ant-tasks-1.6.2-r5.ebuild:
+  Stable on ppc64
+
+  18 Dec 2004; Markus Rothe <corsair@gentoo.org> ant-tasks-1.6.2-r5.ebuild:
+  added ~ppc64 to KEYWORDS
+
+  16 Oct 2004; Dylan Carlson <absinthe@gentoo.org>
+  ant-tasks-1.6.2-r5.ebuild:
+  Stable on amd64.
+
+  28 Sep 2004; Thomas Matthijs <axxo@gentoo.org> ant-tasks-1.6.2-r5.ebuild:
+  depend on ant-core not ant
+
+  17 Sep 2004; Thomas Matthijs <axxo@gentoo.org> ant-tasks-1.6.2-r5.ebuild:
+  ignore global classpath
+
+*ant-tasks-1.6.2-r5 (10 Sep 2004)
+
+  10 Sep 2004; Thomas Matthijs <axxo@gentoo.org> -ant-tasks-1.6.2-r4.ebuild,
+  +ant-tasks-1.6.2-r5.ebuild:
+  revision bump: ant moved to ant-core
+
+  05 Sep 2004; Sven Wegener <swegener@gentoo.org> :
+  Fixed ChangeLog header.
+
+  04 Sep 2004; Thomas Matthijs <axxo@gentoo.org> ant-tasks-1.6.2-r4.ebuild:
+  move jython-bin -> jython, regexp-bin -> regexp-bin
+
+  01 Sep 2004; Thomas Matthijs <axxo@gentoo.org> ant-tasks-1.6.2-r4.ebuild:
+  block on ant-optional
+
+  31 Aug 2004; Thomas Matthijs <axxo@gentoo.org> -ant-tasks-1.6.2-r2.ebuild,
+  -ant-tasks-1.6.2-r3.ebuild:
+  remove broken versions
+
+*ant-tasks-1.6.2-r4 (31 Aug 2004)
+
+  31 Aug 2004; Thomas Matthijs <axxo@gentoo.org> ant-tasks-1.6.2-r2.ebuild,
+  ant-tasks-1.6.2-r3.ebuild, +ant-tasks-1.6.2-r4.ebuild:
+  fix symlinks & some cleanup cleanups
+
+*ant-tasks-1.6.2-r3 (31 Aug 2004)
+
+  31 Aug 2004; Thomas Matthijs <axxo@gentoo.org> +ant-tasks-1.6.2-r3.ebuild:
+  missing IUSE:nobeanutils, fixed various naming in $p and $jar, properly detect noX
+  usage
+
+*ant-tasks-1.6.2-r2 (30 Aug 2004)
+
+  30 Aug 2004; Karl Trygve Kalleberg <karltk@gentoo.org> ant-tasks-1.6.2-r2.ebuild:
+  Renamed from dev-java/ant-optional.
+
+  27 Aug 2004; Thomas Matthijs <axxo@gentoo.org> ant-optional-1.6.2-r2.ebuild:
+  depend on dev-java/xerces-2.6.2-r1 since thats the first one slotted and we
+  are assuming its slotted in this ebuild
+
+  27 Aug 2004; Thomas Matthijs <axxo@gentoo.org> ant-optional-1.6.2-r2.ebuild:
+  depend on dev-java/xerces-2.6.2-r1 since thats the first one slotted and we
+  are assuming its slotted in this ebuild
+
+  27 Aug 2004; Thomas Matthijs <axxo@gentoo.org>
+  -ant-optional-1.6.0-r2.ebuild, -ant-optional-1.6.2-r1.ebuild,
+  -ant-optional-1.6.2.ebuild:
+  remove older version
+
+  27 Aug 2004; Thomas Matthijs <axxo@gentoo.org> metadata.xml,
+  ant-optional-1.6.2-r2.ebuild:
+  x86
+
+  27 Aug 2004; Thomas Matthijs <axxo@gentoo.org> ant-optional-1.6.2-r2.ebuild:
+  ~ppc
+
+  27 Aug 2004; <SeJo@gentoo.org> ant-optional-1.6.0-r3.ebuild:
+  stable on ppc
+
+  31 Jul 2004; Thomas Matthijs <axxo@gentoo.org> ant-optional-1.6.0-r2.ebuild,
+  ant-optional-1.6.0-r3.ebuild, ant-optional-1.6.1-r1.ebuild,
+  ant-optional-1.6.1.ebuild, ant-optional-1.6.2-r1.ebuild,
+  ant-optional-1.6.2-r2.ebuild, ant-optional-1.6.2.ebuild:
+  move jython -> jython-bin
+
+  31 Jul 2004; Thomas Matthijs <axxo@gentoo.org> ant-optional-1.6.0-r2.ebuild,
+  ant-optional-1.6.0-r3.ebuild, ant-optional-1.6.1-r1.ebuild,
+  ant-optional-1.6.1.ebuild, ant-optional-1.6.2-r1.ebuild,
+  ant-optional-1.6.2-r2.ebuild, ant-optional-1.6.2.ebuild:
+  move regexp -> regexp-bin
+
+  30 Jul 2004; Thomas Matthijs <axxo@gentoo.org> ant-optional-1.6.0-r2.ebuild,
+  ant-optional-1.6.0-r3.ebuild, ant-optional-1.6.1-r1.ebuild,
+  ant-optional-1.6.1.ebuild, ant-optional-1.6.2-r1.ebuild,
+  ant-optional-1.6.2-r2.ebuild, ant-optional-1.6.2.ebuild:
+  move dev-java/regexp dev-java/regexp-bin
+
+  30 Jul 2004; Thomas Matthijs <axxo@gentoo.org> ant-optional-1.6.0-r2.ebuild,
+  ant-optional-1.6.0-r3.ebuild, ant-optional-1.6.1-r1.ebuild,
+  ant-optional-1.6.1.ebuild, ant-optional-1.6.2-r1.ebuild,
+  ant-optional-1.6.2-r2.ebuild, ant-optional-1.6.2.ebuild:
+  Moved dev-java/jython to dev-java/jython-bin.
+
+*ant-optional-1.6.2-r2 (29 Jul 2004)
+
+  29 Jul 2004; Thomas Matthijs <axxo@gentoo.org>
+  +ant-optional-1.6.2-r2.ebuild:
+  actualy use the fixed wrapper script
+
+  30 Jul 2004; Karl Trygve Kalleberg <karltk@gentoo.org>
+  Prepared (mostly) for the move of dev-java/jython to dev-java/jython-bin.
+
+*ant-optional-1.6.2-r1 (23 Jul 2004)
+
+  23 Jul 2004; Thomas Matthijs <axxo@gentoo.org>
+  +ant-optional-1.6.2-r1.ebuild, ant-optional-1.6.2.ebuild:
+  fix license
+
+  18 Jul 2004; Thomas Matthijs <axxo@gentoo.org> ant-optional-1.6.2.ebuild:
+  ~amd64
+
+  17 Jul 2004; Thomas Matthijs <axxo@gentoo.org> ant-optional-1.6.2.ebuild:
+  Change it so it doesn't look for javamail when javamail useflag is not
+  defined, closed 57385
+
+*ant-optional-1.6.2 (17 Jul 2004)
+
+  17 Jul 2004; Thomas Matthijs <axxo@gentoo.org> +ant-optional-1.6.2.ebuild:
+  Version bump
+  little cleaning
+
+  19 May 2004; Chris Aniszczyk <zx@gentoo.org> ant-optional-1.6.1-r1.ebuild:
+  Added dep for commons-net to allow for the ftp task. Closes #51011
+  Thanks to Olivier Van Acker <olivier.van.acker@bbc.co.uk> for the quick fix.
+
+  09 May 2004; Jason Wever <weeve@gentoo.org> ant-optional-1.6.1-r1.ebuild:
+  Added ~sparc keyword, helps resolve bug #50407.
+
+  04 May 2004; <SeJo@gentoo.org> :
+  added ~ppc keyword
+
+  02 May 2004; <SeJo@gentoo.org> ant-optional-1.6.1.ebuild:
+  added ~ppc keyword
+
+  02 May 2004; Karl Trygve Kalleberg <karltk@gentoo.org>
+  ant-optional-1.6.0-r2.ebuild, ant-optional-1.6.0-r3.ebuild,
+  ant-optional-1.6.1.ebuild, ant-optional-1.6.1-r1.ebuild: Changed deps
+  for dev-java/javamail and dev-java/jaf to dev-java/sun-javamail-bin and
+  dev-java/sun-jaf-bin.
+
+  23 Mar 2004; David Holm <dholm@gentoo.org> ant-optional-1.6.1-r1.ebuild:
+  Backed out of ~ppc.
+
+  22 Mar 2004; David Holm <dholm@gentoo.org> ant-optional-1.6.1-r1.ebuild:
+  Added to ~ppc.
+
+*ant-optional-1.6.1-r1 (17 Mar 2004)
+
+  11 Mar 2004; Chris Aniszczyk <zx@gentoo.org> ant-optional-1.6.1.ebuild:
+  Some small dep fixes courtesy of Pavel <hlobil@sympatico.ca>. Closes #42626
+
+*ant-optional-1.6.1 (10 Mar 2004)
+
+  10 Mar 2004; Chris Aniszczyk <zx@gentoo.org> ant-optional-1.6.1.ebuild:
+  Version bump.
+
+  15 Feb 2004; David Holm <dholm@gentoo.org> ant-optional-1.6.0-r3.ebuild:
+  Added to ~ppc.
+
+*ant-optional-1.6.0-r3 (10 Feb 2004)
+
+  10 Feb 2004; Adrian Almenar <strider@gentoo.org> :
+  Removed some USE flags for this package since people dont use them, and create
+  a lot of bug reports about it.
+
+  21 Jan 2004; Adrian Almenar <strider@gentoo.org>
+  ant-optional-1.6.0-r2.ebuild:
+  Added missing ant call. Thanks to Chetan Sarva <gentoo-bugs@fw2.net> for the
+  fix. Closes #38874.
+
+  21 Jan 2004; Adrian Almenar <strider@gentoo.org>
+  ant-optional-1.6.0-r2.ebuild:
+  Fixed a missing white-space.
+
+  20 Jan 2004; Adrian Almenar <strider@gentoo.org>
+  ant-optional-1.6.0-r2.ebuild:
+  Added ~x86 keyword.
+
+  19 Jan 2004; Adrian Almenar <strider@gentoo.org>
+  ant-optional-1.6.0-r2.ebuild:
+  Added amd64 keyword.
+
+*ant-optional-1.6.0-r2 (18 Jan 2004)
+
+  18 Jan 2004; Adrian Almenar <strider@gentoo.org> ant-optional-1.6.0-r2.ebuild:
+  New method for building ant. Initial Import.
