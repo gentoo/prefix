@@ -16,7 +16,7 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.zip"
 HOMEPAGE="http://www.junit.org/"
 LICENSE="CPL-1.0"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos"
 IUSE=""
 DEPEND=">=virtual/jdk-1.4
 	app-arch/unzip"
