@@ -1,0 +1,11 @@
+--- examples/rlfe/os.h.orig	2007-11-20 10:33:49 +0100
++++ examples/rlfe/os.h	2007-11-20 10:36:25 +0100
+@@ -426,7 +426,7 @@
+ #define SIGCHLD SIGCLD
+ #endif
+ 
+-#if defined(POSIX) || defined(hpux)
++#if defined(POSIX)
+ # define signal xsignal
+ #else
+ # ifdef USESIGSET

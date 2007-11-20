@@ -24,7 +24,7 @@ SRC_URI="mirror://gnu/readline/${MY_P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE=""
 
 # We must be certain that we have a bash that is linked
@@ -52,6 +52,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-aix-eff_uid.patch
 	epatch "${FILESDIR}"/${PN}-5.2-aix5.patch
 	epatch "${FILESDIR}"/${PN}-5.2-darwin9.patch || die
+	epatch "${FILESDIR}"/${PN}-5.2-rlfe-hpux.patch || die
 
 	if [[ ${CHOST} == *-darwin9 ]]; then
 		epatch "${FILESDIR}"/${PN}-5.2-darwin9-rlfe.patch || die
