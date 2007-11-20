@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/ffcall
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/ffcall/ChangeLog,v 1.32 2007/08/20 20:00:47 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/ffcall/ChangeLog,v 1.33 2007/11/19 17:23:48 jer Exp $
+
+  19 Nov 2007; Jeroen Roovers <jer@gentoo.org>
+  -files/ffcall_hppa_1.8-4.2.diff:
+  Remove stale hppa patch.
 
 *ffcall-1.10-r2 (20 Aug 2007)
 
