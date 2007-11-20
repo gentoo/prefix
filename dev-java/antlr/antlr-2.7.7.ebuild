@@ -12,7 +12,7 @@ SRC_URI="http://www.antlr.org/download/${P}.tar.gz"
 
 LICENSE="ANTLR"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos"
 IUSE="doc debug examples mono nocxx nojava python script source"
 
 # TODO do we actually need jdk at runtime?
