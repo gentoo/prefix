@@ -1,6 +1,18 @@
 # ChangeLog for media-sound/jack-audio-connection-kit
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/ChangeLog,v 1.100 2007/10/08 06:07:42 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/ChangeLog,v 1.101 2007/11/19 20:08:22 flameeyes Exp $
+
+  19 Nov 2007; Diego Pettenò <flameeyes@gentoo.org>
+  -files/jack-audio-connection-kit-0.80.0-alsalib-fix.patch,
+  -files/jack-audio-connection-kit-0.100.0-coreaudio.patch,
+  -files/jack-audio-connection-kit-0.100.0-driver_interface.patch,
+  -files/jack-audio-connection-kit-doc-option.patch,
+  -files/jack-audio-connection-kit-mmap_complex.patch,
+  -jack-audio-connection-kit-0.99.0-r1.ebuild,
+  -jack-audio-connection-kit-0.99.0-r2.ebuild,
+  -jack-audio-connection-kit-0.101.1-r1.ebuild,
+  -jack-audio-connection-kit-0.102.20.ebuild:
+  Cleanup old ebuilds and patches.
 
   08 Oct 2007; Tom Gall <tgall@gentoo.org>
   +jack-audio-connection-kit-0.103.0-ppc64fix.patch:
