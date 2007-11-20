@@ -33,6 +33,8 @@ src_unpack() {
 		src/eselect/java-{nsplugin,vm}.eselect \
 		src/profile.d/java-config-2.{,c}sh \
 		src/java_config_2/{EnvironmentManager.py,VM.py,VersionManager.py}
+
+	find . -name "*.py" -print0 | xargs -0 sed -i -e 's/portage_dep/portage.dep/g'
 }
 
 src_install() {
