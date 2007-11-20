@@ -1,0 +1,221 @@
+# ChangeLog for dev-java/jsch
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jsch/ChangeLog,v 1.56 2007/11/17 00:07:39 wltjr Exp $
+
+  17 Nov 2007; William L. Thomson Jr. <wltjr@gentoo.org> jsch-0.1.34.ebuild:
+  amd64 stable, bug #198880.
+
+  13 Nov 2007; Markus Rothe <corsair@gentoo.org> jsch-0.1.34.ebuild:
+  Stable on ppc64; bug #198880
+
+  13 Nov 2007; Krzysiek Pawlik <nelchael@gentoo.org> jsch-0.1.34.ebuild:
+  Stable on ppc, see bug #198880.
+
+  12 Nov 2007; Christian Faulhammer <opfer@gentoo.org> jsch-0.1.34.ebuild:
+  stable x86, bug 198880
+
+*jsch-0.1.36 (12 Nov 2007)
+
+  12 Nov 2007; Petteri Räty <betelgeuse@gentoo.org> +jsch-0.1.36.ebuild:
+  Version bump.
+
+  30 Oct 2007; Petteri Räty <betelgeuse@gentoo.org> -jsch-0.1.30.ebuild,
+  -jsch-0.1.32.ebuild:
+  Remove old versions.
+
+*jsch-0.1.34 (01 Sep 2007)
+
+  01 Sep 2007; Petteri Räty <betelgeuse@gentoo.org> +jsch-0.1.34.ebuild:
+  Version bump.
+
+  17 Jun 2007; Christoph Mende <angelos@gentoo.org> jsch-0.1.33.ebuild:
+  Stable on amd64 wrt bug 181721
+
+  17 Jun 2007; Christian Faulhammer <opfer@gentoo.org> jsch-0.1.33.ebuild:
+  stable x86, bug 181721
+
+  14 Jun 2007; Tobias Scherbaum <dertobi123@gentoo.org> jsch-0.1.33.ebuild:
+  ppc stable, bug #181721
+
+  13 Jun 2007; Markus Rothe <corsair@gentoo.org> jsch-0.1.33.ebuild:
+  Stable on ppc64; bug #181721
+
+  26 May 2007; Petteri Räty <betelgeuse@gentoo.org> -jsch-0.1.18.ebuild:
+  Remove generation 1 ebuild.
+
+*jsch-0.1.33 (12 May 2007)
+
+  12 May 2007; Alistair John Bush <ali_bush@gentoo.org> +jsch-0.1.33.ebuild:
+  Version bump
+
+*jsch-0.1.32 (30 Apr 2007)
+
+  30 Apr 2007; Petteri Räty <betelgeuse@gentoo.org> +jsch-0.1.32.ebuild:
+  Version bump.
+
+  11 Mar 2007; Joshua Nichols <nichoj@gentoo.org> jsch-0.1.30.ebuild:
+  Stable on amd64, see bug #168795.
+
+  06 Mar 2007; Markus Rothe <corsair@gentoo.org> jsch-0.1.30.ebuild:
+  Stable on ppc64; bug #168795
+
+  02 Mar 2007; nixnut <nixnut@gentoo.org> jsch-0.1.30.ebuild:
+  Stable on ppc wrt bug 168795
+
+  01 Mar 2007; Christian Faulhammer <opfer@gentoo.org> jsch-0.1.30.ebuild:
+  stable x86; bug 168795
+
+  10 Jan 2007; Petteri Räty <betelgeuse@gentoo.org> jsch-0.1.30.ebuild:
+  Fixed javadocs to install to the standard location.
+
+  10 Jan 2007; Petteri Räty <betelgeuse@gentoo.org> -jsch-0.1.21.ebuild,
+  -jsch-0.1.21-r2.ebuild:
+  Removed unused versions.
+
+  07 Dec 2006; Diego Pettenò <flameeyes@gentoo.org> jsch-0.1.30.ebuild:
+  Add ~x86-fbsd keyword.
+
+*jsch-0.1.30 (15 Nov 2006)
+
+  15 Nov 2006; William L. Thomson Jr. <wltjr@gentoo.org>
+  +jsch-0.1.30.ebuild:
+  Revision bump, moved ebuild from overlay.
+
+  17 Oct 2006; Joshua Nichols <nichoj@gentoo.org> jsch-0.1.21-r2.ebuild:
+  Keyworded ~ia64.
+
+  05 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org> jsch-0.1.18.ebuild,
+  jsch-0.1.21.ebuild, jsch-0.1.21-r2.ebuild:
+  Dropping sparc keywords, see #96229
+
+  03 Sep 2006; Petteri Räty <betelgeuse@gentoo.org> jsch-0.1.21-r2.ebuild:
+  Fixed to compile with java-strict. Thanks to Caster <caster@matfyz.cz> for
+  the fix. Fixes bug #146065.
+
+*jsch-0.1.21-r2 (21 Jul 2006)
+
+  21 Jul 2006; Krzysiek Pawlik <nelchael@gentoo.org> -jsch-0.1.21-r1.ebuild,
+  +jsch-0.1.21-r2.ebuild:
+  Add java-ant-2.
+
+*jsch-0.1.21-r1 (21 Jul 2006)
+
+  21 Jul 2006; Joshua Nichols <jnichols@gentoo.org> +jsch-0.1.21-r1.ebuild:
+  Revision bump to use new Java system.
+
+*jsch-0.1.21 (10 Sep 2005)
+
+  10 Sep 2005; Thomas Matthijs <axxo@gentoo.org> jsch-0.1.18.ebuild,
+  +jsch-0.1.21.ebuild:
+  version bump + examples use, thanks too Carsten Frewert #99323
+
+  09 Jul 2005; Thomas Matthijs <axxo@gentoo.org> -jsch-0.1.15.ebuild,
+  -jsch-0.1.16.ebuild, -jsch-0.1.17.ebuild, jsch-0.1.18.ebuild:
+  fix deps, and source useflag support, cleanups
+
+  27 May 2005; Jan Brinkmann <luckyduck@gentoo.org> jsch-0.1.18.ebuild:
+  stable on ppc
+
+  31 Mar 2005; Thomas Matthijs <axxo@gentoo.org> jsch-0.1.15.ebuild,
+  jsch-0.1.16.ebuild, jsch-0.1.17.ebuild, jsch-0.1.18.ebuild:
+  need to depend on ant-core 1.6 for -lib
+
+  29 Mar 2005; Jan Brinkmann <luckyduck@gentoo.org> jsch-0.1.16.ebuild,
+  jsch-0.1.17.ebuild, jsch-0.1.18.ebuild:
+  added dev-java/gnu-crypto dependency for arches which have an ibm-jdk, fixes
+  #73337
+
+  28 Mar 2005; Gustavo Zacarias <gustavoz@gentoo.org> jsch-0.1.18.ebuild:
+  Stable on sparc
+
+  03 Feb 2005; Jan Brinkmann <luckyduck@gentoo.org> jsch-0.1.18.ebuild:
+  stable on amd64 and x86.
+
+  26 Jan 2005; Markus Rothe <corsair@gentoo.org> jsch-0.1.18.ebuild:
+  Stable on ppc64
+
+  18 Dec 2004; Markus Rothe <corsair@gentoo.org> jsch-0.1.18.ebuild:
+  added ~ppc64 to KEYWORDS
+
+  03 Nov 2004; Thomas Matthijs <axxo@gentoo.org> jsch-0.1.15.ebuild,
+  jsch-0.1.16.ebuild, jsch-0.1.17.ebuild, jsch-0.1.18.ebuild:
+  depend on app-arch/unzip
+
+*jsch-0.1.18 (28 Oct 2004)
+
+  28 Oct 2004; Thomas Matthijs <axxo@gentoo.org> +jsch-0.1.18.ebuild:
+  version bump
+
+  16 Oct 2004; Thomas Matthijs <axxo@gentoo.org> jsch-0.1.15.ebuild,
+  jsch-0.1.16.ebuild, jsch-0.1.17.ebuild:
+  use java-pkg_dohtml instead of dohtml to also install the package-list in
+  case of api docs: #50740
+
+*jsch-0.1.17 (28 Sep 2004)
+
+  28 Sep 2004; Thomas Matthijs <axxo@gentoo.org> jsch-0.1.15.ebuild,
+  jsch-0.1.16.ebuild, +jsch-0.1.17.ebuild:
+  version bump + removed restrict nomirror
+
+*jsch-0.1.16 (10 Sep 2004)
+
+  10 Sep 2004; Thomas Matthijs <axxo@gentoo.org> jsch-0.1.15.ebuild,
+  jsch-0.1.16.ebuild:
+  changed dependenciess to ant-core
+
+  21 May 2004; Chris Aniszczyk <zx@gentoo.org> -jsch-0.1.12.ebuild,
+  -jsch-0.1.14.ebuild, jsch-0.1.15.ebuild:
+  Clean up and bumping stable
+
+*jsch-0.1.15 (21 May 2004)
+
+  21 May 2004; Chris Aniszczyk <zx@gentoo.org> +jsch-0.1.15.ebuild:
+  Version bump. Closes #51630
+  Thanks to Pavel <hlobil@sympatico.ca> for the heads up.
+
+  09 May 2004; Jason Wever <weeve@gentoo.org> jsch-0.1.14.ebuild:
+  Added ~sparc keyword to resolve bug #50401.
+
+  04 May 2004; <SeJo@gentoo.org> jsch-0.1.12.ebuild, jsch-0.1.14.ebuild:
+  added ~ppc
+
+  08 May 2004; Chris Aniszczyk <zx@gentoo.org> jsch-0.1.12.ebuild:
+  Marking stable on x86
+
+*jsch-0.1.14 (30 Mar 2004)
+
+  30 Mar 2004; Chris Aniszczyk <zx@gentoo.org> jsch-0.1.13.ebuild,
+  jsch-0.1.14.ebuild:
+  Version bump + Clean up. Closes #45703
+  Thanks to Pavel <hlobil@sympatico.ca> for the updated ebuild.
+
+  23 Mar 2004; David Holm <dholm@gentoo.org> jsch-0.1.13.ebuild:
+  Backed out of ~ppc.
+
+  22 Mar 2004; David Holm <dholm@gentoo.org> jsch-0.1.13.ebuild:
+  Added to ~ppc.
+
+  18 Mar 2004; Jon Portnoy <avenj@gentoo.org> jsch-0.1.12.ebuild,
+  jsch-0.1.13.ebuild :
+  Removed RESTRICT=nomirror. Policy now is to mirror sourceforge
+  files too.
+
+  15 Feb 2004; David Holm <dholm@gentoo.org> jsch-0.1.13.ebuild:
+  Added to ~ppc.
+
+*jsch-0.1.13 (14 Feb 2004)
+
+  14 Feb 2004; Adrian Almenar <strider@gentoo.org> jsch-0.1.13.ebuild:
+  Version Bump.
+  Now this package depends on jzlib to have compression support.
+
+  19 Jan 2004; Adrian Almenar <strider@gentoo.org> jsch-0.1.12.ebuild:
+  Added amd64 keyword.
+
+*jsch-0.1.12 (03 Jan 2004)
+
+  03 Jan 2004; Adrian Almenar <strider@gentoo.org> jsch-0.1.12.ebuild, metadata.xml,
+  files/build.xml-dstamp.patch.gz:
+  Initial import of Jsch, It builds from sources. Dependency required to build
+  ANT.
+
