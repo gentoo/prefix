@@ -8,7 +8,7 @@ ANT_TASK_DEPNAME="log4j"
 
 inherit ant-tasks
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos"
 
 DEPEND=">=dev-java/log4j-1.2.13-r2"
 RDEPEND="${DEPEND}"
