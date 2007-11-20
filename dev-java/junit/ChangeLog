@@ -1,0 +1,141 @@
+# ChangeLog for dev-java/junit
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/junit/ChangeLog,v 1.34 2007/11/15 13:16:23 betelgeuse Exp $
+
+  15 Nov 2007; Petteri Räty <betelgeuse@gentoo.org> -junit-3.8.2.ebuild:
+  Delete old ebuild.
+
+*junit-3.8.2-r1 (27 Apr 2007)
+
+  27 Apr 2007; Vlastimil Babka <caster@gentoo.org>
+  files/junit-3.8.2-build.xml, -junit-3.8.1-r1.ebuild, junit-3.8.2.ebuild,
+  +junit-3.8.2-r1.ebuild:
+  Revbump that depends on split-ant and stops symlinking to
+  /usr/share/ant-core/lib; Also don't generate javadoc without USE=doc.
+
+  24 Nov 2006; Markus Rothe <corsair@gentoo.org> junit-3.8.1-r3.ebuild:
+  Stable on ppc64; bug #155261
+
+  23 Nov 2006; <blubb@gentoo.org> junit-3.8.1-r3.ebuild:
+  stable on amd64
+
+  18 Nov 2006; nixnut <nixnut@gentoo.org> junit-3.8.1-r3.ebuild:
+  Stable on ppc wrt bug 155261
+
+  16 Nov 2006; Andrej Kacian <ticho@gentoo.org> junit-3.8.1-r3.ebuild:
+  Stable on x86, bug #155261.
+
+  15 Nov 2006; Krzysiek Pawlik <nelchael@gentoo.org>
+  +files/junit-3.8.2-build.xml:
+  Add junit-3.8.2-build.xml to fix bug 155194.
+
+*junit-3.8.2 (15 Nov 2006)
+
+  15 Nov 2006; William L. Thomson Jr. <wltjr@gentoo.org>
+  +junit-3.8.2.ebuild:
+  Revision bump, moved ebuild from overlay.
+
+  05 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org> junit-3.8.1-r1.ebuild,
+  junit-3.8.1-r3.ebuild:
+  Dropping sparc keywords, see #96229
+
+  10 Sep 2006; Joshua Nichols <nichoj@gentoo.org> junit-3.8.1-r3.ebuild:
+  Keyworded ~ia64
+
+  23 Jul 2006; Diego Pettenò <flameeyes@gentoo.org> junit-3.8.1-r3.ebuild:
+  Add ~x86-fbsd keyword.
+
+*junit-3.8.1-r3 (22 Jul 2006)
+
+  22 Jul 2006; Krzysiek Pawlik <nelchael@gentoo.org> -junit-3.8.1-r2.ebuild,
+  +junit-3.8.1-r3.ebuild:
+  Add java-ant-2.
+
+*junit-3.8.1-r2 (21 Jul 2006)
+
+  21 Jul 2006; Joshua Nichols <jnichols@gentoo.org> +junit-3.8.1-r2.ebuild:
+  Revision bump to use new Java system.
+
+  02 Aug 2005; Petteri Räty <betelgeuse@gentoo.org> junit-3.8.1-r1.ebuild:
+  The installed source package doesn't include class files any more.
+
+  09 Jul 2005; Thomas Matthijs <axxo@gentoo.org> junit-3.8.1-r1.ebuild:
+  fix deps, and source useflag support
+
+  26 Jan 2005; Markus Rothe <corsair@gentoo.org> junit-3.8.1-r1.ebuild:
+  Stable on ppc64
+
+  18 Dec 2004; Markus Rothe <corsair@gentoo.org> junit-3.8.1-r1.ebuild:
+  added ~ppc64 to KEYWORDS
+
+  14 Nov 2004; Thomas Matthijs <axxo@gentoo.org> junit-3.8.1-r1.ebuild:
+  add doc useflag, and jikes support 70798, patch by Jan Brinkmann
+  <lucky@the-luckyduck.de
+
+  29 Oct 2004; Thomas Matthijs <axxo@gentoo.org> junit-3.8.1-r1.ebuild:
+  remove nomirror
+
+  16 Oct 2004; Thomas Matthijs <axxo@gentoo.org> junit-3.8.1-r1.ebuild:
+  use java-pkg_dohtml instead of dohtml to also install the package-list in
+  case of api docs: #50740
+
+*junit-3.8.1-r1 (10 Sep 2004)
+
+  10 Sep 2004; Thomas Matthijs <axxo@gentoo.org> -files/junit-3.7-build.xml,
+  +junit-3.8.1-r1.ebuild, -junit-3.8.1.ebuild:
+  revision bump: ant moved to ant-core
+
+  19 Jan 2004; Adrian Almenar <strider@gentoo.org> junit-3.8.1.ebuild:
+  Added amd64 keyword.
+
+  17 Jan 2004; Adrian Almenar <strider@gentoo.org> junit-3.8.1.ebuild:
+  Added RESTRICT="nomirror" and updated SRC_URI.
+
+  03 Oct 2003; Adrian Almenar <strider@gentoo.org> junit-3.8.1.ebuild:
+  Fixes bug #23707
+
+*junit-3.7-r2 (14 Mar 2003)
+
+  14 Mar 2003; Dylan Carlson <absinthe@gentoo.org> junit-3.7-r2.ebuild,
+  files/junit-3.7-build.xml:
+  Fixed ant build problem reported in user forums, and got this process
+  to compile.  Closes #17284.
+
+*junit-3.8.1 (14 Oct 2002)
+
+  06 Apr 2003; Dylan Carlson <absinthe@gentoo.org> junit-3.8.1.ebuild:
+  x86 ppc sparc moved to stable.
+
+  28 Nov 2002; Adrian Almenar <strider@gentoo.org> junit-3.8.1.ebuild:
+  Added app-arch/unzip a dependency. Fixes #11229.
+  Updated ebuild to follow the policy about IUSE="".
+  Updated Package HOMEPAGE and RDEPEND.
+
+  29 Oct 2002; Karl Trygve Kalleberg <karltk@gentoo.org> junit-3.8.1.ebuild :
+  Added dev-java/ant as a dependency. Fixes #9709.
+
+  14 Oct 2002; Karl Trygve Kalleberg <karltk@gentoo.org> junit-3.8.1.ebuild files/digest-junit-3.8.1 :
+  New upstream version.
+
+*junit-3.7-r1 (19 Jul 2002)
+
+  28 Nov 2002; Adrian Almenar <strider@gentoo.org> junit-3.7-r1.ebuild:
+  Added app-arch/unzip a dependency. Fixes #11229.
+  Updated ebuild to follow the policy about IUSE="".
+  Updated Package HOMEPAGE AND RDEPEND.
+ 
+  01 Aug 2002; Karl Trygve Kalleberg <karltk@gentoo.org> junit-3.7-r1.ebuild :
+  Added KEYWORDS.
+
+  19 Jul 2002; Karl Trygve Kalleberg <karltk@gentoo.org> junit-3.7-r1.ebuild files/digest-junit-3.7-r1:
+  Should now work with Ant.
+  Removed junit-3.7.ebuild files/digest-junit-3.7
+
+*junit-3.7 ( 11 Feb 2002 )
+
+  11 Feb 2002; Karl Trygve Kalleberg <karltk@gentoo.org> ChangeLog junit-3.7.ebuild files/digest-junit-3.7:
+  JUnit is a simple framework for writing and running automated tests. As a 
+  political gesture, it celebrates programmers testing their own software.
+
+  Submitted by William McArthur <Leknor@Leknor.com>
+
