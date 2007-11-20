@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/pango
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.200 2007/11/17 13:30:55 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.201 2007/11/19 18:02:30 corsair Exp $
+
+  19 Nov 2007; Markus Rothe <corsair@gentoo.org> pango-1.18.3.ebuild:
+  Stable on ppc64; bug #198845
 
   17 Nov 2007; nixnut <nixnut@gentoo.org> pango-1.18.3.ebuild:
   Stable on ppc wrt bug 198845
