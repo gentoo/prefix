@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/perl
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.261 2007/11/18 17:46:35 ian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.262 2007/11/19 09:55:56 ian Exp $
+
+*perl-5.8.8-r4 (19 Nov 2007)
+
+  19 Nov 2007; Christian Hartmann <ian@gentoo.org> +perl-5.8.8-r4.ebuild:
+  Revbump to make sure everybody got a working perl as suggested in bug
+  #199518 in comment 22; keeping keywords to speed up the progress for bug
+  #198196
 
   18 Nov 2007; Christian Hartmann <ian@gentoo.org>
   +files/perl-5.8.8-lib64.patch:
