@@ -276,7 +276,7 @@ java-pkg_dojar() {
 
 				INSDESTTREE="${JAVA_PKG_JARDEST}" \
 					doins "${jar}" || die "failed to install ${jar}"
-				java-pkg_append_ JAVA_PKG_CLASSPATH "${JAVA_PKG_JARDEST}/${jar_basename}"
+				java-pkg_append_ JAVA_PKG_CLASSPATH "${EPREFIX}/${JAVA_PKG_JARDEST}/${jar_basename}"
 				debug-print "installed ${jar} to ${ED}${JAVA_PKG_JARDEST}"
 			# make a symlink to the original jar if it's symlink
 			else
@@ -356,12 +356,12 @@ java-pkg_regjar() {
 			#check that class version correct when in strict mode
 			is-java-strict && java-pkg_verify-classes "${jar}"
 
-			# nelchael: we should strip ${ED} in this case too, here's why:
+			# nelchael: we should strip ${D} in this case too, here's why:
 			# imagine such call:
 			#    java-pkg_regjar ${ED}/opt/java/*.jar
 			# such call will fall into this case (-e ${jar}) and will
-			# record paths with ${ED} in package.env
-			java-pkg_append_ JAVA_PKG_CLASSPATH	"${jar#${ED}}"
+			# record paths with ${D} in package.env
+			java-pkg_append_ JAVA_PKG_CLASSPATH	"${jar#${D}}"
 		else
 			if [[ ${jar} = *\** ]]; then
 				eerror "The argument ${jar} to ${FUNCNAME}"
@@ -727,7 +727,7 @@ java-pkg_dolauncher() {
 	fi
 
 	# Write the actual script
-	echo "#!/bin/bash" > "${target}"
+	echo "#!/usr/bin/env bash" > "${target}"
 	if [[ -n "${pre}" ]]; then
 		if [[ -f "${pre}" ]]; then
 			cat "${pre}" >> "${target}"
