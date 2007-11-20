@@ -16,7 +16,7 @@ HOMEPAGE="http://xml.apache.org/xalan-j/index.html"
 SRC_URI="mirror://apache/xml/${MY_PN}/source/${MY_P}-src.tar.gz"
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos"
 IUSE="doc source"
 COMMON_DEP="
 	dev-java/javacup
