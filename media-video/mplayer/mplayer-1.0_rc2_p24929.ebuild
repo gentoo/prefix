@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2.ebuild,v 1.2 2007/11/02 16:03:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p24929.ebuild,v 1.1 2007/11/02 02:55:29 beandog Exp $
 
 EAPI="prefix"
 
@@ -10,11 +10,8 @@ RESTRICT="strip"
 IUSE="3dnow 3dnowext a52 aac aalib alsa altivec amrnb amrwb arts bidi bl bindist
 cddb cdio cdparanoia cpudetection custom-cflags debug dga doc dts dvb directfb
 dvd dv enca encode esd fbcon ftp gif ggi gtk iconv ipv6 ivtv jack joystick jpeg
-kernel_linux libcaca lame lirc live livecd lzo mad md5sum mmx mmxext mp2 mp3
-musepack nas nemesi pvr unicode vorbis opengl openal oss png pnm quicktime
-radio rar real rtc samba sdl speex srt sse sse2 ssse3 svga teletext tga theora
-tivo truetype v4l v4l2 vidix win32codecs X x264 xanim xinerama xv xvid xvmc
-zoran aqua"
+kernel_linux ladspa libcaca lirc live livecd lzo mad md5sum mmx mmxext mp2 mp3
+musepack nas nemesi pvr unicode vorbis opengl openal oss png pnm pulseaudio quicktime radio rar real rtc samba sdl speex srt sse sse2 ssse3 svga teletext tga theora tivo truetype v4l v4l2 vidix win32codecs X x264 xanim xinerama xv xvid xvmc zoran aqua"
 
 VIDEO_CARDS="s3virge mga tdfx vesa"
 
@@ -24,12 +21,8 @@ done
 
 BLUV="1.7"
 SVGV="1.9.17"
-MY_PN="MPlayer"
-MY_PV="${PV/_/}"
-MY_P="${MY_PN}-${MY_PV}"
-S="${WORKDIR}/${MY_P}"
 AMR_URI="http://www.3gpp.org/ftp/Specs/archive"
-SRC_URI="mirror://mplayer/releases/${MY_P}.tar.bz2
+SRC_URI="mirror://gentoo/${PF}.tar.bz2
 	!truetype? ( mirror://mplayer/releases/fonts/font-arial-iso-8859-1.tar.bz2
 				 mirror://mplayer/releases/fonts/font-arial-iso-8859-2.tar.bz2
 				 mirror://mplayer/releases/fonts/font-arial-cp1250.tar.bz2 )
@@ -69,7 +62,7 @@ RDEPEND="sys-libs/ncurses
 	encode? (
 		aac? ( media-libs/faac )
 		mp2? ( media-sound/twolame )
-		lame? ( media-sound/lame )
+		mp3? ( media-sound/lame )
 		)
 	esd? ( media-sound/esound )
 	enca? ( app-i18n/enca )
@@ -81,6 +74,7 @@ RDEPEND="sys-libs/ncurses
 		x11-libs/libXi
 		=x11-libs/gtk+-2* )
 	jpeg? ( media-libs/jpeg )
+	ladspa? ( media-libs/ladspa-sdk )
 	libcaca? ( media-libs/libcaca )
 	lirc? ( app-misc/lirc )
 	lzo? ( >=dev-libs/lzo-2 )
@@ -90,6 +84,7 @@ RDEPEND="sys-libs/ncurses
 	opengl? ( virtual/opengl )
 	png? ( media-libs/libpng )
 	pnm? ( media-libs/netpbm )
+	pulseaudio? ( media-sound/pulseaudio )
 	samba? ( net-fs/samba )
 	sdl? ( media-libs/libsdl )
 	speex? ( >=media-libs/speex-1.1.7 )
@@ -157,7 +152,7 @@ pkg_setup() {
 
 src_unpack() {
 
-	unpack ${MY_P}.tar.bz2
+	unpack ${A}
 
 	if ! use truetype ; then
 		unpack font-arial-iso-8859-1.tar.bz2 \
@@ -354,9 +349,10 @@ src_compile() {
 	#############
 	# Audio Output #
 	#############
-	for x in alsa arts esd jack nas openal; do
+	for x in alsa arts esd jack ladspa nas openal; do
 		use ${x} || myconf="${myconf} --disable-${x}"
 	done
+	use pulseaudio || myconf="${myconf} --disable-pulse"
 	if ! use radio; then
 		use oss || myconf="${myconf} --disable-ossaudio"
 	fi
