@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/setuptools
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/ChangeLog,v 1.32 2007/11/12 15:59:30 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/ChangeLog,v 1.33 2007/11/19 06:12:51 kumba Exp $
+
+  19 Nov 2007; Joshua Kinard <kumba@gentoo.org>
+  setuptools-0.6_rc7-r1.ebuild:
+  Marked unstable on mips, per #191550.
 
   12 Nov 2007; Samuli Suominen <drac@gentoo.org>
   setuptools-0.6_rc7-r1.ebuild:
