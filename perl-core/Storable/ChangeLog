@@ -1,6 +1,9 @@
 # ChangeLog for perl-core/Storable
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Storable/ChangeLog,v 1.22 2007/11/10 11:31:21 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Storable/ChangeLog,v 1.23 2007/11/19 03:56:02 kumba Exp $
+
+  19 Nov 2007; Joshua Kinard <kumba@gentoo.org> Storable-2.16.ebuild:
+  Stable on mips.
 
   10 Nov 2007; Samuli Suominen <drac@gentoo.org> Storable-2.16.ebuild:
   amd64 stable
