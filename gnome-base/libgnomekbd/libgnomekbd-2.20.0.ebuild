@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/libgnomekbd-2.20.0.ebuild,v 1.1 2007/10/09 05:48:51 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/libgnomekbd-2.20.0.ebuild,v 1.2 2007/11/20 14:27:32 drac Exp $
 
 EAPI="prefix"
 
@@ -29,7 +29,7 @@ DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.35
 	dev-util/pkgconfig"
 
-DOCS="AUTHORS ChangeLog INSTALL NEWS README"
+DOCS="AUTHORS ChangeLog NEWS README"
 
 # This collides with
 # /etc/gconf/schemas/desktop_gnome_peripherals_keyboard_xkb.schemas from
