@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/autogen
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/ChangeLog,v 1.38 2007/11/08 04:53:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/ChangeLog,v 1.39 2007/11/20 04:16:03 kumba Exp $
+
+  20 Nov 2007; Joshua Kinard <kumba@gentoo.org> autogen-5.9.ebuild:
+  Stable on mips, per #194955.
 
   29 Oct 2007; Mike Frysinger <vapier@gentoo.org> autogen-5.9.2.ebuild:
   Only require USE=deprecated in guile #197361.
