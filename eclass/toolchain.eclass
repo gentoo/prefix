@@ -928,12 +928,12 @@ gcc-compiler_pkg_postrm() {
 	# ROOT isnt handled by the script
 	[[ ${ROOT} != "/" ]] && return 0
 
-	if [[ ! -e ${LIBPATH}/libstdc++.so ]] ; then
+	if [[ ! -e ${EPREFIX}${LIBPATH}/libstdc++.so ]] ; then
 		einfo "Running 'fix_libtool_files.sh ${GCC_RELEASE_VER}'"
-		${EPREFIX}/sbin/fix_libtool_files.sh ${GCC_RELEASE_VER}
+		"${EPREFIX}"/sbin/fix_libtool_files.sh ${GCC_RELEASE_VER}
 		if [[ -n ${BRANCH_UPDATE} ]] ; then
 			einfo "Running 'fix_libtool_files.sh ${GCC_RELEASE_VER}-${BRANCH_UPDATE}'"
-			${EPREFIX}/sbin/fix_libtool_files.sh ${GCC_RELEASE_VER}-${BRANCH_UPDATE}
+			"${EPREFIX}"/sbin/fix_libtool_files.sh ${GCC_RELEASE_VER}-${BRANCH_UPDATE}
 		fi
 	fi
 
