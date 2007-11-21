@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/gnome-desktop
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.200 2007/11/06 17:00:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.201 2007/11/20 16:19:16 drac Exp $
+
+  20 Nov 2007; Samuli Suominen <drac@gentoo.org>
+  gnome-desktop-2.20.1.ebuild:
+  amd64 stable wrt #199740
 
   06 Nov 2007; Raúl Porcel <armin76@gentoo.org>
   gnome-desktop-2.18.3.ebuild:
