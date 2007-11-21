@@ -1,6 +1,10 @@
 # ChangeLog for dev-haskell/regex-compat
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-compat/ChangeLog,v 1.6 2007/11/15 23:55:48 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-compat/ChangeLog,v 1.7 2007/11/20 15:04:35 fmccor Exp $
+
+  20 Nov 2007; Ferris McCormick <fmccor@gentoo.org>
+  regex-compat-0.90.ebuild:
+  Add ~sparc for testing.
 
   15 Nov 2007; Steve Dibb <beandog@gentoo.org> regex-compat-0.71.ebuild:
   amd64 stable, bug 196616
