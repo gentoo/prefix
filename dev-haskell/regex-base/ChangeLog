@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/regex-base
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-base/ChangeLog,v 1.7 2007/11/15 23:54:14 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-base/ChangeLog,v 1.8 2007/11/20 15:04:34 fmccor Exp $
+
+  20 Nov 2007; Ferris McCormick <fmccor@gentoo.org> regex-base-0.91.ebuild:
+  Add ~sparc for testing.
 
   15 Nov 2007; Steve Dibb <beandog@gentoo.org> regex-base-0.72.ebuild:
   amd64 stable, bug 196616
