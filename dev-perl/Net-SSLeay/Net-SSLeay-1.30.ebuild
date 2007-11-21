@@ -22,7 +22,7 @@ DEPEND="dev-libs/openssl
 
 export OPTIMIZE="$CFLAGS"
 
-myconf="${myconf} /usr"
+myconf="${myconf} ${EPREFIX}/usr"
 
 src_unpack() {
 	unpack ${A}
