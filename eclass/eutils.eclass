@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.292 2007/10/14 21:55:35 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.293 2007/11/20 22:32:01 wolf31o2 Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -749,7 +749,7 @@ make_desktop_entry() {
 
 	local exec=${1}
 	local name=${2:-${PN}}
-	local icon=${3:-${PN}.png}
+	local icon=${3:-${PN}}
 	local type=${4}
 	local path=${5}
 
@@ -883,17 +883,17 @@ make_desktop_entry() {
 
 	cat <<-EOF > "${desktop}"
 	[Desktop Entry]
-	Encoding=UTF-8
 	Version=1.0
 	Name=${name}
 	Type=Application
 	Comment=${DESCRIPTION}
 	Exec=${exec}
 	TryExec=${exec%% *}
-	Path=${path}
 	Icon=${icon}
 	Categories=${type};
 	EOF
+
+	[[ ${path} ]] && echo "Path=${path}" >> "${desktop}"
 
 	(
 		# wrap the env here so that the 'insinto' call
@@ -946,7 +946,6 @@ make_session_desktop() {
 
 	cat <<-EOF > "${desktop}"
 	[Desktop Entry]
-	Encoding=UTF-8
 	Name=${title}
 	Comment=This session logs you into ${title}
 	Exec=${command}

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.342 2007/11/12 19:33:00 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.343 2007/11/20 05:06:18 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1205,6 +1205,7 @@ gcc-compiler-configure() {
 		use objc-gc && confgcc="${confgcc} --enable-objc-gc"
 		is_objcxx && GCC_LANG="${GCC_LANG},obj-c++"
 	fi
+	is_treelang && GCC_LANG="${GCC_LANG},treelang"
 
 	# fortran support just got sillier! the lang value can be f77 for
 	# fortran77, f95 for fortran95, or just plain old fortran for the
@@ -2431,4 +2432,11 @@ is_ada() {
 	gcc-lang-supported ada || return 1
 	use build && return 1
 	use ada
+}
+
+is_treelang() {
+	gcc-lang-supported treelang || return 1
+	use build && return 1
+	#use treelang
+	return 0
 }
