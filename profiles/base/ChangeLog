@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.22 2007/11/05 10:45:43 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.23 2007/11/21 00:22:12 bicatali Exp $
+
+  21 Nov 2007; Sébastien Fabbro <bicatali@gentoo.org> virtuals:
+  Removed virtual/lapack, now new style
 
   05 Nov 2007; Duncan Coutts <dcoutts@gentoo.org> virtuals:
   Switch to ghc rather than ghc-bin for virtual as we're p.masking ghc-bin

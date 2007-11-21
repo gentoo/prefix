@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3143 2007/11/15 20:06:31 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3156 2007/11/20 20:04:21 drac Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -144,7 +144,6 @@ app-emulation/virtualbox:alsa - Enable support for ALSA instead of OSS
 app-emulation/virtualbox:sdk - Enable building of SDK
 app-emulation/xen-tools:custom-cflags - Use CFLAGS from /etc/make.conf rather than the default Xen CFLAGS (not supported)
 app-emulation/xen-tools:hvm - Enable support for hardware based virtualization (VT-x, AMD-v)
-app-emulation/xen-tools:ioemu - Enable support for emulated io devices including video via VNC for domainUs
 app-emulation/xen-tools:pygrub - Install the pygrub boot loader
 app-emulation/xen-tools:screen - Enable support for running domain U consoles in a screen session
 app-emulation/xen:custom-cflags - Use CFLAGS from /etc/make.conf rather than the default Xen CFLAGS (not supported)
@@ -278,6 +277,7 @@ app-text/evince:t1lib - Enable the Type-1 fonts for the built-in DVI viewer for 
 app-text/ghostscript-esp:djvu - Enable gsdjvu support
 app-text/ghostscript-gpl:djvu - Enable gsdjvu support
 app-text/hyperestraier:mecab - Enable mecab support for Estraier
+app-text/lcdf-typetools:kpathsea - Enable integration with kpathsea search library (TeX related)
 app-text/namazu:kakasi - Enable kakasi support for namazu
 app-text/noweb:icon - Enable icon language support for noweb
 app-text/pdftk:nodrm - Decrypt a document with the user_pw even if it has an owner_pw set
@@ -304,6 +304,7 @@ app-vim/gentoo-syntax:ignore-glep31 - Remove GLEP 31 (UTF-8 file encodings) sett
 app-vim/vcscommand:cvs - Enable CVS support
 app-vim/vcscommand:subversion - Enable subversion support
 app-vim/vcscommand:svk - Enable SVK support
+dev-cpp/sptk:aspell - Enable Aspell support
 dev-cpp/sptk:excel - Enable Excel support
 dev-db/libpq:pg-intdatetime - Enables --enable-integer-datetimes configure option, which changes PG to use 64-bit integers for timestamp storage.
 dev-db/monetdb:boehmgc - enables Boehm Garbage Collector for XQuery
@@ -463,7 +464,11 @@ dev-lang/ruby:rubytests - Install ruby tests that can only be run after ruby is 
 dev-lang/ruby:xemacs - Add support for XEmacs
 dev-lang/smarteiffel:tcc - use tcc instead of gcc for build (g++ is still used for c++ code)
 dev-lang/spidermonkey:threadsafe - Build a threadsafe version of spidermonkey
+dev-lang/swig:chicken - Enable chicken Scheme support
+dev-lang/swig:clisp - Enable CLisp support
+dev-lang/swig:mzscheme - Enable PLT mzscheme support
 dev-lang/swig:pike - Enable Pike scripting support
+dev-lang/swig:R - Enable R support
 dev-libs/DirectFB-extra:flash - Adds support for creating SWF files using Ming
 dev-libs/DirectFB:fusion - add Multi Application support (fusion kernel device)
 dev-libs/DirectFB:sysfs - Add support for the sysfs filesystem (requires Linux-2.6+)
@@ -493,6 +498,7 @@ dev-libs/libjit:interpreter - Enable the libjit interpreter
 dev-libs/libjit:long-double - Enable the use of long double for jit_nfloat
 dev-libs/libjit:new-reg-alloc - Enable new register allocator
 dev-libs/libmix:no-net2 - disable libpcap and libnet support
+dev-libs/libpcre:cxx - Build C++ bindings.
 dev-libs/libprelude:swig - Enable rebuild of swig bindings
 dev-libs/libpreludedb:swig - Enable rebuild of swig bindings
 dev-libs/libproccpuinfo:sender - Build a utility for sending the author your /proc/cpuinfo file.
@@ -959,6 +965,7 @@ media-libs/cal3d:16bit-indices - Enables use of 16bit indices
 media-libs/coin:fontconfig - Support for managing custom fonts via fontconfig.
 media-libs/devil:allegro - Add support for Allegro
 media-libs/farsight:jingle - Enables voice calls for jabber
+media-libs/flac:cxx - Enables FLAC++, C++ bindings to the FLAC library
 media-libs/freetype:utils - Install utilities and examples from ft2demos
 media-libs/gd:fontconfig - Support for managing custom fonts via fontconfig.
 media-libs/giflib:rle - Build converters for RLE format (utah raster toolkit)
@@ -1031,6 +1038,10 @@ media-sound/amarok:mtp - Enable support for libMTP (Plays4Sure) devices access t
 media-sound/amarok:njb - Enable support for NJB (Creative) devices access through libnjb
 media-sound/amarok:real - Build with real/helix player support
 media-sound/amarok:visualization - Support visualization plugins through media-libs/libvisual
+media-sound/audacity:id3tag - Enables ID3 tagging with id3tag library
+media-sound/audacity:soundtouch - Enables soundtouch library support
+media-sound/audacity:twolame - Enables twolame support (MPEG Audio Layer 2 encoder)
+media-sound/audacity:vamp - Enables vamp plugins support (Audio analysing plugins)
 media-sound/audacious:chardet - Try to handle non-UTF8 chinese/japanese/korean ID3 tags
 media-sound/banshee:boo - Use external Boo instead of the bundled one
 media-sound/banshee:daap - Build with Daap support
@@ -1488,6 +1499,7 @@ net-im/kadu:extramodules - Enables extra module in kadu
 net-im/kadu:mail - Enables mail module in kadu
 net-im/kadu:speech - Enables speech module in kadu
 net-im/kadu:voice - Enables voice chat in kadu
+net-im/mcabber:otr - Enable encrypted conversations using Off-The-Records messaging
 net-im/naim:screen - Enable screen support
 net-im/pidgin:bonjour - Enable bonjour support
 net-im/pidgin:gadu - Enable Gadu Gadu protocol support.
@@ -1518,6 +1530,9 @@ net-irc/ezbounce:boost - Compile against boost libraries
 net-irc/inspircd:openssl - Build OpenSSL module
 net-irc/ircd-hybrid:contrib - Build contrib modules (eg. cloaking)
 net-irc/ngircd:ident - Enables support for libident
+net-irc/rbot:aspell - Use aspell rather than ispell for the spell plugin.
+net-irc/rbot:snapshot - Set the Ruby gem version to a value suitable for a snapshot ebuild
+net-irc/rbot:timezone - Enable the timezone plugin.
 net-irc/srvx:bahamut - Choose bahamut protocol over p10 protocol
 net-irc/unrealircd:hub - Enable hub support
 net-irc/unrealircd:prefixaq - Enable chanadmin and chanowner prefixes
@@ -1841,11 +1856,13 @@ sci-mathematics/maxima:auctex - enable auctex in maxima
 sci-mathematics/maxima:clisp - adds clisp support to maxima
 sci-mathematics/maxima:cmucl - adds cmucl (lisp) support to maxima
 sci-mathematics/maxima:gcl - adds gcl (lisp) support to maxima
+sci-mathematics/maxima:latex - Request LaTeX for doc generation.
 sci-mathematics/maxima:sbcl - adds sbcl (lisp) support to maxima
 sci-mathematics/mupad:mupad-noscilab - Disable scilab that comes with MuPAD package. Use system-wide instead.
 sci-mathematics/nusmv:minisat - Enable support for MiniSat.
 sci-mathematics/octave-forge:qhull - Adds media-libs/qhull (geometric extensions) support
 sci-mathematics/octave:hdf5 - Adds support for the Hierarchical Data Format v5 to sci-mathematics/octave (may be merged with hdf when opendx is completed)
+sci-mathematics/octave:latex - Request LaTeX for doc generation.
 sci-mathematics/singular:boost - Compile against external boost headers.
 sci-mathematics/yacas:server -  Build the network server version.
 sci-misc/boinc:server - Enable compilation of server
@@ -1993,6 +2010,7 @@ sys-fs/loop-aes:padlock - Use VIA padlock instructions, detected at run time, co
 sys-fs/lvm2:clvm - Allow users to build clustered lvm2
 sys-fs/lvm2:cman - Cman support for clustered lvm
 sys-fs/lvm2:gulm - Gulm support for clustered lvm
+sys-fs/lvm2:lvm1 - Allow users to build lvm2 with lvm1 support
 sys-fs/lvm2:nolvm1 - Allow users to build lvm2 without lvm1 support
 sys-fs/lvm2:nolvmstatic - Allow users to build lvm2 dynamically
 sys-fs/lvm2:nomirrors - Allow users to build lvm2 without mirror support
@@ -2217,6 +2235,7 @@ x11-wm/windowmaker:modelock - Enable XKB language status lock support. README sa
 xfce-base/thunar:plugins - Enable trash panel plugin.
 xfce-base/xfce4-extras:battery - Meta pulls in xfce4-battery dependency.
 xfce-base/xfce4-extras:cpufreq - Meta pulls in xfce4-cpu-freq dependency.
-xfce-extra/thunar-thumbnailers:grace - Enable .agr thumbnailers, grace support.
-xfce-extra/thunar-thumbnailers:raw - Add support for raw image formats
+xfce-extra/thunar-thumbnailers:grace - Enable support for grace thumbnails.
+xfce-extra/thunar-thumbnailers:latex - Enable support for latex thumbnails.
+xfce-extra/thunar-thumbnailers:raw - Enable support for raw image thumbnails.
 xfce-extra/xfce4-sensors:hddtemp - Enable monitoring of disk temperatures (app-admin/hddtemp)

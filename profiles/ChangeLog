@@ -1,6 +1,66 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.822 2007/11/14 21:59:01 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.840 2007/11/20 23:03:19 tester Exp $
+
+  20 Nov 2007; <tester@gentoo.org> package.mask:
+  Mask sys-auth/pam_keyring, it's been included in gnome-base/gnome-keyring
+
+  20 Nov 2007; Ulrich Mueller <ulm@gentoo.org> updates/4Q-2007,
+  package.mask:
+  Move app-emacs/wanderlust-cvs to app-emacs/wanderlust. Remove wanderlust-cvs
+  from package.mask.
+
+  20 Nov 2007; Alexis Ballier <aballier@gentoo.org> package.mask:
+  unmask camlp5 and ledit, they are now fine with ocaml 3.09
+
+  20 Nov 2007; <alistair@gentoo.org> package.mask:
+  Masking more migrated java-virtuals/javamail packages
+
+  20 Nov 2007; Wolfram Schlich <wschlich@gentoo.org> use.local.desc:
+  add otr USE flag for net-im/mcabber
+
+  19 Nov 2007; Diego Pettenò <flameeyes@gentoo.org> use.local.desc:
+  Add aspell and timezone USE flags for rbot.
+
+  19 Nov 2007; Diego Pettenò <flameeyes@gentoo.org> use.local.desc:
+  Add snapshot USE flag for the rbot live ebuild.
+
+  19 Nov 2007; <alistair@gentoo.org> package.mask:
+  Added =dev-java/soap-2.3.1-r2 to mask
+
+  18 Nov 2007; Alexis Ballier <aballier@gentoo.org> package.mask:
+  unmask flac with cxx useflag now that everything has been checked against it
+
+  18 Nov 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Add wxGTK-2.6.4.0-r2 to mask.
+
+  18 Nov 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Mask eselect-wxwidgets for keywording.
+
+  18 Nov 2007; Diego Pettenò <flameeyes@gentoo.org> use.local.desc:
+  Add cxx USE flag for libpcre.
+
+  18 Nov 2007; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Blocking the upgrade to net-fs/samba-3.0.27 due to regression (bug #199450)
+
+  18 Nov 2007; Alexis Ballier <aballier@gentoo.org> package.mask,
+  use.local.desc:
+  Add a cxx flag for flac, to build flac++; mask it until the packages really
+  needing it have a check
+
+  17 Nov 2007; Denis Dupeyron <calchan@gentoo.org> package.mask:
+  Deleted mask on net-print/hpijs after removal, see bug #176962.
+
+  16 Nov 2007; Robin H. Johnson <robbat2@gentoo.org> base/package.use,
+  use.local.desc:
+  Convert sys-fs/lvm2 USE=nolvmstatic and nolvm1 to static and lvm respectively.
+
+  15 Nov 2007; Diego Pettenò <flameeyes@gentoo.org> base/use.mask:
+  pam_console was masked for removal for security issues.
+  mask the flag too.
+
+  15 Nov 2007; Diego Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask pam_console as per bug #199193.
 
   14 Nov 2007; Diego Pettenò <flameeyes@gentoo.org>
   default-linux/amd64/package.use.mask, default-linux/x86/package.use.mask:

@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7906 2007/11/15 13:16:42 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7928 2007/11/20 23:03:19 tester Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -20,6 +20,57 @@
 ##
 ##   End example
 ##
+
+# Olivier Crete <tester@gentoo.org> (20 Nov 2007)
+# There is now a better version include in gnome-base/gnome-keyring
+sys-auth/pam_keyring
+
+# William L Thomson Jr <wltjr@gentoo.org> (18 Nov 2007)
+# Upstream does not exist anymore, stale binary package
+# Package will be moved to junkyard overlay after 30 days
+# unless users express interest in this package.
+dev-java/blackdown-java3d-bin
+
+# Ryan Hill <dirtyepic@gentoo.org> (18 Nov 2007)
+# Mask for keywording.
+app-admin/eselect-wxwidgets
+>=x11-libs/wxGTK-2.6.4.0-r2
+
+# Tiziano Müller <dev-zero@gentoo.org> (18 Nov 2007)
+# There is a serious regression (bug #199450) due to
+# an incomplete fix for the non-remote vulnerability
+# CVE-2007-4572
+=net-fs/samba-3.0.27
+
+# Samuli Suominen <drac@gentoo.org> (18 Nov 2007)
+# Based on Xfce 4.4.2 testing tarballs at
+# http://mocha.xfce.org/archive/.testing/xfce-4.4.2/src
+# Content and digest might still change, be careful.
+=xfce-base/libxfce4mcs-4.4.2*
+=xfce-base/libxfce4util-4.4.2*
+=xfce-base/libxfcegui4-4.4.2*
+=xfce-base/orage-4.4.2*
+=xfce-base/xfce-mcs-manager-4.4.2*
+=xfce-base/xfce-mcs-plugins-4.4.2*
+=xfce-base/xfce-utils-4.4.2*
+=xfce-base/xfce4-4.4.2*
+=xfce-base/xfce4-panel-4.4.2*
+=xfce-base/xfce4-session-4.4.2*
+=xfce-base/xfdesktop-4.4.2*
+=xfce-base/xfwm4-4.4.2*
+=xfce-base/xfprint-4.4.2*
+=x11-themes/gtk-engines-xfce-2.4.2*
+=xfce-extra/xfce4-appfinder-4.4.2*
+=xfce-extra/xfwm4-themes-4.4.2*
+=xfce-extra/xfce4-mixer-4.4.2*
+=xfce-extra/xfce4-icon-theme-4.4.2*
+=xfce-extra/mousepad-0.2.13*
+
+# Doug Klima <cardoe@gentoo.org> (16 Nov 2007)
+# new heimdal version that's not too tested
+# anyone looking to take over maintaining heimdal
+# from seemant would make both of us happy
+=app-crypt/heimdal-1.0.1
 
 # Diego Pettenò <flameeyes@gentoo.org> (15 Nov 2007)
 # Masked for security vulnerability, see bug #199193.
@@ -84,7 +135,7 @@ app-text/cstetex
 # Beta version
 >=net-im/skype-2.0.0.13
 
-# Hanno Boeck <hanno@gentoo.org (11 Nov 2007)
+# Hanno Boeck <hanno@gentoo.org> (11 Nov 2007)
 # Remaining beryl-related packages, beryl has been removed
 x11-wm/heliodor
 x11-wm/aquamarine
@@ -116,7 +167,6 @@ media-radio/ktrack
 app-portage/portagemaster
 x11-themes/ximian-artwork
 mail-filter/popfile
-x11-misc/fluxter
 x11-misc/fluxspace
 app-vim/hgmenu
 app-vim/hgcommand
@@ -197,11 +247,6 @@ dev-db/xpg
 # Will be moved to Java overlays after a month
 dev-java/jdbc2-stdext
 
-# Ulrich Mueller <ulm@gentoo.org> (23 Oct 2007)
-# Live CVS ebuild, masked for removal in 30 days.
-# Use CVS snapshot in app-emacs/wanderlust as replacement.
-app-emacs/wanderlust-cvs
-
 # Markus Ullmann <jokey@gentoo.org> (20 Oct 2007)
 # dependency unneeded now, merged upstream
 dev-util/portatosourceview
@@ -268,6 +313,14 @@ java-virtuals/javamail
 =dev-java/gnu-javamail-1.0-r2
 =dev-java/mx4j-tools-3.0.1-r1
 =dev-java/mx4j-3.0.1-r3
+=dev-java/soap-2.3.1-r2
+=app-benchmarks/jmeter-2.0.1-r3
+=dev-java/avalon-logkit-1.2-r3
+=dev-java/avalon-logkit-2.1-r2
+=dev-java/bcmail-1.37-r1
+=dev-java/log4j-1.2.14-r2
+=dev-java/jax-rpc-1.1.3.01-r1
+=dev-java/excalibur-logger-2.1-r1
 
 # Andrej Kacian <ticho@gentoo.org> (13 Oct 2007)
 # RC is not for general public
@@ -336,10 +389,6 @@ x11-wm/kahakai
 # Paul Varner <fuzzyray@gentoo.org> (27 Sep 2007)
 # revdep-rebuild is broken in this release
 =app-portage/gentoolkit-0.2.4_rc1
-
-# Denis Dupeyron <calchan@gentoo.org> (23 Sep 2007)
-# Masked for removal in 30 days as per bug #176962.
-net-print/hpijs
 
 # Hanno Boeck <hanno@gentoo.org> (21 Sep 2007)
 # experimental new ebuild, changes a lot and breaks configuration
@@ -581,8 +630,6 @@ app-shells/ash
 >=dev-lang/ocaml-3.10.0
 >=dev-ml/ulex-1.0
 >=dev-ml/ocamlduce-3.10.0
-dev-ml/camlp5
->=app-misc/ledit-1.15
 >=app-emacs/ocaml-mode-3.10.0
 
 # Petteri Räty <betelgeuse@gentoo.org> (24 May 2007)
