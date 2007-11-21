@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/gnome-common
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-common/ChangeLog,v 1.46 2007/09/30 14:57:51 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-common/ChangeLog,v 1.47 2007/11/20 13:36:26 drac Exp $
+
+  20 Nov 2007; Samuli Suominen <drac@gentoo.org> gnome-common-2.20.0.ebuild:
+  amd64 stable wrt #199740
 
 *gnome-common-2.20.0 (30 Sep 2007)
 
