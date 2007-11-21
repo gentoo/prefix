@@ -1,3 +1,7 @@
+# Elias Pipping <pipping@gentoo.org> (21 Nov 2007)
+# generating documentation fails for hugs98 because of too many errors
+dev-lang/hugs98 doc
+
 # Elias Pipping <pipping@gentoo.org> (10 Nov 2007)
 # ruby fails to compile with USE=threads
 dev-lang/ruby threads
