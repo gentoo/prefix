@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/swig
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/ChangeLog,v 1.98 2007/11/19 20:44:04 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/ChangeLog,v 1.100 2007/11/21 00:22:35 corsair Exp $
+
+  21 Nov 2007; Markus Rothe <corsair@gentoo.org> swig-1.3.32.ebuild:
+  Added ~ppc64; bug #199368
+
+  20 Nov 2007; Ferris McCormick <fmccor@gentoo.org> swig-1.3.32.ebuild:
+  Add back ~sparc keyword, Bug #199368.  USE=clisp, mzscheme were already masked
+  for sparc.  For this version of swig, I also package.use.mask'ed chicken and
+  pike for swig because sparc has no keyword for either of them.
 
   19 Nov 2007; Jeroen Roovers <jer@gentoo.org> swig-1.3.32.ebuild:
   Marked ~hppa (bug #199368).
