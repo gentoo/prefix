@@ -64,10 +64,6 @@ app-emacs/jde
 dev-java/jikes
 dev-java/kaffe
 
-# Elias Pipping <pipping@gentoo.org> (23 Sep 2007)
-# java and ant are missing from the tree, ebuild itself is fine
-app-vim/ant
-
 # Fabian Groffen <grobian@gentoo.org> (29 Aug 2007)
 # Doesn't play nice with our binutils-config, needs some sorting out
 =sys-devel/gcc-config-1.4.0*
