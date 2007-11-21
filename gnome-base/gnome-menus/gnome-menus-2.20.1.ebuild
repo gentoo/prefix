@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/gnome-menus-2.20.1.ebuild,v 1.1 2007/10/17 20:25:59 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/gnome-menus-2.20.1.ebuild,v 1.2 2007/11/20 14:00:10 drac Exp $
 
 EAPI="prefix"
 
@@ -16,11 +16,11 @@ IUSE="debug python kernel_linux"
 
 RDEPEND=">=dev-libs/glib-2.6
 	python? (
-				>=dev-lang/python-2.4.4-r5
-				dev-python/pygtk
-			)"
+		>=dev-lang/python-2.4.4-r5
+		dev-python/pygtk
+	)"
 DEPEND="${RDEPEND}
-	  sys-devel/gettext
+	sys-devel/gettext
 	>=dev-util/pkgconfig-0.9
 	>=dev-util/intltool-0.35"
 
