@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/gst-plugins-base-0.10.15.ebuild,v 1.2 2007/11/18 19:00:20 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/gst-plugins-base-0.10.15.ebuild,v 1.3 2007/11/20 18:23:41 lavajoe Exp $
 
 EAPI="prefix"
 
@@ -28,6 +28,9 @@ DOCS="AUTHORS README RELEASE"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-netinet.patch
+
 	# Needed for sane .so versioning on Gentoo/FreeBSD
 	elibtoolize
 }
