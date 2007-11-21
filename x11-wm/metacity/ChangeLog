@@ -1,6 +1,14 @@
 # ChangeLog for x11-wm/metacity
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.196 2007/10/05 05:39:56 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.198 2007/11/20 22:56:35 leio Exp $
+
+*metacity-2.20.1 (20 Nov 2007)
+
+  20 Nov 2007; Mart Raudsepp <leio@gentoo.org> +metacity-2.20.1.ebuild:
+  Version bump for bug fixes and translation updates
+
+  20 Nov 2007; Samuli Suominen <drac@gentoo.org> metacity-2.20.0.ebuild:
+  amd64 stable wrt #199740
 
 *metacity-2.20.0 (05 Oct 2007)
 
