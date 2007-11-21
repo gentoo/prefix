@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libsigsegv
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigsegv/ChangeLog,v 1.24 2007/11/18 19:25:17 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigsegv/ChangeLog,v 1.25 2007/11/20 21:45:53 corsair Exp $
+
+  20 Nov 2007; Markus Rothe <corsair@gentoo.org> libsigsegv-2.4.ebuild:
+  Added ~ppc64; bug #199368
 
   18 Nov 2007; Jeroen Roovers <jer@gentoo.org> libsigsegv-2.4.ebuild:
   Marked ~hppa (bug #199368). Fixed quoting issues. Do not install COPYING.
