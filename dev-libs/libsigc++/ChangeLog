@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libsigc++
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigc++/ChangeLog,v 1.112 2007/11/17 18:08:20 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigc++/ChangeLog,v 1.113 2007/11/20 19:24:39 corsair Exp $
+
+  20 Nov 2007; Markus Rothe <corsair@gentoo.org> libsigc++-2.0.18.ebuild:
+  Stable on ppc64; bug #199322
 
   17 Nov 2007; Raúl Porcel <armin76@gentoo.org> libsigc++-2.0.18.ebuild:
   alpha/ia64/sparc stable wrt #199322
