@@ -78,7 +78,7 @@ src_compile() {
 	case ${CTARGET} in
 		*-solaris*)
 			# todo: some magic for native vs. GNU linking?
-			EXTRA_ECONF="${EXTRA_ECONF} --with-gnu-ld"
+			EXTRA_ECONF="${EXTRA_ECONF} --with-gnu-ld --with-gnu-as"
 		;;
 		*-aix*)
 			# AIX doesn't use GNU binutils, because it doesn't produce usable
