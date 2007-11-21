@@ -1,6 +1,9 @@
 # ChangeLog for app-doc/lapack-docs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/lapack-docs/ChangeLog,v 1.13 2007/11/16 16:22:22 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/lapack-docs/ChangeLog,v 1.14 2007/11/21 00:58:36 lavajoe Exp $
+
+  21 Nov 2007; Joe Peterson <lavajoe@gentoo.org> lapack-docs-3.1.1.ebuild:
+  Add ~x86-fbsd keyword (bug #189738)
 
   16 Nov 2007; nixnut <nixnut@gentoo.org> lapack-docs-3.1.1.ebuild:
   Stable on ppc wrt bug 189738
