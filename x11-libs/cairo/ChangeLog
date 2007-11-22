@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/cairo
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.145 2007/09/22 05:38:16 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.146 2007/11/21 19:48:32 cardoe Exp $
+
+*cairo-1.5.2 (21 Nov 2007)
+
+  21 Nov 2007; Doug Klima <cardoe@gentoo.org> +cairo-1.5.2.ebuild:
+  experimental cairo from the future 1.6 series for Firefox-3 testing.
+  Includes potential support to allow FEATURES=test to work
 
   22 Sep 2007; Tom Gall <tgall@gentoo.org> cairo-1.4.10.ebuild:
   stable on ppc64
