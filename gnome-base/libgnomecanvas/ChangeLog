@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/libgnomecanvas
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomecanvas/ChangeLog,v 1.103 2007/11/20 13:53:17 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomecanvas/ChangeLog,v 1.104 2007/11/21 16:27:05 cla Exp $
+
+  21 Nov 2007; Dawid Węgliński <cla@gentoo.org>
+  libgnomecanvas-2.20.1.1.ebuild:
+  Stable on x86 (bug #199740)
 
   20 Nov 2007; Samuli Suominen <drac@gentoo.org>
   libgnomecanvas-2.20.1.1.ebuild:
