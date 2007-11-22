@@ -1,6 +1,11 @@
 # ChangeLog for app-doc/doxygen
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.132 2007/09/21 13:07:26 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.133 2007/11/21 06:17:24 nerdboy Exp $
+
+*doxygen-1.5.4 (21 Nov 2007)
+
+  21 Nov 2007; Steve Arnold <nerdboy@gentoo.org> +doxygen-1.5.4.ebuild:
+  Updated to new version, closes bug 198954.
 
   21 Sep 2007; Roy Marples <uberlord@gentoo.org> doxygen-1.5.3.ebuild:
   Link to libiconv for FreeBSD.

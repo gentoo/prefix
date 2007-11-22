@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.2.ebuild,v 1.9 2007/07/23 02:41:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.2.ebuild,v 1.10 2007/11/21 06:17:24 nerdboy Exp $
 
 EAPI="prefix"
 
@@ -26,7 +26,7 @@ EPATCH_SUFFIX="patch"
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 
 	# use CFLAGS, CXXFLAGS, LDFLAGS
 	sed -i.orig -e 's:^\(TMAKE_CFLAGS_RELEASE\t*\)= .*$:\1= $(ECFLAGS):' \
@@ -36,7 +36,7 @@ src_unpack() {
 
 	# Consolidate patches, apply FreeBSD configure patch, codepage patch,
 	# qtools stuff, and patches for bugs 129142, 121770, and 129560.
-	epatch ${FILESDIR}/${PN}-1.5-legacy-patches.diff
+	epatch "${FILESDIR}/${PN}-1.5-legacy-patches.diff"
 
 	# prefix search tools patch, plus OSX and Solaris fixes
 	epatch "${FILESDIR}"/${PN}-1.5.2-prefix-misc-alt.patch
@@ -97,7 +97,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR=${D} MAN1DIR=share/man/man1 \
+	make DESTDIR="${D}" MAN1DIR=share/man/man1 \
 		install || die '"make install" failed.'
 
 	dodoc INSTALL LANGUAGE.HOWTO README
