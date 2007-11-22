@@ -1,6 +1,18 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.77 2007/09/23 07:34:43 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.79 2007/11/21 17:37:13 opfer Exp $
+
+  21 Nov 2007; Christian Faulhammer <opfer@gentoo.org>
+  erlang-11.2.5-r3.ebuild:
+  amd64 not x86 needs the patch
+
+*erlang-11.2.5-r3 (21 Nov 2007)
+
+  21 Nov 2007; Christian Faulhammer <opfer@gentoo.org>
+  +files/erlang-11.2.5-odbc-support-amd64.patch, -erlang-11.2.4-r1.ebuild,
+  -erlang-11.2.5-r1.ebuild, +erlang-11.2.5-r3.ebuild:
+  clean up; add patch to enable ODBC support on amd64, thanks to Alexander T
+  <spam AT ndl DOT kiev DOT ua> in bug 198302
 
   23 Sep 2007; Christian Faulhammer <opfer@gentoo.org>
   +files/erlang-11.2.5-hipe.patch, erlang-11.2.5-r2.ebuild:
