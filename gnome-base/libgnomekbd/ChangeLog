@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/libgnomekbd
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/ChangeLog,v 1.20 2007/11/20 14:27:32 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/ChangeLog,v 1.21 2007/11/21 16:49:07 cla Exp $
+
+  21 Nov 2007; Dawid Węgliński <cla@gentoo.org> libgnomekbd-2.20.0.ebuild:
+  Stable on x86 (bug #199740)
 
   20 Nov 2007; Samuli Suominen <drac@gentoo.org> libgnomekbd-2.20.0.ebuild:
   amd64 stable wrt #199740
