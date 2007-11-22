@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/bbdb
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/ChangeLog,v 1.29 2007/10/08 22:35:50 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/ChangeLog,v 1.30 2007/11/21 07:34:41 ulm Exp $
+
+  21 Nov 2007; Ulrich Mueller <ulm@gentoo.org> bbdb-2.35.ebuild:
+  Add tex USE flag, bug #196745. Keep tetex flag for a transition period.
 
   08 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
   -files/bbdb-decode-header.diff, -bbdb-2.35_pre20040323-r1.ebuild:

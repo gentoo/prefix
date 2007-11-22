@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/bbdb-2.35.ebuild,v 1.8 2007/10/06 15:52:04 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/bbdb-2.35.ebuild,v 1.9 2007/11/21 07:34:41 ulm Exp $
 
 EAPI="prefix"
 
@@ -15,10 +15,12 @@ SRC_URI="http://bbdb.sourceforge.net/${P}.tar.gz
 LICENSE="GPL-2 as-is"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
-IUSE="tetex"
+IUSE="tex tetex"
 
 DEPEND=""
+# We need plain TeX only, but there is no virtual/tex-base
 RDEPEND="${DEPEND}
+	tex? ( virtual/latex-base )
 	tetex? ( virtual/tetex )"
 
 SITEFILE=50${PN}-gentoo.el
@@ -52,7 +54,7 @@ src_install() {
 	doinfo texinfo/*.info*
 	dodoc ChangeLog INSTALL README bits/*.txt
 	newdoc bits/README README.bits
-	if use tetex; then
+	if use tex || use tetex; then
 		insinto /usr/share/texmf/tex/bbdb
 		doins tex/*.tex
 	fi
@@ -60,7 +62,13 @@ src_install() {
 
 pkg_postinst() {
 	elisp-site-regen
-	use tetex && texconfig rehash
+	use tex || use tetex && texconfig rehash
+
+	if use tetex && ! use tex; then
+		ewarn "You have enabled the \"tetex\" USE flag which is obsolete and"
+		ewarn "will disappear soon. Please enable the \"tex\" local USE flag"
+		ewarn "for package ${CATEGORY}/${PN} instead."
+	fi
 
 	echo
 	elog "If you use encryption or signing, you may specify the encryption"
@@ -72,5 +80,5 @@ pkg_postinst() {
 
 pkg_postrm() {
 	elisp-site-regen
-	use tetex && texconfig rehash
+	use tex || use tetex && texconfig rehash
 }
