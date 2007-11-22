@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2007-r8.ebuild,v 1.1 2007/11/11 10:45:20 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2007-r8.ebuild,v 1.2 2007/11/21 20:45:39 aballier Exp $
 
 EAPI="prefix"
 
@@ -93,13 +93,13 @@ src_unpack() {
 # dviljk buffer overflow issues, bug #198229
 	epatch "${WORKDIR}/${P}-dviljk-security-fixes.patch"
 
+# Bump makeindex limitations, bug #199590, patch by Peter Ansell
+	epatch "${FILESDIR}/${PV}/${P}-bump_makeindex_limitations.patch"
+
 # security bug #196735
 	epatch "${FILESDIR}/${PV}/xpdf-3.02pl2.patch"
 
-# fix for path length problem, bug #199590
-	epatch "${FILESDIR}/"${PV}/${P}-style_filename_length.patch
-
-# Mac OS X has some ObjC compilation, make it use our CFLAGS
+# Mac OS X has some ObjC compilation, make it use our CFLAGS or it fails
 	epatch "${FILESDIR}"/${PV}/${P}-objcflags.patch
 
 	sed -i -e "/mktexlsr/,+3d" -e "s/\(updmap-sys\)/\1 --nohash/" \

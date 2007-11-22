@@ -1,0 +1,33 @@
+2007-11-20  Karl Berry  <karl@tug.org>
+
+	* mkind.c (sty_fn): use STRING_MAX, not LINE_MAX.
+	From Peter Ansell, 19 Nov 2007 10:11:40.
+
+	* mkind.h (STRING_MAX): bump again to 999.
+
+Index: source/texk/makeindexk/mkind.c
+===================================================================
+--- source/texk/makeindexk/mkind.c	(revision 5516)
++++ source/texk/makeindexk/mkind.c	(revision 5517)
+@@ -53,7 +53,7 @@
+ FILE   *ilg_fp;
+ 
+ char   *pgm_fn;
+-char    sty_fn[LINE_MAX];
++char    sty_fn[STRING_MAX];
+ char   *idx_fn;
+ char    ind[STRING_MAX];
+ char   *ind_fn;
+Index: source/texk/makeindexk/mkind.h
+===================================================================
+--- source/texk/makeindexk/mkind.h	(revision 5516)
++++ source/texk/makeindexk/mkind.h	(revision 5517)
+@@ -337,7 +337,7 @@
+ #define ROMAN_MAX     16	/* maximum length of Roman page number */
+ 				/* field */
+ 
+-#define STRING_MAX    256	/* maximum length of host filename */
++#define STRING_MAX    999	/* maximum length of host filename */
+ 
+ /*====================================================================*/
+ 
