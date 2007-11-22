@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.269 2007/10/08 22:29:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.270 2007/11/21 04:21:12 vapier Exp $
+
+*openssh-4.7_p1-r3 (21 Nov 2007)
+
+  21 Nov 2007; Mike Frysinger <vapier@gentoo.org> +openssh-4.7_p1-r3.ebuild:
+  Update x509/hpn patches.
 
   08 Oct 2007; Mike Frysinger <vapier@gentoo.org> openssh-4.7_p1-r1.ebuild,
   openssh-4.7_p1-r2.ebuild:
