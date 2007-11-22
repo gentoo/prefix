@@ -1,6 +1,9 @@
 # ChangeLog for app-text/dvipng
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/ChangeLog,v 1.18 2007/10/25 16:42:24 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/ChangeLog,v 1.19 2007/11/21 16:43:36 opfer Exp $
+
+  21 Nov 2007; Christian Faulhammer <opfer@gentoo.org> dvipng-1.9.ebuild:
+  stable x86, bug 199765
 
   25 Oct 2007; Raúl Porcel <armin76@gentoo.org> dvipng-1.9.ebuild:
   Add ~alpha/~ia64 wrt #195815
