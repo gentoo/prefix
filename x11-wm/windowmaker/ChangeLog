@@ -1,6 +1,16 @@
 # ChangeLog for x11-wm/windowmaker
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/ChangeLog,v 1.90 2007/11/18 15:22:27 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/ChangeLog,v 1.91 2007/11/21 19:54:40 grobian Exp $
+
+*windowmaker-0.92.0-r6 (21 Nov 2007)
+
+  21 Nov 2007; Fabian Groffen <grobian@gentoo.org>
+  -files/0.92.0/windowmaker-0.92.0-as-needed.patch,
+  +files/0.92.0/windowmaker-0.92.0-math_h.patch,
+  -windowmaker-0.92.0-r5.ebuild, +windowmaker-0.92.0-r6.ebuild:
+  Drop nowings patch that I accidentially enabled, this should make the
+  as-needed patch obsolete, and fix bug #199414. Retained Harald's math.h
+  fixes by splitting it off in a new patch.
 
   18 Nov 2007; Harald van Dĳk <truedfx@gentoo.org>
   +files/0.92.0/windowmaker-0.92.0-as-needed.patch,
