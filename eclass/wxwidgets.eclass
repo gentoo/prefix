@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/wxwidgets.eclass,v 1.21 2007/10/18 03:25:56 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/wxwidgets.eclass,v 1.22 2007/11/21 01:29:13 dirtyepic Exp $
 
 # @ECLASS:			wxwidgets.eclass
 # @MAINTAINER:
@@ -204,8 +204,8 @@ need-wxwidgets() {
 	export WX_ECLASS_CONFIG="${WX_CONFIG}"
 
 	echo
-	einfo "Requested:        ${1} ${WX_GTK_VER}"
-	einfo "Using:            ${wxconf}"
+	einfo "Requested wxWidgets:        ${1} ${WX_GTK_VER}"
+	einfo "Using wxWidgets:            ${wxconf}"
 	echo
 }
 
