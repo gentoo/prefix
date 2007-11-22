@@ -70,7 +70,7 @@ HOMEPAGE="http://www.perl.org"
 SLOT="${PERLSLOT}"
 LIBPERL="libperl$(get_libname ${PERLSLOT}.${SHORT_PV})"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 
 # rac 2004.08.06
 
@@ -122,11 +122,15 @@ src_unpack() {
 	#   LIBPERL=libperl.so.${SLOT}.`echo ${PV} | cut -d. -f1,2`
 	#
 	cd ${S};
-	[[ ${CHOST} == *-linux* || ${CHOST} == *-solaris* ]] &&
+	[[ ${CHOST} == *-linux* || ${CHOST} == *-solaris* || ${CHOST} == *64-*-hpux* ]] &&
 	epatch ${FILESDIR}/${PN}-create-libperl-soname.patch
+	[[ ${CHOST} == *64-*-hpux* ]] && sed -i -e 's,-soname,+h,g' Makefile.SH
 
 	# the AIX patch is unconditional
 	epatch "${FILESDIR}"/${P}-aix.patch
+
+	# the HP-UX patch is unconditional
+	epatch "${FILESDIR}"/${P}-hpux.patch
 
 	# the Darwin patch is unconditional
 	epatch "${FILESDIR}"/${PN}-darwin-install_name.patch
@@ -203,6 +207,7 @@ src_compile() {
 			myconf -Dignore_versioned_solibs
 			;;
 		*-aix*) osname="aix" ;;
+		*-hpux*) osname="hpux" ;;
 
 		*) osname="linux" ;;
 	esac
