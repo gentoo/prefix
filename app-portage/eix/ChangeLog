@@ -1,6 +1,29 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.190 2007/10/29 18:38:33 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.197 2007/11/21 17:29:56 nixnut Exp $
+
+  21 Nov 2007; nixnut <nixnut@gentoo.org> eix-0.10.2.ebuild:
+  Stable on ppc wrt bug 198536
+
+  21 Nov 2007; Raúl Porcel <armin76@gentoo.org> eix-0.10.2.ebuild:
+  alpha/ia64 stable wrt #198536
+
+  21 Nov 2007; Jeroen Roovers <jer@gentoo.org> eix-0.10.2.ebuild:
+  Stable for HPPA (bug #198536).
+
+  21 Nov 2007; Ferris McCormick <fmccor@gentoo.org> eix-0.10.2.ebuild:
+  Sparc stable --- Bug #198536 --- looks good.
+
+  21 Nov 2007; Samuli Suominen <drac@gentoo.org> eix-0.10.2.ebuild:
+  amd64 stable wrt #198536
+
+  21 Nov 2007; Markus Meier <maekke@gentoo.org> eix-0.10.2.ebuild:
+  x86 stable, bug #198536
+
+  21 Nov 2007; Stefan Schweizer <genstef@gentoo.org> -eix-0.8.8.ebuild,
+  -eix-0.9.11.ebuild, -eix-0.9.12.ebuild, -eix-0.10.0.ebuild,
+  -eix-0.10.1.ebuild:
+  old
 
 *eix-0.10.2 (29 Oct 2007)
 
