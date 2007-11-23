@@ -13,7 +13,7 @@ SRC_URI="mirror://cpan/authors/id/R/RB/RBS/${P}.tar.gz"
 SLOT="0"
 LICENSE="Artistic"
 SRC_TEST="do"
-KEYWORDS="~amd64 ~ia64 ~mips ~sparc-solaris ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 IUSE=""
 
 DEPEND="dev-lang/perl"
