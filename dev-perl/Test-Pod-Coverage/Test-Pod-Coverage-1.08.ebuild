@@ -12,7 +12,7 @@ HOMEPAGE="http://search.cpan.org/~petdance/"
 IUSE=""
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos"
 
 DEPEND=">=virtual/perl-Test-Simple-0.62
 	dev-perl/Pod-Coverage
