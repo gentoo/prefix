@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/D/DA/DAGOLDEN/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~sparc-solaris ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 IUSE=""
 
 SRC_TEST="do"
