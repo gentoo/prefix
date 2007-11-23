@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.207 2007/11/14 15:54:13 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.208 2007/11/22 21:57:27 ulm Exp $
+
+  22 Nov 2007; Ulrich Mueller <ulm@gentoo.org> emacs-22.1-r2.ebuild:
+  Fix alsa dependency, thanks Flameeyes for pointing this out.
 
   14 Nov 2007; Brent Baude <ranger@gentoo.org> emacs-21.4-r13.ebuild:
   Marking emacs-21.4-r13 ppc64 stable for bug 197313

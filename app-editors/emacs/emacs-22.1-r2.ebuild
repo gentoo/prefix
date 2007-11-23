@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r2.ebuild,v 1.6 2007/11/06 23:14:02 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r2.ebuild,v 1.7 2007/11/22 21:57:27 ulm Exp $
 
 EAPI="prefix"
 
@@ -27,7 +27,7 @@ RDEPEND="!<app-editors/emacs-cvs-22.1
 	sys-libs/zlib
 	hesiod? ( net-dns/hesiod )
 	spell? ( || ( app-text/ispell app-text/aspell ) )
-	alsa? ( media-sound/alsa-headers )
+	alsa? ( media-libs/alsa-lib )
 	X? (
 		$X_DEPEND
 		x11-misc/emacs-desktop
