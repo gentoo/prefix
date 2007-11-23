@@ -20,7 +20,7 @@ LIBPERL="libperl$(get_libname ${PERLSLOT}.${SHORT_PV})"
 
 LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="berkdb debug doc gdbm ithreads perlsuid build elibc_FreeBSD"
 PERL_OLDVERSEN="5.8.0 5.8.2 5.8.4 5.8.5 5.8.6 5.8.7"
 
@@ -129,6 +129,10 @@ src_unpack() {
 	# do not create sharedlib-archive, but sharedlib directly.
 	epatch "${FILESDIR}"/${P}-aix.patch
 
+	# do not assume '.' being in PATH on hpux,
+	# use 'gcc' as linker, link with '-lm'.
+	epatch "${FILESDIR}"/${P}-hpux.patch
+
 	# cut the crap of inventing paths, or adding search paths that we don't use
 	epatch "${FILESDIR}"/${PN}-cleanup-paths.patch
 
@@ -199,6 +203,7 @@ src_configure() {
 			myconf -Dignore_versioned_solibs
 			;;
 		*-aix*) osname="aix" ;;
+		*-hpux*) osname="hpux" ;;
 
 		*) osname="linux" ;;
 	esac
