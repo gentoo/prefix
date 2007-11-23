@@ -11,7 +11,7 @@ HOMEPAGE="http://search.cpan.org/~adamk/${P}"
 IUSE=""
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~amd64 ~ia64 ~mips ~sparc-solaris ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 DEPEND="virtual/perl-Test-Simple
 		dev-perl/ExtUtils-AutoInstall
 		>=virtual/perl-Scalar-List-Utils-1.18
