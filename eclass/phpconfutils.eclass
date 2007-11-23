@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/phpconfutils.eclass,v 1.6 2007/09/01 15:58:17 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/phpconfutils.eclass,v 1.7 2007/11/22 21:52:12 drac Exp $
 #
 # ########################################################################
 #
@@ -46,7 +46,7 @@ phpconfutils_sort_flags() {
 
 phpconfutils_init() {
 	# Define wheter we shall support shared extensions or not
-	if useq "sharedext" ; then
+	if use "sharedext" ; then
 		shared="=shared"
 	else
 		shared=""
@@ -97,7 +97,7 @@ phpconfutils_require_any() {
 	local success="0"
 
 	while [[ -n "$1" ]] ; do
-		if useq "$1" ; then
+		if use "$1" ; then
 			einfo "${success_msg} $1"
 			success="1"
 		else
@@ -137,7 +137,7 @@ phpconfutils_require_any() {
 phpconfutils_use_conflict() {
 	phpconfutils_sort_flags
 
-	if ! useq "$1" && ! phpconfutils_usecheck "$1" ; then
+	if ! use "$1" && ! phpconfutils_usecheck "$1" ; then
 		return
 	fi
 
@@ -148,7 +148,7 @@ phpconfutils_use_conflict() {
 	local my_remove=""
 
 	while [[ "$1+" != "+" ]] ; do
-		if useq "$1" || phpconfutils_usecheck "$1" ; then
+		if use "$1" || phpconfutils_usecheck "$1" ; then
 			my_present="${my_present} $1"
 			my_remove="${my_remove} -$1"
 		fi
@@ -181,7 +181,7 @@ phpconfutils_use_conflict() {
 phpconfutils_use_depend_all() {
 	phpconfutils_sort_flags
 
-	if ! useq "$1" && ! phpconfutils_usecheck "$1" ; then
+	if ! use "$1" && ! phpconfutils_usecheck "$1" ; then
 		return
 	fi
 
@@ -191,7 +191,7 @@ phpconfutils_use_depend_all() {
 	local my_missing=""
 
 	while [[ "$1+" != "+" ]] ; do
-		if ! useq "$1" && ! phpconfutils_usecheck "$1" ; then
+		if ! use "$1" && ! phpconfutils_usecheck "$1" ; then
 			my_missing="${my_missing} $1"
 		fi
 		shift
@@ -225,7 +225,7 @@ phpconfutils_use_depend_all() {
 phpconfutils_use_depend_any() {
 	phpconfutils_sort_flags
 
-	if ! useq "$1" && ! phpconfutils_usecheck "$1" ; then
+	if ! use "$1" && ! phpconfutils_usecheck "$1" ; then
 		return
 	fi
 
@@ -239,7 +239,7 @@ phpconfutils_use_depend_any() {
 	local my_missing=""
 
 	while [[ "$1+" != "+" ]] ; do
-		if useq "$1" || phpconfutils_usecheck "$1" ; then
+		if use "$1" || phpconfutils_usecheck "$1" ; then
 			my_found="${my_found} $1"
 		else
 			my_missing="${my_missing} $1"
@@ -273,7 +273,7 @@ phpconfutils_use_depend_any() {
 #
 
 phpconfutils_extension_disable() {
-	if ! useq "$2" && ! phpconfutils_usecheck "$2" ; then
+	if ! use "$2" && ! phpconfutils_usecheck "$2" ; then
 		my_conf="${my_conf} --disable-$1"
 		[[ -n "$3" ]] && einfo "  Disabling $1"
 	else
@@ -313,7 +313,7 @@ phpconfutils_extension_enable() {
 		fi
 	fi
 
-	if useq "$2" || phpconfutils_usecheck "$2" ; then
+	if use "$2" || phpconfutils_usecheck "$2" ; then
 		my_conf="${my_conf} --enable-$1${my_shared}"
 		einfo "  Enabling $1"
 	else
@@ -335,7 +335,7 @@ phpconfutils_extension_enable() {
 #
 
 phpconfutils_extension_without() {
-	if ! useq "$2" && ! phpconfutils_usecheck "$2" ; then
+	if ! use "$2" && ! phpconfutils_usecheck "$2" ; then
 		my_conf="${my_conf} --without-$1"
 		einfo "  Disabling $1"
 	else
@@ -374,7 +374,7 @@ phpconfutils_extension_with() {
 		fi
 	fi
 
-	if useq "$2" || phpconfutils_usecheck "$2" ; then
+	if use "$2" || phpconfutils_usecheck "$2" ; then
 		my_conf="${my_conf} --with-$1${my_shared}"
 		einfo "  Enabling $1"
 	else
@@ -397,7 +397,7 @@ phpconfutils_warn_about_external_deps() {
 	local my_found="0"
 
 	for x in ${PHPCONFUTILS_MISSING_DEPS} ; do
-		if useq "${x}" || phpconfutils_usecheck "${x}" ; then
+		if use "${x}" || phpconfutils_usecheck "${x}" ; then
 			ewarn "USE flag ${x} enables support for software not present in Portage!"
 			my_found="1"
 		fi

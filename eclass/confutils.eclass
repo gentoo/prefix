@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/confutils.eclass,v 1.19 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/confutils.eclass,v 1.20 2007/11/22 21:51:16 drac Exp $
 #
 # eclass/confutils.eclass
 #		Utility functions to help with configuring a package
@@ -11,6 +11,8 @@
 #				<stuart@gentoo.org>
 #
 # ========================================================================
+
+inherit eutils
 
 if [[ ${EBUILD_SUPPORTS_SHAREDEXT} == 1 ]]; then
 	IUSE="sharedext"
@@ -30,7 +32,7 @@ fi
 # this eclass first
 
 confutils_init () {
-	if [[ ${EBUILD_SUPPORTS_SHAREDEXT} == 1 ]] && useq sharedext ; then
+	if [[ ${EBUILD_SUPPORTS_SHAREDEXT} == 1 ]] && use sharedext ; then
 		shared="=shared"
 	else
 		shared=
@@ -58,7 +60,7 @@ confutils_require_any() {
 	success=0
 
 	while [[ -n $1 ]]; do
-		if useq $1 ; then
+		if use $1 ; then
 			einfo "$success_msg $1"
 			success=1
 		else
@@ -94,7 +96,7 @@ confutils_require_any() {
 # $2 .. - flags that conflict
 
 confutils_use_conflict () {
-	if ! useq $1 ; then
+	if ! use $1 ; then
 		return
 	fi
 
@@ -105,7 +107,7 @@ confutils_use_conflict () {
 	local my_remove=
 
 	while [ "$1+" != "+" ]; do
-		if useq $1 ; then
+		if use $1 ; then
 			my_present="${my_present} $1"
 			my_remove="${my_remove} -$1"
 		fi
@@ -135,7 +137,7 @@ confutils_use_conflict () {
 # $2 .. - the flags that must be set for $1 to be valid
 
 confutils_use_depend_all () {
-	if ! useq $1 ; then
+	if ! use $1 ; then
 		return
 	fi
 
@@ -145,7 +147,7 @@ confutils_use_depend_all () {
 	local my_missing=
 
 	while [ "$1+" != "+" ]; do
-		if ! useq $1 ; then
+		if ! use $1 ; then
 			my_missing="${my_missing} $1"
 		fi
 		shift
@@ -177,7 +179,7 @@ confutils_use_depend_all () {
 # $2 .. - flags that must be set for $1 to be valid
 
 confutils_use_depend_any () {
-	if ! useq $1 ; then
+	if ! use $1 ; then
 		return
 	fi
 
@@ -188,7 +190,7 @@ confutils_use_depend_any () {
 	local my_missing=
 
 	while [ "$1+" != "+" ]; do
-		if useq $1 ; then
+		if use $1 ; then
 			my_found="${my_found} $1"
 		else
 			my_missing="${my_missing} $1"
@@ -219,7 +221,7 @@ confutils_use_depend_any () {
 # $3	- optional message to einfo() to the user
 
 enable_extension_disable () {
-	if ! useq "$2" ; then
+	if ! use "$2" ; then
 		my_conf="${my_conf} --disable-$1"
 		[ -n "$3" ] && einfo "  Disabling $1"
 	else
@@ -258,7 +260,7 @@ enable_extension_enable () {
 		fi
 	fi
 
-	if useq $2 ; then
+	if use $2 ; then
 		my_conf="${my_conf} --enable-$1$my_shared"
 		einfo "  Enabling $1"
 	else
@@ -298,7 +300,7 @@ enable_extension_enableonly () {
 		fi
 	fi
 
-	if useq $2 ; then
+	if use $2 ; then
 		my_conf="${my_conf} --enable-$1$my_shared"
 		einfo "  Enabling $1"
 	else
@@ -318,7 +320,7 @@ enable_extension_enableonly () {
 # $3	- optional message to einfo() to the user
 
 enable_extension_without () {
-	if ! useq "$2" ; then
+	if ! use "$2" ; then
 		my_conf="${my_conf} --without-$1"
 		einfo "  Disabling $1"
 	else
@@ -356,7 +358,7 @@ enable_extension_with () {
 		fi
 	fi
 
-	if useq $2 ; then
+	if use $2 ; then
 		my_conf="${my_conf} --with-$1$my_shared"
 		einfo "  Enabling $1"
 	else
@@ -395,7 +397,7 @@ enable_extension_withonly () {
 		fi
 	fi
 
-	if useq $2 ; then
+	if use $2 ; then
 		my_conf="${my_conf} --with-$1$my_shared"
 		einfo "  Enabling $1"
 	else
@@ -413,7 +415,7 @@ confutils_warn_about_missing_deps ()
 	local my_found=0
 
 	for x in $CONFUTILS_MISSING_DEPS ; do
-		if useq $x ; then
+		if use $x ; then
 			ewarn "USE flag $x enables support for software not in Portage"
 			my_found=1
 		fi
