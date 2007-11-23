@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.160 2007/10/15 11:04:04 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.162 2007/11/23 00:11:11 dirtyepic Exp $
+
+  23 Nov 2007; Ryan Hill <dirtyepic@gentoo.org> freetype-1.3.1-r5.ebuild:
+  Change latex USE to kpathsea on suggestion of aballier.
+
+  22 Nov 2007; Ryan Hill <dirtyepic@gentoo.org> freetype-1.3.1-r5.ebuild:
+  Change tetex USE flag to latex. Fix many various ebuild QA issues. No change
+  in functionality.
 
   15 Oct 2007; Alexis Ballier <aballier@gentoo.org>
   freetype-1.3.1-r5.ebuild:
