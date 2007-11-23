@@ -438,6 +438,18 @@ fetch_files() {
 	get_libname() {
 		echo "$1".so
 	}
+	use_enable() {
+		echo ""
+	}
+	use_with() {
+		echo ""
+	}
+	gcc-major-version() {
+		echo "4"
+	}
+	gcc-minor-version() {
+		echo "2"
+	}
 	'
 
 	# Find all "referenced" files from/to FILESDIR.  We keep ${FILESDIR}
@@ -653,18 +665,13 @@ for pte in $pt ; do
 			fi
 			# we found this version, so needless to look for it any more
 			mt=${mt/$mte/}
-		elif [[ $vdiff -le -10000 ]] ; then
-			# this revision is older than one we have, so we certainly
-			# don't want it
-			mt=${mt/$mte/}
 		fi
 	done
 	# stale entry
 	[[ $had_match == 0 ]] \
 		&& ewarn "warning: $pte (${mypte}) no longer in the main tree"
 done
-# what's left in $mt is everything which is not in $pt (and not already
-# superseded revisions)
+# what's left in $mt is everything which is not in $pt
 # find the latest revisions/alpha/beta/pre and see if there is a more
 # recent revision in the main tree
 last_pte=""
