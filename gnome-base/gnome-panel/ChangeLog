@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/gnome-panel
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/ChangeLog,v 1.234 2007/11/21 16:51:33 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/ChangeLog,v 1.235 2007/11/22 14:36:25 armin76 Exp $
+
+  22 Nov 2007; Raúl Porcel <armin76@gentoo.org> gnome-panel-2.20.1.ebuild:
+  alpha/ia64/sparc stable wrt #199740
 
   21 Nov 2007; Dawid Węgliński <cla@gentoo.org> gnome-panel-2.20.1.ebuild:
   Stable on x86 (bug #199740)
