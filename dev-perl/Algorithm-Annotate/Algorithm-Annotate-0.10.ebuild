@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/C/CL/CLKAO/${P}.tar.gz"
 
 SLOT="0"
 LICENSE="Artistic"
-KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 IUSE=""
 SRC_TEST="do"
 
