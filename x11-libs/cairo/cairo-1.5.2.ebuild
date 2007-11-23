@@ -18,8 +18,8 @@ IUSE="aqua debug directfb doc glitz opengl svg X xcb test"
 RDEPEND="!aqua? (
 			media-libs/fontconfig
 			>=media-libs/freetype-2.1.4
-			>=x11-libs/pixman-0.9.4
 		)
+		>=x11-libs/pixman-0.9.4
 		sys-libs/zlib
 		media-libs/libpng
 		X?	(
