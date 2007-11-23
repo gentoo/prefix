@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libpcre
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.119 2007/11/21 17:24:33 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.120 2007/11/22 15:00:54 armin76 Exp $
+
+  22 Nov 2007; Raúl Porcel <armin76@gentoo.org> libpcre-7.4.ebuild:
+  alpha/ia64/sparc stable wrt #199740
 
   21 Nov 2007; Dawid Węgliński <cla@gentoo.org> libpcre-7.4.ebuild:
   Stable on x86 (bug #199740)
