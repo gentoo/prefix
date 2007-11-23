@@ -16,7 +16,7 @@ SRC_URI="mirror://cpan/authors/id/A/AN/ANDK/${MY_P}.tar.gz"
 SRC_TEST="do"
 LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
 DEPEND="dev-lang/perl"
