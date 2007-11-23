@@ -2,6 +2,13 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.8627 (23 Nov 2007)
+
+  23 Nov 2007; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.8523.ebuild, +portage-2.2.00.8627.ebuild:
+  New snapshot that fixes Portage spitting out all kinds of 'cannot unset'
+  scary messages
+
 *portage-2.2.00.8592 (21 Nov 2007)
 
   21 Nov 2007; Fabian Groffen <grobian@gentoo.org>
