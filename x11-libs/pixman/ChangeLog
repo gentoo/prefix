@@ -1,0 +1,23 @@
+# ChangeLog for x11-libs/pixman
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.3 2007/11/07 09:33:07 dberkholz Exp $
+
+*pixman-0.9.6 (07 Nov 2007)
+
+  07 Nov 2007; Donnie Berkholz <dberkholz@gentoo.org>; +pixman-0.9.6.ebuild:
+  Bump. Incorporates a slightly different amd64 fix.
+
+*pixman-0.9.5-r1 (14 Oct 2007)
+
+  14 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  +files/0.9.5-pixman-compose-fix.patch, +pixman-0.9.5-r1.ebuild:
+  (#12398, fd.o #12398) Add an amd64 crasher fix.
+
+*pixman-0.9.5 (08 Sep 2007)
+
+  08 Sep 2007; Donnie Berkholz <dberkholz@gentoo.org>; +metadata.xml,
+  +pixman-0.9.5.ebuild:
+  Add a low-level pixel manipulation routine library used by Xorg and cairo.
+  Since the code basically originated in xorg-server, I'm retaining the
+  keywords.
+
