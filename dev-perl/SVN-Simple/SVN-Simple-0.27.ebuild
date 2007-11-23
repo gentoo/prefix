@@ -12,7 +12,7 @@ HOMEPAGE="http://search.cpan.org/~clkao/"
 
 SLOT="0"
 LICENSE="Artistic"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
 DEPEND=">=dev-util/subversion-0.31
