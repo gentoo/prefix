@@ -12,7 +12,7 @@ HOMEPAGE="http://www.cpan.org/authors/id/C/CL/CLKAO/${P}.readme"
 
 SLOT="0"
 LICENSE="Artistic"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
 DEPEND=">=dev-util/subversion-1.1.3
