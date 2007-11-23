@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.171 2007/11/12 19:27:15 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.172 2007/11/22 22:08:00 ulm Exp $
+
+  22 Nov 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.1.50-r1.ebuild,
+  emacs-cvs-22.1.50_p20070829-r1.ebuild, emacs-cvs-23.0.0_p20070920.ebuild,
+  emacs-cvs-23.0.50.ebuild, emacs-cvs-23.0.60.ebuild:
+  Fix alsa dependency, thanks Flameeyes for pointing this out.
 
   12 Nov 2007; Jeroen Roovers <jer@gentoo.org> emacs-cvs-22.1.50-r1.ebuild:
   Marked ~hppa (bug #198668).
