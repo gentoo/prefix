@@ -15,7 +15,7 @@ HOMEPAGE="http://svk.elixus.org/"
 
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="crypt nls pager patch"
 
 DEPEND="
