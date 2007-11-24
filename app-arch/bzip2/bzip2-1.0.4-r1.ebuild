@@ -29,6 +29,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.0.4-POSIX-shell.patch #193365
 	epatch "${FILESDIR}"/${PN}-1.0.3-dylib.patch
 	epatch "${FILESDIR}"/${PN}-1.0.4-soldflags.patch
+	epatch "${FILESDIR}"/${PN}-1.0.4-prefix.patch
+	eprefixify bz{diff,grep,more}
 	sed -i -e 's:\$(PREFIX)/man:\$(PREFIX)/share/man:g' Makefile || die "sed manpath"
 
 	# - Generate symlinks instead of hardlinks
