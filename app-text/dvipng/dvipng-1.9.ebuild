@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/dvipng-1.9.ebuild,v 1.6 2007/11/22 19:43:10 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/dvipng-1.9.ebuild,v 1.8 2007/11/23 21:45:33 corsair Exp $
 
 EAPI="prefix"
 
