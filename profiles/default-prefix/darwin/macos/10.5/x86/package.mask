@@ -1,3 +1,7 @@
+# Elias Pipping <pipping@gentoo.org> (24 Nov 2007)
+# eix 0.10.* fails to compile
+=app-portage/eix-0.10.*
+
 # Elias Pipping <pipping@gentoo.org> (06 Nov 2007)
 # ocaml 3.10 does not compile, whereas 3.09 does
 =dev-lang/ocaml-3.10*
