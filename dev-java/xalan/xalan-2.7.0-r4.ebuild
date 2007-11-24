@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xalan/xalan-2.7.0-r4.ebuild,v 1.1 2007/05/26 19:09:41 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xalan/xalan-2.7.0-r4.ebuild,v 1.3 2007/11/23 22:41:14 caster Exp $
 
 EAPI="prefix"
 
@@ -11,9 +11,12 @@ inherit java-pkg-2 java-ant-2 eutils versionator
 MY_PN="${PN}-j"
 MY_PV="$(replace_all_version_separators _)"
 MY_P="${MY_PN}_${MY_PV}"
+SRC_DIST="${MY_P}-src.tar.gz"
+BIN_DIST="${MY_P}-bin.tar.gz"
 DESCRIPTION="Apache's XSLT processor for transforming XML documents into HTML, text, or other XML document types."
 HOMEPAGE="http://xml.apache.org/xalan-j/index.html"
-SRC_URI="mirror://apache/xml/${MY_PN}/source/${MY_P}-src.tar.gz"
+SRC_URI="mirror://apache/xml/${MY_PN}/source/${SRC_DIST}
+	doc? ( mirror://apache/xml/${MY_PN}/binaries/${BIN_DIST} )"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos"
@@ -33,7 +36,13 @@ DEPEND=">=virtual/jdk-1.4
 S="${WORKDIR}/${MY_P}"
 
 src_unpack() {
-	unpack ${A}
+	unpack "${SRC_DIST}"
+	if use doc; then
+		mkdir bin || die
+		cd bin
+		unpack ${BIN_DIST} || die
+		cd ..
+	fi
 	cd "${S}"
 
 	# disable building of serializer.jar
@@ -58,7 +67,7 @@ src_unpack() {
 # When version bumping Xalan make sure that the installed jar
 # does not bunled .class files from dependencies
 src_compile() {
-	eant jar $(use_doc javadocs -Dbuild.apidocs=build/docs/api) \
+	eant jar
 		-Dxsltc.bcel_jar.not_needed=true \
 		-Dxsltc.runtime_jar.not_needed=true \
 		-Dxsltc.regexp_jar.not_needed=true
@@ -73,6 +82,9 @@ src_install() {
 	java-pkg_regjar $(java-pkg_getjar xalan-serializer serializer.jar)
 
 	java-pkg_dolauncher ${PN} --main org.apache.xalan.xslt.Process
-	use doc && java-pkg_dojavadoc build/docs/api
+	newdoc ${PN}.README.txt README || die
+	if use doc; then
+		java-pkg_dohtml -r "${WORKDIR}"/bin/${MY_P}/docs/* || die
+	fi
 	use source && java-pkg_dosrc src/org
 }

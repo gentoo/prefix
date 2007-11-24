@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/xalan
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xalan/ChangeLog,v 1.72 2007/05/26 19:09:41 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xalan/ChangeLog,v 1.74 2007/11/23 22:41:14 caster Exp $
+
+  23 Nov 2007; Vlastimil Babka <caster@gentoo.org> xalan-2.7.0-r4.ebuild:
+  Stop building javadoc from source because it needs excessive amounts of
+  RAM+swap. Download and install them from the binary xalan distribution.
+
+  23 Nov 2007; Markus Rothe <corsair@gentoo.org> xalan-2.7.0-r4.ebuild:
+  Stable on ppc64; bug #199501
 
 *xalan-2.7.0-r4 (26 May 2007)
 
