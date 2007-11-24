@@ -1,6 +1,17 @@
 # ChangeLog for app-emacs/auctex
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.69 2007/11/21 12:06:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.71 2007/11/23 21:46:46 corsair Exp $
+
+  23 Nov 2007; Markus Rothe <corsair@gentoo.org> auctex-11.84-r2.ebuild:
+  Stable on ppc64; bug #199765
+
+*auctex-11.84-r3 (23 Nov 2007)
+
+  23 Nov 2007; Ulrich Mueller <ulm@gentoo.org> +files/50auctex-gentoo.el,
+  +auctex-11.84-r3.ebuild:
+  Move data files from site-lisp to etc directory. Use "emake install" for
+  installation and remove ${D} from configure options. Don't use auctex.el
+  wrapper for startup, but require tex-site directly.
 
   21 Nov 2007; Raúl Porcel <armin76@gentoo.org> auctex-11.84-r2.ebuild:
   sparc stable wrt #199765

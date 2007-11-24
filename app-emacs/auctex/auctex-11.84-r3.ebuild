@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.84-r2.ebuild,v 1.6 2007/11/23 21:46:46 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.84-r3.ebuild,v 1.1 2007/11/23 16:16:06 ulm Exp $
 
 EAPI="prefix"
 
@@ -70,20 +70,21 @@ src_compile() {
 	fi
 
 	econf --disable-build-dir-test \
-		--with-auto-dir="${ED}/var/lib/auctex" \
-		--with-lispdir="${ED}/${SITELISP}" \
-		--with-texmf-dir="${ED}/${PREVIEW_TEXMFDIR}" \
+		--with-auto-dir="/var/lib/auctex" \
+		--with-lispdir="${SITELISP}/${PN}" \
+		--with-packagelispdir="${SITELISP}/${PN}" \
+		--with-packagedatadir="/usr/share/emacs/etc/${PN}" \
+		--with-texmf-dir="${PREVIEW_TEXMFDIR}" \
 		$(use_enable preview-latex preview) || die "econf failed"
 	emake || die "emake failed"
 	cd doc; emake tex-ref.pdf || die "creation of tex-ref.pdf failed"
 }
 
 src_install() {
-	einstall || die "einstall failed"
-	dosed "${SITELISP}/tex-site.el" || die "dosed failed"
-	elisp-site-file-install "${FILESDIR}/52auctex-gentoo.el"
+	emake DESTDIR="${D}" install || die "emake install failed"
+	elisp-site-file-install "${FILESDIR}/50${PN}-gentoo.el" || die
 	if use preview-latex; then
-		elisp-site-file-install "${FILESDIR}/60auctex-gentoo.el"
+		elisp-site-file-install "${FILESDIR}/60${PN}-gentoo.el" || die
 	fi
 	dodoc ChangeLog CHANGES README RELEASE TODO FAQ INSTALL* doc/tex-ref.pdf
 }
