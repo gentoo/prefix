@@ -1,0 +1,154 @@
+# ChangeLog for dev-haskell/gtk2hs
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.38 2007/11/10 03:10:42 araujo Exp $
+
+*gtk2hs-0.9.12.1 (10 Nov 2007)
+
+  10 Nov 2007; Luis F. Araujo <araujo@gentoo.org> +gtk2hs-0.9.12.1.ebuild:
+  Adding new version
+
+  09 Nov 2007; Luis F. Araujo <araujo@gentoo.org> gtk2hs-0.9.12.ebuild:
+  Adding missing backslash to fix package registration
+
+  31 Oct 2007; Duncan Coutts <dcoutts@gentoo.org> gtk2hs-0.9.10-r1.ebuild:
+  Drop virtual/ghc in favour of dev-lang/ghc
+
+  29 Oct 2007; Luis F. Araujo <araujo@gentoo.org> gtk2hs-0.9.12.ebuild:
+  Fix for recent glib that changes the type of the gtype typedef
+
+  12 Oct 2007; Rémi Cardona <remi@gentoo.org> gtk2hs-0.9.10-r1.ebuild,
+  gtk2hs-0.9.11.ebuild, gtk2hs-0.9.12.ebuild:
+  update gtksourceview deps (see bug #195366)
+
+*gtk2hs-0.9.12 (27 Jul 2007)
+
+  27 Jul 2007; Duncan Coutts <dcoutts@gentoo.org> gtk2hs-0.9.11.ebuild,
+  +gtk2hs-0.9.12.ebuild:
+  New version. Hopefully this fixes bug #144028.
+  Also allow building with xulrunner.
+
+  03 Jun 2007; Duncan Coutts <dcoutts@gentoo.org> gtk2hs-0.9.11.ebuild:
+  Fix seamonkey build, should fix bug #180682.
+
+  30 Apr 2007; Duncan Coutts <dcoutts@gentoo.org> gtk2hs-0.9.11.ebuild:
+  Add missing dep on dev-haskell/mtl
+
+  29 Apr 2007; Duncan Coutts <dcoutts@gentoo.org> -gtk2hs-0.9.9.ebuild,
+  -gtk2hs-0.9.10.ebuild, gtk2hs-0.9.10-r1.ebuild:
+  Remove old versions and fix deps for 0.9.10-r1
+
+*gtk2hs-0.9.11 (29 Apr 2007)
+
+  29 Apr 2007; Duncan Coutts <dcoutts@gentoo.org> +gtk2hs-0.9.11.ebuild:
+  Added new version
+
+  06 Jan 2007; Duncan Coutts <dcoutts@gentoo.org> gtk2hs-0.9.9.ebuild,
+  gtk2hs-0.9.10.ebuild, gtk2hs-0.9.10-r1.ebuild:
+  Removed mozilla USE flag, fixing bug #159635. The firefox USE flag remains.
+  Also block on ghc-6.6, we need a new upstream release for ghc-6.6 compat.
+
+*gtk2hs-0.9.10-r1 (07 Apr 2006)
+
+  07 Apr 2006; Luis F. Araujo <araujo@gentoo.org>
+  +files/gtk2hs-0.9.10-store.patch, +gtk2hs-0.9.10-r1.ebuild:
+  New revision with patch for the treestore.
+
+  01 Mar 2006; Markus Rothe <corsair@gentoo.org> gtk2hs-0.9.10.ebuild:
+  Added ~ppc64; bug #124469
+
+  23 Feb 2006; Luis F. Araujo <araujo@gentoo.org> gtk2hs-0.9.10.ebuild:
+  Fixed firefox useflag
+
+  20 Feb 2006; <dcoutts@gentoo.org> -gtk2hs-0.9.7.ebuild:
+  Remove old 0.9.7 version.
+
+  20 Feb 2006; <dcoutts@gentoo.org> +files/gtk2hs-0.9.10-ghc622.patch,
+  gtk2hs-0.9.10.ebuild:
+  Fix building with ghc-6.2.2. Fixes bug #115657.
+
+  14 Feb 2006; <dcoutts@gentoo.org> +files/gtk2hs-0.9.10-cflags.patch,
+  gtk2hs-0.9.10.ebuild:
+  Added a patch to fix the use of CFLAGS which was causing problems on sparc.
+  Marked ~sparc.
+
+  10 Feb 2006; <dcoutts@gentoo.org> -gtk2hs-0.9.6-r1.ebuild,
+  -gtk2hs-0.9.8.ebuild:
+  Remove old versions.
+
+  28 Jan 2006; Simon Stelling <blubb@gentoo.org>
+  -files/gtk2hs-0.9.7-ghc64.patch.gz, gtk2hs-0.9.7.ebuild:
+  move compressed patches to the mirros
+
+  14 Dec 2005; <dcoutts@gentoo.org> gtk2hs-0.9.10.ebuild:
+  Make the DEPEND include the RDEPEND.
+
+  12 Nov 2005; <dcoutts@gentoo.org> gtk2hs-0.9.10.ebuild:
+  Fix failure when USE="glade -gnome" (bug #112227)
+
+  06 Nov 2005; <dcoutts@gentoo.org> gtk2hs-0.9.10.ebuild:
+  Fix generation of cairo GHCi lib.
+
+*gtk2hs-0.9.10 (02 Nov 2005)
+
+  02 Nov 2005; <dcoutts@gentoo.org> +gtk2hs-0.9.10.ebuild:
+  Added new version.
+
+*gtk2hs-0.9.9 (31 Aug 2005)
+
+  31 Aug 2005; <dcoutts@gentoo.org> +gtk2hs-0.9.9.ebuild:
+  Added new version.
+
+  31 Aug 2005; <dcoutts@gentoo.org> gtk2hs-0.9.7.ebuild, gtk2hs-0.9.8.ebuild:
+  Make gtk2hs-0.9.7 and gtk2hs-0.9.8 use only haddock-0.6 since they will not
+  work with haddock-0.7.
+
+  30 Jun 2005; David Holm <dholm@gentoo.org> gtk2hs-0.9.8.ebuild:
+  Added to ~ppc.
+
+*gtk2hs-0.9.8 (24 Jun 2005)
+
+  24 Jun 2005; <dcoutts@gentoo.org> gtk2hs-0.9.7.ebuild,
+  +gtk2hs-0.9.8.ebuild:
+  New version.
+
+  20 May 2005; <dcoutts@gentoo.org> gtk2hs-0.9.7.ebuild:
+  Added ~sparc to KEYWORDS.
+
+  08 May 2005; Duncan Coutts <dcoutts@gentoo.org>
+  +files/gtk2hs-0.9.7-ghc64.patch, gtk2hs-0.9.7.ebuild:
+  Add a patch for ghc-6.4 compatability.
+
+  23 Mar 2005; Seemant Kulleen <seemant@gentoo.org> gtk2hs-0.9.7.ebuild:
+  change dep from net-www/mozilla to www-client/mozilla
+
+*gtk2hs-0.9.7 (26 Jan 2005)
+
+  26 Jan 2005; Andres Loeh <kosmikus@gentoo.org> +gtk2hs-0.9.7.ebuild:
+  New version (bug #79352).
+
+  19 Jan 2005; Andres Loeh <kosmikus@gentoo.org> gtk2hs-0.9.6-r1.ebuild:
+  Added a check of the memory requirements (see bug #62790, comment 37)
+
+  11 Nov 2004; Michael Sterrett <mr_bones_@gentoo.org> gtk2hs-0.9.6-r1.ebuild,
+  gtk2hs-0.9.6.ebuild:
+  dep fix; fix use invocation
+
+  06 Nov 2004; Andres Loeh <kosmikus@gentoo.org> gtk2hs-0.9.6-r1.ebuild:
+  Allow Haskell optimizations during build.
+
+*gtk2hs-0.9.6-r1 (04 Nov 2004)
+
+  04 Nov 2004; Andres Loeh <kosmikus@gentoo.org> +gtk2hs-0.9.6-r1.ebuild:
+  Make use of new ghc-package eclass.
+
+*gtk2hs-0.9.6 (26 Oct 2004)
+
+  26 Oct 2004; Andres Loeh <kosmikus@gentoo.org> gtk2hs-0.9.6.ebuild:
+  Version bump.
+
+*gtk2hs-0.9.5 (17 May 2004)
+
+  17 May 2004; Andres Loeh <kosmikus@gentoo.org> gtk2hs-0.9.5.ebuild,
+  metadata.xml:
+  Initial import (bug #50998).
+
