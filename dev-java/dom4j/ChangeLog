@@ -1,0 +1,144 @@
+# ChangeLog for dev-java/dom4j
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/dom4j/ChangeLog,v 1.41 2007/05/09 15:10:38 armin76 Exp $
+
+  09 May 2007; Raúl Porcel <armin76@gentoo.org> dom4j-1.6.1-r2.ebuild:
+  Add ~ia64 wrt #160813
+
+  10 Jan 2007; Vlastimil Babka <caster@gentoo.org> -dom4j-1.4-r1.ebuild,
+  -dom4j-1.5.ebuild, -dom4j-1.6.1.ebuild:
+  Gen-1 punt.
+
+  10 Jan 2007; Steve Dibb <beandog@gentoo.org> dom4j-1.6.1-r2.ebuild:
+  amd64 stable, bug 159099
+
+  03 Jan 2007; Tom Gall <tgall@gentoo.org> dom4j-1.6.1-r2.ebuild:
+  stable on ppc64, bug #159099
+
+  01 Jan 2007; Vlastimil Babka <caster@gentoo.org>
+  -files/dom4j-1.6.1-java5.patch, dom4j-1.4-r1.ebuild, dom4j-1.5.ebuild,
+  dom4j-1.6.1.ebuild, dom4j-1.6.1-r2.ebuild:
+  Move the large java15 patch to mirrors. Correct licenses.
+
+  30 Dec 2006; Andrej Kacian <ticho@gentoo.org> dom4j-1.6.1-r2.ebuild:
+  Stable on x86, bug #159099.
+
+  29 Dec 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  dom4j-1.6.1-r2.ebuild:
+  Stable on ppc wrt bug #159099.
+
+  09 Dec 2006; Diego Pettenò <flameeyes@gentoo.org> dom4j-1.6.1-r2.ebuild:
+  Add ~x86-fbsd keyword.
+
+  30 Nov 2006; Vlastimil Babka <caster@gentoo.org> dom4j-1.6.1.ebuild,
+  -dom4j-1.6.1-r1.ebuild, dom4j-1.6.1-r2.ebuild:
+  Update xerces dep for upcoming 2.6 slotmove.
+
+  05 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org> dom4j-1.4-r1.ebuild,
+  dom4j-1.5.ebuild:
+  Dropping sparc keywords, see #96229
+
+*dom4j-1.6.1-r2 (14 Sep 2006)
+
+  14 Sep 2006; Joshua Nichols <nichoj@gentoo.org>
+  +files/dom4j-1.6.1-java5.patch, +dom4j-1.6.1-r2.ebuild:
+  Applied patch for compiling with Java 1.5 provided by Martin Jansa
+  <Martin.Jansa@mk.cvut.cz> in bug #137970. Added ~ppc64 keyword.
+
+*dom4j-1.6.1-r1 (27 Jul 2006)
+
+  27 Jul 2006; Krzysiek Pawlik <nelchael@gentoo.org> +dom4j-1.6.1-r1.ebuild:
+  Migrated to Generation 2.
+
+  14 Mar 2006; Joshua Nichols <nichoj@gentoo.org> dom4j-1.6.1.ebuild:
+  Disabled jikes support as per bug #123004.
+
+  11 Mar 2006; Michael Hanselmann <hansmi@gentoo.org> dom4j-1.6.1.ebuild:
+  Stable on ppc.
+
+  19 Feb 2006; Michael Hanselmann <hansmi@gentoo.org> dom4j-1.6.1.ebuild:
+  Added to ~ppc.
+
+  23 Jan 2006; Joshua Nichols <nichoj@gentoo.org> dom4j-1.5.ebuild,
+  dom4j-1.6.1.ebuild:
+  Marked stable on amd64.
+
+  26 Sep 2005; Thomas Matthijs <axxo@gentoo.org> dom4j-1.5.ebuild,
+  dom4j-1.6.1.ebuild:
+  keyword x86
+
+  16 Sep 2005; Gustavo Felisberto <humpback@gentoo.org>; dom4j-1.6.1.ebuild:
+  Keyword ~amd64 bug #105520
+
+  15 Jul 2005; Gustavo Zacarias <gustavoz@gentoo.org> dom4j-1.4-r1.ebuild:
+  Stable on sparc
+
+  09 Jul 2005; Thomas Matthijs <axxo@gentoo.org> dom4j-1.5.ebuild,
+  dom4j-1.6.1.ebuild:
+  fix deps
+
+*dom4j-1.6.1 (29 Jun 2005)
+
+  29 Jun 2005; Thomas Matthijs <axxo@gentoo.org> +dom4j-1.6.1.ebuild:
+  version bump and no longer uses packed jars, ebuild contributed by Josh
+  Nichols <nichoj@alum.rpi.edu>
+
+  29 May 2005; Markus Rothe <corsair@gentoo.org> dom4j-1.5.ebuild:
+  Stable on ppc64
+
+  22 Apr 2005; Simon Stelling <blubb@gentoo.org> dom4j-1.4-r1.ebuild:
+  stable on amd64
+
+  09 Apr 2005; Markus Rothe <corsair@gentoo.org> dom4j-1.5.ebuild:
+  Added ~ppc64 to KEYWORDS
+
+  17 Oct 2004; Thomas Matthijs <axxo@gentoo.org> dom4j-1.5.ebuild:
+  Don't build docs with USE=-doc, corrected syntax to not always die with
+  USE=-doc
+
+*dom4j-1.5 (17 Oct 2004)
+
+  17 Oct 2004; Dylan Carlson <absinthe@gentoo.org> dom4j-1.4-r1.ebuild,
+  +dom4j-1.5.ebuild:
+  Version bump.  keywords ~amd64 to close bug #67313.
+
+  16 Oct 2004; Thomas Matthijs <axxo@gentoo.org> dom4j-1.4-r1.ebuild:
+  use java-pkg_dohtml instead of dohtml to also install the package-list in
+  case of api docs: #50740
+
+  27 Jun 2004; Chris Aniszczyk <zx@gentoo.org> dom4j-1.4-r1.ebuild:
+  Marking stable on ppc
+
+*dom4j-1.4-r1 (03 May 2004)
+
+  03 May 2004; Karl Trygve Kalleberg <karltk@gentoo.org> dom4j-1.4-r1.ebuild:
+  Added proper SLOTing.
+
+  05 Apr 2004; Chris Aniszczyk <zx@gentoo.org> dom4j-1.3.ebuild,
+  dom4j-1.4.ebuild:
+  Clean up.
+
+  18 Mar 2004; David Holm <dholm@gentoo.org> dom4j-1.4.ebuild:
+  Added to ~ppc.
+
+*dom4j-1.4 (24 Apr 2003)
+
+  03 Mar 2003; Adrian Almenar <strider@gentoo.org> dom4j-1.4.ebuild:
+  Updated to new version.
+
+*dom4j-1.3 (31 Oct 2002)
+
+  03 Mar 2003; <vladimir@gentoo.org> dom4j-1.3.ebuild:
+  Fixed minor error in KEYWORDS
+
+  04 Dec 2002; Adrian Almenar <strider@gentoo.org> dom4j-1.3.ebuild:
+  Unmasking it.
+
+  04 Nov 2002; Adrian Almenar <strider@gentoo.org> dom4j-1.3.ebuild:
+  Changed KEYWORDS, removed other arch's cause i have not tested it
+  leaving only ~x86. Some cosmetic changes.
+
+  31 Oct 2002; Karl Trygve Kalleberg <karltk@gentoo.org> dom4j-1.3.ebuild files/digest-dom4j :
+  Initial import.  Ebuild submitted by Adrian Almenar
+  <aalmenar@conectium.com>.
+
