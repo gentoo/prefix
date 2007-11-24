@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/glibmm-2.14.2.ebuild,v 1.7 2007/11/19 18:05:44 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/glibmm-2.14.2.ebuild,v 1.8 2007/11/23 17:55:02 jer Exp $
 
 EAPI="prefix"
 
@@ -39,11 +39,11 @@ src_install() {
 	gnome2_src_install
 
 	if ! use doc && ! use examples; then
-		rm -fr ${ED}/usr/share/doc/glibmm-2.4
+		rm -fr "${ED}"/usr/share/doc/glibmm-2.4
 	fi
 
 	if use examples; then
 		find examples -type d -name '.deps' -exec rm -fr {} \; 2>/dev/null
-		cp -R examples ${ED}/usr/share/doc/${PF}
+		cp -R examples "${ED}"/usr/share/doc/${PF}
 	fi
 }

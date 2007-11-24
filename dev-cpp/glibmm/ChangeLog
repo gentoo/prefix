@@ -1,6 +1,9 @@
 # ChangeLog for dev-cpp/glibmm
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.103 2007/11/19 18:05:44 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.104 2007/11/23 17:55:02 jer Exp $
+
+  23 Nov 2007; Jeroen Roovers <jer@gentoo.org> glibmm-2.14.2.ebuild:
+  Stable for HPPA (bug #198845). Fixed quoting issues.
 
   19 Nov 2007; Markus Rothe <corsair@gentoo.org> glibmm-2.14.2.ebuild:
   Stable on ppc64; bug #198845
