@@ -403,7 +403,9 @@ src_install() {
 		cd "${S}"
 		dodoc README ANNOUNCE LICENSE VERSION
 
-		dosbin "${FILESDIR}/ghc-updater"
+		cp "${FILESDIR}/ghc-updater" "${T}"
+		eprefixify "${T}"/ghc-updater
+		dosbin "${T}"/ghc-updater
 
 		dobashcompletion "${FILESDIR}/ghc-bash-completion"
 
