@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.295 2007/11/20 05:45:42 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.296 2007/11/23 17:48:30 jer Exp $
+
+  23 Nov 2007; Jeroen Roovers <jer@gentoo.org> glib-2.14.3.ebuild:
+  Stable for HPPA (bug #198845).
 
   20 Nov 2007; Joshua Kinard <kumba@gentoo.org> glib-2.14.3.ebuild:
   Stable on mips, per #190019.
