@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3156 2007/11/20 20:04:21 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3164 2007/11/23 20:55:25 aballier Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -109,6 +109,7 @@ app-editors/xemacs:eolconv - Support detection and translation of newline conven
 app-editors/xemacs:pop - Support POP for mail retrieval.
 app-editors/xemacs:xim - Enable X11 XiM input method
 app-emacs/auctex:preview-latex - Use bundled preview-latex
+app-emacs/bbdb:tex - Install plain TeX support files
 app-emacs/delicious:planner - Include support for app-emacs/planner
 app-emacs/easypg:gnus - Include support for the Gnus newsreader
 app-emacs/remember:bbdb - Include support for app-emacs/bbdb
@@ -464,6 +465,7 @@ dev-lang/ruby:rubytests - Install ruby tests that can only be run after ruby is 
 dev-lang/ruby:xemacs - Add support for XEmacs
 dev-lang/smarteiffel:tcc - use tcc instead of gcc for build (g++ is still used for c++ code)
 dev-lang/spidermonkey:threadsafe - Build a threadsafe version of spidermonkey
+dev-lang/swi-prolog:latex - Enable ltx2htm Prolog support
 dev-lang/swig:chicken - Enable chicken Scheme support
 dev-lang/swig:clisp - Enable CLisp support
 dev-lang/swig:mzscheme - Enable PLT mzscheme support
@@ -571,6 +573,7 @@ dev-python/docutils:glep - Install support for GLEPs
 dev-python/ipython:gnuplot - enable gnuplot support
 dev-python/kaa-metadata:css - Enables ripping/reading of encrypted dvds
 dev-python/ldaptor:web - enable the web front end for ldaptor (uses dev-python/nevow)
+dev-python/matplotlib:latex - enable LaTeX support for text handling
 dev-python/nose:twisted - install nose.twistedtools to integrate tests with twisted
 dev-python/paste:flup - enable support for flup (and therefore for various wgsi servers and middleware)
 dev-python/paste:openid - enable OpenID support
@@ -752,6 +755,7 @@ games-strategy/x2:modkit - Install the modkit
 gnome-base/gdm:branding - Enable a custom gentoo branded artwork
 gnome-base/gdm:dmx - Enable Distributed Multihead X (DMX) support
 gnome-base/gdm:remote - Enable secure remote support
+gnome-base/gnome-mount:nautilus - Enable the nautilus plugin
 gnome-base/gnome-session:branding - Enable a custom gentoo branded splashscreen
 gnome-base/nautilus:beagle - Enable support for beagle searching
 gnome-base/nautilus:tracker - Enable support for tracker searching
@@ -958,6 +962,7 @@ media-gfx/showimg:kipi - Support for the KDE Image Plugin Interface.
 media-gfx/ufraw:gimp - Build a plugin for the GIMP
 media-gfx/xsane:gimp - Build a plugin for the GIMP
 media-libs/a52dec:djbfft - Prefer D.J. Bernstein's library for fourier transforms
+media-libs/aften:cxx - Enables C++ bindings
 media-libs/allegro:vga - Enables the VGA graphics driver
 media-libs/alsa-lib:alisp - Enable support for ALISP (ALSA LISP) interpreter for advanced features.
 media-libs/alsa-lib:midi - Enables MIDI output support (both Hardware and Software)
@@ -966,6 +971,7 @@ media-libs/coin:fontconfig - Support for managing custom fonts via fontconfig.
 media-libs/devil:allegro - Add support for Allegro
 media-libs/farsight:jingle - Enables voice calls for jabber
 media-libs/flac:cxx - Enables FLAC++, C++ bindings to the FLAC library
+media-libs/freetype:kpathsea - Enable TeX support (ttf2pk and ttf2pfb)
 media-libs/freetype:utils - Install utilities and examples from ft2demos
 media-libs/gd:fontconfig - Support for managing custom fonts via fontconfig.
 media-libs/giflib:rle - Build converters for RLE format (utah raster toolkit)
@@ -1095,6 +1101,7 @@ media-sound/noteedit:tse3 - Use tse3 library to play/export sound
 media-sound/picard:cdaudio - Enable support for CD Index Lookups.
 media-sound/podcatcher:bittorrent - Enable support for bittorrent downloads
 media-sound/prokyon3:taglib - Enable tagging support with taglib
+media-sound/pulseaudio:policykit - Enable support for PolicyKit framework.
 media-sound/quodlibet:mmkeys - Enable support for special keys on multimedia keyboards
 media-sound/quodlibet:trayicon - Enable support for trayicon
 media-sound/radiomixer:hwmixer - Use hardware mixer instead of internal mixer routines

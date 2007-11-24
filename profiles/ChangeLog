@@ -1,6 +1,43 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.840 2007/11/20 23:03:19 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.851 2007/11/23 20:55:25 aballier Exp $
+
+  23 Nov 2007; Alexis Ballier <aballier@gentoo.org> use.local.desc:
+  add cxx useflag for aften
+
+  23 Nov 2007; Saleem Abdulrasool <compnerd@gentoo.org> use.local.desc:
+  Add nautilus useflag for gnome-mount
+
+  23 Nov 2007; Markus Rothe <corsair@gentoo.org>
+  default-linux/ppc/ppc64/package.use.mask, hardened/ppc64/use.mask:
+  removed afs from use.mask in ppc64 profile; bug #196847
+
+  23 Nov 2007; Tony Vroon <chainsaw@gentoo.org> package.mask:
+  Mask net-irc/audacious-show as upstream prevents automated downloads and an
+  alternative is available. Closes bug #199476.
+
+  23 Nov 2007; Diego Pettenò <flameeyes@gentoo.org> package.mask,
+  use.local.desc:
+  Add policykit USE flag for pulseaudio and update the pulseaudio mask for
+  experimental init.d
+
+  23 Nov 2007; Ryan Hill <dirtyepic@gentoo.org> use.local.desc:
+  Change freetype latex USE to kpathsea.
+
+  22 Nov 2007; Saleem Abdulrasool <compnerd@gentoo.org> package.mask:
+  Unmask firmware images for ipw3945 and ipw4965
+
+  22 Nov 2007; Ryan Hill <dirtyepic@gentoo.org> use.local.desc:
+  Add local latex flag for freetype.
+
+  21 Nov 2007; Tony Vroon <chainsaw@gentoo.org> package.mask:
+  Mask audacious-docklet for removal.
+
+  21 Nov 2007; Ulrich Mueller <ulm@gentoo.org> use.local.desc:
+  Add local USE flag tex for app-emacs/bbdb.
+
+  21 Nov 2007; keri <keri@gentoo.org> use.local.desc:
+  Add latex USE flag for dev-lang/swi-prolog
 
   20 Nov 2007; <tester@gentoo.org> package.mask:
   Mask sys-auth/pam_keyring, it's been included in gnome-base/gnome-keyring

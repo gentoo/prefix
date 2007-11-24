@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7928 2007/11/20 23:03:19 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7938 2007/11/24 01:31:09 kingtaco Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -20,6 +20,38 @@
 ##
 ##   End example
 ##
+
+# Saleem Abdulrasool <compnerd@gentoo.org> (23 Nov 2007)
+# Mask this until we get the input and mounting issues worked out
+>=sys-apps/hal-0.5.10
+>=sys-auth/policykit-0.6
+>=app-misc/hal-info-20071011
+>=gnome-base/gnome-mount-0.7
+>=gnome-extra/policykit-gnome-0.6
+>=gnome-extra/gnome-power-manager-2.20.1
+
+# Tony Vroon <chainsaw@gentoo.org> (22 Nov 2007)
+# Upstream actively prevents automated downloads, consider using xchat-xsys instead.
+# Scheduled for removal.
+net-irc/audacious-show
+
+# Raúl Porcel <armin76@gentoo.org> (22 Nov 2007)
+# Needs a lot of testing
+=www-client/mozilla-firefox-bin-3.0_beta*
+
+# Marijn Schouten <hkBst@gentoo.org> (21 Nov 2007)
+# masked for security bug 198979
+<=dev-scheme/chicken-2.6
+
+# Doug Klima <cardoe@gentoo.org> (21 Nov 2007)
+# Experimental cairo snapshot for Firefox-3 usage
+# known to mess with poppler and PDF rendering
+>=x11-libs/cairo-1.5.2
+
+# Tony Vroon <chainsaw@gentoo.org> (21 Nov 2007)
+# Unmaintained upstream, use the bundled status-icon plugin in Audacious 1.3 and higher.
+# Scheduled for removal.
+media-plugins/audacious-docklet
 
 # Olivier Crete <tester@gentoo.org> (20 Nov 2007)
 # There is now a better version include in gnome-base/gnome-keyring
@@ -76,17 +108,6 @@ app-admin/eselect-wxwidgets
 # Masked for security vulnerability, see bug #199193.
 # Will be removed on December 15th 2007.
 sys-auth/pam_console
-
-# Mike Doty <kingtaco@gentoo.org> (13 Nov 2007)
-# New emul-linux-x86 ebuilds.
->=app-emulation/emul-linux-x86-baselibs-20071112  
->=app-emulation/emul-linux-x86-compat-20071112  
->=app-emulation/emul-linux-x86-xlibs-20071112
->=app-emulation/emul-linux-x86-soundlibs-20071112  
->=app-emulation/emul-linux-x86-gtklibs-20071112
->=app-emulation/emul-linux-x86-medialibs-20071112  
->=app-emulation/emul-linux-x86-qtlibs-20071112  
->=app-emulation/emul-linux-x86-sdl-20071112  
 
 # Jeroen Roovers <jer@gentoo.org> (13 Nov 2007)
 # These are weeklies, unlike www-client/opera-9.50_beta1, and they appear to be
@@ -228,9 +249,7 @@ net-voip/telepathy-butterfly
 # needs baselayout-2, wait masked here till that's available.
 # Note: the init script might change without warning while
 # the ebuild is masked.
-=media-sound/pulseaudio-0.9.6-r2
-# This too uses the same init script
-=media-sound/pulseaudio-0.9.7-r1
+=media-sound/pulseaudio-0.9.8-r1
 
 # Benedikt Böhm <hollow@gentoo.org> (25 Oct 2007)
 # Masked for testing TLS Server Name Indication
@@ -547,10 +566,8 @@ sci-chemistry/nmrview
 =net-misc/zaptel-1.2.18-r1
 
 # Saleem Abdulrasool <compnerd@gentoo.org> (10 Jul 2007)
-# Masking to test
+# Masking for testing (still not a drop in replacement for ipw3945)
 net-wireless/iwlwifi
-net-wireless/iwl3945-ucode
-net-wireless/iwl4965-ucode
 
 # Sven Wegener <swegener@gentoo.org> (07 Jul 2007)
 # Development releases

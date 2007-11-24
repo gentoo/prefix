@@ -1,5 +1,9 @@
 # This file requires >=portage-2.1.1
 
+# Saleem Abdulrasool <compnerd@gentoo.org> (23 Nov 2007)
+# Unmask when we get HAL 0.5.10 straightened out
+media-sound/pulseaudio policykit
+
 # Donnie Berkholz <dberkholz@gentoo.org> (12 Nov 2007)
 # freedesktop.org bug #7459 committed fix breaks 3D apps
 # but "fix" is only relevant on USE=nptl
