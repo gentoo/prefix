@@ -1,0 +1,86 @@
+# ChangeLog for sci-mathematics/glpk
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/ChangeLog,v 1.14 2007/10/03 12:56:14 bicatali Exp $
+
+*glpk-4.22 (03 Oct 2007)
+
+  03 Oct 2007; Sébastien Fabbro <bicatali@gentoo.org> -glpk-4.7.ebuild,
+  -glpk-4.9.ebuild, -glpk-4.10.ebuild, -glpk-4.15.ebuild, +glpk-4.22.ebuild:
+  Version bump
+
+*glpk-4.19 (14 Jul 2007)
+
+  14 Jul 2007; Robin H. Johnson <robbat2@gentoo.org> +glpk-4.19.ebuild:
+  Version bump all the way to 4.19, after reminder by bug #180147.
+
+*glpk-4.15 (23 Apr 2007)
+
+  23 Apr 2007; Sébastien Fabbro <bicatali@gentoo.org> +glpk-4.15.ebuild:
+  Version bump. Slight ebuild update for doc installs.
+
+*glpk-4.10 (22 Jul 2006)
+
+  22 Jul 2006; Robin H. Johnson <robbat2@gentoo.org> +glpk-4.10.ebuild:
+  Bug #141066, version bump.
+
+  13 Feb 2006; Joshua Nichols <nichoj@gentoo.org> glpk-4.8.ebuild:
+  Stable on x86 for bug #122434.
+
+  12 Feb 2006; Scott Stoddard <deltacow@gentoo.org> glpk-4.8.ebuild:
+  Stable on amd64
+
+  11 Feb 2006; <nixnut@gentoo.org> glpk-4.8.ebuild:
+  Stable on ppc. bug 122434
+
+*glpk-4.9 (11 Feb 2006)
+
+  11 Feb 2006; Robin H. Johnson <robbat2@gentoo.org> glpk-4.8.ebuild,
+  +glpk-4.9.ebuild:
+  Bug #121414, version bump. Also clean up 4.8 ebuild slightly.
+
+*glpk-4.8 (21 Sep 2005)
+
+  21 Sep 2005; Olivier Fisette <ribosome@gentoo.org> +glpk-4.8.ebuild:
+  New version. Documents and examples are now installed into proper locations
+  (fixes bug #106520). Thanks to Markus Dittrich <markusle@gmail.com> for his
+  work.
+
+  06 May 2005; David Holm <dholm@gentoo.org> glpk-4.7.ebuild:
+  Added to ~ppc.
+
+  06 May 2005; Sven Wegener <swegener@gentoo.org> glpk-4.7.ebuild:
+  Removed * postfix from <, <=, >= and > dependencies.
+
+  06 Jan 2005; Robin H. Johnson <robbat2@gentoo.org> -glpk-4.2.ebuild,
+  glpk-4.7.ebuild: 
+  4.7 in stable x86 now, and old 4.2 removed from tree for bug #55139.
+
+*glpk-4.7 (28 Dec 2004)
+
+  28 Dec 2004; Olivier Fisette <ribosome@gentoo.org> +metadata.xml,
+  +glpk-4.2.ebuild, +glpk-4.7.ebuild:
+  Moved from app-sci/glpk to sci-mathematics/glpk.
+
+  23 Nov 2004; Karol Wojtaszek <sekretarz@gentoo.org> glpk-4.7.ebuild:
+  Stable on amd64, bug #71862
+
+*glpk-4.7 (21 Nov 2004)
+
+  21 Nov 2004; Robin H. Johnson <robbat2@gentoo.org> +glpk-4.7.ebuild:
+  New version, Java support removed by upstream due to license issues.
+
+  17 Oct 2004; Thomas Matthijs <axxo@gentoo.org> glpk-4.2.ebuild:
+  dojar --> java-pkg_dojar
+
+  19 Apr 2004; Patrick Kursawe <phosphan@gentoo.org> glpk-4.2.ebuild:
+  Added IUSE, fixed bugs #44467 and #46955.
+
+  09 Dec 2003; Heinrich Wendel <lanius@gentoo.org> glpk-4.2.ebuild:
+  changed app-text/ghostscript to virtual/ghostscript
+
+*glpk-4.2 (20 Nov 2003)
+
+  20 Nov 2003; Robin H. Johnson <robbat2@gentoo.org> glpk-4.2.ebuild,
+  metadata.xml:
+  Initial commit. ebuild written by robbat2@gentoo.org
+
