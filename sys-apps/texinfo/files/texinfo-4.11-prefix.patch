@@ -1,0 +1,16 @@
+--- util/texi2dvi
++++ util/texi2dvi
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ # texi2dvi --- produce DVI (or PDF) files from Texinfo (or (La)TeX) sources.
+ # $Id: texi2dvi,v 1.104 2007/09/10 00:36:30 karl Exp $
+ #
+--- util/texi2pdf
++++ util/texi2pdf
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ # $Id: texi2pdf,v 1.2 2005/01/28 01:52:04 karl Exp $
+ # Written by Thomas Esser.  Public domain.
+ # Execute texi2dvi --pdf.

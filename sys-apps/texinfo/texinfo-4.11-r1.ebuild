@@ -27,6 +27,8 @@ src_unpack() {
 	# pull in ctype.h for misc string function prototypes
 	sed -i '1i#include <ctype.h>' system.h
 	epatch "${FILESDIR}"/${P}-dir-entry.patch #198545
+	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify util/texi2{dvi,pdf}
 
 	# FreeBSD requires install-sh, but usptream don't have it marked
 	# exec, #195076
