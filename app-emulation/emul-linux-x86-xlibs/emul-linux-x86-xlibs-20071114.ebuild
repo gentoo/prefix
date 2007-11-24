@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-xlibs/emul-linux-x86-xlibs-20071114.ebuild,v 1.1 2007/11/14 06:52:16 kingtaco Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-xlibs/emul-linux-x86-xlibs-20071114.ebuild,v 1.2 2007/11/24 01:29:28 kingtaco Exp $
 
 EAPI="prefix"
 
