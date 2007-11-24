@@ -1,0 +1,47 @@
+# ChangeLog for dev-java/jdom-jaxen
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jdom-jaxen/ChangeLog,v 1.8 2007/10/18 14:04:34 nelchael Exp $
+
+  18 Oct 2007; Krzysiek Pawlik <nelchael@gentoo.org>
+  jdom-jaxen-1.0_beta9-r2.ebuild, jdom-jaxen-1.0_beta10-r1.ebuild,
+  jdom-jaxen-1.0-r1.ebuild:
+  Add ~ppc, see bug #188275.
+
+  09 Oct 2007; Markus Rothe <corsair@gentoo.org>
+  jdom-jaxen-1.0_beta9-r2.ebuild, jdom-jaxen-1.0_beta10-r1.ebuild,
+  jdom-jaxen-1.0-r1.ebuild:
+  Added ~ppc64; bug #188275
+
+  24 Sep 2007; Christian Faulhammer <opfer@gentoo.org>
+  jdom-jaxen-1.0_beta10-r1.ebuild:
+  keywording ~x86, bug #188275
+
+  24 Sep 2007; Christian Faulhammer <opfer@gentoo.org>
+  jdom-jaxen-1.0_beta9-r2.ebuild:
+  keywording ~x86, bug #188275
+
+  24 Sep 2007; Christian Faulhammer <opfer@gentoo.org>
+  jdom-jaxen-1.0-r1.ebuild:
+  keywording ~x86, bug #188275
+
+  21 Sep 2007; <alistair@gentoo.org> -jdom-jaxen-1.0_beta10.ebuild,
+  -jdom-jaxen-1.0.ebuild:
+  Remove old, broken ebuilds.
+
+*jdom-jaxen-1.0-r1 (18 Sep 2007)
+*jdom-jaxen-1.0_beta10-r1 (18 Sep 2007)
+
+  18 Sep 2007; <alistair@gentoo.org> jdom-jaxen-1.0_beta9-r2.ebuild,
+  +jdom-jaxen-1.0_beta10-r1.ebuild, +jdom-jaxen-1.0-r1.ebuild:
+  Rev bumping jdom to fix SRC_URI error.
+
+*jdom-jaxen-1.0 (16 Sep 2007)
+*jdom-jaxen-1.0_beta10 (16 Sep 2007)
+*jdom-jaxen-1.0_beta9-r2 (16 Sep 2007)
+
+  16 Sep 2007; <alistair@gentoo.org> +metadata.xml,
+  +jdom-jaxen-1.0_beta9-r2.ebuild, +jdom-jaxen-1.0_beta10.ebuild,
+  +jdom-jaxen-1.0.ebuild:
+  Splitting jdom's jaxen class into separate package to avoid circular
+  dependencies.
+
