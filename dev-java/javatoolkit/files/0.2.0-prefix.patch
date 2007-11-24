@@ -1,5 +1,5 @@
---- makedefs.mak~	2006-12-27 17:09:43 +0100
-+++ makedefs.mak	2007-09-24 01:15:14 +0200
+--- makedefs.mak
++++ makedefs.mak
 @@ -8,11 +8,11 @@
  
  VERSION=0.2.0
@@ -18,8 +18,8 @@
 +bindir=$(DESTDIR)@GENTOO_PORTAGE_EPREFIX@/usr/bin
 +sbindir=$(DESTDIR)@GENTOO_PORTAGE_EPREFIX@/usr/sbin
 +mandir=$(DESTDIR)@GENTOO_PORTAGE_EPREFIX@/usr/share/man/man1
---- src/javatoolkit/Makefile~	2007-09-24 01:18:48 +0200
-+++ src/javatoolkit/Makefile	2007-09-24 01:19:38 +0200
+--- src/javatoolkit/Makefile
++++ src/javatoolkit/Makefile
 @@ -15,6 +15,6 @@
  	cp parser/*.py ../../$(distdir)/src/javatoolkit/parser/
  
@@ -30,8 +30,8 @@
 +	install -d $(DESTDIR)@GENTOO_PORTAGE_EPREFIX@/usr/share/javatoolkit/pym/parser
 +	install -m 0644 *.py *.pyc $(DESTDIR)@GENTOO_PORTAGE_EPREFIX@/usr/share/javatoolkit/pym/
 +	install -m 0644 parser/*.py parser/*.pyc $(DESTDIR)@GENTOO_PORTAGE_EPREFIX@/usr/share/javatoolkit/pym/parser/
---- src/bsfix/Makefile~	2007-09-24 01:22:31 +0200
-+++ src/bsfix/Makefile	2007-09-24 01:23:16 +0200
+--- src/bsfix/Makefile
++++ src/bsfix/Makefile
 @@ -14,8 +14,8 @@
  
  install: all
@@ -43,11 +43,127 @@
  	install -m 0755 xml-rewrite.py ${bindir}/
  	install -m 0755 xml-rewrite-2.py ${bindir}/
  	install -m 0755 class-version-verify.py ${bindir}/
---- src/bsfix/class-version-verify.py~	2007-09-24 15:32:51 +0200
-+++ src/bsfix/class-version-verify.py	2007-09-24 15:50:19 +0200
+--- src/bsfix/class-version-verify.py
++++ src/bsfix/class-version-verify.py
 @@ -1,4 +1,4 @@
 -#!/bin/env python
 +#!/usr/bin/env python
  #
  # Copyright(c) 2005, Thomas Matthijs <axxo@gentoo.org>
  # Copyright(c) 2005, Gentoo Foundation
+--- src/buildparser/buildparser
++++ src/buildparser/buildparser
+@@ -1,4 +1,4 @@
+-#! /usr/bin/python
++#!/usr/bin/env python
+ #
+ # Copyright(c) 2006, James Le Cuirot <chewi@aura-online.co.uk>
+ # Copyright(c) 2005, Karl Trygve Kalleberg <karltk@gentoo.org>
+@@ -11,7 +11,7 @@
+ import sys
+ from optparse import OptionParser
+ 
+-sys.path.insert(0, "/usr/share/javatoolkit/pym")
++sys.path.insert(0, "@GENTOO_PORTAGE_EPREFIX@/usr/share/javatoolkit/pym")
+ 
+ from parser.parser import Parser
+ from parser.buildproperties import BuildPropertiesParser
+--- src/javatoolkit/__init__.py
++++ src/javatoolkit/__init__.py
+@@ -1,4 +1,4 @@
+-#! /usr/bin/python2
++#!/usr/bin/env python
+ #
+ # Copyright(c) 2004, Karl Trygve Kalleberg <karltk@gentoo.org>
+ # Copyright(c) 2004, Gentoo Foundation
+--- src/javatoolkit/classpath.py
++++ src/javatoolkit/classpath.py
+@@ -1,4 +1,4 @@
+-#! /usr/bin/python2
++#!/usr/bin/env python
+ #
+ # Copyright(c) 2004, Karl Trygve Kalleberg <karltk@gentoo.org>
+ # Copyright(c) 2004, Gentoo Foundation
+@@ -69,4 +69,4 @@
+ 
+ 		
+ if __name__ == "__main__":
+-	print "This is not an exectuable module"		
+\ No newline at end of file
++	print "This is not an exectuable module"		
+--- src/javatoolkit/output.py
++++ src/javatoolkit/output.py
+@@ -1,4 +1,4 @@
+-#! /usr/bin/python2
++#!/usr/bin/env python
+ #
+ # Copyright(c) 2004, Karl Trygve Kalleberg <karltk@gentoo.org>
+ # Copyright(c) 2004, Gentoo Foundation
+@@ -25,4 +25,4 @@
+ 	sys.exit(err)
+ 	
+ if __name__ == "__main__":
+-	print "This is not an executable module"
+\ No newline at end of file
++	print "This is not an executable module"
+--- src/javatoolkit/parser/__init__.py
++++ src/javatoolkit/parser/__init__.py
+@@ -1,4 +1,4 @@
+-#! /usr/bin/python
++#!/usr/bin/env python
+ #
+ # Copyright(c) 2004, Karl Trygve Kalleberg <karltk@gentoo.org>
+ # Copyright(c) 2004, Gentoo Foundation
+--- src/javatoolkit/parser/buildproperties.py
++++ src/javatoolkit/parser/buildproperties.py
+@@ -1,4 +1,4 @@
+-#! /usr/bin/python
++#!/usr/bin/env python
+ #
+ # Copyright(c) 2006, James Le Cuirot <chewi@aura-online.co.uk>
+ # Copyright(c) 2004, Karl Trygve Kalleberg <karltk@gentoo.org>
+--- src/javatoolkit/parser/helpers.py
++++ src/javatoolkit/parser/helpers.py
+@@ -1,4 +1,4 @@
+-#! /usr/bin/python
++#!/usr/bin/env python
+ #
+ # Copyright(c) 2006, James Le Cuirot <chewi@aura-online.co.uk>
+ # Copyright(c) 2004, Karl Trygve Kalleberg <karltk@gentoo.org>
+--- src/javatoolkit/parser/manifest.py
++++ src/javatoolkit/parser/manifest.py
+@@ -1,4 +1,4 @@
+-#! /usr/bin/python
++#!/usr/bin/env python
+ #
+ # Copyright(c) 2006, James Le Cuirot <chewi@aura-online.co.uk>
+ #
+--- src/javatoolkit/parser/parser.py
++++ src/javatoolkit/parser/parser.py
+@@ -1,4 +1,4 @@
+-#! /usr/bin/python
++#!/usr/bin/env python
+ #
+ # Copyright(c) 2006, James Le Cuirot <chewi@aura-online.co.uk>
+ #
+--- src/javatoolkit/parser/tree.py
++++ src/javatoolkit/parser/tree.py
+@@ -1,4 +1,4 @@
+-#! /usr/bin/python
++#!/usr/bin/env python
+ #
+ # Copyright(c) 2006, James Le Cuirot <chewi@aura-online.co.uk>
+ # Copyright(c) 2004, Karl Trygve Kalleberg <karltk@gentoo.org>
+--- src/bsfix/bsfix
++++ src/bsfix/bsfix
+@@ -1,8 +1,8 @@
+-#! /bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ #
+ # Copyright (c) 2004, Karl Trygve Kalleberg <karltk@gentoo.org>
+ # Copyright (c) 2004, Gentoo Foundation
+ #
+ # Licensed under the GNU General Public License, v2
+ 
+-java -cp /usr/share/javatoolkit/lib/ JXSLT $@
++java -cp @GENTOO_PORTAGE_EPREFIX@/usr/share/javatoolkit/lib/ JXSLT $@

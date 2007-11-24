@@ -19,8 +19,10 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}/0.2.0-use-sax-fixed.patch"
 	epatch "${FILESDIR}/0.2.0-prefix.patch"
-	eprefixify makedefs.mak src/{javatoolkit,bsfix}/Makefile
-	find . -name "*.py" -print0 | xargs -0 sed -i -e '/^#\( \|\)!.*python/c\#!/usr/bin/env python'
+	eprefixify \
+		makedefs.mak src/{javatoolkit,bsfix}/Makefile \
+		src/buildparser/buildparser src/bsfix/bsfix
+
 	# Fix version
 	sed -i -e s/${PV}/${PVR}/ makedefs.mak
 }
