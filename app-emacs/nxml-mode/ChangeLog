@@ -1,6 +1,14 @@
 # ChangeLog for app-emacs/nxml-mode
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/ChangeLog,v 1.26 2007/09/12 15:04:56 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/ChangeLog,v 1.27 2007/11/23 15:19:18 ulm Exp $
+
+*nxml-mode-20041004-r3 (23 Nov 2007)
+
+  23 Nov 2007; Ulrich Mueller <ulm@gentoo.org> +files/50nxml-mode-gentoo.el,
+  -nxml-mode-20041004-r1.ebuild, -nxml-mode-20041004-r2.ebuild,
+  +nxml-mode-20041004-r3.ebuild:
+  Don't install non-Lisp files in site-lisp. Move site-init file from 80 to 50
+  since it depends on nothing else. Remove old.
 
   12 Sep 2007; Ulrich Mueller <ulm@gentoo.org>
   files/nxml-mode-xmlschema-xpath.patch:
