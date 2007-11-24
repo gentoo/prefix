@@ -1,0 +1,23 @@
+# ChangeLog for dev-util/ftjam
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ftjam/ChangeLog,v 1.5 2007/11/23 15:21:37 corsair Exp $
+
+  23 Nov 2007; Markus Rothe <corsair@gentoo.org> ftjam-2.5.3_rc2.ebuild:
+  Added ~ppc64; bug #188194
+
+  21 Nov 2007; Ryan Hill <dirtyepic@gentoo.org> ftjam-2.5.3_rc2.ebuild:
+  Keyword ~amd64 for bug #188194.
+
+  21 Nov 2007; Ryan Hill <dirtyepic@gentoo.org> ftjam-2.5.3_rc2.ebuild:
+  Change licence to perforce/GPL-2
+
+  20 Nov 2007; Ferris McCormick <fmccor@gentoo.org> ftjam-2.5.3_rc2.ebuild:
+  Add ~sparc keyword, Bug #188194 (netpanzer and lincity-ng are no longer
+  dev-util/jam dependent).
+
+*ftjam-2.5.3_rc2 (10 Jun 2007)
+
+  10 Jun 2007; Ryan Hill <dirtyepic@gentoo.org>
+  +files/ftjam-2.5.3-nostrip.patch, +metadata.xml, +ftjam-2.5.3_rc2.ebuild:
+  Initial import.
+
