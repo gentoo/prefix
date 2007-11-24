@@ -1,6 +1,9 @@
 # ChangeLog for app-doc/doxygen
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.133 2007/11/21 06:17:24 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.134 2007/11/23 18:43:24 nerdboy Exp $
+
+  23 Nov 2007; Steve Arnold <nerdboy@gentoo.org> doxygen-1.5.4.ebuild:
+  adding libconv hack for FreeBSD (inadvertently dropped on the floor)
 
 *doxygen-1.5.4 (21 Nov 2007)
 
