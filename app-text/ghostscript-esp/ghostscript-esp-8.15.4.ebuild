@@ -88,7 +88,24 @@ src_unpack() {
 		src/Makefile.in src/*.mak || die "sed failed"
 
 	epatch "${FILESDIR}"/${PN}-prefix.patch
-	eprefixify lib/fixmswrd.pl
+	eprefixify \
+		lib/fixmswrd.pl \
+		lib/bdftops \
+		lib/dumphint \
+		lib/dvipdf \
+		lib/eps2eps \
+		lib/font2c \
+		lib/gs{bj,dj,dj500,lj,lp,nd} \
+		lib/lprsetup.sh \
+		lib/pdf2{dsc,ps} \
+		lib/pdfopt \
+		lib/pf2afm \
+		lib/pfbtopfa \
+		lib/printafm \
+		lib/ps2{ascii,epsi,pdf{,12,13,14},pdfwr,ps} \
+		lib/pv.sh \
+		lib/unix-lpr.sh \
+		lib/wftopfa
 
 	epatch "${FILESDIR}"/ghostscript-esp-8.15.3-darwin.patch
 	cp "${EPREFIX}"/usr/share/automake-1.9/install-sh "${S}"
