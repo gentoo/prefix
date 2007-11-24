@@ -1,6 +1,16 @@
 # ChangeLog for app-text/texi2html
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texi2html/ChangeLog,v 1.35 2007/03/13 00:03:02 nattfodd Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texi2html/ChangeLog,v 1.37 2007/11/23 18:24:49 aballier Exp $
+
+  23 Nov 2007; Alexis Ballier <aballier@gentoo.org> -texi2html-1.64.ebuild,
+  texi2html-1.64-r1.ebuild:
+  remove old, fix date header, quote D
+
+*texi2html-1.78 (23 Nov 2007)
+
+  23 Nov 2007; Alexis Ballier <aballier@gentoo.org> texi2html-1.76.ebuild,
+  +texi2html-1.78.ebuild:
+  version bump, fix src uri and homepage, bug #199484
 
   12 Mar 2007; Alexandre Buisse <nattfodd@gentoo.org> metadata.xml:
   Replaced text-markup by tex as maintaining herd (text-markup split).
