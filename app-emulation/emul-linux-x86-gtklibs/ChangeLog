@@ -1,6 +1,10 @@
 # ChangeLog for app-emulation/emul-linux-x86-gtklibs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-gtklibs/ChangeLog,v 1.52 2007/11/22 00:46:44 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-gtklibs/ChangeLog,v 1.53 2007/11/24 01:20:18 kingtaco Exp $
+
+  24 Nov 2007; Mike Doty <kingtaco@gentoo.org>
+  emul-linux-x86-gtklibs-20071121.ebuild:
+  amd64 stable for releng
 
   22 Nov 2007; Samuli Suominen <drac@gentoo.org>
   emul-linux-x86-gtklibs-20071121.ebuild:
