@@ -29,6 +29,11 @@ src_unpack() {
 	epatch "${FILESDIR}"/gnulib-futimens-rename.patch
 	epatch "${FILESDIR}"/${PN}-1.3.8-install-symlinks.patch
 	sed -i 's:\<futimens\>:gl_futimens:' gzip.c
+
+	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify \
+		g{unzip,zexe}.in \
+		z{cat,cmp,diff,egrep,fgrep,force,grep,less,more,new}.in
 }
 
 src_compile() {
