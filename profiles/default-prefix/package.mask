@@ -48,10 +48,6 @@ sys-apps/darwin-miscutils
 # bsd-man-pages are only available on darwin, bsd
 sys-apps/bsd-man-pages
 
-# Elias Pipping <pipping@gentoo.org> (09 Oct 2007)
-# texinfo 4.11 blocks tetex-2. there is no other tetex in prefix, though
-~sys-apps/texinfo-4.11
-
 # Michael Haubenwallner <haubi@gentoo.org> (03 Oct 2007)
 # too broken, waiting for gcc-4.2.2 in main tree (bug #186321),
 # masked because no stable keywords in prefix yet.
