@@ -1,6 +1,15 @@
 # ChangeLog for media-sound/mpg123
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.120 2007/10/21 15:27:14 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.123 2007/11/23 21:36:21 corsair Exp $
+
+  23 Nov 2007; Markus Rothe <corsair@gentoo.org> mpg123-0.67.ebuild:
+  Stable on ppc64; bug #200106
+
+  23 Nov 2007; Dawid Węgliński <cla@gentoo.org> mpg123-0.67.ebuild:
+  Stable on x86 (bug #200106)
+
+  23 Nov 2007; Samuli Suominen <drac@gentoo.org> mpg123-0.67.ebuild:
+  amd64 stable wrt #200106
 
   21 Oct 2007; Tony Vroon <chainsaw@gentoo.org>
   +files/0.67-no-faltivec.patch, mpg123-0.67.ebuild:
