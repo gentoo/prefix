@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p25.ebuild,v 1.2 2007/10/28 19:23:00 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p25.ebuild,v 1.3 2007/11/23 03:47:38 zmedico Exp $
 
 EAPI="prefix"
 
@@ -37,6 +37,7 @@ KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-ma
 IUSE="afs bashlogger nls plugins vanilla"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2"
+RDEPEND="${DEPEND} !<sys-apps/portage-2.1.4_rc1"
 
 S=${WORKDIR}/${MY_P}
 
