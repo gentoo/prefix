@@ -1,6 +1,9 @@
 # ChangeLog for net-p2p/bittorrent
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/ChangeLog,v 1.123 2007/11/21 17:38:39 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/ChangeLog,v 1.124 2007/11/23 21:14:53 corsair Exp $
+
+  23 Nov 2007; Markus Rothe <corsair@gentoo.org> bittorrent-5.0.9.ebuild:
+  Stable on ppc64; bug #199882
 
   21 Nov 2007; nixnut <nixnut@gentoo.org> bittorrent-5.0.9.ebuild:
   Stable on ppc wrt bug 199882
