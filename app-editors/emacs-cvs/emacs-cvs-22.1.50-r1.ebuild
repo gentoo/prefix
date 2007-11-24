@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-22.1.50-r1.ebuild,v 1.3 2007/09/18 22:36:40 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-22.1.50-r1.ebuild,v 1.12 2007/11/22 22:08:00 ulm Exp $
 
 EAPI="prefix"
 
@@ -22,7 +22,7 @@ SRC_URI=""
 LICENSE="GPL-3 FDL-1.2 BSD"
 SLOT="22"
 KEYWORDS="~amd64 ~x86 ~x86-macos"
-IUSE="alsa gif gtk gzip-el hesiod jpeg motif png spell sound source tiff toolkit-scroll-bars X Xaw3d xpm"
+IUSE="alsa gif gtk gzip-el hesiod jpeg kerberos motif png spell sound source tiff toolkit-scroll-bars X Xaw3d xpm"
 RESTRICT="strip"
 
 X_DEPEND="x11-libs/libXmu x11-libs/libXt x11-misc/xbitmaps"
@@ -31,8 +31,9 @@ RDEPEND="sys-libs/ncurses
 	>=app-admin/eselect-emacs-0.7-r1
 	sys-libs/zlib
 	hesiod? ( net-dns/hesiod )
+	kerberos? ( virtual/krb5 )
 	spell? ( || ( app-text/ispell app-text/aspell ) )
-	alsa? ( media-sound/alsa-headers )
+	alsa? ( media-libs/alsa-lib )
 	X? (
 		$X_DEPEND
 		x11-misc/emacs-desktop
@@ -52,8 +53,6 @@ RDEPEND="sys-libs/ncurses
 
 DEPEND="${RDEPEND}
 	gzip-el? ( app-arch/gzip )"
-
-PROVIDE="virtual/editor"
 
 S="${WORKDIR}/${ECVS_LOCALNAME}"
 
@@ -149,7 +148,7 @@ src_compile() {
 	fi
 
 	myconf="${myconf} $(use_with hesiod)"
-	myconf="${myconf} $(use_with gpm)"
+	myconf="${myconf} $(use_with kerberos) $(use_with kerberos kerberos5)"
 
 	if use aqua; then
 		einfo "Configuring to build with Carbon Emacs"
@@ -215,6 +214,9 @@ src_install () {
 		# C source you might find via find-function
 		doins src/*.[ch]
 		sed 's/^X//' >00${PN}-${SLOT}-gentoo.el <<-EOF
+
+		;;; ${PN}-${SLOT} site-lisp configuration
+
 		(if (string-match "\\\\\`${FULL_VERSION//./\\\\.}\\\\>" emacs-version)
 		X    (setq find-function-C-source-directory
 		X	  "/usr/share/emacs/${FULL_VERSION}/src"))
@@ -232,20 +234,20 @@ emacs-infodir-rebuild() {
 
 	local infodir=/usr/share/info/${EMACS_SUFFIX} f
 	einfo "Regenerating Info directory index in ${infodir} ..."
-	rm -f ${EROOT}${infodir}/dir{,.*}
-	for f in ${EROOT}${infodir}/*.info*; do
+	rm -f "${EROOT}"${infodir}/dir{,.*}
+	for f in "${EROOT}"${infodir}/*.info*; do
 		[[ ${f##*/} == *[0-9].info* ]] \
-			|| install-info --info-dir=${EROOT}${infodir} ${f} &>/dev/null
+			|| install-info --info-dir="${EROOT}"${infodir} ${f} &>/dev/null
 	done
 	echo
 }
 
 pkg_postinst() {
-	test -f ${EROOT}/usr/share/emacs/site-lisp/subdirs.el ||
-		cp ${EROOT}/usr/share/emacs{/${FULL_VERSION},}/site-lisp/subdirs.el
+	test -f "${EROOT}"/usr/share/emacs/site-lisp/subdirs.el ||
+		cp "${EROOT}"/usr/share/emacs{/${FULL_VERSION},}/site-lisp/subdirs.el
 
 	local f
-	for f in ${EROOT}/var/lib/games/emacs/{snake,tetris}-scores; do
+	for f in "${EROOT}"/var/lib/games/emacs/{snake,tetris}-scores; do
 		test -e ${f} || touch ${f}
 	done
 
@@ -263,9 +265,9 @@ pkg_postinst() {
 
 	echo
 	elog "You can set the version to be started by /usr/bin/emacs through"
-	elog "the Emacs eselect module. Man and info pages are automatically"
-	elog "redirected, so you are to test emacs-cvs along with the stable"
-	elog "release. \"man emacs.eselect\" for details."
+	elog "the Emacs eselect module, which also redirects man and info pages."
+	elog "You can therefore test emacs-cvs along with the stable release."
+	elog "\"man emacs.eselect\" for details."
 }
 
 pkg_postrm() {
