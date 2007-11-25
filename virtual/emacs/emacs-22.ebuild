@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/emacs/emacs-22.ebuild,v 1.17 2007/10/23 09:50:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/emacs/emacs-22.ebuild,v 1.18 2007/11/24 23:28:54 ulm Exp $
 
 EAPI="prefix"
 
@@ -15,6 +15,6 @@ IUSE=""
 
 DEPEND=""
 RDEPEND="|| (
-			=app-editors/emacs-22*
-			>=app-editors/emacs-cvs-22
-		)"
+		=app-editors/emacs-22*
+		>=app-editors/emacs-cvs-22
+	)"
