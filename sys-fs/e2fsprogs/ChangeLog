@@ -1,6 +1,9 @@
 # ChangeLog for sys-fs/e2fsprogs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.115 2007/11/19 07:42:32 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.116 2007/11/24 22:10:19 drac Exp $
+
+  24 Nov 2007; Samuli Suominen <drac@gentoo.org> e2fsprogs-1.40.2.ebuild:
+  amd64 stable wrt #200192
 
   19 Nov 2007; Joshua Kinard <kumba@gentoo.org> e2fsprogs-1.40.2.ebuild:
   Stable on mips.
