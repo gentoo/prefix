@@ -9,7 +9,7 @@ ANT_TASK_DEPNAME="xalan"
 inherit ant-tasks
 
 DESCRIPTION="Apache Ant .jar with optional tasks depending on XML transformer (xalan)"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 
 # it will build without it (ant manual says it's not needed since 1.4 JDK, dunno bout kaffe
 # but contains a Xalan2Executor task which probably wouldn't work
