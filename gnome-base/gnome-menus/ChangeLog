@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/gnome-menus
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/ChangeLog,v 1.93 2007/11/22 14:19:48 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/ChangeLog,v 1.94 2007/11/24 22:42:17 ranger Exp $
+
+  24 Nov 2007; Brent Baude <ranger@gentoo.org> gnome-menus-2.20.1.ebuild:
+  Marking gnome-menus-2.20.1 ppc stable for bug 199740
 
   22 Nov 2007; Raúl Porcel <armin76@gentoo.org> gnome-menus-2.20.1.ebuild:
   alpha/ia64/sparc stable wrt #199740
