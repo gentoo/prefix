@@ -84,7 +84,8 @@ src_install() {
 	fi
 
 	# Change libz.so.3 to libz.so.1
-	scanelf -qR -N libz.so.3 -F "#N" "${ED}"/opt/${P}/ | \
+# but not in prefix
+	use prefix || scanelf -qR -N libz.so.3 -F "#N" "${ED}"/opt/${P}/ | \
 		while read i; do
 		if [[ $(strings "$i" | fgrep -c libz.so.3) -ne 1 ]]; then
 			export SANITY_CHECK_LIBZ_FAILED=1
