@@ -48,6 +48,8 @@ RDEPEND="
 			x11-libs/libXtst
 		)"
 
+S="${WORKDIR}/jdk$(replace_version_separator 3 _)"
+
 JAVA_PROVIDE="jdbc-stdext jdbc-rowset"
 
 src_unpack() {
