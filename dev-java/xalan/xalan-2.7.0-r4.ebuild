@@ -19,7 +19,7 @@ SRC_URI="mirror://apache/xml/${MY_PN}/source/${SRC_DIST}
 	doc? ( mirror://apache/xml/${MY_PN}/binaries/${BIN_DIST} )"
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="doc source"
 COMMON_DEP="
 	dev-java/javacup
