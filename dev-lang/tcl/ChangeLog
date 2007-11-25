@@ -1,6 +1,12 @@
 # ChangeLog for dev-lang/tcl
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/ChangeLog,v 1.89 2007/11/03 21:03:55 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/ChangeLog,v 1.90 2007/11/25 00:27:50 matsuu Exp $
+
+*tcl-8.5_beta3 (25 Nov 2007)
+
+  25 Nov 2007; <matsuu@gentoo.org> +tcl-8.5_beta3.ebuild, -tcl-8.5b.ebuild:
+  Version bumped.
+  Fixed tclsh issue wrt bug #200090.
 
 *tcl-8.5b (03 Nov 2007)
 

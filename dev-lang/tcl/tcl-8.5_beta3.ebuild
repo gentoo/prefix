@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/tcl-8.5b.ebuild,v 1.1 2007/11/03 21:03:55 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/tcl-8.5_beta3.ebuild,v 1.1 2007/11/25 00:27:50 matsuu Exp $
 
 EAPI="prefix"
 
@@ -9,7 +9,7 @@ WANT_AUTOMAKE=latest
 
 inherit autotools eutils multilib toolchain-funcs
 
-MY_P="${PN}${PV/b/b2}"
+MY_P="${PN}${PV/_beta/b}"
 DESCRIPTION="Tool Command Language"
 HOMEPAGE="http://www.tcl.tk/"
 SRC_URI="mirror://sourceforge/tcl/${MY_P}-src.tar.gz"
@@ -40,6 +40,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-8.5_alpha6-multilib.patch
+
+	# Bug 125971
 	epatch "${FILESDIR}"/${PN}-8.5_alpha6-tclm4-soname.patch
 
 	cd "${S}"/unix
