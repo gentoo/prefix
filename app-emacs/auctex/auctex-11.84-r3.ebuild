@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.84-r3.ebuild,v 1.1 2007/11/23 16:16:06 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.84-r3.ebuild,v 1.2 2007/11/24 21:11:52 ulm Exp $
 
 EAPI="prefix"
 
@@ -20,6 +20,10 @@ DEPEND="virtual/tetex
 		app-text/dvipng
 		virtual/ghostscript )"
 
+# Don't install in the main tree, as this causes file collisions
+# with app-text/tetex, see bug #155944
+TEXMF="/usr/share/texmf-site"
+
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
@@ -32,49 +36,12 @@ src_unpack() {
 }
 
 src_compile() {
-	# Don't install in the main tree, as this causes file collisions
-	# with app-text/tetex, see bug #155944
-	if use preview-latex; then
-		local TEXMFPATH="$(kpsewhich -var-value=TEXMFSITE)"
-		local TEXMFCONFIGFILE="$(kpsewhich texmf.cnf)"
-
-		if [ -z "${TEXMFPATH}" ]; then
-			eerror "You haven't defined the TEXMFSITE variable in your TeX config."
-			eerror "Please do so in the file ${TEXMFCONFIGFILE:-/var/lib/texmf/web2c/texmf.cnf}"
-			die "Define TEXMFSITE in TeX configuration!"
-		else
-			# go through the colon separated list of directories (maybe only one) provided in the variable
-			# TEXMFPATH (generated from TEXMFSITE from TeX's config) and choose only the first entry.
-			# All entries are separated by colons, even when defined with semi-colons, kpsewhich changes
-			# the output to a generic format, so IFS has to be redefined.
-			local IFS="${IFS}:"
-
-			for strippedpath in ${TEXMFPATH}
-			do
-				if [ -d ${strippedpath} ]; then
-					local PREVIEW_TEXMFDIR="${strippedpath}"
-					break
-				fi
-			done
-
-			# verify if an existing path was chosen to prevent from installing into the wrong directory
-			if [ -z ${PREVIEW_TEXMFDIR} ]; then
-				eerror "TEXMFSITE does not contain any existing directory."
-				eerror "Please define an existing directory in your TeX config file"
-				eerror "${TEXMFCONFIGFILE:-/var/lib/texmf/web2c/texmf.cnf} or create at least one of the there specified directories"
-				die "TEXMFSITE variable did not contain an existing directory"
-			fi
-
-			dodir "${PREVIEW_TEXMFDIR}"
-		fi
-	fi
-
 	econf --disable-build-dir-test \
-		--with-auto-dir="/var/lib/auctex" \
-		--with-lispdir="${SITELISP}/${PN}" \
-		--with-packagelispdir="${SITELISP}/${PN}" \
-		--with-packagedatadir="/usr/share/emacs/etc/${PN}" \
-		--with-texmf-dir="${PREVIEW_TEXMFDIR}" \
+		--with-auto-dir="${EPREFIX}/var/lib/auctex" \
+		--with-lispdir="${ESITELISP}/${PN}" \
+		--with-packagelispdir="${ESITELISP}/${PN}" \
+		--with-packagedatadir="${EPREFIX}/usr/share/emacs/etc/${PN}" \
+		--with-texmf-dir="${EPREFIX}${TEXMF}" \
 		$(use_enable preview-latex preview) || die "econf failed"
 	emake || die "emake failed"
 	cd doc; emake tex-ref.pdf || die "creation of tex-ref.pdf failed"
@@ -86,6 +53,7 @@ src_install() {
 	if use preview-latex; then
 		elisp-site-file-install "${FILESDIR}/60${PN}-gentoo.el" || die
 	fi
+	keepdir /var/lib/auctex
 	dodoc ChangeLog CHANGES README RELEASE TODO FAQ INSTALL* doc/tex-ref.pdf
 }
 
