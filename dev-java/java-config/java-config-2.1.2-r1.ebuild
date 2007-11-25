@@ -12,7 +12,7 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="2"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND="dev-lang/python"
@@ -27,6 +27,15 @@ src_unpack() {
 	epatch "${FILESDIR}/${PF}.patch"
 	epatch "${FILESDIR}"/${PN}-2.1.2-prefix.patch
 
+	cp "${FILESDIR}"/jdk-defaults-solaris.conf \
+		"${S}"/config/jdk-defaults-x86-solaris.conf
+	cp "${FILESDIR}"/jdk-defaults-solaris.conf \
+		"${S}"/config/jdk-defaults-sparc-solaris.conf
+	cp "${FILESDIR}"/jdk-defaults-macos.conf \
+		"${S}"/config/jdk-defaults-x86-macos.conf
+	cp "${FILESDIR}"/jdk-defaults-solaris.conf \
+		"${S}"/config/jdk-defaults-ppc-macos.conf
+
 	eprefixify \
 		config/20java-config setup.py \
 		src/{depend-java-query,gjl,java-config-2,launcher.bash,run-java-tool} \
@@ -34,6 +43,7 @@ src_unpack() {
 		src/profile.d/java-config-2.{,c}sh \
 		src/java_config_2/{EnvironmentManager.py,VM.py,VersionManager.py}
 
+	# fix for newer portages
 	find . -name "*.py" -print0 | xargs -0 sed -i -e 's/portage_dep/portage.dep/g'
 }
 
@@ -41,8 +51,7 @@ src_install() {
 	distutils_src_install
 
 	insinto /usr/share/java-config-2/config/
-	# TODO: add config files for ppc-macos, x86-macos and remove ${/-macos} hack
-	newins config/jdk-defaults-${ARCH/-macos}.conf jdk-defaults.conf || die "arch config not found"
+	newins config/jdk-defaults-${ARCH}.conf jdk-defaults.conf || die "arch config not found"
 }
 
 pkg_postrm() {
