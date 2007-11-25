@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit ant-tasks
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 
 DEPEND=">=dev-java/jdepend-2.9-r2"
 RDEPEND="${DEPEND}"
