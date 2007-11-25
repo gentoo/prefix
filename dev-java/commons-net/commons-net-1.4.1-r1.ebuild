@@ -26,7 +26,7 @@ DEPEND=">=virtual/jdk-1.3
 	${COMMON_DEP}"
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 
 src_unpack() {
 	unpack ${A}
