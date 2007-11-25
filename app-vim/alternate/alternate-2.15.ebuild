@@ -10,7 +10,7 @@ DESCRIPTION="vim plugin: quickly switch between .c and .h files"
 HOMEPAGE="http://www.vim.org/scripts/script.php?script_id=31"
 
 LICENSE="as-is"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
 VIM_PLUGIN_HELPTEXT=\
