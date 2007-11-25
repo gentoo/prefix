@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/bbdb
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/ChangeLog,v 1.30 2007/11/21 07:34:41 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/ChangeLog,v 1.31 2007/11/24 23:30:35 ulm Exp $
+
+  24 Nov 2007; Ulrich Mueller <ulm@gentoo.org> bbdb-2.35.ebuild:
+  Change RDEPEND from latex-base to tex-base.
 
   21 Nov 2007; Ulrich Mueller <ulm@gentoo.org> bbdb-2.35.ebuild:
   Add tex USE flag, bug #196745. Keep tetex flag for a transition period.
