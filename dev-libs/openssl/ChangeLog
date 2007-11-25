@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.255 2007/11/19 02:18:16 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.256 2007/11/24 04:24:36 ranger Exp $
+
+  24 Nov 2007; Brent Baude <ranger@gentoo.org> openssl-0.9.8g.ebuild:
+  Keywording openssl-0.9.8g ppc for bug 198370
 
   19 Nov 2007; Joshua Kinard <kumba@gentoo.org> openssl-0.9.8g.ebuild:
   Stable on mips, per #198370.
