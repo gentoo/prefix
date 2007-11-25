@@ -103,7 +103,7 @@ src_unpack() {
 #	epatch "${FILESDIR}/disable-tests-gentoo-${PV}.patch"
 	use source && sed 's%"$(build_root)%$(module).lisp "$(build_root)%' -i contrib/vanilla-module.mk
 
-	sed "s,/lib,$(get_libdir),g" -i "${S}/install.sh"
+	sed "s,/lib,/$(get_libdir),g" -i "${S}/install.sh"
 	sed  "s,/usr/local/lib,${EPREFIX}/usr/$(get_libdir),g" -i "${S}/src/runtime/runtime.c" # #define SBCL_HOME ...
 
 	# customizing SBCL version as per
