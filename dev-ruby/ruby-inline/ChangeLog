@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/ruby-inline
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-inline/ChangeLog,v 1.4 2007/10/14 05:37:17 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-inline/ChangeLog,v 1.5 2007/11/24 08:44:44 graaff Exp $
+
+*ruby-inline-3.6.5 (24 Nov 2007)
+
+  24 Nov 2007; Hans de Graaff <graaff@gentoo.org> +ruby-inline-3.6.5.ebuild:
+  Version bump: Quick fix for OSX 10.5 native ruby.
 
   14 Oct 2007; Tom Gall <tgall@gentoo.org> ruby-inline-3.6.4.ebuild:
   added ~ppc64
