@@ -1,6 +1,15 @@
 # ChangeLog for dev-java/xom
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xom/ChangeLog,v 1.36 2007/11/20 07:05:19 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xom/ChangeLog,v 1.39 2007/11/24 19:08:01 nelchael Exp $
+
+  24 Nov 2007; Krzysiek Pawlik <nelchael@gentoo.org> xom-1.0-r4.ebuild:
+  Stable on ppc, see bug #199673.
+
+  24 Nov 2007; Samuli Suominen <drac@gentoo.org> xom-1.0-r4.ebuild:
+  amd64 stable wrt #199673
+
+  24 Nov 2007; Markus Rothe <corsair@gentoo.org> xom-1.0-r4.ebuild:
+  Stable on ppc64; bug #142538 and bug #199673
 
   20 Nov 2007; Dawid Węgliński <cla@gentoo.org> xom-1.0-r4.ebuild:
   Stable on x86 (bug #199673)
