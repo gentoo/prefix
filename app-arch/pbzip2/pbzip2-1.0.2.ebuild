@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/pbzip2/pbzip2-1.0.2.ebuild,v 1.1 2007/07/31 20:06:52 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/pbzip2/pbzip2-1.0.2.ebuild,v 1.6 2007/11/24 19:34:26 drac Exp $
 
 EAPI="prefix"
 
@@ -24,7 +24,7 @@ src_unpack() {
 
 src_compile() {
 	if use static ; then
-		cp -f "${EPREFIX}"/usr/$(get_libdir)/libbz2.a ${S}
+		cp -f "${EPREFIX}"/usr/$(get_libdir)/libbz2.a "${S}"
 		emake pbzip2-static || die "Failed to build"
 	else
 		emake pbzip2 || die "Failed to build"
