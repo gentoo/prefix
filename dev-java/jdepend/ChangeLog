@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jdepend
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jdepend/ChangeLog,v 1.46 2007/11/18 18:17:23 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jdepend/ChangeLog,v 1.47 2007/11/25 14:51:39 ranger Exp $
+
+  25 Nov 2007; Brent Baude <ranger@gentoo.org> jdepend-2.9-r4.ebuild:
+  Marking jdepend-2.9-r4 ppc for bug
 
   18 Nov 2007; Markus Rothe <corsair@gentoo.org> jdepend-2.9-r4.ebuild:
   Stable on ppc64; bug #199250
