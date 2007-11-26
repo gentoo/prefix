@@ -1,6 +1,18 @@
 # ChangeLog for dev-java/xalan-serializer
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xalan-serializer/ChangeLog,v 1.2 2007/11/23 16:55:13 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xalan-serializer/ChangeLog,v 1.5 2007/11/25 14:42:50 opfer Exp $
+
+  25 Nov 2007; Christian Faulhammer <opfer@gentoo.org>
+  xalan-serializer-2.7.0.ebuild:
+  stable x86, bug 199501
+
+  25 Nov 2007; Samuli Suominen <drac@gentoo.org>
+  xalan-serializer-2.7.0.ebuild:
+  amd64 stable wrt #199501
+
+  25 Nov 2007; Krzysiek Pawlik <nelchael@gentoo.org>
+  xalan-serializer-2.7.0.ebuild:
+  Stable on ppc, bug #199501.
 
   23 Nov 2007; Markus Rothe <corsair@gentoo.org>
   xalan-serializer-2.7.0.ebuild:
