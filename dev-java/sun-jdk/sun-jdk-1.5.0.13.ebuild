@@ -36,7 +36,7 @@ DEPEND="
 	jce? ( =dev-java/sun-jce-bin-1.5.0* )"
 
 RDEPEND="
-	kernel_linux? ( sys-libs/glibc )
+	kernel_linux? ( !prefix? ( sys-libs/glibc ) )
 	alsa? ( media-libs/alsa-lib )
 	doc? ( =dev-java/java-sdk-docs-1.5.0* )
 	X? (

@@ -44,7 +44,7 @@ DEPEND="
 RDEPEND="
 	${DEPEND}
 	x86? ( =virtual/libstdc++-3.3 )
-	kernel_linux? ( sys-libs/glibc )
+	kernel_linux? ( !prefix? ( sys-libs/glibc ) )
 	alsa? ( media-libs/alsa-lib )
 	X? (
 			x11-libs/libX11
