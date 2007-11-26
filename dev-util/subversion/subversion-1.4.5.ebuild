@@ -218,7 +218,7 @@ src_install () {
 
 	if use java ; then
 		make DESTDIR="${D}" install-javahl || die "make install-javahl failed"
-		java-pkg_regso "${ED}"/usr/$(get_libdir)/libsvnjavahl*.so
+		java-pkg_regso "${ED}"/usr/$(get_libdir)/libsvnjavahl*$(get_libname)
 		java-pkg_dojar "${ED}"/usr/$(get_libdir)/svn-javahl/svn-javahl.jar
 		rm -Rf "${ED}"/usr/$(get_libdir)/svn-javahl/*.jar
 	fi
