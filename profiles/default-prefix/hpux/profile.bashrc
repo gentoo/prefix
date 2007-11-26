@@ -60,5 +60,7 @@ post_pkg_preinst() {
 		fi
 		echo "backing up text file ${ROOT}${f} (${n})"
 		mv "${ROOT}${f}" "${ROOT}${rmstem}${n}" || exit 1
+		# preserve original binary (required for bash fex)
+		cp -p "${ROOT}${rmstem}${n}" "${ROOT}${f}" || exit 1
 	done
 }
