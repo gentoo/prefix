@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/bsf/bsf-2.4.0-r1.ebuild,v 1.5 2007/11/18 18:03:35 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/bsf/bsf-2.4.0-r1.ebuild,v 1.6 2007/11/25 10:52:24 nelchael Exp $
 
 EAPI="prefix"
 

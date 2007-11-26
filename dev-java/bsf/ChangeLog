@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/bsf
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/bsf/ChangeLog,v 1.47 2007/11/18 18:03:35 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/bsf/ChangeLog,v 1.48 2007/11/25 10:52:24 nelchael Exp $
+
+  25 Nov 2007; Krzysiek Pawlik <nelchael@gentoo.org> bsf-2.4.0-r1.ebuild:
+  Stable on ppc, bug #199235.
 
   18 Nov 2007; Markus Rothe <corsair@gentoo.org> bsf-2.4.0-r1.ebuild:
   Stable on ppc64; bug #199235
