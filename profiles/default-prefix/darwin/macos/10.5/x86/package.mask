@@ -11,4 +11,4 @@
 # please use emacs-cvs-22.1.50-r1 for now (worked last time I checked).
 app-editors/emacs
 =app-editors/emacs-cvs-22.1.50_p20070829-r1
-=app-editors/emacs-cvs-23*
+app-editors/emacs-cvs:23-unicode
