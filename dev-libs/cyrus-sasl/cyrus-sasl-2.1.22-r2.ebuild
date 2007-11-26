@@ -195,7 +195,7 @@ src_install() {
 	# Default location for java classes breaks OpenOffice (bug #60769).
 	if use java ; then
 		java-pkg_dojar ${PN}.jar
-		java-pkg_regso "${ED}/usr/$(get_libdir)/libjavasasl.so"
+		java-pkg_regso "${ED}/usr/$(get_libdir)/libjavasasl$(get_libname)"
 		# hackish, don't wanna dig through makefile
 		rm -Rf "${ED}/usr/$(get_libdir)/java"
 		docinto "java"
