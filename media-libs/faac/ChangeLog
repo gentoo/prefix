@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/faac
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/ChangeLog,v 1.63 2007/11/23 21:23:21 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/ChangeLog,v 1.64 2007/11/26 00:49:39 jer Exp $
+
+  26 Nov 2007; Jeroen Roovers <jer@gentoo.org> faac-1.26-r1.ebuild:
+  Stable for HPPA (bug #199973).
 
   23 Nov 2007; Markus Rothe <corsair@gentoo.org> faac-1.26-r1.ebuild:
   Stable on ppc64; bug #199973
