@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.95 2007/11/13 19:36:50 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.96 2007/11/25 07:51:41 caster Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -1850,7 +1850,7 @@ eant() {
 		java-pkg_announce-qa-violation "${msg}"
 	fi
 
-	local antflags="-Dnoget=true -Dmaven.mode.offline=true"
+	local antflags="-Dnoget=true -Dmaven.mode.offline=true -Dbuild.sysclasspath=ignore"
 
 	java-pkg_init-compiler_
 	local compiler="${GENTOO_COMPILER}"
@@ -1871,11 +1871,6 @@ eant() {
 		if [[ -n ${build_compiler_deps} ]]; then
 			antflags="${antflags} -lib $(java-config -p ${build_compiler_deps})"
 		fi
-	fi
-
-	if is-java-strict; then
-		einfo "Disabling system classpath for ant"
-		antflags="${antflags} -Dbuild.sysclasspath=ignore"
 	fi
 
 	for arg in "${@}"; do

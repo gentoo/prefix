@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/wxwidgets.eclass,v 1.22 2007/11/21 01:29:13 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/wxwidgets.eclass,v 1.23 2007/11/25 14:19:39 swegener Exp $
 
 # @ECLASS:			wxwidgets.eclass
 # @MAINTAINER:
@@ -162,7 +162,7 @@ need-wxwidgets() {
 	# all the crazy looping
 
 	# base can be provided by both gtk2 and base installations
-	if $(built_with_use =x11-libs/wxGTK-${WX_GTK_VER}* X); then
+	if built_with_use =x11-libs/wxGTK-${WX_GTK_VER}* X; then
 		wxtoolkit="gtk2"
 	else
 		wxtoolkit="base"
@@ -171,7 +171,7 @@ need-wxwidgets() {
 	debug-print "wxtoolkit is ${wxtoolkit}"
 
 	# debug or release?
-	if $(built_with_use =x11-libs/wxGTK-${WX_GTK_VER}* debug); then
+	if built_with_use =x11-libs/wxGTK-${WX_GTK_VER}* debug; then
 		wxdebug="debug"
 	else
 		wxdebug="release"
@@ -224,7 +224,7 @@ check_wxuse() {
 
 
 	ebegin "Checking wxGTK-${WX_GTK_VER} for ${1} support"
-	if $(built_with_use =x11-libs/wxGTK-${WX_GTK_VER}* "${1}"); then
+	if built_with_use =x11-libs/wxGTK-${WX_GTK_VER}* "${1}"; then
 		eend 0
 	else
 		eend 1
