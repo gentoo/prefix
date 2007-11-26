@@ -1,6 +1,21 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.208 2007/11/22 21:57:27 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.211 2007/11/26 00:25:47 jer Exp $
+
+  26 Nov 2007; Jeroen Roovers <jer@gentoo.org> emacs-22.1-r3.ebuild:
+  Stable for HPPA.
+
+  26 Nov 2007; Jeroen Roovers <jer@gentoo.org> emacs-21.4-r14.ebuild:
+  Stable for HPPA.
+
+*emacs-22.1-r3 (25 Nov 2007)
+*emacs-21.4-r14 (25 Nov 2007)
+
+  25 Nov 2007; Ulrich Mueller <ulm@gentoo.org>
+  +files/emacs-22.1-format-int.patch, +emacs-21.4-r14.ebuild,
+  +emacs-22.1-r3.ebuild:
+  Correctly format integer values, SuSE bug 342158. Patch from upstream CVS,
+  partially backported to Emacs 21.
 
   22 Nov 2007; Ulrich Mueller <ulm@gentoo.org> emacs-22.1-r2.ebuild:
   Fix alsa dependency, thanks Flameeyes for pointing this out.
