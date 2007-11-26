@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/sun-jdk
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.220 2007/11/03 15:54:52 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.221 2007/11/25 13:51:01 caster Exp $
+
+  25 Nov 2007; Vlastimil Babka <caster@gentoo.org> sun-jdk-1.4.2.16.ebuild,
+  sun-jdk-1.5.0.13.ebuild, sun-jdk-1.6.0.03.ebuild:
+  Remove the now pointless distfiles readability check.
 
   03 Nov 2007; Vlastimil Babka <caster@gentoo.org> -sun-jdk-1.4.2.15.ebuild,
   -sun-jdk-1.5.0.12.ebuild, -sun-jdk-1.6.0.02.ebuild:
