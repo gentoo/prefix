@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/com_err-1.40.2.ebuild,v 1.6 2007/11/19 07:37:16 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/com_err-1.40.2.ebuild,v 1.8 2007/11/25 01:41:36 ranger Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ IUSE="nls"
 
 RDEPEND=""
 DEPEND="nls? ( sys-devel/gettext )
-        sys-devel/bc"
+	sys-devel/bc"
 
 S=${WORKDIR}/e2fsprogs-${PV}
 
