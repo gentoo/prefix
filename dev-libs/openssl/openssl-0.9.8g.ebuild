@@ -12,7 +12,7 @@ SRC_URI="mirror://openssl/source/${P}.tar.gz"
 
 LICENSE="openssl"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="bindist emacs gmp kerberos sse2 test zlib"
 
 RDEPEND="gmp? ( dev-libs/gmp )
@@ -65,6 +65,11 @@ src_unpack() {
 		-e "s+libdir=\$\${exec_prefix}/lib+libdir=\$\${exec_prefix}/$(get_libdir)+g" \
 		Makefile.org engines/Makefile \
 		|| die "sed failed"
+
+	# avoid waiting on terminal input forever when spitting
+	# 64bit warning message.
+	[[ ${CHOST} == *-hpux* ]] && sed -i -e 's,stty,true,g' -e 's,read waste,true,g' config
+
 	./config --test-sanity || die "I AM NOT SANE"
 }
 

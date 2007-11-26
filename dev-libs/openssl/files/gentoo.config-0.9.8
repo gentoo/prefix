@@ -50,6 +50,7 @@ case ${CHOST} in
 	*-freebsd*)  system="BSD";;
 	*-solaris*)  system="solaris";;
 	*-aix*)      system="aix";;
+	*-hpux*)     system="hpux";;
 	*)           exit 0;;
 esac
 
@@ -109,6 +110,11 @@ solaris)
 	;;
 aix)
 	machine=${compiler}
+	;;
+hpux)
+	case ${chost_machine} in
+		ia64)	machine=ia64-${compiler} ;;
+	esac
 	;;
 esac
 
