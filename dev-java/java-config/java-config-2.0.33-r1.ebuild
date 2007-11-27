@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.0.33-r1.ebuild,v 1.8 2007/08/25 22:31:05 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.0.33-r1.ebuild,v 1.9 2007/11/27 14:36:21 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -17,6 +17,7 @@ IUSE=""
 
 DEPEND="dev-lang/python"
 RDEPEND="${DEPEND}
+	app-admin/eselect
 	>=dev-java/java-config-wrapper-0.13"
 
 src_unpack() {

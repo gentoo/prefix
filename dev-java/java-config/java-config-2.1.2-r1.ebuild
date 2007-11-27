@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.2-r1.ebuild,v 1.1 2007/10/14 07:45:00 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.2-r1.ebuild,v 1.2 2007/11/27 14:36:20 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -15,8 +15,9 @@ SLOT="2"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE=""
 
-DEPEND="dev-lang/python"
+DEPEND=""
 RDEPEND="${DEPEND}
+	app-admin/eselect
 	>=dev-java/java-config-wrapper-0.13"
 
 PYTHON_MODNAME="java_config_2"
@@ -52,11 +53,6 @@ src_install() {
 
 	insinto /usr/share/java-config-2/config/
 	newins config/jdk-defaults-${ARCH}.conf jdk-defaults.conf || die "arch config not found"
-}
-
-pkg_postrm() {
-	distutils_python_version
-	distutils_pkg_postrm
 }
 
 pkg_postinst() {
