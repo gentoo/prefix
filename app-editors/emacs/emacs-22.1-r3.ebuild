@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r3.ebuild,v 1.2 2007/11/26 00:25:47 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r3.ebuild,v 1.5 2007/11/27 16:55:55 corsair Exp $
 
 EAPI="prefix"
 
@@ -85,7 +85,11 @@ src_compile() {
 	ALLOWED_FLAGS=""
 	strip-flags
 	unset LDFLAGS
-	replace-flags -O[3-9] -O2
+	if use hppa; then # bug #193703
+		replace-flags -O[2-9] -O
+	else
+		replace-flags -O[3-9] -O2
+	fi
 	sed -i -e "s/-lungif/-lgif/g" configure* src/Makefile* || die
 
 	local myconf
