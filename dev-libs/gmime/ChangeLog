@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/gmime
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.62 2007/11/18 01:21:03 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.63 2007/11/26 13:11:00 corsair Exp $
+
+  26 Nov 2007; Markus Rothe <corsair@gentoo.org> gmime-2.2.3.ebuild:
+  Stable on ppc64; bug #199740
 
 *gmime-2.2.11 (18 Nov 2007)
 
