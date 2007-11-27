@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Copyright Gentoo Foundation 2006-2007
 
+# <grobian@gentoo.org> -- 2007-11-27
+# ignore live CVS ebuilds (version 9999)
 # <grobian@gentoo.org> -- 2007-11-11
 # add some dummy implementations of often used functions to silence bash
 # some more
@@ -682,6 +684,7 @@ for pte in $pt ; do
 		continue
 	fi
 	for xpte in $pt ; do
+		# check against the rest
 		[[ $(cmp_ebuild_ver $pte $xpte) -ge 10000 ]] \
 			&& pt=${pt/$xpte/}
 	done
@@ -693,6 +696,12 @@ done
 for pte in $pt ; do
 	last_rev=""
 	for mte in $mt ; do
+		# kill live CVS ebuilds
+		if [[ $(get_ebuildversion ${mte}) == 9999 ]] ; then
+			mt=${mt/$mte/}
+			continue
+		fi
+
 		if [[ $(cmp_ebuild_ver $mte $pte) -ge 10000 ]] ; then
 			[[ $(cmp_ebuild_ver $mte $last_rev) > 0 ]] \
 				&& last_rev=$mte
