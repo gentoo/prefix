@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-22.1.50-r1.ebuild,v 1.12 2007/11/22 22:08:00 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-22.1.50-r2.ebuild,v 1.1 2007/11/27 14:11:48 opfer Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,7 @@ SRC_URI=""
 
 LICENSE="GPL-3 FDL-1.2 BSD"
 SLOT="22"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="alsa gif gtk gzip-el hesiod jpeg kerberos motif png spell sound source tiff toolkit-scroll-bars X Xaw3d xpm"
 RESTRICT="strip"
 
@@ -219,7 +219,7 @@ src_install () {
 
 		(if (string-match "\\\\\`${FULL_VERSION//./\\\\.}\\\\>" emacs-version)
 		X    (setq find-function-C-source-directory
-		X	  "/usr/share/emacs/${FULL_VERSION}/src"))
+		X	  "${EPREFIX}/usr/share/emacs/${FULL_VERSION}/src"))
 		EOF
 		elisp-site-file-install 00${PN}-${SLOT}-gentoo.el
 	fi

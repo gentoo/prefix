@@ -1,14 +1,14 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.60.ebuild,v 1.7 2007/11/22 22:08:00 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.50-r1.ebuild,v 1.1 2007/11/27 14:11:48 opfer Exp $
 
 EAPI="prefix"
 
 ECVS_AUTH="pserver"
 ECVS_SERVER="cvs.savannah.gnu.org:/sources/emacs"
 ECVS_MODULE="emacs"
-ECVS_BRANCH="emacs-unicode-2"
-ECVS_LOCALNAME="emacs-unicode"
+ECVS_BRANCH="HEAD"
+ECVS_LOCALNAME="emacs"
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
@@ -20,14 +20,15 @@ HOMEPAGE="http://www.gnu.org/software/emacs/"
 SRC_URI=""
 
 LICENSE="GPL-3 FDL-1.2 BSD"
-SLOT="23-unicode"
+SLOT="23"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
-IUSE="alsa gif gpm gtk gzip-el hesiod jpeg kerberos motif png spell sound source svg tiff toolkit-scroll-bars X Xaw3d xft xpm"
+IUSE="alsa gif gpm gtk gzip-el hesiod jpeg kerberos motif png spell sound source svg tiff toolkit-scroll-bars X Xaw3d xpm"
 RESTRICT="strip"
 
 X_DEPEND="x11-libs/libXmu x11-libs/libXt x11-misc/xbitmaps"
 
-RDEPEND="sys-libs/ncurses
+RDEPEND="!=app-editors/emacs-cvs-23.0.0-r6
+	sys-libs/ncurses
 	>=app-admin/eselect-emacs-0.7-r1
 	sys-libs/zlib
 	hesiod? ( net-dns/hesiod )
@@ -44,7 +45,6 @@ RDEPEND="sys-libs/ncurses
 		png? ( media-libs/libpng )
 		svg? ( >=gnome-base/librsvg-2.0 )
 		xpm? ( x11-libs/libXpm )
-		xft? ( media-libs/fontconfig virtual/xft >=dev-libs/libotf-0.9.4 )
 		gtk? ( =x11-libs/gtk+-2* )
 		!gtk? (
 			Xaw3d? ( x11-libs/Xaw3d )
@@ -119,9 +119,6 @@ src_compile() {
 	if use X; then
 		myconf="${myconf} --with-x"
 		myconf="${myconf} $(use_with toolkit-scroll-bars)"
-		myconf="${myconf} $(use_enable xft font-backend)"
-		myconf="${myconf} $(use_with xft freetype)"
-		myconf="${myconf} $(use_with xft)"
 		myconf="${myconf} $(use_with jpeg) $(use_with tiff)"
 		myconf="${myconf} $(use_with gif) $(use_with png)"
 		myconf="${myconf} $(use_with xpm) $(use_with svg rsvg)"
@@ -229,7 +226,7 @@ src_install () {
 		elisp-site-file-install 00${PN}-${SLOT}-gentoo.el
 	fi
 
-	dodoc README README.unicode BUGS || die "dodoc failed"
+	dodoc README BUGS || die "dodoc failed"
 }
 
 emacs-infodir-rebuild() {
