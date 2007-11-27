@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/pbzip2
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/pbzip2/ChangeLog,v 1.41 2007/11/25 10:47:07 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/pbzip2/ChangeLog,v 1.42 2007/11/27 14:28:12 armin76 Exp $
+
+  27 Nov 2007; Raúl Porcel <armin76@gentoo.org> pbzip2-1.0.2.ebuild:
+  alpha/ia64/sparc stable wrt #198599
 
   25 Nov 2007; Markus Rothe <corsair@gentoo.org> pbzip2-1.0.2.ebuild:
   Stable on ppc64; bug #198599
