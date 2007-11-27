@@ -1,6 +1,14 @@
 # ChangeLog for gnome-base/gail
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gail/ChangeLog,v 1.139 2007/11/24 22:37:54 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gail/ChangeLog,v 1.141 2007/11/26 13:20:19 corsair Exp $
+
+  26 Nov 2007; Markus Rothe <corsair@gentoo.org> gail-1.20.1.ebuild:
+  Stable on ppc64; bug #199740
+
+*gail-1.20.2 (26 Nov 2007)
+
+  26 Nov 2007; Mart Raudsepp <leio@gentoo.org> +gail-1.20.2.ebuild:
+  Version bump for pidgin related accessibility workarounds
 
   24 Nov 2007; Brent Baude <ranger@gentoo.org> gail-1.20.1.ebuild:
   Marking gail-1.20.1 ppc stable for bug 199740
