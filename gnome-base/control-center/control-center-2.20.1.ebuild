@@ -1,8 +1,7 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/control-center-2.20.1.ebuild,v 1.5 2007/11/24 22:48:45 ranger Exp $
-
-EAPI="prefix"
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/control-center-2.20.1.ebuild,v 1.7 2007/11/27 15:32:25 dang Exp $
+EAPI="prefix 1"
 
 inherit eutils gnome2 autotools
 
@@ -56,7 +55,8 @@ RDEPEND=">=gnome-base/gnome-vfs-2.2
 	!arm? ( alsa? ( >=media-libs/alsa-lib-0.9 ) )
 	>=media-libs/gst-plugins-base-0.10.2
 	media-plugins/gst-plugins-gconf
-	>=media-libs/gstreamer-0.10.2"
+	>=media-libs/gstreamer-0.10.2
+	media-plugins/gst-plugins-meta:0.10"
 DEPEND="${RDEPEND}
 	x11-proto/kbproto
 	x11-proto/xextproto
