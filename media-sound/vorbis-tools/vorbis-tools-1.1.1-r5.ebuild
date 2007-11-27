@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/vorbis-tools-1.1.1-r5.ebuild,v 1.6 2007/11/24 18:41:26 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/vorbis-tools-1.1.1-r5.ebuild,v 1.7 2007/11/26 01:49:34 jer Exp $
 
 EAPI="prefix"
 
@@ -52,7 +52,6 @@ src_compile() {
 	# largefile support, bug 170677
 	append-flags -D_FILE_OFFSET_BITS=64
 
-	use hppa && [ "`gcc-fullversion`" == "3.3.2" ] && replace-flags -march=2.0 -march=1.0
 	local myconf
 
 	# --with-flac is not supported.  See bug #49763
