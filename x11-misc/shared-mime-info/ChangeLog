@@ -1,6 +1,10 @@
 # ChangeLog for x11-misc/shared-mime-info
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/ChangeLog,v 1.114 2007/11/20 19:10:49 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/ChangeLog,v 1.115 2007/11/27 03:44:35 jer Exp $
+
+  27 Nov 2007; Jeroen Roovers <jer@gentoo.org>
+  shared-mime-info-0.22-r1.ebuild:
+  Stable for HPPA (bug #199322).
 
   20 Nov 2007; Markus Rothe <corsair@gentoo.org>
   shared-mime-info-0.22-r1.ebuild:
