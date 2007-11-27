@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jsch/jsch-0.1.36.ebuild,v 1.1 2007/11/12 01:17:35 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jsch/jsch-0.1.36.ebuild,v 1.2 2007/11/26 20:15:18 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -23,7 +23,9 @@ DEPEND=">=virtual/jdk-1.4
 	${RDEPEND}"
 
 src_compile() {
-	eant -Dproject.cp="$(java-pkg_getjars jzlib)" dist $(use_doc)
+	# for ANT_TASKS see
+	# https://bugs.gentoo.org/show_bug.cgi?id=200309
+	ANT_TASKS="none" eant -Dproject.cp="$(java-pkg_getjars jzlib)" dist $(use_doc)
 }
 
 src_install() {
