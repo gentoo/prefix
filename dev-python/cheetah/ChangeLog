@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/cheetah
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/cheetah/ChangeLog,v 1.37 2007/10/12 23:46:37 pythonhead Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cheetah/ChangeLog,v 1.38 2007/11/26 19:48:05 pythonhead Exp $
+
+*cheetah-2.0.1 (26 Nov 2007)
+
+  26 Nov 2007; Rob Cakebread <pythonhead@gentoo.org> -cheetah-0.9.17.ebuild,
+  +cheetah-2.0.1.ebuild:
+  Version bump, removed obsolete version
 
 *cheetah-2.0 (12 Oct 2007)
 
