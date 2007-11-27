@@ -1,0 +1,42 @@
+--- src/native/Makefile
++++ src/native/Makefile
+@@ -54,7 +54,11 @@
+ CC = gcc
+ OBJ_EXT := o
+ LIB_PRE := lib
++ifeq ($(shell uname -s), Darwin)
++LIB_EXT := dylib
++else
+ LIB_EXT := so
++endif
+ CFLAGS=-fPIC -DPOSIX
+ endif
+ 
+@@ -97,9 +97,13 @@
+ 	$(CC) -W1,$(ROOTDIR)/lib$(TG).exp -o $@ \
+ 		$(OBJECTS) -W1,-e,_readline_init@12
+ else
++ifeq ($(shell uname -s), Darwin)
++	$(CC) -bundle $(OBJECTS) $(LIBPATH) $($(TG)_LIBS) -o $@
++else
+ 	$(CC) -shared $(OBJECTS) $(LIBPATH) $($(TG)_LIBS) -o $@
+ endif
+ endif
++endif
+ 
+ getline.$(OBJ_EXT): getline.c
+ 	$(CC) $(INCLUDES) $(CPPFLAGS) $(CFLAGS) -D$(TG) -c getline.c
+--- Makefile
++++ Makefile
+@@ -140,7 +140,11 @@
+ 	rpm --define _topdir$(RPM_BASE) -ba $(RPM_BASE)/SPECS/libreadline-java.spec
+ 
+ test: $(JAR) build-native
++ifeq ($(shell uname -s), Darwin)
++	DYLD_LIBRARY_PATH=. java -jar $(JAR) src/test/tinputrc $(ARGS)
++else
+ 	LD_LIBRARY_PATH=. java -jar $(JAR) src/test/tinputrc $(ARGS)
++endif
+ 
+ clean:
+ 	$(MAKE) -C src/native clean
