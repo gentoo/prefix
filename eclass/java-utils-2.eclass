@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.96 2007/11/25 07:51:41 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.98 2007/11/26 21:00:59 betelgeuse Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -2049,6 +2049,7 @@ use_doc() {
 #
 # -----------------------------------------------------------------------------
 java-pkg_init() {
+	debug-print-function ${FUNCNAME} $*
 	unset JAVAC
 	unset JAVA_HOME
 
@@ -2066,6 +2067,8 @@ java-pkg_init() {
 	fi
 
 	if [[ -z ${accept} ]]; then
+		# export _JAVA_OPTIONS= doesn't work because it will show up in java
+		# -version output
 		unset _JAVA_OPTIONS
 		# phase hooks make this run many times without this
 		I_WANT_GLOBAL_JAVA_OPTIONS="true"
@@ -2084,15 +2087,18 @@ java-pkg_init() {
 	# Do some QA checks
 	java-pkg_check-jikes
 
+	# Can't use unset here because Portage does not save the unset
+	# see https://bugs.gentoo.org/show_bug.cgi?id=189417#c11
+
 	# When users have crazy classpaths some packages can fail to compile.
 	# and everything should work with empty CLASSPATH.
 	# This also helps prevent unexpected dependencies on random things
 	# from the CLASSPATH.
-	unset CLASSPATH
+	export CLASSPATH=
 
 	# Unset external ANT_ stuff
-	unset ANT_TASKS
-	unset ANT_OPTS
+	export ANT_TASKS=
+	export ANT_OPTS=
 }
 
 # ------------------------------------------------------------------------------
