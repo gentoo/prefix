@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.0_rc3.ebuild,v 1.3 2007/10/16 03:40:58 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.2.ebuild,v 1.1 2007/11/26 14:58:22 hanno Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ inherit fdo-mime flag-o-matic multilib python
 
 DESCRIPTION="GNU Image Manipulation Program"
 HOMEPAGE="http://www.gimp.org/"
-SRC_URI="mirror://gimp/v2.4/testing/${P/_/-}.tar.bz2"
+SRC_URI="mirror://gimp/v2.4/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="2"
@@ -27,7 +27,7 @@ RDEPEND=">=dev-libs/glib-2.12.3
 	dev-libs/libxslt
 	x11-themes/hicolor-icon-theme
 	aalib? ( media-libs/aalib )
-	alsa? ( >=media-libs/alsa-lib-1.0.0 )
+	alsa? ( >=media-libs/alsa-lib-1.0.14a-r1 )
 	curl? ( net-misc/curl )
 	dbus? ( dev-libs/dbus-glib
 		sys-apps/hal )
@@ -52,7 +52,6 @@ DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.31
 	sys-devel/gettext
 	doc? ( >=dev-util/gtk-doc-1 )"
-S="${WORKDIR}/${P/_/-}"
 
 pkg_setup() {
 	if use pdf && ! built_with_use app-text/poppler-bindings gtk; then
