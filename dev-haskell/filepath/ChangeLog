@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/filepath
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/filepath/ChangeLog,v 1.9 2007/11/14 19:21:47 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/filepath/ChangeLog,v 1.10 2007/11/26 04:17:38 jer Exp $
+
+  26 Nov 2007; Jeroen Roovers <jer@gentoo.org> filepath-1.0.ebuild:
+  Stable for HPPA (dev-lang/ghc-6.6.1).
 
   14 Nov 2007; Steve Dibb <beandog@gentoo.org> filepath-1.0.ebuild:
   amd64 stable, bug 196616
