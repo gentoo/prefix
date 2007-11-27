@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/asfrecorder/asfrecorder-1.1.ebuild,v 1.13 2007/05/08 17:10:16 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/asfrecorder/asfrecorder-1.1.ebuild,v 1.14 2007/11/27 12:20:01 zzam Exp $
 
 EAPI="prefix"
 
@@ -23,12 +23,12 @@ S=${WORKDIR}/${MY_PN}
 src_compile() {
 	# There is a Makefile, but it only works for Cygwin, so we
 	# only compile this single program.
-	cd ${S}/source
+	cd "${S}"/source
 	$(tc-getCC) -o asfrecorder ${CFLAGS} asfrecorder.c || die "Build failed"
 }
 
 src_install () {
 	# Again, no makefiles, so just take what we want.
-	dobin ${S}/source/asfrecorder
-	dodoc ${S}/README.TXT
+	dobin "${S}"/source/asfrecorder
+	dodoc "${S}"/README.TXT
 }
