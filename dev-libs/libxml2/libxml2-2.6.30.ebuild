@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.30.ebuild,v 1.7 2007/11/20 19:04:40 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.30.ebuild,v 1.8 2007/11/27 03:34:56 jer Exp $
 
 EAPI="prefix"
 
@@ -39,7 +39,7 @@ src_unpack() {
 	if use test; then
 		cp ${DISTDIR}/${XSTS_TARBALL_1} \
 			${DISTDIR}/${XSTS_TARBALL_2} \
-			${S}/xstc/ \
+			"${S}"/xstc/ \
 			|| die "Failed to install test tarballs"
 	fi
 
@@ -79,7 +79,7 @@ src_compile() {
 	# Patching the Makefiles to respect get_libdir
 	# Fixes BUG #86766, please keep this.
 	# Danny van Dyk <kugelfang@gentoo.org> 2005/03/26
-	for x in $(find ${S} -name "Makefile") ; do
+	for x in $(find "${S}" -name "Makefile") ; do
 		sed \
 			-e "s|^\(PYTHON_SITE_PACKAGES\ =\ ${EPREFIX}\/usr\/\).*\(\/python.*\)|\1$(get_libdir)\2|g" \
 			-i ${x} \
@@ -95,8 +95,8 @@ src_install() {
 	dodoc AUTHORS ChangeLog Copyright NEWS README* TODO*
 
 	if ! use doc; then
-		rm -rf ${ED}/usr/share/gtk-doc
-		rm -rf ${ED}/usr/share/doc/${P}/html
+		rm -rf "${ED}"/usr/share/gtk-doc
+		rm -rf "${ED}"/usr/share/doc/${P}/html
 	fi
 }
 
