@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-posix/regex-posix-0.92.ebuild,v 1.4 2007/11/20 15:04:36 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-posix/regex-posix-0.92.ebuild,v 1.5 2007/11/26 04:14:48 jer Exp $
 
 EAPI="prefix"
 
