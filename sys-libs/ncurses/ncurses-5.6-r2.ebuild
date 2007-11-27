@@ -31,6 +31,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.6-gfbsd.patch
 	epatch "${FILESDIR}"/${PN}-5.6-build.patch #184700
 	epatch "${FILESDIR}"/${P}-darwin.patch
+	epatch "${FILESDIR}"/${PN}-5.5-aix-shared.patch
 }
 
 src_compile() {
@@ -47,6 +48,9 @@ src_compile() {
 	( use build || use bootstrap || use nocxx ) \
 		&& myconf="${myconf} --without-cxx --without-cxx-binding --without-ada"
 	
+	# work around http://gcc.gnu.org/ml/gcc-help/2006-02/msg00173.html
+	[[ ${CHOST} == *-aix5.3* ]] && export ac_cv_sys_large_files=no
+
 	# First we build the regular ncurses ...
 	mkdir "${WORKDIR}"/narrowc
 	cd "${WORKDIR}"/narrowc
