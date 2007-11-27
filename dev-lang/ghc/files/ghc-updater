@@ -1,4 +1,4 @@
-#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+#!/bin/sh
 #
 # This script has been modified by kosmikus and is based on 
 # python-updater by liquidx.
@@ -24,17 +24,17 @@
 shopt -s nullglob
 
 # fix the PATH to include the dirs where portage installs ghc
-PATH="@GENTOO_PORTAGE_EPREFIX@/usr/bin:@GENTOO_PORTAGE_EPREFIX@/opt/ghc/bin:${PATH}"
+PATH="/usr/bin:/opt/ghc/bin:${PATH}"
 
 NEW_GHC_VER=$(ghc --version | sed 's:^.*version ::')
 NEW_GHC_LIBDIR=$(ghc --print-libdir)
 
 PKGS_EXCEPTIONS="dev-lang/ghc dev-lang/ghc-bin"
 PKGS_MANUAL=""
-LOGFILE="@GENTOO_PORTAGE_EPREFIX@/var/log/ghc-updater.log"
+LOGFILE="/var/log/ghc-updater.log"
 
 # portage variables
-PKG_DBDIR=@GENTOO_PORTAGE_EPREFIX@/var/db/pkg
+PKG_DBDIR=/var/db/pkg
 
 # moved the portageq checks into a function to make command
 # line parsing immediate
@@ -47,7 +47,7 @@ setup_portdir() {
 PRETEND=0
 PKGS_TO_REMERGE=""
 PKGS_COUNT_REMERGE=0
-PORTAGE_PYTHON="@GENTOO_PORTAGE_EPREFIX@/usr/bin/python"
+PORTAGE_PYTHON="/usr/bin/python"
 
 usage() {
 	echo "usage: ghc-updater [options]"
@@ -80,10 +80,10 @@ done
 # load the gentoo-style info macros, but hack to get around
 # it thinking this is an rc script
 EBUILD="1"
-if [[ -e @GENTOO_PORTAGE_EPREFIX@/lib/rcscripts/sh/functions.sh ]]; then
-       source @GENTOO_PORTAGE_EPREFIX@/lib/rcscripts/sh/functions.sh
+if [[ -e /lib/rcscripts/sh/functions.sh ]]; then
+       source /lib/rcscripts/sh/functions.sh
 else
-       source @GENTOO_PORTAGE_EPREFIX@/sbin/functions.sh
+       source /sbin/functions.sh
 fi
 
 # misc helper functions
@@ -153,7 +153,7 @@ fi
 #
 OLD_PACKAGES_DIR=""
 # Exclude new library dir and lib symlinks:
-for d in @GENTOO_PORTAGE_EPREFIX@/{usr,opt/ghc}/lib{,64}/ghc{,-bin}-*; do
+for d in /{usr,opt/ghc}/lib{,64}/ghc{,-bin}-*; do
     [[ "${d}" == ${NEW_GHC_LIBDIR} ]] || [[ -L ${d%/*} ]] || OLD_PACKAGES_DIR="${OLD_PACKAGES_DIR}${d} "
 done
 

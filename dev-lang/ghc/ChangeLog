@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/ghc
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.141 2007/11/15 23:52:43 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.142 2007/11/26 04:20:50 jer Exp $
+
+  26 Nov 2007; Jeroen Roovers <jer@gentoo.org> ghc-6.6.1.ebuild:
+  Stable for HPPA. Do not install LICENSE.
 
   15 Nov 2007; Steve Dibb <beandog@gentoo.org> ghc-6.6.1.ebuild:
   amd64 stable, bug 196616
