@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/esound
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/esound/ChangeLog,v 1.110 2007/11/20 19:14:31 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/esound/ChangeLog,v 1.111 2007/11/27 03:47:48 jer Exp $
+
+  27 Nov 2007; Jeroen Roovers <jer@gentoo.org> esound-0.2.38-r1.ebuild:
+  Stable for HPPA (bug #199322).
 
   20 Nov 2007; Markus Rothe <corsair@gentoo.org> esound-0.2.38-r1.ebuild:
   Stable on ppc64; bug #199322
