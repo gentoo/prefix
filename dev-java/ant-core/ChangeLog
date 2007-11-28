@@ -1,10 +1,21 @@
 # ChangeLog for dev-java/ant-core
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-core/ChangeLog,v 1.74 2007/05/12 17:43:18 wltjr Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-core/ChangeLog,v 1.76 2007/11/28 02:09:02 betelgeuse Exp $
 
 # Ant-core blocks lower/older versions of ant-tasks, 
 # since it will not run when there is a version mismatch betwean the 2 packages
 # Please unemerge ant-tasks when updating ant-core.
+
+  28 Nov 2007; Petteri Räty <betelgeuse@gentoo.org>
+  ant-core-1.7.0-r1.ebuild:
+  Quote variables.
+
+*ant-core-1.7.0-r1 (28 Nov 2007)
+
+  28 Nov 2007; Petteri Räty <betelgeuse@gentoo.org>
+  +ant-core-1.7.0-r1.ebuild:
+  Fix Javadoc links in the manual using the new --symlink feature to
+  dojavadoc. Fixes bug #185694.
 
   12 May 2007; William L. Thomson Jr. <wltjr@gentoo.org>
   ant-core-1.7.0.ebuild:
@@ -301,6 +312,7 @@
   src_compile. Don't use global classpath when compiling
 
 *ant-core-1.6.2 (10 Sep 2004)
+*ant-core-1.5.4 (10 Sep 2004)
 
   10 Sep 2004; Thomas Matthijs <axxo@gentoo.org> +metadata.xml,
   +files/1.5.4-ant, +files/1.6.2-ant, +files/build.sh-exit-fix.patch.gz,
