@@ -1,7 +1,3 @@
-# Elias Pipping  <pipping@gentoo.org> (28 Nov 2007)
-# latest texinfo appears to work on darwin, see bug #200662
--=sys-apps/texinfo-4.11
--=sys-apps/texinfo-4.11-r1
 
 # Fabian Groffen <grobian@gentoo.org> (06 Nov 2007)
 # This seems to be some developer snapshot, geared towards objc2, not
