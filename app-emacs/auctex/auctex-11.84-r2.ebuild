@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.84-r2.ebuild,v 1.6 2007/11/23 21:46:46 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.84-r2.ebuild,v 1.7 2007/11/27 22:27:57 angelos Exp $
 
 EAPI="prefix"
 
