@@ -86,12 +86,10 @@ src_install() {
 		-e "s,^TCL_BUILD_STUB_LIB_PATH='.*/unix,TCL_BUILD_STUB_LIB_PATH='${EPREFIX}/usr/${mylibdir}," \
 		-e "s,^TCL_LIB_FILE='libtcl${v1}..TCL_DBGX..so',TCL_LIB_FILE=\"libtcl${v1}\$\{TCL_DBGX\}.so\"," \
 		"${ED}"/usr/${mylibdir}/tclConfig.sh || die
-	if [[ ${CHOST} != *-darwin* ]]; then
-	sed -i \
+	[[ ${CHOST} != *-darwin* ]] && sed -i \
 		-e "s,^TCL_CC_SEARCH_FLAGS='\(.*\)',TCL_CC_SEARCH_FLAGS='\1:${EPREFIX}/usr/${mylibdir}'," \
 		-e "s,^TCL_LD_SEARCH_FLAGS='\(.*\)',TCL_LD_SEARCH_FLAGS='\1:${EPREFIX}/usr/${mylibdir}'," \
 		"${ED}"/usr/${mylibdir}/tclConfig.sh || die
-	fi # end of non-standard indentation to keep diff small
 
 	# install private headers
 	insinto /usr/${mylibdir}/tcl${v1}/include/unix
