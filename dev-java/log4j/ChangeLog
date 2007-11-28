@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/log4j
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/ChangeLog,v 1.56 2007/11/20 05:25:22 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/ChangeLog,v 1.57 2007/11/28 07:35:56 ali_bush Exp $
+
+  28 Nov 2007; <alistair@gentoo.org> log4j-1.2.14-r2.ebuild:
+  Dropping ~arch's not keyworded in java-virtuals/javamail yet.
 
 *log4j-1.2.14-r2 (20 Nov 2007)
 
