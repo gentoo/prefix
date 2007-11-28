@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3164 2007/11/23 20:55:25 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3171 2007/11/27 14:09:13 mrness Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -959,6 +959,7 @@ media-gfx/maya:maya-shaderlibrary - Install the maya shader library
 media-gfx/pstoedit:emf - enables media-libs/libemf support
 media-gfx/sane-frontends:gimp - Build a plugin for the GIMP
 media-gfx/showimg:kipi - Support for the KDE Image Plugin Interface.
+media-gfx/splashutils:fbcondecor - Support for the fbcondecor kernel patch.
 media-gfx/ufraw:gimp - Build a plugin for the GIMP
 media-gfx/xsane:gimp - Build a plugin for the GIMP
 media-libs/a52dec:djbfft - Prefer D.J. Bernstein's library for fourier transforms
@@ -969,6 +970,7 @@ media-libs/alsa-lib:midi - Enables MIDI output support (both Hardware and Softwa
 media-libs/cal3d:16bit-indices - Enables use of 16bit indices
 media-libs/coin:fontconfig - Support for managing custom fonts via fontconfig.
 media-libs/devil:allegro - Add support for Allegro
+media-libs/faad2:drm - Add support for Digital Radio Mondiale (warning: disables other decoders)
 media-libs/farsight:jingle - Enables voice calls for jabber
 media-libs/flac:cxx - Enables FLAC++, C++ bindings to the FLAC library
 media-libs/freetype:kpathsea - Enable TeX support (ttf2pk and ttf2pfb)
@@ -1401,6 +1403,7 @@ net-dialup/isdn4k-utils:isdnlog - Install the isdn log system
 net-dialup/isdn4k-utils:mschap - Enable Microsoft chap authentication for ipppd
 net-dialup/ivcall:softfax - Enables soft fax support
 net-dialup/mgetty:fidonet - Enables FidoNet support
+net-dialup/mgetty:fax - Enables fax support
 net-dialup/misdn:ecaggressive - Make the selected echo canceller a little more aggressive
 net-dialup/misdn:eckb1 - Use the KB1 echo canceller
 net-dialup/misdn:ecmark2 - Use the MARK2 echo canceller
@@ -1529,7 +1532,7 @@ net-im/tkabber:extras - Enables extra non official patches
 net-im/tkabber:plugins - Enables instalation the extra plugins
 net-im/tmsnc:talkfilters - Enables Talkfilters support on tmsnc
 net-im/twinkle:ilbc - Enables use of ilbc (RFC3951) audio encoding
-net-im/twinkle:zrtp - Enables use of secure rtp using the zrtp extension of GNU RTP stack developed by Phil Zimmermen
+net-im/twinkle:zrtp - Enables use of secure rtp using the zrtp extension of GNU RTP stack developed by Phil Zimmermann
 net-irc/atheme:largenet - Enable support/tweaks for large networks
 net-irc/charybdis:smallnet - Enables support for smaller IRC networks
 net-irc/eiwic:rss - Enables support for RSS feeds

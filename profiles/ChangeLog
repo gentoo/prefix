@@ -1,6 +1,42 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.851 2007/11/23 20:55:25 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.864 2007/11/28 12:53:47 hollow Exp $
+
+  28 Nov 2007; Benedikt Böhm <hollow@gentoo.org> package.mask:
+  Add www-servers/apache-2.2.6-r4 for testing
+
+  28 Nov 2007; <alistair@gentoo.org> package.mask:
+  Unleashed java-virtual/javamail onto ~arch.
+
+  27 Nov 2007; Alin Năstac <mrness@gentoo.org> base/package.use, use.local.desc:
+  Replace nofax flag for net-dialup/mgetty with fax (#195467).
+
+  27 Nov 2007; Robin H. Johnson <robbat2@gentoo.org> package.mask:
+  Mask the memcached prerelease.
+
+  26 Nov 2007; Piotr Jaroszyński <peper@gentoo.org> package.mask:
+  Mask opensync live svn ebuilds.
+
+  26 Nov 2007; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  dev-java/jdbc2-stdext moved to java overlay so remove package.mask
+
+  26 Nov 2007; Jeff Gardner <je_fro@gentoo.org> package.mask:
+  ati-drivers-8.42.3 masked because new version fixes many issues.
+
+  25 Nov 2007; Alin Năstac <mrness@gentoo.org> use.local.desc:
+  Added nofax flag for net-dialup/mgetty (#195467).
+
+  25 Nov 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Add >=wxpython-2.6.4.0-r1 to wxWidgets mask.
+
+  24 Nov 2007; Ryan Hill <dirtyepic@gentoo.org> use.local.desc:
+  Remove local pch USE for wxGTK.
+
+  24 Nov 2007; Ryan Hill <dirtyepic@gentoo.org> use.local.desc:
+  Added local pch USE flag for x11-libs/wxGTK.
+
+  24 Nov 2007; Alon Bar-Lev <alonbl@gentoo.org> package.mask:
+  Add sys-libs/libtpm, last rites bug#198696
 
   23 Nov 2007; Alexis Ballier <aballier@gentoo.org> use.local.desc:
   add cxx useflag for aften

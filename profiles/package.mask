@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7938 2007/11/24 01:31:09 kingtaco Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7952 2007/11/28 12:53:47 hollow Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -20,6 +20,51 @@
 ##
 ##   End example
 ##
+
+# Benedikt Böhm <hollow@gentoo.org> (28 Nov 2007)
+# Masked for USE_EXPAND and eclass testing.
+# DO NOT use unless you know what you're doing!
+=www-servers/apache-2.2.6-r4
+
+# MATSUU Takuto <matsuu@gentoo.org> (27 Nov 2007)
+# Lots of security issues: bug #196673
+# fix the deps first
+#app-text/ptex
+
+# Robin H. Johnson <robbat2@gentoo.org> (26 Nov 2007)
+# For testing only
+=net-misc/memcached-1.24_rc1
+
+# Piotr Jaroszyński <peper@gentoo.org> (26 Nov 2007)
+# opensync svn ebuilds
+=app-pda/libsyncml-9999
+=app-pda/libopensync-9999
+=app-pda/libopensync-plugin-evolution2-9999
+=app-pda/libopensync-plugin-file-9999
+=app-pda/libopensync-plugin-gnokii-9999
+=app-pda/libopensync-plugin-google-calendar-9999
+=app-pda/libopensync-plugin-gpe-9999
+=app-pda/libopensync-plugin-irmc-9999
+=app-pda/libopensync-plugin-kdepim-9999
+=app-pda/libopensync-plugin-palm-9999
+=app-pda/libopensync-plugin-python-9999
+=app-pda/libopensync-plugin-syncml-9999
+
+# Jeffrey Gardner <je_fro@gentoo.org> (26 Nov 2007)
+# Masked as new version fixes multiple issues.
+=x11-drivers/ati-drivers-8.42.3
+
+# Samuli Suominen <drac@gentoo.org> (25 Nov 2007)
+# Version with ~amd64, but it breaks sci-electronics/gwave.
+=dev-scheme/guile-gnome-platform-2.15.95*
+
+# Ulrich Mueller <ulm@gentoo.org> (25 Nov 2007)
+# Live SVN ebuild
+~app-emacs/gentoo-syntax-9999
+
+# Alon Bar-Lev <alonbl@gentoo.org> (24 Nov 2007)
+# last rites bug#198696
+sys-libs/libtpm
 
 # Saleem Abdulrasool <compnerd@gentoo.org> (23 Nov 2007)
 # Mask this until we get the input and mounting issues worked out
@@ -64,9 +109,10 @@ sys-auth/pam_keyring
 dev-java/blackdown-java3d-bin
 
 # Ryan Hill <dirtyepic@gentoo.org> (18 Nov 2007)
-# Mask for keywording.
+# Mask for keywording/testing.
 app-admin/eselect-wxwidgets
 >=x11-libs/wxGTK-2.6.4.0-r2
+>=dev-python/wxpython-2.6.4.0-r1
 
 # Tiziano Müller <dev-zero@gentoo.org> (18 Nov 2007)
 # There is a serious regression (bug #199450) due to
@@ -261,11 +307,6 @@ net-voip/telepathy-butterfly
 # unless users express interest in this package.
 dev-db/xpg
 
-# Petteri Räty <betelgeuse@gentoo.org> (23 Oct 2007)
-# These classes are included in the JDK since 1.4
-# Will be moved to Java overlays after a month
-dev-java/jdbc2-stdext
-
 # Markus Ullmann <jokey@gentoo.org> (20 Oct 2007)
 # dependency unneeded now, merged upstream
 dev-util/portatosourceview
@@ -325,21 +366,6 @@ dev-php4/pecl-http
 # Stefan Schweizer <genstef@gentoo.org> (14 Oct 2007)
 # Development release
 >=net-libs/openslp-1.3.0
-
-# Alistair Bush <ali_bush@gentoo.org> (14 Oct 2007)
-# Masked to enable me to add everything to the tree.
-java-virtuals/javamail
-=dev-java/gnu-javamail-1.0-r2
-=dev-java/mx4j-tools-3.0.1-r1
-=dev-java/mx4j-3.0.1-r3
-=dev-java/soap-2.3.1-r2
-=app-benchmarks/jmeter-2.0.1-r3
-=dev-java/avalon-logkit-1.2-r3
-=dev-java/avalon-logkit-2.1-r2
-=dev-java/bcmail-1.37-r1
-=dev-java/log4j-1.2.14-r2
-=dev-java/jax-rpc-1.1.3.01-r1
-=dev-java/excalibur-logger-2.1-r1
 
 # Andrej Kacian <ticho@gentoo.org> (13 Oct 2007)
 # RC is not for general public

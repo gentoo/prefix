@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.23 2007/11/21 00:22:12 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.24 2007/11/28 07:50:44 hollow Exp $
+
+  28 Nov 2007; Benedikt Böhm <hollow@gentoo.org> make.defaults:
+  Add APACHE2_MODULES and APACHE2_MPMS to USE_EXPAND
 
   21 Nov 2007; Sébastien Fabbro <bicatali@gentoo.org> virtuals:
   Removed virtual/lapack, now new style
