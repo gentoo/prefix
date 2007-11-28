@@ -1,0 +1,19 @@
+# ChangeLog for dev-lisp/gentoo-init
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/gentoo-init/ChangeLog,v 1.4 2007/11/20 23:41:14 corsair Exp $
+
+  20 Nov 2007; Markus Rothe <corsair@gentoo.org> gentoo-init-0.1.ebuild:
+  Added ~ppc64; bug #199368
+
+  26 Jul 2007; Marijn Schouten <hkBst@gentoo.org> gentoo-init-0.1.ebuild:
+  fix URL, bug 186719
+
+  09 Nov 2006; Matthew Kennedy <mkennedy@gentoo.org> +metadata.xml:
+  Added metadata.xml.
+
+*gentoo-init-0.1 (09 Nov 2006)
+
+  09 Nov 2006; Matthew Kennedy <mkennedy@gentoo.org>
+  +files/gentoo-init.lisp, +gentoo-init-0.1.ebuild:
+  Initial port.  Ebuild contributed by Matthew Kennedy <mkennedy@gentoo.org>.
+
