@@ -1,0 +1,158 @@
+diff -ru xscreensaver-5.01.vanilla/configure.in xscreensaver-5.01/configure.in
+--- xscreensaver-5.01.vanilla/configure.in	2006-10-11 14:31:26.000000000 +0200
++++ xscreensaver-5.01/configure.in	2006-10-11 14:32:01.000000000 +0200
+@@ -724,6 +724,8 @@
+   # Look for the directory under a standard set of common directories.
+   # Check X11 before X11Rn because it's often a symlink to the current release.
+   for ac_dir in                                 \
++    /usr/lib/X11/app-defaults                   \
++                                                \
+     /usr/X11/lib/app-defaults                   \
+     /usr/X11R6/lib/app-defaults                 \
+     /usr/X11R6/lib/X11/app-defaults             \
+@@ -754,7 +756,6 @@
+     /usr/x386/lib/X11/app-defaults              \
+     /usr/XFree86/lib/X11/app-defaults           \
+                                                 \
+-    /usr/lib/X11/app-defaults                   \
+     /usr/local/lib/X11/app-defaults             \
+     /usr/unsupported/lib/X11/app-defaults       \
+     /usr/athena/lib/X11/app-defaults            \
+@@ -4142,41 +4143,7 @@
+ # Now let's warn if there's a previous RPM version already installed.
+ # But don't bother with this test if we are currently *building* an RPM.
+ 
+-if test -z "$RPM_PACKAGE_VERSION" ; then
+-
+-  rpmnames="xscreensaver xscreensaver-base xscreensaver-extras"
+-
+-  # M4 sucks!!
+-  changequote(X,Y)
+-  rpmv=`(rpm -qv $rpmnames) 2>/dev/null | \
+-        sed -n 's/^[-a-z]*-\([0-9][0-9]*[.][0-9][0-9a-z]*\)-.*$/\1/p' | \
+-        head -1`
+-  changequote([,])
+-
+-  if test \! -z "$rpmv" ; then
+-    rpmbdir=`rpm -ql $rpmnames | sed -n 's@^\(.*\)/xscreensaver-demo$@\1@p'`
+-    rpmhdir=`rpm -ql $rpmnames | sed -n 's@^\(.*\)/attraction$@\1@p'`
+-
+-    warning=no
+-    warnL "There is already an installed RPM of xscreensaver $rpmv"
+-    warn2 'on this system.  You might want to remove it ("rpm -ve")'
+-    warn2 'before running "make install" in this directory.'
+-    echo ""
+-    warn2 "Alternately, you could build this version of xscreensaver"
+-    warn2 'as an RPM, and then install that.  An "xscreensaver.spec"'
+-    warn2 'file is included.  Try "rpmbuild -v -ba xscreensaver.spec".'
+-    warn2 "See the RPM documentation for more info."
+-    echo ""
+-
+-    if test "$rpmbdir" = "$rpmhdir" ; then
+-      warn2 "The RPM version was installed in $rpmbdir/."
+-      do_dir_warning=yes
+-    else
+-      warn2 "The RPM version was installed in $rpmbdir/,"
+-      warn2 "with demos in $rpmhdir/."
+-    fi
+-  fi
+-fi
++# Nope - breaks compilation with sandbox violation
+ 
+ if test "${bindir}" = "${HACKDIR}" ; then
+   do_dir_warning=yes
+Only in xscreensaver-5.01: configure.in.orig
+diff -ru xscreensaver-5.01.vanilla/driver/XScreenSaver.ad.in xscreensaver-5.01/driver/XScreenSaver.ad.in
+--- xscreensaver-5.01.vanilla/driver/XScreenSaver.ad.in	2006-10-11 14:31:26.000000000 +0200
++++ xscreensaver-5.01/driver/XScreenSaver.ad.in	2006-10-11 14:32:01.000000000 +0200
+@@ -31,36 +31,36 @@
+ *mode:			random
+ *timeout:		0:10:00
+ *cycle:			0:10:00
+-*lockTimeout:		0:00:00
++*lockTimeout:		0:20:00
+ *passwdTimeout:		0:00:30
+-*dpmsEnabled:		False
+-*dpmsStandby:		2:00:00
+-*dpmsSuspend:		2:00:00
+-*dpmsOff:		4:00:00
+-*grabDesktopImages:	True
++*dpmsEnabled:		True
++*dpmsStandby:		1:00:00
++*dpmsSuspend:		1:00:00
++*dpmsOff:		2:00:00
++*grabDesktopImages:	False
+ *grabVideoFrames:	False
+ *chooseRandomImages:	@DEFAULT_IMAGES_P@
+ *imageDirectory:	@DEFAULT_IMAGE_DIRECTORY@
+ *nice:			10
+ *memoryLimit:		0
+-*lock:			False
++*lock:			True
+ *verbose:		False
+ *timestamp:		True
+ *fade:			True
+ *unfade:		False
+ *fadeSeconds:		0:00:03
+ *fadeTicks:		20
+-*splash:		True
++*splash:		False
+ *splashDuration:	0:00:05
+ *visualID:		default
+ *captureStderr: 	True
+ *ignoreUninstalledPrograms: False
+ 
+-*textMode:		file
+-*textLiteral:		XScreenSaver
+-*textFile:		@DEFAULT_TEXT_FILE@
+-*textProgram:		fortune
+-*textURL:		http://www.livejournal.com/stats/latest-rss.bml
++*textMode:		literal
++*textLiteral:		Gentoo Linux
++*textFile:		/etc/gentoo-release
++*textProgram:		/usr/bin/fortune
++*textURL:		http://planet.gentoo.org/rss20.xml
+ 
+ *overlayTextForeground:	#FFFF00
+ *overlayTextBackground:	#000000
+@@ -117,7 +117,10 @@
+ 
+ ! The format used for printing the date and time in the password dialog box
+ ! (see the strftime(3) manual page for details.)
+-*dateFormat:		%d-%b-%y (%a); %I:%M %p
++! Preferred time representation for the current locale
++*dateFormat:    %x %X
++! Xscreensaver's default
++! *dateFormat:		%d-%b-%y (%a); %I:%M %p
+ ! To show the time only:
+ ! *dateFormat:		%I:%M %p
+ ! For 24 hour time:
+diff -ru xscreensaver-5.01.vanilla/driver/xscreensaver.c xscreensaver-5.01/driver/xscreensaver.c
+--- xscreensaver-5.01.vanilla/driver/xscreensaver.c	2006-10-11 14:31:26.000000000 +0200
++++ xscreensaver-5.01/driver/xscreensaver.c	2006-10-11 14:32:01.000000000 +0200
+@@ -1626,10 +1626,12 @@
+       if (hint.res_class) XFree (hint.res_class);
+     }
+ 
++  /*
+   fprintf (stderr, "%s: %d: unrecognised ClientMessage \"%s\" received\n",
+            blurb(), screen, (str ? str : "(null)"));
+   fprintf (stderr, "%s: %d: for window 0x%lx (%s)\n",
+            blurb(), screen, (unsigned long) w, wdesc);
++		   */
+   if (str) XFree (str);
+ }
+ 
+diff -ru xscreensaver-5.01.vanilla/hacks/webcollage xscreensaver-5.01/hacks/webcollage
+--- xscreensaver-5.01.vanilla/hacks/webcollage	2006-10-11 14:31:26.000000000 +0200
++++ xscreensaver-5.01/hacks/webcollage	2006-10-11 14:32:01.000000000 +0200
+@@ -845,7 +845,8 @@
+ 
+ 
+ sub pick_dictionary() {
+-  my @dicts = ("/usr/dict/words",
++  my @dicts = ("/usr/share/dict/cracklib-small",
++               "/usr/dict/words",
+                "/usr/share/dict/words",
+                "/usr/share/lib/dict/words");
+   foreach my $f (@dicts) {
