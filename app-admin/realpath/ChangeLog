@@ -1,0 +1,103 @@
+# ChangeLog for app-admin/realpath
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/ChangeLog,v 1.28 2007/06/23 17:22:10 kumba Exp $
+
+  23 Jun 2007; Joshua Kinard <kumba@gentoo.org> realpath-1.9.28.ebuild:
+  Stable on mips, per #182979.
+
+  23 Jun 2007; Christoph Mende <angelos@gentoo.org> realpath-1.9.28.ebuild:
+  Stable on amd64 wrt bug 182979
+
+  24 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  realpath-1.9.28.ebuild:
+  Stable on sparc
+
+  15 Apr 2007; Markus Rothe <corsair@gentoo.org> realpath-1.9.28.ebuild:
+  Stable on ppc64
+
+  01 Apr 2007; Michael Hanselmann <hansmi@gentoo.org>
+  realpath-1.9.28.ebuild:
+  Stable on ppc.
+
+  20 Mar 2007; Raúl Porcel <armin76@gentoo.org> realpath-1.9.28.ebuild:
+  x86 stable
+
+  04 Feb 2007; Ryan Hill <dirtyepic@gentoo.org>
+  +files/realpath-1.9.16-Makefile.patch,
+  +files/realpath-1.9.28-Makefile.patch, -realpath-1.9.3.ebuild,
+  -realpath-1.9.10.ebuild, realpath-1.9.16.ebuild, realpath-1.9.28.ebuild:
+  Fix pre-stripping of files, pass CFLAGS and LDFLAGS and get CC using
+  tc-getCC for bug #152219. Patch by jakub@gentoo.org. Remove old versions.
+
+  20 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> realpath-1.9.28.ebuild:
+  Drop ~x86-fbsd keyword and block freebsd-bin, as that already provides a
+  realpath binary.
+
+  07 Apr 2006; Bryan Østergaard <kloeri@gentoo.org metadata.xml:
+  Remove ciaranm from metadata.xml.
+
+  31 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> realpath-1.9.28.ebuild:
+  Add ~x86-fbsd keyword.
+
+*realpath-1.9.28 (04 Mar 2006)
+
+  04 Mar 2006; Ciaran McCreesh <ciaranm@gentoo.org> +realpath-1.9.28.ebuild:
+  New version. Fix tests.
+
+  08 Apr 2005; Markus Rothe <corsair@gentoo.org> realpath-1.9.16.ebuild:
+  Stable on ppc64
+
+  27 Mar 2005; Michael Hanselmann <hansmi@gentoo.org> realpath-1.9.16.ebuild:
+  Stable on ppc.
+
+  17 Jan 2005; Simon Stelling <blubb@gentoo.org> realpath-1.9.16.ebuild:
+  stable on amd64
+
+  05 Jan 2005; Ciaran McCreesh <ciaranm@gentoo.org> realpath-1.9.16.ebuild:
+  x86, sparc, mips stable, added ~hppa
+
+  02 Jan 2005; <gongloo@gentoo.org> realpath-1.9.10.ebuild:
+  Stable on ppc-macos.
+
+  17 Dec 2004; Markus Rothe <corsair@gentoo.org> realpath-1.9.10.ebuild:
+  Stable on ppc64
+
+*realpath-1.9.16 (15 Dec 2004)
+
+  15 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> +metadata.xml,
+  +realpath-1.9.16.ebuild:
+  New version. Added shell-tools herd as maintainer
+
+  20 Nov 2004; Nick Dimiduk <ndimiduk@gentoo.org> realpath-1.9.10.ebuild:
+  Provided support for ppc-macos's case-insensative file system.
+
+  15 Nov 2004; Markus Rothe <corsair@gentoo.org> realpath-1.9.10.ebuild:
+  Marked ~ppc64; bug #71163
+
+  05 Oct 2004; Pieter Van den Abeele <pvdabeel@gentoo.org>
+  realpath-1.9.10.ebuild, realpath-1.9.3.ebuild:
+  Masked realpath-1.9.3.ebuild stable for ppc
+
+  05 Oct 2004; Pieter Van den Abeele <pvdabeel@gentoo.org>
+  realpath-1.9.10.ebuild:
+  Masked realpath-1.9.10.ebuild stable for ppc
+
+  27 Jun 2004; Ciaran McCreesh <ciaranm@gentoo.org> realpath-1.9.10.ebuild:
+  Stable on sparc, mips
+
+*realpath-1.9.10 (13 May 2004)
+
+  13 May 2004; <mkennedy@gentoo.org> +realpath-1.9.10.ebuild:
+  New version.  Resolves Bug #40241
+
+  28 Jan 2004; <mkennedy@gentoo.org> realpath-1.9.3.ebuild:
+  ~mips ~ppc needed for common-lisp-controller
+
+  22 Aug 2003; Jason Wever <weeve@gentoo.org> realpath-1.9.3.ebuild:
+  Added ~sparc to keywords
+
+*realpath-1.9.3 (09 Jun 2003)
+
+  09 Jun 2003; Matthew Kennedy <mkennedy@gentoo.org> :
+  Initial import.  Dependency of dev-lisp/common-lisp-controller.
+
