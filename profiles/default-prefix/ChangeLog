@@ -2,6 +2,9 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Nov 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Mask dev-lisp/sbcl-1.0.12 as it segfaults during compilation
+
   27 Nov 2007; Fabian Groffen <grobian@gentoo.org> ChangeLog:
   haubi removed the mask on ncurses-5.6 for AIX because he fixed the problem
 

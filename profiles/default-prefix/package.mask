@@ -22,6 +22,11 @@
 ##   End example
 ##
 
+# Fabian Groffen <grobian@gentoo.org> (28 Nov 2007)
+# Segfaults on Solaris during compile, don't trust it for the other
+# arches
+=dev-lisp/sbcl-1.0.12
+
 # Fabian Groffen <grobian@gentoo.org> (11 Nov 2007)
 # Has linkage problems:
 # gnulib-lib/.libs/libgettextlib.so: undefined reference to `acl_trivial'
