@@ -1,6 +1,14 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.214 2007/11/27 16:55:55 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.216 2007/11/27 18:48:54 armin76 Exp $
+
+  27 Nov 2007; Raúl Porcel <armin76@gentoo.org> emacs-21.4-r14.ebuild,
+  emacs-22.1-r3.ebuild:
+  alpha/ia64/sparc stable
+
+  27 Nov 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  emacs-21.4-r14.ebuild, emacs-22.1-r3.ebuild:
+  ppc stable, bug #200297
 
   27 Nov 2007; Markus Rothe <corsair@gentoo.org> emacs-21.4-r14.ebuild,
   emacs-22.1-r3.ebuild:
