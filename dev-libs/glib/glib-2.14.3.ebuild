@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.14.3.ebuild,v 1.10 2007/11/23 17:48:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.14.3.ebuild,v 1.11 2007/11/27 21:07:42 jer Exp $
 
 EAPI="prefix"
 
@@ -27,6 +27,9 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	# help the asyncqueue-test pass:
+	use hppa && replace-flags -O[2-3] -O1
 
 	if use ppc64 && use hardened ; then
 		replace-flags -O[2-3] -O1
