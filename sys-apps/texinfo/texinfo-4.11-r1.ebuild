@@ -42,7 +42,8 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "install failed"
+	# Parallel install fails (key.c)
+	emake -j1 DESTDIR="${D}" install || die "install failed"
 
 	dodoc AUTHORS ChangeLog INTRODUCTION NEWS README TODO
 	newdoc info/README README.info
