@@ -1,0 +1,98 @@
+# ChangeLog for x11-apps/xwininfo
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xwininfo/ChangeLog,v 1.22 2007/09/08 06:28:40 dberkholz Exp $
+
+*xwininfo-1.0.3 (08 Sep 2007)
+
+  08 Sep 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  +xwininfo-1.0.3.ebuild:
+  Bump for 7.3.
+
+  10 Oct 2006; Donnie Berkholz <dberkholz@gentoo.org>;
+  xwininfo-1.0.2.ebuild:
+  Update description to be less generic.
+
+  06 Sep 2006; Diego Pettenò <flameeyes@gentoo.org> xwininfo-1.0.2.ebuild:
+  Add ~x86-fbsd keyword.
+
+  17 Aug 2006; Aron Griffis <agriffis@gentoo.org> xwininfo-1.0.2.ebuild:
+  Mark 1.0.2 stable on ia64
+
+  16 Aug 2006; Jeroen Roovers <jer@gentoo.org> xwininfo-1.0.2.ebuild:
+  Stable for HPPA.
+
+  15 Aug 2006; Guy Martin <gmsoft@gentoo.org> ChangeLog:
+  Marked stable on hppa.
+
+  01 Jul 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  xwininfo-1.0.2.ebuild:
+  amd64/x86/ppc64 stable.
+
+  01 Jul 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  xwininfo-1.0.2.ebuild:
+  ppc/sparc/mips/alpha/arm/sh stable
+
+  24 Apr 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  xwininfo-1.0.2.ebuild:
+  Keyword ~ppc.
+
+  08 Apr 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  -xwininfo-1.0.1.ebuild:
+  Pull old ebuild.
+
+*xwininfo-1.0.2 (04 Apr 2006)
+
+  04 Apr 2006; Donnie Berkholz <spyderous@gentoo.org>;
+  +xwininfo-1.0.2.ebuild:
+  Fix two minor memory leaks.
+
+  14 Feb 2006; Markus Rothe <corsair@gentoo.org> xwininfo-1.0.1.ebuild:
+  Added ~ppc64
+
+  26 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  -xwininfo-0.99.2.ebuild, -xwininfo-1.0.0.ebuild:
+  Pull old versions.
+
+*xwininfo-1.0.1 (23 Dec 2005)
+
+  23 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +xwininfo-1.0.1.ebuild:
+  Bump for 7.0.
+
+*xwininfo-1.0.0 (18 Dec 2005)
+
+  18 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xwininfo-1.0.0.ebuild:
+  Bump for 7.0RC4.
+
+  09 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  -xwininfo-0.99.0.ebuild, -xwininfo-0.99.1.ebuild:
+  Pull old versions.
+
+*xwininfo-0.99.2 (04 Dec 2005)
+
+  04 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xwininfo-0.99.2.ebuild:
+  Bump for 7.0RC3.
+
+  17 Nov 2005; Herbie Hopkins <herbs@gentoo.org> xwininfo-0.99.1.ebuild:
+  Marked ~amd64.
+
+*xwininfo-0.99.1 (20 Oct 2005)
+
+  20 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +xwininfo-0.99.1.ebuild:
+  Bump for 7.0 RC1.
+
+  09 Sep 2005; Donnie Berkholz <spyderous@gentoo.org>; +metadata.xml:
+  Add metadata.
+
+  08 Aug 2005; Ferris McCormick <fmccor@gentoo.org> xwininfo-0.99.0.ebuild:
+  Add ~sparc keyword (Modular X testing).
+
+*xwininfo-0.99.0 (08 Aug 2005)
+
+  08 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>;
+  +xwininfo-0.99.0.ebuild:
+  Initial commit for modular X.
+
