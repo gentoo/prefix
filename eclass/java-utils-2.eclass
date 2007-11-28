@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.98 2007/11/26 21:00:59 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.100 2007/11/28 02:03:48 betelgeuse Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -559,15 +559,27 @@ java-pkg_dohtml() {
 #
 # Installs javadoc documentation. This should be controlled by the doc use flag.
 #
-# @param $1: - The javadoc root directory.
+# @param $1: optional --symlink creates to symlink like this for html
+#            documentation bundles.
+# @param $2: - The javadoc root directory.
 #
 # @example:
 #	java-pkg_dojavadoc docs/api
+#   java-pkg_dojavadoc --symlink apidocs docs/api
 #
 # ------------------------------------------------------------------------------
 java-pkg_dojavadoc() {
 	debug-print-function ${FUNCNAME} $*
+
+	# For html documentation bundles that link to Javadoc
+	local symlink
+	if [[ ${1} = --symlink ]]; then
+		symlink=${2}
+		shift 2
+	fi
+
 	local dir="$1"
+	local dest=/usr/share/doc/${PF}/html
 
 	# QA checks
 
@@ -581,6 +593,11 @@ java-pkg_dojavadoc() {
 		is-java-strict && die "${msg}"
 	fi
 
+	if [[ -e ${ED}/${dest}/api ]]; then
+		eerror "${dest} already exists. Will not overwrite."
+		die "${dest}"
+	fi
+
 	# Renaming to match our directory layout
 
 	local dir_to_install="${dir}"
@@ -592,7 +609,14 @@ java-pkg_dojavadoc() {
 
 	# Actual installation
 
-	java-pkg_dohtml -r ${dir_to_install}
+	java-pkg_dohtml -r "${dir_to_install}"
+
+	# Let's make a symlink to the directory we have everything else under
+	dosym ${dest}/api "${JAVA_PKG_SHAREPATH}/api" || die
+
+	if [[ ${symlink} ]]; then
+		dosym ${dest}/{api,${symlink}} || die
+	fi
 }
 
 # ------------------------------------------------------------------------------
