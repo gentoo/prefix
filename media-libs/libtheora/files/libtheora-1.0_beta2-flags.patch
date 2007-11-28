@@ -7,7 +7,7 @@ diff -ur libtheora-1.0beta2.orig/configure.ac libtheora-1.0beta2/configure.ac
                  DEBUG="-g -Wall -Wno-parentheses -DDEBUG -D__NO_MATH_INLINES"
 -                CFLAGS="-Wall -Wno-parentheses -O3 -fforce-addr -fomit-frame-pointer -finline-functions -funroll-loops"
 -                PROFILE="-Wall -Wno-parentheses -pg -g -O3 -fno-inline-functions -DDEBUG";;
-+                CFLAGS="-Wall -Wno-parentheses"
++                CFLAGS="-Wall -Wno-parentheses -fomit-frame-pointer"
 +                PROFILE="-Wall -Wno-parentheses -pg -g -fno-inline-functions -DDEBUG";;
          esac
  fi
