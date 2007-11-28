@@ -1,0 +1,18 @@
+# Copyright 1999-2007 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/appres/appres-1.0.1.ebuild,v 1.12 2007/08/07 13:21:25 gustavoz Exp $
+
+EAPI="prefix"
+
+# Must be before x-modular eclass is inherited
+#SNAPSHOT="yes"
+
+inherit x-modular
+
+DESCRIPTION="list X application resource database"
+
+KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~x86-fbsd ~x86-solaris"
+
+RDEPEND="x11-libs/libX11
+	x11-libs/libXt"
+DEPEND="${RDEPEND}"
