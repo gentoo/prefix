@@ -1,0 +1,11 @@
+--- RequestCorrelator.java	2007/03/08 10:19:56	1.30.2.4
++++ src/org/jgroups/blocks/RequestCorrelator.java	2007/04/23 10:15:57	1.30.2.5
+@@ -926,7 +926,7 @@
+                         call_stack.set(new_stack);
+                     }
+                     public void resetThreadLocal() {
+-                        call_stack.remove();
++                        call_stack.set(null);
+                     }
+                 });
+         }
