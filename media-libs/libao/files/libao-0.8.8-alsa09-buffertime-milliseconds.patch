@@ -1,0 +1,12 @@
+diff -ur libao-0.8.8.orig/src/plugins/alsa09/ao_alsa09.c libao-0.8.8/src/plugins/alsa09/ao_alsa09.c
+--- libao-0.8.8.orig/src/plugins/alsa09/ao_alsa09.c	2007-05-24 12:19:07.000000000 +0300
++++ libao-0.8.8/src/plugins/alsa09/ao_alsa09.c	2007-11-27 20:12:27.000000000 +0200
+@@ -165,7 +165,7 @@
+ 			return 0;
+ 	}
+ 	else if (!strcmp(key, "buffer_time"))
+-		internal->buffer_time = atoi(value);
++		internal->buffer_time = atoi(value) * 1000;
+ 	else if (!strcmp(key, "period_time"))
+ 		internal->period_time = atoi(value);
+ 	else if (!strcmp(key,"use_mmap")) {
