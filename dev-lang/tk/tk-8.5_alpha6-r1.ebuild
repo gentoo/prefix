@@ -91,12 +91,10 @@ src_install() {
 		-e "s,^\(TK_BUILD_STUB_LIB_SPEC='-L\)${S}/unix,\1${EPREFIX}/usr/${mylibdir}," \
 		-e "s,^\(TK_BUILD_STUB_LIB_PATH='\)${S}/unix,\1${EPREFIX}/usr/${mylibdir}," \
 		"${ED}"/usr/${mylibdir}/tkConfig.sh || die
-	if [[ ${CHOST} != *-darwin* ]]; then
-	sed -i \
+	[[ ${CHOST} != *-darwin* ]] && sed -i \
 		-e "s,^\(TK_CC_SEARCH_FLAGS='.*\)',\1:${EPREFIX}/usr/${mylibdir}'," \
 		-e "s,^\(TK_LD_SEARCH_FLAGS='.*\)',\1:${EPREFIX}/usr/${mylibdir}'," \
 		"${ED}"/usr/${mylibdir}/tkConfig.sh || die
-	fi # end of non-standard indentation to keep diff small
 
 	# install private headers
 	insinto /usr/${mylibdir}/tk${v1}/include/unix
