@@ -1,0 +1,67 @@
+# ChangeLog for dev-haskell/hunit
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hunit/ChangeLog,v 1.19 2007/10/31 13:07:14 dcoutts Exp $
+
+  31 Oct 2007; Duncan Coutts <dcoutts@gentoo.org> hunit-1.1.ebuild:
+  Drop virtual/ghc in favour of dev-lang/ghc
+
+  11 Jul 2007; Duncan Coutts <dcoutts@gentoo.org> hunit-1.1.1.ebuild:
+  Marked ~ia64.
+
+*hunit-1.1.1 (08 Jul 2007)
+
+  08 Jul 2007; Duncan Coutts <dcoutts@gentoo.org> +hunit-1.1.1.ebuild:
+  New version from ghc-6.6.1 extralibs collection.
+
+  08 Jul 2007; Duncan Coutts <dcoutts@gentoo.org> hunit-1.1-r1.ebuild:
+  Use dev-lang/ghc rather than virtual/ghc.
+
+  30 Apr 2007; Marius Mauch <genone@gentoo.org> hunit-1.1.ebuild:
+  Replacing einfo with elog
+
+  29 Apr 2007; Duncan Coutts <dcoutts@gentoo.org> hunit-1.1.ebuild:
+  Fix deps so it cannot be installed with ghc-6.6
+
+  06 Apr 2007; Chris Parrott <cparrott@gentoo.org> hunit-1.1-r1.ebuild:
+  added ~ppc and ~sparc keywords
+
+  04 Apr 2007; Chris Parrott <cparrott@gentoo.org> hunit-1.1-r1.ebuild:
+  added ~alpha keyword
+
+  02 Apr 2007; Bryan Østergaard <kloeri@gentoo.org> hunit-1.1.ebuild:
+  Add ~alpha keyword, bug 170650.
+
+  01 Apr 2007; Peter Weller <welp@gentoo.org> hunit-1.1.ebuild:
+  Keyworded ~x86-fbsd
+
+  27 Mar 2007; Peter Weller <welp@gentoo.org> hunit-1.1.ebuild:
+  Stable on amd64 wrt bug 170650
+
+  27 Mar 2007; Joseph Jezak <josejx@gentoo.org> hunit-1.1.ebuild:
+  Marked ppc stable for bug #170650.
+
+  26 Mar 2007; Raúl Porcel <armin76@gentoo.org> hunit-1.1.ebuild:
+  Add ~ia64 wrt bug 170650
+
+*hunit-1.1-r1 (17 Mar 2007)
+
+  17 Mar 2007; Lennart Kolmodin <kolmodin@gentoo.org> +hunit-1.1-r1.ebuild:
+  Add modular lib to ghc 6.6. See bug 151012
+
+  15 Mar 2007; Markus Rothe <corsair@gentoo.org> hunit-1.1.ebuild:
+  Stable on ppc64; bug #170650
+
+  15 Mar 2007; Jeroen Roovers <jer@gentoo.org> hunit-1.1.ebuild:
+  Stable for HPPA (bug #170650).
+
+  13 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> hunit-1.1.ebuild:
+  Stable on sparc wrt #170650
+
+  13 Mar 2007; Christian Faulhammer <opfer@gentoo.org> hunit-1.1.ebuild:
+  stable x86, bug 170650
+
+*hunit-1.1 (11 Mar 2007)
+
+  11 Mar 2007; <kolmodin@gentoo.org> +metadata.xml, +hunit-1.1.ebuild:
+  Dummy package, see bug 151012
+
