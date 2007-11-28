@@ -1,0 +1,11 @@
+--- unix/Makefile.in
++++ unix/Makefile.in
+@@ -280,7 +280,7 @@
+ TK_RSRC_FILE		= @TK_RSRC_FILE@
+ WISH_RSRC_FILE		= @WISH_RSRC_FILE@
+ REZ			= @REZ@
+-REZ_SWITCHES = @REZ_FLAGS@ -i $(GENERIC_DIR) -i $(TCL_GENERIC_DIR)
++REZ_SWITCHES = @REZ_FLAGS@ -i $(GENERIC_DIR) -i $(TCL_GENERIC_DIR) -i @GENTOO_PORTAGE_EPREFIX@/usr/include
+ 
+ #----------------------------------------------------------------
+ # The information below is modified by the configure script when

@@ -15,14 +15,16 @@ SRC_URI="mirror://sourceforge/tcl/${PN}${PV}-src.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~sparc-solaris ~x86 ~x86-solaris"
-IUSE="debug threads"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+IUSE="debug threads aqua"
 
-RDEPEND="x11-libs/libX11
+RDEPEND="!aqua? ( x11-libs/libX11 )
 	~dev-lang/tcl-${PV}"
 DEPEND="${RDEPEND}
+	!aqua? (
 	x11-libs/libXt
-	x11-proto/xproto"
+	x11-proto/xproto
+	)"
 
 S=${WORKDIR}/${PN}${PV}
 
@@ -45,6 +47,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/remove-control-v-8.4.9.diff
 	epatch "${FILESDIR}"/${PN}-8.4.9-man.patch
 	epatch "${FILESDIR}"/${PN}-8.4.11-multilib.patch
+
+	epatch "${FILESDIR}"/${PN}-8.4.15-aqua.patch
+	eprefixify unix/Makefile.in
 
 	# Bug 125971
 	epatch "${FILESDIR}"/${P}-tclm4-soname.patch
@@ -72,6 +77,7 @@ src_compile() {
 	econf \
 		--with-tcl="${EPREFIX}"/usr/${mylibdir} \
 		$(use_enable threads) \
+		$(use_enable aqua) \
 		$(use_enable debug symbols) || die
 
 	emake || die
@@ -89,12 +95,16 @@ src_install() {
 	local mylibdir=$(get_libdir) ; mylibdir=${mylibdir//\/}
 	sed -i \
 		-e "s,^\(TK_BUILD_LIB_SPEC='-L\)${S}/unix,\1${EPREFIX}/usr/${mylibdir}," \
-		-e "s,^\(TK_SRC_DIR='\)${S}',\1${EPEFIX}/usr/${mylibdir}/tk${v1}/include'," \
+		-e "s,^\(TK_SRC_DIR='\)${S}',\1${EPREFIX}/usr/${mylibdir}/tk${v1}/include'," \
 		-e "s,^\(TK_BUILD_STUB_LIB_SPEC='-L\)${S}/unix,\1${EPREFIX}/usr/${mylibdir}," \
 		-e "s,^\(TK_BUILD_STUB_LIB_PATH='\)${S}/unix,\1${EPREFIX}/usr/${mylibdir}," \
+		"${ED}"/usr/${mylibdir}/tkConfig.sh || die
+	if [[ ${CHOST} != *-darwin* ]]; then
+	sed -i \
 		-e "s,^\(TK_CC_SEARCH_FLAGS='.*\)',\1:${EPREFIX}/usr/${mylibdir}'," \
 		-e "s,^\(TK_LD_SEARCH_FLAGS='.*\)',\1:${EPREFIX}/usr/${mylibdir}'," \
 		"${ED}"/usr/${mylibdir}/tkConfig.sh || die
+	fi # end of non-standard indentation to keep diff small
 
 	# install private headers
 	insinto /usr/${mylibdir}/tk${v1}/include/unix
