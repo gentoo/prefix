@@ -23,6 +23,6 @@ SRC_URI="${SRC_URI}
 
 S=${WORKDIR}/vim${VIM_VERSION/.}
 DESCRIPTION="vim and gvim shared files"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
 IUSE="nls"
 PDEPEND="!livecd? ( >=app-vim/gentoo-syntax-20050515 )"
