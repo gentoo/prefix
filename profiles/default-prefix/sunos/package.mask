@@ -1,9 +1,4 @@
 
-# Fabian Groffen <grobian@gentoo.org> (25 Nov 2007)
-# Doesn't compile: i386-pc-solaris2.10-gcc: key.c: No such file or directory
-=sys-apps/texinfo-4.11
-=sys-apps/texinfo-4.11-r1
-
 # Fabian Groffen <grobian@gentoo.org> (13 Oct 2007)
 # Doesn't compile, conflicting declaration, see:
 # http://www.sqlite.org/cvstrac/tktview?tn=2726

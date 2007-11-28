@@ -27,6 +27,12 @@
 # arches
 =dev-lisp/sbcl-1.0.12
 
+# Fabian Groffen <grobian@gentoo.org> (25 Nov 2007)
+# Doesn't compile: i386-pc-solaris2.10-gcc: key.c: No such file or directory
+# see bug #200662
+=sys-apps/texinfo-4.11
+=sys-apps/texinfo-4.11-r1
+
 # Fabian Groffen <grobian@gentoo.org> (11 Nov 2007)
 # Has linkage problems:
 # gnulib-lib/.libs/libgettextlib.so: undefined reference to `acl_trivial'
