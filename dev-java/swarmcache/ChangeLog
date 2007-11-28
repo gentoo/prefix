@@ -1,0 +1,25 @@
+# ChangeLog for dev-java/swarmcache
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/swarmcache/ChangeLog,v 1.4 2007/04/25 19:17:53 nelchael Exp $
+
+  25 Apr 2007; Krzysiek Pawlik <nelchael@gentoo.org>
+  swarmcache-1.0_pre20050106-r1.ebuild:
+  Fix compiling with JAVA_PKG_STRICT.
+
+*swarmcache-1.0_pre20050106-r1 (11 Jan 2007)
+
+  11 Jan 2007; Petteri Räty <betelgeuse@gentoo.org>
+  +swarmcache-1.0_pre20050106-r1.ebuild:
+  Migrated to generation 2 and added the source use flag.
+
+  26 May 2005; Jan Brinkmann <luckyduck@gentoo.org>
+  swarmcache-1.0_pre20050106.ebuild:
+  stable on amd64 and x86
+
+*swarmcache-1.0_pre20050106 (07 Jan 2005)
+
+  07 Jan 2005; Jan Brinkmann <luckyduck@gentoo.org> +metadata.xml,
+  +swarmcache-1.0_pre20050106.ebuild:
+  Initial import. Ebuild based on the contribution of Dan
+  <dan@intuitivelyobvious.net>. Fixes bug #67417.
+
