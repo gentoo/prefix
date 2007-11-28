@@ -1,0 +1,47 @@
+# ChangeLog for dev-java/sun-javamail
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-javamail/ChangeLog,v 1.12 2007/11/25 08:00:39 caster Exp $
+
+  25 Nov 2007; Vlastimil Babka <caster@gentoo.org> sun-javamail-1.4.ebuild:
+  Stop passing build.sysclasspath=ignore to eant, eclass does it now.
+
+  02 Apr 2007; Vlastimil Babka <caster@gentoo.org> sun-javamail-1.4.ebuild:
+  Don't call eant with JAVA_PKG_STRICT=true but pass
+  -Dbuild.sysclasspath=ignore explicitly. Small cleanup.
+
+  01 Apr 2007; Raúl Porcel <armin76@gentoo.org> sun-javamail-1.4.ebuild:
+  Add ~ia64 keyword wrt bug 158687
+
+  29 Jan 2007; Vlastimil Babka <caster@gentoo.org> sun-javamail-1.4.ebuild:
+  Add java-ant-2 to inherit.
+
+  07 Dec 2006; Diego Pettenò <flameeyes@gentoo.org>
+  sun-javamail-1.4.ebuild:
+  Add ~x86-fbsd keyword.
+
+  24 Nov 2006; Markus Rothe <corsair@gentoo.org> sun-javamail-1.4.ebuild:
+  Stable on ppc64; bug #154679
+
+  23 Nov 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  sun-javamail-1.4.ebuild:
+  ppc stable, bug #154679
+
+  23 Nov 2006; <blubb@gentoo.org> sun-javamail-1.4.ebuild:
+  stable on amd64
+
+  10 Nov 2006; Krzysiek Pawlik <nelchael@gentoo.org>
+  sun-javamail-1.4.ebuild:
+  Stable on x86.
+
+  27 Sep 2006; Vlastimil Babka <caster@gentoo.org> sun-javamail-1.4.ebuild:
+  Call eant with JAVA_PKG_STRICT=true to fix bug #143246.
+
+  24 Sep 2006; Joshua Nichols <nichoj@gentoo.org> sun-javamail-1.4.ebuild:
+  Added ~ppc64.
+
+*sun-javamail-1.4 (24 Sep 2006)
+
+  24 Sep 2006; Krzysiek Pawlik <nelchael@gentoo.org> +metadata.xml,
+  +sun-javamail-1.4.ebuild:
+  Initial version.
+
