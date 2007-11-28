@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/less-409.ebuild,v 1.7 2007/11/28 07:17:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/less-416.ebuild,v 1.1 2007/11/28 07:24:21 vapier Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="http://www.greenwoodsoftware.com/less/${P}.tar.gz
 
 LICENSE="|| ( GPL-2 less )"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="unicode"
 
 DEPEND=">=sys-libs/ncurses-5.2"

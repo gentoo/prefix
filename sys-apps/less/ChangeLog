@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/less
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.80 2007/11/26 23:31:38 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.81 2007/11/28 07:24:21 vapier Exp $
+
+*less-416 (28 Nov 2007)
+
+  28 Nov 2007; Mike Frysinger <vapier@gentoo.org> +less-416.ebuild:
+  Version bump.
 
   26 Nov 2007; Brent Baude <ranger@gentoo.org> less-409.ebuild:
   Marking less-409 ppc for bug 200348
