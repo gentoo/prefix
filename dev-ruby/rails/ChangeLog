@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/rails
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.91 2007/11/27 14:59:32 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.92 2007/11/27 17:09:28 corsair Exp $
+
+  27 Nov 2007; Markus Rothe <corsair@gentoo.org> rails-1.2.6.ebuild:
+  Added ~ppc64; bug #200159
 
   27 Nov 2007; Raúl Porcel <armin76@gentoo.org> rails-1.2.6.ebuild:
   ia64/sparc stable wrt security #200159
