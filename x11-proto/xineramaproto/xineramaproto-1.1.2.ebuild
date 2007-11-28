@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="X.Org Xinerama protocol headers"
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 
 RDEPEND=""
 DEPEND="${RDEPEND}"
