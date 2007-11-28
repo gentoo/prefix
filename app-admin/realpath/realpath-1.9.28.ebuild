@@ -23,7 +23,8 @@ RDEPEND="!sys-freebsd/freebsd-bin"
 S=${WORKDIR}/dwww-${PV}
 
 src_unpack() {
-	if use userland_Darwin; then
+	# On OSX by default a case INsensitive filesystem is used :(
+	if [[ ${CHOST} == *-darwin* ]] ; then
 		local dirname="dwww-${PV}"
 		tar xzf ${DISTDIR}/${A} \
 			${dirname}/Makefile \
