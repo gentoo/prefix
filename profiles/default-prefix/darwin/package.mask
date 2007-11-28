@@ -1,3 +1,4 @@
+# $Header: $
 
 # Fabian Groffen <grobian@gentoo.org> (06 Nov 2007)
 # This seems to be some developer snapshot, geared towards objc2, not

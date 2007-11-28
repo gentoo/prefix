@@ -1,4 +1,4 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/default-linux/amd64/package.mask,v 1.9 2006/10/16 11:21:46 blubb Exp $
+# $Header: $
 
 # 2005.0 Jeremy Huddleston <eradicator@gentoo.org>
 # This is a stub file 'cause glibc provides 32bit libs on newer profiles
@@ -7,6 +7,7 @@
 # 2005/10/24 Simon Stelling <blubb@gentoo.org>
 # OpenOffice.org versions prior to 2.0.4 do not work in 64bit mode
 <app-office/openoffice-2.0.4
+
 # 2006-09-29 Fabian Groffen <grobian@gentoo.org>
 # has definitions in discarded sections
 =dev-libs/gmp-4.2.1

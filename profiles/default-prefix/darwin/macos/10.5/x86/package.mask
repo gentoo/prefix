@@ -1,3 +1,5 @@
+# $Header: $
+
 # Elias Pipping <pipping@gentoo.org> (24 Nov 2007)
 # eix 0.10.* fails to compile
 =app-portage/eix-0.10.2*
