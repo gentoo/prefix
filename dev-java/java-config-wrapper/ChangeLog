@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/java-config-wrapper
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config-wrapper/ChangeLog,v 1.32 2007/08/03 15:26:18 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config-wrapper/ChangeLog,v 1.33 2007/11/28 09:31:26 ali_bush Exp $
+
+*java-config-wrapper-0.15 (28 Nov 2007)
+
+  28 Nov 2007; <alistair@gentoo.org> +java-config-wrapper-0.15.ebuild:
+  Version Bump java-config-wrapper to support new java-virtuals in
+  java-check-environment.
 
 *java-config-wrapper-0.14 (24 Jul 2007)
 
