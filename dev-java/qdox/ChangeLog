@@ -1,0 +1,76 @@
+# ChangeLog for dev-java/qdox
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/qdox/ChangeLog,v 1.18 2007/11/15 13:23:54 betelgeuse Exp $
+
+  15 Nov 2007; Petteri Räty <betelgeuse@gentoo.org> metadata.xml,
+  qdox-1.6.3.ebuild:
+  Move the too long DESCRIPTION to metadata.xml and quote variables.
+
+  15 Nov 2007; Petteri Räty <betelgeuse@gentoo.org> -qdox-20050104.ebuild,
+  -qdox-20050104-r1.ebuild:
+  Delete old ebuilds so that ~arch users get 1.6.3 version too.
+
+  02 Nov 2007; William L. Thomson Jr. <wltjr@gentoo.org> qdox-1.6.3.ebuild,
+  qdox-20050104.ebuild:
+  amd64 stable, bug #196849.
+
+  24 Oct 2007; Markus Meier <maekke@gentoo.org> qdox-1.6.3.ebuild,
+  qdox-20050104.ebuild:
+  x86 for 1.6.3, ~x86 for 20050104 (new versioning scheme), bug #196849
+
+  24 Oct 2007; Krzysiek Pawlik <nelchael@gentoo.org> qdox-1.6.3.ebuild,
+  qdox-20050104.ebuild:
+  1.6.3 stable on ppc, bug #196849.
+
+  08 Sep 2007; nixnut <nixnut@gentoo.org> qdox-1.6.3.ebuild:
+  Added ~ppc wrt bug 187981
+
+  21 Aug 2007; William L. Thomson Jr. <wltjr@gentoo.org> qdox-1.6.3.ebuild:
+  ~amd64, bug #187981. Bogus stable commit, nothing committed but changelog :(
+
+  21 Aug 2007; William L. Thomson Jr. <wltjr@gentoo.org> ChangeLog:
+  amd64 stable, bug #187981.
+
+*qdox-1.6.3 (04 Aug 2007)
+
+  04 Aug 2007; Miroslav Šulc <fordfrog@gentoo.org> +qdox-1.6.3.ebuild:
+  Version bump. Versioning scheme of qdox has changed.
+
+  13 May 2007; Krzysiek Pawlik <nelchael@gentoo.org>
+  qdox-20050104-r1.ebuild:
+  Fix building qdox.
+
+  20 Apr 2007; Petteri Räty <betelgeuse@gentoo.org>
+  qdox-20050104-r1.ebuild:
+  Add ant-core to RDEPEND.
+
+  20 Dec 2006; Petteri Räty <betelgeuse@gentoo.org>
+  qdox-20050104-r1.ebuild:
+  Made the ebuild call java-pkg_getjars with the proper argument format so
+  emerging it with JAVA_PKG_STRICT works again.
+
+  06 Aug 2006; Krzysiek Pawlik <nelchael@gentoo.org>
+  qdox-20050104-r1.ebuild:
+  Added classpath rewriting.
+
+*qdox-20050104-r1 (05 Aug 2006)
+
+  05 Aug 2006; Joshua Nichols <nichoj@gentoo.org> +qdox-20050104-r1.ebuild:
+  Revision bump to support new Java system
+
+  04 May 2005; Jan Brinkmann <luckyduck@gentoo.org> qdox-20050104.ebuild:
+  stable on amd64, ppc and x86
+
+  15 Apr 2005; Jan Brinkmann <luckyduck@gentoo.org> qdox-20050104.ebuild:
+  added ~ppc to KEYWORDS
+
+  24 Mar 2005; Jan Brinkmann <luckyduck@gentoo.org> qdox-20050104.ebuild:
+  generall cleanup, added support for the source useflag and removed unnecessary
+  jmock dependency, fixes #85317
+
+*qdox-20050104 (04 Jan 2005)
+
+  04 Jan 2005; Jan Brinkmann <luckyduck@gentoo.org> +metadata.xml,
+  +qdox-20050104.ebuild:
+  Initial import. Ebuild provides by /me. Dependency of #63290.
+
