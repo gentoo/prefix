@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit eutils
+
 DESCRIPTION="Used to create autoconfiguration files"
 HOMEPAGE="http://www.gnu.org/software/autoconf/autoconf.html"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
@@ -19,6 +21,14 @@ DEPEND=">=sys-apps/texinfo-4.3
 RDEPEND="${DEPEND}
 	>=sys-devel/autoconf-wrapper-4-r2"
 PDEPEND="emacs? ( app-emacs/autoconf-mode )"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	# usr/bin/libtool is provided by odcctools
+	[[ ${CHOST} == *-darwin* ]] && epatch "${FILESDIR}"/${P}-darwin.patch
+}
 
 src_compile() {
 	# Disable Emacs in the build system since it is in a separate package.
