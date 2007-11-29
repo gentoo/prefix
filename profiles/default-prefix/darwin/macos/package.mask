@@ -1,5 +1,9 @@
 # $Header: $
 
+# Elias Pipping <pipping@gentoo.org> (29 Nov 2007)
+# testing only -- virtual/opengl and eselect opengl are still missing
+media-libs/libsdl
+
 # Elias Pipping <pipping@gentoo.org> (25 Nov 2007)
 # there's no (official) java6 on macosx
 virtual/jdk:1.6
