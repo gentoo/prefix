@@ -142,6 +142,15 @@ diff -ur java-config-2.1.2.orig/src/java_config_2/EnvironmentManager.py java-con
  
      def __init__(self):
          try:
+@@ -67,7 +67,7 @@
+ 
+     def load_package(self, name):
+         try:
+-            pkg = Package(name, '/usr/share/' + name + '/package.env')
++            pkg = Package(name, '@GENTOO_PORTAGE_EPREFIX@/usr/share/' + name + '/package.env')
+             self.packages[name] = pkg
+             return pkg
+         except InvalidConfigError:
 @@ -227,7 +227,7 @@
          elif os.path.exists(target):
              raise InvalidConfigError(target)
