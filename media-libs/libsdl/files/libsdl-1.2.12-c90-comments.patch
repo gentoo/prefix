@@ -1,0 +1,19 @@
+http://bugs.gentoo.org/193404
+
+Revision 3386
+Motified Sun Aug 5 03:21:18 2007 UTC by icculus
+Removed some C++ style comments from the public headers.
+
+--- branches/SDL-1.2/include/begin_code.h	2007/08/03 04:13:03	3385
++++ branches/SDL-1.2/include/begin_code.h	2007/08/05 03:21:18	3386
+@@ -90,8 +90,8 @@
+ #elif !defined(__WINS__)
+ #undef DECLSPEC
+ #define DECLSPEC __declspec(dllexport)
+-#endif //EKA2
+-#endif //__SYMBIAN32__
++#endif /* !EKA2 */
++#endif /* __SYMBIAN32__ */
+ 
+ /* Force structure packing at 4 byte alignment.
+    This is necessary if the header is included in code which has structure
