@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/realpath
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/ChangeLog,v 1.28 2007/06/23 17:22:10 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/ChangeLog,v 1.29 2007/11/28 15:33:38 grobian Exp $
+
+  28 Nov 2007; Fabian Groffen <grobian@gentoo.org> realpath-1.9.16.ebuild,
+  realpath-1.9.28.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   23 Jun 2007; Joshua Kinard <kumba@gentoo.org> realpath-1.9.28.ebuild:
   Stable on mips, per #182979.
