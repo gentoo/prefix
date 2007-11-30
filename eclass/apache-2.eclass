@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.1 2007/11/28 13:04:12 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.2 2007/11/29 18:43:31 hollow Exp $
 
 # @ECLASS: apache-2
 # @MAINTAINER: apache-devs@gentoo.org
@@ -311,7 +311,7 @@ check_upgrade() {
 		eerror "(${ROOT}etc/apache2/apache2-builtin-mods) exists on your"
 		eerror "system."
 		eerror
-		eerror "Please read http://www.gentoo.org/proj/en/apache/upgrade.xml"
+		eerror "Please read http://www.gentoo.org/doc/en/apache-upgrading.xml"
 		eerror "for detailed information how to convert this file to the new"
 		eerror "APACHE2_MODULES USE_EXPAND variable."
 		eerror
@@ -379,6 +379,7 @@ apache-2_src_unpack() {
 
 	# apache2.8 instead of httpd.8 (bug #194828)
 	mv docs/man/{httpd,apache2}.8
+	sed -i -e 's/httpd\.8/apache2.8/g' Makefile.in
 }
 
 # @FUNCTION: apache-2_src_compile

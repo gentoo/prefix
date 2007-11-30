@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/phpconfutils.eclass,v 1.7 2007/11/22 21:52:12 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/phpconfutils.eclass,v 1.8 2007/11/29 23:12:13 jokey Exp $
 #
 # ########################################################################
 #
@@ -34,7 +34,7 @@
 
 phpconfutils_sort_flags() {
 	# Sort the list of auto-magically enabled USE flags
-	PHPCONFUTILS_AUTO_USE="`echo ${PHPCONFUTILS_AUTO_USE} | tr '\040\010' '\012\012' | sort -u`"
+	PHPCONFUTILS_AUTO_USE="$(echo ${PHPCONFUTILS_AUTO_USE} | tr '\040\010' '\012\012' | sort -u)"
 }
 
 # ========================================================================

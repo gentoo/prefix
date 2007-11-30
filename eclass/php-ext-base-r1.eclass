@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-base-r1.eclass,v 1.8 2007/09/01 15:58:17 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-base-r1.eclass,v 1.9 2007/11/29 23:12:13 jokey Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
 # Author: Stuart Herbert <stuart@gentoo.org>
@@ -118,8 +118,8 @@ php-ext-base-r1_addextension() {
 # $3 - File to add to
 # $4 - Sanitized text to output
 php-ext-base-r1_addtoinifile() {
-	if [[ ! -d `dirname $3` ]] ; then
-		mkdir -p `dirname $3`
+	if [[ ! -d $(dirname $3) ]] ; then
+		mkdir -p $(dirname $3)
 	fi
 
 	# Are we adding the name of a section?
@@ -137,7 +137,7 @@ php-ext-base-r1_addtoinifile() {
 		einfo "$4 to /$3"
 	fi
 
-	insinto /`dirname $3`
+	insinto /$(dirname $3)
 	doins "$3"
 }
 

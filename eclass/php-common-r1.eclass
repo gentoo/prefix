@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-common-r1.eclass,v 1.11 2007/09/01 15:58:17 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-common-r1.eclass,v 1.12 2007/11/29 23:11:04 jokey Exp $
 
 # Based on robbat2's work on the php4 sapi eclass
 # Based on stuart's work on the php5 sapi eclass
@@ -72,7 +72,7 @@ php_check_java() {
 		return
 	fi
 
-	JDKHOME="`java-config --jdk-home`"
+	JDKHOME="$(java-config --jdk-home)"
 	NOJDKERROR="You need to use the 'java-config' utility to set your JVM to a JDK!"
 	if [[ -z "${JDKHOME}" ]] || [[ ! -d "${JDKHOME}" ]] ; then
 		eerror "${NOJDKERROR}"
@@ -132,7 +132,7 @@ php_install_java_inifile() {
 		return
 	fi
 
-	JAVA_LIBRARY="`grep -- '-DJAVALIB' Makefile | sed -e 's,.\+-DJAVALIB=\"\([^"]*\)\".*$,\1,g;' | sort -u`"
+	JAVA_LIBRARY="$(grep -- '-DJAVALIB' Makefile | sed -e 's,.\+-DJAVALIB=\"\([^"]*\)\".*$,\1,g;' | sort -u)"
 
 	echo "extension = java.so" >> "${D}/${PHP_EXT_INI_DIR}/java.ini"
 	echo "java.library = ${JAVA_LIBRARY}" >> "${D}/${PHP_EXT_INI_DIR}/java.ini"
