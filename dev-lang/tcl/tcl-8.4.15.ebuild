@@ -89,7 +89,7 @@ src_install() {
 	[[ ${CHOST} != *-darwin* ]] && sed -i \
 		-e "s,^TCL_CC_SEARCH_FLAGS='\(.*\)',TCL_CC_SEARCH_FLAGS='\1:${EPREFIX}/usr/${mylibdir}'," \
 		-e "s,^TCL_LD_SEARCH_FLAGS='\(.*\)',TCL_LD_SEARCH_FLAGS='\1:${EPREFIX}/usr/${mylibdir}'," \
-		"${ED}"/usr/${mylibdir}/tclConfig.sh || die
+		"${ED}"/usr/${mylibdir}/tclConfig.sh
 
 	# install private headers
 	insinto /usr/${mylibdir}/tcl${v1}/include/unix
