@@ -1,0 +1,33 @@
+# ChangeLog for media-plugins/gst-plugins-meta
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-meta/ChangeLog,v 1.7 2007/11/27 15:22:59 dang Exp $
+
+  27 Nov 2007; Daniel Gryniewicz <dang@gentoo.org>
+  gst-plugins-meta-0.10.ebuild:
+  Add final keywords per bug #200445
+
+  27 Nov 2007; Christian Faulhammer <opfer@gentoo.org>
+  gst-plugins-meta-0.10.ebuild:
+  stable KEYWORDs for x86/alpha/ia64/sparc, see bug 200445
+
+  27 Nov 2007; Jeroen Roovers <jer@gentoo.org> gst-plugins-meta-0.10.ebuild:
+  Stable for HPPA (bug #200445).
+
+  26 Nov 2007; Daniel Gryniewicz <dang@gentoo.org>
+  gst-plugins-meta-0.10.ebuild:
+  sparc, ia64, alpha stable per bug #200445
+
+  26 Nov 2007; Daniel Gryniewicz <dang@gentoo.org>
+  gst-plugins-meta-0.10.ebuild:
+  Add usage comment
+
+  26 Nov 2007; Daniel Gryniewicz <dang@gentoo.org>
+  gst-plugins-meta-0.10.ebuild:
+  Marked stable on amd64 for bug #200445
+
+*gst-plugins-meta-0.10 (26 Nov 2007)
+
+  26 Nov 2007; Daniel Gryniewicz <dang@gentoo.org> +metadata.xml,
+  +gst-plugins-meta-0.10.ebuild:
+  New meta for pulling in gst plugins
+
