@@ -34,7 +34,7 @@ src_install() {
 		newbin bin/qgit qgit4
 	else
 		dodir /bin
-		cp -R bin/qgit.app ${ED}/bin
+		cp -R bin/qgit.app "${ED}"/bin
 	fi
 	dodoc README
 }
