@@ -1,0 +1,27 @@
+# ChangeLog for dev-haskell/time
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/time/ChangeLog,v 1.6 2007/07/11 18:39:28 dcoutts Exp $
+
+  11 Jul 2007; Duncan Coutts <dcoutts@gentoo.org> time-1.1.1.ebuild:
+  Marked ~ia64.
+
+*time-1.1.1 (08 Jul 2007)
+
+  08 Jul 2007; Duncan Coutts <dcoutts@gentoo.org> +time-1.1.1.ebuild:
+  New version from ghc-6.6.1 extralibs collection.
+
+  08 Jul 2007; Duncan Coutts <dcoutts@gentoo.org> time-1.0.ebuild:
+  Use dev-lang/ghc rather than virtual/ghc.
+
+  06 Apr 2007; Chris Parrott <cparrott@gentoo.org> time-1.0.ebuild:
+  added ~ppc and ~sparc keywords
+
+  04 Apr 2007; Chris Parrott <cparrott@gentoo.org> time-1.0.ebuild:
+  added ~alpha keyword
+
+*time-1.0 (17 Mar 2007)
+
+  17 Mar 2007; Lennart Kolmodin <kolmodin@gentoo.org> +metadata.xml,
+  +time-1.0.ebuild:
+  Add modular lib to ghc 6.6. See bug 151012
+
