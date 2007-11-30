@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-0.67.ebuild,v 1.8 2007/11/26 00:06:46 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-0.67.ebuild,v 1.9 2007/11/29 17:54:08 armin76 Exp $
 
 EAPI="prefix"
 
