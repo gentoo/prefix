@@ -91,7 +91,7 @@ src_install() {
 	[[ ${CHOST} != *-darwin* ]] && sed -i \
 		-e "s,^\(TK_CC_SEARCH_FLAGS='.*\)',\1:${EPREFIX}/usr/${mylibdir}'," \
 		-e "s,^\(TK_LD_SEARCH_FLAGS='.*\)',\1:${EPREFIX}/usr/${mylibdir}'," \
-		"${ED}"/usr/${mylibdir}/tkConfig.sh || die
+		"${ED}"/usr/${mylibdir}/tkConfig.sh
 
 	# install private headers
 	insinto /usr/${mylibdir}/tk${v1}/include/unix
