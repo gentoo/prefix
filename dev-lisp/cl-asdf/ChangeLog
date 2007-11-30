@@ -1,6 +1,10 @@
 # ChangeLog for dev-lisp/cl-asdf
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-asdf/ChangeLog,v 1.27 2007/02/03 17:32:11 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-asdf/ChangeLog,v 1.28 2007/11/28 15:24:16 grobian Exp $
+
+  28 Nov 2007; Fabian Groffen <grobian@gentoo.org> cl-asdf-1.86-r1.ebuild,
+  cl-asdf-1.89.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   03 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> cl-asdf-1.86-r1.ebuild,
   cl-asdf-1.89.ebuild:
