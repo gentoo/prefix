@@ -1,6 +1,10 @@
 # ChangeLog for media-sound/vorbis-tools
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/ChangeLog,v 1.61 2007/11/26 01:49:34 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/ChangeLog,v 1.62 2007/11/28 17:18:11 armin76 Exp $
+
+  28 Nov 2007; Raúl Porcel <armin76@gentoo.org>
+  vorbis-tools-1.1.1-r5.ebuild:
+  alpha/ia64/sparc stable wrt #200103
 
   26 Nov 2007; Jeroen Roovers <jer@gentoo.org> vorbis-tools-1.1.1-r5.ebuild:
   Stable for HPPA (bug #200051). Removed an ancient workaround for a hppa/gcc
