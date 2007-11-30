@@ -62,9 +62,7 @@ src_install() {
 	dolib libz$(get_libname ${PV})
 	(
 		cd "${ED}"/$(get_libdir)
-		[[ ${CHOST} == *-darwin* ]] \
-			&& chmod 755 libz.*.dylib \
-			|| chmod 755 libz.so.*
+		chmod 755 libz*$(get_libname)*
 	)
 	dosym libz$(get_libname ${PV}) /$(get_libdir)/libz$(get_libname)
 	dosym libz$(get_libname ${PV}) /$(get_libdir)/libz$(get_libname 1)
