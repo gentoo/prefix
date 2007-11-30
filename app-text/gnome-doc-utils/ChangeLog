@@ -1,6 +1,10 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.93 2007/11/26 13:17:35 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.94 2007/11/29 05:09:18 jer Exp $
+
+  29 Nov 2007; Jeroen Roovers <jer@gentoo.org>
+  gnome-doc-utils-0.12.0.ebuild:
+  Stable for HPPA (bug #199740).
 
   26 Nov 2007; Markus Rothe <corsair@gentoo.org>
   gnome-doc-utils-0.12.0.ebuild:
