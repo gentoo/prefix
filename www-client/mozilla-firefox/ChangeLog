@@ -1,6 +1,18 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.348 2007/11/28 11:44:13 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.351 2007/11/30 11:06:52 maekke Exp $
+
+  30 Nov 2007; Markus Meier <maekke@gentoo.org>
+  mozilla-firefox-2.0.0.10.ebuild:
+  x86 stable, security bug #198965
+
+  30 Nov 2007; Jeroen Roovers <jer@gentoo.org>
+  mozilla-firefox-2.0.0.10.ebuild:
+  Stable for HPPA (bug #198965).
+
+  29 Nov 2007; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-2.0.0.10.ebuild:
+  Bump patchset to fix bug #180870 and add uk langpack, bug #200730
 
 *mozilla-firefox-2.0.0.10 (28 Nov 2007)
 
