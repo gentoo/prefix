@@ -132,6 +132,15 @@ src_unpack() {
 	strip-flags
 	replace-flags -O3 -O2
 
+	# force -faltivec on some flags -- otherwise qt won't compile
+	# http://lists.mplayerhq.hu/pipermail/ffmpeg-devel/2005-August/003229.html
+	if is-flag -maltivec \
+	|| is-flag -mcpu=7450 \
+	|| is-flag -mcpu=G4 \
+	|| is-flag -mcpu=G5; then
+		append-flags -faltivec
+	fi
+
 	if [[ $( gcc-fullversion ) == "3.4.6" && gcc-specs-ssp ]] ; then
 		ewarn "Appending -fno-stack-protector to CFLAGS/CXXFLAGS"
 		append-flags -fno-stack-protector
