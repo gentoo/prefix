@@ -91,9 +91,9 @@ eqmake4() {
 		echo -e "$CONFIG -= debug\nCONFIG += no_fixpath release" >> ${projprofile}
 	fi
 
-	/usr/bin/qmake ${projprofile} \
-		QTDIR=/usr/$(get_libdir) \
-		QMAKE=/usr/bin/qmake \
+	"${EPREFIX}"/usr/bin/qmake ${projprofile} \
+		QTDIR="${EPREFIX}"/usr/$(get_libdir) \
+		QMAKE="${EPREFIX}"/usr/bin/qmake \
 		QMAKE_CC=$(tc-getCC) \
 		QMAKE_CXX=$(tc-getCXX) \
 		QMAKE_LINK=$(tc-getCXX) \
