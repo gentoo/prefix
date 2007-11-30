@@ -1,6 +1,13 @@
 # ChangeLog for app-vim/taglist
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/taglist/ChangeLog,v 1.48 2007/08/23 15:11:05 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/taglist/ChangeLog,v 1.49 2007/11/29 03:47:35 hawking Exp $
+
+*taglist-4.5 (29 Nov 2007)
+
+  29 Nov 2007; Ali Polatel <hawking@gentoo.org> taglist-3.4-r1.ebuild,
+  -taglist-4.1.ebuild, -taglist-4.2.ebuild, taglist-4.4.ebuild,
+  +taglist-4.5.ebuild:
+  Version bump, drop old, quoting.
 
 *taglist-4.4 (23 Aug 2007)
 
