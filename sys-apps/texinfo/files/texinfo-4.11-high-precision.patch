@@ -1,0 +1,25 @@
+* grobian@gentoo.org: make sure the mtimes of the generated_sources are
+                      exactly the same for systems with a high time
+					  precision.
+					  http://bugs.gentoo.org/show_bug.cgi?id=200662
+
+--- info/Makefile.am
++++ info/Makefile.am
+@@ -72,6 +72,7 @@
+ $(generated_sources): makedoc$(EXEEXT) $(cmd_sources)
+ 	rm -f $(generated_sources)
+ 	$(top_builddir)/$(native_tools)/info/makedoc $(cmd_sources)
++	touch -r funs.h $(generated_sources)
+ 
+ # The following hack is necessary to hint make before the automatic
+ # dependencies are built.
+--- info/Makefile.in
++++ info/Makefile.in
+@@ -741,6 +741,7 @@
+ $(generated_sources): makedoc$(EXEEXT) $(cmd_sources)
+ 	rm -f $(generated_sources)
+ 	$(top_builddir)/$(native_tools)/info/makedoc $(cmd_sources)
++	touch -r funs.h $(generated_sources)
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.
+ .NOEXPORT:

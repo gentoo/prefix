@@ -29,6 +29,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-dir-entry.patch #198545
 	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify util/texi2{dvi,pdf}
+	epatch "${FILESDIR}"/${P}-high-precision.patch #200662
 
 	# FreeBSD requires install-sh, but usptream don't have it marked
 	# exec, #195076
