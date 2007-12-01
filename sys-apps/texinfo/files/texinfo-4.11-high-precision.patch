@@ -1,25 +1,27 @@
-* grobian@gentoo.org: make sure the mtimes of the generated_sources are
-                      exactly the same for systems with a high time
-                      precision.
+* grobian@gentoo.org: open the files in the same order the Makefile
+                      depends on them, such that we don't trigger a
+                      remake all the time, see:
                       http://bugs.gentoo.org/show_bug.cgi?id=200662
 
---- info/Makefile.am
-+++ info/Makefile.am
-@@ -72,6 +72,7 @@
- $(generated_sources): makedoc$(EXEEXT) $(cmd_sources)
- 	rm -f $(generated_sources)
- 	$(top_builddir)/$(native_tools)/info/makedoc $(cmd_sources)
-+	touch -r funs.h $(generated_sources)
+--- info/makedoc.c
++++ info/makedoc.c
+@@ -145,8 +145,8 @@
+     }
  
- # The following hack is necessary to hint make before the automatic
- # dependencies are built.
---- info/Makefile.in
-+++ info/Makefile.in
-@@ -741,6 +741,7 @@
- $(generated_sources): makedoc$(EXEEXT) $(cmd_sources)
- 	rm -f $(generated_sources)
- 	$(top_builddir)/$(native_tools)/info/makedoc $(cmd_sources)
-+	touch -r funs.h $(generated_sources)
- # Tell versions [3.59,3.63) of GNU make to not export all variables.
- # Otherwise a system limit (for SysV at least) may be exceeded.
- .NOEXPORT:
+   funs_stream = must_fopen (funs_filename, "w");
+-  doc_stream = must_fopen (doc_filename, "w");
+   key_stream = must_fopen (key_filename, "w");
++  doc_stream = must_fopen (doc_filename, "w");
+ 
+   fprintf (funs_stream,
+       "/* %s -- Generated declarations for Info commands. */\n\n\
+@@ -226,8 +226,8 @@
+   fprintf (funs_stream, "\n#define A_NCOMMANDS %u\n", next_func_key());
+ 
+   fclose (funs_stream);
+-  fclose (doc_stream);
+   fclose (key_stream);
++  fclose (doc_stream);
+ 
+   if (tags_only)
+     maybe_dump_tags (stdout);
