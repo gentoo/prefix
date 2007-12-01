@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit vim
+inherit vim autotools
 
 VIM_VERSION="7.1"
 VIM_GENTOO_PATCHES="vim-${VIM_VERSION}-gentoo-patches.tar.bz2"
@@ -28,7 +28,12 @@ RDEPEND="${RDEPEND}
 
 src_unpack() {
 	vim_src_unpack || die
-	epatch ${FILESDIR}/with-local-dir.patch || die
+	epatch "${FILESDIR}"/with-local-dir.patch
+	epatch "${FILESDIR}"/${PN}-darwin-optimize.patch
+	(
+		cd "${S}"/src
+		eautoreconf
+	)
 }
 
 src_compile() {
