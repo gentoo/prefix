@@ -49,7 +49,8 @@ src_unpack() {
 	# prefix search tools patch, plus OSX and Solaris fixes
 	epatch "${FILESDIR}"/${PN}-1.5.2-prefix-misc-alt.patch
 	epatch "${FILESDIR}"/${PN}-1.5.3-solaris.patch
-	epatch "${FILESDIR}"/${PN}-1.5.3-darwin9.patch
+# patch feels wrong, temporarily disable to allow other platforms to compile
+	#epatch "${FILESDIR}"/${PN}-1.5.3-darwin9.patch
 
 	if is-flagq "-O3" ; then
 	    echo
