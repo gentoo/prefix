@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/activerecord
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.66 2007/11/27 14:53:59 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.67 2007/12/01 09:07:26 graaff Exp $
+
+  01 Dec 2007; Hans de Graaff <graaff@gentoo.org>
+  -activerecord-1.15.2.ebuild, -activerecord-1.15.3.ebuild,
+  -activerecord-1.15.4.ebuild:
+  Remove old vulnerable versions
 
   27 Nov 2007; Raúl Porcel <armin76@gentoo.org> activerecord-1.15.6.ebuild:
   ia64/sparc stable wrt security #200159
