@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.218 2007/11/28 21:49:35 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.219 2007/12/01 01:12:40 ulm Exp $
+
+  01 Dec 2007; Ulrich Mueller <ulm@gentoo.org> emacs-22.1-r3.ebuild:
+  Rename site-init file for USE=source.
 
   28 Nov 2007; Ulrich Mueller <ulm@gentoo.org> -emacs-21.4-r13.ebuild,
   -emacs-22.1-r2.ebuild:

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r3.ebuild,v 1.8 2007/11/28 19:38:23 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r3.ebuild,v 1.9 2007/12/01 01:12:40 ulm Exp $
 
 EAPI="prefix"
 
@@ -182,7 +182,7 @@ src_install () {
 		# This is not meant to install all the source -- just the
 		# C source you might find via find-function
 		doins src/*.[ch]
-		sed 's/^X//' >00${PN}-${SLOT}-gentoo.el <<-EOF
+		sed 's/^X//' >10${PN}-${SLOT}-gentoo.el <<-EOF
 
 		;;; ${PN}-${SLOT} site-lisp configuration
 
@@ -190,7 +190,7 @@ src_install () {
 		X    (setq find-function-C-source-directory
 		X	  "${EPREFIX}/usr/share/emacs/${FULL_VERSION}/src"))
 		EOF
-		elisp-site-file-install 00${PN}-${SLOT}-gentoo.el
+		elisp-site-file-install 10${PN}-${SLOT}-gentoo.el
 	fi
 
 	dodoc AUTHORS BUGS CONTRIBUTE README || die "dodoc failed"
