@@ -1,5 +1,9 @@
 # $Header: $
 
+# Elias Pipping <pipping@gentoo.org> (01 Dec 2007)
+# install_names aren't correct
+dev-java/qtjambi
+
 # Fabian Groffen <grobian@gentoo.org> (06 Nov 2007)
 # This seems to be some developer snapshot, geared towards objc2, not
 # being able to do any useful c++ compilation
