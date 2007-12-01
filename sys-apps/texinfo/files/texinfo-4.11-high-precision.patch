@@ -1,7 +1,7 @@
 * grobian@gentoo.org: make sure the mtimes of the generated_sources are
                       exactly the same for systems with a high time
-					  precision.
-					  http://bugs.gentoo.org/show_bug.cgi?id=200662
+                      precision.
+                      http://bugs.gentoo.org/show_bug.cgi?id=200662
 
 --- info/Makefile.am
 +++ info/Makefile.am
