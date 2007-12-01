@@ -223,6 +223,8 @@ src_compile() {
 	use pch		&& myconf="${myconf} -pch" || myconf="${myconf} -no-pch"
 
 	use input_devices_wacom	&& myconf="${myconf} -tablet" || myconf="${myconf} -no-tablet"
+	
+	use aqua && myconf="${myconf} -no-framework"
 
 	myconf="${myconf} -xrender -xrandr -xkb -xshape -sm"
 
