@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/actionwebservice
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionwebservice/ChangeLog,v 1.68 2007/11/27 14:58:21 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionwebservice/ChangeLog,v 1.69 2007/12/01 08:57:01 graaff Exp $
+
+  01 Dec 2007; Hans de Graaff <graaff@gentoo.org>
+  -actionwebservice-1.2.2.ebuild, -actionwebservice-1.2.3.ebuild,
+  -actionwebservice-1.2.4.ebuild:
+  Remove old vulnerable versions
 
   27 Nov 2007; Raúl Porcel <armin76@gentoo.org>
   actionwebservice-1.2.6.ebuild:
