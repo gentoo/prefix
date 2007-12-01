@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/check/check-0.9.5.ebuild,v 1.11 2007/10/24 11:25:08 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/check/check-0.9.5.ebuild,v 1.12 2007/11/30 21:42:13 beandog Exp $
 
 EAPI="prefix"
 

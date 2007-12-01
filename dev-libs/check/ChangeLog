@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/check
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/check/ChangeLog,v 1.41 2007/10/24 11:25:08 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/check/ChangeLog,v 1.42 2007/11/30 21:42:13 beandog Exp $
+
+  30 Nov 2007; Steve Dibb <beandog@gentoo.org> check-0.9.5.ebuild:
+  amd64 stable, bug 200699
 
   24 Oct 2007; Roy Marples <uberlord@gentoo.org> check-0.9.5.ebuild:
   Keyworded ~x86-fbsd
