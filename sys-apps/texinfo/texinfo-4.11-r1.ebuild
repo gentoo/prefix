@@ -24,12 +24,14 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	# pull in ctype.h for misc string function prototypes
-	sed -i '1i#include <ctype.h>' system.h
+	# pull in ctype.h for misc string function prototypes,
+	# but _after_ config.h (or have troubles with _LARGE_FILES on aix)
+	sed -i '/include[ \t]*["<]config\.h[>"]/a#include <ctype.h>' system.h 
 	epatch "${FILESDIR}"/${P}-dir-entry.patch #198545
 	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify util/texi2{dvi,pdf}
 	epatch "${FILESDIR}"/${P}-high-precision.patch #200662
+	epatch "${FILESDIR}"/${P}-aix.patch
 
 	# FreeBSD requires install-sh, but usptream don't have it marked
 	# exec, #195076

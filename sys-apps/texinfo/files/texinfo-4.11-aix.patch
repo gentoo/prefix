@@ -1,0 +1,25 @@
+--- makeinfo/lang.h.orig	2007-12-01 23:21:02 +0100
++++ makeinfo/lang.h	2007-12-01 23:22:18 +0100
+@@ -26,6 +26,10 @@
+  * Actually we don't currently support this (may be in the future) ;-)
+  * These code are the ISO-639 two letter codes.
+  */
++#ifdef hz /* AIX defines this in <sys/m_param.h> */
++#undef hz
++#endif
++
+ typedef enum
+ { 
+   aa, ab, ae, af, ak, am, an, ar, as, av, ay, az, ba, be, bg, bh, bi,
+--- gnulib/lib/stdlib_.h.orig	2007-12-01 23:32:27 +0100
++++ gnulib/lib/stdlib_.h	2007-12-01 23:33:05 +0100
+@@ -108,6 +108,9 @@
+    implementation.
+    Returns the open file descriptor if successful, otherwise -1 and errno
+    set.  */
++#  ifdef mkstemp
++#   undef mkstemp /* aix might have defined this to mkstemp64 */
++#  endif
+ #  define mkstemp rpl_mkstemp
+ extern int mkstemp (char * /*template*/);
+ # else
