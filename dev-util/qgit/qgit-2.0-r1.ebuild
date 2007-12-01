@@ -30,12 +30,7 @@ src_compile() {
 }
 
 src_install() {
-	if [[ ${CHOST} != *-darwin* ]]; then
-		newbin bin/qgit qgit4
-	else
-		dodir /bin
-		cp -R bin/qgit.app "${ED}"/bin
-	fi
+	newbin bin/qgit qgit4
 	dodoc README
 }
 
