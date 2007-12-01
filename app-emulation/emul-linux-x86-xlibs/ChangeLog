@@ -1,6 +1,12 @@
 # ChangeLog for app-emulation/emul-linux-x86-xlibs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-xlibs/ChangeLog,v 1.69 2007/11/28 23:17:00 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-xlibs/ChangeLog,v 1.70 2007/11/30 22:04:38 angelos Exp $
+
+*emul-linux-x86-xlibs-20071128-r2 (30 Nov 2007)
+
+  30 Nov 2007; Christoph Mende <angelos@gentoo.org>
+  +emul-linux-x86-xlibs-20071128-r2.ebuild:
+  Revbump to fix the collision on libGL.so
 
   28 Nov 2007; Chris Gianelloni <wolf31o2@gentoo.org>
   emul-linux-x86-xlibs-20071128-r1.ebuild:
