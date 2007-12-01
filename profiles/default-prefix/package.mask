@@ -22,13 +22,6 @@
 ##   End example
 ##
 
-# Fabian Groffen <grobian@gentoo.org> (01 Dec 2007)
-# Remask texinfo-4.11, it depends on your filesystem if it compiles or
-# not.  Since this includes filesystems over NFS it can be on any
-# system, hence a global mask.  See bug #200662
-=sys-apps/texinfo-4.11
-=sys-apps/texinfo-4.11-r1
-
 # Fabian Groffen <grobian@gentoo.org> (28 Nov 2007)
 # Segfaults on Solaris during compile, don't trust it for the other
 # arches
