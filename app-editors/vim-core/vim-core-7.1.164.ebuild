@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit vim
+inherit vim autotools
 
 VIM_VERSION="7.1"
 VIM_GENTOO_PATCHES="vim-${VIM_VERSION}-gentoo-patches.tar.bz2"
@@ -23,3 +23,12 @@ KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-ma
 IUSE=""
 DEPEND="${DEPEND}"
 PDEPEND="!livecd? ( app-vim/gentoo-syntax )"
+
+src_unpack() {
+	vim_src_unpack || die
+	epatch "${FILESDIR}"/vim-darwin-optimize.patch
+	(
+		cd "${S}"/src
+		eautoreconf
+	)
+}
