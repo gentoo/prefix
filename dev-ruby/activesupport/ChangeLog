@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/activesupport
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.51 2007/10/21 15:07:09 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.52 2007/12/01 09:13:41 corsair Exp $
+
+  01 Dec 2007; Markus Rothe <corsair@gentoo.org> activesupport-1.4.4.ebuild:
+  Stable on ppc64; bug #200159
 
   21 Oct 2007; Steve Dibb <beandog@gentoo.org> activesupport-1.4.4.ebuild:
   amd64 stable
