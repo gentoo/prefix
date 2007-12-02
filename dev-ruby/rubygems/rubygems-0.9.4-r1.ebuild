@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-0.9.4-r1.ebuild,v 1.2 2007/11/03 17:45:40 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-0.9.4-r1.ebuild,v 1.3 2007/12/01 17:20:47 corsair Exp $
 
 EAPI="prefix"
 

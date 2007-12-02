@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/rubygems
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.72 2007/11/18 13:40:21 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.73 2007/12/01 17:20:47 corsair Exp $
+
+  01 Dec 2007; Markus Rothe <corsair@gentoo.org> rubygems-0.9.4-r1.ebuild:
+  Stable on ppc64
 
 *rubygems-0.9.4-r2 (18 Nov 2007)
 
