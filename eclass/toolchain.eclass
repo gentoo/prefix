@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.343 2007/11/20 05:06:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.344 2007/12/01 18:33:18 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -2435,6 +2435,7 @@ is_ada() {
 }
 
 is_treelang() {
+	is_crosscompile && return 1 #199924
 	gcc-lang-supported treelang || return 1
 	use build && return 1
 	#use treelang

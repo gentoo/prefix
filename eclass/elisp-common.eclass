@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.30 2007/11/17 15:39:35 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.31 2007/12/01 15:35:02 ulm Exp $
 #
 # Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
@@ -129,9 +129,13 @@
 
 # @ECLASS-VARIABLE: SITELISP
 # @DESCRIPTION:
-# Directory where Emacs Lisp files are installed.
+# Directory where packages install Emacs Lisp files.
 SITELISP=/usr/share/emacs/site-lisp
 ESITELISP=${EPREFIX}${SITELISP}
+
+# Directory where packages install miscellaneous (not Lisp) files.
+SITEETC=/usr/share/emacs/etc
+ESITEETC=${EPREFIX}${SITEETC}
 
 # @ECLASS-VARIABLE: SITEFILE
 # @DESCRIPTION:
@@ -257,10 +261,11 @@ elisp-site-file-install() {
 	local sf="$1" my_pn="${2:-${PN}}"
 	einfo "Installing site initialisation file for GNU Emacs ..."
 	cp "${sf}" "${T}"
-	sed -i "s:@SITELISP@:${ESITELISP}/${my_pn}:g" "${T}/$(basename "${sf}")"
+	sed -i -e "s:@SITELISP@:${ESITELISP}/${my_pn}:g" \
+		-e "s:@SITEETC@:${ESITEETC}/${my_pn}:g" "${T}/${sf##*/}"
 	( # subshell to avoid pollution of calling environment
 		insinto "${SITELISP}"
-		doins "${T}/$(basename "${sf}")"
+		doins "${T}/${sf##*/}"
 	)
 }
 
@@ -304,7 +309,7 @@ elisp-site-regen() {
 	for sf in "${EROOT}${SITELISP}"/[0-9][0-9]*-gentoo.el
 	do
 		[ -r "${sf}" ] || continue
-		sflist="${sflist} $(basename "${sf}")"
+		sflist="${sflist} ${sf##*/}"
 		cat "${sf}" >>"${T}"/site-gentoo.el
 	done
 
@@ -336,7 +341,7 @@ elisp-site-regen() {
 
 All site initialisation for Gentoo-installed packages is added to
 ${EPREFIX}/usr/share/emacs/site-lisp/site-gentoo.el; site-start.el is no longer
-managed by Gentoo. You are responsible for all maintenance of
+managed by Gentoo.  You are responsible for all maintenance of
 site-start.el if there is such a file.
 
 In order for this site initialisation to be loaded for all users
@@ -345,9 +350,9 @@ automatically, you can add a line like this:
 	(require 'site-gentoo)
 
 to ${EPREFIX}/usr/share/emacs/site-lisp/site-start.el.  Alternatively, that line
-can be added by individual users to their initialisation files, or for
-greater flexibility, users can select which of the package-specific
-initialisation files in ${EPREFIX}/usr/share/emacs/site-lisp/ to load.
+can be added by individual users to their initialisation files, or,
+for greater flexibility, users can load individual package-specific
+initialisation files from ${EPREFIX}/usr/share/emacs/site-lisp/.
 EOF
 		echo
 	fi
