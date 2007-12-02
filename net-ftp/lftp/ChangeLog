@@ -1,6 +1,9 @@
 # ChangeLog for net-ftp/lftp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.142 2007/11/16 03:29:13 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.143 2007/12/01 17:31:38 corsair Exp $
+
+  01 Dec 2007; Markus Rothe <corsair@gentoo.org> lftp-3.5.14.ebuild:
+  Stable on ppc64
 
 *lftp-3.6.1 (16 Nov 2007)
 
