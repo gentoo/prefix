@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/gcc-config-1.4.0-r2.ebuild,v 1.1 2007/08/31 01:42:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/gcc-config-1.4.0-r4.ebuild,v 1.1 2007/10/11 05:27:56 vapier Exp $
 
 EAPI="prefix"
 
@@ -15,10 +15,11 @@ SRC_URI=""
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE=""
 
-RDEPEND="!app-admin/eselect-compiler"
+RDEPEND="!app-admin/eselect-compiler
+	>=sys-devel/binutils-config-1.9-r04.3"
 
 S=${WORKDIR}
 

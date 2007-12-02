@@ -1,6 +1,19 @@
 # ChangeLog for sys-devel/gcc-config
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.166 2007/08/31 01:42:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.168 2007/10/11 05:27:56 vapier Exp $
+
+*gcc-config-1.4.0-r4 (11 Oct 2007)
+
+  11 Oct 2007; Mike Frysinger <vapier@gentoo.org> files/gcc-config-1.4.0,
+  +gcc-config-1.4.0-r4.ebuild:
+  Make sure we dont create CTARGET-VER entries in env.d #195054.
+
+*gcc-config-1.4.0-r3 (07 Oct 2007)
+
+  07 Oct 2007; Mike Frysinger <vapier@gentoo.org> files/gcc-config-1.4.0,
+  +gcc-config-1.4.0-r3.ebuild:
+  When querying for a current profile for a different target than the host,
+  make sure we query the right target #193353.
 
 *gcc-config-1.4.0-r2 (31 Aug 2007)
 

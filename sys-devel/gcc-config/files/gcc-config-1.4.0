@@ -1,7 +1,7 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/bash
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.4.0,v 1.21 2007/08/31 01:42:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.4.0,v 1.23 2007/10/11 05:27:57 vapier Exp $
 
 trap ":" INT QUIT TSTP
 
@@ -265,7 +265,9 @@ switch_profile() {
 
 		# Punt old files
 		rm -f "${ENV_D}/05gcc"
+		rm -f "${ENV_D}/05gcc-${CTARGET}"-*
 		rm -f "${GCC_ENV_D}/config"
+		rm -f "${GCC_ENV_D}/config-${CTARGET}"-*
 	fi
 
 	# Find the bin wrapper
@@ -719,7 +721,9 @@ done
 ${SET_X} && set -x
 
 get_real_chost
-CTARGET=${CTARGET:-${REAL_CHOST}}
+[[ ${DOIT} == "get_current_profile" ]] \
+	&& CTARGET=${CTARGET:-${CC_COMP:-${REAL_CHOST}}} \
+	|| CTARGET=${CTARGET:-${REAL_CHOST}}
 
 if [[ ${DOIT} == "switch_profile" ]] && [[ -z ${CC_COMP} ]] ; then
 	usage 1
