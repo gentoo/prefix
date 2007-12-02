@@ -3,48 +3,64 @@
 
 use strict;
 use warnings;
+use Carp;
 
 # create a hash of valid architectures
 my $filename = 'profiles/arch.list';
 
-open ARCHLIST, "< $filename" or die "Cannot open $filename : $!";
+open my $archlist_handle, '<', $filename or croak "Cannot open $filename : $!";
 
 my %arch;
-while ( <ARCHLIST> ) {
+while ( <$archlist_handle> ) {
 	chomp;
-	$arch{$_} = 1 unless m/^(?:#|(?:prefix)?$)/;
+	$arch{$_} = ! m/^(?:\#|(?:prefix)?$)/xms;
 }
 
-close ARCHLIST;
+close $archlist_handle or croak "couldn't close $archlist_handle";
 
 # we have yet to print to the screen
 my $first = 1;
 
 # process ebuilds
-while ( defined( my $ebuild = <*-*/*/*.ebuild> ) ) { 
+while ( defined( my $ebuild = glob '*-*/*/*.ebuild' ) ) {
 	@ARGV = $ebuild;
 	while ( <> ) {
-		if ( ?^KEYWORDS=? ) {
+		if ( ?^KEYWORDS=?x ) {
 			my ( @forbidden, @stable );
 
 			# check keywords for validity
-			foreach ( split /\s+/, ( split q{"} )[1] ) {
-				push @stable, $_ unless ( s/^[-~]// );
-				push @forbidden, $_ unless ( $arch{$_} );
+			foreach ( split /\s+/xms, ( split qr{"} )[1] ) {
+				if ( ! s/^[-~]//xms ) {
+					push @stable, $_;
+				}
+				if ( ! $arch{$_} ) {
+					push @forbidden, $_;
+				}
 			}
 
 			# print a report if necessary
 			if ( @forbidden || @stable ) {
-				unless ( $first ) { print "\n" } else { $first=0 }
-				$ebuild =~ s{/[^/]+/}{/};
-				$ebuild = substr( $ebuild, 0, length( $ebuild ) - 7 );
+				if ( ! $first ) {
+					print "\n";
+				}
+				else {
+					$first=0;
+				}
+				$ebuild =~ s,/[^/]+/,/,xms;
+				$ebuild = substr $ebuild, 0, length( $ebuild ) - 7;
 				printf "EBUILD    : %s\n", $ebuild;
-				printf "forbidden : %s\n", @forbidden if ( @forbidden );
-				printf "stable    : %s\n", @stable if ( @stable );
+ 				if ( @forbidden ) {
+					printf "forbidden : %s\n", @forbidden;
+				}
+				if ( @stable ) {
+					printf "stable    : %s\n", @stable;
+				}
 			}
 		}
 	} continue {
-		reset if eof;
+		if (eof) {
+			reset;
+		}
 	}
 }
 
