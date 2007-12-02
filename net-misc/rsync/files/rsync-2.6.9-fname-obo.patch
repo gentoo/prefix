@@ -1,5 +1,7 @@
---- rsync-2.6.9.orig/sender.c	2006-09-20 03:53:32.000000000 +0200
-+++ rsync-2.6.9/sender.c	2007-07-25 15:33:05.000000000 +0200
+http://bugs.gentoo.org/189132
+
+--- rsync-2.6.9/sender.c
++++ rsync-2.6.9/sender.c
 @@ -123,6 +123,7 @@
  	char fname[MAXPATHLEN];
  	struct file_struct *file;

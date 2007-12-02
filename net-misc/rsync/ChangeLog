@@ -1,6 +1,26 @@
 # ChangeLog for net-misc/rsync
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.132 2007/09/28 13:08:11 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.137 2007/12/01 22:37:42 jokey Exp $
+
+  01 Dec 2007; Markus Ullmann <jokey@gentoo.org> rsync-2.6.9-r5.ebuild:
+  Stable on arm/sparc
+
+  01 Dec 2007; Christoph Mende <angelos@gentoo.org> rsync-2.6.9-r5.ebuild:
+  Stable on amd64 wrt bug #200821
+
+  01 Dec 2007; Markus Meier <maekke@gentoo.org> rsync-2.6.9-r5.ebuild:
+  x86 stable, security bug #200821
+
+*rsync-3.0.0_pre6 (01 Dec 2007)
+
+  01 Dec 2007; Mike Frysinger <vapier@gentoo.org> +rsync-3.0.0_pre6.ebuild:
+  Version bump.
+
+*rsync-2.6.9-r5 (01 Dec 2007)
+
+  01 Dec 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/rsync-2.6.9-munge-symlinks.patch, +rsync-2.6.9-r5.ebuild:
+  Fix from upstream for #200821.
 
 *rsync-2.6.9-r4 (28 Sep 2007)
 

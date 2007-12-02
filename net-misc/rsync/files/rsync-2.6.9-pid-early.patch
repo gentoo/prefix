@@ -1,6 +1,8 @@
-diff -ur a/clientserver.c b/clientserver.c
---- a/clientserver.c	2006-10-24 01:36:42 +0100
-+++ b/clientserver.c	2007-09-20 10:17:50 +0100
+http://bugs.gentoo.org/192075
+https://bugzilla.samba.org/show_bug.cgi?id=4998
+
+--- a/clientserver.c
++++ b/clientserver.c
 @@ -830,21 +830,14 @@
  		return start_daemon(STDIN_FILENO, STDIN_FILENO);
  	}
