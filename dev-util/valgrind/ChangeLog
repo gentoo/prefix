@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/valgrind
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.82 2007/11/17 19:53:06 griffon26 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.83 2007/12/01 17:23:39 corsair Exp $
+
+  01 Dec 2007; Markus Rothe <corsair@gentoo.org> valgrind-3.2.3-r1.ebuild:
+  Stable on ppc64
 
   17 Nov 2007; Maurice van der Pot <griffon26@gentoo.org>
   +files/valgrind-3.2.3-glibc-2.7.patch, valgrind-3.2.3-r1.ebuild:
