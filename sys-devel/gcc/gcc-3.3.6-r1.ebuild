@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.3.6-r1.ebuild,v 1.8 2007/07/22 06:35:08 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.3.6-r1.ebuild,v 1.9 2007/12/01 20:52:19 vapier Exp $
 
 EAPI="prefix"
 
@@ -76,7 +76,7 @@ PDEPEND="|| ( sys-devel/gcc-config app-admin/eselect-compiler )"
 src_unpack() {
 	gcc_src_unpack
 
-	if [[ -n ${UCLIBC_VER} ]] && is_uclibc ; then
+	if [[ -n ${UCLIBC_VER} ]] && [[ ${CTARGET} == *-uclibc* ]] ; then
 		mv ${S}/gcc-3.3.2/libstdc++-v3/config/os/uclibc ${S}/libstdc++-v3/config/os/ || die
 		mv ${S}/gcc-3.3.2/libstdc++-v3/config/locale/uclibc ${S}/libstdc++-v3/config/locale/ || die
 	fi
