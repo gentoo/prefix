@@ -46,6 +46,14 @@ src_unpack() {
 	if ! built_with_use =x11-libs/qt-4* ssl; then
 		epatch ${FILESDIR}/java_files_remove_ssl.diff
 	fi
+
+	sed -i designer-integration/pri/jambi.pri \
+		-e "/^macx:/a\    INSTALL_PREFIX = ${EPREFIX}/usr/$(get_libdir)/qt4/plugins/designer" \
+	|| die "sed failed"
+
+	sed -i qtjambi/qtjambi_base.pri \
+		-e "/^macx:/a\    INSTALL_PREFIX = ${EPREFIX}/usr/$(get_libdir)/qt4" \
+	|| die "sed failed"
 }
 
 src_compile() {
@@ -81,13 +89,19 @@ src_compile() {
 
 	# generate start scripts
 	jcp="${EPREFIX}/usr/share/qtjambi-4/lib"
-	local ld_vars_prefix
-	[[ ${CHOST} == *-darwin* ]] && ld_vars_prefix=DY
 	cd "${S}" && echo "#!${EPREFIX}/bin/bash" > bin/jambi-designer
-	cd "${S}" && echo "${ld_vars_prefix}LD_LIBRARY_PATH=${EPREFIX}/usr/lib/qt4 CLASSPATH=${jcp}/qtjambi.jar:${jcp}/qtjambi-src.jar:$CLASSPATH ${EPREFIX}/usr/bin/designer" >> bin/jambi-designer
+	if [[ ${CHOST} == *-darwin* ]]; then
+		cd "${S}" && echo "DYLD_LIBRARY_PATH=${EPREFIX}/usr/lib/qt4 CLASSPATH=${jcp}/qtjambi.jar:${jcp}/qtjambi-src.jar:$CLASSPATH ${EPREFIX}/usr/bin/Designer" >> bin/jambi-designer
+	else
+		cd "${S}" && echo "LD_LIBRARY_PATH=${EPREFIX}/usr/lib/qt4 CLASSPATH=${jcp}/qtjambi.jar:${jcp}/qtjambi-src.jar:$CLASSPATH ${EPREFIX}/usr/bin/designer" >> bin/jambi-designer
+	fi
 
 	cd "${S}" && echo "#!${EPREFIX}/bin/bash" > bin/jambi
-	cd "${S}" && echo "${ld_vars_prefix}LD_LIBRARY_PATH=${EPREFIX}/usr/lib/qt4 java -cp ${jcp}/qtjambi.jar:${jcp}/qtjambi-src.jar com.trolltech.launcher.Launcher" >> bin/jambi
+	if [[ ${CHOST} == *-darwin* ]]; then
+		cd "${S}" && echo "DYLD_LIBRARY_PATH=${EPREFIX}/usr/lib/qt4 java -XstartOnFirstThread -cp ${jcp}/qtjambi.jar:${jcp}/qtjambi-src.jar com.trolltech.launcher.Launcher" >> bin/jambi
+	else
+		cd "${S}" && echo "LD_LIBRARY_PATH=${EPREFIX}/usr/lib/qt4 java -cp ${jcp}/qtjambi.jar:${jcp}/qtjambi-src.jar com.trolltech.launcher.Launcher" >> bin/jambi
+	fi
 }
 
 src_install() {
@@ -98,7 +112,7 @@ src_install() {
 	# Install designer plugins
 	insinto "/usr/$(get_libdir)/qt4/plugins/designer"
 	insopts -m0755
-	doins plugins/designer/*.so
+	doins plugins/designer/*$(get_libname)
 
 	cp -dpPR "${S}"/lib/* "${ED}/usr/$(get_libdir)/qt4"
 
