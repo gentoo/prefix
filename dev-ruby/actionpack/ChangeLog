@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/actionpack
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.70 2007/12/01 09:02:42 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.71 2007/12/01 22:46:00 angelos Exp $
+
+  01 Dec 2007; Christoph Mende <angelos@gentoo.org>
+  actionpack-1.13.6.ebuild:
+  Stable on amd64 wrt bug #200159
 
   01 Dec 2007; Hans de Graaff <graaff@gentoo.org> -actionpack-1.13.2.ebuild,
   -actionpack-1.13.3.ebuild, -actionpack-1.13.4.ebuild:
