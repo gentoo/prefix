@@ -1,6 +1,10 @@
 # ChangeLog for app-emacs/nxml-mode
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/ChangeLog,v 1.27 2007/11/23 15:19:18 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/ChangeLog,v 1.28 2007/12/01 15:49:17 ulm Exp $
+
+  01 Dec 2007; Ulrich Mueller <ulm@gentoo.org> files/50nxml-mode-gentoo.el,
+  nxml-mode-20041004-r3.ebuild:
+  Use SITEETC eclass variable.
 
 *nxml-mode-20041004-r3 (23 Nov 2007)
 

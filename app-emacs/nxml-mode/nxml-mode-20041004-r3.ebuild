@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/nxml-mode-20041004-r3.ebuild,v 1.1 2007/11/23 15:19:18 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/nxml-mode-20041004-r3.ebuild,v 1.2 2007/12/01 15:49:17 ulm Exp $
 
 EAPI="prefix"
 
@@ -40,7 +40,7 @@ src_install() {
 		|| die "elisp-site-file-install failed"
 	insinto ${SITELISP}/${PN}
 	doins -r char-name || die "doins char-name failed"
-	insinto /usr/share/emacs/etc/${PN}
+	insinto ${SITEETC}/${PN}
 	doins -r schema || die "doins schema failed"
 	doinfo nxml-mode.info
 	dodoc README VERSION TODO NEWS || die "dodoc failed"
