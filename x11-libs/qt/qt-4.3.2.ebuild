@@ -270,7 +270,7 @@ src_install() {
 	sed -i -e "s:${S}/bin:${QTBINDIR}:g" "${D}"/${QTLIBDIR}/pkgconfig/*.pc
 
 	# Move .pc files into the pkgconfig directory
-	dodir ${QTPCDIR/${EPREFIX}}
+	dodir ${QTPCDIR#${EPREFIX}}
 	mv "${D}"/${QTLIBDIR}/pkgconfig/*.pc "${D}"/${QTPCDIR}
 
 	# Install .desktop files, from bug #174033
