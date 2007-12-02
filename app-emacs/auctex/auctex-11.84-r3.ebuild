@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.84-r3.ebuild,v 1.2 2007/11/24 21:11:52 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.84-r3.ebuild,v 1.3 2007/12/01 15:40:35 ulm Exp $
 
 EAPI="prefix"
 
@@ -40,7 +40,7 @@ src_compile() {
 		--with-auto-dir="${EPREFIX}/var/lib/auctex" \
 		--with-lispdir="${ESITELISP}/${PN}" \
 		--with-packagelispdir="${ESITELISP}/${PN}" \
-		--with-packagedatadir="${EPREFIX}/usr/share/emacs/etc/${PN}" \
+		--with-packagedatadir="${ESITEETC}/${PN}" \
 		--with-texmf-dir="${EPREFIX}${TEXMF}" \
 		$(use_enable preview-latex preview) || die "econf failed"
 	emake || die "emake failed"
