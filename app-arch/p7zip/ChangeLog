@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/p7zip
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.81 2007/10/26 02:27:47 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.82 2007/12/01 17:06:11 corsair Exp $
+
+  01 Dec 2007; Markus Rothe <corsair@gentoo.org> p7zip-4.55.ebuild:
+  Stable on ppc64
 
   26 Oct 2007; Jeroen Roovers <jer@gentoo.org> p7zip-4.55.ebuild:
   Stable for HPPA too.
