@@ -2,6 +2,9 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Dec 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Unmask gcc-config-1.4.0* as I 'sorted it out'
+
   28 Nov 2007; Fabian Groffen <grobian@gentoo.org> darwin/package.mask,
   package.mask:
   Drop texinfo mask, as a build fix was committed

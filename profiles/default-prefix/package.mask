@@ -64,10 +64,6 @@ sys-apps/bsd-man-pages
 app-emacs/jde
 dev-java/kaffe
 
-# Fabian Groffen <grobian@gentoo.org> (29 Aug 2007)
-# Doesn't play nice with our binutils-config, needs some sorting out
-=sys-devel/gcc-config-1.4.0*
-
 # Elias Pipping <pipping@gentoo.org> (18 Aug 2007)
 # does not compile without USE=nls; --color is broken on single files
 # see bug #189311 for details
