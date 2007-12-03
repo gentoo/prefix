@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.5 2007/10/27 14:30:38 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.6 2007/12/02 22:47:10 aballier Exp $
 
 #
 # Original Author: Alexis Ballier <aballier@gentoo.org>
@@ -101,7 +101,7 @@ texlive-module_src_install() {
 
 	insinto /etc/texmf/updmap.d
 	[ -f "${S}/${PN}.cfg" ] && doins "${S}/${PN}.cfg"
-	insinto /etc/texmf/dvips/config
+	insinto /etc/texmf/dvips.d
 	[ -f "${S}/${PN}-config.ps" ] && doins "${S}/${PN}-config.ps"
 	insinto /etc/texmf/dvipdfm/config
 	[ -f "${S}/${PN}-config" ] && doins "${S}/${PN}-config"
