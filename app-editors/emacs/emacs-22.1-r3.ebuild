@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r3.ebuild,v 1.9 2007/12/01 01:12:40 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r3.ebuild,v 1.10 2007/12/02 20:00:52 ulm Exp $
 
 EAPI="prefix"
 
@@ -153,6 +153,8 @@ src_compile() {
 }
 
 src_install () {
+	local i m
+
 	emake install DESTDIR="${D}" || die "make install failed"
 
 	rm "${ED}"/usr/bin/emacs-${FULL_VERSION}-emacs-${SLOT} \
@@ -163,13 +165,13 @@ src_install () {
 	# move info documentation to the correct place
 	einfo "Fixing info documentation ..."
 	for i in "${ED}"/usr/share/info/emacs-${SLOT}/*; do
-		mv ${i} ${i}.info || die "mv info failed"
+		mv "${i}" "${i}.info" || die "mv info failed"
 	done
 
 	# move man pages to the correct place
 	einfo "Fixing manpages ..."
 	for m in "${ED}"/usr/share/man/man1/* ; do
-		mv ${m} ${m%.1}-emacs-${SLOT}.1 || die "mv man failed"
+		mv "${m}" "${m%.1}-emacs-${SLOT}.1" || die "mv man failed"
 	done
 
 	# avoid collision between slots, see bug #169033 e.g.
@@ -206,7 +208,7 @@ emacs-infodir-rebuild() {
 	rm -f "${EROOT}"${infodir}/dir{,.*}
 	for f in "${EROOT}"${infodir}/*.info*; do
 		[[ ${f##*/} == *[0-9].info* ]] \
-			|| install-info --info-dir="${EROOT}"${infodir} ${f} &>/dev/null
+			|| install-info --info-dir="${EROOT}"${infodir} "${f}" &>/dev/null
 	done
 	echo
 }
@@ -217,7 +219,7 @@ pkg_postinst() {
 
 	local f
 	for f in "${EROOT}"/var/lib/games/emacs/{snake,tetris}-scores; do
-		test -e ${f} || touch ${f}
+		test -e "${f}" || touch "${f}"
 	done
 
 	elisp-site-regen
