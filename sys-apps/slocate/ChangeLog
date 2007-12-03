@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/slocate
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/slocate/ChangeLog,v 1.73 2007/08/25 18:20:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/slocate/ChangeLog,v 1.74 2007/12/02 20:03:13 vapier Exp $
+
+  02 Dec 2007; Mike Frysinger <vapier@gentoo.org> slocate-2.7-r8.ebuild,
+  slocate-3.1-r1.ebuild:
+  Allow people to have both slocate and locate groups at the same time #200949
+  by Timothy Stotts.
 
   25 Aug 2007; Mike Frysinger <vapier@gentoo.org>
   files/slocate-3.1-cron.patch:

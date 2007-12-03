@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/slocate/slocate-3.1-r1.ebuild,v 1.2 2007/07/23 05:25:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/slocate/slocate-3.1-r1.ebuild,v 1.3 2007/12/02 20:03:13 vapier Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ RDEPEND="${DEPEND}
 	!sys-apps/rlocate"
 
 pkg_setup() {
-	if [[ -n $(egetent group slocate) ]] ; then
+	if [[ -n $(egetent group slocate) ]] && [[ -z $(egetent group locate) ]] ; then
 		eerror "The 'slocate' group has been renamed to 'locate'."
 		eerror "You seem to already have a 'slocate' group."
 		eerror "Please rename it:"
