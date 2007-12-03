@@ -1,13 +1,14 @@
-* grobian@gentoo.org: open the files in the same order the Makefile
-                      depends on them, such that we don't trigger a
-                      remake all the time, see:
-                      http://bugs.gentoo.org/show_bug.cgi?id=200662
+* http://bugs.gentoo.org/show_bug.cgi?id=200662
 
---- info/makedoc.c
-+++ info/makedoc.c
-@@ -145,8 +145,8 @@
+diff -ru texinfo-4.11.orig/info/makedoc.c texinfo-4.11/info/makedoc.c
+--- texinfo-4.11.orig/info/makedoc.c	2007-07-01 23:20:30.000000000 +0200
++++ texinfo-4.11/info/makedoc.c	2007-12-03 17:40:18.241898334 +0100
+@@ -144,9 +144,11 @@
+       key_filename = NULL_DEVICE;
      }
  
++  /* the order of these files depends exactly on the order in the
++   * Makefile.{in,am}, see also the fclose calls below */
    funs_stream = must_fopen (funs_filename, "w");
 -  doc_stream = must_fopen (doc_filename, "w");
    key_stream = must_fopen (key_filename, "w");
@@ -15,9 +16,12 @@
  
    fprintf (funs_stream,
        "/* %s -- Generated declarations for Info commands. */\n\n\
-@@ -226,8 +226,8 @@
+@@ -225,9 +227,11 @@
+   fprintf (key_stream, "   { (char *)NULL, 0 }\n};\n");
    fprintf (funs_stream, "\n#define A_NCOMMANDS %u\n", next_func_key());
  
++  /* the order of these files depends exactly on the order in the
++   * Makefile.{in,am}, see also the must_fopen calls above */
    fclose (funs_stream);
 -  fclose (doc_stream);
    fclose (key_stream);
@@ -25,3 +29,15 @@
  
    if (tags_only)
      maybe_dump_tags (stdout);
+diff -ru texinfo-4.11.orig/info/Makefile.am texinfo-4.11/info/Makefile.am
+--- texinfo-4.11.orig/info/Makefile.am	2006-06-29 09:58:26.000000000 +0200
++++ texinfo-4.11/info/Makefile.am	2007-12-03 17:41:21.644483827 +0100
+@@ -54,6 +54,8 @@
+ 
+ # We need a linear ordering to prevent race condition in parallel make.
+ # See the node ``(automake)Multiple Outputs'' for an explanation.
++# Make sure this matches with order in which makedoc.c creates these
++# files.
+ doc.c: key.c
+ key.c: funs.h
+ 
