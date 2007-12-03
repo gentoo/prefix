@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.50-r1.ebuild,v 1.2 2007/12/01 01:13:51 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.50-r1.ebuild,v 1.4 2007/12/02 20:01:33 ulm Exp $
 
 EAPI="prefix"
 
@@ -22,7 +22,7 @@ SRC_URI=""
 LICENSE="GPL-3 FDL-1.2 BSD"
 SLOT="23"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
-IUSE="alsa gif gpm gtk gzip-el hesiod jpeg kerberos motif png spell sound source svg tiff toolkit-scroll-bars X Xaw3d xpm"
+IUSE="alsa dbus gif gpm gtk gzip-el hesiod jpeg kerberos motif png spell sound source svg tiff toolkit-scroll-bars X Xaw3d xpm"
 RESTRICT="strip"
 
 X_DEPEND="x11-libs/libXmu x11-libs/libXt x11-misc/xbitmaps"
@@ -36,6 +36,7 @@ RDEPEND="!=app-editors/emacs-cvs-23.0.0-r6
 	spell? ( || ( app-text/ispell app-text/aspell ) )
 	alsa? ( media-libs/alsa-lib )
 	gpm? ( sys-libs/gpm )
+	dbus? ( sys-apps/dbus )
 	X? (
 		$X_DEPEND
 		x11-misc/emacs-desktop
@@ -150,7 +151,7 @@ src_compile() {
 
 	myconf="${myconf} $(use_with hesiod)"
 	myconf="${myconf} $(use_with kerberos) $(use_with kerberos kerberos5)"
-	myconf="${myconf} $(use_with gpm)"
+	myconf="${myconf} $(use_with gpm) $(use_with dbus)"
 
 	if use aqua; then
 		einfo "Configuring to build with Carbon Emacs"
@@ -178,6 +179,8 @@ src_compile() {
 }
 
 src_install () {
+	local i m
+
 	emake install DESTDIR="${D}" || die "make install failed"
 
 	rm "${ED}"/usr/bin/emacs-${FULL_VERSION}-${EMACS_SUFFIX} \
@@ -196,13 +199,13 @@ src_install () {
 	# move info documentation to the correct place
 	einfo "Fixing info documentation ..."
 	for i in "${ED}"/usr/share/info/${EMACS_SUFFIX}/*; do
-		mv ${i} ${i}.info || die "mv info failed"
+		mv "${i}" "${i}.info" || die "mv info failed"
 	done
 
 	# move man pages to the correct place
 	einfo "Fixing manpages ..."
 	for m in "${ED}"/usr/share/man/man1/* ; do
-		mv ${m} ${m%.1}-${EMACS_SUFFIX}.1 || die "mv man failed"
+		mv "${m}" "${m%.1}-${EMACS_SUFFIX}.1" || die "mv man failed"
 	done
 
 	# avoid collision between slots, see bug #169033 e.g.
@@ -239,7 +242,7 @@ emacs-infodir-rebuild() {
 	rm -f "${EROOT}"${infodir}/dir{,.*}
 	for f in "${EROOT}"${infodir}/*.info*; do
 		[[ ${f##*/} == *[0-9].info* ]] \
-			|| install-info --info-dir="${EROOT}"${infodir} ${f} &>/dev/null
+			|| install-info --info-dir="${EROOT}"${infodir} "${f}" &>/dev/null
 	done
 	echo
 }
@@ -250,7 +253,7 @@ pkg_postinst() {
 
 	local f
 	for f in "${EROOT}"/var/lib/games/emacs/{snake,tetris}-scores; do
-		test -e ${f} || touch ${f}
+		test -e "${f}" || touch "${f}"
 	done
 
 	elisp-site-regen

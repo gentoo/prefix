@@ -1,6 +1,16 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.175 2007/12/01 01:13:51 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.177 2007/12/02 20:01:33 ulm Exp $
+
+  02 Dec 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.1.50-r2.ebuild,
+  emacs-cvs-22.1.50_p20070829-r2.ebuild,
+  emacs-cvs-23.0.0_p20070920-r1.ebuild, emacs-cvs-23.0.50-r1.ebuild,
+  emacs-cvs-23.0.60-r1.ebuild:
+  Declare some variables as local, add some quotes.
+
+  02 Dec 2007; Christian Faulhammer <opfer@gentoo.org>
+  emacs-cvs-23.0.50-r1.ebuild:
+  make activation of dbus support possible
 
   01 Dec 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.1.50-r2.ebuild,
   emacs-cvs-22.1.50_p20070829-r2.ebuild,
