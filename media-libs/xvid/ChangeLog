@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/xvid
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/ChangeLog,v 1.95 2007/11/27 18:53:20 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/ChangeLog,v 1.96 2007/12/02 17:39:22 aballier Exp $
+
+*xvid-1.1.3-r1 (02 Dec 2007)
+
+  02 Dec 2007; Alexis Ballier <aballier@gentoo.org> +xvid-1.1.3-r1.ebuild:
+  remove text relocations in shared library, big thanks to the pax team, bug
+  #135326
 
   27 Nov 2007; Matthias Schwarzott <zzam@gentoo.org> xvid-1.0.2.ebuild,
   xvid-1.1.0-r1.ebuild, xvid-1.1.0-r3.ebuild:
