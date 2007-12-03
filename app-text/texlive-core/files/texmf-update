@@ -51,6 +51,11 @@ if [ -d /etc/texmf/updmap.d ]; then
     cat /etc/texmf/updmap.d/*.cfg > "/etc/texmf/web2c/updmap.cfg"
 fi
 
+if [ -d /etc/texmf/dvips.d ]; then
+    echo "Generating /etc/texmf/dvips/config/config.ps from /etc/texmf/dvips.d ..."
+    cat /etc/texmf/dvips.d/*.ps > "/etc/texmf/dvips/config/config.ps"
+fi
+
 echo "Generating ls-R files"
 mktexlsr &>/dev/null
 

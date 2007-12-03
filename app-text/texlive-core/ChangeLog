@@ -1,6 +1,27 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.30 2007/11/21 20:45:39 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.33 2007/12/03 00:00:30 aballier Exp $
+
+*texlive-core-2007-r9 (02 Dec 2007)
+
+  02 Dec 2007; Alexis Ballier <aballier@gentoo.org>
+  -texlive-core-2007-r8.ebuild, +texlive-core-2007-r9.ebuild:
+  push changes
+
+  02 Dec 2007; Alexis Ballier <aballier@gentoo.org> files/texmf-update,
+  texlive-core-2007-r8.ebuild:
+  let texmf-update handle dvips config.ps through /etc/texmf/dvips.d
+
+  02 Dec 2007; Alexis Ballier <aballier@gentoo.org>
+  -files/2007/tetex-3.0-CVE-2007-0650.patch,
+  -files/2007/tetex-3.0_p1-xpdf-CVE-2007-3387.patch,
+  -files/2007/xpdf-3.02pl2.patch,
+  -files/2007/texlive-core-2007-bump_makeindex_limitations.patch,
+  -files/2007/texlive-core-2007-dvips_bufferoverflow.patch,
+  -files/2007/texlive-core-2007-icu-xetex-execstacks.patch,
+  -files/2007/texlive-core-2007-libteckit-asneeded.patch,
+  -files/2007/texlive-core-2007-mpware.patch, texlive-core-2007-r8.ebuild:
+  make a patchset tarball
 
   21 Nov 2007; Alexis Ballier <aballier@gentoo.org>
   +files/2007/texlive-core-2007-bump_makeindex_limitations.patch,
