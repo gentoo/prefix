@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/rox.eclass,v 1.24 2007/11/28 17:20:03 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/rox.eclass,v 1.25 2007/12/04 02:37:29 lack Exp $
 
 # ROX eclass Version 3
 
@@ -53,21 +53,20 @@
 # need autotools to run autoreconf, if required
 inherit python autotools eutils multilib
 
-if [[ -z "${ROX_VER}" ]]; then
-	ROX_VER="2.1.0"
-fi
+ROX_VER=${ROX_VER:-"2.1.0"}
 
 RDEPEND=">=rox-base/rox-${ROX_VER}"
 
-if [[ -n "${ROX_LIB_VER}" ]]; then
+if [[ ${ROX_LIB_VER} ]]; then
 	RDEPEND="${RDEPEND}
 		>=rox-base/rox-lib-${ROX_LIB_VER}"
 fi
 
-if [[ -n "${ROX_CLIB_VER}" ]]; then
+if [[ ${ROX_CLIB_VER} ]]; then
 	RDEPEND="${RDEPEND}
 		>=rox-base/rox-clib-${ROX_CLIB_VER}"
-	DEPEND="${RDEPEND}
+	DEPEND="${DEPEND}
+		>=rox-base/rox-clib-${ROX_CLIB_VER}
 		>=dev-util/pkgconfig-0.20"
 fi
 
@@ -81,8 +80,8 @@ WRAPPERNAME=${_b:-${PN}}
 unset _a _b
 
 # This is the location where all applications are installed
-APPDIR="/usr/$(get_libdir)/rox"
 LIBDIR="/usr/$(get_libdir)"
+APPDIR="${LIBDIR}/rox"
 
 # External Functions
 
@@ -90,8 +89,8 @@ LIBDIR="/usr/$(get_libdir)"
 # WARNING: Cannot be used in global scope.
 #          Set this in src_install just before you call rox_src_install
 usemime() {
-	local myuse=$1; shift
-	use $myuse && echo "$@"
+	local myuse="$1"; shift
+	use "${myuse}" && echo "$@"
 }
 
 # Utility Functions
@@ -279,7 +278,7 @@ rox_src_install() {
 		done
 	fi
 
-	insinto ${APPDIR}
+	insinto "${APPDIR}"
 
 	# Use 'cp -pPR' and not 'doins -r' here so we don't have to do a flurry of
 	# 'chmod' calls on the executables in the appdir - Just be sure that all the
