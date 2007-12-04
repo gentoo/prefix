@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2007-r9.ebuild,v 1.1 2007/12/03 00:00:30 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2007-r10.ebuild,v 1.1 2007/12/03 20:47:59 aballier Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ HOMEPAGE="http://tug.org/texlive/"
 SLOT="0"
 LICENSE="GPL-2 LPPL-1.3c"
 
-TEXLIVE_BASICBIN_CONTENTS="bin-bibtex bin-dialog bin-dvipdfmx bin-dvipsk bin-etex bin-getnonfreefonts bin-gsftopk bin-kpathsea bin-makeindex bin-metafont bin-mfware bin-pdftex bin-tetex bin-tex bin-texconfig lib-regex lib-zlib"
+TEXLIVE_BASICBIN_CONTENTS="bin-bibtex bin-dialog bin-dvipsk bin-etex bin-getnonfreefonts bin-gsftopk bin-kpathsea bin-makeindex bin-metafont bin-mfware bin-pdftex bin-tetex bin-tex bin-texconfig lib-regex lib-zlib"
 
 TEXLIVE_BINEXTRA_CONTENTS="bin-bibtex8 bin-chktex bin-ctie bin-cweb bin-detex bin-dtl bin-dvi2tty bin-dvicopy bin-dvidvi bin-dviljk bin-lacheck bin-patgen bin-pdftools bin-seetexk bin-texdoc bin-texware bin-thumbpdf bin-tie bin-tpic2pdftex bin-vpe bin-web bin-xpdf cweb mkind-english"
 
