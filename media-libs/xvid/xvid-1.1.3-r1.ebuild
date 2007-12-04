@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/xvid-1.1.3-r1.ebuild,v 1.1 2007/12/02 17:39:22 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/xvid-1.1.3-r1.ebuild,v 1.2 2007/12/03 07:19:57 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -27,7 +27,7 @@ IUSE="examples altivec"
 # See http://www.tortall.net/projects/yasm/ticket/114
 # the build system prefers yasm if it finds it
 # thus if we intend to have || (yasm nasm) for building
-# we need to make it block yasm < 0.6.2 on x86 
+# we need to make it block yasm < 0.6.2 on x86
 # otherwise it will compile wrong code
 NASM=">=dev-lang/yasm-0.6.2"
 DEPEND="x86? ( ${NASM} )
