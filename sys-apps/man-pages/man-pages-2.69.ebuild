@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-2.66.ebuild,v 1.2 2007/10/23 22:48:25 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-2.69.ebuild,v 1.1 2007/12/04 02:52:08 vapier Exp $
 
 EAPI="prefix"
 
