@@ -1,0 +1,30 @@
+# ChangeLog for dev-texlive/texlive-langgerman
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-langgerman/ChangeLog,v 1.6 2007/10/26 19:22:33 fmccor Exp $
+
+  26 Oct 2007; Ferris McCormick <fmccor@gentoo.org>
+  texlive-langgerman-2007.ebuild:
+  Add ~amd64 keyword --- Bug #195815
+
+  25 Oct 2007; Markus Rothe <corsair@gentoo.org>
+  texlive-langgerman-2007.ebuild:
+  Added ~ppc64; bug #195815
+
+  25 Oct 2007; Raúl Porcel <armin76@gentoo.org>
+  texlive-langgerman-2007.ebuild:
+  Add ~alpha/~ia64 wrt bug #195815
+
+  25 Oct 2007; Ferris McCormick <fmccor@gentoo.org>
+  texlive-langgerman-2007.ebuild:
+  Add ~sparc keyword --- Bug #195815
+
+  25 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  texlive-langgerman-2007.ebuild:
+  keyworded ~x86, bug 195815
+
+*texlive-langgerman-2007 (14 Oct 2007)
+
+  14 Oct 2007; Alexis Ballier <aballier@gentoo.org> +metadata.xml,
+  +texlive-langgerman-2007.ebuild:
+  initial import
+
