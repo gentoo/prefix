@@ -1,0 +1,88 @@
+diff -Naur eix-0.10.2.orig/configure.in eix-0.10.2/configure.in
+--- eix-0.10.2.orig/configure.in	2007-12-04 11:40:36.000000000 +0100
++++ eix-0.10.2/configure.in	2007-12-04 11:54:09.000000000 +0100
+@@ -17,6 +17,7 @@
+ 
+ AC_PROG_LN_S
+ AC_PROG_CXX
++AC_FUNC_FSEEKO
+ AM_PROG_LIBTOOL
+ 
+ dnl Look for basic functions:
+diff -Naur eix-0.10.2.orig/src/database/package_reader.h eix-0.10.2/src/database/package_reader.h
+--- eix-0.10.2.orig/src/database/package_reader.h	2007-12-04 11:40:36.000000000 +0100
++++ eix-0.10.2/src/database/package_reader.h	2007-12-04 11:54:30.000000000 +0100
+@@ -10,6 +10,8 @@
+ #ifndef __PACKAGE_READER_H__
+ #define __PACKAGE_READER_H__
+ 
++#include "../../config.h"
++
+ #include <stdio.h>
+ #include <unistd.h>
+ 
+diff -Naur eix-0.10.2.orig/src/portage/mask.cc eix-0.10.2/src/portage/mask.cc
+--- eix-0.10.2.orig/src/portage/mask.cc	2007-12-04 11:40:36.000000000 +0100
++++ eix-0.10.2/src/portage/mask.cc	2007-12-04 11:53:52.000000000 +0100
+@@ -82,10 +82,10 @@
+ 	const char *end = strrchr(str, ':');
+ 	m_test_slot = bool(end);
+ 	if(m_test_slot) {
+-		m_slot = (end + 1);
++		_slot = (end + 1);
+ 		// Interpret Slot "0" as empty slot (as internally always)
+-		if(m_slot == "0")
+-			m_slot.clear();
++		if(_slot == "0")
++			_slot.clear();
+ 	}
+ 
+ 	// Get the rest (name-version|name)
+@@ -163,7 +163,7 @@
+ Mask::test(const ExtendedVersion *ev) const
+ {
+ 	if(m_test_slot) {
+-		if(m_slot != ev->slot)
++		if(_slot != ev->slot)
+ 			return false;
+ 	}
+ 	switch(m_operator)
+diff -Naur eix-0.10.2.orig/src/portage/mask.h eix-0.10.2/src/portage/mask.h
+--- eix-0.10.2.orig/src/portage/mask.h	2007-12-04 11:40:36.000000000 +0100
++++ eix-0.10.2/src/portage/mask.h	2007-12-04 11:53:52.000000000 +0100
+@@ -62,7 +62,7 @@
+ 
+ 		std::string m_category; /**< category */
+ 		std::string m_name;     /**< package name */
+-		std::string m_slot;
++		std::string _slot;
+ 		bool m_test_slot;       /**< must we match a slot? */
+ 
+ 		/** split a "mask string" into its components
+diff -Naur eix-0.10.2.orig/src/portage/package.h eix-0.10.2/src/portage/package.h
+--- eix-0.10.2.orig/src/portage/package.h	2007-12-04 11:40:36.000000000 +0100
++++ eix-0.10.2/src/portage/package.h	2007-12-04 11:53:52.000000000 +0100
+@@ -37,12 +37,12 @@
+ class SlotVersions
+ {
+ 	private:
+-		const char  *m_slot;
++		const char  *_slot;
+ 		VersionList  m_version_list;
+ 
+ 	public:
+ 		const char *slot() const
+-		{ return m_slot; }
++		{ return _slot; }
+ 
+ 		const VersionList &const_version_list() const
+ 		{ return m_version_list; }
+@@ -51,7 +51,7 @@
+ 		{ return m_version_list; }
+ 
+ 		SlotVersions(const char *s, Version *v) :
+-			m_slot(s), m_version_list(v)
++			_slot(s), m_version_list(v)
+ 		{ }
+ };
+ 

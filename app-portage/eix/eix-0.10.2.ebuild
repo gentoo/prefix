@@ -4,7 +4,7 @@
 
 EAPI=prefix
 
-inherit eutils
+inherit eutils autotools
 
 DESCRIPTION="Small utility for searching ebuilds with indexing for fast results"
 HOMEPAGE="http://dev.croup.de/proj/eix"
@@ -12,12 +12,19 @@ SRC_URI="mirror://sourceforge/eix/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="sqlite"
 
 DEPEND="sqlite? ( >=dev-db/sqlite-3 )
 	app-arch/bzip2"
 RDEPEND="${DEPEND}"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}/eix-hpux.patch"
+	eautoreconf
+}
 
 src_compile() {
 	econf \
