@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.24 2007/10/14 22:12:30 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.25 2007/12/04 13:11:15 ulm Exp $
 #
 # Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
 # Copyright 2002-2003 Matthew Kennedy <mkennedy@gentoo.org>
@@ -45,10 +45,6 @@ DEPEND=">=virtual/emacs-${VERSION}"
 RDEPEND=">=virtual/emacs-${VERSION}"
 IUSE=""
 
-if [ "${SIMPLE_ELISP}" = 't' ]; then
-	S="${WORKDIR}"
-fi
-
 elisp_pkg_setup() {
 	local emacs_version="$(elisp-emacs-version)"
 	if ! version_is_at_least "${VERSION}" "${emacs_version}"; then
@@ -56,12 +52,17 @@ elisp_pkg_setup() {
 		eerror "Use \"eselect emacs\" to select the active version."
 		die "Emacs version ${emacs_version} is too low."
 	fi
+
+	if [ "${SIMPLE_ELISP}" = 't' ]; then
+		S="${WORKDIR}"
+	fi
 }
 
 elisp_src_unpack() {
 	unpack ${A}
 	if [ "${SIMPLE_ELISP}" = 't' ]; then
-		cd "${S}" && mv ${P}.el ${PN}.el
+		cd "${S}" && mv ${P}.el ${PN}.el \
+			|| die "mv ${P}.el ${PN}.el failed"
 	fi
 }
 
