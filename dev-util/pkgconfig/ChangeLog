@@ -1,6 +1,26 @@
 # ChangeLog for dev-util/pkgconfig
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconfig/ChangeLog,v 1.65 2007/12/03 19:56:26 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconfig/ChangeLog,v 1.71 2007/12/04 18:40:39 jer Exp $
+
+  04 Dec 2007; Jeroen Roovers <jer@gentoo.org> pkgconfig-0.22.ebuild:
+  Stable for HPPA (bug #201122).
+
+  04 Dec 2007; Markus Rothe <corsair@gentoo.org> pkgconfig-0.22.ebuild:
+  Stable on ppc64; bug #201122
+
+  04 Dec 2007; nixnut <nixnut@gentoo.org> pkgconfig-0.22.ebuild:
+  Stable on ppc wrt bug 201122
+
+  04 Dec 2007; Raúl Porcel <armin76@gentoo.org> pkgconfig-0.22.ebuild:
+  alpha/ia64/sparc stable wrt #201122
+
+  04 Dec 2007; Christian Faulhammer <opfer@gentoo.org>
+  pkgconfig-0.22.ebuild:
+  unquote A and quote FILESDIR
+
+  04 Dec 2007; Christian Faulhammer <opfer@gentoo.org>
+  pkgconfig-0.22.ebuild:
+  stable x86, bug 201122
 
   03 Dec 2007; Christoph Mende <angelos@gentoo.org> pkgconfig-0.22.ebuild:
   Stable on amd64 wrt bug #201122
