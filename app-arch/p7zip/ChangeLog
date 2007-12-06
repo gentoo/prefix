@@ -1,6 +1,15 @@
 # ChangeLog for app-arch/p7zip
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.82 2007/12/01 17:06:11 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.84 2007/12/05 20:27:02 drac Exp $
+
+  05 Dec 2007; Samuli Suominen <drac@gentoo.org> p7zip-4.55-r1.ebuild:
+  amd64 stable as part of bug 198314, file-collision with lzma-utils.
+
+*p7zip-4.55-r1 (05 Dec 2007)
+
+  05 Dec 2007; Mike Frysinger <vapier@gentoo.org> +p7zip-4.55-r1.ebuild:
+  Do not install /usr/bin/lzma as there are other/dedicated packages that
+  install just the lzma compression utilities #198324.
 
   01 Dec 2007; Markus Rothe <corsair@gentoo.org> p7zip-4.55.ebuild:
   Stable on ppc64
