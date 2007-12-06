@@ -1,6 +1,11 @@
 # ChangeLog for app-text/poppler-bindings
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.79 2007/11/14 22:06:50 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.80 2007/12/05 18:51:18 cardoe Exp $
+
+  05 Dec 2007; Doug Klima <cardoe@gentoo.org> poppler-bindings-0.6.1.ebuild,
+  poppler-bindings-0.6.2.ebuild:
+  correct depend on proper cairo version. Thanks to Clemens Fruhwirth
+  <clemens@endorphin.org> bug #201080
 
   14 Nov 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   poppler-bindings-0.6.1.ebuild:

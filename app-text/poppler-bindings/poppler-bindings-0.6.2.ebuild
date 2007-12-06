@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.6.2.ebuild,v 1.1 2007/11/12 19:05:18 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.6.2.ebuild,v 1.2 2007/12/05 18:51:18 cardoe Exp $
 
 EAPI="prefix"
 
@@ -26,7 +26,7 @@ KEYWORDS="~amd64 ~ia64 ~x86"
 IUSE="gtk qt3 cairo qt4 test"
 
 RDEPEND="~app-text/poppler-${PV}
-	cairo? ( >=x11-libs/cairo-0.5 )
+	cairo? ( >=x11-libs/cairo-1.4 )
 	gtk? (
 		>=x11-libs/gtk+-2.6
 		>=gnome-base/libglade-2
