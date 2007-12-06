@@ -1,6 +1,28 @@
 # ChangeLog for app-shells/zsh
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.115 2007/11/06 00:39:19 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.120 2007/12/05 00:40:55 jer Exp $
+
+  05 Dec 2007; Jeroen Roovers <jer@gentoo.org> zsh-4.3.2-r3.ebuild:
+  Stable for HPPA (bug #201022).
+
+  04 Dec 2007; Markus Rothe <corsair@gentoo.org> zsh-4.3.2-r3.ebuild:
+  Stable on ppc64; bug #201022
+
+  04 Dec 2007; Christian Faulhammer <opfer@gentoo.org> zsh-4.3.2-r3.ebuild:
+  stable x86, security bug 201022
+
+  04 Dec 2007; Tobias Scherbaum <dertobi123@gentoo.org> zsh-4.3.2-r3.ebuild:
+  ppc stable, bug #201022
+
+*zsh-4.3.4-r1 (04 Dec 2007)
+*zsh-4.3.2-r3 (04 Dec 2007)
+
+  04 Dec 2007; Torsten Veller <tove@gentoo.org>
+  -files/zsh-4.2.1-gentoo.diff, metadata.xml, -zsh-4.2.5.ebuild,
+  -zsh-4.2.6-r1.ebuild, +zsh-4.3.2-r3.ebuild, +zsh-4.3.4-r1.ebuild:
+  Fix for #201022 by removing the file as it shouldn't be distributed.
+  Fix 4.3.4-r1 wrt #196722 and added zshcalsys.1.
+  Added myself as maintainer and removed old versions.
 
   06 Nov 2007; Chris Gianelloni <wolf31o2@gentoo.org> zsh-4.3.2-r2.ebuild,
   zsh-4.3.4.ebuild:
