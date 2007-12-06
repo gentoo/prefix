@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Inspector/Class-Inspector-1.17.ebuild,v 1.3 2007/11/10 12:13:08 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Inspector/Class-Inspector-1.17.ebuild,v 1.4 2007/12/04 20:13:52 corsair Exp $
 
 EAPI="prefix"
 
