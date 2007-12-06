@@ -37,6 +37,11 @@ src_compile() {
 	# Filter -static as it breaks compilation
 	filter-ldflags -static
 
+	# In Prefix we want to have the same header declaration on every
+	# platform, so make configure find that it should do
+	# "const char * *inbuf"
+	export am_cv_func_iconv=no
+
 	# Install in /lib as utils installed in /lib like gnutar
 	# can depend on this
 
