@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.233 2007/11/22 12:58:41 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.234 2007/12/05 01:58:22 robbat2 Exp $
+
+*git-1.5.3.7 (05 Dec 2007)
+
+  05 Dec 2007; Robin H. Johnson <robbat2@gentoo.org> +git-1.5.3.7.ebuild:
+  Version bump. Please note that the CVS testcases are disabled unless you
+  have FEATURES=userpriv, as CVS rejects commits as root.
 
 *git-1.5.3.6-r1 (22 Nov 2007)
 
