@@ -2,6 +2,9 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Dec 2007; Michael Haubenwallner <haubi@gentoo.org> +hpux/package.use:
+  have binutils-config using toolchain-prefix-wrapper on hpux
+
   06 Dec 2007; Michael Haubenwallner <michael.haubenwallner@gentoo.org>
   hpux/profile.bashrc:
   use xargs with -r
