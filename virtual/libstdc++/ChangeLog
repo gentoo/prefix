@@ -1,6 +1,9 @@
 # ChangeLog for virtual/libstdc++
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/libstdc++/ChangeLog,v 1.11 2007/11/08 08:15:24 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/libstdc++/ChangeLog,v 1.12 2007/12/05 20:10:35 armin76 Exp $
+
+  05 Dec 2007; Raúl Porcel <armin76@gentoo.org> libstdc++-3.3.ebuild:
+  Drop ia64 keyword as gcc-3.3.2-r7 is gone
 
   08 Nov 2007; Markus Rothe <corsair@gentoo.org> libstdc++-3.3.ebuild:
   Add entry for libstdc++-v3-bin; bug #195264
