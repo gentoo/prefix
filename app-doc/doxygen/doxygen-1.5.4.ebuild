@@ -13,7 +13,7 @@ SRC_URI="ftp://ftp.stack.nl/pub/users/dimitri/${P}.src.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
-IUSE="debug doc nodot qt3 tetex elibc_FreeBSD"
+IUSE="debug doc nodot qt3 tetex"
 
 RDEPEND="qt3? ( $(qt_min_version 3.3) )
 	tetex? ( virtual/tetex )
@@ -49,8 +49,7 @@ src_unpack() {
 	# prefix search tools patch, plus OSX and Solaris fixes
 	epatch "${FILESDIR}"/${PN}-1.5.2-prefix-misc-alt.patch
 	epatch "${FILESDIR}"/${PN}-1.5.3-solaris.patch
-# patch feels wrong, temporarily disable to allow other platforms to compile
-	#epatch "${FILESDIR}"/${PN}-1.5.3-darwin9.patch
+	epatch "${FILESDIR}"/${PN}-1.5.4-libiconv.patch
 
 	if is-flagq "-O3" ; then
 	    echo

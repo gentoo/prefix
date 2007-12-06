@@ -1,0 +1,11 @@
+--- src/portable.cpp
++++ src/portable.cpp
+@@ -377,7 +377,7 @@
+ size_t portable_iconv (void *cd, const char** inbuf,  size_t *inbytesleft, 
+                                        char** outbuf, size_t *outbytesleft)
+ {
+-#if ((defined(_LIBICONV_VERSION) && (_LIBICONV_VERSION>=0x0109)) || defined(_OS_SOLARIS_))
++#if defined(_LIBICONV_VERSION) && (_LIBICONV_VERSION>=0x0109)
+ #define CASTNEEDED(x) (x)
+ #else
+ #define CASTNEEDED(x) (char **)(x)
