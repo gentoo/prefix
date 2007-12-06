@@ -1,6 +1,12 @@
 # ChangeLog for app-shells/zsh
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.120 2007/12/05 00:40:55 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.122 2007/12/06 05:04:56 beandog Exp $
+
+  06 Dec 2007; Steve Dibb <beandog@gentoo.org> zsh-4.3.2-r3.ebuild:
+  amd64 stable, bug 201022
+
+  05 Dec 2007; Raúl Porcel <armin76@gentoo.org> zsh-4.3.2-r3.ebuild:
+  alpha/ia64/sparc stable wrt security #201022
 
   05 Dec 2007; Jeroen Roovers <jer@gentoo.org> zsh-4.3.2-r3.ebuild:
   Stable for HPPA (bug #201022).
