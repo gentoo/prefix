@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/swarmcache/swarmcache-1.0_pre20050106-r1.ebuild,v 1.2 2007/04/25 19:17:53 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/swarmcache/swarmcache-1.0_pre20050106-r1.ebuild,v 1.3 2007/12/05 20:06:13 maekke Exp $
 
 EAPI="prefix"
 

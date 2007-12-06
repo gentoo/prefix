@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/swarmcache
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/swarmcache/ChangeLog,v 1.4 2007/04/25 19:17:53 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/swarmcache/ChangeLog,v 1.5 2007/12/05 20:06:13 maekke Exp $
+
+  05 Dec 2007; Markus Meier <maekke@gentoo.org>
+  swarmcache-1.0_pre20050106-r1.ebuild:
+  x86 stable, bug #201308
 
   25 Apr 2007; Krzysiek Pawlik <nelchael@gentoo.org>
   swarmcache-1.0_pre20050106-r1.ebuild:
