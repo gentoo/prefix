@@ -2,6 +2,10 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Dec 2007; Michael Haubenwallner <michael.haubenwallner@gentoo.org>
+  hpux/profile.bashrc:
+  use xargs with -r
+
   06 Dec 2007; Michael Haubenwallner <haubi@gentoo.org> +hpux/B.11.31,
   hpux/B.11.31/ia64/make.defaults, hpux/B.11.31/package.provided:
   added profile for ia64-hp-hpux11.31

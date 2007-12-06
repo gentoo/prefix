@@ -40,7 +40,7 @@ post_pkg_preinst() {
 	
 	# now go for current package
 	cd "${D}"
-	find ".${EPREFIX}" -type f | xargs /usr/bin/file | grep 'object file' | while read f t
+	find ".${EPREFIX}" -type f | xargs -r /usr/bin/file | grep 'object file' | while read f t
 	do
 		f=${f#./} # find prints: "./path/to/file"
 		f=${f%:} # file prints: "file-argument: type-of-file"
