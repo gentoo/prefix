@@ -1,6 +1,17 @@
 # ChangeLog for app-arch/lzma-utils
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/ChangeLog,v 1.8 2007/11/10 21:41:20 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/ChangeLog,v 1.11 2007/12/05 20:29:59 drac Exp $
+
+  05 Dec 2007; Samuli Suominen <drac@gentoo.org> lzma-utils-4.32.2.ebuild:
+  amd64 stable for bug 198314
+
+*lzma-utils-4.32.3 (05 Dec 2007)
+
+  05 Dec 2007; Mike Frysinger <vapier@gentoo.org> +lzma-utils-4.32.3.ebuild:
+  Version bump #201371.
+
+  05 Dec 2007; Raúl Porcel <armin76@gentoo.org> lzma-utils-4.32.2.ebuild:
+  alpha/ia64/sparc/x86 stable
 
   10 Nov 2007; Markus Rothe <corsair@gentoo.org>
   lzma-utils-4.32.0_beta5.ebuild:
