@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.4.2.ebuild,v 1.1 2007/12/03 15:43:16 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.4.5.ebuild,v 1.2 2007/12/05 21:02:21 drac Exp $
 
 EAPI="prefix"
 
-inherit eutils autotools toolchain-funcs flag-o-matic
+inherit eutils libtool toolchain-funcs
 
 DESCRIPTION="BSD tar command"
 HOMEPAGE="http://people.freebsd.org/~kientzle/libarchive"
@@ -30,8 +30,7 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-2.1.5-acl.patch
-	eautoreconf
+	elibtoolize
 	epunt_cxx
 }
 
@@ -50,7 +49,7 @@ src_compile() {
 }
 
 src_install() {
-	emake -j1 DESTDIR="${D}" install || die "emake install failed"
+	emake -j1 DESTDIR="${D}" install || die "emake install failed."
 
 	# Create tar symlink for FreeBSD
 	if [[ ${CHOST} == *-freebsd* ]]; then
@@ -59,7 +58,7 @@ src_install() {
 		# We may wish to switch to symlink bsdcpio to cpio too one day
 	fi
 
-	dodoc README NEWS
+	dodoc NEWS README
 
 	if use build; then
 		rm -rf "${ED}"/usr
