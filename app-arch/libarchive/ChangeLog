@@ -1,6 +1,13 @@
 # ChangeLog for app-arch/libarchive
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.8 2007/12/03 15:43:16 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.9 2007/12/04 16:24:53 drac Exp $
+
+*libarchive-2.4.4 (04 Dec 2007)
+
+  04 Dec 2007; Samuli Suominen <drac@gentoo.org> +libarchive-2.4.4.ebuild:
+  Version bump, thanks to Tim Kientzle <kientzle at freebsd.org> for applying
+  our patch fixing automagic acl and xattr. This version also fixes most of
+  the test suite.
 
 *libarchive-2.4.2 (03 Dec 2007)
 
