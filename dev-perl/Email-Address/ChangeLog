@@ -1,6 +1,13 @@
 # ChangeLog for dev-perl/Email-Address
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Email-Address/ChangeLog,v 1.38 2007/11/10 12:45:09 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Email-Address/ChangeLog,v 1.40 2007/12/04 20:06:18 corsair Exp $
+
+  04 Dec 2007; Markus Rothe <corsair@gentoo.org>
+  Email-Address-1.88.8.ebuild:
+  Stable on ppc64; bug #198075
+
+  04 Dec 2007; nixnut <nixnut@gentoo.org> Email-Address-1.88.8.ebuild:
+  Stable on ppc wrt bug 198075
 
   10 Nov 2007; Samuli Suominen <drac@gentoo.org>
   Email-Address-1.88.8.ebuild:
