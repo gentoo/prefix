@@ -9,18 +9,28 @@ inherit eutils toolchain-funcs
 DESCRIPTION="Utility to change the binutils version being used - prefix version"
 HOMEPAGE="http://www.gentoo.org/"
 SRC_URI=""
+EXTW_VER="0.1.0.1593"
+SRC_URI="extwrapper? ( http://dev.gentoo.org/~haubi/distfiles/toolchain-prefix-wrapper-${EXTW_VER}.tar.bz2 )"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
-IUSE=""
+KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+IUSE="extwrapper"
 
 RDEPEND=">=sys-apps/findutils-4.2
 	>=sys-devel/gcc-config-1.4.0"
 
 W_VER=1.3
 
-src_unpack() {
+S="${WORKDIR}/toolchain-prefix-wrapper-${EXTW_VER}"
+
+pkg_setup() {
+	if ! use extwrapper; then
+		[[ ${CTARGET} == *-hpux* ]] && die "Please USE 'extwrapper' on ${CTARGET}"
+	fi
+}
+
+localwrapper_src_unpack() {
 	cp "${FILESDIR}"/${PN}-${PV}-old "${T}"/${PN}-${PV}
 	cp "${FILESDIR}"/ldwrapper-${W_VER}.c "${T}"/
 	eprefixify "${T}"/${PN}-${PV} "${T}"/ldwrapper-${W_VER}.c
@@ -28,7 +38,21 @@ src_unpack() {
 	sed -i -e "s:@CHOST@:${CHOST}:" "${T}"/ldwrapper-${W_VER}.c
 }
 
-src_compile() {
+extwrapper_src_unpack() {
+	unpack ${A}
+	cp "${FILESDIR}"/${PN}-${PV}-old "${T}"/${PN}-${PV}
+	eprefixify "${T}"/${PN}-${PV}
+}
+
+src_unpack() {
+	if use extwrapper; then
+		extwrapper_src_unpack
+	else
+		localwrapper_src_unpack
+	fi
+}
+
+localwrapper_src_compile() {
 	cd "${T}"
 
 	# based on what system we have do some adjusting of the wrapper's work
@@ -59,12 +83,42 @@ src_compile() {
 		ldwrapper-${W_VER}.c || die "compile wrapper"
 }
 
-src_install() {
+extwrapper_src_compile() {
+	econf --bindir="${EPREFIX}"/usr/lib/misc
+	emake || die "emake failed."
+}
+
+src_compile() {
+	if use extwrapper; then
+		extwrapper_src_compile
+	else
+		localwrapper_src_compile
+	fi
+}
+
+localwrapper_src_install() {
 	newbin "${T}"/${PN}-${PV} ${PN} || die
 	doman "${FILESDIR}"/${PN}.8
 
 	exeinto /usr/$(get_libdir)/misc
 	newexe "${T}"/ldwrapper binutils-config || die "install ldwrapper"
+}
+
+extwrapper_src_install() {
+	emake install DESTDIR="${D}" || die "emake install failed."
+	mv "${ED}"/usr/$(get_libdir)/misc/{prefixld,binutils-config} \
+	|| die "Cannot rename prefixld to binutils-config"
+
+	newbin "${T}"/${PN}-${PV} ${PN} || die
+	doman "${FILESDIR}"/${PN}.8
+}
+
+src_install() {
+	if use extwrapper; then
+		extwrapper_src_install
+	else
+		localwrapper_src_install
+	fi
 }
 
 pkg_postinst() {
