@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Text-Iconv
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Iconv/ChangeLog,v 1.27 2007/10/19 20:03:54 ian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Iconv/ChangeLog,v 1.28 2007/12/06 16:53:16 armin76 Exp $
+
+  06 Dec 2007; Raúl Porcel <armin76@gentoo.org> Text-Iconv-1.7.ebuild:
+  alpha/ia64/sparc/x86 stable
 
 *Text-Iconv-1.7 (19 Oct 2007)
 
