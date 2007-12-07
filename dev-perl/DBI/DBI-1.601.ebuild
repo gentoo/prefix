@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBI/DBI-1.601.ebuild,v 1.1 2007/10/26 19:48:14 ian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBI/DBI-1.601.ebuild,v 1.2 2007/12/06 15:26:55 armin76 Exp $
 
 EAPI="prefix"
 
