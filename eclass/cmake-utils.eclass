@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.2 2007/11/11 20:02:11 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.3 2007/12/06 20:40:20 philantrop Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -33,25 +33,43 @@ _use_me_now() {
 # @FUNCTION: cmake-utils_use_with
 # @USAGE: <USE flag> [flag name]
 # @DESCRIPTION:
-# Based on use_with. See ebuild.sh
+# Based on use_with. See ebuild(5).
+# 
+# `cmake-utils_use_with foo FOO` echoes -DWITH_FOO=ON if foo is enabled
+# and -DWITH_FOO=OFF if it is disabled.
 cmake-utils_use_with() { _use_me_now WITH "$@" ; }
 
 # @FUNCTION: cmake-utils_use_enable
 # @USAGE: <USE flag> [flag name]
 # @DESCRIPTION:
-# Based on use_enable. See ebuild.sh
+# Based on use_enable. See ebuild(5).
+# 
+# `cmake-utils_use_enable foo FOO` echoes -DENABLE_FOO=ON if foo is enabled
+# and -DENABLE_FOO=OFF if it is disabled.
 cmake-utils_use_enable() { _use_me_now ENABLE "$@" ; }
 
 # @FUNCTION: cmake-utils_use_want
 # @USAGE: <USE flag> [flag name]
 # @DESCRIPTION:
-# Based on use_enable. See ebuild.sh
+# Based on use_enable. See ebuild(5).
+# 
+# `cmake-utils_use_want foo FOO` echoes -DWANT_FOO=ON if foo is enabled
+# and -DWANT_FOO=OFF if it is disabled.
 cmake-utils_use_want() { _use_me_now WANT "$@" ; }
+
+# @FUNCTION: cmake-utils_has
+# @USAGE: <USE flag> [flag name]
+# @DESCRIPTION:
+# Based on use_enable. See ebuild(5).
+# 
+# `cmake-utils_has foo FOO` echoes -DHAVE_FOO=ON if foo is enabled
+# and -DHAVE_FOO=OFF if it is disabled.
+cmake-utils_has() { _use_me_now HAVE "$@" ; }
 
 # @FUNCTION: cmake-utils_src_compile
 # @DESCRIPTION:
 # General function for compiling with cmake. Default behaviour is to start an
-# out-of-source build
+# out-of-source build. All arguments are passed to cmake-utils_src_make.
 cmake-utils_src_compile() {
 	debug-print-function $FUNCNAME $*
 
@@ -60,7 +78,7 @@ cmake-utils_src_compile() {
 	else
 		cmake-utils_src_configureout
 	fi
-	cmake-utils_src_make
+	cmake-utils_src_make "$@"
 }
 
 # @FUNCTION: cmake-utils_src_configurein
@@ -70,7 +88,7 @@ cmake-utils_src_compile() {
 cmake-utils_src_configurein() {
 	debug-print-function $FUNCNAME $*
 
-	local cmakeargs="${mycmakeargs} $(_common_configure_code)"
+	local cmakeargs="$(_common_configure_code) ${mycmakeargs}"
 
 	debug-print "$LINENO $ECLASS $FUNCNAME: mycmakeargs is $cmakeargs"
 	cmake ${cmakeargs} . || die "Cmake failed"
@@ -83,7 +101,7 @@ cmake-utils_src_configurein() {
 cmake-utils_src_configureout() {
 	debug-print-function $FUNCNAME $*
 
-	local cmakeargs="${mycmakeargs} $(_common_configure_code)"
+	local cmakeargs="$(_common_configure_code) ${mycmakeargs}"
 	mkdir -p "${WORKDIR}"/${PN}_build
 	pushd "${WORKDIR}"/${PN}_build > /dev/null
 
@@ -96,8 +114,10 @@ cmake-utils_src_configureout() {
 # Internal use only. Common configuration options for all types of builds.
 _common_configure_code() {
 	local tmp_libdir=$(get_libdir)
-	if has debug ${IUSE} && use debug; then
-		echo -DCMAKE_BUILD_TYPE=debug
+	if has debug ${IUSE//+} && use debug; then
+		echo -DCMAKE_BUILD_TYPE=Debug
+	else
+		echo -DCMAKE_BUILD_TYPE=Release
 	fi
 	echo -DCMAKE_C_COMPILER=$(type -P $(tc-getCC))
 	echo -DCMAKE_CXX_COMPILER=$(type -P $(tc-getCXX))
@@ -110,6 +130,8 @@ _common_configure_code() {
 # @FUNCTION: cmake-utils_src_make
 # @DESCRIPTION:
 # Function for building the package. Automatically detects the build type.
+# All arguments are passed to emake:
+# "cmake-utils_src_make -j1" can be used to work around parallel make issues.
 cmake-utils_src_make() {
 	debug-print-function $FUNCNAME $*
 
@@ -119,9 +141,9 @@ cmake-utils_src_make() {
 		pushd "${WORKDIR}"/${PN}_build > /dev/null
 	fi
 	if ! [[ -z ${CMAKE_COMPILER_VERBOSE} ]]; then
-		emake VERBOSE=1 || die "Make failed!"
+		emake VERBOSE=1 "$@" || die "Make failed!"
 	else
-		emake || die "Make failed!"
+		emake "$@" || die "Make failed!"
 	fi
 	if [[ -d ${WORKDIR}/${PN}_build ]]; then
 		popd > /dev/null

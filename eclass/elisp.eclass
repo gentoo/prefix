@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.25 2007/12/04 13:11:15 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.26 2007/12/07 00:16:24 opfer Exp $
 #
 # Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
 # Copyright 2002-2003 Matthew Kennedy <mkennedy@gentoo.org>
@@ -61,7 +61,7 @@ elisp_pkg_setup() {
 elisp_src_unpack() {
 	unpack ${A}
 	if [ "${SIMPLE_ELISP}" = 't' ]; then
-		cd "${S}" && mv ${P}.el ${PN}.el \
+		cd "${WORKDIR}" && mv ${P}.el ${PN}.el \
 			|| die "mv ${P}.el ${PN}.el failed"
 	fi
 }
