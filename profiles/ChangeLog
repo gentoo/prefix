@@ -2,6 +2,10 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.864 2007/11/28 12:53:47 hollow Exp $
 
+  07 Dec 2007; Michael Haubenwallner <haubi@gentoo.org>
+  +default-prefix/aix/profile.bashrc:
+  added hooks for aix to merge inside archive libs (may contain sharedlibs)
+
   28 Nov 2007; Benedikt Böhm <hollow@gentoo.org> package.mask:
   Add www-servers/apache-2.2.6-r4 for testing
 
