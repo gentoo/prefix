@@ -84,7 +84,7 @@ src_compile() {
 			# AIX doesn't use GNU binutils, because it doesn't produce usable
 			# code
 			EXTRA_ECONF="${EXTRA_ECONF} --without-gnu-ld --without-gnu-as"
-			append-ldflags -Wl,-bbigtoc
+			append-ldflags -Wl,-bbigtoc,-bmaxdata:0x10000000 # bug#194635
 		;;
 		*-darwin7)
 			# libintl triggers inclusion of -lc which results in multiply
