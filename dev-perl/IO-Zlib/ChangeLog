@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/IO-Zlib
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Zlib/ChangeLog,v 1.28 2007/11/10 13:32:53 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Zlib/ChangeLog,v 1.29 2007/12/06 16:24:37 armin76 Exp $
+
+  06 Dec 2007; Raúl Porcel <armin76@gentoo.org> IO-Zlib-1.07.ebuild:
+  alpha/ia64/sparc/x86 stable
 
   10 Nov 2007; Samuli Suominen <drac@gentoo.org> IO-Zlib-1.05.ebuild:
   amd64 stable
