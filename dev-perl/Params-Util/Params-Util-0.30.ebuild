@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Params-Util/Params-Util-0.30.ebuild,v 1.1 2007/10/26 20:14:16 ian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Params-Util/Params-Util-0.30.ebuild,v 1.2 2007/12/06 16:34:21 armin76 Exp $
 
 EAPI="prefix"
 
