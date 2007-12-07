@@ -1,6 +1,9 @@
 # ChangeLog for gnustep-base/mknfonts
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/mknfonts/ChangeLog,v 1.20 2007/11/16 14:57:10 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/mknfonts/ChangeLog,v 1.21 2007/12/06 12:12:10 armin76 Exp $
+
+  06 Dec 2007; Raúl Porcel <armin76@gentoo.org> mknfonts-0.5-r1.ebuild:
+  sparc stable wrt #195990
 
   16 Nov 2007; Steve Dibb <beandog@gentoo.org> mknfonts-0.5-r1.ebuild:
   amd64 stable, bug 195990
