@@ -1,6 +1,9 @@
 # ChangeLog for virtual/gnustep-back
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/gnustep-back/ChangeLog,v 1.10 2007/11/16 15:01:10 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/gnustep-back/ChangeLog,v 1.11 2007/12/06 12:15:52 armin76 Exp $
+
+  06 Dec 2007; Raúl Porcel <armin76@gentoo.org> gnustep-back-0.12.0.ebuild:
+  sparc stable wrt #195990
 
   16 Nov 2007; Steve Dibb <beandog@gentoo.org> gnustep-back-0.12.0.ebuild:
   amd64 stable, bug 195990
