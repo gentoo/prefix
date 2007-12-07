@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.11.ebuild,v 1.6 2007/12/05 00:57:38 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-2.0.0.11.ebuild,v 1.7 2007/12/06 22:49:41 welp Exp $
 
 EAPI="prefix"
 
