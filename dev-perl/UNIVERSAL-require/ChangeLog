@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/UNIVERSAL-require
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/UNIVERSAL-require/ChangeLog,v 1.6 2007/01/08 17:23:14 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/UNIVERSAL-require/ChangeLog,v 1.8 2007/12/06 16:43:20 armin76 Exp $
+
+  06 Dec 2007; Raúl Porcel <armin76@gentoo.org>
+  UNIVERSAL-require-0.11.ebuild:
+  Add ~sparc and x86 stable
 
   08 Jan 2007; Michael Cummings <mcummings@gentoo.org>
   UNIVERSAL-require-0.11.ebuild:
