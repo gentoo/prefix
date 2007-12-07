@@ -1,6 +1,9 @@
 # ChangeLog for gnustep-base/gnustep-gui
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.54 2007/11/16 14:59:14 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.55 2007/12/06 12:09:10 armin76 Exp $
+
+  06 Dec 2007; Raúl Porcel <armin76@gentoo.org> gnustep-gui-0.12.0.ebuild:
+  sparc stable wrt #195990
 
   16 Nov 2007; Steve Dibb <beandog@gentoo.org> gnustep-gui-0.12.0.ebuild:
   amd64 stable, bug 195990
