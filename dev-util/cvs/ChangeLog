@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/cvs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/ChangeLog,v 1.123 2007/09/14 18:19:39 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/ChangeLog,v 1.124 2007/12/07 00:49:05 robbat2 Exp $
+
+  01 Oct 2006; Robin H. Johnson <robbat2@gentoo.org> +cvs-1.12.13.1.ebuild,
+  cvs-1.12.13-r1.ebuild, cvs-1.12.13.1-block-requests.patch,
+  -cvs-1.12.13-cvsbug-tmpfix.patch:
+  Clean up .13 ebuild, version bump that upstream put in a different place to
+  previous ones, and clean up a duplicate patch from files. .1 is in the tree
+  for testing reasons only, it should not be used, per bug #149790.
 
   14 Sep 2007; Roy Marples <uberlord@gentoo.org>
   +files/cvs-1.12.12-install-sh.patch, cvs-1.12.12-r4.ebuild,
