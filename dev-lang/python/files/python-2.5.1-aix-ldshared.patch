@@ -1,49 +1,107 @@
---- configure.in.orig	2007-11-03 20:38:42 +0100
-+++ configure.in	2007-11-03 20:39:03 +0100
-@@ -659,6 +659,11 @@
- 	  BLDLIBRARY='-Wl,+b,$(LIBDIR) -L. -lpython$(VERSION)'
+--- configure.in.orig	2007-11-24 22:39:22 +0100
++++ configure.in	2007-11-24 22:40:50 +0100
+@@ -561,7 +561,7 @@
+ 		   $ac_sys_release -eq 4 -a `uname -r` -ge 2 ; then
+ 	       exp_extra="."
+ 	   fi
+-	   LINKCC="\$(srcdir)/Modules/makexp_aix Modules/python.exp $exp_extra \$(LIBRARY); $LINKCC";;
++	   LINKCC="\$(srcdir)/Modules/makexp_aix Modules/python.exp $exp_extra \$(LIBRARY_OBJS); $LINKCC";;
+ 	Monterey64*)
+ 	   LINKCC="$LINKCC -L/usr/lib/ia64l64";;
+ 	esac
+@@ -619,6 +619,11 @@
+   BLDLIBRARY='$(LDLIBRARY)'
+ fi  
+ 
++AC_SUBST(AIXDLL_TRUE)
++AC_SUBST(AIXDLL_FALSE)
++AIXDLL_TRUE='#'
++AIXDLL_FALSE=
++
+ # Other platforms follow
+ if test $enable_shared = "yes"; then
+   AC_DEFINE(Py_ENABLE_SHARED, 1, [Defined if Python is built as a shared library.])
+@@ -660,6 +665,13 @@
  	  RUNSHARED=SHLIB_PATH=`pwd`:${SHLIB_PATH}
+ 	  INSTSONAME="$LDLIBRARY".$SOVERSION
  	  ;;
 +    AIX*)
 +	  BLDLIBRARY='-Wl,-blibpath:$(LIBDIR) $(LDLIBRARY)'
 +	  RUNSHARED=LIBPATH=`pwd`:${LIBPATH}
 +	  INSTSONAME='libpython$(VERSION).so'.$SOVERSION
++	  AIXDLL_TRUE=
++	  AIXDLL_FALSE='#'
 +	  ;;
      OSF*)
  	  LDLIBRARY='libpython$(VERSION).so'
  	  BLDLIBRARY='-rpath $(LIBDIR) -L. -lpython$(VERSION)'
-@@ -1413,6 +1418,7 @@
- 		;;
- 	CYGWIN*)   SO=.dll;;
- 	Darwin*)   SO=.bundle;;
-+	AIX*)      SO=.a;;
- 	*)	   SO=.so;;
- 	esac
- else
---- Makefile.pre.in.orig	2007-11-03 22:50:00 +0100
-+++ Makefile.pre.in	2007-11-03 23:14:40 +0100
-@@ -360,6 +360,15 @@
- 	$(AR) cr $@ $(PYTHON_OBJS)
- 	$(AR) cr $@ $(MODULE_OBJS) $(SIGNAL_OBJS)
- 	$(AR) cr $@ $(MODOBJS)
-+	if test "$(SO)" = .a \
-+	     && test "`echo $(MACHDEP) | sed 's/^\(...\).*/\1/'`" = "aix" \
-+	; then set -e \
-+	     ; $(MAKE) Modules/python.exp LDSHARED='$(BLDSHARED)' OPT='$(OPT)' CC='$(CC)' \
-+	     ; $(MAKE) libpython$(VERSION).so LDSHARED='$(BLDSHARED)' OPT='$(OPT)' CC='$(CC)' INSTSONAME=$(LDLIBRARY) \
-+	     ; test "$(INSTSONAME)" = libpython$(VERSION).so || mv libpython$(VERSION).so $(INSTSONAME) \
-+	     ; rm -f $@ \
-+	     ; $(AR) cr $@ $(INSTSONAME) \
-+	; fi
- 	$(RANLIB) $@
+@@ -1395,6 +1407,7 @@
+ AC_SUBST(BLDSHARED)
+ AC_SUBST(CCSHARED)
+ AC_SUBST(LINKFORSHARED)
++AC_SUBST(LINKSHARED)
+ # SO is the extension of shared libraries `(including the dot!)
+ # -- usually .so, .sl on HP-UX, .dll on Cygwin
+ AC_MSG_CHECKING(SO)
+@@ -1586,7 +1599,13 @@
+ if test -z "$LINKFORSHARED"
+ then
+ 	case $ac_sys_system/$ac_sys_release in
+-	AIX*)	LINKFORSHARED='-Wl,-bE:Modules/python.exp -lld';;
++	AIX*)
++	    LINKFORSHARED='-Wl,-bE:Modules/python.exp -lld'
++	    if test "$GCC" = "yes"
++	    then LINKSHARED='$(LINKFORSHARED) -shared -Wl,-bernotok'
++	    else LINKSHARED='$(LINKFORSHARED) -G -bernotok'
++	    fi
++	    ;;
+ 	hp*|HP*)
+ 	    LINKFORSHARED="-Wl,-E -Wl,+s";;
+ #	    LINKFORSHARED="-Wl,-E -Wl,+s -Wl,+b\$(BINLIBDEST)/lib-dynload";;
+--- Makefile.pre.in.orig	2007-11-24 23:11:12 +0100
++++ Makefile.pre.in	2007-11-25 00:12:24 +0100
+@@ -67,6 +67,7 @@
+ SGI_ABI=	@SGI_ABI@
+ CCSHARED=	@CCSHARED@
+ LINKFORSHARED=	@LINKFORSHARED@
++LINKSHARED=	@LINKSHARED@
+ # Extra C flags added for building the interpreter object files.
+ CFLAGSFORSHARED=@CFLAGSFORSHARED@
+ # C flags used for building the interpreter object files
+@@ -352,15 +353,18 @@
+ # Build static library
+ # avoid long command lines, same as LIBRARY_OBJS
+ $(LIBRARY): $(LIBRARY_OBJS)
+-	-rm -f $@
+-	$(AR) cr $@ Modules/getbuildinfo.o
+-	$(AR) cr $@ Modules/_typesmodule.o
+-	$(AR) cr $@ $(PARSER_OBJS)
+-	$(AR) cr $@ $(OBJECT_OBJS)
+-	$(AR) cr $@ $(PYTHON_OBJS)
+-	$(AR) cr $@ $(MODULE_OBJS) $(SIGNAL_OBJS)
+-	$(AR) cr $@ $(MODOBJS)
+-	$(RANLIB) $@
++@AIXDLL_FALSE@	-rm -f $@
++@AIXDLL_FALSE@	$(AR) cr $@ Modules/getbuildinfo.o
++@AIXDLL_FALSE@	$(AR) cr $@ Modules/_typesmodule.o
++@AIXDLL_FALSE@	$(AR) cr $@ $(PARSER_OBJS)
++@AIXDLL_FALSE@	$(AR) cr $@ $(OBJECT_OBJS)
++@AIXDLL_FALSE@	$(AR) cr $@ $(PYTHON_OBJS)
++@AIXDLL_FALSE@	$(AR) cr $@ $(MODULE_OBJS) $(SIGNAL_OBJS)
++@AIXDLL_FALSE@	$(AR) cr $@ $(MODOBJS)
++@AIXDLL_FALSE@	$(RANLIB) $@
++@AIXDLL_TRUE@	$(LINKCC) $(LDFLAGS) $(LINKSHARED) -o $(INSTSONAME) $(LIBRARY_OBJS) $(SHLIBS) $(LIBC) $(LIBM)
++@AIXDLL_TRUE@	$(AR) cr $@ $(INSTSONAME)
++@AIXDLL_TRUE@	-rm -f $(INSTSONAME)
  
  libpython$(VERSION).so: $(LIBRARY_OBJS)
-@@ -376,6 +385,8 @@
- libpython$(VERSION).dylib: $(LIBRARY_OBJS)
- 	$(LINKCC) -dynamiclib -install_name $(LIBDIR)/$@ -current_version $(VERSION) -compatibility_version 2.5 -o $@ $(LIBRARY_OBJS) $(SHLIBS) $(LIBC) $(LIBM)
- 
-+Modules/python.exp: $(LIBRARY)
-+	`echo "$(LINKCC)" | sed -e 's,;.*,,'`
- 
- # This rule is here for OPENSTEP/Rhapsody/MacOSX. It builds a temporary
- # minimal framework (not including the Lib directory and such) in the current
+ 	if test $(INSTSONAME) != $(LDLIBRARY); then \
+@@ -678,6 +682,8 @@
+ 				(cd $(DESTDIR)$(LIBDIR); $(LN) -sf $(INSTSONAME) libpython$(VERSION)$(SO)); \
+ 			fi \
+ 		fi; \
++	elif test "@AIXDLL_TRUE@" = ""; then\
++		$(INSTALL_SHARED) libpython$(VERSION).a $(DESTDIR)$(LIBDIR) ; \
+ 	else \
+ 		if test -f libpython$(VERSION).dylib; then \
+ 			$(INSTALL_SHARED) libpython$(VERSION).dylib $(DESTDIR)$(LIBDIR)/libpython$(VERSION).dylib; \
