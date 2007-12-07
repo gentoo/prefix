@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Perl-Critic
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Perl-Critic/ChangeLog,v 1.33 2007/11/10 14:22:19 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Perl-Critic/ChangeLog,v 1.34 2007/12/06 16:35:14 armin76 Exp $
+
+  06 Dec 2007; Raúl Porcel <armin76@gentoo.org> Perl-Critic-1.061.ebuild:
+  sparc stable
 
   10 Nov 2007; Samuli Suominen <drac@gentoo.org> Perl-Critic-1.05.3.ebuild:
   amd64 stable
