@@ -26,7 +26,7 @@
  	  INSTSONAME="$LDLIBRARY".$SOVERSION
  	  ;;
 +    AIX*)
-+	  BLDLIBRARY='-Wl,-blibpath:$(LIBDIR) $(LDLIBRARY)'
++	  BLDLIBRARY='-Wl,-blibpath:$(LIBDIR):/usr/lib:/lib $(LDLIBRARY)'
 +	  RUNSHARED=LIBPATH=`pwd`:${LIBPATH}
 +	  INSTSONAME='libpython$(VERSION).so'.$SOVERSION
 +	  AIXDLL_TRUE=
