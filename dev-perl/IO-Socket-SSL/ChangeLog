@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/IO-Socket-SSL
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Socket-SSL/ChangeLog,v 1.78 2007/11/10 13:31:46 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Socket-SSL/ChangeLog,v 1.79 2007/12/06 16:23:50 armin76 Exp $
+
+  06 Dec 2007; Raúl Porcel <armin76@gentoo.org> IO-Socket-SSL-1.12.ebuild:
+  alpha/ia64/sparc/x86 stable
 
   10 Nov 2007; Samuli Suominen <drac@gentoo.org> IO-Socket-SSL-1.07.ebuild:
   amd64 stable
