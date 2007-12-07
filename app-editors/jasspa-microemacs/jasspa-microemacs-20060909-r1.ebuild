@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/jasspa-microemacs/jasspa-microemacs-20060909-r1.ebuild,v 1.5 2007/10/10 06:47:18 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/jasspa-microemacs/jasspa-microemacs-20060909-r1.ebuild,v 1.8 2007/12/06 23:38:51 ulm Exp $
 
 EAPI="prefix"
 
@@ -67,8 +67,10 @@ src_install() {
 		keepdir /usr/share/jasspa/site
 		insinto /usr/share
 		doins -r "${WORKDIR}/jasspa"
-		insinto /usr/share/applications
-		doins "${FILESDIR}/jasspa-microemacs.desktop"
+		if use X; then
+			insinto /usr/share/applications
+			doins "${FILESDIR}/${PN}.desktop"
+		fi
 	fi
 
 	dodoc ../faq.txt ../readme.txt ../change.log || die "dodoc failed"
