@@ -32,6 +32,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.6-build.patch #184700
 	epatch "${FILESDIR}"/${P}-darwin.patch
 	epatch "${FILESDIR}"/${PN}-5.5-aix-shared.patch
+	epatch "${FILESDIR}"/${P}-solaris2.patch
 }
 
 src_compile() {

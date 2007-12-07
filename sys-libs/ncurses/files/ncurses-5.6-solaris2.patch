@@ -1,0 +1,84 @@
+--- aclocal.m4.orig	2007-12-07 16:46:29.404007000 +0100
++++ aclocal.m4	2007-12-07 16:48:41.180069000 +0100
+@@ -3903,19 +3903,33 @@
+ 		;;
+ 	solaris2*)
+ 		# tested with SunOS 5.5.1 (solaris 2.5.1) and gcc 2.7.2
+-		if test "$GCC" != yes; then
++		if test "$GCC" = yes; then
++			CC_SHARED_OPTS='-fPIC'
++		else
+ 			CC_SHARED_OPTS='-KPIC'
+ 		fi
+ 		if test "$DFT_LWR_MODEL" = "shared" ; then
+-			LOCAL_LDFLAGS="-R \$(LOCAL_LIBDIR):\${libdir}"
++			if test "$GCC" = yes; then
++				LOCAL_LDFLAGS="-Wl,-R,\$(LOCAL_LIBDIR):\${libdir}"
++			else
++				LOCAL_LDFLAGS="-R \$(LOCAL_LIBDIR):\${libdir}"
++			fi
+ 			LOCAL_LDFLAGS2="$LOCAL_LDFLAGS"
+ 		fi
+ 		if test "$cf_cv_ld_rpath" = yes ; then
+-			cf_ld_rpath_opt="-R"
++			if test "$GCC" = yes; then
++				cf_ld_rpath_opt="-Wl,-R"
++			else
++				cf_ld_rpath_opt="-R"
++			fi
+ 			EXTRA_LDFLAGS="$LOCAL_LDFLAGS $EXTRA_LDFLAGS"
+ 		fi
+ 		CF_SHARED_SONAME
+-		MK_SHARED_LIB='${CC} -dy -G -h '$cf_shared_soname' -o $[@]'
++		if test "$GCC" = yes; then
++			MK_SHARED_LIB='${CC} -shared -Wl,-h,'$cf_shared_soname' -o $[@]'
++		else
++			MK_SHARED_LIB='${CC} -dy -G -h '$cf_shared_soname' -o $[@]'
++		fi
+ 		;;
+ 	sysv5uw7*|unix_sv*)
+ 		# tested with UnixWare 7.1.0 (gcc 2.95.2 and cc)
+--- configure.orig	2007-12-07 13:58:59.599022000 +0100
++++ configure	2007-12-07 14:00:36.836157000 +0100
+@@ -5120,15 +5120,25 @@
+ 		;;
+ 	solaris2*)
+ 		# tested with SunOS 5.5.1 (solaris 2.5.1) and gcc 2.7.2
+-		if test "$GCC" != yes; then
++		if test "$GCC" = yes; then
++			CC_SHARED_OPTS='-fPIC'
++		else
+ 			CC_SHARED_OPTS='-KPIC'
+ 		fi
+ 		if test "$DFT_LWR_MODEL" = "shared" ; then
+-			LOCAL_LDFLAGS="-R \$(LOCAL_LIBDIR):\${libdir}"
++			if test "$GCC" = yes; then
++				LOCAL_LDFLAGS="-Wl,-R,\$(LOCAL_LIBDIR):\${libdir}"
++			else
++				LOCAL_LDFLAGS="-R \$(LOCAL_LIBDIR):\${libdir}"
++			fi
+ 			LOCAL_LDFLAGS2="$LOCAL_LDFLAGS"
+ 		fi
+ 		if test "$cf_cv_ld_rpath" = yes ; then
+-			cf_ld_rpath_opt="-R"
++			if test "$GCC" = yes; then
++				cf_ld_rpath_opt="-Wl,-R"
++			else
++				cf_ld_rpath_opt="-R"
++			fi
+ 			EXTRA_LDFLAGS="$LOCAL_LDFLAGS $EXTRA_LDFLAGS"
+ 		fi
+ 
+@@ -5139,7 +5149,11 @@
+ 		cf_shared_soname='`basename $@`'
+ 	fi
+ 
+-		MK_SHARED_LIB='${CC} -dy -G -h '$cf_shared_soname' -o $@'
++		if test "$GCC" = yes; then
++			MK_SHARED_LIB='${CC} -shared -Wl,-h,'$cf_shared_soname' -o $@'
++		else
++			MK_SHARED_LIB='${CC} -dy -G -h '$cf_shared_soname' -o $@'
++		fi
+ 		;;
+ 	sysv5uw7*|unix_sv*)
+ 		# tested with UnixWare 7.1.0 (gcc 2.95.2 and cc)
