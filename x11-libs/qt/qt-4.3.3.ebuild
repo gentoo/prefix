@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.3.2-r1.ebuild,v 1.3 2007/12/06 16:46:33 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.3.3.ebuild,v 1.1 2007/12/06 11:25:04 caleb Exp $
 
 EAPI="prefix"
 
@@ -123,8 +123,6 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/qt-4.2.3-hppa-ldcw-fix.patch
 	epatch "${FILESDIR}"/qt-4.3.1-darwin.patch
-
-	epatch "${FILESDIR}"/qsslsocket-fix.patch
 
 	cd "${S}"/mkspecs/$(qt_mkspecs_dir)
 	# set c/xxflags and ldflags
@@ -287,7 +285,6 @@ src_install() {
 
 	cat > "${T}/44qt4" << EOF
 LDPATH=${libdirs:1}
-QMAKESPEC=$(qt_mkspecs_dir)
 EOF
 	doenvd "${T}/44qt4"
 }
