@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-misc/wtf/wtf-20071004.ebuild,v 1.4 2007/12/05 22:34:27 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-misc/wtf/wtf-20071004.ebuild,v 1.5 2007/12/07 14:00:28 corsair Exp $
 
 EAPI="prefix"
 
