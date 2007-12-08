@@ -1,11 +1,12 @@
 --- Configure
 +++ Configure
-@@ -904,7 +904,7 @@
+@@ -904,7 +904,8 @@
  #
  LIBS=-lm
  case "$osname" in
 -  darwin) LIBS= ;;
-+  darwin*) LIBS=;;
++  darwin*) LIBS=
++  LD=$CC; ld=$CC;;
  esac
  case "$osname-$arch" in
    linux-*|cygwin*|gnu-*)
@@ -22,7 +23,7 @@
      # not GNU ld
      case "$osname-$arch" in
        aix-*)      DLLDFLAGS="-r" ;;
-+      darwin*-*)   DLLDFLAGS="-dynamic -install_name ${dfltlibdir}/\$(LIBPARI_SONAME)" ;;
++      darwin*-*)   DLLDFLAGS="-dynamiclib -install_name ${dfltlibdir}/\$(LIBPARI_SONAME)" ;;
        hpux-*)     DLLDFLAGS="-b -E" ;;
        freebsd-*)  DLLDFLAGS="-Bshareable -x" ;;
        gnu-*|linux-*)    DLLDFLAGS="-shared -soname \$(LIBPARI_SONAME)" ;;

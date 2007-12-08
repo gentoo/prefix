@@ -56,15 +56,11 @@ src_compile() {
 	sed -e "s|-L\$libdir|-L./|" -i Configure || \
 		die "Failed to fix Configure"
 
-	echo ./Configure \
-		--host=${myhost} \
-		--prefix="${EPREFIX}"/usr \
-		--miscdir="${EPREFIX}"/usr/share/doc/${PF} \
-		--datadir="${EPREFIX}"/usr/share/${P} \
-		--libdir="${EPREFIX}"/usr/$(get_libdir) \
-		--mandir="${EPREFIX}"/usr/share/man/man1
+	local myconf
+	[[ ${CHOST} == *86-*-darwin* ]] && myconf=--disable-kernel
 
 	./Configure \
+		${myconf} \
 		--host=${myhost} \
 		--prefix="${EPREFIX}"/usr \
 		--miscdir="${EPREFIX}"/usr/share/doc/${PF} \
