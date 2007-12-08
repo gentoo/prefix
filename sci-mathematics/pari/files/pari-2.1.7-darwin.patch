@@ -23,7 +23,7 @@
      # not GNU ld
      case "$osname-$arch" in
        aix-*)      DLLDFLAGS="-r" ;;
-+      darwin*-*)   DLLDFLAGS="-dynamiclib -install_name ${dfltlibdir}/\$(LIBPARI_SONAME)" ;;
++      darwin*-*)   DLLDFLAGS="-dynamiclib -install_name ${dfltlibdir}/\$(LIBPARI_SONAME)"; DLSUFFIX=dylib;;
        hpux-*)     DLLDFLAGS="-b -E" ;;
        freebsd-*)  DLLDFLAGS="-Bshareable -x" ;;
        gnu-*|linux-*)    DLLDFLAGS="-shared -soname \$(LIBPARI_SONAME)" ;;
@@ -35,3 +35,21 @@
    esac
  
    if test "$fastread" != yes; then
+--- config/Makefile.SH
++++ config/Makefile.SH
+@@ -157,9 +157,15 @@
+ LIB_PREFIX = lib
+ LIBPARI    = \$(LIB_PREFIX)$libpari_base
+ LIBPARI_STA= \$(LIBPARI)\$(_A)
++ifeq (\$(shell uname -s), Darwin)
++LIBPARI_SO = \$(LIBPARI).$DLSUFFIX
++LIBPARI_DYN   = \$(LIBPARI).$sodest.$DLSUFFIX
++LIBPARI_SONAME= \$(LIBPARI).$soname.$DLSUFFIX
++else
+ LIBPARI_SO = \$(LIBPARI).$DLSUFFIX
+ LIBPARI_DYN   = \$(LIBPARI_SO).$sodest
+ LIBPARI_SONAME= \$(LIBPARI_SO).$soname
++endif
+ 
+ RUNPTH       = $RUNPTH
+ RUNPTH_FINAL = $RUNPTH_FINAL

@@ -12,8 +12,7 @@ SRC_URI="http://pari.math.u-bordeaux.fr/pub/pari/unix/OLD/${P}.tgz"
 
 LICENSE="GPL-2"
 SLOT="0"
-#KEYWORDS="~amd64 ~mips ~x86 ~x86-macos"
-KEYWORD=
+KEYWORDS="~amd64 ~mips ~x86 ~x86-macos"
 IUSE="doc emacs"
 
 DEPEND="doc? ( virtual/tetex )"
