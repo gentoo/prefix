@@ -1,0 +1,58 @@
+# ChangeLog for dev-perl/Crypt-CAST5_PP
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Crypt-CAST5_PP/ChangeLog,v 1.14 2007/03/05 11:30:00 ticho Exp $
+
+  05 Mar 2007; Andrej Kacian <ticho@gentoo.org> Crypt-CAST5_PP-1.04.ebuild:
+  Stable on x86, bug #169152.
+
+  15 Oct 2006; Bryan Østergaard <kloeri@gentoo.org>
+  Crypt-CAST5_PP-1.04.ebuild:
+  Stable on ia64.
+
+  09 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  Crypt-CAST5_PP-1.03.ebuild, Crypt-CAST5_PP-1.04.ebuild:
+  Marking amd64 stable
+
+  07 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Crypt-CAST5_PP-1.04.ebuild:
+  Marking stable sparc, amd64
+
+  05 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Crypt-CAST5_PP-1.03.ebuild, Crypt-CAST5_PP-1.04.ebuild:
+  Adding perl dep; fixed DEPEND
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org>
+  Crypt-CAST5_PP-1.03.ebuild:
+  Mark 1.03 stable on ia64
+
+*Crypt-CAST5_PP-1.04 (01 Jul 2006)
+
+  01 Jul 2006; Michael Cummings <mcummings@gentoo.org>
+  +Crypt-CAST5_PP-1.04.ebuild:
+  Version bump, tests work again.
+
+  24 Jun 2006; Michael Cummings <mcummings@gentoo.org>
+  Crypt-CAST5_PP-1.03.ebuild:
+  Keywording ~amd64. Tests are currently broken (upstream) due to changes in
+  crypt-cbc (which isn't even a dep)
+
+  30 Mar 2006; Aron Griffis <agriffis@gentoo.org>
+  Crypt-CAST5_PP-1.03.ebuild:
+  Mark 1.03 ~ia64
+
+  13 Jan 2006; Michael Cummings <mcummings@gentoo.org>
+  -Crypt-CAST5_PP-1.02.ebuild, Crypt-CAST5_PP-1.03.ebuild:
+  marking stable sparc x86
+
+*Crypt-CAST5_PP-1.03 (12 Nov 2005)
+
+  12 Nov 2005; Michael Cummings <mcummings@gentoo.org>
+  +Crypt-CAST5_PP-1.03.ebuild:
+  Version bump upstream
+
+*Crypt-CAST5_PP-1.02 (11 Apr 2005)
+
+  11 Apr 2005; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +Crypt-CAST5_PP-1.02.ebuild:
+  Dep for Module-Signature
+
