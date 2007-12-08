@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/man-pages
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/ChangeLog,v 1.99 2007/12/06 15:08:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/ChangeLog,v 1.100 2007/12/08 02:21:32 vapier Exp $
+
+  08 Dec 2007; Mike Frysinger <vapier@gentoo.org> man-pages-2.69.ebuild,
+  man-pages-2.70.ebuild:
+  Add TODO to dodoc while dropping HOWTOHELP #201609 by Arfrever Frehtes
+  Taifersar Arahesis.
 
 *man-pages-2.70 (06 Dec 2007)
 

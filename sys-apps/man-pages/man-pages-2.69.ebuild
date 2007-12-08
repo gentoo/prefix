@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-2.69.ebuild,v 1.2 2007/12/06 15:08:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-2.69.ebuild,v 1.3 2007/12/08 02:21:32 vapier Exp $
 
 EAPI="prefix"
 
@@ -41,7 +41,7 @@ src_compile() { :; }
 
 src_install() {
 	emake install prefix="${EPREFIX}/usr" DESTDIR="${D}" || die
-	dodoc man-pages-*.Announce README Changes* HOWTOHELP
+	dodoc man-pages-*.Announce README Changes* TODO
 }
 
 pkg_postinst() {
