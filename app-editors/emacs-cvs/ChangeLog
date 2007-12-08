@@ -1,6 +1,6 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.177 2007/12/02 20:01:33 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.178 2007/12/07 15:16:20 ulm Exp $
 
   02 Dec 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.1.50-r2.ebuild,
   emacs-cvs-22.1.50_p20070829-r2.ebuild,
@@ -27,7 +27,8 @@
   +emacs-cvs-22.1.50_p20070829-r2.ebuild,
   -emacs-cvs-23.0.0_p20070920.ebuild, +emacs-cvs-23.0.0_p20070920-r1.ebuild,
   -emacs-cvs-23.0.50.ebuild, -emacs-cvs-23.0.60.ebuild:
-  Synchronize CVS snapshots with app-editors/emacs. Remove old.
+  Synchronize CVS snapshots with app-editors/emacs; fixes buffer overflow in
+  format function, CVE-2007-6109, security bug #200297. Remove old.
 
 *emacs-cvs-23.0.60-r1 (27 Nov 2007)
 *emacs-cvs-23.0.50-r1 (27 Nov 2007)
@@ -37,6 +38,7 @@
   +emacs-cvs-22.1.50-r2.ebuild, +emacs-cvs-23.0.50-r1.ebuild,
   +emacs-cvs-23.0.60-r1.ebuild:
   rev-bump to force rebuild for users with more current codebase
+  due to security bug 200297
 
   22 Nov 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.1.50-r1.ebuild,
   emacs-cvs-22.1.50_p20070829-r1.ebuild, emacs-cvs-23.0.0_p20070920.ebuild,
