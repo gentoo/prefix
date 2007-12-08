@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.220 2007/12/02 20:00:52 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.222 2007/12/07 15:15:30 ulm Exp $
+
+  07 Dec 2007; Christian Faulhammer <opfer@gentoo.org>
+  -emacs-21.4-r8.ebuild:
+  clean up
 
   02 Dec 2007; Ulrich Mueller <ulm@gentoo.org> emacs-18.59-r4.ebuild,
   emacs-21.4-r12.ebuild, emacs-21.4-r14.ebuild, emacs-22.1-r3.ebuild:
@@ -11,7 +15,7 @@
 
   28 Nov 2007; Ulrich Mueller <ulm@gentoo.org> -emacs-21.4-r13.ebuild,
   -emacs-22.1-r2.ebuild:
-  Remove old.
+  Remove vulnerable versions wrt security bug #200297.
 
   28 Nov 2007; <welp@gentoo.org> emacs-21.4-r14.ebuild,
   emacs-22.1-r3.ebuild:
@@ -48,8 +52,8 @@
   25 Nov 2007; Ulrich Mueller <ulm@gentoo.org>
   +files/emacs-22.1-format-int.patch, +emacs-21.4-r14.ebuild,
   +emacs-22.1-r3.ebuild:
-  Correctly format integer values, SuSE bug 342158. Patch from upstream CVS,
-  partially backported to Emacs 21.
+  Fix buffer overflow in format function, CVE-2007-6109, security bug #200297.
+  Patch from upstream CVS, partially backported to Emacs 21.
 
   22 Nov 2007; Ulrich Mueller <ulm@gentoo.org> emacs-22.1-r2.ebuild:
   Fix alsa dependency, thanks Flameeyes for pointing this out.
