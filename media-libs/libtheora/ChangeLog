@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/libtheora
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/ChangeLog,v 1.61 2007/11/27 20:54:56 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/ChangeLog,v 1.62 2007/12/07 20:01:14 aballier Exp $
+
+*libtheora-1.0_beta2-r1 (07 Dec 2007)
+
+  07 Dec 2007; Alexis Ballier <aballier@gentoo.org>
+  +files/libtheora-1.0_beta2-pic-fix.patch, +libtheora-1.0_beta2-r1.ebuild:
+  fix textrels, bug #200670, getting rid of pic useflag, readding ~x86-fbsd
+  keyword as its fine there
 
   27 Nov 2007; Samuli Suominen <drac@gentoo.org>
   files/libtheora-1.0_beta2-flags.patch:
