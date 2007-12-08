@@ -1,0 +1,169 @@
+# ChangeLog for dev-perl/math-pari
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/math-pari/ChangeLog,v 1.38 2007/03/05 12:52:29 ticho Exp $
+
+  05 Mar 2007; Andrej Kacian <ticho@gentoo.org> math-pari-2.010709.ebuild:
+  Stable on x86, bug #169152.
+
+  08 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  math-pari-2.010709.ebuild:
+  Marking sparc stable
+
+  07 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  -math-pari-2.010704.ebuild, math-pari-2.010709.ebuild:
+  Marking amd64 stable
+
+*math-pari-2.010709 (07 Nov 2006)
+
+  07 Nov 2006; Michael Cummings <mcummings@gentoo.org>
+  +math-pari-2.010709.ebuild:
+  Version bump
+
+  23 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  math-pari-2.010706.ebuild:
+  Stable on hppa
+
+  20 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  -math-pari-2.010500-r1.ebuild, -math-pari-2.010603.ebuild,
+  math-pari-2.010702.ebuild, -math-pari-2.010702-r1.ebuild,
+  math-pari-2.010704.ebuild, math-pari-2.010706.ebuild:
+  Marking amd64 stable; cleaning up ebuilds
+
+  10 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  math-pari-2.010706.ebuild:
+  Stable on sparc
+
+  13 Aug 2006; Jason Wever <weeve@gentoo.org> math-pari-2.010706.ebuild:
+  Fixed up comment formatting on ChrisWhite's correction of my SPARC fixes.
+
+  13 Aug 2006; Chris White <chriswhite@gentoo.org>
+  math-pari-2.010706.ebuild:
+  Moved use sparc logic to src_compile and out of global scope for bug #143727.
+
+  12 Aug 2006; Jason Wever <weeve@gentoo.org> math-pari-2.010706.ebuild:
+  Adjusted machine detection for SPARC as the native SPARC assembly routines
+  math-pari tries to use results in unloadable C modules for perl.
+
+  06 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  math-pari-2.010500-r1.ebuild, math-pari-2.010603.ebuild,
+  math-pari-2.010702.ebuild, math-pari-2.010702-r1.ebuild,
+  math-pari-2.010704.ebuild, math-pari-2.010706.ebuild:
+  Adding perl dep; fixed DEPEND
+
+  05 Jul 2006; Christian Hartmann <ian@gentoo.org>
+  math-pari-2.010500-r1.ebuild, math-pari-2.010603.ebuild,
+  math-pari-2.010702.ebuild, math-pari-2.010702-r1.ebuild,
+  math-pari-2.010704.ebuild, math-pari-2.010706.ebuild:
+  Fixed RDEPEND wrt bug #134781
+
+  02 Jul 2006; Michael Cummings <mcummings@gentoo.org>
+  math-pari-2.010704.ebuild:
+  Marking amd64 stable
+
+  29 Jun 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  math-pari-2.010704.ebuild:
+  Stable on hppa
+
+*math-pari-2.010706 (23 Jun 2006)
+
+  23 Jun 2006; Michael Cummings <mcummings@gentoo.org>
+  +math-pari-2.010706.ebuild:
+  Version bump upstream
+
+  12 Jun 2006; Michael Cummings <mcummings@gentoo.org>
+  math-pari-2.010702-r1.ebuild, math-pari-2.010704.ebuild:
+  Marking sparc stable
+
+*math-pari-2.010704 (26 Apr 2006)
+
+  26 Apr 2006; <mcumming@gentoo.org> +math-pari-2.010704.ebuild:
+  Version bump
+
+  02 Feb 2006; Aron Griffis <agriffis@gentoo.org> math-pari-2.010702.ebuild:
+  Mark 2.010702 stable on alpha
+
+*math-pari-2.010702-r1 (18 Jan 2006)
+
+  18 Jan 2006; Michael Cummings <mcummings@gentoo.org>
+  +files/math-pari-2.010702-hppa.patch, files/math-pari-hppa.patch,
+  math-pari-2.010702.ebuild, +math-pari-2.010702-r1.ebuild:
+  bug 101448, hardened patch, plus added hppa patch back into 2.010702 builds
+
+  18 Jan 2006; Guy Martin <gmsoft@gentoo.org> math-pari-2.010702.ebuild:
+  Stable on hppa.
+
+  17 Jan 2006; <mcumming@gentoo.org> math-pari-2.010702.ebuild:
+  Marking stable sparc x86
+
+*math-pari-2.010702 (19 Nov 2005)
+
+  19 Nov 2005; <mcumming@gentoo.org> +math-pari-2.010702.ebuild:
+  Version bump
+
+  10 Nov 2005; Jason Wever <weeve@gentoo.org> math-pari-2.010603.ebuild:
+  Added ~sparc keyword.
+
+  08 Sep 2005; Aron Griffis <agriffis@gentoo.org> math-pari-2.010603.ebuild:
+  Mark 2.010603 stable on alpha
+
+  01 Jun 2005; Guy Martin <gmsoft@gentoo.org> +files/math-pari-hppa.patch,
+  math-pari-2.010603.ebuild:
+  Optimized and marked stable on hppa.
+
+  18 May 2005; Michael Cummings <mcummings@gentoo.org>
+  math-pari-2.010603.ebuild:
+  Marking stable in dep land
+
+  22 Apr 2005; Simon Stelling <blubb@gentoo.org>
+  math-pari-2.010500-r1.ebuild:
+  stable on amd64
+
+  11 Apr 2005; Ferris McCormick <fmccor@gentoo.org>
+  math-pari-2.010603.ebuild:
+  Remove ~sparc keyword: pari-2.1.6 does not build on sparc, See bug 87790 for
+  details.
+
+*math-pari-2.010603 (11 Apr 2005)
+
+  11 Apr 2005; Michael Cummings <mcummings@gentoo.org>
+  math-pari-2.010500-r1.ebuild, +math-pari-2.010603.ebuild:
+  New version; needed for crypt modules to function (learned the hard way)
+
+  08 Jun 2004; Michael Sterrett <mr_bones_@gentoo.org>
+  math-pari-2.010500.ebuild:
+  clean older ugly ebuild
+
+  20 Apr 2004; Patrick Kursawe <phosphan@gentoo.org>
+  math-pari-2.010500-r1.ebuild:
+  Changed DEPEND to match all revisions of pari-2.1.5
+
+  25 Feb 2004; Joshua Kinard <kumba@gentoo.org> math-pari-2.010500-r1.ebuild:
+  Added ~mips to KEYWORDS to satisfy repoman deps.
+
+  27 Oct 2003; Brad House <brad_mssw@gentoo.org> math-pari-2.010500-r1.ebuild:
+  add ~amd64 flag
+
+  10 Jul 2003; Michael Cummings <mcummings@gentoo.org>
+  math-pari-2.010500-r1.ebuild:
+  Closing bug 24073
+
+*math-pari-2.010500-r1 (09 Jul 2003)
+
+  09 Jul 2003; Michael Cummings <mcummings@gentoo.org>
+  math-pari-2.010500-r1.ebuild:
+  Unfortunately it appears my "elegant" solution to the pari depend doesn't work
+  if pari isn't installed first (the DEPEND is not read prior to the SRC_URI as
+  I had thought). The new version instead is hard DEPEND'ed against a particular
+  version as both versions of app-sci/pari have identical KEYWORDs. This
+  should handle bug 24073.
+
+  24 Jun 2003; Michael Cummings <mcummings@gentoo.org>
+  math-pari-2.010500.ebuild:
+  Addresses bug 23357 - thanks Rigo
+
+*math-pari-2.010500 (23 Jun 2003)
+
+  23 Jun 2003; Michael Cummings <mcummings@gentoo.org>
+  math-pari-2.010500.ebuild:
+  First import of math-pari, needed for ssh/crypt function in perl
+

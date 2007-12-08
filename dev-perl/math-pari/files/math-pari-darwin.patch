@@ -1,0 +1,11 @@
+--- Makefile.PL
++++ Makefile.PL
+@@ -80,7 +80,7 @@
+ $os = $Config{osname};
+ 
+ $define .= " -DPARI_VERSION_EXP=$pari_version -DDEBUG_PARI";
+-$libs = "-lm";
++$libs = $os eq "darwin" ? "" : "-lm";
+ $libs .= " $common::parilib" if $common::parilib;
+ $noexp2 = '';			# Should be used for generation of paricfg.h
+ 
