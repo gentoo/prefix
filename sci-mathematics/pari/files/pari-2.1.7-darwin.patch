@@ -27,11 +27,11 @@
        hpux-*)     DLLDFLAGS="-b -E" ;;
        freebsd-*)  DLLDFLAGS="-Bshareable -x" ;;
        gnu-*|linux-*)    DLLDFLAGS="-shared -soname \$(LIBPARI_SONAME)" ;;
-@@ -1004,6 +1004,7 @@
+@@ -1004,6 +1004,6 @@
    fi
    case "$osname" in 
-     freebsd|linux|sunos|solaris) DLLDFLAGS="$DLLDFLAGS -lc -lm";;
-+    darwin*) DLLDFLAGS="$DLLDFLAGS -lc";;
+-    freebsd|linux|sunos|solaris) DLLDFLAGS="$DLLDFLAGS -lc -lm";;
++    freebsd|linux|sunos|solaris|darwin*) DLLDFLAGS="$DLLDFLAGS -lc -lm";;
    esac
  
    if test "$fastread" != yes; then
