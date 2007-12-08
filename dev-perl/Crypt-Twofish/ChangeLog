@@ -1,0 +1,36 @@
+# ChangeLog for dev-perl/Crypt-Twofish
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Crypt-Twofish/ChangeLog,v 1.8 2007/01/15 15:38:29 mcummings Exp $
+
+  15 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  Crypt-Twofish-2.12.ebuild:
+  Ebuild maintenance
+
+  17 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Crypt-Twofish-2.12.ebuild:
+  Marking amd64 stable
+
+  05 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Crypt-Twofish-2.12.ebuild:
+  Adding perl dep; fixed DEPEND
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org> Crypt-Twofish-2.12.ebuild:
+  Mark 2.12 stable on ia64
+
+  24 Jun 2006; Michael Cummings <mcummings@gentoo.org>
+  Crypt-Twofish-2.12.ebuild:
+  Keywording ~amd64
+
+  30 Mar 2006; Aron Griffis <agriffis@gentoo.org> Crypt-Twofish-2.12.ebuild:
+  Mark 2.12 ~ia64
+
+  13 Jan 2006; Michael Cummings <mcummings@gentoo.org>
+  Crypt-Twofish-2.12.ebuild:
+  Marking sparc x86 stable
+
+*Crypt-Twofish-2.12 (11 Apr 2005)
+
+  11 Apr 2005; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +Crypt-Twofish-2.12.ebuild:
+  Dep for Module-Signature
+
