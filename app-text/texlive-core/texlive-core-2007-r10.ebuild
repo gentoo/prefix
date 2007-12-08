@@ -38,7 +38,7 @@ SRC_URI="${SRC_URI} mirror://gentoo/${P}-updated-config.ps.bz2"
 SRC_URI="${SRC_URI} mirror://gentoo/${PN}-patches-${PATCHLEVEL}.tar.bz2
 	mirror://gentoo/${P}-texmf.d-${TEXMFD_VERSION}.tar.bz2"
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="X doc"
 
 MODULAR_X_DEPEND="X? (
