@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/rox.eclass,v 1.25 2007/12/04 02:37:29 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/rox.eclass,v 1.26 2007/12/07 15:40:34 lack Exp $
 
 # ROX eclass Version 3
 
@@ -198,25 +198,26 @@ rox_install_desktop() {
 		# Copy the .DirIcon into /usr/share/pixmaps with the proper extension
 		if [[ -f "${APPNAME}/.DirIcon" ]]; then
 			local APPDIRICON=${APPNAME}/.DirIcon
+			local APPICON
 			case "$(file -b ${APPDIRICON})" in
 				"PNG image data"*)
-					export APPICON=${WRAPPERNAME}.png
+					APPICON=${WRAPPERNAME}.png
 					;;
 				"XML 1.0 document text"*)
-					export APPICON=${WRAPPERNAME}.svg
+					APPICON=${WRAPPERNAME}.svg
 					;;
 				"X pixmap image text"*)
-					export APPICON=${WRAPPERNAME}.xpm
+					APPICON=${WRAPPERNAME}.xpm
 					;;
 				"symbolic link"*)
 					APPDIRICON=$(dirname ${APPDIRICON})/$(readlink ${APPDIRICON})
-					export APPICON=${WRAPPERNAME}.${APPDIRICON##*.}
+					APPICON=${WRAPPERNAME}.${APPDIRICON##*.}
 					;;
 				*)
 					# Unknown... Remark on it, and just copy without an extension
 					ewarn "Could not detect the file type of the application icon,"
 					ewarn "copying without an extension."
-					export APPICON=${WRAPPERNAME}
+					APPICON=${WRAPPERNAME}
 					;;
 			esac
 			# Subshell, so as to not pollute the caller's env.
@@ -226,7 +227,7 @@ rox_install_desktop() {
 			)
 		fi
 
-		rox_desktop_entry "${WRAPPERNAME}" "${APPNAME}" "${APPICON}" \
+		rox_desktop_entry "${WRAPPERNAME}" "${APPNAME}" "${WRAPPERNAME}" \
 			"${APPCATEGORY}" "MimeType=$(expandmime $APPMIME)"
 	fi
 }
