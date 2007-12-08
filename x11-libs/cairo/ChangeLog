@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/cairo
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.155 2007/12/05 18:38:30 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.156 2007/12/07 22:39:16 cardoe Exp $
+
+  07 Dec 2007; Doug Klima <cardoe@gentoo.org> cairo-1.5.4.ebuild:
+  GNU find is not required on G/BSD as previously reported
 
   05 Dec 2007; Doug Klima <cardoe@gentoo.org>
   -files/cairo-1.4.6-ctype.patch, -files/cairo-1.4.8-XError.patch,
