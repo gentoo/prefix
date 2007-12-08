@@ -1,6 +1,11 @@
 # ChangeLog for dev-scheme/guile
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.31 2007/11/13 17:58:53 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.32 2007/12/07 13:36:10 hkbst Exp $
+
+*guile-1.8.3-r25 (07 Dec 2007)
+
+  07 Dec 2007; Marijn Schouten <hkBst@gentoo.org> +guile-1.8.3-r25.ebuild:
+  add guile that installs to prefix=/ for einit
 
   13 Nov 2007; Samuli Suominen <drac@gentoo.org> guile-1.8.2.ebuild:
   amd64 stable wrt #182995
