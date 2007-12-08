@@ -1,0 +1,36 @@
+--- Configure
++++ Configure
+@@ -904,7 +904,7 @@
+ #
+ LIBS=-lm
+ case "$osname" in
+-  darwin) LIBS= ;;
++  darwin*) LIBS=;;
+ esac
+ case "$osname-$arch" in
+   linux-*|cygwin*|gnu-*)
+@@ -954,7 +954,7 @@
+ #    aix-*)  DLSUFFIX=a  ;; dynamic linking does not work!
+     sunos-*) sodest=$VersionMajor$VersionMinor.$patch
+              soname=$sodest;;
+-    gnu-*|*-alpha|solaris-*|linux-*|freebsd-*)
++    gnu-*|*-alpha|solaris-*|linux-*|freebsd-*|darwin*-*)
+       case $libpari_base in
+         pari) sodest=$version.$patch;; # released versions
+         *) sodest=$patch.0.0;; # unstable versions
+@@ -988,6 +988,7 @@
+     # not GNU ld
+     case "$osname-$arch" in
+       aix-*)      DLLDFLAGS="-r" ;;
++      darwin*-*)   DLLDFLAGS="-dynamic -install_name ${dfltlibdir}/\$(LIBPARI_SONAME)" ;;
+       hpux-*)     DLLDFLAGS="-b -E" ;;
+       freebsd-*)  DLLDFLAGS="-Bshareable -x" ;;
+       gnu-*|linux-*)    DLLDFLAGS="-shared -soname \$(LIBPARI_SONAME)" ;;
+@@ -1004,6 +1004,7 @@
+   fi
+   case "$osname" in 
+     freebsd|linux|sunos|solaris) DLLDFLAGS="$DLLDFLAGS -lc -lm";;
++    darwin*) DLLDFLAGS="$DLLDFLAGS -lc";;
+   esac
+ 
+   if test "$fastread" != yes; then
