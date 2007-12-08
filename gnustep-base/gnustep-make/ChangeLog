@@ -1,6 +1,9 @@
 # ChangeLog for gnustep-base/gnustep-make
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.57 2007/11/19 12:18:04 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/ChangeLog,v 1.58 2007/12/06 12:07:29 armin76 Exp $
+
+  06 Dec 2007; Raúl Porcel <armin76@gentoo.org> gnustep-make-2.0.1.ebuild:
+  sparc stable wrt #195990
 
 *gnustep-make-2.0.2 (19 Nov 2007)
 
