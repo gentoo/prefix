@@ -1,6 +1,12 @@
 # ChangeLog for x11-wm/windowmaker
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/ChangeLog,v 1.92 2007/11/22 22:09:59 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/ChangeLog,v 1.93 2007/12/08 23:18:54 voyageur Exp $
+
+  08 Dec 2007; Bernard Cafarelli <voyageur@gentoo.org>
+  -files/0.91.0/64bit+endian-fixes-0.9x.patch,
+  -files/0.91.0/maximize-fix-0.9x.patch, -files/0.91.0/menufocus.patch,
+  -windowmaker-0.91.0-r1.ebuild:
+  Dropping old version, please use 0.92.0-r*
 
 *windowmaker-0.92.0-r7 (22 Nov 2007)
 
