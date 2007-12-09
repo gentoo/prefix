@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.200 2007/10/19 12:41:59 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.201 2007/12/08 11:11:17 keytoaster Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -59,12 +59,12 @@ kde_pkg_setup() {
 				use arts && \
 					eerror "You are trying to compile ${CATEGORY}/${PF} with the \"arts\" USE flag enabled." || \
 					eerror "The package ${CATEGORY}/${PF} you're trying to merge requires aRTs."
-				eerror "However, $(best_version kde-base/kdelibs) was compiled with arts flag disabled."
+				eerror "However, $(best_version =kde-base/kdelibs-3.5*) was compiled with the arts USE flag disabled."
 				eerror
 				use arts && \
-					eerror "You must either disable this use flag, or recompile" || \
+					eerror "You must either disable this USE flag, or recompile" || \
 					eerror "To build this package you have to recompile"
-				eerror "$(best_version kde-base/kdelibs) with this arts use flag enabled."
+				eerror "$(best_version =kde-base/kdelibs-3.5*) with the arts USE flag enabled."
 				die "kdelibs missing arts"
 			fi
 		fi
@@ -72,8 +72,8 @@ kde_pkg_setup() {
 
 	if [ "${PN}" = "kdelibs" ] ; then
 		use doc && if ! built_with_use =x11-libs/qt-3* doc ; then
-			eerror "Building kdelibs with the doc use flag requires qt to be built with the doc use flag."
-			eerror "Please re-emerge qt-3 with this use flag enabled."
+			eerror "Building kdelibs with the doc USE flag requires qt to be built with the doc USE flag."
+			eerror "Please re-emerge qt-3 with this USE flag enabled."
 		fi
 	fi
 

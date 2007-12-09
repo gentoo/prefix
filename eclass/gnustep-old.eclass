@@ -1,7 +1,8 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-old.eclass,v 1.10 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-old.eclass,v 1.11 2007/12/08 20:28:43 voyageur Exp $
 
+# THIS ECLASS IS DEPRECATED. PLEASE DO NOT USE IT.
 
 DESCRIPTION="Based on the gnustep eclass."
 

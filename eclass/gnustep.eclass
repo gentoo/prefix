@@ -1,6 +1,8 @@
 # Copyright 1999-2006 Gentoo Technologies, Inc.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep.eclass,v 1.37 2007/08/22 19:52:21 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep.eclass,v 1.38 2007/12/08 20:28:43 voyageur Exp $
+
+# THIS ECLASS IS DEPRECATED. PLEASE DO NOT USE IT.
 
 inherit gnustep-funcs eutils flag-o-matic
 
