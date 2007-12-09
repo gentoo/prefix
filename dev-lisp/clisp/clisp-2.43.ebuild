@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/clisp-2.43.ebuild,v 1.3 2007/11/21 00:21:01 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/clisp-2.43.ebuild,v 1.4 2007/12/08 16:54:36 drac Exp $
 
 EAPI="prefix"
 

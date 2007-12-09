@@ -1,6 +1,9 @@
 # ChangeLog for dev-lisp/clisp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.69 2007/11/21 00:21:01 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.70 2007/12/08 16:54:36 drac Exp $
+
+  08 Dec 2007; Samuli Suominen <drac@gentoo.org> clisp-2.43.ebuild:
+  amd64 stable wrt #201216
 
   21 Nov 2007; Markus Rothe <corsair@gentoo.org> clisp-2.43.ebuild:
   Added ~ppc64; bug #199368
