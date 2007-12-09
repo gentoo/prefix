@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/swarmcache
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/swarmcache/ChangeLog,v 1.5 2007/12/05 20:06:13 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/swarmcache/ChangeLog,v 1.6 2007/12/08 09:06:40 drac Exp $
+
+  08 Dec 2007; Samuli Suominen <drac@gentoo.org>
+  swarmcache-1.0_pre20050106-r1.ebuild:
+  amd64 stable wrt #201308
 
   05 Dec 2007; Markus Meier <maekke@gentoo.org>
   swarmcache-1.0_pre20050106-r1.ebuild:
