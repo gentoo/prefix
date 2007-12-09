@@ -22,6 +22,10 @@
 ##   End example
 ##
 
+# Elias Pipping <pipping@gentoo.org> (09 Dec 2007)
+# experimenting here -- with java6 on macosx
+dev-java/soylatte-jdk-bin
+
 # Fabian Groffen <grobian@gentoo.org> (28 Nov 2007)
 # Segfaults on Solaris during compile, don't trust it for the other
 # arches
