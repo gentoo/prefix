@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/stunnel-4.20.ebuild,v 1.12 2007/11/03 16:00:15 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/stunnel-4.20.ebuild,v 1.13 2007/12/08 10:38:25 ulm Exp $
 
 EAPI="prefix"
 
@@ -41,10 +41,10 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR=${D} install || die "make install failed"
-	rm -rf ${ED}/usr/share/doc/${PN}
-	rm -f ${ED}/{etc/stunnel/stunnel.conf-sample,usr/sbin/stunnel3}
-	rm -f ${ED}/usr/share/man/man8/{stunnel.fr.8,stunnel.pl.8}
+	make DESTDIR="${D}" install || die "make install failed"
+	rm -rf "${ED}"/usr/share/doc/${PN}
+	rm -f "${ED}"/{etc/stunnel/stunnel.conf-sample,usr/sbin/stunnel3}
+	rm -f "${ED}"/usr/share/man/man8/{stunnel.fr.8,stunnel.pl.8}
 
 	dodoc AUTHORS BUGS CREDITS INSTALL NEWS PORTS README TODO ChangeLog \
 		doc/en/transproxy.txt
@@ -52,8 +52,8 @@ src_install() {
 		tools/importCA.html
 
 	insinto /etc/stunnel
-	newins ${FILESDIR}/stunnel.conf stunnel.conf
-	newinitd ${FILESDIR}/stunnel.rc6 stunnel
+	doins "${FILESDIR}"/stunnel.conf
+	newinitd "${FILESDIR}"/stunnel.rc6.${PV} stunnel
 	# Check if there's currently an cert already there
 	if [ ! -f /etc/stunnel/stunnel.key ]; then
 		docert stunnel
@@ -66,12 +66,12 @@ pkg_postinst() {
 	enewgroup stunnel
 	enewuser stunnel -1 -1 -1 stunnel
 
-	chown stunnel:stunnel ${EROOT}/var/run/stunnel
-	chown stunnel:stunnel ${EROOT}/etc/stunnel/stunnel.{conf,crt,csr,key,pem}
-	chmod 0640 ${EROOT}/etc/stunnel/stunnel.{conf,crt,csr,key,pem}
+	chown stunnel:stunnel "${EROOT}"/var/run/stunnel
+	chown stunnel:stunnel "${EROOT}"/etc/stunnel/stunnel.{conf,crt,csr,key,pem}
+	chmod 0640 "${EROOT}"/etc/stunnel/stunnel.{conf,crt,csr,key,pem}
 
 	if [ ! -z "$(egrep '/etc/stunnel/stunnel.pid' \
-		${EROOT}/etc/stunnel/stunnel.conf )" ] ; then
+		"${EROOT}"/etc/stunnel/stunnel.conf )" ] ; then
 
 		ewarn "As of stunnel-4.09, the pid file will be located in /var/run/stunnel."
 		ewarn "Please stop stunnel, etc-update, and start stunnel back up to ensure"

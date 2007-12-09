@@ -1,6 +1,17 @@
 # ChangeLog for net-misc/stunnel
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/ChangeLog,v 1.77 2007/11/10 05:26:34 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/ChangeLog,v 1.78 2007/12/08 10:38:25 ulm Exp $
+
+*stunnel-4.21 (08 Dec 2007)
+
+  08 Dec 2007; Ulrich Mueller <ulm@gentoo.org>
+  +files/stunnel-4.21-libwrap.patch, files/stunnel.rc6,
+  +files/stunnel.rc6.4.20, -stunnel-4.16.ebuild, stunnel-4.20.ebuild,
+  +stunnel-4.21.ebuild:
+  Version bump; ebuild and patch by Santiago M. Mola <coldwind@gentoo.org> in
+  bug #197881. Replace call to docert by install_cert, bug #174759. The binary
+  is now installed in /usr/bin; provide a symlink for backwards compatibility
+  and update the rc file accordingly. Remove old version.
 
   10 Nov 2007; Samuli Suominen <drac@gentoo.org> stunnel-3.26.ebuild:
   Keyword ~amd64 wrt #193770.
