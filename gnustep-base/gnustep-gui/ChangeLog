@@ -1,6 +1,10 @@
 # ChangeLog for gnustep-base/gnustep-gui
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.55 2007/12/06 12:09:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.56 2007/12/08 20:06:35 voyageur Exp $
+
+  08 Dec 2007; Bernard Cafarelli <voyageur@gentoo.org> -files/gsnd.initd,
+  -gnustep-gui-0.10.3.ebuild, -gnustep-gui-0.11.0.ebuild:
+  Remove old versions
 
   06 Dec 2007; Raúl Porcel <armin76@gentoo.org> gnustep-gui-0.12.0.ebuild:
   sparc stable wrt #195990
