@@ -1,14 +1,14 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/popt-1.10.7.ebuild,v 1.12 2007/12/09 03:58:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/popt-1.12.ebuild,v 1.1 2007/12/09 04:15:41 vapier Exp $
 
 EAPI="prefix"
 
 inherit eutils libtool
 
 DESCRIPTION="Parse Options - Command line parser"
-HOMEPAGE="http://www.rpm.org/"
-SRC_URI="ftp://jbj.org/pub/rpm-4.4.x/${P}.tar.gz"
+HOMEPAGE="http://rpm5.org/"
+SRC_URI="http://rpm5.org/files/popt/${P}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
@@ -21,9 +21,8 @@ DEPEND="nls? ( sys-devel/gettext )"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-1.10.4-regression.patch
 	epatch "${FILESDIR}"/${PN}-1.10.4-lib64.patch
-	epatch "${FILESDIR}"/${PN}-1.10.7-scrub-lame-gettext.patch
+	epatch "${FILESDIR}"/${PN}-1.12-scrub-lame-gettext.patch
 	elibtoolize # for ia64-hpux
 }
 
