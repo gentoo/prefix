@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Module-Pluggable
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Module-Pluggable/ChangeLog,v 1.32 2007/12/04 20:14:46 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Module-Pluggable/ChangeLog,v 1.33 2007/12/08 12:06:38 armin76 Exp $
+
+  08 Dec 2007; Raúl Porcel <armin76@gentoo.org>
+  Module-Pluggable-3.6.ebuild:
+  ia64 stable
 
   04 Dec 2007; Markus Rothe <corsair@gentoo.org>
   Module-Pluggable-3.6.ebuild:
