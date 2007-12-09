@@ -1,6 +1,13 @@
 # ChangeLog for gnustep-base/gnustep-base
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.55 2007/12/06 12:08:32 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.56 2007/12/08 20:08:55 voyageur Exp $
+
+  08 Dec 2007; Bernard Cafarelli <voyageur@gentoo.org>
+  -files/gnustep-base-1.12.0-obey_homedir.patch,
+  -files/gnustep.initd-1.13.0, -files/config-gnustep-base.sh,
+  -files/gnustep.initd, -gnustep-base-1.12.0.ebuild,
+  -gnustep-base-1.13.0-r1.ebuild:
+  Remove old versions
 
   06 Dec 2007; Raúl Porcel <armin76@gentoo.org> gnustep-base-1.14.0.ebuild:
   sparc stable wrt #195990
