@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/rlwrap
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/rlwrap/ChangeLog,v 1.13 2007/02/21 22:40:30 peper Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/rlwrap/ChangeLog,v 1.14 2007/12/08 16:34:07 drac Exp $
+
+  08 Dec 2007; Samuli Suominen <drac@gentoo.org> rlwrap-0.24.ebuild:
+  amd64 stable wrt #201216
 
   21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
