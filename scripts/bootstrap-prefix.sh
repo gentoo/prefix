@@ -188,7 +188,29 @@ bootstrap_setup() {
 }
 
 bootstrap_tree() {
-	PV="20071115"
+	case ${CHOST} in
+		powerpc-apple-darwin7)       PV="20071115" ;;
+		powerpc-apple-darwin8)       PV="20071115" ;;
+		i*86-apple-darwin8)          PV="20071115" ;;
+		powerpc-apple-darwin9)       PV="20071115" ;;
+		i*86-apple-darwin9)          PV="20071115" ;; # verified (grobian)
+		i*86-pc-linux-gnu)           PV="20071115" ;;
+		x86_64-pc-linux-gnu)         PV="20071115" ;;
+		ia64-pc-linux-gnu)           PV="20071115" ;;
+		sparc-sun-solaris2.9)        PV="20071115" ;;
+		i386-pc-solaris2.10)         PV="20071115" ;;
+		sparc-sun-solaris2.10)       PV="20071115" ;; # verified (grobian)
+		powerpc-ibm-aix*)            PV="20071115" ;;
+		mips-sgi-irix*)              PV="20071115" ;;
+		i586-pc-interix*)            PV="20071115" ;;
+		hppa*-hp-hpux11*)            PV="20071115" ;;
+		ia64-hp-hpux11*)             PV="20071115" ;;
+		i386-pc-freebsd*)            PV="20071115" ;;
+		*)
+			einfo "warning: no specific tree snapshot known for your system"
+			PV="20071115"
+		;;
+	esac
 	for x in etc usr/{,s}bin var/tmp var/lib/portage var/log/portage var/db;
 	do
 		[ -d "${ROOT}/${x}" ] || mkdir -p "${ROOT}/${x}"
