@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libsigsegv
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigsegv/ChangeLog,v 1.25 2007/11/20 21:45:53 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigsegv/ChangeLog,v 1.26 2007/12/08 16:39:18 drac Exp $
+
+  08 Dec 2007; Samuli Suominen <drac@gentoo.org> libsigsegv-2.4.ebuild:
+  amd64 stable wrt #201216
 
   20 Nov 2007; Markus Rothe <corsair@gentoo.org> libsigsegv-2.4.ebuild:
   Added ~ppc64; bug #199368
