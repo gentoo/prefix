@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/xar
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/xar/ChangeLog,v 1.9 2007/06/12 17:15:25 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xar/ChangeLog,v 1.10 2007/12/10 04:14:04 jer Exp $
+
+  10 Dec 2007; Jeroen Roovers <jer@gentoo.org> ChangeLog:
+  Marked ~hppa (bug #201745).
 
 *xar-1.5.1 (12 Jun 2007)
 
