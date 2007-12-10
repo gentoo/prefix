@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/commons-collections
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-collections/ChangeLog,v 1.45 2007/11/25 09:57:55 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-collections/ChangeLog,v 1.46 2007/12/09 15:43:10 nelchael Exp $
+
+  09 Dec 2007; Krzysiek Pawlik <nelchael@gentoo.org>
+  commons-collections-3.2-r1.ebuild:
+  Disable src_test on ppc.
 
   25 Nov 2007; Krzysiek Pawlik <nelchael@gentoo.org>
   commons-collections-3.2-r1.ebuild:

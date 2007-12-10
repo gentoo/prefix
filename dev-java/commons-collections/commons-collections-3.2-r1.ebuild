@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-collections/commons-collections-3.2-r1.ebuild,v 1.5 2007/11/25 09:57:55 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-collections/commons-collections-3.2-r1.ebuild,v 1.6 2007/12/09 15:43:10 nelchael Exp $
 
 EAPI="prefix"
 
@@ -42,7 +42,11 @@ src_compile() {
 }
 
 src_test() {
-	ANT_TASKS="ant-junit" eant testjar -Djunit.jar="$(java-pkg_getjars junit)"
+	if [[ "${ARCH}" = "ppc" ]]; then
+		einfo "Tests are disabled on ppc"
+	else
+		ANT_TASKS="ant-junit" eant testjar -Djunit.jar="$(java-pkg_getjars junit)"
+	fi
 }
 
 src_install() {
