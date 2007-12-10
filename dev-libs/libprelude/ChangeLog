@@ -1,0 +1,276 @@
+# ChangeLog for dev-libs/libprelude
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libprelude/ChangeLog,v 1.54 2007/12/08 17:08:20 drac Exp $
+
+  08 Dec 2007; Samuli Suominen <drac@gentoo.org> libprelude-0.9.15.2.ebuild:
+  amd64 stable wrt #191415
+
+  07 Dec 2007; Christian Faulhammer <opfer@gentoo.org>
+  libprelude-0.9.15.2.ebuild:
+  stable x86, bug 191415
+
+*libprelude-0.9.15.2 (05 Sep 2007)
+
+  05 Sep 2007; Markus Ullmann <jokey@gentoo.org>
+  -files/libprelude-0.9.12.1-makefile.patch, -libprelude-0.9.12.1.ebuild,
+  +libprelude-0.9.15.2.ebuild:
+  Version bump wrt bug #186045
+
+  01 Feb 2007; Markus Ullmann <jokey@gentoo.org>
+  -libprelude-0.8.10-r1.ebuild, -libprelude-0.9.9.ebuild,
+  -libprelude-0.9.10.ebuild:
+  cleanup
+
+*libprelude-0.9.12.1 (07 Jan 2007)
+
+  07 Jan 2007; Cedric Krier <cedk@gentoo.org>
+  +files/libprelude-0.9.12.1-makefile.patch, +libprelude-0.9.12.1.ebuild:
+  Version bump
+
+  20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org>
+  libprelude-0.9.3.ebuild:
+  Stable on Alpha.
+
+*libprelude-0.9.10 (21 Jul 2006)
+
+  21 Jul 2006; Marcelo Goes <vanquirius@gentoo.org>
+  -libprelude-0.9.8.ebuild, +libprelude-0.9.10.ebuild:
+  0.9.10 version bump.
+
+*libprelude-0.9.9 (01 Jul 2006)
+
+  01 Jul 2006; Marcelo Goes <vanquirius@gentoo.org>
+  -libprelude-0.9.5.ebuild, +libprelude-0.9.9.ebuild:
+  0.9.9 version bump for bug 135952. Thanks to Eric Brown <eric.brown at
+  dnbrown dot net>.
+
+*libprelude-0.9.8 (01 Jun 2006)
+
+  01 Jun 2006; Markus Ullmann <jokey@gentoo.org> +libprelude-0.9.8.ebuild:
+  Version bump wrt bug #135188
+
+  30 Apr 2006; Simon Stelling <blubb@gentoo.org> libprelude-0.9.3.ebuild:
+  stable on amd64
+
+  17 Feb 2006; Michael Hanselmann <hansmi@gentoo.org>
+  libprelude-0.9.3.ebuild:
+  Stable on ppc.
+
+  16 Feb 2006; Jason Wever <weeve@gentoo.org> libprelude-0.9.3.ebuild:
+  Stable on SPARC.
+
+  14 Feb 2006; Mark Loeser <halcy0n@gentoo.org> libprelude-0.9.3.ebuild:
+  Stable on x86; bug #118708
+
+*libprelude-0.9.5 (11 Feb 2006)
+
+  11 Feb 2006; Marcelo Goes <vanquirius@gentoo.org>
+  -libprelude-0.9.2.ebuild, +libprelude-0.9.5.ebuild:
+  0.9.5 version bump.
+
+*libprelude-0.9.3 (10 Jan 2006)
+
+  10 Jan 2006; Marcelo Goes <vanquirius@gentoo.org>
+  -libprelude-0.9.1.ebuild, +libprelude-0.9.3.ebuild:
+  0.9.3 version bump.
+
+*libprelude-0.9.2 (07 Jan 2006)
+
+  07 Jan 2006; Marcelo Goes <vanquirius@gentoo.org>
+  -files/libprelude-0.9.0-perlpathfix.patch, -libprelude-0.9.0-r2.ebuild,
+  +libprelude-0.9.2.ebuild:
+  0.9.2 version bump.
+
+*libprelude-0.9.1 (18 Dec 2005)
+
+  18 Dec 2005; Marcelo Goes <vanquirius@gentoo.org>
+  +libprelude-0.9.1.ebuild:
+  0.9.1 version bump. Perl patch is now in upstream sources.
+
+*libprelude-0.9.0-r2 (02 Oct 2005)
+
+  02 Oct 2005; Daniel Black <dragonheart@gentoo.org>
+  files/libprelude-0.9.0-perlpathfix.patch, -libprelude-0.9.0-r1.ebuild,
+  +libprelude-0.9.0-r2.ebuild:
+  fixed perl binding thanks to Yoann
+
+*libprelude-0.9.0-r1 (01 Oct 2005)
+
+  01 Oct 2005; Daniel Black <dragonheart@gentoo.org>
+  +files/libprelude-0.9.0-perlpathfix.patch, -libprelude-0.9.0.ebuild,
+  +libprelude-0.9.0-r1.ebuild:
+  fixed rpath issues bug #105759 thanks to Jason Wever
+
+*libprelude-0.9.0 (23 Sep 2005)
+
+  23 Sep 2005; Marcelo Goes <vanquirius@gentoo.org>
+  -libprelude-0.9.0_rc14.ebuild, -libprelude-0.9.0_rc15.ebuild,
+  +libprelude-0.9.0.ebuild:
+  Version bump.
+
+*libprelude-0.9.0_rc15 (10 Sep 2005)
+
+  10 Sep 2005; Marcelo Goes <vanquirius@gentoo.org>
+  -libprelude-0.9.0_rc13.ebuild, +libprelude-0.9.0_rc15.ebuild:
+  Version bump.
+
+*libprelude-0.9.0_rc14 (26 Aug 2005)
+
+  26 Aug 2005; Marcelo Goes <vanquirius@gentoo.org>
+  -libprelude-0.9.0_rc11.ebuild, +libprelude-0.9.0_rc14.ebuild:
+  Version bump.
+
+*libprelude-0.9.0_rc13 (18 Aug 2005)
+
+  18 Aug 2005; Aaron Walker <ka0ttic@gentoo.org>
+  -libprelude-0.9.0_rc10.ebuild, +libprelude-0.9.0_rc13.ebuild:
+  Version bump.
+
+*libprelude-0.9.0_rc11 (03 Aug 2005)
+
+  03 Aug 2005; Marcelo Goes <vanquirius@gentoo.org>
+  +libprelude-0.9.0_rc11.ebuild:
+  Version bump.
+
+  01 Aug 2005; Fabian Groffen <grobian@gentoo.org>
+  libprelude-0.9.0_rc10.ebuild:
+  Marked ~ppc-macos
+
+  29 Jul 2005; Marcelo Goes <vanquirius@gentoo.org>
+  -libprelude-0.9.0_rc8.ebuild:
+  Removing old version.
+
+*libprelude-0.9.0_rc10 (24 Jul 2005)
+
+  24 Jul 2005; Marcelo Goes <vanquirius@gentoo.org>
+  +libprelude-0.9.0_rc10.ebuild:
+  Version bump.
+
+  20 Jun 2005; Marcelo Goes <vanquirius@gentoo.org>
+  libprelude-0.9.0_rc8.ebuild:
+  Block net-analyzer/prelude-nids so that people who want to use unstable
+  prelude don't get in a catch-22 with upgrading and downgrading
+  dev-libs/libprelude. If you want to use prelude from the 0.9 branch, use
+  net-analyzer/snort for your sensors. See bug 96580.
+
+  19 Jun 2005; Marcelo Goes <vanquirius@gentoo.org>
+  -libprelude-0.8.10.ebuild, -libprelude-0.9.0_rc5-r1.ebuild,
+  -libprelude-0.9.0_rc7.ebuild:
+  Remove old ebuilds.
+
+*libprelude-0.9.0_rc8 (28 May 2005)
+
+  28 May 2005; Aaron Walker <ka0ttic@gentoo.org>
+  +libprelude-0.9.0_rc8.ebuild:
+  Version bump.
+
+*libprelude-0.9.0_rc7 (26 May 2005)
+
+  26 May 2005; Aaron Walker <ka0ttic@gentoo.org>
+  +libprelude-0.9.0_rc7.ebuild:
+  Version bump.
+
+  17 May 2005; Marcelo Goes <vanquirius@gentoo.org>
+  libprelude-0.9.0_rc5-r1.ebuild:
+  Drop pcre use flag. Thanks to Yoann Vandoorselaere <yoann@prelude-ids.org>.
+  See bug 87408.
+
+  11 May 2005; Simon Stelling <blubb@gentoo.org>
+  libprelude-0.8.10-r1.ebuild:
+  stable on amd64 wrt bug 91467
+
+  11 May 2005; Bryan Østergaard <kloeri@gentoo.org>
+  libprelude-0.8.10-r1.ebuild:
+  Stable on alpha + ia64, bug 91467.
+
+  10 May 2005; Lars Weiler <pylon@gentoo.org> libprelude-0.8.10-r1.ebuild:
+  Stable on ppc; bug #91467.
+
+  10 May 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  libprelude-0.8.10-r1.ebuild:
+  Stable on sparc wrt #91467
+
+*libprelude-0.8.10-r1 (10 May 2005)
+
+  10 May 2005; Aaron Walker <ka0ttic@gentoo.org>
+  +libprelude-0.8.10-r1.ebuild:
+  Revision bump for security bug 91467.
+
+*libprelude-0.9.0_rc5-r1 (08 May 2005)
+
+  08 May 2005; Aaron Walker <ka0ttic@gentoo.org>
+  -libprelude-0.9.0_rc2.ebuild, -libprelude-0.9.0_rc5.ebuild,
+  +libprelude-0.9.0_rc5-r1.ebuild:
+  Revision bump; removed ssl from IUSE as libprelude no longer offers a
+  --enable-openssl configure option. Also added perl/python to IUSE to
+  conditionally install the respective bindings instead of unconditionally
+  installing them. Make use of perl-module.eclass to prevent the resulting
+  perllocal.pod collision. Tidy old ebuilds.
+
+*libprelude-0.9.0_rc5 (07 May 2005)
+
+  07 May 2005; Marcelo Goes <vanquirius@gentoo.org>
+  +libprelude-0.9.0_rc5.ebuild:
+  Version bump.
+
+  06 Apr 2005; Marcelo Goes <vanquirius@gentoo.org>
+  libprelude-0.9.0_rc2.ebuild:
+  Adding gnutls to DEPEND. Fixes bug 88173. Thanks to Jason Short
+  <jshort@ml1.net> for reporting.
+
+  01 Apr 2005; Marcelo Goes <vanquirius@gentoo.org>
+  libprelude-0.9.0_rc2.ebuild:
+  Cosmetic change: using quotes for defining S, just in case.
+
+*libprelude-0.9.0_rc2 (01 Apr 2005)
+
+  01 Apr 2005; Marcelo Goes <vanquirius@gentoo.org>
+  +libprelude-0.9.0_rc2.ebuild:
+  Version bump, bug 87408. Thanks Carlos Silva <r3pek@gentoo.org>.
+
+  25 Jan 2005; Daniel Black <dragonheart@gentoo.org> libprelude-0.8.10.ebuild:
+  Removed doc USE flag as per bug #77575. Also removed debug USE flag
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  libprelude-0.8.10.ebuild:
+  virtual/glibc -> virtual/libc
+
+  08 Mar 2004; Jon Portnoy <avenj@gentoo.org> libprelude-0.8.10.ebuild :
+  AMD64 keywords.
+
+  17 Feb 2004; Aron Griffis <agriffis@gentoo.org> libprelude-0.8.10.ebuild:
+  stable on alpha and ia64
+
+*libprelude-0.8.10 (17 Dec 2003)
+
+  17 Dec 2003; Michael Boman <mboman@gentoo.org> libprelude-0.8.10.ebuild:
+  New upstream version.
+
+*libprelude-0.8.8 (17 Nov 2003)
+
+  17 Nov 2003; Michael Boman <mboman@gentoo.org> libprelude-0.8.8.ebuild:
+  New upstream version.
+  Added "debug" USE flag to faciliate debugging.
+
+  01 Nov 2003; Jason Wever <weeve@gentoo.org> libprelude-0.8.5-r1.ebuild,
+  libprelude-0.8.5.ebuild, libprelude-0.8.7.ebuild:
+  Added ~sparc keyword.
+
+*libprelude-0.8.7 (14 Oct 2003)
+
+  14 Oct 2003; <solar@gentoo.org> libprelude-0.8.7.ebuild:
+  update to libprelude. contribution made by anonymous user
+
+  08 Jul 2003; <solar@gentoo.org> metadata.xml:
+  Added metadata.xml
+
+*libprelude-0.8.5-r1 (29 Jun 2003)
+
+  29 Jun 2003; Ned Ludd <solar@gentoo.org> libprelude-0.8.5-r1.ebuild:
+  Fix for configure when -doc -ssl are used Closes Bug#: 23672
+
+*libprelude-0.8.5 (21 Jun 2003)
+
+  21 Jun 2003; Ned Ludd <solar@gentoo.org> Manifest, libprelude-0.8.5.ebuild:
+  Initial ebuild contributed by Michael Boman, SecureCiRT Pte Ltd
+
