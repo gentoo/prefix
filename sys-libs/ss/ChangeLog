@@ -1,6 +1,19 @@
 # ChangeLog for sys-libs/ss
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ChangeLog,v 1.36 2007/12/08 21:13:04 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ChangeLog,v 1.40 2007/12/10 01:49:20 jer Exp $
+
+  10 Dec 2007; Jeroen Roovers <jer@gentoo.org> ss-1.40.3.ebuild:
+  Stable for HPPA (bug #201546).
+
+  10 Dec 2007; Andrej Kacian <ticho@gentoo.org> ss-1.40.3.ebuild:
+  Stable on x86, bug #201546.
+
+  10 Dec 2007; Peter Weller <welp@gentoo.org> ss-1.40.3.ebuild:
+  Stable on amd64; bug 201546
+
+  09 Dec 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/ss-1.40.3-check.patch, ss-1.40.3.ebuild:
+  Fix test building/running #201762 by Andrej Kacian.
 
 *ss-1.40.3 (08 Dec 2007)
 
