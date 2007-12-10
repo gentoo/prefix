@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ssl-cert.eclass,v 1.10 2007/12/07 22:41:04 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ssl-cert.eclass,v 1.12 2007/12/09 08:09:56 ulm Exp $
 #
 # Author: Max Kalika <max@gentoo.org>
 #
@@ -26,7 +26,7 @@ gen_cnf() {
 	SSL_RANDOM="${T}/environment:${T}/eclass-debug.log:/etc/resolv.conf"
 
 	# These can be overridden in the ebuild
-	SSL_DAYS="${SSL_BITS:-730}"
+	SSL_DAYS="${SSL_DAYS:-730}"
 	SSL_BITS="${SSL_BITS:-1024}"
 	SSL_COUNTRY="${SSL_COUNTRY:-US}"
 	SSL_STATE="${SSL_STATE:-California}"
@@ -144,6 +144,9 @@ gen_pem() {
 #
 # Access: public
 docert() {
+	ewarn "Function \"docert\" is deprecated for security reasons."
+	ewarn "\"install_cert\" should be used instead. See bug #174759."
+
 	if [ $# -lt 1 ] ; then
 		eerror "At least one argument needed"
 		return 1;
@@ -207,6 +210,11 @@ docert() {
 
 # Uses all the private functions above to generate
 # and install the requested certificates
+#
+# Usage: install_cert <certificates>
+# where <certificates> are full pathnames relative to ROOT, without extension.
+#
+# Example: "install_cert /foo/bar" installs ${EROOT}/foo/bar.{key,csr,crt,pem}
 #
 # Access: public
 install_cert() {
