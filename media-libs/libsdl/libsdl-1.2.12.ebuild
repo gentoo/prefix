@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.12.ebuild,v 1.2 2007/10/21 00:34:02 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.12.ebuild,v 1.3 2007/12/10 23:05:03 vapier Exp $
 
 EAPI="prefix"
 
@@ -33,6 +33,7 @@ RDEPEND="!noaudio? ( >=media-libs/audiofile-0.1.9 )
 		x11-libs/libXt
 		x11-libs/libXext
 		x11-libs/libX11
+		x11-libs/libXrandr
 	)
 	directfb? ( >=dev-libs/DirectFB-0.9.19 )
 	ggi? ( >=media-libs/libggi-2.0_beta3 )
