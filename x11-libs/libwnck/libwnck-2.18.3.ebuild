@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libwnck/libwnck-2.18.3.ebuild,v 1.8 2007/11/06 16:47:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libwnck/libwnck-2.18.3.ebuild,v 1.9 2007/12/11 22:47:50 vapier Exp $
 
 EAPI="prefix"
 
