@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/vorbis-tools-1.1.1-r5.ebuild,v 1.8 2007/11/28 17:18:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/vorbis-tools-1.1.1-r5.ebuild,v 1.9 2007/12/11 23:37:35 vapier Exp $
 
 EAPI="prefix"
 
