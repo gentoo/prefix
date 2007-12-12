@@ -1,6 +1,14 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.61 2007/12/08 18:02:18 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.63 2007/12/11 16:48:00 nixnut Exp $
+
+  11 Dec 2007; nixnut <nixnut@gentoo.org> gnuplot-4.2.2-r1.ebuild:
+  Stable on ppc wrt bug 189672
+
+  11 Dec 2007; Christian Faulhammer <opfer@gentoo.org>
+  gnuplot-4.2.2-r1.ebuild:
+  set VARTEXFONTS, so we avoid access violations with sandbox. Suggested by
+  Andrey Grozin <A.G.Grozin AT inp DOT nsk DOT su> in bug #201871
 
   08 Dec 2007; Jeroen Roovers <jer@gentoo.org> gnuplot-4.2.2-r1.ebuild:
   Stable for HPPA (bug #189672).

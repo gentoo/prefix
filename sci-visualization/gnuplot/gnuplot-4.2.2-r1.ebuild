@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.2-r1.ebuild,v 1.9 2007/12/08 18:02:18 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.2-r1.ebuild,v 1.12 2007/12/11 16:48:00 nixnut Exp $
 
 EAPI="prefix"
 
@@ -69,6 +69,9 @@ src_unpack() {
 src_compile() {
 	# the compiler explodes if you try to optimise this on PPC
 	[[ ${CHOST} == powerpc-apple-darwin* ]] && filter-flags -m*
+
+	# Prevent access violations, see bug 201871
+	VARTEXFONTS="${T}/fonts"
 
 	# See bug #156427.
 	if use latex ; then
