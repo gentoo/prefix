@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.10.ebuild,v 1.8 2007/10/06 05:02:57 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.10.ebuild,v 1.9 2007/12/11 23:59:14 vapier Exp $
 
 EAPI="prefix"
 
