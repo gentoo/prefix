@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/highline/highline-1.4.0.ebuild,v 1.5 2007/11/14 06:54:59 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/highline/highline-1.4.0.ebuild,v 1.6 2007/12/10 16:57:52 armin76 Exp $
 
 EAPI="prefix"
 
