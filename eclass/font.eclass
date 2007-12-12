@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.33 2007/09/19 02:48:20 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.34 2007/12/10 23:58:17 dirtyepic Exp $
 
 # Author: foser <foser@gentoo.org>
 
@@ -65,7 +65,7 @@ font_fontconfig() {
 	if [[ -n ${FONT_CONF} ]]; then
 		if has_version '>=media-libs/fontconfig-2.4'; then
 			insinto /etc/fonts/conf.avail/
-			for conffile in "${FONT_CONF}"; do
+			for conffile in ${FONT_CONF}; do
 				[[ -e  ${conffile} ]] && doins ${conffile}
 			done
 		fi
