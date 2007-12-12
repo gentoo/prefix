@@ -1,6 +1,9 @@
 # ChangeLog for virtual/latex-base
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/latex-base/ChangeLog,v 1.3 2007/10/21 13:06:32 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/latex-base/ChangeLog,v 1.4 2007/12/11 10:22:13 aballier Exp $
+
+  11 Dec 2007; Alexis Ballier <aballier@gentoo.org> latex-base-1.0.ebuild:
+  remove cstetex references, its being removed, part of bug #196673
 
   14 Oct 2007; Alexis Ballier <aballier@gentoo.org> latex-base-1.0.ebuild:
   use texlive-latexrecommended rather than just texlive-latex, it provides
