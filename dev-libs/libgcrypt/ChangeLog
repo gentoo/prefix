@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libgcrypt
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.98 2007/11/10 18:36:07 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.99 2007/12/10 21:12:46 alonbl Exp $
+
+*libgcrypt-1.4.0 (10 Dec 2007)
+
+  10 Dec 2007; Alon Bar-Lev <alonbl@gentoo.org> +libgcrypt-1.4.0.ebuild:
+  Version bump
 
   10 Nov 2007; Alon Bar-Lev <alonbl@gentoo.org> -libgcrypt-1.1.12.ebuild,
   -libgcrypt-1.1.94.ebuild, -libgcrypt-1.2.0.ebuild,
