@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/com_err
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/ChangeLog,v 1.46 2007/12/10 19:31:22 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/ChangeLog,v 1.47 2007/12/12 01:22:54 ranger Exp $
+
+  12 Dec 2007; Brent Baude <ranger@gentoo.org> com_err-1.40.3.ebuild:
+  Marking com_err-1.40.3 ppc64 stable as dep for bug 201546
 
   10 Dec 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   com_err-1.40.3.ebuild:
