@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.4.1.ebuild,v 1.8 2007/11/18 18:02:39 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.4.1.ebuild,v 1.9 2007/12/11 09:43:02 vapier Exp $
 
 EAPI="prefix"
 
