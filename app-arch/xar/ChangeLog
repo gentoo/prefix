@@ -1,6 +1,12 @@
 # ChangeLog for app-arch/xar
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/xar/ChangeLog,v 1.10 2007/12/10 04:14:04 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xar/ChangeLog,v 1.12 2007/12/10 17:27:40 jer Exp $
+
+  10 Dec 2007; Jeroen Roovers <jer@gentoo.org> xar-1.5.1.ebuild:
+  Stable for HPPA (bug #201745).
+
+  10 Dec 2007; Raúl Porcel <armin76@gentoo.org> xar-1.5.1.ebuild:
+  Add ~alpha/~ia64 wrt #201745
 
   10 Dec 2007; Jeroen Roovers <jer@gentoo.org> ChangeLog:
   Marked ~hppa (bug #201745).
