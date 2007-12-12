@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/lcdf-typetools/lcdf-typetools-2.66.ebuild,v 1.6 2007/11/18 09:57:09 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/lcdf-typetools/lcdf-typetools-2.66.ebuild,v 1.7 2007/12/10 07:41:50 aballier Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SLOT="0"
 LICENSE="GPL-2"
 IUSE="kpathsea"
 
-DEPEND="kpathsea? ( virtual/latex-base )"
+DEPEND="kpathsea? ( virtual/tex-base )"
 
 src_compile() {
 	econf $(use_with kpathsea) || die "econf failed"
