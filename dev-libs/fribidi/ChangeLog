@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/fribidi
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/fribidi/ChangeLog,v 1.31 2007/05/08 18:53:39 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/fribidi/ChangeLog,v 1.32 2007/12/11 22:48:06 matsuu Exp $
+
+*fribidi-0.10.9 (11 Dec 2007)
+
+  11 Dec 2007; MATSUU Takuto <matsuu@gentoo.org> +fribidi-0.10.9.ebuild:
+  Version bumbed, bug 201969.
 
   08 May 2007; Fabian Groffen <grobian@gentoo.org> fribidi-0.10.4.ebuild,
   fribidi-0.10.5.ebuild, fribidi-0.10.7.ebuild:
