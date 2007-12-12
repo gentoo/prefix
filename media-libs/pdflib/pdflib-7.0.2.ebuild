@@ -38,6 +38,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	epatch "${FILESDIR}"/${P}-darwin.patch
+
 	elibtoolize
 }
 
