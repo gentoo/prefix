@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.222 2007/12/07 15:15:30 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.223 2007/12/11 12:02:18 ulm Exp $
+
+  11 Dec 2007; Ulrich Mueller <ulm@gentoo.org> -emacs-21.4-r12.ebuild:
+  Remove vulnerable revision wrt bug #200297.
 
   07 Dec 2007; Christian Faulhammer <opfer@gentoo.org>
   -emacs-21.4-r8.ebuild:
