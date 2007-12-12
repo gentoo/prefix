@@ -37,7 +37,6 @@ src_unpack() {
 }
 
 src_compile() {
-	#[[ ${CHOST} == i?86-*-darwin* ]] && myconf="${myconf} --disable-asm"
 	econf \
 		--disable-dependency-tracking \
 		--with-pic \
