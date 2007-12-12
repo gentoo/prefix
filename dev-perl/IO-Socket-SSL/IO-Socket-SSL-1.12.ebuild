@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Socket-SSL/IO-Socket-SSL-1.12.ebuild,v 1.2 2007/12/06 16:23:50 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Socket-SSL/IO-Socket-SSL-1.12.ebuild,v 1.3 2007/12/11 09:51:33 vapier Exp $
 
 EAPI="prefix"
 
