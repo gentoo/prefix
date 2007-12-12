@@ -1,6 +1,25 @@
 # ChangeLog for media-sound/mpg123
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.126 2007/11/29 17:54:08 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.130 2007/12/10 21:34:00 drac Exp $
+
+  10 Dec 2007; Samuli Suominen <drac@gentoo.org> mpg123-1.0_rc2.ebuild:
+  Force automake-1.9 since 1.10 breaks LTCCASCOMPILE, building mmx code on
+  x86. Thanks to maekke for testing.
+
+  10 Dec 2007; Samuli Suominen <drac@gentoo.org>
+  +files/1.0_rc2-pkgconfig.patch, mpg123-1.0_rc2.ebuild:
+  Fix bug #201892.
+
+  10 Dec 2007; Samuli Suominen <drac@gentoo.org> mpg123-1.0_rc2.ebuild:
+  Add USE pulseaudio, allow more than one audio output by default, can be
+  selected runtime.
+
+*mpg123-1.0_rc2 (10 Dec 2007)
+
+  10 Dec 2007; Samuli Suominen <drac@gentoo.org>
+  +files/1.0_rc2-no-faltivec.patch, +mpg123-1.0_rc2.ebuild:
+  Version bump to 1 -series, now installs a shared library and a pkgconfig
+  file for it.
 
   29 Nov 2007; Raúl Porcel <armin76@gentoo.org> mpg123-0.67.ebuild:
   alpha/ia64/sparc stable wrt #200106 thanks to Tobias Klausmann and Alex

@@ -1,0 +1,12 @@
+diff -ur mpg123-1.0rc2.orig/configure.ac mpg123-1.0rc2/configure.ac
+--- mpg123-1.0rc2.orig/configure.ac	2007-12-09 17:13:26.000000000 +0200
++++ mpg123-1.0rc2/configure.ac	2007-12-10 22:35:12.000000000 +0200
+@@ -23,6 +23,8 @@
+ AM_INIT_AUTOMAKE( 1.7 )
+ AM_CONFIG_HEADER(src/config.h)
+ 
++dnl Check for pkgconfig.
++PKG_PROG_PKG_CONFIG([0.20])
+ 
+ # You get strange symptoms like jack module build failing because the AC_C_CONST failed to detect the working const support.
+ # In that case, the test failed because -Werror, not because no const there...
