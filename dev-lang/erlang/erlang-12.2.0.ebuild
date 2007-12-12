@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-11.2.5-r2.ebuild,v 1.6 2007/09/23 07:34:43 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.0.ebuild,v 1.1 2007/12/10 20:52:37 opfer Exp $
 
 EAPI="prefix"
 
 inherit elisp-common eutils flag-o-matic multilib versionator
 
-# NOTE: You	 need to adjust the version number	in the last comment.  If you need symlinks for
+# NOTE: You need to adjust the version number in the last comment.  If you need symlinks for
 # binaries please tell maintainers or open up a bug to let it be created.
 
 # erlang uses a really weird versioning scheme which caused quite a few problems
@@ -43,14 +43,11 @@ S="${WORKDIR}/${MY_P}"
 SITEFILE=50erlang-gentoo.el
 
 src_unpack() {
-	## fix compilation on hardened systems, see bug #154338
-#	filter-flags "-fstack-protector"
-#	filter-flags "-fstack-protector-all"
 
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${P}-build.patch #184419
+	epatch "${FILESDIR}"/${PN}-11.2.5-build.patch #184419
 
 	# needed for amd64
 	epatch "${FILESDIR}/${PN}-10.2.6-export-TARGET.patch"
@@ -58,8 +55,9 @@ src_unpack() {
 	# needed for FreeBSD
 	epatch "${FILESDIR}/${PN}-11.2.5-gethostbyname.patch"
 
-	# needed for building with hipe and recent coreutils
-	use hipe && epatch "${FILESDIR}"/${P}-hipe.patch
+	# binary append on runtime has failures
+	# taken from upstream
+	epatch "${FILESDIR}/${P}-binary-append.patch"
 
 	use odbc || sed -i 's: odbc : :' lib/Makefile
 
@@ -164,7 +162,7 @@ pkg_postinst() {
 	elog "If you need a symlink to one of erlang's binaries,"
 	elog "please open a bug and tell the maintainers."
 	elog
-	elog "Gentoo's versioning scheme differs from the author's, so please refer to this version as R11B-5"
+	elog "Gentoo's versioning scheme differs from the author's, so please refer to this version as R12B"
 	elog
 }
 
