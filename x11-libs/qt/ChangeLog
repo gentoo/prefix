@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.507 2007/12/07 16:15:19 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.508 2007/12/10 13:12:35 rbu Exp $
+
+  10 Dec 2007; Robert Buchholz <rbu@gentoo.org> qt-4.3.2-r1.ebuild:
+  amd64 stable (bug #201296)
 
   07 Dec 2007; Jeroen Roovers <jer@gentoo.org> qt-4.3.2-r1.ebuild:
   Stable for HPPA.
