@@ -38,6 +38,7 @@ src_unpack() {
 
 src_compile() {
 	econf $(use_enable ipv6) \
+		--with-ssl="${EPREFIX}"/usr \
 		$(use_enable tcpd libwrap) || die "econf died"
 	emake || die "emake died"
 }
