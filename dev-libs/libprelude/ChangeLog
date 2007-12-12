@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/libprelude
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libprelude/ChangeLog,v 1.54 2007/12/08 17:08:20 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libprelude/ChangeLog,v 1.56 2007/12/10 17:30:48 grobian Exp $
+
+  10 Dec 2007; Fabian Groffen <grobian@gentoo.org> libprelude-0.9.3.ebuild,
+  libprelude-0.9.15.2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
+
+  10 Dec 2007; Raúl Porcel <armin76@gentoo.org> libprelude-0.9.15.2.ebuild:
+  alpha/ia64/sparc stable wrt #191415
 
   08 Dec 2007; Samuli Suominen <drac@gentoo.org> libprelude-0.9.15.2.ebuild:
   amd64 stable wrt #191415
