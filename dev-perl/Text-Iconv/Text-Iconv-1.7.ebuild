@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Iconv/Text-Iconv-1.7.ebuild,v 1.2 2007/12/06 16:53:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Iconv/Text-Iconv-1.7.ebuild,v 1.3 2007/12/11 09:54:02 vapier Exp $
 
 EAPI="prefix"
 
