@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.1.4.ebuild,v 1.9 2007/10/13 09:35:08 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.1.4.ebuild,v 1.10 2007/12/11 23:37:02 vapier Exp $
 
 EAPI="prefix"
 
