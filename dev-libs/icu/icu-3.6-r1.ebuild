@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-3.6-r1.ebuild,v 1.7 2007/11/14 20:04:35 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-3.6-r1.ebuild,v 1.8 2007/12/11 10:09:43 vapier Exp $
 
 EAPI="prefix"
 
