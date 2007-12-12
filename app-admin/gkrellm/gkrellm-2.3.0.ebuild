@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/gkrellm-2.3.0.ebuild,v 1.7 2007/10/19 20:05:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/gkrellm-2.3.0.ebuild,v 1.8 2007/12/11 08:56:16 vapier Exp $
 
 EAPI="prefix"
 
