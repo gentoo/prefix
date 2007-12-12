@@ -1,6 +1,11 @@
 # ChangeLog for app-emulation/emul-linux-x86-gtklibs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-gtklibs/ChangeLog,v 1.53 2007/11/24 01:20:18 kingtaco Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-gtklibs/ChangeLog,v 1.54 2007/12/11 00:05:38 welp Exp $
+
+*emul-linux-x86-gtklibs-20071210 (11 Dec 2007)
+
+  11 Dec 2007; <welp@gentoo.org> +emul-linux-x86-gtklibs-20071210.ebuild:
+  Bump wrt bug 201860
 
   24 Nov 2007; Mike Doty <kingtaco@gentoo.org>
   emul-linux-x86-gtklibs-20071121.ebuild:
