@@ -1,6 +1,13 @@
 # ChangeLog for gnome-base/libgnomekbd
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/ChangeLog,v 1.25 2007/11/29 05:26:37 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/ChangeLog,v 1.26 2007/12/11 23:05:36 compnerd Exp $
+
+*libgnomekbd-2.20.0-r1 (11 Dec 2007)
+
+  11 Dec 2007; Saleem Abdulrasool <compnerd@gentoo.org>
+  +files/libgnomekbd-2.21.1-no-libbonobo.patch,
+  +libgnomekbd-2.20.0-r1.ebuild:
+  Fix compilation with newer popt.
 
   29 Nov 2007; Jeroen Roovers <jer@gentoo.org> libgnomekbd-2.20.0.ebuild:
   Stable for HPPA (bug #199740).
