@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/pbzip2/pbzip2-1.0.2.ebuild,v 1.8 2007/11/27 14:28:12 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/pbzip2/pbzip2-1.0.2.ebuild,v 1.9 2007/12/11 08:53:39 vapier Exp $
 
 EAPI="prefix"
 
