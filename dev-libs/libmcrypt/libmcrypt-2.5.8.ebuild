@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcrypt/libmcrypt-2.5.8.ebuild,v 1.10 2007/11/19 01:59:37 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcrypt/libmcrypt-2.5.8.ebuild,v 1.12 2007/12/11 13:38:58 alonbl Exp $
 
 EAPI="prefix"
 
@@ -19,13 +19,12 @@ DEPEND=""
 
 src_unpack() {
 	unpack ${A}
-	##EPATCH_OPTS="-p1 -d ${S}" epatch "${FILESDIR}"/${PN}-2.5.7-m4.patch
 	cd "${S}"
+	# freebsd?
 	elibtoolize
 }
 
 src_install() {
-	dodir /usr/{bin,include,lib}
 	make install DESTDIR="${D}" || die "install failure"
 
 	dodoc AUTHORS KNOWN-BUGS INSTALL NEWS README THANKS TODO ChangeLog

@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libmcrypt
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcrypt/ChangeLog,v 1.43 2007/11/19 01:59:37 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcrypt/ChangeLog,v 1.44 2007/12/11 13:38:58 alonbl Exp $
+
+  11 Dec 2007; Alon Bar-Lev <alonbl@gentoo.org>
+  -files/libmcrypt-2.5.7-m4.patch, -libmcrypt-2.5.7.ebuild,
+  libmcrypt-2.5.8.ebuild:
+  Cleanup
 
   19 Nov 2007; Joshua Kinard <kumba@gentoo.org> libmcrypt-2.5.8.ebuild:
   Stable on mips, per #198664.
