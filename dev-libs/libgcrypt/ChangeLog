@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libgcrypt
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.99 2007/12/10 21:12:46 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.100 2007/12/11 15:41:09 alonbl Exp $
+
+  11 Dec 2007; Alon Bar-Lev <alonbl@gentoo.org> libgcrypt-1.4.0.ebuild:
+  Removed padlock, bug#201917, thanks to many
 
 *libgcrypt-1.4.0 (10 Dec 2007)
 
