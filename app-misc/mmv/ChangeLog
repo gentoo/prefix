@@ -1,6 +1,13 @@
 # ChangeLog for app-misc/mmv
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mmv/ChangeLog,v 1.17 2007/02/08 22:41:31 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mmv/ChangeLog,v 1.18 2007/12/10 21:29:56 pva Exp $
+
+*mmv-1.01b_p14 (10 Dec 2007)
+
+  10 Dec 2007; <pva@gentoo.org> mmv-1.01b.ebuild, +mmv-1.01b_p14.ebuild:
+  Version bump. Updated HOMEPAGE, bug #197641 by Robert Mohr <mohr.42 AT
+  osu.edu>. Fixed prestripped binary, bug #152258, by Evil Compile Person
+  <bugs AT dev.gentooexperimental.org>.
 
   08 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
   Regenerate digest in Manifest2 format.
