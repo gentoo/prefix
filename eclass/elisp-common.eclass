@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.31 2007/12/01 15:35:02 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.32 2007/12/11 12:28:05 ulm Exp $
 #
 # Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
@@ -152,8 +152,9 @@ EMACSFLAGS="-batch -q --no-site-file"
 # Byte-compile Emacs Lisp files.
 
 elisp-compile() {
-	einfo "Compiling GNU Emacs Elisp files ..."
+	ebegin "Compiling GNU Emacs Elisp files"
 	${EMACS} ${EMACSFLAGS} -f batch-byte-compile "$@"
+	eend $? "batch-byte-compile failed"
 }
 
 # @FUNCTION: elisp-comp
@@ -177,7 +178,7 @@ elisp-comp() {
 
 	[ $# -gt 0 ] || return 1
 
-	einfo "Compiling GNU Emacs Elisp files ..."
+	ebegin "Compiling GNU Emacs Elisp files"
 
 	tempdir=elc.$$
 	mkdir ${tempdir}
@@ -191,6 +192,8 @@ elisp-comp() {
 
 	popd
 	rm -fr ${tempdir}
+
+	eend ${ret} "batch-byte-compile failed"
 	return ${ret}
 }
 
@@ -212,7 +215,7 @@ elisp-emacs-version() {
 elisp-make-autoload-file() {
 	local f="${1:-${PN}-autoloads.el}"
 	shift
-	einfo "Generating autoload file for GNU Emacs ..."
+	ebegin "Generating autoload file for GNU Emacs"
 
 	sed 's/^FF/\f/' >"${f}" <<-EOF
 	;;; ${f##*/} --- autoloads for ${P}
@@ -235,6 +238,8 @@ elisp-make-autoload-file() {
 		--eval "(setq make-backup-files nil)" \
 		--eval "(setq generated-autoload-file (expand-file-name \"${f}\"))" \
 		-f batch-update-autoloads "${@-.}"
+
+	eend $? "batch-update-autoloads failed"
 }
 
 # @FUNCTION: elisp-install
@@ -245,11 +250,12 @@ elisp-make-autoload-file() {
 elisp-install() {
 	local subdir="$1"
 	shift
-	einfo "Installing Elisp files for GNU Emacs support ..."
+	ebegin "Installing Elisp files for GNU Emacs support"
 	( # subshell to avoid pollution of calling environment
-		insinto ${SITELISP}/${subdir}
+		insinto "${SITELISP}/${subdir}"
 		doins "$@"
 	)
+	eend $? "doins failed"
 }
 
 # @FUNCTION: elisp-site-file-install
@@ -259,7 +265,7 @@ elisp-install() {
 
 elisp-site-file-install() {
 	local sf="$1" my_pn="${2:-${PN}}"
-	einfo "Installing site initialisation file for GNU Emacs ..."
+	ebegin "Installing site initialisation file for GNU Emacs"
 	cp "${sf}" "${T}"
 	sed -i -e "s:@SITELISP@:${ESITELISP}/${my_pn}:g" \
 		-e "s:@SITEETC@:${ESITEETC}/${my_pn}:g" "${T}/${sf##*/}"
@@ -267,14 +273,20 @@ elisp-site-file-install() {
 		insinto "${SITELISP}"
 		doins "${T}/${sf##*/}"
 	)
+	eend $? "doins failed"
 }
 
 # @FUNCTION: elisp-site-regen
 # @DESCRIPTION:
 # Regenerate site-gentoo.el file.
 
+# Old location for site initialisation files of packages was
+# /usr/share/emacs/site-lisp/.  It is planned to change this to
+# /usr/share/emacs/site-lisp/site-gentoo.d/.
+
 elisp-site-regen() {
-	local sflist sf line
+	local i sf line
+	local -a sflist
 
 	if [ ! -e "${EROOT}${SITELISP}"/site-gentoo.el ] \
 		&& [ ! -e "${EROOT}${SITELISP}"/site-start.el ]; then
@@ -296,6 +308,28 @@ elisp-site-regen() {
 	fi
 
 	einfon "Regenerating ${ESITELISP}/site-gentoo.el ..."
+
+	# remove auxiliary file
+	rm -f "${EROOT}${SITELISP}"/00site-gentoo.el
+
+	# set nullglob option, there may be a directory without matching files
+	local old_shopts=$(shopt -p nullglob)
+	shopt -s nullglob
+
+	for sf in "${EROOT}${SITELISP}"/[0-9][0-9]*-gentoo.el \
+		"${EROOT}${SITELISP}"/site-gentoo.d/[0-9][0-9]*.el
+	do
+		[ -r "${sf}" ] || continue
+		# sort files by their basename. straight insertion sort.
+		for ((i=${#sflist[@]}; i>0; i--)); do
+			[[ ${sf##*/} < ${sflist[i-1]##*/} ]] || break
+			sflist[i]=${sflist[i-1]}
+		done
+		sflist[i]=${sf}
+	done
+
+	eval "${old_shopts}"
+
 	cat <<-EOF >"${T}"/site-gentoo.el
 	;;; site-gentoo.el --- site initialisation for Gentoo-installed packages
 
@@ -305,14 +339,7 @@ elisp-site-regen() {
 
 	;;; Code:
 	EOF
-
-	for sf in "${EROOT}${SITELISP}"/[0-9][0-9]*-gentoo.el
-	do
-		[ -r "${sf}" ] || continue
-		sflist="${sflist} ${sf##*/}"
-		cat "${sf}" >>"${T}"/site-gentoo.el
-	done
-
+	cat "${sflist[@]}" >>"${T}"/site-gentoo.el
 	cat <<-EOF >>"${T}"/site-gentoo.el
 
 	(provide 'site-gentoo)
@@ -334,11 +361,13 @@ elisp-site-regen() {
 			&& [ ! -e "${EROOT}${SITELISP}"/site-start.el ] \
 			&& mv "${T}"/site-start.el "${EROOT}${SITELISP}"/site-start.el
 		echo; einfo
-		for sf in ${sflist}; do
+		for sf in "${sflist[@]##*/}"; do
 			einfo "  Adding ${sf} ..."
 		done
-		while read line; do einfo "${line}"; done <<EOF
+		einfo "Regenerated ${SITELISP}/site-gentoo.el."
 
+		echo
+		while read line; do einfo "${line}"; done <<EOF
 All site initialisation for Gentoo-installed packages is added to
 ${EPREFIX}/usr/share/emacs/site-lisp/site-gentoo.el; site-start.el is no longer
 managed by Gentoo.  You are responsible for all maintenance of
@@ -356,4 +385,13 @@ initialisation files from ${EPREFIX}/usr/share/emacs/site-lisp/.
 EOF
 		echo
 	fi
+
+	# Kludge for backwards compatibility: During pkg_postrm, old versions
+	# of this eclass (saved in the PDB) won't find packages' site-init files
+	# in the new location. So we copy them to an auxiliary file that is
+	# visible to old eclass versions.
+	for sf in "${sflist[@]}"; do
+		[ "${sf%/*}" = "${EROOT}${SITELISP}/site-gentoo.d" ] \
+			&& cat "${sf}" >>"${EROOT}${SITELISP}"/00site-gentoo.el
+	done
 }
