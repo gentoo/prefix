@@ -18,7 +18,7 @@ SLOT="0"
 # http://sourceforge.net/tracker/index.php?func=detail&aid=1849812&group_id=97492&atid=618177
 # http://sourceforge.net/tracker/index.php?func=detail&aid=1849809&group_id=97492&atid=618177
 # http://sourceforge.net/tracker/index.php?func=detail&aid=1849805&group_id=97492&atid=618177
-#KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~sparc-fbsd ~x86 ~x86-fbsd"
+#KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="nls static"
 
 DEPEND="nls? ( sys-devel/gettext )"
