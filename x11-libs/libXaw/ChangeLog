@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXaw
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXaw/ChangeLog,v 1.43 2007/10/09 09:36:29 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXaw/ChangeLog,v 1.44 2007/12/13 00:57:17 fmccor Exp $
+
+  13 Dec 2007; Ferris McCormick <fmccor@gentoo.org> libXaw-1.0.4.ebuild:
+  Sparc stable, Bug #202087 (missed it first time).
 
   09 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>; -libXaw-1.0.2.ebuild:
   Drop old ebuilds.
