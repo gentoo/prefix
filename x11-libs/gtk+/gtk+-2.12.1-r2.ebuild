@@ -60,7 +60,7 @@ pkg_setup() {
 		eerror "Please enable either X or aqua USE flag, not both"
 		die "can't build with X and aqua"
 	fi
-	if use X && ! built_with_use x11-libs/cairo X; then
+	if use !aqua && ! built_with_use x11-libs/cairo X; then
 		eerror "Please re-emerge x11-libs/cairo with the X USE flag set"
 		die "cairo needs the X flag set"
 	fi
