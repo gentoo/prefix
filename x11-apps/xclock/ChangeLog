@@ -1,6 +1,9 @@
 # ChangeLog for x11-apps/xclock
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xclock/ChangeLog,v 1.27 2007/09/08 06:17:12 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xclock/ChangeLog,v 1.28 2007/12/12 21:43:34 fmccor Exp $
+
+  12 Dec 2007; Ferris McCormick <fmccor@gentoo.org> xclock-1.0.3.ebuild:
+  Sparc stable --- Bug #202087 --- good for 3 months.
 
 *xclock-1.0.3 (08 Sep 2007)
 
