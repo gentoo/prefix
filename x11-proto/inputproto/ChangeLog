@@ -1,6 +1,10 @@
 # ChangeLog for x11-proto/inputproto
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.55 2007/10/09 09:39:46 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.56 2007/12/12 21:17:01 fmccor Exp $
+
+  12 Dec 2007; Ferris McCormick <fmccor@gentoo.org>
+  inputproto-1.4.2.1.ebuild:
+  Sparc stable --- Bug #202087 --- good for 3 months.
 
   09 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>;
   -inputproto-1.3.2.ebuild, -inputproto-1.4.ebuild,
