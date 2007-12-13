@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/ghc
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.142 2007/11/26 04:20:50 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.143 2007/12/12 13:01:51 fmccor Exp $
+
+  12 Dec 2007; Ferris McCormick <fmccor@gentoo.org> ghc-6.6.1.ebuild:
+  Sparc stable --- needed for Bug #201984 generally.
 
   26 Nov 2007; Jeroen Roovers <jer@gentoo.org> ghc-6.6.1.ebuild:
   Stable for HPPA. Do not install LICENSE.
