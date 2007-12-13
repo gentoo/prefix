@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.51 2007/10/08 14:58:14 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.52 2007/12/12 17:43:50 zzam Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -86,12 +86,20 @@ create_plugindb_file() {
 	local NEW_VDRPLUGINDB_DIR=/usr/share/vdr/vdrplugin-rebuild/
 	local DB_FILE="${NEW_VDRPLUGINDB_DIR}/${CATEGORY}-${PF}"
 	insinto "${NEW_VDRPLUGINDB_DIR}"
-	cat <<-EOT > "${ED}/${DB_FILE}"
-		VDRPLUGIN_DB=1
-		CREATOR=ECLASS
-		EBUILD=${CATEGORY}/${PN}
-		EBUILD_V=${PVR}
-	EOT
+
+#	BUG: portage-2.1.4_rc9 will delete the EBUILD= line, so we cannot use this code.
+#	cat <<-EOT > "${ED}/${DB_FILE}"
+#		VDRPLUGIN_DB=1
+#		CREATOR=ECLASS
+#		EBUILD=${CATEGORY}/${PN}
+#		EBUILD_V=${PVR}
+#	EOT
+	{
+		echo "VDRPLUGIN_DB=1"
+		echo "CREATOR=ECLASS"
+		echo "EBUILD=${CATEGORY}/${PN}"
+		echo "EBUILD_V=${PVR}"
+	} > "${ED}/${DB_FILE}"
 }
 
 # Delete files created outside of vdr-plugin.eclass

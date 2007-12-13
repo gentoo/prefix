@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.32 2007/12/11 12:28:05 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.33 2007/12/12 21:58:57 ulm Exp $
 #
 # Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
@@ -339,7 +339,7 @@ elisp-site-regen() {
 
 	;;; Code:
 	EOF
-	cat "${sflist[@]}" >>"${T}"/site-gentoo.el
+	cat "${sflist[@]}" </dev/null >>"${T}"/site-gentoo.el
 	cat <<-EOF >>"${T}"/site-gentoo.el
 
 	(provide 'site-gentoo)

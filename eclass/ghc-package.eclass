@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ghc-package.eclass,v 1.24 2007/07/25 18:40:29 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ghc-package.eclass,v 1.25 2007/12/13 04:42:48 dcoutts Exp $
 #
 # Author: Andres Loeh <kosmikus@gentoo.org>
 # Maintained by: Haskell herd <haskell@gentoo.org>
@@ -267,7 +267,7 @@ ghc-listpkg() {
 				| sed \
 					-e "s|^.*${i}:\([^:]*\).*$|\1|" \
 					-e "s|/.*$||" \
-					-e "s|,| |g" -e "s|[()]||g"
+					-e "s|,| |g" -e "s|[(){}]||g"
 		else
 			echo $($(ghc-getghcpkgbin) -l -f "${i}") \
 				| cut -f2 -d':' \
