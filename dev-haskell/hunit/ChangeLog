@@ -1,6 +1,22 @@
 # ChangeLog for dev-haskell/hunit
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hunit/ChangeLog,v 1.19 2007/10/31 13:07:14 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hunit/ChangeLog,v 1.24 2007/12/13 05:44:32 dcoutts Exp $
+
+  13 Dec 2007; Duncan Coutts <dcoutts@gentoo.org> hunit-1.1-r1.ebuild,
+  hunit-1.1.1.ebuild:
+  Updates for upward compatability with cabal-1.2 and ghc-6.8
+
+  13 Dec 2007; Duncan Coutts <dcoutts@gentoo.org> hunit-1.1.ebuild:
+  Remove unnecessary blocker.
+
+  12 Dec 2007; Ferris McCormick <fmccor@gentoo.org> hunit-1.1.1.ebuild:
+  Sparc stable --- part of Bug #201984.
+
+  12 Dec 2007; Christian Faulhammer <opfer@gentoo.org> hunit-1.1.1.ebuild:
+  quote variable
+
+  12 Dec 2007; Christian Faulhammer <opfer@gentoo.org> hunit-1.1.1.ebuild:
+  stable x86, bug 201984
 
   31 Oct 2007; Duncan Coutts <dcoutts@gentoo.org> hunit-1.1.ebuild:
   Drop virtual/ghc in favour of dev-lang/ghc
