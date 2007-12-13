@@ -1,6 +1,12 @@
 # ChangeLog for dev-haskell/haddock
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/ChangeLog,v 1.50 2007/10/31 12:57:11 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/ChangeLog,v 1.52 2007/12/13 05:40:31 dcoutts Exp $
+
+  13 Dec 2007; Duncan Coutts <dcoutts@gentoo.org> haddock-0.8.ebuild:
+  Updates for upward compatability with cabal-1.2 and ghc-6.8
+
+  12 Dec 2007; Duncan Coutts <dcoutts@gentoo.org> haddock-0.7.ebuild:
+  Remove unnecessary blocker.
 
   31 Oct 2007; Duncan Coutts <dcoutts@gentoo.org> haddock-0.7.ebuild,
   haddock-0.8.ebuild:

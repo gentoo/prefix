@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/haddock-0.8.ebuild,v 1.10 2007/10/31 12:57:11 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/haddock-0.8.ebuild,v 1.12 2007/12/13 05:40:31 dcoutts Exp $
 
 EAPI="prefix"
 
@@ -37,12 +37,32 @@ src_unpack() {
 	eautoreconf
 }
 
+src_unpack () {
+	unpack "${A}"
+
+	#FIXME: remove the following two workarounds when haddock-0.9 is released
+
+	# Cabal 1.2 expects the pre-processed sources in a different location:
+	mkdir -p "${S}/dist/build/haddock/haddock-tmp/"
+	cp  "${S}/src/HaddockLex.hs" \
+		"${S}/src/HaddockParse.hs" \
+		"${S}/src/HsParser.hs" \
+		"${S}/dist/build/haddock/haddock-tmp/"
+
+	# Add in the extra split-base deps
+	if version_is_at_least "6.8" "$(ghc-version)"; then
+		sed -i -e '/build-depends:/a \
+			,array, containers, directory, pretty, process' \
+			"${S}/haddock.cabal"
+	fi
+}
+
 src_compile () {
 	cabal_src_compile
 	if use doc; then
-		cd ${S}/doc
+		cd "${S}/doc"
 		autoconf
-		./configure --prefix=${ED}/usr/ \
+		./configure --prefix="${ED}/usr/" \
 			|| die 'error configuring documentation.'
 		make html || die 'error building documentation.'
 	fi
@@ -51,7 +71,7 @@ src_compile () {
 src_install () {
 	cabal_src_install
 	if use doc; then
-		dohtml -r ${S}/doc/haddock/*
+		dohtml -r "${S}/doc/haddock/"*
 	fi
-	dodoc CHANGES LICENSE README
+	dodoc CHANGES README
 }
