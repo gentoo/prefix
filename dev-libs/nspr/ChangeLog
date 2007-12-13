@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/nspr
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/ChangeLog,v 1.86 2007/08/15 23:57:21 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/ChangeLog,v 1.87 2007/12/12 13:57:12 armin76 Exp $
+
+*nspr-4.7.0_pre20071016 (12 Dec 2007)
+
+  12 Dec 2007; Raúl Porcel <armin76@gentoo.org>
+  +files/nspr-4.7.0-prtime.patch, -nspr-4.6.6.ebuild,
+  +nspr-4.7.0_pre20071016.ebuild:
+  Version bump, remove old
 
   15 Aug 2007; Christoph Mende <angelos@gentoo.org> nspr-4.6.7.ebuild:
   Stable on amd64 wrt bug #188158
