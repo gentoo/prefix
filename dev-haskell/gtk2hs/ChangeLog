@@ -1,6 +1,10 @@
 # ChangeLog for dev-haskell/gtk2hs
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.38 2007/11/10 03:10:42 araujo Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.39 2007/12/13 00:44:30 dcoutts Exp $
+
+  12 Dec 2007; Duncan Coutts <dcoutts@gentoo.org> gtk2hs-0.9.11.ebuild,
+  gtk2hs-0.9.12.ebuild, gtk2hs-0.9.12.1.ebuild:
+  Does not work with gtksourceview 2.x. Fixes bug #201210.
 
 *gtk2hs-0.9.12.1 (10 Nov 2007)
 
