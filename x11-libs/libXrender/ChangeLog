@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXrender
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXrender/ChangeLog,v 1.43 2007/10/09 09:32:42 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXrender/ChangeLog,v 1.44 2007/12/12 21:21:29 fmccor Exp $
+
+  12 Dec 2007; Ferris McCormick <fmccor@gentoo.org> libXrender-0.9.4.ebuild:
+  Sparc stable --- Bug #202087 --- good for 3 months.
 
   09 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>;
   -libXrender-0.9.1.ebuild:
