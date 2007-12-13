@@ -1,6 +1,9 @@
 # ChangeLog for x11-apps/xmessage
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xmessage/ChangeLog,v 1.25 2007/11/09 21:25:58 seemant Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xmessage/ChangeLog,v 1.26 2007/12/12 21:45:13 fmccor Exp $
+
+  12 Dec 2007; Ferris McCormick <fmccor@gentoo.org> xmessage-1.0.2.ebuild:
+  Sparc stable --- Bug #202087 --- good for 3 months.
 
   09 Nov 2007; Seemant Kulleen <seemant@gentoo.org> xmessage-1.0.1.ebuild:
   stabling sh
