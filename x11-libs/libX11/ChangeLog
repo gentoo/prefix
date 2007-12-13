@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libX11
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.83 2007/10/09 09:27:34 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.84 2007/12/12 21:10:06 fmccor Exp $
+
+  12 Dec 2007; Ferris McCormick <fmccor@gentoo.org> libX11-1.1.3.ebuild:
+  Sparc stable --- Bug #202087 --- good for 3 months.
 
   09 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>;
   -files/1.0.99.2-xcb_callback_fix.patch, -files/libX11-1.0.1-setuid.diff,
