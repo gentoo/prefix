@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/network-2.0.1.ebuild,v 1.2 2007/07/11 18:21:47 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/network-2.0.1.ebuild,v 1.6 2007/12/13 05:48:45 dcoutts Exp $
 
 EAPI="prefix"
 
@@ -22,10 +22,7 @@ DEPEND=">=dev-lang/ghc-6.6"
 
 S="${WORKDIR}/ghc-${GHC_PV}/libraries/${PN}"
 
-# Sadly Setup.hs in the ghc-6.6.1 extralibs was not tested with Cabal-1.1.6.x
 src_unpack() {
 	unpack "${A}"
-	sed -e "/type Hook/ s/UserHooks/Maybe UserHooks/" \
-		-e "/^add_configure_options ::/ d" \
-		-i ${S}/Setup.hs
+	cabal-mksetup
 }
