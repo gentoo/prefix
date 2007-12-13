@@ -1,6 +1,19 @@
 # ChangeLog for dev-haskell/time
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/time/ChangeLog,v 1.6 2007/07/11 18:39:28 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/time/ChangeLog,v 1.10 2007/12/13 05:49:41 dcoutts Exp $
+
+  13 Dec 2007; Duncan Coutts <dcoutts@gentoo.org> time-1.0.ebuild,
+  time-1.1.1.ebuild:
+  Updates for upward compatability with cabal-1.2 and ghc-6.8
+
+  12 Dec 2007; Ferris McCormick <fmccor@gentoo.org> time-1.1.1.ebuild:
+  Sparc stable --- part of Bug #201984.
+
+  12 Dec 2007; Christian Faulhammer <opfer@gentoo.org> time-1.1.1.ebuild:
+  quote variable
+
+  12 Dec 2007; Christian Faulhammer <opfer@gentoo.org> time-1.1.1.ebuild:
+  stable x86, bug 201984
 
   11 Jul 2007; Duncan Coutts <dcoutts@gentoo.org> time-1.1.1.ebuild:
   Marked ~ia64.
