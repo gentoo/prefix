@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXcursor
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXcursor/ChangeLog,v 1.48 2007/10/09 09:35:34 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXcursor/ChangeLog,v 1.49 2007/12/12 21:26:52 fmccor Exp $
+
+  12 Dec 2007; Ferris McCormick <fmccor@gentoo.org> libXcursor-1.1.9.ebuild:
+  Sparc stable --- Bug #202087 --- good for 3 months.
 
   09 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>;
   -libXcursor-1.1.7.ebuild:
