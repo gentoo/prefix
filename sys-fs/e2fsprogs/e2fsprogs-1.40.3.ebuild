@@ -33,11 +33,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/e2fsprogs-1.39-makefile.patch
 	epatch "${FILESDIR}"/${PN}-1.40-libintl.patch #122368
 
-	# Fixes sysconfdir being used in prefix correctly
-	epatch "${FILESDIR}"/e2fsprogs-1.39-sysconfdir.patch
-	# -r1 doesn't have this, so can't use one patch
-	epatch "${FILESDIR}"/e2fsprogs-1.40-more-sysconfdir.patch
-
 	# Fix compile on FreeBSD
 	epatch "${FILESDIR}"/${PN}-1.40-fbsd.patch
 
