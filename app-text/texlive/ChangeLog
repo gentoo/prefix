@@ -1,6 +1,18 @@
 # ChangeLog for app-text/texlive
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.26 2007/12/11 10:44:15 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.27 2007/12/15 10:37:20 aballier Exp $
+
+  15 Dec 2007; Alexis Ballier <aballier@gentoo.org>
+  -files/2005/texlive-2005-amd64-xdvik-wp.patch,
+  -files/2005/texlive-2005-create-empty-files.patch,
+  -files/2005/texlive-2005-fmtutil-in.patch,
+  -files/2005/texlive-2005-gentoo-texmf-site.patch,
+  -files/2005/texlive-2005-mptest.patch,
+  -files/2005/texlive-2005-pdftosrc-install.patch,
+  -files/2005/texlive-2005-use-system-libtool.patch,
+  -files/2005/texlive-2005-xpdf-vulnerabilities.patch, -files/texmf-update,
+  -texlive-2005.ebuild:
+  remove texlive 2005 as 2007 has been there for a while
 
   11 Dec 2007; Alexis Ballier <aballier@gentoo.org> texlive-2005.ebuild:
   remove cstetex references, its being removed, part of bug #196673
