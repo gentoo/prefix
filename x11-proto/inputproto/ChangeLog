@@ -1,6 +1,18 @@
 # ChangeLog for x11-proto/inputproto
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.56 2007/12/12 21:17:01 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.60 2007/12/16 17:45:35 corsair Exp $
+
+  16 Dec 2007; Markus Rothe <corsair@gentoo.org> inputproto-1.4.2.1.ebuild:
+  Stable on ppc64; bug #202087
+
+  16 Dec 2007; nixnut <nixnut@gentoo.org> inputproto-1.4.2.1.ebuild:
+  Stable on ppc wrt bug 202087
+
+  15 Dec 2007; Doug Klima <cardoe@gentoo.org> inputproto-1.4.2.1.ebuild:
+  amd64 stable bug #202087
+
+  13 Dec 2007; Raúl Porcel <armin76@gentoo.org> inputproto-1.4.2.1.ebuild:
+  alpha/ia64 stable wrt #202087
 
   12 Dec 2007; Ferris McCormick <fmccor@gentoo.org>
   inputproto-1.4.2.1.ebuild:
