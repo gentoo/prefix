@@ -1,6 +1,17 @@
 # ChangeLog for dev-haskell/mtl
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/mtl/ChangeLog,v 1.24 2007/12/13 05:47:02 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/mtl/ChangeLog,v 1.27 2007/12/16 20:15:23 drac Exp $
+
+  16 Dec 2007; Samuli Suominen <drac@gentoo.org> mtl-1.0.1.ebuild:
+  amd64 stable wrt #201984
+
+  16 Dec 2007; nixnut <nixnut@gentoo.org> mtl-1.0.1.ebuild:
+  Stable on ppc wrt bug 201984
+
+*mtl-1.1.0.0 (13 Dec 2007)
+
+  13 Dec 2007; Duncan Coutts <dcoutts@gentoo.org> +mtl-1.1.0.0.ebuild:
+  New version.
 
   13 Dec 2007; Duncan Coutts <dcoutts@gentoo.org> mtl-1.0-r1.ebuild,
   mtl-1.0.1.ebuild:
