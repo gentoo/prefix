@@ -1,6 +1,15 @@
 # ChangeLog for dev-ruby/rspec
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rspec/ChangeLog,v 1.13 2007/09/26 12:22:39 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rspec/ChangeLog,v 1.14 2007/12/14 07:22:43 graaff Exp $
+
+*rspec-1.1.0 (14 Dec 2007)
+
+  14 Dec 2007; Hans de Graaff <graaff@gentoo.org> +rspec-1.1.0.ebuild:
+  Version bump:
+   * The RSpec Story Runner
+   * Nested Example Groups
+   * Support for Rails 2.0.1
+   * Test::Unit interoperability
 
   26 Sep 2007; Christoph Mende <angelos@gentoo.org> rspec-1.0.8.ebuild:
   Stable on amd64 wrt bug #193390
