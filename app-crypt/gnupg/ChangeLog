@@ -1,6 +1,21 @@
 # ChangeLog for app-crypt/gnupg
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.304 2007/09/12 21:04:47 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.309 2007/12/16 09:31:09 drac Exp $
+
+  16 Dec 2007; Samuli Suominen <drac@gentoo.org> gnupg-2.0.7.ebuild:
+  amd64 stable wrt #202158
+
+  15 Dec 2007; Jeroen Roovers <jer@gentoo.org> gnupg-2.0.7.ebuild:
+  Stable for HPPA (bug #202158).
+
+  14 Dec 2007; nixnut <nixnut@gentoo.org> gnupg-2.0.7.ebuild:
+  Stable on ppc wrt bug 202158
+
+  14 Dec 2007; Dawid Węgliński <cla@gentoo.org> gnupg-2.0.7.ebuild:
+  Stable on x86 (bug #202158)
+
+  14 Dec 2007; Markus Rothe <corsair@gentoo.org> gnupg-2.0.7.ebuild:
+  Stable on ppc64; bug #202158
 
 *gnupg-2.0.7 (12 Sep 2007)
 
