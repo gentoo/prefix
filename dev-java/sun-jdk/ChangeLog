@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/sun-jdk
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.221 2007/11/25 13:51:01 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.222 2007/12/16 21:10:16 caster Exp $
+
+  16 Dec 2007; Vlastimil Babka <caster@gentoo.org> sun-jdk-1.4.2.16.ebuild,
+  sun-jdk-1.5.0.13.ebuild, sun-jdk-1.6.0.03.ebuild:
+  Add odbc USE flag and revdep-rebuild control file for bug #177925, tweak the
+  deps.
 
   25 Nov 2007; Vlastimil Babka <caster@gentoo.org> sun-jdk-1.4.2.16.ebuild,
   sun-jdk-1.5.0.13.ebuild, sun-jdk-1.6.0.03.ebuild:

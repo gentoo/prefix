@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.03.ebuild,v 1.4 2007/11/25 13:51:01 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.03.ebuild,v 1.5 2007/12/16 21:10:16 caster Exp $
 
 EAPI="prefix"
 
@@ -30,7 +30,7 @@ SLOT="1.6"
 LICENSE="dlj-1.1"
 KEYWORDS="~amd64 ~x86 ~x86-solaris"
 RESTRICT="strip"
-IUSE="X alsa doc examples jce nsplugin"
+IUSE="X alsa doc examples jce nsplugin odbc"
 
 QA_TEXTRELS_x86="opt/${P}/jre/lib/i386/motif21/libmawt.so
 	opt/${P}/jre/lib/i386/libdeploy.so
@@ -43,16 +43,21 @@ DEPEND="
 
 RDEPEND="
 	${DEPEND}
-	x86? ( =virtual/libstdc++-3.3 )
+	x86? (
+		=virtual/libstdc++-3.3
+		net-libs/libnet
+	)
 	kernel_linux? ( !prefix? ( sys-libs/glibc ) )
 	alsa? ( media-libs/alsa-lib )
 	X? (
-			x11-libs/libX11
 			x11-libs/libXext
 			x11-libs/libXi
 			x11-libs/libXp
 			x11-libs/libXtst
-		)"
+			amd64? ( x11-libs/libXt )
+			x11-libs/libX11
+	)
+	odbc? ( dev-db/unixODBC )"
 
 JAVA_PROVIDE="jdbc-stdext jdbc-rowset"
 
@@ -142,27 +147,13 @@ src_install() {
 	newins "${T}"/fontconfig.Gentoo.properties fontconfig.properties
 
 	set_java_env
+	java-vm_revdep-mask
 }
 
 pkg_postinst() {
 	# Set as default VM if none exists
 	java-vm-2_pkg_postinst
 
-	if ! use X; then
-		local xwarn="X11 libraries and/or"
-	fi
-
-	echo
-	ewarn "Some parts of Sun's JDK require ${xwarn} virtual/lpr to be installed."
-	ewarn "Be careful which Java libraries you attempt to use."
-
-	echo
-	elog " Be careful: ${P}'s Java compiler uses"
-	elog " '-source 1.6' as default. Some keywords such as 'enum'"
-	elog " are not valid identifiers any more in that mode,"
-	elog " which can cause incompatibility with certain sources."
-
-	echo
 	elog "Beginning with 1.5.0.10 the hotspot vm can use epoll"
 	elog "The epoll-based implementation of SelectorProvider is not selected by"
 	elog "default."
