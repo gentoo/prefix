@@ -1,6 +1,18 @@
 # ChangeLog for x11-libs/libXaw
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXaw/ChangeLog,v 1.44 2007/12/13 00:57:17 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXaw/ChangeLog,v 1.48 2007/12/16 17:54:40 corsair Exp $
+
+  16 Dec 2007; Markus Rothe <corsair@gentoo.org> libXaw-1.0.4.ebuild:
+  Stable on ppc64; bug #202087
+
+  16 Dec 2007; nixnut <nixnut@gentoo.org> libXaw-1.0.4.ebuild:
+  Stable on ppc wrt bug 202087
+
+  15 Dec 2007; Doug Klima <cardoe@gentoo.org> libXaw-1.0.4.ebuild:
+  amd64 stable wrt bug #202087
+
+  13 Dec 2007; Raúl Porcel <armin76@gentoo.org> libXaw-1.0.4.ebuild:
+  alpha/ia64 stable wrt #202087
 
   13 Dec 2007; Ferris McCormick <fmccor@gentoo.org> libXaw-1.0.4.ebuild:
   Sparc stable, Bug #202087 (missed it first time).
