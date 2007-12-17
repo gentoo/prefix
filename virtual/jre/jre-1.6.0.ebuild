@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/jre/jre-1.6.0.ebuild,v 1.3 2007/06/25 20:08:04 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/jre/jre-1.6.0.ebuild,v 1.4 2007/12/16 13:59:53 caster Exp $
 
 EAPI="prefix"
 
@@ -16,5 +16,6 @@ IUSE=""
 RDEPEND="|| (
 		=virtual/jdk-1.6.0*
 		=dev-java/sun-jre-bin-1.6.0*
+		=dev-java/ibm-jre-bin-1.6.0*
 	)"
 DEPEND=""
