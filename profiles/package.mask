@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.7952 2007/11/28 12:53:47 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8009 2007/12/17 04:50:38 robbat2 Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -21,10 +21,123 @@
 ##   End example
 ##
 
-# Benedikt Böhm <hollow@gentoo.org> (28 Nov 2007)
-# Masked for USE_EXPAND and eclass testing.
-# DO NOT use unless you know what you're doing!
-=www-servers/apache-2.2.6-r4
+# Robin H. Johnson <robbat2@gentoo.org> (16 Dec 2007)
+# For testing only
+=dev-util/git-1.5.4_rc0
+
+# Richard Brown <rbrown@gentoo.org> (15 Dec 2007)
+# Masked for testing as it's install script has changed.
+>=dev-ruby/rubygems-0.9.5
+
+# Jurek Bartuszek <jurek@gentoo.org> (15 Dec 2007)
+# Waiting until wxGTK-2.8 gets unmasked
+>=dev-util/codeblocks-1.0_pre20071215
+
+# Saleem Abdulrasool <compnerd@gentoo.org> (13 Dec 2007)
+# Retired by upstream in favor of gnome-system-tools since 2005
+# Masked for removal in 30 days
+app-admin/grubconf
+
+
+# Duncan Coutts <dcoutts@gentoo.org> (14 Dec 2007)
+# the 0.9x regex packages are not actually the latest stable versions
+# they're experimental versions and they do not yet work with ghc-6.8
+# You're welcome to unmask if you want to use them but let's not confuse
+# everone else with thinking these are the 'best' versions of the packages.
+>=dev-haskell/regex-base-0.90
+>=dev-haskell/regex-posix-0.90
+>=dev-haskell/regex-compat-0.90
+
+# Gilles Dartiguelongue <eva@gentoo.org> (14 Dec 2007)
+# gal is an über old library of gnome and deserves to die.
+# see bug #193496
+=gnome-extra/gtkhtml-3.0.10-r1
+app-editors/peacock
+gnome-extra/gal
+
+# Doug Klima <cardoe@gentoo.org> (13 Dec 2007)
+# older then current releases and should be removed
+=sys-auth/pam_krb5-20030601-r1
+
+# Peter Volkov <pva@gentoo.org> (13 Dec 2007)
+# Live svn ebuild... 0.9.4 branch is not supported atm.
+=net-im/sim-9999
+
+# Raúl Porcel <armin76@gentoo.org> (12 Dec 2007)
+# Segfaults with IMAP
+=x11-plugins/replytolist-0.3.0
+
+# Raúl Porcel <armin76@gentoo.org> (12 Dec 2007)
+# P.mask snapshots
+=dev-libs/nspr-4.7.0_pre*
+=dev-libs/nss-3.12_alpha*
+
+# Bernard Cafarelli <voyageur@gentoo.org> (08 Dec 2007)
+# Masked for removal in 30 days
+# Used in old and deprecated gnustep eclass
+# (all gnustep ebuilds now use gnustep-2 eclass)
+gnustep-base/gnustep-env
+# Integrated in gnustep-base/gnustep-back-art
+gnustep-libs/artresources
+
+# Olivier Crete <tester@gentoo.org> (08 Dec 2007)
+# Remove gaim and its plugins (now its called pidgin)
+net-im/gaim
+app-accessibility/festival-gaim
+net-im/gaim-blogger
+net-im/gaim-bnet
+net-im/gaim-meanwhile
+net-im/gaim-snpp
+x11-plugins/autoprofile
+x11-plugins/bangexec
+x11-plugins/gaim-assistant
+x11-plugins/gaim-encryption
+x11-plugins/gaim-extprefs
+x11-plugins/gaim-galago
+x11-plugins/gaim-hotkeys
+x11-plugins/gaim-latex
+x11-plugins/gaim-otr
+x11-plugins/gaim-rhythmbox
+x11-plugins/gaim-slashexec
+x11-plugins/gaim-xfire
+x11-plugins/gaimosd
+x11-plugins/ignorance
+x11-themes/gaim-smileys
+
+# Marijn Schouten <hkBst@gentoo.org> (07 Dec 2007)
+# Guile that installs to prefix=/ for einit.
+=dev-scheme/guile-1.8.3-r25
+
+# Ryan Hill <dirtyepic@gentoo.org> (04 Dec 2007)
+# Masked for removal 04 Jan 2008
+# See bug #201246 for details
+net-www/pears
+
+# Alin Năstac <mrness@gentoo.org> (04 Dec 2007)
+# Not ready for prime time (see bugs 197147 and 201209)
+=net-proxy/squid-3.0*
+
+# Raúl Porcel <armin76@gentoo.org> (04 Dec 2007)
+# Mozilla stopped supporting 1.5 series in October 2007
+# Will be removed when mips stabilizes 2.0
+=mail-client/mozilla-thunderbird-1.5*
+
+# Ulrich Mueller <ulm@gentoo.org> (04 Dec 2007)
+# md5 is a built-in function in Emacs 21.4 and later. An sha1 module
+# comes with app-emacs/flim and app-emacs/gnus, and is also included
+# in Emacs 22.1 and later.
+# Masked for removal in 30 days, bug #201191.
+app-emacs/md5
+app-emacs/sha1
+
+# Alexis Ballier <aballier@gentoo.org> (03 Dec 2007)
+# Small api changes, mask libcaca-0.99_beta13
+# until the issues are resolved (e.g. bug #201107)
+=media-libs/libcaca-0.99_beta13
+
+# Gunnar Wrobel <wrobel@gentoo.org> (02 Dec 2007)
+# Masked in favor of www-apps/viewvc
+www-apps/viewcvs
 
 # MATSUU Takuto <matsuu@gentoo.org> (27 Nov 2007)
 # Lots of security issues: bug #196673
@@ -39,6 +152,7 @@
 # opensync svn ebuilds
 =app-pda/libsyncml-9999
 =app-pda/libopensync-9999
+=app-pda/msynctool-9999
 =app-pda/libopensync-plugin-evolution2-9999
 =app-pda/libopensync-plugin-file-9999
 =app-pda/libopensync-plugin-gnokii-9999
@@ -49,22 +163,20 @@
 =app-pda/libopensync-plugin-palm-9999
 =app-pda/libopensync-plugin-python-9999
 =app-pda/libopensync-plugin-syncml-9999
+=app-pda/libopensync-plugin-vformat-9999
 
 # Jeffrey Gardner <je_fro@gentoo.org> (26 Nov 2007)
 # Masked as new version fixes multiple issues.
 =x11-drivers/ati-drivers-8.42.3
 
 # Samuli Suominen <drac@gentoo.org> (25 Nov 2007)
-# Version with ~amd64, but it breaks sci-electronics/gwave.
+# sci-electronics/gwave segmentation faults with this.
+# this version builds on ~amd64. also see bug 200702.
 =dev-scheme/guile-gnome-platform-2.15.95*
 
 # Ulrich Mueller <ulm@gentoo.org> (25 Nov 2007)
 # Live SVN ebuild
 ~app-emacs/gentoo-syntax-9999
-
-# Alon Bar-Lev <alonbl@gentoo.org> (24 Nov 2007)
-# last rites bug#198696
-sys-libs/libtpm
 
 # Saleem Abdulrasool <compnerd@gentoo.org> (23 Nov 2007)
 # Mask this until we get the input and mounting issues worked out
@@ -110,39 +222,14 @@ dev-java/blackdown-java3d-bin
 
 # Ryan Hill <dirtyepic@gentoo.org> (18 Nov 2007)
 # Mask for keywording/testing.
-app-admin/eselect-wxwidgets
->=x11-libs/wxGTK-2.6.4.0-r2
->=dev-python/wxpython-2.6.4.0-r1
+>=x11-libs/wxGTK-2.8
+>=dev-python/wxpython-2.8
 
 # Tiziano Müller <dev-zero@gentoo.org> (18 Nov 2007)
 # There is a serious regression (bug #199450) due to
 # an incomplete fix for the non-remote vulnerability
 # CVE-2007-4572
 =net-fs/samba-3.0.27
-
-# Samuli Suominen <drac@gentoo.org> (18 Nov 2007)
-# Based on Xfce 4.4.2 testing tarballs at
-# http://mocha.xfce.org/archive/.testing/xfce-4.4.2/src
-# Content and digest might still change, be careful.
-=xfce-base/libxfce4mcs-4.4.2*
-=xfce-base/libxfce4util-4.4.2*
-=xfce-base/libxfcegui4-4.4.2*
-=xfce-base/orage-4.4.2*
-=xfce-base/xfce-mcs-manager-4.4.2*
-=xfce-base/xfce-mcs-plugins-4.4.2*
-=xfce-base/xfce-utils-4.4.2*
-=xfce-base/xfce4-4.4.2*
-=xfce-base/xfce4-panel-4.4.2*
-=xfce-base/xfce4-session-4.4.2*
-=xfce-base/xfdesktop-4.4.2*
-=xfce-base/xfwm4-4.4.2*
-=xfce-base/xfprint-4.4.2*
-=x11-themes/gtk-engines-xfce-2.4.2*
-=xfce-extra/xfce4-appfinder-4.4.2*
-=xfce-extra/xfwm4-themes-4.4.2*
-=xfce-extra/xfce4-mixer-4.4.2*
-=xfce-extra/xfce4-icon-theme-4.4.2*
-=xfce-extra/mousepad-0.2.13*
 
 # Doug Klima <cardoe@gentoo.org> (16 Nov 2007)
 # new heimdal version that's not too tested
@@ -160,13 +247,6 @@ sys-auth/pam_console
 # much less stable, so I am masking them for now.
 >=www-client/opera-9.50_beta2
 
-# Alexis Ballier <aballier@gentoo.org> (11 Nov 2007)
-# Lots of security issues: bug #196673
-# The experience with babel in tetex-3, texlive 
-# and xetex is good. Skilled users recommended to migrate.
-# Masking for removal: Due 11 Dec 2007
-app-text/cstetex
-
 # Robin H. Johnson <robbat2@gentoo.org> (02 Nov 2007)
 # Brokeness in these, but hanging on to them while getting 1.04 ready
 =mail-mta/nullmailer-1.03*
@@ -178,19 +258,9 @@ app-text/cstetex
 <net-misc/zaptel-1.2
 <net-misc/asterisk-sounds-1.2
 
-# Krzysiek Pawlik <nelchael@gentoo.org> (10 Nov 2007)
-# Masking for removal: last Resin 2.x release ws almost two years ago,
-# please move to 3.0 series. Resin 2.1.17 will be removed in 30 days.
-=www-servers/resin-2.1.17
-
 # Alin Năstac <mrness@gentoo.org> (08 Nov 2007)
 # Versions with kernel 2.4 support will be removed in 30 days.
 =net-dialup/ltmodem-8.31*
-
-# Ryan Hill <dirtyepic@gentoo.org> (07 Nov 2007)
-# mask for GLSA 200710-12 (bug #198053)
-# sched removal 07 Dec 2007
-=media-libs/t1lib-1.3.1
 
 # Chris Gianelloni <wolf31o2@gentoo.org> (07 Nov 2007)
 # Masking for testing for the upcoming release since we don't want this hitting
@@ -233,7 +303,6 @@ app-editors/beaver
 media-radio/ktrack
 app-portage/portagemaster
 x11-themes/ximian-artwork
-mail-filter/popfile
 x11-misc/fluxspace
 app-vim/hgmenu
 app-vim/hgcommand
@@ -259,11 +328,6 @@ dev-java/libgtk-java
 dev-java/libvte-java
 dev-java/libgnome-java
 =dev-java/java-gnome-2*
-
-# Petteri Räty <betelgeuse@gentoo.org> (3 Nov 2007)
-# Replaced by dev-java/sun-jaf. Will be moved to Junkyard
-# after the month is up.
-dev-java/sun-jaf-bin
 
 # Steve Dibb <beandog@gentoo.org> (01 Nov 2007)
 # Forked version of libdvdnav provided by upstream MPlayer
@@ -295,11 +359,7 @@ net-voip/telepathy-butterfly
 # needs baselayout-2, wait masked here till that's available.
 # Note: the init script might change without warning while
 # the ebuild is masked.
-=media-sound/pulseaudio-0.9.8-r1
-
-# Benedikt Böhm <hollow@gentoo.org> (25 Oct 2007)
-# Masked for testing TLS Server Name Indication
-=www-servers/apache-2.2.6-r3
+=media-sound/pulseaudio-0.9.8-r3
 
 # William L Thomson Jr <wltjr@gentoo.org> (24 Oct 2007)
 # Stale upstreamno release since September 2005.
@@ -483,11 +543,6 @@ sys-auth/bioapi
 =games-rpg/nwn-data-1.29-r2
 =games-rpg/nwn-1.68-r2
 
-# Michael Sterrett <mr_bones_@gentoo.org> (30 Aug 2007)
-# Security bug #190835
-games-fps/doomsday
-games-fps/doomsday-resources
-
 # Doug Goldstein <cardoe@gentoo.org> (30 Aug 2007)
 # upstream has declared this module dead and broken
 # it is reworked in trunk but will not be moved to 0.20
@@ -543,11 +598,6 @@ media-libs/freeimage
 # Sven Wegener <swegener@gentoo.org> (07 Aug 2007)
 # CVS snapshot, needs some more testing
 ~app-misc/screen-4.0.3_p20070403
-
-# Andrej Kacian <ticho@gentoo.org> (02 Aug 2007)
-# Deprecated plugin, use pgpmime/pgpinline plugins shipped directly with
-# claws-mail and claws-mail-smime plugin shipped as a separate package.
-mail-client/claws-mail-etpan-privacy
 
 # Ulrich Mueller <ulm@gentoo.org> (26 Jul 2007)
 # CVS snapshots, bug #185106
@@ -626,11 +676,6 @@ app-cdr/konqburn
 # Beta versions, testing required
 =app-emulation/ies4linux-2.5*
 
-# Luca Longinotti <chtekk@gentoo.org> (22 Jun 2007)
-# Old Subversion versions masked for removal:
-# obsolete and don't work correctly with current Apache stuff.
-<dev-util/subversion-1.3.0
-
 # Peter Weller <welp@gentoo.org> (16 Jun 2007)
 # Masked wrt bug #180577
 dev-util/larch
@@ -683,10 +728,6 @@ app-shells/ash
 # Seemant Kulleen <seemant@gentoo.org> (23 May 2007)
 # Masked because 1.2.1 because it is broken
 =net-wireless/ipw3945-1.2.1
-
-# Benedikt Böhm <hollow@gentoo.org> (22 May 2007)
-# new version with experimental cmake patch for testing
-=dev-libs/xmlrpc-c-1.10.00
 
 # Stefan Briesenick <sbriesen@gentoo.org> (21 May 2007)
 # due to popular wish in portage, but this driver seems
@@ -976,12 +1017,6 @@ x11-apps/mkcfm
 # so mask until it stabilizes.
 dev-python/twisted-web2
 
-# Alexis Ballier <aballier@gentoo.org> (10 Jan 2007)
-# Current versions are using internal libraries
-# that have not been checked and might have security issues
-# Use at your own risk, bug #158340
-media-video/avidemux
-
 # Roy Marples <uberlord@gentoo.org> (08 Jan 2007)
 # Masked at the request of upstream, pending removal sometime Feb.
 # CVS version is preferred - or use the legacy drivers.
@@ -1137,12 +1172,6 @@ dev-libs/libvc
 mail-client/mutt-vc-query
 app-misc/rolo
 
-# Martin Ehmsen <ehmsen@gentoo.org> (28 May 2006)
-# Masked until ready for the public.
-# There are still some work to be done, but should
-# be able to build.
-<app-text/texlive-2007
-
 # Luca Longinotti <chtekk@gentoo.org> (24 May 2006)
 # Masked for more testing, breaks with stealth mode.
 =app-forensics/samhain-2.2.0
@@ -1228,10 +1257,6 @@ app-shells/csh
 # Marius Mauch <genone@gentoo.org> (17 Jan 2006)
 # Development version
 >=dev-util/gambas-1.9
-
-# Diego Pettenò <flameeyes@gentoo.org> (12 Jan 2006)
-# Nightlie, masked while testing
-=media-sound/mt-daapd-0.3.0_pre*
 
 # Alexandre Buisse <nattfodd@gentoo.org> (12 Jan 2006)
 # Masked for testing purposes

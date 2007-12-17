@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.370 2007/11/02 14:31:26 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.371 2007/12/17 04:45:15 mr_bones_ Exp $
 
 # Keep them sorted
 
@@ -339,7 +339,6 @@ usb - Adds USB support to applications that have optional USB support (e.g. cups
 v4l - Enables video4linux support
 vanilla - Do not add extra patches which change default behaviour; DO NOT USE THIS ON A GLOBAL SCALE as the severity of the meaning changes drastically
 vcd - Video CD support
-verbose - effects vary across packages; generally used to enable extra informational output during a build or at runtime
 vhosts - Adds support for installing web-based applications into a virtual-hosting environment
 videos - Install optional video files (used in some games)
 vim-syntax - Pulls in related vim syntax scripts.

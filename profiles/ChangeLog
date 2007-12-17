@@ -1,6 +1,139 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.864 2007/11/28 12:53:47 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.908 2007/12/17 04:50:38 robbat2 Exp $
+
+  17 Dec 2007; Robin H. Johnson <robbat2@gentoo.org> package.mask:
+  git-1.5.4_rc0 is for testing only, not production usage.
+
+  16 Dec 2007; Diego Pettenò <flameeyes@gentoo.org> use.local.desc:
+  Add cli USE flag for media-sound/rubyripper.
+
+  15 Dec 2007; Wolfram Schlich <wschlich@gentoo.org> use.local.desc:
+  added zeroconf and ftpd USE flags for sys-fs/owfs
+
+  15 Dec 2007; Raúl Porcel <armin76@gentoo.org> use.local.desc:
+  Add iceweasel use-flag for www-client/mozilla-firefox
+
+  15 Dec 2007; Jurek Bartuszek <jurek@gentoo.org> package.mask:
+  Added >=dev-util/codeblocks-1.0_pre20071215
+
+  14 Dec 2007; Alon Bar-Lev <alonbl@gentoo.org> use.local.desc:
+  Add app-crypt/johntheripper:custom-cflags
+
+  14 Dec 2007; Krzysiek Pawlik <nelchael@gentoo.org> package.mask:
+  Remove mask for www-servers/resin-2.1.17
+
+  14 Dec 2007; Ulrich Mueller <ulm@gentoo.org> updates/4Q-2007:
+  Package move app-emacs/df to app-emacs/df-mode, following upstream rename.
+
+  14 Dec 2007; Saleem Abdulrasool <compnerd@gentoo.org> package.mask:
+  mask grubconf for removal
+
+  14 Dec 2007; Duncan Coutts <dcoutts@gentoo.org> package.mask:
+  p.mask dev-haskell/regex-*-0.9x to stop the confusion
+
+  13 Dec 2007; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  mask gal, fix bug #193496
+
+  13 Dec 2007; Wulf C. Krueger <philantrop@gentoo.org> package.mask:
+  Removed the mask for dev-libs/xmlrpc-c-1.10.00 which is no longer in the tree.
+
+  13 Dec 2007; Alon Bar-Lev <alonbl@gentoo.org> use.local.desc:
+  Add sys-fs/ecryptfs-utils:suid
+
+  13 Dec 2007; Peter Volkov <pva@gentoo.org> package.mask:
+  Masked net-im/sim-9999, live svn ebuild.
+
+  13 Dec 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Unmask the new wxGTK-2.6 stuff.
+
+  13 Dec 2007; Justin Bronder <jsbronder@gentoo.org> use.local.desc:
+  Add descriptions of heterogeneous, romio, slurm and smp use
+  flags for sys-cluster/openmpi.
+
+  13 Dec 2007; Justin Bronder <jsbronder@gentoo.org> use.local.desc:
+  Clarify server use flag for sys-cluster/torque.
+
+  12 Dec 2007; Saleem Abdulrasool <compnerd@gentoo.org> use.local.desc:
+  Add and update tracker useflags
+
+  11 Dec 2007; Alon Bar-Lev <alonbl@gentoo.org> package.mask:
+  Unmask >=dev-libs/libgcrypt-1.4.0
+
+  11 Dec 2007; Alon Bar-Lev <alonbl@gentoo.org> package.mask:
+  Masked >=dev-libs/libgcrypt-1.4.0
+
+  10 Dec 2007; Gilles Dartiguelongue <eva@gentoo.org> updates/4Q-2007:
+  slot goffice for 0.4 inclusion and future releases
+
+  10 Dec 2007; Markus Meier <maekke@gentoo.org> use.local.desc:
+  clarify inkjar description, bug #201040
+
+  08 Dec 2007; Bernard Cafarelli <voyageur@gentoo.org> package.mask:
+  Last rites for gnustep-base/gnustep-env, gnustep-libs/artresources
+
+  08 Dec 2007; Olivier Crête <tester@gentoo.org> package.mask:
+  Mask for removal net-im/gaim and its plugins
+
+  08 Dec 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Remove punted t1lib from mask.
+
+  08 Dec 2007; Wolfram Schlich <wschlich@gentoo.org> use.local.desc:
+  add managesieve USE flag for net-mail/dovecot
+
+  07 Dec 2007; Petteri Räty <betelgeuse@gentoo.org> use.local.desc:
+  Add threadsafe use flag for dev-db/sqlite
+
+  06 Dec 2007; Gilles Dartiguelongue <eva@gentoo.org> use.local.desc:
+  add keyring for gossip
+
+  06 Dec 2007; Diego Pettenò <flameeyes@gentoo.org> package.mask:
+  Bump once again the experimental version of PulseAudio.
+
+  06 Dec 2007; Robin H. Johnson <robbat2@gentoo.org> use.local.desc:
+  Add CGI use flag for Git.
+
+  05 Dec 2007; Joerg Bornkessel <hd_brummy@gentoo.org> use.local.desc:
+  net-www/xxv:themes - Enable more themes via x11-themes/xxv-skins use-flag added
+
+  05 Dec 2007; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  Remove mask for sun-jaf-bin as the package is gone from the main tree.
+
+  04 Dec 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Mask net-www/pears - bug #201246.
+
+  04 Dec 2007; Alin Năstac <mrness@gentoo.org> package.mask:
+  Mask net-proxy/squid-3.0 (#201209).
+
+  04 Dec 2007; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Package mask app-emacs/md5 and app-emacs/sha1 for removal.
+
+  03 Dec 2007; Joerg Bornkessel <hd_brummy@gentoo.org> ChangeLog:
+  net-www/xxv-1.0.1 unmasked
+
+  03 Dec 2007; Denis Dupeyron <calchan@gentoo.org> use.local.desc:
+  Added local USE flag unit-mm for sci-electronics/gerbv.
+
+  02 Dec 2007; Joerg Bornkessel <hd_brummy@gentoo.org> package.mask:
+  masked net-www/xxv-1.0.1 ; need review of depend perl modules
+
+  02 Dec 2007; Wulf C. Krueger <philantrop@gentoo.org> use.local.desc:
+  Added the raw USE flag for media-gfx/kphotoalbum.
+
+  30 Nov 2007; Alon Bar-Lev <alonbl@gentoo.org> package.mask:
+  Remove libtpm from tree, bug#198696
+
+  30 Nov 2007; Ryan Hill <dirtyepic@gentoo.org> use.local.desc:
+  Readding pch local USE flag to x11-libs/wxGTK.
+
+  29 Nov 2007; Piotr Jaroszyński <peper@gentoo.org> package.mask:
+  Mask =app-pda/libopensync-plugin-vformat-9999.
+
+  29 Nov 2007; Piotr Jaroszyński <peper@gentoo.org> package.mask:
+  Mask app-pda/msynctool live svn ebuild.
+
+  28 Nov 2007; Alon Bar-Lev <alonbl@gentoo.org> package.mask:
+  Mask >=sys-apps/busybox-1.8.0
 
   07 Dec 2007; Michael Haubenwallner <haubi@gentoo.org>
   +default-prefix/aix/profile.bashrc:
