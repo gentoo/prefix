@@ -1,6 +1,29 @@
 # ChangeLog for media-fonts/dejavu
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.99 2007/11/06 17:47:44 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.106 2007/12/15 07:50:20 drac Exp $
+
+  15 Dec 2007; Samuli Suominen <drac@gentoo.org> dejavu-2.21.ebuild:
+  amd64 stable wrt #202120
+
+  14 Dec 2007; nixnut <nixnut@gentoo.org> dejavu-2.21.ebuild:
+  Stable on ppc wrt bug 202120
+
+  14 Dec 2007; Markus Rothe <corsair@gentoo.org> dejavu-2.21.ebuild:
+  Stable on ppc64; bug #202120
+
+  13 Dec 2007; Raúl Porcel <armin76@gentoo.org> dejavu-2.21.ebuild:
+  alpha/ia64 stable wrt #202120
+
+  13 Dec 2007; Christian Faulhammer <opfer@gentoo.org> dejavu-2.21.ebuild:
+  stable x86, bug 202120
+
+  13 Dec 2007; Ferris McCormick <fmccor@gentoo.org> dejavu-2.21.ebuild:
+  Sparc stable --- Bug #202120 --- checked with gucharmap for sanity.
+
+*dejavu-2.22 (13 Dec 2007)
+
+  13 Dec 2007; <pva@gentoo.org> -dejavu-2.19.ebuild, +dejavu-2.22.ebuild:
+  Version bump. Remove old.
 
   06 Nov 2007; Markus Rothe <corsair@gentoo.org> dejavu-2.20.ebuild:
   Stable on ppc64; bug #197728
