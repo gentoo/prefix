@@ -1,6 +1,16 @@
 # ChangeLog for dev-libs/libgcrypt
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.101 2007/12/12 17:25:09 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.103 2007/12/15 16:38:36 alonbl Exp $
+
+  15 Dec 2007; Alon Bar-Lev <alonbl@gentoo.org> libgcrypt-1.2.4.ebuild,
+  libgcrypt-1.4.0-r1.ebuild:
+  Remove reference to mediacrypt, bug#202378
+
+*libgcrypt-1.4.0-r1 (14 Dec 2007)
+
+  14 Dec 2007; Alon Bar-Lev <alonbl@gentoo.org> -libgcrypt-1.4.0.ebuild,
+  +libgcrypt-1.4.0-r1.ebuild:
+  Revbump
 
   12 Dec 2007; Markus Rothe <corsair@gentoo.org> libgcrypt-1.4.0.ebuild:
   Added ~ppc64; bug #201901

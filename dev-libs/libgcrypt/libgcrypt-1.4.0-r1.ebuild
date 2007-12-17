@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.4.0.ebuild,v 1.3 2007/12/12 17:25:09 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.4.0-r1.ebuild,v 1.2 2007/12/15 16:38:36 alonbl Exp $
 
 EAPI="prefix"
 
@@ -69,8 +69,6 @@ pkg_postinst() {
 		ewarn
 		ewarn "Countries where the patent applies are listed here"
 		ewarn "http://www.mediacrypt.com/_contents/10_idea/101030_ea_pi.asp"
-		ewarn
-		ewarn "Further information and other licenses are availble from http://www.mediacrypt.com/"
 		ewarn "-----------------------------------------------------------------------------------"
 	fi
 }
