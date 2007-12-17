@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/quickcheck/quickcheck-1.0.1.ebuild,v 1.6 2007/12/13 05:49:14 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/quickcheck/quickcheck-1.0.1.ebuild,v 1.8 2007/12/16 20:25:08 drac Exp $
 
 EAPI="prefix"
 
