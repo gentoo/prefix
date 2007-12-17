@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/libXpm
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXpm/ChangeLog,v 1.41 2007/12/12 21:31:23 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXpm/ChangeLog,v 1.44 2007/12/16 15:11:19 nixnut Exp $
+
+  16 Dec 2007; nixnut <nixnut@gentoo.org> libXpm-3.5.7.ebuild:
+  Stable on ppc wrt bug 202087
+
+  15 Dec 2007; Doug Klima <cardoe@gentoo.org> libXpm-3.5.7.ebuild:
+  amd64 stable wrt bug #202087
+
+  13 Dec 2007; Raúl Porcel <armin76@gentoo.org> libXpm-3.5.7.ebuild:
+  alpha/ia64 stable wrt #202087
 
   12 Dec 2007; Ferris McCormick <fmccor@gentoo.org> libXpm-3.5.7.ebuild:
   Sparc stable, Bug #202087, assuming this version intended.
