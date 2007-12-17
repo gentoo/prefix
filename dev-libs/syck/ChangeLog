@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/syck
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/syck/ChangeLog,v 1.23 2007/11/18 17:43:21 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/syck/ChangeLog,v 1.24 2007/12/16 13:16:31 nixnut Exp $
+
+  16 Dec 2007; nixnut <nixnut@gentoo.org> syck-0.55-r4.ebuild:
+  Stable on ppc wrt bug 198568
 
   18 Nov 2007; Markus Rothe <corsair@gentoo.org> syck-0.55-r4.ebuild:
   Stable on ppc64; bug #198568
