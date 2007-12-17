@@ -22,6 +22,10 @@
 ##   End example
 ##
 
+# Fabian Groffen <grobian@gentoo.org> (17 Dec 2007)
+# Doesn't compile (for me) needs solving...
+=media-gfx/graphviz-2.16.1
+
 # Elias Pipping <pipping@gentoo.org> (09 Dec 2007)
 # experimenting here -- with java6 on macosx
 dev-java/soylatte-jdk-bin
