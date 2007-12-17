@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.178 2007/12/07 15:16:20 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.179 2007/12/13 18:30:32 opfer Exp $
+
+  13 Dec 2007; Christian Faulhammer <opfer@gentoo.org>
+  emacs-cvs-23.0.60-r1.ebuild:
+  add dbus support
 
   02 Dec 2007; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.1.50-r2.ebuild,
   emacs-cvs-22.1.50_p20070829-r2.ebuild,
