@@ -1,6 +1,12 @@
 # ChangeLog for dev-haskell/time
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/time/ChangeLog,v 1.10 2007/12/13 05:49:41 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/time/ChangeLog,v 1.12 2007/12/16 20:27:13 drac Exp $
+
+  16 Dec 2007; Samuli Suominen <drac@gentoo.org> time-1.1.1.ebuild:
+  amd64 stable wrt #201984
+
+  16 Dec 2007; nixnut <nixnut@gentoo.org> time-1.1.1.ebuild:
+  Stable on ppc wrt bug 201984
 
   13 Dec 2007; Duncan Coutts <dcoutts@gentoo.org> time-1.0.ebuild,
   time-1.1.1.ebuild:
