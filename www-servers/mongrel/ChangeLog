@@ -1,6 +1,14 @@
 # ChangeLog for www-servers/mongrel
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/mongrel/ChangeLog,v 1.15 2007/11/12 14:19:23 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/mongrel/ChangeLog,v 1.17 2007/12/16 19:21:05 nichoj Exp $
+
+  10 Dec 2007; <nichoj@gentoo.org> files/digest-mongrel-1.1.2, Manifest:
+  Digest fix.
+
+*mongrel-1.1.2 (09 Dec 2007)
+
+  09 Dec 2007; <nichoj@gentoo.org> +mongrel-1.1.2.ebuild:
+  Version bump. See bug #198514.
 
   12 Nov 2007; Raúl Porcel <armin76@gentoo.org> mongrel-1.0.1.ebuild:
   x86 stable
