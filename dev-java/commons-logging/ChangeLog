@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/commons-logging
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-logging/ChangeLog,v 1.52 2007/11/12 23:06:46 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-logging/ChangeLog,v 1.53 2007/12/15 20:11:52 betelgeuse Exp $
+
+  15 Dec 2007; Petteri Räty <betelgeuse@gentoo.org>
+  commons-logging-1.1-r2.ebuild:
+  Call java-ant_ignore-system-classes to fix bug #200918.
 
   12 Nov 2007; Christian Faulhammer <opfer@gentoo.org>
   commons-logging-1.1-r2.ebuild:

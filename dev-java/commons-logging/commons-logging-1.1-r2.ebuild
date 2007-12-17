@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-logging/commons-logging-1.1-r2.ebuild,v 1.10 2007/11/12 23:06:46 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-logging/commons-logging-1.1-r2.ebuild,v 1.11 2007/12/15 20:11:52 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -36,6 +36,8 @@ src_unpack() {
 	# patch to make the build.xml respect no servletapi
 	# TODO file upstream -nichoj
 	epatch "${FILESDIR}/${P}-servletapi.patch"
+
+	java-ant_ignore-system-classes
 
 	use log4j && echo "log4j12.jar=$(java-pkg_getjars log4j)" > build.properties
 	# ATTENTION: Add this when log4j-1.3 is out (check the SLOT)
