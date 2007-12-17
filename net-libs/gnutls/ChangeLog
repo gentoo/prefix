@@ -1,6 +1,15 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.125 2007/11/30 07:36:44 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.127 2007/12/14 17:40:47 alonbl Exp $
+
+  14 Dec 2007; Alon Bar-Lev <alonbl@gentoo.org>
+  +files/gnutls-2.2.0-selflink.patch, gnutls-2.2.0.ebuild:
+  Fix selflink issue, bug#202269, thanks to aballier
+
+*gnutls-2.2.0 (14 Dec 2007)
+
+  14 Dec 2007; Alon Bar-Lev <alonbl@gentoo.org> +gnutls-2.2.0.ebuild:
+  Version bump
 
 *gnutls-2.0.4 (30 Nov 2007)
 
