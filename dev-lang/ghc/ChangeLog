@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/ghc
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.143 2007/12/12 13:01:51 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.145 2007/12/16 18:36:39 nixnut Exp $
+
+  16 Dec 2007; nixnut <nixnut@gentoo.org> ghc-6.6.1.ebuild:
+  Stable on ppc wrt bug 201984
+
+  13 Dec 2007; Duncan Coutts <dcoutts@gentoo.org> files/ghc-updater,
+  ghc-6.2.2.ebuild, ghc-6.4.2.ebuild, ghc-6.6.ebuild, ghc-6.6.1.ebuild:
+  Stop providing virtual/ghc. Nothing in portage has depended on it for some
+  time.
 
   12 Dec 2007; Ferris McCormick <fmccor@gentoo.org> ghc-6.6.1.ebuild:
   Sparc stable --- needed for Bug #201984 generally.

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-6.6.1.ebuild,v 1.14 2007/12/12 13:01:51 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-6.6.1.ebuild,v 1.16 2007/12/16 18:36:39 nixnut Exp $
 
 EAPI="prefix"
 
@@ -14,9 +14,6 @@ EAPI="prefix"
 # from source.  If the latter, then the relevant ghc-bin for the
 # arch in question will be used in the working directory to compile
 # ghc from source.
-#
-# This solution has the advantage of allowing us to retain the one
-# ebuild for both packages, and thus phase out virtual/ghc.
 
 # Note to users of hardened gcc-3.x:
 #
@@ -62,8 +59,6 @@ IUSE="binary doc ghcbootstrap"
 
 LOC="/opt/ghc" # location for installation of binary version
 S="${WORKDIR}/${MY_P}"
-
-PROVIDE="virtual/ghc"
 
 RDEPEND="
 	!dev-lang/ghc-bin
