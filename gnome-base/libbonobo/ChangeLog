@@ -1,6 +1,12 @@
 # ChangeLog for gnome-base/libbonobo
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonobo/ChangeLog,v 1.140 2007/11/29 05:10:42 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonobo/ChangeLog,v 1.141 2007/12/16 21:03:46 eva Exp $
+
+*libbonobo-2.20.2 (16 Dec 2007)
+
+  16 Dec 2007; Gilles Dartiguelongue <eva@gentoo.org>
+  +libbonobo-2.20.2.ebuild:
+  bump to 2.20.2
 
   29 Nov 2007; Jeroen Roovers <jer@gentoo.org> libbonobo-2.20.1.ebuild:
   Stable for HPPA (bug #199740).
