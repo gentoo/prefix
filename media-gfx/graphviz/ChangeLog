@@ -1,6 +1,27 @@
 # ChangeLog for media-gfx/graphviz
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.125 2007/11/14 23:02:08 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.128 2007/12/16 22:36:55 dirtyepic Exp $
+
+  16 Dec 2007; Ryan Hill <dirtyepic@gentoo.org> Manifest:
+  Fix Manifest.
+
+*graphviz-2.16.1 (16 Dec 2007)
+
+  16 Dec 2007; Ryan Hill <dirtyepic@gentoo.org>
+  +files/graphviz-2.16.1-bindings.patch,
+  +files/graphviz-2.16.1-gcc43-missing-includes.patch,
+  +graphviz-2.16.1.ebuild:
+  Version bump. Fixes:
+
+    167896 - media-gfx/graphviz-2.12 error -- fontconfig: Didn't find expected
+             font family
+    181147 - media-gfx/graphviz missing PNG/JPEG support unless media-libs/gd
+             was built w/ USE="png jpeg"
+    189597 - media-gfx/graphviz rename USE-flag pango to cairo
+    195983 - media-gfx/graphviz : Compilation error - gv_python.cpp
+    202446 - media-gfx/graphviz build error with GCC 4.3
+
+  Dropped m68k and ppc-macos keywords due to missing dependencies. (202529)
 
   14 Nov 2007; Petteri Räty <betelgeuse@gentoo.org>
   -files/graphviz-1.16-build.patch, -files/graphviz-1.16-common_h.patch,
