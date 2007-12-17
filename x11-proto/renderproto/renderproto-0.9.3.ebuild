@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/renderproto/renderproto-0.9.3.ebuild,v 1.2 2007/12/12 21:18:02 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/renderproto/renderproto-0.9.3.ebuild,v 1.6 2007/12/15 17:46:40 cardoe Exp $
 
 EAPI="prefix"
 

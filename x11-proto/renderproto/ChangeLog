@@ -1,6 +1,15 @@
 # ChangeLog for x11-proto/renderproto
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/renderproto/ChangeLog,v 1.27 2007/12/12 21:18:02 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/renderproto/ChangeLog,v 1.30 2007/12/15 17:45:55 cardoe Exp $
+
+  15 Dec 2007; Doug Klima <cardoe@gentoo.org> renderproto-0.9.3.ebuild:
+  revert stable markings since this is for X.org 7.3. bug #202087
+
+  15 Dec 2007; Doug Klima <cardoe@gentoo.org> renderproto-0.9.3.ebuild:
+  amd64 stable bug #202087
+
+  13 Dec 2007; Raúl Porcel <armin76@gentoo.org> renderproto-0.9.3.ebuild:
+  alpha/ia64 stable wrt #202087
 
   12 Dec 2007; Ferris McCormick <fmccor@gentoo.org>
   renderproto-0.9.3.ebuild:
