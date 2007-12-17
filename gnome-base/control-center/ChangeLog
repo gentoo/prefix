@@ -1,6 +1,12 @@
 # ChangeLog for gnome-base/control-center
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/ChangeLog,v 1.258 2007/11/29 05:30:44 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/ChangeLog,v 1.259 2007/12/13 07:23:12 compnerd Exp $
+
+*control-center-2.20.1-r1 (13 Dec 2007)
+
+  13 Dec 2007; Saleem Abdulrasool <compnerd@gentoo.org>
+  +control-center-2.20.1-r1.ebuild:
+  The esd patch should only be applied if esd is disabled (bug #201730)
 
   29 Nov 2007; Jeroen Roovers <jer@gentoo.org> control-center-2.20.1.ebuild:
   Stable for HPPA (bug #199740).
