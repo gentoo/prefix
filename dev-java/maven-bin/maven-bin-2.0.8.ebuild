@@ -1,13 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/maven-bin-2.0.7.ebuild,v 1.4 2007/12/16 13:34:18 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/maven-bin-2.0.8.ebuild,v 1.2 2007/12/13 15:43:34 betelgeuse Exp $
 
 EAPI="prefix"
 
-# doesn't need to anyherit any java eclasses, since it's not building
-# and doesn't use any of the functions
+inherit java-pkg-2
 
-MY_PN=${PN%%-bin}
+MY_PN=apache-${PN%%-bin}
 MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Project Management and Comprehension Tool for Java"
@@ -29,16 +28,18 @@ MAVEN_SHARE="/usr/share/${MAVEN}"
 src_unpack() {
 	unpack ${A}
 
-	rm "${S}"/bin/*.bat
+	rm -v "${S}"/bin/*.bat || die
 }
 
 # TODO we should use jars from packages, instead of what is bundled
 src_install() {
-	dodir ${MAVEN_SHARE}
+	dodir "${MAVEN_SHARE}"
 	cp -Rp bin boot conf lib "${ED}/${MAVEN_SHARE}" || die "failed to copy"
+
+	java-pkg_regjar "${ED}/${MAVEN_SHARE}"/lib/*.jar
 
 	dodoc NOTICE.txt README.txt || die
 
 	dodir /usr/bin
-	dosym ${MAVEN_SHARE}/bin/mvn /usr/bin/mvn
+	dosym "${MAVEN_SHARE}/bin/mvn" /usr/bin/mvn
 }
