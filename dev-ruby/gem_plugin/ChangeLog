@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/gem_plugin
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/gem_plugin/ChangeLog,v 1.11 2007/03/05 23:53:47 rbrown Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/gem_plugin/ChangeLog,v 1.12 2007/12/16 02:22:50 nichoj Exp $
+
+*gem_plugin-0.2.3 (09 Dec 2007)
+
+  09 Dec 2007; <nichoj@gentoo.org> +gem_plugin-0.2.3.ebuild:
+  Version bump needed for mongrel 1.1.2. See bug #198510
 
   05 Mar 2007; Richard Brown <rbrown@gentoo.org> gem_plugin-0.2.2.ebuild:
   Fix digest/manifest. Bug #169556
