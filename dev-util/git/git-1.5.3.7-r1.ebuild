@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.3.7-r1.ebuild,v 1.3 2007/12/06 04:46:48 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.3.7-r1.ebuild,v 1.4 2007/12/17 05:23:41 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -178,7 +178,6 @@ src_install() {
 }
 
 src_test() {
-	cd "${S}"
 	has_version dev-util/subversion || \
 		MY_MAKEOPTS="${MY_MAKEOPTS} NO_SVN_TESTS=YesPlease"
 	has_version app-arch/unzip || \

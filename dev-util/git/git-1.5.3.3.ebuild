@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.3.3.ebuild,v 1.1 2007/09/30 12:01:34 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.3.3.ebuild,v 1.2 2007/12/17 05:23:41 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -75,7 +75,7 @@ showpkgdeps() {
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-1.5.3-symlinks.patch
 
@@ -108,7 +108,7 @@ src_install() {
 
 	doman "${WORKDIR}"/man?/*
 
-	dodoc README COPYING Documentation/SubmittingPatches
+	dodoc README Documentation/SubmittingPatches
 	if use doc ; then
 		dodoc Documentation/technical/*
 		dodir /usr/share/doc/${PF}/html
@@ -138,7 +138,6 @@ src_install() {
 }
 
 src_test() {
-	cd "${S}"
 	has_version dev-util/subversion || \
 		MY_MAKEOPTS="${MY_MAKEOPTS} NO_SVN_TESTS=YesPlease"
 	has_version app-arch/unzip || \

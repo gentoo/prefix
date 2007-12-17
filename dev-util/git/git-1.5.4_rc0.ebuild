@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.3.4-r1.ebuild,v 1.3 2007/12/17 05:23:41 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.4_rc0.ebuild,v 1.2 2007/12/17 05:23:41 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -20,18 +20,20 @@ SRC_URI="mirror://kernel/software/scm/git/${MY_P}.tar.bz2
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
-IUSE="curl doc emacs gtk iconv mozsha1 perl ppcsha1 tk webdav"
+IUSE="curl cgi doc emacs gtk iconv mozsha1 perl ppcsha1 tk webdav"
 
 DEPEND="
 	!app-misc/git
 	dev-libs/openssl
 	sys-libs/zlib
 	dev-lang/perl
+	app-arch/cpio
 	tk?     ( dev-lang/tk )
 	curl?   ( net-misc/curl )
 	webdav? ( dev-libs/expat )
 	emacs?  ( virtual/emacs )"
 RDEPEND="${DEPEND}
+	cgi?	( virtual/perl-CGI )
 	perl?   ( dev-perl/Error )
 	gtk?    ( >=dev-python/pygtk-2.8 )"
 
@@ -74,7 +76,10 @@ showpkgdeps() {
 }
 
 src_unpack() {
-	unpack ${A}
+	unpack ${MY_P}.tar.bz2
+	cd "${S}"
+	unpack ${PN}-manpages-${DOC_VER}.tar.bz2
+	use doc && cd "${S}"/Documentation && unpack ${PN}-htmldocs-${DOC_VER}.tar.bz2
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-1.5.3-symlinks.patch
@@ -99,6 +104,12 @@ src_compile() {
 	if use emacs ; then
 		elisp-compile contrib/emacs/{,vc-}git.el || die "emacs modules failed"
 	fi
+	if use cgi ; then
+		emake ${MY_MAKEOPTS} \
+		DESTDIR="${ED}" \
+		prefix=/usr \
+		gitweb/gitweb.cgi || die "make gitweb/gitweb.cgi failed"
+	fi
 }
 
 src_install() {
@@ -106,14 +117,17 @@ src_install() {
 
 	use tk || rm "${ED}"/usr/bin/git{k,-gui}
 
-	doman "${WORKDIR}"/man?/*
+	doman man?/*
 
-	dodoc README Documentation/SubmittingPatches
-	if use doc ; then
-		dodoc Documentation/technical/*
-		dodir /usr/share/doc/${PF}/html
-		cp -r "${WORKDIR}"/{*.html,howto} "${ED}"/usr/share/doc/${PF}/html
-	fi
+	dodoc README Documentation/{SubmittingPatches,CodingGuidelines}
+	use doc && dodir /usr/share/doc/${PF}/html
+	for d in / /howto/ /technical/ ; do
+		einfo "Doing Documentation${d}"
+		docinto ${d}
+		dodoc Documentation${d}*.txt
+		use doc && dohtml -p ${d} Documentation${d}*.html
+	done
+	docinto /
 
 	dobashcompletion contrib/completion/git-completion.bash ${PN}
 
@@ -128,13 +142,35 @@ src_install() {
 
 	if use gtk ; then
 		dobin "${S}"/contrib/gitview/gitview
-		use doc && dodoc "${S}"/contrib/gitview/gitview.txt
+		dodoc "${S}"/contrib/gitview/gitview.txt
+		newbin "${S}"/contrib/blameview/blameview.perl blameview
+		newdoc "${S}"/contrib/blameview/README README.blameview
 	fi
 
 	dodir /usr/share/${PN}/contrib
-	cp -rf \
-		"${S}"/contrib/{vim,stats,workdir,hg-to-git,fast-import,hooks} \
-		"${ED}"/usr/share/${PN}/contrib
+	# The following are excluded:
+	# p4import - excluded because fast-import has a better one
+	# examples - these are stuff that is not used in Git anymore actually
+	# patches - stuff the Git guys made to go upstream to other places
+	for i in continuous fast-import hg-to-git \
+		hooks remotes2config.sh vim stats \
+		workdir convert-objects ; do
+		cp -rf \
+			"${S}"/contrib/${i} \
+			"${ED}"/usr/share/${PN}/contrib \
+			|| die "Failed contrib ${i}"
+	done
+
+	if use cgi ; then
+		dodir /usr/share/${PN}/gitweb
+		insinto /usr/share/${PN}/gitweb
+		doins "${S}"/gitweb/gitweb.{cgi,css}
+		doins "${S}"/gitweb/git-{favicon,logo}.png
+		docinto /
+		# INSTALL discusses configuration issues, not just installation
+		newdoc  "${S}"/gitweb/INSTALL INSTALL.gitweb
+		newdoc  "${S}"/gitweb/README README.gitweb
+	fi
 
 	insinto /etc/xinetd.d
 	newins "${FILESDIR}"/git-daemon.xinetd git-daemon
@@ -151,7 +187,15 @@ src_test() {
 	has_version app-arch/unzip || \
 		rm "${S}"/t/t5000-tar-tree.sh
 	# Stupid CVS won't let some people commit as root
-	rm "${S}"/t/t9200-git-cvsexportcommit.sh
+	if has userpriv "${FEATURES}"; then
+		einfo "Enabling CVS tests as we have FEATURES=userpriv"
+	else
+		ewarn "Skipping CVS tests because CVS does not work as root!"
+		ewarn "You should retest with FEATURES=userpriv!"
+		for i in t9200-git-cvsexportcommit.sh t9600-cvsimport.sh ; do
+			rm "${S}"/t/${i} || die "Failed to remove ${i}"
+		done
+	fi
 	emake ${MY_MAKEOPTS} DESTDIR="${D}" prefix="${EPREFIX}"/usr test || die "tests failed"
 }
 
@@ -163,6 +207,7 @@ pkg_postinst() {
 		elog "if you are using such a version."
 	fi
 	elog "These additional scripts need some dependencies:"
+	elog "(These are also needed for FEATURES=test)"
 	echo
 	showpkgdeps git-archimport "dev-util/tla"
 	showpkgdeps git-cvsimport ">=dev-util/cvsps-2.1"
