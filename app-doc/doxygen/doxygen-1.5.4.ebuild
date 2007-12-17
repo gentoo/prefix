@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.4.ebuild,v 1.2 2007/11/23 18:43:24 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.4.ebuild,v 1.3 2007/12/15 07:06:36 nerdboy Exp $
 
 EAPI="prefix"
 
@@ -17,8 +17,11 @@ IUSE="debug doc nodot qt3 tetex"
 
 RDEPEND="qt3? ( $(qt_min_version 3.3) )
 	tetex? ( virtual/tetex )
+	dev-lang/python
+	virtual/libiconv
 	virtual/ghostscript
-	!nodot? ( >=media-gfx/graphviz-2.6 )"
+	!nodot? ( >=media-gfx/graphviz-2.6
+		media-libs/freetype )"
 DEPEND=">=sys-apps/sed-4
 	${RDEPEND}"
 
@@ -150,7 +153,8 @@ pkg_postinst() {
 	elog
 	elog "Enabling the nodot USE flag will remove the GraphViz dependency,"
 	elog "along with Doxygen's ability to generate diagrams in the docs."
-	elog "See the Doxygen homepage for additional language support tools."
+	elog "See the Doxygen homepage for additional helper tools to parse"
+	elog "more languages."
 	elog
 }
 
