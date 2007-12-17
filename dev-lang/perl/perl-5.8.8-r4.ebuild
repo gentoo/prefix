@@ -150,7 +150,15 @@ src_unpack() {
 
 	# Newer linux-headers don't include asm/page.h. Fix this.
 	# Patch from bug 168312, thanks Peter!
-	has_version '>sys-kernel/linux-headers-2.6.20' && epatch "${FILESDIR}"/${P}-asm-page-h-compile-failure.patch
+	# Cannot test for '>sys-kernel/linux-headers-2.6.20' in prefix,
+	# so try to compile snippet in question instead.
+	cat > "${T}"/test-asm-page.c <<-EOF
+		#ifdef __linux__
+		#include <asm/page.h>
+		#endif
+	EOF
+	$(tc-getCC) -o "${T}"/test-asm-page.o -c "${T}"/test-asm-page.c >& /dev/null \
+	|| epatch "${FILESDIR}"/${P}-asm-page-h-compile-failure.patch
 
 	# perlcc fix patch - bug #181229
 	epatch "${FILESDIR}"/${P}-perlcc.patch
