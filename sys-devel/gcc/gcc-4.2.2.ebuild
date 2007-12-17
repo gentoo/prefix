@@ -67,6 +67,9 @@ src_unpack() {
 	# work around http://gcc.gnu.org/bugzilla/show_bug.cgi?id=33637
 	epatch "${FILESDIR}"/${PV}/targettools-checks.patch
 
+	# http://bugs.gentoo.org/show_bug.cgi?id=201490
+	epatch "${FILESDIR}"/${PV}/gentoo-fixincludes.patch
+
 	use vanilla && return 0
 
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
