@@ -1,6 +1,17 @@
 # ChangeLog for dev-util/valgrind
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.83 2007/12/01 17:23:39 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.84 2007/12/13 20:50:50 griffon26 Exp $
+
+*valgrind-3.3.0 (13 Dec 2007)
+
+  13 Dec 2007; Maurice van der Pot <griffon26@gentoo.org>
+  -files/valgrind-3.2.1-glibc-2.5.patch,
+  -files/valgrind-3.2.1-pkg-config.patch,
+  +files/valgrind-3.3.0-only64bit.patch, -valgrind-3.2.0.ebuild,
+  -valgrind-3.2.1.ebuild, +valgrind-3.3.0.ebuild:
+  Added valgrind-3.3.0 as requested by Giacomo Graziosi <g.graziosi@gmail.com>
+  in bug #202131. This release reintroduces helgrind, contains a revamped massif
+  and much more. Also removed old ebuilds.
 
   01 Dec 2007; Markus Rothe <corsair@gentoo.org> valgrind-3.2.3-r1.ebuild:
   Stable on ppc64
