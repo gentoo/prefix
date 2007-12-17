@@ -1,21 +1,19 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.4.0-r1.ebuild,v 1.1 2007/11/06 20:55:47 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.4.8.ebuild,v 1.1 2007/12/14 08:20:30 flameeyes Exp $
 
 EAPI="prefix"
 
-inherit eutils autotools toolchain-funcs flag-o-matic
-
-MY_P=${P/_beta/b}
+inherit eutils libtool toolchain-funcs
 
 DESCRIPTION="BSD tar command"
-HOMEPAGE="http://people.freebsd.org/~kientzle/libarchive/"
-SRC_URI="http://people.freebsd.org/~kientzle/libarchive/src/${MY_P}.tar.gz"
+HOMEPAGE="http://people.freebsd.org/~kientzle/libarchive"
+SRC_URI="http://people.freebsd.org/~kientzle/libarchive/src/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
-IUSE="build static acl xattr kernel_linux"
+IUSE="build static acl xattr"
 
 RDEPEND="!dev-libs/libarchive
 	kernel_linux? (
@@ -29,40 +27,29 @@ DEPEND="${RDEPEND}
 	kernel_linux? ( sys-fs/e2fsprogs
 		virtual/os-headers )"
 
-S="${WORKDIR}/${MY_P}"
-
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
-	epatch "${FILESDIR}"/${PN}-2.1.5-acl.patch
-
-	eautoreconf
+	elibtoolize
 	epunt_cxx
 }
 
 src_compile() {
-	local myconf=
+	local myconf
 
 	if ! use static && ! use build ; then
 		myconf="--enable-bsdtar=shared --enable-bsdcpio=shared"
 	fi
 
-	# Upstream doesn't seem to care to fix the problems
-	# and I don't want to continue running after them.
-	#append-flags -fno-strict-aliasing
+	econf --bindir="${EPREFIX}"/bin --enable-bsdcpio \
+		$(use_enable acl) $(use_enable xattr) \
+		${myconf} || die "econf failed."
 
-	econf \
-		--bindir="${EPREFIX}"/bin \
-		--enable-bsdcpio \
-		$(use_enable acl) \
-		$(use_enable xattr) \
-		${myconf} || die "econf failed"
-	emake || die "emake failed"
+	emake || die "emake failed."
 }
 
 src_install() {
-	emake -j1 DESTDIR="${D}" install || die "emake install failed"
+	emake -j1 DESTDIR="${D}" install || die "emake install failed."
 
 	# Create tar symlink for FreeBSD
 	if [[ ${CHOST} == *-freebsd* ]]; then
@@ -71,7 +58,7 @@ src_install() {
 		# We may wish to switch to symlink bsdcpio to cpio too one day
 	fi
 
-	dodoc README NEWS
+	dodoc NEWS README
 
 	if use build; then
 		rm -rf "${ED}"/usr
