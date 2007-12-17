@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.309 2007/10/25 09:56:42 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.310 2007/12/14 10:38:29 ulm Exp $
+
+  14 Dec 2007; Ulrich Mueller <ulm@gentoo.org> ruby-1.8.6_p110-r2.ebuild:
+  Move dependency on (X)Emacs modes to PDEPEND.
 
   25 Oct 2007; Hans de Graaff <graaff@gentoo.org> ruby-1.8.6_p110-r2.ebuild:
   Add back ~hppa keyword now that XEmacs support files have been keyworded,
