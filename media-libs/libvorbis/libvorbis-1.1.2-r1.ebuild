@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.1.2-r1.ebuild,v 1.10 2007/09/08 23:01:57 redhatter Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.1.2-r1.ebuild,v 1.11 2007/12/13 16:20:29 drac Exp $
 
 EAPI="prefix"
 
@@ -70,7 +70,7 @@ src_compile() {
 src_install() {
 	make DESTDIR="${D}" install || die
 
-	rm -rf ${ED}/usr/share/doc
+	rm -rf "${ED}"/usr/share/doc
 	dodoc AUTHORS README todo.txt
 	docinto txt
 	dodoc doc/*.txt
