@@ -1,6 +1,17 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.38 2007/12/11 10:40:49 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.40 2007/12/14 14:54:49 aballier Exp $
+
+*texlive-core-2007-r11 (14 Dec 2007)
+
+  14 Dec 2007; Alexis Ballier <aballier@gentoo.org>
+  -texlive-core-2007-r10.ebuild, +texlive-core-2007-r11.ebuild:
+  Push changes
+
+  14 Dec 2007; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2007-r10.ebuild:
+  Symlink mf from mf-nowin when X useflag is off, some scripts expect it to
+  exist. Thanks to Diego for spotting it.
 
   11 Dec 2007; Alexis Ballier <aballier@gentoo.org>
   texlive-core-2007-r10.ebuild:
