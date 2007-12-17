@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/rsync
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.142 2007/12/03 21:51:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.143 2007/12/17 00:27:51 vapier Exp $
+
+*rsync-3.0.0_pre7 (17 Dec 2007)
+
+  17 Dec 2007; Mike Frysinger <vapier@gentoo.org> +rsync-3.0.0_pre7.ebuild:
+  Version bump.
 
   03 Dec 2007; Raúl Porcel <armin76@gentoo.org> rsync-2.6.9-r5.ebuild:
   ia64 stable wrt security #200821
