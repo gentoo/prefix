@@ -1,6 +1,12 @@
 # ChangeLog for app-crypt/johntheripper
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.73 2007/11/16 16:29:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.74 2007/12/14 19:33:36 alonbl Exp $
+
+*johntheripper-1.7.2-r3 (14 Dec 2007)
+
+  14 Dec 2007; Alon Bar-Lev <alonbl@gentoo.org>
+  +johntheripper-1.7.2-r3.ebuild:
+  Fix hardened issues, bug#167731
 
   16 Nov 2007; Raúl Porcel <armin76@gentoo.org>
   johntheripper-1.7.2-r2.ebuild:
