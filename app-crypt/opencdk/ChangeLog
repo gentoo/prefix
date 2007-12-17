@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/opencdk
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/opencdk/ChangeLog,v 1.60 2007/11/16 18:03:08 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/opencdk/ChangeLog,v 1.61 2007/12/15 09:21:26 alonbl Exp $
+
+  15 Dec 2007; Alon Bar-Lev <alonbl@gentoo.org> opencdk-0.6.6.ebuild:
+  Remove README-alpha, bug#202347, thanks to Arfrever Frehtes Taifersar Arahesis
 
 *opencdk-0.6.6 (16 Nov 2007)
 

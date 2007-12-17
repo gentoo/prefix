@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/opencdk/opencdk-0.6.6.ebuild,v 1.1 2007/11/16 18:03:08 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/opencdk/opencdk-0.6.6.ebuild,v 1.2 2007/12/15 09:21:26 alonbl Exp $
 
 EAPI="prefix"
 
@@ -19,6 +19,6 @@ DEPEND="${RDEPEND}
 
 src_install() {
 	make DESTDIR="${D}" install || die "installed failed"
-	dodoc AUTHORS ChangeLog NEWS README README-alpha THANKS TODO
+	dodoc AUTHORS ChangeLog NEWS README THANKS TODO
 	use doc && dohtml doc/opencdk-api.html
 }
