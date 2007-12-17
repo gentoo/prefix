@@ -1,0 +1,44 @@
+# ChangeLog for media-libs/libafterimage
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libafterimage/ChangeLog,v 1.9 2007/11/27 15:27:08 armin76 Exp $
+
+  27 Nov 2007; Raúl Porcel <armin76@gentoo.org> libafterimage-1.15.ebuild:
+  Add ~alpha/~sparc wrt #200316
+
+  26 Nov 2007; Markus Rothe <corsair@gentoo.org> libafterimage-1.15.ebuild:
+  Added ~ppc64; bug #200316
+
+  25 Nov 2007; René Nussbaumer <killerfox@gentoo.org>
+  libafterimage-1.15.ebuild:
+  Added to ~hppa.
+
+  25 Nov 2007; René Nussbaumer <killerfox@gentoo.org>
+  libafterimage-1.15.ebuild:
+  Added to ~ppc.
+
+  20 Nov 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  libafterimage-1.15.ebuild:
+  Fixed html install directory (bug #199565), thanks Flameeyes.
+
+  05 Nov 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  files/libafterimage-makefile.in.patch:
+  Fixed re-install and linking (bug #198087, thanks galtgendo@o2.pl)
+
+*libafterimage-1.15 (04 Nov 2007)
+
+  04 Nov 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/libafterimage-1.15-examples.patch,
+  +files/libafterimage-makefile.in.patch, +libafterimage-1.15.ebuild:
+  Version bump.
+
+  22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  libafterimage-1.07.ebuild:
+  Drop virtual/x11 references.
+
+*libafterimage-1.07 (05 Feb 2007)
+
+  05 Feb 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/libafterimage-config.patch, +files/libafterimage-examples.patch,
+  +metadata.xml, +libafterimage-1.07.ebuild:
+  Initial import. Closing bug #149088.
+
