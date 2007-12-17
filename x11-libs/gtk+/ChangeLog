@@ -1,6 +1,17 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.355 2007/11/23 19:03:17 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.356 2007/12/13 17:56:07 compnerd Exp $
+
+  14 Dec 2007; Saleem Abdulrasool <compnerd@gentoo.org>
+  -files/gtk+-2.2.1-disable_icons_smooth_alpha.patch,
+  -files/gtk+-2.4.9-ppc64.patch,
+  -files/gtk+-2.12.0-icon-cache-speedup.patch,
+  -files/gtk+-2.12.0-libtracker_so.patch,
+  -files/gtk+-2.12.0-searchenginesimple-crash-fix.patch,
+  -files/gtk+-2.12.0-swt-tooltips-fix.patch, -files/gtk+-2-xpm_loader.patch,
+  -gtk+-2.6.10-r1.ebuild, -gtk+-2.8.19.ebuild, -gtk+-2.8.20-r1.ebuild,
+  -gtk+-2.10.13.ebuild, -gtk+-2.12.1-r1.ebuild:
+  prune unused versions
 
   23 Nov 2007; Jeroen Roovers <jer@gentoo.org> gtk+-2.12.1-r2.ebuild:
   Stable for HPPA (bug #198845).
