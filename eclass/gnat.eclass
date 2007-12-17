@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.29 2007/09/27 12:56:41 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.30 2007/12/14 12:16:56 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -42,9 +42,13 @@ DEPEND=">=app-admin/eselect-gnat-1.1"
 # ----------------------------------
 # Globals
 
-# Locations
-# Gnat profile dependent files go under under ${LibTop}/${Gnat_Profile}/${PN}
-# and common files go unde SpecsDir, DataDir
+# Lib install locations
+#
+# Gnat profile dependent files go under ${LibTop}/${Gnat_Profile}/${PN}
+# and common files go under SpecsDir, DataDir..
+# In order not to pollute PATH and LDPATH attempt should be mabe to install
+# binaries and what makes sence for individual packages under
+# ${AdalibLibTop}/${Gnat_Profile}/bin
 PREFIX=/usr
 AdalibSpecsDir=${PREFIX}/include/ada
 AdalibDataDir=${PREFIX}/share/ada
@@ -55,9 +59,17 @@ AdalibLibTop=${PREFIX}/$(get_libdir)/ada
 # profile-specific build
 SL=${WORKDIR}/LocalSource
 
-# DL is a "localized destination", where ARCH/SLOT dependent binaries should be
-# installed in lib_install
+# DL* are "localized destinations" where ARCH/SLOT dependent stuff should be
+# installed in lib_install.   There are three:
+#
 DL=${WORKDIR}/LocalDest
+#	a generic location for the lib (.a, .so) files
+#
+DLbin=${WORKDIR}/LocalBinDest
+#	binaries that should be in the PATH, will be moved to common Ada bin dir
+#
+DLgpr=${WORKDIR}/LocalGPRDest
+#	gpr's should go here.
 
 # file containing environment formed by gnat-eselect (build-time)
 BuildEnv=${WORKDIR}/BuildEnv
@@ -271,15 +283,15 @@ gnat_src_compile() {
 			debug-print-section "compiling for gnat profile ${compilers[${i}]}"
 
 			# copy sources
-			mkdir ${DL}
-			cp -dpR ${S} ${SL}
+			mkdir "${DL}" "${DLbin}" "${DLgpr}"
+			cp -dpR "${S}" "${SL}"
 
 			# setup environment
 			# As eselect-gnat also manages the libs, this will ensure the right
 			# lib profiles are activated too (in case we depend on some Ada lib)
 			generate_envFile ${compilers[${i}]} ${BuildEnv} && \
-			expand_BuildEnv ${BuildEnv} && \
-			. ${BuildEnv}  || die "failed to switch to ${compilers[${i}]}"
+			expand_BuildEnv "${BuildEnv}" && \
+			. "${BuildEnv}"  || die "failed to switch to ${compilers[${i}]}"
 			# many libs (notably xmlada and gtkada) do not like to see
 			# themselves installed. Need to strip them from ADA_*_PATH
 			# NOTE: this should not be done in pkg_setup, as we setup
@@ -288,16 +300,18 @@ gnat_src_compile() {
 			export ADA_OBJECTS_PATH=$(filter_env_var ADA_OBJECTS_PATH)
 
 			# call compilation callback
-			cd ${SL}
+			cd "${SL}"
 			gnat_filter_flags ${compilers[${i}]}
 			lib_compile ${compilers[${i}]} || die "failed compiling for ${compilers[${i}]}"
 
 			# call install callback
-			cd ${SL}
+			cd "${SL}"
 			lib_install ${compilers[${i}]} || die "failed installing profile-specific part for ${compilers[${i}]}"
 			# move installed and cleanup
-			mv ${DL} ${DL}-${compilers[${i}]}
-			rm -rf ${SL}
+			mv "${DL}" "${DL}-${compilers[${i}]}"
+			mv "${DLbin}" "${DLbin}-${compilers[${i}]}"
+			mv "${DLgpr}" "${DLgpr}-${compilers[${i}]}"
+			rm -rf "${SL}"
 		done
 	else
 		die "please make sure you have at least one gnat compiler installed!"
@@ -323,9 +337,13 @@ gnat_src_install() {
 			local DLlocation=${AdalibLibTop}/${compilers[${i}]}
 			dodir ${DLlocation}
 			cp -dpR "${DL}-${compilers[${i}]}" "${D}/${DLlocation}/${PN}"
+			cp -dpR "${DLbin}-${compilers[${i}]}" "${ED}/${DLlocation}"/bin
+			cp -dpR "${DLgpr}-${compilers[${i}]}" "${ED}/${DLlocation}"/gpr
 			# create profile-specific specs file
 			cp ${LibEnv} ${D}/${SPECSDIR}/${PN}/${compilers[${i}]}
 			sed -i -e "s:%DL%:${DLlocation}/${PN}:g" ${D}/${SPECSDIR}/${PN}/${compilers[${i}]}
+			sed -i -e "s:%DLbin%:${DLlocation}/bin:g" ${ED}/${SPECSDIR}/${PN}/${compilers[${i}]}
+			sed -i -e "s:%DLgpr%:${DLlocation}/gpr:g" ${ED}/${SPECSDIR}/${PN}/${compilers[${i}]}
 		done
 	else
 		die || "please make sure you have at least one gnat compiler installed!"

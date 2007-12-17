@@ -1,26 +1,32 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.28 2007/12/06 12:13:26 caleb Exp $
-#
-# Author Caleb Tennis <caleb@gentoo.org>
-#
-# This eclass is simple.  Inherit it, and in your depend, do something like this:
-#
-# DEPEND="$(qt4_min_version 4)"
-#
-# and it handles the rest for you
-#
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.29 2007/12/14 00:31:05 troll Exp $
+
+# @ECLASS: qt4.eclass
+# @MAINTAINER:
+# Caleb Tennis <caleb@gentoo.org>
+# @BLURB:
+# Eclass for Qt4 packages
+# @DESCRIPTION:
+# This eclass contains various functions that may be useful
+# when dealing with packages using Qt4 libraries.
+
 # 08.16.06 - Renamed qt_min_* to qt4_min_* to avoid conflicts with the qt3 eclass.
 #    - Caleb Tennis <caleb@gentoo.org>
 
 inherit eutils multilib toolchain-funcs versionator
 
-IUSE="${IUSE}"
-
 QTPKG="x11-libs/qt-"
 QT4MAJORVERSIONS="4.3 4.2 4.1 4.0"
 QT4VERSIONS="4.3.3 4.3.2-r1 4.3.2 4.3.1-r1 4.3.1 4.3.0-r2 4.3.0-r1 4.3.0 4.3.0_rc1 4.3.0_beta1 4.2.3-r1 4.2.3 4.2.2 4.2.1 4.2.0-r2 4.2.0-r1 4.2.0 4.1.4-r2 4.1.4-r1 4.1.4 4.1.3 4.1.2 4.1.1 4.1.0 4.0.1 4.0.0"
 
+# @FUNCTION: qt4_min_version
+# @USAGE: [minimum version]
+# @DESCRIPTION:
+# This function should be called in package DEPENDs whenever it depends on qt4.
+# Simple example - in your depend, do something like this:
+# DEPEND="$(qt4_min_version 4.2)"
+# if package can be build with qt-4.2 or higher.
 qt4_min_version() {
 	echo "|| ("
 	qt4_min_version_list "$@"
@@ -53,24 +59,78 @@ qt4_min_version_list() {
 	echo "${VERSIONS}"
 }
 
+# @FUNCTION: qt4_pkg_setup
+# @MAINTAINER:
+# Caleb Tennis <caleb@gentoo.org>
+# Przemyslaw Maciag <troll@gentoo.org>
+# @DESCRIPTION:
+# Default pkg_setup function for packages that depends on qt4. If you have to
+# create ebuilds own pkg_setup in your ebuild, call qt4_pkg_setup in it.
+# This function uses two global vars from ebuild:
+# - QT4_BUILT_WITH_USE_CHECK - contains use flags that need to be turned on for
+#   =x11-libs/qt-4*
+# - QT4_OPTIONAL_BUILT_WITH_USE_CHECK - qt4 flags that provides some
+#   functionality, but can alternatively be disabled in ${CATEGORY}/${PN}
+#   (so qt4 don't have to be recompiled)
 qt4_pkg_setup() {
+	local requiredflags=""
 	for x in ${QT4_BUILT_WITH_USE_CHECK}; do
-		if ! built_with_use =x11-libs/qt-4* $x; then
-			die "This package requires Qt4 to be built with the '${x}' use flag."
+		if ! built_with_use =x11-libs/qt-4* ${x}; then
+			requiredflags="${requiredflags} ${x}"
 		fi
 	done
+
+	local optionalflags=""
+	for x in ${QT4_OPTIONAL_BUILT_WITH_USE_CHECK}; do
+		if use ${x} && ! built_with_use =x11-libs/qt-4* ${x}; then
+			optionalflags="${optionalflags} ${x}"
+		fi
+	done
+
+	local diemessage=""
+	if [[ ${requiredflags} != "" ]]; then
+		eerror
+		eerror "(1) In order to compile ${CATEGORY}/${PN} first you need to build"
+		eerror "=x11-libs/qt-4* with USE=\"${requiredflags}\" flag(s)"
+		eerror
+		diemessage="(1) recompile qt4 with \"${requiredflags}\" USE flag(s) ; "
+	fi
+	if [[ ${optionalflags} != "" ]]; then
+		eerror
+		eerror "(2) You are trying to compile ${CATEGORY}/${PN} package with"
+		eerror "USE=\"${optionalflags}\""
+		eerror "while qt4 is built without this particular flag(s): it will"
+		eerror "not work."
+		eerror
+		eerror "Possible solutions to this problem are:"
+		eerror "a) install package ${CATEGORY}/${PN} without \"${optionalflags}\" USE flag(s)"
+		eerror "b) re-emerge qt4 with \"${optionalflags}\" USE flag(s)"
+		eerror
+		diemessage="${diemessage}(2) recompile qt4 with \"${optionalflags}\" USE flag(s) or disable them for ${PN} package\n"
+	fi
+
+	[[ ${diemessage} != "" ]] && die "can't emerge ${CATEGORY}/${PN}: ${diemessage}"
 }
 
+# @FUNCTION: eqmake4
+# @USAGE: [.pro file] [additional parameters to qmake]
+# @MAINTAINER:
+# Przemyslaw Maciag <troll@gentoo.org>
+# Davide Pesavento <davidepesa@gmail.com>
+# @DESCRIPTION:
+# Runs qmake on the specified .pro file (defaults to
+# ${PN}.pro if eqmake4 was called with no argument).
+# Additional parameters are passed unmodified to qmake.
 eqmake4() {
 	local LOGFILE="${T}/qmake-$$.out"
 	local projprofile="${1}"
-	[ -z ${projprofile} ] && projprofile="${PN}.pro"
+	[[ -z ${projprofile} ]] && projprofile="${PN}.pro"
 	shift 1
 
 	ebegin "Processing qmake ${projprofile}"
 
 	# file exists?
-	if [ ! -f ${projprofile} ]; then
+	if [[ ! -f ${projprofile} ]]; then
 		echo
 		eerror "Project .pro file \"${projprofile}\" does not exists"
 		eerror "qmake cannot handle non-existing .pro files"
@@ -86,9 +146,9 @@ eqmake4() {
 
 	# as a workaround for broken qmake, put everything into file
 	if has debug ${IUSE} && use debug; then
-		echo -e "$CONFIG -= release\nCONFIG += no_fixpath debug" >> ${projprofile}
+		echo -e "\nCONFIG -= release\nCONFIG += no_fixpath debug" >> ${projprofile}
 	else
-		echo -e "$CONFIG -= debug\nCONFIG += no_fixpath release" >> ${projprofile}
+		echo -e "\nCONFIG -= debug\nCONFIG += no_fixpath release" >> ${projprofile}
 	fi
 
 	"${EPREFIX}"/usr/bin/qmake ${projprofile} \
@@ -110,7 +170,7 @@ eqmake4() {
 	eend ${result}
 
 	# was qmake successful?
-	if [ ${result} -ne 0 ]; then
+	if [[ ${result} -ne 0 ]]; then
 		echo
 		eerror "Running qmake on \"${projprofile}\" has failed"
 		echo

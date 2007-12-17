@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.18 2007/10/09 10:18:14 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.19 2007/12/16 17:11:01 caster Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -209,6 +209,30 @@ set_java_env() {
 		|| die "Failed to make VM symlink at ${JAVA_VM_DIR}/${VMHANDLE}"
 }
 
+# -----------------------------------------------------------------------------
+# @ebuild-function java-vm_revdep-mask
+#
+# Installs a revdep-rebuild control file which SEARCH_DIR_MASK set to the path
+# where the VM is installed. Prevents pointless rebuilds - see bug #177925.
+# Also gives a notice to the user.
+#
+# @example
+#	java-vm_revdep-mask
+#	java-vm_revdep-mask /path/to/jdk/
+#
+# @param $1 - Path of the VM (defaults to /opt/${P} if not set)
+# ------------------------------------------------------------------------------
+java-vm_revdep-mask() {
+	local VMROOT="${1-/opt/${P}}"
+
+	dodir /etc/revdep-rebuild/
+	echo "SEARCH_DIRS_MASK=\"${VMROOT}\""> "${ED}/etc/revdep-rebuild/61-${VMHANDLE}"
+	
+	elog "A revdep-rebuild control file was installed to prevent reinstalls due to"
+	elog "missing dependencies (see bug #177925 for more info). Note that some parts"
+	elog "of the JVM may require dependencies that are pulled only through respective"
+	elog "USE flags (typically X, alsa, odbc) and some Java code may fail without them."
+}
 
 java_get_plugin_dir_() {
 	echo "${EPREFIX}"/usr/$(get_libdir)/nsbrowser/plugins

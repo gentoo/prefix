@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.158 2007/09/27 20:25:32 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.159 2007/12/16 16:28:41 philantrop Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -142,6 +142,7 @@ kde-base/kdegames kde-base/klickety
 kde-base/kdegames kde-base/klines
 kde-base/kdegames kde-base/kmahjongg
 kde-base/kdegames kde-base/kmines
+kde-base/kdegames kde-base/knetwalk
 kde-base/kdegames kde-base/kolf
 kde-base/kdegames kde-base/konquest
 kde-base/kdegames kde-base/kpat

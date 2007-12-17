@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.3 2007/12/06 20:40:20 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.4 2007/12/13 16:23:59 betelgeuse Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -34,7 +34,7 @@ _use_me_now() {
 # @USAGE: <USE flag> [flag name]
 # @DESCRIPTION:
 # Based on use_with. See ebuild(5).
-# 
+#
 # `cmake-utils_use_with foo FOO` echoes -DWITH_FOO=ON if foo is enabled
 # and -DWITH_FOO=OFF if it is disabled.
 cmake-utils_use_with() { _use_me_now WITH "$@" ; }
@@ -43,7 +43,7 @@ cmake-utils_use_with() { _use_me_now WITH "$@" ; }
 # @USAGE: <USE flag> [flag name]
 # @DESCRIPTION:
 # Based on use_enable. See ebuild(5).
-# 
+#
 # `cmake-utils_use_enable foo FOO` echoes -DENABLE_FOO=ON if foo is enabled
 # and -DENABLE_FOO=OFF if it is disabled.
 cmake-utils_use_enable() { _use_me_now ENABLE "$@" ; }
@@ -52,7 +52,7 @@ cmake-utils_use_enable() { _use_me_now ENABLE "$@" ; }
 # @USAGE: <USE flag> [flag name]
 # @DESCRIPTION:
 # Based on use_enable. See ebuild(5).
-# 
+#
 # `cmake-utils_use_want foo FOO` echoes -DWANT_FOO=ON if foo is enabled
 # and -DWANT_FOO=OFF if it is disabled.
 cmake-utils_use_want() { _use_me_now WANT "$@" ; }
@@ -61,7 +61,7 @@ cmake-utils_use_want() { _use_me_now WANT "$@" ; }
 # @USAGE: <USE flag> [flag name]
 # @DESCRIPTION:
 # Based on use_enable. See ebuild(5).
-# 
+#
 # `cmake-utils_has foo FOO` echoes -DHAVE_FOO=ON if foo is enabled
 # and -DHAVE_FOO=OFF if it is disabled.
 cmake-utils_has() { _use_me_now HAVE "$@" ; }

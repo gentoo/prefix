@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.2 2007/11/29 18:43:31 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.3 2007/12/15 14:00:19 hollow Exp $
 
 # @ECLASS: apache-2
 # @MAINTAINER: apache-devs@gentoo.org
@@ -56,7 +56,7 @@ SRC_URI="mirror://apache/httpd/httpd-${PV}.tar.bz2
 # built-in modules
 
 IUSE_MPMS="${IUSE_MPMS_FORK} ${IUSE_MPMS_THREAD}"
-IUSE="debug doc ldap selinux ssl static suexec threads"
+IUSE="${IUSE} debug doc ldap selinux ssl static suexec threads"
 
 for module in ${IUSE_MODULES} ; do
 	IUSE="${IUSE} apache2_modules_${module}"
@@ -129,6 +129,37 @@ setup_mpm() {
 	if has ${MY_MPM} ${IUSE_MPMS_FORK} && use threads ; then
 		eerror "You have selected a non-threaded MPM but USE=threads is enabled"
 		die "invalid use flag combination"
+	fi
+}
+
+# @ECLASS-VARIABLE: MODULE_CRITICAL
+# @DESCRIPTION:
+# This variable needs to be set in the ebuild and contains a space-separated
+# list of modules critical for the default apache. A user may still
+# disable these modules for custom minimal installation at their own risk.
+
+# @FUNCTION: check_module_critical
+# @DESCRIPTION:
+# This internal function warns the user about modules critical for the default
+# apache configuration.
+check_module_critical() {
+	local unsupported=0
+
+	for m in ${MODULE_CRITICAL} ; do
+		if ! has ${m} ${MY_MODS} ; then
+			ewarn "Module '${m}' is required in the default apache configuration."
+			unsupported=1
+		fi
+	done
+
+	if [[ ${unsupported} -ne 0 ]] ; then
+		ewarn
+		ewarn "You have disabled one or more required modules"
+		ewarn "for the default apache configuration."
+		ewarn "Although this is not an error, please be"
+		ewarn "aware that this setup is UNSUPPORTED."
+		ewarn
+		ebeep 10
 	fi
 }
 
@@ -255,6 +286,7 @@ setup_modules() {
 	# sort and uniquify MY_MODS
 	MY_MODS=$(echo ${MY_MODS} | tr ' ' '\n' | sort -u)
 	check_module_depends
+	check_module_critical
 }
 
 # @ECLASS-VARIABLE: MODULE_DEFINES
@@ -350,13 +382,7 @@ apache-2_pkg_setup() {
 # @FUNCTION: apache-2_src_unpack
 # @DESCRIPTION:
 # This function applies patches, configures a custom file-system layout and
-# rebuilds the configure scripts. The patch names are organized as follows:
-#
-# 00-19 Gentoo specific  (00_all_some-title.patch)
-# 20-39 Additional MPMs  (20_all_${MPM}_some-title.patch)
-# 40-59 USE-flag based   (40_all_${USE}_some-title.patch)
-# 60-79 Version specific (60_all_${PV}_some-title.patch)
-# 80-99 Security patches (80_all_${PV}_cve-####-####.patch)
+# rebuilds the configure scripts.
 apache-2_src_unpack() {
 	unpack ${A}
 	cd "${S}"
@@ -373,13 +399,13 @@ apache-2_src_unpack() {
 		die "Failed preparing config.layout!"
 	sed -i -e "s:version:${PF}:g" "${S}"/config.layout
 
-	# patched-in MPMs need the build environment rebuilt
-	sed -i -e '/sinclude/d' configure.in
-	AT_GNUCONF_UPDATE=yes AT_M4DIR=build eautoreconf
-
 	# apache2.8 instead of httpd.8 (bug #194828)
 	mv docs/man/{httpd,apache2}.8
 	sed -i -e 's/httpd\.8/apache2.8/g' Makefile.in
+
+	# patched-in MPMs need the build environment rebuilt
+	sed -i -e '/sinclude/d' configure.in
+	AT_GNUCONF_UPDATE=yes AT_M4DIR=build eautoreconf
 }
 
 # @FUNCTION: apache-2_src_compile
