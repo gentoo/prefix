@@ -12,7 +12,7 @@ SRC_URI="mirror://apache/jakarta/commons/logging/source/${P}-src.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="avalon-logkit log4j servletapi avalon-framework doc source"
 
 RDEPEND=">=virtual/jre-1.3
