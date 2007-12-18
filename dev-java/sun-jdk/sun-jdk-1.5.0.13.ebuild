@@ -25,7 +25,7 @@ SRC_URI="x86? ( http://download.java.net/dlj/binaries/${X86_AT} )
 			http://download.java.net/dlj/binaries/${SOL_SPARCv9_AT} )"
 SLOT="1.5"
 LICENSE="dlj-1.1"
-KEYWORDS="~amd64 ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~sparc-solaris ~x86 ~x86-solaris"
 RESTRICT="strip"
 IUSE="X alsa doc examples jce nsplugin odbc"
 

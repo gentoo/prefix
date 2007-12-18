@@ -28,7 +28,7 @@ SRC_URI="x86? ( ${URL_BASE}/${X86_AT} )
 		sparc-solaris? ( ${URL_BASE}/${SOL_SPARC_AT} ${URL_BASE}/${SOL_SPARCv9_AT} )"
 SLOT="1.6"
 LICENSE="dlj-1.1"
-KEYWORDS="~amd64 ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~sparc-solaris ~x86 ~x86-solaris"
 RESTRICT="strip"
 IUSE="X alsa doc examples jce nsplugin odbc"
 
