@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.4.7-r2.ebuild,v 1.3 2007/10/10 19:27:27 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.4.7-r2.ebuild,v 1.4 2007/12/17 06:51:30 philantrop Exp $
 
 EAPI="prefix"
 
@@ -28,6 +28,17 @@ RDEPEND="${DEPEND}"
 SITEFILE="50${PN}-gentoo.el"
 VIMFILE="${PN}.vim"
 
+pkg_setup() {
+	if ! built_with_use dev-libs/xmlrpc-c libwww && ! built_with_use dev-libs/xmlrpc-c curl ; then
+		echo
+		eerror "${PN} requires dev-libs/xmlrpc-c to be built with either the 'libwww' or"
+		eerror "the 'curl' USE flag or both enabled."
+		eerror "Please re-emerge dev-libs/xmlrpc-c with USE=\"libwww\" or USE=\"curl\"."
+		echo
+		die "Please re-emerge dev-libs/xmlrpc-c with USE=\"libwww\" or USE=\"curl\"."
+	fi
+}
+
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
@@ -41,8 +52,6 @@ src_unpack() {
 }
 
 src_compile() {
-	cd "${S}"
-
 	if [ "$(gcc-major-version)" -eq "3" ] ; then
 		append-flags "-fno-stack-protector"
 	fi

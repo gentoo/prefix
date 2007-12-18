@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/cmake
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.65 2007/10/10 19:27:27 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.66 2007/12/17 06:51:30 philantrop Exp $
+
+  17 Dec 2007; Wulf C. Krueger <philantrop@gentoo.org>
+  cmake-2.4.7-r2.ebuild:
+  Added a check to make sure dev-libs/xmlrpc-c has been installed with
+  suitable USE flags. Fixes bug 194405.
 
   10 Oct 2007; Christian Heim <phreak@gentoo.org> cmake-2.4.6-r1.ebuild,
   cmake-2.4.7.ebuild, cmake-2.4.7-r1.ebuild, cmake-2.4.7-r2.ebuild:
