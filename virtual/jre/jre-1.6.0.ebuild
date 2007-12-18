@@ -10,7 +10,7 @@ SRC_URI=""
 
 LICENSE="as-is"
 SLOT="1.6"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86 ~x86-macos"
 IUSE=""
 
 RDEPEND="|| (
