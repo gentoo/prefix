@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/xvid
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/ChangeLog,v 1.96 2007/12/02 17:39:22 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/ChangeLog,v 1.97 2007/12/17 09:17:02 aballier Exp $
+
+*xvid-1.1.3-r2 (17 Dec 2007)
+
+  17 Dec 2007; Alexis Ballier <aballier@gentoo.org> -xvid-1.1.3-r1.ebuild,
+  +xvid-1.1.3-r2.ebuild:
+  Fix PIC code for the decoder, thanks again to the PaX Team for the quick
+  response, bug #202465
 
 *xvid-1.1.3-r1 (02 Dec 2007)
 

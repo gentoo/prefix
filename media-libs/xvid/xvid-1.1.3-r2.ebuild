@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/xvid-1.1.3-r1.ebuild,v 1.2 2007/12/03 07:19:57 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/xvid-1.1.3-r2.ebuild,v 1.1 2007/12/17 09:17:02 aballier Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ DESCRIPTION="XviD, a high performance/quality MPEG-4 video de-/encoding solution
 HOMEPAGE="http://www.xvid.org"
 SRC_URI="http://downloads.xvid.org/downloads/${MY_P}.tar.bz2
 	mirror://gentoo/${PN}-1.1.2-noexec-stack.patch.bz2
-	mirror://gentoo/${P}-textrel.patch.bz2"
+	mirror://gentoo/${P}-textrel-2.patch.bz2"
 
 LICENSE="GPL-2"
 SLOT="1"
@@ -43,7 +43,7 @@ src_unpack() {
 	epatch "${WORKDIR}"/${PN}-1.1.2-noexec-stack.patch
 	epatch "${FILESDIR}"/${PN}-1.1.0-3dnow-2.patch
 	epatch "${FILESDIR}"/${P}-ia64-build.patch
-	epatch "${WORKDIR}/${P}-textrel.patch"
+	epatch "${WORKDIR}/${P}-textrel-2.patch"
 	cd "${S}"
 	eautoreconf
 }
