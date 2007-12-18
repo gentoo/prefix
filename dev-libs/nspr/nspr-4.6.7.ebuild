@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.6.7.ebuild,v 1.8 2007/08/25 22:39:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.6.7.ebuild,v 1.9 2007/12/17 23:34:06 redhatter Exp $
 
 EAPI="prefix"
 
@@ -51,45 +51,45 @@ src_compile() {
 src_install () {
 	# Their build system is royally fucked, as usual
 	MINOR_VERSION=6
-	cd ${S}/build
+	cd "${S}/build"
 	make install
 	insinto /usr
 	doins -r dist/*
-	rm -rf ${ED}/usr/bin/lib*.so
+	rm -rf "${ED}"/usr/bin/lib*.so
 
 	#removing includes/nspr/md as per fedora spec
 	# i.e a waste of space!
-	rm -rf ${ED}/usr/include/nspr/md
+	rm -rf "${ED}/usr/include/nspr/md"
 
 	# there have been /usr/lib/nspr changes (like the ldpath below), but never
 	# have I seen any libraries end up in this directory. lets fix that.
 	# note: I tried doing this fix via the build system. It wont work.
-	if [ ! -e ${ED}/usr/lib/nspr ] ; then
-		mkdir -p ${ED}/usr/lib/nspr
-		mv ${ED}/usr/lib/*so* ${ED}/usr/lib/nspr
-		mv ${ED}/usr/lib/*\.a ${ED}/usr/lib/nspr
+	if [ ! -e "${ED}/usr/lib/nspr" ] ; then
+		mkdir -p "${ED}/usr/lib/nspr"
+		mv "${ED}"/usr/lib/*so* "${ED}/usr/lib/nspr"
+		mv "${ED}"/usr/lib/*\.a "${ED}/usr/lib/nspr"
 	fi
 	# and while we're at it, lets make it actually use the arch's libdir damnit
 	if [ "lib" != "$(get_libdir)" ] ; then
-		mv ${ED}/usr/lib ${ED}/usr/$(get_libdir)
+		mv "${ED}/usr/lib" "${ED}/usr/$(get_libdir)"
 	fi
 	#and while at it move them to files with versions-ending
 	#and link them back :)
-	cd ${ED}/usr/$(get_libdir)/nspr
+	cd "${ED}/usr/$(get_libdir)/nspr"
 	for file in *.so; do
 		mv ${file} ${file}.${MINOR_VERSION}
 		ln -s ${file}.${MINOR_VERSION} ${file}
 	done
 	# cope with libraries being in /usr/lib/nspr
 	dodir /etc/env.d
-	echo "LDPATH=/usr/$(get_libdir)/nspr" > ${ED}/etc/env.d/08nspr
+	echo "LDPATH=${EPREFIX}/usr/$(get_libdir)/nspr" > "${ED}/etc/env.d/08nspr"
 
 	# install nspr-config
 	insinto	 /usr/bin
-	doins ${S}/build/config/nspr-config
-	chmod a+x ${ED}/usr/bin/nspr-config
+	doins "${S}/build/config/nspr-config"
+	chmod a+x "${ED}/usr/bin/nspr-config"
 
 	# create pkg-config file
 	insinto /usr/$(get_libdir)/pkgconfig/
-	doins ${S}/build/config/nspr.pc
+	doins "${S}/build/config/nspr.pc"
 }

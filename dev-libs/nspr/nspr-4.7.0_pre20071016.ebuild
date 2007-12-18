@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.7.0_pre20071016.ebuild,v 1.1 2007/12/12 13:57:12 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.7.0_pre20071016.ebuild,v 1.2 2007/12/17 23:34:06 redhatter Exp $
 
 EAPI="prefix"
 
@@ -61,7 +61,7 @@ src_install () {
 	done
 	# cope with libraries being in /usr/lib/nspr
 	dodir /etc/env.d
-	echo "LDPATH=/usr/$(get_libdir)/nspr" > ${ED}/etc/env.d/08nspr
+	echo "LDPATH=${EPREFIX}/usr/$(get_libdir)/nspr" > "${ED}/etc/env.d/08nspr"
 
 	# install nspr-config
 	dobin "${S}"/build/config/nspr-config
