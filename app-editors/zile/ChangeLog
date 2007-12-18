@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/zile
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/ChangeLog,v 1.41 2007/12/16 16:57:51 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/ChangeLog,v 1.42 2007/12/17 10:39:54 armin76 Exp $
+
+  17 Dec 2007; Raúl Porcel <armin76@gentoo.org> zile-2.2.49.ebuild:
+  alpha stable wrt #202429
 
   16 Dec 2007; Ferris McCormick <fmccor@gentoo.org> zile-2.2.49.ebuild:
   Sparc stable --- Bug #202429 --- test passes and editor works.
