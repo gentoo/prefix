@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.0.ebuild,v 1.1 2007/12/10 20:52:37 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.0.ebuild,v 1.2 2007/12/17 07:08:27 opfer Exp $
 
 EAPI="prefix"
 
@@ -47,9 +47,12 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	# build failures should make the whole build fail
+	# accepted upstream for >12B-0
 	epatch "${FILESDIR}"/${PN}-11.2.5-build.patch #184419
 
 	# needed for amd64
+	# accepted upstream for >12B-0
 	epatch "${FILESDIR}/${PN}-10.2.6-export-TARGET.patch"
 
 	# needed for FreeBSD
