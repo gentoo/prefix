@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit ant-tasks
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 
 DEPEND=">=dev-java/commons-logging-1.0.4-r2"
 RDEPEND="${DEPEND}"
