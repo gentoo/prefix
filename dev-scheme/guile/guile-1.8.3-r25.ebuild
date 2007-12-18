@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.3-r25.ebuild,v 1.1 2007/12/07 13:36:10 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.3-r25.ebuild,v 1.2 2007/12/17 22:33:23 hkbst Exp $
 
 EAPI="prefix"
 
@@ -37,7 +37,7 @@ src_compile() {
 	filter-flags -ftree-vectorize
 
 #will fail for me if posix is disabled or without modules -- hkBst
-	econf --prefix="${EPREFIX}" --libdir="${EPREFIX}"/usr/$(get_libdir) \
+	econf \
 		--disable-error-on-warning \
 		--disable-static \
 		--enable-posix \
@@ -60,6 +60,12 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" install || die
 #	einstall || die "install failed"
+
+	dodir /$(get_libdir)
+	for file in "${ED}"/usr/$(get_libdir)/*.so*; do
+		mv "${file}" "${ED}"/$(get_libdir)/
+		dosym $(get_libdir)/"$(basename $file)" /usr/$(get_libdir)/"$(basename $file)"
+	done
 
 	dodoc AUTHORS ChangeLog GUILE-VERSION HACKING NEWS README SNAPSHOTS THANKS
 
