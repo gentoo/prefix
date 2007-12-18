@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/XML-LibXML
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-LibXML/ChangeLog,v 1.76 2007/12/06 17:00:21 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-LibXML/ChangeLog,v 1.77 2007/12/17 18:36:06 drac Exp $
+
+  17 Dec 2007; Samuli Suominen <drac@gentoo.org> XML-LibXML-1.65.ebuild:
+  amd64 stable
 
   06 Dec 2007; Raúl Porcel <armin76@gentoo.org> XML-LibXML-1.65.ebuild:
   alpha/ia64/sparc/x86 stable
