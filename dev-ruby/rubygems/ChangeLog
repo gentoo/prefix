@@ -1,6 +1,13 @@
 # ChangeLog for dev-ruby/rubygems
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.74 2007/12/16 03:15:29 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.76 2007/12/17 21:55:04 jer Exp $
+
+  17 Dec 2007; Jeroen Roovers <jer@gentoo.org> rubygems-0.9.4-r2.ebuild:
+  Stable for HPPA (bug #202608).
+
+  17 Dec 2007; Ferris McCormick <fmccor@gentoo.org>
+  rubygems-0.9.4-r2.ebuild:
+  Sparc stable --- Bug #202608 --- running since 16 November.
 
 *rubygems-0.9.5 (15 Dec 2007)
 
