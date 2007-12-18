@@ -8,7 +8,7 @@ ANT_TASK_DEPNAME="bcel"
 
 inherit ant-tasks
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 
 DEPEND="~dev-java/ant-nodeps-${PV}
 	>=dev-java/bcel-5.1-r3"
