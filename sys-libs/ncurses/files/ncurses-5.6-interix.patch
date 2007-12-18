@@ -1,0 +1,19 @@
+--- configure.orig	Tue Dec 18 16:49:58 2007
++++ configure	Tue Dec 18 17:03:14 2007
+@@ -5165,6 +5165,16 @@
+ 	aix4.[3-9]*|aix5*)
+ 		MK_SHARED_LIB='${CC} -shared -Wl,-brtl -Wl,-blibpath:${libdir}:/usr/lib -o $@'
+ 		;;
++	interix*)
++	test "$cf_cv_shlib_version" = auto && cf_cv_shlib_version=rel
++	if test "$cf_cv_shlib_version" = rel; then
++		cf_shared_soname='`basename $@ .${REL_VERSION}`.${ABI_VERSION}'
++	else
++		cf_shared_soname='`basename $@`'
++	fi
++		CC_SHARED_OPTS=
++		MK_SHARED_LIB='${CC} -shared -Wl,-rpath,${libdir} -Wl,-h,'$cf_shared_soname' -o $@'
++		;;
+ 	*)
+ 		CC_SHARED_OPTS='unknown'
+ 		MK_SHARED_LIB='echo unknown'

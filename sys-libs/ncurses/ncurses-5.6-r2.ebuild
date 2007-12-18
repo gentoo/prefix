@@ -16,7 +16,7 @@ SRC_URI="mirror://gnu/ncurses/${MY_P}.tar.gz
 
 LICENSE="MIT"
 SLOT="5"
-KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-interix ~x86-macos ~x86-solaris"
 IUSE="bootstrap build debug doc gpm minimal nocxx profile trace unicode"
 
 DEPEND="gpm? ( sys-libs/gpm )"
@@ -33,6 +33,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-darwin.patch
 	epatch "${FILESDIR}"/${PN}-5.5-aix-shared.patch
 	epatch "${FILESDIR}"/${P}-solaris2.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 src_compile() {
