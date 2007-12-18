@@ -14,7 +14,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz"
 HOMEPAGE="http://cvs.apache.org/viewcvs.cgi/xml-xerces/java/tools/src/XJavac.java"
 LICENSE="Apache-2.0"
 SLOT="1"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 DEPEND=">=virtual/jdk-1.4"
 RDEPEND=">=virtual/jdk-1.4
 	>=dev-java/ant-core-1.7"
