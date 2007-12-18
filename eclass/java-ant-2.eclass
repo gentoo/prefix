@@ -14,7 +14,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.23 2007/08/05 08:17:05 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.24 2007/12/18 00:23:06 betelgeuse Exp $
 
 inherit java-utils-2
 
@@ -339,6 +339,7 @@ java-ant_bsfix_files() {
 			done
 		fi
 	fi
+	return 0 # so that the 1 for diff doesn't get reported
 }
 
 
@@ -372,6 +373,7 @@ java-ant_rewrite-classpath() {
 
 	local file="${1}"
 	[[ -z "${1}" ]] && file=build.xml
+	[[ ${#} -gt 1 ]] && die "${FUNCNAME} currently can only rewrite one file."
 
 	echo "Adding gentoo.classpath to ${file}"
 	debug-print "java-ant_rewrite-classpath: ${file}"
