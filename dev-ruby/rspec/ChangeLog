@@ -1,6 +1,15 @@
 # ChangeLog for dev-ruby/rspec
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rspec/ChangeLog,v 1.14 2007/12/14 07:22:43 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rspec/ChangeLog,v 1.15 2007/12/18 06:46:14 graaff Exp $
+
+*rspec-1.1.1 (18 Dec 2007)
+
+  18 Dec 2007; Hans de Graaff <graaff@gentoo.org> +rspec-1.1.1.ebuild:
+  Version bump:
+  * Fix regression in 1.1.0 that caused transactions to not get rolled back
+    between examples.
+  * Applied patch from Bob Cotton to reintroduce
+    ExampleGroup.description_options. Closes LH[#186]
 
 *rspec-1.1.0 (14 Dec 2007)
 
