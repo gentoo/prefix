@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/sam2p
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/ChangeLog,v 1.20 2007/10/25 16:52:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/ChangeLog,v 1.21 2007/12/18 19:18:26 jer Exp $
+
+  18 Dec 2007; Jeroen Roovers <jer@gentoo.org> sam2p-0.45.ebuild:
+  Marked ~hppa (bug #195815).
 
   25 Oct 2007; Raúl Porcel <armin76@gentoo.org> sam2p-0.45.ebuild:
   Add ~alpha/~ia64 wrt #195815
