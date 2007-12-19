@@ -1,6 +1,9 @@
 # ChangeLog for dev-tex/xcolor
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/xcolor/ChangeLog,v 1.25 2007/10/27 14:01:48 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/xcolor/ChangeLog,v 1.26 2007/12/18 19:15:42 jer Exp $
+
+  18 Dec 2007; Jeroen Roovers <jer@gentoo.org> xcolor-2.11.ebuild:
+  Marked ~hppa (bug #195815).
 
   27 Oct 2007; Fabian Groffen <grobian@gentoo.org> xcolor-2.00-r1.ebuild,
   xcolor-2.11.ebuild:
