@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-metapost/texlive-metapost-2007-r1.ebuild,v 1.1 2007/11/06 19:30:39 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-metapost/texlive-metapost-2007-r1.ebuild,v 1.2 2007/12/18 19:47:11 jer Exp $
 
 EAPI="prefix"
 
