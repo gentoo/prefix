@@ -17,7 +17,7 @@ JAVA_PROVIDE="jdbc-stdext"
 
 APPLE_JAVA_DIR="/System/Library/Frameworks/JavaVM.framework/Versions/${PV}/Home"
 
-pkg_preinst() {                                                                 
+pkg_preinst() {
 	[[ ! -d ${APPLE_JAVA_DIR} ]] && die "Java 6 not installed!"
 }
 
