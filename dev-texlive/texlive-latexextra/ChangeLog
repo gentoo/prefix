@@ -1,6 +1,10 @@
 # ChangeLog for dev-texlive/texlive-latexextra
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexextra/ChangeLog,v 1.8 2007/11/22 21:01:22 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexextra/ChangeLog,v 1.9 2007/12/18 19:45:08 jer Exp $
+
+  18 Dec 2007; Jeroen Roovers <jer@gentoo.org>
+  texlive-latexextra-2007.ebuild:
+  Marked ~hppa (bug #195815).
 
   22 Nov 2007; Alexis Ballier <aballier@gentoo.org>
   texlive-latexextra-2007.ebuild:
