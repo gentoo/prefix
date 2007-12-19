@@ -1,6 +1,14 @@
 # ChangeLog for media-gfx/graphviz
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.129 2007/12/17 09:28:11 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.130 2007/12/19 01:38:46 robbat2 Exp $
+
+*graphviz-2.16.1-r1 (19 Dec 2007)
+
+  19 Dec 2007; Robin H. Johnson <robbat2@gentoo.org>
+  +files/graphviz-2.16.1-python-buildfix.patch, +graphviz-2.16.1-r1.ebuild:
+  Fixes: Bug #202536 - pango is needed to build the dot tool now, to large
+  alteration of RDEPEND. Bug #202618 - parallel compile fix for TCL bindings.
+  s390 dropped due to missing dependancies.
 
   17 Dec 2007; Fabian Groffen <grobian@gentoo.org> graphviz-2.12.ebuild:
   Dropped ppc-macos keyword, see you in prefix
