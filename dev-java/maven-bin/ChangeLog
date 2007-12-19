@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/maven-bin
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/ChangeLog,v 1.38 2007/12/16 13:34:18 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/ChangeLog,v 1.39 2007/12/18 12:48:09 nelchael Exp $
+
+  18 Dec 2007; Krzysiek Pawlik <nelchael@gentoo.org> maven-bin-2.0.8.ebuild:
+  Fix SRC_URI, bug #202678.
 
   16 Dec 2007; Markus Meier <maekke@gentoo.org> maven-bin-2.0.7.ebuild:
   x86 stable, bug #202137
