@@ -4,7 +4,6 @@
 # testing only -- virtual/opengl and eselect opengl are still missing
 media-libs/libsdl
 
-# Elias Pipping <pipping@gentoo.org> (25 Nov 2007)
-# there's no (official) java6 on macosx
-virtual/jdk:1.6
-virtual/jre:1.6
+# Elias Pipping <pipping@gentoo.org> (19 Dec 2007)
+# apple java6 on macosx is only available as a developer preview
+dev-java/apple-jdk-bin:1.6
