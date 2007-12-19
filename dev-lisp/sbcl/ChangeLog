@@ -1,6 +1,10 @@
 # ChangeLog for dev-lisp/sbcl
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.135 2007/11/26 15:54:16 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.136 2007/12/19 02:54:06 halcy0n Exp $
+
+  19 Dec 2007; Mark Loeser <halcy0n@gentoo.org> sbcl-1.0.9.ebuild,
+  sbcl-1.0.10.ebuild, sbcl-1.0.11-r1.ebuild, sbcl-1.0.12.ebuild:
+  Add cobalt back into IUSE since it is a USE flag; bug #185956
 
   26 Nov 2007; Marijn Schouten <hkBst@gentoo.org> -sbcl-1.0.4.ebuild,
   -sbcl-1.0.5.ebuild, -sbcl-1.0.6.ebuild, -sbcl-1.0.6-r1.ebuild,

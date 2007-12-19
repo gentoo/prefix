@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.12.ebuild,v 1.1 2007/11/26 15:48:16 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.12.ebuild,v 1.2 2007/12/19 02:54:06 halcy0n Exp $
 
 EAPI="prefix"
 
@@ -41,7 +41,7 @@ SLOT="0"
 
 KEYWORDS="~amd64 ~mips ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 
-IUSE="ldb source threads unicode doc"
+IUSE="ldb source threads unicode doc cobalt"
 
 DEPEND="dev-lisp/gentoo-init
 		doc? ( sys-apps/texinfo media-gfx/graphviz )"
