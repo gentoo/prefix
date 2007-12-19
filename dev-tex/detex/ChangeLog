@@ -1,6 +1,9 @@
 # ChangeLog for dev-tex/detex
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/detex/ChangeLog,v 1.17 2007/10/25 14:54:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/detex/ChangeLog,v 1.18 2007/12/18 19:10:48 jer Exp $
+
+  18 Dec 2007; Jeroen Roovers <jer@gentoo.org> detex-2.7.ebuild:
+  Marked ~hppa (bug #195815).
 
   25 Oct 2007; Raúl Porcel <armin76@gentoo.org> detex-2.7.ebuild:
   Add ~alpha/~ia64 wrt #195815
