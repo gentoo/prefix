@@ -1,6 +1,9 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.40 2007/12/14 14:54:49 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.41 2007/12/18 19:21:15 jer Exp $
+
+  18 Dec 2007; Jeroen Roovers <jer@gentoo.org> texlive-core-2007-r11.ebuild:
+  Marked ~hppa (bug #195815).
 
 *texlive-core-2007-r11 (14 Dec 2007)
 
