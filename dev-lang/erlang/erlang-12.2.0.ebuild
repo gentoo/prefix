@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.0.ebuild,v 1.2 2007/12/17 07:08:27 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.0.ebuild,v 1.3 2007/12/18 07:53:20 opfer Exp $
 
 EAPI="prefix"
 
@@ -48,23 +48,24 @@ src_unpack() {
 	cd "${S}"
 
 	# build failures should make the whole build fail
-	# accepted upstream for >12B-0
+	# accepted by upstream for >12B-0
 	epatch "${FILESDIR}"/${PN}-11.2.5-build.patch #184419
 
 	# needed for amd64
-	# accepted upstream for >12B-0
+	# accepted by upstream for >12B-0
 	epatch "${FILESDIR}/${PN}-10.2.6-export-TARGET.patch"
 
 	# needed for FreeBSD
 	epatch "${FILESDIR}/${PN}-11.2.5-gethostbyname.patch"
 
 	# binary append on runtime has failures
-	# taken from upstream
+	# taken from upstream, will be included in 12B-1
 	epatch "${FILESDIR}/${P}-binary-append.patch"
 
 	use odbc || sed -i 's: odbc : :' lib/Makefile
 
 	# make sure we only link ssl dynamically
+	# will not be integrated by upstream for various reasons
 	sed -i '/SSL_DYNAMIC_ONLY=/s:no:yes:' erts/configure #184419
 
 	if use hipe; then
