@@ -14,6 +14,7 @@ KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86 ~x86-macos"
 IUSE=""
 
 RDEPEND="|| (
+		=dev-java/soylatte-jdk-bin-1.0*
 		=dev-java/apple-jdk-bin-1.6.0*
 		=dev-java/sun-jdk-1.6.0*
 		=dev-java/ibm-jdk-bin-1.6.0*
