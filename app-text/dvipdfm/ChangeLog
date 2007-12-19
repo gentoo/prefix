@@ -1,6 +1,9 @@
 # ChangeLog for app-text/dvipdfm
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dvipdfm/ChangeLog,v 1.20 2007/12/11 10:58:15 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dvipdfm/ChangeLog,v 1.21 2007/12/18 19:05:31 jer Exp $
+
+  18 Dec 2007; Jeroen Roovers <jer@gentoo.org> dvipdfm-0.13.2d-r1.ebuild:
+  Marked ~hppa (bug #195815).
 
   11 Dec 2007; Alexis Ballier <aballier@gentoo.org> dvipdfm-0.13.2c.ebuild,
   dvipdfm-0.13.2d.ebuild, dvipdfm-0.13.2d-r1.ebuild:
