@@ -29,6 +29,10 @@ src_unpack() {
 	unpack ${A}
 
 	rm -v "${S}"/bin/*.bat || die
+
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify bin/mvn
 }
 
 # TODO we should use jars from packages, instead of what is bundled
