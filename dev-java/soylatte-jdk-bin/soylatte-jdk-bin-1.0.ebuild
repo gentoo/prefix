@@ -40,15 +40,13 @@ src_unpack() {
 					${original_lib}*)
 						install_name_tool -change \
 							${linked_against} \
-							${EPREFIX}/opt/${P}/jre/${linked_against#${original_root}} \
+							"${EPREFIX}"/opt/${P}/jre/${linked_against#${original_root}} \
 							${dynamic_lib};;
 					${original_demo}*)
 						install_name_tool -change \
 							${linked_against} \
-							${EPREFIX}/opt/${P}/${linked_against#${original_root}} \
+							"${EPREFIX}"/opt/${P}/${linked_against#${original_root}} \
 							${dynamic_lib};;
-					*)	echo ${dynamic_lib}
-						echo ${original_lib};;
 				esac
 			done
 		done
@@ -84,9 +82,4 @@ src_install() {
 	chmod 644 "${ED}"/opt/${P}/jre/.systemPrefs/.systemRootModFile
 
 	set_java_env
-}
-
-pkg_postinst() {
-	# Set as default VM if none exists
-	java-vm-2_pkg_postinst
 }
