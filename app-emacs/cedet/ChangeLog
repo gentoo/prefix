@@ -1,6 +1,10 @@
 # ChangeLog for app-emacs/cedet
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/ChangeLog,v 1.35 2007/09/22 12:58:37 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/ChangeLog,v 1.36 2007/12/18 12:50:54 fmccor Exp $
+
+  18 Dec 2007; Ferris McCormick <fmccor@gentoo.org>
+  cedet-1.0_pre4-r2.ebuild:
+  Add ~sparc for matlab support --- Bug #202651.
 
   22 Sep 2007; Ulrich Mueller <ulm@gentoo.org>
   -files/1.0_pre4-semantic-makefile.patch, -cedet-1.0_pre4-r1.ebuild:
