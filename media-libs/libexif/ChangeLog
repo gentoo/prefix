@@ -1,6 +1,27 @@
 # ChangeLog for media-libs/libexif
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.87 2007/07/31 17:35:45 eradicator Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.92 2007/12/18 22:38:47 ranger Exp $
+
+  18 Dec 2007; Brent Baude <ranger@gentoo.org> libexif-0.6.16-r1.ebuild:
+  marking libexif-0.6.16-r1 ppc and ppc64 stable for sec bug 202350
+
+  18 Dec 2007; Jeroen Roovers <jer@gentoo.org> libexif-0.6.16-r1.ebuild:
+  Stable for HPPA (bug #202350).
+
+  18 Dec 2007; Ferris McCormick <fmccor@gentoo.org>
+  libexif-0.6.16-r1.ebuild:
+  Sparc stable --- security Bug #202350 --- all tests pass.
+
+*libexif-0.6.16-r1 (18 Dec 2007)
+
+  18 Dec 2007; Jeremy Huddleston <eradicator@gentoo.org>
+  +files/libexif-CVE-2007-6351.patch, +files/libexif-CVE-2007-6352.patch,
+  +libexif-0.6.16-r1.ebuild:
+  Revision bump to address CVE-2007-635{1,2}.  See security bug #202350.
+
+  18 Dec 2007; Jeremy Huddleston <eradicator@gentoo.org>
+  libexif-0.6.16.ebuild:
+  Cleaned up postinst.  Closes bug #182970.
 
   31 Jul 2007; Jeremy Huddleston <eradicator@gentoo.org>
   -files/libexif-0.6.12-86740.patch, -files/libexif-0.6.12-gcc4.patch,
