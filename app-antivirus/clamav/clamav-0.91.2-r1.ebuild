@@ -1,15 +1,14 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.92_rc2.ebuild,v 1.2 2007/11/14 19:25:05 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.91.2-r1.ebuild,v 1.2 2007/12/20 01:35:32 ranger Exp $
 
 EAPI="prefix"
 
 inherit autotools eutils flag-o-matic fixheadtails
 
-MY_P="${P/_/}" # for rc's
 DESCRIPTION="Clam Anti-Virus Scanner"
 HOMEPAGE="http://www.clamav.net/"
-SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.gz"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -29,7 +28,6 @@ RDEPEND="${DEPEND}
 	sys-apps/grep"
 PROVIDE="virtual/antivirus"
 
-S=${WORKDIR}/${MY_P}
 pkg_setup() {
 	if use milter; then
 		if [ ! -e "${EROOT}"/usr/lib/libmilter.a ] ; then
@@ -46,9 +44,11 @@ pkg_setup() {
 src_unpack() {
 	unpack "${A}"
 	cd "${S}"
-	echo "${S}"
 	epatch "${FILESDIR}"/${PN}-0.90-compat.patch
 	epatch "${FILESDIR}"/${PN}-0.90-nls.patch
+	epatch "${FILESDIR}"/${P}-CVE-2007-5759.patch
+	epatch "${FILESDIR}"/${P}-CVE-2007-6336.patch
+	epatch "${FILESDIR}"/${P}-CVE-2007-6337.patch
 	eautoreconf
 }
 
@@ -123,7 +123,7 @@ src_install() {
 	dodir /etc/logrotate.d
 	insopts -m0644
 	insinto /etc/logrotate.d
-	newins ${FILESDIR}/${PN}.logrotate ${PN}
+	newins "${FILESDIR}"/${PN}.logrotate ${PN}
 }
 
 pkg_postinst() {

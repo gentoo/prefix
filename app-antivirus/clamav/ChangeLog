@@ -1,6 +1,21 @@
 # ChangeLog for app-antivirus/clamav
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.257 2007/12/17 18:38:43 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.260 2007/12/20 01:35:32 ranger Exp $
+
+  20 Dec 2007; Brent Baude <ranger@gentoo.org> clamav-0.91.2-r1.ebuild:
+  Marking clamav-0.91.2-r1 ppc and ppc64 for 202762
+
+  20 Dec 2007; Andrej Kacian <ticho@gentoo.org> -clamav-0.92_rc2.ebuild:
+  Remove ebuild for release candidate.
+
+*clamav-0.91.2-r1 (20 Dec 2007)
+
+  20 Dec 2007; Andrej Kacian <ticho@gentoo.org>
+  +files/clamav-0.91.2-CVE-2007-5759.patch,
+  +files/clamav-0.91.2-CVE-2007-6336.patch,
+  +files/clamav-0.91.2-CVE-2007-6337.patch, +clamav-0.91.2-r1.ebuild:
+  Add patches collected by Robert Buchholz <rbu at gentoo.org> to backport
+  fixes for CVE-2007-5759, CVE-2007-6336 and CVE-2007-6337.
 
 *clamav-0.92 (17 Dec 2007)
 
