@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect-vi
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-vi/ChangeLog,v 1.28 2007/05/31 03:40:34 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-vi/ChangeLog,v 1.29 2007/12/19 18:27:09 armin76 Exp $
+
+  19 Dec 2007; Raúl Porcel <armin76@gentoo.org> eselect-vi-1.1.5.ebuild:
+  alpha/ia64/sparc/x86 stable
 
   31 May 2007; Mike Kelly <pioto@gentoo.org> metadata.xml:
   Remove myself from metadata.xml. Just let the vim herd get the mails.
