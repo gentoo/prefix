@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.16-r1.ebuild,v 1.4 2007/12/18 22:38:47 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.16-r1.ebuild,v 1.6 2007/12/19 16:23:53 armin76 Exp $
 
 EAPI="prefix"
 
