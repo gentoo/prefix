@@ -12,7 +12,7 @@ SRC_URI="http://cairographics.org/snapshots/${P}.tar.gz"
 
 LICENSE="|| ( LGPL-2.1 MPL-1.1 )"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="aqua debug directfb doc glitz opengl svg X xcb test"
 
 RDEPEND="!aqua? (
