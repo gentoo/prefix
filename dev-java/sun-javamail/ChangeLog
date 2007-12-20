@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/sun-javamail
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-javamail/ChangeLog,v 1.12 2007/11/25 08:00:39 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-javamail/ChangeLog,v 1.13 2007/12/19 23:53:03 betelgeuse Exp $
+
+*sun-javamail-1.4.1 (19 Dec 2007)
+
+  19 Dec 2007; Petteri Räty <betelgeuse@gentoo.org>
+  +sun-javamail-1.4.1.ebuild:
+  Version bump.
 
   25 Nov 2007; Vlastimil Babka <caster@gentoo.org> sun-javamail-1.4.ebuild:
   Stop passing build.sysclasspath=ignore to eant, eclass does it now.
