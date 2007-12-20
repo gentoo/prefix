@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-reference/blas-reference-20070226.ebuild,v 1.13 2007/10/11 16:50:10 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-reference/blas-reference-20070226.ebuild,v 1.14 2007/12/19 14:46:42 jsbronder Exp $
 
 EAPI="prefix"
 
@@ -33,6 +33,7 @@ pkg_setup() {
 		ewarn "Using Intel Fortran at your own risk"
 		LDFLAGS="$(raw-ldflags)"
 	fi
+	ESELECT_PROF=reference
 }
 
 src_unpack() {
@@ -51,7 +52,6 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
-	ESELECT_PROF=reference
 	eselect blas add $(get_libdir) "${FILESDIR}"/eselect.blas.reference ${ESELECT_PROF}
 }
 
