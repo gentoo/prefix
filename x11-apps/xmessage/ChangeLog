@@ -1,6 +1,9 @@
 # ChangeLog for x11-apps/xmessage
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xmessage/ChangeLog,v 1.30 2007/12/16 17:59:28 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xmessage/ChangeLog,v 1.31 2007/12/20 00:25:20 cla Exp $
+
+  19 Dec 2007; Dawid Węgliński <cla@gentoo.org> xmessage-1.0.2.ebuild:
+  Stable on x86 (bug #202087)
 
   16 Dec 2007; Markus Rothe <corsair@gentoo.org> xmessage-1.0.2.ebuild:
   Stable on ppc64; bug #202087
