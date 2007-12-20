@@ -1,6 +1,25 @@
 # ChangeLog for dev-lang/ocaml
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.124 2007/10/29 14:52:52 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.128 2007/12/19 16:58:08 aballier Exp $
+
+  19 Dec 2007; Alexis Ballier <aballier@gentoo.org> ocaml-3.10.0.ebuild:
+  make the information about the need to run ocaml-rebuild.sh a warning
+  because it is really needed to run it after an upgrade
+
+  19 Dec 2007; Alexis Ballier <aballier@gentoo.org> ocaml-3.08.4.ebuild,
+  ocaml-3.09.2.ebuild, ocaml-3.09.3.ebuild:
+  quote directory variables
+
+  19 Dec 2007; Alexis Ballier <aballier@gentoo.org> ocaml-3.08.4.ebuild,
+  ocaml-3.09.2.ebuild, ocaml-3.09.3.ebuild, ocaml-3.09.3-r1.ebuild,
+  ocaml-3.09.3-r2.ebuild, ocaml-3.10.0.ebuild:
+  no need to dodoc the license
+
+  19 Dec 2007; Alexis Ballier <aballier@gentoo.org>
+  files/ocaml-3.10.0-exec-stack-fixes.patch, ocaml-3.10.0.ebuild:
+  Fix hardenend build by telling gcc to not generate PIE executables with
+  ocaml objects; remove again exec stacks due to some variables renaming in
+  the build system
 
 *ocaml-3.09.3-r2 (29 Oct 2007)
 

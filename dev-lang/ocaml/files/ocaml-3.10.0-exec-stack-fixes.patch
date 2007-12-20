@@ -222,7 +222,7 @@ Index: ocaml-3.10.0/asmcomp/i386/emit.mlp
  
 +(* Mark stack as non executable *)
 +let nx_stack() =
-+  if Config.system = "linux" then
++  if Config.system = "linux_elf" then
 +      `  .section .note.GNU-stack,\"\",%progbits\n`
 +
  (* Beginning / end of an assembly file *)
@@ -270,7 +270,7 @@ Index: ocaml-3.10.0/asmcomp/power/emit.mlp
  
 +(* Mark stack as non executable *)
 +let nx_stack() =
-+  if Config.system = "linux" then
++  if Config.system = "elf" then
 +      `  .section .note.GNU-stack,\"\",%progbits\n`
 +
 +
