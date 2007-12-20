@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/checkstyle
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/checkstyle/ChangeLog,v 1.33 2007/11/25 15:52:01 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/checkstyle/ChangeLog,v 1.34 2007/12/19 16:26:16 betelgeuse Exp $
+
+  19 Dec 2007; Petteri Räty <betelgeuse@gentoo.org> -checkstyle-4.2.ebuild:
+  Remove old version.
 
   25 Nov 2007; Brent Baude <ranger@gentoo.org> checkstyle-4.3.ebuild:
   marking checkstyle-4.3 ppc for bug 200275
