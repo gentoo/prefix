@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libSM/libSM-1.0.3.ebuild,v 1.6 2007/12/16 17:49:41 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libSM/libSM-1.0.3.ebuild,v 1.7 2007/12/19 23:43:17 cla Exp $
 
 EAPI="prefix"
 

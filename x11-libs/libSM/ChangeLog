@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libSM
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libSM/ChangeLog,v 1.50 2007/12/16 17:49:41 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libSM/ChangeLog,v 1.51 2007/12/19 23:43:17 cla Exp $
+
+  19 Dec 2007; Dawid Węgliński <cla@gentoo.org> libSM-1.0.3.ebuild:
+  Stable on x86 (bug #202087)
 
   16 Dec 2007; Markus Rothe <corsair@gentoo.org> libSM-1.0.3.ebuild:
   Stable on ppc64; bug #202087
