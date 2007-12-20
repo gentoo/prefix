@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/gmp
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.88 2007/12/18 20:27:52 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.89 2007/12/19 14:39:54 armin76 Exp $
+
+  19 Dec 2007; Raúl Porcel <armin76@gentoo.org> gmp-4.2.2.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #202665
 
   18 Dec 2007; Jeroen Roovers <jer@gentoo.org> gmp-4.2.2.ebuild:
   Stable for HPPA (bug #202665).
