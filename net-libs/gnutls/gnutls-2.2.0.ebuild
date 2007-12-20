@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.2.0.ebuild,v 1.2 2007/12/14 17:40:47 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.2.0.ebuild,v 1.3 2007/12/19 19:15:05 alonbl Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
 IUSE="zlib lzo doc nls guile"
 
 RDEPEND="dev-libs/libgpg-error
-	>=dev-libs/libgcrypt-1.2.2
+	>=dev-libs/libgcrypt-1.2.4
 	>=dev-libs/libtasn1-0.3.4
 	>=app-crypt/opencdk-0.6.4
 	nls? ( virtual/libintl )
