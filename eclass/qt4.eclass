@@ -1,6 +1,6 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.29 2007/12/14 00:31:05 troll Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.30 2007/12/19 18:07:47 caleb Exp $
 
 # @ECLASS: qt4.eclass
 # @MAINTAINER:
@@ -17,8 +17,8 @@
 inherit eutils multilib toolchain-funcs versionator
 
 QTPKG="x11-libs/qt-"
-QT4MAJORVERSIONS="4.3 4.2 4.1 4.0"
-QT4VERSIONS="4.3.3 4.3.2-r1 4.3.2 4.3.1-r1 4.3.1 4.3.0-r2 4.3.0-r1 4.3.0 4.3.0_rc1 4.3.0_beta1 4.2.3-r1 4.2.3 4.2.2 4.2.1 4.2.0-r2 4.2.0-r1 4.2.0 4.1.4-r2 4.1.4-r1 4.1.4 4.1.3 4.1.2 4.1.1 4.1.0 4.0.1 4.0.0"
+QT4MAJORVERSIONS="4.4 4.3 4.2 4.1 4.0"
+QT4VERSIONS="4.4.0_rc1 4.3.3 4.3.2-r1 4.3.2 4.3.1-r1 4.3.1 4.3.0-r2 4.3.0-r1 4.3.0 4.3.0_rc1 4.3.0_beta1 4.2.3-r1 4.2.3 4.2.2 4.2.1 4.2.0-r2 4.2.0-r1 4.2.0 4.1.4-r2 4.1.4-r1 4.1.4 4.1.3 4.1.2 4.1.1 4.1.0 4.0.1 4.0.0"
 
 # @FUNCTION: qt4_min_version
 # @USAGE: [minimum version]
@@ -39,7 +39,7 @@ qt4_min_version_list() {
 
 	case "${MINVER}" in
 		4|4.0|4.0.0) VERSIONS="=${QTPKG}4*";;
-		4.1|4.1.0|4.2|4.2.0)
+		4.1|4.1.0|4.2|4.2.0|4.3|4.3.0|4.4|4.4.0)
 			for x in ${QT4MAJORVERSIONS}; do
 				if $(version_is_at_least "${MINVER}" "${x}"); then
 					VERSIONS="${VERSIONS} =${QTPKG}${x}*"
