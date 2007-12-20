@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3218 2007/12/17 04:17:42 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3225 2007/12/19 21:54:34 caleb Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -476,6 +476,7 @@ dev-lang/swig:clisp - Enable CLisp support
 dev-lang/swig:mzscheme - Enable PLT mzscheme support
 dev-lang/swig:pike - Enable Pike scripting support
 dev-libs/DirectFB-extra:flash - Adds support for creating SWF files using Ming
+dev-libs/DirectFB-extra:fusion - add Multi Application support (fusion kernel device)
 dev-libs/DirectFB:fusion - add Multi Application support (fusion kernel device)
 dev-libs/DirectFB:sysfs - Add support for the sysfs filesystem (requires Linux-2.6+)
 dev-libs/DirectFB:v4l2 - Enables video4linux2 support
@@ -525,6 +526,7 @@ dev-libs/wx-xmingw:gdb - Enable gdb debugging
 dev-libs/wx-xmingw:monolithic - Build a monolithic lib
 dev-libs/wx-xmingw:mslu - Enable mslu support
 dev-libs/wx-xmingw:shared - Enable shared libs
+dev-libs/xerces-c:icu - Use ICU as message loader and transcoder instead of builtin or iconv
 dev-lisp/abcl-cvs:jpty - Enable PTY support
 dev-lisp/abcl-cvs:libabcl - Enable ^C handler (from JNI)
 dev-lisp/abcl:clisp - Build Armed Bear Common Lisp using GNU CLISP
@@ -1262,6 +1264,7 @@ media-video/transcode:network - Enables network streaming support
 media-video/transcode:nuv - NuppelVideo container format demuxing
 media-video/transcode:postproc - Build with ffmpeg libpostproc support
 media-video/transcode:v4l2 - Enable video4linux2 support
+media-video/undvd:css - Enables ripping of encrypted dvds
 media-video/vdr:aio - Use "all in one" patch (or its successor "liemikuutio") with much additional features
 media-video/vdr:bigpatch - Enables almost all additional features flying around on the net (including aio)
 media-video/vdr:child-protection - Enable support for the plugin vdr-pin (Protecting some recordings / channels with a PIN)
@@ -1547,8 +1550,10 @@ net-irc/inspircd:openssl - Build OpenSSL module
 net-irc/ircd-hybrid:contrib - Build contrib modules (eg. cloaking)
 net-irc/ngircd:ident - Enables support for libident
 net-irc/rbot:aspell - Use aspell rather than ispell for the spell plugin.
+net-irc/rbot:shorturl - Enable the shortenurl plugin which deps on dev-ruby/shorturl.
 net-irc/rbot:snapshot - Set the Ruby gem version to a value suitable for a snapshot ebuild
 net-irc/rbot:timezone - Enable the timezone plugin.
+net-irc/rbot:translator - Enable the translator plugin which deps on dev-ruby/mechanize.
 net-irc/srvx:bahamut - Choose bahamut protocol over p10 protocol
 net-irc/unrealircd:hub - Enable hub support
 net-irc/unrealircd:prefixaq - Enable chanadmin and chanowner prefixes
@@ -1787,6 +1792,7 @@ net-www/mplayerplug-in:mplayer-bin - Use binary mplayer for 32 bit codecs on amd
 net-www/mplayerplug-in:realmedia - Real Media Playback Support
 net-www/mplayerplug-in:wmp - Windows Media Playback Support
 net-www/xxv:themes - Enable more themes via x11-themes/xxv-skins
+rox-base/rox:video - Enables video thumbnails using mplayer or totem
 rox-extra/archive:ace - Enable .ace support via unace package
 rox-extra/archive:compress - Enable tar.Z and *.Z via ncompress package
 rox-extra/archive:cpio - Enable .cpio extraction via cpio package
@@ -1881,9 +1887,10 @@ sci-mathematics/maxima:latex - Request LaTeX for doc generation.
 sci-mathematics/maxima:sbcl - adds sbcl (lisp) support to maxima
 sci-mathematics/mupad:mupad-noscilab - Disable scilab that comes with MuPAD package. Use system-wide instead.
 sci-mathematics/nusmv:minisat - Enable support for MiniSat.
-sci-mathematics/octave-forge:qhull - Adds media-libs/qhull (geometric extensions) support
+sci-mathematics/octave:xemacs - Add support for XEmacs
 sci-mathematics/octave:hdf5 - Adds support for the Hierarchical Data Format v5 to sci-mathematics/octave (may be merged with hdf when opendx is completed)
 sci-mathematics/octave:latex - Request LaTeX for doc generation.
+sci-mathematics/octave-forge:qhull - Adds media-libs/qhull (geometric extensions) support
 sci-mathematics/singular:boost - Compile against external boost headers.
 sci-mathematics/yacas:server -  Build the network server version.
 sci-misc/boinc:server - Enable compilation of server
@@ -2216,6 +2223,7 @@ x11-libs/qt:glib - Enable glib eventloop support
 x11-libs/qt:immqt - Enable binary incompatible version of immodule for Qt
 x11-libs/qt:immqt-bc - Enable binary compatible version of immodule for Qt
 x11-libs/qt:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
+x11-libs/qt-webkit:pch - Enable precompiled header support for faster compilation times (gcc > 3.4 only)
 x11-libs/qt:qt3support - Enable the Qt3Support libraries for Qt4
 x11-libs/wxGTK:pch - Enable precompiled header support for faster compilation at the expense of disk space and memory
 x11-misc/adesklets:ctrlmenu - force CTRL to be pressed to fire context menu

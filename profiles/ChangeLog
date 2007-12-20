@@ -1,6 +1,37 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.908 2007/12/17 04:50:38 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.918 2007/12/20 02:50:45 dcoutts Exp $
+
+  20 Dec 2007; Duncan Coutts <dcoutts@gentoo.org> package.mask:
+  p.mask new dev-haskell/stm and dev-haskell/parallel because they need
+  ghc-6.8 which is still p.masked
+
+  19 Dec 2007; Lennart Kolmodin <kolmodin@gentoo.org> package.mask:
+  Mask ghc-6.8.2 for testing
+
+  19 Dec 2007; Peter Volkov <pva@gentoo.org> package.mask: Masked
+  =media-fonts/dejavu-2.22, italics are assigned to condensed, see bug 202255
+
+  19 Dec 2007; Tiziano Müller <dev-zero@gentoo.org> use.local.desc:
+  Added icu USE-flag for dev-libs/xerces-c
+
+  18 Dec 2007; Mark Loeser <halcy0n@gentoo.org> use.desc:
+  Make the description for the profile use flag a bit clearer; bug #190431
+
+  17 Dec 2007; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  Package.masked latest sqlite until problems are fixed.
+
+  17 Dec 2007; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Masking hppa-sources (bug #202391).
+
+  17 Dec 2007; Diego Pettenò <flameeyes@gentoo.org> use.local.desc:
+  Add shorturl and translator USE flags for rbot.
+
+  17 Dec 2007; Diego Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask amarok 1.4.8 until the tarball is public.
+
+  17 Dec 2007; Rémi Cardona <remi@gentoo.org> package.mask:
+  mask =x11-drivers/xf86-video-i810-2.2.0
 
   17 Dec 2007; Robin H. Johnson <robbat2@gentoo.org> package.mask:
   git-1.5.4_rc0 is for testing only, not production usage.
