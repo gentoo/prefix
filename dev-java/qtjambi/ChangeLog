@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/qtjambi
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/ChangeLog,v 1.10 2007/11/23 21:08:46 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/ChangeLog,v 1.11 2007/12/19 15:26:00 caleb Exp $
+
+*qtjambi-4.3.3_p1 (19 Dec 2007)
+
+  19 Dec 2007; Caleb Tennis <caleb@gentoo.org> +files/generator-4.3.3.patch,
+  +qtjambi-4.3.3_p1.ebuild:
+  version bump
 
   23 Nov 2007; Samuli Suominen <drac@gentoo.org> qtjambi-4.3.2_p1.ebuild:
   Keyword ~amd64 wrt #197763.
