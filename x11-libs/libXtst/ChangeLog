@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXtst
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXtst/ChangeLog,v 1.43 2007/12/16 17:53:34 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXtst/ChangeLog,v 1.44 2007/12/20 00:30:26 cla Exp $
+
+  19 Dec 2007; Dawid Węgliński <cla@gentoo.org> libXtst-1.0.3.ebuild:
+  Stable on x86 (bug #202087)
 
   16 Dec 2007; Markus Rothe <corsair@gentoo.org> libXtst-1.0.3.ebuild:
   Stable on ppc64; bug #202087
