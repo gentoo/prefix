@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/stunnel
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/ChangeLog,v 1.82 2007/12/14 12:44:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/ChangeLog,v 1.83 2007/12/19 11:52:57 ulm Exp $
+
+*stunnel-4.21-r1 (19 Dec 2007)
+
+  19 Dec 2007; Ulrich Mueller <ulm@gentoo.org>
+  +files/stunnel-4.21-setuid.patch, +stunnel-4.21-r1.ebuild:
+  Apply patch from upstream wrt bug #202709.
 
   14 Dec 2007; Raúl Porcel <armin76@gentoo.org> stunnel-4.21.ebuild:
   alpha/sparc stable wrt #201896
