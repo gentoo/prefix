@@ -51,8 +51,8 @@ RDEPEND="!aqua? ( x11-libs/libXrandr
 
 DEPEND="${RDEPEND}
 	xinerama? ( x11-proto/xineramaproto )
-	!aqua? ( x11-proto/xextproto )
-	x11-proto/inputproto
+	!aqua? ( x11-proto/xextproto
+	x11-proto/inputproto )
 	dev-util/pkgconfig"
 
 pkg_setup() {
