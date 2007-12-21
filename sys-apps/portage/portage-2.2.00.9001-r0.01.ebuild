@@ -85,6 +85,8 @@ src_unpack() {
 		use linguas_pl && \
 			epatch "${WORKDIR}/${PN}-man-pl-${PV_PL}${PATCHVER_PL}.patch"
 	fi
+
+	epatch "${FILESDIR}"/eprefix_dyn_install.patch
 }
 
 src_compile() {
