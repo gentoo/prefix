@@ -1,0 +1,11 @@
+# ChangeLog for dev-haskell/parallel
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/parallel/ChangeLog,v 1.1 2007/12/20 03:06:57 dcoutts Exp $
+
+*parallel-1.0.0.0 (20 Dec 2007)
+
+  20 Dec 2007; Duncan Coutts <dcoutts@gentoo.org> +metadata.xml,
+  +parallel-1.0.0.0.ebuild:
+  Initial version. Was previously part of the base library, now independent of
+  ghc.
+
