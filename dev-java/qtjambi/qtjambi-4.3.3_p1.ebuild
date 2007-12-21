@@ -29,14 +29,24 @@ DEPEND="~x11-libs/qt-${QTVERSION}
 RDEPEND="~x11-libs/qt-${QTVERSION}
 	>=virtual/jre-1.5"
 
+pkg_setup() {
+	if ! built_with_use =x11-libs/qt-4* opengl; then
+		die "qtjambi requires qt to be built with USE=opengl"
+	fi
+}
+
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch ${FILESDIR}/generator-4.3.3.patch
 	epatch ${FILESDIR}/qtjambi_base.pri.diff
 	epatch ${FILESDIR}/jambi.pri.diff
-	epatch "${FILESDIR}"/${PN}-darwin-remove-sdk.patch
 	epatch "${FILESDIR}"/${PN}-darwin-fix-framework.patch
+
+	# remove hardcoded path to tiger sdk
+	sed -e '/^    QMAKE_MAC_SDK/d' \
+		-i designer-integration/pri/jambi.pri qtjambi/qtjambi_base.pri \
+		   generator_example/generator_example.pro
 
 	# If Qt wasn't built with accessibility use flag, then we needto remove some files from
 	# the list.
@@ -47,10 +57,12 @@ src_unpack() {
 		epatch ${FILESDIR}/java_files_remove_ssl.diff
 	fi
 
+	# fix install_names
 	sed -i designer-integration/pri/jambi.pri \
 		-e "/^macx:/a\    INSTALL_PREFIX = ${EPREFIX}/usr/$(get_libdir)/qt4/plugins/designer" \
 	|| die "sed failed"
 
+	# fix install_names
 	sed -i qtjambi/qtjambi_base.pri \
 		-e "/^macx:/a\    INSTALL_PREFIX = ${EPREFIX}/usr/$(get_libdir)/qt4" \
 	|| die "sed failed"
