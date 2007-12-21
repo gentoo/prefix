@@ -1,0 +1,18 @@
+# ChangeLog for dev-haskell/parsec
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/parsec/ChangeLog,v 1.2 2007/12/21 00:23:15 dcoutts Exp $
+
+*parsec-2.0 (21 Dec 2007)
+
+  21 Dec 2007; Duncan Coutts <dcoutts@gentoo.org> +parsec-2.0.ebuild,
+  parsec-2.1.0.0.ebuild:
+  Add older version that came bundles with ghc-6.6.1. Also add ~ppc because it
+  worked before when it was part of the ghc ebuild and this is just a package
+  split so it seems ok to carry keywords over.
+
+*parsec-2.1.0.0 (20 Dec 2007)
+
+  20 Dec 2007; Duncan Coutts <dcoutts@gentoo.org> +metadata.xml,
+  +parsec-2.1.0.0.ebuild:
+  Initial version. Was previously a core library, now independent of ghc.
+
