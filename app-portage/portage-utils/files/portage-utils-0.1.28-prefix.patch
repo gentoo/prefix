@@ -68,3 +68,14 @@ main.c: Addition of prefix to various paths
  	textdomain(argv0);
  #endif
  
+--- qlop.c
++++ qlop.c
+@@ -21,7 +21,7 @@
+ # include <sys/time.h>
+ #endif
+ 
+-#define QLOP_DEFAULT_LOGFILE "/var/log/emerge.log"
++#define QLOP_DEFAULT_LOGFILE "@GENTOO_PORTAGE_EPREFIX@/var/log/emerge.log"
+ 
+ #define QLOP_FLAGS "gtHluscf:" COMMON_FLAGS
+ static struct option const qlop_long_opts[] = {

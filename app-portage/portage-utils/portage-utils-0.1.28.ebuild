@@ -24,7 +24,7 @@ src_unpack() {
 	epatch "${FILESDIR}/qmerge-posix-180871.patch"
 	epatch "${FILESDIR}"/${P}-solaris.patch
 	epatch "${FILESDIR}"/${P}-prefix.patch
-	eprefixify main.c
+	eprefixify main.c qlop.c
 }
 
 src_compile() {
