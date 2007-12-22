@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3225 2007/12/19 21:54:34 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3228 2007/12/22 00:01:02 halcy0n Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -1910,10 +1910,8 @@ sci-visualization/opendx:cdf - Adds cdf data exchange format support
 sci-visualization/opendx:hdf - Adds support for the Hierarchical Data Format
 sci-visualization/paraview:hdf5 - Adds support for the Hierarchical Data Format v5
 sci-visualization/veusz:fits - Adds FITS format format, via pyfits
-sec-policy/selinux-desktop:avahi - Add avahi SELinux policy.
 sys-apps/acl:nfs - add support for NFS acls
 sys-apps/busybox:make-symlinks - Create all the appropriate symlinks in /bin and /sbin
-sys-apps/busybox:savedconfig - Adds support to user defined configs
 sys-apps/hal:dell - Adds support for Dell laptop smbios via libsmbios
 sys-apps/hal:disk-partition - Add support for partition editing via libparted
 sys-apps/hal:dmi - Adds support for DMI (Desktop Management Interface)
@@ -2081,7 +2079,6 @@ sys-libs/libuser:quotas - Enables support for user quotas
 sys-libs/ncurses:trace - Enable test trace() support in ncurses calls
 sys-libs/pam:audit - Enable support for sys-process/audit
 sys-libs/pam:pam_chroot - Builds the pam_chroot module (enables per-user chroots at login)
-sys-libs/pam:pam_console - Builds the pam_console module (enables per-user device permissions for console user)
 sys-libs/pam:pam_timestamp - Builds the pam_timestamp module (enables recent successful attempt authentication)
 sys-libs/pam:pwdb - If you want pam_pwdb.so installed to use pwdb as passwd db
 sys-libs/uclibc:pregen - Use pregenerated locales
@@ -2096,7 +2093,6 @@ sys-power/cpufreqd:nforce2 - Enable for nforce2 voltage settings plug-in
 sys-power/cpufreqd:nvidia - Enable nvidia overclocking (nvclock) plug-in
 sys-power/cpufreqd:pmu - Enable Power Management Unit plug-in
 sys-power/nut:cgi - Add CGI script support
-sys-power/powersave:pam_console - Adds support for pam console from PAM
 sys-power/suspend:fbsplash - Add support for framebuffer splash
 sys-process/daemontools-scripts:withsamplescripts - Installs sample supervise scripts
 sys-process/procps:n32 - Enable n32 ABI support on mips
@@ -2225,6 +2221,8 @@ x11-libs/qt:immqt-bc - Enable binary compatible version of immodule for Qt
 x11-libs/qt:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
 x11-libs/qt-webkit:pch - Enable precompiled header support for faster compilation times (gcc > 3.4 only)
 x11-libs/qt:qt3support - Enable the Qt3Support libraries for Qt4
+x11-libs/qt-core:qt3support - Enable the Qt3Support libraries for Qt4
+x11-libs/qt-core:glib - Enable glib eventloop support
 x11-libs/wxGTK:pch - Enable precompiled header support for faster compilation at the expense of disk space and memory
 x11-misc/adesklets:ctrlmenu - force CTRL to be pressed to fire context menu
 x11-misc/adesklets:fontconfig - Support for managing custom fonts via fontconfig

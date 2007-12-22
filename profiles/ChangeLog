@@ -1,6 +1,44 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.918 2007/12/20 02:50:45 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.930 2007/12/22 01:39:18 jurek Exp $
+
+  22 Dec 2007; Jurek Bartuszek <jurek@gentoo.org> package.mask:
+  Removed codeblocks entry
+
+  22 Dec 2007; Mark Loeser <halcy0n@gentoo.org> use.local.desc:
+  Remove duplicated local use flags for selinux-desktop:avahi and
+  busybox:savedconfig
+
+  21 Dec 2007; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Unmask wxGTK-2.8.
+
+  21 Dec 2007; Christian Faulhammer <opfer@gentoo.org> package.mask:
+  collect all Emacs masks for live ebuilds and snapshots in one place
+
+  21 Dec 2007; Christian Faulhammer <opfer@gentoo.org> package.mask:
+  mask newest revision of app-admin/keepassx, has masked dependencies
+
+  20 Dec 2007; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask ocaml 3.10.1 release candidate 1, its redundant with the older 3.10
+  mask but this one isn't good for ~arch yet, and its only a release candidate
+
+  20 Dec 2007; Diego Pettenò <flameeyes@gentoo.org> package.mask:
+  Fix masking of Amarok Live SVN ebuild.
+
+  20 Dec 2007; Diego Pettenò <flameeyes@gentoo.org> use.local.desc:
+  Remove pam_console USE flag for sys-libs/pam and sys-power/powersave.
+
+  20 Dec 2007; Diego Pettenò <flameeyes@gentoo.org> package.mask:
+  Remove pam_console masking now that it's gone.
+
+  20 Dec 2007; Diego Pettenò <flameeyes@gentoo.org> package.mask:
+  Unmask amarok now that's released.
+
+  20 Dec 2007; Duncan Coutts <dcoutts@gentoo.org> package.mask:
+  Unmask ghc-6.8.2 and related new libs
+
+  20 Dec 2007; Alin Năstac <mrness@gentoo.org> package.mask:
+  Unmask squid-3.0.1 (#197147).
 
   20 Dec 2007; Duncan Coutts <dcoutts@gentoo.org> package.mask:
   p.mask new dev-haskell/stm and dev-haskell/parallel because they need

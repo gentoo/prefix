@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8024 2007/12/20 02:50:45 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8043 2007/12/22 01:39:18 jurek Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -21,16 +21,50 @@
 ##   End example
 ##
 
-# Lennart Kolmodin <kolmodin@gentoo.org> (19 Dec 2007)
-# Mask ghc-6.8.2 for testing
->=dev-lang/ghc-6.8.2
-dev-haskell/stm
-dev-haskell/parallel
+# Ulrich Mueller <ulm@gentoo.org> (21 Dec 2007)
+# Christian Faulhammer <opfer@gentoo.org>
+# CVS snapshots, bug #185106
+=app-emacs/emacs-w3m-1.4.4_p*
+=app-emacs/wanderlust-2.15.5_pre*
+
+# Ulrich Mueller <ulm@gentoo.org> (21 Dec 2007)
+# Christian Faulhammer <opfer@gentoo.org>
+# Live SVN ebuilds
+~app-emacs/gentoo-syntax-9999
+~app-emacs/ngnus-9999
+# Emacs snapshots and live CVS of Emacs unicode-2 branch
+~app-editors/emacs-cvs-22.1.50_p20070829
+~app-editors/emacs-cvs-23.0.0_p20070920
+~app-editors/emacs-cvs-23.0.60
+>=virtual/emacs-23
+
+# Alexis Ballier <aballier@gentoo.org> (20 Dec 2007)
+# Release candidate, some packages fail to build with it
+# Only here for testing
+>=dev-lang/ocaml-3.10.1_rc1
+
+# Marijn Schouten <hkBst@gentoo.org> (20 Dec 2007)
+# Broken, bug 202880
+>=dev-scheme/gambit-4.1.1
 
 # Caleb Tennis <caleb@gentoo.org> (19 Dec 2007)
+# Christian Faulhammer <opfer@gentoo.org>
 # Mask qt-4.4 package while testing them in portage
+# Plus packages depending on them
+=app-admin/keepassx-0.2.2-r1
 =x11-libs/qt-4.4*
+=x11-libs/qt-core-4.4*
+=x11-libs/qt-gui-4.4*
+=x11-libs/qt-script-4.4*
+=x11-libs/qt-test-4.4*
+=x11-libs/qt-svg-4.4*
 =x11-libs/qt-webkit-4.4*
+=x11-libs/qt-phonon-4.4*
+=x11-libs/qt-qt3support-4.4*
+=x11-libs/qt-dbus-4.4*
+=x11-libs/qt-opengl-4.4*
+=x11-libs/qt-sql-4.4*
+=x11-libs/qt-xmlpatterns-4.4*
 
 # Peter Volkov <pva@gentoo.org> (19 Dec 2007)
 # Italics are assigned to condensed, see bug 202255
@@ -67,10 +101,6 @@ dev-java/jdbc3-oracle
 # Please switch to sys-kernel/gentoo-sources
 sys-kernel/hppa-sources
 
-# Diego Pettenò <flameeyes@gentoo.org> (17 Dec 2007)
-# Mask until the tarball is publically available.
-~media-sound/amarok-1.4.8
-
 # Rémi Cardona <remi@gentoo.org> (17 Dec 2007)
 # Has major regressions, see bug #201519
 =x11-drivers/xf86-video-i810-2.2.0
@@ -82,10 +112,6 @@ sys-kernel/hppa-sources
 # Richard Brown <rbrown@gentoo.org> (15 Dec 2007)
 # Masked for testing as it's install script has changed.
 >=dev-ruby/rubygems-0.9.5
-
-# Jurek Bartuszek <jurek@gentoo.org> (15 Dec 2007)
-# Waiting until wxGTK-2.8 gets unmasked
->=dev-util/codeblocks-1.0_pre20071215
 
 # Saleem Abdulrasool <compnerd@gentoo.org> (13 Dec 2007)
 # Retired by upstream in favor of gnome-system-tools since 2005
@@ -167,10 +193,6 @@ x11-themes/gaim-smileys
 # See bug #201246 for details
 net-www/pears
 
-# Alin Năstac <mrness@gentoo.org> (04 Dec 2007)
-# Not ready for prime time (see bugs 197147 and 201209)
-=net-proxy/squid-3.0*
-
 # Raúl Porcel <armin76@gentoo.org> (04 Dec 2007)
 # Mozilla stopped supporting 1.5 series in October 2007
 # Will be removed when mips stabilizes 2.0
@@ -228,10 +250,6 @@ www-apps/viewcvs
 # this version builds on ~amd64. also see bug 200702.
 =dev-scheme/guile-gnome-platform-2.15.95*
 
-# Ulrich Mueller <ulm@gentoo.org> (25 Nov 2007)
-# Live SVN ebuild
-~app-emacs/gentoo-syntax-9999
-
 # Saleem Abdulrasool <compnerd@gentoo.org> (23 Nov 2007)
 # Mask this until we get the input and mounting issues worked out
 >=sys-apps/hal-0.5.10
@@ -270,7 +288,6 @@ sys-auth/pam_keyring
 
 # Ryan Hill <dirtyepic@gentoo.org> (18 Nov 2007)
 # Mask for keywording/testing.
->=x11-libs/wxGTK-2.8
 >=dev-python/wxpython-2.8
 
 # Tiziano Müller <dev-zero@gentoo.org> (18 Nov 2007)
@@ -284,11 +301,6 @@ sys-auth/pam_keyring
 # anyone looking to take over maintaining heimdal
 # from seemant would make both of us happy
 =app-crypt/heimdal-1.0.1
-
-# Diego Pettenò <flameeyes@gentoo.org> (15 Nov 2007)
-# Masked for security vulnerability, see bug #199193.
-# Will be removed on December 15th 2007.
-sys-auth/pam_console
 
 # Jeroen Roovers <jer@gentoo.org> (13 Nov 2007)
 # These are weeklies, unlike www-client/opera-9.50_beta1, and they appear to be
@@ -389,13 +401,6 @@ dev-java/libgnome-java
 # Waiting for a new release of pymsn and butterfly.
 net-voip/telepathy-butterfly
 
-# Ulrich Mueller <ulm@gentoo.org> (27 Oct 2007)
-# Emacs snapshots and live CVS of Emacs unicode-2 branch
-~app-editors/emacs-cvs-22.1.50_p20070829
-~app-editors/emacs-cvs-23.0.0_p20070920
-~app-editors/emacs-cvs-23.0.60
->=virtual/emacs-23
-
 # Diego Pettenò <flameeyes@gentoo.org> (26 Oct 2007)
 # Still-experimental support for dynamic service dependencies
 # needs baselayout-2, wait masked here till that's available.
@@ -406,10 +411,6 @@ net-voip/telepathy-butterfly
 # Markus Ullmann <jokey@gentoo.org> (20 Oct 2007)
 # dependency unneeded now, merged upstream
 dev-util/portatosourceview
-
-# Ulrich Mueller <ulm@gentoo.org> (20 Oct 2007)
-# CVS snapshot, needs testing
-=app-emacs/wanderlust-2.15.5_pre*
 
 # Christian Hoffmann <hoffie@gentoo.org> (19 Oct 2007)
 # masked for security reasons, bug 189172, removal scheduled for beginning of
@@ -454,10 +455,6 @@ dev-php4/pecl-http
 # Eldad Zack <eldadz@gentoo.org> (16 Oct 2007)
 # ardour-2.1 using syslibs, see bug #194437
 =media-sound/ardour-2.1
-
-# Ulrich Mueller <ulm@gentoo.org> (15 Oct 2007)
-# Live CVS ebuild
-~app-emacs/ngnus-9999
 
 # Stefan Schweizer <genstef@gentoo.org> (14 Oct 2007)
 # Development release
@@ -630,10 +627,6 @@ media-libs/freeimage
 # Sven Wegener <swegener@gentoo.org> (07 Aug 2007)
 # CVS snapshot, needs some more testing
 ~app-misc/screen-4.0.3_p20070403
-
-# Ulrich Mueller <ulm@gentoo.org> (26 Jul 2007)
-# CVS snapshots, bug #185106
-=app-emacs/emacs-w3m-1.4.4_p*
 
 # Marijn Schouten <hkBst@gentoo.org> (26 Jul 2007)
 # problems starting drscheme (segfault)
@@ -1003,7 +996,7 @@ games-strategy/ufo2000
 # Use this in place of the broken amarok-svn ebuilds.
 # Please note that you need >=sys-apps/portage-2.1.2-r3 to be able to actually
 # use these versions by adding "**" for them in package.keywords.
-~media-sound/amarok-9999
+~media-sound/amarok-1.4.9999
 
 # Diego Pettenò <flameeyes@gentoo.org> (25 Jan 2007)
 # Live Mercurial versions of ALSA packages.
