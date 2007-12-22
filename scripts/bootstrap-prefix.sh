@@ -136,6 +136,10 @@ bootstrap_setup() {
 			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.10/sparc"
 			keywords="~sparc-solaris sparc-solaris"
 			;;
+		sparcv9-sun-solaris2.10)
+			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.10/sparcv9"
+			keywords="~sparcv9-solaris sparcv9-solaris"
+			;;
 		powerpc-ibm-aix*)
 			profile="${PORTDIR}/profiles/default-prefix/aix/${CHOST#powerpc-ibm-aix}/ppc"
 			keywords="~ppc-aix ppc-aix"
@@ -200,6 +204,7 @@ bootstrap_tree() {
 		sparc-sun-solaris2.9)        PV="20071115" ;;
 		i386-pc-solaris2.10)         PV="20071115" ;;
 		sparc-sun-solaris2.10)       PV="20071115" ;; # verified (grobian)
+		sparcv9-sun-solaris2.10)     PV="20071213" ;;
 		powerpc-ibm-aix*)            PV="20071213" ;;
 		mips-sgi-irix*)              PV="20071115" ;;
 		i586-pc-interix*)            PV="20071115" ;;

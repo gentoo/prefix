@@ -15,6 +15,7 @@ my_keywords="
 	amd64-linux ia64-linux mips-linux x86-linux
 	ppc-aix
 	ppc-macos x86-macos
+	sparcv9-solaris
 	sparc-solaris x86-solaris
 	x86-interix
 	hppa-hpux ia64-hpux
