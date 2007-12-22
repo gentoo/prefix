@@ -10,7 +10,7 @@ SRC_URI="mirror://sourceforge/colordiff/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~x86 ~x86-macos"
 IUSE=""
 
 DEPEND="sys-apps/diffutils"
