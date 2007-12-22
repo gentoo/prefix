@@ -18,7 +18,7 @@ SRC_URI="ftp://invisible-island.net/${PN}/${PN}-${MY_PV}.tgz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64-hpux ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="examples nls unicode"
 
 RDEPEND=">=app-shells/bash-2.04-r3
