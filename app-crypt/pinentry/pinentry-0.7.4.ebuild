@@ -1,13 +1,13 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.7.2-r4.ebuild,v 1.1 2007/06/15 16:25:32 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/Attic/pinentry-0.7.4.ebuild,v 1.2 2007/12/20 20:43:13 alonbl Exp $
 
 EAPI="prefix"
 
-WANT_AUTOCONF="2.5"
-WANT_AUTOMAKE="1.9"
+#WANT_AUTOCONF="2.5"
+#WANT_AUTOMAKE="1.9"
 
-inherit flag-o-matic qt3 multilib eutils autotools
+inherit qt3 multilib eutils
 
 DESCRIPTION="Collection of simple PIN or passphrase entry dialogs which utilize the Assuan protocol"
 HOMEPAGE="http://www.gnupg.org/aegypten/"
@@ -15,7 +15,7 @@ SRC_URI="mirror://gnupg/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="gtk ncurses qt3 caps"
 
 DEPEND="gtk? ( =x11-libs/gtk+-2* )
@@ -27,12 +27,7 @@ DEPEND="gtk? ( =x11-libs/gtk+-2* )
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
-	epatch "${FILESDIR}"/${PV}-libcap.patch
-	epatch "${FILESDIR}"/${PV}-info.patch
-	epatch "${FILESDIR}"/${P}-grab.patch
-
-	AT_M4DIR="m4" eautoreconf
+	epatch "${FILESDIR}/${P}-grab.patch"
 }
 
 src_compile() {
