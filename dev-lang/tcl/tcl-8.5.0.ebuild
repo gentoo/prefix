@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/tcl-8.5_beta3.ebuild,v 1.1 2007/11/25 00:27:50 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/tcl-8.5.0.ebuild,v 1.1 2007/12/22 03:54:54 matsuu Exp $
 
 EAPI="prefix"
 
@@ -61,7 +61,7 @@ src_compile() {
 src_install() {
 	#short version number
 	local v1
-	v1=${PV%_*}
+	v1=${PV%.*}
 
 	cd "${S}"/unix
 	S= emake DESTDIR="${D}" install || die
