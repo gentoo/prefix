@@ -24,7 +24,7 @@ SRC_URI="
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~x86 ~x86-macos"
 
 IUSE="crypt doc emacs kerberos nls pam server"
 
