@@ -1,5 +1,9 @@
 # $Header: $
 
+# Elias Pipping <pipping@gentoo.org> (22 Dec 2007)
+# experimenting on this -- not yet working
+sci-libs/blas-atlas
+
 # Elias Pipping <pipping@gentoo.org> (08 Dec 2007)
 # fails to link because of duplicate symbols
 dev-perl/math-pari
