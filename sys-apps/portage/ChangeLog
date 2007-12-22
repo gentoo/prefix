@@ -2,6 +2,13 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.9044 (22 Dec 2007)
+
+  22 Dec 2007; Fabian Groffen <grobian@gentoo.org>
+  -files/eprefix_dyn_install.patch, -portage-2.2.00.8820.ebuild,
+  -portage-2.2.00.9001-r0.01.ebuild, +portage-2.2.00.9044.ebuild:
+  New snapshot to replace faulty 9001 snapshot
+
 *portage-2.2.00.9001 (20 Dec 2007)
 
   20 Dec 2007; Fabian Groffen <grobian@gentoo.org>
