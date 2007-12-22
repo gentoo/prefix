@@ -1,0 +1,70 @@
+Index: setup.rb
+===================================================================
+--- setup.rb	(revision 1542)
++++ setup.rb	(working copy)
+@@ -72,8 +72,8 @@
+ 
+   raise "invalid --prefix #{prefix.inspect}" if prefix.nil?
+ 
+-  lib_dir = File.join prefix, 'lib'
+-  bin_dir = File.join prefix, 'bin'
++  lib_dir = File.join prefix, Config::CONFIG['sitelibdir']
++  bin_dir = File.join prefix, Config::CONFIG['bindir']
+ 
+   mkdir_p lib_dir
+   mkdir_p bin_dir
+@@ -173,26 +173,12 @@
+   end
+ end
+ 
+-# Remove source caches
+-
+-require 'rubygems/source_info_cache'
+-
+-user_cache_file = Gem::SourceInfoCache.user_cache_file
+-system_cache_file = Gem::SourceInfoCache.system_cache_file
+-
+-rm user_cache_file if File.writable? user_cache_file
+-rm system_cache_file if File.writable? system_cache_file
+-
+ # install RDoc
+ 
+-gem_doc_dir = File.join Gem.dir, 'doc'
++gem_doc_dir = File.join prefix, Gem.dir, 'doc'
+ 
++unless ARGV.include? '--no-rdoc'
+ if File.writable? gem_doc_dir then
+-  puts "Removing old RubyGems RDoc and ri..."
+-  Dir[File.join(Gem.dir, 'doc', 'rubygems-[0-9]*')].each do |dir|
+-    rm_rf dir
+-  end
+-
+   def run_rdoc(*args)
+     args << '--quiet'
+     args << '--main' << 'README'
+@@ -204,7 +190,7 @@
+ 
+   rubygems_name = "rubygems-#{Gem::RubyGemsVersion}"
+ 
+-  doc_dir = File.join Gem.dir, 'doc', rubygems_name
++  doc_dir = File.join prefix, Gem.dir, 'doc', rubygems_name
+ 
+   unless ARGV.include? '--no-ri' then
+     ri_dir = File.join doc_dir, 'ri'
+@@ -221,8 +207,10 @@
+   puts "Skipping RDoc generation, #{gem_doc_dir} not writable"
+   puts "Set the GEM_HOME environment variable if you want RDoc generated"
+ end
++end
+ 
+ # Remove stubs
++if false # Don't want this
+ 
+ def stub?(path)
+   return unless File.readable? path
+@@ -268,3 +256,4 @@
+   puts "No library stubs found."
+ end
+ 
++end
+

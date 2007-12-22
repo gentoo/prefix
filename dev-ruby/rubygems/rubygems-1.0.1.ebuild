@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-0.9.5.ebuild,v 1.1 2007/12/15 17:34:26 rbrown Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-1.0.1.ebuild,v 1.2 2007/12/21 09:41:33 rbrown Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ RESTRICT="test"
 
 # The URL depends implicitly on the version, unfortunately. Even if you
 # change the filename on the end, it still downloads the same file.
-SRC_URI="http://rubyforge.org/frs/download.php/28174/${P}.tgz"
+SRC_URI="http://rubyforge.org/frs/download.php/29548/${P}.tgz"
 
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 SLOT="0"
@@ -24,7 +24,7 @@ PDEPEND="server? ( dev-ruby/builder )" # index_gem_repository.rb
 
 USE_RUBY="ruby18"
 
-PATCHES="${FILESDIR}/${P}-setup.patch"
+PATCHES="${FILESDIR}/${PN}-0.9.5-setup.patch"
 
 src_unpack() {
 	ruby_src_unpack
@@ -54,6 +54,9 @@ src_install() {
 	fi
 
 	${RUBY} setup.rb $myconf --prefix="${D}" || die "setup.rb install failed"
+
+	dosym /usr/bin/gem18 /usr/bin/gem
+	dosym /usr/bin/update_rubygems18 /usr/bin/update_rubygems
 
 	dodoc README
 	if use examples; then
