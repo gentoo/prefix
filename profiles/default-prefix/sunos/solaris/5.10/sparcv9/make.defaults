@@ -1,0 +1,4 @@
+ARCH="sparcv9-solaris"
+CHOST="sparcv9-sun-solaris2.10"
+ACCEPT_KEYWORDS="sparcv9-solaris"
+

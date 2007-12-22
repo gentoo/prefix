@@ -6,6 +6,7 @@ ppc-aix
 ppc-macos
 x86-macos
 sparc-solaris
+sparcv9-solaris
 x86-solaris
 mips-irix
 x86-interix

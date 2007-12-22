@@ -2,6 +2,10 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Dec 2007; <fabian@gentoo.org> +sunos/solaris/5.10/sparcv9,
+  sunos/solaris/5.10/sparcv9/make.defaults:
+  Add sparcv9 profile for Solaris 10, a 64-bits default wordsize profile
+
   22 Dec 2007; Elias Pipping <pipping@gentoo.org> package.mask:
   ghc 6.8.2 is not prefix-ready. bootstrapping with ghc 6.6.1 works, but no
   binaries are available as of yet.
