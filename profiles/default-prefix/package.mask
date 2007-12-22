@@ -22,6 +22,11 @@
 ##   End example
 ##
 
+# Elias Pipping <pipping@gentoo.org> (Dec 22 2007)
+# ghc 6.8.2 is not prefix-ready. bootstrapping with ghc 6.6.1 works, but no
+# binaries are available as of yet.
+~dev-lang/ghc-6.8.2
+
 # Fabian Groffen <grobian@gentoo.org> (17 Dec 2007)
 # Doesn't compile on OSX (cyclic dependency) and FreeBSD (undefined
 # references), linking issues.
