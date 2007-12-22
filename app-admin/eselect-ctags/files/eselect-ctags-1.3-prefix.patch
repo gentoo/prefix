@@ -1,0 +1,22 @@
+--- ctags.eselect
++++ ctags.eselect
+@@ -23,6 +23,8 @@
+ MAINTAINER="emacs@gentoo.org"
+ SVN_DATE='$Date: 2007-08-22 20:06:41 +0200 (Wed, 22 Aug 2007) $'
+ VERSION=$(svn_date_to_version "${SVN_DATE}" )
++EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
++ROOT=${ROOT}/${EPREFIX}
+ 
+ find_targets() {
+ 	# Return the list of available ctags implementations
+--- emacs.eselect
++++ emacs.eselect
+@@ -24,6 +24,8 @@
+ MAINTAINER="emacs@gentoo.org"
+ SVN_DATE='$Date: 2007-10-08 16:52:36 +0200 (Mon, 08 Oct 2007) $'
+ VERSION=$(svn_date_to_version "${SVN_DATE}" )
++EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
++ROOT=${ROOT}/${EPREFIX}
+ 
+ # ctags is handled in an own module now
+ BINARYLIST="emacsclient etags b2m ebrowse rcs-checkin grep-changelog"

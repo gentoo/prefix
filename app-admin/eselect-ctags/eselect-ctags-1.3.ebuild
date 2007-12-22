@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit eutils
+
 MY_P="eselect-emacs-${PV}"
 DESCRIPTION="Manages ctags implementations"
 HOMEPAGE="http://www.gentoo.org/proj/en/lisp/emacs/"
@@ -19,6 +21,13 @@ RDEPEND=">=app-admin/eselect-1.0.10
 	!<=app-admin/eselect-emacs-1.3"
 
 S="${WORKDIR}/${MY_P}"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify {ctags,emacs}.eselect
+}
 
 src_install() {
 	insinto /usr/share/eselect/modules
