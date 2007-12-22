@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.16.1-r1.ebuild,v 1.3 2007/12/20 10:15:27 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.16.1-r2.ebuild,v 1.3 2007/12/21 10:23:46 mr_bones_ Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SRC_URI="http://www.graphviz.org/pub/graphviz/ARCHIVE/${P}.tar.gz"
 LICENSE="CPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
-IUSE="doc examples gnome gtk jpeg nls perl png python ruby X tcl tk"
+IUSE="cairo doc examples gnome gtk jpeg nls perl png python ruby X tcl tk"
 
 # Requires ksh
 RESTRICT="test"
@@ -29,15 +29,17 @@ RDEPEND="
 	>=media-libs/gd-2.0.28
 	>=media-libs/jpeg-6b
 	>=media-libs/libpng-1.2.10
-	>=x11-libs/pango-1.12
-	>=x11-libs/cairo-1.1.10
 	virtual/libiconv
 	ruby?	( dev-lang/ruby )
 	tcl?	( >=dev-lang/tcl-8.3 )
 	tk?		( >=dev-lang/tk-8.3 )
-	X?		( x11-libs/libXaw )
-	gnome?	( gnome-base/libgnomeui )
-	gtk?	( >=x11-libs/gtk+-2 )"
+	cairo?  ( >=x11-libs/pango-1.12 >=x11-libs/cairo-1.1.10 )
+	gtk?	( >=x11-libs/gtk+-2  )
+	X?		( x11-libs/libXaw
+			  >=x11-libs/pango-1.12
+			  >=x11-libs/cairo-1.1.10
+			  gnome? ( gnome-base/libgnomeui )
+			)"
 
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.20
@@ -50,25 +52,21 @@ DEPEND="${RDEPEND}
 # Dependency description / Maintainer-Info:
 
 # Rendering is done via the following plugins (/plugins):
-# - core, dot_layout, neato_layout, gd
-#   (the ones which are always compiled in, depend on zlib, gd)
-# - dot
-#   ( depends explicitly on pango and cairo now,
-#     --without-x --without-pangocairo will fail!)
+# - core, dot_layout, neato_layout, gd , dot
+#   the ones which are always compiled in, depend on zlib, gd
 # - gtk
-#   ( depends on gtk-2, cairo, libX11,
-#   gtk-2 depends on cairo and libX11 as well)
-# - ming
-#   ( depends on ming-3.0 which is still p.masked)
-# - pango, cairo
-#   ( depends on pango and cairo, pango depends on an older cairo as well)
-# - xlib
-#   ( depends on libX11, Xrender AND pango, can make use of gnomeui and
-#   inotify support, libXaw deps on libXpm)
-# - ming
-#   ( depends on ming-3 which is still masked, ?)
+#   Directly depends on gtk-2.
+#   gtk-2 depends on pango, cairo and libX11 directly.
 # - gdk-pixbuf
-#   ( disabled, GTK-1 junk )
+#   Disabled, GTK-1 junk.
+# - ming
+#   Disabled, depends on ming-3.0 which is still p.masked.
+# - cairo:
+#   Needs pango for text layout, uses cairo methods to draw stuff
+# - xlib :
+#   needs cairo+pango,
+#   can make use of gnomeui and inotify support,
+#   needs libXaw for UI
 
 # There can be swig-generated bindings for the following languages (/tclpkg/gv):
 # - c-sharp (disabled)
@@ -109,11 +107,10 @@ pkg_setup() {
 		die "remerge media-libs/gd with USE=\"jpeg\""
 	fi
 	# bug 202781
-	if ! built_with_use x11-libs/cairo svg ; then
+	if use cairo && ! built_with_use x11-libs/cairo svg ; then
 		eerror "x11-libs/cairo has to be built with svg support"
 		die "emerge x11-libs/cairo with USE=\"svg\""
 	fi
-
 }
 
 src_unpack() {
@@ -123,6 +120,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-bindings.patch
 	epatch "${FILESDIR}"/${P}-gcc43-missing-includes.patch
 	epatch "${FILESDIR}"/${P}-python-buildfix.patch
+	epatch "${FILESDIR}"/${P}-pango-optional.patch
 
 	[[ ${CHOST} == *-darwin* ]] && \
 		sed -i -e 's/\.so/.dylib/g' tclpkg/gv/Makefile.am
@@ -153,31 +151,45 @@ src_unpack() {
 }
 
 src_compile() {
+	local myconf
+
+	# Core functionality:
+	# All of X, cairo-output, gtk need the pango+cairo functionality
+	if use X || use cairo || use gtk; then
+		myconf="${myconf} --with-pangocairo"
+	else
+		myconf="${myconf} --without-pangocairo"
+	fi
+	myconf="${myconf}
+		$(use_with X x)
+		$(use_with gnome gnomeui)
+		$(use_with gtk)
+		--without-ming
+		--with-digcola
+		--with-ipsepcola
+		--with-fontconfig
+		--with-freetype
+		--with-libgd
+		--without-gdk-pixbuf"
+
+	# Bindings:
+	myconf="${myconf}
+		--disable-guile
+		--disable-java
+		--disable-io
+		--disable-lua
+		--disable-ocaml
+		$(use_enable perl)
+		--disable-php
+		$(use_enable python)
+		$(use_enable ruby)
+		--disable-sharp
+		$(use_enable tcl)
+		$(use_enable tk)"
+
 	econf \
-		$(use_with X x)					\
-		--enable-ltdl					\
-		--disable-guile					\
-		--disable-java					\
-		--disable-io					\
-		--disable-lua					\
-		--disable-ocaml					\
-		$(use_enable perl)				\
-		--disable-php					\
-		$(use_enable python)			\
-		$(use_enable ruby)				\
-		--disable-sharp					\
-		$(use_enable tcl)				\
-		$(use_enable tk)				\
-		--with-pangocairo				\
-		$(use_with gnome gnomeui)		\
-		$(use_with gtk)					\
-		--without-ming					\
-		--with-digcola					\
-		--with-ipsepcola				\
-		--with-fontconfig				\
-		--with-freetype					\
-		--with-libgd					\
-		--without-gdk-pixbuf			\
+		--enable-ltdl \
+		${myconf} \
 		|| die "econf failed"
 
 	emake || die "emake failed"

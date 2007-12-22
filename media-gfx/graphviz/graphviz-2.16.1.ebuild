@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.16.1.ebuild,v 1.1 2007/12/16 22:30:19 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.16.1.ebuild,v 1.2 2007/12/20 10:15:27 maekke Exp $
 
 EAPI="prefix"
 
@@ -93,6 +93,11 @@ pkg_setup() {
 	if use jpeg && ! built_with_use media-libs/gd jpeg ; then
 		eerror "media-libs/gd has to be built with jpeg support"
 		die "remerge media-libs/gd with USE=\"jpeg\""
+	fi
+	# bug 202781
+	if ! built_with_use x11-libs/cairo svg ; then
+		eerror "x11-libs/cairo has to be built with svg support"
+		die "emerge x11-libs/cairo with USE=\"svg\""
 	fi
 }
 
