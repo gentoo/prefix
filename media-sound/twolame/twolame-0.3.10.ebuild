@@ -1,8 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/twolame/twolame-0.3.10.ebuild,v 1.8 2007/11/16 16:56:15 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/twolame/twolame-0.3.10.ebuild,v 1.9 2007/12/20 14:09:24 aballier Exp $
 
 EAPI="prefix"
+
+inherit libtool
 
 DESCRIPTION="TwoLAME is an optimised MPEG Audio Layer 2 (MP2) encoder"
 HOMEPAGE="http://www.twolame.org/"
@@ -14,6 +16,14 @@ KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
 IUSE="doc"
 
 DEPEND=">=media-libs/libsndfile-1.0.11"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	# Needed for freebsd to get a sane .so versionning
+	elibtoolize
+}
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed."
