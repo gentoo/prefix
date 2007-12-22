@@ -1,0 +1,10 @@
+# ChangeLog for app-admin/eselect-ctags
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ctags/ChangeLog,v 1.1 2007/12/21 08:45:39 ulm Exp $
+
+*eselect-ctags-1.3 (21 Dec 2007)
+
+  21 Dec 2007; Ulrich Mueller <ulm@gentoo.org> +metadata.xml,
+  +eselect-ctags-1.3.ebuild:
+  Initial import. Split off from eselect-emacs to make vi users happy.
+
