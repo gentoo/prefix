@@ -1,0 +1,12 @@
+http://gcc.gnu.org/bugzilla/show_bug.cgi?id=27516
+--- gcc/Makefile.in.orig	2007-12-11 14:52:20.000000000 +0100
++++ gcc/Makefile.in	2007-12-11 14:53:37.000000000 +0100
+@@ -3656,7 +3656,7 @@
+ # Install the driver last so that the window when things are
+ # broken is small.
+ install: install-common $(INSTALL_HEADERS) $(INSTALL_LIBGCC) \
+-    install-cpp install-man install-info install-@POSUB@ \
++    install-cpp install-man install-$(BUILD_INFO) install-@POSUB@ \
+     install-driver
+ 
+ # Handle cpp installation.

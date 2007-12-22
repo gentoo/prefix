@@ -70,6 +70,9 @@ src_unpack() {
 	# http://bugs.gentoo.org/show_bug.cgi?id=201490
 	epatch "${FILESDIR}"/${PV}/gentoo-fixincludes.patch
 
+	# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=27516
+	epatch "${FILESDIR}"/${PV}/treelang-nomakeinfo.patch
+
 	use vanilla && return 0
 
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
