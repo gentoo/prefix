@@ -4,6 +4,8 @@
 
 EAPI="prefix"
 
+inherit eutils
+
 DESCRIPTION="An eselect module to manage /etc/fonts/conf.d symlinks."
 HOMEPAGE="http://www.gentoo.org"
 SRC_URI=""
@@ -18,6 +20,10 @@ RDEPEND="app-admin/eselect
 		>=media-libs/fontconfig-2.4"
 
 src_install() {
+	cd "${T}"
+	cp "${FILESDIR}"/fontconfig.eselect-${PV} .
+	epatch "${FILESDIR}"/fontconfig.eselect-${PV}-prefix.patch
+	eprefixify fontconfig.eselect-${PV}
 	insinto /usr/share/eselect/modules
-	newins "${FILESDIR}/fontconfig.eselect-${PV}" fontconfig.eselect || die
+	newins fontconfig.eselect-${PV} fontconfig.eselect || die
 }
