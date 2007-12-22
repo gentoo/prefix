@@ -1,38 +1,44 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/wxwidgets.eclass,v 1.23 2007/11/25 14:19:39 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/wxwidgets.eclass,v 1.24 2007/12/21 04:32:41 dirtyepic Exp $
 
 # @ECLASS:			wxwidgets.eclass
 # @MAINTAINER:
-#  dirtyepic@gentoo.org
 #  wxwindows@gentoo.org
 # @BLURB:			Manages build configuration for wxGTK-using packages.
 # @DESCRIPTION:
 #  The wxGTK libraries come in several different possible configurations
-#  (release/debug, ansi/unicode, etc.), most of which can be installed
-#  side-by-side.  The purpose of this eclass is to give ebuilds the ability to
-#  specify what particular flavour they require to build against without
-#  interfering with the user-set system configuration.
+#  (release/debug, ansi/unicode, etc.) some of which can be installed
+#  side-by-side.  The purpose of this eclass is to provide ebuilds the ability
+#  to build against a specific type without interfering with the user-set
+#  system configuration.
 #
 #  Ebuilds that use wxGTK must inherit this eclass.  Otherwise the system
-#  default will be used, which would be anything the user set it to.
+#  default will be used, which would be anything the user set it to through
+#  eselect-wxwidgets.
 #
-#  Ebuilds are also required to set the global variable WX_GTK_VER, containing
-#  the wxGTK SLOT the ebuild requires.  Note that in order for this to work,
-#  WX_GTK_VER needs to be set before inheriting the eclass.
+#  Ebuilds are also required to set the variable WX_GTK_VER, containing
+#  the wxGTK SLOT the ebuild requires.  You can either set this before the
+#  inherit line to get the default type for that SLOT, or later before calling
+#  the need-wxwidgets function.
 #
 #  Simple Usage:
 #
-#   WX_GTK_VER="2.6"
-#   inherit wxwidgets
-#   DEPEND="=x11-libs/wxGTK-2.6*"
-#   RDEPEND="=x11-libs/wxGTK-2.6*"
+# @CODE
+#    WX_GTK_VER="2.6"
 #
-#  That's it.  The eclass will select a sane default configuration to use.  In
-#  wxGTK-2.6 the default is ansi.  In wxGTK-2.8 and later it's unicode.  These
-#  are the defaults because they are always guaranteed to exist.
+#    inherit wxwidgets
 #
-#  You'll often find yourself in need of a bit more control.  For that see the
+#    DEPEND="=x11-libs/wxGTK-2.6*"       (or x11-libs/wxGTK:2.6 for EAPI 1)
+#    RDEPEND="${DEPEND}"
+#    [...]
+# @CODE
+#
+#  The eclass will select the default configuration, which is "ansi" in 2.6
+#  and "unicode" in >=2.8.  These are the defaults because they're always
+#  guaranteed to exist.
+#
+#  If you need more control over which version you need to use, see the
 #  need-wxwidgets function below.
 
 inherit eutils multilib
@@ -67,25 +73,28 @@ fi
 # @FUNCTION:		need-wxwidgets
 # @USAGE:			<configuration>
 # @DESCRIPTION:
+#
 #  need-wxwidgets is called with one argument, the wxGTK configuration to use.
 #
 #  Available configurations are:
 #
-#		ansi
-#		unicode
-#		base-ansi
-#		base-unicode
+#    ansi
+#    unicode
+#    base-ansi
+#    base-unicode
 #
 #  Note that in >=wxGTK-2.8, only the unicode versions are available.  The
-#  eclass will automatically map ansi to unicode if WX_GTK_VER is set to 2.8 or
-#  later.
+#  eclass will automatically map ansi to unicode for you if WX_GTK_VER is
+#  set to 2.8 or later.
 #
-#  There is one deprecated configuration, gtk2, that is equivalent to ansi.
-#  It is around for historical reasons and shouldn't be used by new ebuilds.
+#  There is one deprecated configuration, "gtk2", which is equivalent to ansi.
+#  This is leftover from 2.4 when we had gtk1 and gtk2 builds and shouldn't
+#  be used by new ebuilds.
 #
-#  This function will set the variable WX_CONFIG to the path of the wx-config
-#  script to use.  In most cases you shouldn't have to use it since the
-#  /usr/bin/wx-config wrapper points to ${WX_CONFIG} when called from portage.
+#  This function will export the variable WX_CONFIG, containing the absolute
+#  path to the wx-config script to use.  In most cases you shouldn't need to
+#  use it since the /usr/bin/wx-config wrapper will already point to that
+#  location when called from the eclass, but it's here if you do.
 
 need-wxwidgets() {
 	debug-print-function $FUNCNAME $*
@@ -161,7 +170,7 @@ need-wxwidgets() {
 	# since we're no longer in global scope we call built_with_use instead of
 	# all the crazy looping
 
-	# base can be provided by both gtk2 and base installations
+	# wxBase can be provided by both gtk2 and base installations
 	if built_with_use =x11-libs/wxGTK-${WX_GTK_VER}* X; then
 		wxtoolkit="gtk2"
 	else
@@ -194,13 +203,10 @@ need-wxwidgets() {
 
 	debug-print "Found config ${wxconf} - setting WX_CONFIG"
 
-	# This is exported as some configure scripts will check for its presence in
-	# the environment.
 	export WX_CONFIG="/usr/$(get_libdir)/wx/config/${wxconf}"
 
 	debug-print "WX_CONFIG is ${WX_CONFIG}"
 
-	# TODO: Used by the wx-config wrapper
 	export WX_ECLASS_CONFIG="${WX_CONFIG}"
 
 	echo
@@ -213,6 +219,7 @@ need-wxwidgets() {
 # @FUNCTION:		check_wxuse
 # @USAGE:			<USE flag>
 # @DESCRIPTION:
+#
 #  Provides a consistant way to check if wxGTK was built with a particular USE
 #  flag enabled.
 

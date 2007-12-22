@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/nvidia-driver.eclass,v 1.9 2007/10/01 18:54:39 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/nvidia-driver.eclass,v 1.10 2007/12/21 20:38:44 cardoe Exp $
 
 #
 # Original Author: Doug Goldstein <cardoe@gentoo.org>
@@ -22,7 +22,7 @@ drv_96xx="0110 0111 0112 0113 0170 0171 0172 0173 0174 0175 0176 0177 0178 \
 drv_71xx="0020 0028 0029 002c 002d 00a0 0100 0101 0103 0150 0151 0152 0153"
 
 mask_96xx=">=x11-drivers/nvidia-drivers-97.0.0"
-mask_71xx=">=x11-drivers/nvidia-drivers-72.0.0\n=x11-drivers/nvidia-1.0.9639"
+mask_71xx=">=x11-drivers/nvidia-drivers-72.0.0"
 
 # Retrieve the PCI device ID for each Nvidia video card you have
 nvidia-driver-get-card() {

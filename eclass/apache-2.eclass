@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.3 2007/12/15 14:00:19 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.4 2007/12/20 15:53:19 zmedico Exp $
 
 # @ECLASS: apache-2
 # @MAINTAINER: apache-devs@gentoo.org
@@ -92,6 +92,7 @@ S="${WORKDIR}/httpd-${PV}"
 # This internal function makes sure that only one of APACHE2_MPMS was selected
 # or a default based on USE=threads is selected if APACHE2_MPMS is empty
 setup_mpm() {
+	MY_MPM=""
 	for x in ${IUSE_MPMS} ; do
 		if use apache2_mpms_${x} ; then
 			if [[ -z "${MY_MPM}" ]] ; then
