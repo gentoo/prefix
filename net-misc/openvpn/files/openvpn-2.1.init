@@ -1,13 +1,13 @@
-#!@GENTOO_PORTAGE_EPREFIX@/sbin/runscript
+#!/sbin/runscript
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-VPNDIR=${VPNDIR:-@GENTOO_PORTAGE_EPREFIX@/etc/openvpn}
+VPNDIR=${VPNDIR:-/etc/openvpn}
 VPN=${SVCNAME#*.}
 if [ -n "${VPN}" ] && [ ${SVCNAME} != "openvpn" ]; then
-	VPNPID="@GENTOO_PORTAGE_EPREFIX@/var/run/openvpn.${VPN}.pid"
+	VPNPID="/var/run/openvpn.${VPN}.pid"
 else
-	VPNPID="@GENTOO_PORTAGE_EPREFIX@/var/run/openvpn.pid"
+	VPNPID="/var/run/openvpn.pid"
 fi
 VPNCONF="${VPNDIR}/${VPN}.conf"
 
@@ -108,7 +108,7 @@ start() {
 	export PEER_DNS
 
 	[ "${reenter}" = "yes" ] && mark_service_inactive "${SVCNAME}"
-	start-stop-daemon --start --exec @GENTOO_PORTAGE_EPREFIX@/usr/sbin/openvpn --pidfile "${VPNPID}" \
+	start-stop-daemon --start --exec /usr/sbin/openvpn --pidfile "${VPNPID}" \
 		-- --config "${VPNCONF}" --writepid "${VPNPID}" --daemon ${args}
 	eend $? "Check your logs to see why startup failed"
 }
@@ -123,7 +123,7 @@ stop() {
 
 	ebegin "Stopping ${SVCNAME}"
 	start-stop-daemon --stop --quiet \
-		--exec @GENTOO_PORTAGE_EPREFIX@/usr/sbin/openvpn --pidfile "${VPNPID}"
+		--exec /usr/sbin/openvpn --pidfile "${VPNPID}"
 	eend $?
 }
 

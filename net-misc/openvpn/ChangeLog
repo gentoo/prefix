@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/openvpn
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.117 2007/09/25 12:47:00 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.118 2007/12/21 23:44:21 alonbl Exp $
+
+  21 Dec 2007; Alon Bar-Lev <alonbl@gentoo.org> metadata.xml:
+  Take ownership, after Roy left
 
   25 Sep 2007; Roy Marples <uberlord@gentoo.org> files/openvpn-2.1.conf,
   files/openvpn-2.1.init, files/down.sh, files/up.sh:
