@@ -1,6 +1,16 @@
 # ChangeLog for media-fonts/dejavu
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.106 2007/12/15 07:50:20 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.108 2007/12/21 13:03:52 pva Exp $
+
+  21 Dec 2007; <pva@gentoo.org> -dejavu-2.22.ebuild:
+  Cleaned broken version.
+
+*dejavu-2.22.20071220.2156 (21 Dec 2007)
+
+  21 Dec 2007; <pva@gentoo.org> +dejavu-2.22.20071220.2156.ebuild:
+  Version bump to snapshot. Fixes metadata problem in the condensed fonts, bug
+  #202255. Thank Matt Whitlock, Peter Henriksson and Guillaume Castagnino for
+  report.
 
   15 Dec 2007; Samuli Suominen <drac@gentoo.org> dejavu-2.21.ebuild:
   amd64 stable wrt #202120
