@@ -253,7 +253,7 @@ bootstrap_startscript() {
 		-e "s|@GENTOO_PORTAGE_EPREFIX@|${ROOT}|g" \
 		"${ROOT}"/usr/portage/scripts/startprefix.in \
 		> "${ROOT}"/startprefix
-	chmod 744 "${ROOT}"/startprefix
+	chmod 755 "${ROOT}"/startprefix
 	einfo "To start Gentoo Prefix, run the script ${ROOT}/startprefix"
 	einfo "You can copy this file to a more convenient place if you like."
 }
