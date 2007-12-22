@@ -1,9 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.0.3.ebuild,v 1.12 2007/10/10 06:07:36 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.0.7.ebuild,v 1.1 2007/12/21 06:40:59 vapier Exp $
 
 EAPI="prefix"
 
+inherit eutils
 if [[ ${PV} == "9999" ]] ; then
 	ECVS_SERVER="savannah.gnu.org:/cvsroot/nano"
 	ECVS_MODULE="nano"
@@ -18,9 +19,9 @@ fi
 DESCRIPTION="GNU GPL'd Pico clone with more functionality"
 HOMEPAGE="http://www.nano-editor.org/"
 
-LICENSE="GPL-2"
+LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="debug justify minimal ncurses nls slang spell unicode"
 
 DEPEND=">=sys-libs/ncurses-5.2

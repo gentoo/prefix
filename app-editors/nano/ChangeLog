@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/nano
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.176 2007/11/24 23:51:07 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.177 2007/12/21 06:40:59 vapier Exp $
+
+*nano-2.0.7 (21 Dec 2007)
+
+  21 Dec 2007; Mike Frysinger <vapier@gentoo.org> +nano-2.0.7.ebuild:
+  Version bump.
 
   24 Nov 2007; <solar@gentoo.org> +files/tcl.nanorc:
   - add temp tcl.nanorc till one comes from upstream
