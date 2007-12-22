@@ -2,6 +2,9 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Dec 2007; Elias Pipping <pipping@gentoo.org> package.mask:
+  extend graphviz mask to include 2.16.1-r2
+
   17 Dec 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask media-gfx/graphviz-2.16.1 because it fails to compile
 

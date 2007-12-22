@@ -25,8 +25,7 @@
 # Fabian Groffen <grobian@gentoo.org> (17 Dec 2007)
 # Doesn't compile on OSX (cyclic dependency) and FreeBSD (undefined
 # references), linking issues.
-=media-gfx/graphviz-2.16.1
-=media-gfx/graphviz-2.16.1-r1
+~media-gfx/graphviz-2.16.1
 
 # Fabian Groffen <grobian@gentoo.org> (28 Nov 2007)
 # Segfaults on Solaris during compile, don't trust it for the other
