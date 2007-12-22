@@ -33,6 +33,10 @@ src_unpack() {
 	# fix the rpath being set to /var/tmp/portage/...
 	epatch "${FILESDIR}"/${PN}-5.39.0-libdir.patch
 
+	# fix install_name on darwin
+	[[ ${CHOST} == *-darwin* ]] && \
+		epatch "${FILESDIR}"/${PN}-5.43.0-darwin.patch
+
 	sed -i "s#/usr/local/bin#${EPREFIX}/usr/bin#" expect.man
 	sed -i "s#/usr/local/bin#${EPREFIX}/usr/bin#" expectk.man
 	#stops any example scripts being installed by default
