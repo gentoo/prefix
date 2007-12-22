@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/diffstat-1.45.ebuild,v 1.3 2007/12/17 20:53:26 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/diffstat-1.45.ebuild,v 1.5 2007/12/21 17:18:55 drac Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,6 @@ RDEPEND="sys-apps/diffutils"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
 	epatch "${FILESDIR}"/${PN}-1.37-hard-locale.patch
 }
 
