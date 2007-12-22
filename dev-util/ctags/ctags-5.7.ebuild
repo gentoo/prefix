@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ctags-5.7.ebuild,v 1.2 2007/09/24 20:16:05 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ctags-5.7.ebuild,v 1.3 2007/12/21 08:57:52 ulm Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="ada"
 
-DEPEND=">=app-admin/eselect-emacs-1.1"
+DEPEND="app-admin/eselect-ctags"
 
 src_unpack() {
 	unpack ${A}

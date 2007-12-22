@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/ctags
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ChangeLog,v 1.61 2007/09/24 19:40:05 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ChangeLog,v 1.62 2007/12/21 08:57:52 ulm Exp $
+
+  21 Dec 2007; Ulrich Mueller <ulm@gentoo.org> ctags-5.6-r3.ebuild,
+  ctags-5.7.ebuild:
+  Change dependency to app-admin/eselect-ctags.
 
 *ctags-5.7 (24 Sep 2007)
 

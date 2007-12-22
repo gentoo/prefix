@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ctags-5.6-r3.ebuild,v 1.4 2007/09/24 20:16:05 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ctags-5.6-r3.ebuild,v 1.5 2007/12/21 08:57:52 ulm Exp $
 
 EAPI="prefix"
 
@@ -16,11 +16,11 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="ada"
 
-DEPEND=">=app-admin/eselect-emacs-1.1"
+DEPEND="app-admin/eselect-ctags"
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 	epatch "${FILESDIR}/${P}-ebuilds.patch"
 	#epatch "${FILESDIR}/${P}-haskell.patch"
 	#epatch "${FILESDIR}/${P}-objc.patch"
@@ -28,7 +28,7 @@ src_unpack() {
 
 	# enabling Ada support
 	if use ada; then
-		cp ${WORKDIR}/ctags-ada-mode-4.3.3/ada.c ${S}
+		cp "${WORKDIR}/${PN}-ada-mode-4.3.3/ada.c" "${S}"
 		epatch "${FILESDIR}/${PN}-ada.patch"
 	fi
 }
