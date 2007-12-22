@@ -22,6 +22,7 @@ x86-macos	default-prefix/darwin/macos/10.4/x86		dev
 
 # Solaris Profiles
 sparc-solaris	default-prefix/sunos/solaris/5.10/sparc	dev
+sparcv9-solaris default-prefix/sunos/solaris/5/10/sparcv9 dev
 x86-solaris		default-prefix/sunos/solaris/5.10/x86	dev
 
 # AIX Profiles
