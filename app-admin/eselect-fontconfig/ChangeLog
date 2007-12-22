@@ -1,0 +1,64 @@
+# ChangeLog for app-admin/eselect-fontconfig
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-fontconfig/ChangeLog,v 1.15 2007/12/21 11:12:27 armin76 Exp $
+
+  21 Dec 2007; Raúl Porcel <armin76@gentoo.org>
+  eselect-fontconfig-1.0.ebuild:
+  alpha/ia64 stable wrt #202869
+
+  20 Dec 2007; Dawid Węgliński <cla@gentoo.org>
+  eselect-fontconfig-1.0.ebuild:
+  Stable on x86 (bug #202869)
+
+  20 Dec 2007; Ferris McCormick <fmccor@gentoo.org>
+  eselect-fontconfig-1.0.ebuild:
+  Sparc stable --- Bug #202869 --- seems to work as it should.
+
+  20 Dec 2007; Jeroen Roovers <jer@gentoo.org>
+  eselect-fontconfig-1.0.ebuild:
+  Stable for HPPA (bug #202869).
+
+  20 Dec 2007; Doug Klima <cardoe@gentoo.org> eselect-fontconfig-1.0.ebuild:
+  amd64 stable wrt bug #202869
+
+  20 Dec 2007; Doug Klima <cardoe@gentoo.org> eselect-fontconfig-1.0.ebuild:
+  ~sparc-fbsd and ~x86-fbsd for bug #180231
+
+  04 Dec 2007; Ryan Hill <dirtyepic@gentoo.org>
+  eselect-fontconfig-1.0.ebuild:
+  Mark ~m86k for bug #180231.
+
+  01 Aug 2007; Joshua Kinard <kumba@gentoo.org>
+  eselect-fontconfig-1.0.ebuild:
+  Marked unstable on mips, per #180231.
+
+  30 Jul 2007; Markus Rothe <corsair@gentoo.org> ChangeLog:
+  Added ~ppc64; bug #180231
+
+  30 Jul 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  eselect-fontconfig-1.0.ebuild:
+  Keyworded ~sparc wrt #180231
+
+  28 Jul 2007; Luca Barbato <lu_zero@gentoo.org>
+  eselect-fontconfig-1.0.ebuild:
+  Marked ~ppc ~ppc64
+
+  28 Jul 2007; Steve Dibb <beandog@gentoo.org>
+  eselect-fontconfig-1.0.ebuild:
+  Add ~amd64, bug 180231
+
+  28 Jul 2007; Raúl Porcel <armin76@gentoo.org>
+  eselect-fontconfig-1.0.ebuild:
+  Add ~alpha/~ia64/~x86 wrt #180231
+
+  28 Jul 2007; Jeroen Roovers <jer@gentoo.org>
+  eselect-fontconfig-1.0.ebuild:
+  Marked ~hppa (bug #180231).
+
+*eselect-fontconfig-1.0 (28 Jul 2007)
+
+  28 Jul 2007; Ryan Hill <dirtyepic@gentoo.org>
+  +files/fontconfig.eselect-1.0, +metadata.xml,
+  +eselect-fontconfig-1.0.ebuild:
+  Initial import.  Many thanks to Cardoe for contributing the module.
+
