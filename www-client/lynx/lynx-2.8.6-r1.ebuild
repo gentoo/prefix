@@ -16,7 +16,7 @@ SRC_URI="ftp://lynx.isc.org/current/${MY_P}rel.2.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ia64-hpux ~ppc-macos ~x86"
 IUSE="bzip2 cjk ipv6 nls ssl unicode"
 
 RDEPEND="sys-libs/ncurses
