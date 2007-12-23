@@ -1,6 +1,6 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.3 2007/12/21 21:44:03 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.5 2007/12/22 17:32:55 caleb Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -17,21 +17,21 @@ IUSE="${IUSE} debug"
 qt4-build_pkg_setup() {
 	# Set up installation directories
 
-        QTBASEDIR=/usr/$(get_libdir)/qt4
-        QTPREFIXDIR=/usr
-        QTBINDIR=/usr/bin
-        QTLIBDIR=/usr/$(get_libdir)/qt4
-        QTPCDIR=/usr/$(get_libdir)/pkgconfig
-        QTDATADIR=/usr/share/qt4
-        QTDOCDIR=/usr/share/doc/${PF}
-        QTHEADERDIR=/usr/include/qt4
-        QTPLUGINDIR=${QTLIBDIR}/plugins
-        QTSYSCONFDIR=/etc/qt4
-        QTTRANSDIR=${QTDATADIR}/translations
-        QTEXAMPLESDIR=${QTDATADIR}/examples
-        QTDEMOSDIR=${QTDATADIR}/demos
+	QTBASEDIR=/usr/$(get_libdir)/qt4
+	QTPREFIXDIR=/usr
+	QTBINDIR=/usr/bin
+	QTLIBDIR=/usr/$(get_libdir)/qt4
+	QTPCDIR=/usr/$(get_libdir)/pkgconfig
+	QTDATADIR=/usr/share/qt4
+	QTDOCDIR=/usr/share/doc/${PF}
+	QTHEADERDIR=/usr/include/qt4
+	QTPLUGINDIR=${QTLIBDIR}/plugins
+	QTSYSCONFDIR=/etc/qt4
+	QTTRANSDIR=${QTDATADIR}/translations
+	QTEXAMPLESDIR=${QTDATADIR}/examples
+	QTDEMOSDIR=${QTDATADIR}/demos
 
-        PLATFORM=$(qt_mkspecs_dir)
+	PLATFORM=$(qt_mkspecs_dir)
 
 	PATH="${S}/bin:${PATH}"
 	LD_LIBRARY_PATH="${S}/lib:${LD_LIBRARY_PATH}"
@@ -50,6 +50,11 @@ qt4-build_src_unpack() {
 		ewarn "Appending -fno-stack-protector to CFLAGS/CXXFLAGS"
 		append-flags -fno-stack-protector
 	fi
+}
+
+qt4-build_src_install() {
+	install_directories "${QT4_TARGET_DIRECTORIES}"
+	fix_library_files
 }
 
 standard_configure_options() {
@@ -73,6 +78,10 @@ standard_configure_options() {
 	myconf="${myconf} -silent -fast -reduce-relocations -nomake examples -nomake demos"
 
 	echo "${myconf}"
+}
+
+build_target_directories() {
+	build_directories "${QT4_TARGET_DIRECTORIES}"
 }
 
 build_directories() {
@@ -134,46 +143,46 @@ fix_library_files() {
 }
 
 qt_use() {
-        local flag="$1"
-        local feature="$1"
-        local enableval=
+	local flag="$1"
+	local feature="$1"
+	local enableval=
 
-        [[ -n $2 ]] && feature=$2
-        [[ -n $3 ]] && enableval="-$3"
+	[[ -n $2 ]] && feature=$2
+	[[ -n $3 ]] && enableval="-$3"
 
-        useq $flag && echo "${enableval}-${feature}" || echo "-no-${feature}"
-        return 0
+	useq $flag && echo "${enableval}-${feature}" || echo "-no-${feature}"
+	return 0
 }
 
 qt_mkspecs_dir() {
-         # Allows us to define which mkspecs dir we want to use.
-        local spec
+	# Allows us to define which mkspecs dir we want to use.
+	local spec
 
-        case ${CHOST} in
-                *-freebsd*|*-dragonfly*)
-                        spec="freebsd" ;;
-                *-openbsd*)
-                        spec="openbsd" ;;
-                *-netbsd*)
-                        spec="netbsd" ;;
-                *-darwin*)
-                        spec="darwin" ;;
-                *-linux-*|*-linux)
-                        spec="linux" ;;
-                *)
-                        die "Unknown CHOST, no platform choosed."
-        esac
+	case ${CHOST} in
+		*-freebsd*|*-dragonfly*)
+			spec="freebsd" ;;
+		*-openbsd*)
+			spec="openbsd" ;;
+		*-netbsd*)
+			spec="netbsd" ;;
+ 		*-darwin*)
+			spec="darwin" ;;
+		*-linux-*|*-linux)
+			spec="linux" ;;
+		*)
+			die "Unknown CHOST, no platform choosed."
+	esac
 
-        CXX=$(tc-getCXX)
-        if [[ ${CXX/g++/} != ${CXX} ]]; then
-                spec="${spec}-g++"
-        elif [[ ${CXX/icpc/} != ${CXX} ]]; then
-                spec="${spec}-icc"
-        else
-                die "Unknown compiler ${CXX}."
-        fi
+	CXX=$(tc-getCXX)
+	if [[ ${CXX/g++/} != ${CXX} ]]; then
+		spec="${spec}-g++"
+	elif [[ ${CXX/icpc/} != ${CXX} ]]; then
+		spec="${spec}-icc"
+	else
+		die "Unknown compiler ${CXX}."
+	fi
 
-        echo "${spec}"
+	echo "${spec}"
 }
 
-EXPORT_FUNCTIONS pkg_setup src-unpack
+EXPORT_FUNCTIONS pkg_setup src_unpack src_install
