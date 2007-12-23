@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/pygtk
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.173 2007/11/27 03:40:01 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.174 2007/12/22 16:34:49 dang Exp $
+
+*pygtk-2.12.0-r1 (22 Dec 2007)
+
+  22 Dec 2007; Daniel Gryniewicz <dang@gentoo.org>
+  +files/pygtk-2.12.0-extrafuncs.patch, +pygtk-2.12.0-r1.ebuild:
+  Bump to 2.12.0-r1
+  	- Install gtk-extrafuncs.def; bug #202140
 
   27 Nov 2007; Jeroen Roovers <jer@gentoo.org> pygtk-2.12.0.ebuild:
   Stable for HPPA (bug #199322).
