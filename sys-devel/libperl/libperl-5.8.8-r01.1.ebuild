@@ -132,6 +132,9 @@ src_unpack() {
 	# the HP-UX patch is unconditional
 	epatch "${FILESDIR}"/${P}-hpux.patch
 
+	# Solaris 64-bits still uses a GNU ld in prefix
+	epatch "${FILESDIR}"/${P}-solaris-64bit.patch
+
 	# the Darwin patch is unconditional
 	epatch "${FILESDIR}"/${PN}-darwin-install_name.patch
 
