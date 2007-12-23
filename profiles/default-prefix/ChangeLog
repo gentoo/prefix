@@ -2,6 +2,11 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Dec 2007; Fabian Groffen <grobian@gentoo.org> +darwin/macos/10.4/ppc64,
+  darwin/macos/10.4/ppc64/make.defaults:
+  Add darwin/10.4/ppc64 profile, not added yet to arch.list and profiles.desc
+  to keep it secret.
+
   22 Dec 2007; Fabian Groffen <grobian@gentoo.org> packages:
   Make subversion part of the system set, since we really need it to sync our
   tree. As a side effect we no longer need rsync as part of system.

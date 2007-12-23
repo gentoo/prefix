@@ -1,0 +1,3 @@
+ARCH="ppc64-macos"
+CHOST="powerpc64-apple-darwin8"
+ACCEPT_KEYWORDS="ppc64-macos"
