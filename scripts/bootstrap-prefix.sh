@@ -637,11 +637,9 @@ then
 		case `uname -s` in
 			Linux)
 				CHOST="`uname -m`-pc-linux-gnu"
-				MAKE=make
 				;;
 			Darwin)
 				CHOST="`uname -p`-apple-darwin`/usr/sbin/sysctl kern.osrelease | cut -d'=' -f 2 | cut -d' ' -f 2- | cut -d'.' -f 1`"
-				MAKE=make
 				;;
 			SunOS)
 				case `uname -p` in
@@ -652,20 +650,15 @@ then
 						CHOST="sparc-sun-solaris`uname -r | sed 's|5|2|'`"
 					;;
 				esac
-				# make needs to know it is gmake
-				MAKE=gmake
 				;;
 			AIX)
 				# GNU coreutils uname sucks, it doesn't know what
 				# processor it is using on AIX.  We mimick GNU CHOST
 				# guessing here, instead of what IBM uses itself.
 				CHOST="`/usr/bin/uname -p`-ibm-aix`oslevel`"
-				MAKE=make
 				;;
 			IRIX|IRIX64)
 				CHOST="mips-sgi-irix`uname -r`"
-				# make needs to know it is gmake
-				MAKE=gmake
 				;;
 			Interix)
 				case `uname -m` in
@@ -674,7 +667,6 @@ then
 					   exit 1
 					;;
 				esac
-				MAKE=make
 				;;
 			HP-UX)
 				case `uname -m` in
@@ -706,7 +698,6 @@ then
 				fi
 				CHOST="${HP_ARCH}-hp-hpux${uname_r#B.}"
 				unset HP_ARCH uname_r
-				MAKE=make
 				;;
 			FreeBSD)
 				case `uname -p` in
@@ -718,7 +709,6 @@ then
 						exit 1
 					;;
 				esac
-				MAKE=make
 				;;
 			*)
 				eerror "Nothing known about platform `uname -s`."
@@ -729,6 +719,36 @@ then
 		esac
 	fi
 fi
+
+# Now based on the CHOST set some required variables.  Doing it here
+# allows for user set CHOST still to result in the appropriate variables
+# being set.
+case ${CHOST} in
+	*-pc-linux-gnu)
+		MAKE=make
+	;;
+	*-apple-darwin*)
+		MAKE=make
+	;;
+	*-*-solaris*)
+		MAKE=gmake
+	;;
+	*-ibm-aix*)
+		MAKE=make
+	;;
+	*-sgi-irix*)
+		MAKE=gmake
+	;;
+	*-pc-interix*)
+		MAKE=make
+	;;
+	*-hp-hpux*)
+		MAKE=make
+	;;
+	*-pc-freebsd*)
+		MAKE=make
+	;;
+esac
 
 # Just guessing a prefix is kind of scary.  Hence, to make it a bit less
 # scary, we force the user to give the prefix location here.  This also
