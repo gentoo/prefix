@@ -205,7 +205,7 @@ bootstrap_tree() {
 		i386-pc-solaris2.10)         PV="20071115" ;;
 		sparc-sun-solaris2.10)       PV="20071115" ;; # verified (grobian)
 		sparcv9-sun-solaris2.10)     PV="20071213" ;;
-		powerpc-ibm-aix*)            PV="20071213" ;;
+		powerpc-ibm-aix*)            PV="20071213" ;; # verified (darksiide)
 		mips-sgi-irix*)              PV="20071115" ;;
 		i586-pc-interix*)            PV="20071115" ;;
 		hppa*-hp-hpux11*)            PV="20071115" ;;
