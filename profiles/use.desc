@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.373 2007/12/19 07:30:38 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.377 2007/12/22 16:45:30 maekke Exp $
 
 # Keep them sorted
 
@@ -24,6 +24,7 @@ ao - Use libao audio output library for sound playback
 apache2 - Add Apache2 support
 apm - Adds APM (Advanced Power Management) support
 arts - Adds support for aRts: the KDE sound daemon
+atm - Enable Asynchronous Transfer Mode protocol support
 audiofile - Adds support for libaudiofile where applicable
 avahi - Add avahi/Zeroconf support
 bash-completion - Enable bash-completion support
@@ -37,6 +38,7 @@ bluetooth - Enables Bluetooth Support
 bonobo - Adds support for gnome-base/bonobo (Gnome CORBA interfaces)
 bootstrap - !!internal use only!! DO NOT SET THIS FLAG YOURSELF!, used during original system bootstrapping [make stage2]
 boundschecking - Adds the bounds checking patch by Haj Ten Brugge, this will DISABLE the hardened PIE+SSP patches
+branding - Enable Gentoo specific branding
 build - !!internal use only!! DO NOT SET THIS FLAG YOURSELF!, used for creating build images and the first half of bootstrapping [make stage1]
 bzip2 - Use the bzlib compression library
 cairo - Enable support for the cairo graphics library
@@ -48,6 +50,7 @@ cddb - Access cddb servers to retrieve and submit information about compact disk
 cdinstall - Copies files from the CD rather than asking the user to copy them, mostly used with games
 cdparanoia - Enables cdparanoia (audio CD ripper) support
 cdr - Adds support for CD writer hardware
+cgi - Add CGI script support
 chasen - Enable chasen (Japanese Morphological Analysis System) support
 cjk - Adds support for Multi-byte character languages (Chinese, Japanese, Korean)
 clamav - Adds support for Clam AntiVirus software (usually with a plugin)
@@ -82,6 +85,7 @@ emboss - Adds support for the European Molecular Biology Open Software Suite
 empress - Adds support for the Empress database server
 empress-bcs - Adds local access support for the Empress database server
 encode - Adds support for encoding of audio or video files
+enscript - Add enscript support to colourize code stored in the repository
 esd - Adds support for media-sound/esound (Enlightened Sound Daemon)
 esoob - Adds support for Easysoft OOD database
 ev6 - Assume Alpha processor is EV6 or better
@@ -114,10 +118,12 @@ gdbm - Adds support for sys-libs/gdbm (GNU database libraries)
 geoip - Add geoip support
 ggi - Adds support for media-libs/libggi (non-X video api/drivers)
 gif - Adds GIF image support
+gimp - Build a plugin for the GIMP
 ginac - Adds sci-mathematics/ginac (symbolic math) support
 glut - Build an OpenGL plugin using the GLUT library
 gmp - Adds support for dev-libs/gmp (GNU MP library)
 gnome - Adds GNOME support
+gnuplot - Enable gnuplot support
 gnustep - Adds integration with GNUstep environment
 gnutls - Adds support for net-libs/gnutls
 gphoto2 - Adds digital camera support
@@ -131,6 +137,7 @@ gtkhtml - Adds support for gnome-extra/gtkhtml
 guile - Adds support for the guile Scheme interpreter
 hal - Enable Hardware Abstraction Layer (HAL) support
 hardened - activate default security enhancements for toolchain (gcc, glibc, binutils)
+hddtemp - Enable monitoring of hdd temperature (app-admin/hddtemp)
 howl - Enable howl support, enables DNS Service Discovery (DNS-SD)
 hyperwave-api - Adds support for Hyperwave document storage system
 ibm - Add support for IBM ppc64 specific systems
@@ -156,6 +163,7 @@ java - Adds support for Java
 javascript - Enables javascript support
 jbig - enables jbig-kit support for tiff, Hylafax, ImageMagick, etc
 jikes - Compile Java source code with jikes (faster)
+jingle - Enables voice calls for jabber
 joystick - Add support for joysticks in all packages
 jpeg - Adds JPEG image support
 jpeg2k - Support for JPEG 2000, a wavelet-based image compression format.
@@ -171,6 +179,7 @@ ladspa - Enables the ability to support ladspa plugins
 lame - Prefer using LAME libraries for MP3 encoding support
 lapack - Adds support for the virtual/lapack numerical library
 lash - Adds LASH Audio Session Handler support
+latex - Adds support for LaTeX (typesetting package)
 lcms - Adds lcms support (color management engine)
 ldap - Adds LDAP support (Lightweight Directory Access Protocol)
 leim - Adds input methods support to Emacs
@@ -185,6 +194,7 @@ lirc - Adds support for lirc (Linux's Infra-Red Remote Control)
 livecd - !!internal use only!! DO NOT SET THIS FLAG YOURSELF!, used during livecd building.
 lm_sensors - Adds linux lm_sensors (hardware sensors) support
 lua - Enable Lua scripting support
+lzo - Enables support for lzo compression
 m17n-lib - Enable m17n-lib support
 mad - Adds support for mad (high-quality mp3 decoder library and cli frontend)
 maildir - Adds support for maildir (~/.maildir) style mail spools
@@ -227,6 +237,7 @@ ncurses - Adds ncurses support (console display library)
 neXt - Enable neXt toolkit
 netboot - Enables network booting
 netcdf - Enable NetCDF data format support
+networkmanager - Enable net-misc/networkmanager support
 nis - Support for NIS/YP services
 nls - Adds Native Language Support (using gettext - GNU locale utilities)
 nntp - Add support for newsgroups (Network News Transfer Protocol)
@@ -236,6 +247,7 @@ nptl - Enable support for Native POSIX Threads Library, the new threading module
 nsplugin - Builds plugins for Netscape compatible browsers
 ocaml - Adds support/bindings for the Ocaml language
 oci8 - Adds Oracle 8 Database Support
+oci8-instant-client - Use dev-db/oracle-instantclient-basic as Oracle provider instead of requiring a full Oracle server install
 odbc - Adds ODBC Support (Open DataBase Connectivity)
 offensive - Enables potentially offensive items in packages
 ofx - Enable support for importing (and exporting) OFX (Open Financial eXchange) data files
@@ -275,9 +287,11 @@ qt3 - Adds support for the Qt GUI/Application Toolkit version 3.x
 qt4 - Adds support for the Qt GUI/Application Toolkit version 4.x
 quicktime - Adds support for OpenQuickTime
 radius - Adds support for RADIUS authentication
+raw - Add support for raw image formats
 rdesktop - Adds support for the remote desktop protocol, usually used to connect to Windows servers
 readline - Enables support for libreadline, a GNU line-editing library that almost everyone wants
 recode - Enables support for the GNU recode library
+rss - Enables support for RSS feeds
 ruby - Adds support/bindings for the Ruby language
 samba - Adds support for SAMBA (Windows File and Printer sharing)
 sapdb - Adds support for SAP DB
@@ -314,6 +328,8 @@ sse2 - faster floating point optimization for SSE2 capable chips
 ssl - Adds support for Secure Socket Layer connections
 startup-notification - Enable application startup event feedback mechanism
 static - !!do not set this during bootstrap!! Causes binaries to be statically linked instead of dynamically
+subversion - Enable subversion (version control system) support
+suid - Enable setuid root program, with potential security risks
 svg - Adds support for SVG (Scalable Vector Graphics http://www.w3.org/TR/SVG ).  This option is mainly intended for users that tend to browse multimedia sites frequently.
 svga - Adds support for SVGAlib (graphics library)
 sybase - Adds support for the Sybase SQL Database Server
@@ -322,6 +338,7 @@ symlink - Force kernel ebuilds to automatically update the /usr/src/linux symlin
 syslog - Enables support for syslog
 sysvipc - Support for System V-compatible inter-process communication
 szip - Use the szip compression library
+taglib - Enable tagging support with taglib
 tcl - Adds support the Tcl language
 tcpd - Adds support for TCP wrappers
 test - Workaround to pull in packages needed to run with FEATURES=test. Portage-2.1.2 handles this internally, so don't set it in make.conf/package.use anymore.
@@ -330,6 +347,7 @@ theora - Adds support for the Theora Video Compression Codec
 threads - Adds threads support for various packages. Usually pthreads
 tidy - Adds support for HTML Tidy
 tiff - Adds support for the tiff image format
+timidity - Build with Timidity++ (MIDI sequencer) support
 tk - Adds support for Tk GUI toolkit
 tokenizer - Adds support for the PHP file parser
 truetype - Adds support for FreeType and/or FreeType2 fonts
@@ -337,13 +355,16 @@ uclibc - Enable uclibc specific patches and build or link uclibc
 unicode - Adds support for Unicode
 usb - Adds USB support to applications that have optional USB support (e.g. cups)
 v4l - Enables video4linux support
+v4l2 - Enable video4linux2 support
 vanilla - Do not add extra patches which change default behaviour; DO NOT USE THIS ON A GLOBAL SCALE as the severity of the meaning changes drastically
 vcd - Video CD support
 vhosts - Adds support for installing web-based applications into a virtual-hosting environment
 videos - Install optional video files (used in some games)
 vim-syntax - Pulls in related vim syntax scripts.
+vnc - Enable VNC (remote desktop viewer) support
 voodoo3 - Adds support for 3Dfx's Voodoo3 video chipset, else defaults to Voodoo4/5 support if not in USE.
 vorbis - Adds support for the OggVorbis audio codec
+wavpack - Add support for wavpack audio compression tools
 wddx - Adds support for Web Distributed Data eXchange
 wifi - Enable wireless network functions
 win32codecs - use win32codecs package for dll avi decoding support (wmv and what not)
@@ -351,7 +372,9 @@ wmf - Adds support for the Windows Metafile vector image format
 wxwindows - Adds support for wxWidgets/wxGTK GUI toolkit
 x264 - Enable h264 encoding using x264
 xattr - Adds support for extended attributes (filesystem-stored metadata)
+xcb - Support the X C-language Binding, a replacement for Xlib
 xcomposite - Enable support for the Xorg composite extension
+xemacs - Add support for XEmacs
 xface - Adds xface support used to allow a small image of xface format to be included in an email via the header 'X-Face'.
 xine - Add support for the XINE movie libraries
 xinerama - Add support for the xinerama X11 extension, which allows you to stretch your display across multiple monitors
@@ -368,4 +391,5 @@ xv - Adds in optional support for the Xvideo extension (an X API for video playb
 xvid - Adds support for xvid.org's open-source mpeg-4 codec
 yahoo - Enable Yahoo Messenger IM protocol support
 yaz - Adds in optional support for the Z39.50 Protocol for Information Retrieval (YAZ)
+zeroconf - Support for DNS Service Discovery (DNS-SD)
 zlib - Adds support for zlib (de)compression

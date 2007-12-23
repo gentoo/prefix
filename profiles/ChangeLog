@@ -1,6 +1,22 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.930 2007/12/22 01:39:18 jurek Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.934 2007/12/22 16:45:30 maekke Exp $
+
+  22 Dec 2007; Markus Meier <maekke@gentoo.org> use.desc:
+  fix a typo, spotted by Arfrever Frehtes Taifersar Arahesis
+  <arfrever.fta@gmail.com>
+
+  22 Dec 2007; Markus Meier <maekke@gentoo.org> use.desc, use.local.desc:
+  move the atm, branding, cgi, enscript, gimp, gnuplot, hddtemp, hddtemp,
+  jingle, latex, lzo, networkmanager, oci8-instant-client, raw, rss, suid,
+  taglib, timidity, v4l2, vnc, wavpack, xcb, xemacs and zeroconf useflags from
+  local to global
+
+  22 Dec 2007; Markus Meier <maekke@gentoo.org> use.desc, use.local.desc:
+  move the subversion useflag from local to global
+
+  22 Dec 2007; Daniel Black <dragonheart@gentoo.org> use.local.desc:
+  removed savedconfig as its in global - bug #202967
 
   22 Dec 2007; Jurek Bartuszek <jurek@gentoo.org> package.mask:
   Removed codeblocks entry
