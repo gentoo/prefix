@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/desktop-file-utils-0.14.ebuild,v 1.12 2007/12/11 16:48:05 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/desktop-file-utils-0.14.ebuild,v 1.13 2007/12/22 17:27:02 dang Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~mips ~sparc-solaris ~x86"
 IUSE="emacs"
 
-RDEPEND=">=dev-libs/glib-2.8
+RDEPEND=">=dev-libs/glib-2.12
 	emacs? ( virtual/emacs )"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"

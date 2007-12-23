@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/desktop-file-utils
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/ChangeLog,v 1.68 2007/10/09 07:46:00 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/ChangeLog,v 1.69 2007/12/22 17:27:02 dang Exp $
+
+  22 Dec 2007; Daniel Gryniewicz <dang@gentoo.org>
+  desktop-file-utils-0.14.ebuild:
+  Bump glib dep to 2.12; g_option_context_set_summary wasn't added until then.
+  Bug #202710
 
   09 Oct 2007; Tom Gall <tgall@gentoo.org>
   desktop-file-utils-0.14.ebuild:
