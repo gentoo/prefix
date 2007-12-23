@@ -164,6 +164,10 @@ int main() {
 	CFLAGS="-O2 -pipe"
 	CXXFLAGS=${CFLAGS}
 
+	# http://gcc.gnu.org/ml/gcc-patches/2006-11/msg00765.html
+	[[ ${CTARGET} == powerpc64-* || ${CTARGET} == x86_64-* ]] && \
+		export CC="gcc -m64"
+
 	mkdir -p "${WORKDIR}"/build
 	cd "${WORKDIR}"/build
 	einfo "Configuring GCC with: ${myconf//--/\n\t--}"
