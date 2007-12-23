@@ -221,7 +221,7 @@ src_unpack() {
 				use x86-solaris && unpack ghc-${PV}-i386-unknown-solaris2.tar.bz2
 				use ppc-macos && unpack ghc-${PV}-powerpc-apple-darwin.tar.bz2
 				use x86-macos && unpack ghc-${PV}-i386-apple-darwin.tar.bz2
-				
+
 				# it is autoconf, but we really don't want to give it too
 				# much arguments, in fact we do the make in-place anyway
 				cd ${P}

@@ -169,12 +169,12 @@ src_unpack() {
 				"${WORKDIR}/usr/$(get_libdir)/${P}/package.conf" \
 				|| die "Relocating ghc from /usr to workdir failed"
 		fi
-		cd "${S}" 
-		
+		cd "${S}"
+
 		# Make configure find docbook-xsl-stylesheets in prefix
 		epatch "${FILESDIR}"/${P}-prefix.patch
 		eprefixify configure.ac
-		
+
 		eautoreconf
 	fi
 }
