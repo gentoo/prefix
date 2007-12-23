@@ -1,6 +1,9 @@
 # ChangeLog for dev-lisp/clisp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.70 2007/12/08 16:54:36 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.71 2007/12/22 19:18:34 nixnut Exp $
+
+  22 Dec 2007; nixnut <nixnut@gentoo.org> clisp-2.42-r1.ebuild:
+  Added ~ppc wrt bug 196708
 
   08 Dec 2007; Samuli Suominen <drac@gentoo.org> clisp-2.43.ebuild:
   amd64 stable wrt #201216
