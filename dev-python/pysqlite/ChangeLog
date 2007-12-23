@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/pysqlite
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pysqlite/ChangeLog,v 1.82 2007/12/17 01:51:19 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pysqlite/ChangeLog,v 1.83 2007/12/22 14:19:30 dertobi123 Exp $
+
+  22 Dec 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  pysqlite-2.3.5.ebuild:
+  ppc stable, bug #202174
 
   17 Dec 2007; Jeroen Roovers <jer@gentoo.org> pysqlite-2.3.5.ebuild:
   Marked ~hppa too.
