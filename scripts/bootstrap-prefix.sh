@@ -116,6 +116,10 @@ bootstrap_setup() {
 			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.5/x86"
 			keywords="~x86-macos x86-macos"
 			;;
+		x86_64-apple-darwin9)
+			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.5/x64"
+			keywords="~x64-macos x64-macos"
+			;;
 		i*86-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/default-prefix/linux/x86"
 			keywords="~x86 x86"
@@ -203,6 +207,7 @@ bootstrap_tree() {
 		i*86-apple-darwin8)          PV="20071115" ;;
 		powerpc-apple-darwin9)       PV="20071115" ;;
 		i*86-apple-darwin9)          PV="20071115" ;; # verified (grobian)
+		x86_64-apple-darwin9)        PV="20071213" ;;
 		i*86-pc-linux-gnu)           PV="20071115" ;;
 		x86_64-pc-linux-gnu)         PV="20071115" ;;
 		ia64-pc-linux-gnu)           PV="20071115" ;;

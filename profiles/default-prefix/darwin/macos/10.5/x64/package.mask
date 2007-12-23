@@ -1,0 +1,16 @@
+# $Header: $
+
+# Elias Pipping <pipping@gentoo.org> (24 Nov 2007)
+# eix 0.10.* fails to compile
+=app-portage/eix-0.10.2*
+
+# Elias Pipping <pipping@gentoo.org> (06 Nov 2007)
+# ocaml 3.10 does not compile, whereas 3.09 does
+=dev-lang/ocaml-3.10*
+
+# Elias Pipping <pipping@gentoo.org> (06 Nov 2007)
+# emacs 21.x does not support darwin9, emacs 22.x, 23.x fail to compile
+# please use emacs-cvs-22.1.50-r1 for now (worked last time I checked).
+app-editors/emacs
+=app-editors/emacs-cvs-22.1.50_p20070829-r1
+app-editors/emacs-cvs:23-unicode
