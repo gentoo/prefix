@@ -67,5 +67,7 @@ src_install() {
 	ln -sfn grep "${ED}"/bin/egrep || die "ln egrep failed"
 	ln -sfn grep "${ED}"/bin/fgrep || die "ln fgrep failed"
 
+	rm -f "${ED}"/usr/lib/charset.alias
+
 	dodoc AUTHORS ChangeLog NEWS README THANKS TODO
 }
