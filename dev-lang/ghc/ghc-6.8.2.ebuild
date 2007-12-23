@@ -43,7 +43,8 @@ EXTRA_SRC_URI="${PV}"
 SRC_URI="!binary? ( http://haskell.org/ghc/dist/${EXTRA_SRC_URI}/${P}-src.tar.bz2 )
 	amd64?	( mirror://gentoo/ghc-bin-${PV}-amd64.tbz2 )
 	sparc?	( mirror://gentoo/ghc-bin-${PV}-sparc.tbz2 )
-	x86?	( mirror://gentoo/ghc-bin-${PV}-x86.tbz2 )"
+	x86?	( mirror://gentoo/ghc-bin-${PV}-x86.tbz2 )
+	x86-macos? ( http://www.gentoo.org/~pipping/distfiles/ghc-bin-${PV}-x86-macos.tbz2 )"
 
 LICENSE="BSD"
 SLOT="0"
@@ -133,9 +134,9 @@ pkg_setup() {
 			die "USE=\"ghcbootstrap binary\" is not a valid combination."
 		[[ -z $(type -P ghc) ]] && \
 			die "Could not find a ghc to bootstrap with."
-	elif use alpha || use hppa || use ia64 || use ppc || use ppc64; then
+	elif use alpha || use hppa || use ia64 || use ppc || use ppc64 || use ppc-macos; then
 		eerror "No binary .tbz2 package available yet for these arches:"
-		eerror "  alpha, hppa, ia64, ppc, ppc64"
+		eerror "  alpha, hppa, ia64, ppc, ppc64, ppc-macos"
 		eerror "Please try emerging with USE=ghcbootstrap and report build"
 		eerror "sucess or failure to the haskell team (haskell@gentoo.org)"
 		die "No binary available for this arch yet, USE=ghcbootstrap"
@@ -154,6 +155,26 @@ src_unpack() {
 		# Move unpacked files to the expected place
 		mv "${WORKDIR}/usr" "${S}"
 	else
+		local prefix
+		case ${CHOST} in
+			*86-*-darwin*) prefix=/g;;
+		esac
+		[[ -z ${prefix} ]] || mv "${WORKDIR}"${prefix}/usr "${WORKDIR}"
+
+		# fix install_names on darwin
+		cd "${WORKDIR}/usr" || die "binary corrupt -- usr dir missing"
+		if [[ ${CHOST} == *86-*-darwin* ]]; then
+			for fixme_file in lib/ghc-${PV}/ghc-{${PV},pkg.bin}; do
+				for fixme_lib in {lib/lib{readline.5.2,ncurses},usr/lib/libgmp.3}.dylib; do
+					install_name_tool \
+						-change ${prefix}/${fixme_lib} "${EPREFIX}"/${fixme_lib} \
+						${fixme_file}
+				done
+				install_name_tool -change \
+					{${prefix}/usr/lib/gcc/i686-apple-darwin9/4.0.1,"${EPREFIX}"/lib}/libgcc_s.1.dylib \
+						${fixme_file}
+			done
+		fi
 
 		# Modify the ghc driver script to use GHC_CFLAGS
 		sed -i -e "s|\$\$TOPDIROPT|\$\$TOPDIROPT ${GHC_CFLAGS}|" \
