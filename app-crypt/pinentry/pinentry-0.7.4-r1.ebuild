@@ -1,13 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.7.4.ebuild,v 1.2 2007/12/20 20:43:13 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.7.4-r1.ebuild,v 1.1 2007/12/22 05:17:11 alonbl Exp $
 
 EAPI="prefix"
 
-#WANT_AUTOCONF="2.5"
-#WANT_AUTOMAKE="1.9"
-
-inherit qt3 multilib eutils
+inherit qt3 multilib eutils flag-o-matic
 
 DESCRIPTION="Collection of simple PIN or passphrase entry dialogs which utilize the Assuan protocol"
 HOMEPAGE="http://www.gnupg.org/aegypten/"
