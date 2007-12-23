@@ -398,9 +398,12 @@ src_install() {
 		cd "${S}"
 		dodoc README ANNOUNCE VERSION
 
-		cp "${FILESDIR}/ghc-updater" "${T}"
-		eprefixify "${T}"/ghc-updater
-		dosbin "${T}"/ghc-updater
+		# make ghc-updater prefix-friendly
+		cd "${T}"
+		cp "${FILESDIR}/ghc-updater" .
+		epatch "${FILESDIR}"/ghc-updater-prefix.patch
+		eprefixify ghc-updater
+		dosbin ghc-updater
 
 		dobashcompletion "${FILESDIR}/ghc-bash-completion"
 
