@@ -170,7 +170,7 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 					echo ppc64-macos;;
 		i*-apple-darwin*)
 					echo x86-macos;;
-		x86_86-apple-darwin*)
+		x86_64-apple-darwin*)
 					echo x64-macos;;
 		sparc-sun-solaris*)
 					echo sparc-solaris;;
