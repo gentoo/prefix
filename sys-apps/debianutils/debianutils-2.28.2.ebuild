@@ -12,7 +12,7 @@ SRC_URI="mirror://debian/pool/main/d/${PN}/${PN}_${PV}.tar.gz"
 
 LICENSE="GPL-2 BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-macos ~sparc-solaris ~sparc64-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="static"
 
 PDEPEND="sys-apps/mktemp"
