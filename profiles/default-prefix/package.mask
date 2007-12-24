@@ -22,6 +22,12 @@
 ##   End example
 ##
 
+# Fabian Groffen <grobian@gentoo.org> (24 Dec 2007)
+# Mask this release of odcctools, as it is currently only for playing
+# with 64-bits prefixes, so no need to bother regular users with an
+# upgrade.
+=sys-devel/odcctools-20071224
+
 # Elias Pipping <pipping@gentoo.org> (Dec 22 2007)
 # ghc 6.8.2 is not prefix-ready. bootstrapping with ghc 6.6.1 works, but no
 # binaries are available as of yet.

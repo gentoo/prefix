@@ -2,6 +2,9 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Dec 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Mask odcctools-20071224 as it's for 64-bits toying only
+
   24 Dec 2007; Fabian Groffen <grobian@gentoo.org> +sunos/solaris/5.10/sparc64,
   sunos/solaris/5.10/sparc64/make.defaults, -sunos/solaris/5.10/sparcv9,
   -sunos/solaris/5.10/sparcv9/make.defaults,
