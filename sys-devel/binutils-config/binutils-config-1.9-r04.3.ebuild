@@ -58,29 +58,28 @@ localwrapper_src_compile() {
 	# based on what system we have do some adjusting of the wrapper's work
 	case ${CHOST} in
 		*-darwin*)
-			defines='-DNEEDS_LIBRARY_INCLUDES -DLIBINC="-L"'
-			defines="${defines}"' -DNEEDS_EXTRAS -DEXTRA="-search_paths_first"'
+			defines='-DNEEDS_LIBRARY_INCLUDES -DLIBINC=\"-L\"'
+			defines="${defines}"' -DNEEDS_EXTRAS "-DEXTRA=\"-search_paths_first -macosx_version_min '"${MACOSX_DEPLOYMENT_TARGET}"'\""'
 		;;
 		*-aix*)
-			defines='-DNEEDS_LIBRARY_INCLUDES -DLIBINC="-L"'
+			defines='-DNEEDS_LIBRARY_INCLUDES -DLIBINC=\"-L\"'
 		;;
 		*-solaris*)
-			defines='-DNEEDS_LIBRARY_INCLUDES -DLIBINC="-L"'
-			defines="${defines}"' -DNEEDS_RPATH_DIRECTIONS -DRPATHDIR="-R"'
+			defines='-DNEEDS_LIBRARY_INCLUDES -DLIBINC=\"-L\"'
+			defines="${defines}"' -DNEEDS_RPATH_DIRECTIONS -DRPATHDIR=\"-R\"'
 		;;
 		*-linux-gnu|*-freebsd*)
-			defines='-DNEEDS_LIBRARY_INCLUDES -DLIBINC="-L"'
-			defines="${defines}"' -DNEEDS_RPATH_DIRECTIONS -DRPATHDIR="-rpath="'
+			defines='-DNEEDS_LIBRARY_INCLUDES -DLIBINC=\"-L\"'
+			defines="${defines}"' -DNEEDS_RPATH_DIRECTIONS -DRPATHDIR=\"-rpath=\"'
 		;;
 		*)
 			die "Don't know how to configure for your system"
 		;;
 	esac
 
-	echo "$(tc-getCC) -O2 -Wall ${defines} -o ldwrapper \
-		ldwrapper-${W_VER}.c"
-	$(tc-getCC) -O2 -Wall ${defines} -o ldwrapper \
-		ldwrapper-${W_VER}.c || die "compile wrapper"
+	echo "$(tc-getCC) -O2 -Wall ${defines} -o ldwrapper ldwrapper-${W_VER}.c"
+	eval "$(tc-getCC) -O2 -Wall ${defines} -o ldwrapper ldwrapper-${W_VER}.c" \
+		|| die "compile wrapper"
 }
 
 extwrapper_src_compile() {
