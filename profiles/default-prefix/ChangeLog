@@ -2,6 +2,12 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Dec 2007; Fabian Groffen <grobian@gentoo.org> +sunos/solaris/5.10/sparc64,
+  sunos/solaris/5.10/sparc64/make.defaults, -sunos/solaris/5.10/sparcv9,
+  -sunos/solaris/5.10/sparcv9/make.defaults,
+  -sunos/solaris/5.10/sparcv9/parent:
+  Rename sparcv9 to sparc64 to better align with Gentoo mainstream
+
   23 Dec 2007; Fabian Groffen <grobian@gentoo.org> +darwin/macos/10.4/ppc64,
   darwin/macos/10.4/ppc64/make.defaults:
   Add darwin/10.4/ppc64 profile, not added yet to arch.list and profiles.desc
