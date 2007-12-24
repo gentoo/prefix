@@ -4,10 +4,10 @@
  		"hppa64-aldsF-linux-gnu5.3    |linux-generic32 -DB_ENDIAN" \
  		"powerpc-gentOO-linux-uclibc  |linux-ppc" \
  		"powerpc64-unk-linux-gnu      |linux-ppc64" \
-+        "x86_64-apple-darwin9         |darwin64-x86_64-cc" \
-+        "ppc64-apple-darwin9          |darwin64-ppc64-cc" \
-+        "i686-apple-darwin8           |darwin-i386-cc" \
-+        "i386-apple-darwin8           |darwin-i386-cc" \
++		"x86_64-apple-darwin9         |darwin64-x86_64-cc" \
++		"ppc64-apple-darwin9          |darwin64-ppc64-cc" \
++		"i686-apple-darwin8           |darwin-i386-cc" \
++		"i386-apple-darwin8           |darwin-i386-cc" \
  	;do
  		CHOST=${c/|*}
  		ret_want=${c/*|}
@@ -24,13 +24,13 @@
  	machine=${compiler}
  	;;
 +darwin)
-+    case ${chost_machine} in
-+        ppc)          machine=${chost_machine}-cc;;
-+        ppc64)        machine=ppc-cc; system=${system}64;;
-+        i?86*)        machine=i386-cc;;
-+        x86_64)       machine=${chost_machine}-cc; system=${system}64;;
-+    esac
-+    ;;
++	case ${chost_machine} in
++		ppc)          machine=${chost_machine}-cc;;
++		ppc64)        machine=ppc-cc; system=${system}64;;
++		i?86*)        machine=i386-cc;;
++		x86_64)       machine=${chost_machine}-cc; system=${system}64;;
++	esac
++	;;
  hpux)
  	case ${chost_machine} in
  		ia64)	machine=ia64-${compiler} ;;
