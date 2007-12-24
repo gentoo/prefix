@@ -12,7 +12,7 @@ HOMEPAGE="http://www.gnu.org/software/libiconv/"
 
 SLOT="0"
 LICENSE="LGPL-2.1"
-KEYWORDS="~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~sparc64-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="build"
 
 DEPEND="!sys-libs/glibc
