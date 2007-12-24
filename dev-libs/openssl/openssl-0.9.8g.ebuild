@@ -42,6 +42,7 @@ src_unpack() {
 
 	# allow openssl to be cross-compiled
 	cp "${FILESDIR}"/gentoo.config-0.9.8 gentoo.config || die "cp cross-compile failed"
+	epatch "${FILESDIR}"/gentoo.config-0.9.8-darwin.patch
 	eprefixify gentoo.config
 	chmod a+rx gentoo.config
 
