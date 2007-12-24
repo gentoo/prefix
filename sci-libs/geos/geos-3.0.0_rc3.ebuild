@@ -14,7 +14,7 @@ SRC_URI="http://geos.refractions.net/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~sparc64-solaris ~x86"
 IUSE="doc python ruby"
 
 RDEPEND="ruby? ( virtual/ruby )
