@@ -13,7 +13,7 @@ SRC_URI="ftp://alpha.gnu.org/gnu/diffutils/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~sparc64-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="nls static"
 
 RDEPEND="kernel_linux? ( >=sys-apps/man-pages-2.46 )"
