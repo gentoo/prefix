@@ -145,8 +145,8 @@ bootstrap_setup() {
 			keywords="~sparc-solaris sparc-solaris"
 			;;
 		sparcv9-sun-solaris2.10)
-			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.10/sparcv9"
-			keywords="~sparcv9-solaris sparcv9-solaris"
+			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.10/sparc64"
+			keywords="~sparc64-solaris sparc64-solaris"
 			;;
 		powerpc-ibm-aix*)
 			profile="${PORTDIR}/profiles/default-prefix/aix/${CHOST#powerpc-ibm-aix}/ppc"
