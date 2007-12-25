@@ -1,6 +1,13 @@
 # ChangeLog for sys-fs/e2fsprogs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.125 2007/12/12 01:30:04 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.126 2007/12/24 12:49:52 vapier Exp $
+
+*e2fsprogs-1.40.3-r1 (24 Dec 2007)
+
+  24 Dec 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/e2fsprogs-1.40.3-fsck-fuse.patch, +e2fsprogs-1.40.3-r1.ebuild:
+  Add patch from upstream for fuse syntax which has inline # characters
+  #195405 by Thorsten Kampe.
 
   12 Dec 2007; Brent Baude <ranger@gentoo.org> e2fsprogs-1.40.3.ebuild:
   Marking e2fsprogs-1.40.3 ppc64 stable for 201546
