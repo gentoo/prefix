@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/synergy/synergy-1.3.1.ebuild,v 1.8 2007/12/22 10:13:08 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/synergy/synergy-1.3.1.ebuild,v 1.9 2007/12/24 19:26:02 ranger Exp $
 
 EAPI="prefix"
 

@@ -1,6 +1,9 @@
 # ChangeLog for x11-misc/synergy
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/synergy/ChangeLog,v 1.51 2007/12/22 10:13:08 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/synergy/ChangeLog,v 1.52 2007/12/24 19:26:02 ranger Exp $
+
+  24 Dec 2007; Brent Baude <ranger@gentoo.org> synergy-1.3.1.ebuild:
+  Marking synergy-1.3.1 ppc64 for bug 202664
 
   22 Dec 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   synergy-1.3.1.ebuild:
