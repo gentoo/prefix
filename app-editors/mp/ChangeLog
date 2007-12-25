@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/mp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/mp/ChangeLog,v 1.59 2007/02/09 22:01:18 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/mp/ChangeLog,v 1.60 2007/12/23 22:44:53 carlo Exp $
+
+*mp-3.3.18b (23 Dec 2007)
+
+  23 Dec 2007; Carsten Lohrke <carlo@gentoo.org> +mp-3.3.18b.ebuild:
+  Version bump.
 
   09 Feb 2007; Fabian Groffen <grobian@gentoo.org> mp-3.3.17.ebuild:
   Dropped ppc-macos keyword, see you in prefix
