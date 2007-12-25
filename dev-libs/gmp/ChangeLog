@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/gmp
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.90 2007/12/21 14:30:09 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.91 2007/12/24 19:55:33 ranger Exp $
+
+  24 Dec 2007; Brent Baude <ranger@gentoo.org> gmp-4.2.2.ebuild:
+  Marking gmp-4.2.2 ppc64 for bug 202665
 
   21 Dec 2007; nixnut <nixnut@gentoo.org> gmp-4.2.2.ebuild:
   Stable on ppc wrt bug 202665
