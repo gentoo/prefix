@@ -1,6 +1,27 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.934 2007/12/22 16:45:30 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.941 2007/12/24 12:28:15 armin76 Exp $
+
+  24 Dec 2007; Raúl Porcel <armin76@gentoo.org> use.local.desc:
+  Add two USE-flags for dev-libs/yaz, from the php-overlay
+
+  24 Dec 2007; Peter Volkov <pva@gentoo.org> package.mask:
+  Removing mask =media-fonts/dejavu-2.22 - it's not in the tree any more.
+
+  24 Dec 2007; Saleem Abdulrasool <compnerd@gentoo.org> package.mask:
+  gnome-power-manager 2.20.2 should work with HAL 0.5.9
+
+  24 Dec 2007; Jeff Gardner <je_fro@gentoo.org> use.local.desc:
+  Removing the jmol dupe in use.local.desc wrt bug #202967
+
+  23 Dec 2007; Joerg Bornkessel <hd_brummy@gentoo.org> use.local.desc:
+  new local use-flag graphtft-fe - Install external x11 remote frontend
+
+  23 Dec 2007; Timothy Redaelli <drizzt@gentoo.org> package.mask:
+  Masked new media-sound/mumble and media-sound/murmur for testing
+
+  23 Dec 2007; Matthias Schwarzott <zzam@gentoo.org> use.local.desc:
+  Added local vdr use-flags lircsettings and volctrl.
 
   22 Dec 2007; Markus Meier <maekke@gentoo.org> use.desc:
   fix a typo, spotted by Arfrever Frehtes Taifersar Arahesis

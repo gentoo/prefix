@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3232 2007/12/22 15:48:00 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3236 2007/12/24 12:28:15 armin76 Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -505,6 +505,8 @@ dev-libs/wx-xmingw:monolithic - Build a monolithic lib
 dev-libs/wx-xmingw:mslu - Enable mslu support
 dev-libs/wx-xmingw:shared - Enable shared libs
 dev-libs/xerces-c:icu - Use ICU as message loader and transcoder instead of builtin or iconv
+dev-libs/yaz:icu - Enable ICU (Internationalization Components for Unicode) support, using dev-libs/icu
+dev-libs/yaz:ziffy - Install ziffy, a promiscuous Z39.50 APDU sniffer
 dev-lisp/abcl-cvs:jpty - Enable PTY support
 dev-lisp/abcl-cvs:libabcl - Enable ^C handler (from JNI)
 dev-lisp/abcl:clisp - Build Armed Bear Common Lisp using GNU CLISP
@@ -965,6 +967,7 @@ media-plugins/mythmusic:libvisual - Enables libvisual support for effects
 media-plugins/mythphone:festival - Enable festival support
 media-plugins/vdr-burn:projectx - Enables support fur projectx
 media-plugins/vdr-dvdconvert:projectx - Enables support for projectx 
+media-plugins/vdr-graphtft:graphtft-fe - Install external x11 remote frontend
 media-plugins/vdr-pvr350:yaepg - Enables full support for the ouput format of vdr-yaepg
 media-plugins/vdr-softdevice:mmxext - enables mmx2 support
 media-plugins/vdr-text2skin:direct_blit - not buffer picture, faster, but only for modified skins
@@ -1199,6 +1202,7 @@ media-video/vdr:hardlinkcutter - Speed up cutting by hardlinking unchanged files
 media-video/vdr:iptv - Enables support for vdr-iptv
 media-video/vdr:jumpplay - Enables automatic jumping over cut marks while watching a recording
 media-video/vdr:liemikuutio - Formerly known as AIO (all-in-one) patch, adds some nice must haves
+media-video/vdr:lircsettings - Allows to change lirc settings delay, freq and timeout values in OSD
 media-video/vdr:livebuffer - does timeshifting/background recording all the time, allows to rewind live TV
 media-video/vdr:lnbshare - Enables support for two or more dvb cards sharing the same cable to the lnb
 media-video/vdr:lnbsharing - Enables support for two or more dvb cards sharing the cable to the lnb
@@ -1220,6 +1224,7 @@ media-video/vdr:syncearly - start live display as soon as possible, not waiting 
 media-video/vdr:timercmd - Adds submenu for user defined commands in timer menu
 media-video/vdr:timerinfo - Show with chars +/- if space on HD will suffice for a timer
 media-video/vdr:validinput - Signal if it is possible to go left/right in lists with chars < >
+media-video/vdr:volctrl - allows volume control using left/right keys
 media-video/vdr:wareagleicon - Replace original icon set in menu
 media-video/vdr:yaepg - Enables support for the plugin vdr-yaepg
 media-video/vlc:cdda - Enables libcdda cd audio playback support.
@@ -1709,7 +1714,6 @@ sci-chemistry/ghemical:openbabel - Use the OpenBabel package for file conversion
 sci-chemistry/ghemical:toolbar - Build the shortcuts toolbar
 sci-chemistry/gromacs:double-precision - more precise calculations at the expense of speed
 sci-chemistry/jmol:client-only - Install the viewer only, no applet files for httpd.
-sci-chemistry/jmol:vhosts - Install jmol applet files into a virtual hosting environment.
 sci-chemistry/shelx:dosformat - Use CR/LF to end lines; useful in mixed Linux/Windows environments
 sci-electronics/gerbv:unit-mm - Set default unit for coordinates in status bar to mm
 sci-geosciences/gmt:gmtfull - Full resolution bathymetry database

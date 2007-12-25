@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8043 2007/12/22 01:39:18 jurek Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8053 2007/12/24 20:05:01 armin76 Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -20,6 +20,27 @@
 ##
 ##   End example
 ##
+
+# Raúl Porcel <armin76@gentoo.org> (24 Dec 2007)
+# Mask for removal on 24 Feb 2008 for treecleaners
+# Bug 195228, merged with net-tools
+sys-apps/mii-diag
+
+# Carsten Lohrke <carlo@gentoo.org> (23 Dec 2007)
+# Abandonware. Masked for removal.
+net-misc/fsh
+dev-lang/entity
+
+# Timothy Redaelli <drizzt@gentoo.org> (23 Dec 2007)
+# Masked for testing
+>media-sound/mumble-1.0.0
+>media-sound/murmur-1.0.0
+
+# William L. Thomson Jr. <wltjr@gentoo.org> (23 Dec 2007)
+# Gen 1 java ebuild, several open bugs, no maintainer or any contributors
+# interested in maintaining. Older version no longer current. Will be moved
+# to java junkyard overlay in 30 days.
+www-servers/jboss
 
 # Ulrich Mueller <ulm@gentoo.org> (21 Dec 2007)
 # Christian Faulhammer <opfer@gentoo.org>
@@ -53,6 +74,7 @@
 # Plus packages depending on them
 =app-admin/keepassx-0.2.2-r1
 =x11-libs/qt-4.4*
+=x11-libs/qt-assistant-4.4*
 =x11-libs/qt-core-4.4*
 =x11-libs/qt-gui-4.4*
 =x11-libs/qt-script-4.4*
@@ -65,10 +87,6 @@
 =x11-libs/qt-opengl-4.4*
 =x11-libs/qt-sql-4.4*
 =x11-libs/qt-xmlpatterns-4.4*
-
-# Peter Volkov <pva@gentoo.org> (19 Dec 2007)
-# Italics are assigned to condensed, see bug 202255
-=media-fonts/dejavu-2.22
 
 # Hans de Graaff <graaff@gentoo.org> (19 Dec 2007)
 # Mask Rails 2.0.2 since it seems to depend on rubygems 0.9.5 which
@@ -215,11 +233,6 @@ app-emacs/sha1
 # Masked in favor of www-apps/viewvc
 www-apps/viewcvs
 
-# MATSUU Takuto <matsuu@gentoo.org> (27 Nov 2007)
-# Lots of security issues: bug #196673
-# fix the deps first
-#app-text/ptex
-
 # Robin H. Johnson <robbat2@gentoo.org> (26 Nov 2007)
 # For testing only
 =net-misc/memcached-1.2.4_rc1
@@ -257,7 +270,7 @@ www-apps/viewcvs
 >=app-misc/hal-info-20071011
 >=gnome-base/gnome-mount-0.7
 >=gnome-extra/policykit-gnome-0.6
->=gnome-extra/gnome-power-manager-2.20.1
+=gnome-extra/gnome-power-manager-2.20.1
 
 # Tony Vroon <chainsaw@gentoo.org> (22 Nov 2007)
 # Upstream actively prevents automated downloads, consider using xchat-xsys instead.
