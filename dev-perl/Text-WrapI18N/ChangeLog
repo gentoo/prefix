@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Text-WrapI18N
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-WrapI18N/ChangeLog,v 1.15 2007/07/19 17:09:06 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-WrapI18N/ChangeLog,v 1.16 2007/12/24 14:57:37 ranger Exp $
+
+  24 Dec 2007; Brent Baude <ranger@gentoo.org> Text-WrapI18N-0.06.ebuild:
+  Marking Text-WrapI18N-0.06 ppc for dep in bug 203220
 
   19 Jul 2007; Jeroen Roovers <jer@gentoo.org> Text-WrapI18N-0.06.ebuild:
   Stable for HPPA too.
