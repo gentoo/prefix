@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.20-r1.ebuild,v 1.1 2007/12/13 09:52:52 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.20-r1.ebuild,v 1.2 2007/12/24 06:48:10 pva Exp $
 
 EAPI="prefix"
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
-inherit fdo-mime nsplugins flag-o-matic eutils multilib toolchain-funcs autotools
+inherit fdo-mime nsplugins flag-o-matic eutils multilib toolchain-funcs autotools confutils
 
 MY_P="${PN}libre-${PV}"
 
@@ -21,7 +21,7 @@ IUSE="xml qt3 jpeg tiff debug threads nls nsplugin kde doc"
 
 DEPEND="jpeg? ( >=media-libs/jpeg-6b-r2 )
 	tiff? ( media-libs/tiff )
-	qt3? ( <x11-libs/qt-4 )"
+	qt3? ( =x11-libs/qt-3* )"
 
 S=${WORKDIR}/${MY_P}
 
@@ -37,6 +37,8 @@ pkg_setup() {
 		ewarn "Add \"qt3\" to your USE flags if you want it."
 		ewarn
 	fi
+
+	confutils_use_depend_all nsplugin qt3
 }
 
 src_unpack() {

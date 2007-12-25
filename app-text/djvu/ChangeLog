@@ -1,6 +1,12 @@
 # ChangeLog for app-text/djvu
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.69 2007/12/13 09:52:52 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.70 2007/12/24 06:48:10 pva Exp $
+
+  24 Dec 2007; <pva@gentoo.org> -djvu-3.5.19-r1.ebuild, -djvu-3.5.20.ebuild,
+  djvu-3.5.20-r1.ebuild:
+  Die if nsplugin is asked to be built but qt3 is not in USE, bug #196209
+  reported by Miron <prince.jah AT gmail.com>, fixed by Jakub <jakub AT
+  gentoo.org>. Remove unused.
 
 *djvu-3.5.20-r1 (13 Dec 2007)
 
