@@ -142,7 +142,6 @@ coreaudio
 
 # Diego Pettenò <flameeyes@gentoo.org> (4 Jan 2007)
 # Mask the flags for PHP that are available only on x86
-fdftk
 sybase-ct
 ingres
 birdstep

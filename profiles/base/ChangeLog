@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.25 2007/12/13 16:03:46 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.26 2007/12/23 23:24:41 halcy0n Exp $
+
+  23 Dec 2007; Mark Loeser <halcy0n@gentoo.org> use.mask:
+  Remove duplicated fdftk flag; bug #168772
 
   13 Dec 2007; Duncan Coutts <dcoutts@gentoo.org> virtuals:
   Remove old-style virtual/ghc as it is no longer used.
