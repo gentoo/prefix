@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.34.0-r1.ebuild,v 1.2 2007/07/15 23:28:52 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.34.1-r1.ebuild,v 1.1 2007/12/24 08:07:43 dev-zero Exp $
 
 EAPI="prefix"
 
@@ -9,13 +9,15 @@ inherit distutils flag-o-matic multilib toolchain-funcs versionator check-reqs
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 
 MY_P=${PN}_$(replace_all_version_separators _)
+PATCHSET_VERSION="${PV}-1"
 
 DESCRIPTION="Boost Libraries for C++"
 HOMEPAGE="http://www.boost.org/"
-SRC_URI="mirror://sourceforge/boost/${MY_P}.tar.bz2"
+SRC_URI="mirror://sourceforge/boost/${MY_P}.tar.bz2
+	mirror://gentoo/boost-patches-${PATCHSET_VERSION}.tbz2"
 LICENSE="freedist Boost-1.0"
 SLOT="0"
-IUSE="debug doc icu pyste tools userland_Darwin"
+IUSE="debug doc icu pyste tools"
 
 DEPEND="icu? ( >=dev-libs/icu-3.2 )
 		sys-libs/zlib
@@ -27,7 +29,6 @@ S=${WORKDIR}/${MY_P}
 
 # Maintainer Information
 # ToDo:
-# - gccxml needed by pyste is broken with >=gcc-4.1.1 (bug #147976)
 # - write a patch to support /dev/urandom on FreeBSD and OSX (see below)
 
 pkg_setup() {
@@ -49,14 +50,17 @@ pkg_setup() {
 
 src_unpack() {
 	unpack ${A}
-	cd "${S}"
 
-	epatch "${FILESDIR}/${P}-gcc42-atomicity.h.patch"
+	EPATCH_SOURCE="${WORKDIR}/patches"
+	EPATCH_SUFFIX="patch"
+	epatch
+
+	cd "${S}"
 
 	rm boost-build.jam
 
 	# This enables building the boost.random library with /dev/urandom support
-	if ! use userland_Darwin ; then
+	if [[ ${CHOST} == *-linux-* ]] ; then
 		mkdir -p libs/random/build
 		cp "${FILESDIR}/random-Jamfile" libs/random/build/Jamfile.v2
 	fi
@@ -92,7 +96,7 @@ generate_userconfig() {
 	distutils_python_version
 
 	local compiler compilerVersion compilerExecutable
-	if use userland_Darwin ; then
+	if [[ ${CHOST} == *-darwin* ]] ; then
 		compiler=darwin
 		compilerVersion=$(gcc-version)
 		compilerExecutable=$(tc-getCXX)
@@ -127,7 +131,7 @@ src_compile() {
 
 	for linkoption in ${LINK_OPTIONS} ; do
 		einfo "Building ${linkoption} libraries"
-		bjam ${NUMJOBS} \
+		bjam ${NUMJOBS} -q \
 			${OPTIONS} \
 			threading=single,multi \
 			runtime-link=${linkoption} link=${linkoption} \
@@ -145,7 +149,7 @@ src_compile() {
 		cd "${S}/tools/"
 		# We have to set optimization to -O0 or -O1 to work around a gcc-bug
 		# optimization=off adds -O0 to the compiler call and overwrites our settings.
-		bjam ${NUMJOBS} \
+		bjam ${NUMJOBS} -q \
 			release debug-symbols=none \
 			optimization=off \
 			--prefix="${ED}/usr" \
@@ -156,7 +160,7 @@ src_compile() {
 
 	if has test ${FEATURES} ; then
 		cd "${S}/tools/regression/build"
-		bjam \
+		bjam -q \
 			${OPTIONS} \
 			--prefix="${ED}/usr" \
 			--layout=system \
@@ -173,7 +177,7 @@ src_install () {
 	export BOOST_BUILD_PATH=${EPREFIX}/usr/share/boost-build
 
 	for linkoption in ${LINK_OPTIONS} ; do
-		bjam \
+		bjam -q \
 			${OPTIONS} \
 			threading=single,multi \
 			runtime-link=${linkoption} link=${linkoption} \
@@ -188,8 +192,13 @@ src_install () {
 
 	if use doc ; then
 		dohtml -A pdf,txt \
-			*.htm *.gif *.css \
+			*.htm *.png *.css \
 			-r doc libs more people wiki
+
+		insinto /usr/share/doc/${PF}/html
+		doins LICENSE_1_0.txt
+
+		dosym /usr/include/boost /usr/share/doc/${PF}/html/boost
 	fi
 
 	cd "${ED}/usr/$(get_libdir)"
@@ -224,6 +233,34 @@ src_install () {
 		dohtml *.{html,gif} ../boost.png
 		dodoc regress.log
 	fi
+
+	# boost's build system truely sucks for not having a destdir.  Because for
+	# this reason we are forced to build with a prefix that includes the
+	# DESTROOT, dynamic libraries on Darwin end messed up, referencing the
+	# DESTROOT instread of the actual EPREFIX.  There is no way out of here
+	# but to do it the dirty way of manually setting the right install_names.
+	# For AIX we might have to do the same trick, if we ever end up here on AIX
+	case ${CHOST} in
+		*-darwin*)
+			for d in ${ED}usr/lib/*.dylib ; do
+				if [[ -f ${d} ]] ; then
+					# fix the "self reference"
+					install_name_tool -id "/${d#${D}}" "${d}"
+					# fix references to other libs
+					refs=$(otool -L "${d}" | \
+						sed -e '1d' -e 's/^\t//' | \
+						grep bin.v2 | \
+						cut -f1 -d' ')
+					for r in ${refs} ; do
+						install_name_tool -change \
+							"${r}" \
+							"${EPREFIX}/usr/lib/$(basename "${r}")" \
+							"${d}"
+					done
+				fi
+			done
+		;;
+	esac
 }
 
 src_test() {

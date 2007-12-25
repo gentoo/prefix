@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/boost
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.123 2007/11/18 12:15:12 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.124 2007/12/24 08:07:43 dev-zero Exp $
+
+*boost-1.34.1-r1 (24 Dec 2007)
+
+  24 Dec 2007; Tiziano Müller <dev-zero@gentoo.org>
+  -files/boost-1.34.0-gcc42-atomicity.h.patch, -boost-1.34.0-r1.ebuild,
+  -boost-1.34.1.ebuild, +boost-1.34.1-r1.ebuild:
+  Added patch to fix a critical bug in Boost.Function and another one to fix a
+  missing include showing up with gcc-4.3 (both bug #202964). Dropped old
+  version and old revisions.
 
   18 Nov 2007; Tiziano Müller <dev-zero@gentoo.org> boost-1.34.1.ebuild:
   Fixed broken links in documentation (bug #194789) and added '-q' to the bjam
