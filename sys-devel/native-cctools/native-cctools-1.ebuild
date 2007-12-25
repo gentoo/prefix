@@ -42,7 +42,7 @@ src_install() {
 	esac
 
 	what="addr2line as ar c++filt gprof ld nm objcopy objdump \
-		ranlib readelf elfdump size strings strip"
+		ranlib readelf elfdump size strings strip lipo otool"
 
 	# copy from the host os
 	cd "${ED}${BINPATH}"
@@ -54,6 +54,17 @@ src_install() {
 			ewarn "skipping ${b} (not in ${nativepath})"
 		fi
 	done
+
+	# post fix for Darwin's ranlib (doesn't like it when its called other than
+	# that)
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		rm -f ranlib
+		cat <<-EOF > ranlib
+			#!/usr/bin/env bash
+			exec ${nativepath}/ranlib "\$@"
+		EOF
+		chmod 755 ranlib
+	fi
 
 	# Generate an env.d entry for this binutils
 	insinto /etc/env.d/binutils
