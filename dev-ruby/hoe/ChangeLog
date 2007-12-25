@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/hoe
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/ChangeLog,v 1.16 2007/11/18 12:23:48 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/ChangeLog,v 1.17 2007/12/23 15:56:03 graaff Exp $
+
+*hoe-1.4.0 (23 Dec 2007)
+
+  23 Dec 2007; Hans de Graaff <graaff@gentoo.org> +hoe-1.4.0.ebuild:
+  Version bump: rake package now supports INLINE=1 and FORCE_PLATFORM=whatever.
 
   18 Nov 2007; Hans de Graaff <graaff@gentoo.org> -hoe-1.2.1.ebuild:
   Remove old version
