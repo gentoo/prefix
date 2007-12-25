@@ -1,6 +1,15 @@
 # ChangeLog for dev-tcltk/tcllib
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tcllib/ChangeLog,v 1.22 2007/09/15 07:50:13 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tcllib/ChangeLog,v 1.23 2007/12/24 04:02:22 matsuu Exp $
+
+*tcllib-1.10 (24 Dec 2007)
+
+  24 Dec 2007; MATSUU Takuto <matsuu@gentoo.org>
+  -files/tcllib-1.6.1-fr.msg.patch, -files/tcllib-1.7-gentoo.patch,
+  -tcllib-1.6.1-r1.ebuild, -tcllib-1.7.ebuild, -tcllib-1.8.ebuild,
+  -tcllib-1.9.ebuild, +tcllib-1.10.ebuild:
+  Version bumped, bug #195451.
+  Removed old versions.
 
   15 Sep 2007; Roy Marples <uberlord@gentoo.org> tcllib-1.9.ebuild:
   Keyworded ~x86-fbsd, #192575
