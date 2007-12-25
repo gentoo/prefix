@@ -33,6 +33,9 @@ src_install() {
 		*-solaris*|*-aix*)
 			nativepath=/usr/ccs/bin
 		;;
+		*-apple-darwin*)
+			nativepath=/usr/bin
+		;;
 		*)
 			die "Don't know where the native linker for your platform is"
 		;;
