@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.8.5-r3.ebuild,v 1.15 2007/09/08 06:46:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.8.5-r3.ebuild,v 1.16 2007/12/24 12:55:54 vapier Exp $
 
 EAPI="prefix"
 
@@ -30,6 +30,7 @@ src_unpack() {
 		doc/automake.texi || die "sed failed"
 	epatch "${FILESDIR}"/${PN}-1.8.2-infopage-namechange.patch
 	epatch "${FILESDIR}"/${P}-test-fixes.patch #159557
+	epatch "${FILESDIR}"/${PN}-1.9.6-aclocal7-test-sleep.patch #197366
 	export WANT_AUTOCONF=2.5
 }
 

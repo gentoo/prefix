@@ -1,6 +1,12 @@
 # ChangeLog for sys-devel/automake
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.107 2007/11/02 06:17:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.108 2007/12/24 12:55:54 vapier Exp $
+
+  24 Dec 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/automake-1.9.6-aclocal7-test-sleep.patch, automake-1.8.5-r3.ebuild,
+  automake-1.9.6-r2.ebuild:
+  Add fix from upstream for random aclocal7 test failure #197366 by Joe
+  Millenbach.
 
 *automake-9999 (02 Nov 2007)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.9.6-r2.ebuild,v 1.15 2007/09/08 06:46:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.9.6-r2.ebuild,v 1.16 2007/12/24 12:55:54 vapier Exp $
 
 EAPI="prefix"
 
@@ -34,6 +34,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.9.6-infopage-namechange.patch
 	epatch "${FILESDIR}"/${P}-include-dir-prefix.patch #107435
 	epatch "${FILESDIR}"/${P}-ignore-comments.patch #126388
+	epatch "${FILESDIR}"/${P}-aclocal7-test-sleep.patch #197366
 	export WANT_AUTOCONF=2.5
 }
 
