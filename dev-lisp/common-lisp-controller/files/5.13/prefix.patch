@@ -1,0 +1,175 @@
+--- clc-register-user-package
++++ clc-register-user-package
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ # Registers a user package
+ # Author: Kevin Rosenberg <kmr@debian.org >  GPL-2 license
+ 
+--- clc-unregister-user-package
++++ clc-unregister-user-package
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ # Unregisters a user package
+ # Author: Kevin Rosenberg <kmr@debian.org >  GPL-2 license
+ 
+--- register-common-lisp-implementation
++++ register-common-lisp-implementation
+@@ -1,14 +1,14 @@
+-#!/bin/sh
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+ # Copyright (C) 2000,2004  Peter Van Eynde and Kevin M. Rosenberg
+ # Licensed under the LLGPL, see debian/copyright file
+ 
+ set -e
+ 
+-if [ -x /usr/lib/common-lisp/bin/${1}.sh ] ; then
+-  sh /usr/lib/common-lisp/bin/${1}.sh install-clc
++if [ -x @GENTOO_PORTAGE_EPREFIX@/usr/lib/common-lisp/bin/${1}.sh ] ; then
++  bash @GENTOO_PORTAGE_EPREFIX@/usr/lib/common-lisp/bin/${1}.sh install-clc
+ else
+-  echo "I cannot find the implementation script for $1 at /usr/lib/common-lisp/bin/${1}.sh"
++  echo "I cannot find the implementation script for $1 at @GENTOO_PORTAGE_EPREFIX@/usr/lib/common-lisp/bin/${1}.sh"
+   exit 2
+ fi
+ 
+--- clc-update-customized-images
++++ clc-update-customized-images
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ # Copyright (C) 2006 René van Bevern <rvb@progn.org>
+ # Licensed under the LLGPL, see debian/copyright file
+ 
+@@ -19,12 +19,12 @@
+ # since this should really only reinstall CLC and the function of
+ # "register-common-lisp-implementation" might change
+ 
+-for implementation in /etc/common-lisp/images/*; do
++for implementation in @GENTOO_PORTAGE_EPREFIX@/etc/common-lisp/images/*; do
+     impl_name=$(basename "$implementation")
+-    if [ -x /usr/lib/common-lisp/bin/"$impl_name".sh ] &&
++    if [ -x @GENTOO_PORTAGE_EPREFIX@/usr/lib/common-lisp/bin/"$impl_name".sh ] &&
+       grep "$library" "$implementation" > /dev/null; then
+ 	echo "Recreating image of \"$impl_name\" for \"$library\"..."
+-	sh /usr/lib/common-lisp/bin/"$impl_name".sh install-clc
++	bash @GENTOO_PORTAGE_EPREFIX@/usr/lib/common-lisp/bin/"$impl_name".sh install-clc
+     fi
+ done
+ 
+--- common-lisp-controller.lisp
++++ common-lisp-controller.lisp
+@@ -39,15 +39,15 @@
+   "This is the type of compiled lisp files.")
+ 
+ (defvar *fasl-root* nil "Root of implementation's directories of binary files")
+-(defvar *source-root* #p"/usr/share/common-lisp/source/"
++(defvar *source-root* #p"@GENTOO_PORTAGE_EPREFIX@/usr/share/common-lisp/source/"
+ 	"Root of source directories")
+-(defvar *systems-root* #p"/usr/share/common-lisp/systems/"
++(defvar *systems-root* #p"@GENTOO_PORTAGE_EPREFIX@/usr/share/common-lisp/systems/"
+         "Root of systems directory")
+-(defvar *image-preferences* #p"/etc/common-lisp/images/"
++(defvar *image-preferences* #p"@GENTOO_PORTAGE_EPREFIX@/etc/common-lisp/images/"
+ 	"Directory where user can choose what systems shall be added to
+ Images per default")
+ (defvar *implementation-name* nil "The name of the implementation,
+-used to name the directory in /var/cache/common-lisp-controller")
++used to name the directory in @GENTOO_PORTAGE_EPREFIX@/var/cache/common-lisp-controller")
+ 
+ (define-modify-macro appendf (&rest lists) append)
+ 
+@@ -85,7 +85,7 @@
+ 		     (make-pathname
+ 		      :directory
+ 		      `(:relative "0" ,*implementation-name*))
+-		     #p"/var/cache/common-lisp-controller/")))
++		     #p"@GENTOO_PORTAGE_EPREFIX@/var/cache/common-lisp-controller/")))
+ 
+     (labels ((source-filename (package-name filename)
+ 	       (let ((file (parse-namestring filename)))
+@@ -197,14 +197,14 @@
+ (defun init-common-lisp-controller-v4 (implementation-name)
+   "configures common-lisp-controller. IMPLEMENTATION-NAME
+ is the name of this implementation. Fasl's will be created in
+-/var/cache/common-lisp-controller/<userid>/<implementation>"
++@GENTOO_PORTAGE_EPREFIX@/var/cache/common-lisp-controller/<userid>/<implementation>"
+   (compile-common-lisp-controller-v5 implementation-name)
+   ;; no need to load them as they are already loaded
+   (init-common-lisp-controller-v5 implementation-name))
+ 
+ (defun init-common-lisp-controller (fasl-root
+                                     &key
+-                                    (source-root "/usr/share/common-lisp/")
++                                    (source-root "@GENTOO_PORTAGE_EPREFIX@/usr/share/common-lisp/")
+                                     (version 2))
+   (declare (ignore source-root version))
+   ;; vodoo: extract the name of the implementation
+--- post-sysdef-install.lisp
++++ post-sysdef-install.lisp
+@@ -187,7 +187,7 @@
+ 	  (let ((target-root (merge-pathnames
+ 			      (make-pathname
+ 			       :directory (list :relative (format nil "~A" (get-uid))))
+-			      #p"/var/cache/common-lisp-controller/")))
++			      #p"@GENTOO_PORTAGE_EPREFIX@/var/cache/common-lisp-controller/")))
+ 	    (check-spooldir-security target-root)
+ 	    (merge-pathnames (make-pathname
+ 			      :directory (list :relative *implementation-name*))
+@@ -291,7 +291,7 @@
+ 
+ (defun clc-build-all-packages (&optional (ignore-errors nil))
+   "Tries to build all known packages.
+-Looks in /usr/share/commmon-lisp/systems/ for .asd files
++Looks in @GENTOO_PORTAGE_EPREFIX@/usr/share/commmon-lisp/systems/ for .asd files
+ If IGNORE-ERRORS is true ignores all errors while rebuilding"
+   (loop :for registry-object :in asdf:*central-registry*
+ 	:for registry-location = (eval registry-object)
+--- register-common-lisp-source
++++ register-common-lisp-source
+@@ -1,9 +1,9 @@
+-#!/bin/sh
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+ # Copyright (C) 2006 René van Bevern <rvb@progn.org>
+ # Licensed under the LLGPL, see debian/copyright file
+ 
+ if [ "$1" ]; then
+-    /usr/sbin/clc-update-customized-images "$1"
++    @GENTOO_PORTAGE_EPREFIX@/usr/sbin/clc-update-customized-images "$1"
+ fi
+ 
+--- unregister-common-lisp-implementation
++++ unregister-common-lisp-implementation
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+ # Copyright (C) 2000,2004  Peter Van Eynde and Kevin M. Rosenberg
+ # Licensed under the LLGPL, see debian/copyright file
+@@ -12,5 +12,5 @@
+ 
+ echo "$implementation" | grep -q '\/\/' && echo "Found // in $1!" && exit 2
+ 
+-rm -rf /var/cache/common-lisp-controller/*/"$1"
++rm -rf @GENTOO_PORTAGE_EPREFIX@/var/cache/common-lisp-controller/*/"$1"
+ 
+--- unregister-common-lisp-source
++++ unregister-common-lisp-source
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+ # Copyright (C) 2000,2004  Peter Van Eynde and Kevin M. Rosenberg
+ # Licensed under the LLGPL, see debian/copyright file
+@@ -13,6 +13,6 @@
+ 
+ echo "$library" | grep -q '\/\/' && echo "Found // in $1!" && exit 2
+ 
+-rm -rf /var/cache/common-lisp-controller/*/*/"$1"
++rm -rf @GENTOO_PORTAGE_EPREFIX@/var/cache/common-lisp-controller/*/*/"$1"
+ 
+-/usr/sbin/clc-update-customized-images "$1"
++@GENTOO_PORTAGE_EPREFIX@/usr/sbin/clc-update-customized-images "$1"

@@ -12,7 +12,7 @@ SRC_URI="mirror://gentoo/common-lisp-controller_${PV}.tar.gz"
 
 LICENSE="LLGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~mips ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~mips ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND="app-admin/realpath
@@ -23,6 +23,18 @@ S=${WORKDIR}/${PN}
 
 src_unpack() {
 	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${PV}/prefix.patch
+	eprefixify \
+		clc-register-user-package \
+		clc-unregister-user-package \
+		register-common-lisp-implementation \
+		clc-update-customized-images \
+		common-lisp-controller.lisp \
+		post-sysdef-install.lisp \
+		register-common-lisp-source \
+		unregister-common-lisp-implementation \
+		unregister-common-lisp-source
 	cd ${S}/man
 	ln -s clc-{,un}register-user-package.1
 	for i in unregister-common-lisp-implementation {,un}register-common-lisp-source; do
@@ -51,13 +63,13 @@ src_install() {
 }
 
 pkg_postinst() {
-	test -d /var/cache/common-lisp-controller \
-		|| mkdir /var/cache/common-lisp-controller
-	chmod 1777 /var/cache/common-lisp-controller
+	test -d "${EPREFIX}"/var/cache/common-lisp-controller \
+		|| mkdir "${EPREFIX}"/var/cache/common-lisp-controller
+	chmod 1777 "${EPREFIX}"/var/cache/common-lisp-controller
 
 	# This code from ${S}/debian/postinst
 
-	for compiler in /usr/lib/common-lisp/bin/*.sh
+	for compiler in "${EPREFIX}"/usr/lib/common-lisp/bin/*.sh
 	do
 		if [ -f "${compiler}" -a -r "${compiler}" -a -x "${compiler}" ] ; then
 			i=${compiler##*/}
