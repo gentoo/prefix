@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/eselect-fontconfig
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-fontconfig/ChangeLog,v 1.16 2007/12/21 14:12:54 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-fontconfig/ChangeLog,v 1.17 2007/12/24 16:46:45 ranger Exp $
+
+  24 Dec 2007; Brent Baude <ranger@gentoo.org>
+  eselect-fontconfig-1.0.ebuild:
+  Marking eselect-fontconfig-1.0 ppc64 for bug 202869
 
   21 Dec 2007; nixnut <nixnut@gentoo.org> eselect-fontconfig-1.0.ebuild:
   Stable on ppc wrt bug 202869
