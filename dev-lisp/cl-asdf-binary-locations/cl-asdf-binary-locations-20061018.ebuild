@@ -11,7 +11,7 @@ HOMEPAGE="http://common-lisp.net/project/cl-containers/asdf-binary-locations/"
 SRC_URI="http://common-lisp.net/project/portage-overlay/distfiles/${PN/cl-/}_${PV}.tar.gz"
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~x86 ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND="dev-lisp/cl-asdf"
