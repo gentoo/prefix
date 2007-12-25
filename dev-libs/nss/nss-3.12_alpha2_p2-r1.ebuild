@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12_alpha2_p2.ebuild,v 1.2 2007/12/12 14:14:21 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12_alpha2_p2-r1.ebuild,v 1.1 2007/12/23 12:11:31 armin76 Exp $
 
 EAPI="prefix"
 
@@ -57,7 +57,7 @@ src_compile() {
 }
 
 src_install () {
-	MINOR_VERSION=11
+	MINOR_VERSION=12
 	cd "${S}"/mozilla/security/dist
 
 	# put all *.a files in /usr/lib/nss (because some have conflicting names
