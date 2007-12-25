@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/libstdc++/libstdc++-3.3.ebuild,v 1.12 2007/12/05 20:10:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/libstdc++/libstdc++-3.3.ebuild,v 1.13 2007/12/24 19:34:16 armin76 Exp $
 
 EAPI="prefix"
 
