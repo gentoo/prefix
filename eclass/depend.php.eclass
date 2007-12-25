@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.21 2007/09/01 15:58:17 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.22 2007/12/24 12:29:36 armin76 Exp $
 
 # Author: Stuart Herbert <stuart@gentoo.org>
 # Author: Luca Longinotti <chtekk@gentoo.org>
@@ -60,9 +60,9 @@ uses_php4() {
 	PHPCONFIG="/usr/${libdir}/php4/bin/php-config"
 	PHPCLI="/usr/${libdir}/php4/bin/php"
 	PHPCGI="/usr/${libdir}/php4/bin/php-cgi"
-	PHP_PKG="`best_version =dev-lang/php-4*`"
+	PHP_PKG="$(best_version =dev-lang/php-4*)"
 	PHPPREFIX="/usr/${libdir}/php4"
-	EXT_DIR="`${PHPCONFIG} --extension-dir 2>/dev/null`"
+	EXT_DIR="$(${PHPCONFIG} --extension-dir 2>/dev/null)"
 
 	einfo
 	einfo "Using ${PHP_PKG}"
@@ -111,9 +111,9 @@ uses_php5() {
 	PHPCONFIG="/usr/${libdir}/php5/bin/php-config"
 	PHPCLI="/usr/${libdir}/php5/bin/php"
 	PHPCGI="/usr/${libdir}/php5/bin/php-cgi"
-	PHP_PKG="`best_version =dev-lang/php-5*`"
+	PHP_PKG="$(best_version =dev-lang/php-5*)"
 	PHPPREFIX="/usr/${libdir}/php5"
-	EXT_DIR="`${PHPCONFIG} --extension-dir 2>/dev/null`"
+	EXT_DIR="$(${PHPCONFIG} --extension-dir 2>/dev/null)"
 
 	einfo
 	einfo "Using ${PHP_PKG}"
@@ -397,6 +397,9 @@ has_concurrentmodphp() {
 # @FUNCTION: require_pdo
 # @DESCRIPTION:
 # Require a PHP built with PDO support (PHP5 only).
+# This function is now redundant and DEPRECATED since
+# pdo-external use flag and pecl-pdo-* ebuilds were removed.
+# You should use require_php_with_use pdo instead now.
 # @RETURN: die if feature is missing
 require_pdo() {
 	has_php
@@ -406,9 +409,8 @@ require_pdo() {
 		eerror
 		eerror "This package requires PDO."
 		eerror "PDO is only available for PHP 5."
-		eerror "You must install >=dev-lang/php-5.1 with"
-		eerror "either the 'pdo' or the 'pdo-external'"
-		eerror "USE flags turned on."
+		eerror "You must install >=dev-lang/php-5.1 with USE=\"pdo\"."
+		eerror "pdo USE flags turned on."
 		eerror
 		die "PHP 5 not installed"
 	fi
@@ -416,28 +418,15 @@ require_pdo() {
 	# Was PHP5 compiled with internal PDO support?
 	if built_with_use =${PHP_PKG} pdo || phpconfutils_built_with_use =${PHP_PKG} pdo ; then
 		return
+	else
+		eerror
+		eerror "No PDO extension for PHP found."
+		eerror "Please note that PDO only exists for PHP 5."
+		eerror "Please install a PDO extension for PHP 5."
+		eerror "You must install >=dev-lang/php-5.1 with USE=\"pdo\"."
+		eerror
+		die "No PDO extension for PHP 5 found"
 	fi
-
-	# Ok, maybe PDO was built as an external extension?
-	if ( built_with_use =${PHP_PKG} pdo-external || phpconfutils_built_with_use =${PHP_PKG} pdo-external ) && has_version 'dev-php5/pecl-pdo' ; then
-		return
-	fi
-
-	# Ok, as last resort, it suffices that pecl-pdo was installed to have PDO support
-	if has_version 'dev-php5/pecl-pdo' ; then
-		return
-	fi
-
-	# If we get here, then we don't have PDO support
-	eerror
-	eerror "No PDO extension for PHP found."
-	eerror "Please note that PDO only exists for PHP 5."
-	eerror "Please install a PDO extension for PHP 5,"
-	eerror "you must install >=dev-lang/php-5.1 with"
-	eerror "either the 'pdo' or the 'pdo-external'"
-	eerror "USE flags turned on."
-	eerror
-	die "No PDO extension for PHP 5 found"
 }
 
 # @FUNCTION: require_php_cli
@@ -458,7 +447,7 @@ require_php_cli() {
 	# Detect which PHP version we have installed
 	if has_version '=dev-lang/php-4*' ; then
 		PHP_PACKAGE_FOUND="1"
-		pkg="`best_version '=dev-lang/php-4*'`"
+		pkg="$(best_version '=dev-lang/php-4*')"
 		if built_with_use =${pkg} cli || phpconfutils_built_with_use =${pkg} cli ; then
 			PHP_VERSION="4"
 		fi
@@ -466,7 +455,7 @@ require_php_cli() {
 
 	if has_version '=dev-lang/php-5*' ; then
 		PHP_PACKAGE_FOUND="1"
-		pkg="`best_version '=dev-lang/php-5*'`"
+		pkg="$(best_version '=dev-lang/php-5*')"
 		if built_with_use =${pkg} cli || phpconfutils_built_with_use =${pkg} cli ; then
 			PHP_VERSION="5"
 		fi
@@ -502,7 +491,7 @@ require_php_cgi() {
 	# Detect which PHP version we have installed
 	if has_version '=dev-lang/php-4*' ; then
 		PHP_PACKAGE_FOUND="1"
-		pkg="`best_version '=dev-lang/php-4*'`"
+		pkg="$(best_version '=dev-lang/php-4*')"
 		if built_with_use =${pkg} cgi || phpconfutils_built_with_use =${pkg} cgi ; then
 			PHP_VERSION="4"
 		fi
@@ -510,7 +499,7 @@ require_php_cgi() {
 
 	if has_version '=dev-lang/php-5*' ; then
 		PHP_PACKAGE_FOUND="1"
-		pkg="`best_version '=dev-lang/php-5*'`"
+		pkg="$(best_version '=dev-lang/php-5*')"
 		if built_with_use =${pkg} cgi || phpconfutils_built_with_use =${pkg} cgi ; then
 			PHP_VERSION="5"
 		fi

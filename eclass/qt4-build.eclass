@@ -1,6 +1,6 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.5 2007/12/22 17:32:55 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.6 2007/12/23 20:48:30 caleb Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -23,7 +23,7 @@ qt4-build_pkg_setup() {
 	QTLIBDIR=/usr/$(get_libdir)/qt4
 	QTPCDIR=/usr/$(get_libdir)/pkgconfig
 	QTDATADIR=/usr/share/qt4
-	QTDOCDIR=/usr/share/doc/${PF}
+	QTDOCDIR=/usr/share/doc/qt-${PV}
 	QTHEADERDIR=/usr/include/qt4
 	QTPLUGINDIR=${QTLIBDIR}/plugins
 	QTSYSCONFDIR=/etc/qt4
