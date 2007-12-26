@@ -2,6 +2,12 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*odcctools-20071226 (26 Dec 2007)
+
+  26 Dec 2007; Fabian Groffen <grobian@gentoo.org>
+  -odcctools-20071225.ebuild, +odcctools-20071226.ebuild:
+  New snapshot with more careful 64-bits patching
+
 *odcctools-20071225 (25 Dec 2007)
 
   25 Dec 2007; Fabian Groffen <grobian@gentoo.org>
