@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/synergy/synergy-1.3.1.ebuild,v 1.9 2007/12/24 19:26:02 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/synergy/synergy-1.3.1.ebuild,v 1.10 2007/12/26 08:21:19 drac Exp $
 
 EAPI="prefix"
 
@@ -31,10 +31,10 @@ src_compile() {
 }
 
 src_install () {
-	make DESTDIR=${D} install || die
+	make DESTDIR="${D}" install || die
 	dodoc AUTHORS BUGS ChangeLog HISTORY NEWS PORTING README TODO
 	insinto /etc
-	doins ${S}/examples/synergy.conf
+	doins "${S}"/examples/synergy.conf
 }
 
 pkg_postinst() {
