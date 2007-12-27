@@ -1,6 +1,10 @@
 # ChangeLog for www-client/surfraw
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/surfraw/ChangeLog,v 1.13 2007/10/13 01:17:37 seemant Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/surfraw/ChangeLog,v 1.14 2007/12/25 15:23:05 phreak Exp $
+
+  25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing seemant from metadata.xml as per #202469. Assigning to
+  maintainer-needed.
 
   13 Oct 2007; Seemant Kulleen <seemant@gentoo.org> -surfraw-2.1.1.ebuild,
   -surfraw-2.1.4.ebuild, surfraw-2.1.5.ebuild:
