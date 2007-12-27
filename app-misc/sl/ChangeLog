@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/sl
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/sl/ChangeLog,v 1.12 2007/07/27 22:34:37 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/sl/ChangeLog,v 1.13 2007/12/25 16:51:06 phreak Exp $
+
+  25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing usata from metadata.xml as per #22931. Assigning to maintainer-needed.
 
   27 Jul 2007; Fabian Groffen <grobian@gentoo.org> sl-3.03.ebuild:
   Dropped ppc-macos keyword, see you in prefix
