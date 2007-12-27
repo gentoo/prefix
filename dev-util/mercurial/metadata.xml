@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>no-herd</herd>
-<maintainer>
-  <email>aross@gentoo.org</email>
-  <name>Andrew Ross</name>
-</maintainer>
+	<herd>no-herd</herd>
+	<maintainer>
+		<email>aross@gentoo.org</email>
+		<name>Andrew Ross</name>
+	</maintainer>
+	<maintainer>
+		<email>nelchael@gentoo.org</email>
+		<name>Krzysiek Pawlik</name>
+	</maintainer>
 </pkgmetadata>
