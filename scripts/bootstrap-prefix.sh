@@ -205,7 +205,7 @@ bootstrap_tree() {
 		powerpc-apple-darwin8)       PV="20071115" ;;
 		powerpc64-apple-darwin8)     PV="20071213" ;;
 		i*86-apple-darwin8)          PV="20071115" ;;
-		powerpc-apple-darwin9)       PV="20071115" ;;
+		powerpc-apple-darwin9)       PV="20071115" ;; # verified (desp)
 		i*86-apple-darwin9)          PV="20071115" ;; # verified (grobian)
 		x86_64-apple-darwin9)        PV="20071213" ;;
 		i*86-pc-linux-gnu)           PV="20071115" ;;
