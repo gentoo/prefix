@@ -27,6 +27,7 @@
 # with 64-bits prefixes, so no need to bother regular users with an
 # upgrade.
 =sys-devel/odcctools-20071226
+=sys-devel/odcctools-20071227
 
 # Elias Pipping <pipping@gentoo.org> (Dec 22 2007)
 # ghc 6.8.2 is not prefix-ready. bootstrapping with ghc 6.6.1 works, but no
