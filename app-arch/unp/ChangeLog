@@ -1,6 +1,12 @@
 # ChangeLog for app-arch/unp
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unp/ChangeLog,v 1.15 2007/12/23 17:24:03 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unp/ChangeLog,v 1.17 2007/12/26 10:05:51 maekke Exp $
+
+  26 Dec 2007; Markus Meier <maekke@gentoo.org> unp-1.0.13.ebuild:
+  x86 stable, security bug #203106
+
+  26 Dec 2007; Peter Weller <welp@gentoo.org> unp-1.0.13.ebuild:
+  Stable on amd64; bug 203106
 
 *unp-1.0.13 (23 Dec 2007)
 

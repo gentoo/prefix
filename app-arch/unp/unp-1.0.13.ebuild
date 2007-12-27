@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unp/unp-1.0.13.ebuild,v 1.1 2007/12/23 17:24:03 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unp/unp-1.0.13.ebuild,v 1.3 2007/12/26 10:05:51 maekke Exp $
 
 EAPI="prefix"
 
