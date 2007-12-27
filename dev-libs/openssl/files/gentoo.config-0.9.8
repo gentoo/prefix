@@ -122,10 +122,10 @@ aix)
 	;;
 darwin)
 	case ${chost_machine} in
-		powerpc)      machine=${chost_machine}-cc;;
+		powerpc)      machine=ppc-cc;;
 		powerpc64)    machine=ppc-cc; system=${system}64;;
 		i?86*)        machine=i386-cc;;
-		x86_64)       machine=${chost_machine}-cc; system=${system}64;;
+		x86_64)       machine=x86_64-cc; system=${system}64;;
 	esac
 	;;
 hpux)
