@@ -1,6 +1,19 @@
 # ChangeLog for x11-wm/fluxbox
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.242 2007/11/16 16:43:50 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.244 2007/12/26 19:27:02 lack Exp $
+
+*fluxbox-1.0.0-r1 (26 Dec 2007)
+
+  26 Dec 2007; Jim Ramsay <lack@gentoo.org>
+  +files/1.0.0/generate-menu.patch, +files/fluxbox.xsession,
+  +fluxbox-1.0.0-r1.ebuild:
+  Changed 'disableslit' and 'disabletoolbar' to 'slit' and 'toolbar' using new
+  EAPI=1 USE-defaults. Added 'vim-syntax' plugin to pull in
+  app-vim/fluxbox-syntax. Fixed menu generation for bugs #199437 and #199439.
+  Adding proper xsession script, as per #201535
+
+  25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing tercel from metadata.xml as per #88960.
 
   16 Nov 2007; nixnut <nixnut@gentoo.org> fluxbox-1.0.0.ebuild:
   Stable on ppc wrt bug 198968

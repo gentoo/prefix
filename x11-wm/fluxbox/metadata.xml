@@ -5,10 +5,6 @@
 		<email>lack@gentoo.org</email>
 		<name>Jim Ramsay</name>
 	</maintainer>
-	<maintainer>
-		<email>tercel@gentoo.org</email>
-		<name>Colin Kingsley</name>
-	</maintainer>
 	<herd>commonbox</herd>
 	<longdescription><![CDATA[
 		Fluxbox is yet another windowmanager for X. Originally based upon the
