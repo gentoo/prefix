@@ -87,7 +87,6 @@ src_compile() {
 	local myconf
 	# usr/bin/libtool is provided by odcctools
 	[[ ${CHOST} == *-darwin* ]] && myconf="--program-prefix=g"
-	lt_setup
 	econf ${myconf} || die
 	emake || die
 }

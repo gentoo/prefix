@@ -85,7 +85,6 @@ src_unpack() {
 src_compile() {
 	local myconf
 	[[ ${USERLAND} == "Darwin" ]] && myconf="--program-prefix=g"
-	lt_setup
 	econf ${myconf} || die
 	emake || die
 }
