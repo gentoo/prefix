@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/chrpath
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/chrpath/ChangeLog,v 1.6 2007/07/03 18:58:59 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/chrpath/ChangeLog,v 1.7 2007/12/25 15:25:42 phreak Exp $
+
+  25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing taviso from metadata.xml as per #202471. Assigning to
+  maintainer-needed.
 
   03 Jul 2007; Roy Marples <uberlord@gentoo.org> chrpath-0.13.ebuild:
   Added ~x86-fbsd keyword.
