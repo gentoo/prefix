@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.2.2.ebuild,v 1.6 2007/12/24 19:55:33 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.2.2.ebuild,v 1.7 2007/12/26 07:49:48 drac Exp $
 
 EAPI="prefix"
 
