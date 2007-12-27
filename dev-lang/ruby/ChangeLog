@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.317 2007/12/24 12:13:50 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.318 2007/12/26 09:03:06 welp Exp $
+
+  26 Dec 2007; Peter Weller <welp@gentoo.org> ruby-1.8.6_p111.ebuild:
+  Stable on amd64; bug 199191
 
   24 Dec 2007; Raúl Porcel <armin76@gentoo.org> ruby-1.8.6_p111.ebuild:
   alpha/ia64/sparc stable wrt #199191
