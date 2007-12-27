@@ -1,8 +1,0 @@
---- wgetpaste-2.6~	2007-10-08 23:15:17 +0200
-+++ wgetpaste-2.6	2007-10-08 23:15:26 +0200
-@@ -1,4 +1,4 @@
--#!/bin/bash
-+#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
- # A Script that automates pasting to a number of pastebin services
- # relying only on bash, sed, coreutils (mktemp/sort/tr/wc/whoami/tee) and wget
- # Copyright (c) 2007 Bo Ørsted Andresen <bo.andresen@zlin.dk>

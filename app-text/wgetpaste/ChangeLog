@@ -1,6 +1,13 @@
 # ChangeLog for app-text/wgetpaste
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/wgetpaste/ChangeLog,v 1.54 2007/12/01 12:31:44 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/wgetpaste/ChangeLog,v 1.56 2007/12/25 20:28:17 kumba Exp $
+
+  25 Dec 2007; Joshua Kinard <kumba@gentoo.org> wgetpaste-2.7.ebuild:
+  Stable on mips.
+
+  25 Dec 2007; Markus Ullmann <jokey@gentoo.org> -wgetpaste-2.5.ebuild,
+  -wgetpaste-2.6.ebuild:
+  Drop old
 
   01 Dec 2007; nixnut <nixnut@gentoo.org> wgetpaste-2.7.ebuild:
   Stable on ppc wrt bug 200797
