@@ -2,9 +2,4 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<herd>python</herd>
-	<maintainer>
-		<email>seemant@gentoo.org</email>
-		<name>Seemant Kulleen</name>
-		<description>Co-maintainer</description>
-	</maintainer>
 </pkgmetadata>
