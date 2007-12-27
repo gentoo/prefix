@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.240 2007/11/26 14:58:22 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.241 2007/12/26 23:48:55 cla Exp $
+
+  26 Dec 2007; Dawid Węgliński <cla@gentoo.org> gimp-2.4.2.ebuild:
+  Stable on x86 (bug #203382)
 
 *gimp-2.4.2 (26 Nov 2007)
 
