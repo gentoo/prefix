@@ -2,7 +2,4 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<herd>amd64</herd>
-	<maintainer>
-		<email>kugelfang@gentoo.org</email>
-	</maintainer>
 </pkgmetadata>
