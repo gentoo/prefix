@@ -1,6 +1,29 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.238 2007/12/17 05:23:41 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.244 2007/12/25 19:58:32 armin76 Exp $
+
+  25 Dec 2007; Raúl Porcel <armin76@gentoo.org> git-1.5.3.7-r1.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #202383
+
+  25 Dec 2007; Brent Baude <ranger@gentoo.org> git-1.5.3.7-r1.ebuild:
+  Marking git-1.5.3.7-r1 ppc64 for bug 203283
+
+  25 Dec 2007; nixnut <nixnut@gentoo.org> ChangeLog:
+  Stable on ppc wrt bug 203283
+
+  25 Dec 2007; Robin H. Johnson <robbat2@gentoo.org> git-1.5.3.7-r1.ebuild,
+  git-1.5.4_rc0.ebuild, git-1.5.4_rc1.ebuild:
+  Bug 201544: Use the proper build mechanism to disable the Tk-using sections
+  of git.
+
+*git-1.5.4_rc1 (25 Dec 2007)
+
+  25 Dec 2007; Robin H. Johnson <robbat2@gentoo.org> +git-1.5.4_rc1.ebuild:
+  Add latest rc from upstream.
+
+  25 Dec 2007; Robin H. Johnson <robbat2@gentoo.org> git-1.5.3.7-r1.ebuild,
+  git-1.5.4_rc0.ebuild:
+  Install the git-p4 tool and the import-tars tool.
 
   17 Dec 2007; Robin H. Johnson <robbat2@gentoo.org> git-1.5.1.6.ebuild,
   git-1.5.2.5.ebuild, git-1.5.3.2.ebuild, git-1.5.3.3.ebuild,

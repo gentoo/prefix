@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.3.7-r1.ebuild,v 1.4 2007/12/17 05:23:41 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.3.7-r1.ebuild,v 1.8 2007/12/25 19:58:32 armin76 Exp $
 
 EAPI="prefix"
 
@@ -65,6 +65,7 @@ exportmakeopts() {
 		myopts="${myopts} NEEDS_LIBICONV=YesPlease INSTALL=install TAR=tar"
 
 	use iconv || myopts="${myopts} NO_ICONV=YesPlease"
+	use tk || myopts="${myopts} NO_TCLTK=YesPlease"
 
 	export MY_MAKEOPTS=${myopts}
 }
@@ -115,8 +116,6 @@ src_compile() {
 src_install() {
 	emake ${MY_MAKEOPTS} DESTDIR="${D}" prefix="${EPREFIX}"/usr install || die "make install failed"
 
-	use tk || rm "${ED}"/usr/bin/git{k,-gui}
-
 	doman man?/*
 
 	dodoc README Documentation/{SubmittingPatches,CodingGuidelines}
@@ -146,6 +145,10 @@ src_install() {
 		newbin "${S}"/contrib/blameview/blameview.perl blameview
 		newdoc "${S}"/contrib/blameview/README README.blameview
 	fi
+
+	dobin contrib/fast-import/git-p4
+	dodoc contrib/fast-import/git-p4.txt
+	newbin contrib/fast-import/import-tars.perl import-tars
 
 	dodir /usr/share/${PN}/contrib
 	for i in continuous fast-import hg-to-git \
