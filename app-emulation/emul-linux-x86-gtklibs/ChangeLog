@@ -1,6 +1,9 @@
 # ChangeLog for app-emulation/emul-linux-x86-gtklibs
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-gtklibs/ChangeLog,v 1.57 2007/12/15 14:39:07 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-gtklibs/ChangeLog,v 1.58 2007/12/25 14:09:37 phreak Exp $
+
+  25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing kugelfang from metadata.xml as per #46972.
 
   15 Dec 2007; <welp@gentoo.org> emul-linux-x86-gtklibs-20071214.ebuild:
   Stable on amd64; bug 201887
