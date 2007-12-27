@@ -48,7 +48,6 @@ SRC_URI="!binary? ( http://haskell.org/ghc/dist/${EXTRA_SRC_URI}/${P}-src.tar.bz
 
 LICENSE="BSD"
 SLOT="0"
-#KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
 KEYWORDS="~x86-macos"
 IUSE="binary doc ghcbootstrap"
 
