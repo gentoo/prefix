@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/wanderlust
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/ChangeLog,v 1.66 2007/10/20 07:43:36 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/ChangeLog,v 1.67 2007/12/25 16:44:05 phreak Exp $
+
+  25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing usata from metadata.xml as per #22931.
 
 *wanderlust-2.15.5_pre20070921 (20 Oct 2007)
 
