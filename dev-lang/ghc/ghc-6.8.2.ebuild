@@ -155,32 +155,33 @@ src_unpack() {
 		# Move unpacked files to the expected place
 		mv "${WORKDIR}/usr" "${S}"
 	else
-		local prefix
-		case ${CHOST} in
-			*86-*-darwin*) prefix=/g;;
-		esac
-		[[ -z ${prefix} ]] || mv "${WORKDIR}"${prefix}/usr "${WORKDIR}"
-
-		# fix install_names on darwin
-		cd "${WORKDIR}/usr" || die "binary corrupt -- usr dir missing"
-		if [[ ${CHOST} == *86-*-darwin* ]]; then
-			for fixme_file in lib/ghc-${PV}/ghc-{${PV},pkg.bin}; do
-				for fixme_lib in {lib/lib{readline.5.2,ncurses},usr/lib/libgmp.3}.dylib; do
-					install_name_tool \
-						-change ${prefix}/${fixme_lib} "${EPREFIX}"/${fixme_lib} \
-						${fixme_file}
-				done
-				install_name_tool -change \
-					{${prefix}/usr/lib/gcc/i686-apple-darwin9/4.0.1,"${EPREFIX}"/lib}/libgcc_s.1.dylib \
-						${fixme_file}
-			done
-		fi
 
 		# Modify the ghc driver script to use GHC_CFLAGS
 		sed -i -e "s|\$\$TOPDIROPT|\$\$TOPDIROPT ${GHC_CFLAGS}|" \
 			"${S}/driver/ghc/Makefile"
 
 		if ! use ghcbootstrap; then
+			local prefix
+			case ${CHOST} in
+				*86-*-darwin*) prefix=/g;;
+			esac
+			[[ -z ${prefix} ]] || mv "${WORKDIR}"${prefix}/usr "${WORKDIR}"
+
+			# fix install_names on darwin
+			cd "${WORKDIR}/usr" || die "binary corrupt -- usr dir missing"
+			if [[ ${CHOST} == *86-*-darwin* ]]; then
+				for fixme_file in lib/ghc-${PV}/ghc-{${PV},pkg.bin}; do
+					for fixme_lib in {lib/lib{readline.5.2,ncurses},usr/lib/libgmp.3}.dylib; do
+						install_name_tool \
+							-change ${prefix}/${fixme_lib} "${EPREFIX}"/${fixme_lib} \
+							${fixme_file}
+					done
+					install_name_tool -change \
+						{${prefix}/usr/lib/gcc/i686-apple-darwin9/4.0.1,"${EPREFIX}"/lib}/libgcc_s.1.dylib \
+							${fixme_file}
+				done
+			fi
+
 			# Relocate from /usr to ${WORKDIR}/usr
 			sed -i -e "s|/usr|${WORKDIR}/usr|g" \
 				"${WORKDIR}/usr/bin/ghc-${PV}" \
