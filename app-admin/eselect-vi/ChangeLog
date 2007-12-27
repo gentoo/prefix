@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect-vi
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-vi/ChangeLog,v 1.29 2007/12/19 18:27:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-vi/ChangeLog,v 1.30 2007/12/26 16:58:16 cardoe Exp $
+
+  26 Dec 2007; Doug Klima <cardoe@gentoo.org> eselect-vi-1.1.5.ebuild:
+  amd64 stable
 
   19 Dec 2007; Raúl Porcel <armin76@gentoo.org> eselect-vi-1.1.5.ebuild:
   alpha/ia64/sparc/x86 stable
