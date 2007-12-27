@@ -44,12 +44,12 @@ SRC_URI="!binary? ( http://haskell.org/ghc/dist/${EXTRA_SRC_URI}/${P}-src.tar.bz
 	amd64?	( mirror://gentoo/ghc-bin-${PV}-amd64.tbz2 )
 	sparc?	( mirror://gentoo/ghc-bin-${PV}-sparc.tbz2 )
 	x86?	( mirror://gentoo/ghc-bin-${PV}-x86.tbz2 )
-	x86-macos? ( http://www.gentoo.org/~pipping/distfiles/ghc-bin-${PV}-x86-macos.tbz2 )"
+	x86-macos? ( http://dev.gentooexperimental.org/~pipping/distfiles/ghc-bin-${PV}-x86-macos.tbz2 )"
 
 LICENSE="BSD"
 SLOT="0"
 #KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
-KEYWORDS=""
+KEYWORDS="~x86-macos"
 IUSE="binary doc ghcbootstrap"
 
 RDEPEND="
@@ -161,24 +161,15 @@ src_unpack() {
 			"${S}/driver/ghc/Makefile"
 
 		if ! use ghcbootstrap; then
-			local prefix
-			case ${CHOST} in
-				*86-*-darwin*) prefix=/g;;
-			esac
-			[[ -z ${prefix} ]] || mv "${WORKDIR}"${prefix}/usr "${WORKDIR}"
-
 			# fix install_names on darwin
 			cd "${WORKDIR}/usr" || die "binary corrupt -- usr dir missing"
 			if [[ ${CHOST} == *86-*-darwin* ]]; then
 				for fixme_file in lib/ghc-${PV}/ghc-{${PV},pkg.bin}; do
-					for fixme_lib in {lib/lib{readline.5.2,ncurses},usr/lib/libgmp.3}.dylib; do
+					for fixme_lib in {/lib/lib{gcc_s.1,readline.5.2,ncurses},/usr/lib/libgmp.3}.dylib; do
 						install_name_tool \
-							-change ${prefix}/${fixme_lib} "${EPREFIX}"/${fixme_lib} \
+							-change ${fixme_lib} "${EPREFIX}"${fixme_lib} \
 							${fixme_file}
 					done
-					install_name_tool -change \
-						{${prefix}/usr/lib/gcc/i686-apple-darwin9/4.0.1,"${EPREFIX}"/lib}/libgcc_s.1.dylib \
-							${fixme_file}
 				done
 			fi
 
