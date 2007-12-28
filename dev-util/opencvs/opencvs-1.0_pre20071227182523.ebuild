@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit autotools
 
-MY_PV=${PV#0_p}
+MY_PV=${PV#1.0_pre}
 
 DESCRIPTION="Port of OpenBSD's free CVS release"
 HOMEPAGE="http://www.opencvs.org/"
