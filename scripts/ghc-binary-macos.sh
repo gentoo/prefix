@@ -15,7 +15,7 @@ SYSTEM_VERSION=${UNAME_R%%.*}
 tempdir=$(mktemp -d)
 cd ${tempdir}
 
-if [[ -z NO_EMERGE ]]; then
+if [[ -z ${NO_EMERGE} ]]; then
     env CFLAGS='-O2 -pipe' USE=ghcbootstrap emerge ghc
 fi
 quickpkg ghc
@@ -40,7 +40,7 @@ ln -s ghci-${VERSION} foo/bin/ghci
 
 # fix install_names
 libgcc_old=/usr/lib/gcc/${PLATFORM_GCC}-apple-darwin${SYSTEM_VERSION}/${GCC_VERSION}
-for fix_me in $(find usr -not -name '*.o' -type f -exec /usr/bin/file {} + | awk -F : '$2 ~ /Mach-O/ {print $1}'); do
+for fix_me in $(find foo -not -name '*.o' -type f -exec /usr/bin/file {} + | awk -F : '$2 ~ /Mach-O/ {print $1}'); do
     install_name_tool -change {${libgcc_old},/lib}/libgcc_s.1.dylib ${fix_me}
 done
 
