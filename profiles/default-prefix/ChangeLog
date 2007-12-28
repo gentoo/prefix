@@ -2,6 +2,9 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Dec 2007; Elias Pipping <pipping@gentoo.org> package.mask:
+  experimental snapshot of opencvs
+
   24 Dec 2007; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask odcctools-20071224 as it's for 64-bits toying only
 
