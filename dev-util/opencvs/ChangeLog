@@ -1,0 +1,10 @@
+# ChangeLog for dev-util/opencvs
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*opencvs-0_p20071227182523 (28 Dec 2007)
+
+  28 Dec 2007; Elias Pipping <pipping@gentoo.org> +.,
+  +opencvs-0_p20071227182523.ebuild:
+  add experimental snapshot. keyworded ~ppc-macos, ~x86-macos, masked
+
