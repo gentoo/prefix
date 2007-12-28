@@ -44,11 +44,12 @@ SRC_URI="!binary? ( http://haskell.org/ghc/dist/${EXTRA_SRC_URI}/${P}-src.tar.bz
 	amd64?	( mirror://gentoo/ghc-bin-${PV}-amd64.tbz2 )
 	sparc?	( mirror://gentoo/ghc-bin-${PV}-sparc.tbz2 )
 	x86?	( mirror://gentoo/ghc-bin-${PV}-x86.tbz2 )
+	ppc-macos? ( http://dev.gentooexperimental.org/~grobian/distfiles/ghc-bin-${PV}-ppc-macos.tbz2 )
 	x86-macos? ( http://dev.gentooexperimental.org/~pipping/distfiles/ghc-bin-${PV}-x86-macos.tbz2 )"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-macos"
+KEYWORDS="~ppc-macos ~x86-macos"
 IUSE="binary doc ghcbootstrap"
 
 RDEPEND="
@@ -294,7 +295,7 @@ pkg_postinst() {
 
 	ewarn "IMPORTANT:"
 	ewarn "If you have upgraded from another version of ghc, please run:"
-	ewarn "      /usr/sbin/ghc-updater"
+	ewarn "      ${EPREFIX}/usr/sbin/ghc-updater"
 	ewarn "to re-merge all ghc-based Haskell libraries."
 
 	bash-completion_pkg_postinst
