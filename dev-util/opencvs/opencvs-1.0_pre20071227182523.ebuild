@@ -24,7 +24,6 @@ S=${WORKDIR}/${PN}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	elibtoolize
 	eautoreconf
 }
 
