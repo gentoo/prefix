@@ -134,9 +134,9 @@ pkg_setup() {
 			die "USE=\"ghcbootstrap binary\" is not a valid combination."
 		[[ -z $(type -P ghc) ]] && \
 			die "Could not find a ghc to bootstrap with."
-	elif use alpha || use hppa || use ia64 || use ppc || use ppc64 || use ppc-macos; then
+	elif use alpha || use hppa || use ia64 || use ppc || use ppc64; then
 		eerror "No binary .tbz2 package available yet for these arches:"
-		eerror "  alpha, hppa, ia64, ppc, ppc64, ppc-macos"
+		eerror "  alpha, hppa, ia64, ppc, ppc64"
 		eerror "Please try emerging with USE=ghcbootstrap and report build"
 		eerror "sucess or failure to the haskell team (haskell@gentoo.org)"
 		die "No binary available for this arch yet, USE=ghcbootstrap"
@@ -163,7 +163,7 @@ src_unpack() {
 		if ! use ghcbootstrap; then
 			# fix install_names on darwin
 			cd "${WORKDIR}/usr" || die "binary corrupt -- usr dir missing"
-			if [[ ${CHOST} == *86-*-darwin* ]]; then
+			if [[ ${CHOST} == *-darwin* ]]; then
 				for fixme_file in lib/ghc-${PV}/ghc-{${PV},pkg.bin}; do
 					for fixme_lib in {/lib/lib{gcc_s.1,readline.5.2,ncurses},/usr/lib/libgmp.3}.dylib; do
 						install_name_tool \
