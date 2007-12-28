@@ -320,8 +320,8 @@ fi
 #==============================================================
 kernel_header_destdir() {
 	[[ ${CTARGET} == ${CHOST} ]] \
-		&& echo /usr/include \
-		|| echo /usr/${CTARGET}/usr/include
+		&& echo "${EPREFIX}"/usr/include \
+		|| echo "${EPREFIX}"/usr/${CTARGET}/usr/include
 }
 
 cross_pre_c_headers() {
