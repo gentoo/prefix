@@ -3,6 +3,11 @@
 # $Header: $
 
   28 Dec 2007; Elias Pipping <pipping@gentoo.org>
+  opencvs-1.0_pre20071227182523.ebuild,
+  opencvs-1.0_pre20071227182523.ebuild:
+  make repoman happy
+
+  28 Dec 2007; Elias Pipping <pipping@gentoo.org>
   opencvs-1.0_pre20071227182523.ebuild:
   remove obsolete call to elibtoolize as eautoreconf takes care of that
 

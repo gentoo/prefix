@@ -28,10 +28,9 @@ src_unpack() {
 }
 
 src_install() {
-	cd "${S}"
 	for manpage in cvs.1 cvs.5; do
 		mv src/${manpage} src/open${manpage}
 	done
 	doman src/*.[1-7]
-	emake DESTDIR=${D} install
+	emake DESTDIR="${D}" install
 }
