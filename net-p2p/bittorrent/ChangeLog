@@ -1,6 +1,10 @@
 # ChangeLog for net-p2p/bittorrent
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/ChangeLog,v 1.124 2007/11/23 21:14:53 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/ChangeLog,v 1.125 2007/12/28 12:52:41 armin76 Exp $
+
+  28 Dec 2007; Raúl Porcel <armin76@gentoo.org> bittorrent-5.0.9.ebuild:
+  Make it not die with wxpython-2.8 installed, bug #202813, patch by
+  <dynamotwain at aim dot com>
 
   23 Nov 2007; Markus Rothe <corsair@gentoo.org> bittorrent-5.0.9.ebuild:
   Stable on ppc64; bug #199882
