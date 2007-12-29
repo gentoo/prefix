@@ -1,6 +1,9 @@
 # ChangeLog for app-text/antiword
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/antiword/ChangeLog,v 1.36 2007/12/25 14:47:20 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/antiword/ChangeLog,v 1.37 2007/12/28 14:12:51 pclouds Exp $
+
+  28 Dec 2007; Nguyễn Thái Ngọc Duy <pclouds@gentoo.org> metadata.xml:
+  Reassigned maintainer to self
 
   25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing seemant from metadata.xml as per #202469. Assigning to
