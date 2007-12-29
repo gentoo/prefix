@@ -1,6 +1,15 @@
 # ChangeLog for sys-libs/ncurses
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.149 2007/08/25 17:13:38 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.152 2007/12/28 17:33:09 armin76 Exp $
+
+  28 Dec 2007; Raúl Porcel <armin76@gentoo.org> ncurses-5.6-r2.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #203575
+
+  28 Dec 2007; nixnut <nixnut@gentoo.org> ncurses-5.6-r2.ebuild:
+  Stable on ppc wrt bug 203575
+
+  28 Dec 2007; Doug Klima <cardoe@gentoo.org> ncurses-5.6-r2.ebuild:
+  amd64 stable wrt bug #203575
 
   25 Aug 2007; Mike Frysinger <vapier@gentoo.org>
   +files/ncurses-5.6-build.patch, ncurses-5.6-r2.ebuild:
