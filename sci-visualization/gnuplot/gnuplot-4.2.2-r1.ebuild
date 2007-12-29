@@ -67,8 +67,8 @@ src_unpack() {
 }
 
 src_compile() {
-	# the compiler explodes if you try to optimise this on PPC
-	[[ ${CHOST} == powerpc-apple-darwin* ]] && filter-flags -m*
+	# the compiler explodes if you try to use AltiVec on PPC
+	[[ ${CHOST} == powerpc-apple-darwin* ]] && filter-flags -faltivec
 
 	# Prevent access violations, see bug 201871
 	VARTEXFONTS="${T}/fonts"
