@@ -66,6 +66,8 @@ src_compile() {
 	elif use mmx; then
 		mycpu="--with-cpu=mmx"
 	fi
+	# ASM on OSX/Intel is broken, bug #203708
+	[[ ${CHOST} == *86*-apple-darwin* ]] && mycpu="--with-cpu=generic"
 
 	econf --with-optimization=0 \
 		--with-audio="${myaudio}" \
