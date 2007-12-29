@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.244 2007/12/25 19:58:32 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.245 2007/12/27 06:52:55 robbat2 Exp $
+
+  27 Dec 2007; Robin H. Johnson <robbat2@gentoo.org> git-1.5.3.7-r1.ebuild:
+  Stable on amd64. Tested by myself and gentoofan23.
 
   25 Dec 2007; Raúl Porcel <armin76@gentoo.org> git-1.5.3.7-r1.ebuild:
   alpha/ia64/sparc/x86 stable wrt #202383
