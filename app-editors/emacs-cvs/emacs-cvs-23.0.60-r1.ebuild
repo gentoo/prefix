@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.60-r1.ebuild,v 1.4 2007/12/13 18:30:32 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.60-r1.ebuild,v 1.5 2007/12/28 23:50:49 ulm Exp $
 
 EAPI="prefix"
 
@@ -30,6 +30,7 @@ X_DEPEND="x11-libs/libXmu x11-libs/libXt x11-misc/xbitmaps"
 RDEPEND="sys-libs/ncurses
 	>=app-admin/eselect-emacs-0.7-r1
 	sys-libs/zlib
+	net-libs/liblockfile
 	hesiod? ( net-dns/hesiod )
 	kerberos? ( virtual/krb5 )
 	spell? ( || ( app-text/ispell app-text/aspell ) )
