@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/pwgen
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/pwgen/ChangeLog,v 1.45 2007/12/17 16:44:06 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/pwgen/ChangeLog,v 1.46 2007/12/28 15:52:49 rich0 Exp $
+
+  28 Dec 2007; Richard Freeman <rich0@gentoo.org> pwgen-2.06.ebuild:
+  amd64 stable
 
   17 Dec 2007; Raúl Porcel <armin76@gentoo.org> pwgen-2.06.ebuild:
   alpha/ia64/sparc/x86 stable
