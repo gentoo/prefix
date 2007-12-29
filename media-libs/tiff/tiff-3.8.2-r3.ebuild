@@ -39,7 +39,7 @@ src_compile() {
 		$(use_enable jpeg) \
 		$(use_enable jbig) \
 		--with-pic --without-x \
-		--with-docdir=/usr/share/doc/${PF} \
+		--with-docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		|| die "econf failed"
 	emake || die "emake failed"
 }
