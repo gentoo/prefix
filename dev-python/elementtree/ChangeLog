@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/elementtree
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/elementtree/ChangeLog,v 1.32 2007/09/22 10:17:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/elementtree/ChangeLog,v 1.33 2007/12/27 17:01:52 ranger Exp $
+
+  27 Dec 2007; Brent Baude <ranger@gentoo.org> elementtree-1.2.6-r2.ebuild:
+  Marking elementtree-1.2.6-r2 ppc64 stable for dep in bug 203325
 
   22 Sep 2007; Raúl Porcel <armin76@gentoo.org>
   elementtree-1.2.6-r2.ebuild:
