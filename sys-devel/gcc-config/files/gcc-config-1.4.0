@@ -1,7 +1,7 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/bash
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.4.0,v 1.23 2007/10/11 05:27:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.4.0,v 1.24 2007/12/27 19:01:06 vapier Exp $
 
 trap ":" INT QUIT TSTP
 
@@ -54,7 +54,7 @@ try_real_hard_to_find_CHOST() {
 	# First we read make.conf
 	#
 
-	local varname=$1
+	local varname=${1:-CHOST}
 	local conf=${EROOT}/etc/make.conf
 	local ret=$(source "${conf}" 2>/dev/null ; echo ${!varname})
 	if [[ -z ${ret} ]] ; then
@@ -63,7 +63,7 @@ try_real_hard_to_find_CHOST() {
 		ret=$(eval $(
 			${SED} -n \
 				-e 's:[[:space:]]::g' \
-				-e '/^CHOST=/p' \
+				-e "/^${varname}=/p" \
 				"${conf}"
 			) ; echo ${!varname}
 		)
