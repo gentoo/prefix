@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p25.ebuild,v 1.3 2007/11/23 03:47:38 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p25.ebuild,v 1.4 2007/12/27 20:00:19 vapier Exp $
 
 EAPI="prefix"
 
@@ -117,6 +117,12 @@ src_compile() {
 	# Force linking with system curses ... the bundled termcap lib
 	# sucks bad compared to ncurses
 	myconf="${myconf} --with-curses"
+
+	# Default path is to use /usr/local/..... regardless.  This little
+	# magic will set the default path to /usr/..... and keep us from
+	# worrying about the rest of the path getting out of sync with the
+	# ebuild code.
+	eval $(echo export $(ac_default_prefix="${EPREFIX}/usr"; eval echo $(grep DEBUGGER_START_FILE= configure)))
 
 	use plugins && append-ldflags -Wl,-rpath,/usr/$(get_libdir)/bash
 	econf \
