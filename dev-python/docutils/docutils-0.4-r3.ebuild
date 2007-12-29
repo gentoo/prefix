@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/docutils-0.4-r3.ebuild,v 1.2 2007/08/25 22:28:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/docutils-0.4-r3.ebuild,v 1.5 2007/12/28 19:22:39 cardoe Exp $
 
 EAPI="prefix"
 
@@ -29,10 +29,10 @@ GLEP_SRC=${WORKDIR}/glep-${PV}-r1
 src_unpack() {
 	unpack ${A}
 	# simplified algorithm to select installing optparse and textwrap
-	cd ${S}
-	epatch ${FILESDIR}/${EMP}-extramodules.patch
+	cd "${S}"
+	epatch "${FILESDIR}"/${EMP}-extramodules.patch
 	# Fix for Python 2.5 test (bug# 172557)
-	epatch ${FILESDIR}/${P}-python-2.5-fix.patch
+	epatch "${FILESDIR}"/${P}-python-2.5-fix.patch
 
 	sed -i \
 		-e 's/from distutils.core/from setuptools/' \
@@ -73,22 +73,22 @@ install_txt_doc() {
 }
 
 src_test() {
-	cd ${S}/test
+	cd "${S}"/test
 	PYTHONPATH="${S}" ./alltests.py || die "alltests.py failed"
 }
 
 src_install() {
-	cd ${S}
+	cd "${S}"
 	DOCS="*.txt"
 	distutils_src_install
 	# Tools
-	cd ${S}/tools
+	cd "${S}"/tools
 	for tool in *.py
 	do
 		dobin ${tool}
 	done
 	# Docs
-	cd ${S}
+	cd "${S}"
 	dohtml -r docs tools
 	# manually install the stylesheet file
 	insinto /usr/share/doc/${PF}/html
