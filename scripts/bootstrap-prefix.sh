@@ -140,6 +140,10 @@ bootstrap_setup() {
 			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.10/x86"
 			keywords="~x86-solaris x86-solaris"
 			;;
+		x86_64-pc-solaris2.10)
+			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.10/x64"
+			keywords="~x64-solaris x64-solaris"
+			;;
 		sparc-sun-solaris2.10)
 			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.10/sparc"
 			keywords="~sparc-solaris sparc-solaris"
@@ -208,11 +212,12 @@ bootstrap_tree() {
 		powerpc-apple-darwin9)       PV="20071115" ;; # verified (desp)
 		i*86-apple-darwin9)          PV="20071115" ;; # verified (grobian)
 		x86_64-apple-darwin9)        PV="20071213" ;;
-		i*86-pc-linux-gnu)           PV="20071115" ;;
-		x86_64-pc-linux-gnu)         PV="20071115" ;;
-		ia64-pc-linux-gnu)           PV="20071115" ;;
+		i*86-pc-linux-gnu)           PV="20071213" ;;
+		x86_64-pc-linux-gnu)         PV="20071213" ;;
+		ia64-pc-linux-gnu)           PV="20071213" ;;
 		sparc-sun-solaris2.9)        PV="20071115" ;;
 		i386-pc-solaris2.10)         PV="20071115" ;;
+		x86_64-pc-solaris2.10)       PV="20071213" ;;
 		sparc-sun-solaris2.10)       PV="20071115" ;; # verified (grobian)
 		sparcv9-sun-solaris2.10)     PV="20071213" ;;
 		powerpc-ibm-aix*)            PV="20071213" ;; # verified (darksiide)
