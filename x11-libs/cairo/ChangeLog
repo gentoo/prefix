@@ -1,6 +1,14 @@
 # ChangeLog for x11-libs/cairo
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.157 2007/12/26 16:19:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.158 2007/12/27 14:19:03 cardoe Exp $
+
+*cairo-1.5.4-r1 (27 Dec 2007)
+
+  27 Dec 2007; Doug Klima <cardoe@gentoo.org>
+  +files/cairo-1.5.4-sparc-alignment.patch, -cairo-1.5.4.ebuild,
+  +cairo-1.5.4-r1.ebuild:
+  fix sparc memory alignment issues. fix authored by Chris Wilson (upstream).
+  fixes bug #203282
 
   26 Dec 2007; Raúl Porcel <armin76@gentoo.org> cairo-1.5.4.ebuild:
   Doesn't work fine on sparc, bug #203282

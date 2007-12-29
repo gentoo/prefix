@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.5.4.ebuild,v 1.3 2007/12/26 16:19:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.5.4-r1.ebuild,v 1.1 2007/12/27 14:19:03 cardoe Exp $
 
 EAPI="prefix"
 
@@ -53,6 +53,9 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	# SPARC alignment patch
+	epatch "${FILESDIR}"/${P}-sparc-alignment.patch
 
 	# We need to run elibtoolize to ensure correct so versioning on FreeBSD
 	elibtoolize
