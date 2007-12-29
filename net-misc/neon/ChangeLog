@@ -1,6 +1,17 @@
 # ChangeLog for net-misc/neon
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.90 2007/11/10 19:37:18 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.93 2007/12/28 17:55:34 maekke Exp $
+
+  28 Dec 2007; Markus Meier <maekke@gentoo.org> neon-0.26.4.ebuild:
+  x86 stable, bug #203260
+
+  28 Dec 2007; nixnut <nixnut@gentoo.org> neon-0.26.4.ebuild:
+  Stable on ppc wrt bug 203560
+
+  28 Dec 2007; Benedikt Böhm <hollow@gentoo.org> metadata.xml,
+  -neon-0.24.7.ebuild, -neon-0.25.3.ebuild, -neon-0.25.5.ebuild,
+  -neon-0.26.1.ebuild:
+  cleanup old cruft
 
 *neon-0.26.4 (10 Nov 2007)
 
