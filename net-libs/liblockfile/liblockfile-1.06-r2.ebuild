@@ -12,7 +12,7 @@ SRC_URI="mirror://debian/pool/main/libl/${PN}/${PN}_${PV}.tar.gz"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-fbsd"
 IUSE=""
 
 src_unpack() {
