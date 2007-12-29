@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/bison-2.3.ebuild,v 1.9 2007/07/23 02:56:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/bison-2.3.ebuild,v 1.10 2007/12/27 19:29:06 vapier Exp $
 
 EAPI="prefix"
 
@@ -32,9 +32,9 @@ src_install() {
 	mv "${ED}"/usr/bin/yacc{,.bison} || die
 
 	# We do not need this.
-	rm -r "${ED}"/usr/lib
+	rm -r "${ED}"/usr/lib* || die
 
-	dodoc AUTHORS NEWS ChangeLog README REFERENCES OChangeLog doc/FAQ
+	dodoc AUTHORS NEWS ChangeLog README OChangeLog THANKS TODO
 }
 
 pkg_postinst() {
