@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/PPI/PPI-1.118.ebuild,v 1.3 2006/11/24 18:16:02 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/PPI/PPI-1.118.ebuild,v 1.4 2007/12/27 13:53:42 ticho Exp $
 
 EAPI="prefix"
 
