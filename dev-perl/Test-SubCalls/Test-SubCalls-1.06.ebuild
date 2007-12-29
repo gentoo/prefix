@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-SubCalls/Test-SubCalls-1.06.ebuild,v 1.4 2006/10/15 20:50:33 mcummings Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-SubCalls/Test-SubCalls-1.06.ebuild,v 1.5 2007/12/27 13:53:16 ticho Exp $
 
 EAPI="prefix"
 
