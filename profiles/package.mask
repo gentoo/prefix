@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8053 2007/12/24 20:05:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8066 2007/12/29 02:07:02 wltjr Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -20,6 +20,42 @@
 ##
 ##   End example
 ##
+
+# William L. Thomson Jr. <wltjr@gentoo.org> (28 Dec 2007)
+# Gen 1 java ebuild, dep of masked jboss, no maintainer or any contributors
+# interested in maintaining. Older version no longer current. Will be moved
+# to java junkyard overlay in 30 days.
+dev-java/quartz
+
+# Alistair Bush <ali_bush@gentoo.org> (28 Dec 2007)
+# Completely outofdate. release no longer available upstream.
+# pending removal to java junkyard. Remove in 30 Days
+# https://bugs.gentoo.org/show_bug.cgi?id=115631
+dev-util/poseidonCE
+
+# Mart Raudsepp <leio@gentoo.org> (28 Dec 2007)
+# Live Subversion ebuild until pending first upstream release
+=games-mud/wxmud-9999
+
+# MATSUU Takuto <matsuu@gentoo.org> (27 Dec 2007)
+# Upstream gone, nothing depends on this.
+# pending removal. Remove in 30 days
+# https://bugs.gentoo.org/show_bug.cgi?id=177912
+dev-tcltk/Tk_Theme
+
+# Christian Hoffmann <hoffie@gentoo.org> (27 Dec 2007)
+# broken (leads to random segfaults); masked until someone steps up to
+# maintain it or it will finally get removed
+dev-php5/php-java-bridge
+
+# Petteri Räty <betelgeuse@gentoo.org> (26 Dec 2007)
+# Has security issues.
+# https://bugs.gentoo.org/show_bug.cgi?id=203193
+=dev-java/jfreechart-0*
+
+# Saleem Abdulrasool <compnerd@gentoo.org> (25 Dec 2007)
+# Yeah, theres a few issues with this, lets mask it (bug #121662)
+~app-portage/herdstat-1.1.91
 
 # Raúl Porcel <armin76@gentoo.org> (24 Dec 2007)
 # Mask for removal on 24 Feb 2008 for treecleaners
@@ -72,7 +108,7 @@ www-servers/jboss
 # Christian Faulhammer <opfer@gentoo.org>
 # Mask qt-4.4 package while testing them in portage
 # Plus packages depending on them
-=app-admin/keepassx-0.2.2-r1
+~app-admin/keepassx-0.2.2
 =x11-libs/qt-4.4*
 =x11-libs/qt-assistant-4.4*
 =x11-libs/qt-core-4.4*
@@ -125,7 +161,7 @@ sys-kernel/hppa-sources
 
 # Robin H. Johnson <robbat2@gentoo.org> (16 Dec 2007)
 # For testing only
-=dev-util/git-1.5.4_rc0
+=dev-util/git-1.5.4_rc*
 
 # Richard Brown <rbrown@gentoo.org> (15 Dec 2007)
 # Masked for testing as it's install script has changed.
@@ -376,7 +412,6 @@ app-vim/hgcommand
 sys-libs/gi-detect
 sys-apps/discover-data
 sys-apps/discover
-x11-wm/flwm
 dev-db/dbdesigner
 
 # Duncan Coutts <dcoutts@gentoo.otg> (05 Nov 2007)
@@ -623,11 +658,6 @@ net-misc/networkmanager-pptp
 # up/downgrade path (will be unmasked with xoops-2.3)
 # http://www.xoops.org/modules/news/article.php?storyid=2905
 www-apps/xoops
-
-# Tristan Heaven <nyhm@gentoo.org> (14 Aug 2007)
-# Breaks games-rpg/tmw-0.0.23
-# https://bugs.gentoo.org/show_bug.cgi?id=188753
->=dev-games/guichan-0.7
 
 # Carsten Lohrke <carlo@gentoo.org> (11 Aug 2007)
 # Masked since KDE 3.5.7 doesn't come with KSync anymore.

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3236 2007/12/24 12:28:15 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3244 2007/12/29 03:11:32 rich0 Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -137,7 +137,6 @@ app-emulation/vice:resid - Enable support for ReSID
 app-emulation/virtualbox-bin:additions - Install Guest System Tools ISO
 app-emulation/virtualbox-bin:sdk - Enable building of SDK
 app-emulation/virtualbox:additions - Install Guest System Tools ISO
-app-emulation/virtualbox:alsa - Enable support for ALSA instead of OSS
 app-emulation/virtualbox:sdk - Enable building of SDK
 app-emulation/xen-tools:custom-cflags - Use CFLAGS from /etc/make.conf rather than the default Xen CFLAGS (not supported)
 app-emulation/xen-tools:hvm - Enable support for hardware based virtualization (VT-x, AMD-v)
@@ -543,6 +542,7 @@ dev-php5/eaccelerator:contentcache - Enable content caching
 dev-php5/eaccelerator:disassembler - Enable the eA disassembler
 dev-php5/eaccelerator:inode - Use inode-based caching
 dev-php5/php-gtk:extra - Enable GtkExtra support
+dev-php5/php-gtk:glade - Enable libglade support
 dev-php5/php-gtk:html - Enable GtkHTML2 support
 dev-php5/php-gtk:libsexy - Enable libsexy support
 dev-php5/php-gtk:mozembed - Enable GtkMozembed support
@@ -694,6 +694,7 @@ games-kids/gcompris:gnet - will let GCompris fetch content from a web server
 games-mud/mmucl:mccp - adds support for the Mud Client Compression Protocol
 games-roguelike/scourge:editor - Install Scourge Data Editor (scourge-tools)
 games-rpg/eternal-lands-data:music - Install optional music files (extra 30 meg)
+games-rpg/eternal-lands-data:sound - Install optional sound files (extra 40 meg)
 games-rpg/galaxymage:psyco - psyco python accelerator
 games-rpg/nwn-cep:hou - Adds support for the Hordes of the Underdark expansion pack
 games-rpg/nwn-cep:sou - Adds support for the Shadows of Undrentide expension pack
@@ -1281,6 +1282,7 @@ net-analyzer/nagios-plugins:nagios-ssh - installs deps for monitoring ssh
 net-analyzer/nagios-plugins:ups - installs deps for monitoring Network-UPS (sys-power/nut)
 net-analyzer/net-snmp:diskio - Enable the use of diskio mibs
 net-analyzer/net-snmp:elf - Enable the use of elf utils to check uptime on some sytems
+net-analyzer/net-snmp:extensible - build deprecated extensible mib module (extend is successor)
 net-analyzer/net-snmp:mfd-rewrites - Use MFD rewrites of mib modules where available
 net-analyzer/net-snmp:rpm - Enable the rpm snmp probing
 net-analyzer/net-snmp:sendmail - Enable sendmail statistics monitoring
@@ -1456,6 +1458,7 @@ net-irc/inspircd:openssl - Build OpenSSL module
 net-irc/ircd-hybrid:contrib - Build contrib modules (eg. cloaking)
 net-irc/ngircd:ident - Enables support for libident
 net-irc/rbot:aspell - Use aspell rather than ispell for the spell plugin.
+net-irc/rbot:dict - Enable the dict (RFC 2229) client plugin which deps on dev-ruby/ruby-dict.
 net-irc/rbot:shorturl - Enable the shortenurl plugin which deps on dev-ruby/shorturl.
 net-irc/rbot:snapshot - Set the Ruby gem version to a value suitable for a snapshot ebuild
 net-irc/rbot:timezone - Enable the timezone plugin.
@@ -1621,6 +1624,7 @@ net-p2p/amule:stats - enable statistic reporting
 net-p2p/btg:event-callback - enable calling a script or executable for certain events
 net-p2p/btg:upnp - Enables support for Intel UPnP stack.
 net-p2p/btg:webinterface - install webBTG
+net-p2p/deluge:browser - Enable anonymous browser function
 net-p2p/gift:ares - pull in Ares plugin
 net-p2p/gift:fasttrack - pull in FastTrack plugin
 net-p2p/gift:gnutella - pull in Gnutella plugin
@@ -1834,6 +1838,7 @@ sys-apps/tinylogin:make-symlinks - Create all the appropriate symlinks in /bin a
 sys-apps/tuxonice-userui:fbsplash - Add support for framebuffer splash
 sys-apps/usbutils:network-cron - Monthly cronjob the update-usbids script
 sys-apps/util-linux:old-crypt - build support for the older cryptoapi that earlier util-linux's included
+sys-apps/v86d:x86emu - Use x86emu for Video BIOS calls
 sys-auth/pam_mysql:openssl - Use OpenSSL for md5 and sha1 support.
 sys-auth/pam_pkcs11:pcsc-lite - build with pcsc-lite instead of openct
 sys-block/gparted:fat - Include FAT16/FAT32 support
@@ -2123,6 +2128,8 @@ x11-wm/beryl:emerald - Add support for one of the three decorators for Beryl
 x11-wm/enlightenment:xrandr - Enable support for the X xrandr extension
 x11-wm/fluxbox:disableslit - Disable the slit. Works around bug 122380.
 x11-wm/fluxbox:disabletoolbar - Disable the toolbar.
+x11-wm/fluxbox:slit - Enables the fluxbox slit
+x11-wm/fluxbox:toolbar - Enables the fluxbox toolbar
 x11-wm/fvwm:rplay - Enable rplay support
 x11-wm/fvwm:stroke - Mouse Gesture support
 x11-wm/ion3:ion3-voidupstreamsupport-truetype - Enable TrueType support, note this will *void* upstream support for your ion3 installation

@@ -1,6 +1,30 @@
 # ChangeLog for profile directory
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.941 2007/12/24 12:28:15 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.949 2007/12/29 03:11:32 rich0 Exp $
+
+  29 Dec 2007; Richard Freeman <rich0@gentoo.org> use.local.desc:
+  Add sound useflag for games-rpg/eternal-lands-data.
+
+  28 Dec 2007; Raúl Porcel <armin76@gentoo.org> use.local.desc:
+  Add browser use-flag for net-p2p/deluge
+
+  28 Dec 2007; <alistair@gentoo.org> package.mask:
+  Adding dev-util/poseidonCE to package mask for removal in 30 days.
+
+  27 Dec 2007; Peter Volkov <pva@gentoo.org> use.local.desc:
+  Added extensible USE flag for net-analyzer/net-snmp.
+
+  27 Dec 2007; Diego Pettenò <flameeyes@gentoo.org> use.local.desc:
+  Add the dict USE flag for rbot.
+
+  27 Dec 2007; Christian Hoffmann <hoffie@gentoo.org> package.mask:
+  masking dev-php5/php-java-bridge because of random segfaults
+
+  26 Dec 2007; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  Package.mask security vulnerable slot of dev-java/jfreechart.
+
+  25 Dec 2007; Saleem Abdulrasool <compnerd@gentoo.org> package.mask:
+  Mask herdstat-1.1.91
 
   24 Dec 2007; Raúl Porcel <armin76@gentoo.org> use.local.desc:
   Add two USE-flags for dev-libs/yaz, from the php-overlay
