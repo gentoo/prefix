@@ -1,6 +1,9 @@
 # ChangeLog for app-text/aspell
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/ChangeLog,v 1.98 2007/08/28 07:23:09 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/ChangeLog,v 1.99 2007/12/28 23:35:20 welp Exp $
+
+  28 Dec 2007; <welp@gentoo.org> aspell-0.60.5.ebuild:
+  Keyworded ~sparc-fbsd; bug 197275
 
   28 Aug 2007; Markus Ullmann <jokey@gentoo.org> aspell-0.60.5.ebuild:
   Latest version uses Automake 1.10
