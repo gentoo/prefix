@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/a52dec/a52dec-0.7.4-r5.ebuild,v 1.17 2007/02/17 17:15:53 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/a52dec/a52dec-0.7.4-r5.ebuild,v 1.18 2007/12/28 14:06:34 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -18,8 +18,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="oss djbfft"
 
-DEPEND="djbfft? ( sci-libs/djbfft )"
-RDEPEND=""
+RDEPEND="djbfft? ( sci-libs/djbfft )"
+DEPEND="${RDEPEND}"
 
 src_unpack() {
 	unpack ${A}
