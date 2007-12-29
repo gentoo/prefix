@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.16.1-r2.ebuild,v 1.3 2007/12/21 10:23:46 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.16.1-r2.ebuild,v 1.4 2007/12/29 00:28:42 maekke Exp $
 
 EAPI="prefix"
 
@@ -121,6 +121,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-gcc43-missing-includes.patch
 	epatch "${FILESDIR}"/${P}-python-buildfix.patch
 	epatch "${FILESDIR}"/${P}-pango-optional.patch
+	epatch "${FILESDIR}"/${P}-tcltk.patch
 
 	[[ ${CHOST} == *-darwin* ]] && \
 		sed -i -e 's/\.so/.dylib/g' tclpkg/gv/Makefile.am
