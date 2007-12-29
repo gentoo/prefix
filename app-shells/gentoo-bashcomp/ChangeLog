@@ -1,6 +1,10 @@
 # ChangeLog for app-shells/gentoo-bashcomp
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/ChangeLog,v 1.17 2007/03/19 01:42:07 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/ChangeLog,v 1.18 2007/12/27 12:01:50 armin76 Exp $
+
+  27 Dec 2007; Raúl Porcel <armin76@gentoo.org>
+  gentoo-bashcomp-20050516.ebuild:
+  Remove NEWS from dodoc, bug #203330
 
   19 Mar 2007; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
   Remove ka0ttic from metadata.xml due to retirement.

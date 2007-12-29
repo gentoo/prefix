@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/gentoo-bashcomp-20050516.ebuild,v 1.11 2007/03/01 10:03:40 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/gentoo-bashcomp-20050516.ebuild,v 1.12 2007/12/27 12:01:50 armin76 Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ RDEPEND=">=app-shells/bash-completion-20050121-r3"
 
 src_install() {
 	emake DESTDIR="${ED}" install || die "make install failed"
-	dodoc AUTHORS ChangeLog TODO NEWS
+	dodoc AUTHORS ChangeLog TODO
 }
 
 pkg_postinst() {
