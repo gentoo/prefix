@@ -10,6 +10,11 @@ inherit toolchain-binutils
 
 KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~sparc64-solaris ~x86 ~x86-fbsd ~x86-solaris"
 
+src_unpack() {
+	toolchain-binutils_src_unpack
+	epatch "${FILESDIR}"/2.18-solarisx86_64.patch
+}
+
 src_compile() {
 	if has noinfo "${FEATURES}" \
 	|| ! type -p makeinfo >/dev/null
