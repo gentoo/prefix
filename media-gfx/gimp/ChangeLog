@@ -1,6 +1,19 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.241 2007/12/26 23:48:55 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.246 2007/12/28 16:35:27 jer Exp $
+
+  28 Dec 2007; Jeroen Roovers <jer@gentoo.org> gimp-2.4.2.ebuild:
+  Lock the target. Bait the line. Grab the net. Catch the man. 2.4.2 is stable
+  for HPPA (bug #203382).
+
+  28 Dec 2007; Raúl Porcel <armin76@gentoo.org> gimp-2.4.2.ebuild:
+  alpha/ia64/sparc stable wrt #203382
+
+  27 Dec 2007; <rich0@gentoo.org> gimp-2.4.2.ebuild:
+  Stable on amd64 - #203382.
+
+  27 Dec 2007; Brent Baude <ranger@gentoo.org> gimp-2.4.2.ebuild:
+  Marking gimp-2.4.2 ppc and ppc64 stable for bug 203382
 
   26 Dec 2007; Dawid Węgliński <cla@gentoo.org> gimp-2.4.2.ebuild:
   Stable on x86 (bug #203382)
