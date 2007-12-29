@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.4-r4.ebuild,v 1.4 2007/12/11 16:57:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.6.ebuild,v 1.2 2007/12/28 15:25:15 hollow Exp $
 
 EAPI="prefix"
 
 inherit bash-completion depend.apache flag-o-matic elisp-common eutils java-pkg-opt-2 libtool multilib perl-module python
 
-KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~sparc64-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 
 DESCRIPTION="A compelling replacement for CVS."
 HOMEPAGE="http://subversion.tigris.org/"
@@ -14,17 +14,18 @@ SRC_URI="http://subversion.tigris.org/downloads/${P/_rc/-rc}.tar.bz2"
 
 LICENSE="Subversion"
 SLOT="0"
-IUSE="apache2 berkdb doc emacs extras java nls nowebdav perl python ruby vim-syntax"
+IUSE="apache2 berkdb debug doc emacs extras java nls nowebdav perl python ruby svnserve vim-syntax"
 RESTRICT="test"
 
 COMMONDEPEND=">=dev-libs/apr-util-1.2.8
 			berkdb? ( =sys-libs/db-4* )
 			doc? ( app-doc/doxygen )
 			emacs? ( virtual/emacs )
-			!nowebdav? ( >=net-misc/neon-0.26 )
-			ruby? ( >=dev-lang/ruby-1.8.2 )
-			perl? ( >=dev-lang/perl-5.8.8 )
-			python? ( >=dev-lang/python-2.0 )"
+			nls? ( sys-devel/gettext )
+			!nowebdav? ( >=net-misc/neon-0.26.4 )
+			ruby? ( >=dev-lang/ruby-1.8.2 dev-lang/swig )
+			perl? ( >=dev-lang/perl-5.8.8 dev-lang/swig )
+			python? ( >=dev-lang/python-2.0 dev-lang/swig )"
 
 RDEPEND="${COMMONDEPEND}
 		java? ( >=virtual/jre-1.4 )
@@ -38,7 +39,7 @@ want_apache
 
 S="${WORKDIR}"/${P/_rc/-rc}
 
-# Allow for custion repository locations.
+# Allow for custom repository locations.
 # This can't be in pkg_setup because the variable needs to be available to
 # pkg_config.
 : ${SVN_REPOS_LOC:=${EPREFIX}/var/svn}
@@ -81,9 +82,11 @@ src_unpack() {
 	epatch "${FILESDIR}"/subversion-1.3.1-neon-config.patch
 	epatch "${FILESDIR}"/subversion-apr_cppflags.patch
 	epatch "${FILESDIR}"/subversion-1.4.3-debug-config.patch
-	epatch "${FILESDIR}"/subversion-1.4.3-neon-0.26.3.patch
 	epatch "${FILESDIR}"/subversion-prefix.patch
 	eprefixify contrib/client-side/svn_load_dirs.pl.in
+
+	sed -e 's/\(NEON_ALLOWED_LIST=.* 0.26.2\)"/\1 0.26.3 0.26.4"/' \
+		-i configure.in
 
 	sed -e "s:apr-config:$(apr_config):g" \
 		-e "s:apu-config:$(apu_config):g" \
@@ -100,7 +103,7 @@ src_unpack() {
 }
 
 src_compile() {
-	local myconf=""
+	local myconf=
 
 	myconf="${myconf} $(use_enable java javahl)"
 	use java && myconf="${myconf} --without-jikes --with-jdk=${JAVA_HOME}"
@@ -129,22 +132,21 @@ src_compile() {
 		;;
 	esac
 
-	use apache2 && myconf="${myconf} --with-apxs=${APXS2}"
-	use apache2 || myconf="${myconf} --without-apxs"
-
-	myconf="${myconf} --with-apr=${EPREFIX}/usr/bin/$(apr_config) --with-apr-util=${EPREFIX}/usr/bin/$(apu_config)"
 	append-flags $("${EPREFIX}"/usr/bin/$(apr_config) --cppflags)
 
 	econf ${myconf} \
+		--with-apr="${EPREFIX}"/usr/bin/$(apr_config) \
+		--with-apr-util="${EPREFIX}"/usr/bin/$(apu_config) \
+		$(use_with apache2 apxs ${APXS2}) \
 		$(use_with berkdb berkeley-db) \
-		$(use_with python) \
+		$(use_enable debug maintainer-mode) \
 		$(use_enable nls) \
 		--disable-experimental-libtool \
 		--disable-mod-activation \
 		|| die "econf failed"
 
 	# Respect the user LDFLAGS
-	export EXTRA_LDFLAGS="${LDFLAGS}"
+	export SWIG_LDFLAGS="${LDFLAGS}"
 
 	# Build subversion, but do it in a way that is safe for parallel builds.
 	# Also apparently the included apr has a libtool that doesn't like -L flags.
@@ -216,7 +218,7 @@ src_install () {
 
 	if use java ; then
 		make DESTDIR="${D}" install-javahl || die "make install-javahl failed"
-		java-pkg_regso "${ED}"/usr/$(get_libdir)/libsvnjavahl*.so
+		java-pkg_regso "${ED}"/usr/$(get_libdir)/libsvnjavahl*$(get_libname)
 		java-pkg_dojar "${ED}"/usr/$(get_libdir)/svn-javahl/svn-javahl.jar
 		rm -Rf "${ED}"/usr/$(get_libdir)/svn-javahl/*.jar
 	fi
@@ -265,14 +267,16 @@ EOF
 	rm -f contrib/client-side/svn_load_dirs.pl
 
 	# Install svnserve init-script and xinet.d snippet, bug 43245
-	newinitd "${FILESDIR}"/svnserve.initd svnserve
-	if use apache2 ; then
-		newconfd "${FILESDIR}"/svnserve.confd svnserve
-	else
-		newconfd "${FILESDIR}"/svnserve.confd2 svnserve
+	if use svnserve; then
+		newinitd "${FILESDIR}"/svnserve.initd svnserve
+		if use apache2 ; then
+			newconfd "${FILESDIR}"/svnserve.confd svnserve
+		else
+			newconfd "${FILESDIR}"/svnserve.confd2 svnserve
+		fi
+		insinto /etc/xinetd.d
+		newins "${FILESDIR}"/svnserve.xinetd svnserve
 	fi
-	insinto /etc/xinetd.d
-	newins "${FILESDIR}"/svnserve.xinetd svnserve
 
 	# Install documentation
 	dodoc BUGS CHANGES COMMITTERS COPYING HACKING INSTALL README TRANSLATING
@@ -340,15 +344,17 @@ pkg_postinst() {
 	elog
 	elog "Subversion has multiple server types, take your pick:"
 	elog
-	elog " - svnserve daemon: "
-	elog "   1. edit /etc/conf.d/svnserve"
-	elog "   2. start daemon: /etc/init.d/svnserve start"
-	elog "   3. make persistent: rc-update add svnserve default"
-	elog
-	elog " - svnserve via xinetd:"
-	elog "   1. edit /etc/xinetd.d/svnserve (remove disable line)"
-	elog "   2. restart xinetd.d: /etc/init.d/xinetd restart"
-	elog
+	if use svnserve; then
+		elog " - svnserve daemon: "
+		elog "   1. edit /etc/conf.d/svnserve"
+		elog "   2. start daemon: /etc/init.d/svnserve start"
+		elog "   3. make persistent: rc-update add svnserve default"
+		elog
+		elog " - svnserve via xinetd:"
+		elog "   1. edit /etc/xinetd.d/svnserve (remove disable line)"
+		elog "   2. restart xinetd.d: /etc/init.d/xinetd restart"
+		elog
+	fi
 	elog " - svn over ssh:"
 	elog "   1. Fix the repository permissions:"
 	elog "        groupadd svnusers"
@@ -363,8 +369,7 @@ pkg_postinst() {
 	elog "         umask 002"
 	elog "         exec /usr/bin/svnserve \${SVNSERVE_OPTS} \"\$@\""
 	elog
-
-	if use apache2 ; then
+	if use apache2; then
 		elog " - http-based server:"
 		elog "   1. edit /etc/conf.d/apache2 to include both \"-D DAV\" and \"-D SVN\""
 		elog "   2. create an htpasswd file:"
@@ -409,8 +414,10 @@ pkg_config() {
 		"${EROOT}usr/bin/svnadmin" create "${EROOT}${SVN_REPOS_LOC}/repos"
 
 		einfo ">>> Setting repository permissions ..."
-		SVNSERVE_USER="$(. ${EROOT}etc/conf.d/svnserve ; echo ${SVNSERVE_USER})"
-		SVNSERVE_GROUP="$(. ${EROOT}etc/conf.d/svnserve ; echo ${SVNSERVE_GROUP})"
+		if use svnserve; then
+			SVNSERVE_USER="$(. ${EROOT}etc/conf.d/svnserve ; echo ${SVNSERVE_USER})"
+			SVNSERVE_GROUP="$(. ${EROOT}etc/conf.d/svnserve ; echo ${SVNSERVE_GROUP})"
+		fi
 		if use apache2 ; then
 			[[ -z "${SVNSERVE_USER}" ]] && SVNSERVE_USER="apache"
 			[[ -z "${SVNSERVE_GROUP}" ]] && SVNSERVE_GROUP="apache"

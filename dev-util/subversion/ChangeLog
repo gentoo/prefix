@@ -1,6 +1,18 @@
 # ChangeLog for dev-util/subversion
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.284 2007/11/14 01:17:20 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.286 2007/12/28 15:25:15 hollow Exp $
+
+  28 Dec 2007; Benedikt Böhm <hollow@gentoo.org> subversion-1.4.6.ebuild:
+  fix #203564
+
+*subversion-1.4.6 (28 Dec 2007)
+
+  28 Dec 2007; Benedikt Böhm <hollow@gentoo.org>
+  -files/subversion-1.3.2-neon-0.26.patch,
+  -files/subversion-1.4.3-neon-0.26.3.patch, metadata.xml,
+  -subversion-1.3.2-r4.ebuild, -subversion-1.4.4-r4.ebuild,
+  +subversion-1.4.6.ebuild:
+  version bump (fixes #128624, #203257 and maybe #199639, #200082); cleanup
 
   14 Nov 2007; Chris Gianelloni <wolf31o2@gentoo.org>
   subversion-1.4.5.ebuild:
