@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/IO-String
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-String/ChangeLog,v 1.44 2006/10/09 15:43:27 mcummings Exp $
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-String/ChangeLog,v 1.45 2007/12/29 10:16:50 welp Exp $
+
+  29 Dec 2007; <welp@gentoo.org> IO-String-1.08.ebuild:
+  Keyworded ~sparc-fbsd; bug 203655
 
   09 Oct 2006; Michael Cummings <mcummings@gentoo.org>
   -IO-String-1.03.ebuild, -IO-String-1.05.ebuild, -IO-String-1.06.ebuild,
