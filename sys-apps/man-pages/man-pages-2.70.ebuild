@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-2.70.ebuild,v 1.2 2007/12/08 02:21:32 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-2.70.ebuild,v 1.3 2007/12/29 23:10:19 vapier Exp $
 
 EAPI="prefix"
 
@@ -14,6 +14,7 @@ LICENSE="freedist"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~x86"
 IUSE="nls"
+RESTRICT="binchecks"
 
 RDEPEND="virtual/man"
 PDEPEND="nls? (
