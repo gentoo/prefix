@@ -12,7 +12,7 @@ SRC_URI="mirror://debian/pool/main/libl/${PN}/${PN}_${PV}.tar.gz"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-fbsd"
+KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE=""
 
 src_unpack() {
@@ -26,7 +26,7 @@ src_unpack() {
 	# I didn't feel like making the Makefile portable
 	[[ ${CHOST} == *-darwin* ]] \
 		&& cp ${FILESDIR}/Makefile.Darwin.in Makefile.in
-
+	
 	# Rename an internal function so it does not conflict with
 	# libc's function.
 	sed -i -e 's/eaccess/egidaccess/g' *.c
@@ -39,6 +39,8 @@ src_unpack() {
 }
 
 src_compile() {
+	# we never want to use LDCONFIG
+	export LDCONFIG=${EPREFIX}/bin/true
 	# in privileged installs this is "mail"
 	econf --with-mailgroup=`id -gn` --enable-shared || die
 	emake || die
