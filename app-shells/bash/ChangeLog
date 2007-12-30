@@ -1,6 +1,15 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.160 2007/12/28 19:15:17 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.163 2007/12/29 17:17:12 armin76 Exp $
+
+  29 Dec 2007; Raúl Porcel <armin76@gentoo.org> bash-3.2_p17-r1.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #203603
+
+  29 Dec 2007; Brent Baude <ranger@gentoo.org> bash-3.2_p17-r1.ebuild:
+  Marking bash-3.2_p17-r1 ppc64 for bug 203603
+
+  29 Dec 2007; nixnut <nixnut@gentoo.org> bash-3.2_p17-r1.ebuild:
+  Stable on ppc wrt bug 203603
 
   28 Dec 2007; Doug Klima <cardoe@gentoo.org> bash-3.2_p17-r1.ebuild:
   amd64 stable wrt bug #203603
