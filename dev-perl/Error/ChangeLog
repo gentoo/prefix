@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Error
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Error/ChangeLog,v 1.49 2007/07/05 21:48:27 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Error/ChangeLog,v 1.50 2007/12/29 10:39:31 welp Exp $
+
+  29 Dec 2007; <welp@gentoo.org> Error-0.17.008.ebuild:
+  Keyworded ~sparc-fbsd; bug 203655
 
   05 Jul 2007; Raúl Porcel <armin76@gentoo.org> Error-0.17.008.ebuild:
   alpha stable
