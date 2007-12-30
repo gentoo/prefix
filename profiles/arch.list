@@ -13,7 +13,3 @@ x86-interix
 hppa-hpux
 ia64-hpux
 x86-fbsd
-
-# this is a very special entry, which doesn't represent an arch, but
-# silences portage's "prefix not in IUSE" messages
-prefix
