@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.2-r3.ebuild,v 1.1 2007/12/14 19:33:36 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.2-r3.ebuild,v 1.3 2007/12/29 17:03:06 ranger Exp $
 
 EAPI="prefix"
 
