@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8066 2007/12/29 02:07:02 wltjr Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8071 2007/12/30 04:42:17 omp Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -20,6 +20,12 @@
 ##
 ##   End example
 ##
+
+# David Shakaryan <omp@gentoo.org> (30 Dec 2007)
+# Masked pending removal 30 Jan 2008.
+# Extremely old themes not exhibiting Openbox's newer theming options.
+# Openbox will be moving to an XML-based theming engine in the future.
+x11-themes/openbox-themes
 
 # William L. Thomson Jr. <wltjr@gentoo.org> (28 Dec 2007)
 # Gen 1 java ebuild, dep of masked jboss, no maintainer or any contributors
@@ -108,7 +114,7 @@ www-servers/jboss
 # Christian Faulhammer <opfer@gentoo.org>
 # Mask qt-4.4 package while testing them in portage
 # Plus packages depending on them
-~app-admin/keepassx-0.2.2
+=app-admin/keepassx-0.2.2-r2
 =x11-libs/qt-4.4*
 =x11-libs/qt-assistant-4.4*
 =x11-libs/qt-core-4.4*
@@ -454,7 +460,8 @@ net-voip/telepathy-butterfly
 # needs baselayout-2, wait masked here till that's available.
 # Note: the init script might change without warning while
 # the ebuild is masked.
-=media-sound/pulseaudio-0.9.8-r3
+=media-sound/pulseaudio-0.9.8-r5
+=media-sound/pulseaudio-0.9.8-r7
 
 # Markus Ullmann <jokey@gentoo.org> (20 Oct 2007)
 # dependency unneeded now, merged upstream

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3244 2007/12/29 03:11:32 rich0 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3247 2007/12/30 00:25:39 vapier Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -138,6 +138,7 @@ app-emulation/virtualbox-bin:additions - Install Guest System Tools ISO
 app-emulation/virtualbox-bin:sdk - Enable building of SDK
 app-emulation/virtualbox:additions - Install Guest System Tools ISO
 app-emulation/virtualbox:sdk - Enable building of SDK
+app-emulation/wine:gecko - Add support for the Gecko engine when using iexplore
 app-emulation/xen-tools:custom-cflags - Use CFLAGS from /etc/make.conf rather than the default Xen CFLAGS (not supported)
 app-emulation/xen-tools:hvm - Enable support for hardware based virtualization (VT-x, AMD-v)
 app-emulation/xen-tools:pygrub - Install the pygrub boot loader
@@ -928,8 +929,8 @@ media-libs/glide-v3:voodoo5 - Support 3DFX Voodoo4 and Voodoo5 video cards
 media-libs/libggi:vis - Enables sparc vis support for libggi
 media-libs/libifp:module - Build kernel module for non-root usage
 media-libs/libkarma:mono - Build with mono support
+media-libs/libsdl:custom-cflags - Allow users to use any CFLAGS they like completely (at their own risk)
 media-libs/libsdl:noaudio - Allow users to disable audio support completely (at their own risk)
-media-libs/libsdl:noflagstrip - Allow users to use any CFLAGS they like completely (at their own risk)
 media-libs/libsdl:nojoystick - Allow users to disable joystick support completely (at their own risk)
 media-libs/libsdl:novideo - Allow users to disable video support completely (at their own risk)
 media-libs/libvorbis:aotuv - Allow users to enable aoTuV encoder enhancements
@@ -1033,6 +1034,7 @@ media-sound/noteedit:kmid - Use KDE's kmid to play sound
 media-sound/noteedit:tse3 - Use tse3 library to play/export sound
 media-sound/picard:cdaudio - Enable support for CD Index Lookups.
 media-sound/podcatcher:bittorrent - Enable support for bittorrent downloads
+media-sound/pulseaudio:asyncns - Use libasyncns for asynchronous name resolution.
 media-sound/pulseaudio:policykit - Enable support for PolicyKit framework.
 media-sound/quodlibet:mmkeys - Enable support for special keys on multimedia keyboards
 media-sound/quodlibet:trayicon - Enable support for trayicon
