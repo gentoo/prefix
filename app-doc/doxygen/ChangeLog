@@ -1,6 +1,12 @@
 # ChangeLog for app-doc/doxygen
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.135 2007/12/15 07:06:36 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.137 2007/12/29 19:21:30 ranger Exp $
+
+  29 Dec 2007; Brent Baude <ranger@gentoo.org> doxygen-1.5.4.ebuild:
+  Marking doxygen-1.5.4 ppc for bug 203652
+
+  29 Dec 2007; Brent Baude <ranger@gentoo.org> doxygen-1.5.4.ebuild:
+  Marking doxygen-1.5.4 ppc64 for bug 203652
 
   15 Dec 2007; Steve Arnold <nerdboy@gentoo.org> doxygen-1.5.4.ebuild:
   Updated depends for bug 202027 (added virtual/libconv and implicit
