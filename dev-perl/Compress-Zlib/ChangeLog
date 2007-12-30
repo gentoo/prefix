@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Compress-Zlib
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Compress-Zlib/ChangeLog,v 1.82 2007/11/19 02:43:56 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Compress-Zlib/ChangeLog,v 1.83 2007/12/29 10:31:12 welp Exp $
+
+  29 Dec 2007; <welp@gentoo.org> Compress-Zlib-2.005.ebuild:
+  Keyworded ~sparc-fbsd; bug 203655
 
   19 Nov 2007; Joshua Kinard <kumba@gentoo.org> Compress-Zlib-2.005.ebuild:
   Stable on mips.
