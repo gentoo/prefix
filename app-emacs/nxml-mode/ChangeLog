@@ -1,6 +1,10 @@
 # ChangeLog for app-emacs/nxml-mode
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/ChangeLog,v 1.29 2007/12/28 17:23:57 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/ChangeLog,v 1.30 2007/12/29 17:59:07 armin76 Exp $
+
+  29 Dec 2007; Raúl Porcel <armin76@gentoo.org>
+  nxml-mode-20041004-r3.ebuild:
+  alpha stable wrt #203585
 
   28 Dec 2007; nixnut <nixnut@gentoo.org> nxml-mode-20041004-r3.ebuild:
   Stable on ppc wrt bug 203585
