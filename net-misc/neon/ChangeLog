@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/neon
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.93 2007/12/28 17:55:34 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.95 2007/12/29 18:37:58 armin76 Exp $
+
+  29 Dec 2007; Raúl Porcel <armin76@gentoo.org> neon-0.26.4.ebuild:
+  alpha/ia64/sparc stable wrt #203260
+
+  29 Dec 2007; Brent Baude <ranger@gentoo.org> neon-0.26.4.ebuild:
+  Marking neon-0.26.4 ppc64 for bug 203260
 
   28 Dec 2007; Markus Meier <maekke@gentoo.org> neon-0.26.4.ebuild:
   x86 stable, bug #203260
