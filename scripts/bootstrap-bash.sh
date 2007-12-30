@@ -14,7 +14,7 @@ cd "$1"
 mkdir bash-build
 cd bash-build
 
-fetch http://ftp.gnu.org/gnu/bash/bash-3.2.tar.gz
+ftp http://ftp.gnu.org/gnu/bash/bash-3.2.tar.gz
 gzip -d bash-3.2.tar.gz
 tar -xf bash-3.2.tar
 cd bash-3.2
