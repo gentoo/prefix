@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.12.ebuild,v 1.3 2007/12/10 23:05:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.12.ebuild,v 1.4 2007/12/30 00:25:20 vapier Exp $
 
 EAPI="prefix"
 
@@ -14,10 +14,10 @@ LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~x86-fbsd ~x86-macos"
 # WARNING:
-# if you have the noaudio, novideo, nojoystick, or noflagstrip use flags
+# if you have the noaudio, novideo, nojoystick, or custom-cflags use flags
 # in USE and something breaks, you pick up the pieces.  Be prepared for
 # bug reports to be marked INVALID.
-IUSE="oss alsa esd arts nas X dga xv xinerama fbcon directfb ggi svga aalib opengl libcaca noaudio novideo nojoystick noflagstrip"
+IUSE="oss alsa esd arts nas X dga xv xinerama fbcon directfb ggi svga aalib opengl libcaca noaudio novideo nojoystick custom-cflags"
 
 RDEPEND="!noaudio? ( >=media-libs/audiofile-0.1.9 )
 	alsa? ( media-libs/alsa-lib )
@@ -62,10 +62,10 @@ pkg_setup() {
 		ewarn "you're doing to selectively turn off parts of libsdl."
 		epause 30
 	fi
-	if use noflagstrip ; then
+	if use custom-cflags ; then
 		ewarn "Since you've chosen to use possibly unsafe CFLAGS,"
 		ewarn "don't bother filing libsdl-related bugs until trying to remerge"
-		ewarn "libsdl without the noflagstrip use flag in USE."
+		ewarn "libsdl without the custom-cflags use flag in USE."
 		epause 10
 	fi
 }
@@ -91,7 +91,7 @@ src_compile() {
 	else
 		myconf="${myconf} --enable-nasm"
 	fi
-	use noflagstrip || strip-flags
+	use custom-cflags || strip-flags
 	use noaudio && myconf="${myconf} --disable-audio"
 	use novideo \
 		&& myconf="${myconf} --disable-video" \
