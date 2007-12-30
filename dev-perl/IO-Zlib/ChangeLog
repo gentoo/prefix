@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/IO-Zlib
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Zlib/ChangeLog,v 1.30 2007/12/17 18:15:56 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Zlib/ChangeLog,v 1.31 2007/12/29 10:32:37 welp Exp $
+
+  29 Dec 2007; <welp@gentoo.org> IO-Zlib-1.07.ebuild:
+  Keyworded ~sparc-fbsd; bug 203655
 
   17 Dec 2007; Samuli Suominen <drac@gentoo.org> IO-Zlib-1.07.ebuild:
   amd64 stable
