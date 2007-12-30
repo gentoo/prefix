@@ -5,7 +5,7 @@
          if (lutimes(name, times) != 0)
  #else
 -        if (!S_ISLNK(a->mode) && utimes(name, times) != 0)
-+        if (!S_ISLNK(cpio->mode) && utimes(name, times) != 0)
++        if (!S_ISLNK(archive_entry_mode(entry)) && utimes(name, times) != 0)
  #endif
                  cpio_warnc(errno, "Can't update time for %s", name);
  #endif
