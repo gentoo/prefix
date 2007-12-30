@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/wxwidgets.eclass,v 1.24 2007/12/21 04:32:41 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/wxwidgets.eclass,v 1.25 2007/12/25 14:46:29 leio Exp $
 
 # @ECLASS:			wxwidgets.eclass
 # @MAINTAINER:
@@ -226,9 +226,12 @@ need-wxwidgets() {
 check_wxuse() {
 	debug-print-function $FUNCNAME $*
 
-	[[ -n ${WX_GTK_VER} ]] \
-		|| _wxerror "WX_GTK_VER must be set before calling"
-
+	if [[ -z ${WX_GTK_VER} ]]; then
+		echo
+		eerror "WX_GTK_VER must be set before calling $FUNCNAME."
+		echo
+		die "WX_GTK_VER missing"
+	fi
 
 	ebegin "Checking wxGTK-${WX_GTK_VER} for ${1} support"
 	if built_with_use =x11-libs/wxGTK-${WX_GTK_VER}* "${1}"; then

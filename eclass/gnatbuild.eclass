@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.34 2007/10/10 18:17:58 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.35 2007/12/27 08:51:47 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -17,10 +17,13 @@ DESCRIPTION="Based on the ${ECLASS} eclass"
 IUSE="nls"
 # multilib is supported via profiles now, multilib usevar is deprecated
 
-DEPEND="!dev-lang/gnat"
+DEPEND=">=app-admin/eselect-gnat-1.3"
 RDEPEND="app-admin/eselect-gnat"
 
-#PROVIDE="virtual/gnat"
+# Note!
+# It may not be safe to source this at top level. Only source inside local
+# functions!
+GnatCommon="/usr/share/gnat/lib/gnat-common.bash"
 
 #---->> globals and SLOT <<----
 
@@ -88,7 +91,8 @@ BINPATH=${PREFIX}/${CTARGET}/${PN}-bin/${SLOT}
 DATAPATH=${PREFIX}/share/${PN}-data/${CTARGET}/${SLOT}
 # ATTN! the one below should match the path defined in eselect-gnat module
 CONFIG_PATH="/usr/share/gnat/eselect"
-gnat_config_file="${ED}/${CONFIG_PATH}/${CTARGET}-${PN}-${SLOT}"
+gnat_profile="${CTARGET}-${PN}-${SLOT}"
+gnat_config_file="${CONFIG_PATH}/${gnat_profile}"
 
 
 # ebuild globals
@@ -142,27 +146,27 @@ add_profile_eselect_conf() {
 	local abi=$2
 	local var
 
-	echo >> ${gnat_config_file}
+	echo >> "${ED}/${gnat_config_file}"
 	if ! is_multilib ; then
-		echo "  ctarget=${CTARGET}" >> ${gnat_config_file}
+		echo "  ctarget=${CTARGET}" >> "${ED}/${gnat_config_file}"
 	else
-		echo "[${abi}]" >> ${gnat_config_file}
+		echo "[${abi}]" >> "${ED}/${gnat_config_file}"
 		var="CTARGET_${abi}"
 		if [[ -n ${!var} ]] ; then
-			echo "  ctarget=${!var}" >> ${gnat_config_file}
+			echo "  ctarget=${!var}" >> "${ED}/${gnat_config_file}"
 		else
 			var="CHOST_${abi}"
 			if [[ -n ${!var} ]] ; then
-				echo "  ctarget=${!var}" >> ${gnat_config_file}
+				echo "  ctarget=${!var}" >> "${ED}/${gnat_config_file}"
 			else
-				echo "  ctarget=${CTARGET}" >> ${gnat_config_file}
+				echo "  ctarget=${CTARGET}" >> "${ED}/${gnat_config_file}"
 			fi
 		fi
 	fi
 
 	var="CFLAGS_${abi}"
 	if [[ -n ${!var} ]] ; then
-		echo "  cflags=${!var}" >> ${gnat_config_file}
+		echo "  cflags=${!var}" >> "${ED}/${gnat_config_file}"
 	fi
 }
 
@@ -172,19 +176,17 @@ create_eselect_conf() {
 
 	dodir ${CONFIG_PATH}
 
-	echo "[global]" > ${gnat_config_file}
-	echo "  version=${CTARGET}-${SLOT}" >> ${gnat_config_file}
-	echo "  binpath=${BINPATH}" >> ${gnat_config_file}
-	echo "  libexecpath=${LIBEXECPATH}" >> ${gnat_config_file}
-	echo "  ldpath=${LIBPATH}" >> ${gnat_config_file}
-	echo "  manpath=${DATAPATH}/man" >> ${gnat_config_file}
-	echo "  infopath=${DATAPATH}/info" >> ${gnat_config_file}
-#     echo "  alias_cc=gcc" >> ${compiler_config_file}
-#     echo "  stdcxx_incdir=${STDCXX_INCDIR##*/}" >> ${compiler_config_file}
-	echo "  bin_prefix=${CTARGET}" >> ${gnat_config_file}
+	echo "[global]" > "${ED}/${gnat_config_file}"
+	echo "  version=${CTARGET}-${SLOT}" >> "${ED}/${gnat_config_file}"
+	echo "  binpath=${BINPATH}" >> "${ED}/${gnat_config_file}"
+	echo "  libexecpath=${LIBEXECPATH}" >> "${ED}/${gnat_config_file}"
+	echo "  ldpath=${LIBPATH}" >> "${ED}/${gnat_config_file}"
+	echo "  manpath=${DATAPATH}/man" >> "${ED}/${gnat_config_file}"
+	echo "  infopath=${DATAPATH}/info" >> "${ED}/${gnat_config_file}"
+	echo "  bin_prefix=${CTARGET}" >> "${ED}/${gnat_config_file}"
 
 	for abi in $(get_all_abis) ; do
-		add_profile_eselect_conf "${gnat_config_file}" "${abi}"
+		add_profile_eselect_conf "${ED}/${gnat_config_file}" "${abi}"
 	done
 }
 
@@ -277,6 +279,18 @@ gnatbuild_pkg_postinst() {
 	if should_we_eselect_gnat; then
 		do_gnat_config
 	fi
+
+	# if primary compiler list is empty, add this profile to the list, so
+	# that users are not left without active compilers (making sure that
+	# libs are getting built for at least one)
+	elog ""
+	. ${GnatCommon} || die "failed to source common code"
+	if [[ ! -f ${PRIMELIST} ]] || [[ ! -s ${PRIMELIST} ]]; then
+		echo "${gnat_profile}" > ${PRIMELIST}
+		elog "The list of primary compilers was empty and got assigned ${gnat_profile}."
+	fi
+	elog "Please edit ${PRIMELIST} and list there gnat profiles intended"
+	elog "for common use."
 }
 
 
@@ -517,7 +531,7 @@ gnatbuild_src_install() {
 		# Looks like we need an access to the bootstrap compiler here too
 		# as gnat apparently wants to compile something during the installation
 		# The spotted obuser was xgnatugn, used to process gnat_ugn_urw.texi,
-		# during prepping the documentation.
+		# during preparison of the docs.
 		export PATH="${GNATBOOT}/bin:${PATH}"
 		GNATLIB="${GNATBOOT}/lib/gnatgcc/${BOOT_TARGET}/${BOOT_SLOT}"
 
@@ -545,13 +559,6 @@ gnatbuild_src_install() {
 
 		cd "${GNATBUILD}"
 		make DESTDIR=${D} install || die
-#		# The install itself. Straight make DESTDIR=${D} install causes access
-#		# violation (unlink of gprmake). A siple workaround for now.
-#		cd "${GNATBUILD}"
-#		make DESTDIR=${D} bindir="${D}${BINPATH}"  install || die
-#		mv "${ED}${ED}${PREFIX}/${CTARGET}" "${ED}${PREFIX}" \
-#			|| die "please post the fialed mv line to #178140"
-#		rm -rf "${ED}var"
 
 		#make a convenience info link
 		dosym ${DATAPATH}/info/gnat_ugn_unw.info ${DATAPATH}/info/gnat.info

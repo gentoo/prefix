@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.7 2007/11/14 20:43:43 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.8 2007/12/27 01:02:30 robbat2 Exp $
 
 ## --------------------------------------------------------------------------- #
 # subversion.eclass author: Akinori Hattori <hattya@gentoo.org>
@@ -113,6 +113,8 @@ EGIT_DIFFSTAT_CMD="git diff --stat"
 ## -- EGIT_BRANCH:
 #
 # git eclass can fetch any branch in git_fetch().
+# If set, it must be before 'inherit git', otherwise both EGIT_BRANCH and
+# EGIT_TREE must be set after 'inherit git'.
 # Defaults to 'master'
 #
 : ${EGIT_BRANCH:=master}

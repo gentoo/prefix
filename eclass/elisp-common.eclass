@@ -1,11 +1,11 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.33 2007/12/12 21:58:57 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.34 2007/12/28 17:48:34 ulm Exp $
 #
-# Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
-# Copyright 2004-2005 Mamoru Komachi <usata@gentoo.org>
 # Copyright 2003 Jeremy Maitin-Shepard <jbms@attbi.com>
+# Copyright 2004-2005 Mamoru Komachi <usata@gentoo.org>
+# Copyright 2007 Christian Faulhammer <opfer@gentoo.org>
 # Copyright 2007 Ulrich Mueller <ulm@gentoo.org>
 #
 # @ECLASS: elisp-common.eclass
@@ -202,7 +202,7 @@ elisp-comp() {
 # Output version of currently active Emacs.
 
 elisp-emacs-version() {
-	# The following will work for at least versions 18-23.
+	# The following will work for at least versions 18--23.
 	echo "(princ emacs-version)" >"${T}"/emacs-version.el
 	${EMACS} ${EMACSFLAGS} -l "${T}"/emacs-version.el
 }
@@ -264,28 +264,28 @@ elisp-install() {
 # Install Emacs site-init file in SITELISP directory.
 
 elisp-site-file-install() {
-	local sf="$1" my_pn="${2:-${PN}}"
+	local sf="${1##*/}" my_pn="${2:-${PN}}"
 	ebegin "Installing site initialisation file for GNU Emacs"
-	cp "${sf}" "${T}"
+	cp "$1" "${T}/${sf}"
 	sed -i -e "s:@SITELISP@:${ESITELISP}/${my_pn}:g" \
-		-e "s:@SITEETC@:${ESITEETC}/${my_pn}:g" "${T}/${sf##*/}"
+		-e "s:@SITEETC@:${SITEETC}/${my_pn}:g" "${T}/${sf}"
 	( # subshell to avoid pollution of calling environment
-		insinto "${SITELISP}"
-		doins "${T}/${sf##*/}"
+		insinto "${SITELISP}/site-gentoo.d"
+		doins "${T}/${sf}"
 	)
 	eend $? "doins failed"
 }
 
 # @FUNCTION: elisp-site-regen
 # @DESCRIPTION:
-# Regenerate site-gentoo.el file.
-
-# Old location for site initialisation files of packages was
-# /usr/share/emacs/site-lisp/.  It is planned to change this to
-# /usr/share/emacs/site-lisp/site-gentoo.d/.
+# Regenerate site-gentoo.el file.  The old location for site initialisation
+# files of packages was /usr/share/emacs/site-lisp/.  In December 2007 this
+# has been changed to /usr/share/emacs/site-lisp/site-gentoo.d/.  Remerge of
+# packages with Emacs support is enough, the old location is still supported
+# when generating the start-up file.
 
 elisp-site-regen() {
-	local i sf line
+	local i sf line obsolete
 	local -a sflist
 
 	if [ ! -e "${EROOT}${SITELISP}"/site-gentoo.el ] \
@@ -326,6 +326,8 @@ elisp-site-regen() {
 			sflist[i]=${sflist[i-1]}
 		done
 		sflist[i]=${sf}
+		# set a flag if there are obsolete files
+		[ "${sf%/*}" = "${EROOT}${SITELISP}" ] && obsolete=t
 	done
 
 	eval "${old_shopts}"
@@ -381,17 +383,27 @@ automatically, you can add a line like this:
 to ${EPREFIX}/usr/share/emacs/site-lisp/site-start.el.  Alternatively, that line
 can be added by individual users to their initialisation files, or,
 for greater flexibility, users can load individual package-specific
-initialisation files from ${EPREFIX}/usr/share/emacs/site-lisp/.
+initialisation files from ${EPREFIX}/usr/share/emacs/site-lisp/site-gentoo.d/.
 EOF
 		echo
 	fi
 
 	# Kludge for backwards compatibility: During pkg_postrm, old versions
-	# of this eclass (saved in the PDB) won't find packages' site-init files
+	# of this eclass (saved in the VDB) won't find packages' site-init files
 	# in the new location. So we copy them to an auxiliary file that is
 	# visible to old eclass versions.
 	for sf in "${sflist[@]}"; do
 		[ "${sf%/*}" = "${EROOT}${SITELISP}/site-gentoo.d" ] \
 			&& cat "${sf}" >>"${EROOT}${SITELISP}"/00site-gentoo.el
 	done
+
+#	if [ "${obsolete}" ]; then
+#		while read line; do ewarn "${line}"; done <<-EOF
+#		Site-initialisation files of Emacs packages are now installed in
+#		/usr/share/emacs/site-lisp/site-gentoo.d/. You may consider using
+#		/usr/sbin/emacs-updater to rebuild the installed Emacs packages.
+#		However, the old location is still supported.
+#		EOF
+#		echo
+#	fi
 }

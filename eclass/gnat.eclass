@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.30 2007/12/14 12:16:56 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.32 2007/12/29 23:41:29 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -31,12 +31,16 @@ inherit flag-o-matic eutils
 # functions!
 GnatCommon="/usr/share/gnat/lib/gnat-common.bash"
 
+# !!NOTE!!
+# src_install should not be exported!
+# Instead gnat_src_install should be explicitly called from within src_install.
 EXPORT_FUNCTIONS pkg_setup pkg_postinst src_compile
 
 DESCRIPTION="Common procedures for building Ada libs using split gnat compilers"
 
-# really need to make sure we have eselect with new eclass version
-DEPEND=">=app-admin/eselect-gnat-1.1"
+# make sure we have an appropriately recent eselect-gnat installed, as we are
+# using some common code here.
+DEPEND=">=app-admin/eselect-gnat-1.3"
 
 
 # ----------------------------------
@@ -99,6 +103,61 @@ expand_BuildEnv() {
 
 
 # ------------------------------------
+# Dependency processing related stuff
+
+# A simple wrapper to get the relevant part of the DEPEND
+# params:
+#  $1 - should contain dependency specification analogous to DEPEND,
+#       if omitted, DEPEND is processed
+get_ada_dep() {
+	[[ -z "$1" ]] && DEP="${DEPEND}" || DEP="$1"
+	local TempStr
+	for fn in $DEP; do # here $DEP should *not* be in ""
+		[[ $fn =~ "virtual/ada" ]] && TempStr=${fn/*virtual\//}
+		# above match should be to full virtual/ada, as simply "ada" is a common
+		# part of ${PN}, even for some packages under dev-ada
+	done
+#	debug-print-function $FUNCNAME "TempStr=${TempStr:0:8}"
+	[[ -n ${TempStr} ]] && echo ${TempStr:0:8}
+}
+
+# This function is used to check whether the requested gnat profile matches the
+# requested Ada standard
+# !!ATTN!!
+# This must match dependencies as specified in vitrual/ada !!!
+#
+# params:
+#  $1 - the requested gnat profile in usual form (e.g. x86_64-pc-linux-gnu-gnat-gcc-4.1)
+#  $2 - Ada standard specification, as would be specified in DEPEND. 
+#       Valid  values: ada-1995, ada-2005, ada
+#       Since standard variants are (mostly) backwards-compatible, ada-1995 and
+#       simply "ada" produce the same results (at least until ada-1983 is adde,
+#       which is rather unlikely).
+belongs_to_standard() {
+#	debug-print-function $FUNCNAME $*
+	. ${GnatCommon} || die "failed to source gnat-common lib"
+	if [[ $2 == 'ada' ]] || [[ $2 == 'ada-1995' ]]; then
+#		debug-print-function "ada or ada-1995 match"
+		return 0 # no restrictions imposed
+	elif [[ "$2" == 'ada-2005' ]]; then
+		local GnatSlot=$(get_gnat_SLOT $1)
+		local ReducedSlot=${GnatSlot//\./}
+		if [[ $(get_gnat_Pkg $1) == "gcc" ]]; then
+#			debug-print-function "got gcc profile, GnatSlot=${ReducedSlot}"
+			[[ ${ReducedSlot} -ge "43" ]] && return 0 || return 1
+		elif [[ $(get_gnat_Pkg $1) == "gpl" ]]; then
+#			debug-print-function "got gpl profile, GnatSlot=${ReducedSlot}"
+			[[ ${ReducedSlot} -ge "41" ]] && return 0 || return 1
+		else
+			return 1 # unknown compiler encountered
+		fi
+	else
+		return 1 # unknown standard requested, check spelling!
+	fi
+}
+
+
+# ------------------------------------
 # Helpers
 #
 
@@ -137,7 +196,7 @@ get_gnat_value() {
 }
 
 
-# Returns a name of active gnat profile. Peroroms some validity checks. No input
+# Returns a name of active gnat profile. Performs some validity checks. No input
 # parameters, analyzes the system setup directly.
 get_active_profile() {
 	# get common code and settings
@@ -213,6 +272,17 @@ gnat_filter_flags() {
 
 gnat_pkg_setup() {
 	debug-print-function $FUNCNAME $*
+
+	# check whether all the primary compilers are installed
+	. ${GnatCommon} || die "failed to source gnat-common lib"
+	for fn in $(cat ${PRIMELIST}); do
+		if [[ ! -f ${SPECSDIR}/${fn} ]]; then 
+			elog "The ${fn} Ada compiler profile is specified as primary, but is not installed."
+			elog "Please rectify the situation before emerging Ada library!"
+			die "Primary compiler is missing"
+		fi
+	done
+	
 	export ADAC=${ADAC:-gnatgcc}
 	export ADAMAKE=${ADAMAKE:-gnatmake}
 	export ADABIND=${ADABIND:-gnatbind}
@@ -226,7 +296,7 @@ gnat_pkg_postinst() {
 	elog "for the installed library. In order to immediately activate these"
 	elog "settings please run:"
 	elog
-	elog "env-update"
+	#elog "env-update"
 	elog "source /etc/profile"
 	einfo
 	einfo "Otherwise the settings will become active next time you login"
@@ -276,45 +346,56 @@ gnat_src_compile() {
 	# duplicating code or trying to violate sandbox in some way..
 	. ${GnatCommon} || die "failed to source gnat-common lib"
 
-	compilers=( $(find_compilers ) )
+	compilers=( $(find_primary_compilers ) )
 	if [[ -n ${compilers[@]} ]] ; then
 		local i
+		local AdaDep=$(get_ada_dep)
 		for (( i = 0 ; i < ${#compilers[@]} ; i = i + 1 )) ; do
-			debug-print-section "compiling for gnat profile ${compilers[${i}]}"
+			if $(belongs_to_standard ${compilers[${i}]} ${AdaDep}); then
+				einfo "compiling for gnat profile ${compilers[${i}]}"
 
-			# copy sources
-			mkdir "${DL}" "${DLbin}" "${DLgpr}"
-			cp -dpR "${S}" "${SL}"
+				# copy sources
+				mkdir "${DL}" "${DLbin}" "${DLgpr}"
+				cp -dpR "${S}" "${SL}"
 
-			# setup environment
-			# As eselect-gnat also manages the libs, this will ensure the right
-			# lib profiles are activated too (in case we depend on some Ada lib)
-			generate_envFile ${compilers[${i}]} ${BuildEnv} && \
-			expand_BuildEnv "${BuildEnv}" && \
-			. "${BuildEnv}"  || die "failed to switch to ${compilers[${i}]}"
-			# many libs (notably xmlada and gtkada) do not like to see
-			# themselves installed. Need to strip them from ADA_*_PATH
-			# NOTE: this should not be done in pkg_setup, as we setup
-			# environment right above
-			export ADA_INCLUDE_PATH=$(filter_env_var ADA_INCLUDE_PATH)
-			export ADA_OBJECTS_PATH=$(filter_env_var ADA_OBJECTS_PATH)
+				# setup environment
+				# As eselect-gnat also manages the libs, this will ensure the right
+				# lib profiles are activated too (in case we depend on some Ada lib)
+				generate_envFile ${compilers[${i}]} ${BuildEnv} && \
+				expand_BuildEnv "${BuildEnv}" && \
+				. "${BuildEnv}"  || die "failed to switch to ${compilers[${i}]}"
+				# many libs (notably xmlada and gtkada) do not like to see
+				# themselves installed. Need to strip them from ADA_*_PATH
+				# NOTE: this should not be done in pkg_setup, as we setup
+				# environment right above
+				export ADA_INCLUDE_PATH=$(filter_env_var ADA_INCLUDE_PATH)
+				export ADA_OBJECTS_PATH=$(filter_env_var ADA_OBJECTS_PATH)
 
-			# call compilation callback
-			cd "${SL}"
-			gnat_filter_flags ${compilers[${i}]}
-			lib_compile ${compilers[${i}]} || die "failed compiling for ${compilers[${i}]}"
+				# call compilation callback
+				cd "${SL}"
+				gnat_filter_flags ${compilers[${i}]}
+				lib_compile ${compilers[${i}]} || die "failed compiling for ${compilers[${i}]}"
 
-			# call install callback
-			cd "${SL}"
-			lib_install ${compilers[${i}]} || die "failed installing profile-specific part for ${compilers[${i}]}"
-			# move installed and cleanup
-			mv "${DL}" "${DL}-${compilers[${i}]}"
-			mv "${DLbin}" "${DLbin}-${compilers[${i}]}"
-			mv "${DLgpr}" "${DLgpr}-${compilers[${i}]}"
-			rm -rf "${SL}"
+				# call install callback
+				cd "${SL}"
+				lib_install ${compilers[${i}]} || die "failed installing profile-specific part for ${compilers[${i}]}"
+				# move installed and cleanup
+				mv "${DL}" "${DL}-${compilers[${i}]}"
+				mv "${DLbin}" "${DLbin}-${compilers[${i}]}"
+				mv "${DLgpr}" "${DLgpr}-${compilers[${i}]}"
+				rm -rf "${SL}"
+			else
+				einfo "skipping gnat profile ${compilers[${i}]}"
+			fi
 		done
 	else
-		die "please make sure you have at least one gnat compiler installed!"
+		ewarn "Please note!"
+		elog "Treatment of installed Ada compilers has recently changed!"
+		elog "Libs are now being built only for \"primary\" compilers."
+		elog "Please list gnat profiles (as reported by \"eselect gnat list\")"
+		elog "that you want to regularly use (i.e., not just for testing)"
+		elog "in ${PRIMELIST}, one per line."
+		die "please make sure you have at least one gnat compiler installed and set as primary!"
 	fi
 }
 
@@ -328,22 +409,27 @@ gnat_src_install() {
 	. ${GnatCommon} || die "failed to source gnat-common lib"
 	dodir ${SPECSDIR}/${PN}
 
-	compilers=( $(find_compilers ) )
+	compilers=( $(find_primary_compilers) )
 	if [[ -n ${compilers[@]} ]] ; then
 		local i
+		local AdaDep=$(get_ada_dep)
 		for (( i = 0 ; i < ${#compilers[@]} ; i = i + 1 )) ; do
-			debug-print-section "installing for gnat profile ${compilers[${i}]}"
+			if $(belongs_to_standard ${compilers[${i}]} ${AdaDep}); then
+				debug-print-section "installing for gnat profile ${compilers[${i}]}"
 
-			local DLlocation=${AdalibLibTop}/${compilers[${i}]}
-			dodir ${DLlocation}
-			cp -dpR "${DL}-${compilers[${i}]}" "${D}/${DLlocation}/${PN}"
-			cp -dpR "${DLbin}-${compilers[${i}]}" "${ED}/${DLlocation}"/bin
-			cp -dpR "${DLgpr}-${compilers[${i}]}" "${ED}/${DLlocation}"/gpr
-			# create profile-specific specs file
-			cp ${LibEnv} ${D}/${SPECSDIR}/${PN}/${compilers[${i}]}
-			sed -i -e "s:%DL%:${DLlocation}/${PN}:g" ${D}/${SPECSDIR}/${PN}/${compilers[${i}]}
-			sed -i -e "s:%DLbin%:${DLlocation}/bin:g" ${ED}/${SPECSDIR}/${PN}/${compilers[${i}]}
-			sed -i -e "s:%DLgpr%:${DLlocation}/gpr:g" ${ED}/${SPECSDIR}/${PN}/${compilers[${i}]}
+				local DLlocation=${AdalibLibTop}/${compilers[${i}]}
+				dodir ${DLlocation}
+				cp -dpR "${DL}-${compilers[${i}]}" "${ED}/${DLlocation}/${PN}"
+				cp -dpR "${DLbin}-${compilers[${i}]}" "${ED}/${DLlocation}"/bin
+				cp -dpR "${DLgpr}-${compilers[${i}]}" "${ED}/${DLlocation}"/gpr
+				# create profile-specific specs file
+				cp ${LibEnv} ${ED}/${SPECSDIR}/${PN}/${compilers[${i}]}
+				sed -i -e "s:%DL%:${DLlocation}/${PN}:g" ${ED}/${SPECSDIR}/${PN}/${compilers[${i}]}
+				sed -i -e "s:%DLbin%:${DLlocation}/bin:g" ${ED}/${SPECSDIR}/${PN}/${compilers[${i}]}
+				sed -i -e "s:%DLgpr%:${DLlocation}/gpr:g" ${ED}/${SPECSDIR}/${PN}/${compilers[${i}]}
+			else
+				einfo "skipping gnat profile ${compilers[${i}]}"
+			fi
 		done
 	else
 		die || "please make sure you have at least one gnat compiler installed!"
