@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/gdb
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.128 2007/12/16 17:12:53 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.129 2007/12/29 21:09:18 vapier Exp $
+
+*gdb-6.7.1-r1 (29 Dec 2007)
+
+  29 Dec 2007; Mike Frysinger <vapier@gentoo.org> +gdb-6.7.1-r1.ebuild:
+  Add DUEL support #199987 by Sergei Golubchik.
 
   16 Dec 2007; Markus Rothe <corsair@gentoo.org> gdb-6.7.1.ebuild:
   Stable on ppc64; bug #202246
