@@ -17,6 +17,18 @@ DESCRIPTION="Based on the ${ECLASS} eclass"
 FEATURES=${FEATURES/multilib-strict/}
 
 toolchain_pkg_setup() {
+	# yuck, but how else to do it portable?
+	local realEPREFIX=$(python -c 'import os; print os.path.realpath("'"${EPREFIX}"'")')
+	if [[ ${EPREFIX} != ${realEPREFIX} ]] ; then
+		ewarn "Your \${EPREFIX} contains one or more symlinks.  GCC has a"
+		ewarn "bug which prevents it from working properly when there are"
+		ewarn "symlinks in your \${EPREFIX}."
+		ewarn "See http://gcc.gnu.org/bugzilla/show_bug.cgi?id=29831"
+		ewarn "Continuing with your EPREFIX set to:"
+		ewarn "${realEPREFIX}"
+		EPREFIX=${realEPREFIX}
+	fi
+
 	gcc_pkg_setup
 }
 toolchain_src_unpack() {
