@@ -42,7 +42,10 @@ src_install() {
 	esac
 
 	what="addr2line as ar c++filt gprof ld nm objcopy objdump \
-		ranlib readelf elfdump size strings strip lipo otool"
+		ranlib readelf elfdump size strings strip"
+	# Darwin things
+	what="${what} install_name_tool ld64 libtool lipo nmedit \
+		otool otool64 pagestuff redo_prebinding segedit"
 
 	# copy from the host os
 	cd "${ED}${BINPATH}"
