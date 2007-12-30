@@ -1,0 +1,100 @@
+--- gcc/config.orig/i386/sol2-64.h
++++ gcc/config/i386/sol2-64.h
+@@ -0,0 +1,16 @@
++/* Definitions of target machine for GCC, for bi-arch i386
++   running Solaris 2, defaulting to 64-bit code generation.  */
++
++#undef MULTILIB_DEFAULTS
++#define MULTILIB_DEFAULTS { "m64" }
++
++#undef TARGET_LD_EMULATION
++#ifdef TARGET_GNU_LD
++#define TARGET_LD_EMULATION "%{!m32:-m elf_x86_64}%{m32:-m elf_i386} "
++#else
++#define TARGET_LD_EMULATION ""
++#endif
++
++#undef LINK_ARCH_SPEC
++#define LINK_ARCH_SPEC TARGET_LD_EMULATION \
++		       "%{!m32:" LINK_ARCH64_SPEC "}%{m32:" LINK_ARCH32_SPEC "}"
+--- gcc/config.gcc
++++ gcc/config.gcc
+@@ -1251,6 +1246,78 @@
+ 		;;
+ 	esac
+ 	;;
++x86_64-*-solaris2*)
++	tm_file="i386/biarch64.h ${tm_file} i386/unix.h i386/att.h dbxelf.h elfos.h svr4.h i386/sysv4.h sol2.h"
++	case ${target} in
++	*-*-solaris2.1[0-9]*)
++		tm_file="${tm_file} sol2-10.h"
++		;;
++	esac
++	tm_file="${tm_file} i386/sol2.h"
++	tmake_file="t-sol2 i386/t-sol2 t-svr4"
++	c_target_objs="sol2-c.o"
++	cxx_target_objs="sol2-c.o"
++	extra_objs="sol2.o"
++	tm_p_file="${tm_p_file} sol2-protos.h"
++	if test x$gnu_ld = xyes; then
++		tmake_file="$tmake_file t-slibgcc-elf-ver"
++		tm_defines="${tm_defines} TARGET_GNU_LD=1"
++	else
++		tmake_file="$tmake_file t-slibgcc-sld"
++	fi
++	if test x$gas = xyes; then
++		tm_file="usegas.h ${tm_file}"
++	fi
++	case ${target} in
++	*-*-solaris2.[789] | *-*-solaris2.1[0-9]*)
++		tm_file="$tm_file tm-dwarf2.h"
++		;;
++	esac
++	case ${target} in
++	*-*-solaris2.1[0-9]*)
++		tm_file="${tm_file} i386/x86-64.h i386/sol2-10.h i386/sol2-64.h"
++		tm_defines="${tm_defines} TARGET_BI_ARCH=1"
++		tmake_file="$tmake_file i386/t-sol2-10"
++		need_64bit_hwint=yes
++		# FIXME: -m64 for i[34567]86-*-* should be allowed just
++		# like -m32 for x86_64-*-*.
++		case X"${with_cpu}" in
++		Xgeneric|Xnocona|Xx86-64|Xk8|Xopteron|Xathlon64|Xathlon-fx)
++			;;
++		X)
++			with_cpu=generic
++			;;
++		*)
++			echo "Unsupported CPU used in --with-cpu=$with_cpu, supported values:" 1>&2
++			echo "generic nocona x86-64 k8 opteron athlon64 athlon-fx" 1>&2
++			exit 1
++			;;
++		esac
++		# Solaris 2.10 provides crt1.o, crti.o, crtn.o, and gcrt1.o as
++		# part of the base system.
++		extra_parts="gmon.o crtbegin.o crtend.o"
++		;;
++	*)
++		extra_parts="crt1.o crti.o crtn.o gcrt1.o gmon.o crtbegin.o crtend.o"
++		;;
++	esac
++	case ${enable_threads}:${have_pthread_h}:${have_thread_h} in
++	  "":yes:* | yes:yes:* )
++		case ${target} in
++		  *-*-solaris2.[0-6] | *-*-solaris2.[0-6].*)
++			thread_file=posix95
++			;;
++		  *)
++			thread_file=posix
++			;;
++		esac
++		;;
++	  "":*:yes | yes:*:yes )
++		thread_file=solaris
++		;;
++	esac
++	extra_headers="mmintrin.h mm3dnow.h xmmintrin.h emmintrin.h pmmintrin.h"
++	;;
+ i[34567]86-*-sysv5*)           # Intel x86 on System V Release 5
+        tm_file="${tm_file} i386/unix.h i386/att.h dbxelf.h elfos.h svr4.h i386/sysv4.h i386/sysv5.h"
+        if test x$stabs = xyes

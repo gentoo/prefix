@@ -73,6 +73,8 @@ src_unpack() {
 	# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=27516
 	epatch "${FILESDIR}"/${PV}/treelang-nomakeinfo.patch
 
+	epatch "${FILESDIR}"/${PV}/solarisx86_64.patch
+
 	use vanilla && return 0
 
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
