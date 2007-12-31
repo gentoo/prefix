@@ -134,6 +134,7 @@ src_unpack() {
 
 	# Solaris 64-bits still uses a GNU ld in prefix
 	epatch "${FILESDIR}"/${P}-solaris-64bit.patch
+	epatch "${FILESDIR}"/${P}-solaris-relocation.patch
 
 	# the Darwin patch is unconditional
 	epatch "${FILESDIR}"/${PN}-darwin-install_name.patch
