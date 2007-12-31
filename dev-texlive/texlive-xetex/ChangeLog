@@ -1,6 +1,11 @@
 # ChangeLog for dev-texlive/texlive-xetex
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-xetex/ChangeLog,v 1.7 2007/12/18 19:54:38 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-xetex/ChangeLog,v 1.8 2007/12/30 11:20:51 aballier Exp $
+
+  30 Dec 2007; Alexis Ballier <aballier@gentoo.org>
+  texlive-xetex-2007.ebuild:
+  rdepend on xdvipdfmx from here, it makes more sense than from the texlive
+  ebuild, thanks to Pun <punloh@yahoo.com>, bug #203039
 
   18 Dec 2007; Jeroen Roovers <jer@gentoo.org> texlive-xetex-2007.ebuild:
   Marked ~hppa (bug #195815).
