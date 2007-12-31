@@ -331,17 +331,19 @@ vim_src_compile() {
 	# (2) Rebuild auto/configure
 	# (3) Notice auto/configure is newer than auto/config.mk
 	# (4) Run ./configure (with wrong args) to remake auto/config.mk
-	ebegin "Creating configure script"
-	sed -i 's/ auto.config.mk:/:/' src/Makefile || die "Makefile sed failed"
-	rm -f src/auto/configure
-	# vim-6.2 changed the name of this rule from auto/configure to autoconf
-	confrule=auto/configure
-	grep -q ^autoconf: src/Makefile && confrule=autoconf
-	# autoconf-2.13 needed for this package -- bug 35319
-	# except it seems we actually need 2.5 now -- bug 53777
-	WANT_AUTOCONF=2.5 \
-		make -j1 -C src $confrule || die "make $confrule failed"
-	eend $?
+	if [[ "${MY_PN}" != "macvim" ]]; then
+		ebegin "Creating configure script"
+		sed -i 's/ auto.config.mk:/:/' src/Makefile || die "Makefile sed failed"
+		rm -f src/auto/configure
+		# vim-6.2 changed the name of this rule from auto/configure to autoconf
+		confrule=auto/configure
+		grep -q ^autoconf: src/Makefile && confrule=autoconf
+		# autoconf-2.13 needed for this package -- bug 35319
+		# except it seems we actually need 2.5 now -- bug 53777
+		WANT_AUTOCONF=2.5 \
+			make -j1 -C src $confrule || die "make $confrule failed"
+		eend $?
+	fi
 
 	# This should fix a sandbox violation (see bug 24447). The hvc
 	# things are for ppc64, see bug 86433.
@@ -443,6 +445,8 @@ vim_src_compile() {
 			fi
 			echo ; echo
 
+		elif [[ "${MY_PN}" == "macvim" ]] ; then
+			myconf="${myconf} --enable-gui=macvim"
 		else
 			die "vim.eclass doesn't understand MY_PN=${MY_PN}"
 		fi
@@ -470,11 +474,18 @@ vim_src_compile() {
 		export ac_cv_prog_STRIP="$(type -P true ) faking strip"
 	fi
 
+	# macvim needs to be configured and compiled from within the src dir
+	if [[ "${MY_PN}" == "macvim" ]] ; then
+		cd src
+	fi
+
 	myconf="${myconf} --with-modified-by=Gentoo-${PVR}"
 	econf ${myconf} || die "vim configure failed"
 
 	# The following allows emake to be used
-	make -j1 -C src auto/osdef.h objects || die "make failed"
+	if [[ "${MY_PN}" != "macvim" ]]; then
+		make -j1 -C src auto/osdef.h objects || die "make failed"
+	fi
 
 	if [[ "${MY_PN}" == "vim-core" ]] ; then
 		emake tools || die "emake tools failed"
