@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/pybugz/pybugz-0.7.2.ebuild,v 1.1 2007/12/28 21:59:48 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/pybugz/pybugz-0.7.3.ebuild,v 1.1 2007/12/30 22:26:10 williamh Exp $
 
 EAPI="prefix"
 
