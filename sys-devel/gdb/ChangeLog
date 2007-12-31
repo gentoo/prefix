@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gdb
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.129 2007/12/29 21:09:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.130 2007/12/30 20:14:22 vapier Exp $
+
+  30 Dec 2007; Mike Frysinger <vapier@gentoo.org> gdb-6.7.1-r1.ebuild:
+  Fixup duel build code a bit as well as the patch itself.
 
 *gdb-6.7.1-r1 (29 Dec 2007)
 
