@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/qtjambi
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/ChangeLog,v 1.11 2007/12/19 15:26:00 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/ChangeLog,v 1.12 2007/12/30 17:24:29 jokey Exp $
+
+  30 Dec 2007; Markus Ullmann <jokey@gentoo.org> qtjambi-4.3.3_p1.ebuild:
+  Fix quoting
 
 *qtjambi-4.3.3_p1 (19 Dec 2007)
 

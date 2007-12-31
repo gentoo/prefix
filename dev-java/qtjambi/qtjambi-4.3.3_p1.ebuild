@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/qtjambi-4.3.3_p1.ebuild,v 1.1 2007/12/19 15:26:00 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/qtjambi-4.3.3_p1.ebuild,v 1.2 2007/12/30 17:24:29 jokey Exp $
 
 EAPI="prefix"
 
@@ -38,9 +38,9 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch ${FILESDIR}/generator-4.3.3.patch
-	epatch ${FILESDIR}/qtjambi_base.pri.diff
-	epatch ${FILESDIR}/jambi.pri.diff
+	epatch "${FILESDIR}"/generator-4.3.3.patch
+	epatch "${FILESDIR}"/qtjambi_base.pri.diff
+	epatch "${FILESDIR}"/jambi.pri.diff
 	epatch "${FILESDIR}"/${PN}-darwin-fix-framework.patch
 
 	# remove hardcoded path to tiger sdk
@@ -51,10 +51,10 @@ src_unpack() {
 	# If Qt wasn't built with accessibility use flag, then we needto remove some files from
 	# the list.
 	if ! built_with_use =x11-libs/qt-4* accessibility; then
-		epatch ${FILESDIR}/java_files_remove_accessibility.diff
+		epatch "${FILESDIR}"/java_files_remove_accessibility.diff
 	fi
 	if ! built_with_use =x11-libs/qt-4* ssl; then
-		epatch ${FILESDIR}/java_files_remove_ssl.diff
+		epatch "${FILESDIR}"/java_files_remove_ssl.diff
 	fi
 
 	# fix install_names
@@ -72,7 +72,7 @@ src_compile() {
 
 	# Step 1, build the source generator
 	einfo "Building the source generator"
-	cd ${S}/generator
+	cd "${S}"/generator
 	"${EPREFIX}"/usr/bin/qmake && make || die "Error building generator"
 
 	# Step 2, run the generator
@@ -90,11 +90,11 @@ src_compile() {
 
 	# Step 5, compiling java files
 	einfo "Compiling java files"
-	mkdir -p ${S}/class
+	mkdir -p "${S}"/class
 	cd "${S}" && ejavac -J-mx128m -d class @java_files
 
 	# Step 6, build the jar file
-	cd ${S}/class && jar cf ../qtjambi.jar com/trolltech/qt com/trolltech/tools
+	cd "${S}"/class && jar cf ../qtjambi.jar com/trolltech/qt com/trolltech/tools
 	# copy built classes for demos and examples
 	cd "${S}/class" && cp -r com/trolltech/demos com/trolltech/examples com/trolltech/launcher ../com/trolltech
 	cd "${S}" && jar cf qtjambi-src.jar com
