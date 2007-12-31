@@ -1,6 +1,10 @@
 # ChangeLog for app-text/texlive
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.28 2007/12/18 23:03:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.29 2007/12/30 11:27:19 aballier Exp $
+
+  30 Dec 2007; Alexis Ballier <aballier@gentoo.org> texlive-2007-r3.ebuild:
+  no need to rdepend on xdvipdfmx from here, it makes more sense to do it from
+  texlive-xetex, thanks to Pun <punloh@yahoo.com>, bug #203039
 
   18 Dec 2007; Jeroen Roovers <jer@gentoo.org> texlive-2007-r3.ebuild:
   Marked ~hppa (bug #195815).

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2007-r3.ebuild,v 1.4 2007/12/18 23:03:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2007-r3.ebuild,v 1.5 2007/12/30 11:27:19 aballier Exp $
 
 EAPI="prefix"
 
@@ -63,8 +63,7 @@ RDEPEND="${DEPEND}
 		${TEXLIVE_CAT}/texlive-mathextra
 		${TEXLIVE_CAT}/texlive-plainextra
 	)
-	xetex? ( ${TEXLIVE_CAT}/texlive-xetex
-		>=app-text/xdvipdfmx-0.4 )
+	xetex? ( ${TEXLIVE_CAT}/texlive-xetex )
 	graphics? ( ${TEXLIVE_CAT}/texlive-pictures
 		>=dev-tex/pgf-1.18 )
 	science? ( ${TEXLIVE_CAT}/texlive-science )
