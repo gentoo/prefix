@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>no-herd</herd>
+	<herd>toolchain</herd>
 	<maintainer>
-		<email>maintainer-needed@gentoo.org</email>
+		<email>robbat2@gentoo.org</email>
 	</maintainer>
 	<longdescription lang="en">
 		ccache acts as a caching pre-processor to C/C++ compilers, improving
