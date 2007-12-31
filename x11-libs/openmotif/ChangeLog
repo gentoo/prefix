@@ -1,6 +1,25 @@
 # ChangeLog for x11-libs/openmotif
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.141 2007/10/15 15:12:44 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.144 2007/12/30 17:06:32 betelgeuse Exp $
+
+  30 Dec 2007; Petteri Räty <betelgeuse@gentoo.org>
+  -files/openmotif-2.1.30-CAN-2004-0687-0688.patch,
+  -files/openmotif-2.1.30-CAN-2004-0914_sec8.patch,
+  -files/openmotif-2.1.30-imake-ansi.patch,
+  -files/openmotif-2.1.30-imake-tmpdir.patch,
+  -files/openmotif-2.1.30-uil-bad_grammar_fix.diff,
+  -files/openmotif-2.1.30-xpm.diff, -files/openmotif-2.1.30-xpm2.diff,
+  -files/openmotif-2.2.3-CVE-2005-3964.patch,
+  -files/openmotif-2.2.3-Mwm.defaults, -files/site.def, -files/site.def.1:
+  Clean files.
+
+  30 Dec 2007; Petteri Räty <betelgeuse@gentoo.org>
+  -openmotif-2.1.30-r14.ebuild:
+  Remove old version. Nothing needs SLOT 2.1 specifically. Fixes bug #140494.
+
+  30 Dec 2007; Petteri Räty <betelgeuse@gentoo.org>
+  -openmotif-2.2.3-r3.ebuild, -openmotif-2.2.3-r8.ebuild:
+  Remove ebuilds with borken autotools handling. Fixes bug #160056.
 
   15 Oct 2007; Markus Rothe <corsair@gentoo.org> openmotif-2.3.0.ebuild:
   Stable on ppc64
@@ -170,6 +189,7 @@
   Stable on hppa.
 
 *openmotif-2.2.3-r6 (23 Mar 2005)
+*openmotif-2.1.30-r12 (23 Mar 2005)
 
   23 Mar 2005; Heinrich Wendel <lanius@gentoo.org>
   -openmotif-2.1.30-r11.ebuild, +openmotif-2.1.30-r12.ebuild,
@@ -198,6 +218,7 @@
   -openmotif-2.2.3-r2.ebuild:
   cleanups
 
+*openmotif-2.2.3-r5 (07 Mar 2005)
 *openmotif-2.1.30-r11 (07 Mar 2005)
 
   07 Mar 2005; Heinrich Wendel <lanius@gentoo.org>
@@ -226,6 +247,9 @@
   Stable on ppc64; bug #83655
 
 *openmotif-2.2.3-r4 (02 Mar 2005)
+*openmotif-2.2.3-r3 (02 Mar 2005)
+*openmotif-2.1.30-r10 (02 Mar 2005)
+*openmotif-2.1.30-r9 (02 Mar 2005)
 
   02 Mar 2005; Heinrich Wendel <lanius@gentoo.org> +files/CAN-2005-0605.patch,
   +openmotif-2.1.30-r10.ebuild, openmotif-2.1.30-r8.ebuild,
