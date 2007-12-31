@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/files/crossdev,v 1.100 2007/11/04 03:01:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/files/crossdev,v 1.101 2007/12/30 17:33:48 vapier Exp $
 
 EPREFIX=$(portageq envvar EPREFIX)
 
@@ -310,11 +310,11 @@ hr() {
 			&& c=50 \
 			|| c=${c##* }
 	fi
-	local ext=${1:-  _  -  ~  -} br=""
-	while [[ ${#br} -lt ${c} ]] ; do
-		br=${br}${ext}
-	done
-	echo "${br:0:${c}}"
+	local ext=${1:-  _  -  ~  -}
+	local sext=${ext//?/ }
+	local br=$(printf "%$((c + ${#ext}))s")
+	local banner=${br//${sext}/${ext}}
+	echo "${banner:0:${c}}"
 }
 
 ##################
@@ -614,6 +614,7 @@ is_s1 || exit 0
 if with_headers ; then
 USE="${KUSE} ${USE}" CROSSCOMPILE_OPTS="headers-only" \
 	doemerge ${KPKG} ${KPKG}-quick
+[[ -n ${LPKG} ]] && \
 USE="${LUSE} ${USE}" CROSSCOMPILE_OPTS="headers-only" \
 	doemerge ${LPKG} ${LPKG}-headers
 fi
@@ -626,6 +627,7 @@ USE="${KUSE} ${USE}" CROSSCOMPILE_OPTS="" \
 	doemerge ${KPKG}
 
 is_s3 || exit 0
+[[ -z ${LPKG} ]] && die "Invalid target '${CTARGET}': unknown libc"
 set_eopts_on_pkg_status ${LPKG} crosscompile_opts_headers-only
 USE="${LUSE} ${USE}" CROSSCOMPILE_OPTS="" \
 	doemerge ${LPKG}
