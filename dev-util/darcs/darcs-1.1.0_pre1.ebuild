@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-1.1.0_pre1.ebuild,v 1.2 2007/12/21 00:29:10 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-1.1.0_pre1.ebuild,v 1.3 2007/12/30 19:33:01 kolmodin Exp $
 
 EAPI="prefix"
 
@@ -46,6 +46,10 @@ pkg_setup() {
 src_unpack() {
 	base_src_unpack
 
+	# For GHC 6.8* compatibility, make sure
+	#  * the new openFd/fdToHandle API is found
+	#  * to use the containers package, if it exists
+	# Works with all GHC versions
 	cd "${S}"
 	epatch "${FILESDIR}/${PN}-1.1.0pre1-ghc68.patch"
 

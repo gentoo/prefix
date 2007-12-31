@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-1.0.9.ebuild,v 1.9 2007/12/20 13:48:35 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-1.0.9.ebuild,v 1.10 2007/12/30 16:30:48 kolmodin Exp $
 
 EAPI="prefix"
 
@@ -32,6 +32,15 @@ RDEPEND=">=net-misc/curl-7.10.2
 	dev-libs/gmp"
 
 S=${WORKDIR}/${MY_P}
+
+pkg_setup() {
+	if use doc && ! built_with_use -o dev-tex/latex2html png gif; then
+		eerror "Building darcs with USE=\"doc\" requires that"
+		eerror "dev-tex/latex2html is built with at least one of"
+		eerror "USE=\"png\" and USE=\"gif\"."
+		die "USE=doc requires dev-tex/latex2html with USE=\"png\" or USE=\"gif\""
+	fi
+}
 
 src_unpack() {
 	base_src_unpack
