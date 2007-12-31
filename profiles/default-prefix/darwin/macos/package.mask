@@ -1,5 +1,10 @@
 # $Header: $
 
+# Elias Pipping <pipping@gentoo.org> (31 Dec 2007)
+# only works with FEATURES=allow_broken_install_names because of relative
+# install_names; incredibly ugly build procedure
+app-editors/macvim
+
 # Elias Pipping <pipping@gentoo.org> (29 Nov 2007)
 # testing only -- virtual/opengl and eselect opengl are still missing
 media-libs/libsdl
