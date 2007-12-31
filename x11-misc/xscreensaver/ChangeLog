@@ -1,6 +1,23 @@
 # ChangeLog for x11-misc/xscreensaver
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.204 2007/11/20 05:25:55 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.206 2007/12/30 20:06:21 drac Exp $
+
+  30 Dec 2007; Samuli Suominen <drac@gentoo.org>
+  +files/xscreensaver-5.04-gentoo.patch, xscreensaver-5.04.ebuild:
+  Update patch. Sort ebuild.
+
+*xscreensaver-5.04 (30 Dec 2007)
+
+  30 Dec 2007; Samuli Suominen <drac@gentoo.org>
+  -files/xscreensaver-5.02-gdmflexiserver.patch,
+  -files/xscreensaver-5.02-nsfw.patch, -files/xscreensaver-5.02-pam.patch,
+  +files/xscreensaver-5.04-desktop-entry.patch,
+  +files/xscreensaver-5.04-nsfw.patch, -xscreensaver-5.02-r2.ebuild,
+  +xscreensaver-5.04.ebuild:
+  Version bump. Use global use flag for setuid screensavers. Use up to date
+  .desktop file from tarball patched to f.d.o desktop entry standard. Pass
+  --with-x-app-defaults to econf instead of moving files around in D. Remove
+  old version.
 
   20 Nov 2007; Joshua Kinard <kumba@gentoo.org> xscreensaver-5.03.ebuild:
   Stable on mips, per #195253.
