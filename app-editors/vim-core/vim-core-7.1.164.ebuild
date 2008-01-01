@@ -15,7 +15,8 @@ SRC_URI="ftp://ftp.vim.org/pub/vim/unix/vim-${VIM_VERSION}.tar.bz2
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-lang.tar.gz
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-extra.tar.gz
 	mirror://gentoo/${VIM_GENTOO_PATCHES}
-	mirror://gentoo/${VIM_ORG_PATCHES}"
+	mirror://gentoo/${VIM_ORG_PATCHES}
+	aqua? ( http://dev.gentooexperimental.org/~pipping/distfiles/macvim-${PV}.tbz2 )"
 
 S="${WORKDIR}/vim${VIM_VERSION/.}"
 DESCRIPTION="vim and gvim shared files"
@@ -31,4 +32,10 @@ src_unpack() {
 		cd "${S}"/src
 		eautoreconf
 	)
+	if use aqua; then
+		for aqua_file in colors/macvim.vim doc/gui_mac.txt; do
+			cp "${WORKDIR}"/macvim-${PV}/runtime/${aqua_file}  \
+				"${S}"/runtime/${aqua_file}
+		done
+	fi
 }
