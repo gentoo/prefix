@@ -43,7 +43,8 @@ DEPEND="${DEPEND}
 				!nextaw? ( x11-libs/libXaw )
 			)
 		)
-	)"
+	)
+	aqua? ( >=sys-apps/portage-2.2.00.9133 )"
 
 pkg_setup() {
 	vim_pkg_setup
