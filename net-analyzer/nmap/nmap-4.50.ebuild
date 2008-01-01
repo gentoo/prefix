@@ -43,7 +43,7 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" -j1 nmapdatadir=/usr/share/nmap install || die
+	emake DESTDIR="${D}" -j1 nmapdatadir="${EPREFIX}"/usr/share/nmap install || die
 	dodoc CHANGELOG HACKING docs/README docs/*.txt || die
 
 	use gtk && doicon "${FILESDIR}/nmap-logo-64.png"
