@@ -14,7 +14,7 @@
 # official vim*-cvs ebuilds in the tree.
 
 # gvim's GUI preference order is as follows:
-# aqua                          CARBON (not tested, 7+)
+# aqua                          COCOA
 # -aqua gtk gnome               GNOME2 (6.3-r1+, earlier uses GTK2)
 # -aqua gtk -gnome              GTK2
 # -aqua -gtk  motif             MOTIF
@@ -55,7 +55,7 @@ DEPEND="${DEPEND} nls? ( virtual/libintl )"
 RDEPEND="${RDEPEND} nls? ( virtual/libintl )"
 
 if [[ "${MY_PN}" == "vim-core" ]] ; then
-	IUSE="${IUSE} livecd"
+	IUSE="${IUSE} livecd aqua"
 else
 	IUSE="${IUSE} cscope gpm perl python ruby"
 	DEPEND="${DEPEND}
@@ -252,6 +252,11 @@ vim_src_unpack() {
 	EPATCH_SUFFIX="gz" EPATCH_FORCE="yes" \
 		epatch ${WORKDIR}/gentoo/patches-all/
 
+	# macvim patchset needs to be applied here (because it alters src/feature.h)
+	if [[ ${MY_PN} == gvim || ${MY_PN} == vim-core ]] && use aqua; then
+		epatch "${WORKDIR}"/macvim-${PV}/macvim-patchset
+	fi
+
 	# Unpack an updated netrw snapshot if necessary. This is nasty. Don't
 	# ask, you don't want to know.
 	if [[ -n "${VIM_NETRW_SNAP}" ]] ; then
@@ -331,19 +336,17 @@ vim_src_compile() {
 	# (2) Rebuild auto/configure
 	# (3) Notice auto/configure is newer than auto/config.mk
 	# (4) Run ./configure (with wrong args) to remake auto/config.mk
-	if [[ "${MY_PN}" != "macvim" ]]; then
-		ebegin "Creating configure script"
-		sed -i 's/ auto.config.mk:/:/' src/Makefile || die "Makefile sed failed"
-		rm -f src/auto/configure
-		# vim-6.2 changed the name of this rule from auto/configure to autoconf
-		confrule=auto/configure
-		grep -q ^autoconf: src/Makefile && confrule=autoconf
-		# autoconf-2.13 needed for this package -- bug 35319
-		# except it seems we actually need 2.5 now -- bug 53777
-		WANT_AUTOCONF=2.5 \
-			make -j1 -C src $confrule || die "make $confrule failed"
-		eend $?
-	fi
+	ebegin "Creating configure script"
+	sed -i 's/ auto.config.mk:/:/' src/Makefile || die "Makefile sed failed"
+	rm -f src/auto/configure
+	# vim-6.2 changed the name of this rule from auto/configure to autoconf
+	confrule=auto/configure
+	grep -q ^autoconf: src/Makefile && confrule=autoconf
+	# autoconf-2.13 needed for this package -- bug 35319
+	# except it seems we actually need 2.5 now -- bug 53777
+	WANT_AUTOCONF=2.5 \
+		make -j1 -C src $confrule || die "make $confrule failed"
+	eend $?
 
 	# This should fix a sandbox violation (see bug 24447). The hvc
 	# things are for ppc64, see bug 86433.
@@ -397,12 +400,17 @@ vim_src_compile() {
 			myconf="${myconf} --enable-gui=no `use_with vim-with-x x`"
 
 		elif [[ "${MY_PN}" == "gvim" ]] ; then
-			myconf="${myconf} --with-vim-name=gvim --with-x"
+			myconf="${myconf} --with-x"
+			if use aqua; then
+				myconf="${myconf}--with-vim-name=Vim"
+			else
+				myconf="${myconf}--with-vim-name=gvim"
+			fi
 
 			echo ; echo
 			if [[ $(get_major_version ) -ge 7 ]] && use aqua ; then
-				einfo "Building gvim with the Carbon GUI"
-				myconf="${myconf} --enable-gui=carbon"
+				einfo "Building gvim with the Cocoa GUI"
+				myconf="${myconf} --enable-gui=macvim"
 			elif use gtk ; then
 				if version_is_at_least "6.3.086" ; then
 					myconf="${myconf} --enable-gtk2-check"
@@ -445,8 +453,6 @@ vim_src_compile() {
 			fi
 			echo ; echo
 
-		elif [[ "${MY_PN}" == "macvim" ]] ; then
-			myconf="${myconf} --enable-gui=macvim"
 		else
 			die "vim.eclass doesn't understand MY_PN=${MY_PN}"
 		fi
@@ -475,7 +481,7 @@ vim_src_compile() {
 	fi
 
 	# macvim needs to be configured and compiled from within the src dir
-	if [[ "${MY_PN}" == "macvim" ]] ; then
+	if [[ ${MY_PN} == gvim ]] && use aqua ; then
 		cd src
 	fi
 
@@ -483,7 +489,7 @@ vim_src_compile() {
 	econf ${myconf} || die "vim configure failed"
 
 	# The following allows emake to be used
-	if [[ "${MY_PN}" != "macvim" ]]; then
+	if [[ ${MY_PN} != gvim ]] || ! use aqua; then
 		make -j1 -C src auto/osdef.h objects || die "make failed"
 	fi
 
