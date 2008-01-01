@@ -77,8 +77,10 @@ src_unpack() {
 src_compile() {
 	EXTRA_ECONF="--without-local-dir"
 	vim_src_compile
-	cd "${S}"/src/MacVim
-	emake CFLAGS="${CFLAGS}" CC="$(tc-getCC)" || die "making MacVim failed"
+	if use aqua; then
+		cd "${S}"/src/MacVim
+		emake CFLAGS="${CFLAGS}" CC="$(tc-getCC)" || die "making MacVim failed"
+	fi
 }
 
 src_install() {
