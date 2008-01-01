@@ -362,7 +362,8 @@ vim_src_compile() {
 			--disable-perlinterp \
 			--disable-pythoninterp \
 			--disable-rubyinterp \
-			--disable-gpm"
+			--disable-gpm
+			--with-vim-name=vim"
 
 	else
 		if ! version_is_at_least "6.3.086" ; then
