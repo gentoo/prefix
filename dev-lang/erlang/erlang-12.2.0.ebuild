@@ -120,8 +120,8 @@ src_install() {
 	dosym "${ERL_LIBDIR}/erts-${ERL_ERTS_VER}/bin/beam" /usr/bin/beam
 
 	## Remove ${D} from the following files
-	dosed "${ERL_LIBDIR}/bin/erl" "s:${D}::g"
-	dosed "${ERL_LIBDIR}/bin/start" "s:${D}::g"
+	dosed "s:${D}::g" "${ERL_LIBDIR}/bin/erl"
+	dosed "s:${D}::g" "${ERL_LIBDIR}/bin/start"
 	grep -rle "${D}" "${ED}/${ERL_LIBDIR}/erts-${ERL_ERTS_VER}" | xargs sed -i -e "s:${D}::g"
 
 	## Clean up the no longer needed files
