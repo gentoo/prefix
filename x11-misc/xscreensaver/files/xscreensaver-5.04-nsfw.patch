@@ -1,158 +1,61 @@
-diff -ur xscreensaver-5.04.orig/driver/XScreenSaver.ad.in xscreensaver-5.04/driver/XScreenSaver.ad.in
---- xscreensaver-5.04.orig/driver/XScreenSaver.ad.in	2007-11-13 10:36:00.000000000 +0200
-+++ xscreensaver-5.04/driver/XScreenSaver.ad.in	2007-12-30 21:13:12.000000000 +0200
-@@ -305,10 +305,6 @@
- 				cwaves -root				    \n\
- 				m6502 -root				    \n\
- 				abstractile -root			    \n\
--- default-n:			webcollage -root			    \n\
--- default-n:  "WebCollage (whacked)"					      \
--				webcollage -root -filter		      \
--				  'vidwhacker -stdin -stdout'		    \n\
- - default-n:			vidwhacker -root			    \n\
- 									      \
- @GL_KLUDGE@ GL:			gears -root				    \n\
-@@ -495,7 +491,6 @@
- *hacks.xanalogtv.name:      XAnalogTV
- *hacks.xspirograph.name:    XSpiroGraph
- *hacks.nerverot.name:       NerveRot
--*hacks.webcollage.name:     WebCollage
- *hacks.vidwhacker.name:     VidWhacker
- *hacks.morph3d.name:        Morph3D
- *hacks.bubble3d.name:       Bubble3D
+diff -ur xscreensaver-5.04.orig/hacks/barcode.c xscreensaver-5.04/hacks/barcode.c
+--- xscreensaver-5.04.orig/hacks/barcode.c	2006-04-06 09:40:32.000000000 +0300
++++ xscreensaver-5.04/hacks/barcode.c	2008-01-01 18:21:08.000000000 +0200
+@@ -131,7 +131,6 @@
+   "children",
+   "chocolate",
+   "CLONE",
+-  "cock",
+   "constriction",
+   "contrition",
+   "cop",
+@@ -265,7 +264,6 @@
+   "punishment",
+   "punk rock",
+   "punk",
+-  "pussy",
+   "quagmire",
+   "quarantine",
+   "quartz",
+@@ -333,8 +331,6 @@
+   "vegetarian",
+   "venom",
+   "verifiability",
+-  "viagra",
+-  "vibrator",
+   "victim",
+   "vignette",
+   "villainy",
 diff -ur xscreensaver-5.04.orig/hacks/glx/glsnake.c xscreensaver-5.04/hacks/glx/glsnake.c
 --- xscreensaver-5.04.orig/hacks/glx/glsnake.c	2006-05-03 22:39:21.000000000 +0300
-+++ xscreensaver-5.04/hacks/glx/glsnake.c	2007-12-30 21:15:41.000000000 +0200
-@@ -565,21 +565,6 @@
++++ xscreensaver-5.04/hacks/glx/glsnake.c	2008-01-01 18:18:34.000000000 +0200
+@@ -565,17 +565,17 @@
  	ZERO, PIN, ZERO, ZERO, ZERO, ZERO, PIN, ZERO, ZERO, ZERO, ZERO,
  	ZERO, PIN, ZERO }
      },
 -    { "erect penis",     /* thanks benno */
--      { PIN, ZERO, PIN, PIN, ZERO, ZERO, PIN, ZERO, ZERO, ZERO, PIN,
--	PIN, ZERO, ZERO, ZERO, RIGHT, ZERO, ZERO, ZERO, ZERO, ZERO, ZERO,
--	ZERO, ZERO }
--    },
++    { "shuffle board",     /* thanks benno */
+       { PIN, ZERO, PIN, PIN, ZERO, ZERO, PIN, ZERO, ZERO, ZERO, PIN,
+ 	PIN, ZERO, ZERO, ZERO, RIGHT, ZERO, ZERO, ZERO, ZERO, ZERO, ZERO,
+ 	ZERO, ZERO }
+     },
 -    { "flaccid penis",
--      { PIN, ZERO, PIN, PIN, ZERO, ZERO, PIN, ZERO, ZERO, ZERO, PIN,
--	PIN, ZERO, ZERO, ZERO, RIGHT, PIN, ZERO, ZERO, ZERO, ZERO, ZERO,
--	ZERO, ZERO }
--    },
++    { "flaccid anchor",
+       { PIN, ZERO, PIN, PIN, ZERO, ZERO, PIN, ZERO, ZERO, ZERO, PIN,
+ 	PIN, ZERO, ZERO, ZERO, RIGHT, PIN, ZERO, ZERO, ZERO, ZERO, ZERO,
+ 	ZERO, ZERO }
+     },
 -    { "vagina",
--      { RIGHT, ZERO, ZERO, ZERO, RIGHT, ZERO, ZERO, PIN, ZERO, ZERO,
--	LEFT, ZERO, ZERO, ZERO, LEFT, ZERO, LEFT, PIN, LEFT, PIN, RIGHT,
--	PIN, RIGHT, ZERO }
--    },
-     { "mask",
-       { ZERO, RIGHT, LEFT, PIN, RIGHT, RIGHT, PIN, ZERO, ZERO, PIN,
- 	ZERO, ZERO, PIN, ZERO, PIN, ZERO, PIN, ZERO, ZERO, PIN, ZERO,
-@@ -995,9 +980,6 @@
++    { "engagement ring",
+       { RIGHT, ZERO, ZERO, ZERO, RIGHT, ZERO, ZERO, PIN, ZERO, ZERO,
+ 	LEFT, ZERO, ZERO, ZERO, LEFT, ZERO, LEFT, PIN, LEFT, PIN, RIGHT,
+ 	PIN, RIGHT, ZERO }
+@@ -995,7 +995,7 @@
      { "Parrot",
          { ZERO, ZERO, ZERO, ZERO, RIGHT, RIGHT, ZERO, LEFT, PIN, RIGHT, ZERO, RIGHT, ZERO, RIGHT, ZERO, RIGHT, PIN, LEFT, ZERO, RIGHT, LEFT, ZERO, PIN, ZERO }
      },
 -    { "Penis",
--        { PIN, PIN, RIGHT, ZERO, PIN, PIN, ZERO, PIN, ZERO, ZERO, RIGHT, PIN, LEFT, ZERO, ZERO, PIN, ZERO, PIN, PIN, ZERO, LEFT, PIN, PIN, ZERO }
--    },
-     { "PictureComingSoon",
-         { LEFT, LEFT, ZERO, RIGHT, LEFT, PIN, RIGHT, RIGHT, PIN, RIGHT, LEFT, PIN, LEFT, RIGHT, PIN, RIGHT, RIGHT, PIN, RIGHT, LEFT, ZERO, RIGHT, RIGHT, ZERO }
++    { "Shuttle",
+         { PIN, PIN, RIGHT, ZERO, PIN, PIN, ZERO, PIN, ZERO, ZERO, RIGHT, PIN, LEFT, ZERO, ZERO, PIN, ZERO, PIN, PIN, ZERO, LEFT, PIN, PIN, ZERO }
      },
-diff -ur xscreensaver-5.04.orig/hacks/Makefile.in xscreensaver-5.04/hacks/Makefile.in
---- xscreensaver-5.04.orig/hacks/Makefile.in	2007-11-13 10:39:36.000000000 +0200
-+++ xscreensaver-5.04/hacks/Makefile.in	2007-12-30 21:19:15.000000000 +0200
-@@ -103,7 +103,7 @@
- 		  blaster.c bumps.c ripples.c xspirograph.c \
- 		  nerverot.c xrayswarm.c hyperball.c zoom.c whirlwindwarp.c \
- 		  rotzoomer.c whirlygig.c speedmine.c vermiculate.c \
--		  xpm-pixmap.c webcollage-helper.c twang.c apollonian.c \
-+		  xpm-pixmap.c twang.c apollonian.c \
- 		  euler2d.c juggle.c polyominoes.c thornbird.c fluidballs.c \
- 		  anemone.c halftone.c metaballs.c eruption.c popsquares.c \
- 		  barcode.c piecewise.c cloudlife.c fontglide.c apple2.c \
-@@ -112,9 +112,8 @@
- 		  fuzzyflakes.c anemotaxis.c memscroller.c substrate.c \
- 		  intermomentary.c fireworkx.c fireworkx_mmx.S fiberlamp.c \
- 		  boxfit.c interaggregate.c celtic.c cwaves.c m6502.c \
--		  asm6502.c abstractile.c \
--		  webcollage-cocoa.m webcollage-helper-cocoa.m
--SCRIPTS		= vidwhacker webcollage ljlatest
-+		  asm6502.c abstractile.c
-+SCRIPTS		= vidwhacker ljlatest
- 
- # Programs that are mentioned in XScreenSaver.ad, and that have XML files,
- # but that are not shipped with xscreensaver itself.
-@@ -142,7 +141,7 @@
- 		  blaster.o bumps.o ripples.o xspirograph.o \
- 		  nerverot.o xrayswarm.o hyperball.o zoom.o whirlwindwarp.o \
- 		  rotzoomer.o whirlygig.o speedmine.o vermiculate.o \
--		  xpm-pixmap.o webcollage-helper.o twang.o apollonian.o \
-+		  xpm-pixmap.o twang.o apollonian.o \
- 		  euler2d.o juggle.o polyominoes.o thornbird.o fluidballs.o \
- 		  anemone.o halftone.o metaballs.o eruption.o popsquares.o \
- 		  barcode.o piecewise.o cloudlife.o fontglide.o apple2.o \
-@@ -150,8 +149,8 @@
- 		  mismunch.o pacman.o pacman_ai.o pacman_level.o \
- 		  fuzzyflakes.o anemotaxis.o memscroller.o substrate.o \
- 		  intermomentary.o fireworkx.o fiberlamp.o boxfit.o \
--		  interaggregate.o celtic.o cwaves.o webcollage-cocoa.o \
--		  webcollage-helper-cocoa.o m6502.0 asm6502.o abstractile.o
-+		  interaggregate.o celtic.o cwaves.o \
-+		  m6502.0 asm6502.o abstractile.o
- 
- NEXES		= attraction blitspin bouboule braid bubbles decayscreen deco \
- 		  drift flag flame forest vines galaxy grav greynetic halo \
-@@ -175,7 +174,7 @@
- 		  celtic cwaves m6502 abstractile \
- 		  @JPEG_EXES@
- SEXES		= sonar
--JPEG_EXES	= webcollage-helper
-+JPEG_EXES	=
- EXES		= $(NEXES) $(SEXES)
- 
- HACK_OBJS_1	= $(UTILS_BIN)/resources.o $(UTILS_BIN)/visual.o \
-@@ -211,7 +210,7 @@
- 	          spotlight.man squiral.man starfish.man strange.man \
- 	          swirl.man t3d.man thornbird.man triangle.man truchet.man \
- 	          twang.man vermiculate.man vidwhacker.man vines.man \
--	          wander.man webcollage.man whirlwindwarp.man whirlygig.man \
-+	          wander.man whirlwindwarp.man whirlygig.man \
- 	          worm.man xflame.man xjack.man xlyap.man xmatrix.man \
- 	          xrayswarm.man xspirograph.man xsublim.man \
- 	          zoom.man halftone.man eruption.man metaballs.man \
-@@ -988,9 +987,6 @@
- xsublim:	xsublim.o	$(HACK_OBJS_1)
- 	$(CC_HACK) -o $@ $@.o	$(HACK_OBJS_1) $(HACK_LIBS)
- 
--webcollage-helper: webcollage-helper.o
--	$(CC_HACK) -o $@ $@.o	$(XPM_LIBS) $(JPEG_LIBS)
--
- 
- ##############################################################################
- #
-@@ -2521,17 +2517,6 @@
- wander.o: $(UTILS_SRC)/usleep.h
- wander.o: $(UTILS_SRC)/visual.h
- wander.o: $(UTILS_SRC)/yarandom.h
--webcollage-cocoa.o: ../config.h
--webcollage-cocoa.o: $(srcdir)/screenhackI.h
--webcollage-cocoa.o: $(srcdir)/screenhack.h
--webcollage-cocoa.o: $(UTILS_SRC)/colors.h
--webcollage-cocoa.o: $(UTILS_SRC)/grabscreen.h
--webcollage-cocoa.o: $(UTILS_SRC)/hsv.h
--webcollage-cocoa.o: $(UTILS_SRC)/resources.h
--webcollage-cocoa.o: $(UTILS_SRC)/usleep.h
--webcollage-cocoa.o: $(UTILS_SRC)/visual.h
--webcollage-cocoa.o: $(UTILS_SRC)/yarandom.h
--webcollage-helper.o: ../config.h
- whirlwindwarp.o: ../config.h
- whirlwindwarp.o: $(srcdir)/screenhackI.h
- whirlwindwarp.o: $(srcdir)/screenhack.h
-diff -ur xscreensaver-5.04.orig/po/POTFILES.in xscreensaver-5.04/po/POTFILES.in
---- xscreensaver-5.04.orig/po/POTFILES.in	2007-11-13 10:39:40.000000000 +0200
-+++ xscreensaver-5.04/po/POTFILES.in	2007-12-30 21:19:50.000000000 +0200
-@@ -210,7 +210,6 @@
- hacks/config/vines.xml
- hacks/config/voronoi.xml
- hacks/config/wander.xml
--hacks/config/webcollage.xml
- hacks/config/whirlwindwarp.xml
- hacks/config/whirlygig.xml
- hacks/config/worm.xml
+     { "PictureComingSoon",
