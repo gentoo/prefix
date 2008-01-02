@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/gnome-vfs
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/ChangeLog,v 1.275 2007/11/30 10:51:24 jer Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/ChangeLog,v 1.276 2008/01/01 22:00:47 eva Exp $
+
+  01 Jan 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  -gnome-vfs-2.14.2-r1.ebuild, -gnome-vfs-2.16.3.ebuild:
+  prune old releases
 
   30 Nov 2007; Jeroen Roovers <jer@gentoo.org>
   files/gnome-vfs-2.20.1-automagic-deps.patch:
