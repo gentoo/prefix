@@ -55,6 +55,8 @@ src_compile() {
 	use png && myconf="${myconf} `use_enable png`"
 
 	econf --with-x \
+		--bindir="${EPREFIX}"/usr/$(get_libdir)/openmotif-${SLOT} \
+		--libdir="${EPREFIX}"/usr/$(get_libdir)/openmotif-${SLOT} \
 	    ${myconf} || die "configuration failed"
 
 	emake -j1 || die "make failed, if you have lesstif installed removed it, compile openmotif and recompile lesstif"
@@ -74,15 +76,16 @@ src_install() {
 		dosed 's:/usr/lib/X11/app-defaults:${EPREFIX}/etc/X11/app-defaults:g' "$f"
 	done
 
-	einfo "Fixing binaries"
-	dodir /usr/$(get_libdir)/openmotif-${SLOT}
-	for file in `ls ${ED}/usr/bin`
-	do
-		mv ${ED}/usr/bin/${file} ${ED}/usr/$(get_libdir)/openmotif-${SLOT}/${file}
-	done
-
-	einfo "Fixing libraries"
-	mv ${ED}/usr/$(get_libdir)/* ${ED}/usr/$(get_libdir)/openmotif-${SLOT}/
+# we dealt with this in Prefix by just setting --bindir= and --libdir=
+#	einfo "Fixing binaries"
+#	dodir /usr/$(get_libdir)/openmotif-${SLOT}
+#	for file in `ls ${ED}/usr/bin`
+#	do
+#		mv ${ED}/usr/bin/${file} ${ED}/usr/$(get_libdir)/openmotif-${SLOT}/${file}
+#	done
+#
+#	einfo "Fixing libraries"
+#	mv ${ED}/usr/$(get_libdir)/* ${ED}/usr/$(get_libdir)/openmotif-${SLOT}/
 
 	einfo "Fixing includes"
 	dodir /usr/include/openmotif-${SLOT}/
