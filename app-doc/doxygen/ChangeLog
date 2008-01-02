@@ -1,6 +1,9 @@
 # ChangeLog for app-doc/doxygen
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.138 2007/12/30 17:26:01 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.139 2007/12/31 12:12:40 armin76 Exp $
+
+  31 Dec 2007; Raúl Porcel <armin76@gentoo.org> doxygen-1.5.4.ebuild:
+  alpha/ia64/sparc stable wrt #203652
 
   30 Dec 2007; Markus Meier <maekke@gentoo.org> doxygen-1.5.4.ebuild:
   x86 stable, bug #203652
