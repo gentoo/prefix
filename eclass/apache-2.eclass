@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.4 2007/12/20 15:53:19 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.5 2007/12/31 23:46:24 hollow Exp $
 
 # @ECLASS: apache-2
 # @MAINTAINER: apache-devs@gentoo.org
@@ -452,7 +452,7 @@ apache-2_src_compile() {
 # This function runs emake install and generates, install and adapts the gentoo
 # specific configuration files found in the tarball
 apache-2_src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed"
+	make DESTDIR="${D}" install || die "make install failed"
 
 	# install our configuration files
 	keepdir /etc/apache2/vhosts.d

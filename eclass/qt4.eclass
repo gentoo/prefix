@@ -1,6 +1,6 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.30 2007/12/19 18:07:47 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.31 2007/12/31 18:55:53 caleb Exp $
 
 # @ECLASS: qt4.eclass
 # @MAINTAINER:
@@ -28,9 +28,14 @@ QT4VERSIONS="4.4.0_rc1 4.3.3 4.3.2-r1 4.3.2 4.3.1-r1 4.3.1 4.3.0-r2 4.3.0-r1 4.3
 # DEPEND="$(qt4_min_version 4.2)"
 # if package can be build with qt-4.2 or higher.
 qt4_min_version() {
-	echo "|| ("
-	qt4_min_version_list "$@"
-	echo ")"
+	# This is much simpler for EAPI 1, we can use a slot dependency
+	if [[ "${EAPI}" -ge 1 ]]; then
+		echo ">=${QTPKG}${1}:4"
+	else
+		echo "|| ("
+		qt4_min_version_list "$@"
+		echo ")"
+	fi
 }
 
 qt4_min_version_list() {
@@ -72,10 +77,42 @@ qt4_min_version_list() {
 # - QT4_OPTIONAL_BUILT_WITH_USE_CHECK - qt4 flags that provides some
 #   functionality, but can alternatively be disabled in ${CATEGORY}/${PN}
 #   (so qt4 don't have to be recompiled)
+#
+# flags to watch for for Qt4.4:
+# zlib png | opengl dbus qt3support | sqlite3 ssl
 qt4_pkg_setup() {
+
+	QT4_BEST_VERSION="$(best_version =x11-libs/qt-4*)"
+	QT4_MINOR_VERSION="$(get_version_component_range 2 ${QT4_BEST_VERSION/*qt-/})"
+
 	local requiredflags=""
 	for x in ${QT4_BUILT_WITH_USE_CHECK}; do
-		if ! built_with_use =x11-libs/qt-4* ${x}; then
+		if [[ "${QT4_MINOR_VERSION}" -ge 4 ]]; then
+		# The use flags are different in 4.4 and above, and it's a split package, so this is used to catch
+		# the various use flag combos specified in the ebuilds to make sure we don't error out.
+
+			if [[ ${x} == zlib || ${x} == png ]]; then
+				# Qt 4.4+ is built with zlib and png by default, so the use flags aren't needed
+				continue;
+			elif [[ ${x} == opengl || ${x} == dbus || ${x} == qt3support ]]; then
+				# Make sure the qt-${x} package has been already installed
+
+				if ! has_version x11-libs/qt-${x}; then
+					eerror "You must first install the x11-libs/qt-${x} package."
+					die
+				fi
+			elif [ ${x} == ssl ]; then
+				if [ ! has_version x11-libs/qt-core || ! built_with_use x11-libs/qt-core ssl ]; then
+					eerror "You must first install the x11-libs/qt-core package with the ssl flag enabled."
+					die
+				fi
+			elif [ ${x} == sqlite3 ]; then
+				if [ ! has_version x11-libs/qt-sql || ! built_with_use x11-libs/qt-sql sqlite ]; then
+					eerror "You must first install the x11-libs/qt-sql package with the sqlite flag enabled."
+					die
+				fi
+			fi
+		elif ! built_with_use =x11-libs/qt-4* ${x}; then
 			requiredflags="${requiredflags} ${x}"
 		fi
 	done

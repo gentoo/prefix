@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.74 2007/08/17 10:14:13 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.75 2008/01/02 01:01:03 vapier Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -191,7 +191,15 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 		bfin*)		ninj blackfin bfin;;
 		cris*)		echo cris;;
 		hppa*)		ninj parisc hppa;;
-		i?86*)		ninj i386 x86;;
+		i?86*)
+			# Starting with linux-2.6.24, the 'x86_64' and 'i386'
+			# trees have been unified into 'x86'.
+			if [[ ${type} == "kern" ]] && [[ $(KV_to_int ${KV}) -lt $(KV_to_int 2.6.24) ]] ; then
+				echo i386
+			else
+				echo x86
+			fi
+			;;
 		ia64*)		echo ia64;;
 		m68*)		echo m68k;;
 		mips*)		echo mips;;
@@ -226,7 +234,15 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 						|| echo sparc
 					;;
 		vax*)		echo vax;;
-		x86_64*)	ninj x86_64 amd64;;
+		x86_64*)
+			# Starting with linux-2.6.24, the 'x86_64' and 'i386'
+			# trees have been unified into 'x86'.
+			if [[ ${type} == "kern" ]] && [[ $(KV_to_int ${KV}) -ge $(KV_to_int 2.6.24) ]] ; then
+				echo x86
+			else
+				ninj x86_64 amd64
+			fi
+			;;
 
 		# since our usage of tc-arch is largely concerned with
 		# normalizing inputs for testing ${CTARGET}, let's filter
