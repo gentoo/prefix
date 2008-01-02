@@ -1,0 +1,43 @@
+# Copyright 1999-2006 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libnet/libnet-1.1.2.1-r1.ebuild,v 1.5 2006/10/14 19:24:14 vapier Exp $
+
+EAPI="prefix"
+
+WANT_AUTOCONF="latest"
+WANT_AUTOMAKE="latest"
+inherit eutils autotools
+
+DESCRIPTION="library to provide an API for commonly used low-level network functions (mainly packet injection)"
+HOMEPAGE="http://www.packetfactory.net/libnet/"
+SRC_URI="http://www.packetfactory.net/libnet/dist/${P}.tar.gz"
+
+LICENSE="LGPL-2"
+SLOT="1.1"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-fbsd ~x86-macos"
+IUSE="doc"
+
+DEPEND="sys-devel/autoconf"
+RDEPEND=""
+
+S=${WORKDIR}/libnet
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-fix-chksum.patch
+	epatch "${FILESDIR}"/${P}-autotools.patch
+	eautoreconf
+}
+
+src_install(){
+	emake DESTDIR="${D}" install || die "Failed to install"
+
+	doman doc/man/man3/*.3
+	dodoc VERSION README doc/*
+	if use doc ; then
+		dohtml -r doc/html/*
+		docinto sample
+		dodoc sample/*.[ch]
+	fi
+}
