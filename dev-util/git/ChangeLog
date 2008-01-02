@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/git
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.246 2007/12/29 10:41:59 welp Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.247 2008/01/01 19:51:52 jokey Exp $
+
+*git-1.5.4_rc2 (01 Jan 2008)
+
+  01 Jan 2008; Markus Ullmann <jokey@gentoo.org> +git-1.5.4_rc2.ebuild:
+  Version bump, granted by robbat2 as test-suite passes
 
   29 Dec 2007; <welp@gentoo.org> git-1.5.4_rc1.ebuild:
   Keyworded ~sparc-fbsd; bug 203655
