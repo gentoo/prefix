@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.40.3.ebuild,v 1.9 2007/12/12 01:30:04 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.40.3.ebuild,v 1.10 2008/01/01 12:36:43 vapier Exp $
 
 EAPI="prefix"
 

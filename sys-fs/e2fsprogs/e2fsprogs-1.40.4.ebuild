@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.39-r2.ebuild,v 1.13 2007/11/03 16:43:58 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.40.4.ebuild,v 1.1 2008/01/01 13:13:07 vapier Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ inherit eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="Standard EXT2 and EXT3 filesystem utilities"
 HOMEPAGE="http://e2fsprogs.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
+SRC_URI="mirror://sourceforge/e2fsprogs/${P}.tar.gz"
 
 LICENSE="GPL-2 BSD"
 SLOT="0"
@@ -25,23 +25,13 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-blkid-memleak.patch #171844
-	# Fix locale issues while running tests #99766
-	epatch "${FILESDIR}"/${PN}-1.38-tests-locale.patch
-	epatch "${FILESDIR}"/${PN}-1.38-locale.patch #131462
-	# Fix a cosmetic error in mk_cmds's help output.
-	epatch "${FILESDIR}"/e2fsprogs-1.32-mk_cmds-cosmetic.patch
-	epatch "${FILESDIR}"/e2fsprogs-1.39-util-strptime.patch
+	epatch "${FILESDIR}"/${PN}-1.40.4-prototypes.patch
+	epatch "${FILESDIR}"/${PN}-1.38-tests-locale.patch #99766
 	chmod u+w po/*.po # Userpriv fix #27348
 	# Clean up makefile to suck less
 	epatch "${FILESDIR}"/e2fsprogs-1.39-makefile.patch
-	epatch "${FILESDIR}"/e2fsprogs-1.39-parse-types.patch #146903
-	# Fixes libintl handling on non-glibc #122368
-	epatch "${FILESDIR}"/${PN}-1.39-libintl.patch
-	# Fixes sysconfdir being used in prefix correctly
-	epatch "${FILESDIR}"/e2fsprogs-1.39-sysconfdir.patch
-	# -r1 doesn't have this, so can't use one patch
-	epatch "${FILESDIR}"/e2fsprogs-1.39-more-sysconfdir.patch
+	epatch "${FILESDIR}"/${PN}-1.40-libintl.patch #122368
+	epatch "${FILESDIR}"/${PN}-1.40-fbsd.patch
 
 	# kernel headers use the same defines as e2fsprogs and can cause issues #48829
 	sed -i \
@@ -54,6 +44,7 @@ src_unpack() {
 		-e '/^LIB_SUBDIRS/s:lib/et::' \
 		-e '/^LIB_SUBDIRS/s:lib/ss::' \
 		Makefile.in || die "remove subdirs"
+
 	ln -s "${EROOT}"/usr/$(get_libdir)/libcom_err.a lib/libcom_err.a
 	ln -s "${EROOT}"/$(get_libdir)/libcom_err.so lib/libcom_err.so
 	ln -s /usr/bin/mk_cmds lib/ss/mk_cmds
@@ -70,9 +61,9 @@ src_unpack() {
 
 src_compile() {
 	# Keep the package from doing silly things
-	export LDCONFIG="${EPREFIX}"/bin/true
+	export LDCONFIG=:
 	export CC=$(tc-getCC)
-	export STRIP="${EPREFIX}"/bin/true
+	export STRIP=:
 
 	econf \
 		--bindir="${EPREFIX}"/bin \
@@ -92,13 +83,17 @@ src_compile() {
 	fi
 	# Parallel make sometimes fails
 	emake -j1 COMPILE_ET=compile_et || die
+
+	# Build the FreeBSD helper
+	if use elibc_FreeBSD ; then
+		cp "${FILESDIR}"/fsck_ext2fs.c .
+		emake fsck_ext2fs || die
+	fi
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die
-	dodoc ChangeLog README RELEASE-NOTES SHLIBS
-	docinto e2fsck
-	dodoc e2fsck/ChangeLog e2fsck/CHANGES
+	dodoc README RELEASE-NOTES
 
 	# Move shared libraries to /lib/, install static libraries to /usr/lib/,
 	# and install linker scripts to /usr/lib/.
@@ -116,8 +111,19 @@ src_install() {
 	dosbin "${ED}"/sbin/mklost+found
 	rm -f "${ED}"/sbin/mklost+found
 
-	# these manpages are already provided by FreeBSD libc
-	use elibc_FreeBSD && \
-		rm -f "${ED}"/usr/share/man/man3/{uuid,uuid_compare}.3 \
-			"${ED}"/usr/share/man/man1/uuidgen.1
+	if use elibc_FreeBSD ; then
+		# Install helpers for us
+		into /
+		dosbin "${S}"/fsck_ext2fs || die
+		doman "${FILESDIR}"/fsck_ext2fs.8
+
+		# these manpages are already provided by FreeBSD libc
+		# and filefrag is linux only
+		rm -f \
+			"${ED}"/sbin/filefrag \
+			"${ED}"/usr/share/man/man8/filefrag.8 \
+			"${ED}"/bin/uuidgen \
+			"${ED}"/usr/share/man/man3/{uuid,uuid_compare}.3 \
+			"${ED}"/usr/share/man/man1/uuidgen.1 || die
+	fi
 }
