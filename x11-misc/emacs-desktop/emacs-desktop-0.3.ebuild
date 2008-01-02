@@ -12,7 +12,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86"
+KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86 ~x86-macos"
 IUSE=""
 
 src_install() {
