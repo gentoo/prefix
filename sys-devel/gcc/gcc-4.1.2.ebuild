@@ -77,6 +77,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/4.1.0/gcc-4.1.0-fast-math-i386-Os-workaround.patch
 
 	epatch "${FILESDIR}"/${P}-freebsd.patch
+	epatch "${FILESDIR}"/${P}-darwin-fpic.patch
 }
 
 src_compile() {
