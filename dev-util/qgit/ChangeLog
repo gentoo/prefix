@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/qgit
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/qgit/ChangeLog,v 1.36 2007/10/09 09:46:34 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/qgit/ChangeLog,v 1.37 2007/12/31 16:48:32 jokey Exp $
+
+*qgit-2.1 (31 Dec 2007)
+*qgit-1.5.8 (31 Dec 2007)
+
+  31 Dec 2007; Markus Ullmann <jokey@gentoo.org> +qgit-1.5.8.ebuild,
+  +qgit-2.1.ebuild:
+  Version bump to 2.1 and 1.5.8
 
 *qgit-2.0-r1 (09 Oct 2007)
 
