@@ -64,6 +64,8 @@ src_unpack() {
 		epatch "${FILESDIR}"/macvim-info-plist.patch
 		epatch "${FILESDIR}"/macvim-prefix.patch
 		eprefixify "${S}"/src/MacVim/mvim
+		epatch "${FILESDIR}"/macvim-runtime.patch
+		eprefixify src/MacVim/gui_macvim.m
 	fi
 
 	# two patches that were copied from vim
