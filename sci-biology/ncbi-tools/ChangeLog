@@ -1,6 +1,9 @@
 # ChangeLog for sci-biology/ncbi-tools
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.56 2007/10/19 22:22:41 je_fro Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.57 2007/12/31 15:42:24 je_fro Exp $
+
+  31 Dec 2007; Jeff Gardner <je_fro@gentoo.org> ChangeLog:
+  fixing my email address
 
   19 Oct 2007; Jeff Gardner <je_fro@gentoo.org> ncbi-tools-20070826.ebuild:
   Commenting out any reference to USE=mpi, which is currently broken (bug
@@ -9,13 +12,13 @@
   14 Oct 2007; Jeff Gardner <je_fro@gentoo.org> ncbi-tools-20070826.ebuild:
   Commented out a stray reference to mpi that I missed the first time.
 
-  13 Oct 2007; <jeff@gentoo.org> ncbi-tools-20050605.ebuild,
+  13 Oct 2007; <je_fro@gentoo.org> ncbi-tools-20050605.ebuild,
   +ncbi-tools-20070826.ebuild:
   Added quotes to make repoman happy.
 
 *ncbi-tools-20070826 (13 Oct 2007)
 
-  13 Oct 2007; <jeff@gentoo.org> +ncbi-tools-20070826.ebuild:
+  13 Oct 2007; <je_fro@gentoo.org> +ncbi-tools-20070826.ebuild:
   New version - mpiblast compilation broken at present.
 
   05 Jun 2007; Raúl Porcel <armin76@gentoo.org> ncbi-tools-20060507.ebuild:
