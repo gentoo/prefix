@@ -1,0 +1,13 @@
+=== modified file 'a/twisted/web/test/test_webclient.py'
+--- a/twisted/web/test/test_webclient.py	
++++ b/twisted/web/test/test_webclient.py	
+@@ -178,6 +178,8 @@
+             IOError)
+ 
+     def testDownloadPageError3(self):
++        if not os.geteuid():
++            raise unittest.SkipTest('this does not work as root')
+         # make sure failures in open() are caught too. This is tricky.
+         # Might only work on posix.
+         tmpfile = open("unwritable", "wb")
+

@@ -1,0 +1,131 @@
+# ChangeLog for dev-python/twisted-web
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-web/ChangeLog,v 1.29 2007/06/09 18:04:18 lavajoe Exp $
+
+  09 Jun 2007; Joe Peterson <lavajoe@gentoo.org> twisted-web-0.7.0.ebuild:
+  Add ~x86-fbsd keyword
+
+  12 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  twisted-web-0.6.0.ebuild:
+  Stable on sparc
+
+  12 Mar 2007; Raúl Porcel <armin76@gentoo.org> twisted-web-0.6.0.ebuild:
+  x86 stable
+
+*twisted-web-0.7.0 (11 Jan 2007)
+
+  11 Jan 2007; Marien Zwart <marienz@gentoo.org> twisted-web-0.6.0.ebuild,
+  -twisted-web-0.6.0-r1.ebuild, +twisted-web-0.7.0.ebuild:
+  Version bump, make twisted dependency stricter, drop revision patched to
+  work with python 2.5 (use the new bump instead).
+
+  20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org>
+  twisted-web-0.6.0.ebuild:
+  Stable on Alpha.
+
+  01 Aug 2006; Simon Stelling <blubb@gentoo.org>
+  twisted-web-0.5.0-r1.ebuild:
+  stable on amd64
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  twisted-web-0.6.0.ebuild:
+  hppa stable, bug #139612
+
+  12 Jul 2006; Aron Griffis <agriffis@gentoo.org> twisted-web-0.5.0-r3.ebuild,
+  twisted-web-0.6.0.ebuild:
+  Mark 0.5.0-r3 0.6.0 stable on ia64 #128688
+
+  02 Jul 2006; Lars Weiler <pylon@gentoo.org> twisted-web-0.6.0.ebuild:
+  Stable on ppc.
+
+  30 Jun 2006; Thomas Cort <tcort@gentoo.org> twisted-web-0.5.0-r1.ebuild:
+  Stable on alpha wrt Bug #128688.
+
+  28 Jun 2006; Luis Medinas <metalgod@gentoo.org> twisted-web-0.6.0.ebuild:
+  Stable on amd64. See bug #124293.
+
+*twisted-web-0.6.0-r1 (26 Jun 2006)
+*twisted-web-0.5.0-r3 (26 Jun 2006)
+
+  26 Jun 2006; Marien Zwart <marienz@gentoo.org>
+  -files/twisted-web-0.5.0-tests-2.2-compat-14780.patch,
+  -files/twisted-web-0.5.0-tests-2.2-compat-14782.patch,
+  -files/twisted-web-0.5.0-tests-2.2-compat-14786.patch,
+  -twisted-web-0.5.0-r2.ebuild, +twisted-web-0.5.0-r3.ebuild,
+  +twisted-web-0.6.0-r1.ebuild:
+  Remove twisted-web-0.5.0-r2 (the version with extra test patches for
+  twisted-2.2.0): use twisted-2.4.0 and web 0.6.0 instead. Add new revisions
+  with the nonworking websetroot removed.
+
+  04 Jun 2006; Brent Baude <ranger@gentoo.org> twisted-web-0.6.0.ebuild:
+  Marking twisted-web-0.6.0 ppc64 stable as a dep to avahi per Mr Bones request
+
+*twisted-web-0.6.0 (26 May 2006)
+
+  26 May 2006; Marien Zwart <marienz@gentoo.org> +twisted-web-0.6.0.ebuild:
+  Version bump.
+
+  26 May 2006; Marien Zwart <marienz@gentoo.org>
+  twisted-web-0.5.0-r1.ebuild, twisted-web-0.5.0-r2.ebuild:
+  These versions run but do not install with twisted 2.4, so add a < dep.
+
+  12 May 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  twisted-web-0.5.0-r2.ebuild:
+  Added ~hppa
+
+  03 May 2006; Mark Loeser <halcy0n@gentoo.org> twisted-web-0.5.0-r1.ebuild:
+  Stable on x86; bug #128688
+
+  01 May 2006; Markus Rothe <corsair@gentoo.org>
+  twisted-web-0.5.0-r2.ebuild:
+  Added ~ppc64
+
+  29 Apr 2006; Marien Zwart <marienz@gentoo.org>
+  +files/twisted-web-0.5.0-root-skip.patch, twisted-web-0.5.0-r1.ebuild,
+  twisted-web-0.5.0-r2.ebuild:
+  Make the tests pass without FEATURES=userpriv, see bug #128688.
+
+*twisted-web-0.5.0-r2 (09 Apr 2006)
+
+  09 Apr 2006; Marien Zwart <marienz@gentoo.org>
+  +files/twisted-web-0.5.0-tests-2.2-compat-14780.patch,
+  +files/twisted-web-0.5.0-tests-2.2-compat-14782.patch,
+  +files/twisted-web-0.5.0-tests-2.2-compat-14786.patch,
+  +twisted-web-0.5.0-r2.ebuild:
+  Revision bump with patches to pass the tests with twisted-2.2.0. Test
+  changes only. See bug #128688. Thanks to nixnut for noticing.
+
+  03 Apr 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  twisted-web-0.5.0-r1.ebuild:
+  Stable on sparc wrt #128688
+
+  13 Feb 2006; Marien Zwart <marienz@gentoo.org>
+  +files/twisted-web-0.5.0-tests-2.2-compat.patch,
+  twisted-web-0.5.0-r1.ebuild:
+  Patch to make the tests succeed with twisted 2.0, 2.1 and 2.2. No revision
+  bump because this only affects the tests.
+
+  01 Feb 2006; Aron Griffis <agriffis@gentoo.org>
+  twisted-web-0.5.0-r1.ebuild:
+  Mark 0.5.0-r1 ~alpha/~ia64
+
+  30 Nov 2005; Marien Zwart <marienz@gentoo.org> -twisted-web-0.5.0.ebuild:
+  Remove old ebuild.
+
+*twisted-web-0.5.0-r1 (27 Nov 2005)
+
+  27 Nov 2005; Marien Zwart <marienz@gentoo.org> metadata.xml,
+  +twisted-web-0.5.0-r1.ebuild:
+  Revbump to use the new eclass (bug #80639). Set myself as maintainer.
+
+  23 Sep 2005; Gustavo Felisberto <humpback@gentoo.org>;
+  twisted-web-0.5.0.ebuild:
+  ~amd64
+
+  27 Jun 2005; David Holm <dholm@gentoo.org> twisted-web-0.5.0.ebuild:
+  Added to ~ppc.
+
+  08 Apr 2005; Thomas Raschbacher <lordvan@gentoo.org> :
+  initial import
+  twisted-web was part of the main twisted release
+
