@@ -1,0 +1,27 @@
+# ChangeLog for net-analyzer/netdiscover
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/netdiscover/ChangeLog,v 1.6 2007/09/06 17:37:14 jokey Exp $
+
+  06 Sep 2007; Markus Ullmann <jokey@gentoo.org>
+  -netdiscover-0.3_beta5.ebuild:
+  Cleanup
+
+  20 Feb 2007; Markus Ullmann <jokey@gentoo.org> ChangeLog:
+  Redigest for Manifest2
+
+*netdiscover-0.3_beta6 (19 Jul 2006)
+
+  19 Jul 2006; Marcelo Goes <vanquirius@gentoo.org>
+  +netdiscover-0.3_beta6.ebuild:
+  0.3_beta6 version bump for bug 140912. Thanks to Taku Murakami
+  <murakami.taku at gmail dot com>.
+
+  10 Feb 2006; Scott Stoddard <deltacow@gentoo.org>
+  netdiscover-0.3_beta5.ebuild:
+  Added ~amd64 keyword.
+
+*netdiscover-0.3_beta5 (01 Sep 2005)
+
+  01 Sep 2005; Michele Noberasco <s4t4n@gentoo.org> netdiscover-0.3_beta5.ebuild:
+  Initial import.
+
