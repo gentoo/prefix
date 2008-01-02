@@ -1,6 +1,19 @@
 # ChangeLog for www-client/mozilla-launcher
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-launcher/ChangeLog,v 1.65 2007/12/18 14:37:21 armin76 Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-launcher/ChangeLog,v 1.67 2008/01/01 14:02:16 armin76 Exp $
+
+*mozilla-launcher-1.57 (01 Jan 2008)
+
+  01 Jan 2008; Raúl Porcel <armin76@gentoo.org>
+  +mozilla-launcher-1.57.ebuild:
+  Version bump, fixed bug #178224, and bug #195726
+
+  01 Jan 2008; Raúl Porcel <armin76@gentoo.org>
+  -files/mozilla-launcher-1.35-multilib.patch,
+  -files/mozilla-launcher-1.39-multilib.patch,
+  -files/mozilla-launcher-1.41-multilib.patch,
+  -files/mozilla-launcher-1.52-aoss.patch:
+  old
 
   18 Dec 2007; Raúl Porcel <armin76@gentoo.org>
   -mozilla-launcher-1.49.ebuild, -mozilla-launcher-1.52.ebuild:
