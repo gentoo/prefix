@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-9.0.115.0.ebuild,v 1.2 2007/12/30 14:15:32 rich0 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-9.0.115.0.ebuild,v 1.3 2008/01/01 16:05:56 armin76 Exp $
 
 EAPI="prefix"
 

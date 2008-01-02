@@ -1,6 +1,10 @@
 # ChangeLog for net-www/netscape-flash
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/ChangeLog,v 1.61 2007/12/30 14:15:32 rich0 Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/ChangeLog,v 1.62 2008/01/01 16:05:56 armin76 Exp $
+
+  01 Jan 2008; Raúl Porcel <armin76@gentoo.org>
+  netscape-flash-9.0.115.0.ebuild:
+  x86 stable wrt security #193519
 
   30 Dec 2007; Richard Freeman <rich0@gentoo.org>
   netscape-flash-9.0.115.0.ebuild:
