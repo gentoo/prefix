@@ -1,6 +1,10 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.365 2007/12/18 14:31:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.366 2007/12/31 15:00:47 armin76 Exp $
+
+  31 Dec 2007; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-2.0.0.11.ebuild:
+  Bump patchset to replace a bus error patch
 
   18 Dec 2007; Raúl Porcel <armin76@gentoo.org>
   -mozilla-firefox-2.0.0.9.ebuild:
