@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8071 2007/12/30 04:42:17 omp Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8074 2008/01/01 14:26:24 kolmodin Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -20,6 +20,17 @@
 ##
 ##   End example
 ##
+
+# Lennart Kolmodin <kolmodin@gentoo.org> (01 Jan 2008)
+# hs-plugins only works with the outdated GHC 6.4.2 compiler,
+# and has not been updated upstream for two years.
+# Pending removal 01 Feb 2008
+dev-haskell/hs-plugins
+
+# Diego Pettenò <flameeyes@gentoo.org> (31 Dec 2007)
+# Masked pending removal 31 Jan 2008
+# Superseded by dev-ruby/httpclient, drop-in replacement
+dev-ruby/http-access2
 
 # David Shakaryan <omp@gentoo.org> (30 Dec 2007)
 # Masked pending removal 30 Jan 2008.
@@ -607,12 +618,6 @@ dev-util/bk_client
 # breaks apr and openldap
 =sys-libs/db-4.6*
 
-# Mike Frysinger <vapier@gentoo.org> (08 Sep 2007)
-# Use sys-auth/thinkfinger instead
-sys-auth/tfm-fingerprint
-sys-auth/pam_bioapi
-sys-auth/bioapi
-
 # Markus Ullmann <jokey@gentoo.org> (05 Sept 2007)
 # masked for testing
 >=net-analyzer/snort-2.7
@@ -1153,11 +1158,6 @@ sci-biology/generic-genome-browser
 # Stefan Schweizer <genstef@gentoo.org> (21 Aug 2006)
 # beta psi, with jingle support
 >=net-im/psi-0.11_alpha0
-
-# Luis Araujo <araujo@gentoo.org> (5 Oct 2006)
-# This is a release candidate version for testing
-# purpose mainly.
-=dev-haskell/hs-plugins-1.0_rc0
 
 # Roy Marples <uberlord@gentoo.org> (02 Oct 2006)
 # masked for testing due to major ebuild and installation changes

@@ -1,6 +1,34 @@
 # ChangeLog for profile directory
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.954 2007/12/30 04:42:17 omp Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.962 2008/01/01 14:26:24 kolmodin Exp $
+
+  01 Jan 2008; Lennart Kolmodin <kolmodin@gentoo.org> package.mask:
+  Mask all of dev-haskell/hs-plugins, not just some versions.
+  Pending removal 01 Feb 2008 due to not beeing outdated and no support
+  upstream.
+
+  31 Dec 2007; Diego Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask dev-ruby/http-access2 in favour of dev-ruby/httpclient.
+
+  31 Dec 2007; Gilles Dartiguelongue <eva@gentoo.org>
+  default-linux/x86/no-nptl/2.4/package.mask,
+  hardened/ia64/package.use.mask, hardened/ppc/package.use.mask,
+  hardened/ppc64/package.use.mask:
+  prepare bump of app-office/glabels to 2.2.0
+
+  31 Dec 2007; Gilles Dartiguelongue <eva@gentoo.org>
+  hardened/ia64/package.use.mask, hardened/ppc/package.use.mask,
+  hardened/ppc64/package.use.mask:
+  clean up iptc package.use.mask since bug #156398 is fixed
+
+  30 Dec 2007; Christian Faulhammer <opfer@gentoo.org> use.desc, use.local.desc:
+  adjust description of svg and app-editors/emacs-cvs:xft USE flags
+
+  30 Dec 2007; Mark Loeser <halcy0n@gentoo.org> use.local.desc:
+  Remove mono from use.local.desc for media-libs/libkarma
+
+  30 Dec 2007; Markus Meier <maekke@gentoo.org> use.local.desc:
+  add djvu USE-flag for imagemagick
 
   30 Dec 2007; David Shakaryan <omp@gentoo.org> package.mask:
   Mask x11-themes/openbox-themes pending removal.
@@ -25,6 +53,9 @@
 
   28 Dec 2007; <alistair@gentoo.org> package.mask:
   Adding dev-util/poseidonCE to package mask for removal in 30 days.
+
+  31 Dec 2007; Ryan Hill <dirtyepic@gentoo.org> use.local.desc:
+  Add metric local flag for potrace.
 
   27 Dec 2007; Peter Volkov <pva@gentoo.org> use.local.desc:
   Added extensible USE flag for net-analyzer/net-snmp.

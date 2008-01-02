@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.377 2007/12/22 16:45:30 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.378 2007/12/30 21:11:46 opfer Exp $
 
 # Keep them sorted
 
@@ -330,7 +330,7 @@ startup-notification - Enable application startup event feedback mechanism
 static - !!do not set this during bootstrap!! Causes binaries to be statically linked instead of dynamically
 subversion - Enable subversion (version control system) support
 suid - Enable setuid root program, with potential security risks
-svg - Adds support for SVG (Scalable Vector Graphics http://www.w3.org/TR/SVG ).  This option is mainly intended for users that tend to browse multimedia sites frequently.
+svg - Adds support for SVG (Scalable Vector Graphics).
 svga - Adds support for SVGAlib (graphics library)
 sybase - Adds support for the Sybase SQL Database Server
 sybase-ct - Adds support for Sybase-CT

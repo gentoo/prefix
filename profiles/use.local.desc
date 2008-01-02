@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3247 2007/12/30 00:25:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3254 2008/01/01 16:58:50 drac Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -82,7 +82,7 @@ app-editors/emacs-cvs:gzip-el - Compress bundled Emacs Lisp source
 app-editors/emacs-cvs:hesiod - Enable support for hesiod
 app-editors/emacs-cvs:sound - Enable sound
 app-editors/emacs-cvs:toolkit-scroll-bars - Use the selected toolkit's scrollbars in preference to Emacs' own scrollbars
-app-editors/emacs-cvs:xft - Build Emacs with support for the XFT font renderer (ie. the XFT_JHD_BRANCH branch from CVS)
+app-editors/emacs-cvs:xft - Build Emacs with support for the XFT font renderer
 app-editors/emacs:gzip-el - Compress bundled Emacs Lisp source
 app-editors/emacs:hesiod - Enable support for hesiod
 app-editors/emacs:sendmail - Build Emacs with MTA support
@@ -627,6 +627,7 @@ dev-util/mercurial:zsh-completion - Install zsh command completion for hg.
 dev-util/monodevelop:aspnet - Enable ASP.NET support
 dev-util/monodevelop:aspnetedit - Enable ASP.NET visual designer support
 dev-util/monodevelop:boo - Enable support for the boo programming language
+dev-util/monodevelop:c++ - Enable support for C/C++ programming languanges
 dev-util/netbeans:c++ - Adds Netbeans C/C++ Pack
 dev-util/nsis:config-log - Enable the logging facility (useful in debugging installers)
 dev-util/pbuilder:uml - Enable pbuilder user mode linux support
@@ -893,6 +894,7 @@ media-gfx/gthumb:iptc - Add support for IPTC metadata
 media-gfx/gwenview:kipi - Support for the KDE Image Plugin Interface.
 media-gfx/hugin:enblend - Pull media-gfx/enblend as a dependency
 media-gfx/hugin:sift - Pull media-gfx/autopano-sift as a dependency
+media-gfx/imagemagick:djvu - Enable djvu support
 media-gfx/imagemagick:fpx - enable libfpx support
 media-gfx/imagemagick:gs - enable ghostscript support
 media-gfx/imagemagick:hdri - Enables High Dynamic Range Images formats
@@ -906,6 +908,7 @@ media-gfx/inkscape:postscript - Pull in dependencies needed for the postscript i
 media-gfx/k3d:plib - build plib-based import/export library
 media-gfx/maya:bundled-libs - Use the bundled versions of libs rather than system ones (libstdc++, libgcc_s, libqt, and libXm)
 media-gfx/maya:maya-shaderlibrary - Install the maya shader library
+media-gfx/potrace:metric - default to a4 paper size and metric measurement
 media-gfx/pstoedit:emf - enables media-libs/libemf support
 media-gfx/showimg:kipi - Support for the KDE Image Plugin Interface.
 media-gfx/splashutils:fbcondecor - Support for the fbcondecor kernel patch.
@@ -928,7 +931,6 @@ media-libs/glide-v3:voodoo2 - Support 3DFX Voodoo2 video cards
 media-libs/glide-v3:voodoo5 - Support 3DFX Voodoo4 and Voodoo5 video cards
 media-libs/libggi:vis - Enables sparc vis support for libggi
 media-libs/libifp:module - Build kernel module for non-root usage
-media-libs/libkarma:mono - Build with mono support
 media-libs/libsdl:custom-cflags - Allow users to use any CFLAGS they like completely (at their own risk)
 media-libs/libsdl:noaudio - Allow users to disable audio support completely (at their own risk)
 media-libs/libsdl:nojoystick - Allow users to disable joystick support completely (at their own risk)
@@ -1963,7 +1965,7 @@ sys-libs/pam:pam_chroot - Builds the pam_chroot module (enables per-user chroots
 sys-libs/pam:pam_timestamp - Builds the pam_timestamp module (enables recent successful attempt authentication)
 sys-libs/pam:pwdb - If you want pam_pwdb.so installed to use pwdb as passwd db
 sys-libs/uclibc:pregen - Use pregenerated locales
-sys-libs/uclibc:savedconfig - Adds support to user defined configs
+sys-libs/uclibc:savedconfig - Adds support for user defined configs
 sys-libs/uclibc:uclibc-compat - build uclibc with backwards compatible options
 sys-libs/uclibc:userlocales - build only the locales specified in /etc/locales.build
 sys-libs/uclibc:wordexp - add support for word expansion (wordexp.h)
@@ -2098,7 +2100,7 @@ x11-misc/vnc2swf:x11vnc - Install script that depends on x11vnc
 x11-misc/x11vnc:system-libvncserver - Build x11vnc against the system libvncserver (experimental)
 x11-misc/xlockmore:xlockrc - Enables xlockrc for people without PAM
 x11-misc/xscreensaver:insecure-savers - Installs some screensaver modules as setuid root to enable cooler effects
-x11-misc/xscreensaver:new-login - Enables users to create new logins even if the X screen is locked by someone else
+x11-misc/xscreensaver:new-login - Enables New Login button using gdmflexiserver (gnome-base/gdm)
 x11-plugins/gkrellm-plugins:audacious - Install the audacious plugin
 x11-plugins/gkrellmbups:nut - Enables monitoring Network-UPS (sys-power/nut)
 x11-plugins/purple-plugin_pack:talkfilters - Enable support for app-text/talkfilters
