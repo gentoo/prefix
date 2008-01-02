@@ -1,0 +1,52 @@
+diff -Nur xpdf-3.02-poppler.orig/PDFCore.cc xpdf-3.02-poppler/PDFCore.cc
+--- xpdf-3.02-poppler.orig/PDFCore.cc	2007-11-18 12:23:58.000000000 +0100
++++ xpdf-3.02-poppler/PDFCore.cc	2007-11-18 12:24:07.000000000 +0100
+@@ -1563,9 +1563,6 @@
+   int x0, y0, x1, y1, t;
+   GooString *s;
+ 
+-  if (!doc->okToCopy()) {
+-    return NULL;
+-  }
+   if ((page = findPage(pg))) {
+     cvtUserToDev(pg, xMin, yMin, &x0, &y0);
+     cvtUserToDev(pg, xMax, yMax, &x1, &y1);
+diff -Nur xpdf-3.02-poppler.orig/XPDFCore.cc xpdf-3.02-poppler/XPDFCore.cc
+--- xpdf-3.02-poppler.orig/XPDFCore.cc	2007-11-18 12:23:58.000000000 +0100
++++ xpdf-3.02-poppler/XPDFCore.cc	2007-11-18 12:25:18.000000000 +0100
+@@ -384,11 +384,7 @@
+ #ifndef NO_TEXT_SELECT
+       if (selectULX != selectLRX &&
+ 	  selectULY != selectLRY) {
+-	if (doc->okToCopy()) {
+ 	  copySelection();
+-	} else {
+-	  error(-1, "Copying of text from this document is not allowed.");
+-	}
+       }
+ #endif
+     }
+@@ -407,9 +403,6 @@
+   int pg;
+   double ulx, uly, lrx, lry;
+ 
+-  if (!doc->okToCopy()) {
+-    return;
+-  }
+   if (getSelection(&pg, &ulx, &uly, &lrx, &lry)) {
+     //~ for multithreading: need a mutex here
+     if (currentSelection) {
+diff -Nur xpdf-3.02-poppler.orig/XPDFViewer.cc xpdf-3.02-poppler/XPDFViewer.cc
+--- xpdf-3.02-poppler.orig/XPDFViewer.cc	2007-11-18 12:23:58.000000000 +0100
++++ xpdf-3.02-poppler/XPDFViewer.cc	2007-11-18 12:24:10.000000000 +0100
+@@ -3406,10 +3406,6 @@
+   PSOutputDev *psOut;
+ 
+   doc = viewer->core->getDoc();
+-  if (!doc->okToPrint()) {
+-    error(-1, "Printing this document is not allowed.");
+-    return;
+-  }
+ 
+   viewer->core->setBusyCursor(gTrue);
+ 
