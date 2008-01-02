@@ -1,6 +1,18 @@
 # ChangeLog for dev-libs/darts
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/darts/ChangeLog,v 1.18 2007/04/29 13:26:51 usata Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/darts/ChangeLog,v 1.22 2008/01/01 16:40:58 maekke Exp $
+
+  01 Jan 2008; Markus Meier <maekke@gentoo.org> Manifest:
+  redigest
+
+  01 Jan 2008; Markus Meier <maekke@gentoo.org> darts-0.31.ebuild:
+  x86 stable, bug #203857
+
+  31 Dec 2007; Brent Baude <ranger@gentoo.org> darts-0.31.ebuild:
+  Marking darts-0.31 ppc for bug 203857
+
+  31 Dec 2007; Brent Baude <ranger@gentoo.org> darts-0.31.ebuild:
+  Marking darts-0.31 ppc64 for bug 203857
 
 *darts-0.31 (29 Apr 2007)
 
