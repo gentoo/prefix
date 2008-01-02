@@ -51,7 +51,9 @@ src_compile() {
 	CFLAGS="${CFLAGS} -Wall -Wno-unused -D_GNU_SOURCE \
 		-DHAVE_STRERROR -DHAVE_STRDUP -DHAVE_SETENV \
 		-D__COPYRIGHT\(x\)= -D__RCSID\(x\)= -I. \
-		-DMACHINE=\\\"gentoo\\\" -DMACHINE_ARCH=\\\"$(tc-arch-kernel)\\\""
+		-DMACHINE=\\\"gentoo\\\" -DMACHINE_ARCH=\\\"$(tc-arch-kernel)\\\" \
+		-D_PATH_DEFSHELLDIR=\\\"${EPREFIX}/bin\\\" \
+		-D_PATH_DEFSYSPATH=\\\"${EPREFIX}/usr/share/mk\\\""
 
 	make -f Makefile.boot \
 		CC="$(tc-getCC)" \
