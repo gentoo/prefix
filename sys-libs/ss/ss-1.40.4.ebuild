@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ss-1.40.ebuild,v 1.1 2007/06/30 16:17:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ss-1.40.4.ebuild,v 1.1 2008/01/01 12:51:22 vapier Exp $
 
 EAPI="prefix"
 
@@ -21,17 +21,21 @@ DEPEND="${RDEPEND}
 
 S=${WORKDIR}/e2fsprogs-${PV}
 
+env_setup() {
+	export LDCONFIG="${EPREFIX}"/bin/true
+	export CC=$(tc-getCC)
+	export STRIP="${EPREFIX}"/bin/true
+}
+
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.39-makefile.patch
-	epatch "${FILESDIR}"/${PN}-1.39-parse-types.patch #146903
+	epatch "${FILESDIR}"/${PN}-1.40.4-check.patch #201762
 }
 
 src_compile() {
-	export LDCONFIG="${EPREFIX}"/bin/true
-	export CC=$(tc-getCC)
-	export STRIP="${EPREFIX}"/bin/true
+	env_setup
 
 	# We want to use the "bsd" libraries while building on Darwin, but while
 	# building on other Gentoo/*BSD we prefer elf-naming scheme.
@@ -50,13 +54,15 @@ src_compile() {
 }
 
 src_test() {
-	make -C lib/ss check || die "make check failed"
+	env_setup
+
+	local lib=$(get_libname)
+	ln -s $(${CC} -print-file-name=libcom_err${lib}) lib/libcom_err${lib}
+	emake -j1 -C lib/ss check || die "make check failed"
 }
 
 src_install() {
-	export LDCONFIG="${EPREFIX}"/bin/true
-	export CC=$(tc-getCC)
-	export STRIP="${EPREFIX}"/bin/true
+	env_setup
 
 	dodir /usr/share/man/man1
 	make -C lib/ss DESTDIR="${D}" install || die
@@ -64,7 +70,7 @@ src_install() {
 	# Move shared libraries to /lib/, install static libraries to /usr/lib/,
 	# and install linker scripts to /usr/lib/.
 	dodir /$(get_libdir)
-	mv "${ED}"/usr/$(get_libdir)/*.so* "${ED}"/$(get_libdir)/ || die "move .so"
+	mv "${ED}"/usr/$(get_libdir)/*$(get_libname)* "${ED}"/$(get_libdir)/ || die "move .so"
 	dolib.a lib/libss.a || die "dolib.a"
-	gen_usr_ldscript libss.so
+	gen_usr_ldscript libss$(get_libname)
 }
