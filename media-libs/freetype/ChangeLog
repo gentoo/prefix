@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/freetype
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.166 2007/12/29 19:26:53 ranger Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.167 2008/01/01 04:35:52 rich0 Exp $
+
+  01 Jan 2008; Richard Freeman <rich0@gentoo.org> freetype-2.3.5-r2.ebuild:
+  amd64 stable - #203290
 
   29 Dec 2007; Brent Baude <ranger@gentoo.org> freetype-2.3.5-r2.ebuild:
   Marking freetype-2.3.5-r2 ppc64 for bug 203290
