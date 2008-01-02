@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/linux-headers-2.6.23-r2.ebuild,v 1.9 2007/12/31 05:50:32 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/linux-headers-2.6.23-r3.ebuild,v 1.1 2007/12/31 05:56:26 vapier Exp $
 
 EAPI="prefix"
 
@@ -9,7 +9,7 @@ H_SUPPORTEDARCH="alpha amd64 arm cris hppa m68k mips ia64 ppc ppc64 s390 sh spar
 inherit kernel-2
 detect_version
 
-PATCH_VER="4"
+PATCH_VER="5"
 SRC_URI="mirror://gentoo/gentoo-headers-base-${PV}.tar.bz2"
 [[ -n ${PATCH_VER} ]] && SRC_URI="${SRC_URI} mirror://gentoo/gentoo-headers-${PV}-${PATCH_VER}.tar.bz2"
 
