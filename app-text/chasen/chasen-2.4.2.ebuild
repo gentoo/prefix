@@ -1,17 +1,14 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/chasen/chasen-2.4.0.ebuild,v 1.3 2008/01/01 16:45:27 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/chasen/chasen-2.4.2.ebuild,v 1.1 2007/12/31 08:28:58 matsuu Exp $
 
 EAPI="prefix"
 
-inherit perl-app
-
-MY_P="${P/_pre/-preview}"
-S="${WORKDIR}/${MY_P}"
+inherit perl-module
 
 DESCRIPTION="Japanese Morphological Analysis System, ChaSen"
 HOMEPAGE="http://chasen-legacy.sourceforge.jp/"
-SRC_URI="mirror://sourceforge.jp//chasen-legacy/24693/${MY_P}.tar.gz"
+SRC_URI="mirror://sourceforge.jp//chasen-legacy/26441/${P}.tar.gz"
 
 LICENSE="chasen"
 SLOT="0"
@@ -24,15 +21,6 @@ RDEPEND="${DEPEND}
 	perl? ( !dev-perl/Text-ChaSen )"
 PDEPEND=">=app-dicts/ipadic-2.7.0"
 
-src_unpack() {
-	unpack ${A}
-
-	if use perl ; then
-		cd "${S}"/perl
-		sed -i -e '5a"LD" => "g++",' Makefile.PL || die
-	fi
-}
-
 src_compile() {
 	econf || die
 	emake || die
@@ -43,13 +31,13 @@ src_compile() {
 }
 
 src_install () {
-	einstall || die
+	emake DESTDIR="${D}" install || die
+
+	dodoc AUTHORS ChangeLog NEWS README
 
 	if use perl ; then
 		cd "${S}"/perl
 		perl-module_src_install
+		newdoc README README.perl
 	fi
-
-	cd "${S}"
-	dodoc AUTHORS COPYING ChangeLog INSTALL NEWS README
 }
