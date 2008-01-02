@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-2.20.0.ebuild,v 1.1 2007/09/25 18:29:55 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-2.20.1-r1.ebuild,v 1.1 2008/01/01 21:45:46 eva Exp $
 
 EAPI="prefix"
 
-inherit gnome2
+inherit gnome2 autotools
 
 MY_PN=GConf
 MY_P=${MY_PN}-${PV}
@@ -36,6 +36,16 @@ S="${WORKDIR}/${MY_P}"
 pkg_setup() {
 	G2CONF="${G2CONF} --enable-gtk $(use_enable debug)"
 	kill_gconf
+}
+
+src_unpack() {
+	gnome2_src_unpack
+
+	# fix bug #193442
+	epatch "${FILESDIR}/${P}-automagic-ldap.patch"
+
+	cp aclocal.m4 old.m4
+	AT_M4DIR="." eautoreconf
 }
 
 src_install() {
