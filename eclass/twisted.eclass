@@ -33,7 +33,8 @@ twisted_src_test() {
 	# This is a hack to make tests work without installing to the live
 	# filesystem. We copy the twisted site-packages to a temporary
 	# dir, install there, and run from there.
-	local spath="usr/$(get_libdir)/python${PYVER}/site-packages/"
+	local spath="${EPREFIX}/usr/$(get_libdir)/python${PYVER}/site-packages/"
+	spath=${spath#/}
 	mkdir -p "${T}/${spath}"
 	cp -R "${ROOT}${spath}/twisted" "${T}/${spath}" || die
 
@@ -68,8 +69,9 @@ twisted_src_install() {
 	# make everything (core and all subpackages) go into lib64 on
 	# amd64. Without it pure python subpackages install into lib while
 	# stuff with c extensions goes into lib64.
+	local prefix=${EPREFIX%/}/
 	distutils_src_install \
-		--install-lib="usr/$(get_libdir)/python${PYVER}/site-packages/"
+		--install-lib="${prefix#/}usr/$(get_libdir)/python${PYVER}/site-packages/"
 
 	if [[ -d doc/man ]]; then
 		doman doc/man/*
@@ -86,7 +88,7 @@ update_plugin_cache() {
 	python_version
 	# we have to remove the cache or removed plugins won't be removed
 	# from the cache (http://twistedmatrix.com/bugs/issue926)
-	rm "${ROOT}usr/$(get_libdir)/python${PYVER}/site-packages/twisted/plugins/dropin.cache"
+	rm "${ROOT}${EPREFIX#/}/usr/$(get_libdir)/python${PYVER}/site-packages/twisted/plugins/dropin.cache"
 	# notice we have to use getPlugIns here for <=twisted-2.0.1 compatibility
 	python -c "from twisted.plugin import IPlugin, getPlugIns;list(getPlugIns(IPlugin))"
 }
