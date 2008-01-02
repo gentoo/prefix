@@ -13,4 +13,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE=""
 
-RDEPEND="!userland_BSD? ( sys-devel/pmake )"
+RDEPEND="kernel_linux? ( sys-devel/pmake )
+	kernel_Solaris? ( sys-devel/pmake )
+	kernel_Darwin? ( sys-devel/bsdmake )"
