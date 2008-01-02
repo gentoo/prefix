@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/com_err-1.39.ebuild,v 1.6 2007/05/01 17:15:15 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/com_err-1.40.4.ebuild,v 1.1 2008/01/01 12:50:44 vapier Exp $
 
 EAPI="prefix"
 
@@ -12,11 +12,12 @@ SRC_URI="mirror://sourceforge/e2fsprogs/e2fsprogs-${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 IUSE="nls"
 
 RDEPEND=""
-DEPEND="nls? ( sys-devel/gettext )"
+DEPEND="nls? ( sys-devel/gettext )
+	sys-devel/bc"
 
 S=${WORKDIR}/e2fsprogs-${PV}
 
@@ -24,9 +25,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.39-makefile.patch
-	epatch "${FILESDIR}"/${PN}-1.39-parse-types.patch
-	epatch "${FILESDIR}"/${PN}-1.38-locale.patch
-	epatch "${FILESDIR}"/${PN}-1.39-darwin-makefile-install.patch
+	epatch "${FILESDIR}"/${PN}-1.40-darwin-makefile.patch
 }
 
 src_compile() {
@@ -47,7 +46,7 @@ src_compile() {
 		--with-ldopts="${LDFLAGS}" \
 		$(use_enable nls) \
 		|| die
-	emake -C lib/et || die
+	emake -j1 -C lib/et || die
 }
 
 src_test() {
