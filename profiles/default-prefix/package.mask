@@ -22,6 +22,10 @@
 ##   End example
 ##
 
+# Fabian Groffen <grobian@gentoo.org> (02 Jan 2008)
+# rlogin seems not to work, consider using ssh anyway
+net-misc/netkit-rsh
+
 # Elias Pipping <pipping@gentoo.org> (28 Dec 2007)
 # experimental snapshot of opencvs
 dev-util/opencvs
