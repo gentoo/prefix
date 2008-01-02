@@ -1,0 +1,27 @@
+# ChangeLog for sys-process/pidof-bsd
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-process/pidof-bsd/ChangeLog,v 1.4 2006/10/18 11:23:38 uberlord Exp $
+
+  18 Oct 2006; Roy Marples <uberlord@gentoo.org>
+  pidof-bsd-20050501-r3.ebuild:
+  Added ~sparc-fbsd keyword.
+
+*pidof-bsd-20050501-r3 (25 Sep 2006)
+
+  25 Sep 2006; Javier Villavicencio <the_paya@gentoo.org>
+  +files/pidof-bsd-20050501-pname.patch, +pidof-bsd-20050501-r3.ebuild:
+  Added patch from Roy Marples, fixes for new baselayout.
+
+*pidof-bsd-20050501-r2 (13 Apr 2006)
+
+  13 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +files/pidof-bsd-20050501-firstarg.patch, +pidof-bsd-20050501-r2.ebuild:
+  Add patch to check only first argument when using pidof -x, fixes rc-daemon.
+
+*pidof-bsd-20050501-r1 (01 Apr 2006)
+
+  01 Apr 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +files/pidof-bsd-20050501-gfbsd.patch, +metadata.xml,
+  +pidof-bsd-20050501-r1.ebuild:
+  Initial import in portage, from gentoo-alt overlay.
+

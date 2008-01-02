@@ -1,0 +1,196 @@
+--- pidof.c.orig	2007-04-20 10:08:53 +0200
++++ pidof.c	2007-04-23 11:41:29 +0200
+@@ -27,6 +27,7 @@
+  */
+ 
+ #include <unistd.h>
++#include <ctype.h>
+ #include <stdio.h>
+ #include <string.h>
+ #include <err.h>
+@@ -49,46 +50,146 @@
+ static int
+ get_pid_of_process(const char *process_name)
+ {
+-	static kvm_t *kd = NULL;
+-	struct kinfo_proc *p;
+-	int i, n_processes, 
+-	    processes_found = 0;
+-	char *pname = NULL;
++  int                argc, argmax, i, j;
++  int                processes_found = 0;
++  char              *p_args, *p_pname, *s;
++  char              *args = NULL, *pname = NULL;
++  struct kinfo_proc *p;
++  size_t             len, n_processes;
++  int                mib[4];
++
++  if (process_name == NULL)
++    return (processes_found);
++
++  pname = strdup(basename(process_name));
++  if (pname == NULL)
++    return (processes_found);
++
++    /* Determine the size of the available data and allocate a buffer
++     * to hold it.  Then fill the buffer using a second sysctl(3)
++     * call.
++     */
++  mib[0] = CTL_KERN;
++  mib[1] = KERN_PROC;
++  mib[2] = KERN_PROC_ALL;
++  mib[3] = 0;
++
++  if (sysctl(mib, 4, NULL, &len, NULL, 0) < 0) {
++    free(pname);
++    return (processes_found);
++  }
++
++  p = (struct kinfo_proc *)malloc(len);
++  if (p == NULL) {
++    free(pname);
++    return (processes_found);
++  }
++
++  if (sysctl(mib, 4, p, &len, NULL, 0) < 0) {
++    free(pname);
++    free(p);
++    return (processes_found);
++  }
++
++  n_processes = len / sizeof(struct kinfo_proc);
++
++    /* Get the maximum process arguments size and allocate a buffer to
++     * hold them.  This buffer is needed only if arguments are to be
++     * checked.
++     */
++  if (match_argv == 1) {
++    len    = sizeof(argmax);
++    mib[0] = CTL_KERN;
++    mib[1] = KERN_ARGMAX;
++    if (sysctl(mib, 2, &argmax, &len, NULL, 0) < 0) {
++      free(pname);
++      free(p);
++      return (processes_found);
++    }
++
++    args = (char *)malloc(sizeof(char) * argmax);
++    if (args == NULL) {
++      free(pname);
++      free(p);
++      return (processes_found);
++    }
++  }
++
++  mib[0] = CTL_KERN;
++  mib[1] = KERN_PROCARGS2;
++
++  for (i = 0; i < n_processes; i++) {
++    if (p[i].kp_proc.p_pid != own_pid) {
++      if (strncmp(pname, p[i].kp_proc.p_comm, MAXCOMLEN + 1) == 0) {
++        (void)printf("%d ", (int)p[i].kp_proc.p_pid);
++        processes_found++;
++
++      } else if (match_argv == 1) {
++        len    = (size_t)argmax;
++        mib[2] = (int)(p[i].kp_proc.p_pid);
++
++        if (sysctl(mib, 3, args, &len, NULL, 0) < 0)
++          continue;
++
++          /* Get argc and advance p_args.
++           */
++        p_args  = args;
++        argc    = ((int *)p_args)[0];
++        p_args += sizeof(argc);
++
++          /* Skip over exec_path and terminating zero.
++           */
++        while (p_args < &args[len] && p_args[0] != '\0')
++          p_args++;
++        while (p_args < &args[len] && p_args[0] == '\0')
++          p_args++;
++
++          /* Check each argument in args against pname.  Skip over
++           * trailing white-space in pname after each argument.
++           */
++        p_pname = pname;
++        for (j = 0; j < argc && p_args < &args[len]; j++) {
++          s = p_args;
++          while (p_args < &args[len] && p_args[0] != '\0')
++            p_args++;
++          while (p_args < &args[len] && p_args[0] == '\0')
++            p_args++;
++          if (p_args >= &p_args[len])
++            break;
++
++          if (j == 0) {
++            if (strncmp(p_pname, basename(s), strlen(s)) != 0)
++              continue;
++          } else {
++            if (strncmp(p_pname, s, strlen(s)) != 0)
++              continue;
++          }
++
++          p_pname += strlen(s);
++          while(p_pname < &pname[strlen(pname)] && isspace(p_pname[0]))
++            p_pname++;
++        }
++
++        if (strlen(p_pname) > 0)
++          continue;
++
++        (void)printf("%d ", (int)p[i].kp_proc.p_pid);
++        processes_found++;
++
++          /* The FreeBSD code breaks here.  So with the "-x" option,
++           * only one process will be reported.  Is this correct?
++           */
++        break;
++      }
++    }
++  }
++
++  if (args != NULL)
++    free(args);
++  free(pname);
++  free(p);
+ 
+-	if (process_name == NULL)
+-		return;
+-
+-	if ((pname = strdup(basename(process_name))) == NULL)
+-		return;
+-	
+-	if ((kd = kvm_open("/dev/null", "/dev/null", "/dev/null", O_RDONLY, NULL)) == NULL) {
+-		free(pname);
+-		(void)errx(1, "%s", kvm_geterr(kd));
+-	} else {
+-		p = kvm_getprocs(kd, KERN_PROC_PROC, 0, &n_processes);
+-		for (i = 0; i<n_processes; i++) {
+-			if (p[i].ki_pid != own_pid)
+-				if (strncmp(pname, p[i].ki_comm, COMMLEN+1) == 0) {
+-					(void)printf("%d ", (int)p[i].ki_pid);
+-					processes_found++;
+-				} else if (match_argv == 1) {
+-					char **p_argv = NULL;
+-					
+-					if ((p_argv = kvm_getargv(kd, p+i, 0)) != NULL)
+-						if ( *p_argv != NULL )
+-							if (strcmp(pname, basename(*p_argv)) == 0) {
+-								(void)printf("%d ", (int)p[i].ki_pid);
+-								processes_found++;
+-								break;
+-							}
+-				}
+-		}
+-
+-		kvm_close(kd);
+-		free(pname);
+-	}	
+-	
+-	return (processes_found);
++  return (processes_found);
+ }
+ 
+ static void
