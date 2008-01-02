@@ -1,0 +1,40 @@
+#!/sbin/runscript
+# Copyright 1999-2006 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+opts="start stop"
+
+depend() {
+        need net
+}
+
+start() {
+        ebegin "Starting hellanzb"
+        if ! check_config ; then
+		eend 1
+		return 1
+	fi
+
+	export PATH="${PATH}:/opt/bin"
+        start-stop-daemon --quiet --start -c ${HELLA_USER} \
+		-g ${HELLA_GROUP} \
+                --exec /usr/bin/hellanzb.py -- \
+                -D -c ${HELLA_CONFIGFILE} ${HELLA_OPTS} &> /dev/null
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping hellanzb"
+	start-stop-daemon --quiet --stop \
+		--name hellanzb.py
+	eend $?
+}
+
+check_config() {
+	if [ ! -e ${HELLA_CONFIGFILE} ] ; then
+		eerror "ERROR: can't find ${HELLA_CONFIGFILE}."
+		return 1
+	else
+		return 0
+	fi
+}

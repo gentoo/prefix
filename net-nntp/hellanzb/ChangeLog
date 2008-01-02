@@ -1,0 +1,37 @@
+# ChangeLog for net-nntp/hellanzb
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-nntp/hellanzb/ChangeLog,v 1.4 2007/11/22 23:38:51 aballier Exp $
+
+*hellanzb-0.13-r3 (22 Nov 2007)
+
+  22 Nov 2007; Alexis Ballier <aballier@gentoo.org>
+  files/hellanzb-0.13-fix_multiples_hosts.diff, -hellanzb-0.13-r2.ebuild,
+  +hellanzb-0.13-r3.ebuild:
+  patch update to avoid a crash when the host in unreachable, thanks again to
+  tonfa
+
+*hellanzb-0.13-r2 (20 Nov 2007)
+
+  20 Nov 2007; Alexis Ballier <aballier@gentoo.org>
+  +files/hellanzb-0.13-Choose_interface_to_bind_on.patch,
+  +files/hellanzb-0.13-Fix_conf_file_search_path.patch,
+  +files/hellanzb-0.13-fix_multiples_hosts.diff, -hellanzb-0.13-r1.ebuild,
+  +hellanzb-0.13-r2.ebuild:
+  import debian patchset: bind rpc to localhost by default, fix config file
+  searching. Add a fix from tonfa to fix display in non daemon mode when
+  multiple hosts are used
+
+*hellanzb-0.13-r1 (05 Apr 2007)
+
+  05 Apr 2007; Alexis Ballier <aballier@gentoo.org>
+  +files/hellanzb-0.13-datafiles.patch, +files/hellanzb.conf,
+  +files/hellanzb.init, +metadata.xml, +hellanzb-0.13-r1.ebuild:
+  Move from net-news, category net-nntp is more accurate
+
+*hellanzb-0.13 (31 Mar 2007)
+
+  31 Mar 2007; Alexis Ballier <aballier@gentoo.org>
+  +files/hellanzb-0.13-datafiles.patch, +files/hellanzb.conf,
+  +files/hellanzb.init, +metadata.xml, +hellanzb-0.13.ebuild:
+  Initial import, thanks to everybody in bug #119915
+
