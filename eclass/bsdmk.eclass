@@ -14,7 +14,7 @@ RDEPEND=""
 # this should actually be BDEPEND, but this works.
 DEPEND="virtual/pmake"
 
-ESED="/usr/bin/sed"
+ESED="${EPREFIX}/usr/bin/sed"
 
 #### append-opt <options>
 # append options to enable or disable features
