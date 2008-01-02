@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/libtool
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.125 2007/10/06 05:05:26 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.126 2007/12/31 20:37:57 vapier Exp $
+
+*libtool-9999 (31 Dec 2007)
+
+  31 Dec 2007; Mike Frysinger <vapier@gentoo.org> +libtool-9999.ebuild:
+  Add live cvs version.
 
   06 Oct 2007; Tom Gall <tgall@gentoo.org> libtool-1.5.24.ebuild:
   stable on ppc64 bug #189269
