@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/gcc-config-1.4.0-r4.ebuild,v 1.6 2007/12/29 19:28:12 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/gcc-config-1.4.0-r4.ebuild,v 1.7 2007/12/31 16:21:18 vapier Exp $
 
 EAPI="prefix"
 
@@ -53,6 +53,11 @@ pkg_postinst() {
 		[[ -L ${EROOT}/usr/include/g++ ]] && rm -f "${EROOT}"/usr/include/g++
 		[[ -L ${EROOT}/usr/include/g++-v3 ]] && rm -f "${EROOT}"/usr/include/g++-v3
 		gcc-config $(${EPREFIX}/usr/bin/gcc-config --get-current-profile)
+	fi
+
+	# Scrub eselect-compiler remains
+	if [[ -e ${EROOT}/etc/env.d/05compiler ]] ; then
+		rm -f "${EROOT}"/etc/env.d/05compiler
 	fi
 
 	# Make sure old versions dont exist #79062
