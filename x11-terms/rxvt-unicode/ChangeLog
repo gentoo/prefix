@@ -1,6 +1,13 @@
 # ChangeLog for x11-terms/rxvt-unicode
 # Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.100 2007/12/16 13:45:04 killerfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.101 2007/12/31 12:24:06 killerfox Exp $
+
+*rxvt-unicode-8.9 (31 Dec 2007)
+
+  31 Dec 2007; René Nussbaumer <killerfox@gentoo.org>
+  +rxvt-unicode-8.9.ebuild:
+  Version bump by upstream. Fixing various bugs and the annoying "close the
+  window on next X11 event".
 
 *rxvt-unicode-8.8 (16 Dec 2007)
 
