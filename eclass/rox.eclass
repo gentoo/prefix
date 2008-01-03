@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/rox.eclass,v 1.26 2007/12/07 15:40:34 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/rox.eclass,v 1.27 2008/01/02 13:22:13 lack Exp $
 
 # ROX eclass Version 3
 
@@ -134,7 +134,7 @@ rox_desktop_entry() {
 	Exec=${exec}
 	TryExec=${exec%% *}
 	Icon=${icon}
-	Categories=ROX;Application;${type};
+	Categories=${type};
 	EOF
 
 	local extra=${1}; shift
@@ -162,13 +162,13 @@ rox_install_wrapper() {
 		dodir /usr/bin/
 		cat >"${ED}/usr/bin/${WRAPPERNAME}" <<EOF
 #!/bin/sh
-if [[ "\${LIBDIRPATH}" ]]; then
+if [ "\${LIBDIRPATH}" ]; then
 	export LIBDIRPATH="\${LIBDIRPATH}:${LIBDIR}"
 else
 	export LIBDIRPATH="${LIBDIR}"
 fi
 
-if [[ "\${APPDIRPATH}" ]]; then
+if [ "\${APPDIRPATH}" ]; then
 	export APPDIRPATH="\${APPDIRPATH}:${APPDIR}"
 else
 	export APPDIRPATH="${APPDIR}"

@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.201 2007/12/08 11:11:17 keytoaster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.202 2008/01/02 15:55:55 keytoaster Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -376,11 +376,11 @@ kde_src_install() {
 	shift
 	done
 
-	if [[ -n ${KDEBASE} ]] && [[ "${PN}" != "arts" ]] ; then
+	if [[ -n ${KDEBASE} && "${PN}" != "arts" && -d "${ED}"/usr/share/doc/${PF} ]]; then
 		# work around bug #97196
-		dodir ${KDEDIR}/share/doc/
-		[[ -d "${ED}/usr/share/doc/${PF}" ]] && \
-			mv "${ED}/usr/share/doc/${PF}" "${ED}/${KDEDIR}/share/doc/"
+		dodir /usr/share/doc/kde && \
+			mv "${ED}"/usr/share/doc/${PF} "${ED}"/usr/share/doc/kde/ || \
+			die "Failed to move docs to kde/ failed."
 	fi
 }
 
