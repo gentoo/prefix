@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/neon
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.96 2007/12/30 11:18:33 drac Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.97 2008/01/02 06:58:10 jer Exp $
+
+  02 Jan 2008; Jeroen Roovers <jer@gentoo.org> neon-0.26.4.ebuild:
+  Stable for HPPA (bug #203260).
 
   30 Dec 2007; Samuli Suominen <drac@gentoo.org> neon-0.26.4.ebuild:
   amd64 stable wrt #203260
