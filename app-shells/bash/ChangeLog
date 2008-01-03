@@ -1,6 +1,18 @@
 # ChangeLog for app-shells/bash
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.163 2007/12/29 17:17:12 armin76 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.166 2008/01/02 16:36:27 spb Exp $
+
+  02 Jan 2008; Stephen Bennett <spb@gentoo.org> bash-3.2_p25.ebuild,
+  bash-3.2_p33.ebuild:
+  Block paludis versions that don't work with new bash releases
+
+*bash-3.2_p33 (02 Jan 2008)
+
+  02 Jan 2008; Mike Frysinger <vapier@gentoo.org> +bash-3.2_p33.ebuild:
+  Version bump.
+
+  02 Jan 2008; Jeroen Roovers <jer@gentoo.org> bash-3.2_p17-r1.ebuild:
+  Stable for HPPA (bug #203603).
 
   29 Dec 2007; Raúl Porcel <armin76@gentoo.org> bash-3.2_p17-r1.ebuild:
   alpha/ia64/sparc/x86 stable wrt #203603
