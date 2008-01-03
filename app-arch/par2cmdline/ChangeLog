@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/par2cmdline
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/par2cmdline/ChangeLog,v 1.19 2006/11/05 10:42:17 mabi Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/par2cmdline/ChangeLog,v 1.20 2008/01/02 17:05:30 grobian Exp $
+
+  02 Jan 2008; Fabian Groffen <grobian@gentoo.org> par2cmdline-0.4.ebuild,
+  par2cmdline-0.4-r1.ebuild, par2cmdline-0.4-r2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   05 Nov 2006; Matti Bickel <mabi@gentoo.org> par2cmdline-0.4-r2.ebuild:
   Stable on ppc (bug #148573)
