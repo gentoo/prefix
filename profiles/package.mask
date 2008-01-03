@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8074 2008/01/01 14:26:24 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8077 2008/01/03 00:05:48 ulm Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -20,6 +20,10 @@
 ##
 ##   End example
 ##
+
+# Vlastimil Babka <caster@gentoo.org> (02 Jan 2008)
+# New package, bug #144066, masked until wxpython-2.8 is unmasked.
+app-office/taskcoach
 
 # Lennart Kolmodin <kolmodin@gentoo.org> (01 Jan 2008)
 # hs-plugins only works with the outdated GHC 6.4.2 compiler,
@@ -268,14 +272,6 @@ net-www/pears
 # Mozilla stopped supporting 1.5 series in October 2007
 # Will be removed when mips stabilizes 2.0
 =mail-client/mozilla-thunderbird-1.5*
-
-# Ulrich Mueller <ulm@gentoo.org> (04 Dec 2007)
-# md5 is a built-in function in Emacs 21.4 and later. An sha1 module
-# comes with app-emacs/flim and app-emacs/gnus, and is also included
-# in Emacs 22.1 and later.
-# Masked for removal in 30 days, bug #201191.
-app-emacs/md5
-app-emacs/sha1
 
 # Alexis Ballier <aballier@gentoo.org> (03 Dec 2007)
 # Small api changes, mask libcaca-0.99_beta13
@@ -645,10 +641,6 @@ dev-util/bk_client
 # Robert Buchholz <rbu@gentoo.org> (29 Aug 2007)
 # PPTP Plugin doesn't work on amd64
 net-misc/networkmanager-pptp
-
-# Zac Medico <zmedico@gentoo.org> (25 Aug 2007)
-# Bug #190128 - bash-3.2_p25 triggers 'hasq: command not found' errors
-=app-shells/bash-3.2_p25
 
 # Michael Marineau <marineam@gentoo.org> (24 Aug 2007)
 # Not maintained for security issues, will be removed soonish.

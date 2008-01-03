@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/linguas.desc,v 1.22 2007/10/21 10:35:48 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/linguas.desc,v 1.23 2007/11/13 18:14:06 aballier Exp $
 
 # This file contains descriptions of LINGUAS USE_EXPAND flags.
 
@@ -15,6 +15,7 @@ be - Belarusian locale
 be_BY - Belarusian locale
 bg - Bulgarian locale
 bn - Bengali locale
+bo - Tibetan locale
 br - Breton locale
 bs - Bosnian locale
 ca - Catalan locale

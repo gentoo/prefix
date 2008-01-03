@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3254 2008/01/01 16:58:50 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3265 2008/01/02 22:17:23 aballier Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -188,6 +188,7 @@ app-misc/lcd4linux:mpd - Add support for display of mpd controlled music
 app-misc/lcdproc:irman - Enable support for IRMan
 app-misc/lcdproc:nfs - Adds support for NFS file system
 app-misc/lcdproc:seamless-hbars - Try to avoid gaps in horizontal bars
+app-misc/ledit:ocamlopt - Build with ocamlopt (ocaml native code compiler) -- Produces faster programs
 app-misc/lirc:hardware-carrier - The transmitter device generates its clock signal in hardware
 app-misc/lirc:transmitter - add transmitter support to some lirc-drivers (e.g. serial)
 app-misc/mc:7zip - add support for 7zip archives
@@ -527,10 +528,18 @@ dev-lisp/gcl:dlopen - build a GCL which uses dlopen for linking
 dev-lisp/gcl:gprof - build a GCL with profiling support
 dev-lisp/sbcl:cobalt - mips only: use mipsel binary instead of mips big endian binary to bootstrap
 dev-lisp/sbcl:ldb - include support for the SBCL low level debugger
+dev-ml/camlp5:ocamlopt - Build with ocamlopt (ocaml native code compiler) -- Produces faster programs
+dev-ml/camlzip:ocamlopt - Build with ocamlopt (ocaml native code compiler) -- Produces faster programs
+dev-ml/cryptokit:ocamlopt - Build with ocamlopt (ocaml native code compiler) -- Produces faster programs
+dev-ml/findlib:ocamlopt - Build with ocamlopt (ocaml native code compiler) -- Produces faster programs
+dev-ml/lablgl:ocamlopt - Build with ocamlopt (ocaml native code compiler) -- Produces faster programs
 dev-ml/lablgtk:glade - Enable libglade bindings compilation.
 dev-ml/lablgtk:gnomecanvas - Enable libgnomecanvas bindings compilation.
+dev-ml/lablgtk:ocamlopt - Build with ocamlopt (ocaml native code compiler) -- Produces faster programs
 dev-ml/lablgtk:sourceview - Enable GtkSourceView support
+dev-ml/ocaml-sqlite3:ocamlopt - Build with ocamlopt (ocaml native code compiler) -- Produces faster programs
 dev-ml/ocamlnet:httpd - Enables nethttpd web server component 
+dev-ml/pcre-ocaml:ocamlopt - Build with ocamlopt (ocaml native code compiler) -- Produces faster programs
 dev-perl/Eidetic:auth - Enables Apache-AuthTicket based cookie authentication
 dev-perl/GD:animgif - Enable animated gif support
 dev-perl/HTML-Mason:modperl - Enable modperl support
@@ -589,6 +598,7 @@ dev-scheme/guile:discouraged - (implied by deprecated) enable merely discouraged
 dev-scheme/guile:elisp - enable Emacs Lisp support
 dev-scheme/guile:networking - include networking interfaces
 dev-scheme/guile:regex - include regular expression interfaces
+dev-tex/hevea:ocamlopt - Build with ocamlopt (ocaml native code compiler) -- Produces faster programs
 dev-tex/latex-beamer:lyx - Install with LyX layouts
 dev-util/anjuta:devhelp - Enable devhelp integration
 dev-util/anjuta:glade - Build glade plugin for anjuta

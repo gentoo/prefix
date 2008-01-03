@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/foo2zjs_devices.desc,v 1.4 2007/10/13 11:12:25 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/foo2zjs_devices.desc,v 1.6 2007/11/05 11:01:50 genstef Exp $
 
 # This file contains descriptions of FOO2ZJS_DEVICES USE_EXPAND flags.
 # created by http://gentooexperimental.org/~genstef/dist/foo2zjs-helper.sh
@@ -8,8 +8,10 @@
 # Keep it sorted.
 
 
+
 hp2600n	- Get HP Color LaserJet 2600n .ICM files
 hp1600	- Get HP Color LaserJet 1600 .ICM files
+hp1500	- Get HP Color LaserJet 1500 .ICM files
 
 km2530	- Get Konica Minolta 2530 DL .ICM files
 km2490	- Get Konica Minolta 2490 MF .ICM files
@@ -25,6 +27,8 @@ sa300	- Get Samsung CLP-300 .ICM files
 sa2160	- Get Samsung CLX-2160 .ICM files
 sa3160	- Get Samsung CLX-3160 .ICM files
 xp6110	- Get Xerox Phaser 6110 and 6110MFP .ICM files
+
+lm500	- Get Lexmark C500 .ICM files
 
 hp1020	- Get HP LJ1020 firmware file
 hp1018	- Get HP LJ1005 firmware file

@@ -1,6 +1,12 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.962 2008/01/01 14:26:24 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.964 2008/01/03 00:05:48 ulm Exp $
+
+  03 Jan 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Remove app-emacs/md5 and app-emacs/sha1 masks since the packages are gone.
+
+  02 Jan 2008; Vlastimil Babka <caster@gentoo.org> package.mask:
+  Add mask for new package taskcoach.
 
   01 Jan 2008; Lennart Kolmodin <kolmodin@gentoo.org> package.mask:
   Mask all of dev-haskell/hs-plugins, not just some versions.
