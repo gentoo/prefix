@@ -49,8 +49,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.1-rlfe-uclibc.patch
 	epatch "${FILESDIR}"/${PN}-5.1-rlfe-extern.patch
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-aix-eff_uid.patch
-	epatch "${FILESDIR}"/${PN}-5.2-aix5.patch
-	epatch "${FILESDIR}"/${PN}-5.2-darwin9.patch || die
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-hpux.patch || die
 
 	if [[ ${CHOST} == *-darwin9 ]]; then
