@@ -32,7 +32,7 @@ liblockfile.a:	lockfile.o
 		ar rv liblockfile.a lockfile.o
 
 liblockfile.dylib: liblockfile.a
-		$(CC) $(LDFLAGS) -fPIC -dynamiclib -install_name liblockfile.1.dylib \
+		$(CC) $(LDFLAGS) -fPIC -dynamiclib -install_name @libdir@/liblockfile.1.0.dylib \
 			-o liblockfile.dylib lockfile.o -lc
 
 nfslock.$(VER).dylib:	nfslock.o
