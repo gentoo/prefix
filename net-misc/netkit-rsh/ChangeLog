@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/netkit-rsh
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/ChangeLog,v 1.46 2007/07/23 05:31:28 vapier Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/ChangeLog,v 1.47 2008/01/02 13:47:59 vapier Exp $
+
+  02 Jan 2008; Mike Frysinger <vapier@gentoo.org> netkit-rsh-0.17-r8.ebuild:
+  Respect env LDFLAGS. Respect CC for everyone, not just cross-compilers
+  #203911 by Davide Cendron.
 
   23 Jul 2007; Mike Frysinger <vapier@gentoo.org> netkit-rsh-0.17-r8.ebuild:
   Punt bindnow-flags usage.

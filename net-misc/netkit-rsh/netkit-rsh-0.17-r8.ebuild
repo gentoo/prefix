@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/netkit-rsh-0.17-r8.ebuild,v 1.10 2007/07/23 05:31:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/netkit-rsh-0.17-r8.ebuild,v 1.11 2008/01/02 13:47:59 vapier Exp $
 
 EAPI="prefix"
 
@@ -33,21 +33,23 @@ src_unpack() {
 		epatch "${WORKDIR}"/patch
 	fi
 
+	if tc-is-cross-compiler ; then
+		# Can't do runtime tests when cross-compiling
+		sed -i -e "s|./__conftest|: ./__conftest|" configure
+	fi
+
 	epatch "${FILESDIR}"/${P}-darwin.patch
 }
 
 src_compile() {
 	local myconf
 	use pam || myconf="--without-pam"
-	if tc-is-cross-compiler; then
-		tc-export CC
-		# Can't do runtime tests when cross-compiling
-		sed -i -e "s|./__conftest|: ./__conftest|" configure
-	fi
+	tc-export CC
 	./configure ${myconf} || die
 
 	sed -i \
 		-e "s:-pipe -O2:${CFLAGS}:" \
+		-e "/^LDFLAGS=$/d" \
 		-e "s:-Wpointer-arith::" \
 		MCONFIG || die "could not sed MCONFIG"
 	emake || die
