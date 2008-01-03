@@ -93,5 +93,7 @@ src_install() {
 		cd "${S}"/src/MacVim
 		emake install DESTDIR="${D}"
 		dobin "${S}"/src/MacVim/mvim
+		dodir /etc/vim
+		cp "${S}"/src/MacVim/gvimrc "${ED}"/etc/vim/
 	fi
 }
