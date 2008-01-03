@@ -83,6 +83,7 @@ src_install() {
 	# Move static and extraneous ncurses libraries out of /lib
 	dodir /usr/$(get_libdir)
 	mv "${ED}"/$(get_libdir)/lib{readline,history}.a "${ED}"/usr/$(get_libdir)/
+	chmod u+w "${ED}"/$(get_libdir)/*$(get_libname)*
 	# Bug #4411
 	gen_usr_ldscript lib{readline,history}$(get_libname)
 	chmod a+rx "${ED}"/$(get_libdir)/*$(get_libname)*
