@@ -1,0 +1,124 @@
+* For some reason the Solaris/x64 va_args thing is an array pointer
+
+--- gettext-tools/gnulib-lib/vasprintf.c
++++ gettext-tools/gnulib-lib/vasprintf.c
+@@ -38,7 +38,6 @@
+   /* Add one to make sure that it is never zero, which might cause malloc
+      to return NULL.  */
+   size_t total_width = strlen (format) + 1;
+-  va_list ap = *args;
+ 
+   while (*p != '\0')
+     {
+@@ -49,7 +48,7 @@
+ 	  if (*p == '*')
+ 	    {
+ 	      ++p;
+-	      total_width += abs (va_arg (ap, int));
++	      total_width += abs (va_arg (*args, int));
+ 	    }
+ 	  else
+ 	    total_width += strtoul (p, (char **) &p, 10);
+@@ -59,7 +58,7 @@
+ 	      if (*p == '*')
+ 		{
+ 		  ++p;
+-		  total_width += abs (va_arg (ap, int));
++		  total_width += abs (va_arg (*args, int));
+ 		}
+ 	      else
+ 		total_width += strtoul (p, (char **) &p, 10);
+@@ -78,12 +77,12 @@
+ 	    case 'x':
+ 	    case 'X':
+ 	    case 'c':
+-	      (void) va_arg (ap, int);
++	      (void) va_arg (*args, int);
+ 	      break;
+ 	    case 'f':
+ 	    case 'F':
+ 	      {
+-		double arg = va_arg (ap, double);
++		double arg = va_arg (*args, double);
+ 		if (arg >= 1.0 || arg <= -1.0)
+ 		  /* Since an ieee double can have an exponent of 307, we'll
+ 		     make the buffer wide enough to cover the gross case. */
+@@ -94,14 +93,14 @@
+ 	    case 'E':
+ 	    case 'g':
+ 	    case 'G':
+-	      (void) va_arg (ap, double);
++	      (void) va_arg (*args, double);
+ 	      break;
+ 	    case 's':
+-	      total_width += strlen (va_arg (ap, char *));
++	      total_width += strlen (va_arg (*args, char *));
+ 	      break;
+ 	    case 'p':
+ 	    case 'n':
+-	      (void) va_arg (ap, char *);
++	      (void) va_arg (*args, char *);
+ 	      break;
+ 	    }
+ 	  p++;
+--- gettext-tools/libgettextpo/vasprintf.c
++++ gettext-tools/libgettextpo/vasprintf.c
+@@ -38,7 +38,6 @@
+   /* Add one to make sure that it is never zero, which might cause malloc
+      to return NULL.  */
+   size_t total_width = strlen (format) + 1;
+-  va_list ap = *args;
+ 
+   while (*p != '\0')
+     {
+@@ -49,7 +48,7 @@
+ 	  if (*p == '*')
+ 	    {
+ 	      ++p;
+-	      total_width += abs (va_arg (ap, int));
++	      total_width += abs (va_arg (*args, int));
+ 	    }
+ 	  else
+ 	    total_width += strtoul (p, (char **) &p, 10);
+@@ -59,7 +58,7 @@
+ 	      if (*p == '*')
+ 		{
+ 		  ++p;
+-		  total_width += abs (va_arg (ap, int));
++		  total_width += abs (va_arg (*args, int));
+ 		}
+ 	      else
+ 		total_width += strtoul (p, (char **) &p, 10);
+@@ -78,12 +77,12 @@
+ 	    case 'x':
+ 	    case 'X':
+ 	    case 'c':
+-	      (void) va_arg (ap, int);
++	      (void) va_arg (*args, int);
+ 	      break;
+ 	    case 'f':
+ 	    case 'F':
+ 	      {
+-		double arg = va_arg (ap, double);
++		double arg = va_arg (*args, double);
+ 		if (arg >= 1.0 || arg <= -1.0)
+ 		  /* Since an ieee double can have an exponent of 307, we'll
+ 		     make the buffer wide enough to cover the gross case. */
+@@ -94,14 +93,14 @@
+ 	    case 'E':
+ 	    case 'g':
+ 	    case 'G':
+-	      (void) va_arg (ap, double);
++	      (void) va_arg (*args, double);
+ 	      break;
+ 	    case 's':
+-	      total_width += strlen (va_arg (ap, char *));
++	      total_width += strlen (va_arg (*args, char *));
+ 	      break;
+ 	    case 'p':
+ 	    case 'n':
+-	      (void) va_arg (ap, char *);
++	      (void) va_arg (*args, char *);
+ 	      break;
+ 	    }
+ 	  p++;

@@ -28,6 +28,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.14.1-lib-path-tests.patch #81628
 	epatch "${FILESDIR}"/${PN}-0.14.2-fix-race.patch #85054
 	epatch "${FILESDIR}"/${PN}-0.15-expat-no-dlopen.patch #146211
+	epatch "${FILESDIR}"/${P}-x64-solaris.patch
 
 	# bundled libtool seems to be broken so skip certain rpath tests
 	# http://lists.gnu.org/archive/html/bug-libtool/2005-03/msg00070.html
