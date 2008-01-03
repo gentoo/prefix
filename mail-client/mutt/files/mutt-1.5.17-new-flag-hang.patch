@@ -1,0 +1,13 @@
+* http://dev.mutt.org/trac/ticket/3002#comment:1
+
+--- imap/imap.c
++++ imap/imap.c
+@@ -943,7 +943,7 @@
+ 	mutt_buffer_printf (buf, ":%u", HEADER_DATA (hdrs[n])->uid);
+     }
+     /* this message is not expunged and doesn't match. End current set. */
+-    else if (setstart && hdrs[n]->active)
++    else if (setstart)
+     {
+       if (HEADER_DATA (hdrs[n-1])->uid > setstart)
+ 	mutt_buffer_printf (buf, ":%u", HEADER_DATA (hdrs[n-1])->uid);
