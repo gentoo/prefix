@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-2.20.1-r1.ebuild,v 1.1 2008/01/01 21:45:46 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-2.20.1-r1.ebuild,v 1.2 2008/01/02 07:06:17 eva Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ SRC_URI="mirror://gnome/sources/${MY_PN}/${PVP[0]}.${PVP[1]}/${MY_P}.tar.bz2"
 LICENSE="LGPL-2"
 SLOT="2"
 KEYWORDS="~amd64 ~ia64 ~mips ~x86"
-IUSE="debug doc"
+IUSE="debug doc ldap"
 
 RDEPEND=">=dev-libs/glib-2.10
 		 >=x11-libs/gtk+-2.8.16
@@ -34,7 +34,7 @@ DOCS="AUTHORS ChangeLog NEWS README TODO"
 S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
-	G2CONF="${G2CONF} --enable-gtk $(use_enable debug)"
+	G2CONF="${G2CONF} --enable-gtk $(use_enable debug) $(use_with ldap openldap)"
 	kill_gconf
 }
 
