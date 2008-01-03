@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.50-r1.ebuild,v 1.5 2007/12/28 23:50:49 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.50-r1.ebuild,v 1.6 2008/01/02 18:54:59 ulm Exp $
 
 EAPI="prefix"
 
@@ -25,12 +25,9 @@ KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
 IUSE="alsa dbus gif gpm gtk gzip-el hesiod jpeg kerberos motif png spell sound source svg tiff toolkit-scroll-bars X Xaw3d xpm"
 RESTRICT="strip"
 
-X_DEPEND="x11-libs/libXmu x11-libs/libXt x11-misc/xbitmaps"
-
 RDEPEND="!=app-editors/emacs-cvs-23.0.0-r6
 	sys-libs/ncurses
 	>=app-admin/eselect-emacs-0.7-r1
-	sys-libs/zlib
 	net-libs/liblockfile
 	hesiod? ( net-dns/hesiod )
 	kerberos? ( virtual/krb5 )
@@ -39,7 +36,9 @@ RDEPEND="!=app-editors/emacs-cvs-23.0.0-r6
 	gpm? ( sys-libs/gpm )
 	dbus? ( sys-apps/dbus )
 	X? (
-		$X_DEPEND
+		x11-libs/libXmu
+		x11-libs/libXt
+		x11-misc/xbitmaps
 		x11-misc/emacs-desktop
 		gif? ( media-libs/giflib )
 		jpeg? ( media-libs/jpeg )
