@@ -132,6 +132,8 @@ src_compile() {
 		--disable-profiling \
 		--without-gnu-malloc \
 		${myconf} || die
+	# avoid parallel make breaking
+	emake -j1 -C lib/intl libintl.h || die "make libintl.h failed"
 	emake || die "make failed"
 
 	if use plugins ; then
