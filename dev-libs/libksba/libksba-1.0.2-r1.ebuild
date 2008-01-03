@@ -1,13 +1,13 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/libksba-1.0.2-r1.ebuild,v 1.2 2007/12/11 10:08:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/libksba-1.0.2-r1.ebuild,v 1.3 2008/01/02 18:35:56 alonbl Exp $
 
 EAPI="prefix"
 
 inherit eutils
 
 DESCRIPTION="makes X.509 certificates and CMS easily accessible to applications"
-HOMEPAGE="http://www.gnupg.org/(en)/download/index.html#libksba"
+HOMEPAGE="http://www.gnupg.org/related_software/libksba"
 SRC_URI="mirror://gnupg/libksba/${P}.tar.bz2"
 
 LICENSE="GPL-3"
