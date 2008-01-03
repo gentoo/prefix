@@ -126,7 +126,12 @@ src_compile() {
 	# ebuild code.
 	eval $(echo export $(ac_default_prefix="${EPREFIX}/usr"; eval echo $(grep DEBUGGER_START_FILE= configure)))
 
-	use plugins && append-ldflags -Wl,-rpath,/usr/$(get_libdir)/bash
+	use plugins && case ${CHOST} in
+		*-linux-gnu | *-solaris* | *-freebsd* )
+			append-ldflags -Wl,-rpath,"${EPREFIX}"/usr/$(get_libdir)/bash
+		;;
+		# Darwin doesn't need an rpath here
+	esac
 	econf \
 		$(use_with afs) \
 		--disable-profiling \
