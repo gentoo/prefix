@@ -1,6 +1,14 @@
 # ChangeLog for app-emacs/nxml-mode
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/ChangeLog,v 1.30 2007/12/29 17:59:07 armin76 Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/ChangeLog,v 1.32 2008/01/02 10:23:17 opfer Exp $
+
+  02 Jan 2008; Christian Faulhammer <opfer@gentoo.org>
+  nxml-mode-20041004-r3.ebuild:
+  stable amd64, bug 203585
+
+  02 Jan 2008; Christian Faulhammer <opfer@gentoo.org>
+  nxml-mode-20041004-r3.ebuild:
+  stable x86, bug 203585
 
   29 Dec 2007; Raúl Porcel <armin76@gentoo.org>
   nxml-mode-20041004-r3.ebuild:
