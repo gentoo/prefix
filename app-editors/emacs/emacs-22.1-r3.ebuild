@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r3.ebuild,v 1.11 2007/12/28 23:50:15 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r3.ebuild,v 1.12 2008/01/02 18:54:53 ulm Exp $
 
 EAPI="prefix"
 
@@ -19,18 +19,17 @@ KEYWORDS="~amd64 ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="alsa gif gtk gzip-el hesiod jpeg motif png spell sound source tiff toolkit-scroll-bars X Xaw3d xpm"
 RESTRICT="strip"
 
-X_DEPEND="x11-libs/libXmu x11-libs/libXt x11-misc/xbitmaps"
-
 RDEPEND="!<app-editors/emacs-cvs-22.1
 	sys-libs/ncurses
 	>=app-admin/eselect-emacs-0.7-r1
-	sys-libs/zlib
 	net-libs/liblockfile
 	hesiod? ( net-dns/hesiod )
 	spell? ( || ( app-text/ispell app-text/aspell ) )
 	alsa? ( media-libs/alsa-lib )
 	X? (
-		$X_DEPEND
+		x11-libs/libXmu
+		x11-libs/libXt
+		x11-misc/xbitmaps
 		x11-misc/emacs-desktop
 		gif? ( media-libs/giflib )
 		jpeg? ( media-libs/jpeg )
