@@ -1,0 +1,12 @@
+diff -urp cpufrequtils-002/Makefile cpufrequtils-002-parallel-make/Makefile
+--- cpufrequtils-002/Makefile	2006-06-01 10:54:41.000000000 +0200
++++ cpufrequtils-002-parallel-make/Makefile	2006-06-05 00:14:53.000000000 +0200
+@@ -189,7 +189,7 @@ libcpufreq.la: $(LIB_OBJS) $(LIB_HEADERS
+ 
+ libcpufreq: libcpufreq.la
+ 
+-cpufreq-%: $(UTIL_OBJS)
++cpufreq-%: libcpufreq.la $(UTIL_OBJS)
+ 	$(QUIET) $(CC) $(CFLAGDEF) $(CFLAGS) -g -I. -I./lib/ -c -o utils/$@.o utils/$*.c
+ 	$(QUIET) $(CC) $(CFLAGDEF) $(CFLAGS) -g -I./lib/ -L. -L./.libs/ -lcpufreq -o $@ utils/$@.o
+ 	$(QUIET) $(STRIPCMD) $@
