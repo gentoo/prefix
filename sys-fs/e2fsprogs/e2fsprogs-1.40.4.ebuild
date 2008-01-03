@@ -32,6 +32,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/e2fsprogs-1.39-makefile.patch
 	epatch "${FILESDIR}"/${PN}-1.40-libintl.patch #122368
 	epatch "${FILESDIR}"/${PN}-1.40-fbsd.patch
+	epatch "${FILESDIR}"/${P}-more-sysconfdir.patch
 
 	# kernel headers use the same defines as e2fsprogs and can cause issues #48829
 	sed -i \
