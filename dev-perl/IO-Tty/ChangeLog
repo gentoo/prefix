@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/IO-Tty
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Tty/ChangeLog,v 1.26 2007/03/05 12:05:59 ticho Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Tty/ChangeLog,v 1.27 2008/01/03 01:24:47 ranger Exp $
+
+  03 Jan 2008; Brent Baude <ranger@gentoo.org> IO-Tty-1.07.ebuild:
+  Marking IO-Tty-1.07 ~ppc64 for bug 204036
 
   05 Mar 2007; Andrej Kacian <ticho@gentoo.org> IO-Tty-1.07.ebuild:
   Stable on x86, bug #169152.
