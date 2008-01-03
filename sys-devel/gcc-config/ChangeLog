@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gcc-config
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.174 2007/12/29 19:28:12 ranger Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.175 2008/01/02 05:48:09 jer Exp $
+
+  02 Jan 2008; Jeroen Roovers <jer@gentoo.org> gcc-config-1.4.0-r4.ebuild:
+  Stable for HPPA (bug #203576).
 
   29 Dec 2007; Brent Baude <ranger@gentoo.org> gcc-config-1.4.0-r4.ebuild:
   Marking gcc-config-1.4.0-r4 ppc64 for bug 203576
