@@ -60,7 +60,7 @@ src_compile() {
 
 	# --with-mem-debug causes unusual segmentation faults (bug #105120).
 
-	local myconf="--with-zlib \
+	local myconf="--with-zlib=${EPREFIX}/usr \
 		$(use_with debug run-debug)  \
 		$(use_with python)           \
 		$(use_with readline)         \
