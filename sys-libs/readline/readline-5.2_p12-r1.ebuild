@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-5.2_p4.ebuild,v 1.11 2007/07/30 10:53:45 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-5.2_p12-r1.ebuild,v 1.1 2008/01/02 19:53:26 vapier Exp $
 
 EAPI="prefix"
 
@@ -24,7 +24,7 @@ SRC_URI="mirror://gnu/readline/${MY_P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~sparc64-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE=""
 
 # We must be certain that we have a bash that is linked
@@ -47,10 +47,15 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.0-no_rpath.patch
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-build.patch #151174
 	epatch "${FILESDIR}"/${PN}-5.1-rlfe-uclibc.patch
-	epatch "${FILESDIR}"/${PN}-5.1-fbsd-pic.patch
 	epatch "${FILESDIR}"/${PN}-5.1-rlfe-extern.patch
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-aix-eff_uid.patch
 	epatch "${FILESDIR}"/${PN}-5.2-aix5.patch
+	epatch "${FILESDIR}"/${PN}-5.2-darwin9.patch || die
+	epatch "${FILESDIR}"/${PN}-5.2-rlfe-hpux.patch || die
+
+	if [[ ${CHOST} == *-darwin9 ]]; then
+		epatch "${FILESDIR}"/${PN}-5.2-darwin9-rlfe.patch || die
+	fi
 
 	ln -s ../.. examples/rlfe/readline
 
@@ -64,10 +69,10 @@ src_compile() {
 	# the --libdir= is needed because if lib64 is a directory, it will default
 	# to using that... even if CONF_LIBDIR isnt set or we're using a version
 	# of portage without CONF_LIBDIR support.
-	econf --with-curses --libdir=${EPREFIX}/$(get_libdir) || die
+	econf --with-curses --libdir="${EPREFIX}"/$(get_libdir) || die
 	emake || die
 
-	if ! tc-is-cross-compiler; then
+	if ! tc-is-cross-compiler ; then
 		cd examples/rlfe
 		econf || die
 		emake || die "make rlfe failed"

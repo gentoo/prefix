@@ -1,6 +1,17 @@
 # ChangeLog for sys-libs/readline
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.108 2007/09/29 05:03:43 jer Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.110 2008/01/02 19:53:26 vapier Exp $
+
+*readline-5.2_p12-r1 (02 Jan 2008)
+
+  02 Jan 2008; Mike Frysinger <vapier@gentoo.org>
+  +readline-5.2_p12-r1.ebuild:
+  Make sure we continue to always link against ncurses as reported by welp.
+
+*readline-5.2_p12 (02 Jan 2008)
+
+  02 Jan 2008; Mike Frysinger <vapier@gentoo.org> +readline-5.2_p12.ebuild:
+  Version bump.
 
   29 Sep 2007; Jeroen Roovers <jer@gentoo.org> readline-5.2_p7.ebuild:
   Stable for HPPA (bug #194013).
