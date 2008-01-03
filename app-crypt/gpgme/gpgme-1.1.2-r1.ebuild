@@ -1,13 +1,13 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/gpgme-1.1.2-r1.ebuild,v 1.12 2006/10/01 12:28:53 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/gpgme-1.1.2-r1.ebuild,v 1.13 2008/01/02 18:26:44 alonbl Exp $
 
 EAPI="prefix"
 
 inherit libtool eutils
 
 DESCRIPTION="GnuPG Made Easy is a library for making GnuPG easier to use"
-HOMEPAGE="http://www.gnupg.org/(en)/related_software/gpgme/index.html"
+HOMEPAGE="http://www.gnupg.org/related_software/gpgme"
 SRC_URI="mirror://gnupg/gpgme/${P}.tar.gz"
 
 LICENSE="GPL-2"
