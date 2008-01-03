@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libassuan
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.49 2007/12/12 19:39:57 alonbl Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.50 2008/01/02 18:29:58 alonbl Exp $
+
+  02 Jan 2008; Alon Bar-Lev <alonbl@gentoo.org> libassuan-0.6.10.ebuild,
+  libassuan-1.0.2-r1.ebuild, libassuan-1.0.4.ebuild:
+  Fix home page, bug#204078, thanks to Arfrever Frehtes Taifersar Arahesis
 
 *libassuan-1.0.4 (12 Dec 2007)
 
