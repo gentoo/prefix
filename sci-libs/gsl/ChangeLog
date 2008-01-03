@@ -1,6 +1,9 @@
 # ChangeLog for sci-libs/gsl
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.40 2007/10/11 16:55:45 bicatali Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.41 2008/01/02 16:51:43 armin76 Exp $
+
+  02 Jan 2008; Raúl Porcel <armin76@gentoo.org> gsl-1.10.ebuild:
+  Re-add ~ia64
 
   11 Oct 2007; Sébastien Fabbro <bicatali@gentoo.org> gsl-1.9-r1.ebuild,
   gsl-1.10.ebuild:
