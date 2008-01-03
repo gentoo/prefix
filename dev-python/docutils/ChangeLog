@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/docutils
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.77 2007/12/29 18:15:38 armin76 Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.78 2008/01/02 06:17:19 jer Exp $
+
+  02 Jan 2008; Jeroen Roovers <jer@gentoo.org> docutils-0.4-r3.ebuild:
+  Stable for HPPA (bug #203582).
 
   29 Dec 2007; Raúl Porcel <armin76@gentoo.org> docutils-0.4-r3.ebuild:
   alpha/ia64/sparc stable wrt #203582
