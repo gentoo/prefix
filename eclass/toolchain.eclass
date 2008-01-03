@@ -17,6 +17,21 @@ DESCRIPTION="Based on the ${ECLASS} eclass"
 FEATURES=${FEATURES/multilib-strict/}
 
 toolchain_pkg_setup() {
+	# yuck, but how else to do it portable?
+	local realEPREFIX=$(python -c 'import os; print os.path.realpath("'"${EPREFIX}"'")')
+	if [[ ${EPREFIX} != ${realEPREFIX} ]] ; then
+		ewarn "Your \${EPREFIX} contains one or more symlinks.  GCC has a"
+		ewarn "bug which prevents it from working properly when there are"
+		ewarn "symlinks in your \${EPREFIX}."
+		ewarn "See http://gcc.gnu.org/bugzilla/show_bug.cgi?id=29831"
+		ewarn "Continuing with your EPREFIX set to:"
+		ewarn "${realEPREFIX}"
+		export EPREFIX=${realEPREFIX}
+	fi
+
+	# TPREFIX is the prefix of the CTARGET installation
+	export TPREFIX=${TPREFIX:-${EPREFIX}}
+
 	gcc_pkg_setup
 }
 toolchain_src_unpack() {
@@ -56,9 +71,6 @@ fi
 is_crosscompile() {
 	[[ ${CHOST} != ${CTARGET} ]]
 }
-
-# TPREFIX is the prefix of the CTARGET installation
-export TPREFIX=${TPREFIX:-${EPREFIX}}
 
 tc_version_is_at_least() { version_is_at_least "$1" "${2:-${GCC_PV}}" ; }
 
@@ -1238,6 +1250,13 @@ gcc-compiler-configure() {
 gcc_do_configure() {
 	local confgcc
 
+	# reset EPREFIX to its realpath equivalent, as Portage resets EPREFIX
+	# between phases
+	local realEPREFIX=$(python -c 'import os; print os.path.realpath("'"${EPREFIX}"'")')
+	if [[ ${EPREFIX} != ${realEPREFIX} ]] ; then
+		export EPREFIX=${realEPREFIX}
+	fi
+
 	# Set configuration based on path variables
 	confgcc="${confgcc} \
 		--prefix=${EPREFIX}${PREFIX} \
@@ -1329,7 +1348,7 @@ gcc_do_configure() {
 	elif [[ ${CHOST} != mingw* ]] && [[ ${CHOST} != *-mingw* ]] ; then
 		confgcc="${confgcc} --enable-shared --enable-threads=posix"
 
-		if [[ ${EPREFIX%/} != "" ]] ; then
+		if use prefix ; then
 			# should be /usr, because it's the path to search includes for,
 			# which is unrelated to TOOLCHAIN_PREFIX, a.k.a. PREFIX
 			confgcc="${confgcc} --with-local-prefix=${TPREFIX}/usr"
@@ -1348,6 +1367,8 @@ gcc_do_configure() {
 	elif [[ ${CTARGET} == *-gnu* ]] ; then
 		confgcc="${confgcc} --enable-__cxa_atexit"
 	elif [[ ${CTARGET} == *-freebsd* ]]; then
+		confgcc="${confgcc} --enable-__cxa_atexit"
+	elif [[ ${CTARGET} == *-solaris* ]]; then
 		confgcc="${confgcc} --enable-__cxa_atexit"
 	fi
 	[[ ${CTARGET} == *-gnu* ]] && confgcc="${confgcc} --enable-clocale=gnu"
@@ -1651,13 +1672,23 @@ gcc-compiler_src_install() {
 	# (ncurses, openssl, etc), unless when in a prefix.
 	for x in $(find "${WORKDIR}"/build/gcc/include/ -name '*.h') ; do
 		grep -q 'It has been auto-edited by fixincludes from' "${x}" \
-			&& [[ ${EPREFIX%/} == "" ]] && rm -f "${x}"
+			&& use !prefix && rm -f "${x}"
 	done
 	einfo "Installing GCC..."
 	# Do the 'make install' from the build directory
 	cd "${WORKDIR}"/build
-	S=${WORKDIR}/build \
-	make DESTDIR="${D}" install || die
+	local realEPREFIX=$(python -c 'import os; print os.path.realpath("'"${EPREFIX}"'")')
+	if [[ ${realEPREFIX} != ${EPREFIX} ]] ; then
+		# compensate the changed prefix
+		S=${WORKDIR}/build \
+			make DESTDIR="${D}"/nuke-me install || die
+		mkdir -p "${ED}"
+		mv "${D}/nuke-me${realEPREFIX}"/* "${ED}"/
+		rm -Rf "${D}"/nuke-me
+	else
+		S=${WORKDIR}/build \
+			make DESTDIR="${D}" install || die
+	fi
 	# Punt some tools which are really only useful while building gcc
 	find "${ED}" -name install-tools -type d -exec rm -rf "{}" \;
 	# This one comes with binutils
