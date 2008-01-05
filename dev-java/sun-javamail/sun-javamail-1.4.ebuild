@@ -16,7 +16,7 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="CDDL"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
 
 DEPEND=">=virtual/jdk-1.5
 	dev-java/sun-jaf"
