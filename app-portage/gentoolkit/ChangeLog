@@ -1,6 +1,16 @@
 # ChangeLog for app-portage/gentoolkit
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.123 2007/09/27 00:18:29 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.124 2007/10/22 21:11:37 fuzzyray Exp $
+
+*gentoolkit-0.2.4_pre8 (22 Oct 2007)
+*gentoolkit-0.2.3.1 (22 Oct 2007)
+
+  22 Oct 2007; Paul Varner <fuzzyray@gentoo.org> +gentoolkit-0.2.3.1.ebuild,
+  +gentoolkit-0.2.4_pre8.ebuild:
+  Add gentoolkit-0.2.3.1 for potential stablization.  Contains old
+  revdep-rebuild with -X option fixed. All other tools have all of the
+  gentoolkit-0.2.4 series fixes.  Add gentoolkit-0.2.4_pre8 with
+  revdep-rebuild-sh for initial use on FreeBSD systems.
 
 *gentoolkit-0.2.4_rc1 (26 Sep 2007)
 

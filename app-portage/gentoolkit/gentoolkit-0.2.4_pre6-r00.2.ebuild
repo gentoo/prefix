@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/gentoolkit-0.2.4_pre6.ebuild,v 1.4 2007/09/12 15:28:16 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/gentoolkit-0.2.4_pre6.ebuild,v 1.5 2007/11/03 16:47:20 grobian Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz http://dev.gentoo.org/~fuzzyray/distfiles/$
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE=""
+IUSE="userland_GNU"
 
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
 
