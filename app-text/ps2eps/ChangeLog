@@ -1,6 +1,9 @@
 # ChangeLog for app-text/ps2eps
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ps2eps/ChangeLog,v 1.5 2007/12/18 19:07:32 jer Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/ps2eps/ChangeLog,v 1.6 2008/01/03 16:44:35 aballier Exp $
+
+  03 Jan 2008; Alexis Ballier <aballier@gentoo.org> ps2eps-1.64.ebuild:
+  Keyword ~x86-fbsd, working fine here
 
   18 Dec 2007; Jeroen Roovers <jer@gentoo.org> ps2eps-1.64.ebuild:
   Marked ~hppa (bug #195815).
