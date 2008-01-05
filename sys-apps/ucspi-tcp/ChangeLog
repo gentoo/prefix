@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/ucspi-tcp
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ucspi-tcp/ChangeLog,v 1.55 2007/02/18 21:07:18 grobian Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ucspi-tcp/ChangeLog,v 1.56 2008/01/04 23:08:05 hanno Exp $
+
+  04 Jan 2008; Hanno Boeck <hanno@gentoo.org> ucspi-tcp-0.88-r14.ebuild,
+  ucspi-tcp-0.88-r15.ebuild, ucspi-tcp-0.88-r16.ebuild:
+  Change license to public domain (http://cr.yp.to/distributors.html) and fix
+  some unquoted vars.
 
   18 Feb 2007; Fabian Groffen <grobian@gentoo.org>
   ucspi-tcp-0.88-r14.ebuild, ucspi-tcp-0.88-r15.ebuild,
