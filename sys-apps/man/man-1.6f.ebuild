@@ -62,9 +62,6 @@ src_unpack() {
 	popd > /dev/null
 	eprefixify "${T}"/makewhatis.cron
 
-	epatch "${FILESDIR}"/man-1.6e-dont-kill-shebangs.patch #159192
-	epatch "${FILESDIR}"/man-1.6e-readonly-whatis2.patch #163932
-
 	strip-linguas $(eval $(grep ^LANGUAGES= configure) ; echo ${LANGUAGES//,/ })
 
 	if use prefix ; then
