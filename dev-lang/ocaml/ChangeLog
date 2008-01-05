@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/ocaml
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.132 2008/01/02 18:35:23 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.133 2008/01/03 18:04:24 aballier Exp $
+
+  03 Jan 2008; Alexis Ballier <aballier@gentoo.org> ocaml-3.10.0.ebuild,
+  ocaml-3.10.1_rc2.ebuild:
+  Allow to disable ocamlopt via an useflag
 
   02 Jan 2008; Alexis Ballier <aballier@gentoo.org> ocaml-3.08.4.ebuild,
   ocaml-3.09.2.ebuild, ocaml-3.09.3.ebuild:

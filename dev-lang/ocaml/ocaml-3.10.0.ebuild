@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.10.0.ebuild,v 1.10 2007/12/20 20:24:12 aballier Exp $
-
-EAPI="prefix"
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.10.0.ebuild,v 1.11 2008/01/03 18:04:24 aballier Exp $
 
 inherit flag-o-matic eutils multilib versionator toolchain-funcs
+
+EAPI="prefix 1"
 
 DESCRIPTION="fast modern type-inferring functional programming language descended from the ML (Meta Language) family"
 HOMEPAGE="http://www.ocaml.org/"
@@ -13,7 +13,7 @@ SRC_URI="http://caml.inria.fr/distrib/ocaml-$( get_version_component_range 1-2)/
 LICENSE="QPL-1.0 LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
-IUSE="emacs gdbm latex ncurses tk X xemacs"
+IUSE="emacs gdbm latex ncurses +ocamlopt tk X xemacs"
 
 DEPEND="tk? ( >=dev-lang/tk-3.3.3 )
 	ncurses? ( sys-libs/ncurses )
@@ -81,8 +81,8 @@ src_compile() {
 
 	make world || die "make world failed!"
 
-	# Native code generation is unsupported on some archs
-	if ! use ppc64 ; then
+	# Native code generation can be disabled now
+	if use ocamlopt ; then
 		make opt || die "make opt failed!"
 		make opt.opt || die "make opt.opt failed!"
 	fi
