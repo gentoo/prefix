@@ -1,6 +1,9 @@
 # ChangeLog for sci-visualization/gnuplot
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.63 2007/12/11 16:48:00 nixnut Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.64 2008/01/03 21:14:28 ranger Exp $
+
+  03 Jan 2008; Brent Baude <ranger@gentoo.org> gnuplot-4.2.2-r1.ebuild:
+  Marking gnuplot-4.2.2-r1 ppc64 for bug 189672
 
   11 Dec 2007; nixnut <nixnut@gentoo.org> gnuplot-4.2.2-r1.ebuild:
   Stable on ppc wrt bug 189672
