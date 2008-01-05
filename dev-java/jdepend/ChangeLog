@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jdepend
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jdepend/ChangeLog,v 1.47 2007/11/25 14:51:39 ranger Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jdepend/ChangeLog,v 1.48 2008/01/04 20:21:39 caster Exp $
+
+  04 Jan 2008; Vlastimil Babka <caster@gentoo.org> -jdepend-2.9-r3.ebuild:
+  Clean old version.
 
   25 Nov 2007; Brent Baude <ranger@gentoo.org> jdepend-2.9-r4.ebuild:
   Marking jdepend-2.9-r4 ppc for bug
