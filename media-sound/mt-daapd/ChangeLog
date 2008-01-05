@@ -1,6 +1,13 @@
 # ChangeLog for media-sound/mt-daapd
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mt-daapd/ChangeLog,v 1.57 2007/11/29 18:00:34 armin76 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mt-daapd/ChangeLog,v 1.58 2008/01/04 14:27:08 drac Exp $
+
+  04 Jan 2008; Samuli Suominen <drac@gentoo.org>
+  -files/mt-daapd-0.2.3-libsorder.patch,
+  -files/mt-daapd-0.2.3-persist-fix.patch,
+  -files/mt-daapd-0.2.3-pidfile.patch, -files/mt-daapd.conf.example,
+  -files/mt-daapd.init, -mt-daapd-0.2.4.ebuild:
+  Remove last version depending on howl.
 
   29 Nov 2007; Raúl Porcel <armin76@gentoo.org> mt-daapd-0.2.4.1.ebuild:
   sparc stable wrt #200110
