@@ -1,5 +1,9 @@
---- man-1.6d/gencat/genlib.c.orig	2006-06-26 21:26:10 -0300
-+++ man-1.6d/gencat/genlib.c	2006-06-26 21:34:46 -0300
+Fixes compilation in FreeBSD
+
+http://bugs.gentoo.org/138123
+
+--- man-1.6d/gencat/genlib.c
++++ man-1.6d/gencat/genlib.c
 @@ -54,7 +54,7 @@
  #include <unistd.h>
  #endif
