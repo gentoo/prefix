@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.16.1-r2.ebuild,v 1.4 2007/12/29 00:28:42 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.16.1-r2.ebuild,v 1.5 2008/01/03 11:31:45 maekke Exp $
 
 EAPI="prefix"
 
@@ -97,15 +97,17 @@ pkg_setup() {
 		eerror "SWIG has to be built with tcl support."
 		die "Missing tcl USE-flag for dev-lang/swig"
 	fi
+
 	# bug 181147
-	if use png && ! built_with_use media-libs/gd png ; then
-		eerror "media-libs/gd has to be built with png support"
-		die "remerge media-libs/gd with USE=\"png\""
+	local gdflags
+	use png && gdflags="png"
+	use jpeg && gdflags="${gdflags} jpeg"
+	if [[ -n ${gdflags} ]] && ! built_with_use media-libs/gd ${gdflags} ; then
+		local diemsg="Re-emerge media-libs/gd with USE=\"${gdflags}\""
+		eerror "${diemsg}"
+		die "${diemsg}"
 	fi
-	if use jpeg && ! built_with_use media-libs/gd jpeg ; then
-		eerror "media-libs/gd has to be built with jpeg support"
-		die "remerge media-libs/gd with USE=\"jpeg\""
-	fi
+
 	# bug 202781
 	if use cairo && ! built_with_use x11-libs/cairo svg ; then
 		eerror "x11-libs/cairo has to be built with svg support"
