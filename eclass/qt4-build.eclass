@@ -12,7 +12,7 @@
 
 inherit eutils multilib toolchain-funcs flag-o-matic
 
-IUSE="${IUSE} debug"
+IUSE="${IUSE} debug aqua"
 
 qt4-build_pkg_setup() {
 	# Set up installation directories
