@@ -1,6 +1,15 @@
 # ChangeLog for app-portage/gentoolkit
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.122 2007/09/13 15:50:04 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.123 2007/09/27 00:18:29 fuzzyray Exp $
+
+*gentoolkit-0.2.4_rc1 (26 Sep 2007)
+
+  26 Sep 2007; Paul Varner <fuzzyray@gentoo.org>
+  +gentoolkit-0.2.4_rc1.ebuild:
+  gentoolkit-0.2.4_rc1 version bump. This fixes bugs #179392, #182882,
+  #188678, #192979, and #193108
+  Bug #170220 tracks all fixes made for the gentoolkit-0.2.4 release.
+  Removed fbsd keywords until Bug #183657 gets solved.
 
 *gentoolkit-0.2.4_pre7 (13 Sep 2007)
 
