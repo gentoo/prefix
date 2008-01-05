@@ -3,6 +3,10 @@
 # $Header: $
 
   05 Jan 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Drop mask for sys-apps/man, since I added the missing patch, and cleaned the
+  ebuild up
+
+  05 Jan 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask dev-java/sun-javamail-1.4.1 it doesn't compile
 
   05 Jan 2008; Elias Pipping <pipping@gentoo.org> package.mask:

@@ -26,10 +26,6 @@
 # missing rule in the build.xml file
 =dev-java/sun-javamail-1.4.1
 
-# Elias Pipping <pipping@gentoo.org> (05 Jan 2008)
-# Patch is missing, others don't apply -- masked for now
-~sys-apps/man-1.6f
-
 # Fabian Groffen <grobian@gentoo.org> (02 Jan 2008)
 # rlogin seems not to work, consider using ssh anyway
 net-misc/netkit-rsh
