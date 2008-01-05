@@ -68,7 +68,7 @@ src_unpack() {
 		ebegin "Allowing unpriviliged install"
 		sed -i \
 			-e 's/@man_install_flags@//g' \
-			${S}/src/Makefile.in
+			"${S}"/src/Makefile.in
 		eend $?
 	fi
 }
