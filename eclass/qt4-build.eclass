@@ -17,16 +17,16 @@ IUSE="${IUSE} debug"
 qt4-build_pkg_setup() {
 	# Set up installation directories
 
-	QTBASEDIR=/usr/$(get_libdir)/qt4
-	QTPREFIXDIR=/usr
-	QTBINDIR=/usr/bin
-	QTLIBDIR=/usr/$(get_libdir)/qt4
-	QTPCDIR=/usr/$(get_libdir)/pkgconfig
-	QTDATADIR=/usr/share/qt4
-	QTDOCDIR=/usr/share/doc/qt-${PV}
-	QTHEADERDIR=/usr/include/qt4
+	QTBASEDIR=${EPREFIX}/usr/$(get_libdir)/qt4
+	QTPREFIXDIR=${EPREFIX}/usr
+	QTBINDIR=${EPREFIX}/usr/bin
+	QTLIBDIR=${EPREFIX}/usr/$(get_libdir)/qt4
+	QTPCDIR=${EPREFIX}/usr/$(get_libdir)/pkgconfig
+	QTDATADIR=${EPREFIX}/usr/share/qt4
+	QTDOCDIR=${EPREFIX}/usr/share/doc/qt-${PV}
+	QTHEADERDIR=${EPREFIX}/usr/include/qt4
 	QTPLUGINDIR=${QTLIBDIR}/plugins
-	QTSYSCONFDIR=/etc/qt4
+	QTSYSCONFDIR=${EPREFIX}/etc/qt4
 	QTTRANSDIR=${QTDATADIR}/translations
 	QTEXAMPLESDIR=${QTDATADIR}/examples
 	QTDEMOSDIR=${QTDATADIR}/demos
@@ -34,7 +34,11 @@ qt4-build_pkg_setup() {
 	PLATFORM=$(qt_mkspecs_dir)
 
 	PATH="${S}/bin:${PATH}"
-	LD_LIBRARY_PATH="${S}/lib:${LD_LIBRARY_PATH}"
+	if [[ ${CHOST} != *-darwin* ]]; then
+		LD_LIBRARY_PATH="${S}/lib:${LD_LIBRARY_PATH}"
+	else
+		DYLD_LIBRARY_PATH="${S}/lib:${DYLD_LIBRARY_PATH}"
+	fi
 }
 
 qt4-build_src_unpack() {
@@ -103,12 +107,12 @@ install_directories() {
 qconfig_add_option() {
 	local option=$1
 	qconfig_remove_option $1
-	sed -i -e "s:QT_CONFIG +=:QT_CONFIG += ${option}:g" /usr/share/qt4/mkspecs/qconfig.pri
+	sed -i -e "s:QT_CONFIG +=:QT_CONFIG += ${option}:g" "${EPREFIX}"/usr/share/qt4/mkspecs/qconfig.pri
 }
 
 qconfig_remove_option() {
 	local option=$1
-	sed -i -e "s: ${option}::g" /usr/share/qt4/mkspecs/qconfig.pri
+	sed -i -e "s: ${option}::g" "${EPREFIX}"/usr/share/qt4/mkspecs/qconfig.pri
 }
 
 skip_qmake_build_patch() {
