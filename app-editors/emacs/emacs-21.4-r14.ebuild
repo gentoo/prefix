@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r14.ebuild,v 1.9 2007/12/11 09:20:15 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r14.ebuild,v 1.10 2008/01/04 13:17:25 ulm Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ SRC_URI="mirror://gnu/emacs/${P}a.tar.gz
 LICENSE="GPL-2 FDL-1.1 BSD"
 SLOT="21"
 KEYWORDS="~amd64 ~sparc-solaris ~x86 ~x86-solaris"
-IUSE="X Xaw3d leim lesstif motif nls sendmail"
+IUSE="X Xaw3d leim motif nls sendmail"
 
 RDEPEND="sys-libs/ncurses
 	X? (
@@ -32,10 +32,7 @@ RDEPEND="sys-libs/ncurses
 		>=media-libs/tiff-3.5.5-r3
 		>=media-libs/libpng-1.2.1
 		Xaw3d? ( x11-libs/Xaw3d )
-		motif? (
-			lesstif? ( x11-libs/lesstif )
-			!lesstif? ( >=x11-libs/openmotif-2.1.30 )
-		)
+		!Xaw3d? ( motif? ( virtual/motif ) )
 	)
 	sendmail? ( virtual/mta )
 	>=app-admin/eselect-emacs-0.7-r1"
@@ -82,10 +79,6 @@ src_compile() {
 	local myconf
 	use nls || myconf="${myconf} --disable-nls"
 	if use X ; then
-		if use motif && use lesstif; then
-			append-ldflags -L/usr/X11R6/lib/lesstif -R/usr/X11R6/lib/lesstif
-			append-cppflags -I/usr/X11R6/include/lesstif
-		fi
 		myconf="${myconf}
 			--with-x
 			--with-xpm
@@ -94,11 +87,14 @@ src_compile() {
 			--with-gif
 			--with-png"
 		if use Xaw3d ; then
+			einfo "Configuring to build with Xaw3d (athena) support"
 			myconf="${myconf} --with-x-toolkit=athena"
 		elif use motif ; then
+			einfo "Configuring to build with motif toolkit support"
 			myconf="${myconf} --with-x-toolkit=motif"
 		else
 			# do not build emacs with any toolkit, bug 35300
+			einfo "Configuring to build with no toolkit"
 			myconf="${myconf} --with-x-toolkit=no"
 		fi
 	else
