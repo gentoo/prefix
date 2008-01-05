@@ -34,7 +34,7 @@ dev-util/opencvs
 # Mask this release of odcctools, as it is currently only for playing
 # with 64-bits prefixes, so no need to bother regular users with an
 # upgrade.
-#=sys-devel/odcctools-20071228
+=sys-devel/odcctools-20071228
 
 # Fabian Groffen <grobian@gentoo.org> (17 Dec 2007)
 # Doesn't compile on OSX (cyclic dependency) and FreeBSD (undefined
