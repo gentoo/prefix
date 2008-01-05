@@ -1,6 +1,24 @@
 # ChangeLog for sys-devel/distcc
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.166 2007/12/25 14:22:22 phreak Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.168 2008/01/04 05:54:06 betelgeuse Exp $
+
+*distcc-2.18.3-r12 (04 Jan 2008)
+
+  04 Jan 2008; Petteri Räty <betelgeuse@gentoo.org>
+  +files/distcc-create-dir.patch, +files/distcc-freedesktop.patch,
+  +distcc-2.18.3-r12.ebuild:
+  Fix .desktop file installation to follow latest freedesktop specs. Fix the
+  ebuild to install the gui monitor with gnome -gtk use flags. Create
+  DISTCC_DIR if it doesn't exist to avoid regular error messages. Fixes bug
+  #171507.
+
+*distcc-2.18.3-r11 (04 Jan 2008)
+
+  04 Jan 2008; Petteri Räty <betelgeuse@gentoo.org> +files/2.18-r1/conf,
+  +files/2.18-r1/init, +files/distcc-avahi-configure.patch,
+  +distcc-2.18.3-r11.ebuild:
+  Add avahi support to distcc and use system copy of popt. Fixes bug #203874
+  and bug #179631.
 
   25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing lisa from metadata.xml as per #23541.
@@ -220,6 +238,7 @@
   16 Sep 2004; Lisa Seelye <lisa@gentoo.org> distcc-2.16-r1.ebuild:
   forgot to bump patchlevel var
 
+*distcc-2.16-r1 (16 Sep 2004)
 *distcc-2.14-r1 (16 Sep 2004)
 
   16 Sep 2004; Lisa Seelye <lisa@gentoo.org> -files/2.11.1p/conf,
