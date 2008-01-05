@@ -1,6 +1,49 @@
 # ChangeLog for www-servers/apache
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.35 2007/11/10 18:19:01 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.45 2007/12/19 21:13:50 hollow Exp $
+
+  19 Dec 2007; Benedikt Böhm <hollow@gentoo.org> -apache-2.2.6.ebuild,
+  apache-2.2.6-r6.ebuild:
+  fix #202800; cleanup
+
+  16 Dec 2007; Peter Weller <welp@gentoo.org> apache-2.2.6-r5.ebuild:
+  Stable on amd64; bug 202327
+
+  16 Dec 2007; Markus Rothe <corsair@gentoo.org> apache-2.2.6-r5.ebuild:
+  Stable on ppc64; bug #202327
+
+  16 Dec 2007; Raúl Porcel <armin76@gentoo.org> apache-2.2.6-r5.ebuild:
+  alpha/ia64/sparc/x86 stable wrt security #202327
+
+  15 Dec 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  apache-2.2.6-r5.ebuild:
+  ppc stable, bug #202327
+
+  15 Dec 2007; Jeroen Roovers <jer@gentoo.org> apache-2.2.6-r5.ebuild:
+  Stable for HPPA (bug #202327).
+
+*apache-2.2.6-r6 (15 Dec 2007)
+
+  15 Dec 2007; Benedikt Böhm <hollow@gentoo.org> -apache-2.2.6-r2.ebuild,
+  -apache-2.2.6-r4.ebuild, +apache-2.2.6-r6.ebuild:
+  fix #201163, #201586, #201923, #202327, #202376; first unmasked USE_EXPAND
+  version
+
+*apache-2.2.6-r5 (14 Dec 2007)
+
+  14 Dec 2007; Benedikt Böhm <hollow@gentoo.org>
+  +files/apache-2.2.6_CVE-2007-5000.patch, +apache-2.2.6-r5.ebuild:
+  fix CVE-2007-5000 (#202327)
+
+  29 Nov 2007; Benedikt Böhm <hollow@gentoo.org> apache-2.2.6-r4.ebuild:
+  fix order of variables/inherit
+
+*apache-2.2.6-r4 (28 Nov 2007)
+
+  28 Nov 2007; Benedikt Böhm <hollow@gentoo.org> -apache-2.2.6-r1.ebuild,
+  -apache-2.2.6-r3.ebuild, +apache-2.2.6-r4.ebuild:
+  Rewrite for apache-2 eclass; uses USE_EXPAND for APACHE2_MODULES and
+  APACHE2_MPMS; also fixes #198088, #197032, #197870
 
   10 Nov 2007; Benedikt Böhm <hollow@gentoo.org> apache-2.2.6-r3.ebuild:
   fix SNI patch, #198701
