@@ -1,6 +1,12 @@
 # ChangeLog for gnustep-base/gnustep-gui
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.56 2007/12/08 20:06:35 voyageur Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.57 2008/01/03 12:33:39 voyageur Exp $
+
+*gnustep-gui-0.12.1 (03 Jan 2008)
+
+  03 Jan 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  +gnustep-gui-0.12.1.ebuild:
+  Stable version bump
 
   08 Dec 2007; Bernard Cafarelli <voyageur@gentoo.org> -files/gsnd.initd,
   -gnustep-gui-0.10.3.ebuild, -gnustep-gui-0.11.0.ebuild:
