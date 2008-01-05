@@ -1,6 +1,9 @@
 # ChangeLog for www-client/pybugz
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/pybugz/ChangeLog,v 1.25 2007/12/30 22:26:10 williamh Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-client/pybugz/ChangeLog,v 1.26 2008/01/04 12:51:45 jokey Exp $
+
+  04 Jan 2008; Markus Ullmann <jokey@gentoo.org> pybugz-0.7.3.ebuild:
+  arm keyword for bug 203717
 
 *pybugz-0.7.3 (30 Dec 2007)
 
