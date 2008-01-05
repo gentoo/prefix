@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/turbojson
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/turbojson/ChangeLog,v 1.1 2007/02/28 00:22:28 dev-zero Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/turbojson/ChangeLog,v 1.2 2008/01/04 17:29:27 hawking Exp $
+
+*turbojson-1.1.2 (04 Jan 2008)
+
+  04 Jan 2008; Ali Polatel <hawking@gentoo.org> +turbojson-1.1.2.ebuild:
+  Version bump. Changed SRC_URI
 
   05 Feb 2007; Tiziano Müller <dev-zero@gentoo.org>
   -turbojson-0.9.9.ebuild, +turbojson-1.0.ebuild, +metadata.xml:
