@@ -32,6 +32,7 @@ src_unpack() {
 	EPATCH_MULTI_MSG="Applying Gentoo patches ..." epatch "${PATCHDIR}"/gentoo
 	EPATCH_MULTI_MSG="Applying Mandrake patches ..." epatch "${PATCHDIR}"/mandrake
 	epatch "${FILESDIR}"/${P}-locale.patch # for AIX
+	epatch "${FILESDIR}"/${P}-no-solaris-md5.patch
 	autoconf || die "autoconf failed"
 }
 
