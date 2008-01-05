@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/erlang
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.86 2007/12/21 13:18:40 nixnut Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.87 2008/01/04 07:06:45 opfer Exp $
+
+  04 Jan 2008; Christian Faulhammer <opfer@gentoo.org>
+  -erlang-11.2.5.ebuild:
+  clean up
 
   21 Dec 2007; nixnut <nixnut@gentoo.org> erlang-11.2.5-r3.ebuild:
   Stable on ppc wrt bug 202552
