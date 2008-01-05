@@ -1,6 +1,14 @@
 # ChangeLog for app-shells/zsh-completion
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/ChangeLog,v 1.25 2007/12/25 16:52:34 phreak Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/ChangeLog,v 1.27 2008/01/04 03:42:12 compnerd Exp $
+
+  04 Jan 2008; Saleem Abdulrasool <compnerd@gentoo.org>
+  -zsh-completion-20040730.ebuild, -zsh-completion-20050120.ebuild,
+  -zsh-completion-20050503.ebuild:
+  prune unused versions
+
+  04 Jan 2008; Saleem Abdulrasool <compnerd@gentoo.org> metadata.xml:
+  Add myself as maintainer as per message on -dev.
 
   25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing usata from metadata.xml as per #22931. Assigning to maintainer-needed.
