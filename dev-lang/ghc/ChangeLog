@@ -1,6 +1,18 @@
 # ChangeLog for dev-lang/ghc
 # Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.145 2007/12/16 18:36:39 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.148 2007/12/23 14:36:53 araujo Exp $
+
+  23 Dec 2007; Luis F. Araujo <araujo@gentoo.org> ghc-6.4.2.ebuild:
+  Droping the last reference to virtual/x11
+
+  24 Dec 2007; Lennart Kolmodin <kolmodin@gentoo.org> files/ghc-updater:
+  Fix ghc-updater to be baselayout independent wrt functions.sh.
+  Fixes bug #190043, thanks to Jakub Moc <jakub@gentoo.org>.
+
+*ghc-6.8.2 (19 Dec 2007)
+
+  19 Dec 2007; Lennart Kolmodin <kolmodin@gentoo.org> +ghc-6.8.2.ebuild:
+  First version of the 6.8 branch. It's currently package.mask'ed.
 
   16 Dec 2007; nixnut <nixnut@gentoo.org> ghc-6.6.1.ebuild:
   Stable on ppc wrt bug 201984
