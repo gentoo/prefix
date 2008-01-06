@@ -21,6 +21,7 @@ x86-macos	default-prefix/darwin/macos/10.4/x86		dev
 sparc-solaris	default-prefix/sunos/solaris/5.10/sparc	dev
 sparc64-solaris default-prefix/sunos/solaris/5.10/sparc64 dev
 x86-solaris		default-prefix/sunos/solaris/5.10/x86	dev
+x64-solaris		default-prefix/sunos/solaris/5.10/x64	dev
 
 # AIX Profiles
 ppc-aix		default-prefix/aix/5.2.0.0/ppc				dev
