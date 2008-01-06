@@ -1,12 +1,12 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/dom4j/dom4j-1.6.1-r2.ebuild,v 1.9 2007/05/09 15:10:38 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/dom4j/dom4j-1.6.1-r2.ebuild,v 1.10 2008/01/05 22:06:14 betelgeuse Exp $
 
 EAPI="prefix"
 
 inherit java-pkg-2 java-ant-2
 
-DESCRIPTION="Easy to use, open source library for working with XML, XPath and XSLT on the Java platform using the Java Collections Framework and with full support for DOM, SAX and JAXP."
+DESCRIPTION="Java library for working with XML"
 HOMEPAGE="http://dom4j.sourceforge.net/"
 SRC_URI="mirror://sourceforge/dom4j/${P}.tar.gz
 	mirror://gentoo/${P}-java5.patch.bz2"
