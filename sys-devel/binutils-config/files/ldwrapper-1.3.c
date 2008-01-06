@@ -284,10 +284,13 @@ static char **build_new_argv(char **argv, const char *newflags_str)
 	char **retargv;
 	unsigned int argc, i;
 	char *state, *flags_tokenized;
+	int verbose = 0;
 
 	retargv = argv;
 
-	for (argc = 0; argv[argc] != NULL; argc++);
+	for (argc = 0; argv[argc] != NULL; argc++)
+		if (argv[argc][0] == '-' && argv[argc][1] == 'V')
+			verbose = 1;
 
 	/* Tokenize the flag list and put it into newflags array */
 	flags_tokenized = strdup(newflags_str);
@@ -305,6 +308,15 @@ static char **build_new_argv(char **argv, const char *newflags_str)
 	/* append the new flags after the original ones, such that they do
 	 * not override (-L flag order) */
 	memcpy(retargv + argc, newflags, i * sizeof(char*));
+
+	if (verbose == 1) {
+		argc += i;
+		printf("%s: modified argv:", argv[0]);
+		for (i = 1; i < argc; i++) {
+			printf(" %s", retargv[i]);
+		}
+		printf("\n");
+	}
 
 	return retargv;
 }
