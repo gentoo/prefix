@@ -146,11 +146,6 @@ pkg_setup() {
 		elog "are also available."
 	fi
 
-	# Fix polish spelling errors
-	[[ -n ${LINGUAS} ]] && sed -e 's:Zarządano:Zażądano:' -i help/help_mp-pl.h
-
-	# Pulseaudio patch, bug 203430
-	epatch "${FILESDIR}/${P}-pulse.patch"
 }
 
 src_unpack() {
@@ -182,6 +177,11 @@ src_unpack() {
 		mv "${WORKDIR}/svgalib_helper" "${S}/libdha"
 	fi
 
+	# Fix polish spelling errors
+	[[ -n ${LINGUAS} ]] && sed -e 's:ZarzÄdano:ZaÅ¼Ädano:' -i help/help_mp-pl.h
+
+	# Pulseaudio patch, bug 203430
+	epatch "${FILESDIR}/${P}-pulse.patch"
 	epatch "${FILESDIR}"/${PN}-1.0_rc1_p20070927-prefix.patch
 	epatch "${FILESDIR}"/${PN}-1.0-darwin.patch
 	eprefixify DOCS/xml/configure
