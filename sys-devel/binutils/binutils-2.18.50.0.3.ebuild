@@ -8,7 +8,7 @@ PATCHVER="1.0"
 ELF2FLT_VER=""
 inherit toolchain-binutils
 
-KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~sparc64-solaris ~x86 ~x86-fbsd ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~x86 ~x86-fbsd ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 src_unpack() {
 	toolchain-binutils_src_unpack
