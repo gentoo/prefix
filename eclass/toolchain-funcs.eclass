@@ -178,6 +178,8 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 					echo sparc64-solaris;;
 		i*-pc-solaris*)
 					echo x86-solaris;;
+		x86_64-pc-solaris*)
+					echo x64-solaris;;
 		powerpc-ibm-aix*)
 					echo ppc-aix;;
 		mips-sgi-irix*)
