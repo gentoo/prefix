@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0.ebuild,v 1.7 2007/12/30 16:54:31 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.0.ebuild,v 1.8 2008/01/05 21:07:43 halcy0n Exp $
 
 EAPI="prefix"
 
@@ -40,8 +40,6 @@ pkg_setup() {
 }
 
 src_compile() {
-	local myconf
-
 	# get around some LANG problems in make (#15119)
 	unset LANG
 
@@ -50,14 +48,12 @@ src_compile() {
 
 	append-flags -fno-strict-aliasing
 
-	use xft && myconf="${myconf} `use_enable xft`"
-	use jpeg && myconf="${myconf} `use_enable jpeg`"
-	use png && myconf="${myconf} `use_enable png`"
-
 	econf --with-x \
 		--bindir="${EPREFIX}"/usr/$(get_libdir)/openmotif-${SLOT} \
 		--libdir="${EPREFIX}"/usr/$(get_libdir)/openmotif-${SLOT} \
-	    ${myconf} || die "configuration failed"
+	    $(use_enable xft) \
+		$(use_enable jpeg) \
+		$(use_enable png) || die "configuration failed"
 
 	emake -j1 || die "make failed, if you have lesstif installed removed it, compile openmotif and recompile lesstif"
 }
