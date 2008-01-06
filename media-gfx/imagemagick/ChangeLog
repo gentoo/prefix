@@ -1,6 +1,11 @@
 # ChangeLog for media-gfx/imagemagick
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.257 2007/12/30 13:26:53 maekke Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.258 2008/01/05 18:07:26 maekke Exp $
+
+*imagemagick-6.3.7.9 (05 Jan 2008)
+
+  05 Jan 2008; Markus Meier <maekke@gentoo.org> +imagemagick-6.3.7.9.ebuild:
+  bump, this should finally fix bug #153476
 
 *imagemagick-6.3.7.8 (30 Dec 2007)
 
