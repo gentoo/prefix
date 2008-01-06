@@ -2,6 +2,15 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Jan 2008; Fabian Groffen <grobian@gentoo.org> darwin/package.use.mask,
+  linux/amd64/make.defaults, linux/ia64/make.defaults,
+  linux/mips/make.defaults, linux/x86/make.defaults,
+  +sunos/solaris/5.10/sparc64/package.use.mask,
+  +sunos/solaris/5.10/x64/package.use.mask:
+  Make linux profiles default to full GLEP 53 keywords (e.g.
+  amd64-linux).  Masked nls USE-flag on wget for 64-bits Solaris
+  targets.
+
   05 Jan 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Drop mask for sys-apps/man, since I added the missing patch, and cleaned the
   ebuild up

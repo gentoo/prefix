@@ -1,0 +1,5 @@
+
+# Fabian Groffen <grobian@gentoo.org> (06 Jan 2008)
+# this flag reveals a compiler search path issue, we just sweep the
+# problem under the carpet this way
+net-misc/wget nls
