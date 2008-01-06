@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/jdom-jaxen
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jdom-jaxen/ChangeLog,v 1.8 2007/10/18 14:04:34 nelchael Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jdom-jaxen/ChangeLog,v 1.9 2008/01/05 23:20:08 betelgeuse Exp $
+
+  05 Jan 2008; Petteri Räty <betelgeuse@gentoo.org>
+  jdom-jaxen-1.0_beta9-r2.ebuild, jdom-jaxen-1.0_beta10-r1.ebuild,
+  jdom-jaxen-1.0-r1.ebuild:
+  Add http:// to the start of HOMEPAGE.
 
   18 Oct 2007; Krzysiek Pawlik <nelchael@gentoo.org>
   jdom-jaxen-1.0_beta9-r2.ebuild, jdom-jaxen-1.0_beta10-r1.ebuild,

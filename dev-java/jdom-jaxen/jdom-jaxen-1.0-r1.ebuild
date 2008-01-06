@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jdom-jaxen/jdom-jaxen-1.0-r1.ebuild,v 1.4 2007/10/18 14:04:34 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jdom-jaxen/jdom-jaxen-1.0-r1.ebuild,v 1.5 2008/01/05 23:20:08 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ inherit base java-pkg-2
 MY_PN="jdom"
 
 DESCRIPTION="Jaxen binding for jdom."
-HOMEPAGE="www.jdom.org"
+HOMEPAGE="http://www.jdom.org"
 SRC_URI="http://www.jdom.org/dist/source/${MY_PN}-${PV}.tar.gz"
 
 LICENSE="JDOM"
