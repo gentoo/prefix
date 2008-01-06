@@ -205,30 +205,30 @@ bootstrap_setup() {
 
 bootstrap_tree() {
 	case ${CHOST} in
-		powerpc-apple-darwin7)       PV="20071115" ;;
-		powerpc-apple-darwin8)       PV="20071115" ;;
-		powerpc64-apple-darwin8)     PV="20071213" ;;
-		i*86-apple-darwin8)          PV="20071115" ;;
-		powerpc-apple-darwin9)       PV="20071115" ;; # verified (desp)
-		i*86-apple-darwin9)          PV="20071115" ;; # verified (grobian)
-		x86_64-apple-darwin9)        PV="20071213" ;;
-		i*86-pc-linux-gnu)           PV="20071213" ;;
-		x86_64-pc-linux-gnu)         PV="20071213" ;;
-		ia64-pc-linux-gnu)           PV="20071213" ;;
-		sparc-sun-solaris2.9)        PV="20071115" ;;
-		i386-pc-solaris2.10)         PV="20071115" ;;
-		x86_64-pc-solaris2.10)       PV="20071213" ;;
-		sparc-sun-solaris2.10)       PV="20071115" ;; # verified (grobian)
-		sparcv9-sun-solaris2.10)     PV="20071213" ;;
-		powerpc-ibm-aix*)            PV="20071213" ;; # verified (darksiide)
-		mips-sgi-irix*)              PV="20071115" ;;
-		i586-pc-interix*)            PV="20071115" ;;
-		hppa*-hp-hpux11*)            PV="20071115" ;;
-		ia64-hp-hpux11*)             PV="20071115" ;;
-		i386-pc-freebsd*)            PV="20071115" ;;
+		powerpc-apple-darwin7)       PV="20080106" ;;
+		powerpc-apple-darwin8)       PV="20080106" ;;
+		powerpc64-apple-darwin8)     PV="20080106" ;;
+		i*86-apple-darwin8)          PV="20080106" ;;
+		powerpc-apple-darwin9)       PV="20080106" ;;
+		i*86-apple-darwin9)          PV="20080106" ;;
+		x86_64-apple-darwin9)        PV="20080106" ;;
+		i*86-pc-linux-gnu)           PV="20080106" ;;
+		x86_64-pc-linux-gnu)         PV="20080106" ;;
+		ia64-pc-linux-gnu)           PV="20080106" ;;
+		sparc-sun-solaris2.9)        PV="20080106" ;;
+		i386-pc-solaris2.10)         PV="20080106" ;;
+		x86_64-pc-solaris2.10)       PV="20080106" ;;
+		sparc-sun-solaris2.10)       PV="20080106" ;;
+		sparcv9-sun-solaris2.10)     PV="20080106" ;;
+		powerpc-ibm-aix*)            PV="20080106" ;;
+		mips-sgi-irix*)              PV="20080106" ;;
+		i586-pc-interix*)            PV="20080106" ;;
+		hppa*-hp-hpux11*)            PV="20080106" ;;
+		ia64-hp-hpux11*)             PV="20080106" ;;
+		i386-pc-freebsd*)            PV="20080106" ;;
 		*)
 			einfo "warning: no specific tree snapshot known for your system"
-			PV="20071115"
+			PV="20080106"
 		;;
 	esac
 	for x in etc usr/{,s}bin var/tmp var/lib/portage var/log/portage var/db;
@@ -276,7 +276,7 @@ bootstrap_startscript() {
 bootstrap_portage() {
 	# don't use "latest" here, as I want to have the bootstrap script to
 	# use a portage in a known "state"
-	PV=2.2.00.8470
+	PV="2.2.00.9150"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 		
