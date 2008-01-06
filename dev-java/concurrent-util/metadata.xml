@@ -2,4 +2,9 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<herd>java</herd>
+	<longdescription>
+		Doug Lea's concurrency utilities provide standardized, efficient
+		versions of utility classes commonly encountered in concurrent Java
+		programming.
+	</longdescription>
 </pkgmetadata>
