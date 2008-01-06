@@ -9,12 +9,14 @@ inherit vim
 VIM_VERSION="7.1"
 VIM_GENTOO_PATCHES="vim-${VIM_VERSION}-gentoo-patches.tar.bz2"
 VIM_ORG_PATCHES="vim-patches-${PV}.tar.gz"
+PREFIX_VER="1"
 
 SRC_URI="ftp://ftp.vim.org/pub/vim/unstable/unix/vim-${VIM_VERSION}.tar.bz2
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-lang.tar.gz
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-extra.tar.gz
 	mirror://gentoo/${VIM_GENTOO_PATCHES}
-	mirror://gentoo/${VIM_ORG_PATCHES}"
+	mirror://gentoo/${VIM_ORG_PATCHES}
+	http://dev.gentoo.org/~grobian/distfiles/vim-misc-prefix-${PREFIX_VER}.tar.bz2"
 
 S="${WORKDIR}/vim${VIM_VERSION/.}"
 DESCRIPTION="Vim, an improved vi-style text editor"
@@ -25,13 +27,3 @@ DEPEND="${DEPEND}
 RDEPEND="${RDEPEND}
 	!<app-editors/nvi-1.81.5-r4
 	!minimal? ( ~app-editors/vim-core-${PV} )"
-
-src_unpack() {
-	vim_src_unpack || die
-	epatch ${FILESDIR}/with-local-dir.patch || die
-}
-
-src_compile() {
-	use prefix && EXTRA_ECONF="--without-local-dir"
-	vim_src_compile || die
-}
