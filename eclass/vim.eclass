@@ -253,17 +253,14 @@ vim_src_unpack() {
 		epatch ${WORKDIR}/gentoo/patches-all/
 
 	# macvim patchset needs to be applied here (because it alters src/feature.h)
-	if [[ ${MY_PN} == gvim || ${MY_PN} == vim-core ]] && use aqua; then
-		epatch "${WORKDIR}"/macvim-${PV}/macvim-patchset
-		for aqua_file in colors/macvim.vim doc/gui_mac.txt; do
-			cp "${WORKDIR}"/macvim-${PV}/runtime/${aqua_file}  \
-				"${S}"/runtime/${aqua_file}
-		done
-
-		# make sure we install our man-pages as vim, not as Vim
-		[[ ${MY_PN} == vim-core ]] && \
-			sed -i -e 's/VIMNAME=Vim/VIMNAME=vim/' "${S}"/src/configure.in
-	fi
+	epatch "${WORKDIR}"/vim-misc-prefix/macvim-patchset
+	for aqua_file in colors/macvim.vim doc/gui_mac.txt; do
+		cp "${WORKDIR}"/vim-misc-prefix/runtime/${aqua_file}  \
+		"${S}"/runtime/${aqua_file}
+	done
+	# make sure we install our man-pages as vim, not as Vim
+	[[ ${MY_PN} == vim-core ]] && \
+		sed -i -e 's/VIMNAME=Vim/VIMNAME=vim/' "${S}"/src/configure.in
 
 	# Unpack an updated netrw snapshot if necessary. This is nasty. Don't
 	# ask, you don't want to know.
@@ -328,7 +325,11 @@ END
 
 	# It's perfectly fine to optimise on Darwin, as we have a fixed compiler,
 	# which Vim people don't know about
-	epatch "${FILESDIR}"/vim-darwin-optimize.patch
+	epatch "${WORKDIR}"/vim-misc-prefix/vim-darwin-optimize.patch
+
+	# Make vim not look into /usr/local for tools, our prefix contains all
+	# coolness
+	epatch "${WORKDIR}"/vim-misc-prefix/with-local-dir.patch
 }
 
 vim_src_compile() {
@@ -496,6 +497,9 @@ vim_src_compile() {
 	if [[ ${MY_PN} == gvim ]] && use aqua ; then
 		cd src
 	fi
+
+	# We have much more cooler tools in our prefix than /usr/local
+	use prefix && myconf="${myconf} --without-local-dir"
 
 	myconf="${myconf} --with-modified-by=Gentoo-${PVR}"
 	econf ${myconf} || die "vim configure failed"
