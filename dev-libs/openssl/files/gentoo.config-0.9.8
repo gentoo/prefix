@@ -112,7 +112,7 @@ BSD)
 solaris)
 	case ${chost_machine} in
 		i386)         machine=x86-${compiler} ;;
-		x86_64*)      machine=x86_64;;
+		x86_64*)      machine=x86_64-gcc; system=${system}64;;
 		sparcv9*)     machine=sparcv9;;
 		sparc*)       machine=sparcv8;;
 	esac
