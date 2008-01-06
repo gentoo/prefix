@@ -255,6 +255,14 @@ vim_src_unpack() {
 	# macvim patchset needs to be applied here (because it alters src/feature.h)
 	if [[ ${MY_PN} == gvim || ${MY_PN} == vim-core ]] && use aqua; then
 		epatch "${WORKDIR}"/macvim-${PV}/macvim-patchset
+		for aqua_file in colors/macvim.vim doc/gui_mac.txt; do
+			cp "${WORKDIR}"/macvim-${PV}/runtime/${aqua_file}  \
+				"${S}"/runtime/${aqua_file}
+		done
+
+		# make sure we install our man-pages as vim, not as Vim
+		[[ ${MY_PN} == vim-core ]] && \
+			sed -i -e 's/VIMNAME=Vim/VIMNAME=vim/' "${S}"/src/configure.in
 	fi
 
 	# Unpack an updated netrw snapshot if necessary. This is nasty. Don't
@@ -317,6 +325,10 @@ END
 			'/-S check.vim/s,..VIM.,ln -s $(VIM) testvim \; ./testvim -X,' \
 			"${S}/src/po/Makefile"
 	fi
+
+	# It's perfectly fine to optimise on Darwin, as we have a fixed compiler,
+	# which Vim people don't know about
+	epatch "${FILESDIR}"/vim-darwin-optimize.patch
 }
 
 vim_src_compile() {
