@@ -10,14 +10,14 @@ VIM_VERSION="7.1"
 VIM_GENTOO_PATCHES="vim-${VIM_VERSION}-gentoo-patches.tar.bz2"
 VIM_ORG_PATCHES="vim-patches-${PV}.tar.gz"
 VIMRC_FILE_SUFFIX="-r3"
-MACVIM_PATCHVER="1"
+PREFIX_VER="1"
 
 SRC_URI="ftp://ftp.vim.org/pub/vim/unix/vim-${VIM_VERSION}.tar.bz2
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-lang.tar.gz
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-extra.tar.gz
 	mirror://gentoo/${VIM_GENTOO_PATCHES}
 	mirror://gentoo/${VIM_ORG_PATCHES}
-	aqua? ( http://dev.gentoo.org/~grobian/distfiles/macvim-${PV}-${MACVIM_PATCHVER}.tar.bz2 )"
+	http://dev.gentoo.org/~grobian/distfiles/vim-misc-prefix-${PREFIX_VER}.tar.bz2"
 
 S="${WORKDIR}/vim${VIM_VERSION/.}"
 DESCRIPTION="vim and gvim shared files"
