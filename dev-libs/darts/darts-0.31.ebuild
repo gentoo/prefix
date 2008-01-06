@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/darts/darts-0.31.ebuild,v 1.5 2008/01/01 16:36:19 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/darts/darts-0.31.ebuild,v 1.7 2008/01/05 11:30:44 jokey Exp $
 
 EAPI="prefix"
 
