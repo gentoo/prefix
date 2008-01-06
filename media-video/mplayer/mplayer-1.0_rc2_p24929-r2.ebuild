@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p24929.ebuild,v 1.2 2007/12/05 17:55:19 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p24929-r2.ebuild,v 1.1 2008/01/05 05:47:28 beandog Exp $
 
 EAPI="prefix"
 
@@ -9,9 +9,9 @@ inherit eutils flag-o-matic multilib
 RESTRICT="strip"
 IUSE="3dnow 3dnowext a52 aac aalib alsa altivec amrnb amrwb arts bidi bl bindist
 cddb cdio cdparanoia cpudetection custom-cflags debug dga doc dts dvb directfb
-dvd dv enca encode esd fbcon ftp gif ggi gtk iconv ipv6 ivtv jack joystick jpeg
+dvd dv enca encode esd fbcon ftp gif ggi gtk iconv ipv6 jack joystick jpeg
 kernel_linux ladspa libcaca lirc live livecd lzo mad md5sum mmx mmxext mp2 mp3
-musepack nas nemesi pvr unicode vorbis opengl openal oss png pnm pulseaudio quicktime radio rar real rtc samba sdl speex srt sse sse2 ssse3 svga teletext tga theora tivo truetype v4l v4l2 vidix win32codecs X x264 xanim xinerama xv xvid xvmc zoran aqua"
+musepack nas nemesi unicode vorbis opengl openal oss png pnm pulseaudio quicktime radio rar real rtc samba sdl speex srt sse sse2 ssse3 svga teletext tga theora tivo truetype v4l v4l2 vidix win32codecs X x264 xanim xinerama xv xvid xvmc zoran aqua"
 
 VIDEO_CARDS="s3virge mga tdfx vesa"
 
@@ -22,7 +22,7 @@ done
 BLUV="1.7"
 SVGV="1.9.17"
 AMR_URI="http://www.3gpp.org/ftp/Specs/archive"
-SRC_URI="mirror://gentoo/${PF}.tar.bz2
+SRC_URI="mirror://gentoo/${P}.tar.bz2
 	!truetype? ( mirror://mplayer/releases/fonts/font-arial-iso-8859-1.tar.bz2
 				 mirror://mplayer/releases/fonts/font-arial-iso-8859-2.tar.bz2
 				 mirror://mplayer/releases/fonts/font-arial-cp1250.tar.bz2 )
@@ -63,6 +63,7 @@ RDEPEND="sys-libs/ncurses
 		aac? ( media-libs/faac )
 		mp2? ( media-sound/twolame )
 		mp3? ( media-sound/lame )
+		x264? ( media-libs/x264-svn )
 		)
 	esd? ( media-sound/esound )
 	enca? ( app-i18n/enca )
@@ -97,7 +98,6 @@ RDEPEND="sys-libs/ncurses
 		media-libs/fontconfig )
 	vidix? ( x11-libs/libXxf86vm
 			 x11-libs/libXext )
-	x264? ( media-libs/x264-svn )
 	xanim? ( media-video/xanim )
 	xinerama? ( x11-libs/libXinerama
 		x11-libs/libXxf86vm
@@ -129,9 +129,7 @@ DEPEND="${RDEPEND}
 # Make sure the assembler USE flags are unmasked on amd64
 # Remove this once default-linux/amd64/2006.1 is deprecated
 DEPEND="${DEPEND} amd64? ( >=sys-apps/portage-2.1.2 )
-	mp2? ( >=sys-apps/portage-2.1.2 )
-	ivtv? ( media-tv/ivtv
-		>=sys-apps/portage-2.1.2 )"
+	mp2? ( >=sys-apps/portage-2.1.2 )"
 
 SLOT="0"
 LICENSE="GPL-2"
@@ -150,6 +148,9 @@ pkg_setup() {
 
 	# Fix polish spelling errors
 	[[ -n ${LINGUAS} ]] && sed -e 's:Zarządano:Zażądano:' -i help/help_mp-pl.h
+
+	# Pulseaudio patch, bug 203430
+	epatch "${FILESDIR}/${P}-pulse.patch"
 }
 
 src_unpack() {
@@ -190,6 +191,9 @@ src_compile() {
 
 	local myconf=" --disable-tv-bsdbt848 \
 		--disable-faad-external"
+
+	# broken upstream, won't work with recent kernels
+	myconf="${myconf} --disable-ivtv --disable-pvr"
 
 	# MPlayer reads in the LINGUAS variable from make.conf, and sets
 	# the languages accordingly.  Some will have to be altered to match
@@ -262,7 +266,6 @@ src_compile() {
 		use v4l	|| myconf="${myconf} --disable-tv-v4l1"
 		use v4l2 || myconf="${myconf} --disable-tv-v4l2"
 		use teletext || myconf="${myconf} --disable-tv-teletext"
-		use pvr || myconf="${myconf} --disable-pvr"
 		if use radio && { use dvb || use v4l || use v4l2; }; then
 			myconf="${myconf} --enable-radio $(use_enable encode radio-capture)"
 		else
@@ -271,8 +274,7 @@ src_compile() {
 	else
 		myconf="${myconf} --disable-tv --disable-tv-v4l1 --disable-tv-v4l2 \
 			--disable-radio --disable-radio-v4l2 --disable-radio-bsdbt848 \
-			--disable-dvb --disable-dvbhead --disable-tv-teletext \
-			--disable-pvr"
+			--disable-dvb --disable-dvbhead --disable-tv-teletext"
 	fi
 
 	#########
@@ -310,7 +312,7 @@ src_compile() {
 	#############
 	# Video Output #
 	#############
-	for x in directfb ivtv ggi md5sum sdl xinerama; do
+	for x in directfb ggi md5sum sdl xinerama; do
 		use ${x} || myconf="${myconf} --disable-${x}"
 	done
 	use aalib || myconf="${myconf} --disable-aa"
