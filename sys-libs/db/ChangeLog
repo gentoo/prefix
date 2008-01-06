@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/db
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.231 2007/11/19 06:48:19 kumba Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.232 2008/01/05 11:57:29 armin76 Exp $
+
+  05 Jan 2008; Raúl Porcel <armin76@gentoo.org> db-4.3.29-r2.ebuild:
+  Add ~alpha wrt #204213
 
   19 Nov 2007; Joshua Kinard <kumba@gentoo.org> db-1.85-r3.ebuild:
   Stable on mips, per #159445.
