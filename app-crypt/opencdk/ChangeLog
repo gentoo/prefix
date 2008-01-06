@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/opencdk
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/opencdk/ChangeLog,v 1.64 2008/01/03 21:19:18 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/opencdk/ChangeLog,v 1.65 2008/01/05 17:00:37 armin76 Exp $
+
+  05 Jan 2008; Raúl Porcel <armin76@gentoo.org> opencdk-0.6.6.ebuild:
+  alpha/ia64/sparc stable wrt #199297
 
   03 Jan 2008; Brent Baude <ranger@gentoo.org> opencdk-0.6.6.ebuild:
   Marking opencdk-0.6.6 ppc64 for bug 199297
