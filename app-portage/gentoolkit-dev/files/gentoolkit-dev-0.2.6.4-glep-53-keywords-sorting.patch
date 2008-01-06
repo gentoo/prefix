@@ -1,0 +1,15 @@
+* sort on OS before the architecture
+
+--- src/ekeyword/ekeyword
++++ src/ekeyword/ekeyword
+@@ -94,6 +94,10 @@
+ 	    (my $sb = $b) =~ s/^\W//;
+ 	    return -1 if $sa eq '*';
+ 	    return +1 if $sb eq '*';
++	    $sa .= "-";
++	    $sb .= "-";
++	    $sa =~ s/([a-z0-9]+)-([a-z0-9]*)/$2-$1/g;
++	    $sb =~ s/([a-z0-9]+)-([a-z0-9]*)/$2-$1/g;
+ 	    $sa cmp $sb;
+ 	} split " ", $quoted;
+ 

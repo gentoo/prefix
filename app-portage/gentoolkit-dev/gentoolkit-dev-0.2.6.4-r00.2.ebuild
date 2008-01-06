@@ -25,6 +25,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-0.2.6.1-svn-echangelog.patch
+	epatch "${FILESDIR}"/${P}-glep-53-keywords-sorting.patch
 	sed -i -e "1s:^#!\( \|\):#!${EPREFIX}:" \
 		src/*/{echangelog,ekeyword,eviewcvs,ebump} || die "@!@#"
 }
