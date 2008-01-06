@@ -122,15 +122,15 @@ bootstrap_setup() {
 			;;
 		i*86-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/default-prefix/linux/x86"
-			keywords="~x86 x86"
+			keywords="~x86-linux x86-linux"
 			;;
 		x86_64-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/default-prefix/linux/amd64"
-			keywords="~amd64 amd64"
+			keywords="~amd64-linux amd64-linux"
 			;;
 		ia64-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/default-prefix/linux/ia64"
-			keywords="~ia64 ia64"
+			keywords="~ia64-linux ia64-linux"
 			;;
 		sparc-sun-solaris2.9)
 			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.9/sparc"
