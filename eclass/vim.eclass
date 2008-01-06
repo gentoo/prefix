@@ -259,7 +259,7 @@ vim_src_unpack() {
 		"${S}"/runtime/${aqua_file}
 	done
 	# make sure we install our man-pages as vim, not as Vim
-	[[ ${MY_PN} == vim-core ]] && \
+	[[ ${MY_PN} != gvim ]] && \
 		sed -i -e 's/VIMNAME=Vim/VIMNAME=vim/' "${S}"/src/configure.in
 
 	# Unpack an updated netrw snapshot if necessary. This is nasty. Don't
@@ -371,6 +371,9 @@ vim_src_compile() {
 			( [[ "${MY_PN}" == "vim" ]] && use minimal ); then
 		myconf="--with-features=tiny \
 			--enable-gui=no \
+			--enable-carbon-check=no \
+			--enable-macvim-check=no \
+			--disable-darwin \
 			--without-x \
 			--disable-perlinterp \
 			--disable-pythoninterp \
@@ -410,20 +413,27 @@ vim_src_compile() {
 		if [[ "${MY_PN}" == "vim" ]] ; then
 			# don't test USE=X here ... see bug #19115
 			# but need to provide a way to link against X ... see bug #20093
-			myconf="${myconf} --enable-gui=no `use_with vim-with-x x`"
+			myconf="${myconf} --enable-gui=no --enable-carbon-check=no --enable-macvim-check=no --disable-darwin `use_with vim-with-x x`"
 
 		elif [[ "${MY_PN}" == "gvim" ]] ; then
-			myconf="${myconf} --with-x"
-			if use aqua; then
-				myconf="${myconf}--with-vim-name=Vim"
+			if use aqua ; then
+				myconf="${myconf} --enable-carbon-check=no --enable-macvim-check=yes"
+				myconf="${myconf} --with-vim-name=Vim"
+			elif use carbon ; then
+				myconf="${myconf} --enable-carbon-check=yes --enable-macvim-check=no"
+				myconf="${myconf} --with-vim-name=Vim"
 			else
-				myconf="${myconf}--with-vim-name=gvim"
+				myconf="${myconf} --enable-carbon-check=no --enable-macvim-check=no --disable-darwin"
+				myconf="${myconf} --with-x"
+				myconf="${myconf} --with-vim-name=gvim"
 			fi
 
 			echo ; echo
 			if [[ $(get_major_version ) -ge 7 ]] && use aqua ; then
 				einfo "Building gvim with the Cocoa GUI"
 				myconf="${myconf} --enable-gui=macvim"
+			elif use carbon ; then
+				myconf="${myconf} --enable-gui=carbon"
 			elif use gtk ; then
 				if version_is_at_least "6.3.086" ; then
 					myconf="${myconf} --enable-gtk2-check"
