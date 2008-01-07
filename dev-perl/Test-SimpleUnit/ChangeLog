@@ -1,0 +1,50 @@
+# ChangeLog for dev-perl/Test-SimpleUnit
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-SimpleUnit/ChangeLog,v 1.12 2007/01/19 16:51:26 mcummings Exp $
+
+  19 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  Test-SimpleUnit-1.21.ebuild:
+  Ebuild maintenance
+
+  18 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-SimpleUnit-1.21.ebuild:
+  Marking amd64 stable
+
+  05 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-SimpleUnit-1.21.ebuild:
+  Adding perl dep; fixed DEPEND
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org>
+  Test-SimpleUnit-1.21.ebuild:
+  Mark 1.21 stable on ia64
+
+  05 Jul 2006; Christian Hartmann <ian@gentoo.org>
+  Test-SimpleUnit-1.21.ebuild:
+  Fixed RDEPEND wrt bug #134781
+
+  01 Jul 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-SimpleUnit-1.21.ebuild:
+  Keywording ~amd64
+
+  30 Mar 2006; Aron Griffis <agriffis@gentoo.org>
+  Test-SimpleUnit-1.21.ebuild:
+  Mark 1.21 ~ia64
+
+  18 Jul 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  Test-SimpleUnit-1.21.ebuild:
+  Stable on sparc
+
+  20 May 2005; Michael Cummings <mcummings@gentoo.org>
+  Test-SimpleUnit-1.21.ebuild:
+  Keywording ~sparc
+
+  29 Apr 2005; Michael Cummings <mcummings@gentoo.org>
+  Test-SimpleUnit-1.21.ebuild:
+  Cleaning mirror syntax
+
+*Test-SimpleUnit-1.21 (29 Mar 2004)
+
+  29 Mar 2004; Michael Cummings <mcummings@gentoo.org>
+  Test-SimpleUnit-1.21.ebuild, metadata.xml:
+  dep of a dep for bricolage, bug 21549
+
