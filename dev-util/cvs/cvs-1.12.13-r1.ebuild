@@ -16,7 +16,7 @@ SRC_URI="mirror://gnu/non-gnu/cvs/source/feature/${PV}/${P}.tar.bz2
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-aix ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~x86 ~ppc-aix ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 IUSE="crypt doc emacs kerberos nls pam server"
 
