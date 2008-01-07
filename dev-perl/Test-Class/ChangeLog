@@ -1,0 +1,155 @@
+# ChangeLog for dev-perl/Test-Class
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Class/ChangeLog,v 1.37 2007/11/10 14:49:11 drac Exp $
+
+  10 Nov 2007; Samuli Suominen <drac@gentoo.org> Test-Class-0.24.ebuild:
+  amd64 stable
+
+  13 Jul 2007; Raúl Porcel <armin76@gentoo.org> Test-Class-0.24.ebuild:
+  ia64/x86 stable
+
+  21 Jun 2007; Michael Cummings <mcummings@gentoo.org>
+  Test-Class-0.24.ebuild:
+  Marking sparc stable
+
+*Test-Class-0.24 (11 Mar 2007)
+
+  11 Mar 2007; Michael Cummings <mcummings@gentoo.org>
+  +Test-Class-0.24.ebuild:
+  Version bump
+
+  05 Mar 2007; Andrej Kacian <ticho@gentoo.org> Test-Class-0.22.ebuild:
+  Stable on x86, bug #169152.
+
+  23 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> Test-Class-0.22.ebuild:
+  Add ~ia64 keyword.
+
+  08 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  -Test-Class-0.21.ebuild:
+  Cleaning up
+
+  08 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  Test-Class-0.22.ebuild:
+  Marking sparc stable
+
+  08 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  Test-Class-0.22.ebuild:
+  Marking amd64 stable
+
+*Test-Class-0.22 (03 Dec 2006)
+
+  03 Dec 2006; Michael Cummings <mcummings@gentoo.org>
+  +Test-Class-0.22.ebuild:
+  Version bump
+
+  24 Nov 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Class-0.13.ebuild:
+  amd64 stable
+
+  07 Nov 2006; Christian Faulhammer <opfer@gentoo.org>
+  Test-Class-0.21.ebuild:
+  keyworded ~x86, bug #154253
+
+*Test-Class-0.21 (06 Nov 2006)
+
+  06 Nov 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Class-0.11.ebuild, Test-Class-0.13.ebuild, +Test-Class-0.21.ebuild:
+  Version bump
+
+  25 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  Test-Class-0.13.ebuild:
+  Stable on sparc
+
+  15 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> Test-Class-0.13.ebuild:
+  Stable on ia64.
+
+*Test-Class-0.13 (01 Oct 2006)
+
+  01 Oct 2006; Christian Hartmann <ian@gentoo.org> +Test-Class-0.13.ebuild:
+  Version bump; added tests
+
+  18 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Class-0.11.ebuild:
+  Marking amd64 stable
+
+  05 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Class-0.11.ebuild:
+  Adding perl dep; fixed DEPEND
+
+  18 Jul 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Class-0.11.ebuild:
+  Forcing mb version
+
+  10 Jul 2006; Michael Cummings <mcummings@gentoo.org>
+  -Test-Class-0.03.ebuild, Test-Class-0.11.ebuild:
+  updating deps, cleaning out old version
+
+  01 Jul 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Class-0.11.ebuild:
+  Keywording ~amd64
+
+  30 Mar 2006; Aron Griffis <agriffis@gentoo.org> Test-Class-0.11.ebuild:
+  Mark 0.11 ~ia64
+
+  13 Feb 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Class-0.03.ebuild, Test-Class-0.11.ebuild:
+  Virtuals for perl-core
+
+  14 Dec 2005; Doug Goldstein <cardoe@gentoo.org> Test-Class-0.11.ebuild:
+  Fixing ||( ) depend issue.
+
+  06 Dec 2005; <mcumming@gentoo.org> Test-Class-0.11.ebuild:
+  Bug 114468 - or clause was backwards
+
+  03 Dec 2005; Michael Cummings <mcummings@gentoo.org>
+  Test-Class-0.11.ebuild:
+  Altered deps for new version of Test-Simple
+
+  18 Jul 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  Test-Class-0.11.ebuild:
+  Stable on sparc
+
+  25 May 2005; Michael Cummings <mcummings@gentoo.org> Test-Class-0.03.ebuild,
+  Test-Class-0.11.ebuild:
+  dev-perl/Test-Simple => perl-core/Test-Simple migration
+
+  25 May 2005; Michael Cummings <mcummings@gentoo.org> Test-Class-0.03.ebuild:
+  dev-perl/Test-Simple => perl-core/Test-Simple migration
+
+  25 May 2005; Michael Cummings <mcummings@gentoo.org> Test-Class-0.03.ebuild:
+  dev-perl/Test-Simple => perl-core/Test-Simple migration
+
+  25 May 2005; Michael Cummings <mcummings@gentoo.org> Test-Class-0.11.ebuild:
+  dev-perl/Storable => perl-core/Storable migration
+
+  25 May 2005; Michael Cummings <mcummings@gentoo.org> Test-Class-0.03.ebuild:
+  dev-perl/Storable => perl-core/Storable migration
+
+  20 May 2005; Michael Cummings <mcummings@gentoo.org>
+  Test-Class-0.11.ebuild:
+  Marking stable x86, keywording ~sparc
+
+  06 May 2005; Sven Wegener <swegener@gentoo.org> Test-Class-0.03.ebuild,
+  Test-Class-0.11.ebuild:
+  Removed * postfix from <, <=, >= and > dependencies.
+
+*Test-Class-0.11 (29 Apr 2005)
+
+  29 Apr 2005; Michael Cummings <mcummings@gentoo.org>
+  Test-Class-0.03.ebuild, +Test-Class-0.11.ebuild:
+  Cleaning up, version bump
+
+  14 Mar 2005; Michael Cummings <mcummings@gentoo.org> Test-Class-0.03.ebuild:
+  Removing dep for Attribute-Handlers as the version installed with perl >=5.8.4
+  is newer than our ebuild
+
+  19 Dec 2004; Michael Cummings <mcummings@gentoo.org>
+  Test-Class-0.03.ebuild:
+  Missing dep
+
+*Test-Class-0.03 (29 Mar 2004)
+
+  29 Mar 2004; Michael Cummings <mcummings@gentoo.org> Test-Class-0.03.ebuild,
+  metadata.xml:
+  dep for bricolage, bug 21549
+
