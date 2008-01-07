@@ -42,5 +42,5 @@ done
 if [[ -n $do_update ]]; then
 	ts=$(stat --format="%y" eupdate.updates)
 	rm eupdate.updates
-	( repoman commit -m "Auto sync $dir ($ts)" >& /var/tmp/repoman.commit.$$ && rm /var/tmp/repoman.commit.$$ || mv /var/tmp/repoman.commit.$$ repoman.commit.failed ) &
+	( ecleankw > /dev/null && ekeyword *.ebuild > /dev/null &&  repoman commit -m "Semi-auto sync $dir ($ts)" >& /var/tmp/repoman.commit.$$ && rm /var/tmp/repoman.commit.$$ || mv /var/tmp/repoman.commit.$$ repoman.commit.failed ) &
 fi

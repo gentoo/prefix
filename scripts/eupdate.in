@@ -133,9 +133,20 @@ cmp_ebuild_ver() {
 		# the version number, 4a is considered to be smaller than 33
 		local lan=${la%%[a-zA-Z]*}
 		local ran=${ra%%[a-zA-Z]*}
-		# if lan or ran starts with a 0, bash thinks it's an octal number
-		lan=${lan#0}; lan=${lan:-0}
-		ran=${ran#0}; ran=${ran:-0}
+
+		# deal with 1.0301 < 1.30
+		while [[ ${lan} == 0* && ${ran} == 0* ]] ; do
+			lan=${lan#0}
+			ran=${ran#0}
+		done
+		if [[ ${lan} == 0* ]] ; then
+			echo -${cnt}
+			return
+		elif [[ ${ran} == 0* ]] ; then
+			echo ${cnt}
+			return
+		fi
+
 		t=$((lan - ran))
 		if [[ ${t} != 0 ]] ; then
 			[[ $t > 9 ]] && t=9
@@ -234,6 +245,13 @@ cmp_ebuild_ver() {
 		echo $((-t * cnt))
 		return
 	fi
+
+	# if lsuf or rsuf starts with a 0, bash thinks it's an octal number
+	if [[ ${lsuf} == 0* || ${rsuf} == 0* ]] ; then
+		lsuf="1${lsuf}"
+		rsuf="1${rsuf}"
+	fi
+
 	lsuf=${lsuf:-0}
 	rsuf=${rsuf:-0}
 	t=$((${lsuf%_p*} - ${rsuf%_p*}))
