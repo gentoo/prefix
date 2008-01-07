@@ -1,0 +1,78 @@
+# ChangeLog for dev-perl/Test-Deep
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Deep/ChangeLog,v 1.19 2007/12/17 19:12:12 drac Exp $
+
+  17 Dec 2007; Samuli Suominen <drac@gentoo.org> Test-Deep-0.098.ebuild:
+  amd64 stable
+
+  06 Dec 2007; Raúl Porcel <armin76@gentoo.org> Test-Deep-0.098.ebuild:
+  alpha/ia64/sparc/x86 stable
+
+  10 Nov 2007; Raúl Porcel <armin76@gentoo.org> Test-Deep-0.097.ebuild:
+  alpha/ia64/sparc/x86 stable
+
+*Test-Deep-0.098 (19 Oct 2007)
+
+  19 Oct 2007; Christian Hartmann <ian@gentoo.org> +Test-Deep-0.098.ebuild:
+  Version bump
+
+*Test-Deep-0.097 (19 Aug 2007)
+
+  19 Aug 2007; Yuval Yaari <yuval@gentoo.org> +Test-Deep-0.097.ebuild:
+  Version bump
+
+  05 Mar 2007; Andrej Kacian <ticho@gentoo.org> Test-Deep-0.096.ebuild:
+  Stable on x86, bug #169152.
+
+  22 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> Test-Deep-0.096.ebuild:
+  Stable on Alpha + IA64.
+
+  19 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  -Test-Deep-0.095.ebuild, Test-Deep-0.096.ebuild:
+  Ebuild maintenance
+
+  24 Dec 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  Test-Deep-0.096.ebuild:
+  Stable on ppc.
+
+  25 Nov 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Deep-0.096.ebuild:
+  sparc stable
+
+  24 Nov 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Deep-0.096.ebuild:
+  amd64 stable
+
+  15 Oct 2006; Aron Griffis <agriffis@gentoo.org> Test-Deep-0.096.ebuild:
+  Mark 0.096 ~ia64. #139107
+
+*Test-Deep-0.096 (24 Sep 2006)
+
+  24 Sep 2006; Christian Hartmann <ian@gentoo.org> +Test-Deep-0.096.ebuild:
+  Version bump
+
+  19 Aug 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  Test-Deep-0.095.ebuild:
+  ppc stable
+
+  17 Aug 2006; Thomas Cort <tcort@gentoo.org> Test-Deep-0.095.ebuild:
+  Added ~alpha keyword wrt Bug #139107.
+
+  06 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Deep-0.095.ebuild:
+  Marking amd64, sparc stable
+
+  05 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Deep-0.095.ebuild:
+  Adding perl dep; fixed DEPEND
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  Test-Deep-0.095.ebuild:
+  Added ~ppc, bug #139107
+
+*Test-Deep-0.095 (04 Jul 2006)
+
+  04 Jul 2006; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +Test-Deep-0.095.ebuild:
+  Missing dep for Apache-Session
+
