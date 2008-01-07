@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/apache-tools
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/ChangeLog,v 1.24 2007/09/25 14:28:36 armin76 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/ChangeLog,v 1.25 2008/01/06 20:59:53 hollow Exp $
+
+  06 Jan 2008; Benedikt Böhm <hollow@gentoo.org>
+  -apache-tools-2.2.4-r4.ebuild:
+  cleanup
 
   25 Sep 2007; Raúl Porcel <armin76@gentoo.org> apache-tools-2.2.6.ebuild:
   sparc stable wrt security #186219
