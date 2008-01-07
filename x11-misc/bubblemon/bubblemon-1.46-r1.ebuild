@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/bubblemon/bubblemon-1.46-r1.ebuild,v 1.5 2007/06/30 11:54:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/bubblemon/bubblemon-1.46-r1.ebuild,v 1.7 2008/01/06 14:56:44 drac Exp $
 
 EAPI="prefix"
 
@@ -12,13 +12,14 @@ SRC_URI="http://www.ne.jp/asahi/linux/timecop/software/${PN}-dockapp-${PV}.tar.g
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE=""
 
-DEPEND=">=x11-libs/gtk+-2"
-RDEPEND="${DEPEND}"
+RDEPEND=">=x11-libs/gtk+-2"
+DEPEND="${RDEPEND}
+	dev-util/pkgconfig"
 
-S="${WORKDIR}"/${PN}-dockapp-${PV}
+S=${WORKDIR}/${PN}-dockapp-${PV}
 
 src_unpack() {
 	unpack ${A}

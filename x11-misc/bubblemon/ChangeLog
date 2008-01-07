@@ -1,6 +1,9 @@
 # ChangeLog for x11-misc/bubblemon
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/bubblemon/ChangeLog,v 1.28 2007/06/30 11:54:11 armin76 Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/bubblemon/ChangeLog,v 1.29 2008/01/06 14:54:54 drac Exp $
+
+  06 Jan 2008; Samuli Suominen <drac@gentoo.org> bubblemon-1.46-r1.ebuild:
+  Add missing pkgconfig dep wrt #204599
 
   30 Jun 2007; Raúl Porcel <armin76@gentoo.org> bubblemon-1.46-r1.ebuild:
   alpha/x86 stable wrt #183638
