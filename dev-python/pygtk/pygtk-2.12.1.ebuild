@@ -1,12 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.12.0.ebuild,v 1.8 2007/11/27 03:40:01 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.12.1.ebuild,v 1.1 2008/01/07 00:04:20 eva Exp $
 
 EAPI="prefix"
 
-NEED_PYTHON=2.3.5
-
-inherit gnome.org python flag-o-matic
+inherit gnome.org python flag-o-matic eutils virtualx
 
 DESCRIPTION="GTK+2 bindings for Python"
 HOMEPAGE="http://www.pygtk.org/"
@@ -38,9 +36,6 @@ DEPEND="${RDEPEND}
 	doc? ( dev-libs/libxslt >=app-text/docbook-xsl-stylesheets-1.70.1 )
 	>=dev-util/pkgconfig-0.9"
 
-# Tests fail (missing display)
-RESTRICT="test"
-
 src_unpack() {
 	unpack ${A}
 	use doc || sed -e 's/\(SUBDIRS =.*\) docs$/\1/' -i "${S}"/Makefile.am
@@ -54,11 +49,12 @@ src_compile() {
 	use hppa && append-flags -ffunction-sections
 	econf $(use_enable doc docs) --enable-thread || die
 	# possible problems with parallel builds (#45776)
-	emake -j1 || die
+	#emake -j1 || die
+	emake || die
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die
 	dodoc AUTHORS ChangeLog INSTALL MAPPING NEWS README THREADS TODO
 
 	if use examples; then
@@ -76,7 +72,7 @@ src_install() {
 
 src_test() {
 	cd tests
-	make check-local || die "tests failed"
+	Xemake check-local || die "tests failed"
 }
 
 pkg_postinst() {
