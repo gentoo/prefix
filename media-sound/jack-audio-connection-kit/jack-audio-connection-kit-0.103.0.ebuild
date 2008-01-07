@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.103.0.ebuild,v 1.15 2007/10/08 06:07:42 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.103.0.ebuild,v 1.16 2008/01/06 19:28:12 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -22,6 +22,7 @@ RDEPEND=">=media-libs/libsndfile-1.0.0
 	caps? ( sys-libs/libcap )
 	portaudio? ( =media-libs/portaudio-18* )
 	alsa? ( >=media-libs/alsa-lib-0.9.1 )
+	netjack? ( media-libs/libsamplerate )
 	!media-sound/jack-cvs"
 
 DEPEND="${RDEPEND}
@@ -49,7 +50,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}/${PN}-transport.patch"
 	epatch "${FILESDIR}/${P}-riceitdown.patch"
-        epatch "${FILESDIR}/${P}-ppc64fix.patch"
+	epatch "${FILESDIR}/${P}-ppc64fix.patch"
 
 	eautoreconf
 }
@@ -127,7 +128,7 @@ src_install() {
 
 	if use caps; then
 		if kernel_is 2 4 ; then
-			cd ${S}/jackd
+			cd "${S}/jackd"
 			dobin jackstart
 		else
 			dosym /usr/bin/jackd /usr/bin/jackstart
