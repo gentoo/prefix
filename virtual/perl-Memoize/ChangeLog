@@ -1,0 +1,18 @@
+# ChangeLog for virtual/perl-Memoize
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Memoize/ChangeLog,v 1.4 2006/10/25 02:37:28 mcummings Exp $
+
+  25 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  perl-Memoize-1.01.ebuild:
+  Cleaning up deps
+
+  13 Feb 2006; Michael Cummings <mcummings@gentoo.org>
+  perl-Memoize-1.01.ebuild:
+  Updated RDEPS
+
+*perl-Memoize-1.01 (07 Feb 2006)
+
+  07 Feb 2006; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +perl-Memoize-1.01.ebuild:
+  New virtual for perl-core/Memoize
+
