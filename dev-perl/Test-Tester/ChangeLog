@@ -1,0 +1,80 @@
+# ChangeLog for dev-perl/Test-Tester
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Tester/ChangeLog,v 1.19 2007/12/17 19:10:57 drac Exp $
+
+  17 Dec 2007; Samuli Suominen <drac@gentoo.org> Test-Tester-0.106.ebuild:
+  amd64 stable
+
+  06 Dec 2007; Raúl Porcel <armin76@gentoo.org> Test-Tester-0.106.ebuild:
+  alpha/ia64/sparc/x86 stable
+
+*Test-Tester-0.106 (19 Oct 2007)
+
+  19 Oct 2007; Christian Hartmann <ian@gentoo.org>
+  +Test-Tester-0.106.ebuild:
+  Version bump
+
+  13 Jul 2007; Raúl Porcel <armin76@gentoo.org> Test-Tester-0.104.ebuild:
+  alpha/ia64/x86 stable
+
+  05 May 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  Test-Tester-0.104.ebuild:
+  ppc stable
+
+  14 Apr 2007; Michael Cummings <mcummings@gentoo.org>
+  Test-Tester-0.104.ebuild:
+  sparc stable
+
+  09 Apr 2007; Michael Cummings <mcummings@gentoo.org>
+  Test-Tester-0.104.ebuild:
+  Marking stable amd64
+
+  05 Mar 2007; Andrej Kacian <ticho@gentoo.org> Test-Tester-0.103.ebuild:
+  Stable on x86, bug #169152.
+
+  22 Jan 2007; Bryan Østergaard <kloeri@gentoo.org>
+  Test-Tester-0.103.ebuild:
+  Stable on IA64.
+
+  19 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  Test-Tester-0.103.ebuild:
+  Version bump, thanks seemant
+
+*Test-Tester-0.104 (02 Jan 2007)
+
+  02 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  +Test-Tester-0.104.ebuild:
+  Version bump
+
+  20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org>
+  Test-Tester-0.103.ebuild:
+  Stable on Alpha.
+
+  15 Oct 2006; Aron Griffis <agriffis@gentoo.org> Test-Tester-0.103.ebuild:
+  Mark 0.103 ~ia64. #139107
+
+  19 Aug 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  Test-Tester-0.103.ebuild:
+  ppc stable
+
+  17 Aug 2006; Thomas Cort <tcort@gentoo.org> Test-Tester-0.103.ebuild:
+  Added ~alpha keyword wrt Bug #139107.
+
+  06 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Tester-0.103.ebuild:
+  Marking amd64, sparc stable
+
+  05 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Tester-0.103.ebuild:
+  Adding perl dep; fixed DEPEND
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  Test-Tester-0.103.ebuild:
+  Added ~ppc, bug #139107
+
+*Test-Tester-0.103 (04 Jul 2006)
+
+  04 Jul 2006; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +Test-Tester-0.103.ebuild:
+  Dep for Test::Deep
+
