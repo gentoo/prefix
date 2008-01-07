@@ -189,30 +189,30 @@ bootstrap_setup() {
 
 bootstrap_tree() {
 	case ${CHOST} in
-		powerpc-apple-darwin7)       PV="20080106" ;;
-		powerpc-apple-darwin8)       PV="20080106" ;;
-		powerpc64-apple-darwin8)     PV="20080106" ;;
-		i*86-apple-darwin8)          PV="20080106" ;;
-		powerpc-apple-darwin9)       PV="20080106" ;;
-		i*86-apple-darwin9)          PV="20080106" ;;
-		x86_64-apple-darwin9)        PV="20080106" ;;
-		i*86-pc-linux-gnu)           PV="20080106" ;;
-		x86_64-pc-linux-gnu)         PV="20080106" ;;
-		ia64-pc-linux-gnu)           PV="20080106" ;;
-		sparc-sun-solaris2.9)        PV="20080106" ;;
-		i386-pc-solaris2.10)         PV="20080106" ;;
-		x86_64-pc-solaris2.10)       PV="20080106" ;;
-		sparc-sun-solaris2.10)       PV="20080106" ;;
-		sparcv9-sun-solaris2.10)     PV="20080106" ;;
-		powerpc-ibm-aix*)            PV="20080106" ;;
-		mips-sgi-irix*)              PV="20080106" ;;
-		i586-pc-interix*)            PV="20080106" ;;
-		hppa*-hp-hpux11*)            PV="20080106" ;;
-		ia64-hp-hpux11*)             PV="20080106" ;;
-		i386-pc-freebsd*)            PV="20080106" ;;
+		powerpc-apple-darwin7)       PV="20080107" ;;
+		powerpc-apple-darwin8)       PV="20080107" ;;
+		powerpc64-apple-darwin8)     PV="20080107" ;;
+		i*86-apple-darwin8)          PV="20080107" ;;
+		powerpc-apple-darwin9)       PV="20080107" ;;
+		i*86-apple-darwin9)          PV="20080107" ;;
+		x86_64-apple-darwin9)        PV="20080107" ;;
+		i*86-pc-linux-gnu)           PV="20080107" ;;
+		x86_64-pc-linux-gnu)         PV="20080107" ;;
+		ia64-pc-linux-gnu)           PV="20080107" ;;
+		sparc-sun-solaris2.9)        PV="20080107" ;;
+		i386-pc-solaris2.10)         PV="20080107" ;;
+		x86_64-pc-solaris2.10)       PV="20080107" ;;
+		sparc-sun-solaris2.10)       PV="20080107" ;;
+		sparcv9-sun-solaris2.10)     PV="20080107" ;;
+		powerpc-ibm-aix*)            PV="20080107" ;;
+		mips-sgi-irix*)              PV="20080107" ;;
+		i586-pc-interix*)            PV="20080107" ;;
+		hppa*-hp-hpux11*)            PV="20080107" ;;
+		ia64-hp-hpux11*)             PV="20080107" ;;
+		i386-pc-freebsd*)            PV="20080107" ;;
 		*)
 			einfo "warning: no specific tree snapshot known for your system"
-			PV="20080106"
+			PV="20080107"
 		;;
 	esac
 	for x in etc usr/{,s}bin var/tmp var/lib/portage var/log/portage var/db;
