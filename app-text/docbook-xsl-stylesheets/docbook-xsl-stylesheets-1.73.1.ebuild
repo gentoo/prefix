@@ -10,7 +10,7 @@ SRC_URI="mirror://sourceforge/docbook/docbook-xsl-${PV}.tar.bz2"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~mips ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~ppc-aix ~ia64-hpux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND="dev-libs/libxml2
