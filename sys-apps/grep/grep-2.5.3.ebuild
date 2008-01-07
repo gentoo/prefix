@@ -14,7 +14,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2
 LICENSE="GPL-3"
 SLOT="0"
 # too many test failures -- once those get fixed, we'll ~arch
-KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ppc-macos ~x86-macos ~sparc-solaris sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="nls pcre static"
 
 RDEPEND="nls? ( virtual/libintl )"
