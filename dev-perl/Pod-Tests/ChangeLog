@@ -1,0 +1,53 @@
+# ChangeLog for dev-perl/Pod-Tests
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Pod-Tests/ChangeLog,v 1.14 2007/01/19 15:30:04 mcummings Exp $
+
+  19 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  Pod-Tests-0.18.ebuild:
+  Ebuild maintenance
+
+  05 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Pod-Tests-0.18.ebuild:
+  Adding perl dep; fixed DEPEND
+
+  22 Mar 2006; Chris White <chriswhite@gentoo.org> Pod-Tests-0.18.ebuild:
+  Marked 0.18 stable for amd64.
+
+  13 Feb 2006; Michael Cummings <mcummings@gentoo.org>
+  Pod-Tests-0.18.ebuild:
+  Virtuals for some perl-core deps
+
+  04 Feb 2006; Aron Griffis <agriffis@gentoo.org> Pod-Tests-0.18.ebuild:
+  Mark 0.18 stable on ia64
+
+  31 Jan 2006; Aron Griffis <agriffis@gentoo.org> Pod-Tests-0.18.ebuild:
+  Mark 0.18 stable on alpha
+
+  27 Jan 2006; Michael Hanselmann <hansmi@gentoo.org> Pod-Tests-0.18.ebuild:
+  Stable on ppc.
+
+  18 Jan 2006; Guy Martin <gmsoft@gentoo.org> Pod-Tests-0.18.ebuild:
+  Stable on hppa.
+
+  13 Jan 2006; Michael Cummings <mcummings@gentoo.org>
+  Pod-Tests-0.18.ebuild:
+  Marking sparc x86 stable
+
+  03 Jan 2006; <plasmaroo@gentoo.org> Pod-Tests-0.18.ebuild:
+  Mark ~ia64; bug #113367.
+
+  12 Dec 2005; Luis Medinas <metalgod@gentoo.org> Pod-Tests-0.18.ebuild:
+  Added ~amd64 keyword. See bug #113367.
+
+  02 Dec 2005; Fernando J. Pereda <ferdy@gentoo.org> Pod-Tests-0.18.ebuild:
+  marked ~alpha wrt bug #113367
+
+  02 Dec 2005; Joseph Jezak <josejx@gentoo.org> Pod-Tests-0.18.ebuild:
+  Marked ~ppc for bug #113367.
+
+*Pod-Tests-0.18 (23 Nov 2005)
+
+  23 Nov 2005; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +Pod-Tests-0.18.ebuild:
+  New dep for Test-Inline
+
