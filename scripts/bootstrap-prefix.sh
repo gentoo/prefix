@@ -94,79 +94,63 @@ bootstrap_setup() {
 	case ${CHOST} in
 		powerpc-apple-darwin7)
 			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.3"
-			keywords="~ppc-macos ppc-macos"
 			;;
 		powerpc-apple-darwin8)
 			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.4/ppc"
-			keywords="~ppc-macos ppc-macos"
 			;;
 		powerpc64-apple-darwin8)
 			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.4/ppc64"
-			keywords="~ppc64-macos ppc64-macos"
 			;;
 		i*86-apple-darwin8)
 			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.4/x86"
-			keywords="~x86-macos x86-macos"
 			;;
 		powerpc-apple-darwin9)
 			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.5/ppc"
-			keywords="~ppc-macos ppc-macos"
 			;;
 		i*86-apple-darwin9)
 			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.5/x86"
-			keywords="~x86-macos x86-macos"
 			;;
 		x86_64-apple-darwin9)
 			profile="${PORTDIR}/profiles/default-prefix/darwin/macos/10.5/x64"
-			keywords="~x64-macos x64-macos"
 			;;
 		i*86-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/default-prefix/linux/x86"
-			keywords="~x86-linux x86-linux"
+			keywords="~x86"
 			;;
 		x86_64-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/default-prefix/linux/amd64"
-			keywords="~amd64-linux amd64-linux"
+			keywords="~amd64"
 			;;
 		ia64-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/default-prefix/linux/ia64"
-			keywords="~ia64-linux ia64-linux"
+			keywords="~ia64"
 			;;
 		sparc-sun-solaris2.9)
 			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.9/sparc"
-			keywords="~sparc-solaris sparc-solaris"
 			;;
 		i386-pc-solaris2.10)
 			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.10/x86"
-			keywords="~x86-solaris x86-solaris"
 			;;
 		x86_64-pc-solaris2.10)
 			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.10/x64"
-			keywords="~x64-solaris x64-solaris"
 			;;
 		sparc-sun-solaris2.10)
 			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.10/sparc"
-			keywords="~sparc-solaris sparc-solaris"
 			;;
 		sparcv9-sun-solaris2.10)
 			profile="${PORTDIR}/profiles/default-prefix/sunos/solaris/5.10/sparc64"
-			keywords="~sparc64-solaris sparc64-solaris"
 			;;
 		powerpc-ibm-aix*)
 			profile="${PORTDIR}/profiles/default-prefix/aix/${CHOST#powerpc-ibm-aix}/ppc"
-			keywords="~ppc-aix ppc-aix"
 			;;
 		mips-sgi-irix*)
 			profile="${PORTDIR}/profiles/default-prefix/irix/${CHOST#mips-sgi-irix}/mips"
-			keywords="~mips-irix mips-irix"
 			;;
 		i586-pc-interix*)
 			profile="${PORTDIR}/profiles/default-prefix/windows/interix/${CHOST#i586-pc-interix}/x86"
-			keywords="~x86-interix x86-interix"
 			;;
 		hppa*-hp-hpux11*)
 			profile="${PORTDIR}/profiles/default-prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa"
-			keywords="~hppa-hpux hppa-hpux"
 			case "${CHOST}" in
 			hppa2.0n*) profile="${profile}/hppa2.0/32" ;;
 			hppa2.0w*) profile="${profile}/hppa2.0/64" ;;
@@ -174,11 +158,9 @@ bootstrap_setup() {
 			;;
 		ia64-hp-hpux11*)
 			profile="${PORTDIR}/profiles/default-prefix/hpux/B.11${CHOST#ia64-hp-hpux11}/ia64"
-			keywords="~ia64-hpux ia64-hpux"
 			;;
 		i386-pc-freebsd*)
 			profile="${PORTDIR}/profiles/default-prefix/bsd/freebsd/${CHOST#i386-pc-freebsd}/x86"
-			keywords="~x86-fbsd x86-fbsd"
 			;;
 		*)	
 			einfo "You need to set up a make.profile symlink to a"
@@ -193,7 +175,9 @@ bootstrap_setup() {
 	
 	[ -e "${ROOT}"/etc/make.conf ] && return
 	
-	if [ ! -z "${keywords}" ];
+	# we need to do this untill all linux keywords are converted to
+	# their -linux variant.
+	if [ -n "${keywords}" ];
 	then
 		echo "ACCEPT_KEYWORDS=\"${keywords}\"" >> "${ROOT}"/etc/make.conf
 		einfo "Your ACCEPT_KEYWORDS is set to ${keywords}"
