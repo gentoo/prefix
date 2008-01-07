@@ -1,0 +1,63 @@
+# ChangeLog for dev-perl/Test-NoWarnings
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-NoWarnings/ChangeLog,v 1.14 2007/07/13 21:31:02 armin76 Exp $
+
+  13 Jul 2007; Raúl Porcel <armin76@gentoo.org>
+  Test-NoWarnings-0.083.ebuild:
+  alpha/ia64/x86 stable
+
+  05 May 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  Test-NoWarnings-0.083.ebuild:
+  ppc stable
+
+  14 Apr 2007; Michael Cummings <mcummings@gentoo.org>
+  Test-NoWarnings-0.083.ebuild:
+  Marking sparc stable
+
+  05 Mar 2007; Andrej Kacian <ticho@gentoo.org>
+  Test-NoWarnings-0.082.ebuild:
+  Stable on x86, bug #169152.
+
+  22 Jan 2007; Bryan Østergaard <kloeri@gentoo.org>
+  Test-NoWarnings-0.082.ebuild:
+  Stable on Alpha + IA64.
+
+  19 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  Test-NoWarnings-0.082.ebuild:
+  Ebuild maintenance
+
+*Test-NoWarnings-0.083 (02 Jan 2007)
+
+  02 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  +Test-NoWarnings-0.083.ebuild:
+  Version bump
+
+  15 Oct 2006; Aron Griffis <agriffis@gentoo.org>
+  Test-NoWarnings-0.082.ebuild:
+  Mark 0.082 ~ia64. #139107
+
+  19 Aug 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  Test-NoWarnings-0.082.ebuild:
+  ppc stable
+
+  17 Aug 2006; Thomas Cort <tcort@gentoo.org> Test-NoWarnings-0.082.ebuild:
+  Added ~alpha keyword wrt Bug #139107.
+
+  06 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-NoWarnings-0.082.ebuild:
+  Marking amd64, sparc stable
+
+  05 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-NoWarnings-0.082.ebuild:
+  Adding perl dep; fixed DEPEND
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  Test-NoWarnings-0.082.ebuild:
+  Added ~ppc, bug #139107
+
+*Test-NoWarnings-0.082 (04 Jul 2006)
+
+  04 Jul 2006; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +Test-NoWarnings-0.082.ebuild:
+  Dep for Test::Deep
+
