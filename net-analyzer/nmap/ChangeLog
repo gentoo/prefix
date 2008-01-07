@@ -1,6 +1,11 @@
 # ChangeLog for net-analyzer/nmap
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.150 2007/12/16 10:00:11 spock Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.151 2008/01/06 14:41:30 spock Exp $
+
+*nmap-4.52 (06 Jan 2008)
+
+  06 Jan 2008; Michał Januszewski <spock@gentoo.org> +nmap-4.52.ebuild:
+  Version bump (bug #204555).
 
   16 Dec 2007; Michał Januszewski <spock@gentoo.org> nmap-4.50.ebuild:
   Update dependencies as suggested in bug #202424 and restore the hppa keyword.

@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.20.ebuild,v 1.16 2007/12/15 15:00:04 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.52.ebuild,v 1.1 2008/01/06 14:41:30 spock Exp $
 
 EAPI="prefix"
 
@@ -16,30 +16,34 @@ IUSE="gtk ssl"
 
 DEPEND="dev-libs/libpcre
 	net-libs/libpcap
-	gtk? ( =x11-libs/gtk+-2* )
+	gtk? ( >=x11-libs/gtk+-2.6
+		   >=dev-python/pygtk-2.6
+		   || ( >=dev-lang/python-2.5
+				>=dev-python/pysqlite-2 )
+		 )
 	ssl? ( dev-libs/openssl )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	sed 's:Icon=icon-network:Icon=nmap-logo-64.png:' -i nmapfe.desktop
-	echo ";" >> nmapfe.desktop
-	epatch "${FILESDIR}/nmap-shtool-nls.patch"
-	epatch "${FILESDIR}/nmap-4.01-nostrip.patch"
-	epatch "${FILESDIR}/${P}-osscan.patch"
+pkg_setup() {
+	if use gtk && has_version ">=dev-lang/python-2.5" &&
+	   ! has_version ">=dev-python/pysqlite-2" &&
+	   ! built_with_use dev-lang/python sqlite ; then
+		eerror "In order to use the nmap GUI you have to either emerge dev-lang/python"
+		eerror "with the 'sqlite' USE flag, or install dev-python/pysqlite-2*."
+		die "sqlite support missing"
+	fi
 }
 
 src_compile() {
 	use ppc-macos && filter-flags -fstrict-aliasing -O2
 	econf \
 		--with-libdnet=included \
-		$(use_with gtk nmapfe) \
+		$(use_with gtk zenmap) \
 		$(use_with ssl openssl) || die
 	emake -j1 || die
 }
 
 src_install() {
-	einstall -j1 nmapdatadir="${ED}/usr/share/nmap" install || die
+	emake DESTDIR="${D}" -j1 nmapdatadir="${EPREFIX}"/usr/share/nmap install || die
 	dodoc CHANGELOG HACKING docs/README docs/*.txt || die
 
 	use gtk && doicon "${FILESDIR}/nmap-logo-64.png"
