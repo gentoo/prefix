@@ -22,7 +22,7 @@ SRC_URI=""
 LICENSE="GPL-3 FDL-1.2 BSD"
 SLOT="23"
 KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
-IUSE="alsa dbus gif gpm gtk gzip-el hesiod jpeg kerberos motif png spell sound source svg tiff toolkit-scroll-bars X Xaw3d xpm"
+IUSE="alsa dbus gif gpm gtk gzip-el hesiod jpeg kerberos motif png spell sound source svg tiff toolkit-scroll-bars X Xaw3d xpm aqua"
 RESTRICT="strip"
 
 RDEPEND="!=app-editors/emacs-cvs-23.0.0-r6

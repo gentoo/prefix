@@ -16,7 +16,7 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 LICENSE="GPL-3 FDL-1.2 BSD"
 SLOT="22"
 KEYWORDS="~amd64 ~x86 ~x86-macos"
-IUSE="alsa gif gpm gtk gzip-el hesiod jpeg kerberos motif png spell sound source svg tiff toolkit-scroll-bars X Xaw3d xpm"
+IUSE="alsa gif gpm gtk gzip-el hesiod jpeg kerberos motif png spell sound source svg tiff toolkit-scroll-bars X Xaw3d xpm aqua"
 RESTRICT="strip"
 
 RDEPEND="sys-libs/ncurses
