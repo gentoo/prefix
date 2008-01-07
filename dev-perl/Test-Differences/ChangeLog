@@ -1,0 +1,46 @@
+# ChangeLog for dev-perl/Test-Differences
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Differences/ChangeLog,v 1.11 2007/01/19 16:45:47 mcummings Exp $
+
+  19 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  Test-Differences-0.47.ebuild:
+  Ebuild maintenance
+
+  18 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Differences-0.47.ebuild:
+  Marking amd64 stable
+
+  05 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Differences-0.47.ebuild:
+  Adding perl dep; fixed DEPEND
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org>
+  Test-Differences-0.47.ebuild:
+  Mark 0.47 stable on ia64
+
+  05 Jul 2006; Christian Hartmann <ian@gentoo.org>
+  Test-Differences-0.47.ebuild:
+  Fixed RDEPEND wrt bug #134781
+
+  01 Jul 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Differences-0.47.ebuild:
+  Keywording ~amd64
+
+  30 Mar 2006; Aron Griffis <agriffis@gentoo.org>
+  Test-Differences-0.47.ebuild:
+  Mark 0.47 ~ia64
+
+  18 Jul 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  Test-Differences-0.47.ebuild:
+  Stable on sparc
+
+  29 Apr 2005; Michael Cummings <mcummings@gentoo.org>
+  Test-Differences-0.47.ebuild:
+  Cleaning mirror syntax
+
+*Test-Differences-0.47 (29 Mar 2004)
+
+  29 Mar 2004; Michael Cummings <mcummings@gentoo.org>
+  Test-Differences-0.47.ebuild, metadata.xml:
+  Dep for a dep of bricolage, bug 21549
+
