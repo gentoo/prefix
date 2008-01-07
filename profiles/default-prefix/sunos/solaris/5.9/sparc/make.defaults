@@ -1,4 +1,4 @@
 ARCH="sparc-solaris"
 CHOST="sparc-sun-solaris2.9"
-ACCEPT_KEYWORDS="sparc-solaris"
+ACCEPT_KEYWORDS="~sparc-solaris"
 

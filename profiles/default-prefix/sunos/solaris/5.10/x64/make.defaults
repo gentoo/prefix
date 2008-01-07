@@ -1,4 +1,4 @@
 ARCH="x64-solaris"
 CHOST="x86_64-pc-solaris2.10"
-ACCEPT_KEYWORDS="x64-solaris"
+ACCEPT_KEYWORDS="~x64-solaris"
 

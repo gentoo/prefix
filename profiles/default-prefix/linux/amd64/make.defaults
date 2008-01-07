@@ -4,7 +4,7 @@
 
 ARCH=amd64
 CHOST="x86_64-pc-linux-gnu"
-ACCEPT_KEYWORDS="amd64-linux"
+ACCEPT_KEYWORDS="~amd64-linux"
 
 # 2006/06/07 - Danny van Dyk <kugelfang@gentoo.org>
 # Multilib settings for all amd64 subprofiles.

@@ -1,3 +1,3 @@
 ARCH="ppc-macos"
 CHOST="powerpc-apple-darwin9"
-ACCEPT_KEYWORDS="ppc-macos"
+ACCEPT_KEYWORDS="~ppc-macos"

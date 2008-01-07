@@ -2,6 +2,27 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  07 Jan 2008; Fabian Groffen <grobian@gentoo.org>
+  aix/5.2.0.0/ppc/make.defaults, aix/5.3.0.0/ppc/make.defaults,
+  bsd/freebsd/6.2/x86/make.defaults, darwin/macos/10.3/make.defaults,
+  darwin/macos/10.4/ppc/make.defaults,
+  darwin/macos/10.4/ppc64/make.defaults,
+  darwin/macos/10.4/x86/make.defaults, darwin/macos/10.5/ppc/make.defaults,
+  darwin/macos/10.5/x64/make.defaults, darwin/macos/10.5/x86/make.defaults,
+  hpux/B.11.11/hppa/make.defaults, hpux/B.11.23/ia64/make.defaults,
+  hpux/B.11.31/ia64/make.defaults, irix/6.5/mips/make.defaults,
+  linux/amd64/make.defaults, linux/ia64/make.defaults,
+  linux/mips/make.defaults, linux/x86/make.defaults,
+  sunos/solaris/5.9/sparc/make.defaults,
+  sunos/solaris/5.10/sparc/make.defaults,
+  sunos/solaris/5.10/sparc64/make.defaults,
+  sunos/solaris/5.10/x64/make.defaults,
+  sunos/solaris/5.10/x86/make.defaults,
+  windows/interix/3.5/x86/make.defaults,
+  windows/interix/5.2/x86/make.defaults:
+  Set all ACCEPT_KEYWORDS to ~arch, because we only use that, and it makes an
+  easy transition for linux users possible.
+
   06 Jan 2008; Fabian Groffen <grobian@gentoo.org> darwin/package.use.mask,
   linux/amd64/make.defaults, linux/ia64/make.defaults,
   linux/mips/make.defaults, linux/x86/make.defaults,

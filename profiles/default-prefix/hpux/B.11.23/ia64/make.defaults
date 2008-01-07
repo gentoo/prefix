@@ -1,4 +1,4 @@
 ARCH="ia64-hpux"
 CHOST="ia64-hp-hpux11.23"
-ACCEPT_KEYWORDS="ia64-hpux"
+ACCEPT_KEYWORDS="~ia64-hpux"
 

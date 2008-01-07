@@ -1,6 +1,6 @@
 ARCH="x86-macos"
 CHOST="i686-apple-darwin8"
-ACCEPT_KEYWORDS="x86-macos"
+ACCEPT_KEYWORDS="~x86-macos"
 
 USE="${USE} mmx mmxext sse sse2"
 # set arch to prescott for all MacTel users, as this enables SSE and MMX
