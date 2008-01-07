@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.7.9.ebuild,v 1.2 2007/11/13 15:24:59 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.7.9.ebuild,v 1.3 2008/01/06 22:30:55 drizzt Exp $
 
 EAPI="prefix"
 
@@ -12,13 +12,14 @@ SRC_URI="http://libtorrent.rakshasa.no/downloads/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
-IUSE="debug"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+IUSE="debug xmlrpc"
 
 RDEPEND=">=net-libs/libtorrent-0.11.${PV##*.}
 	>=dev-libs/libsigc++-2.0
 	>=net-misc/curl-7.15
-	sys-libs/ncurses"
+	sys-libs/ncurses
+	xmlrpc? ( dev-libs/xmlrpc-c )"
 DEPEND="${RDEPEND}"
 
 src_compile() {
@@ -31,10 +32,9 @@ src_compile() {
 
 	econf \
 		$(use_enable debug) \
-		--disable-xmlrpc-c \
+		$(use_with xmlrpc xmlrpc-c) \
 		--disable-dependency-tracking \
 		|| die "econf failed"
-	# --disable-xmlrpc-c: I want to keep it disabled while >=dev-libs/xmlrpc-c-1.07 is masked
 
 	emake || die "emake failed"
 }

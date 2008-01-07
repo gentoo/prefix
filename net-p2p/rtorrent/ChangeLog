@@ -1,6 +1,10 @@
 # ChangeLog for net-p2p/rtorrent
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.99 2007/11/13 16:32:17 drac Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.100 2008/01/06 22:30:55 drizzt Exp $
+
+  06 Jan 2008; Timothy Redaelli <drizzt@gentoo.org> rtorrent-0.7.9.ebuild:
+  Add xmlrpc use flag, please test and report.
+  Bug #182816
 
   13 Nov 2007; Samuli Suominen <drac@gentoo.org> rtorrent-0.7.8.ebuild:
   amd64 stable wrt #198558, thanks to Angelo Arrifano for testing.
