@@ -25,7 +25,7 @@ IUSE="berkdb crypt debug gdbm gnutls gpgme idn imap mbox nls nntp pop qdbm sasl
 sidebar smime smtp ssl vanilla"
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~x86 ~x86-fbsd ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 RDEPEND=">=sys-libs/ncurses-5.2
 	qdbm?    ( dev-db/qdbm )
 	!qdbm?   (
