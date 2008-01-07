@@ -1,0 +1,88 @@
+# ChangeLog for dev-perl/Test-Memory-Cycle
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Memory-Cycle/ChangeLog,v 1.21 2007/03/05 12:31:12 ticho Exp $
+
+  05 Mar 2007; Andrej Kacian <ticho@gentoo.org>
+  Test-Memory-Cycle-1.04.ebuild:
+  Stable on x86, bug #169152.
+
+  21 Oct 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  Test-Memory-Cycle-1.04.ebuild:
+  ppc stable
+
+  20 Oct 2006; Aron Griffis <agriffis@gentoo.org>
+  Test-Memory-Cycle-1.04.ebuild:
+  Mark 1.04 stable on ia64
+
+  15 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Memory-Cycle-1.02.ebuild, Test-Memory-Cycle-1.04.ebuild:
+  Marking amd64, sparc stable
+
+*Test-Memory-Cycle-1.04 (20 Aug 2006)
+
+  20 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  +Test-Memory-Cycle-1.04.ebuild:
+  Version bump
+
+  19 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Memory-Cycle-1.02.ebuild:
+  Marking amd64 stable, ack, forgot to commit?
+
+  05 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Memory-Cycle-1.02.ebuild:
+  Adding perl dep; fixed DEPEND
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  Test-Memory-Cycle-1.02.ebuild:
+  ppc stable
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org>
+  Test-Memory-Cycle-1.02.ebuild:
+  Mark 1.02 stable on ia64
+
+  10 Jul 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Memory-Cycle-1.02.ebuild:
+  Updating deps
+
+  05 Jul 2006; Christian Hartmann <ian@gentoo.org>
+  Test-Memory-Cycle-1.02.ebuild:
+  Fixed RDEPEND wrt bug #134781
+
+  05 Apr 2006; <mcumming@gentoo.org> Test-Memory-Cycle-1.02.ebuild:
+  Marking ~amd64, tested on pitr
+
+  30 Mar 2006; Aron Griffis <agriffis@gentoo.org>
+  Test-Memory-Cycle-1.02.ebuild:
+  Mark 1.02 ~ia64
+
+  19 Mar 2006; <nixnut@gentoo.org> Test-Memory-Cycle-1.02.ebuild:
+  Added ~ppc. Bug #126745
+
+  13 Feb 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Memory-Cycle-1.02.ebuild:
+  Virtuals for some perl-core deps
+
+  15 Jan 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-Memory-Cycle-1.02.ebuild:
+  marking stable sparc x86
+
+  14 Dec 2005; Doug Goldstein <cardoe@gentoo.org>
+  Test-Memory-Cycle-1.02.ebuild:
+  Fixing ||( ) depend issue.
+
+  06 Dec 2005; <mcumming@gentoo.org> -Test-Memory-Cycle-0.02.ebuild,
+  Test-Memory-Cycle-1.02.ebuild:
+  Bug 114468 - or clause was backwards
+
+*Test-Memory-Cycle-1.02 (03 Dec 2005)
+
+  03 Dec 2005; Michael Cummings <mcummings@gentoo.org>
+  Test-Memory-Cycle-0.02.ebuild, +Test-Memory-Cycle-1.02.ebuild:
+  New version; altered deps for new version of Test-Simple
+
+*Test-Memory-Cycle-0.02 (05 Dec 2004)
+
+  05 Dec 2004; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +Test-Memory-Cycle-0.02.ebuild:
+  Part of the test suite - memory tests
+
