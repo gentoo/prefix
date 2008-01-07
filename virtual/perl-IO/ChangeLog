@@ -1,0 +1,35 @@
+# ChangeLog for virtual/perl-IO
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-IO/ChangeLog,v 1.9 2007/07/13 20:19:08 armin76 Exp $
+
+  13 Jul 2007; Raúl Porcel <armin76@gentoo.org> perl-IO-1.23.01.ebuild:
+  ia64 stable
+
+  10 Jul 2007; Michael Cummings <mcummings@gentoo.org> perl-IO-1.20.ebuild:
+  Keywording to match virtual to real packages
+
+  05 Mar 2007; Andrej Kacian <ticho@gentoo.org> perl-IO-1.23.01.ebuild:
+  Stable on x86, bug #169152.
+
+  23 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> perl-IO-1.23.01.ebuild:
+  Add ~ia64 keyword.
+
+  08 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  perl-IO-1.23.01.ebuild:
+  Marking sparc stable
+
+  08 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  perl-IO-1.23.01.ebuild:
+  Marking amd64 stable
+
+  07 Nov 2006; Christian Faulhammer <opfer@gentoo.org>
+  perl-IO-1.23.01.ebuild:
+  keyworded ~x86, bug #154253
+
+*perl-IO-1.23.01 (06 Nov 2006)
+*perl-IO-1.20 (06 Nov 2006)
+
+  06 Nov 2006; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +perl-IO-1.20.ebuild, +perl-IO-1.23.01.ebuild:
+  Virtual for perl-core/IO
+
