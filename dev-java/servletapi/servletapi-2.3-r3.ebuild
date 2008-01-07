@@ -12,7 +12,7 @@ SRC_URI="mirror://gentoo/${P}-20021101.tar.gz"
 
 LICENSE="Apache-1.1"
 SLOT="2.3"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 IUSE="doc source"
 
 DEPEND=">=virtual/jdk-1.4
