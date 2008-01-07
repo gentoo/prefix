@@ -1,0 +1,102 @@
+# ChangeLog for dev-perl/Test-WWW-Mechanize
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-WWW-Mechanize/ChangeLog,v 1.20 2007/11/19 18:34:37 ian Exp $
+
+*Test-WWW-Mechanize-1.16 (19 Nov 2007)
+
+  19 Nov 2007; Christian Hartmann <ian@gentoo.org>
+  +Test-WWW-Mechanize-1.16.ebuild:
+  Version bump
+
+  10 Nov 2007; Raúl Porcel <armin76@gentoo.org>
+  Test-WWW-Mechanize-1.14.ebuild:
+  ia64 stable
+
+  10 Nov 2007; Samuli Suominen <drac@gentoo.org>
+  Test-WWW-Mechanize-1.14.ebuild:
+  amd64 stable
+
+  14 Jul 2007; Raúl Porcel <armin76@gentoo.org>
+  Test-WWW-Mechanize-1.14.ebuild:
+  Re-add ~ia64 and x86 stable
+
+  21 Jun 2007; Michael Cummings <mcummings@gentoo.org>
+  Test-WWW-Mechanize-1.14.ebuild:
+  Marking sparc stable
+
+  12 May 2007; Michael Cummings <mcummings@gentoo.org>
+  +Test-WWW-Mechanize-1.14.ebuild:
+  Version bump
+
+*Test-WWW-Mechanize-1.14 (12 May 2007)
+
+  12 May 2007; Michael Cummings <mcummings@gentoo.org>
+  +Test-WWW-Mechanize-1.14.ebuild:
+  Version bump
+
+  23 Mar 2007; Andrej Kacian <ticho@gentoo.org>
+  Test-WWW-Mechanize-1.12.ebuild:
+  Stable on x86, bug #169152.
+
+  20 Oct 2006; Aron Griffis <agriffis@gentoo.org>
+  Test-WWW-Mechanize-1.12.ebuild:
+  Mark 1.12 stable on ia64
+
+  15 Oct 2006; Michael Cummings <mcummings@gentoo.org>
+  -Test-WWW-Mechanize-1.04.ebuild, Test-WWW-Mechanize-1.08.ebuild,
+  -Test-WWW-Mechanize-1.10.ebuild, Test-WWW-Mechanize-1.12.ebuild:
+  Keywording amd64, sparc stable; cleaning up stale ebuilds
+
+  15 Oct 2006; Bryan Østergaard <kloeri@gentoo.org>
+  Test-WWW-Mechanize-1.08.ebuild:
+  Stable on ia64.
+
+  06 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-WWW-Mechanize-1.04.ebuild, Test-WWW-Mechanize-1.08.ebuild,
+  Test-WWW-Mechanize-1.10.ebuild, Test-WWW-Mechanize-1.12.ebuild:
+  Adding perl dep; fixed DEPEND
+
+*Test-WWW-Mechanize-1.12 (07 Jul 2006)
+
+  07 Jul 2006; Christian Hartmann <ian@gentoo.org>
+  +Test-WWW-Mechanize-1.12.ebuild:
+  Version bump
+
+  05 Jul 2006; Christian Hartmann <ian@gentoo.org>
+  Test-WWW-Mechanize-1.04.ebuild, Test-WWW-Mechanize-1.08.ebuild,
+  Test-WWW-Mechanize-1.10.ebuild:
+  Fixed RDEPEND wrt bug #134781; fixed header
+
+*Test-WWW-Mechanize-1.10 (23 Jun 2006)
+
+  23 Jun 2006; Michael Cummings <mcummings@gentoo.org>
+  +Test-WWW-Mechanize-1.10.ebuild:
+  Version bump upstream
+
+  30 Mar 2006; Aron Griffis <agriffis@gentoo.org>
+  Test-WWW-Mechanize-1.08.ebuild:
+  Mark 1.08 ~ia64
+
+  13 Jan 2006; Michael Cummings <mcummings@gentoo.org>
+  Test-WWW-Mechanize-1.08.ebuild:
+  Marking sparc x86 stable
+
+  08 Jan 2006; Joseph Jezak <josejx@gentoo.org>
+  Test-WWW-Mechanize-1.08.ebuild:
+  Marked ~ppc for bug #114350.
+
+*Test-WWW-Mechanize-1.08 (03 Dec 2005)
+
+  03 Dec 2005; Michael Cummings <mcummings@gentoo.org>
+  +Test-WWW-Mechanize-1.08.ebuild:
+  Version bump
+
+  13 Jun 2005; David Holm <dholm@gentoo.org> Test-WWW-Mechanize-1.04.ebuild:
+  Added to ~ppc.
+
+*Test-WWW-Mechanize-1.04 (12 Jun 2005)
+
+  12 Jun 2005; Renat Lumpau <rl03@gentoo.org> +metadata.xml,
+  +Test-WWW-Mechanize-1.04.ebuild:
+  Initial ebuild. www-apps/rt dependency. Okd by beu.
+
