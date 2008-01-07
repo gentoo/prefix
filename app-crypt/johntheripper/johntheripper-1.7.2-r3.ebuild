@@ -19,7 +19,7 @@ SRC_URI="http://www.openwall.com/john/f/${MY_PBASE}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="mmx altivec sse2 custom-cflags"
 
 RDEPEND=">=dev-libs/openssl-0.9.7"
