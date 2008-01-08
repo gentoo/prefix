@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.380 2008/01/02 21:14:17 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.383 2008/01/08 05:08:30 mr_bones_ Exp $
 
 # Keep them sorted
 
@@ -88,7 +88,6 @@ encode - Adds support for encoding of audio or video files
 enscript - Add enscript support to colourize code stored in the repository
 esd - Adds support for media-sound/esound (Enlightened Sound Daemon)
 esoob - Adds support for Easysoft OOD database
-ev6 - Assume Alpha processor is EV6 or better
 evo - Adds support for mail-client/evolution
 examples - Install examples, usually source code
 exif - Adds support for reading EXIF headers from JPEG and TIFF images
@@ -110,7 +109,6 @@ freetds - Adds support for the TDS protocol to connect to MSSQL/Sybase databases
 freewnn - Adds support for FreeWnn kana to kanji conversion engine
 frontbase - Adds support for the frontbase sql server
 ftp - Adds FTP (File Transfer Protocol) support
-gb - Adds support for Gnome Basic to gnumeric
 gcj - Enable building with gcj (The GNU Compiler for the Javatm Programming Language)
 gd - Adds support for media-libs/gd (to generate graphics on the fly)
 gd-external - Use the external version of gd rather than the bundled one (possibly dangerous)
@@ -138,7 +136,6 @@ guile - Adds support for the guile Scheme interpreter
 hal - Enable Hardware Abstraction Layer (HAL) support
 hardened - activate default security enhancements for toolchain (gcc, glibc, binutils)
 hddtemp - Enable monitoring of hdd temperature (app-admin/hddtemp)
-howl - Enable howl support, enables DNS Service Discovery (DNS-SD)
 hyperwave-api - Adds support for Hyperwave document storage system
 ibm - Add support for IBM ppc64 specific systems
 icc - Add support for the Intel C++ Compiler (does _not_ set $CC)
@@ -167,7 +164,6 @@ jingle - Enables voice calls for jabber
 joystick - Add support for joysticks in all packages
 jpeg - Adds JPEG image support
 jpeg2k - Support for JPEG 2000, a wavelet-based image compression format
-junit - Adds junit awareness -- useful for developers
 kde - Adds support for kde-base/kde (K Desktop Enviroment)
 kdeenablefinal - EXPERIMENTAL: KDE ebuilds will use the enable-final flag, yielding compilation speedups at the cost of heavy mem usage and potentially causing problems. We strongly discourage setting this
 kdehiddenvisibility - Makes KDE symbols hidden by default, requires GCC 4.1 (experimental)
@@ -246,6 +242,7 @@ nocxx - Disable support for C++ (DON'T USE THIS UNLESS YOU KNOW WHAT YOU'RE DOIN
 nptl - Enable support for Native POSIX Threads Library, the new threading module (requires linux-2.6 or better usually)
 nsplugin - Builds plugins for Netscape compatible browsers
 ocaml - Adds support/bindings for the Ocaml language
+ocamlopt - Enables ocamlopt support (ocaml native code compiler) -- Produces faster programs (Warning: you have to disable/enable it at a global scale)
 oci8 - Adds Oracle 8 Database Support
 oci8-instant-client - Use dev-db/oracle-instantclient-basic as Oracle provider instead of requiring a full Oracle server install
 odbc - Adds ODBC Support (Open DataBase Connectivity)
@@ -261,7 +258,6 @@ oracle7 - Adds support for the Oracle 7 Database
 osc - Enables support for Open Sound Control
 oscar - Enable Oscar (AIM/ICQ) IM protocol support
 oss - Adds support for OSS (Open Sound System)
-ovrimos - Adds support for the Ovrimos Database engine
 pam - Adds support PAM (Pluggable Authentication Modules) - DANGEROUS to arbitrarily flip
 pcmcia - Adds support for PCMCIA slots/devices found on laptop computers
 pcntl - Adds support for process creation functions

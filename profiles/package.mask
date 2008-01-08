@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8077 2008/01/03 00:05:48 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8099 2008/01/08 00:37:10 carlo Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -21,9 +21,91 @@
 ##   End example
 ##
 
-# Vlastimil Babka <caster@gentoo.org> (02 Jan 2008)
-# New package, bug #144066, masked until wxpython-2.8 is unmasked.
-app-office/taskcoach
+# Carsten Lohrke <carlo@gentoo.org (07 jan 2008)
+# Masked for removal
+media-sound/jmax
+app-emulation/basiliskII
+app-admin/hpasm
+
+# Ali Polatel <hawking@gentoo.org> (07 Jan 2008)
+# Old, unmaintained version. Will be removed in 30 days.
+# still used in the tree.  address the broken deps before remasking
+#=dev-lang/python-2.3*
+
+# William L. Thomson Jr. <wltjr@gentoo.org> (06 Dec 2008)
+# Gen 1 java ebuild, several open bugs, sec issues, no maintainer or
+# contributors interested in maintaining. Older version no longer
+# current. Will be moved to java junkyard overlay in 30 days.
+www-servers/jetty
+
+# Sebastien Fabbro <bicatali@gentoo.org> (06 Jan 2008)
+# Broken in firing up. See bug #204621]
+=sci-physics/lightspeed-1.2a-r1
+
+# Peter Volkov <pva@gentoo.org> (06 Jan 2008)
+# Masked unstable sources
+>=sys-kernel/openvz-sources-2.6.22
+
+# Markus Ullmann <jokey@gentoo.org> (06 Jan 2008)
+# Broken on compilation, pending removal
+# see bug 192627 for details
+net-analyzer/driftnet
+
+# Saleem Abdulrasool <compnerd@gentoo.org> (05 Jan 2008)
+# Mask for removal in 30 days.  This has been superceeded by Avahi.  Upstream
+# considers it a dead project and actively refuses to work on it or accept
+# patches.
+net-misc/howl
+
+# Julien Allanos <dju@gentoo.org> (06 Jan 2008)
+# Masked for testing
+>=www-apps/trac-0.11_beta1
+
+# Luca Barbato <lu_zero@gentoo.org> (05 Jan 2008)
+# Security issues spotted
+# Superceeded by feng and libnemesi
+# Pending removal
+media-video/fenice
+media-video/nemesi
+
+# Sebastien Fabbro <bicatali@gentoo.org> (04 Jan 2008)
+# Cleaning sci-mathematics packages
+# Masked pending removal on 04 Feb 2008.
+# Reason: upstream unmaintained since at latest 2003
+sci-mathematics/kalamaris
+sci-mathematics/ksimus
+sci-mathematics/ksimus-boolean
+sci-mathematics/ksimus-datarecorder
+sci-mathematics/ksimus-floatingpoint
+sci-mathematics/pariguide 
+
+# Sebastien Fabbro <bicatali@gentoo.org> (04 Jan 2008)
+# Last rites, masked pending removal on 11 Jan 2008.
+# Reason: upstream now commercial
+# Markus Dittrich <markusle@gentoo.org> (21 Dec 2005)
+# mask mupad until fixed by upstream, since the binaries
+# contain insecure runpaths, bug #81745, #115892
+sci-mathematics/mupad
+
+# Sebastien Fabbro <bicatali@gentoo.org> (04 Jan 2008)
+# Last rites, masked pending removal on 11 Jan 2008.
+# Markus Dittrich <markusle@gentoo.org> (15 Nov 2006)
+# masked sci-mathematics/gturing; last release was
+# in 2002, it uses functions missing in >=gnome-2.14 and,
+# therefore, refuses to compile. Unless somebody steps up
+# to fix it we should probably remove it from the tree.
+sci-mathematics/gturing
+
+# Alexis Ballier <aballier@gentoo.org> (03 Jan 2008)
+# They are now included in dev-ml/ocamlnet
+# Removal due: 03 Feb 2008
+dev-ml/equeue
+dev-ml/rpc
+dev-ml/netclient
+
+# Alin Năstac <mrness@gentoo.org> (03 Jan 2008)
+# The project has been closed; will be removed in 30 days
+net-dialup/gprs-easy-connect
 
 # Lennart Kolmodin <kolmodin@gentoo.org> (01 Jan 2008)
 # hs-plugins only works with the outdated GHC 6.4.2 compiler,
@@ -178,7 +260,7 @@ sys-kernel/hppa-sources
 
 # Rémi Cardona <remi@gentoo.org> (17 Dec 2007)
 # Has major regressions, see bug #201519
-=x11-drivers/xf86-video-i810-2.2.0
+>=x11-drivers/xf86-video-i810-2.2.0
 
 # Robin H. Johnson <robbat2@gentoo.org> (16 Dec 2007)
 # For testing only
@@ -226,14 +308,6 @@ gnome-extra/gal
 # P.mask snapshots
 =dev-libs/nspr-4.7.0_pre*
 =dev-libs/nss-3.12_alpha*
-
-# Bernard Cafarelli <voyageur@gentoo.org> (08 Dec 2007)
-# Masked for removal in 30 days
-# Used in old and deprecated gnustep eclass
-# (all gnustep ebuilds now use gnustep-2 eclass)
-gnustep-base/gnustep-env
-# Integrated in gnustep-base/gnustep-back-art
-gnustep-libs/artresources
 
 # Olivier Crete <tester@gentoo.org> (08 Dec 2007)
 # Remove gaim and its plugins (now its called pidgin)
@@ -313,13 +387,10 @@ www-apps/viewcvs
 =dev-scheme/guile-gnome-platform-2.15.95*
 
 # Saleem Abdulrasool <compnerd@gentoo.org> (23 Nov 2007)
-# Mask this until we get the input and mounting issues worked out
->=sys-apps/hal-0.5.10
+# These might break automounting, so keep them masked for now.
 >=sys-auth/policykit-0.6
->=app-misc/hal-info-20071011
 >=gnome-base/gnome-mount-0.7
 >=gnome-extra/policykit-gnome-0.6
-=gnome-extra/gnome-power-manager-2.20.1
 
 # Tony Vroon <chainsaw@gentoo.org> (22 Nov 2007)
 # Upstream actively prevents automated downloads, consider using xchat-xsys instead.
@@ -347,10 +418,6 @@ media-plugins/audacious-docklet
 # Olivier Crete <tester@gentoo.org> (20 Nov 2007)
 # There is now a better version include in gnome-base/gnome-keyring
 sys-auth/pam_keyring
-
-# Ryan Hill <dirtyepic@gentoo.org> (18 Nov 2007)
-# Mask for keywording/testing.
->=dev-python/wxpython-2.8
 
 # Tiziano Müller <dev-zero@gentoo.org> (18 Nov 2007)
 # There is a serious regression (bug #199450) due to
@@ -380,10 +447,6 @@ sys-auth/pam_keyring
 <net-misc/zaptel-1.2
 <net-misc/asterisk-sounds-1.2
 
-# Alin Năstac <mrness@gentoo.org> (08 Nov 2007)
-# Versions with kernel 2.4 support will be removed in 30 days.
-=net-dialup/ltmodem-8.31*
-
 # Chris Gianelloni <wolf31o2@gentoo.org> (07 Nov 2007)
 # Masking for testing for the upcoming release since we don't want this hitting
 # user machines just yet.
@@ -405,27 +468,6 @@ x11-wm/aquamarine
 # Fabian Groffen <grobian@gentoo.org> (06 Nov 2007)
 # Needs some thorough testing, feel welcome to try it out
 dev-db/monetdb
-
-# Samuli Suominen <drac@gentoo.org> (05 Nov 2007)
-# Masked for treecleaners, removed in 60 days.
-# See http://tinyurl.com/yu5t35 for references.
-net-im/jit
-sys-apps/tcng
-net-analyzer/snmpmon
-mail-client/elmo
-net-im/jud
-sys-apps/yard
-app-editors/beaver
-media-radio/ktrack
-app-portage/portagemaster
-x11-themes/ximian-artwork
-x11-misc/fluxspace
-app-vim/hgmenu
-app-vim/hgcommand
-sys-libs/gi-detect
-sys-apps/discover-data
-sys-apps/discover
-dev-db/dbdesigner
 
 # Duncan Coutts <dcoutts@gentoo.otg> (05 Nov 2007)
 # dev-lang/ghc-bin is going away, use dev-lang/ghc instead.
@@ -539,12 +581,6 @@ sys-kernel/ck-sources
 # Masked untill the split from net-im/jabberd is complete.
 # See bug #178055 and bug #195091
 net-im/jabberd2
-
-# Samuli Suominen <drac@gentoo.org> (08 Oct 2007)
-# Binary only package shipping vulnerable OpenSSL and links against
-# it. Masked for removal, unless upstream releases a new version 
-# or provides us with source. Bug 194287.
-dev-lang/anubis
 
 # Michele Noberasco <s4t4n@gentoo.org) (06 Oct 2007)
 # Masked pending removal. This package has conflicting
@@ -792,11 +828,6 @@ app-shells/ash
 >=dev-ml/ocamlduce-3.10.0
 >=app-emacs/ocaml-mode-3.10.0
 
-# Petteri Räty <betelgeuse@gentoo.org> (24 May 2007)
-# Doesn't compile atm. See https://bugs.gentoo.org/show_bug.cgi?id=164074
-# for more details.
-=app-text/jasperreports-1.0.1
-
 # Seemant Kulleen <seemant@gentoo.org> (23 May 2007)
 # Masked because 1.2.1 because it is broken
 =net-wireless/ipw3945-1.2.1
@@ -806,11 +837,6 @@ app-shells/ash
 # to crash on recent kernels. If you like to test it,
 # just unmask it locally.
 =net-wireless/fwlanusb-1.00.00_rc1
-
-# Stefan Briesenick <sbriesen@gentoo.org> (21 May 2007)
-# included in vanilla kernels since 2.6.19
-# Pending removal 20 June 2007
-net-wireless/mcs7780
 
 # Marijn Schouten <hkBst@gentoo.org> (14 May 2007)
 # development version
@@ -1132,13 +1158,6 @@ media-tv/nuppelvideo
 # Masked for testing new enablement via eselect
 >app-shells/bash-completion-20060301
 
-# Markus Dittrich <markusle@gentoo.org> (15 Nov 2006)
-# masked sci-mathematics/gturing; last release was
-# in 2002, it uses functions missing in >=gnome-2.14 and,
-# therefore, refuses to compile. Unless somebody steps up
-# to fix it we should probably remove it from the tree.
-sci-mathematics/gturing
-
 # Marcus D. Hanwell <cryos@gentoo.org> (03 Nov 2006)
 # 5.5.6 does not work with all projects, please use 5.4 or >=5.8
 =sci-misc/boinc-5.5.6
@@ -1338,11 +1357,6 @@ dev-tex/mpm
 # Upstream bug filed:
 # http://sourceforge.net/tracker/index.php?func=detail&aid=1390988&group_id=4286&atid=104286
 =app-crypt/mhash-0.9.3*
-
-# Markus Dittrich <markusle@gentoo.org> (21 Dec 2005)
-# mask mupad until fixed by upstream, since the binaries
-# contain insecure runpaths, bug #81745, #115892
-sci-mathematics/mupad
 
 # Chris Gianelloni <wolf31o2@gentoo.org> (19 Dec 2005)
 # This is the Gentoo Linux Installer.  This is currently masked because it will

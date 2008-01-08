@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3265 2008/01/02 22:17:23 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3277 2008/01/08 04:21:03 mr_bones_ Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -106,6 +106,7 @@ app-editors/xemacs:dnd - Enables support for the x11-libs/dnd drag-n-drop librar
 app-editors/xemacs:eolconv - Support detection and translation of newline conventions.
 app-editors/xemacs:pop - Support POP for mail retrieval.
 app-editors/xemacs:xim - Enable X11 XiM input method
+app-editors/xmlcopyeditor:guidexml - Install GuideXML templates to work with Gentoo official docs
 app-emacs/auctex:preview-latex - Use bundled preview-latex
 app-emacs/bbdb:tex - Install plain TeX support files
 app-emacs/delicious:planner - Include support for app-emacs/planner
@@ -181,6 +182,7 @@ app-misc/digitemp:ds2490 - Build support for the ds2490 sensor
 app-misc/digitemp:ds9097 - Build support for the ds9097 sensor
 app-misc/digitemp:ds9097u - Build support for the ds9097u sensor
 app-misc/g15composer:amarok - Enable display of titles played in Amarok
+app-misc/geneweb:ocamlopt - Enable ocamlopt support (ocaml native code compiler)
 app-misc/gpsdrive:garmin - Adds specific support for Garmin GPS receivers
 app-misc/graphlcd-base:g15 - Add support for g15daemon driver ( e.g Logitech G15 Keybord )
 app-misc/lcd-stuff:mpd - Add support for display of mpd controlled music
@@ -188,7 +190,6 @@ app-misc/lcd4linux:mpd - Add support for display of mpd controlled music
 app-misc/lcdproc:irman - Enable support for IRMan
 app-misc/lcdproc:nfs - Adds support for NFS file system
 app-misc/lcdproc:seamless-hbars - Try to avoid gaps in horizontal bars
-app-misc/ledit:ocamlopt - Build with ocamlopt (ocaml native code compiler) -- Produces faster programs
 app-misc/lirc:hardware-carrier - The transmitter device generates its clock signal in hardware
 app-misc/lirc:transmitter - add transmitter support to some lirc-drivers (e.g. serial)
 app-misc/mc:7zip - add support for 7zip archives
@@ -344,8 +345,20 @@ dev-games/ogre:cg - NVIDIA toolkit plugin
 dev-games/ogre:devil - image loading support with DevIL
 dev-games/ogre:double-precision - more precise calculations at the expense of speed
 dev-haskell/gtk2hs:glade - Enable libglade bindings compilation
+dev-java/ant-tasks:antlr - Enable ANTLR Ant tasks
+dev-java/ant-tasks:bcel - Enable bcel (bytecode manipulation) Ant tasks
+dev-java/ant-tasks:bsf - Enable BSF (Bean Scripting Framework) Ant tasks
+dev-java/ant-tasks:commonslogging - Enable commons-logging Ant tasks
+dev-java/ant-tasks:commonsnet - Enable commons-net Ant tasks
 dev-java/ant-tasks:jai - Enable JAI (Java Imaging) Ant task
 dev-java/ant-tasks:javamail - Enable JavaMail Ant task
+dev-java/ant-tasks:jdepend - Enable Jdepend Ant tasks
+dev-java/ant-tasks:jmf - Enable JMF (Java Media Framework) Ant tasks
+dev-java/ant-tasks:jsch - Disable Jsch (ssh, scp and related) Ant tasks
+dev-java/ant-tasks:log4j - Enable Apache log4j Ant tasks
+dev-java/ant-tasks:oro - Enable Apache Oro Ant tasks
+dev-java/ant-tasks:regexp - Enable Apache Regexp Ant tasks
+dev-java/ant-tasks:resolver - Enable Apache Resolver Ant tasks
 dev-java/ant-tasks:noantlr - Disable ANTLR Ant task -- Warning: Enabling this could break some of the Java packages!!
 dev-java/ant-tasks:nobcel - Disable bcel Ant task -- Warning: Enabling this could break some of the Java packages!!
 dev-java/ant-tasks:nobeanutils - Disable beanutils Ant task -- Warning: Enabling this could break some of the Java packages!!
@@ -528,23 +541,16 @@ dev-lisp/gcl:dlopen - build a GCL which uses dlopen for linking
 dev-lisp/gcl:gprof - build a GCL with profiling support
 dev-lisp/sbcl:cobalt - mips only: use mipsel binary instead of mips big endian binary to bootstrap
 dev-lisp/sbcl:ldb - include support for the SBCL low level debugger
-dev-ml/camlp5:ocamlopt - Build with ocamlopt (ocaml native code compiler) -- Produces faster programs
-dev-ml/camlzip:ocamlopt - Build with ocamlopt (ocaml native code compiler) -- Produces faster programs
-dev-ml/cryptokit:ocamlopt - Build with ocamlopt (ocaml native code compiler) -- Produces faster programs
-dev-ml/findlib:ocamlopt - Build with ocamlopt (ocaml native code compiler) -- Produces faster programs
-dev-ml/lablgl:ocamlopt - Build with ocamlopt (ocaml native code compiler) -- Produces faster programs
 dev-ml/lablgtk:glade - Enable libglade bindings compilation.
 dev-ml/lablgtk:gnomecanvas - Enable libgnomecanvas bindings compilation.
-dev-ml/lablgtk:ocamlopt - Build with ocamlopt (ocaml native code compiler) -- Produces faster programs
 dev-ml/lablgtk:sourceview - Enable GtkSourceView support
-dev-ml/ocaml-sqlite3:ocamlopt - Build with ocamlopt (ocaml native code compiler) -- Produces faster programs
 dev-ml/ocamlnet:httpd - Enables nethttpd web server component 
-dev-ml/pcre-ocaml:ocamlopt - Build with ocamlopt (ocaml native code compiler) -- Produces faster programs
 dev-perl/Eidetic:auth - Enables Apache-AuthTicket based cookie authentication
 dev-perl/GD:animgif - Enable animated gif support
 dev-perl/HTML-Mason:modperl - Enable modperl support
 dev-perl/PDL:badval - Enable badval support in PDL
 dev-perl/RPC-XML:modperl - Enable modperl support
+dev-php/PEAR-PHP_Shell:auto-completion - Enable tab-completion
 dev-php4/eaccelerator:contentcache - Enable content caching
 dev-php4/eaccelerator:disassembler - Enable the eA disassembler
 dev-php4/eaccelerator:inode - Use inode-based caching
@@ -598,7 +604,6 @@ dev-scheme/guile:discouraged - (implied by deprecated) enable merely discouraged
 dev-scheme/guile:elisp - enable Emacs Lisp support
 dev-scheme/guile:networking - include networking interfaces
 dev-scheme/guile:regex - include regular expression interfaces
-dev-tex/hevea:ocamlopt - Build with ocamlopt (ocaml native code compiler) -- Produces faster programs
 dev-tex/latex-beamer:lyx - Install with LyX layouts
 dev-util/anjuta:devhelp - Enable devhelp integration
 dev-util/anjuta:glade - Build glade plugin for anjuta
@@ -619,7 +624,6 @@ dev-util/eric:idl - Enable omniorb support
 dev-util/git:mozsha1 - makes git use an optimized SHA1 routine from Mozilla that should be fast on non-x86 machines
 dev-util/git:ppcsha1 - Make use of a bundled routine that is optimized for the PPC arch
 dev-util/git:webdav - Adds support for push'ing to HTTP repositories via DAV
-dev-util/glade:devhelp - Enable help support through devhelp
 dev-util/global:vim - vim funny stuff for global
 dev-util/kdevelop:ada - Support for the Ada programming language.
 dev-util/kdevelop:clearcase - Support for the ClearCase version control system.
@@ -806,6 +810,7 @@ kde-misc/knetworkmanager:openvpn - Adds support for the OpenVPN client
 kde-misc/knetworkmanager:pptp - Adds support for the PPTP (PPP) VPN client
 kde-misc/ksensors:ibmacpi - Enable monitoring of ACPI sensor data on IBM Thinkpad notebooks.
 mail-client/balsa:gtkspell - Use gtkspell for dictionary support
+mail-client/balsa:rubrica - Enables support for the app-office/rubrica addressbook
 mail-client/claws-mail:bogofilter - Build bogofilter plugin
 mail-client/claws-mail:dillo - Enables support for inline http email viewing with a plugin (which depends on the dillo browser)
 mail-client/claws-mail:spamassassin - Build spamassassin plugin
@@ -1060,6 +1065,8 @@ media-sound/rosegarden:dssi - Enable support for DSSI Soft Synth Interface
 media-sound/rubyripper:cli - Build command line interface rubyripper
 media-sound/slimserver:alac - Enable support for alac
 media-sound/sonata:lyrics - Support for lyrics fetching
+media-sound/squeezecenter:alac - Enable support for alac
+media-sound/squeezecenter:bonjour - Enable support for bonjour
 media-sound/transkode:amarok - Build Amarok script
 media-sound/traverso:lv2 - Add support for Ladspa V2
 media-tv/freevo:mixer - Enable support for adjusting volume via media-sound/aumix
@@ -1542,14 +1549,10 @@ net-misc/asterisk:bri - Enable ISDN BRI support (bristuff)
 net-misc/asterisk:genericjb - Enable experimental generic jitter buffer
 net-misc/asterisk:h323 - Build the H.323 channel driver bundled with Asterisk
 net-misc/asterisk:lowmem - Build Asterisk for environments with low amounts of memory (embedded devices)
-net-misc/asterisk:mysqlfriends - Enable MySQL friends support in chan_sip
 net-misc/asterisk:nosamples - Don't install sample sound and configuration files
 net-misc/asterisk:osp - Enable support for the Open Settlement Protocol
 net-misc/asterisk:pri - Enables pri support (>=asterisk-1.0.1)
-net-misc/asterisk:resperl - Enables support for embedded perl in extensions.conf
 net-misc/asterisk:ukcid - Enable UK callerid support
-net-misc/asterisk:vmdbmysql - Enable mysql db support in voicemail application
-net-misc/asterisk:vmdbpostgres - Enable postgres db support in voicemail application
 net-misc/asterisk:zaptel - Enables zaptel support (>=asterisk-1.0.1)
 net-misc/bird:client - Enables the BIRD client
 net-misc/bird:ipv6only - Builds with only IPv6, note that this *disables* IPv4 entirely
@@ -1610,7 +1613,6 @@ net-misc/xf4vnc:xvnc - Install the Xvnc binary
 net-misc/xsupplicant:gsm - Add support for EAP-SIM authentication algorithm
 net-misc/zaptel:astribank - Install Xorcom Astribank utilities
 net-misc/zaptel:bri - Enable ISDN BRI support (bristuff)
-net-misc/zaptel:devfs26 - Devfs support for Linux-2.6
 net-misc/zaptel:ecaggressive - Make the mark2 echo canceller a little more aggressive
 net-misc/zaptel:eckb1 - Use the KB1 echo canceller
 net-misc/zaptel:ecmark - Use the MARK echo canceller
@@ -1781,14 +1783,12 @@ sci-libs/vtk:patented - Builds patented classes.
 sci-mathematics/coq:ide - Build the Coq IDE, a clone of proof general using lablgtk2.
 sci-mathematics/coq:norealanalysis - Do not build real analysis modules (faster compilation).
 sci-mathematics/coq:translator - Install the translator script from coq-7.4 to coq-8.0, and its documentation if doc is set too.
-sci-mathematics/drgeo:no-helpbrowser - Do not install the default help browser
 sci-mathematics/freemat:arpack - Add sparse eigen value support via arpack
 sci-mathematics/freemat:ffcall - Enables uses of ffcall
 sci-mathematics/freemat:umfpack - Add sparse solving via umfpack
 sci-mathematics/geomview:avg - Enable experimental motion averaging technique
 sci-mathematics/geomview:netpbm - Add NetPBM support for external modules
 sci-mathematics/gretl:sourceview - Enable GtkSourceView support
-sci-mathematics/maxima:auctex - enable auctex in maxima
 sci-mathematics/maxima:clisp - adds clisp support to maxima
 sci-mathematics/maxima:cmucl - adds cmucl (lisp) support to maxima
 sci-mathematics/maxima:gcl - adds gcl (lisp) support to maxima
@@ -1819,6 +1819,7 @@ sys-apps/busybox:make-symlinks - Create all the appropriate symlinks in /bin and
 sys-apps/hal:dell - Adds support for Dell laptop smbios via libsmbios
 sys-apps/hal:disk-partition - Add support for partition editing via libparted
 sys-apps/hal:dmi - Adds support for DMI (Desktop Management Interface)
+sys-apps/hal:laptop - Add laptop power management scripts
 sys-apps/hwdata-gentoo:binary-drivers - Adds support for ATI/NVIDIA binary drivers
 sys-apps/lm_sensors:sensord - Enable sensord - a daemon that can be used to periodically log sensor readings from hardware health-monitoring chips
 sys-apps/memtest86+:serial - Compile with serial console support
@@ -2097,7 +2098,6 @@ x11-libs/qt:glib - Enable glib eventloop support
 x11-libs/qt:immqt - Enable binary incompatible version of immodule for Qt
 x11-libs/qt:immqt-bc - Enable binary compatible version of immodule for Qt
 x11-libs/qt:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
-x11-libs/qt-webkit:pch - Enable precompiled header support for faster compilation times (gcc > 3.4 only)
 x11-libs/qt:qt3support - Enable the Qt3Support libraries for Qt4
 x11-libs/qt-core:qt3support - Enable the Qt3Support libraries for Qt4
 x11-libs/qt-core:glib - Enable glib eventloop support

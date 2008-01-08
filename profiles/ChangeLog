@@ -1,6 +1,46 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.964 2008/01/03 00:05:48 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.977 2008/01/06 16:52:01 pva Exp $
+
+  06 Jan 2008; Peter Volkov <pva@gentoo.org> package.mask:
+  >=sys-kernel/openvz-sources-2.6.22: masked unstable sources
+
+  06 Jan 2008; Saleem Abdulrasool <compnerd@gentoo.org> package.mask:
+  Mask howl for removal in 30 days
+
+  05 Jan 2008; Saleem Abdulrasool <compnerd@gentoo.org> package.mask:
+  Unmask HAL 0.5.10
+
+  05 Jan 2008; Saleem Abdulrasool <compnerd@gentoo.org> use.local.desc:
+  Add laptop useflag for hal
+
+  05 Jan 2008; Vlastimil Babka <caster@gentoo.org> package.mask:
+  Unmask taskcoach.
+
+  05 Jan 2008; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Unmask wxpython-2.8.
+
+  04 Jan 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  upping the package.mask version for xf86-video-i810
+
+  03 Jan 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  last rite: dev-ml/{equeue,rpc,netclient}
+
+  03 Jan 2008; Gilles Dartiguelongue <eva@gentoo.org> use.local.desc:
+  add rubrica for mail-client/balsa
+
+  03 Jan 2008; Jose Luis Rivero <yoswink@gentoo.org> use.local.desc:
+  Add guidexml USE-Flag for xmlcopyeditor
+
+  03 Jan 2008; Alin Năstac <mrness@gentoo.org> package.mask:
+  Remove =net-dialup/ltmodem-8.31* mask since it was removed from the tree.
+
+  03 Jan 2008; Alin Năstac <mrness@gentoo.org> package.mask:
+  Mask net-dialup/gprs-easy-connect. Pending removal in 30 days.
+
+  03 Jan 2008; Alexis Ballier <aballier@gentoo.org> use.desc,
+  use.local.desc:
+  Make ocamlopt useflag global, as per gentoo-dev@ ml.
 
   03 Jan 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
   Remove app-emacs/md5 and app-emacs/sha1 masks since the packages are gone.
