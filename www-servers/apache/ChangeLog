@@ -1,6 +1,17 @@
 # ChangeLog for www-servers/apache
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.45 2007/12/19 21:13:50 hollow Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.48 2008/01/08 02:06:01 ranger Exp $
+
+  08 Jan 2008; Brent Baude <ranger@gentoo.org> apache-2.2.6-r7.ebuild:
+  Marking apache-2.2.6-r7 ppc64 for bug 204838
+
+  08 Jan 2008; Brent Baude <ranger@gentoo.org> apache-2.2.6-r7.ebuild:
+  Marking apache-2.2.6-r7 ppc for bug 204838
+
+*apache-2.2.6-r7 (07 Jan 2008)
+
+  07 Jan 2008; Benedikt Böhm <hollow@gentoo.org> +apache-2.2.6-r7.ebuild:
+  fix #204822, #204408, #204409 and #204410
 
   19 Dec 2007; Benedikt Böhm <hollow@gentoo.org> -apache-2.2.6.ebuild,
   apache-2.2.6-r6.ebuild:
