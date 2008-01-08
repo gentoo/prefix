@@ -1,24 +1,25 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.5.3.ebuild,v 1.1 2007/12/07 18:14:18 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.5.3.ebuild,v 1.2 2008/01/08 00:34:49 betelgeuse Exp $
 
 EAPI="prefix 1"
 
-inherit alternatives eutils flag-o-matic libtool
+inherit versionator alternatives eutils flag-o-matic libtool
 
 DESCRIPTION="an SQL Database Engine in a C Library"
 HOMEPAGE="http://www.sqlite.org/"
-SRC_URI="http://www.sqlite.org/${P}.tar.gz"
+DOC_PV=$(replace_all_version_separators _)
+SRC_URI="http://www.sqlite.org/${P}.tar.gz
+	doc? ( http://www.sqlite.org/${PN}_docs_${DOC_PV}.zip )"
 
 LICENSE="as-is"
 SLOT="3"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="debug doc soundex tcl +threadsafe"
 RESTRICT="!tcl? ( test )"
 
-DEPEND="doc? ( dev-lang/tcl )
-		tcl? ( dev-lang/tcl )"
-RDEPEND="tcl? ( dev-lang/tcl )"
+DEPEND="tcl? ( dev-lang/tcl )"
+RDEPEND="${DEPEND}"
 
 SOURCE="/usr/bin/lemon"
 ALTERNATIVES="${SOURCE}-3 ${SOURCE}-0"
@@ -57,10 +58,6 @@ src_compile() {
 		$(use_enable tcl)
 
 	emake all || die "emake all failed"
-
-	if use doc ; then
-		emake doc || die "emake doc failed"
-	fi
 }
 
 src_test() {
@@ -80,12 +77,16 @@ src_install () {
 		DESTDIR="${D}" \
 		TCLLIBDIR="${EPREFIX}/usr/$(get_libdir)" \
 		install \
-		|| die "make install failed"
+		|| die "emake install failed"
 
 	newbin lemon lemon-${SLOT} || die
 
 	dodoc README VERSION || die
 	doman sqlite3.1 || die
 
-	use doc && dohtml doc/* art/*.gif
+	dohtml doc/*.html art/*.gif || die
+
+	if use doc; then
+		dohtml -r "${WORKDIR}"/${PN}-docs-${PV}/* || die
+	fi
 }
