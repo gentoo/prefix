@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-source-r1.eclass,v 1.15 2007/09/04 18:43:27 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-source-r1.eclass,v 1.16 2008/01/06 19:30:24 swegener Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
 # Author: Stuart Herbert <stuart@gentoo.org>
@@ -12,7 +12,7 @@
 # Gentoo PHP team <php-bugs@gentoo.org>
 # @BLURB: A unified interface for compiling and installing standalone PHP extensions from source code.
 # @DESCRIPTION:
-# This eclass provides a unified interface for compiling and installing standalone 
+# This eclass provides a unified interface for compiling and installing standalone
 # PHP extensions (modules) from source code.
 
 
@@ -107,9 +107,9 @@ php-ext-source-r1_src_install() {
 		newins "${WORKDIR}/${PHP_EXT_NAME}-versioned.so" "${PHP_EXT_NAME}.so" || die "Unable to install extension"
 	fi
 
-        for doc in ${DOCS} ; do
-                [[ -s ${doc} ]] && dodoc-php ${doc}
-        done
+	for doc in ${DOCS} ; do
+		[[ -s ${doc} ]] && dodoc-php ${doc}
+	done
 
 	php-ext-base-r1_src_install
 }

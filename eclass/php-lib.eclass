@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-lib.eclass,v 1.6 2007/09/02 17:49:20 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-lib.eclass,v 1.7 2008/01/06 19:30:24 swegener Exp $
 #
 # Author: Stuart Herbert <stuart@gentoo.org>
 #
@@ -10,7 +10,7 @@
 #
 # This eclass doesn't do a lot (yet)
 
-# DEPRECATED!!! 
+# DEPRECATED!!!
 # STOP USING THIS ECLASS, use php-lib-r1.eclass instead!
 
 inherit php-lib-r1

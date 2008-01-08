@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.68 2007/08/25 18:49:44 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.69 2008/01/06 19:30:24 swegener Exp $
 #
 # Author: Mamoru KOMACHI <usata@gentoo.org>
 #
@@ -252,14 +252,14 @@ prepall() {
 			# in case no directories found in siteruby
 			local shopts=$-
 			set -o noglob # so that bash doen't expand "*"
-			
+
 			for x in ${ED}/${siteruby}/* ; do
 				mv $x ${ED}/${siteruby}/..
 			done
 			if [ -d ${ED}${siteruby} ] ; then
 				rmdir --ignore-fail-on-non-empty ${ED}/${siteruby}
 			fi
-			
+
 			set +o noglob; set -$shopts # reset old shell opts
 		fi
 	fi

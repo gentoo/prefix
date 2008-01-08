@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.22 2007/12/24 12:29:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.23 2008/01/06 19:30:24 swegener Exp $
 
 # Author: Stuart Herbert <stuart@gentoo.org>
 # Author: Luca Longinotti <chtekk@gentoo.org>
@@ -11,7 +11,7 @@
 # Gentoo PHP team <php-bugs@gentoo.org>
 # @BLURB: Functions to allow ebuilds to depend on php[45] and check for specific features.
 # @DESCRIPTION:
-# This eclass provides functions that allow ebuilds to depend on php[45] and check 
+# This eclass provides functions that allow ebuilds to depend on php[45] and check
 # for specific PHP features, SAPIs etc. Also provides dodoc-php wrapper to install
 # documentation for PHP packages to php-specific location.
 
@@ -168,7 +168,7 @@ need_php_by_category() {
 # @FUNCTION: has_php
 # @DESCRIPTION:
 # Call this function from your pkg_setup, src_compile, src_install etc. if you
-# need to know which PHP version is being used and where the PHP binaries/data 
+# need to know which PHP version is being used and where the PHP binaries/data
 # are installed.
 has_php() {
 	# If PHP_PKG is already set, then we have remembered our PHP settings
@@ -205,7 +205,7 @@ has_php() {
 # Unfortunately, if you want to be really sure that the required SAPI is
 # provided by PHP, you will have to use this function or similar ones (like
 # require_php_cli or require_php_cgi) in pkg_setup until we are able to
-# depend on USE flags being enabled. The above described need_php[45]_cli 
+# depend on USE flags being enabled. The above described need_php[45]_cli
 # and need_php[45]_httpd functions cannot guarantee these requirements.
 # See Bug 2272 for details.
 require_php_sapi_from() {
@@ -247,7 +247,7 @@ require_php_sapi_from() {
 # @DESCRIPTION:
 # You can set PHPCHECKNODIE to non-empty value in your ebuild to chain multiple
 # require_php_with_(any)_use checks without making the ebuild die on every failure.
-# This is useful in cases when certain PHP features are only required if specific 
+# This is useful in cases when certain PHP features are only required if specific
 # USE flag(s) are enabled for that ebuild.
 # @CODE
 # Example:
@@ -623,7 +623,7 @@ php_binary_extension() {
 # @USAGE: <list of docs>
 # @DESCRIPTION:
 # Alternative to dodoc function for use in our PHP eclasses and ebuilds.
-# Stored here because depend.php gets always sourced everywhere in the PHP 
+# Stored here because depend.php gets always sourced everywhere in the PHP
 # ebuilds and eclasses. It simply is dodoc with a changed path to the docs.
 # NOTE: No support for docinto is provided!
 dodoc-php() {

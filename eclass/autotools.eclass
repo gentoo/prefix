@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.68 2007/09/18 13:25:38 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.69 2008/01/07 02:54:49 vapier Exp $
 #
 # Maintainer: base-system@gentoo.org
 #
@@ -200,11 +200,10 @@ autotools_run_tool() {
 	local STDERR_TARGET="${T}/$$.out"
 	local ris
 
-	echo "***** $1 *****" > ${STDERR_TARGET%/*}/$1-${STDERR_TARGET##*/}
-	echo >> ${STDERR_TARGET%/*}/$1-${STDERR_TARGET##*/}
+	printf "***** $1 *****\n\n" > "${STDERR_TARGET%/*}/$1-${STDERR_TARGET##*/}"
 
 	ebegin "Running $@"
-	$@ >> ${STDERR_TARGET%/*}/$1-${STDERR_TARGET##*/} 2>&1
+	"$@" >> "${STDERR_TARGET%/*}/$1-${STDERR_TARGET##*/}" 2>&1
 	ris=$?
 	eend ${ris}
 

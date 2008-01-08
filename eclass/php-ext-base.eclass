@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-base.eclass,v 1.21 2007/09/02 17:49:20 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-base.eclass,v 1.22 2008/01/06 19:30:24 swegener Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
 # Author: Stuart Herbert <stuart@gentoo.org>
@@ -11,7 +11,7 @@
 # Combined with php-ext-source, we have a standardised solution for supporting
 # PHP extensions
 
-# DEPRECATED!!! 
+# DEPRECATED!!!
 # STOP USING THIS ECLASS, use php-ext-base-r1.eclass instead!
 
 inherit php-ext-base-r1

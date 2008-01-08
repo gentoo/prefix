@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/tetex-3.eclass,v 1.16 2007/10/14 11:55:30 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/tetex-3.eclass,v 1.17 2008/01/06 18:02:46 aballier Exp $
 #
 # Author: Jaromir Malenko <malenko@email.cz>
 # Author: Mamoru KOMACHI <usata@gentoo.org>
@@ -15,10 +15,9 @@ inherit tetex
 
 EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_preinst pkg_postinst
 
-IUSE="X Xaw3d lesstif motif neXt"
+IUSE="X Xaw3d motif neXt"
 
-DEPEND="X? ( motif? ( lesstif? ( x11-libs/lesstif )
-			!lesstif? ( x11-libs/openmotif ) )
+DEPEND="X? ( motif? ( virtual/motif )
 		!motif? ( neXt? ( x11-libs/neXtaw )
 			!neXt? ( Xaw3d? ( x11-libs/Xaw3d ) ) )
 		!app-text/xdvik
@@ -125,10 +124,6 @@ tetex-3_src_compile() {
 
 	if use X ; then
 		if use motif ; then
-			if use lesstif ; then
-				append-ldflags -L"${EPREFIX}"/usr/X11R6/lib/lesstif -R"${EPREFIX}"/usr/X11R6/lib/lesstif
-				export CPPFLAGS="${CPPFLAGS} -I"${EPREFIX}"/usr/X11R6/include/lesstif"
-			fi
 			toolkit="motif"
 		elif use neXt ; then
 			toolkit="neXtaw"

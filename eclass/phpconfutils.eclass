@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/phpconfutils.eclass,v 1.8 2007/11/29 23:12:13 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/phpconfutils.eclass,v 1.9 2008/01/06 19:30:24 swegener Exp $
 #
 # ########################################################################
 #
@@ -16,7 +16,7 @@
 # @BLURB: Provides utility functions to help with configuring PHP.
 # @DESCRIPTION:
 # This eclass provides utility functions to help with configuring PHP.
-# It is only used by other php eclasses currently and the functions 
+# It is only used by other php eclasses currently and the functions
 # are not generally intended for direct use in ebuilds.
 
 

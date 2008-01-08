@@ -1,6 +1,6 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.31 2007/12/31 18:55:53 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.34 2008/01/05 22:41:00 caleb Exp $
 
 # @ECLASS: qt4.eclass
 # @MAINTAINER:
@@ -99,17 +99,17 @@ qt4_pkg_setup() {
 
 				if ! has_version x11-libs/qt-${x}; then
 					eerror "You must first install the x11-libs/qt-${x} package."
-					die
+					die "Install x11-libs/qt-${x}"
 				fi
-			elif [ ${x} == ssl ]; then
-				if [ ! has_version x11-libs/qt-core || ! built_with_use x11-libs/qt-core ssl ]; then
+			elif [[ ${x} == ssl ]]; then
+				if ! has_version x11-libs/qt-core || ! built_with_use x11-libs/qt-core ssl; then
 					eerror "You must first install the x11-libs/qt-core package with the ssl flag enabled."
-					die
+					die "Install x11-libs/qt-core with USE=\"ssl\""
 				fi
-			elif [ ${x} == sqlite3 ]; then
-				if [ ! has_version x11-libs/qt-sql || ! built_with_use x11-libs/qt-sql sqlite ]; then
+			elif [[ ${x} == sqlite3 ]]; then
+				if ! has_version x11-libs/qt-sql || ! built_with_use x11-libs/qt-sql sqlite; then
 					eerror "You must first install the x11-libs/qt-sql package with the sqlite flag enabled."
-					die
+					die "Install x11-libs/qt-sql with USE=\"sqlite\""
 				fi
 			fi
 		elif ! built_with_use =x11-libs/qt-4* ${x}; then

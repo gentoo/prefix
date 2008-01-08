@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php5-sapi-r1.eclass,v 1.25 2007/09/02 17:49:20 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5-sapi-r1.eclass,v 1.26 2008/01/06 19:30:24 swegener Exp $
 #
 # eclass/php5-sapi-r1.eclass
 #               Eclass for building different php5 SAPI instances
@@ -12,13 +12,13 @@
 #
 # ========================================================================
 
-# DEPRECATED!!! 
+# DEPRECATED!!!
 # STOP USING THIS ECLASS, use php5_2-sapi eclass instead!
 
 inherit php5_2-sapi
 
 deprecation_warning() {
-        eerror "Please upgrade ${PF} to use php5_2-sapi eclass instead!"
+	eerror "Please upgrade ${PF} to use php5_2-sapi eclass instead!"
 }
 
 php5-sapi-r1_check_awkward_uses() {

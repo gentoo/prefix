@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-2.eclass,v 1.1 2007/08/18 13:12:57 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-2.eclass,v 1.2 2008/01/06 19:30:24 swegener Exp $
 
 inherit gnustep-base
 
@@ -15,6 +15,6 @@ RDEPEND="${DEPEND}
 
 # The following gnustep-based EXPORT_FUNCTIONS are available:
 # * gnustep-base_pkg_setup
-# * gnustep-base_src_compile 
-# * gnustep-base_src_install 
+# * gnustep-base_src_compile
+# * gnustep-base_src_install
 # * gnustep-base_pkg_postinst

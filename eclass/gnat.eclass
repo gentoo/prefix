@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.32 2007/12/29 23:41:29 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnat.eclass,v 1.33 2008/01/06 19:30:24 swegener Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -22,7 +22,7 @@ inherit flag-o-matic eutils
 # The environment is set locally in src_compile and src_install functions
 # by the common code sourced here and in gnat-eselect module.
 # This is the standard location for this code (belongs to eselect-gnat,
-# since eselect should work even in the absense of portage tree and we can 
+# since eselect should work even in the absense of portage tree and we can
 # guarantee to some extent presence of gnat-eselect when anything gnat-related
 # gets processed. See #192505)
 #
@@ -202,10 +202,10 @@ get_active_profile() {
 	# get common code and settings
 	. ${GnatCommon} || die "failed to source gnat-common lib"
 
-	local profiles=( $(get_env_list) ) 
+	local profiles=( $(get_env_list) )
 
-	if [[ ${profiles[@]} == "${MARKER}*" ]]; then 
-		return 
+	if [[ ${profiles[@]} == "${MARKER}*" ]]; then
+		return
 		# returning empty string
 	fi
 
