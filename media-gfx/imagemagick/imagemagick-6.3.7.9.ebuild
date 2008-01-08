@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.3.7.9.ebuild,v 1.1 2008/01/05 18:07:26 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.3.7.9.ebuild,v 1.2 2008/01/07 23:10:54 maekke Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SRC_URI="ftp://ftp.imagemagick.org/pub/${MY_PN}/${MY_P2}.tar.bz2"
 
 LICENSE="imagemagick"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="bzip2 djvu doc fpx graphviz gs hdri jbig jpeg jpeg2k lcms mpeg nocxx openexr
 	perl png q8 q32 svg tiff truetype X wmf xml zlib"
 
@@ -54,6 +54,13 @@ DEPEND="${RDEPEND}
 	X? ( x11-proto/xextproto )"
 
 S="${WORKDIR}/${MY_P}"
+
+pkg_setup() {
+	if use djvu && ! built_with_use app-text/djvu threads; then
+		eerror "app-text/djvu has to be built with threads support."
+		die "build app-text/djvu with USE=\"threads\""
+	fi
+}
 
 src_compile() {
 	local quantum
