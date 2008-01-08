@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.1-r3.ebuild,v 1.3 2007/11/03 16:57:26 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.1-r5.ebuild,v 1.1 2008/01/07 17:40:51 hawking Exp $
 
 EAPI="prefix"
 
@@ -22,11 +22,11 @@ S="${WORKDIR}/${MY_P}"
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
 SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
-	mirror://gentoo/python-gentoo-patches-${PV}-r1.tar.bz2"
+	mirror://gentoo/python-gentoo-patches-${PV}-r3.tar.bz2"
 
 LICENSE="PSF-2.2"
 SLOT="2.5"
-KEYWORDS="~ppc-aix ~x86-fbsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-fbsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="ncurses gdbm ssl readline tk berkdb bootstrap ipv6 build ucs2 sqlite doc nothreads examples elibc_uclibc"
 
 # NOTE: dev-python/{elementtree,celementtree,pysqlite,ctypes,cjkcodecs}
@@ -66,7 +66,7 @@ src_unpack() {
 	if tc-is-cross-compiler ; then
 		[[ $(python -V 2>&1) != "Python ${PV}" ]] && \
 			die "Crosscompiling requires the same host and build versions."
-		epatch ${FILESDIR}/python-2.4.4-test-cross.patch
+		epatch "${FILESDIR}"/python-2.4.4-test-cross.patch
 	else
 		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
 	fi
@@ -83,7 +83,10 @@ src_unpack() {
 
 	# fix os.utime() on hppa. utimes it not supported but unfortunately reported as working - gmsoft (22 May 04)
 	# PLEASE LEAVE THIS FIX FOR NEXT VERSIONS AS IT'S A CRITICAL FIX !!!
-	[ "${ARCH}" = "hppa" ] && sed -e 's/utimes //' -i ${S}/configure
+	[ "${ARCH}" = "hppa" ] && sed -e 's/utimes //' -i "${S}"/configure
+
+	# remove microsoft windows executables
+	rm Lib/distutils/command/wininst-*.exe
 
 	# python has some gcc-apple specific CFLAGS built in... rip them out
 	epatch "${FILESDIR}"/${PN}-2.4.4-darwin-fsf-gcc.patch
@@ -120,10 +123,14 @@ src_configure() {
 		export PYTHON_DISABLE_MODULES="readline pyexpat dbm gdbm bsddb _curses _curses_panel _tkinter _sqlite3"
 		export PYTHON_DISABLE_SSL=1
 	else
+		# dbm module can link to berkdb or gdbm -- defaults to gdbm when
+		# both are enabled, see #204343
+		use berkdb || use gdbm \
+			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} dbm"
 		use gdbm \
 			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} gdbm"
 		use berkdb \
-			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} dbm bsddb"
+			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} bsddb"
 		use readline \
 			|| PYTHON_DISABLE_MODULES="${PYTHON_DISABLE_MODULES} readline"
 		use tk \
@@ -213,14 +220,14 @@ src_install() {
 	src_configure
 	make DESTDIR="${D}" altinstall maninstall || die
 
-	mv ${ED}/usr/bin/python${PYVER}-config ${ED}/usr/bin/python-config-${PYVER}
+	mv "${ED}"/usr/bin/python${PYVER}-config "${ED}"/usr/bin/python-config-${PYVER}
 
 	# Fix slotted collisions
-	mv ${ED}/usr/bin/pydoc ${ED}/usr/bin/pydoc${PYVER}
-	mv ${ED}/usr/bin/idle ${ED}/usr/bin/idle${PYVER}
-	mv ${ED}/usr/share/man/man1/python.1 \
-		${ED}/usr/share/man/man1/python${PYVER}.1
-	rm -f ${ED}/usr/bin/smtpd.py
+	mv "${ED}"/usr/bin/pydoc "${ED}"/usr/bin/pydoc${PYVER}
+	mv "${ED}"/usr/bin/idle "${ED}"/usr/bin/idle${PYVER}
+	mv "${ED}"/usr/share/man/man1/python.1 \
+		"${ED}"/usr/share/man/man1/python${PYVER}.1
+	rm -f "${ED}"/usr/bin/smtpd.py
 
 	# While we're working on the config stuff... Let's fix the OPT var
 	# so that it doesn't have any opts listed in it. Prevents the problem
@@ -229,11 +236,11 @@ src_install() {
 			/usr/$(get_libdir)/python${PYVER}/config/Makefile
 
 	if use build ; then
-		rm -rf ${ED}/usr/$(get_libdir)/python${PYVER}/{test,encodings,email,lib-tk,bsddb/test}
+		rm -rf "${ED}"/usr/$(get_libdir)/python${PYVER}/{test,encodings,email,lib-tk,bsddb/test}
 	else
-		use elibc_uclibc && rm -rf ${ED}/usr/$(get_libdir)/python${PYVER}/{test,bsddb/test}
-		use berkdb || rm -rf ${ED}/usr/$(get_libdir)/python${PYVER}/bsddb
-		use tk || rm -rf ${ED}/usr/$(get_libdir)/python${PYVER}/lib-tk
+		use elibc_uclibc && rm -rf "${ED}"/usr/$(get_libdir)/python${PYVER}/{test,bsddb/test}
+		use berkdb || rm -rf "${ED}"/usr/$(get_libdir)/python${PYVER}/bsddb
+		use tk || rm -rf "${ED}"/usr/$(get_libdir)/python${PYVER}/lib-tk
 	fi
 
 	prep_ml_includes usr/include/python${PYVER}
@@ -244,11 +251,11 @@ src_install() {
 	# seems like the build do not install Makefile.pre.in anymore
 	# it probably shouldn't - use DistUtils, people!
 	insinto /usr/$(get_libdir)/python${PYVER}/config
-	doins ${S}/Makefile.pre.in
+	doins "${S}"/Makefile.pre.in
 
 	if use examples ; then
-		mkdir -p ${ED}/usr/share/doc/${P}/examples
-		cp -r ${S}/Tools ${ED}/usr/share/doc/${P}/examples
+		mkdir -p "${ED}"/usr/share/doc/${P}/examples
+		cp -r "${S}"/Tools "${ED}"/usr/share/doc/${P}/examples
 	fi
 }
 
@@ -330,14 +337,14 @@ src_test() {
 	local skip_tests="distutils global mimetools minidom mmap posix pyexpat sax strptime subprocess syntax tcl time urllib urllib2 webbrowser xml_etree"
 
 	for test in ${skip_tests} ; do
-		mv ${S}/Lib/test/test_${test}.py ${T}
+		mv "${S}"/Lib/test/test_${test}.py "${T}"
 	done
 
 	# rerun failed tests in verbose mode (regrtest -w)
 	EXTRATESTOPTS="-w" make test || die "make test failed"
 
 	for test in ${skip_tests} ; do
-		mv ${T}/test_${test}.py ${S}/Lib/test/test_${test}.py
+		mv "${T}"/test_${test}.py "${S}"/Lib/test/test_${test}.py
 	done
 
 	elog "Portage skipped the following tests which aren't able to run from emerge:"
