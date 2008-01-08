@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/module-build/module-build-0.28.06.ebuild,v 1.5 2007/05/12 05:12:59 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/module-build/module-build-0.28-r1.ebuild,v 1.10 2007/01/21 15:49:48 mcummings Exp $
 
 EAPI="prefix"
 
-inherit versionator perl-module
+inherit perl-module
 
-MY_PV="$(delete_version_separator 2)"
+MY_PV=${PV/26.11/2611}
 MY_P="Module-Build-${MY_PV}"
 S=${WORKDIR}/${MY_P}
 DESCRIPTION="Build and install Perl modules"
@@ -15,7 +15,7 @@ SRC_URI="mirror://cpan/authors/id/K/KW/KWILLIAMS/${MY_P}.tar.gz"
 
 LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 # Removing these as hard deps. They are listed as recommended in the Build.PL,
