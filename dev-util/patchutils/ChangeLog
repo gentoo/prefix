@@ -1,6 +1,17 @@
 # ChangeLog for dev-util/patchutils
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/patchutils/ChangeLog,v 1.36 2007/12/25 14:51:15 phreak Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/patchutils/ChangeLog,v 1.38 2008/01/07 12:22:39 robbat2 Exp $
+
+  07 Jan 2008; Robin H. Johnson <robbat2@gentoo.org>
+  -patchutils-0.2.23.ebuild, -patchutils-0.2.29.ebuild,
+  patchutils-0.2.30.ebuild, patchutils-0.2.31.ebuild:
+  Clean up ebuilds.
+
+*patchutils-0.2.31 (07 Jan 2008)
+
+  07 Jan 2008; Robin H. Johnson <robbat2@gentoo.org>
+  +patchutils-0.2.31.ebuild:
+  Version bump.
 
   25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing seemant from metadata.xml as per #202469.

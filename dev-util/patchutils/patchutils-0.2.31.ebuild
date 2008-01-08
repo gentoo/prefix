@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/patchutils/patchutils-0.2.30.ebuild,v 1.12 2008/01/07 12:22:39 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/patchutils/patchutils-0.2.31.ebuild,v 1.2 2008/01/07 12:22:39 robbat2 Exp $
 
 EAPI="prefix"
 
@@ -23,13 +23,12 @@ src_unpack() {
 	cd "${S}"
 	# we don't have gendiff
 	sed -i -e '/gendiff/d' Makefile.am
-	WANT_AUTOMAKE=1.8 aclocal || die "aclocal failed"
-	WANT_AUTOCONF=2.5 autoconf || die "autoconf failed"
-	WANT_AUTOMAKE=1.8 automake || die "automake failed"
+	WANT_AUTOMAKE=1.8 WANT_AUTOCONF=2.5 \
+	eautoreconf || die "eautoreconf failed"
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die
 
 	dodoc AUTHORS BUGS ChangeLog NEWS README TODO
 }
