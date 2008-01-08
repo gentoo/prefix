@@ -40,5 +40,5 @@ done
 eapify $ebuild
 ecleankw $ebuild
 source "${EPREFIX:-$(portageq envvar EPREFIX)}"/etc/make.profile/make.defaults
-ekeyword "~${ACCEPT_KEYWORDS#~}" $ebuild
+ekeyword "~${ACCEPT_KEYWORDS#\~}" $ebuild
 ebuild $ebuild digest
