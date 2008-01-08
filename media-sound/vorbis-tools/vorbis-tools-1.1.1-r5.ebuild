@@ -18,7 +18,7 @@ SRC_URI="http://downloads.xiph.org/releases/vorbis/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 
 RDEPEND=">=media-libs/libvorbis-1.1
 	!minimal? ( >=media-libs/libao-0.8.2
