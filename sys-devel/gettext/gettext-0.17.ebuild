@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.17.ebuild,v 1.8 2007/12/17 01:24:14 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.17.ebuild,v 1.9 2008/01/07 05:17:28 vapier Exp $
 
 EAPI="prefix"
 
@@ -12,11 +12,15 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-3 LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
-IUSE="emacs nls doc nocxx"
+KEYWORDS="~ppc-aix ~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+IUSE="acl doc emacs nls nocxx openmp"
 
 DEPEND="virtual/libiconv
-	dev-libs/expat"
+	dev-libs/libcroco
+	dev-libs/libxml2
+	sys-libs/ncurses
+	dev-libs/expat
+	acl? ( sys-apps/acl )"
 PDEPEND="emacs? ( app-emacs/po-mode )"
 
 src_unpack() {
@@ -35,12 +39,7 @@ src_unpack() {
 		-e '2iexit 77' \
 		autoconf-lib-link/tests/rpath-3*[ef] || die "sed tests"
 
-	# sanity check for Bug 105304
-	if [[ -z ${USERLAND} ]] ; then
-		eerror "You just hit Bug 105304, please post your 'emerge info' here:"
-		eerror "http://bugs.gentoo.org/105304"
-		die "Aborting to prevent screwing your system"
-	fi
+	use acl || sed -i 's:use_acl=1:use_acl=0:' configure
 }
 
 src_compile() {
@@ -61,13 +60,15 @@ src_compile() {
 		--docdir="${EPREFIX}/usr/share/doc/${PF}" \
 		--without-emacs \
 		--disable-java \
+		--with-included-glib \
+		$(use_enable openmp) \
 		${myconf} \
 		|| die
 	emake || die
 }
 
 src_install() {
-	make install DESTDIR="${D}" || die "install failed"
+	emake install DESTDIR="${D}" || die "install failed"
 	use nls || rm -r "${ED}"/usr/share/locale
 	dosym msgfmt /usr/bin/gmsgfmt #43435
 	dobin gettext-tools/misc/gettextize || die "gettextize"
@@ -105,8 +106,5 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
-	ewarn "Any package that linked against the previous version"
-	ewarn "of gettext will have to be rebuilt."
-	ewarn "Please 'emerge gentoolkit' and run:"
-	ewarn "revdep-rebuild --library libintl.so.7"
+	preserve_old_lib_notify /{,usr/}$(get_libdir)/libintl$(get_libname 7)
 }
