@@ -1,0 +1,25 @@
+Do not randomly include or link against MacPorts/Fink Headers or Libraries
+--- Makefile
++++ Makefile
+@@ -508,21 +508,6 @@
+ -include config.mak.autogen
+ -include config.mak
+ 
+-ifeq ($(uname_S),Darwin)
+-	ifndef NO_FINK
+-		ifeq ($(shell test -d /sw/lib && echo y),y)
+-			BASIC_CFLAGS += -I/sw/include
+-			BASIC_LDFLAGS += -L/sw/lib
+-		endif
+-	endif
+-	ifndef NO_DARWIN_PORTS
+-		ifeq ($(shell test -d /opt/local/lib && echo y),y)
+-			BASIC_CFLAGS += -I/opt/local/include
+-			BASIC_LDFLAGS += -L/opt/local/lib
+-		endif
+-	endif
+-endif
+-
+ ifdef NO_R_TO_GCC_LINKER
+ 	# Some gcc does not accept and pass -R to the linker to specify
+ 	# the runtime dynamic library path.

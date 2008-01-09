@@ -84,6 +84,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-1.5.3-symlinks.patch
+	epatch "${FILESDIR}"/${PN}-sanitize-includes.patch
 
 	sed -i \
 		-e "s:^\(CFLAGS = \).*$:\1${CFLAGS} -Wall:" \
