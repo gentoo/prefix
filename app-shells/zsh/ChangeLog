@@ -1,6 +1,9 @@
 # ChangeLog for app-shells/zsh
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.128 2008/01/05 17:22:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.129 2008/01/08 14:59:50 jer Exp $
+
+  08 Jan 2008; Jeroen Roovers <jer@gentoo.org> zsh-4.3.4-r1.ebuild:
+  Stable for HPPA (bug #204259).
 
   05 Jan 2008; Raúl Porcel <armin76@gentoo.org> zsh-4.3.4-r1.ebuild:
   alpha/ia64 stable wrt #204259
