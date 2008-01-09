@@ -1,6 +1,10 @@
 # ChangeLog for media-fonts/dejavu
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.108 2007/12/21 13:03:52 pva Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/ChangeLog,v 1.109 2008/01/08 17:29:39 pva Exp $
+
+  08 Jan 2008; <pva@gentoo.org> dejavu-2.18-r1.ebuild, dejavu-2.20.ebuild,
+  dejavu-2.21.ebuild, dejavu-2.22.20071220.2156.ebuild:
+  FONT_CONF now array, bug 201834.
 
   21 Dec 2007; <pva@gentoo.org> -dejavu-2.22.ebuild:
   Cleaned broken version.
