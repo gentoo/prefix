@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.17.ebuild,v 1.9 2008/01/07 05:17:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.17.ebuild,v 1.10 2008/01/09 00:39:38 vapier Exp $
 
 EAPI="prefix"
 
@@ -39,7 +39,7 @@ src_unpack() {
 		-e '2iexit 77' \
 		autoconf-lib-link/tests/rpath-3*[ef] || die "sed tests"
 
-	use acl || sed -i 's:use_acl=1:use_acl=0:' configure
+	use acl || sed -i 's:use_acl=1:use_acl=0:' gettext-tools/configure
 }
 
 src_compile() {
