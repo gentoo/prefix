@@ -140,10 +140,10 @@ cmp_ebuild_ver() {
 			ran=${ran#0}
 		done
 		if [[ ${lan} == 0* ]] ; then
-			echo -${cnt}
+			[[ -z ${ran} ]] && echo ${cnt} || echo -${cnt}
 			return
 		elif [[ ${ran} == 0* ]] ; then
-			echo ${cnt}
+			[[ -z ${lan} ]] && echo -${cnt} || echo ${cnt}
 			return
 		fi
 
