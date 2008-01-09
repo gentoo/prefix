@@ -699,6 +699,17 @@ then
 					;;
 				esac
 				;;
+			OpenBSD)
+				case `uname -m` in
+					macppc)
+						CHOST="powerpc-unknown-openbsd`uname -r`"
+					;;
+					*)
+						eerror "Sorry, don't know about OpenBSD on `uname -m` yet"
+						exit 1
+					;;
+				esac
+				;;
 			*)
 				eerror "Nothing known about platform `uname -s`."
 				eerror "Please set CHOST appropriately for your system"
@@ -734,7 +745,10 @@ case ${CHOST} in
 	*-hp-hpux*)
 		MAKE=make
 	;;
-	*-pc-freebsd*)
+	*-*-freebsd*)
+		MAKE=make
+	;;
+	*-*-openbsd*)
 		MAKE=make
 	;;
 esac
