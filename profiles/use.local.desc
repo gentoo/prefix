@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3277 2008/01/08 04:21:03 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3279 2008/01/08 23:05:41 tupone Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -867,6 +867,7 @@ mail-filter/spamassassin-fuzzyocr:ocrad - Enable support for the ocrad OCR engin
 mail-filter/spamassassin-fuzzyocr:tesseract - Enable support for the tesseract OCR engine
 mail-filter/spamassassin:qmail - Build qmail functionality and docs
 mail-filter/spamassassin:tools - Enables tools for spamassassin
+mail-filter/spamdyke:tls - Enables tls protocol for spamdyke
 mail-mta/courier:fax - Enables fax support in the courier mail server
 mail-mta/courier:norewrite - Prevents courier mail server from mangling virtual user addresses when sending
 mail-mta/exim:dnsdb - Adds support for a DNS search for a record whose domain name is the supplied query
@@ -1193,6 +1194,7 @@ media-video/ogmrip:srt - Support for SRT subtitle format
 media-video/oxine:polling - Enables support to automatically check the drive for a new disc
 media-video/totem:galago - Enable the galago plugin
 media-video/totem:nvtv - Support for nvtv to use tv in on nvidia cards
+media-video/transcode:custom-cflags - Enables custom cflags (not supported)
 media-video/transcode:extrafilters - Install some filters only if we ask for them
 media-video/transcode:fame - Enables libfame support
 media-video/transcode:mjpeg - Enables mjpegtools support
