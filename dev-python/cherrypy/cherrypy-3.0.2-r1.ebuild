@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/cherrypy/cherrypy-3.0.2.ebuild,v 1.2 2007/11/01 19:25:42 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cherrypy/cherrypy-3.0.2-r1.ebuild,v 1.2 2008/01/08 17:16:21 armin76 Exp $
 
 EAPI="prefix"
 
-inherit distutils
+inherit eutils distutils
 
 MY_P=CherryPy-${PV}
 
@@ -13,7 +13,7 @@ SRC_URI="http://download.cherrypy.org/cherrypy/${PV}/${MY_P}.tar.gz"
 HOMEPAGE="http://www.cherrypy.org/"
 IUSE="doc"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 LICENSE="BSD"
 
 DEPEND=""
@@ -25,6 +25,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	epatch "${FILESDIR}"/${P}-invalidsession.patch
 	sed -i \
 		-e 's/"cherrypy.tutorial",//' \
 		-e "/('cherrypy\/tutorial',/, /),/d" \
