@@ -210,6 +210,7 @@ bootstrap_tree() {
 		hppa*-hp-hpux11*)            PV="20080107" ;;
 		ia64-hp-hpux11*)             PV="20080107" ;;
 		i386-pc-freebsd*)            PV="20080107" ;;
+		powerpc-unknown-openbsd*)    PV="20080107" ;;
 		*)
 			einfo "warning: no specific tree snapshot known for your system"
 			PV="20080107"
