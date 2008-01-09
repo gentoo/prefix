@@ -1,9 +1,9 @@
 #!/bin/sh
 
-# FreeBSD bash installer
+# *BSD bash installer
 #
-# FreeBSD comes with some POSIX (?) /bin/sh which doesn't eat most of
-# the stuff in the bootstrap-prefix script, among which the most
+# FreeBSD and OpenBSD come with some POSIX (?) /bin/sh which doesn't eat
+# most of the stuff in the bootstrap-prefix script, among which the most
 # important part: dynamic function calling.  So, we need to bootstrap
 # bash outside the bootstrap script, which is the purpose of this
 # script.
