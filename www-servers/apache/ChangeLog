@@ -1,6 +1,15 @@
 # ChangeLog for www-servers/apache
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.48 2008/01/08 02:06:01 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.51 2008/01/08 22:19:14 jer Exp $
+
+  08 Jan 2008; Jeroen Roovers <jer@gentoo.org> apache-2.2.6-r7.ebuild:
+  Stable for HPPA (bug #204838).
+
+  08 Jan 2008; Raúl Porcel <armin76@gentoo.org> apache-2.2.6-r7.ebuild:
+  alpha/ia64/sparc stable wrt #204838
+
+  08 Jan 2008; Markus Meier <maekke@gentoo.org> apache-2.2.6-r7.ebuild:
+  x86 stable, bug #204838
 
   08 Jan 2008; Brent Baude <ranger@gentoo.org> apache-2.2.6-r7.ebuild:
   Marking apache-2.2.6-r7 ppc64 for bug 204838

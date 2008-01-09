@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.6-r7.ebuild,v 1.3 2008/01/08 02:06:01 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.6-r7.ebuild,v 1.6 2008/01/08 22:19:14 jer Exp $
 
 EAPI="prefix"
 
