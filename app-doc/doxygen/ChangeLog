@@ -1,6 +1,9 @@
 # ChangeLog for app-doc/doxygen
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.139 2007/12/31 12:12:40 armin76 Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.140 2008/01/08 21:45:27 jer Exp $
+
+  08 Jan 2008; Jeroen Roovers <jer@gentoo.org> doxygen-1.5.4.ebuild:
+  Stable for HPPA (bug #203652).
 
   31 Dec 2007; Raúl Porcel <armin76@gentoo.org> doxygen-1.5.4.ebuild:
   alpha/ia64/sparc stable wrt #203652
