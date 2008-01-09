@@ -1,0 +1,11 @@
+--- src/cairo-fixed-private.h.orig	2007-12-27 18:42:39.000000000 +0100
++++ src/cairo-fixed-private.h	2007-12-27 18:43:11.000000000 +0100
+@@ -59,7 +59,7 @@
+  * making sure that you compute a double-to-fixed magic number.
+  * (see below).
+  */
+-#define CAIRO_FIXED_FRAC_BITS	16
++#define CAIRO_FIXED_FRAC_BITS	8
+ 
+ /* A signed type CAIRO_FIXED_BITS in size; the main fixed point type */
+ typedef int32_t cairo_fixed_t;

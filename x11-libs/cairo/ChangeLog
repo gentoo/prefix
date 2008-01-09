@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/cairo
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.158 2007/12/27 14:19:03 cardoe Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.159 2008/01/08 20:36:07 cardoe Exp $
+
+*cairo-1.5.4-r2 (08 Jan 2008)
+
+  08 Jan 2008; Doug Klima <cardoe@gentoo.org>
+  +files/cairo-1.5.4-fix-private.patch, +cairo-1.5.4-r2.ebuild:
+  add patch to fix corruption with Mozilla renderer. From Gentoo's Mozilla
+  herd, specifically armin76
 
 *cairo-1.5.4-r1 (27 Dec 2007)
 

@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.4.12.ebuild,v 1.8 2007/12/11 22:01:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.5.4-r2.ebuild,v 1.1 2008/01/08 20:36:07 cardoe Exp $
 
 EAPI="prefix"
 
@@ -8,20 +8,19 @@ inherit eutils flag-o-matic libtool
 
 DESCRIPTION="A vector graphics library with cross-device output support"
 HOMEPAGE="http://cairographics.org/"
-SRC_URI="http://cairographics.org/releases/${P}.tar.gz"
+SRC_URI="http://cairographics.org/snapshots/${P}.tar.gz"
 
 LICENSE="|| ( LGPL-2.1 MPL-1.1 )"
 SLOT="0"
 KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="aqua debug directfb doc glitz opengl svg X xcb"
-
-# Test causes a circular depend on gtk+... since gtk+ needs cairo but test needs gtk+ so we need to block it
-RESTRICT="test"
+IUSE="aqua debug directfb doc glitz opengl svg X xcb test"
 
 RDEPEND="!aqua? (
 			media-libs/fontconfig
 			>=media-libs/freetype-2.1.4
 		)
+		>=x11-libs/pixman-0.9.4
+		sys-libs/zlib
 		media-libs/libpng
 		X?	(
 				x11-libs/libXrender
@@ -37,16 +36,29 @@ RDEPEND="!aqua? (
 
 DEPEND="${RDEPEND}
 		>=dev-util/pkgconfig-0.19
+		test? (
+				virtual/ghostscript
+				>=app-text/poppler-bindings-0.4.1
+				x11-libs/pango
+				x11-libs/gtk+
+				svg? ( >=gnome-base/librsvg-2.15.0 )
+			)
 		X? ( x11-proto/renderproto
 			xcb? ( x11-proto/xcb-proto ) )
 		doc?	(
-					>=dev-util/gtk-doc-1.3
+					>=dev-util/gtk-doc-1.6
 					 ~app-text/docbook-xml-dtd-4.2
 				)"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	# SPARC alignment patch
+	epatch "${FILESDIR}"/${P}-sparc-alignment.patch
+
+	# Mozilla corruption patch
+	epatch "${FILESDIR}"/${P}-fix-private.patch
 
 	# We need to run elibtoolize to ensure correct so versioning on FreeBSD
 	elibtoolize
@@ -62,7 +74,7 @@ src_compile() {
 
 	econf $(use_enable X xlib) $(use_enable doc gtk-doc) \
 	  	  $(use_enable directfb) \
-		  $(use_enable svg) $(use_enable glitz) \
+		  $(use_enable svg) $(use_enable glitz) $(use_enable X xlib-xrender) \
 		  $(use_enable debug test-surfaces) --enable-pdf  --enable-png \
 		  $(use_enable !aqua freetype) --enable-ps $(use_enable xcb) \
 		  $(use_enable aqua quartz) $(use_enable aqua atsui) \
