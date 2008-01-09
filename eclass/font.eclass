@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.34 2007/12/10 23:58:17 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.36 2008/01/08 17:57:43 pva Exp $
 
 # Author: foser <foser@gentoo.org>
 
@@ -16,13 +16,13 @@ inherit eutils
 
 FONT_SUFFIX=""	# Space delimited list of font suffixes to install
 
-FONT_S="${S}" # Dir containing the fonts
+FONT_S=${S} # Dir containing the fonts
 
-FONT_PN="${PN}" # Last part of $FONTDIR
+FONT_PN=${PN} # Last part of $FONTDIR
 
-FONTDIR="/usr/share/fonts/${FONT_PN}" # This is where the fonts are installed
+FONTDIR=/usr/share/fonts/${FONT_PN} # This is where the fonts are installed
 
-FONT_CONF=""  # Space delimited list of fontconfig-2.4 file(s) to install
+FONT_CONF=( "" )  # Array, which element(s) is(are) path(s) of fontconfig-2.4 file(s) to install
 
 DOCS="" # Docs to install
 
@@ -62,10 +62,10 @@ font_xft_config() {
 
 font_fontconfig() {
 	local conffile
-	if [[ -n ${FONT_CONF} ]]; then
+	if [[ -n ${FONT_CONF[@]} ]]; then
 		if has_version '>=media-libs/fontconfig-2.4'; then
 			insinto /etc/fonts/conf.avail/
-			for conffile in ${FONT_CONF}; do
+			for conffile in "${FONT_CONF[@]}"; do
 				[[ -e  ${conffile} ]] && doins ${conffile}
 			done
 		fi
