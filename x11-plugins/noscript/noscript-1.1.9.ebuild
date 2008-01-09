@@ -12,7 +12,7 @@ SRC_URI="http://software.informaction.com/data/releases/${P}.xpi"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86"
+KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 IUSE=""
 
 RDEPEND="|| (

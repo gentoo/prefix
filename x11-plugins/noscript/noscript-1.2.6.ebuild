@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/noscript/noscript-1.2.ebuild,v 1.1 2007/12/31 18:34:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/noscript/noscript-1.2.6.ebuild,v 1.1 2008/01/08 15:05:40 armin76 Exp $
 
 EAPI="prefix"
 
