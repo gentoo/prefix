@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnustep.org"
 SRC_URI=""
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
 RDEPEND="|| (
 		~gnustep-base/gnustep-back-art-${PV}
 		~gnustep-base/gnustep-back-xlib-${PV}
