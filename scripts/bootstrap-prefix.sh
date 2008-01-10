@@ -160,23 +160,24 @@ bootstrap_setup() {
 		i386-pc-freebsd*)
 			profile="${PORTDIR}/profiles/default-prefix/bsd/freebsd/${CHOST#i386-pc-freebsd}/x86"
 			;;
+		powerpc-unknown-openbsd*)
+			profile="${PORTDIR}/profiles/default-prefix/bsd/openbsd/${CHOST#powerpc-unknown-openbsd}/ppc"
+			;;
 		*)	
 			einfo "You need to set up a make.profile symlink to a"
 			einfo "profile in ${PORTDIR} for your CHOST ${CHOST}"
 			;;
 	esac
-	if [ ! -z "${profile}" -a ! -e "${ROOT}"/etc/make.profile ];
-	then
+	if [[ -n ${profile} -a ! -e ${ROOT}/etc/make.profile ]] ; then
 		ln -s "${profile}" "${ROOT}"/etc/make.profile
 		einfo "Your profile is set to ${profile}."
 	fi
 	
-	[ -e "${ROOT}"/etc/make.conf ] && return
+	[[ -e ${ROOT}/etc/make.conf ]] && return
 	
 	# we need to do this untill all linux keywords are converted to
 	# their -linux variant.
-	if [ -n "${keywords}" ];
-	then
+	if [[ -n ${keywords} ]] ; then
 		echo "ACCEPT_KEYWORDS=\"${keywords}\"" >> "${ROOT}"/etc/make.conf
 		einfo "Your ACCEPT_KEYWORDS is set to ${keywords}"
 	fi
@@ -187,28 +188,28 @@ bootstrap_setup() {
 
 bootstrap_tree() {
 	case ${CHOST} in
+		powerpc-ibm-aix*)            PV="20080107" ;;
+		i*86-apple-darwin8)          PV="20080107" ;;
+		i*86-apple-darwin9)          PV="20080107" ;;
 		powerpc-apple-darwin7)       PV="20080107" ;;
 		powerpc-apple-darwin8)       PV="20080107" ;;
-		powerpc64-apple-darwin8)     PV="20080107" ;;
-		i*86-apple-darwin8)          PV="20080107" ;;
 		powerpc-apple-darwin9)       PV="20080107" ;;
-		i*86-apple-darwin9)          PV="20080107" ;;
+		powerpc64-apple-darwin8)     PV="20080107" ;;
 		x86_64-apple-darwin9)        PV="20080107" ;;
-		i*86-pc-linux-gnu)           PV="20080107" ;;
-		x86_64-pc-linux-gnu)         PV="20080107" ;;
-		ia64-pc-linux-gnu)           PV="20080107" ;;
-		sparc-sun-solaris2.9)        PV="20080107" ;;
-		i386-pc-solaris2.10)         PV="20080107" ;;
-		x86_64-pc-solaris2.10)       PV="20080107" ;;
-		sparc-sun-solaris2.10)       PV="20080107" ;;
-		sparcv9-sun-solaris2.10)     PV="20080107" ;;
-		powerpc-ibm-aix*)            PV="20080107" ;;
-		mips-sgi-irix*)              PV="20080107" ;;
-		i586-pc-interix*)            PV="20080107" ;;
+		i386-pc-freebsd*)            PV="20080107" ;;
 		hppa*-hp-hpux11*)            PV="20080107" ;;
 		ia64-hp-hpux11*)             PV="20080107" ;;
-		i386-pc-freebsd*)            PV="20080107" ;;
+		i586-pc-interix*)            PV="20080107" ;;
+		mips-sgi-irix*)              PV="20080107" ;;
+		i*86-pc-linux-gnu)           PV="20080107" ;;
+		ia64-pc-linux-gnu)           PV="20080107" ;;
+		x86_64-pc-linux-gnu)         PV="20080107" ;;
 		powerpc-unknown-openbsd*)    PV="20080107" ;;
+		i386-pc-solaris2.10)         PV="20080107" ;;
+		sparc-sun-solaris2.10)       PV="20080107" ;;
+		sparc-sun-solaris2.9)        PV="20080107" ;;
+		sparcv9-sun-solaris2.10)     PV="20080107" ;;
+		x86_64-pc-solaris2.10)       PV="20080107" ;;
 		*)
 			einfo "warning: no specific tree snapshot known for your system"
 			PV="20080107"
