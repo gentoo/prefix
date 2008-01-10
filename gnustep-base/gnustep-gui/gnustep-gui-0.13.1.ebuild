@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/gnustep-gui-0.12.1.ebuild,v 1.1 2008/01/03 12:33:39 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/gnustep-gui-0.13.1.ebuild,v 1.1 2008/01/09 12:22:58 voyageur Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ LICENSE="LGPL-2.1"
 IUSE="jpeg gif png cups"
 
 DEPEND="${GNUSTEP_CORE_DEPEND}
-	>=gnustep-base/gnustep-base-1.14.0
+	>=gnustep-base/gnustep-base-1.15.1
 	x11-libs/libXt
 	>=media-libs/tiff-3
 	jpeg? ( >=media-libs/jpeg-6b )
@@ -42,4 +42,10 @@ src_compile() {
 	econf $myconf || die "configure failed"
 
 	egnustep_make || die
+}
+
+pkg_postinst() {
+	ewarn "The shared library version has changed in this release."
+	ewarn "You will need to recompile all Applications/Tools/etc in order"
+	ewarn "to use this library. Please run revdep-rebuild to do so"
 }
