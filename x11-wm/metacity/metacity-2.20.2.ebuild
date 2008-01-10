@@ -1,17 +1,17 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/metacity-2.20.0.ebuild,v 1.2 2007/11/20 14:11:56 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/metacity-2.20.2.ebuild,v 1.1 2008/01/09 22:48:58 eva Exp $
 
 EAPI="prefix"
 
-inherit eutils gnome2
+inherit gnome2
 
 DESCRIPTION="Gnome default windowmanager"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="xinerama"
 # compositor needs libcm as well, not activating it for the time being
 
@@ -33,6 +33,7 @@ DEPEND="${RDEPEND}
 DOCS="AUTHORS ChangeLog HACKING NEWS README *.txt doc/*.txt"
 
 pkg_setup() {
-	G2CONF="$(use_enable xinerama) \
+	G2CONF="${G2CONF}
+		$(use_enable xinerama)
 		--disable-compositor"
 }

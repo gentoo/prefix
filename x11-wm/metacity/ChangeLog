@@ -1,6 +1,13 @@
 # ChangeLog for x11-wm/metacity
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.204 2007/11/29 05:22:56 jer Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.205 2008/01/09 22:48:58 eva Exp $
+
+*metacity-2.20.2 (09 Jan 2008)
+
+  09 Jan 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  -metacity-2.14.5.ebuild, -metacity-2.16.3.ebuild, -metacity-2.16.8.ebuild,
+  -metacity-2.20.0.ebuild, +metacity-2.20.2.ebuild:
+  bump to 2.20.2 and clean up old releases
 
   29 Nov 2007; Jeroen Roovers <jer@gentoo.org> metacity-2.20.1.ebuild:
   Stable for HPPA (bug #199740).
