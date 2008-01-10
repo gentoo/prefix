@@ -1,0 +1,29 @@
+--- emacs-updater
++++ emacs-updater
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!/usr/bin/env bash
+ 
+ # Licensed under GPL version 2
+ # Authors:
+@@ -16,9 +16,9 @@
+     NORMAL=$'\e[0m'
+ fi
+ 
+-SITELISP=/usr/share/emacs/site-lisp
++SITELISP="@GENTOO_PORTAGE_EPREFIX@"/usr/share/emacs/site-lisp
+ VERSION=0.3
+-TMPFILE="$(mktemp /tmp/emacs-updater.XXXXXX)"
++TMPFILE="$(mktemp /var/tmp/emacs-updater.XXXXXX)"
+ 
+ 
+ message() {
+@@ -44,7 +44,7 @@
+ 
+ EOF
+ 
+-if ! [ -x /usr/bin/qfile ]; then
++if ! [ -x "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/qfile ]; then
+     echo
+     failure "Please emerge app-portage/portage-utils to use this tool"
+     exit 1
