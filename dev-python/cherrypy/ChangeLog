@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/cherrypy
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/cherrypy/ChangeLog,v 1.26 2008/01/08 22:18:10 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cherrypy/ChangeLog,v 1.27 2008/01/09 14:55:42 armin76 Exp $
+
+  09 Jan 2008; Raúl Porcel <armin76@gentoo.org> cherrypy-2.2.1-r2.ebuild:
+  ia64/x86 stable wrt security #204829
 
 *cherrypy-2.2.1-r2 (08 Jan 2008)
 
