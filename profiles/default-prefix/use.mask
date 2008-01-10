@@ -1,20 +1,24 @@
 # Mask all elibc/kernel combinations, unmasked in the appropriate
 # profiles
 elibc_glibc
-elibc_Darwin
-elibc_SunOS
 elibc_AIX
+elibc_Darwin
+elibc_FreeBSD
+elibc_HPUX
 elibc_IRIX
 elibc_Interix
-elibc_FreeBSD
+elibc_OpenBSD
+elibc_SunOS
 
 kernel_linux
-kernel_Darwin
-kernel_SunOS
 kernel_AIX
+kernel_Darwin
+kernel_FreeBSD
+kernel_HPUX
 kernel_IRIX
 kernel_Interix
-kernel_FreeBSD
+kernel_OpenBSD
+kernel_SunOS
 
 # re-add userland GNU
 -userland_GNU
