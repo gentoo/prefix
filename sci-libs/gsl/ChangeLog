@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/gsl
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.41 2008/01/02 16:51:43 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.42 2008/01/09 16:15:02 jer Exp $
+
+  09 Jan 2008; Jeroen Roovers <jer@gentoo.org> gsl-1.9-r1.ebuild,
+  gsl-1.10.ebuild:
+  Marked ~hppa (bug #204072).
 
   02 Jan 2008; Raúl Porcel <armin76@gentoo.org> gsl-1.10.ebuild:
   Re-add ~ia64
