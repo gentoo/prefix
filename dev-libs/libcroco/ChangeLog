@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libcroco
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcroco/ChangeLog,v 1.37 2007/05/27 00:56:47 kumba Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcroco/ChangeLog,v 1.38 2008/01/09 13:17:54 welp Exp $
+
+  09 Jan 2008; <welp@gentoo.org> libcroco-0.6.1.ebuild:
+  Keyworded ~sparc-fbsd
 
   27 May 2007; Joshua Kinard <kumba@gentoo.org> libcroco-0.6.1.ebuild:
   Stable on mips.
