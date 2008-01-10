@@ -1,0 +1,313 @@
+# ChangeLog for media-gfx/fontforge
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/ChangeLog,v 1.65 2007/12/27 23:02:18 dirtyepic Exp $
+
+  27 Dec 2007; Ryan Hill <dirtyepic@gentoo.org>
+  +files/fontforge-20071210-noX-nopython-build.patch,
+  fontforge-20071210.ebuild:
+  Fix build error with USE="-X -python".  Bug #202360 by Diego.
+
+  13 Dec 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/fontforge-20071210-parallel-build.patch, fontforge-20071210.ebuild:
+  Fix from Martin von Gagern for parallel build problems #202019.
+
+*fontforge-20071210 (12 Dec 2007)
+
+  12 Dec 2007; Mike Frysinger <vapier@gentoo.org>
+  +fontforge-20071210.ebuild:
+  Version bump.
+
+*fontforge-20071110 (10 Nov 2007)
+
+  10 Nov 2007; Mike Frysinger <vapier@gentoo.org>
+  +fontforge-20071110.ebuild:
+  Version bump.
+
+  06 Oct 2007; Tom Gall <tgall@gentoo.org>
+  fontforge-20070831.ebuild:
+  stable on ppc64 bug #182394
+
+*fontforge-20071002 (05 Oct 2007)
+
+  05 Oct 2007; Mike Frysinger <vapier@gentoo.org>
+  +fontforge-20071002.ebuild:
+  Version bump.
+
+  28 Sep 2007; nixnut <nixnut@gentoo.org> fontforge-20070831.ebuild:
+  Stable on ppc wrt bug 182394
+
+  28 Sep 2007; Christoph Mende <angelos@gentoo.org>
+  fontforge-20070831.ebuild:
+  Stable on amd64 wrt bug #182394
+
+  26 Sep 2007; Raúl Porcel <armin76@gentoo.org> fontforge-20070831.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #182394
+
+  26 Sep 2007; Jeroen Roovers <jer@gentoo.org> fontforge-20070831.ebuild:
+  Stable for HPPA (bug #182394).
+
+*fontforge-20070915 (16 Sep 2007)
+
+  16 Sep 2007; Mike Frysinger <vapier@gentoo.org>
+  +fontforge-20070915.ebuild:
+  Version bump.
+
+*fontforge-20070831 (01 Sep 2007)
+
+  01 Sep 2007; Mike Frysinger <vapier@gentoo.org>
+  +fontforge-20070831.ebuild:
+  Version bump.
+
+*fontforge-20070808 (09 Aug 2007)
+
+  09 Aug 2007; Mike Frysinger <vapier@gentoo.org>
+  +fontforge-20070808.ebuild:
+  Version bump.
+
+*fontforge-20070723 (24 Jul 2007)
+
+  24 Jul 2007; Mike Frysinger <vapier@gentoo.org>
+  +fontforge-20070723.ebuild:
+  Version bump.
+
+  28 Jun 2007; Mike Frysinger <vapier@gentoo.org> fontforge-20070607.ebuild:
+  Allow python support to be disabled via the USE flag.
+
+*fontforge-20070607 (10 Jun 2007)
+
+  10 Jun 2007; Mike Frysinger <vapier@gentoo.org>
+  +fontforge-20070607.ebuild:
+  Version bump.
+
+*fontforge-20070501 (03 May 2007)
+
+  03 May 2007; Mike Frysinger <vapier@gentoo.org>
+  +fontforge-20070501.ebuild:
+  Version bump and add support USE=nls #175450 by Frederik 'Freso' S. Olesen.
+
+*fontforge-20070312 (18 Mar 2007)
+
+  18 Mar 2007; Mike Frysinger <vapier@gentoo.org>
+  +fontforge-20070312.ebuild:
+  Version bump.
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  08 Feb 2007; Mike Frysinger <vapier@gentoo.org>
+  +files/fontforge-20061220-no-X.patch, fontforge-20061220.ebuild:
+  Fix building with USE=-X #159007 by Alexander Skwar.
+
+  07 Feb 2007; Mike Frysinger <vapier@gentoo.org> fontforge-20061220.ebuild:
+  Use emake rather than make #159929 by Timothy Redaelli.
+
+  11 Jan 2007; Timothy Redaelli <drizzt@gentoo.org>
+  fontforge-20061220.ebuild:
+  Add ~x86-fbsd keyword
+
+*fontforge-20061220 (21 Dec 2006)
+
+  21 Dec 2006; Mike Frysinger <vapier@gentoo.org>
+  +fontforge-20061220.ebuild:
+  Version bump.
+
+*fontforge-20061025 (28 Oct 2006)
+
+  28 Oct 2006; Mike Frysinger <vapier@gentoo.org>
+  +fontforge-20061025.ebuild:
+  Version bump.
+
+*fontforge-20061014-r1 (25 Oct 2006)
+
+  25 Oct 2006; Alon Bar-Lev <alonbl@gentoo.org>
+  +files/fontforge-20061014-build.patch, +fontforge-20061014-r1.ebuild:
+  Fixed lib prefix issues, closes #151736.
+
+*fontforge-20061014 (17 Oct 2006)
+
+  17 Oct 2006; Mike Frysinger <vapier@gentoo.org>
+  +fontforge-20061014.ebuild:
+  Version bump.
+
+  14 Oct 2006; Markus Rothe <corsair@gentoo.org>
+  fontforge-20060703-r1.ebuild:
+  Stable on ppc64; bug #146562
+
+  01 Oct 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  fontforge-20060703-r1.ebuild:
+  hppa stable, bug #146562
+
+  26 Sep 2006; Jason Wever <weeve@gentoo.org> fontforge-20060703-r1.ebuild:
+  Stable on SPARC wrt bug #146562.
+
+  24 Sep 2006; Michael Hanselmann <hansmi@gentoo.org>
+  fontforge-20060703-r1.ebuild:
+  Stable on ppc.
+
+  21 Sep 2006; <ticho@gentoo.org> fontforge-20060703-r1.ebuild:
+  Stable on x86, bug #146562.
+
+  19 Sep 2006; Daniel Gryniewicz <dang@gentoo.org>
+  fontforge-20060703-r1.ebuild:
+  Marked stable on amd64 bug #146562
+
+  17 Sep 2006; Markus Rothe <corsair@gentoo.org>
+  fontforge-20060703-r1.ebuild, fontforge-20060822.ebuild:
+  Added ~ppc64; bug #146562
+
+*fontforge-20060822 (25 Aug 2006)
+
+  25 Aug 2006; Mike Frysinger <vapier@gentoo.org>
+  +fontforge-20060822.ebuild:
+  Version bump.
+
+*fontforge-20060703-r1 (12 Jul 2006)
+
+  12 Jul 2006; Aron Griffis <agriffis@gentoo.org>
+  +fontforge-20060703-r1.ebuild:
+  Install cidmaps needed for editing fonts with lots of characters, thanks to
+  Sebastian Schubert #129518
+
+  12 Jul 2006; Aron Griffis <agriffis@gentoo.org>
+  +files/fontforge-20060406-ft22.patch, fontforge-20060406.ebuild,
+  fontforge-20060408.ebuild:
+  Patch 20060406 and 20060408 for building against freetype-2.2, thanks to
+  David Somers in #129658. Mark 20060408 stable on ia64
+
+  11 Jul 2006; Aron Griffis <agriffis@gentoo.org>
+  +files/fontforge-20060406-ia64.patch, fontforge-20060406.ebuild,
+  fontforge-20060408.ebuild, fontforge-20060703.ebuild:
+  Fix ICE building newer fontforges with gcc-3.3.2 on ia64
+
+*fontforge-20060703 (04 Jul 2006)
+
+  04 Jul 2006; Mike Frysinger <vapier@gentoo.org>
+  +fontforge-20060703.ebuild:
+  Version bump.
+
+*fontforge-20060408 (12 Apr 2006)
+
+  12 Apr 2006; Mike Frysinger <vapier@gentoo.org>
+  +fontforge-20060408.ebuild:
+  Version bump.
+
+*fontforge-20060406 (09 Apr 2006)
+
+  09 Apr 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/fontforge-20060406-respect-HOME.patch, +fontforge-20060406.ebuild:
+  Version bump #125752 by Beech Horn et al and fix by Thomas Holder for #127723.
+
+  10 Jan 2006; Michael Hanselmann <hansmi@gentoo.org>
+  fontforge-20050624.ebuild:
+  Added to ~hppa.
+
+  13 Sep 2005; Aron Griffis <agriffis@gentoo.org> fontforge-20050502.ebuild:
+  Mark 20050502 stable on alpha
+
+  28 Aug 2005; Marcus D. Hanwell <cryos@gentoo.org>
+  fontforge-20050502.ebuild:
+  Stable on amd64.
+
+  24 Aug 2005; Aron Griffis <agriffis@gentoo.org> fontforge-20050502.ebuild:
+  stable on ia64
+
+  23 Aug 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  fontforge-20050502.ebuild:
+  Stable on sparc
+
+  20 Aug 2005; Fabian Groffen <grobian@gentoo.org>
+  fontforge-20050624.ebuild:
+  Marking ~ppc-macos
+
+  13 Aug 2005; Michael Hanselmann <hansmi@gentoo.org>
+  fontforge-20050502.ebuild:
+  Stable on ppc.
+
+*fontforge-20050624 (02 Jul 2005)
+
+  02 Jul 2005; Mamoru KOMACHI <usata@gentoo.org> -fontforge-20050209.ebuild,
+  fontforge-20050502.ebuild, +fontforge-20050624.ebuild:
+  Version bumped; bug #97326.
+
+  05 Jun 2005; Michael Hanselmann <hansmi@gentoo.org>
+  fontforge-20050310.ebuild:
+  Stable on ppc.
+
+  31 May 2005; Marcus D. Hanwell <cryos@gentoo.org>
+  fontforge-20050310.ebuild:
+  Stable on amd64.
+
+  22 May 2005; Aron Griffis <agriffis@gentoo.org> fontforge-20050310.ebuild:
+  stable on alpha
+
+*fontforge-20050502 (19 May 2005)
+
+  19 May 2005; Mamoru KOMACHI <usata@gentoo.org> -fontforge-20040930.ebuild,
+  fontforge-20050310.ebuild, +fontforge-20050502.ebuild:
+  Version bumped. Added back ~ia64 I accidentally dropped from 20050310.
+
+  26 Mar 2005; Chris White <chriswhite@gentoo.org>
+  fontforge-20041231.ebuild:
+  Added ppc stable keywords.
+
+  23 Mar 2005; Aron Griffis <agriffis@gentoo.org> fontforge-20040930.ebuild,
+  fontforge-20050310.ebuild:
+  Add alpha
+
+*fontforge-20050310 (18 Mar 2005)
+
+  18 Mar 2005; Mamoru KOMACHI <usata@gentoo.org>
+  -files/fontforge-20040618.patch, fontforge-20040930.ebuild,
+  fontforge-20041231.ebuild, fontforge-20050209.ebuild,
+  +fontforge-20050310.ebuild:
+  Version bumped. Fixed giflib dependency; bug #85720.
+
+*fontforge-20050209 (19 Feb 2005)
+
+  19 Feb 2005; Mamoru KOMACHI <usata@gentoo.org> -fontforge-20040618.ebuild,
+  -fontforge-20040824.ebuild, +fontforge-20050209.ebuild:
+  Version bumped. Removed autotrace dependency and added pkg_postinst().
+  See bug #77133.
+
+  18 Feb 2005; Aron Griffis <agriffis@gentoo.org> fontforge-20041231.ebuild:
+  stable on x86 amd64 ia64 alpha
+
+*fontforge-20041231 (07 Jan 2005)
+
+  07 Jan 2005; MATSUU Takuto <matsuu@gentoo.org> +fontforge-20041231.ebuild:
+  Version bumped. Bug 72303.
+
+*fontforge-20040930 (10 Oct 2004)
+
+  10 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> -fontforge-20040509.ebuild,
+  fontforge-20040824.ebuild, +fontforge-20040930.ebuild:
+  Version bumped.
+
+*fontforge-20040824 (29 Aug 2004)
+
+  29 Aug 2004; Mamoru KOMACHI <usata@gentoo.org> fontforge-20040618.ebuild,
+  +fontforge-20040824.ebuild:
+  Version bumped. Marked previous version stable on x86 and ppc.
+
+  12 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  fontforge-20040618.ebuild:
+  Adding ~sparc and readding ~amd64
+
+  23 Jun 2004; David Holm <dholm@gentoo.org> fontforge-20040618.ebuild:
+  Added to ~ppc.
+
+*fontforge-20040618 (22 Jun 2004)
+
+  22 Jun 2004; Mamoru KOMACHI <usata@gentoo.org>
+  +files/fontforge-20040618.patch, fontforge-20040509.ebuild,
+  +fontforge-20040618.ebuild:
+  Version bumped. Marked 20040509 stable.
+
+*fontforge-20040509 (18 May 2004)
+
+  18 May 2004; Mamoru KOMACHI <usata@gentoo.org> fontforge-20040509.ebuild:
+  Initial import. Thanks to Maarten Wisse
+  <Maarten.Wisse@urz.uni-heidelberg.de>, Martin Diers <martin@diers.us>,
+  Akos Maroy <darkeye@tyrell.hu> and Stefan Illner <stillner@gmx.de>.
+  Closing bug #46686
+

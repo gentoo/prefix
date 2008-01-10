@@ -1,0 +1,34 @@
+Fix parallel build issues in fontforge.
+http://bugs.gentoo.org/202019
+2007-12-12 Martin von Gagern
+
+--- fontforge-20071210/Makefile.dynamic.in
++++ fontforge-20071210/Makefile.dynamic.in
+@@ -26,10 +26,10 @@
+ libgunicode:
+ 	( cd Unicode ; $(MAKE) )
+ 
+-libgutils:
++libgutils: libgunicode
+ 	( cd gutils ; $(MAKE) )
+ 
+-libgdraw:
++libgdraw: libgunicode libgutils
+ 	( cd gdraw ; $(MAKE) )
+ 
+ pos:
+--- fontforge-20071210/Makefile.static.in
++++ fontforge-20071210/Makefile.static.in
+@@ -24,10 +24,10 @@
+ libgunicode:
+ 	( cd Unicode ; $(MAKE) )
+ 
+-libgutils:
++libgutils: libgunicode
+ 	( cd gutils ; $(MAKE) )
+ 
+-libgdraw:
++libgdraw: libgunicode libgutils
+ 	( cd gdraw ; $(MAKE) )
+ 
+ pos:
