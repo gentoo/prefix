@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/libgtop-2.20.0.ebuild,v 1.7 2007/11/27 04:55:00 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/libgtop-2.20.1.ebuild,v 1.1 2008/01/09 21:38:33 eva Exp $
 
 EAPI="prefix"
 
-inherit gnome2 eutils
+inherit gnome2
 
 DESCRIPTION="A library that provides top functionality to applications"
 HOMEPAGE="http://www.gnome.org/"
