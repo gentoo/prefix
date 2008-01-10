@@ -1,6 +1,11 @@
 # ChangeLog for www-servers/mongrel
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/mongrel/ChangeLog,v 1.17 2007/12/16 19:21:05 nichoj Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-servers/mongrel/ChangeLog,v 1.18 2008/01/10 03:52:30 nichoj Exp $
+
+*mongrel-1.1.3 (09 Jan 2008)
+
+  09 Jan 2008; <nichoj@gentoo.org> +mongrel-1.1.3.ebuild:
+  Version bump.
 
   10 Dec 2007; <nichoj@gentoo.org> files/digest-mongrel-1.1.2, Manifest:
   Digest fix.
