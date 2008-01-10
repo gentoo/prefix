@@ -27,7 +27,7 @@ SRC_URI="http://www.erlang.org/download/${MY_P}.tar.gz
 
 LICENSE="EPL"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="doc emacs hipe java kpoll odbc smp ssl tk"
 
 RDEPEND=">=dev-lang/perl-5.6.1
