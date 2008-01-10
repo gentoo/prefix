@@ -12,7 +12,7 @@ DESCRIPTION="Default X11 back-end component for the GNUstep GUI Library"
 
 HOMEPAGE="http://www.gnustep.org"
 SRC_URI="ftp://ftp.gnustep.org/pub/gnustep/core/gnustep-back-${PV}.tar.gz"
-KEYWORDS="~amd64 ~x86 ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
 SLOT="0"
 LICENSE="LGPL-2.1"
 
