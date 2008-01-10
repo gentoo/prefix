@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libwnck/libwnck-2.18.2.ebuild,v 1.9 2007/09/22 05:19:17 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libwnck/libwnck-2.20.3.ebuild,v 1.1 2008/01/09 22:16:38 eva Exp $
 
 EAPI="prefix"
 
@@ -11,11 +11,11 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="doc"
 
-RDEPEND=">=x11-libs/gtk+-2.8
-	>=dev-libs/glib-2
+RDEPEND=">=x11-libs/gtk+-2.11.3
+	>=dev-libs/glib-2.13.0
 	>=x11-libs/startup-notification-0.4
 	x11-libs/libX11
 	x11-libs/libXres
