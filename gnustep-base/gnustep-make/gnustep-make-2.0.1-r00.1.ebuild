@@ -10,7 +10,7 @@ DESCRIPTION="GNUstep Makefile Package"
 
 HOMEPAGE="http://www.gnustep.org"
 SRC_URI="ftp://ftp.gnustep.org/pub/gnustep/core/${P}.tar.gz"
-KEYWORDS="~amd64 ~sparc-solaris ~x86 ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 SLOT="0"
 LICENSE="GPL-2"
 
