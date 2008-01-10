@@ -27,21 +27,20 @@ econf() {
 }
 
 efetch() {
-	if [ ! -e "${DISTDIR}"/${1##*/} ] ; then
-		if [ -z ${FETCH_COMMAND} ] ; then
+	if [[ ! -e ${DISTDIR}/${1##*/} ]] ; then
+		if [[ -z ${FETCH_COMMAND} ]] ; then
 			# Try to find a download manager, we only deal with wget,
-			# curl and FreeBSD's fetch
-			if [ "x$(type -t wget)" == "xfile" ];
-			then
+			# curl, FreeBSD's fetch and ftp.
+			if [[ x$(type -t wget) == "xfile" ]] ; then
 				FETCH_COMMAND="wget"
-			elif [ "x$(type -t curl)" == "xfile" ];
-			then
+			elif [[ x$(type -t curl) == "xfile" ]] ; then
 				FETCH_COMMAND="curl -O"
-			elif [ "x$(type -t fetch)" == "xfile" ];
-			then
+			elif [[ x$(type -t fetch) == "xfile" ]] ; then
 				FETCH_COMMAND="fetch"
+			elif [[ x$(type -t ftp) == "xftp" ]] ; then
+				FETCH_COMMAND="ftp"
 			else
-				eerror "no suitable download manager found (need wget or curl)"
+				eerror "no suitable download manager found (need wget, curl, fetch or ftp)"
 				eerror "could not download ${1##*/}"
 				exit 1
 			fi
@@ -49,8 +48,7 @@ efetch() {
 
 		mkdir -p "${DISTDIR}" >& /dev/null
 		einfo "Fetching ${1##*/}"
-		pushd "`pwd`" > /dev/null
-		cd "${DISTDIR}"
+		pushd "${DISTDIR}" > /dev/null
 		${FETCH_COMMAND} "$1"
 		if [[ ! -f ${1##*/} ]] ; then
 			eerror "downloading ${1} failed!"
