@@ -21,7 +21,7 @@ SRC_URI="ftp://ftp.vim.org/pub/vim/unix/vim-${VIM_VERSION}.tar.bz2
 
 S="${WORKDIR}/vim${VIM_VERSION/.}"
 DESCRIPTION="vim and gvim shared files"
-KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-fbsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 DEPEND="${DEPEND}"
 PDEPEND="!livecd? ( app-vim/gentoo-syntax )"
