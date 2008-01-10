@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.168 2007/11/07 15:01:18 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.169 2008/01/09 21:13:59 hawking Exp $
 
 # Authors:
 # 	Ryan Phillips <rphillips@gentoo.org>
@@ -188,6 +188,8 @@ apply_vim_patches() {
 					next
 				}
 			}
+			# Close the file to avoid leakage, bug 205037
+			close(thisfile)
 			# Print the previous lines and start printing
 			print firstlines
 			printing = 1
