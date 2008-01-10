@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/gnustep-base-1.14.2.ebuild,v 1.1 2008/01/03 12:33:08 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/gnustep-base-1.15.2.ebuild,v 1.1 2008/01/09 12:21:42 voyageur Exp $
 
 EAPI="prefix"
 
@@ -74,5 +74,5 @@ pkg_postinst() {
 	ewarn "You will need to recompile all Applications/Tools/etc in order"
 	ewarn "to use this library."
 	ewarn "Run:"
-	ewarn "revdep-rebuild --library \"libgnustep-base.so.1.1[0-3]\""
+	ewarn "revdep-rebuild --library \"libgnustep-base.so.1.1[0-4]\""
 }
