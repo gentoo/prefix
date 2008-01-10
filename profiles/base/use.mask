@@ -187,10 +187,6 @@ cman
 # tcc is x86 only
 tcc
 
-# Sébastien Fabbro <bicatali@gentoo.org> (24 Aug 2007)
-# cernlib has been tested only on x86 and amd64 at present
-cern
- 
 # Diego Pettenò <flameeyes@gentoo.org> (15 Nov 2007)
 # pam_console was masked for removal for security issue.
 # mask the flag too.

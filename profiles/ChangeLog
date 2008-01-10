@@ -1,6 +1,15 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.981 2008/01/09 03:20:30 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.984 2008/01/09 23:56:42 bicatali Exp $
+
+  09 Jan 2008; Sébastien Fabbro <bicatali@gentoo.org> use.local.desc:
+  Added pch local use flag for sci-physics/root
+
+  09 Jan 2008; Ulrich Mueller <ulm@gentoo.org> use.local.desc:
+  Add local sendmail USE flag for app-editors/fe.
+
+  09 Jan 2008; Bernard Cafarelli <voyageur@gentoo.org> package.mask:
+  Add mask for unstable gnustep packages
 
   09 Jan 2008; Ryan Hill <dirtyepic@gentoo.org> package.mask:
   Remove net-www/pears.  Bug #201246.
