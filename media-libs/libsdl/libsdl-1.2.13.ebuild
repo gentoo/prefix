@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.13.ebuild,v 1.1 2007/12/31 15:52:00 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.13.ebuild,v 1.2 2008/01/10 08:02:21 vapier Exp $
 
 EAPI="prefix"
 
@@ -12,12 +12,12 @@ SRC_URI="http://www.libsdl.org/release/SDL-${PV}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos"
 # WARNING:
 # if you have the noaudio, novideo, nojoystick, or custom-cflags use flags
 # in USE and something breaks, you pick up the pieces.  Be prepared for
 # bug reports to be marked INVALID.
-IUSE="oss alsa esd arts nas X dga xv xinerama fbcon directfb ggi svga aalib opengl libcaca noaudio novideo nojoystick custom-cflags"
+IUSE="oss alsa esd arts nas X dga xv xinerama fbcon directfb ggi svga aalib opengl libcaca noaudio novideo nojoystick custom-cflags pulseaudio"
 
 RDEPEND="!noaudio? ( >=media-libs/audiofile-0.1.9 )
 	alsa? ( media-libs/alsa-lib )
@@ -40,7 +40,8 @@ RDEPEND="!noaudio? ( >=media-libs/audiofile-0.1.9 )
 	svga? ( >=media-libs/svgalib-1.4.2 )
 	aalib? ( media-libs/aalib )
 	libcaca? ( >=media-libs/libcaca-0.9-r1 )
-	opengl? ( virtual/opengl virtual/glu )"
+	opengl? ( virtual/opengl virtual/glu )
+	pulseaudio? ( media-sound/pulseaudio )"
 DEPEND="${RDEPEND}
 	nas? (
 		x11-proto/xextproto
@@ -77,6 +78,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.2.11-libcaca-new-api.patch #40224
 	epatch "${FILESDIR}"/${PN}-1.2.11-sdl-config.patch
 	epatch "${FILESDIR}"/${PN}-1.2.11-xinerama-head-0.patch #145917
+	epatch "${FILESDIR}"/${P}-pulseaudio.patch #198147
 
 	./autogen.sh || die "autogen failed"
 	elibtoolize
@@ -122,6 +124,7 @@ src_compile() {
 		$(use_enable oss) \
 		$(use_enable alsa) \
 		$(use_enable esd) \
+		$(use_enable pulseaudio) \
 		$(use_enable arts) \
 		$(use_enable nas) \
 		$(use_enable X video-x11) \

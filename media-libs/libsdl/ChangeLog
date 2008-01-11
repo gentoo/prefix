@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/libsdl
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.138 2007/12/31 15:52:00 vapier Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.139 2008/01/10 08:02:21 vapier Exp $
+
+  10 Jan 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/libsdl-1.2.13-pulseaudio.patch, libsdl-1.2.13.ebuild:
+  Add support for USE=pulseaudio and fixing it in the process #198147 by jon
+  R-B / Eugene Zagidullin.
 
 *libsdl-1.2.13 (31 Dec 2007)
 
