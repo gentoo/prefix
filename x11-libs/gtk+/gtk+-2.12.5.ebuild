@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.12.1-r2.ebuild,v 1.3 2007/12/11 22:00:05 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.12.5.ebuild,v 1.1 2008/01/10 21:39:39 eva Exp $
 
 EAPI="prefix"
 
@@ -84,17 +84,11 @@ src_unpack() {
 	# dont clash on multilib systems
 	has_multilib_profile && epatch "${FILESDIR}/${PN}-2.8.0-multilib.patch"
 
-	# Workaround adobe flash infinite loop. Patch from http://bugzilla.gnome.org/show_bug.cgi?id=463773#c11
-	epatch "${FILESDIR}/${PN}-2.12.0-flash-workaround.patch"
-
-	# OpenOffice.org might hang at startup (on non-gnome env) without this workaround, bug #193513
-	epatch "${FILESDIR}/${PN}-2.12.0-openoffice-freeze-workaround.patch"
-
 	# Firefox print review crash fix, bug #195644
-	epatch "${FILESDIR}/${P}-firefox-print-preview.patch"
+	epatch "${FILESDIR}/${PN}-2.12.1-firefox-print-preview.patch"
 
 	# Fix printing on ppc64.  Bug #197639
-	epatch "${FILESDIR}"/${P}-cupsutils.patch
+	#epatch "${FILESDIR}/${PN}-2.12.1-cupsutils.patch"
 
 	# -O3 and company cause random crashes in applications. Bug #133469
 	replace-flags -O3 -O2
@@ -144,11 +138,11 @@ src_compile() {
 }
 
 src_test() {
-	Xmake check || die
+	Xemake check || die
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die "Installation failed"
+	emake DESTDIR="${D}" install || die "Installation failed"
 
 	set_gtk2_confdir
 	dodir ${GTK2_CONFDIR}

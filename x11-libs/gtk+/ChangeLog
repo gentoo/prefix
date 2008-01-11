@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/gtk+
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.356 2007/12/13 17:56:07 compnerd Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.357 2008/01/10 21:39:39 eva Exp $
+
+*gtk+-2.12.5 (10 Jan 2008)
+
+  10 Jan 2008; Gilles Dartiguelongue <eva@gentoo.org> +gtk+-2.12.5.ebuild:
+  bump to 2.12.5, numerous fixes (firefox, OOo, pixbufs, and many more)
 
   14 Dec 2007; Saleem Abdulrasool <compnerd@gentoo.org>
   -files/gtk+-2.2.1-disable_icons_smooth_alpha.patch,
