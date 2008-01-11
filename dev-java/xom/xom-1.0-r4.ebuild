@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xom/xom-1.0-r4.ebuild,v 1.5 2007/11/24 19:08:01 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xom/xom-1.0-r4.ebuild,v 1.6 2008/01/10 22:39:35 caster Exp $
 
 EAPI="prefix"
 
@@ -15,12 +15,12 @@ SRC_URI="http://cafeconleche.org/XOM/${XOMVER}.tar.gz"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 COMMON_DEPEND=">=dev-java/xerces-2.7
 		dev-java/xalan
-		dev-java/junit
+		=dev-java/junit-3.8*
 		=dev-java/icu4j-3.0*
 		examples? ( =dev-java/servletapi-2.4* )
 		dev-java/tagsoup"
