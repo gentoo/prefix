@@ -1,0 +1,74 @@
+# ChangeLog for x11-apps/xcalc
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xcalc/ChangeLog,v 1.18 2007/12/19 23:57:32 cla Exp $
+
+  19 Dec 2007; Dawid Węgliński <cla@gentoo.org> xcalc-1.0.2.ebuild:
+  Stable on x86 (bug #202087)
+
+*xcalc-1.0.2 (08 Sep 2007)
+
+  08 Sep 2007; Donnie Berkholz <dberkholz@gentoo.org>; +xcalc-1.0.2.ebuild:
+  Bump for 7.3.
+
+  10 Oct 2006; Donnie Berkholz <dberkholz@gentoo.org>; xcalc-1.0.1.ebuild:
+  Update description to be less generic.
+
+  08 Oct 2006; <malc@gentoo.org> xcalc-1.0.1.ebuild:
+  Stable on amd64, bug #150405
+
+  17 Aug 2006; Markus Rothe <corsair@gentoo.org> xcalc-1.0.1.ebuild:
+  Stable on ppc64
+
+  18 Jul 2006; Joshua Jackson <tsunam@gentoo.org> xcalc-1.0.1.ebuild:
+  Stable x86; bug #140656
+
+  21 Apr 2006; Donnie Berkholz <spyderous@gentoo.org>; xcalc-1.0.1.ebuild:
+  Keyword ~ppc.
+
+  14 Feb 2006; Markus Rothe <corsair@gentoo.org> xcalc-1.0.1.ebuild:
+  Added ~ppc64
+
+  26 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  -xcalc-0.99.2.ebuild, -xcalc-1.0.0.ebuild:
+  Pull old versions.
+
+*xcalc-1.0.1 (23 Dec 2005)
+
+  23 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>; +xcalc-1.0.1.ebuild:
+  Bump for 7.0.
+
+*xcalc-1.0.0 (18 Dec 2005)
+
+  18 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xcalc-1.0.0.ebuild:
+  Bump for 7.0RC4.
+
+  09 Dec 2005; Donnie Berkholz <spyderous@gentoo.org>; -xcalc-0.99.0.ebuild,
+  -xcalc-0.99.1.ebuild:
+  Pull old versions.
+
+*xcalc-0.99.2 (04 Dec 2005)
+
+  04 Dec 2005; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xcalc-0.99.2.ebuild:
+  Bump for 7.0RC3.
+
+  17 Nov 2005; Herbie Hopkins <herbs@gentoo.org> xcalc-0.99.1.ebuild:
+  Marked ~amd64.
+
+*xcalc-0.99.1 (20 Oct 2005)
+
+  20 Oct 2005; Donnie Berkholz <spyderous@gentoo.org>; +xcalc-0.99.1.ebuild:
+  Bump for 7.0 RC1.
+
+  09 Sep 2005; Donnie Berkholz <spyderous@gentoo.org>; +metadata.xml:
+  Add metadata.
+
+  08 Aug 2005; Ferris McCormick <fmccor@gentoo.org> xcalc-0.99.0.ebuild:
+  Add ~sparc keyword (Modular X testing).
+
+*xcalc-0.99.0 (08 Aug 2005)
+
+  08 Aug 2005; Donnie Berkholz <spyderous@gentoo.org>; +xcalc-0.99.0.ebuild:
+  Initial commit for modular X.
+
