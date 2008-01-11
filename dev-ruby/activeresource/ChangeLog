@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/activeresource
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activeresource/ChangeLog,v 1.1 2007/12/18 07:03:34 graaff Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activeresource/ChangeLog,v 1.2 2008/01/11 02:33:32 nichoj Exp $
+
+  04 Jan 2008; <nichoj@gentoo.org> activeresource-2.0.2.ebuild:
+  Updated dependencies not to rely on specific version, and allowing for later
+  revisions (ie change =dev-ruby/activerecord-2.0.2 to
+  ~dev-ruby/activerecord-2.0.2.
 
 *activeresource-2.0.2 (18 Dec 2007)
 
