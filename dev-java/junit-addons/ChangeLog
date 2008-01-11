@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/junit-addons
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/junit-addons/ChangeLog,v 1.1 2007/03/31 23:39:58 betelgeuse Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/junit-addons/ChangeLog,v 1.2 2008/01/10 22:37:10 caster Exp $
+
+  10 Jan 2008; Vlastimil Babka <caster@gentoo.org> junit-addons-1.4.ebuild:
+  Restrict junit dependency.
 
 *junit-addons-1.4 (31 Mar 2007)
 
