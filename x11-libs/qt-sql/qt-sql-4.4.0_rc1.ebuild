@@ -21,7 +21,7 @@ LICENSE="|| ( QPL-1.0 GPL-2 )"
 SLOT="4"
 KEYWORDS="~x86-linux ~x86-macos"
 
-IUSE="firebird mysql odbc postgres sqlite aqua"
+IUSE="firebird mysql odbc postgres sqlite"
 
 RDEPEND="~x11-libs/qt-core-${PV}
 		mysql? ( virtual/mysql )
@@ -36,7 +36,6 @@ QT4_TARGET_DIRECTORIES="src/sql src/plugins/sqldrivers"
 
 src_unpack() {
 	qt4-build_src_unpack
-	use aqua && epatch "${FILESDIR}"/${PN}-4.4.0-darwin.patch
 
 	skip_qmake_build_patch
 	skip_project_generation_patch
@@ -64,8 +63,6 @@ src_compile() {
 	-no-xinerama -no-xshape -no-sm -no-opengl -no-nas-sound -no-qdbus -iconv -no-cups -no-nis \
 	-no-gif -no-libpng -no-libmng -no-libjpeg -no-openssl -system-zlib -no-webkit -no-phonon \
 	-no-xmlpatterns -no-freetype -no-libtiff  -no-accessibility -no-fontconfig -no-glib -no-opengl"
-
-	use aqua && myconf="${myconf} -no-framework"
 
 	echo ./configure ${myconf}
 	./configure ${myconf} || die
