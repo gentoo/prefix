@@ -15,7 +15,7 @@ SRC_URI="mirror://openldap/openldap-release/${P}.tgz"
 
 LICENSE="OPENLDAP"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-fbsd ~x86-linux"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 IUSE="berkdb crypt debug gdbm ipv6 kerberos minimal odbc overlays perl readline
 samba sasl slp smbkrb5passwd ssl tcpd selinux"
 
