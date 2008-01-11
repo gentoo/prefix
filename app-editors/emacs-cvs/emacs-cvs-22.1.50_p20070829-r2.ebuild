@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-22.1.50_p20070829-r2.ebuild,v 1.5 2008/01/02 18:54:59 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-22.1.50_p20070829-r2.ebuild,v 1.6 2008/01/10 14:47:41 ulm Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-3 FDL-1.2 BSD"
 SLOT="22"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="alsa gif gpm gtk gzip-el hesiod jpeg kerberos motif png spell sound source svg tiff toolkit-scroll-bars X Xaw3d xpm aqua"
 RESTRICT="strip"
 
@@ -117,7 +117,7 @@ src_compile() {
 			echo
 			myconf="${myconf} --with-x-toolkit=gtk"
 		elif use Xaw3d; then
-			einfo "Configuring to build with Xaw3d(athena) support"
+			einfo "Configuring to build with Xaw3d (athena) support"
 			myconf="${myconf} --with-x-toolkit=athena"
 			myconf="${myconf} --without-gtk"
 		elif use motif; then
