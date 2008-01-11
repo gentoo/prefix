@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  11 Jan 2008; Elias Pipping <pipping@gentoo.org> package.mask:
+  unmask opencvs
+
   10 Jan 2008; Fabian Groffen <grobian@gentoo.org> use.mask:
   Add openbsd profile, for ppc initially.  Add missing HPUX values in use.mask.
 
