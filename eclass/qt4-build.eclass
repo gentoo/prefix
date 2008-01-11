@@ -142,7 +142,7 @@ fix_library_files() {
 	sed -i -e "s:${S}/bin:${QTBINDIR}:g" "${D}"/${QTLIBDIR}/pkgconfig/*.pc
 
 	# Move .pc files into the pkgconfig directory
-	dodir ${QTPCDIR}
+	dodir ${QTPCDIR#${EPREFIX}}
 	mv "${D}"/${QTLIBDIR}/pkgconfig/*.pc "${D}"/${QTPCDIR}
 }
 
