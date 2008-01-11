@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/emacs-desktop/emacs-desktop-0.3.ebuild,v 1.1 2007/12/28 13:15:01 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/emacs-desktop/emacs-desktop-0.3.ebuild,v 1.2 2008/01/10 09:33:48 vapier Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos ~sparc-solaris"
 IUSE=""
 
 src_install() {
