@@ -33,7 +33,7 @@ SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~x86-interix ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="afs bashlogger nls plugins vanilla"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2"
@@ -93,6 +93,9 @@ src_unpack() {
 	# this one makes the above one prefix paths + additional prefixes added
 	epatch "${FILESDIR}"/${PN}-3.0-configs-prefix.patch
 	eprefixify config-top.h pathnames.h.in
+
+	# needed only for interix, although should work for others too
+	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${P}-getcwd.patch
 
 	# modify the bashrc file for prefix
 	cp "${FILESDIR}"/bashrc "${T}"
