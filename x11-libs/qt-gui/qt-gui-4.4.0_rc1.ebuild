@@ -23,7 +23,7 @@ KEYWORDS="~x86-linux ~x86-macos"
 
 IUSE_INPUT_DEVICES="input_devices_wacom"
 
-IUSE="accessibility cups dbus debug mng nas nis tiff xinerama ${IUSE_INPUT_DEVICES} aqua"
+IUSE="accessibility cups dbus debug mng nas nis tiff xinerama ${IUSE_INPUT_DEVICES}"
 
 RDEPEND="~x11-libs/qt-core-${PV}
 	~x11-libs/qt-script-${PV}
@@ -53,8 +53,6 @@ QT4_TARGET_DIRECTORIES="src/gui tools/designer tools/linguist"
 
 src_unpack() {
 	qt4-build_src_unpack
-	use aqua && epatch "${FILESDIR}"/${PN}-4.4.0-darwin.patch
-
 	use aqua || epatch "${FILESDIR}"/xinerama.patch
 
 	skip_qmake_build_patch
@@ -103,8 +101,6 @@ src_compile() {
 	myconf="${myconf} -no-webkit -no-phonon -no-qdbus -no-opengl"
 
 	use dbus && myconf="${myconf} -qdbus" || myconf="${myconf} -no-qdbus"
-
-	use aqua && myconf="${myconf} -no-framework"
 
 	echo ./configure ${myconf}
 	./configure ${myconf} || die
