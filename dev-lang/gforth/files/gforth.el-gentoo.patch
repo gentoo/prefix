@@ -1,0 +1,11 @@
+diff -ur gforth-0.6.2.orig/gforth.el gforth-0.6.2/gforth.el
+--- gforth-0.6.2.orig/gforth.el	2003-08-05 04:12:47.000000000 -0500
++++ gforth-0.6.2/gforth.el	2006-02-17 11:30:49.000000000 -0600
+@@ -1702,6 +1702,6 @@
+ 	  (error "No current process.  See variable `forth-process-buffer'"))))
+   )  ; (memq 'comint features)
+ 
+-(provide 'forth-mode)
++(provide 'gforth)
+ 
+ ;;; gforth.el ends here
