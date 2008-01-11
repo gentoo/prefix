@@ -1,0 +1,18 @@
+diff -ur a/dialects/freebsd/dlsof.h b/dialects/freebsd/dlsof.h
+--- a/dialects/freebsd/dlsof.h	2006-03-28 00:29:11 +0100
++++ b/dialects/freebsd/dlsof.h	2007-05-18 15:08:19 +0100
+@@ -43,7 +43,6 @@
+ #include <nlist.h>
+ #include <setjmp.h>
+ #include <signal.h>
+-#include <string.h>
+ #include <unistd.h>
+ 
+ # if	FREEBSDV>=4000
+@@ -550,4 +549,6 @@
+ #define	NCACHE_VROOT	VV_ROOT
+ #endif	/* FREEBSDV>=5000 */
+ 
++#include <string.h>
++
+ #endif	/* FREEBSD_LSOF_H */
