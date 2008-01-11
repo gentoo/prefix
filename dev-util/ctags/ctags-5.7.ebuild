@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86-linux ~x86-fbsd ~x86-macos ~x86-solaris"
 IUSE="ada"
 
 DEPEND="app-admin/eselect-ctags"
@@ -23,6 +23,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}/${PN}-5.6-ebuilds.patch"
+	epatch "${FILESDIR}"/ctags-5.7-netbsd.patch
 
 	# enabling Ada support
 	if use ada; then

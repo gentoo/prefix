@@ -1,0 +1,15 @@
+--- general.h.orig	2007-05-03 05:21:08 +0200
++++ general.h	2008-01-07 11:32:56 +0100
+@@ -57,7 +57,11 @@
+  *  to prevent warnings about unused variables.
+  */
+ #if (__GNUC__ > 2  ||  (__GNUC__ == 2  &&  __GNUC_MINOR__ >= 7)) && !defined (__GNUG__)
+-# define __unused__  __attribute__((unused))
++# if defined(__NetBSD__)
++#  define __unused__ __unused
++# else
++#  define __unused__  __attribute__((unused))
++# endif
+ # define __printf__(s,f)  __attribute__((format (printf, s, f)))
+ #else
+ # define __unused__

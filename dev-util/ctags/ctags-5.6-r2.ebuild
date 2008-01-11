@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/ctags/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86-linux ~x86-macos ~x86-solaris"
 IUSE="ada"
 
 src_unpack() {
