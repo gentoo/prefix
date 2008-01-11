@@ -5,7 +5,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-osgi.eclass,v 1.1 2008/01/09 10:51:20 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-osgi.eclass,v 1.2 2008/01/10 20:12:12 caster Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -28,6 +28,18 @@ inherit java-utils-2
 # would require all variables to end with a slash.
 
 _OSGI_T="${T/%\//}"
+
+# must get Diego to commit something like this to portability.eclass
+_canonicalise() {
+	if type -p realpath > /dev/null; then
+		realpath "${@}"
+	elif type -p readlink > /dev/null; then
+		readlink -f "${@}"
+	else
+		# can't die, subshell
+		eerror "No readlink nor realpath found, cannot canonicalise"
+	fi
+}
 
 # -----------------------------------------------------------------------------
 # @ebuild-function _java-osgi_plugin
@@ -68,15 +80,15 @@ _java-osgi_plugin() {
 _java-osgi_makejar() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	(( ${#} < 4 )) && die "Four arguments are needed for java-osgi_dojar-fromfile()"
+	(( ${#} < 4 )) && die "Four arguments are needed for _java-osgi_makejar()"
 
-	local absoluteJarPath="$(readlink -f ${1})"
-	local jarName="$(basename $1)"
+	local absoluteJarPath="$(_canonicalise ${1})"
+	local jarName="$(basename ${1})"
 
 	mkdir "${_OSGI_T}/tmp_jar" || die "Unable to create directory ${_OSGI_T}/tmp_jar"
 	[[ -d "${_OSGI_T}/osgi" ]] || mkdir "${_OSGI_T}/osgi" || die "Unable to create directory ${_OSGI_T}/osgi"
 
-	cd "${_OSGI_T}/tmp_jar" && jar xf "${1}" && cd - > /dev/null \
+	cd "${_OSGI_T}/tmp_jar" && jar xf "${absoluteJarPath}" && cd - > /dev/null \
 		 || die "Unable to uncompress correctly the original jar"
 
 	cat > "${_OSGI_T}/tmp_jar/META-INF/MANIFEST.MF" <<-EOF
@@ -178,7 +190,7 @@ _java-osgi_makejar-fromfile() {
 
 	((${#} < 4)) && die "Four arguments are needed for _java-osgi_makejar-fromfile()"
 
-	local absoluteJarPath="$(readlink -f ${1})"
+	local absoluteJarPath="$(_canonicalise ${1})"
 	local jarName="$(basename ${1})"
 	
 	mkdir "${_OSGI_T}/tmp_jar" || die "Unable to create directory ${_OSGI_T}/tmp_jar"

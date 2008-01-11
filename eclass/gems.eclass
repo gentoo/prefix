@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.18 2007/09/17 04:59:29 nichoj Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.19 2008/01/11 00:22:03 rbrown Exp $
 #
 # Author: Rob Cakebread <pythonhead@gentoo.org>
 # Current Maintainer: Ruby Herd <ruby@gentoo.org>
@@ -19,7 +19,7 @@
 # See http://dev.gentoo.org/~pythonhead/ruby/gems.html for notes on using gems with portage
 
 
-inherit ruby eutils
+inherit eutils ruby versionator
 
 SRC_URI="http://gems.rubyforge.org/gems/${P}.gem"
 
@@ -62,14 +62,13 @@ gems_src_install() {
 	fi
 
 	# RI documentation installation: bug #145222
-	if gem --version|grep -q ^0.9; then
+	if version_is_at_least "0.9" $(gem --version); then
 		if use doc; then
 			myconf="--ri ${myconf}"
 		else
 			myconf="--no-ri ${myconf}"
 		fi
 	fi
-
 
 	dodir ${GEMSDIR}
 	gem install ${GEM_SRC} -v ${PV} ${myconf} -l -i ${ED}/${GEMSDIR} || die "gem install failed: gem-$(gem --version) install ${GEM_SRC} -v ${PV} ${myconf} -l -i ${ED}/${GEMSDIR}"
