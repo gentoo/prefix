@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r14.ebuild,v 1.10 2008/01/04 13:17:25 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r14.ebuild,v 1.11 2008/01/10 10:29:37 ulm Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ WANT_AUTOCONF="2.1"
 
 inherit flag-o-matic eutils toolchain-funcs autotools
 
-DESCRIPTION="An incredibly powerful, extensible text editor"
+DESCRIPTION="The extensible, customizable, self-documenting real-time display editor"
 HOMEPAGE="http://www.gnu.org/software/emacs/"
 SRC_URI="mirror://gnu/emacs/${P}a.tar.gz
 	mirror://gentoo/${P}-patches-1.tar.bz2
@@ -16,7 +16,7 @@ SRC_URI="mirror://gnu/emacs/${P}a.tar.gz
 
 LICENSE="GPL-2 FDL-1.1 BSD"
 SLOT="21"
-KEYWORDS="~amd64 ~sparc-solaris ~x86 ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 IUSE="X Xaw3d leim motif nls sendmail"
 
 RDEPEND="sys-libs/ncurses

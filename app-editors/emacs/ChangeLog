@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.226 2008/01/04 13:17:25 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.227 2008/01/10 10:29:37 ulm Exp $
+
+  10 Jan 2008; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r14.ebuild:
+  Update DESCRIPTION. Re-add dropped keywords, following dependencies.
 
   04 Jan 2008; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r14.ebuild:
   Remove lesstif USE flag wrt bug #117057. Be verbose about toolkit selection.
