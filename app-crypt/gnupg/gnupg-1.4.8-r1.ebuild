@@ -1,13 +1,13 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-1.4.8.ebuild,v 1.1 2007/12/20 19:43:36 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-1.4.8-r1.ebuild,v 1.1 2008/01/10 16:34:51 alonbl Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic
 
-ECCVER="0.1.8"
-ECCVER_GNUPG="1.4.7"
+ECCVER="0.2.0"
+ECCVER_GNUPG="1.4.8"
 ECC_PATCH="${PN}-${ECCVER_GNUPG}-ecc${ECCVER}.diff"
 MY_P=${P/_/}
 
@@ -21,7 +21,7 @@ SRC_URI="mirror://gnupg/gnupg/${P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos"
 IUSE="bzip2 bindist curl ecc idea ldap nls readline selinux smartcard static usb zlib linguas_ru"
 
 COMMON_DEPEND="
@@ -69,7 +69,6 @@ src_unpack() {
 				"s/+ VERSION='${ECCVER_GNUPG}-ecc${ECCVER}'/+ VERSION='${PV}-ecc${ECCVER}'/" \
 				"${WORKDIR}/${ECC_PATCH}"
 
-			EPATCH_OPTS="-p0 -d ${WORKDIR}" epatch "${FILESDIR}/${P}-ecc-glue.patch"
 			epatch "${WORKDIR}/${ECC_PATCH}"
 		fi
 	fi

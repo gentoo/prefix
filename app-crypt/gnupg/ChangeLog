@@ -1,6 +1,20 @@
 # ChangeLog for app-crypt/gnupg
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.311 2007/12/20 19:43:36 alonbl Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.313 2008/01/10 16:34:51 alonbl Exp $
+
+*gnupg-1.4.8-r1 (10 Jan 2008)
+
+  10 Jan 2008; Alon Bar-Lev <alonbl@gentoo.org>
+  -files/gnupg-1.4.8-ecc-glue.patch, -gnupg-1.4.8.ebuild,
+  +gnupg-1.4.8-r1.ebuild:
+  ecc bump
+
+  10 Jan 2008; Alon Bar-Lev <alonbl@gentoo.org>
+  -files/gnupg-1.9.20-fbsd.patch, -files/gnupg-1.9.20-fbsd-gcc41.patch,
+  -files/gnupg-1.9.94-fbsd.patch, -files/gnupg-1.9.94-make.patch,
+  -gnupg-1.9.21.ebuild, -gnupg-1.9.21-r1.ebuild, -gnupg-1.9.22.ebuild,
+  -gnupg-1.9.94.ebuild:
+  Cleanup
 
 *gnupg-2.0.8 (20 Dec 2007)
 *gnupg-1.4.8 (20 Dec 2007)
