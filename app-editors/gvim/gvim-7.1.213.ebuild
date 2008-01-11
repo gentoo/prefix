@@ -11,7 +11,7 @@ VIM_GENTOO_PATCHES="vim-${VIM_VERSION}-gentoo-patches.tar.bz2"
 VIM_ORG_PATCHES="vim-patches-${PV}.tar.gz"
 GVIMRC_FILE_SUFFIX="-r1"
 GVIM_DESKTOP_SUFFIX="-r1"
-PREFIX_VER="2"
+PREFIX_VER="3"
 
 SRC_URI="ftp://ftp.vim.org/pub/vim/unstable/unix/vim-${VIM_VERSION}.tar.bz2
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-lang.tar.gz
