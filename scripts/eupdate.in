@@ -484,7 +484,7 @@ fetch_files() {
 		$1 | \
 	while read l ; do
 		t=$(eval a='$l'; for i in $a ; do echo $i ; break ; done)
-	 	t=$(env -i P=$p PN=$pn PV=$pv PR=$pr PVR=$mver PF=$pf FILESDIR=files bash -c "${eclass} ${funcs} ${gvars}; echo $t")
+	 	t=$(env -i P=$p PN=$pn PV=$pv PR=$pr PVR=$mver PF=$pf FILESDIR=files $(type -P bash) -c "${eclass} ${funcs} ${gvars}; echo $t")
 		# we can have file{1,2} stuff in the first t here, so iterate
 		# over the result list...
 		for u in $t ; do
