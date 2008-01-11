@@ -8,9 +8,11 @@ inherit eutils flag-o-matic
 
 GCC_VERS=${PV/_p*/}
 APPLE_VERS=${PV/*_p/}
+LIBSTDCXX_APPLE_VERSION=16
 DESCRIPTION="Apple branch of the GNU Compiler Collection, from 10.5"
 HOMEPAGE="http://gcc.gnu.org"
-SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/gcc_42-${APPLE_VERS}.tar.gz"
+SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/gcc_42-${APPLE_VERS}.tar.gz
+		http://www.opensource.apple.com/darwinsource/tarballs/other/libstdcxx-${LIBSTDCXX_APPLE_VERSION}.tar.gz"
 
 # Magic from toolchain.eclass
 export CTARGET=${CTARGET:-${CHOST}}
@@ -118,9 +120,6 @@ src_compile() {
 		--disable-checking \
 		--disable-werror"
 
-	# languages to build
-	myconf="${myconf} --enable-languages=${langs}"
-
 	# ???
 	myconf="${myconf} --enable-shared --enable-threads=posix"
 
@@ -164,17 +163,32 @@ int main() {
 		--with-as=${EPREFIX}/usr/bin/${CTARGET}-as \
 		--with-ld=${EPREFIX}/usr/bin/${CTARGET}-ld"
 
+	#libstdcxx does not support this one
+	local gccconf="${myconf} --enable-languages=${langs}"
 	mkdir -p "${WORKDIR}"/build
 	cd "${WORKDIR}"/build
-	einfo "Configuring GCC with: ${myconf//--/\n\t--}"
-	"${S}"/configure ${myconf} || die "conf failed"
+	einfo "Configuring GCC with: ${gccconf//--/\n\t--}"
+	"${S}"/configure ${gccconf} || die "conf failed"
 	make -j1 bootstrap || die "emake failed"
+
+	local libstdcxxconf="${myconf} --disable-libstdcxx-debug"
+	mkdir -p "${WORKDIR}"/build_libstdcxx || die
+	cd "${WORKDIR}"/build_libstdcxx
+	#the build requires the gcc built before, so link to it
+	ln -s "${WORKDIR}"/build/gcc "${WORKDIR}"/build_libstdcxx/gcc || die
+	einfo "Configuring libstdcxx with: ${libstdcxxconf//--/\n\t--}"
+	"${WORKDIR}"/libstdcxx-${LIBSTDCXX_APPLE_VERSION}/libstdcxx/configure ${libstdcxxconf} || die "conf failed"
+	make -j1 all || die "emake failed"
 }
 
 src_install() {
 	cd "${WORKDIR}"/build
 	# -jX doesn't work
 	make DESTDIR="${D}" install || die
+
+	cd "${WORKDIR}"/build_libstdcxx
+	make DESTDIR="${D}" install || die
+	cd "${WORKDIR}"/build
 
 	use build && rm -rf "${ED}"/usr/{man,share}
 	find "${ED}" -name libiberty.a -exec rm -f {} \;
