@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/speex
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/speex/ChangeLog,v 1.74 2008/01/09 16:37:31 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/speex/ChangeLog,v 1.75 2008/01/10 14:58:30 drac Exp $
+
+  10 Jan 2008; Samuli Suominen <drac@gentoo.org> speex-1.1.7.ebuild,
+  -speex-1.1.11.1.ebuild, -speex-1.2_beta2.ebuild:
+  Remove old versions, leave one ebuild for mips wrt #204405
 
   09 Jan 2008; Jeroen Roovers <jer@gentoo.org> speex-1.2_beta3.ebuild:
   Stable for HPPA (bug #204405).
