@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit toolchain-funcs eutils elisp-common perl-module bash-completion
+inherit toolchain-funcs eutils elisp-common perl-module bash-completion multilib
 
 MY_PV="${PV/_rc/.rc}"
 MY_P="${PN}-${MY_PV}"
@@ -62,7 +62,8 @@ exportmakeopts() {
 	# broken assumptions, because of broken build system ...
 	myopts="${myopts} NO_FINK=YesPlease NO_DARWIN_PORTS=YesPlease"
 	[[ ${CHOST} == *-solaris* ]] &&
-		myopts="${myopts} NEEDS_LIBICONV=YesPlease INSTALL=install TAR=tar"
+		myopts="${myopts} INSTALL=install TAR=tar"
+	use elibc_glibc || myopts="${myopts} NEEDS_LIBICONV=YesPlease ICONVDIR=${EPREFIX}/usr/$(get_libdir)"
 
 	use iconv || myopts="${myopts} NO_ICONV=YesPlease"
 	use tk || myopts="${myopts} NO_TCLTK=YesPlease"
