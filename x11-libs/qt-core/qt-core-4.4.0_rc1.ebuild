@@ -21,7 +21,7 @@ LICENSE="|| ( QPL-1.0 GPL-2 )"
 SLOT="4"
 KEYWORDS="~x86-linux ~x86-macos"
 
-IUSE="doc glib qt3support ssl aqua"
+IUSE="doc glib qt3support ssl"
 
 RDEPEND="ssl? ( dev-libs/openssl )
 	sys-libs/zlib
@@ -35,7 +35,6 @@ QT4_TARGET_DIRECTORIES="src/tools/moc src/tools/rcc src/tools/uic src/corelib sr
 
 src_unpack() {
 	qt4-build_src_unpack
-	use aqua && epatch "${FILESDIR}"/${PN}-4.4.0-darwin.patch
 }
 
 src_compile() {
@@ -50,8 +49,6 @@ src_compile() {
 	-no-xinerama -no-xshape -no-sm -no-opengl -no-nas-sound -no-qdbus -iconv -no-cups -no-nis \
 	-no-gif -no-libpng -no-libmng -no-libjpeg -system-zlib -no-webkit -no-phonon \
 	-no-xmlpatterns -no-freetype -no-libtiff  -no-accessibility -no-fontconfig -no-opengl"
-
-	use aqua && myconf="${myconf} -no-framework"
 
 	echo env CXX="$(tc-getCXX) ${CXXFLAGS}" ./configure ${myconf}
 	env CXX="$(tc-getCXX) ${CXXFLAGS}" ./configure ${myconf} || die
