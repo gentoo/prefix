@@ -18,7 +18,7 @@ SRC_URI="mirror://sourceforge/clisp/${CLISP_PACKAGE}.tar.bz2"
 # under GNU LGPL." -ffcall author
 LICENSE="|| ( GPL-2 LGPL-2 )"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-solaris"
+KEYWORDS="~amd64 ~x86 ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 S=${WORKDIR}/${CLISP_PACKAGE}/${PN}
