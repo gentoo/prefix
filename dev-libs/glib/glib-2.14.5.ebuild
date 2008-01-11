@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.14.3.ebuild,v 1.12 2007/12/11 05:18:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.14.5.ebuild,v 1.1 2008/01/10 23:00:15 eva Exp $
 
 EAPI="prefix"
 
@@ -11,13 +11,13 @@ HOMEPAGE="http://www.gtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="debug doc hardened elibc_glibc"
 
 RDEPEND="virtual/libc
 	virtual/libiconv"
 DEPEND="${RDEPEND}
-	>=dev-util/pkgconfig-0.14
+	>=dev-util/pkgconfig-0.16
 	>=sys-devel/gettext-0.11
 	doc? (
 		>=dev-util/gtk-doc-1.4
@@ -27,9 +27,6 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
-	# help the asyncqueue-test pass:
-	use hppa && replace-flags -O[2-3] -O1
 
 	if use ppc64 && use hardened ; then
 		replace-flags -O[2-3] -O1

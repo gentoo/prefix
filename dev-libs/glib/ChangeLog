@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/glib
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.298 2007/11/27 21:07:42 jer Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.299 2008/01/10 23:00:15 eva Exp $
+
+*glib-2.14.5 (10 Jan 2008)
+
+  10 Jan 2008; Gilles Dartiguelongue <eva@gentoo.org> +glib-2.14.5.ebuild:
+  bump to 2.14.5
 
   27 Nov 2007; Jeroen Roovers <jer@gentoo.org> glib-2.14.3.ebuild:
   Make hppa use -O1.
