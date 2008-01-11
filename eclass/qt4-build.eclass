@@ -45,6 +45,11 @@ qt4-build_src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	use aqua && sed \
+		-e '/^CONFIG/s:app_bundle::' \
+		-e '/^CONFIG/s:plugin_no_soname:plugin_with_soname absolute_library_soname:' \
+		-i mkspecs/macx-g++/qmake.conf || die "sed failed"
+
 	# Don't let the user go too overboard with flags.  If you really want to, uncomment
 	# out the line below and give 'er a whirl.
 	strip-flags
@@ -64,7 +69,7 @@ qt4-build_src_install() {
 standard_configure_options() {
 	local myconf=""
 
-	[ $(get_libdir) != "lib" ] && myconf="${myconf} -L/usr/$(get_libdir)"
+	[ $(get_libdir) != "lib" ] && myconf="${myconf} -L${EPREFIX}/usr/$(get_libdir)"
 
 	# Disable visibility explicitly if gcc version isn't 4
 	if [[ "$(gcc-major-version)" != "4" ]]; then
@@ -72,6 +77,8 @@ standard_configure_options() {
 	fi
 
 	use debug && myconf="${myconf} -debug -no-separate-debug-info" || myconf="${myconf} -release -no-separate-debug-info"
+
+	use aqua && myconf="${myconf} -no-framework"
 
 	myconf="${myconf} -stl -verbose -largefile -confirm-license -no-rpath\
 	-prefix ${QTPREFIXDIR} -bindir ${QTBINDIR} -libdir ${QTLIBDIR} -datadir ${QTDATADIR} \
