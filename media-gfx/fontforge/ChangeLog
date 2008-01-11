@@ -1,6 +1,38 @@
 # ChangeLog for media-gfx/fontforge
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/ChangeLog,v 1.65 2007/12/27 23:02:18 dirtyepic Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/ChangeLog,v 1.72 2008/01/10 17:49:03 jer Exp $
+
+  10 Jan 2008; Jeroen Roovers <jer@gentoo.org> fontforge-20071210.ebuild:
+  Stable for HPPA (bug #205145).
+
+  10 Jan 2008; Fabian Groffen <grobian@gentoo.org>
+  fontforge-20070312.ebuild, fontforge-20070501.ebuild,
+  fontforge-20070607.ebuild, fontforge-20070723.ebuild,
+  fontforge-20070808.ebuild, fontforge-20070831.ebuild,
+  fontforge-20070915.ebuild, fontforge-20071002.ebuild,
+  fontforge-20071110.ebuild, fontforge-20071210.ebuild,
+  fontforge-20080109.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
+
+  10 Jan 2008; Raúl Porcel <armin76@gentoo.org> fontforge-20071210.ebuild:
+  alpha/ia64 stable wrt #205145
+
+  10 Jan 2008; Ferris McCormick <fmccor@gentoo.org>
+  fontforge-20071210.ebuild:
+  Sparc stable --- Bug #205145 --- no known problems.
+
+  10 Jan 2008; Luca Barbato <lu_zero@gentoo.org> fontforge-20071210.ebuild:
+  Marked ppc and ppc64
+
+  10 Jan 2008; Christian Faulhammer <opfer@gentoo.org>
+  fontforge-20071210.ebuild:
+  stable x86, bug 205145
+
+*fontforge-20080109 (10 Jan 2008)
+
+  10 Jan 2008; Mike Frysinger <vapier@gentoo.org>
+  +fontforge-20080109.ebuild:
+  Version bump.
 
   27 Dec 2007; Ryan Hill <dirtyepic@gentoo.org>
   +files/fontforge-20071210-noX-nopython-build.patch,
