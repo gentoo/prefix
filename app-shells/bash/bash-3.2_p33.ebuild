@@ -95,7 +95,7 @@ src_unpack() {
 	eprefixify config-top.h pathnames.h.in
 
 	# needed only for interix, although should work for others too
-	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${P}-getcwd.patch
+	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-3.2-getcwd.patch
 
 	# modify the bashrc file for prefix
 	cp "${FILESDIR}"/bashrc "${T}"
