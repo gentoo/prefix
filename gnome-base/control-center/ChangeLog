@@ -1,6 +1,12 @@
 # ChangeLog for gnome-base/control-center
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/ChangeLog,v 1.259 2007/12/13 07:23:12 compnerd Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/control-center/ChangeLog,v 1.260 2008/01/11 00:06:35 eva Exp $
+
+*control-center-2.20.3 (10 Jan 2008)
+
+  10 Jan 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +control-center-2.20.3.ebuild:
+  bump to 2.20.3
 
 *control-center-2.20.1-r1 (13 Dec 2007)
 
