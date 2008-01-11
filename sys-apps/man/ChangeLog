@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/man
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.124 2008/01/05 01:13:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.125 2008/01/10 09:23:54 vapier Exp $
+
+  10 Jan 2008; Mike Frysinger <vapier@gentoo.org> man-1.6f.ebuild:
+  The standard for lzma is app-arch/lzma-utils, not app-arch/lzma #205147.
 
 *man-1.6f (05 Jan 2008)
 
