@@ -1,0 +1,45 @@
+# ChangeLog for app-text/htmlinc
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/htmlinc/ChangeLog,v 1.15 2007/05/14 20:13:36 bangert Exp $
+
+  14 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
+  add <herd>no-herd</herd>
+
+  21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  15 Oct 2005; Fabian Groffen <grobian@gentoo.org>
+  htmlinc-1.0_beta1-r1.ebuild:
+  Marked ~ppc-macos (bug #108635)
+
+  16 Jul 2005; Joseph Jezak <josejx@gentoo.org> htmlinc-1.0_beta1.ebuild:
+  Marked ~ppc at the request of bug #99214.
+
+*htmlinc-1.0_beta1-r1 (30 May 2005)
+
+  30 May 2005; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  +htmlinc-1.0_beta1-r1.ebuild:
+  mark ~ppc
+  add README file
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  htmlinc-1.0_beta1.ebuild:
+  virtual/glibc -> virtual/libc
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*htmlinc-1.0_beta1 (22 Jun 2002)
+
+  16 Sep 2002; Matthew Kennedy <mkennedy@gentoo.org>
+  htmlinc-1.0_beta1.ebuild, files/digest-htmlinc-1.0_beta1, ChangeLog,
+  files/htmlinc-gcc3-gentoo.patch :
+
+  Resolves bug 7794 for gcc3.2. Thanks to <hanno@gentoo.org>
+
+  2 Aug 2002; phoen][x <phoenix@gentoo.org> htmlinc-1.0_beta1.ebuild :
+
+  Added KEYWORDS, SLOT.
+
+  22 Jun 2002; Nicholas Jones <carpaski@gentoo.org> :
+
+  Initial submission for Hanno Boeck <hanno@gmx.de>
