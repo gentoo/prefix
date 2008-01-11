@@ -22,6 +22,10 @@
 ##   End example
 ##
 
+# Fabian Groffen <grobian@gentoo.org> (11 Jan 2008)
+# Screws up things, see bug #204998
+<sys-devel/gcc-3.4.0
+
 # Fabian Groffen <grobian@gentoo.org> (05 Jan 2008)
 # missing rule in the build.xml file
 =dev-java/sun-javamail-1.4.1
