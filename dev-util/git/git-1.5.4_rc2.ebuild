@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.4_rc2.ebuild,v 1.1 2008/01/01 19:51:52 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.4_rc2.ebuild,v 1.2 2008/01/10 11:51:48 ferdy Exp $
 
 EAPI="prefix"
 
@@ -19,7 +19,7 @@ SRC_URI="mirror://kernel/software/scm/git/${MY_P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="curl cgi doc emacs gtk iconv mozsha1 perl ppcsha1 tk webdav"
 
 DEPEND="
@@ -33,7 +33,7 @@ DEPEND="
 	webdav? ( dev-libs/expat )
 	emacs?  ( virtual/emacs )"
 RDEPEND="${DEPEND}
-	cgi?	( virtual/perl-CGI )
+	cgi?    ( virtual/perl-CGI )
 	perl?   ( dev-perl/Error )
 	gtk?    ( >=dev-python/pygtk-2.8 )"
 
@@ -121,7 +121,6 @@ src_install() {
 	dodoc README Documentation/{SubmittingPatches,CodingGuidelines}
 	use doc && dodir /usr/share/doc/${PF}/html
 	for d in / /howto/ /technical/ ; do
-		einfo "Doing Documentation${d}"
 		docinto ${d}
 		dodoc Documentation${d}*.txt
 		use doc && dohtml -p ${d} Documentation${d}*.html
@@ -189,16 +188,14 @@ src_test() {
 		MY_MAKEOPTS="${MY_MAKEOPTS} NO_SVN_TESTS=YesPlease"
 	has_version app-arch/unzip || \
 		rm "${S}"/t/t5000-tar-tree.sh
-	# Stupid CVS won't let some people commit as root
-	if has userpriv "${FEATURES}"; then
-		einfo "Enabling CVS tests as we have FEATURES=userpriv"
-	else
+	if ! has userpriv "${FEATURES}"; then
 		ewarn "Skipping CVS tests because CVS does not work as root!"
 		ewarn "You should retest with FEATURES=userpriv!"
 		for i in t9200-git-cvsexportcommit.sh t9600-cvsimport.sh ; do
 			rm "${S}"/t/${i} || die "Failed to remove ${i}"
 		done
 	fi
+	built_with_use dev-util/cvs server || rm "${S}"/t/t9600-cvsimport.sh
 	emake ${MY_MAKEOPTS} DESTDIR="${D}" prefix="${EPREFIX}"/usr test || die "tests failed"
 }
 
@@ -216,13 +213,14 @@ pkg_postinst() {
 	showpkgdeps git-cvsimport ">=dev-util/cvsps-2.1"
 	showpkgdeps git-svnimport "dev-util/subversion(USE=perl)"
 	showpkgdeps git-svn \
+		"USE=perl" \
 		"dev-util/subversion(USE=perl)" \
 		"dev-perl/libwww-perl" \
 		"dev-perl/TermReadKey"
 	showpkgdeps git-quiltimport "dev-util/quilt"
 	showpkgdeps git-cvsserver "dev-perl/DBI" "dev-perl/DBD-SQLite"
 	showpkgdeps git-instaweb \
-		"|| ( www-servers/lighttpd www-servers/apache(SLOT=2) )"
+		"|| ( www-servers/lighttpd www-servers/apache )"
 	showpkgdeps git-send-email "USE=perl"
 	showpkgdeps git-remote "USE=perl"
 	echo
