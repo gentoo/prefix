@@ -1,6 +1,9 @@
 # ChangeLog for x11-apps/xmodmap
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xmodmap/ChangeLog,v 1.40 2007/12/20 00:18:18 cla Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xmodmap/ChangeLog,v 1.41 2008/01/10 14:31:06 dang Exp $
+
+  10 Jan 2008; Daniel Gryniewicz <dang@gentoo.org> xmodmap-1.0.3.ebuild:
+  Marked stable on amd64 for bug #202087
 
   19 Dec 2007; Dawid Węgliński <cla@gentoo.org> xmodmap-1.0.3.ebuild:
   Stable on x86 (bug #202087)
