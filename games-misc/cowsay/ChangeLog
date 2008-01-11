@@ -1,0 +1,65 @@
+# ChangeLog for games-misc/cowsay
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-misc/cowsay/ChangeLog,v 1.18 2007/05/09 18:44:51 tupone Exp $
+
+*cowsay-3.03-r1 (09 May 2007)
+
+  09 May 2007; Tupone Alfredo <tupone@gentoo.org>
+  +files/cowsay-3.03-tongue.patch, +cowsay-3.03-r1.ebuild:
+  Cows tongue fixed, bug #177773 by Dirk
+
+  28 Feb 2007; Peter Weller <welp@gentoo.org> cowsay-3.03.ebuild:
+  Keyworded x86-fbsd
+
+  06 Dec 2006; Chris Gianelloni <wolf31o2@gentoo.org> cowsay-3.03.ebuild:
+  Removed sed-4 from *DEPEND.
+
+  11 May 2006; Thomas Cort <tcort@gentoo.org> cowsay-3.03.ebuild:
+  Stable on alpha.
+
+  03 Apr 2006; Thomas Cort <tcort@gentoo.org> cowsay-3.03.ebuild:
+  Added ~alpha keyword.
+
+  19 Feb 2006; Yuta SATOH <nigoro@gentoo.org> cowsay-3.03.ebuild:
+  Stable on ppc64
+
+  23 Dec 2005; Yuta SATOH <nigoro@gentoo.org> cowsay-3.03.ebuild:
+  added ~ppc64
+
+  13 Jul 2005; Stephen Bennett <spb@gentoo.org> cowsay-3.03.ebuild:
+  mips stable
+
+  01 Jun 2005; Stephen Bennett <spb@gentoo.org> cowsay-3.03.ebuild:
+  ~mips keywords
+
+  06 Feb 2005; Aaron Walker <ka0ttic@gentoo.org> +files/cowsay.bashcomp,
+  cowsay-3.03.ebuild:
+  Added cowsay command-line completion.
+
+  01 Feb 2005; Kito <kito@gentoo.org> cowsay-3.03.ebuild:
+  added ~ppc-macos
+
+  15 Apr 2004; Guy Martin <gmsoft@gentoo.org> cowsay-3.03.ebuild:
+  Marked stable on hppa.
+
+  20 Mar 2004; Michael Sterrett <mr_bones_@gentoo.org> cowsay-3.03.ebuild:
+  add STANDARD_HELP_VERSION=1 to the code to fix bug #45238; stop using the
+  provided install.sh script since it doesn't really make src_install cleaner.
+
+  07 Jan 2004; Jon Portnoy <avenj@gentoo.org> cowsay-3.03.ebuild :
+  AMD64 keywords.
+
+  23 Sep 2003; Todd Sunderlin <todd@gentoo.org> cowsay-3.03.ebuild:
+  marked stable for sparc
+
+  06 Jun 2003; <msterret@gentoo.org> cowsay-3.03.ebuild:
+  DEPEND on sed >=4
+
+*cowsay-3.03 (15 Jul 2002)
+
+  13 May 2003; Martin Holzer <mholzer@gentoo.org> cowsay-3.03.ebuild:
+  Fixing man page. Closes #20929.
+
+  15 Jul 2002; Maik Schreiber <blizzy@gentoo.org> :
+  Initial import, closes bug #4778.
+  ebuild submitted by Marcin Jessa <yazzy@yazzy.org>
