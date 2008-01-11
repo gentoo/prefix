@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/libtorrent
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.105 2007/11/13 16:30:42 drac Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.106 2008/01/10 08:48:45 gmsoft Exp $
+
+  10 Jan 2008; Guy Martin <gmsoft@gentoo.org> libtorrent-0.11.9.ebuild:
+  Added hppa to KEYWORDS.
 
   13 Nov 2007; Samuli Suominen <drac@gentoo.org> libtorrent-0.11.8.ebuild:
   amd64 stable wrt #198558
