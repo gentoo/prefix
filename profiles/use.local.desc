@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3282 2008/01/10 03:27:07 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3284 2008/01/10 18:38:07 phreak Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -916,10 +916,8 @@ media-gfx/imagemagick:gs - enable ghostscript support
 media-gfx/imagemagick:hdri - Enables High Dynamic Range Images formats
 media-gfx/imagemagick:q32 - Set quantum depth to 32
 media-gfx/imagemagick:q8 - Set quantum depth to 8
-media-gfx/inkscape:boost - use external boost
 media-gfx/inkscape:dia - Pull in app-office/dia for dia import extension
 media-gfx/inkscape:inkjar - enables support for OpenOffice.org SVG jar files
-media-gfx/inkscape:plugin - enables extra plugins
 media-gfx/inkscape:postscript - Pull in dependencies needed for the postscript import extension
 media-gfx/k3d:plib - build plib-based import/export library
 media-gfx/maya:bundled-libs - Use the bundled versions of libs rather than system ones (libstdc++, libgcc_s, libqt, and libXm)
@@ -1918,6 +1916,7 @@ sys-devel/gcc:objc - Build support for the Objective C code language
 sys-devel/gcc:objc++ - Build support for the Objective C++ language
 sys-devel/gcc:objc-gc - Build support for the Objective C code language Garbage Collector
 sys-devel/gcc:openmp - Build support for the OpenMP (support parallel computing)
+sys-devel/gettext:openmp - Build support for OpenMP (support parallel computing)
 sys-devel/kgcc64:multislot - Allow for SLOTs to include minor version (3.3.4 instead of just 3.3)
 sys-devel/libperl:ithreads - Enable Perl threads, has some compatibility problems
 sys-freebsd/freebsd-lib:gpib - Enable gpib support (TODO improve description)

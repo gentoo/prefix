@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8105 2008/01/09 18:20:55 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8107 2008/01/11 02:07:57 dirtyepic Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -21,7 +21,17 @@
 ##   End example
 ##
 
-# Bernard Cafarelli <voyageur@gentoo.org (09 Jan 2008)
+# Ryan Hill <dirtyepic@gentoo.org> (10 Jan 2008)
+# Duplicates functionality already in sys-devel/distcc
+# Masked for removal (treecleaner)
+# Bug #192741
+sys-devel/distcc-config
+
+# MATSUU Takuto <matsuu@gentoo.org> (10 Jan 2008)
+# Masked for removal
+app-i18n/scim-cvs
+
+# Bernard Cafarelli <voyageur@gentoo.org> (09 Jan 2008)
 # Mask unstable gnustep and packages depending on it
 >=gnustep-base/gnustep-back-art-0.13.0
 >=gnustep-base/gnustep-back-cairo-0.13.0
@@ -32,12 +42,12 @@
 >=gnustep-apps/gorm-1.2.2
 >=gnustep-apps/simpleagenda-0.33
 
-# Carsten Lohrke <carlo@gentoo.org (09 Jan 2008)
+# Carsten Lohrke <carlo@gentoo.org> (09 Jan 2008)
 # Masked for removal
 app-admin/modlogan
 dev-util/fenris
 
-# Carsten Lohrke <carlo@gentoo.org (07 Jan 2008)
+# Carsten Lohrke <carlo@gentoo.org> (07 Jan 2008)
 # Masked for removal
 media-sound/jmax
 app-emulation/basiliskII
