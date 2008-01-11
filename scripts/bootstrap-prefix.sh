@@ -168,7 +168,7 @@ bootstrap_setup() {
 			einfo "profile in ${PORTDIR} for your CHOST ${CHOST}"
 			;;
 	esac
-	if [[ -n ${profile} -a ! -e ${ROOT}/etc/make.profile ]] ; then
+	if [[ -n ${profile} && ! -e ${ROOT}/etc/make.profile ]] ; then
 		ln -s "${profile}" "${ROOT}"/etc/make.profile
 		einfo "Your profile is set to ${profile}."
 	fi
