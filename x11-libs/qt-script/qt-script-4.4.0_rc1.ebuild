@@ -13,7 +13,7 @@ HOMEPAGE="http://www.trolltech.com/"
 MY_PV=${PV/_rc/-tp}
 
 SRC_URI="!aqua? ( ftp://ftp.trolltech.com/pub/qt/source/qt-x11-${SRCTYPE}-${MY_PV}.tar.gz )
-    aqua? ( ftp://ftp.trolltech.com/pub/qt/source/qt-mac-${SRCTYPE}-${MY_PV}.tar.gz )"
+	aqua? ( ftp://ftp.trolltech.com/pub/qt/source/qt-mac-${SRCTYPE}-${MY_PV}.tar.gz )"
 use aqua || S=${WORKDIR}/qt-x11-${SRCTYPE}-${MY_PV}
 use aqua && S=${WORKDIR}/qt-mac-${SRCTYPE}-${MY_PV}
 
@@ -45,7 +45,7 @@ src_compile() {
 	-no-xinerama -no-xshape -no-sm -no-opengl -no-nas-sound -no-qdbus -iconv -no-cups -no-nis \
 	-no-gif -no-libpng -no-libmng -no-libjpeg -no-openssl -system-zlib -no-webkit -no-phonon -no-qt3support \
 	-no-xmlpatterns -no-freetype -no-libtiff  -no-accessibility -no-fontconfig -no-glib -no-opengl ${myconf}"
-	    
+
 	use aqua && myconf="${myconf} -no-framework"
 
 	echo ./configure ${myconf}
