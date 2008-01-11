@@ -21,8 +21,6 @@ LICENSE="|| ( QPL-1.0 GPL-2 )"
 SLOT="4"
 KEYWORDS="~x86-linux ~x86-macos"
 
-IUSE="aqua"
-
 RDEPEND="~x11-libs/qt-core-${PV}"
 
 DEPEND="${RDEPEND}"
@@ -32,7 +30,6 @@ QT4_TARGET_DIRECTORIES="src/xmlpatterns tools/patternist"
 src_unpack() {
 
 	qt4-build_src_unpack
-	use aqua && epatch "${FILESDIR}"/${PN}-4.4.0-darwin.patch
 
 	skip_qmake_build_patch
 	skip_project_generation_patch
@@ -42,8 +39,6 @@ src_unpack() {
 src_compile() {
 	local myconf=$(standard_configure_options)
 	myconf="${myconf} -xmlpatterns"
-
-	use aqua && myconf="${myconf} -no-framework"
 
 	echo ./configure ${myconf}
 	./configure ${myconf} || die
