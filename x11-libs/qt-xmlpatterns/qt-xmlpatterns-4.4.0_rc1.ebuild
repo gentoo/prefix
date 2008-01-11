@@ -13,7 +13,7 @@ HOMEPAGE="http://www.trolltech.com/"
 MY_PV=${PV/_rc/-tp}
 
 SRC_URI="!aqua? ( ftp://ftp.trolltech.com/pub/qt/source/qt-x11-${SRCTYPE}-${MY_PV}.tar.gz )
-   aqua? ( ftp://ftp.trolltech.com/pub/qt/source/qt-mac-${SRCTYPE}-${MY_PV}.tar.gz )"
+	aqua? ( ftp://ftp.trolltech.com/pub/qt/source/qt-mac-${SRCTYPE}-${MY_PV}.tar.gz )"
 use aqua || S=${WORKDIR}/qt-x11-${SRCTYPE}-${MY_PV}
 use aqua && S=${WORKDIR}/qt-mac-${SRCTYPE}-${MY_PV}
 
