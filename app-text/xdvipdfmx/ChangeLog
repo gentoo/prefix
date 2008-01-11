@@ -1,0 +1,72 @@
+# ChangeLog for app-text/xdvipdfmx
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvipdfmx/ChangeLog,v 1.22 2007/12/19 04:50:12 jer Exp $
+
+  19 Dec 2007; Jeroen Roovers <jer@gentoo.org> xdvipdfmx-0.4.ebuild:
+  Stable for HPPA too. Fixed installing COPYING.
+
+  01 Dec 2007; Markus Rothe <corsair@gentoo.org> xdvipdfmx-0.4.ebuild:
+  Stable on ppc64
+
+  19 Nov 2007; Ferris McCormick <fmccor@gentoo.org> xdvipdfmx-0.4.ebuild:
+  Sparc stable.  30 days w/o any bugs, needed for xetex (bug #185358).
+
+  25 Oct 2007; Raúl Porcel <armin76@gentoo.org> xdvipdfmx-0.4.ebuild:
+  Add ~alpha/~ia64 wrt #195815
+
+*xdvipdfmx-0.4 (15 Oct 2007)
+
+  15 Oct 2007; Alexis Ballier <aballier@gentoo.org>
+  +files/xdvipdfmx-0.4-ft2-internals.patch, +xdvipdfmx-0.4.ebuild:
+  version bump, plus backport a patch from upstream to avoid segfaults with
+  recents freetype-2, bug #185358
+
+  20 May 2007; Christian Faulhammer <opfer@gentoo.org> xdvipdfmx-0.3.ebuild:
+  stable amd64, bug 176895
+
+  06 May 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  xdvipdfmx-0.3.ebuild:
+  ppc stable, bug #176895
+
+  03 May 2007; Raúl Porcel <armin76@gentoo.org> xdvipdfmx-0.3.ebuild:
+  ia64 + x86 stable wrt bug 176895
+
+  03 May 2007; Jeroen Roovers <jer@gentoo.org> xdvipdfmx-0.3.ebuild:
+  Stable for HPPA (bug #176895).
+
+  03 May 2007; Ferris McCormick <fmccor@gentoo.org> xdvipdfmx-0.3.ebuild:
+  Sparc stable --- Bug #176895 --- Has been working for over 6 months.
+
+  03 May 2007; Joshua <joslwah@gentoo.org> xdvipdfmx-0.3.ebuild:
+  ppc64 stable
+
+  26 Mar 2007; Raúl Porcel <armin76@gentoo.org> xdvipdfmx-0.3.ebuild:
+  Add ~ia64 wrt bug 153132
+
+  12 Mar 2007; Alexandre Buisse <nattfodd@gentoo.org> metadata.xml:
+  Replaced text-markup by tex as maintaining herd (text-markup split).
+
+  28 Jan 2007; Joshua <joslwah@gentoo.org> xdvipdfmx-0.3.ebuild:
+  Added dependency on tetex.  Thanks Ron MacNeil.  (Bug 164085)
+
+  26 Nov 2006; Steve Dibb <beandog@gentoo.org> xdvipdfmx-0.3.ebuild:
+  Update homepage
+
+  06 Nov 2006; Ferris McCormick <fmccor@gentoo.org> xdvipdfmx-0.3.ebuild:
+  Add ~amd64 keyword --- Bug #153132
+
+  31 Oct 2006; Christian Faulhammer <opfer@gentoo.org> xdvipdfmx-0.3.ebuild::
+  marked ~x86 as requested in bug #153132
+
+  30 Oct 2006; Jeroen Roovers <jer@gentoo.org> xdvipdfmx-0.3.ebuild:
+  Marked ~hppa (bug #153132).
+
+  30 Oct 2006; nixnut <nixnut@gentoo.org> xdvipdfmx-0.3.ebuild:
+  Added ~ppc keyword wrt bug 153132
+
+  28 Oct 2006; Ferris McCormick <fmccor@gentoo.org> xdvipdfmx-0.3.ebuild:
+  Add ~sparc keyword (Bug #153132).
+
+  18 Oct 2006; Joslwah <joslwah@gentoo.org> ChangeLog:
+  Initial creation of ebuild, to support XeTeX.
+

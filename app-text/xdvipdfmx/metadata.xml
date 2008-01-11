@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+    <pkgmetadata>
+        <herd>tex</herd>
+        <maintainer>
+            <email>joslwah@gentoo.org</email>
+            <name>Joslwah</name>
+        </maintainer>
+        <longdescription lang="en">
+	  This package provides the extended xdvi to pdf converter
+	  needed to deal with unicode enabled TeX's.
+        </longdescription>
+    </pkgmetadata>
+
