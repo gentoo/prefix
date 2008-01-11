@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jaxme/jaxme-0.3.1-r4.ebuild,v 1.2 2007/10/22 10:13:21 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jaxme/jaxme-0.3.1-r4.ebuild,v 1.3 2008/01/10 09:51:13 caster Exp $
 
 EAPI="prefix"
 
@@ -16,12 +16,12 @@ SRC_URI="mirror://apache/ws/${PN}/source/${MY_P}-src.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 COMMON_DEP="
 	>=dev-java/xerces-2.7
-	dev-java/junit
+	=dev-java/junit-3.8*
 	dev-java/gnu-crypto
 	>=dev-java/log4j-1.2.8
 	dev-java/ant-core
@@ -30,8 +30,8 @@ RDEPEND=">=virtual/jre-1.4
 	${COMMON_DEP}"
 # FIXME doesn't like to compile with Java 1.6
 DEPEND="|| (
-		=virtual/jdk-1.4*
 		=virtual/jdk-1.5*
+		=virtual/jdk-1.4*
 	)
 	${COMMON_DEP}"
 
