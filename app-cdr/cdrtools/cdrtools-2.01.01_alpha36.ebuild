@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha36.ebuild,v 1.2 2007/11/11 12:18:14 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha36.ebuild,v 1.3 2008/01/11 03:59:03 vapier Exp $
 
 EAPI="prefix"
 
@@ -42,12 +42,13 @@ src_unpack() {
 	cd "${S}"/librscg
 	sed -i "s:/opt/schily:/usr:g" scsi-remote.c
 
+	# lame symlinks that all point to the same thing
 	cd "${S}"/RULES
-	ln -sf i386-linux-cc.rul x86_64-linux-cc.rul
-	ln -sf i386-linux-gcc.rul x86_64-linux-gcc.rul
-	ln -sf ppc-linux-cc.rul ppc64-linux-cc.rul
-	ln -sf mips-linux-cc.rul mips64-linux-cc.rul
-	ln -sf i586-linux-cc.rul sh4-linux-cc.rul
+	local t
+	for t in ppc64 sh4 s390x ; do
+		ln -s i586-linux-cc.rul ${t}-linux-cc.rul || die
+		ln -s i586-linux-gcc.rul ${t}-linux-gcc.rul || die
+	done
 }
 
 src_compile() {
