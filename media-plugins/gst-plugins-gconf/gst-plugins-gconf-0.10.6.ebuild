@@ -1,12 +1,12 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-gconf/gst-plugins-gconf-0.10.6.ebuild,v 1.8 2007/11/01 14:01:37 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-gconf/gst-plugins-gconf-0.10.6.ebuild,v 1.9 2008/01/10 09:51:05 vapier Exp $
 
 EAPI="prefix"
 
 inherit gnome2 gst-plugins-good gst-plugins10
 
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-fbsd"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND=">=gnome-base/gconf-2
