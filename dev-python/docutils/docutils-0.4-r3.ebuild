@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/docutils-0.4-r3.ebuild,v 1.8 2008/01/02 06:17:19 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/docutils-0.4-r3.ebuild,v 1.9 2008/01/10 09:35:55 vapier Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ SRC_URI="mirror://sourceforge/docutils/${P}.tar.gz
 
 LICENSE="public-domain PYTHON BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="glep emacs"
 
 DEPEND="dev-python/setuptools"
