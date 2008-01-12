@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/lesstif/lesstif-0.94.4.ebuild,v 1.20 2007/07/15 05:53:11 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/lesstif/lesstif-0.94.4.ebuild,v 1.21 2008/01/11 21:38:44 grobian Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 
 LICENSE="LGPL-2"
 SLOT="2.1"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE="static"
 
 RDEPEND="virtual/libc
