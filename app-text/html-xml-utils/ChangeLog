@@ -1,6 +1,10 @@
 # ChangeLog for app-text/html-xml-utils
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/html-xml-utils/ChangeLog,v 1.32 2007/11/13 18:25:42 armin76 Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/html-xml-utils/ChangeLog,v 1.33 2008/01/11 21:14:34 grobian Exp $
+
+  11 Jan 2008; Fabian Groffen <grobian@gentoo.org>
+  html-xml-utils-3.7.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   13 Nov 2007; Raúl Porcel <armin76@gentoo.org> html-xml-utils-3.7.ebuild:
   Add ~alpha
