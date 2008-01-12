@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/x11vnc-0.9.2-r1.ebuild,v 1.11 2007/10/02 15:28:52 pylon Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/x11vnc-0.9.2-r1.ebuild,v 1.12 2008/01/11 21:10:52 swegener Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ SRC_URI="mirror://sourceforge/libvncserver/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86 ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 IUSE="jpeg zlib threads ssl crypt v4l xinerama avahi system-libvncserver"
 
 RDEPEND="system-libvncserver? ( >=net-libs/libvncserver-0.9.1 )
@@ -29,6 +29,7 @@ RDEPEND="system-libvncserver? ( >=net-libs/libvncserver-0.9.1 )
 DEPEND="${RDEPEND}
 	x11-libs/libXt
 	xinerama? ( x11-proto/xineramaproto )
+	x11-proto/inputproto
 	x11-proto/trapproto
 	x11-proto/recordproto
 	x11-proto/xproto
