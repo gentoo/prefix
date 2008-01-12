@@ -1,6 +1,10 @@
 # ChangeLog for app-misc/ttyrec
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ttyrec/ChangeLog,v 1.18 2007/02/09 00:41:55 flameeyes Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ttyrec/ChangeLog,v 1.19 2008/01/11 21:10:34 grobian Exp $
+
+  11 Jan 2008; Fabian Groffen <grobian@gentoo.org> ttyrec-1.0.6.ebuild,
+  ttyrec-1.0.6-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   09 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
   Regenerate digest in Manifest2 format.
