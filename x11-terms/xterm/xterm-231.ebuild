@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-228.ebuild,v 1.5 2007/11/09 21:30:11 seemant Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-231.ebuild,v 1.1 2008/01/11 08:06:45 dberkholz Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="ftp://invisible-island.net/${PN}/${P}.tgz"
 
 LICENSE="X11"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-solaris"
 IUSE="truetype Xaw3d unicode toolbar paste64"
 
 RDEPEND="x11-libs/libX11
@@ -25,7 +25,7 @@ RDEPEND="x11-libs/libX11
 	x11-apps/xmessage
 	unicode? ( x11-apps/luit )
 	Xaw3d? ( x11-libs/Xaw3d )
-	sys-libs/libutempter"
+	kernel_linux? ( sys-libs/libutempter )"
 DEPEND="${RDEPEND}
 	x11-proto/xproto"
 
