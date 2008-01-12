@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/ondir
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ondir/ChangeLog,v 1.16 2007/03/19 01:47:48 kloeri Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ondir/ChangeLog,v 1.17 2008/01/11 21:03:51 grobian Exp $
+
+  11 Jan 2008; Fabian Groffen <grobian@gentoo.org> ondir-0.2.2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   19 Mar 2007; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
   Remove ka0ttic from metadata.xml due to retirement.
