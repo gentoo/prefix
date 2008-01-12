@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/cooledit
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/cooledit/ChangeLog,v 1.22 2007/08/29 16:48:16 phreak Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/cooledit/ChangeLog,v 1.23 2008/01/11 20:42:02 grobian Exp $
+
+  11 Jan 2008; Fabian Groffen <grobian@gentoo.org> cooledit-3.17.12.ebuild,
+  cooledit-3.17.17.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   29 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing agriffis from metadata due to his retirement (see #182294 for
