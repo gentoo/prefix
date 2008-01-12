@@ -1,6 +1,13 @@
 # ChangeLog for app-misc/colordiff
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/colordiff/ChangeLog,v 1.62 2007/10/15 08:23:08 dberkholz Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/colordiff/ChangeLog,v 1.63 2008/01/11 09:18:25 dberkholz Exp $
+
+*colordiff-1.0.7 (11 Jan 2008)
+
+  11 Jan 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  +colordiff-1.0.7.ebuild:
+  (#204325) Bump. Adds support for wdiff and perforce diffs. Handles undefined
+  HOME. Bug fix for blank first lines.
 
 *colordiff-1.0.6a-r1 (15 Oct 2007)
 
