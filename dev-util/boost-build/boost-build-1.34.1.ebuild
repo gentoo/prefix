@@ -25,6 +25,8 @@ S=${WORKDIR}/boost_${MY_PV}/tools
 src_unpack() {
 	unpack ${A}
 
+	epatch "${FILESDIR}"/${PN}-darwin.patch
+
 	# Remove stripping option
 	cd "${S}/jam/src"
 	sed -i \
