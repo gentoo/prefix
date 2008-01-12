@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/bsh
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/bsh/ChangeLog,v 1.49 2007/11/25 11:05:14 nelchael Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/bsh/ChangeLog,v 1.50 2008/01/11 06:24:54 wltjr Exp $
+
+  11 Jan 2008; William L. Thomson Jr. <wltjr@gentoo.org>
+  -bsh-2.0_beta4-r2.ebuild:
+  Removed older version
 
   25 Nov 2007; Krzysiek Pawlik <nelchael@gentoo.org>
   bsh-2.0_beta4-r3.ebuild:
