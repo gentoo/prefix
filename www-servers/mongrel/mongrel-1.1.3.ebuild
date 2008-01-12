@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/mongrel/mongrel-1.1.3.ebuild,v 1.1 2008/01/10 03:52:30 nichoj Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/mongrel/mongrel-1.1.3.ebuild,v 1.4 2008/01/11 19:46:41 dertobi123 Exp $
 
 EAPI="prefix"
 
