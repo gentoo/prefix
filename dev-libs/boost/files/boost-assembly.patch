@@ -1,0 +1,32 @@
+--- boost_1_34_1/boost/detail/sp_counted_base_gcc_x86.hpp
++++ boost_1_34_1/boost/detail/sp_counted_base_gcc_x86.hpp
+@@ -40,8 +40,7 @@
+ 
+     int r;
+ 
+-    __asm__ __volatile__
+-    (
++    __asm__ __volatile__ (
+         "lock\n\t"
+         "xadd %1, %0":
+         "=m"( *pw ), "=r"( r ): // outputs (%0, %1)
+@@ -56,8 +55,7 @@
+ {
+     //atomic_exchange_and_add( pw, 1 );
+ 
+-    __asm__
+-    (
++    __asm__ (
+         "lock\n\t"
+         "incl %0":
+         "=m"( *pw ): // output (%0)
+@@ -74,8 +72,7 @@
+ 
+     int rv, tmp;
+ 
+-    __asm__
+-    (
++    __asm__ (
+         "movl %0, %%eax\n\t"
+         "0:\n\t"
+         "test %%eax, %%eax\n\t"

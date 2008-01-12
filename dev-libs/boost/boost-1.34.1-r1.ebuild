@@ -57,6 +57,8 @@ src_unpack() {
 
 	cd "${S}"
 
+	epatch "${FILESDIR}"/${PN}-assembly.patch
+
 	rm boost-build.jam
 
 	# This enables building the boost.random library with /dev/urandom support
