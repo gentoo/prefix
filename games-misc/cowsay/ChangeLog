@@ -1,6 +1,10 @@
 # ChangeLog for games-misc/cowsay
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-misc/cowsay/ChangeLog,v 1.18 2007/05/09 18:44:51 tupone Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-misc/cowsay/ChangeLog,v 1.19 2008/01/11 16:26:57 grobian Exp $
+
+  11 Jan 2008; Fabian Groffen <grobian@gentoo.org> cowsay-3.03.ebuild,
+  cowsay-3.03-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *cowsay-3.03-r1 (09 May 2007)
 
