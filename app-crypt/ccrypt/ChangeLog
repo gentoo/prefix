@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/ccrypt
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/ccrypt/ChangeLog,v 1.13 2007/11/11 07:07:01 alonbl Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/ccrypt/ChangeLog,v 1.14 2008/01/11 20:38:20 grobian Exp $
+
+  11 Jan 2008; Fabian Groffen <grobian@gentoo.org> ccrypt-1.7-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   11 Nov 2007; Alon Bar-Lev <alonbl@gentoo.org> -ccrypt-1.7.ebuild:
   Cleanup
