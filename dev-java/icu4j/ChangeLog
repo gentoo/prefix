@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/icu4j
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/ChangeLog,v 1.16 2007/05/30 16:28:09 betelgeuse Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/ChangeLog,v 1.17 2008/01/11 15:11:22 elvanor Exp $
+
+*icu4j-3.6.1 (11 Jan 2008)
+
+  11 Jan 2008; Jean-Noël Rivasseau <elvanor@gentoo.org>
+  +files/icu4j-3.6.1-manifest, +icu4j-3.6.1.ebuild:
+  Version bump to 3.6.1, bug #153686. Also now generates an OSGi compliant
+  jar, for Eclipse 3.3.
 
   30 May 2007; Petteri Räty <betelgeuse@gentoo.org> -icu4j-3.0.ebuild:
   Remove generation 1 ebuild.

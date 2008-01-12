@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %bundleName
+Bundle-Vendor: %vendorName
+Bundle-SymbolicName: com.ibm.icu; singleton:=true
+Bundle-Version: 3.6.1
+Bundle-Localization: plugin
+Export-Package: com.ibm.icu.lang;version="3.6.1",
+ com.ibm.icu.math;version="3.6.1",
+ com.ibm.icu.text;version="3.6.1",
+ com.ibm.icu.util;version="3.6.1",
+ com.ibm.icu.impl;x-internal:=true,
+ com.ibm.icu.impl.data;x-internal:=true,
+ com.ibm.icu.impl.data.icudt36b;x-internal:=true,
+ com.ibm.icu.impl.data.icudt36b.brkitr;x-internal:=true,
+ com.ibm.icu.impl.data.icudt36b.coll;x-internal:=true,
+ com.ibm.icu.impl.data.icudt36b.rbnf;x-internal:=true,
+ com.ibm.icu.impl.data.icudt36b.translit;x-internal:=true
+Eclipse-LazyStart: true
+Bundle-ClassPath: icu-jse4.jar,icu-data.jar,.
+Eclipse-ExtensibleAPI: true

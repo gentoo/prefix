@@ -14,7 +14,7 @@ SRC_URI="ftp://www-126.ibm.com/pub/icu4j/${PV}/${PN}src_${MY_PV}.jar
 		doc? ( ftp://www-126.ibm.com/pub/icu4j/${PV}/${PN}docs_${MY_PV}.jar )"
 LICENSE="icu"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 IUSE="doc source"
 DEPEND=">=virtual/jdk-1.4
 	dev-java/ant-core
