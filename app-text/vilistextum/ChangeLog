@@ -1,6 +1,9 @@
 # ChangeLog for app-text/vilistextum
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/vilistextum/ChangeLog,v 1.22 2007/01/04 13:13:38 flameeyes Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/vilistextum/ChangeLog,v 1.23 2008/01/11 21:46:17 grobian Exp $
+
+  11 Jan 2008; Fabian Groffen <grobian@gentoo.org> vilistextum-2.6.7.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   04 Jan 2007; Diego Pettenò <flameeyes@gentoo.org>
   vilistextum-2.6.7.ebuild:
