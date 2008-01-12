@@ -1,12 +1,12 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake/rake-0.7.3.ebuild,v 1.6 2007/06/16 17:35:30 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake/rake-0.8.0.ebuild,v 1.1 2008/01/11 14:41:39 rbrown Exp $
 
 EAPI="prefix"
 
 inherit ruby gems
 
-USE_RUBY="ruby18 ruby19"
+USE_RUBY="ruby18"
 DESCRIPTION="Make-like scripting in Ruby"
 HOMEPAGE="http://rake.rubyforge.org/"
 # The URL depends implicitly on the version, unfortunately. Even if you
@@ -18,5 +18,3 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 RESTRICT="test"
-
-RDEPEND="dev-lang/ruby"
