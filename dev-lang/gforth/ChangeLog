@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/gforth
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/gforth/ChangeLog,v 1.22 2007/03/19 11:44:52 kloeri Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/gforth/ChangeLog,v 1.23 2008/01/11 21:56:14 grobian Exp $
+
+  11 Jan 2008; Fabian Groffen <grobian@gentoo.org> gforth-0.6.2.ebuild,
+  gforth-0.6.2-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   19 Mar 2007; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
   Remove mkennedy from metadata.xml due to retirement.
