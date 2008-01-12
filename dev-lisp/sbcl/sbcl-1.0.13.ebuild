@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit common-lisp-common-3 eutils flag-o-matic
+inherit eutils flag-o-matic
 
 #same order as http://www.sbcl.org/platform-table.html
 BV_X86=1.0.12
@@ -16,7 +16,7 @@ BV_MIPS=1.0.12
 BV_MIPSEL=1.0.12
 
 BV_PPC_MACOS=1.0.2
-BV_X86_MACOS=1.0.12
+BV_X86_MACOS=1.0.7
 BV_X86_SOLARIS=0.9.14
 
 DESCRIPTION="Steel Bank Common Lisp (SBCL) is an implementation of ANSI Common Lisp."
@@ -190,13 +190,15 @@ EOF
 	echo "SBCL_SOURCE_ROOT=${EPREFIX}/usr/$(get_libdir)/${PN}/src" >> "${ENVD}"
 	doenvd "${ENVD}"
 
-	impl-save-timestamp-hack sbcl
+#	impl-save-timestamp-hack sbcl
 }
 
 pkg_postinst() {
-	standard-impl-postinst sbcl
+	sleep 1
+	find "${EPREFIX}"/usr/$(get_libdir)/sbcl/ -type f -name '*.fasl' -exec touch -m {} ';'
+#	standard-impl-postinst sbcl
 }
 
-pkg_postrm() {
-	standard-impl-postrm sbcl /usr/bin/sbcl
-}
+# pkg_postrm() {
+# 	standard-impl-postrm sbcl /usr/bin/sbcl
+# }
