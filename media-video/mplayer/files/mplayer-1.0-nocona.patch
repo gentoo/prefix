@@ -1,0 +1,16 @@
+gcc 4.3 and up support -march=core2
+--- configure
++++ configure
+@@ -1689,7 +1689,11 @@
+ 	;;
+     6) iproc=686
+ 	if test "$pmodel" -ge 15; then
+-		proc=core2
++        if test "$cc_vendor" = "gnu" -a "$_cc_major" -ge 4 -a "$_cc_minor" -ge 3 ; then
++		    proc=core2
++        else
++            proc=nocona
++        fi
+ 	elif test "$pmodel" -eq 9 -o "$pmodel" -ge 13; then
+ 		proc=pentium-m
+ 	elif test "$pmodel" -ge 7; then
