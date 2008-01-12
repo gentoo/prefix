@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/geekcode
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/geekcode/ChangeLog,v 1.21 2007/06/01 07:08:46 opfer Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/geekcode/ChangeLog,v 1.22 2008/01/11 20:57:32 grobian Exp $
+
+  11 Jan 2008; Fabian Groffen <grobian@gentoo.org> geekcode-1.7.3.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   01 Jun 2007; Christian Faulhammer <opfer@gentoo.org> ChangeLog:
   modified ChangeLog to meet common format
