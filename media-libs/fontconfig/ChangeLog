@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/fontconfig
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.100 2007/12/20 23:22:45 dirtyepic Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.101 2008/01/11 23:15:51 fmccor Exp $
+
+  11 Jan 2008; Ferris McCormick <fmccor@gentoo.org>
+  fontconfig-2.5.0-r1.ebuild:
+  Sparc stable, Bug #205266
 
 *fontconfig-2.5.0-r1 (20 Dec 2007)
 

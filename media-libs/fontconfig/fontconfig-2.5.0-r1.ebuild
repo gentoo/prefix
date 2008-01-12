@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.5.0-r1.ebuild,v 1.1 2007/12/20 23:22:45 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.5.0-r1.ebuild,v 1.2 2008/01/11 23:15:51 fmccor Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="http://fontconfig.org/release/${P}.tar.gz"
 
 LICENSE="fontconfig"
 SLOT="1.0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="doc xml"
 
 RDEPEND=">=media-libs/freetype-2.1.4
