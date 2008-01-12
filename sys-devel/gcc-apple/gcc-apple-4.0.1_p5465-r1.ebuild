@@ -1,4 +1,4 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -68,6 +68,8 @@ src_unpack() {
 	# Workaround deprecated "+Nc" syntax for GNU tail(1)
 	sed -i -e "s:tail +16c:tail -c +16:g" \
 		gcc/Makefile.in || die "sed gcc/Makefile.in failed."
+
+	epatch "${FILESDIR}"/${P}-default-altivec.patch
 }
 
 src_compile() {
