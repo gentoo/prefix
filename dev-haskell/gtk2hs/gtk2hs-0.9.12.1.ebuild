@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/gtk2hs-0.9.12.1.ebuild,v 1.2 2007/12/13 00:44:30 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/gtk2hs-0.9.12.1.ebuild,v 1.3 2008/01/12 00:06:29 maekke Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/gtk2hs/${P}.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
 
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
 IUSE="doc glade gnome opengl svg firefox seamonkey profile xulrunner"
 
