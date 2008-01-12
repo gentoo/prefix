@@ -41,6 +41,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-darwin64.patch
 
+	# remove -arch for darwin
+	sed -i '/^"darwin/s,-arch [^ ]\+,,g' Configure
+
 	# allow openssl to be cross-compiled
 	cp "${FILESDIR}"/gentoo.config-0.9.8 gentoo.config || die "cp cross-compile failed"
 	eprefixify gentoo.config
