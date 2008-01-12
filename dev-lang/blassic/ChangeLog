@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/blassic
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/blassic/ChangeLog,v 1.23 2007/03/21 19:01:45 mr_bones_ Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/blassic/ChangeLog,v 1.24 2008/01/11 21:51:54 grobian Exp $
+
+  11 Jan 2008; Fabian Groffen <grobian@gentoo.org> blassic-0.10.0.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   21 Mar 2007; Michael Sterrett <mr_bones_@gentoo.org>
   blassic-0.10.0.ebuild:
