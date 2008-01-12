@@ -46,7 +46,8 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 DEPEND="${RDEPEND}
 	>=sys-apps/texinfo-4.2-r4
 	>=sys-devel/bison-1.875
-	${CATEGORY}/odcctools"
+	>=${CATEGORY}/odcctools-20071104
+	>=dev-libs/mpfr-2.2.0_p10"
 
 S=${WORKDIR}/gcc_42-${APPLE_VERS}
 
@@ -70,6 +71,9 @@ src_unpack() {
 	# Workaround deprecated "+Nc" syntax for GNU tail(1)
 	sed -i -e "s:tail +16c:tail -c +16:g" \
 		gcc/Makefile.in || die "sed gcc/Makefile.in failed."
+
+	cd "${WORKDIR}"/libstdcxx-${LIBSTDCXX_APPLE_VERSION}/libstdcxx
+	epatch "${FILESDIR}"/gcc-apple-5531-libstdxx.patch
 }
 
 src_compile() {
@@ -136,7 +140,7 @@ src_compile() {
 	# will always compile 64-bits code, but might fail running,
 	# depending on the CPU, so the resulting program might fail.  Thanks
 	# Tobias Hahn for working that out.
-	if [[ ${CHOST} == powerpc-apple-darwin* ]] && ! is_crosscompile ; then
+	if [[ ${CHOST} == *-apple-darwin* ]] && ! is_crosscompile ; then
 		cd "${T}"
 		echo '
 #include <stdio.h>
@@ -169,7 +173,7 @@ int main() {
 	cd "${WORKDIR}"/build
 	einfo "Configuring GCC with: ${gccconf//--/\n\t--}"
 	"${S}"/configure ${gccconf} || die "conf failed"
-	make -j1 bootstrap || die "emake failed"
+	emake bootstrap || die "emake failed"
 
 	local libstdcxxconf="${myconf} --disable-libstdcxx-debug"
 	mkdir -p "${WORKDIR}"/build_libstdcxx || die
@@ -178,16 +182,16 @@ int main() {
 	ln -s "${WORKDIR}"/build/gcc "${WORKDIR}"/build_libstdcxx/gcc || die
 	einfo "Configuring libstdcxx with: ${libstdcxxconf//--/\n\t--}"
 	"${WORKDIR}"/libstdcxx-${LIBSTDCXX_APPLE_VERSION}/libstdcxx/configure ${libstdcxxconf} || die "conf failed"
-	make -j1 all || die "emake failed"
+	emake all || die "emake failed"
 }
 
 src_install() {
 	cd "${WORKDIR}"/build
 	# -jX doesn't work
-	make DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die
 
 	cd "${WORKDIR}"/build_libstdcxx
-	make DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die
 	cd "${WORKDIR}"/build
 
 	use build && rm -rf "${ED}"/usr/{man,share}
