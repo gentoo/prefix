@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.16.1.ebuild,v 1.2 2007/12/20 10:15:27 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.16.1-r3.ebuild,v 1.1 2008/01/11 17:04:53 maekke Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SRC_URI="http://www.graphviz.org/pub/graphviz/ARCHIVE/${P}.tar.gz"
 LICENSE="CPL-1.0"
 SLOT="0"
 KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-IUSE="cairo doc examples gnome gtk jpeg nls perl png python ruby X tcl tk"
+IUSE="doc examples gnome gtk jpeg nls perl png python ruby tcl tk"
 
 # Requires ksh
 RESTRICT="test"
@@ -33,10 +33,13 @@ RDEPEND="
 	ruby?	( dev-lang/ruby )
 	tcl?	( >=dev-lang/tcl-8.3 )
 	tk?		( >=dev-lang/tk-8.3 )
-	X?		( x11-libs/libX11 x11-libs/libXaw x11-libs/libXpm
-			gnome?	( gnome-base/libgnomeui )
-			gtk?	( >=x11-libs/gtk+-2 )
-			cairo?	( >=x11-libs/pango-1.12 >=x11-libs/cairo-1.1.10 ) )"
+	gtk?	(
+		>=x11-libs/gtk+-2
+		x11-libs/libXaw
+		>=x11-libs/pango-1.12
+		>=x11-libs/cairo-1.1.10
+		gnome? ( gnome-base/libgnomeui )
+	)"
 
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.20
@@ -49,12 +52,21 @@ DEPEND="${RDEPEND}
 # Dependency description / Maintainer-Info:
 
 # Rendering is done via the following plugins (/plugins):
-# - core, dot_layout, neato_layout, gd (the ones which are always compiled in, depend on zlib, gd)
-# - gtk (depends on gtk-2, cairo, libX11, gtk-2 depends on cairo and libX11 as well)
-# - ming ( depends on ming-3.0 which is still p.masked)
-# - pango ( depends on pango and cairo, but pango depends on cairo as well)
-# - xlib ( depends on libX11, Xrender AND pango, can make use of gnomeui and inotify support)
-# - ming ( depends on ming-3 which is still masked, ?)
+# - core, dot_layout, neato_layout, gd , dot
+#   the ones which are always compiled in, depend on zlib, gd
+# - gtk
+#   Directly depends on gtk-2.
+#   gtk-2 depends on pango, cairo and libX11 directly.
+# - gdk-pixbuf
+#   Disabled, GTK-1 junk.
+# - ming
+#   Disabled, depends on ming-3.0 which is still p.masked.
+# - cairo:
+#   Needs pango for text layout, uses cairo methods to draw stuff
+# - xlib :
+#   needs cairo+pango,
+#   can make use of gnomeui and inotify support,
+#   needs libXaw for UI
 
 # There can be swig-generated bindings for the following languages (/tclpkg/gv):
 # - c-sharp (disabled)
@@ -85,17 +97,19 @@ pkg_setup() {
 		eerror "SWIG has to be built with tcl support."
 		die "Missing tcl USE-flag for dev-lang/swig"
 	fi
+
 	# bug 181147
-	if use png && ! built_with_use media-libs/gd png ; then
-		eerror "media-libs/gd has to be built with png support"
-		die "remerge media-libs/gd with USE=\"png\""
+	local gdflags
+	use png && gdflags="png"
+	use jpeg && gdflags="${gdflags} jpeg"
+	if [[ -n ${gdflags} ]] && ! built_with_use media-libs/gd ${gdflags} ; then
+		local diemsg="Re-emerge media-libs/gd with USE=\"${gdflags}\""
+		eerror "${diemsg}"
+		die "${diemsg}"
 	fi
-	if use jpeg && ! built_with_use media-libs/gd jpeg ; then
-		eerror "media-libs/gd has to be built with jpeg support"
-		die "remerge media-libs/gd with USE=\"jpeg\""
-	fi
+
 	# bug 202781
-	if ! built_with_use x11-libs/cairo svg ; then
+	if use gtk && ! built_with_use x11-libs/cairo svg ; then
 		eerror "x11-libs/cairo has to be built with svg support"
 		die "emerge x11-libs/cairo with USE=\"svg\""
 	fi
@@ -107,6 +121,9 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-bindings.patch
 	epatch "${FILESDIR}"/${P}-gcc43-missing-includes.patch
+	epatch "${FILESDIR}"/${P}-python-buildfix.patch
+	epatch "${FILESDIR}"/${P}-pango-optional.patch
+	epatch "${FILESDIR}"/${P}-tcltk.patch
 
 	[[ ${CHOST} == *-darwin* ]] && \
 		sed -i -e 's/\.so/.dylib/g' tclpkg/gv/Makefile.am
@@ -137,39 +154,42 @@ src_unpack() {
 }
 
 src_compile() {
-	# If we want pango, we need --with-x, otherwise
-	# nothing gets built. Dependencies should be ok.
-	local myconf=""
-	if use X || use cairo ; then
-		myconf="--with-x"
-	else
-		myconf="--without-x"
-	fi
+	local myconf
+
+	# Core functionality:
+	# All of X, cairo-output, gtk need the pango+cairo functionality
+	myconf="${myconf}
+		$(use_with gtk)
+		$(use_with gtk x)
+		$(use_with gtk pangocairo)
+		--without-ming
+		--with-digcola
+		--with-ipsepcola
+		--with-fontconfig
+		--with-freetype
+		--with-libgd
+		--without-gdk-pixbuf"
+
+	use gtk && myconf="${myconf} $(use_with gnome gnomeui)"
+
+	# Bindings:
+	myconf="${myconf}
+		--disable-guile
+		--disable-java
+		--disable-io
+		--disable-lua
+		--disable-ocaml
+		$(use_enable perl)
+		--disable-php
+		$(use_enable python)
+		$(use_enable ruby)
+		--disable-sharp
+		$(use_enable tcl)
+		$(use_enable tk)"
 
 	econf \
-		--enable-ltdl					\
-		--disable-guile					\
-		--disable-java					\
-		--disable-io					\
-		--disable-lua					\
-		--disable-ocaml					\
-		$(use_enable perl)				\
-		--disable-php					\
-		$(use_enable python)			\
-		$(use_enable ruby)				\
-		--disable-sharp					\
-		$(use_enable tcl)				\
-		$(use_enable tk)				\
-		$(use_with cairo pangocairo)	\
-		$(use_with gnome gnomeui)		\
-		$(use_with gtk)					\
-		--without-ming					\
-		--with-digcola					\
-		--with-ipsepcola				\
-		--with-fontconfig				\
-		--with-freetype					\
-		--with-libgd					\
-		${myconf}						\
+		--enable-ltdl \
+		${myconf} \
 		|| die "econf failed"
 
 	emake || die "emake failed"

@@ -1,6 +1,13 @@
 # ChangeLog for media-gfx/graphviz
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.134 2008/01/03 11:31:45 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.135 2008/01/11 17:04:53 maekke Exp $
+
+*graphviz-2.16.1-r3 (11 Jan 2008)
+
+  11 Jan 2008; Markus Meier <maekke@gentoo.org> +graphviz-2.16.1-r3.ebuild:
+  this revision removes cairo and X USE-fag as they are pretty redundant and
+  should simplify things. bug #202781 should now be covered without these
+  flags.
 
   03 Jan 2008; Markus Meier <maekke@gentoo.org> graphviz-2.16.1-r2.ebuild:
   sanitize built_with_use checks for media-libs/gd, thanks jakub in bug #204153
