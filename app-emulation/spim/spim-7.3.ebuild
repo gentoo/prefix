@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/spim/spim-7.3.ebuild,v 1.6 2007/07/22 09:32:36 omp Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/spim/spim-7.3.ebuild,v 1.7 2008/01/11 20:55:19 grobian Exp $
 
 EAPI="prefix"
 
