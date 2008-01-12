@@ -105,6 +105,7 @@ src_unpack() {
 
 	sed "s,/lib,/$(get_libdir),g" -i "${S}/install.sh"
 	sed  "s,/usr/local/lib,${EPREFIX}/usr/$(get_libdir),g" -i "${S}/src/runtime/runtime.c" # #define SBCL_HOME ...
+	sed  "s,/etc/sbclrc,${EPREFIX}/etc/sbclrc,g" -i "${S}/src/code/toplevel.lisp" # change location of /etc/sbclrc ...
 
 	# customizing SBCL version as per
 	# http://sbcl.cvs.sourceforge.net/sbcl/sbcl/doc/PACKAGING-SBCL.txt?view=markup
