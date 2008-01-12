@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.0.ebuild,v 1.4 2008/01/09 15:01:04 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.0.ebuild,v 1.5 2008/01/11 11:57:44 opfer Exp $
 
 EAPI="prefix"
 
@@ -76,6 +76,9 @@ src_unpack() {
 		ewarn "Don't cry, don't file bugs, just disable it!"
 		ewarn
 	fi
+
+	# bug 203157
+	filter-ldflags --as-needed
 }
 
 src_compile() {
