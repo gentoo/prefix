@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.29.ebuild,v 1.2 2008/01/11 18:13:13 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.30-r1.ebuild,v 1.1 2008/01/11 17:09:57 dang Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.xmlsoft.org/"
 
 LICENSE="MIT"
 SLOT="2"
-KEYWORDS="~ppc-aix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-fbsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="debug doc ipv6 python readline test"
 
 XSTS_HOME="http://www.w3.org/XML/2004/xml-schema-test-suite"
@@ -26,8 +26,9 @@ SRC_URI="ftp://xmlsoft.org/${PN}/${P}.tar.gz
 		${XSTS_HOME}/${XSTS_NAME_2}/${XSTS_TARBALL_2} )"
 
 RDEPEND="sys-libs/zlib
-	python? ( dev-lang/python )
+	python?   ( dev-lang/python )
 	readline? ( sys-libs/readline )"
+
 DEPEND="${RDEPEND}
 	hppa? ( >=sys-devel/binutils-2.15.92.0.2 )"
 
@@ -38,13 +39,15 @@ src_unpack() {
 	if use test; then
 		cp ${DISTDIR}/${XSTS_TARBALL_1} \
 			${DISTDIR}/${XSTS_TARBALL_2} \
-			"${S}/xstc/" \
+			"${S}"/xstc/ \
 			|| die "Failed to install test tarballs"
 	fi
 
-	epatch "${FILESDIR}"/${P}-catalog_path.patch
+	epatch "${FILESDIR}"/${PN}-2.6.29-catalog_path.patch
 
 	eprefixify catalog.c runtest.c xmllint.c
+
+	epatch "${FILESDIR}"/${P}-CVE-2007-6284.patch
 
 	epunt_cxx
 }
@@ -59,7 +62,7 @@ src_compile() {
 
 	# --with-mem-debug causes unusual segmentation faults (bug #105120).
 
-	local myconf="--with-zlib \
+	local myconf="--with-zlib=${EPREFIX}/usr \
 		$(use_with debug run-debug)  \
 		$(use_with python)           \
 		$(use_with readline)         \
@@ -94,8 +97,8 @@ src_install() {
 	dodoc AUTHORS ChangeLog Copyright NEWS README* TODO*
 
 	if ! use doc; then
-		rm -rf "${ED}/usr/share/gtk-doc"
-		rm -rf "${ED}/usr/share/doc/${P}/html"
+		rm -rf "${ED}"/usr/share/gtk-doc
+		rm -rf "${ED}"/usr/share/doc/${P}/html
 	fi
 }
 
