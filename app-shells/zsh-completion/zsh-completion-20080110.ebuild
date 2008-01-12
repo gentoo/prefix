@@ -1,12 +1,12 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/zsh-completion-20060618.ebuild,v 1.13 2007/06/14 18:14:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/zsh-completion-20080110.ebuild,v 1.1 2008/01/11 05:46:05 compnerd Exp $
 
 EAPI="prefix"
 
 DESCRIPTION="Programmable Completion for zsh (includes emerge and ebuild commands)"
 HOMEPAGE="http://www.zsh.org/"
-SRC_URI="http://dev.gentoo.org/~usata/distfiles/${P}.tar.gz"
+SRC_URI="mirror://gentoo/${PF}.tar.bz2"
 
 LICENSE="as-is"
 SLOT="0"
@@ -15,14 +15,11 @@ IUSE=""
 
 DEPEND="app-shells/zsh"
 
-#S="${WORKDIR}/${PN}"
-
 src_install() {
-
 	insinto /usr/share/zsh/site-functions
 	doins _*
 
-	dodoc README
+	dodoc AUTHORS
 }
 
 pkg_postinst() {

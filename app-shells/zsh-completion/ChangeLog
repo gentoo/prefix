@@ -1,6 +1,12 @@
 # ChangeLog for app-shells/zsh-completion
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/ChangeLog,v 1.28 2008/01/04 06:51:56 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/ChangeLog,v 1.29 2008/01/11 05:46:05 compnerd Exp $
+
+*zsh-completion-20080110 (11 Jan 2008)
+
+  11 Jan 2008; Saleem Abdulrasool <compnerd@gentoo.org>
+  +zsh-completion-20080110.ebuild:
+  Version bump closes bugs #181381, #197518, #204185
 
   04 Jan 2008; Saleem Abdulrasool <compnerd@gentoo.org> metadata.xml:
   Adding cla to maintainers
