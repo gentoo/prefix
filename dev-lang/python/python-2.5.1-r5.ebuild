@@ -101,6 +101,11 @@ src_unpack() {
 
 	use prefix && epatch "${FILESDIR}"/${P}-no-usrlocal.patch
 
+	[[ ${CHOST} == *-darwin9 ]] && \
+		epatch "${FILESDIR}"/${P}-darwin9.patch
+
+	epatch "${FILESDIR}"/${P}-darwin-gcc-version.patch
+
 	# set RUNSHARED for 'regen' in Lib/plat-*
 	epatch "${FILESDIR}"/${P}-platdir-runshared.patch
 

@@ -1,0 +1,12 @@
+make gcc_version ignore --enable-version-specific-runtime-libs
+--- configure.in
++++ configure.in
+@@ -1361,7 +1361,7 @@
+     LIBTOOL_CRUFT=$LIBTOOL_CRUFT' -install_name $(PYTHONFRAMEWORKINSTALLDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
+     LIBTOOL_CRUFT=$LIBTOOL_CRUFT' -compatibility_version $(VERSION) -current_version $(VERSION)';;
+   Darwin/*)
+-    gcc_version=`gcc -v 2>&1 |  grep version | cut -d\  -f3`
++    gcc_version=`gcc -v 2>&1 |  grep '[[^-]]version[[^-]]' | cut -d\  -f3`
+     if test ${gcc_version} '<' 4.0
+         then
+             LIBTOOL_CRUFT="-lcc_dynamic"
