@@ -1,0 +1,10 @@
+--- cocom-0.995/DINO/d_ir.sprut.orig	2005-11-05 20:43:25.000000000 +0100
++++ cocom-0.995/DINO/d_ir.sprut	2005-11-05 20:43:30.000000000 +0100
+@@ -196,7 +196,6 @@
+ extern IR_node_t temp_unique_float;
+ extern IR_node_t temp_unique_char;
+ extern IR_node_t temp_unique_string;
+-extern IR_node_t temp_ident;
+ extern IR_node_t temp_decl;
+ extern IR_node_t temp_var_occurrence;
+ extern IR_node_t destroy_unique_ident;
