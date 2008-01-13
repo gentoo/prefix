@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ccache/ccache-2.4-r7.ebuild,v 1.2 2007/07/12 01:05:42 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ccache/ccache-2.4-r7.ebuild,v 1.3 2008/01/12 21:09:48 grobian Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="http://samba.org/ftp/ccache/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 # Note: this version is designed to be auto-detected and used if
@@ -44,6 +44,12 @@ src_install() {
 	keepdir /usr/$(get_libdir)/ccache/bin
 
 	dobin "${FILESDIR}"/ccache-config || die
+
+	if use !prefix ; then
+		diropts -m0700
+		dodir /root/.ccache
+		keepdir /root/.ccache
+	fi
 }
 
 pkg_preinst() {

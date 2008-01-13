@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/ccache
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ccache/ChangeLog,v 1.63 2007/12/31 02:36:04 dirtyepic Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ccache/ChangeLog,v 1.64 2008/01/12 21:09:48 grobian Exp $
+
+  12 Jan 2008; Fabian Groffen <grobian@gentoo.org> ccache-2.4-r6.ebuild,
+  ccache-2.4-r7.ebuild:
+  Remove ppc-macos bits
 
   31 Dec 2007; Ryan Hill <dirtyepic@gentoo.org> metadata.xml:
   Add toolchain and robbat2 as maintainer.
