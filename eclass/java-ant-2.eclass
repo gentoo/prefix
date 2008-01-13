@@ -14,7 +14,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.24 2007/12/18 00:23:06 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.25 2008/01/12 15:08:47 caster Exp $
 
 inherit java-utils-2
 
@@ -30,16 +30,6 @@ inherit java-utils-2
 #WANT_ANT_TASKS
 
 # -----------------------------------------------------------------------------
-# @variable-preinherit WANT_SPLIT_ANT
-# @variable-default ""
-#
-# If set, ant-core dependency specifies version with startup script that
-# honours ANT_TASKS variable, i.e. >=1.7.0. Using WANT_ANT_TASKS implies
-# split-ant already, so you need this only if you manually depend on some
-# external package providing ant tasks and want to use it via ANT_TASKS.
-[[ -n "${WANT_ANT_TASKS}" ]] && WANT_SPLIT_ANT="true"
-
-# -----------------------------------------------------------------------------
 # @variable-preinherit JAVA_ANT_DISABLE_ANT_CORE_DEP
 # @variable-default unset for java-pkg-2, true for java-pkg-opt-2
 #
@@ -48,13 +38,9 @@ inherit java-utils-2
 
 # construct ant-speficic DEPEND
 JAVA_ANT_E_DEPEND=""
-# add ant-core into DEPEND, unless disabled; respect WANT_SPLIT_ANT
+# add ant-core into DEPEND, unless disabled
 if [[ -z "${JAVA_ANT_DISABLE_ANT_CORE_DEP}" ]]; then
-	if [[ -n "${WANT_SPLIT_ANT}" ]]; then
 		JAVA_ANT_E_DEPEND="${JAVA_ANT_E_DEPEND} >=dev-java/ant-core-1.7.0"
-	else
-		JAVA_ANT_E_DEPEND="${JAVA_ANT_E_DEPEND} dev-java/ant-core"
-	fi
 fi
 
 # add ant tasks specified in WANT_ANT_TASKS to DEPEND

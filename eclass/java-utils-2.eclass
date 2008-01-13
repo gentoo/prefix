@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.100 2007/11/28 02:03:48 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.103 2008/01/12 15:08:47 caster Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -1082,10 +1082,10 @@ java-pkg_getjar() {
 	while [[ "${1}" == --* ]]; do
 		if [[ "${1}" = "--build-only" ]]; then
 			build_only="build"
-		elif [[ "${1}" == --* ]]; then
+		elif [[ "${1}" == "--virtual" ]]; then
 			virtual="true"
 		else
-			die "java-pkg_jar-from called with unknown parameter: ${1}"
+			die "java-pkg_getjar called with unknown parameter: ${1}"
 		fi
 		shift
 	done
@@ -1724,41 +1724,6 @@ java-pkg_register-ant-task() {
 }
 
 # ------------------------------------------------------------------------------
-# @internal-function java-pkg_ant-tasks-from-deps
-#
-# Function to determine ANT_TASKS from DEPEND variable for backwards
-# compatibility with ebuilds that don't set ANT_TASKS before calling eant() or
-# WANT_ANT_TASKS before inheriting java-pkg-2. If the DEPEND string contains
-# "dev-java/ant" or "dev-java/ant-tasks", then it returns "all", otherwise
-# "none". It's not smart enough to cope with USE flag depends but that shouldn't
-# be a problem, the worst it can do is activace all tasks when not needed.
-# Note that this is called only with JAVA_PKG_STRICT=1, to find ebuilds with
-# insufficient dependencies, otherwise all available tasks are used for
-# backwards compatilbility.
-#
-# @return "all" or "none"
-# ------------------------------------------------------------------------------
-java-pkg_ant-tasks-from-deps() {
-	local found_ant found_ant_tasks
-
-	for dep in ${DEPEND}
-	do
-		local ant="$(awk '/(dev-java\/ant)/ { if (match($1, "(dev-java/ant)((-[0-9])+|$)", m)) print m[1]  }' <<< ${dep})"
-		[[ "${ant}" == "dev-java/ant" ]] && found_ant=true
-		[[ "${dep}" == *"ant-tasks"* ]] && found_ant_tasks=true
-	done
-
-	if [[ -n "${found_ant}" || -n "${found_ant_tasks}" ]]; then
-		java-pkg_announce-qa-violation --nodie "The ebuild DEPENDS on deprecated ant or ant-tasks"
-		echo "all"
-	else
-		# ebuild doesn't set ANT_TASKS and doesn't depend on ant-tasks or ant
-		# so we deactivate all tasks that may be installed
-		echo "none"
-	fi
-}
-
-# ------------------------------------------------------------------------------
 # @internal-function java-pkg_ant-tasks-depend
 #
 # Translates the WANT_ANT_TASKS variable into valid dependencies.
@@ -1913,35 +1878,25 @@ eant() {
 		fi
 	done
 
-	# we use this in src_* so we run ant from /
-	if ROOT=/ has_version ">=dev-java/ant-core-1.7.0"; then
-		# default ANT_TASKS to WANT_ANT_TASKS, if ANT_TASKS is not set explicitly
-		ANT_TASKS="${ANT_TASKS:-${WANT_ANT_TASKS}}"
+	# default ANT_TASKS to WANT_ANT_TASKS, if ANT_TASKS is not set explicitly
+	ANT_TASKS="${ANT_TASKS:-${WANT_ANT_TASKS}}"
 
-		# override ANT_TASKS with JAVA_PKG_FORCE_ANT_TASKS if it's set
-		ANT_TASKS="${JAVA_PKG_FORCE_ANT_TASKS:-${ANT_TASKS}}"
+	# override ANT_TASKS with JAVA_PKG_FORCE_ANT_TASKS if it's set
+	ANT_TASKS="${JAVA_PKG_FORCE_ANT_TASKS:-${ANT_TASKS}}"
 
-		if is-java-strict; then
-			# if ant-tasks were not set by ebuild or forced, try to determine them from depends
-			if [[ -z "${ANT_TASKS}" ]]; then
-				ANT_TASKS="$(java-pkg_ant-tasks-from-deps)"
-			fi
-		else
-			# if ant-tasks is not set by ebuild or forced, activate all of them
-			ANT_TASKS="${ANT_TASKS:-all}"
-		fi
+	# if ant-tasks is not set by ebuild or forced, use none
+	ANT_TASKS="${ANT_TASKS:-none}"
 
-		# at this point, ANT_TASKS should be "all", "none" or explicit list
-		if [[ "${ANT_TASKS}" == "all" ]]; then
-			einfo "Using all available ANT_TASKS"
-		elif [[ "${ANT_TASKS}" == "none" ]]; then
-			einfo "Disabling all optional ANT_TASKS"
-		else
-			einfo "Using following ANT_TASKS: ${ANT_TASKS}"
-		fi
-
-		export ANT_TASKS
+	# at this point, ANT_TASKS should be "all", "none" or explicit list
+	if [[ "${ANT_TASKS}" == "all" ]]; then
+		einfo "Using all available ANT_TASKS"
+	elif [[ "${ANT_TASKS}" == "none" ]]; then
+		einfo "Disabling all optional ANT_TASKS"
+	else
+		einfo "Using following ANT_TASKS: ${ANT_TASKS}"
 	fi
+
+	export ANT_TASKS
 
 	[[ -n ${JAVA_PKG_DEBUG} ]] && antflags="${antflags} --execdebug -debug"
 	[[ -n ${PORTAGE_QUIET} ]] && antflags="${antflags} -q"
