@@ -72,8 +72,10 @@ src_unpack() {
 	sed -i -e "s:tail +16c:tail -c +16:g" \
 		gcc/Makefile.in || die "sed gcc/Makefile.in failed."
 
+	epatch "${FILESDIR}"/${PN}-${GCC_VERS}-inline-asm.patch
+
 	cd "${WORKDIR}"/libstdcxx-${LIBSTDCXX_APPLE_VERSION}/libstdcxx
-	epatch "${FILESDIR}"/gcc-apple-5531-libstdxx.patch
+	epatch "${FILESDIR}"/libstdc++-${LIBSTDCXX_APPLE_VERSION}.patch
 }
 
 src_compile() {
@@ -188,7 +190,7 @@ int main() {
 src_install() {
 	cd "${WORKDIR}"/build
 	# -jX doesn't work
-	emake DESTDIR="${D}" install || die
+	emake -j1 DESTDIR="${D}" install || die
 
 	cd "${WORKDIR}"/build_libstdcxx
 	emake DESTDIR="${D}" install || die

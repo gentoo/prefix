@@ -1,5 +1,5 @@
---- libstdc++-v3/include/bits/c++config.orig	2008-01-11 22:10:38 +0100
-+++ libstdc++-v3/include/bits/c++config	2008-01-11 22:14:29 +0100
+--- libstdc++-v3/include/bits/c++config
++++ libstdc++-v3/include/bits/c++config
 @@ -76,7 +76,7 @@
  }
  namespace std
