@@ -1,6 +1,9 @@
 # ChangeLog for dev-db/sqlite
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.172 2008/01/08 00:34:49 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.173 2008/01/13 02:10:07 betelgeuse Exp $
+
+  13 Jan 2008; Petteri Räty <betelgeuse@gentoo.org> sqlite-3.5.4.ebuild:
+  Fix doc bundle installation for 3.5.4. Upstream changed the directory name.
 
   08 Jan 2008; Petteri Räty <betelgeuse@gentoo.org> sqlite-3.5.3.ebuild,
   sqlite-3.5.4.ebuild:

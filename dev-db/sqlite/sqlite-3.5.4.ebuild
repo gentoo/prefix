@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.5.4.ebuild,v 1.2 2008/01/08 00:34:49 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.5.4.ebuild,v 1.3 2008/01/13 02:10:07 betelgeuse Exp $
 
 EAPI="prefix 1"
 
@@ -87,6 +87,6 @@ src_install () {
 	dohtml doc/*.html art/*.gif || die
 
 	if use doc; then
-		dohtml -r "${WORKDIR}"/${PN}-docs-${PV}/* || die
+		dohtml -r "${WORKDIR}"/${PN}_docs_${DOC_PV}/* || die
 	fi
 }
