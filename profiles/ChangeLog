@@ -1,6 +1,15 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.986 2008/01/11 02:07:57 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.989 2008/01/12 18:13:01 wolf31o2 Exp $
+
+  12 Jan 2008; Chris Gianelloni <wolf31o2@gentoo.org> profiles.desc:
+  Removing the x86/no-nptl/2.4 profile.
+
+  12 Jan 2008; Markus Meier <maekke@gentoo.org> use.local.desc:
+  add fontconfig flag for media-gfx/imagemagick
+
+  11 Jan 2008; Alon Bar-Lev <alonbl@gentoo.org> package.mask:
+  Add =app-crypt/gnupg-2.0.8, bug#204662
 
   11 Jan 2008; Ryan Hill <dirtyepic@gentoo.org> package.mask:
   Mask sys-devel/distcc-config for removal (bug #192741).

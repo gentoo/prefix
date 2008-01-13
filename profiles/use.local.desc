@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3284 2008/01/10 18:38:07 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3291 2008/01/12 18:15:31 aballier Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -64,7 +64,6 @@ app-cdr/serpentine:muine - Enable support for the GNOME music player Muine
 app-crypt/ccid:nousb - Disable USB support via pcsc-lite
 app-crypt/ccid:twinserial - Enable twinserial reader
 app-crypt/gnupg:ecc - Use elliptic curve cryptosystem patch
-app-crypt/gnupg:gpg2-experimental - Install experimental development version of gnupg
 app-crypt/gnupg:idea - Use the patented IDEA algorithm
 app-crypt/gnupg:openct - build using dev-libs/openct compatibility
 app-crypt/gnupg:pcsc-lite - build with pcsc-lite
@@ -385,8 +384,6 @@ dev-java/aspectwerkz:java5 - Enable Java 5 specific features
 dev-java/avalon-logkit:javamail - Enable support for javamail
 dev-java/avalon-logkit:jms - Enable support for JMS (Java Message Service)
 dev-java/backport-util-concurrent:java5 - Enable also the 1.6 > 1.5 backport.
-dev-java/bsf:jython - Enable Jython support
-dev-java/bsf:rhino - Enable Rhino support
 dev-java/bsh:bsf - Enable support for Apache Bean Scripting Framework
 dev-java/commons-collections:test-framework - Install the test framework
 dev-java/commons-logging:avalon-framework - Add optional support for avalon-framework
@@ -911,6 +908,7 @@ media-gfx/gwenview:kipi - Support for the KDE Image Plugin Interface.
 media-gfx/hugin:enblend - Pull media-gfx/enblend as a dependency
 media-gfx/hugin:sift - Pull media-gfx/autopano-sift as a dependency
 media-gfx/imagemagick:djvu - Enable djvu support
+media-gfx/imagemagick:fontconfig - Support for managing custom fonts via fontconfig.
 media-gfx/imagemagick:fpx - enable libfpx support
 media-gfx/imagemagick:gs - enable ghostscript support
 media-gfx/imagemagick:hdri - Enables High Dynamic Range Images formats
@@ -956,11 +954,11 @@ media-libs/panda3d:nspr - Enables support for the Netscape Portable Runtime, use
 media-libs/ploticus:cpulimit - Limit cpu usage when generating graphics
 media-libs/ploticus:flash - Adds support for creating SWF files using Ming
 media-libs/ploticus:svgz - Compressed svg graphics support
+media-libs/portaudio:cxx - Enable C++ bindings
 media-libs/sdif:ftruncate - Enables usage of ftruncate v. truncate
 media-libs/sdl-sound:physfs - Enable physfs support
 media-libs/sge:image - enable sdl-image support
 media-libs/speex:vorbis-psy - Enable Vorbis-style psychoacoustics
-media-libs/speex:wideband - Enable Wideband codec
 media-libs/svgalib:no-helper - Do not build the helper kernel module
 media-libs/swfdec:soup - Enable HTTP support via libsoup
 media-libs/urt:gs - Add support for postscript
@@ -1052,6 +1050,7 @@ media-sound/picard:cdaudio - Enable support for CD Index Lookups.
 media-sound/podcatcher:bittorrent - Enable support for bittorrent downloads
 media-sound/pulseaudio:asyncns - Use libasyncns for asynchronous name resolution.
 media-sound/pulseaudio:policykit - Enable support for PolicyKit framework.
+media-sound/qsampler:libgig - Enable libgig support for loading Gigasampler files and DLS (Downloadable Sounds) Level 1/2 files
 media-sound/quodlibet:mmkeys - Enable support for special keys on multimedia keyboards
 media-sound/quodlibet:trayicon - Enable support for trayicon
 media-sound/radiomixer:hwmixer - Use hardware mixer instead of internal mixer routines
@@ -1192,7 +1191,6 @@ media-video/ogmrip:srt - Support for SRT subtitle format
 media-video/oxine:polling - Enables support to automatically check the drive for a new disc
 media-video/totem:galago - Enable the galago plugin
 media-video/totem:nvtv - Support for nvtv to use tv in on nvidia cards
-media-video/transcode:custom-cflags - Enables custom cflags (not supported)
 media-video/transcode:extrafilters - Install some filters only if we ask for them
 media-video/transcode:fame - Enables libfame support
 media-video/transcode:mjpeg - Enables mjpegtools support
