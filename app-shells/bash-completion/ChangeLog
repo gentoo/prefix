@@ -1,6 +1,11 @@
 # ChangeLog for app-shells/bash-completion
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.140 2007/05/31 03:32:50 pioto Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.141 2008/01/12 18:35:56 caster Exp $
+
+  12 Jan 2008; Vlastimil Babka <caster@gentoo.org>
+  bash-completion-20050121-r10.ebuild, bash-completion-20050721.ebuild,
+  bash-completion-20060301.ebuild, bash-completion-20060301-r2.ebuild:
+  Convert einfo to elog.
 
   31 May 2007; Mike Kelly <pioto@gentoo.org> metadata.xml:
   Remove myself from maintainers.xml. I haven't had success getting this
