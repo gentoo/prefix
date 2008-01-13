@@ -1,6 +1,9 @@
 # ChangeLog for www-servers/apache
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.52 2008/01/10 15:53:13 rich0 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.53 2008/01/12 18:46:18 hollow Exp $
+
+  12 Jan 2008; Benedikt Böhm <hollow@gentoo.org> apache-2.2.6-r7.ebuild:
+  fix define for mod_status
 
   10 Jan 2008; Richard Freeman <rich0@gentoo.org> apache-2.2.6-r7.ebuild:
   amd64 stable - bug 204838
