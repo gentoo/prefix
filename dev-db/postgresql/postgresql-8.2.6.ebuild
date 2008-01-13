@@ -1,22 +1,19 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/postgresql-8.2.4-r1.ebuild,v 1.3 2007/10/28 12:56:33 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/postgresql-8.2.6.ebuild,v 1.1 2008/01/13 01:44:21 mjolnir Exp $
 
 EAPI="prefix"
 
-inherit eutils gnuconfig flag-o-matic multilib toolchain-funcs versionator
+inherit eutils flag-o-matic multilib toolchain-funcs versionator
 
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
 
 DESCRIPTION="Sophisticated and powerful Object-Relational DBMS."
 HOMEPAGE="http://www.postgresql.org/"
-SRC_URI="mirror://postgresql/source/v${PV}/${PN}-base-${PV}.tar.bz2
-		mirror://postgresql/source/v${PV}/${PN}-opt-${PV}.tar.bz2
-		doc? ( mirror://postgresql/source/v${PV}/${PN}-docs-${PV}.tar.bz2 )
-		test? ( mirror://postgresql/source/v${PV}/${PN}-test-${PV}.tar.bz2 )"
+SRC_URI="mirror://postgresql/source/v${PV}/${PN}-${PV}.tar.bz2"
 LICENSE="POSTGRESQL"
 SLOT="0"
-IUSE="doc kerberos nls pam perl pg-intdatetime python readline selinux ssl tcl test xml zlib"
+IUSE="doc kerberos kernel_linux nls pam perl pg-intdatetime python readline selinux ssl tcl test xml zlib"
 
 RDEPEND="~dev-db/libpq-${PV}
 		>=sys-libs/ncurses-5.2
@@ -29,8 +26,7 @@ RDEPEND="~dev-db/libpq-${PV}
 		ssl? ( >=dev-libs/openssl-0.9.6-r1 )
 		tcl? ( >=dev-lang/tcl-8 )
 		xml? ( dev-libs/libxml2 dev-libs/libxslt )
-		zlib? ( >=sys-libs/zlib-1.1.3 )
-		!prefix? ( virtual/logger )"
+		zlib? ( >=sys-libs/zlib-1.1.3 )"
 DEPEND="${RDEPEND}
 		sys-devel/autoconf
 		>=sys-devel/bison-1.875
@@ -38,7 +34,7 @@ DEPEND="${RDEPEND}
 		xml? ( dev-util/pkgconfig )"
 
 PG_DIR="${EPREFIX}/var/lib/postgresql"
-[[ -z "${PG_MAX_CONNECTIONS}" ]] && PG_MAX_CONNECTIONS="40"
+[[ -z "${PG_MAX_CONNECTIONS}" ]] && PG_MAX_CONNECTIONS="512"
 
 pkg_setup() {
 	if [[ -f "${PG_DIR}/data/PG_VERSION" ]] ; then
@@ -59,11 +55,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}/${P}-gentoo.patch"
-	epatch "${FILESDIR}/${P}-sh.patch"
-
-	# Gentoo/FreeBSD's python is works fine with threading - unlike FreeBSD's
-	epatch "${FILESDIR}/${P}-python-threads.patch"
+	epatch "${FILESDIR}/${PN}-${PV}-gentoo.patch"
+	epatch "${FILESDIR}/${PN}-${PV}-sh.patch"
 
 	# Prepare package for future tests
 	if use test ; then
@@ -71,7 +64,7 @@ src_unpack() {
 		sed -e "s|/no/such/location|${S}/src/test/regress/tmp_check/no/such/location|g" -i src/test/regress/{input,output}/tablespace.source
 
 		# Fix broken tests
-		epatch "${FILESDIR}/${P}-regress_fix.patch"
+		epatch "${FILESDIR}/${PN}-${PV}-regress_fix.patch"
 
 		# We need to run the tests as a non-root user, portage seems the most fitting here,
 		# so if userpriv is enabled, we use it directly. If userpriv is disabled, we need to
@@ -82,7 +75,7 @@ src_unpack() {
 		if ! hasq userpriv ${FEATURES} ; then
 			mkdir -p "${S}/src/test/regress/results"
 			chown portage "${S}/src/test/regress/results"
-			epatch "${FILESDIR}/${P}-regress_su.patch"
+			epatch "${FILESDIR}/${PN}-${PV}-regress_su.patch"
 		fi
 	fi
 }
@@ -90,15 +83,10 @@ src_unpack() {
 src_compile() {
 	filter-flags -ffast-math -feliminate-dwarf2-dups
 
-	# Detect mips systems properly
-	gnuconfig_update
-
 	# maybe this is for all non-GNU libc babies...
 	[[ ${CHOST} == *-solaris* ]] && use nls && append-ldflags -lintl
 
-	cd "${S}"
-
-	./configure --prefix="${EPREFIX}"/usr \
+	econf --prefix="${EPREFIX}"/usr \
 		--includedir="${EPREFIX}"/usr/include/postgresql/pgsql \
 		--sysconfdir="${EPREFIX}"/etc/postgresql \
 		--mandir="${EPREFIX}"/usr/share/man \
