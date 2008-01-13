@@ -24,7 +24,10 @@ src_unpack() {
 
 	epatch "${FILESDIR}/${P}-prefix.patch"
 	eprefixify \
-		java-config java_config/jc_options.py java_config/jc_util.py
+		java-config \
+		java_config/jc_envgen.py \
+		java_config/jc_options.py \
+		java_config/jc_util.py
 }
 
 src_install() {

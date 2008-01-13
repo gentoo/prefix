@@ -6,6 +6,34 @@
  # -*- coding: UTF-8 -*-
  
  # Copyright 2001-2005 Gentoo Foundation
+@@ -13,6 +13,7 @@
+ import sys, getopt, os
+ from java_config import jc_options
+ from java_config.jc_output import *
++from portage.const import rootuid
+ 
+ __version__ = "$Revision: 1.44 $" [11:-2]
+ __portage_version__ = "1.3.7"
+@@ -34,7 +35,7 @@
+ 		try: 
+ 			cn = str(name).split('.')[1]
+ 			if func.require_root:
+-				if os.getuid() != 0: 
++				if os.getuid() != rootuid: 
+ 					raise jc_options.OptionRuntimeError(
+ 					  'root access required'				
+ 					)
+--- java_config.orig/jc_envgen.py	2006-09-21 03:57:05 +0200
++++ java_config/jc_envgen.py	2008-01-13 11:12:40 +0100
+@@ -273,7 +273,7 @@
+ 
+ class EnvFileOutput (EnvOutput):
+ 
+-	def __init__ (self, config_file='20java', config_path='/etc/env.d'):
++	def __init__ (self, config_file='20java', config_path='@GENTOO_PORTAGE_EPREFIX@/etc/env.d'):
+ 
+ 		try:
+ 			self.configFile = open(os.path.join(config_path, config_file), 'w')
 --- java_config/jc_options.py~	2006-09-21 03:57:05 +0200
 +++ java_config/jc_options.py	2007-09-24 16:34:37 +0200
 @@ -1,4 +1,4 @@
@@ -33,9 +61,36 @@
  		)
  
  	def __call__(self, args):
+@@ -688,7 +688,7 @@
+ 
+ 		else: 
+ 			try:
+-				fn = os.path.join('/', 'etc', 'env.d', '21java-classpath')
++				fn = os.path.join("@GENTOO_PORTAGE_EPREFIX@", 'etc', 'env.d', '21java-classpath')
+ 				fp = file(fn, 'w')
+ 			except (OSError, IOError), e:
+ 				raise OptionRuntimeError(
+@@ -721,7 +721,7 @@
+ 	names = ('B:', 'add-system-classpath=')
+ 	require_root = True
+ 
+-	conf_file = os.path.join('/', 'etc', 'env.d', '21java-classpath')
++	conf_file = os.path.join("@GENTOO_PORTAGE_EPREFIX@", 'etc', 'env.d', '21java-classpath')
+ 
+ 	def __call__(self, args):
+ 		sys.stderr.write(red('Classpath operations are no longer supported by java-config-1. Use java-config-2 instead\n'))
+@@ -774,7 +774,7 @@
+ 	names = ('X', 'clean-system-classpath')
+ 
+ 	require_root = True
+-	env_file = '/etc/env.d/21java-classpath'
++	env_file = '@GENTOO_PORTAGE_EPREFIX@/etc/env.d/21java-classpath'
+ 
+ 	def __call__(self, args):
+ 		sys.stderr.write(red('Classpath operations are no longer supported by java-config-1. Use java-config-2 instead\n'))
 --- java_config/jc_util.py~	2007-09-24 16:37:58 +0200
 +++ java_config/jc_util.py	2007-09-24 16:37:48 +0200
-@@ -7,7 +7,7 @@
+@@ -7,12 +7,12 @@
  import glob
  import sys
  
@@ -44,6 +99,21 @@
  from jc_output import *
  from jc_exceptions import OptionRuntimeError
  
+ env = os.environ
+-ENV_DIR = '/etc/env.d'
++ENV_DIR = '@GENTOO_PORTAGE_EPREFIX@/etc/env.d'
+ 
+ def warn (msg):
+ 
+@@ -53,7 +53,7 @@
+ 	# Read VMHANDLE from /etc/env.d/20java
+ 	p = re.compile('^' + name + '=\"?(.*?)\"?$')
+ 	try:
+-		fh = open('/etc/env.d/20java')
++		fh = open(os.path.join(ENV_DIR, '20java'))
+ 		for line in fh.readlines():
+ 			line = line.strip()
+ 			m = p.match(line)
 @@ -200,16 +200,16 @@
  	return norm_cp(':'.join(classpath_list))
  
