@@ -55,6 +55,9 @@ qt4-build_src_unpack() {
 	strip-flags
 	replace-flags -O3 -O2
 
+	append-flags -finline-functions
+	append-flags -funswitch-loops
+
 	if [[ $( gcc-fullversion ) == "3.4.6" && gcc-specs-ssp ]] ; then
 		ewarn "Appending -fno-stack-protector to CFLAGS/CXXFLAGS"
 		append-flags -fno-stack-protector
