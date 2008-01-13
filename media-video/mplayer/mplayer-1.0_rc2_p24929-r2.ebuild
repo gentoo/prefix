@@ -183,7 +183,6 @@ src_unpack() {
 	# Pulseaudio patch, bug 203430
 	epatch "${FILESDIR}/${P}-pulse.patch"
 	epatch "${FILESDIR}"/${PN}-1.0_rc1_p20070927-prefix.patch
-	epatch "${FILESDIR}"/${PN}-1.0-assembly.patch
 	epatch "${FILESDIR}"/${PN}-1.0-nocona.patch
 	epatch "${FILESDIR}"/${PN}-1.0-darwin.patch
 	eprefixify DOCS/xml/configure
