@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/junit
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/junit/ChangeLog,v 1.35 2008/01/11 09:48:56 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/junit/ChangeLog,v 1.36 2008/01/12 16:40:02 ranger Exp $
+
+  12 Jan 2008; Brent Baude <ranger@gentoo.org> junit-4.4-r1.ebuild:
+  Marking junit-4.4-r1 ~ppc64 for bug 129773
 
 *junit-4.4 (11 Jan 2008)
 
