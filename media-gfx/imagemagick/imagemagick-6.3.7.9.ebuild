@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.3.7.9.ebuild,v 1.2 2008/01/07 23:10:54 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.3.7.9.ebuild,v 1.3 2008/01/12 14:16:09 maekke Exp $
 
 EAPI="prefix"
 
@@ -17,11 +17,12 @@ SRC_URI="ftp://ftp.imagemagick.org/pub/${MY_PN}/${MY_P2}.tar.bz2"
 LICENSE="imagemagick"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-IUSE="bzip2 djvu doc fpx graphviz gs hdri jbig jpeg jpeg2k lcms mpeg nocxx openexr
-	perl png q8 q32 svg tiff truetype X wmf xml zlib"
+IUSE="bzip2 djvu doc fontconfig fpx graphviz gs hdri jbig jpeg jpeg2k lcms nocxx
+	openexr perl png q8 q32 svg tiff truetype X wmf xml zlib"
 
 RDEPEND="bzip2? ( app-arch/bzip2 )
 	djvu? ( app-text/djvu )
+	fontconfig? ( media-libs/fontconfig )
 	fpx? ( media-libs/libfpx )
 	graphviz? ( >=media-gfx/graphviz-2.6 )
 	gs? ( virtual/ghostscript )
@@ -29,7 +30,6 @@ RDEPEND="bzip2? ( app-arch/bzip2 )
 	jpeg? ( >=media-libs/jpeg-6b )
 	jpeg2k? ( media-libs/jasper )
 	lcms? ( >=media-libs/lcms-1.06 )
-	mpeg? ( >=media-video/mpeg2vidcodec-12 )
 	openexr? ( media-libs/openexr )
 	perl? ( >=dev-lang/perl-5.8.6-r6 !=dev-lang/perl-5.8.7 )
 	png? ( media-libs/libpng )
@@ -83,6 +83,7 @@ src_compile() {
 		$(use_with !nocxx magick-plus-plus) \
 		$(use_with bzip2 bzlib) \
 		$(use_with djvu) \
+		$(use_with fontconfig) \
 		$(use_with fpx) \
 		$(use_with gs dps) \
 		$(use_with gs gslib) \
@@ -91,11 +92,10 @@ src_compile() {
 		$(use_with jpeg jpeg) \
 		$(use_with jpeg2k jp2) \
 		$(use_with lcms) \
-		$(use_with mpeg mpeg2) \
 		$(use_with png) \
 		$(use_with svg rsvg) \
 		$(use_with tiff) \
-		$(use_with truetype ttf) \
+		$(use_with truetype freetype) \
 		$(use_with wmf) \
 		$(use_with xml) \
 		$(use_with zlib) \
