@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/rsync
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.143 2007/12/17 00:27:51 vapier Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.144 2008/01/12 21:19:06 vapier Exp $
+
+*rsync-3.0.0_pre8 (12 Jan 2008)
+
+  12 Jan 2008; Mike Frysinger <vapier@gentoo.org> +rsync-3.0.0_pre8.ebuild:
+  Version bump rsync-3.0.0_pre7 rsync-3.0.0_pre8.
 
 *rsync-3.0.0_pre7 (17 Dec 2007)
 
