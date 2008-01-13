@@ -1,18 +1,16 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/libpq-8.2.4.ebuild,v 1.2 2007/05/02 22:13:09 voxus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/libpq-8.2.6.ebuild,v 1.1 2008/01/13 01:38:02 mjolnir Exp $
 
 EAPI="prefix"
 
-inherit eutils gnuconfig flag-o-matic toolchain-funcs
+inherit eutils flag-o-matic toolchain-funcs
 
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 
 DESCRIPTION="PostgreSQL libraries."
 HOMEPAGE="http://www.postgresql.org/"
-SRC_URI="mirror://postgresql/source/v${PV}/postgresql-base-${PV}.tar.bz2
-		mirror://postgresql/source/v${PV}/postgresql-opt-${PV}.tar.bz2
-		threads? ( mirror://postgresql/source/v${PV}/postgresql-test-${PV}.tar.bz2 )"
+SRC_URI="mirror://postgresql/source/v${PV}/postgresql-${PV}.tar.bz2"
 LICENSE="POSTGRESQL"
 SLOT="4"
 IUSE="kerberos nls pam pg-intdatetime readline ssl threads zlib"
@@ -47,15 +45,10 @@ src_unpack() {
 src_compile() {
 	filter-flags -ffast-math -feliminate-dwarf2-dups
 
-	# Detect mips systems properly
-	gnuconfig_update
-
 	# maybe this is for all non-GNU libc babies...
 	[[ ${CHOST} == *-solaris* ]] && use nls && append-ldflags -lintl
 
-	cd "${S}"
-
-	./configure --prefix="${EPREFIX}"/usr \
+	econf --prefix="${EPREFIX}"/usr \
 		--includedir="${EPREFIX}"/usr/include/postgresql/libpq-${SLOT} \
 		--sysconfdir="${EPREFIX}"/etc/postgresql \
 		--mandir="${EPREFIX}"/usr/share/man \

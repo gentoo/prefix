@@ -1,0 +1,44 @@
+--- postgresql-8.2.3.orig/src/interfaces/libpq/Makefile	2006-12-28 01:01:12.000000000 +0100
++++ postgresql-8.2.3/src/interfaces/libpq/Makefile	2007-03-29 10:24:27.000000000 +0200
+@@ -20,6 +20,8 @@
+ SO_MINOR_VERSION= 0
+ DLTYPE= library
+ 
++NAME_STATIC_LIB= $(NAME)-$(SO_MAJOR_VERSION)
++
+ override CPPFLAGS :=  -DFRONTEND -I$(srcdir) $(CPPFLAGS) -I$(top_builddir)/src/port
+ ifneq ($(PORTNAME), win32)
+ override CFLAGS += $(PTHREAD_CFLAGS)
+@@ -160,7 +162,7 @@
+ 	$(INSTALL_DATA) $(srcdir)/libpq-fe.h '$(DESTDIR)$(includedir)'
+ 	$(INSTALL_DATA) $(srcdir)/libpq-int.h '$(DESTDIR)$(includedir_internal)'
+ 	$(INSTALL_DATA) $(srcdir)/pqexpbuffer.h '$(DESTDIR)$(includedir_internal)'
+-	$(INSTALL_DATA) $(srcdir)/pg_service.conf.sample '$(DESTDIR)$(datadir)/pg_service.conf.sample'
++	$(INSTALL_DATA) $(srcdir)/pg_service.conf.sample '$(DESTDIR)$(datadir)/pg_service-$(SO_MAJOR_VERSION).conf.sample'
+ 
+ installdirs:
+ 	$(mkinstalldirs) '$(DESTDIR)$(libdir)' '$(DESTDIR)$(includedir)' '$(DESTDIR)$(includedir_internal)'
+--- postgresql-8.2.3.orig/src/interfaces/libpq/nls.mk	2005-01-14 09:57:06.000000000 +0100
++++ postgresql-8.2.3/src/interfaces/libpq/nls.mk	2007-03-29 10:24:55.000000000 +0200
+@@ -1,5 +1,5 @@
+ # $PostgreSQL: pgsql/src/interfaces/libpq/nls.mk,v 1.20 2005/01/14 08:57:06 petere Exp $
+-CATALOG_NAME	:= libpq
++CATALOG_NAME	:= libpq-4
+ AVAIL_LANGUAGES	:= af cs de es fr hr it ko nb pl pt_BR ru sk sl sv tr zh_CN zh_TW
+ GETTEXT_FILES	:= fe-auth.c fe-connect.c fe-exec.c fe-lobj.c fe-misc.c fe-protocol2.c fe-protocol3.c fe-secure.c
+ GETTEXT_TRIGGERS:= libpq_gettext pqInternalNotice:2
+--- postgresql-8.2.3.orig/src/Makefile.shlib	2006-09-19 17:36:07.000000000 +0200
++++ postgresql-8.2.3/src/Makefile.shlib	2007-03-29 10:28:42.000000000 +0200
+@@ -346,10 +346,10 @@
+ install-lib: install-lib-static install-lib-shared
+ 
+ install-lib-static: lib$(NAME).a
+-	$(INSTALL_STLIB) $< '$(DESTDIR)$(libdir)/lib$(NAME).a'
++	$(INSTALL_STLIB) $< '$(DESTDIR)$(libdir)/lib$(NAME_STATIC_LIB).a'
+ ifeq ($(PORTNAME), darwin)
+ 	cd '$(DESTDIR)$(libdir)' && \
+-	ranlib lib$(NAME).a
++	ranlib lib$(NAME_STATIC_LIB).a
+ endif
+ 
+ ifeq ($(enable_shared), yes)
