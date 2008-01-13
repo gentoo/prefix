@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-getopt/java-getopt-1.0.13.ebuild,v 1.4 2007/06/02 15:22:30 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-getopt/java-getopt-1.0.13.ebuild,v 1.5 2008/01/12 16:35:08 ranger Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SLOT="1"
 DEPEND=">=virtual/jdk-1.4
 	dev-java/ant-core"
 RDEPEND=">=virtual/jre-1.4"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="doc source"
 
 S=${WORKDIR}
