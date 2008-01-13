@@ -9,7 +9,7 @@ HOMEPAGE="http://www.trolltech.com/"
 
 LICENSE="|| ( QPL-1.0 GPL-2 )"
 SLOT="4"
-KEYWORDS="~x86 ~x86-macos"
+KEYWORDS="~x86-linux ~ppc-macos ~x86-macos"
 
 IUSE="opengl qt3support"
 
