@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/ant-owanttask
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-owanttask/ChangeLog,v 1.26 2007/05/24 13:35:21 flameeyes Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-owanttask/ChangeLog,v 1.27 2008/01/12 16:32:03 ranger Exp $
+
+  12 Jan 2008; Brent Baude <ranger@gentoo.org> ant-owanttask-1.1-r12.ebuild:
+  Marking ant-owanttask-1.1-r12 ~ppc64 for bug 129773
 
   24 May 2007; Diego Pettenò <flameeyes@gentoo.org>
   ant-owanttask-1.1-r12.ebuild:

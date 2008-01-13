@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-owanttask/ant-owanttask-1.1-r12.ebuild,v 1.7 2007/05/24 13:35:21 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-owanttask/ant-owanttask-1.1-r12.ebuild,v 1.8 2008/01/12 16:32:03 ranger Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ MY_P="owanttask-${PV}"
 SRC_URI="http://www.gentoo.org/~karltk/java/distfiles/${MY_P}-gentoo.tar.bz2"
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-fbsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 COMMON_DEP="dev-java/xalan"
 DEPEND=">=virtual/jdk-1.4
