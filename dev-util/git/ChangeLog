@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.248 2008/01/10 11:51:48 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.249 2008/01/13 22:02:28 ferdy Exp $
+
+  13 Jan 2008; Fernando J. Pereda <ferdy@gentoo.org>
+  +files/git-1.5.3.8-t9101.patch, git-1.5.3.8.ebuild:
+  Add a fix for some test cases under subversion 1.4.6
 
 *git-1.5.3.8 (10 Jan 2008)
 
