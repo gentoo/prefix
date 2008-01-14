@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/qgit
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/qgit/ChangeLog,v 1.37 2007/12/31 16:48:32 jokey Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/qgit/ChangeLog,v 1.38 2008/01/13 17:01:17 jokey Exp $
+
+  13 Jan 2008; Markus Ullmann <jokey@gentoo.org> qgit-2.1.ebuild:
+  Fix hardcoded debug flags for release version for bug #204827
 
 *qgit-2.1 (31 Dec 2007)
 *qgit-1.5.8 (31 Dec 2007)
