@@ -1,6 +1,39 @@
 # ChangeLog for dev-db/postgresql
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/ChangeLog,v 1.354 2008/01/13 01:44:21 mjolnir Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/ChangeLog,v 1.360 2008/01/14 01:16:00 ranger Exp $
+
+  14 Jan 2008; Brent Baude <ranger@gentoo.org> postgresql-7.3.21.ebuild:
+  Marking postgresql-7.3.21 ppc64 for bug 204760
+
+  13 Jan 2008; Christian Faulhammer <opfer@gentoo.org>
+  postgresql-7.3.21.ebuild, postgresql-7.4.19.ebuild,
+  postgresql-8.0.15.ebuild:
+  stable x86, security bug 204760
+
+*postgresql-8.1.11 (13 Jan 2008)
+
+  13 Jan 2008; Martin Jackson <mjolnir@gentoo.org>
+  +files/postgresql-8.1.11-regress_su.patch,
+  +files/postgresql-8.1.11-sh.patch, +postgresql-8.1.11.ebuild:
+  Bump to 8.1.11 for #204760
+
+*postgresql-7.3.21 (13 Jan 2008)
+
+  13 Jan 2008; Martin Jackson <mjolnir@gentoo.org>
+  +files/postgresql-7.3.21-cubeparse.patch, +postgresql-7.3.21.ebuild:
+  Bump to 7.3.21 for #204760
+
+*postgresql-7.4.19 (13 Jan 2008)
+
+  13 Jan 2008; Martin Jackson <mjolnir@gentoo.org>
+  +files/postgresql-7.4.19-hppa-testandset.patch, +postgresql-7.4.19.ebuild:
+  Bump to 7.4.19 for #204760
+
+*postgresql-8.0.15 (13 Jan 2008)
+
+  13 Jan 2008; Martin Jackson <mjolnir@gentoo.org>
+  +files/postgresql-8.0.15-sh.patch, +postgresql-8.0.15.ebuild:
+  Bump to 8.0.15 for #204760
 
 *postgresql-8.2.6 (13 Jan 2008)
 
