@@ -12,7 +12,7 @@ SRC_URI="http://spatula.net/software/sex/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 DEPEND="virtual/libc"
