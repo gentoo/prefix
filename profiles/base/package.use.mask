@@ -36,3 +36,8 @@ app-admin/sshguard ipfilter
 
 # Linking against libnfsidmap requires libs in /usr #149472
 sys-apps/acl nfs
+
+# Christian Faulhammer <opfer@gentoo.org> (14 Jan 2008)
+# only works on x86, where this will be unmasked
+dev-java/ibm-jdk-bin alsa
+dev-java/ibm-jre-bin alsa

@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8112 2008/01/12 19:27:34 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8120 2008/01/13 21:23:30 jokey Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -20,6 +20,29 @@
 ##
 ##   End example
 ##
+
+# Markus Ullmann <jokey@gentoo.org> (13 Jan 2008)
+# contrib modules need to be added back and needs general testing
+>=net-nds/openldap-2.4
+
+# Wulf C. Krueger <philantrop@gentoo.org> (13 Jan 2008)
+# Masked qca-2.0 and dependencies for further testing, bug #129536
+=app-crypt/qca-2*
+>=app-crypt/qca-cyrus-sasl-2.0.0_beta3
+>=app-crypt/qca-gnupg-2.0.0_beta2
+>=app-crypt/qca-logger-2.0.0_beta2
+>=app-crypt/qca-ossl-2.0.0_beta3
+>=app-crypt/qca-pkcs11-2.0.0_beta2
+
+# Samuli Suominen <drac@gentoo.org> (13 Jan 2008)
+# Masked for removal in about 60 days.
+# libdts is replaced by libdca.
+media-libs/libdts
+=media-video/ffmpeg-0.4.9_p20051216
+=media-video/ffmpeg-0.4.9_p2006*
+=media-video/ffmpeg-0.4.9_p20070129
+=media-video/ffmpeg-0.4.9_p20070325
+=media-video/ffmpeg-0.4.9_p20070330
 
 # Benedikt Böhm <hollow@gentoo.org> (12 Jan 2008)
 # Masked for apache-2.0 removal, bug #203578
@@ -525,15 +548,6 @@ dev-java/libgnome-java
 # beta NVIDIA drivers, not supported. bug #196679
 ~x11-drivers/nvidia-drivers-100.14.23
 
-# Markus Ullmann <jokey@gentoo.org> (29 Oct 2007)
-# mask 2.2 as announced on gwn half a year ago
-<net-nds/openldap-2.3
-
-# Santiago M. Mola <coldwind@gentoo.org> (29 Oct 2007)
-# Butterfly is broken with new Empathy due to API changes.
-# Waiting for a new release of pymsn and butterfly.
-net-voip/telepathy-butterfly
-
 # Diego Pettenò <flameeyes@gentoo.org> (26 Oct 2007)
 # Still-experimental support for dynamic service dependencies
 # needs baselayout-2, wait masked here till that's available.
@@ -541,10 +555,6 @@ net-voip/telepathy-butterfly
 # the ebuild is masked.
 =media-sound/pulseaudio-0.9.8-r5
 =media-sound/pulseaudio-0.9.8-r7
-
-# Markus Ullmann <jokey@gentoo.org> (20 Oct 2007)
-# dependency unneeded now, merged upstream
-dev-util/portatosourceview
 
 # Christian Hoffmann <hoffie@gentoo.org> (19 Oct 2007)
 # masked for security reasons, bug 189172, removal scheduled for beginning of
@@ -641,11 +651,6 @@ x11-wm/kahakai
 # Kevin F. Quinn <kevquinn@gentoo.org> (27 Sep 2007)
 # Masked for testing
 =app-text/acroread-8.1.1
-
-# Wulf C. Krueger <philantrop@gentoo.org> (27 Sep 2007)
-# Temporary mask for further testing and until xmlrpc-c has been keyworded
-# properly.
-=dev-util/cmake-2.4.7-r2
 
 # Paul Varner <fuzzyray@gentoo.org> (27 Sep 2007)
 # revdep-rebuild is broken in this release
@@ -1121,10 +1126,6 @@ app-portage/gatt-svn
 #     emerge -a layman
 #     layman -ka armagetron
 games-action/armagetronad
-
-# Markus Ullmann <jokey@gentoo.org> (15 Jan 2007)
-# mask live ebuild
-=app-emulation/virtualbox-9999
 
 # Joshua Baergen <joshuabaergen@gentoo.org> (13 Jan 2007)
 # Deprecated X components

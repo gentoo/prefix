@@ -1,6 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.989 2008/01/12 18:13:01 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.993 2008/01/13 23:20:57 opfer Exp $
+
+  13 Jan 2008; Christian Faulhammer <opfer@gentoo.org>
+  base/package.use.mask, default-linux/x86/package.use.mask:
+  mask alsa USE flag for dev-java/ibm-{jdk,jre}-bin in base and unmask it on x86
+
+  13 Jan 2008; Wulf C. Krueger <philantrop@gentoo.org> use.local.desc:
+  Added clucene description dev-libs/soprano
+
+  13 Jan 2008; Wulf C. Krueger <philantrop@gentoo.org> package.mask:
+  Masked qca-2.0 and dependencies for further testing, bug #129536
+
+  13 Jan 2008; Joerg Bornkessel <hd_brummy@gentoo.org> use.local.desc:
+  use-flag ff-card, 4mb-mod, graphtft for media-video/vdr-graphtft added
 
   12 Jan 2008; Chris Gianelloni <wolf31o2@gentoo.org> profiles.desc:
   Removing the x86/no-nptl/2.4 profile.

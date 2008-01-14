@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3291 2008/01/12 18:15:31 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3297 2008/01/13 22:05:02 ferdy Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -202,6 +202,10 @@ app-misc/roadnav:openstreetmap - Enable openstreetmap support
 app-misc/roadnav:scripting - Enable scripting support
 app-misc/screen:multiuser - Enable multiuser support (by setting correct permissions)
 app-misc/screen:nethack - Express error messages in nethack style
+app-misc/strigi:clucene - Enable clucene backend support (recommended)
+app-misc/strigi:exiv2 - Enable support for exif/iptc metadata (recommended)
+app-misc/strigi:hyperestraier - Enable hyperestraier backend support (experimental)
+app-misc/strigi:inotify - Enable support for inotify (experimental)
 app-misc/tablix:pvm - Add support for parallel virtual machine (http://www.epm.ornl.gov/pvm/pvm_home.html)
 app-misc/tomboy:galago - Add support for the galago desktop presence framework
 app-misc/towitoko:moneyplex - Makes libtowitoko work for the moneyplex home banking software
@@ -512,6 +516,7 @@ dev-libs/opensc:openct - build using dev-libs/openct compatibility
 dev-libs/opensc:pcsc-lite - build with pcsc-lite
 dev-libs/pkcs11-helper:nss - Enable NSS crypto engine
 dev-libs/qsa:ide - enable the qsa ide
+dev-libs/soprano:clucene - Enable clucene backend support (recommended)
 dev-libs/wx-xmingw:gdb - Enable gdb debugging
 dev-libs/wx-xmingw:monolithic - Build a monolithic lib
 dev-libs/wx-xmingw:mslu - Enable mslu support
@@ -619,7 +624,8 @@ dev-util/ctags:ada - Enable Ada support
 dev-util/cvs:server - Enable server support
 dev-util/debootstrap:nodpkg - Don't install dpkg (useful for building a non-debian system)
 dev-util/eric:idl - Enable omniorb support
-dev-util/git:mozsha1 - makes git use an optimized SHA1 routine from Mozilla that should be fast on non-x86 machines
+dev-util/git:cgi - Install gitweb too
+dev-util/git:mozsha1 - Makes git use an optimized SHA1 routine from Mozilla that should be fast on non-x86 machines
 dev-util/git:ppcsha1 - Make use of a bundled routine that is optimized for the PPC arch
 dev-util/git:webdav - Adds support for push'ing to HTTP repositories via DAV
 dev-util/global:vim - vim funny stuff for global
@@ -984,6 +990,9 @@ media-plugins/mythphone:festival - Enable festival support
 media-plugins/vdr-burn:projectx - Enables support fur projectx
 media-plugins/vdr-dvdconvert:projectx - Enables support for projectx 
 media-plugins/vdr-graphtft:graphtft-fe - Install external x11 remote frontend
+media-plugins/vdr-music:ff-card - Enables scrollmode on FF Card
+media-plugins/vdr-music:4mb-mod - Enables support for modded FF-Card to 4MB ram or softdecoder
+media-plugins/vdr-music:graphtft - Enables support for plugin vdr-graphtft
 media-plugins/vdr-pvr350:yaepg - Enables full support for the ouput format of vdr-yaepg
 media-plugins/vdr-softdevice:mmxext - enables mmx2 support
 media-plugins/vdr-text2skin:direct_blit - not buffer picture, faster, but only for modified skins
@@ -1626,6 +1635,7 @@ net-misc/zaptel:ukcid - Enable UK callerid support
 net-misc/zaptel:watchdog - Enable the watchdog to monitor unresponsive and misbehaving interfaces
 net-misc/zaptel:zapnet - Enable SyncPPP, CiscoHDLC and Frame-Relay support
 net-misc/zaptel:zapras - Enable PPP support for Remote-Access-Service
+net-nds/openldap:experimental - Enable experimental backend options
 net-nds/openldap:overlays - Enable contributed OpenLDAP overlays
 net-nds/openldap:smbkrb5passwd - Enable overlay for syncing ldap, unix and lanman passwords
 net-nds/tac_plus:finger - Adds support for checking user counts via fingering the NAS
