@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-ezc.eclass,v 1.4 2007/09/01 15:58:17 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-ezc.eclass,v 1.5 2008/01/13 15:28:38 jokey Exp $
 
 # @ECLASS: php-ezc.eclass
 # @MAINTAINER:
@@ -24,7 +24,8 @@ fix_EZC_PV() {
 
 # @ECLASS-VARIABLE: EZC_PV
 # @DESCRIPTION:
-# Set in ebuild if the eclass ${PV} mangling of beta/rc versions breaks SRC_URI.
+# Set in ebuild before inherit if the eclass ${PV} mangling of beta/rc
+# versions breaks SRC_URI.
 [[ -z "${EZC_PV}" ]] && fix_EZC_PV
 
 EZC_PN="${EZC_PKG_NAME}-${EZC_PV}"
@@ -34,8 +35,17 @@ S="${WORKDIR}/${EZC_PN}"
 DEPEND=">=dev-lang/php-5.1.2
 		>=dev-php/PEAR-PEAR-1.4.6"
 
-RDEPEND="${DEPEND}
-		dev-php5/ezc-Base"
+# @ECLASS-VARIABLE: EZC_BASE_MIN
+# @DESCRIPTION:
+# Minimal dev-php5/ezc-Base version required for given eZ component version.
+# Set in ebuild before inherit.
+[[ -z "${EZC_BASE_MIN}" ]] && EZC_BASE_MIN="1.0"
+
+if [[ "${PN}" != "ezc-Base" ]] ; then
+	RDEPEND="${DEPEND} >=dev-php5/ezc-Base-${EZC_BASE_MIN}"
+else
+	RDEPEND="${DEPEND}"
+fi
 
 SRC_URI="http://components.ez.no/get/${EZC_PN}.tgz"
 HOMEPAGE="http://ez.no/products/ez_components"

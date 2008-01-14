@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.69 2008/01/07 02:54:49 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.70 2008/01/13 18:41:28 flameeyes Exp $
 #
 # Maintainer: base-system@gentoo.org
 #
@@ -140,7 +140,7 @@ _elibtoolize() {
 	lttest="$(autotools_check_macro "AC_PROG_LIBTOOL")$(autotools_check_macro "AM_PROG_LIBTOOL")"
 	[[ -n $lttest ]] || return 0
 
-	[[ -f Makefile.am ]] && opts="--automake"
+	[[ -f GNUmakefile.am || -f Makefile.am ]] && opts="--automake"
 
 	[[ ${CHOST} == *-darwin* ]] && LIBTOOLIZE="glibtoolize"
 	autotools_run_tool ${LIBTOOLIZE:-libtoolize} "$@" ${opts}
@@ -168,16 +168,23 @@ eautoconf() {
 
 eautomake() {
 	local extra_opts
+	local makefile_name
 
-	[[ -f Makefile.am ]] || return 0
+	if [[ -f GNUmakefile.am ]]; then
+		makefile_name="GNUmakefile"
+	elif [[ -f Makefile.am ]]; then
+		makefile_name="Makefile"
+	else
+		return 0
+	fi
 
-	if [[ -z ${FROM_EAUTORECONF} && -f Makefile.in ]]; then
+	if [[ -z ${FROM_EAUTORECONF} && -f ${makefile_name}.in ]]; then
 		local used_automake
 		local installed_automake
 
 		installed_automake=$(automake --version | head -n 1 | \
 			sed -e 's:.*(GNU automake) ::')
-		used_automake=$(head -n 1 < Makefile.in | \
+		used_automake=$(head -n 1 < ${makefile_name}.in | \
 			sed -e 's:.*by automake \(.*\) from .*:\1:')
 
 		if [[ ${installed_automake} != ${used_automake} ]]; then
