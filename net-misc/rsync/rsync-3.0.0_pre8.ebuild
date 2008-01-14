@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.0_pre8.ebuild,v 1.1 2008/01/12 21:19:06 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.0_pre8.ebuild,v 1.2 2008/01/13 08:28:14 vapier Exp $
 
 EAPI="prefix"
 
@@ -23,10 +23,6 @@ DEPEND=">=dev-libs/popt-1.5
 S=${WORKDIR}/${P/_/}
 
 src_unpack() {
-	unpack ${P/_/}.tar.gz
-	cd "${S}"
-	rm -f configure.sh
-
 	cp "${FILESDIR}"/rsyncd.* "${T}"/
 	cd "${T}"
 	epatch "${FILESDIR}"/rsync-files-prefix.patch
