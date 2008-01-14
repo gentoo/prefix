@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/fish/fish-1.22.3.ebuild,v 1.2 2007/06/25 02:16:03 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/fish/fish-1.23.0.ebuild,v 1.1 2008/01/13 09:45:07 dberkholz Exp $
 
 EAPI="prefix"
 
@@ -19,14 +19,6 @@ RDEPEND="sys-libs/ncurses
 	X? ( x11-misc/xsel )"
 DEPEND="${RDEPEND}
 	app-doc/doxygen"
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/fish-1.22.3-iconv.patch
-	epatch "${FILESDIR}"/fish-1.22.3-gettext.patch
-	eautoreconf
-}
 
 src_compile() {
 	# Set things up for fish to be a default shell.
