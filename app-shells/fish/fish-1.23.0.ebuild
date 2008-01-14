@@ -24,6 +24,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/fish-1.22.3-gettext.patch
+	epatch "${FILESDIR}"/fish-1.23.0-gentoo-alt.patch
 	eautoreconf
 }
 
