@@ -2,5 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-*sys-devel/binutils
 *sys-apps/bsd-man-pages
+*sys-devel/binutils
+*sys-process/pidof-bsd

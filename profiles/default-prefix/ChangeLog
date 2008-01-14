@@ -2,6 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Jan 2008; Fabian Groffen <grobian@gentoo.org> bsd/packages,
+  darwin/macos/package.use.force, darwin/macos/package.use.mask,
+  darwin/packages:
+  Add pidof-bsd to Darwin and BSD system sets.
+
   11 Jan 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask gcc-3.3.6, as it causes trouble, see bug #204998.
 

@@ -1,3 +1,4 @@
-*sys-devel/odcctools
-*sys-apps/darwin-miscutils
 *sys-apps/bsd-man-pages
+*sys-apps/darwin-miscutils
+*sys-devel/odcctools
+*sys-process/pidof-bsd
