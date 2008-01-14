@@ -1,6 +1,6 @@
 --- pidof.c.orig	2007-04-20 10:08:53 +0200
 +++ pidof.c	2007-04-23 11:41:29 +0200
-@@ -27,6 +27,7 @@
+@@ -27,10 +27,10 @@
   */
  
  #include <unistd.h>
@@ -8,6 +8,10 @@
  #include <stdio.h>
  #include <string.h>
  #include <err.h>
+-#include <kvm.h>
+ #include <sys/param.h>
+ #include <sys/sysctl.h>
+ #include <sys/user.h>
 @@ -49,46 +50,146 @@
  static int
  get_pid_of_process(const char *process_name)

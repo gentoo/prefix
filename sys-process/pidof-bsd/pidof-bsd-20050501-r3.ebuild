@@ -12,7 +12,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~ppc-macos ~x86-fbsd"
+KEYWORDS="~x86-fbsd ~ppc-macos ~x86-macos"
 IUSE=""
 
 DEPEND=""
@@ -28,7 +28,9 @@ PATCHES="${FILESDIR}/${P}-gfbsd.patch
 	PATCHES="${PATCHES} ${FILESDIR}/${P}-darwin.patch"
 
 src_compile() {
-	$(tc-getCC) -o pidof pidof.c -lkvm
+	local libs=""
+	[[ ${CHOST} == *-*bsd* ]] && libs="-lkvm"
+	$(tc-getCC) -o pidof pidof.c ${libs} || die
 }
 
 src_install() {
