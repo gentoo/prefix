@@ -8,7 +8,7 @@ PATCHVER="1.5"
 ELF2FLT_VER=""
 inherit toolchain-binutils autotools
 
-KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~x86-interix ~sparc-solaris ~x86-solaris"
 
 src_unpack() {
 	toolchain-binutils_src_unpack
@@ -36,6 +36,7 @@ src_compile() {
 	# so the native one is linked in.
 	case "${CTARGET}" in
 	*-hpux*) EXTRA_ECONF="--without-gnu-ld" ;;
+	*-interix*) EXTRA_ECONF="--without-gnu-ld --without-gnu-as" ;;
 	esac
 
 	toolchain-binutils_src_compile
@@ -47,6 +48,10 @@ src_install() {
 	case "${CTARGET}" in
 	*-hpux*)
 		ln -s /usr/ccs/bin/ld "${ED}${BINPATH}"/ld || die "Cannot create ld symlink"
+		;;
+    *-interix*)
+		ln -s /opt/gcc.3.3/bin/ld "${ED}${BINPATH}"/ld || die "Cannot create ld symlink"
+		ln -s /opt/gcc.3.3/bin/as "${ED}${BINPATH}"/as || die "Cannot create as symlink"
 		;;
 	esac
 }
