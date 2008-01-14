@@ -23,6 +23,8 @@ DEPEND=">=dev-libs/popt-1.5
 S=${WORKDIR}/${P/_/}
 
 src_unpack() {
+	unpack ${A}
+
 	cp "${FILESDIR}"/rsyncd.* "${T}"/
 	cd "${T}"
 	epatch "${FILESDIR}"/rsync-files-prefix.patch
