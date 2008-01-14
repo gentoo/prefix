@@ -1,6 +1,32 @@
 # ChangeLog for net-nds/openldap
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.306 2008/01/10 14:41:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.312 2008/01/13 22:36:18 ulm Exp $
+
+  13 Jan 2008; Ulrich Mueller <ulm@gentoo.org> -openldap-2.3.35-r1.ebuild,
+  -openldap-2.3.39-r1.ebuild:
+  Remove old revisions wrt bug #201690.
+
+  13 Jan 2008; Markus Ullmann <jokey@gentoo.org> openldap-2.3.39-r2.ebuild,
+  openldap-2.3.40-r1.ebuild:
+  Add samba flag warning for bug #196045
+
+  13 Jan 2008; Markus Ullmann <jokey@gentoo.org> openldap-2.3.39-r2.ebuild:
+  Stable on amd64 with welps permission
+
+  13 Jan 2008; Markus Ullmann <jokey@gentoo.org> openldap-2.3.39-r2.ebuild,
+  openldap-2.3.40-r1.ebuild:
+  Drop readline dep as it's not needed any more
+
+  13 Jan 2008; Markus Ullmann <jokey@gentoo.org> openldap-2.3.39-r2.ebuild,
+  openldap-2.3.40-r1.ebuild, openldap-2.4.7.ebuild:
+  Fix lib preservation for bug #205220
+
+*openldap-2.4.7 (13 Jan 2008)
+
+  13 Jan 2008; Markus Ullmann <jokey@gentoo.org>
+  +files/openldap-2.4-disable-bdb46.patch,
+  +files/openldap-2.4-ppolicy.patch, +openldap-2.4.7.ebuild:
+  Version bump to new 2.4 series
 
   10 Jan 2008; Raúl Porcel <armin76@gentoo.org> openldap-2.3.39-r2.ebuild:
   alpha/ia64 stable wrt #201690

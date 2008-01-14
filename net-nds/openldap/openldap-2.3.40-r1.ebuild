@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/net-nds/openldap/openldap-2.3.40-r1.ebuild,v 1.1 2008/01/09 23:14:25 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.3.40-r1.ebuild,v 1.4 2008/01/13 22:22:25 jokey Exp $
 
 EAPI="prefix"
 
@@ -16,8 +16,7 @@ SRC_URI="mirror://openldap/openldap-release/${P}.tgz"
 LICENSE="OPENLDAP"
 SLOT="0"
 KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
-IUSE="berkdb crypt debug gdbm ipv6 kerberos minimal odbc overlays perl readline
-samba sasl slp smbkrb5passwd ssl tcpd selinux"
+IUSE="berkdb crypt debug gdbm ipv6 kerberos minimal odbc overlays perl samba sasl slp smbkrb5passwd ssl tcpd selinux"
 
 # note that the 'samba' USE flag pulling in OpenSSL is NOT an error.  OpenLDAP
 # uses OpenSSL for LanMan/NTLM hashing (which is used in some enviroments, like
@@ -27,7 +26,6 @@ samba sasl slp smbkrb5passwd ssl tcpd selinux"
 RDEPEND="sys-libs/ncurses
 	tcpd? ( sys-apps/tcp-wrappers )
 	ssl? ( dev-libs/openssl )
-	readline? ( sys-libs/readline )
 	sasl? ( dev-libs/cyrus-sasl )
 	!minimal? (
 		odbc? ( dev-db/unixODBC )
@@ -160,6 +158,11 @@ pkg_setup() {
 		die "You must have a complete (USE='-minimal') Perl install to use the perl backend!"
 	fi
 
+	if use samba && ! use ssl ; then
+		eerror "LAN manager passwords need ssl flag set"
+		die "Please set ssl useflag"
+	fi
+
 	if use minimal && has_version "net-nds/openldap" && built_with_use net-nds/openldap minimal ; then
 		einfo
 		einfo "Skipping scan for previous datadirs as requested by minimal useflag"
@@ -276,7 +279,7 @@ src_compile() {
 	myconf="${myconf} --enable-syslog --enable-dynamic"
 	myconf="${myconf} --enable-local --enable-proctitle"
 
-	myconf="${myconf} $(use_enable ipv6) $(use_enable readline)"
+	myconf="${myconf} $(use_enable ipv6)"
 	myconf="${myconf} $(use_with sasl cyrus-sasl) $(use_enable sasl spasswd)"
 	myconf="${myconf} $(use_enable tcpd wrappers) $(use_with ssl tls)"
 
@@ -464,7 +467,7 @@ pkg_preinst() {
 	LIBSUFFIXES=".so.2.0.130 -2.2.so.7"
 	for LIBSUFFIX in ${LIBSUFFIXES} ; do
 		for each in liblber libldap libldap_r ; do
-			preserve_old_lib "${EROOT}usr/$(get_libdir)/${each}${LIBSUFFIX}"
+			preserve_old_lib "usr/$(get_libdir)/${each}${LIBSUFFIX}"
 		done
 	done
 }
@@ -508,7 +511,7 @@ pkg_postinst() {
 	LIBSUFFIXES=".so.2.0.130 -2.2.so.7"
 	for LIBSUFFIX in ${LIBSUFFIXES} ; do
 		for each in liblber libldap libldap_r ; do
-			preserve_old_lib_notify "${EROOT}usr/$(get_libdir)/${each}${LIBSUFFIX}"
+			preserve_old_lib_notify "usr/$(get_libdir)/${each}${LIBSUFFIX}"
 		done
 	done
 }
