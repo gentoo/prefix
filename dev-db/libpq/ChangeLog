@@ -1,6 +1,50 @@
 # ChangeLog for dev-db/libpq
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/ChangeLog,v 1.124 2008/01/13 01:38:02 mjolnir Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/ChangeLog,v 1.133 2008/01/14 02:10:47 mjolnir Exp $
+
+*libpq-8.1.11 (14 Jan 2008)
+
+  14 Jan 2008; Martin Jackson <mjolnir@gentoo.org>
+  +files/libpq-8.1.11-gentoo.patch, libpq-7.4.17.ebuild,
+  +libpq-8.1.11.ebuild:
+  Fix repoman warnings in 7.4.17 and 7.4.19 and fix 8.1.11 commit
+
+  14 Jan 2008; Brent Baude <ranger@gentoo.org> libpq-7.3.21.ebuild:
+  Marking libpq-7.3.21 ppc64 for bug 204760
+
+  13 Jan 2008; Markus Meier <maekke@gentoo.org> libpq-7.3.21.ebuild,
+  libpq-7.4.19.ebuild, libpq-8.0.15.ebuild:
+  x86 stable, security bug #204760
+
+  13 Jan 2008; Martin Jackson <mjolnir@gentoo.org>
+  +files/libpq-7.3.21-gentoo.patch, +files/libpq-7.4.19-gentoo.patch:
+  Re-add 7.3.21 and 7.4.19 patches with -ko
+
+  13 Jan 2008; Martin Jackson <mjolnir@gentoo.org>
+  -files/libpq-7.3.21-gentoo.patch, -files/libpq-7.4.19-gentoo.patch:
+  Deleting bad patches, will re-add momentarily
+
+  13 Jan 2008; Martin Jackson <mjolnir@gentoo.org>
+  files/libpq-7.4.19-gentoo.patch:
+  Fix bad patch on 7.4.19 commit
+
+*libpq-7.3.21 (13 Jan 2008)
+
+  13 Jan 2008; Martin Jackson <mjolnir@gentoo.org>
+  +files/libpq-7.3.21-gentoo.patch, +libpq-7.3.21.ebuild:
+  Bump to 7.3.21 for #204760
+
+*libpq-7.4.19 (13 Jan 2008)
+
+  13 Jan 2008; Martin Jackson <mjolnir@gentoo.org>
+  +files/libpq-7.4.19-gentoo.patch, +libpq-7.4.19.ebuild:
+  Bump to 7.4.19 for #204760.  Thanks to Michael Kefeder for ebuilds.
+
+*libpq-8.0.15 (13 Jan 2008)
+
+  13 Jan 2008; Martin Jackson <mjolnir@gentoo.org>
+  +files/libpq-8.0.15-gentoo.patch, +libpq-8.0.15.ebuild:
+  Bump to 8.0.15 for #204760
 
 *libpq-8.2.6 (13 Jan 2008)
 
