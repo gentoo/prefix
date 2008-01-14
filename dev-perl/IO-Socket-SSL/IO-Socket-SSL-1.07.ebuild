@@ -12,7 +12,7 @@ SRC_URI="mirror://cpan/authors/id/S/SU/SULLR/${P}.tar.gz"
 
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 DEPEND=">=dev-perl/Net-SSLeay-1.21
