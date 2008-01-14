@@ -20,6 +20,13 @@ RDEPEND="sys-libs/ncurses
 DEPEND="${RDEPEND}
 	app-doc/doxygen"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/fish-1.22.3-gettext.patch
+	eautoreconf
+}
+
 src_compile() {
 	# Set things up for fish to be a default shell.
 	# It has to be in /bin in case /usr is unavailable.
