@@ -17,7 +17,7 @@ RESTRICT="test"
 # change the filename on the end, it still downloads the same file.
 SRC_URI="http://rubyforge.org/frs/download.php/20989/${P}.tgz"
 
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 SLOT="0"
 IUSE="doc server examples"
 PDEPEND="server? ( dev-ruby/builder )" # index_gem_repository.rb

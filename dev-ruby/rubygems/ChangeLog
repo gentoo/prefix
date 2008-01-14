@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/rubygems
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.80 2007/12/21 09:41:33 rbrown Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.81 2008/01/13 07:12:34 redhatter Exp $
+
+  13 Jan 2008; Stuart Longland <redhatter@gentoo.org> rubygems-1.0.1.ebuild:
+  Tested and working on MIPS: ~mips keyword added. (note to self: tested using
+  ebuild /path/to/rubygems-ver.ebuild unpack ; cd $WORKDIR ; rake test -- run
+  as user)
 
   21 Dec 2007; Richard Brown <rbrown@gentoo.org> rubygems-1.0.1.ebuild:
   Fix ebuild to install gem command properly.
