@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/lzma-utils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/ChangeLog,v 1.14 2008/01/12 16:24:39 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/ChangeLog,v 1.15 2008/01/13 15:03:05 nixnut Exp $
+
+  13 Jan 2008; nixnut <nixnut@gentoo.org> lzma-utils-4.32.3.ebuild:
+  Stable on ppc wrt bug 205397
 
   12 Jan 2008; Brent Baude <ranger@gentoo.org> lzma-utils-4.32.3.ebuild:
   Marking lzma-utils-4.32.3 ppc64 for bug 205397
