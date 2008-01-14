@@ -1,0 +1,27 @@
+--- emacs-22.1-orig/src/Makefile.in	2007-03-21 15:31:24.000000000 +0100
++++ emacs-22.1/src/Makefile.in	2008-01-13 03:53:26.000000000 +0100
+@@ -29,6 +29,9 @@
+ 
+ # Here are the things that we expect ../configure to edit.
+ # We use $(srcdir) explicitly in dependencies so as not to depend on VPATH.
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
+ srcdir=@srcdir@
+ VPATH=@srcdir@
+ CC=@CC@
+--- emacs-22.1-orig/src/m/ibms390x.h	2007-01-21 04:59:39.000000000 +0100
++++ emacs-22.1/src/m/ibms390x.h	2008-01-13 03:51:46.000000000 +0100
+@@ -160,10 +160,10 @@
+ #define XPNTR(a) XUINT (a)
+ 
+ #undef START_FILES
+-#define START_FILES pre-crt0.o /usr/lib64/crt1.o /usr/lib64/crti.o
++#define START_FILES pre-crt0.o $(libdir)/crt1.o $(libdir)/crti.o
+ 
+ #undef LIB_STANDARD
+-#define LIB_STANDARD -lgcc -lc -lgcc /usr/lib64/crtn.o
++#define LIB_STANDARD -lgcc -lc -lgcc $(libdir)/crtn.o
+ 
+ /* arch-tag: 4b87653c-6add-4663-8691-7d9dc17b5519
+    (do not change this comment) */

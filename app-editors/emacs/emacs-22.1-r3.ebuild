@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r3.ebuild,v 1.14 2008/01/10 10:29:37 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r3.ebuild,v 1.15 2008/01/13 09:48:47 ulm Exp $
 
 EAPI="prefix"
 
@@ -73,6 +73,7 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-backup-buffer.patch"
 	epatch "${FILESDIR}/${P}-hack-local-variables.patch"
 	epatch "${FILESDIR}/${P}-format-int.patch"
+	epatch "${FILESDIR}/${P}-s390x-non-multilib.patch"
 	# ALSA is detected and used even if not requested by the USE=alsa flag.
 	# So remove the automagic check
 	use alsa || epatch "${FILESDIR}/${P}-disable_alsa_detection.patch"

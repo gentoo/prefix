@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.227 2008/01/10 10:29:37 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.228 2008/01/13 09:48:47 ulm Exp $
+
+  13 Jan 2008; Ulrich Mueller <ulm@gentoo.org>
+  +files/emacs-22.1-s390x-non-multilib.patch, emacs-22.1-r3.ebuild:
+  Fix build issue on S/390x, bug 205555.
 
   10 Jan 2008; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r14.ebuild:
   Update DESCRIPTION. Re-add dropped keywords, following dependencies.
