@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/cmake
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.66 2007/12/17 06:51:30 philantrop Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.67 2008/01/13 15:16:39 philantrop Exp $
+
+  13 Jan 2008; Wulf C. Krueger <philantrop@gentoo.org>
+  cmake-2.4.7-r2.ebuild:
+  Dropped ~mips to get bug 194031 out of the way. Filed bug 205633 for
+  re-keywording.
 
   17 Dec 2007; Wulf C. Krueger <philantrop@gentoo.org>
   cmake-2.4.7-r2.ebuild:
