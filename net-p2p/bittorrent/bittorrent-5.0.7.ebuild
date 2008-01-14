@@ -16,7 +16,7 @@ SRC_URI="http://download.bittorrent.com/dl/${MY_P}.tar.gz"
 
 LICENSE="BitTorrent"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="aqua gtk"
 
 RDEPEND=">=dev-lang/python-2.3
