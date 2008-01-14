@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.89 2008/01/11 11:57:44 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.90 2008/01/14 00:38:59 opfer Exp $
+
+  14 Jan 2008; Christian Faulhammer <opfer@gentoo.org> erlang-12.2.0.ebuild:
+  don't filter --as-needed anymore
 
   11 Jan 2008; Christian Faulhammer <opfer@gentoo.org> erlang-12.2.0.ebuild:
   filter --as-needed from LDFLAGS, reported by Santiago Gala <sgala AT apache
