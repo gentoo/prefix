@@ -18,7 +18,7 @@ inherit toolchain flag-o-matic
 DESCRIPTION="The GNU Compiler Collection.  Includes C/C++, java compilers, pie+ssp extensions, Haj Ten Brugge runtime bounds checking"
 
 LICENSE="GPL-2 LGPL-2.1"
-KEYWORDS="~ppc-aix ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 RDEPEND=">=sys-libs/zlib-1.1.4
 	|| ( >=sys-devel/gcc-config-1.3.12-r4 app-admin/eselect-compiler )
@@ -74,6 +74,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PV}/treelang-nomakeinfo.patch
 
 	epatch "${FILESDIR}"/${PV}/solarisx86_64.patch
+
+	# interix patch from http://gcc.gnu.org/bugzilla/show_bug.cgi?id=15212
+	epatch "${FILESDIR}"/${PV}/interix-x86.patch.bz2
 
 	use vanilla && return 0
 
