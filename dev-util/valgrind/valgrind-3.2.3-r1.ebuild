@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.2.3-r1.ebuild,v 1.4 2007/12/01 17:23:39 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.2.3-r1.ebuild,v 1.5 2008/01/14 20:22:39 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="http://www.valgrind.org/downloads/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="X"
 
 # bug #49147 (bogus stacktrace in gdb with --db-attach=yes) does not seem to be applicable anymore
