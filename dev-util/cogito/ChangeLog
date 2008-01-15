@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/cogito
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cogito/ChangeLog,v 1.53 2007/01/06 01:22:39 ferdy Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cogito/ChangeLog,v 1.54 2008/01/14 18:58:39 grobian Exp $
+
+  14 Jan 2008; Fabian Groffen <grobian@gentoo.org> cogito-0.17.3.ebuild,
+  cogito-0.18.2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   06 Jan 2007; Fernando J. Pereda <ferdy@gentoo.org> -cogito-0.18.ebuild,
   -cogito-0.18.1.ebuild:

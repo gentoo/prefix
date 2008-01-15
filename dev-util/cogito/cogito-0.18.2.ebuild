@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cogito/cogito-0.18.2.ebuild,v 1.2 2007/02/07 21:46:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cogito/cogito-0.18.2.ebuild,v 1.3 2008/01/14 18:58:39 grobian Exp $
 
 EAPI="prefix"
 
