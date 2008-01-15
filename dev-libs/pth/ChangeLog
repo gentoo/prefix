@@ -1,6 +1,17 @@
 # ChangeLog for dev-libs/pth
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/ChangeLog,v 1.57 2007/09/28 18:22:49 alonbl Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/ChangeLog,v 1.60 2008/01/15 00:05:10 vapier Exp $
+
+  15 Jan 2008; Mike Frysinger <vapier@gentoo.org> pth-2.0.7-r1.ebuild:
+  Use `emake -j1` when installing rather than `make`.
+
+*pth-2.0.7-r1 (14 Jan 2008)
+
+  14 Jan 2008; Alon Bar-Lev <alonbl@gentoo.org> +pth-2.0.7-r1.ebuild:
+  --disable-debug actually removed shared libraries, bug#205875, thanks to drac
+
+  14 Jan 2008; Alon Bar-Lev <alonbl@gentoo.org> pth-2.0.7.ebuild:
+  Add debug USE flag
 
   28 Sep 2007; Alon Bar-Lev <alonbl@gentoo.org>
   -files/pth-1.4.0-sigstack.patch, -files/pth-2.0.3-m4.patch,

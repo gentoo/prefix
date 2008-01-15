@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/pth-2.0.7.ebuild,v 1.12 2008/01/14 14:17:02 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/pth-2.0.7-r1.ebuild,v 1.2 2008/01/15 00:05:10 vapier Exp $
 
 EAPI="prefix"
 
@@ -20,10 +20,10 @@ DEPEND=""
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}/${PN}-2.0.5-parallelfix.patch"
-	epatch "${FILESDIR}/${PN}-2.0.6-ldflags.patch"
-	epatch "${FILESDIR}/${PN}-2.0.6-sigstack.patch"
-	epatch "${FILESDIR}/${P}-libs.patch"
+	epatch "${FILESDIR}"/${PN}-2.0.5-parallelfix.patch
+	epatch "${FILESDIR}"/${PN}-2.0.6-ldflags.patch
+	epatch "${FILESDIR}"/${PN}-2.0.6-sigstack.patch
+	epatch "${FILESDIR}"/${P}-libs.patch
 
 	ht_fix_file aclocal.m4 configure
 
@@ -31,11 +31,14 @@ src_unpack() {
 }
 
 src_compile() {
-	econf $(use_enable debug) || die
+	local conf
+	use debug && conf="${conf} --enable-debug"	# have a bug --disable-debug and shared
+	econf ${conf} || die
 	emake || die
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die
+	# install is not parallel safe (last checked 2.0.7-r1)
+	emake -j1 DESTDIR="${D}" install || die
 	dodoc ANNOUNCE AUTHORS ChangeLog NEWS README THANKS USERS
 }
