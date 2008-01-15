@@ -1,6 +1,12 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.993 2008/01/13 23:20:57 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.995 2008/01/14 23:20:29 eva Exp $
+
+  14 Jan 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  remove gal/gtkhtml/peacok mask, it's gone
+
+  14 Jan 2008; Ingmar Vanhassel <ingmar@gentoo.org> package.mask:
+  Masked >=dev-util/cmake-2.4.8_rc12 for further testing.
 
   13 Jan 2008; Christian Faulhammer <opfer@gentoo.org>
   base/package.use.mask, default-linux/x86/package.use.mask:
