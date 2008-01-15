@@ -38,10 +38,14 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed."
 	dodoc ChangeLog NEWS README
+	# in prefix, install an env.d entry such that prefix patch is used/added
+	dodir etc/env.d
+	echo "XDG_DATA_DIRS=${EPREFIX}/usr/share" > "${ED}"/etc/env.d/50mimeinfo
 }
 
 pkg_postinst() {
 
+	export XDG_DATA_DIRS="${EPREFIX}"/usr/share
 	fdo-mime_mime_database_update
 
 }
