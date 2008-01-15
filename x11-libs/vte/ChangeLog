@@ -1,0 +1,745 @@
+# ChangeLog for x11-libs/vte
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.188 2007/12/22 15:55:37 eva Exp $
+
+*vte-0.16.11 (22 Dec 2007)
+
+  22 Dec 2007; Gilles Dartiguelongue <eva@gentoo.org> +vte-0.16.11.ebuild:
+  bump to 0.16.11
+
+*vte-0.16.10 (05 Dec 2007)
+
+  05 Dec 2007; Gilles Dartiguelongue <eva@gentoo.org> +vte-0.16.10.ebuild:
+  bump to 0.16.10
+
+  27 Nov 2007; Jeroen Roovers <jer@gentoo.org> vte-0.16.9.ebuild:
+  Stable for HPPA (bug #199322).
+
+  20 Nov 2007; Markus Rothe <corsair@gentoo.org> vte-0.16.9.ebuild:
+  Stable on ppc64; bug #199322
+
+  17 Nov 2007; Raúl Porcel <armin76@gentoo.org> vte-0.16.9.ebuild:
+  alpha/ia64/sparc stable wrt #199322
+
+  17 Nov 2007; nixnut <nixnut@gentoo.org> vte-0.16.9.ebuild:
+  Stable on ppc wrt bug 199322
+
+  17 Nov 2007; Dawid Węgliński <cla@gentoo.org> vte-0.16.9.ebuild:
+  Stable on x86 (bug #199322)
+
+  16 Nov 2007; Samuli Suominen <drac@gentoo.org> vte-0.16.9.ebuild:
+  amd64 stable wrt #199322
+
+  06 Nov 2007; Raúl Porcel <armin76@gentoo.org> vte-0.16.8.ebuild:
+  sparc stable wrt #193339
+
+  01 Nov 2007; Gilles Dartiguelongue <eva@gentoo.org> vte-0.14.1.ebuild,
+  vte-0.14.2.ebuild, vte-0.16.6-r1.ebuild, vte-0.16.8.ebuild,
+  vte-0.16.9.ebuild:
+  fix quoting, and bug #197787
+
+  27 Sep 2007; Raúl Porcel <armin76@gentoo.org> vte-0.16.8.ebuild:
+  alpha/ia64 stable wrt #193339
+
+  25 Sep 2007; Joshua Kinard <kumba@gentoo.org> vte-0.16.8.ebuild:
+  Bumping straight to stable to catch up on some small gnome keywords on mips,
+  per #191920.
+
+  25 Sep 2007; Jeroen Roovers <jer@gentoo.org> vte-0.16.8.ebuild:
+  Stable for HPPA (bug #193339).
+
+  22 Sep 2007; Tobias Scherbaum <dertobi123@gentoo.org> vte-0.16.8.ebuild:
+  ppc stable, bug #193339
+
+  22 Sep 2007; Tom Gall <tgall@gentoo.org> vte-0.16.8.ebuild:
+  stable on ppc64
+
+  21 Sep 2007; Chris Gianelloni <wolf31o2@gentoo.org> vte-0.16.8.ebuild:
+  Stable on amd64 wrt bug #193339.
+
+  21 Sep 2007; Chris Gianelloni <wolf31o2@gentoo.org> vte-0.16.8.ebuild:
+  Stable on x86 wrt bug #193339.
+
+*vte-0.16.9 (21 Sep 2007)
+
+  21 Sep 2007; Mart Raudsepp <leio@gentoo.org> +vte-0.16.9.ebuild:
+  Version bump with bug fixes
+
+  28 Aug 2007; Jeroen Roovers <jer@gentoo.org> vte-0.16.6-r1.ebuild:
+  Stable for HPPA (bug #185823).
+
+  24 Aug 2007; Daniel Gryniewicz <dang@gentoo.org> vte-0.16.8.ebuild:
+  We need at least python 2.4.4-r5 with the fixed python-config; bug #189770
+
+  20 Aug 2007; Gilles Dartiguelongue <eva@gentoo.org> vte-0.16.8.ebuild:
+  fix vte-0.16.8 ebuild wrt to bug #189556
+
+*vte-0.16.8 (19 Aug 2007)
+
+  19 Aug 2007; Gilles Dartiguelongue <eva@gentoo.org> +vte-0.16.8.ebuild:
+  bump to 0.16.8
+  - Quick followup release with no code changes, to fix missing documentation
+    index in the tarball.
+  - Bug 337252 – ALT + Arrow keys don't work in irssi through gnome-terminal
+    Patch by James Bowes
+  - Bug 448259 – Mapping for Ctrl-_ Patch by Andrey Melnikov.
+  - Bug 449809 – use python-config to get python includes.
+    Patch by Sebastien Bacher.
+  - Bug 450745 – VTE's response to CSI 2 1 t incorrectly formatted.
+    Patch by Dale Sedivec.
+
+  11 Aug 2007; Mart Raudsepp <leio@gentoo.org>
+  -files/vte-0.11.13-memory_fix.patch, -files/vte-0.12-nonls.patch,
+  -files/vte-line-scroll.patch, -files/vte-no_lazy_bindings.patch,
+  -vte-0.11.13-r2.ebuild, -vte-0.12.2.ebuild, -vte-0.16.5.ebuild,
+  -vte-0.16.6.ebuild:
+  Removing Gnome 2.14
+
+  11 Aug 2007; Andrej Kacian <ticho@gentoo.org> vte-0.16.6-r1.ebuild:
+  Stable on x86, bug #185823.
+
+  10 Aug 2007; Christoph Mende <angelos@gentoo.org> vte-0.16.6-r1.ebuild:
+  Stable on amd64 wrt bug #185823
+
+  08 Aug 2007; Raúl Porcel <armin76@gentoo.org> vte-0.16.6-r1.ebuild:
+  alpha/ia64 stable wrt #185823
+
+  07 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  vte-0.16.6-r1.ebuild:
+  Stable on ppc wrt bug #185823.
+
+  07 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org> vte-0.16.6-r1.ebuild:
+  Stable on sparc wrt #185823
+
+*vte-0.16.6-r1 (27 Jul 2007)
+
+  27 Jul 2007; Daniel Gryniewicz <dang@gentoo.org>
+  +files/vte-0.16.6-cursor-modifers-to-csi.patch, +vte-0.16.6-r1.ebuild:
+  Bump to 0.16.6-r1
+  	Fix bug #178793: broken modifed cursor keys
+
+  22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>; vte-0.12.2.ebuild,
+  vte-0.14.1.ebuild, vte-0.14.2.ebuild:
+  Drop virtual/x11 references.
+
+*vte-0.16.6 (27 Jun 2007)
+
+  27 Jun 2007; Mart Raudsepp <leio@gentoo.org>
+  -files/vte-0.16.0-expose-race.patch, -vte-0.16.0-r1.ebuild,
+  -vte-0.16.1.ebuild, -vte-0.16.3.ebuild, +vte-0.16.6.ebuild:
+  Version bump for bug fixes
+
+*vte-0.16.5 (05 Jun 2007)
+
+  05 Jun 2007; Daniel Gryniewicz <dang@gentoo.org> +vte-0.16.5.ebuild:
+  Bump to 0.16.5 - Fix issue with 'some strange "underline" line where cursor
+  is
+  
+  located and blinking'. - Misc bug fixes. - Bugs fixed in this release:
+  
+  – Cursor drawn strangely in joe
+  
+  – scrolling vim in full screen is painfully slow and takes up 100% of the
+  cpu
+  
+  – Display glitch with transparent backgroud
+  
+  – ctrl-key combinations yielding just key
+  
+  Original patch by <samo@altern.org> and refactored by Loïc Minier.
+  
+  – gnome-terminal cannot refresh terminal when accessibility enabled
+  
+  Original patch by Li Yuan.
+  
+  – gnome-terminal crashes when open preedit area
+
+  02 Jun 2007; Brent Baude <ranger@gentoo.org> vte-0.14.2.ebuild:
+  Marking vte-0.14.2 ppc stable for bug #171107
+
+  31 May 2007; Jeroen Roovers <jer@gentoo.org> vte-0.14.2.ebuild:
+  Stable for HPPA (bug #171107).
+
+  31 May 2007; Daniel Gryniewicz <dang@gentoo.org> vte-0.14.2.ebuild:
+  Marked stable on amd64 for bug #171107
+
+  31 May 2007; Brent Baude <ranger@gentoo.org> vte-0.14.2.ebuild:
+  Marking vte-0.14.2 ppc64 stable for bug #171107
+
+  30 May 2007; Raúl Porcel <armin76@gentoo.org> vte-0.14.2.ebuild:
+  alpha/ia64 stable wrt #171107
+
+  29 May 2007; Andrej Kacian <ticho@gentoo.org> vte-0.14.2.ebuild:
+  Stable on x86, bug #171107.
+
+  29 May 2007; Gustavo Zacarias <gustavoz@gentoo.org> vte-0.14.2.ebuild:
+  Stable on sparc wrt #171107
+
+  27 May 2007; Joshua Kinard <kumba@gentoo.org> vte-0.14.1.ebuild:
+  Stable on mips.
+
+  30 Apr 2007; Roy Marples <uberlord@gentoo.org> vte-0.16.3.ebuild:
+  Added ~x86-fbsd keyword, #176517.
+
+*vte-0.16.3 (27 Apr 2007)
+
+  27 Apr 2007; Saleem Abdulrasool <compnerd@gentoo.org> +vte-0.16.3.ebuild:
+  Version bump from upstream with minor fixes
+
+*vte-0.16.1 (17 Apr 2007)
+
+  17 Apr 2007; Saleem Abdulrasool <compnerd@gentoo.org> +vte-0.16.1.ebuild:
+  Version bump for 2.18.1
+
+  27 Mar 2007; Daniel Gryniewicz <dang@gentoo.org> vte-0.16.0-r1.ebuild:
+  Remove pcre option; it's broken
+
+*vte-0.16.0-r1 (27 Mar 2007)
+
+  27 Mar 2007; Daniel Gryniewicz <dang@gentoo.org>
+  +files/vte-0.16.0-expose-race.patch, +vte-0.16.0-r1.ebuild:
+  gnome 2.18.0
+
+*vte-0.14.2 (07 Feb 2007)
+
+  07 Feb 2007; Mart Raudsepp <leio@gentoo.org> +vte-0.14.2.ebuild:
+  Version bump
+
+  18 Jan 2007; Jeroen Roovers <jer@gentoo.org> vte-0.14.1.ebuild:
+  Stable for HPPA (bug #147751).
+
+  15 Jan 2007; Roy Marples <uberlord@gentoo.org> vte-0.14.1.ebuild:
+  Keyworded ~x86-fbsd.
+
+  14 Jan 2007; Mart Raudsepp <leio@gentoo.org> +files/vte-0.14.1-fbsd.patch,
+  vte-0.14.1.ebuild:
+  Fix build on G/FBSD, bug 157924
+
+  10 Jan 2007; Mart Raudsepp <leio@gentoo.org>
+  -files/vte-0.11.16-pkgconfig_libs_fix.patch,
+  -files/vte-0.11.18-line-scroll.patch, -vte-0.11.16-r1.ebuild,
+  -vte-0.11.18.ebuild, -vte-0.14.0.ebuild:
+  Prune old versions
+
+  07 Jan 2007; Bryan Østergaard <kloeri@gentoo.org> vte-0.14.1.ebuild:
+  Stable on Alpha + IA64.
+
+  21 Dec 2006; Markus Rothe <corsair@gentoo.org> vte-0.14.1.ebuild:
+  Stable on ppc64; bug #156662
+
+  18 Dec 2006; Gustavo Zacarias <gustavoz@gentoo.org> vte-0.14.1.ebuild:
+  Stable on sparc
+
+  17 Dec 2006; Tobias Scherbaum <dertobi123@gentoo.org> vte-0.14.1.ebuild:
+  Stable on ppc wrt bug #156662.
+
+  12 Dec 2006; Chris Gianelloni <wolf31o2@gentoo.org> vte-0.14.1.ebuild:
+  Stable on amd64 wrt bug #156662.
+
+  10 Dec 2006; Andrej Kacian <ticho@gentoo.org> vte-0.14.1.ebuild:
+  Stable on x86, bug #156662.
+
+  20 Oct 2006; Aron Griffis <agriffis@gentoo.org> vte-0.12.2.ebuild:
+  Mark 0.12.2 stable on alpha
+
+*vte-0.14.1 (12 Oct 2006)
+
+  12 Oct 2006; Mart Raudsepp <leio@gentoo.org> +vte-0.14.1.ebuild:
+  Version bump for Gnome 2.16 series
+
+  13 Sep 2006; Aron Griffis <agriffis@gentoo.org> vte-0.12.2.ebuild:
+  Mark 0.12.2 stable on ia64. #139612
+
+*vte-0.14.0 (07 Sep 2006)
+
+  07 Sep 2006; Daniel Gryniewicz <dang@gentoo.org>
+  +files/vte-0.13.2-no-lazy-bindings.patch, +vte-0.14.0.ebuild:
+  New version for gnome 2.16
+
+  16 Aug 2006; Markus Rothe <corsair@gentoo.org> vte-0.12.2.ebuild:
+  Stable on ppc64
+
+  23 Jul 2006; Daniel Gryniewicz <dang@gentoo.org> -vte-0.12.0.ebuild:
+  Clean up unnecessary versions
+
+  17 Jul 2006; Daniel Gryniewicz <dang@gentoo.org> vte-0.12.2.ebuild:
+  Marked stable on amd64 for bug #139612
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org> vte-0.12.2.ebuild:
+  hppa stable, bug #139612
+
+  14 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org> vte-0.12.2.ebuild:
+  ppc stable, bug #139612
+
+  12 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org> vte-0.12.2.ebuild:
+  Stable on x86 wrt bug #139612.
+
+  10 Jul 2006; Gustavo Zacarias <gustavoz@gentoo.org> vte-0.12.2.ebuild:
+  Stable on sparc wrt #139612
+
+  08 Jun 2006; Leonardo Boshell <leonardop@gentoo.org>
+  +files/vte-0.12-nonls.patch, vte-0.12.2.ebuild:
+  Added patch to allow compiling vte on systems without gettext (e.g.
+  uclibc-based). Patch contributed by Yuri Vasilevski on bug #134436.
+
+*vte-0.12.2 (06 Jun 2006)
+
+  06 Jun 2006; Leonardo Boshell <leonardop@gentoo.org> +vte-0.12.2.ebuild:
+  New release. Updated dependencies.
+
+  21 Apr 2006; Thomas Cort <tcort@gentoo.org> vte-0.11.18.ebuild:
+  Stable on alpha wrt Bug #126321.
+
+  24 Mar 2006; Aron Griffis <agriffis@gentoo.org> vte-0.11.18.ebuild:
+  Mark 0.11.18 stable on ia64
+
+  24 Mar 2006; Marinus Schraal <foser@gentoo.org> vte-0.12.0.ebuild :
+  Make opengl optional and minor cleanups
+
+  19 Mar 2006; Markus Rothe <corsair@gentoo.org> vte-0.11.18.ebuild:
+  Stable on ppc64
+
+  18 Mar 2006; Olivier Crête <tester@gentoo.org> vte-0.11.18.ebuild:
+  Stable on amd64 per bug #126321
+
+  17 Mar 2006; Chris Gianelloni <wolf31o2@gentoo.org> vte-0.11.18.ebuild:
+  Stable on x86 wrt bug #126321.
+
+  17 Mar 2006; Tobias Scherbaum <dertobi123@gentoo.org> vte-0.11.18.ebuild:
+  Stable gnome-2.12.3 for ppc, bug #126321
+
+  14 Mar 2006; Gustavo Zacarias <gustavoz@gentoo.org> vte-0.11.18.ebuild:
+  Stable on hppa
+
+*vte-0.12.0 (13 Mar 2006)
+
+  13 Mar 2006; Saleem Abdulrasool <compnerd@gentoo.org> +vte-0.12.0.ebuild:
+  Version bump from upstream
+
+  13 Mar 2006; Gustavo Zacarias <gustavoz@gentoo.org> vte-0.11.18.ebuild:
+  Stable on sparc
+
+  14 Feb 2006; Leonardo Boshell <leonardop@gentoo.org> vte-0.11.18.ebuild:
+  Run eautoreconf under gnome-pty-helper only to avoid problems with missing
+  gtk-doc macros (bug #122761). Added atk and proper modular X dependencies.
+
+*vte-0.11.18 (14 Feb 2006)
+
+  14 Feb 2006; Leonardo Boshell <leonardop@gentoo.org> +vte-0.11.18.ebuild,
+  files/vte-0.11.18-line-scroll.patch:
+  New version. Inherit from autotools and call eautoreconf(). Updated
+  -line-scroll patch because of slight internal API changes.
+
+  07 Feb 2006; Aron Griffis <agriffis@gentoo.org> vte-0.11.16-r1.ebuild:
+  Mark 0.11.16-r1 stable on alpha
+
+  03 Feb 2006; Guy Martin <gmsoft@gentoo.org> vte-0.11.16-r1.ebuild:
+  Stable on hppa.
+
+*vte-0.11.17 (29 Jan 2006)
+
+  29 Jan 2006; John N. Laliberte <allanonjl@gentoo.org> +vte-0.11.17.ebuild:
+  new version. remove pkgconfig patch since it has been merged upstream.
+
+  22 Jan 2006; Markus Rothe <corsair@gentoo.org> vte-0.11.16-r1.ebuild:
+  Stable on ppc64
+
+  22 Jan 2006; <dang@gentoo.org> vte-0.11.16-r1.ebuild:
+  Marked stable on amd64 per bug #119634
+
+  22 Jan 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  vte-0.11.16-r1.ebuild:
+  Marked ppc stable for bug #119634; Stabilize Gnome-2.12.2
+
+  22 Jan 2006; Joshua Jackson <tsunam@gentoo.org> vte-0.11.16-r1.ebuild:
+  Stable on x86 for bug #119634; Stabilize Gnome-2.12.2
+
+  20 Jan 2006; Gustavo Zacarias <gustavoz@gentoo.org> vte-0.11.16-r1.ebuild:
+  Stable on sparc wrt #119634
+
+  16 Jan 2006; Guy Martin <gmsoft@gentoo.org> vte-0.11.15.ebuild:
+  Stable on hppa.
+
+*vte-0.11.16-r1 (05 Jan 2006)
+
+  05 Jan 2006; Joe McCann <joem@gentoo.org>
+  +files/vte-0.11.16-pkgconfig_libs_fix.patch, +vte-0.11.16-r1.ebuild:
+  Patch to fix changes to the pkgconfig files that causes problems with
+  includes/cflags. Fixes bug 117806
+
+  18 Dec 2005; Markus Rothe <corsair@gentoo.org> vte-0.11.15.ebuild:
+  Stable on ppc64
+
+*vte-0.11.16 (15 Dec 2005)
+
+  15 Dec 2005; <dang@gentoo.org> +vte-0.11.16.ebuild:
+  New upstream version
+
+  14 Dec 2005; <dang@gentoo.org> vte-0.11.15-r1.ebuild:
+  Don't need explicit X deps, only uses what gtk+ requires
+
+  11 Nov 2005; Michael Hanselmann <hansmi@gentoo.org> vte-0.11.15.ebuild:
+  Stable on ppc.
+
+  06 Nov 2005; <dang@gentoo.org> vte-0.11.15-r1.ebuild:
+  Modular X deps
+
+*vte-0.11.15-r1 (06 Nov 2005)
+
+  06 Nov 2005; Mike Gardiner <obz@gentoo.org>
+  +files/vte-0.11.15-gdk-warnings.patch, +vte-0.11.15-r1.ebuild:
+  Added a fix for disabling gdk warnings, see bug #101401, and the upstream link.
+
+  02 Nov 2005; Gustavo Zacarias <gustavoz@gentoo.org> vte-0.11.15.ebuild:
+  Stable on sparc
+
+  01 Nov 2005; John N. Laliberte <allanonjl@gentoo.org> vte-0.11.15.ebuild:
+  stable on x86
+
+  10 Oct 2005; Hardave Riar <hardave@gentoo.org> vte-0.11.13-r2.ebuild:
+  Stable on mips.
+
+  17 Sep 2005; Aron Griffis <agriffis@gentoo.org> vte-0.11.13-r2.ebuild:
+  Mark 0.11.13-r2 stable on alpha
+
+*vte-0.11.15 (26 Aug 2005)
+
+  26 Aug 2005; Leonardo Boshell <leonardop@gentoo.org>
+  +vte-0.11.15.ebuild:
+  New version.
+
+  23 Aug 2005; Aron Griffis <agriffis@gentoo.org> vte-0.11.13-r2.ebuild:
+  stable on ia64
+
+*vte-0.11.14 (14 Aug 2005)
+
+  14 Aug 2005; Leonardo Boshell <leonardop@gentoo.org> +vte-0.11.14.ebuild:
+  New version.
+
+  08 Aug 2005; Markus Rothe <corsair@gentoo.org> vte-0.11.13-r2.ebuild:
+  Stable on ppc64
+
+  02 Aug 2005; Simon Stelling <blubb@gentoo.org> vte-0.11.13-r2.ebuild:
+  stable on amd64
+
+  31 Jul 2005; Tobias Scherbaum <dertobi123@gentoo.org>
+  vte-0.11.13-r2.ebuild:
+  ppc stable
+
+  27 Jul 2005; Guy Martin <gmsoft@gentoo.org> vte-0.11.13-r2.ebuild:
+  Stable on hppa.
+
+  27 Jul 2005; Gustavo Zacarias <gustavoz@gentoo.org> vte-0.11.13-r2.ebuild:
+  Stable on sparc
+
+  26 Jul 2005; Leonardo Boshell <leonardop@gentoo.org> vte-0.11.13-r2.ebuild:
+  Stable on x86.
+
+*vte-0.11.13-r2 (20 Jul 2005)
+
+  20 Jul 2005; Leonardo Boshell <leonardop@gentoo.org>
+  vte-0.11.13-r2.ebuild, files/vte-no_lazy_bindings.patch:
+  Added patch to avoid lazy bindings in gnome-pty-helper, as it's a setgid
+  binary. See bug #91617.
+
+  11 Jul 2005; Stephen P. Becker <geoman@gentoo.org> vte-0.11.12.ebuild,
+  vte-0.11.13-r1.ebuild:
+  added mips keywords to satisfy gnome repoman deps
+
+  27 Jun 2005; Sven Wegener <swegener@gentoo.org>
+  files/vte-0.11.13-memory_fix.patch:
+  Removed CVS keyword replacements from patch.
+
+*vte-0.11.13-r1 (27 Jun 2005)
+
+  27 Jun 2005; Leonardo Boshell <leonardop@gentoo.org>
+  vte-0.11.13-r1.ebuild, files/vte-0.11.13-memory_fix.patch:
+  Added upstream patch to reduce memory consumption, see bug #96702.
+
+  25 Jun 2005; Guy Martin <gmsoft@gentoo.org> :
+  Stable on hppa.
+
+*vte-0.11.13 (13 Jun 2005)
+
+  13 Jun 2005; Leonardo Boshell <leonardop@gentoo.org> vte-0.11.13.ebuild:
+  New release. Updated dependencies. Added proper support for 'debug' and
+  'static' USE flags.
+
+  13 Jun 2005; Leonardo Boshell <leonardop@gentoo.org> vte-0.11.12.ebuild:
+  Actually implement the 'python' USE flag with a 'configure' option. See
+  bug #95779.
+
+  12 Jun 2005; Olivier Crête <tester@gentoo.org> vte-0.11.12.ebuild:
+  Stable on amd64
+
+  12 Jun 2005; Tobias Scherbaum <dertobi123@gentoo.org> vte-0.11.12.ebuild:
+  Stable on ppc.
+
+  12 Jun 2005; Bryan Østergaard <kloeri@gentoo.org> vte-0.11.12.ebuild:
+  Stable on alpha.
+
+  09 Jun 2005; Gustavo Zacarias <gustavoz@gentoo.org> vte-0.11.12.ebuild:
+  Stable on sparc
+
+  06 Jun 2005; Markus Rothe <corsair@gentoo.org> vte-0.11.12.ebuild:
+  Stable on ppc64
+
+  30 May 2005; Leonardo Boshell <leonardop@gentoo.org> vte-0.11.12.ebuild:
+  Removing mips keyword, the dev-python/pygtk-2.4 dependency has to be
+  resolved.
+
+  09 Apr 2005; Markus Rothe <corsair@gentoo.org> vte-0.11.11-r2.ebuild:
+  Stable on ppc64
+
+  02 Apr 2005; Stephen P. Becker <geoman@gentoo.org> vte-0.11.11-r2.ebuild:
+  stable on mips
+
+  12 Mar 2005; Joe McCann <joem@gentoo.org> :
+  bump pygtk dep, closes bug 84880
+
+*vte-0.11.12 (09 Mar 2005)
+
+  09 Mar 2005; Joe McCann <joem@gentoo.org> +vte-0.11.12.ebuild:
+  gnome-2.10 release
+
+*vte-0.11.11-r3 (31 Jan 2005)
+
+  31 Jan 2005; Fernando Serboncini <fserb@gentoo.org>
+  +files/vte-0.11.11-vtemodule.patch, vte-0.11.11-r3.ebuild:
+  Fixed python binding. Closes bug #61683
+
+*vte-0.11.11-r2.ebuild (16 Jan 2005)
+
+  16 Jan 2005; foser <foser@gentoo.org> vte-0.11.11-r2.ebuild :
+  Add row patch to fix a scroll corruption problem (#73443)
+
+  08 Jan 2005; Tom Martin <slarti@gentoo.org> vte-0.11.11-r2.ebuild:
+  Stable on amd64.
+
+  28 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  24 Dec 2004; Bryan Østergaard <kloeri@gentoo.org> vte-0.11.11-r2.ebuild:
+  Stable on alpha.
+
+  23 Dec 2004; Guy Martin <gmsoft@gentoo.org> vte-0.11.11-r2.ebuild:
+  Stable on hppa.
+
+  22 Dec 2004; Gustavo Zacarias <gustavoz@gentoo.org> vte-0.11.11-r2.ebuild:
+  Stable on sparc
+
+  19 Dec 2004; Mike Gardiner <obz@gentoo.org> vte-0.11.11-r2.ebuild:
+  Keyworded x86 and ppc for GNOME 2.8.1
+
+  16 Dec 2004; Markus Rothe <corsair@gentoo.org> vte-0.11.11-r1.ebuild:
+  Stable on ppc64
+
+  14 Nov 2004; Bryan Østergaard <kloeri@gentoo.org> vte-0.11.11-r1.ebuild:
+  Stable on alpha.
+
+  12 Nov 2004; Mike Gardiner <obz@gentoo.org> vte-0.11.11-r1.ebuild:
+  Keyworded ppc for GNOME 2.8
+
+  11 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org> vte-0.11.11-r1.ebuild:
+  Stable on sparc
+
+*vte-0.11.11-r2 (07 Nov 2004)
+
+  07 Nov 2004; Mike Gardiner <obz@gentoo.org> +files/vte-line-scroll.patch,
+  +vte-0.11.11-r2.ebuild:
+  Added patch from #52951 for shift-(up,down) single line scrolling
+
+  01 Nov 2004; Markus Rothe <corsair@gentoo.org>
+
+  vte-0.11.11-r1.ebuild:
+  Marked ~ppc64; bug #64636
+
+  01 Oct 2004; Stephen P. Becker <geoman@gentoo.org> vte-0.11.11.ebuild:
+  stable on mips
+
+  03 Sep 2004; Pieter Van den Abeele <pvdabeel@gentoo.org>
+  vte-0.11.10-r1.ebuild, vte-0.11.11.ebuild:
+  Masked vte-0.11.11.ebuild stable for ppc
+
+  03 Sep 2004; Pieter Van den Abeele <pvdabeel@gentoo.org>
+  vte-0.11.10-r1.ebuild:
+  Masked vte-0.11.10-r1.ebuild stable for ppc
+
+  23 Aug 2004; Bryan Østergaard <kloeri@gentoo.org> vte-0.11.11.ebuild:
+  Stable on alpha.
+
+*vte-0.11.11-r1 (08 Aug 2004)
+
+  08 Aug 2004; <spider@gentoo.org> +files/vte-0.11.11-spaces.patch,
+  +vte-0.11.11-r1.ebuild:
+  Added upstream patch from http://bugs.gnome.org/show_bug.cgi?id=143914 Closes
+  http://bugs.gentoo.org/show_bug.cgi?id=56406 estimates more than 10fold
+  improvement
+
+  07 Aug 2004; Travis Tilley <lv@gentoo.org> vte-0.11.11.ebuild:
+  stable on amd64
+
+  05 Aug 2004; Gustavo Zacarias <gustavoz@gentoo.org> vte-0.11.11.ebuild:
+  Stable on sparc
+
+  05 Aug 2004; Guy Martin <gmsoft@gentoo.org> vte-0.11.11.ebuild:
+  Stable on hppa.
+
+  31 Jul 2004; <spider@gentoo.org> vte-0.11.11.ebuild:
+  stable on x86 for gnome 2.6.2
+
+  09 Jul 2004; Bryan Østergaard <kloeri@gentoo.org> vte-0.11.10-r1.ebuild:
+  Stable on alpha.
+
+*vte-0.11.11 (30 May 2004)
+
+  30 May 2004; foser <foser@gentoo.org> vte-0.11.11.ebuild :
+  New release, incorporates patch in (#48728)
+
+  15 May 2004; Stephen P. Becker <geoman@gentoo.org> vte-0.11.10.ebuild:
+  Stable on mips.
+
+*vte-0.11.10-r1 (20 Apr 2004)
+
+  20 Apr 2003; L. Boshell <leonardop@gentoo.org> vte-0.11.10-r1.ebuild,
+  files/vte-0.11.10-bg_fix.patch:
+  Added patch that resolves some inefficiency problems that caused
+  gnome-terminal to slow down dramatically under certain circumstances.
+  Closes bug #31830.
+
+  16 Mar 2004; Stephen P. Becker <geoman@gentoo.org> vte-0.11.10.ebuild:
+  Added ~mips keyword.
+
+  13 Dec 2003; Guy Martin <gmsoft@gentoo.org> vte-0.11.10.ebuild:
+  Marked stable on hppa.
+
+  14 Nov 2003; Aron Griffis <agriffis@gentoo.org> vte-0.11.10.ebuild:
+  Stable on ia64
+
+  08 Nov 2003; Todd Sunderlin <todd@gentoo.org> vte-0.11.10.ebuild:
+  added sparc keyword
+
+  22 Oct 2003; Bartosch Pixa <darkspecter@gentoo.org> vte-0.11.10.ebuild:
+  set ppc in keywords
+
+  17 Oct 2003; Aron Griffis <agriffis@gentoo.org> vte-0.11.10.ebuild:
+  Stable on alpha
+
+  05 Oct 2003; Mike Gardiner <obz@gentoo.org> vte-0.11.10.ebuild:
+  Marked stable on x86
+
+  23 Sep 2003; Bartosch Pixa <darkspecter@gentoo.org> vte-0.10.29.ebuild:
+  set ppc in keywords
+
+*vte-0.11.10 (07 Sep 2003)
+
+  07 Sep 2003; foser <foser@gentoo.org> vte-0.11.10.ebuild :
+  gnome 2.4 rc1
+
+  16 Jun 2003; <msterret@gentoo.org> vte-0.10.28.ebuild, vte-0.10.29.ebuild:
+  remove trailing slash per bug 21837
+
+*vte-0.10.29 (10 Jun 2003)
+
+  01 Jul 2003; Guy Martin <gmsoft@gentoo.org> vte-0.10.29.ebuild :
+  Added ~hppa to KEYWORDS.
+
+  10 Jun 2003; foser <foser@gentoo.org> vte-0.10.29.ebuild :
+  New version
+
+*vte-0.10.28 (13 May 2003)
+
+  13 May 2003; foser <foser@gentoo.org> vte-0.10.28.ebuild :
+  New version, added python USE flag for pygtk
+
+*vte-0.10.27 (29 Apr 2003)
+
+  01 Jul  2003; Guy Martin <gmsoft@gentoo.org> vte-0.10.27.ebuild :
+  Added hppa to KEYWORDS.
+
+  29 Apr 2003; foser <foser@gentoo.org> vte-0.10.27.ebuild :
+  New version
+
+*vte-0.10.26 (04 Mar 2003)
+
+  09 Mar 2003; Aron Griffis <agriffis@gentoo.org> vte-0.10.26.ebuild:
+  Mark stable on alpha
+
+  04 Mar 2003; foser <foser@gentoo.org> vte-0.10.26.ebuild :
+  But that was just a dream, that was just a dream...
+
+*vte-0.10.25 (25 Feb 2003)
+
+  03 Mar 2003; foser <foser@gentoo.org> vte-0.10.25.ebuild :
+  Added flag-o-matic fos -Os (#16173)
+
+  25 Feb 2003; foser <foser@gentoo.org> vte-0.10.25.ebuild :
+  Check it out
+
+*vte-0.10.23 (21 Feb 2003)
+
+  21 Feb 2003; Aron Griffis <agriffis@gentoo.org> vte-0.10.23.ebuild :
+  Mark stable on Alpha
+
+  21 Feb 2003; Aron Griffis <agriffis@gentoo.org> vte-0.10.23.ebuild :
+  version bump
+
+*vte-0.10.22 (20 Feb 2003)
+
+  20 Feb 2003; foser <foser@gentoo.org> vte-0.10.22.ebuild :
+  uhuh
+
+*vte-0.10.20 (16 Feb 2003)
+
+  16 Feb 2003; foser <foser@gentoo.org> vte-0.10.20.ebuild :
+  yeah
+
+*vte-0.10.19 (13 Feb 2003)
+
+  13 Feb 2003; foser <foser@gentoo.org> vte-0.10.19.ebuild :
+  There we go again, fixed DOC to be DOCS
+
+*vte-0.10.17 (04 Feb 2003)
+  
+  04 Feb 2003; Spider <spider@gentoo.org> vte-0.10.17.ebuild :
+  update.. just a bit of update....
+  
+*vte-0.10.16 (31 Jan 2003)
+
+  31 Jan 2003; foser <foser@gentoo.org> vte-0.10.16.ebuild :
+  fixed license
+  
+  31 Jan 2003; Spider <spider@gentoo.org> vte-0.10.16.ebuild :
+  chasing the releases
+
+*vte-0.10.14 (24 jan 2003)
+
+  24 Jan 2003; foser <foser@gentoo.org> vte-0.10.14.ebuild :
+  Staying on top of it
+
+*vte-0.10.12 (21 Jan 2003)
+
+  21 Jan 2003; foser <foser@gentoo.org> vte-0.10.12.ebuild :
+  new version
+
+*vte-0.10.8 (12 Jan 2003)
+
+  12 Jan 2003; foser <foser@gentoo.org> vte-0.10.8.ebuild :
+  New version
+
+*vte-0.10.7 (05 Jan 2003)
+
+  05 Jan 2003; foser <foser@gentoo.org> vte-0.10.7.ebuild :
+  New version
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*vte-0.10.4 (12 Nov 2002)
+
+  12 Nov 2002; foser <foser@gentoo.org> vte-0.10.4.ebuild :
+  GNOME 2.1.2 release
+
+*vte-0.9.2 (28 Oct 2002)
+
+  28 Oct 2002; foser <foser@gentoo.org> vte-0.9.2.ebuild, ChangeLog :
+  New version, missed this in the big gnome2.1 update
