@@ -1,6 +1,13 @@
 # ChangeLog for media-sound/jack-audio-connection-kit
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/ChangeLog,v 1.103 2008/01/06 19:28:12 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/ChangeLog,v 1.104 2008/01/14 20:16:07 flameeyes Exp $
+
+*jack-audio-connection-kit-0.109.0 (14 Jan 2008)
+
+  14 Jan 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +jack-audio-connection-kit-0.109.0.ebuild:
+  Version bump, remove jack-tmpfs as /dev/shm is the default path in this
+  release.
 
   06 Jan 2008; Diego Pettenò <flameeyes@gentoo.org>
   jack-audio-connection-kit-0.103.0.ebuild:
