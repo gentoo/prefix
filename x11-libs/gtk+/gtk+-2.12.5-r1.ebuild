@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.12.5-r1.ebuild,v 1.1 2008/01/13 22:12:33 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.12.5-r1.ebuild,v 1.2 2008/01/14 04:53:48 leio Exp $
 
 EAPI="prefix"
 
@@ -92,9 +92,6 @@ src_unpack() {
 
 	# Firefox print review crash fix, bug #195644
 	epatch "${FILESDIR}/${PN}-2.12.1-firefox-print-preview.patch"
-
-	# Fix printing on ppc64.  Bug #197639
-	#epatch "${FILESDIR}/${PN}-2.12.1-cupsutils.patch"
 
 	# -O3 and company cause random crashes in applications. Bug #133469
 	replace-flags -O3 -O2
