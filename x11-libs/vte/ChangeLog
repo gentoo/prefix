@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/vte
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.188 2007/12/22 15:55:37 eva Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.189 2008/01/09 21:36:17 eva Exp $
+
+*vte-0.16.12 (09 Jan 2008)
+
+  09 Jan 2008; Gilles Dartiguelongue <eva@gentoo.org> +vte-0.16.12.ebuild:
+  bump to 0.16.12
 
 *vte-0.16.11 (22 Dec 2007)
 
