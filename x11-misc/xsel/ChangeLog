@@ -1,0 +1,32 @@
+# ChangeLog for x11-misc/xsel
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xsel/ChangeLog,v 1.8 2007/02/04 18:46:17 beandog Exp $
+
+  04 Feb 2007; Steve Dibb <beandog@gentoo.org> xsel-0.9.6.ebuild:
+  amd64 stable, bug 151899
+
+  27 Oct 2006; Sven Wegener <swegener@gentoo.org> xsel-0.9.6.ebuild:
+  Pass CFLAGS to emake.
+
+  21 Oct 2006; David Shakaryan <omp@gentoo.org> xsel-0.9.6.ebuild:
+  Remove monolithic X from dependencies and add IUSE.
+
+  14 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> xsel-0.9.6.ebuild:
+  Stable on ia64.
+
+  13 Sep 2006; Aron Griffis <agriffis@gentoo.org> xsel-0.9.6.ebuild:
+  Mark 0.9.6 ~ia64
+
+  20 Aug 2006; Donnie Berkholz <dberkholz@gentoo.org>; xsel-0.9.6.ebuild:
+  Stable on x86/ppc.
+
+  21 Jun 2006; Donnie Berkholz <spyderous@gentoo.org>; xsel-0.9.6.ebuild:
+  Add missing keywords, this was previously built within app-shells/fish which
+  is keyworded for ppc and amd64.
+
+*xsel-0.9.6 (16 Mar 2006)
+
+  16 Mar 2006; Krzysiek Pawlik <nelchael@gentoo.org> +xsel-0.9.6.ebuild,
+  +metadata.xml:
+  New package, requested in bug #55422.
+
