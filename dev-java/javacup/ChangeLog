@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/javacup
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/javacup/ChangeLog,v 1.21 2007/06/20 17:23:10 betelgeuse Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/javacup/ChangeLog,v 1.22 2008/01/14 13:55:19 caster Exp $
+
+  14 Jan 2008; Vlastimil Babka <caster@gentoo.org>
+  javacup-0.11a_beta20060608.ebuild:
+  Remove the now obsolete WANT_SPLIT_ANT variable.
 
   20 Jun 2007; Petteri Räty <betelgeuse@gentoo.org>
   javacup-0.10k-r1.ebuild:

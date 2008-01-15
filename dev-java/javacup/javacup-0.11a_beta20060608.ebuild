@@ -1,11 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/javacup/javacup-0.11a_beta20060608.ebuild,v 1.2 2007/07/11 19:58:37 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/javacup/javacup-0.11a_beta20060608.ebuild,v 1.3 2008/01/14 13:55:19 caster Exp $
 
 EAPI="prefix"
 
 JAVA_PKG_IUSE="source doc"
-WANT_SPLIT_ANT="true"
 
 inherit java-pkg-2 java-ant-2
 
@@ -21,7 +20,7 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND=">=virtual/jdk-1.4"
@@ -30,13 +29,12 @@ RDEPEND=">=virtual/jre-1.4
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
-	find . -name "*.class" -exec rm -f {} \;
+	cd "${S}"
+	find . -name "*.class" -delete || die
 	java-ant_rewrite-classpath
 }
 
 src_compile() {
-	ANT_TASKS="none"
 	eant -Dgentoo.classpath="$(java-pkg_getjars ant-core)"
 	rm bin/java-cup-11.jar
 	cp dist/java-cup-11a.jar bin/java-cup-11.jar
