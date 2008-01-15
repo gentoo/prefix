@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.17.ebuild,v 1.10 2008/01/09 00:39:38 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.17.ebuild,v 1.11 2008/01/14 04:44:45 vapier Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,6 @@ KEYWORDS="~ppc-aix ~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86
 IUSE="acl doc emacs nls nocxx openmp"
 
 DEPEND="virtual/libiconv
-	dev-libs/libcroco
 	dev-libs/libxml2
 	sys-libs/ncurses
 	dev-libs/expat
@@ -39,7 +38,15 @@ src_unpack() {
 		-e '2iexit 77' \
 		autoconf-lib-link/tests/rpath-3*[ef] || die "sed tests"
 
-	use acl || sed -i 's:use_acl=1:use_acl=0:' gettext-tools/configure
+	# until upstream pulls a new gnulib/acl, we have to hack around it
+	if ! use acl ; then
+		eval export ac_cv_func_acl{,delete_def_file,extended_file,free,from_{mode,text},{g,s}et_{fd,file}}=no
+		export ac_cv_header_acl_libacl_h=no
+		export ac_cv_header_sys_acl_h=no
+		export ac_cv_search_acl_get_file=no
+		export gl_cv_func_working_acl_get_file=no
+		sed -i -e 's:use_acl=1:use_acl=0:' gettext-tools/configure
+	fi
 }
 
 src_compile() {
@@ -55,12 +62,15 @@ src_compile() {
 	fi
 	use nocxx && export CXX=$(tc-getCC)
 
-	# Emacs support is now in a separate package, so configure --without-emacs
+	# --without-emacs: Emacs support is now in a separate package
+	# --with-included-glib: glib depends on us so avoid circular deps
+	# --with-included-libcroco: libcroco depends on glib which ... ^^^
 	econf \
 		--docdir="${EPREFIX}/usr/share/doc/${PF}" \
 		--without-emacs \
 		--disable-java \
 		--with-included-glib \
+		--with-included-libcroco \
 		$(use_enable openmp) \
 		${myconf} \
 		|| die

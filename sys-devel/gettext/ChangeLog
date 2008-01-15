@@ -1,6 +1,12 @@
 # ChangeLog for sys-devel/gettext
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.162 2008/01/07 05:17:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.163 2008/01/14 04:44:45 vapier Exp $
+
+  14 Jan 2008; Mike Frysinger <vapier@gentoo.org> gettext-0.17.ebuild:
+  Flip back to internal libcroco to avoid glib/gettext circular deps #204851
+  by Robin Johnson. Make sure we control all acl aspects (headers and libs) by
+  forcing autoconf tests until gnulib/acl gets updated upstream #205568 by
+  Robin Johnson.
 
   07 Jan 2008; Mike Frysinger <vapier@gentoo.org> gettext-0.17.ebuild:
   Pull in ncurses/libcroco/libxml2 which we actually use, force glib to
