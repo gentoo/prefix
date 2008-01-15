@@ -1,0 +1,38 @@
+# ChangeLog for media-gfx/tgif
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/tgif/ChangeLog,v 1.8 2007/05/15 09:55:15 bangert Exp $
+
+  15 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
+  add <herd>no-herd</herd>
+
+*tgif-4.1.45 (04 Dec 2006)
+
+  04 Dec 2006; Tiziano Müller <dev-zero@gentoo.org>
+  +files/tgif-4.1.45-gentoo.patch, +files/tgif-4.1.45-kprinter.patch,
+  -tgif-4.1.43.ebuild, -tgif-4.1.44.ebuild, +tgif-4.1.45.ebuild:
+  Version bump. Dropped old version. Using make instead of imake (solves bug
+  #151947). Included patches from bug #91227, thanks to Thomas Fischer.
+
+  11 Mar 2006; Joshua Baergen <joshuabaergen@gentoo.org> tgif-4.1.43.ebuild,
+  tgif-4.1.44.ebuild:
+  Add modular X dependencies (Mauricio L. Pilla, bug #124083).
+
+  17 Nov 2005; Homer Parker <hparker@gentoo.org> tgif-4.1.44.ebuild:
+  Marked ~amd64.
+
+  03 Nov 2005; Fabian Groffen <grobian@gentoo.org> tgif-4.1.44.ebuild:
+  Marked ~ppc-macos (bug #110939)
+
+  07 Jun 2005; Luca Barbato <lu_zero@gentoo.org> tgif-4.1.44.ebuild:
+  Fix url, thanks to alawi <alawi@csail.mit.edu> for the report
+
+*tgif-4.1.44 (20 May 2005)
+
+  20 May 2005; Luca Barbato <lu_zero@gentoo.org> +tgif-4.1.44.ebuild:
+  Updated version
+
+*tgif-4.1.43 (19 May 2005)
+
+  19 May 2005; Luca Barbato <lu_zero@gentoo.org> +tgif-4.1.43.ebuild:
+  First commit, thanks to Felix Eckert <dadula@gmx.de> for the ebuild
+
