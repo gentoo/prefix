@@ -1,0 +1,490 @@
+# ChangeLog for xfce-base/xfce4-panel
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-panel/ChangeLog,v 1.124 2007/12/17 18:38:34 jer Exp $
+
+  17 Dec 2007; Jeroen Roovers <jer@gentoo.org> xfce4-panel-4.4.2.ebuild:
+  Stable for HPPA (bug #201747).
+
+  12 Dec 2007; Brent Baude <ranger@gentoo.org> xfce4-panel-4.4.2.ebuild:
+  Marking xfce4-panel-4.4.2 ppc64 stable for bug 201747
+
+  12 Dec 2007; Raúl Porcel <armin76@gentoo.org> xfce4-panel-4.4.2.ebuild:
+  alpha/ia64/sparc stable wrt #201747
+
+  09 Dec 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  xfce4-panel-4.4.2.ebuild:
+  ppc stable, bug #201747
+
+  09 Dec 2007; Dawid Węgliński <cla@gentoo.org> xfce4-panel-4.4.2.ebuild:
+  Stable on amd64/x86 (bug #201747)
+
+  07 Dec 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  xfce4-panel-4.4.1-r2.ebuild:
+  ppc stable, bug #201293
+
+  07 Dec 2007; Markus Rothe <corsair@gentoo.org>
+  xfce4-panel-4.4.1-r2.ebuild:
+  Stable on ppc64; bug #201293
+
+  06 Dec 2007; Jeroen Roovers <jer@gentoo.org> xfce4-panel-4.4.1-r2.ebuild:
+  Stable for HPPA (bug #201293).
+
+  06 Dec 2007; Raúl Porcel <armin76@gentoo.org>
+  xfce4-panel-4.4.1-r2.ebuild:
+  alpha/ia64/sparc stable wrt #201293
+
+  06 Dec 2007; Christian Faulhammer <opfer@gentoo.org>
+  xfce4-panel-4.4.1-r2.ebuild:
+  stable x86, security bug 201293
+
+  05 Dec 2007; Christoph Mende <angelos@gentoo.org>
+  xfce4-panel-4.4.1-r2.ebuild:
+  Stable on amd64 wrt bug #201293
+
+*xfce4-panel-4.4.1-r2 (04 Dec 2007)
+
+  04 Dec 2007; Christoph Mende <angelos@gentoo.org>
+  +files/xfce4-panel-4.4.1-overflow.patch, +xfce4-panel-4.4.1-r2.ebuild:
+  Fixed a possible buffer overflow, bug 201293
+
+  20 Nov 2007; Joshua Kinard <kumba@gentoo.org> xfce4-panel-4.4.1-r1.ebuild:
+  Stable on mips, per #198845.
+
+*xfce4-panel-4.4.2 (18 Nov 2007)
+
+  18 Nov 2007; Samuli Suominen <drac@gentoo.org> +xfce4-panel-4.4.2.ebuild:
+  Version bump.
+
+  13 Nov 2007; Jeroen Roovers <jer@gentoo.org> xfce4-panel-4.4.1-r1.ebuild:
+  Stable for HPPA (bug #198562).
+
+  10 Nov 2007; Markus Rothe <corsair@gentoo.org>
+  xfce4-panel-4.4.1-r1.ebuild:
+  Stable on ppc64; bug #198562
+
+  10 Nov 2007; Raúl Porcel <armin76@gentoo.org>
+  xfce4-panel-4.4.1-r1.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #198562
+
+  10 Nov 2007; nixnut <nixnut@gentoo.org> xfce4-panel-4.4.1-r1.ebuild:
+  Stable on ppc wrt bug 198562
+
+  09 Nov 2007; Samuli Suominen <drac@gentoo.org>
+  xfce4-panel-4.4.1-r1.ebuild:
+  amd64/arm stable wrt #198562
+
+*xfce4-panel-4.4.1-r1 (21 Oct 2007)
+
+  21 Oct 2007; Samuli Suominen <drac@gentoo.org>
+  +files/xfce4-panel-4.4.1-gtk212.patch, +xfce4-panel-4.4.1-r1.ebuild:
+  Fix panel crashing with GTK+-2.12 when removing one. Thanks to Debian
+  maintainer Corsac for letting us know.
+
+  07 Jun 2007; Samuli Suominen <drac@gentoo.org> xfce4-panel-4.4.1.ebuild:
+  Stable on arm.
+
+  01 Jun 2007; Brent Baude <ranger@gentoo.org> xfce4-panel-4.4.1.ebuild:
+  Marking xfce4-panel-4.4.1 ppc64 stable for bug #178510
+
+  27 May 2007; Joshua Kinard <kumba@gentoo.org> xfce4-panel-4.4.1.ebuild:
+  Stable on mips.
+
+  24 May 2007; Lars Weiler <pylon@gentoo.org> xfce4-panel-4.4.1.ebuild:
+  Stable on ppc; bug #178510.
+
+  21 May 2007; Jeroen Roovers <jer@gentoo.org> xfce4-panel-4.4.1.ebuild:
+  Stable for HPPA (bug #178510).
+
+  19 May 2007; Peter Weller <welp@gentoo.org> xfce4-panel-4.4.1.ebuild:
+  Stable on amd64 wrt bug 178510
+
+  18 May 2007; Raúl Porcel <armin76@gentoo.org> xfce4-panel-4.4.1.ebuild:
+  alpha/ia64/x86 stable wrt #178510
+
+  15 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  xfce4-panel-4.4.1.ebuild:
+  Stable on sparc wrt #178510
+
+  12 Apr 2007; Samuli Suominen <drac@gentoo.org> xfce4-panel-4.4.1.ebuild:
+  Remove eutils from inherit, unused.
+
+*xfce4-panel-4.4.1 (11 Apr 2007)
+
+  11 Apr 2007; Joshua Nichols <nichoj@gentoo.org> +xfce4-panel-4.4.1.ebuild:
+  Version bump for 4.4.1.
+
+*xfce4-panel-4.4.0-r2 (27 Mar 2007)
+
+  27 Mar 2007; Samuli Suominen <drac@gentoo.org>
+  -files/xfce4-panel-4.4.0-actions.patch,
+  +files/xfce4-panel-4.4.0-actions-and-orientation.patch,
+  -xfce4-panel-4.4.0-r1.ebuild, +xfce4-panel-4.4.0-r2.ebuild:
+  Upstream patch for bugs 170336 and 171667. Thanks to Leonardo Valeri Manera
+  for reporting.
+
+  15 Mar 2007; Markus Rothe <corsair@gentoo.org> xfce4-panel-4.4.0.ebuild:
+  Stable on ppc64; bug #169987
+
+  11 Mar 2007; Bryan Østergaard <kloeri@gentoo.org>
+  xfce4-panel-4.4.0.ebuild:
+  Stable on Alpha + IA64.
+
+*xfce4-panel-4.4.0-r1 (10 Mar 2007)
+
+  10 Mar 2007; Samuli Suominen <drac@gentoo.org>
+  +files/xfce4-panel-4.4.0-actions.patch, +xfce4-panel-4.4.0-r1.ebuild:
+  Fix bug 170336. Thanks to Dave O'Connor for reporting.
+
+  10 Mar 2007; nixnut <nixnut@gentoo.org> xfce4-panel-4.4.0.ebuild:
+  Stable on ppc wrt bug 169987
+
+  10 Mar 2007; Peter Weller <welp@gentoo.org> xfce4-panel-4.4.0.ebuild:
+  Stable on amd64 wrt bug 169987
+
+  09 Mar 2007; Jeroen Roovers <jer@gentoo.org> xfce4-panel-4.4.0.ebuild:
+  Stable for HPPA (bug #169987).
+
+  09 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  xfce4-panel-4.4.0.ebuild:
+  stable x86; bug #169987
+
+  08 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  xfce4-panel-4.4.0.ebuild:
+  Stable on sparc wrt #169987
+
+  02 Mar 2007; Peter Weller <welp@gentoo.org> xfce4-panel-4.4.0.ebuild:
+  Keyworded on x86-fbsd
+
+  22 Feb 2007; Joshua Nichols <nichoj@gentoo.org> xfce4-panel-4.4.0.ebuild:
+  Updated homepage. See bug #165707.
+
+  04 Feb 2007; Samuli Suominen <drac@gentoo.org> xfce4-panel-4.4.0.ebuild:
+  Add blocker for old xfce-utils, bug 164774
+
+  03 Feb 2007; Joshua Nichols <nichoj@gentoo.org>
+  -xfce4-panel-4.3.99.2.ebuild:
+  Removing old version.
+
+  28 Jan 2007; Peter Weller <welp@gentoo.org> xfce4-panel-4.4.0.ebuild:
+  Dep fixes, various other fixes
+
+  23 Jan 2007; Peter Weller <welp@gentoo.org> xfce4-panel-4.4.0.ebuild:
+  Added block due to issues reported in #gentoo-xfce
+
+  23 Jan 2007; Peter Weller <welp@gentoo.org> xfce4-panel-4.4.0.ebuild:
+  Removing usage of virtual/x11,  and hardcoding in depends. Minor clean ups.
+
+  23 Jan 2007; Joshua Nichols <nichoj@gentoo.org> xfce4-panel-4.4.0.ebuild:
+  Updated blockers. Now only plugins which are provided by this package are
+  blocked. This should prevent horrible blockers from occuring during upgrade.
+
+*xfce4-panel-4.4.0 (22 Jan 2007)
+
+  22 Jan 2007; Joshua Nichols <nichoj@gentoo.org> +xfce4-panel-4.4.0.ebuild:
+  Version bump.
+
+  29 Dec 2006; Joshua Nichols <nichoj@gentoo.org>
+  xfce4-panel-4.3.99.2.ebuild:
+  Updated blocked packages to account for missing plugins from the list,
+  plugins now included with the panel or elsewhere, and plugins which haven't
+  been updated.
+
+  12 Dec 2006; Joshua Nichols <nichoj@gentoo.org>
+  -xfce4-panel-4.2.1.1.ebuild, -xfce4-panel-4.2.2.ebuild,
+  -xfce4-panel-4.2.2-r1.ebuild, -xfce4-panel-4.3.90.1.ebuild,
+  -xfce4-panel-4.3.90.2.ebuild:
+  Pruned old versions with new versions with same or better keywords.
+
+*xfce4-panel-4.3.99.2 (07 Dec 2006)
+
+  07 Dec 2006; Joshua Nichols <nichoj@gentoo.org>
+  +xfce4-panel-4.3.99.2.ebuild:
+  Version bump for RC2. See bug #146563.
+
+  02 Dec 2006; Tiziano Müller <dev-zero@gentoo.org>
+  xfce4-panel-4.2.2-r1.ebuild, xfce4-panel-4.2.3.ebuild:
+  ~x86-fbsd keyword added
+
+  13 Nov 2006; Bryan Østergaard <kloeri@gentoo.org>
+  xfce4-panel-4.2.3.ebuild:
+  Stable on Alpha.
+
+  13 Jul 2006; Joshua Nichols <jnichols@gentoo.org>
+  +files/xfce4-panel-4.3.90.2-asneeded.patch, xfce4-panel-4.3.90.2.ebuild:
+  Applied as-needed patch, as supplied by drac.
+
+  13 Jul 2006; Aron Griffis <agriffis@gentoo.org> xfce4-panel-4.2.3.ebuild:
+  Mark 4.2.3 stable on ia64
+
+  10 Jul 2006; Brad Cowan <bcowan@gentoo.org> xfce4-panel-4.3.90.2.ebuild:
+  Added mcs-manager dep.
+
+*xfce4-panel-4.3.90.2 (10 Jul 2006)
+
+  10 Jul 2006; Brad Cowan <bcowan@gentoo.org> +xfce4-panel-4.3.90.2.ebuild:
+  Xfce beta 2 builds
+
+  09 Jul 2006; Joshua Kinard <kumba@gentoo.org> xfce4-panel-4.2.3.ebuild:
+  Marked stable on mips.
+
+  22 Apr 2006; Markus Rothe <corsair@gentoo.org> xfce4-panel-4.2.3.ebuild:
+  Stable on ppc64
+
+  20 Apr 2006; Mike Doty <kingtaco@gentoo.org> xfce4-panel-4.2.3.ebuild:
+  amd64 stable, bug 129371
+
+*xfce4-panel-4.3.90.1 (20 Apr 2006)
+
+  20 Apr 2006; Daniel Ostrow <dostrow@gentoo.org>
+  +xfce4-panel-4.3.90.1.ebuild:
+  Version bump for 4.4_beta1.
+
+  17 Apr 2006; Michael Hanselmann <hansmi@gentoo.org>
+  xfce4-panel-4.2.3.ebuild:
+  Stable on ppc. See bug #129371.
+
+  15 Apr 2006; Mark Loeser <halcy0n@gentoo.org> xfce4-panel-4.2.3.ebuild:
+  Stable on x86; bug #129371
+
+  10 Apr 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  xfce4-panel-4.2.3.ebuild:
+  Stable on sparc wrt #129371
+
+  10 Apr 2006; Jeroen Roovers <jer@gentoo.org> xfce4-panel-4.2.3.ebuild:
+  Stable on hppa (bug #129371).
+
+*xfce4-panel-4.2.3 (09 Dec 2005)
+
+  09 Dec 2005; Daniel Ostrow <dostrow@gentoo.org> +xfce4-panel-4.2.3.ebuild:
+  Version bump for xfce-4.2.3.2.
+
+*xfce4-panel-4.2.2-r1 (06 Oct 2005)
+
+  06 Oct 2005; Brad Cowan <bcowan@gentoo.org> +xfce4-panel-4.2.2-r1.ebuild:
+  Xfce builds for new eclass and modular Xorg.
+
+  12 Jul 2005; Simon Stelling <blubb@gentoo.org> xfce4-panel-4.2.2.ebuild:
+  stable on amd64
+
+  11 Jul 2005; Bryan Østergaard <kloeri@gentoo.org>
+  xfce4-panel-4.2.2.ebuild:
+  Stable on alpha + ia64.
+
+  11 Jul 2005; Rene Nussbaumer <killerfox@gentoo.org>
+  xfce4-panel-4.2.2.ebuild:
+  Stable on hppa.
+
+  08 Jul 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  xfce4-panel-4.2.2.ebuild:
+  Stable on sparc
+
+  07 Jul 2005; Daniel Ostrow <dostrow@gentoo.org> xfce4-panel-4.2.2.ebuild:
+  Stable on ppc and ppc64.
+
+  15 Jun 2005; Markus Rothe <corsair@gentoo.org> xfce4-panel-4.2.0.ebuild:
+  Stable on ppc64
+
+*xfce4-panel-4.2.2 (18 May 2005)
+
+  18 May 2005; Brad Cowan <bcowan@gentoo.org> +xfce4-panel-4.2.2.ebuild:
+  4.2.2 bugfix release of Xfce 4.
+
+*xfce4-panel-4.2.1.1 (23 Mar 2005)
+
+  23 Mar 2005; Daniel Ostrow <dostrow@gentoo.org> +xfce4-panel-4.2.1.1.ebuild:
+  Version bump and associated fixes.
+
+*xfce4-panel-4.2.1 (17 Mar 2005)
+
+  17 Mar 2005; Brad Cowan <bcowan@gentoo.org> +xfce4-panel-4.2.1.ebuild:
+  Bugfix release of Xfce4.
+
+  09 Feb 2005; Bryan Østergaard <kloeri@gentoo.org>
+  xfce4-panel-4.2.0.ebuild:
+  Stable on alpha.
+
+  31 Jan 2005; lanius@gentoo.org xfce4-panel-4.2.0.ebuild:
+  stable on amd64
+
+  29 Jan 2005; Lars Weiler <pylon@gentoo.org> xfce4-panel-4.2.0.ebuild:
+  Stable on ppc.
+
+  24 Jan 2005; Guy Martin <gmsoft@gentoo.org> xfce4-panel-4.2.0.ebuild:
+  Stable on hppa.
+
+*xfce4-panel-4.2.0 (16 Jan 2005)
+
+  16 Jan 2005; Brad Cowan <bcowan@gentoo.org> +xfce4-panel-4.2.0.ebuild:
+  4.2 final release of Xfce4.
+
+*xfce4-panel-4.1.99.3-r1 (06 Jan 2005)
+
+  06 Jan 2005; Brad Cowan <bcowan@gentoo.org>
+  +xfce4-panel-4.1.99.3-r1.ebuild:
+  Updated to use Xfce4 eclass.
+
+*xfce4-panel-4.1.99.3 (02 Jan 2005)
+
+  02 Jan 2005; Brad Cowan <bcowan@gentoo.org> +xfce4-panel-4.1.99.3.ebuild:
+  Version bump to RC version of 4.2 release.
+
+  18 Dec 2004; Daniel Goller <morfic@gentoo.org>
+  xfce4-panel-4.1.99.2.ebuild:
+  Applying patch unconditionally
+
+  18 Dec 2004; Daniel Goller <morfic@gentoo.org> +files/getc.patch,
+  xfce4-panel-4.1.99.2.ebuild:
+  Applying panel endianess patch for ppc
+
+*xfce4-panel-4.1.99.2 (13 Dec 2004)
+
+  13 Dec 2004; Brad Cowan <bcowan@gentoo.org> +xfce4-panel-4.1.99.2.ebuild:
+  Version bump for beta version of 4.2 release.
+
+*xfce4-panel-4.1.99.1 (25 Nov 2004)
+
+  25 Nov 2004; Brad Cowan <bcowan@gentoo.org> +xfce4-panel-4.1.99.1.ebuild:
+  Version bump for beta version of 4.2 release.
+
+*xfce4-panel-4.1.91 (31 Oct 2004)
+
+  31 Oct 2004; Brad Cowan <bcowan@gentoo.org> +xfce4-panel-4.1.91.ebuild:
+  Version bump of beta version of 4.2 release.
+
+  19 Oct 2004; Dylan Carlson <absinthe@gentoo.org> xfce4-panel-4.0.6.ebuild:
+  Stable on amd64.
+
+*xfce4-panel-4.1.90 (04 Oct 2004)
+
+  04 Oct 2004; Brad Cowan <bcowan@gentoo.org> +xfce4-panel-4.1.90.ebuild:
+  Beta version of new 4.2 release. Contains too numerous improvements to list.
+
+  18 Sep 2004; Tom Gall <tgall@gentoo.org> xfce4-panel-4.0.6.ebuild:
+  stable on ppc64 bug #57744
+
+  30 Aug 2004; Pieter Van den Abeele <pvdabeel@gentoo.org>
+  xfce4-panel-4.0.6.ebuild:
+  Masked xfce4-panel-4.0.6.ebuild stable for ppc
+
+  07 Aug 2004; Bryan Østergaard <kloeri@gentoo.org> xfce4-panel-4.0.6.ebuild:
+  Stable on alpha.
+
+  06 Aug 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  xfce4-panel-4.0.6.ebuild:
+  Stable on sparc
+
+  06 Aug 2004; Guy Martin <gmsoft@gentoo.org> xfce4-panel-4.0.6.ebuild:
+  Stable on hppa.
+
+*xfce4-panel-4.0.6 (12 Jul 2004)
+
+  12 Jul 2004; Brad Cowan <bcowan@gentoo.org> +xfce4-panel-4.0.6.ebuild:
+  Version bump. Bugfix release on stable branch that fixes cropped icons with
+  gtk-2.4 along with many others.
+
+  23 Jun 2004; <malc@gentoo.org> xfce4-panel-4.0.5.ebuild:
+  Mark stable on amd64
+
+  19 May 2004; Guy Martin <gmsoft@gentoo.org> xfce4-panel-4.0.5.ebuild:
+  Marked stable on hppa.
+
+  03 May 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  xfce4-panel-4.0.5.ebuild:
+  Stable on sparc
+
+  20 Apr 2004; Aron Griffis <agriffis@gentoo.org> xfce4-panel-4.0.4.ebuild:
+  Stable on alpha and ia64
+
+*xfce4-panel-4.0.5 (18 Apr 2004)
+
+  18 Apr 2004; Brad Cowan <bcowan@gentoo.org> xfce4-panel-4.0.5.ebuild:
+  Bugfix release of xfce4.
+
+  17 Apr 2004; Daniel Ahlberg <aliz@gentoo.org> xfce4-panel-4.0.0.ebuild,
+  xfce4-panel-4.0.1.ebuild, xfce4-panel-4.0.2.ebuild,
+  xfce4-panel-4.0.3.ebuild, xfce4-panel-4.0.4.ebuild:
+  Removed S=
+
+  05 Apr 2004; Guy Martin <gmsoft@gentoo.org> xfce4-panel-4.0.4.ebuild:
+  Marked stable on hppa.
+
+  16 Mar 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  xfce4-panel-4.0.4.ebuild:
+  stable on sparc
+
+*xfce4-panel-4.0.4 (10 Mar 2004)
+
+  10 Mar 2004; Brad Cowan <bcowan@gentoo.org> xfce4-panel-4.0.4.ebuild:
+  Bugfix release of xfce4.
+
+  09 Mar 2004; <agriffis@gentoo.org> xfce4-panel-4.0.3.ebuild:
+  stable on alpha and ia64
+
+  08 Mar 2004; Bret Curtis <psi29a@gentoo.org> xfce4-panel-4.0.3.ebuild:
+  Added ~mips to KEYWORDS
+
+  02 Mar 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  xfce4-panel-4.0.3.ebuild:
+  stable on sparc
+
+  17 Jan 2004; Bartosch Pixa <darkspecter@gentoo.org> :
+  manifest fix
+
+  16 Jan 2004; Bartosch Pixa <darkspecter@gentoo.org>
+  xfce4-panel-4.0.1.ebuild:
+  set ppc in keywords
+
+*xfce4-panel-4.0.3 (09 Jan 2004)
+
+  09 Jan 2004; Brad Cowan <bcowan@gentoo.org> xfce4-panel-4.0.3.ebuild:
+  Bugfix release of xfce4. Fixes memory leak and adds kde systray support
+
+*xfce4-panel-4.0.2 (24 Dec 2003)
+
+  24 Dec 2003; Brad Cowan <bcowan@gentoo.org> xfce4-panel-4.0.2.ebuild:
+  bugfix release of xfce4.
+
+  18 Dec 2003; Jason Wever <weeve@gentoo.org> xfce4-panel-4.0.1.ebuild:
+  Marked stable on sparc.
+
+  18 Dec 2003; Guy Martin <gmsoft@gentoo.org> xfce4-panel-4.0.1.ebuild:
+  Marked stable on hppa.
+
+*xfce4-panel-4.0.1 (12 Nov 2003)
+
+  12 Nov 2003; Brad Cowan <bcowan@gentoo.org> xfce4-panel-4.0.1.ebuild:
+  bugfix release of xfce4.
+
+*xfce4-panel-4.0.0 (25 Sep 2003)
+
+  16 Nov 2003; Guy Martin <gmsoft@gentoo.org> xfce4-panel-4.0.0.ebuild :
+  Added hppa to KEYWORDS.
+
+  25 Sep 2003; Brad Cowan <bcowan@gentoo.org> xfce4-panel-4.0.0.ebuild:
+  First official release of xfce4.
+
+*xfce4-panel-3.99.4 (12 Sep 2003)
+
+  12 Sep 2003; Brad Cowan <bcowan@gentoo.org> xfce4-panel-3.99.4.ebuild:
+  Version bump.
+
+*xfce4-panel-3.99.3 (03 Sep 2003)
+
+  03 Sep 2003; Brad Cowan <bcowan@gentoo.org> xfce4-panel-3.99.3.ebuild:
+  Version bump.
+
+*xfce4-panel-3.99.2 (22 Jul 2003)
+
+  22 Jul 2003; Brad Cowan <bcowan@gentoo.org> xfce4-panel-3.99.2.ebuild:
+  Version bump.
+
+*xfce4-panel-3.99.1 (15 Jul 2003)
+
+  15 Jul 2003; Brad Cowan <bcowan@gentoo.org> xfce4-panel-3.99.1.ebuild:
+  New version and portage directory structure.
+
+*xfce4-panel-3.90.0 (13 Jun 2003)
+
+  13 Jun 2003; Brad Cowan <bcowan@gentoo.org> xfce4-panel-3.90.0.ebuild:
+  Initial import.
+
