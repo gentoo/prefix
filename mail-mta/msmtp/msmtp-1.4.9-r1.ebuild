@@ -11,7 +11,7 @@ HOMEPAGE="http://msmtp.sourceforge.net/"
 SRC_URI="mirror://sourceforge/msmtp/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="ssl gnutls sasl doc nls"
 DEPEND="virtual/libc
 	dev-util/pkgconfig

@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/msmtp/msmtp-1.4.9.ebuild,v 1.1 2006/12/20 18:07:14 slarti Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/msmtp/msmtp-1.4.9.ebuild,v 1.2 2008/01/14 20:59:21 grobian Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ SRC_URI="mirror://sourceforge/msmtp/${P}.tar.bz2"
 LICENSE="GPL-2"
 IUSE="ssl gnutls sasl mailwrapper doc nls"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
 DEPEND="virtual/libc
 	dev-util/pkgconfig
 	ssl? (
