@@ -1,0 +1,87 @@
+# ChangeLog for media-gfx/pngcrush
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/pngcrush/ChangeLog,v 1.23 2007/06/12 01:21:15 angelos Exp $
+
+  12 Jun 2007; Christoph Mende <angelos@gentoo.org> pngcrush-1.6.4.ebuild:
+  Stable on amd64 wrt bug 180882
+
+  09 Jun 2007; nixnut <nixnut@gentoo.org> pngcrush-1.6.4.ebuild:
+  Stable on ppc wrt bug 180882
+
+  06 Jun 2007; Christian Faulhammer <opfer@gentoo.org>
+  pngcrush-1.6.4.ebuild:
+  stable x86, bug 180882
+
+*pngcrush-1.6.4 (20 Mar 2007)
+
+  20 Mar 2007; Samuli Suominen <drac@gentoo.org> -pngcrush-1.6.3.ebuild,
+  +pngcrush-1.6.4.ebuild:
+  Version bump. Fix CC by using toolchain-funcs.
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  05 Aug 2006; Chris White <chriswhite@gentoo.org> -pngcrush-1.5.10.ebuild:
+  Security punts for bug #140498.
+
+*pngcrush-1.6.3 (25 May 2006)
+
+  25 May 2006; Robin H. Johnson <robbat2@gentoo.org> +pngcrush-1.6.3.ebuild:
+  Bug #130348, version bump - fixes handling of iTxt sections.
+
+  26 Apr 2006; Fabian Groffen <grobian@gentoo.org>
+  +files/pngcrush-1.6.2-ascall.patch, pngcrush-1.6.2.ebuild:
+  Adding patch not to let `as` wait for input from stdin on OSX.  Fixes bug
+  (#131260)
+
+  01 Mar 2006; Simon Stelling <blubb@gentoo.org> pngcrush-1.6.2.ebuild:
+  stable on amd64 wrt bug 123286
+
+  23 Feb 2006; Joshua Jackson <tsunam@gentoo.org> pngcrush-1.6.2.ebuild:
+  Stable on x86; bug #123286
+
+  22 Feb 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  pngcrush-1.6.2.ebuild:
+  ppc stable, bug #123286
+
+*pngcrush-1.6.2 (21 Feb 2006)
+
+  21 Feb 2006; Marcelo Goes <vanquirius@gentoo.org> +pngcrush-1.6.2.ebuild:
+  1.6.2 version bump for bug 123286.
+
+  30 Oct 2005; Fabian Groffen <grobian@gentoo.org> pngcrush-1.5.10.ebuild:
+  Marked ~ppc-macos (bug #110827)
+
+  29 Jul 2005; Marcelo Goes <vanquirius@gentoo.org> +metadata.xml,
+  pngcrush-1.5.10.ebuild:
+  Install documentation if doc USE flag is on for bug 62177. Thanks to Richard
+  Schreyer <rwschreyer@umail.ucsb.edu>.
+
+  01 Jul 2004; Jeremy Huddleston <eradicator@gentoo.org>
+  pngcrush-1.5.10.ebuild:
+  virtual/glibc -> virtual/libc
+
+  09 Feb 2004; Dylan Carlson <absinthe@gentoo.org> pngcrush-1.5.10.ebuild:
+  added amd64 keyword.
+
+*pngcrush-1.5.10 (10 Sep 2002)
+
+  27 Oct 2002; Jon Nall <nall@gentoo.org> :
+
+  Added IUSE flag
+
+  10 Sep 2002; Sascha Schwabbauer <cybersystem@gentoo.org> :
+
+  Added ppc to keywords.
+
+*pngcrush-1.5.10 (21 Jul 2002)
+
+  21 Jul 2002; Maik Schreiber <blizzy@gentoo.org> :
+
+  New version, closes bug #5332.
+
+*pngcrush-1.5.8 (30 Apr 2002)
+
+  30 Apr 2002; Ryan Phillips <rphillips@gentoo.org> :
+
+  Initial import.

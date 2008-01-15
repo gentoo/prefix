@@ -1,0 +1,11 @@
+--- pngcrush-1.6.2/Makefile
++++ pngcrush-1.6.2/Makefile
+@@ -10,7 +10,7 @@
+ 
+ # macros --------------------------------------------------------------------
+ 
+-GAS_VERSION := $(shell as --version | grep "GNU assembler" | sed -e 's/GNU assembler //' -e 's/ .*//')
++GAS_VERSION := $(shell as --version < /dev/null 2&>1 | grep "GNU assembler" | sed -e 's/GNU assembler //' -e 's/ .*//')
+ 
+ # uncomment these 2 lines only if you are using an external copy of zlib:
+ #ZINC = ../../zlib
