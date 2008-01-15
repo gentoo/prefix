@@ -1,13 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jdepend/jdepend-2.9-r4.ebuild,v 1.5 2007/11/25 14:51:39 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jdepend/jdepend-2.9-r4.ebuild,v 1.6 2008/01/14 14:02:07 caster Exp $
 
 EAPI="prefix"
 
 JAVA_PKG_IUSE="doc source"
-
-# Needed when we don't install the jar to ant-core/lib any more
-WANT_SPLIT_ANT="true"
 
 inherit java-pkg-2 java-ant-2
 
@@ -17,7 +14,7 @@ SRC_URI="http://www.clarkware.com/software/${P}.zip"
 
 LICENSE="jdepend"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 
 DEPEND=">=virtual/jdk-1.4
 	>=app-arch/unzip-5.50-r1"

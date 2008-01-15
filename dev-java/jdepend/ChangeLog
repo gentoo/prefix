@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jdepend
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jdepend/ChangeLog,v 1.48 2008/01/04 20:21:39 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jdepend/ChangeLog,v 1.49 2008/01/14 14:02:07 caster Exp $
+
+  14 Jan 2008; Vlastimil Babka <caster@gentoo.org> jdepend-2.9-r4.ebuild:
+  Remove the now obsolete WANT_SPLIT_ANT variable.
 
   04 Jan 2008; Vlastimil Babka <caster@gentoo.org> -jdepend-2.9-r3.ebuild:
   Clean old version.
