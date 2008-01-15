@@ -1,0 +1,200 @@
+# ChangeLog for xfce-base/thunar
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.46 2007/12/17 18:44:06 jer Exp $
+
+  17 Dec 2007; Jeroen Roovers <jer@gentoo.org> thunar-0.9.0-r1.ebuild:
+  Stable for HPPA (bug #201747).
+
+  12 Dec 2007; Brent Baude <ranger@gentoo.org> thunar-0.9.0-r1.ebuild:
+  Marking thunar-0.9.0-r1 ppc64 stable for bug 201747
+
+  12 Dec 2007; Raúl Porcel <armin76@gentoo.org> thunar-0.9.0-r1.ebuild:
+  alpha/ia64/sparc stable wrt #201747
+
+  09 Dec 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  thunar-0.9.0-r1.ebuild:
+  ppc stable, bug #201747
+
+  09 Dec 2007; Dawid Węgliński <cla@gentoo.org> thunar-0.9.0-r1.ebuild:
+  Stable on amd64/x86 (bug #201747)
+
+*thunar-0.9.0-r1 (03 Dec 2007)
+
+  03 Dec 2007; Samuli Suominen <drac@gentoo.org>
+  +files/thunar-0.9.0-missing-audio-cds-for-volman.patch,
+  +thunar-0.9.0-r1.ebuild:
+  Upstream patch to fix audio cd support with thunar-volman.
+
+*thunar-0.9.0 (02 Dec 2007)
+
+  02 Dec 2007; Samuli Suominen <drac@gentoo.org> thunar-0.8.0-r3.ebuild,
+  +thunar-0.9.0.ebuild:
+  Version bump, rename USE plugins to USE trash-plugin and enable it by
+  default using EAPI=1.
+
+  28 Aug 2007; Samuli Suominen <drac@gentoo.org> thunar-0.8.0-r3.ebuild:
+  Add die to src_test.
+
+  01 Jul 2007; Peter Weller <welp@gentoo.org> thunar-0.8.0-r3.ebuild:
+  Fix up dbus deps wrt bug 183696
+
+  07 Jun 2007; Samuli Suominen <drac@gentoo.org> thunar-0.8.0-r3.ebuild:
+  Stable on arm.
+
+  01 Jun 2007; Brent Baude <ranger@gentoo.org> thunar-0.8.0-r3.ebuild:
+  Marking thunar-0.8.0-r3 ppc64 stable for bug #178510
+
+  27 May 2007; Joshua Kinard <kumba@gentoo.org> thunar-0.8.0-r3.ebuild:
+  Stable on mips.
+
+  27 May 2007; Joshua Kinard <kumba@gentoo.org> thunar-0.8.0-r3.ebuild:
+  Stable on mips.
+
+  24 May 2007; Lars Weiler <pylon@gentoo.org> thunar-0.8.0-r3.ebuild:
+  Stable on ppc; bug #178510.
+
+  21 May 2007; Jeroen Roovers <jer@gentoo.org> thunar-0.8.0-r3.ebuild:
+  Stable for HPPA (bug #178510).
+
+  19 May 2007; Peter Weller <welp@gentoo.org> thunar-0.8.0-r3.ebuild:
+  Stable on amd64 wrt bug 178510
+
+  18 May 2007; Raúl Porcel <armin76@gentoo.org> thunar-0.8.0-r3.ebuild:
+  alpha/ia64/x86 stable wrt #178510
+
+  15 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  thunar-0.8.0-r3.ebuild:
+  Stable on sparc wrt #178510
+
+*thunar-0.8.0-r3 (02 May 2007)
+
+  02 May 2007; Samuli Suominen <drac@gentoo.org>
+  +files/thunar-0.8.0-uca.patch, +thunar-0.8.0-r3.ebuild:
+  Apply patch from upstream to fix bug 173795, adding quotes to UCA browse.
+  Thanks to Alexander Skwar for reporting.
+
+  15 Mar 2007; Markus Rothe <corsair@gentoo.org> thunar-0.8.0-r2.ebuild:
+  Stable on ppc64; bug #169987
+
+  12 Mar 2007; Bryan Østergaard <kloeri@gentoo.org> thunar-0.8.0-r2.ebuild:
+  Stable on Alpha + IA64.
+
+  10 Mar 2007; nixnut <nixnut@gentoo.org> thunar-0.8.0-r2.ebuild:
+  Stable on ppc wrt bug 169987
+
+  10 Mar 2007; Peter Weller <welp@gentoo.org> thunar-0.8.0-r2.ebuild:
+  Stable on amd64 wrt bug 169987
+
+  09 Mar 2007; Jeroen Roovers <jer@gentoo.org> thunar-0.8.0-r2.ebuild:
+  Stable for HPPA (bug #169987).
+
+  09 Mar 2007; Christian Faulhammer <opfer@gentoo.org>
+  thunar-0.8.0-r2.ebuild:
+  stable x86; bug #169987
+
+  08 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org>
+  thunar-0.8.0-r2.ebuild:
+  Stable on sparc wrt #169987
+
+  02 Mar 2007; Peter Weller <welp@gentoo.org> thunar-0.8.0-r2.ebuild:
+  Keyworded on x86-fbsd
+
+  15 Feb 2007; Samuli Suominen <drac@gentoo.org> thunar-0.8.0-r2.ebuild:
+  Use Xemake from virtualx.eclass in src_test for DISPLAY variable.
+  Bug 166388.
+
+*thunar-0.8.0-r2 (12 Feb 2007)
+
+  12 Feb 2007; Samuli Suominen <drac@gentoo.org>
+  +files/thunar-0.8.0-jpeg.patch, +thunar-0.8.0-r2.ebuild:
+  Fix unaligned memory access in exif code -patch from upstream bugzilla, bug
+  2880.
+
+*thunar-0.8.0-r1 (04 Feb 2007)
+
+  04 Feb 2007; Samuli Suominen <drac@gentoo.org> +thunar-0.8.0-r1.ebuild:
+  Move checks to local scope and adjust dbus dep.
+
+  03 Feb 2007; Joshua Nichols <nichoj@gentoo.org>
+  -thunar-0.5.0_rc2-r3.ebuild:
+  Removing old version.
+
+  31 Jan 2007; Peter Weller <welp@gentoo.org> thunar-0.8.0.ebuild:
+  Cleanup
+
+  29 Jan 2007; Peter Weller <welp@gentoo.org> thunar-0.8.0.ebuild:
+  A number of fixes
+
+  28 Jan 2007; Peter Weller <welp@gentoo.org> thunar-0.8.0.ebuild:
+  Dep fixes, various other fixes
+
+  23 Jan 2007; Peter Weller <welp@gentoo.org> thunar-0.8.0.ebuild:
+  Removing usage of virtual/x11,  and hardcoding in depends. Minor clean ups.
+
+*thunar-0.8.0 (22 Jan 2007)
+
+  22 Jan 2007; Joshua Nichols <nichoj@gentoo.org> +thunar-0.8.0.ebuild:
+  Version bump.
+
+  06 Jan 2007; Joshua Nichols <nichoj@gentoo.org> -thunar-0.5.0_rc2.ebuild,
+  -thunar-0.5.0_rc2-r1.ebuild, -thunar-0.5.0_rc2-r2.ebuild,
+  thunar-0.5.0_rc2-r3.ebuild:
+  Added IUSE=debug, which was dropped when 'inherit debug' was removed from
+  xfce44.eclass. Pruned old revisions.
+
+  06 Jan 2007; Joshua Nichols <nichoj@gentoo.org>
+  thunar-0.5.0_rc2-r3.ebuild:
+  Added IUSE=debug, which was dropped when 'inherit debug' was removed from
+  xfce44.eclass.
+
+*thunar-0.5.0_rc2-r3 (28 Dec 2006)
+
+  28 Dec 2006; Joshua Nichols <nichoj@gentoo.org>
+  +thunar-0.5.0_rc2-r3.ebuild:
+  Added use flag for toggling trash panel plugin (bug #158320).
+
+*thunar-0.5.0_rc2-r2 (19 Dec 2006)
+
+  19 Dec 2006; Joshua Nichols <nichoj@gentoo.org>
+  +thunar-0.5.0_rc2-r2.ebuild:
+  Consolidated xslt USE into doc. Dropped freetype and jpeg flags and made
+  them required dependencies, as you can't explicitly enable/disable them.
+  See bug #157920.
+
+*thunar-0.5.0_rc2-r1 (11 Dec 2006)
+
+  11 Dec 2006; Joshua Nichols <nichoj@gentoo.org>
+  +thunar-0.5.0_rc2-r1.ebuild:
+  Fleshed out and cleaned up dependencies. Added use flags for freetype, exif,
+  jpeg, and pcre. Added doc use flag, for bug #157315.
+
+  07 Dec 2006; Joshua Nichols <nichoj@gentoo.org>
+  -thunar-0.3.0_beta1.ebuild, -thunar-0.3.2_beta2.ebuild:
+  Pruned old versions with new versions with same or better keywords.
+
+  06 Dec 2006; Elfyn McBratney <beu@gentoo.org> thunar-0.5.0_rc2.ebuild:
+  Add back required SRC_URI.
+
+  11 Dec 2006; Joshua Nichols <nichoj@gentoo.org> thunar-0.3.0_beta1.ebuild,
+  thunar-0.3.2_beta2.ebuild, thunar-0.5.0_rc2.ebuild:
+  Updated dependencies for modular dbus, see bug #154521.
+
+  10 Dec 2006; Joshua Nichols <nichoj@gentoo.org> thunar-0.5.0_rc2.ebuild:
+  Fixed SRC_URI.
+
+*thunar-0.5.0_rc2 (07 Dec 2006)
+
+  07 Dec 2006; Joshua Nichols <nichoj@gentoo.org> +thunar-0.5.0_rc2.ebuild:
+  Version bump for RC2. See bug #146563.
+
+*thunar-0.3.2_beta2 (10 Jul 2006)
+
+  10 Jul 2006; Brad Cowan <bcowan@gentoo.org> +thunar-0.3.2_beta2.ebuild:
+  Xfce beta 2 builds.
+
+*thunar-0.3.0_beta1 (20 Apr 2006)
+
+  20 Apr 2006; Daniel Ostrow <dostrow@gentoo.org> +metadata.xml,
+  +thunar-0.3.0_beta1.ebuild:
+  Version bump for 4.4_beta1.
+
