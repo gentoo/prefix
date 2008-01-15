@@ -1,0 +1,42 @@
+# ChangeLog for media-fonts/ja-ipafonts
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/ja-ipafonts/ChangeLog,v 1.9 2007/07/02 02:35:19 peper Exp $
+
+  02 Jul 2007; Piotr Jaroszyński <peper@gentoo.org>
+  ja-ipafonts-0.0.20040715.ebuild:
+  (QA) RESTRICT clean up.
+
+  26 Nov 2006; Diego Pettenò <flameeyes@gentoo.org>
+  ja-ipafonts-0.0.20040715.ebuild:
+  Add ~x86-fbsd keyword, restrict binchecks and strip.
+
+  11 Jul 2006; Aron Griffis <agriffis@gentoo.org>
+  ja-ipafonts-0.0.20040715.ebuild:
+  Mark 0.0.20040715 stable on ia64
+
+  15 Jul 2005; Diego Pettenò <flameeyes@gentoo.org>
+  ja-ipafonts-0.0.20040715.ebuild:
+  Marked stable on amd64.
+
+  24 Apr 2005; Diego Pettenò <flameeyes@gentoo.org>
+  ja-ipafonts-0.0.20040715.ebuild:
+  Marked ~amd64.
+
+  26 Oct 2004; Tom Gall <tgall@gentoo.org> ja-ipafonts-0.0.20040715.ebuild:
+  stable on ppc64, bug #66885
+
+  06 Oct 2004; Mamoru KOMACHI <usata@gentoo.org>
+  ja-ipafonts-0.0.20040715.ebuild:
+  Added to ~ppc-macos.
+
+  29 Sep 2004; Mamoru KOMACHI <usata@gentoo.org>
+  ja-ipafonts-0.0.20040715.ebuild:
+  Stable on x86, ppc and alpha.
+
+*ja-ipafonts-0.0.20040715 (12 Aug 2004)
+
+  12 Aug 2004; Mamoru KOMACHI <usata@gentoo.org> +metadata.xml,
+  +ja-ipafonts-0.0.20040715.ebuild:
+  Initial import. Ebuild provided by Kenichi Ishibashi
+  <bashi@dream.ie.ariake-nct.ac.jp>.
+
