@@ -1,0 +1,95 @@
+# ChangeLog for media-fonts/mikachan-font
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/mikachan-font/ChangeLog,v 1.25 2007/07/24 02:20:19 dirtyepic Exp $
+
+  24 Jul 2007; Ryan Hill <dirtyepic@gentoo.org>
+  -mikachan-font-8.9-r1.ebuild:
+  Remove old.
+
+  18 Mar 2007; Simon Stelling <blubb@gentoo.org> mikachan-font-9.1.ebuild:
+  stable on amd64; bug 171063
+
+  17 Mar 2007; Markus Rothe <corsair@gentoo.org> mikachan-font-9.1.ebuild:
+  Stable on ppc64; bug #171063
+
+  17 Mar 2007; nixnut <nixnut@gentoo.org> mikachan-font-9.1.ebuild:
+  Stable on ppc wrt bug 171063
+
+  12 Mar 2007; Raúl Porcel <armin76@gentoo.org> mikachan-font-9.1.ebuild:
+  x86 stable
+
+  04 Dec 2006; Jeroen Roovers <jer@gentoo.org> mikachan-font-9.1.ebuild:
+  Stable for HPPA.
+
+  26 Nov 2006; Diego Pettenò <flameeyes@gentoo.org>
+  mikachan-font-9.1.ebuild:
+  Add ~x86-fbsd keyword.
+
+  20 Oct 2006; Bryan Østergaard <kloeri@gentoo.org>
+  mikachan-font-9.1.ebuild:
+  Stable on Alpha.
+
+  07 Sep 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  mikachan-font-9.1.ebuild:
+  Stable on sparc
+
+  11 Jul 2006; Aron Griffis <agriffis@gentoo.org> mikachan-font-9.1.ebuild:
+  Mark 9.1 stable on ia64
+
+*mikachan-font-9.1 (22 May 2005)
+
+  22 May 2005; Mamoru KOMACHI <usata@gentoo.org> +mikachan-font-9.1.ebuild:
+  Version bumped as per request bug #92265.
+
+  06 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> mikachan-font-8.9-r1.ebuild,
+  -mikachan-font-8.9.ebuild:
+  Added to ~ppc-macos.
+
+  29 Sep 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  mikachan-font-8.9-r1.ebuild:
+  Stable on sparc
+
+  29 Sep 2004; Mamoru KOMACHI <usata@gentoo.org> -mikachan-font-8.8.ebuild,
+  mikachan-font-8.9-r1.ebuild:
+  Stable on x86, alpha and ppc.
+
+  29 Aug 2004; Tom Gall <tgall@gentoo.org> mikachan-font-8.9-r1.ebuild:
+  stable on ppc64, bug #61741
+
+*mikachan-font-8.9-r1 (21 Jun 2004)
+
+  21 Jun 2004; Mamoru KOMACHI <usata@gentoo.org> +mikachan-font-8.9-r1.ebuild:
+  font.eclassify
+
+  03 Feb 2004; <augustus@gentoo.org> mikachan-font-8.9.ebuild:
+  Added ~amd64 keyword.
+
+*mikachan-font-8.9 (30 Aug 2003)
+
+  30 Sep 2003; Mamoru KOMACHI <usata@gentoo.org> metadata.xml,
+  mikachan-font-8.9.ebuild:
+  Stable for x86, alpha, sparc and ppc
+
+  30 Aug 2003; Mamoru KOMACHI <usata@gentoo.org> mikachan-font-8.9.ebuild:
+  Version bump.  Ebuild submitted by Hattya-san <hattya@inter7.jp>
+  This closes Bug #27595
+
+*mikachan-font-8.8 (27 Jul 2003)
+
+  25 Aug 2003; Mamoru KOMACHI <usata@gentoo.org> mikachan-font-8.8.ebuild:
+  Marked stable on ppc and sparc
+
+  09 Aug 2003; Mamoru KOMACHI <usata@gentoo.org> mikachan-font-8.8.ebuild:
+  Marked stable on x86 and alpha
+
+  31 Jul 2003; Mamoru KOMACHI <usata@gentoo.org> mikachan-font-8.8.ebuild:
+  Added ~sparc and ~ppc to KEYWORDS, virtual/x11 to DEPEND
+
+  28 Jul 2003; Mamoru KOMACHI <usata@gentoo.org> mikachan-font-8.8.ebuild:
+  Added ~alpha keyword. Changed fonts.scale and fonts.dir creation method
+  regarding the same issue described in bug #25212
+
+  27 Jul 2003; Mamoru KOMACHI <usata@gentoo.org> mikachan-font-8.8.ebuild:
+  Initial import. Based on the ebuild submitted by MATSUU Takuto
+  <matsuu@gentoo.org> at GentooJP BugTrack
+
