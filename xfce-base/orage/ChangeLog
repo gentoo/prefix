@@ -1,0 +1,145 @@
+# ChangeLog for xfce-base/orage
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/orage/ChangeLog,v 1.40 2007/12/17 18:40:33 jer Exp $
+
+  17 Dec 2007; Jeroen Roovers <jer@gentoo.org> orage-4.4.2.ebuild:
+  Stable for HPPA (bug #201747).
+
+  12 Dec 2007; Brent Baude <ranger@gentoo.org> orage-4.4.2.ebuild:
+  Marking orage-4.4.2 ppc64 stable for bug 201747
+
+  12 Dec 2007; Raúl Porcel <armin76@gentoo.org> orage-4.4.2.ebuild:
+  alpha/ia64/sparc stable wrt #201747
+
+  09 Dec 2007; Tobias Scherbaum <dertobi123@gentoo.org> orage-4.4.2.ebuild:
+  ppc stable, bug #201747
+
+  09 Dec 2007; Dawid Węgliński <cla@gentoo.org> orage-4.4.2.ebuild:
+  Stable on amd64/x86 (bug #201747)
+
+*orage-4.4.2 (18 Nov 2007)
+
+  18 Nov 2007; Samuli Suominen <drac@gentoo.org> +orage-4.4.2.ebuild:
+  Version bump.
+
+*orage-4.5.9.6 (02 Jul 2007)
+
+  02 Jul 2007; Samuli Suominen <drac@gentoo.org> -orage-4.5.9.3.ebuild,
+  +orage-4.5.9.6.ebuild:
+  Version bump. This version supports importing and exporting ical files, dbus
+  and libnotify.
+
+*orage-4.5.9.3 (16 Jun 2007)
+
+  16 Jun 2007; Samuli Suominen <drac@gentoo.org> -orage-4.4.0.ebuild,
+  +orage-4.5.9.3.ebuild:
+  Version bump.
+
+  07 Jun 2007; Samuli Suominen <drac@gentoo.org> orage-4.4.1.ebuild:
+  Stable on arm.
+
+  01 Jun 2007; Brent Baude <ranger@gentoo.org> orage-4.4.1.ebuild:
+  Marking orage-4.4.1 ppc64 stable for bug #178510
+
+  27 May 2007; Joshua Kinard <kumba@gentoo.org> orage-4.4.1.ebuild:
+  Stable on mips.
+
+  24 May 2007; Lars Weiler <pylon@gentoo.org> orage-4.4.1.ebuild:
+  Stable on ppc; bug #178510.
+
+  21 May 2007; Jeroen Roovers <jer@gentoo.org> orage-4.4.1.ebuild:
+  Stable for HPPA (bug #178510).
+
+  19 May 2007; Peter Weller <welp@gentoo.org> orage-4.4.1.ebuild:
+  Stable on amd64 wrt bug 178510
+
+  18 May 2007; Raúl Porcel <armin76@gentoo.org> orage-4.4.1.ebuild:
+  alpha/ia64/x86 stable wrt #178510
+
+  15 May 2007; Gustavo Zacarias <gustavoz@gentoo.org> orage-4.4.1.ebuild:
+  Stable on sparc wrt #178510
+
+*orage-4.4.1 (11 Apr 2007)
+
+  11 Apr 2007; Joshua Nichols <nichoj@gentoo.org> +orage-4.4.1.ebuild:
+  Version bump for 4.4.1.
+
+  15 Mar 2007; Markus Rothe <corsair@gentoo.org> orage-4.4.0.ebuild:
+  Stable on ppc64; bug #169987
+
+  11 Mar 2007; Bryan Østergaard <kloeri@gentoo.org> orage-4.4.0.ebuild:
+  Stable on Alpha + IA64.
+
+  10 Mar 2007; nixnut <nixnut@gentoo.org> orage-4.4.0.ebuild:
+  Stable on ppc wrt bug 169987
+
+  10 Mar 2007; Peter Weller <welp@gentoo.org> orage-4.4.0.ebuild:
+  Stable on amd64 wrt bug 169987
+
+  09 Mar 2007; Jeroen Roovers <jer@gentoo.org> orage-4.4.0.ebuild:
+  Stable for HPPA (bug #169987).
+
+  09 Mar 2007; Christian Faulhammer <opfer@gentoo.org> orage-4.4.0.ebuild:
+  stable x86; bug #169987
+
+  08 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org> orage-4.4.0.ebuild:
+  Stable on sparc wrt #169987
+
+  02 Mar 2007; Peter Weller <welp@gentoo.org> orage-4.4.0.ebuild:
+  Keyworded on x86-fbsd
+
+  22 Feb 2007; Joshua Nichols <nichoj@gentoo.org> orage-4.4.0.ebuild:
+  Updated homepage. See bug #165707.
+
+  03 Feb 2007; Joshua Nichols <nichoj@gentoo.org> -orage-4.3.99.2.ebuild:
+  Removing old version.
+
+  28 Jan 2007; Peter Weller <welp@gentoo.org> orage-4.4.0.ebuild:
+  Dep fixes, various other fixes
+
+  23 Jan 2007; Peter Weller <welp@gentoo.org> orage-4.4.0.ebuild:
+  Removing usage of virtual/x11,  and hardcoding in depends. Minor clean ups.
+
+  23 Jan 2007; Joshua Nichols <nichoj@gentoo.org> orage-4.4.0.ebuild:
+  Removed berkdb USE flag, as it doesn't do anything. See bug #163237.
+
+*orage-4.4.0 (22 Jan 2007)
+
+  22 Jan 2007; Joshua Nichols <nichoj@gentoo.org> +orage-4.4.0.ebuild:
+  Version bump.
+
+  06 Jan 2007; Joshua Nichols <nichoj@gentoo.org> orage-4.3.99.2.ebuild:
+  Added IUSE=debug, which was dropped when 'inherit debug' was removed from
+  xfce44.eclass.
+
+  07 Dec 2006; Joshua Nichols <nichoj@gentoo.org> -orage-4.3.90.1.ebuild,
+  -orage-4.3.90.2.ebuild:
+  Pruned old versions with new versions with same or better keywords.
+
+*orage-4.3.99.2 (07 Dec 2006)
+
+  07 Dec 2006; Joshua Nichols <nichoj@gentoo.org> +orage-4.3.99.2.ebuild:
+  Version bump for RC2. See bug #146563.
+
+  13 Jul 2006; Joshua Nichols <jnichols@gentoo.org>
+  +files/orage-4.3.90.2-asneeded.patch, orage-4.3.90.2.ebuild:
+  Applied as-needed patch, as supplied by drac.
+
+  10 Jul 2006; Brad Cowan <bcowan@gentoo.org> ChangeLog:
+  Xfce beta 2 builds.
+
+  07 Jun 2006; Stefan Schweizer <genstef@gentoo.org> orage-4.3.90.1.ebuild:
+  eds is no dep, bugs 132266 and 135901, thanks drac
+
+  13 May 2006; Brad Cowan <bcowan@gentoo.org> orage-4.3.90.1.ebuild:
+  Add USE flag for evolution-data-server until I figure out why it is a dep.
+
+  28 Apr 2006; Marien Zwart <marienz@gentoo.org> Manifest:
+  Fixing SHA256 digest, pass four
+
+*orage-4.3.90.1 (20 Apr 2006)
+
+  20 Apr 2006; Daniel Ostrow <dostrow@gentoo.org> +metadata.xml,
+  +orage-4.3.90.1.ebuild:
+  Version bump for 4.4_beta1.
+
