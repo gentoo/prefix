@@ -1,0 +1,29 @@
+# ChangeLog for media-fonts/fs-fonts
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/fs-fonts/ChangeLog,v 1.6 2007/04/27 04:05:33 josejx Exp $
+
+  27 Apr 2007; Joseph Jezak <josejx@gentoo.org> fs-fonts-0.1_alpha3.ebuild:
+  Added ~ppc for bug #175597.
+
+  26 Nov 2006; Diego Pettenò <flameeyes@gentoo.org>
+  fs-fonts-0.1_alpha3.ebuild:
+  Add ~x86-fbsd keyword, restrict binchecks and strip.
+
+  11 Jul 2006; Aron Griffis <agriffis@gentoo.org>
+  fs-fonts-0.1_alpha3.ebuild:
+  Mark 0.1_alpha3 stable on ia64
+
+  10 Jan 2006; Michael Hanselmann <hansmi@gentoo.org>
+  fs-fonts-0.1_alpha3.ebuild:
+  Added to ~hppa.
+
+  24 Apr 2005; Diego Pettenò <flameeyes@gentoo.org>
+  fs-fonts-0.1_alpha3.ebuild:
+  Marked ~amd64.
+
+*fs-fonts-0.1_alpha3 (22 Oct 2004)
+
+  22 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> +metadata.xml,
+  +fs-fonts-0.1_alpha3.ebuild:
+  Initial import.
+
