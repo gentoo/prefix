@@ -1,6 +1,10 @@
 # ChangeLog for games-misc/fortune-mod
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-misc/fortune-mod/ChangeLog,v 1.23 2007/07/06 09:24:38 uberlord Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-misc/fortune-mod/ChangeLog,v 1.24 2008/01/14 19:43:25 grobian Exp $
+
+  14 Jan 2008; Fabian Groffen <grobian@gentoo.org>
+  fortune-mod-1.99.1-r2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   06 Jul 2007; Roy Marples <uberlord@gentoo.org>
   fortune-mod-1.99.1-r2.ebuild:
