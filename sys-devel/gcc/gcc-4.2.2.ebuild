@@ -80,6 +80,10 @@ src_unpack() {
 
 	use vanilla && return 0
 
+	# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=31899
+	# remove this when it is part of gentoo-patches or even gcc-4.2.3:
+	epatch "${FILESDIR}"/${PV}/pr31899.patch
+
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
 
 	[[ ${CTARGET} == *-softfloat-* ]] && epatch "${FILESDIR}"/4.0.2/gcc-4.0.2-softfloat.patch

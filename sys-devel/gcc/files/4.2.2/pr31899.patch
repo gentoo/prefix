@@ -1,0 +1,66 @@
+2007-10-01  Richard Guenther  <rguenther@suse.de>
+
+	* dwarf2out.c (reference_to_unused): Disable sanity checking.
+
+	* g++.dg/debug/using3.C: New testcase.
+
+Index: gcc/dwarf2out.c
+===================================================================
+*** gcc/dwarf2out.c.orig	Mon Sep 24 11:17:10 2007
+--- gcc/dwarf2out.c	Mon Jan 14 11:02:28 2008
+***************
+*** 10005,10020 ****
+      return *tp;
+    else if (!flag_unit_at_a_time)
+      return NULL_TREE;
+    else if (!cgraph_global_info_ready
+  	   && (TREE_CODE (*tp) == VAR_DECL || TREE_CODE (*tp) == FUNCTION_DECL))
+      gcc_unreachable ();
+!   else if (DECL_P (*tp) && TREE_CODE (*tp) == VAR_DECL)
+      {
+        struct cgraph_varpool_node *node = cgraph_varpool_node (*tp);
+        if (!node->needed)
+  	return *tp;
+      }
+!    else if (DECL_P (*tp) && TREE_CODE (*tp) == FUNCTION_DECL
+  	    && (!DECL_EXTERNAL (*tp) || DECL_DECLARED_INLINE_P (*tp)))
+      {
+        struct cgraph_node *node = cgraph_node (*tp);
+--- 10005,10026 ----
+      return *tp;
+    else if (!flag_unit_at_a_time)
+      return NULL_TREE;
++   /* ???  The C++ FE emits debug information for using decls, so this
++      sanity check falls over.  See PR31899.  */
++ #if 0
+    else if (!cgraph_global_info_ready
+  	   && (TREE_CODE (*tp) == VAR_DECL || TREE_CODE (*tp) == FUNCTION_DECL))
+      gcc_unreachable ();
+! #endif
+!   else if (cgraph_global_info_ready
+! 	   && DECL_P (*tp) && TREE_CODE (*tp) == VAR_DECL)
+      {
+        struct cgraph_varpool_node *node = cgraph_varpool_node (*tp);
+        if (!node->needed)
+  	return *tp;
+      }
+!   else if (cgraph_global_info_ready
+! 	   && DECL_P (*tp) && TREE_CODE (*tp) == FUNCTION_DECL
+  	    && (!DECL_EXTERNAL (*tp) || DECL_DECLARED_INLINE_P (*tp)))
+      {
+        struct cgraph_node *node = cgraph_node (*tp);
+Index: gcc/testsuite/g++.dg/debug/using3.C
+===================================================================
+*** gcc/testsuite/g++.dg/debug/using3.C	(revision 0)
+--- gcc/testsuite/g++.dg/debug/using3.C	(revision 0)
+***************
+*** 0 ****
+--- 1,8 ----
++ // PR debug/31899
++ 
++ namespace NS {
++   int x = 0;
++   int &ref = x;
++ }
++ 
++ using NS::ref;
