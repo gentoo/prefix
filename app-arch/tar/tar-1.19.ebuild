@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.19.ebuild,v 1.8 2007/12/01 17:07:05 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.19.ebuild,v 1.9 2008/01/14 19:55:58 dertobi123 Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SRC_URI="http://ftp.gnu.org/gnu/tar/${P}.tar.bz2
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-fbsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="nls static"
 
 RDEPEND=""
