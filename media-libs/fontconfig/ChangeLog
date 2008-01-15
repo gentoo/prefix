@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.104 2008/01/13 14:13:34 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.105 2008/01/14 19:24:29 welp Exp $
+
+  14 Jan 2008; <welp@gentoo.org> fontconfig-2.5.0-r1.ebuild:
+  Stable on amd64; bug 205266
 
   13 Jan 2008; nixnut <nixnut@gentoo.org> fontconfig-2.5.0-r1.ebuild:
   Stable on ppc wrt bug 205266
