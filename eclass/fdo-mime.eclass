@@ -30,7 +30,7 @@ fdo-mime_mime_database_update() {
 	if [ -x ${EROOT}/usr/bin/update-mime-database ]
 	then
 		einfo "Updating shared mime info database ..."
-		${EROOT}/usr/bin/update-mime-database ${EROOT}/usr/share/mime
+		${EROOT}/usr/bin/update-mime-database ${EROOT%/}/usr/share/mime
 	fi
 
 }
