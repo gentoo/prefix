@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/pwgen/pwgen-2.06.ebuild,v 1.3 2007/12/28 15:52:49 rich0 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/pwgen/pwgen-2.06.ebuild,v 1.4 2008/01/14 19:52:20 dertobi123 Exp $
 
 EAPI="prefix"
 
