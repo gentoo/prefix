@@ -1,6 +1,9 @@
 # ChangeLog for app-text/acroread
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/ChangeLog,v 1.102 2007/09/28 18:05:43 kevquinn Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/ChangeLog,v 1.103 2008/01/14 23:24:05 tgurr Exp $
+
+  14 Jan 2008; Timo Gurr <tgurr@gentoo.org> acroread-8.1.1.ebuild:
+  Enable more languages, fix some quoting. Still more work on it needed though.
 
   28 Sep 2007; Kevin F. Quinn <kevquinn@gentoo.org> acroread-8.1.1.ebuild:
   Use XULRunner if available; also set /etc/gre.d/gre.conf for mozilla-firefox
