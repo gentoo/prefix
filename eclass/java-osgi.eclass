@@ -5,7 +5,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-osgi.eclass,v 1.2 2008/01/10 20:12:12 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-osgi.eclass,v 1.4 2008/01/14 16:48:38 elvanor Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -120,7 +120,7 @@ _java-osgi_makejar() {
 # It will call java-pkg_dojar at the end.
 #
 # @example
-#	java-osgi_dojar "dist/${PN}.jar" "com.jcraft.jsch" "com.jcraft.jsch, com.jcraft.jsch.jce;x-internal:=true" "JSch"
+#	java-osgi_dojar "dist/${PN}.jar" "com.jcraft.jsch" "JSch" "com.jcraft.jsch, com.jcraft.jsch.jce;x-internal:=true"
 #
 # @param $1 - name of jar to repackage with OSGi
 # @param $2 - bundle symbolic name
@@ -147,7 +147,7 @@ java-osgi_dojar() {
 # It will call java-pkg_newjar at the end.
 #
 # @example
-#	java-osgi_newjar "dist/${PN}.jar" "com.jcraft.jsch" "com.jcraft.jsch, com.jcraft.jsch.jce;x-internal:=true" "JSch"
+#	java-osgi_newjar "dist/${PN}.jar" "com.jcraft.jsch" "JSch" "com.jcraft.jsch, com.jcraft.jsch.jce;x-internal:=true"
 #
 # @param $1 - name of jar to repackage with OSGi
 # @param $2 (optional) - name of the target jar. It will default to package name if not specified.
@@ -162,7 +162,7 @@ java-osgi_newjar() {
 	local jarName="$(basename $1)"
 
 	if (( ${#} > 4 )); then
-		_java-osgi_makejar "${1}" "${3}" "${4}"
+		_java-osgi_makejar "${1}" "${3}" "${4}" "${5}"
 		java-pkg_newjar "${_OSGI_T}/osgi/${jarName}" "${2}"
 	else
 		_java-osgi_makejar "$@"

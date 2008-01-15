@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.293 2007/11/20 22:32:01 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.294 2008/01/14 04:52:35 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -145,8 +145,7 @@ epatch() {
 			local EPATCH_SOURCE="$1/*.${EPATCH_SUFFIX}"
 		fi
 	else
-		if [ ! -d ${EPATCH_SOURCE} ] || [ -n "$1" ]
-		then
+		if [[ ! -d ${EPATCH_SOURCE} ]] || [[ -n $1 ]] ; then
 			if [ -n "$1" -a "${EPATCH_SOURCE}" = "${WORKDIR}/patch" ]
 			then
 				EPATCH_SOURCE="$1"
@@ -1730,8 +1729,8 @@ epunt_cxx() {
 	[[ -z ${dir} ]] && dir=${S}
 	ebegin "Removing useless C++ checks"
 	local f
-	for f in $(find ${dir} -name configure) ; do
-		patch -p0 "${f}" "${PORTDIR}/eclass/ELT-patches/nocxx/nocxx.patch" > /dev/null
+	find "${dir}" -name configure | while read f ; do
+		patch --no-backup-if-mismatch -p0 "${f}" "${PORTDIR}/eclass/ELT-patches/nocxx/nocxx.patch" > /dev/null
 	done
 	eend 0
 }
