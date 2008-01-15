@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.5.4.ebuild,v 1.3 2008/01/13 02:10:07 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.5.4.ebuild,v 1.4 2008/01/14 11:24:00 vapier Exp $
 
 EAPI="prefix 1"
 
@@ -24,7 +24,7 @@ RDEPEND="${DEPEND}"
 SOURCE="/usr/bin/lemon"
 ALTERNATIVES="${SOURCE}-3 ${SOURCE}-0"
 
-src_unpack() {
+pkg_setup() {
 	# test
 	if has test ${FEATURES}; then
 		if ! has userpriv ${FEATURES}; then
@@ -32,12 +32,13 @@ src_unpack() {
 			eerror "Testsuite will not be run."
 		fi
 		if ! use tcl; then
-			ewarn "You must enable the tcl use flag if you want to run the test"
-			ewarn "suite."
+			ewarn "You must enable the tcl use flag if you want to run the testsuite."
 			eerror "Testsuite will not be run."
 		fi
 	fi
+}
 
+src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
@@ -51,12 +52,12 @@ src_compile() {
 	# not available via configure and requested in bug #143794
 	use soundex && append-flags -DSQLITE_SOUNDEX=1
 
-	econf ${myconf} \
+	econf \
 		$(use_enable debug) \
 		$(use_enable threadsafe) \
 		$(use_enable threadsafe cross-thread-connections) \
-		$(use_enable tcl)
-
+		$(use_enable tcl) \
+		|| die
 	emake all || die "emake all failed"
 }
 
@@ -72,7 +73,7 @@ src_test() {
 	fi
 }
 
-src_install () {
+src_install() {
 	emake \
 		DESTDIR="${D}" \
 		TCLLIBDIR="${EPREFIX}/usr/$(get_libdir)" \
