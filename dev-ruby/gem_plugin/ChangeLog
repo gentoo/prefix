@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/gem_plugin
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/gem_plugin/ChangeLog,v 1.15 2008/01/11 19:45:08 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/gem_plugin/ChangeLog,v 1.16 2008/01/15 15:32:20 armin76 Exp $
+
+  15 Jan 2008; Raúl Porcel <armin76@gentoo.org> gem_plugin-0.2.3.ebuild:
+  sparc stable
 
   11 Jan 2008; Tobias Scherbaum <dertobi123@gentoo.org>
   gem_plugin-0.2.3.ebuild:
