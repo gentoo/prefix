@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/keychain
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/keychain/ChangeLog,v 1.69 2008/01/10 20:07:22 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/keychain/ChangeLog,v 1.70 2008/01/15 15:36:26 armin76 Exp $
+
+  15 Jan 2008; Raúl Porcel <armin76@gentoo.org> keychain-2.6.8.ebuild:
+  alpha/ia64/sparc stable wrt #188440
 
   10 Jan 2008; Brent Baude <ranger@gentoo.org> keychain-2.6.8.ebuild:
   Marking keychain-2.6.8 ppc and ppc64 for bug 18840
