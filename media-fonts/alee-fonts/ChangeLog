@@ -1,6 +1,10 @@
 # ChangeLog for media-fonts/alee-fonts
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/alee-fonts/ChangeLog,v 1.30 2007/09/03 23:36:41 dirtyepic Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/alee-fonts/ChangeLog,v 1.31 2008/01/15 17:12:58 grobian Exp $
+
+  15 Jan 2008; Fabian Groffen <grobian@gentoo.org> alee-fonts-8.3.ebuild,
+  alee-fonts-11.4.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   03 Sep 2007; Ryan Hill <dirtyepic@gentoo.org> -alee-fonts-6.1.ebuild,
   -alee-fonts-7.1.ebuild:
