@@ -15,7 +15,7 @@ SRC_URI="http://www.ladspa.org/download/${MY_P}.tgz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 RDEPEND=""
