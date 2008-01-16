@@ -1,0 +1,61 @@
+* Darwin's linker doesn't grok -z*
+* to get environ, one needs to call _NSGetEnviron() on Darwin.
+
+--- configure.in
++++ configure.in
+@@ -210,11 +210,16 @@
+      ;;
+   esac
+ 
++  hostos=`uname -s`
++
+   case " $CFLAGS " in
+   *[\ \	]-fPIC[\ \	]*) ;;
+   *) if cc_supports_flag -fPIC; then
+         PIC_CFLAGS="-fPIC"
+-        PIC_LDFLAGS="-Wl,-z,relro"
++		case $hostos in
++			Darwin) PIC_LDFLAGS="" ;;
++			*)      PIC_LDFLAGS="-Wl,-z,relro" ;;
++		esac
+      fi
+      ;;
+   esac
+@@ -223,7 +228,10 @@
+   *[\ \	]-fPIE[\ \	]*) ;;
+   *) if cc_supports_flag -fPIE; then
+         PIE_CFLAGS="-fPIE"
+-        PIE_LDFLAGS="-pie -Wl,-z,relro"
++		case $hostos in
++			Darwin) PIC_LDFLAGS="" ;;
++			*)      PIE_LDFLAGS="-pie -Wl,-z,relro" ;;
++		esac
+      fi
+      ;;
+   esac
+--- dbus/dbus-sysdeps.c.orig	2008-01-16 20:01:52 +0100
++++ dbus/dbus-sysdeps.c	2008-01-16 20:03:50 +0100
+@@ -47,6 +47,11 @@
+ #include <errno.h>
+ #endif
+ 
++/* For OSX's _NSGetEnviron() */
++#ifdef __APPLE_CC__
++#include <crt_externs.h>
++#endif
++
+ _DBUS_DEFINE_GLOBAL_LOCK (win_fds);
+ _DBUS_DEFINE_GLOBAL_LOCK (sid_atom_cache);
+ _DBUS_DEFINE_GLOBAL_LOCK (system_users);
+@@ -191,7 +196,11 @@
+   if (clearenv () != 0)
+      rc = FALSE;
+ #else
++#ifdef __APPLE_CC__
++  char **environ = *_NSGetEnviron();
++#else
+   extern char **environ;
++#endif
+ 
+   if (environ != NULL)
+     environ[0] = NULL;

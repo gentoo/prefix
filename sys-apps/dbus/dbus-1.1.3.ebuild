@@ -25,6 +25,13 @@ DEPEND="${RDEPEND}
 	doc? (	app-doc/doxygen
 		app-text/xmlto )"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-darwin.patch
+	eautoreconf
+}
+
 src_compile() {
 	# so we can get backtraces from apps
 	append-flags -rdynamic
