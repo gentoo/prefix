@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.0.2-r2.ebuild,v 1.15 2007/07/11 07:05:54 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.1.3.ebuild,v 1.1 2008/01/16 02:18:59 steev Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="http://dbus.freedesktop.org/releases/dbus/${P}.tar.gz"
 LICENSE="|| ( GPL-2 AFL-2.1 )"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
-IUSE="debug doc selinux X kernel_linux kernel_FreeBSD"
+IUSE="debug doc selinux X"
 
 RDEPEND="X? ( x11-libs/libXt x11-libs/libX11 )
 	selinux? ( sys-libs/libselinux
@@ -25,14 +25,6 @@ DEPEND="${RDEPEND}
 	doc? (	app-doc/doxygen
 		app-text/xmlto )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	# fix dnotify issue with not detecting created files
-	epatch "${FILESDIR}"/${PN}-1.0.1-fixfilecreation.patch
-}
-
 src_compile() {
 	# so we can get backtraces from apps
 	append-flags -rdynamic
@@ -43,7 +35,7 @@ src_compile() {
 
 	econf \
 		$(use_with X x) \
-		$(use_enable kernel_linux dnotify) \
+		$(use_enable kernel_linux inotify) \
 		$(use_enable kernel_FreeBSD kqueue) \
 		$(use_enable selinux) \
 		$(use_enable debug verbose-mode) \
@@ -79,19 +71,19 @@ src_install() {
 	# dbus X session script (#77504)
 	# turns out to only work for GDM. has been merged into other desktop
 	# (kdm and such scripts)
-	if use X ; then
-		exeinto /etc/X11/xinit/xinitrc.d/
-		doexe "${FILESDIR}"/30-dbus
-	fi
+	exeinto /etc/X11/xinit/xinitrc.d/
+	doexe "${FILESDIR}"/30-dbus
 
 	# needs to exist for the system socket
 	keepdir /var/run/dbus
 	# needs to exist for machine id
 	keepdir /var/lib/dbus
+	# needs to exist for dbus sessions to launch
 
 	keepdir /usr/lib/dbus-1.0/services
 	keepdir /usr/share/dbus-1/services
 	keepdir /etc/dbus-1/system.d/
+	keepdir /etc/dbus-1/session.d/
 
 	dodoc AUTHORS ChangeLog HACKING NEWS README doc/TODO
 	if use doc; then
@@ -105,12 +97,6 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
-	# ensure we create the machine uuid here for people that don't use the
-	# system bus so it would never get created otherwise
-	if [[ ${ROOT} == "/" ]] ; then
-		"${EPREFIX}"/usr/bin/dbus-uuidgen --ensure
-	fi
-
 	elog "To start the D-Bus system-wide messagebus by default"
 	elog "you should add it to the default runlevel :"
 	elog "\`rc-update add dbus default\`"
@@ -120,5 +106,6 @@ pkg_postinst() {
 	elog
 	ewarn
 	ewarn "You MUST run 'revdep-rebuild' after emerging this package"
+	elog  "If you notice any issues, please rebuild sys-apps/hal"
 	ewarn
 }
