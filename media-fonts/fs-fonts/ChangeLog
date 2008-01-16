@@ -1,6 +1,10 @@
 # ChangeLog for media-fonts/fs-fonts
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/fs-fonts/ChangeLog,v 1.6 2007/04/27 04:05:33 josejx Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/fs-fonts/ChangeLog,v 1.7 2008/01/15 17:57:16 grobian Exp $
+
+  15 Jan 2008; Fabian Groffen <grobian@gentoo.org>
+  fs-fonts-0.1_alpha3.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   27 Apr 2007; Joseph Jezak <josejx@gentoo.org> fs-fonts-0.1_alpha3.ebuild:
   Added ~ppc for bug #175597.
