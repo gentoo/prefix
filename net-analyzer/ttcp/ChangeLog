@@ -1,0 +1,42 @@
+# ChangeLog for net-analyzer/ttcp
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ttcp/ChangeLog,v 1.13 2007/02/09 04:10:20 flameeyes Exp $
+
+  09 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
+
+  12 Nov 2005; Joshua Kinard <kumba@gentoo.org> ttcp-1.12.ebuild:
+  Marked unstable on sparc.
+
+  16 Oct 2005; Joshua Kinard <kumba@gentoo.org> ttcp-1.12.ebuild:
+  Marked stable on mips.
+
+  15 May 2005; Marcelo Goes <vanquirius@gentoo.org> ttcp-1.12.ebuild:
+  Use toolchain-funcs.eclass instead of gcc.eclass. See bug 92745.
+
+  24 Feb 2005; Lina Pezzella <j4rg0n@gentoo.org> ttcp-1.12.ebuild:
+  Stable ppc-macos
+
+  23 Jan 2005; Lina Pezzzella <j4rg0n@gentoo.org> ttcp-1.12.ebuild:
+  Unstable ppc-macos. Bug #67036
+
+  13 Jul 2004; Eldad Zack <eldad@gentoo.org> +metadata.xml:
+  Added metadata
+
+  01 Jul 2004; Jon Hood <squinky86@gentoo.org> ttcp-1.12.ebuild:
+  change virtual/glibc to virtual/libc, add IUSE
+
+  26 May 2004; Travis Tilley <lv@gentoo.org> +files/ttcp-1.12-amd64.patch,
+  ttcp-1.12.ebuild:
+  add 64bit friendliness patch
+
+  09 May 2004; <SeJo@gentoo.org> ttcp-1.12.ebuild:
+  added ~ppc keyword
+
+  07 Apr 2004; Travis Tilley <lv@gentoo.org> ttcp-1.12.ebuild:
+  added ~amd64 keyword
+
+*ttcp-1.12 (31 Dec 2003)
+
+  31 Dec 2003; Mike Frysinger <vapier@gentoo.org> :
+  Initial import.  Ebuild submitted by Sam Stephenson <sam@conio.net> #36087.
