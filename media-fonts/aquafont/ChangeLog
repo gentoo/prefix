@@ -1,6 +1,10 @@
 # ChangeLog for media-fonts/aquafont
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/aquafont/ChangeLog,v 1.22 2007/09/26 18:50:44 ranger Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/aquafont/ChangeLog,v 1.23 2008/01/15 17:14:29 grobian Exp $
+
+  15 Jan 2008; Fabian Groffen <grobian@gentoo.org> aquafont-2.7-r2.ebuild,
+  aquafont-2.8.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   26 Sep 2007; Brent Baude <ranger@gentoo.org> aquafont-2.8.ebuild:
   marking aquafont-2.8 ppc64 for bug 189979
