@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.8.ebuild,v 1.1 2007/12/20 19:43:36 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.8-r1.ebuild,v 1.1 2008/01/15 18:55:08 alonbl Exp $
 
 EAPI="prefix"
 
@@ -44,6 +44,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}/${PN}-2.0.4-idea.patch"
+	epatch "${FILESDIR}/${P}-qualified.patch"
 }
 
 src_compile() {

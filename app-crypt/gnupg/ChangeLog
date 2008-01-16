@@ -1,6 +1,13 @@
 # ChangeLog for app-crypt/gnupg
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.313 2008/01/10 16:34:51 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.314 2008/01/15 18:55:07 alonbl Exp $
+
+*gnupg-2.0.8-r1 (15 Jan 2008)
+
+  15 Jan 2008; Alon Bar-Lev <alonbl@gentoo.org>
+  +files/gnupg-2.0.8-qualified.patch, -gnupg-2.0.8.ebuild,
+  +gnupg-2.0.8-r1.ebuild:
+  Fix qualified.txt syntax
 
 *gnupg-1.4.8-r1 (10 Jan 2008)
 
