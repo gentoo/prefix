@@ -1,0 +1,131 @@
+# ChangeLog for media-libs/sdl-ttf
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-ttf/ChangeLog,v 1.37 2007/07/21 19:48:08 vapier Exp $
+
+*sdl-ttf-2.0.9 (21 Jul 2007)
+
+  21 Jul 2007; Mike Frysinger <vapier@gentoo.org> +sdl-ttf-2.0.9.ebuild:
+  Version bump.
+
+  01 Nov 2006; Michael Sterrett <mr_bones_@gentoo.org>
+  -files/ft2build.patch, -sdl-ttf-2.0.6.ebuild, -sdl-ttf-2.0.7.ebuild:
+  clean out older ebuilds
+
+  10 Oct 2006; Bryan Østergaard <kloeri@gentoo.org> sdl-ttf-2.0.8.ebuild:
+  Stable on Alpha + ia64, bug 138178.
+
+  01 Oct 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  sdl-ttf-2.0.8.ebuild:
+  hppa stable, bug #138178
+
+  06 Sep 2006; Chris Gianelloni <wolf31o2@gentoo.org> sdl-ttf-2.0.8.ebuild:
+  Stable on x86 wrt bug #138178.
+
+  06 Sep 2006; Joseph Jezak <josejx@gentoo.org> sdl-ttf-2.0.8.ebuild:
+  Marked ppc stable for bug #138178.
+
+  02 Sep 2006; Jason Wever <weeve@gentoo.org> sdl-ttf-2.0.8.ebuild:
+  Stable on SPARC wrt bug #144992.
+
+  02 Sep 2006; Markus Rothe <corsair@gentoo.org> sdl-ttf-2.0.8.ebuild:
+  Stable on ppc64; bug #138178
+
+  02 Sep 2006; <blubb@gentoo.org> sdl-ttf-2.0.8.ebuild:
+  stable on amd64
+
+  31 Aug 2006; Stefan Schweizer <genstef@gentoo.org>
+  +files/sdl-ttf-2.0.8-noftinternals.patch, sdl-ttf-2.0.8.ebuild:
+  Fix freetype-2.2 build problems with freetypes recommended patch thanks to
+  foser in bug 145642
+
+  28 Jul 2006; Javier Villavicencio <the_paya@gentoo.org>
+  sdl-ttf-2.0.8.ebuild:
+  Added ~x86-fbsd keyword.
+
+*sdl-ttf-2.0.8 (18 May 2006)
+
+  18 May 2006; Michael Sterrett <mr_bones_@gentoo.org>
+  +sdl-ttf-2.0.8.ebuild:
+  version bump
+
+  04 Mar 2006; Fabian Groffen <grobian@gentoo.org> sdl-ttf-2.0.7.ebuild:
+  Marked ~ppc-macos (bug #78781)
+
+  24 Dec 2005; Seemant Kulleen <seemant@gentoo.org> sdl-ttf-2.0.7.ebuild:
+  changed dep to be friendly with modular X
+
+  02 Oct 2005; Aron Griffis <agriffis@gentoo.org> sdl-ttf-2.0.7.ebuild:
+  Mark 2.0.7 stable on ia64
+
+  26 Aug 2005; Aron Griffis <agriffis@gentoo.org> sdl-ttf-2.0.7.ebuild:
+  add ~ia64
+
+  27 May 2005; Joseph Jezak <josejx@gentoo.org> sdl-ttf-2.0.7.ebuild:
+  Marked ppc stable.
+
+  08 Apr 2005; Markus Rothe <corsair@gentoo.org> sdl-ttf-2.0.7.ebuild:
+  Stable on ppc64
+
+  07 Feb 2005; Bryan Østergaard <kloeri@gentoo.org> sdl-ttf-2.0.7.ebuild:
+  Stable on alpha.
+
+  31 Jan 2005; Gustavo Zacarias <gustavoz@gentoo.org> sdl-ttf-2.0.7.ebuild:
+  Stable on sparc
+
+  30 Jan 2005; Michael Sterrett <mr_bones_@gentoo.org> sdl-ttf-2.0.7.ebuild:
+  stable for x86
+
+*sdl-ttf-2.0.7 (16 Dec 2004)
+
+  16 Dec 2004; Michael Sterrett <mr_bones_@gentoo.org> +sdl-ttf-2.0.7.ebuild:
+  version bump
+
+  10 Aug 2004; Tom Gall <tgall@gentoo.org> sdl-ttf-2.0.6.ebuild:
+  stable on ppc64, bug #57993
+
+  30 Jun 2004; Michael Sterrett <mr_bones_@gentoo.org> +files/ft2build.patch,
+  sdl-ttf-2.0.6.ebuild:
+  Add patch from Ming Zhao via bug #55746 to support latest freetype
+
+  29 Nov 2003; Brad House <brad_mssw@gentoo.org> sdl-ttf-2.0.6.ebuild:
+  mark stable on amd64
+
+  02 Oct 2003; Michael Sterrett <mr_bones_@gentoo.org> sdl-ttf-2.0.6.ebuild:
+  tidy
+
+  02 Oct 2003; Michael Sterrett <mr_bones_@gentoo.org> sdl-ttf-2.0.6.ebuild:
+  more error message and checking
+
+*sdl-ttf-2.0.6 (11 Jun 2003)
+
+  11 Jun 2003; Graham Forest <vladimir@gentoo.org> Manifest,
+  sdl-ttf-2.0.6.ebuild:
+  Version bump
+
+  31 Jan 2003; Mark GUertin <gerk@gentoo.org> sdl-ttf-2.0.5.ebuild :
+  Set to ppc stable
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*sdl-ttf-2.0.5 (17 Apr 2002)
+
+  10 Mar 2003; Aron Griffis <agriffis@gentoo.org> sdl-ttf-2.0.5.ebuild:
+  Mark stable on alpha
+
+  15 Jan 2003; Jon Nall <nall@gentoo.org> sdl-ttf-2.0.5.ebuild :
+  keyworded ~ppc
+
+  17 Apr 2002; Seemant Kulleen <seemant@gentoo.org> sdl-ttf-2.0.5.ebuild
+  files/digest-sdl-ttf-2.0.5 :
+
+  Version bump
+
+*sdl-ttf-2.0.4 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
