@@ -1,6 +1,9 @@
 # ChangeLog for www-servers/mongrel
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/mongrel/ChangeLog,v 1.21 2008/01/11 19:46:41 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/mongrel/ChangeLog,v 1.22 2008/01/15 15:33:23 armin76 Exp $
+
+  15 Jan 2008; Raúl Porcel <armin76@gentoo.org> mongrel-1.1.3.ebuild:
+  sparc stable wrt security #204321
 
   11 Jan 2008; Tobias Scherbaum <dertobi123@gentoo.org>
   mongrel-1.1.3.ebuild:
