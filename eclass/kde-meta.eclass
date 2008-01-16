@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-meta.eclass,v 1.82 2007/03/18 21:39:30 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-meta.eclass,v 1.83 2008/01/15 21:47:59 drac Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 # Simone Gotti <motaboy@gentoo.org>
@@ -96,7 +96,7 @@ if [[ -n "$XDELTA_BASE" ]]; then # depends on $PV only, so is safe to modify SRC
 
 	# Necessary dep for xdeltas. Hope like hell it doesn't worm its way into RDEPEND
 	# through the sneaky eclass dep mangling portage does.
-	DEPEND="$DEPEND kdexdeltas? ( dev-util/xdelta )"
+	DEPEND="$DEPEND kdexdeltas? ( =dev-util/xdelta-1* )"
 
 	SRC_URI="$SRC_URI kdexdeltas? ( $XDELTA_BASE "
 	for x in $XDELTA_DELTA; do

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.83 2007/11/08 09:42:55 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.84 2008/01/16 04:01:14 robbat2 Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: Luca Longinotti <chtekk@gentoo.org>
@@ -251,7 +251,7 @@ configure_minimal() {
 	# These are things we exclude from a minimal build, please
 	# note that the server actually does get built and installed,
 	# but we then delete it before packaging.
-	local minimal_exclude_list="server embedded-server extra-tools innodb bench berkeley-db row-based-replication"
+	local minimal_exclude_list="server embedded-server extra-tools innodb bench berkeley-db row-based-replication readline"
 
 	for i in ${minimal_exclude_list} ; do
 		myconf="${myconf} --without-${i}"
@@ -459,7 +459,6 @@ pbxt_src_install() {
 #
 # EBUILD FUNCTIONS
 #
-
 mysql_pkg_setup() {
 	if hasq test ${FEATURES} ; then
 		if ! use minimal ; then
