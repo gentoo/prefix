@@ -1,6 +1,14 @@
 # ChangeLog for dev-ruby/mechanize
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/mechanize/ChangeLog,v 1.4 2007/12/06 00:04:02 agorf Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/mechanize/ChangeLog,v 1.6 2008/01/15 17:57:40 agorf Exp $
+
+  15 Jan 2008; Aggelos Orfanakos <agorf@gentoo.org> mechanize-0.7.0.ebuild:
+  Setting correct Ruby dependency (1.8.4).
+
+*mechanize-0.7.0 (15 Jan 2008)
+
+  15 Jan 2008; Aggelos Orfanakos <agorf@gentoo.org> +mechanize-0.7.0.ebuild:
+  Version bump.
 
 *mechanize-0.6.11 (05 Dec 2007)
 
