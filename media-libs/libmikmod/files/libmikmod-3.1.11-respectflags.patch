@@ -1,0 +1,47 @@
+Index: libmikmod-3.1.11/configure.in
+===================================================================
+--- libmikmod-3.1.11.orig/configure.in
++++ libmikmod-3.1.11/configure.in
+@@ -616,14 +616,11 @@ int main()
+ 	libmikmod_cv_gcc_inline_safe=yes,
+ 	libmikmod_cv_gcc_inline_safe=no,
+ 	libmikmod_cv_gcc_inline_safe=no))
+-	if test $libmikmod_cv_gcc_inline_safe = yes
++	if test x$libmikmod_cv_gcc_inline_safe != xyes
+ 	then
+-		CFLAGS="$CFLAGS -finline-functions"
+-	else
+ 		CFLAGS="$CFLAGS -fno-strength-reduce"
+ 	fi
+-	CFLAGS="$CFLAGS -funroll-loops -ffast-math"
+-	if test $libmikmod_debug = yes
++	if test x$libmikmod_debug = xyes
+ 	then
+ 		CFLAGS="$CFLAGS -Wall -Werror"
+ 	else
+Index: libmikmod-3.1.11/libmikmod-config.in
+===================================================================
+--- libmikmod-3.1.11.orig/libmikmod-config.in
++++ libmikmod-3.1.11/libmikmod-config.in
+@@ -50,7 +50,7 @@ while test $# -gt 0 ; do
+ 	;;
+ 	--libs)
+ 		libdir=-L${exec_prefix}/lib
+-		echo $libdir -lmikmod @LIBRARY_LIB@
++		echo $libdir -lmikmod
+ 	;;
+ 	*)
+ 		echo "${usage}" 1>&2
+Index: libmikmod-3.1.11/libmikmod/Makefile.in
+===================================================================
+--- libmikmod-3.1.11.orig/libmikmod/Makefile.in
++++ libmikmod-3.1.11/libmikmod/Makefile.in
+@@ -72,7 +72,7 @@ distclean:	clean
+ 	rm -f Makefile
+ 
+ $(LIB): $(OBJ)
+-	$(LIBTOOL) --mode=link $(CC) -version-info 2:4:0 -o $@ $(OBJ) $(LIBRARY_LIB) -rpath $(DESTDIR)$(libdir)
++	$(LIBTOOL) --mode=link $(CC) $(LDFLAGS) -version-info 2:4:0 -o $@ $(OBJ) $(LIBRARY_LIB) -rpath $(DESTDIR)$(libdir)
+ 
+ dl_hpux.lo:	$(top_srcdir)/dlapi/dl_hpux.c \
+ 			$(top_srcdir)/dlapi/dlfcn.h

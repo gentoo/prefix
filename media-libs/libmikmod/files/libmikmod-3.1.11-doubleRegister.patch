@@ -1,0 +1,17 @@
+--- playercode/mdriver.c.old	2007-10-07 10:15:38.000000000 +0200
++++ playercode/mdriver.c	2007-10-07 10:21:23.000000000 +0200
+@@ -202,7 +202,13 @@
+ 	/* don't register a MISSING() driver */
+ 	if ((drv->Name) && (drv->Version)) {
+ 		if (cruise) {
+-			while (cruise->next) cruise = cruise->next;
++			// Check if the drv is already there.
++			// Discard it in that case
++			if (cruise==drv) return;
++			while (cruise->next) {
++				cruise = cruise->next;
++				if (cruise==drv) return;
++			}
+ 			cruise->next = drv;
+ 		} else
+ 			firstdriver = drv; 

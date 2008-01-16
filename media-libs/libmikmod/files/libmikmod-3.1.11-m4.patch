@@ -1,0 +1,9 @@
+Fix aclocal warning:
+/usr/share/aclocal/libmikmod.m4:11: warning: underquoted definition of AM_PATH_LIBMIKMOD
+--- libmikmod-3.1.11/libmikmod.m4
++++ libmikmod-3.1.11/libmikmod.m4
+@@ -10,3 +10,3 @@
+ dnl
+-AC_DEFUN(AM_PATH_LIBMIKMOD,
++AC_DEFUN([AM_PATH_LIBMIKMOD],
+ [dnl 

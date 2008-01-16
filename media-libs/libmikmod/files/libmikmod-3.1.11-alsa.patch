@@ -1,0 +1,26 @@
+diff -Naur libmikmod-3.1.11.orig/configure.in libmikmod-3.1.11/configure.in
+--- libmikmod-3.1.11.orig/configure.in	2004-01-22 02:43:52.000000000 +0900
++++ libmikmod-3.1.11/configure.in	2007-01-14 11:32:35.000000000 +0900
+@@ -6,7 +6,7 @@
+ 
+ LIBMIKMOD_MAJOR_VERSION=3
+ LIBMIKMOD_MINOR_VERSION=1
+-LIBMIKMOD_MICRO_VERSION=10
++LIBMIKMOD_MICRO_VERSION=11
+ 
+ BETA=
+ 
+@@ -257,10 +257,10 @@
+ if test "`uname`" = "Linux" && test $libmikmod_driver_alsa = yes
+ then
+ 	libmikmod_driver_alsa=no
+-	AC_CHECK_HEADERS(sys/asoundlib.h)
+-	if test $ac_cv_header_sys_asoundlib_h = yes
++	AC_CHECK_HEADERS(alsa/asoundlib.h)
++	if test $ac_cv_header_alsa_asoundlib_h = yes
+ 	then
+-		AC_CHECK_LIB(asound,snd_cards,libmikmod_driver_alsa=yes)
++		AC_CHECK_LIB(asound,snd_card_load,libmikmod_driver_alsa=yes)
+ 	fi
+ else
+ 	libmikmod_driver_alsa=no
