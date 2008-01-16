@@ -1,6 +1,10 @@
 # ChangeLog for media-fonts/aquapfont
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/aquapfont/ChangeLog,v 1.26 2007/10/15 14:32:27 corsair Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/aquapfont/ChangeLog,v 1.27 2008/01/15 17:18:05 grobian Exp $
+
+  15 Jan 2008; Fabian Groffen <grobian@gentoo.org> aquapfont-2.5-r1.ebuild,
+  aquapfont-2.6.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   15 Oct 2007; Markus Rothe <corsair@gentoo.org> aquapfont-2.6.ebuild:
   Stable on ppc64
