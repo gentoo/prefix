@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/fastthread
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/fastthread/ChangeLog,v 1.24 2008/01/11 19:44:29 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/fastthread/ChangeLog,v 1.25 2008/01/15 15:31:44 armin76 Exp $
+
+  15 Jan 2008; Raúl Porcel <armin76@gentoo.org> fastthread-1.0.1.ebuild:
+  sparc stable
 
   11 Jan 2008; Tobias Scherbaum <dertobi123@gentoo.org>
   fastthread-1.0.1.ebuild:
