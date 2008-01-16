@@ -1,6 +1,17 @@
 # ChangeLog for app-crypt/gpgme
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/ChangeLog,v 1.128 2008/01/02 18:26:44 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/ChangeLog,v 1.130 2008/01/15 18:34:08 alonbl Exp $
+
+*gpgme-0.3.14-r2 (15 Jan 2008)
+
+  15 Jan 2008; Alon Bar-Lev <alonbl@gentoo.org> +gpgme-0.3.14-r2.ebuild:
+  Fix some autotools warnings
+
+*gpgme-1.1.6 (15 Jan 2008)
+
+  15 Jan 2008; Alon Bar-Lev <alonbl@gentoo.org>
+  +files/gpgme-1.1.6-cvs.patch, +gpgme-1.1.6.ebuild:
+  Version bump + some corrections from cvs
 
   02 Jan 2008; Alon Bar-Lev <alonbl@gentoo.org> gpgme-0.3.14-r1.ebuild,
   gpgme-1.1.2-r1.ebuild, gpgme-1.1.5.ebuild:
