@@ -27,8 +27,9 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}/${P}-cvs.patch"
+	epatch "${FILESDIR}/${P}-darwin.patch"
 	chmod a+x "tests/gpg/pinentry"
-	eautoreconf
+	AT_M4DIR=m4 eautoreconf
 
 	# We need to call elibtoolize so that we get sane .so versioning on fbsd.
 	#elibtoolize

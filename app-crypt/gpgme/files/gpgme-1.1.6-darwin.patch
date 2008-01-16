@@ -1,0 +1,13 @@
+* If we don't have exit() defined the compiler thinks we're doing nested
+  function declarations, which it doesn't like by default.
+
+--- m4/pth.m4
++++ m4/pth.m4
+@@ -282,6 +282,7 @@
+         cross_compile=no
+         define(_code1, [dnl
+         #include <stdio.h>
++        #include <stdlib.h>
+         #include <pth.h>
+         ])
+         define(_code2, [dnl
