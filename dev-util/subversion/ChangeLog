@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/subversion
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.286 2007/12/28 15:25:15 hollow Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.287 2008/01/15 10:05:51 hollow Exp $
+
+  15 Jan 2008; Benedikt Böhm <hollow@gentoo.org> subversion-1.4.6.ebuild:
+  fix #205807
 
   28 Dec 2007; Benedikt Böhm <hollow@gentoo.org> subversion-1.4.6.ebuild:
   fix #203564
