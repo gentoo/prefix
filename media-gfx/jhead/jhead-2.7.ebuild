@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/jhead-2.7.ebuild,v 1.8 2007/08/13 20:58:05 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/jhead-2.7.ebuild,v 1.9 2008/01/15 18:15:51 grobian Exp $
 
 EAPI="prefix"
 
