@@ -1,0 +1,12 @@
+diff --exclude='*~' -Naur argus-2.0.6.orig/common/gencode.c argus-2.0.6/common/gencode.c
+--- argus-2.0.6.orig/common/gencode.c	2006-01-08 21:03:16.000000000 -0200
++++ argus-2.0.6/common/gencode.c	2006-01-08 21:03:35.000000000 -0200
+@@ -59,7 +59,7 @@
+ #include <stdlib.h>
+ #include <syslog.h>
+ 
+-#include <net/bpf.h>
++#include <pcap.h>
+ 
+ #include <argus_out.h>
+ #include <argus_filter.h>
