@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8122 2008/01/14 23:20:29 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8131 2008/01/16 01:24:24 mr_bones_ Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -20,6 +20,27 @@
 ##
 ##   End example
 ##
+
+# Robin H. Johnson <robbat2@gentoo.org> (16 Dec 2007)
+# Masked for LOTS of testing
+=dev-db/mysql-5.0.54*
+
+# Michael Sterrett <mr_bones_@gentoo.org> (15 Jan 2008)
+# Security mask (bug #190835)
+# https://bugs.gentoo.org/show_bug.cgi?id=190835
+games-fps/doomsday
+games-fps/doomsday-resources
+
+# Michael Sterrett <mr_bones_@gentoo.org> (15 Jan 2008)
+# Beta version for package testing.
+# Don't even think about filing bugs in bugzilla about this version.
+# IRC and email comments welcome.
+>=games-strategy/wesnoth-1.3.14
+
+# Raúl Porcel <armin76@gentoo.org> (15 Jan 2008)
+# Pending removal 15 Feb 2008, upstream discontinued the software
+# Unstable, old
+net-libs/dclibc
 
 # Ingmar Vanhassel <ingmar@gentoo.org> (14 Jan 2008)
 # Masked pending further testing.
@@ -59,7 +80,7 @@ www-apache/mod_auth_external
 
 # Alon Bar-Lev <alonbl@gentoo.org> (11 Jan 2008)
 # Does not really work, bug#204662
-=app-crypt/gnupg-2.0.8
+>=app-crypt/gnupg-2.0.8
 
 # Ryan Hill <dirtyepic@gentoo.org> (10 Jan 2008)
 # Duplicates functionality already in sys-devel/distcc
@@ -144,23 +165,6 @@ sci-mathematics/ksimus-boolean
 sci-mathematics/ksimus-datarecorder
 sci-mathematics/ksimus-floatingpoint
 sci-mathematics/pariguide 
-
-# Sebastien Fabbro <bicatali@gentoo.org> (04 Jan 2008)
-# Last rites, masked pending removal on 11 Jan 2008.
-# Reason: upstream now commercial
-# Markus Dittrich <markusle@gentoo.org> (21 Dec 2005)
-# mask mupad until fixed by upstream, since the binaries
-# contain insecure runpaths, bug #81745, #115892
-sci-mathematics/mupad
-
-# Sebastien Fabbro <bicatali@gentoo.org> (04 Jan 2008)
-# Last rites, masked pending removal on 11 Jan 2008.
-# Markus Dittrich <markusle@gentoo.org> (15 Nov 2006)
-# masked sci-mathematics/gturing; last release was
-# in 2002, it uses functions missing in >=gnome-2.14 and,
-# therefore, refuses to compile. Unless somebody steps up
-# to fix it we should probably remove it from the tree.
-sci-mathematics/gturing
 
 # Alexis Ballier <aballier@gentoo.org> (03 Jan 2008)
 # They are now included in dev-ml/ocamlnet
@@ -665,10 +669,6 @@ x11-wm/kahakai
 #=app-emulation/vmware-player-1.0.3.34682-r1
 =app-emulation/vmware-player-2.0.0.45731
 
-# Robin H. Johnson <robbat2@gentoo.org> (20 Sep 2007)
-# last rites
-dev-util/bk_client
-
 # Daniel Black <dragonheart@gentoo.org> (14 Sep 2007)
 # Added for testing libssh2
 =net-misc/curl-7.17.0-r1
@@ -1003,6 +1003,7 @@ net-misc/xsupplicant
 # filed require a patch
 >media-tv/mythtv-0.20.9_p99999
 >x11-themes/mythtv-themes-0.20.9_p99999
+>media-plugins/mythappearance-0.20.9_p99999
 >media-plugins/mytharchive-0.20.9_p99999
 >media-plugins/mythbrowser-0.20.9_p99999
 >media-plugins/mythcontrols-0.20.9_p99999

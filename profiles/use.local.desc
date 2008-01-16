@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3298 2008/01/14 17:57:53 stefaan Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3304 2008/01/16 04:07:30 mr_bones_ Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -767,7 +767,6 @@ gnustep-base/gnustep-back-cairo:glitz - Build with glitz support
 gnustep-base/gnustep-back-cairo:xim - Enable X11 XiM input method
 gnustep-base/gnustep-back-xlib:xim - Enable X11 XiM input method
 gnustep-base/gnustep-base:gcc-libffi - Offers a migration path away from the ill fated dev-libs/libffi; gcc-3.* will generally have to be compiled with 'gcj' on, >=gcc-3.4.3-r1 can be used with only 'objc' turned on (this will reduce compile time).
-gnustep-base/gnustep-gui:gsnd - Enable GNUstep sound server
 kde-base/arts:artswrappersuid - Set artswrapper suid for realtime playing, which is a security hazard.
 kde-base/juk:akode - Support for the aKode audio-decoding frame-work.
 kde-base/kaddressbook:gnokii - Address synchronization with mobile phones via Gnokii.
@@ -1643,10 +1642,10 @@ net-nds/tac_plus:finger - Adds support for checking user counts via fingering th
 net-nntp/inn:innkeywords - Enable automatic keyword generation support
 net-nntp/inn:inntaggedhash - Use tagged hash table for history (disables large file support)
 net-nntp/slrn:uudeview - Add support for yEnc coding and more using dev-libs/uulib
-net-p2p/amule:amuled - enable amule daemon
-net-p2p/amule:remote - enable remote controlling of the client
-net-p2p/amule:stats - enable statistic reporting
-net-p2p/btg:event-callback - enable calling a script or executable for certain events
+net-p2p/amule:daemon - Enable amule daemon
+net-p2p/amule:remote - Enable remote controlling of the client
+net-p2p/amule:stats - Enable statistic reporting
+net-p2p/btg:event-callback - Enable calling a script or executable for certain events
 net-p2p/btg:upnp - Enables support for Intel UPnP stack.
 net-p2p/btg:webinterface - install webBTG
 net-p2p/deluge:browser - Enable anonymous browser function
@@ -1802,7 +1801,6 @@ sci-mathematics/maxima:clisp - adds clisp support to maxima
 sci-mathematics/maxima:cmucl - adds cmucl (lisp) support to maxima
 sci-mathematics/maxima:gcl - adds gcl (lisp) support to maxima
 sci-mathematics/maxima:sbcl - adds sbcl (lisp) support to maxima
-sci-mathematics/mupad:mupad-noscilab - Disable scilab that comes with MuPAD package. Use system-wide instead.
 sci-mathematics/nusmv:minisat - Enable support for MiniSat.
 sci-mathematics/octave:hdf5 - Adds support for the Hierarchical Data Format v5 to sci-mathematics/octave (may be merged with hdf when opendx is completed)
 sci-mathematics/octave-forge:qhull - Adds media-libs/qhull (geometric extensions) support
@@ -1983,9 +1981,6 @@ sys-libs/glibc:userlocales - build only the locales specified in /etc/locales.bu
 sys-libs/libuser:quotas - Enables support for user quotas
 sys-libs/ncurses:trace - Enable test trace() support in ncurses calls
 sys-libs/pam:audit - Enable support for sys-process/audit
-sys-libs/pam:pam_chroot - Builds the pam_chroot module (enables per-user chroots at login)
-sys-libs/pam:pam_timestamp - Builds the pam_timestamp module (enables recent successful attempt authentication)
-sys-libs/pam:pwdb - If you want pam_pwdb.so installed to use pwdb as passwd db
 sys-libs/uclibc:pregen - Use pregenerated locales
 sys-libs/uclibc:savedconfig - Adds support for user defined configs
 sys-libs/uclibc:uclibc-compat - build uclibc with backwards compatible options
@@ -2172,3 +2167,7 @@ xfce-base/xfce4-extras:cpufreq - Meta pulls in xfce4-cpu-freq dependency.
 xfce-base/xfdesktop:file-icons - Build support for application launchers using Thunar and libexo.
 xfce-base/xfdesktop:menu-plugin - Build Menu plug-in for panel.
 xfce-extra/thunar-thumbnailers:grace - Enable support for grace thumbnails.
+x11-themes/gentoo-artwork:icons - Install icons
+x11-themes/gentoo-artwork:pixmaps - Install pixmaps
+x11-themes/gentoo-artwork:grub - Install extra grub themes
+x11-themes/gentoo-artwork:lilo - Install extra lilo themes

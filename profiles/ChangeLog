@@ -1,6 +1,16 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.995 2008/01/14 23:20:29 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.999 2008/01/15 18:50:24 alonbl Exp $
+
+  15 Jan 2008; Alon Bar-Lev <alonbl@gentoo.org> package.mask:
+  Fix gnupg-2.0.8 mask
+
+  15 Jan 2008; Raúl Porcel <armin76@gentoo.org> use.local.desc:
+  Replace amuled USE-flag with daemon
+
+  15 Jan 2008; Sébastien Fabbro <bicatali@gentoo.org> package.mask,
+  use.local.desc:
+  Removed sci-mathematics/mupad from package.mask and use.local.desc
 
   14 Jan 2008; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
   remove gal/gtkhtml/peacok mask, it's gone
