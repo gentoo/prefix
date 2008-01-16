@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/icu4j-3.6.1.ebuild,v 1.2 2008/01/11 18:32:48 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/icu4j-3.6.1.ebuild,v 1.3 2008/01/15 22:32:43 caster Exp $
 
 EAPI="prefix"
 
@@ -44,6 +44,11 @@ src_unpack() {
 }
 
 src_compile() {
+	# Classes extending CharsetICU not implementing Comparable
+	# Breaks with ecj on jdk 1.5+, javac doesn't mind - Sun's hack?
+	# Restricting to javac (didn't even care to try jikes) is better
+	# than forcing 1.4
+	java-pkg_force-compiler javac
 	eant jar || die "Compile failed"
 }
 
