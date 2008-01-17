@@ -1,6 +1,14 @@
 # ChangeLog for sys-cluster/lam-mpi
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/ChangeLog,v 1.63 2007/07/02 15:32:12 peper Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/ChangeLog,v 1.64 2008/01/17 03:15:55 jsbronder Exp $
+
+*lam-mpi-7.1.4 (17 Jan 2008)
+
+  17 Jan 2008; Justin Bronder <jsbronder@gentoo.org> +lam-mpi-7.1.4.ebuild:
+  Version bump (Bug #199932).  Add romio, examples to IUSE.  Depend on Torque as
+  it's the only pbs imp in the tree.  Fix license.  Add warning lam-mpi is not
+  being developed.  Fix USE=pbs (Bug #177065) and remove other unneeded boot
+  modules.
 
   02 Jul 2007; Piotr Jaroszyński <peper@gentoo.org> lam-mpi-7.1.2.ebuild:
   (QA) RESTRICT clean up.
