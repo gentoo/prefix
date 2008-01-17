@@ -1,0 +1,50 @@
+# ChangeLog for media-fonts/gnu-gs-fonts-other
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/gnu-gs-fonts-other/ChangeLog,v 1.14 2006/11/26 23:46:16 flameeyes Exp $
+
+  26 Nov 2006; Diego Pettenò <flameeyes@gentoo.org>
+  gnu-gs-fonts-other-6.0.ebuild:
+  Add ~x86-fbsd keyword.
+
+  11 Jul 2006; Aron Griffis <agriffis@gentoo.org>
+  gnu-gs-fonts-other-6.0.ebuild:
+  Mark 6.0 stable on ia64
+
+  15 Jul 2005; Diego Pettenò <flameeyes@gentoo.org>
+  gnu-gs-fonts-other-6.0.ebuild:
+  Stable on amd64.
+
+  24 Apr 2005; Michael Hanselmann <hansmi@gentoo.org>
+  gnu-gs-fonts-other-6.0.ebuild:
+  Stable on ppc.
+
+  06 Apr 2005; Markus Rothe <corsair@gentoo.org>
+  gnu-gs-fonts-other-6.0.ebuild:
+  Stable on ppc64
+
+  20 Feb 2005; Joseph Jezak <josejx@gentoo.org>
+  gnu-gs-fonts-other-6.0.ebuild:
+  Added ~ppc for bug #81613.
+
+  14 Feb 2005; Markus Rothe <corsair@gentoo.org>
+  gnu-gs-fonts-other-6.0.ebuild:
+  Added ~ppc64 to KEYWORDS
+
+  27 Oct 2004; Kito <kito@gentoo.org> gnu-gs-fonts-other-6.0.ebuild:
+  added ~ppc-macos
+
+  29 Sep 2004; Heinrich Wendel <lanius@gentoo.org> +metadata.xml:
+  add metadata.xml
+
+  03 Feb 2004; <augustus@gentoo.org> gnu-gs-fonts-other-6.0.ebuild:
+  Added ~amd64 keyword.
+
+  09 Dec 2003; Heinrich Wendel <lanius@gentoo.org>
+  gnu-gs-fonts-other-6.0.ebuild:
+  changed app-text/ghostscript to virtual/ghostscript
+
+*gnu-gs-fonts-other-6.0 (27 Jan 2003)
+  26 Feb 2003; Thomas Raschbacher <lordvan@gentoo.org>: gnu-gs-fonts-other-6.0.ebuild
+  marked stable for all archs(since it r only fonts)
+  27 Jan 2003; Thomas Raschbacher <lordvan@gentoo.org>: gnu-gs-fonts-other-6.0.ebuild
+  initial Version (from Kfir Ozer <ufk2k@yahoo.com>) bug #11528
