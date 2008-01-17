@@ -1,6 +1,18 @@
 # ChangeLog for dev-db/libpq
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/ChangeLog,v 1.140 2008/01/15 20:58:15 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/ChangeLog,v 1.143 2008/01/16 15:56:21 welp Exp $
+
+  16 Jan 2008; Peter Weller <welp@gentoo.org> libpq-7.4.19.ebuild:
+  Stable on amd64; bug 204760
+
+  16 Jan 2008; Peter Weller <welp@gentoo.org> libpq-7.3.21.ebuild,
+  libpq-8.0.15.ebuild:
+  Stable on amd64; bug 204760
+
+  16 Jan 2008; Martin Jackson <mjolnir@gentoo.org>
+  -files/libpq-8.1.9-gentoo.patch, -files/libpq-8.2.4-gentoo.patch,
+  -libpq-8.1.9.ebuild, -libpq-8.2.4.ebuild:
+  Remove vulnerable versions for #204760
 
   15 Jan 2008; Tobias Scherbaum <dertobi123@gentoo.org> libpq-7.3.21.ebuild,
   libpq-7.4.19.ebuild, libpq-8.0.15.ebuild:
