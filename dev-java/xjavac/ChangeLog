@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/xjavac
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xjavac/ChangeLog,v 1.28 2008/01/04 20:29:11 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xjavac/ChangeLog,v 1.29 2008/01/16 22:19:40 caster Exp $
+
+  16 Jan 2008; Vlastimil Babka <caster@gentoo.org>
+  xjavac-20041208-r5.ebuild:
+  Remove WANT_SPLIT_ANT.
 
   04 Jan 2008; Vlastimil Babka <caster@gentoo.org>
   -xjavac-20041208-r4.ebuild:
