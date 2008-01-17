@@ -1,6 +1,10 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.135 2008/01/14 18:50:27 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.136 2008/01/16 20:52:48 grobian Exp $
+
+  16 Jan 2008; Fabian Groffen <grobian@gentoo.org> gnutls-1.4.4-r1.ebuild,
+  gnutls-2.0.4.ebuild, gnutls-2.2.0.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   14 Jan 2008; Christoph Mende <angelos@gentoo.org> gnutls-2.0.4.ebuild:
   Stable on amd64 wrt bug #199297
