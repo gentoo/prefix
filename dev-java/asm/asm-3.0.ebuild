@@ -14,7 +14,7 @@ HOMEPAGE="http://asm.objectweb.org"
 SRC_URI="http://download.forge.objectweb.org/${PN}/${P}.tar.gz"
 LICENSE="BSD"
 SLOT="3"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-fbsd ~amd64-linux ~x86-linux ~x86-macos"
 
 DEPEND=">=virtual/jdk-1.5"
 RDEPEND=">=virtual/jre-1.5"
