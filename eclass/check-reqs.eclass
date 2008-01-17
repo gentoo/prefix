@@ -113,10 +113,7 @@ check_build_memory() {
 		actual_memory=$(sed -n -e '/MemTotal:/s/^[^:]*: *\([0-9]\+\) kB/\1/p' \
 			/proc/meminfo)
 	else
-		# temporarily add /usr/sbin to the path so that sysctl is found
-		OLD_PATH=${PATH}; PATH=${PATH}:/usr/sbin
-		actual_memory=$(sysctl hw.physmem 2>/dev/null )
-		PATH=${OLD_PATH}; unset OLD_PATH
+		actual_memory=$(env PATH=${PATH}:/usr/sbin sysctl hw.physmem 2>/dev/null )
 		[ "$?" == "0" ] &&
 			actual_memory=$(echo $actual_memory | sed -e 's/^[^:=]*[:=]//' )
 	fi
