@@ -1,0 +1,57 @@
+# ChangeLog for dev-python/pygoogle
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygoogle/ChangeLog,v 1.15 2007/02/21 16:58:41 lucass Exp $
+
+  21 Feb 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  files/digest-pygoogle-0.5.3, files/digest-pygoogle-0.6, Manifest:
+  Convert to Manifest2.
+
+  01 Apr 2006; Aron Griffis <agriffis@gentoo.org> pygoogle-0.6.ebuild:
+  Mark 0.6 ~ia64
+
+  19 Nov 2005; Chris White <chriswhite@gentoo.org> metadata.xml:
+  Added japanese metadata.xml translation thanks to Yoshino-san.
+
+  02 Jul 2005; Fernando Serboncini <fserb@gentoo.org>
+  -pygoogle-0.5.2.ebuild, pygoogle-0.6.ebuild:
+  Added SOAPpy dependency. Closes #96326.
+  Removed old 0.5.2 version.
+
+  21 Feb 2005; Simon Stelling <blubb@gentoo.org> pygoogle-0.6.ebuild:
+  added ~amd64
+
+  09 Feb 2005; Lina Pezzella <j4rg0n@gentoo.org> pygoogle-0.6.ebuild:
+  Unstable ppc-macos
+
+  30 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  04 Nov 2004; Rob Cakebread <pythonhead@gentoo.org> pygoogle-0.5.2.ebuild:
+  depend on app-arch/unzip
+
+*pygoogle-0.6 (30 Oct 2004)
+
+  30 Oct 2004; Lukasz Strzygowski <lucass@gentoo.org> metadata.xml,
+  +pygoogle-0.6.ebuild:
+  Version bump. Added commands to install documentation and added description
+  to metadata.
+
+  04 May 2004; Bryan Østergaard <kloeri@gentoo.org> pygoogle-0.5.3.ebuild:
+  Remove default S.
+
+  24 Jan 2004; Alastair Tse <liquidx@gentoo.org> pygoogle-0.5.3.ebuild:
+  updated SRC_URI and HOMEPAGE
+
+*pygoogle-0.5.3 (09 Sep 2003)
+
+  09 Sep 2003; Alastair Tse <liquidx@gentoo.org> pygoogle-0.5.3.ebuild:
+  version bump
+
+*pygoogle-0.5.2 (02 Mar 2003)
+
+  04 Apr 2003; Alastair Tse <liquidx@gentoo.org> pygoogle-0.5.2.ebuild:
+  bump to stable
+
+  02 Mar 2003; Alastair Tse <liquidx@gentoo.org> pygoogle-0.5.2.ebuild files/digest-pygoogle-0.5.2 :
+  Initial Ebuild. Bug #11925.
+
