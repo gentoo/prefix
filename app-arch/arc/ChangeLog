@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/arc
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/arc/ChangeLog,v 1.28 2007/07/14 14:25:43 drizzt Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/arc/ChangeLog,v 1.29 2008/01/16 10:44:01 drac Exp $
+
+*arc-5.21o (16 Jan 2008)
+
+  16 Jan 2008; Samuli Suominen <drac@gentoo.org> +arc-5.21o.ebuild:
+  Version bump wrt #205664, thanks to Mcklaren for reporting.
 
 *arc-5.21m-r1 (14 Jul 2007)
 
