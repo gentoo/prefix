@@ -1,0 +1,14 @@
+--- SWIG/_lib.h.orig	2007-05-09 01:21:51.000000000 +0300
++++ SWIG/_lib.h	2007-09-20 03:49:24.000000000 +0300
+@@ -1,8 +1,10 @@
+ /* Copyright (c) 1999 Ng Pheng Siong. All rights reserved. */
+ /* $Id: m2crypto-0.18-ssize_t.patch,v 1.1 2007/09/20 01:18:51 hawking Exp $ */
+ 
+-#if PY_VERSION_HEX < 0x02050000
++#if PY_VERSION_HEX < 0x02050000 && !defined(PY_SSIZE_T_MIN)
+ typedef int Py_ssize_t;
++#define PY_SSIZE_T_MAX INT_MAX
++#define PY_SSIZE_T_MIN INT_MIN
+ #endif
+ 
+ typedef struct _blob {
