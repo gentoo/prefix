@@ -1,0 +1,49 @@
+# ChangeLog for app-text/hnb
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/hnb/ChangeLog,v 1.17 2007/02/21 23:29:27 peper Exp $
+
+  21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  22 Oct 2006; Thomas Cort <tcort@gentoo.org> hnb-1.9.18.ebuild:
+  Added ~amd64 wrt Bug #140115.
+
+  04 Sep 2006; Matthias Schwarzott <zzam@gentoo.org> +metadata.xml:
+  Added metadata.xml assigning package to maintainer-needed.
+
+  20 Aug 2006; Stephanie Lockwood-Childs <wormo@gentoo.org> hnb-1.9.17.ebuild,
+  hnb-1.9.18.ebuild:
+  fix licence -- reported by James Rowe (Bug #138539)
+
+  15 Oct 2005; Fabian Groffen <grobian@gentoo.org> hnb-1.9.18.ebuild:
+  Marked ~ppc-macos (bug #108633)
+
+  24 Apr 2005; Michael Hanselmann <hansmi@gentoo.org> hnb-1.9.17.ebuild:
+  Stable on ppc.
+
+*hnb-1.9.18 (11 Jan 2005)
+
+  11 Jan 2005; Heinrich Wendel <lanius@gentoo.org> +hnb-1.9.18.ebuild,
+  -hnb-1.9.8.ebuild:
+  version bump
+
+  12 Mar 2004; Michael Sterrett <mr_bones_@gentoo.org> :
+  Don't assign default to S; header fix
+
+  12 Mar 2004; Michael Sterrett <mr_bones_@gentoo.org> hnb-1.9.17.ebuild,
+  hnb-1.9.8.ebuild:
+  Don't assign default to S; header fix
+
+  12 Jun 2003; <msterret@gentoo.org> hnb-1.9.17.ebuild, hnb-1.9.8.ebuild:
+  add Header
+
+*hnb-1.9.17 (15 Apr 2003)
+
+  15 Apr 2003; Martin Holzer <mholzer@gentoo.org> Manifest, hnb-1.9.17.ebuild:
+  Version bumped. Closes #15895.
+
+*hnb-1.9.8 (09 Feb 2003)
+
+  09 Feb 2003; Martin Holzer <mholzer@gentoo.org> hnb-1.9.8.ebuild,
+  files/digest-hnb-1.9.8 ChangeLog :
+  Initial release submitted by bsaslinux@globo.com in #14427.
