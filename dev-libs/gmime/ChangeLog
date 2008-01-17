@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/gmime
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.63 2007/11/26 13:11:00 corsair Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.64 2008/01/17 04:37:19 jer Exp $
+
+  17 Jan 2008; Jeroen Roovers <jer@gentoo.org> gmime-2.2.11.ebuild:
+  Stable for HPPA.
 
   26 Nov 2007; Markus Rothe <corsair@gentoo.org> gmime-2.2.3.ebuild:
   Stable on ppc64; bug #199740
