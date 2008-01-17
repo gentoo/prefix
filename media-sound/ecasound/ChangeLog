@@ -1,6 +1,10 @@
 # ChangeLog for media-sound/ecasound
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ChangeLog,v 1.42 2007/07/07 15:09:47 flameeyes Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ChangeLog,v 1.43 2008/01/16 18:22:20 grobian Exp $
+
+  16 Jan 2008; Fabian Groffen <grobian@gentoo.org> ecasound-2.4.3.ebuild,
+  ecasound-2.4.4.ebuild, ecasound-2.4.5.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   07 Jul 2007; Diego Pettenò <flameeyes@gentoo.org> ecasound-2.4.5.ebuild:
   Remember that ebuild(1) will not clean environment. Fix missing built_with_use.
