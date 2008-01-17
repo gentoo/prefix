@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/desktop-file-utils
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/ChangeLog,v 1.69 2007/12/22 17:27:02 dang Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/ChangeLog,v 1.70 2008/01/16 15:01:37 drac Exp $
+
+  16 Jan 2008; Samuli Suominen <drac@gentoo.org>
+  -files/desktop-file-utils-0.12-noemacs.patch,
+  -desktop-file-utils-0.12.ebuild, -desktop-file-utils-0.13.ebuild:
+  Remove old versions.
 
   22 Dec 2007; Daniel Gryniewicz <dang@gentoo.org>
   desktop-file-utils-0.14.ebuild:
