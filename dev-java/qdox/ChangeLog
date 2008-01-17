@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/qdox
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/qdox/ChangeLog,v 1.19 2008/01/12 16:37:46 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/qdox/ChangeLog,v 1.20 2008/01/16 20:10:48 armin76 Exp $
+
+  16 Jan 2008; Raúl Porcel <armin76@gentoo.org> qdox-1.6.3.ebuild:
+  Add ~ia64 wrt #129773
 
   12 Jan 2008; Brent Baude <ranger@gentoo.org> qdox-1.6.3.ebuild:
   Marking qdox-1.6.3 ~ppc64 for bug 129773
