@@ -14,7 +14,7 @@ SRC_URI="http://www.jnrowe.ukfsn.org/files/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64-linux ~x86-linux"
 
 RDEPEND=">=x11-libs/gtk+-2.4.9-r1"
 DEPEND="${RDEPEND}

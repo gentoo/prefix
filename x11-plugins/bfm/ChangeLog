@@ -1,6 +1,12 @@
 # ChangeLog for x11-plugins/bfm
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/bfm/ChangeLog,v 1.5 2007/01/26 14:43:53 s4t4n Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/bfm/ChangeLog,v 1.6 2008/01/17 03:47:41 drac Exp $
+
+*bfm-0.6.4-r1 (17 Jan 2008)
+
+  17 Jan 2008; Samuli Suominen <drac@gentoo.org> +bfm-0.6.4-r1.ebuild:
+  Revision bump for ebuild modifications, including a new USE flag to build
+  gkrellm2 plug-in.
 
   26 Jan 2006; Michele Noberasco <s4t4n@gentoo.org> bfm-0.6.4.ebuild:
   Added missing pkgconfig dependancy. Closes bug #150638.
