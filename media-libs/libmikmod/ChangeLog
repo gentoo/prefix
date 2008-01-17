@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/libmikmod
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmikmod/ChangeLog,v 1.51 2007/10/15 06:07:29 tgall Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmikmod/ChangeLog,v 1.52 2008/01/16 18:07:17 grobian Exp $
+
+  16 Jan 2008; Fabian Groffen <grobian@gentoo.org>
+  libmikmod-3.1.11-r2.ebuild, libmikmod-3.1.11-r3.ebuild,
+  libmikmod-3.1.11-r4.ebuild, libmikmod-3.1.11-r5.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   15 Oct 2007; Tom Gall <tgall@gentoo.org> libmikmod-3.1.11-r4.ebuild:
   stable on ppc64
