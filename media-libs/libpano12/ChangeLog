@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libpano12
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpano12/ChangeLog,v 1.20 2007/04/12 21:18:40 welp Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpano12/ChangeLog,v 1.21 2008/01/16 18:09:25 grobian Exp $
+
+  16 Jan 2008; Fabian Groffen <grobian@gentoo.org>
+  libpano12-2.7.0.14.ebuild, libpano12-2.8.4.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   12 Apr 2007; <welp@gentoo.org> libpano12-2.8.4.ebuild:
   Stable on amd64 wrt bug 172086

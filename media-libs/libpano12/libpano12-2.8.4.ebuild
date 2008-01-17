@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpano12/libpano12-2.8.4.ebuild,v 1.4 2007/04/12 21:18:40 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpano12/libpano12-2.8.4.ebuild,v 1.5 2008/01/16 18:09:25 grobian Exp $
 
 EAPI="prefix"
 
