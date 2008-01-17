@@ -1,12 +1,11 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/junit/junit-3.8.2-r1.ebuild,v 1.1 2007/04/27 22:45:59 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/junit/junit-3.8.2-r1.ebuild,v 1.2 2008/01/16 21:36:40 caster Exp $
 
 EAPI="prefix"
 
 JAVA_PKG_IUSE="doc source"
-# because it doesn't symlink to ant-core/lib anymore
-WANT_SPLIT_ANT="true"
+
 inherit java-pkg-2 java-ant-2
 
 MY_P=${P/-/}
