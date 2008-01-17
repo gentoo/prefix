@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-regexp/gnu-regexp-1.1.4-r2.ebuild,v 1.6 2006/12/07 23:03:28 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-regexp/gnu-regexp-1.1.4-r2.ebuild,v 1.8 2008/01/16 20:16:28 armin76 Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="ftp://ftp.tralfamadore.com/pub/java/${MY_P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="1"
-KEYWORDS="~amd64 ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-fbsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="doc source"
 
 DEPEND=">=virtual/jdk-1.4
@@ -32,7 +32,7 @@ src_unpack() {
 
 src_compile() {
 	cd "${S}/src"
-	emake JAVAC="${JAVAC}" JAVAFLAGS="${JAVACFLAGS}" || die "emake failed"
+	emake -j1 JAVAC="${JAVAC}" JAVAFLAGS="${JAVACFLAGS}" || die "emake failed"
 	use doc && emake javadocs
 }
 

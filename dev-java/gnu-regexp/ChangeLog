@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/gnu-regexp
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-regexp/ChangeLog,v 1.21 2007/02/18 20:15:23 betelgeuse Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-regexp/ChangeLog,v 1.23 2008/01/16 20:16:28 armin76 Exp $
+
+  16 Jan 2008; Raúl Porcel <armin76@gentoo.org> gnu-regexp-1.1.4-r2.ebuild:
+  Add ~ia64 wrt #129773
+
+  16 Jan 2008; Vlastimil Babka <caster@gentoo.org>
+  gnu-regexp-1.1.4-r2.ebuild:
+  Add -j1 to emake, parallelization kills armins.
 
   18 Feb 2007; Petteri Räty <betelgeuse@gentoo.org>
   -gnu-regexp-1.1.4.ebuild, -gnu-regexp-1.1.4-r1.ebuild:
