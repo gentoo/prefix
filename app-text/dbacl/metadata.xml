@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>no-herd</herd>
+<maintainer>
+  <email>steev@gentoo.org</email>
+  <description>dbacl is a fast Bayesian text and email classifier.</description>
+</maintainer>
+  <longdescription>dbacl is a fast Bayesian text and email classifier. It builds a variety of language models using maximum entropy (minimum divergence) principles, and these can then be used to categorize input data automatically among multiple categories.</longdescription>
+</pkgmetadata>
