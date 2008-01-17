@@ -28,7 +28,9 @@ pkg_setup() {
 
 	debug-print "Checking for sufficient physical RAM"
 
-	if use amd64; then
+	# this is needed with apple-jdk-bin:1.6 at least, because it's 64bit
+	# apple-jdk-bin:1.[45] might work with 512MB
+	if use amd64 || use x86-macos; then
 		CHECKREQS_MEMORY="1024"
 	else
 		CHECKREQS_MEMORY="512"
