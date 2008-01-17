@@ -1,11 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/bittorrent-5.0.9.ebuild,v 1.10 2008/01/13 08:53:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/bittorrent-4.4.0-r1.ebuild,v 1.1 2008/01/16 15:32:28 armin76 Exp $
 
 EAPI="prefix"
 
-WX_GTK_VER="2.6"
-inherit distutils fdo-mime eutils wxwidgets
+inherit distutils fdo-mime eutils
 
 MY_P="${P/bittorrent/BitTorrent}"
 #MY_P="${MY_P/}"
@@ -13,7 +12,7 @@ S=${WORKDIR}/${MY_P}
 
 DESCRIPTION="tool for distributing files via a distributed network of nodes"
 HOMEPAGE="http://www.bittorrent.com/"
-SRC_URI="http://download.bittorrent.com/dl/${MY_P}.tar.gz"
+SRC_URI="http://www.bittorrent.com/dl/${MY_P}.tar.gz"
 
 LICENSE="BitTorrent"
 SLOT="0"
@@ -21,31 +20,19 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="aqua gtk"
 
 RDEPEND=">=dev-lang/python-2.3
-	gtk? ( =dev-python/wxpython-2.6* )
+	gtk? (
+		>=x11-libs/gtk+-2.6
+		>=dev-python/pygtk-2.6
+	)
 	>=dev-python/pycrypto-2.0
-	>=dev-python/twisted-2
-	dev-python/twisted-web
-	net-zope/zopeinterface
-	!virtual/bittorrent"
+	!net-p2p/bittornado"
 DEPEND="${RDEPEND}
 	app-arch/gzip
 	>=sys-apps/sed-4.0.5
 	dev-python/dnspython"
-PROVIDE="virtual/bittorrent"
 
-DOCS="README.txt TRACKERLESS.txt public.key"
+DOCS="TRACKERLESS.txt public.key credits.txt"
 PYTHON_MODNAME="BitTorrent"
-
-pkg_setup() {
-	if use gtk ; then
-		need-wxwidgets unicode ||
-			die "You must build wxGTK and wxpython with unicode support"
-
-		if ! built_with_use =dev-python/wxpython-2.6* unicode ; then
-			die "You must build wxGTK and wxpython with unicode support"
-		fi
-	fi
-}
 
 src_unpack() {
 	unpack ${A}
@@ -57,11 +44,11 @@ src_unpack() {
 src_install() {
 	distutils_src_install
 	use gtk || use aqua || rm -f "${ED}"/usr/bin/bittorrent
+	dohtml redirdonate.html
 
 	if use gtk ; then
 		doicon images/logo/bittorrent.ico
-		newicon images/logo/bittorrent_icon_32.png bittorrent.png
-		make_desktop_entry "bittorrent" "BitTorrent" bittorrent.png "Network"
+		make_desktop_entry "bittorrent" "BitTorrent" bittorrent.ico "Network"
 		echo "MimeType=application/x-bittorrent" \
 			>> "${ED}"/usr/share/applications/bittorrent-${PN}.desktop
 	fi
@@ -74,11 +61,6 @@ pkg_postinst() {
 	einfo "Remember that BitTorrent has changed file naming scheme"
 	einfo "To run BitTorrent just execute /usr/bin/bittorrent"
 	einfo "To run the init.d, please use /etc/init.d/bittorrent-tracker"
-	elog
-	elog "If you are upgrading from bittorrent-4.4.0 you must remove "
-	elog "the ~/.bittorrent dir to make this version work. Remember to "
-	elog "do a backup first!"
-	elog
 	distutils_pkg_postinst
 	fdo-mime_desktop_database_update
 }
