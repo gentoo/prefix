@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.20.ebuild,v 1.16 2007/12/15 15:00:04 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.20.ebuild,v 1.17 2008/01/16 20:40:56 grobian Exp $
 
 EAPI="prefix"
 
@@ -30,7 +30,6 @@ src_unpack() {
 }
 
 src_compile() {
-	use ppc-macos && filter-flags -fstrict-aliasing -O2
 	econf \
 		--with-libdnet=included \
 		$(use_with gtk nmapfe) \

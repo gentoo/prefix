@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.50.ebuild,v 1.3 2007/12/16 10:00:11 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.50.ebuild,v 1.4 2008/01/16 20:40:56 grobian Exp $
 
 EAPI="prefix"
 
@@ -34,7 +34,6 @@ pkg_setup() {
 }
 
 src_compile() {
-	use ppc-macos && filter-flags -fstrict-aliasing -O2
 	econf \
 		--with-libdnet=included \
 		$(use_with gtk zenmap) \
