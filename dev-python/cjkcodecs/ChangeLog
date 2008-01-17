@@ -1,0 +1,73 @@
+# ChangeLog for dev-python/cjkcodecs
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cjkcodecs/ChangeLog,v 1.19 2007/02/21 16:43:55 lucass Exp $
+
+  21 Feb 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  files/digest-cjkcodecs-1.1.1, Manifest:
+  Convert to Manifest2.
+
+  02 Oct 2005; Aron Griffis <agriffis@gentoo.org> cjkcodecs-1.1.1.ebuild:
+  Mark 1.1.1 stable on ia64
+
+  10 Sep 2005; Aron Griffis <agriffis@gentoo.org> cjkcodecs-1.1.1.ebuild:
+  Mark 1.1.1 stable on alpha
+
+  26 Aug 2005; Aron Griffis <agriffis@gentoo.org> cjkcodecs-1.1.1.ebuild:
+  add ~ia64
+
+  07 Aug 2005; Michael Hanselmann <hansmi@gentoo.org>
+  cjkcodecs-1.1.1.ebuild:
+  Stable on ppc.
+
+  07 Jul 2005; Markus Rothe <corsair@gentoo.org> cjkcodecs-1.1.1.ebuild:
+  Stable on ppc64
+
+  02 Jul 2005; Mamoru KOMACHI <usata@gentoo.org> metadata.xml,
+  cjkcodecs-1.0.3.ebuild, cjkcodecs-1.1.1.ebuild:
+  Stable on x86.
+
+  01 Jul 2005; Simon Stelling <blubb@gentoo.org> cjkcodecs-1.1.1.ebuild:
+  added ~amd64 keyword
+
+  04 Mar 2005; Kito <kito@gentoo.org> cjkcodecs-1.1.1.ebuild:
+  ~ppc-macos keyword. closes Bug 81625
+
+  31 Jan 2005; Fernando Serboncini <fserb@gentoo.org>
+  cjkcodecs-1.0.2.ebuild, cjkcodecs-1.0.3.ebuild, cjkcodecs-1.0.ebuild,
+  cjkcodecs-1.1.1.ebuild:
+  Changed LICENSE from LGPL-2.1 to BSD. Closes bug #80012
+
+*cjkcodecs-1.1.1 (06 Oct 2004)
+
+  06 Oct 2004; Mamoru KOMACHI <usata@gentoo.org> +cjkcodecs-1.1.1.ebuild:
+  Version bumped; bug #62689. Added src_test().
+
+  12 Jul 2004; Tom Gall <tgall@gentoo.org> cjkcodecs-1.0.3.ebuild:
+  stable on ppc64 bug #56680
+
+  11 Jul 2004; Mamoru KOMACHI <usata@gentoo.org> cjkcodecs-1.0.3.ebuild:
+  Added to ~alpha and ~ppc
+
+*cjkcodecs-1.0.3 (24 Feb 2004)
+
+  24 Feb 2004; Alastair Tse <liquidx@gentoo.org> cjkcodecs-1.0.3.ebuild:
+  version bump
+
+*cjkcodecs-1.0.2 (05 Dec 2003)
+
+  05 Dec 2003; Alastair Tse <liquidx@gentoo.org> cjkcodecs-1.0.2.ebuild:
+  version bump
+
+*cjkcodecs-1.0 (01 Aug 2003)
+
+  01 Aug 2003; <matsuu@gentoo.org> cjkcodecs-1.0.ebuild:
+  version bump. thanks to gna <gnagent2@yahoo.com.au>. #25225.
+
+*cjkcodecs-0.9 (27 Jun 2003)
+ 
+  12 Jul 2003; Daniel Ahlberg <aliz@gentoo.org> :
+  Added missing changelog entry.
+
+  28 Jun 2003; Alastair Tse <liquidx@gentoo.org> :
+  new package to replace chinesecodecs, japanesecodecs and koreancodecs
+
