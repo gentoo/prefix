@@ -1,6 +1,11 @@
 # ChangeLog for net-analyzer/ngrep
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ngrep/ChangeLog,v 1.42 2007/12/23 12:33:17 cedk Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ngrep/ChangeLog,v 1.43 2008/01/16 20:42:01 grobian Exp $
+
+  16 Jan 2008; Fabian Groffen <grobian@gentoo.org> ngrep-1.42.ebuild,
+  ngrep-1.43.ebuild, ngrep-1.44.ebuild, ngrep-1.45.ebuild,
+  ngrep-1.45-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *ngrep-1.45-r1 (23 Dec 2007)
 
