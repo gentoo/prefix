@@ -1,6 +1,10 @@
 # ChangeLog for net-libs/librsync
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/librsync/ChangeLog,v 1.26 2007/10/06 20:42:57 dirtyepic Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/librsync/ChangeLog,v 1.27 2008/01/16 20:56:17 grobian Exp $
+
+  16 Jan 2008; Fabian Groffen <grobian@gentoo.org> librsync-0.9.7.ebuild,
+  librsync-0.9.7-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *librsync-0.9.7-r1 (06 Oct 2007)
 
