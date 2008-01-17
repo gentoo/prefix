@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.106 2008/01/15 16:34:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.107 2008/01/16 15:40:47 jer Exp $
+
+  16 Jan 2008; Jeroen Roovers <jer@gentoo.org> fontconfig-2.5.0-r1.ebuild:
+  Stable for HPPA (bug #205266).
 
   15 Jan 2008; Raúl Porcel <armin76@gentoo.org> fontconfig-2.5.0-r1.ebuild:
   alpha/ia64 stable wrt #205266
