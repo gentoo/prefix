@@ -1,6 +1,10 @@
 # ChangeLog for net-analyzer/argus
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/argus/ChangeLog,v 1.15 2007/04/14 21:06:36 vanquirius Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/argus/ChangeLog,v 1.16 2008/01/16 18:57:38 grobian Exp $
+
+  16 Jan 2008; Fabian Groffen <grobian@gentoo.org> argus-2.0.5.ebuild,
+  argus-2.0.6.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   14 Apr 2007; Marcelo Goes <vanquirius@gentoo.org> argus-2.0.6.ebuild:
   Use elog instead of einfo.
