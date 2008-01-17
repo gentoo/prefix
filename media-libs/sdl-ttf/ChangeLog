@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/sdl-ttf
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-ttf/ChangeLog,v 1.37 2007/07/21 19:48:08 vapier Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-ttf/ChangeLog,v 1.38 2008/01/16 18:16:36 grobian Exp $
+
+  16 Jan 2008; Fabian Groffen <grobian@gentoo.org> sdl-ttf-2.0.8.ebuild,
+  sdl-ttf-2.0.9.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *sdl-ttf-2.0.9 (21 Jul 2007)
 
