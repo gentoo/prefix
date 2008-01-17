@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.5 2007/12/31 23:46:24 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.6 2008/01/16 10:47:45 hollow Exp $
 
 # @ECLASS: apache-2
 # @MAINTAINER: apache-devs@gentoo.org
@@ -481,10 +481,8 @@ apache-2_src_install() {
 	# link apache2ctl to the init script
 	dosym /etc/init.d/apache2 /usr/sbin/apache2ctl
 
-	# provide symlinks for all the stuff we no longer rename, bug 177697
-	for i in suexec apxs; do
-		dosym /usr/sbin/${i} /usr/sbin/${i}2
-	done
+	# provide legacy symlink for apxs, bug 177697
+	dosym /usr/sbin/apxs /usr/sbin/apxs2
 
 	# install some thirdparty scripts
 	exeinto /usr/sbin
@@ -512,6 +510,8 @@ apache-2_src_install() {
 	if use suexec ; then
 		fowners 0:apache /usr/sbin/suexec
 		fperms 4710 /usr/sbin/suexec
+		# provide legacy symlink for suexec, bug 177697
+		dosym /usr/sbin/suexec /usr/sbin/suexec2
 	fi
 
 	# empty dirs
