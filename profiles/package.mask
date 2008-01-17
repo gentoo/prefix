@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8131 2008/01/16 01:24:24 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8141 2008/01/17 00:36:49 ingmar Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -20,6 +20,242 @@
 ##
 ##   End example
 ##
+
+# Ulrich Mueller <ulm@gentoo.org> (16 Jan 2008)
+# Unclear licence. Masked for removal in 30 days.
+app-emacs/uboat
+
+# Ingmar Vanhassel <ingmar@gentoo.org> (16 Jan 2008)
+# Mask KDE 4.0.0 for testing. This release of KDE 4 will not be unmasked.
+>=kde-base/amor-4.0.0
+>=kde-base/ark-4.0.0
+>=kde-base/blinken-4.0.0
+>=kde-base/bovo-4.0.0
+>=kde-base/cervisia-4.0.0
+>=kde-base/dolphin-4.0.0
+>=kde-base/drkonqi-4.0.0
+>=kde-base/gwenview-4.0.0
+>=kde-base/juk-4.0.0
+>=kde-base/kalgebra-4.0.0
+>=kde-base/kalzium-4.0.0
+>=kde-base/kamera-4.0.0
+>=kde-base/kanagram-4.0.0
+>=kde-base/kappfinder-4.0.0
+>=kde-base/kapptemplate-4.0.0
+>=kde-base/kate-4.0.0
+>=kde-base/katomic-4.0.0
+>=kde-base/kbattleship-4.0.0
+>=kde-base/kblackbox-4.0.0
+>=kde-base/kbounce-4.0.0
+>=kde-base/kbruch-4.0.0
+>=kde-base/kbugbuster-4.0.0
+>=kde-base/kcachegrind-4.0.0
+>=kde-base/kcalc-4.0.0
+>=kde-base/kcharselect-4.0.0
+>=kde-base/kcheckpass-4.0.0
+>=kde-base/kcminit-4.0.0
+>=kde-base/kcmshell-4.0.0
+>=kde-base/kcolorchooser-4.0.0
+>=kde-base/kcontrol-4.0.0
+>=kde-base/kcron-4.0.0
+>=kde-base/kdeaccessibility-4.0.0
+>=kde-base/kdeaccessibility-colorschemes-4.0.0
+>=kde-base/kdeaccessibility-iconthemes-4.0.0
+>=kde-base/kdeaccessibility-meta-4.0.0
+>=kde-base/kdeaccounts-plugin-4.0.0
+>=kde-base/kdeadmin-4.0.0
+>=kde-base/kdeadmin-meta-4.0.0
+>=kde-base/kdeartwork-4.0.0
+>=kde-base/kdeartwork-colorschemes-4.0.0
+>=kde-base/kdeartwork-emoticons-4.0.0
+>=kde-base/kdeartwork-iconthemes-4.0.0
+>=kde-base/kdeartwork-kscreensaver-4.0.0
+>=kde-base/kdeartwork-kworldclock-4.0.0
+>=kde-base/kdeartwork-meta-4.0.0
+>=kde-base/kdeartwork-sounds-4.0.0
+>=kde-base/kdeartwork-styles-4.0.0
+>=kde-base/kdeartwork-wallpapers-4.0.0
+>=kde-base/kdebase-4.0.0
+>=kde-base/kdebase-data-4.0.0
+>=kde-base/kdebase-kioslaves-4.0.0
+>=kde-base/kdebase-meta-4.0.0
+>=kde-base/kdebase-startkde-4.0.0
+>=kde-base/kdebugdialog-4.0.0
+>=kde-base/kdeedu-4.0.0
+>=kde-base/kdeedu-meta-4.0.0
+>=kde-base/kdegames-4.0.0
+>=kde-base/kdegames-meta-4.0.0
+>=kde-base/kdegraphics-4.0.0
+>=kde-base/kdegraphics-meta-4.0.0
+>=kde-base/kde-l10n-4.0.0
+>=kde-base/kdelibs-4.0.0
+>=kde-base/kde-menu-4.0.0
+>=kde-base/kde-menu-icons-4.0.0
+>=kde-base/kde-meta-4.0.0
+>=kde-base/kdemultimedia-4.0.0
+>=kde-base/kdemultimedia-kioslaves-4.0.0
+>=kde-base/kdemultimedia-meta-4.0.0
+>=kde-base/kdenetwork-4.0.0
+>=kde-base/kdenetwork-filesharing-4.0.0
+>=kde-base/kdenetwork-meta-4.0.0
+>=kde-base/kdepasswd-4.0.0
+>=kde-base/kdepimlibs-4.0.0
+>=kde-base/kdesdk-4.0.0
+>=kde-base/kdesdk-kioslaves-4.0.0
+>=kde-base/kdesdk-meta-4.0.0
+>=kde-base/kdesdk-misc-4.0.0
+>=kde-base/kdesdk-scripts-4.0.0
+>=kde-base/kdessh-4.0.0
+>=kde-base/kdesu-4.0.0
+>=kde-base/kdetoys-4.0.0
+>=kde-base/kdetoys-meta-4.0.0
+>=kde-base/kdeutils-4.0.0
+>=kde-base/kdeutils-meta-4.0.0
+>=kde-base/kde-wallpapers-4.0.0
+>=kde-base/kdf-4.0.0
+>=kde-base/kdialog-4.0.0
+>=kde-base/kdm-4.0.0
+>=kde-base/kdnssd-4.0.0
+>=kde-base/keditbookmarks-4.0.0
+>=kde-base/kfile-4.0.0
+>=kde-base/kfind-4.0.0
+>=kde-base/kfloppy-4.0.0
+>=kde-base/kfourinline-4.0.0
+>=kde-base/kgamma-4.0.0
+>=kde-base/kgeography-4.0.0
+>=kde-base/kget-4.0.0
+>=kde-base/kgoldrunner-4.0.0
+>=kde-base/kgpg-4.0.0
+>=kde-base/khangman-4.0.0
+>=kde-base/khelpcenter-4.0.0
+>=kde-base/khotkeys-4.0.0
+>=kde-base/kig-4.0.0
+>=kde-base/kioclient-4.0.0
+>=kde-base/kiriki-4.0.0
+>=kde-base/kiten-4.0.0
+>=kde-base/kjots-4.0.0
+>=kde-base/kjumpingcube-4.0.0
+>=kde-base/klettres-4.0.0
+>=kde-base/klines-4.0.0
+>=kde-base/klipper-4.0.0
+>=kde-base/kmag-4.0.0
+>=kde-base/kmahjongg-4.0.0
+>=kde-base/kmenuedit-4.0.0
+>=kde-base/kmilo-4.0.0
+>=kde-base/kmimetypefinder-4.0.0
+>=kde-base/kmines-4.0.0
+>=kde-base/kmix-4.0.0
+>=kde-base/kmousetool-4.0.0
+>=kde-base/kmouth-4.0.0
+>=kde-base/kmplot-4.0.0
+>=kde-base/knetattach-4.0.0
+>=kde-base/knetwalk-4.0.0
+>=kde-base/knetworkconf-4.0.0
+>=kde-base/knewsticker-4.0.0
+>=kde-base/knewstuff-4.0.0
+>=kde-base/knotify-4.0.0
+>=kde-base/kolf-4.0.0
+>=kde-base/kolourpaint-4.0.0
+>=kde-base/kompare-4.0.0
+>=kde-base/konqueror-4.0.0
+>=kde-base/konquest-4.0.0
+>=kde-base/konsole-4.0.0
+>=kde-base/kopete-4.0.0
+>=kde-base/kpasswdserver-4.0.0
+>=kde-base/kpat-4.0.0
+>=kde-base/kpercentage-4.0.0
+>=kde-base/kppp-4.0.0
+>=kde-base/kquitapp-4.0.0
+>=kde-base/krdc-4.0.0
+>=kde-base/kreadconfig-4.0.0
+>=kde-base/kreversi-4.0.0
+>=kde-base/krfb-4.0.0
+>=kde-base/kruler-4.0.0
+>=kde-base/krunner-4.0.0
+>=kde-base/ksame-4.0.0
+>=kde-base/kscd-4.0.0
+>=kde-base/kscreensaver-4.0.0
+>=kde-base/kshisen-4.0.0
+>=kde-base/ksmserver-4.0.0
+>=kde-base/ksnapshot-4.0.0
+>=kde-base/kspaceduel-4.0.0
+>=kde-base/ksplash-4.0.0
+>=kde-base/ksquares-4.0.0
+>=kde-base/kstars-4.0.0
+>=kde-base/kstart-4.0.0
+>=kde-base/kstartupconfig-4.0.0
+>=kde-base/kstyles-4.0.0
+>=kde-base/ksudoku-4.0.0
+>=kde-base/ksysguard-4.0.0
+>=kde-base/ksystraycmd-4.0.0
+>=kde-base/kteatime-4.0.0
+>=kde-base/ktimer-4.0.0
+>=kde-base/ktimezoned-4.0.0
+>=kde-base/ktip-4.0.0
+>=kde-base/ktouch-4.0.0
+>=kde-base/ktraderclient-4.0.0
+>=kde-base/kttsd-4.0.0
+>=kde-base/ktuberling-4.0.0
+>=kde-base/kturtle-4.0.0
+>=kde-base/ktux-4.0.0
+>=kde-base/kuiserver-4.0.0
+>=kde-base/kuiviewer-4.0.0
+>=kde-base/kurifilter-plugins-4.0.0
+>=kde-base/kuser-4.0.0
+>=kde-base/kwallet-4.0.0
+>=kde-base/kweather-4.0.0
+>=kde-base/kwin-4.0.0
+>=kde-base/kwordquiz-4.0.0
+>=kde-base/kworldclock-4.0.0
+>=kde-base/kwrite-4.0.0
+>=kde-base/libkcddb-4.0.0
+>=kde-base/libkcompactdisc-4.0.0
+>=kde-base/libkdeedu-4.0.0
+>=kde-base/libkdegames-4.0.0
+>=kde-base/libkmahjongg-4.0.0
+>=kde-base/libkonq-4.0.0
+>=kde-base/libkscan-4.0.0
+>=kde-base/libkworkspace-4.0.0
+>=kde-base/libplasma-4.0.0
+>=kde-base/libtaskmanager-4.0.0
+>=kde-base/lilo-config-4.0.0
+>=kde-base/lskat-4.0.0
+>=kde-base/marble-4.0.0
+>=kde-base/nepomuk-4.0.0
+>=kde-base/nsplugins-4.0.0
+>=kde-base/okular-4.0.0
+>=kde-base/parley-4.0.0
+>=kde-base/phonon-4.0.0
+>=kde-base/plasma-4.0.0
+>=kde-base/poxml-4.0.0
+>=kde-base/secpolicy-4.0.0
+>=kde-base/solid-4.0.0
+>=kde-base/soliduiserver-4.0.0
+>=kde-base/strigi-analyzer-4.0.0
+>=kde-base/superkaramba-4.0.0
+>=kde-base/svgpart-4.0.0
+>=kde-base/sweeper-4.0.0
+>=kde-base/systemsettings-4.0.0
+>=kde-base/umbrello-4.0.0
+
+# Doug Klima <cardoe@gentoo.org> (16 Jan 2007)
+# Started to rewrite the ebuild when it came out
+# but have not had time to finish. Best to commit
+# it masked so at least some people can mess with it
+=x11-drivers/nvidia-drivers-169.07
+
+# Raúl Porcel <armin76@gentoo.org> (16 Jan 2007)
+# Doesn't work with stable bittorrent
+# Use mktorrent, mktorrent-borg, bittorrent, etc
+# Removal in 30 days
+net-p2p/eztorrent
+
+# Rémi Cardona <remi@gentoo.org> (16 Jan 2008)
+# Unstable dependencies for Anjuta 2.3
+# Most are Gnome 2.22 material
+>=dev-libs/gnome-build-0.2.0
+>=x11-libs/gtksourceview-2.1.0
+=dev-util/anjuta-2.3*
 
 # Robin H. Johnson <robbat2@gentoo.org> (16 Dec 2007)
 # Masked for LOTS of testing
@@ -81,6 +317,10 @@ www-apache/mod_auth_external
 # Alon Bar-Lev <alonbl@gentoo.org> (11 Jan 2008)
 # Does not really work, bug#204662
 >=app-crypt/gnupg-2.0.8
+# Raúl Porcel <armin76@gentoo.org>
+# Needs gnupg-2.0.8, remove this p.mask when gnupg
+# gets unmasked, please
+=x11-plugins/enigmail-0.95.6
 
 # Ryan Hill <dirtyepic@gentoo.org> (10 Jan 2008)
 # Duplicates functionality already in sys-devel/distcc
@@ -297,16 +537,6 @@ www-servers/jboss
 =x11-libs/qt-sql-4.4*
 =x11-libs/qt-xmlpatterns-4.4*
 
-# Hans de Graaff <graaff@gentoo.org> (19 Dec 2007)
-# Mask Rails 2.0.2 since it seems to depend on rubygems 0.9.5 which
-# is masked pending testing, see bug 202688
-=dev-ruby/rails-2.0.2
-=dev-ruby/activerecord-2.0.2
-=dev-ruby/actionmailer-2.0.2
-=dev-ruby/actionpack-2.0.2
-=dev-ruby/activeresource-2.0.2
-=dev-ruby/activesupport-2.0.2
-
 # William L. Thomson Jr. <wltjr@gentoo.org> (19 Dec 2007)
 # Gen 1 java ebuild, older drivers and naming scheme for
 # jdbc drivers. Please switch to jdbc-oracle-bin, which
@@ -335,10 +565,6 @@ sys-kernel/hppa-sources
 # Robin H. Johnson <robbat2@gentoo.org> (16 Dec 2007)
 # For testing only
 =dev-util/git-1.5.4_rc*
-
-# Richard Brown <rbrown@gentoo.org> (15 Dec 2007)
-# Masked for testing as it's install script has changed.
->=dev-ruby/rubygems-0.9.5
 
 # Saleem Abdulrasool <compnerd@gentoo.org> (13 Dec 2007)
 # Retired by upstream in favor of gnome-system-tools since 2005
