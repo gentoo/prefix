@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/madplay/madplay-0.15.2b-r1.ebuild,v 1.10 2007/09/20 21:14:03 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/madplay/madplay-0.15.2b-r1.ebuild,v 1.11 2008/01/16 18:31:36 grobian Exp $
 
 EAPI="prefix"
 

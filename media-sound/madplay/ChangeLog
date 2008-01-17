@@ -1,6 +1,10 @@
 # ChangeLog for media-sound/madplay
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/madplay/ChangeLog,v 1.48 2007/09/20 21:14:03 ranger Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/madplay/ChangeLog,v 1.49 2008/01/16 18:31:36 grobian Exp $
+
+  16 Jan 2008; Fabian Groffen <grobian@gentoo.org> madplay-0.15.2b.ebuild,
+  madplay-0.15.2b-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   20 Sep 2007; Brent Baude <ranger@gentoo.org> madplay-0.15.2b-r1.ebuild:
   Marking madplay-0.15.2b-r1 ppc64 for bug # 189875
