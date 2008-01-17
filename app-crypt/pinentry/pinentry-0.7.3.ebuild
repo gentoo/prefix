@@ -18,11 +18,13 @@ SLOT="0"
 KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
 IUSE="gtk ncurses qt3 caps"
 
+# we need gettext because we run autoconf
 DEPEND="gtk? ( =x11-libs/gtk+-2* )
 	ncurses? ( sys-libs/ncurses )
 	qt3? ( $(qt_min_version 3.3) )
 	!gtk? ( !qt3? ( !ncurses? ( sys-libs/ncurses ) ) )
-	caps? ( sys-libs/libcap )"
+	caps? ( sys-libs/libcap )
+	sys-devel/gettext"
 
 src_unpack() {
 	unpack ${A}
