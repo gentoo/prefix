@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/acroread-8.1.1.ebuild,v 1.4 2008/01/14 23:24:05 tgurr Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/acroread-8.1.1-r1.ebuild,v 1.1 2008/01/18 03:03:19 tgurr Exp $
 
 EAPI="prefix"
 
@@ -45,16 +45,16 @@ RDEPEND="x86? ( >=x11-libs/gtk+-2.0
 	amd64? ( >=app-emulation/emul-linux-x86-baselibs-2.4.2
 			>=app-emulation/emul-linux-x86-gtklibs-2.0 )"
 QA_TEXTRELS="opt/Acrobat8/Reader/intellinux/plug_ins/PPKLite.api
-	opt/Adobe/Adobe/Reader8/Browser/intellinux/nppdf.so
+	opt/Adobe/Reader8/Browser/intellinux/nppdf.so
 	opt/netscape/plugins/nppdf.so"
-QA_EXECSTACK="opt/Adobe/Adobe/Reader8/Reader/intellinux/plug_ins/Annots.api
-	opt/Adobe/Adobe/Reader8/Reader/intellinux/plug_ins/PPKLite.api
-	opt/Adobe/Adobe/Reader8/Reader/intellinux/bin/acroread
-	opt/Adobe/Adobe/Reader8/Reader/intellinux/bin/SynchronizerApp-binary
-	opt/Adobe/Adobe/Reader8/Reader/intellinux/lib/libsccore.so
-	opt/Adobe/Adobe/Reader8/Reader/intellinux/lib/libcrypto.so.0.9.7"
+QA_EXECSTACK="opt/Adobe/Reader8/Reader/intellinux/plug_ins/Annots.api
+	opt/Adobe/Reader8/Reader/intellinux/plug_ins/PPKLite.api
+	opt/Adobe/Reader8/Reader/intellinux/bin/acroread
+	opt/Adobe/Reader8/Reader/intellinux/bin/SynchronizerApp-binary
+	opt/Adobe/Reader8/Reader/intellinux/lib/libsccore.so
+	opt/Adobe/Reader8/Reader/intellinux/lib/libcrypto.so.0.9.7"
 
-INSTALLDIR=/opt/Adobe
+INSTALLDIR=/opt
 
 S="${WORKDIR}/AdobeReader"
 
@@ -188,15 +188,15 @@ src_install() {
 	fi
 
 	if ! use ldap ; then
-		rm "${ED}"${INSTALLDIR}/Reader8/Reader/intellinux/plug_ins/PPKLite.api
+		rm "${ED}"${INSTALLDIR}/Adobe/Reader8/Reader/intellinux/plug_ins/PPKLite.api
 	fi
 
 	# libcups is needed for printing support (bug 118417)
 	if use x86 && ! use cups ; then
 		mv "${WORKDIR}"/libcups.so-i386 "${WORKDIR}"/libcups.so.2
-		exeinto ${INSTALLDIR}/Reader8/Reader/intellinux/lib
+		exeinto ${INSTALLDIR}/Adobe/Reader8/Reader/intellinux/lib
 		doexe "${WORKDIR}"/libcups.so.2
-		dosym libcups.so.2 ${INSTALLDIR}/Reader8/Reader/intellinux/lib/libcups.so
+		dosym libcups.so.2 ${INSTALLDIR}/Adobe/Reader8/Reader/intellinux/lib/libcups.so
 	fi
 
 	dodir /opt/bin
