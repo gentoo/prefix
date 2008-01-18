@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dbacl/dbacl-1.12.ebuild,v 1.2 2006/09/17 19:23:48 steev Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dbacl/dbacl-1.12.ebuild,v 1.3 2008/01/17 20:33:04 grobian Exp $
 
 EAPI="prefix"
 
