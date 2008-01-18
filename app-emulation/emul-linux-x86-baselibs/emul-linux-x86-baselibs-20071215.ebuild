@@ -9,7 +9,7 @@ inherit emul-linux-x86
 LICENSE="|| ( Artistic GPL-2 ) || ( BSD GPL-2 ) BZIP2 CRACKLIB DB
 		GPL-2 || ( GPL-2 AFL-2.1 ) LGPL-2 LGPL-2.1 MIT OPENLDAP openssl
 		PAM ZLIB as-is"
-KEYWORDS="-* amd64"
+KEYWORDS="~amd64-linux"
 
 DEPEND=""
 RDEPEND="!<app-emulation/emul-linux-x86-medialibs-10.2" # bug 168507
