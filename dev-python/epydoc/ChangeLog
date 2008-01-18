@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/epydoc
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/epydoc/ChangeLog,v 1.30 2007/07/17 07:53:46 lucass Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/epydoc/ChangeLog,v 1.32 2008/01/18 00:29:43 pythonhead Exp $
+
+  18 Jan 2008; Rob Cakebread <pythonhead@gentoo.org>
+  epydoc-3.0_beta1.ebuild:
+  Version bump. Closes #151314 Thanks Rene 'Necoro' Neumann <necoro@necoro.net>
 
   17 Jul 2007; Lukasz Strzygowski <lucass@gentoo.org> -epydoc-1.1.ebuild,
   -epydoc-2.0.ebuild, -epydoc-2.1.ebuild, -epydoc-2.1-r1.ebuild:
