@@ -2,6 +2,9 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<herd>hp-cluster</herd>
+	<maintainer>
+		<email>betelgeuse@gentoo.org</email>
+	</maintainer>
 	<longdescription lang="en">
 		Distcc is a program to distribute compilation of C code across several
 		machines on a network.
