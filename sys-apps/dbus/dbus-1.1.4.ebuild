@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.1.3.ebuild,v 1.1 2008/01/16 02:18:59 steev Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.1.4.ebuild,v 1.1 2008/01/17 21:26:13 steev Exp $
 
 EAPI="prefix"
 
@@ -28,7 +28,7 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-darwin.patch
+	epatch "${FILESDIR}"/${PN}-1.1.3-darwin.patch
 	eautoreconf
 }
 
