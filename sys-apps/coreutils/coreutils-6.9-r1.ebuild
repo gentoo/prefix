@@ -17,7 +17,7 @@ SRC_URI="ftp://alpha.gnu.org/gnu/coreutils/${P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~x86-interix ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="acl nls selinux static xattr"
 
 RDEPEND="selinux? ( sys-libs/libselinux )
@@ -66,6 +66,12 @@ src_unpack() {
 	EPATCH_SUFFIX="patch" epatch "${PATCHDIR}"/generic
 	epatch "${FILESDIR}"/${PV}-iswblank.patch
 
+	# interix lacks ESTALE
+	epatch "${FILESDIR}"/${PV}-interix.patch
+
+	# no need to abort when unable to 'list mounted fs'
+	epatch "${FILESDIR}"/${PV}-without-mountfs.patch
+
 	chmod a+rx tests/sort/sort-mb-tests
 	chmod a+rx tests/ls/x-option
 
@@ -112,6 +118,15 @@ src_compile() {
 	# cross-compile workaround #177061
 	[[ ${CHOST} == *-linux* ]] && export fu_cv_sys_stat_statvfs=yes
 
+	if [[ ${CHOST} == *-interix* ]]; then
+		# work around broken headers
+		export ac_cv_header_inttypes_h=no
+		export ac_cv_header_stdint_h=no
+		export gl_cv_header_inttypes_h=no
+		export gl_cv_header_stdint_h=no
+		append-flags "-Dgetgrgid=getgrgid_nomembers"
+	fi
+
 	use static && append-ldflags -static
 	econf \
 		--enable-largefile \
@@ -153,8 +168,13 @@ src_install() {
 		cd "${ED}"/usr/bin
 		dodir /bin
 		# move critical binaries into /bin (required by FHS)
-		local fhs="cat chgrp chmod chown cp date dd df echo false ln ls
+		local fhs="cat chgrp chmod chown cp date dd echo false ln ls
 		           mkdir mknod mv pwd rm rmdir stty sync true uname"
+
+		# on interix "df" is not built, since there are no means of
+		# getting a list of mounted filesystems.
+		[[ ${CHOST} != *-interix* ]] && fhs="${fhs} df"
+
 		mv ${fhs} ../../bin/ || die "could not move fhs bins"
 		# move critical binaries into /bin (common scripts)
 		local com="basename chroot cut dir dirname du env expr head mkfifo

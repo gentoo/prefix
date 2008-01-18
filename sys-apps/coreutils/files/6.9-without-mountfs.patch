@@ -1,0 +1,21 @@
+diff -ruBb coreutils-6.9.orig/m4/ls-mntd-fs.m4 coreutils-6.9/m4/ls-mntd-fs.m4
+--- coreutils-6.9.orig/m4/ls-mntd-fs.m4	Wed Jan 16 13:48:42 2008
++++ coreutils-6.9/m4/ls-mntd-fs.m4	Wed Jan 16 13:52:28 2008
+@@ -326,12 +326,13 @@
+   fi
+ fi
+ 
+-if test -z "$ac_list_mounted_fs"; then
+-  AC_MSG_ERROR([could not determine how to read list of mounted file systems])
++# for example on interix things work even without this....
++# if test -z "$ac_list_mounted_fs"; then
++  # AC_MSG_ERROR([could not determine how to read list of mounted file systems])
+   # FIXME -- no need to abort building the whole package
+   # Can't build mountlist.c or anything that needs its functions
+-fi
++# fi
+ 
+-AS_IF([test $ac_list_mounted_fs = found], [$1], [$2])
++AS_IF([test "$ac_list_mounted_fs" = found], [$1], [$2])
+ 
+   ])
