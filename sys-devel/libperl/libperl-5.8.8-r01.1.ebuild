@@ -70,7 +70,7 @@ HOMEPAGE="http://www.perl.org"
 SLOT="${PERLSLOT}"
 LIBPERL="libperl$(get_libname ${PERLSLOT}.${SHORT_PV})"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~x86-interix ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 # rac 2004.08.06
 
@@ -142,6 +142,10 @@ src_unpack() {
 	# cut the crap of inventing paths, or adding search paths that we don't use
 	epatch "${FILESDIR}"/${PN}-cleanup-paths.patch
 
+	# remove /usr/local paths from all stuff thats used
+	# in Configure script
+	epatch "${FILESDIR}"/${P}-usr-local.patch
+
 	# Configure makes an unwarranted assumption that /bin/ksh is a
 	# good shell. This patch makes it revert to using /bin/sh unless
 	# /bin/ksh really is executable. Should fix bug 42665.
@@ -158,6 +162,11 @@ src_unpack() {
 	# On PA7200, uname -a contains a single quote and we need to
 	# filter it otherwise configure fails. See #125535.
 	epatch ${FILESDIR}/perl-hppa-pa7200-configure.patch
+
+	# on interix, $firstmakefile may not be 'makefile', since the
+	# filesystem may be case insensitive, and perl will wrongly
+	# delete Makefile.
+	epatch ${FILESDIR}/${P}-interix-firstmakefile.patch
 
 	use amd64 && cd ${S} && epatch ${FILESDIR}/${P}-lib64.patch
 	[[ ${CHOST} == *-dragonfly* ]] && cd ${S} && epatch ${FILESDIR}/${P}-dragonfly-clean.patch
