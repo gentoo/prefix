@@ -12,7 +12,7 @@ HOMEPAGE="http://www.adobe.com/"
 IUSE=""
 SLOT="0"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64-linux ~x86-linux"
 LICENSE="AdobeFlash-9.0.31.0"
 RESTRICT="strip mirror"
 

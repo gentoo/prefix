@@ -16,7 +16,7 @@ HOMEPAGE="http://www.adobe.com/"
 IUSE="debug"
 SLOT="0"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64-linux ~x86-linux"
 LICENSE="AdobeFlash-9.0.31.0"
 S=${WORKDIR}/install_flash_player_9_linux
 RESTRICT="strip mirror"
