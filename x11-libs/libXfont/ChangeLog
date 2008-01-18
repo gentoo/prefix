@@ -1,6 +1,19 @@
 # ChangeLog for x11-libs/libXfont
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfont/ChangeLog,v 1.83 2007/12/19 23:34:15 cla Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfont/ChangeLog,v 1.86 2008/01/18 01:39:06 ranger Exp $
+
+  18 Jan 2008; Brent Baude <ranger@gentoo.org> libXfont-1.3.1-r1.ebuild:
+  Marking libXfont-1.3.1-r1 ppc64 for bug 204362
+
+  17 Jan 2008; Markus Meier <maekke@gentoo.org> libXfont-1.3.1-r1.ebuild:
+  x86 stable, security bug #204362
+
+*libXfont-1.3.1-r1 (17 Jan 2008)
+
+  17 Jan 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  +files/0001-Fix-for-CVE-2008-0006-PCF-Font-parser-buffer-overf.patch,
+  +libXfont-1.3.1-r1.ebuild:
+  (#204362) Security bump.
 
   19 Dec 2007; Dawid Węgliński <cla@gentoo.org> libXfont-1.3.1.ebuild:
   Stable on x86 (bug #202087)
