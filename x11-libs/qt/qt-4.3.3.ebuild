@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.3.3.ebuild,v 1.1 2007/12/06 11:25:04 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.3.3.ebuild,v 1.3 2008/01/07 13:25:54 caleb Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ use aqua && S=${WORKDIR}/qt-mac-${SRCTYPE}-${PV}
 
 LICENSE="|| ( QPL-1.0 GPL-2 )"
 SLOT="4"
-KEYWORDS="~amd64-linux ~ia64-linux ~ppc-macos ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
 IUSE_INPUT_DEVICES="input_devices_wacom"
 
@@ -62,7 +62,7 @@ pkg_setup() {
 	QTLIBDIR=${EPREFIX}/usr/$(get_libdir)/qt4
 	QTPCDIR=${EPREFIX}/usr/$(get_libdir)/pkgconfig
 	QTDATADIR=${EPREFIX}/usr/share/qt4
-	QTDOCDIR=${EPREFIX}/usr/share/doc/${PF}
+	QTDOCDIR=${EPREFIX}/usr/share/doc/${P}
 	QTHEADERDIR=${EPREFIX}/usr/include/qt4
 	QTPLUGINDIR=${QTLIBDIR}/plugins
 	QTSYSCONFDIR=${EPREFIX}/etc/qt4
