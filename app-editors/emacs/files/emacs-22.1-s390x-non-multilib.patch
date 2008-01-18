@@ -1,27 +1,32 @@
---- emacs-22.1-orig/src/Makefile.in	2007-03-21 15:31:24.000000000 +0100
-+++ emacs-22.1/src/Makefile.in	2008-01-13 03:53:26.000000000 +0100
-@@ -29,6 +29,9 @@
- 
- # Here are the things that we expect ../configure to edit.
- # We use $(srcdir) explicitly in dependencies so as not to depend on VPATH.
-+prefix=@prefix@
-+exec_prefix=@exec_prefix@
-+libdir=@libdir@
- srcdir=@srcdir@
- VPATH=@srcdir@
- CC=@CC@
---- emacs-22.1-orig/src/m/ibms390x.h	2007-01-21 04:59:39.000000000 +0100
-+++ emacs-22.1/src/m/ibms390x.h	2008-01-13 03:51:46.000000000 +0100
-@@ -160,10 +160,10 @@
+--- configure.in	7 Jan 2008 08:53:18 -0000	1.444.2.6
++++ configure.in	17 Jan 2008 04:04:51 -0000	1.444.2.7
+@@ -1532,7 +1532,7 @@
+ ### The standard library on x86-64 GNU/Linux distributions can 
+ ### be located in either /usr/lib64 or /usr/lib.
+ case "${canonical}" in
+-  x86_64-*-linux-gnu* )
++  x86_64-*-linux-gnu* | s390x-*-linux-gnu* )
+     if test -d /usr/lib64; then
+       AC_DEFINE(HAVE_X86_64_LIB64_DIR, 1,
+         [Define to 1 if the file /usr/lib64 exists.])
+--- src/m/ibms390x.h	8 Jan 2008 04:04:33 -0000	1.4.2.3
++++ src/m/ibms390x.h	17 Jan 2008 04:03:58 -0000	1.4.2.4
+@@ -161,10 +161,18 @@
  #define XPNTR(a) XUINT (a)
  
  #undef START_FILES
--#define START_FILES pre-crt0.o /usr/lib64/crt1.o /usr/lib64/crti.o
-+#define START_FILES pre-crt0.o $(libdir)/crt1.o $(libdir)/crti.o
++#ifdef HAVE_X86_64_LIB64_DIR
+ #define START_FILES pre-crt0.o /usr/lib64/crt1.o /usr/lib64/crti.o
++#else
++#define START_FILES pre-crt0.o /usr/lib/crt1.o /usr/lib/crti.o
++#endif
  
  #undef LIB_STANDARD
--#define LIB_STANDARD -lgcc -lc -lgcc /usr/lib64/crtn.o
-+#define LIB_STANDARD -lgcc -lc -lgcc $(libdir)/crtn.o
++#ifdef HAVE_X86_64_LIB64_DIR
+ #define LIB_STANDARD -lgcc -lc -lgcc /usr/lib64/crtn.o
++#else
++#define LIB_STANDARD -lgcc -lc -lgcc /usr/lib/crtn.o
++#endif
  
  /* arch-tag: 4b87653c-6add-4663-8691-7d9dc17b5519
     (do not change this comment) */
