@@ -12,7 +12,7 @@ SRC_URI="mirror://gnu/gawk/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~x86-interix ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="nls"
 
 RDEPEND=""
@@ -40,7 +40,10 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-numflags.patch
 	epatch "${FILESDIR}"/${P}-syntaxerror.patch
 	epatch "${FILESDIR}"/${P}-wconcat.patch
-	epatch "${FILESDIR}"/${P}-ipv6.patch
+
+	# ipv6 patch breaks interix build!
+	[[ ${CHOST} == *-interix* ]] || epatch "${FILESDIR}"/${P}-ipv6.patch
+
 	epatch "${FILESDIR}"/${P}-mbread.patch
 	epatch "${FILESDIR}"/${P}-freewstr2.patch #135931 #188740
 	# on solaris, we have stupid /usr/bin/awk, but gcc,
