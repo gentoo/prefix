@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/pexpect
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pexpect/ChangeLog,v 1.32 2008/01/16 00:28:57 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pexpect/ChangeLog,v 1.33 2008/01/17 18:13:59 grobian Exp $
+
+  17 Jan 2008; Fabian Groffen <grobian@gentoo.org> pexpect-0.999.ebuild,
+  pexpect-2.0.ebuild, pexpect-2.1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   16 Jan 2008; Hanno Boeck <hanno@gentoo.org> pexpect-2.1.ebuild:
   Stable on amd64, reduce DESCRIPTION to 100 chars.
