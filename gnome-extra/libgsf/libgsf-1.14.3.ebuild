@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86"
+KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 IUSE="bzip2 doc gnome python"
 
 RDEPEND=">=dev-libs/libxml2-2.4.16
