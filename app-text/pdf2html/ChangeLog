@@ -1,6 +1,9 @@
 # ChangeLog for app-text/pdf2html
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/pdf2html/ChangeLog,v 1.15 2007/03/12 23:58:53 nattfodd Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/pdf2html/ChangeLog,v 1.16 2008/01/17 20:13:18 grobian Exp $
+
+  17 Jan 2008; Fabian Groffen <grobian@gentoo.org> pdf2html-1.4.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   12 Mar 2007; Alexandre Buisse <nattfodd@gentoo.org> metadata.xml:
   Replaced text-markup by tex as maintaining herd (text-markup split).
