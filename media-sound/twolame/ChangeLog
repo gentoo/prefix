@@ -1,6 +1,12 @@
 # ChangeLog for media-sound/twolame
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/twolame/ChangeLog,v 1.29 2007/12/20 14:09:24 aballier Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/twolame/ChangeLog,v 1.30 2008/01/17 09:20:00 drac Exp $
+
+*twolame-0.3.12 (17 Jan 2008)
+
+  17 Jan 2008; Samuli Suominen <drac@gentoo.org> +twolame-0.3.12.ebuild:
+  Version bump wrt #206309 which includes a fix to #200047 from upstream.
+  Thanks to Ryan Hill and Juan Aguado.
 
   20 Dec 2007; Alexis Ballier <aballier@gentoo.org> twolame-0.3.10.ebuild:
   Keyword ~x86-fbsd, working fine here, add elibtoolize to get the same .so
