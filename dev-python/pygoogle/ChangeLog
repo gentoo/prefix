@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pygoogle
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygoogle/ChangeLog,v 1.15 2007/02/21 16:58:41 lucass Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygoogle/ChangeLog,v 1.16 2008/01/17 18:35:50 grobian Exp $
+
+  17 Jan 2008; Fabian Groffen <grobian@gentoo.org> pygoogle-0.6.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   21 Feb 2007; Lukasz Strzygowski <lucass@gentoo.org>
   files/digest-pygoogle-0.5.3, files/digest-pygoogle-0.6, Manifest:
