@@ -76,7 +76,7 @@ src_install() {
 pkg_postinst()
 {
 	ver=$(${RUBY} -r rbconfig -e 'print Config::CONFIG["ruby_version"]')
-	SOURCE_CACHE="/usr/$(get_libdir)/ruby/gems/$ver/source_cache"
+	SOURCE_CACHE="${EPREFIX}/usr/$(get_libdir)/ruby/gems/$ver/source_cache"
 	if [[ -e "${SOURCE_CACHE}" ]]; then
 		rm "${SOURCE_CACHE}"
 	fi
