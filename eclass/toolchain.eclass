@@ -1434,8 +1434,11 @@ gcc_do_make() {
 		# resulting binaries natively ^^;
 		GCC_MAKE_TARGET=${GCC_MAKE_TARGET-all}
 	elif [[ $(tc-arch) == "x86" || $(tc-arch) == "amd64" || $(tc-arch) == "ppc64" ]] \
-		&& [[ ${GCCMAJOR}.${GCCMINOR} > 3.3 ]]
+		&& [[ ${GCCMAJOR}.${GCCMINOR} > 3.3 ]] \
+		&& [[ ${CBUILD} != *-interix* ]]
 	then
+		# interix shipped gcc generates slow xgcc with profiling, unsure
+		# if this also is true for *target* interix, not just *build*.
 		GCC_MAKE_TARGET=${GCC_MAKE_TARGET-profiledbootstrap}
 	else
 		GCC_MAKE_TARGET=${GCC_MAKE_TARGET-bootstrap-lean}
