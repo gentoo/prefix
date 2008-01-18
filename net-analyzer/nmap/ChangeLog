@@ -1,6 +1,9 @@
 # ChangeLog for net-analyzer/nmap
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.152 2008/01/16 20:40:56 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.153 2008/01/17 13:23:39 armin76 Exp $
+
+  17 Jan 2008; Raúl Porcel <armin76@gentoo.org> nmap-4.50.ebuild:
+  alpha/ia64/sparc/x86 stable
 
   16 Jan 2008; Fabian Groffen <grobian@gentoo.org> nmap-4.20.ebuild,
   nmap-4.50.ebuild, nmap-4.52.ebuild:
