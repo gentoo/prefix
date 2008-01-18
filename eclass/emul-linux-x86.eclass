@@ -44,5 +44,6 @@ emul-linux-x86_src_install() {
 	# remove void directories
 	find "${S}" -depth -type d -print0 | xargs -0 rmdir 2&>/dev/null
 
-	cp -pPR "${S}"/* "${D}"/ || die "copying files failed!"
+	mkdir -p "${ED}"
+	cp -pPR "${S}"/* "${ED}"/ || die "copying files failed!"
 }
