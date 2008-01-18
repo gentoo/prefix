@@ -22,6 +22,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.12-scrub-lame-gettext.patch
+	epatch "${FILESDIR}"/${P}-iconv.patch # solves USE=-nls compilation
 	elibtoolize # for ia64-hpux
 }
 
