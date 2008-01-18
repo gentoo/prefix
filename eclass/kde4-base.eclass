@@ -1,6 +1,6 @@
 # Copyright 2007-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.1 2008/01/16 22:50:46 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.2 2008/01/18 02:37:08 ingmar Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -209,8 +209,8 @@ debug-print "${LINENO} ${ECLASS} ${FUNCNAME}: SLOT ${SLOT} - KDEDIR ${KDEDIR} - 
 kde4-base_pkg_setup() {
 	debug-print-function $FUNCNAME "$@"
 
-	# KDE4 applications require qt4 compiled with USE="accessibility dbus jpeg png qt3support ssl zlib".
-	QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK} accessibility dbus jpeg png qt3support ssl zlib"
+	# KDE4 applications require qt4 compiled with USE="accessibility dbus gif jpeg png qt3support ssl zlib".
+	QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK} accessibility dbus gif jpeg png qt3support ssl zlib"
 
 	if has debug ${IUSE//+} && use debug; then
 		QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK} debug"

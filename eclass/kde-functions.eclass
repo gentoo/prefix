@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.159 2007/12/16 16:28:41 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.160 2008/01/17 22:39:22 ingmar Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -905,6 +905,10 @@ buildsycoca() {
 		chmod 0755 /usr/share/services
 
 		ebegin "Running kbuildsycoca to build global database"
+		# Filter all KDEDIRs not belonging to the current SLOT from XDG_DATA_DIRS
+		# before running kbuildsycoca. This makes sure they don't show up in the
+		# 3.5 K-menu unless the user manually adds them.
+		XDG_DATA_DIRS="/usr/share:${KDEDIR}/share:/usr/local/share"
 		${KDEDIR}/bin/kbuildsycoca --global --noincremental &> /dev/null
 		eend $?
 	fi
