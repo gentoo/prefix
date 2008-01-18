@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/cdb/cdb-0.75-r2.ebuild,v 1.11 2008/01/04 22:56:15 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/cdb/cdb-0.75-r2.ebuild,v 1.12 2008/01/17 18:50:17 grobian Exp $
 
 EAPI="prefix"
 
