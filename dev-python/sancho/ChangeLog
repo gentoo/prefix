@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/sancho
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sancho/ChangeLog,v 1.31 2007/11/13 19:34:31 jer Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sancho/ChangeLog,v 1.32 2008/01/17 18:17:02 grobian Exp $
+
+  17 Jan 2008; Fabian Groffen <grobian@gentoo.org> sancho-0.11-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   13 Nov 2007; Jeroen Roovers <jer@gentoo.org> sancho-2.1-r1.ebuild:
   Marked ~hppa again (thanks armin76).
