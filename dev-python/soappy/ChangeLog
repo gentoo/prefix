@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/soappy
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/soappy/ChangeLog,v 1.20 2007/06/17 15:03:13 armin76 Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/soappy/ChangeLog,v 1.21 2008/01/17 17:53:59 grobian Exp $
+
+  17 Jan 2008; Fabian Groffen <grobian@gentoo.org> soappy-0.11.6-r1.ebuild,
+  soappy-0.12.0.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   17 Jun 2007; Raúl Porcel <armin76@gentoo.org> soappy-0.12.0.ebuild:
   Add ~alpha wrt #172818
