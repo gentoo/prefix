@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3307 2008/01/17 03:49:09 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3311 2008/01/17 22:41:13 philantrop Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -767,49 +767,126 @@ gnustep-base/gnustep-back-cairo:glitz - Build with glitz support
 gnustep-base/gnustep-back-cairo:xim - Enable X11 XiM input method
 gnustep-base/gnustep-back-xlib:xim - Enable X11 XiM input method
 gnustep-base/gnustep-base:gcc-libffi - Offers a migration path away from the ill fated dev-libs/libffi; gcc-3.* will generally have to be compiled with 'gcj' on, >=gcc-3.4.3-r1 can be used with only 'objc' turned on (this will reduce compile time).
+kde-base/akonadi:nepomuk - Build Nepomuk feeder
+kde-base/ark:archive - Enable support for a variety of archive formats through libarchive
+kde-base/ark:zip - Enable zip support through LibZip
 kde-base/arts:artswrappersuid - Set artswrapper suid for realtime playing, which is a security hazard.
+kde-base/dolphin:semantic-desktop - Semantic desktop allows for storage of digital information and its metadata to allow the user to express his personal mental models, making all information become intuitively accessible.
 kde-base/juk:akode - Support for the aKode audio-decoding frame-work.
+kde-base/juk:tunepimp - Provide MusicBrainz tagging in Juk.
+kde-base/kdeadmin:lilo - Install lilo-config, a frontend for the lilo boot loader
+kde-base/kdeadmin-meta:lilo - Install lilo-config, a frontend for the lilo boot loader
 kde-base/kaddressbook:gnokii - Address synchronization with mobile phones via Gnokii.
+kde-base/kalzium:cviewer - Enable Kalzium compound viewer
 kde-base/kalzium:solver - Enable the equation solver.
 kde-base/kbugbuster:kcal - Support for kcal (calendar) format.
 kde-base/kcontrol:logitech-mouse - Build the Control Center module to configure logitech mice.
+kde-base/kdeaccessibility:ktts - Enable KDE Text To Speech modules
+kde-base/kdebase:accessibility - Compile the battery plasmoid
+kde-base/kdebase:captury - Enable the 'Capture'-plugin in kwin.
 kde-base/kdebase:logitech-mouse - Build the Control Center module to configure logitech mice
+kde-base/kdebase:networkmanager - Add support for net-misc/networkmanager
+kde-base/kdebase:newxkb - Enable compilation of the new XKB code, which requires libxklavier, in KXKB
+kde-base/kdebase:usb - Configure USB and logitech mice
+kde-base/kdebase:xcb - Support the X C-language Binding, a replacement for Xlib
+kde-base/kdeedu:cviewer - Enable Kalzium compound viewer
+kde-base/kdeedu:designer-plugin - Enable designer plugin
+kde-base/kdeedu:fits - Enable support for the FITS image format through cfitsio
 kde-base/kdeedu:kig-scripting - Support Python scripting in kig.
-kde-base/kdeedu:solver - Enable the equation solver.
+kde-base/kdeedu:nova - Enable support for libnova.
+kde-base/kdeedu:sbig - Enable support for SBIG.
+kde-base/kdeedu:solver - Enable Kalzium ocaml equation solver
+kde-base/kdegames:ggz - Add support for the GGZ gaming zone
+kde-base/kdegraphics:chm - Enable Okular support for Microsoft Compiled HTML Help files
+kde-base/kdegraphics:djvu - Enable Okular support for DjVu files
+kde-base/kdegraphics:exiv2 - Enable support for images metadata trough the exiv2 package
 kde-base/kdegraphics-meta:povray - Install KPovModeler, which needs POV-Ray.
 kde-base/kdegraphics:povray - Install KPovModeler, which needs POV-Ray.
 kde-base/kdelibs:legacyssl - Support for some deprecated ciphers. Don't use this flag unless you really need it.
+kde-base/kdelibs:pcre - Provide better regular expression support in K java script (KJS)
+kde-base/kdelibs:semantic-desktop - Semantic desktop allows for storage of digital information and its metadata to allow the user to express his personal mental models, making all information become intuitively accessible.
 kde-base/kdelibs:utempter - Records everytime a user logins in. Useful on multi-user systems.
 kde-base/kdemultimedia:akode - Support for the aKode audio-decoding frame-work.
+kde-base/kdemultimedia:taglib - Enable tagging support with Taglib
+kde-base/kdemultimedia:tunepimp - Provide MusicBrainz tagging in Juk.
+kde-base/kdemultimedia:xcb - Support the X C-language Binding, a replacement for Xlib
+kde-base/kdenetwork:addbookmarks - Builds Add Bookmarks plugin
+kde-base/kdenetwork:alias - Builds Alias plugin
+kde-base/kdenetwork:autoreplace - Builds Auto-Replace plugin
+kde-base/kdenetwork:contactnotes - Builds Contact Notes plugin
+kde-base/kdenetwork:decibel - Enable the Telepathy protocol plugin in Kopete
+kde-base/kdenetwork:gadu - Builds GaduGadu protocol handler
+kde-base/kdenetwork:groupwise - Enable the groupwise protocol plugin in Kopete
+kde-base/kdenetwork:highlight - Builds Highlight plugin
+kde-base/kdenetwork:history - Builds history plugin
+kde-base/kdenetwork:nowlistening - Builds Now Listening... plugin
+kde-base/kdenetwork:ppp - Builds kppp, a dialer and front-end to pppd
+kde-base/kdenetwork:privacy - plugin to selectively filter messages
+kde-base/kdenetwork:qq - enable support for the chinese network protocol
 kde-base/kdenetwork:sametime - Support for the Sametime protocol for instant messaging.
+kde-base/kdenetwork:sms - Enable the sms protocol plugin in Kopete
+kde-base/kdenetwork:statistics - Builds statistics plugin
+kde-base/kdenetwork:testbed - Enable the testbed protocol plugin
+kde-base/kdenetwork:texteffect - Builds Text Effect plugin
+kde-base/kdenetwork:translator - Builds Translator plugin
+kde-base/kdenetwork:urlpicpreview - plugin to allow users to send photos through URLs
+kde-base/kdenetwork:vnc - Enable vnc support
+kde-base/kdenetwork:webpresence - Builds Web Presence plugin
+kde-base/kdenetwork:winpopup - Builds WinPopUp protocol handler
 kde-base/kdepim:gnokii - Address synchronization with mobile phones via Gnokii.
+kde-base/kdeutils:archive - Enable support for a variety of archive formats through libarchive
 kde-base/kdeutils:pbbuttonsd - Support for the Apple PMU daemon pbbuttonsd.
+kde-base/kdeutils:tpctl - Enable sypport for Thinkpad system control
+kde-base/kdeutils:zip - Enable zip support through LibZip
+kde-base/kget:plasma - Build optional plasma widgets.
 kde-base/kig:kig-scripting - Support Python scripting.
+kde-base/kmail:nepomuk - Desktop-wide tagging support
 kde-base/kmilo:pbbuttonsd - Support for the Apple PMU daemon pbbuttonsd.
 kde-base/kopete:addbookmarks - Builds Add Bookmarks plugin
 kde-base/kopete:alias - Builds Alias plugin
 kde-base/kopete:autoreplace - Builds Auto-Replace plugin
 kde-base/kopete:connectionstatus - Builds Connection Status plugin
 kde-base/kopete:contactnotes - Builds Contact Notes plugin
+kde-base/kopete:decibel - Enable the Telepathy protocol plugin
 kde-base/kopete:gadu - Builds GaduGadu protocol handler
 kde-base/kopete:groupwise - Builds Novell GroupWise protocol handler
 kde-base/kopete:highlight - Builds Highlight plugin
 kde-base/kopete:history - Builds history plugin
 kde-base/kopete:irc - Builds IRC protocol handler
+kde-base/kopete:jabber - Enable the Jabber protocol plugin
+kde-base/kopete:messenger - Enable the Windows LIVE!-Messenger protocol plugin
 kde-base/kopete:netmeeting - Builds netmeeting plugin (require gnomemeeting)
 kde-base/kopete:nowlistening - Builds Now Listening... plugin
+kde-base/kopete:privacy - plugin to selectively filter messages
+kde-base/kopete:qca - Enable the Qt Cryptographic Architecture
+kde-base/kopete:qq - enable support for the chinese network protocol
 kde-base/kopete:sametime - Enables support for the Sametime protocol for instant messaging
 kde-base/kopete:sms - Builds SMS protocol handler
 kde-base/kopete:statistics - Builds statistics plugin
+kde-base/kopete:testbed - Enable the testbed protocol plugin
 kde-base/kopete:texteffect - Builds Text Effect plugin
 kde-base/kopete:translator - Builds Translator plugin
+kde-base/kopete:urlpicpreview - plugin to allow users to send photos through URLs
 kde-base/kopete:webpresence - Builds Web Presence plugin
 kde-base/kopete:winpopup - Builds WinPopUp protocol handler
+kde-base/kopete:xslt - Enable xslt support
 kde-base/kttsd:akode - Support for the aKode audio-decoding frame-work.
 kde-misc/knetworkmanager:cisco - Adds support for the Cisco VPN client (vpnc)
 kde-misc/knetworkmanager:dialup - Enables Dialup (PPP) support
 kde-misc/knetworkmanager:openvpn - Adds support for the OpenVPN client
 kde-misc/knetworkmanager:pptp - Adds support for the PPTP (PPP) VPN client
+kde-base/krdc:vnc - Enable vnc support
+kde-base/kstars:fits - Enable support for the FITS image format through cfitsio
+kde-base/kstars:nova - Enable support for libnova.
+kde-base/kstars:sbig - Enable support for SBIG.
+kde-base/kttsd:ktts - Enable KDE Text To Speech modules
+kde-base/kwin:captury - Enable the 'Capture'-plugin in kwin.
+kde-base/marble:designer-plugin - Enable designer plugin
+kde-base/okular:chm - Enable support for Microsoft Compiled HTML Help files
+kde-base/okular:djvu - Enable support for DjVu files
+kde-base/plasma:accessibility - Compile the battery plasmoid
+kde-base/solid:networkmanager - Add support for net-misc/networkmanager
+kde-base/systemsettings:usb - Configure USB and logitech mice
 kde-misc/ksensors:ibmacpi - Enable monitoring of ACPI sensor data on IBM Thinkpad notebooks.
 mail-client/balsa:gtkspell - Use gtkspell for dictionary support
 mail-client/balsa:rubrica - Enables support for the app-office/rubrica addressbook
@@ -1811,7 +1888,8 @@ sci-misc/h5utils:octave - Build Octave plugins
 sci-misc/nco:ncap2 - Build next generation netcdf arithmetic processor (needs dev-java/antlr)
 sci-misc/nco:udunits - Add udunits files support
 sci-misc/ncview:udunits - Add udunits files support
-sci-physics/root:cern - Add cernlib i/o functionality to root (hbook files)
+sci-physics/root:cern -Enable hbook i/o functionality to root (needs cernlib)
+sci-physics/root:cint7 - Build the experimental C/C++ interpretor version 7
 sci-physics/root:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
 sci-visualization/hippodraw:fits - Add FITS format support to hippodraw, via cfitsio
 sci-visualization/hippodraw:numarray - Add numarray python array support

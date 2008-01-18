@@ -1,6 +1,48 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.999 2008/01/15 18:50:24 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1013 2008/01/18 02:56:27 tgurr Exp $
+
+  18 Jan 2008; Timo Gurr <tgurr@gentoo.org> package.mask:
+  Extend acroread mask to also mask revbumps.
+
+  18 Jan 2008; Ingmar Vanhassel <ingmar@gentoo.org> package.mask:
+  Added kde-base/qimageblitz to package.mask.
+
+  18 Jan 2008; Ingmar Vanhassel <ingmar@gentoo.org> package.mask:
+  Added >=kde-base/kde-4.0.0 to the KDE 4.0 mask.
+
+  17 Jan 2008; Wulf C. Krueger <philantrop@gentoo.org> use.local.desc:
+  Added local USE flags for KDE4.
+
+  17 Jan 2008; Wulf C. Krueger <philantrop@gentoo.org> use.local.desc:
+  Added local USE flags for KDE4.
+
+  17 Jan 2008; Wulf C. Krueger <philantrop@gentoo.org> use.local.desc:
+  Added local USE flags for KDE4.
+
+  17 Jan 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  unmask ocaml 3.10 and friends, should be all good now
+
+  17 Jan 2008; Wulf C. Krueger <philantrop@gentoo.org> use.desc:
+  Added htmlhandbook used by 119 packages.
+
+  17 Jan 2008; Sébastien Fabbro <bicatali@gentoo.org> use.local.desc:
+  Added cint7 local flag for sci-physics/root
+
+  17 Jan 2008; Ingmar Vanhassel <ingmar@gentoo.org> package.mask:
+  Mask KDE 4.0.0 for testing. This release of KDE 4 will not be unmasked.
+
+  16 Jan 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Mask app-emacs/uboat for removal.
+
+  16 Jan 2008; <nichoj@gentoo.org> package.mask:
+  Unmasked rubygems.
+
+  16 Jan 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  Add anjuta-2.3* and its required deps to p.mask
+
+  15 Jan 2008; <nichoj@gentoo.org> package.mask:
+  Removed rails-2.0 from package.mask.
 
   15 Jan 2008; Alon Bar-Lev <alonbl@gentoo.org> package.mask:
   Fix gnupg-2.0.8 mask
