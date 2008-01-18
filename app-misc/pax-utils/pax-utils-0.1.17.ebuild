@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/pax-utils-0.1.15.ebuild,v 1.11 2007/03/01 12:08:48 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/pax-utils-0.1.17.ebuild,v 1.1 2008/01/17 06:57:36 solar Exp $
 
 EAPI="prefix"
 
@@ -11,24 +11,21 @@ HOMEPAGE="http://hardened.gentoo.org/pax-utils.xml"
 SRC_URI="mirror://gentoo/pax-utils-${PV}.tar.bz2
 	http://dev.gentoo.org/~solar/pax/pax-utils-${PV}.tar.bz2
 	http://dev.gentoo.org/~vapier/dist/pax-utils-${PV}.tar.bz2"
+#SRC_URI="http://wh0rd.org/pax-utils-${PV}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="caps"
+#RESTRICT="mirror"
 
 DEPEND="caps? ( sys-libs/libcap )"
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-solaris.patch
-}
 
 src_compile() {
 	emake CC=$(tc-getCC) USE_CAP=$(use caps && echo yes) || die
 }
 
 src_install() {
-	make DESTDIR="${D}${EPREFIX}" install || die
+	emake DESTDIR="${D}${EPREFIX}" install || die
+	cp lddtree.sh ${ED}/usr/bin/ ; #|| die "dont care"
 }
