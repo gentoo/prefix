@@ -1,6 +1,11 @@
 # ChangeLog for gnustep-base/gnustep-back-cairo
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-cairo/ChangeLog,v 1.3 2008/01/09 12:26:42 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-cairo/ChangeLog,v 1.4 2008/01/18 21:12:17 voyageur Exp $
+
+  18 Jan 2008; Bernard Cafarelli <voyageur@gentoo.org>
+  gnustep-back-cairo-0.12.0.ebuild, gnustep-back-cairo-0.12.1.ebuild,
+  gnustep-back-cairo-0.13.1.ebuild:
+  Add pkgconfig depend, bug #206542
 
 *gnustep-back-cairo-0.13.1 (09 Jan 2008)
 

@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-cairo/gnustep-back-cairo-0.12.0.ebuild,v 1.1 2007/08/18 15:32:31 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-cairo/gnustep-back-cairo-0.12.0.ebuild,v 1.2 2008/01/18 21:12:17 voyageur Exp $
 
 EAPI="prefix"
 
@@ -18,6 +18,7 @@ LICENSE="LGPL-2.1"
 
 IUSE="opengl xim glitz"
 DEPEND="${GNUSTEP_CORE_DEPEND}
+	dev-util/pkgconfig
 	~gnustep-base/gnustep-gui-${PV}
 	opengl? ( virtual/opengl virtual/glu )
 
