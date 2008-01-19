@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic
+inherit eutils flag-o-matic autotools
 
 GCC_VERS=${PV/_p*/}
 APPLE_VERS=${PV/*_p/}
@@ -73,6 +73,10 @@ src_unpack() {
 		gcc/Makefile.in || die "sed gcc/Makefile.in failed."
 
 	epatch "${FILESDIR}"/${PN}-${GCC_VERS}-inline-asm.patch
+
+	epatch "${FILESDIR}"/${PN}-${GCC_VERS}-texinfo.patch
+	eautoreconf
+	cd gcc && AT_M4DIR="../config" eautoreconf
 
 	cd "${WORKDIR}"/libstdcxx-${LIBSTDCXX_APPLE_VERSION}/libstdcxx
 	epatch "${FILESDIR}"/libstdc++-${LIBSTDCXX_APPLE_VERSION}.patch
