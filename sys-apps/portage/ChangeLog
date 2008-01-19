@@ -2,6 +2,13 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.9208 (19 Jan 2008)
+
+  19 Jan 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.9150.ebuild, +portage-2.2.00.9208.ebuild:
+  Important update, support for svn:// and svn+https:// schemes. This ebuild
+  forces the user to switch from svn+http:// as it scheduled for removal.
+
 *portage-2.2.00.9205 (13 Jan 2008)
 
   13 Jan 2008; Fabian Groffen <grobian@gentoo.org>
