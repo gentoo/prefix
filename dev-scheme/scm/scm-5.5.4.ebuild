@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/scm/scm-5.5.3.ebuild,v 1.5 2007/06/25 10:25:57 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/scm/scm-5.5.4.ebuild,v 1.2 2008/01/18 18:10:09 opfer Exp $
 
 EAPI="prefix"
 
@@ -25,24 +25,35 @@ IUSE=""
 #unzip for unpacking
 RDEPEND=""
 DEPEND="app-arch/unzip
-		>=dev-scheme/slib-3.1.4-r2"
+		>=dev-scheme/slib-3.1.5"
+
+src_unpack() {
+	unpack ${A}; cd "${S}"
+
+#	cp Makefile Makefile.old
+
+	sed "s#local/##" -i Makefile
+
+	#sent upstream again
+	sed "s#mkdir#mkdir -p#" -i Makefile
+	sed "s#-p -p#-p#" -i Makefile
+
+#	diff -u Makefile.old Makefile
+}
 
 src_compile() {
 	einfo "Making scmlit"
 	#parallel make fails sometimes
 	emake -j1 scmlit
-	einfo "Building"
+	einfo "Creating script to build scm"
 	echo "srcdir=${EPREFIX}/usr/share/scm/" > srcdir.mk
-	./build --compiler-options="${CFLAGS}" --linker-options="${LDFLAGS}" -F macro
-	emake
+	./build --compiler-options="${CFLAGS}" --linker-options="${LDFLAGS}" -F macro -F inexact &> _compile.sh || die
+	einfo "Building scm"
+	sh _compile.sh || die
 }
 
 src_install() {
-#	emake DESTDIR=${D} install
-	insinto /usr/share/scm/
-	doins *.scm
-	dodoc ANNOUNCE QUICKREF README
-	dobin scm
+	emake DESTDIR="${D}" install
 }
 
 pkg_postinst() {
