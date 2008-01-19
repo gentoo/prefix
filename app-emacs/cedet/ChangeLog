@@ -1,6 +1,16 @@
 # ChangeLog for app-emacs/cedet
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/ChangeLog,v 1.36 2007/12/18 12:50:54 fmccor Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/ChangeLog,v 1.38 2008/01/18 22:00:01 opfer Exp $
+
+  18 Jan 2008; Christian Faulhammer <opfer@gentoo.org>
+  cedet-1.0_pre4-r2.ebuild:
+  build with -j1 as it will fail on systems with parallel processes
+
+  18 Jan 2008; Christian Faulhammer <opfer@gentoo.org>
+  -files/1.0_pre3-idle-gentoo.patch,
+  -files/1.0_pre3-sb-info-circular-dep-gentoo.patch,
+  -cedet-1.0_pre3-r2.ebuild:
+  clean up
 
   18 Dec 2007; Ferris McCormick <fmccor@gentoo.org>
   cedet-1.0_pre4-r2.ebuild:

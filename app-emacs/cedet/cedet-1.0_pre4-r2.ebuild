@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/cedet-1.0_pre4-r2.ebuild,v 1.5 2007/12/18 12:50:54 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/cedet-1.0_pre4-r2.ebuild,v 1.6 2008/01/18 22:00:01 opfer Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/cedet/${PN}-${MY_PV}.tar.gz"
 
 LICENSE="GPL-2 FDL-1.1"
 SLOT="0"
-KEYWORDS="~amd64 ~sparc-solaris ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris"
 IUSE=""
 
 DEPEND="!app-emacs/semantic
@@ -32,7 +32,7 @@ src_unpack() {
 }
 
 src_compile() {
-	emake EMACS="${EPREFIX}"/usr/bin/emacs || die "emake failed"
+	emake -j1 EMACS="${EPREFIX}"/usr/bin/emacs || die "emake failed"
 }
 
 src_install() {
