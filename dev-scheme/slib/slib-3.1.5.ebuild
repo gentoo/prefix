@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/slib-3.1.4-r4.ebuild,v 1.1 2007/09/07 15:18:06 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/slib-3.1.5.ebuild,v 1.1 2008/01/18 12:50:22 hkbst Exp $
 
 EAPI="prefix"
 
@@ -30,9 +30,9 @@ DEPEND="app-arch/unzip"
 INSTALL_DIR="/usr/share/slib/"
 
 src_unpack() {
-	unpack "${A}"; cd ${S}
+	unpack ${A}; cd "${S}"
 
-	epatch ${FILESDIR}/Makefile.patch
+#	cp Makefile Makefile.old
 
 	sed "s_prefix = /usr/local/_prefix = ${ED}/usr/_" -i Makefile
 	sed 's:libdir = $(exec_prefix)lib/:libdir = $(exec_prefix)share/:' -i Makefile
@@ -41,14 +41,9 @@ src_unpack() {
 
 	sed 's:echo SCHEME_LIBRARY_PATH=$(libslibdir)  >> $(bindir)slib:echo SCHEME_LIBRARY_PATH='"${EPREFIX}"'/usr/share/slib/ >> $(bindir)slib:' -i Makefile
 
-	sed 's_mkdir_mkdir -p_g' -i Makefile
+#	sed 's_mkdir_mkdir -p_g' -i Makefile
 
-#	for dir in mandir infodir srcdir htmldir; do
-#		sed "s_\$(${dir})_\$(${dir})/_g" -i Makefile
-#	done
-
-#	einstall || die "install failed"
-#	emake infodir="${ED}/usr/share/info/" mandir="${ED}/usr/share/doc/${P}/" infoz || die "infoz failed"
+#	diff -u Makefile.old Makefile
 
 	sed 's:(lambda () "/usr/local/share/gambc/")):(lambda () "'"${EPREFIX}"'/usr/share/gambit")):' -i gambit.init
 }
@@ -79,9 +74,9 @@ _src_install() {
 more_install() {
 	dosym ${INSTALL_DIR} /usr/share/guile/slib # link from guile dir
 	dosym ${INSTALL_DIR} /usr/lib/slib
-	dodir /etc/env.d/ && echo "SCHEME_LIBRARY_PATH=\"${EPREFIX}${INSTALL_DIR}\"" > ${ED}/etc/env.d/50slib
+	dodir /etc/env.d/ && echo "SCHEME_LIBRARY_PATH=\"${EPREFIX}${INSTALL_DIR}\"" > "${ED}"/etc/env.d/50slib
 
-	mkdir ${S}/installers
+	mkdir "${S}"/installers
 	pushd installers; make_installers; popd
 	dosbin installers/*
 }
