@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.03.ebuild,v 1.5 2007/12/16 21:10:16 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.04.ebuild,v 1.1 2008/01/18 14:47:33 caster Exp $
 
 EAPI="prefix"
 
@@ -18,10 +18,7 @@ SOL_SPARCv9_AT="jdk-${MY_PV}-dlj-solaris-sparcv9.sh"
 
 DESCRIPTION="Sun's J2SE Development Kit, version ${PV}"
 HOMEPAGE="http://java.sun.com/javase/6/"
-# This release is probably under a different url because tmarble is on holiday
-#SRC_URI="x86? ( http://download.java.net/dlj/binaries/${X86_AT} )
-#		amd64? ( http://download.java.net/dlj/binaries/${AMD64_AT} )"
-URL_BASE="http://dlc.sun.com/dlj/binaries"
+URL_BASE="http://download.java.net/dlj/binaries"
 SRC_URI="x86? ( ${URL_BASE}/${X86_AT} )
 		amd64? ( ${URL_BASE}/${AMD64_AT} )
 		x86-solaris? ( ${URL_BASE}/${SOL_X86_AT} ${URL_BASE}/${SOL_AMD64_AT} )
@@ -37,16 +34,9 @@ QA_TEXTRELS_x86="opt/${P}/jre/lib/i386/motif21/libmawt.so
 	opt/${P}/jre/lib/i386/client/libjvm.so
 	opt/${P}/jre/lib/i386/server/libjvm.so"
 
-DEPEND="
-	doc? ( =dev-java/java-sdk-docs-1.6.0* )
-	jce? ( =dev-java/sun-jce-bin-1.6.0* )"
-
+DEPEND="jce? ( =dev-java/sun-jce-bin-1.6.0* )"
 RDEPEND="
-	${DEPEND}
-	x86? (
-		=virtual/libstdc++-3.3
-		net-libs/libnet
-	)
+	!prefix? ( x86? ( =virtual/libstdc++-3.3 ) )
 	kernel_linux? ( !prefix? ( sys-libs/glibc ) )
 	alsa? ( media-libs/alsa-lib )
 	X? (
