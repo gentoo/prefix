@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.2.0.ebuild,v 1.4 2008/01/16 20:52:48 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.2.1.ebuild,v 1.2 2008/01/18 23:08:15 alonbl Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SRC_URI="http://josefsson.org/gnutls/releases/${P}.tar.bz2"
 LICENSE="LGPL-2.1 GPL-3"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
-IUSE="zlib lzo doc nls guile"
+IUSE="zlib lzo doc nls guile bindist"
 
 RDEPEND="dev-libs/libgpg-error
 	>=dev-libs/libgcrypt-1.2.4
@@ -29,13 +29,22 @@ DEPEND="${RDEPEND}
 	doc? ( dev-util/gtk-doc )
 	nls? ( sys-devel/gettext )"
 
+pkg_setup() {
+	if use guile && ! built_with_use dev-scheme/guile networking; then
+		eerror "You are trying to compile ${PN} package with USE=\"guile\""
+		eerror "while dev-scheme/guile does not have USE=\"networking\""
+		die
+	fi
+	if use lzo && use bindist; then
+		eerror "lzo is not allowed in binary distribution of gnutls"
+		die
+	fi
+}
+
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	elibtoolize # for sane .so versioning on FreeBSD
-
-	epatch "${FILESDIR}/${P}-selflink.patch"
-	AT_M4DIR="m4 gl/m4 lgl/m4" eautoreconf
 }
 
 src_compile() {
