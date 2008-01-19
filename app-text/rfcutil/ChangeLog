@@ -1,0 +1,64 @@
+# ChangeLog for app-text/rfcutil
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/rfcutil/ChangeLog,v 1.23 2007/01/28 06:01:55 genone Exp $
+
+  28 Jan 2007; Marius Mauch <genone@gentoo.org> rfcutil-3.2.3.ebuild:
+  Replacing einfo with elog
+
+  26 Dec 2006; Daniel Black <dragonheart@gentoo.org> rfcutil-3.2.3.ebuild:
+  remove rfc -i that downloaded an index in pkg_postinst thanks to Evil
+  Compile Person in bug #151422
+
+  04 Dec 2006; Alexander H. Færøy <eroyf@gentoo.org> rfcutil-3.2.3.ebuild:
+  Stable on MIPS.
+
+  07 Oct 2005; Daniel Black <dragonheart@gentoo.org> rfcutil-3.2.3.ebuild:
+  Don't install INSTALL documentation
+
+  09 Sep 2005; Aron Griffis <agriffis@gentoo.org> rfcutil-3.2.3.ebuild:
+  Mark 3.2.3 stable on alpha
+
+  15 Mar 2005; Seemant Kulleen <seemant@gentoo.org> :
+  Dependency update: net-www/lynx -> www-client/lynx.
+
+  15 Mar 2005; Seemant Kulleen <seemant@gentoo.org> rfcutil-3.2.3.ebuild:
+  Dependency update: net-www/lynx -> www-client/lynx.
+
+  02 Jan 2005; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  12 Sep 2004; Bryan Østergaard <kloeri@gentoo.org> rfcutil-3.2.3.ebuild:
+  Add ~alpha keyword, bug 63727.
+
+  08 Sep 2004; Mamoru KOMACHI <usata@gentoo.org> rfcutil-3.2.3.ebuild:
+  net-www/w3m -> virtual/w3m
+
+  07 Sep 2004; Tom Gall <tgall@gentoo.org> rfcutil-3.2.3.ebuild:
+  stable on ppc64, bug #63055
+
+  11 Aug 2004; Hasan Khalil <gongloo@gentoo.org> rfcutil-3.2.3.ebuild:
+  Stable on macos.
+
+  28 Jun 2004; Ciaran McCreesh <ciaranm@gentoo.org> rfcutil-3.2.3.ebuild:
+  Added ~mips
+
+  06 Jun 2004; Daniel Black <dragonheart@gentoo.org> rfcutil-3.2.3.ebuild:
+  QA fix - IUSE added
+
+  28 Mar 2004; Marius Mauch <genone@gentoo.org> rfcutil-3.2.3.ebuild:
+  fixed unneccessary browser dependencies.
+
+  24 Mar 2004; Daniel Black <dragonheart@gentoo.org> rfcutil-3.2.3.ebuild,
+  files/rfc-3.2.3.diff, files/rfc-3.2.3.gaarde:
+  QA fix of bug #45358. Cleaned ebuild up too
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*rfcutil-3.2.3 (28 Jul 2002)
+
+  15 Feb 2003; Mark Guertin <gerk@gentoo.org> rfcutil-3.2.3.ebuild :
+  set ppc in keywords
+
+  28 Jul 2002; Daniel Ahlberg <aliz@gentoo.org> rfcutil-3.2.3.ebuild : 
+
+  Initial import. Ebuild submitted by Paul Belt <gaarde@yahoo.com>.  
