@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.1.4.ebuild,v 1.1 2008/01/17 21:26:13 steev Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.1.4.ebuild,v 1.2 2008/01/18 21:48:35 steev Exp $
 
 EAPI="prefix"
 
@@ -70,7 +70,7 @@ src_test() {
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die "make install failed"
+	emake DESTDIR="${D}" install || die "make install failed"
 
 	# initscript
 	newinitd "${FILESDIR}"/dbus.init-1.0 dbus
@@ -114,5 +114,9 @@ pkg_postinst() {
 	ewarn
 	ewarn "You MUST run 'revdep-rebuild' after emerging this package"
 	elog  "If you notice any issues, please rebuild sys-apps/hal"
+	ewarn
+	ewarn "If you are currently running X with the hal useflag enabled"
+	ewarn "restarting the dbus service WILL restart X as well"
+	ebeep 5
 	ewarn
 }
