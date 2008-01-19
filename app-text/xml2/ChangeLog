@@ -1,0 +1,26 @@
+# ChangeLog for app-text/xml2
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/xml2/ChangeLog,v 1.6 2007/03/13 00:27:24 leonardop Exp $
+
+  13 Mar 2007; Leonardo Boshell <leonardop@gentoo.org> metadata.xml:
+  Replacing text-markup herd with the new sgml herd.
+
+  21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  30 Apr 2006; Fabian Groffen <grobian@gentoo.org> xml2-0.3-r1.ebuild:
+  Marked ~ppc-macos (bug #109442)
+
+*xml2-0.3-r1 (09 Apr 2006)
+
+  09 Apr 2006; Leonardo Boshell <leonardop@gentoo.org> -xml2-0.3.ebuild,
+  +xml2-0.3-r1.ebuild:
+  Dropped 'xml2' USE flag (bug #116346). Use libxml2 by default.
+
+*xml2-0.3 (07 Nov 2004)
+
+  07 Nov 2004; Mamoru KOMACHI <usata@gentoo.org> +metadata.xml,
+  +files/xml2-0.3-libxml2.patch, +xml2-0.3.ebuild:
+  Initial import. Ebuild submitted by James Rowe <jnrowe@ukfsn.org>;
+  bug #64494.
+
