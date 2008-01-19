@@ -1,16 +1,16 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.11.7.ebuild,v 1.13 2007/12/17 23:09:49 redhatter Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/Attic/nss-3.12_beta1.ebuild,v 1.1 2008/01/18 21:42:42 armin76 Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic multilib
 
-NSPR_VER="4.6.7"
+NSPR_VER="4.7.0_pre20080113"
 RTM_NAME="NSS_${PV//./_}_RTM"
 DESCRIPTION="Mozilla's Network Security Services library that implements PKI support"
 HOMEPAGE="http://www.mozilla.org/projects/security/pki/nss/"
-SRC_URI="ftp://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/${RTM_NAME}/src/${P}.tar.gz"
+SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="MPL-1.1 GPL-2 LGPL-2.1"
 SLOT="0"
@@ -18,6 +18,8 @@ KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 IUSE="utils"
 
 DEPEND=">=dev-libs/nspr-${NSPR_VER}"
+
+S="${WORKDIR}"
 
 src_unpack() {
 	unpack ${A}
@@ -55,7 +57,7 @@ src_compile() {
 }
 
 src_install () {
-	MINOR_VERSION=11
+	MINOR_VERSION=12
 	cd "${S}"/mozilla/security/dist
 
 	# put all *.a files in /usr/lib/nss (because some have conflicting names
@@ -82,8 +84,8 @@ src_install () {
 
 	dodir /usr/bin
 	dodir /usr/$(get_libdir)/pkgconfig
-	cp "${FILESDIR}"/nss-config.in "${ED}"/usr/bin/nss-config
-	cp "${FILESDIR}"/nss.pc.in "${ED}"/usr/$(get_libdir)/pkgconfig/nss.pc
+	cp "${FILESDIR}"/3.12-nss-config.in "${ED}"/usr/bin/nss-config
+	cp "${FILESDIR}"/3.12-nss.pc.in "${ED}"/usr/$(get_libdir)/pkgconfig/nss.pc
 	NSS_VMAJOR=`cat ${S}/mozilla/security/nss/lib/nss/nss.h | grep "#define.*NSS_VMAJOR" | awk '{print $3}'`
 	NSS_VMINOR=`cat ${S}/mozilla/security/nss/lib/nss/nss.h | grep "#define.*NSS_VMINOR" | awk '{print $3}'`
 	NSS_VPATCH=`cat ${S}/mozilla/security/nss/lib/nss/nss.h | grep "#define.*NSS_VPATCH" | awk '{print $3}'`
