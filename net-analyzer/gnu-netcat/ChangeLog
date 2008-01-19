@@ -1,6 +1,9 @@
 # ChangeLog for net-analyzer/gnu-netcat
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/gnu-netcat/ChangeLog,v 1.15 2007/07/09 15:01:59 armin76 Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/gnu-netcat/ChangeLog,v 1.16 2008/01/18 18:25:19 armin76 Exp $
+
+  18 Jan 2008; Raúl Porcel <armin76@gentoo.org> gnu-netcat-0.7.1-r1.ebuild:
+  sparc stable
 
   09 Jul 2007; Raúl Porcel <armin76@gentoo.org> gnu-netcat-0.7.1-r1.ebuild:
   alpha/x86 stable
