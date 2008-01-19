@@ -1,0 +1,41 @@
+# ChangeLog for app-text/cwtext
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/cwtext/ChangeLog,v 1.13 2007/12/25 16:59:29 phreak Exp $
+
+  25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing usata from metadata.xml as per #22931. Assigning to maintainer-needed.
+
+  12 Mar 2007; Alexandre Buisse <nattfodd@gentoo.org> metadata.xml:
+  Replaced text-markup by tex as maintaining herd (text-markup split).
+
+  18 Dec 2006; Alexander H. Færøy <eroyf@gentoo.org> cwtext-0.94.ebuild:
+  Stable on MIPS.
+
+  07 Aug 2006; Patrick McLean <chutzpah@gentoo.org> cwtext-0.94.ebuild:
+  Stable on amd64 (bug #142807)
+
+  15 Oct 2005; Fabian Groffen <grobian@gentoo.org> cwtext-0.94.ebuild:
+  Marked ~ppc-macos (bug #108595)
+
+  05 Jun 2005; Michael Hanselmann <hansmi@gentoo.org> cwtext-0.94.ebuild:
+  Stable on ppc.
+
+  21 May 2005; Simon Stelling <blubb@gentoo.org> cwtext-0.94.ebuild:
+  added ~amd64 keyword
+
+  16 May 2005; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  cwtext-0.94.ebuild:
+  add ~ppc
+
+  28 Jun 2004; Ciaran McCreesh <ciaranm@gentoo.org> cwtext-0.94.ebuild:
+  Added ~sparc, ~mips
+
+  26 Apr 2004; Mamoru KOMACHI <usata@gentoo.org> cwtext-0.94.ebuild:
+  Stable on x86
+
+*cwtext-0.94 (22 Feb 2004)
+
+  22 Feb 2004; Mamoru KOMACHI <usata@gentoo.org> cwtext-0.94.ebuild:
+  Initial import. Ebuild submitted by Robert Cernansky
+  <openhs@users.sourceforge.net>, closing bug #30594
+
