@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/adiff/adiff-1.2.ebuild,v 1.3 2008/01/19 14:44:13 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/adiff/adiff-1.4.ebuild,v 1.1 2008/01/19 14:44:13 grobian Exp $
 
 EAPI="prefix"
 
@@ -27,7 +27,7 @@ src_unpack() {
 
 src_compile() {
 	pod2man --release=${PV} --center="${HOMEPAGE}" \
-		--date="2005-08-15" "${DISTDIR}"/${P} ${PN}.1 || die
+		--date="2007-12-11" "${DISTDIR}"/${P} ${PN}.1 || die
 }
 
 src_install() {
