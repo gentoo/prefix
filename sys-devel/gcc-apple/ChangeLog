@@ -2,6 +2,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Jan 2008; Elias Pipping <pipping@gentoo.org>
+  files/gcc-apple-4.2.1-texinfo.patch, gcc-apple-4.2.1_p5531.ebuild,
+  gcc-apple-4.2.1_p5531.ebuild:
+  enable manpages while not breaking libgomp
+
 *gcc-apple-4.0.1_p5465-r1 (12 Jan 2008)
 
   12 Jan 2008; Fabian Groffen <grobian@gentoo.org>

@@ -1,4 +1,4 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -75,8 +75,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-${GCC_VERS}-inline-asm.patch
 
 	epatch "${FILESDIR}"/${PN}-${GCC_VERS}-texinfo.patch
-	eautoreconf
-	cd gcc && AT_M4DIR="../config" eautoreconf
+	cd "${S}"/gcc && eautoconf
+	cd "${S}"/libgomp && eautoconf
 
 	cd "${WORKDIR}"/libstdcxx-${LIBSTDCXX_APPLE_VERSION}/libstdcxx
 	epatch "${FILESDIR}"/libstdc++-${LIBSTDCXX_APPLE_VERSION}.patch
@@ -197,7 +197,7 @@ src_install() {
 	emake -j1 DESTDIR="${D}" install || die
 
 	cd "${WORKDIR}"/build_libstdcxx
-	emake DESTDIR="${D}" install || die
+	emake -j1 DESTDIR="${D}" install || die
 	cd "${WORKDIR}"/build
 
 	use build && rm -rf "${ED}"/usr/{man,share}
