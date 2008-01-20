@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/twolame/twolame-0.3.12.ebuild,v 1.1 2008/01/17 09:20:00 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/twolame/twolame-0.3.12.ebuild,v 1.2 2008/01/19 13:13:19 drac Exp $
 
 EAPI="prefix"
 
@@ -20,6 +20,7 @@ DEPEND=">=media-libs/libsndfile-1"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	sed -i -e 's:-O3::' configure
 	# Needed for FreeBSD to get a sane .so versioning.
 	elibtoolize
 }
