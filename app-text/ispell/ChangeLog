@@ -1,6 +1,9 @@
 # ChangeLog for app-text/ispell
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ispell/ChangeLog,v 1.34 2007/12/24 18:53:17 jer Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/ispell/ChangeLog,v 1.35 2008/01/19 14:58:15 grobian Exp $
+
+  19 Jan 2008; Fabian Groffen <grobian@gentoo.org> ispell-3.2.06-r6.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   22 Nov 2007; Wulf C. Krueger <philantrop@gentoo.org> ispell-3.3.02.ebuild:
   Set -j1 to avoid parallel make issues and added a die message. Fixes bug
