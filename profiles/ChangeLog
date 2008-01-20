@@ -1,6 +1,35 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1013 2008/01/18 02:56:27 tgurr Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1022 2008/01/19 17:15:58 betelgeuse Exp $
+
+  19 Jan 2008; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  package.mask dev-java/jsx
+
+  19 Jan 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  unmask ocaml 3.10.1 now that I've properly tested it
+
+  19 Jan 2008; Christoph Mende <angelos@gentoo.org> use.local.desc:
+  Add twisted USE flag for dev-python/zsi
+
+  19 Jan 2008; Stefan Schweizer <genstef@gentoo.org> package.mask:
+  mask list for removal
+
+  18 Jan 2008; Ingmar Vanhassel <ingmar@gentoo.org> use.local.desc:
+  Remove unused local USE descriptions for KDE 4.0.
+
+  18 Jan 2008; Ingmar Vanhassel <ingmar@gentoo.org> use.local.desc:
+  Remove duplicate local USE flag descriptions. Thanks to maekke.
+
+  18 Jan 2008; Tony Vroon <chainsaw@gentoo.org> package.mask:
+  Remove mask entries for net-irc/audacious-show and
+  media-plugins/audacious-docklet as the ebuild directories have been axed
+  now.
+
+  18 Jan 2008; Aggelos Orfanakos <agorf@gentoo.org> use.local.desc:
+  Added builder, exif, highlight local USE flags for app-text/webgen.
+
+  18 Jan 2008; Aggelos Orfanakos <agorf@gentoo.org> use.local.desc:
+  Added mongrel local USE flag for dev-ruby/camping.
 
   18 Jan 2008; Timo Gurr <tgurr@gentoo.org> package.mask:
   Extend acroread mask to also mask revbumps.

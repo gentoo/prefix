@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8146 2008/01/18 02:56:27 tgurr Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8151 2008/01/19 17:15:58 betelgeuse Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -20,6 +20,17 @@
 ##
 ##   End example
 ##
+
+# Petteri Räty <betelgeuse@gentoo.org> (19 Jan 2008)
+# Commercial application for which the devs don't have
+# licenses. Lagging behind in versions. If you want to
+# see this maintained contact java@gentoo.org for paying
+# us a license. Otherwise in junkyard after 30 days.
+dev-java/jsx
+
+# Stefan Schweizer <genstef@gentoo.org> (19 Jan 2008)
+# Project abandoned. Masked for removal, bug 206105
+sys-apps/list
 
 # Ulrich Mueller <ulm@gentoo.org> (16 Jan 2008)
 # Unclear licence. Masked for removal in 30 days.
@@ -506,11 +517,6 @@ www-servers/jboss
 ~app-editors/emacs-cvs-23.0.60
 >=virtual/emacs-23
 
-# Alexis Ballier <aballier@gentoo.org> (20 Dec 2007)
-# Release candidate, some packages fail to build with it
-# Only here for testing
->=dev-lang/ocaml-3.10.1_rc1
-
 # Marijn Schouten <hkBst@gentoo.org> (20 Dec 2007)
 # Broken, bug 202880
 >=dev-scheme/gambit-4.1.1
@@ -595,6 +601,7 @@ app-admin/grubconf
 # P.mask snapshots
 =dev-libs/nspr-4.7.0_pre*
 =dev-libs/nss-3.12_alpha*
+=dev-libs/nss-3.12_beta*
 
 # Olivier Crete <tester@gentoo.org> (08 Dec 2007)
 # Remove gaim and its plugins (now its called pidgin)
@@ -670,11 +677,6 @@ x11-themes/gaim-smileys
 >=gnome-base/gnome-mount-0.7
 >=gnome-extra/policykit-gnome-0.6
 
-# Tony Vroon <chainsaw@gentoo.org> (22 Nov 2007)
-# Upstream actively prevents automated downloads, consider using xchat-xsys instead.
-# Scheduled for removal.
-net-irc/audacious-show
-
 # Raúl Porcel <armin76@gentoo.org> (22 Nov 2007)
 # Needs a lot of testing
 =www-client/mozilla-firefox-bin-3.0_beta*
@@ -687,11 +689,6 @@ net-irc/audacious-show
 # Experimental cairo snapshot for Firefox-3 usage
 # known to mess with poppler and PDF rendering
 >=x11-libs/cairo-1.5.2
-
-# Tony Vroon <chainsaw@gentoo.org> (21 Nov 2007)
-# Unmaintained upstream, use the bundled status-icon plugin in Audacious 1.3 and higher.
-# Scheduled for removal.
-media-plugins/audacious-docklet
 
 # Olivier Crete <tester@gentoo.org> (20 Nov 2007)
 # There is now a better version include in gnome-base/gnome-keyring
