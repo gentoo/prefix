@@ -1,6 +1,9 @@
 # ChangeLog for app-text/rfcutil
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/rfcutil/ChangeLog,v 1.23 2007/01/28 06:01:55 genone Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/rfcutil/ChangeLog,v 1.24 2008/01/19 15:07:00 grobian Exp $
+
+  19 Jan 2008; Fabian Groffen <grobian@gentoo.org> rfcutil-3.2.3.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   28 Jan 2007; Marius Mauch <genone@gentoo.org> rfcutil-3.2.3.ebuild:
   Replacing einfo with elog
