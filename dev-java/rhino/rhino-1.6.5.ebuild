@@ -16,7 +16,7 @@ HOMEPAGE="http://www.mozilla.org/rhino/"
 # dual license for rhino and BSD-2 for the swing-ex from Sun's tutorial
 LICENSE="|| ( MPL-1.1 GPL-2 ) BSD-2"
 SLOT="1.6"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 S="${WORKDIR}/${MY_P}"
