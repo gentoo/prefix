@@ -1,6 +1,10 @@
 # ChangeLog for app-text/docbook-dsssl-stylesheets
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-dsssl-stylesheets/ChangeLog,v 1.38 2007/09/08 15:40:57 jer Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-dsssl-stylesheets/ChangeLog,v 1.39 2008/01/19 14:49:45 grobian Exp $
+
+  19 Jan 2008; Fabian Groffen <grobian@gentoo.org>
+  docbook-dsssl-stylesheets-1.79.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   08 Sep 2007; <jeroen@gentoo.org> docbook-dsssl-stylesheets-1.77-r2.ebuild,
   docbook-dsssl-stylesheets-1.79.ebuild:
