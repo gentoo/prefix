@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/dom4j
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/dom4j/ChangeLog,v 1.42 2008/01/05 22:06:14 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/dom4j/ChangeLog,v 1.43 2008/01/19 07:43:53 ali_bush Exp $
+
+  19 Jan 2008; Alistair Bush <ali_bush@gentoo.org> dom4j-1.6.1-r2.ebuild:
+  Move IUSE to JAVA_PKG_IUSE to allow java eclasses to handle missing
+  dependencies.
 
   05 Jan 2008; Petteri Räty <betelgeuse@gentoo.org> metadata.xml,
   dom4j-1.6.1-r2.ebuild:
