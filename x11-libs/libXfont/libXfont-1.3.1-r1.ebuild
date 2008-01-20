@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfont/libXfont-1.3.1-r1.ebuild,v 1.6 2008/01/18 20:18:56 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfont/libXfont-1.3.1-r1.ebuild,v 1.7 2008/01/19 06:16:52 jer Exp $
 
 EAPI="prefix"
 
