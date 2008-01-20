@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xhtml1/xhtml1-20020801-r4.ebuild,v 1.2 2007/07/12 04:37:47 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xhtml1/xhtml1-20020801-r4.ebuild,v 1.4 2008/01/19 15:16:46 grobian Exp $
 
 EAPI="prefix"
 
@@ -33,10 +33,10 @@ xml_catalog_setup() {
 }
 
 src_unpack() {
-	unpack "${A}"
-	cd ${S}/DTD
+	unpack ${A}
+	cd "${S}"/DTD
 
-	epatch ${FILESDIR}/${PN}-catalog.patch
+	epatch "${FILESDIR}"/${PN}-catalog.patch
 }
 
 src_install() {
