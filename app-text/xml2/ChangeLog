@@ -1,6 +1,9 @@
 # ChangeLog for app-text/xml2
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xml2/ChangeLog,v 1.6 2007/03/13 00:27:24 leonardop Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/xml2/ChangeLog,v 1.7 2008/01/19 15:12:46 grobian Exp $
+
+  19 Jan 2008; Fabian Groffen <grobian@gentoo.org> xml2-0.3-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   13 Mar 2007; Leonardo Boshell <leonardop@gentoo.org> metadata.xml:
   Replacing text-markup herd with the new sgml herd.
