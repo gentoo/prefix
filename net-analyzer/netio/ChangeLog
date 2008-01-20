@@ -1,6 +1,9 @@
 # ChangeLog for net-analyzer/netio
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/netio/ChangeLog,v 1.17 2008/01/16 20:21:29 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/netio/ChangeLog,v 1.18 2008/01/19 12:57:04 armin76 Exp $
+
+  19 Jan 2008; Raúl Porcel <armin76@gentoo.org> -netio-1.23.ebuild:
+  old
 
   16 Jan 2008; Fabian Groffen <grobian@gentoo.org> netio-1.23.ebuild,
   netio-1.26.ebuild:
