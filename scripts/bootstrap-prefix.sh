@@ -188,31 +188,31 @@ bootstrap_setup() {
 
 bootstrap_tree() {
 	case ${CHOST} in
-		powerpc-ibm-aix*)            PV="20080119" ;;
-		i*86-apple-darwin8)          PV="20080119" ;;
-		i*86-apple-darwin9)          PV="20080119" ;;
-		powerpc-apple-darwin7)       PV="20080119" ;;
-		powerpc-apple-darwin8)       PV="20080119" ;;
-		powerpc-apple-darwin9)       PV="20080119" ;;
-		powerpc64-apple-darwin8)     PV="20080119" ;;
-		x86_64-apple-darwin9)        PV="20080119" ;;
-		i386-pc-freebsd*)            PV="20080119" ;;
-		hppa*-hp-hpux11*)            PV="20080119" ;;
-		ia64-hp-hpux11*)             PV="20080119" ;;
-		i586-pc-interix*)            PV="20080119" ;;
-		mips-sgi-irix*)              PV="20080119" ;;
-		i*86-pc-linux-gnu)           PV="20080119" ;;
-		ia64-pc-linux-gnu)           PV="20080119" ;;
-		x86_64-pc-linux-gnu)         PV="20080119" ;;
-		powerpc-unknown-openbsd*)    PV="20080119" ;;
-		i386-pc-solaris2.10)         PV="20080119" ;;
-		sparc-sun-solaris2.10)       PV="20080119" ;;
-		sparc-sun-solaris2.9)        PV="20080119" ;;
-		sparcv9-sun-solaris2.10)     PV="20080119" ;;
-		x86_64-pc-solaris2.10)       PV="20080119" ;;
+		powerpc-ibm-aix*)            PV="20080120" ;;
+		i*86-apple-darwin8)          PV="20080120" ;;
+		i*86-apple-darwin9)          PV="20080120" ;;
+		powerpc-apple-darwin7)       PV="20080120" ;;
+		powerpc-apple-darwin8)       PV="20080120" ;;
+		powerpc-apple-darwin9)       PV="20080120" ;;
+		powerpc64-apple-darwin8)     PV="20080120" ;;
+		x86_64-apple-darwin9)        PV="20080120" ;;
+		i386-pc-freebsd*)            PV="20080120" ;;
+		hppa*-hp-hpux11*)            PV="20080120" ;;
+		ia64-hp-hpux11*)             PV="20080120" ;;
+		i586-pc-interix*)            PV="20080120" ;;
+		mips-sgi-irix*)              PV="20080120" ;;
+		i*86-pc-linux-gnu)           PV="20080120" ;;
+		ia64-pc-linux-gnu)           PV="20080120" ;;
+		x86_64-pc-linux-gnu)         PV="20080120" ;;
+		powerpc-unknown-openbsd*)    PV="20080120" ;;
+		i386-pc-solaris2.10)         PV="20080120" ;;
+		sparc-sun-solaris2.10)       PV="20080120" ;;
+		sparc-sun-solaris2.9)        PV="20080120" ;;
+		sparcv9-sun-solaris2.10)     PV="20080120" ;;
+		x86_64-pc-solaris2.10)       PV="20080120" ;;
 		*)
 			einfo "warning: no specific tree snapshot known for your system"
-			PV="20080119"
+			PV="20080120"
 		;;
 	esac
 	for x in etc usr/{,s}bin var/tmp var/lib/portage var/log/portage var/db;
