@@ -1,0 +1,35 @@
+# ChangeLog for app-text/convertlit
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/convertlit/ChangeLog,v 1.9 2007/12/25 16:57:30 phreak Exp $
+
+  25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing usata from metadata.xml as per #22931. Assigning to maintainer-needed.
+
+*convertlit-1.8-r1 (17 Jun 2006)
+
+  17 Jun 2006; Mamoru KOMACHI <usata@gentoo.org>
+  +files/convertlit-1.8-respectflags.patch, +convertlit-1.8-r1.ebuild:
+  Respect LDFLAGS and link dynamically to libtommath. Thanks to flameeyes for
+  patches. This closes bug #126851.
+
+  11 Oct 2005; Fabian Groffen <grobian@gentoo.org> convertlit-1.8.ebuild:
+  Marked ~ppc-macos (bug #108462)
+
+  21 Apr 2005; Simon Stelling <blubb@gentoo.org> convertlit-1.8.ebuild:
+  stable on amd64
+
+  03 Nov 2004; Mamoru KOMACHI <usata@gentoo.org> convertlit-1.8.ebuild:
+  Added app-arch/unzip to DEPEND; bug #69831.
+
+  05 Sep 2004; Malcolm Lashley <malc@gentoo.org> convertlit-1.8.ebuild:
+  Add ~amd64 closes bug #62735
+
+  05 Sep 2004; David Holm <dholm@gentoo.org> convertlit-1.8.ebuild:
+  Added to ~ppc.
+
+*convertlit-1.8 (02 Sep 2004)
+
+  02 Sep 2004; Mamoru KOMACHI <usata@gentoo.org> +convertlit-1.8.ebuild:
+  Initial import. Thanks to Thomas R. (TRauMa)
+  <gentoo-bugs@digital-trauma.de>, closing bug #25432.
+
