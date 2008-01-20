@@ -2,6 +2,14 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*portage-2.2.00.9214 (20 Jan 2008)
+
+  20 Jan 2008; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.9154.ebuild, -portage-2.2.00.9205.ebuild,
+  +portage-2.2.00.9214.ebuild:
+  Add new snapshot with improved Portage error messages, remove old snapshots
+  that don't force svn repo switches
+
 *portage-2.2.00.9208 (19 Jan 2008)
 
   19 Jan 2008; Fabian Groffen <grobian@gentoo.org>
