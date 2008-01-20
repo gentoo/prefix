@@ -1,0 +1,36 @@
+# ChangeLog for app-text/c2ps
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/c2ps/ChangeLog,v 1.13 2007/02/09 00:59:42 flameeyes Exp $
+
+  09 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
+
+  06 Jan 2006; Simon Stelling <blubb@gentoo.org> c2ps-4.0.ebuild:
+  stable on amd64
+
+  11 Oct 2005; Fabian Groffen <grobian@gentoo.org> c2ps-4.0.ebuild:
+  Marked ~ppc-macos (bug #108591)
+
+  10 Aug 2005; Simon Stelling <blubb@gentoo.org> c2ps-4.0.ebuild:
+  added ~amd64 keyword
+
+  05 Jun 2005; Michael Hanselmann <hansmi@gentoo.org> c2ps-4.0.ebuild:
+  Stable on ppc.
+
+  13 May 2005; Stephanie Lockwood-Childs <wormo@gentoo.org> c2ps-4.0.ebuild:
+  Add ~ppc
+
+  28 Jun 2004; Ciaran McCreesh <ciaranm@gentoo.org> c2ps-4.0.ebuild:
+  Added ~sparc, ~mips
+
+  07 May 2004; Heinrich Wendel <lanius@gentoo.org> c2ps-4.0.ebuild:
+  add missing IUSE=""
+
+  29 Jul 2003; lanius@gentoo.org c2ps-4.0.ebuild:
+  stable bump
+
+*c2ps-4.0 (15 Jul 2003)
+
+  15 Jul 2003; Heinrich Wendel <lanius@gentoo.org>, c2ps-4.0.ebuild :
+  initial release, thx to Ryan Graham <ryan@rsgraham.net> (bug #22065)
+
