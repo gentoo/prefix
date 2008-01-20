@@ -1,10 +1,11 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.6-r6.ebuild,v 1.2 2007/12/19 21:13:50 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.8.ebuild,v 1.1 2008/01/19 10:56:36 hollow Exp $
 
 EAPI="prefix"
 
-GENTOO_PATCHSTAMP="20071215"
+# latest gentoo apache files
+GENTOO_PATCHSTAMP="20080119"
 GENTOO_DEVELOPER="hollow"
 
 # IUSE/USE_EXPAND magic
@@ -61,7 +62,7 @@ MODULE_DEFINES="
 	proxy_ftp:PROXY
 	proxy_http:PROXY
 	ssl:SSL
-	status:INFO
+	status:STATUS
 	suexec:SUEXEC
 	userdir:USERDIR
 "
@@ -95,7 +96,7 @@ src_unpack() {
 	cd "${S}"
 
 	pushd "${GENTOO_PATCHDIR}"
-		epatch "${FILESDIR}"/${P}-prefix.patch
+		epatch "${FILESDIR}"/${PN}-2.2.6-prefix.patch
 		eprefixify \
 			conf/httpd.conf \
 			scripts/gentestcrt.sh \

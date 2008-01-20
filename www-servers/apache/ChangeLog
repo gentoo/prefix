@@ -1,6 +1,13 @@
 # ChangeLog for www-servers/apache
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.53 2008/01/12 18:46:18 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.54 2008/01/19 10:56:36 hollow Exp $
+
+*apache-2.2.8 (19 Jan 2008)
+
+  19 Jan 2008; Benedikt Böhm <hollow@gentoo.org>
+  -files/apache-2.2.6_CVE-2007-5000.patch, -apache-2.2.6-r5.ebuild,
+  -apache-2.2.6-r6.ebuild, +apache-2.2.8.ebuild:
+  version bump; cleanup
 
   12 Jan 2008; Benedikt Böhm <hollow@gentoo.org> apache-2.2.6-r7.ebuild:
   fix define for mod_status
