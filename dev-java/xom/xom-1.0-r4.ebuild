@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xom/xom-1.0-r4.ebuild,v 1.6 2008/01/10 22:39:35 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xom/xom-1.0-r4.ebuild,v 1.7 2008/01/19 16:55:48 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,7 @@ IUSE=""
 COMMON_DEPEND=">=dev-java/xerces-2.7
 		dev-java/xalan
 		=dev-java/junit-3.8*
-		=dev-java/icu4j-3.0*
+		dev-java/icu4j
 		examples? ( =dev-java/servletapi-2.4* )
 		dev-java/tagsoup"
 RDEPEND=">=virtual/jre-1.4
