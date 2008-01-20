@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/recode/recode-3.6-r2.ebuild,v 1.20 2007/03/20 13:42:55 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/recode/recode-3.6-r2.ebuild,v 1.21 2008/01/19 15:00:07 grobian Exp $
 
 EAPI="prefix"
 
@@ -27,7 +27,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-ppc-macos.diff
 	cp lib/error.c lib/xstrdup.c src/ || die "file copy failed"
 
-	use ppc-macos && append-ldflags -lgettextlib
 	elibtoolize
 }
 
