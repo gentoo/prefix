@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.6 2008/01/16 10:47:45 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.7 2008/01/19 10:59:08 hollow Exp $
 
 # @ECLASS: apache-2
 # @MAINTAINER: apache-devs@gentoo.org
@@ -35,7 +35,7 @@ GENTOO_PATCHDIR="${WORKDIR}/${GENTOO_PATCHNAME}"
 # @ECLASS-VARIABLE: GENTOO_PATCHSTAMP
 # @DESCRIPTION:
 # This variable needs to be set in the ebuild and contains the date the patch
-# tarball was created at in YYMMDD format
+# tarball was created at in YYYYMMDD format
 
 SRC_URI="mirror://apache/httpd/httpd-${PV}.tar.bz2
 	http://dev.gentoo.org/~${GENTOO_DEVELOPER}/dist/apache/${GENTOO_PATCHNAME}-${GENTOO_PATCHSTAMP}.tar.bz2"
@@ -72,7 +72,7 @@ DEPEND="dev-lang/perl
 	dev-libs/libpcre
 	ldap? ( =net-nds/openldap-2* )
 	selinux? ( sec-policy/selinux-apache )
-	ssl? ( dev-libs/openssl )
+	ssl? ( >=dev-libs/openssl-0.9.8f )
 	!=www-servers/apache-1*"
 RDEPEND="${DEPEND}"
 PDEPEND="~app-admin/apache-tools-${PV}"
@@ -84,7 +84,7 @@ S="${WORKDIR}/httpd-${PV}"
 # ==============================================================================
 
 # @ECLASS-VARIABLE: MY_MPM
-# DESCRIPTION:
+# @DESCRIPTION:
 # This internal variable contains the selected MPM after a call to setup_mpm()
 
 # @FUNCTION: setup_mpm
@@ -179,7 +179,7 @@ check_module_depends() {
 
 	for m in ${MY_MODS} ; do
 		for dep in ${MODULE_DEPENDS} ; do
-			if [[ "${m}" == "${dep%:*}" ]]; then
+			if [[ "${m}" == "${dep%:*}" ]] ; then
 				if ! use apache2_modules_${dep#*:} ; then
 					eerror "Module '${m}' depends on '${dep#*:}'"
 					err=1
@@ -449,7 +449,7 @@ apache-2_src_compile() {
 
 # @FUNCTION: apache-2_src_install
 # @DESCRIPTION:
-# This function runs emake install and generates, install and adapts the gentoo
+# This function runs emake install and generates, installs and adapts the gentoo
 # specific configuration files found in the tarball
 apache-2_src_install() {
 	make DESTDIR="${D}" install || die "make install failed"
