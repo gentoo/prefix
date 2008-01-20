@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/tagsoup/tagsoup-1.1.ebuild,v 1.7 2007/08/13 12:28:11 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/tagsoup/tagsoup-1.2.ebuild,v 1.1 2008/01/19 17:06:23 betelgeuse Exp $
 
 EAPI="prefix"
 
@@ -13,12 +13,11 @@ DESCRIPTION="A SAX-compliant parser written in Java."
 
 HOMEPAGE="http://mercury.ccil.org/~cowan/XML/tagsoup/"
 SRC_URI="http://mercury.ccil.org/~cowan/XML/tagsoup/${P}-src.zip"
-LICENSE="|| ( AFL-3.0 GPL-2 )"
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
-# Needs the xslt task so full ant here
 DEPEND=">=virtual/jdk-1.4
 	app-arch/unzip"
 RDEPEND=">=virtual/jre-1.4"
@@ -29,6 +28,9 @@ EANT_DOC_TARGET="docs-api"
 src_install() {
 	java-pkg_newjar dist/lib/${P}.jar ${PN}.jar
 	java-pkg_dolauncher ${PN} --jar ${PN}.jar
+
+	# Has Main-Class and no deps
+	java-pkg_dolauncher
 
 	doman ${PN}.1 || die
 	dodoc CHANGES README TODO || die
