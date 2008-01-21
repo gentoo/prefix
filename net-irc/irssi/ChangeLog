@@ -1,6 +1,11 @@
 # ChangeLog for net-irc/irssi
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/ChangeLog,v 1.130 2007/12/04 20:50:45 jer Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/ChangeLog,v 1.131 2008/01/20 23:09:38 swegener Exp $
+
+  20 Jan 2008; Sven Wegener <swegener@gentoo.org>
+  +files/irssi-0.8.12-svn-4627.patch, irssi-0.8.12.ebuild:
+  Include a patch from upstream to fix a rare segmentation fault, notification
+  by Phil Sutter via mail.
 
   04 Dec 2007; Jeroen Roovers <jer@gentoo.org> irssi-0.8.12.ebuild:
   Stable for HPPA too.
