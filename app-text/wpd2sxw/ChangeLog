@@ -1,6 +1,9 @@
 # ChangeLog for app-text/wpd2sxw
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/wpd2sxw/ChangeLog,v 1.16 2007/09/20 07:39:27 suka Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/wpd2sxw/ChangeLog,v 1.17 2008/01/20 16:22:10 grobian Exp $
+
+  20 Jan 2008; Fabian Groffen <grobian@gentoo.org> wpd2sxw-0.7.1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   20 Sep 2007; Andreas Proschofsky <suka@gentoo.org>
   -wpd2sxw-0.6.0-r1.ebuild:
