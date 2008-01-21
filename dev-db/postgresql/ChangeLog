@@ -1,6 +1,13 @@
 # ChangeLog for dev-db/postgresql
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/ChangeLog,v 1.372 2008/01/16 15:57:42 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/ChangeLog,v 1.373 2008/01/20 00:07:25 mjolnir Exp $
+
+  20 Jan 2008; Martin Jackson <mjolnir@gentoo.org>
+  -files/postgresql-7.3.19-cubeparse.patch,
+  -files/postgresql-7.4.17-hppa-testandset.patch,
+  -files/postgresql-8.0.13-sh.patch, -postgresql-7.3.19.ebuild,
+  -postgresql-7.4.17.ebuild, -postgresql-8.0.13.ebuild:
+  Remove vulnerable versions for #204760
 
   16 Jan 2008; Peter Weller <welp@gentoo.org> postgresql-7.4.19.ebuild:
   Stable on amd64; bug 204760
