@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.3.7.9.ebuild,v 1.3 2008/01/12 14:16:09 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.3.7.9.ebuild,v 1.4 2008/01/21 00:32:26 maekke Exp $
 
 EAPI="prefix"
 
@@ -60,6 +60,13 @@ pkg_setup() {
 		eerror "app-text/djvu has to be built with threads support."
 		die "build app-text/djvu with USE=\"threads\""
 	fi
+}
+
+src_unpack() {
+	unpack ${A}
+
+	# fix doc dir, bug 91911
+	epatch "${FILESDIR}"/${P}-doc.patch
 }
 
 src_compile() {
