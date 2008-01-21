@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.6 2007/12/02 22:47:10 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.7 2008/01/20 00:14:45 aballier Exp $
 
 #
 # Original Author: Alexis Ballier <aballier@gentoo.org>
@@ -114,14 +114,22 @@ texlive-module_src_install() {
 # installed texmf trees.
 
 texlive-module_pkg_postinst() {
-	if [ "$ROOT" = "/" ] ; then
+	if [ "$ROOT" = "/" ] && [ -x "${EPREFIX}"/usr/sbin/texmf-update ] ; then
 		"${EPREFIX}"/usr/sbin/texmf-update
+	else
+		ewarn "Cannot run texmf-update for some reason."
+		ewarn "Your texmf tree might be inconsistent with your configuration"
+		ewarn "Please try to figure what has happened"
 	fi
 }
 
 texlive-module_pkg_postrm() {
-	if [ "$ROOT" = "/" ] ; then
+	if [ "$ROOT" = "/" ] && [ -x "${EPREFIX}"/usr/sbin/texmf-update ] ; then
 		"${EPREFIX}"/usr/sbin/texmf-update
+	else
+		ewarn "Cannot run texmf-update for some reason."
+		ewarn "Your texmf tree might be inconsistent with your configuration"
+		ewarn "Please try to figure what has happened"
 	fi
 }
 
