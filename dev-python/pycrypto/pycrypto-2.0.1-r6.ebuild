@@ -12,7 +12,7 @@ SRC_URI="http://www.amk.ca/files/python/crypto/${P}.tar.gz"
 
 LICENSE="freedist"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~ia64-hpux ~x86-interix ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="bindist gmp test"
 
 RDEPEND="virtual/python
@@ -29,6 +29,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-gmp.patch
 	epatch "${FILESDIR}"/${P}-uint32.patch
 	epatch "${FILESDIR}"/${P}-sancho-package-rename.patch
+	epatch "${FILESDIR}"/${P}-caseimport.patch # for case insensitive filesystems
 }
 
 src_compile() {

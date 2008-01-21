@@ -1,0 +1,68 @@
+http://sourceforge.net/tracker/index.php?func=detail&aid=1849383&group_id=20937&atid=320937
+
+diff -ruN pycrypto-2.0.1.orig/Hash/MD5.py pycrypto-2.0.1/Hash/MD5.py
+--- pycrypto-2.0.1.orig/Hash/MD5.py	Thu Jul 11 16:31:19 2002
++++ pycrypto-2.0.1/Hash/MD5.py	Tue Dec 11 17:12:32 2007
+@@ -3,11 +3,14 @@
+ 
+ __revision__ = "$Id: MD5.py,v 1.4 2002/07/11 14:31:19 akuchling Exp $"
+ 
+-from md5 import *
++# cannot import 'md5' from within 'MD5.py',
++# because on case insensitive filesystems it will find myself.
++# thus need to do the actual 'import md5' from somewhere else.
++from extmd5 import *
+ 
+-import md5
+-if hasattr(md5, 'digestsize'):
++import extmd5
++if hasattr(extmd5, 'digestsize'):
+     digest_size = digestsize
+     del digestsize
+-del md5
++del extmd5
+ 
+diff -ruN pycrypto-2.0.1.orig/Hash/SHA.py pycrypto-2.0.1/Hash/SHA.py
+--- pycrypto-2.0.1.orig/Hash/SHA.py	Thu Jul 11 16:31:19 2002
++++ pycrypto-2.0.1/Hash/SHA.py	Tue Dec 11 17:12:23 2007
+@@ -3,9 +3,12 @@
+ 
+ __revision__ = "$Id: SHA.py,v 1.4 2002/07/11 14:31:19 akuchling Exp $"
+ 
+-from sha import *
+-import sha
+-if hasattr(sha, 'digestsize'):
++# cannot import 'sha' from within 'SHA.py',
++# because on case insensitive filesystems it will find myself.
++# thus need to do the actual 'import sha' from somewhere else.
++from extsha import *
++import extsha
++if hasattr(extsha, 'digestsize'):
+     digest_size = digestsize
+     del digestsize
+-del sha
++del extsha
+diff -ruN pycrypto-2.0.1.orig/Hash/extmd5/__init__.py pycrypto-2.0.1/Hash/extmd5/__init__.py
+--- pycrypto-2.0.1.orig/Hash/extmd5/__init__.py	Thu Jan  1 01:00:00 1970
++++ pycrypto-2.0.1/Hash/extmd5/__init__.py	Tue Dec 11 17:10:33 2007
+@@ -0,0 +1,2 @@
++# see ../MD5.py for why this is done
++from md5 import *
+diff -ruN pycrypto-2.0.1.orig/Hash/extsha/__init__.py pycrypto-2.0.1/Hash/extsha/__init__.py
+--- pycrypto-2.0.1.orig/Hash/extsha/__init__.py	Thu Jan  1 01:00:00 1970
++++ pycrypto-2.0.1/Hash/extsha/__init__.py	Tue Dec 11 17:11:48 2007
+@@ -0,0 +1,2 @@
++# see ../SHA.py for why this is done
++from sha import *
+diff -ruN pycrypto-2.0.1.orig/setup.py pycrypto-2.0.1/setup.py
+--- pycrypto-2.0.1.orig/setup.py	Tue Jun 14 03:20:22 2005
++++ pycrypto-2.0.1/setup.py	Tue Dec 11 17:14:42 2007
+@@ -134,7 +134,7 @@
+       'url':"http://www.amk.ca/python/code/crypto",
+ 
+       'cmdclass' : {'build_ext':PCTBuildExt},
+-      'packages' : ["Crypto", "Crypto.Hash", "Crypto.Cipher", "Crypto.Util",
++      'packages' : ["Crypto", "Crypto.Hash", "Crypto.Hash.extmd5", "Crypto.Hash.extsha", "Crypto.Cipher", "Crypto.Util",
+                   "Crypto.Protocol", "Crypto.PublicKey"],
+       'package_dir' : { "Crypto":"." },
+       # One module is defined here, because build_ext won't be
