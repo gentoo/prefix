@@ -1,6 +1,9 @@
 # ChangeLog for app-text/xlhtml
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xlhtml/ChangeLog,v 1.15 2007/05/14 20:13:35 bangert Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/xlhtml/ChangeLog,v 1.16 2008/01/20 16:14:56 grobian Exp $
+
+  20 Jan 2008; Fabian Groffen <grobian@gentoo.org> xlhtml-0.5.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   14 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
   add <herd>no-herd</herd>

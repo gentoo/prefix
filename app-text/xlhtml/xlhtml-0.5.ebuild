@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xlhtml/xlhtml-0.5.ebuild,v 1.14 2007/01/07 00:43:13 masterdriverz Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xlhtml/xlhtml-0.5.ebuild,v 1.15 2008/01/20 16:14:56 grobian Exp $
 
 EAPI="prefix"
 
@@ -28,7 +28,7 @@ src_unpack() {
 }
 
 src_install() {
-	make DESTDIR=${D} install || die "make install failed for ${P}"
+	make DESTDIR="${D}" install || die "make install failed for ${P}"
 	dodoc AUTHORS COPYING INSTALL README
 	docinto cole
 	dodoc cole/{AUTHORS,COPYING,NEWS,ChangeLog,THANKS,TODO}
@@ -37,5 +37,5 @@ src_install() {
 	docinto xlhtml
 	dodoc xlhtml/{ChangeLog,README,THANKS,TODO}
 	rm -rf xlhtml/contrib/CVS
-	cp -pPR xlhtml/contrib "${ED}/usr/share/doc/${PF}/xlhtml"
+	cp -pPR xlhtml/contrib "${ED}"/usr/share/doc/${PF}/xlhtml
 }
