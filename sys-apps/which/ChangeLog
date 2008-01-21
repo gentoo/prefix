@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/which
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/which/ChangeLog,v 1.23 2007/02/09 05:45:26 flameeyes Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/which/ChangeLog,v 1.24 2008/01/19 21:46:54 vapier Exp $
+
+*which-2.19 (19 Jan 2008)
+
+  19 Jan 2008; Mike Frysinger <vapier@gentoo.org> +which-2.19.ebuild:
+  Verison bump #206627 by Samuli Suominen.
 
   09 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
   Regenerate digest in Manifest2 format.
