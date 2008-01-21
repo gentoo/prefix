@@ -1,6 +1,16 @@
 # ChangeLog for x11-libs/pango
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.205 2008/01/04 07:31:21 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.206 2008/01/19 20:56:37 eva Exp $
+
+  19 Jan 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/pango-1.10.2-slighthint.patch, -files/pango-1.11.3-xfonts.patch,
+  -pango-1.12.3.ebuild:
+  clean up old release
+
+*pango-1.18.4 (19 Jan 2008)
+
+  19 Jan 2008; Gilles Dartiguelongue <eva@gentoo.org> +pango-1.18.4.ebuild:
+  bump to 1.18.4
 
   04 Jan 2008; Saleem Abdulrasool <compnerd@gentoo.org>
   +files/pango-1.10.2-slighthint.patch, +files/pango-1.11.3-xfonts.patch,
