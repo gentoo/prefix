@@ -1,6 +1,19 @@
 # ChangeLog for dev-libs/libgcrypt
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.104 2007/12/22 20:09:14 nixnut Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.108 2008/01/20 21:31:19 armin76 Exp $
+
+  20 Jan 2008; Raúl Porcel <armin76@gentoo.org> libgcrypt-1.4.0-r1.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #206666
+
+  20 Jan 2008; Christoph Mende <angelos@gentoo.org>
+  libgcrypt-1.4.0-r1.ebuild:
+  Stable on amd64 wrt bug #206666
+
+  20 Jan 2008; nixnut <nixnut@gentoo.org> libgcrypt-1.4.0-r1.ebuild:
+  Stable on ppc wrt bug 206666
+
+  20 Jan 2008; Brent Baude <ranger@gentoo.org> libgcrypt-1.4.0-r1.ebuild:
+  Marking libgcrypt-1.4.0-r1 ppc64 for bug 206666
 
   22 Dec 2007; nixnut <nixnut@gentoo.org> libgcrypt-1.4.0-r1.ebuild:
   Added ~ppc wrt bug 201901
