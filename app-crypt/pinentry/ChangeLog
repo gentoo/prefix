@@ -1,6 +1,22 @@
 # ChangeLog for app-crypt/pinentry
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/ChangeLog,v 1.75 2007/12/22 05:17:11 alonbl Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/ChangeLog,v 1.80 2008/01/20 21:24:59 armin76 Exp $
+
+  20 Jan 2008; Raúl Porcel <armin76@gentoo.org> pinentry-0.7.4-r1.ebuild:
+  alpha/ia64/sparc/x86 stable wrt #206664
+
+  20 Jan 2008; Christoph Mende <angelos@gentoo.org>
+  pinentry-0.7.4-r1.ebuild:
+  Stable on amd64 wrt bug #206664
+
+  20 Jan 2008; nixnut <nixnut@gentoo.org> pinentry-0.7.4-r1.ebuild:
+  Stable on ppc wrt bug 206664
+
+  20 Jan 2008; Brent Baude <ranger@gentoo.org> ChangeLog:
+  Marking pinentry-0.7.4-r1 ppc64 for bug 206664
+
+  20 Jan 2008; Brent Baude <ranger@gentoo.org> pinentry-0.7.4-r1.ebuild:
+  Marking pinentry-0.7.4-r1 ppc64 for bug 206664
 
 *pinentry-0.7.4-r1 (22 Dec 2007)
 
