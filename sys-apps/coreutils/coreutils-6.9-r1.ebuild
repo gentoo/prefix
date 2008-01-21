@@ -72,6 +72,9 @@ src_unpack() {
 	# no need to abort when unable to 'list mounted fs'
 	epatch "${FILESDIR}"/${PV}-without-mountfs.patch
 
+	# fix bug in patchset 1.2: #206841
+	epatch "${FILESDIR}"/${PV}-mbrtowc.patch
+
 	chmod a+rx tests/sort/sort-mb-tests
 	chmod a+rx tests/ls/x-option
 

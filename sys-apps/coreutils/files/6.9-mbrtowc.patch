@@ -1,0 +1,14 @@
+http://bugs.gentoo.org/show_bug.cgi?id=206841
+
+--- src/cut.c.orig	2008-01-21 10:08:26.000000000 +0100
++++ src/cut.c	2008-01-21 10:08:45.000000000 +0100
+@@ -1116,8 +1116,8 @@
+ 	case 'd':
+ 	  /* New delimiter. */
+ 	  /* Interpret -d '' to mean `use the NUL byte as the delimiter.'  */
+-#if HAVE_MBRTOWC
+ 	    {
++#if HAVE_MBRTOWC
+ 	      if(MB_CUR_MAX > 1)
+ 		{
+ 		  mbstate_t state;
