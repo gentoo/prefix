@@ -1,6 +1,10 @@
 # ChangeLog for app-text/code2html
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/code2html/ChangeLog,v 1.15 2007/05/14 20:13:36 bangert Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/code2html/ChangeLog,v 1.16 2008/01/20 16:45:16 grobian Exp $
+
+  20 Jan 2008; Fabian Groffen <grobian@gentoo.org> code2html-0.9.1.ebuild,
+  code2html-0.9.1-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   14 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
   add <herd>no-herd</herd>
