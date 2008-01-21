@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/man-pages
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/ChangeLog,v 1.102 2008/01/14 11:40:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/ChangeLog,v 1.103 2008/01/19 20:41:07 vapier Exp $
+
+  19 Jan 2008; Mike Frysinger <vapier@gentoo.org> man-pages-2.75.ebuild,
+  man-pages-2.76.ebuild:
+  Stop installing TODO which no longer exists #206656 by Arfrever Frehtes
+  Taifersar Arahesis.
 
 *man-pages-2.76 (14 Jan 2008)
 
