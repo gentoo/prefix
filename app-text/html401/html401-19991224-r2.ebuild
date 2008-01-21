@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/html401/html401-19991224-r2.ebuild,v 1.10 2006/01/15 14:21:30 cryos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/html401/html401-19991224-r2.ebuild,v 1.11 2008/01/20 16:12:16 grobian Exp $
 
 EAPI="prefix"
 
@@ -21,8 +21,8 @@ sgml-catalog_cat_include "/etc/sgml/${PN}.cat" \
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
-	epatch ${FILESDIR}/${PN}-decl.diff
+	cd "${S}"
+	epatch "${FILESDIR}"/${PN}-decl.diff
 }
 
 src_install() {

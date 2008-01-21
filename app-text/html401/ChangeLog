@@ -1,6 +1,10 @@
 # ChangeLog for app-text/html401
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/html401/ChangeLog,v 1.17 2007/03/12 22:44:23 leonardop Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/html401/ChangeLog,v 1.18 2008/01/20 16:12:16 grobian Exp $
+
+  20 Jan 2008; Fabian Groffen <grobian@gentoo.org>
+  html401-19991224-r2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   12 Mar 2007; Leonardo Boshell <leonardop@gentoo.org> metadata.xml:
   Replacing text-markup herd with the new sgml herd.
