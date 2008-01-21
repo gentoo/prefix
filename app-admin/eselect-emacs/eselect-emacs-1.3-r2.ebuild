@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/eselect-emacs-1.3-r2.ebuild,v 1.7 2008/01/19 13:31:03 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/eselect-emacs-1.3-r2.ebuild,v 1.8 2008/01/20 19:07:37 angelos Exp $
 
 EAPI="prefix"
 
