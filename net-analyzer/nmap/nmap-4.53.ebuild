@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.53.ebuild,v 1.1 2008/01/19 10:35:36 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.53.ebuild,v 1.2 2008/01/20 12:14:38 spock Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="http://download.insecure.org/nmap/dist/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
-IUSE="gtk ssl"
+IUSE="gtk lua ssl"
 
 DEPEND="dev-libs/libpcre
 	net-libs/libpcap
@@ -37,6 +37,7 @@ src_compile() {
 	econf \
 		--with-libdnet=included \
 		$(use_with gtk zenmap) \
+		$(use_with lua liblua) \
 		$(use_with ssl openssl) || die
 	emake -j1 || die
 }
