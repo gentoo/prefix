@@ -113,3 +113,19 @@ src_compile() {
 	export CONFIG_SHELL="${EPREFIX}/bin/sh"
 	gcc_src_compile
 }
+
+src_install() {
+	toolchain_src_install
+
+	case ${CTARGET} in
+		*-interix*)
+			# interix delivers libdl and dlfcn.h with gcc-3.3.
+			# Since those parts are perfectly usable by this gcc (and
+			# required for example by perl), we simply can reuse them.
+			# As libdl is in /usr/lib, we only need to copy dlfcn.h.
+			cp /opt/gcc.3.3/include/dlfcn.h "${ED}${INCLUDEPATH}" \
+			|| die "Cannot gain /opt/gcc.3.3/include/dlfcn.h"
+		;;
+	esac
+}
+
