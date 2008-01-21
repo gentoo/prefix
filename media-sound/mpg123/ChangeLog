@@ -1,6 +1,11 @@
 # ChangeLog for media-sound/mpg123
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.133 2008/01/17 19:09:51 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.134 2008/01/20 13:09:48 drac Exp $
+
+*mpg123-1.1.0 (20 Jan 2008)
+
+  20 Jan 2008; Samuli Suominen <drac@gentoo.org> +mpg123-1.1.0.ebuild:
+  Version bump wrt #206762, thanks to Tobias Jakobi.
 
   17 Jan 2008; Fabian Groffen <grobian@gentoo.org> -files/mpg123-osx.diff,
   mpg123-0.59s-r11.ebuild:
