@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils libtool
+inherit eutils autotools
 
 DESCRIPTION="Parse Options - Command line parser"
 HOMEPAGE="http://rpm5.org/"
@@ -23,7 +23,8 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.12-scrub-lame-gettext.patch
 	epatch "${FILESDIR}"/${P}-iconv.patch # solves USE=-nls compilation
-	elibtoolize # for ia64-hpux
+	eautoreconf
+	#elibtoolize # for ia64-hpux
 }
 
 src_compile() {

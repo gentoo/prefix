@@ -17,22 +17,13 @@
  test3_LDADD = $(usrlib_LTLIBRARIES)
  
  noinst_SCRIPTS = testit.sh
---- Makefile.in
-+++ Makefile.in
-@@ -283,13 +283,13 @@
- INCLUDES = -I. -I$(top_srcdir)
- noinst_HEADERS = findme.h poptint.h system.h
- test1_SOURCES = test1.c
--test1_LDFLAGS = 
-+test1_LDFLAGS = @LTLIBICONV@
- test1_LDADD = $(usrlib_LTLIBRARIES)
- test2_SOURCES = test2.c
--test2_LDFLAGS = 
-+test2_LDFLAGS = @LTLIBICONV@
- test2_LDADD = $(usrlib_LTLIBRARIES)
- test3_SOURCES = test3.c
--test3_LDFLAGS = 
-+test3_LDFLAGS = @LTLIBICONV@
- test3_LDADD = $(usrlib_LTLIBRARIES)
- noinst_SCRIPTS = testit.sh
- TESTS_ENVIRONMENT = \
+--- configure.ac
++++ configure.ac
+@@ -95,6 +95,7 @@
+ AC_CHECK_FUNCS(getuid geteuid mtrace __secure_getenv setregid strerror iconv)
+ 
+ AM_GNU_GETTEXT([external])
++AM_ICONV_LINK
+ 
+ popt_sysconfdir="${sysconfdir}"
+ eval "popt_sysconfdir=\"${popt_sysconfdir}\"" # expand contained ${prefix}
