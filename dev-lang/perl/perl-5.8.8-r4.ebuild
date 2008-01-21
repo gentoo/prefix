@@ -140,6 +140,10 @@ src_unpack() {
 	# cut the crap of inventing paths, or adding search paths that we don't use
 	epatch "${FILESDIR}"/${PN}-cleanup-paths.patch
 
+	# remove /usr/local paths from all stuff thats used
+	# in Configure script
+	epatch "${FILESDIR}"/${P}-usr-local.patch
+
 	#[[ ${get_libdir} == lib64 ]] && cd ${S} && epatch ${FILESDIR}/${P}-lib64.patch
 	use amd64 || use ppc64 && cd "${S}" && epatch "${FILESDIR}"/${P}-lib64.patch
 
@@ -170,6 +174,11 @@ src_unpack() {
 	# patch to fix bug #198196
 	# UTF/Regular expressions boundary error (CVE-2007-5116)
 	epatch "${FILESDIR}"/${P}-utf8-boundary.patch
+
+	# on interix, $firstmakefile may not be 'makefile', since the
+	# filesystem may be case insensitive, and perl will wrongly
+	# delete Makefile.
+	epatch ${FILESDIR}/${P}-interix-firstmakefile.patch
 
 	# perl tries to link against gdbm if present, even without USE=gdbm
 	if ! use gdbm; then
