@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.2.1.ebuild,v 1.2 2008/01/18 23:08:15 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.2.1.ebuild,v 1.3 2008/01/20 15:30:05 alonbl Exp $
 
 EAPI="prefix"
 
-inherit libtool autotools
+inherit libtool autotools eutils
 
 DESCRIPTION="A TLS 1.0 and SSL 3.0 implementation for the GNU project"
 HOMEPAGE="http://www.gnutls.org/"
@@ -23,7 +23,7 @@ RDEPEND="dev-libs/libgpg-error
 	nls? ( virtual/libintl )
 	guile? ( dev-scheme/guile )
 	zlib? ( >=sys-libs/zlib-1.1 )
-	lzo? ( >=dev-libs/lzo-2 )"
+	!bindist? ( lzo? ( >=dev-libs/lzo-2 ) )"
 DEPEND="${RDEPEND}
 	sys-devel/libtool
 	doc? ( dev-util/gtk-doc )
@@ -36,8 +36,9 @@ pkg_setup() {
 		die
 	fi
 	if use lzo && use bindist; then
-		eerror "lzo is not allowed in binary distribution of gnutls"
-		die
+		ewarn "lzo support was disabled for binary distribution of gnutls"
+		ewarn "due to licensing issues. See Bug 202381 for details."
+		epause 5
 	fi
 }
 
@@ -48,6 +49,8 @@ src_unpack() {
 }
 
 src_compile() {
+	local myconf
+	use bindist && myconf="--disable-lzo" || myconf="$(use_enable lzo)"
 	econf  \
 		--without-included-opencdk \
 		$(use_with zlib) \
@@ -55,7 +58,7 @@ src_compile() {
 		$(use_enable nls) \
 		$(use_enable guile) \
 		$(use_enable doc gtk-doc) \
-		|| die
+		${myconf}
 	emake || die
 }
 

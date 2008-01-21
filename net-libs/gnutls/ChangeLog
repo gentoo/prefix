@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.138 2008/01/18 23:08:15 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.139 2008/01/20 15:30:05 alonbl Exp $
+
+  20 Jan 2008; Alon Bar-Lev <alonbl@gentoo.org> gnutls-2.2.1.ebuild:
+  Don't fail build on bindist, bug#202381, thanks to jacub
 
   18 Jan 2008; Alon Bar-Lev <alonbl@gentoo.org> gnutls-2.2.1.ebuild:
   Fix bug#202381, bug#203880
