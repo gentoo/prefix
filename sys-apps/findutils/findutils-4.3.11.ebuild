@@ -15,7 +15,7 @@ SRC_URI="ftp://alpha.gnu.org/gnu/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~x86-interix ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="nls selinux static"
 
 RDEPEND="selinux? ( sys-libs/libselinux )
@@ -29,6 +29,14 @@ src_unpack() {
 
 	# IRIX needs an extra cast
 	epatch "${FILESDIR}"/${PN}-4.3.2-irix.patch
+
+	# interix does not have any means of retrieving a list of
+	# mounted filesystems.
+	# Need to patch configure directly besides ls-mntd-fs.m4,
+	# because during bootstrap not all m4-files might be installed.
+	epatch "${FILESDIR}"/${P}-interix.patch
+	touch aclocal.m4
+	touch configure
 
 	# Don't build or install locate because it conflicts with slocate,
 	# which is a secure version of locate.  See bug 18729
