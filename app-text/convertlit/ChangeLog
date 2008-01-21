@@ -1,6 +1,10 @@
 # ChangeLog for app-text/convertlit
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/convertlit/ChangeLog,v 1.9 2007/12/25 16:57:30 phreak Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/convertlit/ChangeLog,v 1.10 2008/01/20 12:35:48 grobian Exp $
+
+  20 Jan 2008; Fabian Groffen <grobian@gentoo.org> convertlit-1.8.ebuild,
+  convertlit-1.8-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing usata from metadata.xml as per #22931. Assigning to maintainer-needed.
