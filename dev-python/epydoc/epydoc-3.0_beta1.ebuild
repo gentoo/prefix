@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/epydoc/epydoc-3.0_beta1.ebuild,v 1.2 2008/01/18 00:29:43 pythonhead Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/epydoc/epydoc-3.0_beta1.ebuild,v 1.3 2008/01/20 23:04:50 lucass Exp $
 
 EAPI="prefix"
 
@@ -21,8 +21,10 @@ RDEPEND="dev-python/docutils
 	pdf? ( virtual/tetex )"
 
 S="${WORKDIR}/${MY_P}"
+
 src_install() {
 	distutils_src_install
-	doman "${S}/man/*"
-	use doc && dohtml -r "${S}/doc/*"
+
+	doman "${S}"/man/*
+	use doc && dohtml -r "${S}"/doc/*
 }
