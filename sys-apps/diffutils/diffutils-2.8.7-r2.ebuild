@@ -13,7 +13,7 @@ SRC_URI="ftp://alpha.gnu.org/gnu/diffutils/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~x86-interix ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="nls static"
 
 RDEPEND="kernel_linux? ( >=sys-apps/man-pages-2.46 )"
@@ -33,6 +33,8 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-headers.patch
 
+	epatch "${FILESDIR}"/${P}-interix.patch
+
 	# Make sure we don't try generating the manpages ... this requires
 	# 'help2man' which is a perl app which is not available in a
 	# stage2 / stage3 ... don't DEPEND on it or we get a DEPEND loop :(
@@ -48,6 +50,17 @@ src_unpack() {
 
 src_compile() {
 	use static && append-ldflags -static
+
+	if [[ ${CHOST} == *-interix* ]]; then
+		# on interix _ALL_SOURCE is required for a correct definition
+		# of stack_t (and maybe others...)
+		append-flags -D_ALL_SOURCE
+
+		# on interix wchar support is broken...
+		export ac_cv_header_wchar_h=no
+		export ac_cv_header_wctype_h=no
+	fi
+
 	econf $(use_enable nls) || die "econf"
 	emake || die "make"
 }
