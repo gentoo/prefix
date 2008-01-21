@@ -1,6 +1,12 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1022 2008/01/19 17:15:58 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1025 2008/01/20 02:04:25 halcy0n Exp $
+
+  20 Jan 2008; Mark Loeser <halcy0n@gentoo.org> package.mask:
+  herdstat-1.1.91 has been dropped from the tree
+
+  19 Jan 2008; Ingmar Vanhassel <ingmar@gentoo.org> package.mask:
+  Point to the KDE 4 guide in my KDE 4 mask message.
 
   19 Jan 2008; Petteri Räty <betelgeuse@gentoo.org> package.mask:
   package.mask dev-java/jsx
@@ -13,6 +19,9 @@
 
   19 Jan 2008; Stefan Schweizer <genstef@gentoo.org> package.mask:
   mask list for removal
+
+  19 Jan 2008; Ryan Hill <dirtyepic@gentoo.org> updates/1Q-2008:
+  Package move: media-fonts/ezra-sil -> media-fonts/ttf-sil-ezra.
 
   18 Jan 2008; Ingmar Vanhassel <ingmar@gentoo.org> use.local.desc:
   Remove unused local USE descriptions for KDE 4.0.
