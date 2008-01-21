@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/ant-tasks
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-tasks/ChangeLog,v 1.76 2008/01/19 13:43:19 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-tasks/ChangeLog,v 1.77 2008/01/20 23:22:01 betelgeuse Exp $
+  
+  20 Jan 2008; Petteri Räty <betelgeuse@gentoo.org>
+  ant-tasks-1.6.5-r4.ebuild:
+  Use EAPI=1 to match only slot 0 of dev-java/junit.
 
   19 Jan 2008; nixnut <nixnut@gentoo.org> ant-tasks-1.7.0-r4.ebuild:
   Stable on ppc wrt bug 177362
