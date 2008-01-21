@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/gtk2hs
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.40 2008/01/12 00:06:29 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.41 2008/01/20 18:56:57 angelos Exp $
+
+  20 Jan 2008; Christoph Mende <angelos@gentoo.org> gtk2hs-0.9.12.1.ebuild:
+  Stable on amd64 wrt bug #205272
 
   12 Jan 2008; Markus Meier <maekke@gentoo.org> gtk2hs-0.9.12.1.ebuild:
   x86 stable, bug #205357
