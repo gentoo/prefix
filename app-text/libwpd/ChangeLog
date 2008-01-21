@@ -1,6 +1,10 @@
 # ChangeLog for app-text/libwpd
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/libwpd/ChangeLog,v 1.55 2007/08/20 16:51:43 dang Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/libwpd/ChangeLog,v 1.56 2008/01/20 16:20:26 grobian Exp $
+
+  20 Jan 2008; Fabian Groffen <grobian@gentoo.org> libwpd-0.8.9.ebuild,
+  libwpd-0.8.10.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *libwpd-0.8.10 (20 Aug 2007)
 
