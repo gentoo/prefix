@@ -1,6 +1,10 @@
 # ChangeLog for mail-client/mozilla-thunderbird
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.241 2007/12/31 14:02:49 armin76 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.242 2008/01/20 16:22:24 ranger Exp $
+
+  20 Jan 2008; Brent Baude <ranger@gentoo.org>
+  mozilla-thunderbird-1.5.0.14.ebuild:
+  Marking mozilla-thunderbird-1.5.0.14 ppc for bug 203881
 
 *mozilla-thunderbird-1.5.0.14 (31 Dec 2007)
 
