@@ -1,6 +1,9 @@
 # ChangeLog for app-text/diction
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/diction/ChangeLog,v 1.28 2008/01/16 10:26:18 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/diction/ChangeLog,v 1.29 2008/01/19 22:08:48 grobian Exp $
+
+  19 Jan 2008; Fabian Groffen <grobian@gentoo.org> diction-1.11.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   16 Jan 2008; Samuli Suominen <drac@gentoo.org> diction-1.11.ebuild:
   Fix language iconv conversion to unicode and LICENSE to GPL-3 wrt Comment #5
