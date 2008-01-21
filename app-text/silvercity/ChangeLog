@@ -1,6 +1,11 @@
 # ChangeLog for app-text/silvercity
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/silvercity/ChangeLog,v 1.21 2007/10/23 15:52:36 jokey Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/silvercity/ChangeLog,v 1.22 2008/01/20 15:45:24 grobian Exp $
+
+  20 Jan 2008; Fabian Groffen <grobian@gentoo.org>
+  silvercity-0.9.5-r1.ebuild, silvercity-0.9.6-r1.ebuild,
+  silvercity-0.9.7.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   23 Oct 2007; Markus Ullmann <jokey@gentoo.org> silvercity-0.9.5-r1.ebuild:
   Stable on sparc
