@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/mercurial-0.9.5-r1.ebuild,v 1.4 2008/01/14 19:10:15 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/mercurial-0.9.5-r1.ebuild,v 1.5 2008/01/21 09:36:03 nelchael Exp $
 
 EAPI="prefix"
 
@@ -59,7 +59,7 @@ src_install() {
 		newins contrib/zsh_completion _hg
 	fi
 
-	dodoc CONTRIBUTORS PKG-INFO README *.txt
+	dodoc CONTRIBUTORS PKG-INFO README doc/*.txt
 	cp hgweb*.cgi "${ED}"/usr/share/doc/${PF}/
 	rm -f contrib/bash_completion
 	cp -r contrib "${ED}"/usr/share/doc/${PF}/
