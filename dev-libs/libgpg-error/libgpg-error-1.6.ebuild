@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgpg-error/libgpg-error-1.6.ebuild,v 1.6 2008/01/20 21:26:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgpg-error/libgpg-error-1.6.ebuild,v 1.7 2008/01/21 20:31:06 jer Exp $
 
 EAPI="prefix"
 
