@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.9.6-r2.ebuild,v 1.16 2007/12/24 12:55:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.10.1.ebuild,v 1.1 2008/01/22 00:24:41 vapier Exp $
 
 EAPI="prefix"
 
@@ -11,13 +11,13 @@ HOMEPAGE="http://sources.redhat.com/automake/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
-SLOT="${PV:0:3}"
-KEYWORDS="~ppc-aix ~x86-fbsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+SLOT="${PV:0:4}"
+KEYWORDS="~ppc-aix ~x86-fbsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 RDEPEND="dev-lang/perl
-	sys-devel/automake-wrapper
-	>=sys-devel/autoconf-2.59-r6
+	>=sys-devel/automake-wrapper-2
+	>=sys-devel/autoconf-2.60
 	>=sys-apps/texinfo-4.7
 	sys-devel/gnuconfig"
 DEPEND="${RDEPEND}
@@ -27,29 +27,31 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	sed -i \
-		-e "/^@setfilename/s|automake|automake${SLOT}|" \
-		-e "s|automake: (automake)|automake v${SLOT}: (automake${SLOT})|" \
-		-e "s|aclocal: (automake)|aclocal v${SLOT}: (automake${SLOT})|" \
+		-e "s|: (automake)| v${SLOT}: (automake${SLOT})|" \
 		doc/automake.texi || die "sed failed"
-	epatch "${FILESDIR}"/${PN}-1.9.6-infopage-namechange.patch
-	epatch "${FILESDIR}"/${P}-include-dir-prefix.patch #107435
-	epatch "${FILESDIR}"/${P}-ignore-comments.patch #126388
-	epatch "${FILESDIR}"/${P}-aclocal7-test-sleep.patch #197366
 	export WANT_AUTOCONF=2.5
+}
+
+src_compile() {
+	econf --docdir="${EPREFIX}"/usr/share/doc/${PF} || die
+	emake || die
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die
+	dodoc NEWS README THANKS TODO AUTHORS ChangeLog
 
+	# SLOT the docs and junk
 	local x
 	for x in aclocal automake ; do
 		help2man ./${x} > ${x}-${SLOT}.1
 		doman ${x}-${SLOT}.1
 		rm -f "${ED}"/usr/bin/${x}
 	done
-
-	dodoc NEWS README THANKS TODO AUTHORS ChangeLog
-	doinfo doc/*.info*
+	cd "${ED}"/usr/share/info || die
+	for x in *.info* ; do
+		mv "${x}" "${x/${PN}/${PN}${SLOT}}" || die
+	done
 
 	# remove all config.guess and config.sub files replacing them
 	# w/a symlink to a specific gnuconfig version
