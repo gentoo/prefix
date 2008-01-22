@@ -1,0 +1,54 @@
+diff -ru bash-3.2.orig/configure.in bash-3.2/configure.in
+--- bash-3.2.orig/configure.in	Fri Jan 18 16:50:36 2008
++++ bash-3.2/configure.in	Fri Jan 18 16:53:09 2008
+@@ -869,8 +869,8 @@
+ BASH_CHECK_TYPE(clock_t, [#include <sys/times.h>], long)
+ BASH_CHECK_TYPE(sigset_t, [#include <signal.h>], int)
+ BASH_CHECK_TYPE(quad_t, , long, HAVE_QUAD_T)
+-BASH_CHECK_TYPE(intmax_t, , $bash_cv_type_long_long)
+-BASH_CHECK_TYPE(uintmax_t, , $bash_cv_type_unsigned_long_long)
++BASH_CHECK_TYPE(intmax_t, [#include <stdint.h>], $bash_cv_type_long_long)
++BASH_CHECK_TYPE(uintmax_t, [#include <stdint.h>], $bash_cv_type_unsigned_long_long)
+ if test "$ac_cv_header_sys_socket_h" = "yes"; then
+ BASH_CHECK_TYPE(socklen_t, [#include <sys/socket.h>], int, HAVE_SOCKLEN_T)
+ fi
+diff -ru -x config* bash-3.2.orig/bashtypes.h bash-3.2/bashtypes.h
+--- bash-3.2.orig/bashtypes.h	Fri Jan 18 17:12:07 2008
++++ bash-3.2/bashtypes.h	Fri Jan 18 17:12:38 2008
+@@ -35,4 +35,8 @@
+ #  include <inttypes.h>
+ #endif
+ 
++#if defined (HAVE_STDINT_H)
++#  include <stdint.h>
++#endif
++
+ #endif /* _BASHTYPES_H_ */
+diff -ru -x config* bash-3.2.orig/lib/sh/strtoimax.c bash-3.2/lib/sh/strtoimax.c
+--- bash-3.2.orig/lib/sh/strtoimax.c	Fri Jan 18 17:12:06 2008
++++ bash-3.2/lib/sh/strtoimax.c	Fri Jan 18 17:17:45 2008
+@@ -25,6 +25,10 @@
+ #  include <inttypes.h>
+ #endif
+ 
++#if HAVE_STDINT_H
++#  include <stdint.h>
++#endif
++
+ #if HAVE_STDLIB_H
+ #  include <stdlib.h>
+ #endif
+diff -ru -x config* bash-3.2.orig/lib/sh/strtoumax.c bash-3.2/lib/sh/strtoumax.c
+--- bash-3.2.orig/lib/sh/strtoumax.c	Fri Jan 18 17:12:06 2008
++++ bash-3.2/lib/sh/strtoumax.c	Fri Jan 18 17:24:20 2008
+@@ -25,6 +25,10 @@
+ #  include <inttypes.h>
+ #endif
+ 
++#if HAVE_STDINT_H
++#  include <stdint.h>
++#endif
++
+ #if HAVE_STDLIB_H
+ #  include <stdlib.h>
+ #endif

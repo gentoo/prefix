@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic toolchain-funcs multilib
+inherit eutils flag-o-matic toolchain-funcs multilib autotools
 
 # Official patchlevel
 # See ftp://ftp.cwru.edu/pub/bash/bash-3.2-patches/
@@ -97,11 +97,17 @@ src_unpack() {
 	# needed only for interix, although should work for others too
 	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-3.2-getcwd.patch
 
+	# intmax_t and uintmax_t should be looked for in stdint.h on interix
+	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-3.2-interix-stdint.patch
+
 	# modify the bashrc file for prefix
 	cp "${FILESDIR}"/bashrc "${T}"
 	cd "${T}"
 	epatch "${FILESDIR}"/bashrc-prefix.patch
 	eprefixify "${T}"/bashrc
+
+	cd "${S}"
+	eautoreconf
 }
 
 src_compile() {
@@ -135,6 +141,13 @@ src_compile() {
 		;;
 		# Darwin doesn't need an rpath here
 	esac
+
+	if [[ ${CHOST} == *-interix* ]]; then
+		export ac_cv_header_inttypes_h=no
+		export gt_cv_header_inttypes_h=no
+		export jm_ac_cv_header_inttypes_h=no
+	fi
+
 	econf \
 		$(use_with afs) \
 		--disable-profiling \
