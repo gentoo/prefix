@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.6.21.ebuild,v 1.1 2007/11/04 18:58:11 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.2.52_p4-r2.ebuild,v 1.14 2007/04/24 16:44:57 kloeri Exp $
 
 EAPI="prefix"
 
-inherit eutils db flag-o-matic java-pkg-opt-2
+inherit eutils gnuconfig db java-pkg-opt-2
 
 #Number of official patches
 #PATCHNO=`echo ${PV}|sed -e "s,\(.*_p\)\([0-9]*\),\2,"`
@@ -19,24 +19,20 @@ else
 fi
 
 S="${WORKDIR}/${MY_P}/build_unix"
-DESCRIPTION="Oracle Berkeley DB"
-HOMEPAGE="http://www.oracle.com/technology/software/products/berkeley-db/index.html"
-SRC_URI="http://download-west.oracle.com/berkeley-db/${MY_P}.tar.gz"
+DESCRIPTION="Berkeley DB"
+HOMEPAGE="http://www.sleepycat.com/"
+SRC_URI="mirror://gentoo/${MY_P}.tar.gz"
 for (( i=1 ; i<=${PATCHNO} ; i++ )) ; do
-	export SRC_URI="${SRC_URI} http://www.oracle.com/technology/products/berkeley-db/db/update/${MY_PV}/patch.${MY_PV}.${i}"
+	export SRC_URI="${SRC_URI} http://www.sleepycat.com/update/${MY_PV}/patch.${MY_PV}.${i}"
 done
 
-LICENSE="OracleDB"
-SLOT="4.6"
-KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+LICENSE="DB"
+SLOT="4.2"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 IUSE="tcl java doc nocxx bootstrap"
 
 DEPEND="tcl? ( >=dev-lang/tcl-8.4 )
-	java? ( >=virtual/jdk-1.4 )
-	|| ( sys-devel/odcctools
-		 sys-devel/native-cctools
-		 >=sys-devel/binutils-2.16.1
-	)"
+	java? ( >=virtual/jdk-1.4 )"
 RDEPEND="tcl? ( dev-lang/tcl )
 	java? ( >=virtual/jre-1.4 )"
 
@@ -48,10 +44,14 @@ src_unpack() {
 		epatch "${DISTDIR}"/patch."${MY_PV}"."${i}"
 	done
 	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-libtool.patch
+	epatch "${FILESDIR}"/"${PN}"-4.0.14-fix-dep-link.patch
+	epatch "${FILESDIR}"/"${PN}"-4.2.52_p2-TXN.patch
 
 	# use the includes from the prefix
 	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-jni-check-prefix-first.patch
-	epatch "${FILESDIR}"/"${PN}"-4.3-listen-to-java-options.patch
+	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-listen-to-java-options.patch
+
+	gnuconfig_update "${S}"/../dist
 
 	sed -i \
 		-e "s,\(ac_compiler\|\${MAKEFILE_CC}\|\${MAKEFILE_CXX}\|\$CC\)\( *--version\),\1 -dumpversion,g" \
@@ -59,12 +59,6 @@ src_unpack() {
 }
 
 src_compile() {
-	# compilation with -O0 fails on amd64, see bug #171231
-	if use amd64; then
-		replace-flags -O0 -O2
-		is-flag -O[s123] || append-flags -O2
-	fi
-
 	local myconf=""
 
 	use amd64 && myconf="${myconf} --with-mutex=x86/gcc-assembly"
@@ -88,23 +82,13 @@ src_compile() {
 	[[ -n ${CBUILD} ]] && myconf="${myconf} --build=${CBUILD}"
 
 	# the entire testsuite needs the TCL functionality
-	if use tcl && has test $FEATURES ; then
+	if use tcl && has test $FEATURES; then
 		myconf="${myconf} --enable-test"
 	else
 		myconf="${myconf} --disable-test"
 	fi
 
-	# Add linker versions to the symbols. Easier to do, and safer than header file
-	# mumbo jumbo.
-	if [[ ${CHOST} == *-linux-gnu ]] ; then
-		# we hopefully use a GNU binutils linker in this case
-		append-ldflags -Wl,--default-symver
-	fi
-
-	# AIX's g++ doesn't grok large files (yet)
-	[[ ${CHOST} == *-aix* ]] && myconf="${myconf} --disable-largefile"
-
-	cd "${S}" && ECONF_SOURCE="${S}"/../dist CC=$(tc-getCC) econf \
+	../dist/configure \
 		--prefix="${EPREFIX}"/usr \
 		--mandir="${EPREFIX}"/usr/share/man \
 		--infodir="${EPREFIX}"/usr/share/info \
@@ -113,20 +97,16 @@ src_compile() {
 		--localstatedir="${EPREFIX}"/var/lib \
 		--libdir="${EPREFIX}"/usr/"$(get_libdir)" \
 		--enable-compat185 \
-		--without-uniquename \
+		--with-uniquename \
 		--enable-rpc \
 		--host="${CHOST}" \
 		${myconf} "${javaconf}" || die "configure failed"
-
-	sed -e "s,\(^STRIP *=\).*,\1\"none\"," Makefile > Makefile.cpy \
-	    && mv Makefile.cpy Makefile
 
 	emake -j1 || die "make failed"
 }
 
 src_install() {
-
-	einstall libdir="${ED}/usr/$(get_libdir)" strip="none" || die
+	einstall libdir="${ED}/usr/$(get_libdir)" strip="${ED}/bin/strip" || die
 
 	db_src_install_usrbinslot
 
@@ -137,7 +117,7 @@ src_install() {
 	db_src_install_usrlibcleanup
 
 	dodir /usr/sbin
-	mv "${ED}"/usr/bin/berkeley_db_svc "${ED}"/usr/sbin/berkeley_db46_svc
+	mv "${ED}"/usr/bin/berkeley_db_svc "${ED}"/usr/sbin/berkeley_db42_svc
 
 	if use java; then
 		java-pkg_regso "${ED}"/usr/"$(get_libdir)"/libdb_java*.so

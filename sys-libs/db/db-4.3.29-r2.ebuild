@@ -29,7 +29,7 @@ done
 
 LICENSE="DB"
 SLOT="4.3"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="tcl java doc nocxx bootstrap elibc_Darwin"
 
 DEPEND="tcl? ( >=dev-lang/tcl-8.4 )
