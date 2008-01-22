@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.6.ebuild,v 1.3 2008/01/17 13:00:15 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.5-r2.ebuild,v 1.1 2008/01/21 20:39:58 armin76 Exp $
 
 EAPI="prefix"
 
@@ -9,7 +9,7 @@ WANT_AUTOCONF="2.1"
 inherit flag-o-matic toolchain-funcs eutils nsplugins mozcoreconf mozextension makeedit multilib autotools
 
 LANGS="de el es-ES nb-NO pt-BR zh-CN"
-NOSHORTLANGS="ca-AD cs-CZ es-ES fi-FI fr-FR hu-HU it-IT ja-JP ko-KR nb-NO pl-PL pt-PT ro-RO ru-RU sl-SI sv-SE tr-TR zh-TW"
+NOSHORTLANGS="ca-AD cs-CZ es-ES fi-FI fr-FR hu-HU it-IT ja-JP nb-NO pl-PL pt-PT ru-RU sl-SI sv-SE tr-TR zh-TW"
 
 EMVER=${PV}
 TBVER="2.0.0.9"
@@ -40,10 +40,10 @@ done
 
 DEPEND=">=mail-client/mozilla-thunderbird-${TBVER}"
 RDEPEND="${DEPEND}
-	>=app-crypt/gnupg-1.4
+	>=app-crypt/gnupg-1.4.7
 	>=www-client/mozilla-launcher-1.56"
 
-S="${WORKDIR}/mozilla"
+S=${WORKDIR}/mozilla
 
 # Needed by src_compile() and src_install().
 # Would do in pkg_setup but that loses the export attribute, they
@@ -66,7 +66,7 @@ linguas() {
 			continue
 		else
 			local SLANG
-			for SLANG in ${SHORTLANGS}; do
+			for SLANG in ${NOSHORTLANGS}; do
 				if [[ ${LANG} == ${SLANG%%-*} ]]; then
 					hasq ${SLANG} ${linguas} || \
 						linguas="${linguas:+"${linguas} "}${SLANG}"
