@@ -14,7 +14,7 @@ SRC_URI="http://savannah.nongnu.org/download/confuse/${P}.tar.gz"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
 IUSE="doc debug nls test"
 
 DEPEND="sys-devel/libtool
