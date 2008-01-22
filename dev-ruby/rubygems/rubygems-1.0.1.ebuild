@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-1.0.1.ebuild,v 1.3 2008/01/13 07:12:34 redhatter Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-1.0.1.ebuild,v 1.5 2008/01/21 11:59:25 caster Exp $
 
 EAPI="prefix"
 
@@ -45,7 +45,10 @@ src_install() {
 	export RUBYOPT="${GENTOO_RUBYOPT}"
 
 	ver=$(${RUBY} -r rbconfig -e 'print Config::CONFIG["ruby_version"]')
-	export GEM_HOME="${EPREFIX}/usr/$(get_libdir)/ruby/gems/${ver}"
+
+	# rubygems tries to create GEM_HOME if it doesn't exist, upsetting sandbox,
+	# bug #202109
+	export GEM_HOME="${ED}/usr/$(get_libdir)/ruby/gems/${ver}"
 	keepdir /usr/$(get_libdir)/ruby/gems/$ver/{doc,gems,cache,specifications}
 
 	myconf="--no-ri"
