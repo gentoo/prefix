@@ -1,6 +1,15 @@
 # ChangeLog for app-text/poppler
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.149 2007/11/14 22:05:27 dertobi123 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.150 2008/01/21 16:01:16 dang Exp $
+
+*poppler-0.6.3 (21 Jan 2008)
+
+  21 Jan 2008; Daniel Gryniewicz <dang@gentoo.org> +poppler-0.6.3.ebuild:
+  Bump to 0.6.3
+  	core:
+  	 * Fix crash in extra debug code
+  	build system:
+  	 * Disable gtk tests if the user disabled glib frontend
 
   14 Nov 2007; Tobias Scherbaum <dertobi123@gentoo.org>
   poppler-0.6.1-r1.ebuild:

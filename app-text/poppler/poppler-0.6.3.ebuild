@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.6.2.ebuild,v 1.1 2007/11/12 19:07:27 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.6.3.ebuild,v 1.1 2008/01/21 16:01:16 dang Exp $
 
 EAPI="prefix"
 
@@ -41,5 +41,5 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
-	dodoc README AUTHORS ChangeLog NEWS README-XPDF TODO pdf2xml.dtd
+	dodoc README AUTHORS ChangeLog NEWS README-XPDF TODO
 }
