@@ -12,7 +12,7 @@ SRC_URI="mirror://debian/pool/main/d/${PN}/${PN}_${PV}.tar.gz"
 
 LICENSE="GPL-2 BSD"
 SLOT="0"
-KEYWORDS="~x86-fbsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-fbsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="static"
 
 PDEPEND="sys-apps/mktemp"
@@ -28,6 +28,9 @@ src_unpack() {
 src_compile() {
 	use static && append-ldflags -static
 	eautoreconf || die
+
+	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
+
 	econf || die
 	emake || die
 }
