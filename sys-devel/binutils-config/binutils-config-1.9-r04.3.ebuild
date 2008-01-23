@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils toolchain-funcs
+inherit eutils toolchain-funcs flag-o-matic
 
 DESCRIPTION="Utility to change the binutils version being used - prefix version"
 HOMEPAGE="http://www.gentoo.org/"
@@ -83,6 +83,8 @@ localwrapper_src_compile() {
 }
 
 extwrapper_src_compile() {
+	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
+
 	econf --bindir="${EPREFIX}"/usr/lib/misc
 	emake || die "emake failed."
 }
