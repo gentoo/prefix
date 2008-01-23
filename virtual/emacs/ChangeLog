@@ -1,6 +1,9 @@
 # ChangeLog for virtual/emacs
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/emacs/ChangeLog,v 1.19 2007/11/26 07:30:09 ulm Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/emacs/ChangeLog,v 1.20 2008/01/22 10:21:42 ulm Exp $
+
+  22 Jan 2008; Ulrich Mueller <ulm@gentoo.org> emacs-22.ebuild:
+  Stable on arm/s390/sh, following stabilisation of emacs-22.1-r3.
 
   26 Nov 2007; Ulrich Mueller <ulm@gentoo.org> emacs-22.ebuild:
   Stable on hppa, following stabilisation of emacs-22.1-r3.
