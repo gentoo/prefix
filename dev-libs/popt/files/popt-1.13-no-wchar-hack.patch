@@ -1,0 +1,14 @@
+popt contains a hack for wchars that is enabled by default
+but breaks the build (at least) on interix.
+
+diff -ru popt-1.13.orig/popthelp.c popt-1.13/popthelp.c
+--- popt-1.13.orig/popthelp.c	Fri Jan 18 13:58:02 2008
++++ popt-1.13/popthelp.c	Fri Jan 18 14:00:21 2008
+@@ -15,7 +15,6 @@
+ #include <sys/ioctl.h>
+ #endif
+ 
+-#define	POPT_WCHAR_HACK
+ #ifdef 	POPT_WCHAR_HACK
+ #include <wchar.h>			/* for mbsrtowcs */
+ /*@access mbstate_t @*/

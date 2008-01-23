@@ -1,0 +1,24 @@
+diff -ru popt-1.13.orig/configure popt-1.13/configure
+--- popt-1.13.orig/configure	Fri Jan 18 13:33:27 2008
++++ popt-1.13/configure	Fri Jan 18 13:34:10 2008
+@@ -21220,7 +21220,7 @@
+ 
+ 
+ 
+-for ac_func in getuid geteuid mtrace __secure_getenv setregid strerror iconv
++for ac_func in getuid geteuid mtrace __secure_getenv setregid strerror
+ do
+ as_ac_var=`echo "ac_cv_func_$ac_func" | $as_tr_sh`
+ { echo "$as_me:$LINENO: checking for $ac_func" >&5
+diff -ru popt-1.13.orig/configure.ac popt-1.13/configure.ac
+--- popt-1.13.orig/configure.ac	Fri Jan 18 13:33:27 2008
++++ popt-1.13/configure.ac	Fri Jan 18 13:34:01 2008
+@@ -92,7 +92,7 @@
+ AC_CHECK_FUNC(setreuid, [], [
+     AC_CHECK_LIB(ucb, setreuid, [if echo $LIBS | grep -- -lucb >/dev/null ;then :; else LIBS="$LIBS -lc -lucb" USEUCB=y;fi])
+ ])
+-AC_CHECK_FUNCS(getuid geteuid mtrace __secure_getenv setregid strerror iconv)
++AC_CHECK_FUNCS(getuid geteuid mtrace __secure_getenv setregid strerror)
+ 
+ AM_GNU_GETTEXT([external])
+ 
