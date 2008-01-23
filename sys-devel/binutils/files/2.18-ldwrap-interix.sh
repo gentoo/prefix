@@ -27,11 +27,15 @@ for arg in "$@"; do
 	esac
 
 	# manpages states '-soname', but '-h' seems to work better !?
+	OptArg=
+
 	case $arg in
 	-soname)  arg="-h" ;;
+	-soname=*) OptArg="${arg#-soname=}"; arg="-h" ;;
 	esac
 
 	Args="$Args '$arg'"
+	[ -z "$OptArg" ] || Args="$Args '$OptArg'"
 done
 
 if [ $Opt_Ur = "yes" ]; then
@@ -46,5 +50,12 @@ elif [ $Opt_shared = "yes" ]; then
 	ScriptExt=xs
 fi
 
-eval "exec /opt/gcc.3.3/bin/ld --script '$ScriptDir/$ScriptPlatform.$ScriptExt' $Args"
+#
+# WARNING: --script is the last here intentionally, since all library paths given
+# in the file are added dependant to the position where the --script option appears
+# on the command line. this means that if not given last, libraries from /opt/gcc...
+# and /usr/lib will allways get linked in before any library from our prefix (which
+# we *definitly* don't want...
+#
+eval "exec /opt/gcc.3.3/bin/ld $Args --script '$ScriptDir/$ScriptPlatform.$ScriptExt'"
 
