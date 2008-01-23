@@ -2,6 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Jan 2008; Michael Haubenwallner <haubi@gentoo.org>
+  +windows/interix/profile.bashrc:
+  As on hpux, need same workaround for 'text file busy' on interix.
+
   14 Jan 2008; Fabian Groffen <grobian@gentoo.org> bsd/packages,
   darwin/macos/package.use.force, darwin/macos/package.use.mask,
   darwin/packages:
