@@ -1,6 +1,9 @@
 # ChangeLog for app-text/lv
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/lv/ChangeLog,v 1.23 2007/02/03 23:34:00 flameeyes Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/lv/ChangeLog,v 1.24 2008/01/22 19:35:09 grobian Exp $
+
+  22 Jan 2008; Fabian Groffen <grobian@gentoo.org> lv-4.51.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   03 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
   Regenerate digest in Manifest2 format.
