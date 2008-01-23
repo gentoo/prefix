@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils distutils libtool flag-o-matic
+inherit eutils distutils flag-o-matic autotools
 
 DESCRIPTION="identify a file's format by scanning binary data for patterns"
 HOMEPAGE="ftp://ftp.astron.com/pub/file/"
@@ -13,7 +13,7 @@ SRC_URI="ftp://ftp.astron.com/pub/file/${P}.tar.gz
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~x86-interix ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="python"
 
 DEPEND=""
@@ -24,14 +24,17 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-4.15-libtool.patch #99593
 
-	elibtoolize
-	epunt_cxx
+	# on interix, there is no strtoull implementation, so patch on in.
+	epatch "${FILESDIR}"/${P}-interix-strtoull.patch
 
 	# make sure python links against the current libmagic #54401
 	sed -i "/library_dirs/s:'\.\./src':'../src/.libs':" python/setup.py
 
 	# dont let python README kill main README #60043
 	mv python/README{,.python}
+
+	eautoreconf
+	epunt_cxx
 }
 
 src_compile() {
