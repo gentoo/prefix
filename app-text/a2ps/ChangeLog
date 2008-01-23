@@ -1,6 +1,12 @@
 # ChangeLog for app-text/a2ps
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/ChangeLog,v 1.64 2007/05/24 17:52:25 beandog Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/ChangeLog,v 1.65 2008/01/22 11:20:54 ulm Exp $
+
+*a2ps-4.13c-r6 (22 Jan 2008)
+
+  22 Jan 2008; Ulrich Mueller <ulm@gentoo.org> +files/50a2ps-gentoo.el,
+  +a2ps-4.13c-r6.ebuild:
+  Fix Emacs support, bug 202331.
 
   24 May 2007; Steve Dibb <beandog@gentoo.org> a2ps-4.13c-r5.ebuild:
   Fix mktemp deps for x86-fbsd
