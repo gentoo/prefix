@@ -1,6 +1,9 @@
 # ChangeLog for app-text/epstool
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/epstool/ChangeLog,v 1.22 2007/06/21 15:17:01 jer Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/epstool/ChangeLog,v 1.23 2008/01/22 19:16:47 grobian Exp $
+
+  22 Jan 2008; Fabian Groffen <grobian@gentoo.org> epstool-3.08.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   21 Jun 2007; Jeroen Roovers <jer@gentoo.org> epstool-3.08.ebuild:
   Stable for HPPA (bug #182403).
