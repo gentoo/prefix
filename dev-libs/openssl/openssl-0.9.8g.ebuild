@@ -12,7 +12,7 @@ SRC_URI="mirror://openssl/source/${P}.tar.gz"
 
 LICENSE="openssl"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~x86-interix ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="bindist emacs gmp kerberos sse2 test zlib"
 
 RDEPEND="gmp? ( dev-libs/gmp )
@@ -40,6 +40,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.9.8e-bsd-sparc64.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-darwin64.patch
+	epatch "${FILESDIR}"/${PN}-0.9.8g-interix.patch
 
 	# remove -arch for darwin
 	sed -i '/^"darwin/s,-arch [^ ]\+,,g' Configure
@@ -60,7 +61,10 @@ src_unpack() {
 		[[ $(tc-arch) == "ppc64" ]] && replace-flags -O? -O
 	fi
 	[[ $(tc-arch) == ppc* ]] && append-flags -fno-strict-aliasing
-	[[ $(tc-arch) == *-macos ]] || [[ $(tc-arch) == *-aix ]] || \
+
+	[[ $(tc-arch) == *-macos   ]] ||
+	[[ $(tc-arch) == *-aix     ]] ||
+	[[ $(tc-arch) == *-interix ]] ||
 		append-flags -Wa,--noexecstack
 
 	# using a library directory other than lib requires some magic
