@@ -186,6 +186,8 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 					echo mips-irix;;
 		ia64-hp-hpux*)
 					echo ia64-hpux;;
+		i?86-pc-interix*)
+					echo x86-interix;;
 
 		alpha*)		echo alpha;;
 		arm*)		echo arm;;
