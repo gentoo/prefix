@@ -4,9 +4,9 @@
 
 EAPI="prefix"
 
-inherit bash-completion depend.apache flag-o-matic elisp-common eutils java-pkg-opt-2 libtool multilib perl-module python
+inherit bash-completion depend.apache flag-o-matic elisp-common eutils java-pkg-opt-2 multilib perl-module python autotools
 
-KEYWORDS="~ppc-aix ~x86-fbsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-fbsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 DESCRIPTION="A compelling replacement for CVS."
 HOMEPAGE="http://subversion.tigris.org/"
@@ -83,6 +83,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/subversion-apr_cppflags.patch
 	epatch "${FILESDIR}"/subversion-1.4.3-debug-config.patch
 	epatch "${FILESDIR}"/subversion-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.4.2-interix-prompt.patch
+	epatch "${FILESDIR}"/${P}-neon-version-quotes.patch
 	eprefixify contrib/client-side/svn_load_dirs.pl.in
 
 	sed -e 's/\(NEON_ALLOWED_LIST=.* 0.26.2\)"/\1 0.26.3 0.26.4"/' \
@@ -92,12 +94,16 @@ src_unpack() {
 		-e "s:apu-config:$(apu_config):g" \
 		-i build/ac-macros/{find_,}ap*
 
+
 	export WANT_AUTOCONF=2.5
-	autoconf
+
+	# must copy to use our libtool, since it's hard-wired. also
+	# aclocal.m4 is hand written, so no chance to handle it by
+	# playing around with aclocal include paths.
+	cp "${EPREFIX}"/usr/share/aclocal/libtool.m4 build/libtool.m4
+	AT_M4DIR="build/ac-macros" eautoreconf
 
 	sed -i -e 's,\(subversion/svnversion/svnversion.*\)\(>.*svn-revision.txt\),echo "exported" \2,' Makefile.in
-
-	elibtoolize
 
 	use emacs && cp "${FILESDIR}"/vc-svn.el "${S}"/contrib/client-side/vc-svn.el
 }
