@@ -15,7 +15,7 @@ SRC_URI="http://pkgconfig.freedesktop.org/releases/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~x86-interix ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="hardened elibc_FreeBSD"
 
 DEPEND=""
@@ -27,6 +27,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}/${MY_PN}-0.21-fix-tests.patch"
+	epatch "${FILESDIR}"/${MY_P}-interix.patch
 
 	use ppc64 && use hardened && replace-flags -O[2-3] -O1
 }
@@ -37,6 +38,8 @@ src_compile() {
 	# Force using all the requirements when linking, so that needed -pthread
 	# lines are inherited between libraries
 	use elibc_FreeBSD && myconf="${myconf} --enable-indirect-deps"
+
+	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
 
 	econf ${myconf} || die "econf failed"
 	emake || die "emake failed"
