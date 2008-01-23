@@ -12,7 +12,7 @@ SRC_URI="http://tukaani.org/lzma/lzma-${PV/_}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos ~x86-solaris"
 IUSE=""
 
 RDEPEND="!app-arch/lzma"
