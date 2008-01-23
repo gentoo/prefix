@@ -1,17 +1,17 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.9-r1.ebuild,v 1.18 2007/09/15 02:31:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/Attic/coreutils-6.10.ebuild,v 1.1 2008/01/23 00:07:06 vapier Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic toolchain-funcs autotools
 
-PATCH_VER="1.2"
+PATCH_VER="1.0"
 DESCRIPTION="Standard GNU file utilities (chmod, cp, dd, dir, ls...), text utilities (sort, tr, head, wc..), and shell utilities (whoami, who,...)"
 HOMEPAGE="http://www.gnu.org/software/coreutils/"
-SRC_URI="ftp://alpha.gnu.org/gnu/coreutils/${P}.tar.bz2
-	mirror://gnu/${PN}/${P}.tar.bz2
-	mirror://gentoo/${P}.tar.bz2
+SRC_URI="ftp://alpha.gnu.org/gnu/coreutils/${P}.tar.lzma
+	mirror://gnu/${PN}/${P}.tar.lzma
+	mirror://gentoo/${P}.tar.lzma
 	mirror://gentoo/${P}-patches-${PATCH_VER}.tar.bz2
 	http://dev.gentoo.org/~vapier/dist/${P}-patches-${PATCH_VER}.tar.bz2"
 
@@ -27,7 +27,8 @@ RDEPEND="selinux? ( sys-libs/libselinux )
 	!net-mail/base64
 	>=sys-libs/ncurses-5.3-r5"
 DEPEND="${RDEPEND}
-	>=sys-devel/automake-1.10
+	app-arch/lzma-utils
+	>=sys-devel/automake-1.10.1
 	>=sys-devel/autoconf-2.61
 	>=sys-devel/m4-1.4-r1"
 
@@ -48,35 +49,21 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/gnulib-futimens-rename.patch #180764
-	sed -i 's:\<futimens\>:gl_futimens:' src/{copy,touch}.c
+	EPATCH_SUFFIX="patch" \
+	PATCHDIR="${WORKDIR}/patch" \
+	EPATCH_EXCLUDE="001_all_coreutils-gen-progress-bar.patch" \
+	epatch
 
-	PATCHDIR="${WORKDIR}/patch"
-	rm -f "${PATCHDIR}"/generic/001_*progress*
-
-	# Apply the ACL/SELINUX patches.
-	if use selinux ; then
-		EPATCH_MULTI_MSG="Applying SELINUX patches ..." \
-		EPATCH_SUFFIX="patch" epatch "${PATCHDIR}"/selinux
-	else
-		EPATCH_MULTI_MSG="Applying ACL patches ..." \
-		EPATCH_SUFFIX="patch" epatch "${PATCHDIR}"/acl
-	fi
-
-	EPATCH_SUFFIX="patch" epatch "${PATCHDIR}"/generic
-	epatch "${FILESDIR}"/${PV}-iswblank.patch
+	epatch "${FILESDIR}"/6.9-iswblank.patch
 
 	# interix lacks ESTALE
-	epatch "${FILESDIR}"/${PV}-interix.patch
+	epatch "${FILESDIR}"/6.9-interix.patch
 
 	# no need to abort when unable to 'list mounted fs'
-	epatch "${FILESDIR}"/${PV}-without-mountfs.patch
+	epatch "${FILESDIR}"/6.9-without-mountfs.patch
 
 	# fix bug in patchset 1.2: #206841
-	epatch "${FILESDIR}"/${PV}-mbrtowc.patch
-
-	chmod a+rx tests/sort/sort-mb-tests
-	chmod a+rx tests/ls/x-option
+	epatch "${FILESDIR}"/6.9-mbrtowc.patch
 
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
@@ -116,6 +103,7 @@ src_compile() {
 	[[ ${ELIBC} == "glibc" || ${ELIBC} == "uclibc" ]] \
 		&& myconf="${myconf} --without-included-regex"
 
+# is this still necessary?
 	[[ ${CHOST} == *-darwin9 ]] && append-flags -D__DARWIN_UNIX03=0
 
 	# cross-compile workaround #177061
@@ -131,7 +119,12 @@ src_compile() {
 	fi
 
 	use static && append-ldflags -static
+	# kill/uptime - procps
+	# groups/su   - shadow
+	# hostname    - net-tools
 	econf \
+		--enable-install-program="arch" \
+		--enable-no-install-program="groups,hostname,kill,su,uptime" \
 		--enable-largefile \
 		$(use_enable nls) \
 		$(use_enable acl) \
@@ -150,7 +143,7 @@ src_test() {
 	addwrite /dev/full
 	export RUN_EXPENSIVE_TESTS="yes"
 	#export FETISH_GROUPS="portage wheel"
-	make check || die "make check failed"
+	make -k check || die "make check failed"
 }
 
 src_install() {
@@ -158,14 +151,12 @@ src_install() {
 	rm -f "${ED}"/usr/lib/charset.alias
 	dodoc AUTHORS ChangeLog* NEWS README* THANKS TODO
 
-	# remove files provided by other packages
-	rm "${ED}"/usr/bin/{kill,uptime} # procps
-	rm "${ED}"/usr/bin/{groups,su}   # shadow
-	rm "${ED}"/usr/bin/hostname      # net-tools
-	rm "${ED}"/usr/share/man/man1/{groups,kill,hostname,su,uptime}.1
-
 	insinto /etc
-	newins src/dircolors.hin DIR_COLORS
+	newins src/dircolors.hin DIR_COLORS || die
+
+	# workaround bug in build system where `group` does not
+	# work with --enable-no-install-program configure option
+	rm "${ED}"/usr/bin/groups "${ED}"/usr/share/man/man1/groups.1 || die
 
 	if [[ ${USERLAND} == "GNU" || ${EPREFIX%/} != "" ]] ; then
 		cd "${ED}"/usr/bin
