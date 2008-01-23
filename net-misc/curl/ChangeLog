@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/curl
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.110 2007/12/26 17:01:01 cardoe Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.111 2008/01/22 08:25:52 jer Exp $
+
+  22 Jan 2008; Jeroen Roovers <jer@gentoo.org> curl-7.17.1.ebuild:
+  Stable for HPPA (maybe bug #202891).
 
   26 Dec 2007; Doug Klima <cardoe@gentoo.org> curl-7.17.1.ebuild:
   amd64 stable wrt bug#202891

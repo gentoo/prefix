@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.17.1.ebuild,v 1.2 2007/12/26 17:01:01 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.17.1.ebuild,v 1.3 2008/01/22 08:25:52 jer Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SRC_URI="http://curl.planetmirror.com/download/${P}.tar.bz2"
 
 LICENSE="MIT X11"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="ssl ipv6 ldap ares gnutls nss idn kerberos test"
 #IUSE="ssl ipv6 ldap ares gnutls libssh2 nss idn kerberos test"
 
