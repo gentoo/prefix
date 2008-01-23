@@ -12,12 +12,17 @@ SRC_URI="http://tukaani.org/lzma/lzma-${PV/_}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86-fbsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-fbsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE=""
 
 RDEPEND="!app-arch/lzma"
 
 S=${WORKDIR}/lzma-${PV/_}
+
+pkg_setup() {
+	# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=20366
+	[[ ${CHOST} == *-aix* ]] && export ac_cv_sys_large_files=no
+}
 
 src_install() {
 	emake install DESTDIR="${D}" || die
