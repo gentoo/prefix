@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils libtool
+inherit eutils libtool autotools
 
 DESCRIPTION="XML parsing libraries"
 HOMEPAGE="http://expat.sourceforge.net/"
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/expat/${P}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~x86-interix ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND=""
@@ -20,7 +20,10 @@ RDEPEND=""
 
 src_unpack() {
 	unpack ${A}
-	elibtoolize
+	cd "${S}"
+
+	cp "${EPREFIX}"/usr/share/aclocal/libtool.m4 conftools/libtool.m4
+	AT_M4DIR="conftools" eautoreconf
 }
 
 src_install() {
