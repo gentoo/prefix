@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.3.19.ebuild,v 1.5 2007/10/15 14:33:29 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.3.ebuild,v 1.1 2008/01/22 07:45:28 jer Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ inherit fdo-mime flag-o-matic multilib python
 
 DESCRIPTION="GNU Image Manipulation Program"
 HOMEPAGE="http://www.gimp.org/"
-SRC_URI="mirror://gimp/v2.3/${P}.tar.bz2"
+SRC_URI="mirror://gimp/v2.4/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="2"
@@ -27,7 +27,7 @@ RDEPEND=">=dev-libs/glib-2.12.3
 	dev-libs/libxslt
 	x11-themes/hicolor-icon-theme
 	aalib? ( media-libs/aalib )
-	alsa? ( >=media-libs/alsa-lib-1.0.0 )
+	alsa? ( >=media-libs/alsa-lib-1.0.14a-r1 )
 	curl? ( net-misc/curl )
 	dbus? ( dev-libs/dbus-glib
 		sys-apps/hal )
@@ -48,17 +48,19 @@ RDEPEND=">=dev-libs/glib-2.12.3
 	svg? ( >=gnome-base/librsvg-2.8.0 )
 	wmf? ( >=media-libs/libwmf-0.2.8 )"
 DEPEND="${RDEPEND}
-		>=dev-util/pkgconfig-0.12.0
-		>=dev-util/intltool-0.31
-		doc? ( >=dev-util/gtk-doc-1 )"
+	>=dev-util/pkgconfig-0.12.0
+	>=dev-util/intltool-0.31
+	sys-devel/gettext
+	doc? ( >=dev-util/gtk-doc-1 )"
 
 pkg_setup() {
 	if use pdf && ! built_with_use app-text/poppler-bindings gtk; then
-		eerror
 		eerror "This package requires app-text/poppler-bindings compiled with GTK+ support."
-		eerror "Please reemerge app-text/poppler-bindings with USE=\"gtk\"."
-		eerror
 		die "Please reemerge app-text/poppler-bindings with USE=\"gtk\"."
+	fi
+	if use alsa && ! built_with_use media-libs/alsa-lib midi; then
+		eerror "This package requires media-libs/alsa-lib compiled with midi support."
+		die "Please reemerge media-libs/alsa-lib with USE=\"midi\"."
 	fi
 }
 
@@ -69,6 +71,10 @@ src_compile() {
 	# gimp uses inline functions (e.g. plug-ins/common/grid.c) (#23078)
 	# gimp uses floating point math, needs accuracy (#98685)
 	filter-flags "-fno-inline" "-ffast-math"
+	# gimp assumes char is signed (fixes preview corruption)
+	if use ppc || use ppc64; then
+		append-flags "-fsigned-char"
+	fi
 
 	econf --enable-default-binary \
 		--with-x \
