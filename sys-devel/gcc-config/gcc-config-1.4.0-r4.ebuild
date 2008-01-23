@@ -31,6 +31,9 @@ src_unpack() {
 
 src_compile() {
 	strip-flags
+
+	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
+
 	emake CC="$(tc-getCC)" wrapper || die "compile wrapper"
 }
 
