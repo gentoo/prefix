@@ -1,6 +1,12 @@
 # ChangeLog for sys-devel/gdb
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.130 2007/12/30 20:14:22 vapier Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.131 2008/01/22 22:49:38 flameeyes Exp $
+
+*gdb-6.7.1-r2 (22 Jan 2008)
+
+  22 Jan 2008; Diego Pettenò <flameeyes@gentoo.org> +gdb-6.7.1-r2.ebuild:
+  Use system libreadline rather than building an internal copy. Closes bug
+  #206947.
 
   30 Dec 2007; Mike Frysinger <vapier@gentoo.org> gdb-6.7.1-r1.ebuild:
   Fixup duel build code a bit as well as the patch itself.
