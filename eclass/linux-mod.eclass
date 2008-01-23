@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.77 2007/11/16 06:12:01 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.78 2008/01/22 21:05:32 dsd Exp $
 
 # Description: This eclass is used to interface with linux-info in such a way
 #              to provide the functionality required and initial functions
@@ -463,6 +463,7 @@ linux-mod_pkg_setup() {
 	debug-print-function ${FUNCNAME} $*
 
 	linux-info_pkg_setup;
+	require_configured_kernel
 	check_kernel_built;
 	strip_modulenames;
 	[[ -n ${MODULE_NAMES} ]] && check_modules_supported

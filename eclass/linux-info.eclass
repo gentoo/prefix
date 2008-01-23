@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.52 2007/10/03 12:53:10 phreak Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.53 2008/01/22 21:05:31 dsd Exp $
 #
 # Description: This eclass is used as a central eclass for accessing kernel
 #			   related information for sources already installed.
@@ -131,25 +131,44 @@ local	ERROR workingdir basefname basedname myARCH="${ARCH}"
 	fi
 }
 
+
+linux_config_exists() {
+	[ -s "${KV_OUT_DIR}/.config" ]
+}
+
+require_configured_kernel() {
+	if ! linux_config_exists; then
+		qeerror "Could not find a usable .config in the kernel source directory."
+		qeerror "Please ensure that ${KERNEL_DIR} points to a configured set of Linux sources."
+		qeerror "If you are using KBUILD_OUTPUT, please set the environment var so that"
+		qeerror "it points to the necessary object directory so that it might find .config."
+		die "Kernel not configured; no .config found in ${KV_OUT_DIR}"
+	fi
+}
+
 linux_chkconfig_present() {
 local	RESULT
+	require_configured_kernel
 	RESULT="$(getfilevar CONFIG_${1} ${KV_OUT_DIR}/.config)"
 	[ "${RESULT}" = "m" -o "${RESULT}" = "y" ] && return 0 || return 1
 }
 
 linux_chkconfig_module() {
 local	RESULT
+	require_configured_kernel
 	RESULT="$(getfilevar CONFIG_${1} ${KV_OUT_DIR}/.config)"
 	[ "${RESULT}" = "m" ] && return 0 || return 1
 }
 
 linux_chkconfig_builtin() {
 local	RESULT
+	require_configured_kernel
 	RESULT="$(getfilevar CONFIG_${1} ${KV_OUT_DIR}/.config)"
 	[ "${RESULT}" = "y" ] && return 0 || return 1
 }
 
 linux_chkconfig_string() {
+	require_configured_kernel
 	getfilevar "CONFIG_${1}" "${KV_OUT_DIR}/.config"
 }
 
@@ -168,8 +187,8 @@ linux_chkconfig_string() {
 # got the jist yet?
 
 kernel_is() {
-	# if we haven't determined the version yet, we need too.
-	get_version;
+	# if we haven't determined the version yet, we need to.
+	get_version
 	local operator test value x=0 y=0 z=0
 
 	case ${1} in
@@ -299,23 +318,16 @@ get_version() {
 	# and if we STILL have not got it, then we better just set it to KV_DIR
 	KV_OUT_DIR="${KV_OUT_DIR:-${KV_DIR}}"
 
-	if [ ! -s "${KV_OUT_DIR}/.config" ]
-	then
-		qeerror "Could not find a usable .config in the kernel source directory."
-		qeerror "Please ensure that ${KERNEL_DIR} points to a configured set of Linux sources."
-		qeerror "If you are using KBUILD_OUTPUT, please set the environment var so that"
-		qeerror "it points to the necessary object directory so that it might find .config."
-		return 1
-	fi
-
 	KV_LOCAL="${KV_LOCAL}$(get_localversion ${KV_DIR})"
-	KV_LOCAL="${KV_LOCAL}$(linux_chkconfig_string LOCALVERSION)"
-	KV_LOCAL="${KV_LOCAL//\"/}"
+	if linux_config_exists; then
+		KV_LOCAL="${KV_LOCAL}$(linux_chkconfig_string LOCALVERSION)"
+		KV_LOCAL="${KV_LOCAL//\"/}"
 
-	# For things like git that can append extra stuff:
-	[ -e ${KV_DIR}/scripts/setlocalversion ] &&
-		linux_chkconfig_builtin LOCALVERSION_AUTO &&
-		KV_LOCAL="${KV_LOCAL}$(sh ${KV_DIR}/scripts/setlocalversion ${KV_DIR})"
+		# For things like git that can append extra stuff:
+		[ -e ${KV_DIR}/scripts/setlocalversion ] &&
+			linux_chkconfig_builtin LOCALVERSION_AUTO &&
+			KV_LOCAL="${KV_LOCAL}$(sh ${KV_DIR}/scripts/setlocalversion ${KV_DIR})"
+	fi
 
 	# And we should set KV_FULL to the full expanded version
 	KV_FULL="${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}${KV_EXTRA}${KV_LOCAL}"
@@ -355,8 +367,9 @@ get_running_version() {
 # ---------------------------------------
 
 check_kernel_built() {
-	# if we haven't determined the version yet, we need too.
-	get_version;
+	# if we haven't determined the version yet, we need to
+	require_kernel_config
+	get_version
 
 	if [ ! -f "${KV_OUT_DIR}/include/linux/version.h" ]
 	then
@@ -375,7 +388,8 @@ check_kernel_built() {
 
 check_modules_supported() {
 	# if we haven't determined the version yet, we need too.
-	get_version;
+	require_configured_kernel
+	get_version
 
 	if ! linux_chkconfig_builtin "MODULES"
 	then
@@ -388,12 +402,34 @@ check_modules_supported() {
 
 check_extra_config() {
 	local	config negate die error reworkmodulenames
-	local	soft_errors_count=0 hard_errors_count=0
+	local	soft_errors_count=0 hard_errors_count=0 config_required=0
+
+	# Determine if we really need a .config. The only time when we don't need
+	# one is when all of the CONFIG_CHECK options are prefixed with "~".
+	for config in ${CONFIG_CHECK}
+	do
+		if [[ "${config:0:1}" != "~" ]]; then
+			config_required=1
+			break
+		fi
+	done
+
+	if [[ ${config_required} == 0 ]]; then
+		# In the case where we don't require a .config, we can now bail out
+		# if the user has no .config as there is nothing to do. Otherwise
+		# code later will cause a failure due to missing .config.
+		if ! linux_config_exists; then
+			return 0
+		fi
+	else
+		require_configured_kernel
+	fi
 
 	# if we haven't determined the version yet, we need too.
-	get_version;
+	get_version
 
 	einfo "Checking for suitable kernel configuration options..."
+	
 	for config in ${CONFIG_CHECK}
 	do
 		# if we specify any fatal, ensure we honor them
@@ -402,15 +438,15 @@ check_extra_config() {
 		negate=0
 		reworkmodulenames=0
 
-		if [[ -z ${config/\~*} ]]; then
+		if [[ ${config:0:1} == "~" ]]; then
 			die=0
 			config=${config:1}
-		elif [[ -z ${config/\@*} ]]; then
+		elif [[ ${config:0:1} == "@" ]]; then
 			die=0
 			reworkmodulenames=1
 			config=${config:1}
 		fi
-		if [[ -z ${config//\!*} ]]; then
+		if [[ ${config:0:1} == "!" ]]; then
 			negate=1
 			config=${config:1}
 		fi
@@ -482,8 +518,9 @@ check_extra_config() {
 }
 
 check_zlibinflate() {
-	# if we haven't determined the version yet, we need too.
-	get_version;
+	# if we haven't determined the version yet, we need to
+	require_configured_kernel
+	get_version
 
 	# although I restructured this code - I really really really dont support it!
 

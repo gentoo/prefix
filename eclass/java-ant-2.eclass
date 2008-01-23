@@ -14,7 +14,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.25 2008/01/12 15:08:47 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.27 2008/01/22 23:26:46 betelgeuse Exp $
 
 inherit java-utils-2
 
@@ -262,6 +262,14 @@ java-ant_bsfix_files() {
 				eval xml-rewrite-2.py ${files} \
 					-c -e ${JAVA_PKG_BSFIX_TARGET_TAGS// / -e } \
 					-a nowarn -v yes ${output} || _bsfix_die "xml-rewrite2 failed: ${file}"
+
+				if [[ ${JAVA_ANT_REWRITE_CLASSPATH} ]]; then
+					eval echo "Adding gentoo.classpath to javac tasks" ${output}
+					eval xml-rewrite-2.py ${files} \
+						 -c -e javac -e xjavac -a classpath -v \
+						 '\${gentoo.classpath}' \
+						 || _bsfix_die "xml-rewrite2 failed"
+				fi
 			else
 				debug-print "Using third generation rewriter"
 				eval echo "Rewriting attributes" ${output}
