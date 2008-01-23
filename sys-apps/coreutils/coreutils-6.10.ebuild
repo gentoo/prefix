@@ -54,16 +54,19 @@ src_unpack() {
 	EPATCH_EXCLUDE="001_all_coreutils-gen-progress-bar.patch" \
 	epatch
 
-	epatch "${FILESDIR}"/6.9-iswblank.patch
+# fails to apply
+	#epatch "${FILESDIR}"/6.9-iswblank.patch
 
+# fails to apply
 	# interix lacks ESTALE
-	epatch "${FILESDIR}"/6.9-interix.patch
+	#epatch "${FILESDIR}"/6.9-interix.patch
 
 	# no need to abort when unable to 'list mounted fs'
 	epatch "${FILESDIR}"/6.9-without-mountfs.patch
 
+# fails to apply
 	# fix bug in patchset 1.2: #206841
-	epatch "${FILESDIR}"/6.9-mbrtowc.patch
+	#epatch "${FILESDIR}"/6.9-mbrtowc.patch
 
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
@@ -102,9 +105,6 @@ src_compile() {
 	# it doesn't for Linux and Darwin, so we do it the oldfashioned way
 	[[ ${ELIBC} == "glibc" || ${ELIBC} == "uclibc" ]] \
 		&& myconf="${myconf} --without-included-regex"
-
-# is this still necessary?
-	[[ ${CHOST} == *-darwin9 ]] && append-flags -D__DARWIN_UNIX03=0
 
 	# cross-compile workaround #177061
 	[[ ${CHOST} == *-linux* ]] && export fu_cv_sys_stat_statvfs=yes
