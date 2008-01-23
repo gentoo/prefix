@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ctags-5.7.ebuild,v 1.3 2007/12/21 08:57:52 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ctags-5.7.ebuild,v 1.8 2008/01/22 19:42:04 armin76 Exp $
 
 EAPI="prefix"
 
