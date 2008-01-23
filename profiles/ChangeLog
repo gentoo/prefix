@@ -1,6 +1,9 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1027 2008/01/22 00:43:58 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1028 2008/01/22 13:33:43 pva Exp $
+
+  22 Jan 2008; Peter Volkov <pva@gentoo.org> use.local.desc:
+  Added gpg, sms, weather and livejournal USE flags for net-im/sim
 
   22 Jan 2008; Ingmar Vanhassel <ingmar@gentoo.org> package.mask:
   KDE 4 mask shouldn't affect live ebuilds in overlays.

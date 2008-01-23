@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3323 2008/01/21 18:19:53 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3324 2008/01/22 13:33:43 pva Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -1542,6 +1542,10 @@ net-im/psi:insecure-patches - Enables extra non official patches that may pose a
 net-im/psi:plugins - Enables plugins support in psi
 net-im/pyaim-t:webinterface - Install dependencies needed for the web interface
 net-im/pyicq-t:webinterface - Install dependencies needed for the web interface
+net-im/sim:gpg - Enable gpg plugin to adds GnuPG encryption/decryption support for messages
+net-im/sim:sms - Enable sms plugin
+net-im/sim:weather - Enable weather plugin to get weather data from weather.com and dispaly it
+net-im/sim:livejournal - Enable livejournal plugin to post in LiveJournal
 net-im/skype:qt-static - Installs binaries statically linked to Qt
 net-im/tkabber:extras - Enables extra non official patches
 net-im/tkabber:plugins - Enables instalation the extra plugins
