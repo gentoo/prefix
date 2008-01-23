@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/qt-core-4.4.0_rc1.ebuild,v 1.10 2007/12/26 21:44:04 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/qt-core-4.4.0_rc1.ebuild,v 1.11 2008/01/22 16:06:46 caleb Exp $
 
 EAPI="prefix 1"
 
@@ -31,7 +31,7 @@ RDEPEND="ssl? ( dev-libs/openssl )
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
-QT4_TARGET_DIRECTORIES="src/tools/moc src/tools/rcc src/tools/uic src/corelib src/xml src/network"
+QT4_TARGET_DIRECTORIES="src/tools/moc src/tools/rcc src/tools/uic src/corelib src/xml src/network src/plugins/codecs"
 
 src_unpack() {
 	qt4-build_src_unpack
@@ -62,12 +62,14 @@ src_install() {
 	dobin "${S}"/bin/rcc
 	dobin "${S}"/bin/uic
 
-	install_directories src/corelib src/xml src/network
+	install_directories src/corelib src/xml src/network src/plugins/codecs
 
 	# TODO: don't override qconfig.pri when a new fresh set of options if there are some already installed on the system
 	cd "${S}" && emake INSTALL_ROOT="${D}" install_mkspecs || die
 
 	use doc && emake INSTALL_ROOT="${D}" install_htmldocs
+
+	emake INSTALL_ROOT="${D}" install_translations
 
 	fix_library_files
 
