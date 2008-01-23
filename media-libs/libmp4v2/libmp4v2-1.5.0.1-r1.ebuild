@@ -1,8 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmp4v2/libmp4v2-1.5.0.1.ebuild,v 1.15 2007/11/26 02:40:59 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmp4v2/libmp4v2-1.5.0.1-r1.ebuild,v 1.1 2008/01/22 16:26:14 tester Exp $
 
 EAPI="prefix"
+
+WANT_AUTOMAKE="1.9"
 
 inherit libtool
 
@@ -24,6 +26,7 @@ S=${WORKDIR}/mpeg4ip-${PV}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	sed -e 's:nasm -r:nasm -v:g' -i configure || die "sed nasm"
 	elibtoolize
 }
 
