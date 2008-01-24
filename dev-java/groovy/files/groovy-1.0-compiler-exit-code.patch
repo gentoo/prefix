@@ -1,0 +1,11 @@
+diff -ru groovy-1.0/src/main/org/codehaus/groovy/tools/FileSystemCompiler.java groovy-1.0-patched/src/main/org/codehaus/groovy/tools/FileSystemCompiler.java
+--- groovy-1.0/src/main/org/codehaus/groovy/tools/FileSystemCompiler.java	2007-01-02 19:17:30.000000000 -0500
++++ groovy-1.0-patched/src/main/org/codehaus/groovy/tools/FileSystemCompiler.java	2007-01-05 00:02:45.000000000 -0500
+@@ -223,6 +223,7 @@
+         catch( Throwable e ) 
+         {
+             new ErrorReporter( e, displayStackTraceOnError ).write( System.err );
++			System.exit(1);
+         }
+     }
+     
