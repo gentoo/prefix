@@ -1,6 +1,10 @@
 # ChangeLog for mail-client/mozilla-thunderbird
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.242 2008/01/20 16:22:24 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.243 2008/01/23 18:50:57 armin76 Exp $
+
+  23 Jan 2008; Raúl Porcel <armin76@gentoo.org>
+  mozilla-thunderbird-2.0.0.9.ebuild:
+  Bump patchset to fix building with nss-3.12
 
   20 Jan 2008; Brent Baude <ranger@gentoo.org>
   mozilla-thunderbird-1.5.0.14.ebuild:
