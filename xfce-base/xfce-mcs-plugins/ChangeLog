@@ -1,6 +1,13 @@
 # ChangeLog for xfce-base/xfce-mcs-plugins
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce-mcs-plugins/ChangeLog,v 1.113 2007/12/17 18:41:31 jer Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce-mcs-plugins/ChangeLog,v 1.114 2008/01/23 20:31:32 drac Exp $
+
+*xfce-mcs-plugins-4.4.2-r1 (23 Jan 2008)
+
+  23 Jan 2008; Samuli Suominen <drac@gentoo.org>
+  +files/xfce-mcs-plugins-4.4.2-fix-mouse-plugin.patch,
+  +xfce-mcs-plugins-4.4.2-r1.ebuild:
+  Fix buffer overflow with > 16 button mouse and mark amd64 stable wrt #202858.
 
   17 Dec 2007; Jeroen Roovers <jer@gentoo.org>
   xfce-mcs-plugins-4.4.2.ebuild:
