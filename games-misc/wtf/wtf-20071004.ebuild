@@ -12,7 +12,7 @@ SRC_URI="http://www.mu.org/~mux/wtf/${P}.tar.gz"
 
 LICENSE="public-domain"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~ppc-aix ~x86-fbsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 DEPEND="!games-misc/bsd-games"
