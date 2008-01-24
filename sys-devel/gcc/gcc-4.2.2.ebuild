@@ -77,6 +77,8 @@ src_unpack() {
 
 	# interix patch from http://gcc.gnu.org/bugzilla/show_bug.cgi?id=15212
 	epatch "${FILESDIR}"/${PV}/interix-x86.patch.bz2
+	# gcc sources are polluted with old stuff for interix 3.5 not needed here
+	epatch "${FILESDIR}"/${PV}/interix-3.5-x86.patch
 
 	use vanilla && return 0
 

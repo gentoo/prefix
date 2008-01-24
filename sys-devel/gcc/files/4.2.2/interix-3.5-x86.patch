@@ -1,0 +1,11 @@
+--- gcc-4.2.2.orig/gcc/config/x-interix	Thu Jan 24 15:42:18 2008
++++ gcc-4.2.2/gcc/config/x-interix	Thu Jan 24 15:46:03 2008
+@@ -1,3 +1,7 @@
+ # Existing CC/GCC may not define -D__INTERIX, so need this here.
+ # Since we want to configure with _ALL_SOURCE, we need to build that way too
+-X_CFLAGS= -D__INTERIX -D_ALL_SOURCE
++
++# this is commented out now, since it makes gcc 4.2.2 fail bootstrap on
++# interix 3.5 (x-interix is only added on 3.5, but not on any newer one).
++# this assumes gcc is built using another gcc (3.3 on interix), not cc!
++# X_CFLAGS= -D__INTERIX -D_ALL_SOURCE
