@@ -135,7 +135,7 @@ diff -ur java-config-2.1.2.orig/src/java_config_2/EnvironmentManager.py java-con
 -    pkg_path = '/usr/share/*/package.env'
 -    virtual_path = '/usr/share/java-config-2/virtuals/'
 +    pkg_path = '@GENTOO_PORTAGE_EPREFIX@/usr/share/*/package.env'
-+    virtual_path = '@GENTOO_PORTAGE_EPREFIX@/usr/share/java-config-2/virtuals/*'
++    virtual_path = '@GENTOO_PORTAGE_EPREFIX@/usr/share/java-config-2/virtuals/'
  
 -    system_config_path="/etc/java-config-2/"
 +    system_config_path="@GENTOO_PORTAGE_EPREFIX@/etc/java-config-2/"
