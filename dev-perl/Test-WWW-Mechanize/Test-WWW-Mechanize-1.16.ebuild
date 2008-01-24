@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-WWW-Mechanize/Test-WWW-Mechanize-1.16.ebuild,v 1.1 2007/11/19 18:34:37 ian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-WWW-Mechanize/Test-WWW-Mechanize-1.16.ebuild,v 1.2 2008/01/23 19:18:38 armin76 Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ HOMEPAGE="http://search.cpan.org/~petdance/${P}/"
 IUSE=""
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~amd64 ~ia64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 #SRC_TEST="do"
 
 DEPEND=">=dev-perl/WWW-Mechanize-1.24
