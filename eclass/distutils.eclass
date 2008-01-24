@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.44 2007/10/25 13:49:10 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.45 2008/01/23 22:19:04 hawking Exp $
 #
 # Author: Jon Nelson <jnelson@gentoo.org>
 # Current Maintainer: Alastair Tse <liquidx@gentoo.org>
@@ -102,11 +102,14 @@ distutils_pkg_postrm() {
 distutils_pkg_postinst() {
 	PYTHON_MODNAME=${PYTHON_MODNAME:-${PN}}
 
+	# strip trailing slash
+	myroot="${EROOT%/}"
+
 	if has_version ">=dev-lang/python-2.3"; then
 		python_version
 		for pymod in ${PYTHON_MODNAME}; do
-			if [ -d "${EROOT}/usr/$(get_libdir)/python${PYVER}/site-packages/${pymod}" ]; then
-				python_mod_optimize ${EROOT}/usr/$(get_libdir)/python${PYVER}/site-packages/${pymod}
+			if [ -d "${myroot}/usr/$(get_libdir)/python${PYVER}/site-packages/${pymod}" ]; then
+				python_mod_optimize ${myroot}/usr/$(get_libdir)/python${PYVER}/site-packages/${pymod}
 			fi
 		done
 	fi

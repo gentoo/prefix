@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.53 2008/01/22 21:05:31 dsd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.54 2008/01/23 20:58:08 dsd Exp $
 #
 # Description: This eclass is used as a central eclass for accessing kernel
 #			   related information for sources already installed.
@@ -368,7 +368,7 @@ get_running_version() {
 
 check_kernel_built() {
 	# if we haven't determined the version yet, we need to
-	require_kernel_config
+	require_configured_kernel
 	get_version
 
 	if [ ! -f "${KV_OUT_DIR}/include/linux/version.h" ]
