@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.4.0_rc1.ebuild,v 1.8 2008/01/22 14:37:23 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.4.0_rc1.ebuild,v 1.9 2008/01/23 12:12:35 caleb Exp $
 
 EAPI="prefix"
 
@@ -49,7 +49,7 @@ DEPEND="${RDEPEND}
 	!aqua? ( x11-proto/xextproto
 	x11-proto/inputproto )"
 
-QT4_TARGET_DIRECTORIES="src/gui tools/designer tools/linguist src/plugins/imageformats src/plugins/designer"
+QT4_TARGET_DIRECTORIES="src/gui tools/designer tools/linguist src/plugins/imageformats/gif src/plugins/imageformats/ico src/plugins/imageformats/jpeg src/plugins/designer"
 
 src_unpack() {
 	qt4-build_src_unpack
@@ -106,11 +106,17 @@ src_compile() {
 	./configure ${myconf} || die
 
 	use dbus && QT4_TARGET_DIRECTORIES="${QT4_TARGET_DIRECTORIES} tools/qdbus/qdbusviewer"
+	use mng && QT4_TARGET_DIRECTORIES="${QT4_TARGET_DIRECTORIES} src/plugins/imageformats/mng"
+	use tiff && QT4_TARGET_DIRECTORIES="${QT4_TARGET_DIRECTORIES} src/plugins/imageformats/tiff"
+
 	build_target_directories
 }
 
 src_install() {
 	use dbus && QT4_TARGET_DIRECTORIES="${QT4_TARGET_DIRECTORIES} tools/qdbus/qdbusviewer"
+	use mng && QT4_TARGET_DIRECTORIES="${QT4_TARGET_DIRECTORIES} src/plugins/imageformats/mng"
+	use tiff && QT4_TARGET_DIRECTORIES="${QT4_TARGET_DIRECTORIES} src/plugins/imageformats/tiff"
+
 	qt4-build_src_install
 
 	insinto /usr/share/applications
