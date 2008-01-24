@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/gstreamer
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.190 2007/11/17 11:34:12 drac Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.191 2008/01/23 18:13:39 drac Exp $
+
+  23 Jan 2008; Samuli Suominen <drac@gentoo.org> gstreamer-0.10.15.ebuild:
+  Block <gst-plugins-ugly-0.10.6 because it has incompatible mpegaudioparse
+  and that breaks MP3 playback.
 
 *gstreamer-0.10.15 (17 Nov 2007)
 

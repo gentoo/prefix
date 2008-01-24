@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/gstreamer-0.10.15.ebuild,v 1.1 2007/11/17 11:34:13 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/gstreamer-0.10.15.ebuild,v 1.2 2008/01/23 18:13:39 drac Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ SRC_URI="http://${PN}.freedesktop.org/src/${PN}/${P}.tar.bz2"
 
 LICENSE="LGPL-2"
 SLOT=${PV_MAJ_MIN}
-KEYWORDS="~amd64 ~ia64 ~x86"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="debug nls test"
 
 RDEPEND=">=dev-libs/glib-2.8
@@ -26,7 +26,8 @@ RDEPEND=">=dev-libs/glib-2.8
 	test? ( >=dev-libs/check-0.9.2 )"
 DEPEND="${RDEPEND}
 	nls? ( >=sys-devel/gettext-0.11.5 )
-	dev-util/pkgconfig"
+	dev-util/pkgconfig
+	!<media-libs/gst-plugins-ugly-0.10.6"
 
 src_unpack() {
 	unpack ${A}
