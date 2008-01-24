@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.4.5.ebuild,v 1.2 2007/12/05 21:02:21 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.4.12.ebuild,v 1.2 2008/01/23 17:50:15 drac Exp $
 
 EAPI="prefix"
 
@@ -24,6 +24,7 @@ RDEPEND="!dev-libs/libarchive
 		app-arch/bzip2
 		sys-libs/zlib ) )"
 DEPEND="${RDEPEND}
+	|| ( app-arch/sharutils sys-freebsd/freebsd-ubin )
 	kernel_linux? ( sys-fs/e2fsprogs
 		virtual/os-headers )"
 
