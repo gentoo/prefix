@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/xmlto-0.0.18.ebuild,v 1.22 2007/11/16 19:44:43 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/xmlto-0.0.18.ebuild,v 1.23 2008/01/23 04:29:25 cardoe Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="http://cyberelk.net/tim/data/xmlto/stable/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND="app-shells/bash
@@ -23,7 +23,7 @@ DEPEND="app-shells/bash
 		sys-apps/util-linux
 		app-misc/getopt )
 	|| (
-		sys-apps/mktemp
+		|| ( >=sys-apps/coreutils-6.10-r1 sys-apps/mktemp )
 		sys-freebsd/freebsd-ubin )"
 
 #	tetex? ( >=app-text/passivetex-1.4 )"

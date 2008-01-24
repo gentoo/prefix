@@ -1,6 +1,9 @@
 # ChangeLog for app-text/xmlto
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/ChangeLog,v 1.43 2007/11/16 19:44:43 mr_bones_ Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/ChangeLog,v 1.44 2008/01/23 04:29:25 cardoe Exp $
+
+  23 Jan 2008; Doug Klima <cardoe@gentoo.org> xmlto-0.0.18.ebuild:
+  sys-apps/coreutils-6.10-r1 and higher now provides /bin/mktemp
 
   16 Nov 2007; Michael Sterrett <mr_bones_@gentoo.org> xmlto-0.0.18.ebuild:
   remove reference to really old sys-apps/debianutils
