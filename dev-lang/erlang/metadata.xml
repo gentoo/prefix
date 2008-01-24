@@ -2,7 +2,10 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>lang-misc</herd>
-<herd>emacs</herd>
+<maintainer>
+<email>opfer@gentoo.org</email>
+<name>Christian Faulhammer</name>
+</maintainer>
 <longdescription>
 Erlang is a programming language designed at the Ericsson 
 Computer Science Laboratory. Open-source Erlang is being 
