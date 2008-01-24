@@ -1,0 +1,23 @@
+# ChangeLog for java-virtuals/javamail
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/java-virtuals/javamail/ChangeLog,v 1.5 2007/12/09 13:38:04 nelchael Exp $
+
+  09 Dec 2007; Krzysiek Pawlik <nelchael@gentoo.org> javamail-1.0-r1.ebuild:
+  Add ~ppc keyword, see bug #200751.
+
+  30 Nov 2007; Markus Rothe <corsair@gentoo.org> javamail-1.0-r1.ebuild:
+  Added ~ppc64; bug #200751
+
+*javamail-1.0-r1 (28 Nov 2007)
+
+  28 Nov 2007; <alistair@gentoo.org> +javamail-1.0-r1.ebuild:
+  Adding blocker on <gnu-javamail-1.0-r2.
+
+  20 Oct 2007; Miroslav Šulc <fordfrog@gentoo.org> javamail-1.0.ebuild:
+  Added ~x86
+
+*javamail-1.0 (14 Oct 2007)
+
+  14 Oct 2007; <alistair@gentoo.org> +metadata.xml, +javamail-1.0.ebuild:
+  Adding the first java-virtual, javamail.
+
