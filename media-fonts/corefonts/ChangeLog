@@ -1,6 +1,9 @@
 # ChangeLog for media-fonts/corefonts
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/corefonts/ChangeLog,v 1.25 2007/07/10 00:38:11 dirtyepic Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/corefonts/ChangeLog,v 1.26 2008/01/23 17:10:04 armin76 Exp $
+
+  23 Jan 2008; Raúl Porcel <armin76@gentoo.org> corefonts-1-r4.ebuild:
+  alpha/ia64/sparc/x86 stable
 
 *corefonts-1-r4 (10 Jul 2007)
 
