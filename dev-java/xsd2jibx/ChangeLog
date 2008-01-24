@@ -1,0 +1,19 @@
+# ChangeLog for dev-java/xsd2jibx
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xsd2jibx/ChangeLog,v 1.3 2007/05/26 17:21:32 nelchael Exp $
+
+  26 May 2007; Krzysiek Pawlik <nelchael@gentoo.org>
+  xsd2jibx-0.2a_beta.ebuild:
+  Add ~ppc.
+
+  15 May 2007; Alistair John Bush <ali_bush@gentoo.org>
+  xsd2jibx-0.2a_beta.ebuild:
+  Adding to ~amd64
+
+*xsd2jibx-0.2a_beta (07 May 2007)
+
+  07 May 2007; Vlastimil Babka <caster@gentoo.org>
+  +files/xsd2jibx-0.2a_beta-freemind.patch, +files/build.xml, +metadata.xml,
+  +xsd2jibx-0.2a_beta.ebuild:
+  Initial commit as dependency of app-misc/freemind.
+
