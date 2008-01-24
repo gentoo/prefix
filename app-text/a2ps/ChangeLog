@@ -1,6 +1,10 @@
 # ChangeLog for app-text/a2ps
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/ChangeLog,v 1.65 2008/01/22 11:20:54 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/ChangeLog,v 1.66 2008/01/23 04:41:07 cardoe Exp $
+
+  23 Jan 2008; Doug Klima <cardoe@gentoo.org> a2ps-4.13c-r5.ebuild,
+  a2ps-4.13c-r6.ebuild:
+  sys-apps/coreutils-6.10-r1 and higher now provides /bin/mktemp
 
 *a2ps-4.13c-r6 (22 Jan 2008)
 

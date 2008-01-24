@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/a2ps-4.13c-r6.ebuild,v 1.1 2008/01/22 11:20:54 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/a2ps-4.13c-r6.ebuild,v 1.2 2008/01/23 04:41:07 cardoe Exp $
 
 EAPI="prefix"
 
@@ -18,7 +18,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos"
-IUSE="cjk emacs nls tetex vanilla"
+IUSE="cjk emacs nls tetex vanilla userland_BSD userland_GNU"
 
 DEPEND=">=dev-util/gperf-2.7.2
 	|| ( >=dev-util/yacc-1.9.1 sys-devel/bison )
@@ -28,7 +28,8 @@ DEPEND=">=dev-util/gperf-2.7.2
 	tetex? ( virtual/tetex )
 	nls? ( sys-devel/gettext )"
 RDEPEND="virtual/ghostscript
-	|| ( sys-apps/mktemp sys-freebsd/freebsd-ubin )
+	userland_GNU? ( || ( >=sys-apps/coreutils-6.10-r1 sys-apps/mktemp ) )
+	userland_BSD? ( sys-freebsd/freebsd-ubin )
 	>=app-text/psutils-1.17
 	emacs? ( virtual/emacs )
 	tetex? ( virtual/tetex )
