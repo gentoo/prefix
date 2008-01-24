@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/alee-fonts/alee-fonts-11.4.ebuild,v 1.3 2008/01/15 17:12:58 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/alee-fonts/alee-fonts-11.4.ebuild,v 1.4 2008/01/23 17:06:07 armin76 Exp $
 
 EAPI="prefix"
 

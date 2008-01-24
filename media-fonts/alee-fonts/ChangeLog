@@ -1,6 +1,9 @@
 # ChangeLog for media-fonts/alee-fonts
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/alee-fonts/ChangeLog,v 1.31 2008/01/15 17:12:58 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/alee-fonts/ChangeLog,v 1.32 2008/01/23 17:06:07 armin76 Exp $
+
+  23 Jan 2008; Raúl Porcel <armin76@gentoo.org> alee-fonts-11.4.ebuild:
+  alpha/ia64/sparc/x86 stable
 
   15 Jan 2008; Fabian Groffen <grobian@gentoo.org> alee-fonts-8.3.ebuild,
   alee-fonts-11.4.ebuild:
