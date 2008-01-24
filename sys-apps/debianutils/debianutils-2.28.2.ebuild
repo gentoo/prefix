@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-2.28.2.ebuild,v 1.2 2008/01/21 19:30:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-2.28.2.ebuild,v 1.4 2008/01/23 08:13:27 vapier Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~x86-fbsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="static"
 
-PDEPEND="sys-apps/mktemp"
+PDEPEND="|| ( >=sys-apps/coreutils-6.10-r1 sys-apps/mktemp )"
 
 src_unpack() {
 	unpack ${A}
