@@ -1,0 +1,52 @@
+# ChangeLog for dev-java/xmlgraphics-commons
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xmlgraphics-commons/ChangeLog,v 1.11 2007/11/25 09:36:52 nelchael Exp $
+
+  25 Nov 2007; Krzysiek Pawlik <nelchael@gentoo.org>
+  xmlgraphics-commons-1.2.ebuild:
+  Stable on ppc, bug #199263.
+
+  23 Nov 2007; Samuli Suominen <drac@gentoo.org>
+  xmlgraphics-commons-1.2.ebuild:
+  amd64 stable wrt #199263
+
+  18 Nov 2007; Christian Faulhammer <opfer@gentoo.org>
+  xmlgraphics-commons-1.2.ebuild:
+  stable x86, bug 199263
+
+*xmlgraphics-commons-1.2 (18 Sep 2007)
+
+  18 Sep 2007; Petteri Räty <betelgeuse@gentoo.org>
+  +xmlgraphics-commons-1.2.ebuild:
+  Version bump.
+
+  21 Aug 2007; William L. Thomson Jr. <wltjr@gentoo.org>
+  xmlgraphics-commons-1.1.ebuild:
+  amd64 stable, bug #187600.
+
+  16 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  xmlgraphics-commons-1.1.ebuild:
+  ppc stable
+
+  13 Aug 2007; Christian Faulhammer <opfer@gentoo.org>
+  xmlgraphics-commons-1.1.ebuild:
+  stable x86, bug 187600
+
+  26 May 2007; Krzysiek Pawlik <nelchael@gentoo.org>
+  xmlgraphics-commons-1.1.ebuild:
+  Add ~ppc.
+
+  12 May 2007; Markus Rothe <corsair@gentoo.org>
+  xmlgraphics-commons-1.1.ebuild:
+  Added ~ppc64; bug #177466
+
+  08 May 2007; Raúl Porcel <armin76@gentoo.org>
+  xmlgraphics-commons-1.1.ebuild:
+  Add ~ia64 wrt #177466
+
+*xmlgraphics-commons-1.1 (07 May 2007)
+
+  07 May 2007; Vlastimil Babka <caster@gentoo.org> +metadata.xml,
+  +xmlgraphics-commons-1.1.ebuild:
+  Initial ebuild, coming from java-overlay by Alistair Bush.
+
