@@ -1,6 +1,11 @@
 # ChangeLog for dev-scheme/guile
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.36 2007/12/17 22:33:23 hkbst Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.37 2008/01/23 16:47:11 hkbst Exp $
+
+*guile-1.8.3-r2 (23 Jan 2008)
+
+  23 Jan 2008; Marijn Schouten <hkBst@gentoo.org> +guile-1.8.3-r2.ebuild:
+  fix bug 196639 for guile, and bug 206896 too
 
   17 Dec 2007; Marijn Schouten <hkBst@gentoo.org> guile-1.8.3-r25.ebuild:
   fix /-prefix install
