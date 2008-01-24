@@ -1,12 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.10.ebuild,v 1.1 2008/01/23 00:07:06 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.10-r1.ebuild,v 1.1 2008/01/23 04:41:05 vapier Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic toolchain-funcs autotools
 
-PATCH_VER="1.0"
+PATCH_VER="1.1"
 DESCRIPTION="Standard GNU file utilities (chmod, cp, dd, dir, ls...), text utilities (sort, tr, head, wc..), and shell utilities (whoami, who,...)"
 HOMEPAGE="http://www.gnu.org/software/coreutils/"
 SRC_URI="ftp://alpha.gnu.org/gnu/coreutils/${P}.tar.lzma
@@ -25,6 +25,7 @@ RDEPEND="selinux? ( sys-libs/libselinux )
 	xattr? ( sys-apps/attr )
 	nls? ( >=sys-devel/gettext-0.15 )
 	!net-mail/base64
+	!sys-apps/mktemp
 	>=sys-libs/ncurses-5.3-r5"
 DEPEND="${RDEPEND}
 	app-arch/lzma-utils
@@ -172,7 +173,7 @@ src_install() {
 		mv ${fhs} ../../bin/ || die "could not move fhs bins"
 		# move critical binaries into /bin (common scripts)
 		local com="basename chroot cut dir dirname du env expr head mkfifo
-		           readlink seq sleep sort tail touch tr tty vdir wc yes"
+		           mktemp readlink seq sleep sort tail touch tr tty vdir wc yes"
 		mv ${com} ../../bin/ || die "could not move common bins"
 		# create a symlink for uname in /usr/bin/ since autotools require it
 		local x
