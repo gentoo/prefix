@@ -10,7 +10,7 @@ SRC_URI="http://wgetpaste.zlin.dk/${PF}.bz2"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~x86-macos"
+KEYWORDS="~ppc-aix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 DEPEND=""
