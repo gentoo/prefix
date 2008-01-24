@@ -1,0 +1,165 @@
+# ChangeLog for app-misc/freemind
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/ChangeLog,v 1.37 2007/12/11 14:40:48 caster Exp $
+
+  11 Dec 2007; Vlastimil Babka <caster@gentoo.org>
+  freemind-0.9.0_beta15.ebuild:
+  Add ~x86 keyword.
+
+*freemind-0.9.0_beta15 (10 Dec 2007)
+
+  10 Dec 2007; Vlastimil Babka <caster@gentoo.org>
+  +files/freemind-0.9.0_beta15-build.xml.patch,
+  +freemind-0.9.0_beta15.ebuild:
+  Version bump, bug #200853. Dropped keywords for new dependency dev-java/hoteqn.
+
+  06 Jun 2007; Vlastimil Babka <caster@gentoo.org>
+  -freemind-0.7.1-r1.ebuild:
+  Remove old version.
+
+  26 May 2007; Krzysiek Pawlik <nelchael@gentoo.org>
+  freemind-0.9.0_beta9.ebuild:
+  Add ~ppc.
+
+  20 May 2007; nixnut <nixnut@gentoo.org> freemind-0.8.0-r3.ebuild:
+  Stable on ppc wrt bug 178834
+
+  19 May 2007; Peter Weller <welp@gentoo.org> freemind-0.8.0-r3.ebuild:
+  Stable on amd64 wrt bug 178834
+
+  19 May 2007; Christian Faulhammer <opfer@gentoo.org>
+  freemind-0.8.0-r3.ebuild:
+  stable x86, bug 178834
+
+  15 May 2007; Alistair John Bush <ali_bush@gentoo.org>
+  freemind-0.9.0_beta9.ebuild:
+  Adding to ~amd64
+
+  08 May 2007; Vlastimil Babka <caster@gentoo.org>
+  +files/freemind-0.9.0_beta9-build.xml.patch, freemind-0.9.0_beta9.ebuild:
+  Patch out jarbundler taskdef and remove dependency on it.
+
+*freemind-0.9.0_beta9 (07 May 2007)
+
+  07 May 2007; Vlastimil Babka <caster@gentoo.org>
+  +freemind-0.9.0_beta9.ebuild:
+  Version bump, bug #170892. Got rid of all bundled jar files - bug #89893.
+
+  11 Apr 2007; Petteri Räty <betelgeuse@gentoo.org>
+  freemind-0.8.0-r3.ebuild:
+  Prefer virtual/jdk-1.5 over virtual/jdk-1.4
+
+*freemind-0.8.0-r3 (10 Feb 2007)
+
+  10 Feb 2007; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/freemind-0.8.0-source.patch, -freemind-0.8.0-r2.ebuild,
+  +freemind-0.8.0-r3.ebuild:
+  Added patch from nebojsa <nebojsa@anja.ig3.net> that solves bug #166146.
+
+  19 Jan 2007; Charlie Shepherd <masterdriverz@gentoo.org>
+  freemind-0.8.0-r2.ebuild:
+  QA: remove invalid RESTRICT="mirror"
+
+*freemind-0.8.0-r2 (11 Dec 2006)
+
+  11 Dec 2006; Vlastimil Babka <caster@gentoo.org>
+  -freemind-0.8.0_rc2.ebuild, -freemind-0.8.0.ebuild,
+  -freemind-0.8.0-r1.ebuild, +freemind-0.8.0-r2.ebuild:
+  Fix launcher to make it work. Thanks to everyone in bug #142147, especially
+  Daniel Kreßner <gardak@gmx.net> for identifying the problem and Vlad-Mihai
+  Sima <vladmihaisima@yahoo.com> for the correct solution. Remove old cruft.
+
+  05 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  freemind-0.7.1-r1.ebuild:
+  Dropping sparc keywords, see #96229
+
+*freemind-0.8.0-r1 (27 Jul 2006)
+
+  27 Jul 2006; Joshua Nichols <nichoj@gentoo.org> +freemind-0.8.0-r1.ebuild:
+  Revision bump to support new Java system.
+
+  24 Mar 2006; Luca Barbato <lu_zero@gentoo.org> freemind-0.8.0.ebuild:
+  Marked ~ppc
+
+*freemind-0.8.0 (11 Jan 2006)
+
+  11 Jan 2006; Luca Barbato <lu_zero@gentoo.org> +freemind-0.8.0.ebuild:
+  Updated version, works fine on ppc and amd64
+
+  16 Sep 2005; Michael Sterrett <mr_bones_@gentoo.org>
+  freemind-0.8.0_rc2.ebuild:
+  needs app-arch/unzip
+
+  02 Jul 2005; Thomas Matthijs <axxo@gentoo.org> freemind-0.7.1.ebuild,
+  freemind-0.7.1-r1.ebuild, freemind-0.8.0_rc2.ebuild:
+  fix wrapper script
+
+  05 May 2005; Sven Wegener <swegener@gentoo.org> freemind-0.7.1.ebuild,
+  freemind-0.7.1-r1.ebuild, freemind-0.8.0_rc2.ebuild:
+  Removed trailing * from <, <=, >= and > dependencies.
+
+*freemind-0.8.0_rc2 (20 Apr 2005)
+
+  20 Apr 2005; Chris Aniszczyk <zx@gentoo.org> +freemind-0.8.0_rc2.ebuild:
+  Version bump. Closes #89864
+
+*freemind-0.7.1-r1 (12 Jan 2005)
+
+  12 Jan 2005; Jan Brinkmann <luckyduck@gentoo.org> +freemind-0.7.1-r1.ebuild,
+  freemind-0.7.1.ebuild:
+  freemind now generates an menu entry. thanks to Sebastian Roth
+  <sebastian.roth@frm2.tum.de> and Petteri Räty <petteri.raty@welho.com>. fixes
+  bug #76900.
+
+*freemind-0.7.1-r1 12 Jan 2005
+
+  12 Jan 2005;  <> 
+  # INSERT ENTRY HERE
+
+  12 Dec 2004; Jason Wever <weeve@gentoo.org> freemind-0.7.1.ebuild:
+  Stable on sparc.
+
+  16 Oct 2004; Thomas Matthijs <axxo@gentoo.org> freemind-0.7.1.ebuild:
+  use java-pkg_dohtml instead of dohtml to also install the package-list in
+  case of api docs: #50740
+
+  05 Oct 2004; Pieter Van den Abeele <pvdabeel@gentoo.org>
+  freemind-0.7.1.ebuild:
+  Masked freemind-0.7.1.ebuild stable for ppc
+
+  22 Jun 2004; Dylan Carlson <absinthe@gentoo.org> freemind-0.7.1.ebuild:
+  Keywords amd64.
+
+  05 May 2004; <SeJo@gentoo.org> freemind-0.7.1.ebuild:
+  added ~ppc keyword
+
+  10 Apr 2004; Chris Aniszczyk <zx@gentoo.org> freemind-0.6.7.ebuild,
+  freemind-0.7.1.ebuild:
+  Marking stable on x86
+
+  10 Apr 2004; Chris Aniszczyk <zx@gentoo.org> freemind-0.6.7.ebuild,
+  freemind-0.7.1.ebuild:
+  Clean up, docs are fixed. Closes #47118
+
+  26 Mar 2004; David Holm <dholm@gentoo.org> freemind-0.7.1.ebuild:
+  Backed out of ~ppc while waiting for portage upgrade.
+
+  22 Mar 2004; David Holm <dholm@gentoo.org> freemind-0.7.1.ebuild:
+  Added to ~ppc again, portage-2.0.50-r2 resolved our java issues.
+
+  23 Feb 2004; David Holm <dholm@gentoo.org> freemind-0.7.1.ebuild:
+  Backed out of ~ppc until the virtuals/jdk-1.4* mess can be resolved.
+
+  23 Feb 2004; David Holm <dholm@gentoo.org> freemind-0.7.1.ebuild:
+  Added to ~ppc.
+
+*freemind-0.7.1 (17 Feb 2004)
+
+  17 Feb 2004; <zx@gentoo.org> freemind-0.7.1.ebuild:
+  Version bump + jikes support
+
+*freemind-0.6.7 (14 Feb 2004)
+
+  14 Feb 2004; Chris Aniszczyk <zx@gentoo.org> freemind-0.6.7.ebuild:
+  Initial Import. Bug #25717
+
