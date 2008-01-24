@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/mktemp
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/mktemp/ChangeLog,v 1.9 2007/03/25 15:22:42 yoswink Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/mktemp/ChangeLog,v 1.10 2008/01/23 04:42:34 vapier Exp $
+
+  23 Jan 2008; Mike Frysinger <vapier@gentoo.org> mktemp-1.5.ebuild:
+  Block newer versions of coreutils now that it provides the mktemp binary.
 
   25 Mar 2007; Jose Luis Rivero <yoswink@gentoo.org> mktemp-1.5.ebuild:
   Stable on alpha wrt bug #169082
