@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/auctex
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.79 2008/01/22 17:21:39 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.80 2008/01/23 11:37:33 armin76 Exp $
+
+  23 Jan 2008; Raúl Porcel <armin76@gentoo.org> auctex-11.84-r3.ebuild:
+  sparc stable wrt #206992
 
   22 Jan 2008; Brent Baude <ranger@gentoo.org> auctex-11.84-r3.ebuild:
   Marking auctex-11.84-r3 ppc and ppc64 for bug 206992
