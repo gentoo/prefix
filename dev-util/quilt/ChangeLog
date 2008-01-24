@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/quilt
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/ChangeLog,v 1.35 2007/12/27 14:56:01 armin76 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/ChangeLog,v 1.36 2008/01/23 04:32:20 cardoe Exp $
+
+  23 Jan 2008; Doug Klima <cardoe@gentoo.org> quilt-0.42-r1.ebuild,
+  quilt-0.45-r1.ebuild, quilt-0.46.ebuild:
+  sys-apps/coreutils-6.10-r1 and higher now provides /bin/mktemp
 
   27 Dec 2007; Raúl Porcel <armin76@gentoo.org> quilt-0.46.ebuild:
   Add ~sparc wrt #203424

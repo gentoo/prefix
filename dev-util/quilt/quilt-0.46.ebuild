@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/quilt-0.46.ebuild,v 1.12 2007/12/27 14:56:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/quilt-0.46.ebuild,v 1.13 2008/01/23 04:32:20 cardoe Exp $
 
 EAPI="prefix"
 
@@ -12,13 +12,13 @@ SRC_URI="http://savannah.nongnu.org/download/quilt/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="graphviz"
 
 RDEPEND="sys-apps/ed
 	dev-util/diffstat
 	graphviz? ( media-gfx/graphviz )
-	sys-apps/mktemp"
+	|| ( >=sys-apps/coreutils-6.10-r1 sys-apps/mktemp )"
 
 pkg_setup() {
 	use graphviz && return 0
