@@ -13,7 +13,7 @@ SRC_URI="ftp://ftp.inr.ac.ru/ip-routing/${PN}-ss${PV}-try.tar.bz2
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86"
+KEYWORDS="~ppc-aix ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="static ipv6 doc"
 
 DEPEND="virtual/os-headers
