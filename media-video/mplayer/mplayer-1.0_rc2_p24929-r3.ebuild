@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc1_p20070927-r1.ebuild,v 1.2 2007/12/05 17:55:19 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p24929-r3.ebuild,v 1.1 2008/01/24 10:41:20 drac Exp $
 
 EAPI="prefix"
 
@@ -8,26 +8,21 @@ inherit eutils flag-o-matic multilib
 
 RESTRICT="strip"
 IUSE="3dnow 3dnowext a52 aac aalib alsa altivec amrnb amrwb arts bidi bl bindist
-cddb cdio cdparanoia cpudetection custom-cflags dga doc dts dvb directfb dvd
-dv enca encode esd fbcon ftp gif ggi gtk iconv ipv6 ivtv jack joystick
-jpeg libcaca lirc live livecd lzo mad md5sum mmx mmxext mp2 mp3 musepack nas
-nemesi pvr unicode vorbis opengl openal oss png pnm quicktime radio rar real
-rtc samba sdl speex srt sse sse2 ssse3 svga teletext tga theora tivo truetype
-v4l v4l2 vidix win32codecs X x264 xanim xinerama xv xvid xvmc zoran aqua"
+cddb cdio cdparanoia cpudetection custom-cflags debug dga doc dts dvb directfb
+dvd dv enca encode esd fbcon ftp gif ggi gtk iconv ipv6 jack joystick jpeg
+kernel_linux ladspa libcaca lirc live livecd lzo mad md5sum mmx mmxext mp2 mp3
+musepack nas nemesi unicode vorbis opengl openal oss png pnm pulseaudio quicktime radio rar real rtc samba sdl speex srt sse sse2 ssse3 svga teletext tga theora tivo truetype v4l v4l2 vidix win32codecs X x264 xanim xinerama xv xvid xvmc zoran aqua"
 
 VIDEO_CARDS="s3virge mga tdfx vesa"
 
-for X in ${VIDEO_CARDS}; do
-	IUSE="${IUSE} video_cards_${X}"
+for x in ${VIDEO_CARDS}; do
+	IUSE="${IUSE} video_cards_${x}"
 done
 
 BLUV="1.7"
 SVGV="1.9.17"
-MY_PV="20070927"
-MY_P="${PN}-${MY_PV}"
-S="${WORKDIR}/${MY_P}"
 AMR_URI="http://www.3gpp.org/ftp/Specs/archive"
-SRC_URI="mirror://gentoo/${MY_P}.tar.bz2
+SRC_URI="mirror://gentoo/${P}.tar.bz2
 	!truetype? ( mirror://mplayer/releases/fonts/font-arial-iso-8859-1.tar.bz2
 				 mirror://mplayer/releases/fonts/font-arial-iso-8859-2.tar.bz2
 				 mirror://mplayer/releases/fonts/font-arial-cp1250.tar.bz2 )
@@ -68,17 +63,20 @@ RDEPEND="sys-libs/ncurses
 		aac? ( media-libs/faac )
 		mp2? ( media-sound/twolame )
 		mp3? ( media-sound/lame )
+		x264? ( media-libs/x264-svn )
 		)
 	esd? ( media-sound/esound )
 	enca? ( app-i18n/enca )
 	gif? ( media-libs/giflib )
-	ggi? ( media-libs/libggi )
+	ggi? ( media-libs/libggi
+		media-libs/libggiwmh )
 	gtk? ( media-libs/libpng
 		x11-libs/libXxf86vm
 		x11-libs/libXext
 		x11-libs/libXi
 		=x11-libs/gtk+-2* )
 	jpeg? ( media-libs/jpeg )
+	ladspa? ( media-libs/ladspa-sdk )
 	libcaca? ( media-libs/libcaca )
 	lirc? ( app-misc/lirc )
 	lzo? ( >=dev-libs/lzo-2 )
@@ -88,6 +86,7 @@ RDEPEND="sys-libs/ncurses
 	opengl? ( virtual/opengl )
 	png? ( media-libs/libpng )
 	pnm? ( media-libs/netpbm )
+	pulseaudio? ( media-sound/pulseaudio )
 	samba? ( net-fs/samba )
 	sdl? ( media-libs/libsdl )
 	speex? ( >=media-libs/speex-1.1.7 )
@@ -100,7 +99,6 @@ RDEPEND="sys-libs/ncurses
 		media-libs/fontconfig )
 	vidix? ( x11-libs/libXxf86vm
 			 x11-libs/libXext )
-	x264? ( media-libs/x264-svn )
 	xanim? ( media-video/xanim )
 	xinerama? ( x11-libs/libXinerama
 		x11-libs/libXxf86vm
@@ -119,8 +117,7 @@ DEPEND="${RDEPEND}
 	doc? ( >=app-text/docbook-sgml-dtd-4.1.2
 		app-text/docbook-xml-dtd
 		>=app-text/docbook-xml-simple-dtd-1.50.0
-		dev-libs/libxslt
-	)
+		dev-libs/libxslt )
 	dga? ( x11-proto/xf86dgaproto )
 	xinerama? ( x11-proto/xineramaproto )
 	xv? ( x11-proto/videoproto
@@ -133,9 +130,7 @@ DEPEND="${RDEPEND}
 # Make sure the assembler USE flags are unmasked on amd64
 # Remove this once default-linux/amd64/2006.1 is deprecated
 DEPEND="${DEPEND} amd64? ( >=sys-apps/portage-2.1.2 )
-	mp2? ( >=sys-apps/portage-2.1.2 )
-	ivtv? ( media-tv/ivtv
-		>=sys-apps/portage-2.1.2 )"
+	mp2? ( >=sys-apps/portage-2.1.2 )"
 
 SLOT="0"
 LICENSE="GPL-2"
@@ -156,7 +151,7 @@ pkg_setup() {
 
 src_unpack() {
 
-	unpack ${MY_P}.tar.bz2
+	unpack ${A}
 
 	if ! use truetype ; then
 		unpack font-arial-iso-8859-1.tar.bz2 \
@@ -177,27 +172,19 @@ src_unpack() {
 		echo
 		einfo "Enabling vidix non-root mode."
 		einfo "(You need a proper svgalib_helper.o module for your kernel"
-		einfo " to actually use this)"
+		einfo "to actually use this)"
 		echo
 
 		mv "${WORKDIR}/svgalib_helper" "${S}/libdha"
 	fi
 
-	# Remove kernel-2.6 workaround as the problem it works around is
-	# fixed, and the workaround breaks sparc
-	# use sparc && sed -i 's:#define __KERNEL__::' osdep/kerneltwosix.h
-
-	# minor fix
-	# sed -i -e "s:-O4:-O4 -D__STDC_LIMIT_MACROS:" configure
-
-	# Fix XShape detection
-	epatch "${FILESDIR}/${PN}-xshape.patch"
-	epatch "${FILESDIR}/${PN}-dpms.patch"
-
 	# Fix polish spelling errors
-	[[ -n ${LINGUAS} ]] && sed -e 's:Zarządano:Zażądano:' -i help/help_mp-pl.h
+	[[ -n ${LINGUAS} ]] && sed -e 's:ZarzÄdano:ZaÅ¼Ädano:' -i help/help_mp-pl.h
 
-	epatch "${FILESDIR}"/${P}-prefix.patch
+	# Pulseaudio patch, bug 203430
+	epatch "${FILESDIR}/${P}-pulse.patch"
+	epatch "${FILESDIR}"/${PN}-1.0_rc1_p20070927-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.0-nocona.patch
 	epatch "${FILESDIR}"/${PN}-1.0-darwin.patch
 	eprefixify DOCS/xml/configure
 }
@@ -206,6 +193,9 @@ src_compile() {
 
 	local myconf=" --disable-tv-bsdbt848 \
 		--disable-faad-external"
+
+	# broken upstream, won't work with recent kernels
+	myconf="${myconf} --disable-ivtv --disable-pvr"
 
 	# MPlayer reads in the LINGUAS variable from make.conf, and sets
 	# the languages accordingly.  Some will have to be altered to match
@@ -273,13 +263,12 @@ src_compile() {
 	use samba || myconf="${myconf} --disable-smb"
 
 	# DVB / Video4Linux / Radio support
-	if ( use dvb || use v4l || use v4l2 || use radio ); then
+	if { use dvb || use v4l || use v4l2 || use radio; }; then
 		use dvb || myconf="${myconf} --disable-dvb --disable-dvbhead"
 		use v4l	|| myconf="${myconf} --disable-tv-v4l1"
 		use v4l2 || myconf="${myconf} --disable-tv-v4l2"
 		use teletext || myconf="${myconf} --disable-tv-teletext"
-		use pvr || myconf="${myconf} --disable-pvr"
-		if ( use dvb || use v4l || use v4l2 ) && use radio; then
+		if use radio && { use dvb || use v4l || use v4l2; }; then
 			myconf="${myconf} --enable-radio $(use_enable encode radio-capture)"
 		else
 			myconf="${myconf} --disable-radio-v4l2 --disable-radio-bsdbt848"
@@ -287,8 +276,7 @@ src_compile() {
 	else
 		myconf="${myconf} --disable-tv --disable-tv-v4l1 --disable-tv-v4l2 \
 			--disable-radio --disable-radio-v4l2 --disable-radio-bsdbt848 \
-			--disable-dvb --disable-dvbhead --disable-tv-teletext \
-			--disable-pvr"
+			--disable-dvb --disable-dvbhead --disable-tv-teletext"
 	fi
 
 	#########
@@ -326,8 +314,7 @@ src_compile() {
 	#############
 	# Video Output #
 	#############
-
-	for x in directfb ivtv ggi md5sum sdl xinerama; do
+	for x in directfb ggi md5sum sdl xinerama; do
 		use ${x} || myconf="${myconf} --disable-${x}"
 	done
 	use aalib || myconf="${myconf} --disable-aa"
@@ -336,8 +323,6 @@ src_compile() {
 	use fbcon && use video_cards_s3virge && myconf="${myconf} --enable-s3fb"
 	use libcaca || myconf="${myconf} --disable-caca"
 	use opengl || myconf="${myconf} --disable-gl"
-	use video_cards_mga && myconf="${myconf} --enable-mga"
-	( use X && use video_cards_mga ) && myconf="${myconf} --enable-xmga"
 	use video_cards_vesa || myconf="${myconf} --disable-vesa"
 	use vidix || myconf="${myconf} --disable-vidix-internal \
 		--disable-vidix-external"
@@ -356,6 +341,10 @@ src_compile() {
 		myconf="${myconf} --disable-xv --disable-xvmc"
 	fi
 
+	if ! use kernel_linux && ! use video_cards_mga; then
+		 myconf="${myconf} --disable-mga --disable-xmga"
+	fi
+
 	if use video_cards_tdfx; then
 		myconf="${myconf} $(use_enable video_cards_tdfx tdfxvid) \
 			$(use_enable fbcon tdfxfb)"
@@ -366,9 +355,10 @@ src_compile() {
 	#############
 	# Audio Output #
 	#############
-	for x in alsa arts esd jack nas openal; do
+	for x in alsa arts esd jack ladspa nas openal; do
 		use ${x} || myconf="${myconf} --disable-${x}"
 	done
+	use pulseaudio || myconf="${myconf} --disable-pulse"
 	if ! use radio; then
 		use oss || myconf="${myconf} --disable-ossaudio"
 	fi
@@ -391,23 +381,9 @@ src_compile() {
 		--disable-3dnowext"
 	fi
 
-	# debug broken in this release
-	# use debug && myconf="${myconf} --enable-debug=3"
+	use debug && myconf="${myconf} --enable-debug=3"
 
-	if use altivec; then
-		myconf="${myconf} --enable-altivec"
-	else
-		myconf="${myconf} --disable-altivec"
-	fi
-
-	if [ -e /dev/.devfsd ]; then
-		myconf="${myconf} --enable-linux-devfs"
-	fi
-
-	#leave this in place till the configure/compilation borkage is completely corrected back to pre4-r4 levels.
-	# it's intended for debugging so we can get the options we configure mplayer w/, rather then hunt about.
-	# it *will* be removed asap; in the meantime, doesn't hurt anything.
-	echo "${myconf}" > "${T}"/configure-options
+	myconf="${myconf} $(use_enable altivec)"
 
 	if use custom-cflags; then
 		# let's play the filtration game!  MPlayer hates on all!
@@ -440,27 +416,22 @@ src_compile() {
 		$(use_enable aqua macosx-bundle) \
 		$(use_enable aqua libdvdcss-internal) \
 		${myconf}"
-	einfo "Running ./configure"
-	echo "CFLAGS=\"${CFLAGS}\" ./configure ${myconf}"
+	#echo "CFLAGS=\"${CFLAGS}\" ./configure ${myconf}"
 	CFLAGS="${CFLAGS}" ./configure ${myconf} || die "configure died"
 
-	einfo "Make"
 	emake || die "Failed to build MPlayer!"
 	use doc && make -C DOCS/xml html-chunked
-	einfo "Make completed"
 }
 
 src_install() {
 
-	einfo "Make install"
-	make prefix="${ED}"/usr \
-		 BINDIR="${ED}"/usr/bin \
-		 LIBDIR="${ED}"/usr/$(get_libdir) \
-		 CONFDIR="${ED}"/etc/mplayer \
-		 DATADIR="${ED}"/usr/share/mplayer \
-		 MANDIR="${ED}"/usr/share/man \
+	make prefix="${ED}/usr" \
+		 BINDIR="${ED}/usr/bin" \
+		 LIBDIR="${ED}/usr/$(get_libdir)" \
+		 CONFDIR="${ED}/etc/mplayer" \
+		 DATADIR="${ED}/usr/share/mplayer" \
+		 MANDIR="${ED}/usr/share/man" \
 		 install || die "Failed to install MPlayer!"
-	einfo "Make install completed"
 
 	dodoc AUTHORS Changelog README
 	# Install the documentation; DOCS is all mixed up not just html
@@ -523,32 +494,24 @@ EOT
 
 pkg_preinst() {
 
-	if [ -d "${EROOT}"/usr/share/mplayer/Skin/default ]
+	if [[ -d ${EROOT}/usr/share/mplayer/Skin/default ]]
 	then
 		rm -rf "${EROOT}/usr/share/mplayer/Skin/default"
 	fi
 }
 
-pkg_postinst() {
-
-	if use video_cards_mga; then
-		depmod -a &>/dev/null || :
-	fi
-
-}
-
 pkg_postrm() {
 
 	# Cleanup stale symlinks
-	if [ -L "${EROOT}"/usr/share/mplayer/font -a \
-		 ! -e "${EROOT}"/usr/share/mplayer/font ]
+	if [ -L "${EROOT}/usr/share/mplayer/font" -a \
+		 ! -e "${EROOT}/usr/share/mplayer/font" ]
 	then
-		rm -f "${EROOT}"/usr/share/mplayer/font
+		rm -f "${EROOT}/usr/share/mplayer/font"
 	fi
 
-	if [ -L "${EROOT}"/usr/share/mplayer/subfont.ttf -a \
-		 ! -e "${EROOT}"/usr/share/mplayer/subfont.ttf ]
+	if [ -L "${EROOT}/usr/share/mplayer/subfont.ttf" -a \
+		 ! -e "${EROOT}/usr/share/mplayer/subfont.ttf" ]
 	then
-		rm -f "${EROOT}"/usr/share/mplayer/subfont.ttf
+		rm -f "${EROOT}/usr/share/mplayer/subfont.ttf"
 	fi
 }
