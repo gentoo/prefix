@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1_rc5.ebuild,v 1.1 2008/01/23 22:15:31 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1_rc6.ebuild,v 1.1 2008/01/24 17:27:25 alonbl Exp $
 
 EAPI="prefix"
 
