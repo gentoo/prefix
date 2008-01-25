@@ -11,7 +11,7 @@ HOMEPAGE="http://pybugz.googlecode.com"
 SRC_URI="http://pybugz.googlecode.com/files/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos ~sparc-solaris"
+KEYWORDS="~ppc-aix ~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 DEPEND="|| ( >=dev-lang/python-2.5
 	( >=dev-lang/python-2.4
