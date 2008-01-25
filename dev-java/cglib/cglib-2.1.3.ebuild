@@ -1,11 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/cglib/cglib-2.1.3.ebuild,v 1.12 2007/10/24 23:26:11 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/cglib/cglib-2.1.3.ebuild,v 1.13 2008/01/14 13:49:21 caster Exp $
 
 EAPI="prefix"
 
 JAVA_PKG_IUSE="doc source"
-WANT_SPLIT_ANT="true"
 
 inherit eutils java-pkg-2 java-ant-2
 
@@ -48,7 +47,7 @@ EANT_ANT_TASKS="jarjar-1"
 #}
 
 src_install() {
-	java-pkg_newjar dist/${PN}-${MY_PV}.jar ${PN}.jar
+	java-pkg_newjar dist/${PN}-${MY_PV}.jar
 	java-pkg_newjar dist/${PN}-nodep-${MY_PV}.jar ${PN}-nodep.jar
 
 	dodoc NOTICE README || die

@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/cglib
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/cglib/ChangeLog,v 1.34 2007/10/24 23:26:11 betelgeuse Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/cglib/ChangeLog,v 1.35 2008/01/14 13:49:21 caster Exp $
+
+  14 Jan 2008; Vlastimil Babka <caster@gentoo.org> cglib-2.1.3.ebuild:
+  Remove the now obsolete WANT_SPLIT_ANT variable.
 
   24 Oct 2007; Petteri Räty <betelgeuse@gentoo.org> cglib-2.1.3.ebuild:
   Fix source use flag. Reported in bug #192793.
