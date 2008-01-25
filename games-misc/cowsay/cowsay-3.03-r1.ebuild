@@ -12,7 +12,7 @@ SRC_URI="http://www.nog.net/~tony/warez/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-fbsd ~amd64-linux ~mips-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~ppc-aix ~x86-fbsd ~amd64-linux ~mips-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE=""
 
 RDEPEND=">=dev-lang/perl-5"
