@@ -1,0 +1,29 @@
+diff -ur lpe-1.2.6.13.orig/configure.in lpe-1.2.6.13/configure.in
+--- lpe-1.2.6.13.orig/configure.in	2005-06-20 07:20:31.000000000 +0300
++++ lpe-1.2.6.13/configure.in	2008-01-24 13:33:36.000000000 +0200
+@@ -106,11 +106,11 @@
+ dnl AC_MSG_WARN("$PACKAGE depends on dynamic libraries.")
+ ])])])
+ AC_SUBST(DL_LIB)
+-AC_CHECK_LIB(slang,SLang_init_tty,[SLANG_LIB="-lslang"],[
++AC_CHECK_LIB(slang-2,SLang_init_tty,[SLANG_LIB="-lslang-2"],[
+ dnl reset the cache variable so configure will even bother to check -ltermcap
+ unset ac_cv_lib_slang_SLang_init_tty
+-AC_CHECK_LIB(slang,SLang_init_tty,[SLANG_LIB="-lslang -ltermcap"],[
+-AC_MSG_ERROR([no slang library found.  $PACKAGE depends on SLang.])
++AC_CHECK_LIB(slang-2,SLang_init_tty,[SLANG_LIB="-lslang-2 -ltermcap"],[
++AC_MSG_ERROR([no slang-2 library found.  $PACKAGE depends on SLang.])
+ ,-ltermcap])])
+ AC_SUBST(SLANG_LIB)
+ 
+@@ -144,8 +144,8 @@
+ AC_CHECK_HEADERS(fcntl.h)
+ AC_CHECK_HEADER(slang.h,
+  [SLANG_H=slang.h],
+- [AC_CHECK_HEADER(slang/slang.h,
+-  [SLANG_H=slang/slang.h],
++ [AC_CHECK_HEADER(slang-2/slang.h,
++  [SLANG_H=slang-2/slang.h],
+   [AC_MSG_ERROR([slang.h is needed to compile $PACKAGE])])])
+ AC_DEFINE_UNQUOTED(SLANG_H,"${SLANG_H}")
+ 

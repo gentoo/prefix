@@ -1,11 +1,21 @@
 # ChangeLog for app-editors/lpe
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/lpe/ChangeLog,v 1.8 2007/02/09 07:11:51 flameeyes Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/lpe/ChangeLog,v 1.12 2008/01/24 19:24:33 opfer Exp $
+
+  24 Jan 2008; Christian Faulhammer <opfer@gentoo.org> lpe-1.2.6.12.ebuild:
+  stable x86, bug 207281
+
+  24 Jan 2008; nixnut <nixnut@gentoo.org> lpe-1.2.6.12.ebuild:
+  Stable on ppc wrt bug 207281
+
+*lpe-1.2.6.13 (24 Jan 2008)
+
+  24 Jan 2008; Samuli Suominen <drac@gentoo.org>
+  +files/lpe-1.2.6.13-slang-2.patch, lpe-1.2.6.ebuild, lpe-1.2.6.12.ebuild,
+  +lpe-1.2.6.13.ebuild:
+  Version bump. Fix slang depend for old versions wrt #141947.
 
   09 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
-  Regenerate digest in Manifest2 format.
-
-  08 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
   Regenerate digest in Manifest2 format.
 
 *lpe-1.2.6.12 (25 Jun 2005)
