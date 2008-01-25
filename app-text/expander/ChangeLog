@@ -1,0 +1,19 @@
+# ChangeLog for app-text/expander
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/expander/ChangeLog,v 1.6 2007/05/11 18:19:49 bangert Exp $
+
+  11 May 2007; Thilo Bangert <bangert@gentoo.org> +metadata.xml:
+  add metadata.xml
+
+  28 Jan 2007; Marius Mauch <genone@gentoo.org> expander-2.0.5.ebuild:
+  Replacing einfo with elog
+
+  12 Oct 2005; Fabian Groffen <grobian@gentoo.org> expander-2.0.5.ebuild:
+  Marked ~ppc-macos (bug #108631)
+
+*expander-2.0.5 (30 Oct 2003)
+
+  30 Oct 2003; Brandy Westcott brandy@gentoo.org expander-2.0.5.ebuild:
+  Initial import. Expander is a utility that acts as a filter for text editors.
+  Closes bug #30604.
+
