@@ -58,10 +58,6 @@ src_unpack() {
 # fails to apply
 	#epatch "${FILESDIR}"/6.9-iswblank.patch
 
-# fails to apply
-	# interix lacks ESTALE
-	#epatch "${FILESDIR}"/6.9-interix.patch
-
 	# no need to abort when unable to 'list mounted fs'
 	epatch "${FILESDIR}"/6.9-without-mountfs.patch
 
