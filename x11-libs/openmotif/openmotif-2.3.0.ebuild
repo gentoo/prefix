@@ -16,7 +16,7 @@ SRC_URI="ftp://ftp.ics.com/openmotif/2.3/${PV}/${P}.tar.gz
 
 LICENSE="MOTIF"
 SLOT="2.3"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE="doc xft jpeg png examples"
 
 RDEPEND="

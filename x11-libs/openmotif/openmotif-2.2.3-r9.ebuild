@@ -18,7 +18,7 @@ SRC_URI="ftp://ftp.motifzone.net/om${PV}/src/${MY_P}.tar.gz
 
 LICENSE="MOTIF"
 SLOT="2.2"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE=""
 
 RDEPEND="
