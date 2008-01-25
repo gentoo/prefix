@@ -61,10 +61,6 @@ src_unpack() {
 	# no need to abort when unable to 'list mounted fs'
 	epatch "${FILESDIR}"/6.9-without-mountfs.patch
 
-# fails to apply
-	# fix bug in patchset 1.2: #206841
-	#epatch "${FILESDIR}"/6.9-mbrtowc.patch
-
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
 	# cross-compile, we can't do that since 'bin' isn't a native bin.
