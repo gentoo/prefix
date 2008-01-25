@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xstream/xstream-1.2-r1.ebuild,v 1.1 2007/11/16 06:27:13 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xstream/xstream-1.2-r1.ebuild,v 1.2 2008/01/08 07:01:07 ali_bush Exp $
 
 EAPI="prefix"
 
@@ -48,6 +48,7 @@ JAVA_PKG_BSFIX="off"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}/${P}-javadoc-fix.patch"
 	rm -v *.jar || die
 	rm -v lib/jdk1.3/*.jar || die
 	cd "${S}/lib"

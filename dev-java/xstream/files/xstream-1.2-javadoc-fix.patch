@@ -1,0 +1,12 @@
+--- build.xml.orig	2008-01-08 19:35:17.000000000 +1300
++++ build.xml	2008-01-08 19:39:04.000000000 +1300
+@@ -141,6 +141,9 @@
+             <packageset dir="src/java" defaultexcludes="yes">
+                 <exclude name="com/thoughtworks/xstream/core/**"/>
+                 <exclude name="com/thoughtworks/xstream/io/xml/xppdom/**"/>
++                <excludesfile name="jdk-1.5-minimum.txt" unless="jdk1.5.available" />
++                <excludesfile name="jdk-1.5-specific.txt" unless="jdk1.5.available" />
++                <excludesfile name="jdk-1.4-specific.txt" unless="jdk1.4.available" />
+             </packageset>
+             <doctitle><![CDATA[<h1>XStream ${version}</h1>]]></doctitle>
+             <bottom><![CDATA[<i>Joe Walnes, <a href="http://xstream.codehaus.org">http://xstream.codehaus.org/</a></i>]]></bottom>
