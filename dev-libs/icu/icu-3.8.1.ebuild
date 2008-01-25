@@ -23,7 +23,7 @@ SRC_URI="${BASEURI}/${SRCPKG}
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="debug doc examples"
 
 DEPEND="doc? ( app-arch/unzip )"
@@ -56,6 +56,8 @@ src_unpack() {
 	for x in CFLAGS CXXFLAGS CPPFLAGS LDFLAGS ; do
 		sed -i -e "/^${x} =.*/s:@${x}@::" config/Makefile.inc.in || die "sed failed"
 	done
+
+	epatch "${FILESDIR}"/${P}-darwin.patch
 }
 
 src_compile() {
