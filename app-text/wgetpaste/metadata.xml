@@ -3,11 +3,7 @@
 <pkgmetadata>
 <herd>no-herd</herd>
 <maintainer>
-<email>bo.andresen@zlin.dk</email>
+<email>zlin@gentoo.org</email>
 <name>Bo Ørsted Andresen</name>
-</maintainer>
-<maintainer>
-<email>jokey@gentoo.org</email>
-<name>Markus Ullmann</name>
 </maintainer>
 </pkgmetadata>
