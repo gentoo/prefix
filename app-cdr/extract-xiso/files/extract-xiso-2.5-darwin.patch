@@ -1,0 +1,11 @@
+--- extract-xiso.c
++++ extract-xiso.c
+@@ -384,7 +384,7 @@
+ #endif
+ 
+ 
+-#if ! defined( __cplusplus ) && ! defined( bool )
++#if defined (__APPLE_CC__) || ( ! defined( __cplusplus ) && ! defined( bool ) )
+ 	typedef int bool;
+ 	enum { false, true };
+ #endif
