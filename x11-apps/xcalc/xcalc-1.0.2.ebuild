@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="scientific calculator for X"
 
-KEYWORDS="~amd64-linux ~mips-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~mips-linux ~x86-linux ~x86-macos ~sparc-solaris"
 IUSE="xprint"
 
 RDEPEND="x11-libs/libXaw"
