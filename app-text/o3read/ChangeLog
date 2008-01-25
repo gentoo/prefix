@@ -1,0 +1,31 @@
+# ChangeLog for app-text/o3read
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/o3read/ChangeLog,v 1.10 2007/08/15 13:52:24 beandog Exp $
+
+  15 Aug 2007; Steve Dibb <beandog@gentoo.org> o3read-0.0.4.ebuild:
+  add ~amd64, bug 188983
+
+  21 Feb 2007; Charlie Shepherd <masterdriverz@gentoo.org> metadata.xml:
+  avenj has retired - removing from metadata
+
+  09 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
+
+  29 Oct 2005; Fabian Groffen <grobian@gentoo.org> o3read-0.0.4.ebuild:
+  Marked ~ppc-macos (bug #109426)
+
+  02 Jun 2005; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  o3read-0.0.4.ebuild:
+  mark ~ppc
+
+*o3read-0.0.4 (10 Jan 2005)
+
+  10 Jan 2005; Jon Portnoy <avenj@gentoo.org> o3read-0.0.4.ebuild :
+  Security version bump.
+
+*o3read-0.0.3 (27 Nov 2002)
+
+  27 Nov 2002: Seth Chandler <sethbc@gentoo.org>: o3read-0.0.3.ebuild
+  added o3read-0.0.3 to portage.  Ebuild submitted by Jon Portnoy 
+  (avenj@tellink.net).
+
