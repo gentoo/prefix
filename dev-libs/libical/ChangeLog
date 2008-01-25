@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libical
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libical/ChangeLog,v 1.39 2007/10/06 04:53:20 tgall Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libical/ChangeLog,v 1.40 2008/01/24 10:22:30 drac Exp $
+
+*libical-0.27 (24 Jan 2008)
+
+  24 Jan 2008; Samuli Suominen <drac@gentoo.org> +libical-0.27.ebuild:
+  Version bump wrt #205926.
 
   05 Oct 2007; Tom Gall <tgall@gentoo.org> libical-0.26.7.ebuild:
   stable on ppc64
