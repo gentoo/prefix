@@ -1,0 +1,67 @@
+# ChangeLog for media-gfx/potrace
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/potrace/ChangeLog,v 1.18 2008/01/19 19:06:02 dirtyepic Exp $
+
+  19 Jan 2008; Ryan Hill <dirtyepic@gentoo.org> metadata.xml,
+  -potrace-1.5.ebuild, -potrace-1.6.ebuild:
+  Maintainer -> fonts.  Remove old.
+
+*potrace-1.8 (31 Dec 2007)
+
+  31 Dec 2007; Ryan Hill <dirtyepic@gentoo.org> +potrace-1.8.ebuild:
+  Version bump, bug #174265.
+
+  25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing usata from metadata.xml as per #22931. Assigning to maintainer-needed.
+
+  09 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
+
+  29 Oct 2005; Fabian Groffen <grobian@gentoo.org> potrace-1.7.ebuild:
+  Marked ~ppc-macos (bug #109959)
+
+  24 Aug 2005; Aron Griffis <agriffis@gentoo.org> potrace-1.7.ebuild:
+  stable on ia64
+
+  23 Aug 2005; Gustavo Zacarias <gustavoz@gentoo.org> potrace-1.7.ebuild:
+  Stable on sparc
+
+  13 Aug 2005; Luis Medinas <metalgod@gentoo.org> potrace-1.7.ebuild:
+  Stable on AMD64.
+
+  12 Jun 2005; Bryan Østergaard <kloeri@gentoo.org> potrace-1.7.ebuild:
+  Stable on alpha.
+
+  05 Jun 2005; Michael Hanselmann <hansmi@gentoo.org> potrace-1.7.ebuild:
+  Stable on ppc.
+
+  28 May 2005; Mamoru KOMACHI <usata@gentoo.org> potrace-1.7.ebuild:
+  Stable on x86.
+
+  08 May 2005; Aron Griffis <agriffis@gentoo.org> potrace-1.6.ebuild:
+  stable on ia64
+
+*potrace-1.7 (24 Apr 2005)
+
+  24 Apr 2005; Mamoru KOMACHI <usata@gentoo.org> +potrace-1.7.ebuild:
+  Version bumped; bug #90227.
+
+*potrace-1.6 (01 Mar 2005)
+
+  01 Mar 2005; Mamoru KOMACHI <usata@gentoo.org> +potrace-1.6.ebuild:
+  Version bumped. This closes bug #83573.
+
+  18 Feb 2005; Aron Griffis <agriffis@gentoo.org> potrace-1.5.ebuild:
+  stable on alpha amd64 ia64 x86
+
+  27 Dec 2004; Jason Wever <weeve@gentoo.org> potrace-1.5.ebuild:
+  Added ~sparc keyword.
+
+  05 Sep 2004; David Holm <dholm@gentoo.org> potrace-1.5.ebuild:
+  Added to ~ppc.
+
+*potrace-1.5 (02 Sep 2004)
+
+  02 Sep 2004; Mamoru KOMACHI <usata@gentoo.org> +potrace-1.5.ebuild:
+  Initial import.
+
