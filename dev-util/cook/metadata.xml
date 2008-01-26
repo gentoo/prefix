@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>no-herd</herd>
+	<maintainer>
+		<email>maintainer-needed@gentoo.org</email>
+	</maintainer>
+	<longdescription lang="en">
+		Cook is a tool for constructing files. It is given a set of files to
+		create, and recipes of how to create them. In any non-trivial program
+		there will be prerequisites to performing the actions necessary to
+		creating any file, such as include files. Cook provides a mechanism to
+		define these.
+ 		
+		When a program is being developed or maintained, the programmer will
+		typically change one file of several which comprise the program. Cook
+		examines the last-modified times of the files to see when the
+		prerequisites of a file have changed, implying that the file needs to be
+		recreated as it is logically out of date.
+ 
+		Cook also provides a facility for implicit recipes, allowing users to
+		specify how to form a file with a given suffix from a file with a
+		different suffix. For example, to create filename.o from filename.c
+	</longdescription>
+</pkgmetadata>
