@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>no-herd</herd>
+<maintainer>
+	<email>ben@stijlstek.nl</email>
+	<name> Ben De Groot</name>
+	<description>he submitted, he'll help maintain</description>
+</maintainer>
+</pkgmetadata>
