@@ -628,7 +628,7 @@ then
 				CHOST="`uname -m`-pc-linux-gnu"
 				;;
 			Darwin)
-				CHOST="`uname -p`-apple-darwin`/usr/sbin/sysctl -n kern.osrelease | cut -d'.' -f 1`"
+				CHOST="`uname -p`-apple-darwin`uname -r | cut -d'.' -f 1`"
 				;;
 			SunOS)
 				case `uname -p` in
