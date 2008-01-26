@@ -1,0 +1,40 @@
+# ChangeLog for media-gfx/jpegpixi
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/jpegpixi/ChangeLog,v 1.9 2007/04/06 16:37:05 vanquirius Exp $
+
+  06 Apr 2007; Marcelo Goes <vanquirius@gentoo.org> jpegpixi-1.1.1.ebuild:
+  Remove unneeded src_compile, mark 1.1.1 x86 stable.
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  05 Jun 2006; Eldad Zack <eldad@gentoo.org> -jpegpixi-0.16.0.ebuild,
+  -jpegpixi-1.0.3.ebuild:
+  Purge old versions
+
+*jpegpixi-1.1.1 (21 Dec 2005)
+
+  21 Dec 2005; Eldad Zack <eldad@gentoo.org> +jpegpixi-1.1.1.ebuild:
+  Version bump. closes bug #115721.
+
+  30 Oct 2005; Fabian Groffen <grobian@gentoo.org> jpegpixi-1.0.3.ebuild:
+  Marked ~ppc-macos (bug #110825)
+
+*jpegpixi-1.0.3 (29 Oct 2004)
+
+  29 Oct 2004; Eldad Zack <eldad@gentoo.org> jpegpixi-0.16.0.ebuild,
+  +jpegpixi-1.0.3.ebuild:
+  Version bump. Fixed man pages packaging.
+
+  22 Sep 2004; <blubb@gentoo.org> jpegpixi-0.16.0.ebuild:
+  added ~amd64
+
+  03 Sep 2004; David Holm <dholm@gentoo.org> jpegpixi-0.16.0.ebuild:
+  Added to ~ppc.
+
+*jpegpixi-0.16.0 (25 Aug 2004)
+
+  25 Aug 2004; Eldad Zack <eldad@gentoo.org> +metadata.xml,
+  +jpegpixi-0.16.0.ebuild:
+  Initial ebuild.
+
