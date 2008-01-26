@@ -160,8 +160,14 @@ bootstrap_setup() {
 		i386-pc-freebsd*)
 			profile="${PORTDIR}/profiles/default-prefix/bsd/freebsd/${CHOST#i386-pc-freebsd}/x86"
 			;;
+		i386-pc-netbsd*)
+			profile="${PORTDIR}/profiles/default-prefix/bsd/netbsd/${CHOST#i386-pc-netbsdelf}/x86"
+			;;
 		powerpc-unknown-openbsd*)
 			profile="${PORTDIR}/profiles/default-prefix/bsd/openbsd/${CHOST#powerpc-unknown-openbsd}/ppc"
+			;;
+		i386-pc-openbsd*)
+			profile="${PORTDIR}/profiles/default-prefix/bsd/openbsd/${CHOST#i386-pc-openbsd}/x86"
 			;;
 		*)	
 			einfo "You need to set up a make.profile symlink to a"
@@ -204,7 +210,9 @@ bootstrap_tree() {
 		i*86-pc-linux-gnu)           PV="20080120" ;;
 		ia64-pc-linux-gnu)           PV="20080120" ;;
 		x86_64-pc-linux-gnu)         PV="20080120" ;;
+		i*86-pc-netbsdelf*)          PV="20080120" ;; 
 		powerpc-unknown-openbsd*)    PV="20080120" ;;
+		i*86-pc-openbsd*)            PV="20080120" ;;
 		i386-pc-solaris2.10)         PV="20080120" ;;
 		sparc-sun-solaris2.10)       PV="20080120" ;;
 		sparc-sun-solaris2.9)        PV="20080120" ;;
@@ -427,6 +435,9 @@ bootstrap_gnu() {
 	# when it's not.  Solaris and Linux build fine with --disable-nls.
 	[[ $CHOST == *-aix* ]] || myconf="${myconf} --disable-nls"
 
+	# NetBSD has strange openssl headers, which make wget fail.
+	[[ $CHOST == *-netbsd* ]] && myconf="${myconf} --disable-ntlm"
+
 	einfo "Compiling ${A%-*}"
 	econf ${myconf}
 	$MAKE ${MAKEOPTS} || exit 1
@@ -499,7 +510,7 @@ bootstrap_sed() {
 }
 
 bootstrap_findutils() {
-	bootstrap_gnu findutils 4.2.27
+	bootstrap_gnu findutils 4.2.31
 }
 
 bootstrap_wget() {
@@ -699,10 +710,24 @@ then
 					;;
 				esac
 				;;
+			NetBSD)
+				case `uname -p` in
+					i386)
+						CHOST="`uname -p`-pc-netbsdelf`uname -r`"
+					;;
+					*)
+						eerror "Sorry, don't know about NetBSD on `uname -p` yet"
+						exit 1
+					;;
+				esac
+				;;
 			OpenBSD)
 				case `uname -m` in
 					macppc)
 						CHOST="powerpc-unknown-openbsd`uname -r`"
+					;;
+					i386)
+						CHOST="i386-pc-openbsd`uname -r`"
 					;;
 					*)
 						eerror "Sorry, don't know about OpenBSD on `uname -m` yet"
@@ -749,6 +774,9 @@ case ${CHOST} in
 		MAKE=make
 	;;
 	*-*-openbsd*)
+		MAKE=make
+	;;
+	*-*-netbsd*)
 		MAKE=make
 	;;
 esac
