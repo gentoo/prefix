@@ -1,0 +1,89 @@
+# ChangeLog for app-arch/cfv
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cfv/ChangeLog,v 1.26 2007/06/17 13:19:57 swegener Exp $
+
+  17 Jun 2007; Sven Wegener <swegener@gentoo.org>
+  +files/cfv-1.18.1-modulefix.patch, cfv-1.18.1.ebuild:
+  Add a patch to make cfv work with bittorrent-5. Thanks to Kalidarn in bug
+  #169228.
+
+  27 Nov 2006; Timothy Redaelli <drizzt@gentoo.org> cfv-1.18.1.ebuild:
+  Added ~x86-fbsd keyword.
+
+  06 Sep 2006; Jason Wever <weeve@gentoo.org> cfv-1.18.1.ebuild:
+  Added ~sparc keyword.
+
+  01 Sep 2005; Sven Wegener <swegener@gentoo.org> -cfv-1.17.ebuild:
+  Removed old ebuild.
+
+  28 Aug 2005; Simon Stelling <blubb@gentoo.org> cfv-1.18.1.ebuild:
+  stable on amd64
+
+  17 Jun 2005; Michael Hanselmann <hansmi@gentoo.org> cfv-1.18.1.ebuild:
+  Stable on ppc.
+
+  07 Jun 2005; Sven Wegener <swegener@gentoo.org> -cfv-1.16.ebuild,
+  cfv-1.18.1.ebuild:
+  Marked 1.18.1 stable on x86.
+
+  31 Mar 2005; <blubb@gentoo.org> cfv-1.17.ebuild:
+  stable on amd64
+
+  27 Mar 2005; Michael Hanselmann <hansmi@gentoo.org> cfv-1.17.ebuild:
+  Stable on ppc.
+
+  06 Feb 2005; Sven Wegener <swegener@gentoo.org> cfv-1.17.ebuild:
+  Marked stable on x86.
+
+*cfv-1.18.1 (04 Feb 2005)
+
+  04 Feb 2005; Sven Wegener <swegener@gentoo.org> metadata.xml,
+  -cfv-1.15.ebuild, +cfv-1.18.1.ebuild:
+  Version bump, bug #80723.
+
+  05 Oct 2004; Pieter Van den Abeele <pvdabeel@gentoo.org> cfv-1.16.ebuild:
+  Masked cfv-1.16.ebuild stable for ppc
+
+  21 Sep 2004; kito@gentoo.org cfv-1.17.ebuild:
+  added ~ppc-macos keyword
+
+*cfv-1.17 (05 Aug 2004)
+
+  05 Aug 2004; Karol Wojtaszek <sekretarz@gentoo.org> +cfv-1.17.ebuild:
+  Version bump. thanks to: Bailey Kong <bailey@tgpsolutions.com> in bug #59491
+
+  07 Jun 2004; Daniel Black <dragonheart@gentoo.org> +metadata.xml,
+  cfv-1.15.ebuild, cfv-1.16.ebuild:
+  QA - IUSE fix
+
+  28 Apr 2004; Jon Portnoy <avenj@gentoo.org> cfv-1.16.ebuild :
+  Stable on x86 and AMD64.
+
+  30 Mar 2004; Daniel Ahlberg <aliz@gentoo.org> cfv-1.16.ebuild:
+  Adding amd64 keyword, closing #45934.
+
+*cfv-1.16 (26 Dec 2003)
+
+  26 Dec 2003; Mike Frysinger <vapier@gentoo.org> :
+  Version bump #36512.
+
+*cfv-1.15 (09 Oct 2003)
+
+  09 Oct 2003; Mike Frysinger <vapier@gentoo.org> :
+  Version bump #30733.
+
+*cfv-1.13 (27 Jan 2003)
+
+  28 Mar 2003; Pieter Van den Abeele <pvdabeel@gentoo.org> cfv-1.13.ebuild:
+  moved to ppc keyword
+
+  05 Mar 2003; Bartosch Pixa <darkspecter@gentoo.org> cfv-1.13.ebuild:
+  set ~ppc in keywords
+
+  27 Jan 2003; Mike Frysinger <vapier@gentoo.org> :
+  Version bump #14041.
+
+*cfv-1.12 (31 Oct 2002)
+
+  31 Oct 2002; Mike Frysinger <vapier@gentoo.org> :
+  Initial import.  Ebuild submitted by Mikael Grahn <mikael.grahn@telia.com>.
