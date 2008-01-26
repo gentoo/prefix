@@ -1,0 +1,47 @@
+# ChangeLog for app-editors/easyedit
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/easyedit/ChangeLog,v 1.14 2007/10/10 06:10:57 opfer Exp $
+
+  10 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  easyedit-1.4.6.ebuild:
+  remove PROVIDE=virtual/editor as we have now a new-style virtual
+
+  06 Dec 2006; Alexander H. Færøy <eroyf@gentoo.org>
+  easyedit-1.4.6.ebuild:
+  Stable on MIPS.
+
+  08 Jun 2005; Stuart Longland <redhatter@gentoo.org> easyedit-1.4.6.ebuild:
+  Marked ~mips as per bug #89260.
+
+  05 Mar 2005; Tom Martin <slarti@gentoo.org> easyedit-1.4.6.ebuild:
+  Marked ~amd64, resolves bug 84232.
+
+  12 Dec 2004; Jason Wever <weeve@gentoo.org> easyedit-1.4.6.ebuild:
+  Stable on sparc.
+
+  20 Oct 2004; Akinori Hattori <hattya@gentoo.org> easyedit-1.4.6.ebuild:
+  stable on ia64.
+
+  07 Sep 2004; Akinori Hattori <hattya@gentoo.org> easyedit-1.4.6.ebuild:
+  add ~ia64.
+
+  06 Sep 2004; Ferris McCormick <fmccor@gentoo.org> easyedit-1.4.6.ebuild:
+  Add ~sparc keyword at user request (Bug 63058).  Compiles and seems
+  to work for sparc.
+
+  26 Jul 2004; Alexander Plank <alexander@gentoo.org> easyedit-1.4.6.ebuild:
+  add macos keyword, bug #58071 (thanks Yuta SATOH)
+
+  28 Jun 2004; Tom Gall <tgall@gentoo.org> easyedit-1.4.6.ebuild:
+  stable on ppc64, bug #55435
+
+  03 Mar 2004; Akinori Hattori <hattya@gentoo.org> easyedit-1.4.6.ebuild:
+  marked stable on x86.
+
+*easyedit-1.4.6 (19 Feb 2004)
+
+  19 Feb 2004; Akinori Hattori <hattya@gentoo.org> easyedit-1.4.6.ebuild,
+  metadata.xml:
+  Initial revision. Ebuild submitted by Michael C. Ferguson <mcf@augustmail.com>
+  in bug #37906.
+
