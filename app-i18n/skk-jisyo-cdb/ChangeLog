@@ -1,0 +1,125 @@
+# ChangeLog for app-i18n/skk-jisyo-cdb
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/skk-jisyo-cdb/ChangeLog,v 1.27 2007/02/21 22:13:01 peper Exp $
+
+  21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  06 Feb 2006; Simon Stelling <blubb@gentoo.org>
+  skk-jisyo-cdb-200504.ebuild:
+  stable on amd64
+
+  03 Aug 2005; Bryan Østergaard <kloeri@gentoo.org>
+  skk-jisyo-cdb-200504.ebuild:
+  Stable on alpha.
+
+*skk-jisyo-cdb-200507 (02 Jul 2005)
+
+  02 Jul 2005; Mamoru KOMACHI <usata@gentoo.org>
+  +skk-jisyo-cdb-200507.ebuild:
+  Added new snapshot.
+
+  05 Jun 2005; Michael Hanselmann <hansmi@gentoo.org>
+  skk-jisyo-cdb-200504.ebuild:
+  Stable on ppc.
+
+  23 May 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  skk-jisyo-cdb-200501.ebuild, skk-jisyo-cdb-200504.ebuild:
+  Stable on sparc
+
+  21 May 2005; Mamoru KOMACHI <usata@gentoo.org>
+  -skk-jisyo-cdb-200407.ebuild, skk-jisyo-cdb-200501.ebuild,
+  skk-jisyo-cdb-200504.ebuild:
+  Stable on x86.
+
+*skk-jisyo-cdb-200504 (02 Apr 2005)
+
+  02 Apr 2005; Mamoru KOMACHI <usata@gentoo.org>
+  +skk-jisyo-cdb-200504.ebuild:
+  New snapshot.
+
+  31 Mar 2005; <blubb@gentoo.org> skk-jisyo-cdb-200410.ebuild:
+  stable on amd64
+
+*skk-jisyo-cdb-200501 (05 Jan 2005)
+
+  05 Jan 2005; Mamoru KOMACHI <usata@gentoo.org>
+  -skk-jisyo-cdb-200309.ebuild, +skk-jisyo-cdb-200501.ebuild:
+  New snapshot.
+
+  16 Nov 2004; Gustavo Zacarias <gustavoz@gentoo.org>
+  skk-jisyo-cdb-200410.ebuild:
+  Stable on sparc
+
+  04 Nov 2004; Mamoru KOMACHI <usata@gentoo.org>
+  -skk-jisyo-cdb-200310.ebuild, -skk-jisyo-cdb-200401.ebuild,
+  -skk-jisyo-cdb-200404.ebuild, skk-jisyo-cdb-200410.ebuild:
+  Removed old ebuilds. Marked 200410 stable on x86, alpha, ppc and ppc-macos.
+
+  19 Oct 2004; Dylan Carlson <absinthe@gentoo.org>
+  skk-jisyo-cdb-200310.ebuild, skk-jisyo-cdb-200401.ebuild,
+  skk-jisyo-cdb-200404.ebuild, skk-jisyo-cdb-200407.ebuild:
+  Stable on amd64.
+
+*skk-jisyo-cdb-200410 (02 Oct 2004)
+
+  02 Oct 2004; Mamoru KOMACHI <usata@gentoo.org>
+  +skk-jisyo-cdb-200410.ebuild:
+  Added a new snapshot.
+
+  26 Aug 2004; Mamoru KOMACHI <usata@gentoo.org> skk-jisyo-cdb-200407.ebuild:
+  Stable on x86, alpha and ppc.
+
+*skk-jisyo-cdb-200407 (01 Jul 2004)
+
+  01 Jul 2004; Mamoru KOMACHI <usata@gentoo.org> +skk-jisyo-cdb-200407.ebuild:
+  Version bumped.
+
+  10 May 2004; Mamoru KOMACHI <usata@gentoo.org> skk-jisyo-cdb-200309.ebuild,
+  skk-jisyo-cdb-200310.ebuild, skk-jisyo-cdb-200401.ebuild,
+  skk-jisyo-cdb-200404.ebuild:
+  Stable on x86, alpha and ppc. Don't assign default to S
+
+*skk-jisyo-cdb-200404 (01 Apr 2004)
+
+  01 Apr 2004; Mamoru KOMACHI <usata@gentoo.org> skk-jisyo-cdb-200404.ebuild:
+  New CVS snapshot
+
+*skk-jisyo-cdb-200401 (04 Jan 2004)
+
+  04 Jan 2004; Mamoru KOMACHI <usata@gentoo.org> skk-jisyo-cdb-200401.ebuild:
+  Updated snapshot
+
+*skk-jisyo-cdb-200310 (15 Nov 2003)
+
+  15 Nov 2003; MATSUU Takuto <matsuu@gentoo.org> skk-jisyo-cdb-200309.ebuild,
+  skk-jisyo-cdb-200310.ebuild:
+  Add amd64 to KEYWORDS
+
+*skk-jisyo-cdb-200309 (02 Sep 2003)
+
+  02 Sep 2003; Mamoru KOMACHI <usata@gentoo.org> skk-jisyo-cdb-200309.ebuild:
+  New snapshot
+
+*skk-jisyo-cdb-200308 (02 Aug 2003)
+
+  20 Aug 2003; Mamoru KOMACHI <usata@gentoo.org> skk-jisyo-cdb-200308.ebuild:
+  Marked as stable
+
+  02 Aug 2003; Mamoru KOMACHI <usata@gentoo.org> skk-jisyo-cdb-200308.ebuild:
+  Updated snapshot
+
+*skk-jisyo-cdb-200307 (13 Jul 2003)
+
+  02 Aug 2003; Mamoru KOMACHI <usata@gentoo.org> skk-jisyo-cdb-200307.ebuild,
+  Marked all arch stable
+
+  13 Jul 2003; MATSUU Takuto <matsuu@gentoo.org> skk-jisyo-cdb-200307.ebuild:
+  version bump. Thanks to usata@gentoo.org (Mamoru KOMACHI) in bug #23818.
+
+*skk-jisyo-cdb-200305 (05 May 2003)
+
+  05 May 2003; Patrick Kursawe <phosphan@gentoo.org>
+  skk-jisyo-cdb-200305.ebuild:
+  New package, ebuild provided by Mamoru KOMACHI <usata@sodan.ecc.u-tokyo.ac.jp>
+  in bug #20454
