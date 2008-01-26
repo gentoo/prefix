@@ -1,0 +1,54 @@
+# ChangeLog for media-gfx/gif2png
+# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gif2png/ChangeLog,v 1.14 2006/07/08 21:37:19 vanquirius Exp $
+
+  08 Jul 2006; Marcelo Goes <vanquirius@gentoo.org>
+  +files/gif2png-2.5.1-libpng.patch, gif2png-2.5.1.ebuild:
+  Add patch from bug 139338 to allow compilation with libpng-1.2.12. Thanks to
+  Michael A. Smith <michael at smith-li dot com>, Andre Hinrichs
+  <andre.hinrichs at gmx dot de> and Nick Devito <nick125 at gmail dot com>.
+
+  11 Sep 2005; Marcelo Goes <vanquirius@gentoo.org> -gif2png-2.4.6.ebuild,
+  -gif2png-2.4.7.ebuild, gif2png-2.5.1.ebuild:
+  2.5.1 x86 stable. Removing old versions.
+
+  22 Jul 2005; <gongloo@gentoo.org> gif2png-2.4.7.ebuild,
+  gif2png-2.5.1.ebuild:
+  Keyworded ~ppc-macos.
+
+  03 Jun 2005; Luca Barbato <lu_zero@gentoo.org> metadata.xml:
+  Metadata fix
+
+  30 May 2005; Gustavo Zacarias <gustavoz@gentoo.org> gif2png-2.5.1.ebuild:
+  Stable on sparc
+
+  26 Apr 2005; Gustavo Zacarias <gustavoz@gentoo.org> gif2png-2.5.1.ebuild:
+  Keyworded ~sparc wrt #90192
+
+  09 Sep 2004; <blubb@gentoo.org> gif2png-2.5.1.ebuild:
+  added ~amd64 keyword
+
+  18 Jul 2004; Tom Gall <tgall@gentoo.org> gif2png-2.5.1.ebuild:
+  stable on ppc64, bug #57128
+
+  21 Mar 2004; Martin Holzer <mholzer@gentoo.org> gif2png-2.4.6.ebuild,
+  gif2png-2.4.7.ebuild, gif2png-2.5.1.ebuild:
+  fixing QA issue. closes 44519
+
+*gif2png-2.5.1 (29 Dec 2003)
+
+  29 Dec 2003; Martin Holzer <mholzer@gentoo.org> gif2png-2.5.1.ebuild:
+  Version bumped.
+
+*gif2png-2.4.7 (28 Jul 2003)
+
+  28 Jul 2003; Martin Holzer <mholzer@gentoo.org> gif2png-2.4.7.ebuild:
+  Version bumped. Closes #25456.
+
+*gif2png-2.4.6 (16 Mar 2003)
+
+  22 Mar 2003; Martin Holzer <mholzer@gentoo.org> gif2png-2.4.6.ebuild:
+  Changed Homepage and SRC_URI. Closes #17999
+
+  16 Mar 2003; Philip Walls <malverian@gentoo.org>
+  Initial import.  Ebuild submitted by Don Seiler <don@seiler.us>.
