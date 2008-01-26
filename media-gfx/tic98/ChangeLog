@@ -1,0 +1,36 @@
+# ChangeLog for media-gfx/tic98
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/tic98/ChangeLog,v 1.6 2008/01/16 23:59:59 maekke Exp $
+
+  17 Jan 2008; Markus Meier <maekke@gentoo.org> -tic98-1.01.ebuild,
+  tic98-1.01-r1.ebuild:
+  quotes, use emake, old
+
+  09 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
+
+  03 Nov 2005; Fabian Groffen <grobian@gentoo.org>
+  +files/tic98-1.01-macos.patch, tic98-1.01-r1.ebuild:
+  Added compilation fix for OSX and marked ~ppc-macos (bug #110944)
+
+  02 Aug 2005; <sekretarz@gentoo.org> -files/tic98.diff,
+  files/tic98-1.01-gentoo.diff, tic98-1.01-r1.ebuild:
+  Fixed compile problems, bug #84160. Merged tic98.diff to tic98-gentoo.diff
+
+*tic98-1.01 (05 Mar 2005)
+
+  05 Mar 2005; Ciaran McCreesh <ciaranm@gentoo.org> +metadata.xml,
+  +files/tic98-1.01-gentoo.diff, +files/tic98.diff, +tic98-1.01-r1.ebuild,
+  +tic98-1.01.ebuild:
+  Moved from sys-apps/tic98 to media-gfx/tic98.
+
+  24 Aug 2004; Sven Wegener <swegener@gentoo.org> tic98-1.01-r1.ebuild,
+  tic98-1.01.ebuild:
+  use epatch for patching
+
+*tic98-1.01-r1 (19 Oct 2003)
+
+*tic98-1.01 (04 Dec 2002)
+
+  04 Dec 2002; Mike Frysinger <vapier@gentoo.org> :
+  Initial import.  Ebuild submitted by mjc.
