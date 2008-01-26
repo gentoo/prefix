@@ -1,0 +1,34 @@
+# ChangeLog for app-admin/stow
+# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/stow/ChangeLog,v 1.13 2007/02/21 19:46:31 peper Exp $
+
+  21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  09 Mar 2005; Lina Pezzella <j4rg0n@gentoo.org> stow-1.3.3.ebuild:
+  Stable ppc-macos
+
+  09 Feb 2005; Lina Pezzella <j4rg0n@gentoo.org> stow-1.3.3.ebuild:
+  Unstable ppc-macos
+
+  18 Dec 2004; Simon Stelling <blubb@gentoo.org> stow-1.3.3.ebuild:
+  was testing for nearly 3 years, marking stable on amd64
+
+  24 Sep 2004; <blubb@gentoo.org> stow-1.3.3.ebuild:
+  added ~amd64
+
+  06 Jun 2004; Daniel Black <dragonheart@gentoo.org> +metadata.xml,
+  stow-1.3.3.ebuild:
+  QA - IUSE fix
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*stow-1.3.3 (19 Feb 2002)
+
+  30 Jul 2002; Calum Selkirk <cselkirk@gentoo.org> stow-1.3.3.ebuild :
+
+  Added ppc to KEYWORDS. Added RDEPEND
+
+  19 Feb 2002; Aron Griffis <agriffis@gentoo.org> stow-1.3.3.ebuild :
+
+  Added ebuild for GNU stow
