@@ -1,0 +1,4 @@
+ARCH="x86-netbsd"
+# we use *-netbsdelf* to avoid the need to patch binutils, gcc and co
+CHOST="i686-pc-netbsdelf4.0"
+ACCEPT_KEYWORDS="~x86-netbsd"

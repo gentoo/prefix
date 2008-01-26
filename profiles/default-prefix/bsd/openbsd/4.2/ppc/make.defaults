@@ -1,4 +1,4 @@
-ARCH="x86-obsd"
+ARCH="ppc-openbsd"
 CHOST="powerpc-unknown-openbsd4.2"
-ACCEPT_KEYWORDS="~ppc-obsd"
+ACCEPT_KEYWORDS="~ppc-openbsd"
 

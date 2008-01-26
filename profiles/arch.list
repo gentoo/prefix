@@ -3,9 +3,10 @@ amd64
 ia64
 mips
 x86
+x86-fbsd
 
 ppc-aix
-x86-fbsd
+x86-freebsd
 ia64-hpux
 hppa-hpux
 x86-interix
@@ -16,6 +17,9 @@ mips-linux
 x86-linux
 ppc-macos
 x86-macos
+x86-netbsd
+ppc-openbsd
+x86-openbsd
 sparc-solaris
 sparc64-solaris
 x64-solaris

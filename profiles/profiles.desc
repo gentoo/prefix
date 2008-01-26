@@ -47,4 +47,12 @@ hppa-hpux	default-prefix/hpux/B.11.11/hppa/hppa2.0/64	dev
 ia64-hpux	default-prefix/hpux/B.11.23/ia64			dev
 
 # FreeBSD Profiles
-x86-fbsd	default-prefix/bsd/freebsd/6.2/x86			dev
+x86-freebsd	default-prefix/bsd/freebsd/6.2/x86			dev
+x86-freebsd	default-prefix/bsd/freebsd/6.3/x86			dev
+
+# OpenBSD Profiles
+ppc-openbsd default-prefix/bsd/openbsd/4.2/ppc			dev
+x86-openbsd default-prefix/bsd/openbsd/4.2/x86			dev
+
+# NetBSD Profiles
+x86-netbsd	default-prefix/bsd/netbsd/4.0/x86			dev

@@ -2,6 +2,18 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Jan 2008; Fabian Groffen <grobian@gentoo.org>
+  bsd/freebsd/6.2/x86/make.defaults, +bsd/freebsd/6.3,
+  bsd/freebsd/6.3/x86/make.defaults, +bsd/netbsd, +bsd/netbsd/4.0,
+  +bsd/netbsd/4.0/package.provided, +bsd/netbsd/4.0/parent,
+  +bsd/netbsd/4.0/x86, +bsd/netbsd/4.0/x86/make.defaults,
+  +bsd/netbsd/4.0/x86/parent, +bsd/netbsd/make.defaults, +bsd/netbsd/parent,
+  +bsd/netbsd/virtuals, bsd/openbsd/4.2/ppc/make.defaults,
+  +bsd/openbsd/4.2/x86, +bsd/openbsd/4.2/x86/make.defaults,
+  +bsd/openbsd/4.2/x86/parent:
+  Add netbsd profiles, add freebsd profile for 6.3, add openbsd profile for
+  x86, fix make.defaults for freebsd
+
   23 Jan 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask coreutils-6.10 as it needs lzma decompression and has a whole lot new
   stuff which I'm not sure about.
