@@ -1,0 +1,30 @@
+# ChangeLog for app-editors/hexcurse
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/hexcurse/ChangeLog,v 1.9 2007/02/09 07:11:29 flameeyes Exp $
+
+  09 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
+
+  08 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
+
+  08 May 2006; <tcort@gentoo.org> hexcurse-1.55.ebuild:
+  Stable on alpha.
+
+  03 Apr 2006; Thomas Cort <tcort@gentoo.org> hexcurse-1.55.ebuild:
+  Added ~alpha keyword.
+
+  19 Feb 2005; <gongloo@gentoo.org> hexcurse-1.55.ebuild:
+  Stable on ppc-macos.
+
+  20 Jan 2005; <gongloo@gentoo.org> hexcurse-1.55.ebuild:
+  Keyworded ~ppc-macos.
+
+  09 Aug 2004; Mike Frysinger <vapier@gentoo.org> +files/1.55-gcc.patch,
+  hexcurse-1.55.ebuild:
+  Add gcc-3.4 patch by Aard Keimpema #59845.
+
+*hexcurse-1.55 (21 Feb 2004)
+
+  21 Feb 2004; Mike Frysinger <vapier@gentoo.org> :
+  Initial import.  Ebuild submitted by Lonny Gomes #41564.
