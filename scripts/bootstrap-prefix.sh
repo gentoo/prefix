@@ -37,7 +37,7 @@ efetch() {
 				FETCH_COMMAND="curl -O"
 			elif [[ x$(type -t fetch) == "xfile" ]] ; then
 				FETCH_COMMAND="fetch"
-			elif [[ x$(type -t ftp) == "xftp" ]] ; then
+			elif [[ x$(type -t ftp) == "xfile" ]] ; then
 				FETCH_COMMAND="ftp"
 			else
 				eerror "no suitable download manager found (need wget, curl, fetch or ftp)"
