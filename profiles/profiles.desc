@@ -49,6 +49,8 @@ ia64-hpux	default-prefix/hpux/B.11.23/ia64			dev
 # FreeBSD Profiles
 x86-freebsd	default-prefix/bsd/freebsd/6.2/x86			dev
 x86-freebsd	default-prefix/bsd/freebsd/6.3/x86			dev
+# these are for temporal backwards compatibility
+x86-fbsd	default-prefix/bsd/freebsd/6.2/x86			dev
 
 # OpenBSD Profiles
 ppc-openbsd default-prefix/bsd/openbsd/4.2/ppc			dev
