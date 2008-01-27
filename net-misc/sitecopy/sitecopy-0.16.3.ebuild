@@ -11,7 +11,7 @@ IUSE="expat nls rsh ssl webdav xml zlib"
 DESCRIPTION="sitecopy is for easily maintaining remote web sites"
 SRC_URI="http://www.lyra.org/${PN}/${P}.tar.gz"
 HOMEPAGE="http://www.lyra.org/sitecopy/"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 LICENSE="GPL-2"
 SLOT="0"
 # gnome support is disabled at this point
