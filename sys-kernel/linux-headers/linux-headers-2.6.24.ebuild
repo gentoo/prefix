@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/linux-headers-2.6.22-r2.ebuild,v 1.10 2007/11/17 23:07:05 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/linux-headers-2.6.24.ebuild,v 1.1 2008/01/26 09:33:05 vapier Exp $
 
 EAPI="prefix"
 
@@ -9,7 +9,7 @@ H_SUPPORTEDARCH="alpha amd64 arm cris hppa m68k mips ia64 ppc ppc64 s390 sh spar
 inherit kernel-2
 detect_version
 
-PATCH_VER="3"
+PATCH_VER="1"
 SRC_URI="mirror://gentoo/gentoo-headers-base-${PV}.tar.bz2"
 [[ -n ${PATCH_VER} ]] && SRC_URI="${SRC_URI} mirror://gentoo/gentoo-headers-${PV}-${PATCH_VER}.tar.bz2"
 
@@ -29,10 +29,13 @@ src_unpack() {
 src_install() {
 	kernel-2_src_install
 	cd "${ED}"
-	egrep -r '[[:space:]](asm|volatile|inline)[[:space:](]' .
+	egrep -r \
+		-e '[[:space:]](asm|volatile|inline)[[:space:](]' \
+		-e '\<([us](8|16|32|64))\>' \
+		.
 	headers___fix $(find -type f)
 }
 
 src_test() {
-	make ARCH=$(tc-arch-kernel) headers_check || die
+	emake -j1 ARCH=$(tc-arch-kernel) headers_check || die
 }
