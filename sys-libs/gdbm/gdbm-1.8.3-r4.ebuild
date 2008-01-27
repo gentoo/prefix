@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/gdbm-1.8.3-r3.ebuild,v 1.3 2007/02/17 22:45:04 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/gdbm-1.8.3-r4.ebuild,v 1.1 2008/01/26 10:20:49 vapier Exp $
 
 EAPI="prefix"
 
-inherit eutils libtool multilib
+inherit eutils libtool flag-o-matic
 
 DESCRIPTION="Standard GNU database libraries"
 HOMEPAGE="http://www.gnu.org/software/gdbm/gdbm.html"
@@ -23,6 +23,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-fix-install-ownership.patch #24178
 #	epatch "${FILESDIR}"/${P}-compat-linking.patch #165263
 	elibtoolize
+	append-lfs-flags
 }
 
 src_compile() {

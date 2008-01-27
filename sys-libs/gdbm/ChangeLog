@@ -1,6 +1,11 @@
 # ChangeLog for sys-libs/gdbm
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/ChangeLog,v 1.41 2007/02/17 22:45:04 grobian Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/ChangeLog,v 1.42 2008/01/26 10:20:49 vapier Exp $
+
+*gdbm-1.8.3-r4 (26 Jan 2008)
+
+  26 Jan 2008; Mike Frysinger <vapier@gentoo.org> +gdbm-1.8.3-r4.ebuild:
+  Add LFS flags to the build so we can work with large dbs.
 
   17 Feb 2007; Fabian Groffen <grobian@gentoo.org> gdbm-1.8.3-r3.ebuild:
   Dropped ppc-macos keyword, see you in prefix
