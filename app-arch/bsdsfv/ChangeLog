@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/bsdsfv
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bsdsfv/ChangeLog,v 1.27 2006/11/21 14:31:04 drizzt Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bsdsfv/ChangeLog,v 1.28 2008/01/26 18:42:10 grobian Exp $
+
+  26 Jan 2008; Fabian Groffen <grobian@gentoo.org> bsdsfv-1.18-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   21 Nov 2006; Timothy Redaelli <drizzt@gentoo.org> metadata.xml:
   Taked maintainership.
