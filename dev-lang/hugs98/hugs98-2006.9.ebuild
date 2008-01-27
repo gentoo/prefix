@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/hugs98/hugs98-2005.3-r2.ebuild,v 1.19 2007/07/22 08:56:18 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/hugs98/hugs98-2006.9.ebuild,v 1.1 2008/01/26 20:29:19 dcoutts Exp $
 
 EAPI="prefix"
 
@@ -30,13 +30,21 @@ transform_month() {
 	esac
 }
 
+transform_month_num() {
+	case "$1" in
+		[1-9]) echo 0$1;;
+		1[0-2]) echo $1;;
+	esac
+}
+
 HUGS_MONTH=$(transform_month ${HUGS_MONTH_NR})
+HUGS_MONTH0=$(transform_month_num ${HUGS_MONTH_NR})
 MY_PV="${HUGS_MONTH}$(get_major_version )"
-MY_P="${PN}-${MY_PV}"
+MY_PV0="$(get_version_component_range 1)-${HUGS_MONTH0}"
+MY_P="${PN}-plus-${MY_PV}"
 S=${WORKDIR}/${MY_P}
 DESCRIPTION="The Hugs98 Haskell interpreter"
-SRC_URI="http://cvs.haskell.org/Hugs/downloads/${MY_PV}/${MY_P}.tar.gz
-		 http://cvs.haskell.org/Hugs/downloads/${MY_PV}/${MY_P}-patch.gz"
+SRC_URI="http://cvs.haskell.org/Hugs/downloads/${MY_PV0}/${MY_P}.tar.gz"
 HOMEPAGE="http://www.haskell.org/hugs/"
 
 SLOT="0"
@@ -56,32 +64,10 @@ RESTRICT="test"
 
 src_unpack() {
 	base_src_unpack
+
 	cd "${S}"
-	epatch "${WORKDIR}"/${MY_P}-patch
-	epatch "${FILESDIR}"/${P}-openal.patch
-	epatch "${FILESDIR}"/${P}-find.patch
-	epatch "${FILESDIR}"/${P}-conditional-doc.patch
-
-	if ! use X; then
-		sed -i -e 's/X11//' -e 's/HGL//' "${S}/Makefile" \
-			"${S}/libraries/tools/convert_libraries" \
-			"${S}/libraries/tools/test_libraries"
-		rm -r "${S}/fptools/libraries/X11" "${S}/fptools/libraries/HGL"
-	fi
-
-	if ! use opengl; then
-		sed -i -e 's/OpenGL//' -e 's/GLUT//' "${S}/Makefile" \
-			"${S}/libraries/tools/convert_libraries" \
-			"${S}/libraries/tools/test_libraries"
-		rm -r "${S}/fptools/libraries/OpenGL" "${S}/fptools/libraries/GLUT"
-	fi
-
-	if ! use openal; then
-		sed -i 's/OpenAL//' "${S}/Makefile" \
-			"${S}/libraries/tools/convert_libraries" \
-			"${S}/libraries/tools/test_libraries"
-		rm -r "${S}/fptools/libraries/OpenAL"
-	fi
+	epatch "${FILESDIR}/hugs98-2005.3-find.patch"
+	epatch "${FILESDIR}/hugs98-2005.3-conditional-doc.patch"
 }
 
 src_compile() {
@@ -93,7 +79,6 @@ src_compile() {
 	[ "${ARCH}" = "ppc" ] && filter-flags "-O?"
 
 	if use opengl; then
-		myconf="--enable-opengl"
 		# the nvidia drivers *seem* not to work together with pthreads
 		if ! /usr/bin/eselect opengl show | grep -q nvidia; then
 			myconf="$myconf --with-pthreads"
@@ -104,6 +89,9 @@ src_compile() {
 		--build=${CHOST} \
 		--enable-ffi \
 		--enable-profiling \
+		$(use_enable X x11) \
+		$(use_enable opengl) \
+		$(use_enable openal) \
 		${myconf} || die "econf failed"
 	emake || die "make failed"
 

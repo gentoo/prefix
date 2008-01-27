@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/hugs98
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/hugs98/ChangeLog,v 1.44 2007/07/22 08:56:18 graaff Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/hugs98/ChangeLog,v 1.45 2008/01/26 20:29:19 dcoutts Exp $
+
+*hugs98-2006.9 (26 Jan 2008)
+
+  26 Jan 2008; Duncan Coutts <dcoutts@gentoo.org> +hugs98-2006.9.ebuild:
+  New version. Fixes bug #143141.
 
   22 Jul 2007; Hans de Graaff <graaff@gentoo.org> hugs98-2005.3-r2.ebuild:
   Drop virtual/x11 references.
