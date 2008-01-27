@@ -1,6 +1,10 @@
 # ChangeLog for app-text/asciidoc
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/asciidoc/ChangeLog,v 1.37 2007/05/16 07:33:37 gregkh Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/asciidoc/ChangeLog,v 1.38 2008/01/25 19:33:30 grobian Exp $
+
+  25 Jan 2008; Fabian Groffen <grobian@gentoo.org> asciidoc-7.0.4.ebuild,
+  asciidoc-7.1.2.ebuild, asciidoc-8.1.0.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   16 May 2007; Greg Kroah-Hartman <gregkh@gentoo.org> asciidoc-8.1.0.ebuild:
   add ~arm, ~s390, ~sh, and ~x86-fbsd so that dev-util/tig can rely on this
