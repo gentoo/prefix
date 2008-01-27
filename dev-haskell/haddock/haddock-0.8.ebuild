@@ -15,7 +15,7 @@ SRC_URI="http://haskell.org/haddock/${MY_PF}-src.tar.gz"
 LICENSE="as-is"
 SLOT="0"
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 
 IUSE="doc"
 
@@ -30,11 +30,6 @@ S="${WORKDIR}/${MY_PF}"
 
 src_unpack() {
 	unpack ${A}
-	cd "${S}"/doc
-
-	epatch "${FILESDIR}"/${P}-prefix.patch
-	eprefixify configure.ac
-	eautoreconf
 }
 
 src_unpack () {
@@ -61,7 +56,9 @@ src_compile () {
 	cabal_src_compile
 	if use doc; then
 		cd "${S}/doc"
-		autoconf
+		epatch "${FILESDIR}"/${P}-prefix.patch
+		eprefixify configure.ac
+		eautoreconf
 		./configure --prefix="${ED}/usr/" \
 			|| die 'error configuring documentation.'
 		make html || die 'error building documentation.'
