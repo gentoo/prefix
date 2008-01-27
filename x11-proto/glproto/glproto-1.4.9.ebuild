@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/glproto/glproto-1.4.9.ebuild,v 1.3 2008/01/13 09:07:53 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/glproto/glproto-1.4.9.ebuild,v 1.4 2008/01/25 07:49:38 drac Exp $
 
 EAPI="prefix"
 

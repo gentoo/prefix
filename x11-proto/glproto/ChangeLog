@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/glproto
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/glproto/ChangeLog,v 1.47 2007/12/20 00:07:16 cla Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/glproto/ChangeLog,v 1.48 2008/01/25 07:49:38 drac Exp $
+
+  25 Jan 2008; Samuli Suominen <drac@gentoo.org> glproto-1.4.9.ebuild:
+  amd64 stable
 
   19 Dec 2007; Dawid Węgliński <cla@gentoo.org> glproto-1.4.9.ebuild:
   Stable on x86 (bug #202087)
