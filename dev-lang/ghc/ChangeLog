@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/ghc
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.148 2007/12/23 14:36:53 araujo Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.149 2008/01/26 19:53:25 dcoutts Exp $
+
+  26 Jan 2008; Duncan Coutts <dcoutts@gentoo.org> ghc-6.8.2.ebuild:
+  Drop ~alpha ~hppa ~ia64 ~ppc ~ppc64 keywords as per bug #206643.
+  They will have to wait for new binaries. Also fix a few minor QA bugs.
 
   23 Dec 2007; Luis F. Araujo <araujo@gentoo.org> ghc-6.4.2.ebuild:
   Droping the last reference to virtual/x11
