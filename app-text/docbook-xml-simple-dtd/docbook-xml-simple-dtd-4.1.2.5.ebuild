@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-simple-dtd/docbook-xml-simple-dtd-4.1.2.5.ebuild,v 1.2 2007/08/22 16:45:20 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-simple-dtd/docbook-xml-simple-dtd-4.1.2.5.ebuild,v 1.3 2008/01/25 19:29:13 grobian Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ SRC_URI="http://www.nwalsh.com/docbook/simple/${PV}/simple4125.zip"
 
 LICENSE="X11"
 SLOT="4.1.2.5"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE=""
 
 DEPEND=">=app-arch/unzip-5.41

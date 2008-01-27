@@ -1,6 +1,11 @@
 # ChangeLog for app-text/docbook-xml-simple-dtd
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-simple-dtd/ChangeLog,v 1.47 2007/08/21 23:02:05 leonardop Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-simple-dtd/ChangeLog,v 1.48 2008/01/25 19:29:13 grobian Exp $
+
+  25 Jan 2008; Fabian Groffen <grobian@gentoo.org>
+  docbook-xml-simple-dtd-4.1.2.4-r2.ebuild,
+  docbook-xml-simple-dtd-4.1.2.5.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *docbook-xml-simple-dtd-4.1.2.5 (21 Aug 2007)
 
