@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/cfv
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cfv/ChangeLog,v 1.26 2007/06/17 13:19:57 swegener Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cfv/ChangeLog,v 1.27 2008/01/26 18:39:26 grobian Exp $
+
+  26 Jan 2008; Fabian Groffen <grobian@gentoo.org> cfv-1.18.1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   17 Jun 2007; Sven Wegener <swegener@gentoo.org>
   +files/cfv-1.18.1-modulefix.patch, cfv-1.18.1.ebuild:
