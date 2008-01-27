@@ -1,6 +1,11 @@
 # ChangeLog for app-cdr/cdrtools
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.196 2008/01/11 03:59:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.197 2008/01/25 21:05:40 grobian Exp $
+
+  25 Jan 2008; Fabian Groffen <grobian@gentoo.org> cdrtools-2.01-r1.ebuild,
+  cdrtools-2.01.01_alpha25.ebuild, cdrtools-2.01.01_alpha34.ebuild,
+  cdrtools-2.01.01_alpha36.ebuild, cdrtools-2.01.01_alpha36-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   11 Jan 2008; Mike Frysinger <vapier@gentoo.org>
   cdrtools-2.01.01_alpha34.ebuild, cdrtools-2.01.01_alpha36.ebuild,

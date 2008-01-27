@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha36-r1.ebuild,v 1.2 2008/01/11 03:59:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha36-r1.ebuild,v 1.3 2008/01/25 21:05:40 grobian Exp $
 
 EAPI="prefix"
 
@@ -31,9 +31,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.01.01a03-warnings.patch
 	epatch "${FILESDIR}"/${PN}-2.01.01_alpha34-asneeded.patch
 
-	# macos support
 	cd "${S}"/DEFAULTS
-	[[ ${CHOST} == *-darwin* ]] && MYARCH="mac-os10" || MYARCH="linux"
+	local MYARCH="linux"
+	[[ ${CHOST} == *-darwin* ]] && MYARCH="mac-os10"
 
 	sed -i "s:/opt/schily:/usr:g" Defaults.${MYARCH}
 	sed -i "s:/usr/src/linux/include::g" Defaults.${MYARCH}
