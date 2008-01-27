@@ -1,6 +1,13 @@
 # ChangeLog for xfce-base/xfprint
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfprint/ChangeLog,v 1.107 2007/12/17 18:45:45 jer Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfprint/ChangeLog,v 1.108 2008/01/25 07:37:23 drac Exp $
+
+*xfprint-4.4.2-r1 (25 Jan 2008)
+
+  25 Jan 2008; Samuli Suominen <drac@gentoo.org>
+  +files/xfprint-4.4.2-no-default-printer.patch, +xfprint-4.4.2-r1.ebuild:
+  Revision bump to include a upstream patch, fixing segfault when no default
+  printer is selected. Upstream bug report #3816.
 
   17 Dec 2007; Jeroen Roovers <jer@gentoo.org> xfprint-4.4.2.ebuild:
   Stable for HPPA (bug #201747).
