@@ -1,6 +1,14 @@
 # ChangeLog for media-gfx/exif
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/exif/ChangeLog,v 1.15 2008/01/20 19:10:15 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/exif/ChangeLog,v 1.16 2008/01/26 10:28:17 grobian Exp $
+
+  26 Jan 2008; Fabian Groffen <grobian@gentoo.org> exif-0.6.9.ebuild,
+  exif-0.6.15.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
+
+  26 Jan 2008; Fabian Groffen <grobian@gentoo.org> exif-0.6.9.ebuild,
+  exif-0.6.15.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   20 Jan 2008; Christoph Mende <angelos@gentoo.org> exif-0.6.15.ebuild:
   Stable on amd64 wrt bug #206195
