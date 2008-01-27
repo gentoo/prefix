@@ -1,6 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1035 2008/01/25 00:37:21 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1039 2008/01/25 21:11:20 betelgeuse Exp $
+
+  25 Jan 2008; Petteri Räty <betelgeuse@gentoo.org> updates/1Q-2008:
+  slot moves for java packages don't work very well
+
+  25 Jan 2008; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  Remove package.mask for dev-java/odmg as it has been move to
+  java-experimental quite a while ago.
+
+  25 Jan 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  add x11-themes/gtk-engines-mist to p.mask for removal (bug #204489)
+
+  25 Jan 2008; Krzysiek Pawlik <nelchael@gentoo.org> package.mask:
+  Mask sys-kernel/suspend2-sources and sys-apps/suspend2-userui.
 
   25 Jan 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
   Unmask app-emacs/uboat, licence issues are solved now.

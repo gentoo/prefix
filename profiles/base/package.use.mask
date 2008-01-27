@@ -1,5 +1,9 @@
 # This file requires >=portage-2.1.1
 
+# Christian Faulhammer
+# mask so stable users can avoid bluetooth
+=media-sound/pulseaudio-0.9.9 bluetooth
+
 # Christian Hoffmann <hoffie@gentoo.org> (27 Dec 2007)
 # the related dependency (dev-php5/php-java-bridge) is masked as well
 dev-lang/php java-external
@@ -7,6 +11,7 @@ dev-lang/php java-external
 # Saleem Abdulrasool <compnerd@gentoo.org> (23 Nov 2007)
 # Unmask when we get HAL 0.5.10 straightened out
 media-sound/pulseaudio policykit
+=media-sound/pulseaudio-0.9.9 policykit
 
 # Donnie Berkholz <dberkholz@gentoo.org> (12 Nov 2007)
 # freedesktop.org bug #7459 committed fix breaks 3D apps

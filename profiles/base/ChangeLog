@@ -1,6 +1,10 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.28 2008/01/10 01:41:45 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.29 2008/01/25 07:38:45 opfer Exp $
+
+  25 Jan 2008; Christian Faulhammer <opfer@gentoo.org> package.use.mask:
+  mask bluetooth for a stable pulseaudio version, so stable users are not
+  bothered
 
   10 Jan 2008; Sébastien Fabbro <bicatali@gentoo.org> use.mask:
   Removed cern from use.mask (has been mark stable sparc,x86 and amd64)

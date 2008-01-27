@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3327 2008/01/24 11:38:19 stefaan Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3332 2008/01/26 18:52:58 mr_bones_ Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -717,6 +717,7 @@ games-fps/qudos:textures - Install the enhanced textures (quake2-textures)
 games-fps/rott:demo - Install the shareware version
 games-fps/unreal-tournament-goty:S3TC - Add the extra fancy textures to UT ... only works on certain cards (nvidia/ati/s3)
 games-fps/warsow:irc - Enable IRC support
+games-fps/worldofpadman:maps - Install extra maps (PadPack)
 games-kids/gcompris:gnet - will let GCompris fetch content from a web server
 games-mud/mmucl:mccp - adds support for the Mud Client Compression Protocol
 games-roguelike/scourge:editor - Install Scourge Data Editor (scourge-tools)
@@ -968,6 +969,7 @@ media-gfx/blender:blender-game - Adds game engine support to blender
 media-gfx/blender:verse - Adds verse clustering features to blender
 media-gfx/comix:rar - Pulls app-arch/unrar for rar file support
 media-gfx/digikam:nfs - Create sqlite db within ~/.kde, instead in the albums base directory.
+media-gfx/exiv2:xmp - Adds support for Adobe XMP
 media-gfx/gimp:gimpprint - Enable gimp-print printing support
 media-gfx/gimp:smp - Enable support for multiprocessors
 media-gfx/graphicsmagick:depth16 - use 16-bit color depth as default
@@ -1674,9 +1676,7 @@ net-misc/quagga:realms - Enable realms support (see http://vcalinus.gemenii.ro/q
 net-misc/quagga:tcp-zebra - Enable TCP zserv interface on port 2600 for Zebra/protocol-daemon communication. Unix domain sockets are choosen otherwise.
 net-misc/quagga:tcpmd5 - Enable TCP MD5 checksumming
 net-misc/scponly:rsync - Enabling rsync compatibility with potential security risks
-net-misc/sitecopy:gssapi - Enables GSSAPI (Generic Security Services Application Programming Interface).  This is a client-server authentication method that promotes a standard API for authentication systems.  This is included in kerbos distributions and allows vendors to define a specific system with a more generic API layer to coordinate with other authentication systems.
 net-misc/sitecopy:rsh - This allows the use of rsh (remote shell) and rcp (remote copy) for authoring websites.  sftp is a much more secure protocol and is prefered.
-net-misc/sitecopy:sftp - Enables use of sftp for secure ftp transfers.
 net-misc/sitecopy:webdav - Enable WebDav (Web-based Distributed Authoring and Versioning) support.  This system allows users to collaborate on websites using a web based interface.  See the ebuild for an FAQ page.  Enables neon as well to handle webdav support.
 net-misc/ssh:openssh - Allow ssh and openssh to be installed side by side
 net-misc/streamtuner:shout - Enable shoutcast plug-in.
@@ -1935,6 +1935,7 @@ sys-apps/suspend2-userui:fbsplash - Add support for framebuffer splash
 sys-apps/tcng:tcsim - enable traffic simulator
 sys-apps/tinylogin:make-symlinks - Create all the appropriate symlinks in /bin and /sbin
 sys-apps/tuxonice-userui:fbsplash - Add support for framebuffer splash
+sys-apps/ucspi-ssl:tls - Add TLS support (see also http://www.suspectclass.com/~sgifford/ucspi-tls/)
 sys-apps/usbutils:network-cron - Monthly cronjob the update-usbids script
 sys-apps/util-linux:loop-aes - include support for Loop AES encryption
 sys-apps/util-linux:old-crypt - build support for the older cryptoapi that earlier util-linux's included
@@ -2135,14 +2136,12 @@ www-client/seamonkey:xforms - XForms is a standard to split up XHTML into XForms
 www-client/w3m:async - Enables asynchronous fetch
 www-client/w3m:lynxkeymap - If you prefer Lynx-like key binding
 www-misc/nsxml:xslt - Enables xslt support
-www-servers/apache:mpm-event - (experimental) Event MPM - a variant of the worker MPM that tries to solve the keep alive problem - requires epoll support and kernel 2.6
 www-servers/apache:mpm-itk - (experimental) Itk MPM - child processes have separate user/group ids
 www-servers/apache:mpm-leader - (experimental) Leader MPM - leaders/followers variant of worker MPM
 www-servers/apache:mpm-peruser - (experimental) Peruser MPM - child processes have separate user/group ids
 www-servers/apache:mpm-prefork - Prefork MPM - non-threaded, forking MPM - similar manner to Apache 1.3
 www-servers/apache:mpm-threadpool - (experimental) Threadpool MPM - keeps pool of idle threads to handle requests
 www-servers/apache:mpm-worker - Worker MPM - hybrid multi-process multi-thread MPM
-www-servers/apache:no-suexec - Don't install suexec with apache
 www-servers/apache:sni - Enable TLS Server Name Indication (SNI) - EXPERIMENTAL!
 www-servers/apache:static-modules - Build modules into apache instead of having them load at run time
 www-servers/apache:suexec - Install suexec with apache
