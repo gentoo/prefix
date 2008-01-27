@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/macutil/macutil-2.0_beta3.ebuild,v 1.13 2005/12/11 19:11:40 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/macutil/macutil-2.0_beta3.ebuild,v 1.14 2008/01/26 18:59:42 grobian Exp $
 
 EAPI="prefix"
 
@@ -17,10 +17,10 @@ KEYWORDS="~x86-linux ~ppc-macos"
 IUSE=""
 RDEPEND=""
 DEPEND="sys-apps/sed"
-S="${WORKDIR}/${PN}"
+S=${WORKDIR}/${PN}
 
 src_unpack() {
-	gzip -dc ${DISTDIR}/${A} | "${EPREFIX}"/bin/sh || die
+	gzip -dc "${DISTDIR}"/${A} | "${EPREFIX}"/bin/sh || die
 	epatch "${FILESDIR}"/${PV}-gentoo.patch || die
 	epatch "${FILESDIR}"/${P}-gcc4.patch
 

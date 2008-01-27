@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/macutil
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/macutil/ChangeLog,v 1.14 2007/02/21 19:55:57 peper Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/macutil/ChangeLog,v 1.15 2008/01/26 18:59:42 grobian Exp $
+
+  26 Jan 2008; Fabian Groffen <grobian@gentoo.org> macutil-2.0_beta3.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
