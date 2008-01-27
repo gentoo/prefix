@@ -13,7 +13,7 @@ LICENSE="GPL-2"
 
 IUSE="gtk doc tk"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 
 DEPEND=">=media-libs/netpbm-9.12
 	doc? ( >=media-gfx/transfig-3.2 virtual/ghostscript )
