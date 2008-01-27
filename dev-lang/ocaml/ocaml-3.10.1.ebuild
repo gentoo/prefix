@@ -105,8 +105,8 @@ src_install() {
 	dodir /usr/include
 	dosym /usr/$(get_libdir)/ocaml/caml /usr/include/
 
-	# Remove ${ED} from ld.conf, as the buildsystem isn't $(DESTDIR) aware
-	dosed "s:${ED}::g" /usr/$(get_libdir)/ocaml/ld.conf
+	# Remove ${D} from ld.conf, as the buildsystem isn't $(DESTDIR) aware
+	dosed "s:${D}::g" /usr/$(get_libdir)/ocaml/ld.conf
 
 	dodoc Changes INSTALL README Upgrading
 
