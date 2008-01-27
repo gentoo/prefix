@@ -1,8 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/xdg-utils-1.0.2.ebuild,v 1.11 2007/12/11 10:58:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/xdg-utils-1.0.2-r1.ebuild,v 1.1 2008/01/26 09:30:33 pva Exp $
 
 EAPI="prefix"
+
+inherit eutils
 
 DESCRIPTION="Portland utils for cross-platform/cross-toolkit/cross-desktop interoperability"
 HOMEPAGE="http://portland.freedesktop.org/wiki/Portland"
@@ -16,7 +18,14 @@ IUSE="doc"
 RESTRICT="test"
 
 RDEPEND="x11-apps/xprop"
-DEPEND=""
+DEPEND="app-shells/bash"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"/scripts
+
+	epatch "${FILESDIR}"/${P}-arb-comm-exec.patch
+}
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed."

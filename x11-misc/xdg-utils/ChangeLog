@@ -1,6 +1,13 @@
 # ChangeLog for x11-misc/xdg-utils
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/ChangeLog,v 1.41 2007/11/06 16:35:34 armin76 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/ChangeLog,v 1.42 2008/01/26 09:30:33 pva Exp $
+
+*xdg-utils-1.0.2-r1 (26 Jan 2008)
+
+  26 Jan 2008; <pva@gentoo.org> +files/xdg-utils-1.0.2-arb-comm-exec.patch,
+  +xdg-utils-1.0.2-r1.ebuild:
+  Security commit straight to stable, fixed xdg-open/email URL arbitrary
+  command execution (CVE-2008-0386), bug #207331.
 
   06 Nov 2007; Raúl Porcel <armin76@gentoo.org> xdg-utils-1.0.2.ebuild:
   sparc stable wrt #193339
