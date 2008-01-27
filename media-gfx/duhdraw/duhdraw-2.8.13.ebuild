@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/duhdraw/duhdraw-2.8.13.ebuild,v 1.3 2006/11/17 20:11:17 blubb Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/duhdraw/duhdraw-2.8.13.ebuild,v 1.4 2008/01/26 15:02:22 grobian Exp $
 
 EAPI="prefix"
 
@@ -20,8 +20,8 @@ RDEPEND=${DEPEND}
 
 src_unpack() {
 	unpack ${A}
-	epatch "${FILESDIR}/${P}"-macos.patch
-	epatch "${FILESDIR}/${P}"-prestrip.patch
+	epatch "${FILESDIR}"/${P}-macos.patch
+	epatch "${FILESDIR}"/${P}-prestrip.patch
 }
 
 src_compile() {
@@ -30,5 +30,5 @@ src_compile() {
 
 src_install() {
 	dobin ansi ansitoc duhdraw || die
-	dodoc CREDITS HISTORY TODO READ.ME
+	dodoc CREDITS HISTORY TODO
 }

@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/duhdraw
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/duhdraw/ChangeLog,v 1.11 2006/11/17 20:11:17 blubb Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/duhdraw/ChangeLog,v 1.12 2008/01/26 15:02:22 grobian Exp $
+
+  26 Jan 2008; Fabian Groffen <grobian@gentoo.org> duhdraw-2.8.12.ebuild,
+  duhdraw-2.8.13.ebuild:
+  Dropped ppc-macos keyword, don't dodoc READ.ME which doesn't exist
 
   17 Nov 2006; <blubb@gentoo.org> duhdraw-2.8.13.ebuild:
   add ~amd64
