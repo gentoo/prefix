@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/openvpn
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.120 2008/01/24 17:27:25 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.121 2008/01/25 23:51:45 alonbl Exp $
+
+*openvpn-2.1_rc6-r1 (25 Jan 2008)
+
+  25 Jan 2008; Alon Bar-Lev <alonbl@gentoo.org>
+  +files/openvpn-2.1_rc6-iproute.patch, -openvpn-2.1_rc6.ebuild,
+  +openvpn-2.1_rc6-r1.ebuild:
+  Fix iproute issue, bug#207320, thanks to Graham Murray
 
 *openvpn-2.1_rc6 (24 Jan 2008)
 
