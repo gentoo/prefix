@@ -1,6 +1,9 @@
 # ChangeLog for net-p2p/mutella
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/mutella/ChangeLog,v 1.22 2007/01/22 14:44:00 armin76 Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/mutella/ChangeLog,v 1.23 2008/01/25 19:49:14 grobian Exp $
+
+  25 Jan 2008; Fabian Groffen <grobian@gentoo.org> mutella-0.4.5.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   22 Jan 2007; Raúl Porcel <armin76@gentoo.org> -files/mutella-gcc33-fix,
   -mutella-0.4.3.ebuild:
