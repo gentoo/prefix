@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/joe/joe-3.5.ebuild,v 1.12 2007/10/10 06:57:56 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/joe/joe-3.5.ebuild,v 1.13 2008/01/26 15:51:29 grobian Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/joe-editor/${P}.tar.gz"
 
 LICENSE="GPL-1"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~sparc64-solaris ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris"
 IUSE="xterm"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2"

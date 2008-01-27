@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/joe
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/joe/ChangeLog,v 1.58 2007/10/10 06:57:56 opfer Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/joe/ChangeLog,v 1.59 2008/01/26 15:51:29 grobian Exp $
+
+  26 Jan 2008; Fabian Groffen <grobian@gentoo.org> joe-3.4.ebuild,
+  joe-3.5.ebuild:
+  Remove ppc-macos conditional
 
   10 Oct 2007; Christian Faulhammer <opfer@gentoo.org> joe-3.0-r2.ebuild,
   joe-3.1-r1.ebuild, joe-3.2.ebuild, joe-3.4.ebuild, joe-3.5.ebuild:
