@@ -1,6 +1,10 @@
 # ChangeLog for app-portage/epm
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/epm/ChangeLog,v 1.24 2007/08/29 16:42:34 phreak Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/epm/ChangeLog,v 1.25 2008/01/26 16:00:27 grobian Exp $
+
+  26 Jan 2008; Fabian Groffen <grobian@gentoo.org> epm-0.9.1.ebuild,
+  epm-1.33.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   29 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing agriffis from metadata due to his retirement (see #182294 for
