@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/lzma
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma/ChangeLog,v 1.8 2008/01/01 15:33:18 radek Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma/ChangeLog,v 1.9 2008/01/26 18:45:51 grobian Exp $
+
+  26 Jan 2008; Fabian Groffen <grobian@gentoo.org> lzma-4.27.ebuild,
+  lzma-4.43.ebuild, lzma-4.57.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *lzma-4.57 (01 Jan 2008)
 
