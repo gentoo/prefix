@@ -1,6 +1,10 @@
 # ChangeLog for app-vim/nerdcommenter
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/nerdcommenter/ChangeLog,v 1.3 2007/11/29 03:30:11 hawking Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-vim/nerdcommenter/ChangeLog,v 1.4 2008/01/25 23:03:49 philantrop Exp $
+
+  25 Jan 2008; Wulf C. Krueger <philantrop@gentoo.org>
+  nerdcommenter-2.1.6.ebuild:
+  Keyworded ~amd64 as per bug 201804.
 
 *nerdcommenter-2.1.6 (29 Nov 2007)
 
