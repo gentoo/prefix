@@ -1,10 +1,8 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gperf/gperf-3.0.2.ebuild,v 1.2 2007/04/07 16:31:54 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gperf/gperf-3.0.2.ebuild,v 1.3 2008/01/26 14:54:30 swegener Exp $
 
 EAPI="prefix"
-
-inherit eutils
 
 DESCRIPTION="A perfect hash function generator"
 HOMEPAGE="http://www.gnu.org/software/gperf/gperf.html"
@@ -16,5 +14,6 @@ KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos ~sparc-solaris"
 IUSE=""
 
 src_install() {
-	make DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" htmldir=/usr/share/doc/${PF}/html install || die
+	dodoc AUTHORS ChangeLog NEWS README
 }

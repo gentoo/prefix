@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/gperf
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gperf/ChangeLog,v 1.36 2008/01/14 20:17:13 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gperf/ChangeLog,v 1.37 2008/01/26 14:54:30 swegener Exp $
+
+  26 Jan 2008; Sven Wegener <swegener@gentoo.org> gperf-3.0.1.ebuild,
+  gperf-3.0.2.ebuild, gperf-3.0.3.ebuild:
+  Drop inherit eutils. Install html docs into correct location.
 
   14 Jan 2008; Tobias Scherbaum <dertobi123@gentoo.org> gperf-3.0.3.ebuild:
   ppc. stable
