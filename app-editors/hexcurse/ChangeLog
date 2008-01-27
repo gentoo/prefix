@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/hexcurse
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/hexcurse/ChangeLog,v 1.9 2007/02/09 07:11:29 flameeyes Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/hexcurse/ChangeLog,v 1.10 2008/01/26 15:46:15 grobian Exp $
+
+  26 Jan 2008; Fabian Groffen <grobian@gentoo.org> hexcurse-1.55.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   09 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
   Regenerate digest in Manifest2 format.
