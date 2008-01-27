@@ -155,7 +155,7 @@ ruby_einstall() {
 		make DESTDIR="${D}" "$@" install || die "make install failed"
 	else
 		siteruby=$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitedir"]')
-		insinto ${siteruby}
+		insinto ${siteruby#${EPREFIX}}
 		doins *.rb || die "doins failed"
 	fi
 }
