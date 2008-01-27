@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/uulib
-# Copyright 2000-2005 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/uulib/ChangeLog,v 1.16 2005/08/29 16:07:12 j4rg0n Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/uulib/ChangeLog,v 1.17 2008/01/25 21:11:25 grobian Exp $
+
+  25 Jan 2008; Fabian Groffen <grobian@gentoo.org> uulib-0.5.20.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   29 Aug 2005; Lina Pezzella <j4rg0n@gentoo.org> uulib-0.5.20.ebuild:
   Stable ppc-macos
