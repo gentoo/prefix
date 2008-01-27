@@ -1,6 +1,9 @@
 # ChangeLog for app-cdr/bin2iso
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/bin2iso/ChangeLog,v 1.20 2007/02/21 20:13:01 peper Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/bin2iso/ChangeLog,v 1.21 2008/01/25 21:07:36 grobian Exp $
+
+  25 Jan 2008; Fabian Groffen <grobian@gentoo.org> bin2iso-19b-r2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
