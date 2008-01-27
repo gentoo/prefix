@@ -1,6 +1,11 @@
 # ChangeLog for app-text/aspell
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/ChangeLog,v 1.99 2007/12/28 23:35:20 welp Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/ChangeLog,v 1.100 2008/01/26 18:49:16 philantrop Exp $
+
+  26 Jan 2008; Wulf C. Krueger <philantrop@gentoo.org>
+  +files/aspell-0.60.5-gcc-4.3.patch, aspell-0.60.5.ebuild:
+  Added a patch for gcc-4.3-compatibility as kindly provided by Ryan Hill on
+  bug 203701.
 
   28 Dec 2007; <welp@gentoo.org> aspell-0.60.5.ebuild:
   Keyworded ~sparc-fbsd; bug 197275
