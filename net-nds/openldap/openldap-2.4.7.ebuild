@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.7.ebuild,v 1.4 2008/01/13 21:35:54 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.7.ebuild,v 1.5 2008/01/26 12:23:53 swegener Exp $
 
 EAPI="prefix 1"
 inherit db-use eutils flag-o-matic multilib ssl-cert versionator
@@ -16,7 +16,7 @@ KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 IUSE_DAEMON="crypt samba slp tcpd experimental minimal"
 IUSE_BACKEND="+berkdb"
 IUSE_OVERLAY="overlays perl"
-IUSE_OPTIONAL="sasl ssl odbc debug ipv6 syslog"
+IUSE_OPTIONAL="sasl ssl odbc debug ipv6 syslog selinux"
 IUSE="${IUSE_DAEMON} ${IUSE_BACKEND} ${IUSE_OVERLAY} ${IUSE_OPTIONAL}"
 
 #Inspect:
