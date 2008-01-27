@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/parsetree
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/parsetree/ChangeLog,v 1.5 2007/10/14 05:41:57 tgall Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/parsetree/ChangeLog,v 1.6 2008/01/26 07:35:57 graaff Exp $
+
+*parsetree-2.1.1 (26 Jan 2008)
+
+  26 Jan 2008; Hans de Graaff <graaff@gentoo.org> +parsetree-2.1.1.ebuild:
+  Version bump: 13 enhancements and 6 bug fixes
 
   14 Oct 2007; Tom Gall <tgall@gentoo.org> parsetree-2.0.2.ebuild:
   added ~ppc64
