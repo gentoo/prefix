@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/rzip
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rzip/ChangeLog,v 1.21 2007/06/09 17:14:22 welp Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rzip/ChangeLog,v 1.22 2008/01/26 18:48:08 grobian Exp $
+
+  26 Jan 2008; Fabian Groffen <grobian@gentoo.org> rzip-2.0-r2.ebuild,
+  rzip-2.1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   09 Jun 2007; Peter Weller <welp@gentoo.org> rzip-2.1.ebuild:
   Stable on amd64 wrt bug 181410
