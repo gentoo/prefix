@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/gif2png
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gif2png/ChangeLog,v 1.14 2006/07/08 21:37:19 vanquirius Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gif2png/ChangeLog,v 1.15 2008/01/26 10:32:00 grobian Exp $
+
+  26 Jan 2008; Fabian Groffen <grobian@gentoo.org> gif2png-2.5.1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   08 Jul 2006; Marcelo Goes <vanquirius@gentoo.org>
   +files/gif2png-2.5.1-libpng.patch, gif2png-2.5.1.ebuild:
