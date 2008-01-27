@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/splat
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/splat/ChangeLog,v 1.24 2007/02/09 07:18:02 flameeyes Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/splat/ChangeLog,v 1.25 2008/01/26 16:13:33 grobian Exp $
+
+  26 Jan 2008; Fabian Groffen <grobian@gentoo.org> splat-0.08.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   09 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
   Regenerate digest in Manifest2 format.
