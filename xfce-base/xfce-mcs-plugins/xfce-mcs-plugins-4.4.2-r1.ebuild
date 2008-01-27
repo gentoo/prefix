@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce-mcs-plugins/xfce-mcs-plugins-4.4.2-r1.ebuild,v 1.4 2008/01/24 17:57:30 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce-mcs-plugins/xfce-mcs-plugins-4.4.2-r1.ebuild,v 1.5 2008/01/25 19:52:52 corsair Exp $
 
 EAPI="prefix"
 
