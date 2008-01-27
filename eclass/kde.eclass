@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.202 2008/01/02 15:55:55 keytoaster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.203 2008/01/26 23:21:03 zlin Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -56,14 +56,18 @@ kde_pkg_setup() {
 		if [[ ${ARTS_REQUIRED} == 'yes' ]] || \
 			( [[ ${ARTS_REQUIRED} != "never" ]] && use arts )  ; then
 			if ! built_with_use =kde-base/kdelibs-3.5* arts ; then
-				use arts && \
-					eerror "You are trying to compile ${CATEGORY}/${PF} with the \"arts\" USE flag enabled." || \
+				if has arts ${IUSE} && use arts; then
+					eerror "You are trying to compile ${CATEGORY}/${PF} with the \"arts\" USE flag enabled."
+				else
 					eerror "The package ${CATEGORY}/${PF} you're trying to merge requires aRTs."
+				fi
 				eerror "However, $(best_version =kde-base/kdelibs-3.5*) was compiled with the arts USE flag disabled."
 				eerror
-				use arts && \
-					eerror "You must either disable this USE flag, or recompile" || \
+				if has arts ${IUSE} && use arts; then
+					eerror "You must either disable this USE flag, or recompile"
+				else
 					eerror "To build this package you have to recompile"
+				fi
 				eerror "$(best_version =kde-base/kdelibs-3.5*) with the arts USE flag enabled."
 				die "kdelibs missing arts"
 			fi

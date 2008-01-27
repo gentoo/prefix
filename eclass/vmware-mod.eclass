@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vmware-mod.eclass,v 1.15 2007/09/20 17:07:37 ikelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vmware-mod.eclass,v 1.17 2008/01/26 13:11:23 ikelos Exp $
 
 
 # Ensure vmware comes before linux-mod since we want linux-mod's pkg_preinst and
@@ -10,11 +10,11 @@ inherit eutils vmware linux-mod
 DESCRIPTION="Modules for Vmware Programs"
 HOMEPAGE="http://www.vmware.com/"
 SRC_URI="http://platan.vc.cvut.cz/ftp/pub/vmware/${ANY_ANY}.tar.gz
-	http://platan.vc.cvut.cz/ftp/pub/vmware/obselete/${ANY_ANY}.tar.gz
+	http://platan.vc.cvut.cz/ftp/pub/vmware/obsolete/${ANY_ANY}.tar.gz
 	http://knihovny.cvut.cz/ftp/pub/vmware/${ANY_ANY}.tar.gz
-	http://knihovny.cvut.cz/ftp/pub/vmware/obselete/${ANY_ANY}.tar.gz
+	http://knihovny.cvut.cz/ftp/pub/vmware/obsolete/${ANY_ANY}.tar.gz
 	http://ftp.cvut.cz/vmware/${ANY_ANY}.tar.gz
-	http://ftp.cvut.cz/vmware/obselete/${ANY_ANY}.tar.gz"
+	http://ftp.cvut.cz/vmware/obsolete/${ANY_ANY}.tar.gz"
 LICENSE="vmware"
 SLOT="0"
 IUSE=""
@@ -76,9 +76,11 @@ vmware-mod_src_unpack() {
 		cd "${S}"/${mod}-only
 		# Ensure it's not used
 		# rm getversion.pl
-		EPATCH_SUFFIX="patch"
-		epatch "${FILESDIR}"/patches
-		[[ -d "${FILESDIR}"/patches/${mod} ]] && epatch "${FILESDIR}"/patches/${mod}
+		if [[ "${VMWARE_MOD_DIR}" = "${ANY_ANY}" ]] ; then
+			EPATCH_SUFFIX="patch"
+			epatch "${FILESDIR}"/patches
+			[[ -d "${FILESDIR}"/patches/${mod} ]] && epatch "${FILESDIR}"/patches/${mod}
+		fi
 		convert_to_m "${S}"/${mod}-only/Makefile
 	done
 }
@@ -112,3 +114,6 @@ vmware-mod_src_install() {
 # 'VME_V55'		= .13
 # 'VME_S1B1'	= .14
 # 'VME_S1??'	= .15
+# 'VME_V6'      = .16
+# 'VME_V6'      = .17  (6.0.2)
+# 'VME_S2B1'    = .18

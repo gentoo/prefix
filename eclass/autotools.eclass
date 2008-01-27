@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.70 2008/01/13 18:41:28 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.71 2008/01/25 22:45:23 flameeyes Exp $
 #
 # Maintainer: base-system@gentoo.org
 #
@@ -204,6 +204,10 @@ eautomake() {
 
 # Internal function to run an autotools' tool
 autotools_run_tool() {
+	if [[ ${EBUILD_PHASE} != "unpack" ]]; then
+		ewarn "QA Warning: running $1 in ${EBUILD_PHASE} phase"
+	fi
+
 	local STDERR_TARGET="${T}/$$.out"
 	local ris
 
