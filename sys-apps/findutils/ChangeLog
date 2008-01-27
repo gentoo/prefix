@@ -1,6 +1,30 @@
 # ChangeLog for sys-apps/findutils
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.147 2007/12/18 16:35:51 pebenito Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.153 2008/01/26 18:11:31 dertobi123 Exp $
+
+  26 Jan 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  findutils-4.3.11.ebuild:
+  ppc stable, bug #207518
+
+  26 Jan 2008; Brent Baude <ranger@gentoo.org> findutils-4.3.11.ebuild:
+  Marking findutils-4.3.11 ppc64 for bug 207518
+
+  26 Jan 2008; Christian Faulhammer <opfer@gentoo.org>
+  findutils-4.3.11.ebuild:
+  stable x86, bug 207518
+
+  26 Jan 2008; Raúl Porcel <armin76@gentoo.org> findutils-4.3.11.ebuild:
+  alpha/ia64/sparc stable wrt #207518
+
+  26 Jan 2008; Samuli Suominen <drac@gentoo.org> findutils-4.3.11.ebuild:
+  amd64 stable wrt #207518
+
+*findutils-4.3.12 (26 Jan 2008)
+*findutils-4.2.32 (26 Jan 2008)
+
+  26 Jan 2008; Mike Frysinger <vapier@gentoo.org> +findutils-4.2.32.ebuild,
+  +findutils-4.3.12.ebuild:
+  Version bump.
 
   18 Dec 2007; Chris PeBenito <pebenito@gentoo.org>
   +files/findutils-4.3.11-selinux.diff, findutils-4.3.11.ebuild:
