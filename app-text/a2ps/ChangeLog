@@ -1,6 +1,9 @@
 # ChangeLog for app-text/a2ps
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/ChangeLog,v 1.66 2008/01/23 04:41:07 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/ChangeLog,v 1.67 2008/01/25 19:32:00 grobian Exp $
+
+  25 Jan 2008; Fabian Groffen <grobian@gentoo.org> a2ps-4.13c-r5.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   23 Jan 2008; Doug Klima <cardoe@gentoo.org> a2ps-4.13c-r5.ebuild,
   a2ps-4.13c-r6.ebuild:
