@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/aap
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/aap/ChangeLog,v 1.26 2007/07/25 17:33:23 armin76 Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/aap/ChangeLog,v 1.27 2008/01/26 19:12:20 grobian Exp $
+
+  26 Jan 2008; Fabian Groffen <grobian@gentoo.org> aap-1.076.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   25 Jul 2007; Raúl Porcel <armin76@gentoo.org> aap-1.055.ebuild,
   aap-1.070.ebuild, aap-1.072.ebuild, aap-1.076.ebuild:
