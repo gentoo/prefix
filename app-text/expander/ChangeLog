@@ -1,6 +1,9 @@
 # ChangeLog for app-text/expander
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/expander/ChangeLog,v 1.6 2007/05/11 18:19:49 bangert Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/expander/ChangeLog,v 1.7 2008/01/25 19:36:19 grobian Exp $
+
+  25 Jan 2008; Fabian Groffen <grobian@gentoo.org> expander-2.0.5.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   11 May 2007; Thilo Bangert <bangert@gentoo.org> +metadata.xml:
   add metadata.xml
