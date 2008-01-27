@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/passook
-# Copyright 2002-2005 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/passook/ChangeLog,v 1.13 2005/09/09 17:35:55 metalgod Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/passook/ChangeLog,v 1.14 2008/01/26 10:03:28 grobian Exp $
+
+  26 Jan 2008; Fabian Groffen <grobian@gentoo.org> passook-1.0.0.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   09 Sep 2005; Luis Medinas <metalgod@gentoo.org> passook-1.0.0.ebuild:
   Marked Stable on AMD64. Closes bug #105251.
