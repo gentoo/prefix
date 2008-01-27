@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/lpe/lpe-1.2.6.12.ebuild,v 1.4 2008/01/24 19:24:33 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/lpe/lpe-1.2.6.12.ebuild,v 1.5 2008/01/25 18:38:46 fmccor Exp $
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils multilib
 
 DESCRIPTION="Lightweight Programmers Editor"
 HOMEPAGE="http://cdsmith.twu.net/professional/opensource/lpe.html"
@@ -28,13 +28,14 @@ src_compile() {
 }
 
 src_install() {
-	make \
+	emake \
 		prefix="${ED}/usr" \
 		datadir="${ED}/usr/share" \
 		mandir="${ED}/usr/share/man" \
 		infodir="${ED}/usr/share/info" \
 		docdir="${ED}/usr/share/doc/${PF}" \
 		exdir="${ED}/usr/share/doc/${PF}/examples" \
-		install || die
+		libdir="${ED}/usr/$(get_libdir)" \
+		install || die "emake install failed."
 	prepalldocs
 }
