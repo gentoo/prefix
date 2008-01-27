@@ -1,6 +1,9 @@
 # ChangeLog for app-text/o3read
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/o3read/ChangeLog,v 1.10 2007/08/15 13:52:24 beandog Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/o3read/ChangeLog,v 1.11 2008/01/25 19:34:49 grobian Exp $
+
+  25 Jan 2008; Fabian Groffen <grobian@gentoo.org> o3read-0.0.4.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   15 Aug 2007; Steve Dibb <beandog@gentoo.org> o3read-0.0.4.ebuild:
   add ~amd64, bug 188983
