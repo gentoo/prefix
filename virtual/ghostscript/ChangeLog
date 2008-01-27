@@ -1,6 +1,9 @@
 # ChangeLog for virtual/ghostscript
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/ghostscript/ChangeLog,v 1.6 2007/07/13 12:37:17 uberlord Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/ghostscript/ChangeLog,v 1.7 2008/01/25 19:41:42 grobian Exp $
+
+  25 Jan 2008; Fabian Groffen <grobian@gentoo.org> ghostscript-0.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   13 Jul 2007; Roy Marples <uberlord@gentoo.org> ghostscript-0.ebuild:
   Keyworded ~sparc-fbsd
