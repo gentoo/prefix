@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/skk-jisyo-cdb/skk-jisyo-cdb-200507.ebuild,v 1.1 2005/07/02 09:40:24 usata Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/skk-jisyo-cdb/skk-jisyo-cdb-200507.ebuild,v 1.2 2008/01/26 18:26:43 grobian Exp $
 
 EAPI="prefix"
 

@@ -1,6 +1,11 @@
 # ChangeLog for app-i18n/skk-jisyo-cdb
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/skk-jisyo-cdb/ChangeLog,v 1.27 2007/02/21 22:13:01 peper Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/skk-jisyo-cdb/ChangeLog,v 1.28 2008/01/26 18:26:43 grobian Exp $
+
+  26 Jan 2008; Fabian Groffen <grobian@gentoo.org>
+  skk-jisyo-cdb-200410.ebuild, skk-jisyo-cdb-200501.ebuild,
+  skk-jisyo-cdb-200504.ebuild, skk-jisyo-cdb-200507.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
