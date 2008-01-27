@@ -17,7 +17,7 @@ SRC_URI="mirror://gnome/sources/${MY_PN}/${PVP[0]}.${PVP[1]}/${MY_P}.tar.bz2"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86"
+KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 IUSE="doc"
 
 RDEPEND=">=dev-libs/glib-2.10
