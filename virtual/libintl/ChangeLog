@@ -1,6 +1,9 @@
 # ChangeLog for virtual/libintl
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/libintl/ChangeLog,v 1.5 2006/10/17 06:47:33 uberlord Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/libintl/ChangeLog,v 1.6 2008/01/25 19:42:14 grobian Exp $
+
+  25 Jan 2008; Fabian Groffen <grobian@gentoo.org> libintl-0.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   17 Oct 2006; Roy Marples <uberlord@gentoo.org> libintl-0.ebuild:
   Added ~sparc-fbsd keyword.
