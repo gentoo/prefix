@@ -1,6 +1,11 @@
 # ChangeLog for app-i18n/anthy
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/ChangeLog,v 1.113 2008/01/08 17:25:53 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/ChangeLog,v 1.114 2008/01/26 17:47:43 grobian Exp $
+
+  26 Jan 2008; Fabian Groffen <grobian@gentoo.org> anthy-7500b.ebuild,
+  anthy-7900.ebuild, anthy-8700b.ebuild, anthy-9100.ebuild,
+  anthy-9100b.ebuild, anthy-9100c.ebuild, anthy-9100d.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   08 Jan 2008; Raúl Porcel <armin76@gentoo.org> anthy-9100d.ebuild:
   alpha/ia64/sparc stable wrt #204758

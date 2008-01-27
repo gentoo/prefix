@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/anthy-9100d.ebuild,v 1.5 2008/01/08 17:25:53 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/anthy-9100d.ebuild,v 1.6 2008/01/26 17:47:43 grobian Exp $
 
 EAPI="prefix"
 
