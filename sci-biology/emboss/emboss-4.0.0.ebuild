@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/emboss/emboss-4.0.0.ebuild,v 1.9 2007/07/22 07:32:37 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/emboss/emboss-4.0.0.ebuild,v 1.10 2008/01/25 23:51:41 markusle Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ SRC_URI="ftp://${PN}.open-bio.org/pub/EMBOSS/EMBOSS-${PV}.tar.gz"
 LICENSE="GPL-2 LGPL-2"
 
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="X png minimal"
 
 DEPEND="X? ( x11-libs/libXt )
@@ -58,7 +58,7 @@ src_install() {
 	# Install env file for setting libplplot and acd files path.
 	cp "${FILESDIR}"/22emboss "${T}"
 	( cd "${T}" && epatch "${FILESDIR}"/22emboss-prefix.patch )
-	eprefixify "${T}"/22emboss1
+	eprefixify "${T}"/22emboss
 	doenvd "${T}"/22emboss || die "Failed to install environment file."
 
 	# Symlink preinstalled docs to /usr/share/doc.
