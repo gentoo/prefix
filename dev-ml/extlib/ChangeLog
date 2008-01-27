@@ -1,0 +1,30 @@
+# ChangeLog for dev-ml/extlib
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ml/extlib/ChangeLog,v 1.5 2008/01/03 21:54:28 aballier Exp $
+
+*extlib-1.5.1 (03 Jan 2008)
+
+  03 Jan 2008; Alexis Ballier <aballier@gentoo.org> +extlib-1.5.1.ebuild:
+  version bump, add optional support for ocamlopt
+
+  21 Feb 2007; Alexandre Buisse <nattfodd@gentoo.org> extlib-1.5.ebuild:
+  Removed multiple inherit (thanks to Jokey for reporting).
+
+  21 Sep 2005; Matthieu Sozeau <mattam@gentoo.org> :
+  Version bump (fixes #87864).
+
+*extlib-1.3 (06 Feb 2005)
+
+  06 Feb 2005; Matthieu Sozeau <mattam@gentoo.org> -extlib-1.2.ebuild,
+  +extlib-1.4.ebuild:
+  Version bump.
+
+*extlib-1.2 (21 Aug 2004)
+
+  21 Aug 2004; Matthieu Sozeau <mattam@gentoo.org> +metadata.xml,
+  +extlib-1.2.ebuild:
+  Extlib is a library whose purpose is to complete the ocaml standard library.
+  Intial submission by Bardur Arantsson <gentoo@scientician.net>, fixes bug
+  #60917. I added a doc use flag for building the HTML documentation, and
+  cleaned up the install process.
+
