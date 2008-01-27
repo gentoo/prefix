@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/colorcvs
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/colorcvs/ChangeLog,v 1.8 2007/01/25 09:52:10 armin76 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/colorcvs/ChangeLog,v 1.9 2008/01/26 19:04:55 grobian Exp $
+
+  26 Jan 2008; Fabian Groffen <grobian@gentoo.org> colorcvs-1.4.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   25 Jan 2007; Raúl Porcel <armin76@gentoo.org> colorcvs-1.4.ebuild:
   stable x86
