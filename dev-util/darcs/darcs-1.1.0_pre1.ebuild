@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-1.1.0_pre1.ebuild,v 1.3 2007/12/30 19:33:01 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-1.1.0_pre1.ebuild,v 1.4 2008/01/26 19:57:12 dcoutts Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SRC_URI="http://darcs.net/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="doc"
 
 DEPEND=">=net-misc/curl-7.10.2
@@ -53,8 +53,9 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}/${PN}-1.1.0pre1-ghc68.patch"
 
-	cd "${S}/tools"
+	pushd tools
 	epatch "${FILESDIR}/${PN}-1.0.9-bashcomp.patch"
+	popd
 
 	# If we're going to use the CFLAGS with GHC's -optc flag then we'd better
 	# use it with -opta too or it'll break with some CFLAGS, eg -mcpu on sparc
@@ -64,11 +65,12 @@ src_unpack() {
 	# On ia64 we need to tone down the level of inlining so we don't break some
 	# of the low level ghc/gcc interaction gubbins.
 	use ia64 && sed -i 's/-funfolding-use-threshold20//' "${S}/GNUmakefile"
+
+	# Since we've patched the build system:
+	eautoreconf
 }
 
 src_compile() {
-	# Since we've patched the build system:
-	eautoreconf
 
 	econf $(use_with doc docs) \
 		|| die "configure failed"
@@ -90,8 +92,8 @@ src_install() {
 		&& rmdir "${ED}/etc" \
 		|| die "fixing location of darcs bash completion failed"
 	if use doc; then
-		dodoc "${S}/darcs.ps"
-		dohtml -r "${S}/manual/"*
+		dodoc "${S}/doc/manual/darcs.ps" || die "installing darcs.ps failed"
+		dohtml -r "${S}/doc/manual/"* || die "installing darcs manual failed"
 	fi
 }
 

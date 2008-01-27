@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/darcs
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/ChangeLog,v 1.83 2007/12/30 19:33:01 kolmodin Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/ChangeLog,v 1.84 2008/01/26 19:57:12 dcoutts Exp $
+
+  26 Jan 2008; Duncan Coutts <dcoutts@gentoo.org> darcs-1.0.5.ebuild,
+  darcs-1.0.6.ebuild, darcs-1.0.7.ebuild, darcs-1.0.8-r2.ebuild,
+  darcs-1.0.9.ebuild, darcs-1.1.0_pre1.ebuild:
+  Fix qa bug #207449 and fix installing docs.
 
   30 Dec 2007; Lennart Kolmodin <kolmodin@gentoo.org>
   files/darcs-1.1.0pre1-ghc68.patch, darcs-1.1.0_pre1.ebuild:
