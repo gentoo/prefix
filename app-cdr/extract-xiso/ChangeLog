@@ -1,6 +1,9 @@
 # ChangeLog for app-cdr/extract-xiso
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/extract-xiso/ChangeLog,v 1.14 2007/02/21 20:15:20 peper Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/extract-xiso/ChangeLog,v 1.15 2008/01/25 19:56:46 grobian Exp $
+
+  25 Jan 2008; Fabian Groffen <grobian@gentoo.org> extract-xiso-2.5.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
