@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p24929-r3.ebuild,v 1.1 2008/01/24 10:41:20 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p24929-r3.ebuild,v 1.2 2008/01/26 18:00:49 aballier Exp $
 
 EAPI="prefix"
 
@@ -389,7 +389,7 @@ src_compile() {
 		# let's play the filtration game!  MPlayer hates on all!
 		strip-flags
 		# ugly optimizations cause MPlayer to cry on x86 systems!
-			if use x86 || use x86-macos ; then
+			if use x86 || use x86-fbsd || use x86-macos ; then
 				replace-flags -O* -O2
 				filter-flags -fPIC -fPIE
 
