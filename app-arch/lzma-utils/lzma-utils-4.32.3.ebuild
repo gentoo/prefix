@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/lzma-utils-4.32.3.ebuild,v 1.7 2008/01/16 01:38:22 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/lzma-utils-4.32.3.ebuild,v 1.8 2008/01/26 07:22:48 drac Exp $
 
 EAPI="prefix"
 
@@ -20,6 +20,6 @@ RDEPEND="!app-arch/lzma"
 S=${WORKDIR}/lzma-${PV/_}
 
 src_install() {
-	emake install DESTDIR="${D}" || die
+	emake install DESTDIR="${D}" || die "emake install failed"
 	dodoc AUTHORS ChangeLog NEWS README THANKS
 }
