@@ -1,0 +1,11 @@
+--- src/osd.c
++++ src/osd.c
+@@ -515,6 +515,8 @@
+ {
+ # if defined (WIN32) || defined (OS2) && defined (__IBMC__)
+   int pid = _getpid ();
++# elif defined (__APPLE_CC__)
++  pid_t pid = getpid ();
+ # else
+   __pid_t pid = getpid ();
+ # endif
