@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/joda-time/joda-time-1.5.1.ebuild,v 1.4 2007/12/21 07:37:47 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/joda-time/joda-time-1.5.1.ebuild,v 1.5 2008/01/25 15:12:05 drac Exp $
 
 EAPI="prefix"
 

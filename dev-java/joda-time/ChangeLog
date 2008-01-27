@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/joda-time
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/joda-time/ChangeLog,v 1.32 2007/12/21 07:37:47 opfer Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/joda-time/ChangeLog,v 1.33 2008/01/25 15:12:05 drac Exp $
+
+  25 Jan 2008; Samuli Suominen <drac@gentoo.org> joda-time-1.5.1.ebuild:
+  amd64 stable wrt #187616
 
   21 Dec 2007; Christian Faulhammer <opfer@gentoo.org>
   joda-time-1.5.1.ebuild:
