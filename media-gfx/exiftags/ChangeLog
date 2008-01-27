@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/exiftags
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiftags/ChangeLog,v 1.21 2007/12/29 22:43:14 maekke Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiftags/ChangeLog,v 1.22 2008/01/26 10:59:23 grobian Exp $
+
+  26 Jan 2008; Fabian Groffen <grobian@gentoo.org> exiftags-1.01.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   29 Dec 2007; Markus Meier <maekke@gentoo.org> -exiftags-0.99.1.ebuild,
   -exiftags-1.00.ebuild:
