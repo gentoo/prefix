@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha25.ebuild,v 1.13 2008/01/25 21:05:40 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha37.ebuild,v 1.1 2008/01/27 17:14:57 pylon Exp $
 
 EAPI="prefix"
 
@@ -16,40 +16,40 @@ KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="unicode"
 
 DEPEND="virtual/libc
+	sys-apps/acl
 	!app-cdr/dvdrtools
 	!app-cdr/cdrkit"
 
 PROVIDE="virtual/cdrtools"
 
-S=${WORKDIR}/${PN}-2.01.01
+S="${WORKDIR}/${PN}-2.01.01"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	# CAN-2004-0806 - Bug 63187
-	epatch "${FILESDIR}"/${PN}-2.01-scsi-remote.patch
 	epatch "${FILESDIR}"/${PN}-2.01.01a03-warnings.patch
-	epatch "${FILESDIR}"/${PN}-2.01.01a01-scanbus.patch
-	epatch "${FILESDIR}"/${PN}-2.01.01a18-rezero.patch
-
-	use unicode && epatch "${FILESDIR}"/mkisofs-iconv-25.patch
+	epatch "${FILESDIR}"/${PN}-2.01.01_alpha34-asneeded.patch
 
 	cd "${S}"/DEFAULTS
 	local MYARCH="linux"
+	[[ ${CHOST} == *-darwin* ]] && MYARCH="mac-os10"
 
 	sed -i "s:/opt/schily:/usr:g" Defaults.${MYARCH}
 	sed -i "s:/usr/src/linux/include::g" Defaults.${MYARCH}
+	# For dynamic linking:
+	sed -i "s:static:dynamic:" Defaults.${MYARCH}
 
 	cd "${S}"/librscg
 	sed -i "s:/opt/schily:/usr:g" scsi-remote.c
 
+	# lame symlinks that all point to the same thing
 	cd "${S}"/RULES
-	ln -sf i386-linux-cc.rul x86_64-linux-cc.rul
-	ln -sf i386-linux-gcc.rul x86_64-linux-gcc.rul
-	ln -sf ppc-linux-cc.rul ppc64-linux-cc.rul
-	ln -sf mips-linux-cc.rul mips64-linux-cc.rul
-	ln -sf i586-linux-cc.rul sh4-linux-cc.rul
+	local t
+	for t in ppc64 sh4 s390x ; do
+		ln -s i586-linux-cc.rul ${t}-linux-cc.rul || die
+		ln -s i586-linux-gcc.rul ${t}-linux-gcc.rul || die
+	done
 }
 
 src_compile() {
@@ -86,6 +86,9 @@ src_install() {
 	cd "${S}"/libs/*-*-cc
 	dolib.a *.a || die "dolib failed"
 
+	cd "${S}"/libs/*-*-cc/pic
+	dolib.so * || die "dolib.so failed"
+
 	cd "${S}"
 	insinto /usr/include/scsilib
 	doins include/schily/*.h
@@ -93,10 +96,13 @@ src_install() {
 	doins include/scg/*.h
 
 	cd "${S}"
-	dodoc ABOUT Changelog README START READMEs/README.linux
-	dodoc README.{ATAPI,audio,cdplus,cdrw,cdtext,clone,copy,DiskT@2,linux-shm,mkisofs,multi,parallel,raw,rscsi,sony,verify}
+	dodoc ABOUT Changelog README README.linux-shm START READMEs/README.linux
 	doman */*.1
 	doman */*.8
+
+	cd "${S}"/cdrecord
+	docinto cdrecord
+	dodoc README*
 
 	cd "${S}"/mkisofs
 	docinto mkisofs
@@ -106,14 +112,28 @@ src_install() {
 	docinto cdda2wav
 	dodoc FAQ Frontends HOWTOUSE README TODO
 
+	cd "${S}"/libparanoia
+	docinto libparanoia
+	dodoc README*
+
 	cd "${S}"/doc
 	docinto print
 	dodoc *.ps
 }
 
 pkg_postinst() {
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		einfo
+		einfo "Darwin/OS X use the following device names:"
+		einfo
+		einfo "CD burners: (probably) ./cdrecord dev=IOCompactDiscServices"
+		einfo
+		einfo "DVD burners: (probably) ./cdrecord dev=IODVDServices"
+		einfo
+	else
 	echo
 	einfo "The command line option 'dev=/dev/hdX' (X is the name of your drive)"
 	einfo "should be used for IDE CD writers.  And make sure that the permissions"
 	einfo "on this device are set properly and your user is in the correct group."
+	fi
 }
