@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3332 2008/01/26 18:52:58 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3333 2008/01/27 17:26:32 drac Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -1088,6 +1088,7 @@ media-sound/audacity:twolame - Enables twolame support (MPEG Audio Layer 2 encod
 media-sound/audacity:vamp - Enables vamp plugins support (Audio analysing plugins)
 media-sound/banshee:boo - Use external Boo instead of the bundled one
 media-sound/banshee:daap - Build with Daap support
+media-sound/banshee:mtp - Build with Media Transfer Protocol support
 media-sound/banshee:njb - Build with njb audio player support
 media-sound/bmpx:sid - Build with SID (Commodore 64 Audio) support
 media-sound/cmus:mp4 - enable mp4 decoding
