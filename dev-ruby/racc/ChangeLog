@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/racc
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/racc/ChangeLog,v 1.37 2007/05/03 17:53:57 rbrown Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/racc/ChangeLog,v 1.38 2008/01/27 15:52:21 grobian Exp $
+
+  27 Jan 2008; Fabian Groffen <grobian@gentoo.org> racc-1.4.4.ebuild,
+  racc-1.4.5.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   03 May 2007; Richard Brown <rbrown@gentoo.org> racc-1.4.5.ebuild:
   Stable mips
