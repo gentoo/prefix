@@ -24,8 +24,10 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-4.15-libtool.patch #99593
 
-	# on interix, there is no strtoull implementation, so patch on in.
-	epatch "${FILESDIR}"/${P}-interix-strtoull.patch
+	# on interix there is no strtoull implementation, so patch one in.
+	epatch "${FILESDIR}"/${P}-strtoull.patch
+	# interix 3.5 need stddef for intptr_t
+	epatch "${FILESDIR}"/${P}-intptr_t.patch
 
 	# make sure python links against the current libmagic #54401
 	sed -i "/library_dirs/s:'\.\./src':'../src/.libs':" python/setup.py

@@ -1,0 +1,19 @@
+diff -ru file-4.23.orig/configure.in file-4.23/configure.in
+--- file-4.23.orig/configure.in	Fri Jan 25 13:37:48 2008
++++ file-4.23/configure.in	Fri Jan 25 13:38:28 2008
+@@ -76,6 +76,7 @@
+ AH_TEMPLATE([int64_t], [])
+ AH_TEMPLATE([uint64_t], [])
+ AH_TEMPLATE([uint8_t], [])
++AH_TEMPLATE([intptr_t], [])
+ 
+ dnl Checks for headers
+ AC_HEADER_STDC
+@@ -108,6 +109,7 @@
+ AC_CHECK_TYPE_STDC(uint16_t, unsigned short)
+ AC_CHECK_TYPE_STDC(uint32_t, unsigned int)
+ AC_CHECK_TYPE_STDC(int32_t, int)
++AC_CHECK_TYPE_STDC(intptr_t, int)
+ AC_C_LONG_LONG
+ if test $ac_cv_c_long_long = yes; then
+   ulong64='unsigned long long';
