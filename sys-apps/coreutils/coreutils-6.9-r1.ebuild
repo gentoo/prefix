@@ -159,10 +159,10 @@ src_install() {
 	dodoc AUTHORS ChangeLog* NEWS README* THANKS TODO
 
 	# remove files provided by other packages
-	rm "${ED}"/usr/bin/{kill,uptime} # procps
-	rm "${ED}"/usr/bin/{groups,su}   # shadow
-	rm "${ED}"/usr/bin/hostname      # net-tools
-	rm "${ED}"/usr/share/man/man1/{groups,kill,hostname,su,uptime}.1
+	rm -f "${ED}"/usr/bin/{kill,uptime} # procps
+	rm -f "${ED}"/usr/bin/{groups,su}   # shadow
+	rm -f "${ED}"/usr/bin/hostname      # net-tools
+	rm -f "${ED}"/usr/share/man/man1/{groups,kill,hostname,su,uptime}.1
 
 	insinto /etc
 	newins src/dircolors.hin DIR_COLORS
