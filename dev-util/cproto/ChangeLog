@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/cproto
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cproto/ChangeLog,v 1.21 2007/03/19 12:26:44 kloeri Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cproto/ChangeLog,v 1.22 2008/01/27 10:19:43 grobian Exp $
+
+  27 Jan 2008; Fabian Groffen <grobian@gentoo.org> cproto-4.7e.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   19 Mar 2007; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
   Remove tcort from metadata.xml due to retirement.
