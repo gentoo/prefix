@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/astyle-1.21.ebuild,v 1.2 2007/11/14 03:37:44 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/astyle-1.21.ebuild,v 1.3 2008/01/27 10:39:22 grobian Exp $
 
 EAPI="prefix"
 
@@ -22,8 +22,8 @@ S=${WORKDIR}/${PN}
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
-	epatch ${FILESDIR}/${PN}-${PV}-strip.patch
+	cd "${S}"
+	epatch "${FILESDIR}"/${PN}-${PV}-strip.patch
 }
 
 src_compile() {
