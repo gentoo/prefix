@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-arcade/rocksndiamonds/rocksndiamonds-3.2.3.ebuild,v 1.2 2007/01/29 03:17:50 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-arcade/rocksndiamonds/rocksndiamonds-3.2.4.ebuild,v 1.1 2007/10/28 17:07:50 tupone Exp $
 
 EAPI="prefix"
 
