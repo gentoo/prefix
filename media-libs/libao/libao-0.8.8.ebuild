@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libao/libao-0.8.8.ebuild,v 1.1 2007/11/27 19:04:03 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libao/libao-0.8.8.ebuild,v 1.2 2008/01/27 15:24:17 ranger Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="http://downloads.xiph.org/releases/ao/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~ppc-macos ~x86-macos"
 IUSE="alsa arts esd nas mmap pulseaudio doc"
 
 RDEPEND="alsa? ( media-libs/alsa-lib )
