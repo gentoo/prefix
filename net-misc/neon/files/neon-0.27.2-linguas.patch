@@ -1,0 +1,42 @@
+Index: neon-0.27.2/Makefile.in
+===================================================================
+--- neon-0.27.2.orig/Makefile.in
++++ neon-0.27.2/Makefile.in
+@@ -181,8 +181,10 @@ install-nls-no:
+ 
+ install-nls-yes:
+ 	@for f in $(LINGUAS); do \
+-	 $(INSTALL) -d $(DESTDIR)$(localedir)/$$f/LC_MESSAGES; \
+-	 $(INSTALL_DATA) $(srcdir)/po/$$f.gmo $(DESTDIR)$(localedir)/$$f/LC_MESSAGES/neon.mo; \
++	 if test -e $(srcdir)/po/$$f.gmo; then \
++	  $(INSTALL) -d $(DESTDIR)$(localedir)/$$f/LC_MESSAGES; \
++	  $(INSTALL_DATA) $(srcdir)/po/$$f.gmo $(DESTDIR)$(localedir)/$$f/LC_MESSAGES/neon.mo; \
++	 fi \
+ 	done
+ 
+ ChangeLog:
+@@ -191,15 +193,19 @@ ChangeLog:
+ update-po:
+ 	@xgettext $(XGETTEXT_OPTS) $(top_srcdir)/src/ne*.c -o $(POTFILE)
+ 	@for f in $(LINGUAS); do \
+-	 echo "> Updating \"$$f\" catalog:"; \
+-	 $(MSGMERGE) --update $(top_srcdir)/po/$$f.po $(POTFILE); \
+-	 $(MSGFMT) --output /dev/null --check-format $(top_srcdir)/po/$$f.po || exit 1; \
++	 if test -e $(srcdir)/po/$$f.gmo; then \
++	  echo "> Updating \"$$f\" catalog:"; \
++	  $(MSGMERGE) --update $(top_srcdir)/po/$$f.po $(POTFILE); \
++	  $(MSGFMT) --output /dev/null --check-format $(top_srcdir)/po/$$f.po || exit 1; \
++	 fi \
+ 	done
+ 
+ compile-gmo:
+ 	@for f in $(LINGUAS); do \
+-	 echo "> Compiling \"$$f\" catalog:"; \
+-	 $(MSGFMT) --statistics -c -o po/$$f.gmo $(top_srcdir)/po/$$f.po; \
++	 if test -e $(srcdir)/po/$$f.gmo; then \
++	  echo "> Compiling \"$$f\" catalog:"; \
++	  $(MSGFMT) --statistics -c -o po/$$f.gmo $(top_srcdir)/po/$$f.po; \
++	 fi \
+ 	done
+ 
+ doc-status:
