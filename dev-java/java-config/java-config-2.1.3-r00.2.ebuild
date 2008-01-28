@@ -40,8 +40,14 @@ src_unpack() {
 src_install() {
 	distutils_src_install
 
+	local a=${ARCH}
+	case $a in
+		x86-freebsd)  a=x86-fbsd;; # as long as we don't push patch upstream
+		*-linux)      a=${a%-linux};;
+	esac
+
 	insinto /usr/share/java-config-2/config/
-	newins config/jdk-defaults-${ARCH}.conf jdk-defaults.conf || die "arch config not found"
+	newins config/jdk-defaults-${a}.conf jdk-defaults.conf || die "arch config not found"
 }
 
 pkg_postrm() {
