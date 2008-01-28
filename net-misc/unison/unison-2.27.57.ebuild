@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/unison-2.17.1-r1.ebuild,v 1.4 2007/07/22 08:10:38 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/unison-2.27.57.ebuild,v 1.1 2008/01/27 15:06:14 aballier Exp $
 
 EAPI="prefix"
 
@@ -26,19 +26,10 @@ SRC_URI="http://www.cis.upenn.edu/~bcpierce/unison/download/releases/${P}/${P}.t
 doc? ( http://www.cis.upenn.edu/~bcpierce/unison/download/releases/${P}/${P}-manual.pdf
 	http://www.cis.upenn.edu/~bcpierce/unison/download/releases/${P}/${P}-manual.html )"
 
-pkg_setup() {
-	ewarn "This is a beta release, use at your very own risk"
-}
-
 src_unpack() {
-	unpack ${P}.tar.gz
-	# backport patch for file-io error (fixed in current trunk)
-	EPATCH_OPTS="-d ${S} -p1"
-	epatch ${FILESDIR}/${P}-io-error.patch
-
-	# Fix for coreutils change of tail syntax
-	cd ${S}
-	sed -i -e 's/tail -1/tail -n 1/' Makefile.OCaml
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}/${P}-as-needed.patch"
 }
 
 src_compile() {
@@ -62,18 +53,23 @@ src_compile() {
 		myconf="$myconf UISTYLE=text"
 	fi
 
-	make $myconf CFLAGS="" || die "error making unsion"
+	# Discard cflags as it will try to pass them to ocamlc...
+	emake -j1 $myconf CFLAGS="" || die "error making unsion"
+}
+
+src_test() {
+	emake selftest ||  die "selftest failed"
 }
 
 src_install () {
 	# install manually, since it's just too much
 	# work to force the Makefile to do the right thing.
 	dobin unison || die
-	dodoc BUGS.txt CONTRIB COPYING INSTALL NEWS \
+	dodoc BUGS.txt CONTRIB INSTALL NEWS \
 	      README ROADMAP.txt TODO.txt || die
 
 	if use doc; then
-		dohtml ${DISTDIR}/${P}-manual.html || die
-		dodoc ${DISTDIR}/${P}-manual.pdf || die
+		dohtml "${DISTDIR}/${P}-manual.html" || die
+		dodoc "${DISTDIR}/${P}-manual.pdf" || die
 	fi
 }
