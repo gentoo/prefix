@@ -1,6 +1,19 @@
 # ChangeLog for dev-util/subversion
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.287 2008/01/15 10:05:51 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.290 2008/01/28 01:22:33 ranger Exp $
+
+  28 Jan 2008; Brent Baude <ranger@gentoo.org> subversion-1.4.6.ebuild:
+  Marking subversion-1.4.6 ppc and ppc64 for bug 207572
+
+  27 Jan 2008; Benedikt Böhm <hollow@gentoo.org> subversion-1.4.5.ebuild,
+  subversion-1.4.6.ebuild:
+  remove obsolete apr_config/apu_config
+
+  27 Jan 2008; Benedikt Böhm <hollow@gentoo.org>
+  -files/subversion-1.3.1-neon-0.26.patch, -files/subversion-db4.patch,
+  -subversion-1.3.2-r3.ebuild, subversion-1.4.5.ebuild,
+  subversion-1.4.6.ebuild:
+  remove subversion-1.3.2-r3 wrt #203578
 
   15 Jan 2008; Benedikt Böhm <hollow@gentoo.org> subversion-1.4.6.ebuild:
   fix #205807

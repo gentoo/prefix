@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.6.ebuild,v 1.3 2008/01/15 10:05:51 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.4.6.ebuild,v 1.6 2008/01/28 01:22:33 ranger Exp $
 
 EAPI="prefix"
 
@@ -90,8 +90,8 @@ src_unpack() {
 	sed -e 's/\(NEON_ALLOWED_LIST=.* 0.26.2\)"/\1 0.26.3 0.26.4"/' \
 		-i configure.in
 
-	sed -e "s:apr-config:$(apr_config):g" \
-		-e "s:apu-config:$(apu_config):g" \
+	sed -e "s:apr-config:apr-1-config:g" \
+		-e "s:apu-config:apu-1-config:g" \
 		-i build/ac-macros/{find_,}ap*
 
 
@@ -138,11 +138,11 @@ src_compile() {
 		;;
 	esac
 
-	append-flags $("${EPREFIX}"/usr/bin/$(apr_config) --cppflags)
+	append-flags $("${EPREFIX}"/usr/bin/apr-1-config --cppflags)
 
 	econf ${myconf} \
-		--with-apr="${EPREFIX}"/usr/bin/$(apr_config) \
-		--with-apr-util="${EPREFIX}"/usr/bin/$(apu_config) \
+		--with-apr="${EPREFIX}"/usr/bin/apr-1-config \
+		--with-apr-util="${EPREFIX}"/usr/bin/apu-1-config \
 		$(use_with apache2 apxs ${APXS2}) \
 		$(use_with berkdb berkeley-db) \
 		$(use_enable debug maintainer-mode) \
@@ -285,7 +285,7 @@ EOF
 	fi
 
 	# Install documentation
-	dodoc BUGS CHANGES COMMITTERS COPYING HACKING INSTALL README TRANSLATING
+	dodoc BUGS CHANGES COMMITTERS HACKING INSTALL README TRANSLATING
 	dodoc tools/xslt/svnindex.{css,xsl}
 	rm -fr tools/xslt
 
