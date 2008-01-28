@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/java-virtuals/javamail/javamail-1.0-r1.ebuild,v 1.3 2007/12/09 13:38:04 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/java-virtuals/javamail/javamail-1.0-r1.ebuild,v 1.4 2008/01/27 15:33:23 ranger Exp $
 
 EAPI="prefix"
 
