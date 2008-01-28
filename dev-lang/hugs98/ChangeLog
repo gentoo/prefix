@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/hugs98
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/hugs98/ChangeLog,v 1.45 2008/01/26 20:29:19 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/hugs98/ChangeLog,v 1.46 2008/01/27 18:23:25 dcoutts Exp $
+
+  27 Jan 2008; Duncan Coutts <dcoutts@gentoo.org>
+  +files/hugs98-2005.3-conditional-doc.patch:
+  Added missing patch file, fixes bug #207703.
 
 *hugs98-2006.9 (26 Jan 2008)
 
