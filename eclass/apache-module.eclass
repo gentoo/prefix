@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-module.eclass,v 1.20 2007/11/25 14:27:52 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-module.eclass,v 1.21 2008/01/27 20:09:17 hollow Exp $
 
 # @ECLASS: apache-module
 # @MAINTAINER: apache-devs@gentoo.org
@@ -40,6 +40,11 @@ APACHE2_MOD_FILE=""
 # @DESCRIPTION:
 # Configuration file installed by src_install
 APACHE2_MOD_CONF=""
+
+# @ECLASS-VARIABLE: APACHE2_VHOSTFILE
+# @DESCRIPTION:
+# Virtual host configuration file installed by src_install
+APACHE2_VHOSTFILE=""
 
 # @ECLASS-VARIABLE: APACHE2_MOD_DEFINE
 # @DESCRIPTION:
@@ -175,12 +180,16 @@ apache-module_src_install() {
 
 	if [[ -n "${APACHE2_MOD_CONF}" ]] ; then
 		insinto "${APACHE2_MODULES_CONFDIR}"
-		doins "${FILESDIR}/${APACHE2_MOD_CONF}.conf" || die "internal ebuild error: '${FILESDIR}/${APACHE2_MOD_CONF}.conf' not found"
+		set -- ${APACHE2_MOD_CONF}
+		newins "${FILESDIR}/${1}.conf" "$(basename ${2:-$1}).conf" \
+			|| die "internal ebuild error: '${FILESDIR}/${1}.conf' not found"
 	fi
 
 	if [[ -n "${APACHE2_VHOSTFILE}" ]] ; then
 		insinto "${APACHE2_VHOSTDIR}"
-		doins "${FILESDIR}/${APACHE2_VHOSTFILE}.conf" || die "internal ebuild error: '${FILESDIR}/${APACHE2_VHOSTFILE}.conf' not found"
+		set -- ${APACHE2_VHOSTFILE}
+		newins "${FILESDIR}/${1}.conf" "$(basename ${2:-$1}).conf " \
+			|| die "internal ebuild error: '${FILESDIR}/${1}.conf' not found"
 	fi
 
 	cd "${S}"
@@ -210,9 +219,10 @@ apache-module_pkg_postinst() {
 	fi
 
 	if [[ -n "${APACHE2_MOD_CONF}" ]] ; then
+		set -- ${APACHE2_MOD_CONF}
 		einfo
 		einfo "Configuration file installed as"
-		einfo "    ${APACHE2_MODULES_CONFDIR}/$(basename ${APACHE2_MOD_CONF}).conf"
+		einfo "    ${APACHE2_MODULES_CONFDIR}/$(basename $1).conf"
 		einfo "You may want to edit it before turning the module on in /etc/conf.d/apache2"
 		einfo
 	fi
