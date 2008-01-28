@@ -16,7 +16,7 @@ SRC_URI="ftp://ftp.gohome.org/wl/stable/${MY_P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="bbdb ssl"
 
 DEPEND=">=app-emacs/apel-10.6
