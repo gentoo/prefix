@@ -4,10 +4,8 @@
 
 EAPI=prefix
 
-inherit eutils autotools
-
 DESCRIPTION="Small utility for searching ebuilds with indexing for fast results"
-HOMEPAGE="http://dev.croup.de/proj/eix"
+HOMEPAGE="http://eix.sourceforge.net"
 SRC_URI="mirror://sourceforge/eix/${P}.tar.bz2"
 
 LICENSE="GPL-2"
@@ -20,10 +18,9 @@ DEPEND="sqlite? ( >=dev-db/sqlite-3 )
 RDEPEND="${DEPEND}"
 
 src_compile() {
-	econf \
+	econf --with-bzip2 $(use_with sqlite) || die "econf failed" \
 		--with-portdir-cache-method=none \
 		--with-eprefix-default="${EPREFIX}" \
-		--with-bzip2 $(use_with sqlite) || die "econf failed"
 	emake || die "emake failed"
 }
 
@@ -34,8 +31,8 @@ src_install() {
 }
 
 pkg_postinst() {
-	einfo "As of >=eix-0.5.4, \"metadata\" is the new default cache."
-	einfo "It's independent of the portage-version and the cache used by portage."
+	elog "As of >=eix-0.5.4, \"metadata\" is the new default cache."
+	elog "It's independent of the portage-version and the cache used by portage."
 
 	elog /etc/eixrc will not get updated anymore by the eix ebuild.
 	elog Upstream strongly recommends to remove this file resp. to keep
