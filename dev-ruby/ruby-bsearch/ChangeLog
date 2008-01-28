@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/ruby-bsearch
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-bsearch/ChangeLog,v 1.15 2007/02/03 21:43:14 flameeyes Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-bsearch/ChangeLog,v 1.16 2008/01/27 19:59:34 grobian Exp $
+
+  27 Jan 2008; Fabian Groffen <grobian@gentoo.org>
+  ruby-bsearch-1.5-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   03 Feb 2007; Diego Pettenò <flameeyes@gentoo.org>
   ruby-bsearch-1.5-r1.ebuild:
