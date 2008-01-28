@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config-wrapper/java-config-wrapper-0.15.ebuild,v 1.1 2007/11/28 09:31:26 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config-wrapper/java-config-wrapper-0.15.ebuild,v 1.2 2008/01/27 15:30:07 ranger Exp $
 
 EAPI="prefix"
 
