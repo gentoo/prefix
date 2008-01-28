@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/diffball
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/diffball/ChangeLog,v 1.30 2007/08/13 20:48:59 dertobi123 Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/diffball/ChangeLog,v 1.31 2008/01/27 10:25:37 grobian Exp $
+
+  27 Jan 2008; Fabian Groffen <grobian@gentoo.org> diffball-0.6.5.ebuild,
+  diffball-0.7.1.ebuild, diffball-1.0.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   13 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org> diffball-1.0.ebuild:
   ppc. stable
