@@ -1,6 +1,9 @@
 # ChangeLog for virtual/editor
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/editor/ChangeLog,v 1.9 2007/11/16 08:17:32 ulm Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/editor/ChangeLog,v 1.10 2008/01/27 10:16:10 opfer Exp $
+
+  27 Jan 2008; Christian Faulhammer <opfer@gentoo.org> editor-0.ebuild:
+  add app-editors/bvi and fix LICENSE
 
   16 Nov 2007; Ulrich Mueller <ulm@gentoo.org> editor-0.ebuild:
   Add some alternatives to RDEPEND, and a comment about the criteria.
