@@ -1,6 +1,10 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.368 2008/01/23 15:59:08 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.369 2008/01/28 19:15:58 armin76 Exp $
+
+  28 Jan 2008; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-2.0.0.11.ebuild:
+  Bump patchset to make it compile with gcc-4.3, wrt #204703
 
   23 Jan 2008; Raúl Porcel <armin76@gentoo.org>
   mozilla-firefox-2.0.0.11.ebuild:
