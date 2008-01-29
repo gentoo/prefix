@@ -1,0 +1,81 @@
+# ChangeLog for dev-lang/parrot
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/parrot/ChangeLog,v 1.17 2006/10/18 16:52:12 yuval Exp $
+
+*parrot-0.4.6 (18 Oct 2006)
+
+  18 Oct 2006; Yuval Yaari <yuval@gentoo.org> +parrot-0.4.6.ebuild:
+  Version bump, mainly to satisfy dev-lang/pugs-6.2.13
+
+  13 Aug 2006; <yuval@gentoo.org> parrot-0.4.5.ebuild:
+  Fixed a stupid problem - amd64 can emerge now :)
+
+  13 Aug 2006; <yuval@gentoo.org> +files/parrot-0.4.5-pod-test.patch,
+  parrot-0.4.5.ebuild:
+  Added a patch so parrot's tests will run smoothly -- this is a known issue
+  upstream...
+
+*parrot-0.4.5 (13 Aug 2006)
+
+  13 Aug 2006; <yuval@gentoo.org> +parrot-0.4.5.ebuild:
+  Version bump
+
+  22 May 2006; <mcummings@gentoo.org> -parrot-0.2.3.ebuild:
+  Cleaning up upld parrot ebuilds. Yuval has a copy of the new one coming
+
+*parrot-0.4.3 (04 Apr 2006)
+
+  04 Apr 2006; <mcumming@gentoo.org> +parrot-0.4.3.ebuild:
+  Bug 120263, parrot bumpage. also needed for newer pugs.
+
+  20 Feb 2006; Michael Cummings <mcummings@gentoo.org> parrot-0.2.3.ebuild,
+  parrot-0.4.0.ebuild:
+  bug 122904, uses not in IUSE
+
+*parrot-0.4.0 (06 Dec 2005)
+
+  06 Dec 2005; <mcumming@gentoo.org> +parrot-0.4.0.ebuild:
+  Parrot update
+
+  02 Oct 2005; Fabian Groffen <grobian@gentoo.org> parrot-0.2.3.ebuild:
+  Marking ~ppc-macos (side effect of bug #107641)
+
+  15 Aug 2005; Michael Cummings <mcummings@gentoo.org> files/root.in.patch,
+  parrot-0.2.3.ebuild:
+  Fix to header of root.in.patch
+
+*parrot-0.2.3 (15 Aug 2005)
+
+  15 Aug 2005; Michael Cummings <mcummings@gentoo.org>
+  files/mod_parrot.patch, +files/parrot-config.patch, +files/root.in.patch,
+  -parrot-0.1.1.ebuild, -parrot-0.1.2.ebuild, -parrot-0.2.1.ebuild,
+  +parrot-0.2.3.ebuild:
+  Version bump, bug 101858, thanks Adrian
+
+*parrot-0.2.1 (01 Jul 2005)
+
+  01 Jul 2005; Michael Cummings <mcummings@gentoo.org>
+  +files/mod_parrot.patch, +parrot-0.2.1.ebuild:
+  Bug 92192 - Adrian continues to provide great parrot/pugs ebuilds :)
+
+  04 May 2005; David Holm <dholm@gentoo.org> parrot-0.1.2.ebuild:
+  Added to ~ppc.
+
+*parrot-0.1.2 (21 Apr 2005)
+
+  21 Apr 2005; Michael Cummings <mcummings@gentoo.org> +parrot-0.1.2.ebuild:
+  Bug 82444, ebuild courtesy Adrian Lambeck <adrian@basicsedv.de>
+
+  27 Dec 2004; Michael Cummings <mcummings@gentoo.org> parrot-0.1.1.ebuild:
+  An "I'm amazed it even worked" typo in the SRC_URI - S instead of P
+
+  21 Dec 2004; Michael Cummings <mcummings@gentoo.org> parrot-0.1.1.ebuild:
+  Keyword for sparc (works great)
+
+*parrot-0.1.1 (20 Dec 2004)
+
+  20 Dec 2004; Michael Cummings <mcummings@gentoo.org> +parrot-0.1.1.ebuild:
+  Long overdue, the ebuild for parrot. Original version submitted in bug 74405
+  by Adrian Lambeck <adrian.lambeck@basicsedv.de>, cleaned up for a better
+  install.
+
