@@ -29,7 +29,6 @@ src_unpack() {
 
 src_compile() {
 	local myconf=""
-	use ppc-macos && myconf="--with-libdvdcss=/usr"
 	econf ${myconf} || die "./configure failed"
 	emake || die "make failed"
 }
