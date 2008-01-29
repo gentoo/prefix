@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/ruby-romkan
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-romkan/ChangeLog,v 1.14 2007/02/03 21:45:09 flameeyes Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-romkan/ChangeLog,v 1.15 2008/01/27 20:05:57 grobian Exp $
+
+  27 Jan 2008; Fabian Groffen <grobian@gentoo.org>
+  ruby-romkan-0.4-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   03 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
   Regenerate digest in Manifest2 format.
