@@ -13,7 +13,7 @@ LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux"
 # pcre is broken in this release
-IUSE="debug doc python opengl"
+IUSE="debug doc python opengl nowheelscroll"
 
 RDEPEND=">=dev-libs/glib-2.9
 	>=x11-libs/gtk+-2.6
@@ -48,6 +48,7 @@ pkg_setup() {
 src_unpack() {
 	gnome2_src_unpack
 
+	use nowheelscroll && epatch "${FILESDIR}"/${P}-mouse-wheel-scroll.patch
 	epatch "${FILESDIR}/${PN}-0.13.2-no-lazy-bindings.patch"
 	cd "${S}/gnome-pty-helper"
 
