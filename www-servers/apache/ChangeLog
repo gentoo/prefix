@@ -1,6 +1,13 @@
 # ChangeLog for www-servers/apache
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.54 2008/01/19 10:56:36 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.56 2008/01/29 01:27:55 ranger Exp $
+
+  29 Jan 2008; Brent Baude <ranger@gentoo.org> apache-2.2.8.ebuild:
+  Marking apache-2.2.8 ppc64 for bug 205195
+
+  28 Jan 2008; Benedikt Böhm <hollow@gentoo.org> -apache-2.0.58-r2.ebuild,
+  -apache-2.0.59-r5.ebuild, -apache-2.0.61.ebuild:
+  remove apache-2.0 wrt #203578
 
 *apache-2.2.8 (19 Jan 2008)
 
