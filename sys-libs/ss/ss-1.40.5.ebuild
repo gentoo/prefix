@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ss-1.40.2.ebuild,v 1.9 2007/12/08 21:12:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ss-1.40.5.ebuild,v 1.1 2008/01/28 06:29:23 vapier Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/e2fsprogs/e2fsprogs-${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86"
+KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux"
 IUSE="nls"
 
 RDEPEND="~sys-libs/com_err-${PV}"
@@ -21,6 +21,12 @@ DEPEND="${RDEPEND}
 
 S=${WORKDIR}/e2fsprogs-${PV}
 
+env_setup() {
+	export LDCONFIG="${EPREFIX}"/bin/true
+	export CC=$(tc-getCC)
+	export STRIP="${EPREFIX}"/bin/true
+}
+
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
@@ -28,9 +34,7 @@ src_unpack() {
 }
 
 src_compile() {
-	export LDCONFIG="${EPREFIX}"/bin/true
-	export CC=$(tc-getCC)
-	export STRIP="${EPREFIX}"/bin/true
+	env_setup
 
 	# We want to use the "bsd" libraries while building on Darwin, but while
 	# building on other Gentoo/*BSD we prefer elf-naming scheme.
@@ -49,13 +53,15 @@ src_compile() {
 }
 
 src_test() {
-	make -C lib/ss check || die "make check failed"
+	env_setup
+
+	local lib=$(get_libname)
+	ln -s $(${CC} -print-file-name=libcom_err${lib}) lib/libcom_err${lib}
+	emake -j1 -C lib/ss check || die "make check failed"
 }
 
 src_install() {
-	export LDCONFIG="${EPREFIX}"/bin/true
-	export CC=$(tc-getCC)
-	export STRIP="${EPREFIX}"/bin/true
+	env_setup
 
 	dodir /usr/share/man/man1
 	make -C lib/ss DESTDIR="${D}" install || die
@@ -63,7 +69,7 @@ src_install() {
 	# Move shared libraries to /lib/, install static libraries to /usr/lib/,
 	# and install linker scripts to /usr/lib/.
 	dodir /$(get_libdir)
-	mv "${ED}"/usr/$(get_libdir)/*.so* "${ED}"/$(get_libdir)/ || die "move .so"
+	mv "${ED}"/usr/$(get_libdir)/*$(get_libname)* "${ED}"/$(get_libdir)/ || die "move .so"
 	dolib.a lib/libss.a || die "dolib.a"
-	gen_usr_ldscript libss.so
+	gen_usr_ldscript libss$(get_libname)
 }
