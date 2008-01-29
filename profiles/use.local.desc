@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3333 2008/01/27 17:26:32 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3334 2008/01/28 19:29:52 aballier Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -1334,6 +1334,7 @@ media-video/vlc:cdio - Enables CD input and control library support.
 media-video/vlc:corba - Enables corba interface support.
 media-video/vlc:daap - Enables DAAP shares services discovery support.
 media-video/vlc:dc1394 - Enables IIDC cameras support.
+media-video/vlc:fluidsynth - Enables  Fluidsynth MIDI software synthesis (with external sound fonts).
 media-video/vlc:httpd - Enables a web based interface for vlc.
 media-video/vlc:id3tag - Enables id3tag metadata reader plugin.
 media-video/vlc:libgcrypt - Enables libgcrypt support (depends on gnutls).
