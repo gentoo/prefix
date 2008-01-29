@@ -1,22 +1,22 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.12.ebuild,v 1.2 2007/12/19 02:54:06 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.14.ebuild,v 1.1 2008/01/28 15:13:58 hkbst Exp $
 
 EAPI="prefix"
 
-inherit common-lisp-common-3 eutils flag-o-matic
+inherit eutils flag-o-matic
 
 #same order as http://www.sbcl.org/platform-table.html
-BV_X86=1.0.10
-BV_AMD64=1.0.10
+BV_X86=1.0.12
+BV_AMD64=1.0.12
 BV_PPC=1.0
 BV_SPARC=0.9.17
 BV_ALPHA=0.9.12
-BV_MIPS=0.9.12
-BV_MIPSEL=0.9.12
+BV_MIPS=1.0.12
+BV_MIPSEL=1.0.12
 
 BV_PPC_MACOS=1.0.2
-BV_X86_MACOS=1.0.12
+BV_X86_MACOS=1.0.7
 BV_X86_SOLARIS=0.9.14
 
 DESCRIPTION="Steel Bank Common Lisp (SBCL) is an implementation of ANSI Common Lisp."
@@ -190,13 +190,15 @@ EOF
 	echo "SBCL_SOURCE_ROOT=${EPREFIX}/usr/$(get_libdir)/${PN}/src" >> "${ENVD}"
 	doenvd "${ENVD}"
 
-	impl-save-timestamp-hack sbcl
+#	impl-save-timestamp-hack sbcl
 }
 
 pkg_postinst() {
-	standard-impl-postinst sbcl
+	sleep 1
+	find "${EPREFIX}"/usr/$(get_libdir)/sbcl/ -type f -name '*.fasl' -exec touch -m {} ';'
+#	standard-impl-postinst sbcl
 }
 
-pkg_postrm() {
-	standard-impl-postrm sbcl /usr/bin/sbcl
-}
+# pkg_postrm() {
+# 	standard-impl-postrm sbcl /usr/bin/sbcl
+# }

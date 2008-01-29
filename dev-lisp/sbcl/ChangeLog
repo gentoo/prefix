@@ -1,6 +1,36 @@
 # ChangeLog for dev-lisp/sbcl
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.137 2008/01/01 23:58:31 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.138 2008/01/28 15:13:58 hkbst Exp $
+
+*sbcl-1.0.14 (28 Jan 2008)
+
+  28 Jan 2008; Marijn Schouten <hkBst@gentoo.org> +sbcl-1.0.14.ebuild:
+  bump:
+  * new feature: SB-EXT:*EXIT-HOOKS* are called when the process exits
+    (see documentation for details.)
+  * revived support for OpenBSD (contributed by Josh Elsasser)
+  * partially fixed bug #108: ROOM no longer suffers from occasional
+    (AVER (SAP= CURRENT END)) failures .
+  * fixed bug #402: proclaimed non-standard declarations in DEFMETHOD
+    bodies no longer cause a WARNING to be signalled. (reported by
+    Vincent Arkesteijn)
+  * bug fix: (TRUNCATE X 0) when X is a bignum now correctly signals
+    DIVISION-BY-ZERO. Similarly for MOD and REM (which suffered due to
+    the bug in TRUNCATE.) (reported by Michael Weber)
+  * bug fix: SB-SPROF:REPORT no longer signals an error if there are
+    no samples. (reported by Andy Hefner)
+  * bug fix: functions compiled using (COMPILE NIL '(LAMBDA ...))
+    no longer appear as (NIL ...) frames in backtraces.
+  * bug fix: RESOLVE-CONFLICT (and the other name conflict machinery)
+    is now actually exported from SB-EXT as documented.  (reported by
+    Maciej Katafiasz)
+  * bug fix: sb-aclrepl now correctly understands how to inspect
+    single-floats on 64-bit platforms where single-floats are not boxed.
+  * bug fix: SB-MOP:CLASS-SLOTS now signals an error if the class has not
+    yet been finalized. (reported by Levente Meszaros)
+  * bug fix: CLOSE :ABORT T behaves more correctly on Windows.
+  * DESCRIBE and (DOCUMENTATION ... 'OPTIMIZE) describe meaning of
+    SBCL-specific optimize qualities.	
 
 *sbcl-1.0.13 (01 Jan 2008)
 
