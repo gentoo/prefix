@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.6.3.ebuild,v 1.1 2008/01/21 16:01:16 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.6.3.ebuild,v 1.2 2008/01/28 14:31:58 dang Exp $
 
 EAPI="prefix"
 
@@ -30,7 +30,6 @@ src_compile() {
 		--disable-poppler-glib \
 		--disable-poppler-qt \
 		--disable-gtk-test \
-		--enable-opi \
 		--disable-cairo-output \
 		--enable-xpdf-headers \
 		$(use_enable jpeg libjpeg) \

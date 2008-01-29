@@ -1,6 +1,9 @@
 # ChangeLog for app-text/poppler
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.150 2008/01/21 16:01:16 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.151 2008/01/28 14:31:58 dang Exp $
+
+  28 Jan 2008; Daniel Gryniewicz <dang@gentoo.org> poppler-0.6.3.ebuild:
+  Remove unused configure option
 
 *poppler-0.6.3 (21 Jan 2008)
 
