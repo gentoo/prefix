@@ -16,7 +16,7 @@ SRC_URI="mirror://apache/apr/${P}.tar.gz
 
 LICENSE="Apache-2.0"
 SLOT="1"
-KEYWORDS="~amd64 ~ia64 ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~ppc-aix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="berkdb gdbm ldap mysql postgres sqlite sqlite3"
 RESTRICT="test"
 
