@@ -1,0 +1,308 @@
+# ChangeLog for media-libs/lcms
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/ChangeLog,v 1.87 2008/01/10 19:08:10 jer Exp $
+
+  10 Jan 2008; Jeroen Roovers <jer@gentoo.org> lcms-1.17.ebuild:
+  Stable for HPPA (bug #203237).
+
+  06 Jan 2008; Raúl Porcel <armin76@gentoo.org> lcms-1.17.ebuild:
+  alpha/ia64/sparc stable wrt #203237
+
+  05 Jan 2008; Samuli Suominen <drac@gentoo.org> lcms-1.17.ebuild:
+  amd64 stable wrt #203237
+
+  04 Jan 2008; Christian Faulhammer <opfer@gentoo.org> lcms-1.17.ebuild:
+  stable x86, bug 203237
+
+  04 Jan 2008; Brent Baude <ranger@gentoo.org> lcms-1.17.ebuild:
+  Marking lcms-1.17 ppc for bug 203237
+
+  04 Jan 2008; Brent Baude <ranger@gentoo.org> lcms-1.17.ebuild:
+  Marking lcms-1.17 ppc64 for bug 203237
+
+  14 Sep 2007; Roy Marples <uberlord@gentoo.org> lcms-1.17.ebuild:
+  elibtoolize now patches install-sh for us.
+
+  14 Aug 2007; Daniel Gryniewicz <dang@gentoo.org>
+  +files/lcms-1.17-multilib.patch, lcms-1.17.ebuild:
+  Use the platfor-specific path; bug #185294
+
+*lcms-1.17 (08 Aug 2007)
+
+  08 Aug 2007; Stefan Schweizer <genstef@gentoo.org> +lcms-1.17.ebuild:
+  Version bump thanks gergan from the minefield overlay and multilib fix
+  thanks Kenneth Prugh <ken69267@gmail.com> and keytoaster for reporting in
+  bug 185294
+
+  27 Mar 2007; Roy Marples <uberlord@gentoo.org> lcms-1.16.ebuild:
+  Refresh install-sh from libtool so we correctly install on FreeBSD.
+  Re-keyworded ~x86-fbsd.
+
+  27 Mar 2007; Lukasz Strzygowski <lucass@gentoo.org> lcms-1.14-r1.ebuild,
+  lcms-1.15.ebuild, lcms-1.16.ebuild:
+  Call swig_lcms in src_unpack (bug #148728). Dropped ppc-macos.
+
+*lcms-1.16 (14 Mar 2007)
+
+  14 Mar 2007; <genstef@gentoo.org> +lcms-1.16.ebuild:
+  Version bump thanks to Hal Engel <hvengel@astound.net> in bug 161382
+
+  15 Feb 2007; Bryan Østergaard <kloeri@gentoo.org> lcms-1.15.ebuild:
+  Stable on Alpha, bug 166246.
+
+  14 Feb 2007; Bryan Østergaard <kloeri@gentoo.org> lcms-1.15.ebuild:
+  Stable on IA64, bug 166246.
+
+  13 Feb 2007; Lars Weiler <pylon@gentoo.org> lcms-1.15.ebuild:
+  Stable on ppc; bug #166246.
+
+  13 Feb 2007; Markus Rothe <corsair@gentoo.org> lcms-1.15.ebuild:
+  Stable on ppc64; bug #166246
+
+  12 Feb 2007; Marcus D. Hanwell <cryos@gentoo.org> lcms-1.15.ebuild:
+  Stable on amd64, bug 166246.
+
+  12 Feb 2007; Gustavo Zacarias <gustavoz@gentoo.org> lcms-1.15.ebuild:
+  Stable on sparc
+
+  12 Feb 2007; Jeroen Roovers <jer@gentoo.org> lcms-1.15.ebuild:
+  Stable for HPPA (bug #166246).
+
+  11 Feb 2007; Christian Faulhammer <opfer@gentoo.org> lcms-1.15.ebuild:
+  stable x86; security bug #166246
+
+  07 Jan 2007; <genstef@gentoo.org> lcms-1.15.ebuild:
+  Finally fix bug 148728 thanks to kloeri for bumping swig
+
+  18 Nov 2006; Diego Pettenò <flameeyes@gentoo.org> lcms-1.15.ebuild:
+  Don't do inverse arch dependencies for x86-fbsd, you'll just mask the issue
+  for us.
+
+  18 Nov 2006; Stefan Schweizer <genstef@gentoo.org> lcms-1.15.ebuild:
+  Add new swig to DEPEND to fix python-2.5 compile thanks to marienz in bug
+  148728
+
+  04 Sep 2006; Joshua Kinard <kumba@gentoo.org> -lcms-1.13-r1.ebuild,
+  -lcms-1.13-r2.ebuild, lcms-1.14-r1.ebuild:
+  Marked 1.14-r1 stable on mips and removed older versions.
+
+  05 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> lcms-1.15.ebuild:
+  No more need for eautoreconf, works fine on amd64 without.
+
+  05 Apr 2006; Harald van Dĳk <truedfx@gentoo.org>
+  +files/lcms-1.15-bsd.patch, lcms-1.15.ebuild:
+  Fix typo causing compilation errors on *BSD
+
+  03 Apr 2006; Gustavo Zacarias <gustavoz@gentoo.org> lcms-1.15.ebuild:
+  Revbumps shouldn't go stable directly
+
+*lcms-1.15 (02 Apr 2006)
+
+  02 Apr 2006; Stefan Schweizer <genstef@gentoo.org> +lcms-1.15.ebuild:
+  version bump thanks to Hal Engel <hvengel@astound.net> in bug 123764
+
+  01 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> lcms-1.14-r1.ebuild:
+  Add ~x86-fbsd keyword.
+
+  17 Feb 2006; Simon Stelling <blubb@gentoo.org> lcms-1.14-r1.ebuild:
+  stable on amd64
+
+  17 Feb 2006; Luca Barbato <lu_zero@gentoo.org> lcms-1.14-r1.ebuild:
+  Stable on ppc, bug #118349
+
+  15 Feb 2006; Markus Rothe <corsair@gentoo.org> lcms-1.14-r1.ebuild:
+  Stable on ppc64; bug #118349
+
+  08 Feb 2006; Joshua Jackson <tsunam@gentoo.org> lcms-1.14-r1.ebuild:
+  Stable on x86; bug #118349
+
+  07 Feb 2006; Aron Griffis <agriffis@gentoo.org> lcms-1.14-r1.ebuild:
+  Mark 1.14-r1 stable on alpha
+
+  07 Feb 2006; Fabian Groffen <grobian@gentoo.org> lcms-1.14-r1.ebuild:
+  Marked ppc-macos stable (bug #118349)
+
+  06 Feb 2006; Gustavo Zacarias <gustavoz@gentoo.org> lcms-1.14-r1.ebuild:
+  Stable on sparc wrt #118349
+
+  14 Jan 2006; Fabian Groffen <grobian@gentoo.org> lcms-1.13-r1.ebuild:
+  Marked ppc-macos stable
+
+  24 Sep 2005; Stefan Schweizer <genstef@gentoo.org> -lcms-1.11.ebuild,
+  -lcms-1.12.ebuild, -lcms-1.13.ebuild, -lcms-1.14.ebuild:
+  Clean out old versions
+
+  24 Sep 2005; Doug Goldstein <cardoe@gentoo.org> +files/lcms.i.diff,
+  lcms-1.14-r1.ebuild:
+  fix bug #98547 and fix autoreconf mess (ok'd by genstef)
+
+  19 Sep 2005; Hardave Riar <hardave@gentoo.org> lcms-1.13-r1.ebuild:
+  Stable on mips.
+
+  05 Sep 2005; Diego Pettenò <flameeyes@gentoo.org> lcms-1.14-r1.ebuild:
+  Run elibtoolize after autoreconf is ran.
+
+*lcms-1.14-r1 (02 Aug 2005)
+*lcms-1.13-r2 (02 Aug 2005)
+
+  02 Aug 2005; <metalgod@gentoo.org> +lcms-1.13-r2.ebuild,
+  +lcms-1.14-r1.ebuild:
+  New revisions for remove '--includedir' to make sure the headers are in the
+  right place. Thanks to Hal Engel <hvengel@astound.net> and fix bug #100269 .
+
+  17 Jun 2005; Michael Hanselmann <hansmi@gentoo.org> lcms-1.13-r1.ebuild:
+  Stable on ppc.
+
+  25 May 2005; Jose Luis Rivero <yoswink@gentoo.org> lcms-1.13-r1.ebuild:
+  Stable on alpha
+
+  23 May 2005; Markus Rothe <corsair@gentoo.org> lcms-1.13-r1.ebuild:
+  Stable on ppc64
+
+  21 May 2005; Rene Nussbaumer <killerfox@gentoo.org> lcms-1.13-r1.ebuild:
+  Stable on hppa
+
+  16 May 2005; Gustavo Zacarias <gustavoz@gentoo.org> lcms-1.13-r1.ebuild:
+  Stable on sparc
+
+*lcms-1.14 (14 May 2005)
+
+  14 May 2005; Heinrich Wendel <lanius@gentoo.org> lcms-1.13-r1.ebuild,
+  +lcms-1.14.ebuild:
+  version bump; 1.13-r1 stable on amd64, x86
+
+*lcms-1.13-r1 (24 Apr 2005)
+
+  24 Apr 2005; Martin Schlemmer <azarah@gentoo.org> +lcms-1.13-r1.ebuild:
+  We need to run libtoolize first, _then_ aclocal, else the macro and
+  ltmain.sh versions mismatch.
+
+  25 Mar 2005; Hardave Riar <hardave@gentoo.org> lcms-1.13.ebuild:
+  Stable on mips.
+
+  06 Feb 2005; Markus Rothe <corsair@gentoo.org> lcms-1.13.ebuild:
+  Stable on ppc64
+
+  30 Jan 2005; lanius@gentoo.org lcms-1.13.ebuild:
+  mark 1.13 amd64
+
+  11 Jan 2005; Bryan Østergaard <kloeri@gentoo.org> lcms-1.13.ebuild:
+  Stable on alpha.
+
+  03 Jan 2005; Gustavo Zacarias <gustavoz@gentoo.org> lcms-1.13.ebuild:
+  Stable on sparc
+
+  03 Jan 2005; Heinrich Wendel <lanius@gentoo.org> lcms-1.13.ebuild:
+  stable on x86
+
+  29 Dec 2004; Daniel Goller <morfic@gentoo.org> lcms-1.13.ebuild:
+  Adding elibtoolize
+
+  01 Dec 2004; Mamoru KOMACHI <usata@gentoo.org> lcms-1.12.ebuild,
+  lcms-1.13.ebuild:
+  Fixed compilation on ppc-macos (Mac OS X doesn't have automake-1.7, so
+  autoreconf breaks build on ppc-macos). This closes bug #65618.
+
+  31 Oct 2004; Kito <kito@gentoo.org> lcms-1.12.ebuild, lcms-1.13.ebuild:
+  added ~ppc-macos
+
+*lcms-1.13 (22 Sep 2004)
+
+  22 Sep 2004; Heinrich Wendel <lanius@gentoo.org> -lcms-1.09.ebuild,
+  -lcms-1.11.1.ebuild, +lcms-1.13.ebuild:
+  version bump, bug #62504; fixed rdepend, bug #61180; add gnuconfig, bug #61179
+
+  03 Jun 2004; Stephen P. Becker <geoman@gentoo.org> lcms-1.12.ebuild:
+  Stable on mips.
+
+  06 Mar 2004; Stephen P. Becker <geoman@gentoo.org> lcms-1.12.ebuild:
+  Added ~mips keyword.
+
+  02 Mar 2004; Tom Gall <tgall@gentoo.org> lcms-1.12.ebuild:
+  stable on ppc64
+
+  21 Feb 2004; Heinrich Wendel <lanius@gentoo.org> lcms-1.12.ebuild:
+  fix build on amd64, bug #35442
+
+  28 Jan 2004; Aron Griffis <agriffis@gentoo.org> lcms-1.12.ebuild:
+  stable on alpha and ia64
+
+  25 Jan 2004; <gustavoz@gentoo.org> lcms-1.12.ebuild:
+  stable on sparc
+
+  24 Jan 2004; Guy Martin <gmsoft@gentoo.org> lcms-1.12.ebuild:
+  Marked stable on hppa.
+
+  24 Jan 2004; Heinrich Wendel <lanius@gentoo.org> lcms-1.12.ebuild:
+  x86
+
+*lcms-1.12 (27 Dec 2003)
+
+  27 Dec 2003; Heinrich Wendel <lanius@gentoo.org> lcms-1.12.ebuild:
+  version bump
+
+  06 Dec 2003; Heinrich Wendel <lanius@gentoo.org> lcms-1.11.1.ebuild:
+  fixed ${S}
+
+*lcms-1.11.1 (06 Dec 2003)
+
+  06 Dec 2003; Heinrich Wendel <lanius@gentoo.org> lcms-1.11.1.ebuild:
+  bug #35195, they put up a new tarball with the same version, but different
+  headers, really bad
+
+  02 Dec 2003; Heinrich Wendel <lanius@gentoo.org> metadata.xml:
+  metadata.xml
+
+  01 Dec 2003; Heinrich Wendel <lanius@gentoo.org> lcms-1.11.ebuild:
+  stable
+
+  21 Nov 2003; Aron Griffis <agriffis@gentoo.org> lcms-1.11.ebuild:
+  Stable on alpha and ia64
+
+  09 Nov 2003; Michael Sterrett <mr_bones_@gentoo.org> lcms-1.11.ebuild:
+  use use_with, emake, insinto, doins; add more IUSE; more error
+  checking/messages; tidy
+
+  22 Sep 2003; Heinrich Wendel <lanius@gentoo.org> lcms-1.11.ebuild:
+  bug #29309
+
+*lcms-1.11 (21 Sep 2003)
+
+  21 Sep 2003; Heinrich Wendel <lanius@gentoo.org> lcms-1.11.ebuild:
+  version bump
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*lcms-1.09 (17 Jul 2002)
+
+  11 Mar 2003; Guy Martin <gmsoft@gentoo.org> :
+  Added hppa to keywords.
+
+  19 Nov 2002; Stefan Jones <cretin@gentoo.org> :
+  Added -fPIC to CFLAGS in the shared library
+
+  23 Jul 2002; Mark Guertin <gerk@gentoo.org> :
+  Added ppc to keywords
+
+  17 Jul 2002; Seemant Kulleen <seemant@gentoo.org> lcms-1.09.ebuild
+  files/digest-lcms-1.09 :
+
+  Version bump.  No more die, because gcc-3 can't handle that for some
+  reason.
+
+*lcms-1.08 (30 Apr 2002)
+
+  30 Apr 2002; Seemant Kulleen <seemant@gentoo.org> lcms-1.08.ebuild
+  files/digest-lcms-1.08 :
+
+  Version bump, thanks to Ali Asad Lotia <lotia@umich.edu> in bug #1512.
+
+*lcms-1.06 (1 Feb 2002)
+
+  1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
+  
+  Added initial ChangeLog which should be updated whenever the package is
+  updated in any way. This changelog is targetted to users. This means that the
+  comments should well explained and written in clean English. The details about
+  writing correct changelogs are explained in the skel.ChangeLog file which you
+  can find in the root directory of the portage repository.
