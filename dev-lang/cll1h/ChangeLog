@@ -1,0 +1,21 @@
+# ChangeLog for dev-lang/cll1h
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/cll1h/ChangeLog,v 1.5 2007/05/15 09:49:42 bangert Exp $
+
+  15 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
+  add <herd>no-herd</herd>
+
+  21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  30 Oct 2005; Fabian Groffen <grobian@gentoo.org> cll1h-0.6.ebuild:
+  Marked ~ppc-macos (bug #110816)
+
+  07 Jul 2005; David Holm <dholm@gentoo.org> cll1h-0.6.ebuild:
+  Added to ~ppc.
+
+*cll1h-0.6 (06 Jul 2005)
+
+  06 Jul 2005; Robin H. Johnson <robbat2@gentoo.org> +cll1h-0.6.ebuild:
+  Initial commit of a crazy language to program in...
+
