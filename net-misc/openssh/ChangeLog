@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.271 2008/01/24 19:55:05 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.272 2008/01/28 05:53:58 jer Exp $
+
+  28 Jan 2008; Jeroen Roovers <jer@gentoo.org> openssh-4.7_p1-r3.ebuild:
+  Stable for HPPA too.
 
   24 Jan 2008; Raúl Porcel <armin76@gentoo.org> openssh-4.7_p1-r3.ebuild:
   alpha/ia64/sparc/x86 stable
