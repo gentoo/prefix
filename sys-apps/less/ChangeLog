@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/less
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.84 2008/01/03 18:26:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.85 2008/01/28 18:02:01 armin76 Exp $
+
+  28 Jan 2008; Raúl Porcel <armin76@gentoo.org> less-418.ebuild:
+  418 is GPL-3
 
 *less-418 (03 Jan 2008)
 
