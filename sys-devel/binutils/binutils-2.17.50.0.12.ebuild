@@ -10,4 +10,4 @@ ELF2FLT_VER=""
 inherit toolchain-binutils
 
 # ARCH - packages to test before marking
-KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86 ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x86-solaris"

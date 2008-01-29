@@ -8,4 +8,4 @@ PATCHVER="1.1"
 ELF2FLT_VER=""
 inherit toolchain-binutils
 
-KEYWORDS="~amd64 ~ia64 ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~sparc-solaris ~x86-solaris"

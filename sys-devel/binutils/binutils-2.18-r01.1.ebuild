@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/binutils-2.18-r1.ebuild,v 1.12 2007/11/20 04:12:18 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/binutils-2.18-r1.ebuild,v 1.13 2008/01/28 12:06:56 vapier Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ PATCHVER="1.5"
 ELF2FLT_VER=""
 inherit toolchain-binutils autotools
 
-KEYWORDS="~amd64 ~ia64 ~ia64-hpux ~x86-interix ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 
 src_unpack() {
 	toolchain-binutils_src_unpack
