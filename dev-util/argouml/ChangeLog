@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/argouml
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/argouml/ChangeLog,v 1.19 2008/01/12 21:05:27 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/argouml/ChangeLog,v 1.20 2008/01/28 23:04:48 caster Exp $
+
+*argouml-0.24 (28 Jan 2008)
+
+  28 Jan 2008; Vlastimil Babka <caster@gentoo.org> +argouml-0.24.ebuild:
+  Version bump, bug #125696. Still binary though, just wanted to get a gen-2
+  eclasses based of the latest upstream stable version, so we can remove the
+  gen-1 ebuilds. Work on 0.25.x development versions and building from source
+  will go as time permits and users demand.
 
   12 Jan 2008; Fabian Groffen <grobian@gentoo.org> argouml-0.19.6.ebuild:
   Dropped ppc-macos keyword, see you in prefix
