@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/wget-1.10.2.ebuild,v 1.17 2007/10/22 21:06:47 seemant Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/wget-1.10.2.ebuild,v 1.18 2008/01/28 17:36:04 pva Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~ia64-hpux ~x86-interix ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-fbsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="build debug ipv6 nls socks5 ssl static elibc_FreeBSD"
 
 RDEPEND="ssl? ( >=dev-libs/openssl-0.9.6b )
@@ -64,7 +64,7 @@ src_install() {
 
 	if use ipv6 ; then
 		ebegin "Adding a note about ipv6 in the config file"
-		cat ${FILESDIR}/wgetrc-ipv6 >> ${ED}/etc/wget/wgetrc
+		cat "${FILESDIR}"/wgetrc-ipv6 >> "${ED}"/etc/wget/wgetrc
 		eend $?
 	fi
 

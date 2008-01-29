@@ -1,6 +1,15 @@
 # ChangeLog for net-misc/wget
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.89 2007/12/25 15:17:35 phreak Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.91 2008/01/28 17:36:04 pva Exp $
+
+  28 Jan 2008; <pva@gentoo.org> wget-1.10.2.ebuild, wget-1.11.ebuild:
+  License changed to GPL-3, thank you Winterheart for report, quotation fix.
+
+*wget-1.11 (28 Jan 2008)
+
+  28 Jan 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/wget-1.11-linking.patch, +wget-1.11.ebuild:
+  Version bump #207872 by Matthias Vill.
 
   25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing seemant from metadata.xml as per #202469. Assigning to
