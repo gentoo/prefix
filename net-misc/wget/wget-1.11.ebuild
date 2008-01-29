@@ -4,7 +4,7 @@
 
 EAPI="prefix"
 
-inherit eutils flag-o-matic autotools
+inherit eutils flag-o-matic
 
 DESCRIPTION="Network utility to retrieve files from the WWW"
 HOMEPAGE="http://www.gnu.org/software/wget/"
@@ -25,7 +25,6 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-no-solaris-md5.patch
 	epatch "${FILESDIR}"/${P}-linking.patch
-	eautoreconf
 }
 
 src_compile() {
