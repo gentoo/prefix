@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libao
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libao/ChangeLog,v 1.76 2008/01/27 15:24:17 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libao/ChangeLog,v 1.77 2008/01/28 18:14:56 jer Exp $
+
+  28 Jan 2008; Jeroen Roovers <jer@gentoo.org> libao-0.8.8.ebuild:
+  Stable for HPPA (bug #207682).
 
   27 Jan 2008; Brent Baude <ranger@gentoo.org> libao-0.8.8.ebuild:
   Marking libao-0.8.8 ppc64 for bug 207682
