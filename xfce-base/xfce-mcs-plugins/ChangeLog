@@ -1,6 +1,10 @@
 # ChangeLog for xfce-base/xfce-mcs-plugins
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce-mcs-plugins/ChangeLog,v 1.118 2008/01/25 19:52:52 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce-mcs-plugins/ChangeLog,v 1.119 2008/01/28 18:55:10 jer Exp $
+
+  28 Jan 2008; Jeroen Roovers <jer@gentoo.org>
+  xfce-mcs-plugins-4.4.2-r1.ebuild:
+  Stable for HPPA (bug #202858).
 
   25 Jan 2008; Markus Rothe <corsair@gentoo.org>
   xfce-mcs-plugins-4.4.2-r1.ebuild:
