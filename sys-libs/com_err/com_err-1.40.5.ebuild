@@ -25,7 +25,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.39-makefile.patch
-	epatch "${FILESDIR}"/${PN}-1.40-darwin-makefile.patch
 }
 
 src_compile() {
