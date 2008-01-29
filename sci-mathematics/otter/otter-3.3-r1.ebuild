@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/otter/otter-3.3-r1.ebuild,v 1.4 2007/07/13 05:28:09 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/otter/otter-3.3-r1.ebuild,v 1.5 2008/01/28 19:19:09 grobian Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ DEPEND="virtual/libc"
 src_compile() {
 	cd source
 	make || die
-	cd ${S}/mace2
+	cd "${S}"/mace2
 	make || die
 }
 
