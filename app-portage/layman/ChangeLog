@@ -1,6 +1,11 @@
 # ChangeLog for app-portage/layman
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.54 2007/11/15 07:16:23 wrobel Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.55 2008/01/28 17:52:37 wrobel Exp $
+
+*layman-1.1.1-r1 (28 Jan 2008)
+
+  28 Jan 2008; Gunnar Wrobel <wrobel@gentoo.org> +layman-1.1.1-r1.ebuild:
+  Warn on missing subversion package (#200395).
 
   15 Nov 2007; <wrobel@gentoo.org> layman-1.0.6.ebuild,
   layman-1.0.10.ebuild, layman-1.1.1.ebuild:

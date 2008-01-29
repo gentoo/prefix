@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.0.10.ebuild,v 1.9 2007/11/15 07:16:23 wrobel Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.1.1-r1.ebuild,v 1.1 2008/01/28 17:52:37 wrobel Exp $
 
 EAPI="prefix"
 
@@ -8,27 +8,37 @@ inherit eutils distutils
 
 DESCRIPTION="A python script for retrieving gentoo overlays."
 HOMEPAGE="http://layman.sourceforge.net"
-SRC_URI="http://build.pardus.de/downloads/${PF}.tar.gz"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE=""
-S=${WORKDIR}/${PF}
+IUSE="test"
 
-DEPEND="dev-util/subversion"
+DEPEND="test? ( dev-util/subversion )"
+RDEPEND=""
 
 pkg_setup() {
-	if built_with_use dev-util/subversion nowebdav; then
-		eerror "You must rebuild your subversion without the nowebdav USE flag"
-		die "You must rebuild your subversion without the nowebdav USE flag"
+	if has_version dev-util/subversion && \
+	(! built_with_use --missing true dev-util/subversion webdav || built_with_use --missing false dev-util/subversion nowebdav); then
+		eerror "You must rebuild your Subversion with support for WebDAV."
+		die "You must rebuild your Subversion with support for WebDAV"
+	fi
+	if ! has_version dev-util/subversion; then
+		ewarn "You do not have dev-util/subversion installed!"
+		ewarn "While layman does not exactly depend on this"
+		ewarn "version control system you should note that"
+		ewarn "most available overlays are offered via"
+		ewarn "dev-util/subversion. If you do not install it"
+		ewarn "you will be unable to use these overlays."
+		ewarn
 	fi
 }
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.1.1-prefix.patch
 	eprefixify layman/config.py etc/layman.cfg
 	find layman/overlays -name "*.py" | xargs sed -i \
 		-e '/binary = '"'"'.*'"'"'/s|'"'"'\(.*\)'"'"'|'"'${EPREFIX}"'\1'"'"'|'
@@ -39,6 +49,8 @@ src_install() {
 	distutils_src_install
 
 	dodir /etc/layman
+
+	sed -i -e 's/^nocheck  : no/nocheck  : yes/' etc/layman.cfg
 	cp etc/* "${ED}"/etc/layman/
 
 	doman doc/layman.8
@@ -47,7 +59,6 @@ src_install() {
 }
 
 src_test() {
-	cd "${S}"
 	einfo "Running layman doctests..."
 	echo
 	if ! PYTHONPATH="." ${python} layman/tests/dtest.py; then
@@ -62,9 +73,6 @@ pkg_postinst() {
 	einfo "layman -L"
 	einfo
 	einfo "will display a list of available overlays."
-	einfo
-	ewarn "Use the -k switch to also list overlays that are"
-	ewarn "considered less secure."
 	einfo
 	elog  "Select an overlay and add it using"
 	einfo
