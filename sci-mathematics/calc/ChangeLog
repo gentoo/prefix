@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/calc
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/calc/ChangeLog,v 1.14 2007/10/26 12:59:34 markusle Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/calc/ChangeLog,v 1.15 2008/01/28 20:01:17 grobian Exp $
+
+  28 Jan 2008; Fabian Groffen <grobian@gentoo.org> calc-2.11.9.3.ebuild,
+  calc-2.11.10.1.ebuild, calc-2.12.1.5.ebuild, calc-2.12.2.2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   26 Oct 2007; Markus Dittrich <markusle@gentoo.org> calc-2.12.2.2.ebuild:
   Fixed multilib issues on amd64 (see bug #197019).
