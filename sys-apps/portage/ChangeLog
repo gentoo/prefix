@@ -2,10 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
-*portage-2.2.00.9232 (30 Jan 2008)
+*portage-2.2.00.9233 (30 Jan 2008)
 
   30 Jan 2008; Fabian Groffen <grobian@gentoo.org>
-  +portage-2.2.00.9232.ebuild:
+  +portage-2.2.00.9233.ebuild:
   New snapshot with important fix for preserve libs
 
 *portage-2.2.00.9214 (20 Jan 2008)
