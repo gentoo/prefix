@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libdvdplay
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdplay/ChangeLog,v 1.19 2007/02/22 01:53:12 peper Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdplay/ChangeLog,v 1.20 2008/01/29 21:57:31 grobian Exp $
+
+  29 Jan 2008; Fabian Groffen <grobian@gentoo.org> libdvdplay-1.0.1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
