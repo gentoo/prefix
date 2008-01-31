@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/sed-4.1.5.ebuild,v 1.20 2007/11/04 03:34:44 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/sed-4.1.5-r1.ebuild,v 1.1 2008/01/30 00:26:46 vapier Exp $
 
 EAPI="prefix"
 
-inherit flag-o-matic
+inherit eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="Super-useful stream editor"
 HOMEPAGE="http://sed.sourceforge.net/"
@@ -22,7 +22,7 @@ DEPEND="${RDEPEND}
 src_bootstrap_sed() {
 	# make sure system-sed works #40786
 	export NO_SYS_SED=""
-	if ! type -p sed ; then
+	if ! type -p sed > /dev/null ; then
 		NO_SYS_SED="!!!"
 		./bootstrap.sh || die "couldnt bootstrap"
 		cp sed/sed "${T}"/ || die "couldnt copy"
@@ -36,6 +36,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-4.1.4-makeinfo-c-locale.patch
 	epatch "${FILESDIR}"/${P}-alloca.patch
+	epatch "${FILESDIR}"/${P}-prototypes.patch
 	epatch "${FILESDIR}"/${PN}-4.1.4-aix-malloc.patch
 	# don't use sed here if we have to recover a broken host sed
 }
@@ -52,6 +53,11 @@ src_compile() {
 		myconf="--program-prefix=g"
 		bindir="${EPREFIX}"/usr/bin
 	fi
+
+	if echo "#include <regex.h>" | $(tc-getCPP) > /dev/null ; then
+		myconf="${myconf} --without-included-regex"
+	fi
+
 	use static && append-ldflags -static
 	econf \
 		--bindir="${bindir}" \
