@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/inform
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/inform/ChangeLog,v 1.13 2008/01/14 00:44:20 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/inform/ChangeLog,v 1.14 2008/01/29 21:20:41 grobian Exp $
+
+  29 Jan 2008; Fabian Groffen <grobian@gentoo.org> inform-6.30.2.ebuild,
+  inform-6.31.1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   14 Jan 2008; Christian Faulhammer <opfer@gentoo.org> inform-6.31.1.ebuild:
   add USE flag emacs for dependency on corresponding GNU Emacs mode, see bug
