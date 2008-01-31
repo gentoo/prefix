@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/snobol
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/snobol/ChangeLog,v 1.10 2007/02/22 00:10:47 peper Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/snobol/ChangeLog,v 1.11 2008/01/29 21:31:52 grobian Exp $
+
+  29 Jan 2008; Fabian Groffen <grobian@gentoo.org> snobol-1.1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
   Transition to Manifest2.
