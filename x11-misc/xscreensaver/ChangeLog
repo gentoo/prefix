@@ -1,6 +1,9 @@
 # ChangeLog for x11-misc/xscreensaver
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.207 2008/01/01 16:44:54 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.208 2008/01/29 21:10:09 drac Exp $
+
+  29 Jan 2008; Samuli Suominen <drac@gentoo.org> xscreensaver-5.04.ebuild:
+  amd64 stable
 
   01 Jan 2008; Samuli Suominen <drac@gentoo.org>
   files/xscreensaver-5.04-nsfw.patch, xscreensaver-5.04.ebuild:
