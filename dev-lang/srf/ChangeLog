@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/srf
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/srf/ChangeLog,v 1.3 2007/02/09 02:26:15 flameeyes Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/srf/ChangeLog,v 1.4 2008/01/29 21:18:49 grobian Exp $
+
+  29 Jan 2008; Fabian Groffen <grobian@gentoo.org> srf-1.0.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   09 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
   Regenerate digest in Manifest2 format.
