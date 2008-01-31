@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/cll1h
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/cll1h/ChangeLog,v 1.5 2007/05/15 09:49:42 bangert Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/cll1h/ChangeLog,v 1.6 2008/01/29 21:27:54 grobian Exp $
+
+  29 Jan 2008; Fabian Groffen <grobian@gentoo.org> cll1h-0.6.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   15 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
   add <herd>no-herd</herd>

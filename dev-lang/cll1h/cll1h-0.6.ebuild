@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/cll1h/cll1h-0.6.ebuild,v 1.3 2005/10/30 17:35:23 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/cll1h/cll1h-0.6.ebuild,v 1.4 2008/01/29 21:27:54 grobian Exp $
 
 EAPI="prefix"
 
