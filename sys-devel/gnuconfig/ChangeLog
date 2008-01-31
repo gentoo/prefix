@@ -1,6 +1,20 @@
 # ChangeLog for sys-devel/gnuconfig
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gnuconfig/ChangeLog,v 1.30 2007/09/15 01:15:52 vapier Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gnuconfig/ChangeLog,v 1.32 2008/01/30 01:40:24 vapier Exp $
+
+*gnuconfig-20080123 (30 Jan 2008)
+
+  30 Jan 2008; Mike Frysinger <vapier@gentoo.org>
+  +gnuconfig-20080123.ebuild:
+  Version bump.
+
+*gnuconfig-99999999 (30 Jan 2008)
+
+  30 Jan 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/99999999/config.guess.uclibc.patch,
+  +files/99999999/config.sub.ps2.patch, +files/99999999/config.sub.sh.patch,
+  +gnuconfig-99999999.ebuild:
+  Add live git ebuild to help creating packages.
 
   15 Sep 2007; Mike Frysinger <vapier@gentoo.org> gnuconfig-20070724.ebuild:
   Tweak testsuite when running on a uClibc setup #180637.
