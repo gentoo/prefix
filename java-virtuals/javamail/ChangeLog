@@ -1,6 +1,9 @@
 # ChangeLog for java-virtuals/javamail
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/java-virtuals/javamail/ChangeLog,v 1.6 2008/01/27 15:33:23 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/java-virtuals/javamail/ChangeLog,v 1.7 2008/01/29 19:52:22 nixnut Exp $
+
+  29 Jan 2008; nixnut <nixnut@gentoo.org> javamail-1.0-r1.ebuild:
+  Stable on ppc wrt bug 207590
 
   27 Jan 2008; Brent Baude <ranger@gentoo.org> javamail-1.0-r1.ebuild:
   Marking javamail-1.0-r1 ppc64 for bug 207590
