@@ -1,10 +1,10 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.7.ebuild,v 1.10 2007/08/25 14:24:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.12.ebuild,v 1.1 2008/01/30 15:52:25 dang Exp $
 
 EAPI="prefix"
 
-inherit gnome2
+inherit gnome2 eutils
 
 MY_P="ORBit2-${PV}"
 PVP=(${PV//[-\._]/ })
@@ -21,9 +21,6 @@ IUSE="doc"
 
 RDEPEND=">=dev-libs/glib-2.8
 	>=dev-libs/libIDL-0.8.2"
-
-# FIXME linc is now integrated, but a block isn't necessary
-# and probably complicated FIXME
 
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.18
