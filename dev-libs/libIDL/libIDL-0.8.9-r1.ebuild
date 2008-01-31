@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/libIDL-0.8.8.ebuild,v 1.11 2007/10/05 08:07:20 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/libIDL-0.8.9-r1.ebuild,v 1.1 2008/01/30 15:21:01 dang Exp $
 
 EAPI="prefix"
 
@@ -24,5 +24,7 @@ DOCS="AUTHORS BUGS ChangeLog HACKING MAINTAINERS NEWS README"
 
 src_unpack() {
 	gnome2_src_unpack
+	# New glib removes G_GNUC_PRETTY_FUNCTION
+	epatch "${FILESDIR}"/${P}-G_STRFUNC.patch
 	epunt_cxx
 }
