@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/gst-plugins-base-0.10.15.ebuild,v 1.3 2007/11/20 18:23:41 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/gst-plugins-base-0.10.16.ebuild,v 1.1 2008/01/29 19:57:40 zaheerm Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="debug nls"
 
 RDEPEND=">=dev-libs/glib-2.8
-	>=media-libs/gstreamer-0.10.15
+	>=media-libs/gstreamer-0.10.16
 	>=dev-libs/liboil-0.3.8
 	debug? ( dev-util/valgrind )"
 DEPEND="${RDEPEND}
@@ -28,8 +28,6 @@ DOCS="AUTHORS README RELEASE"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
-	epatch "${FILESDIR}"/${P}-netinet.patch
 
 	# Needed for sane .so versioning on Gentoo/FreeBSD
 	elibtoolize
