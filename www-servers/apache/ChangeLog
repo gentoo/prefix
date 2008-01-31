@@ -1,6 +1,15 @@
 # ChangeLog for www-servers/apache
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.56 2008/01/29 01:27:55 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.59 2008/01/29 20:09:47 armin76 Exp $
+
+  29 Jan 2008; Raúl Porcel <armin76@gentoo.org> apache-2.2.8.ebuild:
+  alpha/ia64/sparc stable wrt security #205195
+
+  29 Jan 2008; Christian Faulhammer <opfer@gentoo.org> apache-2.2.8.ebuild:
+  stable x86, security bug 205195
+
+  29 Jan 2008; Jeroen Roovers <jer@gentoo.org> apache-2.2.8.ebuild:
+  Stable for HPPA (bug #205195).
 
   29 Jan 2008; Brent Baude <ranger@gentoo.org> apache-2.2.8.ebuild:
   Marking apache-2.2.8 ppc64 for bug 205195
