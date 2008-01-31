@@ -1,6 +1,10 @@
 # ChangeLog for sys-libs/libutempter
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libutempter/ChangeLog,v 1.32 2007/12/25 15:19:51 phreak Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libutempter/ChangeLog,v 1.33 2008/01/31 03:42:35 dberkholz Exp $
+
+  31 Jan 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  -libutempter-1.1.4.1.ebuild:
+  Clean up.
 
   25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing seemant from metadata.xml as per #202469.
