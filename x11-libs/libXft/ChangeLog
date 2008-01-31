@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/libXft
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXft/ChangeLog,v 1.42 2007/07/02 13:36:24 armin76 Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXft/ChangeLog,v 1.43 2008/01/31 04:24:04 dberkholz Exp $
+
+  31 Jan 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  -libXft-2.1.10.ebuild:
+  Clean up.
 
   02 Jul 2007; Raúl Porcel <armin76@gentoo.org> libXft-2.1.12.ebuild:
   alpha stable wrt #175465
