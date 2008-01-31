@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.60-r1.ebuild,v 1.9 2008/01/26 18:52:34 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.60-r1.ebuild,v 1.10 2008/01/30 20:59:48 ulm Exp $
 
 EAPI="prefix"
 
@@ -56,6 +56,7 @@ RDEPEND="sys-libs/ncurses
 	)"
 
 DEPEND="${RDEPEND}
+	dev-util/pkgconfig
 	gzip-el? ( app-arch/gzip )"
 
 S="${WORKDIR}/${ECVS_LOCALNAME}"
