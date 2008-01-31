@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libSM
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libSM/ChangeLog,v 1.51 2007/12/19 23:43:17 cla Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libSM/ChangeLog,v 1.52 2008/01/31 04:16:39 dberkholz Exp $
+
+  31 Jan 2008; Donnie Berkholz <dberkholz@gentoo.org>; -libSM-1.0.1.ebuild:
+  Clean up.
 
   19 Dec 2007; Dawid Węgliński <cla@gentoo.org> libSM-1.0.3.ebuild:
   Stable on x86 (bug #202087)
