@@ -1,6 +1,16 @@
 # ChangeLog for dev-java/commons-logging
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-logging/ChangeLog,v 1.56 2008/01/14 16:22:37 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-logging/ChangeLog,v 1.57 2008/01/30 17:30:30 caster Exp $
+
+*commons-logging-1.1-r6 (30 Jan 2008)
+*commons-logging-1.1-r5 (30 Jan 2008)
+
+  30 Jan 2008; Vlastimil Babka <caster@gentoo.org>
+  +commons-logging-1.1-r5.ebuild, +commons-logging-1.1-r6.ebuild:
+  Fix missing jdk14logger (bug #208098), a regression of fix for bug #200918.
+  The -r5 is based on current stable -r2 and straight stabled because -r2 got
+  broken after its stabling and without revbump. The -r6 is based on -r4 and
+  has also EAPI=1 slot deps and few other style tweaks.
 
 *commons-logging-1.1-r4 (14 Jan 2008)
 
