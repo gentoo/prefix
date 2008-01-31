@@ -12,8 +12,9 @@ fi
 VPNCONF="${VPNDIR}/${VPN}.conf"
 
 depend() {
-	need net
+	need localmount net
 	use dns
+	after bootmisc
 }
 
 checkconfig() {

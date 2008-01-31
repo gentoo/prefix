@@ -20,10 +20,12 @@ if [ "${PEER_DNS}" != "no" ]; then
 	fi
 fi
 
-# Re-enter the init script to start any dependant services
-if /etc/init.d/"${SVCNAME}" --quiet status ; then
-	export IN_BACKGROUND=true
-	/etc/init.d/"${SVCNAME}" --quiet stop
+if [ -n "${SVCNAME}" ]; then
+	# Re-enter the init script to start any dependant services
+	if /etc/init.d/"${SVCNAME}" --quiet status ; then
+		export IN_BACKGROUND=true
+		/etc/init.d/"${SVCNAME}" --quiet stop
+	fi
 fi
 
 exit 0

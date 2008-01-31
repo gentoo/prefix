@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/openvpn
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.121 2008/01/25 23:51:45 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.123 2008/01/30 15:05:25 alonbl Exp $
+
+  30 Jan 2008; Alon Bar-Lev <alonbl@gentoo.org> files/down.sh, files/up.sh:
+  If SVCNAME does not exist avoid doing service magic
+
+  29 Jan 2008; Diego Pettenò <flameeyes@gentoo.org> files/openvpn-2.1.init,
+  files/openvpn.init:
+  Fix init script dependencies to work without a boot runlevel.
 
 *openvpn-2.1_rc6-r1 (25 Jan 2008)
 

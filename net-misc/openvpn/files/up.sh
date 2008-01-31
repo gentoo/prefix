@@ -64,15 +64,17 @@ fi
 # Quick summary - our init scripts are re-entrant and set the SVCNAME env var
 # as we could have >1 openvpn service
 
-# If we have a service specific script, run this now
-if [ -x /etc/openvpn/"${SVCNAME}"-up.sh ] ; then
-	/etc/openvpn/"${SVCNAME}"-up.sh "$@"
-fi
+if [ -n "${SVCNAME}" ]; then
+	# If we have a service specific script, run this now
+	if [ -x /etc/openvpn/"${SVCNAME}"-up.sh ] ; then
+		/etc/openvpn/"${SVCNAME}"-up.sh "$@"
+	fi
 
-# Re-enter the init script to start any dependant services
-if ! /etc/init.d/"${SVCNAME}" --quiet status ; then
-	export IN_BACKGROUND=true
-	/etc/init.d/${SVCNAME} --quiet start
+	# Re-enter the init script to start any dependant services
+	if ! /etc/init.d/"${SVCNAME}" --quiet status ; then
+		export IN_BACKGROUND=true
+		/etc/init.d/${SVCNAME} --quiet start
+	fi
 fi
 
 exit 0
