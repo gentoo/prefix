@@ -1,6 +1,9 @@
 # ChangeLog for gnome-extra/libgsf
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/ChangeLog,v 1.113 2008/01/17 19:20:08 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/ChangeLog,v 1.114 2008/01/30 16:02:59 dang Exp $
+
+  30 Jan 2008; Daniel Gryniewicz <dang@gentoo.org> libgsf-1.14.7.ebuild:
+  Fix imagemagick circular dep; bug #206491
 
   17 Jan 2008; Fabian Groffen <grobian@gentoo.org> libgsf-1.12.1.ebuild:
   Dropped ppc-macos keyword, see you in prefix

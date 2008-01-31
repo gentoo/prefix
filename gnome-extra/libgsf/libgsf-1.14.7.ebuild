@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.7.ebuild,v 1.7 2007/11/27 03:49:37 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.7.ebuild,v 1.8 2008/01/30 16:02:59 dang Exp $
 
 EAPI="prefix"
 
@@ -17,8 +17,7 @@ IUSE="bzip2 doc gnome python"
 RDEPEND="
 	>=dev-libs/glib-2.8
 	>=dev-libs/libxml2-2.4.16
-	gnome? ( media-gfx/imagemagick
-		>=gnome-base/gconf-2
+	gnome? ( >=gnome-base/gconf-2
 		>=gnome-base/libbonobo-2
 		>=gnome-base/gnome-vfs-2.2 )
 	sys-libs/zlib
@@ -30,6 +29,8 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	>=dev-util/intltool-0.29
 	doc? ( >=dev-util/gtk-doc-1 )"
+
+PDEPEND="gnome? ( media-gfx/imagemagick )"
 
 G2CONF="${G2CONF} \
 	$(use_with bzip2 bz2) \
