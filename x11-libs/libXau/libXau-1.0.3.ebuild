@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="X.Org Xau library"
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 
 RDEPEND="x11-proto/xproto"
 DEPEND="${RDEPEND}
