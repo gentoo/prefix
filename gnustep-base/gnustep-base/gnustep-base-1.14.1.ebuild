@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/gnustep-base-1.14.1.ebuild,v 1.3 2008/01/25 19:12:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/gnustep-base-1.14.1.ebuild,v 1.4 2008/01/30 01:39:22 ranger Exp $
 
 EAPI="prefix"
 
