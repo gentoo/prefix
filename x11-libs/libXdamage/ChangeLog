@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/libXdamage
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXdamage/ChangeLog,v 1.40 2007/08/06 06:20:44 dberkholz Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXdamage/ChangeLog,v 1.41 2008/01/31 04:19:18 dberkholz Exp $
+
+  31 Jan 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  -libXdamage-1.0.3.ebuild:
+  Clean up.
 
   06 Aug 2007; Donnie Berkholz <dberkholz@gentoo.org>; ChangeLog:
   Fix up changelog to stop gentoo.tamperd.net/stable/ warning.

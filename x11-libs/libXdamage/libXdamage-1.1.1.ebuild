@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="X.Org Xdamage library"
 
-KEYWORDS="~amd64 ~ia64 ~mips ~sparc-solaris ~x86 ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libXfixes
