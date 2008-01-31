@@ -1,9 +1,5 @@
 # $Header: $
 
-# Elias Pipping <pipping@gentoo.org> (31 Jan 2008)
-# fails to install
-~sys-libs/com_err-1.40.5
-
 # Elias Pipping <pipping@gentoo.org> (29 Nov 2007)
 # testing only -- virtual/opengl and eselect opengl are still missing
 media-libs/libsdl
