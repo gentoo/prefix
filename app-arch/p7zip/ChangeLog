@@ -1,6 +1,14 @@
 # ChangeLog for app-arch/p7zip
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.89 2008/01/29 02:37:39 rich0 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.91 2008/01/29 20:05:58 drac Exp $
+
+  29 Jan 2008; Samuli Suominen <drac@gentoo.org> -p7zip-4.44.ebuild,
+  -p7zip-4.45.ebuild, -p7zip-4.48.ebuild, -p7zip-4.51.ebuild,
+  -p7zip-4.55.ebuild:
+  Remove unused versions.
+
+  29 Jan 2008; Jeroen Roovers <jer@gentoo.org> p7zip-4.57.ebuild:
+  Stable for HPPA (bug #207520).
 
   29 Jan 2008; Richard Freeman <rich0@gentoo.org> p7zip-4.57.ebuild:
   amd64 stable
