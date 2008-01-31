@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.20-r1.ebuild,v 1.2 2007/12/24 06:48:10 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.20-r1.ebuild,v 1.4 2008/01/30 15:33:28 armin76 Exp $
 
 EAPI="prefix"
 
@@ -16,7 +16,7 @@ SRC_URI="mirror://sourceforge/djvu/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="xml qt3 jpeg tiff debug threads nls nsplugin kde doc"
 
 DEPEND="jpeg? ( >=media-libs/jpeg-6b-r2 )
