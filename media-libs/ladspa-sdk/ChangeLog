@@ -1,6 +1,18 @@
 # ChangeLog for media-libs/ladspa-sdk
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ChangeLog,v 1.37 2007/11/18 15:45:47 aballier Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ChangeLog,v 1.41 2008/01/30 22:39:08 ranger Exp $
+
+  30 Jan 2008; Brent Baude <ranger@gentoo.org> ladspa-sdk-1.13.ebuild:
+  Marking ladspa-sdk-1.13 ppc64 for bug 208032
+
+  30 Jan 2008; Raúl Porcel <armin76@gentoo.org> ladspa-sdk-1.13.ebuild:
+  alpha/sparc stable wrt #208032
+
+  30 Jan 2008; Dawid Węgliński <cla@gentoo.org> ladspa-sdk-1.13.ebuild:
+  Stable on x86 (bug #208032)
+
+  29 Jan 2008; Jeroen Roovers <jer@gentoo.org> ladspa-sdk-1.13.ebuild:
+  Marked ~hppa (bug #208032).
 
   18 Nov 2007; Alexis Ballier <aballier@gentoo.org> -ladspa-sdk-1.0.ebuild,
   -ladspa-sdk-1.12.ebuild, -ladspa-sdk-1.12-r1.ebuild,
