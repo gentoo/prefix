@@ -1,6 +1,10 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.29 2008/01/25 07:38:45 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.30 2008/01/29 14:45:02 armin76 Exp $
+
+  29 Jan 2008; Raúl Porcel <armin76@gentoo.org> package.use.mask:
+  Move bluetooth package.use.mask for app-pda/pilot-link from the amd64
+  profile, since it affects all the arches
 
   25 Jan 2008; Christian Faulhammer <opfer@gentoo.org> package.use.mask:
   mask bluetooth for a stable pulseaudio version, so stable users are not

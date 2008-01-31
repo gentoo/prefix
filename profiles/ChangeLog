@@ -1,6 +1,42 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1039 2008/01/25 21:11:20 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1051 2008/01/30 22:22:50 ikelos Exp $
+
+  30 Jan 2008; Mike Auty <ikelos@gentoo.org> package.mask:
+  Remove mask for removed package.
+
+  30 Jan 2008; Ulrich Mueller <ulm@gentoo.org> updates/1Q-2008:
+  Move dev-lisp/emacs-cl-cvs to dev-lisp/emacs-cl.
+
+  30 Jan 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Remove masks for app-editors/emacs-cvs snapshots since they are gone.
+
+  29 Jan 2008; Sébastien Fabbro <bicatali@gentoo.org> use.local.desc:
+  Updated sci-mathematics/maxima local use flags descriptions
+
+  29 Jan 2008; Tony Vroon <chainsaw@gentoo.org> package.mask:
+  Mask audacious-plugins-ugly for removal in March 2008.
+
+  28 Jan 2008; Mike Auty <ikelos@gentoo.org> package.mask:
+  mask off open-vm-tools until a 2.6.24 patch fix can be made
+
+  28 Jan 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask dev-tex/koma-script for removal
+
+  28 Jan 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  unmask libcaca now that its fine
+
+  28 Jan 2008; Wulf C. Krueger <philantrop@gentoo.org>
+  default-linux/amd64/2007.0/package.use.mask,
+  default-linux/amd64/package.use.mask, hardened/amd64/package.use.mask:
+  Masked app-pda/pilot-link[bluetooth] for the KDE 3.5.8 stabilisation.
+
+  28 Jan 2008; Peter Volkov <pva@gentoo.org> package.mask:
+  Masked >=app-arch/rpm-4.4.7-r3: net-snmp and sussen are broken with it,
+  bug #205280
+
+  28 Jan 2008; Daniel Black <dragonheart@gentoo.org> package.mask:
+  removed =net-misc/curl-7.17.0-r1 from package.mask. version nolonger in portage
 
   25 Jan 2008; Petteri Räty <betelgeuse@gentoo.org> updates/1Q-2008:
   slot moves for java packages don't work very well

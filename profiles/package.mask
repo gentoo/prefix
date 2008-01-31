@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8187 2008/01/29 04:22:40 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8191 2008/01/30 22:22:50 ikelos Exp $
 # When you add an entry to this file, add your name, the date, and an
 # explanation of why something is getting masked
 #
@@ -21,9 +21,11 @@
 ##   End example
 ##
 
-# Mike Auty <ikelos@gentoo.org> (28 Jan 2008)
-# Broken 2.6.24 patch causes kernel soft lockups
-=app-emulation/open-vm-tools-0.0.20071121.64693-r1
+# Tony Vroon <chainsaw@gentoo.org> (29 Jan 2008)
+# No longer maintained upstream, only available for
+# the now obsolete 1.3 branch of Audacious.
+# Removal: March 2008
+media-plugins/audacious-plugins-ugly
 
 # Alexis Ballier <aballier@gentoo.org> (28 Jan 2008)
 # Provided by all our TeX distributions and thus
@@ -112,11 +114,6 @@ dev-libs/liboobs
 # mask cvs-pulled version as it may not be ready for public use
 # see bug #205829
 >sys-libs/libraw1394-1.3.0
-
-# Markus Dittrich <markusle@gentoo.org> (23 Jan 2008)
-# mask new axiom version for some additional testing
-# see bug #185481
-=sci-mathematics/axiom-200711
 
 # Ulrich Mueller <ulm@gentoo.org> (23 Jan 2008)
 # Last release in 2001. Doesn't work with recent mpg321;
@@ -586,9 +583,7 @@ dev-lang/entity
 # Live SVN ebuilds
 ~app-emacs/gentoo-syntax-9999
 ~app-emacs/ngnus-9999
-# Emacs snapshots and live CVS of Emacs unicode-2 branch
-~app-editors/emacs-cvs-22.1.50_p20070829
-~app-editors/emacs-cvs-23.0.0_p20070920
+# Live CVS of Emacs unicode-2 branch
 ~app-editors/emacs-cvs-23.0.60
 >=virtual/emacs-23
 

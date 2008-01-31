@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3334 2008/01/28 19:29:52 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3337 2008/01/30 08:01:20 aballier Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -1145,6 +1145,7 @@ media-sound/rosegarden:dssi - Enable support for DSSI Soft Synth Interface
 media-sound/rubyripper:cli - Build command line interface rubyripper
 media-sound/slimserver:alac - Enable support for alac
 media-sound/sonata:lyrics - Support for lyrics fetching
+media-sound/sox:id3tag - Enables ID3 tagging with id3tag library
 media-sound/squeezecenter:alac - Enable support for alac
 media-sound/squeezecenter:bonjour - Enable support for bonjour
 media-sound/transkode:amarok - Build Amarok script
@@ -1874,10 +1875,10 @@ sci-mathematics/freemat:umfpack - Add sparse solving via umfpack
 sci-mathematics/geomview:avg - Enable experimental motion averaging technique
 sci-mathematics/geomview:netpbm - Add NetPBM support for external modules
 sci-mathematics/gretl:sourceview - Enable GtkSourceView support
-sci-mathematics/maxima:clisp - adds clisp support to maxima
-sci-mathematics/maxima:cmucl - adds cmucl (lisp) support to maxima
-sci-mathematics/maxima:gcl - adds gcl (lisp) support to maxima
-sci-mathematics/maxima:sbcl - adds sbcl (lisp) support to maxima
+sci-mathematics/maxima:clisp - Adds GNU ANSI Common Lisp support to maxima
+sci-mathematics/maxima:cmucl - Adds CMU Common Lisp support to maxima
+sci-mathematics/maxima:gcl - Adds GNU Common Lisp support to maxima
+sci-mathematics/maxima:sbcl - Adds Steel Bank Common Lisp support to maxima
 sci-mathematics/nusmv:minisat - Enable support for MiniSat.
 sci-mathematics/octave:hdf5 - Adds support for the Hierarchical Data Format v5 to sci-mathematics/octave (may be merged with hdf when opendx is completed)
 sci-mathematics/octave-forge:qhull - Adds media-libs/qhull (geometric extensions) support
@@ -2138,14 +2139,7 @@ www-client/seamonkey:xforms - XForms is a standard to split up XHTML into XForms
 www-client/w3m:async - Enables asynchronous fetch
 www-client/w3m:lynxkeymap - If you prefer Lynx-like key binding
 www-misc/nsxml:xslt - Enables xslt support
-www-servers/apache:mpm-itk - (experimental) Itk MPM - child processes have separate user/group ids
-www-servers/apache:mpm-leader - (experimental) Leader MPM - leaders/followers variant of worker MPM
-www-servers/apache:mpm-peruser - (experimental) Peruser MPM - child processes have separate user/group ids
-www-servers/apache:mpm-prefork - Prefork MPM - non-threaded, forking MPM - similar manner to Apache 1.3
-www-servers/apache:mpm-threadpool - (experimental) Threadpool MPM - keeps pool of idle threads to handle requests
-www-servers/apache:mpm-worker - Worker MPM - hybrid multi-process multi-thread MPM
 www-servers/apache:sni - Enable TLS Server Name Indication (SNI) - EXPERIMENTAL!
-www-servers/apache:static-modules - Build modules into apache instead of having them load at run time
 www-servers/apache:suexec - Install suexec with apache
 www-servers/cherokee:coverpage - Installs the default cherokee coverpage
 www-servers/fnord:auth - Enable HTTP authentication support

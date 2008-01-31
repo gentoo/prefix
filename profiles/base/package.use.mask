@@ -1,5 +1,9 @@
 # This file requires >=portage-2.1.1
 
+# 28 Jan 2008: Wulf Krueger <philantrop@gentoo.org>
+# Mask bluetooth for the KDE 3.5.8 stabilisation.
+app-pda/pilot-link bluetooth
+
 # Christian Faulhammer
 # mask so stable users can avoid bluetooth
 =media-sound/pulseaudio-0.9.9 bluetooth
