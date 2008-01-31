@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r3.ebuild,v 1.16 2008/01/22 07:56:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.1-r3.ebuild,v 1.18 2008/01/30 20:49:44 ulm Exp $
 
 EAPI="prefix"
 
@@ -46,6 +46,8 @@ RDEPEND="!<app-editors/emacs-cvs-22.1
 	)"
 
 DEPEND="${RDEPEND}
+	alsa? ( dev-util/pkgconfig )
+	X? ( gtk? ( dev-util/pkgconfig ) )
 	gzip-el? ( app-arch/gzip )"
 
 # FULL_VERSION keeps the full version number, which is needed in order to
@@ -56,17 +58,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	sed -i -e "s:/usr/lib/crtbegin.o:$(`tc-getCC` -print-file-name=crtbegin.o):g" \
-		-e "s:/usr/lib/crtend.o:$(`tc-getCC` -print-file-name=crtend.o):g" \
-		"${S}"/src/s/freebsd.h || die "unable to sed freebsd.h settings"
-	if ! use gzip-el; then
-		# Emacs' build system automatically detects the gzip binary and
-		# compresses el files. We don't want that so confuse it with a
-		# wrong binary name
-		sed -i -e "s/ gzip/ PrEvEnTcOmPrEsSiOn/" configure.in \
-			|| die "unable to sed configure.in"
-	fi
-
 	epatch "${FILESDIR}/${P}-Xaw3d-headers.patch"
 	epatch "${FILESDIR}/${P}-freebsd-sparc.patch"
 	epatch "${FILESDIR}/${P}-oldxmenu-qa.patch"
@@ -74,9 +65,24 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-hack-local-variables.patch"
 	epatch "${FILESDIR}/${P}-format-int.patch"
 	epatch "${FILESDIR}/${P}-s390x-non-multilib.patch"
-	# ALSA is detected and used even if not requested by the USE=alsa flag.
-	# So remove the automagic check
-	use alsa || epatch "${FILESDIR}/${P}-disable_alsa_detection.patch"
+
+	sed -i -e "s:/usr/lib/crtbegin.o:$(`tc-getCC` -print-file-name=crtbegin.o):g" \
+		-e "s:/usr/lib/crtend.o:$(`tc-getCC` -print-file-name=crtend.o):g" \
+		"${S}"/src/s/freebsd.h || die "unable to sed freebsd.h settings"
+
+	if ! use alsa; then
+		# ALSA is detected even if not requested by its USE flag.
+		# Suppress it by supplying pkg-config with a wrong library name.
+		sed -i -e "/ALSA_MODULES=/s/alsa/DiSaBlEaLsA/" configure.in \
+			|| die "unable to sed configure.in"
+	fi
+	if ! use gzip-el; then
+		# Emacs' build system automatically detects the gzip binary and
+		# compresses el files. We don't want that so confuse it with a
+		# wrong binary name
+		sed -i -e "s/ gzip/ PrEvEnTcOmPrEsSiOn/" configure.in \
+			|| die "unable to sed configure.in"
+	fi
 
 	eautoreconf
 }

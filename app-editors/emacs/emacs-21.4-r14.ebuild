@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r14.ebuild,v 1.12 2008/01/22 07:56:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r14.ebuild,v 1.13 2008/01/30 20:36:59 ulm Exp $
 
 EAPI="prefix"
 
@@ -44,12 +44,12 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	EPATCH_SUFFIX=patch epatch
+
 	sed -i \
 		-e "s:/usr/lib/crtbegin.o:$(`tc-getCC` -print-file-name=crtbegin.o):g" \
 		-e "s:/usr/lib/crtend.o:$(`tc-getCC` -print-file-name=crtend.o):g" \
 		"${S}"/src/s/freebsd.h || die "unable to sed freebsd.h settings"
-
-	EPATCH_SUFFIX=patch epatch
 
 	# install emacsclient.1 man page (#165466)
 	sed -i -e "s/for page in emacs/& emacsclient/" Makefile.in || die
