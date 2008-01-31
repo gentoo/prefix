@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/bio2jack
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/bio2jack/ChangeLog,v 1.31 2007/09/08 10:44:19 jer Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/bio2jack/ChangeLog,v 1.32 2008/01/29 21:50:24 grobian Exp $
+
+  29 Jan 2008; Fabian Groffen <grobian@gentoo.org> bio2jack-0.7.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   08 Sep 2007; Jeroen Roovers <jer@gentoo.org> bio2jack-0.7.ebuild:
   Stable for HPPA (bug #186928).
