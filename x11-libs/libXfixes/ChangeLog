@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/libXfixes
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfixes/ChangeLog,v 1.44 2007/05/27 04:29:50 kumba Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfixes/ChangeLog,v 1.45 2008/01/31 04:23:06 dberkholz Exp $
+
+  31 Jan 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  -libXfixes-4.0.1.ebuild:
+  Clean up.
 
   27 May 2007; Joshua Kinard <kumba@gentoo.org> libXfixes-4.0.3.ebuild:
   Stable on mips.
