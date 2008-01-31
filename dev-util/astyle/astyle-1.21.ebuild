@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/astyle/astyle_${PV}_linux.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="debug libs"
 
 DEPEND=""
