@@ -1,6 +1,10 @@
 # ChangeLog for media-fonts/encodings
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/encodings/ChangeLog,v 1.35 2007/06/21 14:12:57 jer Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/encodings/ChangeLog,v 1.36 2008/01/31 03:34:33 dberkholz Exp $
+
+  31 Jan 2008; Donnie Berkholz <dberkholz@gentoo.org>;
+  -files/configurable-encodingsdir.patch, -encodings-1.0.0.ebuild:
+  Clean up.
 
   21 Jun 2007; Jeroen Roovers <jer@gentoo.org> encodings-1.0.2.ebuild:
   Stable for HPPA (bug #182387).
