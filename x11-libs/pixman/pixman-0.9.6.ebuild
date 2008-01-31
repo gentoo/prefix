@@ -10,4 +10,4 @@ EAPI="prefix"
 inherit x-modular
 
 DESCRIPTION="Low-level pixel manipulation routines"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos"
