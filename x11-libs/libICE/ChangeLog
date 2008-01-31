@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libICE
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libICE/ChangeLog,v 1.49 2007/12/19 23:42:36 cla Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libICE/ChangeLog,v 1.50 2008/01/31 04:15:17 dberkholz Exp $
+
+  31 Jan 2008; Donnie Berkholz <dberkholz@gentoo.org>; -libICE-1.0.1.ebuild:
+  Clean up.
 
   19 Dec 2007; Dawid Węgliński <cla@gentoo.org> libICE-1.0.4.ebuild:
   Stable on x86 (bug #202087)
