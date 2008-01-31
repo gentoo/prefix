@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/parrot
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/parrot/ChangeLog,v 1.17 2006/10/18 16:52:12 yuval Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/parrot/ChangeLog,v 1.18 2008/01/29 21:30:15 grobian Exp $
+
+  29 Jan 2008; Fabian Groffen <grobian@gentoo.org> parrot-0.4.0.ebuild,
+  parrot-0.4.3.ebuild, parrot-0.4.5.ebuild, parrot-0.4.6.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *parrot-0.4.6 (18 Oct 2006)
 
