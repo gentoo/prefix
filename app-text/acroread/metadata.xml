@@ -2,9 +2,4 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>printing</herd>
-<maintainer>
-	<email>kevquinn@gentoo.org</email>
-	<name>Kevin F. Quinn</name>
-	<description>Backup maintainer :)</description>
-</maintainer>
 </pkgmetadata>
