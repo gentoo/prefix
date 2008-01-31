@@ -11,7 +11,7 @@ inherit x-modular
 
 DESCRIPTION="X.Org XScrnSaver library"
 
-KEYWORDS="~amd64 ~ia64 ~mips ~sparc-solaris ~x86"
+KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libXext"
