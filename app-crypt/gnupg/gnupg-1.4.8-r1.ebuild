@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-1.4.8-r1.ebuild,v 1.1 2008/01/10 16:34:51 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-1.4.8-r1.ebuild,v 1.2 2008/01/29 19:49:57 alonbl Exp $
 
 EAPI="prefix"
 
@@ -187,7 +187,7 @@ pkg_postinst() {
 		ewarn "individuals'."
 		ewarn
 		ewarn "Countries where the patent applies are listed here"
-		ewarn "http://www.mediacrypt.com/_contents/10_idea/101030_ea_pi.asp"
+		ewarn "http://en.wikipedia.org/wiki/International_Data_Encryption_Algorithm#Security"
 		ewarn
 		ewarn "Further information and other licenses are availble from http://www.mediacrypt.com/"
 		ewarn
