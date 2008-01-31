@@ -16,7 +16,7 @@ SRC_URI="mirror://debian/pool/main/m/mmv/${P/-/_}.orig.tar.gz
 
 LICENSE="freedist"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 S=${WORKDIR}/${P}.orig
