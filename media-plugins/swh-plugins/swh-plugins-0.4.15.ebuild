@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/swh-plugins/swh-plugins-0.4.15.ebuild,v 1.2 2007/06/29 15:38:25 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/swh-plugins/swh-plugins-0.4.15.ebuild,v 1.3 2008/01/31 21:05:04 grobian Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ SRC_URI="http://plugin.org.uk/releases/${PV}/${P}.tar.gz"
 SLOT="0"
 LICENSE="GPL-2"
 KEYWORDS="~amd64-linux ~x86-linux"
-IUSE="3dnow nls sse userland_Darwin"
+IUSE="3dnow nls sse"
 
 RDEPEND="media-libs/ladspa-sdk
 	>=sci-libs/fftw-3"
