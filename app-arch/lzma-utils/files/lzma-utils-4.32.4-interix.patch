@@ -1,0 +1,94 @@
+diff -ru -x *.Po -x *.Plo lzma-4.32.4.orig/configure.ac lzma-4.32.4/configure.ac
+--- lzma-4.32.4.orig/configure.ac	Fri Feb  1 11:36:27 2008
++++ lzma-4.32.4/configure.ac	Fri Feb  1 11:33:48 2008
+@@ -48,9 +48,9 @@
+ AC_HEADER_STDC
+ # There is currently no workarounds in this package if some of
+ # these headers are missing:
+-AC_CHECK_HEADERS([fcntl.h inttypes.h stddef.h stdlib.h string.h sys/time.h unistd.h utime.h], [], AC_MSG_ERROR([Required header file(s) are missing.]))
++AC_CHECK_HEADERS([fcntl.h stddef.h stdlib.h string.h sys/time.h unistd.h utime.h], [], AC_MSG_ERROR([Required header file(s) are missing.]))
+ # Missing errno.h should be handled:
+-AC_CHECK_HEADERS([errno.h])
++AC_CHECK_HEADERS([errno.h inttypes.h])
+ 
+ # Checks for typedefs, structures, and compiler characteristics.
+ AC_HEADER_STDBOOL
+diff -ru -x *.Po -x *.Plo lzma-4.32.4.orig/src/liblzmadec/lzmadec.h lzma-4.32.4/src/liblzmadec/lzmadec.h
+--- lzma-4.32.4.orig/src/liblzmadec/lzmadec.h	Fri Feb  1 11:36:27 2008
++++ lzma-4.32.4/src/liblzmadec/lzmadec.h	Fri Feb  1 11:46:15 2008
+@@ -48,7 +48,17 @@
+  **********/
+ 
+ #include <sys/types.h>
+-#include <inttypes.h>
++
++#ifdef HAVE_STDINT_H
++# include <stdint.h>
++#endif
++
++#ifdef HAVE_INTTYPES_H
++# include <inttypes.h>
++#elif defined(__INTERIX)
++// This must be interix 3.5 which doesn't have inttypes.h
++typedef unsigned long long int uint64_t;
++#endif
+ 
+ /* Define LZMADEC_NO_STDIO to not include stdio.h and lzmadec_FILE functions. */
+ #ifndef LZMADEC_NO_STDIO
+diff -ru -x *.Po -x *.Plo lzma-4.32.4.orig/src/liblzmadec/main.c lzma-4.32.4/src/liblzmadec/main.c
+--- lzma-4.32.4.orig/src/liblzmadec/main.c	Fri Feb  1 11:36:27 2008
++++ lzma-4.32.4/src/liblzmadec/main.c	Fri Feb  1 11:41:29 2008
+@@ -26,7 +26,7 @@
+ #include <stdio.h>
+ 
+ #include <stdlib.h>
+-#include <inttypes.h>
++
+ #include <string.h>
+ #include <assert.h>
+ #include "lzmadec.h"
+diff -ru -x *.Po -x *.Plo lzma-4.32.4.orig/src/lzmainfo/lzmainfo.c lzma-4.32.4/src/lzmainfo/lzmainfo.c
+--- lzma-4.32.4.orig/src/lzmainfo/lzmainfo.c	Fri Feb  1 11:36:27 2008
++++ lzma-4.32.4/src/lzmainfo/lzmainfo.c	Fri Feb  1 11:39:46 2008
+@@ -22,7 +22,14 @@
+ 
+ #include <stdio.h>
+ #include <string.h>
+-#include <inttypes.h>
++
++#ifdef HAVE_STDINT_H
++# include <stdint.h>
++#endif
++
++#ifdef HAVE_INTTYPES_H
++# include <inttypes.h>
++#endif
+ 
+ #ifdef HAVE_ERRNO_H
+ #include <errno.h>
+diff -ru -x *.Po -x *.Plo lzma-4.32.4.orig/src/sdk/Common/Types.h lzma-4.32.4/src/sdk/Common/Types.h
+--- lzma-4.32.4.orig/src/sdk/Common/Types.h	Fri Feb  1 11:36:27 2008
++++ lzma-4.32.4/src/sdk/Common/Types.h	Fri Feb  1 11:45:42 2008
+@@ -7,7 +7,21 @@
+ #include <config.h>
+ #endif
+ 
+-#include <inttypes.h>
++#ifdef HAVE_STDINT_H
++# include <stdint.h>
++#endif
++
++#ifdef HAVE_INTTYPES_H
++# include <inttypes.h>
++#elif defined(__INTERIX)
++  typedef unsigned char uint8_t;
++  typedef short int16_t;
++  typedef unsigned short uint16_t;
++  typedef int int32_t;
++  typedef unsigned int uint32_t;
++  typedef long long int int64_t;
++  typedef unsigned long long int uint64_t;
++#endif
+ 
+ typedef uint8_t Byte;
+ typedef int_fast16_t Int16;
