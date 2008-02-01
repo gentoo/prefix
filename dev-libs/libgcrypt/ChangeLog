@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libgcrypt
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.110 2008/01/29 19:44:35 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.111 2008/01/31 15:00:42 alonbl Exp $
+
+  31 Jan 2008; Alon Bar-Lev <alonbl@gentoo.org> libgcrypt-1.4.0-r1.ebuild:
+  Fix dependency on libgpg-error, bug#208115
 
   29 Jan 2008; Alon Bar-Lev <alonbl@gentoo.org> libgcrypt-1.2.4.ebuild,
   libgcrypt-1.4.0-r1.ebuild:

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.4.0-r1.ebuild,v 1.9 2008/01/29 19:44:35 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.4.0-r1.ebuild,v 1.10 2008/01/31 15:00:42 alonbl Exp $
 
 EAPI="prefix"
 
@@ -17,7 +17,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-sola
 IUSE="nls bindist idea"
 
 RDEPEND="nls? ( virtual/libintl )
-	>=dev-libs/libgpg-error-1.0"
+	>=dev-libs/libgpg-error-1.5"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
