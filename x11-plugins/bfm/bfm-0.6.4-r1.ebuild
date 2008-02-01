@@ -1,12 +1,12 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/bfm/bfm-0.6.4-r1.ebuild,v 1.3 2008/01/30 14:02:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/bfm/bfm-0.6.4-r1.ebuild,v 1.5 2008/01/31 16:13:32 drac Exp $
 
 EAPI="prefix"
 
 inherit multilib toolchain-funcs
 
-DESCRIPTION="Dock application that combines timecop's bubblemon and wmfishtime together."
+DESCRIPTION="a dockapp and gkrellm plug-in combining timecop's bubblemon and wmfishtime."
 HOMEPAGE="http://www.jnrowe.ukfsn.org/projects/bfm.html"
 SRC_URI="http://www.jnrowe.ukfsn.org/files/${P}.tar.bz2"
 
@@ -38,8 +38,12 @@ src_compile() {
 
 src_install() {
 	dobin bubblefishymon
+
 	doman doc/*.1
 	dodoc ChangeLog* README* doc/*.sample
-	insinto /usr/$(get_libdir)/gkrellm2/plugins
-	use gkrellm && doins gkrellm-bfm.so
+
+	if use gkrellm; then
+		insinto /usr/$(get_libdir)/gkrellm2/plugins
+		doins gkrellm-bfm.so
+	fi
 }
