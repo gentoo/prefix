@@ -19,7 +19,8 @@ RDEPEND="!=app-text/tetex-2*
 	>=sys-libs/ncurses-5.2-r2
 	nls? ( virtual/libintl )"
 DEPEND="${RDEPEND}
-	nls? ( sys-devel/gettext )"
+	nls? ( sys-devel/gettext )
+	sys-apps/help2man"
 
 src_unpack() {
 	unpack ${A}
