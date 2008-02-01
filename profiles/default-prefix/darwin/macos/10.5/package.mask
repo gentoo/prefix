@@ -9,8 +9,7 @@
 ~dev-lang/ocaml-3.10.0*
 
 # Elias Pipping <pipping@gentoo.org> (06 Nov 2007)
-# emacs 21.x does not support darwin9, old snapshots fail to compile,
-# please use the live cvs ebuilds instead
+# emacs 21.x does not support darwin9, 22.x fails to compile
+# please use the live cvs ebuilds for 23.x instead
 app-editors/emacs
-~app-editors/emacs-cvs-22.1.50_p20070829
-~app-editors/emacs-cvs-23.0.0_p20070920
+~app-editors/emacs-cvs-22.1.90
