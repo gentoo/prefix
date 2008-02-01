@@ -1,6 +1,9 @@
 # ChangeLog for app-text/xdvik
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/ChangeLog,v 1.46 2007/12/25 17:05:13 phreak Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/ChangeLog,v 1.47 2008/01/31 11:58:49 aballier Exp $
+
+  31 Jan 2008; Alexis Ballier <aballier@gentoo.org> -xdvik-22.84.5.ebuild:
+  remove unused version
 
   25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing usata from metadata.xml as per #22931.
