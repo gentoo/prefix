@@ -23,27 +23,14 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.12-scrub-lame-gettext.patch
 
+# should be made unconditional!
 	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${P}-no-wchar-hack.patch
 
-	if [[ ${CHOST} == *-interix* ]]; then 
-		# if there is
-		# *) an iconv implementation in libc without extra -liconv,
-		# *) this libc is not glibc (with GNU libiconv),
-		# *) an installed libiconv in prefix (would not be with glibc),
-		# *) *no installed gettext*,
-		# then this check breaks the compile for popt (at least on interix).
-		# also see #206781.
-		epatch "${FILESDIR}"/${P}-no-acfunc-iconv.patch
-		touch aclocal.m4
-		touch configure # avoid eautoreconf
-	else
-		# this seems to not work on interix (without gettext, it dies telling
-		# that gettext is required)...
-		epatch "${FILESDIR}"/${P}-iconv.patch # solves USE=-nls compilation
-		# for systems that don't have gettext installed yet we need to use the
-		# included m4's (e.g. during bootstrapping)
-		AT_M4DIR=m4 eautoreconf
-	fi
+	# Platforms that do not have iconv in libc (Darwin, Solaris, ...) will fail
+	# if no -liconv is given.  This is one error, but also when nls is not in
+	# USE, libiconv needs not to be available, so just make configure blind for
+	# any iconv functions.
+	use nls || epatch "${FILESDIR}"/${P}-no-acfunc-iconv.patch
 }
 
 src_compile() {
