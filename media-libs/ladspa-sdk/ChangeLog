@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/ladspa-sdk
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ChangeLog,v 1.41 2008/01/30 22:39:08 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ChangeLog,v 1.42 2008/01/31 15:28:57 nixnut Exp $
+
+  31 Jan 2008; nixnut <nixnut@gentoo.org> ladspa-sdk-1.13.ebuild:
+  Stable on ppc wrt bug 208032
 
   30 Jan 2008; Brent Baude <ranger@gentoo.org> ladspa-sdk-1.13.ebuild:
   Marking ladspa-sdk-1.13 ppc64 for bug 208032
