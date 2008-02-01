@@ -22,11 +22,6 @@
 ##   End example
 ##
 
-# Fabian Groffen <grobian@gentoo.org> (23 Jan 2008)
-# app-arch/lzma-utils may not be keyworded everywhere yet, and I have no
-# clue if it is going to break, needs testing out in quarantaine, #207199
-~sys-apps/coreutils-6.10
-
 # Fabian Groffen <grobian@gentoo.org> (11 Jan 2008)
 # Screws up things, see bug #204998
 <sys-devel/gcc-3.4.0

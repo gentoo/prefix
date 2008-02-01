@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Feb 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Unleash coreutils-6.10 as lzma-utils is keyworded for all arches now
+
   26 Jan 2008; Fabian Groffen <grobian@gentoo.org>
   bsd/freebsd/6.2/x86/make.defaults, +bsd/freebsd/6.3,
   bsd/freebsd/6.3/x86/make.defaults, +bsd/netbsd, +bsd/netbsd/4.0,
