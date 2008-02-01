@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libao/libao-0.8.8.ebuild,v 1.5 2008/01/30 20:08:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libao/libao-0.8.8.ebuild,v 1.7 2008/01/31 16:02:10 nixnut Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SRC_URI="http://downloads.xiph.org/releases/ao/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ppc-macos ~x86-macos"
-IUSE="alsa arts esd nas mmap pulseaudio doc"
+IUSE="alsa arts doc esd nas mmap pulseaudio"
 
 RDEPEND="alsa? ( media-libs/alsa-lib )
 	arts? ( kde-base/arts )
@@ -39,13 +39,11 @@ src_compile() {
 		$(use_enable esd) \
 		$(use_enable nas) \
 		$(use_enable pulseaudio pulse)
-
 	emake || die "emake failed."
 }
 
 src_install () {
 	emake -j1 DESTDIR="${D}" install || die "emake install failed."
-
 	rm -rf "${ED}"/usr/share/doc/libao*
 	dodoc AUTHORS CHANGES README TODO
 	use doc && dohtml -A c doc/*.html
