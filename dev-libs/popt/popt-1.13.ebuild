@@ -40,7 +40,9 @@ src_unpack() {
 		# this seems to not work on interix (without gettext, it dies telling
 		# that gettext is required)...
 		epatch "${FILESDIR}"/${P}-iconv.patch # solves USE=-nls compilation
-		eautoreconf
+		# for systems that don't have gettext installed yet we need to use the
+		# included m4's (e.g. during bootstrapping)
+		AT_M4DIR=m4 eautoreconf
 	fi
 }
 
