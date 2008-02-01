@@ -1,6 +1,18 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1051 2008/01/30 22:22:50 ikelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1055 2008/01/31 23:31:02 stkn Exp $
+
+  31 Jan 2008; Stefan Knoblich <stkn@gentoo.org> package.mask:
+  Remove wanpipe mask, the package has been removed for now.
+
+  31 Jan 2008; Peter Volkov <pva@gentoo.org> package.mask:
+  Masked =dev-libs/libnl-1.1 as it breaks networkmanager, bug 208204
+
+  31 Jan 2008; Peter Volkov <pva@gentoo.org> package.mask:
+  Remove mask for netperf. New version includes security fixes.
+
+  31 Jan 2008; Ingmar Vanhassel <ingmar@gentoo.org> package.mask:
+  Added =kde-misc/yakuake-2.9* to KDE 4 mask.
 
   30 Jan 2008; Mike Auty <ikelos@gentoo.org> package.mask:
   Remove mask for removed package.
