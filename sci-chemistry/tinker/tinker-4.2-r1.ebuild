@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/tinker/tinker-4.2-r1.ebuild,v 1.1 2006/06/21 14:17:21 spyderous Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/tinker/tinker-4.2-r1.ebuild,v 1.2 2008/01/31 19:55:31 grobian Exp $
 
 EAPI="prefix"
 
