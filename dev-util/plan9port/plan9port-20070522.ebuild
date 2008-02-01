@@ -29,8 +29,8 @@ src_compile() {
 src_install() {
 	dodir /usr/lib/plan9
 	mv ${S} ${ED}/usr/lib/
-	sed "s:=:=${EPREFIX}:" "${FILESDIR}/30plan9" > 30plan9
-	doenvd 30plan9
+	sed "s:=:=${EPREFIX}:" "${FILESDIR}/30plan9" > "${T}"/30plan9
+	doenvd "${T}"/30plan9
 }
 
 pkg_postinst() {
