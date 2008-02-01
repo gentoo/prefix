@@ -2,10 +2,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
-*portage-2.2.00.9268 (01 Feb 2008)
+*portage-2.2.00.9271 (01 Feb 2008)
 
   01 Feb 2008; Fabian Groffen <grobian@gentoo.org>
-  -portage-2.2.00.9208.ebuild, +portage-2.2.00.9268.ebuild:
+  -portage-2.2.00.9208.ebuild, +portage-2.2.00.9271.ebuild:
   New snapshot, experimental NEEDED recording for Darwin, repoman no longer
   knows manifest1 mode
 
