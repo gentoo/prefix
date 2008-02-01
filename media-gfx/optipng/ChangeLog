@@ -1,6 +1,11 @@
 # ChangeLog for media-gfx/optipng
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/optipng/ChangeLog,v 1.33 2007/12/25 16:00:46 phreak Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/optipng/ChangeLog,v 1.34 2008/01/31 18:07:45 nyhm Exp $
+
+  31 Jan 2008; Tristan Heaven <nyhm@gentoo.org>
+  -files/optipng-zlib-security.diff, metadata.xml, -optipng-0.4.8-r1.ebuild,
+  optipng-0.5.5.ebuild:
+  Cleanup
 
   25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing taviso from metadata.xml as per #202471. Assigning to

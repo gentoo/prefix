@@ -1,36 +1,37 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/optipng/optipng-0.5.5.ebuild,v 1.1 2007/07/10 23:47:40 taviso Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/optipng/optipng-0.5.5.ebuild,v 1.2 2008/01/31 18:07:45 nyhm Exp $
 
 EAPI="prefix"
 
-inherit eutils
-
-DESCRIPTION="Find the optimal compression settings for your png files"
-SRC_URI="mirror://sourceforge/optipng/${P}.tar.gz"
+DESCRIPTION="Compress PNG files without affecting image quality"
 HOMEPAGE="http://optipng.sourceforge.net/"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
-LICENSE="as-is"
-
+LICENSE="ZLIB"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE=""
-
-DEPEND="virtual/libc"
 
 src_unpack() {
 	unpack ${A}
-	sed -i -e 's!-O2!${CFLAGS}!' ${S}/src/scripts/gcc.mak
+	cd "${S}"
+	sed -i \
+		-e "s:-O2:${CFLAGS}:" \
+		-e "s:-s:${LDFLAGS}:" \
+		src/scripts/gcc.mak \
+		lib/libpng/scripts/makefile.gcc \
+		lib/pngxtern/scripts/gcc.mak \
+		|| die "sed failed"
 }
 
 src_compile() {
-	emake -C ${S}/src -f ${S}/src/scripts/gcc.mak optipng \
-		CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" || die
+	emake -C src -f scripts/gcc.mak || die "emake failed"
 }
 
 src_install() {
-	dobin ${S}/src/optipng
-	dodoc ${S}/doc/{CAVEAT.txt,HISTORY.txt,TODO.txt,USAGE.txt}
-	dohtml ${S}/doc/{design.html,features.html,guide.html,thanks.html}
-	doman ${S}/man/optipng.1
+	dobin src/optipng || die "dobin failed"
+	dodoc README.txt doc/*.txt
+	dohtml doc/*.html
+	doman man/optipng.1
 }

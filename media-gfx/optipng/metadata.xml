@@ -3,10 +3,7 @@
 <pkgmetadata>
 	<herd>no-herd</herd>
 	<maintainer>
-		<email>maintainer-needed@gentoo.org</email>
+		<email>nyhm@gentoo.org</email>
+		<name>Tristan Heaven</name>
 	</maintainer>
-	<longdescription lang="en">
-		OptiPNG is a PNG optimizer that recompresses the image files to a
-		smaller size, without losing any information.
-	</longdescription>
 </pkgmetadata>
