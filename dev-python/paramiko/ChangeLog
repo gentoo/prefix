@@ -1,6 +1,20 @@
 # ChangeLog for dev-python/paramiko
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/paramiko/ChangeLog,v 1.26 2007/04/12 17:35:05 welp Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/paramiko/ChangeLog,v 1.29 2008/01/31 19:09:44 armin76 Exp $
+
+  31 Jan 2008; Raúl Porcel <armin76@gentoo.org> paramiko-1.7.2.ebuild:
+  ia64/sparc stable wrt #205777
+
+  31 Jan 2008; Christian Faulhammer <opfer@gentoo.org>
+  paramiko-1.7.2.ebuild:
+  stable x86, security bug 205777
+
+*paramiko-1.7.2 (31 Jan 2008)
+
+  31 Jan 2008; Ali Polatel <hawking@gentoo.org>
+  +files/paramiko-1.7.2-tests_cleanup.patch, +paramiko-1.7.2.ebuild:
+  Version bump. Use distutils_src_unpack. Added patch to fix the tests. Run
+  tests with --verbose because it takes quite a bit of time.
 
   12 Apr 2007; <welp@gentoo.org> paramiko-1.6.3.ebuild:
   Stable on amd64

@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/paramiko/paramiko-1.7.ebuild,v 1.1 2007/03/24 16:37:48 lucass Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/paramiko/paramiko-1.7.2.ebuild,v 1.3 2008/01/31 19:09:44 armin76 Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ inherit distutils eutils
 
 DESCRIPTION="SSH2 implementation for Python"
 HOMEPAGE="http://www.lag.net/paramiko/"
-SRC_URI="http://www.lag.net/paramiko/download/${P}.zip"
+SRC_URI="http://www.lag.net/paramiko/download/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
@@ -18,13 +18,13 @@ KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos ~sparc-solaris"
 IUSE="doc examples"
 
 RDEPEND=">=dev-python/pycrypto-1.9_alpha6"
-DEPEND="${RDEPEND}
-	app-arch/unzip"
+DEPEND="${RDEPEND}"
 
 src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}/${PN}-1.6.3-no-setuptools.patch"
+	distutils_src_unpack
+
+	epatch "${FILESDIR}"/${PN}-1.6.3-no-setuptools.patch
+	epatch "${FILESDIR}"/${P}-tests_cleanup.patch
 }
 
 src_install() {
@@ -39,5 +39,5 @@ src_install() {
 }
 
 src_test() {
-	"${python}" test.py || die "tests failed"
+	"${python}" test.py --verbose || die "tests failed"
 }
