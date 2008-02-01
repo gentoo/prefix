@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/pexpect
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pexpect/ChangeLog,v 1.34 2008/01/30 16:06:46 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pexpect/ChangeLog,v 1.35 2008/01/31 18:55:02 lucass Exp $
+
+*pexpect-2.3 (31 Jan 2008)
+
+  31 Jan 2008; Lukasz Strzygowski <lucass@gentoo.org> -pexpect-0.94.ebuild,
+  -pexpect-0.97.ebuild, -pexpect-2.0.ebuild, +pexpect-2.3.ebuild:
+  Version bump (bug #208322): cleanup, added doc/examples USE-flags.
+  Dropped old versions.
 
   30 Jan 2008; Raúl Porcel <armin76@gentoo.org> pexpect-2.1.ebuild:
   alpha/ia64/sparc stable
