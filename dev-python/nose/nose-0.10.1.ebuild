@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/nose/nose-0.10.0.ebuild,v 1.1 2007/10/14 11:53:59 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/nose/nose-0.10.1.ebuild,v 1.1 2008/01/31 16:38:56 hawking Exp $
 
 EAPI="prefix"
 
@@ -23,7 +23,7 @@ src_unpack() {
 	distutils_src_unpack
 
 	# Disable tests that access the network
-	epatch "${FILESDIR}/${P}-tests-nonetwork.patch"
+	epatch "${FILESDIR}/${PN}-0.10.0-tests-nonetwork.patch"
 }
 
 src_install() {
