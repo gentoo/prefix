@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.gz"
 
 LICENSE="PYTHON"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86 ~x86-macos"
+KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~ppc-macos ~x86-macos ~x64-solaris"
 IUSE="doc examples"
 
 DEPEND=">=dev-libs/expat-1.95.6"
@@ -31,7 +31,7 @@ src_compile() {
 	fi
 
 	# use the already-installed shared copy of libexpat
-	distutils_src_compile --with-libexpat=/usr ${myconf}
+	distutils_src_compile --with-libexpat="${EPREFIX}"/usr ${myconf}
 }
 
 src_install() {
