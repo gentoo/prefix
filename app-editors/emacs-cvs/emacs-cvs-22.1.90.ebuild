@@ -1,23 +1,14 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-22.1.50-r2.ebuild,v 1.8 2008/01/30 20:59:48 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-22.1.90.ebuild,v 1.1 2008/01/31 06:11:23 ulm Exp $
 
 EAPI="prefix"
 
-ECVS_AUTH="pserver"
-ECVS_SERVER="cvs.savannah.gnu.org:/sources/emacs"
-ECVS_MODULE="emacs"
-ECVS_BRANCH="EMACS_22_BASE"
-ECVS_LOCALNAME="emacs-22"
-
-WANT_AUTOCONF="latest"
-WANT_AUTOMAKE="latest"
-
-inherit autotools cvs elisp-common eutils flag-o-matic
+inherit autotools elisp-common eutils flag-o-matic
 
 DESCRIPTION="The extensible, customizable, self-documenting real-time display editor"
 HOMEPAGE="http://www.gnu.org/software/emacs/"
-SRC_URI=""
+SRC_URI="ftp://alpha.gnu.org/gnu/emacs/pretest/emacs-${PV}.tar.gz"
 
 LICENSE="GPL-3 FDL-1.2 BSD"
 SLOT="22"
@@ -56,26 +47,16 @@ DEPEND="${RDEPEND}
 	X? ( gtk? ( dev-util/pkgconfig ) )
 	gzip-el? ( app-arch/gzip )"
 
-S="${WORKDIR}/${ECVS_LOCALNAME}"
+S="${WORKDIR}/emacs-${PV}"
 
+# FULL_VERSION keeps the full version number, which is needed in order to
+# determine some path information correctly for copy/move operations later on
+FULL_VERSION="${PV}"
 EMACS_SUFFIX="emacs-${SLOT}-cvs"
 
 src_unpack() {
-	cvs_src_unpack
-
+	unpack ${A}
 	cd "${S}"
-	# FULL_VERSION keeps the full version number, which is needed in
-	# order to determine some path information correctly for copy/move
-	# operations later on
-	FULL_VERSION=$(grep 'defconst[	 ]*emacs-version' lisp/version.el \
-		| sed -e 's/^[^"]*"\([^"]*\)".*$/\1/')
-	[ "${FULL_VERSION}" ] || die "Cannot determine current Emacs version"
-	echo
-	einfo "Emacs CVS branch: ${ECVS_BRANCH}"
-	einfo "Emacs version number: ${FULL_VERSION}"
-	[ "${FULL_VERSION}" = ${PV} ] \
-		|| die "Upstream version number changed to ${FULL_VERSION}"
-	echo
 
 	epatch "${FILESDIR}/${PN}-Xaw3d-headers.patch"
 	epatch "${FILESDIR}/${PN}-freebsd-sparc.patch"
@@ -178,7 +159,7 @@ src_compile() {
 
 	fi # end crappy indenting
 
-	emake CC="$(tc-getCC)" bootstrap || die "make bootstrap failed"
+	emake CC="$(tc-getCC)" || die "emake failed"
 }
 
 src_install () {
