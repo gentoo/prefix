@@ -1,6 +1,15 @@
 # ChangeLog for app-text/djvu
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.72 2008/01/30 15:33:28 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.75 2008/02/01 03:46:52 jer Exp $
+
+  01 Feb 2008; Jeroen Roovers <jer@gentoo.org> djvu-3.5.20-r1.ebuild:
+  Stable for HPPA (bug #208144).
+
+  31 Jan 2008; Brent Baude <ranger@gentoo.org> djvu-3.5.20-r1.ebuild:
+  Marking djvu-3.5.20-r1 ppc64 for bug 208144
+
+  31 Jan 2008; nixnut <nixnut@gentoo.org> djvu-3.5.20-r1.ebuild:
+  Stable on ppc wrt bug 208144
 
   30 Jan 2008; Raúl Porcel <armin76@gentoo.org> djvu-3.5.20-r1.ebuild:
   alpha/ia64/sparc stable wrt #208144
