@@ -67,6 +67,7 @@ S="${WORKDIR}"/prefix-${PN}-${PV}
 S_PL="${WORKDIR}"/${PN}-${PV_PL}
 
 pkg_setup() {
+	[[ -n ${PREFIX_PORTAGE_DONT_CHECK_MY_REPO} ]] && return
 	# This function is EVIL by definition because it dies, however, given that
 	# infra really wants to expel http access we have no choice.
 	# http://thread.gmane.org/gmane.linux.gentoo.devel.announce/98
