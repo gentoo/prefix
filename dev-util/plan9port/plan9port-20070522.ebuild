@@ -13,7 +13,7 @@ SLOT="0"
 KEYWORDS="~sparc-solaris ~x86 ~x86-macos"
 IUSE="prefix"
 
-DEPEND="!prefix? x11-base/xorg-server"
+DEPEND="!prefix? ( x11-base/xorg-server )"
 RDEPEND=""
 
 S="${WORKDIR}/plan9"
