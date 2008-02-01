@@ -23,8 +23,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.12-scrub-lame-gettext.patch
 
-# should be made unconditional!
-	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${P}-no-wchar-hack.patch
+	epatch "${FILESDIR}"/${P}-no-wchar-hack.patch # for Interix
 
 	# Platforms that do not have iconv in libc (Darwin, Solaris, ...) will fail
 	# if no -liconv is given.  This is one error, but also when nls is not in

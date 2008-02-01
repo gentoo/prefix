@@ -4,11 +4,14 @@ but breaks the build (at least) on interix.
 diff -ru popt-1.13.orig/popthelp.c popt-1.13/popthelp.c
 --- popt-1.13.orig/popthelp.c	Fri Jan 18 13:58:02 2008
 +++ popt-1.13/popthelp.c	Fri Jan 18 14:00:21 2008
-@@ -15,7 +15,6 @@
+@@ -15,7 +15,9 @@
  #include <sys/ioctl.h>
  #endif
  
 -#define	POPT_WCHAR_HACK
++#ifndef __INTERIX
++# define POPT_WCHAR_HACK
++#endif
  #ifdef 	POPT_WCHAR_HACK
  #include <wchar.h>			/* for mbsrtowcs */
  /*@access mbstate_t @*/
