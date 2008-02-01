@@ -12,7 +12,7 @@ EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
 [[ -z ${ROOT} ]] && ROOT="/"
 #[[ ${ROOT} != */ ]] && ROOT="${ROOT}/"
 [[ ${ROOT} != /* ]] && ROOT="${PWD}${ROOT}"
-ROOT="${ROOT%/}${EPREFIX}/"
+EROOT="${ROOT%/}${EPREFIX}/"
 
 cd ${EPREFIX}
 
@@ -87,7 +87,7 @@ switch_profile() {
 	# Find the bin wrapper
 	local wrapper
 	for wrapper in lib lib64 lib32 ; do
-		wrapper="${ROOT}usr/${wrapper}/misc/binutils-config"
+		wrapper="${EROOT}usr/${wrapper}/misc/binutils-config"
 		[[ -e ${wrapper} ]] && break
 	done
 
@@ -103,7 +103,7 @@ switch_profile() {
 		# Newer paths: /usr/${HOST}/${TARGET}/...
 		# Older paths: /usr/${TARGET}/...
 		#
-		if [[ -d ${ROOT}/usr/${HOST}/${TARGET}/binutils-bin/${VER} ]] ; then
+		if [[ -d ${EROOT}/usr/${HOST}/${TARGET}/binutils-bin/${VER} ]] ; then
 			BINPATH=/usr/${HOST}/${TARGET}/binutils-bin/${VER}
 			BINPATH_LINKS=/usr/libexec/gcc/${TARGET}
 		fi
@@ -112,28 +112,28 @@ switch_profile() {
 		BINPATH=/usr/${TARGET}/binutils-bin/${VER}
 		BINPATH_LINKS=/usr/${TARGET}/bin
 	fi
-	cd "${ROOT}/${BINPATH}" || exit 1
-	mkdir -p "${ROOT}/${BINPATH_LINKS}" "${ROOT}/usr/bin"
+	cd "${EROOT}/${BINPATH}" || exit 1
+	mkdir -p "${EROOT}/${BINPATH_LINKS}" "${EROOT}/usr/bin"
 	for x in * ; do
 		case ${x} in
 			ld|ld64)
 				# remove symlink first if exists, to avoid overwriting
 				# the target in the cp that follows
-				rm -f "${ROOT}/${BINPATH_LINKS}/${x}" > /dev/null
-				cp -f "${wrapper}" "${ROOT}/${BINPATH_LINKS}/${x}"
-				touch -r "${EPREFIX}/${BINPATH}/${x}" "${ROOT}/${BINPATH_LINKS}/${x}"
+				rm -f "${EROOT}/${BINPATH_LINKS}/${x}" > /dev/null
+				cp -f "${wrapper}" "${EROOT}/${BINPATH_LINKS}/${x}"
+				touch -r "${EPREFIX}/${BINPATH}/${x}" "${EROOT}/${BINPATH_LINKS}/${x}"
 			;;
 			*)
-				ln -sf "${EPREFIX}/${BINPATH}/${x}" "${ROOT}/${BINPATH_LINKS}/${x}"
+				ln -sf "${EPREFIX}/${BINPATH}/${x}" "${EROOT}/${BINPATH_LINKS}/${x}"
 			;;
 		esac
-		ln -sf "${EPREFIX}/${BINPATH_LINKS}/${x}" "${ROOT}"/usr/bin/${TARGET}-${x}
+		ln -sf "${EPREFIX}/${BINPATH_LINKS}/${x}" "${EROOT}"/usr/bin/${TARGET}-${x}
 		for fake in ${FAKE_TARGETS} ; do
 			[[ -f ${ENV_D}/config-${fake} ]] && continue
-			ln -sf "${EPREFIX}/${BINPATH_LINKS}/${x}" "${ROOT}"/usr/bin/${fake}-${x}
+			ln -sf "${EPREFIX}/${BINPATH_LINKS}/${x}" "${EROOT}"/usr/bin/${fake}-${x}
 		done
 		if [[ ${TARGET} == ${HOST} ]] ; then
-			ln -sf ${TARGET}-${x} "${ROOT}"/usr/bin/${x}
+			ln -sf ${TARGET}-${x} "${EROOT}"/usr/bin/${x}
 		fi
 	done
 
@@ -142,17 +142,17 @@ switch_profile() {
 	#
 	LIBPATH=$(echo "${LIBPATH}" | sed -e "s|${EPREFIX}|/|g" )
 	LIBPATH=${LIBPATH:-/usr/lib/binutils/${TARGET}/${VER}}
-	cd "${ROOT}/${LIBPATH}" || exit 1
+	cd "${EROOT}/${LIBPATH}" || exit 1
 	if [[ ${TARGET} == ${HOST} ]] ; then
-		dstlib=${ROOT}/usr/${HOST}/lib
+		dstlib=${EROOT}/usr/${HOST}/lib
 	else
-		dstlib=${ROOT}/usr/${HOST}/${TARGET}/lib
+		dstlib=${EROOT}/usr/${HOST}/${TARGET}/lib
 		# Clean out old path
-		rm -rf "${ROOT}"/usr/${TARGET}/lib/ldscripts
-		rmdir "${ROOT}"/usr/${TARGET}/lib >& /dev/null
+		rm -rf "${EROOT}"/usr/${TARGET}/lib/ldscripts
+		rmdir "${EROOT}"/usr/${TARGET}/lib >& /dev/null
 	fi
 	# When upgrading, we need to clean up ldscripts and libs
-	rm -rf "${dstlib}/ldscripts" "${ROOT}/${BINPATH_LINKS}"/ldscripts
+	rm -rf "${dstlib}/ldscripts" "${EROOT}/${BINPATH_LINKS}"/ldscripts
 	mkdir -p "${dstlib}"
 	ln -sf "${EPREFIX}/${LIBPATH}/ldscripts" "${dstlib}"/ldscripts
 	find -L "${dstlib}" -type l -exec rm {} \;
@@ -164,19 +164,19 @@ switch_profile() {
 	# Generate include symlinks
 	#
 	INCPATH=${LIBPATH}/include
-	if [[ -d ${ROOT}/${INCPATH} ]] ; then
-		cd "${ROOT}/${INCPATH}" || exit 1
+	if [[ -d ${EROOT}/${INCPATH} ]] ; then
+		cd "${EROOT}/${INCPATH}" || exit 1
 		if [[ ${HOST} == ${TARGET} ]] ; then
-			mkdir -p "${ROOT}/usr/include"
+			mkdir -p "${EROOT}/usr/include"
 			for x in * ; do
-				ln -sf "${EPREFIX}/${INCPATH}/${x}" "${ROOT}/usr/include/${x}"
+				ln -sf "${EPREFIX}/${INCPATH}/${x}" "${EROOT}/usr/include/${x}"
 			done
 		else
 			# Clean out old path
-			find . -type f -exec rm -f "${ROOT}/usr/${TARGET}/usr/include/{}" \;
-			rmdir "${ROOT}/usr/${TARGET}/usr/include" >& /dev/null
-			rmdir "${ROOT}/usr/${TARGET}/usr" >& /dev/null
-			rmdir "${ROOT}/usr/${TARGET}" >& /dev/null
+			find . -type f -exec rm -f "${EROOT}/usr/${TARGET}/usr/include/{}" \;
+			rmdir "${EROOT}/usr/${TARGET}/usr/include" >& /dev/null
+			rmdir "${EROOT}/usr/${TARGET}/usr" >& /dev/null
+			rmdir "${EROOT}/usr/${TARGET}" >& /dev/null
 		fi
 	fi
 
@@ -184,15 +184,15 @@ switch_profile() {
 	# Make sure proper paths get updated
 	#
 	if [[ ${TARGET} == ${HOST} ]] ; then
-		echo "PATH=${EPREFIX}${BINPATH}" > "${ROOT}"/etc/env.d/05binutils
-		echo "ROOTPATH=${EPREFIX}${BINPATH}" >> "${ROOT}"/etc/env.d/05binutils
+		echo "PATH=${EPREFIX}${BINPATH}" > "${EROOT}"/etc/env.d/05binutils
+		echo "ROOTPATH=${EPREFIX}${BINPATH}" >> "${EROOT}"/etc/env.d/05binutils
 		DATAPATH=${EPREFIX}/usr/share/binutils-data/${TARGET}/${VER}
 		[[ -d ${DATAPATH}/man ]] && \
-		echo "MANPATH=${DATAPATH}/man" >> "${ROOT}"/etc/env.d/05binutils
+		echo "MANPATH=${DATAPATH}/man" >> "${EROOT}"/etc/env.d/05binutils
 		[[ -d ${DATAPATH}/info ]] && \
-		echo "INFOPATH=${DATAPATH}/info" >> "${ROOT}"/etc/env.d/05binutils
+		echo "INFOPATH=${DATAPATH}/info" >> "${EROOT}"/etc/env.d/05binutils
 		# hmm, `ld` has this in SEARCH_DIR(), but ld.so does not ...
-		echo "LDPATH=${EPREFIX}/usr/${TARGET}/lib" >> "${ROOT}"/etc/env.d/05binutils
+		echo "LDPATH=${EPREFIX}/usr/${TARGET}/lib" >> "${EROOT}"/etc/env.d/05binutils
 	fi
 
 	eend 0
@@ -202,10 +202,7 @@ switch_profile() {
 	#
 	# Regen env.d if need/can be
 	#
-	if [[ ${ROOT%/} == ${EPREFIX} ]] && [[ ${TARGET} == ${HOST} ]] ; then
-		# due to our hack, need to restore ROOT into original value for
-		# env-update not to crash
-		ROOT=${ROOT%${EPREFIX}/}/
+	if [[ ${ROOT} == / ]] && [[ ${TARGET} == ${HOST} ]] ; then
 		env-update
 		echo
 		ewarn "Please remember to run:"
@@ -242,23 +239,23 @@ uninstall_target() {
 	# XXX: we still leave behind FAKE_TARGETS in /usr/bin ...
 	for x in addr2line ar as c++filt elf2flt flthdr gprof ld ld.real \
 	         nm objcopy objdump ranlib readelf size strings strip ; do
-		rm -f "${ROOT}"/usr/bin/${TARGET}-${x}
-		rm -f "${ROOT}"/usr/{${HOST}/,}${TARGET}/bin/${x}
-		rm -f "${ROOT}"/usr/libexec/gcc/${TARGET}/${x}
+		rm -f "${EROOT}"/usr/bin/${TARGET}-${x}
+		rm -f "${EROOT}"/usr/{${HOST}/,}${TARGET}/bin/${x}
+		rm -f "${EROOT}"/usr/libexec/gcc/${TARGET}/${x}
 	done
 	for x in ansidecl.h bfd.h bfdlink.h dis-asm.h symcat.h ; do
-		rm -f "${ROOT}"/usr/{${HOST}/,}${TARGET}/{usr/,}include/${x}
+		rm -f "${EROOT}"/usr/{${HOST}/,}${TARGET}/{usr/,}include/${x}
 	done
 	for x in bfd iberty opcodes ; do
-		rm -f "${ROOT}"/usr/${HOST}/${TARGET}/lib/lib${x}{{-*,}.so,.a,.la}
+		rm -f "${EROOT}"/usr/${HOST}/${TARGET}/lib/lib${x}{{-*,}.so,.a,.la}
 	done
 	# Delete broken symlinks
-	local destdir="${ROOT}/usr/${HOST}/${TARGET}"
+	local destdir="${EROOT}/usr/${HOST}/${TARGET}"
 	rm -f "${destdir}"/lib/ldscripts
 	find -L "${destdir}"/lib -type l -exec rm {} \;
 	rmdir "${destdir}"/lib "${destdir}" 2>/dev/null
 	rmdir "${destdir}"/{bin,include,lib,usr} "${destdir}" 2>/dev/null
-	rmdir "${ROOT}"/var/db/pkg/cross-${TARGET} 2>/dev/null
+	rmdir "${EROOT}"/var/db/pkg/cross-${TARGET} 2>/dev/null
 
 	rm -f "${ENV_D}"/${TARGET}-*
 }
@@ -352,7 +349,7 @@ set_HOST() {
 	fi
 }
 
-ENV_D="${ROOT}etc/env.d/binutils"
+ENV_D="${EROOT}etc/env.d/binutils"
 
 DEBUG="no"
 NEED_ACTION="yes"
