@@ -1,0 +1,11 @@
+--- support/shlib-install
++++ support/shlib-install
+@@ -130,7 +130,7 @@
+ 	fi
+ 	;;
+ 
+-bsdi4*|*gnu*|darwin*|macosx*|k*bsd*-gnu)
++bsdi4*|*gnu*|darwin*|macosx*|k*bsd*-gnu|*netbsd*)
+ 	# libname.so.M -> libname.so.M.N
+ 	${echo} ${RM} ${INSTALLDIR}/$LINK2
+ 	if [ -z "$uninstall" ]; then
