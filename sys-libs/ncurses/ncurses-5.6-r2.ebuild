@@ -16,7 +16,7 @@ SRC_URI="mirror://gnu/ncurses/${MY_P}.tar.gz
 
 LICENSE="MIT"
 SLOT="5"
-KEYWORDS="~amd64 ~ia64 ~x86 ~ppc-aix ~x86-fbsd ~x86-interix ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-fbsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="bootstrap build debug doc gpm minimal nocxx profile trace unicode"
 
 DEPEND="gpm? ( sys-libs/gpm )"
@@ -34,6 +34,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.5-aix-shared.patch
 	epatch "${FILESDIR}"/${P}-solaris2.patch
 	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${PN}-5.6-netbsd.patch
 }
 
 src_compile() {
@@ -137,7 +138,9 @@ src_install() {
 	mv *.a "${ED}"/usr/$(get_libdir)/
 	gen_usr_ldscript lib{,n}curses$(get_libname)
 	if use unicode ; then
-		gen_usr_ldscript lib{,n}cursesw$(get_libname)
+		[[ -f ${ED}/lib/libcursesw$(get_libname) ]] && \
+			gen_usr_ldscript libcursesw$(get_libname)
+		gen_usr_ldscript libncursesw$(get_libname)
 	fi
 
 	# We need the basic terminfo files in /etc, bug #37026
