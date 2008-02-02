@@ -1,4 +1,4 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -30,6 +30,10 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-darwin7.patch
 	epatch "${FILESDIR}"/${P}-no-64bit.patch
+	epatch "${FILESDIR}"/${PN}-768-texinfo.patch
+
+	# for FSF gcc / gcc-apple:42
+	sed -e 's/-Wno-long-double//' -i gdb/config/*/macosx.mh
 }
 
 src_compile() {
@@ -42,7 +46,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${D}" libdir=/nukeme includedir=/nukeme install || die
+	emake DESTDIR="${D}" libdir=/nukeme includedir=/nukeme install || die
 	rm -r "$D"/nukeme || die
 	rm -Rf "${ED}"/usr/${CHOST} || die
 	mv "${ED}"/usr/bin/gdb ${ED}/
