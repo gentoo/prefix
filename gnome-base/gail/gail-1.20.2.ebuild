@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gail/gail-1.20.2.ebuild,v 1.1 2007/11/26 07:33:10 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gail/gail-1.20.2.ebuild,v 1.4 2008/02/01 18:59:21 ranger Exp $
 
 EAPI="prefix"
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://developer.gnome.org/projects/gap/"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="doc"
 
 RDEPEND=">=dev-libs/atk-1.13.0
