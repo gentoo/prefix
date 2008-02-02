@@ -36,8 +36,6 @@ src_unpack() {
 
 src_compile() {
 	replace-flags -O? -O2
-	# AltiVec stuff kills the compilation
-	[[ ${CHOST} == powerpc-*-darwin* ]] && filter-flags -m*
 	econf \
 		--disable-werror \
 		$(use_enable nls) \
