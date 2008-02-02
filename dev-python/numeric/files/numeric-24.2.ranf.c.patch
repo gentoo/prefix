@@ -1,0 +1,11 @@
+--- Numeric-24.2/Packages/RNG/Src/ranf.c	2008-01-08 23:38:19 +0100
++++ Numeric-24.2/Packages/RNG/Src/ranf.c	2008-01-08 23:38:38 +0100
+@@ -148,7 +148,7 @@
+ 	struct timeval tv;
+ 	struct timezone tz;
+ #if !defined(__sgi)
+-	int gettimeofday(struct timeval *, struct timezone *);
++	int gettimeofday(struct timeval *, void *);
+ #endif
+ 
+ 	(void)gettimeofday(&tv,&tz);

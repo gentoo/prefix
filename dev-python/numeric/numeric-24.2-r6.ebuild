@@ -21,7 +21,7 @@ DEPEND="${RDEPEND}
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~x86"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="doc lapack"
 
 S="${WORKDIR}/${MY_P}"
@@ -51,6 +51,8 @@ src_unpack() {
 	[[ "${PYVER}" == 2.5 ]] && epatch "${FILESDIR}"/${P}-python25.patch
 	# fix for dotblas from uncommited cvs
 	epatch "${FILESDIR}"/${P}-dotblas.patch
+	# fix gettimeofday issue on NetBSD
+	epatch "${FILESDIR}"/${PN}-24.2.ranf.c.patch
 
 	# adapt lapack/cblas support
 	if use lapack; then
