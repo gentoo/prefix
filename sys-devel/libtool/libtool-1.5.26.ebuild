@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-1.5.24.ebuild,v 1.13 2007/10/06 05:05:26 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-1.5.26.ebuild,v 1.1 2008/02/01 18:33:38 vapier Exp $
 
 EAPI="prefix"
 
@@ -51,7 +51,6 @@ src_unpack() {
 	rm -f ltmain.sh*
 
 	epatch "${FILESDIR}"/1.5.20/${PN}-1.5.20-use-linux-version-in-fbsd.patch #109105
-	epatch "${FILESDIR}"/1.5.10/${PN}-1.5.10-portage.patch
 	epatch "${FILESDIR}"/1.5.10/libtool-1.5.10-locking.patch #40992
 
 	# Note: The following patches should be dropped with libtool-2+
@@ -59,7 +58,6 @@ src_unpack() {
 	sed -i "s:@_LT_VERSION@:${PV}:" libtool.m4 || die "sed libtool.m4"
 	epatch "${FILESDIR}"/1.5.6/libtool-1.5-filter-host-tags.patch
 	epatch "${FILESDIR}"/1.5.20/libtool-1.5.20-override-LD_LIBRARY_PATH.patch
-	epatch "${FILESDIR}"/${PN}-1.5.23b-aixrtl.patch
 
 	ebegin "Generating ltmain.sh"
 	gen_ltmain_sh || die "Failed to generate ltmain.sh!"

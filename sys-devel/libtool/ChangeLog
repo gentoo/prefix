@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/libtool
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.126 2007/12/31 20:37:57 vapier Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.127 2008/02/01 18:33:38 vapier Exp $
+
+*libtool-1.5.26 (01 Feb 2008)
+
+  01 Feb 2008; Mike Frysinger <vapier@gentoo.org> +libtool-1.5.26.ebuild:
+  Version bump.
 
 *libtool-9999 (31 Dec 2007)
 
