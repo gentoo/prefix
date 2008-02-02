@@ -1,4 +1,4 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -28,8 +28,10 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	# this may be a problem
-#	epatch "${FILESDIR}"/${PN}-563-no-64bit.patch
+	epatch "${FILESDIR}"/${P}-texinfo.patch
+
+	# for FSF gcc
+	sed -e 's/-Wno-long-double//' -i gdb/config/*/macosx.mh
 }
 
 src_compile() {

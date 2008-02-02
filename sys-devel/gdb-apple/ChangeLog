@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gdb-apple
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  02 Feb 2008; Fabian Groffen <grobian@gentoo.org> gdb-apple-768.ebuild,
+  +files/gdb-apple-768-texinfo.patch:
+  Add patch to work with texinfo 4.11
 
 *gdb-apple-768 (09 Nov 2007)
 
