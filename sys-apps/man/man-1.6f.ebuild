@@ -44,7 +44,7 @@ src_unpack() {
 	# This patch could be easily merged with the FreeBSD one, but we don't
 	# because the files have no CVS header and then auto syncing overwrites the
 	# local difference we make.  <grobian@gentoo.org>
-	epatch "${FILESDIR}"/man-1.6e-darwin.patch
+	epatch "${FILESDIR}"/man-1.6e-bsdish.patch
 
 	# Solaris needs fcntl.h included for O_CREAT etc, like SYSV
 	epatch "${FILESDIR}"/man-1.6e-solaris.patch

@@ -9,7 +9,7 @@ the local difference we make.  <grobian@gentoo.org>
  #endif
  
 -#if !defined(__linux__) && !defined(__FreeBSD__)
-+#if !defined(__linux__) && !defined(__FreeBSD__) && !defined(__APPLE__)
++#if !defined(__linux__) && !defined(__FreeBSD__) && !defined(__APPLE__) && !defined(__NetBSD__)
  #include <memory.h>
  static int bcopy(src, dst, length)
  char *src, *dst;
