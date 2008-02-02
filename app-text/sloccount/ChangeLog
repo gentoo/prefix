@@ -1,6 +1,10 @@
 # ChangeLog for app-text/sloccount
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/sloccount/ChangeLog,v 1.17 2007/06/11 09:01:52 grobian Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/sloccount/ChangeLog,v 1.18 2008/02/01 10:15:54 robbat2 Exp $
+
+  01 Feb 2008; Robin H. Johnson <robbat2@gentoo.org> sloccount-2.22.ebuild,
+  sloccount-2.26.ebuild, sloccount-2.26-r1.ebuild:
+  Fix license to read GPL-2.
 
   11 Jun 2007; Fabian Groffen <grobian@gentoo.org> sloccount-2.26-r1.ebuild:
   Dropped ppc-macos keyword, see you in prefix
