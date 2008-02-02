@@ -31,6 +31,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-w.patch
 	epatch "${FILESDIR}"/${P}-error.patch
+	epatch "${FILESDIR}"/${P}-stdlib.patch
 }
 
 src_compile() {
