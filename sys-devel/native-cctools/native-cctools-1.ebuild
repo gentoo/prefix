@@ -33,7 +33,7 @@ src_install() {
 		*-solaris*|*-aix*)
 			nativepath=/usr/ccs/bin
 		;;
-		*-apple-darwin*)
+		*-apple-darwin*|*-netbsd*)
 			nativepath=/usr/bin
 		;;
 		*)
@@ -59,7 +59,7 @@ src_install() {
 	done
 
 	# post fix for Darwin's ranlib (doesn't like it when its called other than
-	# that)
+	# that, as libtool and ranlib are one tool)
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		rm -f ranlib
 		cat <<-EOF > ranlib
