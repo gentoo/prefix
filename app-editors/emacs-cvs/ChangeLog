@@ -1,6 +1,25 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.186 2008/01/31 06:11:23 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.189 2008/02/01 18:54:09 ulm Exp $
+
+*emacs-cvs-23.0.50_pre20080201 (01 Feb 2008)
+
+  01 Feb 2008; Ulrich Mueller <ulm@gentoo.org>
+  +emacs-cvs-23.0.50_pre20080201.ebuild, emacs-cvs-23.0.60-r2.ebuild:
+  Snapshot of CVS trunk, tagged "before-merge-unicode-to-trunk". Add libotf
+  local USE flag.
+
+*emacs-cvs-23.0.60-r2 (01 Feb 2008)
+
+  01 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  -emacs-cvs-23.0.50-r1.ebuild, -emacs-cvs-23.0.60-r1.ebuild,
+  +emacs-cvs-23.0.60-r2.ebuild:
+  unicode-2 branch is merged to mainline, so reflect this in ebuilds
+
+  01 Feb 2008; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.1.90.ebuild,
+  emacs-cvs-22.1.9999.ebuild, emacs-cvs-23.0.50-r1.ebuild,
+  emacs-cvs-23.0.60-r1.ebuild:
+  Change to new syntax of eselect-emacs.
 
 *emacs-cvs-22.1.9999 (31 Jan 2008)
 *emacs-cvs-22.1.90 (31 Jan 2008)

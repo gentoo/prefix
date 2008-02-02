@@ -1,14 +1,14 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.60-r1.ebuild,v 1.10 2008/01/30 20:59:48 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.60-r2.ebuild,v 1.2 2008/02/01 18:54:09 ulm Exp $
 
 EAPI="prefix"
 
 ECVS_AUTH="pserver"
 ECVS_SERVER="cvs.savannah.gnu.org:/sources/emacs"
 ECVS_MODULE="emacs"
-ECVS_BRANCH="emacs-unicode-2"
-ECVS_LOCALNAME="emacs-unicode"
+ECVS_BRANCH="HEAD"
+ECVS_LOCALNAME="emacs"
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
@@ -20,13 +20,15 @@ HOMEPAGE="http://www.gnu.org/software/emacs/"
 SRC_URI=""
 
 LICENSE="GPL-3 FDL-1.2 BSD"
-SLOT="23-unicode"
+SLOT="23"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="alsa dbus gif gpm gtk gzip-el hesiod jpeg kerberos motif png spell sound source svg tiff toolkit-scroll-bars X Xaw3d xft xpm aqua"
+
+IUSE="alsa dbus gif gpm gtk gzip-el hesiod jpeg kerberos libotf motif png spell
+sound source svg tiff toolkit-scroll-bars X Xaw3d xft xpm aqua"
 RESTRICT="strip"
 
 RDEPEND="sys-libs/ncurses
-	>=app-admin/eselect-emacs-0.7-r1
+	>=app-admin/eselect-emacs-1.2
 	net-libs/liblockfile
 	hesiod? ( net-dns/hesiod )
 	kerberos? ( virtual/krb5 )
@@ -45,7 +47,11 @@ RDEPEND="sys-libs/ncurses
 		png? ( media-libs/libpng )
 		svg? ( >=gnome-base/librsvg-2.0 )
 		xpm? ( x11-libs/libXpm )
-		xft? ( media-libs/fontconfig virtual/xft >=dev-libs/libotf-0.9.4 )
+		xft? (
+			media-libs/fontconfig
+			virtual/xft
+			libotf? ( >=dev-libs/libotf-0.9.4 )
+		)
 		gtk? ( =x11-libs/gtk+-2* )
 		!gtk? (
 			Xaw3d? ( x11-libs/Xaw3d )
@@ -127,7 +133,7 @@ src_compile() {
 		myconf="${myconf} $(use_with toolkit-scroll-bars)"
 		myconf="${myconf} $(use_enable xft font-backend)"
 		myconf="${myconf} $(use_with xft freetype)"
-		myconf="${myconf} $(use_with xft)"
+		myconf="${myconf} $(use_with xft) $(use_with libotf)"
 		myconf="${myconf} $(use_with jpeg) $(use_with tiff)"
 		myconf="${myconf} $(use_with gif) $(use_with png)"
 		myconf="${myconf} $(use_with xpm) $(use_with svg rsvg)"
@@ -267,7 +273,7 @@ pkg_postinst() {
 
 	elisp-site-regen
 	emacs-infodir-rebuild
-	eselect emacs update --if-unset
+	eselect emacs update ifunset
 
 	if use X; then
 		elog "You need to install some fonts for Emacs. Under monolithic"
@@ -287,5 +293,5 @@ pkg_postinst() {
 pkg_postrm() {
 	elisp-site-regen
 	emacs-infodir-rebuild
-	eselect emacs update --if-unset
+	eselect emacs update ifunset
 }
