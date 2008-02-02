@@ -26,6 +26,8 @@ PATCHES="${FILESDIR}/${P}-gfbsd.patch
 
 [[ ${CHOST} == *-darwin* ]] && \
 	PATCHES="${PATCHES} ${FILESDIR}/${P}-darwin.patch"
+[[ ${CHOST} == *-netbsd* ]] && \
+	PATCHES="${PATCHES} ${FILESDIR}/${P}-netbsd.patch"
 
 src_compile() {
 	local libs=""

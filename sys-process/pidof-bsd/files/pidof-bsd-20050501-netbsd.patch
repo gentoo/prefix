@@ -1,0 +1,43 @@
+--- pidof.c.orig	2008-01-24 03:32:39 +0100
++++ pidof.c	2008-01-24 04:09:12 +0100
+@@ -50,7 +50,7 @@ static int
+ get_pid_of_process(const char *process_name)
+ {
+ 	static kvm_t *kd = NULL;
+-	struct kinfo_proc *p;
++	struct kinfo_proc2 *p;
+ 	int i, n_processes, 
+ 	    processes_found = 0;
+ 	char *pname = NULL;
+@@ -61,23 +61,24 @@ get_pid_of_process(const char *process_n
+ 	if ((pname = strdup(basename(process_name))) == NULL)
+ 		return;
+ 	
+-	if ((kd = kvm_open("/dev/null", "/dev/null", "/dev/null", O_RDONLY, NULL)) == NULL) {
++	if ((kd = kvm_open(NULL, NULL, NULL, KVM_NO_FILES, NULL)) == NULL) {
+ 		free(pname);
++		//NOTE: this is potentially buggy, since kd == NULL
+ 		(void)errx(1, "%s", kvm_geterr(kd));
+ 	} else {
+-		p = kvm_getprocs(kd, KERN_PROC_PROC, 0, &n_processes);
++		p = kvm_getproc2(kd, KERN_PROC_ALL, 0, sizeof(struct kinfo_proc2), &n_processes);
+ 		for (i = 0; i<n_processes; i++) {
+-			if (p[i].ki_pid != own_pid)
+-				if (strncmp(pname, p[i].ki_comm, COMMLEN+1) == 0) {
+-					(void)printf("%d ", (int)p[i].ki_pid);
++			if (p[i].p_pid != own_pid)
++				if (strncmp(pname, p[i].p_comm, KI_MAXCOMLEN/*+1*/) == 0) {
++					(void)printf("%d ", (int)p[i].p_pid);
+ 					processes_found++;
+ 				} else if (match_argv == 1) {
+ 					char **p_argv = NULL;
+ 					
+-					if ((p_argv = kvm_getargv(kd, p+i, 0)) != NULL)
++					if ((p_argv = kvm_getargv2(kd, p+i, 0)) != NULL)
+ 						if ( *p_argv != NULL )
+ 							if (strcmp(pname, basename(*p_argv)) == 0) {
+-								(void)printf("%d ", (int)p[i].ki_pid);
++								(void)printf("%d ", (int)p[i].p_pid);
+ 								processes_found++;
+ 								break;
+ 							}
