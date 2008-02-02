@@ -1,14 +1,14 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/editor/editor-0.ebuild,v 1.12 2008/01/27 10:16:10 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/editor/editor-0.ebuild,v 1.13 2008/02/01 14:07:13 ulm Exp $
 
 EAPI="prefix"
 
 DESCRIPTION="Virtual for editor"
-HOMEPAGE="http://www.gentoo.org/"
+HOMEPAGE=""
 SRC_URI=""
 
-LICENSE="as-is"
+LICENSE=""
 SLOT="0"
 KEYWORDS="~ppc-aix ~x86-fbsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
@@ -19,7 +19,6 @@ IUSE=""
 
 DEPEND=""
 RDEPEND="|| ( app-editors/nano
-	app-editors/bvi
 	app-editors/dav
 	app-editors/e3
 	app-editors/easyedit
