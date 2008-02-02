@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2.1 GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~sparc-solaris ~x86"
+KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~sparc-solaris"
 IUSE="debug doc"
 
 RDEPEND=">=dev-libs/glib-2.8
