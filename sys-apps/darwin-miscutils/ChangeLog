@@ -1,6 +1,15 @@
 # ChangeLog for sys-apps/darwin-miscutils
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*darwin-miscutils-5-r1 (02 Feb 2008)
+*darwin-miscutils-4-r1 (02 Feb 2008)
+
+  02 Feb 2008; Fabian Groffen <grobian@gentoo.org>
+  -darwin-miscutils-4.ebuild, +darwin-miscutils-4-r1.ebuild,
+  -darwin-miscutils-5.ebuild, +darwin-miscutils-5-r1.ebuild:
+  No longer install rpcgen, since this tool is tightly associated to the OS it
+  runs on. In short, the Leopard version breaks on Tiger and vice versa.
 
 *darwin-miscutils-4 (14 Oct 2007)
 

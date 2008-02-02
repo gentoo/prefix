@@ -1,14 +1,14 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI="prefix"
 
-inherit toolchain-funcs
+inherit toolchain-funcs eutils
 
-MISC_VER=18
-SHELL_VER=81
-DEV_VER=39
+MISC_VER=23
+SHELL_VER=116
+DEV_VER=48
 
 DESCRIPTION="Miscellaneous commands used on Darwin/Mac OS X systems"
 HOMEPAGE="http://www.opensource.apple.com/"
@@ -26,26 +26,57 @@ RDEPEND=""
 
 S=${WORKDIR}
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-w.patch
+	epatch "${FILESDIR}"/${P}-error.patch
+}
+
 src_compile() {
 	local TS=${S}/misc_cmds-${MISC_VER}
 	# tsort is provided by coreutils
-	for t in cal leave lock units calendar; do
+	for t in leave units calendar; do
 		cd "${TS}/${t}"
 		echo "in ${TS}/${t}:"
 		echo "$(tc-getCC) -o ${t}" *.c
 		$(tc-getCC) -o ${t} *.c || die "failed to compile $t"
 	done
+	# compile cal separately
+	cd "${TS}/ncal"
+	echo "in ${TS}/ncal:"
+	local flags
+	flags[0]=-I.
+	flags[1]=-D__FBSDID=__RCSID
+	flags[2]=-Wsystem-headers
+	echo "$(tc-getCC) ${flags[@]} -c calendar.c"
+	$(tc-getCC) ${flags[@]} -c calendar.c || die "failed to compile cal"
+	echo "$(tc-getCC) ${flags[@]} -c easter.c"
+	$(tc-getCC) ${flags[@]} -c easter.c || die "failed to compile cal"
+	echo "$(tc-getCC) ${flags[@]} -c ncal.c"
+	$(tc-getCC) ${flags[@]} -c ncal.c || die "failed to compile cal"
+	echo "$(tc-getCC) ${flags[@]} -o cal calendar.o easter.o ncal.o"
+	$(tc-getCC) ${flags[@]} -o cal calendar.o easter.o ncal.o || die "failed to compile cal"
 
 	TS=${S}/shell_cmds-${SHELL_VER}
 	# only pick those tools not provided by coreutils, findutils
 	for t in \
-		alias apply getopt hostname jot kill killall \
-		lastcomm renice script shlock time whereis;
+		alias apply getopt hostname jot kill \
+		lastcomm renice shlock time whereis;
 	do
 		echo "in ${TS}/${t}:"
 		echo "$(tc-getCC) -o ${t} ${t}.c"
 		cd "${TS}/${t}"
 		$(tc-getCC) -o ${t} ${t}.c || die "failed to compile $t"
+	done
+	# script and killall need additonal flags
+	for t in \
+		killall script
+	do
+		echo "in ${TS}/${t}:"
+		echo "$(tc-getCC) -D__FBSDID=__RCSID -o ${t} ${t}.c"
+		cd "${TS}/${t}"
+		$(tc-getCC) -D__FBSDID=__RCSID -o ${t} ${t}.c || die "failed to compile $t"
 	done
 	cd "${TS}/su"
 	echo "in ${TS}/su:"
@@ -53,21 +84,21 @@ src_compile() {
 	$(tc-getCC) -lpam -o su su.c || die "failed to compile su"
 	cd "${TS}/w"
 	echo "in ${TS}/w:"
-	echo "$(tc-getCC) -DSUCKAGE -lresolv -o w w.c pr_time.c proc_compare.c"
-	$(tc-getCC) -DSUCKAGE -lresolv -o w w.c pr_time.c proc_compare.c \
+	echo "$(tc-getCC) -DHAVE_UTMPX=1 -lresolv -o w w.c pr_time.c proc_compare.c"
+	$(tc-getCC) -DHAVE_UTMPX=1 -lresolv -o w w.c pr_time.c proc_compare.c \
 		|| die "failed to compile w"
 
 	TS=${S}/developer_cmds-${DEV_VER}
 	# only pick those tools that do not conflict (no ctags and indent)
 	# do not install lorder, mkdep and vgrind as they are a non-prefix-aware
 	# shell scripts
-	for t in \
-		asa error hexdump rpcgen unifdef what;
-	do
+	# don't install rpcgen, as it is heavily related to the OS it runs
+	# on (and this is the Leopard version)
+	for t in asa error hexdump unifdef what ; do
 		echo "in ${TS}/${t}:"
-		echo "$(tc-getCC) -o ${t}" *.c
 		cd "${TS}/${t}"
 		sed -i -e '/^__FBSDID/d' *.c
+		echo "$(tc-getCC) -o ${t}" *.c
 		$(tc-getCC) -o ${t} *.c || die "failed to compile $t"
 	done
 }
@@ -77,10 +108,15 @@ src_install() {
 	mkdir -p "${ED}"/usr/bin
 
 	local TS=${S}/misc_cmds-${MISC_VER}
-	for t in cal leave lock units calendar ; do
+	for t in leave units calendar ; do
 		cp "${TS}/${t}/${t}" "${ED}"/usr/bin/
 		doman "${TS}/${t}/${t}.1"
 	done
+	# copy cal separately
+	cp "${TS}/ncal/cal" "${ED}"/usr/bin/
+	dosym /usr/bin/cal /usr/bin/ncal
+	doman "${TS}/ncal/ncal.1"
+	dosym /usr/share/man/man1/ncal.1 /usr/share/man/man1/cal.1
 
 	TS=${S}/shell_cmds-${SHELL_VER}
 	for t in \
@@ -99,9 +135,7 @@ src_install() {
 	done
 
 	TS=${S}/developer_cmds-${DEV_VER}
-	for t in \
-		asa error hexdump rpcgen unifdef what;
-	do
+	for t in asa error hexdump unifdef what ; do
 		cp "${TS}/${t}/${t}" "${ED}"/usr/bin/
 		doman "${TS}/${t}/${t}.1"
 	done
