@@ -33,9 +33,6 @@ move www-misc/libapreq2 www-apache/libapreq2
 move dev-python/mod_python www-apache/mod_python
 move dev-ruby/mod_ruby www-apache/mod_ruby
 move net-proxy/vultureng net-proxy/vulture
-slotmove app-editors/emacs-cvs 22.0.0 23-unicode
-slotmove app-editors/emacs-cvs 23.0.0 23-unicode
-slotmove ~app-editors/emacs-cvs-23.0.0 23 23-unicode
 move games-sports/sturmbahnfahrer games-sports/stormbaancoureur
 slotmove =dev-ruby/capistrano-1.4* 0 1
 slotmove =dev-ruby/capistrano-1.9* 0 2

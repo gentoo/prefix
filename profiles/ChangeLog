@@ -1,6 +1,17 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1055 2008/01/31 23:31:02 stkn Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1059 2008/02/01 18:26:42 ulm Exp $
+
+  01 Feb 2008; Ulrich Mueller <ulm@gentoo.org> use.local.desc:
+  Add local libotf USE flag for app-editors/emacs-cvs.
+
+  01 Feb 2008; Ulrich Mueller <ulm@gentoo.org> updates/3Q-2007,
+  updates/1Q-2008, package.mask:
+  Slotmove for app-editors/emacs-cvs after merge of unicode-2 branch.
+  Mask emacs-cvs-22.1.9999 live ebuild, so users get the real pretest version.
+
+  01 Feb 2008; Rémi Cardona <remi@gentoo.org> package.mask:
+  removing p.mask on latest xf86-video-i810 snapshots
 
   31 Jan 2008; Stefan Knoblich <stkn@gentoo.org> package.mask:
   Remove wanpipe mask, the package has been removed for now.

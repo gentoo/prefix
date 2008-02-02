@@ -3,3 +3,6 @@ move net-analyzer/cacti-cactid net-analyzer/cacti-spine
 slotmove =x11-misc/bubblemon-2.0.8 0 1
 move media-fonts/ezra-sil media-fonts/ttf-sil-ezra
 move dev-lisp/emacs-cl-cvs dev-lisp/emacs-cl
+slotmove app-editors/emacs-cvs 22.0.0 23
+slotmove app-editors/emacs-cvs 23.0.0 23
+slotmove app-editors/emacs-cvs 23-unicode 23

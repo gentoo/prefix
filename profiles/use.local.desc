@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3339 2008/01/31 22:35:28 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3341 2008/02/01 20:11:23 ulm Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -79,6 +79,7 @@ app-doc/gimp-help:webinstall - optimize images for web installation (fewer color
 app-editors/cssed:plugin - Install plugin development files
 app-editors/emacs-cvs:gzip-el - Compress bundled Emacs Lisp source
 app-editors/emacs-cvs:hesiod - Enable support for hesiod
+app-editors/emacs-cvs:libotf - Use libotf for OpenType font support
 app-editors/emacs-cvs:sound - Enable sound
 app-editors/emacs-cvs:toolkit-scroll-bars - Use the selected toolkit's scrollbars in preference to Emacs' own scrollbars
 app-editors/emacs-cvs:xft - Build Emacs with support for the XFT font renderer
