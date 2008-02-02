@@ -1,6 +1,21 @@
 # ChangeLog for media-libs/gstreamer
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.193 2008/01/31 15:16:28 zaheerm Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.197 2008/02/01 19:33:55 opfer Exp $
+
+  01 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  gstreamer-0.10.15.ebuild:
+  revert stable x86
+
+  01 Feb 2008; Brent Baude <ranger@gentoo.org> ChangeLog:
+  Marking gstreamer-0.10.14 ppc64 and ppc stable for bug 208366
+
+  01 Feb 2008; Samuli Suominen <drac@gentoo.org> -gstreamer-0.10.11.ebuild,
+  -gstreamer-0.10.12.ebuild, -gstreamer-0.10.16.ebuild:
+  Remove unused versions.
+
+  01 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  gstreamer-0.10.15.ebuild:
+  stable x86, bug 208366
 
 *gstreamer-0.10.17 (31 Jan 2008)
 
