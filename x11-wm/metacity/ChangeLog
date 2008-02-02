@@ -1,6 +1,13 @@
 # ChangeLog for x11-wm/metacity
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.205 2008/01/09 22:48:58 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.207 2008/02/01 18:36:53 ranger Exp $
+
+  01 Feb 2008; Brent Baude <ranger@gentoo.org> metacity-2.20.2.ebuild:
+  Marking metacity-2.20.2 ppc64 and ppc stable for bug 208366
+
+  01 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  metacity-2.20.2.ebuild:
+  stable x86, bug 208366
 
 *metacity-2.20.2 (09 Jan 2008)
 
