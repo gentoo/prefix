@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/maven-bin
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/ChangeLog,v 1.39 2007/12/18 12:48:09 nelchael Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/ChangeLog,v 1.41 2008/02/01 22:19:36 nelchael Exp $
+
+  01 Feb 2008; Krzysiek Pawlik <nelchael@gentoo.org> maven-bin-2.0.8.ebuild:
+  Stable on ppc, see bug #208512.
+
+  01 Feb 2008; Petteri Räty <betelgeuse@gentoo.org>
+  -maven-bin-2.0.6.ebuild:
+  Remove old version.
 
   18 Dec 2007; Krzysiek Pawlik <nelchael@gentoo.org> maven-bin-2.0.8.ebuild:
   Fix SRC_URI, bug #202678.
