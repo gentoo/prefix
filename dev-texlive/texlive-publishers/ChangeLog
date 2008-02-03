@@ -1,0 +1,34 @@
+# ChangeLog for dev-texlive/texlive-publishers
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-publishers/ChangeLog,v 1.7 2007/12/18 19:52:34 jer Exp $
+
+  18 Dec 2007; Jeroen Roovers <jer@gentoo.org>
+  texlive-publishers-2007.ebuild:
+  Marked ~hppa (bug #195815).
+
+  26 Oct 2007; Ferris McCormick <fmccor@gentoo.org>
+  texlive-publishers-2007.ebuild:
+  Add ~amd64 keyword --- Bug #195815
+
+  25 Oct 2007; Markus Rothe <corsair@gentoo.org>
+  texlive-publishers-2007.ebuild:
+  Added ~ppc64; bug #195815
+
+  25 Oct 2007; Raúl Porcel <armin76@gentoo.org>
+  texlive-publishers-2007.ebuild:
+  Add ~alpha/~ia64 wrt bug #195815
+
+  25 Oct 2007; Ferris McCormick <fmccor@gentoo.org>
+  texlive-publishers-2007.ebuild:
+  Add ~sparc keyword --- Bug #195815
+
+  25 Oct 2007; Christian Faulhammer <opfer@gentoo.org>
+  texlive-publishers-2007.ebuild:
+  keyworded ~x86, bug 195815
+
+*texlive-publishers-2007 (14 Oct 2007)
+
+  14 Oct 2007; Alexis Ballier <aballier@gentoo.org> +metadata.xml,
+  +texlive-publishers-2007.ebuild:
+  initial import
+
