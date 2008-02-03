@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-module.eclass,v 1.21 2008/01/27 20:09:17 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-module.eclass,v 1.22 2008/02/02 12:31:00 hollow Exp $
 
 # @ECLASS: apache-module
 # @MAINTAINER: apache-devs@gentoo.org
@@ -31,26 +31,26 @@ APXS2_S=""
 # Arguments to pass to the apxs tool
 APXS2_ARGS=""
 
-# @ECLASS-VARIABLE: APACHE2_MOD_FILE
-# @DESCRIPTION:
-# Name of the module that src_install installs (minus the .so)
-APACHE2_MOD_FILE=""
-
 # @ECLASS-VARIABLE: APACHE2_MOD_CONF
 # @DESCRIPTION:
 # Configuration file installed by src_install
 APACHE2_MOD_CONF=""
-
-# @ECLASS-VARIABLE: APACHE2_VHOSTFILE
-# @DESCRIPTION:
-# Virtual host configuration file installed by src_install
-APACHE2_VHOSTFILE=""
 
 # @ECLASS-VARIABLE: APACHE2_MOD_DEFINE
 # @DESCRIPTION:
 # Name of define (eg FOO) to use in conditional loading of the installed
 # module/it's config file, multiple defines should be space separated
 APACHE2_MOD_DEFINE=""
+
+# @ECLASS-VARIABLE: APACHE2_MOD_FILE
+# @DESCRIPTION:
+# Name of the module that src_install installs (minus the .so)
+APACHE2_MOD_FILE=""
+
+# @ECLASS-VARIABLE: APACHE2_VHOST_CONF
+# @DESCRIPTION:
+# Virtual host configuration file installed by src_install
+APACHE2_VHOST_CONF=""
 
 # @ECLASS-VARIABLE: DOCFILES
 # @DESCRIPTION:
@@ -145,8 +145,8 @@ apache-module_pkg_setup() {
 
 # @FUNCTION: apache-module_src_compile
 # @DESCRIPTION:
-# The default action is to call ${APXS2} with the value of ${APXS2_ARGS}. If a
-# module requires a different build setup than this, use ${APXS2} in your own
+# The default action is to call ${APXS} with the value of ${APXS2_ARGS}. If a
+# module requires a different build setup than this, use ${APXS} in your own
 # src_compile routine.
 apache-module_src_compile() {
 	debug-print-function $FUNCNAME $*
@@ -154,7 +154,7 @@ apache-module_src_compile() {
 	CD_DIR=$(apache_cd_dir)
 	cd "${CD_DIR}" || die "cd ${CD_DIR} failed"
 	APXS2_ARGS="${APXS2_ARGS:--c ${PN}.c}"
-	${APXS2} ${APXS2_ARGS} || die "${APXS2} ${APXS2_ARGS} failed"
+	${APXS} ${APXS2_ARGS} || die "${APXS} ${APXS2_ARGS} failed"
 }
 
 # @FUNCTION: apache-module_src_install
@@ -174,20 +174,20 @@ apache-module_src_install() {
 
 	MOD_FILE=$(apache_mod_file)
 
-	exeinto "${APACHE2_MODULESDIR}"
+	exeinto "${APACHE_MODULESDIR}"
 	doexe ${MOD_FILE} || die "internal ebuild error: '${MOD_FILE}' not found"
 	[[ -n "${APACHE2_EXECFILES}" ]] && doexe ${APACHE2_EXECFILES}
 
 	if [[ -n "${APACHE2_MOD_CONF}" ]] ; then
-		insinto "${APACHE2_MODULES_CONFDIR}"
+		insinto "${APACHE_MODULES_CONFDIR}"
 		set -- ${APACHE2_MOD_CONF}
 		newins "${FILESDIR}/${1}.conf" "$(basename ${2:-$1}).conf" \
 			|| die "internal ebuild error: '${FILESDIR}/${1}.conf' not found"
 	fi
 
-	if [[ -n "${APACHE2_VHOSTFILE}" ]] ; then
-		insinto "${APACHE2_VHOSTDIR}"
-		set -- ${APACHE2_VHOSTFILE}
+	if [[ -n "${APACHE2_VHOST_CONF}" ]] ; then
+		insinto "${APACHE_VHOSTS_CONFDIR}"
+		set -- ${APACHE2_VHOST_CONF}
 		newins "${FILESDIR}/${1}.conf" "$(basename ${2:-$1}).conf " \
 			|| die "internal ebuild error: '${FILESDIR}/${1}.conf' not found"
 	fi
@@ -222,7 +222,7 @@ apache-module_pkg_postinst() {
 		set -- ${APACHE2_MOD_CONF}
 		einfo
 		einfo "Configuration file installed as"
-		einfo "    ${APACHE2_MODULES_CONFDIR}/$(basename $1).conf"
+		einfo "    ${APACHE_MODULES_CONFDIR}/$(basename $1).conf"
 		einfo "You may want to edit it before turning the module on in /etc/conf.d/apache2"
 		einfo
 	fi

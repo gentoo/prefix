@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.7 2008/01/19 10:59:08 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.8 2008/02/02 10:10:36 hollow Exp $
 
 # @ECLASS: apache-2
 # @MAINTAINER: apache-devs@gentoo.org
@@ -10,7 +10,7 @@
 # information about where certain interfaces are located such as LoadModule
 # generation and inter-module dependency checking.
 
-inherit depend.apache eutils flag-o-matic multilib autotools
+inherit autotools eutils flag-o-matic multilib
 
 # ==============================================================================
 # INTERNAL VARIABLES
@@ -194,12 +194,12 @@ check_module_depends() {
 }
 
 # @ECLASS-VARIABLE: MY_CONF
-# DESCRIPTION:
+# @DESCRIPTION:
 # This internal variable contains the econf options for the current module
 # selection after a call to setup_modules()
 
 # @ECLASS-VARIABLE: MY_MODS
-# DESCRIPTION:
+# @DESCRIPTION:
 # This internal variable contains a sorted, space separated list of currently
 # selected modules after a call to setup_modules()
 
@@ -302,7 +302,7 @@ setup_modules() {
 # This internal function generates the LoadModule lines for httpd.conf based on
 # the current module selection and MODULE_DEFINES
 generate_load_module() {
-	local endit=0 mod_lines= mod_dir="${D}${APACHE2_MODULESDIR}"
+	local endit=0 mod_lines= mod_dir="${ED}/usr/$(get_libdir)/apache2/modules"
 
 	if use static; then
 		sed -i -e "/%%LOAD_MODULE%%/d" \
