@@ -30,7 +30,6 @@ src_unpack() {
 	sed -i '/include[ \t]*["<]config\.h[>"]/a#include <ctype.h>' system.h 
 	epatch "${FILESDIR}"/${P}-dir-entry.patch #198545
 	epatch "${FILESDIR}"/${P}-prefix.patch
-	eprefixify util/texi2{dvi,pdf}
 	epatch "${FILESDIR}"/${P}-high-precision.patch #200662
 	epatch "${FILESDIR}"/${P}-aix.patch
 
