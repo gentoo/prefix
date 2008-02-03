@@ -1,0 +1,97 @@
+# ChangeLog for net-misc/gsasl
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/gsasl/ChangeLog,v 1.25 2007/09/30 14:16:26 ticho Exp $
+
+*gsasl-0.2.21 (30 Sep 2007)
+
+  30 Sep 2007; Andrej Kacian <ticho@gentoo.org> +gsasl-0.2.21.ebuild:
+  Version bump.
+
+  08 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
+
+  14 Jan 2006; Fabian Groffen <grobian@gentoo.org> gsasl-0.2.10.ebuild:
+  Marked ~ppc-macos (bug #111381)
+
+*gsasl-0.2.10 (02 Jan 2006)
+
+  02 Jan 2006; Tom Martin <slarti@gentoo.org> +gsasl-0.2.10.ebuild:
+  Version bump, resolves bug #117318.
+
+  02 Oct 2005; Aron Griffis <agriffis@gentoo.org> gsasl-0.2.4.ebuild:
+  Mark 0.2.4 stable on ia64
+
+  05 Jul 2005; Tom Martin <slarti@gentoo.org> gsasl-0.2.4.ebuild:
+  Marked ~ia64.
+
+  02 May 2005; Michael Hanselmann <hansmi@gentoo.org> gsasl-0.2.4.ebuild:
+  Stable on ppc.
+
+  02 May 2005; Elfyn McBratney <beu@gentoo.org> gsasl-0.2.4.ebuild:
+  Stable on x86.
+
+  02 May 2005; Tom Martin <slarti@gentoo.org> gsasl-0.2.4.ebuild:
+  Fix a typing error, preventing the ebuild from installing anything but docs.
+
+  19 Apr 2005; Tom Martin <slarti@gentoo.org> gsasl-0.2.4.ebuild:
+  Stable on amd64 and sparc.
+
+  10 Mar 2005; Tom Martin <slarti@gentoo.org> gsasl-0.2.4.ebuild:
+  Marked ~sparc.
+
+  22 Jan 2005; Tom Martin <slarti@gentoo.org> -gsasl-0.1.1.ebuild,
+  -gsasl-0.1.4.ebuild, -gsasl-0.2.0.ebuild:
+  Purge old versions.
+
+  22 Jan 2005; Andrej Kacian <ticho@gentoo.org> gsasl-0.2.3.ebuild:
+  Stable on x86.
+
+  22 Jan 2005; Lars Weiler <pylon@gentoo.org> gsasl-0.2.3.ebuild:
+  Stable on ppc.
+
+*gsasl-0.2.4 (22 Jan 2005)
+
+  22 Jan 2005; Tom Martin <slarti@gentoo.org> gsasl-0.2.3.ebuild,
+  +gsasl-0.2.4.ebuild:
+  Version bump, 0.2.3 stable on amd64.
+
+  25 Dec 2004; Andrej Kacian <ticho@gentoo.org> gsasl-0.2.0.ebuild:
+  Stable on x86.
+
+*gsasl-0.2.3 (25 Dec 2004)
+
+  25 Dec 2004; Tom Martin <slarti@gentoo.org> gsasl-0.2.0.ebuild,
+  +gsasl-0.2.3.ebuild:
+  Version bump, stabilise 0.2.0 on amd64.
+
+  13 Nov 2004; Tom Martin <slarti@gentoo.org> gsasl-0.2.0.ebuild:
+  I'd left gssapi out of use_enable kerberos, adding it back in.
+
+*gsasl-0.2.0 (13 Nov 2004)
+
+  13 Nov 2004; Tom Martin <slarti@gentoo.org> +gsasl-0.2.0.ebuild,
+  gsasl-0.1.4.ebuild,  metadata.xml:
+  Version bump to 0.2.0; Removed unnecessary variables (myconf,
+  UPST_SRC); added doc USE flag to install extra API documentation. Taking
+  over as maintainer. Stabilised 0.1.4 on amd64.
+
+*gsasl-0.1.4 (11 Oct 2004)
+
+  11 Oct 2004; Tom Martin <slarti@gentoo.org> gsasl-0.1.1.ebuild,
+  +gsasl-0.1.4.ebuild:
+  Marked 0.1.1 stable on amd64, version bumped -> 0.1.4.
+
+  09 Jul 2004; Michael Hanselmann <hansmi@gentoo.org> gsasl-0.1.1.ebuild:
+  Added to ~ppc.
+
+  07 Jul 2004; Tom Martin <slarti@gentoo.org> gsasl-0.1.1.ebuild:
+  Added to ~amd64.
+
+  06 Jul 2004; <langthang@gentoo.org> gsasl-0.1.1.ebuild:
+  added PROVIDE virtual/gsasl, changed description, re-keyword.
+
+*gsasl-0.1.1 (05 Jul 2004)
+
+  05 Jul 2004; <langthang@gentoo.org> +metadata.xml, +gsasl-0.1.1.ebuild:
+  New ebuild, bug #56015
+
