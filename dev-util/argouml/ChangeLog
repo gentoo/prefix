@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/argouml
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/argouml/ChangeLog,v 1.20 2008/01/28 23:04:48 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/argouml/ChangeLog,v 1.21 2008/02/02 17:10:07 caster Exp $
+
+  02 Feb 2008; Vlastimil Babka <caster@gentoo.org>
+  -argouml-0.18.1-r1.ebuild, -argouml-0.19.6.ebuild:
+  Remove gen-1 versions.
 
 *argouml-0.24 (28 Jan 2008)
 
