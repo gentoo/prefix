@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.231 2008/01/30 20:36:59 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.232 2008/02/02 21:08:12 ulm Exp $
+
+  02 Feb 2008; Ulrich Mueller <ulm@gentoo.org> emacs-18.59-r4.ebuild,
+  emacs-21.4-r14.ebuild, emacs-22.1-r3.ebuild:
+  Change to new syntax of eselect-emacs and update dependency. Remove empty
+  Info directory after unmerge.
 
   30 Jan 2008; Ulrich Mueller <ulm@gentoo.org>
   -files/emacs-22.1-disable_alsa_detection.patch, emacs-21.4-r14.ebuild,

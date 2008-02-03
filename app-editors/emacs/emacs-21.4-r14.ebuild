@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r14.ebuild,v 1.13 2008/01/30 20:36:59 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r14.ebuild,v 1.14 2008/02/02 21:08:12 ulm Exp $
 
 EAPI="prefix"
 
@@ -35,7 +35,7 @@ RDEPEND="sys-libs/ncurses
 		!Xaw3d? ( motif? ( virtual/motif ) )
 	)
 	sendmail? ( virtual/mta )
-	>=app-admin/eselect-emacs-0.7-r1"
+	>=app-admin/eselect-emacs-1.2"
 
 DEPEND="${RDEPEND}
 	X? ( x11-misc/xbitmaps )"
@@ -159,6 +159,7 @@ emacs-infodir-rebuild() {
 		[[ ${f##*/} == *[0-9].info* ]] \
 			|| install-info --info-dir="${EROOT}"${infodir} "${f}" &>/dev/null
 	done
+	rmdir "${EROOT}"${infodir} 2>/dev/null # remove dir if it is empty
 	echo
 }
 
@@ -172,7 +173,7 @@ pkg_postinst() {
 		# transition from pre-eselect revision
 		eselect emacs set emacs-${SLOT}
 	else
-		eselect emacs update --if-unset
+		eselect emacs update ifunset
 	fi
 
 	if ! use sendmail && ! has_version "virtual/mta"; then
@@ -190,5 +191,5 @@ pkg_postinst() {
 
 pkg_postrm() {
 	emacs-infodir-rebuild
-	eselect emacs update --if-unset
+	eselect emacs update ifunset
 }
