@@ -1,6 +1,14 @@
 # ChangeLog for dev-java/maven-bin
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/ChangeLog,v 1.41 2008/02/01 22:19:36 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/ChangeLog,v 1.43 2008/02/02 08:42:36 opfer Exp $
+
+  02 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  maven-bin-1.0.2.ebuild:
+  quote variable and die message
+
+  02 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  maven-bin-2.0.8.ebuild:
+  x86 stable, bug #208512
 
   01 Feb 2008; Krzysiek Pawlik <nelchael@gentoo.org> maven-bin-2.0.8.ebuild:
   Stable on ppc, see bug #208512.
