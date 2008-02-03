@@ -20,7 +20,6 @@ S=${WORKDIR}
 src_install() {
 	exeinto /usr/$(get_libdir)/misc
 	newexe "${FILESDIR}"/am-wrapper-${PV}.sh am-wrapper.sh || die
-	dosed "1s|/bin/bash|${EPREFIX}/bin/bash|" /usr/$(get_libdir)/misc/am-wrapper.sh
 
 	keepdir /usr/share/aclocal
 
