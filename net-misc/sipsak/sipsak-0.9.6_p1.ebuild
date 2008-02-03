@@ -25,7 +25,7 @@ S="${WORKDIR}/${P/_p1/}"
 src_compile() {
 	econf $(use_enable gnutls) || die 'configure failed'
 	# On Darwin this breaks compilation with undefined symbols
-	sed -i -e 's/-fstack-protector//' Makefile
+	[[ ${CHOST} == *-darwin* ]] && sed -i -e 's/-fstack-protector//' Makefile
 	emake || die 'make failed'
 }
 
