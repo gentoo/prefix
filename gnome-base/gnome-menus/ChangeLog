@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/gnome-menus
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/ChangeLog,v 1.100 2008/02/01 18:50:18 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/ChangeLog,v 1.101 2008/02/02 15:45:03 wolf31o2 Exp $
+
+  02 Feb 2008; Chris Gianelloni <wolf31o2@gentoo.org>
+  gnome-menus-2.20.3.ebuild:
+  Stable on amd64 wrt bug #208366.
 
   01 Feb 2008; Brent Baude <ranger@gentoo.org> gnome-menus-2.20.3.ebuild:
   Marking gnome-menus-2.20.3 ppc64 and ppc stable for bug 208366
