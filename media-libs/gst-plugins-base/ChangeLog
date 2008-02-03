@@ -1,13 +1,15 @@
 # ChangeLog for media-libs/gst-plugins-base
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/ChangeLog,v 1.74 2008/02/01 19:57:08 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/ChangeLog,v 1.75 2008/02/02 13:50:32 drac Exp $
+
+  02 Feb 2008; Samuli Suominen <drac@gentoo.org>
+  -files/gst-plugins-base-0.10.15-netinet.patch,
+  -gst-plugins-base-0.10.15.ebuild:
+  Remove unused version.
 
   01 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
   gst-plugins-base-0.10.15.ebuild:
   revert stable x86
-
-  01 Feb 2008; Brent Baude <ranger@gentoo.org> ChangeLog:
-  Marking gst-plugins-base-0.10.14 ppc64 and ppc stable for bug 208366
 
   01 Feb 2008; Samuli Suominen <drac@gentoo.org>
   -files/gst-plugins-base-0.10.4-typefindfunctions-m4v-NULL-terminator.diff,
