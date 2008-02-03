@@ -20,7 +20,6 @@ S=${WORKDIR}
 src_install() {
 	exeinto /usr/$(get_libdir)/misc
 	newexe "${FILESDIR}"/ac-wrapper-${PV}.sh ac-wrapper.sh || die
-	dosed "1s|/bin/bash|${EPREFIX}/bin/bash|" /usr/$(get_libdir)/misc/ac-wrapper.sh
 
 	dodir /usr/bin
 	local x=
