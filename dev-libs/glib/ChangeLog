@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.301 2008/02/01 18:32:43 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.302 2008/02/02 15:34:54 wolf31o2 Exp $
+
+  02 Feb 2008; Chris Gianelloni <wolf31o2@gentoo.org> glib-2.14.5.ebuild:
+  Stable on amd64 wrt bug #208366.
 
   01 Feb 2008; Brent Baude <ranger@gentoo.org> glib-2.14.5.ebuild:
   Marking glib-2.14.5 ppc64 and ppc stable for bug 208366
