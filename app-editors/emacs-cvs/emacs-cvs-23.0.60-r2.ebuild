@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.60-r2.ebuild,v 1.2 2008/02/01 18:54:09 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.60-r2.ebuild,v 1.4 2008/02/02 14:18:11 ulm Exp $
 
 EAPI="prefix"
 
@@ -49,6 +49,7 @@ RDEPEND="sys-libs/ncurses
 		xpm? ( x11-libs/libXpm )
 		xft? (
 			media-libs/fontconfig
+			media-libs/freetype
 			virtual/xft
 			libotf? ( >=dev-libs/libotf-0.9.4 )
 		)
@@ -132,8 +133,12 @@ src_compile() {
 		myconf="${myconf} --with-x"
 		myconf="${myconf} $(use_with toolkit-scroll-bars)"
 		myconf="${myconf} $(use_enable xft font-backend)"
-		myconf="${myconf} $(use_with xft freetype)"
-		myconf="${myconf} $(use_with xft) $(use_with libotf)"
+		myconf="${myconf} $(use_with xft freetype) $(use_with xft)"
+		if use xft && use libotf; then
+			myconf="${myconf} --with-libotf"
+		else
+			myconf="${myconf} --without-libotf"
+		fi
 		myconf="${myconf} $(use_with jpeg) $(use_with tiff)"
 		myconf="${myconf} $(use_with gif) $(use_with png)"
 		myconf="${myconf} $(use_with xpm) $(use_with svg rsvg)"
@@ -259,6 +264,7 @@ emacs-infodir-rebuild() {
 		[[ ${f##*/} == *[0-9].info* ]] \
 			|| install-info --info-dir="${EROOT}"${infodir} "${f}" &>/dev/null
 	done
+	rmdir "${EROOT}"${infodir} 2>/dev/null # remove dir if it is empty
 	echo
 }
 
