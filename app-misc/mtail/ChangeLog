@@ -1,0 +1,51 @@
+# ChangeLog for app-misc/mtail
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mtail/ChangeLog,v 1.15 2007/12/25 15:39:31 phreak Exp $
+
+  25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing taviso from metadata.xml as per #202471.
+
+  08 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
+
+  05 Jun 2005; Michael Hanselmann <hansmi@gentoo.org> mtail-1.1.1-r1.ebuild:
+  Stable on ppc.
+
+  10 May 2005; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  mtail-1.1.1-r1.ebuild:
+  mark ~ppc
+
+  27 Dec 2004; <gongloo@gentoo.org> mtail-1.1.1-r1.ebuild:
+  Added ~ppc-macos.
+
+  28 Jun 2004; Ciaran McCreesh <ciaranm@gentoo.org> mtail-1.1.1-r1.ebuild:
+  Stable on mips
+
+  17 Apr 2004; Tavis Ormandy <taviso@gentoo.org> mtail-1.1.1-r1.ebuild:
+  missing IUSE variable.
+
+  16 Feb 2004; Ciaran McCreesh <ciaranm@gentoo.org> mtail-1.1.1-r1.ebuild:
+  Added in ~mips
+
+*mtail-1.1.1-r1 (11 Jan 2004)
+
+  11 Jan 2004; Tavis Ormandy <taviso@gentoo.org> mtail-1.1.1-r1.ebuild:
+  ciaran's patch is awesome, marking stable.
+
+  26 Dec 2003; Tavis Ormandy <taviso@gentoo.org>
+  files/mtail-1.1.1-remove-blanks.patch:
+  Added an additional example rc file.
+  Applying a patch from ciaranm@gentoo.org to strip blank lines.
+
+  24 Oct 2003; Sven Blumenstein <bazik@gentoo.org> mtail-1.1.1.ebuild:
+  Added sparc keyword (#31905)
+
+  17 Sep 2003; Tavis Ormandy <taviso@gentoo.org> mtail-1.1.1.ebuild:
+  stable
+
+*mtail-1.1.1 (07 Jul 2003)
+
+  07 Jul 2003; Tavis Ormandy <taviso@gentoo.org> metadata.xml,
+  mtail-1.1.1.ebuild:
+  initial import
+
