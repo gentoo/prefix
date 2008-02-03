@@ -1,0 +1,1715 @@
+diff -Nurp axel-1.0b/axel.c axel-1.0b-r1/axel.c
+--- axel-1.0b/axel.c	2002-05-03 14:45:11.000000000 +0200
++++ axel-1.0b-r1/axel.c	2007-08-05 23:03:30.000000000 +0200
+@@ -41,7 +41,7 @@ axel_t *axel_new( conf_t *conf, int coun
+ 	url_t *u;
+ 	char *s;
+ 	int i;
+-	
++
+ 	axel = malloc( sizeof( axel_t ) );
+ 	memset( axel, 0, sizeof( axel_t ) );
+ 	*axel->conf = *conf;
+@@ -59,12 +59,13 @@ axel_t *axel_new( conf_t *conf, int coun
+ 	}
+ 	if( buffer == NULL )
+ 		buffer = malloc( max( MAX_STRING, axel->conf->buffer_size ) );
+-	
++
+ 	if( count == 0 )
+ 	{
+ 		axel->url = malloc( sizeof( url_t ) );
+ 		axel->url->next = axel->url;
+-		strcpy( axel->url->text, (char *) url );
++		strncpy( axel->url->text, (char *) url, MAX_STRING - 1);
++		axel->url->text[MAX_STRING - 1] = '\0';
+ 	}
+ 	else
+ 	{
+@@ -72,7 +73,8 @@ axel_t *axel_new( conf_t *conf, int coun
+ 		u = axel->url = malloc( sizeof( url_t ) );
+ 		for( i = 0; i < count; i ++ )
+ 		{
+-			strcpy( u->text, res[i].url );
++			strncpy( u->text, res[i].url, MAX_STRING - 1);
++			u->text[MAX_STRING - 1] = '\0';
+ 			if( i < count - 1 )
+ 			{
+ 				u->next = malloc( sizeof( url_t ) );
+@@ -84,7 +86,7 @@ axel_t *axel_new( conf_t *conf, int coun
+ 			}
+ 		}
+ 	}
+-	
++
+ 	axel->conn[0].conf = axel->conf;
+ 	if( !conn_set( &axel->conn[0], axel->url->text ) )
+ 	{
+@@ -95,21 +97,22 @@ axel_t *axel_new( conf_t *conf, int coun
+ 
+ 	axel->conn[0].local_if = axel->conf->interfaces->text;
+ 	axel->conf->interfaces = axel->conf->interfaces->next;
+-	
+-	strcpy( axel->filename, axel->conn[0].file );
++
++	strncpy( axel->filename, axel->conn[0].file, MAX_STRING - 1 );
++	axel->filename[MAX_STRING - 1] = '\0';
+ 	http_decode( axel->filename );
+ 	if( *axel->filename == 0 )	/* Index page == no fn		*/
+ 		strcpy( axel->filename, axel->conf->default_filename );
+ 	if( ( s = strchr( axel->filename, '?' ) ) != NULL && axel->conf->strip_cgi_parameters )
+ 		*s = 0;		/* Get rid of CGI parameters		*/
+-	
++
+ 	if( !conn_init( &axel->conn[0] ) )
+ 	{
+ 		axel_message( axel, axel->conn[0].message );
+ 		axel->ready = -1;
+ 		return( axel );
+ 	}
+-	
++
+ 	/* This does more than just checking the file size, it all depends
+ 	   on the protocol used.					*/
+ 	if( !conn_info( &axel->conn[0] ) )
+@@ -119,17 +122,20 @@ axel_t *axel_new( conf_t *conf, int coun
+ 		return( axel );
+ 	}
+ 	s = conn_url( axel->conn );
+-	strcpy( axel->url->text, s );
++	strncpy( axel->url->text, s, MAX_STRING - 1);
++	axel->url->text[MAX_STRING - 1] = '\0';
+ 	if( ( axel->size = axel->conn[0].size ) != INT_MAX )
+ 	{
+ 		if( axel->conf->verbose > 0 )
+ 			axel_message( axel, _("File size: %i bytes"), axel->size );
+ 	}
+-	
++
+ 	/* Wildcards in URL --> Get complete filename			*/
+ 	if( strchr( axel->filename, '*' ) || strchr( axel->filename, '?' ) )
+-		strcpy( axel->filename, axel->conn[0].file );
+-	
++	{
++	  strncpy( axel->filename, axel->conn[0].file, MAX_STRING - 1 );
++	  axel->filename[MAX_STRING - 1] = '\0';
++	}
+ 	return( axel );
+ }
+ 
+@@ -137,13 +143,13 @@ axel_t *axel_new( conf_t *conf, int coun
+ int axel_open( axel_t *axel )
+ {
+ 	int i, fd;
+-	
++
+ 	if( axel->conf->verbose > 0 )
+ 		axel_message( axel, _("Opening output file %s"), axel->filename );
+ 	snprintf( buffer, MAX_STRING, "%s.st", axel->filename );
+-	
++
+ 	axel->outfd = -1;
+-	
++
+ 	/* Check whether server knows about RESTart and switch back to
+ 	   single connection download if necessary			*/
+ 	if( !axel->conn[0].supported )
+@@ -157,21 +163,21 @@ int axel_open( axel_t *axel )
+ 	else if( ( fd = open( buffer, O_RDONLY ) ) != -1 )
+ 	{
+ 		read( fd, &axel->conf->num_connections, sizeof( axel->conf->num_connections ) );
+-		
++
+ 		axel->conn = realloc( axel->conn, sizeof( conn_t ) * axel->conf->num_connections );
+ 		memset( axel->conn + 1, 0, sizeof( conn_t ) * ( axel->conf->num_connections - 1 ) );
+ 
+ 		axel_divide( axel );
+-		
++
+ 		read( fd, &axel->bytes_done, sizeof( axel->bytes_done ) );
+ 		for( i = 0; i < axel->conf->num_connections; i ++ )
+ 			read( fd, &axel->conn[i].currentbyte, sizeof( axel->conn[i].currentbyte ) );
+ 
+ 		axel_message( axel, _("State file found: %i bytes downloaded, %i to go."),
+ 			axel->bytes_done, axel->size - axel->bytes_done );
+-		
++
+ 		close( fd );
+-		
++
+ 		if( ( axel->outfd = open( axel->filename, O_WRONLY, 0666 ) ) == -1 )
+ 		{
+ 			axel_message( axel, _("Error opening local file") );
+@@ -183,13 +189,13 @@ int axel_open( axel_t *axel )
+ 	if( axel->outfd == -1 )
+ 	{
+ 		axel_divide( axel );
+-		
++
+ 		if( ( axel->outfd = open( axel->filename, O_CREAT | O_WRONLY, 0666 ) ) == -1 )
+ 		{
+ 			axel_message( axel, _("Error opening local file") );
+ 			return( 0 );
+ 		}
+-		
++
+ 		/* And check whether the filesystem can handle seeks to
+ 		   past-EOF areas.. Speeds things up. :) AFAIK this
+ 		   should just not happen:				*/
+@@ -209,7 +215,7 @@ int axel_open( axel_t *axel )
+ 			}
+ 		}
+ 	}
+-	
++
+ 	return( 1 );
+ }
+ 
+@@ -217,7 +223,7 @@ int axel_open( axel_t *axel )
+ void axel_start( axel_t *axel )
+ {
+ 	int i;
+-	
++
+ 	/* HTTP might've redirected and FTP handles wildcards, so
+ 	   re-scan the URL for every conn				*/
+ 	for( i = 0; i < axel->conf->num_connections; i ++ )
+@@ -229,10 +235,10 @@ void axel_start( axel_t *axel )
+ 		axel->conn[i].conf = axel->conf;
+ 		if( i ) axel->conn[i].supported = 1;
+ 	}
+-	
++
+ 	if( axel->conf->verbose > 0 )
+ 		axel_message( axel, _("Starting download") );
+-	
++
+ 	for( i = 0; i < axel->conf->num_connections; i ++ )
+ 	if( axel->conn[i].currentbyte <= axel->conn[i].lastbyte )
+ 	{
+@@ -250,7 +256,7 @@ void axel_start( axel_t *axel )
+ 			axel->conn[i].state = 1;
+ 		}
+ 	}
+-	
++
+ 	/* The real downloading will start now, so let's start counting	*/
+ 	axel->start_time = gettime();
+ 	axel->ready = 0;
+@@ -262,14 +268,14 @@ void axel_do( axel_t *axel )
+ 	fd_set fds[1];
+ 	int hifd, i, j, size;
+ 	struct timeval timeval[1];
+-	
++
+ 	/* Create statefile if necessary				*/
+ 	if( gettime() > axel->next_state )
+ 	{
+ 		save_state( axel );
+ 		axel->next_state = gettime() + axel->conf->save_state_interval;
+ 	}
+-	
++
+ 	/* Wait for data on (one of) the connections			*/
+ 	FD_ZERO( fds );
+ 	hifd = 0;
+@@ -297,7 +303,7 @@ void axel_do( axel_t *axel )
+ 			return;
+ 		}
+ 	}
+-	
++
+ 	/* Handle connections which need attention			*/
+ 	for( i = 0; i < axel->conf->num_connections; i ++ )
+ 	if( axel->conn[i].enabled ) {
+@@ -355,7 +361,7 @@ void axel_do( axel_t *axel )
+ 		lseek( axel->outfd, axel->conn[i].currentbyte, SEEK_SET );
+ 		if( write( axel->outfd, buffer, size ) != size )
+ 		{
+-			
++
+ 			axel_message( axel, _("Write error!") );
+ 			axel->ready = -1;
+ 			return;
+@@ -373,10 +379,10 @@ void axel_do( axel_t *axel )
+ 			axel->conn[i].enabled = 0;
+ 		}
+ 	} }
+-	
++
+ 	if( axel->ready )
+ 		return;
+-	
++
+ conn_check:
+ 	/* Look for aborted connections and attempt to restart them.	*/
+ 	for( i = 0; i < axel->conf->num_connections; i ++ )
+@@ -430,7 +436,7 @@ conn_check:
+ 			axel->delay_time = 0;
+ 		usleep( axel->delay_time );
+ 	}
+-	
++
+ 	/* Ready?							*/
+ 	if( axel->bytes_done == axel->size )
+ 		axel->ready = 1;
+@@ -441,11 +447,12 @@ void axel_close( axel_t *axel )
+ {
+ 	int i;
+ 	message_t *m;
+-	
++
+ 	/* Terminate any thread still running				*/
+ 	for( i = 0; i < axel->conf->num_connections; i ++ )
+-		pthread_cancel( *axel->conn[i].setup_thread );
+-	
++	  if (*axel->conn[i].setup_thread)
++	    pthread_cancel( *axel->conn[i].setup_thread );
++
+ 	/* Delete state file if necessary				*/
+ 	if( axel->ready == 1 )
+ 	{
+@@ -465,7 +472,7 @@ void axel_close( axel_t *axel )
+ 		axel->message = axel->message->next;
+ 		free( m );
+ 	}
+-	
++
+ 	/* Close all connections and local file				*/
+ 	close( axel->outfd );
+ 	for( i = 0; i < axel->conf->num_connections; i ++ )
+@@ -479,7 +486,7 @@ void axel_close( axel_t *axel )
+ double gettime()
+ {
+ 	struct timeval time[1];
+-	
++
+ 	gettimeofday( time, 0 );
+ 	return( (double) time->tv_sec + (double) time->tv_usec / 1000000 );
+ }
+@@ -494,7 +501,7 @@ void save_state( axel_t *axel )
+ 	   resuming anyway..						*/
+ 	if( !axel->conn[0].supported )
+ 		return;
+-	
++
+ 	snprintf( fn, MAX_STRING, "%s.st", axel->filename );
+ 	if( ( fd = open( fn, O_CREAT | O_TRUNC | O_WRONLY, 0666 ) ) == -1 )
+ 	{
+@@ -514,11 +521,11 @@ void *setup_thread( void *c )
+ {
+ 	conn_t *conn = c;
+ 	int oldstate;
+-	
++
+ 	/* Allow this thread to be killed at any time.			*/
+ 	pthread_setcancelstate( PTHREAD_CANCEL_ENABLE, &oldstate );
+ 	pthread_setcanceltype( PTHREAD_CANCEL_ASYNCHRONOUS, &oldstate );
+-	
++
+ 	if( conn_setup( conn ) )
+ 	{
+ 		conn->last_transfer = gettime();
+@@ -530,7 +537,7 @@ void *setup_thread( void *c )
+ 			return( NULL );
+ 		}
+ 	}
+-	
++
+ 	conn_disconnect( conn );
+ 	conn->state = 0;
+ 	return( NULL );
+@@ -541,12 +548,12 @@ static void axel_message( axel_t *axel, 
+ {
+ 	message_t *m = malloc( sizeof( message_t ) ), *n = axel->message;
+ 	va_list params;
+-	
++
+ 	memset( m, 0, sizeof( message_t ) );
+ 	va_start( params, format );
+ 	vsnprintf( m->text, MAX_STRING, format, params );
+ 	va_end( params );
+-	
++
+ 	if( axel->message == NULL )
+ 	{
+ 		axel->message = m;
+@@ -563,7 +570,7 @@ static void axel_message( axel_t *axel, 
+ static void axel_divide( axel_t *axel )
+ {
+ 	int i;
+-	
++
+ 	axel->conn[0].currentbyte = 0;
+ 	axel->conn[0].lastbyte = axel->size / axel->conf->num_connections - 1;
+ 	for( i = 1; i < axel->conf->num_connections; i ++ )
+diff -Nurp axel-1.0b/conf.c axel-1.0b-r1/conf.c
+--- axel-1.0b/conf.c	2002-02-19 19:10:37.000000000 +0100
++++ axel-1.0b-r1/conf.c	2007-08-05 22:49:21.000000000 +0200
+@@ -30,7 +30,8 @@
+ 	if( strcmp( key, #name ) == 0 )				\
+ 	{							\
+ 		st = 1;						\
+-		strcpy( conf->name, value );			\
++		strncpy( conf->name, value, MAX_STRING -1 );	\
++                conf->name[MAX_STRING - 1] = '\0';              \
+ 	}
+ #define get_config_number( name )				\
+ 	if( strcmp( key, #name ) == 0 )				\
+@@ -38,7 +39,7 @@
+ 		st = 1;						\
+ 		sscanf( value, "%i", &conf->name );		\
+ 	}
+-	
++
+ int parse_interfaces( conf_t *conf, char *s );
+ 
+ int conf_loadfile( conf_t *conf, char *file )
+@@ -46,17 +47,17 @@ int conf_loadfile( conf_t *conf, char *f
+ 	int i, line = 0;
+ 	FILE *fp;
+ 	char s[MAX_STRING], key[MAX_STRING], value[MAX_STRING];
+-	
++
+ 	fp = fopen( file, "r" );
+ 	if( fp == NULL )
+ 		return( 1 );			/* Not a real failure	*/
+-	
++
+ 	while( !feof( fp ) )
+ 	{
+ 		int st;
+-		
++
+ 		line ++;
+-		
++
+ 		*s = 0;
+ 		fscanf( fp, "%100[^\n#]s", s );
+ 		fscanf( fp, "%*[^\n]s" );
+@@ -70,12 +71,13 @@ int conf_loadfile( conf_t *conf, char *f
+ 				for( i ++; isspace( (int) s[i] ) && s[i]; i ++ );
+ 				break;
+ 			}
+-		strcpy( value, &s[i] );
++		strncpy( value, &s[i], MAX_STRING - 1);
++		value[MAX_STRING - 1] = '\0';
+ 		for( i = strlen( value ) - 1; isspace( (int) value[i] ); i -- )
+ 			value[i] = 0;
+-		
++
+ 		st = 0;
+-		
++
+ 		/* Long live macros!!					*/
+ 		get_config_string( default_filename );
+ 		get_config_string( http_proxy );
+@@ -89,26 +91,26 @@ int conf_loadfile( conf_t *conf, char *f
+ 		get_config_number( max_speed );
+ 		get_config_number( verbose );
+ 		get_config_number( alternate_output );
+-		
++
+ 		get_config_number( search_timeout );
+ 		get_config_number( search_threads );
+ 		get_config_number( search_amount );
+ 		get_config_number( search_top );
+-		
++
+ 		/* Option defunct but shouldn't be an error		*/
+ 		if( strcmp( key, "speed_type" ) == 0 )
+ 			st = 1;
+-		
++
+ 		if( strcmp( key, "interfaces" ) == 0 )
+ 			st = parse_interfaces( conf, value );
+-		
++
+ 		if( !st )
+ 		{
+ 			fprintf( stderr, _("Error in %s line %i.\n"), file, line );
+ 			return( 0 );
+ 		}
+ 	}
+-	
++
+ 	fclose( fp );
+ 	return( 1 );
+ }
+@@ -117,7 +119,7 @@ int conf_init( conf_t *conf )
+ {
+ 	char s[MAX_STRING], *s2;
+ 	int i;
+-	
++
+ 	/* Set defaults							*/
+ 	memset( conf, 0, sizeof( conf_t ) );
+ 	strcpy( conf->default_filename, "default" );
+@@ -132,35 +134,38 @@ int conf_init( conf_t *conf )
+ 	conf->max_speed			= 0;
+ 	conf->verbose			= 1;
+ 	conf->alternate_output		= 0;
+-	
++
+ 	conf->search_timeout		= 10;
+ 	conf->search_threads		= 3;
+ 	conf->search_amount		= 15;
+ 	conf->search_top		= 3;
+-	
++
+ 	conf->interfaces = malloc( sizeof( if_t ) );
+ 	memset( conf->interfaces, 0, sizeof( if_t ) );
+ 	conf->interfaces->next = conf->interfaces;
+-	
++
+ 	if( ( s2 = getenv( "HTTP_PROXY" ) ) != NULL )
+-		strncpy( conf->http_proxy, s2, MAX_STRING );
+-	
++	{
++	  strncpy( conf->http_proxy, s2, MAX_STRING - 1);
++	  conf->http_proxy[MAX_STRING - 1] = '\0';
++	}
++
+ 	if( !conf_loadfile( conf, ETCDIR "/axelrc" ) )
+ 		return( 0 );
+-	
++
+ 	if( ( s2 = getenv( "HOME" ) ) != NULL )
+ 	{
+ 		sprintf( s, "%s/%s", s2, ".axelrc" );
+ 		if( !conf_loadfile( conf, s ) )
+ 			return( 0 );
+ 	}
+-	
++
+ 	/* Convert no_proxy to a 0-separated-and-00-terminated list..	*/
+ 	for( i = 0; conf->no_proxy[i]; i ++ )
+ 		if( conf->no_proxy[i] == ',' )
+ 			conf->no_proxy[i] = 0;
+ 	conf->no_proxy[i+1] = 0;
+-	
++
+ 	return( 1 );
+ }
+ 
+@@ -168,18 +173,18 @@ int parse_interfaces( conf_t *conf, char
+ {
+ 	char *s2;
+ 	if_t *iface;
+-	
++
+ 	iface = conf->interfaces->next;
+ 	while( iface != conf->interfaces )
+ 	{
+ 		if_t *i;
+-		
++
+ 		i = iface->next;
+ 		free( iface );
+ 		iface = i;
+ 	}
+ 	free( conf->interfaces );
+-	
++
+ 	if( !*s )
+ 	{
+ 		conf->interfaces = malloc( sizeof( if_t ) );
+@@ -187,7 +192,7 @@ int parse_interfaces( conf_t *conf, char
+ 		conf->interfaces->next = conf->interfaces;
+ 		return( 1 );
+ 	}
+-	
++
+ 	s[strlen(s)+1] = 0;
+ 	conf->interfaces = iface = malloc( sizeof( if_t ) );
+ 	while( 1 )
+@@ -198,7 +203,10 @@ int parse_interfaces( conf_t *conf, char
+ 		if( *s < '0' || *s > '9' )
+ 			get_if_ip( s, iface->text );
+ 		else
+-			strcpy( iface->text, s );
++		{
++		  strncpy( iface->text, s, MAX_STRING - 1);
++		  iface->text[MAX_STRING - 1] = '\0';
++		}
+ 		s = s2 + 1;
+ 		if( *s )
+ 		{
+@@ -211,6 +219,6 @@ int parse_interfaces( conf_t *conf, char
+ 			break;
+ 		}
+ 	}
+-	
++
+ 	return( 1 );
+ }
+diff -Nurp axel-1.0b/conf.h axel-1.0b-r1/conf.h
+--- axel-1.0b/conf.h	2002-02-16 12:27:47.000000000 +0100
++++ axel-1.0b-r1/conf.h	2007-08-05 21:07:59.000000000 +0200
+@@ -37,9 +37,9 @@ typedef struct
+ 	int max_speed;
+ 	int verbose;
+ 	int alternate_output;
+-	
++
+ 	if_t *interfaces;
+-	
++
+ 	int search_timeout;
+ 	int search_threads;
+ 	int search_amount;
+diff -Nurp axel-1.0b/conn.c axel-1.0b-r1/conn.c
+--- axel-1.0b/conn.c	2005-04-06 20:18:28.000000000 +0200
++++ axel-1.0b-r1/conn.c	2007-08-05 23:11:19.000000000 +0200
+@@ -32,12 +32,13 @@ int conn_set( conn_t *conn, char *set_ur
+ {
+ 	char url[MAX_STRING];
+ 	char *i, *j;
+-	
++
+ 	/* protocol://							*/
+ 	if( ( i = strstr( set_url, "://" ) ) == NULL )
+ 	{
+ 		conn->proto = PROTO_DEFAULT;
+-		strncpy( url, set_url, MAX_STRING );
++		strncpy( url, set_url, MAX_STRING - 1);
++		url[MAX_STRING - 1] = '\0';
+ 	}
+ 	else
+ 	{
+@@ -49,9 +50,10 @@ int conn_set( conn_t *conn, char *set_ur
+ 		{
+ 			return( 0 );
+ 		}
+-		strncpy( url, i + 3, MAX_STRING );
++		strncpy( url, i + 3, MAX_STRING - 1);
++		url[MAX_STRING - 1] = '\0';
+ 	}
+-	
++
+ 	/* Split							*/
+ 	if( ( i = strchr( url, '/' ) ) == NULL )
+ 	{
+@@ -60,11 +62,13 @@ int conn_set( conn_t *conn, char *set_ur
+ 	else
+ 	{
+ 		*i = 0;
+-		snprintf( conn->dir, MAX_STRING, "/%s", i + 1 );
++		snprintf( conn->dir, MAX_STRING - 1, "/%s", i + 1 );
++		conn->dir[MAX_STRING - 1] = '\0';
+ 		if( conn->proto == PROTO_HTTP )
+ 			http_encode( conn->dir );
+ 	}
+-	strncpy( conn->host, url, MAX_STRING );
++	strncpy( conn->host, url, MAX_STRING - 1);
++	conn->host[MAX_STRING - 1] = '\0';
+ 	j = strchr( conn->dir, '?' );
+ 	if( j != NULL )
+ 		*j = 0;
+@@ -82,11 +86,12 @@ int conn_set( conn_t *conn, char *set_ur
+ 		strcpy( conn->file, i + 1 );
+ 		strcat( conn->dir, "/" );
+ 	}
+-	
++
+ 	/* Check for username in host field				*/
+ 	if( strrchr( conn->host, '@' ) != NULL )
+ 	{
+-		strncpy( conn->user, conn->host, MAX_STRING );
++		strncpy( conn->user, conn->host, MAX_STRING - 1);
++		conn->user[MAX_STRING - 1] = '\0';
+ 		i = strrchr( conn->user, '@' );
+ 		*i = 0;
+ 		strcpy( conn->host, i + 1 );
+@@ -107,7 +112,7 @@ int conn_set( conn_t *conn, char *set_ur
+ 			*conn->user = *conn->pass = 0;
+ 		}
+ 	}
+-	
++
+ 	/* Password?							*/
+ 	if( ( i = strchr( conn->user, ':' ) ) != NULL )
+ 	{
+@@ -125,12 +130,12 @@ int conn_set( conn_t *conn, char *set_ur
+ 	{
+ #ifndef DARWIN
+ 		struct servent *serv;
+-		
++
+ 		if( conn->proto == PROTO_FTP )
+ 			serv = getservbyname( "ftp", "tcp" );
+ 		else
+ 			serv = getservbyname( "www", "tcp" );
+-		
++
+ 		if( serv )
+ 			conn->port = ntohs( serv->s_port );
+ 		else
+@@ -140,7 +145,7 @@ int conn_set( conn_t *conn, char *set_ur
+ 		else
+ 			conn->port = 21;
+ 	}
+-	
++
+ 	return( conn->port > 0 );
+ }
+ 
+@@ -151,14 +156,14 @@ char *conn_url( conn_t *conn )
+ 		strcpy( string, "ftp://" );
+ 	else
+ 		strcpy( string, "http://" );
+-	
++
+ 	if( *conn->user != 0 && strcmp( conn->user, "anonymous" ) != 0 )
+ 		sprintf( string + strlen( string ), "%s:%s@",
+ 			conn->user, conn->pass );
+ 
+ 	sprintf( string + strlen( string ), "%s:%i%s%s",
+ 		conn->host, conn->port, conn->dir, conn->file );
+-	
++
+ 	return( string );
+ }
+ 
+@@ -176,7 +181,7 @@ int conn_init( conn_t *conn )
+ {
+ 	char *proxy = conn->conf->http_proxy, *host = conn->conf->no_proxy;
+ 	int i;
+-	
++
+ 	if( *conn->conf->http_proxy == 0 )
+ 	{
+ 		proxy = NULL;
+@@ -193,9 +198,9 @@ int conn_init( conn_t *conn )
+ 					break;
+ 			}
+ 	}
+-	
++
+ 	conn->proxy = proxy != NULL;
+-	
++
+ 	if( conn->proto == PROTO_FTP && !conn->proxy )
+ 	{
+ 		conn->ftp->local_if = conn->local_if;
+@@ -233,13 +238,13 @@ int conn_setup( conn_t *conn )
+ 	if( conn->ftp->fd <= 0 && conn->http->fd <= 0 )
+ 		if( !conn_init( conn ) )
+ 			return( 0 );
+-	
++
+ 	if( conn->proto == PROTO_FTP && !conn->proxy )
+ 	{
+ 		if( !ftp_data( conn->ftp ) )	/* Set up data connnection	*/
+ 			return( 0 );
+ 		conn->fd = conn->ftp->data_fd;
+-		
++
+ 		if( conn->currentbyte )
+ 		{
+ 			ftp_command( conn->ftp, "REST %i", conn->currentbyte );
+@@ -251,7 +256,7 @@ int conn_setup( conn_t *conn )
+ 	else
+ 	{
+ 		char s[MAX_STRING];
+-		
++
+ 		snprintf( s, MAX_STRING, "%s%s", conn->dir, conn->file );
+ 		conn->http->firstbyte = conn->currentbyte;
+ 		conn->http->lastbyte = conn->lastbyte;
+@@ -294,7 +299,7 @@ int conn_info( conn_t *conn )
+ 		{
+ 			conn->supported = 0;
+ 		}
+-		
++
+ 		if( !ftp_cwd( conn->ftp, conn->dir ) )
+ 			return( 0 );
+ 		conn->size = ftp_size( conn->ftp, conn->file, MAX_REDIR );
+@@ -309,7 +314,7 @@ int conn_info( conn_t *conn )
+ 	{
+ 		char s[MAX_STRING], *t;
+ 		int i = 0;
+-		
++
+ 		do
+ 		{
+ 			conn->currentbyte = 1;
+@@ -326,25 +331,27 @@ int conn_info( conn_t *conn )
+ 			{
+ 				sprintf( conn->http->headers, "%s%s",
+ 					conn_url( conn ), s );
+-				strncpy( s, conn->http->headers, MAX_STRING );
++				strncpy( s, conn->http->headers, MAX_STRING - 1);
++				s[MAX_STRING - 1] = '\0';
+ 			}
+ 			else if( s[0] == '/' )
+ 			{
+ 				sprintf( conn->http->headers, "http://%s:%i%s",
+ 					conn->host, conn->port, s );
+-				strncpy( s, conn->http->headers, MAX_STRING );
++				strncpy( s, conn->http->headers, MAX_STRING - 1);
++				s[MAX_STRING - 1] = '\0';
+ 			}
+ 			conn_set( conn, s );
+ 			i ++;
+ 		}
+ 		while( conn->http->status / 100 == 3 && i < MAX_REDIR );
+-		
++
+ 		if( i == MAX_REDIR )
+ 		{
+ 			sprintf( conn->message, _("Too many redirects.\n") );
+ 			return( 0 );
+ 		}
+-		
++
+ 		conn->size = http_size( conn->http );
+ 		if( conn->http->status == 206 && conn->size >= 0 )
+ 		{
+@@ -366,6 +373,6 @@ int conn_info( conn_t *conn )
+ 			return( 0 );
+ 		}
+ 	}
+-	
++
+ 	return( 1 );
+ }
+diff -Nurp axel-1.0b/conn.h axel-1.0b-r1/conn.h
+--- axel-1.0b/conn.h	2001-12-15 18:28:38.000000000 +0100
++++ axel-1.0b-r1/conn.h	2007-08-05 20:58:15.000000000 +0200
+@@ -30,7 +30,7 @@
+ typedef struct
+ {
+ 	conf_t *conf;
+-	
++
+ 	int proto;
+ 	int port;
+ 	int proxy;
+@@ -39,7 +39,7 @@ typedef struct
+ 	char file[MAX_STRING];
+ 	char user[MAX_STRING];
+ 	char pass[MAX_STRING];
+-	
++
+ 	ftp_t ftp[1];
+ 	http_t http[1];
+ 	int size;		/* File size, not 'connection size'..	*/
+diff -Nurp axel-1.0b/ftp.c axel-1.0b-r1/ftp.c
+--- axel-1.0b/ftp.c	2001-12-15 18:59:03.000000000 +0100
++++ axel-1.0b-r1/ftp.c	2007-08-05 23:03:56.000000000 +0200
+@@ -29,16 +29,16 @@ int ftp_connect( ftp_t *conn, char *host
+ {
+ 	conn->data_fd = -1;
+ 	conn->message = malloc( MAX_STRING );
+-	
++
+ 	if( ( conn->fd = tcp_connect( host, port, conn->local_if ) ) == -1 )
+ 	{
+-		sprintf( conn->message, _("Unable to connect to server %s:%i\n"), host, port );
++		snprintf( conn->message, MAX_STRING, _("Unable to connect to server %s:%i\n"), host, port );
+ 		return( 0 );
+ 	}
+-	
++
+ 	if( ftp_wait( conn ) / 100 != 2 )
+ 		return( 0 );
+-	
++
+ 	ftp_command( conn, "USER %s", user );
+ 	if( ftp_wait( conn ) / 100 != 2 )
+ 	{
+@@ -47,18 +47,18 @@ int ftp_connect( ftp_t *conn, char *host
+ 			ftp_command( conn, "PASS %s", pass );
+ 			if( ftp_wait( conn ) / 100 != 2 )
+ 				return( 0 );
+-		}		
++		}
+ 		else
+ 		{
+ 			return( 0 );
+ 		}
+ 	}
+-	
++
+ 	/* ASCII mode sucks. Just use Binary.. */
+ 	ftp_command( conn, "TYPE I" );
+ 	if( ftp_wait( conn ) / 100 != 2 )
+ 		return( 0 );
+-	
++
+ 	return( 1 );
+ }
+ 
+@@ -84,13 +84,14 @@ int ftp_cwd( ftp_t *conn, char *cwd )
+ 	/* Necessary at all? */
+ 	if( strncmp( conn->cwd, cwd, MAX_STRING ) == 0 )
+ 		return( 1 );
+-	
++
+ 	ftp_command( conn, "CWD %s", cwd );
+ 	if( ftp_wait( conn ) / 100 != 2 )
+ 		return( 0 );
+-	
+-	strncpy( conn->cwd, cwd, MAX_STRING );
+-	
++
++	strncpy( conn->cwd, cwd, MAX_STRING - 1);
++	conn->cwd[MAX_STRING - 1] = '\0';
++
+ 	return( 1 );
+ }
+ 
+@@ -99,7 +100,7 @@ int ftp_size( ftp_t *conn, char *file, i
+ {
+ 	int i, j, size = MAX_STRING;
+ 	char *reply, *s, fn[MAX_STRING];
+-	
++
+ 	/* Try the SIZE command first, if possible			*/
+ 	if( !strchr( file, '*' ) && !strchr( file, '?' ) )
+ 	{
+@@ -115,20 +116,20 @@ int ftp_size( ftp_t *conn, char *file, i
+ 			return( -1 );
+ 		}
+ 	}
+-	
++
+ 	if( maxredir == 0 )
+ 	{
+ 		sprintf( conn->message, _("Too many redirects.\n") );
+ 		return( -1 );
+ 	}
+-	
++
+ 	if( !ftp_data( conn ) )
+ 		return( -1 );
+-	
++
+ 	ftp_command( conn, "LIST %s", file );
+ 	if( ftp_wait( conn ) / 100 != 1 )
+ 		return( -1 );
+-	
++
+ 	/* Read reply from the server.					*/
+ 	reply = malloc( size );
+ 	memset( reply, 0, size );
+@@ -147,17 +148,17 @@ int ftp_size( ftp_t *conn, char *file, i
+ 	}
+ 	close( conn->data_fd );
+ 	conn->data_fd = -1;
+-	
++
+ 	if( ftp_wait( conn ) / 100 != 2 )
+ 	{
+ 		free( reply );
+ 		return( -1 );
+ 	}
+-	
++
+ #ifdef DEBUG
+ 	fprintf( stderr, reply );
+ #endif
+-	
++
+ 	/* Count the number of probably legal matches: Files&Links only	*/
+ 	j = 0;
+ 	for( i = 1; reply[i] && reply[i+1]; i ++ )
+@@ -166,7 +167,7 @@ int ftp_size( ftp_t *conn, char *file, i
+ 		else
+ 			while( reply[i] != '\n' && reply[i] )
+ 				i ++;
+-	
++
+ 	/* No match or more than one match				*/
+ 	if( j != 1 )
+ 	{
+@@ -183,10 +184,12 @@ int ftp_size( ftp_t *conn, char *file, i
+ 	{
+ 		/* Get the real filename */
+ 		sscanf( s, "%*s %*i %*s %*s %*i %*s %*i %*s %100s", fn );
+-		strcpy( file, fn );
+-		
++		strncpy( file, fn, MAX_STRING -1 );
++		file[MAX_STRING -1] = '\0';
++
+ 		/* Get size of the file linked to			*/
+-		strncpy( fn, strstr( s, "->" ) + 3, MAX_STRING );
++		strncpy( fn, strstr( s, "->" ) + 3, MAX_STRING - 1);
++		fn[MAX_STRING - 1] = '\0';
+ 		free( reply );
+ 		if( ( reply = strchr( fn, '\r' ) ) != NULL )
+ 			*reply = 0;
+@@ -208,8 +211,9 @@ int ftp_size( ftp_t *conn, char *file, i
+ 				return( -2 );
+ 			}
+ 		}
+-		strcpy( file, fn );
+-		
++		strncpy( file, fn, MAX_STRING - 1);
++		file[MAX_STRING - 1] = '\0';
++
+ 		free( reply );
+ 		return( size );
+ 	}
+@@ -220,11 +224,11 @@ int ftp_data( ftp_t *conn )
+ {
+ 	int i, info[6];
+ 	char host[MAX_STRING];
+-	
++
+ 	/* Already done?						*/
+ 	if( conn->data_fd > 0 )
+ 		return( 0 );
+-	
++
+ /*	if( conn->ftp_mode == FTP_PASSIVE )
+ 	{
+ */		ftp_command( conn, "PASV" );
+@@ -253,7 +257,7 @@ int ftp_data( ftp_t *conn )
+ 			sprintf( conn->message, _("Error opening passive data connection.\n") );
+ 			return( 0 );
+ 		}
+-		
++
+ 		return( 1 );
+ /*	}
+ 	else
+@@ -268,16 +272,16 @@ int ftp_command( ftp_t *conn, char *form
+ {
+ 	va_list params;
+ 	char cmd[MAX_STRING];
+-	
++
+ 	va_start( params, format );
+ 	vsnprintf( cmd, MAX_STRING - 3, format, params );
+ 	strcat( cmd, "\r\n" );
+ 	va_end( params );
+-	
++
+ #ifdef DEBUG
+ 	fprintf( stderr, "fd(%i)<--%s", conn->fd, cmd );
+ #endif
+-	
++
+ 	if( write( conn->fd, cmd, strlen( cmd ) ) != strlen( cmd ) )
+ 	{
+ 		sprintf( conn->message, _("Error writing command %s\n"), format );
+@@ -295,9 +299,9 @@ int ftp_wait( ftp_t *conn )
+ {
+ 	int size = MAX_STRING, r = 0, complete, i, j;
+ 	char *s;
+-	
++
+ 	conn->message = realloc( conn->message, size );
+-	
++
+ 	do
+ 	{
+ 		do
+@@ -321,7 +325,7 @@ int ftp_wait( ftp_t *conn )
+ 			complete = 1;
+ 		else
+ 			complete = 0;
+-		
++
+ 		for( i = 0; conn->message[i]; i ++ ) if( conn->message[i] == '\n' )
+ 		{
+ 			if( complete == 1 )
+@@ -340,15 +344,15 @@ int ftp_wait( ftp_t *conn )
+ 	}
+ 	while( complete != 2 );
+ 
+-#ifdef DEBUG		
++#ifdef DEBUG
+ 	fprintf( stderr, "fd(%i)-->%s", conn->fd, conn->message );
+ #endif
+-	
++
+ 	if( ( s = strchr( conn->message, '\n' ) ) != NULL )
+ 		*s = 0;
+ 	if( ( s = strchr( conn->message, '\r' ) ) != NULL )
+ 		*s = 0;
+ 	conn->message = realloc( conn->message, max( strlen( conn->message ) + 1, MAX_STRING ) );
+-	
++
+ 	return( conn->status );
+ }
+diff -Nurp axel-1.0b/http.c axel-1.0b-r1/http.c
+--- axel-1.0b/http.c	2002-01-25 15:26:40.000000000 +0100
++++ axel-1.0b-r1/http.c	2007-08-05 23:02:19.000000000 +0200
+@@ -32,10 +32,11 @@ int http_connect( http_t *conn, int prot
+ 	char auth[MAX_STRING];
+ 	conn_t tconn[1];
+ 	int i;
+-	
+-	strncpy( conn->host, host, MAX_STRING );
++
++	strncpy( conn->host, host, MAX_STRING - 1);
++	conn->host[MAX_STRING - 1] = '\0';
+ 	conn->proto = proto;
+-	
++
+ 	if( proxy != NULL ) { if( *proxy != 0 )
+ 	{
+ 		sprintf( conn->host, "%s:%i", host, port );
+@@ -52,13 +53,13 @@ int http_connect( http_t *conn, int prot
+ 	{
+ 		conn->proxy = 0;
+ 	} }
+-	
++
+ 	if( ( conn->fd = tcp_connect( host, port, conn->local_if ) ) == -1 )
+ 	{
+ 		sprintf( conn->request, _("Unable to connect to server %s:%i\n"), host, port );
+ 		return( 0 );
+ 	}
+-	
++
+ 	if( *user == 0 )
+ 	{
+ 		*conn->auth = 0;
+@@ -77,7 +78,7 @@ int http_connect( http_t *conn, int prot
+ 			if( auth[i*3+1] == 0 ) conn->auth[i*4+2] = '=';
+ 		}
+ 	}
+-	
++
+ 	return( 1 );
+ }
+ 
+@@ -117,12 +118,12 @@ void http_addheader( http_t *conn, char 
+ {
+ 	char s[MAX_STRING];
+ 	va_list params;
+-	
++
+ 	va_start( params, format );
+ 	vsnprintf( s, MAX_STRING - 3, format, params );
+ 	strcat( s, "\r\n" );
+ 	va_end( params );
+-	
++
+ 	strncat( conn->request, s, MAX_QUERY );
+ }
+ 
+@@ -137,7 +138,7 @@ int http_exec( http_t *conn )
+ 
+ 	http_addheader( conn, "" );
+ 	write( conn->fd, conn->request, strlen( conn->request ) );
+-	
++
+ 	*conn->headers = 0;
+ 	/* Read the headers byte by byte to make sure we don't touch the
+ 	   actual data							*/
+@@ -168,12 +169,13 @@ int http_exec( http_t *conn )
+ #ifdef DEBUG
+ 	fprintf( stderr, "--- Reply headers ---\n%s--- End of headers ---\n", conn->headers );
+ #endif
+-	
++
+ 	sscanf( conn->headers, "%*s %3i", &conn->status );
+ 	s2 = strchr( conn->headers, '\n' ); *s2 = 0;
+-	strcpy( conn->request, conn->headers );
++	strncpy( conn->request, conn->headers, MAX_QUERY - 1);
++	conn->request[MAX_QUERY - 1] = '\0';
+ 	*s2 = '\n';
+-	
++
+ 	return( 1 );
+ }
+ 
+@@ -181,7 +183,7 @@ char *http_header( http_t *conn, char *h
+ {
+ 	char s[32];
+ 	int i;
+-	
++
+ 	for( i = 1; conn->headers[i]; i ++ )
+ 		if( conn->headers[i-1] == '\n' )
+ 		{
+@@ -189,7 +191,7 @@ char *http_header( http_t *conn, char *h
+ 			if( strcasecmp( s, header ) == 0 )
+ 				return( &conn->headers[i+strlen(header)] );
+ 		}
+-	
++
+ 	return( NULL );
+ }
+ 
+@@ -197,10 +199,10 @@ int http_size( http_t *conn )
+ {
+ 	char *i;
+ 	int j;
+-	
++
+ 	if( ( i = http_header( conn, "Content-Length:" ) ) == NULL )
+ 		return( -2 );
+-	
++
+ 	sscanf( i, "%i", &j );
+ 	return( j );
+ }
+@@ -210,8 +212,8 @@ void http_decode( char *s )
+ {
+ 	char t[MAX_STRING];
+ 	int i, j, k;
+-	
+-	for( i = j = 0; s[i]; i ++, j ++ )
++
++	for( i = j = 0; s[i] && j < MAX_STRING - 3; i ++, j ++ )
+ 	{
+ 		t[j] = s[i];
+ 		if( s[i] == '%' )
+@@ -222,7 +224,7 @@ void http_decode( char *s )
+ 			}
+ 	}
+ 	t[j] = 0;
+-	
++
+ 	strcpy( s, t );
+ }
+ 
+@@ -230,8 +232,8 @@ void http_encode( char *s )
+ {
+ 	char t[MAX_STRING];
+ 	int i, j;
+-	
+-	for( i = j = 0; s[i]; i ++, j ++ )
++
++	for( i = j = 0; s[i] && j < MAX_STRING - 3; i ++, j ++ )
+ 	{
+ 		t[j] = s[i];
+ 		if( s[i] == ' ' )
+@@ -241,6 +243,6 @@ void http_encode( char *s )
+ 		}
+ 	}
+ 	t[j] = 0;
+-	
++
+ 	strcpy( s, t );
+ }
+diff -Nurp axel-1.0b/search.c axel-1.0b-r1/search.c
+--- axel-1.0b/search.c	2001-12-06 19:29:58.000000000 +0100
++++ axel-1.0b-r1/search.c	2007-08-05 22:53:09.000000000 +0200
+@@ -35,19 +35,19 @@ int main( int argc, char *argv[] )
+ 	conf_t conf[1];
+ 	search_t *res;
+ 	int i, j;
+-	
++
+ 	if( argc != 2 )
+ 	{
+ 		fprintf( stderr, "Incorrect amount of arguments\n" );
+ 		return( 1 );
+ 	}
+-	
++
+ 	conf_init( conf );
+-	
++
+ 	res = malloc( sizeof( search_t ) * ( conf->search_amount + 1 ) );
+ 	memset( res, 0, sizeof( search_t ) * ( conf->search_amount + 1 ) );
+ 	res->conf = conf;
+-	
++
+ 	i = search_makelist( res, argv[1] );
+ 	if( i == -1 )
+ 	{
+@@ -58,7 +58,7 @@ int main( int argc, char *argv[] )
+ 	search_sortlist( res, i );
+ 	for( j = 0; j < i; j ++ )
+ 		printf( "%-70.70s %5i\n", res[j].url, res[j].speed );
+-	
++
+ 	return( 0 );
+ }
+ #endif
+@@ -69,9 +69,9 @@ int search_makelist( search_t *results, 
+ 	char *s, *s1, *s2, *s3;
+ 	conn_t conn[1];
+ 	double t;
+-	
++
+ 	memset( conn, 0, sizeof( conn_t ) );
+-	
++
+ 	conn->conf = results->conf;
+ 	t = gettime();
+ 	if( !conn_set( conn, url ) )
+@@ -80,22 +80,23 @@ int search_makelist( search_t *results, 
+ 		return( -1 );
+ 	if( !conn_info( conn ) )
+ 		return( -1 );
+-	
+-	strcpy( results[0].url, url );
++
++	strncpy( results[0].url, url, MAX_STRING - 1);
++	results[0].url[MAX_STRING - 1] = '\0';
+ 	results[0].speed = 1 + 1000 * ( gettime() - t );
+ 	results[0].size = conn->size;
+-	
++
+ 	s = malloc( size );
+-	
++
+ 	sprintf( s, "http://www.filesearching.com/cgi-bin/s?q=%s&w=a&l=en&"
+ 		"t=f&e=on&m=%i&o=n&s1=%i&s2=%i&x=15&y=15",
+ 		conn->file, results->conf->search_amount,
+ 		conn->size, conn->size );
+-	
++
+ 	conn_disconnect( conn );
+ 	memset( conn, 0, sizeof( conn_t ) );
+ 	conn->conf = results->conf;
+-	
++
+ 	if( !conn_set( conn, s ) )
+ 	{
+ 		free( s );
+@@ -111,7 +112,7 @@ int search_makelist( search_t *results, 
+ 		free( s );
+ 		return( 1 );
+ 	}
+-	
++
+ 	while( ( i = read( conn->fd, s + j, size - j ) ) > 0 )
+ 	{
+ 		j += i;
+@@ -124,7 +125,7 @@ int search_makelist( search_t *results, 
+ 	}
+ 
+ 	conn_disconnect( conn );
+-	
++
+ 	s1 = strstr( s, "<pre class=list" );
+ 	s1 = strchr( s1, '\n' ) + 1;
+ 	if( strstr( s1, "</pre>" ) == NULL )
+@@ -141,7 +142,8 @@ int search_makelist( search_t *results, 
+ 		s3 = strchr( s2, ' ' ); *s3 = 0;
+ 		if( strcmp( results[0].url, s2 ) )
+ 		{
+-			strncpy( results[i].url, s2, MAX_STRING );
++			strncpy( results[i].url, s2, MAX_STRING - 1);
++			results[i].url[MAX_STRING - 1] = '\0';
+ 			results[i].size = results[0].size;
+ 			results[i].conf = results->conf;
+ 		}
+@@ -153,9 +155,9 @@ int search_makelist( search_t *results, 
+ 		for( s1 = s3; *s1 != '\n'; s1 ++ );
+ 		s1 ++;
+ 	}
+-	
++
+ 	free( s );
+-	
++
+ 	return( i );
+ }
+ 
+@@ -166,7 +168,7 @@ int search_makelist( search_t *results, 
+ int search_getspeeds( search_t *results, int count )
+ {
+ 	int i, running = 0, done = 0, correct = 0;
+-	
++
+ 	for( i = 0; i < count; i ++ ) if( results[i].speed )
+ 	{
+ 		results[i].speed_start_time = 0;
+@@ -174,7 +176,7 @@ int search_getspeeds( search_t *results,
+ 		if( results[i].speed > 0 )
+ 			correct ++;
+ 	}
+-	
++
+ 	while( done < count )
+ 	{
+ 		for( i = 0; i < count; i ++ )
+@@ -233,11 +235,11 @@ void *search_speedtest( void *r )
+ 	search_t *results = r;
+ 	conn_t conn[1];
+ 	int oldstate;
+-	
++
+ 	/* Allow this thread to be killed at any time.			*/
+ 	pthread_setcancelstate( PTHREAD_CANCEL_ENABLE, &oldstate );
+ 	pthread_setcanceltype( PTHREAD_CANCEL_ASYNCHRONOUS, &oldstate );
+-	
++
+ 	memset( conn, 0, sizeof( conn_t ) );
+ 	conn->conf = results->conf;
+ 	if( !conn_set( conn, results->url ) )
+@@ -253,21 +255,21 @@ void *search_speedtest( void *r )
+ 		results->speed = SPEED_ERROR;
+ 
+ 	conn_disconnect( conn );
+-	
++
+ 	return( NULL );
+ }
+ 
+ char *strrstr( char *haystack, char *needle )
+ {
+ 	int i, j;
+-	
++
+ 	for( i = strlen( haystack ) - strlen( needle ); i > 0; i -- )
+ 	{
+ 		for( j = 0; needle[j] && haystack[i+j] == needle[j]; j ++ );
+ 		if( !needle[j] )
+ 			return( haystack + i );
+ 	}
+-	
++
+ 	return( NULL );
+ }
+ 
+diff -Nurp axel-1.0b/tcp.c axel-1.0b-r1/tcp.c
+--- axel-1.0b/tcp.c	2001-12-16 19:05:27.000000000 +0100
++++ axel-1.0b-r1/tcp.c	2007-08-05 23:04:37.000000000 +0200
+@@ -35,10 +35,10 @@ int tcp_connect( char *hostname, int por
+ 
+ #ifdef DEBUG
+ 	socklen_t i = sizeof( local );
+-	
++
+ 	fprintf( stderr, "tcp_connect( %s, %i ) = ", hostname, port );
+ #endif
+-	
++
+ 	/* Why this loop? Because the call might return an empty record.
+ 	   At least it very rarely does, on my system...		*/
+ 	for( fd = 0; fd < 5; fd ++ )
+@@ -49,10 +49,10 @@ int tcp_connect( char *hostname, int por
+ 	}
+ 	if( !host || !host->h_name || !*host->h_name )
+ 		return( -1 );
+-	
++
+ 	if( ( fd = socket( AF_INET, SOCK_STREAM, 0 ) ) == -1 )
+ 		return( -1 );
+-	
++
+ 	if( local_if && *local_if )
+ 	{
+ 		local.sin_family = AF_INET;
+@@ -64,22 +64,22 @@ int tcp_connect( char *hostname, int por
+ 			return( -1 );
+ 		}
+ 	}
+-	
++
+ 	addr.sin_family = AF_INET;
+ 	addr.sin_port = htons( port );
+ 	addr.sin_addr = *( (struct in_addr *) host->h_addr );
+-	
++
+ 	if( connect( fd, (struct sockaddr *) &addr, sizeof( struct sockaddr_in ) ) == -1 )
+ 	{
+ 		close( fd );
+ 		return( -1 );
+ 	}
+-	
++
+ #ifdef DEBUG
+ 	getsockname( fd, &local, &i );
+ 	fprintf( stderr, "%i\n", ntohs( local.sin_port ) );
+ #endif
+-	
++
+ 	return( fd );
+ }
+ 
+@@ -87,10 +87,10 @@ int get_if_ip( char *iface, char *ip )
+ {
+ 	struct ifreq ifr;
+ 	int fd = socket( PF_INET, SOCK_DGRAM, IPPROTO_IP );
+-	
++
+ 	memset( &ifr, 0, sizeof( struct ifreq ) );
+-	
+-	strcpy( ifr.ifr_name, iface );
++
++	strncpy( ifr.ifr_name, iface, IFNAMSIZ );
+ 	ifr.ifr_addr.sa_family = AF_INET;
+ 	if( ioctl( fd, SIOCGIFADDR, &ifr ) == 0 )
+ 	{
+diff -Nurp axel-1.0b/text.c axel-1.0b-r1/text.c
+--- axel-1.0b/text.c	2002-02-19 20:45:55.000000000 +0100
++++ axel-1.0b-r1/text.c	2007-08-05 23:04:11.000000000 +0200
+@@ -69,29 +69,29 @@ int main( int argc, char *argv[] )
+ 	axel_t *axel;
+ 	int i, j;
+ 	char *s;
+-	
++
+ #ifdef I18N
+ 	setlocale( LC_ALL, "" );
+ 	bindtextdomain( PACKAGE, LOCALE );
+ 	textdomain( PACKAGE );
+ #endif
+-	
++
+ 	if( !conf_init( conf ) )
+ 	{
+ 		return( 1 );
+ 	}
+-	
++
+ 	opterr = 0;
+-	
++
+ 	j = -1;
+ 	while( 1 )
+ 	{
+ 		int option;
+-		
++
+ 		option = getopt_long( argc, argv, "s:n:o:S::NqvhHVa", axel_options, NULL );
+ 		if( option == -1 )
+ 			break;
+-		
++
+ 		switch( option )
+ 		{
+ 		case 's':
+@@ -109,7 +109,8 @@ int main( int argc, char *argv[] )
+ 			}
+ 			break;
+ 		case 'o':
+-			strncpy( fn, optarg, MAX_STRING );
++			strncpy( fn, optarg, MAX_STRING - 1);
++			fn[MAX_STRING - 1] = '\0';
+ 			break;
+ 		case 'S':
+ 			do_search = 1;
+@@ -152,10 +153,10 @@ int main( int argc, char *argv[] )
+ 			return( 1 );
+ 		}
+ 	}
+-	
++
+ 	if( j > -1 )
+ 		conf->verbose = j;
+-	
++
+ 	if( argc - optind == 0 )
+ 	{
+ 		print_help();
+@@ -170,7 +171,7 @@ int main( int argc, char *argv[] )
+ 	{
+ 		s = argv[optind];
+ 	}
+-	
++
+ 	printf( _("Initializing download: %s\n"), s );
+ 	if( do_search )
+ 	{
+@@ -222,7 +223,10 @@ int main( int argc, char *argv[] )
+ 		search = malloc( sizeof( search_t ) * ( argc - optind ) );
+ 		memset( search, 0, sizeof( search_t ) * ( argc - optind ) );
+ 		for( i = 0; i < ( argc - optind ); i ++ )
+-			strncpy( search[i].url, argv[optind+i], MAX_STRING );
++		{
++		  strncpy( search[i].url, argv[optind+i], MAX_STRING - 1);
++		  search[i].url[MAX_STRING - 1] = '\0';
++		}
+ 		axel = axel_new( conf, argc - optind, search );
+ 		free( search );
+ 		if( axel->ready == -1 )
+@@ -232,16 +236,18 @@ int main( int argc, char *argv[] )
+ 			return( 1 );
+ 		}
+ 	}
++
++
+ 	print_messages( axel );
+ 	if( s != argv[optind] )
+ 	{
+ 		free( s );
+ 	}
+-	
++
+ 	if( *fn )
+ 	{
+ 		struct stat buf;
+-		
++
+ 		if( stat( fn, &buf ) == 0 )
+ 		{
+ 			if( S_ISDIR( buf.st_mode ) )
+@@ -261,7 +267,8 @@ int main( int argc, char *argv[] )
+ 			printf( _("State file found, but no downloaded data. Starting from scratch.\n" ) );
+ 			unlink( string );
+ 		}
+-		strcpy( axel->filename, fn );
++		strncpy( axel->filename, fn, MAX_STRING - 1);
++		axel->filename[MAX_STRING - 1] = '\0';
+ 	}
+ 	else
+ 	{
+@@ -288,7 +295,7 @@ int main( int argc, char *argv[] )
+ 			i ++;
+ 		}
+ 	}
+-	
++
+ 	if( !axel_open( axel ) )
+ 	{
+ 		print_messages( axel );
+@@ -301,7 +308,7 @@ int main( int argc, char *argv[] )
+ 	if( conf->alternate_output )
+ 	{
+ 		putchar('\n');
+-	} 
++	}
+ 	else
+ 	{
+ 		if( axel->bytes_done > 0 )	/* Print first dots if resuming	*/
+@@ -311,20 +318,20 @@ int main( int argc, char *argv[] )
+ 		}
+ 	}
+ 	axel->start_byte = axel->bytes_done;
+-	
++
+ 	/* Install save_state signal handler for resuming support	*/
+ 	signal( SIGINT, stop );
+ 	signal( SIGTERM, stop );
+-	
++
+ 	while( !axel->ready && run )
+ 	{
+ 		int prev, done;
+-		
++
+ 		prev = axel->bytes_done;
+ 		axel_do( axel );
+-		
++
+ 		if( conf->alternate_output )
+-		{			
++		{
+ 			if( !axel->message && prev != axel->bytes_done )
+ 				print_alternate_output( axel );
+ 		}
+@@ -356,7 +363,7 @@ int main( int argc, char *argv[] )
+ 				fflush( stdout );
+ 			}
+ 		}
+-		
++
+ 		if( axel->message )
+ 		{
+ 			if(conf->alternate_output==1)
+@@ -385,19 +392,19 @@ int main( int argc, char *argv[] )
+ 			putchar( '\n' );
+ 		}
+ 	}
+-	
++
+ 	strcpy( string + MAX_STRING / 2,
+ 		size_human( axel->bytes_done - axel->start_byte ) );
+-	
++
+ 	printf( _("\nDownloaded %s in %s. (%.2f KB/s)\n"),
+ 		string + MAX_STRING / 2,
+ 		time_human( gettime() - axel->start_time ),
+ 		(double) axel->bytes_per_second / 1024 );
+-	
++
+ 	i = axel->ready ? 0 : 2;
+-	
++
+ 	axel_close( axel );
+-	
++
+ 	return( i );
+ }
+ 
+@@ -418,7 +425,7 @@ char *size_human( int value )
+ 		sprintf( string, _("%.1f kilobytes"), (float) value / 1024 );
+ 	else
+ 		sprintf( string, _("%.1f megabytes"), (float) value / 1048576 );
+-	
++
+ 	return( string );
+ }
+ 
+@@ -433,7 +440,7 @@ char *time_human( int value )
+ 		sprintf( string, _("%i:%02i seconds"), value / 60, value % 60 );
+ 	else
+ 		sprintf( string, _("%i:%02i:%02i seconds"), value / 3600, ( value / 60 ) % 60, value % 60 );
+-	
++
+ 	return( string );
+ }
+ 
+@@ -442,7 +449,7 @@ char *time_human( int value )
+ void print_commas( int bytes_done )
+ {
+ 	int i, j;
+-	
++
+ 	printf( "       " );
+ 	j = ( bytes_done / 1024 ) % 50;
+ 	if( j == 0 ) j = 50;
+@@ -455,15 +462,15 @@ void print_commas( int bytes_done )
+ 	fflush( stdout );
+ }
+ 
+-static void print_alternate_output(axel_t *axel) 
++static void print_alternate_output(axel_t *axel)
+ {
+ 	int done=axel->bytes_done;
+ 	int total=axel->size;
+ 	int i,j=0;
+ 	double now = gettime();
+-	
++
+ 	printf("\r[%3ld%%] [", min(100,(long)(done*100./total+.5) ) );
+-		
++
+ 	for(i=0;i<axel->conf->num_connections;i++)
+ 	{
+ 		for(;j<((double)axel->conn[i].currentbyte/(total+1)*50)-1;j++)
+@@ -475,17 +482,17 @@ static void print_alternate_output(axel_
+ 				putchar(i+'0');
+ 			else
+ 				putchar('#');
+-		} else 
++		} else
+ 			putchar('.');
+ 
+ 		j++;
+-		
++
+ 		for(;j<((double)axel->conn[i].lastbyte/(total+1)*50);j++)
+ 			putchar(' ');
+ 	}
+-	
++
+ 	printf( "] [%6.1fKB/s]", (double) axel->bytes_per_second / 1024 );
+-	
++
+ 	if(done<total)
+ 	{
+ 		int seconds,minutes,hours,days;
+@@ -500,7 +507,7 @@ static void print_alternate_output(axel_
+ 		else
+ 			printf(" [%02d:%02d]",minutes,seconds);
+ 	}
+-	
++
+ 	fflush( stdout );
+ }
+ 
+@@ -549,7 +556,7 @@ void print_version()
+ void print_messages( axel_t *axel )
+ {
+ 	message_t *m;
+-	
++
+ 	while( axel->message )
+ 	{
+ 		printf( "%s\n", axel->message->text );
