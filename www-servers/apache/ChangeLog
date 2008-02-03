@@ -1,6 +1,11 @@
 # ChangeLog for www-servers/apache
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.60 2008/01/31 20:01:35 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.61 2008/02/02 14:57:36 hollow Exp $
+
+*apache-2.2.8-r1 (02 Feb 2008)
+
+  02 Feb 2008; Benedikt Böhm <hollow@gentoo.org> +apache-2.2.8-r1.ebuild:
+  remove incremental mod_dir patches, fixes #139451
 
   31 Jan 2008; Tobias Scherbaum <dertobi123@gentoo.org> apache-2.2.8.ebuild:
   ppc stable, bug #205195
