@@ -1,6 +1,24 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1059 2008/02/01 18:26:42 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1065 2008/02/03 03:10:57 betelgeuse Exp $
+
+  03 Feb 2008; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  Remove mask for dev-java/aterm-java as it was moved to junkyard.
+
+  02 Feb 2008; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Remask media-fonts/artwiz-fonts.
+
+  02 Feb 2008; Vlastimil Babka <caster@gentoo.org> package.mask:
+  Masking dev-java/javamake-bin for removal.
+
+  02 Feb 2008; Vlastimil Babka <caster@gentoo.org> package.mask:
+  Masking dev-java/minml2 for removal.
+
+  02 Feb 2008; Vlastimil Babka <caster@gentoo.org> package.mask:
+  Masking dev-java/jasmin-sable for removal.
+
+  02 Feb 2008; Chris Gianelloni <wolf31o2@gentoo.org> base/package.use.mask:
+  Added java to package.use.mask for app-accessibility/brltty for bug #208538.
 
   01 Feb 2008; Ulrich Mueller <ulm@gentoo.org> use.local.desc:
   Add local libotf USE flag for app-editors/emacs-cvs.
