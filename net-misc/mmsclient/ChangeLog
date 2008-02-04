@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/mmsclient
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/mmsclient/ChangeLog,v 1.15 2008/01/25 21:26:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/mmsclient/ChangeLog,v 1.16 2008/02/03 15:40:35 grobian Exp $
+
+  03 Feb 2008; Fabian Groffen <grobian@gentoo.org>
+  mmsclient-0.0.3-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   25 Jan 2008; Raúl Porcel <armin76@gentoo.org> -mmsclient-0.0.3.ebuild,
   mmsclient-0.0.3-r1.ebuild:
