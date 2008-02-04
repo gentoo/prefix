@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3342 2008/02/02 07:00:20 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3343 2008/02/03 08:29:04 opfer Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -17,6 +17,7 @@ app-accessibility/speech-dispatcher:flite - Adds support for flite speech engine
 app-admin/conky:audacious - enable monitoring of audio tracks that are playing (media-sound/audacious)
 app-admin/conky:bmpx - enable monitoring of audio tracks that are playing (media-sound/bmpx)
 app-admin/conky:mpd - enable monitoring mpd controlled music  (media-sound/mpd)
+app-admin/conky:nano-syntax - enable syntax highlighting for app-editors/nano
 app-admin/diradm:automount - Support for automount data in LDAP
 app-admin/diradm:irixpasswd - Support for storing separate IRIX passwords
 app-admin/gnome-system-tools:nfs - Adds support for NFS shares

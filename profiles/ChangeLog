@@ -1,6 +1,87 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1065 2008/02/03 03:10:57 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1091 2008/02/03 19:38:58 dirtyepic Exp $
+
+  03 Feb 2008; Ryan Hill <dirtyepic@gentoo.org> package.mask:
+  Further cleanup of examples.
+
+  03 Feb 2008; Fernando J. Pereda <ferdy@gentoo.org> package.mask:
+  Remove mask for =dev-util/git-1.5.4_rc* since 1.5.4 is in the tree.
+
+  03 Feb 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  last rite dev-tex/dk-bib
+
+  03 Feb 2008; Alexis Ballier <aballier@gentoo.org> package.mask:
+  dev-ml/equeue, netclient and rpc are now gone, remove unneeded mask
+
+  03 Feb 2008; Vlastimil Babka <caster@gentoo.org> package.mask:
+  Add best practices for last rites masking and an example, based on
+  dirtyepic's mail in -dev list.
+
+  03 Feb 2008; Vlastimil Babka <caster@gentoo.org> package.mask:
+  Last rites for dev-java/cryptix*
+
+  03 Feb 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove =sys-devel/gcc-config-2.0.0_rc1 and app-admin/eselect-compiler masks.
+
+  03 Feb 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove a few apache related masks.
+
+  03 Feb 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove =dev-java/jfreechart-0* mask.
+
+  03 Feb 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove =sys-apps/pkgcore-0.3.3 mask.
+
+  03 Feb 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove =net-misc/memcached-1.2.4_rc1 mask.
+
+  03 Feb 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove ~app-misc/livecd-tools-1.0.38 and ~sys-kernel/genkernel-3.4.9_pre8
+  masks.
+
+  03 Feb 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove <=x11-plugins/emerald-plugins-0.2.1 mask.
+
+  03 Feb 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove a few media-sound/pulseaudio masks.
+
+  03 Feb 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove =app-antivirus/clamav-0.92_rc2 mask.
+
+  03 Feb 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove a few vmware related masks.
+
+  03 Feb 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove =net-www/netscape-flash-9.0.60.0_beta082207 mask.
+
+  03 Feb 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove <=net-im/skype-1.4.0.0 mask.
+
+  03 Feb 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove =net-wireless/fwlanusb-1.00.00_rc1 mask.
+
+  03 Feb 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove many java-gnome related masks.
+
+  03 Feb 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove =www-apps/mediawiki-1.10.0_rc1 mask.
+
+  03 Feb 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove <www-apps/wordpress-2.3 mask.
+
+  03 Feb 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove =net-irc/dircproxy-1.2.0_beta2 mask.
+
+  03 Feb 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove =net-mail/cyrus-imapd-2.2.12-r5 mask.
+
+  03 Feb 2008; Christian Faulhammer <opfer@gentoo.org> use.local.desc:
+  add USE=nano-syntax for app-admin/conky
+
+  03 Feb 2008; Michael Marineau <marineam@gentoo.org> package.mask:
+  Remove ck-sources and xen-sources-2.6.16* from package.mask, they have been
+  removed from the tree
 
   03 Feb 2008; Petteri Räty <betelgeuse@gentoo.org> package.mask:
   Remove mask for dev-java/aterm-java as it was moved to junkyard.
