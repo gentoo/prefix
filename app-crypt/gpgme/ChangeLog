@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/gpgme
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/ChangeLog,v 1.133 2008/02/02 21:11:13 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/ChangeLog,v 1.134 2008/02/03 10:42:30 alonbl Exp $
+
+  03 Feb 2008; Alon Bar-Lev <alonbl@gentoo.org> gpgme-0.3.14-r2.ebuild:
+  Remove gnupg-2 restriction, bug#205996
 
   02 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
   gpgme-0.3.14-r2.ebuild:
