@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/depend.apache.eclass,v 1.37 2008/02/02 14:31:42 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/depend.apache.eclass,v 1.39 2008/02/03 14:12:44 hollow Exp $
 
 # @ECLASS: depend.apache.eclass
 # @MAINTAINER: apache-devs@gentoo.org
@@ -69,21 +69,6 @@ APACHE2_DEPEND="=www-servers/apache-2*"
 # Dependencies for Apache 2.2.x
 APACHE2_2_DEPEND="=www-servers/apache-2.2*"
 
-# @ECLASS-VARIABLE: WANT_APACHE_DEPEND
-# @DESCRIPTION:
-# Dependency magic based on useflag to use the right DEPEND
-WANT_APACHE_DEPEND="apache2? ( ${APACHE_DEPEND} )"
-
-# @ECLASS-VARIABLE: WANT_APACHE2_DEPEND
-# @DESCRIPTION:
-# Dependency magic based on useflag to use the right DEPEND
-WANT_APACHE2_DEPEND="apache2? ( ${APACHE2_DEPEND} )"
-
-# @ECLASS-VARIABLE: WANT_APACHE2_2_DEPEND
-# @DESCRIPTION:
-# Dependency magic based on useflag to use the right DEPEND
-WANT_APACHE2_2_DEPEND="apache2? ( ${APACHE2_2_DEPEND} )"
-
 # ==============================================================================
 # INTERNAL FUNCTIONS
 # ==============================================================================
@@ -95,7 +80,10 @@ _init_apache2() {
 	# into the dependency cache (DEPEND/RDEPEND/etc)
 	APACHE_VERSION="2"
 	APXS="/usr/sbin/apxs2"
-	APACHECTL="/usr/sbin/apache2ctl"
+	APACHE_BIN="/usr/sbin/apache2"
+	APACHE_CTL="/usr/sbin/apache2ctl"
+	# legacy alias
+	APACHECTL="${APACHE_CTL}"
 	APACHE_BASEDIR="/usr/$(get_libdir)/apache2"
 	APACHE_CONFDIR="/etc/apache2"
 	APACHE_MODULES_CONFDIR="${APACHE_CONFDIR}/modules.d"
@@ -119,11 +107,12 @@ _init_no_apache() {
 want_apache2() {
 	debug-print-function $FUNCNAME $*
 
-	IUSE="${IUSE} apache2"
-	DEPEND="${DEPEND} ${WANT_APACHE2_DEPEND}"
-	RDEPEND="${RDEPEND} ${WANT_APACHE2_DEPEND}"
+	local myiuse=${1:-apache2}
+	IUSE="${IUSE} ${myiuse}"
+	DEPEND="${DEPEND} ${myiuse}? ( ${APACHE2_DEPEND} )"
+	RDEPEND="${RDEPEND} ${myiuse}? ( ${APACHE2_DEPEND} )"
 
-	if use apache2 ; then
+	if use ${myiuse} ; then
 		_init_apache2
 	else
 		_init_no_apache
@@ -137,11 +126,12 @@ want_apache2() {
 want_apache2_2() {
 	debug-print-function $FUNCNAME $*
 
-	IUSE="${IUSE} apache2"
-	DEPEND="${DEPEND} ${WANT_APACHE2_2_DEPEND}"
-	RDEPEND="${RDEPEND} ${WANT_APACHE2_2_DEPEND}"
+	local myiuse=${1:-apache2}
+	IUSE="${IUSE} ${myiuse}"
+	DEPEND="${DEPEND} ${myiuse}? ( ${APACHE2_2_DEPEND} )"
+	RDEPEND="${RDEPEND} ${myiuse}? ( ${APACHE2_2_DEPEND} )"
 
-	if use apache2 ; then
+	if use ${myiuse} ; then
 		_init_apache2
 	else
 		_init_no_apache
@@ -153,7 +143,8 @@ want_apache2_2() {
 # An ebuild calls this to get the dependency information for optional apache
 # support.
 want_apache() {
-	want_apache2
+	debug-print-function $FUNCNAME $*
+	want_apache2 "$@"
 }
 
 # @FUNCTION: need_apache2
@@ -187,5 +178,6 @@ need_apache2_2() {
 # to happen seamlessly. All an ebuild needs to do is include the line
 # need_apache somewhere.
 need_apache() {
+	debug-print-function $FUNCNAME $*
 	need_apache2
 }

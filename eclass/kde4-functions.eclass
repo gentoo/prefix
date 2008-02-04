@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.1 2008/01/16 22:47:45 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.2 2008/02/03 15:03:02 zlin Exp $
 
 # @ECLASS: kde4-functions.eclass
 # @MAINTAINER:
@@ -382,6 +382,10 @@ buildsycoca() {
 		kill ${DBUS_SESSION_BUS_PID}
 		eend $?
 		unset DBUS_SESSION_BUS_ADDRES DBUS_SESSION_BUS_PID
+
+		# For some reason this directory gets created with noone other than root
+		# being able to read it. Hence we chmod it.
+		chmod -R 0755 "${EROOT}"/usr/share/kde4
 	fi
 }
 
