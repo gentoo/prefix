@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/sipsak
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/sipsak/ChangeLog,v 1.16 2007/10/21 15:16:41 maekke Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/sipsak/ChangeLog,v 1.17 2008/02/03 15:53:37 grobian Exp $
+
+  03 Feb 2008; Fabian Groffen <grobian@gentoo.org> sipsak-0.9.1.ebuild,
+  sipsak-0.9.5.ebuild, sipsak-0.9.6_p1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   21 Oct 2007; Markus Meier <maekke@gentoo.org> sipsak-0.9.1.ebuild,
   sipsak-0.9.5.ebuild, sipsak-0.9.6_p1.ebuild:
