@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdcss/libdvdcss-1.2.9-r1.ebuild,v 1.12 2008/01/11 19:02:03 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdcss/libdvdcss-1.2.9-r1.ebuild,v 1.13 2008/02/03 17:10:05 aballier Exp $
 
 EAPI="prefix"
 
@@ -43,7 +43,8 @@ src_unpack() {
 
 src_compile() {
 	# See bug #98854, requires access to fonts cache for TeX
-	use doc && addwrite /var/cache/fonts
+	# No need to use addwrite, just set TeX font cache in the sandbox
+	use doc && export VARTEXFONTS="${T}/fonts"
 
 	econf \
 		--enable-static --enable-shared \
