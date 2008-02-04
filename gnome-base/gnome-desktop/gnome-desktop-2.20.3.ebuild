@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.20.3.ebuild,v 1.5 2008/02/02 15:43:38 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.20.3.ebuild,v 1.7 2008/02/04 04:40:06 jer Exp $
 
 EAPI="prefix"
 
