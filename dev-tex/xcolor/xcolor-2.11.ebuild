@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/xcolor/xcolor-2.11.ebuild,v 1.5 2007/12/18 19:15:42 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/xcolor/xcolor-2.11.ebuild,v 1.8 2008/02/04 02:56:36 jer Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="http://www.ukern.de/tex/xcolor/ctan/${P//[.-]/}.zip"
 
 LICENSE="LPPL-1.2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 
 IUSE=""
 
@@ -27,8 +27,7 @@ S="${WORKDIR}/${PN}"
 TEXMF="/usr/share/texmf-site"
 
 src_install() {
-
-	addwrite /var/cache/fonts/
+	export VARTEXFONTS="${T}/fonts"
 
 	latex-package_src_install || die
 
