@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/axel
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/axel/ChangeLog,v 1.35 2007/12/26 10:30:33 gmsoft Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/axel/ChangeLog,v 1.36 2008/02/03 16:13:18 grobian Exp $
+
+  03 Feb 2008; Fabian Groffen <grobian@gentoo.org> axel-1.0b.ebuild,
+  axel-1.0b-r1.ebuild, axel-1.0b-r2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   26 Dec 2007; Guy Martin <gmsoft@gentoo.org> axel-1.0b-r2.ebuild:
   Added hppa to KEYWORDS.
