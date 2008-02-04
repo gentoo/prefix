@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-4.57.ebuild,v 1.4 2008/01/29 20:00:50 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-4.57.ebuild,v 1.5 2008/02/03 11:42:16 cla Exp $
 
 EAPI="prefix"
 
@@ -78,5 +78,5 @@ src_install() {
 	fi
 
 	einfo "Please be aware that rar support was removed (it's nonfree)"
-	einfo "You can use app-arch/rar-unpacker for rar support"
+	einfo "You can use app-arch/rar for rar support"
 }
