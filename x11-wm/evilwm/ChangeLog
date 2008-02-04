@@ -1,6 +1,9 @@
 # ChangeLog for x11-wm/evilwm
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/evilwm/ChangeLog,v 1.43 2007/12/21 14:10:07 nixnut Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/evilwm/ChangeLog,v 1.44 2008/02/03 14:47:11 tove Exp $
+
+  03 Feb 2008; Torsten Veller <tove@gentoo.org> -evilwm-0.99.25.ebuild:
+  Cleaning. ppc-macos users will find it in prefix
 
   21 Dec 2007; nixnut <nixnut@gentoo.org> evilwm-1.0.0.ebuild:
   Stable on ppc wrt bug 202703
