@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/jadetex/jadetex-3.13-r2.ebuild,v 1.1 2007/10/16 07:10:12 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/jadetex/jadetex-3.13-r2.ebuild,v 1.2 2008/02/03 17:05:00 aballier Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/jadetex/${P}.tar.gz"
 
 LICENSE="freedist"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~x86-macos"
 IUSE=""
 RESTRICT="test"
 
@@ -28,10 +28,7 @@ has_tetex_3() {
 }
 
 src_compile() {
-	addwrite /usr/share/texmf/ls-R
-	addwrite /usr/share/texmf/fonts
-	addwrite /var/cache/fonts
-
+	export VARTEXFONTS="${T}/fonts"
 	if has_tetex_3 ; then
 		sed -i -e "s:tex -ini:latex -ini:" Makefile || die "sed failed"
 	fi
@@ -40,10 +37,7 @@ src_compile() {
 }
 
 src_install() {
-	addwrite /usr/share/texmf/ls-R
-	addwrite /usr/share/texmf/fonts
-	addwrite /var/cache/fonts
-
+	export VARTEXFONTS="${T}/fonts"
 	emake DESTDIR="${D}" install || die
 
 	dodoc ChangeLog*

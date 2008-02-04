@@ -1,6 +1,9 @@
 # ChangeLog for app-text/jadetex
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/jadetex/ChangeLog,v 1.33 2007/10/16 07:10:12 aballier Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/jadetex/ChangeLog,v 1.34 2008/02/03 17:05:00 aballier Exp $
+
+  03 Feb 2008; Alexis Ballier <aballier@gentoo.org> jadetex-3.13-r2.ebuild:
+  replace addwrites by setting generated font dir in the sandbox
 
 *jadetex-3.13-r2 (16 Oct 2007)
 
