@@ -1,13 +1,17 @@
 # ChangeLog for dev-util/astyle
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/ChangeLog,v 1.19 2008/01/27 10:39:22 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/ChangeLog,v 1.20 2008/02/04 03:58:43 nerdboy Exp $
+
+  04 Feb 2008; Steve Arnold <nerdboy@gentoo.org> astyle-1.21.ebuild:
+  Fixed string quoting and added some dies to the manual install commands,
+  but only in the latest version; emake works so far...
 
   27 Jan 2008; Fabian Groffen <grobian@gentoo.org> astyle-1.15.3-r1.ebuild,
   astyle-1.21.ebuild:
   Dropped ppc-macos keyword, see you in prefix
 
   14 Nov 2007; Robin H. Johnson <robbat2@gentoo.org> astyle-1.21.ebuild:
-  Fix $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/ChangeLog,v 1.19 2008/01/27 10:39:22 grobian Exp $ string.
+  Fix $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/ChangeLog,v 1.20 2008/02/04 03:58:43 nerdboy Exp $ string.
 
 *astyle-1.21 (07 Oct 2007)
 
