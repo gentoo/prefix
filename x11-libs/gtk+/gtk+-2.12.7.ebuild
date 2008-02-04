@@ -1,8 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.12.5-r1.ebuild,v 1.8 2008/02/04 04:16:24 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.12.7.ebuild,v 1.1 2008/02/03 15:47:22 leio Exp $
 
 EAPI="prefix"
+
+WANT_AUTOMAKE="1.7"
 
 inherit gnome.org flag-o-matic eutils autotools virtualx multilib
 
@@ -41,7 +43,6 @@ RDEPEND="X? (
 DEPEND="${RDEPEND}
 	sys-devel/autoconf
 	>=dev-util/pkgconfig-0.9
-	=sys-devel/automake-1.7*
 	X? (
 		x11-proto/xextproto
 		x11-proto/xproto
@@ -104,7 +105,6 @@ src_unpack() {
 
 	# remember, eautoreconf applies elibtoolize.
 	# if you remove this, you should manually run elibtoolize
-	export WANT_AUTOMAKE=1.7
 	cp aclocal.m4 old_macros.m4
 	AT_M4DIR="." eautoreconf
 
