@@ -1,6 +1,9 @@
 # ChangeLog for net-proxy/dante
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-proxy/dante/ChangeLog,v 1.40 2007/06/17 06:17:39 mrness Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-proxy/dante/ChangeLog,v 1.41 2008/02/03 15:13:46 grobian Exp $
+
+  03 Feb 2008; Fabian Groffen <grobian@gentoo.org> dante-1.1.19-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   17 Jun 2007; Alin Năstac <mrness@gentoo.org>
   -files/dante-1.1.18-socksify.patch, -dante-1.1.18.ebuild,
