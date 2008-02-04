@@ -1,0 +1,8 @@
+# ChangeLog for app-doc/phrack-all
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-doc/phrack-all/ChangeLog,v 1.10 2007/07/19 19:11:19 vapier Exp $
+
+*phrack-all-* (13 Feb 2003)
+
+  13 Feb 2003; Mike Frysinger <vapier@gentoo.org> :
+  Initial import.  Ebuilds submitted by me.
