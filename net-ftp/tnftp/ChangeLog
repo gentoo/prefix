@@ -1,6 +1,10 @@
 # ChangeLog for net-ftp/tnftp
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/tnftp/ChangeLog,v 1.25 2008/01/01 19:20:17 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/tnftp/ChangeLog,v 1.26 2008/02/03 14:20:41 grobian Exp $
+
+  03 Feb 2008; Fabian Groffen <grobian@gentoo.org> tnftp-20050625-r1.ebuild,
+  tnftp-20070806.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   01 Jan 2008; Sven Wegener <swegener@gentoo.org>
   +files/tnftp-20050625-libedit.patch, +files/tnftp-20070806-libedit.patch,
