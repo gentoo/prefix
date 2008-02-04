@@ -1,6 +1,9 @@
 # ChangeLog for sys-fs/e2fsprogs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.133 2008/01/31 16:41:46 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.134 2008/02/03 15:50:23 angelos Exp $
+
+  03 Feb 2008; Christoph Mende <angelos@gentoo.org> e2fsprogs-1.40.4.ebuild:
+  Stable on amd64, bug #207841
 
   31 Jan 2008; nixnut <nixnut@gentoo.org> e2fsprogs-1.40.4.ebuild:
   Stable on ppc wrt bug 207841
