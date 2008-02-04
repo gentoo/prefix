@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/libIDL
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.84 2008/01/30 15:21:01 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.85 2008/02/03 17:01:53 remi Exp $
+
+*libIDL-0.8.10 (03 Feb 2008)
+
+  03 Feb 2008; Rémi Cardona <remi@gentoo.org>
+  -files/libIDL-0.8.9-G_STRFUNC.patch, -libIDL-0.8.9-r1.ebuild,
+  +libIDL-0.8.10.ebuild:
+  bump to 0.8.10 (fixes the glib-2.15 bug, G_STRFUNC patch no longer needed)
 
 *libIDL-0.8.9-r1 (30 Jan 2008)
 
