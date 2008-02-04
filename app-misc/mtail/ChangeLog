@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/mtail
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mtail/ChangeLog,v 1.15 2007/12/25 15:39:31 phreak Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mtail/ChangeLog,v 1.16 2008/02/03 15:30:00 grobian Exp $
+
+  03 Feb 2008; Fabian Groffen <grobian@gentoo.org> mtail-1.1.1-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing taviso from metadata.xml as per #202471.
