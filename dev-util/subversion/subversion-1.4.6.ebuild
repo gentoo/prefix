@@ -101,6 +101,7 @@ src_unpack() {
 	# aclocal.m4 is hand written, so no chance to handle it by
 	# playing around with aclocal include paths.
 	cp "${EPREFIX}"/usr/share/aclocal/libtool.m4 build/libtool.m4
+	cp "${EPREFIX}"/usr/share/libtool/ltmain.sh build/ltmain.sh
 	AT_M4DIR="build/ac-macros" eautoreconf
 
 	sed -i -e 's,\(subversion/svnversion/svnversion.*\)\(>.*svn-revision.txt\),echo "exported" \2,' Makefile.in
@@ -135,6 +136,10 @@ src_compile() {
 		*-*-solaris*)
 			# -lintl isn't added for some reason
 			use nls && append-ldflags -lintl
+		;;
+		*-aix*)
+			# avoid recording immediate path to sharedlibs into executables
+			append-ldflags -Wl,-bnoipath
 		;;
 	esac
 
