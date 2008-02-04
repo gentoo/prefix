@@ -1,0 +1,10 @@
+# ChangeLog for sys-devel/parity
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*parity-1.0.3 (04 Feb 2008)
+
+  04 Feb 2008; Michael Haubenwallner <haubi@gentoo.org> +., +files,
+  +metadata.xml, +parity-1.0.3.ebuild:
+  added sys-devel/parity-1.0.3 (windows only, from markus.duft@salomon.at)
+
