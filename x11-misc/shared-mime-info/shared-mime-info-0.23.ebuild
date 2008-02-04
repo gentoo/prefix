@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/shared-mime-info-0.23.ebuild,v 1.1 2008/01/16 14:51:04 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/shared-mime-info-0.23.ebuild,v 1.2 2008/02/03 13:57:01 drac Exp $
 
 EAPI="prefix"
 
 inherit fdo-mime
 
 DESCRIPTION="The Shared MIME-info Database specification"
-HOMEPAGE="http://www.freedesktop.org/software/shared-mime-info"
+HOMEPAGE="http://freedesktop.org/wiki/Software/shared-mime-info"
 SRC_URI="http://www.freedesktop.org/~hadess/${P}.tar.bz2"
 
 LICENSE="GPL-2"
