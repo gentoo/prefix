@@ -1,6 +1,10 @@
 # ChangeLog for app-misc/zisofs-tools
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/zisofs-tools/ChangeLog,v 1.30 2007/11/06 19:28:09 armin76 Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/zisofs-tools/ChangeLog,v 1.31 2008/02/03 15:32:23 grobian Exp $
+
+  03 Feb 2008; Fabian Groffen <grobian@gentoo.org>
+  zisofs-tools-1.0.6.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   06 Nov 2007; Raúl Porcel <armin76@gentoo.org> zisofs-tools-1.0.6.ebuild:
   alpha stable

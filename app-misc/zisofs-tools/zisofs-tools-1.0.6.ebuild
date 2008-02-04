@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/zisofs-tools/zisofs-tools-1.0.6.ebuild,v 1.14 2007/11/06 19:28:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/zisofs-tools/zisofs-tools-1.0.6.ebuild,v 1.15 2008/02/03 15:32:23 grobian Exp $
 
 EAPI="prefix"
 
