@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.253 2008/02/01 10:46:40 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.255 2008/02/03 18:33:23 ferdy Exp $
+
+  03 Feb 2008; Fernando J. Pereda <ferdy@gentoo.org> git-1.5.4.ebuild:
+  Add USE=threads as per bug #208422
+
+*git-1.5.4 (03 Feb 2008)
+
+  03 Feb 2008; Fernando J. Pereda <ferdy@gentoo.org> -git-1.5.4_rc2.ebuild,
+  -git-1.5.4_rc3.ebuild, -git-1.5.4_rc4.ebuild, +git-1.5.4.ebuild:
+  New upstream version. Remove RCs for 1.5.4
 
   01 Feb 2008; Robin H. Johnson <robbat2@gentoo.org> git-1.5.2.5.ebuild,
   git-1.5.3.7-r1.ebuild, git-1.5.3.8.ebuild, git-1.5.4_rc2.ebuild,

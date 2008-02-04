@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.4_rc3.ebuild,v 1.2 2008/02/01 10:46:40 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.4.ebuild,v 1.2 2008/02/03 18:33:23 ferdy Exp $
 
 EAPI="prefix"
 
@@ -20,7 +20,7 @@ SRC_URI="mirror://kernel/software/scm/git/${MY_P}.tar.bz2
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="curl cgi doc emacs gtk iconv mozsha1 perl ppcsha1 tk webdav"
+IUSE="curl cgi doc emacs gtk iconv mozsha1 perl ppcsha1 tk threads webdav"
 
 DEPEND="
 	!app-misc/git
@@ -67,6 +67,7 @@ exportmakeopts() {
 
 	use iconv || myopts="${myopts} NO_ICONV=YesPlease"
 	use tk || myopts="${myopts} NO_TCLTK=YesPlease"
+	use threads && myopts="${myopts} THREADED_DELTA_SEARCH=YesPlease"
 
 	export MY_MAKEOPTS=${myopts}
 }
@@ -152,6 +153,7 @@ src_install() {
 
 	dodir /usr/share/${PN}/contrib
 	# The following are excluded:
+	# svnimport - use git-svn
 	# p4import - excluded because fast-import has a better one
 	# examples - these are stuff that is not used in Git anymore actually
 	# patches - stuff the Git guys made to go upstream to other places
@@ -212,10 +214,6 @@ pkg_postinst() {
 	echo
 	showpkgdeps git-archimport "dev-util/tla"
 	showpkgdeps git-cvsimport ">=dev-util/cvsps-2.1"
-	showpkgdeps git-svnimport \
-		"USE=perl" \
-		"dev-util/subversion(USE=perl)" \
-		"dev-perl/libwww-perl"
 	showpkgdeps git-svn \
 		"USE=perl" \
 		"dev-util/subversion(USE=perl)" \
