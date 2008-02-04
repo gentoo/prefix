@@ -1,6 +1,10 @@
 # ChangeLog for media-fonts/sharefonts
-# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/sharefonts/ChangeLog,v 1.17 2006/11/26 23:52:34 flameeyes Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/sharefonts/ChangeLog,v 1.18 2008/02/03 19:54:49 dirtyepic Exp $
+
+  03 Feb 2008; Ryan Hill <dirtyepic@gentoo.org> sharefonts-0.10-r1.ebuild,
+  sharefonts-0.10-r3.ebuild:
+  Fix description for bug #208721.  Fix quoting.
 
   26 Nov 2006; Diego Pettenò <flameeyes@gentoo.org>
   sharefonts-0.10-r3.ebuild:
