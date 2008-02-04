@@ -1,13 +1,13 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/desktop-file-utils-0.14.ebuild,v 1.13 2007/12/22 17:27:02 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/desktop-file-utils-0.14.ebuild,v 1.14 2008/02/03 14:00:28 drac Exp $
 
 EAPI="prefix"
 
 inherit eutils elisp-common
 
 DESCRIPTION="Command line utilities to work with desktop menu entries"
-HOMEPAGE="http://www.freedesktop.org/software/desktop-file-utils"
+HOMEPAGE="http://freedesktop.org/wiki/Software/desktop-file-utils"
 SRC_URI="http://www.freedesktop.org/software/${PN}/releases/${P}.tar.gz"
 
 LICENSE="GPL-2"
