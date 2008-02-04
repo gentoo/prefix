@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/gcal
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/gcal/ChangeLog,v 1.21 2007/03/19 01:56:28 kloeri Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/gcal/ChangeLog,v 1.22 2008/02/03 15:25:43 grobian Exp $
+
+  03 Feb 2008; Fabian Groffen <grobian@gentoo.org> gcal-3.01-r2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   19 Mar 2007; Bryan Østergaard <kloeri@gentoo.org> metadata.xml:
   Remove ka0ttic from metadata.xml due to retirement.
