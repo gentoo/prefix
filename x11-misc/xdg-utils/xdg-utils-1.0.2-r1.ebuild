@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/xdg-utils-1.0.2-r1.ebuild,v 1.2 2008/01/29 15:33:57 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/xdg-utils-1.0.2-r1.ebuild,v 1.3 2008/02/03 13:58:40 drac Exp $
 
 EAPI="prefix"
 
 inherit eutils
 
 DESCRIPTION="Portland utils for cross-platform/cross-toolkit/cross-desktop interoperability"
-HOMEPAGE="http://portland.freedesktop.org/wiki/Portland"
+HOMEPAGE="http://portland.freedesktop.org/wiki"
 SRC_URI="http://portland.freedesktop.org/download/${P}.tgz"
 
 LICENSE="MIT"

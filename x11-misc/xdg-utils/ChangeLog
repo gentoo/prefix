@@ -1,6 +1,9 @@
 # ChangeLog for x11-misc/xdg-utils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/ChangeLog,v 1.43 2008/01/29 15:33:57 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/ChangeLog,v 1.44 2008/02/03 13:58:40 drac Exp $
+
+  03 Feb 2008; Samuli Suominen <drac@gentoo.org> xdg-utils-1.0.2-r1.ebuild:
+  Update HOMEPAGE.
 
   29 Jan 2008; Samuli Suominen <drac@gentoo.org> xdg-utils-1.0.2-r1.ebuild:
   Pull in desktop-file-utils and shared-mime-info, leave a postinst message
