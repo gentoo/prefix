@@ -1,0 +1,14 @@
+--- Makefile.am
++++ Makefile.am
+@@ -17,8 +17,9 @@
+ 
+ # We erase the old man pages, just in case they might be symbolic links
+ # (symbolic links were used in a previous release)
+-install-exec-hook: update-manpages
+-	rm -f ${man1dir}/${ALL_GOALS}deep.1
++install-man: update-manpages
++	rm -f $(DESTDIR)${man1dir}/${ALL_GOALS}deep.1
++	$(MAKE) install-man1
+ 
+ update-manpages: md5deep.1
+ 	cp $< sha1deep.1
