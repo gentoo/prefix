@@ -1,0 +1,287 @@
+# ChangeLog for sys-apps/smartmontools
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/ChangeLog,v 1.71 2008/01/29 16:13:41 flameeyes Exp $
+
+  29 Jan 2008; Diego Pettenò <flameeyes@gentoo.org> files/smartd.rc:
+  Fix init script dependencies to work without a boot runlevel.
+
+  28 Dec 2007; Guy Martin <gmsoft@gentoo.org> smartmontools-5.37.ebuild:
+  Added hppa to KEYWORDS.
+
+  29 Sep 2007; Christian Birchinger <joker@gentoo.org>
+  smartmontools-5.37.ebuild:
+  Added sparc stable keyword
+
+  02 Sep 2007; Christian Faulhammer <opfer@gentoo.org>
+  smartmontools-5.37.ebuild:
+  stable x86, bug 190306
+
+  29 Aug 2007; Christoph Mende <angelos@gentoo.org>
+  smartmontools-5.37.ebuild:
+  Stable on amd64 wrt bug #190306
+
+*smartmontools-5.37 (10 Feb 2007)
+
+  10 Feb 2007; Mike Frysinger <vapier@gentoo.org>
+  +smartmontools-5.37.ebuild:
+  Version bump #166198 by Rafal Boniecki.
+
+  15 Jan 2007; Jose Luis Rivero <yoswink@gentoo.org>
+  smartmontools-5.36-r1.ebuild:
+  Stable on alpha wrt bug #145947
+
+  04 Nov 2006; Timothy Redaelli <drizzt@gentoo.org>
+  smartmontools-5.36-r1.ebuild:
+  Added ~x86-fbsd keyword.
+
+  14 Oct 2006; Tim Yamin <plasmaroo@gentoo.org> smartmontools-5.36-r1.ebuild:
+  Stable on IA64; bug #145947.
+
+  17 Sep 2006; <nixnut@gentoo.org> smartmontools-5.36-r1.ebuild:
+  Stable on ppc wrt bug 145947
+
+  13 Sep 2006; Danny van Dyk <kugelfang@gentoo.org>
+  smartmontools-5.36-r1.ebuild:
+  Marked stable on amd64 wrt to bug #145947.
+
+  04 Sep 2006; Saleem Abdulrasool <compnerd@gentoo.org>
+  smartmontools-5.36-r1.ebuild:
+  stable on x86 (bug #145947)
+
+  03 Sep 2006; Stefan Schweizer <genstef@gentoo.org>
+  smartmontools-5.36.ebuild, smartmontools-5.36-r1.ebuild:
+  Fix bug 140192 properly, do not depend on a mailer but tell the user how to
+  get one if he needs one thanks to Grzegorz Kulewski <kangur@polcom.net>,
+  jakub and chainsaw
+
+  03 Sep 2006; Fabian Groffen <grobian@gentoo.org>
+  smartmontools-5.36-r1.ebuild:
+  Marked ppc-macos stable (bug #145947)
+
+  02 Sep 2006; Jason Wever <weeve@gentoo.org> smartmontools-5.36-r1.ebuild:
+  Stable on SPARC wrt bug #145947.
+
+*smartmontools-5.36-r1 (17 Jul 2006)
+
+  17 Jul 2006; Mike Frysinger <vapier@gentoo.org>
+  +files/smartmontools-5.36-utf8.patch, +smartmontools-5.36-r1.ebuild:
+  Fix separator usage in UTF8 output #139409 by Samuli Suominen.
+
+  15 Jul 2006; Mike Frysinger <vapier@gentoo.org> smartmontools-5.36.ebuild:
+  Add mailx to RDEPEND #140192 by Jacek Sieka.
+
+  12 Jul 2006; Aron Griffis <agriffis@gentoo.org> smartmontools-5.36.ebuild:
+  Mark 5.36 stable on ia64. #136093
+
+  15 Jun 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  smartmontools-5.36.ebuild:
+  ppc stable, bug #136093
+
+  11 Jun 2006; Fabian Groffen <grobian@gentoo.org>
+  smartmontools-5.36.ebuild:
+  Marked ppc-macos stable (bug #136093)
+
+  11 Jun 2006; Simon Stelling <blubb@gentoo.org> smartmontools-5.36.ebuild:
+  stable on amd64
+
+  10 Jun 2006; Jason Wever <weeve@gentoo.org> smartmontools-5.36.ebuild:
+  Stable on SPARC wrt bug #136093.
+
+  10 Jun 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  smartmontools-5.36.ebuild:
+  Stable on x86 wrt bug #136093.
+
+*smartmontools-5.36 (15 Apr 2006)
+
+  15 Apr 2006; Mike Frysinger <vapier@gentoo.org>
+  +smartmontools-5.36.ebuild:
+  Version bump #129941 by Raymond Lewis Rebbeck.
+
+*smartmontools-5.33-r1 (08 Feb 2006)
+
+  08 Feb 2006; Roy Marples <uberlord@gentoo.org> files/smartd.rc,
+  +smartmontools-5.33-r1.ebuild:
+  Bump for new init script that works across all baselayout versions.
+
+  05 Nov 2005; Fabian Groffen <grobian@gentoo.org>
+  smartmontools-5.33.ebuild:
+  Marked ~ppc-macos (bug #109130)
+
+  24 Aug 2005; Mike Frysinger <vapier@gentoo.org> smartmontools-5.33.ebuild:
+  Add support for USE=static #103390 by Sascha Silbe.
+
+  09 May 2005; Aron Griffis <agriffis@gentoo.org> smartmontools-5.33.ebuild:
+  stable on ia64
+
+  19 Apr 2005; <plasmaroo@gentoo.org> smartmontools-5.33.ebuild:
+  Add ~ia64 keyword, bug #89548.
+
+  06 Apr 2005; Marcus D. Hanwell <cryos@gentoo.org>
+  smartmontools-5.33.ebuild:
+  Marked stable on amd64.
+
+  19 Mar 2005; Bryan Østergaard <kloeri@gentoo.org>
+  smartmontools-5.33.ebuild:
+  Stable on alpha.
+
+  21 Jan 2005; Lars Weiler <pylon@gentoo.org> smartmontools-5.33.ebuild:
+  Stable on ppc.
+
+  03 Jan 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  smartmontools-5.33.ebuild:
+  Stable on sparc
+
+  03 Jan 2005; Mike Frysinger <vapier@gentoo.org> files/smartd.rc,
+  smartmontools-5.33.ebuild:
+  Update docs #76337 by Daniel Holth.
+
+  02 Jan 2005; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+*smartmontools-5.33 (09 Oct 2004)
+
+  09 Oct 2004; Mike Frysinger <vapier@gentoo.org> +files/smartd.confd,
+  files/smartd.rc, +smartmontools-5.33.ebuild:
+  Version bump #62717 by Ziga Boehm.
+
+  24 May 2004; Bryan Østergaard <kloeri@gentoo.org> smartmontools-5.30.ebuild:
+  Keyworded ~alpha, requested in bug #51550.
+
+  01 Apr 2004; David Holm <dholm@gentoo.org> smartmontools-5.30.ebuild:
+  Added to ~ppc.
+
+*smartmontools-5.30 (31 Mar 2004)
+
+  31 Mar 2004; Martin Holzer <mholzer@gentoo.org> smartmontools-5.30.ebuild:
+  Version bumped.
+
+*smartmontools-5.29 (24 Feb 2004)
+
+  24 Feb 2004; Martin Holzer <mholzer@gentoo.org> smartmontools-5.29.ebuild:
+  Version bumped.
+
+  14 Feb 2004; Christian Birchinger <joker@gentoo.org>
+  smartmontools-5.26.ebuild:
+  Added sparc stable keyword
+
+  13 Feb 2004; Martin Holzer <mholzer@gentoo.org> smartmontools-5.26.ebuild:
+  x86 stable
+
+*smartmontools-5.27 (13 Feb 2004)
+
+  13 Feb 2004; Martin Holzer <mholzer@gentoo.org> smartmontools-5.27.ebuild:
+  Version bumped.
+
+  20 Dec 2003; Christian Birchinger <joker@gentoo.org>
+  smartmontools-5.25.ebuild:
+  Added sparc stable keyword
+
+*smartmontools-5.26 (01 Dec 2003)
+
+  01 Dec 2003; Martin Holzer <mholzer@gentoo.org> smartmontools-5.26.ebuild:
+  Version bumped.
+
+*smartmontools-5.25 (29 Nov 2003)
+
+  29 Nov 2003; Martin Holzer <mholzer@gentoo.org> smartmontools-5.25.ebuild:
+  Version bumped.
+
+*smartmontools-5.23 (05 Nov 2003)
+
+  05 Nov 2003; Martin Holzer <mholzer@gentoo.org> smartmontools-5.23.ebuild:
+  Version bumped.
+
+  02 Nov 2003; Christian Birchinger <joker@gentoo.org>
+  smartmontools-5.21.ebuild:
+  Added sparc stable keyword
+
+*smartmontools-5.21 (18 Oct 2003)
+
+  18 Oct 2003; Martin Holzer <mholzer@gentoo.org> smartmontools-5.21.ebuild:
+  Version bumped.
+
+*smartmontools-5.20 (09 Oct 2003)
+
+  09 Oct 2003; Martin Holzer <mholzer@gentoo.org> smartmontools-5.20.ebuild:
+  Version bumped.
+
+*smartmontools-5.19 (08 Oct 2003)
+
+  08 Oct 2003; Martin Holzer <mholzer@gentoo.org> smartmontools-5.19.ebuild:
+  Version bumped.
+
+  19 Sep 2003; Christian Birchinger <joker@gentoo.org>
+  smartmontools-5.1.18.ebuild:
+  Added sparc stable keyword
+
+  12 Sep 2003; Martin Holzer <mholzer@gentoo.org> smartmontools-5.1.18.ebuild:
+  Marked x86 stable.
+
+  28 Aug 2003; Christian Birchinger <joker@gentoo.org>
+  smartmontools-5.1.16.ebuild:
+  Added sparc stable keyword
+
+*smartmontools-5.1.18 (22 Aug 2003)
+
+  22 Aug 2003; Martin Holzer <mholzer@gentoo.org> smartmontools-5.1.18.ebuild:
+  Version bumped.
+
+  20 Aug 2003; Martin Holzer <mholzer@gentoo.org> smartmontools-5.1.16.ebuild:
+  Marked x86 stable.
+
+*smartmontools-5.1.17 (20 Aug 2003)
+
+  20 Aug 2003; Martin Holzer <mholzer@gentoo.org> smartmontools-5.1.17.ebuild:
+  Version bumped.
+
+*smartmontools-5.1.16 (06 Aug 2003)
+
+  06 Aug 2003; Martin Holzer <mholzer@gentoo.org> smartmontools-5.1.16.ebuild:
+  Version bumped.
+
+  16 Jul 2003; Christian Birchinger <joker@gentoo.org>
+  smartmontools-5.1.14.ebuild:
+  Added sparc stable keyword
+
+  16 Jul 2003; Martin Holzer <mholzer@gentoo.org> smartmontools-5.1.14.ebuild:
+  Marked x86 stable
+
+*smartmontools-5.1.14 (01 Jul 2003)
+
+  01 Jul 2003; Patrick Kursawe <phosphan@gentoo.org>
+  smartmontools-5.1.14.ebuild:
+  Version bump
+
+  03 Jun 2003; Christian Birchinger <joker@gentoo.org>
+  smartmontools-5.1.11.ebuild:
+  Added sparc stable keyword
+
+  27 May 2003; Martin Holzer <mholzer@gentoo.org> smartmontools-5.1.11.ebuild:
+  Marked stable on x86
+
+*smartmontools-5.1.11 (19 May 2003)
+
+  19 May 2003; Martin Holzer <mholzer@gentoo.org> smartmontools-5.1.10.ebuild,
+  smartmontools-5.1.10.ebuild, smartmontools-5.1.11.ebuild,
+  smartmontools-5.1.9.ebuild, smartmontools-5.1.9.ebuild:
+  Version bumped & cleanup
+
+*smartmontools-5.1.10 (22 Apr 2003)
+
+  22 Apr 2003; Martin Holzer <mholzer@gentoo.org> Manifest,
+  smartmontools-5.1.10.ebuild:
+  Version bumped.
+
+*smartmontools-5.1.9 (15 Apr 2003)
+
+  15 Apr 2003; Martin Holzer <mholzer@gentoo.org> Manifest,
+  smartmontools-5.1.9.ebuild:
+  Version bumped.
+
+  30 Jan 2002; Christian Birchinger <joker@gentoo.org> : 
+  Added sparc keyword.
+
+*smartmontools-5.0.45 (27 Nov 2002)
+
+  27 Nov 2002; Mike Frysinger <vapier@gentoo.org> :
+  Initial import.  Ebuild submitted by Nicolas Lidzborski <cpc@freeshell.org>.
