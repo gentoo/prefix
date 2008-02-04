@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/tiff-3.8.2-r3.ebuild,v 1.4 2008/02/02 16:08:44 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/tiff-3.8.2-r3.ebuild,v 1.6 2008/02/03 12:21:36 armin76 Exp $
 
 EAPI="prefix"
 

@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/tiff
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.100 2008/02/02 16:08:44 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.102 2008/02/03 12:21:36 armin76 Exp $
+
+  03 Feb 2008; Raúl Porcel <armin76@gentoo.org> tiff-3.8.2-r3.ebuild:
+  alpha/ia64/sparc stable wrt #208547
+
+  03 Feb 2008; Luca Barbato <lu_zero@gentoo.org> tiff-3.8.2-r3.ebuild:
+  Marked ppc
 
   02 Feb 2008; Jeroen Roovers <jer@gentoo.org> tiff-3.8.2-r3.ebuild:
   Stable for HPPA (bug #208547).
