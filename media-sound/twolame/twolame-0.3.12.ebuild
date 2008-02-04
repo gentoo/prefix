@@ -26,7 +26,7 @@ src_unpack() {
 }
 
 src_install() {
-	emake DESTDIR="${ED}" pkgdocdir="/usr/share/doc/${PF}" \
+	emake DESTDIR="${D}" pkgdocdir="${EPREFIX}/usr/share/doc/${PF}" \
 		install || die "emake install failed."
 	dodoc AUTHORS ChangeLog README TODO
 	prepalldocs
