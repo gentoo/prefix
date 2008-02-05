@@ -1,0 +1,33 @@
+# ChangeLog for app-emulation/simh
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/simh/ChangeLog,v 1.7 2007/02/17 07:44:59 truedfx Exp $
+
+*simh-3.7.0 (17 Feb 2007)
+
+  17 Feb 2007; Harald van Dĳk <truedfx@gentoo.org> +simh-3.7.0.ebuild:
+  Version bump (#139631)
+
+  05 Jan 2007; Danny van Dyk <kugelfang@gentoo.org> -simh-3.5.0.ebuild:
+  QA: Removed unused versions.
+
+*simh-3.5.2 (27 Jan 2006)
+
+  27 Jan 2006; Mike Frysinger <vapier@gentoo.org> +simh-3.5.2.ebuild:
+  Version bump.
+
+  29 Oct 2005; Fabian Groffen <grobian@gentoo.org> simh-3.5.0.ebuild:
+  Marked ~ppc-macos (bug #108768)
+
+  13 Oct 2005; Luis Medinas <metalgod@gentoo.org> simh-3.5.0.ebuild:
+  Added ~amd64 keyword. Bug #108351.
+
+*simh-3.5.0 (15 Sep 2005)
+
+  15 Sep 2005; Marcelo Goes <vanquirius@gentoo.org> simh-3.3.0.ebuild,
+  +simh-3.5.0.ebuild:
+  Add DEPEND on app-arch/unzip for bug 69831, fix hardcoded SRC_URI, version
+  bump and other QA stuff.
+
+  27 Aug 2005; <rphillips@gentoo.org> :
+  New ebuild. Thanks to Emil Skoldberg. Fixes #73996
+
