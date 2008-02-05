@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/docutils-0.4-r3.ebuild,v 1.9 2008/01/10 09:35:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/docutils-0.4-r3.ebuild,v 1.10 2008/02/04 15:28:03 hawking Exp $
 
 EAPI="prefix"
 
@@ -78,7 +78,6 @@ src_test() {
 }
 
 src_install() {
-	cd "${S}"
 	DOCS="*.txt"
 	distutils_src_install
 	# Tools
