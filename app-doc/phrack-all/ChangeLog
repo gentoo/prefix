@@ -1,6 +1,9 @@
 # ChangeLog for app-doc/phrack-all
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/phrack-all/ChangeLog,v 1.10 2007/07/19 19:11:19 vapier Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-doc/phrack-all/ChangeLog,v 1.11 2008/02/04 18:35:04 grobian Exp $
+
+  04 Feb 2008; Fabian Groffen <grobian@gentoo.org> phrack-all-64.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *phrack-all-* (13 Feb 2003)
 
