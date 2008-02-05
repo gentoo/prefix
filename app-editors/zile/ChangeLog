@@ -1,6 +1,12 @@
 # ChangeLog for app-editors/zile
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/ChangeLog,v 1.43 2007/12/22 19:28:30 ulm Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/ChangeLog,v 1.44 2008/02/04 22:23:11 ulm Exp $
+
+*zile-2.2.53 (04 Feb 2008)
+
+  04 Feb 2008; Ulrich Mueller <ulm@gentoo.org> -zile-2.2.41.ebuild,
+  +zile-2.2.53.ebuild:
+  Version bump. Remove old.
 
   22 Dec 2007; Ulrich Mueller <ulm@gentoo.org> zile-2.2.49.ebuild:
   Stable on amd64, bug #202429.

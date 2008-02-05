@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/zile-2.2.41.ebuild,v 1.7 2007/10/10 07:17:42 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/zile-2.2.53.ebuild,v 1.1 2008/02/04 22:23:11 ulm Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ SRC_URI="mirror://sourceforge/zile/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-fbsd ~x86-macos"
+KEYWORDS="~x86-fbsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 DEPEND="sys-libs/ncurses
