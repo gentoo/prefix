@@ -67,7 +67,7 @@ src_unpack() {
 
 	# fix doc dir, bug 91911
 	sed -i -e \
-		's:DOCUMENTATION_PATH="${DATA_DIR}/doc/${DOCUMENTATION_RELATIVE_PATH}":DOCUMENTATION_PATH="/usr/share/doc/${PF}":g' \
+		's:DOCUMENTATION_PATH="${DATA_DIR}/doc/${DOCUMENTATION_RELATIVE_PATH}":DOCUMENTATION_PATH="${EPREFIX}/usr/share/doc/${PF}":g' \
 		"${S}"/configure || die
 
 	# bug 206925
@@ -85,8 +85,8 @@ src_compile() {
 	fi
 
 	econf \
-		--with-ltdl-include=/usr/include \
-		--with-ltdl-lib=/usr/$(get_libdir) \
+		--with-ltdl-include="${EPREFIX}"/usr/include \
+		--with-ltdl-lib="${EPREFIX}"/usr/$(get_libdir) \
 		--with-threads \
 		--with-modules \
 		$(use_with perl) \
