@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/linux-headers-2.6.24.ebuild,v 1.1 2008/01/26 09:33:05 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/linux-headers-2.6.24.ebuild,v 1.2 2008/02/04 22:20:41 vapier Exp $
 
 EAPI="prefix"
 
@@ -15,7 +15,7 @@ SRC_URI="mirror://gentoo/gentoo-headers-base-${PV}.tar.bz2"
 
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
 
-DEPEND="dev-util/unifdef"
+DEPEND=""
 RDEPEND=""
 
 S=${WORKDIR}/gentoo-headers-base-${PV}
