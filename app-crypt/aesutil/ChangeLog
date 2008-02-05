@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/aesutil
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/aesutil/ChangeLog,v 1.5 2007/07/02 23:02:45 betelgeuse Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/aesutil/ChangeLog,v 1.6 2008/02/04 20:26:59 grobian Exp $
+
+  04 Feb 2008; Fabian Groffen <grobian@gentoo.org> aesutil-1.0.7.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   02 Jul 2007; Petteri Räty <betelgeuse@gentoo.org> aesutil-1.0.7.ebuild:
   Don't depend on virtual/libc as it's pointless.
