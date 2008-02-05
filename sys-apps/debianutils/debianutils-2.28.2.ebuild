@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-2.28.2.ebuild,v 1.4 2008/01/23 08:13:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-2.28.2.ebuild,v 1.6 2008/02/04 22:33:32 jer Exp $
 
 EAPI="prefix"
 
@@ -21,6 +21,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-2.28.2-no-bs-namespace.patch
+	epatch "${FILESDIR}"/${PN}-2.28.2-mkboot-quiet.patch
 	epatch "${FILESDIR}"/${PN}-2.16.2-palo.patch
 	epatch "${FILESDIR}"/${PN}-2.17.5-nongnu.patch
 }

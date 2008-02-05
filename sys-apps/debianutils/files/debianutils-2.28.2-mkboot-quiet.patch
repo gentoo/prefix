@@ -1,0 +1,22 @@
+http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=438443
+
+--- mkboot
++++ mkboot
+@@ -20,7 +20,7 @@
+ if mount | grep -q "^proc " && [ -e /proc/cmdline ]; then
+ 	rootpart=$(grep -o "root=[^ ]*" /proc/cmdline | cut -d \= -f 2)
+ else
+-	which rdev >/dev/null && rootpart=$(rdev | cut -d ' ' -f 1)
++	which rdev >/dev/null 2>&1 && rootpart=$(rdev | cut -d ' ' -f 1)
+ fi
+ # temporary directory
+ tmpdir=${TMPDIR-/tmp}
+@@ -49,7 +49,7 @@
+ 
+ # check whether GRUB is installed
+ grubcheck () {
+-    if ! which update-grub >/dev/null && ! which grub-install >/dev/null; then return 1; fi
++    if ! which update-grub >/dev/null 2>&1 && ! which grub-install >/dev/null 2>&1 ; then return 1; fi
+ }
+ 
+ # check whether Yaboot is installed
