@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/bzip2-1.0.4-r1.ebuild,v 1.6 2008/01/14 19:53:13 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/bzip2-1.0.4-r1.ebuild,v 1.7 2008/02/04 21:49:39 jer Exp $
 
 EAPI="prefix"
 
@@ -27,8 +27,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.0.2-progress.patch
 	epatch "${FILESDIR}"/${PN}-1.0.3-no-test.patch
 	epatch "${FILESDIR}"/${PN}-1.0.4-POSIX-shell.patch #193365
-	epatch "${FILESDIR}"/${PN}-1.0.3-dylib.patch
-	epatch "${FILESDIR}"/${PN}-1.0.4-soldflags.patch
+	epatch "${FILESDIR}"/${PN}-1.0.3-dylib.patch # for Darwin
+	epatch "${FILESDIR}"/${PN}-1.0.4-soldflags.patch # for AIX
 	epatch "${FILESDIR}"/${PN}-1.0.4-prefix.patch
 	eprefixify bz{diff,grep,more}
 	sed -i -e 's:\$(PREFIX)/man:\$(PREFIX)/share/man:g' Makefile || die "sed manpath"
