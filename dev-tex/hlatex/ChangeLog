@@ -1,6 +1,10 @@
 # ChangeLog for dev-tex/hlatex
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/hlatex/ChangeLog,v 1.10 2007/05/13 03:18:27 matsuu Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/hlatex/ChangeLog,v 1.11 2008/02/04 20:42:56 grobian Exp $
+
+  04 Feb 2008; Fabian Groffen <grobian@gentoo.org> hlatex-0.991.ebuild,
+  hlatex-1.0.1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *hlatex-1.0.1 (13 May 2007)
 
