@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/slocate/slocate-3.1-r1.ebuild,v 1.3 2007/12/02 20:03:13 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/slocate/slocate-3.1-r1.ebuild,v 1.6 2008/02/04 20:38:27 jer Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="http://slocate.trakker.ca/files/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc-macos ~x86"
+KEYWORDS="~amd64-linux ~ia64-linux ~mips-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND="sys-apps/shadow"
@@ -75,6 +75,14 @@ src_install() {
 	fperms 0750 /var/lib/slocate
 }
 
+pkg_preinst() {
+	if has_version '=sys-apps/slocate-2*' ; then
+		rm -f "${EROOT}"/var/lib/slocate/slocate.db
+		ewarn "The slocate database created by slocate-2.x is incompatible"
+		ewarn "with slocate-3.x.  Make sure you run updatedb!"
+	fi
+}
+
 pkg_postinst() {
 	if [[ -f ${EROOT}/etc/cron.daily/slocate.cron ]]; then
 		ewarn "If you merged slocate-2.7.ebuild, please remove"
@@ -82,9 +90,4 @@ pkg_postinst() {
 		ewarn "from the filename"
 		echo
 	fi
-	einfo "Note that the /etc/updatedb.conf file is generic"
-	einfo "Please customize it to your system requirements"
-	echo
-	ewarn "The slocate database created by slocate-2.x is incompatible"
-	ewarn "with slocate-3.x.  Make sure you run updatedb!"
 }
