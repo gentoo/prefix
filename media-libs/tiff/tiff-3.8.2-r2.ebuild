@@ -1,13 +1,13 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/tiff-3.8.2-r2.ebuild,v 1.7 2007/07/12 08:54:26 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/tiff-3.8.2-r2.ebuild,v 1.8 2008/02/04 16:34:55 nerdboy Exp $
 
 EAPI="prefix"
 
 inherit eutils libtool
 
 DESCRIPTION="Library for manipulation of TIFF (Tag Image File Format) images"
-HOMEPAGE="http://remotesensing.org/libtiff/"
+HOMEPAGE="http://www.libtiff.org/"
 SRC_URI="ftp://ftp.remotesensing.org/pub/libtiff/${P}.tar.gz
 	mirror://gentoo/${P}-tiff2pdf.patch.bz2"
 
@@ -23,12 +23,12 @@ DEPEND="jpeg? ( >=media-libs/jpeg-6b )
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch ${WORKDIR}/${P}-tiff2pdf.patch || die "epatch tiff2pdf failed"
-	epatch ${FILESDIR}/${P}-tiffsplit.patch || die "epatch tiffsplit failed"
+	epatch "${WORKDIR}"/${P}-tiff2pdf.patch || die "epatch tiff2pdf failed"
+	epatch "${FILESDIR}"/${P}-tiffsplit.patch || die "epatch tiffsplit failed"
 	if use jbig; then
 		epatch "${FILESDIR}"/${PN}-jbig.patch || die "epatch jbig failed"
 	fi
-	epatch ${FILESDIR}/${P}-goo-sec.patch || die "epatch goo-sec failed"
+	epatch "${FILESDIR}"/${P}-goo-sec.patch || die "epatch goo-sec failed"
 	elibtoolize
 }
 

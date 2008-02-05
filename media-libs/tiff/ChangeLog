@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/tiff
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.102 2008/02/03 12:21:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.103 2008/02/04 16:34:55 nerdboy Exp $
+
+  04 Feb 2008; Steve Arnold <nerdboy@gentoo.org> tiff-3.8.2-r2.ebuild:
+  Updated homepage and fixed string quoting (www.remotesensing.org is not
+  responding).
 
   03 Feb 2008; Raúl Porcel <armin76@gentoo.org> tiff-3.8.2-r3.ebuild:
   alpha/ia64/sparc stable wrt #208547
