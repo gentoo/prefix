@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libsigsegv
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigsegv/ChangeLog,v 1.27 2008/01/12 20:46:22 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigsegv/ChangeLog,v 1.28 2008/02/04 20:31:36 grobian Exp $
+
+  04 Feb 2008; Fabian Groffen <grobian@gentoo.org>
+  -files/libsigsegv-2.4-ppc-macos.patch, libsigsegv-2.4.ebuild:
+  Drop ppc-macos patch, it lives on in the prefix overlay
 
   12 Jan 2008; Fabian Groffen <grobian@gentoo.org>
   -files/libsigsegv-2.1-darwin-7.x.patch,
