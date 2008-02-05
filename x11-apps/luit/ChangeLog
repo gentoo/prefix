@@ -1,6 +1,11 @@
 # ChangeLog for x11-apps/luit
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/luit/ChangeLog,v 1.32 2007/10/09 09:16:16 dberkholz Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/luit/ChangeLog,v 1.33 2008/02/04 07:15:40 dberkholz Exp $
+
+*luit-1.0.3 (04 Feb 2008)
+
+  04 Feb 2008; Donnie Berkholz <dberkholz@gentoo.org>; +luit-1.0.3.ebuild:
+  Bump. Looks for locale.alias in the right spot.
 
   09 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>; -luit-1.0.1.ebuild:
   Drop old ebuilds.
