@@ -9,7 +9,7 @@
  
 -PROGRAMS = htpasswd htdigest rotatelogs logresolve ab checkgid htdbm htcacheclean httxt2dbm
 +PROGRAMS = htpasswd htdigest rotatelogs logresolve ab checkgid htdbm \
-+	htcacheclean httxt2dbm log_server_status split-logfile
++	htcacheclean httxt2dbm log_server_status split-logfile dbmmanage
  TARGETS  = $(PROGRAMS)
  
  PROGRAM_LDADD        = $(UTIL_LDFLAGS) $(PROGRAM_DEPENDENCIES) $(EXTRA_LIBS) $(AP_LIBS)
