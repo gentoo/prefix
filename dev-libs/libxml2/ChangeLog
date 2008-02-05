@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/libxml2
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.202 2008/01/11 18:13:13 compnerd Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.203 2008/02/05 03:16:30 wolf31o2 Exp $
+
+  05 Feb 2008; Chris Gianelloni <wolf31o2@gentoo.org>
+  libxml2-2.6.30-r1.ebuild:
+  Added some code to skip the catalog generation on stage1/stage2, since we
+  won't necessarily have xmlcatalog in the seed stage and libxml2 wouldn't get
+  rebuilt until stage3, ending up with an empty catalog. This fixes bug
+  #208887.
 
   11 Jan 2008; Saleem Abdulrasool <compnerd@gentoo.org>
   libxml2-2.6.28.ebuild, libxml2-2.6.29.ebuild:
