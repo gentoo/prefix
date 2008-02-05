@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/tk-8.5.0-r1.ebuild,v 1.1 2007/12/30 03:35:09 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/tk-8.5.0-r2.ebuild,v 1.1 2008/02/04 16:28:02 matsuu Exp $
 
 EAPI="prefix"
 
@@ -53,6 +53,9 @@ src_unpack() {
 
 	# Bug 125971
 	epatch "${FILESDIR}"/${PN}-8.5_alpha6-tclm4-soname.patch
+
+	# Bug 208464
+	epatch "${FILESDIR}"/${PN}-CVE-2006-4484.patch
 
 	cd "${S}"/unix
 	eautoreconf
