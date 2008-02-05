@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/hexdump-esr/hexdump-esr-1.6.ebuild,v 1.1 2006/04/05 21:32:29 twp Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/hexdump-esr/hexdump-esr-1.6.ebuild,v 1.2 2008/02/04 17:08:38 grobian Exp $
 
 EAPI="prefix"
 
