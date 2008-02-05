@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/crossdev-0.9.18-r6.ebuild,v 1.1 2007/12/30 17:33:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/crossdev-0.9.18-r7.ebuild,v 1.1 2008/02/05 04:47:39 vapier Exp $
 
 EAPI="prefix"
 

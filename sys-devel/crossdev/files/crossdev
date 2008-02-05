@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/files/crossdev,v 1.101 2007/12/30 17:33:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/files/crossdev,v 1.102 2008/02/05 04:47:39 vapier Exp $
 
 EPREFIX=$(portageq envvar EPREFIX)
 
@@ -131,7 +131,7 @@ parse_target() {
 		ia64*)      TARCH=ia64    WITH_DEF_HEADERS="yes";;
 		i?86*)      TARCH=x86;;
 		m68*)       TARCH=m68k;;
-		mips*)      TARCH=mips ;  KPKG="mips-headers";;
+		mips*)      TARCH=mips;;
 		powerpc64*) TARCH=ppc64;;
 		powerpc*)   TARCH=ppc;;
 		sparc*)     TARCH=sparc;;

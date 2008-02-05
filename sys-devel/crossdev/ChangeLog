@@ -1,6 +1,12 @@
 # ChangeLog for sys-devel/crossdev
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/ChangeLog,v 1.56 2007/12/30 17:33:48 vapier Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/ChangeLog,v 1.57 2008/02/05 04:47:39 vapier Exp $
+
+*crossdev-0.9.18-r7 (05 Feb 2008)
+
+  05 Feb 2008; Mike Frysinger <vapier@gentoo.org> files/crossdev,
+  +crossdev-0.9.18-r7.ebuild:
+  Do not use mips-headers anymore for mips-targets.
 
 *crossdev-0.9.18-r6 (30 Dec 2007)
 
