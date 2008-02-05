@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dog/dog-1.7-r2.ebuild,v 1.9 2005/08/19 19:06:51 hansmi Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dog/dog-1.7-r2.ebuild,v 1.10 2008/02/04 18:07:51 grobian Exp $
 
 EAPI="prefix"
 
