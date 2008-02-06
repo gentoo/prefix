@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.344 2007/12/01 18:33:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.345 2008/02/05 18:09:58 tgall Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1433,7 +1433,7 @@ gcc_do_make() {
 		# 3 stage bootstrapping doesnt quite work when you cant run the
 		# resulting binaries natively ^^;
 		GCC_MAKE_TARGET=${GCC_MAKE_TARGET-all}
-	elif [[ $(tc-arch) == "x86" || $(tc-arch) == "amd64" || $(tc-arch) == "ppc64" ]] \
+	elif [[ $(tc-arch) == "x86" || $(tc-arch) == "amd64" ]] \
 		&& [[ ${GCCMAJOR}.${GCCMINOR} > 3.3 ]] \
 		&& [[ ${CBUILD} != *-interix* ]]
 	then
