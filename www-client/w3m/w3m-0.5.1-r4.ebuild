@@ -22,7 +22,7 @@ SRC_URI="mirror://sourceforge/w3m/${P}.tar.gz
 
 LICENSE="w3m"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE="X async fbcon gpm gtk imlib lynxkeymap migemo nls ssl unicode xface"
 #IUSE="canna"
 
