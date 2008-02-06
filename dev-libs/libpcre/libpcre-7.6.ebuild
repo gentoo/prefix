@@ -1,8 +1,8 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-7.3-r1.ebuild,v 1.10 2007/12/11 10:03:12 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-7.6.ebuild,v 1.4 2008/02/06 05:17:22 jer Exp $
 
-EAPI="prefix"
+EAPI="prefix 1"
 
 inherit libtool eutils
 
@@ -14,8 +14,8 @@ SRC_URI="ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/${MY_P}.tar.bz2"
 
 LICENSE="BSD"
 SLOT="3"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
-IUSE="doc unicode"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+IUSE="bzip2 +cxx doc unicode zlib"
 
 DEPEND="dev-util/pkgconfig"
 RDEPEND=""
@@ -29,13 +29,17 @@ src_unpack() {
 }
 
 src_compile() {
-	if use unicode; then
-		myconf="--enable-utf8 --enable-unicode-properties"
-	fi
-	myconf="${myconf} --with-match-limit-recursion=8192"
 	# Enable building of static libs too - grep and others
 	# depend on them being built: bug 164099
-	econf ${myconf} --enable-static || die "econf failed"
+	econf --with-match-limit-recursion=8192 \
+		$(use_enable unicode utf8) $(use_enable unicode unicode-properties) \
+		$(use_enable cxx cpp) \
+		$(use_enable zlib pcregrep-libz) \
+		$(use_enable bzip2 pcregrep-libbz2) \
+		--enable-static \
+		--htmldir="${EPREFIX}"/usr/share/doc/${PF}/html \
+		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
+		|| die "econf failed"
 	emake all || die "emake failed"
 }
 
