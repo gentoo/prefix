@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3343 2008/02/03 08:29:04 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3348 2008/02/05 18:27:00 bicatali Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -1822,6 +1822,7 @@ sci-chemistry/gromacs:double-precision - more precise calculations at the expens
 sci-chemistry/jmol:client-only - Install the viewer only, no applet files for httpd.
 sci-chemistry/shelx:dosformat - Use CR/LF to end lines; useful in mixed Linux/Windows environments
 sci-electronics/gerbv:unit-mm - Set default unit for coordinates in status bar to mm
+sci-electronics/pcb:xrender - Add support for xrender
 sci-geosciences/gmt:gmtfull - Full resolution bathymetry database
 sci-geosciences/gmt:gmthigh - Adds high resolution bathymetry database
 sci-geosciences/gmt:gmtsuppl - Supplement functions for GMT
@@ -1842,6 +1843,8 @@ sci-geosciences/mapserver:postgis - Enables postgis support
 sci-geosciences/mapserver:proj - Enables proj library support (geographic projections)
 sci-libs/acml:int64 - Install the 64 bits integer library.
 sci-libs/acml:openmp - Install the OpenMP parallel computing library as well (needs ifc or gfortran >= 4.2)
+sci-libs/cholmod:metis - Enable the Partition module to cholmod using metis
+sci-libs/cholmod:supernodal - Enable the Supernodal module (needs lapack)
 sci-libs/fftw:float - Links default library to single precision instead of double (symlinks only)
 sci-libs/gdal:fits - Enables support for NASA's cfitsio library
 sci-libs/gdal:geos - Adds support for geometry engine
@@ -1854,6 +1857,7 @@ sci-libs/gsl:cblas - Builds gsl with external cblas by default
 sci-libs/hdf5:cxx - Builds C++ library support (conflicts with mpi support)
 sci-libs/hdf5:f90 - Flag to override fortran for externel compilers
 sci-libs/hdf5:hlapi - Enables support for high-level library
+sci-libs/hdf5:tools - install support and test tools
 sci-libs/itpp:cblas - Adds support for the cblas numerical library
 sci-libs/libghemical:mopac7 - Use the MOPAC7 package for semi-empirical calculations
 sci-libs/libghemical:mpqc - Use the MPQC package for quantum-mechanical calculations
@@ -1861,6 +1865,8 @@ sci-libs/libsvm:tools - install support tools
 sci-libs/mkl:fortran95 - Build static FORTRAN 95 BLAS/LAPACK interface
 sci-libs/mkl:int64 - Install the 64 bits integer library, double package size
 sci-libs/mkl:serial - Install the serial (as non-threaded) libraries as well, double package size
+sci-libs/metis:openmp - Build support for the OpenMP, needs openmp capable compiler
+sci-libs/metis:int64 - Build the 64 bits integer library (version >=5)
 sci-libs/plplot:itcl - Support for itcl bindings.
 sci-libs/plplot:octave - Support for Octave bindings.
 sci-libs/scipy:sandbox - Installs experimental scipy sandbox modules (pull some dependencies)

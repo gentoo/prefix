@@ -1,6 +1,25 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1091 2008/02/03 19:38:58 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1096 2008/02/06 00:12:55 wolf31o2 Exp $
+
+  06 Feb 2008; Chris Gianelloni <wolf31o2@gentoo.org> base/package.use:
+  Adding USE=regex to the dev-scheme/guile package.use since it's required for
+  gnucash, among other things.
+
+  05 Feb 2008; Sébastien Fabbro <bicatali@gentoo.org> use.local.desc:
+  Added local use flags for sci-libs/cholmod
+
+  05 Feb 2008; Sébastien Fabbro <bicatali@gentoo.org> use.local.desc:
+  added local use flags for sci-libs/metis
+
+  04 Feb 2008; David Shakaryan <omp@gentoo.org> package.mask:
+  Remove x11-wm/kahakai from tree. (bug #186440)
+
+  04 Feb 2008; Wulf C. Krueger <philantrop@gentoo.org> package.mask:
+  Masked >=kde-base/pykde-3.5.6.
+
+  04 Feb 2008; Denis Dupeyron <calchan@gentoo.org> use.local.desc:
+  Added local USE flag xrender for sci-electronics/pcb.
 
   03 Feb 2008; Ryan Hill <dirtyepic@gentoo.org> package.mask:
   Further cleanup of examples.
