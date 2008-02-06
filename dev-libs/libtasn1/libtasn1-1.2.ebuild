@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/libtasn1-1.2.ebuild,v 1.4 2008/01/14 20:05:22 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/libtasn1-1.2.ebuild,v 1.5 2008/02/05 10:09:22 corsair Exp $
 
 EAPI="prefix"
 
