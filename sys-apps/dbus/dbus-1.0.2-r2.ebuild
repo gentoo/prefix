@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.0.2-r2.ebuild,v 1.15 2007/07/11 07:05:54 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.0.2-r2.ebuild,v 1.16 2008/02/06 00:26:10 steev Exp $
 
 EAPI="prefix"
 
@@ -115,7 +115,7 @@ pkg_postinst() {
 	elog "you should add it to the default runlevel :"
 	elog "\`rc-update add dbus default\`"
 	elog
-	elog "Somme applications require a session bus in addition to the system"
+	elog "Some applications require a session bus in addition to the system"
 	elog "bus. Please see \`man dbus-launch\` for more information."
 	elog
 	ewarn
