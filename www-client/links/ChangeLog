@@ -1,6 +1,10 @@
 # ChangeLog for www-client/links
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/links/ChangeLog,v 1.95 2007/10/06 09:13:56 tgall Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-client/links/ChangeLog,v 1.96 2008/02/06 00:13:34 opfer Exp $
+
+  06 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  -links-2.1_pre26.ebuild:
+  clean up
 
   06 Oct 2007; Tom Gall <tgall@gentoo.org> links-2.1_pre28-r1.ebuild:
   stable on ppct64, bug #194649

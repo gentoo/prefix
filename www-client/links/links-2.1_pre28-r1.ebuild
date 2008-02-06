@@ -16,7 +16,7 @@ SRC_URI="http://links.twibright.com/download/${MY_P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="2"
-KEYWORDS="~amd64 ~ia64-hpux ~ppc-aix ~ppc-macos ~sparc-solaris ~x86 ~x86-macos ~x86-solaris"
+KEYWORDS="~ppc-aix ~ia64-hpux ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="directfb fbcon gpm javascript jpeg livecd png sdl ssl svga tiff unicode X"
 
 # Note: if X or fbcon usegflag are enabled, links will be built in graphic
