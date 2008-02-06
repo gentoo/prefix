@@ -22,6 +22,7 @@ S=${WORKDIR}/lzma-${PV/_}
 pkg_setup() {
 	# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=20366
 	[[ ${CHOST} == *-aix* ]] && export ac_cv_sys_large_files=no
+	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
 }
 
 src_unpack() {
@@ -31,13 +32,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-interix.patch
 
 	AT_M4DIR="m4" eautoreconf # need recent libtool for interix
-}
-
-src_compile() {
-	[[ ${CHOST} == *-interix* ]] && append-flags "-D_ALL_SOURCE"
-
-	econf
-	emake || die "emake failed"
 }
 
 src_install() {
