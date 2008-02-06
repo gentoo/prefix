@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Sub-Uplevel/Sub-Uplevel-0.16.ebuild,v 1.5 2008/01/13 21:47:13 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Sub-Uplevel/Sub-Uplevel-0.16.ebuild,v 1.6 2008/02/05 10:28:04 corsair Exp $
 
 EAPI="prefix"
 
