@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/ruby
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.318 2007/12/26 09:03:06 welp Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.319 2008/02/05 10:06:24 corsair Exp $
+
+  05 Feb 2008; Markus Rothe <corsair@gentoo.org> ruby-1.8.6_p111-r1.ebuild:
+  Stable on ppc64
 
   26 Dec 2007; Peter Weller <welp@gentoo.org> ruby-1.8.6_p111.ebuild:
   Stable on amd64; bug 199191
