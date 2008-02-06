@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/dialog
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.106 2008/02/04 21:39:26 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.107 2008/02/05 10:37:23 corsair Exp $
+
+  05 Feb 2008; Markus Rothe <corsair@gentoo.org> dialog-1.1.20071028.ebuild:
+  Stable on ppc64
 
   04 Feb 2008; Jeroen Roovers <jer@gentoo.org> dialog-1.1.20071028.ebuild:
   Stable for HPPA too.
