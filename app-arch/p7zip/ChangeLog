@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/p7zip
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.92 2008/02/03 11:42:16 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.93 2008/02/05 09:56:48 corsair Exp $
+
+  05 Feb 2008; Markus Rothe <corsair@gentoo.org> p7zip-4.57.ebuild:
+  Stable on ppc64
 
   03 Feb 2008; Dawid Węgliński <cla@gentoo.org> p7zip-4.57.ebuild:
   Remove app-arch/rar-unpacker from postinst() as it's no longer in the tree
