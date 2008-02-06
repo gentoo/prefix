@@ -51,6 +51,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-aix-eff_uid.patch
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-hpux.patch || die
 	epatch "${FILESDIR}"/${PN}-5.2-interix.patch
+	epatch "${FILESDIR}"/${PN}-5.2-ia64hpux.patch
 
 	# forgot patching 'support/shlib-install' in p12 (netbsd, aix5).
 	epatch "${FILESDIR}"/${P}-shlib-install.patch

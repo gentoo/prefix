@@ -1,0 +1,14 @@
+--- support/shobj-conf.orig	2008-02-06 09:37:12 +0100
++++ support/shobj-conf	2008-02-06 09:38:30 +0100
+@@ -363,7 +363,10 @@
+ 	SHOBJ_LDFLAGS='-shared -fpic -Wl,-b -Wl,+s -Wl,+h,$@'
+ 
+ 	SHLIB_XLDFLAGS='-Wl,+b,$(libdir)'
+-	SHLIB_LIBSUFF='sl'
++	case ${host_cpu} in
++	ia64) SHLIB_LIBSUFF='so' ;;
++	*) SHLIB_LIBSUFF='sl' ;;
++	esac
+ 	SHLIB_LIBVERSION='$(SHLIB_LIBSUFF).$(SHLIB_MAJOR)'
+ 	;;
+ 
