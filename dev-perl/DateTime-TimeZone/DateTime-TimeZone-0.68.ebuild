@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DateTime-TimeZone/DateTime-TimeZone-0.68.ebuild,v 1.4 2008/01/13 21:23:36 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DateTime-TimeZone/DateTime-TimeZone-0.68.ebuild,v 1.5 2008/02/05 10:15:34 corsair Exp $
 
 EAPI="prefix"
 
