@@ -1,6 +1,16 @@
 # ChangeLog for dev-python/pyxml
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyxml/ChangeLog,v 1.39 2007/07/03 11:37:57 dev-zero Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyxml/ChangeLog,v 1.42 2008/02/06 02:15:11 ranger Exp $
+
+  06 Feb 2008; Brent Baude <ranger@gentoo.org> pyxml-0.8.4-r1.ebuild:
+  stable ppc64, bug 208929
+
+  05 Feb 2008; Jeroen Roovers <jer@gentoo.org> pyxml-0.8.4-r1.ebuild:
+  Stable for HPPA (bug #208929). Fixed an unquoted variable.
+
+  05 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  pyxml-0.8.4-r1.ebuild:
+  stable x86, bug 208929
 
   03 Jul 2007; Tiziano Müller <dev-zero@gentoo.org> Manifest:
   Re-digest (bug #184073)
