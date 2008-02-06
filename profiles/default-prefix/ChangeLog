@@ -2,6 +2,9 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Feb 2008; Michael Haubenwallner <haubi@gentoo.org> aix/profile.bashrc:
+  need direct access to vdb/CONTENTS to cleanly have lib.a unmerged on aix
+
   01 Feb 2008; Fabian Groffen <grobian@gentoo.org> package.mask:
   Unleash coreutils-6.10 as lzma-utils is keyworded for all arches now
 
