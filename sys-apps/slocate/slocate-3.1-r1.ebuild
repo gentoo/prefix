@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/slocate/slocate-3.1-r1.ebuild,v 1.6 2008/02/04 20:38:27 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/slocate/slocate-3.1-r1.ebuild,v 1.7 2008/02/06 02:06:00 ranger Exp $
 
 EAPI="prefix"
 
