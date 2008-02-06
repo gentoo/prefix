@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/fontforge-20071210.ebuild,v 1.9 2008/01/10 17:49:03 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/fontforge-20071210.ebuild,v 1.10 2008/02/05 21:37:31 vapier Exp $
 
 EAPI="prefix"
 
@@ -33,6 +33,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-parallel-build.patch #202019
 	epatch "${FILESDIR}"/${P}-noX-nopython-build.patch #202360
+	sed -i '3i#undef X_DISPLAY_MISSING' inc/config.h.in || die #205455
 }
 
 src_compile() {
