@@ -1,0 +1,45 @@
+# ChangeLog for sci-visualization/xgraph
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/xgraph/ChangeLog,v 1.7 2007/07/22 06:45:51 dberkholz Exp $
+
+  22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  xgraph-12.1-r1.ebuild:
+  Drop virtual/x11 references.
+
+  12 Aug 2006; Markus Dittrich <markusle@gentoo.org>
+  +files/xgraph-makefile-gentoo.patch, xgraph-12.1-r1.ebuild:
+  Added patch to have makefile properly honor the user's CFLAGS.
+  See bug #143661.
+
+  12 Aug 2006; Michael Sterrett <mr_bones_@gentoo.org> -xgraph-12.1.ebuild:
+  clean out old, non-mod-X ebuild
+
+  12 Aug 2006; Jason Wever <weeve@gentoo.org> xgraph-12.1-r1.ebuild:
+  Stable on SPARC.
+
+*xgraph-12.1-r1 (05 Feb 2006)
+
+  05 Feb 2006; Olivier Fisette <ribosome@gentoo.org> +xgraph-12.1-r1.ebuild:
+  Ported to modular X. Ebuild clean-up.
+
+  29 Jan 2006; Marcus D. Hanwell <cryos@gentoo.org> +xgraph-12.1.ebuild:
+  Moved from media-gfx/xgraph to sci-visualization/xgraph.
+
+  03 Nov 2005; Fabian Groffen <grobian@gentoo.org> xgraph-12.1.ebuild:
+  Marked ~ppc-macos (bug #110940)
+
+  19 Jul 2005; David Holm <dholm@gentoo.org> xgraph-12.1.ebuild:
+  Added to ~ppc.
+
+  23 Feb 2005; Jan Brinkmann <luckyduck@gentoo.org> xgraph-12.1.ebuild:
+  added ~amd64 to KEYWORDS. fixes #83054
+
+  14 Jun 2004; Ferris McCormick <fmccor@gentoo.org> xgraph-12.1.ebuild:
+  Marked stable for sparc.
+
+*xgraph-12.1 (10 Jan 2004)
+
+  10 Jan 2004; Robin H. Johnson <robbat2@gentoo.org> xgraph-12.1.ebuild:
+  Initial commit, original ebuild by Christophe Radovcic
+  <christophe.radovcic@laposte.net>, updated by robbat2@gentoo.org
+
