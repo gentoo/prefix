@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-io/commons-io-1.3.2.ebuild,v 1.8 2007/11/25 09:33:28 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-io/commons-io-1.4.ebuild,v 1.1 2008/02/06 14:46:12 fordfrog Exp $
 
 EAPI="prefix"
 
@@ -51,9 +51,9 @@ src_test() {
 }
 
 src_install() {
-	java-pkg_newjar build/${P}.jar ${PN}.jar
+	java-pkg_newjar target/${P}.jar ${PN}.jar
 
 	dodoc RELEASE-NOTES.txt NOTICE.txt || die
-	use doc && java-pkg_dojavadoc build/dist-build/${P}/docs
+	use doc && java-pkg_dojavadoc target/apidocs
 	use source && java-pkg_dosrc src/java/*
 }
