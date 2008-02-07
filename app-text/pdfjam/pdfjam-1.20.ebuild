@@ -10,7 +10,7 @@ SRC_URI="http://www2.warwick.ac.uk/fac/sci/statistics/staff/academic/firth/softw
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 S=${WORKDIR}/${PN}
 
