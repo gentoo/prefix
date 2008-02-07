@@ -1,0 +1,16 @@
+--- Makefile	2003-05-05 11:11:27.000000000 +0000
++++ Makefile.new	2003-05-05 11:10:31.000000000 +0000
+@@ -78,10 +78,10 @@
+ UNZIP	= unzip
+ 
+ # directories, etc.
+-BINDIR	= /local/bin
+-LIBDIR	= /local/share/lib/pep
++BINDIR	= /usr/bin
++LIBDIR	= /usr/share/pep
+ MANEXT	= 1
+-MANDIR	= /local/man/man$(MANEXT)
++MANDIR	= /usr/share/man/man$(MANEXT)
+ TODAY	= 19950811
+ CLOCK	= 0200
+ VER	= 28
