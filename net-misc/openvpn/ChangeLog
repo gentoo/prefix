@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/openvpn
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.123 2008/01/30 15:05:25 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.124 2008/02/07 01:21:51 ranger Exp $
+
+  07 Feb 2008; Brent Baude <ranger@gentoo.org> openvpn-2.0.7-r2.ebuild:
+  stable ppc64, bug 209177
 
   30 Jan 2008; Alon Bar-Lev <alonbl@gentoo.org> files/down.sh, files/up.sh:
   If SVCNAME does not exist avoid doing service magic
