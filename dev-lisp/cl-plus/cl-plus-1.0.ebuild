@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-plus/cl-plus-1.0.ebuild,v 1.6 2007/02/03 17:39:32 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-plus/cl-plus-1.0.ebuild,v 1.7 2008/02/06 21:29:20 grobian Exp $
 
 EAPI="prefix"
 
