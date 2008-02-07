@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/dbus
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.207 2008/02/06 00:26:11 steev Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.208 2008/02/07 00:56:52 steev Exp $
+
+  07 Feb 2008; Steev Klimaszewski <steev@gentoo.org> dbus-1.1.4.ebuild:
+  Only patch if we are building with use X, the patch causes an error when
+  built without X. Fixes bug #209175. Thanks to Nikolay S. Rybaloff for
+  reporting.
 
   06 Feb 2008; Steev Klimaszewski <steev@gentoo.org> dbus-1.0.2-r2.ebuild,
   dbus-1.1.4.ebuild:
