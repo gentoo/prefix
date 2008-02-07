@@ -1,6 +1,9 @@
 # ChangeLog for sci-visualization/xgraph
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/xgraph/ChangeLog,v 1.7 2007/07/22 06:45:51 dberkholz Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/xgraph/ChangeLog,v 1.8 2008/02/06 21:43:31 grobian Exp $
+
+  06 Feb 2008; Fabian Groffen <grobian@gentoo.org> xgraph-12.1-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   22 Jul 2007; Donnie Berkholz <dberkholz@gentoo.org>;
   xgraph-12.1-r1.ebuild:
