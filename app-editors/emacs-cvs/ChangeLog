@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.190 2008/02/02 09:14:26 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.191 2008/02/06 12:39:27 ulm Exp $
+
+  06 Feb 2008; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-23.0.60-r2.ebuild:
+  Remove --with-gtk configure option, upstream dropped support for it.
 
   02 Feb 2008; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-22.1.90.ebuild,
   emacs-cvs-22.1.9999.ebuild, emacs-cvs-23.0.50_pre20080201.ebuild,
