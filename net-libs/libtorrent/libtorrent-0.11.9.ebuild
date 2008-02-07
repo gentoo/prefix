@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/libtorrent-0.11.9.ebuild,v 1.4 2008/02/05 11:06:17 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/libtorrent-0.11.9.ebuild,v 1.7 2008/02/06 20:55:41 nixnut Exp $
 
 EAPI="prefix"
 
@@ -13,7 +13,7 @@ SLOT="0"
 LICENSE="GPL-2"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
-IUSE="debug"
+IUSE="debug ipv6"
 
 RDEPEND=">=dev-libs/libsigc++-2"
 
@@ -30,6 +30,7 @@ src_compile() {
 	elibtoolize
 	econf \
 		$(use_enable debug) \
+		$(use_enable ipv6) \
 		--enable-static \
 		--enable-shared \
 		--disable-dependency-tracking \

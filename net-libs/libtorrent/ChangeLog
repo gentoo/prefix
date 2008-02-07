@@ -1,6 +1,18 @@
 # ChangeLog for net-libs/libtorrent
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.107 2008/02/05 11:06:17 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.110 2008/02/06 20:55:41 nixnut Exp $
+
+  06 Feb 2008; nixnut <nixnut@gentoo.org> libtorrent-0.11.9.ebuild:
+  stable on ppc wrt bug #209140
+
+  06 Feb 2008; Christoph Mende <angelos@gentoo.org>
+  libtorrent-0.11.9.ebuild:
+  Stable on amd64, bug #209140
+
+  06 Feb 2008; Raúl Porcel <armin76@gentoo.org> -libtorrent-0.11.1.ebuild,
+  -libtorrent-0.11.2.ebuild, -libtorrent-0.11.3.ebuild,
+  -libtorrent-0.11.4.ebuild, libtorrent-0.11.9.ebuild:
+  Add missing ipv6 support, bug #207581, remove old
 
   05 Feb 2008; Markus Rothe <corsair@gentoo.org> libtorrent-0.11.9.ebuild:
   Stable on ppc64
