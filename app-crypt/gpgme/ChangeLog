@@ -1,6 +1,12 @@
 # ChangeLog for app-crypt/gpgme
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/ChangeLog,v 1.135 2008/02/05 10:00:01 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/ChangeLog,v 1.137 2008/02/06 18:58:50 nixnut Exp $
+
+  06 Feb 2008; nixnut <nixnut@gentoo.org> gpgme-0.3.14-r2.ebuild:
+  stable on ppc wrt bug #205996
+
+  06 Feb 2008; Raúl Porcel <armin76@gentoo.org> gpgme-0.3.14-r2.ebuild:
+  alpha/ia64/sparc stable wrt #205996
 
   05 Feb 2008; Markus Rothe <corsair@gentoo.org> gpgme-0.3.14-r2.ebuild:
   Stable on ppc64
