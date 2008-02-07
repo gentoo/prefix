@@ -21,10 +21,9 @@ S="${WORKDIR}/${P}/src"
 
 src_unpack() {
 	unpack ${A}
-	if use ppc-macos; then
-		cd ${S}
-		sed -e "s:LIBOPTS ='-static':LIBOPTS =:" -i Makefile || die
-	fi
+	cd "${S}"
+	[[ ${CHOST} == *-darwin* ]] && \
+		sed -e "s:LIBOPTS ='-static':LIBOPTS =:" -i Makefile
 }
 
 src_compile() {
