@@ -1,6 +1,10 @@
 # ChangeLog for x11-terms/aterm
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/ChangeLog,v 1.93 2008/02/05 11:52:13 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/ChangeLog,v 1.94 2008/02/06 22:10:10 grobian Exp $
+
+  06 Feb 2008; Fabian Groffen <grobian@gentoo.org> aterm-0.4.2-r9.ebuild,
+  aterm-0.4.2-r11.ebuild, aterm-0.4.2-r13.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   05 Feb 2008; Markus Rothe <corsair@gentoo.org> aterm-1.0.1.ebuild:
   Stable on ppc64
