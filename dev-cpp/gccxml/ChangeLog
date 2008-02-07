@@ -1,0 +1,74 @@
+# ChangeLog for dev-cpp/gccxml
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gccxml/ChangeLog,v 1.19 2007/11/08 17:53:58 g2boojum Exp $
+
+  08 Nov 2007; Grant Goodyear <g2boojum@gentoo.org> metadata.xml:
+  -m removed myself as maintainer
+
+  07 Apr 2007; Christian Faulhammer <opfer@gentoo.org>
+  gccxml-0.7.0_pre20060311.ebuild:
+  SRC_URI changed to mirror://, fixes bug 163308
+
+  15 Mar 2007; Tiziano Müller <dev-zero@gentoo.org> -gccxml-0.6.0.ebuild,
+  gccxml-0.7.0_pre20060311.ebuild:
+  Changed cmake-dependency to 2.4.6, bug #162366. Small cleanups. Old version
+  dropped.
+
+*gccxml-0.7.0_pre20060311 (10 Oct 2006)
+
+  10 Oct 2006; Grant Goodyear <g2boojum@gentoo.org>
+  +gccxml-0.7.0_pre20060311.ebuild:
+  Version bump.  Since there has been no release since 2004, we're now
+  syncing w/ Debian.  Doesn't really satisfy bug #147976, since pyste
+  is broken w/ this version of gccxml (I think).  In reality, pyste 
+  is probably just broken, period.
+
+  20 Jul 2006; <psi29a@gentoo.org> gccxml-0.6.0-r1.ebuild:
+  stable on mips
+
+  03 Feb 2006; Mark Loeser <halcy0n@gentoo.org> gccxml-0.6.0-r1.ebuild:
+  Stable on x86; bug #120840
+
+  01 Feb 2006; Aron Griffis <agriffis@gentoo.org> gccxml-0.6.0-r1.ebuild:
+  Mark 0.6.0-r1 stable on ia64
+
+  29 Jan 2006; Daniel Goller <morfic@gentoo.org> gccxml-0.6.0-r1.ebuild:
+  Making actual change to ebuild
+
+  29 Jan 2006; Daniel Goller <morfic@gentoo.org> ChangeLog:
+  Stable on ppc and amd64
+
+  29 Oct 2005; Mark Loeser <halcy0n@gentoo.org> gccxml-0.6.0.ebuild:
+  Stable on x86
+
+  29 Oct 2005; Daniel Goller <morfic@gentoo.org> gccxml-0.6.0.ebuild:
+  Stabelizing on amd64
+
+*gccxml-0.6.0-r1 (12 Oct 2005)
+
+  12 Oct 2005; Caleb Tennis <caleb@gentoo.org> +files/obstack.h.diff,
+  +gccxml-0.6.0-r1.ebuild:
+  Adding a patch that allows this package to compile with older and newer GCC
+  verisons
+
+  19 Sep 2005; Mark Loeser <halcy0n@gentoo.org> metadata.xml:
+  Adding to cpp herd.
+
+  06 Aug 2005; Aaron Walker <ka0ttic@gentoo.org> gccxml-0.6.0.ebuild:
+  Added ~mips.
+
+  25 Jul 2005; Matthew Kennedy <mkennedy@gentoo.org> gccxml-0.6.0.ebuild:
+  Keywording ~sparc.
+
+  12 May 2005; Aron Griffis <agriffis@gentoo.org> gccxml-0.6.0.ebuild:
+  add ~ia64
+
+  24 Apr 2005; Daniel Goller <morfic@gentoo.org> gccxml-0.6.0.ebuild:
+  add ~ppc
+
+  21 Apr 2005; Grant Goodyear <g2boojum@gentoo.org> gccxml-0.6.0.ebuild:
+  Add ~amd64 keyword and recompute digest.
+
+  25 Jan 2005; Grant Goodyear <g2boojum@gentoo.org> :
+  New package.
+
