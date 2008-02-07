@@ -1,6 +1,9 @@
 # ChangeLog for net-analyzer/ssldump
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ssldump/ChangeLog,v 1.15 2007/01/05 09:55:15 flameeyes Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ssldump/ChangeLog,v 1.16 2008/02/06 21:12:19 grobian Exp $
+
+  06 Feb 2008; Fabian Groffen <grobian@gentoo.org> ssldump-0.9.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   05 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> ssldump-0.9.ebuild:
   Remove gnuconfig_update usage, leave it to econf.
