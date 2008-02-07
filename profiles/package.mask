@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8247 2008/02/05 17:44:25 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8252 2008/02/07 03:00:28 wolf31o2 Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,18 @@
 ## app-misc/some-package
 
 ### END OF EXAMPLES
+
+# Chris Gianelloni <wolf31o2@gentoo.org> (07 Feb 2008)
+# Masked for testing
+>=dev-util/catalyst-2.0.6_pre1
+
+# Rémi Cardona <remi@gentoo.org> (06 Feb 2008)
+# git snapshot with wrong version number
+=x11-drivers/xf86-video-i810-2.2.1_pre20080125
+
+# Luca Barbato <lu_zero@gentoo.org> (06 Feb 2008)
+# temp mask pending test
+=media-video/ffmpeg-0.4.9_p20080206
 
 # Sebastien Fabbro <bicatali@gentoo.org> (05 Feb 2008)
 # sci-libs/metis-5.* still experimental
@@ -278,6 +290,7 @@ sys-apps/list
 =kde-base/kdeartwork-4*
 =kde-base/kdeartwork-colorschemes-4*
 =kde-base/kdeartwork-emoticons-4*
+=kde-base/kdeartwork-icewm-themes-4*
 =kde-base/kdeartwork-iconthemes-4*
 =kde-base/kdeartwork-kscreensaver-4*
 =kde-base/kdeartwork-kworldclock-4*
@@ -1309,10 +1322,6 @@ app-portage/gatt-svn
 #     emerge -a layman
 #     layman -ka armagetron
 games-action/armagetronad
-
-# Joshua Baergen <joshuabaergen@gentoo.org> (13 Jan 2007)
-# Deprecated X components
-x11-apps/mkcfm
 
 # Marien Zwart <marienz@gentoo.org> (11 Jan 2007)
 # Does not work with the latest twisted core,
