@@ -1,0 +1,24 @@
+# ChangeLog for dev-util/makepp
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/makepp/ChangeLog,v 1.3 2007/02/09 03:14:58 flameeyes Exp $
+
+  09 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest in Manifest2 format.
+
+*makepp-1.40.1a (21 Sep 2005)
+
+  21 Sep 2005; Mike Frysinger <vapier@gentoo.org>
+  +files/makepp-1.40.1a-install.patch, +makepp-1.40.1a.ebuild:
+  Version bump to fix #106780.
+
+  03 Jan 2005; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  11 Jun 2004; Bryan Østergaard <kloeri@gentoo.org> makepp-1.18.ebuild:
+  Stable on alpha.
+
+*makepp-1.18 (27 Apr 2003)
+
+  27 Apr 2003; <rac@gentoo.org> makepp-1.18.ebuild:
+  Initial import, requested in bug 4191
+
