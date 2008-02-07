@@ -1,6 +1,9 @@
 # ChangeLog for dev-lisp/cl-pipes
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-pipes/ChangeLog,v 1.10 2007/02/03 17:39:12 flameeyes Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-pipes/ChangeLog,v 1.11 2008/02/06 21:25:53 grobian Exp $
+
+  06 Feb 2008; Fabian Groffen <grobian@gentoo.org> cl-pipes-1.2.1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   03 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> cl-pipes-1.2.1.ebuild:
   Use mirror://debian/ where applicable, or use mirror://gentoo/ if the file
