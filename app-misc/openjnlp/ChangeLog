@@ -1,0 +1,78 @@
+# ChangeLog for app-misc/openjnlp
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/openjnlp/ChangeLog,v 1.21 2007/11/01 00:42:45 betelgeuse Exp $
+
+  01 Nov 2007; Petteri Räty <betelgeuse@gentoo.org>
+  -openjnlp-0.7.1-r1.ebuild:
+  Remove generation 1 ebuild.
+
+  24 Oct 2007; William L. Thomson Jr. <wltjr@gentoo.org>
+  openjnlp-0.7.1-r2.ebuild:
+  Removed java gen 1 ebuild, quoted vars
+
+  02 Sep 2007; nixnut <nixnut@gentoo.org> openjnlp-0.7.1-r2.ebuild:
+  Stable on ppc wrt bug 187675
+
+  15 Aug 2007; William L. Thomson Jr. <wltjr@gentoo.org>
+  openjnlp-0.7.1-r2.ebuild:
+  amd64 stable, bug #187675
+
+  14 Aug 2007; Christian Faulhammer <opfer@gentoo.org>
+  openjnlp-0.7.1-r2.ebuild:
+  stable x86, bug 187675
+
+  03 Aug 2007; Petteri Räty <betelgeuse@gentoo.org> -openjnlp-0.7.1.ebuild:
+  Remove old revision.
+
+  28 Apr 2007; Petteri Räty <betelgeuse@gentoo.org>
+  openjnlp-0.7.1-r2.ebuild:
+  Require virtual/jdk-1.4 and virtual/jre-1.4 because that's the version of
+  bytecode currently generated.
+
+  28 Apr 2007; Petteri Räty <betelgeuse@gentoo.org>
+  openjnlp-0.7.1-r2.ebuild:
+  Fix emerging with JAVA_PKG_STRICT and migrate to splitted ant.
+
+  21 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  05 Oct 2006; Gustavo Zacarias <gustavoz@gentoo.org> openjnlp-0.7.1.ebuild:
+  Dropping sparc keywords, see #96229
+
+*openjnlp-0.7.1-r2 (01 Aug 2006)
+
+  01 Aug 2006; Joshua Nichols <nichoj@gentoo.org> +openjnlp-0.7.1-r2.ebuild:
+  Revision bump to support new Java system. Added ~amd64 keyword.
+
+  17 Feb 2006; Michael Hanselmann <hansmi@gentoo.org>
+  openjnlp-0.7.1-r1.ebuild:
+  Stable on ppc.
+
+  27 Jan 2006; Michael Hanselmann <hansmi@gentoo.org>
+  openjnlp-0.7.1-r1.ebuild:
+  Added to ~ppc.
+
+  03 Nov 2004; Thomas Matthijs <axxo@gentoo.org> openjnlp-0.7.1-r1.ebuild:
+  depend on app-arch/unzip
+
+  05 Oct 2004; Thomas Matthijs <axxo@gentoo.org> openjnlp-0.7.1-r1.ebuild:
+  fix wrapper
+
+  05 Oct 2004; Pieter Van den Abeele <pvdabeel@gentoo.org>
+  openjnlp-0.7.1.ebuild:
+  Masked openjnlp-0.7.1.ebuild stable for ppc
+
+*openjnlp-0.7.1-r1 (21 Sep 2004)
+
+  21 Sep 2004; Thomas Matthijs <axxo@gentoo.org> +openjnlp-0.7.1-r1.ebuild:
+  now builds from source
+
+  23 Aug 2004; Chris Aniszczyk <zx@gentoo.org> openjnlp-0.7.1.ebuild:
+  Marking stable on x86
+
+*openjnlp-0.7.1 (24 Feb 2004)
+
+  24 Feb 2004; Chris Aniszczyk <zx@gentoo.org> metadata.xml,
+  openjnlp-0.7.1.ebuild:
+  Initial Import, Bug #42100
+
