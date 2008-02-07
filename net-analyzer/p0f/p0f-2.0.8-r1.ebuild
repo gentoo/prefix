@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/p0f/p0f-2.0.8-r1.ebuild,v 1.6 2007/12/01 11:50:58 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/p0f/p0f-2.0.8-r1.ebuild,v 1.7 2008/02/06 20:56:23 grobian Exp $
 
 EAPI="prefix"
 
