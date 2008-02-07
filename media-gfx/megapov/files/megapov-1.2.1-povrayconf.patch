@@ -1,0 +1,10 @@
+--- povray.conf	2005-08-23 12:20:34.000000000 -0700
++++ povray.conf.new	2007-01-12 16:40:14.000000000 -0800
+@@ -95,5 +95,5 @@
+ read+write* = /tmp
+ read+write  = .
+ ; --- MegaPOV also needs access to POV-Ray 3.6 dirs ---
+-read* = /usr/local/share/povray-3.6/include
+-read* = /usr/local/share/povray-3.6/scenes
++read* = /usr/share/povray-3.6/include
++read* = /usr/share/povray-3.6/scenes

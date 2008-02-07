@@ -1,0 +1,10 @@
+--- povray.ini.in	2005-08-23 12:20:34.000000000 -0700
++++ povray.ini.in.new	2007-01-12 16:59:35.000000000 -0800
+@@ -51,6 +51,7 @@
+ Library_Path="__POVLIBDIR__"
+ Library_Path="__POVLIBDIR__/ini"
+ Library_Path="__POVLIBDIR__/include"
++Library_Path="/usr/share/povray-3.6/include"
+ 
+ ;; File output type control.
+ ;;     T    Uncompressed Targa-24
