@@ -1,6 +1,9 @@
 # ChangeLog for net-analyzer/packit
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/packit/ChangeLog,v 1.21 2006/10/10 13:20:22 jokey Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/packit/ChangeLog,v 1.22 2008/02/06 21:07:29 grobian Exp $
+
+  06 Feb 2008; Fabian Groffen <grobian@gentoo.org> packit-1.0-r1.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *packit-1.0-r1 (10 Oct 2006)
 
