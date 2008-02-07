@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/fte/${P}-src.zip
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~x86 ~ppc-macos"
 IUSE="gpm slang X"
 S=${WORKDIR}/${PN}
 
@@ -33,7 +33,9 @@ set_targets() {
 	use slang && TARGETS="$TARGETS sfte"
 	use X && TARGETS="$TARGETS xfte"
 
-	TARGETS="$TARGETS vfte"
+	[[ ${CHOST} == *-linux-gnu* ]] \
+		&& TARGETS="$TARGETS vfte" \
+		|| TARGETS="$TARGETS nfte"
 }
 
 src_unpack() {
@@ -49,6 +51,9 @@ src_unpack() {
 	sed \
 		-e "s:@targets@:${TARGETS}:" \
 		-e "s:@cflags@:${CFLAGS}:" \
+		-e '/^XINCDIR  =/c\XINCDIR  =' \
+		-e '/^XLIBDIR  =/c\XLIBDIR  = -lstdc++' \
+		-e '/^SINCDIR   =/c\SINCDIR = -I'"${EPREFIX}"'/usr/include/slang' \
 		-i src/fte-unix.mak
 
 	if ! use gpm; then
