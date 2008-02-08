@@ -1,6 +1,10 @@
 # ChangeLog for sci-biology/hmmer
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/hmmer/ChangeLog,v 1.21 2008/01/02 16:17:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/hmmer/ChangeLog,v 1.22 2008/02/07 14:39:22 grobian Exp $
+
+  07 Feb 2008; Fabian Groffen <grobian@gentoo.org> hmmer-2.3.2-r1.ebuild,
+  hmmer-2.3.2-r2.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
   02 Jan 2008; Raúl Porcel <armin76@gentoo.org> hmmer-2.3.2-r2.ebuild:
   Re-add ~ia64
