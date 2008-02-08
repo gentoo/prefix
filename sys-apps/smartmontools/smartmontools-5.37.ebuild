@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/smartmontools-5.37.ebuild,v 1.6 2008/02/04 17:17:59 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/smartmontools-5.37.ebuild,v 1.7 2008/02/07 12:44:29 armin76 Exp $
 
 EAPI="prefix"
 
