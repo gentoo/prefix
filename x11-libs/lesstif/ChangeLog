@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/lesstif
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/lesstif/ChangeLog,v 1.84 2008/01/11 21:38:44 grobian Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/lesstif/ChangeLog,v 1.85 2008/02/07 21:11:34 grobian Exp $
+
+  07 Feb 2008; Fabian Groffen <grobian@gentoo.org> lesstif-0.95.0.ebuild:
+  Remove ppc-macos conditional
 
   01 Jul 2007; Piotr Jaroszyński <peper@gentoo.org>
   +files/digest-lesstif-0.94.4, +files/digest-lesstif-0.95.0, Manifest:
