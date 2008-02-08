@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pyxml
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyxml/ChangeLog,v 1.43 2008/02/06 20:10:22 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyxml/ChangeLog,v 1.44 2008/02/07 10:54:35 armin76 Exp $
+
+  07 Feb 2008; Raúl Porcel <armin76@gentoo.org> pyxml-0.8.4-r1.ebuild:
+  alpha/ia64/sparc stable wrt #208929
 
   06 Feb 2008; nixnut <nixnut@gentoo.org> pyxml-0.8.4-r1.ebuild:
   stable on ppc wrt bug #208929
