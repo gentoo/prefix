@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.294 2008/01/14 04:52:35 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.295 2008/02/07 04:17:06 wolf31o2 Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -1736,7 +1736,7 @@ epunt_cxx() {
 }
 
 # @FUNCTION: make_wrapper
-# @USAGE: <wrapper> <target> <chdir> [libpaths] [installpath]
+# @USAGE: <wrapper> <target> [chdir] [libpaths] [installpath]
 # @DESCRIPTION:
 # Create a shell wrapper script named wrapper in installpath
 # (defaults to the bindir) to execute target (default of wrapper) by
