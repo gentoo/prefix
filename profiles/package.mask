@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8252 2008/02/07 03:00:28 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8256 2008/02/08 02:57:25 betelgeuse Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -29,9 +29,19 @@
 
 ### END OF EXAMPLES
 
-# Chris Gianelloni <wolf31o2@gentoo.org> (07 Feb 2008)
-# Masked for testing
->=dev-util/catalyst-2.0.6_pre1
+# Petteri Räty <betelgeuse@gentoo.org> (08 Feb 2008)
+# Masked for removal to java junkyard in 30 days.
+# Proprietary software that is not used by anyone
+# in the java herd. Unmigrated to generation 2.
+# Lagging behind in versions. If you have a need for
+# this, please contact the java herd for proxy
+# maintainership plans.
+www-servers/orion
+
+# Bernard Cafarelli <voyageur@gentoo.org> (07 Feb 2008)
+# Masked for removal in 30 days. Does not work, needs patching,
+# dead upstream, last release in 2002 (bug #150670)
+x11-misc/ASFiles
 
 # Rémi Cardona <remi@gentoo.org> (06 Feb 2008)
 # git snapshot with wrong version number
@@ -936,10 +946,6 @@ dev-lisp/gcl-cvs
 # Peter Volkov <pva@gentoo.org> (28 Sep 2007)
 # masked for testing
 >=app-doc/kchmviewer-4.0_beta1
-
-# Kevin F. Quinn <kevquinn@gentoo.org> (27 Sep 2007)
-# Masked for testing
->=app-text/acroread-8.1.1
 
 # Paul Varner <fuzzyray@gentoo.org> (27 Sep 2007)
 # revdep-rebuild is broken in this release

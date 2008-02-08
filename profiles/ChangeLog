@@ -1,6 +1,18 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1103 2008/02/07 03:00:28 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1107 2008/02/08 02:57:25 betelgeuse Exp $
+
+  08 Feb 2008; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  package.mask www-servers/orion for removal to Java junkyard
+
+  07 Feb 2008; Timo Gurr <tgurr@gentoo.org> package.mask:
+  Remove acroread mask to get a wider testing.
+
+  07 Feb 2008; Chris Gianelloni <wolf31o2@gentoo.org> package.mask:
+  Unmasking catalyst now that it's no longer broken.
+
+  07 Feb 2008; Bernard Cafarelli <voyageur@gentoo.org> package.mask:
+  Last rites for x11-misc/ASFiles
 
   07 Feb 2008; Chris Gianelloni <wolf31o2@gentoo.org> package.mask:
   Masking the new pre-release version of catalyst for testing.
