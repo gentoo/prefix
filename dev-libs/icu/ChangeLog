@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/icu
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.73 2008/02/04 14:36:45 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.74 2008/02/07 10:40:15 armin76 Exp $
+
+  07 Feb 2008; Raúl Porcel <armin76@gentoo.org> icu-3.6-r2.ebuild,
+  icu-3.8.1-r1.ebuild:
+  alpha/ia64/sparc stable wrt security #208001
 
   04 Feb 2008; Christian Faulhammer <opfer@gentoo.org> icu-3.6-r2.ebuild,
   icu-3.8.1-r1.ebuild:
