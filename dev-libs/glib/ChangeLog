@@ -1,6 +1,17 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.304 2008/02/04 04:05:10 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.307 2008/02/08 00:12:12 ranger Exp $
+
+  08 Feb 2008; Brent Baude <ranger@gentoo.org> glib-2.14.6.ebuild:
+  stable ppc64, bug 209293
+
+  07 Feb 2008; Markus Meier <maekke@gentoo.org> glib-2.14.6.ebuild:
+  x86 stable, security bug #209293
+
+*glib-2.14.6 (07 Feb 2008)
+
+  07 Feb 2008; Mart Raudsepp <leio@gentoo.org> +glib-2.14.6.ebuild:
+  Version bump for security fix in the included copy of libpcre (updated to 7.6)
 
   04 Feb 2008; Jeroen Roovers <jer@gentoo.org> glib-2.14.5.ebuild:
   Stable for HPPA (bug #208366).
