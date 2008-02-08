@@ -1,0 +1,98 @@
+# ChangeLog for app-text/unrtf
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/unrtf/ChangeLog,v 1.27 2007/04/10 17:40:12 gustavoz Exp $
+
+  10 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> unrtf-0.20.1.ebuild:
+  Stable on sparc wrt #173847
+
+  09 Apr 2007; nixnut <nixnut@gentoo.org> unrtf-0.20.1.ebuild:
+  Stable on ppc wrt bug 173847
+
+  09 Apr 2007; Peter Weller <welp@gentoo.org> unrtf-0.20.1.ebuild:
+  Stable on amd64 wrt bug 173847
+
+  09 Apr 2007; Raúl Porcel <armin76@gentoo.org> unrtf-0.20.1.ebuild:
+  x86 stable wrt bug 173847
+
+  28 May 2006; Robin H. Johnson <robbat2@gentoo.org> -unrtf-0.19.0.ebuild,
+  -unrtf-0.19.3.ebuild:
+  Cleanup of old versions.
+
+*unrtf-0.20.1 (25 May 2006)
+
+  25 May 2006; Robin H. Johnson <robbat2@gentoo.org> +unrtf-0.20.1.ebuild:
+  Bug #133968, version bump.
+
+*unrtf-0.19.9 (17 Feb 2006)
+
+  17 Feb 2006; Robin H. Johnson <robbat2@gentoo.org> +unrtf-0.19.9.ebuild:
+  Version bump, bug #123093. Note that security fix in upstream 0.19.5 is
+  contained in 0.19.3-r1 already.
+
+  12 Dec 2005; Robin H. Johnson <robbat2@gentoo.org> +metadata.xml:
+  Add metadata.xml.
+
+  31 May 2005; Robin H. Johnson <robbat2@gentoo.org> unrtf-0.19.0.ebuild,
+  unrtf-0.19.3.ebuild, unrtf-0.19.3-r1.ebuild:
+  Bug #93909 - GNU mirrors seem weird lately, go to gentoo mirrors instead.
+
+  21 Apr 2005; Simon Stelling <blubb@gentoo.org> unrtf-0.19.3-r1.ebuild:
+  stable on amd64
+
+  19 Mar 2005; Jason Wever <weeve@gentoo.org> unrtf-0.19.3-r1.ebuild:
+  Added ~sparc keyword wrt bug #84791.
+
+  08 Jan 2005; Lars Weiler <pylon@gentoo.org> unrtf-0.19.3-r1.ebuild:
+  Stable on ppc; bug #74480.
+
+  08 Jan 2005; Daniel Ahlberg <aliz@gentoo.org> unrtf-0.19.3-r1.ebuild:
+  Fixes from Stefan Briesenick <sbriesen@gmx.de> in #77082.
+
+  07 Jan 2005; Robin H. Johnson <robbat2@gentoo.org> unrtf-0.19.3-r1.ebuild:
+  Stable on x86 for security fix.
+
+*unrtf-0.19.3-r1 (07 Jan 2005)
+
+  07 Jan 2005; Robin H. Johnson <robbat2@gentoo.org>
+  +files/unrtf-0.19.3-final.patch, +unrtf-0.19.3-r1.ebuild:
+  Bug #74480, security fix.
+
+  24 Sep 2004; Jodok Batlogg <batlogg@gentoo.org>; unrtf-0.19.3.ebuild:
+  marked as stable on ppc
+
+  16 Apr 2004; Michael McCabe <randy@gentoo.org> unrtf-0.19.3.ebuild:
+  adding s390 keywords
+
+  27 Mar 2004; David Holm <dholm@gentoo.org> unrtf-0.19.3.ebuild:
+  Added to ~ppc.
+
+  12 Mar 2004; Michael Sterrett <mr_bones_@gentoo.org> :
+  Don't assign default to S; header fix
+
+  12 Mar 2004; Michael Sterrett <mr_bones_@gentoo.org> unrtf-0.19.0.ebuild,
+  unrtf-0.19.3.ebuild:
+  Don't assign default to S; header fix
+
+  11 Mar 2004; Hanno Boeck <hanno@gentoo.org> unrtf-0.19.3.ebuild:
+  Marked stable on x86.
+
+*unrtf-0.19.3 (22 Feb 2004)
+
+  22 Feb 2004; Daniel Ahlberg <aliz@gentoo.org> unrtf-0.19.3.ebuild:
+  Version bump. Found by Michaelian Ennis <mennis@corvus.net> in #42323.
+
+*unrtf-0.19.0 (12 Jan 2004)
+
+  12 Jan 2004; Hanno Boeck <hanno@gentoo.org> unrtf-0.19.0.ebuild:
+  Version bump.
+
+  20 Oct 2003; Hanno Boeck <hanno@gentoo.org> unrtf-0.18.1.ebuild:
+  Ebuild was completely broken (src_uri wrong, no description, patch failed),
+  fixed.
+
+*unrtf-0.18.1 (11 Oct 2003)
+
+  11 Oct 2003; Robin H. Johnson <robbat2@gentoo.org> unrtf-0.18.1.ebuild:
+  initial commit. ebuild and gcc3.3 patch written by robbat2@gentoo.org. patch
+  passed upstream.
+
