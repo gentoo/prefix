@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/primer3/primer3-1.0.0.ebuild,v 1.12 2007/06/28 14:36:23 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/primer3/primer3-1.0.0.ebuild,v 1.13 2008/02/07 14:52:58 grobian Exp $
 
 EAPI="prefix"
 
@@ -10,7 +10,7 @@ SRC_URI="http://frodo.wi.mit.edu/${PN}/${PN}_${PV}.tar.gz"
 LICENSE="whitehead"
 
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE=""
 
 RDEPEND=""
