@@ -1,6 +1,10 @@
 # ChangeLog for sci-biology/phylip
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/phylip/ChangeLog,v 1.27 2007/09/19 18:32:04 ribosome Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/phylip/ChangeLog,v 1.28 2008/02/07 14:50:49 grobian Exp $
+
+  07 Feb 2008; Fabian Groffen <grobian@gentoo.org> phylip-3.65-r1.ebuild,
+  phylip-3.66.ebuild, phylip-3.67.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
 
 *phylip-3.67 (19 Sep 2007)
 
