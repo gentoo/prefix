@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pycairo
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.51 2007/12/26 01:10:04 hawking Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.52 2008/02/07 14:14:57 armin76 Exp $
+
+  07 Feb 2008; Raúl Porcel <armin76@gentoo.org> pycairo-1.4.12.ebuild:
+  alpha/ia64/sparc/x86 stable
 
   26 Dec 2007; Ali Polatel <hawking@gentoo.org> pycairo-1.4.12.ebuild:
   Use DOCS, fixes #203333
