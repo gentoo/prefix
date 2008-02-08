@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/file
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.154 2007/12/28 20:51:08 vapier Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.155 2008/02/07 13:47:06 armin76 Exp $
+
+  07 Feb 2008; Raúl Porcel <armin76@gentoo.org> file-4.23.ebuild:
+  alpha/ia64/sparc/x86 stable
 
 *file-4.23 (28 Dec 2007)
 
