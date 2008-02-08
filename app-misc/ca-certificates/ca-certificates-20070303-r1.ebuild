@@ -15,8 +15,7 @@ SLOT="0"
 KEYWORDS="~x86-fbsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
-DEPEND=">=sys-apps/portage-2.1.2
-	kernel_AIX? ( app-arch/deb2targz )" # platforms like AIX don't have a good ar
+DEPEND="kernel_AIX? ( app-arch/deb2targz )" # platforms like AIX don't have a good ar
 RDEPEND="dev-libs/openssl"
 
 S=${WORKDIR}
