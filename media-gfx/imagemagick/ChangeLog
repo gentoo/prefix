@@ -1,6 +1,20 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.262 2008/02/03 15:18:47 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.266 2008/02/08 18:21:35 fmccor Exp $
+
+  08 Feb 2008; Ferris McCormick <fmccor@gentoo.org>
+  imagemagick-6.3.7.9.ebuild:
+  Sparc stable --- Bug #209368 --- good since January 6.
+
+  08 Feb 2008; Brent Baude <ranger@gentoo.org> imagemagick-6.3.7.9.ebuild:
+  Marking imagemagick-6.3.7.9 ppc for bug 209368
+
+  08 Feb 2008; Brent Baude <ranger@gentoo.org> imagemagick-6.3.7.9.ebuild:
+  Marking imagemagick-6.3.7.9 ppc64 for bug 209368
+
+  08 Feb 2008; Dawid Węgliński <cla@gentoo.org>
+  imagemagick-6.3.7.9.ebuild:
+  Stable on x86 (bug #209368)
 
 *imagemagick-6.3.8.3 (03 Feb 2008)
 
