@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.30-r1.ebuild,v 1.2 2008/02/05 03:16:30 wolf31o2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.6.30-r1.ebuild,v 1.3 2008/02/08 19:29:16 wolf31o2 Exp $
 
 EAPI="prefix"
 
@@ -103,10 +103,9 @@ src_install() {
 }
 
 pkg_postinst() {
-	# We don't want to do the xmlcatalog during stage1/stage2, as xmlcatalog
-	# will not be in / and stage1 builds to ROOT=/tmp/stage1root while stage2
-	# doesn't pull in this package.  This fixes bug #208887.
-	if use build || use bootstrap
+	# We don't want to do the xmlcatalog during stage1, as xmlcatalog will not
+	# be in / and stage1 builds to ROOT=/tmp/stage1root. This fixes bug #208887.
+	if [[ "${EROOT}" != "/" ]]
 	then
 		elog "Skipping XML catalog creation for stage building (bug #208887)."
 	else
