@@ -1,6 +1,17 @@
 # ChangeLog for www-client/mozilla-launcher
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-launcher/ChangeLog,v 1.68 2008/01/06 19:42:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-launcher/ChangeLog,v 1.71 2008/02/08 21:05:58 maekke Exp $
+
+  08 Feb 2008; Markus Meier <maekke@gentoo.org>
+  mozilla-launcher-1.58.ebuild:
+  x86 stable, bug #209358
+
+  08 Feb 2008; Brent Baude <ranger@gentoo.org> mozilla-launcher-1.58.ebuild:
+  Marking mozilla-launcher-1.58 ppc and ppc64 for bug 209358
+
+  08 Feb 2008; Raúl Porcel <armin76@gentoo.org>
+  mozilla-launcher-1.58.ebuild:
+  alpha/ia64/sparc stable wrt #209358
 
 *mozilla-launcher-1.58 (06 Jan 2008)
 
