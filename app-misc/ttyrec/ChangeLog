@@ -1,6 +1,11 @@
 # ChangeLog for app-misc/ttyrec
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ttyrec/ChangeLog,v 1.19 2008/01/11 21:10:34 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ttyrec/ChangeLog,v 1.20 2008/02/09 01:04:47 matsuu Exp $
+
+*ttyrec-1.0.8 (09 Feb 2008)
+
+  09 Feb 2008; MATSUU Takuto <matsuu@gentoo.org> +ttyrec-1.0.8.ebuild:
+  Version bumped, bug #149355.
 
   11 Jan 2008; Fabian Groffen <grobian@gentoo.org> ttyrec-1.0.6.ebuild,
   ttyrec-1.0.6-r1.ebuild:
