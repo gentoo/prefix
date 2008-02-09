@@ -1,6 +1,12 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1107 2008/02/08 02:57:25 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1109 2008/02/08 15:18:17 ulm Exp $
+
+  08 Feb 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Mask app-emacs/pymacs beta release for testing.
+
+  08 Feb 2008; Ulrich Mueller <ulm@gentoo.org> use.local.desc:
+  Add local pymacs USE flag for app-emacs/python-mode, bug 208186.
 
   08 Feb 2008; Petteri Räty <betelgeuse@gentoo.org> package.mask:
   package.mask www-servers/orion for removal to Java junkyard
