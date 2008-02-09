@@ -1,0 +1,30 @@
+--- src/man.c
++++ src/man.c
+@@ -598,14 +598,14 @@
+ 		*  .ev 1; .lt ...; .ev helps for my version of groff.
+ 		* The LL assignment is needed by the mandoc macros.
+ 		*/
+-	       sprintf(eos(bufh), "echo \".ll %d.%di\"; ", ll/10, ll%10);
+-	       sprintf(eos(bufh), "echo \".nr LL %d.%di\"; ", ll/10, ll%10);
++	       sprintf(eos(bufh), "@GENTOO_PORTAGE_EPREFIX@/bin/echo \".ll %d.%di\"; ", ll/10, ll%10);
++	       sprintf(eos(bufh), "@GENTOO_PORTAGE_EPREFIX@/bin/echo \".nr LL %d.%di\"; ", ll/10, ll%10);
+ #if 0
+-	       sprintf(eos(bufh), "echo \".lt %d.%di\"; ", ll/10, ll%10);
++	       sprintf(eos(bufh), "@GENTOO_PORTAGE_EPREFIX@/bin/echo \".lt %d.%di\"; ", ll/10, ll%10);
+ #endif
+ 	  }
+ 	  if (pl)
+-	       sprintf(eos(bufh), "echo \".pl %.128s\"; ", pl);
++	       sprintf(eos(bufh), "@GENTOO_PORTAGE_EPREFIX@/bin/echo \".pl %.128s\"; ", pl);
+      }
+ 
+      /* tail */
+@@ -616,7 +616,7 @@
+ 		 the current position plus 10 lines.  This plus setpl()
+ 		 gives us a single page that just contains the whole
+ 		 man page. (William Webber, wew@cs.rmit.edu.au) */
+-	      strcat(buft, "; echo \".\\\\\\\"\"; echo \".pl \\n(nlu+10\"");
++	      strcat(buft, "; @GENTOO_PORTAGE_EPREFIX@/bin/echo \".\\\\\\\"\"; @GENTOO_PORTAGE_EPREFIX@/bin/echo \".pl \\n(nlu+10\"");
+ #if 0
+ 	      /* In case this doesnt work for some reason,
+ 		 michaelkjohnson suggests: I've got a simple

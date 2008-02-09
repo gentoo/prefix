@@ -63,6 +63,11 @@ src_unpack() {
 	popd > /dev/null
 	eprefixify "${T}"/makewhatis.cron
 
+	# Hardcode path to echo(1), to keep some shells (e.g. zsh, mksh) from
+	# expanding "\n".
+	epatch "${FILESDIR}"/man-1.6f-echo.patch
+	eprefixify "${S}"/src/man.c
+
 	strip-linguas $(eval $(grep ^LANGUAGES= configure) ; echo ${LANGUAGES//,/ })
 
 	if use prefix ; then
