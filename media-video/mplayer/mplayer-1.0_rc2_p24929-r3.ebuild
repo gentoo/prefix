@@ -183,9 +183,16 @@ src_unpack() {
 
 	# Pulseaudio patch, bug 203430
 	epatch "${FILESDIR}/${P}-pulse.patch"
-	epatch "${FILESDIR}"/${PN}-1.0_rc1_p20070927-prefix.patch
-	epatch "${FILESDIR}"/${PN}-1.0-nocona.patch
+
 	epatch "${FILESDIR}"/${PN}-1.0-darwin.patch
+	epatch "${FILESDIR}"/${PN}-1.0-include-stdlib.patch
+	epatch "${FILESDIR}"/${PN}-1.0-macosx-include-sysctl.patch
+	epatch "${FILESDIR}"/${PN}-1.0-macosx-include-time.patch
+	epatch "${FILESDIR}"/${PN}-1.0-macosx-include-user_ldt.patch
+	epatch "${FILESDIR}"/${PN}-1.0-nocona.patch
+	epatch "${FILESDIR}"/${PN}-1.0-quantize2.patch
+
+	epatch "${FILESDIR}"/${PN}-1.0_rc1_p20070927-prefix.patch
 	eprefixify DOCS/xml/configure
 }
 

@@ -1,0 +1,27 @@
+--- libmpcodecs/mp_image.h
++++ libmpcodecs/mp_image.h
+@@ -1,3 +1,4 @@
++#include<stdlib.h>
+ #ifndef MP_IMAGE_H
+ #define MP_IMAGE_H
+ 
+--- dvdread/nav_read.c
++++ dvdread/nav_read.c
+@@ -26,6 +26,7 @@
+ #elif defined(HAVE_STDINT_H)
+ #include <stdint.h>
+ #endif
++#include <stdlib.h>
+ 
+ #include "bswap.h"
+ #include "nav_types.h"
+--- tremor/misc.h
++++ tremor/misc.h
+@@ -28,6 +28,7 @@
+ #ifndef  _LOW_ACCURACY_
+ /* 64 bit multiply */
+ 
++#include <stdlib.h>
+ #include <sys/types.h>
+ #include "config.h"
+ 

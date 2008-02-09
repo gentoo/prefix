@@ -1,0 +1,27 @@
+--- libavcodec/snow.c
++++ libavcodec/snow.c
+@@ -4390,10 +4390,11 @@
+             }
+         }
+ 
+-        if(QUANTIZE2)
++#if QUANTIZE2 == 1
+             dwt_quantize(s, p, s->spatial_dwt_buffer, w, h, w, s->spatial_decomposition_type);
+-        else
++#else
+             ff_spatial_dwt(s->spatial_dwt_buffer, w, h, w, s->spatial_decomposition_type, s->spatial_decomposition_count);
++#endif
+ 
+         if(s->pass1_rc && plane_index==0){
+             int delta_qlog = ratecontrol_1pass(s, pict);
+@@ -4413,8 +4414,9 @@
+             for(orientation=level ? 1 : 0; orientation<4; orientation++){
+                 SubBand *b= &p->band[level][orientation];
+ 
+-                if(!QUANTIZE2)
++#if QUANTIZE2 == 0
+                     quantize(s, b, b->ibuf, b->buf, b->stride, s->qbias);
++#endif
+                 if(orientation==0)
+                     decorrelate(s, b, b->ibuf, b->stride, pict->pict_type == P_TYPE, 0);
+                 encode_subband(s, b, b->ibuf, b->parent ? b->parent->ibuf : NULL, b->stride, orientation);
