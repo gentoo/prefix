@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/bcel
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/bcel/ChangeLog,v 1.49 2007/05/26 08:42:43 betelgeuse Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/bcel/ChangeLog,v 1.50 2008/02/08 15:13:59 betelgeuse Exp $
+
+  08 Feb 2008; Petteri Räty <betelgeuse@gentoo.org> bcel-5.2.ebuild:
+  Use JAVA_PKG_IUSE.
 
   26 May 2007; Petteri Räty <betelgeuse@gentoo.org> -bcel-5.1-r3.ebuild:
   Removed old version.
