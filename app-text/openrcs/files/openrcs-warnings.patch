@@ -1,0 +1,31 @@
+--- src/buf.c
++++ src/buf.c
+@@ -24,6 +24,7 @@
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+ 
++#define _GNU_SOURCE
+ #include <sys/queue.h>
+ #include <sys/stat.h>
+ 
+--- src/diff.c
++++ src/diff.c
+@@ -64,6 +64,7 @@
+  *	@(#)diffreg.c   8.1 (Berkeley) 6/6/93
+  */
+ 
++#define _GNU_SOURCE
+ #include <sys/param.h>
+ #include <sys/stat.h>
+ 
+--- src/rlog.c
++++ src/rlog.c
+@@ -189,7 +189,7 @@
+ 	else
+ 		nrev = file->rf_ndelta;
+ 
+-	if ((workfile = basename(fname)) == NULL)
++	if ((workfile = basename((char *)fname)) == NULL)
+ 		err(1, "basename");
+ 
+ 	/*
