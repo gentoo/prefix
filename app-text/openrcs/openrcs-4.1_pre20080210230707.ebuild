@@ -24,12 +24,11 @@ S=${WORKDIR}/${PN}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
-	eautoreconf
+	AT_NOELIBTOOLIZE=yes eautoreconf
 }
 
 src_install() {
-	emake DESTDIR=${D} install
+	emake DESTDIR="${D}" install
 	doman src/*.1
-	dodoc ChangeLog
+	dodoc ChangeLog LICENCE README
 }
