@@ -1,4 +1,4 @@
-# Copyright 2008 Gentoo Foundation
+# Copyright 2008-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -25,9 +25,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${PN}-configure.ac.patch
-	epatch "${FILESDIR}"/${PN}-u_long.patch
-	epatch "${FILESDIR}"/${PN}-warnings.patch
 	eautoreconf
 }
 

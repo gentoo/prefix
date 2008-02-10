@@ -1,0 +1,12 @@
+# ChangeLog for app-text/openrcs
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*openrcs-4.1_pre20080210172204 (10 Feb 2008)
+
+  10 Feb 2008; Elias Pipping <pipping@gentoo.org> -files,
+  -files/openrcs-configure.ac.patch, -files/openrcs-u_long.patch,
+  -files/openrcs-warnings.patch, -openrcs-4.1_pre20080208161129.ebuild,
+  +openrcs-4.1_pre20080210172204.ebuild:
+  update to latest snapshot
+
