@@ -22,6 +22,10 @@
 ##   End example
 ##
 
+# Elias Pipping <pipping@gentoo.org> (10 Feb 2008)
+# Experimental version
+app-text/openrcs
+
 # Elias Pipping <pipping@gentoo.org> (09 Fev 2008)
 # There's a bug that causes a lot of pointless output with commands like
 # emerge -u system
