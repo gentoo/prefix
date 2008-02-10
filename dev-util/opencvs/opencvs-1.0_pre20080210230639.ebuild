@@ -24,13 +24,14 @@ S=${WORKDIR}/${PN}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	eautoreconf
+	AT_NOELIBTOOLIZE=yes eautoreconf
 }
 
 src_install() {
+	emake DESTDIR="${D}" install
 	for manpage in cvs.1 cvs.5; do
 		mv src/${manpage} src/open${manpage}
 	done
 	doman src/*.[1-7]
-	emake DESTDIR="${D}" install
+	dodoc ChangeLog LICENCE README
 }
