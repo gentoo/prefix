@@ -93,6 +93,9 @@ src_unpack() {
 src_compile() {
 	filter-flags -malign-double
 
+	# IRIX's MIPSpro produces garbage with >= -O2, bug #209137
+	[[ ${CHOST} == mips-sgi-irix* ]] && replace-flags -O? -O1
+
 	local myconf=
 
 	# Always use the buildin readline, else if we update readline

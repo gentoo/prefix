@@ -101,6 +101,9 @@ src_unpack() {
 src_compile() {
 	local myconf=
 
+	# IRIX's MIPSpro produces garbage with >= -O2, bug #209137
+	[[ ${CHOST} == mips-sgi-irix* ]] && replace-flags -O? -O1
+
 	# Always use the buildin readline, else if we update readline
 	# bash gets borked as readline is usually not binary compadible
 	# between minor versions.
