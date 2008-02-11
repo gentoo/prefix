@@ -49,7 +49,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.1-rlfe-uclibc.patch
 	epatch "${FILESDIR}"/${PN}-5.1-rlfe-extern.patch
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-aix-eff_uid.patch
-	epatch "${FILESDIR}"/${PN}-5.2-rlfe-hpux.patch || die
+	epatch "${FILESDIR}"/${PN}-5.2-rlfe-hpux.patch
+	epatch "${FILESDIR}"/${PN}-5.2-rlfe-irix.patch #209595
 	epatch "${FILESDIR}"/${PN}-5.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-5.2-ia64hpux.patch
 

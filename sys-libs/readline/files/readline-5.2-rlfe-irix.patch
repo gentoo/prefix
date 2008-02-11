@@ -1,0 +1,13 @@
+--- examples/rlfe/rlfe.c
++++ examples/rlfe/rlfe.c
+@@ -67,6 +67,9 @@
+ #include <errno.h>
+ #include <grp.h>
+ #include <string.h>
++#ifdef HAVE_STRINGS_H
++#include <strings.h>
++#endif
+ #include <sys/stat.h>
+ #include <unistd.h>
+ #include <sys/ioctl.h>
+
