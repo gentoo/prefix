@@ -146,8 +146,8 @@ src_compile() {
 		-e 's:-m[a-z0-9]* ::g' \
 	)
 	sed -i \
-		-e "/^CFLAG/s:=.*:=${CFLAG} ${CFLAGS}:" \
-		-e "/^SHARED_LDFLAGS=/s:$: ${LDFLAGS}:" \
+		-e "/^CFLAG/s|=.*|=${CFLAG} ${CFLAGS}|" \
+		-e "/^SHARED_LDFLAGS=/s|$| ${LDFLAGS}|" \
 		Makefile || die
 
 	# depend is needed to use $confopts
