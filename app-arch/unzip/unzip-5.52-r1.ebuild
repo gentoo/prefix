@@ -45,6 +45,7 @@ src_compile() {
 		              TARGET=bsd ;;
 		*-darwin*)    TARGET=macosx ;;
 		*-solaris*)   TARGET=solaris ;;
+		mips-sgi-irix*) TARGET=sgi ;;
 		*)            die "Unknown target, you suck" ;;
 	esac
 	append-lfs-flags #104315
