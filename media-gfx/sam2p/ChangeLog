@@ -1,6 +1,16 @@
 # ChangeLog for media-gfx/sam2p
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/ChangeLog,v 1.21 2007/12/18 19:18:26 jer Exp $
+# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/ChangeLog,v 1.22 2008/02/10 10:59:11 aballier Exp $
+
+*sam2p-0.45-r1 (10 Feb 2008)
+
+  10 Feb 2008; Alexis Ballier <aballier@gentoo.org>
+  +files/sam2p-0.45-cflags.patch, +files/sam2p-0.45-fbsd.patch,
+  +files/sam2p-0.45-nostrip.patch, +sam2p-0.45-r1.ebuild:
+  Respect cflags, dont prestrip executables, call gmake for Makedep as GNU
+  make is required, import a patch from bsd ports to make it build on fbsd,
+  keyword ~x86-fbsd; install examples via examples useflag. There still
+  remains that 'gmake Makedep' breaks if used with distcc, I couldn't fix it.
 
   18 Dec 2007; Jeroen Roovers <jer@gentoo.org> sam2p-0.45.ebuild:
   Marked ~hppa (bug #195815).
