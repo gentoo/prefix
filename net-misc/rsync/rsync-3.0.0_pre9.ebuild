@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.0_pre6.ebuild,v 1.1 2007/12/01 18:32:21 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.0_pre9.ebuild,v 1.1 2008/02/11 05:56:08 vapier Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="http://rsync.samba.org/ftp/rsync/${P/_/}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-fbsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-fbsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="acl ipv6 static xattr xinetd"
 
 DEPEND=">=dev-libs/popt-1.5
@@ -23,9 +23,7 @@ DEPEND=">=dev-libs/popt-1.5
 S=${WORKDIR}/${P/_/}
 
 src_unpack() {
-	unpack ${P/_/}.tar.gz
-	cd "${S}"
-	rm -f configure.sh
+	unpack ${A}
 
 	cp "${FILESDIR}"/rsyncd.* "${T}"/
 	cd "${T}"
