@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/acroread-8.1.2.ebuild,v 1.1 2008/02/07 20:01:10 tgurr Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/acroread-8.1.2.ebuild,v 1.3 2008/02/10 23:04:57 cla Exp $
 
 EAPI="prefix"
 
