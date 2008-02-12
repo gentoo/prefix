@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/pgf/pgf-1.18.ebuild,v 1.6 2007/12/18 19:14:19 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/pgf/pgf-1.18.ebuild,v 1.11 2008/02/11 07:27:37 opfer Exp $
 
 EAPI="prefix"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/pgf/${P}.tar.gz"
 
 LICENSE="GPL-2 LPPL-1.3c FDL-1.2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="doc"
 DEPEND="|| ( ( dev-texlive/texlive-latexrecommended >=dev-tex/xcolor-2.11 )
 	>=app-text/tetex-3.0
