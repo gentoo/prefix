@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/xmlrpc-c
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.40 2008/02/06 13:53:47 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.41 2008/02/11 19:38:46 flameeyes Exp $
+
+  11 Feb 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +files/xmlrpc-c-1.06.09-asneeded.patch, xmlrpc-c-1.06.09.ebuild:
+  Fix linking with --as-needed by properly link to libxml2 when using it.
+  Fixes cmake build with --as-needed.
 
   06 Feb 2008; Markus Rothe <corsair@gentoo.org> xmlrpc-c-1.06.09.ebuild:
   Back to ~ppc64. It fails on another machine
