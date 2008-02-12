@@ -118,6 +118,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.4.4-aix-semaphores.patch
 	# build shared library on aix
 	epatch "${FILESDIR}"/${P}-aix-ldshared.patch
+	# at least IRIX starts spitting out ugly errors, but we want to use prefix
+	# grep anyway
+	epatch "${FILESDIR}"/${P}-no-hardcoded-grep.patch
 
 	# patch to make python behave nice with interix. There is one part
 	# maybe affecting other x86-platforms, thus conditional.
