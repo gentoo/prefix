@@ -1,6 +1,10 @@
 # ChangeLog for dev-texlive/texlive-metapost
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-metapost/ChangeLog,v 1.8 2007/12/18 19:47:11 jer Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-metapost/ChangeLog,v 1.9 2008/02/10 15:55:42 aballier Exp $
+
+  10 Feb 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-metapost-2007-r1.ebuild:
+  keyword ~x86-fbsd
 
   18 Dec 2007; Jeroen Roovers <jer@gentoo.org>
   texlive-metapost-2007-r1.ebuild:
