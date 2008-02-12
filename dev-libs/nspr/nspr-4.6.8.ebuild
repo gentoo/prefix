@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.7.0_pre20080129.ebuild,v 1.1 2008/01/31 11:33:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.6.8.ebuild,v 1.1 2008/02/11 12:13:56 armin76 Exp $
 
 EAPI="prefix"
 
@@ -8,7 +8,7 @@ inherit eutils multilib toolchain-funcs
 
 DESCRIPTION="Netscape Portable Runtime"
 HOMEPAGE="http://www.mozilla.org/projects/nspr/"
-SRC_URI="mirror://gentoo/${P}.tar.bz2"
+SRC_URI="ftp://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v${PV}/src/${P}.tar.gz"
 
 LICENSE="MPL-1.1 GPL-2 LGPL-2.1"
 SLOT="0"
@@ -24,11 +24,11 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.6.1-config.patch
 	epatch "${FILESDIR}"/${PN}-4.6.1-config-1.patch
 	epatch "${FILESDIR}"/${PN}-4.6.1-lang.patch
-	epatch "${FILESDIR}"/${PN}-4.7.0-prtime.patch
+	epatch "${FILESDIR}"/${PN}-4.6.1-prtime.patch
 }
 
 src_compile() {
-	cd "${S}"/build
+	cd build
 
 	if use amd64 || use ppc64 || use ia64 || use s390; then
 		myconf="${myconf} --enable-64bit"
@@ -50,11 +50,32 @@ src_compile() {
 
 src_install () {
 	# Their build system is royally fucked, as usual
-	MINOR_VERSION=7
-	cd "${S}"/build
-	emake DESTDIR="${D}" install || die "emake install failed"
+	MINOR_VERSION=6
+	cd "${S}/build"
+	make install
+	insinto /usr
+	doins -r dist/*
+	rm -rf "${ED}"/usr/bin/lib*.so
 
-	cd "${ED}"/usr/$(get_libdir)/nspr
+	#removing includes/nspr/md as per fedora spec
+	# i.e a waste of space!
+	rm -rf "${ED}/usr/include/nspr/md"
+
+	# there have been /usr/lib/nspr changes (like the ldpath below), but never
+	# have I seen any libraries end up in this directory. lets fix that.
+	# note: I tried doing this fix via the build system. It wont work.
+	if [ ! -e "${ED}/usr/lib/nspr" ] ; then
+		mkdir -p "${ED}/usr/lib/nspr"
+		mv "${ED}"/usr/lib/*so* "${ED}/usr/lib/nspr"
+		mv "${ED}"/usr/lib/*\.a "${ED}/usr/lib/nspr"
+	fi
+	# and while we're at it, lets make it actually use the arch's libdir damnit
+	if [ "lib" != "$(get_libdir)" ] ; then
+		mv "${ED}/usr/lib" "${ED}/usr/$(get_libdir)"
+	fi
+	#and while at it move them to files with versions-ending
+	#and link them back :)
+	cd "${ED}/usr/$(get_libdir)/nspr"
 	for file in *.so; do
 		mv ${file} ${file}.${MINOR_VERSION}
 		ln -s ${file}.${MINOR_VERSION} ${file}
@@ -64,12 +85,11 @@ src_install () {
 	echo "LDPATH=${EPREFIX}/usr/$(get_libdir)/nspr" > "${ED}/etc/env.d/08nspr"
 
 	# install nspr-config
-	dobin "${S}"/build/config/nspr-config
+	insinto	 /usr/bin
+	doins "${S}/build/config/nspr-config"
+	chmod a+x "${ED}/usr/bin/nspr-config"
 
 	# create pkg-config file
 	insinto /usr/$(get_libdir)/pkgconfig/
-	doins "${S}"/build/config/nspr.pc
-
-	# Remove stupid files in /usr/bin
-	rm "${ED}"/usr/bin/{prerr.properties,nspr.pc}
+	doins "${S}/build/config/nspr.pc"
 }
