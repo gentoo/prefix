@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libtasn1
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.64 2008/02/05 10:09:22 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.65 2008/02/09 12:36:08 armin76 Exp $
+
+  09 Feb 2008; Raúl Porcel <armin76@gentoo.org> libtasn1-1.2.ebuild:
+  alpha/ia64/sparc/x86 stable
 
   05 Feb 2008; Markus Rothe <corsair@gentoo.org> libtasn1-1.2.ebuild:
   Stable on ppc64
