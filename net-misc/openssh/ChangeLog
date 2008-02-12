@@ -1,6 +1,22 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.272 2008/01/28 05:53:58 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.276 2008/02/10 22:45:29 vapier Exp $
+
+  10 Feb 2008; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-4.7_p1-x509-hpn-glue.patch, openssh-4.7_p1-r4.ebuild:
+  Fix building with USE='X509 hpn' #209479 by Jose daLuz.
+
+  10 Feb 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  openssh-4.7_p1-r3.ebuild:
+  ppc stable, bug #193401
+
+  09 Feb 2008; Brent Baude <ranger@gentoo.org> openssh-4.7_p1-r3.ebuild:
+  stable ppc64, bug 193401
+
+*openssh-4.7_p1-r4 (09 Feb 2008)
+
+  09 Feb 2008; Mike Frysinger <vapier@gentoo.org> +openssh-4.7_p1-r4.ebuild:
+  Update HPN patch.
 
   28 Jan 2008; Jeroen Roovers <jer@gentoo.org> openssh-4.7_p1-r3.ebuild:
   Stable for HPPA too.

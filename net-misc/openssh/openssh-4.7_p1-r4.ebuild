@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.7_p1-r2.ebuild,v 1.2 2007/10/08 22:29:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-4.7_p1-r4.ebuild,v 1.2 2008/02/10 22:45:29 vapier Exp $
 
 EAPI="prefix"
 
@@ -10,20 +10,20 @@ inherit eutils flag-o-matic ccc multilib autotools pam
 # and _p? releases.
 PARCH=${P/_/}
 
-X509_PATCH="${PARCH}+x509-6.0.1.diff.gz"
+X509_PATCH="${PARCH}+x509-6.1.diff.gz"
 LDAP_PATCH="${PARCH/openssh-4.7/openssh-lpk-4.6}-0.3.9.patch"
-HPN_PATCH="${PARCH}-hpn12v18.diff.gz"
+HPN_PATCH="${PARCH}-hpn13v1.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
-HOMEPAGE="http://www.openssh.com/"
+HOMEPAGE="http://www.openssh.org/"
 SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
 	ldap? ( http://dev.inversepath.com/openssh-lpk/${LDAP_PATCH} )
-	X509? ( http://roumenpetrov.info/openssh/x509-6.0.1/${X509_PATCH} )
+	X509? ( http://roumenpetrov.info/openssh/x509-6.1/${X509_PATCH} )
 	hpn? ( http://www.psc.edu/networking/projects/hpn-ssh/${HPN_PATCH} )"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-fbsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-fbsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="static pam tcpd kerberos skey selinux chroot X509 ldap smartcard hpn libedit X userland_GNU"
 
 RDEPEND="pam? ( virtual/pam )
@@ -72,7 +72,7 @@ src_unpack() {
 		-e "/_PATH_XAUTH/s:/usr/X11R6/bin/xauth:${EPREFIX}/usr/bin/xauth:" \
 		pathnames.h || die
 
-	use X509 && epatch "${DISTDIR}"/${X509_PATCH} "${FILESDIR}"/${PN}-4.4_p1-x509-hpn-glue.patch
+	use X509 && epatch "${DISTDIR}"/${X509_PATCH} "${FILESDIR}"/${PN}-4.7_p1-x509-hpn-glue.patch
 	use chroot && epatch "${FILESDIR}"/openssh-4.3_p1-chroot.patch
 	use smartcard && epatch "${FILESDIR}"/openssh-3.9_p1-opensc.patch
 	if ! use X509 ; then
