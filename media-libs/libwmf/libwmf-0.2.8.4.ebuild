@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/libwmf-0.2.8.4.ebuild,v 1.16 2007/09/14 11:51:25 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/libwmf-0.2.8.4.ebuild,v 1.17 2008/02/11 20:00:04 armin76 Exp $
 
 EAPI="prefix"
 
@@ -16,8 +16,8 @@ SRC_URI="mirror://sourceforge/wvware/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86"
-IUSE="jpeg X expat xml debug doc gtk gd"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+IUSE="X expat xml debug doc gtk gd"
 
 RDEPEND="virtual/ghostscript
 	xml? ( !expat? ( dev-libs/libxml2 ) )
@@ -26,7 +26,7 @@ RDEPEND="virtual/ghostscript
 	>=media-libs/freetype-2.0.1
 	sys-libs/zlib
 	media-libs/libpng
-	jpeg? ( media-libs/jpeg )
+	media-libs/jpeg
 	X? (
 		x11-libs/libICE
 		x11-libs/libSM
@@ -69,7 +69,6 @@ src_compile() {
 
 	econf \
 		$(use_enable debug) \
-		$(use_with jpeg) \
 		$(use_with X x) \
 		$(use_enable gd) \
 		--with-sys-gd \

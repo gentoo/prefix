@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libwmf
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/ChangeLog,v 1.54 2007/09/14 11:51:25 uberlord Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/ChangeLog,v 1.55 2008/02/11 20:00:04 armin76 Exp $
+
+  11 Feb 2008; Raúl Porcel <armin76@gentoo.org> libwmf-0.2.8.4.ebuild:
+  Remove jpeg USE-flag since it's not supposed to build without it, bug #146680
 
   14 Sep 2007; Roy Marples <uberlord@gentoo.org> libwmf-0.2.8.4.ebuild:
   elibtoolize now patches install-sh for us.
