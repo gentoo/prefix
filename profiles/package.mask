@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8256 2008/02/08 02:57:25 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.8269 2008/02/11 17:53:17 vapier Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked
@@ -28,6 +28,52 @@
 ## app-misc/some-package
 
 ### END OF EXAMPLES
+
+# Jim Ramsay <lack@gentoo.org> (11 Feb 2008)
+# Masked for testing purposes, will soon be unmasked: bug #207954
+=net-wireless/ipw3945-1.2.2-r1
+
+# Christian Hoffmann <hoffie@gentoo.o> (11 Feb 2008)
+# Masked because of random (maybe MySQL-related) segfaults, bug #209606
+=dev-lang/php-5.2.5_p20080206
+
+# Samuli Suominen <drac@gentoo.org> (10 Feb 2008)
+# Broken wrt bugs #167638 and #209416. Upstream
+# gone. Masked for removal in 30 days.
+media-video/freej
+
+# Andrej Kacian <ticho@gentoo.org> (09 Feb 2008)
+# Temp. mask until I bump all plugins
+=mail-client/claws-mail-3.3.0
+=mail-client/claws-mail-acpi-notifier-1.0.15
+=mail-client/claws-mail-attachwarner-0.2.9
+=mail-client/claws-mail-clamav-3.3
+=mail-client/claws-mail-gtkhtml-0.17.1
+=mail-client/claws-mail-notification-0.15
+=mail-client/claws-mail-pdf-viewer-0.9
+=mail-client/claws-mail-rssyl-0.18
+=mail-client/claws-mail-vcalendar-1.101
+
+# Wulf C. Krueger <philantrop@gentoo.org> (09 Feb 2008)
+# Masked for removal in 30 days. 
+# nvemftp's last release was in 2003, we've already had
+# to patch it to even compile and now it doesn't even
+# work anymore. Upstream is dead. cf. bug 209412.
+net-ftp/nvemftp
+
+# Marius Mauch <genone@gentoo.org> (09 Feb 2008)
+# First public test releases of portage-2.2
+>=sys-apps/portage-2.2_alpha
+
+# Raúl Porcel <armin76@gentoo.org> (08 Feb 2008)
+# Removal for treecleaners in 60 days
+# Will be removed 08 Apr 2008
+# Bug 205482, many bugs, dead upstream
+net-ftp/swiftfxp
+
+# Ulrich Mueller <ulm@gentoo.org> (08 Feb 2008)
+# Pymacs beta release, needs testing.
+=app-emacs/pymacs-0.23_beta*
 
 # Petteri Räty <betelgeuse@gentoo.org> (08 Feb 2008)
 # Masked for removal to java junkyard in 30 days.
@@ -473,6 +519,17 @@ sys-apps/list
 =kde-base/umbrello-4*
 =kde-misc/yakuake-2.9*
 
+# Bo Ørsted Andresen <zlin@gentoo.org> (11 Feb 2008)
+# Mask KDE 4.0.1 extragear apps for testing.
+# KDE 4 guide: http://www.gentoo.org/proj/en/desktop/kde/kde4.xml
+=kde-base/kcoloredit-4*
+=kde-base/kfax-4*
+=kde-base/kiconedit-4*
+=kde-misc/extragear-plasma-4*
+=kde-misc/kgrab-0.1*
+=kde-misc/kgraphviewer-2*
+=net-p2p/kmldonkey-2*
+
 # Raúl Porcel <armin76@gentoo.org> (16 Jan 2007)
 # Doesn't work with stable bittorrent
 # Use mktorrent, mktorrent-borg, bittorrent, etc
@@ -724,7 +781,6 @@ app-admin/grubconf
 
 # Raúl Porcel <armin76@gentoo.org> (12 Dec 2007)
 # P.mask snapshots
-=dev-libs/nspr-4.7.0_pre*
 =dev-libs/nss-3.12_alpha*
 =dev-libs/nss-3.12_beta*
 
@@ -1404,13 +1460,6 @@ net-dns/bind-dns-keygen
 # Masking media-libs/ming-0.3.0, breaks PHP compilation
 =media-libs/ming-0.3.0
 
-# Diego Pettenò <flameeyes@gentoo.org> (28 Jul 2006)
-# Masking till all dependencies are fixed, bug #141947
-=sys-libs/slang-2*
-=app-editors/jed-0.99.18*
->=app-editors/lpe-1.2.6.13
->=app-misc/slmon-0.5.13-r1
-
 # Alastair Tse <liquidx@gentoo.org> (27 Jul 2006)
 # Masking synce-0.9.2 because of breakages (#141466) (#141491)
 =app-pda/synce-0.9.2
@@ -1454,10 +1503,6 @@ app-misc/rolo
 # Luca Longinotti <chtekk@gentoo.org> (24 May 2006)
 # Masked for more testing, breaks with stealth mode.
 =app-forensics/samhain-2.2.0
-
-# Stefan Schweizer <genstef@gentoo.org> (05 May 2006)
-# kopete needs ~0.7.1, mask newer versions to avoid up/downgrade cycles
->=net-libs/ortp-0.8
 
 # Diego Pettenò <flameeyes@gentoo.org> (24 Apr 2006)
 # Pre-release snapshots

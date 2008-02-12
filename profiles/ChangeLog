@@ -1,6 +1,13 @@
 # ChangeLog for profile directory
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1109 2008/02/08 15:18:17 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.1111 2008/02/11 14:50:59 hoffie Exp $
+
+  11 Feb 2008; Christian Hoffmann <hoffie@gentoo.org> package.mask:
+  Masking =dev-lang/php-5.2.5_p20080206 wrt bug #209606 to prevent greater
+  breakage...
+
+  09 Feb 2008; Wulf C. Krueger <philantrop@gentoo.org> package.mask:
+  Masked nvemftp for removal.
 
   08 Feb 2008; Ulrich Mueller <ulm@gentoo.org> package.mask:
   Mask app-emacs/pymacs beta release for testing.

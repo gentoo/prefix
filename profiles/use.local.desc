@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3350 2008/02/08 15:14:03 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.3352 2008/02/10 11:58:32 markusle Exp $
 
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
@@ -366,9 +366,6 @@ dev-java/ant-tasks:jdepend - Enable Jdepend Ant tasks
 dev-java/ant-tasks:jmf - Enable JMF (Java Media Framework) Ant tasks
 dev-java/ant-tasks:jsch - Disable Jsch (ssh, scp and related) Ant tasks
 dev-java/ant-tasks:log4j - Enable Apache log4j Ant tasks
-dev-java/ant-tasks:oro - Enable Apache Oro Ant tasks
-dev-java/ant-tasks:regexp - Enable Apache Regexp Ant tasks
-dev-java/ant-tasks:resolver - Enable Apache Resolver Ant tasks
 dev-java/ant-tasks:noantlr - Disable ANTLR Ant task -- Warning: Enabling this could break some of the Java packages!!
 dev-java/ant-tasks:nobcel - Disable bcel Ant task -- Warning: Enabling this could break some of the Java packages!!
 dev-java/ant-tasks:nobeanutils - Disable beanutils Ant task -- Warning: Enabling this could break some of the Java packages!!
@@ -388,6 +385,9 @@ dev-java/ant-tasks:norhino - Disable Rhino Ant task -- Warning: Enabling this co
 dev-java/ant-tasks:noswing - Disable Swing Ant task -- Warning: Enabling this could break some of the Java packages!!
 dev-java/ant-tasks:noxalan - Disable Xalan Ant task -- Warning: Enabling this could break some of the Java packages!!
 dev-java/ant-tasks:noxerces - Disable Xerces Ant task -- Warning: Enabling this could break some of the Java packages!!
+dev-java/ant-tasks:oro - Enable Apache Oro Ant tasks
+dev-java/ant-tasks:regexp - Enable Apache Regexp Ant tasks
+dev-java/ant-tasks:resolver - Enable Apache Resolver Ant tasks
 dev-java/antlr:nojava - Disable support for Java code backend
 dev-java/antlr:script - Install a script to run antlr
 dev-java/aspectwerkz:java5 - Enable Java 5 specific features
@@ -690,6 +690,7 @@ games-board/pysol:extra-cardsets - Install extra cardsets
 games-board/xboard:zippy - Enable experimental zippy client
 games-emulation/generator:sdlaudio - Enable SDL Audio
 games-emulation/mupen64-glN64:asm - Enable use of asm routines to improve performance
+games-emulation/snes9x:netplay - Enable playing ROMs over the network (not recommended)
 games-emulation/xmame:net - Add network support
 games-emulation/xmess:net - Add network support
 games-emulation/zsnes:custom-cflags - Enables custom cflags (not supported)
@@ -784,14 +785,14 @@ kde-base/arts:artswrappersuid - Set artswrapper suid for realtime playing, which
 kde-base/dolphin:semantic-desktop - Semantic desktop allows for storage of digital information and its metadata to allow the user to express his personal mental models, making all information become intuitively accessible
 kde-base/juk:akode - Support for the aKode audio-decoding frame-work
 kde-base/juk:tunepimp - Provide MusicBrainz tagging in Juk
-kde-base/kdeadmin:lilo - Install lilo-config, a frontend for the lilo boot loader
-kde-base/kdeadmin-meta:lilo - Install lilo-config, a frontend for the lilo boot loader
 kde-base/kaddressbook:gnokii - Address synchronization with mobile phones via Gnokii
 kde-base/kalzium:cviewer - Enable Kalzium compound viewer
 kde-base/kalzium:solver - Enable the equation solver
 kde-base/kbugbuster:kcal - Support for kcal (calendar) format
 kde-base/kcontrol:logitech-mouse - Build the Control Center module to configure logitech mice
 kde-base/kdeaccessibility:ktts - Enable KDE Text To Speech modules
+kde-base/kdeadmin-meta:lilo - Install lilo-config, a frontend for the lilo boot loader
+kde-base/kdeadmin:lilo - Install lilo-config, a frontend for the lilo boot loader
 kde-base/kdebase:captury - Enable the 'Capture'-plugin in kwin
 kde-base/kdebase:logitech-mouse - Build the Control Center module to configure logitech mice
 kde-base/kdebase:usb - Configure USB and logitech mice
@@ -802,10 +803,10 @@ kde-base/kdeedu:kig-scripting - Support Python scripting in kig
 kde-base/kdeedu:nova - Enable support for libnova
 kde-base/kdeedu:sbig - Enable support for SBIG
 kde-base/kdeedu:solver - Enable Kalzium ocaml equation solver
+kde-base/kdegraphics-meta:povray - Install KPovModeler, which needs POV-Ray
 kde-base/kdegraphics:chm - Enable Okular support for Microsoft Compiled HTML Help files
 kde-base/kdegraphics:djvu - Enable Okular support for DjVu files
 kde-base/kdegraphics:povray - Install KPovModeler, which needs POV-Ray
-kde-base/kdegraphics-meta:povray - Install KPovModeler, which needs POV-Ray
 kde-base/kdelibs:legacyssl - Support for some deprecated ciphers. Don't use this flag unless you really need it
 kde-base/kdelibs:pcre - Provide better regular expression support in K java script (KJS)
 kde-base/kdelibs:semantic-desktop - Semantic desktop allows for storage of digital information and its metadata to allow the user to express his personal mental models, making all information become intuitively accessible
@@ -865,21 +866,21 @@ kde-base/kopete:translator - Builds Translator plugin
 kde-base/kopete:urlpicpreview - plugin to allow users to send photos through URLs
 kde-base/kopete:webpresence - Builds Web Presence plugin
 kde-base/kopete:winpopup - Builds WinPopUp protocol handler
-kde-base/kttsd:akode - Support for the aKode audio-decoding frame-work.
-kde-misc/knetworkmanager:cisco - Adds support for the Cisco VPN client (vpnc)
-kde-misc/knetworkmanager:dialup - Enables Dialup (PPP) support
-kde-misc/knetworkmanager:openvpn - Adds support for the OpenVPN client
-kde-misc/knetworkmanager:pptp - Adds support for the PPTP (PPP) VPN client
 kde-base/krdc:vnc - Enable vnc support
 kde-base/kstars:fits - Enable support for the FITS image format through cfitsio
 kde-base/kstars:nova - Enable support for libnova.
 kde-base/kstars:sbig - Enable support for SBIG.
+kde-base/kttsd:akode - Support for the aKode audio-decoding frame-work.
 kde-base/kttsd:ktts - Enable KDE Text To Speech modules
 kde-base/kwin:captury - Enable the 'Capture'-plugin in kwin
 kde-base/marble:designer-plugin - Enable designer plugin
 kde-base/okular:chm - Enable support for Microsoft Compiled HTML Help files
 kde-base/okular:djvu - Enable support for DjVu files
 kde-base/systemsettings:usb - Configure USB and logitech mice
+kde-misc/knetworkmanager:cisco - Adds support for the Cisco VPN client (vpnc)
+kde-misc/knetworkmanager:dialup - Enables Dialup (PPP) support
+kde-misc/knetworkmanager:openvpn - Adds support for the OpenVPN client
+kde-misc/knetworkmanager:pptp - Adds support for the PPTP (PPP) VPN client
 kde-misc/ksensors:ibmacpi - Enable monitoring of ACPI sensor data on IBM Thinkpad notebooks
 mail-client/balsa:gtkspell - Use gtkspell for dictionary support
 mail-client/balsa:rubrica - Enables support for the app-office/rubrica addressbook
@@ -1063,8 +1064,8 @@ media-plugins/mythphone:festival - Enable festival support
 media-plugins/vdr-burn:projectx - Enables support fur projectx
 media-plugins/vdr-dvdconvert:projectx - Enables support for projectx 
 media-plugins/vdr-graphtft:graphtft-fe - Install external x11 remote frontend
-media-plugins/vdr-music:ff-card - Enables scrollmode on FF Card
 media-plugins/vdr-music:4mb-mod - Enables support for modded FF-Card to 4MB ram or softdecoder
+media-plugins/vdr-music:ff-card - Enables scrollmode on FF Card
 media-plugins/vdr-music:graphtft - Enables support for plugin vdr-graphtft
 media-plugins/vdr-pvr350:yaepg - Enables full support for the ouput format of vdr-yaepg
 media-plugins/vdr-softdevice:mmxext - enables mmx2 support
@@ -1551,9 +1552,9 @@ net-im/psi:plugins - Enables plugins support in psi
 net-im/pyaim-t:webinterface - Install dependencies needed for the web interface
 net-im/pyicq-t:webinterface - Install dependencies needed for the web interface
 net-im/sim:gpg - Enable gpg plugin to adds GnuPG encryption/decryption support for messages
+net-im/sim:livejournal - Enable livejournal plugin to post in LiveJournal
 net-im/sim:sms - Enable sms plugin
 net-im/sim:weather - Enable weather plugin to get weather data from weather.com and dispaly it
-net-im/sim:livejournal - Enable livejournal plugin to post in LiveJournal
 net-im/skype:qt-static - Installs binaries statically linked to Qt
 net-im/tkabber:extras - Enables extra non official patches
 net-im/tkabber:plugins - Enables instalation the extra plugins
@@ -1863,11 +1864,11 @@ sci-libs/itpp:cblas - Adds support for the cblas numerical library
 sci-libs/libghemical:mopac7 - Use the MOPAC7 package for semi-empirical calculations
 sci-libs/libghemical:mpqc - Use the MPQC package for quantum-mechanical calculations
 sci-libs/libsvm:tools - install support tools
+sci-libs/metis:int64 - Build the 64 bits integer library (version >=5)
+sci-libs/metis:openmp - Build support for the OpenMP, needs openmp capable compiler
 sci-libs/mkl:fortran95 - Build static FORTRAN 95 BLAS/LAPACK interface
 sci-libs/mkl:int64 - Install the 64 bits integer library, double package size
 sci-libs/mkl:serial - Install the serial (as non-threaded) libraries as well, double package size
-sci-libs/metis:openmp - Build support for the OpenMP, needs openmp capable compiler
-sci-libs/metis:int64 - Build the 64 bits integer library (version >=5)
 sci-libs/plplot:itcl - Support for itcl bindings.
 sci-libs/plplot:octave - Support for Octave bindings.
 sci-libs/scipy:sandbox - Installs experimental scipy sandbox modules (pull some dependencies)
@@ -1887,8 +1888,8 @@ sci-mathematics/maxima:cmucl - Adds CMU Common Lisp support to maxima
 sci-mathematics/maxima:gcl - Adds GNU Common Lisp support to maxima
 sci-mathematics/maxima:sbcl - Adds Steel Bank Common Lisp support to maxima
 sci-mathematics/nusmv:minisat - Enable support for MiniSat.
-sci-mathematics/octave:hdf5 - Adds support for the Hierarchical Data Format v5 to sci-mathematics/octave (may be merged with hdf when opendx is completed)
 sci-mathematics/octave-forge:qhull - Adds media-libs/qhull (geometric extensions) support
+sci-mathematics/octave:hdf5 - Adds support for the Hierarchical Data Format v5 to sci-mathematics/octave (may be merged with hdf when opendx is completed)
 sci-mathematics/singular:boost - Compile against external boost headers.
 sci-mathematics/yacas:server -  Build the network server version.
 sci-misc/boinc:server - Enable compilation of server
@@ -1904,7 +1905,10 @@ sci-visualization/hippodraw:fits - Add FITS format support to hippodraw, via cfi
 sci-visualization/hippodraw:numarray - Add numarray python array support
 sci-visualization/hippodraw:root - Add root i/o, and minuit support
 sci-visualization/labplot:cdf - Adds cdf data exchange format support
+sci-visualization/labplot:hdf5 - Adds support for the Hierarchical Data Format v 5
 sci-visualization/labplot:kexi - Import and export data from/to MySQL, PostgreSQL etc. via Kexi (app-office/kexi).
+sci-visualization/labplot:qhull - Adds media-libs/qhull (geometric extensions) support
+sci-visualization/labplot:R - Enable R support
 sci-visualization/opendx:cdf - Adds cdf data exchange format support
 sci-visualization/opendx:hdf - Adds support for the Hierarchical Data Format
 sci-visualization/paraview:hdf5 - Adds support for the Hierarchical Data Format v5
@@ -2182,13 +2186,13 @@ x11-libs/gtkmathview:t1lib - Enable t1lib support
 x11-libs/libmatchbox:pango - Enable pango support
 x11-libs/libmatchbox:xsettings - Enable the use of xsettings for settings management.
 x11-libs/openmotif:xft - Build OpenMotif with support for XFT font renderer
+x11-libs/qt-core:glib - Enable glib eventloop support
+x11-libs/qt-core:qt3support - Enable the Qt3Support libraries for Qt4
 x11-libs/qt:glib - Enable glib eventloop support
 x11-libs/qt:immqt - Enable binary incompatible version of immodule for Qt
 x11-libs/qt:immqt-bc - Enable binary compatible version of immodule for Qt
 x11-libs/qt:pch - Enable precompiled header support for faster compilation times (gcc >3.4 only)
 x11-libs/qt:qt3support - Enable the Qt3Support libraries for Qt4
-x11-libs/qt-core:qt3support - Enable the Qt3Support libraries for Qt4
-x11-libs/qt-core:glib - Enable glib eventloop support
 x11-libs/wxGTK:pch - Enable precompiled header support for faster compilation at the expense of disk space and memory
 x11-misc/adesklets:ctrlmenu - force CTRL to be pressed to fire context menu
 x11-misc/adesklets:fontconfig - Support for managing custom fonts via fontconfig
@@ -2220,6 +2224,10 @@ x11-terms/rxvt:linuxkeys - Define LINUX_KEYS (changes Home/End key)
 x11-terms/rxvt:xgetdefault - Enable resources via X instead of rxvt small version
 x11-terms/xterm:paste64 - Enable support for bracketed paste mode
 x11-terms/xterm:toolbar - Enable the xterm toolbar to be built.
+x11-themes/gentoo-artwork:grub - Install extra grub themes
+x11-themes/gentoo-artwork:icons - Install icons
+x11-themes/gentoo-artwork:lilo - Install extra lilo themes
+x11-themes/gentoo-artwork:pixmaps - Install pixmaps
 x11-themes/redhat-artwork:audacious - Install Audacious theme
 x11-themes/redhat-artwork:cursors - Install Bluecurve cursors
 x11-themes/redhat-artwork:gdm - Install Bluecurve GDM theme
@@ -2250,7 +2258,3 @@ xfce-base/xfce4-extras:cpufreq - Meta pulls in xfce4-cpu-freq dependency.
 xfce-base/xfdesktop:file-icons - Build support for application launchers using Thunar and libexo.
 xfce-base/xfdesktop:menu-plugin - Build Menu plug-in for panel.
 xfce-extra/thunar-thumbnailers:grace - Enable support for grace thumbnails.
-x11-themes/gentoo-artwork:icons - Install icons
-x11-themes/gentoo-artwork:pixmaps - Install pixmaps
-x11-themes/gentoo-artwork:grub - Install extra grub themes
-x11-themes/gentoo-artwork:lilo - Install extra lilo themes
