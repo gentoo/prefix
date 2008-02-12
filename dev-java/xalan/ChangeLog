@@ -1,6 +1,16 @@
 # ChangeLog for dev-java/xalan
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xalan/ChangeLog,v 1.79 2007/12/10 20:53:38 betelgeuse Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xalan/ChangeLog,v 1.82 2008/02/11 03:37:11 ranger Exp $
+
+  11 Feb 2008; Brent Baude <ranger@gentoo.org> xalan-2.7.0-r5.ebuild:
+  stable ppc64, bug 209551
+
+  10 Feb 2008; Tobias Scherbaum <dertobi123@gentoo.org>
+  xalan-2.7.0-r5.ebuild:
+  ppc stable, bug #209551
+
+  10 Feb 2008; Petteri Räty <betelgeuse@gentoo.org> xalan-2.7.0-r4.ebuild:
+  Fix bug #209542.
 
   10 Dec 2007; Petteri Räty <betelgeuse@gentoo.org> -xalan-2.7.0-r3.ebuild:
   Remove old ebuild.
