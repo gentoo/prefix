@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/most/most-4.10.2-r1.ebuild,v 1.10 2007/07/03 17:44:07 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/most/most-4.10.2-r1.ebuild,v 1.12 2008/02/10 11:33:52 drac Exp $
 
 EAPI="prefix"
 
@@ -17,15 +17,15 @@ IUSE=""
 # Note to arch maintainers: you'll need to add to src_install() for your
 # arch, since the app's Makefile does strange things with different
 # directories for each arch. -- ciaranm, 27 June 2004
-KEYWORDS="~amd64 ~mips ~ppc-macos ~x86"
+KEYWORDS="~amd64-linux ~mips-linux ~x86-linux ~ppc-macos"
 
-DEPEND="=sys-libs/slang-1.4*
+DEPEND=">=sys-libs/slang-1.4
 	>=sys-libs/ncurses-5.2-r2"
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
-	epatch ${FILESDIR}/${P}-fix-goto-line.diff
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-fix-goto-line.diff
 }
 
 src_install() {
@@ -59,14 +59,14 @@ src_install() {
 
 	doman most.1
 
-	dodoc COPYING COPYRIGHT README changes.txt
+	dodoc README changes.txt
 	docinto txt
 	dodoc most.rc lesskeys.rc most-fun.txt
 }
 
 pkg_postinst() {
 	echo
-	einfo "See /usr/share/doc/${PF}/txt/most.rc.gz"
+	einfo "See most.rc in /usr/share/doc/${PF}/txt"
 	einfo "for an example /etc/most.conf."
 	echo
 }
