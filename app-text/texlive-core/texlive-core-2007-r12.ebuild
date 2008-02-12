@@ -1,12 +1,12 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2007-r11.ebuild,v 1.2 2007/12/18 19:21:15 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2007-r12.ebuild,v 1.4 2008/02/10 14:31:17 aballier Exp $
 
 EAPI="prefix"
 
 inherit eutils flag-o-matic toolchain-funcs libtool autotools texlive-common
 
-PATCHLEVEL="2"
+PATCHLEVEL="4"
 TEXMFD_VERSION="1"
 
 DESCRIPTION="A complete TeX distribution"
@@ -38,7 +38,7 @@ SRC_URI="${SRC_URI} mirror://gentoo/${P}-updated-config.ps.bz2"
 SRC_URI="${SRC_URI} mirror://gentoo/${PN}-patches-${PATCHLEVEL}.tar.bz2
 	mirror://gentoo/${P}-texmf.d-${TEXMFD_VERSION}.tar.bz2"
 
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="X doc"
 
 MODULAR_X_DEPEND="X? (
@@ -275,4 +275,8 @@ pkg_postinst() {
 	elog "If you have configuration files in ${EPREFIX}/etc/texmf to merge,"
 	elog "please update them and run ${EPREFIX}/usr/sbin/texmf-update."
 	elog
+	ewarn "If you are migrating from an older TeX distribution"
+	ewarn "Please make sure you have read:"
+	ewarn "http://www.gentoo.org/proj/en/tex/texlive-migration-guide.xml"
+	ewarn "in order to avoid possible problems"
 }
