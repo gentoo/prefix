@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/libesmtp
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libesmtp/ChangeLog,v 1.39 2007/10/14 09:51:18 grobian Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libesmtp/ChangeLog,v 1.40 2008/02/11 17:06:14 flameeyes Exp $
+
+  11 Feb 2008; Diego Pettenò <flameeyes@gentoo.org> metadata.xml:
+  Add documentation for ssl USE flag.
 
   14 Oct 2007; Fabian Groffen <grobian@gentoo.org> libesmtp-1.0.4.ebuild:
   Removed too ugly for sunlight ppc-macos hack, dropped ppc-macos keyword, see
