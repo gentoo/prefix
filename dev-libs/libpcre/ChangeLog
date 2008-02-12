@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libpcre
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.134 2008/02/07 12:30:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.135 2008/02/10 21:54:48 tester Exp $
+
+  10 Feb 2008; Olivier Crête <tester@gentoo.org> libpcre-7.6.ebuild:
+  Stable on amd64, security bug #209067
 
   07 Feb 2008; Raúl Porcel <armin76@gentoo.org> libpcre-7.4-r1.ebuild:
   alpha/ia64 stable
