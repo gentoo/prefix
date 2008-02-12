@@ -1,6 +1,10 @@
 # ChangeLog for dev-texlive/texlive-langpolish
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-texlive/texlive-langpolish/ChangeLog,v 1.7 2007/12/18 20:22:12 jer Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-langpolish/ChangeLog,v 1.8 2008/02/10 15:42:55 aballier Exp $
+
+  10 Feb 2008; Alexis Ballier <aballier@gentoo.org>
+  texlive-langpolish-2007.ebuild:
+  keyword ~x86-fbsd
 
   18 Dec 2007; Jeroen Roovers <jer@gentoo.org>
   texlive-langpolish-2007.ebuild:
