@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.60-r2.ebuild,v 1.6 2008/02/06 12:39:27 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.60-r2.ebuild,v 1.8 2008/02/11 20:36:15 ulm Exp $
 
 EAPI="prefix"
 
@@ -114,7 +114,7 @@ src_compile() {
 	export SANDBOX_ON=0			# for the unbelievers, see Bug #131505
 	ALLOWED_FLAGS=""
 	strip-flags
-	unset LDFLAGS
+	#unset LDFLAGS
 	replace-flags -O[3-9] -O2
 
 	local myconf
