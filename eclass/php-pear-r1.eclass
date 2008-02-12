@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-pear-r1.eclass,v 1.19 2007/11/08 16:07:22 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-pear-r1.eclass,v 1.20 2008/02/11 20:47:35 armin76 Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
 # Author: Luca Longinotti <chtekk@gentoo.org>
@@ -15,9 +15,11 @@
 # Note that this eclass doesn't handle dependencies of PEAR packages
 # on purpose; please use (R)DEPEND to define them correctly!
 
+inherit multilib
+
 EXPORT_FUNCTIONS src_install
 
-DEPEND="dev-lang/php >=dev-php/PEAR-PEAR-1.4.8"
+DEPEND="dev-lang/php >=dev-php/PEAR-PEAR-1.6.1"
 RDEPEND="${DEPEND}"
 
 # @ECLASS-VARIABLE: PHP_PEAR_PKG_NAME
@@ -59,22 +61,25 @@ php-pear-r1_src_install() {
 	case "${CATEGORY}" in
 		dev-php)
 			if has_version '=dev-lang/php-5*' ; then
-				PHP_BIN="/usr/lib/php5/bin/php"
+				PHP_BIN="/usr/$(get_libdir)/php5/bin/php"
 			else
-				PHP_BIN="/usr/lib/php4/bin/php"
+				PHP_BIN="/usr/$(get_libdir)/php4/bin/php"
 			fi ;;
-		dev-php4) PHP_BIN="/usr/lib/php4/bin/php" ;;
-		dev-php5) PHP_BIN="/usr/lib/php5/bin/php" ;;
+		dev-php4) PHP_BIN="/usr/$(get_libdir)/php4/bin/php" ;;
+		dev-php5) PHP_BIN="/usr/$(get_libdir)/php5/bin/php" ;;
 		*) die "Version of PHP required by packages in category ${CATEGORY} unknown"
 	esac
 
 	cd "${S}"
-	mv -f "${WORKDIR}/package.xml" "${S}"
-
-	if [[ -f "${S}"/package2.xml ]] ; then
-		pear -d php_bin="${PHP_BIN}" install --force --loose --nodeps --offline --packagingroot="${ED}" "${S}/package2.xml" > /dev/null || die "Unable to install PEAR package"
+	
+	if [[ -f "${WORKDIR}"/package2.xml ]] ; then
+		mv -f "${WORKDIR}/package2.xml" "${S}"
+		pear -d php_bin="${PHP_BIN}" install --force --loose --nodeps --offline --packagingroot="${ED}" \
+			"${S}/package2.xml" || die "Unable to install PEAR package"
 	else
-		pear -d php_bin="${PHP_BIN}" install --force --loose --nodeps --offline --packagingroot="${ED}" "${S}/package.xml" > /dev/null || die "Unable to install PEAR package"
+		mv -f "${WORKDIR}/package.xml" "${S}"
+		pear -d php_bin="${PHP_BIN}" install --force --loose --nodeps --offline --packagingroot="${ED}" \
+			"${S}/package.xml" || die "Unable to install PEAR package"
 	fi
 
 	rm -Rf "${ED}/usr/share/php/.channels" \

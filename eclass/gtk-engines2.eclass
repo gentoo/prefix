@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-engines2.eclass,v 1.15 2006/10/14 20:27:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-engines2.eclass,v 1.16 2008/02/10 14:47:14 eva Exp $
 
 # IMPORTANT:
 # This eclass is deprecated and should not be used in new ebuilds.
@@ -100,7 +100,7 @@ gtk-engines2_src_compile() {
 			emake || die "gtk1 make failed"
 		fi
 	else
-		cd ${S}
+		cd "${S}"
 		econf ${@} || die "configure failed"
 		emake || make || die "make failed"
 	fi
@@ -113,21 +113,21 @@ gtk-engines2_src_install() {
 	if [ -n "${GTK2_S}" -a -n "${GTK1_S}" ]; then
 		if [ -n "${HAS_GTK2}" ]; then
 			cd ${GTK2_S}
-			make DESTDIR=${D} install || die "gtk2 install failed"
+			make DESTDIR="${D}" install || die "gtk2 install failed"
 			for x in ${DEFAULT_DOCS} ${DOCS}; do
 				newdoc ${x} ${x}.gtk2
 			done
 		fi
 		if [ -n "${HAS_GTK1}" ]; then
 			cd ${GTK1_S}
-			make DESTDIR=${D} install || die "gtk1 install failed"
+			make DESTDIR="${D}" install || die "gtk1 install failed"
 			for x in ${DEFAULT_DOCS} ${DOCS}; do
 				newdoc ${x} ${x}.gtk1
 			done
 		fi
 	else
-		cd ${S}
-		make DESTDIR=${D} ${@} install || die "install failed"
+		cd "${S}"
+		make DESTDIR="${D}" ${@} install || die "install failed"
 		dodoc ${DEFAULT_DOCS} ${DOCS}
 	fi
 }

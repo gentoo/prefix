@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.35 2007/12/27 08:51:47 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.36 2008/02/11 15:12:31 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -8,7 +8,8 @@
 # Note: HOMEPAGE and LICENSE are set in appropriate ebuild, as
 # gnat is developed by FSF and AdaCore "in parallel"
 
-inherit eutils versionator toolchain-funcs flag-o-matic multilib libtool fixheadtails gnuconfig pax-utils
+inherit eutils versionator toolchain-funcs flag-o-matic multilib autotools \
+	libtool fixheadtails gnuconfig pax-utils
 
 EXPORT_FUNCTIONS pkg_setup pkg_postinst pkg_postrm src_unpack src_compile src_install
 
@@ -54,11 +55,8 @@ PN_GnatGpl="gnat-gpl"
 # so tc-* functions are of no use here. The present versioning scheme makes
 # GCCVER basically a part of PV, but *this may change*!!
 #
-# NOTE:
-# GCCVER can, in principle, be set in the ebuild. While at present there is no reason to
-# do so, if this ever becomes the case don't forget to update this assignment
-# (to check if GCCVER was set first)
-GCCVER="${GNATRELEASE}"
+# GCCVER can be set in the ebuild. 
+[[ -z ${GCCVER} ]] && GCCVER="${GNATRELEASE}"
 
 
 # finally extract GCC version strings
@@ -246,19 +244,23 @@ do_gnat_config() {
 disgusting_gcc_multilib_HACK() {
 	local config
 	local libdirs
-	case $(tc-arch) in
-		amd64)
-			config="i386/t-linux64"
-			libdirs="../$(get_abi_LIBDIR amd64) ../$(get_abi_LIBDIR x86)" \
-		;;
-		ppc64)
-			config="rs6000/t-linux64"
-			libdirs="../$(get_abi_LIBDIR ppc64) ../$(get_abi_LIBDIR ppc)" \
-		;;
-	esac
+	if has_multilib_profile ; then
+		case $(tc-arch) in
+			amd64)
+				config="i386/t-linux64"
+				libdirs="../$(get_abi_LIBDIR amd64) ../$(get_abi_LIBDIR x86)" \
+			;;
+			ppc64)
+				config="rs6000/t-linux64"
+				libdirs="../$(get_abi_LIBDIR ppc64) ../$(get_abi_LIBDIR ppc)" \
+			;;
+		esac
+	else
+		die "Your profile is no longer supported by portage."
+	fi
 
 	einfo "updating multilib directories to be: ${libdirs}"
-	sed -i -e "s:^MULTILIB_OSDIRNAMES.*:MULTILIB_OSDIRNAMES = ${libdirs}:" ${S}/gcc/config/${config}
+	sed -i -e "s:^MULTILIB_OSDIRNAMES.*:MULTILIB_OSDIRNAMES = ${libdirs}:" "${S}"/gcc/config/${config}
 }
 
 
@@ -283,7 +285,7 @@ gnatbuild_pkg_postinst() {
 	# if primary compiler list is empty, add this profile to the list, so
 	# that users are not left without active compilers (making sure that
 	# libs are getting built for at least one)
-	elog ""
+	elog
 	. ${GnatCommon} || die "failed to source common code"
 	if [[ ! -f ${PRIMELIST} ]] || [[ ! -s ${PRIMELIST} ]]; then
 		echo "${gnat_profile}" > ${PRIMELIST}
@@ -317,8 +319,10 @@ gnatbuild_src_unpack() {
 
 			cd ${S}
 			# patching gcc sources, following the toolchain
-			EPATCH_MULTI_MSG="Applying Gentoo patches ..." \
-				epatch "${FILESDIR}"/patches/*.patch
+			if [[ -d "${FILESDIR}"/${SLOT} ]] ; then
+				EPATCH_MULTI_MSG="Applying Gentoo patches ..." \
+				epatch "${FILESDIR}"/${SLOT}/*.patch
+			fi
 			# Replacing obsolete head/tail with POSIX compliant ones
 			ht_fix_file */configure
 
@@ -343,7 +347,7 @@ gnatbuild_src_unpack() {
 
 			# regenerate some configures tp fix ACT's omissions
 			pushd ${S}/gnattools &> /dev/null
-				autoconf
+				eautoconf
 			popd &> /dev/null
 		;;
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.162 2008/01/19 14:36:35 ingmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-functions.eclass,v 1.163 2008/02/10 00:31:43 philantrop Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org>
 #
@@ -35,6 +35,7 @@ kde-base/kdeaddons kde-base/renamedlg-images
 kde-base/kdeadmin kde-base/kcron
 kde-base/kdeadmin kde-base/kdat
 kde-base/kdeadmin kde-base/kdeadmin-kfile-plugins
+kde-base/kdeadmin kde-base/knetworkconf
 kde-base/kdeadmin kde-base/kpackage
 kde-base/kdeadmin kde-base/ksysv
 kde-base/kdeadmin kde-base/kuser

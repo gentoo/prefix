@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-pear-lib-r1.eclass,v 1.12 2007/09/02 17:49:20 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-pear-lib-r1.eclass,v 1.13 2008/02/11 20:47:35 armin76 Exp $
 #
 # Author: Luca Longinotti <chtekk@gentoo.org>
 
@@ -13,11 +13,11 @@
 # such as Creole, Jargon, Phing etc., while retaining the functionality to put
 # the libraries into version-dependant directories.
 
-inherit depend.php
+inherit depend.php multilib
 
 EXPORT_FUNCTIONS src_install
 
-DEPEND="dev-lang/php >=dev-php/PEAR-PEAR-1.4.6"
+DEPEND="dev-lang/php >=dev-php/PEAR-PEAR-1.6.1"
 RDEPEND="${DEPEND}"
 
 # @FUNCTION: php-pear-lib-r1_src_install
@@ -34,23 +34,20 @@ php-pear-lib-r1_src_install() {
 	case "${CATEGORY}" in
 		dev-php)
 			if has_version '=dev-lang/php-5*' ; then
-				PHP_BIN="/usr/lib/php5/bin/php"
+				PHP_BIN="/usr/$(get_libdir)/php5/bin/php"
 			else
-				PHP_BIN="/usr/lib/php4/bin/php"
+				PHP_BIN="/usr/$(get_libdir)/php4/bin/php"
 			fi ;;
-		dev-php4) PHP_BIN="/usr/lib/php4/bin/php" ;;
-		dev-php5) PHP_BIN="/usr/lib/php5/bin/php" ;;
+		dev-php4) PHP_BIN="/usr/$(get_libdir)/php4/bin/php" ;;
+		dev-php5) PHP_BIN="/usr/$(get_libdir)/php5/bin/php" ;;
 		*) die "Version of PHP required by packages in category ${CATEGORY} unknown"
 	esac
 
 	cd "${S}"
 	mv -f "${WORKDIR}/package.xml" "${S}"
 
-	if has_version '>=dev-php/PEAR-PEAR-1.4.8' ; then
-		pear -d php_bin="${PHP_BIN}" install --force --loose --nodeps --offline --packagingroot="${ED}" "${S}/package.xml" > /dev/null || die "Unable to install PEAR package"
-	else
-		pear -d php_bin="${PHP_BIN}" install --nodeps --packagingroot="${ED}" "${S}/package.xml" > /dev/null || die "Unable to install PEAR package"
-	fi
+	pear -d php_bin="${PHP_BIN}" install --force --loose --nodeps --offline --packagingroot="${ED}" \
+		"${S}/package.xml" || die "Unable to install PEAR package"
 
 	rm -Rf "${ED}/usr/share/php/.channels" \
 	"${ED}/usr/share/php/.depdblock" \
@@ -64,7 +61,8 @@ php-pear-lib-r1_src_install() {
 	# the path, many files can specify it wrongly
 	if [[ -n "${PHP_SHARED_CAT}" ]] && [[ "${PHP_SHARED_CAT}" != "php" ]] ; then
 		mv -f "${ED}/usr/share/php" "${ED}/usr/share/${PHP_SHARED_CAT}" || die "Unable to move files"
-		find "${ED}/" -type f -exec sed -e "s|/usr/share/php|/usr/share/${PHP_SHARED_CAT}|g" -i {} \; || die "Unable to change PHP path"
+		find "${ED}/" -type f -exec sed -e "s|/usr/share/php|/usr/share/${PHP_SHARED_CAT}|g" -i {} \; \
+			|| die "Unable to change PHP path"
 		einfo
 		einfo "Installing to /usr/share/${PHP_SHARED_CAT} ..."
 		einfo

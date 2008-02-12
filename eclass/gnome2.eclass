@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2.eclass,v 1.82 2007/02/23 15:20:57 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2.eclass,v 1.83 2008/02/10 14:47:14 eva Exp $
 
 #
 # gnome2.eclass
@@ -37,7 +37,7 @@ fi
 
 gnome2_src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 
 	# Prevent scrollkeeper access violations
 	gnome2_omf_fix
@@ -82,7 +82,7 @@ gnome2_src_install() {
 
 	if [[ -z "${USE_EINSTALL}" || "${USE_EINSTALL}" = "0" ]]; then
 		debug-print "Installing with 'make install'"
-		make DESTDIR=${D} "scrollkeeper_localstate_dir=${D}${sk_tmp_dir} " "$@" install || die "install failed"
+		make DESTDIR="${D}" "scrollkeeper_localstate_dir=${D}${sk_tmp_dir} " "$@" install || die "install failed"
 	else
 		debug-print "Installing with 'einstall'"
 		einstall "scrollkeeper_localstate_dir=${ED}${sk_tmp_dir} " "$@" || die "einstall failed"

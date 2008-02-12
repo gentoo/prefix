@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.23 2008/01/06 19:30:24 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.24 2008/02/11 20:47:35 armin76 Exp $
 
 # Author: Stuart Herbert <stuart@gentoo.org>
 # Author: Luca Longinotti <chtekk@gentoo.org>
@@ -632,18 +632,40 @@ if [[ $# -lt 1 ]] ; then
 	exit 1
 fi
 
-phpdocdir="${D}/usr/share/doc/${CATEGORY}/${PF}/"
-
-if [[ ! -d "${phpdocdir}" ]] ; then
-	install -d "${phpdocdir}"
-fi
+phpdocdir="/usr/share/doc/${CATEGORY}/${PF}/"
 
 for x in $@ ; do
 	if [[ -s "${x}" ]] ; then
-		install -m0644 "${x}" "${phpdocdir}"
-		gzip -f -9 "${phpdocdir}/${x##*/}"
+		insinto "${phpdocdir}"
+		doins "${x}"
+		gzip -f -9 "${ED}/${phpdocdir}/${x##*/}"
 	elif [[ ! -e "${x}" ]] ; then
 		echo "dodoc-php: ${x} does not exist" 1>&2
+	fi
+done
+}
+
+# @FUNCTION: dohtml-php
+# @USAGE: <list of html docs>
+# @DESCRIPTION:
+# Alternative to dohtml function for use in our PHP eclasses and ebuilds.
+# Stored here because depend.php gets always sourced everywhere in the PHP
+# ebuilds and eclasses. It simply is dohtml with a changed path to the docs.
+# NOTE: No support for [-a|-A|-p|-x] options is provided!
+dohtml-php() {
+if [[ $# -lt 1 ]] ; then
+	echo "$0: at least one argument needed" 1>&2
+	exit 1
+fi
+
+phphtmldir="/usr/share/doc/${CATEGORY}/${PF}/html"
+
+for x in $@ ; do
+	if [[ -s "${x}" ]] ; then
+		insinto "${phphtmldir}"
+		doins "${x}"
+	elif [[ ! -e "${x}" ]] ; then
+		echo "dohtml-php: ${x} does not exist" 1>&2
 	fi
 done
 }
