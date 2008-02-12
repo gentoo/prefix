@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/gstreamer-0.10.17.ebuild,v 1.1 2008/01/31 15:16:28 zaheerm Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/gstreamer-0.10.17.ebuild,v 1.2 2008/02/10 17:38:51 drac Exp $
 
 EAPI="prefix"
 
@@ -27,7 +27,7 @@ RDEPEND=">=dev-libs/glib-2.8
 DEPEND="${RDEPEND}
 	nls? ( >=sys-devel/gettext-0.11.5 )
 	dev-util/pkgconfig
-	!<media-libs/gst-plugins-ugly-0.10.6"
+	!<media-libs/gst-plugins-ugly-0.10.6-r1"
 
 src_unpack() {
 	unpack ${A}
