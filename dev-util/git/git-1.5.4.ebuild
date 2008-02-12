@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.4.ebuild,v 1.2 2008/02/03 18:33:23 ferdy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.4.ebuild,v 1.3 2008/02/11 19:52:57 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -88,8 +88,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.5.3-symlinks.patch
 
 	sed -i \
-		-e "s:^\(CFLAGS = \).*$:\1${CFLAGS} -Wall:" \
-		-e "s:^\(LDFLAGS = \).*$:\1${LDFLAGS}:" \
+		-e "s:^\(CFLAGS =\).*$:\1 ${CFLAGS} -Wall:" \
+		-e "s:^\(LDFLAGS =\).*$:\1 ${LDFLAGS}:" \
 		-e "s:^\(CC = \).*$:\1$(tc-getCC):" \
 		-e "s:^\(AR = \).*$:\1$(tc-getAR):" \
 		-e 's:ln :ln -s :g' \
