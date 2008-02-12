@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexextra/texlive-latexextra-2007.ebuild,v 1.9 2007/12/18 19:45:08 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexextra/texlive-latexextra-2007.ebuild,v 1.10 2008/02/10 15:53:36 aballier Exp $
 
 EAPI="prefix"
 
@@ -16,4 +16,4 @@ DESCRIPTION="TeXLive LaTeX supplementary packages"
 
 LICENSE="GPL-2 LPPL-1.3c Artistic"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~ppc-macos ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
