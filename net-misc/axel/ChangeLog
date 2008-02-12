@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/axel
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/axel/ChangeLog,v 1.36 2008/02/03 16:13:18 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/axel/ChangeLog,v 1.37 2008/02/11 18:45:45 drizzt Exp $
+
+*axel-1.1 (11 Feb 2008)
+
+  11 Feb 2008; Timothy Redaelli <drizzt@gentoo.org> +axel-1.1.ebuild:
+  Version Bump wrt bug #209577
 
   03 Feb 2008; Fabian Groffen <grobian@gentoo.org> axel-1.0b.ebuild,
   axel-1.0b-r1.ebuild, axel-1.0b-r2.ebuild:
