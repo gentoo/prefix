@@ -1,6 +1,15 @@
 # ChangeLog for media-gfx/asymptote
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/ChangeLog,v 1.13 2007/10/27 20:15:58 centic Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/ChangeLog,v 1.14 2008/02/10 20:41:34 centic Exp $
+
+*asymptote-1.41 (10 Feb 2008)
+
+  10 Feb 2008; Dominik Stadler <centic@gentoo.org>
+  +files/asymptote-1.41-configure-ac.patch,
+  +files/asymptote-1.41-makefile.patch,
+  +files/asymptote-1.41-xdg-utils.patch, +asymptote-1.41.ebuild:
+  Bump to version 1.41, fixes Bug 208817, thanks to Andrey Grocin
+  for updating the patches.
 
 *asymptote-1.36 (27 Oct 2007)
 
