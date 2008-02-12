@@ -1,6 +1,18 @@
 # ChangeLog for app-arch/lzma-utils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/ChangeLog,v 1.20 2008/01/26 07:22:48 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/ChangeLog,v 1.23 2008/02/11 18:57:58 vapier Exp $
+
+*lzma-utils-4.32.5 (11 Feb 2008)
+
+  11 Feb 2008; Mike Frysinger <vapier@gentoo.org> +lzma-utils-4.32.5.ebuild:
+  Version bump #209652.
+
+  11 Feb 2008; Raúl Porcel <armin76@gentoo.org> lzma-utils-4.32.4.ebuild:
+  alpha/ia64/sparc/x86 stable
+
+  10 Feb 2008; Alexis Ballier <aballier@gentoo.org>
+  lzma-utils-4.32.4.ebuild:
+  keyword ~x86-fbsd
 
   26 Jan 2008; Samuli Suominen <drac@gentoo.org> lzma-utils-4.32.3.ebuild:
   amd64 stable wrt #205397
