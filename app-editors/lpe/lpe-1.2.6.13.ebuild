@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/lpe/lpe-1.2.6.13.ebuild,v 1.1 2008/01/24 11:49:19 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/lpe/lpe-1.2.6.13.ebuild,v 1.4 2008/02/10 09:50:12 dertobi123 Exp $
 
 EAPI="prefix"
 
-inherit autotools eutils multilib
+inherit multilib
 
 DESCRIPTION="a lightweight programmers editor"
 HOMEPAGE="http://packages.qa.debian.org/l/lpe.html"
@@ -15,16 +15,9 @@ SLOT="0"
 KEYWORDS="~x86-linux"
 IUSE="nls"
 
-RDEPEND=">=sys-libs/slang-2"
+RDEPEND=">=sys-libs/slang-2.1.3"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-slang-2.patch
-	eautoconf
-}
 
 src_compile() {
 	econf $(use_enable nls)
@@ -40,6 +33,5 @@ src_install() {
 		docdir="${ED}/usr/share/doc/${PF}" \
 		exdir="${ED}/usr/share/doc/${PF}/examples" \
 		install || die "emake install failed."
-	dodoc AUTHORS BUGS Changelog CUSTOMIZE IDEAS MODES NEWS README TODO
 	prepalldocs
 }
