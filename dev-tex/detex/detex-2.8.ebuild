@@ -1,16 +1,16 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/detex/detex-2.7.ebuild,v 1.20 2007/12/18 19:10:48 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/detex/detex-2.8.ebuild,v 1.2 2008/02/10 16:51:32 aballier Exp $
 
 EAPI="prefix"
 
-inherit eutils
+inherit eutils toolchain-funcs
 
 DESCRIPTION="A filter program that removes the LaTeX (or TeX) control sequences"
 HOMEPAGE="http://www.cs.purdue.edu/homes/trinkle/detex/"
 SRC_URI="http://www.cs.purdue.edu/homes/trinkle/detex/${P}.tar"
 
-LICENSE="freedist"
+LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~x86-fbsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
@@ -20,20 +20,18 @@ DEPEND="virtual/libc
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 	sed -i \
 		-e "s:CFLAGS	= -O \${DEFS}:CFLAGS	= ${CFLAGS} \${DEFS}:" \
 		-e 's:LEX	= lex:#LEX	= lex:' \
 		-e 's:#LEX	= flex:LEX	= flex:' \
 		-e 's:#DEFS	+= ${DEFS} -DNO_MALLOC_DECL:DEFS += -DNO_MALLOC_DECL:' \
-		-e 's:	${CC} ${CFLAGS} -o $@ ${D_OBJ} -ll:	${CC} ${CFLAGS} -o $@ ${D_OBJ} -lfl:' \
+		-e 's:LEXLIB	= -ll:LEXLIB	= -lfl:' \
 		Makefile || die "sed failed"
-
-	# This is a hack to get round bug 127042 until flex is fixed.
-	epatch ${FILESDIR}/${PN}-flexbrackets.patch
 }
 
 src_compile() {
+	tc-export CC
 	emake || die "emake failed"
 }
 
