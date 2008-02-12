@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.91.2.ebuild,v 1.9 2007/11/14 19:25:05 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.91.2.ebuild,v 1.10 2008/02/11 22:58:32 ticho Exp $
 
 EAPI="prefix"
 
@@ -42,7 +42,7 @@ pkg_setup() {
 }
 
 src_unpack() {
-	unpack "${A}"
+	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-0.90-compat.patch
 	epatch "${FILESDIR}"/${PN}-0.90-nls.patch

@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.92.ebuild,v 1.4 2008/02/08 23:28:35 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.92.ebuild,v 1.8 2008/02/11 22:58:32 ticho Exp $
 
 EAPI="prefix"
 
-inherit autotools eutils flag-o-matic fixheadtails
+inherit autotools eutils flag-o-matic fixheadtails multilib
 
 DESCRIPTION="Clam Anti-Virus Scanner"
 HOMEPAGE="http://www.clamav.net/"
@@ -30,19 +30,18 @@ PROVIDE="virtual/antivirus"
 
 pkg_setup() {
 	if use milter; then
-		if [ ! -e "${EROOT}"/usr/lib/libmilter.a ] ; then
+		if [ ! -e "${EPREFIX}"/usr/$(get_libdir)/libmilter.a ] ; then
 			ewarn "In order to enable milter support, clamav needs sendmail with enabled milter"
-			ewarn "USE flag. Either recompile sendmail with milter USE flag enabled, or disable"
-			ewarn "this flag for clamav as well to disable milter support."
-			die "need milter-enabled sendmail"
+			ewarn "USE flag, or mail-filter/libmilter package."
 		fi
 	fi
+
 	enewgroup clamav
 	enewuser clamav -1 -1 /dev/null clamav
 }
 
 src_unpack() {
-	unpack "${A}"
+	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-0.90-compat.patch
 	epatch "${FILESDIR}"/${PN}-0.90-nls.patch
@@ -133,10 +132,10 @@ pkg_postinst() {
 	ewarn "Warning: clamd and/or freshclam have not been restarted."
 	ewarn "You should restart them to start using new version: /etc/init.d/clamd restart"
 	echo
-	ewarn "The soname for libclamav has changed after clamav-0.90."
+	ewarn "The soname for libclamav has changed in clamav-0.92."
 	ewarn "If you have upgraded from that or earlier version, it is recommended to run:"
 	ewarn
-	ewarn "revdep-rebuild --library libclamav.so.1"
+	ewarn "revdep-rebuild --library libclamav.so.2"
 	ewarn
 	ewarn "This will fix linking errors caused by this change."
 	echo

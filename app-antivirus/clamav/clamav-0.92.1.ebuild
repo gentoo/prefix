@@ -1,10 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.91.2-r1.ebuild,v 1.8 2008/02/11 22:58:32 ticho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.92.1.ebuild,v 1.1 2008/02/11 23:42:29 ticho Exp $
 
 EAPI="prefix"
 
-inherit autotools eutils flag-o-matic fixheadtails
+inherit autotools eutils flag-o-matic fixheadtails multilib
 
 DESCRIPTION="Clam Anti-Virus Scanner"
 HOMEPAGE="http://www.clamav.net/"
@@ -30,11 +30,9 @@ PROVIDE="virtual/antivirus"
 
 pkg_setup() {
 	if use milter; then
-		if [ ! -e "${EROOT}"/usr/lib/libmilter.a ] ; then
+		if [ ! -e "${EPREFIX}"/usr/$(get_libdir)/libmilter.a ] ; then
 			ewarn "In order to enable milter support, clamav needs sendmail with enabled milter"
-			ewarn "USE flag. Either recompile sendmail with milter USE flag enabled, or disable"
-			ewarn "this flag for clamav as well to disable milter support."
-			die "need milter-enabled sendmail"
+			ewarn "USE flag, or mail-filter/libmilter package."
 		fi
 	fi
 	enewgroup clamav
@@ -44,11 +42,7 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-0.90-compat.patch
 	epatch "${FILESDIR}"/${PN}-0.90-nls.patch
-	epatch "${FILESDIR}"/${P}-CVE-2007-5759.patch
-	epatch "${FILESDIR}"/${P}-CVE-2007-6336.patch
-	epatch "${FILESDIR}"/${P}-CVE-2007-6337.patch
 	eautoreconf
 }
 
@@ -123,7 +117,7 @@ src_install() {
 	dodir /etc/logrotate.d
 	insopts -m0644
 	insinto /etc/logrotate.d
-	newins "${FILESDIR}"/${PN}.logrotate ${PN}
+	newins ${FILESDIR}/${PN}.logrotate ${PN}
 }
 
 pkg_postinst() {
@@ -133,14 +127,13 @@ pkg_postinst() {
 		elog "read ${EROOT}/usr/share/doc/${PF}/clamav-milter.README.gentoo.gz"
 		echo
 	fi
-	ewarn "Warning: clamd and/or freshclam have not been restarted."
-	ewarn "You should restart them to start using new version: /etc/init.d/clamd restart"
+	ewarn "WARNING: In 0.92.1, the logic in the scanner limits have been reworked. This"
+	ewarn "results in different command line options to clamscan, different config"
+	ewarn "options to clamd and, overall, a different behaviour."
 	echo
-	ewarn "The soname for libclamav has changed after clamav-0.90."
+	ewarn "The soname for libclamav has changed in clamav-0.92."
 	ewarn "If you have upgraded from that or earlier version, it is recommended to run:"
-	ewarn
-	ewarn "revdep-rebuild --library libclamav.so.1"
-	ewarn
+	ewarn "\trevdep-rebuild --library libclamav.so.2"
 	ewarn "This will fix linking errors caused by this change."
 	echo
 }
