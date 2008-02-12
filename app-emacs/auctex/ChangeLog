@@ -1,6 +1,21 @@
 # ChangeLog for app-emacs/auctex
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.80 2008/01/23 11:37:33 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.83 2008/02/11 08:20:09 opfer Exp $
+
+*auctex-11.85 (11 Feb 2008)
+
+  11 Feb 2008; Christian Faulhammer <opfer@gentoo.org> +auctex-11.85.ebuild:
+  version bump: Only some bug fixes (make the japanese patch obsolete e.g.);
+  move DEPEND to virtual/latex-base, remove fix for Emacs 23, it seems to work
+  without the patch now by forcing EMACS_FLAVOR
+
+  11 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  +files/50auctex-gentoo.el, -files/52auctex-gentoo.el:
+  readd previously deleted file and clean out correct one
+
+  11 Feb 2008; Christian Faulhammer <opfer@gentoo.org>
+  -files/50auctex-gentoo.el, -auctex-11.84-r2.ebuild:
+  clean up
 
   23 Jan 2008; Raúl Porcel <armin76@gentoo.org> auctex-11.84-r3.ebuild:
   sparc stable wrt #206992
