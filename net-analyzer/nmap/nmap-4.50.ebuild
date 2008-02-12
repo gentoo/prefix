@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.50.ebuild,v 1.6 2008/02/05 11:01:29 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.50.ebuild,v 1.7 2008/02/11 20:56:12 angelos Exp $
 
 EAPI="prefix"
 
