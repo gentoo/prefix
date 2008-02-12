@@ -1,6 +1,9 @@
 # ChangeLog for app-text/texlive
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.29 2007/12/30 11:27:19 aballier Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.30 2008/02/10 17:31:48 aballier Exp $
+
+  10 Feb 2008; Alexis Ballier <aballier@gentoo.org> texlive-2007-r3.ebuild:
+  keyword ~x86-fbsd
 
   30 Dec 2007; Alexis Ballier <aballier@gentoo.org> texlive-2007-r3.ebuild:
   no need to rdepend on xdvipdfmx from here, it makes more sense to do it from
