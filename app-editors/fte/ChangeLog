@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/fte
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/fte/ChangeLog,v 1.42 2007/07/22 08:45:36 omp Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/fte/ChangeLog,v 1.43 2008/02/09 11:52:30 drac Exp $
+
+  09 Feb 2008; Samuli Suominen <drac@gentoo.org> +files/fte-slang.patch,
+  fte-20051115.ebuild:
+  Fix fte to work with slang 2.1.3.
 
   22 Jul 2007; David Shakaryan <omp@gentoo.org> fte-20020324-r2.ebuild,
   fte-20050108-r3.ebuild, fte-20051115.ebuild:
