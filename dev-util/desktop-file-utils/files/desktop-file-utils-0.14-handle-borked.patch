@@ -1,0 +1,20 @@
+--- src/update-desktop-database.c	2006/04/18 22:08:10	1.8
++++ src/update-desktop-database.c	2008/01/20 19:33:17	1.9
+@@ -33,6 +33,8 @@
+ #include <glib.h>
+ #include <glib/gi18n.h>
+ 
++#include "keyfileutils.h"
++
+ #define NAME "update-desktop-database"
+ #define CACHE_FILENAME "mimeinfo.cache"
+ #define TEMP_CACHE_FILENAME_PREFIX ".mimeinfo.cache.XXXXXX"
+@@ -189,7 +191,7 @@
+     }
+ 
+   mime_types = g_key_file_get_string_list (keyfile,
+-                                           g_key_file_get_start_group (keyfile),
++                                           GROUP_DESKTOP_ENTRY,
+                                            "MimeType", NULL, &load_error);
+ 
+   g_key_file_free (keyfile);

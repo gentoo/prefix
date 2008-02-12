@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/desktop-file-utils
 # Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/ChangeLog,v 1.71 2008/02/03 14:00:28 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/ChangeLog,v 1.72 2008/02/10 21:54:42 eva Exp $
+
+*desktop-file-utils-0.14-r1 (10 Feb 2008)
+
+  10 Feb 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/desktop-file-utils-0.14-handle-borked.patch,
+  +desktop-file-utils-0.14-r1.ebuild:
+  patch for broken input files, fix bug #209582
 
   03 Feb 2008; Samuli Suominen <drac@gentoo.org>
   desktop-file-utils-0.14.ebuild:
