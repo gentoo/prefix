@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.4.7-r2.ebuild,v 1.5 2008/01/13 15:16:39 philantrop Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.4.7-r2.ebuild,v 1.6 2008/02/11 19:41:38 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -57,9 +57,6 @@ src_compile() {
 	fi
 
 	tc-export CC CXX LD
-
-	[[ ${CHOST} == *-linux* || ${CHOST} == *-solaris* ]] && \
-		append-ldflags -Wl,--no-as-needed
 
 	./bootstrap \
 		--system-libs \

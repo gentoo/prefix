@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.4.8_rc12.ebuild,v 1.2 2008/02/11 19:41:38 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.4.8.ebuild,v 1.2 2008/02/11 19:41:38 flameeyes Exp $
 
 EAPI="prefix"
 
@@ -34,7 +34,7 @@ VIMFILE="${PN}.vim"
 S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
-	if ! built_with_use dev-libs/xmlrpc-c libwww && ! built_with_use dev-libs/xmlrpc-c curl ; then
+	if ! built_with_use -o dev-libs/xmlrpc-c curl libwww; then
 		echo
 		eerror "${PN} requires dev-libs/xmlrpc-c to be built with either the 'libwww' or"
 		eerror "the 'curl' USE flag or both enabled."
@@ -66,7 +66,7 @@ src_compile() {
 		--docdir=/share/doc/${PN} \
 		--datadir=/share/${PN} \
 		--mandir=/share/man || die "./bootstrap failed"
-	emake || die
+	emake || die "emake failed."
 	if use emacs; then
 		elisp-compile Docs/cmake-mode.el || die "elisp compile failed"
 	fi
