@@ -1,6 +1,10 @@
 # ChangeLog for app-text/ghostscript-esp
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ChangeLog,v 1.56 2007/10/03 08:19:03 tgall Exp $
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ChangeLog,v 1.57 2008/02/09 12:01:07 armin76 Exp $
+
+  09 Feb 2008; Raúl Porcel <armin76@gentoo.org>
+  ghostscript-esp-8.15.4.ebuild:
+  alpha/ia64/x86 stable
 
   03 Oct 2007; Tom Gall <tgall@gentoo.org> ghostscript-esp-8.15.4.ebuild:
   stable on ppc64

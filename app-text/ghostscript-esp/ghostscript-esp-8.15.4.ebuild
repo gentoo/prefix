@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ghostscript-esp-8.15.4.ebuild,v 1.5 2007/10/03 08:19:03 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-esp/ghostscript-esp-8.15.4.ebuild,v 1.6 2008/02/09 12:01:07 armin76 Exp $
 
 EAPI="prefix"
 
@@ -24,7 +24,7 @@ ESVN_REPO_URI="http://svn.easysw.com/public/espgs/trunk"
 
 LICENSE="GPL-2 LGPL-2 CPL-1.0"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc-macos ~sparc-solaris ~x86 ~x86-fbsd ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="X cups cjk gtk threads xml djvu elibc_glibc"
 
 DEP="virtual/libc
