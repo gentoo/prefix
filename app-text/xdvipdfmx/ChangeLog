@@ -1,6 +1,9 @@
 # ChangeLog for app-text/xdvipdfmx
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvipdfmx/ChangeLog,v 1.22 2007/12/19 04:50:12 jer Exp $
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvipdfmx/ChangeLog,v 1.23 2008/02/10 16:28:28 aballier Exp $
+
+  10 Feb 2008; Alexis Ballier <aballier@gentoo.org> xdvipdfmx-0.4.ebuild:
+  keyword ~x86-fbsd
 
   19 Dec 2007; Jeroen Roovers <jer@gentoo.org> xdvipdfmx-0.4.ebuild:
   Stable for HPPA too. Fixed installing COPYING.
