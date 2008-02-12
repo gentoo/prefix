@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/mpfr
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.68 2008/01/30 22:55:06 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.69 2008/02/11 19:24:02 coldwind Exp $
+
+  11 Feb 2008; Santiago M. Mola <coldwind@gentoo.org> mpfr-2.3.0_p4.ebuild:
+  amd64 stable wrt #208039
 
   30 Jan 2008; Brent Baude <ranger@gentoo.org> mpfr-2.3.0_p4.ebuild:
   Marking mpfr-2.3.0_p4 ppc64 for bug 208039
