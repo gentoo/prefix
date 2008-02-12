@@ -1,13 +1,13 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1_rc6-r1.ebuild,v 1.1 2008/01/25 23:51:45 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1_rc7.ebuild,v 1.1 2008/02/09 16:20:56 alonbl Exp $
 
 EAPI="prefix"
 
 inherit eutils multilib
 
 DESCRIPTION="OpenVPN is a robust and highly flexible tunneling application compatible with many OSes."
-SRC_URI="http://openvpn.net/beta/${P}.tar.gz"
+SRC_URI="http://openvpn.net/release/${P}.tar.gz"
 HOMEPAGE="http://openvpn.net/"
 
 LICENSE="GPL-2"
@@ -37,7 +37,7 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}/${P}-iproute.patch"
+	epatch "${FILESDIR}/${P}-tap.patch"
 }
 
 src_compile() {

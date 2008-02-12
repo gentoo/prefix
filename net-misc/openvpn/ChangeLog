@@ -1,6 +1,15 @@
 # ChangeLog for net-misc/openvpn
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.128 2008/02/08 10:01:09 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.129 2008/02/09 16:20:56 alonbl Exp $
+
+*openvpn-2.1_rc7 (09 Feb 2008)
+
+  09 Feb 2008; Alon Bar-Lev <alonbl@gentoo.org>
+  -files/openvpn-2.1_rc4-ip6-mss.patch,
+  -files/openvpn-2.1_rc6-iproute.patch, +files/openvpn-2.1_rc7-tap.patch,
+  -openvpn-2.1_rc4-r2.ebuild, -openvpn-2.1_rc6-r1.ebuild,
+  +openvpn-2.1_rc7.ebuild:
+  Version bump, fix bug#209055
 
   08 Feb 2008; Tobias Scherbaum <dertobi123@gentoo.org>
   openvpn-2.0.7-r2.ebuild:
