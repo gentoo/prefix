@@ -1,6 +1,6 @@
 # ChangeLog for net-misc/iputils
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/ChangeLog,v 1.63 2008/01/26 07:09:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/ChangeLog,v 1.64 2008/02/09 20:37:40 vapier Exp $
 
 *iputils-20071127 (26 Jan 2008)
 
@@ -36,9 +36,9 @@
   Fix building with newer kernel headers that lack OPEN_MAX #195861 by Markus
   Meier.
 
-*iputils-9999 (30 Apr 2007)
+*iputils-99999999 (30 Apr 2007)
 
-  30 Apr 2007; Mike Frysinger <vapier@gentoo.org> +iputils-9999.ebuild:
+  30 Apr 2007; Mike Frysinger <vapier@gentoo.org> +iputils-99999999.ebuild:
   Live git version.
 
   09 Feb 2007; Alexander H. Færøy <eroyf@gentoo.org>
