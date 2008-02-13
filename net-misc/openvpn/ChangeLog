@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/openvpn
 # Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.129 2008/02/09 16:20:56 alonbl Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.130 2008/02/12 19:44:31 armin76 Exp $
+
+  12 Feb 2008; Raúl Porcel <armin76@gentoo.org> openvpn-2.0.7-r2.ebuild:
+  alpha/sparc stable wrt #209177
 
 *openvpn-2.1_rc7 (09 Feb 2008)
 
