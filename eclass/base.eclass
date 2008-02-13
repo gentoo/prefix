@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/base.eclass,v 1.31 2007/09/12 20:05:33 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/base.eclass,v 1.32 2008/02/12 23:51:51 betelgeuse Exp $
 #
 # Author Dan Armak <danarmak@gentoo.org> (nowadays retired)
 #
@@ -16,7 +16,7 @@ base_src_unpack() {
 	debug-print-function $FUNCNAME $*
 	[ -z "$1" ] && base_src_unpack all
 
-	cd ${WORKDIR}
+	cd "${WORKDIR}"
 
 	while [ "$1" ]; do
 
@@ -27,13 +27,13 @@ base_src_unpack() {
 			;;
 		patch)
 			debug-print-section patch
-			cd ${S}
-			epatch ${FILESDIR}/${P}-gentoo.diff
+			cd "${S}"
+			epatch "${FILESDIR}/${P}-gentoo.diff"
 			;;
 		autopatch)
 			debug-print-section autopatch
 			debug-print "$FUNCNAME: autopatch: PATCHES=$PATCHES, PATCHES1=$PATCHES1"
-			cd ${S}
+			cd "${S}"
 			for x in $PATCHES $PATCHES1; do
 				debug-print "$FUNCNAME: autopatch: patching from ${x}"
 				epatch ${x}
@@ -55,7 +55,7 @@ base_src_compile() {
 	debug-print-function $FUNCNAME $*
 	[ -z "$1" ] && base_src_compile all
 
-	cd ${S}
+	cd "${S}"
 
 	while [ "$1" ]; do
 
@@ -84,14 +84,14 @@ base_src_install() {
 	debug-print-function $FUNCNAME $*
 	[ -z "$1" ] && base_src_install all
 
-	cd ${S}
+	cd "${S}"
 
 	while [ "$1" ]; do
 
 	case $1 in
 		make)
 			debug-print-section make
-			make DESTDIR=${D} install || die "died running make install, $FUNCNAME:make"
+			make DESTDIR="${D}" install || die "died running make install, $FUNCNAME:make"
 			;;
 		all)
 			debug-print-section all
